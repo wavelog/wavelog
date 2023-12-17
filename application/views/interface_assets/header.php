@@ -50,6 +50,10 @@
 		echo '<link rel="stylesheet" href="' . base_url() . 'assets/css/custom.css">';
 	} ?>
 
+	<script>
+		var userName = '<?php echo $this->session->userdata('user_name'); ?>'
+	</script>
+
 	<?php if (file_exists(APPPATH . '../assets/js/sections/custom.js')) {
 		echo '<script src="' . base_url() . 'assets/js/sections/custom.js"></script>';
 	} ?>
