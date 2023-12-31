@@ -54,7 +54,17 @@
     document.addEventListener('htmx:afterSwap', function(event) {
         $('[data-bs-toggle="tooltip"]').tooltip();
     });
-    </script>
+</script>
+
+<script>
+    function get_datatables_language() {
+        lang_datatables_language = "<?php echo lang('datatables_language'); ?>";
+        datatables_language_url = "../assets/json/datatables_languages/" + lang_datatables_language + ".json";
+        console.log(datatables_language_url);
+        return datatables_language_url;
+    }
+</script>
+
 <!-- Version Dialog START -->
 
 <?php
