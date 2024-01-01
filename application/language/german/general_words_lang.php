@@ -25,6 +25,7 @@ $lang['general_word_count'] = "Zähler";
 $lang['general_word_filtering_on'] = "Filtern auf";
 $lang['general_word_not_display'] = "Not display";
 $lang['general_word_icon'] = "Icon";
+$lang['general_word_never'] = "Nie";
 
 $lang['general_word_date'] = 'Datum';
 $lang['general_word_startdate'] = "Start Datum";
@@ -47,6 +48,8 @@ $lang['general_word_city'] = 'Stadt';
 $lang['general_word_total'] = 'Gesamt';
 $lang['general_word_year'] = 'Jahr';
 $lang['general_word_month'] = 'Monat';
+$lang['general_word_day'] = "Tag";
+$lang['general_word_days'] = "Tage";
 
 $lang['general_word_colors'] = "Farben";
 $lang['general_word_light'] = "Licht/Laser";
