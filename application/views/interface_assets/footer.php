@@ -60,7 +60,7 @@
 <script>
     function get_datatables_language() {
         lang_datatables_language = "<?php echo lang('datatables_language'); ?>";
-        datatables_language_url = "<?php echo base_url() ;?>/assets/json/datatables_languages/" + lang_datatables_language + ".json";
+        datatables_language_url = "<?php echo base_url() ;?>assets/json/datatables_languages/" + lang_datatables_language + ".json";
         return datatables_language_url;
     }
 </script>
