@@ -27,6 +27,7 @@
     var lang_general_word_worked_not_confirmed = "<?php echo lang('general_word_worked_not_confirmed'); ?>";
     var lang_general_word_not_worked = "<?php echo lang('general_word_not_worked'); ?>";
     var lang_admin_close = "<?php echo lang('admin_close'); ?>";
+    var lang_admin_clear = "<?php echo lang('admin_clear'); ?>";
 </script>
 <!-- General JS Files used across Cloudlog -->
 <script src="<?php echo base_url(); ?>assets/js/jquery-3.3.1.min.js"></script>
@@ -59,7 +60,7 @@
 <script>
     function get_datatables_language() {
         lang_datatables_language = "<?php echo lang('datatables_language'); ?>";
-        datatables_language_url = "../assets/json/datatables_languages/" + lang_datatables_language + ".json";
+        datatables_language_url = "<?php echo base_url() ;?>/assets/json/datatables_languages/" + lang_datatables_language + ".json";
         return datatables_language_url;
     }
 </script>
@@ -2355,21 +2356,24 @@ $(document).ready(function(){
     }
 
     ?>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/moment.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datetime-moment.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/moment.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datetime-moment.js"></script>
+        <script>
+            $.fn.dataTable.moment('<?php echo $usethisformat ?>');
+            $.fn.dataTable.ext.buttons.clear = {
+                className: 'buttons-clear',
+                action: function ( e, dt, node, config ) {
+                dt.search('').draw();
+                }
+            };
+    </script>
+    <?php if ($this->uri->segment(1) == "qsl") {
+            $qsl_eqsl_table = '.qsltable';
+    } else if ($this->uri->segment(1) == "eqsl") {
+            $qsl_eqsl_table = '.eqsltable';
+    } ?>
     <script>
-        $.fn.dataTable.moment('<?php echo $usethisformat ?>');
-        $.fn.dataTable.ext.buttons.clear = {
-            className: 'buttons-clear',
-            action: function ( e, dt, node, config ) {
-               dt.search('').draw();
-            }
-        };
-<?php if ($this->uri->segment(1) == "qsl") { ?>
-        $('.qsltable').DataTable({
-<?php } else if ($this->uri->segment(1) == "eqsl") { ?>
-        $('.eqsltable').DataTable({
-<?php } ?>
+        $('<?php echo $qsl_eqsl_table ?>').DataTable({
             "pageLength": 25,
             responsive: false,
             ordering: true,
@@ -2385,10 +2389,10 @@ $(document).ready(function(){
             buttons: [
                {
                   extend: 'clear',
-                  text: 'Clear'
+                  text: lang_admin_clear
                }
             ]
-        });
+        })
         // change color of csv-button if dark mode is chosen
         if (isDarkModeTheme()) {
             $('[class*="buttons"]').css("color", "white");
@@ -3050,7 +3054,7 @@ function viewEqsl(picture, callsign) {
                    },
                    {
                       extend: 'clear',
-                      text: 'Clear'
+                      text: lang_admin_clear
                    }
                 ]
             });
@@ -3087,7 +3091,7 @@ function viewEqsl(picture, callsign) {
                    },
                    {
                       extend: 'clear',
-                      text: 'Clear'
+                      text: lang_admin_clear
                    }
                 ]
             });
@@ -3122,7 +3126,7 @@ function viewEqsl(picture, callsign) {
                    },
                    {
                       extend: 'clear',
-                      text: 'Clear'
+                      text: lang_admin_clear
                    }
                 ]
             });
