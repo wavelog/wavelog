@@ -37,21 +37,21 @@
 			<tbody>
 				<?php foreach ($modes->result() as $row) { ?>
 				<tr>
-					<td><?php echo $row->mode;?></td>
-					<td><?php echo $row->submode;?></td>
-					<td><?php echo $row->qrgmode;?></td>
-                    <td class='mode_<?php echo $row->id ?>'><?php if ($row->active == 1) { echo "active";} else { echo "not active";};?></td>
-                    <td style="text-align: center">
+					<td style="text-align: center; vertical-align: middle;" ><?php echo $row->mode;?></td>
+					<td style="text-align: center; vertical-align: middle;" ><?php echo $row->submode;?></td>
+					<td style="text-align: center; vertical-align: middle;" ><?php echo $row->qrgmode;?></td>
+                    <td style="text-align: center; vertical-align: middle;"  class='mode_<?php echo $row->id ?>'><?php if ($row->active == 1) { echo "active";} else { echo "not active";};?></td>
+                    <td style="text-align: center; vertical-align: middle;"  style="text-align: center">
                         <?php if ($row->active == 1) {
                             echo "<button onclick='javascript:deactivateMode(". $row->id . ")' class='btn_" . $row->id . " btn btn-secondary btn-sm'>Deactivate</button>";
                         } else {
                             echo "<button onclick='javascript:activateMode(". $row->id . ")' class='btn_" . $row->id . " btn btn-primary btn-sm'>Activate</button>";
                         };?>
                     </td>
-					<td>
+					<td style="text-align: center; vertical-align: middle;" >
 						<a href="<?php echo site_url('mode/edit')."/".$row->id; ?>" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit"></i> Edit</a>
 					</td>
-					<td>
+					<td style="text-align: center; vertical-align: middle;" >
 						<a href="javascript:deleteMode('<?php echo $row->id; ?>', '<?php echo $row->mode; ?>');" class="btn btn-danger btn-sm" ><i class="fas fa-trash-alt"></i> Delete</a>
                     </td>
 				</tr>
@@ -64,8 +64,8 @@
 					<th></th>
 					<th></th>
 					<th></th>
-					<th></th>
-					<th></th>
+					<th><---</th>
+					<th><?php echo lang('filter_filters'); ?></th>
 					<th></th>
 				</tr>
 			</tfoot>
