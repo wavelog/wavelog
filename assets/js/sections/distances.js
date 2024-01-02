@@ -159,6 +159,9 @@ function getDistanceQsos(distance) {
 						"scrollCollapse": true,
 						"paging":         false,
 						"scrollX": true,
+						"language": {
+							url: get_datatables_language()
+						},
 						dom: 'Bfrtip',
 						buttons: [
 							'csv'

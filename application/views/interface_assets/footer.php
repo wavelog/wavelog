@@ -60,7 +60,6 @@
     function get_datatables_language() {
         lang_datatables_language = "<?php echo lang('datatables_language'); ?>";
         datatables_language_url = "../assets/json/datatables_languages/" + lang_datatables_language + ".json";
-        console.log(datatables_language_url);
         return datatables_language_url;
     }
 </script>
@@ -404,6 +403,9 @@ $(function () {
                     "scrollCollapse": true,
                     "paging": false,
                     "scrollX": true,
+                    "language": {
+                        url: get_datatables_language()
+                    },
                     dom: 'Bfrtip',
                     buttons: [
                         'csv'
@@ -529,6 +531,9 @@ $(function () {
                         "scrollCollapse": true,
                         "paging": false,
                         "scrollX": true,
+                        "language": {
+                            url: get_datatables_language()
+                        },
                         dom: 'Bfrtip',
                         buttons: [
                             'csv'
@@ -847,6 +852,9 @@ function findduplicates(){
             "scrollCollapse": true,
             "paging":         false,
             "scrollX": true,
+			"language": {
+				url: get_datatables_language()
+			},
             dom: 'Bfrtip',
             buttons: [
                 'csv'
@@ -870,6 +878,9 @@ function findlotwunconfirmed(){
             "scrollCollapse": true,
             "paging":         false,
             "scrollX": true,
+			"language": {
+				url: get_datatables_language()
+			},
             dom: 'Bfrtip',
             buttons: [
                 'csv'
@@ -893,6 +904,9 @@ function findincorrectcqzones() {
             "scrollCollapse": true,
             "paging":         false,
             "scrollX": true,
+			"language": {
+				url: get_datatables_language()
+			},
             dom: 'Bfrtip',
             buttons: [
                 'csv'
@@ -1891,6 +1905,9 @@ $(document).ready(function(){
         "scrollCollapse": true,
         "paging":         false,
         "scrollX": true,
+        "language": {
+            url: get_datatables_language()
+        },
         dom: 'Bfrtip',
         buttons: [
             'csv'
@@ -1925,6 +1942,9 @@ $(document).ready(function(){
         "scrollCollapse": true,
         "paging":         false,
         "scrollX": true,
+        "language": {
+            url: get_datatables_language()
+        },
         dom: 'Bfrtip',
         buttons: [
             'csv'
@@ -1959,6 +1979,9 @@ $(document).ready(function(){
         "scrollCollapse": true,
         "paging":         false,
         "scrollX": true,
+        "language": {
+            url: get_datatables_language()
+        },
         dom: 'Bfrtip',
         buttons: [
             'csv'
@@ -1983,6 +2006,9 @@ $(document).ready(function(){
             "scrollCollapse": true,
             "paging":         false,
             "scrollX": true,
+			"language": {
+				url: get_datatables_language()
+			},
             dom: 'Bfrtip',
             buttons: [
                 'csv'
@@ -2018,6 +2044,9 @@ $(document).ready(function(){
             "scrollCollapse": true,
             "paging":         false,
             "scrollX": true,
+			"language": {
+				url: get_datatables_language()
+			},
             dom: 'Bfrtip',
             buttons: [
                 'csv'
@@ -2052,6 +2081,9 @@ $(document).ready(function(){
             "scrollCollapse": true,
             "paging":         false,
             "scrollX": true,
+			"language": {
+				url: get_datatables_language()
+			},
             dom: 'Bfrtip',
             buttons: [
                 'csv'
@@ -2145,6 +2177,9 @@ $(document).ready(function(){
                 "scrollCollapse": true,
                 "paging":         false,
                 "scrollX": true,
+                "language": {
+                    url: get_datatables_language()
+                },
                 dom: 'Bfrtip',
                 buttons: [
                     'csv'
@@ -2201,6 +2236,9 @@ $(document).ready(function(){
                 "scrollCollapse": true,
                 "paging":         false,
                 "scrollX": true,
+                "language": {
+                    url: get_datatables_language()
+                },
                 dom: 'Bfrtip',
                 buttons: [
                     'csv'
@@ -2324,6 +2362,9 @@ $(document).ready(function(){
             "scrollCollapse": true,
             "paging":         false,
             "scrollX": true,
+			"language": {
+				url: get_datatables_language()
+			},
             "order": [ 2, 'desc' ],
             dom: 'Bfrtip',
             buttons: [
@@ -2479,6 +2520,9 @@ function viewEqsl(picture, callsign) {
                             "scrollCollapse": true,
                             "paging":         true,
                             "scrollX": true,
+                            "language": {
+                                url: get_datatables_language()
+                            },
                             dom: 'Bfrtip',
                             buttons: [
                                 'csv'
@@ -2527,6 +2571,9 @@ function viewEqsl(picture, callsign) {
 					    "scrollCollapse": true,
 					    "paging":         false,
 					    "scrollX": true,
+                        "language": {
+                            url: get_datatables_language()
+                        },
 					    dom: 'Bfrtip',
 					    buttons: [
 						    'csv'
@@ -2776,6 +2823,9 @@ function viewEqsl(picture, callsign) {
         "scrollCollapse": true,
         "paging":         false,
         "scrollX": true,
+        "language": {
+            url: get_datatables_language()
+        },
         dom: 'Bfrtip',
         buttons: [
             'csv'
@@ -2826,6 +2876,9 @@ function viewEqsl(picture, callsign) {
 			"scrollCollapse": true,
 			"paging":         false,
 			"scrollX": true,
+			"language": {
+				url: get_datatables_language()
+			},
 			dom: 'Bfrtip',
 			buttons: [
 				'csv'
@@ -2920,6 +2973,9 @@ function viewEqsl(picture, callsign) {
 		"scrollCollapse": true,
 		"paging": false,
 		"scrollX": true,
+        "language": {
+            url: get_datatables_language()
+        },
 		"ordering": true,
 		"order": [ 0, 'desc' ],
 	});
@@ -2968,6 +3024,9 @@ function viewEqsl(picture, callsign) {
                 "scrollCollapse": true,
                 "paging":         false,
                 "scrollX": true,
+                "language": {
+                    url: get_datatables_language()
+                },
                 "order": [ 0, 'asc' ],
                 dom: 'Bfrtip',
                 buttons: [
@@ -3002,6 +3061,9 @@ function viewEqsl(picture, callsign) {
                 "scrollCollapse": true,
                 "paging":         false,
                 "scrollX": true,
+                "language": {
+                    url: get_datatables_language()
+                },
                 "order": [ 0, 'asc' ],
                 dom: 'Bfrtip',
                 buttons: [
@@ -3035,6 +3097,9 @@ function viewEqsl(picture, callsign) {
                 "scrollCollapse": true,
                 "paging":         false,
                 "scrollX": true,
+                "language": {
+                    url: get_datatables_language()
+                },
                 dom: 'Bfrtip',
                 buttons: [
                    {

@@ -5,7 +5,10 @@ $('.modetable').DataTable({
 	"scrollY": "500px",
 	"scrollCollapse": true,
 	"paging": false,
-	"scrollX": true,	
+	"scrollX": true,
+	"language": {
+		url: get_datatables_language()
+	},
 	initComplete: function () {
 		this.api()
 			.columns('.select-filter')
