@@ -1920,6 +1920,9 @@ $(document).ready(function(){
         ordering: false,
         "paging":         false,
         dom: 'Bfrtip',
+        "language": {
+            url: get_datatables_language()
+        },
         buttons: [
             'csv'
         ]
@@ -1957,6 +1960,9 @@ $(document).ready(function(){
         ordering: false,
         "paging":         false,
         dom: 'Bfrtip',
+        "language": {
+            url: get_datatables_language()
+        },
         buttons: [
             'csv'
         ]
@@ -2021,6 +2027,9 @@ $(document).ready(function(){
             ordering: false,
             "paging":         false,
             dom: 'Bfrtip',
+            "language": {
+                url: get_datatables_language()
+            },
             buttons: [
                 'csv'
             ]
@@ -2059,6 +2068,9 @@ $(document).ready(function(){
             ordering: false,
             "paging":         false,
             dom: 'Bfrtip',
+            "language": {
+                url: get_datatables_language()
+            },
             buttons: [
                 'csv'
             ]
@@ -2096,6 +2108,9 @@ $(document).ready(function(){
             ordering: false,
             "paging":         false,
             dom: 'Bfrtip',
+            "language": {
+                url: get_datatables_language()
+            },
             buttons: [
                 'csv'
             ]

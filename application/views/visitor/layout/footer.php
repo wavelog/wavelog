@@ -172,6 +172,9 @@
                 "paging":         true,
                 "scrollX": true,
                 "order": [ 0, 'desc' ],
+                "language": {
+                    url: "../assets/json/datatables_languages/en-GB.json" // in visitor view always english
+                },
                 dom: 'Bfrtip',
                 buttons: [
                    {

@@ -9,6 +9,9 @@ $(function() {
 	function get_dtable () {
 		var table = $('.spottable').DataTable({
 			"retrieve":true,
+			"language": {
+				url: get_datatables_language()
+			},
 			'columnDefs': [
 				{
 					'targets': 1, "type":"num",

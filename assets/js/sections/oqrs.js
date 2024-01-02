@@ -71,7 +71,7 @@ function searchOqrsGrouped() {
                 "paging": false,
                 "scrollX": true,
                 "language": {
-                    url: get_datatables_language()
+                    url: "../assets/json/datatables_languages/en-GB.json" // in public view always english
                 }
             });
 
@@ -209,7 +209,7 @@ function requestOqrs() {
                 "paging": false,
                 "scrollX": true,
                 "language": {
-                    url: get_datatables_language()
+                    url: "../assets/json/datatables_languages/en-GB.json" // in public view always english
                 }
             });
             // Get the input field
@@ -392,8 +392,8 @@ function loadOqrsTable(rows) {
 			"paging":         false,
 			"scrollX": true,
 			"language": {
-				url: get_datatables_language()
-			},
+                url: "../assets/json/datatables_languages/en-GB.json" // in public view always english
+            },
 			"order": [ 0, 'asc' ],
             'white-space': 'nowrap',
 		});
