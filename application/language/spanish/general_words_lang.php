@@ -27,6 +27,7 @@ $lang['general_word_filtering_on'] = "Filtrado por";
 $lang['general_word_not_display'] = "No mostrar";
 $lang['general_word_icon'] = "Icono";
 
+
 $lang['general_word_date'] = 'Fecha';
 $lang['general_word_startdate'] = "Fecha de inicio";
 $lang['general_word_enddate'] = "Fecha de fin";
