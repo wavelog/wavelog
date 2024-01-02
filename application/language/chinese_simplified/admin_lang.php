@@ -24,6 +24,7 @@ $lang['admin_update'] = '更新';
 $lang['admin_copy'] = '复制';
 $lang['admin_save'] = '保存';
 $lang['admin_close'] = '关闭';
+$lang['admin_clear'] = "Clear";
 $lang['admin_user_accounts'] = '用户账户';
 $lang['admin_danger'] = '危险!';
 $lang['admin_experimental'] = "实验性功能";

@@ -24,6 +24,7 @@ $lang['admin_update'] = 'Update';
 $lang['admin_copy'] = 'Copy';
 $lang['admin_save'] = 'Save';
 $lang['admin_close'] = 'Close';
+$lang['admin_clear'] = "Clear";
 $lang['admin_user_accounts'] = 'Аккаунты пользователей';
 $lang['admin_danger'] = 'ОПАСНО!';
 $lang['admin_experimental'] = "Экспериментально";
