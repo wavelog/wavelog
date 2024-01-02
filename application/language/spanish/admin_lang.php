@@ -24,13 +24,17 @@ $lang['admin_save'] = 'Guardar';
 $lang['admin_close'] = 'Cerrar';
 $lang['admin_user_accounts'] = 'Cuentas de Usuario';
 $lang['admin_danger'] = '¡PELIGRO!';
-$lang['admin_experimental'] = "Experimental";
 
+$lang['admin_experimental'] = "Experimental";
+$lang['admin_password_reset'] = "Password Reset";
+
+$lang['admin_email_settings_incorrect'] = "Email settings are incorrect.";
+$lang['admin_password_reset_processed'] = "Password Reset E-Mail sent.";
 
 
 // Contest Menu
 
-$lang['admin_contest_menu_line_1'] = 'Usando la lista de concursos, puede controlar qe Concursos se muestran cuando se registran QSOs en un concurso.';
+$lang['admin_contest_menu_line_1'] = 'Usando la lista de concursos, puede controlar qué Concursos se muestran cuando se registran QSOs en un concurso.';
 $lang['admin_contest_menu_line_2'] = 'Los concursos activos se mostrarán en la lista desplegable de Nombre de Concurso, sin embargo los inactivos están ocultos y no se pueden seleccionar.';
 $lang['admin_contest_menu_name'] = 'Nombre';
 $lang['admin_contest_menu_adif'] = 'Nombre ADIF';

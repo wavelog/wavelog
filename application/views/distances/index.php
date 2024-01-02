@@ -12,7 +12,7 @@
         var lang_statistics_distances_number_of_qsos = '<?php echo lang('statistics_distances_number_of_qsos'); ?>';
         var lang_gen_hamradio_distance = '<?php echo lang('gen_hamradio_distance'); ?>';
         var lang_statistics_distances_callsigns_worked = '<?php echo lang('statistics_distances_callsigns_worked'); ?>';
-        var lang_statistics_distances_qsos_with = '<?php echo lang('lang_statistics_distances_qsos_with'); ?>';
+        var lang_statistics_distances_qsos_with = '<?php echo lang('statistics_distances_qsos_with'); ?>';
     </script>
     <div id="distances_div">
         <form class="d-flex align-items-center">
