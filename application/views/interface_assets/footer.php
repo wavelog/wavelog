@@ -2302,11 +2302,14 @@ $(document).ready(function(){
                dt.search('').draw();
             }
         };
-<?php if ($this->uri->segment(1) == "qsl") { ?>
-        $('.qsltable').DataTable({
-<?php } else if ($this->uri->segment(1) == "eqsl") { ?>
-        $('.eqsltable').DataTable({
-<?php } ?>
+    </script>
+    <?php if ($this->uri->segment(1) == "qsl") {
+        $qsl_eqsl_table = '.qsltable';
+    } else if ($this->uri->segment(1) == "eqsl") {
+        $qsl_eqsl_table = '.eqsltable';
+    } ?>
+    <script>
+        $('<?php echo $qsl_eqsl_table ?>').DataTable({
             "pageLength": 25,
             responsive: false,
             ordering: true,
