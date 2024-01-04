@@ -2356,21 +2356,24 @@ $(document).ready(function(){
     }
 
     ?>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/moment.min.js"></script>
-        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datetime-moment.js"></script>
-        <script>
-            $.fn.dataTable.moment('<?php echo $usethisformat ?>');
-            $.fn.dataTable.ext.buttons.clear = {
-                className: 'buttons-clear',
-                action: function ( e, dt, node, config ) {
-                dt.search('').draw();
-                }
-            };
-<?php if ($this->uri->segment(1) == "qsl") { ?>
-        $('.qsltable').DataTable({
-<?php } else if ($this->uri->segment(1) == "eqsl") { ?>
-        $('.eqsltable').DataTable({
-<?php } ?>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/moment.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datetime-moment.js"></script>
+    <script>
+        $.fn.dataTable.moment('<?php echo $usethisformat ?>');
+        $.fn.dataTable.ext.buttons.clear = {
+            className: 'buttons-clear',
+            action: function ( e, dt, node, config ) {
+               dt.search('').draw();
+            }
+        };
+    </script>
+    <?php if ($this->uri->segment(1) == "qsl") {
+        $qsl_eqsl_table = '.qsltable';
+    } else if ($this->uri->segment(1) == "eqsl") {
+        $qsl_eqsl_table = '.eqsltable';
+    } ?>
+    <script>
+        $('<?php echo $qsl_eqsl_table ?>').DataTable({
             "pageLength": 25,
             responsive: false,
             ordering: true,
@@ -3136,42 +3139,7 @@ function viewEqsl(picture, callsign) {
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "user") { ?>
-    <!-- [MAP Custom] select list with icons -->
-    <script>
-        $(document).ready(function(){
-            $('.icon_selectBox').off('click').on('click', function(){
-                var boxcontent = $(this).attr('data-boxcontent');
-                if ($('.icon_selectBox_data[data-boxcontent="'+boxcontent+'"]').is(":hidden")) { $('.icon_selectBox_data[data-boxcontent="'+boxcontent+'"]').show(); } else { $('.icon_selectBox_data[data-boxcontent="'+boxcontent+'"]').hide(); }
-            });
-            $('.icon_selectBox_data').off('mouseleave').on('mouseleave', function(){ if ($(this).is(":visible")) { $(this).hide(); } });
-            $('.icon_selectBox_data label').off('click').on('click', function(){
-                var boxcontent = $(this).closest('.icon_selectBox_data').attr('data-boxcontent');
-                $('input[name="user_map_'+boxcontent+'_icon"]').attr('value',$(this).attr('data-value'));
-                if ($(this).attr('data-value') != "0") {
-                    $('.user_icon_color[data-icon="'+boxcontent+'"]').show();
-                    $('.icon_selectBox[data-boxcontent="'+boxcontent+'"] .icon_overSelect').html($(this).html());
-                } else {
-                    $('.user_icon_color[data-icon="'+boxcontent+'"]').hide();
-                    $('.icon_selectBox[data-boxcontent="'+boxcontent+'"] .icon_overSelect').html($(this).html().substring(0,10)+'.');
-                }
-                $('.icon_selectBox_data[data-boxcontent="'+boxcontent+'"]').hide();
-            });
-
-            $('.collapse').on('shown.bs.collapse', function(e) {
-                var $card = $(this).closest('.accordion-item');
-                var $open = $($(this).data('parent')).find('.collapse.show');
-                
-                var additionalOffset = 0;
-                if($card.prevAll().filter($open.closest('.accordion-item')).length !== 0)
-                {
-                    additionalOffset =  $open.height();
-                }
-                $('html,body').animate({
-                    scrollTop: $card.offset().top - additionalOffset
-                }, 300);
-            });
-        });
-    </script>
+    <script src="<?php echo base_url() ;?>assets/js/sections/user.js"></script>
 <?php } ?>
 
 <?php

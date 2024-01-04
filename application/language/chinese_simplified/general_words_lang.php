@@ -12,6 +12,7 @@ $lang['general_word_danger'] = '警告';
 $lang['general_word_maintenance'] = '维护';
 $lang['general_word_info'] = '消息';
 $lang['general_word_choose_file'] = '选择文件';
+$lang['general_word_please_wait'] = "Please Wait ...";
 $lang['general_word_next'] = '后一项';
 $lang['general_word_previous'] = '前一项';
 $lang['general_word_cancel'] = "取消";

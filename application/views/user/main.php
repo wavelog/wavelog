@@ -1,3 +1,13 @@
+<script>
+	var lang_admin_confirm_pwd_reset = "<?php echo lang('admin_confirm_pwd_reset'); ?>";
+	var lang_admin_user = "<?php echo lang('admin_user'); ?>";
+	var lang_gen_hamradio_callsign = "<?php echo lang('gen_hamradio_callsign'); ?>";
+
+	var lang_general_word_please_wait = "<?php echo lang ('general_word_please_wait'); ?>"
+
+	var lang_admin_email_settings_incorrect = "<?php echo lang('admin_email_settings_incorrect'); ?>";
+	var lang_admin_password_reset_processed = "<?php echo lang('admin_password_reset_processed'); ?>";
+</script>
 <div class="container">
 
 	<br>
@@ -11,22 +21,9 @@
 		</div>
 
 	<?php } ?>
-
-	<?php if ($this->session->flashdata('success')) { ?>
-		<!-- Display Message -->
-		<div class="alert alert-success" role="alert">
-			<?php echo $this->session->flashdata('success'); ?>
-		</div>
-
-	<?php } ?>
-
-	<?php if ($this->session->flashdata('danger')) { ?>
-		<!-- Display Message -->
-		<div class="alert alert-danger" role="alert">
-			<?php echo $this->session->flashdata('danger'); ?>
-		</div>
-
-	<?php } ?>
+	
+	<!-- This Info will be shown by the admin password reset -->
+	<div class="alert" id="pwd_reset_message" style="display: hide" role="alert"></div>
 
 	<div class="card">
 		<div class="card-header">
@@ -76,7 +73,7 @@
 							<td style="text-align: center; vertical-align: middle;">
 								<?php
 								if ($_SESSION['user_id'] != $row->user_id) {
-									echo "<a href=" . site_url('user/admin_send_passwort_reset') . "/" . $row->user_id . " class=\"btn btn-primary btn-sm ms-1\"><i class=\"fas fa-key\"></i></a>";
+									echo '<a class="btn btn-primary btn-sm ms-1 admin_pwd_reset" data-username="' . $row->user_name . '" data-callsign="' . $row->user_callsign . '" data-userid="' . $row->user_id . '" data-usermail="' . $row->user_email . '"><i class="fas fa-key"></i></a>';
 								}
 								?></td>
 							<td style="text-align: center; vertical-align: middle;">
