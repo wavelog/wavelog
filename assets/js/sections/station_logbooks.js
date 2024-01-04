@@ -2,7 +2,7 @@ $(document).ready( function () {
     $('#station_logbooks_table').DataTable({
         "stateSave": true,
         "language": {
-            url: get_datatables_language()
+            url: getDataTablesLanguageUrl()
         }
     });
 } );
@@ -12,7 +12,7 @@ $(document).ready( function () {
         "stateSave": true,
         "paging": true,
         "language": {
-            url: get_datatables_language()
+            url: getDataTablesLanguageUrl()
         }
     });
 } );

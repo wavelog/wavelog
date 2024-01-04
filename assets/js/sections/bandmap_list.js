@@ -10,7 +10,7 @@ $(function() {
 		var table = $('.spottable').DataTable({
 			"retrieve":true,
 			"language": {
-				url: get_datatables_language()
+				url: getDataTablesLanguageUrl()
 			},
 			'columnDefs': [
 				{

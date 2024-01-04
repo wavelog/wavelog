@@ -58,7 +58,7 @@
 </script>
 
 <script>
-    function get_datatables_language() {
+    function getDataTablesLanguageUrl() {
         lang_datatables_language = "<?php echo lang('datatables_language'); ?>";
         datatables_language_url = "<?php echo base_url() ;?>assets/json/datatables_languages/" + lang_datatables_language + ".json";
         return datatables_language_url;
@@ -405,7 +405,7 @@ $(function () {
                     "paging": false,
                     "scrollX": true,
                     "language": {
-                        url: get_datatables_language()
+                        url: getDataTablesLanguageUrl()
                     },
                     dom: 'Bfrtip',
                     buttons: [
@@ -533,7 +533,7 @@ $(function () {
                         "paging": false,
                         "scrollX": true,
                         "language": {
-                            url: get_datatables_language()
+                            url: getDataTablesLanguageUrl()
                         },
                         dom: 'Bfrtip',
                         buttons: [
@@ -854,7 +854,7 @@ function findduplicates(){
             "paging":         false,
             "scrollX": true,
 			"language": {
-				url: get_datatables_language()
+				url: getDataTablesLanguageUrl()
 			},
             dom: 'Bfrtip',
             buttons: [
@@ -880,7 +880,7 @@ function findlotwunconfirmed(){
             "paging":         false,
             "scrollX": true,
 			"language": {
-				url: get_datatables_language()
+				url: getDataTablesLanguageUrl()
 			},
             dom: 'Bfrtip',
             buttons: [
@@ -906,7 +906,7 @@ function findincorrectcqzones() {
             "paging":         false,
             "scrollX": true,
 			"language": {
-				url: get_datatables_language()
+				url: getDataTablesLanguageUrl()
 			},
             dom: 'Bfrtip',
             buttons: [
@@ -1907,7 +1907,7 @@ $(document).ready(function(){
         "paging":         false,
         "scrollX": true,
         "language": {
-            url: get_datatables_language()
+            url: getDataTablesLanguageUrl()
         },
         dom: 'Bfrtip',
         buttons: [
@@ -1922,7 +1922,7 @@ $(document).ready(function(){
         "paging":         false,
         dom: 'Bfrtip',
         "language": {
-            url: get_datatables_language()
+            url: getDataTablesLanguageUrl()
         },
         buttons: [
             'csv'
@@ -1947,7 +1947,7 @@ $(document).ready(function(){
         "paging":         false,
         "scrollX": true,
         "language": {
-            url: get_datatables_language()
+            url: getDataTablesLanguageUrl()
         },
         dom: 'Bfrtip',
         buttons: [
@@ -1962,7 +1962,7 @@ $(document).ready(function(){
         "paging":         false,
         dom: 'Bfrtip',
         "language": {
-            url: get_datatables_language()
+            url: getDataTablesLanguageUrl()
         },
         buttons: [
             'csv'
@@ -1987,7 +1987,7 @@ $(document).ready(function(){
         "paging":         false,
         "scrollX": true,
         "language": {
-            url: get_datatables_language()
+            url: getDataTablesLanguageUrl()
         },
         dom: 'Bfrtip',
         buttons: [
@@ -2014,7 +2014,7 @@ $(document).ready(function(){
             "paging":         false,
             "scrollX": true,
 			"language": {
-				url: get_datatables_language()
+				url: getDataTablesLanguageUrl()
 			},
             dom: 'Bfrtip',
             buttons: [
@@ -2029,7 +2029,7 @@ $(document).ready(function(){
             "paging":         false,
             dom: 'Bfrtip',
             "language": {
-                url: get_datatables_language()
+                url: getDataTablesLanguageUrl()
             },
             buttons: [
                 'csv'
@@ -2055,7 +2055,7 @@ $(document).ready(function(){
             "paging":         false,
             "scrollX": true,
 			"language": {
-				url: get_datatables_language()
+				url: getDataTablesLanguageUrl()
 			},
             dom: 'Bfrtip',
             buttons: [
@@ -2070,7 +2070,7 @@ $(document).ready(function(){
             "paging":         false,
             dom: 'Bfrtip',
             "language": {
-                url: get_datatables_language()
+                url: getDataTablesLanguageUrl()
             },
             buttons: [
                 'csv'
@@ -2095,7 +2095,7 @@ $(document).ready(function(){
             "paging":         false,
             "scrollX": true,
 			"language": {
-				url: get_datatables_language()
+				url: getDataTablesLanguageUrl()
 			},
             dom: 'Bfrtip',
             buttons: [
@@ -2110,7 +2110,7 @@ $(document).ready(function(){
             "paging":         false,
             dom: 'Bfrtip',
             "language": {
-                url: get_datatables_language()
+                url: getDataTablesLanguageUrl()
             },
             buttons: [
                 'csv'
@@ -2194,7 +2194,7 @@ $(document).ready(function(){
                 "paging":         false,
                 "scrollX": true,
                 "language": {
-                    url: get_datatables_language()
+                    url: getDataTablesLanguageUrl()
                 },
                 dom: 'Bfrtip',
                 buttons: [
@@ -2253,7 +2253,7 @@ $(document).ready(function(){
                 "paging":         false,
                 "scrollX": true,
                 "language": {
-                    url: get_datatables_language()
+                    url: getDataTablesLanguageUrl()
                 },
                 dom: 'Bfrtip',
                 buttons: [
@@ -2382,7 +2382,7 @@ $(document).ready(function(){
             "paging":         false,
             "scrollX": true,
 			"language": {
-				url: get_datatables_language()
+				url: getDataTablesLanguageUrl()
 			},
             "order": [ 2, 'desc' ],
             dom: 'Bfrtip',
@@ -2540,7 +2540,7 @@ function viewEqsl(picture, callsign) {
                             "paging":         true,
                             "scrollX": true,
                             "language": {
-                                url: get_datatables_language()
+                                url: getDataTablesLanguageUrl()
                             },
                             dom: 'Bfrtip',
                             buttons: [
@@ -2591,7 +2591,7 @@ function viewEqsl(picture, callsign) {
 					    "paging":         false,
 					    "scrollX": true,
                         "language": {
-                            url: get_datatables_language()
+                            url: getDataTablesLanguageUrl()
                         },
 					    dom: 'Bfrtip',
 					    buttons: [
@@ -2843,7 +2843,7 @@ function viewEqsl(picture, callsign) {
         "paging":         false,
         "scrollX": true,
         "language": {
-            url: get_datatables_language()
+            url: getDataTablesLanguageUrl()
         },
         dom: 'Bfrtip',
         buttons: [
@@ -2896,7 +2896,7 @@ function viewEqsl(picture, callsign) {
 			"paging":         false,
 			"scrollX": true,
 			"language": {
-				url: get_datatables_language()
+				url: getDataTablesLanguageUrl()
 			},
 			dom: 'Bfrtip',
 			buttons: [
@@ -2993,7 +2993,7 @@ function viewEqsl(picture, callsign) {
 		"paging": false,
 		"scrollX": true,
         "language": {
-            url: get_datatables_language()
+            url: getDataTablesLanguageUrl()
         },
 		"ordering": true,
 		"order": [ 0, 'desc' ],
@@ -3044,7 +3044,7 @@ function viewEqsl(picture, callsign) {
                 "paging":         false,
                 "scrollX": true,
                 "language": {
-                    url: get_datatables_language()
+                    url: getDataTablesLanguageUrl()
                 },
                 "order": [ 0, 'asc' ],
                 dom: 'Bfrtip',
@@ -3081,7 +3081,7 @@ function viewEqsl(picture, callsign) {
                 "paging":         false,
                 "scrollX": true,
                 "language": {
-                    url: get_datatables_language()
+                    url: getDataTablesLanguageUrl()
                 },
                 "order": [ 0, 'asc' ],
                 dom: 'Bfrtip',
@@ -3117,7 +3117,7 @@ function viewEqsl(picture, callsign) {
                 "paging":         false,
                 "scrollX": true,
                 "language": {
-                    url: get_datatables_language()
+                    url: getDataTablesLanguageUrl()
                 },
                 dom: 'Bfrtip',
                 buttons: [
