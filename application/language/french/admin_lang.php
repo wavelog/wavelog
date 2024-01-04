@@ -24,6 +24,7 @@ $lang['admin_update'] = "Mettre à jour";
 $lang['admin_copy'] = "Copier";
 $lang['admin_save'] = "Enregistrer";
 $lang['admin_close'] = "Fermer";
+$lang['admin_clear'] = "Clear";
 $lang['admin_user_accounts'] = "Compte des utilisateurs";
 $lang['admin_danger'] = "DANGER!";
 $lang['admin_experimental'] = "Expérimental";

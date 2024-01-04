@@ -27,6 +27,7 @@
     var lang_general_word_worked_not_confirmed = "<?php echo lang('general_word_worked_not_confirmed'); ?>";
     var lang_general_word_not_worked = "<?php echo lang('general_word_not_worked'); ?>";
     var lang_admin_close = "<?php echo lang('admin_close'); ?>";
+    var lang_admin_clear = "<?php echo lang('admin_clear'); ?>";
 </script>
 <!-- General JS Files used across Cloudlog -->
 <script src="<?php echo base_url(); ?>assets/js/jquery-3.3.1.min.js"></script>
@@ -54,7 +55,16 @@
     document.addEventListener('htmx:afterSwap', function(event) {
         $('[data-bs-toggle="tooltip"]').tooltip();
     });
-    </script>
+</script>
+
+<script>
+    function getDataTablesLanguageUrl() {
+        var lang_datatables_language = "<?php echo lang('datatables_language'); ?>";
+        datatables_language_url = "<?php echo base_url() ;?>assets/json/datatables_languages/" + lang_datatables_language + ".json";
+        return datatables_language_url;
+    }
+</script>
+
 <!-- Version Dialog START -->
 
 <?php
@@ -1914,6 +1924,9 @@ $(document).ready(function(){
             url: getDataTablesLanguageUrl(),
         },
         dom: 'Bfrtip',
+        "language": {
+            url: getDataTablesLanguageUrl(),
+        },
         buttons: [
             'csv'
         ]
@@ -1954,6 +1967,9 @@ $(document).ready(function(){
             url: getDataTablesLanguageUrl(),
         },
         dom: 'Bfrtip',
+        "language": {
+            url: getDataTablesLanguageUrl(),
+        },
         buttons: [
             'csv'
         ]
@@ -2021,6 +2037,9 @@ $(document).ready(function(){
                 url: getDataTablesLanguageUrl(),
             },
             dom: 'Bfrtip',
+            "language": {
+                url: getDataTablesLanguageUrl(),
+            },
             buttons: [
                 'csv'
             ]
@@ -2062,6 +2081,9 @@ $(document).ready(function(){
                 url: getDataTablesLanguageUrl(),
             },
             dom: 'Bfrtip',
+            "language": {
+                url: getDataTablesLanguageUrl(),
+            },
             buttons: [
                 'csv'
             ]
@@ -2102,6 +2124,9 @@ $(document).ready(function(){
                 url: getDataTablesLanguageUrl(),
             },
             dom: 'Bfrtip',
+            "language": {
+                url: getDataTablesLanguageUrl(),
+            },
             buttons: [
                 'csv'
             ]
@@ -2379,7 +2404,7 @@ $(document).ready(function(){
             buttons: [
                {
                   extend: 'clear',
-                  text: 'Clear'
+                  text: lang_admin_clear
                }
             ]
         });
@@ -2885,9 +2910,9 @@ function viewEqsl(picture, callsign) {
 			"scrollCollapse": true,
 			"paging":         false,
 			"scrollX": true,
-            "language": {
-                url: getDataTablesLanguageUrl(),
-            },
+			"language": {
+				url: getDataTablesLanguageUrl(),
+			},
 			dom: 'Bfrtip',
 			buttons: [
 				'csv'
@@ -3044,7 +3069,7 @@ function viewEqsl(picture, callsign) {
                    },
                    {
                       extend: 'clear',
-                      text: 'Clear'
+                      text: lang_admin_clear
                    }
                 ]
             });
@@ -3081,7 +3106,7 @@ function viewEqsl(picture, callsign) {
                    },
                    {
                       extend: 'clear',
-                      text: 'Clear'
+                      text: lang_admin_clear
                    }
                 ]
             });
@@ -3116,7 +3141,7 @@ function viewEqsl(picture, callsign) {
                    },
                    {
                       extend: 'clear',
-                      text: 'Clear'
+                      text: lang_admin_clear
                    }
                 ]
             });
