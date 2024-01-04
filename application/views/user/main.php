@@ -3,6 +3,8 @@
 	var lang_admin_user = "<?php echo lang('admin_user'); ?>";
 	var lang_gen_hamradio_callsign = "<?php echo lang('gen_hamradio_callsign'); ?>";
 
+	var lang_general_word_please_wait = "<?php echo lang ('general_word_please_wait'); ?>"
+
 	var lang_admin_email_settings_incorrect = "<?php echo lang('admin_email_settings_incorrect'); ?>";
 	var lang_admin_password_reset_processed = "<?php echo lang('admin_password_reset_processed'); ?>";
 </script>

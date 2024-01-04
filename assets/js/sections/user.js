@@ -51,11 +51,11 @@ $(document).ready(function(){
             btnCancelLabel: lang_general_word_cancel,
             btnOKLabel: lang_general_word_ok,
             btnOKClass: "btn-warning",
-            closable: false,  // Setzt closable auf false, um das Schließen während des Ajax-Aufrufs zu verhindern
+            closable: false,  // set closable: false, to prevent closing during ajax call
             callback: function (result) {
                 if (result) {
                     var wait_dialog = BootstrapDialog.show({
-                        title: 'Bitte warten',
+                        title: lang_general_word_please_wait,
                         message: '<div class="text-center"><i class="fas fa-spinner fa-spin fa-3x"></i></div>',
                         closable: false,
                         buttons: []

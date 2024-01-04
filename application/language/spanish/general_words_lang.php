@@ -12,6 +12,7 @@ $lang['general_word_danger'] = 'PELIGRO';
 $lang['general_word_maintenance'] = 'Mantenimiento';
 $lang['general_word_info'] = 'Información';
 $lang['general_word_choose_file'] = 'Elegir archivo';
+$lang['general_word_please_wait'] = "Please Wait ...";
 $lang['general_word_next'] = 'Siguiente';
 $lang['general_word_previous'] = 'Anterior';
 $lang['general_word_cancel'] = "Cancelar";
