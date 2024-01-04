@@ -394,6 +394,9 @@ $(function () {
                     "scrollCollapse": true,
                     "paging": false,
                     "scrollX": true,
+                    "language": {
+                        url: getDataTablesLanguageUrl(),
+                    },
                     dom: 'Bfrtip',
                     buttons: [
                         'csv'
@@ -519,6 +522,9 @@ $(function () {
                         "scrollCollapse": true,
                         "paging": false,
                         "scrollX": true,
+                        "language": {
+                            url: getDataTablesLanguageUrl(),
+                        },
                         dom: 'Bfrtip',
                         buttons: [
                             'csv'
@@ -837,6 +843,9 @@ function findduplicates(){
             "scrollCollapse": true,
             "paging":         false,
             "scrollX": true,
+            "language": {
+                url: getDataTablesLanguageUrl(),
+            },
             dom: 'Bfrtip',
             buttons: [
                 'csv'
@@ -860,6 +869,9 @@ function findlotwunconfirmed(){
             "scrollCollapse": true,
             "paging":         false,
             "scrollX": true,
+            "language": {
+                url: getDataTablesLanguageUrl(),
+            },
             dom: 'Bfrtip',
             buttons: [
                 'csv'
@@ -883,6 +895,9 @@ function findincorrectcqzones() {
             "scrollCollapse": true,
             "paging":         false,
             "scrollX": true,
+            "language": {
+                url: getDataTablesLanguageUrl(),
+            },
             dom: 'Bfrtip',
             buttons: [
                 'csv'
@@ -1881,6 +1896,9 @@ $(document).ready(function(){
         "scrollCollapse": true,
         "paging":         false,
         "scrollX": true,
+        "language": {
+            url: getDataTablesLanguageUrl(),
+        },
         dom: 'Bfrtip',
         buttons: [
             'csv'
@@ -1892,6 +1910,9 @@ $(document).ready(function(){
         searching: false,
         ordering: false,
         "paging":         false,
+        "language": {
+            url: getDataTablesLanguageUrl(),
+        },
         dom: 'Bfrtip',
         buttons: [
             'csv'
@@ -1915,6 +1936,9 @@ $(document).ready(function(){
         "scrollCollapse": true,
         "paging":         false,
         "scrollX": true,
+        "language": {
+            url: getDataTablesLanguageUrl(),
+        },
         dom: 'Bfrtip',
         buttons: [
             'csv'
@@ -1926,6 +1950,9 @@ $(document).ready(function(){
         searching: false,
         ordering: false,
         "paging":         false,
+        "language": {
+            url: getDataTablesLanguageUrl(),
+        },
         dom: 'Bfrtip',
         buttons: [
             'csv'
@@ -1949,6 +1976,9 @@ $(document).ready(function(){
         "scrollCollapse": true,
         "paging":         false,
         "scrollX": true,
+        "language": {
+            url: getDataTablesLanguageUrl(),
+        },
         dom: 'Bfrtip',
         buttons: [
             'csv'
@@ -1973,6 +2003,9 @@ $(document).ready(function(){
             "scrollCollapse": true,
             "paging":         false,
             "scrollX": true,
+            "language": {
+                url: getDataTablesLanguageUrl(),
+            },
             dom: 'Bfrtip',
             buttons: [
                 'csv'
@@ -1984,6 +2017,9 @@ $(document).ready(function(){
             searching: false,
             ordering: false,
             "paging":         false,
+            "language": {
+                url: getDataTablesLanguageUrl(),
+            },
             dom: 'Bfrtip',
             buttons: [
                 'csv'
@@ -2008,6 +2044,9 @@ $(document).ready(function(){
             "scrollCollapse": true,
             "paging":         false,
             "scrollX": true,
+            "language": {
+                url: getDataTablesLanguageUrl(),
+            },
             dom: 'Bfrtip',
             buttons: [
                 'csv'
@@ -2019,6 +2058,9 @@ $(document).ready(function(){
             searching: false,
             ordering: false,
             "paging":         false,
+            "language": {
+                url: getDataTablesLanguageUrl(),
+            },
             dom: 'Bfrtip',
             buttons: [
                 'csv'
@@ -2042,6 +2084,9 @@ $(document).ready(function(){
             "scrollCollapse": true,
             "paging":         false,
             "scrollX": true,
+            "language": {
+                url: getDataTablesLanguageUrl(),
+            },
             dom: 'Bfrtip',
             buttons: [
                 'csv'
@@ -2053,6 +2098,9 @@ $(document).ready(function(){
             searching: false,
             ordering: false,
             "paging":         false,
+            "language": {
+                url: getDataTablesLanguageUrl(),
+            },
             dom: 'Bfrtip',
             buttons: [
                 'csv'
@@ -2135,6 +2183,9 @@ $(document).ready(function(){
                 "scrollCollapse": true,
                 "paging":         false,
                 "scrollX": true,
+                "language": {
+                    url: getDataTablesLanguageUrl(),
+                },
                 dom: 'Bfrtip',
                 buttons: [
                     'csv'
@@ -2191,6 +2242,9 @@ $(document).ready(function(){
                 "scrollCollapse": true,
                 "paging":         false,
                 "scrollX": true,
+                "language": {
+                    url: getDataTablesLanguageUrl(),
+                },
                 dom: 'Bfrtip',
                 buttons: [
                     'csv'
@@ -2317,6 +2371,9 @@ $(document).ready(function(){
             "scrollCollapse": true,
             "paging":         false,
             "scrollX": true,
+            "language": {
+                url: getDataTablesLanguageUrl(),
+            },
             "order": [ 2, 'desc' ],
             dom: 'Bfrtip',
             buttons: [
@@ -2472,6 +2529,9 @@ function viewEqsl(picture, callsign) {
                             "scrollCollapse": true,
                             "paging":         true,
                             "scrollX": true,
+                            "language": {
+                                url: getDataTablesLanguageUrl(),
+                            },
                             dom: 'Bfrtip',
                             buttons: [
                                 'csv'
@@ -2520,6 +2580,9 @@ function viewEqsl(picture, callsign) {
 					    "scrollCollapse": true,
 					    "paging":         false,
 					    "scrollX": true,
+                        "language": {
+                            url: getDataTablesLanguageUrl(),
+                        },
 					    dom: 'Bfrtip',
 					    buttons: [
 						    'csv'
@@ -2769,6 +2832,9 @@ function viewEqsl(picture, callsign) {
         "scrollCollapse": true,
         "paging":         false,
         "scrollX": true,
+        "language": {
+            url: getDataTablesLanguageUrl(),
+        },
         dom: 'Bfrtip',
         buttons: [
             'csv'
@@ -2819,6 +2885,9 @@ function viewEqsl(picture, callsign) {
 			"scrollCollapse": true,
 			"paging":         false,
 			"scrollX": true,
+            "language": {
+                url: getDataTablesLanguageUrl(),
+            },
 			dom: 'Bfrtip',
 			buttons: [
 				'csv'
@@ -2913,6 +2982,9 @@ function viewEqsl(picture, callsign) {
 		"scrollCollapse": true,
 		"paging": false,
 		"scrollX": true,
+        "language": {
+            url: getDataTablesLanguageUrl(),
+        },
 		"ordering": true,
 		"order": [ 0, 'desc' ],
 	});
@@ -2961,6 +3033,9 @@ function viewEqsl(picture, callsign) {
                 "scrollCollapse": true,
                 "paging":         false,
                 "scrollX": true,
+                "language": {
+                    url: getDataTablesLanguageUrl(),
+                },
                 "order": [ 0, 'asc' ],
                 dom: 'Bfrtip',
                 buttons: [
@@ -2995,6 +3070,9 @@ function viewEqsl(picture, callsign) {
                 "scrollCollapse": true,
                 "paging":         false,
                 "scrollX": true,
+                "language": {
+                    url: getDataTablesLanguageUrl(),
+                },
                 "order": [ 0, 'asc' ],
                 dom: 'Bfrtip',
                 buttons: [
@@ -3028,6 +3106,9 @@ function viewEqsl(picture, callsign) {
                 "scrollCollapse": true,
                 "paging":         false,
                 "scrollX": true,
+                "language": {
+                    url: getDataTablesLanguageUrl(),
+                },
                 dom: 'Bfrtip',
                 buttons: [
                    {
@@ -3048,42 +3129,7 @@ function viewEqsl(picture, callsign) {
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "user") { ?>
-    <!-- [MAP Custom] select list with icons -->
-    <script>
-        $(document).ready(function(){
-            $('.icon_selectBox').off('click').on('click', function(){
-                var boxcontent = $(this).attr('data-boxcontent');
-                if ($('.icon_selectBox_data[data-boxcontent="'+boxcontent+'"]').is(":hidden")) { $('.icon_selectBox_data[data-boxcontent="'+boxcontent+'"]').show(); } else { $('.icon_selectBox_data[data-boxcontent="'+boxcontent+'"]').hide(); }
-            });
-            $('.icon_selectBox_data').off('mouseleave').on('mouseleave', function(){ if ($(this).is(":visible")) { $(this).hide(); } });
-            $('.icon_selectBox_data label').off('click').on('click', function(){
-                var boxcontent = $(this).closest('.icon_selectBox_data').attr('data-boxcontent');
-                $('input[name="user_map_'+boxcontent+'_icon"]').attr('value',$(this).attr('data-value'));
-                if ($(this).attr('data-value') != "0") {
-                    $('.user_icon_color[data-icon="'+boxcontent+'"]').show();
-                    $('.icon_selectBox[data-boxcontent="'+boxcontent+'"] .icon_overSelect').html($(this).html());
-                } else {
-                    $('.user_icon_color[data-icon="'+boxcontent+'"]').hide();
-                    $('.icon_selectBox[data-boxcontent="'+boxcontent+'"] .icon_overSelect').html($(this).html().substring(0,10)+'.');
-                }
-                $('.icon_selectBox_data[data-boxcontent="'+boxcontent+'"]').hide();
-            });
-
-            $('.collapse').on('shown.bs.collapse', function(e) {
-                var $card = $(this).closest('.accordion-item');
-                var $open = $($(this).data('parent')).find('.collapse.show');
-                
-                var additionalOffset = 0;
-                if($card.prevAll().filter($open.closest('.accordion-item')).length !== 0)
-                {
-                    additionalOffset =  $open.height();
-                }
-                $('html,body').animate({
-                    scrollTop: $card.offset().top - additionalOffset
-                }, 300);
-            });
-        });
-    </script>
+    <script src="<?php echo base_url() ;?>assets/js/sections/user.js"></script>
 <?php } ?>
 
 <?php
@@ -3094,6 +3140,10 @@ if (isset($scripts) && is_array($scripts)){
 	}
 }
 ?>
-
+    <script>
+      <?php
+      echo "var lang_datatables_language = '" . lang("datatables_language") . "';"
+      ?>
+    </script>
   </body>
 </html>
