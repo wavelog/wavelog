@@ -171,6 +171,9 @@
                 "scrollCollapse": true,
                 "paging":         true,
                 "scrollX": true,
+                "language": {
+                    url: getDataTablesLanguageUrl(),
+                },
                 "order": [ 0, 'desc' ],
                 "language": {
                     url: "../assets/json/datatables_languages/en-GB.json" // in visitor view always english
@@ -209,6 +212,10 @@
             }
         </script>
     <?php } ?>
-
+    <script>
+      <?php
+      echo "var lang_datatables_language = '" . lang("datatables_language") . "';"
+      ?>
+    </script>
   </body>
 </html>

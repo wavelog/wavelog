@@ -26,7 +26,10 @@ $(function() {
 						$(td).attr( "title", "Click to prepare logging" );
 					}
 				}
-			]
+			],
+			"language": {
+				url: getDataTablesLanguageUrl(),
+			}
 		});
 		return table;
 	}

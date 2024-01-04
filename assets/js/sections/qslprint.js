@@ -85,10 +85,10 @@ $(".station_id").change(function(){
 
 $('#qslprint_table').DataTable({
 	"stateSave": true,
+	paging: false,
 	"language": {
 		url: getDataTablesLanguageUrl(),
-	},
-	paging: false
+	}
 });
 
 function showOqrs(id) {
