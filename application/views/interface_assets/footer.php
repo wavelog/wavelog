@@ -2392,7 +2392,7 @@ $(document).ready(function(){
                   text: lang_admin_clear
                }
             ]
-        })
+        });
         // change color of csv-button if dark mode is chosen
         if (isDarkModeTheme()) {
             $('[class*="buttons"]').css("color", "white");
