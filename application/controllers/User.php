@@ -805,13 +805,16 @@ class User extends CI_Controller {
 		}
 	}
 
-	// Send an E-Mail to the user. Function is similar to forgot_password()
-	public function admin_send_passwort_reset() {
+	// Send an E-Mail to the user. Function is similar to forgot_password() but will be called by an AJAX
+	public function admin_send_password_reset() {
+
+		header('Content-Type: application/json');
+		
 		if ($this->input->is_ajax_request()) { // just additional, to make sure request is from ajax
 			if ($this->input->post('submit_allowed')) {
 
 				$this->load->model('user_model');
-				
+
 				if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 
 				$query = $this->user_model->get_by_id($this->input->post('user_id'));
@@ -872,18 +875,12 @@ class User extends CI_Controller {
 
 						if (! $this->email->send())
 						{
-							// Redirect to user page with message
-							$this->session->set_flashdata('danger', lang('admin_email_settings_incorrect'));
-							redirect('user');
+        					echo json_encode(false);
 						} else {
-							// Redirect to user page with message
-							$this->session->set_flashdata('success', lang('admin_password_reset_processed') . " " . $data->user_name . " (" . $data->user_email . ")");
-							redirect('user');
+        					echo json_encode(true);
 						}
 					} else {
-						// No account found just return to user page
-						$this->session->set_flashdata('danger', 'Nothing done. No user found.');
-						redirect('user');
+        				echo json_encode(false);
 					}
 				}
 			}

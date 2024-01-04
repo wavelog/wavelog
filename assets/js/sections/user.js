@@ -39,16 +39,27 @@ $(document).ready(function(){
         var pwd_reset_user_name = $(this).data('username');
         var pwd_reset_user_callsign = $(this).data('callsign');
         var pwd_reset_user_id = $(this).data('userid');
+        var pwd_reset_user_email = $(this).data('usermail');
 
         BootstrapDialog.confirm({
             title: lang_general_word_warning,
-            message: lang_admin_confirm_pwd_reset + "\n\n" + lang_admin_user + ": " + pwd_reset_user_name + "\n" + lang_gen_hamradio_callsign + ": " + pwd_reset_user_callsign,
+            message:
+                lang_admin_confirm_pwd_reset + "\n\n" + 
+                lang_admin_user + ": " + pwd_reset_user_name + "\n" + 
+                lang_gen_hamradio_callsign + ": " + pwd_reset_user_callsign,
             type: BootstrapDialog.TYPE_DANGER,
             btnCancelLabel: lang_general_word_cancel,
             btnOKLabel: lang_general_word_ok,
             btnOKClass: "btn-warning",
+            closable: false,  // Setzt closable auf false, um das Schließen während des Ajax-Aufrufs zu verhindern
             callback: function (result) {
                 if (result) {
+                    var wait_dialog = BootstrapDialog.show({
+                        title: 'Bitte warten',
+                        message: '<div class="text-center"><i class="fas fa-spinner fa-spin fa-3x"></i></div>',
+                        closable: false,
+                        buttons: []
+                    });
                     $.ajax({
                         url: base_url + 'index.php/user/admin_send_password_reset',
                         type: 'POST',
@@ -56,9 +67,30 @@ $(document).ready(function(){
                             user_id: pwd_reset_user_id,
                             submit_allowed: true
                         },
+                        success: function(result) {
+                            wait_dialog.close();
+        
+                            if (result) {
+                                $('#pwd_reset_message').addClass('alert-success');
+                                $('#pwd_reset_message').text(lang_admin_password_reset_processed + " " + pwd_reset_user_name + " (" + pwd_reset_user_email + ")");
+                                $('#pwd_reset_message').show();
+                            } else {
+                                $('#pwd_reset_message').addClass('alert-danger');
+                                $('#pwd_reset_message').text(lang_admin_email_settings_incorrect);
+                                $('#pwd_reset_message').show();
+                            }
+                        },
+                        error: function() {
+                            wait_dialog.close();
+
+                            $('#pwd_reset_message').addClass('alert-danger');
+                            $('#pwd_reset_message').text('Error! Description: admin_send_password_reset failed');
+                            $('#pwd_reset_message').show();
+                        }
                     });
                 }
             },
-        });
+        }).getModalHeader().find('.modal-title').after('<i class="fas fa-spinner fa-spin fa-2x"></i>');
+        
     });
 });
