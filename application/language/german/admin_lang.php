@@ -30,7 +30,8 @@ $lang['admin_experimental'] = "Experimentell";
 $lang['admin_password_reset'] = "Passwort zurücksetzen";
 
 $lang['admin_email_settings_incorrect'] = "E-Mail Einstellungen sind nicht korrekt.";
-$lang['admin_password_reset_processed'] = "Password Reset E-Mail verschickt.";
+$lang['admin_password_reset_processed'] = "Password-Reset E-Mail an diesen Benutzer gesendet:";
+$lang['admin_confirm_pwd_reset'] = "Willst du wirklich diesem Benutzer eine Passwort-Reset E-Mail senden?";
 
 
 // Contest Menu
