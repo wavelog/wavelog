@@ -86,7 +86,7 @@ $(".station_id").change(function(){
 $('#qslprint_table').DataTable({
 	"stateSave": true,
 	"language": {
-		url: getDataTablesLanguageUrl()
+		url: getDataTablesLanguageUrl(),
 	},
 	paging: false
 });

@@ -29,7 +29,7 @@ function saveBandAward(award, status) {
 $('.bandtable').DataTable({
 	"pageLength": 25,
 	"language": {
-		url: getDataTablesLanguageUrl()
+		url: getDataTablesLanguageUrl(),
 	},
 	responsive: false,
 	ordering: false,

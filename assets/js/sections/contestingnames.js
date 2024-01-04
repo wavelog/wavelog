@@ -7,7 +7,7 @@ $('.contesttable').DataTable({
 	"paging": false,
 	"scrollX": true,
 	"language": {
-		url: getDataTablesLanguageUrl()
+		url: getDataTablesLanguageUrl(),
 	},
 	dom: 'Bfrtip',
 	buttons: [
