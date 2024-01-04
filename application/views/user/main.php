@@ -1,3 +1,8 @@
+<script>
+	var lang_admin_confirm_pwd_reset = "<?php echo lang('admin_confirm_pwd_reset'); ?>";
+	var lang_admin_user = "<?php echo lang('admin_user'); ?>";
+	var lang_gen_hamradio_callsign = "<?php echo lang('gen_hamradio_callsign'); ?>";
+</script>
 <div class="container">
 
 	<br>
@@ -76,7 +81,7 @@
 							<td style="text-align: center; vertical-align: middle;">
 								<?php
 								if ($_SESSION['user_id'] != $row->user_id) {
-									echo "<a href=" . site_url('user/admin_send_passwort_reset') . "/" . $row->user_id . " class=\"btn btn-primary btn-sm ms-1\"><i class=\"fas fa-key\"></i></a>";
+									echo '<a class="btn btn-primary btn-sm ms-1 admin_pwd_reset" data-username="' . $row->user_name . '" data-callsign="' . $row->user_callsign . '" data-userid="' . $row->user_id . '"><i class="fas fa-key"></i></a>';
 								}
 								?></td>
 							<td style="text-align: center; vertical-align: middle;">
