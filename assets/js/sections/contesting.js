@@ -9,7 +9,14 @@ $(document).ready(async function () {
 });
 
 // Resets the logging form and deletes session from database
-function reset_contest_session() {
+async function reset_contest_session() {
+	await $.ajax({
+		url: base_url + 'index.php/contesting/deleteSession',
+		type: 'post',
+		success: function (data) {
+
+		}
+	});
 	$('#name').val("");
 	$('.callsign-suggestions').text("");
 	$('#callsign').val("");
@@ -29,13 +36,6 @@ function reset_contest_session() {
 	$(".contest_qso_table_contents").empty();
 	$('#copyexchangetodok').prop('checked', false);
 
-	$.ajax({
-		url: base_url + 'index.php/contesting/deleteSession',
-		type: 'post',
-		success: function (data) {
-
-		}
-	});
 }
 
 // Storing the contestid in contest session
