@@ -129,6 +129,8 @@ class Band extends CI_Controller {
 		$band['was'] 		= $this->security->xss_clean($this->input->post('was'));
 		$band['wwff'] 		= $this->security->xss_clean($this->input->post('wwff'));
 		$band['vucc'] 		= $this->security->xss_clean($this->input->post('vucc'));
+		$band['waja'] 		= $this->security->xss_clean($this->input->post('waja'));
+		$band['pota'] 		= $this->security->xss_clean($this->input->post('pota'));
         
 		$this->load->model('bands');
         $this->bands->saveBand($id, $band);
