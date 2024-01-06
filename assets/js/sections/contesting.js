@@ -9,7 +9,14 @@ $(document).ready(async function () {
 });
 
 // Resets the logging form and deletes session from database
-function reset_contest_session() {
+async function reset_contest_session() {
+	await $.ajax({
+		url: base_url + 'index.php/contesting/deleteSession',
+		type: 'post',
+		success: function (data) {
+
+		}
+	});
 	$('#name').val("");
 	$('.callsign-suggestions').text("");
 	$('#callsign').val("");
@@ -29,13 +36,6 @@ function reset_contest_session() {
 	$(".contest_qso_table_contents").empty();
 	$('#copyexchangetodok').prop('checked', false);
 
-	$.ajax({
-		url: base_url + 'index.php/contesting/deleteSession',
-		type: 'post',
-		success: function (data) {
-
-		}
-	});
 }
 
 // Storing the contestid in contest session
@@ -515,53 +515,54 @@ async function refresh_qso_table(data) {
 						mode = this.col_submode;
 					}
 
-				$(".qsotable tbody").prepend('<tr>' +
-					'<td>' + this.col_time_on + '</td>' +
-					'<td>' + this.col_call + '</td>' +
-					'<td>' + this.col_band + '</td>' +
-					'<td>' + mode + '</td>' +
-					'<td>' + this.col_rst_sent + '</td>' +
-					'<td>' + this.col_rst_rcvd + '</td>' +
-					'<td>' + this.col_stx_string + '</td>' +
-					'<td>' + this.col_srx_string + '</td>' +
-					'<td>' + this.col_stx + '</td>' +
-					'<td>' + this.col_srx + '</td>' +
-					'<td>' + this.col_gridsquare + '</td>' +
-					'<td>' + this.col_vucc_grids + '</td>' +
-					'</tr>');
-			});
-			if (!$.fn.DataTable.isDataTable('.qsotable')) {
-				$.fn.dataTable.moment('DD-MM-YYYY HH:mm:ss');
-				$('.qsotable').DataTable({
-					"stateSave": true,
-					"pageLength": 25,
-					responsive: false,
-					"scrollY": "400px",
-					"scrollCollapse": true,
-					"paging": false,
-					"scrollX": true,
-					"language": {
-						url: getDataTablesLanguageUrl(),
-					},
-					order: [0, 'desc'],
-					"columnDefs": [
-						{
-							"render": function ( data, type, row ) {
-								return pad(row[8],3);
-							},
-							"targets" : 8
-						},
-						{
-							"render": function ( data, type, row ) {
-								return pad(row[9],3);
-							},
-							"targets" : 9
-						}
-					]
+					$(".qsotable tbody").prepend('<tr>' +
+						'<td>' + this.col_time_on + '</td>' +
+						'<td>' + this.col_call + '</td>' +
+						'<td>' + this.col_band + '</td>' +
+						'<td>' + mode + '</td>' +
+						'<td>' + this.col_rst_sent + '</td>' +
+						'<td>' + this.col_rst_rcvd + '</td>' +
+						'<td>' + this.col_stx_string + '</td>' +
+						'<td>' + this.col_srx_string + '</td>' +
+						'<td>' + this.col_stx + '</td>' +
+						'<td>' + this.col_srx + '</td>' +
+						'<td>' + this.col_gridsquare + '</td>' +
+						'<td>' + this.col_vucc_grids + '</td>' +
+						'</tr>');
 				});
+				if (!$.fn.DataTable.isDataTable('.qsotable')) {
+					$.fn.dataTable.moment('DD-MM-YYYY HH:mm:ss');
+					$('.qsotable').DataTable({
+						"stateSave": true,
+						"pageLength": 25,
+						responsive: false,
+						"scrollY": "400px",
+						"scrollCollapse": true,
+						"paging": false,
+						"scrollX": true,
+						"language": {
+							url: getDataTablesLanguageUrl(),
+						},
+						order: [0, 'desc'],
+						"columnDefs": [
+							{
+								"render": function ( data, type, row ) {
+									return pad(row[8],3);
+								},
+								"targets" : 8
+							},
+							{
+								"render": function ( data, type, row ) {
+									return pad(row[9],3);
+								},
+								"targets" : 9
+							}
+						]
+					});
+				}
 			}
-		}
-	});
+		});
+	}
 }
 
 function pad (str, max) {
