@@ -18,8 +18,8 @@ function saveBandAward(award, status) {
 	$.ajax({
 		url: base_url + 'index.php/band/saveBandAward',
 		type: 'post',
-		data: {'award': award,  
-			'status': status,  
+		data: {'award': award,
+			'status': status,
 		},
 		success: function (html) {
 		}
@@ -121,7 +121,7 @@ function saveUpdatedBand(form) {
 		$.ajax({
 			url: base_url + 'index.php/band/saveupdatedband',
 			type: 'post',
-			data: {'id': form.id.value,  
+			data: {'id': form.id.value,
 				'band': form.band.value,
 				'bandgroup': form.bandgroup.value,
 				'ssbqrg': form.ssbqrg.value,
@@ -208,7 +208,7 @@ function saveBand(id) {
 	$.ajax({
 		url: base_url + 'index.php/band/saveBand',
 		type: 'post',
-		data: {'id': id,  
+		data: {'id': id,
 			'status': $(".band_"+id+" input[type='checkbox']").is(":checked"),
 			'cq': $(".cq_"+id+" input[type='checkbox']").is(":checked"),
 			'dok': $(".dok_"+id+" input[type='checkbox']").is(":checked"),
@@ -218,6 +218,7 @@ function saveBand(id) {
 			'sig': $(".sig_"+id+" input[type='checkbox']").is(":checked"),
 			'sota': $(".sota_"+id+" input[type='checkbox']").is(":checked"),
 			'uscounties': $(".uscounties_"+id+" input[type='checkbox']").is(":checked"),
+			'waja': $(".waja_"+id+" input[type='checkbox']").is(":checked"),
 			'was': $(".was_"+id+" input[type='checkbox']").is(":checked"),
 			'wwff': $(".wwff_"+id+" input[type='checkbox']").is(":checked"),
 			'vucc': $(".vucc_"+id+" input[type='checkbox']").is(":checked")

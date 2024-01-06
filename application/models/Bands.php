@@ -265,6 +265,7 @@ class Bands extends CI_Model {
 			'sig' 		 => $band['sig'] 		== "true" ? '1' : '0',
 			'sota'		 => $band['sota'] 		== "true" ? '1' : '0',
 			'uscounties' => $band['uscounties'] == "true" ? '1' : '0',
+			'waja' 		 => $band['waja'] 		== "true" ? '1' : '0',
 			'was' 		 => $band['was'] 		== "true" ? '1' : '0',
 			'wwff' 		 => $band['wwff'] 		== "true" ? '1' : '0',
 			'vucc'		 => $band['vucc'] 		== "true" ? '1' : '0'
