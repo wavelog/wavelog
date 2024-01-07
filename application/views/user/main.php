@@ -45,6 +45,7 @@
 							<th scope="col"><?php echo lang('admin_email'); ?></th>
 							<th scope="col"><?php echo lang('admin_type'); ?></th>
 							<th scope="col"><?php echo lang('admin_last_login'); ?></th>
+							<th></th>
 							<th style="text-align: center; vertical-align: middle;" scope="col"><?php echo lang('admin_edit'); ?></th>
 							<th style="text-align: center; vertical-align: middle;" scope="col"><?php echo lang('admin_password_reset'); ?></th>
 							<th style="text-align: center; vertical-align: middle;" scope="col"><?php echo lang('admin_delete'); ?></th>
@@ -57,17 +58,23 @@
 						$i = 0;
 						foreach ($results->result() as $row) { ?>
 							<?php echo '<tr class="tr' . ($i & 1) . '">'; ?>
-							<td><a href="<?php echo site_url('user/edit') . "/" . $row->user_id; ?>"><?php echo $row->user_name; ?></a></td>
-							<td><?php echo $row->user_callsign; ?></td>
-							<td><?php echo $row->user_email; ?></td>
-							<td><?php $l = $this->config->item('auth_level');
+							<td style="text-align: left; vertical-align: middle;"><a href="<?php echo site_url('user/edit') . "/" . $row->user_id; ?>"><?php echo $row->user_name; ?></a></td>
+							<td style="text-align: left; vertical-align: middle;"><?php echo $row->user_callsign; ?></td>
+							<td style="text-align: left; vertical-align: middle;"><?php echo $row->user_email; ?></td>
+							<td style="text-align: celeftnleftter; vertical-align: middle;"><?php $l = $this->config->item('auth_level');
 								echo $l[$row->user_type]; ?></td>
-							<td><?php 
+							<td style="text-align: left; vertical-align: middle;"><?php 
 								if ($row->last_login_date != null) { // if the user never logged in before the value is null. We can show "never" then.
 									echo $row->last_login_date;
 								} else {
 									echo lang('general_word_never');
 								}?>
+							</td>
+							<td style="text-align: center; vertical-align: middle;">
+								<span class="badge text-bg-success">Locations: <?php echo $row->stationcount; ?></span>
+								<br>
+								<span class="badge text-bg-info">Logbooks: <?php echo $row->logbookcount; ?></span>
+								<span class="badge text-bg-light"><?php echo $row->qsocount; ?> <?php echo lang('gen_hamradio_qso'); ?></span>
 							</td>
 							<td style="text-align: center; vertical-align: middle;"><a href="<?php echo site_url('user/edit') . "/" . $row->user_id; ?>" class="btn btn-outline-primary btn-sm"><i class="fas fa-user-edit"></i></a>
 							<td style="text-align: center; vertical-align: middle;">
