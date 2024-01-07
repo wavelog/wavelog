@@ -29,6 +29,19 @@
   margin: 0 8px 0 0;
   opacity: 0.7;
 }
+.info {
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+	color: #555;
+}
+.info h4 {
+    margin: 0 0 5px;
+    color: #555;
+}
 </style>
 
 <div class="container">
@@ -155,7 +168,7 @@
     </div>
 
         <div class="tab-pane fade show active" id="table" role="tabpanel" aria-labelledby="table-tab" style="margin-bottom: 30px;">
-        
+
 <?php
     $i = 1;
     if ($cq_array) {
