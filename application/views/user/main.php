@@ -71,9 +71,9 @@
 								}?>
 							</td>
 							<td style="text-align: center; vertical-align: middle;">
-								<span class="badge text-bg-success">Locations: <?php echo $row->stationcount; ?></span>
+								<span class="badge text-bg-success"><?php echo lang('admin_station_locations'); ?>: <?php echo $row->stationcount; ?></span>
 								<br>
-								<span class="badge text-bg-info">Logbooks: <?php echo $row->logbookcount; ?></span>
+								<span class="badge text-bg-info"><?php echo lang('admin_station_logbooks'); ?>: <?php echo $row->logbookcount; ?></span>
 								<span class="badge text-bg-light"><?php echo $row->qsocount; ?> <?php echo lang('gen_hamradio_qso'); ?></span>
 							</td>
 							<td style="text-align: center; vertical-align: middle;"><a href="<?php echo site_url('user/edit') . "/" . $row->user_id; ?>" class="btn btn-outline-primary btn-sm"><i class="fas fa-user-edit"></i></a>
