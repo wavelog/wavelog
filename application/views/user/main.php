@@ -70,7 +70,7 @@
 									echo lang('general_word_never');
 								}?>
 							</td>
-							<td style="text-align: center; vertical-align: middle;">
+							<td style="text-align: left; vertical-align: middle;">
 								<span class="badge text-bg-success"><?php echo lang('admin_station_locations'); ?>: <?php echo $row->stationcount; ?></span>
 								<br>
 								<span class="badge text-bg-info"><?php echo lang('admin_station_logbooks'); ?>: <?php echo $row->logbookcount; ?></span>
