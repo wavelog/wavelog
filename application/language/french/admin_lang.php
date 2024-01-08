@@ -13,6 +13,8 @@ $lang['admin_user'] = "Utilisateur";
 $lang['admin_email'] = "E-mail";
 $lang['admin_type'] = "Type";
 $lang['admin_last_seen'] = "Last seen";
+$lang['admin_last_qso'] = "Last QSO:";
+$lang['admin_no_qso_in_log'] = "No QSOs in Log";
 $lang['admin_options'] = "Options";
 
 $lang['admin_station_logbooks'] = 'Logbooks';

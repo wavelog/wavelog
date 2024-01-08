@@ -80,7 +80,11 @@
 								<span class="badge text-bg-success"><?php echo lang('admin_station_locations'); ?>: <?php echo $row->stationcount; ?></span>
 								<br>
 								<span class="badge text-bg-info"><?php echo lang('admin_station_logbooks'); ?>: <?php echo $row->logbookcount; ?></span>
-								<span class="badge text-bg-light"><?php echo $row->qsocount; ?> <?php echo lang('gen_hamradio_qso'); ?></span>
+								<?php if ($row->qsocount > 0) { ?>
+									<span class="badge text-bg-light" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?php echo lang('admin_last_qso'); ?><br><?php echo $row->lastqso; ?>"><?php echo $row->qsocount; ?> <?php echo lang('gen_hamradio_qso'); ?></span>
+								<?php } else { ?>
+									<span class="badge text-bg-light" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?php echo lang('admin_no_qso_in_log'); ?>"><?php echo $row->qsocount; ?> <?php echo lang('gen_hamradio_qso'); ?></span>
+								<?php } ?>
 							</td>
 							<td style="text-align: center; vertical-align: middle;"><a href="<?php echo site_url('user/edit') . "/" . $row->user_id; ?>" class="btn btn-outline-primary btn-sm"><i class="fas fa-user-edit"></i></a>
 							<td style="text-align: center; vertical-align: middle;">
