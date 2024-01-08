@@ -108,11 +108,6 @@ if($this->session->userdata('user_id') != null) {
     </script>
 <?php } ?>
 
-<?php if ($this->uri->segment(1) == "awards" && ($this->uri->segment(2) == "cq") ) { ?>
-    <script src="<?php echo base_url(); ?>assets/js/Polyline.encoded.js"></script>
-    <script id="cqmapjs" type="text/javascript" src="<?php echo base_url(); ?>assets/js/sections/cqmap.js" tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"></script>
-<?php } ?>
-
 <?php if ($this->uri->segment(1) == "awards" && ($this->uri->segment(2) == "iota") ) { ?>
     <script id="iotamapjs" type="text/javascript" src="<?php echo base_url(); ?>assets/js/sections/iotamap.js" tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"></script>
 <?php } ?>
@@ -770,7 +765,7 @@ function showActivatorsMap(call, count, grids) {
             });
             // Form "submit" //
             $('.custom-map-QSOs .btn_submit_map_custom').off('click').on('click',function() {
-                var customdata = {'dataPost':{'date_from': $('.custom-map-QSOs input[name="from"]').val(), 'date_to': $('.custom-map-QSOs input[name="to"]').val(), 
+                var customdata = {'dataPost':{'date_from': $('.custom-map-QSOs input[name="from"]').val(), 'date_to': $('.custom-map-QSOs input[name="to"]').val(),
                                             'band': $('.custom-map-QSOs select[name="band"]').val(), 'mode': $('.custom-map-QSOs select[name="mode"]').val(),
                                             'prop_mode': $('.custom-map-QSOs select[name="prop_mode"]').val(), 'isCustom':true }, 'map_id':'#custommap'};
                 initplot(qso_loc, customdata);
@@ -1407,7 +1402,7 @@ $($('#callsign')).on('keypress',function(e) {
             cat2UI($('#sat_mode'),data.satmode,false,false);
             cat2UI($('#transmit_power'),data.power,false,false);
             cat2UI($('#selectPropagation'),data.prop_mode,false,false);
-            
+
 					  // Display CAT Timeout warning based on the figure given in the config file
 					  var minutes = Math.floor(<?php echo $this->optionslib->get_option('cat_timeout_interval'); ?> / 60);
 

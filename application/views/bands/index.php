@@ -86,7 +86,7 @@ $wwff = 0;
 					<td style="text-align: center; vertical-align: middle;" ><?php echo $band->data;?></td>
 					<td style="text-align: center; vertical-align: middle;" ><?php echo $band->cw;?></td>
 					<?php if($this->session->userdata('user_type') == '99') { ?>
-					<td style="text-align: center; vertical-align: middle;" >
+						<td style="text-align: center; vertical-align: middle;" >
 						<a href="javascript:editBandDialog('<?php echo $band->bandid ?>');" class="btn btn-outline-primary btn-sm" title="Edit"><i class="fas fa-edit"></i></a>
 					</td>
 					<td style="text-align: center; vertical-align: middle;" >
@@ -116,8 +116,10 @@ $wwff = 0;
 					<th></th>
 					<th></th>
                     <th></th>
+					<?php if($this->session->userdata('user_type') == '99') { ?>
                     <th></th>
-					<th></th>
+                    <th></th>
+					<?php } ?>
 			</tfoot>
 		<table>
 	</div>

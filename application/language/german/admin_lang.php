@@ -12,7 +12,7 @@ $lang['admin_user_list'] = 'Benutzer Liste';
 $lang['admin_user'] = 'Benutzer';
 $lang['admin_email'] = 'E-Mail';
 $lang['admin_type'] = 'Typ';
-$lang['admin_last_login'] = "Letzter Login";
+$lang['admin_last_seen'] = "Zuletzt gesehen";
 $lang['admin_options'] = 'Optionen';
 
 $lang['admin_station_logbooks'] = 'Logbücher';
