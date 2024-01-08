@@ -61,7 +61,7 @@
 							<td style="text-align: left; vertical-align: middle;"><a href="<?php echo site_url('user/edit') . "/" . $row->user_id; ?>"><?php echo $row->user_name; ?></a></td>
 							<td style="text-align: left; vertical-align: middle;"><?php echo $row->user_callsign; ?></td>
 							<td style="text-align: left; vertical-align: middle;"><?php echo $row->user_email; ?></td>
-							<td style="text-align: celeftnleftter; vertical-align: middle;"><?php $l = $this->config->item('auth_level');
+							<td style="text-align: left; vertical-align: middle;"><?php $l = $this->config->item('auth_level');
 								echo $l[$row->user_type]; ?></td>
 							<td style="text-align: left; vertical-align: middle;"><?php 
 								if ($row->last_login_date != null) { // if the user never logged in before the value is null. We can show "never" then.
