@@ -15,6 +15,9 @@ $lang['admin_type'] = 'Rooli';
 $lang['admin_last_login'] = "Last Login";
 $lang['admin_options'] = 'Valinnat';
 
+$lang['admin_station_logbooks'] = 'Logbooks';
+$lang['admin_station_locations'] = 'Locations';
+
 $lang['admin_create_user'] = 'Luo käyttäjä';
 $lang['admin_delete'] = 'Poista';
 $lang['admin_remove'] = "Remove";
