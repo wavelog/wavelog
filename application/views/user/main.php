@@ -34,17 +34,20 @@
 			<p class="card-text"><?php echo lang('admin_user_line2'); ?></p>
 			<p class="card-text"><?php echo lang('admin_user_line3'); ?></p>
 			<p class="card-text"><?php echo lang('admin_user_line4'); ?></p>
-			<p><a class="btn btn-primary" href="<?php echo site_url('user/add'); ?>"><i class="fas fa-user-plus"></i> <?php echo lang('admin_create_user'); ?></a></p>
+			<p>
+				<a class="btn btn-primary" href="<?php echo site_url('user/add'); ?>"><i class="fas fa-user-plus"></i> <?php echo lang('admin_create_user'); ?></a>
+				<a class="btn btn-secondary" style="float: right;" href="<?php echo site_url('user'); ?>"><i class="fas fa-sync"></i> <?php echo lang('admin_refresh_list'); ?></a>
+			</p>
 
 			<div class="table-responsive">
-				<table class="table table-striped">
+				<table class="table table-striped" id="adminusertable">
 					<thead>
 						<tr>
-							<th scope="col"><?php echo lang('admin_user'); ?></th>
-							<th scope="col"><?php echo lang('gen_hamradio_callsign'); ?></th>
-							<th scope="col"><?php echo lang('admin_email'); ?></th>
-							<th scope="col"><?php echo lang('admin_type'); ?></th>
-							<th scope="col"><?php echo lang('admin_last_seen'); echo " <a href=" . site_url('user') . " data-bs-toggle=\"tooltip\" title=\"Refresh\"  class=\"btn btn-link btn-sm ms-0.5\"><i class=\"fas fa-sync\"></i></a>"; ?></th>
+							<th style="text-align: center; vertical-align: middle;" scope="col"><?php echo lang('admin_user'); ?></th>
+							<th style="text-align: center; vertical-align: middle;" scope="col"><?php echo lang('gen_hamradio_callsign'); ?></th>
+							<th style="text-align: center; vertical-align: middle;" scope="col"><?php echo lang('admin_email'); ?></th>
+							<th style="text-align: center; vertical-align: middle;" scope="col"><?php echo lang('admin_type'); ?></th>
+							<th style="text-align: center; vertical-align: middle;" scope="col"><?php echo lang('admin_last_seen'); ?></th>
 							<th></th>
 							<th style="text-align: center; vertical-align: middle;" scope="col"><?php echo lang('admin_edit'); ?></th>
 							<th style="text-align: center; vertical-align: middle;" scope="col"><?php echo lang('admin_password_reset'); ?></th>
@@ -80,7 +83,11 @@
 								<span class="badge text-bg-success"><?php echo lang('admin_station_locations'); ?>: <?php echo $row->stationcount; ?></span>
 								<br>
 								<span class="badge text-bg-info"><?php echo lang('admin_station_logbooks'); ?>: <?php echo $row->logbookcount; ?></span>
-								<span class="badge text-bg-light"><?php echo $row->qsocount; ?> <?php echo lang('gen_hamradio_qso'); ?></span>
+								<?php if ($row->qsocount > 0) { ?>
+									<span class="badge text-bg-light" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?php echo lang('admin_last_qso'); ?><br><?php echo $row->lastqso; ?>"><?php echo $row->qsocount; ?> <?php echo lang('gen_hamradio_qso'); ?></span>
+								<?php } else { ?>
+									<span class="badge text-bg-light" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?php echo lang('admin_no_qso_in_log'); ?>"><?php echo $row->qsocount; ?> <?php echo lang('gen_hamradio_qso'); ?></span>
+								<?php } ?>
 							</td>
 							<td style="text-align: center; vertical-align: middle;"><a href="<?php echo site_url('user/edit') . "/" . $row->user_id; ?>" class="btn btn-outline-primary btn-sm"><i class="fas fa-user-edit"></i></a>
 							<td style="text-align: center; vertical-align: middle;">
