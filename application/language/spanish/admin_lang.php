@@ -11,6 +11,7 @@ $lang['admin_user_list'] = 'Lista de Usuarios';
 $lang['admin_user'] = 'Usuario';
 $lang['admin_email'] = 'Email';
 $lang['admin_type'] = 'Tipo';
+$lang['admin_last_seen'] = "Last seen";
 $lang['admin_options'] = 'Opciones';
 
 $lang['admin_station_logbooks'] = 'Logbooks';
