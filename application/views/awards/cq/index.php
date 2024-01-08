@@ -1,3 +1,6 @@
+<script>
+	var tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"
+</script>
 <style>
     #cqmap {
 	height: calc(100vh - 480px) !important;
