@@ -15,6 +15,7 @@ $lang['admin_type'] = 'Rooli';
 $lang['admin_last_seen'] = "Last seen";
 $lang['admin_last_qso'] = "Last QSO:";
 $lang['admin_no_qso_in_log'] = "No QSOs in Log";
+$lang['admin_refresh_list'] = "Refresh List";
 $lang['admin_options'] = 'Valinnat';
 
 $lang['admin_station_logbooks'] = 'Logbooks';
