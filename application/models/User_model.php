@@ -464,9 +464,13 @@ class User_Model extends CI_Model {
 	// FUNCTION: object users()
 	// Returns a list of users with additional counts
 	function users() {
-		$this->db->select('(SELECT count(*) FROM station_profile WHERE user_id = users.user_id) as stationcount');
-		$this->db->select('(SELECT count(*) FROM station_logbooks WHERE user_id = users.user_id) as logbookcount');
-		$this->db->select('(SELECT count(*) FROM ' . $this->config->item('table_name') . ' WHERE station_id IN (SELECT station_id from station_profile WHERE user_id = users.user_id)) as qsocount');
+		$this->db->select('(SELECT COUNT(*) FROM station_profile WHERE user_id = users.user_id) as stationcount');
+		$this->db->select('(SELECT COUNT(*) FROM station_logbooks WHERE user_id = users.user_id) as logbookcount');
+		$this->db->select('(SELECT COUNT(*) FROM ' . $this->config->item('table_name') . ' WHERE station_id IN (SELECT station_id from station_profile WHERE user_id = users.user_id)) as qsocount');
+		$this->db->select('
+			(SELECT COUNT(*) FROM ' . $this->config->item('table_name') . ' WHERE station_id IN (SELECT station_id FROM station_profile WHERE user_id = users.user_id)) as qsocount,
+			(SELECT MAX(COL_TIME_ON) FROM ' . $this->config->item('table_name') . ' WHERE station_id IN (SELECT station_id FROM station_profile WHERE user_id = users.user_id)) as lastqso
+		');
 		$this->db->select('users.*');
 		$this->db->from('users');
 

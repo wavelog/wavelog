@@ -13,6 +13,9 @@ $lang['admin_user'] = 'Пользователь';
 $lang['admin_email'] = 'Емэйл';
 $lang['admin_type'] = 'Роль';
 $lang['admin_last_seen'] = "Last seen";
+$lang['admin_last_qso'] = "Last QSO:";
+$lang['admin_no_qso_in_log'] = "No QSOs in Log";
+$lang['admin_refresh_list'] = "Refresh List";
 $lang['admin_options'] = 'Опции';
 
 $lang['admin_station_logbooks'] = 'Logbooks';
