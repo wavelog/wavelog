@@ -44,7 +44,7 @@
 							<th scope="col"><?php echo lang('gen_hamradio_callsign'); ?></th>
 							<th scope="col"><?php echo lang('admin_email'); ?></th>
 							<th scope="col"><?php echo lang('admin_type'); ?></th>
-							<th scope="col"><?php echo lang('admin_last_seen'); ?></th>
+							<th scope="col"><?php echo lang('admin_last_seen'); echo " <a href=" . site_url('user') . " data-bs-toggle=\"tooltip\" title=\"Refresh\"  class=\"btn btn-link btn-sm ms-0.5\"><i class=\"fas fa-sync\"></i></a>"; ?></th>
 							<th></th>
 							<th style="text-align: center; vertical-align: middle;" scope="col"><?php echo lang('admin_edit'); ?></th>
 							<th style="text-align: center; vertical-align: middle;" scope="col"><?php echo lang('admin_password_reset'); ?></th>
@@ -65,7 +65,13 @@
 								echo $l[$row->user_type]; ?></td>
 							<td style="text-align: left; vertical-align: middle;"><?php 
 								if ($row->last_seen != null) { // if the user never logged in before the value is null. We can show "never" then.
-									echo $row->last_seen;
+									$lastSeenTimestamp = strtotime($row->last_seen);
+									$currentTimestamp = time();
+									if (($currentTimestamp - $lastSeenTimestamp) < 120) {
+										echo "<a><i style=\"color: green;\" class=\"fas fa-circle\"></i> " . $row->last_seen . "</a>";
+									} else {
+										echo "<a><i style=\"color: red;\" class=\"fas fa-circle\"></i> " . $row->last_seen . "</a>";
+									}
 								} else {
 									echo lang('general_word_never');
 								}?>
