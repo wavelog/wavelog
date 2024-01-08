@@ -424,9 +424,9 @@ class User_Model extends CI_Model {
 	}
 
 	// FUNCTION: set's the last-login timestamp in user table
-	function set_last_login($user_id) {
+	function set_last_seen($user_id) {
 		$data = array(
-			'last_login_date' => date('Y-m-d H:i:s')
+			'last_seen' => date('Y-m-d H:i:s')
 		);
 		
 		$this->db->where('user_id', $user_id);
@@ -437,6 +437,7 @@ class User_Model extends CI_Model {
 	// Checks a user's level of access against the given $level
 	function authorize($level) {
 		$u = $this->get_by_id($this->session->userdata('user_id'));
+		$this->set_last_seen($u->row()->user_id);
 		$l = $this->config->item('auth_mode');
 		// Check to see if the minimum level of access is higher than
 		// the user's own level. If it is, use that.

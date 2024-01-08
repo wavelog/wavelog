@@ -12,7 +12,7 @@ $lang['admin_user_list'] = 'Användarlista';
 $lang['admin_user'] = 'Användare';
 $lang['admin_email'] = 'E-post';
 $lang['admin_type'] = 'Typ';
-$lang['admin_last_login'] = "Last Login";
+$lang['admin_last_seen'] = "Last seen";
 $lang['admin_options'] = 'Alternativ';
 
 $lang['admin_station_logbooks'] = 'Logbooks';
