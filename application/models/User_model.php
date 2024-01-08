@@ -437,7 +437,6 @@ class User_Model extends CI_Model {
 	// Checks a user's level of access against the given $level
 	function authorize($level) {
 		$u = $this->get_by_id($this->session->userdata('user_id'));
-		$this->set_last_seen($u->row()->user_id);
 		$l = $this->config->item('auth_mode');
 		// Check to see if the minimum level of access is higher than
 		// the user's own level. If it is, use that.
@@ -445,6 +444,7 @@ class User_Model extends CI_Model {
 			$level = $this->config->item('auth_mode');
 		}
 		if(($this->validate_session()) && ($u->row()->user_type >= $level) || $this->config->item('use_auth') == FALSE || $level == 0) {
+			$this->set_last_seen($u->row()->user_id);
 			return 1;
 		} else {
 			return 0;
