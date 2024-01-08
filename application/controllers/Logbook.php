@@ -888,6 +888,7 @@ class Logbook extends CI_Controller {
 				}
 
 				$callsign['id'] = strtoupper($id);
+				$callsign['lotw_lastupload'] = $this->logbook_model->check_last_lotw($id);
 				return $this->load->view('search/result', $callsign, true);
 		}
 	}
@@ -987,6 +988,7 @@ class Logbook extends CI_Controller {
 					}*/
 
 					$data['id'] = strtoupper($id);
+					$data['lotw_lastupload'] = $this->logbook_model->check_last_lotw($id);
 
 					$this->load->view('search/result', $data);
 				}
