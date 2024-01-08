@@ -43,11 +43,11 @@
 				<table class="table table-striped" id="adminusertable">
 					<thead>
 						<tr>
-							<th scope="col"><?php echo lang('admin_user'); ?></th>
-							<th scope="col"><?php echo lang('gen_hamradio_callsign'); ?></th>
-							<th scope="col"><?php echo lang('admin_email'); ?></th>
-							<th scope="col"><?php echo lang('admin_type'); ?></th>
-							<th scope="col"><?php echo lang('admin_last_seen'); ?></th>
+							<th style="text-align: center; vertical-align: middle;" scope="col"><?php echo lang('admin_user'); ?></th>
+							<th style="text-align: center; vertical-align: middle;" scope="col"><?php echo lang('gen_hamradio_callsign'); ?></th>
+							<th style="text-align: center; vertical-align: middle;" scope="col"><?php echo lang('admin_email'); ?></th>
+							<th style="text-align: center; vertical-align: middle;" scope="col"><?php echo lang('admin_type'); ?></th>
+							<th style="text-align: center; vertical-align: middle;" scope="col"><?php echo lang('admin_last_seen'); ?></th>
 							<th></th>
 							<th style="text-align: center; vertical-align: middle;" scope="col"><?php echo lang('admin_edit'); ?></th>
 							<th style="text-align: center; vertical-align: middle;" scope="col"><?php echo lang('admin_password_reset'); ?></th>
