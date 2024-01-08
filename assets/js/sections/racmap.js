@@ -160,6 +160,5 @@ function style(feature) {
 function onClick(e) {
   zoomToFeature(e);
   var marker = e.target;
-  var res =  marker.feature.id.replace(/\D/g,'');
-  displayContactsOnMap($("#racmap"),res, $('#band2').val(), $('#mode').val(), 'RAC');
+  displayContactsOnMap($("#racmap"),marker.feature.id, $('#band2').val(), $('#mode').val(), 'RAC');
 }

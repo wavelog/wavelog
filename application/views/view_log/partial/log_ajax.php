@@ -117,7 +117,7 @@ function echoQrbCalcLink($mygrid, $grid, $vucc) {
                        } elseif ($diff > 7) {
                           $lotw_hint = ' lotw_info_yellow';
                        }
-                       $timestamp = strtotime($row->lastupload); echo ($row->callsign == '' ? '' : ' <a id="lotw_badge" href="https://lotw.arrl.org/lotwuser/act?act='.$row->COL_CALL.'" target="_blank"><small id="lotw_info" class="badge text-bg-success'.$lotw_hint.'" data-bs-toggle="tooltip" title="LoTW User. Last upload was '.date($custom_date_format." H:i", $timestamp).'">L</small></a>');
+                       $timestamp = strtotime($row->lastupload); echo ($row->callsign == '' ? '' : ' <a id="lotw_badge" style="float: right;" href="https://lotw.arrl.org/lotwuser/act?act='.$row->COL_CALL.'" target="_blank"><small id="lotw_info" class="badge text-bg-success'.$lotw_hint.'" data-bs-toggle="tooltip" title="LoTW User. Last upload was '.date($custom_date_format." H:i", $timestamp).'">L</small></a>');
                     }
                  ?>
             </td>
