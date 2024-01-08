@@ -15,6 +15,9 @@ $lang['admin_type'] = '用户类型';
 $lang['admin_last_login'] = "Last Login";
 $lang['admin_options'] = '设置';
 
+$lang['admin_station_logbooks'] = 'Logbooks';
+$lang['admin_station_locations'] = 'Locations';
+
 $lang['admin_create_user'] = '创建用户';
 $lang['admin_delete'] = '删除用户';
 $lang['admin_remove'] = "删除";

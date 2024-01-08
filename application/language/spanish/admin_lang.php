@@ -13,6 +13,9 @@ $lang['admin_email'] = 'Email';
 $lang['admin_type'] = 'Tipo';
 $lang['admin_options'] = 'Opciones';
 
+$lang['admin_station_logbooks'] = 'Logbooks';
+$lang['admin_station_locations'] = 'Locations';
+
 $lang['admin_create_user'] = 'Crear usuario';
 $lang['admin_delete'] = 'Eliminar';
 $lang['admin_remove'] = "Remover";

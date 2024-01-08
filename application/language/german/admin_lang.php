@@ -15,6 +15,9 @@ $lang['admin_type'] = 'Typ';
 $lang['admin_last_login'] = "Letzter Login";
 $lang['admin_options'] = 'Optionen';
 
+$lang['admin_station_logbooks'] = 'Logbücher';
+$lang['admin_station_locations'] = 'Standorte';
+
 $lang['admin_create_user'] = 'Benutzer anlegen';
 $lang['admin_delete'] = 'Löschen';
 $lang['admin_remove'] = "Entfernen";

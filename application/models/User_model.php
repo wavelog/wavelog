@@ -461,10 +461,17 @@ class User_Model extends CI_Model {
 	}
 
 	// FUNCTION: object users()
-	// Returns a list of users
+	// Returns a list of users with additional counts
 	function users() {
-		$r = $this->db->get($this->config->item('auth_table'));
-		return $r;
+		$this->db->select('(SELECT count(*) FROM station_profile WHERE user_id = users.user_id) as stationcount');
+		$this->db->select('(SELECT count(*) FROM station_logbooks WHERE user_id = users.user_id) as logbookcount');
+		$this->db->select('(SELECT count(*) FROM ' . $this->config->item('table_name') . ' WHERE station_id IN (SELECT station_id from station_profile WHERE user_id = users.user_id)) as qsocount');
+		$this->db->select('users.*');
+		$this->db->from('users');
+		
+		$result = $this->db->get();
+		
+		return $result;
 	}
 
 	// FUNCTION: array timezones()
