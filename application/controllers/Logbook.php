@@ -987,6 +987,7 @@ class Logbook extends CI_Controller {
 					}*/
 
 					$data['id'] = strtoupper($id);
+					$data['lotw_lastupload'] = $this->logbook_model->check_last_lotw($id);
 
 					$this->load->view('search/result', $data);
 				}
