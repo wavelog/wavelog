@@ -15,7 +15,7 @@ class Migration_rename_last_login extends CI_Migration
     foreach ($fields as $field) {
 
       if ($field->name == 'last_login_date') {
-        $this->db->query('ALTER TABLE users CHANGE last_login_date last_seen TIMESTAMP DEFAULT NULL');
+        $this->db->query('ALTER TABLE users CHANGE last_login_date last_seen TIMESTAMP NULL DEFAULT NULL');
       }
 
     }
@@ -23,7 +23,7 @@ class Migration_rename_last_login extends CI_Migration
 
   public function down()
   {
-    $this->db->query('ALTER TABLE users CHANGE last_seen last_login_date TIMESTAMP DEFAULT NULL');
+    $this->db->query('ALTER TABLE users CHANGE last_seen last_login_date TIMESTAMP NULL DEFAULT NULL');
   }
 }
 
