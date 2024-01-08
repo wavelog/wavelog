@@ -378,6 +378,12 @@ class Awards extends CI_Controller {
 	}
 
 	public function cq() {
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/sections/cqmap_geojson.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/cqmap_geojson.js")),
+			'assets/js/sections/cqmap.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/cqmap.js"))
+		];
+
 		$CI =& get_instance();
 		$CI->load->model('logbooks_model');
 		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
@@ -438,7 +444,7 @@ class Awards extends CI_Controller {
         $data['page_title'] = "Awards - CQ Magazine WAZ";
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('awards/cq/index');
-		$this->load->view('interface_assets/footer');
+		$this->load->view('interface_assets/footer', $footerData);
 	}
 
     public function was() {
