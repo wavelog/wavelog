@@ -8,7 +8,7 @@ $(document).ready(function(){
         "pageLength": 25,
         responsive: true,
         ordering: true,
-        "scrollY": "400px",
+        "scrollY": "100%",
         "scrollCollapse": true,
         "paging": false,
         "language": {
