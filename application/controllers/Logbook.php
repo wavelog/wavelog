@@ -895,6 +895,7 @@ class Logbook extends CI_Controller {
 
 	function search_result($id="", $id2="") {
 		$this->load->model('user_model');
+		$this->load->model('logbook_model');
 
 		if(!$this->user_model->authorize($this->config->item('auth_mode'))) { return; }
 
@@ -916,14 +917,12 @@ class Logbook extends CI_Controller {
 			if ($query->num_rows() > 0) {
 				$data['results'] = $query;
 				$this->load->view('view_log/partial/log_ajax.php', $data);
-			}
-			else {
+			} else {
 				$this->load->model('search');
 
 				$iota_search = $this->search->callsign_iota($id);
 
-				if ($iota_search->num_rows() > 0)
-				{
+				if ($iota_search->num_rows() > 0) {
 					$data['results'] = $iota_search;
 					$this->load->view('view_log/partial/log_ajax.php', $data);
 				} else {
@@ -938,11 +937,9 @@ class Logbook extends CI_Controller {
 
 						$data['callsign'] = $this->qrz->search($id, $this->session->userdata('qrz_session_key'), $this->config->item('use_fullname'));
 						if (isset($data['callsign']['gridsquare'])) {
-							$this->load->model('logbook_model');
 							$data['grid_worked'] = $this->logbook_model->check_if_grid_worked_in_logbook(strtoupper(substr($data['callsign']['gridsquare'],0,4)), 0, $this->session->userdata('user_default_band'));
 						}
 						if (isset($data['callsign']['dxcc'])) {
-							$this->load->model('logbook_model');
 							$entity = $this->logbook_model->get_entity($data['callsign']['dxcc']);
 							$data['callsign']['dxcc_name'] = $entity['name'];
 						}
@@ -967,11 +964,9 @@ class Logbook extends CI_Controller {
 							$data['callsign'] = $this->hamqth->search($id, $this->session->userdata('hamqth_session_key'));
 						}
 						if (isset($data['callsign']['gridsquare'])) {
-							$this->load->model('logbook_model');
 							$data['grid_worked'] = $this->logbook_model->check_if_grid_worked_in_logbook(strtoupper(substr($data['callsign']['gridsquare'],0,4)), 0, $this->session->userdata('user_default_band'));
 						}
 						if (isset($data['callsign']['dxcc'])) {
-							$this->load->model('logbook_model');
 							$entity = $this->logbook_model->get_entity($data['callsign']['dxcc']);
 							$data['callsign']['dxcc_name'] = $entity['name'];
 						}
