@@ -1660,7 +1660,7 @@ class Logbook_model extends CI_Model {
 		  $this->db->join('dxcc_entities as dxcc_entities_2', 'station_profile.station_dxcc = dxcc_entities_2.adif', 'left outer');
 		  $this->db->join('eQSL_images', $this->config->item('table_name').'.COL_PRIMARY_KEY = eQSL_images.qso_id', 'left outer');
 		  $this->db->join('lotw_users', $this->config->item('table_name').'.COL_CALL = lotw_users.callsign', 'left outer');
-		  $this->db->join('primary_subdivisions', $this->config->item('table_name').'.COL_STATE = primary_subdivisions.state', 'left outer');
+		  $this->db->join('primary_subdivisions', $this->config->item('table_name').'.COL_DXCC = primary_subdivisions.adif AND '.$this->config->item('table_name').'.COL_STATE = primary_subdivisions.state', 'left outer');
 		  $this->db->where('COL_PRIMARY_KEY', $id);
 
 		  return $this->db->get();
