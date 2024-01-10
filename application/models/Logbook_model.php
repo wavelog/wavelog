@@ -4208,17 +4208,7 @@ function lotw_last_qsl_date($user_id) {
      * Same as check_dxcc_table, but the functionality is in
      * a stored procedure which we call
      */
-    public function check_dxcc_stored_proc($call, $date){
-        $this->db->query("call find_country('".$call."','".$date."', @country, @adif, @cqz)");
-        $res = $this->db->query("select @country as country, @adif as adif, @cqz as cqz");
-        $d = $res->result_array();
-
-        // Should only be one result.
-        // NOTE: might cause unexpected data if there's an
-        // error with clublog.org data.
-        return $d[0];
-    }
-
+    
     public function check_missing_dxcc_id($all){
         // get all records with no COL_DXCC
         $this->db->select("COL_PRIMARY_KEY, COL_CALL, COL_TIME_ON, COL_TIME_OFF");
