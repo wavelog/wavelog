@@ -157,7 +157,7 @@ class API extends CI_Controller {
 	*	Function: QSO
 	*	Task: allows passing of ADIF data to Cloudlog
 	*/
-	function qso() {
+	function qso($dryrun = false) {
 		header('Content-type: application/json');
 
 		$this->load->model('api_model');
@@ -207,7 +207,7 @@ class API extends CI_Controller {
 				};
 
 
-				if(isset($obj['station_profile_id'])) {
+				if( !($dryrun) && (isset($obj['station_profile_id']))) {
 					if(isset($record['station_callsign']) && $this->stations->check_station_against_callsign($obj['station_profile_id'], $record['station_callsign']) == false) {
 						http_response_code(401);
 						echo json_encode(['status' => 'failed', 'reason' => "station callsign does not match station callsign in station profile."]);
@@ -229,6 +229,8 @@ class API extends CI_Controller {
 					} else {
 						$return_msg[] = $msg;
 					}
+				} else {
+					$return_msg[]='Dryrun works';
 				}
 
 			};
