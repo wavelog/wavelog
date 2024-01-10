@@ -4194,8 +4194,8 @@ function lotw_last_qsl_date($user_id) {
   }
 
     public function get_entity($dxcc){
-      $sql = "select name, cqz, lat, 'long' from dxcc_entities where adif = " . $dxcc;
-      $query = $this->db->query($sql);
+      $sql = "select name, cqz, lat, 'long' from dxcc_entities where adif = ?";
+      $query = $this->db->query($sql,$dxcc);
 
       if ($query->result() > 0){
           $row = $query->row_array();
