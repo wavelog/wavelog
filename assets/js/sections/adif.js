@@ -12,7 +12,7 @@ $(document).ready(function(){
 				var fileReader = new FileReader();
 				fileReader.onloadend = function() {
 					arrayBuffer = this.result;
-					let chker = partof(arrayBuffer,1024);
+					let chker = partof(arrayBuffer,4096);
 					if (chker.includes('<QSO_DATE')) {
 						zip.file(file.name, arrayBuffer, { binary:true });
 						zip.generateAsync({type:"blob", compression:"DEFLATE"}).then(function(content){
