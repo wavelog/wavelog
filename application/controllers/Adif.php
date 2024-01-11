@@ -159,8 +159,8 @@ class adif extends CI_Controller {
 		$this->load->model('stations');
 		$data['station_profile'] = $this->stations->all_of_user();
 
-        	$active_station_id = $this->stations->find_active();
-        	$station_profile = $this->stations->profile($active_station_id);
+		$active_station_id = $this->stations->find_active();
+		$station_profile = $this->stations->profile($active_station_id);
 
 		$data['active_station_info'] = $station_profile->row();
 
@@ -168,7 +168,7 @@ class adif extends CI_Controller {
 		$data['tab'] = "adif";
 
 		$config['upload_path'] = './uploads/';
-		$config['allowed_types'] = 'adi|ADI|adif|ADIF';
+		$config['allowed_types'] = 'adi|ADI|adif|ADIF|zip';
 
 		$this->load->library('upload', $config);
 
@@ -181,30 +181,59 @@ class adif extends CI_Controller {
 			$this->load->view('interface_assets/footer');
 		} else {
 			if ($this->stations->check_station_is_accessible($this->input->post('station_profile'))) {
-				$data = array('upload_data' => $this->upload->data());
+				$stopnow=false;
+				$fdata = array('upload_data' => $this->upload->data());
 				ini_set('memory_limit', '-1');
 				set_time_limit(0);
 
 				$this->load->model('logbook_model');
 
-				$this->load->library('adif_parser');
+				$f_elements=explode(".",$fdata['upload_data']['file_name']);
+				if (strtolower($f_elements[count($f_elements)-1])=='zip') {
+					$f_adif = preg_replace('/\\.zip$/', '', $fdata['upload_data']['file_name']);
+					$p_adif = preg_replace('/^(.*)(_)(\S{2,4})$/', '$1.$3', $f_adif);	// Bug in CodeIgniter. Destroys Filename if there is more than one dot.
+					if (preg_match("/.*\.adi.?$/",strtolower($p_adif))) {	// Check if adi? inside zip
+						$zip = new ZipArchive;
+						if ($zip->open('./uploads/'.$fdata['upload_data']['file_name'])) {
+							$zip->extractTo("./uploads/",array($p_adif));
+							$zip->close();
+						}
+						unlink('./uploads/'.$fdata['upload_data']['file_name']);
+					} else {
+						unlink('./uploads/'.$fdata['upload_data']['file_name']);
+						$data['error'] = "Unsupported Filetype";
+						$stopnow=true;
+					}
+				} else {
+					$p_adif=$fdata['upload_data']['file_name'];
+				}
+				if (!($stopnow)) {
 
-				$this->adif_parser->load_from_file('./uploads/'.$data['upload_data']['file_name']);
-				unlink('./uploads/'.$data['upload_data']['file_name']);
-				$data['upload_data']='';	// free memory
+					$this->load->library('adif_parser');
 
-				$this->adif_parser->initialize();
-				$custom_errors = "";
-				$alladif=[];
-				while($record = $this->adif_parser->get_record())
-				{
-					if(count($record) == 0) {
-						break;
+					$this->adif_parser->load_from_file('./uploads/'.$p_adif);
+					unlink('./uploads/'.$p_adif);
+					$fdata['upload_data']='';	// free memory
+
+					$this->adif_parser->initialize();
+					$custom_errors = "";
+					$alladif=[];
+					while($record = $this->adif_parser->get_record())
+					{
+						if(count($record) == 0) {
+							break;
+						};
+						array_push($alladif,$record);
 					};
-					array_push($alladif,$record);
-				};
-				$record='';	// free memory
-				$custom_errors = $this->logbook_model->import_bulk($alladif, $this->input->post('station_profile'), $this->input->post('skipDuplicate'), $this->input->post('markClublog'),$this->input->post('markLotw'), $this->input->post('dxccAdif'), $this->input->post('markQrz'), $this->input->post('markHrd'), true, $this->input->post('operatorName'), false, $this->input->post('skipStationCheck'));
+					$record='';	// free memory
+					$custom_errors = $this->logbook_model->import_bulk($alladif, $this->input->post('station_profile'), $this->input->post('skipDuplicate'), $this->input->post('markClublog'),$this->input->post('markLotw'), $this->input->post('dxccAdif'), $this->input->post('markQrz'), $this->input->post('markHrd'), true, $this->input->post('operatorName'), false, $this->input->post('skipStationCheck'));
+				} else {	// Failure, if no ADIF inside ZIP
+					$data['max_upload'] = ini_get('upload_max_filesize');
+					$this->load->view('interface_assets/header', $data);
+					$this->load->view('adif/import', $data);
+					$this->load->view('interface_assets/footer');
+					return;
+				}
 			} else {
 				$custom_errors='Station Profile not valid for User';
 			}
@@ -216,7 +245,6 @@ class adif extends CI_Controller {
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('adif/import_success');
 			$this->load->view('interface_assets/footer');
-
 		}
 	}
 
