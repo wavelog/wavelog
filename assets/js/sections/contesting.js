@@ -52,8 +52,8 @@ $('#exchangetype').change(function () {
 	setExchangetype(exchangetype);
 });
 
-function setSession(formdata) {
-	$.ajax({
+async function setSession(formdata) {
+	await $.ajax({
 		url: base_url + 'index.php/contesting/setSession',
 		type: 'post',
 		data: formdata,
@@ -63,6 +63,7 @@ function setSession(formdata) {
 
 		}
 	});
+	sessiondata=await getSession();			// refresh Sessiondata
 }
 
 // realtime clock
@@ -453,7 +454,7 @@ function logQso() {
 				$('#exch_gridsquare_r').val("");
 				$('#exch_serial_r').val("");
 				$("#callsign").focus();
-				setSession(formdata);
+				await setSession(formdata);
 				
 				await refresh_qso_table(sessiondata);
 				var qTable = $('.qsotable').DataTable();
