@@ -4,7 +4,7 @@ $(document).ready(function(){
 		var fi = document.getElementById("userfile");
 		var file = fi.files[0];;
 		if (JSZip.support.blob) {	// Check if Browser supports ZIP
-		var zip = new JSZip();
+			var zip = new JSZip();
 			//add all files to zip 
 			addFileToZip(file);
 			function addFileToZip(n) {
@@ -12,19 +12,25 @@ $(document).ready(function(){
 				var fileReader = new FileReader();
 				fileReader.onloadend = function() {
 					arrayBuffer = this.result;
-					zip.file(file.name, arrayBuffer, { binary:true });
-					zip.generateAsync({type:"blob", compression:"DEFLATE"}).then(function(content){
+					let chker = partof(arrayBuffer,1024);
+					if (chker.includes('<QSO_DATE')) {
+						zip.file(file.name, arrayBuffer, { binary:true });
+						zip.generateAsync({type:"blob", compression:"DEFLATE"}).then(function(content){
 
-						//generated zip content to file type
-						var files = new File([content], file.name + ".zip");
+							//generated zip content to file type
+							var files = new File([content], file.name + ".zip");
 
-						const dataTransfer = new DataTransfer();
-						dataTransfer.items.add(files);
-						//send generated file to server
-						fi.files=dataTransfer.files;
-						$("#upform").submit();
-						return;
-					});
+							const dataTransfer = new DataTransfer();
+							dataTransfer.items.add(files);
+							//send generated file to server
+							fi.files=dataTransfer.files;
+							$("#upform").submit();
+							return;
+						});
+					} else {
+						alert("Unsupported File. Must be ADIF");
+					}
+
 				};
 				fileReader.readAsArrayBuffer(file);
 			}
@@ -41,4 +47,9 @@ $(document).ready(function(){
 			form.submit();
 		}
 	})
+
+	function partof(buf,size) {
+		return String.fromCharCode.apply(null, new Uint8Array(buf.slice(0,size-1)));
+	}
+
 });
