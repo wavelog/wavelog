@@ -139,6 +139,7 @@ if($this->session->userdata('user_id') != null) {
 
 <?php if ($this->uri->segment(1) == "adif" ) { ?>
     <script src="<?php echo base_url() ;?>assets/js/sections/adif.js"></script>
+    <script src="<?php echo base_url() ;?>assets/js/jszip.min.js"></script>
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "notes" && ($this->uri->segment(2) == "add" || $this->uri->segment(2) == "edit") ) { ?>
