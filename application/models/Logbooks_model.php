@@ -252,9 +252,8 @@ class Logbooks_model extends CI_Model {
 			}
 
 			return $relationships_array;
-		}
-		else{
-			return array();
+		} else{
+			return array(-1);	// Put some default-Value here, if no relation found
 		}
 	}
 
