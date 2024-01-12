@@ -170,6 +170,8 @@ class adif extends CI_Controller {
 		$config['upload_path'] = './uploads/';
 		$config['allowed_types'] = 'adi|ADI|adif|ADIF|zip';
 
+		log_message("Error","ADIF Start");
+		session_write_close();
 		$this->load->library('upload', $config);
 
 		if ( ! $this->upload->do_upload()) {
@@ -238,6 +240,7 @@ class adif extends CI_Controller {
 				$custom_errors='Station Profile not valid for User';
 			}
 
+			log_message("Error","ADIF End");
 			$data['adif_errors'] = $custom_errors;
 			$data['skip_dupes'] = $this->input->post('skipDuplicate');
 

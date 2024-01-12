@@ -3238,7 +3238,7 @@ function lotw_last_qsl_date($user_id) {
 			  if ($dxccAdif != NULL) {
 				  if (isset($record['dxcc'])) {
 					  $entity = $this->get_entity($record['dxcc']);
-					  $dxcc = array($record['dxcc'], $entity['name']);
+					  $dxcc = array($record['dxcc'] ?? '', $entity['name'] ?? '');
 				  } else {
 					  $dxcc = $this->check_dxcc_table($record['call'], $time_off);
 				  }
