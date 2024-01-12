@@ -4204,10 +4204,6 @@ function lotw_last_qsl_date($user_id) {
       return '';
     }
 
-    /*
-     * Same as check_dxcc_table, but the functionality is in
-     * a stored procedure which we call
-     */
     
     public function check_missing_dxcc_id($all){
         // get all records with no COL_DXCC
