@@ -1015,11 +1015,11 @@ $($('#callsign')).on('keypress',function(e) {
     $station_profile = $this->stations->profile($active_station_id);
     $active_station_info = $station_profile->row();
 
-    if (strpos($active_station_info->station_gridsquare, ',') !== false) {
+    if (strpos(($active_station_info->station_gridsquare ?? ''), ',') !== false) {
         $gridsquareArray = explode(',', $active_station_info->station_gridsquare);
         $user_gridsquare = $gridsquareArray[0];
     } else {
-        $user_gridsquare = $active_station_info->station_gridsquare;
+        $user_gridsquare = ($active_station_info->station_gridsquare ?? '');
     }
 ?>
 
@@ -1031,7 +1031,7 @@ $($('#callsign')).on('keypress',function(e) {
      url: base_url + 'index.php/logbook/qralatlngjson',
      type: 'post',
      data: {
-<?php if ($active_station_info->station_gridsquare != "") { ?>
+<?php if (($active_station_info->station_gridsquare ?? '') != "") { ?>
         qra: '<?php echo $user_gridsquare; ?>',
 <?php } else if (null !== $this->config->item('locator')) { ?>
         qra: '<?php echo $this->config->item('locator'); ?>',
