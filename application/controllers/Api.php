@@ -124,6 +124,7 @@ class API extends CI_Controller {
 			echo "<status>Valid</status>";
 			echo "<rights>".$this->api_model->access($key)."</rights>";
 			echo "</auth>";
+			$this->api_model->update_last_used($key);
 		}
 	}
 
