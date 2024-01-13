@@ -221,7 +221,7 @@ class API extends CI_Controller {
 						die();
 					}
 
-					$this->api_model->update_last_used($obj['key']);
+					$this->api_model->update_last_used(($obj['key']));
 
 					$msg = $this->logbook_model->import($record, $obj['station_profile_id'], NULL, NULL, NULL, NULL, NULL, NULL, false, false, true);
 
