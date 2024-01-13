@@ -89,8 +89,8 @@ class Logbook extends CI_Controller {
         echo json_encode($return, JSON_PRETTY_PRINT);
     }
 
-	function json($tempcallsign, $temptype, $tempband, $tempmode, $tempstation_id = null)
-	{
+	function json($tempcallsign, $temptype, $tempband, $tempmode, $tempstation_id = null) {
+		session_write_close();
 		// Cleaning for security purposes
 		$callsign = $this->security->xss_clean($tempcallsign);
 		$type = $this->security->xss_clean($temptype);
@@ -317,6 +317,7 @@ class Logbook extends CI_Controller {
 	*
 	*/
 	function jsonlookupgrid($gridsquare, $type, $band, $mode) {
+		session_write_close();
 		$return = [
 			"workedBefore" => false,
 			"confirmed" => false,
@@ -403,6 +404,7 @@ class Logbook extends CI_Controller {
 	}
 
 	function jsonlookupdxcc($country, $type, $band, $mode) {
+		session_write_close();
 
 		$return = [
 			"workedBefore" => false,
@@ -501,6 +503,7 @@ class Logbook extends CI_Controller {
 	}
 
 	function jsonlookupcallsign($callsign, $type, $band, $mode) {
+		session_write_close();
 
 		// Convert - in Callsign to / Used for URL processing
 		$callsign = str_replace("-","/",$callsign);
