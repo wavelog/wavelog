@@ -24,10 +24,12 @@ class Clublog_model extends CI_Model {
 		);
 
 		$this->db->where("station_id", $station_id);
+		$this->db->group_start();
 		$this->db->where("COL_CLUBLOG_QSO_UPLOAD_STATUS", null);
 		$this->db->or_where("COL_CLUBLOG_QSO_UPLOAD_STATUS", "");
     		$this->db->or_where("COL_CLUBLOG_QSO_UPLOAD_STATUS", "N");
     		$this->db->or_where("COL_CLUBLOG_QSO_UPLOAD_STATUS", "M");
+		$this->db->group_end();
 		$this->db->update($this->config->item('table_name'), $data);
 	}
 
@@ -43,13 +45,15 @@ class Clublog_model extends CI_Model {
 
 	function get_last_five($station_id) {
 		$this->db->where('station_id', $station_id);
-	    $this->db->where("COL_CLUBLOG_QSO_UPLOAD_STATUS", null);
-	    $this->db->or_where("COL_CLUBLOG_QSO_UPLOAD_STATUS", "");
-	    $this->db->or_where("COL_CLUBLOG_QSO_UPLOAD_STATUS", "N");
-	    $this->db->limit(5); 
-	    $query = $this->db->get($this->config->item('table_name'));
+		$this->db->group_start();
+		$this->db->where("COL_CLUBLOG_QSO_UPLOAD_STATUS", null);
+		$this->db->or_where("COL_CLUBLOG_QSO_UPLOAD_STATUS", "");
+		$this->db->or_where("COL_CLUBLOG_QSO_UPLOAD_STATUS", "N");
+		$this->db->group_end();
+		$this->db->limit(5); 
+		$query = $this->db->get($this->config->item('table_name'));
 
-	    return $query;
+		return $query;
 	}
 
 	function mark_all_qsos_notsent($station_id) {
