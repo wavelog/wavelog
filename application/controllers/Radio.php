@@ -13,6 +13,7 @@
 			// user is not logged in
 			redirect('user/login');
 		}
+		session_write_close();
 		// load the view
 		$data['page_title'] = "Hardware Interfaces";
 
@@ -32,6 +33,7 @@
 			// user is not logged in
 			redirect('user/login');
 		}
+		session_write_close();
 
 		$this->load->model('cat');
 		$query = $this->cat->status();
@@ -92,6 +94,7 @@
 				"error" => "not_logged_in"
 			), JSON_PRETTY_PRINT);
 		} else {
+		session_write_close();
 
 			header('Content-Type: application/json');
 
@@ -213,6 +216,7 @@
 
 		$this->session->set_flashdata('message', 'Radio Profile Deleted');
 
+		session_write_close();
 		redirect('radio');
 
 	}
