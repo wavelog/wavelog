@@ -404,6 +404,7 @@ class API extends CI_Controller {
 	/* ENDPOINT for Rig Control */
 
 	function radio() {
+		session_write_close();
 		header('Content-type: application/json');
 
 		$this->load->model('api_model');
