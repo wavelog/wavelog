@@ -127,6 +127,12 @@ class API_Model extends CI_Model {
     $this->db->set('last_used', 'NOW()', FALSE);
     $this->db->where('key', xss_clean($key));
     $this->db->update('api');
+
+	// Also update last_seen in user table
+	$user_id = $this->key_userid($key);
+
+	$this->load->model('user_model');
+	$this->user_model->set_last_seen($user_id);
   }
 
 	// FUNCTION: string name(string $column)

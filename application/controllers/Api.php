@@ -124,6 +124,7 @@ class API extends CI_Controller {
 			echo "<status>Valid</status>";
 			echo "<rights>".$this->api_model->access($key)."</rights>";
 			echo "</auth>";
+			$this->api_model->update_last_used($key);
 		}
 	}
 
@@ -220,7 +221,7 @@ class API extends CI_Controller {
 						die();
 					}
 
-					$this->api_model->update_last_used($obj['key']);
+					$this->api_model->update_last_used(($obj['key']));
 
 					$msg = $this->logbook_model->import($record, $obj['station_profile_id'], NULL, NULL, NULL, NULL, NULL, NULL, false, false, true);
 
@@ -404,6 +405,7 @@ class API extends CI_Controller {
 	/* ENDPOINT for Rig Control */
 
 	function radio() {
+		session_write_close();
 		header('Content-type: application/json');
 
 		$this->load->model('api_model');
