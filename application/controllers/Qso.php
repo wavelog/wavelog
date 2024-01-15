@@ -583,6 +583,7 @@ class QSO extends CI_Controller {
 
    // Return Previous QSOs Made in the active logbook
    public function component_past_contacts() {
+ $this->output->enable_profiler(TRUE);
 	   if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 	   $this->load->model('logbook_model');
 	   session_write_close();

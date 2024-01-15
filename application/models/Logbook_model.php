@@ -1263,9 +1263,8 @@ class Logbook_model extends CI_Model {
 
   /* Show custom number of qsos */
   function last_custom($num) {
-    $CI =& get_instance();
-    $CI->load->model('logbooks_model');
-    $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+    $this->load->model('logbooks_model');
+    $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
     if(!empty($logbooks_locations_array)) {
       $this->db->select('COL_CALL, COL_BAND, COL_FREQ, COL_TIME_ON, COL_RST_RCVD, COL_RST_SENT, COL_MODE, COL_SUBMODE, COL_NAME, COL_COUNTRY, COL_DXCC, COL_PRIMARY_KEY, COL_SAT_NAME, COL_SRX, COL_SRX_STRING, COL_STX, COL_STX_STRING, COL_VUCC_GRIDS, COL_GRIDSQUARE, COL_MY_GRIDSQUARE, COL_OPERATOR, COL_IOTA, COL_WWFF_REF, COL_POTA_REF, COL_STATE, COL_CNTY, COL_DISTANCE, COL_SOTA_REF, COL_CONTEST_ID, dxcc_entities.end AS end');
@@ -1641,7 +1640,7 @@ class Logbook_model extends CI_Model {
 	  $this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
 	  $this->db->join('dxcc_entities', $this->config->item('table_name').'.col_dxcc = dxcc_entities.adif', 'left');
 	  $this->db->join('lotw_users', 'lotw_users.callsign = '.$this->config->item('table_name').'.col_call', 'left outer');
-	  $this->db->where_in('station_profile.station_id', $logbooks_locations_array);
+	  $this->db->where_in($this->config->item('table_name').'.station_id', $logbooks_locations_array);
 	  $this->db->order_by(''.$this->config->item('table_name').'.COL_TIME_ON', "desc");
 
 	  $this->db->limit($num);
@@ -1848,12 +1847,12 @@ class Logbook_model extends CI_Model {
 
       $sql = "SELECT * FROM ( select * from " . $this->config->item('table_name'). "
         WHERE station_id IN(". $location_list .")
-        order by col_time_on desc, col_primary_key desc
+        order by col_time_on desc
         limit " . $num .
         ") hrd
         JOIN station_profile ON station_profile.station_id = hrd.station_id
         LEFT JOIN dxcc_entities ON hrd.col_dxcc = dxcc_entities.adif
-        order by col_time_on desc, col_primary_key desc";
+        order by col_time_on desc";
 
       $query = $this->db->query($sql);
 
