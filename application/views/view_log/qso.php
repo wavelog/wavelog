@@ -175,7 +175,7 @@
                     <?php if($row->COL_STATE != null) { ?>
                     <tr>
                         <td><?php echo $primary_subdivision ?>:</td>
-                        <td><?php echo $row->COL_STATE; ?></td>
+                        <td><?php if ($row->subdivision != '') { echo $row->subdivision.' ('.$row->COL_STATE.')'; } else { echo $row->COL_STATE; } ?></td>
                     </tr>
                     <?php } ?>
 
