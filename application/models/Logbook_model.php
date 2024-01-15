@@ -1620,35 +1620,34 @@ class Logbook_model extends CI_Model {
   }
 
   function get_qsos($num, $offset, $StationLocationsArray = null) {
-    if($StationLocationsArray == null) {
-      $CI =& get_instance();
-      $CI->load->model('logbooks_model');
-      $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-    } else {
-      $logbooks_locations_array = $StationLocationsArray;
-    }
+	  if(ENVIRONMENT == 'development') {
+		  $this->output->enable_profiler(TRUE);
+	  }
+	  if($StationLocationsArray == null) {
+		  $CI =& get_instance();
+		  $CI->load->model('logbooks_model');
+		  $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+	  } else {
+		  $logbooks_locations_array = $StationLocationsArray;
+	  }
 
-    if (empty($logbooks_locations_array)) {
-      return array();
-    }
+	  if (empty($logbooks_locations_array)) {
+		  return array();
+	  }
 
-    $this->db->select($this->config->item('table_name').'.*, station_profile.*, dxcc_entities.*, lotw_users.callsign, lotw_users.lastupload');
-    $this->db->from($this->config->item('table_name'));
+	  $this->db->select($this->config->item('table_name').'.*, station_profile.*, dxcc_entities.*, lotw_users.callsign, lotw_users.lastupload');
+	  $this->db->from($this->config->item('table_name'));
 
-    // remove anything thats duplicated based on COL_PRIMARY_KEY
-    $this->db->distinct(''.$this->config->item('table_name').'.COL_PRIMARY_KEY');
+	  $this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
+	  $this->db->join('dxcc_entities', $this->config->item('table_name').'.col_dxcc = dxcc_entities.adif', 'left');
+	  $this->db->join('lotw_users', 'lotw_users.callsign = '.$this->config->item('table_name').'.col_call', 'left outer');
+	  $this->db->where_in('station_profile.station_id', $logbooks_locations_array);
+	  $this->db->order_by(''.$this->config->item('table_name').'.COL_TIME_ON', "desc");
 
-    $this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
-    $this->db->join('dxcc_entities', $this->config->item('table_name').'.col_dxcc = dxcc_entities.adif', 'left');
-    $this->db->join('lotw_users', 'lotw_users.callsign = '.$this->config->item('table_name').'.col_call', 'left outer');
-    $this->db->where_in('station_profile.station_id', $logbooks_locations_array);
-    $this->db->order_by(''.$this->config->item('table_name').'.COL_TIME_ON', "desc");
-    $this->db->order_by(''.$this->config->item('table_name').'.COL_PRIMARY_KEY', "desc");
+	  $this->db->limit($num);
+	  $this->db->offset($offset);
 
-    $this->db->limit($num);
-    $this->db->offset($offset);
-
-    return $this->db->get();
+	  return $this->db->get();
   }
 
   function get_qso($id, $trusted = false) {
