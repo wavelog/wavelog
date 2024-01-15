@@ -110,7 +110,7 @@ class VUCC extends CI_Model
 
 		$location_list = "'".implode("','",$logbooks_locations_array)."'";
 
-        $sql = "select col_vucc_grids
+        $sql = "select distinct col_vucc_grids
             from " . $this->config->item('table_name') .
             " where station_id in (" . $location_list . ")" .
             " and col_vucc_grids <> '' ";

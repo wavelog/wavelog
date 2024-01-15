@@ -1617,23 +1617,23 @@ class Logbook_model extends CI_Model {
       return array();
     }
 
-    $this->db->select($this->config->item('table_name').'.*, station_profile.*, dxcc_entities.*, lotw_users.callsign, lotw_users.lastupload');
-    $this->db->from($this->config->item('table_name'));
+	  if (empty($logbooks_locations_array)) {
+		  return array();
+	  }
 
-    // remove anything thats duplicated based on COL_PRIMARY_KEY
-    $this->db->distinct(''.$this->config->item('table_name').'.COL_PRIMARY_KEY');
+	  $this->db->select($this->config->item('table_name').'.*, station_profile.*, dxcc_entities.*, lotw_users.callsign, lotw_users.lastupload');
+	  $this->db->from($this->config->item('table_name'));
 
-    $this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
-    $this->db->join('dxcc_entities', $this->config->item('table_name').'.col_dxcc = dxcc_entities.adif', 'left');
-    $this->db->join('lotw_users', 'lotw_users.callsign = '.$this->config->item('table_name').'.col_call', 'left outer');
-    $this->db->where_in('station_profile.station_id', $logbooks_locations_array);
-    $this->db->order_by(''.$this->config->item('table_name').'.COL_TIME_ON', "desc");
-    $this->db->order_by(''.$this->config->item('table_name').'.COL_PRIMARY_KEY', "desc");
+	  $this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
+	  $this->db->join('dxcc_entities', $this->config->item('table_name').'.col_dxcc = dxcc_entities.adif', 'left');
+	  $this->db->join('lotw_users', 'lotw_users.callsign = '.$this->config->item('table_name').'.col_call', 'left outer');
+	  $this->db->where_in($this->config->item('table_name').'.station_id', $logbooks_locations_array);
+	  $this->db->order_by(''.$this->config->item('table_name').'.COL_TIME_ON', "desc");
 
-    $this->db->limit($num);
-    $this->db->offset($offset);
+	  $this->db->limit($num);
+	  $this->db->offset($offset);
 
-    return $this->db->get();
+	  return $this->db->get();
   }
 
   function get_qso($id, $trusted = false) {
@@ -1832,12 +1832,12 @@ class Logbook_model extends CI_Model {
 
       $sql = "SELECT * FROM ( select * from " . $this->config->item('table_name'). "
         WHERE station_id IN(". $location_list .")
-        order by col_time_on desc, col_primary_key desc
+        order by col_time_on desc
         limit " . $num .
         ") hrd
         JOIN station_profile ON station_profile.station_id = hrd.station_id
         LEFT JOIN dxcc_entities ON hrd.col_dxcc = dxcc_entities.adif
-        order by col_time_on desc, col_primary_key desc";
+        order by col_time_on desc";
 
       $query = $this->db->query($sql);
 
