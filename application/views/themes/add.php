@@ -32,6 +32,15 @@
 			<small id="foldernameInputHelp" class="form-text text-muted">This is the name of the folder where your CSS-files are placed under assets/css.</small>
 		</div>
 
+		<div class="mb-3">
+			<label for="themeModeInput">Theme Mode</label>
+			<select class="form-select" id="themeModeInput" name="theme_mode">
+				<option value="light">Light</option>
+				<option value="dark">Dark</option>
+			</select>
+			<small id="themeModeInputHelp" class="form-text text-muted">This defines wherever the theme is a light or a dark one. On this basis the Logo is chosen.</small>
+		</div>
+
 		<button type="button" onclick="addTheme(this.form);" class="btn btn-primary"><i class="fas fa-plus-square"></i> Add theme</button>
 	</form>
 </div>

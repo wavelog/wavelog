@@ -2982,6 +2982,7 @@ function viewEqsl(picture, callsign) {
 				data: {
 					'name': form.name.value,
 					'foldername': form.foldername.value,
+                    'theme_mode': form.theme_mode.value,
 				},
 				success: function(html) {
 					location.reload();

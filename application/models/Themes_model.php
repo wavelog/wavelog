@@ -21,6 +21,7 @@ class Themes_model extends CI_Model {
 		$data = array(
 			'name' => xss_clean($this->input->post('name', true)),
 			'foldername' => xss_clean($this->input->post('foldername', true)),
+			'theme_mode' => xss_clean($this->input->post('theme_mode', true)),
 		);
 
 		$this->db->insert('themes', $data);
@@ -42,6 +43,7 @@ class Themes_model extends CI_Model {
 		$data = array(
 			'name' => xss_clean($this->input->post('name', true)),
 			'foldername' => xss_clean($this->input->post('foldername', true)),
+			'theme_mode' => xss_clean($this->input->post('theme_mode', true)),
 		);
 
 		$this->db->where('id', $id);
