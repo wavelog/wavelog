@@ -3,7 +3,7 @@
 class Setup_model extends CI_Model {
 
 	function getCountryCount() {
-		$sql = 'select count(*) as count from dxcc_entities';
+		$sql = 'SELECT count(*) as count FROM dxcc_entities';
 		$query = $this->db->query($sql);
 
 		return $query->row()->count;
@@ -11,7 +11,7 @@ class Setup_model extends CI_Model {
 
 	function getLogbookCount() {
 		$userid = xss_clean($this->session->userdata('user_id'));
-		$sql = 'select count(*) as count from station_logbooks where user_id =' . $userid;
+		$sql = 'SELECT count(*) as count FROM station_logbooks WHERE user_id =' . $userid;
 		$query = $this->db->query($sql);
 
 		return $query->row()->count;
@@ -19,7 +19,14 @@ class Setup_model extends CI_Model {
 
 	function getLocationCount() {
 		$userid = xss_clean($this->session->userdata('user_id'));
-		$sql = 'select count(*) as count from station_profile where user_id =' . $userid;
+		$sql = 'SELECT count(*) as count FROM station_profile WHERE user_id =' . $userid;
+		$query = $this->db->query($sql);
+
+		return $query->row()->count;
+	}
+
+	function checkThemesWithoutMode() {
+		$sql = "SELECT COUNT(*) AS count FROM themes WHERE theme_mode IS NULL OR theme_mode = ''";
 		$query = $this->db->query($sql);
 
 		return $query->row()->count;

@@ -93,6 +93,12 @@ function echoQrbCalcLink($mygrid, $grid, $vucc) {
 		</div>
 	<?php } ?>
 
+	<?php if($themesWithoutMode != 0) { ?>
+		<div class="alert alert-danger" role="alert">
+		  	You have themes without defined theme mode. Please ask the admin to edit the themes.
+		</div>
+	<?php } ?>
+
 	<?php if ($this->session->userdata('user_id')) { ?>
 		<?php
 			$current_date = date('Y-m-d H:i:s');

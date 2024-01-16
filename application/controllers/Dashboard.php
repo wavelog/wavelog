@@ -58,6 +58,8 @@ class Dashboard extends CI_Controller {
 
 		$data['current_active'] = $this->stations->find_active();
 
+		$data['themesWithoutMode'] = $this->setup_model->checkThemesWithoutMode();
+
 		$setup_required = false;
 
 		if($setup_required) {
