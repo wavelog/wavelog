@@ -17,10 +17,10 @@ class Migration_main_index_cleanup extends CI_Migration {
 		$this->rm_ix('HRD_IDX_COL_PFX');
 		$this->rm_ix('HRD_IDX_COL_TIME_ON');
 		$this->add_ix('idx_HRD_DBL_CHK','`station_id`, `COL_CALL`,`COL_BAND`,`COL_MODE`');
-		$this->add_ix('idx_HRD_COL_BAND_station_id','`station_id`,`COL_BAND`,`COL_TIME_ON` desc');
-		$this->add_ix('idx_HRD_COL_CALL_station_id','`station_id`,`COL_CALL`,`COL_TIME_ON` desc');
-		$this->add_ix('idx_HRD_COL_DXCC_station_id','`station_id`,`COL_DXCC`,`COL_TIME_ON` desc');
-		$this->add_ix('idx_HRD_station_id','`station_id`,`COL_TIME_ON` desc');
+		$this->add_ix('idx_HRD_COL_BAND_station_id','`station_id`,`COL_BAND`,`COL_TIME_ON`');
+		$this->add_ix('idx_HRD_COL_CALL_station_id','`station_id`,`COL_CALL`,`COL_TIME_ON`');
+		$this->add_ix('idx_HRD_COL_DXCC_station_id','`station_id`,`COL_DXCC`,`COL_TIME_ON`');
+		$this->add_ix('idx_HRD_station_id','`station_id`,`COL_TIME_ON`');
 	}
 
 
