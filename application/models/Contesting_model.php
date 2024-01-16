@@ -20,12 +20,9 @@ class Contesting_model extends CI_Model {
        		coalesce(col_stx, '') col_stx, coalesce(col_stx_string, '') col_stx_string, coalesce(col_gridsquare, '') col_gridsquare,
        		coalesce(col_vucc_grids, '') col_vucc_grids FROM " .
             $this->config->item('table_name') .
-            " WHERE station_id = " . $station_id .
-            " AND COL_TIME_ON >= '" . $date . "'" .
-            " AND COL_CONTEST_ID = '" . $contestid . "'" .
-            " ORDER BY COL_PRIMARY_KEY ASC";
+            " WHERE station_id =  ?  AND COL_TIME_ON >= ? AND COL_CONTEST_ID = ? ORDER BY COL_PRIMARY_KEY ASC";
 
-        $data = $this->db->query($sql);
+        $data = $this->db->query($sql,array($station_id, $date, $contestid));
         return $data->result();
     }
 
@@ -60,8 +57,10 @@ class Contesting_model extends CI_Model {
 
 		$qso = "";
 
-		if ($this->input->post('callsign')) {
+		if ($this->input->post('callsign') ?? '' != '') {
 			$qso = xss_clean($this->input->post('start_date', true)) . ' ' . xss_clean($this->input->post('start_time', true)) . ',' . xss_clean($this->input->post('callsign', true)) . ',' . xss_clean($this->input->post('contestname', true));
+		} else {
+			$qso = xss_clean($this->input->post('start_date', true)) . ' ' . xss_clean($this->input->post('start_time', true)) . ',,' . xss_clean($this->input->post('contestname', true));
 		}
 
 		$data = array(
@@ -84,8 +83,8 @@ class Contesting_model extends CI_Model {
 		}
 
 		$result = $querydata->row();
-
-		if ($result->qso != "") {
+        	$qsoarray = explode(',', $result->qso);
+		if ($qsoarray[1] != "") {
 			$data['qso'] = $result->qso;
 		}
 

@@ -54,6 +54,7 @@ class Lookup extends CI_Controller {
 	}
 
 	public function scp() {
+		session_write_close();
 		if($_POST['callsign']) {
 			$uppercase_callsign = strtoupper($_POST['callsign']);
 		}
@@ -112,6 +113,7 @@ class Lookup extends CI_Controller {
 	}
 
 	public function dok($call) {
+		session_write_close();
 
 		if($call) {
 			$uppercase_callsign = strtoupper($call);

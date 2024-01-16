@@ -172,6 +172,9 @@
                 "paging":         true,
                 "scrollX": true,
                 "order": [ 0, 'desc' ],
+                // "language": {
+                //     url: "../assets/json/datatables_languages/en-GB.json" // in visitor view always english
+                // },
                 dom: 'Bfrtip',
                 buttons: [
                    {
@@ -206,6 +209,9 @@
             }
         </script>
     <?php } ?>
-
+    <!-- TODO: We will add Multilanguage Support for the public views later, so wie komment this out for the moment -->
+    <!-- <script>
+        var lang_datatables_language = "<?php echo lang('datatables_language') ?>";
+    </script> -->
   </body>
 </html>

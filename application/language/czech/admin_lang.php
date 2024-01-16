@@ -12,8 +12,14 @@ $lang['admin_user_list'] = 'Seznam uživatelů';
 $lang['admin_user'] = 'Uživatel';
 $lang['admin_email'] = 'E-mail';
 $lang['admin_type'] = 'Typ';
-$lang['admin_last_login'] = "Last Login";
+$lang['admin_last_seen'] = "Last seen";
+$lang['admin_last_qso'] = "Last QSO:";
+$lang['admin_no_qso_in_log'] = "No QSOs in Log";
+$lang['admin_refresh_list'] = "Refresh List";
 $lang['admin_options'] = 'Možnosti';
+
+$lang['admin_station_logbooks'] = 'Logbooks';
+$lang['admin_station_locations'] = 'Locations';
 
 $lang['admin_create_user'] = 'Vytvořit uživatele';
 $lang['admin_delete'] = 'Smazat';
@@ -24,13 +30,15 @@ $lang['admin_update'] = 'Update';
 $lang['admin_copy'] = 'Copy';
 $lang['admin_save'] = 'Save';
 $lang['admin_close'] = 'Close';
+$lang['admin_clear'] = "Clear";
 $lang['admin_user_accounts'] = 'User Accounts';
 $lang['admin_danger'] = 'DANGER!';
 $lang['admin_experimental'] = "Experimental";
 $lang['admin_password_reset'] = "Password Reset";
 
 $lang['admin_email_settings_incorrect'] = "Email settings are incorrect.";
-$lang['admin_password_reset_processed'] = "Password Reset E-Mail sent.";
+$lang['admin_password_reset_processed'] = "Password-reset e-mail sent to user:";
+$lang['admin_confirm_pwd_reset'] = "Do you really want to send this user a password-reset link?";
 
 
 // Contest Menu

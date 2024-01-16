@@ -248,14 +248,12 @@ class Logbook_model extends CI_Model {
     $station_id = $this->input->post('station_profile');
 
     if($station_id == "" || $station_id == "0") {
-      $CI =& get_instance();
-      $CI->load->model('stations');
-      $station_id = $CI->stations->find_active();
+      $this->load->model('stations');
+      $station_id = $this->stations->find_active();
     }
 
-	$CI =& get_instance();
-	$CI->load->model('stations');
-        if (!$CI->stations->check_station_is_accessible($station_id)) {	// Hard Exit if station_profile not accessible
+	$this->load->model('stations');
+        if (!$this->stations->check_station_is_accessible($station_id)) {	// Hard Exit if station_profile not accessible
             return 'Station not accessible<br>';
         }
 
@@ -348,9 +346,8 @@ class Logbook_model extends CI_Model {
 	 * Used to fetch QSOs from the logbook in the awards
 	 */
 	public function qso_details($searchphrase, $band, $mode, $type, $qsl, $searchmode = null){
-		$CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
 		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
 		$this->db->join('dxcc_entities', 'dxcc_entities.adif = '.$this->config->item('table_name').'.COL_DXCC', 'left outer');
@@ -378,6 +375,10 @@ class Logbook_model extends CI_Model {
 		case 'WAS':
 			$this->db->where('COL_STATE', $searchphrase);
 			$this->db->where_in('COL_DXCC', ['291', '6', '110']);
+			break;
+		case 'RAC':
+			$this->db->where('COL_STATE', $searchphrase);
+			$this->db->where_in('COL_DXCC', ['1']);
 			break;
 		case 'SOTA':
 			$this->db->where('COL_SOTA_REF', $searchphrase);
@@ -461,9 +462,8 @@ class Logbook_model extends CI_Model {
 	}
 
 	public function activated_grids_qso_details($searchphrase, $band, $mode){
-		$CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
 		$sql =  'SELECT COL_FREQ, COL_SOTA_REF, COL_OPERATOR, COL_IOTA, COL_VUCC_GRIDS, COL_STATE, COL_GRIDSQUARE, COL_PRIMARY_KEY, COL_CALL, COL_TIME_ON, COL_BAND, COL_SAT_NAME, COL_MODE, COL_SUBMODE, COL_RST_SENT, ';
 		$sql .= 'COL_RST_RCVD, COL_STX, COL_SRX, COL_STX_STRING, COL_SRX_STRING, COL_COUNTRY, COL_QSL_SENT, COL_QSL_SENT_VIA, ';
@@ -493,9 +493,8 @@ class Logbook_model extends CI_Model {
 	}
 
     public function vucc_qso_details($gridsquare, $band) {
-		$CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
 		$location_list = "'".implode("','",$logbooks_locations_array)."'";
 
@@ -517,9 +516,8 @@ class Logbook_model extends CI_Model {
     }
 
     public function activator_details($call, $band, $leogeo){
-		$CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
       $this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
       $this->db->join('dxcc_entities', 'dxcc_entities.adif = '.$this->config->item('table_name').'.COL_DXCC', 'left outer');
@@ -590,11 +588,10 @@ class Logbook_model extends CI_Model {
 
 		$result = $this->exists_clublog_credentials($data['station_id']);
 		if (isset($result->ucp) && isset($result->ucn) && (($result->ucp ?? '') != '') && (($result->ucn ?? '') != '') && ($result->clublogrealtime == 1)) {
-			$CI =& get_instance();
-			$CI->load->library('AdifHelper');
+			$this->load->library('AdifHelper');
 			$qso = $this->get_qso($last_id,true)->result();
 
-			$adif = $CI->adifhelper->getAdifLine($qso[0]);
+			$adif = $this->adifhelper->getAdifLine($qso[0]);
 			$result = $this->push_qso_to_clublog($result->ucn, $result->ucp, $data['COL_STATION_CALLSIGN'], $adif);
 			if ( ($result['status'] == 'OK') || ( ($result['status'] == 'error') || ($result['status'] == 'duplicate') || ($result['status'] == 'auth_error') )){
 		  		$this->mark_clublog_qsos_sent($last_id);
@@ -605,11 +602,10 @@ class Logbook_model extends CI_Model {
 		$result = $this->exists_hrdlog_credentials($data['station_id']);
 		// Push qso to hrdlog if code is set, and realtime upload is enabled, and we're not importing an adif-file
 		if (isset($result->hrdlog_code) && isset($result->hrdlog_username) && $result->hrdlogrealtime == 1) {
-			$CI =& get_instance();
-			$CI->load->library('AdifHelper');
+			$this->load->library('AdifHelper');
 			$qso = $this->get_qso($last_id,true)->result();
 
-			$adif = $CI->adifhelper->getAdifLine($qso[0]);
+			$adif = $this->adifhelper->getAdifLine($qso[0]);
 			$result = $this->push_qso_to_hrdlog($result->hrdlog_username, $result->hrdlog_code, $adif);
 			if ( ($result['status'] == 'OK') || ( ($result['status'] == 'error') || ($result['status'] == 'duplicate') || ($result['status'] == 'auth_error') )){
 				$this->mark_hrdlog_qsos_sent($last_id);
@@ -619,11 +615,10 @@ class Logbook_model extends CI_Model {
 		$result = $this->exists_qrz_api_key($data['station_id']);
 // Push qso to qrz if apikey is set, and realtime upload is enabled, and we're not importing an adif-file
 		if (isset($result->qrzapikey) && $result->qrzrealtime == 1) {
-			$CI =& get_instance();
-			$CI->load->library('AdifHelper');
+			$this->load->library('AdifHelper');
 			$qso = $this->get_qso($last_id,true)->result();
 
-			$adif = $CI->adifhelper->getAdifLine($qso[0]);
+			$adif = $this->adifhelper->getAdifLine($qso[0]);
 			$result = $this->push_qso_to_qrz($result->qrzapikey, $adif);
 			if ( ($result['status'] == 'OK') || ( ($result['status'] == 'error') && ($result['message'] == 'STATUS=FAIL&REASON=Unable to add QSO to database: duplicate&EXTENDED=')) ){
 				$this->mark_qrz_qsos_sent($last_id);
@@ -633,11 +628,10 @@ class Logbook_model extends CI_Model {
 		$result = $this->exists_webadif_api_key($data['station_id']);
 		// Push qso to webadif if apikey is set, and realtime upload is enabled, and we're not importing an adif-file
 		if (isset($result->webadifapikey) && $result->webadifrealtime == 1) {
-			$CI =& get_instance();
-			$CI->load->library('AdifHelper');
+			$this->load->library('AdifHelper');
 			$qso = $this->get_qso($last_id,true)->result();
 
-			$adif = $CI->adifhelper->getAdifLine($qso[0]);
+			$adif = $this->adifhelper->getAdifLine($qso[0]);
 			$result = $this->push_qso_to_webadif(
 				$result->webadifapiurl,
 				$result->webadifapikey,
@@ -1026,9 +1020,8 @@ class Logbook_model extends CI_Model {
 	  $country = ucwords(strtolower($entity['name']), "- (/");
 
 	  // be sure that station belongs to user
-	  $CI =& get_instance();
-	  $CI->load->model('stations');
-	  if (!$CI->stations->check_station_is_accessible($stationId)) {
+	  $this->load->model('stations');
+	  if (!$this->stations->check_station_is_accessible($stationId)) {
 		  return;
 	  }
 
@@ -1036,7 +1029,7 @@ class Logbook_model extends CI_Model {
 		  return;
 	  }
 
-	  $station_profile=$CI->stations->profile_clean($stationId);
+	  $station_profile=$this->stations->profile_clean($stationId);
 	  $stationCallsign=$station_profile->station_callsign;
 
 	  $mode = $this->get_main_mode_if_submode($this->input->post('mode'));
@@ -1245,9 +1238,8 @@ class Logbook_model extends CI_Model {
 
   /* Return last 10 QSOs */
   function last_ten() {
-    $CI =& get_instance();
-    $CI->load->model('logbooks_model');
-    $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+    $this->load->model('logbooks_model');
+    $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
     $this->db->select('COL_CALL, COL_BAND, COL_FREQ, COL_TIME_ON, COL_RST_RCVD, COL_RST_SENT, COL_MODE, COL_SUBMODE, COL_NAME, COL_COUNTRY, COL_PRIMARY_KEY, COL_SAT_NAME');
     $this->db->where_in('station_id', $logbooks_locations_array);
@@ -1259,9 +1251,8 @@ class Logbook_model extends CI_Model {
 
   /* Show custom number of qsos */
   function last_custom($num) {
-    $CI =& get_instance();
-    $CI->load->model('logbooks_model');
-    $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+    $this->load->model('logbooks_model');
+    $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
     if(!empty($logbooks_locations_array)) {
       $this->db->select('COL_CALL, COL_BAND, COL_FREQ, COL_TIME_ON, COL_RST_RCVD, COL_RST_SENT, COL_MODE, COL_SUBMODE, COL_NAME, COL_COUNTRY, COL_DXCC, COL_PRIMARY_KEY, COL_SAT_NAME, COL_SRX, COL_SRX_STRING, COL_STX, COL_STX_STRING, COL_VUCC_GRIDS, COL_GRIDSQUARE, COL_MY_GRIDSQUARE, COL_OPERATOR, COL_IOTA, COL_WWFF_REF, COL_POTA_REF, COL_STATE, COL_CNTY, COL_DISTANCE, COL_SOTA_REF, COL_CONTEST_ID, dxcc_entities.end AS end');
@@ -1573,9 +1564,8 @@ class Logbook_model extends CI_Model {
 
   function get_qsos_for_printing($station_id2 = null) {
 
-	$CI =& get_instance();
-    $CI->load->model('stations');
-    $station_id = $CI->stations->find_active();
+    $this->load->model('stations');
+    $station_id = $this->stations->find_active();
 
     $sql = 'SELECT
 				STATION_CALLSIGN,
@@ -1617,9 +1607,8 @@ class Logbook_model extends CI_Model {
 
   function get_qsos($num, $offset, $StationLocationsArray = null) {
     if($StationLocationsArray == null) {
-      $CI =& get_instance();
-      $CI->load->model('logbooks_model');
-      $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+      $this->load->model('logbooks_model');
+      $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
     } else {
       $logbooks_locations_array = $StationLocationsArray;
     }
@@ -1628,34 +1617,35 @@ class Logbook_model extends CI_Model {
       return array();
     }
 
-    $this->db->select($this->config->item('table_name').'.*, station_profile.*, dxcc_entities.*, lotw_users.callsign, lotw_users.lastupload');
-    $this->db->from($this->config->item('table_name'));
+	  if (empty($logbooks_locations_array)) {
+		  return array();
+	  }
 
-    // remove anything thats duplicated based on COL_PRIMARY_KEY
-    $this->db->distinct(''.$this->config->item('table_name').'.COL_PRIMARY_KEY');
+	  $this->db->select($this->config->item('table_name').'.*, station_profile.*, dxcc_entities.*, lotw_users.callsign, lotw_users.lastupload');
+	  $this->db->from($this->config->item('table_name'));
 
-    $this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
-    $this->db->join('dxcc_entities', $this->config->item('table_name').'.col_dxcc = dxcc_entities.adif', 'left');
-    $this->db->join('lotw_users', 'lotw_users.callsign = '.$this->config->item('table_name').'.col_call', 'left outer');
-    $this->db->where_in('station_profile.station_id', $logbooks_locations_array);
-    $this->db->order_by(''.$this->config->item('table_name').'.COL_TIME_ON', "desc");
-    $this->db->order_by(''.$this->config->item('table_name').'.COL_PRIMARY_KEY', "desc");
+	  $this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
+	  $this->db->join('dxcc_entities', $this->config->item('table_name').'.col_dxcc = dxcc_entities.adif', 'left');
+	  $this->db->join('lotw_users', 'lotw_users.callsign = '.$this->config->item('table_name').'.col_call', 'left outer');
+	  $this->db->where_in($this->config->item('table_name').'.station_id', $logbooks_locations_array);
+	  $this->db->order_by(''.$this->config->item('table_name').'.COL_TIME_ON', "desc");
 
-    $this->db->limit($num);
-    $this->db->offset($offset);
+	  $this->db->limit($num);
+	  $this->db->offset($offset);
 
-    return $this->db->get();
+	  return $this->db->get();
   }
 
   function get_qso($id, $trusted = false) {
 	  if ($trusted || ($this->logbook_model->check_qso_is_accessible($id))) {
-		  $this->db->select($this->config->item('table_name').'.*, station_profile.*, dxcc_entities.*, coalesce(dxcc_entities_2.name, "- NONE -") as station_country, dxcc_entities_2.end as station_end, eQSL_images.image_file as eqsl_image_file, lotw_users.callsign as lotwuser, lotw_users.lastupload');
+		  $this->db->select($this->config->item('table_name').'.*, station_profile.*, dxcc_entities.*, coalesce(dxcc_entities_2.name, "- NONE -") as station_country, dxcc_entities_2.end as station_end, eQSL_images.image_file as eqsl_image_file, lotw_users.callsign as lotwuser, lotw_users.lastupload, primary_subdivisions.subdivision');
 		  $this->db->from($this->config->item('table_name'));
 		  $this->db->join('dxcc_entities', $this->config->item('table_name').'.col_dxcc = dxcc_entities.adif', 'left');
 		  $this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id', 'left');
 		  $this->db->join('dxcc_entities as dxcc_entities_2', 'station_profile.station_dxcc = dxcc_entities_2.adif', 'left outer');
 		  $this->db->join('eQSL_images', $this->config->item('table_name').'.COL_PRIMARY_KEY = eQSL_images.qso_id', 'left outer');
 		  $this->db->join('lotw_users', $this->config->item('table_name').'.COL_CALL = lotw_users.callsign', 'left outer');
+		  $this->db->join('primary_subdivisions', $this->config->item('table_name').'.COL_DXCC = primary_subdivisions.adif AND '.$this->config->item('table_name').'.COL_STATE = primary_subdivisions.state', 'left outer');
 		  $this->db->where('COL_PRIMARY_KEY', $id);
 
 		  return $this->db->get();
@@ -1685,9 +1675,8 @@ class Logbook_model extends CI_Model {
      * Function returns the QSOs from the logbook, which have not been either marked as uploaded to qrz, or has been modified with an edit
      */
   function get_qrz_qsos($station_id, $trusted = false){
-	  $CI =& get_instance();
-	  $CI->load->model('stations');
-	  if ((!$trusted) && (!$CI->stations->check_station_is_accessible($station_id))) {
+	  $this->load->model('stations');
+	  if ((!$trusted) && (!$this->stations->check_station_is_accessible($station_id))) {
 		  return;
 	  }
 	  $sql = 'select *, dxcc_entities.name as station_country from ' . $this->config->item('table_name') . ' thcv ' .
@@ -1707,9 +1696,8 @@ class Logbook_model extends CI_Model {
      * Function returns the QSOs from the logbook, which have not been either marked as uploaded to webADIF
      */
     function get_webadif_qsos($station_id,$from = null, $to = null,$trusted = false){
-	    $CI =& get_instance();
-	    $CI->load->model('stations');
-	    if ((!$trusted) && (!$CI->stations->check_station_is_accessible($station_id))) {
+	    $this->load->model('stations');
+	    if ((!$trusted) && (!$this->stations->check_station_is_accessible($station_id))) {
 		    return;
 	    }
 	    $sql = "
@@ -1774,11 +1762,11 @@ class Logbook_model extends CI_Model {
      * Function returns all the station_id's with HRDLOG Code
      */
     function get_station_id_with_hrdlog_code() {
-        $sql = 'SELECT station_id, hrdlog_username, hrdlog_code 
+        $sql = 'SELECT station_id, hrdlog_username, hrdlog_code
                 FROM station_profile
-                WHERE coalesce(hrdlog_username, "") <> "" 
+                WHERE coalesce(hrdlog_username, "") <> ""
                 AND coalesce(hrdlog_code, "") <> ""';
-        
+
         $query = $this->db->query($sql);
 
         $result = $query->result();
@@ -1833,9 +1821,8 @@ class Logbook_model extends CI_Model {
   function get_last_qsos($num, $StationLocationsArray = null) {
 
     if($StationLocationsArray == null) {
-      $CI =& get_instance();
-      $CI->load->model('logbooks_model');
-      $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+      $this->load->model('logbooks_model');
+      $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
     } else {
       $logbooks_locations_array = $StationLocationsArray;
     }
@@ -1845,12 +1832,12 @@ class Logbook_model extends CI_Model {
 
       $sql = "SELECT * FROM ( select * from " . $this->config->item('table_name'). "
         WHERE station_id IN(". $location_list .")
-        order by col_time_on desc, col_primary_key desc
+        order by col_time_on desc
         limit " . $num .
         ") hrd
         JOIN station_profile ON station_profile.station_id = hrd.station_id
         LEFT JOIN dxcc_entities ON hrd.col_dxcc = dxcc_entities.adif
-        order by col_time_on desc, col_primary_key desc";
+        order by col_time_on desc";
 
       $query = $this->db->query($sql);
 
@@ -1865,9 +1852,8 @@ class Logbook_model extends CI_Model {
 	    $user_default_confirmation = $this->session->userdata('user_default_confirmation');
 
 	    if($StationLocationsArray == null) {
-		    $CI =& get_instance();
-		    $CI->load->model('logbooks_model');
-		    $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		    $this->load->model('logbooks_model');
+		    $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 	    } else {
 		    $logbooks_locations_array = $StationLocationsArray;
 	    }
@@ -1922,9 +1908,8 @@ class Logbook_model extends CI_Model {
 function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray = null, $band = null) {
 
     if($StationLocationsArray == null) {
-      $CI =& get_instance();
-      $CI->load->model('logbooks_model');
-      $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+      $this->load->model('logbooks_model');
+      $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
     } else {
       $logbooks_locations_array = $StationLocationsArray;
     }
@@ -1949,9 +1934,8 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
   function check_if_grid_worked_in_logbook($grid, $StationLocationsArray = null, $band = null) {
 
     if($StationLocationsArray == null) {
-      $CI =& get_instance();
-      $CI->load->model('logbooks_model');
-      $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+      $this->load->model('logbooks_model');
+      $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
     } else {
       $logbooks_locations_array = $StationLocationsArray;
     }
@@ -1979,9 +1963,8 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 
     /* Get all QSOs with a valid grid for use in the KML export */
     function kml_get_all_qsos($band, $mode, $dxcc, $cqz, $propagation, $fromdate, $todate) {
-        $CI =& get_instance();
-        $CI->load->model('logbooks_model');
-        $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+        $this->load->model('logbooks_model');
+        $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         $this->db->select('COL_CALL, COL_BAND, COL_TIME_ON, COL_RST_RCVD, COL_RST_SENT, COL_MODE, COL_SUBMODE, COL_NAME, COL_COUNTRY, COL_PRIMARY_KEY, COL_SAT_NAME, COL_GRIDSQUARE');
         $this->db->where_in('station_id', $logbooks_locations_array);
@@ -2027,9 +2010,8 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 
     function totals_year() {
 
-    $CI =& get_instance();
-    $CI->load->model('logbooks_model');
-    $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+    $this->load->model('logbooks_model');
+    $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
     if (!$logbooks_locations_array) {
       return null;
@@ -2048,20 +2030,19 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
     /* Return total number of qsos */
     function total_qsos($StationLocationsArray = null, $api_key = null) {
       if($StationLocationsArray == null) {
-        $CI =& get_instance();
-        $CI->load->model('logbooks_model');
+        $this->load->model('logbooks_model');
         if ($api_key != null) {
-          $CI->load->model('api_model');
+          $this->load->model('api_model');
           if (strpos($this->api_model->access($api_key), 'r') !== false) {
             $this->api_model->update_last_used($api_key);
             $user_id = $this->api_model->key_userid($api_key);
-            $active_station_logbook = $CI->logbooks_model->find_active_station_logbook_from_userid($user_id);
-            $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($active_station_logbook);
+            $active_station_logbook = $this->logbooks_model->find_active_station_logbook_from_userid($user_id);
+            $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($active_station_logbook);
           } else {
             $logbooks_locations_array = [];
           }
         } else {
-          $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+          $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
         }
       } else {
         $logbooks_locations_array = $StationLocationsArray;
@@ -2087,20 +2068,19 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
     /* Return number of QSOs had today */
     function todays_qsos($StationLocationsArray = null, $api_key = null) {
       if($StationLocationsArray == null) {
-        $CI =& get_instance();
-        $CI->load->model('logbooks_model');
+        $this->load->model('logbooks_model');
         if ($api_key != null) {
-          $CI->load->model('api_model');
+          $this->load->model('api_model');
           if (strpos($this->api_model->access($api_key), 'r') !== false) {
             $this->api_model->update_last_used($api_key);
             $user_id = $this->api_model->key_userid($api_key);
-            $active_station_logbook = $CI->logbooks_model->find_active_station_logbook_from_userid($user_id);
-            $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($active_station_logbook);
+            $active_station_logbook = $this->logbooks_model->find_active_station_logbook_from_userid($user_id);
+            $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($active_station_logbook);
           } else {
             $logbooks_locations_array = [];
           }
         } else {
-          $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+          $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
         }
       } else {
         $logbooks_locations_array = $StationLocationsArray;
@@ -2131,9 +2111,8 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 
     /* Return QSOs over a period of days */
     function map_week_qsos($start, $end) {
-        $CI =& get_instance();
-        $CI->load->model('logbooks_model');
-        $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+        $this->load->model('logbooks_model');
+        $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         $this->db->where("COL_TIME_ON BETWEEN '".$start."' AND '".$end."'");
         $this->db->where_in('station_id', $logbooks_locations_array);
@@ -2145,9 +2124,8 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 
     /* used to return custom qsos requires start, end date plus a band */
     function map_custom_qsos($start, $end, $band, $mode, $propagation) {
-		$CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
     if (!$logbooks_locations_array) {
       return null;
@@ -2184,9 +2162,8 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 
     /* Returns QSOs for the date sent eg 2011-09-30 */
     function map_day($date) {
-        $CI =& get_instance();
-        $CI->load->model('logbooks_model');
-        $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+        $this->load->model('logbooks_model');
+        $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         $start = $date." 00:00:00";
         $end = $date." 23:59:59";
@@ -2202,20 +2179,19 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
     // Return QSOs made during the current month
     function month_qsos($StationLocationsArray = null, $api_key = null) {
       if($StationLocationsArray == null) {
-        $CI =& get_instance();
-        $CI->load->model('logbooks_model');
+        $this->load->model('logbooks_model');
         if ($api_key != null) {
-          $CI->load->model('api_model');
+          $this->load->model('api_model');
           if (strpos($this->api_model->access($api_key), 'r') !== false) {
             $this->api_model->update_last_used($api_key);
             $user_id = $this->api_model->key_userid($api_key);
-            $active_station_logbook = $CI->logbooks_model->find_active_station_logbook_from_userid($user_id);
-            $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($active_station_logbook);
+            $active_station_logbook = $this->logbooks_model->find_active_station_logbook_from_userid($user_id);
+            $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($active_station_logbook);
           } else {
             $logbooks_locations_array = [];
           }
         } else {
-          $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+          $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
         }
       } else {
         $logbooks_locations_array = $StationLocationsArray;
@@ -2252,20 +2228,19 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
     function year_qsos($StationLocationsArray = null, $api_key = null) {
 
       if($StationLocationsArray == null) {
-        $CI =& get_instance();
-        $CI->load->model('logbooks_model');
+        $this->load->model('logbooks_model');
         if ($api_key != null) {
-          $CI->load->model('api_model');
+          $this->load->model('api_model');
           if (strpos($this->api_model->access($api_key), 'r') !== false) {
             $this->api_model->update_last_used($api_key);
             $user_id = $this->api_model->key_userid($api_key);
-            $active_station_logbook = $CI->logbooks_model->find_active_station_logbook_from_userid($user_id);
-            $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($active_station_logbook);
+            $active_station_logbook = $this->logbooks_model->find_active_station_logbook_from_userid($user_id);
+            $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($active_station_logbook);
           } else {
              $logbooks_locations_array = [];
           }
         } else {
-          $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+          $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
         }
       } else {
         $logbooks_locations_array = $StationLocationsArray;
@@ -2297,9 +2272,8 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
     /* Return total amount of SSB QSOs logged */
     function total_ssb() {
 
-      $CI =& get_instance();
-      $CI->load->model('logbooks_model');
-      $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+      $this->load->model('logbooks_model');
+      $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
       if (!$logbooks_locations_array) {
         return null;
@@ -2326,9 +2300,8 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
    /* Return total number of satellite QSOs */
    function total_sat() {
 
-      $CI =& get_instance();
-      $CI->load->model('logbooks_model');
-      $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+      $this->load->model('logbooks_model');
+      $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
       if (!$logbooks_locations_array) {
         return null;
@@ -2348,9 +2321,8 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
    /* Return total number of QSOs per continent */
    function total_continents($searchCriteria) {
 
-      $CI =& get_instance();
-      $CI->load->model('logbooks_model');
-      $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+      $this->load->model('logbooks_model');
+      $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
       if (!$logbooks_locations_array) {
         return null;
@@ -2387,9 +2359,8 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
     /* Return total number of CW QSOs */
     function total_cw() {
 
-      $CI =& get_instance();
-      $CI->load->model('logbooks_model');
-      $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+      $this->load->model('logbooks_model');
+      $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
       if (!$logbooks_locations_array) {
         return null;
@@ -2412,9 +2383,8 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
     /* Return total number of FM QSOs */
     function total_fm() {
 
-      $CI =& get_instance();
-      $CI->load->model('logbooks_model');
-      $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+      $this->load->model('logbooks_model');
+      $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
       if (!$logbooks_locations_array) {
         return null;
@@ -2437,9 +2407,8 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
     /* Return total number of Digital QSOs */
     function total_digi() {
 
-      $CI =& get_instance();
-      $CI->load->model('logbooks_model');
-      $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+      $this->load->model('logbooks_model');
+      $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
       if (!$logbooks_locations_array) {
         return null;
@@ -2473,9 +2442,8 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 
     /* Return total number of QSOs per band */
    function total_bands() {
-      $CI =& get_instance();
-      $CI->load->model('logbooks_model');
-      $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+      $this->load->model('logbooks_model');
+      $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
       if (!$logbooks_locations_array) {
         return null;
@@ -2494,9 +2462,8 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
     function get_QSLStats($StationLocationsArray = null) {
 
 	    if($StationLocationsArray == null) {
-		    $CI =& get_instance();
-		    $CI->load->model('logbooks_model');
-		    $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		    $this->load->model('logbooks_model');
+		    $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 	    } else {
 		    $logbooks_locations_array = $StationLocationsArray;
 	    }
@@ -2596,9 +2563,8 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 
     /* Return total number of QSL Cards sent */
     function total_qsl_sent() {
-      $CI =& get_instance();
-      $CI->load->model('logbooks_model');
-      $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+      $this->load->model('logbooks_model');
+      $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
       if(!empty($logbooks_locations_array)) {
         $this->db->select('count(COL_QSL_SENT) AS count');
@@ -2621,9 +2587,8 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 
     /* Return total number of QSL Cards requested for printing - that means "requested" or "queued" */
     function total_qsl_requested() {
-      $CI =& get_instance();
-      $CI->load->model('logbooks_model');
-      $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+      $this->load->model('logbooks_model');
+      $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
       if(!empty($logbooks_locations_array)) {
         $this->db->select('count(COL_QSL_SENT) AS count');
@@ -2646,9 +2611,8 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 
     /* Return total number of QSL Cards received */
     function total_qsl_rcvd() {
-      $CI =& get_instance();
-      $CI->load->model('logbooks_model');
-      $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+      $this->load->model('logbooks_model');
+      $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
       if(!empty($logbooks_locations_array)) {
         $this->db->select('count(COL_QSL_RCVD) AS count');
@@ -2671,9 +2635,8 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 
     /* Return total number of eQSL Cards sent */
     function total_eqsl_sent() {
-        $CI =& get_instance();
-        $CI->load->model('logbooks_model');
-        $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+        $this->load->model('logbooks_model');
+        $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         if(!empty($logbooks_locations_array)) {
             $this->db->select('count(COL_EQSL_QSL_SENT) AS count');
@@ -2696,9 +2659,8 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 
     /* Return total number of eQSL Cards received */
     function total_eqsl_rcvd() {
-        $CI =& get_instance();
-        $CI->load->model('logbooks_model');
-        $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+        $this->load->model('logbooks_model');
+        $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         if(!empty($logbooks_locations_array)) {
             $this->db->select('count(COL_EQSL_QSL_RCVD) AS count');
@@ -2721,9 +2683,8 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 
     /* Return total number of LoTW sent */
     function total_lotw_sent() {
-        $CI =& get_instance();
-        $CI->load->model('logbooks_model');
-        $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+        $this->load->model('logbooks_model');
+        $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         if(!empty($logbooks_locations_array)) {
             $this->db->select('count(COL_LOTW_QSL_SENT) AS count');
@@ -2746,9 +2707,8 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 
     /* Return total number of LoTW received */
     function total_lotw_rcvd() {
-        $CI =& get_instance();
-        $CI->load->model('logbooks_model');
-        $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+        $this->load->model('logbooks_model');
+        $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         if(!empty($logbooks_locations_array)) {
             $this->db->select('count(COL_LOTW_QSL_RCVD) AS count');
@@ -2771,9 +2731,8 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 
     /* Return total number of countries worked */
     function total_countries() {
-        $CI =& get_instance();
-        $CI->load->model('logbooks_model');
-        $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+        $this->load->model('logbooks_model');
+        $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         if(!empty($logbooks_locations_array)) {
           $this->db->select('DISTINCT (COL_COUNTRY)');
@@ -2791,9 +2750,8 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
     /* Return total number of countries worked */
     function total_countries_current($StationLocationsArray = null) {
       if($StationLocationsArray == null) {
-        $CI =& get_instance();
-        $CI->load->model('logbooks_model');
-        $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+        $this->load->model('logbooks_model');
+        $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
       } else {
         $logbooks_locations_array = $StationLocationsArray;
       }
@@ -2816,9 +2774,8 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
         function total_countries_confirmed($StationLocationsArray = null) {
 
           if($StationLocationsArray == null) {
-            $CI =& get_instance();
-            $CI->load->model('logbooks_model');
-            $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+            $this->load->model('logbooks_model');
+            $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
           } else {
             $logbooks_locations_array = $StationLocationsArray;
           }
@@ -2863,9 +2820,8 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 
     /* Return total number of countries confirmed with paper QSL */
     function total_countries_confirmed_paper() {
-      $CI =& get_instance();
-      $CI->load->model('logbooks_model');
-      $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+      $this->load->model('logbooks_model');
+      $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
       if(!empty($logbooks_locations_array)) {
         $this->db->select('DISTINCT (COL_COUNTRY)');
@@ -2883,9 +2839,8 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 
     /* Return total number of countries confirmed with eQSL */
     function total_countries_confirmed_eqsl() {
-      $CI =& get_instance();
-      $CI->load->model('logbooks_model');
-      $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+      $this->load->model('logbooks_model');
+      $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
       if(!empty($logbooks_locations_array)) {
         $this->db->select('DISTINCT (COL_COUNTRY)');
@@ -2903,9 +2858,8 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 
     /* Return total number of countries confirmed with LoTW */
     function total_countries_confirmed_lotw() {
-      $CI =& get_instance();
-      $CI->load->model('logbooks_model');
-      $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+      $this->load->model('logbooks_model');
+      $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
       if(!empty($logbooks_locations_array)) {
         $this->db->select('DISTINCT (COL_COUNTRY)');
@@ -3234,7 +3188,7 @@ function lotw_last_qsl_date($user_id) {
 			  if ($dxccAdif != NULL) {
 				  if (isset($record['dxcc'])) {
 					  $entity = $this->get_entity($record['dxcc']);
-					  $dxcc = array($record['dxcc'], $entity['name']);
+					  $dxcc = array($record['dxcc'] ?? '', $entity['name'] ?? '');
 				  } else {
 					  $dxcc = $this->check_dxcc_table($record['call'], $time_off);
 				  }
@@ -4190,8 +4144,8 @@ function lotw_last_qsl_date($user_id) {
   }
 
     public function get_entity($dxcc){
-      $sql = "select name, cqz, lat, 'long' from dxcc_entities where adif = " . $dxcc;
-      $query = $this->db->query($sql);
+      $sql = "select name, cqz, lat, 'long' from dxcc_entities where adif = ?";
+      $query = $this->db->query($sql,$dxcc);
 
       if ($query->result() > 0){
           $row = $query->row_array();
@@ -4200,21 +4154,7 @@ function lotw_last_qsl_date($user_id) {
       return '';
     }
 
-    /*
-     * Same as check_dxcc_table, but the functionality is in
-     * a stored procedure which we call
-     */
-    public function check_dxcc_stored_proc($call, $date){
-        $this->db->query("call find_country('".$call."','".$date."', @country, @adif, @cqz)");
-        $res = $this->db->query("select @country as country, @adif as adif, @cqz as cqz");
-        $d = $res->result_array();
-
-        // Should only be one result.
-        // NOTE: might cause unexpected data if there's an
-        // error with clublog.org data.
-        return $d[0];
-    }
-
+    
     public function check_missing_dxcc_id($all){
         // get all records with no COL_DXCC
         $this->db->select("COL_PRIMARY_KEY, COL_CALL, COL_TIME_ON, COL_TIME_OFF");
@@ -4384,7 +4324,7 @@ function lotw_last_qsl_date($user_id) {
       }
     }
 
-    public function loadCallBook($callsign, $use_fullname=false)
+	public function loadCallBook($callsign, $use_fullname=false)
     {
         $callbook = null;
         try {
@@ -4534,9 +4474,8 @@ function lotw_last_qsl_date($user_id) {
   }
 
     function county_qso_details($state, $county) {
-		$CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         $this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
 		$this->db->join('lotw_users', 'lotw_users.callsign = '.$this->config->item('table_name').'.col_call', 'left outer');
@@ -4566,10 +4505,10 @@ function lotw_last_qsl_date($user_id) {
       $this->load->library('qra');
 
       $json["markers"] = array();
-      
+
       foreach ($qsos_result as $row) {
         $plot = array('lat'=>0, 'lng'=>0, 'html'=>'', 'label'=>'', 'confirmed'=>'N');
-      
+
         $plot['label'] = $row->COL_CALL;
 
         $plot['html'] = "Callsign: ".$row->COL_CALL."<br />Date/Time: ".$row->COL_TIME_ON."<br />";
@@ -4591,10 +4530,10 @@ function lotw_last_qsl_date($user_id) {
           if (count($grids) == 2) {
             $grid1 = $this->qra->qra2latlong(trim($grids[0]));
             $grid2 = $this->qra->qra2latlong(trim($grids[1]));
-  
+
             $coords[]=array('lat' => $grid1[0],'lng'=> $grid1[1]);
             $coords[]=array('lat' => $grid2[0],'lng'=> $grid2[1]);
-  
+
             $stn_loc = $this->qra->get_midpoint($coords);
           }
           if (count($grids) == 4) {
@@ -4602,12 +4541,12 @@ function lotw_last_qsl_date($user_id) {
             $grid2 = $this->qra->qra2latlong(trim($grids[1]));
             $grid3 = $this->qra->qra2latlong(trim($grids[2]));
             $grid4 = $this->qra->qra2latlong(trim($grids[3]));
-  
+
             $coords[]=array('lat' => $grid1[0],'lng'=> $grid1[1]);
             $coords[]=array('lat' => $grid2[0],'lng'=> $grid2[1]);
             $coords[]=array('lat' => $grid3[0],'lng'=> $grid3[1]);
             $coords[]=array('lat' => $grid4[0],'lng'=> $grid4[1]);
-  
+
             $stn_loc = $this->qra->get_midpoint($coords);
           }
         } else {

@@ -12,8 +12,14 @@ $lang['admin_user_list'] = 'Benutzer Liste';
 $lang['admin_user'] = 'Benutzer';
 $lang['admin_email'] = 'E-Mail';
 $lang['admin_type'] = 'Typ';
-$lang['admin_last_login'] = "Letzter Login";
+$lang['admin_last_seen'] = "Zuletzt gesehen";
+$lang['admin_last_qso'] = "Letztes QSO:";
+$lang['admin_no_qso_in_log'] = "Keine QSOs im Log";
+$lang['admin_refresh_list'] = "Aktualisiere Liste";
 $lang['admin_options'] = 'Optionen';
+
+$lang['admin_station_logbooks'] = 'Logbücher';
+$lang['admin_station_locations'] = 'Standorte';
 
 $lang['admin_create_user'] = 'Benutzer anlegen';
 $lang['admin_delete'] = 'Löschen';
@@ -24,13 +30,15 @@ $lang['admin_update'] = 'Aktualisiere';
 $lang['admin_copy'] = 'Kopieren';
 $lang['admin_save'] = 'Speichern';
 $lang['admin_close'] = 'Schliessen';
+$lang['admin_clear'] = "Zurücksetzen";
 $lang['admin_user_accounts'] = 'Benutzerkonten';
 $lang['admin_danger'] = 'ACHTUNG!';
 $lang['admin_experimental'] = "Experimentell";
 $lang['admin_password_reset'] = "Passwort zurücksetzen";
 
 $lang['admin_email_settings_incorrect'] = "E-Mail Einstellungen sind nicht korrekt.";
-$lang['admin_password_reset_processed'] = "Password Reset E-Mail verschickt.";
+$lang['admin_password_reset_processed'] = "Password-Reset E-Mail an diesen Benutzer gesendet:";
+$lang['admin_confirm_pwd_reset'] = "Willst du wirklich diesem Benutzer eine Passwort-Reset E-Mail senden?";
 
 
 // Contest Menu

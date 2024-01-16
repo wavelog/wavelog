@@ -242,7 +242,7 @@ class Timeline_model extends CI_Model
             case 'waz':  $this->db->where('COL_CQZ', $querystring); break;
             case 'vucc':  $this->db->group_start(); $this->db->like('COL_GRIDSQUARE', $querystring);  $this->db->or_like('COL_VUCC_GRIDS',$querystring); $this->db->group_end();break;
         }
-        $this->db->order_by('COL_TIME_ON', 'DEsC');
+        $this->db->order_by('COL_TIME_ON', 'DESC');
 
         return $this->db->get($this->config->item('table_name'));
     }

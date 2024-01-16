@@ -70,6 +70,9 @@ function searchOqrsGrouped() {
                 "scrollCollapse": true,
                 "paging": false,
                 "scrollX": true,
+                // "language": {
+                //     url: "../assets/json/datatables_languages/en-GB.json" // in public view always english
+                // }
             });
 
             // Get the input field
@@ -205,6 +208,9 @@ function requestOqrs() {
                 "scrollCollapse": true,
                 "paging": false,
                 "scrollX": true,
+                // "language": {
+                //     url: "../assets/json/datatables_languages/en-GB.json" // in public view always english
+                // }
             });
             // Get the input field
             var input = document.getElementById("emailInput");
@@ -385,6 +391,9 @@ function loadOqrsTable(rows) {
 			"scrollCollapse": true,
 			"paging":         false,
 			"scrollX": true,
+			// "language": {
+            //     url: "../assets/json/datatables_languages/en-GB.json" // in public view always english
+            // },
 			"order": [ 0, 'asc' ],
             'white-space': 'nowrap',
 		});

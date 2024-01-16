@@ -111,7 +111,7 @@ class Activators_model extends CI_Model
 			$max =  $row->count;
 		}
 
-		return $max;
+		return ($max ?? 0);
 	}
 
 }
