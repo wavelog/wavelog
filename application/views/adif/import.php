@@ -55,7 +55,7 @@
                     <p><span class="badge text-bg-warning"><?php echo lang('general_word_important') ?></span> <?php echo lang('adif_alert_log_files_type') ?></p>
                     <p><span class="badge text-bg-warning"><?php echo lang('general_word_warning') ?></span> <?php echo lang('gen_max_file_upload_size') ?><?php echo $max_upload; ?>B.</p>
 
-                    <form class="form" action="<?php echo site_url('adif/import'); ?>" method="post" enctype="multipart/form-data">
+                    <form class="form" id="upform" action="<?php echo site_url('adif/import'); ?>" method="post" enctype="multipart/form-data">
                         <select name="station_profile" class="form-select mb-2 me-sm-2" style="width: 20%;">
                             <option value="0"><?php echo lang('adif_select_stationlocation') ?></option>
                             <?php foreach ($station_profile->result() as $station) { ?>
@@ -65,7 +65,7 @@
                             <?php } ?>
                         </select>
                         <label class="visually-hidden" for="inlineFormInputName2"><?php echo lang('adif_file_label') ?></label>
-                        <input class="file-input mb-2 me-sm-2" type="file" name="userfile" size="20" />
+                        <input class="file-input mb-2 me-sm-2" type="file" name="userfile" id="userfile" size="20" />
 
                         <div class="mb-3 row">
                             <div class="col-md-10">
@@ -145,7 +145,7 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-sm btn-primary mb-2" value="Upload"><?php echo lang('adif_upload') ?></button>
+                        <button id="prepare_sub" class="btn btn-sm btn-primary mb-2" value="Upload"><?php echo lang('adif_upload') ?></button>
                     </form>
                 </div>
 

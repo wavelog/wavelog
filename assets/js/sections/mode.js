@@ -6,12 +6,15 @@ $('.modetable').DataTable({
 	"scrollCollapse": true,
 	"paging": false,
 	"scrollX": true,	
+	"language": {
+		url: getDataTablesLanguageUrl(),
+	},
 	initComplete: function () {
 		this.api()
 			.columns('.select-filter')
 			.every(function () {
 				var column = this;
-				var select = $('<select><option value=""></option></select>')
+				var select = $('<select class="form-select"><option value=""></option></select>')
 					.appendTo($(column.footer()).empty())
 					.on('change', function () {
 						var val = $.fn.dataTable.util.escapeRegex($(this).val());

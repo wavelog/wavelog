@@ -27,6 +27,7 @@
     var lang_general_word_worked_not_confirmed = "<?php echo lang('general_word_worked_not_confirmed'); ?>";
     var lang_general_word_not_worked = "<?php echo lang('general_word_not_worked'); ?>";
     var lang_admin_close = "<?php echo lang('admin_close'); ?>";
+    var lang_admin_clear = "<?php echo lang('admin_clear'); ?>";
 </script>
 <!-- General JS Files used across Cloudlog -->
 <script src="<?php echo base_url(); ?>assets/js/jquery-3.3.1.min.js"></script>
@@ -54,7 +55,16 @@
     document.addEventListener('htmx:afterSwap', function(event) {
         $('[data-bs-toggle="tooltip"]').tooltip();
     });
-    </script>
+</script>
+
+<script>
+    function getDataTablesLanguageUrl() {
+        var lang_datatables_language = "<?php echo lang('datatables_language'); ?>";
+        datatables_language_url = "<?php echo base_url() ;?>assets/json/datatables_languages/" + lang_datatables_language + ".json";
+        return datatables_language_url;
+    }
+</script>
+
 <!-- Version Dialog START -->
 
 <?php
@@ -98,11 +108,6 @@ if($this->session->userdata('user_id') != null) {
     </script>
 <?php } ?>
 
-<?php if ($this->uri->segment(1) == "awards" && ($this->uri->segment(2) == "cq") ) { ?>
-    <script src="<?php echo base_url(); ?>assets/js/Polyline.encoded.js"></script>
-    <script id="cqmapjs" type="text/javascript" src="<?php echo base_url(); ?>assets/js/sections/cqmap.js" tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"></script>
-<?php } ?>
-
 <?php if ($this->uri->segment(1) == "awards" && ($this->uri->segment(2) == "iota") ) { ?>
     <script id="iotamapjs" type="text/javascript" src="<?php echo base_url(); ?>assets/js/sections/iotamap.js" tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"></script>
 <?php } ?>
@@ -134,6 +139,7 @@ if($this->session->userdata('user_id') != null) {
 
 <?php if ($this->uri->segment(1) == "adif" ) { ?>
     <script src="<?php echo base_url() ;?>assets/js/sections/adif.js"></script>
+    <script src="<?php echo base_url() ;?>assets/js/jszip.min.js"></script>
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "notes" && ($this->uri->segment(2) == "add" || $this->uri->segment(2) == "edit") ) { ?>
@@ -394,6 +400,9 @@ $(function () {
                     "scrollCollapse": true,
                     "paging": false,
                     "scrollX": true,
+                    "language": {
+                        url: getDataTablesLanguageUrl(),
+                    },
                     dom: 'Bfrtip',
                     buttons: [
                         'csv'
@@ -519,6 +528,9 @@ $(function () {
                         "scrollCollapse": true,
                         "paging": false,
                         "scrollX": true,
+                        "language": {
+                            url: getDataTablesLanguageUrl(),
+                        },
                         dom: 'Bfrtip',
                         buttons: [
                             'csv'
@@ -754,7 +766,7 @@ function showActivatorsMap(call, count, grids) {
             });
             // Form "submit" //
             $('.custom-map-QSOs .btn_submit_map_custom').off('click').on('click',function() {
-                var customdata = {'dataPost':{'date_from': $('.custom-map-QSOs input[name="from"]').val(), 'date_to': $('.custom-map-QSOs input[name="to"]').val(), 
+                var customdata = {'dataPost':{'date_from': $('.custom-map-QSOs input[name="from"]').val(), 'date_to': $('.custom-map-QSOs input[name="to"]').val(),
                                             'band': $('.custom-map-QSOs select[name="band"]').val(), 'mode': $('.custom-map-QSOs select[name="mode"]').val(),
                                             'prop_mode': $('.custom-map-QSOs select[name="prop_mode"]').val(), 'isCustom':true }, 'map_id':'#custommap'};
                 initplot(qso_loc, customdata);
@@ -837,6 +849,9 @@ function findduplicates(){
             "scrollCollapse": true,
             "paging":         false,
             "scrollX": true,
+            "language": {
+                url: getDataTablesLanguageUrl(),
+            },
             dom: 'Bfrtip',
             buttons: [
                 'csv'
@@ -860,6 +875,9 @@ function findlotwunconfirmed(){
             "scrollCollapse": true,
             "paging":         false,
             "scrollX": true,
+            "language": {
+                url: getDataTablesLanguageUrl(),
+            },
             dom: 'Bfrtip',
             buttons: [
                 'csv'
@@ -883,6 +901,9 @@ function findincorrectcqzones() {
             "scrollCollapse": true,
             "paging":         false,
             "scrollX": true,
+            "language": {
+                url: getDataTablesLanguageUrl(),
+            },
             dom: 'Bfrtip',
             buttons: [
                 'csv'
@@ -995,11 +1016,11 @@ $($('#callsign')).on('keypress',function(e) {
     $station_profile = $this->stations->profile($active_station_id);
     $active_station_info = $station_profile->row();
 
-    if (strpos($active_station_info->station_gridsquare, ',') !== false) {
+    if (strpos(($active_station_info->station_gridsquare ?? ''), ',') !== false) {
         $gridsquareArray = explode(',', $active_station_info->station_gridsquare);
         $user_gridsquare = $gridsquareArray[0];
     } else {
-        $user_gridsquare = $active_station_info->station_gridsquare;
+        $user_gridsquare = ($active_station_info->station_gridsquare ?? '');
     }
 ?>
 
@@ -1011,7 +1032,7 @@ $($('#callsign')).on('keypress',function(e) {
      url: base_url + 'index.php/logbook/qralatlngjson',
      type: 'post',
      data: {
-<?php if ($active_station_info->station_gridsquare != "") { ?>
+<?php if (($active_station_info->station_gridsquare ?? '') != "") { ?>
         qra: '<?php echo $user_gridsquare; ?>',
 <?php } else if (null !== $this->config->item('locator')) { ?>
         qra: '<?php echo $this->config->item('locator'); ?>',
@@ -1382,7 +1403,7 @@ $($('#callsign')).on('keypress',function(e) {
             cat2UI($('#sat_mode'),data.satmode,false,false);
             cat2UI($('#transmit_power'),data.power,false,false);
             cat2UI($('#selectPropagation'),data.prop_mode,false,false);
-            
+
 					  // Display CAT Timeout warning based on the figure given in the config file
 					  var minutes = Math.floor(<?php echo $this->optionslib->get_option('cat_timeout_interval'); ?> / 60);
 
@@ -1881,6 +1902,9 @@ $(document).ready(function(){
         "scrollCollapse": true,
         "paging":         false,
         "scrollX": true,
+        "language": {
+            url: getDataTablesLanguageUrl(),
+        },
         dom: 'Bfrtip',
         buttons: [
             'csv'
@@ -1892,7 +1916,13 @@ $(document).ready(function(){
         searching: false,
         ordering: false,
         "paging":         false,
+        "language": {
+            url: getDataTablesLanguageUrl(),
+        },
         dom: 'Bfrtip',
+        "language": {
+            url: getDataTablesLanguageUrl(),
+        },
         buttons: [
             'csv'
         ]
@@ -1915,6 +1945,9 @@ $(document).ready(function(){
         "scrollCollapse": true,
         "paging":         false,
         "scrollX": true,
+        "language": {
+            url: getDataTablesLanguageUrl(),
+        },
         dom: 'Bfrtip',
         buttons: [
             'csv'
@@ -1926,7 +1959,13 @@ $(document).ready(function(){
         searching: false,
         ordering: false,
         "paging":         false,
+        "language": {
+            url: getDataTablesLanguageUrl(),
+        },
         dom: 'Bfrtip',
+        "language": {
+            url: getDataTablesLanguageUrl(),
+        },
         buttons: [
             'csv'
         ]
@@ -1949,6 +1988,9 @@ $(document).ready(function(){
         "scrollCollapse": true,
         "paging":         false,
         "scrollX": true,
+        "language": {
+            url: getDataTablesLanguageUrl(),
+        },
         dom: 'Bfrtip',
         buttons: [
             'csv'
@@ -1973,6 +2015,9 @@ $(document).ready(function(){
             "scrollCollapse": true,
             "paging":         false,
             "scrollX": true,
+            "language": {
+                url: getDataTablesLanguageUrl(),
+            },
             dom: 'Bfrtip',
             buttons: [
                 'csv'
@@ -1984,7 +2029,13 @@ $(document).ready(function(){
             searching: false,
             ordering: false,
             "paging":         false,
+            "language": {
+                url: getDataTablesLanguageUrl(),
+            },
             dom: 'Bfrtip',
+            "language": {
+                url: getDataTablesLanguageUrl(),
+            },
             buttons: [
                 'csv'
             ]
@@ -2008,6 +2059,9 @@ $(document).ready(function(){
             "scrollCollapse": true,
             "paging":         false,
             "scrollX": true,
+            "language": {
+                url: getDataTablesLanguageUrl(),
+            },
             dom: 'Bfrtip',
             buttons: [
                 'csv'
@@ -2019,7 +2073,13 @@ $(document).ready(function(){
             searching: false,
             ordering: false,
             "paging":         false,
+            "language": {
+                url: getDataTablesLanguageUrl(),
+            },
             dom: 'Bfrtip',
+            "language": {
+                url: getDataTablesLanguageUrl(),
+            },
             buttons: [
                 'csv'
             ]
@@ -2042,6 +2102,9 @@ $(document).ready(function(){
             "scrollCollapse": true,
             "paging":         false,
             "scrollX": true,
+            "language": {
+                url: getDataTablesLanguageUrl(),
+            },
             dom: 'Bfrtip',
             buttons: [
                 'csv'
@@ -2053,7 +2116,13 @@ $(document).ready(function(){
             searching: false,
             ordering: false,
             "paging":         false,
+            "language": {
+                url: getDataTablesLanguageUrl(),
+            },
             dom: 'Bfrtip',
+            "language": {
+                url: getDataTablesLanguageUrl(),
+            },
             buttons: [
                 'csv'
             ]
@@ -2135,6 +2204,9 @@ $(document).ready(function(){
                 "scrollCollapse": true,
                 "paging":         false,
                 "scrollX": true,
+                "language": {
+                    url: getDataTablesLanguageUrl(),
+                },
                 dom: 'Bfrtip',
                 buttons: [
                     'csv'
@@ -2191,6 +2263,9 @@ $(document).ready(function(){
                 "scrollCollapse": true,
                 "paging":         false,
                 "scrollX": true,
+                "language": {
+                    url: getDataTablesLanguageUrl(),
+                },
                 dom: 'Bfrtip',
                 buttons: [
                     'csv'
@@ -2302,11 +2377,14 @@ $(document).ready(function(){
                dt.search('').draw();
             }
         };
-<?php if ($this->uri->segment(1) == "qsl") { ?>
-        $('.qsltable').DataTable({
-<?php } else if ($this->uri->segment(1) == "eqsl") { ?>
-        $('.eqsltable').DataTable({
-<?php } ?>
+    </script>
+    <?php if ($this->uri->segment(1) == "qsl") {
+        $qsl_eqsl_table = '.qsltable';
+    } else if ($this->uri->segment(1) == "eqsl") {
+        $qsl_eqsl_table = '.eqsltable';
+    } ?>
+    <script>
+        $('<?php echo $qsl_eqsl_table ?>').DataTable({
             "pageLength": 25,
             responsive: false,
             ordering: true,
@@ -2314,12 +2392,15 @@ $(document).ready(function(){
             "scrollCollapse": true,
             "paging":         false,
             "scrollX": true,
+            "language": {
+                url: getDataTablesLanguageUrl(),
+            },
             "order": [ 2, 'desc' ],
             dom: 'Bfrtip',
             buttons: [
                {
                   extend: 'clear',
-                  text: 'Clear'
+                  text: lang_admin_clear
                }
             ]
         });
@@ -2469,6 +2550,9 @@ function viewEqsl(picture, callsign) {
                             "scrollCollapse": true,
                             "paging":         true,
                             "scrollX": true,
+                            "language": {
+                                url: getDataTablesLanguageUrl(),
+                            },
                             dom: 'Bfrtip',
                             buttons: [
                                 'csv'
@@ -2517,6 +2601,9 @@ function viewEqsl(picture, callsign) {
 					    "scrollCollapse": true,
 					    "paging":         false,
 					    "scrollX": true,
+                        "language": {
+                            url: getDataTablesLanguageUrl(),
+                        },
 					    dom: 'Bfrtip',
 					    buttons: [
 						    'csv'
@@ -2766,6 +2853,9 @@ function viewEqsl(picture, callsign) {
         "scrollCollapse": true,
         "paging":         false,
         "scrollX": true,
+        "language": {
+            url: getDataTablesLanguageUrl(),
+        },
         dom: 'Bfrtip',
         buttons: [
             'csv'
@@ -2816,6 +2906,9 @@ function viewEqsl(picture, callsign) {
 			"scrollCollapse": true,
 			"paging":         false,
 			"scrollX": true,
+			"language": {
+				url: getDataTablesLanguageUrl(),
+			},
 			dom: 'Bfrtip',
 			buttons: [
 				'csv'
@@ -2910,6 +3003,9 @@ function viewEqsl(picture, callsign) {
 		"scrollCollapse": true,
 		"paging": false,
 		"scrollX": true,
+        "language": {
+            url: getDataTablesLanguageUrl(),
+        },
 		"ordering": true,
 		"order": [ 0, 'desc' ],
 	});
@@ -2958,6 +3054,9 @@ function viewEqsl(picture, callsign) {
                 "scrollCollapse": true,
                 "paging":         false,
                 "scrollX": true,
+                "language": {
+                    url: getDataTablesLanguageUrl(),
+                },
                 "order": [ 0, 'asc' ],
                 dom: 'Bfrtip',
                 buttons: [
@@ -2966,7 +3065,7 @@ function viewEqsl(picture, callsign) {
                    },
                    {
                       extend: 'clear',
-                      text: 'Clear'
+                      text: lang_admin_clear
                    }
                 ]
             });
@@ -2992,6 +3091,9 @@ function viewEqsl(picture, callsign) {
                 "scrollCollapse": true,
                 "paging":         false,
                 "scrollX": true,
+                "language": {
+                    url: getDataTablesLanguageUrl(),
+                },
                 "order": [ 0, 'asc' ],
                 dom: 'Bfrtip',
                 buttons: [
@@ -3000,7 +3102,7 @@ function viewEqsl(picture, callsign) {
                    },
                    {
                       extend: 'clear',
-                      text: 'Clear'
+                      text: lang_admin_clear
                    }
                 ]
             });
@@ -3025,6 +3127,9 @@ function viewEqsl(picture, callsign) {
                 "scrollCollapse": true,
                 "paging":         false,
                 "scrollX": true,
+                "language": {
+                    url: getDataTablesLanguageUrl(),
+                },
                 dom: 'Bfrtip',
                 buttons: [
                    {
@@ -3032,7 +3137,7 @@ function viewEqsl(picture, callsign) {
                    },
                    {
                       extend: 'clear',
-                      text: 'Clear'
+                      text: lang_admin_clear
                    }
                 ]
             });
@@ -3045,42 +3150,7 @@ function viewEqsl(picture, callsign) {
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "user") { ?>
-    <!-- [MAP Custom] select list with icons -->
-    <script>
-        $(document).ready(function(){
-            $('.icon_selectBox').off('click').on('click', function(){
-                var boxcontent = $(this).attr('data-boxcontent');
-                if ($('.icon_selectBox_data[data-boxcontent="'+boxcontent+'"]').is(":hidden")) { $('.icon_selectBox_data[data-boxcontent="'+boxcontent+'"]').show(); } else { $('.icon_selectBox_data[data-boxcontent="'+boxcontent+'"]').hide(); }
-            });
-            $('.icon_selectBox_data').off('mouseleave').on('mouseleave', function(){ if ($(this).is(":visible")) { $(this).hide(); } });
-            $('.icon_selectBox_data label').off('click').on('click', function(){
-                var boxcontent = $(this).closest('.icon_selectBox_data').attr('data-boxcontent');
-                $('input[name="user_map_'+boxcontent+'_icon"]').attr('value',$(this).attr('data-value'));
-                if ($(this).attr('data-value') != "0") {
-                    $('.user_icon_color[data-icon="'+boxcontent+'"]').show();
-                    $('.icon_selectBox[data-boxcontent="'+boxcontent+'"] .icon_overSelect').html($(this).html());
-                } else {
-                    $('.user_icon_color[data-icon="'+boxcontent+'"]').hide();
-                    $('.icon_selectBox[data-boxcontent="'+boxcontent+'"] .icon_overSelect').html($(this).html().substring(0,10)+'.');
-                }
-                $('.icon_selectBox_data[data-boxcontent="'+boxcontent+'"]').hide();
-            });
-
-            $('.collapse').on('shown.bs.collapse', function(e) {
-                var $card = $(this).closest('.accordion-item');
-                var $open = $($(this).data('parent')).find('.collapse.show');
-                
-                var additionalOffset = 0;
-                if($card.prevAll().filter($open.closest('.accordion-item')).length !== 0)
-                {
-                    additionalOffset =  $open.height();
-                }
-                $('html,body').animate({
-                    scrollTop: $card.offset().top - additionalOffset
-                }, 300);
-            });
-        });
-    </script>
+    <script src="<?php echo base_url() ;?>assets/js/sections/user.js"></script>
 <?php } ?>
 
 <?php
@@ -3091,6 +3161,10 @@ if (isset($scripts) && is_array($scripts)){
 	}
 }
 ?>
-
+    <script>
+      <?php
+      echo "var lang_datatables_language = '" . lang("datatables_language") . "';"
+      ?>
+    </script>
   </body>
 </html>

@@ -200,7 +200,7 @@ class User_Model extends CI_Model {
 			// Add user and insert bandsettings for user
 			$this->db->insert($this->config->item('auth_table'), $data);
 			$insert_id = $this->db->insert_id();
-			$this->db->query("insert into bandxuser (bandid, userid, active, cq, dok, dxcc, iota, pota, sig, sota, uscounties, was, wwff, vucc) select bands.id, " . $insert_id . ", 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 from bands;");
+			$this->db->query("insert into bandxuser (bandid, userid, active, cq, dok, dxcc, iota, pota, sig, sota, uscounties, was, wwff, vucc, waja, rac) select bands.id, " . $insert_id . ", 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 from bands;");
 			$this->db->query("insert into paper_types (user_id,paper_name,metric,width,orientation,height) SELECT ".$insert_id.", paper_name, metric, width, orientation,height FROM paper_types where user_id = -1;");
 			return OK;
 		} else {
@@ -424,11 +424,11 @@ class User_Model extends CI_Model {
 	}
 
 	// FUNCTION: set's the last-login timestamp in user table
-	function set_last_login($user_id) {
+	function set_last_seen($user_id) {
 		$data = array(
-			'last_login_date' => date('Y-m-d H:i:s')
+			'last_seen' => date('Y-m-d H:i:s')
 		);
-		
+
 		$this->db->where('user_id', $user_id);
 		$this->db->update('users', $data);
 	}
@@ -444,6 +444,7 @@ class User_Model extends CI_Model {
 			$level = $this->config->item('auth_mode');
 		}
 		if(($this->validate_session()) && ($u->row()->user_type >= $level) || $this->config->item('use_auth') == FALSE || $level == 0) {
+			$this->set_last_seen($u->row()->user_id);
 			return 1;
 		} else {
 			return 0;
@@ -461,10 +462,21 @@ class User_Model extends CI_Model {
 	}
 
 	// FUNCTION: object users()
-	// Returns a list of users
+	// Returns a list of users with additional counts
 	function users() {
-		$r = $this->db->get($this->config->item('auth_table'));
-		return $r;
+		$this->db->select('(SELECT COUNT(*) FROM station_profile WHERE user_id = users.user_id) as stationcount');
+		$this->db->select('(SELECT COUNT(*) FROM station_logbooks WHERE user_id = users.user_id) as logbookcount');
+		$this->db->select('(SELECT COUNT(*) FROM ' . $this->config->item('table_name') . ' WHERE station_id IN (SELECT station_id from station_profile WHERE user_id = users.user_id)) as qsocount');
+		$this->db->select('
+			(SELECT COUNT(*) FROM ' . $this->config->item('table_name') . ' WHERE station_id IN (SELECT station_id FROM station_profile WHERE user_id = users.user_id)) as qsocount,
+			(SELECT MAX(COL_TIME_ON) FROM ' . $this->config->item('table_name') . ' WHERE station_id IN (SELECT station_id FROM station_profile WHERE user_id = users.user_id)) as lastqso
+		');
+		$this->db->select('users.*');
+		$this->db->from('users');
+
+		$result = $this->db->get();
+
+		return $result;
 	}
 
 	// FUNCTION: array timezones()

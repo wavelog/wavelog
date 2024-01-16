@@ -89,8 +89,8 @@ class Logbook extends CI_Controller {
         echo json_encode($return, JSON_PRETTY_PRINT);
     }
 
-	function json($tempcallsign, $temptype, $tempband, $tempmode, $tempstation_id = null)
-	{
+	function json($tempcallsign, $temptype, $tempband, $tempmode, $tempstation_id = null) {
+		session_write_close();
 		// Cleaning for security purposes
 		$callsign = $this->security->xss_clean($tempcallsign);
 		$type = $this->security->xss_clean($temptype);
@@ -317,6 +317,7 @@ class Logbook extends CI_Controller {
 	*
 	*/
 	function jsonlookupgrid($gridsquare, $type, $band, $mode) {
+		session_write_close();
 		$return = [
 			"workedBefore" => false,
 			"confirmed" => false,
@@ -403,6 +404,7 @@ class Logbook extends CI_Controller {
 	}
 
 	function jsonlookupdxcc($country, $type, $band, $mode) {
+		session_write_close();
 
 		$return = [
 			"workedBefore" => false,
@@ -501,6 +503,7 @@ class Logbook extends CI_Controller {
 	}
 
 	function jsonlookupcallsign($callsign, $type, $band, $mode) {
+		session_write_close();
 
 		// Convert - in Callsign to / Used for URL processing
 		$callsign = str_replace("-","/",$callsign);
@@ -888,12 +891,14 @@ class Logbook extends CI_Controller {
 				}
 
 				$callsign['id'] = strtoupper($id);
+				$callsign['lotw_lastupload'] = $this->logbook_model->check_last_lotw($id);
 				return $this->load->view('search/result', $callsign, true);
 		}
 	}
 
 	function search_result($id="", $id2="") {
 		$this->load->model('user_model');
+		$this->load->model('logbook_model');
 
 		if(!$this->user_model->authorize($this->config->item('auth_mode'))) { return; }
 
@@ -915,14 +920,12 @@ class Logbook extends CI_Controller {
 			if ($query->num_rows() > 0) {
 				$data['results'] = $query;
 				$this->load->view('view_log/partial/log_ajax.php', $data);
-			}
-			else {
+			} else {
 				$this->load->model('search');
 
 				$iota_search = $this->search->callsign_iota($id);
 
-				if ($iota_search->num_rows() > 0)
-				{
+				if ($iota_search->num_rows() > 0) {
 					$data['results'] = $iota_search;
 					$this->load->view('view_log/partial/log_ajax.php', $data);
 				} else {
@@ -937,11 +940,9 @@ class Logbook extends CI_Controller {
 
 						$data['callsign'] = $this->qrz->search($id, $this->session->userdata('qrz_session_key'), $this->config->item('use_fullname'));
 						if (isset($data['callsign']['gridsquare'])) {
-							$this->load->model('logbook_model');
 							$data['grid_worked'] = $this->logbook_model->check_if_grid_worked_in_logbook(strtoupper(substr($data['callsign']['gridsquare'],0,4)), 0, $this->session->userdata('user_default_band'));
 						}
 						if (isset($data['callsign']['dxcc'])) {
-							$this->load->model('logbook_model');
 							$entity = $this->logbook_model->get_entity($data['callsign']['dxcc']);
 							$data['callsign']['dxcc_name'] = $entity['name'];
 						}
@@ -966,11 +967,9 @@ class Logbook extends CI_Controller {
 							$data['callsign'] = $this->hamqth->search($id, $this->session->userdata('hamqth_session_key'));
 						}
 						if (isset($data['callsign']['gridsquare'])) {
-							$this->load->model('logbook_model');
 							$data['grid_worked'] = $this->logbook_model->check_if_grid_worked_in_logbook(strtoupper(substr($data['callsign']['gridsquare'],0,4)), 0, $this->session->userdata('user_default_band'));
 						}
 						if (isset($data['callsign']['dxcc'])) {
-							$this->load->model('logbook_model');
 							$entity = $this->logbook_model->get_entity($data['callsign']['dxcc']);
 							$data['callsign']['dxcc_name'] = $entity['name'];
 						}
@@ -987,6 +986,7 @@ class Logbook extends CI_Controller {
 					}*/
 
 					$data['id'] = strtoupper($id);
+					$data['lotw_lastupload'] = $this->logbook_model->check_last_lotw($id);
 
 					$this->load->view('search/result', $data);
 				}
@@ -1115,15 +1115,6 @@ class Logbook extends CI_Controller {
 	/*
 	 * Provide a dxcc search, returning results json encoded
 	 */
-	function local_find_dxcc($call = "", $date = "") {
-		$this->load->model("logbook_model");
-		if ($date == ''){
-			$date = date("Y-m-d");
-		}
-		$ans = $this->logbook_model->check_dxcc_stored_proc($call, $date);
-		print json_encode($ans);
-	}
-
 	function dxcheck($call = "", $date = "") {
 		$this->load->model("logbook_model");
 		if ($date == ''){
