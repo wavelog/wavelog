@@ -178,8 +178,8 @@ class Update extends CI_Controller {
 		
 		$gz = gzopen($url, 'r');
 		if ($gz === FALSE) {
-			$this->update_status("FAILED: Could not download from clublog.org or cloudlog.org");
-			log_message('error', 'FAILED: Could not download exceptions from clublog.org or cloudlog.org');
+			$this->update_status("FAILED: Could not download from clublog.org");
+			log_message('error', 'FAILED: Could not download exceptions from clublog.org');
 			return;
 		}
 
