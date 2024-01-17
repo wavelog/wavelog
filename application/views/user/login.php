@@ -30,7 +30,7 @@ body {
 }
 </style>
 <main class="form-signin">
-    <img src="<?php echo base_url()?>/CloudLog_logo.png" class="mx-auto d-block" alt="" style="width:100px;height:100px;">
+    <img src="<?php echo base_url()?>/WaveLog_logo.png" class="mx-auto d-block" alt="" style="width:100px;height:100px;">
     <div class="my-2 bg-body rounded-0 shadow-sm card mb-2 shadow-sm">
         <div class="card-body">
             <h3><?php echo lang('account_login_to_wavelog'); ?></h3>
