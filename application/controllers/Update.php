@@ -178,18 +178,9 @@ class Update extends CI_Controller {
 		
 		$gz = gzopen($url, 'r');
 		if ($gz === FALSE) {
-            // If the download from clublog.org fails, try cloudlog.org CDN.
-            $url = "https://cdn.cloudlog.org/clublogxml.gz";
-            $gz = gzopen($url, 'r');
-
-            // Log failure to log file
-            log_message('info', 'Failed to download cty.xml from clublog.org, trying cloudlog.org CDN');
-
-            if ($gz === FALSE) {
-                $this->update_status("FAILED: Could not download from clublog.org or cloudlog.org");
-                log_message('error', 'FAILED: Could not download exceptions from clublog.org or cloudlog.org');
-                return;
-            }
+			$this->update_status("FAILED: Could not download from clublog.org");
+			log_message('error', 'FAILED: Could not download exceptions from clublog.org');
+			return;
 		}
 
 		$data = "";
