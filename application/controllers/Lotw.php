@@ -11,7 +11,7 @@ class Lotw extends CI_Controller {
 	|
 	|	Note:
 	|	If you plan on using any of the code within this class please credit
-	| 	Cloudlog or Peter, 2M0SQL, a lot of hard work went into building the
+	| 	Wavelog or Peter, 2M0SQL, a lot of hard work went into building the
 	|	signing of files.
 	|
 	|	Big Thanks to Rodrigo PY2RAF for all the help and information about OpenSSL

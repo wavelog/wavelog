@@ -156,7 +156,7 @@ class API extends CI_Controller {
   	/*
 	*
 	*	Function: QSO
-	*	Task: allows passing of ADIF data to Cloudlog
+	*	Task: allows passing of ADIF data to Wavelog
 	*/
 	function qso($dryrun = false) {
 		header('Content-type: application/json');
@@ -465,7 +465,7 @@ class API extends CI_Controller {
 		$this->output->enable_profiler(TRUE);
 		/*
 		*
-		*	Callsign lookup function for Cloudlogs logging page or thirdparty systems
+		*	Callsign lookup function for Wavelogs logging page or thirdparty systems
 		*	which want to show previous QSO data on their system.
 		*
 		*	TODO

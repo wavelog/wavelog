@@ -274,7 +274,7 @@ class Options extends CI_Controller {
 				// Update email sender name within the options system
 				$emailSenderName_value = $this->input->post('emailSenderName');
 				if (empty($emailSenderName_value)) {
-					$emailSenderName_value = 'Cloudlog';
+					$emailSenderName_value = 'Wavelog';
 				}
 				$emailSenderNameupdate = $this->optionslib->update('emailSenderName', $emailSenderName_value, 'yes');
 
@@ -377,7 +377,7 @@ class Options extends CI_Controller {
 
 			$this->email->from($this->optionslib->get_option('emailAddress'), $this->optionslib->get_option('emailSenderName'));
 			$this->email->to($email);
-			$this->email->subject('Cloudlog Test-Mail');
+			$this->email->subject('Wavelog Test-Mail');
 			$this->email->message($message);
 
 			if (! $this->email->send()){

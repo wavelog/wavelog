@@ -29,7 +29,7 @@
     var lang_admin_close = "<?php echo lang('admin_close'); ?>";
     var lang_admin_clear = "<?php echo lang('admin_clear'); ?>";
 </script>
-<!-- General JS Files used across Cloudlog -->
+<!-- General JS Files used across Wavelog -->
 <script src="<?php echo base_url(); ?>assets/js/jquery-3.3.1.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery.fancybox.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/bootstrap.bundle.js"></script>

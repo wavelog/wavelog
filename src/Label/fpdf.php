@@ -6,7 +6,7 @@
 * Date:    2022-11-10                                                          *
 * Author:  Olivier PLATHEY                                                     *
 *******************************************************************************/
-namespace Cloudlog\Label;
+namespace Wavelog\Label;
 class FPDF
 {
 const VERSION = '1.85';

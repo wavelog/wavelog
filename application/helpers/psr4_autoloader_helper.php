@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * Extremely simple autoloader helper, has lots of shortcomings
  */
 spl_autoload_register(function ($class) {
-	if (mb_substr($class, 0, 9) !== 'Cloudlog\\') {
+	if (mb_substr($class, 0, 9) !== 'Wavelog\\') {
 		return false;
 	}
 	$class=substr($class,9);

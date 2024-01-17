@@ -16,7 +16,7 @@
 		<p><span class="label important">Important</span> Log files must have the file type .tq8</p>
 		<input type="file" name="userfile" size="20" />
 			
-		<p>Cloudlog will use the LoTW username an password stored in your user profile to download a report from LoTW for you. The report Cloudlog downloads will have all confirmations since your last LoTW confirmation, up until now.</p>
+		<p>Wavelog will use the LoTW username an password stored in your user profile to download a report from LoTW for you. The report Wavelog downloads will have all confirmations since your last LoTW confirmation, up until now.</p>
 
 		<input class="btn primary" type="submit" value="Upload" />
 	</form>

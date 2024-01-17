@@ -285,7 +285,7 @@ class eqsl extends CI_Controller {
 		
 		# Set up the single record file
 		$adif = "https://www.eqsl.cc/qslcard/importADIF.cfm?";
-		$adif .= "ADIFData=CloudlogUpload%20";
+		$adif .= "ADIFData=WavelogUpload%20";
 		
 		/* Handy reference of escaping chars
 			"<" = 3C
@@ -750,7 +750,7 @@ class eqsl extends CI_Controller {
 		}
 	}
 
-// Functions for storage, these need shifted to a libary to use across Cloudlog
+// Functions for storage, these need shifted to a libary to use across Wavelog
 	function folderSize($dir){
 		$count_size = 0;
 		$count = 0;

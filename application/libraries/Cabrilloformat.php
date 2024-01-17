@@ -43,7 +43,7 @@ class Cabrilloformat {
          $cab_header .= "GRID-LOCATOR: ".$gridlocator."\r\n";
       }
 
-      $cab_header .= "CREATED-BY: Cloudlog"."\r\n";
+      $cab_header .= "CREATED-BY: Wavelog"."\r\n";
 
       return $cab_header;
 

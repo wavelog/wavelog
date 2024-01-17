@@ -111,7 +111,7 @@ $lang['general_total_distance'] = 'Totalt avstånd';
 // PHP Upload Warning
 $lang['gen_max_file_upload_size'] = 'Maximum file upload size is ';
 
-// Cloudlog Terms
+// Wavelog Terms
 $lang['wavelog_station_profile'] = 'Stationsplats';
 
 // ham radio terms

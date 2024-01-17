@@ -7,13 +7,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Install Options
 |--------------------------------------------------------------------------
 |
-|	'app_name'		Name of the App 'Cloudlog'
+|	'app_name'		Name of the App 'Wavelog'
 |	'app_version'		Set by the dev team.
 |	'directory'		directory where wavelog is installed eg "logger"
 |	'callbook'		Selects which Callbook lookup to use defaults "hamqth" but supports "qrz"
 */
 
-$config['app_name'] = "Cloudlog";
+$config['app_name'] = "Wavelog";
 $config['app_version'] = "2.4.5";
 $config['directory'] = "logbook";
 $config['callbook'] = "hamqth"; // Options are hamqth or qrz

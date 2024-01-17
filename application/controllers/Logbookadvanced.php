@@ -1,6 +1,6 @@
 <?php
 
-use Cloudlog\QSLManager\QSO;
+use Wavelog\QSLManager\QSO;
 
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 

@@ -34,7 +34,7 @@ $lang['account_hamradio_information'] = "Ham Radio";
 $lang['account_callsign'] = 'Rufzeichen';
 $lang['account_gridsquare'] = 'Planquadrat';
 
-$lang['account_wavelog_preferences'] = 'Cloudlog Einstellungen';
+$lang['account_wavelog_preferences'] = 'Wavelog Einstellungen';
 $lang['account_timezone'] = 'Zeitzone';
 $lang['account_date_format'] = 'Datumsformat';
 $lang['account_log_end_time'] = 'Logge Endzeiten für QSOs separat';
@@ -48,8 +48,8 @@ $lang['account_quicklog_enter_search'] = "Suche Rufzeichen";
 $lang['account_measurement_preferences'] = 'Entfernungsformat';
 $lang['account_select_how_you_would_like_dates_shown_when_logged_into_your_account'] = 'Wähle, wie Datumsfelder angezeigt werden sollen, wenn du eingeloggt bist.';
 $lang['account_choose_which_unit_distances_will_be_shown_in'] = 'Wähle, in welcher Einheit Entfernungen angezeigt werden sollen.';
-$lang['account_wavelog_language'] = 'Cloudlog Sprache';
-$lang['account_choose_wavelog_language'] = 'Wähle eine Sprache für Cloudlog.';
+$lang['account_wavelog_language'] = 'Wavelog Sprache';
+$lang['account_choose_wavelog_language'] = 'Wähle eine Sprache für Wavelog.';
 
 $lang['account_main_menu'] = 'Menü Optionen';
 $lang['account_show_notes_in_the_main_menu'] = 'Zeige Notizen im Hauptmenü';
@@ -102,7 +102,7 @@ $lang['account_confirm_password'] = 'Bestätige Passwort';
 
 $lang['account_forgot_your_password'] = 'Passwort vergessen?';
 
-$lang['account_login_to_wavelog'] = 'Anmeldung bei Cloudlog';
+$lang['account_login_to_wavelog'] = 'Anmeldung bei Wavelog';
 $lang['account_login'] = 'Anmeldung';
 
 $lang['account_mastodon'] = 'Mastodonserver';
@@ -114,7 +114,7 @@ $lang['account_gridmap_default_band'] = 'Standardband';
 $lang['account_qsl_settings'] = 'Standard QSL-Methoden';
 
 $lang['account_winkeyer'] = 'Winkeyer';
-$lang['account_winkeyer_hint'] = "Die Winkeyer Unterstützung in Cloudlog ist sehr experimentell. Lese zuerst den Wikieintrag auf <a href='https://github.com/magicbug/Cloudlog/wiki/Winkey' target='_blank'>https://github.com/magicbug/Cloudlog/wiki/Winkey</a> bevor du ihn einschaltest.";
+$lang['account_winkeyer_hint'] = "Die Winkeyer Unterstützung in Wavelog ist sehr experimentell. Lese zuerst den Wikieintrag auf <a href='https://github.com/magicbug/Wavelog/wiki/Winkey' target='_blank'>https://github.com/magicbug/Wavelog/wiki/Winkey</a> bevor du ihn einschaltest.";
 $lang['account_winkeyer_enabled'] = "Winkeyer Features Eingeschaltet";
 
 $lang['account_map_params'] = "Karten Einstellungen";

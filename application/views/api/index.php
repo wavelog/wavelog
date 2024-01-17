@@ -11,7 +11,7 @@ if($data['format'] == "xml") {
 
 // Get the method called, and build the root node
 $call = $data['queryInfo']['call'];
-$rootNode = $xmlDoc->createElement("Cloudlog-API");
+$rootNode = $xmlDoc->createElement("Wavelog-API");
 $parentNode = $xmlDoc->appendChild($rootNode);
 
 // Get the results output

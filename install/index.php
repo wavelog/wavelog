@@ -89,7 +89,7 @@ if($_POST) {
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-		<title>Install | Cloudlog</title>
+		<title>Install | Wavelog</title>
 
 		<style type="text/css">
 		  body {
@@ -130,7 +130,7 @@ if($_POST) {
 	</head>
 	<body>
 
-    <h1>Install Cloudlog</h1>
+    <h1>Install Wavelog</h1>
    <?php if(is_writable($db_config_path)):?>
 
 		  <?php if(isset($message)) {echo '<p class="error">' . $message . '</p>';}?>

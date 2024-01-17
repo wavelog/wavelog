@@ -1,5 +1,5 @@
 #!/bin/bash
-# Cloudlog update script
+# Wavelog update script
 #
 # Pulls changes from Git remote and re-sets appropriate directory ownership.
 # Can be run manually or on a schedule using Cron.
@@ -19,10 +19,10 @@ BLEEDING_EDGE="true"
 RESTORE_OWNERSHIP="true"
 
 check_working_dir() {
-	# Quick sanity check to make sure that pwd looks like a Cloudlog install
+	# Quick sanity check to make sure that pwd looks like a Wavelog install
 	if [[ ! -d "$(pwd)/application" ]]
 	then
-		echo "$(pwd) doesn't look like a Cloudlog install directory! Stopping here."
+		echo "$(pwd) doesn't look like a Wavelog install directory! Stopping here."
 		exit 1
 	fi
 }
@@ -58,7 +58,7 @@ restore_ownership() {
 }
 
 
-echo "Cloudlog update started"
+echo "Wavelog update started"
 echo "-----------------------"
 echo "Using $(pwd) as working directory"
 
@@ -83,4 +83,4 @@ if [ "$RESTORE_OWNERSHIP" = true ]; then
 	restore_ownership
 fi
 
-echo "Cloudlog update finished"
+echo "Wavelog update finished"

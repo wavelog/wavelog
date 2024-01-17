@@ -2,8 +2,8 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$lang['admin_user_line1'] = 'Cloudlog behöver minst en användare konfigurerad för att fungera.';
-$lang['admin_user_line2'] = 'Användare kan tilldelas roller som ger dem olika behörigheter, som att lägga till QSO:er i loggboken och komma åt Cloudlog API:er.';
+$lang['admin_user_line1'] = 'Wavelog behöver minst en användare konfigurerad för att fungera.';
+$lang['admin_user_line2'] = 'Användare kan tilldelas roller som ger dem olika behörigheter, som att lägga till QSO:er i loggboken och komma åt Wavelog API:er.';
 $lang['admin_user_line3'] = 'Den för närvarande inloggade användaren visas uppe till höger på varje sida.';
 $lang['admin_user_line4'] = "With the password reset button, you can send a user an email containing a link to reset their password. To achieve this, ensure that the email settings in the global options are configured correctly.";
 

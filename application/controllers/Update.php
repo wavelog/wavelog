@@ -2,7 +2,7 @@
 class Update extends CI_Controller {
 
 	/*
-		Controls Updating Elements of Cloudlog
+		Controls Updating Elements of Wavelog
 		Functions:
 			dxcc - imports the latest clublog cty.xml data
 			lotw_users - imports lotw users
@@ -442,7 +442,7 @@ class Update extends CI_Controller {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $csvfile);
         curl_setopt($ch, CURLOPT_HEADER, false);
-        curl_setopt($ch, CURLOPT_USERAGENT, 'Cloudlog Updater');
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $csv = curl_exec($ch);
         curl_close($ch);
@@ -486,7 +486,7 @@ class Update extends CI_Controller {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $csvfile);
         curl_setopt($ch, CURLOPT_HEADER, false);
-        curl_setopt($ch, CURLOPT_USERAGENT, 'Cloudlog Updater');
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $csv = curl_exec($ch);
         curl_close($ch);

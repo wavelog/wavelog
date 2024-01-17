@@ -49,7 +49,7 @@ ________________________________________________________________________________
 $lang['awards_dxcc_description_ln1'] = "DXCC 奖状";
 $lang['awards_dxcc_description_ln2'] = "DXCC 代表“DX Century Club”，这是一个基于通联国家/地区的奖项 DXCC 列表基于 W1CBD 的 Clinton B. DeSoto 于 1935 编写的一篇文章，标题为<a href='http://www.arrl.org/desoto' target='_blank'>“如何计算通联过的国家/地区， 新的 DX 评分系统'</a>";
 $lang['awards_dxcc_description_ln3'] = "您可以在 <a href='https://www.arrl.org/dxcc-rules' target='_blank'>ARRL 网站</a>上找到有关 DXCC 奖的所有信息";
-$lang['awards_dxcc_description_ln4'] = "重要提示：随着时间的推移，DXCC 列表的标准已经发生变化 该列表将保持不变，直到实体不再满足添加该实体时所依据的标准，此时该实体将被移至“已删除列表” 您还会在 Cloudlog 的列表中找到已删除的 DXCC 实体 请注意，这些 DXCC 实体已过时且不再有效（如 伪满洲国曾经也是一个合法的DXCC实体）";
+$lang['awards_dxcc_description_ln4'] = "重要提示：随着时间的推移，DXCC 列表的标准已经发生变化 该列表将保持不变，直到实体不再满足添加该实体时所依据的标准，此时该实体将被移至“已删除列表” 您还会在 Wavelog 的列表中找到已删除的 DXCC 实体 请注意，这些 DXCC 实体已过时且不再有效（如 伪满洲国曾经也是一个合法的DXCC实体）";
 
 
 /*
@@ -95,7 +95,7 @@ ________________________________________________________________________________
 */
 
 $lang['awards_sig_description_ln1'] = "SIG 信息";
-$lang['awards_sig_description_ln2'] = "SIG 或签名类别提供了对 Cloudlog 中未实施的奖励使用任何类型的“奖励签名”的可能";
+$lang['awards_sig_description_ln2'] = "SIG 或签名类别提供了对 Wavelog 中未实施的奖励使用任何类型的“奖励签名”的可能";
 $lang['awards_sig_description_ln3'] = "其原因是常见的 ADIF 格式仅为某些奖项提供了几个专用字段 SIG 仍然可以使用和评估所有其他类型的签名标记";
 $lang['awards_sig_description_ln4'] = "在 QSO 处理中，您会发现两个字段：“SIG”包含实际标记，在奖励评估中也可见，“SIG INFO”包含签名的描述 这两个字段都可以自由定制";
 

@@ -138,7 +138,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- ZONE 2 / Cloudlog -->
+		<!-- ZONE 2 / Wavelog -->
 		<div class="accordion-item">
 			<h2 class="accordion-header" id="panelsStayOpen-H_wavelog_general">
 				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-B_wavelog_general" aria-expanded="false" aria-controls="panelsStayOpen-B_wavelog_general">
@@ -147,7 +147,7 @@
 			<div id="panelsStayOpen-B_wavelog_general" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-H_wavelog_general">
 				<div class="accordion-body">
 					<div class="row mb-3">
-						<!-- Cloudlog Preferences -->
+						<!-- Wavelog Preferences -->
 						<div class="col-md">
 							<div class="card">
 								<div class="card-header"><?php echo lang('general_word_general'); ?></div>

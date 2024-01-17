@@ -25,7 +25,7 @@ $lang['qso_sig_info_helptext'] = 'Exempel: DA/NW-357';
 
 $lang['qso_dok_helptext'] = 'Exempel: Q03';
 
-$lang['qso_notes_helptext'] = 'Detta innehåll används bara inom Cloudlog och kommer inte att exporteras.';
+$lang['qso_notes_helptext'] = 'Detta innehåll används bara inom Wavelog och kommer inte att exporteras.';
 $lang['qsl_notes_helptext'] = 'Detta innehåll exporteras till QSL-services som eqsl etc.';
 
 $lang['qso_eqsl_qslmsg_helptext'] = "Get the default message for eQSL, for this station.";
@@ -53,7 +53,7 @@ $lang['qso_simplefle_info'] = "What is that?";
 $lang['qso_simplefle_info_ln1'] = "Simple Fast Log Entry (FLE)";
 $lang['qso_simplefle_info_ln2'] = "'Fast Log Entry', or simply 'FLE' is a system to log QSOs very quickly and efficiently. Due to its syntax, only a minimum of input is required to log many QSOs with as little effort as possible.";
 $lang['qso_simplefle_info_ln3'] = "FLE was originally written by DF3CB. He offers a program for Windows on his website. Simple FLE was written by OK2CQR based on DF3CB's FLE and provides a web interface to log QSOs.";
-$lang['qso_simplefle_info_ln4'] = "A common use-case is if you have to import your paperlogs from a outdoor session and now SimpleFLE is also available in Cloudlog. Information about the syntax and how FLE works can be found <a href='https://df3cb.com/fle/documentation/' target='_blank'>here</a>.";
+$lang['qso_simplefle_info_ln4'] = "A common use-case is if you have to import your paperlogs from a outdoor session and now SimpleFLE is also available in Wavelog. Information about the syntax and how FLE works can be found <a href='https://df3cb.com/fle/documentation/' target='_blank'>here</a>.";
 $lang['qso_simplefle_qso_data'] = "QSO Data";
 $lang['qso_simplefle_qso_date_hint'] = "If you don't choose a date, today's date will be used.";
 $lang['qso_simplefle_qso_list'] = "QSO List";
@@ -67,7 +67,7 @@ $lang['qso_simplefle_utc_time'] = "Current UTC Time";
 $lang['qso_simplefle_enter_the_data'] = "Enter the Data";
 $lang['qso_simplefle_syntax_help_close_w_sample'] = "Close and Load Sample Data";
 $lang['qso_simplefle_reload'] = "Reload QSO List";
-$lang['qso_simplefle_save'] = "Save in Cloudlog";
+$lang['qso_simplefle_save'] = "Save in Wavelog";
 $lang['qso_simplefle_clear'] = "Clear Logging Session";
 $lang['qso_simplefle_refs_hint'] = "The Refs can be either <u>S</u>OTA, <u>I</u>OTA, <u>P</u>OTA or <u>W</u>WFF";
 

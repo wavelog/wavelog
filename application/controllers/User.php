@@ -783,7 +783,7 @@ class User extends CI_Controller {
 				$this->email->from($this->optionslib->get_option('emailAddress'), $this->optionslib->get_option('emailSenderName'));
 				$this->email->to($this->input->post('email', true));
 
-				$this->email->subject('Cloudlog Account Password Reset');
+				$this->email->subject('Wavelog Account Password Reset');
 				$this->email->message($message);
 
 				if (! $this->email->send())
@@ -869,7 +869,7 @@ class User extends CI_Controller {
 
 						$this->email->from($this->optionslib->get_option('emailAddress'), $this->optionslib->get_option('emailSenderName'));
 						$this->email->to($data->user_email);
-						$this->email->subject('Cloudlog Account Password Reset');
+						$this->email->subject('Wavelog Account Password Reset');
 						$this->email->message($message);
 
 						if (! $this->email->send())

@@ -36,7 +36,7 @@ $lang['lotw_upload_type_must_be_adi'] = '日志文件的类型必须为 .adi';
 $lang['lotw_pull_lotw_data_for_me'] = '为我拉取 LoTW 数据';
 $lang['lotw_select_callsign'] = '选择呼号以获取 LoTW 确认';
 
-$lang['lotw_report_download_overview_helptext'] ='Cloudlog 将会使用储存在你个人用户信息当中的 LoTW 用户名和密码从 LoTW 上为你下载报告Cloudlog 下载的这份报告将会包括自你所选之日以来的或者你最后的 LoTW 确认信息（目前日志当中）以来的所有确认';
+$lang['lotw_report_download_overview_helptext'] ='Wavelog 将会使用储存在你个人用户信息当中的 LoTW 用户名和密码从 LoTW 上为你下载报告Wavelog 下载的这份报告将会包括自你所选之日以来的或者你最后的 LoTW 确认信息（目前日志当中）以来的所有确认';
 
 // Buttons
 $lang['lotw_btn_lotw_import'] = 'LoTW 导入';

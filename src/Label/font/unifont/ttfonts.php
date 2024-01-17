@@ -15,7 +15,7 @@
 * modification of the file.                                                    *
 *                                                                              *
 *******************************************************************************/
-namespace Cloudlog\Label;
+namespace Wavelog\Label;
 // Define the value used in the "head" table of a created TTF file
 // 0x74727565 "true" for Mac
 // 0x00010000 for Windows

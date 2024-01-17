@@ -1,6 +1,6 @@
 <?php
 
-use Cloudlog\Dxcc\Dxcc;
+use Wavelog\Dxcc\Dxcc;
 
 class Dxcluster_model extends CI_Model {
 	public function dxc_spotlist($band = '20m', $maxage = 60, $de = '') {
@@ -25,7 +25,7 @@ class Dxcluster_model extends CI_Model {
 			// CURL Functions
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL, $dxcache_url);
-			curl_setopt($ch, CURLOPT_USERAGENT, 'Cloudlog '.$this->optionslib->get_option('version').' DXLookup');
+			curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog '.$this->optionslib->get_option('version').' DXLookup');
 			curl_setopt($ch, CURLOPT_HEADER, false);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			$jsonraw = curl_exec($ch);
@@ -89,7 +89,7 @@ class Dxcluster_model extends CI_Model {
 		    // CURL Functions
 		    $ch = curl_init();
 		    curl_setopt($ch, CURLOPT_URL, $dxcache_url);
-		    curl_setopt($ch, CURLOPT_USERAGENT, 'Cloudlog '.$this->optionslib->get_option('version').' DXLookup by QRG');
+		    curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog '.$this->optionslib->get_option('version').' DXLookup by QRG');
 		    curl_setopt($ch, CURLOPT_HEADER, false);
 		    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		    $jsonraw = curl_exec($ch);

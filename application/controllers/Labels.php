@@ -1,9 +1,9 @@
 <?php
 
 require_once './src/Label/vendor/autoload.php';
-use Cloudlog\Label\PDF_Label;
-use Cloudlog\Label\tfpdf;
-use Cloudlog\Label\font\unifont\ttfonts;
+use Wavelog\Label\PDF_Label;
+use Wavelog\Label\tfpdf;
+use Wavelog\Label\font\unifont\ttfonts;
 
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 

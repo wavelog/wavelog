@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Cloudlog\QSLManager;
+namespace Wavelog\QSLManager;
 
 use DateTime;
 use DateTimeZone;

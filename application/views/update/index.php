@@ -33,7 +33,7 @@
 						<br/>
 						<h5>Apply DXCC Data to Logbook</h5>
 						<p class="card-text">
-							After updating, Cloudlog can fill in missing callsign information in the logbook using the newly-obtained DXCC data.
+							After updating, Wavelog can fill in missing callsign information in the logbook using the newly-obtained DXCC data.
 							You can choose to check just the QSOs in the logbook that are missing DXCC metadata or to re-check the entire logbook
 							and update existing metadata as well, in case it has changed.
 						</p>
@@ -42,7 +42,7 @@
 
 						<h5>Apply Continent Data to Logbook</h5>
 						<p class="card-text">
-							This function can be used to update QSO continent information for all QSOs in Cloudlog missing that information.
+							This function can be used to update QSO continent information for all QSOs in Wavelog missing that information.
 						</p>
 						<p><a class="btn btn-primary" href="<?php echo site_url('update/check_missing_continent');?>">Check QSOs missing continent data</a></p>
 						<style>
