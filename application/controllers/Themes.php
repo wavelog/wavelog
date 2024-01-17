@@ -38,6 +38,7 @@ class Themes extends CI_Controller {
 
 		$this->form_validation->set_rules('name', 'Theme Name', 'required');
 		$this->form_validation->set_rules('foldername', 'Folder Name', 'required');
+		$this->form_validation->set_rules('theme_mode', 'Theme Mode', 'required');
 
 		if ($this->form_validation->run() == FALSE)
 		{
@@ -64,6 +65,7 @@ class Themes extends CI_Controller {
 
 		$this->form_validation->set_rules('name', 'Theme Name', 'required');
 		$this->form_validation->set_rules('foldername', 'Folder Name', 'required');
+		$this->form_validation->set_rules('theme_mode', 'Theme Mode', 'required');
 
 		if ($this->form_validation->run() == FALSE)
 		{
@@ -75,7 +77,7 @@ class Themes extends CI_Controller {
 		{
 			$this->Themes_model->edit($item_id_clean);
 
-			$data['notice'] = "Theme ".$this->security->xss_clean($this->input->post('name', true))." Updated";
+			$this->session->set_flashdata("success", "Theme '".$this->security->xss_clean($this->input->post('name', true))."' updated");
 
 			redirect('themes');
 		}

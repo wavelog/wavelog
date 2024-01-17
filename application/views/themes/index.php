@@ -1,10 +1,17 @@
 <div class="container">
 
 	<br>
-	<?php if($this->session->flashdata('message')) { ?>
+	<?php if($this->session->flashdata('danger')) { ?>
 		<!-- Display Message -->
-		<div class="alert-message error">
-			<p><?php echo $this->session->flashdata('message'); ?></p>
+		<div class="alert alert-danger">
+			<p><?php echo $this->session->flashdata('danger'); ?></p>
+		</div>
+	<?php } ?>
+
+	<?php if($this->session->flashdata('success')) { ?>
+		<!-- Display Message -->
+		<div class="alert alert-success">
+			<p><?php echo $this->session->flashdata('success'); ?></p>
 		</div>
 	<?php } ?>
 
@@ -24,6 +31,7 @@
 					<tr>
 						<th scope="col">Name</th>
 						<th scope="col">Foldername</th>
+						<th scope="col">Theme Mode</th>
 						<th scope="col"></th>
 						<th scope="col"></th>
 					</tr>
@@ -33,6 +41,11 @@
 						<tr>
 							<td><?php echo $theme->name;?></td>
 							<td><?php echo $theme->foldername;?></td>
+							<td><?php if($theme->theme_mode != "") {
+								echo $theme->theme_mode;
+							} else {
+								echo "<span class=\"text-danger\">Theme-Mode undefined! Please edit</span>";
+							} ?></td>
 							<td>
 								<a href="<?php echo site_url('themes/edit')."/".$theme->id; ?>" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit"></i> Edit</a>
 							</td>

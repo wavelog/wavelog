@@ -65,7 +65,7 @@
                             <?php } ?>
                         </select>
                         <label class="visually-hidden" for="inlineFormInputName2"><?php echo lang('adif_file_label') ?></label>
-                        <input class="file-input mb-2 me-sm-2" type="file" name="userfile" id="userfile" size="20" />
+                        <input class="form-control mb-2 me-sm-2 w-auto" type="file" name="userfile" id="userfile" size="20" />
 
                         <div class="mb-3 row">
                             <div class="col-md-10">
