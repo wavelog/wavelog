@@ -4,7 +4,7 @@
 
 Wavelog is a self-hosted PHP application that allows you to log your amateur radio contacts anywhere. All you need is a web browser and active internet connection.
 
-Wavelog itself is an enhanced fork of Cloudlog by 4W7EST.
+Wavelog itself is an enhanced fork of Cloudlog by 2M0SQL.
 If you would like to contribute to Wavelog please see the [Contributing](#contributing) section below.
 
 The Core-Dev-Team for Wavelog are (in Alphabetic order of the Call):
