@@ -22,7 +22,7 @@ $lang['station_logbooks_confirm_delete'] = "确定删除此台站日志？你可
 $lang['station_logbooks_view_public'] = "浏览日志公开页: ";
 $lang['station_logbooks_create_name'] = "台站日志名称";
 $lang['station_logbooks_create_name_hint'] = "你可以随意称呼你的台站日志";
-$lang['station_logbooks_edit_name_hint'] = "台站位置简称，例如：Home Log (IO87IP)";
+$lang['station_logbooks_edit_name_hint'] = "台站位置简称，例如：Home Log (HM54ip)";
 $lang['station_logbooks_edit_name_update'] = "更新台站日志名称";
 $lang['station_logbooks_public_slug'] = "自定义日志链接";
 $lang['station_logbooks_public_slug_hint'] = "通过自定义日志链接，你可以通过此链接让别人访问你的日志";
@@ -59,7 +59,7 @@ $lang['station_location_warning'] = 'Attention: You need to set an active statio
 $lang['station_location_reassign_at'] = 'Please reassign them at ';
 $lang['station_location_warning_reassign'] = 'Due to recent changes within Wavelog you need to reassign QSOs to your station profiles.';
 $lang['station_location_name'] = 'Profile Name';
-$lang['station_location_name_hint'] = 'Shortname for the station location. For example: Home (IO87IP)';
+$lang['station_location_name_hint'] = 'Shortname for the station location. For example: Home (HM54ip)';
 $lang['station_location_callsign'] = 'Station Callsign';
 $lang['station_location_callsign_hint'] = 'Station callsign. For example: 4W7EST/P';
 $lang['station_location_power'] = 'Station Power (W)';
@@ -82,7 +82,7 @@ $lang['station_location_state_hint'] = 'Station state. Applies to certain countr
 $lang['station_location_county'] = 'Station County';
 $lang['station_location_county_hint'] = 'Station County (Only used for USA/Alaska/Hawaii).';
 $lang['station_location_gridsquare'] = 'Station Gridsquare';
-$lang['station_location_gridsquare_hint_ln1'] = "Station gridsquare. For example: IO87IP. If you don't know your grid square then <a href='https://zone-check.eu/?m=loc' target='_blank'>click here</a>!";
+$lang['station_location_gridsquare_hint_ln1'] = "Station gridsquare. For example: HM54ip. If you don't know your grid square then <a href='https://zone-check.eu/?m=loc' target='_blank'>click here</a>!";
 $lang['station_location_gridsquare_hint_ln2'] = "If you are located on a grid line, enter multiple grid squares separated with commas. For example: IO77,IO78,IO87,IO88.";
 $lang['station_location_iota_hint_ln1'] = "Station IOTA reference. For example: EU-005";
 $lang['station_location_iota_hint_ln2'] = "You can look up IOTA references at the <a target='_blank' href='https://www.iota-world.org/iota-directory/annex-f-short-title-iota-reference-number-list.html'>IOTA World</a> website.";

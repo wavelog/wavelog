@@ -22,7 +22,7 @@ $lang['station_logbooks_confirm_delete'] = "¿Está seguro que desea eliminar el
 $lang['station_logbooks_view_public'] = "Ver Página Pública para el Libro de Guardia: ";
 $lang['station_logbooks_create_name'] = "Nombre del Libro de Guardia de Estación";
 $lang['station_logbooks_create_name_hint'] = "Puede llamar el libro de guardia de estación como desee.";
-$lang['station_logbooks_edit_name_hint'] = "Nombre corto para el libro de guardia de estación. Ejemplo: Libro Casa (IO87IP)";
+$lang['station_logbooks_edit_name_hint'] = "Nombre corto para el libro de guardia de estación. Ejemplo: Libro Casa (HM54ip)";
 $lang['station_logbooks_edit_name_update'] = "Actualizar el Nombre del Libro de Guardia de Estación";
 $lang['station_logbooks_public_slug'] = "Abreviatura Pública";
 $lang['station_logbooks_public_slug_hint'] = "El configurar una abreviatura pública le permite compartir su libro de guardia con cualquier persona usando una dirección personalizada del sitio web, esta abreviatura debe contener solo letras y números.";
@@ -59,7 +59,7 @@ $lang['station_location_warning'] = 'Atención: Debe configurar una Localizació
 $lang['station_location_reassign_at'] = 'Por favor, reasignelas en ';
 $lang['station_location_warning_reassign'] = 'Debido a cambios recientes en Wavelog, debe reasignar sus QSO a sus perfiles de estación.';
 $lang['station_location_name'] = 'Nombre de Perfil';
-$lang['station_location_name_hint'] = 'Nombre corto para la Localización de Estación. Ejemplo: Casa (IO87IP)';
+$lang['station_location_name_hint'] = 'Nombre corto para la Localización de Estación. Ejemplo: Casa (HM54ip)';
 $lang['station_location_callsign'] = 'Indicativo de la Estación';
 $lang['station_location_callsign_hint'] = 'Indicativo de llamada de la Estación. Ejemplo: 4W7EST/P';
 $lang['station_location_power'] = 'Potencia de la Estación (W)';
@@ -82,7 +82,7 @@ $lang['station_location_state_hint'] = 'Estado/Departamento/Provincia de la esta
 $lang['station_location_county'] = 'Condado de la Estación';
 $lang['station_location_county_hint'] = 'Condado de la Estación (Solo se usa en USA/Alaska/Hawaii).';
 $lang['station_location_gridsquare'] = 'Gridsquare de la Estación';
-$lang['station_location_gridsquare_hint_ln1'] = "Gridsquare de la estación. Ejemplo: IO87IP. ¡Si no conoce su grid square haga <a href='https://zone-check.eu/?m=loc' target='_blank'>clic aquí</a>!";
+$lang['station_location_gridsquare_hint_ln1'] = "Gridsquare de la estación. Ejemplo: HM54ip. ¡Si no conoce su grid square haga <a href='https://zone-check.eu/?m=loc' target='_blank'>clic aquí</a>!";
 $lang['station_location_gridsquare_hint_ln2'] = "Si está localizado justo en una línea de la malla, introduzca múltiples gridsquares separados con comas. por ejemplo: IO77,IO78,IO87,IO88.";
 $lang['station_location_iota_hint_ln1'] = "Referencia IOTA de la Estación. Ejemplo: EU-005";
 $lang['station_location_iota_hint_ln2'] = "Puede buscar las referencias IOTA en el sitio web de <a target='_blank' href='https://www.iota-world.org/iota-directory/annex-f-short-title-iota-reference-number-list.html'>IOTA World</a>.";
