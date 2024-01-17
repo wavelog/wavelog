@@ -1058,9 +1058,11 @@ class Logbook_model extends CI_Model {
 		  $srx_string = null;
 	  }
 
-	  if ($this->input->post('usa_county') && $this->input->post('usa_state')) {
+	  if (stristr($this->input->post('usa_county') ?? '', ',')) {	// Already comma-seperated Conuty?
+		  $uscounty = $this->input->post('usa_county');
+	  } elseif ($this->input->post('usa_county') && $this->input->post('usa_state')) {	// Both filled (and no comma - because that fits one above)
 		  $uscounty = trim($this->input->post('usa_state') . "," . $this->input->post('usa_county'));
-	  } else {
+	  } else {	// nothing from above?
 		  $uscounty = null;
 	  }
 
