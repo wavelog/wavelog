@@ -136,7 +136,7 @@ class QSO
 			// If Logged in and session exists
 			$custom_date_format = $CI->session->userdata('user_date_format');
 		} else {
-			// Get Default date format from /config/cloudlog.php
+			// Get Default date format from /config/wavelog.php
 			$custom_date_format = $CI->config->item('qso_date_format');
 		}
 		$this->qsoDateTime = date($custom_date_format . " H:i", strtotime($data['COL_TIME_ON']));

@@ -5,7 +5,7 @@ class Webadif extends CI_Controller {
 
     /*
      * Upload QSO to webADIF
-     * When called from the url cloudlog/webadif/upload, the function loops through all station_id's with a webADIF
+     * When called from the url wavelog/webadif/upload, the function loops through all station_id's with a webADIF
      * api key defined.
      * All QSOs not previously uploaded, will then be uploaded, one at a time
      */

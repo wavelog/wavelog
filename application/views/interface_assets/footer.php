@@ -2350,7 +2350,7 @@ $(document).ready(function(){
 		// If Logged in and session exists
 		$custom_date_format = $this->session->userdata('user_date_format');
 	} else {
-		// Get Default date format from /config/cloudlog.php
+		// Get Default date format from /config/wavelog.php
 		$custom_date_format = $this->config->item('qso_date_format');
 	}
 
@@ -3019,7 +3019,7 @@ function viewEqsl(picture, callsign) {
 		// If Logged in and session exists
 		$custom_date_format = $this->session->userdata('user_date_format');
 	} else {
-		// Get Default date format from /config/cloudlog.php
+		// Get Default date format from /config/wavelog.php
 		$custom_date_format = $this->config->item('qso_date_format');
 	}
 

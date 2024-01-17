@@ -111,7 +111,7 @@ $lang['general_total_distance'] = '总计距离';
 $lang['gen_max_file_upload_size'] = '最大上传文件大小是';
 
 // Cloudlog Terms
-$lang['cloudlog_station_profile'] = '电台站地址';
+$lang['wavelog_station_profile'] = '电台站地址';
 
 // ham radio terms
 $lang['gen_hamradio_cq'] = "CQ";

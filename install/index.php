@@ -64,12 +64,12 @@ if($_POST) {
 			$ch = curl_init();
 			$protocol=((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https" : "http";
 			list($realHost,)=explode(':',$_SERVER['HTTP_HOST']);
-			$cloudlog_url=$protocol."://".$realHost.":".$_SERVER['SERVER_PORT'];
-			curl_setopt($ch, CURLOPT_URL,$cloudlog_url);
+			$wavelog_url=$protocol."://".$realHost.":".$_SERVER['SERVER_PORT'];
+			curl_setopt($ch, CURLOPT_URL,$wavelog_url);
 			curl_setopt($ch, CURLOPT_VERBOSE, 0);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			$result = curl_exec($ch);
-			curl_setopt($ch, CURLOPT_URL,$cloudlog_url."/index.php/update/dxcc");
+			curl_setopt($ch, CURLOPT_URL,$wavelog_url."/index.php/update/dxcc");
 			$result = curl_exec($ch);
 			delDir(getcwd());
 			header('Location: '.$protocol."://".$_SERVER['HTTP_HOST'].$_POST['directory']);

@@ -140,11 +140,11 @@
 		</div>
 		<!-- ZONE 2 / Cloudlog -->
 		<div class="accordion-item">
-			<h2 class="accordion-header" id="panelsStayOpen-H_cloudlog_general">
-				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-B_cloudlog_general" aria-expanded="false" aria-controls="panelsStayOpen-B_cloudlog_general">
-				<?php echo lang('account_cloudlog_preferences'); ?></button>
+			<h2 class="accordion-header" id="panelsStayOpen-H_wavelog_general">
+				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-B_wavelog_general" aria-expanded="false" aria-controls="panelsStayOpen-B_wavelog_general">
+				<?php echo lang('account_wavelog_preferences'); ?></button>
 			</h2>
-			<div id="panelsStayOpen-B_cloudlog_general" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-H_cloudlog_general">
+			<div id="panelsStayOpen-B_wavelog_general" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-H_wavelog_general">
 				<div class="accordion-body">
 					<div class="row mb-3">
 						<!-- Cloudlog Preferences -->
@@ -166,14 +166,14 @@
 									<hr/>
 									<?php if ($this->config->item('cl_multilanguage')) { ?>
 										<div class="mb-3">
-											<label for="language"><?php echo lang('account_cloudlog_language'); ?></label>
+											<label for="language"><?php echo lang('account_wavelog_language'); ?></label>
 											<?php
 											foreach($existing_languages as $lang){
 												$options[$lang] = ucfirst($lang);
 											}
 											echo form_dropdown('language', $options, $language);
 											?>
-											<small id="language_Help" class="form-text text-muted"><?php echo lang('account_choose_cloudlog_language'); ?></small>
+											<small id="language_Help" class="form-text text-muted"><?php echo lang('account_choose_wavelog_language'); ?></small>
 										</div>
 									<?php } ?>
 
@@ -330,7 +330,7 @@
 											<option value="Distance" <?php if ($user_column5 == "Distance") { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_distance'); ?></option>
 											<option value="Operator" <?php if ($user_column5 == "Operator") { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_operator'); ?></option>
 											<option value="Name" <?php if ($user_column5 == "Name") { echo " selected =\"selected\""; } ?>><?php echo lang('general_word_name'); ?></option>
-											<option value="Location" <?php if ($user_column5 == "Location") { echo " selected =\"selected\""; } ?>><?php echo lang('cloudlog_station_profile'); ?></option>
+											<option value="Location" <?php if ($user_column5 == "Location") { echo " selected =\"selected\""; } ?>><?php echo lang('wavelog_station_profile'); ?></option>
 										</select>
 									</div>
 								</div>

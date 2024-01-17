@@ -111,7 +111,7 @@ $lang['general_total_distance'] = 'Topam mesafe';
 $lang['gen_max_file_upload_size'] = 'Maximum file upload size is ';
 
 // Cloudlog Terms
-$lang['cloudlog_station_profile'] = 'İstasyon Konumu';
+$lang['wavelog_station_profile'] = 'İstasyon Konumu';
 
 // ham radio terms
 $lang['gen_hamradio_cq'] = "CQ";

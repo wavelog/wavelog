@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$lang['options_cloudlog_options'] = 'Možnosti Cloudlogu';
+$lang['options_wavelog_options'] = 'Možnosti Cloudlogu';
 $lang['options_message1'] = 'Možnosti Cloudlogu jsou globální nastavení používaná pro všechny uživatele instalace, která jsou přepsána, pokud je nastavení na úrovni uživatele.';
 
 $lang['options_appearance'] = 'Vzhled';
@@ -42,7 +42,7 @@ $lang['options_mail_settings_saved'] = "The settings were saved successfully.";
 $lang['options_mail_settings_failed'] = "Something went wrong with saving the settings. Try again.";
 $lang['options_outgoing_protocol_hint'] = "The protocol that will be used to send out emails.";
 $lang['options_smtp_encryption_hint'] = "Choose whether emails should be sent with TLS or SSL.";
-$lang['options_email_address_hint'] = "The email address from which the emails are sent, e.g. 'cloudlog@example.com'";
+$lang['options_email_address_hint'] = "The email address from which the emails are sent, e.g. 'wavelog@example.com'";
 $lang['options_email_sender_name_hint'] = "The email sender name, e.g. 'Cloudlog'";
 $lang['options_smtp_host_hint'] = "The hostname of the mail server, e.g. 'mail.example.com' (without 'ssl://' or 'tls://')";
 $lang['options_smtp_port_hint'] = "The SMTP port of the mail server, e.g. if TLS is used -> '587', if SSL is used -> '465'";

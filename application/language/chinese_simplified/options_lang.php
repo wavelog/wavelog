@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$lang['options_cloudlog_options'] = 'Cloudlog 设置';
+$lang['options_wavelog_options'] = 'Cloudlog 设置';
 $lang['options_message1'] = '本设置是针对所有用户的全局设置，会覆盖对于单个用户的设置。';
 
 $lang['options_appearance'] = '外观';
@@ -42,7 +42,7 @@ $lang['options_mail_settings_saved'] = "设置已保存";
 $lang['options_mail_settings_failed'] = "保存时出现问题，请重试";
 $lang['options_outgoing_protocol_hint'] = "发送邮件时使用的协议";
 $lang['options_smtp_encryption_hint'] = "选择邮件将会通过TLS还是SSL发送";
-$lang['options_email_address_hint'] = "发送邮件的邮箱地址，例如：'cloudlog@example.com'";
+$lang['options_email_address_hint'] = "发送邮件的邮箱地址，例如：'wavelog@example.com'";
 $lang['options_email_sender_name_hint'] = "发送者的名字，例如：'Cloudlog'";
 $lang['options_smtp_host_hint'] = "邮件服务器的域名，例如：'mail.example.com' (不带'ssl://'或'tls://')";
 $lang['options_smtp_port_hint'] = "邮件服务器的SMTP端口，例如：如果使用了TLS -> '587'，如果使用了SSL -> '465'";

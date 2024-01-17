@@ -34,7 +34,7 @@ $lang['account_hamradio_information'] = "Ham Radio";
 $lang['account_callsign'] = 'Позывной';
 $lang['account_gridsquare'] = 'QTH локатор';
 
-$lang['account_cloudlog_preferences'] = 'Настройки Cloudlog';
+$lang['account_wavelog_preferences'] = 'Настройки Cloudlog';
 $lang['account_timezone'] = 'Часовой пояс';
 $lang['account_date_format'] = 'Формат даты';
 $lang['account_log_end_time'] = 'Записывать время завершения QSO отдельно';
@@ -48,8 +48,8 @@ $lang['account_quicklog_enter_search'] = "Поиск позывного";
 $lang['account_measurement_preferences'] = 'Единицы измерения';
 $lang['account_select_how_you_would_like_dates_shown_when_logged_into_your_account'] = 'Выберите представление даты для отображения в вашем аккаунте.';
 $lang['account_choose_which_unit_distances_will_be_shown_in'] = 'Выберите единицы измерения расстояния';
-$lang['account_cloudlog_language'] = 'Язык Cloudlog';
-$lang['account_choose_cloudlog_language'] = 'Выберите язык Cloudlog.';
+$lang['account_wavelog_language'] = 'Язык Cloudlog';
+$lang['account_choose_wavelog_language'] = 'Выберите язык Cloudlog.';
 
 $lang['account_main_menu'] = 'Главное меню';
 $lang['account_show_notes_in_the_main_menu'] = 'Показывать заметки в главном меню.';
@@ -102,7 +102,7 @@ $lang['account_confirm_password'] = 'Подтвердить Пароль';
 
 $lang['account_forgot_your_password'] = 'Забыли пароль?';
 
-$lang['account_login_to_cloudlog'] = 'Вход в Cloudlog';
+$lang['account_login_to_wavelog'] = 'Вход в Cloudlog';
 $lang['account_login'] = 'Вход';
 
 $lang['account_mastodon'] = 'Сервер Mastodon';

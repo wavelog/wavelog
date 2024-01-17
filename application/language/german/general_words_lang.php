@@ -111,7 +111,7 @@ $lang['general_total_distance'] = 'Entfernung';
 $lang['gen_max_file_upload_size'] = 'Die max. Dateigrösse für Uploads beträgt ';
 
 // Cloudlog Terms
-$lang['cloudlog_station_profile'] = 'Stationsprofil';
+$lang['wavelog_station_profile'] = 'Stationsprofil';
 
 // ham radio terms
 $lang['gen_hamradio_cq'] = "CQ";

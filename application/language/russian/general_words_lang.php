@@ -112,7 +112,7 @@ $lang['general_total_distance'] = 'Суммарная дистанция';
 $lang['gen_max_file_upload_size'] = 'Максимальный размер загружаемого файла ';
 
 // Cloudlog Terms
-$lang['cloudlog_station_profile'] = 'Месторасположение станции';
+$lang['wavelog_station_profile'] = 'Месторасположение станции';
 
 $lang['gen_hamradio_cq'] = "CQ";
 // ham radio terms

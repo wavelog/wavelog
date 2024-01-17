@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$lang['options_cloudlog_options'] = 'Opciones de Cloudlog';
+$lang['options_wavelog_options'] = 'Opciones de Cloudlog';
 $lang['options_message1'] = 'Las Opciones de Cloudlog son configuraciones globales, configuradas para todos los usuarios de la instalación, que se sobreescribirán si alguna configuración se activa a nivel de usuario.';
 
 $lang['options_appearance'] = 'Apariencia';
@@ -42,7 +42,7 @@ $lang['options_mail_settings_saved'] = "Las configuraciones fueron guardadas exi
 $lang['options_mail_settings_failed'] = "Algo salió mal guardando las configuraciones. Intente de nuevo.";
 $lang['options_outgoing_protocol_hint'] = "El protocolo que será usado para enviar los correos electrónicos.";
 $lang['options_smtp_encryption_hint'] = "Escoja si los correos electrónicos serán enviados con TLS o SSL.";
-$lang['options_email_address_hint'] = "La dirección desde la cual se enviarán los correos electrónicos, ej. 'cloudlog@example.com'";
+$lang['options_email_address_hint'] = "La dirección desde la cual se enviarán los correos electrónicos, ej. 'wavelog@example.com'";
 $lang['options_email_sender_name_hint'] = "El nombre de quien envía los correos, ej. 'Cloudlog'";
 $lang['options_smtp_host_hint'] = "El nombre de dominio del servidor de correo, ej. 'mail.example.com' (sin 'ssl://' o 'tls://')";
 $lang['options_smtp_port_hint'] = "El puerto SMTP del servidor de correo, ej. si está usando TLS -> '587', si está usando SSL -> '465'";

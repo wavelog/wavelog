@@ -34,7 +34,7 @@ $lang['account_hamradio_information'] = "Información de Radioaficionado";
 $lang['account_callsign'] = 'Indicativo';
 $lang['account_gridsquare'] = 'Gridsquare';
 
-$lang['account_cloudlog_preferences'] = 'Preferencias de Cloudlog';
+$lang['account_wavelog_preferences'] = 'Preferencias de Cloudlog';
 $lang['account_timezone'] = 'Zona Horaria';
 $lang['account_date_format'] = 'Formato de Fecha';
 $lang['account_log_end_time'] = 'Guardar Hora de Finalización para QSOs Separadamente';
@@ -48,8 +48,8 @@ $lang['account_quicklog_enter_search'] = "Guardar Indicativo";
 $lang['account_measurement_preferences'] = 'Preferencias de Medidas';
 $lang['account_select_how_you_would_like_dates_shown_when_logged_into_your_account'] = 'Seleccione cómo le gustaría ver las fechas cuando inicie sesión en su cuenta.';
 $lang['account_choose_which_unit_distances_will_be_shown_in'] = 'Seleccione qué unidad de distancia usar y mostrar cuando inicie sesión en su cuenta.';
-$lang['account_cloudlog_language'] = 'Lenguaje de Cloudlog';
-$lang['account_choose_cloudlog_language'] = 'Seleccione el lenguaje de Cloudlog a mostrar cuando inicie sesión en su cuenta.';
+$lang['account_wavelog_language'] = 'Lenguaje de Cloudlog';
+$lang['account_choose_wavelog_language'] = 'Seleccione el lenguaje de Cloudlog a mostrar cuando inicie sesión en su cuenta.';
 
 $lang['account_main_menu'] = 'Opciones de Menú';
 $lang['account_show_notes_in_the_main_menu'] = 'Mostrar notas en el Menú Principal.';
@@ -102,7 +102,7 @@ $lang['account_confirm_password'] = 'Confirmar Contraseña';
 
 $lang['account_forgot_your_password'] = '¿Olvidó su contraseña?';
 
-$lang['account_login_to_cloudlog'] = 'Iniciar sesión en Cloudlog';
+$lang['account_login_to_wavelog'] = 'Iniciar sesión en Cloudlog';
 $lang['account_login'] = 'Iniciar Sesión';
 
 $lang['account_mastodon'] = 'Servidor de Mastodon';

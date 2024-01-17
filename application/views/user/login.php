@@ -33,7 +33,7 @@ body {
     <img src="<?php echo base_url()?>/CloudLog_logo.png" class="mx-auto d-block" alt="" style="width:100px;height:100px;">
     <div class="my-2 bg-body rounded-0 shadow-sm card mb-2 shadow-sm">
         <div class="card-body">
-            <h3><?php echo lang('account_login_to_cloudlog'); ?></h3>
+            <h3><?php echo lang('account_login_to_wavelog'); ?></h3>
             <form method="post" action="<?php echo site_url('user/login'); ?>" name="users">
 			<?php $this->form_validation->set_error_delimiters('', ''); ?>
                 <input type="hidden" name="id" value="<?php echo $this->uri->segment(3); ?>" />

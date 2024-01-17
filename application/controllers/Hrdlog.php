@@ -8,7 +8,7 @@ class Hrdlog extends CI_Controller {
 
     /*
      * Upload QSO to hrdlog.net
-     * When called from the url cloudlog/hrdlog/upload, the function loops through all station_id's with a hrdlog code defined.
+     * When called from the url wavelog/hrdlog/upload, the function loops through all station_id's with a hrdlog code defined.
      * All QSOs not previously uploaded, will then be uploaded, one at a time
      */
     public function upload() {
