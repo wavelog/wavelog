@@ -112,7 +112,7 @@ $lang['account_gridmap_default_band'] = "Bandes";
 $lang['account_qsl_settings'] = "Méthode QSL";
 
 $lang['account_winkeyer'] = "Winkeyer";
-$lang['account_winkeyer_hint'] = "REMARQUE : La prise en charge de Winkeyer dans Wavelog est très expérimentale, lisez d'abord le wiki avant de l'activer  <a href=\"https://github.com/magicbug/Wavelog/wiki/Winkey\" target=\"_blank\">https://github.com/magicbug/Wavelog/wiki/Winkey</a>";
+$lang['account_winkeyer_hint'] = "REMARQUE : La prise en charge de Winkeyer dans Wavelog est très expérimentale, lisez d'abord le wiki avant de l'activer  <a href=\"https://github.com/wavelog/wavelog/wiki/Winkey\" target=\"_blank\">https://github.com/wavelog/wavelog/wiki/Winkey</a>";
 $lang['account_winkeyer_enabled'] = "Activer Winkeyer";
 
 $lang['account_map_params'] = "Paramètre de la carte";

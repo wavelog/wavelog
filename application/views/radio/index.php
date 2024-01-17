@@ -24,7 +24,7 @@
 		</div>
 
 		<p class="card-text">
-	    	<span class="badge text-bg-info">Info</span> You can find out how to use the <a href="https://github.com/magicbug/Wavelog/wiki/Radio-Interface" target="_blank">radio functions</a> in the wiki.</a>
+	    	<span class="badge text-bg-info">Info</span> You can find out how to use the <a href="https://github.com/wavelog/wavelog/wiki/Radio-Interface" target="_blank">radio functions</a> in the wiki.</a>
 	    </p>
 
 	  </div>

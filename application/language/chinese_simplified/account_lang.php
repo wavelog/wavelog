@@ -114,7 +114,7 @@ $lang['account_gridmap_default_band'] = '默认波段';
 $lang['account_qsl_settings'] = '默认QSL方式';
 
 $lang['account_winkeyer'] = 'Winkeyer';
-$lang['account_winkeyer_hint'] = "Wavelog 中对 Winkeyer 的支持是实验性的，请在使用前先阅读 <a href='https://github.com/magicbug/Wavelog/wiki/Winkey' target='_blank'>https://github.com/magicbug/Wavelog/wiki/Winkey</a>";
+$lang['account_winkeyer_hint'] = "Wavelog 中对 Winkeyer 的支持是实验性的，请在使用前先阅读 <a href='https://github.com/wavelog/wavelog/wiki/Winkey' target='_blank'>https://github.com/wavelog/wavelog/wiki/Winkey</a>";
 $lang['account_winkeyer_enabled'] = "启用 Winkeyer 功能";
 
 $lang['account_map_params'] = "地图设置";

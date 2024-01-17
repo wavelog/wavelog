@@ -231,7 +231,7 @@
                         <td>Commit</td>
                         <td>
                             <?php if($commitHash != "") { ?>
-                                <a target="_blank" href="https://github.com/magicbug/Wavelog/commit/<?php echo $commitHash?>"><span class="badge text-bg-success"><?php echo substr($commitHash,0,8); ?></span></a>
+                                <a target="_blank" href="https://github.com/wavelog/wavelog/commit/<?php echo $commitHash?>"><span class="badge text-bg-success"><?php echo substr($commitHash,0,8); ?></span></a>
                             <?php } else { ?>
                                 <span class="badge text-bg-danger">n/a</span>
                             <?php } ?>
@@ -241,7 +241,7 @@
                         <td>Tag</td>
                         <td>
                             <?php if($commitHash != "") { ?>
-                                <a target="_blank" href="https://github.com/magicbug/Wavelog/releases/tag/<?php echo substr($tag,0,strpos($tag, '-')); ?>"><span class="badge text-bg-success"><?php echo $tag; ?></span></a>
+                                <a target="_blank" href="https://github.com/wavelog/wavelog/releases/tag/<?php echo substr($tag,0,strpos($tag, '-')); ?>"><span class="badge text-bg-success"><?php echo $tag; ?></span></a>
                             <?php } else { ?>
                                 <span class="badge text-bg-danger">n/a</span>
                             <?php } ?>

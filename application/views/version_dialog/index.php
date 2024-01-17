@@ -27,7 +27,7 @@
                 ?>
                 <div>
                     <?php
-                    $url = 'https://api.github.com/repos/magicbug/Wavelog/releases';
+                    $url = 'https://api.github.com/repos/wavelog/wavelog/releases';
                     $options = [
                         'http' => [
                             'header' => 'User-Agent: Wavelog - Amateur Radio Logbook'

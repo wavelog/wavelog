@@ -114,7 +114,7 @@ $lang['account_gridmap_default_band'] = 'Диапазон по умолчани�
 $lang['account_qsl_settings'] = 'Способы подтверждения (QSL) по умолчанию';
 
 $lang['account_winkeyer'] = 'Winkeyer';
-$lang['account_winkeyer_hint'] = "Поддержка Winkeyer в Wavelog в стадии эксперимента, прочитайте сначала вики (<a href='https://github.com/magicbug/Wavelog/wiki/Winkey' target='_blank'>https://github.com/magicbug/Wavelog/wiki/Winkey</a>) перед включением.";
+$lang['account_winkeyer_hint'] = "Поддержка Winkeyer в Wavelog в стадии эксперимента, прочитайте сначала вики (<a href='https://github.com/wavelog/wavelog/wiki/Winkey' target='_blank'>https://github.com/wavelog/wavelog/wiki/Winkey</a>) перед включением.";
 $lang['account_winkeyer_enabled'] = "Функционал Winkeyer включен";
 
 $lang['account_map_params'] = "Map Settings";
