@@ -36,7 +36,7 @@
 
 			<div class="mb-3">
 		    <label for="stationCallsignInput"><?php echo lang("station_location_callsign"); ?></label>
-		    <input type="text" class="form-control" name="station_callsign" id="stationCallsignInput" aria-describedby="stationCallsignInputHelp" placeholder="2M0SQL" required>
+		    <input type="text" class="form-control" name="station_callsign" id="stationCallsignInput" aria-describedby="stationCallsignInputHelp" placeholder="4W7EST" required>
 		    <small id="stationCallsignInputHelp" class="form-text text-muted"><?php echo lang("station_location_callsign_hint"); ?></small>
 		  </div>
 

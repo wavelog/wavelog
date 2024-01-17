@@ -345,7 +345,7 @@ class Calltester extends CI_Controller {
         );
 
         $testarray[] = array(
-            'Callsign'  => '2M0SQL/P',
+            'Callsign'  => '4W7EST/P',
             'Country'   => 'Scotland',
             'Adif'      => 279,
             'Date'      => $date = date('Ymd', time())

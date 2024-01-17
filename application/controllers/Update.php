@@ -354,7 +354,7 @@ class Update extends CI_Controller {
         $f = fopen('./updates/lotw_users.csv', "r");
         $result = false;
         while ($row = fgetcsv($f)) {
-            if ($row[0] == '2M0SQL/MM') {
+            if ($row[0] == '4W7EST/MM') {
                 $result = $row[0];
                 echo "found";
                 break;
