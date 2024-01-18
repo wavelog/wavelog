@@ -3,8 +3,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
-*   This migration creates a table called options which will hold global options needed within wavelog
-*   removing the need for lots of configuration files.
+*   This migration set's english as default language in the options table
 */
 
 class Migration_add_lang_to_options extends CI_Migration {

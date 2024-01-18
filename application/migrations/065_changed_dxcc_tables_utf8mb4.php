@@ -3,8 +3,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
-*   This migration creates a table called options which will hold global options needed within wavelog
-*   removing the need for lots of configuration files.
+*   This migration converts the dxcc_* tables to a utf8mb4 charachter set.
 */
 
 class Migration_changed_dxcc_tables_utf8mb4 extends CI_Migration {
