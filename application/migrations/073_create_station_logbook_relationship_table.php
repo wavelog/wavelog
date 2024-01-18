@@ -3,8 +3,8 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
-*   This migration creates a table called options which will hold global options needed within wavelog
-*   removing the need for lots of configuration files.
+*   Next step after Migration No. 72 is to create a datatable which contains the relations 
+*   between station logbooks and station locations.
 */
 
 class Migration_create_station_logbook_relationship_table extends CI_Migration {

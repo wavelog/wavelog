@@ -6,4 +6,4 @@ If you received this email, your mail settings are correct.
 
 Regards,
 
-Wavelog.
+Wavelog

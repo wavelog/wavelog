@@ -3,8 +3,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
-*   This migration creates a table called options which will hold global options needed within wavelog
-*   removing the need for lots of configuration files.
+*   This migration adds the theme 'default' as standard/default theme to wavelog.
 */
 
 class Migration_add_default_theme_to_options_table extends CI_Migration {

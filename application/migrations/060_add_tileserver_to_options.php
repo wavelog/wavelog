@@ -3,8 +3,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
-*   This migration creates a table called options which will hold global options needed within wavelog
-*   removing the need for lots of configuration files.
+*   This migration adds the url for the maptileserver to the options table in wavelog
 */
 
 class Migration_add_tileserver_to_options extends CI_Migration {

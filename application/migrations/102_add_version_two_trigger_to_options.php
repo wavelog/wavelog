@@ -3,8 +3,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
-*   This migration creates a table called options which will hold global options needed within wavelog
-*   removing the need for lots of configuration files.
+*   This migration adds an trigger for the switch from 1.* to 2.*
 */
 
 class Migration_add_version_two_trigger_to_options extends CI_Migration {

@@ -3,8 +3,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
-*   This migration creates a table called options which will hold global options needed within wavelog
-*   removing the need for lots of configuration files.
+*   This migration allows the user to define which columns are shown in the logbook.
 */
 
 class Migration_add_user_definable_columns extends CI_Migration {

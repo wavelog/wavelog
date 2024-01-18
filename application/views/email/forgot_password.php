@@ -12,4 +12,4 @@ If you didn't request this just ignore.
 
 Regards,
 
-Wavelog.
+Wavelog
