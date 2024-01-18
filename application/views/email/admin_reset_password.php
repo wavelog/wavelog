@@ -12,4 +12,5 @@ Click here to reset your password: <?php echo site_url('user/reset_password/').$
 If you didn't request any password reset, just ignore this email and talk to an admin of your Wavelog instance.
 
 Regards,
+
 Wavelog

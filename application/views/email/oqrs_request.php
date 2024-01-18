@@ -11,4 +11,4 @@ Please log into your Wavelog and process it.
 
 Regards,
 
-Wavelog.
+Wavelog
