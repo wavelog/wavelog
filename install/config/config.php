@@ -8,7 +8,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |--------------------------------------------------------------------------
 |
 |	'app_name'		Name of the App 'Wavelog'
-|	'app_version'	Set by the dev team.
 |	'directory'		directory where wavelog is installed eg "logger"
 |	'callbook'		Selects which Callbook lookup to use defaults "hamqth" but supports "qrz"
 */
