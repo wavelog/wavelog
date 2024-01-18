@@ -11,8 +11,6 @@
 
     <h1 class="display-3"><?php echo $page_title; ?></h1>
 
-    <p class="lead">After many years and hard work Wavelog version 2.0 has finally arrived, this brings multi-user support, logbooks to group station locations, improved code with lots of speed increases sprinkled around.</p>
-
     <p class="lead">This guide is to help you get your installation configured to work with all the new features please follow it!</p>
 
     <?php if(ENVIRONMENT != "production") { ?>
