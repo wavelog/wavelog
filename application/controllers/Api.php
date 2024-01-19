@@ -425,6 +425,12 @@ class API extends CI_Controller {
 			die();
 		}
 
+		if(!isset($obj['radio'])) {
+			http_response_code(404);
+			echo json_encode(['status' => 'failed', 'reason' => "missing radio element in payload"]);
+			die();
+		}
+
 		$this->api_model->update_last_used($obj['key']);
 
 		$user_id = $this->api_model->key_userid($obj['key']);
