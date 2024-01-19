@@ -34,7 +34,7 @@ $lang['account_hamradio_information'] = "HAM信息";
 $lang['account_callsign'] = '呼号';
 $lang['account_gridsquare'] = '网格坐标';
 
-$lang['account_cloudlog_preferences'] = '偏好';
+$lang['account_wavelog_preferences'] = '偏好';
 $lang['account_timezone'] = '时区';
 $lang['account_date_format'] = '日期格式';
 $lang['account_log_end_time'] = '单独记录QSO结束时间';
@@ -48,8 +48,8 @@ $lang['account_quicklog_enter_search'] = "查询呼号";
 $lang['account_measurement_preferences'] = '距离单位选择';
 $lang['account_select_how_you_would_like_dates_shown_when_logged_into_your_account'] = '选择您登录账户时显示偏好的日期格式';
 $lang['account_choose_which_unit_distances_will_be_shown_in'] = '选择距离单位';
-$lang['account_cloudlog_language'] = 'Cloudlog语言';
-$lang['account_choose_cloudlog_language'] = '选择Cloudlog语言';
+$lang['account_wavelog_language'] = 'Wavelog语言';
+$lang['account_choose_wavelog_language'] = '选择Wavelog语言';
 
 $lang['account_main_menu'] = '主菜单';
 $lang['account_show_notes_in_the_main_menu'] = '在主菜单显示便签';
@@ -102,7 +102,7 @@ $lang['account_confirm_password'] = '确认密码';
 
 $lang['account_forgot_your_password'] = '忘记密码？';
 
-$lang['account_login_to_cloudlog'] = '登录Cloudlog';
+$lang['account_login_to_wavelog'] = '登录Wavelog';
 $lang['account_login'] = '登录';
 
 $lang['account_mastodon'] = 'Mastodon服务器';
@@ -114,7 +114,7 @@ $lang['account_gridmap_default_band'] = '默认波段';
 $lang['account_qsl_settings'] = '默认QSL方式';
 
 $lang['account_winkeyer'] = 'Winkeyer';
-$lang['account_winkeyer_hint'] = "Cloudlog 中对 Winkeyer 的支持是实验性的，请在使用前先阅读 <a href='https://github.com/magicbug/Cloudlog/wiki/Winkey' target='_blank'>https://github.com/magicbug/Cloudlog/wiki/Winkey</a>";
+$lang['account_winkeyer_hint'] = "Wavelog 中对 Winkeyer 的支持是实验性的，请在使用前先阅读 <a href='https://github.com/wavelog/wavelog/wiki/Winkey' target='_blank'>https://github.com/wavelog/wavelog/wiki/Winkey</a>";
 $lang['account_winkeyer_enabled'] = "启用 Winkeyer 功能";
 
 $lang['account_map_params'] = "地图设置";

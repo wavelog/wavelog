@@ -2,7 +2,7 @@
 <br>
 	<h1><?php echo $page_title; ?></h1>
 
-	<p>Welcome to Cloudlog, before you can start logging QSOs you need to carry out the following.</p>
+	<p>Welcome to Wavelog, before you can start logging QSOs you need to carry out the following.</p>
 
 	<ul class="list-group">
 		<li class="list-group-item list-group-item-danger" ><i class="fas fa-times-circle"></i> Install Country Files</li>

@@ -3,8 +3,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
-*   This migration creates a table called options which will hold global options needed within cloudlog
-*   removing the need for lots of configuration files.
+*   This migration adds a fifth column recarding to migration no. 69
 */
 
 class Migration_add_fifth_column extends CI_Migration {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Cloudlog\Dxcc;
+namespace Wavelog\Dxcc;
 
 class Dxcc {
 	protected $dxcc = array();

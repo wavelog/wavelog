@@ -3,8 +3,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
-*   This migration creates a table called options which will hold global options needed within cloudlog
-*   removing the need for lots of configuration files.
+*   Same as Migration No. 073
 */
 
 class Migration_create_station_logbook_relationship_table2 extends CI_Migration {

@@ -3,7 +3,7 @@
 /*
 	Class: Options_model
 	This model handles all database interactions for the options table
-	used for global settings within cloudlog.
+	used for global settings within wavelog.
 */
 
 class Options_model extends CI_Model {

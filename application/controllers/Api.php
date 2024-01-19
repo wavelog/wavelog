@@ -132,19 +132,19 @@ class API extends CI_Controller {
 		$this->load->model('api_model');
 		$this->load->model('stations');
 		header("Content-type: application/json");
-		if(substr($this->api_model->access($key),0,1) == 'r') { /* Checkpermission for  _r_eading */
+		if(substr($this->api_model->access($key),0,1) == 'r') { /* Check permission for reading */
 			$this->api_model->update_last_used($key);
 			$userid = $this->api_model->key_userid($key);
- 			$station_ids = array();
+			$station_ids = array();
 			$stations=$this->stations->all_of_user($userid);
- 			foreach ($stations->result() as $row) {
+			foreach ($stations->result() as $row) {
 				$result['station_id']=$row->station_id;
 				$result['station_profile_name']=$row->station_profile_name;
 				$result['station_gridsquare']=$row->station_gridsquare;
 				$result['station_callsign']=$row->station_callsign;;
 				$result['station_active']=$row->station_active;
- 				array_push($station_ids, $result);
- 			}
+				array_push($station_ids, $result);
+			}
 			echo json_encode($station_ids);
 		} else {
 			http_response_code(401);
@@ -153,10 +153,10 @@ class API extends CI_Controller {
 	}
 
 
-  	/*
+	/*
 	*
 	*	Function: QSO
-	*	Task: allows passing of ADIF data to Cloudlog
+	*	Task: allows passing of ADIF data to Wavelog
 	*/
 	function qso($dryrun = false) {
 		header('Content-type: application/json');
@@ -287,7 +287,7 @@ class API extends CI_Controller {
 				{
 					// Get associated station locations for mysql queries
 					$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($logbook_id);
-	
+
 					if (!$logbooks_locations_array) {
 						// Logbook not found
 						http_response_code(404);
@@ -366,7 +366,7 @@ class API extends CI_Controller {
 				{
 					// Get associated station locations for mysql queries
 					$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($logbook_id);
-	
+
 					if (!$logbooks_locations_array) {
 						// Logbook not found
 						http_response_code(404);
@@ -471,7 +471,7 @@ class API extends CI_Controller {
 		$this->output->enable_profiler(TRUE);
 		/*
 		*
-		*	Callsign lookup function for Cloudlogs logging page or thirdparty systems
+		*	Callsign lookup function for Wavelogs logging page or thirdparty systems
 		*	which want to show previous QSO data on their system.
 		*
 		*	TODO

@@ -49,7 +49,7 @@ ________________________________________________________________________________
 $lang['awards_dxcc_description_ln1'] = "DXCC Diplom";
 $lang['awards_dxcc_description_ln2'] = "DXCC steht für 'DX Century Club', eine Auszeichnung, die auf gearbeiteten Ländern basiert. Die DXCC-Liste basiert auf einem Artikel, der 1935 von Clinton B. DeSoto, W1CBD, mit dem Titel <a href='http://www.arrl.org/desoto' target='_blank'>'How to Count Countries Worked, A New DX Scoring System'</a> erstellt wurde.";
 $lang['awards_dxcc_description_ln3'] = "Sie finden alle Informationen zum DXCC Diplom auf der <a href='https://www.arrl.org/dxcc-rules' target='_blank'>ARRL-Website</a>.";
-$lang['awards_dxcc_description_ln4'] = "Wichtiger Hinweis: Im Laufe der Zeit haben sich die Kriterien für die DXCC-Liste geändert. Die Liste bleibt unverändert, bis eine Einheit die Kriterien nicht mehr erfüllt, woraufhin sie in die Gelöschte Liste verschoben wird. Sie finden gelöschte DXCC-Einheiten auch in den Listen in Cloudlog. Beachten Sie, dass diese DXCC-Einheiten veraltet und nicht mehr gültig sind.";
+$lang['awards_dxcc_description_ln4'] = "Wichtiger Hinweis: Im Laufe der Zeit haben sich die Kriterien für die DXCC-Liste geändert. Die Liste bleibt unverändert, bis eine Einheit die Kriterien nicht mehr erfüllt, woraufhin sie in die Gelöschte Liste verschoben wird. Sie finden gelöschte DXCC-Einheiten auch in den Listen in Wavelog. Beachten Sie, dass diese DXCC-Einheiten veraltet und nicht mehr gültig sind.";
 
 
 /*
@@ -95,7 +95,7 @@ ________________________________________________________________________________
 */
 
 $lang['awards_sig_description_ln1'] = "SIG-Information";
-$lang['awards_sig_description_ln2'] = "Die SIG- oder Signature-Kategorie ermöglicht die Verwendung beliebiger 'Diplom-Identifikationen' für Diplome, die nicht in Cloudlog implementiert sind.";
+$lang['awards_sig_description_ln2'] = "Die SIG- oder Signature-Kategorie ermöglicht die Verwendung beliebiger 'Diplom-Identifikationen' für Diplome, die nicht in Wavelog implementiert sind.";
 $lang['awards_sig_description_ln3'] = "Der Grund dafür ist, dass das gängige ADIF-Format nur wenige dedizierte Felder für bestimmte Diplome bietet. SIG ermöglicht es dennoch, alle anderen Arten von Signaturmarkierungen zu verwenden und auszuwerten.";
 $lang['awards_sig_description_ln4'] = "Im QSO-Verarbeitung finden Sie zwei Felder: 'SIG' enthält die tatsächliche Markierung, die auch in der Auswertung der Auszeichnung sichtbar ist, und 'SIG INFO', das eine Beschreibung der Signatur enthält. Beide Felder sind frei anpassbar.";
 

@@ -2,8 +2,8 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$lang['admin_user_line1'] = 'Cloudlog至少需要配置一个用户才能运行。';
-$lang['admin_user_line2'] = '用户可以被分配不同的角色，这些角色赋予他们不同的权限，例如向日志簿添加 QSO 和访问Cloudlog API。';
+$lang['admin_user_line1'] = 'Wavelog至少需要配置一个用户才能运行。';
+$lang['admin_user_line2'] = '用户可以被分配不同的角色，这些角色赋予他们不同的权限，例如向日志簿添加 QSO 和访问Wavelog API。';
 $lang['admin_user_line3'] = '页面右上方显示当前登录的用户。';
 $lang['admin_user_line4'] = "通过'重置密码'按钮，你可以向用户发送一封带有重置密码链接的邮件。您需要确保全局设定中的邮件设置配置正确";
 

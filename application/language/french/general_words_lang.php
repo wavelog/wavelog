@@ -110,8 +110,8 @@ $lang['general_total_distance'] = "Distance Totale";
 // PHP Upload Warning
 $lang['gen_max_file_upload_size'] = "La taille maximum d'un fichier à télécharger est";
 
-// Cloudlog Terms
-$lang['cloudlog_station_profile'] = "Profil de la Station";
+// Wavelog Terms
+$lang['wavelog_station_profile'] = "Profil de la Station";
 
 // ham radio terms
 $lang['gen_hamradio_cq'] = "CQ";

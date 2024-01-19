@@ -41,12 +41,12 @@ $lang['adif_mark_imported_qrz'] = "Indiquer que les QSO importés ont été tél
 $lang['adif_mark_imported_clublog'] = "Indiquer que les QSO importés ont été téléchargés dans le journal Clublog";
 
 $lang['adif_dxcc_from_adif'] = "Utiliser l'information du DXCC issue du fichier ADIF";
-$lang['adif_dxcc_from_adif_hint'] = "(Si cochée, Cloudlog tentera de déterminer automatiquement les informations DXCC.)";
+$lang['adif_dxcc_from_adif_hint'] = "(Si cochée, Wavelog tentera de déterminer automatiquement les informations DXCC.)";
 
 $lang['adif_always_use_login_call_as_op'] = "Toujours utiliser l'indicatif de connexion comme nom d'opérateur lors de l'import";
 
 $lang['adif_ignore_station_call'] = "Ignorer l'indicatif de la station lors de l'import";
-$lang['adif_ignore_station_call_hint'] = "(Si cochée, Cloudlog tentera d'importer <b><u>TOUS</u></b> les QSO de l'ADIF, qu'ils correspondent ou non à l'emplacement de la station choisie)";
+$lang['adif_ignore_station_call_hint'] = "(Si cochée, Wavelog tentera d'importer <b><u>TOUS</u></b> les QSO de l'ADIF, qu'ils correspondent ou non à l'emplacement de la station choisie)";
 
 $lang['adif_upload'] = "Importer";
 
@@ -94,10 +94,10 @@ $lang['only_confirmed_qsos'] = "Importez uniquement les données DOK des QSO con
 $lang['only_confirmed_qsos_hint'] = "(Décoché, si vous souhaitez également mettre à jour DOK, avec les données des QSO non confirmés dans DCL)";
 
 $lang['overwrite_by_dcl'] = "Remplacer le DOC existant dans le journal par DCL (si différent)";
-$lang['overwrite_by_dcl_hint'] = "(Si cochée, Cloudlog écrasera de force le DOK existant par le DOK du journal DCL)";
+$lang['overwrite_by_dcl_hint'] = "(Si cochée, Wavelog écrasera de force le DOK existant par le DOK du journal DCL)";
 
 $lang['ignore_ambiguous'] = "Ignorer les QSO qui ne correspondent pas";
-$lang['ignore_ambiguous_hint'] = "(Si non cochée, les informations sur les QSO qui n'ont pas pu être trouvées dans Cloudlog seront affichées)";
+$lang['ignore_ambiguous_hint'] = "(Si non cochée, les informations sur les QSO qui n'ont pas pu être trouvées dans Wavelog seront affichées)";
 
 /*
 ___________________________________________________________________________________________

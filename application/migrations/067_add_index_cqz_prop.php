@@ -3,8 +3,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
-*   This migration creates a table called options which will hold global options needed within cloudlog
-*   removing the need for lots of configuration files.
+*   This migration adds index to COL_CQZ and COL_PROP_MODE in the QSO table.
 */
 
 class Migration_add_index_cqz_prop extends CI_Migration {

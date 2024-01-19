@@ -37,7 +37,7 @@
  * @author Laurent PASSEBECQ
  * @copyright 2003 Laurent PASSEBECQ
 **/
-namespace Cloudlog\Label;
+namespace Wavelog\Label;
 
 class PDF_Label extends tfpdf {
 

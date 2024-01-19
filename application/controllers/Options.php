@@ -33,7 +33,7 @@ class Options extends CI_Controller {
 
 		//echo $this->optionslib->get_option('theme');
 
-		$data['page_title'] = $this->lang->line('options_cloudlog_options');
+		$data['page_title'] = $this->lang->line('options_wavelog_options');
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('options/index');
@@ -47,7 +47,7 @@ class Options extends CI_Controller {
 		$directory = 'application/language';
 		$data['language_options'] = array_diff(scandir($directory), array('..', '.'));
 
-		$data['page_title'] = $this->lang->line('options_cloudlog_options');
+		$data['page_title'] = $this->lang->line('options_wavelog_options');
 		$data['sub_heading'] = $this->lang->line('options_appearance');
 
 		$this->load->model('Themes_model');
@@ -66,7 +66,7 @@ class Options extends CI_Controller {
 		$directory = 'application/language';
 		$data['language_options'] = array_diff(scandir($directory), array('..', '.'));
 
-		$data['page_title'] = $this->lang->line('options_cloudlog_options');
+		$data['page_title'] = $this->lang->line('options_wavelog_options');
 		$data['sub_heading'] = $this->lang->line('options_appearance');
 
 		$this->load->helper(array('form', 'url'));
@@ -138,7 +138,7 @@ class Options extends CI_Controller {
 
 	// function used to display the /dxcluster url
 	function dxcluster() {
-			$data['page_title'] = $this->lang->line('options_cloudlog_options');
+			$data['page_title'] = $this->lang->line('options_wavelog_options');
 			$data['sub_heading'] = $this->lang->line('options_dxcluster_settings');
 
 			$this->load->view('interface_assets/header', $data);
@@ -151,7 +151,7 @@ class Options extends CI_Controller {
 
 		// Get Language Options
 
-		$data['page_title'] = $this->lang->line('options_cloudlog_options');
+		$data['page_title'] = $this->lang->line('options_wavelog_options');
 		$data['sub_heading'] = $this->lang->line('options_dxcluster_settings');
 
 		$this->load->helper(array('form', 'url'));
@@ -188,7 +188,7 @@ class Options extends CI_Controller {
 		// function used to display the /radio url
 		function radio() {
 
-			$data['page_title'] = $this->lang->line('options_cloudlog_options');
+			$data['page_title'] = $this->lang->line('options_wavelog_options');
 			$data['sub_heading'] = $this->lang->line('options_radio_settings');
 
 			$this->load->view('interface_assets/header', $data);
@@ -201,7 +201,7 @@ class Options extends CI_Controller {
 
 		// Get Language Options
 
-		$data['page_title'] = $this->lang->line('options_cloudlog_options');
+		$data['page_title'] = $this->lang->line('options_wavelog_options');
 		$data['sub_heading'] = $this->lang->line('options_radio_settings');
 
 		$this->load->helper(array('form', 'url'));
@@ -234,7 +234,7 @@ class Options extends CI_Controller {
 	// function used to display the /appearance url
 	function email() {
 
-		$data['page_title'] = $this->lang->line('options_cloudlog_options');
+		$data['page_title'] = $this->lang->line('options_wavelog_options');
 		$data['sub_heading'] = $this->lang->line('options_email');
 
 		$this->load->view('interface_assets/header', $data);
@@ -247,7 +247,7 @@ class Options extends CI_Controller {
 
 			// Get Language Options
 	
-			$data['page_title'] = $this->lang->line('options_cloudlog_options');
+			$data['page_title'] = $this->lang->line('options_wavelog_options');
 			$data['sub_heading'] = $this->lang->line('options_email');
 	
 			$this->load->helper(array('form', 'url'));
@@ -274,7 +274,7 @@ class Options extends CI_Controller {
 				// Update email sender name within the options system
 				$emailSenderName_value = $this->input->post('emailSenderName');
 				if (empty($emailSenderName_value)) {
-					$emailSenderName_value = 'Cloudlog';
+					$emailSenderName_value = 'Wavelog';
 				}
 				$emailSenderNameupdate = $this->optionslib->update('emailSenderName', $emailSenderName_value, 'yes');
 
@@ -317,7 +317,7 @@ class Options extends CI_Controller {
 
 		function oqrs() {
 
-			$data['page_title'] = $this->lang->line('options_cloudlog_options');
+			$data['page_title'] = $this->lang->line('options_wavelog_options');
 			$data['sub_heading'] = $this->lang->line('options_oqrs');
 
 			$this->load->view('interface_assets/header', $data);
@@ -327,7 +327,7 @@ class Options extends CI_Controller {
 
 		function oqrs_save() {
 
-		$data['page_title'] = $this->lang->line('options_cloudlog_options');
+		$data['page_title'] = $this->lang->line('options_wavelog_options');
 		$data['sub_heading'] = $this->lang->line('options_oqrs');
 
 		$this->load->helper(array('form', 'url'));
@@ -377,7 +377,7 @@ class Options extends CI_Controller {
 
 			$this->email->from($this->optionslib->get_option('emailAddress'), $this->optionslib->get_option('emailSenderName'));
 			$this->email->to($email);
-			$this->email->subject('Cloudlog Test-Mail');
+			$this->email->subject('Wavelog Test-Mail');
 			$this->email->message($message);
 
 			if (! $this->email->send()){
@@ -395,7 +395,7 @@ class Options extends CI_Controller {
 	// function used to display the /version_dialog url
 	function version_dialog() {
 
-		$data['page_title'] = $this->lang->line('options_cloudlog_options');
+		$data['page_title'] = $this->lang->line('options_wavelog_options');
 		$data['sub_heading'] = $this->lang->line('options_version_dialog_settings');
 
 		$this->load->view('interface_assets/header', $data);
@@ -407,7 +407,7 @@ class Options extends CI_Controller {
 
 		// Get Language Options
 
-		$data['page_title'] = $this->lang->line('options_cloudlog_options');
+		$data['page_title'] = $this->lang->line('options_wavelog_options');
 		$data['sub_heading'] = $this->lang->line('options_version_dialog_settings');
 
 		$this->load->helper(array('form', 'url'));

@@ -209,7 +209,7 @@
           <!-- Station Panel Data -->
           <div class="tab-pane fade" id="station" role="tabpanel" aria-labelledby="station-tab">
             <div class="mb-3">
-              <label for="stationProfile"><?php echo lang('cloudlog_station_profile'); ?></label>
+              <label for="stationProfile"><?php echo lang('wavelog_station_profile'); ?></label>
               <select id="stationProfile" class="form-select" name="station_profile">
                 <?php
                    $power = '';

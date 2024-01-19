@@ -3,8 +3,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
-*   This migration creates a table called options which will hold global options needed within cloudlog
-*   removing the need for lots of configuration files.
+*   Allows the user to set which station logbook is the active/selected at the moment.
 */
 
 class Migration_add_active_station_logbook_to_user_table extends CI_Migration {

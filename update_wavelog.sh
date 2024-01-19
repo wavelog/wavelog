@@ -1,5 +1,5 @@
 #!/bin/bash
-# Cloudlog update script
+# Wavelog update script
 #
 # Pulls changes from Git remote and re-sets appropriate directory ownership.
 # Can be run manually or on a schedule using Cron.
@@ -7,22 +7,22 @@
 # Please check the DIR_OWNERSHIP variable carefully to make sure it is
 # appropriately set for your system!
 
-# The user and group that own the CLOUDLOG_SUBDIR directories. Passed to 'chown' as-is.
+# The user and group that own the WAVELOG_SUBDIR directories. Passed to 'chown' as-is.
 DIR_OWNERSHIP="root:www-data"
 # The list of directories that need to have ownership restored after a git pull
-declare -a CLOUDLOG_SUBDIRS=("application/config" "assets" "backup" "updates" "uploads" "images/eqsl_card_images")
+declare -a WAVELOG_SUBDIRS=("application/config" "assets" "backup" "updates" "uploads" "images/eqsl_card_images")
 # The name of the Git remote to fetch/pull from
 GIT_REMOTE="origin"
 # If true, pull from the HEAD of the configured origin, otherwise the latest tag
 BLEEDING_EDGE="true"
-# If true, restore directory ownership on CLOUDLOG_SUBDIRS after a git pull
+# If true, restore directory ownership on WAVELOG_SUBDIRS after a git pull
 RESTORE_OWNERSHIP="true"
 
 check_working_dir() {
-	# Quick sanity check to make sure that pwd looks like a Cloudlog install
+	# Quick sanity check to make sure that pwd looks like a Wavelog install
 	if [[ ! -d "$(pwd)/application" ]]
 	then
-		echo "$(pwd) doesn't look like a Cloudlog install directory! Stopping here."
+		echo "$(pwd) doesn't look like a Wavelog install directory! Stopping here."
 		exit 1
 	fi
 }
@@ -51,14 +51,14 @@ fast_forward_to_head() {
 }
 
 restore_ownership() {
-	for dir in "${CLOUDLOG_SUBDIRS[@]}"; do
+	for dir in "${WAVELOG_SUBDIRS[@]}"; do
 		echo "Setting ownership as $DIR_OWNERSHIP on $dir"
 		chown -R $DIR_OWNERSHIP $(pwd)/$dir
 	done
 }
 
 
-echo "Cloudlog update started"
+echo "Wavelog update started"
 echo "-----------------------"
 echo "Using $(pwd) as working directory"
 
@@ -83,4 +83,4 @@ if [ "$RESTORE_OWNERSHIP" = true ]; then
 	restore_ownership
 fi
 
-echo "Cloudlog update finished"
+echo "Wavelog update finished"

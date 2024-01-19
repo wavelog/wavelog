@@ -6,7 +6,7 @@
             <a class="nav-link active" id="table-tab" data-bs-toggle="tab" href="#qsodetails" role="tab" aria-controls="table" aria-selected="true"><?php echo lang('qso_details'); ?></a>
         </li>
         <li class="nav-item">
-            <a id="station-tab" class="nav-link" data-bs-toggle="tab" href="#stationdetails" role="tab" aria-controls="table" aria-selected="true"><?php echo lang('cloudlog_station_profile'); ?></a>
+            <a id="station-tab" class="nav-link" data-bs-toggle="tab" href="#stationdetails" role="tab" aria-controls="table" aria-selected="true"><?php echo lang('wavelog_station_profile'); ?></a>
         </li>
         <?php
         if ($row->COL_NOTES != null) {?>
@@ -62,7 +62,7 @@
                             // If Logged in and session exists
                             $custom_date_format = $this->session->userdata('user_date_format');
                         } else {
-                            // Get Default date format from /config/cloudlog.php
+                            // Get Default date format from /config/wavelog.php
                             $custom_date_format = $this->config->item('qso_date_format');
                         }
 
@@ -402,10 +402,10 @@
 
                         if($row->COL_SAT_NAME != null) {
                             $twitter_band_sat = $row->COL_SAT_NAME." \u{1F6F0}\u{FE0F}";
-                            $hashtags = "#hamr #cloudlog #amsat";
+                            $hashtags = "#hamr #wavelog #amsat";
                         } else {
                             $twitter_band_sat = $row->COL_BAND;
-                            $hashtags = "#hamr #cloudlog";
+                            $hashtags = "#hamr #wavelog";
                         }
                         if($row->COL_IOTA != null) {
                             $hashtags .= " #IOTA ".$row->COL_IOTA;

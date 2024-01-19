@@ -3,7 +3,7 @@
 /*
     Path: application\controllers\Welcome.php
 
-    Displays the welcome to Cloudlog version 2.0 view to help users with migration from version 1.0
+    Displays the welcome to Wavelog version 2.0 view to help users with migration from version 1.0
 */ 
 
 
@@ -17,7 +17,7 @@ class Welcome extends CI_Controller {
 
 	public function index() {
         if($this->optionslib->get_option('version2_trigger') == "false") {
-            $data['page_title'] = "Welcome to Cloudlog Version 2.0";
+            $data['page_title'] = "Welcome to Wavelog Version 2.0";
 
             // load stations model 
             $this->load->model('stations');

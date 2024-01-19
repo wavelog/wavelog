@@ -63,7 +63,7 @@ class Dashboard extends CI_Controller {
 		$setup_required = false;
 
 		if($setup_required) {
-			$data['page_title'] = "Cloudlog Setup Checklist";
+			$data['page_title'] = "Wavelog Setup Checklist";
 
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('setup/check_list');

@@ -29,7 +29,7 @@
     var lang_admin_close = "<?php echo lang('admin_close'); ?>";
     var lang_admin_clear = "<?php echo lang('admin_clear'); ?>";
 </script>
-<!-- General JS Files used across Cloudlog -->
+<!-- General JS Files used across Wavelog -->
 <script src="<?php echo base_url(); ?>assets/js/jquery-3.3.1.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery.fancybox.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/bootstrap.bundle.js"></script>
@@ -2350,7 +2350,7 @@ $(document).ready(function(){
 		// If Logged in and session exists
 		$custom_date_format = $this->session->userdata('user_date_format');
 	} else {
-		// Get Default date format from /config/cloudlog.php
+		// Get Default date format from /config/wavelog.php
 		$custom_date_format = $this->config->item('qso_date_format');
 	}
 
@@ -3019,7 +3019,7 @@ function viewEqsl(picture, callsign) {
 		// If Logged in and session exists
 		$custom_date_format = $this->session->userdata('user_date_format');
 	} else {
-		// Get Default date format from /config/cloudlog.php
+		// Get Default date format from /config/wavelog.php
 		$custom_date_format = $this->config->item('qso_date_format');
 	}
 

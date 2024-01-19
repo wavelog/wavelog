@@ -3,8 +3,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
-*   This migration creates a table called options which will hold global options needed within cloudlog
-*   removing the need for lots of configuration files.
+*   This migration adds a value to the options table which is used as cat_timeout
 */
 
 class Migration_add_cat_timeout_to_options extends CI_Migration {

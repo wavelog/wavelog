@@ -25,7 +25,7 @@ $lang['qso_sig_info_helptext'] = '例如: DA/NW-357';
 
 $lang['qso_dok_helptext'] = '例如: Q03';
 
-$lang['qso_notes_helptext'] = '仅在 Cloudlog 使用而不上传到其他的服务的笔记。';
+$lang['qso_notes_helptext'] = '仅在 Wavelog 使用而不上传到其他的服务的笔记。';
 $lang['qsl_notes_helptext'] = '此笔记内容被导出到QSL服务，如 eqsl.cc。';
 
 $lang['qso_eqsl_qslmsg_helptext'] = "获取该站的 eQSL 默认消息。";
@@ -53,7 +53,7 @@ $lang['qso_simplefle_info'] = "这是什么?";
 $lang['qso_simplefle_info_ln1'] = "简单快速日志输入 (FLE)";
 $lang['qso_simplefle_info_ln2'] = "“快速日志输入”，或简称“FLE”，是一个非常快速、高效地记录 QSO 的系统。 由于其语法，只需最少的输入即可以尽可能少的努力记录许多 QSO。";
 $lang['qso_simplefle_info_ln3'] = "FLE 最初由 DF3CB 编写。 他在他的网站上提供了一个适用于 Windows 的程序。 Simple FLE 是 OK2CQR 基于 DF3CB 的 FLE 编写的，并提供了一个 Web 界面来记录 QSO。";
-$lang['qso_simplefle_info_ln4'] = "一个常见的用例是，如果您必须野架之后将纸质日志导入电脑，现在 Cloudlog 中也提供了 SimpleFLE。 有关语法和 FLE 工作原理的信息可以在<a href='https://df3cb.com/fle/documentation/' target='_blank'>此处</a>找到。";
+$lang['qso_simplefle_info_ln4'] = "一个常见的用例是，如果您必须野架之后将纸质日志导入电脑，现在 Wavelog 中也提供了 SimpleFLE。 有关语法和 FLE 工作原理的信息可以在<a href='https://df3cb.com/fle/documentation/' target='_blank'>此处</a>找到。";
 $lang['qso_simplefle_qso_data'] = "QSO 数据";
 $lang['qso_simplefle_qso_date_hint'] = "如果您不选择日期，则将使用今天的日期。";
 $lang['qso_simplefle_qso_list'] = "QSO 列表";

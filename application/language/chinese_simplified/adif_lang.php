@@ -41,12 +41,12 @@ $lang['adif_mark_imported_qrz'] = "标记导入的QSO为已上传至 QRZ Logbook
 $lang['adif_mark_imported_clublog'] = "标记导入的QSO为已上传至 Clublog Logbook";
 
 $lang['adif_dxcc_from_adif'] = "使用ADIF文件中的DXCC信息";
-$lang['adif_dxcc_from_adif_hint'] = "如果不选择，Cloudlog将会自动判断QSO的DXCC";
+$lang['adif_dxcc_from_adif_hint'] = "如果不选择，Wavelog将会自动判断QSO的DXCC";
 
 $lang['adif_always_use_login_call_as_op'] = "总是在导入时使用登录的呼号作为操作者名称";
 
 $lang['adif_ignore_station_call'] = "导入时忽略台站的呼号";
-$lang['adif_ignore_station_call_hint'] = "如果选择，Cloudlog会尝试导入ADIF文件中的 <b>所有</b> QSO，而不判断是否与所选台站位置匹配";
+$lang['adif_ignore_station_call_hint'] = "如果选择，Wavelog会尝试导入ADIF文件中的 <b>所有</b> QSO，而不判断是否与所选台站位置匹配";
 
 $lang['adif_upload'] = "上传";
 
@@ -94,10 +94,10 @@ $lang['only_confirmed_qsos'] = "仅导入在 DCL 上确认的 QSO 的 DOK 数据
 $lang['only_confirmed_qsos_hint'] = "如果您还想使用 DCL 中未经确认的 QSO 的数据更新 DOK，请取消选中";
 
 $lang['overwrite_by_dcl'] = "用 DCL 覆盖日志中现有的 DOC（如果不同）";
-$lang['overwrite_by_dcl_hint'] = "如果选中，Cloudlog 将使用 DCL 日志中的 DOK 强制覆盖现有的 DOK 信息。";
+$lang['overwrite_by_dcl_hint'] = "如果选中，Wavelog 将使用 DCL 日志中的 DOK 强制覆盖现有的 DOK 信息。";
 
 $lang['ignore_ambiguous'] = "忽略无法匹配的 QSO";
-$lang['ignore_ambiguous_hint'] = "如果不勾选，会显示 Cloudlog 中无法匹配的 QSO 信息";
+$lang['ignore_ambiguous_hint'] = "如果不勾选，会显示 Wavelog 中无法匹配的 QSO 信息";
 
 /*
 ___________________________________________________________________________________________

@@ -41,12 +41,12 @@ $lang['adif_mark_imported_qrz'] = "Marcar QSOs importadas como subidas al libro 
 $lang['adif_mark_imported_clublog'] = "Marcar QSOs importadas como subidas al libro de guardia de Clublog Logbook";
 
 $lang['adif_dxcc_from_adif'] = "Usar la información DXCC del ADIF";
-$lang['adif_dxcc_from_adif_hint'] = "Si no se selecciona, Cloudlog intentará determinar la información DXCC automáticamente.";
+$lang['adif_dxcc_from_adif_hint'] = "Si no se selecciona, Wavelog intentará determinar la información DXCC automáticamente.";
 
 $lang['adif_always_use_login_call_as_op'] = "Siempre use el indicativo usado para iniciar sesión como el nombre de operador al importar";
 
 $lang['adif_ignore_station_call'] = "Ignorar el indicativo de la Estación al importar";
-$lang['adif_ignore_station_call_hint'] = "Si se selecciona, Cloudlog intentará importar <b>todos</b> los QSOs del ADIF, sin importar si concuerdan con la estación/localización seleccionada.";
+$lang['adif_ignore_station_call_hint'] = "Si se selecciona, Wavelog intentará importar <b>todos</b> los QSOs del ADIF, sin importar si concuerdan con la estación/localización seleccionada.";
 
 $lang['adif_upload'] = "Subir";
 
@@ -94,10 +94,10 @@ $lang['only_confirmed_qsos'] = "Solo importar datos DOK de los QSO confirmados e
 $lang['only_confirmed_qsos_hint'] = "Si se deja desactivado, se actualizarán los datos DOK con datos de los QSO no confirmados en DCL.";
 
 $lang['overwrite_by_dcl'] = "Sobreescribir los DOK existentes en el registro por DCL (si son diferentes)";
-$lang['overwrite_by_dcl_hint'] = "Si está activo, Cloudlog forzará la sobreescritura de los DOK existentes con los DOK desde el libro de DCL.";
+$lang['overwrite_by_dcl_hint'] = "Si está activo, Wavelog forzará la sobreescritura de los DOK existentes con los DOK desde el libro de DCL.";
 
 $lang['ignore_ambiguous'] = "Ignorar QSOs que no concuerden";
-$lang['ignore_ambiguous_hint'] = "Si se deja desactivado, se mostrará la información de QSOs que no se encuentren en Cloudlog.";
+$lang['ignore_ambiguous_hint'] = "Si se deja desactivado, se mostrará la información de QSOs que no se encuentren en Wavelog.";
 
 /*
 ___________________________________________________________________________________________
