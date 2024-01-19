@@ -409,7 +409,7 @@ class Lotw extends CI_Controller {
 
 		if($worked) {
 			// Reading p12 successful
-		    $new_password = "wavelog"; // set default password
+		    $new_password = "cloudlog"; // set default password
 			$result = null;
 			$worked = openssl_pkey_export($results['pkey'], $result, $new_password);
 
@@ -957,7 +957,7 @@ class Lotw extends CI_Controller {
 
 		$key = $sign_key;
 
-		$pkeyid = openssl_pkey_get_private($key, 'wavelog');
+		$pkeyid = openssl_pkey_get_private($key, 'cloudlog');
 		//openssl_sign($plaintext, $signature, $pkeyid, OPENSSL_ALGO_SHA1 );
 		//openssl_free_key($pkeyid);
 
