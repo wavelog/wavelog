@@ -262,6 +262,11 @@ class Lotw extends CI_Controller {
 
 				// Build File to save
 				$adif_to_save = $this->load->view('lotw_views/adif_views/adif_export', $data, TRUE);
+				if (strpos($adif_to_save, '<SIGN_LOTW_V2.0:1:6>')) {
+					// Signing failed
+					echo "Signing failed.";
+					continue;
+				}
 
 				// create folder to store upload file
 				if (!file_exists('./uploads/lotw')) {
@@ -971,6 +976,7 @@ class Lotw extends CI_Controller {
 			}
 		} else {
 			log_message('error', 'Error signing LoTW log.');
+			return null;
 		}
 
 
