@@ -148,6 +148,9 @@ $(function() {
 	$(document).on('click','.spotted_call', function() {
 		if (Date.now()-qso_window_last_seen < 2000) {
 			bc2qso.postMessage({ frequency: this.parentNode.cells[1].textContent*1000, call: this.innerText });
+			try {
+				irrelevant=fetch('http://127.0.0.1:54321/'+this.parentNode.cells[1].textContent*1000);
+			} finally {}
 		} else {
 			let cl={};
 			cl.qrg=this.parentNode.cells[1].textContent*1000;
@@ -237,5 +240,3 @@ setInterval(updateFromCAT, 3000);
 $('.radios').change(updateFromCAT);
 
 });
-
-
