@@ -11,15 +11,16 @@ class Migration_recode_lotw_keys extends CI_Migration {
 			$pkeyid = openssl_pkey_get_private(trim($row->cert_key), 'cloudlog');
 			if (!$pkeyid) {
 				log_message('error', 'Extracting private key of LoTW cert '.$row->lotw_cert_id.' failed.');
-			}
-			$pkey = null;
-			$worked = openssl_pkey_export($pkeyid, $pkey, 'wavelog');
-			if ($worked) {
-				$this->db->set('cert_key', $pkey);
-				$this->db->where('lotw_cert_id', $row->lotw_cert_id);
-				$this->db->update('lotw_certs');
 			} else {
-				log_message('error', 'Updating LoTW key id '.$row->lotw_cert_id.' failed.');
+				$pkey = null;
+				$worked = openssl_pkey_export($pkeyid, $pkey, 'wavelog');
+				if ($worked) {
+					$this->db->set('cert_key', $pkey);
+					$this->db->where('lotw_cert_id', $row->lotw_cert_id);
+					$this->db->update('lotw_certs');
+				} else {
+					log_message('error', 'Updating LoTW key id '.$row->lotw_cert_id.' failed.');
+				}
 			}
 		}
 	}
@@ -31,15 +32,16 @@ class Migration_recode_lotw_keys extends CI_Migration {
 			$pkeyid = openssl_pkey_get_private(trim($row->cert_key), 'wavelog');
 			if (!$pkeyid) {
 				log_message('error', 'Extracting private key of LoTW cert '.$row->lotw_cert_id.' failed.');
-			}
-			$pkey = null;
-			$worked = openssl_pkey_export($pkeyid, $pkey, 'cloudlog');
-			if ($worked) {
-				$this->db->set('cert_key', $pkey);
-				$this->db->where('lotw_cert_id', $row->lotw_cert_id);
-				$this->db->update('lotw_certs');
 			} else {
-				log_message('error', 'Updating LoTW key id '.$row->lotw_cert_id.' failed.');
+				$pkey = null;
+				$worked = openssl_pkey_export($pkeyid, $pkey, 'cloudlog');
+				if ($worked) {
+					$this->db->set('cert_key', $pkey);
+					$this->db->where('lotw_cert_id', $row->lotw_cert_id);
+					$this->db->update('lotw_certs');
+				} else {
+					log_message('error', 'Updating LoTW key id '.$row->lotw_cert_id.' failed.');
+				}
 			}
 		}
 	}
