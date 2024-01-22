@@ -30,6 +30,24 @@ $("a[href='#uniquetab']").on('shown.bs.tab', function(e) {
     }
 });
 
+$("a[href='#satuniquetab']").on('shown.bs.tab', function(e) {
+    if (!($('.satuniquetable').length > 0)) {
+        uniqueSatCallsigns();
+    }
+});
+
+function uniqueSatCallsigns() {
+    $.ajax({
+        url: base_url+'index.php/statistics/get_unique_sat_callsigns',
+        type: 'post',
+        success: function (data) {
+            if (data.length > 0) {
+                $(".satunique").html(data);
+            }
+        }
+    });
+}
+
 function uniqueCallsigns() {
     $.ajax({
         url: base_url+'index.php/statistics/get_unique_callsigns',
