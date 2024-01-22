@@ -162,6 +162,20 @@ class Statistics extends CI_Controller {
 		echo json_encode($satstats);
 	}
 
+	public function get_unique_sat_callsigns() {
+		$this->load->model('stats');
+
+		$result = $this->stats->unique_sat_callsigns();
+		$total_qsos['qsoarray'] = $result['qsoView'];
+		$total_qsos['satunique'] = $result['satunique'];
+		$total_qsos['modeunique'] = $result['modeunique'];
+		$total_qsos['total'] = $result['total'];
+		$total_qsos['sats'] = $this->stats->get_sats();
+		$total_qsos['modes'] = $this->stats->get_sat_modes();
+
+		$this->load->view('statistics/satuniquetable', $total_qsos);
+	}
+
 	public function get_unique_callsigns() {
 		$this->load->model('stats');
 
