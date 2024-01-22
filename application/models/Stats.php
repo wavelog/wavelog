@@ -77,7 +77,7 @@
 		$sats = $this->get_sats();
 		$modes = $this->get_sat_modes();
 
-		$satunique = $this->getUniqueSatCallsigns();
+		$satunique = $this->getUniqueSatCallsignsSat();
 		$modeunique = $this->getUniqueSatCallsignsModes();
 		
 		// Generating the band/mode table
@@ -170,6 +170,27 @@
 		$result['total'] = $this->getUniqueCallsignsTotal();
 
 		return $result;
+	}
+
+	function getUniqueSatCallsignsSat() {
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+	
+		if (!$logbooks_locations_array) {
+		  return null;
+		}
+
+		$bands = array();
+	
+		$this->db->select('count(distinct col_call) as calls, upper(col_sat_name) as sat', FALSE);
+		$this->db->where('col_prop_mode', 'SAT');
+		$this->db->where('coalesce(col_sat_name,"") != ""');
+		$this->db->where_in('station_id', $logbooks_locations_array);
+		$this->db->group_by('upper(col_sat_name)');
+	
+		$query = $this->db->get($this->config->item('table_name'));
+
+		return $query->result();
 	}
 
 	function getUniqueSatCallsigns() {
