@@ -189,6 +189,21 @@ class Statistics extends CI_Controller {
 		$this->load->view('statistics/uniquetable', $total_qsos);
 	}
 
+	public function get_total_sat_qsos() {
+		$this->load->model('stats');
+
+		$totalqsos = array();
+
+		$result = $this->stats->total_sat_qsos();
+		$total_qsos['qsoarray'] = $result['qsoView'];
+		$total_qsos['sattotal'] = $result['sattotal'];
+		$total_qsos['modetotal'] = $result['modetotal'];
+		$total_qsos['modes'] = $result['modes'];
+		$total_qsos['sats'] = $this->stats->get_sats();
+
+		$this->load->view('statistics/satqsotable', $total_qsos);
+	}
+
 	public function get_total_qsos() {
 		$this->load->model('stats');
 

@@ -334,6 +334,44 @@
 		return $query->row();
 	}
 
+	function total_sat_qsos() {
+		$qsoView = array();
+
+		$sats = $this->get_sats();
+		$modes = $this->get_sat_modes();
+
+		$sattotal = array();
+		$modetotal = array();
+		// Generating the band/mode table
+		foreach ($sats as $sat) {
+			$sattotal[$sat] = 0;
+			foreach ($modes as $mode) {
+				$qsoView [$sat][$mode] = '-';
+				$modetotal[$mode] = 0;
+			}
+		}
+
+		// Populating array with worked
+		$workedQso = $this->modeSatQso();
+		foreach ($workedQso as $line) {
+			if ($line->col_submode == null || $line->col_submode == "") {
+				$qsoView [$line->sat] [$line->col_mode] = $line->count;
+				$modetotal[$line->col_mode] += $line->count;
+			} else {
+				$qsoView [$line->sat] [$line->col_submode] = $line->count;
+				$modetotal[$line->col_submode] += $line->count;
+			}
+			$sattotal[$line->sat] += $line->count;
+		}
+
+		$result['qsoView'] = $qsoView;
+		$result['sattotal'] = $sattotal;
+		$result['modetotal'] = $modetotal;
+		$result['modes'] = $modes;
+
+		return $result;
+	}
+
 	function total_qsos() {
 		$qsoView = array();
 
@@ -369,6 +407,27 @@
 		$result['modetotal'] = $modetotal;
 
 		return $result;
+	}
+
+	function modeSatQso() {
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+	
+		if (!$logbooks_locations_array) {
+		  return null;
+		}
+
+		$bands = array();
+	
+		$this->db->select('count(*) as count, upper(col_sat_name) as sat, col_mode, coalesce(col_submode, "") col_submode', FALSE);
+		$this->db->where('coalesce(col_sat_name,"") != ""');
+		$this->db->where('col_prop_mode', 'SAT');
+		$this->db->where_in('station_id', $logbooks_locations_array);
+		$this->db->group_by('upper(col_sat_name), col_mode, coalesce(col_submode, "")');
+	
+		$query = $this->db->get($this->config->item('table_name'));
+
+		return $query->result();
 	}
 
 	function modeBandQso() {

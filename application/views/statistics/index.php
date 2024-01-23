@@ -95,6 +95,9 @@
 						<li class="nav-item">
 							<a class="nav-link" id="satunique-tab" data-bs-toggle="tab" href="#satuniquetab" role="tab" aria-controls="satuniquetab" aria-selected="false"><?php echo lang('statistics_unique_callsigns'); ?></a>
 						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="satqsos-tab" data-bs-toggle="tab" href="#satqsostab" role="tab" aria-controls="satqsostab" aria-selected="false"><?php echo lang('statistics_qsos'); ?></a>
+						</li>
 					</ul>
 				<div class="tab-content">
 					<div class="tab-pane fade show active" id="sattab" role="tabpanel" aria-labelledby="sat-tab">
@@ -117,6 +120,10 @@
 					</div>
 					<div class="tab-pane fade" id="satuniquetab" role="tabpanel" aria-labelledby="satunique-tab">
 						<div class="satunique" style="margin-top: 20px;">
+						</div>
+					</div>
+					<div class="tab-pane fade" id="satqsostab" role="tabpanel" aria-labelledby="satqsos-tab">
+						<div class="satqsos" style="margin-top: 20px;">
 						</div>
 					</div>
 				</div>
