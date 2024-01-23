@@ -93,10 +93,10 @@
 							<a class="nav-link active" id="sat-tab" data-bs-toggle="tab" href="#sattab" role="tab" aria-controls="sattab" aria-selected="true">Satellites</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" id="satunique-tab" data-bs-toggle="tab" href="#satuniquetab" role="tab" aria-controls="satuniquetab" aria-selected="false"><?php echo lang('statistics_unique_callsigns'); ?></a>
+							<a class="nav-link" id="satqsos-tab" data-bs-toggle="tab" href="#satqsostab" role="tab" aria-controls="satqsostab" aria-selected="false"><?php echo lang('statistics_qsos'); ?></a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" id="satqsos-tab" data-bs-toggle="tab" href="#satqsostab" role="tab" aria-controls="satqsostab" aria-selected="false"><?php echo lang('statistics_qsos'); ?></a>
+							<a class="nav-link" id="satunique-tab" data-bs-toggle="tab" href="#satuniquetab" role="tab" aria-controls="satuniquetab" aria-selected="false"><?php echo lang('statistics_unique_callsigns'); ?></a>
 						</li>
 					</ul>
 				<div class="tab-content">
@@ -118,12 +118,12 @@
 							</div>
 						</div>
 					</div>
-					<div class="tab-pane fade" id="satuniquetab" role="tabpanel" aria-labelledby="satunique-tab">
-						<div class="satunique" style="margin-top: 20px;">
-						</div>
-					</div>
 					<div class="tab-pane fade" id="satqsostab" role="tabpanel" aria-labelledby="satqsos-tab">
 						<div class="satqsos" style="margin-top: 20px;">
+						</div>
+					</div>
+					<div class="tab-pane fade" id="satuniquetab" role="tabpanel" aria-labelledby="satunique-tab">
+						<div class="satunique" style="margin-top: 20px;">
 						</div>
 					</div>
 				</div>
