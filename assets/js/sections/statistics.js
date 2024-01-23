@@ -37,7 +37,7 @@ $("a[href='#uniquetab']").on('shown.bs.tab', function(e) {
 });
 
 $("a[href='#satuniquetab']").on('shown.bs.tab', function(e) {
-    if (!($('.satuniquetable').length > 0)) {
+    if (!($('.satuniquetab').length > 0)) {
         uniqueSatCallsigns();
     }
 });
