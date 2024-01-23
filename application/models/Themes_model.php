@@ -64,6 +64,7 @@ class Themes_model extends CI_Model {
 	
 			return ($value !== null) ? (string) $value : null;
 		} else {
+			log_message('error', 'get_logo_from_theme failed');
 			return null;
 		}
 	}

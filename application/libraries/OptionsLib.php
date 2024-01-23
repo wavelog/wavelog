@@ -131,7 +131,11 @@ class OptionsLib {
 
         $logo = $CI->Themes_model->get_logo_from_theme($theme, $logo_location);
 
-        return $logo;
+        if ($logo != null) {
+            return $logo;
+        } else {
+            return 'no_logo_found';
+        }
     }
 
 }
