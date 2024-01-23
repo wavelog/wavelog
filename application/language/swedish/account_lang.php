@@ -102,7 +102,6 @@ $lang['account_confirm_password'] = 'Bekräfta lösenord';
 
 $lang['account_forgot_your_password'] = 'Glömt lösenord?';
 
-$lang['account_login_to_wavelog'] = 'Login to Wavelog';
 $lang['account_login'] = 'Login';
 
 $lang['account_mastodon'] = 'Mastodonserver';
