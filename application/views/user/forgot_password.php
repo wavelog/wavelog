@@ -26,7 +26,7 @@ input[type="email"] {
 </style>
 
 <main class="form-forgot">
-    <img src="<?php echo base_url(); ?>assets/logo/<?php echo $this->optionslib->get_theme(); ?>/wavelog_logo.png" class="mx-auto d-block" alt="" style="width:300px;height:300px;">
+    <img src="<?php echo base_url(); ?>assets/logo/<?php echo $this->optionslib->get_logo('main_logo'); ?>.png" class="mx-auto d-block" alt="" style="width:300px;height:300px;">
     <div class="my-2 bg-body rounded-0 shadow-sm card mb-2 shadow-sm">
         <div class="card-body">
             <div class="text-center">

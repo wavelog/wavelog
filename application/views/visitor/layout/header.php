@@ -42,9 +42,9 @@
 
 	<?php
 		if (!empty($slug)) {
-			echo '<a class="navbar-brand" href="' . site_url('visitor/'.$slug) .'"><img src="' . base_url() . 'assets/logo/' . $this->optionslib->get_theme() . '/wavelog_icon_only.png" alt="Logo" style="width:50px; height:50px;" /></a>';
+			echo '<a class="navbar-brand" href="' . site_url('visitor/'.$slug) .'"><img src="' . base_url() . 'assets/logo/' . $this->optionslib->get_logo('header_logo') . '.png" alt="Logo" style="width:50px; height:50px;" /></a>';
 		} else {
-			echo '<a class="navbar-brand" href="' . site_url() .'"><img src="' . base_url() . 'assets/logo/' . $this->optionslib->get_theme() . '/wavelog_icon_only.png" alt="Logo" style="width:50px; height:50px;" /></a>';
+			echo '<a class="navbar-brand" href="' . site_url() .'"><img src="' . base_url() . 'assets/logo/' . $this->optionslib->get_logo('header_logo') . '.png" alt="Logo" style="width:50px; height:50px;" /></a>';
 		}
 	?>
 	<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
