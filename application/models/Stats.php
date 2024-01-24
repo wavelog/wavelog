@@ -71,6 +71,57 @@
 		return $this->db->get($this->config->item('table_name'));
 	}
 
+	function unique_sat_callsigns() {
+		$qsoView = array();
+
+		$sats = $this->get_sats();
+		$modes = $this->get_sat_modes();
+
+		$satunique = $this->getUniqueSatCallsignsSat();
+		$modeunique = $this->getUniqueSatCallsignsModes();
+		
+		// Generating the band/mode table
+		foreach ($sats as $sat) {
+			$sattotal[$sat] = 0;
+			foreach ($modes as $mode) {
+				$qsoView [$sat][$mode] = '-';
+			}
+		}
+
+		foreach ($satunique as $sat) {
+			$satcalls[$sat->sat] = $sat->calls;
+		}
+
+		foreach ($modeunique as $mode) {
+			//if ($mode->col_submode == null) {
+			if ($mode->col_submode == null || $mode->col_submode == "") {
+				$modecalls[$mode->col_mode] = $mode->calls;
+			} else {
+				$modecalls[$mode->col_submode] = $mode->calls;
+			}
+		}
+
+		// Populating array with worked
+		$workedQso = $this->getUniqueSatCallsigns();
+
+		foreach ($workedQso as $line) {
+			//if ($line->col_submode == null) {
+			if ($line->col_submode == null || $line->col_submode == "") {
+				$qsoView [$line->sat] [$line->col_mode] = $line->calls;
+			} else {
+				$qsoView [$line->sat] [$line->col_submode] = $line->calls;
+			}
+		}
+
+		$result['qsoView'] = $qsoView;
+		$result['satunique'] = $satcalls;
+		$result['modeunique'] = $modecalls;
+		$result['total'] = $this->getUniqueSatCallsignsTotal();
+
+		return $result;
+	}
+
+
 	function unique_callsigns() {
 		$qsoView = array();
 
@@ -79,6 +130,9 @@
 
 		$bandunique = $this->getUniqueCallsignsBands();
 		$modeunique = $this->getUniqueCallsignsModes();
+
+		$modecalls=[];
+		$bandcalls=[];
 		
 		// Generating the band/mode table
 		foreach ($bands as $band) {
@@ -121,6 +175,48 @@
 		return $result;
 	}
 
+	function getUniqueSatCallsignsSat() {
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+	
+		if (!$logbooks_locations_array) {
+		  return null;
+		}
+
+		$bands = array();
+	
+		$this->db->select('count(distinct col_call) as calls, upper(col_sat_name) as sat', FALSE);
+		$this->db->where('col_prop_mode', 'SAT');
+		$this->db->where('coalesce(col_sat_name,"") != ""');
+		$this->db->where_in('station_id', $logbooks_locations_array);
+		$this->db->group_by('upper(col_sat_name)');
+	
+		$query = $this->db->get($this->config->item('table_name'));
+
+		return $query->result();
+	}
+
+	function getUniqueSatCallsigns() {
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+	
+		if (!$logbooks_locations_array) {
+		  return null;
+		}
+
+		$bands = array();
+	
+		$this->db->select('count(distinct col_call) as calls, upper(col_sat_name) as sat, col_mode, coalesce(col_submode, "") col_submode', FALSE);
+		$this->db->where('col_prop_mode', 'SAT');
+		$this->db->where('coalesce(col_sat_name,"") != ""');
+		$this->db->where_in('station_id', $logbooks_locations_array);
+		$this->db->group_by('upper(col_sat_name), col_mode, coalesce(col_submode, "")');
+	
+		$query = $this->db->get($this->config->item('table_name'));
+
+		return $query->result();
+	}
+
 	function getUniqueCallsigns() {
 		$CI =& get_instance();
 		$CI->load->model('logbooks_model');
@@ -161,6 +257,27 @@
 		return $query->result();
 	}
 
+	function getUniqueSatCallsignsModes() {
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+	
+		if (!$logbooks_locations_array) {
+		  return null;
+		}
+
+		$bands = array();
+	
+		$this->db->select('count(distinct col_call) as calls, col_mode, coalesce(col_submode, "") col_submode', FALSE);
+		$this->db->where('coalesce(col_sat_name,"") != ""');
+		$this->db->where('col_prop_mode', 'SAT');
+		$this->db->where_in('station_id', $logbooks_locations_array);
+		$this->db->group_by('col_mode, coalesce(col_submode, "")');
+	
+		$query = $this->db->get($this->config->item('table_name'));
+
+		return $query->result();
+	}
+
 	function getUniqueCallsignsBands() {
 		$CI =& get_instance();
 		$CI->load->model('logbooks_model');
@@ -181,6 +298,26 @@
 		return $query->result();
 	}
 
+	function getUniqueSatCallsignsTotal() {
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+	
+		if (!$logbooks_locations_array) {
+		  return null;
+		}
+
+		$bands = array();
+	
+		$this->db->select('count(distinct col_call) as calls', FALSE);
+		$this->db->where('coalesce(col_sat_name,"") != ""');
+		$this->db->where('col_prop_mode', 'SAT');
+		$this->db->where_in('station_id', $logbooks_locations_array);
+	
+		$query = $this->db->get($this->config->item('table_name'));
+
+		return $query->row();
+	}
+
 	function getUniqueCallsignsTotal() {
 		$CI =& get_instance();
 		$CI->load->model('logbooks_model');
@@ -198,6 +335,44 @@
 		$query = $this->db->get($this->config->item('table_name'));
 
 		return $query->row();
+	}
+
+	function total_sat_qsos() {
+		$qsoView = array();
+
+		$sats = $this->get_sats();
+		$modes = $this->get_sat_modes();
+
+		$sattotal = array();
+		$modetotal = array();
+		// Generating the band/mode table
+		foreach ($sats as $sat) {
+			$sattotal[$sat] = 0;
+			foreach ($modes as $mode) {
+				$qsoView [$sat][$mode] = '-';
+				$modetotal[$mode] = 0;
+			}
+		}
+
+		// Populating array with worked
+		$workedQso = $this->modeSatQso();
+		foreach ($workedQso as $line) {
+			if ($line->col_submode == null || $line->col_submode == "") {
+				$qsoView [$line->sat] [$line->col_mode] = $line->count;
+				$modetotal[$line->col_mode] += $line->count;
+			} else {
+				$qsoView [$line->sat] [$line->col_submode] = $line->count;
+				$modetotal[$line->col_submode] += $line->count;
+			}
+			$sattotal[$line->sat] += $line->count;
+		}
+
+		$result['qsoView'] = $qsoView;
+		$result['sattotal'] = $sattotal;
+		$result['modetotal'] = $modetotal;
+		$result['modes'] = $modes;
+
+		return $result;
 	}
 
 	function total_qsos() {
@@ -237,6 +412,27 @@
 		return $result;
 	}
 
+	function modeSatQso() {
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+	
+		if (!$logbooks_locations_array) {
+		  return null;
+		}
+
+		$bands = array();
+	
+		$this->db->select('count(*) as count, upper(col_sat_name) as sat, col_mode, coalesce(col_submode, "") col_submode', FALSE);
+		$this->db->where('coalesce(col_sat_name,"") != ""');
+		$this->db->where('col_prop_mode', 'SAT');
+		$this->db->where_in('station_id', $logbooks_locations_array);
+		$this->db->group_by('upper(col_sat_name), col_mode, coalesce(col_submode, "")');
+	
+		$query = $this->db->get($this->config->item('table_name'));
+
+		return $query->result();
+	}
+
 	function modeBandQso() {
 		$CI =& get_instance();
 		$CI->load->model('logbooks_model');
@@ -255,6 +451,31 @@
 		$query = $this->db->get($this->config->item('table_name'));
 
 		return $query->result();
+	}
+
+	function get_sats() {
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+	
+		if (!$logbooks_locations_array) {
+		  return null;
+		}
+
+		$sats = array();
+	
+		$this->db->select('distinct col_sat_name as satsort, upper(col_sat_name) as sat', FALSE);
+		$this->db->where('coalesce(col_sat_name,"") != ""');
+		$this->db->where('col_prop_mode', 'SAT');
+		$this->db->where_in('station_id', $logbooks_locations_array);
+		$this->db->order_by('satsort', 'asc');
+	
+		$query = $this->db->get($this->config->item('table_name'));
+
+		foreach($query->result() as $sat){
+			array_push($sats, $sat->sat);
+		}
+	
+		return $sats;
 	}
 
 	function get_bands() {
@@ -281,6 +502,35 @@
 		return $bands;
 	}
 
+	function get_sat_modes() {
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+	
+		if (!$logbooks_locations_array) {
+		  return null;
+		}
+
+		$modes = array();
+	
+		$this->db->select('distinct col_mode, coalesce(col_submode, "") col_submode', FALSE);
+		$this->db->where('coalesce(col_sat_name,"") != ""');
+		$this->db->where('col_prop_mode', 'SAT');
+		$this->db->where_in('station_id', $logbooks_locations_array);
+		$this->db->order_by('col_mode, col_submode', 'ASC');
+
+		$query = $this->db->get($this->config->item('table_name'));
+	
+		foreach($query->result() as $mode){
+			if ($mode->col_submode == null || $mode->col_submode == "") {
+				array_push($modes, $mode->col_mode);
+			} else {
+				array_push($modes, $mode->col_submode);
+			}
+		}
+
+		return $modes;
+	}
+	
 	function get_modes() {
 		$CI =& get_instance();
 		$CI->load->model('logbooks_model');

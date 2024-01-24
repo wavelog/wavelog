@@ -162,6 +162,20 @@ class Statistics extends CI_Controller {
 		echo json_encode($satstats);
 	}
 
+	public function get_unique_sat_callsigns() {
+		$this->load->model('stats');
+
+		$result = $this->stats->unique_sat_callsigns();
+		$total_qsos['qsoarray'] = $result['qsoView'];
+		$total_qsos['satunique'] = $result['satunique'];
+		$total_qsos['modeunique'] = $result['modeunique'];
+		$total_qsos['total'] = $result['total'];
+		$total_qsos['sats'] = $this->stats->get_sats();
+		$total_qsos['modes'] = $this->stats->get_sat_modes();
+
+		$this->load->view('statistics/satuniquetable', $total_qsos);
+	}
+
 	public function get_unique_callsigns() {
 		$this->load->model('stats');
 
@@ -173,6 +187,21 @@ class Statistics extends CI_Controller {
 		$total_qsos['bands'] = $this->stats->get_bands();
 
 		$this->load->view('statistics/uniquetable', $total_qsos);
+	}
+
+	public function get_total_sat_qsos() {
+		$this->load->model('stats');
+
+		$totalqsos = array();
+
+		$result = $this->stats->total_sat_qsos();
+		$total_qsos['qsoarray'] = $result['qsoView'];
+		$total_qsos['sattotal'] = $result['sattotal'];
+		$total_qsos['modetotal'] = $result['modetotal'];
+		$total_qsos['modes'] = $result['modes'];
+		$total_qsos['sats'] = $this->stats->get_sats();
+
+		$this->load->view('statistics/satqsotable', $total_qsos);
 	}
 
 	public function get_total_qsos() {
