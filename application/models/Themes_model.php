@@ -49,4 +49,24 @@ class Themes_model extends CI_Model {
 		$this->db->where('id', $id);
 		$this->db->update('themes', $data);
 	}
+
+	function get_logo_from_theme($theme, $logo_location) {
+		$clean_theme = $this->security->xss_clean($theme);
+		$clean_location = $this->security->xss_clean($logo_location);
+
+		$sql = "SELECT " . $clean_location . " FROM themes WHERE foldername = '" . $clean_theme . "'";
+
+		$query = $this->db->query($sql);
+
+		if ($query) {
+			$result = $query->row();
+			$value = isset($result->$clean_location) ? $result->$clean_location : null;
+	
+			return ($value !== null) ? (string) $value : null;
+		} else {
+			log_message('error', 'get_logo_from_theme failed');
+			return null;
+		}
+	}
+
 }

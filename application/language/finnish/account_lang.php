@@ -102,7 +102,6 @@ $lang['account_confirm_password'] = 'Vahvista salasana';
 
 $lang['account_forgot_your_password'] = 'Salasana unohtunut?';
 
-$lang['account_login_to_wavelog'] = 'Kirjaudu Wavelogiin';
 $lang['account_login'] = 'Kirjaudu';
 
 $lang['account_mastodon'] = 'Mastodonserver';

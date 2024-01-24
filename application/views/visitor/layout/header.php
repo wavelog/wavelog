@@ -40,13 +40,13 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light main-nav">
 <div class="container">
 
-		<?php
+	<?php
 		if (!empty($slug)) {
-			echo '<a class="navbar-brand" href="' . site_url('visitor/'.$slug) .'">Wavelog</a>';
+			echo '<a class="navbar-brand" href="' . site_url('visitor/'.$slug) .'"><img src="' . base_url() . 'assets/logo/' . $this->optionslib->get_logo('header_logo') . '.png" alt="Logo" style="width:50px; height:50px;" /></a>';
 		} else {
-			echo '<a class="navbar-brand" href="' . site_url() .'">Wavelog</a>';
+			echo '<a class="navbar-brand" href="' . site_url() .'"><img src="' . base_url() . 'assets/logo/' . $this->optionslib->get_logo('header_logo') . '.png" alt="Logo" style="width:50px; height:50px;" /></a>';
 		}
-		?>
+	?>
 	<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 
 	<div class="collapse navbar-collapse" id="navbarNav">

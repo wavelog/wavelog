@@ -102,7 +102,6 @@ $lang['account_confirm_password'] = 'Confirmar Contraseña';
 
 $lang['account_forgot_your_password'] = '¿Olvidó su contraseña?';
 
-$lang['account_login_to_wavelog'] = 'Iniciar sesión en Wavelog';
 $lang['account_login'] = 'Iniciar Sesión';
 
 $lang['account_mastodon'] = 'Servidor de Mastodon';

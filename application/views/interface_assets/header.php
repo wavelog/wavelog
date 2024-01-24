@@ -65,7 +65,7 @@
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light main-nav">
 		<div class="container">
-			<a class="navbar-brand" href="<?php echo site_url(); ?>">Wavelog</a> <?php if (ENVIRONMENT == "development") { ?><span class="badge text-bg-danger"><?php echo lang('menu_badge_developer_mode'); ?></span><?php } ?>
+			<a class="navbar-brand" href="<?php echo site_url(); ?>"><img src="<?php echo base_url(); ?>assets/logo/<?php echo $this->optionslib->get_logo('header_logo'); ?>.png" alt="Logo" style="width:50px; height:50px;" /></a> <?php if (ENVIRONMENT == "development") { ?><span class="badge text-bg-danger"><?php echo lang('menu_badge_developer_mode'); ?></span><?php } ?>
 
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 

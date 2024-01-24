@@ -102,7 +102,6 @@ $lang['account_confirm_password'] = '确认密码';
 
 $lang['account_forgot_your_password'] = '忘记密码？';
 
-$lang['account_login_to_wavelog'] = '登录Wavelog';
 $lang['account_login'] = '登录';
 
 $lang['account_mastodon'] = 'Mastodon服务器';
