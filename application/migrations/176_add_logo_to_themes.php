@@ -14,7 +14,7 @@ class Migration_add_logo_to_themes extends CI_Migration {
 		// we add a column to set the path for the main logo
 		if (!$this->db->field_exists('main_logo', 'themes')) {
 			$fields = array(
-				'main_logo varchar(50) AFTER foldername',
+				"main_logo varchar(50) DEFAULT 'wavelog_logo_default' AFTER foldername",
 			);
 
 			$this->dbforge->add_column('themes', $fields);
@@ -23,7 +23,7 @@ class Migration_add_logo_to_themes extends CI_Migration {
 		// and we set the path for the small header logo/icon
 		if (!$this->db->field_exists('header_logo', 'themes')) {
 			$fields = array(
-				'header_logo varchar(50) AFTER foldername',
+				"header_logo varchar(50) DEFAULT 'wavelog_icon_only_default' AFTER foldername",
 			);
 
 			$this->dbforge->add_column('themes', $fields);
