@@ -184,9 +184,12 @@ class CI_Log {
 			return FALSE;
 		}
 
-		# Changed to ONE File (you could use Logrotate) instead of daily files # $filepath = $this->_log_path.'log-'.date('Y-m-d').'.'.$this->_file_ext;
 		$config =& get_config();
-		$filepath = $this->_log_path.'log-'.str_replace(array("http://","https://","/"),"",$config['base_url']).'.'.$this->_file_ext;
+		if ((isset($config['one_log'])) && ($config['one_log'])) {
+			$filepath = $this->_log_path.'log-'.str_replace(array("http://","https://","/"),"",$config['base_url']).'.'.$this->_file_ext;
+		} else {
+			$filepath = $this->_log_path.'log-'.date('Y-m-d').'.'.$this->_file_ext;
+		}
 		$message = '';
 
 		if ( ! file_exists($filepath))
