@@ -72,6 +72,11 @@
 		</li>
 		<?php } ?>
 		</ul>
+		<ul class="navbar-nav ms-auto">
+			<li class="nav-item">
+				<a class="btn btn-outline-secondary" href="https://github.com/wavelog/wavelog">Wavelog on Github</a>
+			</li>
+		</ul>
 		<div class="m-2">
 			<?php if (!empty($slug)) {
 				$this->CI =& get_instance();
