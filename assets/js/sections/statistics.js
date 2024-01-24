@@ -24,11 +24,35 @@ $("a[href='#qsotab']").on('shown.bs.tab', function(e) {
     }
 });
 
+$("a[href='#satqsostab']").on('shown.bs.tab', function(e) {
+    if (!($('.satqsostab').length > 0)) {
+        totalSatQsosC();
+    }
+});
+
 $("a[href='#uniquetab']").on('shown.bs.tab', function(e) {
     if (!($('.uniquetable').length > 0)) {
         uniqueCallsigns();
     }
 });
+
+$("a[href='#satuniquetab']").on('shown.bs.tab', function(e) {
+    if (!($('.satuniquetab').length > 0)) {
+        uniqueSatCallsigns();
+    }
+});
+
+function uniqueSatCallsigns() {
+    $.ajax({
+        url: base_url+'index.php/statistics/get_unique_sat_callsigns',
+        type: 'post',
+        success: function (data) {
+            if (data.length > 0) {
+                $(".satunique").html(data);
+            }
+        }
+    });
+}
 
 function uniqueCallsigns() {
     $.ajax({
@@ -49,6 +73,18 @@ function totalQsos() {
         success: function (data) {
             if (data.length > 0) {
                 $(".qsos").html(data);
+            }
+        }
+    });
+}
+
+function totalSatQsosC() {
+    $.ajax({
+        url: base_url+'index.php/statistics/get_total_sat_qsos',
+        type: 'post',
+        success: function (data) {
+            if (data.length > 0) {
+                $(".satqsos").html(data);
             }
         }
     });

@@ -87,18 +87,46 @@
 			</div>
 
 			<div class="tab-pane fade" id="satellite" role="tabpanel" aria-labelledby="satellite-tab">
-				<br/>	
-				<div style="display: flex;" id="satContainer"><div style="flex: 1;"><canvas id="satChart" width="500" height="500"></canvas></div><div style="flex: 1;" id="satTable">
-				
-				<table style="width:100%" class="sattable table table-sm table-bordered table-hover table-striped table-condensed text-center"><thead>
-					<tr>
-					<td>#</td>
-					<td>Satellite</td>
-					<td># of QSO's worked</td>
-					</tr>
-					</thead>
-					<tbody></tbody>
-				</table></div></div>
+					<br />
+					<ul class="nav nav-pills" id="myTab3" role="tablist">
+						<li class="nav-item">
+							<a class="nav-link active" id="sat-tab" data-bs-toggle="tab" href="#sattab" role="tab" aria-controls="sattab" aria-selected="true">Satellites</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="satqsos-tab" data-bs-toggle="tab" href="#satqsostab" role="tab" aria-controls="satqsostab" aria-selected="false"><?php echo lang('statistics_qsos'); ?></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="satunique-tab" data-bs-toggle="tab" href="#satuniquetab" role="tab" aria-controls="satuniquetab" aria-selected="false"><?php echo lang('statistics_unique_callsigns'); ?></a>
+						</li>
+					</ul>
+				<div class="tab-content">
+					<div class="tab-pane fade show active" id="sattab" role="tabpanel" aria-labelledby="sat-tab">
+						<div style="display: flex;" id="satContainer">
+							<div style="flex: 1;">
+								<canvas id="satChart" width="500" height="500"></canvas>
+							</div>
+							<div style="flex: 1;" id="satTable">
+								<table style="width:100%" class="sattable table table-sm table-bordered table-hover table-striped table-condensed text-center"><thead>
+									<tr>
+									<td>#</td>
+									<td>Satellite</td>
+									<td># of QSO's worked</td>
+									</tr>
+									</thead>
+									<tbody></tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="satqsostab" role="tabpanel" aria-labelledby="satqsos-tab">
+						<div class="satqsos" style="margin-top: 20px;">
+						</div>
+					</div>
+					<div class="tab-pane fade" id="satuniquetab" role="tabpanel" aria-labelledby="satunique-tab">
+						<div class="satunique" style="margin-top: 20px;">
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 </div>
