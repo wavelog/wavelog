@@ -27,7 +27,7 @@ input[type="email"] {
 
 <main class="form-forgot">
     <img src="<?php echo base_url(); ?>assets/logo/<?php echo $this->optionslib->get_logo('main_logo'); ?>.png" class="mx-auto d-block mainLogo" alt="">
-    <div class="my-2 bg-body rounded-0 shadow-sm card mb-2 shadow-sm">
+    <div class="my-2 rounded-0 shadow-sm card mb-2 shadow-sm">
         <div class="card-body">
             <div class="text-center">
                         <h3 class="text-center"><?php echo lang('account_forgot_password'); ?> <i class="fa fa-lock"></i></h3>
