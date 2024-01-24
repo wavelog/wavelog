@@ -15,7 +15,7 @@ function echo_table_header_col($ctx, $name) {
 		case 'Band': echo '<th>'.$ctx->lang->line('gen_hamradio_band').'</td>'; break;
 		case 'Frequency': echo '<th>'.$ctx->lang->line('gen_hamradio_frequency').'</th>'; break;
 		case 'Operator': echo '<th>'.$ctx->lang->line('gen_hamradio_operator').'</th>'; break;
-		case 'Location': echo '<th>'.$ctx->lang->line('cloudlog_station_profile').'</th>'; break;
+		case 'Location': echo '<th>'.$ctx->lang->line('wavelog_station_profile').'</th>'; break;
 		case 'Name': echo '<th>'.$ctx->lang->line('general_word_name').'</th>'; break;
 	}
 }
@@ -96,7 +96,7 @@ function echoQrbCalcLink($mygrid, $grid, $vucc) {
                     // If Logged in and session exists
                     $custom_date_format = $this->session->userdata('user_date_format');
                 } else {
-                    // Get Default date format from /config/cloudlog.php
+                    // Get Default date format from /config/wavelog.php
                     $custom_date_format = $this->config->item('qso_date_format');
                 }
                 echo '<tr class="tr'.($i & 1).'" id="qso_'. $row->COL_PRIMARY_KEY .'">'; ?>

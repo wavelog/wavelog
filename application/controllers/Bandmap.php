@@ -50,7 +50,7 @@ class Bandmap extends CI_Controller {
 			// If Logged in and session exists
 			$pageData['custom_date_format'] = $CI->session->userdata('user_date_format');
 		} else {
-			// Get Default date format from /config/cloudlog.php
+			// Get Default date format from /config/wavelog.php
 			$pageData['custom_date_format'] = $CI->config->item('qso_date_format');
 		}
 

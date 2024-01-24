@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$lang['options_cloudlog_options'] = 'Настройки';
+$lang['options_wavelog_options'] = 'Настройки';
 $lang['options_message1'] = 'Это глобальные настройки, используемые для всех пользователей, которые могут быть переопределены, если есть соответствующие настройки на уровне пользователя.';
 
 $lang['options_appearance'] = 'Внешний вид';
@@ -42,8 +42,8 @@ $lang['options_mail_settings_saved'] = "Настройки сохранены у
 $lang['options_mail_settings_failed'] = "Что-то пошло не так с сохранёнными настройками. Попробуйте ещё раз.";
 $lang['options_outgoing_protocol_hint'] = "Протокол, который будет использоваться для отправки емэйл.";
 $lang['options_smtp_encryption_hint'] = "Выберите, что будет использоваться при отправке емэйл: TLS или SSL.";
-$lang['options_email_address_hint'] = "Адрес, с которого будет отправляться емэйл, к примеру, 'cloudlog@example.com'";
-$lang['options_email_sender_name_hint'] = "Имя отправителя, к примеру, 'Cloudlog'";
+$lang['options_email_address_hint'] = "Адрес, с которого будет отправляться емэйл, к примеру, 'wavelog@example.com'";
+$lang['options_email_sender_name_hint'] = "Имя отправителя, к примеру, 'Wavelog'";
 $lang['options_smtp_host_hint'] = "Адрес почтового сервера, к примеру, 'mail.example.com' (без 'ssl://' или 'tls://')";
 $lang['options_smtp_port_hint'] = "SMTP порт почтового сервера, к примеру, при использовании TLS -> '587', при использовании SSL -> '465'";
 $lang['options_smtp_username_hint'] = "Имя пользователя для входа на почтовый сервер, обычно это -- указанный выше адрес емэйл.";

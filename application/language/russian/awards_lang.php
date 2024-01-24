@@ -49,7 +49,7 @@ ________________________________________________________________________________
 $lang['awards_dxcc_description_ln1'] = "DXCC Award";
 $lang['awards_dxcc_description_ln2'] = "DXCC stands for 'DX Century Club,' an award based on worked countries. The DXCC List is based on an article created in 1935 by Clinton B. DeSoto, W1CBD, titled <a href='http://www.arrl.org/desoto' target='_blank'>'How to Count Countries Worked, A New DX Scoring System'</a>.";
 $lang['awards_dxcc_description_ln3'] = "You can find all information about the DXCC Award on the <a href='https://www.arrl.org/dxcc-rules' target='_blank'>ARRL website</a>.";
-$lang['awards_dxcc_description_ln4'] = "Important Note: Over time, the criteria for the DXCC List have changed. The List remains unchanged until an entity no longer satisfies the criteria under which it was added, at which time it is moved to the Deleted List. You will find Deleted DXCC entities also in the lists on Cloudlog. Be aware that these DXCC entities are outdated and no longer valid.";
+$lang['awards_dxcc_description_ln4'] = "Important Note: Over time, the criteria for the DXCC List have changed. The List remains unchanged until an entity no longer satisfies the criteria under which it was added, at which time it is moved to the Deleted List. You will find Deleted DXCC entities also in the lists on Wavelog. Be aware that these DXCC entities are outdated and no longer valid.";
 
 
 /*
@@ -95,7 +95,7 @@ ________________________________________________________________________________
 */
 
 $lang['awards_sig_description_ln1'] = "SIG Information";
-$lang['awards_sig_description_ln2'] = "The SIG or Signature Category provides the possibility to use any kind of 'Award Signature' for awards that are not implemented in Cloudlog.";
+$lang['awards_sig_description_ln2'] = "The SIG or Signature Category provides the possibility to use any kind of 'Award Signature' for awards that are not implemented in Wavelog.";
 $lang['awards_sig_description_ln3'] = "The reason for this is that the common ADIF format provides only a few dedicated fields for certain awards. SIG still makes it possible to use and evaluate all other types of signature markers.";
 $lang['awards_sig_description_ln4'] = "In the QSO processing, you will find two fields: 'SIG' contains the actual marker, which is also visible in the award evaluation, and 'SIG INFO,' which contains a description of the signature. Both fields are freely customizable.";
 

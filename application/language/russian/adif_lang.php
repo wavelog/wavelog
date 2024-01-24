@@ -41,12 +41,12 @@ $lang['adif_mark_imported_qrz'] = "Отметить импортированны
 $lang['adif_mark_imported_clublog'] = "Отметить импортированные QSO, как загруженные в журнал Clublog";
 
 $lang['adif_dxcc_from_adif'] = "Использовать информацию о DXCC из ADIF";
-$lang['adif_dxcc_from_adif_hint'] = "Если не отмечено, Cloudlog будет пытаться определить информацию о DXCC автоматически.";
+$lang['adif_dxcc_from_adif_hint'] = "Если не отмечено, Wavelog будет пытаться определить информацию о DXCC автоматически.";
 
 $lang['adif_always_use_login_call_as_op'] = "Всегда использовать позывной (логин) как имя оператора при импорте";
 
 $lang['adif_ignore_station_call'] = "Игнорировать позывной станции при импорте";
-$lang['adif_ignore_station_call_hint'] = "Если отмечено, Cloudlog попытается импортировать <b>все</b> QSO из ADIF, независимо от соответствия из выбранному расположению станции.";
+$lang['adif_ignore_station_call_hint'] = "Если отмечено, Wavelog попытается импортировать <b>все</b> QSO из ADIF, независимо от соответствия из выбранному расположению станции.";
 
 $lang['adif_upload'] = "Загрузить";
 
@@ -94,10 +94,10 @@ $lang['only_confirmed_qsos'] = "Импортировать только данн
 $lang['only_confirmed_qsos_hint'] = "Снисите отметку, если вы также хотите обновить данные DOK из QSO, не подтверждённых на DCL.";
 
 $lang['overwrite_by_dcl'] = "Перезаписать имеющиеся данные в журнале DOK данными из DCL (если они различны)";
-$lang['overwrite_by_dcl_hint'] = "Если отмеченно, то Cloudlog принудительно перезапишет имеющиемя данные DOK данными из журнала DCL.";
+$lang['overwrite_by_dcl_hint'] = "Если отмеченно, то Wavelog принудительно перезапишет имеющиемя данные DOK данными из журнала DCL.";
 
 $lang['ignore_ambiguous'] = "Игнорировать несовпадающиe QSO";
-$lang['ignore_ambiguous_hint'] = "Если не отмечено, будет отображена информация о QSO, не найденных в Cloudlog.";
+$lang['ignore_ambiguous_hint'] = "Если не отмечено, будет отображена информация о QSO, не найденных в Wavelog.";
 
 /*
 ___________________________________________________________________________________________

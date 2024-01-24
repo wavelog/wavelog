@@ -1,6 +1,6 @@
 <?php
 
-use Cloudlog\QSLManager\QSO;
+use Wavelog\QSLManager\QSO;
 
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
@@ -62,7 +62,7 @@ class Logbookadvanced extends CI_Controller {
 			// If Logged in and session exists
 			$pageData['custom_date_format'] = $CI->session->userdata('user_date_format');
 		} else {
-			// Get Default date format from /config/cloudlog.php
+			// Get Default date format from /config/wavelog.php
 			$pageData['custom_date_format'] = $CI->config->item('qso_date_format');
 		}
 
@@ -348,7 +348,7 @@ class Logbookadvanced extends CI_Controller {
 			// If Logged in and session exists
 			$custom_date_format = $CI->session->userdata('user_date_format');
 		} else {
-			// Get Default date format from /config/cloudlog.php
+			// Get Default date format from /config/wavelog.php
 			$custom_date_format = $CI->config->item('qso_date_format');
 		}
 

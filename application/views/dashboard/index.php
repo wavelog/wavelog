@@ -77,11 +77,11 @@ function echoQrbCalcLink($mygrid, $grid, $vucc) {
 
 	<?php if($this->optionslib->get_option('dashboard_banner') != "false") { ?>
 	<?php if($todays_qsos >= 1) { ?>
-		<div class="alert alert-success" role="alert">
+		<div class="alert alert-success" role="alert" style="margin-top: 1rem;">
 			  <?php echo lang('dashboard_you_have_had'); ?> <strong><?php echo $todays_qsos; ?></strong> <?php echo $todays_qsos != 1 ? lang('dashboard_qsos_today') : str_replace('QSOs', 'QSO', lang('dashboard_qsos_today')); ?>
 		</div>
 	<?php } else { ?>
-		<div class="alert alert-warning" role="alert">
+		<div class="alert alert-warning" role="alert" style="margin-top: 1rem;">
 			  <span class="badge text-bg-info"><?php echo lang('general_word_important'); ?></span> <i class="fas fa-broadcast-tower"></i> <?php echo lang('notice_turn_the_radio_on'); ?>
 		</div>
 	<?php } ?>
@@ -90,6 +90,12 @@ function echoQrbCalcLink($mygrid, $grid, $vucc) {
 	<?php if($current_active == 0) { ?>
 		<div class="alert alert-danger" role="alert">
 		  <?php echo lang('error_no_active_station_profile'); ?>
+		</div>
+	<?php } ?>
+
+	<?php if($themesWithoutMode != 0) { ?>
+		<div class="alert alert-danger" role="alert">
+		  	You have themes without defined theme mode. Please ask the admin to edit the themes.
 		</div>
 	<?php } ?>
 
@@ -155,7 +161,7 @@ function echoQrbCalcLink($mygrid, $grid, $vucc) {
 						// If Logged in and session exists
 						$custom_date_format = $this->session->userdata('user_date_format');
 					} else {
-						// Get Default date format from /config/cloudlog.php
+						// Get Default date format from /config/wavelog.php
 						$custom_date_format = $this->config->item('qso_date_format');
 					}
 

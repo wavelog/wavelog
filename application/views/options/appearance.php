@@ -40,7 +40,7 @@
                                     <option value='<?php echo $lang_opt; ?>' <?php if($this->optionslib->get_option('language')== $lang_opt) { echo "selected=\"selected\""; } ?>><?php echo ucfirst($lang_opt); ?></option>
                                 <?php } ?>
                             </select>
-                            <small id="langHelp" class="form-text text-muted">Select the default language for Cloudlog.</small>
+                            <small id="langHelp" class="form-text text-muted">Select the default language for Wavelog.</small>
                         </div> -->
 
                         <!-- Form options for selecting global theme choice -->

@@ -7,8 +7,8 @@ The user entered the following message:
 <?php echo $usermessage."\n"; ?>
 <?php } ?>
 
-Please log into your Cloudlog and process it.
+Please log into your Wavelog and process it.
 
 Regards,
 
-Cloudlog.
+Wavelog

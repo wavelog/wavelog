@@ -59,7 +59,7 @@ class Hamqth {
 	    $data = null;
         try {
             // URL to the XML Source
-            $xml_feed_url = 'https://www.hamqth.com/xml.php?id=' . $key . '&callsign=' . $callsign . '&prg=cloudlog';
+            $xml_feed_url = 'https://www.hamqth.com/xml.php?id=' . $key . '&callsign=' . $callsign . '&prg=wavelog';
 
             // CURL Functions
             $ch = curl_init();

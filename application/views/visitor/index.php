@@ -48,7 +48,7 @@ function echoQrbCalcLink($mygrid, $grid, $vucc) {
 </div>
 
 <!-- Map -->
-<div id="map" class="map-leaflet" style="width: 100%; height: 350px"></div>
+<div id="map" class="map-leaflet" style="width: 100%; height: 365px"></div>
 
 <div id="container" style="padding-top: 0px; margin-top: 5px;" class="container dashboard">
 
@@ -89,7 +89,7 @@ function echoQrbCalcLink($mygrid, $grid, $vucc) {
 						// If Logged in and session exists
 						$custom_date_format = $this->session->userdata('user_date_format');
 					} else {
-						// Get Default date format from /config/cloudlog.php
+						// Get Default date format from /config/wavelog.php
 						$custom_date_format = $this->config->item('qso_date_format');
 					}
 

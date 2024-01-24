@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /*
 
-	Data lookup functions used within Cloudlog
+	Data lookup functions used within Wavelog
 
 */
 class Activatorsmap extends CI_Controller {

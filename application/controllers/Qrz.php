@@ -13,7 +13,7 @@ class Qrz extends CI_Controller {
 
 	/*
 	 * Upload QSO to QRZ.com
-	 * When called from the url cloudlog/qrz/upload, the function loops through all station_id's with a qrz api key defined.
+	 * When called from the url wavelog/qrz/upload, the function loops through all station_id's with a qrz api key defined.
 	 * All QSOs not previously uploaded, will then be uploaded, one at a time
 	 */
 	public function upload() {

@@ -2,7 +2,7 @@
 
 /*
 
-	Data lookup functions used within Cloudlog
+	Data lookup functions used within Wavelog
 
 */
 

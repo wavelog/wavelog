@@ -1,4 +1,4 @@
-<div class="container settings">
+<div class="container settings mb-4">
 
 	<div class="row">
 		<!-- Nav Start -->

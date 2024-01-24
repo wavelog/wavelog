@@ -41,12 +41,12 @@ $lang['adif_mark_imported_qrz'] = "Mark imported QSOs as uploaded to QRZ Logbook
 $lang['adif_mark_imported_clublog'] = "Mark imported QSOs as uploaded to Clublog Logbook";
 
 $lang['adif_dxcc_from_adif'] = "Use DXCC information from ADIF";
-$lang['adif_dxcc_from_adif_hint'] = "If not selected, Cloudlog will attempt to determine DXCC information automatically.";
+$lang['adif_dxcc_from_adif_hint'] = "If not selected, Wavelog will attempt to determine DXCC information automatically.";
 
 $lang['adif_always_use_login_call_as_op'] = "Always use login-callsign as operator-name on import";
 
 $lang['adif_ignore_station_call'] = "Ignore Stationcallsign on import";
-$lang['adif_ignore_station_call_hint'] = "If selected, Cloudlog will try to import <b>all</b> QSO's of the ADIF, regardless if they match to the chosen station-location.";
+$lang['adif_ignore_station_call_hint'] = "If selected, Wavelog will try to import <b>all</b> QSO's of the ADIF, regardless if they match to the chosen station-location.";
 
 $lang['adif_upload'] = "Upload";
 
@@ -94,10 +94,10 @@ $lang['only_confirmed_qsos'] = "Only import DOK data from QSOs confirmed on DCL.
 $lang['only_confirmed_qsos_hint'] = "Uncheck if you also want to update DOK with data from unconfirmed QSOs in DCL.";
 
 $lang['overwrite_by_dcl'] = "Overwrite exisiting DOK in log by DCL (if different)";
-$lang['overwrite_by_dcl_hint'] = "If checked Cloudlog will forcibly overwrite existing DOK with DOK from DCL log.";
+$lang['overwrite_by_dcl_hint'] = "If checked Wavelog will forcibly overwrite existing DOK with DOK from DCL log.";
 
 $lang['ignore_ambiguous'] = "Ignore QSOs that cannot be matched";
-$lang['ignore_ambiguous_hint'] = "If unchecked information about QSO which could not be found in Cloudlog will be displayed.";
+$lang['ignore_ambiguous_hint'] = "If unchecked information about QSO which could not be found in Wavelog will be displayed.";
 
 /*
 ___________________________________________________________________________________________

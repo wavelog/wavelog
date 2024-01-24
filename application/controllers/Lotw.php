@@ -11,7 +11,7 @@ class Lotw extends CI_Controller {
 	|
 	|	Note:
 	|	If you plan on using any of the code within this class please credit
-	| 	Cloudlog or Peter, 2M0SQL, a lot of hard work went into building the
+	| 	Peter, 2M0SQL. A lot of hard work went into building the
 	|	signing of files.
 	|
 	|	Big Thanks to Rodrigo PY2RAF for all the help and information about OpenSSL
@@ -262,6 +262,11 @@ class Lotw extends CI_Controller {
 
 				// Build File to save
 				$adif_to_save = $this->load->view('lotw_views/adif_views/adif_export', $data, TRUE);
+				if (strpos($adif_to_save, '<SIGN_LOTW_V2.0:1:6>')) {
+					// Signing failed
+					echo "Signing failed.";
+					continue;
+				}
 
 				// create folder to store upload file
 				if (!file_exists('./uploads/lotw')) {
@@ -269,7 +274,7 @@ class Lotw extends CI_Controller {
 				}
 
 				// Build Filename
-				$filename_for_saving = './uploads/lotw/'.preg_replace('/[^a-z0-9]+/', '-', strtolower($data['lotw_cert_info']->callsign))."-".date("Y-m-d-H-i-s")."-cloudlog.tq8";
+				$filename_for_saving = './uploads/lotw/'.preg_replace('/[^a-z0-9]+/', '-', strtolower($data['lotw_cert_info']->callsign))."-".date("Y-m-d-H-i-s")."-wavelog.tq8";
 
 				$gzdata = gzencode($adif_to_save, 9);
 				$fp = fopen($filename_for_saving, "w");
@@ -409,7 +414,7 @@ class Lotw extends CI_Controller {
 
 		if($worked) {
 			// Reading p12 successful
-		    $new_password = "cloudlog"; // set default password
+			$new_password = "wavelog"; // set default password
 			$result = null;
 			$worked = openssl_pkey_export($results['pkey'], $result, $new_password);
 
@@ -957,17 +962,21 @@ class Lotw extends CI_Controller {
 
 		$key = $sign_key;
 
-		$pkeyid = openssl_pkey_get_private($key, 'cloudlog');
-		//openssl_sign($plaintext, $signature, $pkeyid, OPENSSL_ALGO_SHA1 );
-		//openssl_free_key($pkeyid);
+		$pkeyid = openssl_pkey_get_private($key, 'wavelog');
+		if ($pkeyid) {
+			//openssl_sign($plaintext, $signature, $pkeyid, OPENSSL_ALGO_SHA1 );
+			//openssl_free_key($pkeyid);
 
-
-		if(openssl_sign($qso_string, $signature, $pkeyid, OPENSSL_ALGO_SHA1)) {
-		  if (defined('PHP_MAJOR_VERSION') && PHP_MAJOR_VERSION < 8) {
-		    openssl_free_key($pkeyid);
-		  }
-		  $signature_b64 = base64_encode($signature);
-		  return $signature_b64;
+			if(openssl_sign($qso_string, $signature, $pkeyid, OPENSSL_ALGO_SHA1)) {
+				if (defined('PHP_MAJOR_VERSION') && PHP_MAJOR_VERSION < 8) {
+					openssl_free_key($pkeyid);
+				}
+				$signature_b64 = base64_encode($signature);
+				return $signature_b64;
+			}
+		} else {
+			log_message('error', 'Error signing LoTW log.');
+			return null;
 		}
 
 

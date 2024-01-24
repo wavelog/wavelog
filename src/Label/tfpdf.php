@@ -8,7 +8,7 @@
 *           Tycho Veltmeijer <tfpdf@tychoveltmeijer.nl> (versions 1.30+)       *
 * License:  LGPL                                                               *
 *******************************************************************************/
-namespace Cloudlog\Label;
+namespace Wavelog\Label;
 class tFPDF
 {
 const VERSION = '1.33';

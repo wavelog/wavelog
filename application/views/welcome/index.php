@@ -11,8 +11,6 @@
 
     <h1 class="display-3"><?php echo $page_title; ?></h1>
 
-    <p class="lead">After many years and hard work Cloudlog version 2.0 has finally arrived, this brings multi-user support, logbooks to group station locations, improved code with lots of speed increases sprinkled around.</p>
-
     <p class="lead">This guide is to help you get your installation configured to work with all the new features please follow it!</p>
 
     <?php if(ENVIRONMENT != "production") { ?>
@@ -60,8 +58,8 @@
             <p class="card-text">Theres some new cronjobs to add with version 2.0.</p>
 
             <code>
-            # Update the Cloudlog installation every day at midnight <br>
-            0 0 * * * /bin/bash -c "Full-Path-To-Bash-Script/cloudlog.sh" <br>
+            # Update the Wavelog installation every day at midnight <br>
+            0 0 * * * /bin/bash -c "Full-Path-To-Bash-Script/wavelog.sh" <br>
             <br>
             # Upload QSOs to Club Log (ignore cron job if this integration is not required) <br>
             0 */6 * * * curl --silent <?php echo site_url();?>/clublog/upload/username-with-clublog-login &>/dev/null <br>
@@ -99,7 +97,7 @@
     <div class="card">
         <div class="card-header">Assign ALL Station Locations to this username</div>
         <div class="card-body">
-            <p class="card-text">With Cloudlog Version 2.0, Station Locations must be associated with a user pressing the button below will assign all Station Locations to the first user in the database</p>
+            <p class="card-text">With Wavelog Version 2.0, Station Locations must be associated with a user pressing the button below will assign all Station Locations to the first user in the database</p>
             <button type="button" class="btn btn-primary" hx-post="<?php echo site_url('welcome/locationsclaim'); ?>">Associate Station Locations with the Administrator account.</button>
         </div>
     </div>
@@ -111,7 +109,7 @@
         <div class="card">
             <div class="card-header">Create Station Logbooks</div>
             <div class="card-body">
-                <p class="card-text">All the views now in Cloudlog are based around Station Logbooks, you can create as many as you want and group Station Locations it makes tracking awards a lot easier.</p>
+                <p class="card-text">All the views now in Wavelog are based around Station Logbooks, you can create as many as you want and group Station Locations it makes tracking awards a lot easier.</p>
                 <p class="card-text">You don't have one at the moment and it can cause issues so press the button below and create a default logbook, you can change this later!</p>
                 <button type="button" class="btn btn-primary" hx-post="<?php echo site_url('welcome/defaultlogbook'); ?>">Create a default logbook.</button>
             </div>
@@ -146,7 +144,7 @@
     <div class="card">
         <div class="card-header">Update Country Files</div>
         <div class="card-body">
-            <p class="card-text">Just a friendly reminder to update country files within Cloudlog so they are nice and up to date :)</p>
+            <p class="card-text">Just a friendly reminder to update country files within Wavelog so they are nice and up to date :)</p>
         </div>
     </div>
 

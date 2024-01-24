@@ -1,5 +1,5 @@
 <?php
-use Cloudlog\QSLManager\QSO;
+use Wavelog\QSLManager\QSO;
 
 class Logbookadvanced_model extends CI_Model {
 

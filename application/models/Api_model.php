@@ -30,7 +30,7 @@ class API_Model extends CI_Model {
 		$data = array(
 				'user_id' => $id,
 		);
-			
+
 		$this->db->update('api', $data);
 	}
 
@@ -73,7 +73,7 @@ class API_Model extends CI_Model {
     	// Expects either rw (Read, Write) or r (read only)
 
     	// Generate Unique Key
-    	$data['key'] = uniqid("cl");
+    	$data['key'] = uniqid("wl");
 
     	$data['rights'] = $rights;
 
@@ -189,7 +189,7 @@ class API_Model extends CI_Model {
 		return 0;
 	}
 
-	
+
 	// ARRAY: $_columnName
 	// An array matching MySQL column names to friendly names, descriptions and types
 	private $_columnName = array(

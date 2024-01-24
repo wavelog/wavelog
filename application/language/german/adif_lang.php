@@ -41,12 +41,12 @@ $lang['adif_mark_imported_qrz'] = "Markiere hochgeladene QSO als bereits zu QRZ.
 $lang['adif_mark_imported_clublog'] = "Markiere hochgeladene QSO als bereits zu Clublog hochgeladen";
 
 $lang['adif_dxcc_from_adif'] = "Benutze die DXCC Informationen aus der ADIF Datei";
-$lang['adif_dxcc_from_adif_hint'] = "Wenn diese Option nicht ausgewählt ist, wird Cloudlog versuchen die DXCC Informationen automatisch zu ermitteln.";
+$lang['adif_dxcc_from_adif_hint'] = "Wenn diese Option nicht ausgewählt ist, wird Wavelog versuchen die DXCC Informationen automatisch zu ermitteln.";
 
 $lang['adif_always_use_login_call_as_op'] = "Nutze während des Import immer das eingeloggte Rufzeichen als Operator-Name";
 
 $lang['adif_ignore_station_call'] = "Ignoriere das Stations Rufzeichen beim Import";
-$lang['adif_ignore_station_call_hint'] = "Wenn diese Option ausgewählt ist, wirdCloudlog versuchen <b>alle</b> QSO hochzuladen, unabhängig davon, ob sie mit dem aktiven Stationsstandort zusammenpassen.";
+$lang['adif_ignore_station_call_hint'] = "Wenn diese Option ausgewählt ist, wirdWavelog versuchen <b>alle</b> QSO hochzuladen, unabhängig davon, ob sie mit dem aktiven Stationsstandort zusammenpassen.";
 
 $lang['adif_upload'] = "Hochladen";
 
@@ -94,7 +94,7 @@ $lang['only_confirmed_qsos'] = "Importiere nur DOK Informationen von QSOs, die a
 $lang['only_confirmed_qsos_hint'] = "Deaktiviere diese Option, um auch DOK Infos von QSOS zu importieren, die auf DCL nicht bestätig sind.";
 
 $lang['overwrite_by_dcl'] = "Überschreibe existierende DOK im Logbuch durch DCL (wenn unterschiedlich).";
-$lang['overwrite_by_dcl_hint'] = "Wenn aktiviert, wird Cloudlog den existierenden DOK mit dem DOK aus dem DCL überschreiben.";
+$lang['overwrite_by_dcl_hint'] = "Wenn aktiviert, wird Wavelog den existierenden DOK mit dem DOK aus dem DCL überschreiben.";
 
 $lang['ignore_ambiguous'] = "Ignoriere QSOs, die nicht eindeutig zugeordnet werden können.";
 $lang['ignore_ambiguous_hint'] = "Wenn deaktiviert, werden auch Infos zu QSOs angezeigt, die im Logbuch nicht gefunden werden konnten.";

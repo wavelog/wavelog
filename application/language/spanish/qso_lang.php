@@ -25,7 +25,7 @@ $lang['qso_sig_info_helptext'] = 'Por ejemplo: DA/NW-357';
 
 $lang['qso_dok_helptext'] = 'Por ejemplo: Q03';
 
-$lang['qso_notes_helptext'] = 'El contenido es usado solo dentro de Cloudlog y no es exportado a otros servicios.';
+$lang['qso_notes_helptext'] = 'El contenido es usado solo dentro de Wavelog y no es exportado a otros servicios.';
 $lang['qsl_notes_helptext'] = 'El contenido de esta nota es exportado a servicios QSL como eqsl.cc.';
 
 $lang['qso_eqsl_qslmsg_helptext'] = "Obtener el mensaje por defecto para eQSL, para esta estación.";
@@ -53,7 +53,7 @@ $lang['qso_simplefle_info'] = "¿Qué es esto?";
 $lang['qso_simplefle_info_ln1'] = "Simple Fast Log Entry (FLE)";
 $lang['qso_simplefle_info_ln2'] = "'Fast Log Entry', o simplemente 'FLE' es un sistema para registrar QSO muy rápida y eficientemente. Debido a su sintaxis, solo se requieren pocos campos para introducir muchos QSOs con la menor cantidad de esfuerzo posible.";
 $lang['qso_simplefle_info_ln3'] = "FLE fue escrito originalmente por DF3CB. Él ofreció un programa para Windows en su sitio. Simple FLE fue escrito por OK2CQR basado en el FLE de DF3CB y provee una interfaz web para registrar QSOs.";
-$lang['qso_simplefle_info_ln4'] = "Un caso de uso común es si necesita importar sus registros manuales de una sesión a las afueras y ahora SimpleFLE está disponible en Cloudlog. La información acerca de la sintaxis y como funciona FLE se pueden encontrar <a href='https://df3cb.com/fle/documentation/' target='_blank'>aquí</a>.";
+$lang['qso_simplefle_info_ln4'] = "Un caso de uso común es si necesita importar sus registros manuales de una sesión a las afueras y ahora SimpleFLE está disponible en Wavelog. La información acerca de la sintaxis y como funciona FLE se pueden encontrar <a href='https://df3cb.com/fle/documentation/' target='_blank'>aquí</a>.";
 $lang['qso_simplefle_qso_data'] = "Datos de QSO";
 $lang['qso_simplefle_qso_date_hint'] = "Si no escoge una fecha, se usará la fecha de hoy.";
 $lang['qso_simplefle_qso_list'] = "Lista de QSOs";
@@ -67,7 +67,7 @@ $lang['qso_simplefle_utc_time'] = "Hora UTC Actual";
 $lang['qso_simplefle_enter_the_data'] = "Introduzca los Datos";
 $lang['qso_simplefle_syntax_help_close_w_sample'] = "Cerrar y Cargar Datos de Muestra";
 $lang['qso_simplefle_reload'] = "Recargar Lista de QSO";
-$lang['qso_simplefle_save'] = "Guardar en Cloudlog";
+$lang['qso_simplefle_save'] = "Guardar en Wavelog";
 $lang['qso_simplefle_clear'] = "Limpiar Sesión de Registro";
 $lang['qso_simplefle_refs_hint'] = "Las Referencias deben ser <u>S</u>OTA, <u>I</u>OTA, <u>P</u>OTA o <u>W</u>WFF";
 
@@ -91,7 +91,7 @@ $lang['qso_simplefle_syntax_help_ln1'] = "Antes de empezar a registrar un QSO, o
 $lang['qso_simplefle_syntax_help_ln2'] = "- Cada QSO nuevo debe estar en una línea nueva.";
 $lang['qso_simplefle_syntax_help_ln3'] = "- En cada nueva línea, solo escriba datos que hayan cambiado desde el QSO anterior.";
 $lang['qso_simplefle_syntax_help_ln4'] = "Para comenzar, asegúrese que ya ha rellenado el formulario en la izquierda con la fecha, el indicativo de la estación y el indicativo del operador. Los datos principales incluyen la banda (o QRG en MHz, ej., '7.145'), modo, y hora. Después de la hora, usted debe introducir el primer QSO, que es esencialmente el indicativo.";
-$lang['qso_simplefle_syntax_help_ln5'] = "Por ejemplo, un QSO que ha iniciado a las 21:34 (UTC) con 2M0SQL en 20m SSB.";
+$lang['qso_simplefle_syntax_help_ln5'] = "Por ejemplo, un QSO que ha iniciado a las 21:34 (UTC) con 4W7EST en 20m SSB.";
 $lang['qso_simplefle_syntax_help_ln6'] = "Si no introduce ninguna información RST, la sintaxis usará 59 (o 599 para datos). Nuestro siguiente QSO no era 59 en ambos lados, así que proveemos la información con el RST enviado primero. Fue 2 minutos después del primer QSO.";
 $lang['qso_simplefle_syntax_help_ln7'] = "El primer QSL fue a las 21:34, y el segundo 2 minutos después a las 21:36. Escribimos 6 porque fue el único dato que cambió. La información de banda y modo no cambió, así que estos datos se omiten.";
 $lang['qso_simplefle_syntax_help_ln8'] = "Para nuestro siguiente QSO a las 21:40 el 14 de mayo de 2021, cambiamos la banda a 40m pero seguimos en SSB. Si no se ingresa datos de RST, la sintaxis usará 59 para cada nuevo QSO. Por lo tanto podemos añadir un nuevo QSO que ocurrió a la misma hora dos días después. La fecha debe estar en el formato YYYY-MM-DD.";

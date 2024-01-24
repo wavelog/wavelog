@@ -61,7 +61,7 @@
 		}
 
 		else {
-			echo 'No stations found that are using Cloudlog OQRS.';
+			echo 'No stations found that are using Wavelog OQRS.';
 		}
 	}
 		?>

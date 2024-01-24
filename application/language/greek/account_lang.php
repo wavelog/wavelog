@@ -34,7 +34,7 @@ $lang['account_hamradio_information'] = "Ham Radio";
 $lang['account_callsign'] = 'Callsign';
 $lang['account_gridsquare'] = 'Gridsquare';
 
-$lang['account_cloudlog_preferences'] = 'Cloudlog Preferences';
+$lang['account_wavelog_preferences'] = 'Wavelog Preferences';
 $lang['account_timezone'] = 'Timezone';
 $lang['account_date_format'] = 'Date Format';
 $lang['account_log_end_time'] = 'Log End Times for QSOs Separately';
@@ -48,8 +48,8 @@ $lang['account_quicklog_enter_search'] = "Search Callsign";
 $lang['account_measurement_preferences'] = 'Measurement preference';
 $lang['account_select_how_you_would_like_dates_shown_when_logged_into_your_account'] = 'Select how you would like dates shown when logged into your account.';
 $lang['account_choose_which_unit_distances_will_be_shown_in'] = 'Choose which unit distances will be shown in';
-$lang['account_cloudlog_language'] = 'Cloudlog Language';
-$lang['account_choose_cloudlog_language'] = 'Choose Cloudlog language.';
+$lang['account_wavelog_language'] = 'Wavelog Language';
+$lang['account_choose_wavelog_language'] = 'Choose Wavelog language.';
 
 $lang['account_main_menu'] = 'Menu Options';
 $lang['account_show_notes_in_the_main_menu'] = 'Show notes in the main menu.';
@@ -102,7 +102,6 @@ $lang['account_confirm_password'] = 'Confirm Password';
 
 $lang['account_forgot_your_password'] = 'Forgot your password?';
 
-$lang['account_login_to_cloudlog'] = 'Login to Cloudlog';
 $lang['account_login'] = 'Login';
 
 $lang['account_mastodon'] = 'Mastodonserver';
@@ -114,7 +113,7 @@ $lang['account_gridmap_default_band'] = 'Default Band';
 $lang['account_qsl_settings'] = 'Default QSL-Methods';
 
 $lang['account_winkeyer'] = 'Winkeyer';
-$lang['account_winkeyer_hint'] = "Winkeyer support in Cloudlog is very experimental read the wiki first at <a href='https://github.com/magicbug/Cloudlog/wiki/Winkey' target='_blank'>https://github.com/magicbug/Cloudlog/wiki/Winkey</a> before enabling.";
+$lang['account_winkeyer_hint'] = "Winkeyer support in Wavelog is very experimental read the wiki first at <a href='https://github.com/wavelog/wavelog/wiki/Winkey' target='_blank'>https://github.com/wavelog/wavelog/wiki/Winkey</a> before enabling.";
 $lang['account_winkeyer_enabled'] = "Winkeyer Features Enabled";
 
 $lang['account_map_params'] = "Map Settings";

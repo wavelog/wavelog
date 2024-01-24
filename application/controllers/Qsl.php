@@ -183,7 +183,7 @@ class Qsl extends CI_Controller {
 
 }
 
-// Functions for storage, these need shifted to a libary to use across Cloudlog
+// Functions for storage, these need shifted to a libary to use across Wavelog
 function folderSize($dir){
     $count_size = 0;
     $count = 0;

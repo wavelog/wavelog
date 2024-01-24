@@ -110,8 +110,8 @@ $lang['general_total_distance'] = 'Kokonaismatka';
 // PHP Upload Warning
 $lang['gen_max_file_upload_size'] = 'Maximum file upload size is ';
 
-// Cloudlog Terms
-$lang['cloudlog_station_profile'] = 'Asemaprofiili';
+// Wavelog Terms
+$lang['wavelog_station_profile'] = 'Asemaprofiili';
 
 // ham radio terms
 $lang['gen_hamradio_cq'] = "CQ";

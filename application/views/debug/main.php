@@ -6,7 +6,7 @@
     <div class="col">
 
         <div class="card">
-            <div class="card-header">Cloudlog Information</div>
+            <div class="card-header">Wavelog Information</div>
             <div class="card-body">
                 <table width="100%">
                     <tr>
@@ -67,7 +67,7 @@
         <div class="card">
             <div class="card-header">Folder Permissions</div>
             <div class="card-body">
-                <p>This checks the folders Cloudlog uses are read and writeable by PHP.</p>
+                <p>This checks the folders Wavelog uses are read and writeable by PHP.</p>
                 <table width="100%">
                     <tr>
                         <td>/backup</td>
@@ -156,6 +156,17 @@
                     </tr>
 
                     <tr>
+                        <td>zip</td>
+                        <td>
+                            <?php if(in_array  ('zip', get_loaded_extensions())) { ?>
+                                <span class="badge text-bg-success">Installed</span>
+                            <?php } else { ?>
+                                <span class="badge text-bg-danger">Not Installed</span>
+                            <?php } ?>
+                        </td>
+                    </tr>
+
+                    <tr>
                         <td>openssl</td>
                         <td>
                             <?php if(in_array  ('openssl', get_loaded_extensions())) { ?>
@@ -193,9 +204,9 @@
 						$branch = substr($pieces[1], strpos($pieces[1], '/')+1);
 						$url = trim(exec('git remote get-url '.$remote));
 						if (strpos($url, 'https://github.com') !== false) {
-							$owner = preg_replace('/https:\/\/github\.com\/(\w+)\/Cloudlog\.git/', '$1', $url);
+							$owner = preg_replace('/https:\/\/github\.com\/(\w+)\/Wavelog\.git/', '$1', $url);
 						} else if (strpos($url, 'git@github.com') !== false) {
-							$owner = preg_replace('/git@github\.com:(\w+)\/Cloudlog\.git/', '$1', $url);
+							$owner = preg_replace('/git@github\.com:(\w+)\/Wavelog\.git/', '$1', $url);
 						}
 					}
 					$tag = trim(exec('git describe --tags '.$commitHash));
@@ -215,7 +226,7 @@
                         <td>
                             <?php if($branch != "") { ?>
                                 <?php if($owner != "") { ?>
-                                    <a target="_blank" href="https://github.com/<?php echo $owner; ?>/Cloudlog/tree/<?php echo $branch?>">
+                                    <a target="_blank" href="https://github.com/<?php echo $owner; ?>/Wavelog/tree/<?php echo $branch?>">
                                 <?php } ?>
                                     <span class="badge text-bg-success"><?php echo $branch; ?></span>
                                 <?php if($owner != "") { ?>
@@ -231,7 +242,7 @@
                         <td>Commit</td>
                         <td>
                             <?php if($commitHash != "") { ?>
-                                <a target="_blank" href="https://github.com/magicbug/Cloudlog/commit/<?php echo $commitHash?>"><span class="badge text-bg-success"><?php echo substr($commitHash,0,8); ?></span></a>
+                                <a target="_blank" href="https://github.com/wavelog/wavelog/commit/<?php echo $commitHash?>"><span class="badge text-bg-success"><?php echo substr($commitHash,0,8); ?></span></a>
                             <?php } else { ?>
                                 <span class="badge text-bg-danger">n/a</span>
                             <?php } ?>
@@ -241,7 +252,7 @@
                         <td>Tag</td>
                         <td>
                             <?php if($commitHash != "") { ?>
-                                <a target="_blank" href="https://github.com/magicbug/Cloudlog/releases/tag/<?php echo substr($tag,0,strpos($tag, '-')); ?>"><span class="badge text-bg-success"><?php echo $tag; ?></span></a>
+                                <a target="_blank" href="https://github.com/wavelog/wavelog/releases/tag/<?php echo substr($tag,0,strpos($tag, '-')); ?>"><span class="badge text-bg-success"><?php echo $tag; ?></span></a>
                             <?php } else { ?>
                                 <span class="badge text-bg-danger">n/a</span>
                             <?php } ?>

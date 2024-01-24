@@ -2,7 +2,7 @@
 class Update extends CI_Controller {
 
 	/*
-		Controls Updating Elements of Cloudlog
+		Controls Updating Elements of Wavelog
 		Functions:
 			dxcc - imports the latest clublog cty.xml data
 			lotw_users - imports lotw users
@@ -178,18 +178,9 @@ class Update extends CI_Controller {
 		
 		$gz = gzopen($url, 'r');
 		if ($gz === FALSE) {
-            // If the download from clublog.org fails, try cloudlog.org CDN.
-            $url = "https://cdn.cloudlog.org/clublogxml.gz";
-            $gz = gzopen($url, 'r');
-
-            // Log failure to log file
-            log_message('info', 'Failed to download cty.xml from clublog.org, trying cloudlog.org CDN');
-
-            if ($gz === FALSE) {
-                $this->update_status("FAILED: Could not download from clublog.org or cloudlog.org");
-                log_message('error', 'FAILED: Could not download exceptions from clublog.org or cloudlog.org');
-                return;
-            }
+			$this->update_status("FAILED: Could not download from clublog.org");
+			log_message('error', 'FAILED: Could not download exceptions from clublog.org');
+			return;
 		}
 
 		$data = "";
@@ -363,7 +354,7 @@ class Update extends CI_Controller {
         $f = fopen('./updates/lotw_users.csv', "r");
         $result = false;
         while ($row = fgetcsv($f)) {
-            if ($row[0] == '2M0SQL/MM') {
+            if ($row[0] == '4W7EST/MM') {
                 $result = $row[0];
                 echo "found";
                 break;
@@ -451,7 +442,7 @@ class Update extends CI_Controller {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $csvfile);
         curl_setopt($ch, CURLOPT_HEADER, false);
-        curl_setopt($ch, CURLOPT_USERAGENT, 'Cloudlog Updater');
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $csv = curl_exec($ch);
         curl_close($ch);
@@ -495,7 +486,7 @@ class Update extends CI_Controller {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $csvfile);
         curl_setopt($ch, CURLOPT_HEADER, false);
-        curl_setopt($ch, CURLOPT_USERAGENT, 'Cloudlog Updater');
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $csv = curl_exec($ch);
         curl_close($ch);

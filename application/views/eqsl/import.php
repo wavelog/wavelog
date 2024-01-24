@@ -48,7 +48,7 @@
 			<div class="form-check">
 			  <input class="form-check-input" type="radio" name="eqslimport" id="fetch" value="fetch"  checked="checked"/>
 			  <label class="form-check-label" for="exampleRadios1">Import directly from eQSL</label>
-			  <p>Cloudlog will use the eQSL credentials from your Cloudlog user profile to connect to eQSL and download confirmations.</p>
+			  <p>Wavelog will use the eQSL credentials from your Wavelog user profile to connect to eQSL and download confirmations.</p>
 				<div class="row">
 		        	<div class="mb-3 col-sm-2">
 			          	<div class="dxatlasdatepicker input-group date" id="eqsl_force_from_date" data-target-input="nearest">

@@ -39,6 +39,15 @@
 					<small id="foldernameInputHelp" class="form-text text-muted">This is the name of the folder where your CSS-files are placed under assets/css.</small>
 				</div>
 
+				<div class="mb-3">
+					<label for="themeModeInput">Theme Mode</label>
+					<select class="form-select" id="themeModeInput" name="theme_mode">
+						<option value="light" <?php if ($theme->theme_mode == 'light') { echo " selected =\"selected\""; } ?>>Light</option>
+						<option value="dark" <?php if ($theme->theme_mode == 'dark') { echo " selected =\"selected\""; } ?>>Dark</option>
+					</select>
+					<small id="themeModeInputHelp" class="form-text text-muted">This defines wherever the theme is a light or a dark one. On this basis the Logo is chosen.</small>
+				</div>
+
 				<button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-plus-square"></i> Update Theme</button>
 
 			</form>

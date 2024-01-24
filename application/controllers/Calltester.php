@@ -1,5 +1,5 @@
 <?php
-use Cloudlog\Dxcc\Dxcc;
+use Wavelog\Dxcc\Dxcc;
 
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 

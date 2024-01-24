@@ -27,10 +27,10 @@
                 ?>
                 <div>
                     <?php
-                    $url = 'https://api.github.com/repos/magicbug/Cloudlog/releases';
+                    $url = 'https://api.github.com/repos/wavelog/wavelog/releases';
                     $options = [
                         'http' => [
-                            'header' => 'User-Agent: Cloudlog - Amateur Radio Logbook'
+                            'header' => 'User-Agent: Wavelog - Amateur Radio Logbook'
                         ]
                     ];
                     $context = stream_context_create($options);

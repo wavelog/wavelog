@@ -36,7 +36,7 @@ $lang['lotw_upload_type_must_be_adi'] = 'Deník musí být ve formátu .adi';
 $lang['lotw_pull_lotw_data_for_me'] = 'Stáhni data z LoTW';
 $lang['lotw_select_callsign'] = 'Select callsign to pull LoTW confirmations for';
 
-$lang['lotw_report_download_overview_helptext'] ='Cloudlog použije uživatelské jméno a heslo LoTW uložené ve vašem uživatelském profilu, aby vám stáhl datz LoTW.Stažen budu data od nastaveného datumu nebo od posledního stažení až do teď.';
+$lang['lotw_report_download_overview_helptext'] ='Wavelog použije uživatelské jméno a heslo LoTW uložené ve vašem uživatelském profilu, aby vám stáhl datz LoTW.Stažen budu data od nastaveného datumu nebo od posledního stažení až do teď.';
 
 // Buttons
 $lang['lotw_btn_lotw_import'] = 'Import z LoTW';

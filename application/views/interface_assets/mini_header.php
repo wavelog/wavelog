@@ -22,6 +22,6 @@
 
     <link rel="icon" href="<?php echo base_url(); ?>favicon.ico">
 
-    <title><?php if(isset($page_title)) { echo $page_title; } ?> - Cloudlog</title>
+    <title><?php if(isset($page_title)) { echo $page_title; } ?> - Wavelog</title>
   </head>
   <body>

@@ -7,14 +7,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Install Options
 |--------------------------------------------------------------------------
 |
-|	'app_name'		Name of the App 'Cloudlog'
-|	'app_version'		Set by the dev team.
-|	'directory'		directory where cloudlog is installed eg "logger"
+|	'app_name'		Name of the App 'Wavelog'
+|	'directory'		directory where wavelog is installed eg "logger"
 |	'callbook'		Selects which Callbook lookup to use defaults "hamqth" but supports "qrz"
 */
 
-$config['app_name'] = "Cloudlog";
-$config['app_version'] = "2.4.5";
+$config['app_name'] = "Wavelog";
 $config['directory'] = "logbook";
 $config['callbook'] = "hamqth"; // Options are hamqth or qrz
 $config['datadir'] = null; // default to install directory
@@ -368,6 +366,19 @@ $config['log_path'] = '';
 
 /*
 |--------------------------------------------------------------------------
+| One Logfile (true) or daily logfile?
+|--------------------------------------------------------------------------
+|
+| Leave this setted to false unless you would like to have one big logfile
+| at application/logs/ directory.
+|
+| true == one big log
+| false (or non-existant): daily logs
+*/
+$config['one_log'] = false;
+
+/*
+|--------------------------------------------------------------------------
 | Log File Extension
 |--------------------------------------------------------------------------
 |
@@ -508,7 +519,7 @@ $config['encryption_key'] = 'flossie1234555541';
 |
 */
 $config['sess_driver'] = 'files';
-$config['sess_cookie_name'] = 'ci_cloudlog';
+$config['sess_cookie_name'] = 'ci_wavelog';
 $config['sess_expiration'] = 0;
 $config['sess_save_path'] = '/tmp';
 $config['sess_match_ip'] = FALSE;

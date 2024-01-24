@@ -25,7 +25,7 @@ $lang['qso_sig_info_helptext'] = 'Per esempio: DA/NW-357';
 
 $lang['qso_dok_helptext'] = 'Per esempio: Q03';
 
-$lang['qso_notes_helptext'] = 'Il contenuto della nota viene utilizzato solo all interno di Cloudlog e non viene esportato in altri servizi.';
+$lang['qso_notes_helptext'] = 'Il contenuto della nota viene utilizzato solo all interno di Wavelog e non viene esportato in altri servizi.';
 $lang['qsl_notes_helptext'] = 'Il contenuto di questa nota è esportato a servizi QSL come eqsl.cc.';
 
 $lang['qso_eqsl_qslmsg_helptext'] = "Get the default message for eQSL, for this station.";
@@ -53,7 +53,7 @@ $lang['qso_simplefle_info'] = "What is that?";
 $lang['qso_simplefle_info_ln1'] = "Simple Fast Log Entry (FLE)";
 $lang['qso_simplefle_info_ln2'] = "'Fast Log Entry', or simply 'FLE' is a system to log QSOs very quickly and efficiently. Due to its syntax, only a minimum of input is required to log many QSOs with as little effort as possible.";
 $lang['qso_simplefle_info_ln3'] = "FLE was originally written by DF3CB. He offers a program for Windows on his website. Simple FLE was written by OK2CQR based on DF3CB's FLE and provides a web interface to log QSOs.";
-$lang['qso_simplefle_info_ln4'] = "A common use-case is if you have to import your paperlogs from a outdoor session and now SimpleFLE is also available in Cloudlog. Information about the syntax and how FLE works can be found <a href='https://df3cb.com/fle/documentation/' target='_blank'>here</a>.";
+$lang['qso_simplefle_info_ln4'] = "A common use-case is if you have to import your paperlogs from a outdoor session and now SimpleFLE is also available in Wavelog. Information about the syntax and how FLE works can be found <a href='https://df3cb.com/fle/documentation/' target='_blank'>here</a>.";
 $lang['qso_simplefle_qso_data'] = "QSO Data";
 $lang['qso_simplefle_qso_date_hint'] = "If you don't choose a date, today's date will be used.";
 $lang['qso_simplefle_qso_list'] = "QSO List";
@@ -67,7 +67,7 @@ $lang['qso_simplefle_utc_time'] = "Current UTC Time";
 $lang['qso_simplefle_enter_the_data'] = "Enter the Data";
 $lang['qso_simplefle_syntax_help_close_w_sample'] = "Close and Load Sample Data";
 $lang['qso_simplefle_reload'] = "Reload QSO List";
-$lang['qso_simplefle_save'] = "Save in Cloudlog";
+$lang['qso_simplefle_save'] = "Save in Wavelog";
 $lang['qso_simplefle_clear'] = "Clear Logging Session";
 $lang['qso_simplefle_refs_hint'] = "The Refs can be either <u>S</u>OTA, <u>I</u>OTA, <u>P</u>OTA or <u>W</u>WFF";
 
@@ -91,7 +91,7 @@ $lang['qso_simplefle_syntax_help_ln1'] = "Before starting to log a QSO, please n
 $lang['qso_simplefle_syntax_help_ln2'] = "- Each new QSO should be on a new line.";
 $lang['qso_simplefle_syntax_help_ln3'] = "- On each new line, only write data that has changed from the previous QSO.";
 $lang['qso_simplefle_syntax_help_ln4'] = "To begin, ensure you have already filled in the form on the left with the date, station call, and operator's call. The main data includes the band (or QRG in MHz, e.g., '7.145'), mode, and time. After the time, you provide the first QSO, which is essentially the callsign.";
-$lang['qso_simplefle_syntax_help_ln5'] = "For example, a QSO that started at 21:34 (UTC) with 2M0SQL on 20m SSB.";
+$lang['qso_simplefle_syntax_help_ln5'] = "For example, a QSO that started at 21:34 (UTC) with 4W7EST on 20m SSB.";
 $lang['qso_simplefle_syntax_help_ln6'] = "If you don't provide any RST information, the syntax will use 59 (599 for data). Our next QSO wasn't 59 on both sides, so we provide the information with the sent RST first. It was 2 minutes later than the first QSO.";
 $lang['qso_simplefle_syntax_help_ln7'] = "The first QSO was at 21:34, and the second one 2 minutes later at 21:36. We write down 6 because this is the only data that changed here. The information about band and mode didn't change, so this data is omitted.";
 $lang['qso_simplefle_syntax_help_ln8'] = "For our next QSO at 21:40 on 14th May, 2021, we changed the band to 40m but still on SSB. If no RST information is given, the syntax will use 59 for every new QSO. Therefore we can add another QSO which took place at the exact same time two days later. The date must be in format YYYY-MM-DD.";
