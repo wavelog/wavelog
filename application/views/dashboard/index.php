@@ -77,11 +77,11 @@ function echoQrbCalcLink($mygrid, $grid, $vucc) {
 
 	<?php if($this->optionslib->get_option('dashboard_banner') != "false") { ?>
 	<?php if($todays_qsos >= 1) { ?>
-		<div class="alert alert-success" role="alert">
+		<div class="alert alert-success" role="alert" style="margin-top: 1rem;">
 			  <?php echo lang('dashboard_you_have_had'); ?> <strong><?php echo $todays_qsos; ?></strong> <?php echo $todays_qsos != 1 ? lang('dashboard_qsos_today') : str_replace('QSOs', 'QSO', lang('dashboard_qsos_today')); ?>
 		</div>
 	<?php } else { ?>
-		<div class="alert alert-warning" role="alert">
+		<div class="alert alert-warning" role="alert" style="margin-top: 1rem;">
 			  <span class="badge text-bg-info"><?php echo lang('general_word_important'); ?></span> <i class="fas fa-broadcast-tower"></i> <?php echo lang('notice_turn_the_radio_on'); ?>
 		</div>
 	<?php } ?>

@@ -42,7 +42,7 @@
 
 	<?php
 		if (!empty($slug)) {
-			echo '<a class="navbar-brand" href="' . site_url('visitor/'.$slug) .'"><img src="' . base_url() . 'assets/logo/' . $this->optionslib->get_logo('header_logo') . '.png" alt="Logo" style="width:50px; height:50px;" /></a>';
+			echo '<a class="navbar-brand" href="' . site_url('visitor/'.$slug) .'"><img class="headerLogo" src="' . base_url() . 'assets/logo/' . $this->optionslib->get_logo('header_logo') . '.png" alt="Logo"/></a>';
 		} else {
 			echo '<a class="navbar-brand" href="' . site_url() .'"><img src="' . base_url() . 'assets/logo/' . $this->optionslib->get_logo('header_logo') . '.png" alt="Logo" style="width:50px; height:50px;" /></a>';
 		}
