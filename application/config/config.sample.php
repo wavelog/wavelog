@@ -366,6 +366,19 @@ $config['log_path'] = '';
 
 /*
 |--------------------------------------------------------------------------
+| One Logfile (true) or daily logfile?
+|--------------------------------------------------------------------------
+|
+| Leave this setted to false unless you would like to have one big logfile
+| at application/logs/ directory.
+|
+| true == one big log
+| false (or non-existant): daily logs
+*/
+$config['one_log'] = false;
+
+/*
+|--------------------------------------------------------------------------
 | Log File Extension
 |--------------------------------------------------------------------------
 |
