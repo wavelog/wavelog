@@ -130,6 +130,9 @@
 
 		$bandunique = $this->getUniqueCallsignsBands();
 		$modeunique = $this->getUniqueCallsignsModes();
+
+		$modecalls=[];
+		$bandcalls=[];
 		
 		// Generating the band/mode table
 		foreach ($bands as $band) {
