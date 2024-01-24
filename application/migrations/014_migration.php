@@ -87,7 +87,7 @@ class Migration_migration extends CI_Migration {
 
 		$this->db->query("ALTER TABLE ".$this->config->item('table_name')." CHANGE COLUMN COL_FREQ_RX COL_FREQ_RX bigint(13) DEFAULT NULL; # was int(11) DEFAULT NULL");
 		$this->db->query("ALTER TABLE ".$this->config->item('table_name')." CHANGE COLUMN COL_FREQ COL_FREQ bigint(13) DEFAULT NULL; # was int(11) DEFAULT NULL");
-		$this->db->query("ALTER TABLE ".$this->config->item('table_name')." ENGINE=MyISAM DEFAULT CHARSET=utf8mb4; # was ENGINE=MyISAM DEFAULT CHARSET=latin1");
+		// $this->db->query("ALTER TABLE ".$this->config->item('table_name')." ENGINE=MyISAM DEFAULT CHARSET=utf8mb4; # was ENGINE=MyISAM DEFAULT CHARSET=latin1"); // Is already MyISAM
 
 		$this->db->db_debug = true;
 	}
