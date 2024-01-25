@@ -46,6 +46,11 @@ class Logbookadvanced extends CI_Controller {
 			$data['options'] = $userOptions[0]->option_value;
 		}
 
+		$active_station_id = $this->stations->find_active();
+        $station_profile = $this->stations->profile($active_station_id);
+
+
+
 		$pageData = [];
 		$pageData['datePlaceholder'] = 'DD/MM/YYYY';
 		$pageData['deOptions'] = $deOptions;
@@ -54,6 +59,7 @@ class Logbookadvanced extends CI_Controller {
 		$pageData['iotaarray'] = $this->logbook_model->fetchIota();
 		$pageData['sats'] = $this->bands->get_worked_sats();
 		$pageData['station_profile'] = $this->stations->all_of_user();
+		$pageData['active_station_info'] = $station_profile->row();
 
 		$pageData['bands'] = $this->bands->get_worked_bands();
 

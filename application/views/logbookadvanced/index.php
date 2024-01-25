@@ -394,7 +394,10 @@ $options = json_decode($options);
 		<select id="de" name="de" class="form-select form-select-sm me-2 w-auto">
 			<option value="All"><?php echo lang('general_word_all'); ?></option>
 			<?php foreach ($station_profile->result() as $station) { ?>
-				<option value="<?php echo $station->station_id; ?>" >
+				<option value="<?php echo $station->station_id; ?>"
+				<?php if ($station->station_id == $this->stations->find_active()) {
+					echo " selected =\"selected\"";
+                } ?>>
 				<?php echo lang('gen_hamradio_callsign') . ": " ?>
 				<?php echo $station->station_callsign; ?> (<?php echo $station->station_profile_name; ?>)
 			</option>
