@@ -123,13 +123,11 @@ class Options extends CI_Controller {
 				$this->session->set_flashdata('success', $this->lang->line('options_logbook_map_changed_to').$this->input->post('logbookMap'));
 			}
 
-			// Update Lang choice within the options system
-			// $lang_update_status = $this->optionslib->update('language', $this->input->post('language'));
+			$public_github_button_update_status = $this->optionslib->update('public_github_button', $this->input->post('publicGithubButton'), 'yes');
 
-			// If Lang update is complete set a flashsession with a success note
-			// if($lang_update_status == TRUE) {
-			// 	$this->session->set_flashdata('success', 'Language changed to '.ucfirst($this->input->post('language')));
-			// }
+			if($public_github_button_update_status == TRUE) {
+				$this->session->set_flashdata('success', 'Public Github Button is now ' . $this->input->post('publicGithubButton'));
+			}
 
 			// Redirect back to /appearance
 			redirect('/options/appearance');

@@ -94,6 +94,15 @@
                             <small id="logbookMapHelp" class="form-text text-muted"><?php echo lang('options_this_allows_to_disable_the_map_in_the_logbook'); ?></small>
                         </div>
 
+                        <div class="mb-3">
+                            <label for="publicGithubButton">Public Github Button</label>
+                            <select class="form-select" id="publicGithubButton" name="publicGithubButton" aria-describedby="publicGithubButtonHelp" required>
+                                <option value='true' <?php if($this->optionslib->get_option('public_github_button') == "true") { echo "selected=\"selected\""; } ?>>Enabled</option>
+                                <option value='false' <?php if($this->optionslib->get_option('public_github_button') == "false") { echo "selected=\"selected\""; } ?>>Disabled</option>
+                            </select>
+                            <small id="publicGithubButtonHelp" class="form-text text-muted">This enables the button to Wavelog's Github page in the public view</small>
+                        </div>
+
                         <!-- Save the Form -->
                         <input class="btn btn-primary" type="submit" value="<?php echo lang('options_save'); ?>" />
                     </form>

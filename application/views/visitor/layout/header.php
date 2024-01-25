@@ -65,17 +65,19 @@
 				<a class="nav-link" href="<?php echo site_url('oqrs');?>">OQRS</a>
 			</li>
 			<?php } 
-		}
-		if ($this->uri->segment(1) != "oqrs") { ?>
-		<li class="nav-item">
-			 <a class="btn btn-outline-primary" href="<?php echo site_url('user/login');?>">Login</a>
-		</li>
-		<?php } ?>
+		} ?>
 		</ul>
 		<ul class="navbar-nav ms-auto">
-			<li class="nav-item">
-				<a class="btn btn-outline-secondary" href="https://github.com/wavelog/wavelog">Wavelog on Github</a>
-			</li>
+			<?php if($this->optionslib->get_option('public_github_button') != "false") { ?>  <!--  != false  causes to set it on per default -->
+				<li class="nav-item">
+					<a class="btn btn-secondary" href="https://github.com/wavelog/wavelog">Visit Wavelog on Github</a>
+				</li>
+			<?php } ?>
+			<?php if ($this->uri->segment(1) != "oqrs") { ?>
+				<li class="nav-item">
+					<a class="btn btn-primary ms-2" href="<?php echo site_url('user/login');?>">Login</a>
+				</li>
+			<?php } ?>
 		</ul>
 		<div class="m-2">
 			<?php if (!empty($slug)) {
