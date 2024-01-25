@@ -31,6 +31,14 @@
 
 	<?php if (file_exists(APPPATH.'../assets/css/custom.css')) { echo '<link rel="stylesheet" href="'.base_url().'assets/css/custom.css">'; } ?>
 
+	<script>
+		var userName = 'visitor'
+	</script>
+
+	<?php if (file_exists(APPPATH . '../assets/js/sections/custom.js')) {
+		echo '<script src="' . base_url() . 'assets/js/sections/custom.js"></script>';
+	} ?>
+
     <link rel="icon" href="<?php echo base_url(); ?>favicon.ico">
 
     <title><?php if(isset($page_title)) { echo $page_title; } ?> - Wavelog</title>
