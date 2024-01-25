@@ -34,8 +34,15 @@ class Database {
 		// Open the default SQL file
 		$query = file_get_contents('assets/install.sql');
 
+		mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
 		// Execute a multi query
 		$mysqli->multi_query($query);
+
+		// MultiQuery is NON-Blocking,so wait until everything is done
+		do { null; } while($mysqli->next_result());
+
+		$result = $mysqli->store_result();
 
 		// Close the connection
 		$mysqli->close();
