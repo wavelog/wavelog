@@ -34,8 +34,8 @@ class Logbookadvanced_model extends CI_Model {
 			$conditions[] = "date(COL_TIME_ON) <= ?";
 			$binding[] = $to;
 		}
-		if ($searchCriteria['de'] !== '') {
-			$conditions[] = "COL_STATION_CALLSIGN = ?";
+		if ($searchCriteria['de'] !== 'All') {
+			$conditions[] = "qsos.station_id = ?";
 			$binding[] = trim($searchCriteria['de']);
 		}
 		if ($searchCriteria['dx'] !== '') {

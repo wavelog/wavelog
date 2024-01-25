@@ -53,6 +53,7 @@ class Logbookadvanced extends CI_Controller {
 		$pageData['dxccarray'] = $this->logbook_model->fetchDxcc();
 		$pageData['iotaarray'] = $this->logbook_model->fetchIota();
 		$pageData['sats'] = $this->bands->get_worked_sats();
+		$pageData['station_profile'] = $this->stations->all_of_user();
 
 		$pageData['bands'] = $this->bands->get_worked_bands();
 

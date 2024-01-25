@@ -78,17 +78,6 @@ $options = json_decode($options);
                         <input name="dateTo" id="dateTo" type="date" class="form-control form-control-sm w-auto">
                     </div>
                     <div class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
-                        <label class="form-label" for="de"><?php echo lang('gen_hamradio_de'); ?></label>
-                        <select id="de" name="de" class="form-select form-select-sm">
-                            <option value=""><?php echo lang('general_word_all'); ?></option>
-                            <?php
-					foreach($deOptions as $deOption){
-						?><option value="<?php echo htmlentities($deOption);?>"><?php echo htmlspecialchars($deOption);?></option><?php
-					}
-					?>
-                        </select>
-                    </div>
-                    <div class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                         <label class="form-label" for="dx"><?php echo lang('gen_hamradio_dx'); ?></label>
                         <input type="text" name="dx" id="dx" class="form-control form-control-sm" value="">
                     </div>
@@ -401,6 +390,16 @@ $options = json_decode($options);
             <option value="2500">2500</option>
             <option value="5000">5000</option>
         </select>
+		<label class="me-2" for="de"><?php echo lang('general_word_location'); ?></label>
+		<select id="de" name="de" class="form-select form-select-sm me-2 w-auto">
+			<option value="All"><?php echo lang('general_word_all'); ?></option>
+			<?php foreach ($station_profile->result() as $station) { ?>
+				<option value="<?php echo $station->station_id; ?>" >
+				<?php echo lang('gen_hamradio_callsign') . ": " ?>
+				<?php echo $station->station_callsign; ?> (<?php echo $station->station_profile_name; ?>)
+			</option>
+			<?php } ?>
+		</select>
         <button type="submit" class="btn btn-sm btn-primary me-1" id="searchButton"><?php echo lang('filter_search'); ?></button>
         <button type="button" class="btn btn-sm btn-primary me-1" id="dupeButton"><?php echo lang('filter_dupes'); ?></button>
         <button type="button" class="btn btn-sm btn-primary me-1" id="mapButton" onclick="mapQsos(this.form);"><?php echo lang('filter_map'); ?></button>
