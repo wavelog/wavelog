@@ -39,45 +39,47 @@ class Update extends CI_Controller {
 
 		// Load the cty file
 		$xml_data = simplexml_load_file($this->make_update_path("cty.xml"));
-		
+
 		//$xml_data->entities->entity->count();
 
-        $count = 0;
+		$count = 0;
+		$a_data=[];
 		foreach ($xml_data->entities->entity as $entity) {
 			$startinfo = strtotime($entity->start);
-            $endinfo = strtotime($entity->end);
-            
-            $start_date = ($startinfo) ? date('Y-m-d H:i:s',$startinfo) : null;
-            $end_date = ($endinfo) ? date('Y-m-d H:i:s',$endinfo) : null;
-        
-            if(!$entity->cqz) {
-                $data = array(
-                    'prefix' => (string) $entity->call,
-                    'name' =>  (string) $entity->entity,
-                );
-            } else {
-                $data = array(
-                    'adif' => (int) $entity->adif,
-                    'name' =>  (string) $entity->name,
-                    'prefix' => (string)  $entity->prefix,
-                    'ituz' => (float) $entity->ituz,
-                    'cqz' => (int) $entity->cqz,
-                    'cont' => (string) $entity->cont,
-                    'long' => (float) $entity->long,
-                    'lat' => (float) $entity->lat,
-                	'start' => $start_date,
-                    'end' => $end_date,
-                );	
-            }
-        
-            $this->db->insert('dxcc_entities', $data); 
-            $count += 1;
-            if ($count % 10  == 0)
-                $this->update_status();
-		}
+			$endinfo = strtotime($entity->end);
 
-        $this->update_status();
-	    return $count;	
+			$start_date = ($startinfo) ? date('Y-m-d H:i:s',$startinfo) : null;
+			$end_date = ($endinfo) ? date('Y-m-d H:i:s',$endinfo) : null;
+
+			if(!$entity->cqz) {
+				$data = array(
+					'prefix' => (string) $entity->call,
+					'name' =>  (string) $entity->entity,
+				);
+			} else {
+				$data = array(
+					'adif' => (int) $entity->adif,
+					'name' =>  (string) $entity->name,
+					'prefix' => (string)  $entity->prefix,
+					'ituz' => (float) $entity->ituz,
+					'cqz' => (int) $entity->cqz,
+					'cont' => (string) $entity->cont,
+					'long' => (float) $entity->long,
+					'lat' => (float) $entity->lat,
+					'start' => $start_date,
+					'end' => $end_date,
+				);	
+			}
+
+			array_push($a_data,$data);
+			$count += 1;
+			if ($count % 10  == 0)
+				$this->update_status("Preparing DXCC-Entries: ".$count);
+		}
+		$this->db->insert_batch('dxcc_entities', $a_data); 
+
+		$this->update_status();
+		return $count;	
 	}
 
     /*
@@ -88,36 +90,38 @@ class Update extends CI_Controller {
 		$this->load->model('dxcc_exceptions');
 		// Load the cty file
 		$xml_data = simplexml_load_file($this->make_update_path("cty.xml"));
-		
-        $count = 0;
+
+		$count = 0;
+		$a_data=[];
 		foreach ($xml_data->exceptions->exception as $record) {
 			$startinfo = strtotime($record->start);
-            $endinfo = strtotime($record->end);
-            
-            $start_date = ($startinfo) ? date('Y-m-d H:i:s',$startinfo) : null;
-            $end_date = ($endinfo) ? date('Y-m-d H:i:s',$endinfo) : null;
+			$endinfo = strtotime($record->end);
 
-            $data = array(
-            	'record' => (int) $record->attributes()->record,
-            	'call' => (string) $record->call,
-            	'entity' =>  (string) $record->entity,
-                'adif' => (int) $record->adif,
-                'cqz' => (int) $record->cqz,
-                'cont' => (string) $record->cont,
-                'long' => (float) $record->long,
-                'lat' => (float) $record->lat,
-                'start' => $start_date,
-                'end' => $end_date,
-            );
-       
-            $this->db->insert('dxcc_exceptions', $data); 
-            $count += 1;
-            if ($count % 10  == 0)
-                $this->update_status();
+			$start_date = ($startinfo) ? date('Y-m-d H:i:s',$startinfo) : null;
+			$end_date = ($endinfo) ? date('Y-m-d H:i:s',$endinfo) : null;
+
+			$data = array(
+				'record' => (int) $record->attributes()->record,
+				'call' => (string) $record->call,
+				'entity' =>  (string) $record->entity,
+				'adif' => (int) $record->adif,
+				'cqz' => (int) $record->cqz,
+				'cont' => (string) $record->cont,
+				'long' => (float) $record->long,
+				'lat' => (float) $record->lat,
+				'start' => $start_date,
+				'end' => $end_date,
+			);
+
+			array_push($a_data,$data);
+			$count += 1;
+			if ($count % 10  == 0)
+				$this->update_status("Preparing DXCC Exceptions: ".$count);
 		}
+		$this->db->insert_batch('dxcc_exceptions', $a_data); 
 
-        $this->update_status();
-	    return $count;	
+		$this->update_status();
+		return $count;	
 	}
 
     /*
@@ -128,37 +132,39 @@ class Update extends CI_Controller {
 		$this->load->model('dxcc_prefixes');
 		// Load the cty file
 		$xml_data = simplexml_load_file($this->make_update_path("cty.xml"));
-		
-        $count = 0;
+
+		$count = 0;
+		$a_data=[];
 		foreach ($xml_data->prefixes->prefix as $record) {
 			$startinfo = strtotime($record->start);
-            $endinfo = strtotime($record->end);
-            
-            $start_date = ($startinfo) ? date('Y-m-d H:i:s',$startinfo) : null;
-            $end_date = ($endinfo) ? date('Y-m-d H:i:s',$endinfo) : null;
-            
-            $data = array(
-            	'record' => (int) $record->attributes()->record,
-            	'call' => (string) $record->call,
-            	'entity' =>  (string) $record->entity,
-                'adif' => (int) $record->adif,
-                'cqz' => (int) $record->cqz,
-                'cont' => (string) $record->cont,
-                'long' => (float) $record->long,
-                'lat' => (float) $record->lat,
-                'start' => $start_date,
-                'end' => $end_date,
-            );
-       
-            $this->db->insert('dxcc_prefixes', $data); 
-            $count += 1;
-            if ($count % 10  == 0)
-                $this->update_status();
+			$endinfo = strtotime($record->end);
+
+			$start_date = ($startinfo) ? date('Y-m-d H:i:s',$startinfo) : null;
+			$end_date = ($endinfo) ? date('Y-m-d H:i:s',$endinfo) : null;
+
+			$data = array(
+				'record' => (int) $record->attributes()->record,
+				'call' => (string) $record->call,
+				'entity' =>  (string) $record->entity,
+				'adif' => (int) $record->adif,
+				'cqz' => (int) $record->cqz,
+				'cont' => (string) $record->cont,
+				'long' => (float) $record->long,
+				'lat' => (float) $record->lat,
+				'start' => $start_date,
+				'end' => $end_date,
+			);
+
+			array_push($a_data,$data);
+			$count += 1;
+			if ($count % 10  == 0)
+				$this->update_status("Preparing DXCC Prefixes: ".$count);
 		}
+		$this->db->insert_batch('dxcc_prefixes', $a_data); 
 
 		//print("$count prefixes processed");
-        $this->update_status();
-	    return $count;	
+		$this->update_status();
+		return $count;	
 	}
 
 	// Updates the DXCC & Exceptions from the Club Log Cty.xml file.
@@ -212,20 +218,20 @@ class Update extends CI_Controller {
 
 	public function update_status($done=""){
 
-        if ($done != "Downloading file"){
-            // Check that everything is done?
-            if ($done == ""){
-                $done = "Updating...";
-            }
-            $html = $done."<br/>";
-            $html .= "Dxcc Entities: ".$this->db->count_all('dxcc_entities')."<br/>";
-            $html .= "Dxcc Exceptions: ".$this->db->count_all('dxcc_exceptions')."<br/>";
-            $html .= "Dxcc Prefixes: ".$this->db->count_all('dxcc_prefixes')."<br/>";
-        }else{
-            $html = $done."....<br/>";
-        }
+		if ($done != "Downloading file"){
+			// Check that everything is done?
+			if ($done == ""){
+				$done = "Updating...";
+			}
+			$html = $done."<br/>";
+			$html .= "Dxcc Entities: ".$this->db->count_all('dxcc_entities')."<br/>";
+			$html .= "Dxcc Exceptions: ".$this->db->count_all('dxcc_exceptions')."<br/>";
+			$html .= "Dxcc Prefixes: ".$this->db->count_all('dxcc_prefixes')."<br/>";
+		} else {
+			$html = $done."....<br/>";
+		}
 
-        file_put_contents($this->make_update_path("status.html"), $html);
+		file_put_contents($this->make_update_path("status.html"), $html);
 	}
 
 
