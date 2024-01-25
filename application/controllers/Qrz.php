@@ -70,7 +70,7 @@ class Qrz extends CI_Controller {
 					$result = $this->logbook_model->push_qso_to_qrz($qrz_api_key, $adif);
 				}
 
-				if ( ($result['status'] == 'OK') || ( ($result['status'] == 'error') && ($result['message'] == 'STATUS=FAIL&REASON=Unable to add QSO to database: duplicate&EXTENDED=')) ){
+				if ( ($result['status'] == 'OK') || ( ($result['status'] == 'error') && ( ($result['message'] == 'STATUS=FAIL&RESULT=FAIL&REASON=Unable to add QSO to database: duplicate&EXTENDED=') || ($result['message'] == 'STATUS=FAIL&REASON=Unable to add QSO to database: duplicate&EXTENDED='))) ){
 					$this->markqso($qso->COL_PRIMARY_KEY);
 					$i++;
 					$result['status'] = 'OK';
