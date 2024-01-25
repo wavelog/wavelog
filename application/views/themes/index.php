@@ -32,6 +32,8 @@
 						<th scope="col">Name</th>
 						<th scope="col">Foldername</th>
 						<th scope="col">Theme Mode</th>
+						<th scope="col">Header Logo</th>
+						<th scope="col">Main Logo</th>
 						<th scope="col"></th>
 						<th scope="col"></th>
 					</tr>
@@ -46,8 +48,10 @@
 							} else {
 								echo "<span class=\"text-danger\">Theme-Mode undefined! Please edit</span>";
 							} ?></td>
+							<td><?php echo $theme->header_logo;?></td>
+							<td><?php echo $theme->main_logo;?></td>
 							<td>
-								<a href="<?php echo site_url('themes/edit')."/".$theme->id; ?>" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit"></i> Edit</a>
+								<a onclick="editThemeDialog('<?php echo $theme->id; ?>')" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit"></i> Edit</a>
 							</td>
 							<td class='theme_<?php echo $theme->id ?>'>
 								<a href="javascript:deleteTheme('<?php echo $theme->id; ?>', '<?php echo $theme->name; ?>');" class="btn btn-danger btn-sm" ><i class="fas fa-trash-alt"></i> Delete</a>
