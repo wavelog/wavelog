@@ -65,17 +65,24 @@
 				<a class="nav-link" href="<?php echo site_url('oqrs');?>">OQRS</a>
 			</li>
 			<?php } 
-		}
-		if ($this->uri->segment(1) != "oqrs") { ?>
-		<li class="nav-item">
-			 <a class="btn btn-outline-primary" href="<?php echo site_url('user/login');?>">Login</a>
-		</li>
-		<?php } ?>
+		} ?>
+		</ul>
+		<ul class="navbar-nav ms-auto">
+			<?php if($this->optionslib->get_option('public_github_button') != "false") { ?>  <!--  != false  causes to set it on per default -->
+				<li class="nav-item">
+					<a class="btn btn-secondary" href="https://github.com/wavelog/wavelog">Visit Wavelog on Github</a>
+				</li>
+			<?php } ?>
+			<?php if ($this->uri->segment(1) != "oqrs") { ?>
+				<li class="nav-item">
+					<a class="btn btn-primary ms-2" href="<?php echo site_url('user/login');?>">Login</a>
+				</li>
+			<?php } ?>
 		</ul>
 		<div class="m-2">
 			<?php if (!empty($slug)) {
 				$this->CI =& get_instance();
-				if ($this->CI->public_search_enabled($slug) || $this->session->userdata('user_type') >= 2) { ?>
+				if ($this->CI->public_search_enabled($slug)) { ?>
 					<form method="post" name="searchForm" action="<?php echo site_url('visitor/search'); ?>" onsubmit="return validateForm()" class="d-flex align-items-center">
 						<input class="form-control me-sm-2" id="searchcall" type="search" name="callsign" placeholder="<?php echo lang('menu_search_text'); ?>" <?php if (isset($callsign) && $callsign != '') { echo 'value="'.strtoupper($callsign).'"'; } ?> aria-label="Search" data-toogle="tooltip" data-bs-placement="bottom" title="Please enter a callsign!">
 						<input type="hidden" name="public_slug" value="<?php echo $slug; ?>">
