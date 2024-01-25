@@ -39,6 +39,8 @@ class Themes extends CI_Controller {
 		$this->form_validation->set_rules('name', 'Theme Name', 'required');
 		$this->form_validation->set_rules('foldername', 'Folder Name', 'required');
 		$this->form_validation->set_rules('theme_mode', 'Theme Mode', 'required');
+		$this->form_validation->set_rules('header_logo', 'Header Logo', 'required');
+		$this->form_validation->set_rules('main_logo', 'Main Logo', 'required');
 
 		if ($this->form_validation->run() == FALSE)
 		{
@@ -66,12 +68,12 @@ class Themes extends CI_Controller {
 		$this->form_validation->set_rules('name', 'Theme Name', 'required');
 		$this->form_validation->set_rules('foldername', 'Folder Name', 'required');
 		$this->form_validation->set_rules('theme_mode', 'Theme Mode', 'required');
+		$this->form_validation->set_rules('header_logo', 'Header Logo', 'required');
+		$this->form_validation->set_rules('main_logo', 'Main Logo', 'required');
 
 		if ($this->form_validation->run() == FALSE)
 		{
-			$this->load->view('interface_assets/header', $data);
-			$this->load->view('themes/edit');
-			$this->load->view('interface_assets/footer');
+			$this->load->view('themes/edit', $data);
 		}
 		else
 		{
