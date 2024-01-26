@@ -79,7 +79,7 @@ class Themes extends CI_Controller {
 		{
 			$this->Themes_model->edit($item_id_clean);
 
-			$this->session->set_flashdata("success", "Theme '".$this->security->xss_clean($this->input->post('name', true))."' updated");
+			$this->session->set_flashdata("success", "Theme updated");
 
 			redirect('themes');
 		}
@@ -91,11 +91,45 @@ class Themes extends CI_Controller {
 		$this->Themes_model->delete($id);
 	}
 
-	function character_check($input) {
-		if ($input !== null && preg_match('/^[^\/:\*\?"<>\|@.]*$/', $input)) {
+	function character_check() {
+		$input_name = $this->input->post('name');
+		$input_foldername = $this->input->post('foldername');
+		$input_theme_mode = $this->input->post('theme_mode');
+		$input_header_logo = $this->input->post('header_logo');
+		$input_main_logo = $this->input->post('main_logo');
+
+		if ($input_name !== null && preg_match('/^[^\/:\*\?"<>\|@.]*$/', $input_name)) {
 			return true;
 		} else {
-			$this->form_validation->set_message('character_check', 'This value is not allowed here.');
+			$this->session->set_flashdata('danger', 'Invalid value for ' . $input_name . '.');
+			return false;
+		}
+
+		if ($input_foldername !== null && preg_match('/^[^\/:\*\?"<>\|@.]*$/', $input_foldername)) {
+			return true;
+		} else {
+			$this->session->set_flashdata('danger', 'Invalid value for ' . $input_foldername . '.');
+			return false;
+		}
+
+		if ($input_theme_mode !== null && preg_match('/^[^\/:\*\?"<>\|@.]*$/', $input_theme_mode)) {
+			return true;
+		} else {
+			$this->session->set_flashdata('danger', 'Invalid value for ' . $input_theme_mode . '.');
+			return false;
+		}
+
+		if ($input_header_logo !== null && preg_match('/^[^\/:\*\?"<>\|@.]*$/', $input_header_logo)) {
+			return true;
+		} else {
+			$this->session->set_flashdata('danger', 'Invalid value for ' . $input_header_logo . '.');
+			return false;
+		}
+
+		if ($input_main_logo !== null && preg_match('/^[^\/:\*\?"<>\|@.]*$/', $input_main_logo)) {
+			return true;
+		} else {
+			$this->session->set_flashdata('danger', 'Invalid value for ' . $input_main_logo . '.');
 			return false;
 		}
 	}
