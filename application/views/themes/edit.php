@@ -1,5 +1,5 @@
 <div class="container">
-	<form>
+	<form id="ThemeForm">
 		<div class="mb-3">
 			<label for="themenameInput">Theme Name</label>
 			<input type="text" class="form-control" name="name" id="nameInput" aria-describedby="themenameInputHelp" value="<?php if(set_value('name') != "") { echo set_value('name'); } else { echo $theme->name; } ?>">
@@ -32,7 +32,7 @@
 			<input type="text" class="form-control" name="main_logo" id="mainLogoInput" aria-describedby="mainLogoInputHelp" value="<?php if(set_value('main_logo') != "") { echo set_value('main_logo'); } else { echo $theme->main_logo; } ?>">
 			<small id="mainLogoInputHelp" class="form-text text-muted">This is the name of the file which is used as <u>big</u> Logo in the login screen placed in assets/logo.<br>Only PNG files with a size ratio of 1:1 are allowed.</small>
 		</div>
-
-		<button type="button" onclick="editTheme(this.form, '<?php echo $theme->id; ?>');" class="btn btn-primary"><i class="fas fa-plus-square"></i> Update theme</button>
+		<div class="alert alert-warning" role="alert" id="warningMessageTheme" style="display: none"> </div>
+		<button id="submitButton" type="button" onclick="editTheme(this.form, '<?php echo $theme->id; ?>');" class="btn btn-primary"><i class="fas fa-plus-square"></i> Update theme</button>
 	</form>
 </div>

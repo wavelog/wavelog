@@ -1,5 +1,5 @@
 <div class="container">
-	<form>
+	<form id="ThemeForm">
 		<div class="mb-3">
 			<label for="nameInput">Theme Name</label>
 			<input type="text" class="form-control" name="name" id="nameInput" aria-describedby="nameInputHelp" required>
@@ -32,7 +32,7 @@
 			<input type="text" class="form-control" name="main_logo" id="mainLogoInput" aria-describedby="mainLogoInputHelp">
 			<small id="mainLogoInputHelp" class="form-text text-muted">This is the name of the file which is used as <u>big</u> Logo in the login screen placed in assets/logo.<br>Only PNG files with a size ratio of 1:1 are allowed.</small>
 		</div>
-
-		<button type="button" onclick="addTheme(this.form);" class="btn btn-primary"><i class="fas fa-plus-square"></i> Add theme</button>
+		<div class="alert alert-warning" role="alert" id="warningMessageTheme" style="display: none"> </div>
+		<button id="submitButton" type="button" onclick="addTheme(this.form);" class="btn btn-primary"><i class="fas fa-plus-square"></i> Add theme</button>
 	</form>
 </div>
