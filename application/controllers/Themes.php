@@ -36,11 +36,11 @@ class Themes extends CI_Controller {
 		$this->load->model('Themes_model');
 		$this->load->library('form_validation');
 
-		$this->form_validation->set_rules('name', 'Theme Name', 'required');
-		$this->form_validation->set_rules('foldername', 'Folder Name', 'required');
-		$this->form_validation->set_rules('theme_mode', 'Theme Mode', 'required');
-		$this->form_validation->set_rules('header_logo', 'Header Logo', 'required');
-		$this->form_validation->set_rules('main_logo', 'Main Logo', 'required');
+		$this->form_validation->set_rules('name', 'Theme Name', 'required|callback_character_check');
+		$this->form_validation->set_rules('foldername', 'Folder Name', 'required|callback_character_check');
+		$this->form_validation->set_rules('theme_mode', 'Theme Mode', 'required|callback_character_check');
+		$this->form_validation->set_rules('header_logo', 'Header Logo', 'required|callback_character_check');
+		$this->form_validation->set_rules('main_logo', 'Main Logo', 'required|callback_character_check');
 
 		if ($this->form_validation->run() == FALSE)
 		{
@@ -65,11 +65,11 @@ class Themes extends CI_Controller {
 
 		$data['page_title'] = "Edit Theme";
 
-		$this->form_validation->set_rules('name', 'Theme Name', 'required');
-		$this->form_validation->set_rules('foldername', 'Folder Name', 'required');
-		$this->form_validation->set_rules('theme_mode', 'Theme Mode', 'required');
-		$this->form_validation->set_rules('header_logo', 'Header Logo', 'required');
-		$this->form_validation->set_rules('main_logo', 'Main Logo', 'required');
+		$this->form_validation->set_rules('name', 'Theme Name', 'required|callback_character_check');
+		$this->form_validation->set_rules('foldername', 'Folder Name', 'required|callback_character_check');
+		$this->form_validation->set_rules('theme_mode', 'Theme Mode', 'required|callback_character_check');
+		$this->form_validation->set_rules('header_logo', 'Header Logo', 'required|callback_character_check');
+		$this->form_validation->set_rules('main_logo', 'Main Logo', 'required|callback_character_check');
 
 		if ($this->form_validation->run() == FALSE)
 		{
@@ -90,4 +90,14 @@ class Themes extends CI_Controller {
 		$this->load->model('Themes_model');
 		$this->Themes_model->delete($id);
 	}
+
+	function character_check($input) {
+		if ($input !== null && preg_match('/^[^\/:\*\?"<>\|@.]*$/', $input)) {
+			return true;
+		} else {
+			$this->form_validation->set_message('character_check', 'This value is not allowed here.');
+			return false;
+		}
+	}
+		
 }
