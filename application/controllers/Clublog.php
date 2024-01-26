@@ -68,7 +68,7 @@ class Clublog extends CI_Controller {
 
 							if (function_exists('curl_file_create')) { // php 5.5+
 							  $cFile = curl_file_create($filepath);
-							} else { // 
+							} else { //
 							  $cFile = '@' . realpath($filepath);
 							}
 
@@ -93,7 +93,7 @@ class Clublog extends CI_Controller {
 							if(curl_errno($request)) {
 							    echo curl_error($request);
 							}
-							curl_close ($request); 
+							curl_close ($request);
 
 
 							// If Clublog Accepts mark the QSOs
@@ -116,7 +116,7 @@ class Clublog extends CI_Controller {
 
 					} else {
 						echo "Nothing awaiting upload to clublog for ".$station_row->station_callsign."<br>";
-						
+
 						log_message('info', 'Nothing awaiting upload to clublog for '.$station_row->station_callsign);
 					}
 				}
@@ -130,13 +130,6 @@ class Clublog extends CI_Controller {
 		$this->clublog_model->mark_qsos_sent($clean_station_id);
 	}
 
-	function markallnotsent() {
-		$clean_station_id = $this->security->xss_clean($station_id);
-		$this->load->model('clublog_model');
-		$this->clublog_model->mark_all_qsos_notsent($clean_station_id);
-	}
-
-
 	// Find DXCC
 	function find_dxcc($callsign) {
 		$clean_callsign = $this->security->xss_clean($callsign);
@@ -149,6 +142,4 @@ class Clublog extends CI_Controller {
 		// echo ucfirst(strtolower($data['Name']));
 		return $data;
 	}
-	
-	
 }
