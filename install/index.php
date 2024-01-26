@@ -159,11 +159,11 @@ if($_POST) {
 		 <h2>Demo User Account</h2>
 
 		  	<ul>
-		  		<li>Username: m0abc</li>
-		  		<li>Password: demo</li>
+		  		<li>Username: 4w7est</li>
+		  		<li>Password: password</li>
 		  	</ul>
 
-		  	<p>When you login create a new admin account and delete the m0abc user account.</p>
+		  	<p>When you login create a new admin account and delete the 4w7est user account.</p>
 
 	 <?php else: ?>
      <p class="error">Please make the /application/config/ folder writable. <strong>Example</strong>:<br /><br /><code>chmod -R 777 /application/config/</code><br /><br /><i>Don't forget to restore the permissions afterwards.</i></p>
