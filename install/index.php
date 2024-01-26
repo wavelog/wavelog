@@ -159,8 +159,8 @@ if($_POST) {
 		 <h2>Demo User Account</h2>
 
 		  	<ul>
-		  		<li>Username: m0abc</li>
-		  		<li>Password: demo</li>
+		  		<li>Username: 4w7est</li>
+		  		<li>Password: password</li>
 		  	</ul>
 
 		  	<p>When you login create a new admin account and delete the m0abc user account.</p>

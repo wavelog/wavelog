@@ -437,7 +437,7 @@ CREATE TABLE `users` (
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('4', 'm0abc', '$2a$08$r9UF3YhipAY6htSQoZRjeOFDx3Yuh7Zjuh45vKyUN4gO8g5l.saES', 'demo@demo.com', '99', 'M0ABC', 'io91js', 'Demo', 'Account', '0', null, null, null, null, null);
+INSERT INTO `users` VALUES ('4', '4w7est', '$2y$10$WFGFdNK.I4X0z1qXxjqrEeMvy65M2OyxJiNcNCY0gQ4KzeCCKms02', 'demo@demo.com', '99', '4W7EST', 'HH44aa', 'Demo', 'Account', '0', null, null, null, null, null);
 
 
 
