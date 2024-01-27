@@ -13,6 +13,18 @@
 $db_config_path = '../application/config/';
 $db_file_path = $db_config_path . "database.php";
 
+// Wanted Pre-Check Parameters
+//
+// PHP 
+$max_execution_time = 600;		// Seconds
+$max_upload_file_size = 20;  	// Megabyte
+$post_max_size = 20;		// Megabyte
+
+// MariaDB / MySQL
+$mariadb_version = 10.1;
+$mysql_version = 5.7;
+
+
 function delDir($dir)
 {
 	$files = glob($dir . '*', GLOB_MARK);
@@ -106,9 +118,7 @@ if ($_POST && isset($_POST['submit'])) {
 	} ?>
 
 	<body>
-		<div class="container mt-4" style="max-width: 1000px; ">
-
-			<h4>Wavelog Installer</h4>
+		<div class="container" style="max-width: 1000px; margin-top: 5rem; ">
 
 			<div class="card mt-4" style="min-height: 650px; margin: 0 auto;">
 
@@ -147,22 +157,32 @@ if ($_POST && isset($_POST['submit'])) {
 									</div>
 
 									<div class="col-md-6">
-										<h5 style="margin-top: 50px;">Welcome to the Wavelog Installer</h5>
+										<h4 style="margin-top: 50px;">Welcome to the Wavelog Installer</h4>
 										<p style="margin-top: 50px;">This installer will guide you through the necessary steps for the installation of Wavelog. <br>Wavelog is a powerful web-based amateur radio logging software. Follow the steps in each tab to configure and install Wavelog on your server.</p>
-										<p>If you encounter any issues or have questions, refer to the documentation or community forum for assistance.</p>
-										<p>Visit our GitHub repository: <a href="https://www.github.com/wavelog/wavelog" target="_blank">Wavelog on GitHub</a></p>
+										<p>If you encounter any issues or have questions, refer to the documentation (<a href="https://www.github.com/wavelog/wavelog/wiki" target="_blank">Wiki</a>) or community forum (<a href="https://www.github.com/wavelog/wavelog/discussions" target="_blank">Discussions</a>) on Github for assistance.</p>
+										<p>Thank you for installing Wavelog!</p>
 									</div>
 								</div>
 							</div>
 
 							<!-- Tab 2: Pre-Checks --> <!-- TODO Needs some Layout and maybe check for other packages aswell-->
 							<div class="tab-pane fade" id="precheck" role="tabpanel" aria-labelledby="precheck-tab">
-								<div class="row">
-									<div class="col-md-6">
-										<p>PHP Modules</p>
+								<div class="row justify-content-center mt-4">
+									<div class="col-md-5 mb-4 mx-auto"> <!-- PHP Modules -->
+										<p class="border-bottom mb-2"><b>PHP Modules</b></p>
 										<table width="100%">
 											<tr>
-												<td>curl</td>
+												<td>Version (min. 7.4)</td>
+												<td>
+													<?php if (version_compare(PHP_VERSION, '7.4.0') <= 0) { ?>
+														<span class="badge text-bg-danger"><?php echo PHP_VERSION; ?></span>
+													<?php } else { ?>
+														<span class="badge text-bg-success"><?php echo PHP_VERSION; ?></span>
+													<?php } ?>
+												</td>
+											</tr>
+											<tr>
+												<td>php-curl</td>
 												<td>
 													<?php if (in_array('curl', get_loaded_extensions())) { ?>
 														<span class="badge text-bg-success">Installed</span>
@@ -173,7 +193,7 @@ if ($_POST && isset($_POST['submit'])) {
 											</tr>
 
 											<tr>
-												<td>MySQL</td>
+												<td>php-mysql</td>
 												<td>
 													<?php if (in_array('mysqli', get_loaded_extensions())) { ?>
 														<span class="badge text-bg-success">Installed</span>
@@ -184,7 +204,7 @@ if ($_POST && isset($_POST['submit'])) {
 											</tr>
 
 											<tr>
-												<td>mbstring</td>
+												<td>php-mbstring</td>
 												<td>
 													<?php if (in_array('mbstring', get_loaded_extensions())) { ?>
 														<span class="badge text-bg-success">Installed</span>
@@ -195,7 +215,7 @@ if ($_POST && isset($_POST['submit'])) {
 											</tr>
 
 											<tr>
-												<td>xml</td>
+												<td>php-xml</td>
 												<td>
 													<?php if (in_array('xml', get_loaded_extensions())) { ?>
 														<span class="badge text-bg-success">Installed</span>
@@ -206,7 +226,7 @@ if ($_POST && isset($_POST['submit'])) {
 											</tr>
 
 											<tr>
-												<td>zip</td>
+												<td>php-zip</td>
 												<td>
 													<?php if (in_array('zip', get_loaded_extensions())) { ?>
 														<span class="badge text-bg-success">Installed</span>
@@ -215,18 +235,74 @@ if ($_POST && isset($_POST['submit'])) {
 													<?php } ?>
 												</td>
 											</tr>
+										</table>
+									</div>
+									<div class="col-md-5 mb-4 mx-auto"> <!-- MySQL / MariaDB -->
+										<p class="border-bottom mb-2"><b>MySQL / MariaDB</b></p>
+										<table width="100%">
+											<!-- TODO Logic to check MariaDB / MySQL Version and show it -->
+											<tr>
+												<td>MariaDB installed version</td>
+												<td><?php echo 'min. ' . $mariadb_version; ?></td>
+												<td>ToDo</td>
+											</tr>
+										</table>
+									</div>
+								</div>
+								<div class="row justify-content-center">
+									<div class="col-md-5 mx-auto"> <!-- PHP Settings -->
+										<p class="border-bottom mb-2"><b>PHP Settings</b></p>
+										<table width="100%">
+											<tr>
+												<td>max_execution_time</td>
+												<td><?php echo '> ' . $max_execution_time . ' s'; ?></td>
+												<td>
+													<?php
+													$maxExecutionTime = ini_get('max_execution_time');
+													if ($maxExecutionTime >= $max_execution_time) {
+													?>
+														<span class="badge text-bg-success"><?php echo $maxExecutionTime; ?></span>
+													<?php } else { ?>
+														<span class="badge text-bg-danger"><?php echo $maxExecutionTime; ?></span>
+													<?php } ?>
+												</td>
+											</tr>
 
 											<tr>
-												<td>openssl</td>
+												<td>max_upload_file_size</td>
+												<td><?php echo '> ' . $max_upload_file_size . 'M'; ?></td>
 												<td>
-													<?php if (in_array('openssl', get_loaded_extensions())) { ?>
-														<span class="badge text-bg-success">Installed</span>
+													<?php
+													$maxUploadFileSize = ini_get('upload_max_filesize');
+													$maxUploadFileSizeBytes = (int)($maxUploadFileSize) * (1024 * 1024); // convert to bytes
+													if ($maxUploadFileSizeBytes > ($max_upload_file_size * 1024 * 1024)) { // compare with given value in bytes
+													?>
+														<span class="badge text-bg-success"><?php echo $maxUploadFileSize; ?></span>
 													<?php } else { ?>
-														<span class="badge text-bg-danger">Not Installed</span>  <!-- TODO Disable Continue Button if one is not installed -->
+														<span class="badge text-bg-danger"><?php echo $maxUploadFileSize; ?></span>
+													<?php } ?>
+												</td>
+											</tr>
+
+											<tr>
+												<td>post_max_size</td>
+												<td><?php echo '> ' . $post_max_size . 'M'; ?></td>
+												<td>
+													<?php
+													$maxUploadFileSize = ini_get('post_max_size');
+													$maxUploadFileSizeBytes = (int)($maxUploadFileSize) * (1024 * 1024); // convert to bytes
+													if ($maxUploadFileSizeBytes > ($post_max_size * 1024 * 1024)) { // compare with given value in bytes
+													?>
+														<span class="badge text-bg-success"><?php echo $maxUploadFileSize; ?></span>
+													<?php } else { ?>
+														<span class="badge text-bg-danger"><?php echo $maxUploadFileSize; ?></span>
 													<?php } ?>
 												</td>
 											</tr>
 										</table>
+									</div>
+									<div class="col-md-5 mx-auto border">
+											<p>Note: Everything is good or not</p> <!-- TODO Show confirmation or tipps what to do if something is wrong -->
 									</div>
 								</div>
 							</div>
@@ -249,7 +325,7 @@ if ($_POST && isset($_POST['submit'])) {
 							</div>
 
 							<!-- Tab 4: Database --> <!-- TODO Needs some Layout -->
-							<div class="tab-pane fade" id="database" role="tabpanel" aria-labelledby="database-tab"> 
+							<div class="tab-pane fade" id="database" role="tabpanel" aria-labelledby="database-tab">
 								<div class="mb-3">
 									<label for="hostname" class="form-label">Hostname</label>
 									<input type="text" id="hostname" value="localhost" class="form-control" name="hostname" />
