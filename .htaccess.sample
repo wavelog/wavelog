@@ -2,6 +2,9 @@
 # Then change the following variable in /application/config/config.php
 #   $config['index_page'] = '';
 
+Options -Indexes
+ServerSignature off
+
 RewriteEngine On
 
 RewriteCond %{REQUEST_URI} ^/backup/$
