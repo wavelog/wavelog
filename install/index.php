@@ -242,13 +242,16 @@ if ($_POST && isset($_POST['submit'])) {
 									<div class="col-md-5 mb-4 mx-auto"> <!-- MySQL / MariaDB -->
 										<p class="border-bottom mb-2"><b>MySQL / MariaDB</b></p>
 										<table width="100%">
-											<!-- TODO Logic to check MariaDB / MySQL Version and show it -->
 											<tr>
-												<td>MariaDB installed version</td>
-												<td><?php echo 'min. ' . $mariadb_version; ?></td>
-												<td>ToDo</td>
+												<td>Min. MySQL Version: </td>
+												<td><span class="badge text-bg-info"><?php echo $mysql_version; ?></span></td>
+											</tr>
+											<tr>
+												<td>Min. MariaDB Version: </td>
+												<td><span class="badge text-bg-info"><?php echo $mariadb_version; ?></span></td>
 											</tr>
 										</table>
+										<p>You can test your MySQL/MariaDB Version in Step 4</p>
 									</div>
 								</div>
 								<div class="row justify-content-center">
@@ -263,7 +266,7 @@ if ($_POST && isset($_POST['submit'])) {
 													$maxExecutionTime = ini_get('max_execution_time');
 													if ($maxExecutionTime >= $max_execution_time) {
 													?>
-														<span class="badge text-bg-success"><?php echo $maxExecutionTime; ?></span>
+														<span class="badge text-bg-success"><?php echo $maxExecutionTime . ' s'; ?></span>
 													<?php } else { ?>
 														<span class="badge text-bg-danger"><?php echo $maxExecutionTime; ?></span>
 													<?php } ?>
@@ -326,7 +329,7 @@ if ($_POST && isset($_POST['submit'])) {
 								</div>
 							</div>
 
-							<!-- Tab 4: Database -->
+							<!-- Tab 4: Database --> <!-- TODO Perform a mysql_get_server_info() with the provided data before continue -->
 							<div class="tab-pane fade" id="database" role="tabpanel" aria-labelledby="database-tab">
 								<div class="row">
 									<div class="col" style="margin-top: 50px;">
@@ -337,7 +340,7 @@ if ($_POST && isset($_POST['submit'])) {
 										<div class="mb-3">
 											<label for="db_hostname" class="form-label">Hostname</label>
 											<input type="text" id="db_hostname" value="localhost" class="form-control" name="db_hostname" />
-											<small class="text-muted">Usually 'localhost'.   Optional with '...:[port]'.   Default Port: 3306</small>
+											<small class="text-muted">Usually 'localhost'. Optional with '...:[port]'. Default Port: 3306</small>
 										</div>
 										<div class="mb-3">
 											<label for="db_username" class="form-label">Username</label>
@@ -360,7 +363,7 @@ if ($_POST && isset($_POST['submit'])) {
 
 							<!-- Tab 5: First User --> <!-- TODO Layout finish and Logic -->
 							<div class="tab-pane fade" id="firstuser" role="tabpanel" aria-labelledby="firstuser-tab">
-								<p>Create your first User.</p> 
+								<p>Create your first User.</p>
 								<div class="row">
 									<div class="col mb-2">
 										<label for="firstname" class="form-label">First Name</label>
@@ -434,7 +437,7 @@ if ($_POST && isset($_POST['submit'])) {
 
 							<!-- Tab 6: Finish --> <!-- TODO Install Button -->
 							<div class="tab-pane fade" id="finish" role="tabpanel" aria-labelledby="finish-tab">
-								<p>Here will be the Install Button</p> 
+								<p>Here will be the Install Button</p>
 							</div>
 						</div>
 					</form>
