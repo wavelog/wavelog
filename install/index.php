@@ -215,7 +215,7 @@ if ($_POST && isset($_POST['submit'])) {
 												</td>
 											</tr>
 											<?php
-											
+
 											foreach ($required_php_modules as $moduleName => $moduleData) {
 												$condition = $moduleData['condition'];
 												$allChecksPassed = $allChecksPassed && $condition;
@@ -322,14 +322,14 @@ if ($_POST && isset($_POST['submit'])) {
 									</div>
 									<div class="col-md-5 mx-auto" style="margin-top: 50px;">
 										<?php if ($allChecksPassed) { ?>
-											<div class="alert alert-success" role="alert">
-												<p> All Checks are OK. You can continue. </p>
+											<div class="alert alert-success d-flex align-items-center" role="alert">
+												<p class="mb-0">All Checks are OK. You can continue.</p>
 											</div>
 										<?php } else { ?>
-											<div class="alert alert-danger" role="alert">
-												<p> Some Checks have failed!</p>
-												<p> Check your PHP settings and install missing modules if necessary. </p>
-												<p> After that you have to restart your webserver and start the installer again.</p>
+											<div class="alert alert-danger d-flex flex-column align-items-center" role="alert">
+												<p class="mb-2 border-bottom">Some Checks have failed!</p>
+												<p class="mb-2">Check your PHP settings and install missing modules if necessary.</p>
+												<p class="mb-0">After that, you have to restart your webserver and start the installer again.</p>
 											</div>
 										<?php } ?>
 									</div>
