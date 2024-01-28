@@ -23,6 +23,7 @@ $min_php_version = '7.4.0';
 $max_execution_time = 600;		// Seconds
 $max_upload_file_size = 20;  	// Megabyte
 $post_max_size = 20;			// Megabyte
+$req_allow_url_fopen = '1';		// 1 = on
 
 // Array of PHP modules to check
 global $required_php_modules;
@@ -299,6 +300,21 @@ if ($_POST && isset($_POST['submit'])) {
 													<?php } else {
 														$allChecksPassed = false; ?>
 														<span class="badge text-bg-danger"><?php echo $maxUploadFileSize; ?></span>
+													<?php } ?>
+												</td>
+											</tr>
+											<tr>
+												<td>allow_url_fopen</td>
+												<td>On</td>
+												<td>
+													<?php
+													$get_allow_url_fopen = ini_get('allow_url_fopen');
+													if ($get_allow_url_fopen == $req_allow_url_fopen) {
+													?>
+														<span class="badge text-bg-success">On</span>
+													<?php } else {
+														$allChecksPassed = false; ?>
+														<span class="badge text-bg-danger">Off</span>
 													<?php } ?>
 												</td>
 											</tr>
