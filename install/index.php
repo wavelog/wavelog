@@ -105,11 +105,13 @@ if ($_POST && isset($_POST['submit'])) {
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 	<title>Install | Wavelog</title>
+	<link rel="icon" type="image/x-icon" href="assets/logo/favicon.ico">
 
-	<link rel="stylesheet" href="assets/bootstrap/bootstrap.min.css">
-	<link rel="stylesheet" href="assets/bootstrap/overrides.css">
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/overrides.css">
 
-	<script type="text/javascript" src="assets/bootstrap/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="assets/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="assets/js/jquery-3.6.0.min.js"></script>
 </head>
 
 <?php if (is_writable($db_config_path)) : ?>
@@ -302,7 +304,7 @@ if ($_POST && isset($_POST['submit'])) {
 										</table>
 									</div>
 									<div class="col-md-5 mx-auto border">
-											<p>Note: Everything is good or not</p> <!-- TODO Show confirmation or tipps what to do if something is wrong -->
+										<p>Note: Everything is good or not</p> <!-- TODO Show confirmation or tipps what to do if something is wrong -->
 									</div>
 								</div>
 							</div>
@@ -327,26 +329,95 @@ if ($_POST && isset($_POST['submit'])) {
 							<!-- Tab 4: Database --> <!-- TODO Needs some Layout -->
 							<div class="tab-pane fade" id="database" role="tabpanel" aria-labelledby="database-tab">
 								<div class="mb-3">
-									<label for="hostname" class="form-label">Hostname</label>
-									<input type="text" id="hostname" value="localhost" class="form-control" name="hostname" />
+									<label for="db_hostname" class="form-label">Hostname</label>
+									<input type="text" id="db_hostname" value="localhost" class="form-control" name="db_hostname" />
 								</div>
 								<div class="mb-3">
-									<label for="username" class="form-label">Username</label>
-									<input type="text" id="username" class="form-control" name="username" />
+									<label for="db_username" class="form-label">Username</label>
+									<input type="text" id="db_username" class="form-control" name="db_username" />
 								</div>
 								<div class="mb-3">
-									<label for="password" class="form-label">Password</label>
-									<input type="password" id="password" class="form-control" name="password" />
+									<label for="db_password" class="form-label">Password</label>
+									<input type="password" id="db_password" class="form-control" name="db_password" />
 								</div>
 								<div class="mb-3">
-									<label for="database" class="form-label">Database Name</label>
-									<input type="text" id="database" class="form-control" name="database" />
+									<label for="db_name" class="form-label">Database Name</label>
+									<input type="text" id="db_name" class="form-control" name="db_name" />
 								</div>
 							</div>
 
 							<!-- Tab 5: First User -->
 							<div class="tab-pane fade" id="firstuser" role="tabpanel" aria-labelledby="firstuser-tab">
-								<p>here we will ask for the first user.</p> <!-- TODO User Form -->
+								<p>Create your first User.</p> <!-- TODO User Logic -->
+								<div class="row">
+									<div class="col mb-2">
+										<label for="firstname" class="form-label">First Name</label>
+										<input type="text" id="firstname" class="form-control" name="firstname" />
+									</div>
+									<div class="col mb-2">
+										<label for="lastname" class="form-label">Last Name</label>
+										<input type="text" id="lastname" class="form-control" name="lastname" />
+									</div>
+								</div>
+								<div class="row">
+									<div class="col mb-2">
+										<label for="callsign" class="form-label">Callsign</label>
+										<input type="text" id="callsign" class="form-control" name="callsign" />
+									</div>
+									<div class="col mb-2">
+										<label for="username" class="form-label">Username</label>
+										<input type="text" id="username" class="form-control" name="username" />
+									</div>
+								</div>
+								<div class="row">
+									<div class="col mb-2">
+										<label for="userlocator" class="form-label">Locator</label>
+										<input type="text" id="userlocator" class="form-control" name="userlocator" />
+									</div>
+									<div class="col mb-2">
+										<label for="user_email" class="form-label">E-Mail Address</label>
+										<input type="user_email" id="user_email" class="form-control" name="user_email" />
+									</div>
+								</div>
+								<div class="row">
+									<div class="col mb-2">
+										<label for="password" class="form-label">Password</label>
+										<input type="password" id="password" class="form-control" name="password" />
+									</div>
+									<div class="col mb-2">
+										<label for="measurement" class="form-label">Measurement Preference</label>
+										<select id="measurement" class="form-select" name="measurement">
+											<option value="K" selected>Kilometers</option>
+											<option value="M">Miles</option>
+										</select>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col mb-2">
+										<label for="cnfm_password" class="form-label">Confirm Password</label> <!-- TODO Compare passwords before continue -->
+										<input type="cnfm_password" id="cnfm_password" class="form-control" name="cnfm_password" />
+									</div>
+									<div class="col mb-2">
+										<label for="language" class="form-label">Language</label>
+										<select id="language" class="form-select" name="language">
+											<option value="bulgarian">Bulgarian</option>
+											<option value="chinese_simplified">Chinese</option>
+											<option value="czech">Czech</option>
+											<option value="dutch">Dutch</option>
+											<option value="english" selected>English</option>
+											<option value="finnish">Finnish</option>
+											<option value="french">French</option>
+											<option value="german">German</option>
+											<option value="greek">Greek</option>
+											<option value="italian">Italian</option>
+											<option value="polish">Polish</option>
+											<option value="russian">Russian</option>
+											<option value="spanish">Spanish</option>
+											<option value="swedish">Swedish</option>
+											<option value="turkish">Turkish</option>
+										</select>
+									</div>
+								</div>
 							</div>
 
 							<!-- Tab 6: Finish -->
@@ -357,59 +428,74 @@ if ($_POST && isset($_POST['submit'])) {
 					</form>
 				</div>
 				<div class="card-footer">
-					<button type="button" id="BackButton" class="btn btn-primary float-start" onclick="prevTab()" style="display: none">Back</button>
-					<button type="button" id="ContinueButton" class="btn btn-info float-end" onclick="nextTab()" style="display: none">Continue</button>
+					<button type="button" id="BackButton" class="btn btn-primary float-start" style="display: none">Back</button>
+					<button type="button" id="ContinueButton" class="btn btn-info float-end" style="display: none">Continue</button>
 				</div>
 			</div>
 		</div>
 
 		<script>
-			document.addEventListener('DOMContentLoaded', function() {
-				document.getElementById('ContinueButton').style.display = 'block';
+			$(document).ready(function() {
+				$('#ContinueButton').css('display', 'block');
 				console.log("Ready to unleash your coding prowess and join the fun?\n\n" +
 					"Check out our GitHub Repository and dive into the coding adventure:\n\n" +
 					"🚀 https://www.github.com/wavelog/wavelog");
+
+				const tabs = new bootstrap.Tab($('#welcome-tab')[0]);
+				tabs.show();
+
+				let firstTabId = 'welcome-tab';
+				let lastTabId = 'finish-tab';
+
+				function nextTab() {
+					const activeTab = $('.nav-link.active');
+					const nextTab = activeTab.parent().next().find('.nav-link');
+
+					if (nextTab.length > 0) {
+						const tab = new bootstrap.Tab(nextTab[0]);
+						tab.show();
+					}
+
+					if (nextTab.attr('id') !== lastTabId) {
+						$('#ContinueButton').css('display', 'block');
+						$('#BackButton').css('display', 'block');
+					} else {
+						$('#ContinueButton').css('display', 'none');
+					}
+				}
+
+				function prevTab() {
+					const activeTab = $('.nav-link.active');
+					const prevTab = activeTab.parent().prev().find('.nav-link');
+
+					if (prevTab.length > 0) {
+						const tab = new bootstrap.Tab(prevTab[0]);
+						tab.show();
+					}
+
+					if (prevTab.attr('id') !== firstTabId) {
+						$('#ContinueButton').css('display', 'block');
+						$('#BackButton').css('display', 'block');
+					} else {
+						$('#BackButton').css('display', 'none');
+					}
+				}
+
+				$('#ContinueButton').on('click', nextTab);
+				$('#BackButton').on('click', prevTab);
 			});
 
-			const tabs = new bootstrap.Tab(document.getElementById('welcome-tab'));
-			tabs.show();
-
-			let firstTabId = 'welcome-tab';
-			let lastTabId = 'finish-tab';
-
-			function nextTab() {
-				const activeTab = document.querySelector('.nav-link.active');
-				const nextTab = activeTab.parentElement.nextElementSibling.querySelector('.nav-link');
-
-				if (nextTab) {
-					const tab = new bootstrap.Tab(nextTab);
-					tab.show();
-				}
-
-				if (nextTab.id != lastTabId) {
-					document.getElementById('ContinueButton').style.display = 'block';
-					document.getElementById('BackButton').style.display = 'block';
+			// [PWD] button show/hide //
+			function btn_pwd_showhide() {
+				if ($(this).closest('div').find('input[type="password"]').length > 0) {
+					$(this).closest('div').find('input[type="password"]').attr('type', 'text');
+					$(this).closest('div').find('.fa-eye-slash').removeClass('fa-eye-slash').addClass('fa-eye');
 				} else {
-					document.getElementById('ContinueButton').style.display = 'none';
+					$(this).closest('div').find('input[type="text"]').attr('type', 'password');
+					$(this).closest('div').find('.fa-eye').removeClass('fa-eye').addClass('fa-eye-slash');
 				}
 			}
-
-			function prevTab() {
-				const activeTab = document.querySelector('.nav-link.active');
-				const prevTab = activeTab.parentElement.previousElementSibling.querySelector('.nav-link');
-
-				if (prevTab) {
-					const tab = new bootstrap.Tab(prevTab);
-					tab.show();
-				}
-
-				if (prevTab.id != firstTabId) {
-					document.getElementById('ContinueButton').style.display = 'block';
-					document.getElementById('BackButton').style.display = 'block';
-				} else {
-					document.getElementById('BackButton').style.display = 'none';
-				}
-			}
+			$('.user_edit .btn-pwd-showhide').off('click').on('click', btn_pwd_showhide);
 		</script>
 	</body>
 
