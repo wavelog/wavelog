@@ -313,7 +313,7 @@ if ($_POST && isset($_POST['submit'])) {
 							<div class="tab-pane fade" id="configuration" role="tabpanel" aria-labelledby="configuration-tab">
 
 								<div class="mb-3">
-									<label for="directory" class="form-label">Directory</label>
+									<label for="directory" class="form-label">Directory</label> <!-- TODO Check with team if this is necessary -->
 									<input type="text" id="directory" value="<?php echo str_replace("index.php", "", str_replace("/install/", "", $_SERVER['REQUEST_URI'])); ?>" class="form-control" name="directory" />
 								</div>
 								<div class="mb-3">
@@ -326,29 +326,41 @@ if ($_POST && isset($_POST['submit'])) {
 								</div>
 							</div>
 
-							<!-- Tab 4: Database --> <!-- TODO Needs some Layout -->
+							<!-- Tab 4: Database -->
 							<div class="tab-pane fade" id="database" role="tabpanel" aria-labelledby="database-tab">
-								<div class="mb-3">
-									<label for="db_hostname" class="form-label">Hostname</label>
-									<input type="text" id="db_hostname" value="localhost" class="form-control" name="db_hostname" />
-								</div>
-								<div class="mb-3">
-									<label for="db_username" class="form-label">Username</label>
-									<input type="text" id="db_username" class="form-control" name="db_username" />
-								</div>
-								<div class="mb-3">
-									<label for="db_password" class="form-label">Password</label>
-									<input type="password" id="db_password" class="form-control" name="db_password" />
-								</div>
-								<div class="mb-3">
-									<label for="db_name" class="form-label">Database Name</label>
-									<input type="text" id="db_name" class="form-control" name="db_name" />
+								<div class="row">
+									<div class="col" style="margin-top: 50px;">
+										<img src="assets/logo/database_sign.png" alt="" style="max-width: 80%; height: auto; margin-left: 20px;">
+									</div>
+									<div class="col">
+										<p>To properly install Wavelog you already should have setup a mariadb/mysql database. Provide the parameters here.</p>
+										<div class="mb-3">
+											<label for="db_hostname" class="form-label">Hostname</label>
+											<input type="text" id="db_hostname" value="localhost" class="form-control" name="db_hostname" />
+											<small class="text-muted">Usually 'localhost'.   Optional with '...:[port]'.   Default Port: 3306</small>
+										</div>
+										<div class="mb-3">
+											<label for="db_username" class="form-label">Username</label>
+											<input type="text" id="db_username" placeholder="waveloguser" class="form-control" name="db_username" />
+											<small class="text-muted">Username of the DB User which has full access to the database.</small>
+										</div>
+										<div class="mb-3">
+											<label for="db_password" class="form-label">Password</label>
+											<input type="password" id="db_password" placeholder="supersecretpassword" class="form-control" name="db_password" />
+											<small class="text-muted">Password of the DB User.</small>
+										</div>
+										<div class="mb-3">
+											<label for="db_name" class="form-label">Database Name</label>
+											<input type="text" id="db_name" placeholder="wavelog" class="form-control" name="db_name" />
+											<small class="text-muted">Name of the Database.</small>
+										</div>
+									</div>
 								</div>
 							</div>
 
-							<!-- Tab 5: First User -->
+							<!-- Tab 5: First User --> <!-- TODO Layout finish and Logic -->
 							<div class="tab-pane fade" id="firstuser" role="tabpanel" aria-labelledby="firstuser-tab">
-								<p>Create your first User.</p> <!-- TODO User Logic -->
+								<p>Create your first User.</p> 
 								<div class="row">
 									<div class="col mb-2">
 										<label for="firstname" class="form-label">First Name</label>
@@ -420,9 +432,9 @@ if ($_POST && isset($_POST['submit'])) {
 								</div>
 							</div>
 
-							<!-- Tab 6: Finish -->
+							<!-- Tab 6: Finish --> <!-- TODO Install Button -->
 							<div class="tab-pane fade" id="finish" role="tabpanel" aria-labelledby="finish-tab">
-								<p>Here will be the Install Button</p> <!-- TODO Install Button -->
+								<p>Here will be the Install Button</p> 
 							</div>
 						</div>
 					</form>
