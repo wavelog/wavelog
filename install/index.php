@@ -21,8 +21,8 @@ $db_file_path = $db_config_path . "database.php";
 // PHP 
 $min_php_version = '7.4.0';
 $max_execution_time = 600;		// Seconds
-$max_upload_file_size = 20;  	// Megabyte
-$post_max_size = 20;			// Megabyte
+$max_upload_file_size = 8;  	// Megabyte
+$post_max_size = 8;				// Megabyte
 $req_allow_url_fopen = '1';		// 1 = on
 
 // Array of PHP modules to check
@@ -264,8 +264,8 @@ if ($_POST && isset($_POST['submit'])) {
 													?>
 														<span class="badge text-bg-success"><?php echo $maxExecutionTime . ' s'; ?></span>
 													<?php } else {
-														$allChecksPassed = false; ?>
-														<span class="badge text-bg-danger"><?php echo $maxExecutionTime; ?></span>
+														?>
+														<span class="badge text-bg-warning"><?php echo $maxExecutionTime; ?></span>
 													<?php } ?>
 												</td>
 											</tr>
@@ -281,8 +281,8 @@ if ($_POST && isset($_POST['submit'])) {
 													?>
 														<span class="badge text-bg-success"><?php echo $maxUploadFileSize; ?></span>
 													<?php } else {
-														$allChecksPassed = false; ?>
-														<span class="badge text-bg-danger"><?php echo $maxUploadFileSize; ?></span>
+														?>
+														<span class="badge text-bg-warning"><?php echo $maxUploadFileSize; ?></span>
 													<?php } ?>
 												</td>
 											</tr>
@@ -298,8 +298,8 @@ if ($_POST && isset($_POST['submit'])) {
 													?>
 														<span class="badge text-bg-success"><?php echo $maxUploadFileSize; ?></span>
 													<?php } else {
-														$allChecksPassed = false; ?>
-														<span class="badge text-bg-danger"><?php echo $maxUploadFileSize; ?></span>
+														?>
+														<span class="badge text-bg-warning"><?php echo $maxUploadFileSize; ?></span>
 													<?php } ?>
 												</td>
 											</tr>
@@ -355,6 +355,13 @@ if ($_POST && isset($_POST['submit'])) {
 										<div class="mb-3">
 											<label for="locator" class="form-label">Default Gridsquare</label>
 											<input type="text" id="locator" value="IO91JS" class="form-control" name="locator" />
+										</div>
+										<div class="mb-3">
+											<label for="global_call_lookup" class="form-label">Global Callsign Lookup</label>
+											<select id="global_call_lookup" class="form-select" name="global_call_lookup">
+												<option value="qrz" selected>QRZ.com</option>
+												<option value="hamqth">HamQTH</option>
+											</select>
 										</div>
 									</div>
 								</div>
@@ -537,37 +544,10 @@ if ($_POST && isset($_POST['submit'])) {
 										<input type="password" id="password" placeholder="**********" class="form-control" name="password" />
 									</div>
 									<div class="col-md-6 mb-2">
-										<label for="measurement" class="form-label">Measurement Preference</label>
-										<select id="measurement" class="form-select" name="measurement">
-											<option value="K" selected>Kilometers</option>
-											<option value="M">Miles</option>
-										</select>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-6 mb-2">
-										<label for="cnfm_password" class="form-label">Confirm Password</label> <!-- TODO Compare passwords before continue -->
-										<input type="cnfm_password" id="cnfm_password" placeholder="**********" class="form-control" name="cnfm_password" />
-									</div>
-									<div class="col-md-6 mb-2">
-										<label for="language" class="form-label">Language</label>
-										<select id="language" class="form-select" name="language">
-											<option value="bulgarian">Bulgarian</option>
-											<option value="chinese_simplified">Chinese</option>
-											<option value="czech">Czech</option>
-											<option value="dutch">Dutch</option>
-											<option value="english" selected>English</option>
-											<option value="finnish">Finnish</option>
-											<option value="french">French</option>
-											<option value="german">German</option>
-											<option value="greek">Greek</option>
-											<option value="italian">Italian</option>
-											<option value="polish">Polish</option>
-											<option value="russian">Russian</option>
-											<option value="spanish">Spanish</option>
-											<option value="swedish">Swedish</option>
-											<option value="turkish">Turkish</option>
-										</select>
+										<div class="col-md-6 mb-2">
+											<label for="cnfm_password" class="form-label">Confirm Password</label> <!-- TODO Compare passwords before continue -->
+											<input type="cnfm_password" id="cnfm_password" placeholder="**********" class="form-control" name="cnfm_password" />
+										</div>
 									</div>
 								</div>
 							</div>
@@ -575,6 +555,7 @@ if ($_POST && isset($_POST['submit'])) {
 							<!-- Tab 6: Finish --> <!-- TODO Install Button -->
 							<div class="tab-pane fade" id="finish" role="tabpanel" aria-labelledby="finish-tab">
 								<p>Here will be the Install Button</p>
+								<input type="submit" value="Install" id="submit" />
 							</div>
 						</div>
 					</form>
