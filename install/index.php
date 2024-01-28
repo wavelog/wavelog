@@ -336,7 +336,7 @@ if ($_POST && isset($_POST['submit'])) {
 								</div>
 							</div>
 
-							<!-- Tab 3: Configuration --> <!-- TODO Needs some Layout -->
+							<!-- Tab 3: Configuration --> <!-- TODO Needs some Layout and maybe other config options (qrz/hamqth web lookup?) -->
 							<div class="tab-pane fade" id="configuration" role="tabpanel" aria-labelledby="configuration-tab">
 
 								<div class="mb-3">
@@ -387,43 +387,149 @@ if ($_POST && isset($_POST['submit'])) {
 
 							<!-- Tab 5: First User --> <!-- TODO Layout finish and Logic -->
 							<div class="tab-pane fade" id="firstuser" role="tabpanel" aria-labelledby="firstuser-tab">
-								<p>Create your first User.</p>
+								<p>Now you can create your first user in Wavelog. Fill out all fields and click continue.<br>Make sure you use a proper password.</p>
 								<div class="row">
-									<div class="col mb-2">
-										<label for="firstname" class="form-label">First Name</label>
-										<input type="text" id="firstname" class="form-control" name="firstname" />
+									<div class="col-md-6 mb-2">
+										<div class="row">
+											<div class="col">
+												<label for="firstname" class="form-label">First Name</label>
+												<input type="text" id="firstname" placeholder="Ham" class="form-control" name="firstname" />
+											</div>
+											<div class="col">
+												<label for="lastname" class="form-label">Last Name</label>
+												<input type="text" id="lastname" placeholder="Radio" class="form-control" name="lastname" />
+											</div>
+										</div>
 									</div>
-									<div class="col mb-2">
-										<label for="lastname" class="form-label">Last Name</label>
-										<input type="text" id="lastname" class="form-control" name="lastname" />
+									<div class="col-md-6 mb-2">
+										<div class="row">
+											<div class="col">
+												<label for="username" class="form-label">Username</label>
+												<input type="text" id="username" placeholder="ham.radio" class="form-control" name="username" />
+											</div>
+										</div>
 									</div>
 								</div>
+
 								<div class="row">
-									<div class="col mb-2">
+									<div class="col-md-6 mb-2">
 										<label for="callsign" class="form-label">Callsign</label>
-										<input type="text" id="callsign" class="form-control" name="callsign" />
+										<input type="text" id="callsign" placeholder="4W7EST" class="form-control" name="callsign" />
 									</div>
-									<div class="col mb-2">
-										<label for="username" class="form-label">Username</label>
-										<input type="text" id="username" class="form-control" name="username" />
-									</div>
-								</div>
-								<div class="row">
-									<div class="col mb-2">
-										<label for="userlocator" class="form-label">Locator</label>
-										<input type="text" id="userlocator" class="form-control" name="userlocator" />
-									</div>
-									<div class="col mb-2">
+									<div class="col-md-6 mb-2">
 										<label for="user_email" class="form-label">E-Mail Address</label>
-										<input type="user_email" id="user_email" class="form-control" name="user_email" />
+										<input type="email" id="user_email" placeholder="ham.radio@example.com" class="form-control" name="user_email" />
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-md-6 mb-2">
+										<label for="userlocator" class="form-label">Locator</label>
+										<input type="text" id="userlocator" placeholder="HA44AA" class="form-control" name="userlocator" />
+									</div>
+									<div class="col-md-6 mb-2">
+										<label for="timezone" class="form-label">Timezone</label>
+										<select id="timezone" class="form-select" name="timezone">
+											<?php
+											// timezones
+											$timezones = [
+												['1', '-12.0', '(GMT-12:00)-International Date Line West'],
+												['4', '-9.0', '(GMT-09:00)-Alaska'],
+												['5', '-8.0', '(GMT-08:00)-Pacific Time (US & Canada); Tijuana'],
+												['6', '-7.0', '(GMT-07:00)-Arizona'],
+												['8', '-7.0', '(GMT-07:00)-Mountain Time (US & Canada)'],
+												['13', '-5.0', '(GMT-05:00)-Bogota, Lima, Quito'],
+												['15', '-5.0', '(GMT-05:00)-Indiana (East)'],
+												['17', '-4.0', '(GMT-04:00)-La Paz'],
+												['19', '-3.5', '(GMT-03:30)-Newfoundland'],
+												['22', '-3.0', '(GMT-03:00)-Greenland'],
+												['23', '-2.0', '(GMT-02:00)-Mid-Atlantic'],
+												['0', '0.0', '(GMT+00:00)-Greenwich Mean Time: Dublin, Edinburgh, Lisbon, London', true],
+												['30', '1.0', '(GMT+01:00)-Brussels, Copenhagen, Madrid, Paris'],
+												['31', '1.0', '(GMT+01:00)-Sarajevo, Skopje, Warsaw, Zagreb'],
+												['35', '2.0', '(GMT+02:00)-Cairo'],
+												['36', '2.0', '(GMT+02:00)-Harare, Pretoria'],
+												['38', '2.0', '(GMT+02:00)-Jerusalem'],
+												['39', '3.0', '(GMT+03:00)-Baghdad'],
+												['41', '3.0', '(GMT+03:00)-Moscow, St. Petersburg, Volgograd'],
+												['43', '3.5', '(GMT+03:30)-Tehran'],
+												['44', '4.0', '(GMT+04:00)-Abu Dhabi, Muscat'],
+												['45', '4.0', '(GMT+04:00)-Baku, Tbilisi, Yerevan'],
+												['46', '4.5', '(GMT+04:30)-Kabul'],
+												['51', '6.0', '(GMT+06:00)-Almaty, Novosibirsk'],
+												['54', '6.5', '(GMT+06:30)-Rangoon'],
+												['55', '7.0', '(GMT+07:00)-Bangkok, Hanoi, Jakarta'],
+												['56', '7.0', '(GMT+07:00)-Krasnoyarsk'],
+												['58', '8.0', '(GMT+08:00)-Irkutsk, Ulaan Bataar'],
+												['59', '8.0', '(GMT+08:00)-Kuala Lumpur, Singapore'],
+												['60', '8.0', '(GMT+08:00)-Perth'],
+												['63', '9.0', '(GMT+09:00)-Seoul'],
+												['64', '9.0', '(GMT+09:00)-Vakutsk'],
+												['66', '9.5', '(GMT+09:30)-Darwin'],
+												['69', '10.0', '(GMT+10:00)-Guam, Port Moresby'],
+												['71', '10.0', '(GMT+10:00)-Vladivostok'],
+												['74', '12.0', '(GMT+12:00)-Fiji, Kamchatka, Marshall Is.'],
+												['76', '-11.0', '(GMT-11:00)-Midway Island, Samoa'],
+												['77', '-10.0', '(GMT-10:00)-Hawaii'],
+												['81', '-7.0', '(GMT-07:00)-Chihuahua, La Paz, Mazatlan'],
+												['83', '-6.0', '(GMT-06:00)-Central America'],
+												['84', '-6.0', '(GMT-06:00)-Central Time (US & Canada)'],
+												['85', '-6.0', '(GMT-06:00)-Guadalajara, Mexico City, Monterrey'],
+												['86', '-6.0', '(GMT-06:00)-Saskatchewan'],
+												['88', '-5.0', '(GMT-05:00)-Eastern Time (US & Canada)'],
+												['90', '-4.0', '(GMT-04:00)-Atlantic Time (Canada)'],
+												['91', '-4.0', '(GMT-04:00)-Caracas, La Paz'],
+												['92', '-4.0', '(GMT-04:00)-Santiago'],
+												['94', '-3.0', '(GMT-03:00)-Brasilia'],
+												['95', '-3.0', '(GMT-03:00)-Buenos Aires, Georgetown'],
+												['98', '-1.0', '(GMT-01:00)-Azores'],
+												['99', '-1.0', '(GMT-01:00)-Cape Verde Is.'],
+												['100', '0.0', '(GMT)-Casablanca, Monrovia'],
+												['102', '1.0', '(GMT+01:00)-Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna'],
+												['103', '1.0', '(GMT+01:00)-Belgrade, Bratislava, Budapest, Ljubljana, Prague'],
+												['106', '1.0', '(GMT+01:00)-West Central Africa'],
+												['107', '2.0', '(GMT+02:00)-Athens, Beirut, Istanbul, Minsk'],
+												['108', '2.0', '(GMT+02:00)-Bucharest'],
+												['111', '2.0', '(GMT+02:00)-Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius'],
+												['114', '3.0', '(GMT+03:00)-Kuwait, Riyadh'],
+												['116', '3.0', '(GMT+03:00)-Nairobi'],
+												['121', '5.0', '(GMT+05:00)-Ekaterinburg'],
+												['122', '5.0', '(GMT+05:00)-Islamabad, Karachi, Tashkent'],
+												['123', '5.5', '(GMT+05:30)-Chennai, Kolkata, Mumbai, New Delhi'],
+												['124', '5.8', '(GMT+05:45)-Kathmandu'],
+												['126', '6.0', '(GMT+06:00)-Astana, Dhaka'],
+												['127', '6.0', '(GMT+06:00)-Sri Jayawardenepura'],
+												['129', '7.0', '(GMT+07:00)-Bangkok, Hanoi, Jakarta'],
+												['131', '8.0', '(GMT+08:00)-Beijing, Chongqing, Hong Kong, Urumqi'],
+												['135', '8.0', '(GMT+08:00)-Taipei'],
+												['136', '9.0', '(GMT+09:00)-Osaka, Sapporo, Tokyo'],
+												['139', '9.5', '(GMT+09:30)-Adelaide'],
+												['141', '10.0', '(GMT+10:00)-Brisbane'],
+												['142', '10.0', '(GMT+10:00)-Canberra, Melbourne, Sydney'],
+												['144', '10.0', '(GMT+10:00)-Hobart'],
+												['146', '11.0', '(GMT+11:00)-Magadan, Solomon Is., New Caledonia'],
+												['147', '12.0', '(GMT+12:00)-Auckland, Wellington'],
+												['149', '13.0', '(GMT+13:00)-Nuku\'alofa'],
+												['150', '-4.5', '(GMT-04:30)-Caracas'],
+											];											
+											// Loop through timezones to generate options
+											foreach ($timezones as $timezone) {
+												$value = $timezone[0];
+												$label = $timezone[2];
+												$selected = isset($timezone[3]) && $timezone[3] ? 'selected' : '';
+											
+												echo '<option value="' . $value . '" ' . $selected . '>' . $label . '</option>';
+											}
+											?>
+										</select>
 									</div>
 								</div>
 								<div class="row">
-									<div class="col mb-2">
+									<div class="col-md-6 mb-2">
 										<label for="password" class="form-label">Password</label>
-										<input type="password" id="password" class="form-control" name="password" />
+										<input type="password" id="password" placeholder="**********" class="form-control" name="password" />
 									</div>
-									<div class="col mb-2">
+									<div class="col-md-6 mb-2">
 										<label for="measurement" class="form-label">Measurement Preference</label>
 										<select id="measurement" class="form-select" name="measurement">
 											<option value="K" selected>Kilometers</option>
@@ -432,11 +538,11 @@ if ($_POST && isset($_POST['submit'])) {
 									</div>
 								</div>
 								<div class="row">
-									<div class="col mb-2">
+									<div class="col-md-6 mb-2">
 										<label for="cnfm_password" class="form-label">Confirm Password</label> <!-- TODO Compare passwords before continue -->
-										<input type="cnfm_password" id="cnfm_password" class="form-control" name="cnfm_password" />
+										<input type="cnfm_password" id="cnfm_password" placeholder="**********" class="form-control" name="cnfm_password" />
 									</div>
-									<div class="col mb-2">
+									<div class="col-md-6 mb-2">
 										<label for="language" class="form-label">Language</label>
 										<select id="language" class="form-select" name="language">
 											<option value="bulgarian">Bulgarian</option>
