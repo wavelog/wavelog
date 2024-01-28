@@ -3,6 +3,64 @@ var was;
 var geojson;
 var map;
 var info;
+var clickmarkers = [];
+
+const states =  'AK,AL,AR,AZ,CA,CO,CT,DE,FL,GA,HI,IA,ID,IL,IN,KS,KY,LA,MA,MD,ME,MI,MN,MO,MS,MT,NC,ND,NE,NH,NJ,NM,NV,NY,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VA,VT,WA,WI,WV,WY';
+
+const wasmarkers = [
+	[ "66", "-153" ], //AK
+	[ "32.9", "-87" ], //AL
+	[ "35.2", "-93" ], //AR
+	[ "35.2", "-112" ], //AZ
+	[ "37", "-120" ], //CA
+	[ "39.2", "-105.7" ], //CO
+	[ "41.7", "-72.7" ], //CT
+	[ "38.7", "-75.5" ], //DE
+	[ "30", "-82" ], //FL
+	[ "32.9", "-84" ], //GA
+	[ "19.5", "-159.5" ], // HI
+	[ "42.5", "-94" ], //IA
+	[ "44", "-115" ], //ID
+	[ "40.5", "-89" ], //IL
+	[ "40.5", "-86.5" ], //IN
+	[ "38.7", "-99" ], //KS
+	[ "38", "-85" ], //KY
+	[ "32", "-93" ], //LA
+	[ "42.5", "-71.7" ], //MA
+	[ "39.5", "-77" ], //MD
+	[ "46", "-69" ], //ME
+	[ "43.5", "-85" ], //MI
+	[ "47.2", "-95" ], //MN
+	[ "38.7", "-93" ], //MO
+	[ "32.6", "-89.8" ], //MS
+	[ "47.2", "-108.5" ], //MT
+	[ "35.5", "-79" ], //NC
+	[ "47.7", "-100.5" ], //ND
+	[ "41.7", "-100.5" ], //NE
+	[ "44", "-71.7" ], //NH
+	[ "40.7", "-74.6" ], //NJ
+	[ "35.2", "-107" ], //NM
+	[ "39.2", "-117.5" ], //NV
+	[ "43.3", "-75" ], //NY
+	[ "40.5", "-83" ], //OH
+	[ "36", "-97.7" ], //OK
+	[ "44", "-121" ], //OR
+	[ "41", "-78" ], //PA
+	[ "41.7", "-71.6" ], //RI
+	[ "34", "-81" ], //SC
+	[ "44.7", "-100.5" ], //SD
+	[ "36", "-86.5" ], //TN
+	[ "32", "-100" ], //TX
+	[ "39.2", "-112" ], //UT
+	[ "37.5", "-79" ], //VA
+	[ "44", "-72.7" ], //VT
+	[ "47.6", "-121" ], //WA --
+	[ "45", "-89.7" ], //WI
+	[ "38.7", "-81" ], //WV
+	[ "43", "-108" ], //WY
+  ];
+
+  var statearray = states.split(",");
 
 function load_was_map() {
     $('.nav-tabs a[href="#wasmaptab"]').tab('show');
@@ -83,6 +141,8 @@ const mapcoordinates = { "type": "FeatureCollection", "features": [
 	{ "type": "Feature", "geometry": { "type": "Polygon", "coordinates": [[[-104.0288, 43.0013], [-104.0272, 42.5013], [-104.0252, 42.0012], [-104.0234, 41.5009], [-104.0217, 41.0009], [-104.6497, 41.0009], [-104.9638, 41.0009], [-105.5919, 41.0009], [-105.906, 41.0009], [-106.534, 41.0009], [-107.1622, 41.0009], [-107.7902, 41.0009], [-108.1044, 41.0009], [-108.7324, 41.0009], [-109.0464, 41.0009], [-109.5473, 41.0009], [-109.7978, 41.0009], [-110.2986, 41.0009], [-110.5491, 41.0009], [-111.05, 41.0009], [-111.0502, 41.2508], [-111.0502, 41.6259], [-111.0503, 42.0009], [-111.0506, 42.4693], [-111.0506, 42.7815], [-111.0508, 43.0938], [-111.051, 43.406], [-111.051, 43.7182], [-111.0513, 44.0304], [-111.0514, 44.4989], [-111.0508, 45.001], [-110.6126, 45.001], [-110.1741, 45.001], [-109.7358, 45.001], [-109.0783, 45.001], [-108.64, 45.001], [-107.9824, 45.001], [-107.3249, 45.001], [-106.8864, 45.001], [-106.4482, 45.001], [-106.0098, 45.001], [-105.5714, 45.0011], [-105.133, 45.0011], [-104.6948, 45.0011], [-104.0372, 45.0011], [-104.0351, 44.5012], [-104.033, 44.0012], [-104.031, 43.5013], [-104.0288, 43.0013]]] }, "properties": { "name": "Wyoming", "id": "US-WY", "CNTRY": "United States of America", "TYPE": "State" }, "id": "US-WY" }
 ] };
 
+
+
    // If map is already initialized
   var container = L.DomUtil.get('wasmap');
 
@@ -126,6 +186,20 @@ const mapcoordinates = { "type": "FeatureCollection", "features": [
 		}
 	}
 
+
+
+	/*for (var i = 0; i < wasmarkers.length; i++) {
+		var title = '<span class="grid-text" style="cursor: default"><font style="color: \'white\'; font-size: 1.5em; font-weight: 900;">' + (Number(i)+Number(1)) + '</font></span>';
+		var myIcon = L.divIcon({className: 'my-div-icon', html: title});
+		L.marker(
+			[wasmarkers[i][0], wasmarkers[i][1]], {
+				icon: myIcon,
+				title: (Number(i)+Number(1)),
+				zIndex: 1000,
+			}
+		).addTo(map).on('click', onClick);
+	}*/
+
   /*Legend specific*/
   var legend = L.control({ position: "topright" });
 
@@ -159,13 +233,55 @@ info.addTo(map);
   geojson = L.geoJson(mapcoordinates, {style: style, onEachFeature: onEachFeature}).addTo(map);
 
   map.setView([52, -100], 3);
+
+  addMarkers();
+
+  map.on('zoomend', function() {
+	clearMarkers();
+	addMarkers();
+});
+
+
+}
+
+function clearMarkers() {
+	clickmarkers.forEach(function (item) {
+		map.removeLayer(item)
+	});
+}
+
+function addMarkers() {
+	var zoom = map.getZoom();
+
+	for (var i = 0; i < statearray.length; i++) {
+		if (zoom < 4) {
+			if (statearray[i] != 'RI' && statearray[i] != 'DE' && statearray[i] != 'VT' && statearray[i] != 'CT' && statearray[i] != 'NH' && statearray[i] != 'MA' && statearray[i] != 'MD') {
+				createMarker(i);
+			}
+		} else {
+			createMarker(i);
+		}
+	}
+}
+
+function createMarker(i) {
+	var title = '<span class="grid-text" style="cursor: default"><font style="color: \'white\'; font-size: 1em; font-weight: 900;">' + (statearray[i]) + '</font></span>';
+	var myIcon = L.divIcon({className: 'my-div-icon', html: title});
+	var marker = L.marker(
+		[wasmarkers[i][0], wasmarkers[i][1]], {
+			icon: myIcon,
+			title: (statearray[i]),
+			zIndex: 1000,
+		}
+	).addTo(map).on('click', onClick2);
+	clickmarkers.push(marker);
 }
 
 function getColor(d) {
 	var res = d.substring(3, 5);
     return 	was[res] == 'C' ? 'green'  :
 			was[res] == 'W' ? 'orange' :
-									  'red';
+								'red';
 }
 
 function highlightFeature(e) {
@@ -214,5 +330,11 @@ function onClick(e) {
   zoomToFeature(e);
   var marker = e.target;
   var res =  marker.feature.id.substring(3, 5);
-  displayContactsOnMap($("#wasmap"),res, $('#band2').val(), $('#mode').val(), 'WAS');
+  displayContactsOnMap($("#wasmap"), res, $('#band2').val(), $('#mode').val(), 'WAS');
+}
+
+function onClick2(e) {
+    var marker = e.target;
+	console.log(marker);
+    displayContactsOnMap($("#wasmap"), marker.options.title, $('#band2').val(), $('#mode').val(), 'WAS')
 }
