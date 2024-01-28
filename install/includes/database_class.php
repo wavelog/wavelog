@@ -34,10 +34,21 @@ class Database {
 		// Open the default SQL file
 		$query = file_get_contents('assets/install.sql');
 
+		$newpw=password_hash($data['password'], PASSWORD_DEFAULT);
+		$newquery  = str_replace("%%FIRSTUSER_NAME%%%",$data['username'],$query);
+		$newquery  = str_replace("%%FIRSTUSER_PASS%%%",$data['password'],$newquery);
+		$newquery  = str_replace("%%FIRSTUSER_MAIL%%",$data['user_email'],$newquery);
+		$newquery  = str_replace("%%FIRSTUSER_CALL%%",$data['callsign'],$newquery);
+		$newquery  = str_replace("%%FIRSTUSER_LOCATOR%%",$data['userlocator'],$newquery);
+		$newquery  = str_replace("%%FIRSTUSER_FIRSTNAME%%",$data['firstname'],$newquery);
+		$newquery  = str_replace("%%FIRSTUSER_LASTNAME%%",$data['lastname'],$newquery);
+		$newquery  = str_replace("%%FIRSTUSER_TIMEZONE%%",$data['timezone'],$newquery);
+
+
 		mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
 		// Execute a multi query
-		$mysqli->multi_query($query);
+		$mysqli->multi_query($newquery);
 
 		// MultiQuery is NON-Blocking,so wait until everything is done
 		do { null; } while($mysqli->next_result());
