@@ -4,7 +4,7 @@
 	This installer guides an user through the install process and all 
 	necessary parameters for the new Wavelog Installation.
 
-	Version 1.0 - January 2024
+	HB9HIL - January 2024
 -->
 
 
@@ -146,7 +146,7 @@ if ($_POST && isset($_POST['submit'])) {
 	} ?>
 
 	<body>
-		<div class="container" style="max-width: 1000px; margin-top: 5rem; ">
+		<div class="container" style="max-width: 1000px; margin-top: 8rem; ">
 
 			<div class="card mt-4" style="min-height: 650px; margin: 0 auto;">
 
@@ -338,18 +338,25 @@ if ($_POST && isset($_POST['submit'])) {
 
 							<!-- Tab 3: Configuration --> <!-- TODO Needs some Layout and maybe other config options (qrz/hamqth web lookup?) -->
 							<div class="tab-pane fade" id="configuration" role="tabpanel" aria-labelledby="configuration-tab">
-
-								<div class="mb-3">
-									<label for="directory" class="form-label">Directory</label> <!-- TODO Check with team if this is necessary -->
-									<input type="text" id="directory" value="<?php echo str_replace("index.php", "", str_replace("/install/", "", $_SERVER['REQUEST_URI'])); ?>" class="form-control" name="directory" />
-								</div>
-								<div class="mb-3">
-									<label for="websiteurl" class="form-label">Website URL</label>
-									<input type="text" id="websiteurl" value="<?php echo $_SERVER['REQUEST_SCHEME']; ?>://<?php echo str_replace("index.php", "", $_SERVER['HTTP_HOST'] . str_replace("/install/", "", $_SERVER['REQUEST_URI'])); ?>" class="form-control" name="websiteurl" />
-								</div>
-								<div class="mb-3">
-									<label for="locator" class="form-label">Default Gridsquare</label>
-									<input type="text" id="locator" value="IO91JS" class="form-control" name="locator" />
+								<div class="row">
+									<div class="col" style="margin-top: 50px;">
+										<img src="assets/images/gears_icon.png" alt="" style="max-width: 80%; height: auto; margin-left: 20px;">
+									</div>
+									<div class="col">
+										<p>Configure some basic parameters for your wavelog instance. You can change them later in 'application/config/config.php'</p>
+										<div class="mb-3">
+											<label for="directory" class="form-label">Directory</label> <!-- TODO Check with team if this is necessary -->
+											<input type="text" id="directory" value="<?php echo str_replace("index.php", "", str_replace("/install/", "", $_SERVER['REQUEST_URI'])); ?>" class="form-control" name="directory" />
+										</div>
+										<div class="mb-3">
+											<label for="websiteurl" class="form-label">Website URL</label>
+											<input type="text" id="websiteurl" value="<?php echo $_SERVER['REQUEST_SCHEME']; ?>://<?php echo str_replace("index.php", "", $_SERVER['HTTP_HOST'] . str_replace("/install/", "", $_SERVER['REQUEST_URI'])); ?>" class="form-control" name="websiteurl" />
+										</div>
+										<div class="mb-3">
+											<label for="locator" class="form-label">Default Gridsquare</label>
+											<input type="text" id="locator" value="IO91JS" class="form-control" name="locator" />
+										</div>
+									</div>
 								</div>
 							</div>
 
@@ -511,13 +518,13 @@ if ($_POST && isset($_POST['submit'])) {
 												['147', '12.0', '(GMT+12:00)-Auckland, Wellington'],
 												['149', '13.0', '(GMT+13:00)-Nuku\'alofa'],
 												['150', '-4.5', '(GMT-04:30)-Caracas'],
-											];											
+											];
 											// Loop through timezones to generate options
 											foreach ($timezones as $timezone) {
 												$value = $timezone[0];
 												$label = $timezone[2];
 												$selected = isset($timezone[3]) && $timezone[3] ? 'selected' : '';
-											
+
 												echo '<option value="' . $value . '" ' . $selected . '>' . $label . '</option>';
 											}
 											?>
