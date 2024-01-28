@@ -74,7 +74,7 @@ if (file_exists($db_file_path)) {
 }
 
 // Only load the classes in case the user submitted the form
-if($_POST) {
+if ($_POST) {
 
 	// Load the classes and create the new objects
 	require_once('includes/core_class.php');
@@ -200,7 +200,7 @@ if($_POST) {
 										<p class="border-bottom mb-2"><b>PHP Modules</b></p>
 										<?php
 										// Initialize the tracker
-										$allChecksPassed = true;
+										$allChecksPassed = 'ok';
 										?>
 										<table width="100%">
 											<tr>
@@ -215,10 +215,11 @@ if($_POST) {
 												</td>
 											</tr>
 											<?php
-
 											foreach ($required_php_modules as $moduleName => $moduleData) {
 												$condition = $moduleData['condition'];
-												$allChecksPassed = $allChecksPassed && $condition;
+												if (!$condition) {
+													$allChecksPassed = 'failed';
+												}
 											?>
 												<tr>
 													<td><?php echo $moduleName; ?></td>
@@ -260,11 +261,12 @@ if($_POST) {
 												<td>
 													<?php
 													$maxExecutionTime = ini_get('max_execution_time');
-													if ($maxExecutionTime >= $max_execution_time) {
-													?>
+													if ($maxExecutionTime >= $max_execution_time) { ?>
 														<span class="badge text-bg-success"><?php echo $maxExecutionTime . ' s'; ?></span>
 													<?php } else {
-														?>
+														if ($allChecksPassed != 'failed') {  // Check current value before changing to 'warning'
+															$allChecksPassed = 'warning';
+														} ?>
 														<span class="badge text-bg-warning"><?php echo $maxExecutionTime; ?></span>
 													<?php } ?>
 												</td>
@@ -277,11 +279,12 @@ if($_POST) {
 													<?php
 													$maxUploadFileSize = ini_get('upload_max_filesize');
 													$maxUploadFileSizeBytes = (int)($maxUploadFileSize) * (1024 * 1024); // convert to bytes
-													if ($maxUploadFileSizeBytes > ($max_upload_file_size * 1024 * 1024)) { // compare with given value in bytes
-													?>
+													if ($maxUploadFileSizeBytes > ($max_upload_file_size * 1024 * 1024)) { // compare with given value in bytes ?>
 														<span class="badge text-bg-success"><?php echo $maxUploadFileSize; ?></span>
 													<?php } else {
-														?>
+														if ($allChecksPassed != 'failed') {  // Check current value before changing to 'warning'
+															$allChecksPassed = 'warning';
+														}?>
 														<span class="badge text-bg-warning"><?php echo $maxUploadFileSize; ?></span>
 													<?php } ?>
 												</td>
@@ -294,11 +297,12 @@ if($_POST) {
 													<?php
 													$maxUploadFileSize = ini_get('post_max_size');
 													$maxUploadFileSizeBytes = (int)($maxUploadFileSize) * (1024 * 1024); // convert to bytes
-													if ($maxUploadFileSizeBytes > ($post_max_size * 1024 * 1024)) { // compare with given value in bytes
-													?>
+													if ($maxUploadFileSizeBytes > ($post_max_size * 1024 * 1024)) { // compare with given value in bytes ?>
 														<span class="badge text-bg-success"><?php echo $maxUploadFileSize; ?></span>
 													<?php } else {
-														?>
+														if ($allChecksPassed != 'failed') {  // Check current value before changing to 'warning'
+															$allChecksPassed = 'warning';
+														} ?>
 														<span class="badge text-bg-warning"><?php echo $maxUploadFileSize; ?></span>
 													<?php } ?>
 												</td>
@@ -313,7 +317,7 @@ if($_POST) {
 													?>
 														<span class="badge text-bg-success">On</span>
 													<?php } else {
-														$allChecksPassed = false; ?>
+														$allChecksPassed = 'failed'; ?>
 														<span class="badge text-bg-danger">Off</span>
 													<?php } ?>
 												</td>
@@ -321,15 +325,21 @@ if($_POST) {
 										</table>
 									</div>
 									<div class="col-md-5 mx-auto" style="margin-top: 50px;">
-										<?php if ($allChecksPassed) { ?>
-											<div class="alert alert-success d-flex align-items-center" role="alert">
-												<p class="mb-0">All Checks are OK. You can continue.</p>
-											</div>
-										<?php } else { ?>
+										<?php if ($allChecksPassed == 'failed') { ?>
 											<div class="alert alert-danger d-flex flex-column align-items-center" role="alert">
 												<p class="mb-2 border-bottom">Some Checks have failed!</p>
 												<p class="mb-2">Check your PHP settings and install missing modules if necessary.</p>
 												<p class="mb-0">After that, you have to restart your webserver and start the installer again.</p>
+											</div>
+										<?php } else if ($allChecksPassed == 'warning') { ?>
+											<div class="alert alert-warning d-flex flex-column align-items-center" role="alert">
+												<p class="mb-2 border-bottom">You have some warnings!</p>
+												<p class="mb-2">Some of the settings are not optimal. You can proceed with the installer but</p>
+												<p class="mb-0">be aware that you can run into problems while using Wavelog.</p>
+											</div>
+										<?php } else if ($allChecksPassed == 'ok') { ?>
+											<div class="alert alert-success d-flex align-items-center" role="alert">
+												<p class="mb-0">All Checks are OK. You can continue.</p>
 											</div>
 										<?php } ?>
 									</div>
@@ -618,7 +628,7 @@ if($_POST) {
 				$('#ContinueButton').on('click', nextTab);
 				$('#BackButton').on('click', prevTab);
 
-				<?php if (!$allChecksPassed) { ?>
+				<?php if ($allChecksPassed == 'failed') { ?>
 					// Check if the active tab is the precheck-tab and disable the ContinueButton if not all Checks passed
 					$(document).on('shown.bs.tab', function(e) {
 						const activeTabId = e.target.id;
