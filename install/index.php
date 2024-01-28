@@ -105,7 +105,7 @@ if ($_POST && isset($_POST['submit'])) {
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 	<title>Install | Wavelog</title>
-	<link rel="icon" type="image/x-icon" href="assets/logo/favicon.ico">
+	<link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
 
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/overrides.css">
@@ -155,7 +155,7 @@ if ($_POST && isset($_POST['submit'])) {
 							<div class="tab-pane fade show active p-3" id="welcome" role="tabpanel" aria-labelledby="welcome-tab">
 								<div class="row">
 									<div class="col-md-6">
-										<img src="assets/logo/wavelog_logo.png" alt="" style="max-width: 100%; height: auto;">
+										<img src="assets/images/wavelog_logo.png" alt="" style="max-width: 100%; height: auto;">
 									</div>
 
 									<div class="col-md-6">
@@ -330,7 +330,7 @@ if ($_POST && isset($_POST['submit'])) {
 							<div class="tab-pane fade" id="database" role="tabpanel" aria-labelledby="database-tab">
 								<div class="row">
 									<div class="col" style="margin-top: 50px;">
-										<img src="assets/logo/database_sign.png" alt="" style="max-width: 80%; height: auto; margin-left: 20px;">
+										<img src="assets/images/database_sign.png" alt="" style="max-width: 80%; height: auto; margin-left: 20px;">
 									</div>
 									<div class="col">
 										<p>To properly install Wavelog you already should have setup a mariadb/mysql database. Provide the parameters here.</p>
