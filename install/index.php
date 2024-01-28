@@ -279,12 +279,13 @@ if ($_POST) {
 													<?php
 													$maxUploadFileSize = ini_get('upload_max_filesize');
 													$maxUploadFileSizeBytes = (int)($maxUploadFileSize) * (1024 * 1024); // convert to bytes
-													if ($maxUploadFileSizeBytes > ($max_upload_file_size * 1024 * 1024)) { // compare with given value in bytes ?>
+													if ($maxUploadFileSizeBytes > ($max_upload_file_size * 1024 * 1024)) { // compare with given value in bytes 
+													?>
 														<span class="badge text-bg-success"><?php echo $maxUploadFileSize; ?></span>
 													<?php } else {
 														if ($allChecksPassed != 'failed') {  // Check current value before changing to 'warning'
 															$allChecksPassed = 'warning';
-														}?>
+														} ?>
 														<span class="badge text-bg-warning"><?php echo $maxUploadFileSize; ?></span>
 													<?php } ?>
 												</td>
@@ -297,7 +298,8 @@ if ($_POST) {
 													<?php
 													$maxUploadFileSize = ini_get('post_max_size');
 													$maxUploadFileSizeBytes = (int)($maxUploadFileSize) * (1024 * 1024); // convert to bytes
-													if ($maxUploadFileSizeBytes > ($post_max_size * 1024 * 1024)) { // compare with given value in bytes ?>
+													if ($maxUploadFileSizeBytes > ($post_max_size * 1024 * 1024)) { // compare with given value in bytes 
+													?>
 														<span class="badge text-bg-success"><?php echo $maxUploadFileSize; ?></span>
 													<?php } else {
 														if ($allChecksPassed != 'failed') {  // Check current value before changing to 'warning'
@@ -373,6 +375,25 @@ if ($_POST) {
 												<option value="hamqth">HamQTH</option>
 											</select>
 										</div>
+										<div class="row">
+											<div class="col-md-3">
+												<div class="mb-3">
+													<label for="callbook_username" class="form-label mt-2">Username</label>
+												</div>
+												<div>
+													<label for="callbook_password" class="form-label mt-1">Password</label>
+												</div>
+											</div>
+											<div class="col-md-9">
+												<div class="mb-3">
+													<input type="text" id="callbook_username" placeholder="Callbook Username" class="form-control" name="callbook_username" />
+												</div>
+												<div>
+													<input type="password" id="callbook_password" placeholder="Callbook Password" class="form-control" name="callbook_password" />
+												</div>
+											</div>
+										</div>
+
 									</div>
 								</div>
 							</div>
