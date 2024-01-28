@@ -9,21 +9,46 @@
 
 
 <?php
+// #########################################################
+// PRECONFIGURATION
+// #########################################################
 
+// Config Paths
 $db_config_path = '../application/config/';
 $db_file_path = $db_config_path . "database.php";
 
 // Wanted Pre-Check Parameters
-//
 // PHP 
+$min_php_version = '7.4.0';
 $max_execution_time = 600;		// Seconds
 $max_upload_file_size = 20;  	// Megabyte
-$post_max_size = 20;		// Megabyte
+$post_max_size = 20;			// Megabyte
+
+// Array of PHP modules to check
+global $required_php_modules;
+$required_php_modules = [
+	'php-curl' => ['condition' => isExtensionInstalled('curl')],
+	'php-mysql' => ['condition' => isExtensionInstalled('mysqli')],
+	'php-mbstring' => ['condition' => isExtensionInstalled('mbstring')],
+	'php-xml' => ['condition' => isExtensionInstalled('xml')],
+	'php-zip' => ['condition' => isExtensionInstalled('zip')],
+];
 
 // MariaDB / MySQL
 $mariadb_version = 10.1;
 $mysql_version = 5.7;
 
+// ######################################################### END OF PRECONFIGURATION
+
+
+
+
+
+// Function to check if a PHP extension is installed
+function isExtensionInstalled($extensionName)
+{
+	return in_array($extensionName, get_loaded_extensions());
+}
 
 function delDir($dir)
 {
@@ -170,75 +195,45 @@ if ($_POST && isset($_POST['submit'])) {
 							<!-- Tab 2: Pre-Checks --> <!-- TODO Needs some Layout and maybe check for other packages aswell-->
 							<div class="tab-pane fade" id="precheck" role="tabpanel" aria-labelledby="precheck-tab">
 								<div class="row justify-content-center mt-4">
-									<div class="col-md-5 mb-4 mx-auto"> <!-- PHP Modules -->
+									<div class="col-md-5 mb-4 mx-auto">
 										<p class="border-bottom mb-2"><b>PHP Modules</b></p>
+										<?php
+										// Initialize the tracker
+										$allChecksPassed = true;
+										?>
 										<table width="100%">
 											<tr>
-												<td>Version (min. 7.4)</td>
+												<td>Version</td>
+												<td><?php echo 'min. ' . $min_php_version; ?></td>
 												<td>
-													<?php if (version_compare(PHP_VERSION, '7.4.0') <= 0) { ?>
+													<?php if (version_compare(PHP_VERSION, $min_php_version) <= 0) { ?>
 														<span class="badge text-bg-danger"><?php echo PHP_VERSION; ?></span>
 													<?php } else { ?>
 														<span class="badge text-bg-success"><?php echo PHP_VERSION; ?></span>
 													<?php } ?>
 												</td>
 											</tr>
-											<tr>
-												<td>php-curl</td>
-												<td>
-													<?php if (in_array('curl', get_loaded_extensions())) { ?>
-														<span class="badge text-bg-success">Installed</span>
-													<?php } else { ?>
-														<span class="badge text-bg-danger">Not Installed</span>
-													<?php } ?>
-												</td>
-											</tr>
-
-											<tr>
-												<td>php-mysql</td>
-												<td>
-													<?php if (in_array('mysqli', get_loaded_extensions())) { ?>
-														<span class="badge text-bg-success">Installed</span>
-													<?php } else { ?>
-														<span class="badge text-bg-danger">Not Installed</span>
-													<?php } ?>
-												</td>
-											</tr>
-
-											<tr>
-												<td>php-mbstring</td>
-												<td>
-													<?php if (in_array('mbstring', get_loaded_extensions())) { ?>
-														<span class="badge text-bg-success">Installed</span>
-													<?php } else { ?>
-														<span class="badge text-bg-danger">Not Installed</span>
-													<?php } ?>
-												</td>
-											</tr>
-
-											<tr>
-												<td>php-xml</td>
-												<td>
-													<?php if (in_array('xml', get_loaded_extensions())) { ?>
-														<span class="badge text-bg-success">Installed</span>
-													<?php } else { ?>
-														<span class="badge text-bg-danger">Not Installed</span>
-													<?php } ?>
-												</td>
-											</tr>
-
-											<tr>
-												<td>php-zip</td>
-												<td>
-													<?php if (in_array('zip', get_loaded_extensions())) { ?>
-														<span class="badge text-bg-success">Installed</span>
-													<?php } else { ?>
-														<span class="badge text-bg-danger">Not Installed</span>
-													<?php } ?>
-												</td>
-											</tr>
+											<?php
+											
+											foreach ($required_php_modules as $moduleName => $moduleData) {
+												$condition = $moduleData['condition'];
+												$allChecksPassed = $allChecksPassed && $condition;
+											?>
+												<tr>
+													<td><?php echo $moduleName; ?></td>
+													<td></td>
+													<td>
+														<span class="badge text-bg-<?php echo $condition ? 'success' : 'danger'; ?>">
+															<?php echo $condition ? 'Installed' : 'Not Installed'; ?>
+														</span>
+													</td>
+												</tr>
+											<?php
+											}
+											?>
 										</table>
 									</div>
+
 									<div class="col-md-5 mb-4 mx-auto"> <!-- MySQL / MariaDB -->
 										<p class="border-bottom mb-2"><b>MySQL / MariaDB</b></p>
 										<table width="100%">
@@ -251,7 +246,7 @@ if ($_POST && isset($_POST['submit'])) {
 												<td><span class="badge text-bg-info"><?php echo $mariadb_version; ?></span></td>
 											</tr>
 										</table>
-										<p>You can test your MySQL/MariaDB Version in Step 4</p>
+										<p style="margin-top: 10px;">You can test your MySQL/MariaDB Version in Step 4</p>
 									</div>
 								</div>
 								<div class="row justify-content-center">
@@ -267,7 +262,8 @@ if ($_POST && isset($_POST['submit'])) {
 													if ($maxExecutionTime >= $max_execution_time) {
 													?>
 														<span class="badge text-bg-success"><?php echo $maxExecutionTime . ' s'; ?></span>
-													<?php } else { ?>
+													<?php } else {
+														$allChecksPassed = false; ?>
 														<span class="badge text-bg-danger"><?php echo $maxExecutionTime; ?></span>
 													<?php } ?>
 												</td>
@@ -283,7 +279,8 @@ if ($_POST && isset($_POST['submit'])) {
 													if ($maxUploadFileSizeBytes > ($max_upload_file_size * 1024 * 1024)) { // compare with given value in bytes
 													?>
 														<span class="badge text-bg-success"><?php echo $maxUploadFileSize; ?></span>
-													<?php } else { ?>
+													<?php } else {
+														$allChecksPassed = false; ?>
 														<span class="badge text-bg-danger"><?php echo $maxUploadFileSize; ?></span>
 													<?php } ?>
 												</td>
@@ -299,15 +296,26 @@ if ($_POST && isset($_POST['submit'])) {
 													if ($maxUploadFileSizeBytes > ($post_max_size * 1024 * 1024)) { // compare with given value in bytes
 													?>
 														<span class="badge text-bg-success"><?php echo $maxUploadFileSize; ?></span>
-													<?php } else { ?>
+													<?php } else {
+														$allChecksPassed = false; ?>
 														<span class="badge text-bg-danger"><?php echo $maxUploadFileSize; ?></span>
 													<?php } ?>
 												</td>
 											</tr>
 										</table>
 									</div>
-									<div class="col-md-5 mx-auto border">
-										<p>Note: Everything is good or not</p> <!-- TODO Show confirmation or tipps what to do if something is wrong -->
+									<div class="col-md-5 mx-auto" style="margin-top: 50px;">
+										<?php if ($allChecksPassed) { ?>
+											<div class="alert alert-success" role="alert">
+												<p> All Checks are OK. You can continue. </p>
+											</div>
+										<?php } else { ?>
+											<div class="alert alert-danger" role="alert">
+												<p> Some Checks have failed!</p>
+												<p> Check your PHP settings and install missing modules if necessary. </p>
+												<p> After that you have to restart your webserver and start the installer again.</p>
+											</div>
+										<?php } ?>
 									</div>
 								</div>
 							</div>
@@ -461,6 +469,7 @@ if ($_POST && isset($_POST['submit'])) {
 
 				let firstTabId = 'welcome-tab';
 				let lastTabId = 'finish-tab';
+				let preCheckTabId = 'precheck-tab';
 
 				function nextTab() {
 					const activeTab = $('.nav-link.active');
@@ -498,6 +507,18 @@ if ($_POST && isset($_POST['submit'])) {
 
 				$('#ContinueButton').on('click', nextTab);
 				$('#BackButton').on('click', prevTab);
+
+				<?php if (!$allChecksPassed) { ?>
+					// Check if the active tab is the precheck-tab and disable the ContinueButton if not all Checks passed
+					$(document).on('shown.bs.tab', function(e) {
+						const activeTabId = e.target.id;
+						if (activeTabId === 'precheck-tab') {
+							$('#ContinueButton').prop('disabled', true);
+						} else {
+							$('#ContinueButton').prop('disabled', false);
+						}
+					});
+				<?php } ?>
 			});
 
 			// [PWD] button show/hide //
