@@ -74,7 +74,7 @@ if (file_exists($db_file_path)) {
 }
 
 // Only load the classes in case the user submitted the form
-if ($_POST && isset($_POST['submit'])) {
+// if ($_POST && isset($_POST['submit'])) {
 
 	// Load the classes and create the new objects
 	require_once('includes/core_class.php');
@@ -121,7 +121,7 @@ if ($_POST && isset($_POST['submit'])) {
 	} else {
 		$message = $core->show_message('error', 'Not all fields have been filled in correctly. The host, username, password, and database name are required.');
 	}
-}
+// }
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
