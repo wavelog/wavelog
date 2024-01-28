@@ -6,14 +6,14 @@ class Database {
 	function create_database($data)
 	{
 		// Connect to the database
-		$mysqli = new mysqli($data['hostname'],$data['username'],$data['password'],'');
+		$mysqli = new mysqli($data['db_hostname'],$data['db_username'],$data['db_password'],'');
 
 		// Check for errors
 		if(mysqli_connect_errno())
 			return false;
 
 		// Create the prepared statement
-		$mysqli->query("CREATE DATABASE IF NOT EXISTS ".$data['database']);
+		$mysqli->query("CREATE DATABASE IF NOT EXISTS ".$data['db_name']);
 
 		// Close the connection
 		$mysqli->close();
@@ -25,7 +25,7 @@ class Database {
 	function create_tables($data)
 	{
 		// Connect to the database
-		$mysqli = new mysqli($data['hostname'],$data['username'],$data['password'],$data['database']);
+		$mysqli = new mysqli($data['db_hostname'],$data['db_username'],$data['db_password'],$data['db_name']);
 
 		// Check for errors
 		if(mysqli_connect_errno())

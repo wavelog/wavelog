@@ -9,19 +9,19 @@ class Core {
 		$counter = 0;
 
 		// Validate the hostname
-		if(isset($data['hostname']) AND !empty($data['hostname'])) {
+		if(isset($data['db_hostname']) AND !empty($data['db_hostname'])) {
 			$counter++;
 		}
 		// Validate the username
-		if(isset($data['username']) AND !empty($data['username'])) {
+		if(isset($data['db_username']) AND !empty($data['db_username'])) {
 			$counter++;
 		}
 		// Validate the password
-		if(isset($data['password']) AND !empty($data['password'])) {
+		if(isset($data['db_password']) AND !empty($data['db_password'])) {
 		  // pass
 		}
 		// Validate the database
-		if(isset($data['database']) AND !empty($data['database'])) {
+		if(isset($data['db_name']) AND !empty($data['db_name'])) {
 			$counter++;
 		}
 
@@ -61,10 +61,10 @@ class Core {
 		// Open the file
 		$database_file = file_get_contents($template_path);
 
-		$new  = str_replace("%HOSTNAME%",$data['hostname'],$database_file);
-		$new  = str_replace("%USERNAME%",$data['username'],$new);
-		$new  = str_replace("%PASSWORD%",$data['password'],$new);
-		$new  = str_replace("%DATABASE%",$data['database'],$new);
+		$new  = str_replace("%HOSTNAME%",$data['db_hostname'],$database_file);
+		$new  = str_replace("%USERNAME%",$data['db_username'],$new);
+		$new  = str_replace("%PASSWORD%",$data['db_password'],$new);
+		$new  = str_replace("%DATABASE%",$data['db_name'],$new);
 
 		// Write the new database.php file
 		$handle = fopen($output_path,'w+');
