@@ -35,8 +35,8 @@ class Database {
 		$query = file_get_contents('assets/install.sql');
 
 		$newpw=password_hash($data['password'], PASSWORD_DEFAULT);
-		$newquery  = str_replace("%%FIRSTUSER_NAME%%%",$data['username'],$query);
-		$newquery  = str_replace("%%FIRSTUSER_PASS%%%",$data['password'],$newquery);
+		$newquery  = str_replace("%%FIRSTUSER_NAME%%",$data['username'],$query);
+		$newquery  = str_replace("%%FIRSTUSER_PASS%%",$newpw,$newquery);
 		$newquery  = str_replace("%%FIRSTUSER_MAIL%%",$data['user_email'],$newquery);
 		$newquery  = str_replace("%%FIRSTUSER_CALL%%",$data['callsign'],$newquery);
 		$newquery  = str_replace("%%FIRSTUSER_LOCATOR%%",$data['userlocator'],$newquery);
