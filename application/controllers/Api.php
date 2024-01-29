@@ -221,9 +221,10 @@ class API extends CI_Controller {
 						die();
 					}
 
-					if ( ((!(isset($record['distance']))) || ($record['distance'] == '')) && ((isset($record['gridsquare'])) && ($record['gridsquare'] != '')) && ((isset($record['my_gridsquare'])) && ($record['my_gridsquare'] != '')) ) {
+					if ( ((!(isset($record['distance']))) || ($record['distance'] == '')) && ((isset($record['gridsquare'])) && ($record['gridsquare'] != '')) ) {
+						$mygrid=$this->stations->find_gridsquare();
 						$this->load->library('Qra');
-						$record['distance'] = $this->qra->distance($record['my_gridsquare'], $record['gridsquare'], 'K');
+						$record['distance'] = $this->qra->distance($mygrid, $record['gridsquare'], 'K');
 					}
 
 					$this->api_model->update_last_used(($obj['key']));
