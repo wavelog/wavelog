@@ -452,10 +452,10 @@ $(document).ready(function () {
 	});
 
 	$('#dontSend').click(function (event) {
-		handleQsl('N',' ', 'dontSend');
+		handleQsl('N','', 'dontSend');
 	});
 	$('#notRequired').click(function (event) {
-		handleQsl('I',' ', 'notRequired');
+		handleQsl('I','', 'notRequired');
 	});
 	$('#receivedBureau').click(function (event) {
 		handleQslReceived('Y','B', 'receivedBureau');
