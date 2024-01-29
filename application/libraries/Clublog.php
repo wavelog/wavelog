@@ -21,7 +21,7 @@ class Clublog {
 		$CI->load->library('curl');
 
 		// API Key	
-		$key = "a11c3235cd74b88212ce726857056939d52372bd";
+		$key = "608df94896cb9c5421ae748235492b43815610c9";
 
 		$username = "";
 		$password = "";
