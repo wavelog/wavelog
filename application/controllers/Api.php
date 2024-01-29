@@ -221,6 +221,12 @@ class API extends CI_Controller {
 						die();
 					}
 
+					if ( ((!(isset($record['distance']))) || ($record['distance'] == '')) && ((isset($record['gridsquare'])) && ($record['gridsquare'] != '')) ) {
+						$mygrid=$this->stations->gridsquare_from_station($obj['station_profile_id']);
+						$this->load->library('Qra');
+						$record['distance'] = $this->qra->distance($mygrid, $record['gridsquare'], 'K');
+					}
+
 					$this->api_model->update_last_used(($obj['key']));
 
 					$msg = $this->logbook_model->import($record, $obj['station_profile_id'], NULL, NULL, NULL, NULL, NULL, NULL, false, false, true);
