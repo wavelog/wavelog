@@ -335,6 +335,5 @@ function onClick(e) {
 
 function onClick2(e) {
     var marker = e.target;
-	console.log(marker);
     displayContactsOnMap($("#wasmap"), marker.options.title, $('#band2').val(), $('#mode').val(), 'WAS')
 }
