@@ -83,43 +83,50 @@ if ($_POST) {
 	$core = new Core();
 	$database = new Database();
 
-	// Validate the post data
-	if ($core->validate_post($_POST) == true) {
+	if ($_POST['database_check'] == true) {
 
-		// First create the database, then create tables, then write config file
-		if ($database->create_database($_POST) == false) {
-			$message = $core->show_message('error', "The database could not be created, please verify your settings.");
-		} elseif ($database->create_tables($_POST) == false) {
-			$message = $core->show_message('error', "The database tables could not be created, please verify your settings.");
-		} elseif ($core->write_config($_POST) == false) {
-			$message = $core->show_message('error', "The database configuration file could not be written, please chmod /application/config/database.php file to 777");
-		}
-
-		if ($core->write_configfile($_POST) == false) {
-			$message = $core->show_message('error', "The config configuration file could not be written, please chmod /application/config/config.php file to 777");
-		}
-
-		// If no errors, redirect to registration page
-		if (!isset($message)) {
-			sleep(1);
-			$ch = curl_init();
-			$protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https" : "http";
-			list($realHost,) = explode(':', $_SERVER['HTTP_HOST']);
-			$wavelog_url = $protocol . "://" . $realHost . ":" . $_SERVER['SERVER_PORT'];
-			curl_setopt($ch, CURLOPT_URL, $wavelog_url);
-			curl_setopt($ch, CURLOPT_VERBOSE, 0);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			$result = curl_exec($ch);
-			curl_setopt($ch, CURLOPT_URL, $wavelog_url . "/index.php/update/dxcc");
-			$result = curl_exec($ch);
-			delDir(getcwd());
-			header('Location: ' . $protocol . "://" . $_SERVER['HTTP_HOST'] . $_POST['directory']);
-			echo "<h1>Install successful</h1>";
-			echo "<p>Please delete the install folder";
-			exit;
-		}
+		$result = $database->database_check($_POST);
+		echo $result;
+		exit;
 	} else {
-		$message = $core->show_message('error', 'Not all fields have been filled in correctly. The host, username, password, and database name are required.');
+		// Validate the post data
+		if ($core->validate_post($_POST) == true) {
+
+			// First create the database, then create tables, then write config file
+			if ($database->create_database($_POST) == false) {
+				$message = $core->show_message('error', "The database could not be created, please verify your settings.");
+			} elseif ($database->create_tables($_POST) == false) {
+				$message = $core->show_message('error', "The database tables could not be created, please verify your settings.");
+			} elseif ($core->write_config($_POST) == false) {
+				$message = $core->show_message('error', "The database configuration file could not be written, please chmod /application/config/database.php file to 777");
+			}
+
+			if ($core->write_configfile($_POST) == false) {
+				$message = $core->show_message('error', "The config configuration file could not be written, please chmod /application/config/config.php file to 777");
+			}
+
+			// If no errors, redirect to registration page
+			if (!isset($message)) {
+				sleep(1);
+				$ch = curl_init();
+				$protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https" : "http";
+				list($realHost,) = explode(':', $_SERVER['HTTP_HOST']);
+				$wavelog_url = $protocol . "://" . $realHost . ":" . $_SERVER['SERVER_PORT'];
+				curl_setopt($ch, CURLOPT_URL, $wavelog_url);
+				curl_setopt($ch, CURLOPT_VERBOSE, 0);
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				$result = curl_exec($ch);
+				curl_setopt($ch, CURLOPT_URL, $wavelog_url . "/index.php/update/dxcc");
+				$result = curl_exec($ch);
+				delDir(getcwd());
+				header('Location: ' . $protocol . "://" . $_SERVER['HTTP_HOST'] . $_POST['directory']);
+				echo "<h1>Install successful</h1>";
+				echo "<p>Please delete the install folder";
+				exit;
+			}
+		} else {
+			$message = $core->show_message('error', 'Not all fields have been filled in correctly. The host, username, password, and database name are required.');
+		}
 	}
 }
 global $wavelog_url;
@@ -144,7 +151,7 @@ global $wavelog_url;
 
 <?php if (is_writable($db_config_path)) : ?>
 	<?php if (isset($message)) {
-		echo '<p class="error">' . $message . '</p>';
+		echo '<p class="error">' . $message . '</p>'; // TODO Integrate Message into the design, Dialog???
 	} ?>
 
 	<body>
@@ -359,30 +366,22 @@ global $wavelog_url;
 									<div class="col">
 										<p>Configure some basic parameters for your wavelog instance. You can change them later in 'application/config/config.php'</p>
 										<div class="mb-3">
-											<label for="directory" class="form-label">Directory<i id="directory_hint" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true"
-											data-bs-title="The 'Directory' is basically your subfolder of the webroot In normal conditions the prefilled value is doing it's job." 
-											></i></label>
+											<label for="directory" class="form-label">Directory<i id="directory_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="The 'Directory' is basically your subfolder of the webroot In normal conditions the prefilled value is doing it's job."></i></label>
 											<div class="input-group">
 												<span class="input-group-text" id="main-url"><?php echo $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . "/"; ?></span>
 												<input type="text" id="directory" value="<?php echo substr(str_replace("index.php", "", str_replace("/install/", "", $_SERVER['REQUEST_URI'])), 1); ?>" class="form-control" name="directory" aria-describedby="main-url" />
 											</div>
 										</div>
 										<div class="mb-3">
-											<label for="websiteurl" class="form-label">Website URL<i id="directory_hint" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true"
-											data-bs-title="This is the complete URL where your Wavelog Instance will be available. If you run this installer locally but want to place Wavelog behind a Reverse Proxy with SSL you should type in the new URL here (e.g. https://mywavelog.example.org/ instead of http://192.168.1.100/). Don't forget to include the directory from above." 
-											></i></label>
+											<label for="websiteurl" class="form-label">Website URL<i id="websiteurl_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="This is the complete URL where your Wavelog Instance will be available. If you run this installer locally but want to place Wavelog behind a Reverse Proxy with SSL you should type in the new URL here (e.g. https://mywavelog.example.org/ instead of http://192.168.1.100/). Don't forget to include the directory from above."></i></label>
 											<input type="text" id="websiteurl" value="<?php echo $_SERVER['REQUEST_SCHEME']; ?>://<?php echo str_replace("index.php", "", $_SERVER['HTTP_HOST'] . str_replace("/install/", "", $_SERVER['REQUEST_URI'])); ?>" class="form-control" name="websiteurl" />
 										</div>
 										<div class="mb-3">
-											<label for="locator" class="form-label">Default Gridsquare<i id="directory_hint" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true"
-											data-bs-title="This is the default maidenhead locator which is used as falback. You can use the locator of your Home QTH." 
-											></i></label>
+											<label for="locator" class="form-label">Default Gridsquare<i id="gridsquare_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="This is the default maidenhead locator which is used as falback. You can use the locator of your Home QTH."></i></label>
 											<input type="text" id="locator" placeholder="HA44AA" class="form-control" name="locator" />
 										</div>
 										<div class="mb-3">
-											<label for="global_call_lookup" class="form-label">Global Callbook Lookup<i id="directory_hint" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true"
-											data-bs-title="This configuration is optional. The callsign lookup will be available for all users of this installation. You can choose between QRZ.com and HamQTH. While HamQTH also works without username and password, you will need credentials for QRZ.com. To also get the Call Locator in QRZ.com you'll need an XML subscription. HamQTH does not always provide the locator information." 
-											></i></label>
+											<label for="global_call_lookup" class="form-label">Global Callbook Lookup<i id="callbook_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="This configuration is optional. The callsign lookup will be available for all users of this installation. You can choose between QRZ.com and HamQTH. While HamQTH also works without username and password, you will need credentials for QRZ.com. To also get the Call Locator in QRZ.com you'll need an XML subscription. HamQTH does not always provide the locator information."></i></label>
 											<select id="global_call_lookup" class="form-select" name="global_call_lookup">
 												<option value="qrz" selected>QRZ.com</option>
 												<option value="hamqth">HamQTH</option>
@@ -411,7 +410,7 @@ global $wavelog_url;
 								</div>
 							</div>
 
-							<!-- Tab 4: Database --> <!-- TODO Perform a mysql_get_server_info() with the provided data before continue -->
+							<!-- Tab 4: Database --> <!-- TODO Perform a mysql_get_server_info() with the provided data -->
 							<div class="tab-pane fade" id="database" role="tabpanel" aria-labelledby="database-tab">
 								<div class="row">
 									<div class="col" style="margin-top: 50px;">
@@ -419,25 +418,31 @@ global $wavelog_url;
 									</div>
 									<div class="col">
 										<p>To properly install Wavelog you already should have setup a mariadb/mysql database. Provide the parameters here.</p>
-										<div class="mb-3">
-											<label for="db_hostname" class="form-label">Hostname</label>
-											<input type="text" id="db_hostname" value="localhost" class="form-control" name="db_hostname" />
-											<small class="text-muted">Usually 'localhost'. Optional with '...:[port]'. Default Port: 3306</small>
+										<div class="row">
+											<div class="col">
+												<div class="mb-3">
+													<label for="db_hostname" class="form-label">Hostname<i id="callbook_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="Usually 'localhost'. Optional with '...:[port]'. Default Port: 3306"></i></label>
+													<input type="text" id="db_hostname" value="localhost" class="form-control" name="db_hostname" />
+												</div>
+											</div>
+											<div class="col">
+												<div class="mb-3">
+													<label for="db_name" class="form-label">Database Name<i id="callbook_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="Name of the Database"></i></label>
+													<input type="text" id="db_name" placeholder="wavelog" class="form-control" name="db_name" />
+												</div>
+											</div>
 										</div>
 										<div class="mb-3">
-											<label for="db_username" class="form-label">Username</label>
+											<label for="db_username" class="form-label">Username<i id="callbook_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="Username of the Database User which has full access to the database."></i></label>
 											<input type="text" id="db_username" placeholder="waveloguser" class="form-control" name="db_username" />
-											<small class="text-muted">Username of the DB User which has full access to the database.</small>
 										</div>
 										<div class="mb-3">
-											<label for="db_password" class="form-label">Password</label>
+											<label for="db_password" class="form-label">Password<i id="callbook_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="Password of the Database User"></i></label>
 											<input type="password" id="db_password" placeholder="supersecretpassword" class="form-control" name="db_password" />
-											<small class="text-muted">Password of the DB User.</small>
 										</div>
-										<div class="mb-3">
-											<label for="db_name" class="form-label">Database Name</label>
-											<input type="text" id="db_name" placeholder="wavelog" class="form-control" name="db_name" />
-											<small class="text-muted">Name of the Database.</small>
+										<div class="col">
+											<button id="db_connection_test_button" type="button" class="btn btn-primary" onclick="db_connection_test()">Connection Test</button>
+											<div class="mt-2 mb-2 alert" id="db_connection_testresult"></div>
 										</div>
 									</div>
 								</div>
@@ -625,8 +630,10 @@ global $wavelog_url;
 				tabs.show();
 
 				let firstTabId = 'welcome-tab';
+				let secondTabId = 'precheck-tab';
+				let thirdTabId = 'configuration-tab';
+				let fourthTabId = 'database-tab';
 				let lastTabId = 'finish-tab';
-				let preCheckTabId = 'precheck-tab';
 
 				function nextTab() {
 					const activeTab = $('.nav-link.active');
@@ -656,10 +663,12 @@ global $wavelog_url;
 
 					if (prevTab.attr('id') !== firstTabId) {
 						$('#ContinueButton').css('display', 'block');
+						$('#ContinueButton').prop('disabled', false);
 						$('#BackButton').css('display', 'block');
 					} else {
 						$('#BackButton').css('display', 'none');
 					}
+					clear_db_testresult();
 				}
 
 				$('#ContinueButton').on('click', nextTab);
@@ -669,13 +678,14 @@ global $wavelog_url;
 					// Check if the active tab is the precheck-tab and disable the ContinueButton if not all Checks passed
 					$(document).on('shown.bs.tab', function(e) {
 						const activeTabId = e.target.id;
-						if (activeTabId === 'precheck-tab') {
+						if (activeTabId === secondTabId) {
 							$('#ContinueButton').prop('disabled', true);
 						} else {
 							$('#ContinueButton').prop('disabled', false);
 						}
 					});
 				<?php } ?>
+
 			});
 
 			// [PWD] button show/hide //
@@ -689,6 +699,64 @@ global $wavelog_url;
 				}
 			}
 			$('.user_edit .btn-pwd-showhide').off('click').on('click', btn_pwd_showhide);
+
+			function db_connection_test() {
+				var db_hostname = $('#db_hostname').val();
+				var db_username = $('#db_username').val();
+				var db_password = $('#db_password').val();
+				var db_name = $('#db_name').val();
+
+				if (db_hostname === '' || db_username === '' || db_password === '' || db_name === '') {
+					$('#db_connection_testresult').addClass('alert-danger');
+					$('#db_connection_testresult').html('Error: All fields are required.');
+					$('#ContinueButton').prop('disabled', true);
+					return;
+				}
+
+				var originalButtonText = $('#db_connection_test_button').html();
+				$('#db_connection_test_button').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Connecting...').prop('disabled', true);
+
+				clear_db_testresult();
+
+				$.ajax({
+					type: 'POST',
+					url: 'index.php',
+					data: {
+						db_hostname: db_hostname,
+						db_username: db_username,
+						db_password: db_password,
+						db_name: db_name,
+						database_check: true
+					},
+					success: function(response) {
+						$('#db_connection_testresult').html(response);
+						if (response.indexOf('Error') !== -1) {
+							$('#ContinueButton').prop('disabled', true);
+							$('#db_connection_testresult').addClass('alert-danger');
+							$('#db_connection_test_button').html(originalButtonText).prop('disabled', false);
+						} else {
+							$('#ContinueButton').prop('disabled', false);
+							$('#db_connection_testresult').addClass('alert-success');
+							$('#db_connection_test_button').html(originalButtonText).prop('disabled', false);
+						}
+					},
+					error: function(error) {
+						$('#db_connection_testresult').html('Error: ' + error.statusText);
+						if ($('#db_connection_testresult').text().indexOf('Error') !== -1) {
+							$('#ContinueButton').prop('disabled', true);
+							$('#db_connection_testresult').addClass('alert-danger');
+						}
+					}
+				});
+			}
+
+			function clear_db_testresult() {
+				$('#db_connection_testresult').html('');
+				$('#db_connection_testresult').removeClass('alert-danger');
+				$('#db_connection_testresult').removeClass('alert-success');
+			}
+
+			
 		</script>
 	</body>
 
