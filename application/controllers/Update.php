@@ -180,7 +180,7 @@ class Update extends CI_Controller {
 		$this->migration->latest();
 
 		// Download latest file.
-		$url = "https://cdn.clublog.org/cty.php?api=a11c3235cd74b88212ce726857056939d52372bd";
+		$url = "https://cdn.clublog.org/cty.php?api=608df94896cb9c5421ae748235492b43815610c9";
 		
 		$gz = gzopen($url, 'r');
 		if ($gz === FALSE) {
