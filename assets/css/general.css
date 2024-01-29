@@ -758,8 +758,9 @@ label {
 	margin-bottom: 0.25rem;
 }
 
-.btn-pwd-showhide, .btn-pwd-showhide:hover {
+.btn-pwd-showhide, .btn-pwd-showhide:hover, .btn-included-on-field, .btn-included-on-field:hover {
 	border: 1px solid var(--cl-border-btn-pwd);
+	cursor: pointer;
 }
 
 .dxccsummaryheader:after {
