@@ -122,6 +122,7 @@ if ($_POST) {
 		$message = $core->show_message('error', 'Not all fields have been filled in correctly. The host, username, password, and database name are required.');
 	}
 }
+global $wavelog_url;
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -135,6 +136,7 @@ if ($_POST) {
 
 	<link rel="stylesheet" href="../assets/css/darkly/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/overrides.css">
+	<link rel="stylesheet" href="../assets/fontawesome/css/all.css">
 
 	<script type="text/javascript" src="../assets/js/bootstrap.bundle.min.js"></script>
 	<script type="text/javascript" src="../assets/js/jquery-3.3.1.min.js"></script>
@@ -357,8 +359,11 @@ if ($_POST) {
 									<div class="col">
 										<p>Configure some basic parameters for your wavelog instance. You can change them later in 'application/config/config.php'</p>
 										<div class="mb-3">
-											<label for="directory" class="form-label">Directory</label>
-											<input type="text" id="directory" value="<?php echo str_replace("index.php", "", str_replace("/install/", "", $_SERVER['REQUEST_URI'])); ?>" class="form-control" name="directory" />
+											<label for="directory" class="form-label">Directory  <i id="directory_hint" data-bs-toggle="tooltip" title="Directory Hint" class="fas fa-question-circle"></i></label>
+											<div class="input-group">
+												<span class="input-group-text" id="main-url"><?php echo $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . "/"; ?></span>
+												<input type="text" id="directory" value="<?php echo substr(str_replace("index.php", "", str_replace("/install/", "", $_SERVER['REQUEST_URI'])), 1); ?>" class="form-control" name="directory" aria-describedby="main-url" />
+											</div>
 										</div>
 										<div class="mb-3">
 											<label for="websiteurl" class="form-label">Website URL</label>
