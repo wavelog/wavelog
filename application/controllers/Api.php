@@ -222,7 +222,7 @@ class API extends CI_Controller {
 					}
 
 					if ( ((!(isset($record['distance']))) || ($record['distance'] == '')) && ((isset($record['gridsquare'])) && ($record['gridsquare'] != '')) ) {
-						$mygrid=$this->stations->find_gridsquare();
+						$mygrid=$this->stations->gridsquare_from_station($obj['station_profile_id']);
 						$this->load->library('Qra');
 						$record['distance'] = $this->qra->distance($mygrid, $record['gridsquare'], 'K');
 					}

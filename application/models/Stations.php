@@ -268,6 +268,20 @@ class Stations extends CI_Model {
 		}
 	}
 
+	public function gridsquare_from_station($station_id) {
+		$this->db->where('station_id', $station_id);
+		$query = $this->db->get('station_profile');
+
+		if($query->num_rows() >= 1) {
+			foreach ($query->result() as $row)
+			{
+				return $row->station_gridsquare;
+			}
+		} else {
+			return "0";
+		}
+	}
+
 	public function find_gridsquare() {
 		$this->db->where('user_id', $this->session->userdata('user_id'));
 		$this->db->where('station_active', 1);
