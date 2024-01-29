@@ -1,14 +1,13 @@
-<!--
-	New Wavelog Installer
-
-	This installer guides an user through the install process and all 
-	necessary parameters for the new Wavelog Installation.
-
-	HB9HIL - January 2024
--->
-
-
 <?php
+/* 
+New Wavelog Installer
+
+This installer guides an user through the install process and all 
+necessary parameters for the new Wavelog Installation.
+
+HB9HIL - January 2024
+*/
+
 // #########################################################
 // PRECONFIGURATION
 // #########################################################
@@ -604,7 +603,7 @@ global $wavelog_url;
 							<!-- Tab 6: Finish --> <!-- TODO Install Button -->
 							<div class="tab-pane fade" id="finish" role="tabpanel" aria-labelledby="finish-tab">
 								<p>Here will be the Install Button</p>
-								<input type="submit" value="Install" id="submit" />
+								<input class="btn btn-primary" type="submit" value="Install" id="submit" />
 							</div>
 						</div>
 					</form>
@@ -617,6 +616,11 @@ global $wavelog_url;
 		</div>
 
 		<script>
+			document.addEventListener('keydown', function(event) {  // We don't want to allow press Enter to trigger Events in the Installer
+				if (event.key === 'Enter') {						// Too dangerous for an average $user
+					event.preventDefault();
+				}
+			});
 			$(document).ready(function() {
 				const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
 				const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
@@ -735,9 +739,18 @@ global $wavelog_url;
 							$('#db_connection_testresult').addClass('alert-danger');
 							$('#db_connection_test_button').html(originalButtonText).prop('disabled', false);
 						} else {
-							$('#ContinueButton').prop('disabled', false);
-							$('#db_connection_testresult').addClass('alert-success');
-							$('#db_connection_test_button').html(originalButtonText).prop('disabled', false);
+
+							if (sql_version_checker(response) == true) {
+								$('#ContinueButton').prop('disabled', false);
+								$('#db_connection_testresult').addClass('alert-success');
+								$('#db_connection_test_button').html(originalButtonText).prop('disabled', false);
+								$('#db_connection_testresult').html('Connection was successful and your database should be compatible <i class="fas fa-check-circle"></i>');
+							} else {
+								$('#ContinueButton').prop('disabled', true);
+								$('#db_connection_testresult').addClass('alert-danger');
+								$('#db_connection_test_button').html(originalButtonText).prop('disabled', false);
+								$('#db_connection_testresult').html('Connection was successful but your database seems too old for Wavelog <i class="fas fa-ban"></i>');
+							}
 						}
 					},
 					error: function(error) {
@@ -756,7 +769,25 @@ global $wavelog_url;
 				$('#db_connection_testresult').removeClass('alert-success');
 			}
 
-			
+			function sql_version_checker(version_string) {
+				let extracted_version = version_string.match(/^(\d+\.\d+)/);
+
+				var min_mysql_version = <?php echo $mysql_version; ?>;
+				var min_mariadb_version = <?php echo $mariadb_version; ?>;
+
+				if (extracted_version[1] >= 10) { //probably MariaDB
+					if (extracted_version[1] >= min_mariadb_version) {
+						return true;
+					}
+				} else { // probably MySQL
+					if (extracted_version[1] >= min_mysql_version) {
+						return true;
+					}
+				}
+
+				return false;
+
+			}
 		</script>
 	</body>
 
