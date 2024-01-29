@@ -2,8 +2,8 @@
 
 class Logbooks_model extends CI_Model {
 
-    function show_all() {
-        $this->db->where('user_id', $this->session->userdata('user_id'));
+	function show_all() {
+		$this->db->where('user_id', $this->session->userdata('user_id'));
 		return $this->db->get('station_logbooks');
 	}
 
@@ -31,21 +31,20 @@ class Logbooks_model extends CI_Model {
 			$this->set_logbook_active($logbook_id);
 
 			// update user session data
-			$CI =& get_instance();
-			$CI->load->model('user_model');
-			$CI->user_model->update_session($this->session->userdata('user_id'));
+			$this->load->model('user_model');
+			$this->user_model->update_session($this->session->userdata('user_id'));
 		}
 	}
 
 	function CreateDefaultLogbook() {
 		// Get the first USER ID from user table in the database
 		$id = $this->db->get("users")->row()->user_id;
-			
+
 		$data = array(
 			'user_id' => $id,
 			'logbook_name' => "Default Logbook",
 		);
-				
+
 		$this->db->insert('station_logbooks', $data);
 		$logbook_id = $this->db->insert_id();
 
@@ -118,12 +117,10 @@ class Logbooks_model extends CI_Model {
 		$this->db->where('logbook_id', $clean_id);
 		$query = $this->db->get('station_logbooks');
 		if ($query->num_rows() > 0){
-			foreach ($query->result() as $row)
-			{
+			foreach ($query->result() as $row) {
 				return $row->logbook_name;
 			}
-		}
-		else{
+		} else {
 			return "n/a";
 		}
 	}
@@ -140,9 +137,8 @@ class Logbooks_model extends CI_Model {
 		}
 
 		// be sure that station belongs to user
-		$CI =& get_instance();
-		$CI->load->model('Stations');
-		if (!$CI->Stations->check_station_is_accessible($clean_location_id)) {
+		$this->load->model('Stations');
+		if (!$this->Stations->check_station_is_accessible($clean_location_id)) {
 			return;
 		}
 
@@ -160,11 +156,10 @@ class Logbooks_model extends CI_Model {
 		$this->db->where('station_logbook_id', $logbook_id);
 		$this->db->where('station_location_id', $location_id);
 		$query = $this->db->get('station_logbooks_relationship');
-		
+
 		if ($query->num_rows() > 0){
 			return true;
-		}
-		else{
+		} else {
 			return false;
 		}
 	}
@@ -175,8 +170,7 @@ class Logbooks_model extends CI_Model {
 
 		if ($query->num_rows() > 0){
 			return true;
-		}
-		else{
+		} else {
 			return false;
 		}
 	}
@@ -186,12 +180,10 @@ class Logbooks_model extends CI_Model {
 		$query = $this->db->get('station_logbooks');
 
 		if ($query->num_rows() > 0){
-			foreach ($query->result() as $row)
-			{
+			foreach ($query->result() as $row) {
 				return $row->logbook_id;
 			}
-		}
-		else{
+		} else {
 			return false;
 		}
 	}
@@ -204,8 +196,7 @@ class Logbooks_model extends CI_Model {
 
 		if ($query->num_rows() > 0){
 			return false;
-		}
-		else{
+		} else {
 			return true;
 		}
 	}
@@ -244,15 +235,14 @@ class Logbooks_model extends CI_Model {
 
 		$this->db->where('station_logbook_id', $logbook_id);
 		$query = $this->db->get('station_logbooks_relationship');
-		
+
 		if ($query->num_rows() > 0){
-			foreach ($query->result() as $row)
-			{
+			foreach ($query->result() as $row) {
 				array_push($relationships_array, $row->station_location_id);
 			}
 
 			return $relationships_array;
-		} else{
+		} else {
 			return array(-1);	// Put some default-Value here, if no relation found
 		}
 	}
@@ -263,11 +253,10 @@ class Logbooks_model extends CI_Model {
 
 		$this->db->where('station_logbook_id', $logbook_id);
 		$query = $this->db->get('station_logbooks_relationship');
-		
+
 
 		if ($query->num_rows() > 0){
-			foreach ($query->result() as $row)
-			{
+			foreach ($query->result() as $row) {
 				array_push($relationships_array, $row->station_location_id);
 			}
 
@@ -275,10 +264,9 @@ class Logbooks_model extends CI_Model {
 			$this->db->where_in('station_id', $relationships_array);
 			$this->db->join('dxcc_entities','station_profile.station_dxcc = dxcc_entities.adif','left outer');
 			$query = $this->db->get('station_profile');
-			
+
 			return $query;
-		}
-		else{
+		} else {
 			return false;
 		}
 	}
@@ -294,9 +282,8 @@ class Logbooks_model extends CI_Model {
 		}
 
 		// be sure that station belongs to user
-		$CI =& get_instance();
-		$CI->load->model('Stations');
-		if (!$CI->Stations->check_station_is_accessible($clean_station_id)) {
+		$this->load->model('Stations');
+		if (!$this->Stations->check_station_is_accessible($clean_station_id)) {
 			return;
 		}
 
@@ -307,8 +294,8 @@ class Logbooks_model extends CI_Model {
 	}
 
 	public function check_logbook_is_accessible($id) {
-	    // check if logbook belongs to user
-	    $this->db->select('logbook_id');
+		// check if logbook belongs to user
+		$this->db->select('logbook_id');
 		$this->db->where('user_id', $this->session->userdata('user_id'));
 		$this->db->where('logbook_id', $id);
 		$query = $this->db->get('station_logbooks');
@@ -323,8 +310,7 @@ class Logbooks_model extends CI_Model {
 		$this->db->where('user_id', $userid);
 		$query = $this->db->get('users');
 		if ($query->num_rows() > 0){
-			foreach ($query->result() as $row)
-			{
+			foreach ($query->result() as $row) {
 				return $row->active_station_logbook;
 			}
 		} else {
@@ -338,7 +324,7 @@ class Logbooks_model extends CI_Model {
 
 		$query = $this->db->get('station_logbooks');
 
-      return $query->result_array()[0]['public_search'];
+		return $query->result_array()[0]['public_search'];
 	}
 }
 ?>
