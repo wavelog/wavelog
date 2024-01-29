@@ -273,12 +273,11 @@ class Stations extends CI_Model {
 		$query = $this->db->get('station_profile');
 
 		if($query->num_rows() >= 1) {
-			foreach ($query->result() as $row)
-			{
+			foreach ($query->result() as $row) {
 				return $row->station_gridsquare;
 			}
 		} else {
-			return "0";
+			return null;
 		}
 	}
 
