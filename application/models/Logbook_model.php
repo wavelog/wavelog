@@ -738,7 +738,7 @@ class Logbook_model extends CI_Model {
 			  'password' => $cl_password,
 			  'callsign' => $station_callsign,
 			  'adif' => $adif,
-			  'api' => "a11c3235cd74b88212ce726857056939d52372bd",
+			  'api' => "608df94896cb9c5421ae748235492b43815610c9",
 		  ));
 
 	  // output the response
