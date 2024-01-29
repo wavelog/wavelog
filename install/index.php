@@ -359,22 +359,30 @@ global $wavelog_url;
 									<div class="col">
 										<p>Configure some basic parameters for your wavelog instance. You can change them later in 'application/config/config.php'</p>
 										<div class="mb-3">
-											<label for="directory" class="form-label">Directory  <i id="directory_hint" data-bs-toggle="tooltip" title="Directory Hint" class="fas fa-question-circle"></i></label>
+											<label for="directory" class="form-label">Directory<i id="directory_hint" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true"
+											data-bs-title="The 'Directory' is basically your subfolder of the webroot In normal conditions the prefilled value is doing it's job." 
+											></i></label>
 											<div class="input-group">
 												<span class="input-group-text" id="main-url"><?php echo $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . "/"; ?></span>
 												<input type="text" id="directory" value="<?php echo substr(str_replace("index.php", "", str_replace("/install/", "", $_SERVER['REQUEST_URI'])), 1); ?>" class="form-control" name="directory" aria-describedby="main-url" />
 											</div>
 										</div>
 										<div class="mb-3">
-											<label for="websiteurl" class="form-label">Website URL</label>
+											<label for="websiteurl" class="form-label">Website URL<i id="directory_hint" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true"
+											data-bs-title="This is the complete URL where your Wavelog Instance will be available. If you run this installer locally but want to place Wavelog behind a Reverse Proxy with SSL you should type in the new URL here (e.g. https://mywavelog.example.org/ instead of http://192.168.1.100/). Don't forget to include the directory from above." 
+											></i></label>
 											<input type="text" id="websiteurl" value="<?php echo $_SERVER['REQUEST_SCHEME']; ?>://<?php echo str_replace("index.php", "", $_SERVER['HTTP_HOST'] . str_replace("/install/", "", $_SERVER['REQUEST_URI'])); ?>" class="form-control" name="websiteurl" />
 										</div>
 										<div class="mb-3">
-											<label for="locator" class="form-label">Default Gridsquare</label>
-											<input type="text" id="locator" value="IO91JS" class="form-control" name="locator" />
+											<label for="locator" class="form-label">Default Gridsquare<i id="directory_hint" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true"
+											data-bs-title="This is the default maidenhead locator which is used as falback. You can use the locator of your Home QTH." 
+											></i></label>
+											<input type="text" id="locator" placeholder="HA44AA" class="form-control" name="locator" />
 										</div>
 										<div class="mb-3">
-											<label for="global_call_lookup" class="form-label">Global Callbook Lookup</label>
+											<label for="global_call_lookup" class="form-label">Global Callbook Lookup<i id="directory_hint" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true"
+											data-bs-title="This configuration is optional. The callsign lookup will be available for all users of this installation. You can choose between QRZ.com and HamQTH. While HamQTH also works without username and password, you will need credentials for QRZ.com. To also get the Call Locator in QRZ.com you'll need an XML subscription. HamQTH does not always provide the locator information." 
+											></i></label>
 											<select id="global_call_lookup" class="form-select" name="global_call_lookup">
 												<option value="qrz" selected>QRZ.com</option>
 												<option value="hamqth">HamQTH</option>
@@ -605,6 +613,9 @@ global $wavelog_url;
 
 		<script>
 			$(document).ready(function() {
+				const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+				const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
 				$('#ContinueButton').css('display', 'block');
 				console.log("Ready to unleash your coding prowess and join the fun?\n\n" +
 					"Check out our GitHub Repository and dive into the coding adventure:\n\n" +
