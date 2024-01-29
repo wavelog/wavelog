@@ -131,13 +131,13 @@ if ($_POST) {
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 	<title>Install | Wavelog</title>
-	<link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+	<link rel="icon" type="image/x-icon" href="../favicon.ico">
 
-	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../assets/css/darkly/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/overrides.css">
 
-	<script type="text/javascript" src="assets/js/bootstrap.bundle.min.js"></script>
-	<script type="text/javascript" src="assets/js/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript" src="../assets/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="../assets/js/jquery-3.3.1.min.js"></script>
 </head>
 
 <?php if (is_writable($db_config_path)) : ?>
@@ -181,7 +181,7 @@ if ($_POST) {
 							<div class="tab-pane fade show active p-3" id="welcome" role="tabpanel" aria-labelledby="welcome-tab">
 								<div class="row">
 									<div class="col-md-6">
-										<img src="assets/images/wavelog_logo.png" alt="" style="max-width: 100%; height: auto;">
+										<img src="../assets/logo/wavelog_logo_darkly.png" alt="" style="max-width: 100%; height: auto;">
 									</div>
 
 									<div class="col-md-6">
@@ -193,9 +193,9 @@ if ($_POST) {
 								</div>
 							</div>
 
-							<!-- Tab 2: Pre-Checks --> <!-- TODO Needs some Layout and maybe check for other packages aswell-->
+							<!-- Tab 2: Pre-Checks -->
 							<div class="tab-pane fade" id="precheck" role="tabpanel" aria-labelledby="precheck-tab">
-								<div class="row justify-content-center mt-4">
+								<div class="row justify-content-center" style="margin-top: 2rem;">
 									<div class="col-md-5 mb-4 mx-auto">
 										<p class="border-bottom mb-2"><b>PHP Modules</b></p>
 										<?php
@@ -337,7 +337,7 @@ if ($_POST) {
 											<div class="alert alert-warning d-flex flex-column align-items-center" role="alert">
 												<p class="mb-2 border-bottom">You have some warnings!</p>
 												<p class="mb-2">Some of the settings are not optimal. You can proceed with the installer but</p>
-												<p class="mb-0">be aware that you can run into problems while using Wavelog.</p>
+												<p class="mb-0">be aware that you could run into problems while using Wavelog.</p>
 											</div>
 										<?php } else if ($allChecksPassed == 'ok') { ?>
 											<div class="alert alert-success d-flex align-items-center" role="alert">
@@ -348,7 +348,7 @@ if ($_POST) {
 								</div>
 							</div>
 
-							<!-- Tab 3: Configuration --> <!-- TODO Needs some Layout and maybe other config options (qrz/hamqth web lookup?) -->
+							<!-- Tab 3: Configuration -->
 							<div class="tab-pane fade" id="configuration" role="tabpanel" aria-labelledby="configuration-tab">
 								<div class="row">
 									<div class="col" style="margin-top: 50px;">
@@ -357,7 +357,7 @@ if ($_POST) {
 									<div class="col">
 										<p>Configure some basic parameters for your wavelog instance. You can change them later in 'application/config/config.php'</p>
 										<div class="mb-3">
-											<label for="directory" class="form-label">Directory</label> <!-- TODO Check with team if this is necessary -->
+											<label for="directory" class="form-label">Directory</label>
 											<input type="text" id="directory" value="<?php echo str_replace("index.php", "", str_replace("/install/", "", $_SERVER['REQUEST_URI'])); ?>" class="form-control" name="directory" />
 										</div>
 										<div class="mb-3">
@@ -369,7 +369,7 @@ if ($_POST) {
 											<input type="text" id="locator" value="IO91JS" class="form-control" name="locator" />
 										</div>
 										<div class="mb-3">
-											<label for="global_call_lookup" class="form-label">Global Callsign Lookup</label>
+											<label for="global_call_lookup" class="form-label">Global Callbook Lookup</label>
 											<select id="global_call_lookup" class="form-select" name="global_call_lookup">
 												<option value="qrz" selected>QRZ.com</option>
 												<option value="hamqth">HamQTH</option>
