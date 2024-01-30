@@ -213,6 +213,9 @@ info.addTo(map);
 
   map.setView([35, 140], 5);
 
+  var layerControl = new L.Control.Layers(null, { 'Gridsquares': maidenhead = L.maidenhead() }).addTo(map);
+  maidenhead.addTo(map);
+
   addMarkers();
 
   map.on('zoomed', function() {

@@ -170,7 +170,8 @@ class Awards extends CI_Controller {
 	public function waja ()	{
 		$footerData = [];
 		$footerData['scripts'] = [
-			'assets/js/sections/wajamap.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/wajamap.js"))
+			'assets/js/sections/wajamap.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/wajamap.js")),
+			'assets/js/leaflet/L.Maidenhead.js',
 		];
 
 		$this->load->model('waja');
@@ -450,7 +451,8 @@ class Awards extends CI_Controller {
     public function was() {
 		$footerData = [];
 		$footerData['scripts'] = [
-			'assets/js/sections/wasmap.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/wasmap.js"))
+			'assets/js/sections/wasmap.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/wasmap.js")),
+			'assets/js/leaflet/L.Maidenhead.js',
 		];
 
         $this->load->model('was');
