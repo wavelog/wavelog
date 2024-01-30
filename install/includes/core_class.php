@@ -160,7 +160,11 @@ class Core
 		if ($data['global_call_lookup'] == 'qrz') {
 			$new  = str_replace("%qrz_username%", $data['callbook_username'], $new);
 			$new  = str_replace("%qrz_password%", $data['callbook_password'], $new);
+			$new  = str_replace("%hamqth_username%", '', $new);
+			$new  = str_replace("%hamqth_password%", '', $new);
 		} else {
+			$new  = str_replace("%qrz_username%", '', $new);
+			$new  = str_replace("%qrz_password%", '', $new);
 			$new  = str_replace("%hamqth_username%", $data['callbook_username'], $new);
 			$new  = str_replace("%hamqth_password%", $data['callbook_password'], $new);
 		}
