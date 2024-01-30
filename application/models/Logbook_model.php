@@ -1281,7 +1281,7 @@ class Logbook_model extends CI_Model {
   *
   */
   function call_lookup_result($callsign) {
-    $this->db->select('COL_CALL, COL_NAME, COL_QSL_VIA, COL_GRIDSQUARE, COL_QTH, COL_IOTA, COL_TIME_ON, COL_STATE, COL_CNTY');
+    $this->db->select('COL_CALL, COL_NAME, COL_QSL_VIA, COL_GRIDSQUARE, COL_QTH, COL_IOTA, COL_TIME_ON, COL_STATE, COL_CNTY, COL_DXCC');
     $this->db->where('COL_CALL', $callsign);
     $where = "COL_NAME != \"\"";
 
