@@ -210,8 +210,8 @@ global $wavelog_url;
 
 							<!-- Tab 2: Pre-Checks -->
 							<div class="tab-pane fade" id="precheck" role="tabpanel" aria-labelledby="precheck-tab">
-								<div class="row justify-content-center" style="margin-top: 2rem;">
-									<div class="col-md-5 mb-4 mx-auto">
+								<div class="row justify-content-center" style="margin-top: 3rem;">
+									<div class="col-md-5 mx-auto">
 										<p class="border-bottom mb-2"><b>PHP Modules</b></p>
 										<?php
 										// Initialize the tracker
@@ -249,26 +249,7 @@ global $wavelog_url;
 											}
 											?>
 										</table>
-									</div>
-
-									<div class="col-md-5 mb-4 mx-auto"> <!-- MySQL / MariaDB -->
-										<p class="border-bottom mb-2"><b>MySQL / MariaDB</b></p>
-										<table width="100%">
-											<tr>
-												<td>Min. MySQL Version: </td>
-												<td><span class="badge text-bg-info"><?php echo $mysql_version; ?></span></td>
-											</tr>
-											<tr>
-												<td>Min. MariaDB Version: </td>
-												<td><span class="badge text-bg-info"><?php echo $mariadb_version; ?></span></td>
-											</tr>
-										</table>
-										<p style="margin-top: 10px;">You can test your MySQL/MariaDB Version in Step 4</p>
-									</div>
-								</div>
-								<div class="row justify-content-center">
-									<div class="col-md-5 mx-auto"> <!-- PHP Settings -->
-										<p class="border-bottom mb-2"><b>PHP Settings</b></p>
+										<p class="border-bottom mb-2" style="margin-top: 2rem;"><b>PHP Settings</b></p>
 										<table width="100%">
 											<tr>
 												<td>max_execution_time</td>
@@ -341,7 +322,21 @@ global $wavelog_url;
 											</tr>
 										</table>
 									</div>
-									<div class="col-md-5 mx-auto" style="margin-top: 50px;">
+
+									<div class="col-md-5 mb-4 mx-auto"> <!-- MySQL / MariaDB -->
+										<p class="border-bottom mb-2"><b>MySQL / MariaDB</b></p>
+										<table width="100%">
+											<tr>
+												<td>Min. MySQL Version: </td>
+												<td><span class="badge text-bg-info"><?php echo $mysql_version; ?></span></td>
+											</tr>
+											<tr>
+												<td>Min. MariaDB Version: </td>
+												<td><span class="badge text-bg-info"><?php echo $mariadb_version; ?></span></td>
+											</tr>
+										</table>
+										<p style="margin-top: 10px; margin-bottom: 100px;">You can test your MySQL/MariaDB Version in Step 4</p>
+
 										<?php if ($allChecksPassed == 'failed') { ?>
 											<div class="alert alert-danger d-flex flex-column align-items-center" role="alert">
 												<p class="mb-2 border-bottom">Some Checks have failed!</p>
@@ -671,6 +666,10 @@ global $wavelog_url;
 				let fourthTabId = 'database-tab';
 				let lastTabId = 'finish-tab';
 
+				const activeTab = $('.nav-link.active');
+
+				var allChecksPassed = '<?php echo $allChecksPassed; ?>';
+
 				function nextTab() {
 					const activeTab = $('.nav-link.active');
 					const nextTab = activeTab.parent().next().find('.nav-link');
@@ -685,6 +684,18 @@ global $wavelog_url;
 						$('#BackButton').css('display', 'block');
 					} else {
 						$('#ContinueButton').css('display', 'none');
+					}
+
+					if (nextTab.attr('id') == secondTabId) {
+						if (allChecksPassed == 'failed') {
+							if (root_mode == false) {
+								$('#ContinueButton').prop('disabled', true);
+							} else {
+								$('#ContinueButton').prop('disabled', false);
+							}
+						} else {
+							$('#ContinueButton').prop('disabled', false);
+						}
 					}
 				}
 
@@ -710,7 +721,19 @@ global $wavelog_url;
 				$('#ContinueButton').on('click', nextTab);
 				$('#BackButton').on('click', prevTab);
 
-
+				// We check if on the second Tab (Pre-Check) all checks passed or failed, Only of they failed we disable the continue button
+				// root_mode can override that
+				// if (allChecksPassed == 'failed') {
+				// 	if (activeTab.attr('id') == secondTabId) {
+				// 		if (root_mode == false) {
+				// 			$('#ContinueButton').prop('disabled', true);
+				// 		} else {
+				// 			$('#ContinueButton').prop('disabled', false);
+				// 		}
+				// 	} else {
+				// 		$('#ContinueButton').prop('disabled', false);
+				// 	}
+				// }
 
 			});
 
