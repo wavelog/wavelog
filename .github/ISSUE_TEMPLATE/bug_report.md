@@ -7,34 +7,40 @@ assignees: ''
 
 ---
 
-**This is for reporting bugs with the code, if this issue is regarding setting up on your local server please use the forum see readme for details**
+**This is for reporting bugs with the code, if this issue is regarding setting up on your local server please use the discussions area**
 
 **Describe the bug**
-A clear and concise description of what the bug is.
+Provide a clear and concise description of the bug.
 
-**To Reproduce**
-Steps to reproduce the behaviour:
+**Version Information**
+We need some information about your versions. You can get all Information in the Admin > Debug Menu
+- OS:               [e.g. Debian 12]
+- PHP:              [e.g. 8.2]
+- MySQL/MariaDB:    [e.g. 10.11]
+- Wavelog:          [e.g. 1.0] 
+
+**Steps to Reproduce**
 1. Go to '...'
 2. Click on '....'
 3. Scroll down to '....'
 4. See error
 
-**Expected behaviour**
-A clear and concise description of what you expected to happen.
+**Expected Behavior**
+Describe what you expected to happen.
 
 **Screenshots**
-If applicable, add screenshots to help explain your problem.
+Include screenshots if applicable to illustrate the issue.
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+**Desktop Information:**
+- OS:               [e.g., iOS]
+- Browser:          [e.g., Chrome, Safari, Firefox]
+- Version:          [e.g., 22]
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+**Smartphone Information:**
+- Device:           [e.g., iPhone6]
+- OS:               [e.g., iOS8.1]
+- Browser:          [e.g., stock browser, safari]
+- Version:          [e.g., 22]
 
-**Additional context**
-Add any other context about the problem here.
+**Additional Context**
+Provide any other relevant context about the problem.
