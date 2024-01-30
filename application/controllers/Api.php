@@ -481,15 +481,25 @@ class API extends CI_Controller {
 		 */
 
 
+
 		// Make sure users logged in
+		$raw_input = json_decode(file_get_contents("php://input"), true);
 		$this->load->model('user_model');
-		if (!( ((isset($obj['key'])) && ($this->api_model->authorize($obj['key']) > 0) ) || ($this->user_model->authorize($this->config->item('auth_mode'))) )) {
-			http_response_code(401);
-			echo json_encode(['status' => 'failed', 'reason' => "missing api key or session"]);
-			die();
+		if (!( $this->user_model->authorize($this->config->item('auth_mode') ))) {				// User not authorized?
+			$no_auth=true;
+			$this->load->model('api_model');
+			if (!( ((isset($raw_input['key'])) && ($this->api_model->authorize($raw_input['key']) > 0) ))) {			// Key invalid?
+				$no_auth=true;
+			} else {
+				$no_auth=false;
+			}
+			if ($no_auth) {
+				http_response_code(401);
+				echo json_encode(['status' => 'failed', 'reason' => "missing api key or session"]);
+				die();
+			}
 		}
 
-		$raw_input = json_decode(file_get_contents("php://input"), true);
 		$lookup_callsign = strtoupper($raw_input['callsign'] ?? '');
 		if ($lookup_callsign ?? '' != '') {
 
