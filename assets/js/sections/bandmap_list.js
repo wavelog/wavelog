@@ -174,23 +174,23 @@ $(function() {
 	var bc2qso = new BroadcastChannel('qso_wish');
 
 	$(document).on('click','#prepcall', function() {
-		if (Date.now()-qso_window_last_seen < 2000) {
+		let call=this.innerText;
+		let qrg=''
 			if (this.parentNode.parentNode.className != '') {
-				bc2qso.postMessage({ frequency: this.parentNode.parentNode.parentNode.cells[1].textContent*1000, call: this.innerText });
+				qrg=this.parentNode.parentNode.parentNode.cells[1].textContent*1000;
 			} else {
-				bc2qso.postMessage({ frequency: this.parentNode.parentNode.cells[1].textContent*1000, call: this.innerText });
+				qrg=this.parentNode.parentNode.cells[1].textContent*1000;
 			}
+		if (Date.now()-qso_window_last_seen < 2000) {
+			bc2qso.postMessage({ frequency: qrg, call: call });
 			try {
-				irrelevant=fetch('http://127.0.0.1:54321/'+this.parentNode.parentNode.cells[1].textContent*1000);
+				irrelevant=fetch('http://127.0.0.1:54321/'+qrg);
 			} finally {}
+		}
 		} else {
 			let cl={};
-			if (this.parentNode.parentNode.className != '') {
-				cl.qrg=this.parentNode.parentNode.parentNode.cells[1].textContent*1000;
-			} else {
-				cl.qrg=this.parentNode.parentNode.cells[1].textContent*1000;
-			}
-			cl.call=this.innerText;
+			cl.call=call;
+			cl.qrg=qrg;
 			window.open(base_url + 'index.php/qso?manual=0','_blank');
 			setTimeout(function () { 
 				bc2qso.postMessage({ frequency: cl.qrg, call: cl.call }) 
