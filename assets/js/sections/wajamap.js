@@ -220,6 +220,9 @@ info.addTo(map);
     addMarkers();
   });
 
+  var layerControl = new L.Control.Layers(null, { 'Gridsquares': maidenhead = L.maidenhead() }).addTo(map);
+  maidenhead.addTo(map);
+
 }
 
 function clearMarkers() {
