@@ -16,6 +16,9 @@ HB9HIL - January 2024
 $db_config_path = '../application/config/';
 $db_file_path = $db_config_path . "database.php";
 
+// if you need to disabled all button locks you can create a root_mode file in the /install directory
+$root_mode_file = '.root_mode';
+
 // Wanted Pre-Check Parameters
 // PHP 
 $min_php_version = '7.4.0';
@@ -70,6 +73,12 @@ if (file_exists($db_file_path)) {
 	delDir(getcwd());
 	header("../");
 	exit;
+}
+
+if (file_exists($root_mode_file)) {
+	$root_mode = true;
+} else {
+	$root_mode = false;
 }
 
 // Only load the classes in case the user submitted the form
@@ -640,6 +649,10 @@ global $wavelog_url;
 					event.preventDefault();
 				}
 			});
+
+			// root mode initializer for js
+			var root_mode = <?php echo json_encode($root_mode); ?>;
+
 			$(document).ready(function() {
 				const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
 				const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
@@ -814,8 +827,9 @@ global $wavelog_url;
 						$('#form_warnings').css('display', 'block');
 						$('#form_warnings').html('Password should be at least 8 characters long')
 
-						$('#ContinueButton').prop('disabled', true);
-
+						if (root_mode == false) {
+							$('#ContinueButton').prop('disabled', true);
+						}
 					}
 
 				} else {
@@ -829,7 +843,9 @@ global $wavelog_url;
 					$('#form_warnings').css('display', 'block');
 					$('#form_warnings').html('Passwords do not match');
 
-					$('#ContinueButton').prop('disabled', true);
+					if (root_mode == false) {
+						$('#ContinueButton').prop('disabled', true);
+					}
 
 				}
 			});
@@ -849,7 +865,9 @@ global $wavelog_url;
 					emailField.removeClass('is-valid');
 					$('#form_warnings').css('display', 'block');
 					$('#form_warnings').html('The E-Mail Address is not valid');
-					$('#ContinueButton').prop('disabled', true);
+					if (root_mode == false) {
+						$('#ContinueButton').prop('disabled', true);
+					}
 
 				} else {
 
@@ -876,7 +894,9 @@ global $wavelog_url;
 					locatorField.removeClass('is-valid');
 					$('#form_warnings').css('display', 'block');
 					$('#form_warnings').html("The grid locator is not valid. Use a 6-character locator, e.g. HA44AA. If you don't know your grid square then <a href='https://zone-check.eu/?m=loc' target='_blank'>click here</a>!");
-					$('#ContinueButton').prop('disabled', true);
+					if (root_mode == false) {
+						$('#ContinueButton').prop('disabled', true);
+					}
 
 				} else {
 
