@@ -187,7 +187,7 @@ global $wavelog_url;
 
 							<!-- Tab 1: Welcome -->
 							<div class="tab-pane fade show active p-3" id="welcome" role="tabpanel" aria-labelledby="welcome-tab">
-								<div class="row">
+								<div class="row" style="margin-top: 20px;">
 									<div class="col-md-6">
 										<img src="../assets/logo/wavelog_logo_darkly.png" alt="" style="max-width: 100%; height: auto;">
 									</div>
@@ -359,7 +359,7 @@ global $wavelog_url;
 							<!-- Tab 3: Configuration -->
 							<div class="tab-pane fade" id="configuration" role="tabpanel" aria-labelledby="configuration-tab">
 								<div class="row">
-									<div class="col" style="margin-top: 50px;">
+									<div class="col" style="margin-top: 70px;">
 										<img src="assets/images/gears_icon.png" alt="" style="max-width: 80%; height: auto; margin-left: 20px;">
 									</div>
 									<div class="col">
@@ -412,10 +412,10 @@ global $wavelog_url;
 							<!-- Tab 4: Database --> <!-- TODO Perform a mysql_get_server_info() with the provided data -->
 							<div class="tab-pane fade" id="database" role="tabpanel" aria-labelledby="database-tab">
 								<div class="row">
-									<div class="col" style="margin-top: 50px;">
+									<div class="col" style="margin-top: 70px;">
 										<img src="assets/images/database_sign.png" alt="" style="max-width: 80%; height: auto; margin-left: 20px;">
 									</div>
-									<div class="col">
+									<div class="col" style="margin-top: 40px;">
 										<p>To properly install Wavelog you already should have setup a mariadb/mysql database. Provide the parameters here.</p>
 										<div class="row">
 											<div class="col">
@@ -449,7 +449,7 @@ global $wavelog_url;
 
 							<!-- Tab 5: First User --> <!-- TODO Layout finish and Logic -->
 							<div class="tab-pane fade" id="firstuser" role="tabpanel" aria-labelledby="firstuser-tab">
-								<p>Now you can create your first user in Wavelog. Fill out all fields and click continue.<br>Make sure you use a proper password.</p>
+								<p style="margin-top: 20px;">Now you can create your first user in Wavelog. Fill out all fields and click continue.<br>Make sure you use a proper password.</p>
 								<div class="row">
 									<div class="col-md-6 mb-2">
 										<div class="row">
@@ -479,8 +479,8 @@ global $wavelog_url;
 										<input type="text" id="callsign" placeholder="4W7EST" class="form-control" name="callsign" />
 									</div>
 									<div class="col-md-6 mb-2">
-										<label for="user_email" class="form-label">E-Mail Address</label>
-										<input type="email" id="user_email" placeholder="ham.radio@example.com" class="form-control" name="user_email" />
+										<label for="password" class="form-label">Password</label>
+										<input type="password" id="password" placeholder="**********" class="form-control" name="password" />
 									</div>
 								</div>
 
@@ -490,6 +490,15 @@ global $wavelog_url;
 										<input type="text" id="userlocator" placeholder="HA44AA" class="form-control" name="userlocator" />
 									</div>
 									<div class="col-md-6 mb-2">
+										<label for="cnfm_password" class="form-label">Confirm Password</label> <!-- TODO Compare passwords before continue -->
+										<input type="cnfm_password" id="cnfm_password" placeholder="**********" class="form-control" name="cnfm_password" />
+
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6 mb-2">
+										<label for="user_email" class="form-label">E-Mail Address</label>
+										<input type="email" id="user_email" placeholder="ham.radio@example.com" class="form-control mb-2" name="user_email" />
 										<label for="timezone" class="form-label">Timezone</label>
 										<select id="timezone" class="form-select" name="timezone">
 											<?php
@@ -586,24 +595,33 @@ global $wavelog_url;
 										</select>
 									</div>
 								</div>
-								<div class="row">
-									<div class="col-md-6 mb-2">
-										<label for="password" class="form-label">Password</label>
-										<input type="password" id="password" placeholder="**********" class="form-control" name="password" />
-									</div>
-									<div class="col-md-6 mb-2">
-										<div class="col-md-6 mb-2">
-											<label for="cnfm_password" class="form-label">Confirm Password</label> <!-- TODO Compare passwords before continue -->
-											<input type="cnfm_password" id="cnfm_password" placeholder="**********" class="form-control" name="cnfm_password" />
-										</div>
-									</div>
-								</div>
 							</div>
 
 							<!-- Tab 6: Finish --> <!-- TODO Install Button -->
 							<div class="tab-pane fade" id="finish" role="tabpanel" aria-labelledby="finish-tab">
-								<p>Here will be the Install Button</p>
-								<input class="btn btn-primary" type="submit" value="Install" id="submit" />
+								<div class="row" style="margin-top: 80px;">
+									<div class="col-md-5" style="margin-top: 50px;">
+										<div  class="d-flex justify-content-center">
+											<div>
+											<h4>Checklist</h4>
+											<p class="ms-2"><i class="me-2 fas fa-check-circle" style="color: green;"></i>Configuration</p>
+											<div class="ms-2 alert" id="configuration-warning" style="display: none;"></div>
+											<p class="ms-2"><i class="me-2 fas fa-check-circle" style="color: green;"></i>Database</p>
+											<div class="ms-2 alert" id="database-warning" style="display: none;"></div>
+											<p class="ms-2"><i class="me-2 fas fa-check-circle" style="color: green;"></i>First User</p>
+											<div class="ms-2 alert" id="firstuser-warning" style="display: none;"></div>
+											</div>
+										</div>
+									</div>
+									<div class="col">
+										<div class="text-center">
+											<h4 style="margin-top: 50px;">Nearly done!</h4>
+											<p style="margin-top: 50px;">You prepared all neccessary steps.</p>
+											<p>We now can install Wavelog. This process can take a few minutes.</p>
+											<input class="btn btn-primary" type="submit" value="Install" id="submit" />
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</form>
@@ -616,8 +634,8 @@ global $wavelog_url;
 		</div>
 
 		<script>
-			document.addEventListener('keydown', function(event) {  // We don't want to allow press Enter to trigger Events in the Installer
-				if (event.key === 'Enter') {						// Too dangerous for an average $user
+			document.addEventListener('keydown', function(event) { // We don't want to allow press Enter to trigger Events in the Installer
+				if (event.key === 'Enter') { // Too dangerous for an average $user
 					event.preventDefault();
 				}
 			});
