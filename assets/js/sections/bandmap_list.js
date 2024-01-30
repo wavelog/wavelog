@@ -175,13 +175,21 @@ $(function() {
 
 	$(document).on('click','#prepcall', function() {
 		if (Date.now()-qso_window_last_seen < 2000) {
-			bc2qso.postMessage({ frequency: this.parentNode.parentNode.cells[1].textContent*1000, call: this.innerText });
+			if (this.parentNode.parentNode.className != '') {
+				bc2qso.postMessage({ frequency: this.parentNode.parentNode.parentNode.cells[1].textContent*1000, call: this.innerText });
+			} else {
+				bc2qso.postMessage({ frequency: this.parentNode.parentNode.cells[1].textContent*1000, call: this.innerText });
+			}
 			try {
 				irrelevant=fetch('http://127.0.0.1:54321/'+this.parentNode.parentNode.cells[1].textContent*1000);
 			} finally {}
 		} else {
 			let cl={};
-			cl.qrg=this.parentNode.parentNode.cells[1].textContent*1000;
+			if (this.parentNode.parentNode.className != '') {
+				cl.qrg=this.parentNode.parentNode.parentNode.cells[1].textContent*1000;
+			} else {
+				cl.qrg=this.parentNode.parentNode.cells[1].textContent*1000;
+			}
 			cl.call=this.innerText;
 			window.open(base_url + 'index.php/qso?manual=0','_blank');
 			setTimeout(function () { 
