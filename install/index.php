@@ -344,8 +344,7 @@ global $wavelog_url;
 										<?php } else if ($allChecksPassed == 'warning') { ?>
 											<div class="alert alert-warning d-flex flex-column align-items-center" role="alert">
 												<p class="mb-2 border-bottom">You have some warnings!</p>
-												<p class="mb-2">Some of the settings are not optimal. You can proceed with the installer but</p>
-												<p class="mb-0">be aware that you could run into problems while using Wavelog.</p>
+												<p class="mb-2">Some of the settings are not optimal. You can proceed with the installer but be aware that you could run into problems while using Wavelog.</p>
 											</div>
 										<?php } else if ($allChecksPassed == 'ok') { ?>
 											<div class="alert alert-success d-flex align-items-center" role="alert">
@@ -409,7 +408,7 @@ global $wavelog_url;
 								</div>
 							</div>
 
-							<!-- Tab 4: Database --> <!-- TODO Perform a mysql_get_server_info() with the provided data -->
+							<!-- Tab 4: Database -->
 							<div class="tab-pane fade" id="database" role="tabpanel" aria-labelledby="database-tab">
 								<div class="row">
 									<div class="col" style="margin-top: 70px;">
@@ -447,7 +446,7 @@ global $wavelog_url;
 								</div>
 							</div>
 
-							<!-- Tab 5: First User --> <!-- TODO Layout finish and Logic -->
+							<!-- Tab 5: First User -->
 							<div class="tab-pane fade" id="firstuser" role="tabpanel" aria-labelledby="firstuser-tab">
 								<p style="margin-top: 20px;">Now you can create your first user in Wavelog. Fill out all fields and click continue.<br>Make sure you use a proper password.</p>
 								<div class="row">
@@ -455,11 +454,11 @@ global $wavelog_url;
 										<div class="row">
 											<div class="col">
 												<label for="firstname" class="form-label">First Name</label>
-												<input type="text" id="firstname" placeholder="Ham" class="form-control" name="firstname" />
+												<input type="text" id="firstname" tabindex="1" placeholder="Ham" class="form-control" name="firstname" />
 											</div>
 											<div class="col">
 												<label for="lastname" class="form-label">Last Name</label>
-												<input type="text" id="lastname" placeholder="Radio" class="form-control" name="lastname" />
+												<input type="text" id="lastname" tabindex="2" placeholder="Radio" class="form-control" name="lastname" />
 											</div>
 										</div>
 									</div>
@@ -467,7 +466,7 @@ global $wavelog_url;
 										<div class="row">
 											<div class="col">
 												<label for="username" class="form-label">Username</label>
-												<input type="text" id="username" placeholder="ham.radio" class="form-control" name="username" />
+												<input type="text" id="username" tabindex="7" placeholder="ham.radio" class="form-control" name="username" />
 											</div>
 										</div>
 									</div>
@@ -476,31 +475,30 @@ global $wavelog_url;
 								<div class="row">
 									<div class="col-md-6 mb-2">
 										<label for="callsign" class="form-label">Callsign</label>
-										<input type="text" id="callsign" placeholder="4W7EST" class="form-control" name="callsign" />
+										<input type="text" id="callsign" tabindex="3" placeholder="4W7EST" class="form-control" name="callsign" />
 									</div>
 									<div class="col-md-6 mb-2">
 										<label for="password" class="form-label">Password</label>
-										<input type="password" id="password" placeholder="**********" class="form-control" name="password" />
+										<input type="password" id="password" tabindex="8" placeholder="**********" class="form-control" name="password" />
 									</div>
 								</div>
 
 								<div class="row">
 									<div class="col-md-6 mb-2">
 										<label for="userlocator" class="form-label">Locator</label>
-										<input type="text" id="userlocator" placeholder="HA44AA" class="form-control" name="userlocator" />
+										<input type="text" id="userlocator" tabindex="4" placeholder="HA44AA" class="form-control" name="userlocator" />
 									</div>
 									<div class="col-md-6 mb-2">
-										<label for="cnfm_password" class="form-label">Confirm Password</label> <!-- TODO Compare passwords before continue -->
-										<input type="cnfm_password" id="cnfm_password" placeholder="**********" class="form-control" name="cnfm_password" />
-
+										<label for="cnfm_password" class="form-label">Confirm Password</label>
+										<input type="password" id="cnfm_password" tabindex="9" placeholder="**********" class="form-control" name="cnfm_password" />
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-6 mb-2">
 										<label for="user_email" class="form-label">E-Mail Address</label>
-										<input type="email" id="user_email" placeholder="ham.radio@example.com" class="form-control mb-2" name="user_email" />
+										<input type="email" id="user_email" tabindex="5" placeholder="ham.radio@example.com" class="form-control mb-2" name="user_email" />
 										<label for="timezone" class="form-label">Timezone</label>
-										<select id="timezone" class="form-select" name="timezone">
+										<select id="timezone" tabindex="6" class="form-select" name="timezone">
 											<?php
 											// timezones
 											$timezones = [
@@ -594,22 +592,25 @@ global $wavelog_url;
 											?>
 										</select>
 									</div>
+									<div class="col-md-6 mb-2">
+										<div class="alert alert-danger" id="form_warnings" style="display: none; margin-top: 30px;"></div>
+									</div>
 								</div>
 							</div>
 
-							<!-- Tab 6: Finish --> <!-- TODO Install Button -->
+							<!-- Tab 6: Finish --> <!-- TODO Include Check Functions -->
 							<div class="tab-pane fade" id="finish" role="tabpanel" aria-labelledby="finish-tab">
 								<div class="row" style="margin-top: 80px;">
 									<div class="col-md-5" style="margin-top: 50px;">
-										<div  class="d-flex justify-content-center">
+										<div class="d-flex justify-content-center">
 											<div>
-											<h4>Checklist</h4>
-											<p class="ms-2"><i class="me-2 fas fa-check-circle" style="color: green;"></i>Configuration</p>
-											<div class="ms-2 alert" id="configuration-warning" style="display: none;"></div>
-											<p class="ms-2"><i class="me-2 fas fa-check-circle" style="color: green;"></i>Database</p>
-											<div class="ms-2 alert" id="database-warning" style="display: none;"></div>
-											<p class="ms-2"><i class="me-2 fas fa-check-circle" style="color: green;"></i>First User</p>
-											<div class="ms-2 alert" id="firstuser-warning" style="display: none;"></div>
+												<h4>Checklist</h4>
+												<p class="ms-2"><i class="me-2 fas"></i>Configuration</p>
+												<div class="ms-2 alert" id="configuration-warning" style="display: none;"></div>
+												<p class="ms-2"><i class="me-2 fas"></i>Database</p>
+												<div class="ms-2 alert" id="database-warning" style="display: none;"></div>
+												<p class="ms-2"><i class="me-2 fas"></i>First User</p>
+												<div class="ms-2 alert" id="firstuser-warning" style="display: none;"></div>
 											</div>
 										</div>
 									</div>
@@ -634,8 +635,10 @@ global $wavelog_url;
 		</div>
 
 		<script>
-			document.addEventListener('keydown', function(event) { // We don't want to allow press Enter to trigger Events in the Installer
-				if (event.key === 'Enter') { // Too dangerous for an average $user
+			// We don't want to allow press Enter to trigger Events in the Installer
+			// Too dangerous for an average $user
+			document.addEventListener('keydown', function(event) {
+				if (event.key === 'Enter') {
 					event.preventDefault();
 				}
 			});
@@ -685,7 +688,6 @@ global $wavelog_url;
 
 					if (prevTab.attr('id') !== firstTabId) {
 						$('#ContinueButton').css('display', 'block');
-						$('#ContinueButton').prop('disabled', false);
 						$('#BackButton').css('display', 'block');
 					} else {
 						$('#BackButton').css('display', 'none');
@@ -696,31 +698,11 @@ global $wavelog_url;
 				$('#ContinueButton').on('click', nextTab);
 				$('#BackButton').on('click', prevTab);
 
-				<?php if ($allChecksPassed == 'failed') { ?>
-					// Check if the active tab is the precheck-tab and disable the ContinueButton if not all Checks passed
-					$(document).on('shown.bs.tab', function(e) {
-						const activeTabId = e.target.id;
-						if (activeTabId === secondTabId) {
-							$('#ContinueButton').prop('disabled', true);
-						} else {
-							$('#ContinueButton').prop('disabled', false);
-						}
-					});
-				<?php } ?>
+
 
 			});
 
-			// [PWD] button show/hide //
-			function btn_pwd_showhide() {
-				if ($(this).closest('div').find('input[type="password"]').length > 0) {
-					$(this).closest('div').find('input[type="password"]').attr('type', 'text');
-					$(this).closest('div').find('.fa-eye-slash').removeClass('fa-eye-slash').addClass('fa-eye');
-				} else {
-					$(this).closest('div').find('input[type="text"]').attr('type', 'password');
-					$(this).closest('div').find('.fa-eye').removeClass('fa-eye').addClass('fa-eye-slash');
-				}
-			}
-			$('.user_edit .btn-pwd-showhide').off('click').on('click', btn_pwd_showhide);
+
 
 			function db_connection_test() {
 				var db_hostname = $('#db_hostname').val();
@@ -731,7 +713,6 @@ global $wavelog_url;
 				if (db_hostname === '' || db_username === '' || db_password === '' || db_name === '') {
 					$('#db_connection_testresult').addClass('alert-danger');
 					$('#db_connection_testresult').html('Error: All fields are required.');
-					$('#ContinueButton').prop('disabled', true);
 					return;
 				}
 
@@ -753,18 +734,15 @@ global $wavelog_url;
 					success: function(response) {
 						$('#db_connection_testresult').html(response);
 						if (response.indexOf('Error') !== -1) {
-							$('#ContinueButton').prop('disabled', true);
 							$('#db_connection_testresult').addClass('alert-danger');
 							$('#db_connection_test_button').html(originalButtonText).prop('disabled', false);
 						} else {
 
 							if (sql_version_checker(response) == true) {
-								$('#ContinueButton').prop('disabled', false);
 								$('#db_connection_testresult').addClass('alert-success');
 								$('#db_connection_test_button').html(originalButtonText).prop('disabled', false);
 								$('#db_connection_testresult').html('Connection was successful and your database should be compatible <i class="fas fa-check-circle"></i>');
 							} else {
-								$('#ContinueButton').prop('disabled', true);
 								$('#db_connection_testresult').addClass('alert-danger');
 								$('#db_connection_test_button').html(originalButtonText).prop('disabled', false);
 								$('#db_connection_testresult').html('Connection was successful but your database seems too old for Wavelog <i class="fas fa-ban"></i>');
@@ -774,7 +752,6 @@ global $wavelog_url;
 					error: function(error) {
 						$('#db_connection_testresult').html('Error: ' + error.statusText);
 						if ($('#db_connection_testresult').text().indexOf('Error') !== -1) {
-							$('#ContinueButton').prop('disabled', true);
 							$('#db_connection_testresult').addClass('alert-danger');
 						}
 					}
@@ -806,6 +783,110 @@ global $wavelog_url;
 				return false;
 
 			}
+
+			// Check various user input in tab 4
+			// user password
+			var passwordField = $('#password');
+			var cnfmPasswordField = $('#cnfm_password');
+			var minPasswordLenght = 8;
+
+			cnfmPasswordField.on('change', function() {
+				if (cnfmPasswordField.val() == passwordField.val() && cnfmPasswordField.val() != '') {
+
+					if (cnfmPasswordField.val().length >= minPasswordLenght) {
+
+						passwordField.removeClass('is-invalid');
+						cnfmPasswordField.removeClass('is-invalid');
+
+						passwordField.addClass('is-valid');
+						cnfmPasswordField.addClass('is-valid');
+
+						$('#form_warnings').css('display', 'none');
+						$('#ContinueButton').prop('disabled', false);
+
+					} else {
+						passwordField.addClass('is-invalid');
+						cnfmPasswordField.addClass('is-invalid');
+
+						passwordField.removeClass('is-valid');
+						cnfmPasswordField.removeClass('is-valid');
+
+						$('#form_warnings').css('display', 'block');
+						$('#form_warnings').html('Password should be at least 8 characters long')
+
+						$('#ContinueButton').prop('disabled', true);
+
+					}
+
+				} else {
+
+					passwordField.addClass('is-invalid');
+					cnfmPasswordField.addClass('is-invalid');
+
+					passwordField.removeClass('is-valid');
+					cnfmPasswordField.removeClass('is-valid');
+
+					$('#form_warnings').css('display', 'block');
+					$('#form_warnings').html('Passwords do not match');
+
+					$('#ContinueButton').prop('disabled', true);
+
+				}
+			});
+
+			// email verification
+			emailField = $('#user_email');
+
+			function isValidEmail(email) {
+				const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+				return emailRegex.test(email);
+			}
+
+			emailField.on('change', function() {
+				if (!isValidEmail(emailField.val()) && emailField != '') {
+
+					emailField.addClass('is-invalid');
+					emailField.removeClass('is-valid');
+					$('#form_warnings').css('display', 'block');
+					$('#form_warnings').html('The E-Mail Address is not valid');
+					$('#ContinueButton').prop('disabled', true);
+
+				} else {
+
+					emailField.removeClass('is-invalid');
+					emailField.addClass('is-valid');
+					$('#form_warnings').css('display', 'none');
+					$('#ContinueButton').prop('disabled', false);
+
+				}
+			});
+
+			// grid verification
+			locatorField = $('#userlocator');
+
+			function isValidMaidenheadLocator(locator) {
+				const maidenheadRegex = /^[A-R]{2}[0-9]{2}[A-X]{2}$/;
+				return maidenheadRegex.test(locator);
+			}
+
+			locatorField.on('change', function() {
+				if (!isValidMaidenheadLocator(locatorField.val()) && locatorField != '') {
+
+					locatorField.addClass('is-invalid');
+					locatorField.removeClass('is-valid');
+					$('#form_warnings').css('display', 'block');
+					$('#form_warnings').html("The grid locator is not valid. Use a 6-character locator, e.g. HA44AA. If you don't know your grid square then <a href='https://zone-check.eu/?m=loc' target='_blank'>click here</a>!");
+					$('#ContinueButton').prop('disabled', true);
+
+				} else {
+
+					locatorField.removeClass('is-invalid');
+					locatorField.addClass('is-valid');
+					$('#form_warnings').css('display', 'none');
+					$('#ContinueButton').prop('disabled', false);
+
+				}
+			});
 		</script>
 	</body>
 
