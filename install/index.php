@@ -691,6 +691,7 @@ global $wavelog_url;
 						$('#BackButton').css('display', 'none');
 					}
 					clear_db_testresult();
+					$('#ContinueButton').prop('disabled', false);
 				}
 
 				$('#ContinueButton').on('click', nextTab);
@@ -741,9 +742,9 @@ global $wavelog_url;
 								$('#db_connection_test_button').html(originalButtonText).prop('disabled', false);
 								$('#db_connection_testresult').html('Connection was successful and your database should be compatible <i class="fas fa-check-circle"></i>');
 							} else {
-								$('#db_connection_testresult').addClass('alert-danger');
+								$('#db_connection_testresult').addClass('alert-warning');
 								$('#db_connection_test_button').html(originalButtonText).prop('disabled', false);
-								$('#db_connection_testresult').html('Connection was successful but your database seems too old for Wavelog <i class="fas fa-ban"></i>');
+								$('#db_connection_testresult').html('Connection was successful but your database seems too old for Wavelog. You can try to continue but you could run into issues.</i>');
 							}
 						}
 					},
@@ -760,6 +761,7 @@ global $wavelog_url;
 				$('#db_connection_testresult').html('');
 				$('#db_connection_testresult').removeClass('alert-danger');
 				$('#db_connection_testresult').removeClass('alert-success');
+				$('#db_connection_testresult').removeClass('alert-warning');
 			}
 
 			function sql_version_checker(version_string) {
