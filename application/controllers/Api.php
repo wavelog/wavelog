@@ -614,13 +614,13 @@ class API extends CI_Controller {
 				$this->load->library('DxccFlag');
 				$return['dxcc_flag']=$this->dxccflag->get($return['dxcc_id']);
 			}
-			/*
-			 *
-			 *	Check if callsign is active on LoTW
-			 *
-			 */
 
-
+			$lotw_days=$this->logbook_model->check_last_lotw($lookup_callsign);
+			if ($lotw_days != null) {
+				$return['lotw_member']=$lotw_days;
+			} else {
+				$lotw_member="";
+			}
 			/*
 			 *
 			 *	Output Returned data
