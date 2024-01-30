@@ -66,6 +66,7 @@ $(function() {
 							wked_info="";
 						}
 						lotw_badge='';
+						lclass='';
 						if (single.dxcc_spotted.lotw_user) {
 							$('#lotw_info').text("LoTW");
 							if (single.dxcc_spotted.lotw_user > 365) {
