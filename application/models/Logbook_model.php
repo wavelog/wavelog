@@ -1281,22 +1281,22 @@ class Logbook_model extends CI_Model {
   *
   */
   function call_lookup_result($callsign) {
-    $this->db->select('COL_CALL, COL_NAME, COL_QSL_VIA, COL_GRIDSQUARE, COL_QTH, COL_IOTA, COL_TIME_ON, COL_STATE, COL_CNTY, COL_DXCC');
-    $this->db->where('COL_CALL', $callsign);
-    $where = "COL_NAME != \"\"";
+	  $this->db->select('COL_CALL, COL_NAME, COL_QSL_VIA, COL_GRIDSQUARE, COL_QTH, COL_IOTA, COL_TIME_ON, COL_STATE, COL_CNTY, COL_DXCC, COL_CONT');
+	  $this->db->where('COL_CALL', $callsign);
+	  $where = "COL_NAME != \"\"";
 
-    $this->db->where($where);
+	  $this->db->where($where);
 
-    $this->db->order_by("COL_TIME_ON", "desc");
-    $this->db->limit(1);
-    $query = $this->db->get($this->config->item('table_name'));
-    $name = "";
-    if ($query->num_rows() > 0)
-    {
-      $data = $query->row();
-    }
+	  $this->db->order_by("COL_TIME_ON", "desc");
+	  $this->db->limit(1);
+	  $query = $this->db->get($this->config->item('table_name'));
+	  $name = "";
+	  $data=[];
+	  if ($query->num_rows() > 0) {
+		  $data = $query->row();
+	  }
 
-    return $data;
+	  return $data;
   }
 
   /* Callsign QRA */
@@ -3939,7 +3939,7 @@ function lotw_last_qsl_date($user_id) {
 
     $csadditions = '/^P$|^R$|^A$|^M$/';
 
-		$dxcc_exceptions = $this->db->select('`entity`, `adif`, `cqz`')
+		$dxcc_exceptions = $this->db->select('`entity`, `adif`, `cqz`,`cont`')
 				->where('call', $call)
 				->where('(start <= ', $date)
 				->or_where('start is null)', NULL, false)
@@ -3989,6 +3989,7 @@ function lotw_last_qsl_date($user_id) {
               $result = $this->wpx($call, 1);                       # use the wpx prefix instead
               if ($result == '') {
                 $row['adif'] = 0;
+                $row['cont'] = '';
                 $row['entity'] = '- NONE -';
                 $row['cqz'] = 0;
                 $row['long'] = '0';

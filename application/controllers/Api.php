@@ -516,6 +516,7 @@ class API extends CI_Controller {
 				"dxcc_long" => "",
 				"dxcc_cqz" => "",
 				"dxcc_flag" => "",
+				"cont" => "",
 				"name" => "",
 				"gridsquare"  => "",
 				"location"  => "",
@@ -574,12 +575,14 @@ class API extends CI_Controller {
 				$return['dxcc_lat'] = $ans2['lat'];
 				$return['dxcc_long'] = $ans2['long'];
 				$return['dxcc_cqz'] = $ans2['cqz'];
+				$return['cont'] = $ans2['cont'];
 			} else {
 				$return['dxcc_id'] = $callsign_dxcc_lookup['adif'];
 				$return['dxcc'] = $callsign_dxcc_lookup['entity'];
 				$return['dxcc_lat'] = $callsign_dxcc_lookup['lat'];
 				$return['dxcc_long'] = $callsign_dxcc_lookup['long'];
 				$return['dxcc_cqz'] = $callsign_dxcc_lookup['cqz'];
+				$return['cont'] = $callsign_dxcc_lookup['cont'];
 			}
 
 			/*
@@ -599,6 +602,7 @@ class API extends CI_Controller {
 				$return['state'] = $call_lookup_results->COL_STATE;
 				$return['us_county'] = $call_lookup_results->COL_CNTY;
 				$return['dxcc_id'] = $call_lookup_results->COL_DXCC;
+				$return['cont'] = $call_lookup_results->COL_CONT;
 
 				if ($return['gridsquare'] != "") {
 					$return['latlng'] = $this->qralatlng($return['gridsquare']);
