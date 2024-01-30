@@ -176,25 +176,24 @@ $(function() {
 	$(document).on('click','#prepcall', function() {
 		let call=this.innerText;
 		let qrg=''
-			if (this.parentNode.parentNode.className != '') {
-				qrg=this.parentNode.parentNode.parentNode.cells[1].textContent*1000;
-			} else {
-				qrg=this.parentNode.parentNode.cells[1].textContent*1000;
-			}
+		if ((this.parentNode.parentNode.className != 'odd') && (this.parentNode.parentNode.className != 'even')) {
+			qrg=this.parentNode.parentNode.parentNode.cells[1].textContent*1000;
+		} else {
+			qrg=this.parentNode.parentNode.cells[1].textContent*1000;
+		}
 		if (Date.now()-qso_window_last_seen < 2000) {
 			bc2qso.postMessage({ frequency: qrg, call: call });
 			try {
 				irrelevant=fetch('http://127.0.0.1:54321/'+qrg);
 			} finally {}
-		}
 		} else {
 			let cl={};
 			cl.call=call;
 			cl.qrg=qrg;
 			window.open(base_url + 'index.php/qso?manual=0','_blank');
-			setTimeout(function () { 
-				bc2qso.postMessage({ frequency: cl.qrg, call: cl.call }) 
-			},2500);	// Wait at least 2500ms for new-Window to appear, before posting data to it
+			setTimeout(function () {
+				bc2qso.postMessage({ frequency: cl.qrg, call: cl.call })
+			},2500);        // Wait at least 2500ms for new-Window to appear, before posting data to it
 		}
 	});
 
