@@ -23,7 +23,7 @@ $(function() {
 					'targets': 2,
 					'createdCell':  function (td, cellData, rowData, row, col) {
 						$(td).addClass("spotted_call"); 
-						$(td).attr( "title", "Click to prepare logging" );
+						// $(td).attr( "title", "Click to prepare logging" );
 					}
 				}
 			],
@@ -51,18 +51,45 @@ $(function() {
 					dxspots.sort(SortByQrg);
 					dxspots.forEach((single) => {
 						var data=[];
-						if (single.cnfmd_call) {
-							addon_class="text-success";
-						} else if (single.worked_call) {
-							addon_class="text-warning";
+						if (single.cnfmd_dxcc) {
+							dxcc_wked_info="text-success";
+						} else if (single.worked_dxcc) {
+							dxcc_wked_info="text-warning";
 						} else {
-							addon_class="";
+							dxcc_wked_info="";
 						}
+						if (single.cnfmd_call) {
+							wked_info="text-success";
+						} else if (single.worked_call) {
+							wked_info="text-warning";
+						} else {
+							wked_info="";
+						}
+						lotw_badge='';
+						if (single.dxcc_spotted.lotw_user) {
+							$('#lotw_info').text("LoTW");
+							if (single.dxcc_spotted.lotw_user > 365) {
+								lclass='lotw_info_red';
+							} else if (single.dxcc_spotted.lotw_user > 30) {
+								lclass='lotw_info_orange';
+							} else if (single.dxcc_spotted.lotw_user > 7) {
+								lclass='lotw_info_yellow';
+							}
+							lotw_badge='<a id="lotw_badge" style="float: right;" href="https://lotw.arrl.org/lotwuser/act?act='+single.spotted+'" target="_blank"><small id="lotw_infox" class="badge text-bg-success '+lclass+'" data-bs-toggle="tooltip" title="LoTW User. Last upload was '+single.dxcc_spotted.lotw_user+' days ago">L</small></a>';
+						}
+							
 						data[0]=[];
 						data[0].push(single.when_pretty);
 						data[0].push(single.frequency*1);
-						data[0].push((addon_class != '' ?'<span class="'+addon_class+'">' : '')+single.spotted+(addon_class != '' ? '</span>' : ''));
-						data[0].push(single.dxcc_spotted.entity);
+						wked_info=((wked_info != '' ?'<span class="'+wked_info+'">' : '')+'<span id="prepcall">'+single.spotted+'</span>'+(wked_info != '' ? '</span>' : ''));
+						spotted=wked_info+lotw_badge;
+						data[0].push(spotted);
+						if (single.dxcc_spotted.flag) {
+							dxcc_wked_info=((dxcc_wked_info != '' ?'<span class="'+dxcc_wked_info+'">' : '')+single.dxcc_spotted.entity+' '+single.dxcc_spotted.flag+(dxcc_wked_info != '' ? '</span>' : ''));
+							data[0].push(dxcc_wked_info);
+						} else {
+							data[0].push(single.dxcc_spotted.entity);
+						}
 						data[0].push(single.spotter);
 						if (oldtable.length > 0) {
 							let update=false;
@@ -145,15 +172,15 @@ $(function() {
 	setInterval(function () { bc_qsowin.postMessage('ping') },500);
 	var bc2qso = new BroadcastChannel('qso_wish');
 
-	$(document).on('click','.spotted_call', function() {
+	$(document).on('click','#prepcall', function() {
 		if (Date.now()-qso_window_last_seen < 2000) {
-			bc2qso.postMessage({ frequency: this.parentNode.cells[1].textContent*1000, call: this.innerText });
+			bc2qso.postMessage({ frequency: this.parentNode.parentNode.cells[1].textContent*1000, call: this.innerText });
 			try {
-				irrelevant=fetch('http://127.0.0.1:54321/'+this.parentNode.cells[1].textContent*1000);
+				irrelevant=fetch('http://127.0.0.1:54321/'+this.parentNode.parentNode.cells[1].textContent*1000);
 			} finally {}
 		} else {
 			let cl={};
-			cl.qrg=this.parentNode.cells[1].textContent*1000;
+			cl.qrg=this.parentNode.parentNode.cells[1].textContent*1000;
 			cl.call=this.innerText;
 			window.open(base_url + 'index.php/qso?manual=0','_blank');
 			setTimeout(function () { 
