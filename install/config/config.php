@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $config['app_name'] = "Wavelog";
 $config['directory'] = "/%directory%";
-$config['callbook'] = "hamqth"; // Options are hamqth or qrz
+$config['callbook'] = "%callbook%"; // Options are hamqth or qrz
 
 $config['datadir'] = null; // default to install directory
 
@@ -43,8 +43,8 @@ $config['display_freq'] = false;
 |   'use_fullname'  Get full names from QRZ, may not be GDPR compliant
 */
 
-$config['qrz_username'] = "";
-$config['qrz_password'] = "";
+$config['qrz_username'] = "%qrz_username%";
+$config['qrz_password'] = "%qrz_password%";
 $config['use_fullname'] = false;
 
 /*
@@ -55,8 +55,8 @@ $config['use_fullname'] = false;
 | 	'hamqth_username'	HamQTH user login
 |	'hamqth_password'	HamQTH user password
 */
-$config['hamqth_username'] = "";
-$config['hamqth_password'] = "";
+$config['hamqth_username'] = "%hamqth_username%";
+$config['hamqth_password'] = "%hamqth_password%";
 
 /*
 |--------------------------------------------------------------------------
