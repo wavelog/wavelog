@@ -578,11 +578,11 @@ class API extends CI_Controller {
 				$return['cont'] = $ans2['cont'];
 			} else {
 				$return['dxcc_id'] = $callsign_dxcc_lookup['adif'] ?? '';
-				$return['dxcc'] = $callsign_dxcc_lookup['entity'];
+				$return['dxcc'] = $callsign_dxcc_lookup['entity'] ?? '';
 				$return['dxcc_lat'] = $callsign_dxcc_lookup['lat'] ?? '';
 				$return['dxcc_long'] = $callsign_dxcc_lookup['long'] ?? '';
-				$return['dxcc_cqz'] = $callsign_dxcc_lookup['cqz'];
-				$return['cont'] = $callsign_dxcc_lookup['cont'];
+				$return['dxcc_cqz'] = $callsign_dxcc_lookup['cqz'] ?? '';
+				$return['cont'] = $callsign_dxcc_lookup['cont'] ?? '';
 			}
 
 			/*
