@@ -118,9 +118,7 @@ if ($_POST) {
 				curl_setopt($ch, CURLOPT_URL, $wavelog_url . "/index.php/update/dxcc");
 				$result = curl_exec($ch);
 				delDir(getcwd());
-				header('Location: ' . $protocol . "://" . $_SERVER['HTTP_HOST'] . $_POST['directory']);
-				echo "<h1>Install successful</h1>";
-				echo "<p>Please delete the install folder";
+				header('Location: ' . $protocol . "://" . $_SERVER['HTTP_HOST'] . '/' . $_POST['directory']);
 				exit;
 			}
 		} else {
