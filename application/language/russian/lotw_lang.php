@@ -61,3 +61,6 @@ $lang['lotw_cert_expired'] = 'Один из ваших сертификатов 
 // Lotw User
 $lang['lotw_user'] = 'Эта станция использует LoTW.';
 $lang['lotw_last_upload'] = 'Последняя загрузка';
+
+// Upload folder permissions
+$lang['lotw_upload_folder_permissions'] = 'Upload folder is not writable. Please contact your admin.';

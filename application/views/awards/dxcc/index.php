@@ -94,6 +94,10 @@
                         <input class="form-check-input" type="checkbox" name="eqsl" value="1" id="eqsl" <?php if ($this->input->post('eqsl')) echo ' checked="checked"'; ?> >
                         <label class="form-check-label" for="eqsl">eQSL</label>
                     </div>
+                    <div class="form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="qrz" value="1" id="qrz" <?php if ($this->input->post('qrz')) echo ' checked="checked"'; ?> >
+                        <label class="form-check-label" for="qrz">QRZ.com</label>
+                    </div>
                 </div>
             </div>
 

@@ -13,13 +13,24 @@
 .kHz::after {
 	content: " kHz";
 }
+
+.bandlist {
+	-webkit-transition: all 15s ease;
+	-moz-transition: all 15s ease;
+	-o-transition: all 15s ease;
+  	transition: 15s;
+}
 .fresh{
-    -webkit-transition: all 15s ease;
+    /* -webkit-transition: all 15s ease;
     -moz-transition: all 15s ease;
-    -o-transition: all 15s ease;
-    transition: all 15s ease;
-    --bs-table-bg: #5dade2;
-    --bs-table-accent-bg: #5dade2;
+    -o-transition: all 15s ease; */
+    transition: all 500ms ease;
+    --bs-table-bg:			#3981b2;
+	--bs-table-accent-bg:	#3981b2;
+}
+tbody a {
+  	color: inherit;
+  	text-decoration: none;
 }
 </style>
 

@@ -3,6 +3,28 @@ var province;
 var geojson;
 var map;
 var info;
+var clickmarkers = [];
+
+const states = 'AB,BC,MB,NB,NL,NT,NS,NU,ON,PE,QC,SK,YT';
+
+const racmarkers = [
+    [ "55", "-115" ],      // AB Alberta
+    [ "55", "-125" ],      // BC British Columbia
+    [ "55", "-99" ],       // MB Manitoba
+    [ "46.5", "-66.4" ],   // NB New Brunswick
+    [ "54.5", "-62.5" ],   // NL Newfoundland And Labrador
+	[ "65", "-120" ],      // NT Northwest Territories
+	[ "45.2", "-63.2" ],   // NS Nova Scotia
+    [ "65", "-99" ],       // NU Nunavut
+    [ "52", "-89" ],       // ON Ontaria
+    [ "46.3", "-62.9" ],   // PE Prince Edward Island
+    [ "52", "-75" ],       // QC Quebec
+	[ "55", "-105" ],      // SK Saskatchewan
+    [ "65", "-135" ]       // YT Yukon
+];
+
+  var statearray = states.split(",");
+
 
 function load_rac_map() {
     $('.nav-tabs a[href="#racmaptab"]').tab('show');
@@ -16,7 +38,9 @@ function load_rac_map() {
             confirmed: +$('#confirmed').prop('checked'),
             notworked: +$('#notworked').prop('checked'),
             qsl: +$('#qsl').prop('checked'),
+            eqsl: +$('#eqsl').prop('checked'),
             lotw: +$('#lotw').prop('checked'),
+            qrz: +$('#qrz').prop('checked'),
         },
         success: function(data) {
             province = data;
@@ -107,7 +131,44 @@ info.addTo(map);
   geojson = L.geoJson(mapcoordinates, {style: style, onEachFeature: onEachFeature}).addTo(map);
 
   map.setView([70, -100], 3);
+
+  addMarkers();
+
+  map.on('zoomed', function() {
+    clearMarkers();
+    addMarkers();
+  });
+
+  var layerControl = new L.Control.Layers(null, { 'Gridsquares': maidenhead = L.maidenhead() }).addTo(map);
+  maidenhead.addTo(map);
 }
+
+function clearMarkers() {
+	clickmarkers.forEach(function (item) {
+	  map.removeLayer(item)
+	});
+  }
+
+  function addMarkers() {
+	var zoom = map.getZoom();
+
+	for (var i = 0; i < statearray.length; i++) {
+	  createMarker(i);
+	}
+  }
+
+function createMarker(i) {
+	var title = '<span class="grid-text" style="cursor: default"><font style="color: \'white\'; font-size: 1em; font-weight: 900;">' + (statearray[i]) + '</font></span>';
+	var myIcon = L.divIcon({className: 'my-div-icon', html: title});
+	var marker = L.marker(
+	  [racmarkers[i][0], racmarkers[i][1]], {
+		icon: myIcon,
+		title: (statearray[i]),
+		zIndex: 1000,
+	  }
+	).addTo(map).on('click', onClick2);
+	clickmarkers.push(marker);
+  }
 
 function getColor(d) {
     return 	province[d] == 'C' ? 'green'  :
@@ -162,3 +223,8 @@ function onClick(e) {
   var marker = e.target;
   displayContactsOnMap($("#racmap"),marker.feature.id, $('#band2').val(), $('#mode').val(), 'RAC');
 }
+
+function onClick2(e) {
+	var marker = e.target;
+	displayContactsOnMap($("#racmap"), marker.options.title, $('#band2').val(), $('#mode').val(), 'RAC');
+  }

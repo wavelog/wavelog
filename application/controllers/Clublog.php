@@ -81,7 +81,7 @@ class Clublog extends CI_Controller {
 							      'email' => $clean_username,
 							      'password' => $clean_passord,
 							      'callsign' => $station_row->station_callsign,
-							      'api' => "a11c3235cd74b88212ce726857056939d52372bd",
+							      'api' => "608df94896cb9c5421ae748235492b43815610c9",
 							      'file' => $cFile
 							    ));
 
@@ -134,7 +134,7 @@ class Clublog extends CI_Controller {
 	function find_dxcc($callsign) {
 		$clean_callsign = $this->security->xss_clean($callsign);
 		// Live lookup against Clublogs API
-		$url = "https://clublog.org/dxcc?call=".$clean_callsign."&api=a11c3235cd74b88212ce726857056939d52372bd&full=1";
+		$url = "https://clublog.org/dxcc?call=".$clean_callsign."&api=608df94896cb9c5421ae748235492b43815610c9&full=1";
 
 		$json = file_get_contents($url);
 		$data = json_decode($json, TRUE);
