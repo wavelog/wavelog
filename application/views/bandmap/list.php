@@ -21,6 +21,10 @@
     transition: all 15s ease;
     --bs-table-accent-bg: #5dade2;
 }
+tbody a {
+  	color: inherit;
+  	text-decoration: none;
+}
 </style>
 
 
