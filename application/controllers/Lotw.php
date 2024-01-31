@@ -55,6 +55,10 @@ class Lotw extends CI_Controller {
 		// Set Page Title
 		$data['page_title'] = "Logbook of the World";
 
+		// Check folder permissions
+		$uploads_folder = $this->is_really_writable('uploads');
+		$data['uploads_folder'] = $uploads_folder;
+
 		// Load Views
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('lotw_views/index');
@@ -1121,6 +1125,33 @@ class Lotw extends CI_Controller {
 			default:
 				return $mode;
 		endswitch;
+	}
+
+	private function is_really_writable($folder) {
+		// Get the absolute path to the folder
+		$path = FCPATH . $folder;
+
+		// Check if the folder exists
+		if (!file_exists($path)) {
+			return false;
+		}
+
+		// Check if the folder is writable
+		if (is_writable($path)) {
+			// Check if the subdirectories are writable (recursive check)
+			$iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path));
+			foreach ($iterator as $item) {
+				if ($item->isDir() && basename($item->getPathName()) != '..') {
+					if (!is_writable($item->getRealPath())) {
+						return false;
+					}
+				}
+			}
+
+			return true;
+		}
+
+		return false;
 	}
 
 } // end class
