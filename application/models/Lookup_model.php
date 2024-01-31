@@ -50,23 +50,51 @@ class Lookup_model extends CI_Model{
 
 		$sqlquerytypestring = '';
 
-		switch ($queryinfo['type']) 	{
-			case 'dxcc': $sqlquerytypestring .= " and col_dxcc = " . $queryinfo['dxcc']; 																break;
-			case 'iota': $sqlquerytypestring .= " and col_iota = '" . $queryinfo['iota'] . "'"; 														break;
-			case 'vucc': $sqlquerytypestring .= " and (col_gridsquare like '%" . $fixedgrid . "%' or col_vucc_grids like '%" . $fixedgrid . "%')" ; 	break;
-			case 'cq':   $sqlquerytypestring .= " and col_cqz = " . $queryinfo['cqz']; 																	break;
-			case 'was':  $sqlquerytypestring .= " and col_state = '" . $queryinfo['was'] . "' and COL_DXCC in ('291', '6', '110')";; 					break;
-			case 'sota': $sqlquerytypestring .= " and col_sota_ref = '" . $queryinfo['sota'] . "'"; 													break;
-			case 'wwff': $sqlquerytypestring .= " and col_sig = 'WWFF' and col_sig_info = '" . $queryinfo['wwff'] . "'"; 								break;
-			default: break;
+		switch ($queryinfo['type']) {
+		case 'dxcc': $sqlquerytypestring .= " and col_dxcc = " . $queryinfo['dxcc']; break;
+		case 'iota': $sqlquerytypestring .= " and col_iota = '" . $queryinfo['iota'] . "'"; break;
+		case 'vucc': $sqlquerytypestring .= " and (col_gridsquare like '%" . $fixedgrid . "%' or col_vucc_grids like '%" . $fixedgrid . "%')" ; break;
+		case 'cq':   $sqlquerytypestring .= " and col_cqz = " . $queryinfo['cqz']; break;
+		case 'was':  $sqlquerytypestring .= " and col_state = '" . $queryinfo['was'] . "' and COL_DXCC in ('291', '6', '110')"; break;
+		case 'sota': $sqlquerytypestring .= " and col_sota_ref = '" . $queryinfo['sota'] . "'"; break;
+		case 'wwff': $sqlquerytypestring .= " and col_sig = 'WWFF' and col_sig_info = '" . $queryinfo['wwff'] . "'"; break;
+		default: break;
 		}
-
-		$sqlqueryconfirmationstring = '';
 
 		if ($confirmedtype == 'confirmed') {
-			$sqlqueryconfirmationstring .= " and (col_qsl_rcvd = 'Y' or col_lotw_qsl_rcvd = 'Y')";
-		}
+			$user_default_confirmation = $this->session->userdata('user_default_confirmation');
+			$extrawhere='';
+			if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'Q') !== false) {
+				$extrawhere="COL_QSL_RCVD='Y'";
+			}
+			if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'L') !== false) {
+				if ($extrawhere!='') {
+					$extrawhere.=" OR";
+				}
+				$extrawhere.=" COL_LOTW_QSL_RCVD='Y'";
+			}
+			if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'E') !== false) {
+				if ($extrawhere!='') {
+					$extrawhere.=" OR";
+				}
+				$extrawhere.=" COL_EQSL_QSL_RCVD='Y'";
+			}
 
+			if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'Z') !== false) {
+				if ($extrawhere!='') {
+					$extrawhere.=" OR";
+				}
+				$extrawhere.=" COL_QRZCOM_QSO_DOWNLOAD_STATUS='Y'";
+			}
+
+			if (($confirmedtype == 'confirmed') && ($extrawhere != '')){
+				$sqlqueryconfirmationstring = " and (".$extrawhere.")";
+			} else {
+				$sqlqueryconfirmationstring = ' and (1=0)';
+			}
+		} else {
+			$sqlqueryconfirmationstring = '';
+		}
 		// Fetching info for all modes and bands except satellite
 		$sql = "SELECT distinct col_band, lower(col_mode) as col_mode FROM " . $this->config->item('table_name') . " thcv";
 

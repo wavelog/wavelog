@@ -15,9 +15,6 @@
 	        <a class="nav-link" href="<?php echo site_url('search/filter'); ?>">Advanced Search</a>
 	      </li>
 		  <li class="nav-item">
-	        <a class="nav-link" href="<?php echo site_url('search/duplicates'); ?>">Duplicate QSOs</a>
-	      </li>
-		  <li class="nav-item">
 	        <a class="nav-link active" href="<?php echo site_url('search/incorrect_cq_zones'); ?>">Incorrect CQ Zones</a>
 	      </li>
 		  <li class="nav-item">

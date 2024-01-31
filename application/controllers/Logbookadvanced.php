@@ -27,16 +27,6 @@ class Logbookadvanced extends CI_Controller {
 		$this->load->model('dxcc');
 		$this->load->model('user_options_model');
 
-		$stationIds = [];
-
-		$deOptions = [];
-		foreach ($this->stations->all_of_user()->result() as $station) {
-			$deOptions[$station->station_callsign] = 1;
-			$stationIds[] = $station->station_id;
-		}
-		ksort($deOptions);
-		$deOptions = array_keys($deOptions);
-
 		$data = [];
 		$data['page_title'] = "Advanced logbook";
 		$data['hasDatePicker'] = true;
@@ -49,11 +39,8 @@ class Logbookadvanced extends CI_Controller {
 		$active_station_id = $this->stations->find_active();
         $station_profile = $this->stations->profile($active_station_id);
 
-
-
 		$pageData = [];
 		$pageData['datePlaceholder'] = 'DD/MM/YYYY';
-		$pageData['deOptions'] = $deOptions;
 		$pageData['modes'] = $this->logbookadvanced_model->get_modes();
 		$pageData['dxccarray'] = $this->logbook_model->fetchDxcc();
 		$pageData['iotaarray'] = $this->logbook_model->fetchIota();

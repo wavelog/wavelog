@@ -129,6 +129,7 @@ class Gridmap_model extends CI_Model {
             return null;
         }
 
+
 		$location_list = "'".implode("','",$logbooks_locations_array)."'";
 
 		$sql = 'SELECT distinct COL_VUCC_GRIDS, COL_BAND FROM '
@@ -177,7 +178,10 @@ class Gridmap_model extends CI_Model {
 		    $sql .= " or col_qrzcom_qso_download_status = 'Y'";
 	    }
 	    if ($sql != '') {
-		    $sql='and (1=0 '.$sql.')';
+		    $sql=' and (1=0 '.$sql.')';
+	    }
+	    if ($sql == '') {
+		    $sql=' and 1=0';
 	    }
 	    return $sql;
     }
