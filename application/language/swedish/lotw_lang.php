@@ -61,3 +61,6 @@ $lang['lotw_cert_expired'] = 'Minst ett av dina LoTW-certifikat har löpt ut!';
 // Lotw User
 $lang['lotw_user'] = 'Denna station använder LoTW. Den senaste uppladdningen var';
 $lang['lotw_last_upload'] = 'Last upload';
+
+// Upload folder permissions
+$lang['lotw_upload_folder_permissions'] = 'Upload folder is not writable. Please contact your admin.';

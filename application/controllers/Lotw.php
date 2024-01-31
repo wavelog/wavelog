@@ -38,6 +38,7 @@ class Lotw extends CI_Controller {
 	|
 	*/
 	public function index() {
+		$this->load->library('Permissions');
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 
@@ -54,6 +55,10 @@ class Lotw extends CI_Controller {
 
 		// Set Page Title
 		$data['page_title'] = "Logbook of the World";
+
+		// Check folder permissions
+		$uploads_folder = $this->permissions->is_really_writable('uploads');
+		$data['uploads_folder'] = $uploads_folder;
 
 		// Load Views
 		$this->load->view('interface_assets/header', $data);
