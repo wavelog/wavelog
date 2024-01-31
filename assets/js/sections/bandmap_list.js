@@ -56,7 +56,7 @@ $(function() {
 						} else if (single.worked_dxcc) {
 							dxcc_wked_info="text-warning";
 						} else {
-							dxcc_wked_info="";
+							dxcc_wked_info="text-danger";
 						}
 						if (single.cnfmd_call) {
 							wked_info="text-success";
@@ -86,7 +86,7 @@ $(function() {
 						spotted=wked_info+lotw_badge;
 						data[0].push(spotted);
 						if (single.dxcc_spotted.flag) {
-							dxcc_wked_info=((dxcc_wked_info != '' ?'<span class="'+dxcc_wked_info+'">' : '')+single.dxcc_spotted.entity+' '+single.dxcc_spotted.flag+(dxcc_wked_info != '' ? '</span>' : ''));
+							dxcc_wked_info=((dxcc_wked_info != '' ?'<span class="'+dxcc_wked_info+'">' : '')+single.dxcc_spotted.flag+' '+single.dxcc_spotted.entity+(dxcc_wked_info != '' ? '</span>' : ''));
 							data[0].push('<a href="javascript:spawnLookupModal(\''+single.dxcc_spotted.dxcc_id+'\',\'dxcc\')";>'+dxcc_wked_info+'</a>');
 						} else {
 							data[0].push('<a href="javascript:spawnLookupModal(\''+single.dxcc_spotted.dxcc_id+'\',\'dxcc\')";>'+single.dxcc_spotted.entity+'</a>');
