@@ -2471,9 +2471,14 @@ function deleteQsl(id) {
 </script>
 <script>
 function viewEqsl(picture, callsign) {
+            <?php
+            $CI =& get_instance();
+            $CI->load->model('Eqsl_images');
+            echo 'var eqslpath = "'.$CI->Eqsl_images->get_imagePath().'"; '; 
+            ?>
             var baseURL= "<?php echo base_url();?>";
             var $textAndPic = $('<div></div>');
-                $textAndPic.append('<img class="img-fluid" style="height:auto;width:auto;"src="'+baseURL+'images/eqsl_card_images/'+picture+'" />');
+                $textAndPic.append('<img class="img-fluid" style="height:auto;width:auto;"src="'+baseURL+eqslpath+'/'+picture+'" />');
             var title = '';
             if (callsign == null) {
                 title = 'eQSL Card';
