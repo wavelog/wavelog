@@ -72,6 +72,7 @@ function load_waja_map() {
             notworked: +$('#notworked').prop('checked'),
             qsl: +$('#qsl').prop('checked'),
             lotw: +$('#lotw').prop('checked'),
+            qrz: +$('#qrz').prop('checked'),
         },
         success: function(data) {
             prefectures = data;
