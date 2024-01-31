@@ -100,7 +100,7 @@ $(function() {
 								} 
 							});
 							if (!update) { 	// Sth. Fresh? So highlight
-								table.rows.add(data).draw().nodes().to$().addClass("fresh table-info"); 
+								table.rows.add(data).draw().nodes().to$().addClass("fresh");
 							} else { 
 								table.rows.add(data).draw(); 
 							}
@@ -108,9 +108,9 @@ $(function() {
 							table.rows.add(data).draw();
 						}
 					});
-					setTimeout(function(){	// Remove Highlights within 15sec
-						$(".fresh").removeClass("table-info");
-					},1000);
+					setTimeout(function(){	// Remove Highlights
+						$(".fresh").removeClass("fresh");
+					},10000);
 				} else {
 					table.clear();
 					table.draw();
