@@ -87,9 +87,9 @@ $(function() {
 						data[0].push(spotted);
 						if (single.dxcc_spotted.flag) {
 							dxcc_wked_info=((dxcc_wked_info != '' ?'<span class="'+dxcc_wked_info+'">' : '')+single.dxcc_spotted.entity+' '+single.dxcc_spotted.flag+(dxcc_wked_info != '' ? '</span>' : ''));
-							data[0].push(dxcc_wked_info);
+							data[0].push('<a href="javascript:spawnLookupModal(\''+single.dxcc_spotted.dxcc_id+'\',\'dxcc\')";>'+dxcc_wked_info+'</a>');
 						} else {
-							data[0].push(single.dxcc_spotted.entity);
+							data[0].push('<a href="javascript:spawnLookupModal(\''+single.dxcc_spotted.dxcc_id+'\',\'dxcc\')";>'+single.dxcc_spotted.entity+'</a>');
 						}
 						data[0].push(single.spotter);
 						if (oldtable.length > 0) {
@@ -111,6 +111,9 @@ $(function() {
 					setTimeout(function(){	// Remove Highlights within 15sec
 						$(".fresh").removeClass("bg-info");
 					},1000);
+				} else {
+					table.clear();
+					table.draw();
 				}
 			});
 		} else {
