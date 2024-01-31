@@ -111,6 +111,9 @@ $(function() {
 					setTimeout(function(){	// Remove Highlights within 15sec
 						$(".fresh").removeClass("bg-info");
 					},1000);
+				} else {
+					table.clear();
+					table.draw();
 				}
 			});
 		} else {
