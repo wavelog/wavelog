@@ -14,6 +14,7 @@ function load_dxcc_map() {
             qsl: +$('#qsl').prop('checked'),
             lotw: +$('#lotw').prop('checked'),
             qrz: +$('#qrz').prop('checked'),
+            eqsl: +$('#eqsl').prop('checked'),
             includedeleted: +$('#includedeleted').prop('checked'),
             Africa: +$('#Africa').prop('checked'),
             Asia: +$('#Asia').prop('checked'),

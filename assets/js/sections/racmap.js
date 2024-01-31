@@ -38,6 +38,7 @@ function load_rac_map() {
             confirmed: +$('#confirmed').prop('checked'),
             notworked: +$('#notworked').prop('checked'),
             qsl: +$('#qsl').prop('checked'),
+            eqsl: +$('#eqsl').prop('checked'),
             lotw: +$('#lotw').prop('checked'),
             qrz: +$('#qrz').prop('checked'),
         },
