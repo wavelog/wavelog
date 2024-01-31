@@ -445,6 +445,9 @@ class Logbook_model extends CI_Model {
 			if (strpos($qsl, "E") !== false) {
 				$qslfilter[] = 'COL_EQSL_QSL_RCVD = "Y"';
 			}
+			if (strpos($qsl, "Z") !== false) {
+				$qslfilter[] = 'COL_QRZCOM_QSO_DOWNLOAD_STATUS = "Y"';
+			}
 			$sql = "(".implode(' OR ', $qslfilter).")";
 			$this->db->where($sql);
 		}
