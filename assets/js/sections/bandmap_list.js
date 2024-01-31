@@ -87,10 +87,10 @@ $(function() {
 						data[0].push(spotted);
 						if (single.dxcc_spotted.flag) {
 							dxcc_wked_info=((dxcc_wked_info != '' ?'<span class="'+dxcc_wked_info+'">' : '')+single.dxcc_spotted.flag+' '+single.dxcc_spotted.entity+(dxcc_wked_info != '' ? '</span>' : ''));
-							data[0].push('<a href="javascript:spawnLookupModal(\''+single.dxcc_spotted.dxcc_id+'\',\'dxcc\')";>'+dxcc_wked_info+'</a>');
 						} else {
-							data[0].push('<a href="javascript:spawnLookupModal(\''+single.dxcc_spotted.dxcc_id+'\',\'dxcc\')";>'+single.dxcc_spotted.entity+'</a>');
+							dxcc_wked_info=((dxcc_wked_info != '' ?'<span class="'+dxcc_wked_info+'">' : '')+single.dxcc_spotted.entity+(dxcc_wked_info != '' ? '</span>' : ''));
 						}
+						data[0].push('<a href="javascript:spawnLookupModal(\''+single.dxcc_spotted.dxcc_id+'\',\'dxcc\')";>'+dxcc_wked_info+'</a>');
 						data[0].push(single.spotter);
 						if (oldtable.length > 0) {
 							let update=false;
