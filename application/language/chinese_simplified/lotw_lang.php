@@ -61,3 +61,6 @@ $lang['lotw_cert_expired'] = '至少有一个LoTW证书已经过期!';
 // Lotw User
 $lang['lotw_user'] = '这个电台使用 LOTW';
 $lang['lotw_last_upload'] = '最后一次上传是';
+
+// Upload folder permissions
+$lang['lotw_upload_folder_permissions'] = 'Upload folder is not writable. Please contact your admin.';

@@ -1,4 +1,9 @@
 <div class="container lotw">
+<?php if($uploads_folder != true) { ?>
+	<div class="alert alert-warning" role="alert" style="margin-top: 1rem;">
+		<span class="badge text-bg-info"><?php echo lang('general_word_important'); ?></span> <i class="fas fa-ban"></i> <?php echo lang('lotw_upload_folder_permissions'); ?>
+	</div>
+<?php } ?>
 <br>
 	<a class="btn btn-outline-primary btn-sm float-end" href="<?php echo site_url('/lotw/import'); ?>" role="button"><i class="fas fa-cloud-download-alt"></i> <?php echo lang('lotw_btn_lotw_import'); ?></a>
 	<h2><?php echo lang('lotw_title'); ?></h2>
