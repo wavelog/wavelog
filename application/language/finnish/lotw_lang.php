@@ -61,3 +61,6 @@ $lang['lotw_cert_expired'] = 'Vähintään yksi LoTW:n kutsumerkin varmenteesi o
 // Lotw User
 $lang['lotw_user'] = 'Tämä asmea käyttää LoTW-palvelua. Viimeinen yhteyksien lähetys oli';
 $lang['lotw_last_upload'] = 'Last upload';
+
+// Upload folder permissions
+$lang['lotw_upload_folder_permissions'] = 'Upload folder is not writable. Please contact your admin.';

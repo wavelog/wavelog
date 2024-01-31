@@ -61,3 +61,6 @@ $lang['lotw_cert_expired'] = 'Mindestens eines deiner LoTW-Zertifikate ist abgel
 // Lotw User
 $lang['lotw_user'] = 'Diese Station nutzt LoTW.';
 $lang['lotw_last_upload'] = 'Letzter Upload';
+
+// Upload folder permissions
+$lang['lotw_upload_folder_permissions'] = 'Das Upload-Verzeichnis ist nicht beschreibbar. Bitte kontaktiere den Administrator.';

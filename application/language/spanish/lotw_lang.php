@@ -64,3 +64,6 @@ $lang['lotw_last_upload'] = 'Última subida';
 
 $lang['lotw_active'] = 'activos';
 $lang['lotw_not_found'] = 'no encontrado';
+
+// Upload folder permissions
+$lang['lotw_upload_folder_permissions'] = 'Upload folder is not writable. Please contact your admin.';
