@@ -343,13 +343,20 @@ class DXCC extends CI_Model {
 				array_push($qsl, "col_eqsl_qsl_rcvd = 'Y'");
 			}
 			if ($postdata['qrz'] != NULL) {
-				array_push($qsl, "col_qrzcom_qso_download_status = 'Y'");
+				array_push($qsl, "COL_QRZCOM_QSO_DOWNLOAD_STATUS = 'Y'");
 			}
-			$sql .= implode(' or ', $qsl);
+			if (count($qsl) > 0) {
+				$sql .= implode(' or ', $qsl);
+			} else {
+				$sql .= '1=0';
+			}
 			$sql .= ')';
+		} else {
+			$sql.=' and 1=0';
 		}
 		return $sql;
 	}
+
 
 	// Made function instead of repeating this several times
 	function addContinentsToQuery($postdata) {
