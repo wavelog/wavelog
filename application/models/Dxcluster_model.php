@@ -54,11 +54,17 @@ class Dxcluster_model extends CI_Model {
 					if ($minutes<=$maxage) {
 						if (!(property_exists($singlespot,'dxcc_spotted'))) {	// Check if we already have dxcc of spotted
 							$dxcc=$dxccObj->dxcc_lookup($singlespot->spotted,date('Ymd', time()));
-							$singlespot->dxcc_spotted=$dxcc;
+							$singlespot->dxcc_spotted->dxcc_id=$dxcc['adif'];
+							$singlespot->dxcc_spotted->cont=$dxcc['cont'];
+							$singlespot->dxcc_spotted->flag='';
+							$singlespot->dxcc_spotted->entity=$dxcc['entity'];
 						}
 						if (!(property_exists($singlespot,'dxcc_spotter'))) {	// Check if we already have dxcc of spotter
 							$dxcc=$dxccObj->dxcc_lookup($singlespot->spotter,date('Ymd', time()));
-							$singlespot->dxcc_spotter=$dxcc;
+							$singlespot->dxcc_spotter->dxcc_id=$dxcc['adif'];
+							$singlespot->dxcc_spotter->cont=$dxcc['cont'];
+							$singlespot->dxcc_spotter->flag='';
+							$singlespot->dxcc_spotter->entity=$dxcc['entity'];
 						}
 						if ( ($de != '') && ($de != 'Any') && (property_exists($singlespot->dxcc_spotter,'cont')) ){	// If we have a "de continent" and a filter-wish filter on that
 							if (strtolower($de) == strtolower($singlespot->dxcc_spotter->cont ?? '')) {
