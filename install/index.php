@@ -331,6 +331,10 @@ global $wavelog_url;
 												<td><span class="badge text-bg-info"><?php echo $mysql_version; ?></span></td>
 											</tr>
 											<tr>
+												<td>or</td>
+												<td></td>
+											</tr>
+											<tr>
 												<td>Min. MariaDB Version: </td>
 												<td><span class="badge text-bg-info"><?php echo $mariadb_version; ?></span></td>
 											</tr>
@@ -381,7 +385,7 @@ global $wavelog_url;
 										</div>
 										<div class="mb-3 position-relative">
 											<label for="locator" class="form-label">Default Gridsquare<i id="gridsquare_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="This is the default maidenhead locator which is used as falback. You can use the locator of your Home QTH."></i></label>
-											<input type="text" id="locator" placeholder="HA44AA" class="form-control is-invalid" name="locator" />
+											<input type="text" id="locator" placeholder="HA44AA" class="form-control" name="locator" />
 											<div class="invalid-tooltip">
 												Type in a valid locator
 											</div>
@@ -645,97 +649,17 @@ global $wavelog_url;
 		<script>
 			// We don't want to allow press Enter to trigger Events in the Installer
 			// Too dangerous for an average $user
+
+
+			let continue_allowed = true;
+			console.log('initial continue_allowed');
+
 			document.addEventListener('keydown', function(event) {
 				if (event.key === 'Enter') {
 					event.preventDefault();
 				}
 			});
 
-			// root mode initializer for js
-			var root_mode = <?php echo json_encode($root_mode); ?>;
-
-			$(document).ready(function() {
-				const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-				const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
-
-				$('#ContinueButton').css('display', 'block');
-				console.log("Ready to unleash your coding prowess and join the fun?\n\n" +
-					"Check out our GitHub Repository and dive into the coding adventure:\n\n" +
-					"🚀 https://www.github.com/wavelog/wavelog");
-
-				const tabs = new bootstrap.Tab($('#welcome-tab')[0]);
-				tabs.show();
-
-				let firstTabId = 'welcome-tab';
-				let secondTabId = 'precheck-tab';
-				let thirdTabId = 'configuration-tab';
-				let fourthTabId = 'database-tab';
-				let lastTabId = 'finish-tab';
-
-				const activeTab = $('.nav-link.active');
-
-				var allChecksPassed = '<?php echo $allChecksPassed; ?>';
-
-				function nextTab() {
-					const activeTab = $('.nav-link.active');
-					const nextTab = activeTab.parent().next().find('.nav-link');
-
-					if (nextTab.length > 0) {
-						const tab = new bootstrap.Tab(nextTab[0]);
-						tab.show();
-					}
-
-					if (nextTab.attr('id') == secondTabId) {
-						if (allChecksPassed == 'failed') {
-							if (root_mode == false) {
-								$('#ContinueButton').prop('disabled', true);
-							} else {
-								$('#ContinueButton').prop('disabled', false);
-							}
-						} else {
-							$('#ContinueButton').prop('disabled', false);
-						}
-					}
-
-					if (nextTab.attr('id') == thirdTabId) {
-						if (root_mode == false) {
-							$('#ContinueButton').prop('disabled', true);
-						} else {
-							$('#ContinueButton').prop('disabled', false);
-						}
-					}
-
-					if (nextTab.attr('id') !== lastTabId) {
-						$('#ContinueButton').css('display', 'block');
-						$('#BackButton').css('display', 'block');
-					} else {
-						$('#ContinueButton').css('display', 'none');
-					}
-				}
-
-				function prevTab() {
-					const activeTab = $('.nav-link.active');
-					const prevTab = activeTab.parent().prev().find('.nav-link');
-
-					if (prevTab.length > 0) {
-						const tab = new bootstrap.Tab(prevTab[0]);
-						tab.show();
-					}
-
-					if (prevTab.attr('id') !== firstTabId) {
-						$('#ContinueButton').css('display', 'block');
-						$('#BackButton').css('display', 'block');
-					} else {
-						$('#BackButton').css('display', 'none');
-					}
-					clear_db_testresult();
-					$('#ContinueButton').prop('disabled', false);
-				}
-
-				$('#ContinueButton').on('click', nextTab);
-				$('#BackButton').on('click', prevTab);
-
-			});
 
 			function db_connection_test() {
 				var db_hostname = $('#db_hostname').val();
@@ -746,6 +670,7 @@ global $wavelog_url;
 				if (db_hostname === '' || db_username === '' || db_password === '' || db_name === '') {
 					$('#db_connection_testresult').addClass('alert-danger');
 					$('#db_connection_testresult').html('Error: All fields are required.');
+					continue_allowed = false;
 					return;
 				}
 
@@ -774,11 +699,15 @@ global $wavelog_url;
 							if (sql_version_checker(response) == true) {
 								$('#db_connection_testresult').addClass('alert-success');
 								$('#db_connection_test_button').html(originalButtonText).prop('disabled', false);
+								$('#ContinueButton').prop('disabled', false);
 								$('#db_connection_testresult').html('Connection was successful and your database should be compatible <i class="fas fa-check-circle"></i>');
+								continue_allowed = true;
 							} else {
 								$('#db_connection_testresult').addClass('alert-warning');
 								$('#db_connection_test_button').html(originalButtonText).prop('disabled', false);
+								$('#ContinueButton').prop('disabled', false);
 								$('#db_connection_testresult').html('Connection was successful but your database seems too old for Wavelog. You can try to continue but you could run into issues.</i>');
+								continue_allowed = true;
 							}
 						}
 					},
@@ -819,7 +748,7 @@ global $wavelog_url;
 			}
 
 			function isValidMaidenheadLocator(locator) {
-				const maidenheadRegex = /^[A-R]{2}[0-9]{2}[A-X]{2}$/;
+				const maidenheadRegex = /^[A-R]{2}[0-9]{2}[A-X]{2}$/i;
 				return maidenheadRegex.test(locator);
 			}
 
@@ -834,39 +763,74 @@ global $wavelog_url;
 			const LocatorField = $('#locator');
 
 			websiteUrlField.on('change', function() {
-				if (websiteUrlField.val() == '') {
-					websiteUrlField.addClass('is-invalid');
-					websiteUrlField.removeClass('is-valid');
-					if (root_mode == false) {
-						$('#ContinueButton').prop('disabled', true);
-					}
-				} else {
-					websiteUrlField.addClass('is-valid');
-					websiteUrlField.removeClass('is-invalid');
-					$('#ContinueButton').prop('disabled', false);
+				if (config_check()) {
+					continue_allowed = true;
+					console.log('continue allowed ln 758');
 				}
 			});
 
 			LocatorField.on('change', function() {
-				if (!isValidMaidenheadLocator(LocatorField.val()) && LocatorField != '') {
-					LocatorField.addClass('is-invalid');
-					LocatorField.removeClass('is-valid');
-					$('#userform_warnings').css('display', 'block');
-					$('#userform_warnings').html("The grid locator is not valid. Use a 6-character locator, e.g. HA44AA. If you don't know your grid square then <a href='https://zone-check.eu/?m=loc' target='_blank'>click here</a>!");
+				if (config_check()) {
+					continue_allowed = true;
+					console.log('continue allowed ln 765');
+				}
+			});
+
+			function config_check() {
+				var check1_ok = true;
+				var check2_ok = true;
+
+				if (websiteUrlField.val() == '') {
+					console.log('Websiteurl: ' + websiteUrlField.val());
+					websiteUrlField.addClass('is-invalid');
+					websiteUrlField.removeClass('is-valid');
 					if (root_mode == false) {
 						$('#ContinueButton').prop('disabled', true);
+						check1_ok = false;
+					} else {
+						$('#ContinueButton').prop('disabled', false);
+						check1_ok = true;
+					}
+				} else {
+
+					websiteUrlField.addClass('is-valid');
+					websiteUrlField.removeClass('is-invalid');
+					$('#ContinueButton').prop('disabled', false);
+					check1_ok = true;
+
+				}
+
+				if (!isValidMaidenheadLocator(LocatorField.val()) && LocatorField != '') {
+					console.log('Locator: ' + LocatorField.val());
+					LocatorField.addClass('is-invalid');
+					LocatorField.removeClass('is-valid');
+					if (root_mode == false) {
+						$('#ContinueButton').prop('disabled', true);
+						check2_ok = false;
+					} else {
+						$('#ContinueButton').prop('disabled', false);
+						check2_ok = true;
 					}
 
 				} else {
 
 					LocatorField.removeClass('is-invalid');
 					LocatorField.addClass('is-valid');
-					$('#userform_warnings').css('display', 'none');
 					$('#ContinueButton').prop('disabled', false);
-
+					check2_ok = true;
 				}
-			});
-			
+
+				if (check1_ok == true) {
+					if (check2_ok == true) {
+						continue_allowed = true;
+						console.log('continue allowed in 812');
+						return true;
+					}
+				} else {
+					return false;
+				}
+			}
+
 
 			// Check various user input in tab 4
 			// user password
@@ -967,6 +931,115 @@ global $wavelog_url;
 					$('#ContinueButton').prop('disabled', false);
 
 				}
+			});
+
+			// root mode initializer for js
+			var root_mode = <?php echo json_encode($root_mode); ?>;
+
+			$(document).ready(function() {
+				const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+				const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+				$('#ContinueButton').css('display', 'block');
+				console.log("Ready to unleash your coding prowess and join the fun?\n\n" +
+					"Check out our GitHub Repository and dive into the coding adventure:\n\n" +
+					"🚀 https://www.github.com/wavelog/wavelog");
+
+				const tabs = new bootstrap.Tab($('#welcome-tab')[0]);
+				tabs.show();
+
+				let firstTabId = 'welcome-tab';
+				let secondTabId = 'precheck-tab';
+				let thirdTabId = 'configuration-tab';
+				let fourthTabId = 'database-tab';
+				let lastTabId = 'finish-tab';
+
+				const activeTab = $('.nav-link.active');
+
+				var allChecksPassed = '<?php echo $allChecksPassed; ?>';
+
+				function nextTab() {
+					const activeTab = $('.nav-link.active');
+					const nextTab = activeTab.parent().next().find('.nav-link');
+
+					if (nextTab.length > 0) {
+						const tab = new bootstrap.Tab(nextTab[0]);
+						tab.show();
+					}
+
+					if (nextTab.attr('id') == secondTabId) { // prevent continue if a vital precheck failed (a php module or allow_url_fopen)
+						if (allChecksPassed == 'failed') {
+							continue_allowed = false;
+							console.log('continue not allowed ln 962');
+						} else {
+							$('#ContinueButton').prop('disabled', false);
+							continue_allowed = true;
+							console.log('continue allowed ln 966');
+						}
+					}
+
+					if (nextTab.attr('id') == thirdTabId) { // check config on tab 3
+						if (config_check()) {
+							continue_allowed = true;
+							console.log('continue allowed ln 973');
+						} else {
+							continue_allowed = false;
+							console.log('continue not allowed ln 976');
+						}
+					}
+
+					if (nextTab.attr('id') == fourthTabId) {
+						if ( root_mode == false) {
+							$('#ContinueButton').prop('disabled', true);
+						} else {
+							$('#ContinueButton').prop('disabled', false);
+						}
+					}
+
+
+					if (nextTab.attr('id') !== lastTabId) {
+						$('#ContinueButton').css('display', 'block');
+						$('#BackButton').css('display', 'block');
+					} else {
+						$('#ContinueButton').css('display', 'none');
+					}
+					
+				}
+
+				function prevTab() {
+					const activeTab = $('.nav-link.active');
+					const prevTab = activeTab.parent().prev().find('.nav-link');
+
+					if (prevTab.length > 0) {
+						const tab = new bootstrap.Tab(prevTab[0]);
+						tab.show();
+					}
+
+					if (prevTab.attr('id') !== firstTabId) {
+						$('#ContinueButton').css('display', 'block');
+						$('#BackButton').css('display', 'block');
+					} else {
+						$('#BackButton').css('display', 'none');
+					}
+					clear_db_testresult();
+					$('#ContinueButton').prop('disabled', false);
+				}
+
+
+				$('#ContinueButton').on('click', function() {
+					console.log('continue allowed: ' + continue_allowed);
+					if (continue_allowed == true) {
+						nextTab();
+					} else {
+						if (root_mode == true) {
+							nextTab();
+						} else {
+							console.log('You can not continue. Something went wrong');
+						}
+					}
+				});
+				$('#BackButton').on('click', prevTab);
+
 			});
 		</script>
 	</body>
