@@ -59,9 +59,8 @@ class DXCC extends CI_Model {
 	}
 
 	function get_dxcc_array($dxccArray, $bands, $postdata) {
-		$CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
 		if (!$logbooks_locations_array) {
 			return null;
@@ -79,6 +78,9 @@ class DXCC extends CI_Model {
 			}
 			if ($postdata['eqsl'] != NULL ) {
 				$qsl .= "E";
+			}
+			if ($postdata['qrz'] != NULL ) {
+				$qsl .= "Z";
 			}
 		}
 
@@ -329,7 +331,7 @@ class DXCC extends CI_Model {
 	function addQslToQuery($postdata) {
 		$sql = '';
 		$qsl = array();
-		if ($postdata['lotw'] != NULL || $postdata['qsl'] != NULL || $postdata['eqsl'] != NULL) {
+		if ($postdata['qrz'] != NULL || $postdata['lotw'] != NULL || $postdata['qsl'] != NULL || $postdata['eqsl'] != NULL) {
 			$sql .= ' and (';
 			if ($postdata['qsl'] != NULL) {
 				array_push($qsl, "col_qsl_rcvd = 'Y'");
@@ -339,6 +341,9 @@ class DXCC extends CI_Model {
 			}
 			if ($postdata['eqsl'] != NULL) {
 				array_push($qsl, "col_eqsl_qsl_rcvd = 'Y'");
+			}
+			if ($postdata['qrz'] != NULL) {
+				array_push($qsl, "col_qrzcom_qso_download_status = 'Y'");
 			}
 			$sql .= implode(' or ', $qsl);
 			$sql .= ')';
