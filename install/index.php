@@ -366,22 +366,28 @@ global $wavelog_url;
 									<div class="col">
 										<p>Configure some basic parameters for your wavelog instance. You can change them later in 'application/config/config.php'</p>
 										<div class="mb-3">
-											<label for="directory" class="form-label">Directory<i id="directory_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="The 'Directory' is basically your subfolder of the webroot In normal conditions the prefilled value is doing it's job."></i></label>
+											<label for="directory" class="form-label">Directory<i id="directory_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="The 'Directory' is basically your subfolder of the webroot In normal conditions the prefilled value is doing it's job. It also can be empty."></i></label>
 											<div class="input-group">
 												<span class="input-group-text" id="main-url"><?php echo $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . "/"; ?></span>
 												<input type="text" id="directory" value="<?php echo substr(str_replace("index.php", "", str_replace("/install/", "", $_SERVER['REQUEST_URI'])), 1); ?>" class="form-control" name="directory" aria-describedby="main-url" />
 											</div>
 										</div>
-										<div class="mb-3">
+										<div class="mb-3 position-relative">
 											<label for="websiteurl" class="form-label">Website URL<i id="websiteurl_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="This is the complete URL where your Wavelog Instance will be available. If you run this installer locally but want to place Wavelog behind a Reverse Proxy with SSL you should type in the new URL here (e.g. https://mywavelog.example.org/ instead of http://192.168.1.100/). Don't forget to include the directory from above."></i></label>
 											<input type="text" id="websiteurl" value="<?php echo $_SERVER['REQUEST_SCHEME']; ?>://<?php echo str_replace("index.php", "", $_SERVER['HTTP_HOST'] . str_replace("/install/", "", $_SERVER['REQUEST_URI'])); ?>" class="form-control" name="websiteurl" />
+											<div class="invalid-tooltip">
+												This field can't be empty!
+											</div>
 										</div>
-										<div class="mb-3">
+										<div class="mb-3 position-relative">
 											<label for="locator" class="form-label">Default Gridsquare<i id="gridsquare_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="This is the default maidenhead locator which is used as falback. You can use the locator of your Home QTH."></i></label>
-											<input type="text" id="locator" placeholder="HA44AA" class="form-control" name="locator" />
+											<input type="text" id="locator" placeholder="HA44AA" class="form-control is-invalid" name="locator" />
+											<div class="invalid-tooltip">
+												Type in a valid locator
+											</div>
 										</div>
 										<div class="mb-3">
-											<label for="global_call_lookup" class="form-label">Global Callbook Lookup<i id="callbook_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="This configuration is optional. The callsign lookup will be available for all users of this installation. You can choose between QRZ.com and HamQTH. While HamQTH also works without username and password, you will need credentials for QRZ.com. To also get the Call Locator in QRZ.com you'll need an XML subscription. HamQTH does not always provide the locator information."></i></label>
+											<label for="global_call_lookup" class="form-label">Optional: Global Callbook Lookup<i id="callbook_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="This configuration is optional. The callsign lookup will be available for all users of this installation. You can choose between QRZ.com and HamQTH. While HamQTH also works without username and password, you will need credentials for QRZ.com. To also get the Call Locator in QRZ.com you'll need an XML subscription. HamQTH does not always provide the locator information."></i></label>
 											<select id="global_call_lookup" class="form-select" name="global_call_lookup">
 												<option value="hamqth" selected>HamQTH</option>
 												<option value="qrz">QRZ.com</option>
@@ -595,7 +601,7 @@ global $wavelog_url;
 										</select>
 									</div>
 									<div class="col-md-6 mb-2">
-										<div class="alert alert-danger" id="form_warnings" style="display: none; margin-top: 30px;"></div>
+										<div class="alert alert-danger" id="userform_warnings" style="display: none; margin-top: 30px;"></div>
 									</div>
 								</div>
 							</div>
@@ -679,13 +685,6 @@ global $wavelog_url;
 						tab.show();
 					}
 
-					if (nextTab.attr('id') !== lastTabId) {
-						$('#ContinueButton').css('display', 'block');
-						$('#BackButton').css('display', 'block');
-					} else {
-						$('#ContinueButton').css('display', 'none');
-					}
-
 					if (nextTab.attr('id') == secondTabId) {
 						if (allChecksPassed == 'failed') {
 							if (root_mode == false) {
@@ -696,6 +695,21 @@ global $wavelog_url;
 						} else {
 							$('#ContinueButton').prop('disabled', false);
 						}
+					}
+
+					if (nextTab.attr('id') == thirdTabId) {
+						if (root_mode == false) {
+							$('#ContinueButton').prop('disabled', true);
+						} else {
+							$('#ContinueButton').prop('disabled', false);
+						}
+					}
+
+					if (nextTab.attr('id') !== lastTabId) {
+						$('#ContinueButton').css('display', 'block');
+						$('#BackButton').css('display', 'block');
+					} else {
+						$('#ContinueButton').css('display', 'none');
 					}
 				}
 
@@ -721,23 +735,7 @@ global $wavelog_url;
 				$('#ContinueButton').on('click', nextTab);
 				$('#BackButton').on('click', prevTab);
 
-				// We check if on the second Tab (Pre-Check) all checks passed or failed, Only of they failed we disable the continue button
-				// root_mode can override that
-				// if (allChecksPassed == 'failed') {
-				// 	if (activeTab.attr('id') == secondTabId) {
-				// 		if (root_mode == false) {
-				// 			$('#ContinueButton').prop('disabled', true);
-				// 		} else {
-				// 			$('#ContinueButton').prop('disabled', false);
-				// 		}
-				// 	} else {
-				// 		$('#ContinueButton').prop('disabled', false);
-				// 	}
-				// }
-
 			});
-
-
 
 			function db_connection_test() {
 				var db_hostname = $('#db_hostname').val();
@@ -820,6 +818,56 @@ global $wavelog_url;
 
 			}
 
+			function isValidMaidenheadLocator(locator) {
+				const maidenheadRegex = /^[A-R]{2}[0-9]{2}[A-X]{2}$/;
+				return maidenheadRegex.test(locator);
+			}
+
+			function isValidEmail(email) {
+				const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+				return emailRegex.test(email);
+			}
+
+			// Check various user input in tab 3
+			// websiteURL
+			const websiteUrlField = $('#websiteurl');
+			const LocatorField = $('#locator');
+
+			websiteUrlField.on('change', function() {
+				if (websiteUrlField.val() == '') {
+					websiteUrlField.addClass('is-invalid');
+					websiteUrlField.removeClass('is-valid');
+					if (root_mode == false) {
+						$('#ContinueButton').prop('disabled', true);
+					}
+				} else {
+					websiteUrlField.addClass('is-valid');
+					websiteUrlField.removeClass('is-invalid');
+					$('#ContinueButton').prop('disabled', false);
+				}
+			});
+
+			LocatorField.on('change', function() {
+				if (!isValidMaidenheadLocator(LocatorField.val()) && LocatorField != '') {
+					LocatorField.addClass('is-invalid');
+					LocatorField.removeClass('is-valid');
+					$('#userform_warnings').css('display', 'block');
+					$('#userform_warnings').html("The grid locator is not valid. Use a 6-character locator, e.g. HA44AA. If you don't know your grid square then <a href='https://zone-check.eu/?m=loc' target='_blank'>click here</a>!");
+					if (root_mode == false) {
+						$('#ContinueButton').prop('disabled', true);
+					}
+
+				} else {
+
+					LocatorField.removeClass('is-invalid');
+					LocatorField.addClass('is-valid');
+					$('#userform_warnings').css('display', 'none');
+					$('#ContinueButton').prop('disabled', false);
+
+				}
+			});
+			
+
 			// Check various user input in tab 4
 			// user password
 			var passwordField = $('#password');
@@ -837,7 +885,7 @@ global $wavelog_url;
 						passwordField.addClass('is-valid');
 						cnfmPasswordField.addClass('is-valid');
 
-						$('#form_warnings').css('display', 'none');
+						$('#userform_warnings').css('display', 'none');
 						$('#ContinueButton').prop('disabled', false);
 
 					} else {
@@ -847,8 +895,8 @@ global $wavelog_url;
 						passwordField.removeClass('is-valid');
 						cnfmPasswordField.removeClass('is-valid');
 
-						$('#form_warnings').css('display', 'block');
-						$('#form_warnings').html('Password should be at least 8 characters long')
+						$('#userform_warnings').css('display', 'block');
+						$('#userform_warnings').html('Password should be at least 8 characters long')
 
 						if (root_mode == false) {
 							$('#ContinueButton').prop('disabled', true);
@@ -863,8 +911,8 @@ global $wavelog_url;
 					passwordField.removeClass('is-valid');
 					cnfmPasswordField.removeClass('is-valid');
 
-					$('#form_warnings').css('display', 'block');
-					$('#form_warnings').html('Passwords do not match');
+					$('#userform_warnings').css('display', 'block');
+					$('#userform_warnings').html('Passwords do not match');
 
 					if (root_mode == false) {
 						$('#ContinueButton').prop('disabled', true);
@@ -874,20 +922,15 @@ global $wavelog_url;
 			});
 
 			// email verification
-			emailField = $('#user_email');
-
-			function isValidEmail(email) {
-				const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-				return emailRegex.test(email);
-			}
+			const emailField = $('#user_email');
 
 			emailField.on('change', function() {
 				if (!isValidEmail(emailField.val()) && emailField != '') {
 
 					emailField.addClass('is-invalid');
 					emailField.removeClass('is-valid');
-					$('#form_warnings').css('display', 'block');
-					$('#form_warnings').html('The E-Mail Address is not valid');
+					$('#userform_warnings').css('display', 'block');
+					$('#userform_warnings').html('The E-Mail Address is not valid');
 					if (root_mode == false) {
 						$('#ContinueButton').prop('disabled', true);
 					}
@@ -896,36 +939,31 @@ global $wavelog_url;
 
 					emailField.removeClass('is-invalid');
 					emailField.addClass('is-valid');
-					$('#form_warnings').css('display', 'none');
+					$('#userform_warnings').css('display', 'none');
 					$('#ContinueButton').prop('disabled', false);
 
 				}
 			});
 
 			// grid verification
-			locatorField = $('#userlocator');
+			const userLocatorField = $('#userlocator');
 
-			function isValidMaidenheadLocator(locator) {
-				const maidenheadRegex = /^[A-R]{2}[0-9]{2}[A-X]{2}$/;
-				return maidenheadRegex.test(locator);
-			}
+			userLocatorField.on('change', function() {
+				if (!isValidMaidenheadLocator(userLocatorField.val()) && userLocatorField != '') {
 
-			locatorField.on('change', function() {
-				if (!isValidMaidenheadLocator(locatorField.val()) && locatorField != '') {
-
-					locatorField.addClass('is-invalid');
-					locatorField.removeClass('is-valid');
-					$('#form_warnings').css('display', 'block');
-					$('#form_warnings').html("The grid locator is not valid. Use a 6-character locator, e.g. HA44AA. If you don't know your grid square then <a href='https://zone-check.eu/?m=loc' target='_blank'>click here</a>!");
+					userLocatorField.addClass('is-invalid');
+					userLocatorField.removeClass('is-valid');
+					$('#userform_warnings').css('display', 'block');
+					$('#userform_warnings').html("The grid locator is not valid. Use a 6-character locator, e.g. HA44AA. If you don't know your grid square then <a href='https://zone-check.eu/?m=loc' target='_blank'>click here</a>!");
 					if (root_mode == false) {
 						$('#ContinueButton').prop('disabled', true);
 					}
 
 				} else {
 
-					locatorField.removeClass('is-invalid');
-					locatorField.addClass('is-valid');
-					$('#form_warnings').css('display', 'none');
+					userLocatorField.removeClass('is-invalid');
+					userLocatorField.addClass('is-valid');
+					$('#userform_warnings').css('display', 'none');
 					$('#ContinueButton').prop('disabled', false);
 
 				}
