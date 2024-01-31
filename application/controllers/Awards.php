@@ -65,6 +65,7 @@ class Awards extends CI_Controller {
 			$postdata['qsl'] = $this->security->xss_clean($this->input->post('qsl'));
 			$postdata['lotw'] = $this->security->xss_clean($this->input->post('lotw'));
 			$postdata['eqsl'] = $this->security->xss_clean($this->input->post('eqsl'));
+			$postdata['qrz'] = $this->security->xss_clean($this->input->post('qrz'));
 			$postdata['worked'] = $this->security->xss_clean($this->input->post('worked'));
 			$postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed'));
 			$postdata['band'] = $this->security->xss_clean($this->input->post('band'));
@@ -73,6 +74,7 @@ class Awards extends CI_Controller {
 			$postdata['qsl'] = 1;
 			$postdata['lotw'] = 1;
 			$postdata['eqsl'] = 0;
+			$postdata['qrz'] = 0;
 			$postdata['worked'] = 1;
 			$postdata['confirmed'] = 1;
 			$postdata['band'] = 'All';
@@ -201,6 +203,7 @@ class Awards extends CI_Controller {
             $postdata['qsl'] = $this->security->xss_clean($this->input->post('qsl'));
             $postdata['lotw'] = $this->security->xss_clean($this->input->post('lotw'));
             $postdata['eqsl'] = $this->security->xss_clean($this->input->post('eqsl'));
+            $postdata['qrz'] = $this->security->xss_clean($this->input->post('qrz'));
             $postdata['worked'] = $this->security->xss_clean($this->input->post('worked'));
             $postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed'));
             $postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked'));
@@ -219,6 +222,7 @@ class Awards extends CI_Controller {
             $postdata['qsl'] = 1;
             $postdata['lotw'] = 1;
             $postdata['eqsl'] = 0;
+            $postdata['qrz'] = 0;
             $postdata['worked'] = 1;
             $postdata['confirmed'] = 1;
             $postdata['notworked'] = 1;
@@ -419,6 +423,7 @@ class Awards extends CI_Controller {
             $postdata['qsl'] = $this->security->xss_clean($this->input->post('qsl'));
             $postdata['lotw'] = $this->security->xss_clean($this->input->post('lotw'));
             $postdata['eqsl'] = $this->security->xss_clean($this->input->post('eqsl'));
+            $postdata['qrz'] = $this->security->xss_clean($this->input->post('qrz'));
             $postdata['worked'] = $this->security->xss_clean($this->input->post('worked'));
             $postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed'));
             $postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked'));
@@ -429,6 +434,7 @@ class Awards extends CI_Controller {
             $postdata['qsl'] = 1;
             $postdata['lotw'] = 1;
             $postdata['eqsl'] = 0;
+            $postdata['qrz'] = 0;
             $postdata['worked'] = 1;
             $postdata['confirmed'] = 1;
             $postdata['notworked'] = 1;
@@ -485,6 +491,7 @@ class Awards extends CI_Controller {
             $postdata['qsl'] = $this->security->xss_clean($this->input->post('qsl'));
             $postdata['lotw'] = $this->security->xss_clean($this->input->post('lotw'));
             $postdata['eqsl'] = $this->security->xss_clean($this->input->post('eqsl'));
+            $postdata['qrz'] = $this->security->xss_clean($this->input->post('qrz'));
             $postdata['worked'] = $this->security->xss_clean($this->input->post('worked'));
             $postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed'));
             $postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked'));
@@ -495,6 +502,7 @@ class Awards extends CI_Controller {
             $postdata['qsl'] = 1;
             $postdata['lotw'] = 1;
             $postdata['eqsl'] = 0;
+            $postdata['qrz'] = 0;
             $postdata['worked'] = 1;
             $postdata['confirmed'] = 1;
             $postdata['notworked'] = 1;
@@ -545,6 +553,7 @@ class Awards extends CI_Controller {
             $postdata['qsl'] = $this->security->xss_clean($this->input->post('qsl'));
             $postdata['lotw'] = $this->security->xss_clean($this->input->post('lotw'));
             $postdata['eqsl'] = $this->security->xss_clean($this->input->post('eqsl'));
+            $postdata['qrz'] = $this->security->xss_clean($this->input->post('qrz'));
             $postdata['worked'] = $this->security->xss_clean($this->input->post('worked'));
             $postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed'));
             $postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked'));
@@ -555,6 +564,7 @@ class Awards extends CI_Controller {
             $postdata['qsl'] = 1;
             $postdata['lotw'] = 1;
             $postdata['eqsl'] = 0;
+            $postdata['qrz'] = 0;
             $postdata['worked'] = 1;
             $postdata['confirmed'] = 1;
             $postdata['notworked'] = 1;
@@ -963,6 +973,7 @@ class Awards extends CI_Controller {
         $postdata['qsl'] = $this->input->post('qsl') == 0 ? NULL: 1;
         $postdata['lotw'] = $this->input->post('lotw') == 0 ? NULL: 1;
         $postdata['eqsl'] = $this->input->post('eqsl') == 0 ? NULL: 1;
+        $postdata['qrz'] = $this->input->post('qrz') == 0 ? NULL: 1;
         $postdata['worked'] = $this->input->post('worked') == 0 ? NULL: 1;
         $postdata['confirmed'] = $this->input->post('confirmed')  == 0 ? NULL: 1;
         $postdata['notworked'] = $this->input->post('notworked')  == 0 ? NULL: 1;
@@ -1017,6 +1028,7 @@ class Awards extends CI_Controller {
         $postdata['qsl'] = $this->input->post('qsl') == 0 ? NULL: 1;
         $postdata['lotw'] = $this->input->post('lotw') == 0 ? NULL: 1;
         $postdata['eqsl'] = $this->input->post('eqsl') == 0 ? NULL: 1;
+        $postdata['qrz'] = $this->input->post('qrz') == 0 ? NULL: 1;
         $postdata['worked'] = $this->input->post('worked') == 0 ? NULL: 1;
         $postdata['confirmed'] = $this->input->post('confirmed')  == 0 ? NULL: 1;
         $postdata['notworked'] = $this->input->post('notworked')  == 0 ? NULL: 1;
@@ -1071,6 +1083,7 @@ class Awards extends CI_Controller {
         $postdata['qsl'] = $this->input->post('qsl') == 0 ? NULL: 1;
         $postdata['lotw'] = $this->input->post('lotw') == 0 ? NULL: 1;
         $postdata['eqsl'] = $this->input->post('eqsl') == 0 ? NULL: 1;
+        $postdata['qrz'] = $this->input->post('qrz') == 0 ? NULL: 1;
         $postdata['worked'] = $this->input->post('worked') == 0 ? NULL: 1;
         $postdata['confirmed'] = $this->input->post('confirmed')  == 0 ? NULL: 1;
         $postdata['notworked'] = $this->input->post('notworked')  == 0 ? NULL: 1;
@@ -1125,6 +1138,7 @@ class Awards extends CI_Controller {
         $postdata['qsl'] = $this->input->post('qsl') == 0 ? NULL: 1;
         $postdata['lotw'] = $this->input->post('lotw') == 0 ? NULL: 1;
         $postdata['eqsl'] = $this->input->post('eqsl') == 0 ? NULL: 1;
+        $postdata['qrz'] = $this->input->post('qrz') == 0 ? NULL: 1;
         $postdata['worked'] = $this->input->post('worked') == 0 ? NULL: 1;
         $postdata['confirmed'] = $this->input->post('confirmed')  == 0 ? NULL: 1;
         $postdata['notworked'] = $this->input->post('notworked')  == 0 ? NULL: 1;

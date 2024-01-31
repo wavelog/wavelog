@@ -17,6 +17,7 @@ function load_cq_map() {
             notworked: +$('#notworked').prop('checked'),
             qsl: +$('#qsl').prop('checked'),
             lotw: +$('#lotw').prop('checked'),
+            qrz: +$('#qrz').prop('checked'),
         },
         success: function(data) {
 			cqz = data;

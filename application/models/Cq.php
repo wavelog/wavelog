@@ -3,9 +3,8 @@
 class CQ extends CI_Model{
 
     function get_zones(){
-        $CI =& get_instance();
-        $CI->load->model('Stations');
-        $station_id = $CI->Stations->find_active();
+        $this->load->model('Stations');
+        $station_id = $this->Stations->find_active();
 
         $data = $this->db->query(
             "select COL_CQZ, count(COL_CQZ)
@@ -34,6 +33,9 @@ class CQ extends CI_Model{
             }
             if ($postdata['eqsl'] != NULL ) {
                 $qsl .= "E";
+            }
+            if ($postdata['qrz'] != NULL ) {
+                $qsl .= "Z";
             }
         }
 
@@ -146,7 +148,7 @@ class CQ extends CI_Model{
     function addQslToQuery($postdata) {
         $sql = '';
         $qsl = array();
-        if ($postdata['lotw'] != NULL || $postdata['qsl'] != NULL || $postdata['eqsl'] != NULL) {
+        if ($postdata['qrz'] != NULL || $postdata['lotw'] != NULL || $postdata['qsl'] != NULL || $postdata['eqsl'] != NULL) {
             $sql .= ' and (';
             if ($postdata['qsl'] != NULL) {
                 array_push($qsl, "col_qsl_rcvd = 'Y'");
@@ -156,6 +158,9 @@ class CQ extends CI_Model{
             }
             if ($postdata['eqsl'] != NULL) {
                 array_push($qsl, "col_eqsl_qsl_rcvd = 'Y'");
+            }
+            if ($postdata['qrz'] != NULL) {
+                array_push($qsl, "COL_QRZCOM_QSO_DOWNLOAD_STATUS = 'Y'");
             }
             $sql .= implode(' or ', $qsl);
             $sql .= ')';
