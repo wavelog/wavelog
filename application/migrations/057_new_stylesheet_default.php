@@ -6,7 +6,7 @@ class Migration_new_stylesheet_default extends CI_Migration {
 
     public function up()
     {
-        $sql = "UPDATE users SET user_stylesheet = 'default'";
+        $sql = "UPDATE users SET user_stylesheet = 'darkly'";
 		$this->db->query($sql);
     }
 

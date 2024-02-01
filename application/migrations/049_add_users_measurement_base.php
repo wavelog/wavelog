@@ -7,7 +7,7 @@ class Migration_add_users_measurement_base extends CI_Migration {
     public function up()
     {
         $fields = array(
-            'user_measurement_base varchar(1)',
+            "user_measurement_base varchar(1) default 'K' ",
         );
 
         $this->dbforge->add_column('users', $fields);

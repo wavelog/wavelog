@@ -58,7 +58,7 @@ function echoQrbCalcLink($mygrid, $grid, $vucc) {
 	<?php } ?>
 
 	<?php if ($countryCount == 0) { ?>
-		<div class="alert alert-danger" role="alert">
+		<div class="alert alert-danger mt-3" role="alert">
 		<?php echo lang('dashboard_country_files_warning'); ?>
 		</div>
 	<?php } ?>
