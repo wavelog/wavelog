@@ -72,6 +72,8 @@ function load_waja_map() {
             notworked: +$('#notworked').prop('checked'),
             qsl: +$('#qsl').prop('checked'),
             lotw: +$('#lotw').prop('checked'),
+            eqsl: +$('#eqsl').prop('checked'),
+            qrz: +$('#qrz').prop('checked'),
         },
         success: function(data) {
             prefectures = data;
@@ -219,6 +221,9 @@ info.addTo(map);
     clearMarkers();
     addMarkers();
   });
+
+  var layerControl = new L.Control.Layers(null, { 'Gridsquares': maidenhead = L.maidenhead() }).addTo(map);
+  maidenhead.addTo(map);
 
 }
 

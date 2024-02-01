@@ -10,6 +10,10 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="default">
 	<link rel="manifest" href="<?php echo base_url(); ?>manifest.json"/>
 
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/buttons.dataTables.min.css" />
+
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/datatables.min.css" />
+
 	<!-- Bootstrap CSS -->
 	<?php if ($this->optionslib->get_theme()) { ?>
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/<?php echo $this->optionslib->get_theme(); ?>/bootstrap.min.css">
@@ -38,9 +42,6 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/loading.min.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/ldbtn.min.css" />
 
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/buttons.dataTables.min.css" />
-
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/datatables.min.css" />
 
 	<?php if ($this->uri->segment(1) == "sattimers") { ?>
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/sattimers.css" />

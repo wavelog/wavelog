@@ -445,6 +445,9 @@ class Logbook_model extends CI_Model {
 			if (strpos($qsl, "E") !== false) {
 				$qslfilter[] = 'COL_EQSL_QSL_RCVD = "Y"';
 			}
+			if (strpos($qsl, "Z") !== false) {
+				$qslfilter[] = 'COL_QRZCOM_QSO_DOWNLOAD_STATUS = "Y"';
+			}
 			$sql = "(".implode(' OR ', $qslfilter).")";
 			$this->db->where($sql);
 		}
@@ -1281,22 +1284,22 @@ class Logbook_model extends CI_Model {
   *
   */
   function call_lookup_result($callsign) {
-    $this->db->select('COL_CALL, COL_NAME, COL_QSL_VIA, COL_GRIDSQUARE, COL_QTH, COL_IOTA, COL_TIME_ON, COL_STATE, COL_CNTY');
-    $this->db->where('COL_CALL', $callsign);
-    $where = "COL_NAME != \"\"";
+	  $this->db->select('COL_CALL, COL_NAME, COL_QSL_VIA, COL_GRIDSQUARE, COL_QTH, COL_IOTA, COL_TIME_ON, COL_STATE, COL_CNTY, COL_DXCC, COL_CONT');
+	  $this->db->where('COL_CALL', $callsign);
+	  $where = "COL_NAME != \"\"";
 
-    $this->db->where($where);
+	  $this->db->where($where);
 
-    $this->db->order_by("COL_TIME_ON", "desc");
-    $this->db->limit(1);
-    $query = $this->db->get($this->config->item('table_name'));
-    $name = "";
-    if ($query->num_rows() > 0)
-    {
-      $data = $query->row();
-    }
+	  $this->db->order_by("COL_TIME_ON", "desc");
+	  $this->db->limit(1);
+	  $query = $this->db->get($this->config->item('table_name'));
+	  $name = "";
+	  $data=[];
+	  if ($query->num_rows() > 0) {
+		  $data = $query->row();
+	  }
 
-    return $data;
+	  return $data;
   }
 
   /* Callsign QRA */
@@ -1855,7 +1858,6 @@ class Logbook_model extends CI_Model {
   }
 
     function check_if_callsign_cnfmd_in_logbook($callsign, $StationLocationsArray = null, $band = null) {
-	    $user_default_confirmation = $this->session->userdata('user_default_confirmation');
 
 	    if($StationLocationsArray == null) {
 		    $this->load->model('logbooks_model');
@@ -1864,6 +1866,7 @@ class Logbook_model extends CI_Model {
 		    $logbooks_locations_array = $StationLocationsArray;
 	    }
 
+	    $user_default_confirmation = $this->session->userdata('user_default_confirmation');
 	    $extrawhere='';
 	    if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'Q') !== false) {
 		    $extrawhere="COL_QSL_RCVD='Y'";
@@ -1936,6 +1939,92 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
     return $query->num_rows();
 
   }
+
+  function check_if_dxcc_worked_in_logbook($dxcc, $StationLocationsArray = null, $band = null) {
+
+    if($StationLocationsArray == null) {
+      $this->load->model('logbooks_model');
+      $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+    } else {
+      $logbooks_locations_array = $StationLocationsArray;
+    }
+
+    $this->db->select('COL_DXCC');
+    $this->db->where_in('station_id', $logbooks_locations_array);
+    $this->db->where('COL_DXCC', $dxcc);
+
+    if($band != null && $band != 'SAT') {
+      $this->db->where('COL_BAND', $band);
+    } else if($band == 'SAT') {
+      // Where col_sat_name is not empty
+      $this->db->where('COL_SAT_NAME !=', '');
+    }
+    $this->db->limit('2');
+
+    $query = $this->db->get($this->config->item('table_name'));
+
+    return $query->num_rows();
+
+  }
+
+  function check_if_dxcc_cnfmd_in_logbook($dxcc, $StationLocationsArray = null, $band = null) {
+
+	  if($StationLocationsArray == null) {
+		  $this->load->model('logbooks_model');
+		  $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+	  } else {
+		  $logbooks_locations_array = $StationLocationsArray;
+	  }
+
+	  $user_default_confirmation = $this->session->userdata('user_default_confirmation');
+	  $extrawhere='';
+	  if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'Q') !== false) {
+		  $extrawhere="COL_QSL_RCVD='Y'";
+	  }
+	  if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'L') !== false) {
+		  if ($extrawhere!='') {
+			  $extrawhere.=" OR";
+		  }
+		  $extrawhere.=" COL_LOTW_QSL_RCVD='Y'";
+	  }
+	  if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'E') !== false) {
+		  if ($extrawhere!='') {
+			  $extrawhere.=" OR";
+		  }
+		  $extrawhere.=" COL_EQSL_QSL_RCVD='Y'";
+	  }
+
+	  if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'Z') !== false) {
+		  if ($extrawhere!='') {
+			  $extrawhere.=" OR";
+		  }
+		  $extrawhere.=" COL_QRZCOM_QSO_DOWNLOAD_STATUS='Y'";
+	  }
+
+
+	  $this->db->select('COL_DXCC');
+	  $this->db->where_in('station_id', $logbooks_locations_array);
+	  $this->db->where('COL_DXCC', $dxcc);
+
+	  if($band != null && $band != 'SAT') {
+		  $this->db->where('COL_BAND', $band);
+	  } else if($band == 'SAT') {
+		  // Where col_sat_name is not empty
+		  $this->db->where('COL_SAT_NAME !=', '');
+	  }
+	  if ($extrawhere != '') {
+		  $this->db->where('('.$extrawhere.')');
+	  } else {
+		  $this->db->where("1=0");
+	  }
+	  $this->db->limit('2');
+
+	  $query = $this->db->get($this->config->item('table_name'));
+
+	  return $query->num_rows();
+
+  }
+
 
   function check_if_grid_worked_in_logbook($grid, $StationLocationsArray = null, $band = null) {
 
@@ -3939,7 +4028,7 @@ function lotw_last_qsl_date($user_id) {
 
     $csadditions = '/^P$|^R$|^A$|^M$/';
 
-		$dxcc_exceptions = $this->db->select('`entity`, `adif`, `cqz`')
+		$dxcc_exceptions = $this->db->select('`entity`, `adif`, `cqz`,`cont`')
 				->where('call', $call)
 				->where('(start <= ', $date)
 				->or_where('start is null)', NULL, false)
@@ -3989,6 +4078,7 @@ function lotw_last_qsl_date($user_id) {
               $result = $this->wpx($call, 1);                       # use the wpx prefix instead
               if ($result == '') {
                 $row['adif'] = 0;
+                $row['cont'] = '';
                 $row['entity'] = '- NONE -';
                 $row['cqz'] = 0;
                 $row['long'] = '0';

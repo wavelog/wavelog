@@ -838,32 +838,6 @@ function showActivatorsMap(call, count, grids) {
 <script type="text/javascript">
 i=0;
 
-function findduplicates(){
-    event.preventDefault();
-    $('#partial_view').load(base_url+"index.php/logbook/search_duplicates/"+$("#station_id").val(), function() {
-        $('.qsolist').DataTable({
-            "pageLength": 25,
-            responsive: false,
-            ordering: false,
-            "scrollY":        "500px",
-            "scrollCollapse": true,
-            "paging":         false,
-            "scrollX": true,
-            "language": {
-                url: getDataTablesLanguageUrl(),
-            },
-            dom: 'Bfrtip',
-            buttons: [
-                'csv'
-            ]
-        });
-        // change color of csv-button if dark mode is chosen
-        if (isDarkModeTheme()) {
-            $(".buttons-csv").css("color", "white");
-        }
-    });
-}
-
 function findlotwunconfirmed(){
     event.preventDefault();
     $('#partial_view').load(base_url+"index.php/logbook/search_lotw_unconfirmed/"+$("#station_id").val(), function() {
@@ -917,7 +891,7 @@ function findincorrectcqzones() {
 }
 
 function searchButtonPress() {
-    if (event) { event.preventDefault(); } 
+    if (event) { event.preventDefault(); }
     if ($('#callsign').val()) {
         let fixedcall = $('#callsign').val();
         $('#partial_view').load("logbook/search_result/" + fixedcall.replace('Ø', '0'), function() {

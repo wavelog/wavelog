@@ -54,20 +54,31 @@ class Dxcluster_model extends CI_Model {
 					if ($minutes<=$maxage) {
 						if (!(property_exists($singlespot,'dxcc_spotted'))) {	// Check if we already have dxcc of spotted
 							$dxcc=$dxccObj->dxcc_lookup($singlespot->spotted,date('Ymd', time()));
-							$singlespot->dxcc_spotted=$dxcc;
+							$singlespot->dxcc_spotted->dxcc_id=$dxcc['adif'];
+							$singlespot->dxcc_spotted->cont=$dxcc['cont'];
+							$singlespot->dxcc_spotted->flag='';
+							$singlespot->dxcc_spotted->entity=$dxcc['entity'];
 						}
 						if (!(property_exists($singlespot,'dxcc_spotter'))) {	// Check if we already have dxcc of spotter
 							$dxcc=$dxccObj->dxcc_lookup($singlespot->spotter,date('Ymd', time()));
-							$singlespot->dxcc_spotter=$dxcc;
+							$singlespot->dxcc_spotter->dxcc_id=$dxcc['adif'];
+							$singlespot->dxcc_spotter->cont=$dxcc['cont'];
+							$singlespot->dxcc_spotter->flag='';
+							$singlespot->dxcc_spotter->entity=$dxcc['entity'];
 						}
 						if ( ($de != '') && ($de != 'Any') && (property_exists($singlespot->dxcc_spotter,'cont')) ){	// If we have a "de continent" and a filter-wish filter on that
 							if (strtolower($de) == strtolower($singlespot->dxcc_spotter->cont ?? '')) {
+								$singlespot->worked_dxcc = ($this->logbook_model->check_if_dxcc_worked_in_logbook($singlespot->dxcc_spotted->dxcc_id, $logbooks_locations_array, $singlespot->band) >= 1);
+								$singlespot->cnfmd_dxcc = ($this->logbook_model->check_if_dxcc_cnfmd_in_logbook($singlespot->dxcc_spotted->dxcc_id, $logbooks_locations_array, $singlespot->band) >= 1);
 								$singlespot->worked_call = ($this->logbook_model->check_if_callsign_worked_in_logbook($singlespot->spotted, $logbooks_locations_array, $singlespot->band) >= 1);
 								$singlespot->cnfmd_call = ($this->logbook_model->check_if_callsign_cnfmd_in_logbook($singlespot->spotted, $logbooks_locations_array, $singlespot->band) >= 1);
 								array_push($spotsout,$singlespot);
 							}
 						} else {	// No de continent? No Filter --> Just push
+							$singlespot->worked_dxcc = ($this->logbook_model->check_if_dxcc_worked_in_logbook($singlespot->dxcc_spotted->dxcc_id, $logbooks_locations_array, $singlespot->band) >= 1);
 							$singlespot->worked_call = ($this->logbook_model->check_if_callsign_worked_in_logbook($singlespot->spotted, $logbooks_locations_array, $singlespot->band) >= 1);
+							$singlespot->cnfmd_dxcc = ($this->logbook_model->check_if_dxcc_cnfmd_in_logbook($singlespot->dxcc_spotted->dxcc_id, $logbooks_locations_array, $singlespot->band) >= 1);
+							$singlespot->cnfmd_call = ($this->logbook_model->check_if_callsign_cnfmd_in_logbook($singlespot->spotted, $logbooks_locations_array, $singlespot->band) >= 1);
 							array_push($spotsout,$singlespot);
 						}
 					}
