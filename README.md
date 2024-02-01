@@ -14,7 +14,7 @@ The Core-Dev-Team for Wavelog are (in Alphabetic order of the Call):
 * LA8AJA ([@AndreasK79](https://github.com/AndreasK79))
 
 ## Requirements
-* Linux based Operating System
+* Linux based Operating System (Windows stack may also work)
 * Apache (Nginx should work)
 * PHP Version 7.4 (PHP 8.2 works)
 * MySQL (MySQL 5.7 or higher)
