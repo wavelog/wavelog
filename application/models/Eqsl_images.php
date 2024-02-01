@@ -35,7 +35,7 @@ class Eqsl_images extends CI_Model {
 		return $this->db->get('eQSL_images');
 	}
 
-	// return path of esql file : u=url / p=real path //
+	// return path of eQsl file : u=url / p=real path //
 	function get_imagePath($pathorurl='u') {
 		$eqsl_dir = "eqsl_card";
 		// test if new folder directory exist // 

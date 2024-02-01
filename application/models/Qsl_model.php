@@ -128,7 +128,7 @@ class Qsl_model extends CI_Model {
 		return $this->db->insert_id();
 	}
 
-	// return path of esql file : u=url / p=real path //
+	// return path of Qsl file : u=url / p=real path //
 	function get_imagePath($pathorurl='u') {
 		$qsl_dir = "qsl_card";
 		// test if new folder directory exist // 
