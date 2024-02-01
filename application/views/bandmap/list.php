@@ -95,11 +95,11 @@ tbody a {
                 <table style="width:100%" class="table-sm table spottable table-bordered table-hover table-striped table-condensed">
                     <thead>
                         <tr class="log_title titles">
-                            <th><?php echo lang('general_word_date'); ?>/<?php echo lang('general_word_time'); ?></th>
-			    <th><?php echo lang('gen_hamradio_frequency'); ?></th>
+                            <th style="width:200px;"><?php echo lang('general_word_date'); ?>/<?php echo lang('general_word_time'); ?></th>
+			    <th style="width:150px;"><?php echo lang('gen_hamradio_frequency'); ?></th>
                             <th><?php echo lang('gen_hamradio_call'); ?></th>
 			    <th>DXCC</th>
-                            <th><?php echo lang('gen_hamradio_call'); ?> Spotter</th>
+                            <th style="width:150px;">Spotter</th>
                         </tr>
                     </thead>
 
