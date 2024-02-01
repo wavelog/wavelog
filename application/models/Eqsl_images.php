@@ -39,18 +39,18 @@ class Eqsl_images extends CI_Model {
 	function get_imagePath($pathorurl='u') {
 		$eqsl_dir = "eqsl_card";
 		// test if new folder directory exist // 
-		$data_userdir = $this->config->item('userdatadir');
-		if (isset($data_userdir)) {
-			if (!file_exists(realpath(APPPATH.'../').'/'.$data_userdir)) {
-				mkdir(realpath(APPPATH.'../').'/'.$data_userdir, 0755, true);
+		$userdata_dir = $this->config->item('userdata');
+		if (isset($userdata_dir)) {
+			if (!file_exists(realpath(APPPATH.'../').'/'.$userdata_dir)) {
+				mkdir(realpath(APPPATH.'../').'/'.$userdata_dir, 0755, true);
 			}
-			if (!file_exists(realpath(APPPATH.'../').'/'.$data_userdir.'/'.$eqsl_dir)) {
-				mkdir(realpath(APPPATH.'../').'/'.$data_userdir.'/'.$eqsl_dir, 0755, true);
+			if (!file_exists(realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$eqsl_dir)) {
+				mkdir(realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$eqsl_dir, 0755, true);
 			}
 			if ($pathorurl=='u') {
-				return $data_userdir.'/'.$eqsl_dir;
+				return $userdata_dir.'/'.$eqsl_dir;
 			} else {
-				return realpath(APPPATH.'../').'/'.$data_userdir.'/'.$eqsl_dir;
+				return realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$eqsl_dir;
 			}
 		} else {
 			return 'images/eqsl_card_images';

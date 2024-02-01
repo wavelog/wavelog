@@ -669,6 +669,6 @@ $config['proxy_ips'] = '';
 | Users Data Directory Options
 |--------------------------------------------------------------------------
 |
-|	'userdatadir'		Name of principal/centralized data stockage
+|	'userdata'		Name of principal/centralized data stockage
 */
-$config['userdatadir'] = "userdatadir";
+$config['userdata'] = "userdata";
