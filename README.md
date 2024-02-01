@@ -13,6 +13,14 @@ The Core-Dev-Team for Wavelog are (in Alphabetic order of the Call):
 * HB9HIL ([@HB9HIL](https://github.com/HB9HIL))
 * LA8AJA ([@AndreasK79](https://github.com/AndreasK79))
 
+## Demo
+Test Wavelog and it's features!  
+https://demo.wavelog.org  
+
+  Username: demo  
+  Password: demo
+
+
 ## Requirements
 * Linux based Operating System (Windows stack may also work)
 * Apache (Nginx should work)
