@@ -99,7 +99,7 @@ tbody a {
 			    <th style="width:150px;"><?php echo lang('gen_hamradio_frequency'); ?></th>
                             <th><?php echo lang('gen_hamradio_call'); ?></th>
 			    <th>DXCC</th>
-                            <th style="width:150px;"><?php echo lang('gen_hamradio_call'); ?> Spotter</th>
+                            <th style="width:150px;">Spotter</th>
                         </tr>
                     </thead>
 
