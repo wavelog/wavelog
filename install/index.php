@@ -370,28 +370,28 @@ global $wavelog_url;
 									<div class="col">
 										<p>Configure some basic parameters for your wavelog instance. You can change them later in 'application/config/config.php'</p>
 										<div class="mb-3">
-											<label for="directory" class="form-label">Directory<i id="directory_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="The 'Directory' is basically your subfolder of the webroot In normal conditions the prefilled value is doing it's job. It also can be empty."></i></label>
+											<label for="directory" class="form-label">Directory<i id="directory_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="The 'Directory' is basically your subfolder of the webroot In normal conditions the prefilled value is doing it's job. It also can be empty."></i></label>
 											<div class="input-group">
 												<span class="input-group-text" id="main-url"><?php echo $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . "/"; ?></span>
 												<input type="text" id="directory" value="<?php echo substr(str_replace("index.php", "", str_replace("/install/", "", $_SERVER['REQUEST_URI'])), 1); ?>" class="form-control" name="directory" aria-describedby="main-url" />
 											</div>
 										</div>
 										<div class="mb-3 position-relative">
-											<label for="websiteurl" class="form-label">Website URL<i id="websiteurl_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="This is the complete URL where your Wavelog Instance will be available. If you run this installer locally but want to place Wavelog behind a Reverse Proxy with SSL you should type in the new URL here (e.g. https://mywavelog.example.org/ instead of http://192.168.1.100/). Don't forget to include the directory from above."></i></label>
+											<label for="websiteurl" class="form-label">Website URL<i id="websiteurl_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="This is the complete URL where your Wavelog Instance will be available. If you run this installer locally but want to place Wavelog behind a Reverse Proxy with SSL you should type in the new URL here (e.g. https://mywavelog.example.org/ instead of http://192.168.1.100/). Don't forget to include the directory from above."></i></label>
 											<input type="text" id="websiteurl" value="<?php echo $_SERVER['REQUEST_SCHEME']; ?>://<?php echo str_replace("index.php", "", $_SERVER['HTTP_HOST'] . str_replace("/install/", "", $_SERVER['REQUEST_URI'])); ?>" class="form-control" name="websiteurl" />
 											<div class="invalid-tooltip">
 												This field can't be empty!
 											</div>
 										</div>
 										<div class="mb-3 position-relative">
-											<label for="locator" class="form-label">Default Gridsquare<i id="gridsquare_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="This is the default maidenhead locator which is used as falback. You can use the locator of your Home QTH."></i></label>
+											<label for="locator" class="form-label">Default Gridsquare/Locator<i id="gridsquare_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="This is the default maidenhead locator which is used as falback. You can use the locator of your Home QTH."></i></label>
 											<input type="text" id="locator" placeholder="HA44AA" class="form-control" name="locator" />
 											<div class="invalid-tooltip">
 												Type in a valid locator
 											</div>
 										</div>
 										<div class="mb-3">
-											<label for="global_call_lookup" class="form-label">Optional: Global Callbook Lookup<i id="callbook_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="This configuration is optional. The callsign lookup will be available for all users of this installation. You can choose between QRZ.com and HamQTH. While HamQTH also works without username and password, you will need credentials for QRZ.com. To also get the Call Locator in QRZ.com you'll need an XML subscription. HamQTH does not always provide the locator information."></i></label>
+											<label for="global_call_lookup" class="form-label">Optional: Global Callbook Lookup<i id="callbook_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="This configuration is optional. The callsign lookup will be available for all users of this installation. You can choose between QRZ.com and HamQTH. While HamQTH also works without username and password, you will need credentials for QRZ.com. To also get the Call Locator in QRZ.com you'll need an XML subscription. HamQTH does not always provide the locator information."></i></label>
 											<select id="global_call_lookup" class="form-select" name="global_call_lookup">
 												<option value="hamqth" selected>HamQTH</option>
 												<option value="qrz">QRZ.com</option>
@@ -497,7 +497,7 @@ global $wavelog_url;
 
 								<div class="row">
 									<div class="col-md-6 mb-2">
-										<label for="userlocator" class="form-label">Locator</label>
+										<label for="userlocator" class="form-label">Gridsquare/Locator</label>
 										<input type="text" id="userlocator" tabindex="4" placeholder="HA44AA" class="form-control" name="userlocator" />
 									</div>
 									<div class="col-md-6 mb-2">
