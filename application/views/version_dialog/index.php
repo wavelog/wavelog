@@ -53,7 +53,7 @@
                             $htmlReleaseBodyWithLinks = preg_replace('/(https?:\/\/[^\s<]+)/', '<a href="$1" target="_blank">$1</a>', $htmlReleaseBody);
 
                             $releaseName = isset($firstRelease['name']) ? $firstRelease['name'] : 'No version name information available';
-                            echo "<h4>v".$releaseName."</h4>";
+                            echo "<h4>".$releaseName."</h4>";
                             echo nl2br($htmlReleaseBodyWithLinks);
                         } else {
                             echo 'Fehler beim Decodieren der JSON-Daten oder leere Antwort erhalten.';
