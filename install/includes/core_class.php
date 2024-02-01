@@ -66,7 +66,7 @@ class Core
 		// Validate Locator
 		if (isset($_POST['userlocator']) && !empty($_POST['userlocator'])) {
 			$locator = $_POST['userlocator'];
-			if (preg_match('/^[A-R]{2}[0-9]{2}[A-X]{2}$/', $locator)) {
+			if (preg_match('/^[A-R]{2}[0-9]{2}[A-X]{2}$/i', $locator)) {
 				$counter++;
 			} else {
 				$errors[] = "Invalid Maidenhead Locator format.";
