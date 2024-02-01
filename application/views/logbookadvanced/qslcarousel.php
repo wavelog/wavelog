@@ -17,7 +17,6 @@
 <div class="carousel-inner">
 
     <?php
-	$this->load->model('Qsl_model');
     $i = 1;
     foreach ($qslimages as $image) {
         echo '<div class="text-center carousel-item carouselimageid_' . $image->id;
@@ -57,7 +56,7 @@
 		?>
 		</tbody>
 </table>
-        <?php echo '<img class="img-fluid w-qsl" src="' . base_url() . '/'.$this->Qsl_model->get_imagePath().'/' . $image->filename .'" alt="QSL picture #'. $i++.'">';
+        <?php echo '<img class="img-fluid w-qsl" src="' . base_url() . '/'. wl_getPathQsl() .'/' . $image->filename .'" alt="QSL picture #'. $i++.'">';
         echo '</div>';
     }
     ?>

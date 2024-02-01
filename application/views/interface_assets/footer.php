@@ -2383,14 +2383,11 @@ $(document).ready(function(){
 
 <script>
 function viewQsl(picture, callsign) {
-            <?php 
-            $CI =& get_instance();
-            $CI->load->model('Qsl_model');
-            echo 'var qslpath = "'.$CI->Qsl_model->get_imagePath().'"; '; 
-            ?>
+
+            var webpath_qsl = "<?php echo wl_getPathQsl(); ?>"; 
             var baseURL= "<?php echo base_url();?>";
             var $textAndPic = $('<div></div>');
-                $textAndPic.append('<center><img class="img-fluid w-qsl" style="height:auto;width:auto;"src="'+baseURL+'/'+qslpath+'/'+picture+'" /><center>');
+                $textAndPic.append('<center><img class="img-fluid w-qsl" style="height:auto;width:auto;"src="'+baseURL+'/'+webpath_qsl+'/'+picture+'" /><center>');
             var title = '';
             if (callsign == null) {
                 title = 'QSL Card';
@@ -2450,14 +2447,10 @@ function deleteQsl(id) {
 </script>
 <script>
 function viewEqsl(picture, callsign) {
-            <?php
-            $CI =& get_instance();
-            $CI->load->model('Eqsl_images');
-            echo 'var eqslpath = "'.$CI->Eqsl_images->get_imagePath().'"; '; 
-            ?>
+            var webpath_eqsl = "<?php echo wl_getPathEqsl(); ?>"; 
             var baseURL= "<?php echo base_url();?>";
             var $textAndPic = $('<div></div>');
-                $textAndPic.append('<img class="img-fluid" style="height:auto;width:auto;"src="'+baseURL+eqslpath+'/'+picture+'" />');
+                $textAndPic.append('<img class="img-fluid" style="height:auto;width:auto;"src="'+baseURL+webpath_eqsl+'/'+picture+'" />');
             var title = '';
             if (callsign == null) {
                 title = 'eQSL Card';
@@ -2605,11 +2598,7 @@ function viewEqsl(picture, callsign) {
     });
     }
     function uploadQsl() {
-        <?php 
-        $CI =& get_instance();
-        $CI->load->model('Qsl_model');
-        echo 'var qslpath = "'.$CI->Qsl_model->get_imagePath().'"; '; 
-        ?>
+        var webpath_qsl = "<?php echo wl_getPathQsl(); ?>"; 
         var baseURL= "<?php echo base_url();?>";
         var formdata = new FormData(document.getElementById("fileinfo"));
 
@@ -2629,7 +2618,7 @@ function viewEqsl(picture, callsign) {
                             '</tr>');
                         var quantity = $(".carousel-indicators li").length;
                         $(".carousel-indicators").append('<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="'+quantity+'"></li>');
-                        $(".carousel-inner").append('<center><div class="carousel-item carouselimageid_'+data.status.front.insertid+'"><img class="img-fluid w-qsl" src="'+baseURL+'/'+qslpath+'/'+data.status.front.filename+'" alt="QSL picture #'+(quantity+1)+'"></div></center>');
+                        $(".carousel-inner").append('<center><div class="carousel-item carouselimageid_'+data.status.front.insertid+'"><img class="img-fluid w-qsl" src="'+baseURL+'/'+webpath_qsl+'/'+data.status.front.filename+'" alt="QSL picture #'+(quantity+1)+'"></div></center>');
                         $("#qslcardfront").val(null);
                     }
                     else {
@@ -2649,7 +2638,7 @@ function viewEqsl(picture, callsign) {
                         $('.qslcardtab').removeAttr('hidden');
                         var quantity = $(".carousel-indicators li").length;
                         $(".carousel-indicators").append('<li class="active" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="'+quantity+'"></li>');
-                        $(".carousel-inner").append('<center><div class="active carousel-item carouselimageid_'+data.status.front.insertid+'"><img class="img-fluid w-qsl" src="'+baseURL+'/'+qslpath+'/'+data.status.front.filename+'" alt="QSL picture #'+(quantity+1)+'"></div></center>');
+                        $(".carousel-inner").append('<center><div class="active carousel-item carouselimageid_'+data.status.front.insertid+'"><img class="img-fluid w-qsl" src="'+baseURL+'/'+webpath_qsl+'/'+data.status.front.filename+'" alt="QSL picture #'+(quantity+1)+'"></div></center>');
                         $(".carouselExampleIndicators").carousel();
                         $("#qslcardfront").val(null);
                     }
@@ -2668,7 +2657,7 @@ function viewEqsl(picture, callsign) {
                             '</tr>');
                         var quantity = $(".carousel-indicators li").length;
                         $(".carousel-indicators").append('<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="'+quantity+'"></li>');
-                        $(".carousel-inner").append('<center><div class="carousel-item carouselimageid_'+data.status.back.insertid+'"><img class="img-fluid w-qsl" src="'+baseURL+'/'+qslpath+'/'+data.status.back.filename+'" alt="QSL picture #'+(quantity+1)+'"></div></center>');
+                        $(".carousel-inner").append('<center><div class="carousel-item carouselimageid_'+data.status.back.insertid+'"><img class="img-fluid w-qsl" src="'+baseURL+'/'+webpath_qsl+'/'+data.status.back.filename+'" alt="QSL picture #'+(quantity+1)+'"></div></center>');
                         $("#qslcardback").val(null);
                     }
                     else {
@@ -2688,7 +2677,7 @@ function viewEqsl(picture, callsign) {
                         $('.qslcardtab').removeAttr('hidden');
                         var quantity = $(".carousel-indicators li").length;
                         $(".carousel-indicators").append('<li class="active" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="'+quantity+'"></li>');
-                        $(".carousel-inner").append('<center><div class="active carousel-item carouselimageid_'+data.status.back.insertid+'"><img class="img-fluid w-qsl" src="'+baseURL+'/'+qslpath+'/'+data.status.back.filename+'" alt="QSL picture #'+(quantity+1)+'"></div></center>');
+                        $(".carousel-inner").append('<center><div class="active carousel-item carouselimageid_'+data.status.back.insertid+'"><img class="img-fluid w-qsl" src="'+baseURL+'/'+webpath_qsl+'/'+data.status.back.filename+'" alt="QSL picture #'+(quantity+1)+'"></div></center>');
                         $(".carouselExampleIndicators").carousel();
                         $("#qslcardback").val(null);
                     }
