@@ -636,3 +636,7 @@ if ($('.table-responsive .dropdown-toggle').length>0) {
 function getDataTablesLanguageUrl() {
     return "../assets/json/datatables_languages/" + lang_datatables_language + ".json";
 }
+
+console.log("Ready to unleash your coding prowess and join the fun?\n\n" +
+    "Check out our GitHub Repository and dive into the coding adventure:\n\n" +
+    "🚀 https://www.github.com/wavelog/wavelog");

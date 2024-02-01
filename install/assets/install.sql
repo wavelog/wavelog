@@ -437,7 +437,7 @@ CREATE TABLE `users` (
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('4', '4w7est', '$2y$10$WFGFdNK.I4X0z1qXxjqrEeMvy65M2OyxJiNcNCY0gQ4KzeCCKms02', 'demo@demo.com', '99', '4W7EST', 'HH44aa', 'Demo', 'Account', '0', null, null, null, null, null);
+INSERT INTO `users` VALUES ('4', '%%FIRSTUSER_NAME%%', '%%FIRSTUSER_PASS%%', '%%FIRSTUSER_MAIL%%', '99', '%%FIRSTUSER_CALL%%', '%%FIRSTUSER_LOCATOR%%', '%%FIRSTUSER_FIRSTNAME%%', '%%FIRSTUSER_LASTNAME%%', '%%FIRSTUSER_TIMEZONE%%', null, null, null, null, null);
 
 
 
