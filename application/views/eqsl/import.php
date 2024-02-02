@@ -39,8 +39,8 @@
                     <option value="<?php echo $station->station_id; ?>" <?php if ($station->station_id == $this->stations->find_active()) { echo " selected =\"selected\""; } ?>>Callsign: <?php echo $station->station_callsign; ?> (<?php echo $station->station_profile_name.") eQSL: ".$station->eqslqthnickname; ?></option>
                     <?php } } ?>
                     </select>
-                    <p><span class="label important">Important</span>Log files must have the file type .adi</p>
-                    <input type="file" name="userfile" size="20" />
+                    <p><span class="badge bg-info me-1">Important</span>Log files must have the file type .adi</p>
+                    <input class="form-control w-auto" type="file" name="userfile" size="20" />
 			</div>
 			<hr class="divider">
 			<div class="form-check">
