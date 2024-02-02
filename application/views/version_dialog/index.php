@@ -56,10 +56,10 @@
                             echo "<h4>".$releaseName."</h4>";
                             echo nl2br($htmlReleaseBodyWithLinks);
                         } else {
-                            echo 'Fehler beim Decodieren der JSON-Daten oder leere Antwort erhalten.';
+                            echo 'Error at parsing JSON-Data or got empty result from github.';
                         }
                     } else {
-                        echo 'Fehler beim Abrufen der Daten von der GitHub API.';
+                        echo 'Error at getting the data from GitHub.';
                     }
                     ?>
                 </div>
