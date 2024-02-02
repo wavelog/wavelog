@@ -268,7 +268,66 @@
                 </table>
             </div>
         </div>
-        <?php } ?>
+        <?php }
+
+
+			// Get Date format
+		if($this->session->userdata('user_date_format')) {
+			// If Logged in and session exists
+			$custom_date_format = $this->session->userdata('user_date_format');
+		} else {
+			// Get Default date format from /config/wavelog.php
+			$custom_date_format = $this->config->item('qso_date_format');
+		}
+		?>
+		<div class="card">
+            <div class="card-header">File download date</div>
+            <div class="card-body">
+                <table width="100%" class = "table-sm table table-hover table-striped">
+					<thead>
+						<th>File</th>
+						<th>Last update</th>
+						<th></th>
+					</thead>
+					<tr>
+						<td>DXCC update from Club Log</td>
+						<td><?php echo (($this->optionslib->get_option('dxcc_clublog_update') ?? '') == '' ? '' : date($custom_date_format, strtotime($this->optionslib->get_option('dxcc_clublog_update') ?? ''))  . ' ' . date("h:i", strtotime($this->optionslib->get_option('dxcc_clublog_update') ?? '')))  ?></td>
+						<td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update');?>">Update</a></td>
+
+                    </tr>
+					<tr>
+						<td>DOK file download</td>
+						<td><?php echo (($this->optionslib->get_option('dok_file_update') ?? '') == '' ? '' : date($custom_date_format, strtotime($this->optionslib->get_option('dok_file_update') ?? ''))  . ' ' . date("h:i", strtotime($this->optionslib->get_option('dok_file_update') ?? '')))  ?></td>
+						<td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_dok');?>">Update</a></td>
+                    </tr>
+					<tr>
+						<td>LoTW users download</td>
+						<td><?php echo (($this->optionslib->get_option('lotw_users_update') ?? '') == '' ? '' : date($custom_date_format, strtotime($this->optionslib->get_option('lotw_users_update') ?? ''))  . ' ' . date("h:i", strtotime($this->optionslib->get_option('lotw_users_update') ?? '')))  ?></td>
+						<td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/lotw_users');?>">Update</a></td>
+					</tr>
+					<tr>
+                        <td>POTA file download</td>
+						<td><?php echo (($this->optionslib->get_option('pota_file_update') ?? '') == '' ? '' : date($custom_date_format, strtotime($this->optionslib->get_option('pota_file_update') ?? ''))  . ' ' . date("h:i", strtotime($this->optionslib->get_option('pota_file_update') ?? '')))  ?></td>
+						<td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_pota');?>">Update</a></td>
+                    </tr>
+					<tr>
+						<td>SCP file download</td>
+						<td><?php echo (($this->optionslib->get_option('scp_update') ?? '') == '' ? '' : date($custom_date_format, strtotime($this->optionslib->get_option('scp_update') ?? ''))  . ' ' . date("h:i", strtotime($this->optionslib->get_option('scp_update') ?? '')))  ?></td>
+						<td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_clublog_scp');?>">Update</a></td>
+                    </tr>
+					<tr>
+						<td>SOTA file download</td>
+						<td><?php echo (($this->optionslib->get_option('sota_file_update') ?? '') == '' ? '' : date($custom_date_format, strtotime($this->optionslib->get_option('sota_file_update') ?? ''))  . ' ' . date("h:i", strtotime($this->optionslib->get_option('sota_file_update') ?? '')))  ?></td>
+						<td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_sota');?>">Update</a></td>
+					</tr>
+					<tr>
+                        <td>WWFF file downlaod</td>
+						<td><?php echo (($this->optionslib->get_option('wwff_file_update') ?? '') == '' ? '' : date($custom_date_format, strtotime($this->optionslib->get_option('wwff_file_update') ?? ''))  . ' ' . date("h:i", strtotime($this->optionslib->get_option('wwff_file_update') ?? '')))  ?></td>
+						<td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_wwff');?>">Update</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
         <?php } ?>
     </div>
 </div>

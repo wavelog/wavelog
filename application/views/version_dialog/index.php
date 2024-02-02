@@ -53,13 +53,13 @@
                             $htmlReleaseBodyWithLinks = preg_replace('/(https?:\/\/[^\s<]+)/', '<a href="$1" target="_blank">$1</a>', $htmlReleaseBody);
 
                             $releaseName = isset($firstRelease['name']) ? $firstRelease['name'] : 'No version name information available';
-                            echo "<h4>v".$releaseName."</h4>";
+                            echo "<h4>".$releaseName."</h4>";
                             echo nl2br($htmlReleaseBodyWithLinks);
                         } else {
-                            echo 'Fehler beim Decodieren der JSON-Daten oder leere Antwort erhalten.';
+                            echo 'Error at parsing JSON-Data or got empty result from github.';
                         }
                     } else {
-                        echo 'Fehler beim Abrufen der Daten von der GitHub API.';
+                        echo 'Error at getting the data from GitHub.';
                     }
                     ?>
                 </div>

@@ -13,11 +13,19 @@ The Core-Dev-Team for Wavelog are (in Alphabetic order of the Call):
 * HB9HIL ([@HB9HIL](https://github.com/HB9HIL))
 * LA8AJA ([@AndreasK79](https://github.com/AndreasK79))
 
+## Demo
+Test Wavelog and it's features!  
+https://demo.wavelog.org  
+
+  Username: demo  
+  Password: demo
+
+
 ## Requirements
-* Linux based Operating System
+* Linux based Operating System (Windows stack may also work)
 * Apache (Nginx should work)
-* PHP Version 7.4 (PHP 8.2 works)
-* MySQL (MySQL 5.7 or higher)
+* PHP Version 7.4 up to PHP 8.2 
+* MySQL or MariaDB (MySQL 5.7 or higher // MariaDB 10.1 or higher)
 
 Notes
 * If you want to log microwave QSOs you will need to use a 64bit operating system.
