@@ -388,6 +388,7 @@
 
 								<a class="dropdown-item" target="_blank" href="https://github.com/wavelog/wavelog/wiki" title="Help"><i class="fas fa-question"></i> <?php echo lang('menu_help'); ?></a>
 
+								<a class="dropdown-item" target="_blank" href="https://github.com/wavelog/wavelog/discussions" title="Forum"><i class="far fa-comment-dots"></i> <?php echo lang('menu_forum'); ?></a>
 
 								<div class="dropdown-divider"></div>
 
