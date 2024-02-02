@@ -43,9 +43,7 @@
                     <?php } } ?>
                     </select>
 			</div>
-
-			<br><br>
-			
+			<hr class="divider">
 			<div class="form-check">
 			  <input class="form-check-input" type="radio" name="eqslimport" id="fetch" value="fetch"  checked="checked"/>
 			  <label class="form-check-label" for="exampleRadios1">Import directly from eQSL</label>
@@ -59,8 +57,7 @@
 		         	<div class="mb-3 col-sm-5" style="vertical-align:middle;"><label class="form-label"><?php echo "(Select a date, only if you want to force an import with an older date)"; //$this->lang->line(''); ?></label></div>
 				</div>
 			</div>
-
-			<br>
+			<hr class="divider">
 			<div class="mb-3"><input class="btn btn-primary" type="submit" value="Import eQSL QSO Matches" /></div>
 		</form>
   </div>
