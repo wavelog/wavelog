@@ -22,15 +22,15 @@ function accumulatePlot(form) {
 			else {
 				// used for switching award text in the table and the chart
 				switch (award) {
-					case 'dxcc': var awardtext = "DXCC\'s"; break;
-					case 'was': var awardtext = "states"; break;
-					case 'iota': var awardtext = "IOTA\'s"; break;
-					case 'waz': var awardtext = "CQ zones"; break;
+					case 'dxcc': var awardtext = lang_statistics_accumulated_worked_dxcc; break;
+					case 'was': var awardtext = lang_statistics_accumulated_worked_states; break;
+					case 'iota': var awardtext = lang_statistics_accumulated_worked_iota; break;
+					case 'waz': var awardtext = lang_statistics_accumulated_worked_cqzone; break;
 				}
 
-				var periodtext = 'Year';
+				var periodtext = lang_general_word_year;
 				if (period == 'month') {
-					periodtext += ' + month';
+					periodtext = lang_general_word_year + ' + ' + lang_general_word_month;
 				}
 				// removing the old chart so that it will not interfere when loading chart again
 				$("#accumulateContainer").empty();
@@ -41,7 +41,7 @@ function accumulatePlot(form) {
 					'<tr>' +
 					'<td>#</td>' +
 					'<td>' + periodtext + '</td>' +
-					'<td>Accumulated # of ' + awardtext + ' worked </td>' +
+					'<td>' + awardtext + '</td>' +
 					'</tr>' +
 					'</thead>' +
 					'<tbody></tbody></table>');
@@ -74,12 +74,20 @@ function accumulatePlot(form) {
 				});
 
 				var ctx = document.getElementById("myChartAccumulate").getContext('2d');
+				var headerperiod;
+				if (period == 'year') {
+					headerperiod = lang_general_word_yearly;
+				} else if (period == 'month') {
+					headerperiod = lang_general_word_monthly;
+				} else {
+					headerperiod = 'n/a';
+				}
 				var myChart = new Chart(ctx, {
 					type: 'bar',
 					data: {
 						labels: labels,
 						datasets: [{
-							label: 'Accumulated number of ' + awardtext + ' worked each ' + period,
+							label: awardtext + ' (' + headerperiod + ')',
 							data: dataDxcc,
 							backgroundColor: 'rgba(54, 162, 235, 0.2)',
 							borderColor: 'rgba(54, 162, 235, 1)',

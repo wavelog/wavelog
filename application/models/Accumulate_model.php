@@ -4,9 +4,8 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 class Accumulate_model extends CI_Model
 {
     function get_accumulated_data($band, $award, $mode, $period) {
-		$CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         if (!$logbooks_locations_array) {
             return array();
@@ -29,7 +28,7 @@ class Accumulate_model extends CI_Model
             $sql = "select year(thcv.col_time_on) year";
         }
         else if ($period == "month") {
-            $sql = "select date_format(col_time_on, '%Y%m') year";
+            $sql = "select date_format(col_time_on, '%Y-%m') year";
         }
 
         $sql .= ", coalesce(y.tot, 0) tot 
@@ -42,7 +41,7 @@ class Accumulate_model extends CI_Model
             $sql .= "year(col_time_on)";
         }
         else if ($period == "month") {
-            $sql .= "date_format(col_time_on, '%Y%m')";
+            $sql .= "date_format(col_time_on, '%Y-%m')";
         }
 
         $sql .= " year, col_dxcc
@@ -70,7 +69,7 @@ class Accumulate_model extends CI_Model
             $sql .= " year(col_time_on) < year";;
         }
         else if ($period == "month") {
-            $sql .= " date_format(col_time_on, '%Y%m') < year";;
+            $sql .= " date_format(col_time_on, '%Y-%m') < year";;
         }
         
         $sql .= " and col_dxcc = x.col_dxcc";
@@ -96,7 +95,7 @@ class Accumulate_model extends CI_Model
             $sql .= " ) y on year(thcv.col_time_on) = y.year";
         }
         else if ($period == "month") {
-            $sql .= " ) y on date_format(col_time_on, '%Y%m') = y.year";
+            $sql .= " ) y on date_format(col_time_on, '%Y-%m') = y.year";
         }
         
         $sql .= " where thcv.col_dxcc > 0";
@@ -122,8 +121,8 @@ class Accumulate_model extends CI_Model
         }
 
         else if ($period == "month") {
-            $sql .= " group by date_format(col_time_on, '%Y%m'), y.tot
-            order by date_format(col_time_on, '%Y%m')";
+            $sql .= " group by date_format(col_time_on, '%Y-%m'), y.tot
+            order by date_format(col_time_on, '%Y-%m')";
         }
 
         $query = $this->db->query($sql);
@@ -145,7 +144,7 @@ class Accumulate_model extends CI_Model
             $sql = "select year(thcv.col_time_on) year";
         }
         else if ($period == "month") {
-            $sql = "select date_format(col_time_on, '%Y%m') year";
+            $sql = "select date_format(col_time_on, '%Y-%m') year";
         }
 
         $sql .= ", coalesce(y.tot, 0) tot 
@@ -158,7 +157,7 @@ class Accumulate_model extends CI_Model
             $sql .= "year(col_time_on)";
         }
         else if ($period == "month") {
-            $sql .= "date_format(col_time_on, '%Y%m')";
+            $sql .= "date_format(col_time_on, '%Y-%m')";
         }
 
         $sql .= " year, col_state
@@ -189,7 +188,7 @@ class Accumulate_model extends CI_Model
             $sql .= " year(col_time_on) < year";;
         }
         else if ($period == "month") {
-            $sql .= " date_format(col_time_on, '%Y%m') < year";;
+            $sql .= " date_format(col_time_on, '%Y-%m') < year";;
         }
         
         $sql .= " and col_state = x.col_state";
@@ -218,7 +217,7 @@ class Accumulate_model extends CI_Model
             $sql .= " ) y on year(thcv.col_time_on) = y.year";
         }
         else if ($period == "month") {
-            $sql .= " ) y on date_format(col_time_on, '%Y%m') = y.year";
+            $sql .= " ) y on date_format(col_time_on, '%Y-%m') = y.year";
         }
         
         $sql .= " where station_id in (". $location_list . ")";
@@ -242,8 +241,8 @@ class Accumulate_model extends CI_Model
         }
 
         else if ($period == "month") {
-            $sql .= " group by date_format(col_time_on, '%Y%m'), y.tot
-            order by date_format(col_time_on, '%Y%m')";
+            $sql .= " group by date_format(col_time_on, '%Y-%m'), y.tot
+            order by date_format(col_time_on, '%Y-%m')";
         }
 
         $query = $this->db->query($sql);
@@ -256,7 +255,7 @@ class Accumulate_model extends CI_Model
             $sql = "select year(thcv.col_time_on) year";
         }
         else if ($period == "month") {
-            $sql = "select date_format(col_time_on, '%Y%m') year";
+            $sql = "select date_format(col_time_on, '%Y-%m') year";
         }
 
         $sql .= ", coalesce(y.tot, 0) tot 
@@ -269,7 +268,7 @@ class Accumulate_model extends CI_Model
             $sql .= "year(col_time_on)";
         }
         else if ($period == "month") {
-            $sql .= "date_format(col_time_on, '%Y%m')";
+            $sql .= "date_format(col_time_on, '%Y-%m')";
         }
 
         $sql .= " year, col_iota
@@ -297,7 +296,7 @@ class Accumulate_model extends CI_Model
             $sql .= " year(col_time_on) < year";;
         }
         else if ($period == "month") {
-            $sql .= " date_format(col_time_on, '%Y%m') < year";;
+            $sql .= " date_format(col_time_on, '%Y-%m') < year";;
         }
         
         $sql .= " and col_iota = x.col_iota";
@@ -323,7 +322,7 @@ class Accumulate_model extends CI_Model
             $sql .= " ) y on year(thcv.col_time_on) = y.year";
         }
         else if ($period == "month") {
-            $sql .= " ) y on date_format(col_time_on, '%Y%m') = y.year";
+            $sql .= " ) y on date_format(col_time_on, '%Y-%m') = y.year";
         }
         
         $sql .= " where station_id in (". $location_list . ")";
@@ -347,8 +346,8 @@ class Accumulate_model extends CI_Model
         }
 
         else if ($period == "month") {
-            $sql .= " group by date_format(col_time_on, '%Y%m'), y.tot
-            order by date_format(col_time_on, '%Y%m')";
+            $sql .= " group by date_format(col_time_on, '%Y-%m'), y.tot
+            order by date_format(col_time_on, '%Y-%m')";
         }
 
         $query = $this->db->query($sql);
@@ -361,7 +360,7 @@ class Accumulate_model extends CI_Model
             $sql = "select year(thcv.col_time_on) year";
         }
         else if ($period == "month") {
-            $sql = "select date_format(col_time_on, '%Y%m') year";
+            $sql = "select date_format(col_time_on, '%Y-%m') year";
         }
 
         $sql .= ", coalesce(y.tot, 0) tot 
@@ -374,7 +373,7 @@ class Accumulate_model extends CI_Model
             $sql .= "year(col_time_on)";
         }
         else if ($period == "month") {
-            $sql .= "date_format(col_time_on, '%Y%m')";
+            $sql .= "date_format(col_time_on, '%Y-%m')";
         }
 
         $sql .= " year, col_cqz
@@ -402,7 +401,7 @@ class Accumulate_model extends CI_Model
             $sql .= " year(col_time_on) < year";;
         }
         else if ($period == "month") {
-            $sql .= " date_format(col_time_on, '%Y%m') < year";;
+            $sql .= " date_format(col_time_on, '%Y-%m') < year";;
         }
         
         $sql .= " and col_cqz = x.col_cqz";
@@ -428,7 +427,7 @@ class Accumulate_model extends CI_Model
             $sql .= " ) y on year(thcv.col_time_on) = y.year";
         }
         else if ($period == "month") {
-            $sql .= " ) y on date_format(col_time_on, '%Y%m') = y.year";
+            $sql .= " ) y on date_format(col_time_on, '%Y-%m') = y.year";
         }
         
         $sql .= " where station_id in (". $location_list . ")";
@@ -452,8 +451,8 @@ class Accumulate_model extends CI_Model
         }
 
         else if ($period == "month") {
-            $sql .= " group by date_format(col_time_on, '%Y%m'), y.tot
-            order by date_format(col_time_on, '%Y%m')";
+            $sql .= " group by date_format(col_time_on, '%Y-%m'), y.tot
+            order by date_format(col_time_on, '%Y-%m')";
         }
 
         $query = $this->db->query($sql);
