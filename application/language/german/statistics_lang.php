@@ -58,3 +58,15 @@ $lang['statistics_dwq_current_streak_continuous_days'] = "Aktuelle Serie (fortla
 $lang['statistics_dwq_make_qso_to_extend_streak'] = "Wenn Sie heute ein QSO machen, können Sie Ihre Serie verlängern... Andernfalls wird Ihre aktuelle Serie unterbrochen!";
 $lang['statistics_dwq_no_current_streak'] = "Keine aktuelle Serie gefunden!";
 
+/*
+*
+* Accumulated Stats
+*
+*/
+
+$lang['statistics_accumulated_worked_dxcc'] = "Kumulierte Statistik gearbeiteter DXCC";
+$lang['statistics_accumulated_worked_states'] = "Kumulierte Statistik gearbeiteter US Staaten";
+$lang['statistics_accumulated_worked_iota'] = "Kumulierte Statistik gearbeiteter IOTA";
+$lang['statistics_accumulated_worked_cqzone'] = "Kumulierte Statistik gearbeiteter CQ Zonen";
+
+
