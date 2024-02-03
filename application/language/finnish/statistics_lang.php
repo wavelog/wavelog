@@ -58,3 +58,15 @@ $lang['statistics_dwq_current_streak_continuous_days'] = "Current streak (contin
 $lang['statistics_dwq_make_qso_to_extend_streak'] = "If you make a QSO today, you can continue to extend your streak... or else your current streak will be broken!";
 $lang['statistics_dwq_no_current_streak'] = "No current streak found!";
 
+/*
+*
+* Accumulated Stats
+*
+*/
+
+$lang['statistics_accumulated_worked_dxcc'] = "Accumulated Number of DXCCs worked";
+$lang['statistics_accumulated_worked_states'] = "Accumulated Number of States worked";
+$lang['statistics_accumulated_worked_iota'] = "Accumulated Number of IOTAs worked";
+$lang['statistics_accumulated_worked_cqzone'] = "Accumulated Number of CQ Zones worked";
+
+

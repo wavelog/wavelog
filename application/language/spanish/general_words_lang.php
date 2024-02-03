@@ -17,6 +17,7 @@ $lang['general_word_next'] = 'Siguiente';
 $lang['general_word_previous'] = 'Anterior';
 $lang['general_word_cancel'] = "Cancelar";
 $lang['general_word_ok'] = "OK";
+$lang['general_word_show'] = "Show";
 
 $lang['general_word_attention'] = "Atención";
 $lang['general_word_enabled'] = "Activado";
@@ -51,6 +52,9 @@ $lang['general_word_total'] = 'Total';
 $lang['general_word_year'] = 'Año';
 $lang['general_word_month'] = 'Mes';
 $lang['general_word_day'] = "Day";
+$lang['general_word_period'] = "Period";
+$lang['general_word_yearly'] = "Yearly";
+$lang['general_word_monthly'] = "Monthly";
 $lang['general_word_days'] = "Days";
 
 $lang['general_word_colors'] = "Colores";
