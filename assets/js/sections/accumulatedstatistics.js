@@ -1,64 +1,90 @@
 function accumulatePlot(form) {
-	$(".ld-ext-right").addClass('running');
-	$(".ld-ext-right").prop('disabled', true);
+	$(".ld-ext-right").addClass("running");
+	$(".ld-ext-right").prop("disabled", true);
 
 	// using this to change color of legend and label according to background color
-	var color = ifDarkModeThemeReturn('white', 'grey');
+	var color = ifDarkModeThemeReturn("white", "grey");
 
 	var award = form.awardradio.value;
 	var mode = form.mode.value;
 	var period = form.periodradio.value;
 	$.ajax({
-		url: base_url + 'index.php/accumulated/get_accumulated_data',
-		type: 'post',
-		data: { 'Band': form.band.value, 'Award': award, 'Mode': mode, 'Period': period },
+		url: base_url + "index.php/accumulated/get_accumulated_data",
+		type: "post",
+		data: {
+			Band: form.band.value,
+			Award: award,
+			Mode: mode,
+			Period: period,
+		},
 		success: function (data) {
 			if (!$.trim(data)) {
 				$("#accumulateContainer").empty();
-				$("#accumulateContainer").append('<div class="alert alert-danger" role="alert"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Nothing found!</div>');
-				$(".ld-ext-right").removeClass('running');
-				$(".ld-ext-right").prop('disabled', false);
-			}
-			else {
+				$("#accumulateContainer").append(
+					'<div class="alert alert-danger" role="alert"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Nothing found!</div>'
+				);
+				$(".ld-ext-right").removeClass("running");
+				$(".ld-ext-right").prop("disabled", false);
+			} else {
 				// used for switching award text in the table and the chart
 				switch (award) {
-					case 'dxcc': var awardtext = lang_statistics_accumulated_worked_dxcc; break;
-					case 'was': var awardtext = lang_statistics_accumulated_worked_states; break;
-					case 'iota': var awardtext = lang_statistics_accumulated_worked_iota; break;
-					case 'waz': var awardtext = lang_statistics_accumulated_worked_cqzone; break;
+					case "dxcc":
+						var awardtext = lang_statistics_accumulated_worked_dxcc;
+						break;
+					case "was":
+						var awardtext =
+							lang_statistics_accumulated_worked_states;
+						break;
+					case "iota":
+						var awardtext = lang_statistics_accumulated_worked_iota;
+						break;
+					case "waz":
+						var awardtext =
+							lang_statistics_accumulated_worked_cqzone;
+						break;
 				}
 
 				var periodtext = lang_general_word_year;
-				if (period == 'month') {
-					periodtext = lang_general_word_year + ' + ' + lang_general_word_month;
+				if (period == "month") {
+					periodtext =
+						lang_general_word_year +
+						" + " +
+						lang_general_word_month;
 				}
 				// removing the old chart so that it will not interfere when loading chart again
 				$("#accumulateContainer").empty();
-				$("#accumulateContainer").append("<canvas id=\"myChartAccumulate\" width=\"400\" height=\"150\"></canvas><div id=\"accumulateTable\"></div>");
+				$("#accumulateContainer").append(
+					'<canvas id="myChartAccumulate" width="400" height="150"></canvas><div id="accumulateTable"></div>'
+				);
 
 				// appending table to hold the data
-				$("#accumulateTable").append('<table style="width:100%" class="accutable table table-sm table-bordered table-hover table-striped table-condensed text-center"><thead>' +
-					'<tr>' +
-					'<td>#</td>' +
-					'<td>' + periodtext + '</td>' +
-					'<td>' + awardtext + '</td>' +
-					'</tr>' +
-					'</thead>' +
-					'<tbody></tbody></table>');
+				$("#accumulateTable").append(
+					'<table style="width:100%" class="accutable table table-sm table-bordered table-hover table-striped table-condensed text-center"><thead>' +
+						"<tr>" +
+						"<td>#</td>" +
+						"<td>" +
+						periodtext +
+						"</td>" +
+						"<td>" +
+						awardtext +
+						"</td>" +
+						"</tr>" +
+						"</thead>" +
+						"<tbody></tbody></table>"
+				);
 				var labels = [];
 				var dataDxcc = [];
 
-				var $myTable = $('.accutable');
+				var $myTable = $(".accutable");
 				var i = 1;
 
 				// building the rows in the table
 				var rowElements = data.map(function (row) {
+					var $row = $("<tr></tr>");
 
-					var $row = $('<tr></tr>');
-
-					var $iterator = $('<td></td>').html(i++);
-					var $type = $('<td></td>').html(row.year);
-					var $content = $('<td></td>').html(row.total);
+					var $iterator = $("<td></td>").html(i++);
+					var $type = $("<td></td>").html(row.year);
+					var $content = $("<td></td>").html(row.total);
 
 					$row.append($iterator, $type, $content);
 
@@ -73,76 +99,78 @@ function accumulatePlot(form) {
 					dataDxcc.push(this.total);
 				});
 
-				var ctx = document.getElementById("myChartAccumulate").getContext('2d');
+				var ctx = document
+					.getElementById("myChartAccumulate")
+					.getContext("2d");
 				var headerperiod;
-				if (period == 'year') {
+				if (period == "year") {
 					headerperiod = lang_general_word_yearly;
-				} else if (period == 'month') {
+				} else if (period == "month") {
 					headerperiod = lang_general_word_monthly;
 				} else {
-					headerperiod = 'n/a';
+					headerperiod = "n/a";
 				}
 				var myChart = new Chart(ctx, {
-					type: 'bar',
+					type: "bar",
 					data: {
 						labels: labels,
-						datasets: [{
-							label: awardtext + ' (' + headerperiod + ')',
-							data: dataDxcc,
-							backgroundColor: 'rgba(54, 162, 235, 0.2)',
-							borderColor: 'rgba(54, 162, 235, 1)',
-							borderWidth: 2,
-							color: color
-						}]
+						datasets: [
+							{
+								label: awardtext + " (" + headerperiod + ")",
+								data: dataDxcc,
+								backgroundColor: "rgba(54, 162, 235, 0.2)",
+								borderColor: "rgba(54, 162, 235, 1)",
+								borderWidth: 2,
+								color: color,
+							},
+						],
 					},
 					options: {
 						scales: {
 							y: {
 								ticks: {
 									beginAtZero: true,
-									color: color
-								}
+									color: color,
+								},
 							},
 							x: {
 								ticks: {
-									color: color
-								}
-							}
+									color: color,
+								},
+							},
 						},
 						plugins: {
 							legend: {
 								labels: {
-									color: color
-								}
-							}
-						}
-					}
+									color: color,
+								},
+							},
+						},
+					},
 				});
-				$(".ld-ext-right").removeClass('running');
-				$(".ld-ext-right").prop('disabled', false);
-				$('.accutable').DataTable({
+				$(".ld-ext-right").removeClass("running");
+				$(".ld-ext-right").prop("disabled", false);
+				$(".accutable").DataTable({
 					responsive: false,
 					ordering: false,
-					"scrollY": "400px",
-					"scrollCollapse": true,
-					"paging": false,
-					"scrollX": true,
-					"language": {
+					scrollY: "400px",
+					scrollCollapse: true,
+					paging: false,
+					scrollX: true,
+					language: {
 						url: getDataTablesLanguageUrl(),
 					},
-					dom: 'Bfrtip',
-					buttons: [
-						'csv'
-					]
+					dom: "Bfrtip",
+					buttons: ["csv"],
 				});
 
 				// using this to change color of csv-button if dark mode is chosen
-				var background = $('body').css("background-color");
+				var background = $("body").css("background-color");
 
-				if (background != ('rgb(255, 255, 255)')) {
+				if (background != "rgb(255, 255, 255)") {
 					$(".buttons-csv").css("color", "white");
 				}
 			}
-		}
+		},
 	});
 }
