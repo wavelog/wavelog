@@ -165,17 +165,6 @@
                             <?php } ?>
                         </td>
                     </tr>
-
-                    <tr>
-                        <td>openssl</td>
-                        <td>
-                            <?php if(in_array  ('openssl', get_loaded_extensions())) { ?>
-                                <span class="badge text-bg-success">Installed</span>
-                            <?php } else { ?>
-                                <span class="badge text-bg-danger">Not Installed</span>
-                            <?php } ?>
-                        </td>
-                    </tr>
                 </table>
             </div>
         </div>
