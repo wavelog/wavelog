@@ -547,24 +547,30 @@ class Logbook_model extends CI_Model {
         return $this->db->get($this->config->item('table_name'));
     }
 
-  public function get_callsigns($callsign){
-    $this->db->select('COL_CALL');
-    $this->db->distinct();
-    $this->db->like('COL_CALL', $callsign);
+    public function get_callsigns($callsign){
+	    $this->load->model('logbooks_model');
+	    $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+	    $this->db->select('COL_CALL');
+	    $this->db->distinct();
+	    $this->db->like('COL_CALL', $callsign);
+	    $this->db->where_in('station_id', $logbooks_locations_array);
 
-    return $this->db->get($this->config->item('table_name'));
+	    return $this->db->get($this->config->item('table_name'));
 
-  }
+    }
 
-  public function get_dok($callsign){
-    $this->db->select('COL_DARC_DOK');
-    $this->db->where('COL_CALL', $callsign);
-    $this->db->order_by("COL_TIME_ON", "desc");
-    $this->db->limit(1);
+    public function get_dok($callsign){
+	    $this->load->model('logbooks_model');
+	    $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+	    $this->db->select('COL_DARC_DOK');
+	    $this->db->where('COL_CALL', $callsign);
+	    $this->db->where_in('station_id', $logbooks_locations_array);
+	    $this->db->order_by("COL_TIME_ON", "desc");
+	    $this->db->limit(1);
 
-    return $this->db->get($this->config->item('table_name'));
+	    return $this->db->get($this->config->item('table_name'));
 
-  }
+    }
 
   function add_qso($data, $skipexport = false, $batchmode = false) {
 
