@@ -111,6 +111,7 @@ document.onkeyup = function (e) {
 		reset_log_fields();
 		// CTRL-Enter logs QSO
 	} else if ((e.keyCode == 10 || e.keyCode == 13) && (e.ctrlKey || e.metaKey)) {
+		$("#callsign").blur();
 		logQso();
 		// Enter in received exchange logs QSO
 	} else if ((e.which == 13) && (
@@ -203,9 +204,9 @@ $('#start_date').change(function() {
 });
 
 // On Key up check and suggest callsigns
-$("#callsign").keyup(function () {
+$("#callsign").keyup(async function (e) {
 	var call = $(this).val();
-	if (call.length >= 3) {
+	if ((!((e.keyCode == 10 || e.keyCode == 13) && (e.ctrlKey || e.metaKey))) && (call.length >= 3)) {	// prevent checking again when pressing CTRL-Enter
 
 		$.ajax({
 			url: 'lookup/scp',
@@ -219,7 +220,7 @@ $("#callsign").keyup(function () {
 			}
 		  });
 
-		checkIfWorkedBefore();
+		await checkIfWorkedBefore();
 		var qTable = $('.qsotable').DataTable();
 		qTable.search(call).draw();
 	}
@@ -228,7 +229,7 @@ $("#callsign").keyup(function () {
 	}
 });
 
-function checkIfWorkedBefore() {
+async function checkIfWorkedBefore() {
 	var call = $("#callsign").val();
 	if (call.length >= 3) {
 		$('#callsign_info').text("");
