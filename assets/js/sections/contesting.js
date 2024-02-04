@@ -400,14 +400,14 @@ function logQso() {
 				serials = $("#exch_serial_s").val();
 				serialr = $("#exch_serial_r").val();
 			break;
-			
+
 			case 'Serialexchange':
 				exchsent = $("#exch_sent").val();
 				exchrcvd = $("#exch_rcvd").val();
 				serials = $("#exch_serial_s").val();
 				serialr = $("#exch_serial_r").val();
 			break;
-			
+
 			case 'Serialgridsquare':
 				gridr = gridsquare;
 				vuccr = vucc;
@@ -415,21 +415,6 @@ function logQso() {
 				serialr = $("#exch_serial_r").val();
 			break;
 		}
-
-		var data = [[
-			$("#start_date").val() + ' ' + $("#start_time").val(),
-			$("#callsign").val().toUpperCase(),
-			$("#band").val(),
-			$("#mode").val(),
-			$("#rst_sent").val(),
-			$("#rst_rcvd").val(),
-			exchsent,
-			exchrcvd,
-			serials,
-			serialr,
-			gridr,
-			vuccr,
-		]];
 
 		var formdata = new FormData(document.getElementById("qso_input"));
 		$.ajax({
@@ -447,7 +432,7 @@ function logQso() {
 				}
 
 				$('#name').val("");
-				
+
 				$('#callsign').val("");
 				$('#comment').val("");
 				$('#exch_rcvd').val("");
@@ -455,7 +440,7 @@ function logQso() {
 				$('#exch_serial_r').val("");
 				$("#callsign").focus();
 				await setSession(formdata);
-				
+
 				await refresh_qso_table(sessiondata);
 				var qTable = $('.qsotable').DataTable();
 				qTable.search('').order([0, 'desc']).draw();
@@ -471,23 +456,23 @@ async function getSession() {
 		type: 'post',
 	});
 }
-	
+
 async function restoreContestSession(data) {
 	if (data) {
 		if (data.copytodok == "1") {
 			$('#copyexchangetodok').prop('checked', true);
 		}
-	
+
 		if (data.contestid != "") {
 			$("#contestname").val(data.contestid);
 		}
-	
+
 		if (data.exchangetype != "") {
 			$("#exchangetype").val(data.exchangetype);
 			setExchangetype(data.exchangetype);
 			setSerial(data);
 		}
-	
+
 		if (data.exchangesent != "") {
 			$("#exch_sent").val(data.exchangesent);
 		}
@@ -508,6 +493,7 @@ async function refresh_qso_table(data) {
 			data: { 'qso': data.qso, },
 			success: function (html) {
 				var mode = '';
+				var data;
 				$(".contest_qso_table_contents").empty();
 				$.each(html, function () {
 					if (this.col_submode == null || this.col_submode == '') {
@@ -516,20 +502,21 @@ async function refresh_qso_table(data) {
 						mode = this.col_submode;
 					}
 
-					$(".qsotable tbody").prepend('<tr>' +
-						'<td>' + this.col_time_on + '</td>' +
-						'<td>' + this.col_call + '</td>' +
-						'<td>' + this.col_band + '</td>' +
-						'<td>' + mode + '</td>' +
-						'<td>' + this.col_rst_sent + '</td>' +
-						'<td>' + this.col_rst_rcvd + '</td>' +
-						'<td>' + this.col_stx_string + '</td>' +
-						'<td>' + this.col_srx_string + '</td>' +
-						'<td>' + this.col_stx + '</td>' +
-						'<td>' + this.col_srx + '</td>' +
-						'<td>' + this.col_gridsquare + '</td>' +
-						'<td>' + this.col_vucc_grids + '</td>' +
-						'</tr>');
+					data = [[
+						this.col_time_on,
+						this.col_call,
+						this.col_band,
+						mode,
+						this.col_rst_sent,
+						this.col_rst_rcvd,
+						this.col_stx_string,
+						this.col_srx_string,
+						this.col_stx,
+						this.col_srx,
+						this.col_gridsquare,
+						this.col_vucc_grids
+					]];
+
 				});
 				if (!$.fn.DataTable.isDataTable('.qsotable')) {
 					$.fn.dataTable.moment('DD-MM-YYYY HH:mm:ss');
@@ -561,6 +548,8 @@ async function refresh_qso_table(data) {
 						]
 					});
 				}
+				var table = $('.qsotable').DataTable();
+				table.rows.add(data).draw();
 			}
 		});
 	}
