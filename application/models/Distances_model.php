@@ -171,8 +171,8 @@ class Distances_model extends CI_Model
 				$bearingdistance = $this->qra->distance($stationgrid, $qso['grid'], $measurement_base);
 				if ($bearingdistance != $qso['COL_DISTANCE']) {
 					$data = array('COL_DISTANCE' => $bearingdistance);
-	  				$this->db->where('COL_PRIMARY_KEY', $qso['COL_PRIMARY_KEY']);
-	  				$this->db->update($this->config->item('table_name'), $data);
+					$this->db->where('COL_PRIMARY_KEY', $qso['COL_PRIMARY_KEY']);
+					$this->db->update($this->config->item('table_name'), $data);
 				}
 				$arrayplacement = (int)($bearingdistance / 50);                                // Resolution is 50, calculates where to put result in array
 				if ($bearingdistance > $qrb['Distance']) {                              // Saves the longest QSO
@@ -205,8 +205,11 @@ class Distances_model extends CI_Model
      * Returns: bool
      */
 	function valid_locator ($loc) {
-		$regex = '^[A-R]{2}[0-9]{2}[A-X]{2}$';
-		if (preg_match("%{$regex}%i", $loc)) {
+		$loc = strtoupper($loc);
+		if (strlen($loc) == 4)  $loc .= "LL";	// Only 4 Chars? Fill with center "LL" as only A-R allowed
+		if (strlen($loc) == 6)  $loc .= "55";	// Only 6 Chars? Fill with center "55"
+		if (strlen($loc) == 8)  $loc .= "LL";	// Only 8 Chars? Fill with center "LL" as only A-R allowed
+		if (preg_match('/^[A-R]{2}[0-9]{2}[A-X]{2}[0-9]{2}[A-X]{2}$/', $loc)) {
 			return true;
 		}
 		else {
@@ -214,7 +217,7 @@ class Distances_model extends CI_Model
 		}
 	}
 
-    	/*
+    /*
 	 * Used to fetch QSOs from the logbook in the awards
 	 */
 	public function qso_details($distance, $band, $sat){
