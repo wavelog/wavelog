@@ -492,32 +492,6 @@ async function refresh_qso_table(data) {
 			type: 'post',
 			data: { 'qso': data.qso, },
 			success: function (html) {
-				var mode = '';
-				var data = [];
-				$(".contest_qso_table_contents").empty();
-				$.each(html, function () {
-					if (this.col_submode == null || this.col_submode == '') {
-						mode = this.col_mode;
-					} else {
-						mode = this.col_submode;
-					}
-
-					data = [[
-						this.col_time_on,
-						this.col_call,
-						this.col_band,
-						mode,
-						this.col_rst_sent,
-						this.col_rst_rcvd,
-						this.col_stx_string,
-						this.col_srx_string,
-						this.col_stx,
-						this.col_srx,
-						this.col_gridsquare,
-						this.col_vucc_grids
-					]];
-
-				});
 				if (!$.fn.DataTable.isDataTable('.qsotable')) {
 					$.fn.dataTable.moment('DD-MM-YYYY HH:mm:ss');
 					$('.qsotable').DataTable({
@@ -549,10 +523,38 @@ async function refresh_qso_table(data) {
 					});
 				}
 				var table = $('.qsotable').DataTable();
-				if (data.length > 0) {
-					table.clear();
-					table.rows.add(data).draw();
-				}
+				table.clear();
+
+				var mode = '';
+				var data;
+				$.each(html, function () {
+					if (this.col_submode == null || this.col_submode == '') {
+						mode = this.col_mode;
+					} else {
+						mode = this.col_submode;
+					}
+
+					data = [[
+						this.col_time_on,
+						this.col_call,
+						this.col_band,
+						mode,
+						this.col_rst_sent,
+						this.col_rst_rcvd,
+						this.col_stx_string,
+						this.col_srx_string,
+						this.col_stx,
+						this.col_srx,
+						this.col_gridsquare,
+						this.col_vucc_grids
+					]];
+
+					if (data.length > 0) {
+						table.rows.add(data).draw();
+					}
+
+				});
+
 			}
 		});
 	}
