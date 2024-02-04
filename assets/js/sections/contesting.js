@@ -493,7 +493,7 @@ async function refresh_qso_table(data) {
 			data: { 'qso': data.qso, },
 			success: function (html) {
 				var mode = '';
-				var data;
+				var data = [];
 				$(".contest_qso_table_contents").empty();
 				$.each(html, function () {
 					if (this.col_submode == null || this.col_submode == '') {
@@ -549,7 +549,10 @@ async function refresh_qso_table(data) {
 					});
 				}
 				var table = $('.qsotable').DataTable();
-				table.rows.add(data).draw();
+				if (data.length > 0) {
+					table.clear();
+					table.rows.add(data).draw();
+				}
 			}
 		});
 	}
