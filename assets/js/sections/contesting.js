@@ -36,6 +36,39 @@ async function reset_contest_session() {
 	$(".contest_qso_table_contents").empty();
 	$('#copyexchangetodok').prop('checked', false);
 
+	if (!$.fn.DataTable.isDataTable('.qsotable')) {
+		$.fn.dataTable.moment('DD-MM-YYYY HH:mm:ss');
+		$('.qsotable').DataTable({
+			"stateSave": true,
+			"pageLength": 25,
+			responsive: false,
+			"scrollY": "400px",
+			"scrollCollapse": true,
+			"paging": false,
+			"scrollX": true,
+			"language": {
+				url: getDataTablesLanguageUrl(),
+			},
+			order: [0, 'desc'],
+			"columnDefs": [
+				{
+					"render": function ( data, type, row ) {
+						return pad(row[8],3);
+					},
+					"targets" : 8
+				},
+				{
+					"render": function ( data, type, row ) {
+						return pad(row[9],3);
+					},
+					"targets" : 9
+				}
+			]
+		});
+	}
+	var table = $('.qsotable').DataTable();
+	table.clear();
+
 }
 
 // Storing the contestid in contest session
