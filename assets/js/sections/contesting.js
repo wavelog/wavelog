@@ -508,6 +508,10 @@ async function refresh_qso_table(data) {
 			data: { 'qso': data.qso, },
 			success: function (html) {
 				var mode = '';
+				if ($.fn.DataTable.isDataTable('.qsotable')) {
+					qtab= $('.qsotable').DataTable();
+					qtab.destroy();
+				}
 				$(".contest_qso_table_contents").empty();
 				$.each(html, function () {
 					if (this.col_submode == null || this.col_submode == '') {
@@ -531,36 +535,34 @@ async function refresh_qso_table(data) {
 						'<td>' + this.col_vucc_grids + '</td>' +
 						'</tr>');
 				});
-				if (!$.fn.DataTable.isDataTable('.qsotable')) {
-					$.fn.dataTable.moment('DD-MM-YYYY HH:mm:ss');
-					$('.qsotable').DataTable({
-						"stateSave": true,
-						"pageLength": 25,
-						responsive: false,
-						"scrollY": "400px",
-						"scrollCollapse": true,
-						"paging": false,
-						"scrollX": true,
-						"language": {
-							url: getDataTablesLanguageUrl(),
-						},
-						order: [0, 'desc'],
-						"columnDefs": [
-							{
-								"render": function ( data, type, row ) {
-									return pad(row[8],3);
-								},
-								"targets" : 8
+				$.fn.dataTable.moment('DD-MM-YYYY HH:mm:ss');
+				$('.qsotable').DataTable({
+					"stateSave": true,
+					"pageLength": 25,
+					responsive: false,
+					"scrollY": "400px",
+					"scrollCollapse": true,
+					"paging": false,
+					"scrollX": true,
+					"language": {
+						url: getDataTablesLanguageUrl(),
+					},
+					order: [0, 'desc'],
+					"columnDefs": [
+						{
+							"render": function ( data, type, row ) {
+								return pad(row[8],3);
 							},
-							{
-								"render": function ( data, type, row ) {
-									return pad(row[9],3);
-								},
-								"targets" : 9
-							}
-						]
-					});
-				}
+							"targets" : 8
+						},
+						{
+							"render": function ( data, type, row ) {
+								return pad(row[9],3);
+							},
+							"targets" : 9
+						}
+					]
+				});
 			}
 		});
 	}
