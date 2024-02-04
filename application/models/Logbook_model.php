@@ -292,7 +292,7 @@ class Logbook_model extends CI_Model {
 
       $data['COL_STATION_CALLSIGN'] = strtoupper(trim($station['station_callsign']));
       $data['COL_MY_DXCC'] = strtoupper(trim($station['station_dxcc']));
-      $data['COL_MY_COUNTRY'] = strtoupper(trim($station['station_country']));
+      $data['COL_MY_COUNTRY'] = strtoupper(trim($station['station_country'] ?? ''));
       $data['COL_MY_CNTY'] = strtoupper(trim($station['station_cnty']));
       $data['COL_MY_CQ_ZONE'] = strtoupper(trim($station['station_cq']));
       $data['COL_MY_ITU_ZONE'] = strtoupper(trim($station['station_itu']));
@@ -4274,7 +4274,7 @@ function lotw_last_qsl_date($user_id) {
       return '';
     }
 
-    
+
     public function check_missing_dxcc_id($all){
         // get all records with no COL_DXCC
         $this->db->select("COL_PRIMARY_KEY, COL_CALL, COL_TIME_ON, COL_TIME_OFF");
