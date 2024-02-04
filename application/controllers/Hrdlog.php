@@ -165,10 +165,12 @@ class Hrdlog extends CI_Controller {
 
         $this->load->model('logbook_model');
 
-        foreach ($data['qsos']->result() as $qso)
+	if (isset($data['qsos'])) {
+		foreach ($data['qsos']->result() as $qso)
 		{
-            $this->logbook_model->mark_hrdlog_qsos_sent($qso->COL_PRIMARY_KEY);
-        }
+			$this->logbook_model->mark_hrdlog_qsos_sent($qso->COL_PRIMARY_KEY);
+		}
+	}
 
         $this->load->view('interface_assets/header', $data);
         $this->load->view('hrdlog/mark_hrdlog', $data);
