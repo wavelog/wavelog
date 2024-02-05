@@ -27,6 +27,7 @@ $( document ).ready(function() {
 						$("#noticer").html("QSO Added");
 						reset_fields();
 						htmx.trigger("#qso-last-table", "qso_event")
+						$("callsign").focus();
 					} else {
 						$("#noticer").addClass("alert alert-warning");
 						$("#noticer").html(result.errors);
