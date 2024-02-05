@@ -504,6 +504,20 @@
                     </tr>
                     <?php } ?>
 
+                    <?php if($row->COL_MY_IOTA) { ?>
+                    <tr>
+                        <td><?php echo lang('gen_hamradio_station') . ' ' . lang('gen_hamradio_iota_reference'); ?></td>
+                        <td><?php echo $row->COL_MY_IOTA; ?></td>
+                    </tr>
+                    <?php } ?>
+
+                    <?php if($row->COL_MY_SOTA_REF) { ?>
+                    <tr>
+                        <td><?php echo lang('gen_hamradio_station') . ' ' . lang('gen_hamradio_sota_reference'); ?></td>
+                        <td><?php echo $row->COL_MY_SOTA_REF; ?></td>
+                    </tr>
+                    <?php } ?>
+
                     <?php if($row->COL_MY_WWFF_REF) { ?>
                     <tr>
                         <td><?php echo lang('gen_hamradio_station') . ' ' . lang('gen_hamradio_wwff_reference'); ?></td>
@@ -608,7 +622,7 @@
         <div class="tab-pane fade" id="eqslcard" role="tabpanel" aria-labelledby="table-tab">
         <?php
 	    if ($row->eqsl_image_file != null) {
-		    echo '<img class="d-block" src="' . base_url() . '/'. wl_getPathEqsl() .'/' . $row->eqsl_image_file .'" alt="eQSL picture">';
+		    echo '<img class="d-block" src="' . base_url() . '/'. $this->paths->getPathEqsl() .'/' . $row->eqsl_image_file .'" alt="eQSL picture">';
 	    }
         ?>
         </div>

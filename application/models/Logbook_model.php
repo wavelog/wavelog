@@ -292,7 +292,7 @@ class Logbook_model extends CI_Model {
 
       $data['COL_STATION_CALLSIGN'] = strtoupper(trim($station['station_callsign']));
       $data['COL_MY_DXCC'] = strtoupper(trim($station['station_dxcc']));
-      $data['COL_MY_COUNTRY'] = strtoupper(trim($station['station_country']));
+      $data['COL_MY_COUNTRY'] = strtoupper(trim($station['station_country'] ?? ''));
       $data['COL_MY_CNTY'] = strtoupper(trim($station['station_cnty']));
       $data['COL_MY_CQ_ZONE'] = strtoupper(trim($station['station_cq']));
       $data['COL_MY_ITU_ZONE'] = strtoupper(trim($station['station_itu']));
@@ -547,24 +547,30 @@ class Logbook_model extends CI_Model {
         return $this->db->get($this->config->item('table_name'));
     }
 
-  public function get_callsigns($callsign){
-    $this->db->select('COL_CALL');
-    $this->db->distinct();
-    $this->db->like('COL_CALL', $callsign);
+    public function get_callsigns($callsign){
+	    $this->load->model('logbooks_model');
+	    $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+	    $this->db->select('COL_CALL');
+	    $this->db->distinct();
+	    $this->db->like('COL_CALL', $callsign);
+	    $this->db->where_in('station_id', $logbooks_locations_array);
 
-    return $this->db->get($this->config->item('table_name'));
+	    return $this->db->get($this->config->item('table_name'));
 
-  }
+    }
 
-  public function get_dok($callsign){
-    $this->db->select('COL_DARC_DOK');
-    $this->db->where('COL_CALL', $callsign);
-    $this->db->order_by("COL_TIME_ON", "desc");
-    $this->db->limit(1);
+    public function get_dok($callsign){
+	    $this->load->model('logbooks_model');
+	    $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+	    $this->db->select('COL_DARC_DOK');
+	    $this->db->where('COL_CALL', $callsign);
+	    $this->db->where_in('station_id', $logbooks_locations_array);
+	    $this->db->order_by("COL_TIME_ON", "desc");
+	    $this->db->limit(1);
 
-    return $this->db->get($this->config->item('table_name'));
+	    return $this->db->get($this->config->item('table_name'));
 
-  }
+    }
 
   function add_qso($data, $skipexport = false, $batchmode = false) {
 
@@ -2981,7 +2987,7 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
   }
 
   /* Used to check if the qso is already in the database */
-    function import_check($datetime, $callsign, $band, $mode, $station_callsign) {
+    function import_check($datetime, $callsign, $band, $mode, $station_callsign, $station_id = null) {
 	    $mode=$this->get_main_mode_from_mode($mode);
 
 	    $this->db->select('COL_PRIMARY_KEY, COL_TIME_ON, COL_CALL, COL_BAND');
@@ -2991,6 +2997,10 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 	    $this->db->where('COL_STATION_CALLSIGN', $station_callsign);
 	    $this->db->where('COL_BAND', $band);
 	    $this->db->where('COL_MODE', $mode);
+
+	    if(isset($station_id) && $station_id > 0) {
+		    $this->db->where('station_id', $station_id);
+	    }
 
 	    $query = $this->db->get($this->config->item('table_name'));
 
@@ -4264,7 +4274,7 @@ function lotw_last_qsl_date($user_id) {
       return '';
     }
 
-    
+
     public function check_missing_dxcc_id($all){
         // get all records with no COL_DXCC
         $this->db->select("COL_PRIMARY_KEY, COL_CALL, COL_TIME_ON, COL_TIME_OFF");

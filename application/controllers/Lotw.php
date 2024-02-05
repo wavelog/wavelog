@@ -717,9 +717,9 @@ class Lotw extends CI_Controller {
 
 			// Get credentials for LoTW
 			$query = $this->user_model->get_by_id($this->session->userdata('user_id'));
-    	    $q = $query->row();
-    	    $data['user_lotw_name'] = urlencode($q->user_lotw_name);
-			$data['user_lotw_password'] = urlencode($q->user_lotw_password);
+			$q = $query->row();
+			$data['user_lotw_name'] = urlencode($q->user_lotw_name ?? '');
+			$data['user_lotw_password'] = urlencode($q->user_lotw_password ?? '');
 
 			// Get URL for downloading LoTW
 			$query = $query = $this->db->query('SELECT lotw_download_url FROM config');
@@ -733,15 +733,15 @@ class Lotw extends CI_Controller {
 				$this->session->set_flashdata('warning', 'You have not defined your ARRL LoTW credentials!'); redirect('lotw/import');
 			}
 
-            $customDate = $this->input->post('from');
+			$customDate = $this->input->post('from');
 
 			if ($customDate != NULL) {
-                $lotw_last_qsl_date = date($customDate);
-            }
-            else {
-                // Query the logbook to determine when the last LoTW confirmation was
-                $lotw_last_qsl_date = date('Y-m-d', strtotime($this->logbook_model->lotw_last_qsl_date($this->session->userdata['user_id'])));
-            }
+				$lotw_last_qsl_date = date($customDate);
+			}
+			else {
+				// Query the logbook to determine when the last LoTW confirmation was
+				$lotw_last_qsl_date = date('Y-m-d', strtotime($this->logbook_model->lotw_last_qsl_date($this->session->userdata['user_id'])));
+			}
 
 			// Build URL for LoTW report file
 			$lotw_url .= "?";

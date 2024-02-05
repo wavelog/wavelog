@@ -17,6 +17,7 @@ $lang['general_word_next'] = 'След.';
 $lang['general_word_previous'] = 'Пред.';
 $lang['general_word_cancel'] = "Отмена";
 $lang['general_word_ok'] = "ОК";
+$lang['general_word_show'] = "Show";
 $lang['general_word_attention'] = "Внимание";
 $lang['general_word_enabled'] = "Включено";
 $lang['general_word_disabled'] = "Выключено";
@@ -51,6 +52,9 @@ $lang['general_word_year'] = 'Год';
 $lang['general_word_month'] = 'Месяц';
 $lang['general_word_day'] = "Day";
 $lang['general_word_days'] = "Days";
+$lang['general_word_period'] = "Period";
+$lang['general_word_yearly'] = "Yearly";
+$lang['general_word_monthly'] = "Monthly";
 
 $lang['general_word_colors'] = "Цвета";
 $lang['general_word_light'] = "Свет/лазер";

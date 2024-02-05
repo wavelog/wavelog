@@ -854,7 +854,8 @@ function mapQsos(form) {
 			url: base_url + 'index.php/logbookadvanced/mapSelectedQsos',
 			type: 'post',
 			data: {
-				ids: id_list
+				ids: id_list,
+				de: form.de.value
 			},
 			success: function(data) {
 				loadMap(data);
@@ -939,7 +940,6 @@ function loadMap(data) {
 
 	map.setView([30, 0], 1.5);
 
-	var maidenhead = L.maidenheadqrb().addTo(map);
 
 	var osm = new L.TileLayer(osmUrl, {minZoom: 1, maxZoom: 9, attribution: osmAttrib});
 
@@ -996,6 +996,8 @@ function loadMap(data) {
 		}).addTo(map);
 	});
 
+
+
 	/*Legend specific*/
     var legend = L.control({ position: "topright" });
 
@@ -1006,6 +1008,9 @@ function loadMap(data) {
     };
 
     legend.addTo(map);
+
+	var layerControl = new L.Control.Layers(null, { 'Gridsquares': maidenhead = L.maidenheadqrb() }).addTo(map);
+	maidenhead.addTo(map);
 }
 
 	function createContentMessage(qso) {

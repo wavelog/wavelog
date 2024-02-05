@@ -17,6 +17,7 @@ $lang['general_word_next'] = 'Weiter';
 $lang['general_word_previous'] = 'Zurück';
 $lang['general_word_cancel'] = "Abbrechen";
 $lang['general_word_ok'] = "OK";
+$lang['general_word_show'] = "Anzeigen";
 $lang['general_word_attention'] = "Achtung";
 $lang['general_word_enabled'] = "Eingeschaltet";
 $lang['general_word_disabled'] = "Ausgeschaltet";
@@ -51,6 +52,9 @@ $lang['general_word_year'] = 'Jahr';
 $lang['general_word_month'] = 'Monat';
 $lang['general_word_day'] = "Tag";
 $lang['general_word_days'] = "Tage";
+$lang['general_word_period'] = "Zeitraum";
+$lang['general_word_yearly'] = "jährlich";
+$lang['general_word_monthly'] = "monatlich";
 
 $lang['general_word_colors'] = "Farben";
 $lang['general_word_light'] = "Licht/Laser";

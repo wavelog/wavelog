@@ -17,6 +17,7 @@ $lang['general_word_next'] = '后一项';
 $lang['general_word_previous'] = '前一项';
 $lang['general_word_cancel'] = "取消";
 $lang['general_word_ok'] = "确认";
+$lang['general_word_show'] = "Show";
 $lang['general_word_attention'] = "注意";
 $lang['general_word_enabled'] = "已启用";
 $lang['general_word_disabled'] = "已禁用";
@@ -51,6 +52,9 @@ $lang['general_word_year'] = '年';
 $lang['general_word_month'] = '月';
 $lang['general_word_day'] = "日";
 $lang['general_word_days'] = "天";
+$lang['general_word_period'] = "Period";
+$lang['general_word_yearly'] = "Yearly";
+$lang['general_word_monthly'] = "Monthly";
 
 $lang['general_word_colors'] = "颜色";
 $lang['general_word_light'] = "浅色/高光";

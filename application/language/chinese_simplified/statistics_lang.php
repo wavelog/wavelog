@@ -58,3 +58,15 @@ $lang['statistics_dwq_current_streak_continuous_days'] = "当前连续天数";
 $lang['statistics_dwq_make_qso_to_extend_streak'] = "如果你今天进行了QSO，那么就能延长你的连续天数，否则将会被打破清零";
 $lang['statistics_dwq_no_current_streak'] = "没有找到连续的天数";
 
+/*
+*
+* Accumulated Stats
+*
+*/
+
+$lang['statistics_accumulated_worked_dxcc'] = "Accumulated Number of DXCCs worked";
+$lang['statistics_accumulated_worked_states'] = "Accumulated Number of States worked";
+$lang['statistics_accumulated_worked_iota'] = "Accumulated Number of IOTAs worked";
+$lang['statistics_accumulated_worked_cqzone'] = "Accumulated Number of CQ Zones worked";
+
+

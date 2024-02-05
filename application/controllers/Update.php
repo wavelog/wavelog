@@ -68,7 +68,7 @@ class Update extends CI_Controller {
 					'lat' => (float) $entity->lat,
 					'start' => $start_date,
 					'end' => $end_date,
-				);	
+				);
 			}
 
 			array_push($a_data,$data);
@@ -76,10 +76,10 @@ class Update extends CI_Controller {
 			if ($count % 10  == 0)
 				$this->update_status("Preparing DXCC-Entries: ".$count);
 		}
-		$this->db->insert_batch('dxcc_entities', $a_data); 
+		$this->db->insert_batch('dxcc_entities', $a_data);
 
 		$this->update_status();
-		return $count;	
+		return $count;
 	}
 
     /*
@@ -118,10 +118,10 @@ class Update extends CI_Controller {
 			if ($count % 10  == 0)
 				$this->update_status("Preparing DXCC Exceptions: ".$count);
 		}
-		$this->db->insert_batch('dxcc_exceptions', $a_data); 
+		$this->db->insert_batch('dxcc_exceptions', $a_data);
 
 		$this->update_status();
-		return $count;	
+		return $count;
 	}
 
     /*
@@ -160,11 +160,11 @@ class Update extends CI_Controller {
 			if ($count % 10  == 0)
 				$this->update_status("Preparing DXCC Prefixes: ".$count);
 		}
-		$this->db->insert_batch('dxcc_prefixes', $a_data); 
+		$this->db->insert_batch('dxcc_prefixes', $a_data);
 
 		//print("$count prefixes processed");
 		$this->update_status();
-		return $count;	
+		return $count;
 	}
 
 	// Updates the DXCC & Exceptions from the Club Log Cty.xml file.
@@ -173,7 +173,7 @@ class Update extends CI_Controller {
 
 	    // give it 10 minutes...
 	    set_time_limit(600);
-	
+
 		// Load Migration data if any.
 		$this->load->library('migration');
 		$this->fix_migrations();
@@ -181,7 +181,7 @@ class Update extends CI_Controller {
 
 		// Download latest file.
 		$url = "https://cdn.clublog.org/cty.php?api=608df94896cb9c5421ae748235492b43815610c9";
-		
+
 		$gz = gzopen($url, 'r');
 		if ($gz === FALSE) {
 			$this->update_status("FAILED: Could not download from clublog.org");
@@ -199,7 +199,7 @@ class Update extends CI_Controller {
 			$this->update_status("FAILED: Could not write to cty.xml file");
 			return;
 		}
-	
+
 	    // Clear the tables, ready for new data
 		$this->db->empty_table("dxcc_entities");
 		$this->db->empty_table("dxcc_exceptions");
@@ -229,6 +229,9 @@ class Update extends CI_Controller {
 			$html .= "Dxcc Prefixes: ".$this->db->count_all('dxcc_prefixes')."<br/>";
 		} else {
 			$html = $done."....<br/>";
+			$datetime = new DateTime("now", new DateTimeZone('UTC'));
+			$datetime = $datetime->format('Ymd h:i');
+			$this->optionslib->update('dxcc_clublog_update', $datetime , 'no');
 		}
 
 		file_put_contents($this->make_update_path("status.html"), $html);
@@ -246,13 +249,13 @@ class Update extends CI_Controller {
             }
         }
 	}
-	
+
 	public function check_missing_dxcc($all = false){
 	    $this->load->model('logbook_model');
         $this->logbook_model->check_missing_dxcc_id($all);
 
 	}
-	
+
 	public function check_missing_continent() {
 		$this->load->model('logbook_model');
 		$this->logbook_model->check_missing_continent();
@@ -287,6 +290,9 @@ class Update extends CI_Controller {
                 if ($nCount > 0)
                 {
                     echo "DONE: " . number_format($nCount) . " callsigns loaded";
+					$datetime = new DateTime("now", new DateTimeZone('UTC'));
+					$datetime = $datetime->format('Ymd h:i');
+					$this->optionslib->update('scp_update', $datetime , 'no');
                 } else {
                     echo "FAILED: Empty file";
                 }
@@ -301,7 +307,7 @@ class Update extends CI_Controller {
     public function download_lotw_users() {
         $contents = file_get_contents('https://lotw.arrl.org/lotw-user-activity.csv', true);
 
-        if($contents === FALSE) { 
+        if($contents === FALSE) {
             echo "Something went wrong with fetching the LoTW users file.";
         } else {
             $file = './updates/lotw_users.csv';
@@ -316,10 +322,10 @@ class Update extends CI_Controller {
     }
 
     public function lotw_users() {
-        $mtime = microtime(); 
-        $mtime = explode(" ",$mtime); 
-        $mtime = $mtime[1] + $mtime[0]; 
-        $starttime = $mtime; 
+        $mtime = microtime();
+        $mtime = explode(" ",$mtime);
+        $mtime = $mtime[1] + $mtime[0];
+        $starttime = $mtime;
 
         $file = 'https://lotw.arrl.org/lotw-user-activity.csv';
 
@@ -328,7 +334,7 @@ class Update extends CI_Controller {
             echo "Something went wrong with fetching the LoTW uses file";
             return;
         }
-        $this->db->empty_table("lotw_users"); 
+        $this->db->empty_table("lotw_users");
         $i = 0;
         $data = fgetcsv($handle,1000,",");
         do {
@@ -336,7 +342,7 @@ class Update extends CI_Controller {
                 $lotwdata[$i]['callsign'] = $data[0];
                 $lotwdata[$i]['lastupload'] = $data[1] . ' ' . $data[2];
                 if (($i % 2000) == 0) {
-                    $this->db->insert_batch('lotw_users', $lotwdata); 
+                    $this->db->insert_batch('lotw_users', $lotwdata);
                     unset($lotwdata);
                     // echo 'Record ' . $i . '<br />';
                 }
@@ -345,15 +351,18 @@ class Update extends CI_Controller {
         } while ($data = fgetcsv($handle,1000,","));
         fclose($handle);
 
-        $this->db->insert_batch('lotw_users', $lotwdata); 
+        $this->db->insert_batch('lotw_users', $lotwdata);
 
-        $mtime = microtime(); 
-        $mtime = explode(" ",$mtime); 
-        $mtime = $mtime[1] + $mtime[0]; 
-        $endtime = $mtime; 
-        $totaltime = ($endtime - $starttime); 
-        echo "This page was created in ".$totaltime." seconds <br />"; 
+        $mtime = microtime();
+        $mtime = explode(" ",$mtime);
+        $mtime = $mtime[1] + $mtime[0];
+        $endtime = $mtime;
+        $totaltime = ($endtime - $starttime);
+        echo "This page was created in ".$totaltime." seconds <br />";
         echo "Records inserted: " . $i . " <br/>";
+		$datetime = new DateTime("now", new DateTimeZone('UTC'));
+		$datetime = $datetime->format('Ymd h:i');
+		$this->optionslib->update('lotw_users_update', $datetime , 'no');
     }
 
     public function lotw_check() {
@@ -385,6 +394,9 @@ class Update extends CI_Controller {
                 if ($nCount > 0)
                 {
                     echo "DONE: " . number_format($nCount) . " DOKs and SDOKs saved";
+					$datetime = new DateTime("now", new DateTimeZone('UTC'));
+					$datetime = $datetime->format('Ymd h:i');
+					$this->optionslib->update('dok_file_update', $datetime , 'no');
                 } else {
                     echo"FAILED: Empty file";
                 }
@@ -432,6 +444,9 @@ class Update extends CI_Controller {
         if ($nCount > 0)
         {
             echo "DONE: " . number_format($nCount) . " SOTA's saved";
+			$datetime = new DateTime("now", new DateTimeZone('UTC'));
+			$datetime = $datetime->format('Ymd h:i');
+			$this->optionslib->update('sota_file_update', $datetime , 'no');
         } else {
             echo"FAILED: Empty file";
         }
@@ -479,6 +494,9 @@ class Update extends CI_Controller {
         if ($nCount > 0)
         {
             echo "DONE: " . number_format($nCount) . " WWFF's saved";
+			$datetime = new DateTime("now", new DateTimeZone('UTC'));
+			$datetime = $datetime->format('Ymd h:i');
+			$this->optionslib->update('wwff_file_update', $datetime , 'no');
         } else {
             echo"FAILED: Empty file";
         }
@@ -522,6 +540,9 @@ class Update extends CI_Controller {
         if ($nCount > 0)
         {
             echo "DONE: " . number_format($nCount) . " POTA's saved";
+			$datetime = new DateTime("now", new DateTimeZone('UTC'));
+			$datetime = $datetime->format('Ymd h:i');
+			$this->optionslib->update('pota_file_update', $datetime , 'no');
         } else {
             echo"FAILED: Empty file";
         }

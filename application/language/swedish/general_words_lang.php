@@ -17,6 +17,7 @@ $lang['general_word_choose_file'] = 'Välj fil';
 $lang['general_word_next'] = 'Next';
 $lang['general_word_previous'] = 'Previous';
 $lang['general_word_not_display'] = "Not display";
+$lang['general_word_show'] = "Show";
 $lang['general_word_icon'] = "Icon";
 
 $lang['general_word_cancel'] = "Cancel";
@@ -51,6 +52,9 @@ $lang['general_word_city'] = 'City';
 $lang['general_word_total'] = 'Totalt';
 $lang['general_word_day'] = "Day";
 $lang['general_word_days'] = "Days";
+$lang['general_word_period'] = "Period";
+$lang['general_word_yearly'] = "Yearly";
+$lang['general_word_monthly'] = "Monthly";
 $lang['general_word_year'] = 'I år';
 $lang['general_word_month'] = 'Denna månad';
 
