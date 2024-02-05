@@ -40,7 +40,7 @@
           <li class="nav-item">
             <a class="nav-link" id="qsl-tab" data-bs-toggle="tab" href="#qsl" role="tab" aria-controls="qsl" aria-selected="false"><?php echo lang('gen_hamradio_qsl'); ?></a>
           </li>
-	
+
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" id="fav_item" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-star"></i></a>
     <div class="dropdown-menu">
@@ -557,8 +557,8 @@
           <input size="20" id="country" type="hidden" name="country" value="" />
         </div>
 
-        <button type="reset" class="btn btn-secondary" onclick="reset_fields()"><?php echo lang('qso_btn_reset_qso'); ?></button>
-        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> <?php echo lang('qso_btn_save_qso'); ?></button>
+        <button type="reset" class="btn btn-secondary resetbutton" onclick="reset_fields()"><?php echo lang('qso_btn_reset_qso'); ?></button>
+		<button type="button" class="btn btn-sm btn-primary logbutton" onclick="logTheQso();"><i class="fas fa-save"></i> <?php echo lang('qso_btn_save_qso'); ?></button>
         <div class="alert alert-danger warningOnSubmit mt-3" style="display:none;"><span><i class="fas fa-times-circle"></i></span> <span class="warningOnSubmit_txt ms-1">Error</span></div>
       </div>
     </form>

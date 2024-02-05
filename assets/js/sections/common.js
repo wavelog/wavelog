@@ -640,3 +640,23 @@ function getDataTablesLanguageUrl() {
 console.log("Ready to unleash your coding prowess and join the fun?\n\n" +
     "Check out our GitHub Repository and dive into the coding adventure:\n\n" +
     "🚀 https://www.github.com/wavelog/wavelog");
+
+	function logTheQso() {
+		if ($("#callsign").val().length > 0) {
+			$(".logbutton").prop("disabled", true);
+
+			var formdata = new FormData(document.getElementById("qso_input"));
+			$.ajax({
+				url: base_url + 'index.php/qso/saveqso',
+				type: 'post',
+				data: formdata,
+				processData: false,
+				contentType: false,
+				enctype: 'multipart/form-data',
+				success: async function (html) {
+					$(".resetbutton").trigger( "click" );
+					$(".logbutton").prop("disabled", false);
+				}
+			});
+		}
+	}
