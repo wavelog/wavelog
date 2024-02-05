@@ -31,6 +31,7 @@ $( document ).ready(function() {
 					if (result.message == 'success') {
 						$("#noticer").addClass("alert alert-info");
 						$("#noticer").html("QSO Added");
+						$("#noticer").show();
 						reset_fields();
 						clearTimeout();
 						set_timers();
@@ -38,14 +39,17 @@ $( document ).ready(function() {
 						htmx.trigger("#qso-last-table", "qso_event")
 						$("#callsign").val("");
 						$("#callsign").focus();
+						$("#noticer").fadeOut(2000);
 					} else {
 						$("#noticer").addClass("alert alert-warning");
 						$("#noticer").html(result.errors);
+						$("#noticer").show();
 					}
 				},
 				error: function() {
 						$("#noticer").addClass("alert alert-warning");
 						$("#noticer").html("Timeout while adding QSO. NOT added");
+						$("#noticer").show();
 				}
 			});
 		}
