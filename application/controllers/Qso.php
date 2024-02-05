@@ -56,10 +56,7 @@ class QSO extends CI_Controller {
 
 		if ($this->form_validation->run() == FALSE) {
 			$data['page_title'] = "Add QSO";
-
-			$this->load->view('interface_assets/header', $data);
-			$this->load->view('qso/index');
-			$this->load->view('interface_assets/footer');
+            		echo json_encode(array('message' => 'Error','errors' => validation_errors()));
 		} else {
 			// Store Basic QSO Info for reuse
 			// Put data in an array first, then call set_userdata once.
@@ -104,17 +101,7 @@ class QSO extends CI_Controller {
 			$this->logbook_model->create_qso();
 
 			// Get last 5 qsos
-			$data['query'] = $this->logbook_model->last_custom('5');
-
-			// Set Any Notice Messages
-			$data['notice'] = "QSO Added";
-
-			// Load view to create another contact
-			$data['page_title'] = "Add QSO";
-
-			$this->load->view('interface_assets/header', $data);
-			$this->load->view('qso/index');
-			$this->load->view('interface_assets/footer');
+            		echo json_encode(array('message' => 'success'));
 		}
 	}
 
