@@ -29,6 +29,7 @@ $( document ).ready(function() {
 				success: function(resdata) {
 					result = JSON.parse(resdata);
 					if (result.message == 'success') {
+						$("#noticer").removeClass("");
 						$("#noticer").addClass("alert alert-info");
 						$("#noticer").html("QSO Added");
 						$("#noticer").show();
@@ -41,12 +42,14 @@ $( document ).ready(function() {
 						$("#callsign").focus();
 						$("#noticer").fadeOut(2000);
 					} else {
+						$("#noticer").removeClass("");
 						$("#noticer").addClass("alert alert-warning");
 						$("#noticer").html(result.errors);
 						$("#noticer").show();
 					}
 				},
 				error: function() {
+						$("#noticer").removeClass("");
 						$("#noticer").addClass("alert alert-warning");
 						$("#noticer").html("Timeout while adding QSO. NOT added");
 						$("#noticer").show();
