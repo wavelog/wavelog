@@ -504,31 +504,31 @@
                     </tr>
                     <?php } ?>
 
-                    <?php if($row->COL_MY_IOTA) { ?>
+                    <?php if($row->station_iota) { ?>
                     <tr>
                         <td><?php echo lang('gen_hamradio_station') . ' ' . lang('gen_hamradio_iota_reference'); ?></td>
-                        <td><?php echo $row->COL_MY_IOTA; ?></td>
+                        <td><?php echo $row->station_iota; ?></td>
                     </tr>
                     <?php } ?>
 
-                    <?php if($row->COL_MY_SOTA_REF) { ?>
+                    <?php if($row->station_sota) { ?>
                     <tr>
                         <td><?php echo lang('gen_hamradio_station') . ' ' . lang('gen_hamradio_sota_reference'); ?></td>
-                        <td><?php echo $row->COL_MY_SOTA_REF; ?></td>
+                        <td><?php echo $row->station_sota; ?></td>
                     </tr>
                     <?php } ?>
 
-                    <?php if($row->COL_MY_WWFF_REF) { ?>
+                    <?php if($row->station_wwff) { ?>
                     <tr>
                         <td><?php echo lang('gen_hamradio_station') . ' ' . lang('gen_hamradio_wwff_reference'); ?></td>
-                        <td><?php echo $row->COL_MY_WWFF_REF; ?></td>
+                        <td><?php echo $row->station_wwff; ?></td>
                     </tr>
                     <?php } ?>
 
-                    <?php if($row->COL_MY_POTA_REF) { ?>
+                    <?php if($row->station_pota) { ?>
                     <tr>
                         <td><?php echo lang('gen_hamradio_station') . ' ' . lang('gen_hamradio_pota_reference'); ?></td>
-                        <td><?php echo $row->COL_MY_POTA_REF; ?></td>
+                        <td><?php echo $row->station_pota; ?></td>
                     </tr>
                     <?php } ?>
             </table>

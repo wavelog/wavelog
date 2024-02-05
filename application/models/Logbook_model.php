@@ -1044,6 +1044,10 @@ class Logbook_model extends CI_Model {
 
 	  $station_profile=$this->stations->profile_clean($stationId);
 	  $stationCallsign=$station_profile->station_callsign;
+	  $iotaRef = $station_profile->station_iota ?? '';
+	  $sotaRef = $station_profile->station_sota ?? '';
+	  $wwffRef = $station_profile->station_wwff ?? '';
+	  $potaRef = $station_profile->station_pota ?? '';
 
 	  $mode = $this->get_main_mode_if_submode($this->input->post('mode'));
 	  if ($mode == null) {
@@ -1222,7 +1226,11 @@ class Logbook_model extends CI_Model {
 		  'COL_STATION_CALLSIGN' => $stationCallsign,
 		  'COL_OPERATOR' => $this->input->post('operator_callsign'),
 		  'COL_STATE' =>$this->input->post('usa_state'),
-		  'COL_CNTY' => $uscounty
+		  'COL_CNTY' => $uscounty,
+		  'COL_MY_IOTA' => $iotaRef,
+		  'COL_MY_SOTA_REF' => $sotaRef,
+		  'COL_MY_WWFF_REF' => $wwffRef,
+		  'COL_MY_POTA_REF' => $potaRef,
 	  );
 
 	  if ($this->exists_hrdlog_credentials($data['station_id'])) {
@@ -3778,9 +3786,9 @@ function lotw_last_qsl_date($user_id) {
 				  }
 
 				  $data['COL_MY_CITY'] = trim($row['station_city']);
-				  $data['COL_MY_IOTA'] = strtoupper(trim($row['station_iota']));
-				  $data['COL_MY_SOTA_REF'] = strtoupper(trim($row['station_sota']));
-				  $data['COL_MY_WWFF_REF'] = strtoupper(trim($row['station_wwff']));
+				  $data['COL_MY_IOTA'] = strtoupper(trim($row['station_iota'] ?? ''));
+				  $data['COL_MY_SOTA_REF'] = strtoupper(trim($row['station_sota'] ?? ''));
+				  $data['COL_MY_WWFF_REF'] = strtoupper(trim($row['station_wwff'] ?? ''));
 				  $data['COL_MY_POTA_REF'] = $row['station_pota'] == null ? '' : strtoupper(trim($row['station_pota']));
 
 				  $data['COL_STATION_CALLSIGN'] = strtoupper(trim($row['station_callsign']));
