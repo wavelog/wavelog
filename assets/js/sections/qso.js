@@ -13,18 +13,13 @@ $( document ).ready(function() {
 			if ($('#qso_input input[name="end_time"]').length == 1) { _submit = testTimeOffConsistency(); }
 		}
 		if ( _submit) {
-			/* Trying to cnvert form to json
-			const data = new FormData(event.target);
-			const values = Object.fromEntries(data.entries());
-			*/ 
+			manual_addon='?manual='+qso_manual;
 			e.preventDefault();
 			$.ajax({
-				url: base_url+'index.php/qso',
+				url: base_url+'index.php/qso'+manual_addon,
 				method: 'POST',
 				type: 'post',
-				contentType: "application/json; charset=utf-8",
 				data: $(this).serialize(),
-				// data: JSON.stringify(values),
 				success: function(result) {
 					alert("X");
 				}
