@@ -568,6 +568,7 @@
 
   <div class="col-sm-7">
 
+<div id="noticer" role="alert"></div>
 <?php if($notice) { ?>
 <div id="notice-alerts" class="alert alert-info" role="alert">
   <?php echo $notice; ?>
@@ -648,7 +649,7 @@
 
         <div id="partial_view" style="font-size: 0.95rem;"></div>
 
-        <div id="qso-last-table" hx-get="<?php echo site_url('/qso/component_past_contacts'); ?>"  hx-trigger="load, every 5s">
+        <div id="qso-last-table" hx-get="<?php echo site_url('/qso/component_past_contacts'); ?>"  hx-trigger="load, qso_event, every 5s">
 
         </div>
       </div>

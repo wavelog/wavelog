@@ -56,7 +56,14 @@ class QSO extends CI_Controller {
 
 		if ($this->form_validation->run() == FALSE) {
 			$data['page_title'] = "Add QSO";
-            		echo json_encode(array('message' => 'Error','errors' => validation_errors()));
+
+			if (validation_errors() != '') {	// we're coming from a failed ajax-call
+				echo json_encode(array('message' => 'Error','errors' => validation_errors()));
+			} else {	// we're not coming from a POST
+				$this->load->view('interface_assets/header', $data);
+				$this->load->view('qso/index');
+				$this->load->view('interface_assets/footer');
+			}
 		} else {
 			// Store Basic QSO Info for reuse
 			// Put data in an array first, then call set_userdata once.
