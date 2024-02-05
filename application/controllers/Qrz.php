@@ -170,9 +170,10 @@ class Qrz extends CI_Controller {
 
 		$this->load->model('logbook_model');
 
-		foreach ($data['qsos']->result() as $qso)
-		{
-			$this->logbook_model->mark_qrz_qsos_sent($qso->COL_PRIMARY_KEY);
+		if (isset($data['qsos'])) {
+			foreach ($data['qsos']->result() as $qso) {
+				$this->logbook_model->mark_qrz_qsos_sent($qso->COL_PRIMARY_KEY);
+			}
 		}
 
 		$this->load->view('interface_assets/header', $data);

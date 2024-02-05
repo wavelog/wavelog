@@ -17,6 +17,7 @@ $lang['general_word_next'] = 'Next';
 $lang['general_word_previous'] = 'Previous';
 $lang['general_word_cancel'] = "Cancel";
 $lang['general_word_ok'] = "OK";
+$lang['general_word_show'] = "Show";
 $lang['general_word_attention'] = "Attention";
 $lang['general_word_enabled'] = "Enabled";
 $lang['general_word_disabled'] = "Disabled";
@@ -51,6 +52,9 @@ $lang['general_word_year'] = 'Rok';
 $lang['general_word_month'] = 'Měsíc';
 $lang['general_word_day'] = "Day";
 $lang['general_word_days'] = "Days";
+$lang['general_word_period'] = "Period";
+$lang['general_word_yearly'] = "Yearly";
+$lang['general_word_monthly'] = "Monthly";
 
 $lang['general_word_colors'] = "Colors";
 $lang['general_word_light'] = "Light/Laser";

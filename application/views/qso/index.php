@@ -131,7 +131,7 @@
               </div>
 
               <div class="row">
-                <div class="mb-3 col-md-6">
+                <div class="mb-3 col">
                   <label for="mode"><?php echo lang('gen_hamradio_mode'); ?></label>
                   <select id="mode" class="form-select mode form-select-sm" name="mode">
                   <?php
@@ -146,7 +146,7 @@
                   </select>
                 </div>
 
-                <div class="mb-3 col-md-6">
+                <div class="mb-3 col">
                   <label for="band"><?php echo lang('gen_hamradio_band'); ?></label>
 
                   <select id="band" class="form-select form-select-sm" name="band">
@@ -163,6 +163,10 @@
                         }
                   ?>
                   </select>
+                </div>
+                <div class="mb-3 col">
+                  <label for="frequency"><?php echo lang('gen_hamradio_frequency'); ?></label>
+                  <input type="text" class="form-control form-control-sm" id="frequency" name="freq_display" value="<?php echo $this->session->userdata('freq'); ?>" />
                 </div>
               </div>
 
@@ -234,11 +238,6 @@
                 <option value="<?php echo $row->id; ?>" <?php if($this->session->userdata('radio') == $row->id) { echo "selected=\"selected\""; } ?>><?php echo $row->radio; ?></option>
                 <?php } ?>
                 </select>
-            </div>
-
-            <div class="mb-3">
-              <label for="frequency"><?php echo lang('gen_hamradio_frequency'); ?></label>
-              <input type="text" class="form-control" id="frequency" name="freq_display" value="<?php echo $this->session->userdata('freq'); ?>" />
             </div>
 
             <div class="mb-3">
