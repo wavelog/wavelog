@@ -56,7 +56,6 @@ class QSO extends CI_Controller {
 
 		if ($this->form_validation->run() == FALSE) {
 			$data['page_title'] = "Add QSO";
-
 			if (validation_errors() != '') {	// we're coming from a failed ajax-call
 				echo json_encode(array('message' => 'Error','errors' => validation_errors()));
 			} else {	// we're not coming from a POST
