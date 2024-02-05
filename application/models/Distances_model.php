@@ -162,7 +162,7 @@ class Distances_model extends CI_Model
 				'Callsign' => '',
 				'Grid' => '',
 				'Distance' => '',
-				'Qsos' => '',
+				'Qsos' => 0,
 				'Grids' => ''
 			);
 
