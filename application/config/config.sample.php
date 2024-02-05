@@ -671,4 +671,5 @@ $config['proxy_ips'] = '';
 |
 |	'userdata'		Name of principal/centralized data stockage
 */
-$config['userdata'] = "userdata";
+
+// $config['userdata'] = "userdata";  
