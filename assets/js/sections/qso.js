@@ -7,6 +7,31 @@ $( document ).ready(function() {
 		  localStorage.removeItem("quicklogCallsign");
 		}
 	}, 100);
+	$("#qso_input").off('submit').on('submit', function(e){
+		var _submit = true;
+		if ((typeof qso_manual !== "undefined")&&(qso_manual == "1")) {
+			if ($('#qso_input input[name="end_time"]').length == 1) { _submit = testTimeOffConsistency(); }
+		}
+		if ( _submit) {
+			/* Trying to cnvert form to json
+			const data = new FormData(event.target);
+			const values = Object.fromEntries(data.entries());
+			*/ 
+			e.preventDefault();
+			$.ajax({
+				url: base_url+'index.php/qso',
+				method: 'POST',
+				type: 'post',
+				contentType: "application/json; charset=utf-8",
+				data: $(this).serialize(),
+				// data: JSON.stringify(values),
+				success: function(result) {
+					alert("X");
+				}
+			});
+		}
+		return false;
+	});
 	$('#reset_time').click(function() {
 		var now = new Date();
 		var localTime = now.getTime();
@@ -347,15 +372,7 @@ var favs={};
 		$('.satellite_names_list').append(items.join( "" ));
 	});
 
-	// Test Consistency value on submit form //
-	$("#qso_input").off('submit').on('submit', function(){
-		var _submit = true;
-		if ((typeof qso_manual !== "undefined")&&(qso_manual == "1")) {
-			if ($('#qso_input input[name="end_time"]').length == 1) { _submit = testTimeOffConsistency(); }
-		}
-		return _submit;
-	})
-});
+	});
 
 var selected_sat;
 var selected_sat_mode;
