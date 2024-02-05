@@ -1,12 +1,18 @@
 $( document ).ready(function() {
-	setTimeout(function() {
-		var callsignValue = localStorage.getItem("quicklogCallsign");
-		if (callsignValue !== null && callsignValue !== undefined) {
-		  $("#callsign").val(callsignValue);
-		  $("#mode").focus();
-		  localStorage.removeItem("quicklogCallsign");
-		}
-	}, 100);
+	clearTimeout();
+	set_timers();
+
+	function set_timers() {
+		setTimeout(function() {
+			var callsignValue = localStorage.getItem("quicklogCallsign");
+			if (callsignValue !== null && callsignValue !== undefined) {
+				$("#callsign").val(callsignValue);
+				$("#mode").focus();
+				localStorage.removeItem("quicklogCallsign");
+			}
+		}, 100);
+	}
+
 	$("#qso_input").off('submit').on('submit', function(e){
 		var _submit = true;
 		if ((typeof qso_manual !== "undefined")&&(qso_manual == "1")) {
@@ -26,12 +32,20 @@ $( document ).ready(function() {
 						$("#noticer").addClass("alert alert-info");
 						$("#noticer").html("QSO Added");
 						reset_fields();
+						clearTimeout();
+						set_timers();
+						resetTimers(qso_manual);
 						htmx.trigger("#qso-last-table", "qso_event")
-						$("callsign").focus();
+						$("#callsign").val("");
+						$("#callsign").focus();
 					} else {
 						$("#noticer").addClass("alert alert-warning");
 						$("#noticer").html(result.errors);
 					}
+				},
+				error: function() {
+						$("#noticer").addClass("alert alert-warning");
+						$("#noticer").html("Timeout while adding QSO. NOT added");
 				}
 			});
 		}
@@ -519,7 +533,6 @@ function reset_fields() {
 	$('#locator').val("");
 	$('#iota_ref').val("");
 	$('#sota_ref').val("");
-	$("#callsign").val("");
 	$("#locator").removeClass("confirmedGrid");
 	$("#locator").removeClass("workedGrid");
 	$("#locator").removeClass("newGrid");
