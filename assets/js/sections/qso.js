@@ -21,7 +21,9 @@ $( document ).ready(function() {
 				type: 'post',
 				data: $(this).serialize(),
 				success: function(result) {
-					alert("X");
+					if (result.message == 'success') {
+						// todo
+					}
 				}
 			});
 		}
