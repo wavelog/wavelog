@@ -20,9 +20,16 @@ $( document ).ready(function() {
 				method: 'POST',
 				type: 'post',
 				data: $(this).serialize(),
-				success: function(result) {
+				success: function(resdata) {
+					result = JSON.parse(resdata);
 					if (result.message == 'success') {
-						// todo
+						$("#noticer").addClass("alert alert-info");
+						$("#noticer").html("QSO Added");
+						reset_fields();
+						htmx.trigger("#qso-last-table", "qso_event")
+					} else {
+						$("#noticer").addClass("alert alert-warning");
+						$("#noticer").html(result.errors);
 					}
 				}
 			});
@@ -511,6 +518,7 @@ function reset_fields() {
 	$('#locator').val("");
 	$('#iota_ref').val("");
 	$('#sota_ref').val("");
+	$("#callsign").val("");
 	$("#locator").removeClass("confirmedGrid");
 	$("#locator").removeClass("workedGrid");
 	$("#locator").removeClass("newGrid");
