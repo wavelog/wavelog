@@ -531,6 +531,18 @@
                         <td><?php echo $row->station_pota; ?></td>
                     </tr>
                     <?php } ?>
+
+                    <?php if($row->station_sig) { ?>
+                    <tr>
+                        <td><?php echo lang('gen_hamradio_station') . ' ' . lang('gen_hamradio_sig'); ?></td>
+                        <td><?php echo $row->station_sig; ?></td>
+                    </tr>
+
+                    <tr>
+                        <td><?php echo lang('gen_hamradio_station') . ' ' . lang('gen_hamradio_sig_info'); ?></td>
+                        <td><?php echo $row->station_sig_info; ?></td>
+                    </tr>
+                    <?php } ?>
             </table>
         </div>
 
