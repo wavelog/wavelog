@@ -16,13 +16,12 @@ class Qsl extends CI_Controller {
     // Default view when loading controller.
     public function index() {
 
-        $folder_name = "assets/qslcard";
+        $this->load->model('qsl_model');
+        $folder_name = $this->qsl_model->get_imagePath('p');
         $data['storage_used'] = sizeFormat(folderSize($folder_name));
 
         // Render Page
         $data['page_title'] = "QSL Cards";
-
-        $this->load->model('qsl_model');
         $data['qslarray'] = $this->qsl_model->getQsoWithQslList();
 
         $this->load->view('interface_assets/header', $data);
@@ -46,10 +45,10 @@ class Qsl extends CI_Controller {
         $id = $this->input->post('id');
         $this->load->model('Qsl_model');
 
-        $path = './assets/qslcard/';
+        $path = $this->Qsl_model->get_imagePath('p');
         $file = $this->Qsl_model->getFilename($id)->row();
         $filename = $file->filename;
-        unlink($path.$filename);
+        unlink($path.'/'.$filename);
 
         $this->Qsl_model->deleteQsl($id);
     }
@@ -58,9 +57,6 @@ class Qsl extends CI_Controller {
         $this->load->model('user_model');
         if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 
-        if (!file_exists('./assets/qslcard')) {
-            mkdir('./assets/qslcard', 0755, true);
-        }
         $qsoid = $this->input->post('qsoid');
 
         if (isset($_FILES['qslcardfront']) && $_FILES['qslcardfront']['name'] != "" && $_FILES['qslcardfront']['error'] == 0)
@@ -82,7 +78,8 @@ class Qsl extends CI_Controller {
     }
 
     function uploadQslCardFront($qsoid) {
-        $config['upload_path']          = './assets/qslcard';
+        $this->load->model('Qsl_model');
+        $config['upload_path']          = $this->Qsl_model->get_imagePath('p');
         $config['allowed_types']        = 'jpg|gif|png|jpeg|JPG|PNG';
         $array = explode(".", $_FILES['qslcardfront']['name']);
         $ext = end($array);
@@ -97,9 +94,6 @@ class Qsl extends CI_Controller {
             return $error;
         }
         else {
-            // Load database queries
-            $this->load->model('Qsl_model');
-
             //Upload of QSL card was successful
             $data = $this->upload->data();
 
@@ -115,7 +109,8 @@ class Qsl extends CI_Controller {
     }
 
     function uploadQslCardBack($qsoid) {
-        $config['upload_path']          = './assets/qslcard';
+        $this->load->model('Qsl_model');
+        $config['upload_path']          = $this->Qsl_model->get_imagePath('p');
         $config['allowed_types']        = 'jpg|gif|png|jpeg|JPG|PNG';
         $array = explode(".", $_FILES['qslcardback']['name']);
         $ext = end($array);
@@ -130,9 +125,6 @@ class Qsl extends CI_Controller {
             return $error;
         }
         else {
-            // Load database queries
-            $this->load->model('Qsl_model');
-
             //Upload of QSL card was successful
             $data = $this->upload->data();
 

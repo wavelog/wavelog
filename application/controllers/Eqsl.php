@@ -12,14 +12,15 @@ class eqsl extends CI_Controller {
     public function index() {
 
         $this->lang->load('qslcard');
-        $folder_name = "images/eqsl_card_images";
+		$this->load->model('eqsl_images');
+        $folder_name = $this->eqsl_images->get_imagePath('p');
         $data['storage_used'] = $this->sizeFormat($this->folderSize($folder_name));
 
 
         // Render Page
         $data['page_title'] = "eQSL Cards";
 
-        $this->load->model('eqsl_images');
+        
         $data['qslarray'] = $this->eqsl_images->eqsl_qso_list();
 
         $this->load->view('interface_assets/header', $data);
@@ -546,13 +547,13 @@ class eqsl extends CI_Controller {
 				}
 				echo $content;
 				$filename = uniqid().'.jpg';
-				if (file_put_contents('images/eqsl_card_images/' . '/'.$filename, $content) !== false) {
+				if (file_put_contents($this->Eqsl_images->get_imagePath('p') .'/'. $filename, $content) !== false) {
 					$this->Eqsl_images->save_image($id, $filename);
 				}
 			}
 		} else {
 			header('Content-Type: image/jpg');
-			$image_url = base_url('images/eqsl_card_images/'.$this->Eqsl_images->get_image($id));
+			$image_url = base_url($this->Eqsl_images->get_imagePath() .'/'. $this->Eqsl_images->get_image($id));
 			header('Location: ' . $image_url);
 		}
 
@@ -607,7 +608,7 @@ class eqsl extends CI_Controller {
 				return $error;
 			}
 			$filename = uniqid().'.jpg';
-			if (file_put_contents('images/eqsl_card_images/' . '/'.$filename, $content) !== false) {
+			if (file_put_contents($this->Eqsl_images->get_imagePath('p') .'/'. $filename, $content) !== false) {
 				$this->Eqsl_images->save_image($id, $filename);
 			}
 		}

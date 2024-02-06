@@ -663,3 +663,16 @@ $config['rewrite_short_tags'] = FALSE;
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
 $config['proxy_ips'] = '';
+
+/*
+|--------------------------------------------------------------------------
+| Users Data Directory Options
+|--------------------------------------------------------------------------
+|
+|	'userdata'		Name of principal/centralized data folder
+|
+|   If you are a contributor to Wavelog you perhaps should add this folder path to .gitignore
+|
+*/
+
+// $config['userdata'] = "userdata";  
