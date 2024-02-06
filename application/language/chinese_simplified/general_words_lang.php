@@ -155,6 +155,8 @@ $lang['gen_hamradio_satellite_name'] = '卫星名称';
 $lang['gen_hamradio_satellite_mode'] = '卫星模式';
 
 $lang['gen_hamradio_logbook'] = '日志簿';
+$lang['gen_hamradio_active_logbook'] = 'Active Logbook';
+$lang['gen_hamradio_active_logbook_hint'] = "Displaying all QSOs of station locations which are linked to this logbook";
 $lang['gen_hamradio_award'] = "奖项";
 
 $lang['gen_hamradio_zones'] = '分区';
