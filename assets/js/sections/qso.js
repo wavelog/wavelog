@@ -1,12 +1,68 @@
 $( document ).ready(function() {
-	setTimeout(function() {
-		var callsignValue = localStorage.getItem("quicklogCallsign");
-		if (callsignValue !== null && callsignValue !== undefined) {
-		  $("#callsign").val(callsignValue);
-		  $("#mode").focus();
-		  localStorage.removeItem("quicklogCallsign");
+	clearTimeout();
+	set_timers();
+
+	function set_timers() {
+		setTimeout(function() {
+			var callsignValue = localStorage.getItem("quicklogCallsign");
+			if (callsignValue !== null && callsignValue !== undefined) {
+				$("#callsign").val(callsignValue);
+				$("#mode").focus();
+				localStorage.removeItem("quicklogCallsign");
+			}
+		}, 100);
+	}
+
+	$("#qso_input").off('submit').on('submit', function(e){
+		var _submit = true;
+		if ((typeof qso_manual !== "undefined")&&(qso_manual == "1")) {
+			if ($('#qso_input input[name="end_time"]').length == 1) { _submit = testTimeOffConsistency(); }
 		}
-	}, 100);
+		if ( _submit) {
+			var saveQsoButtonText = $("#saveQso").html();
+			$("#saveQso").html('<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span> ' + saveQsoButtonText + '...').prop('disabled', true);
+			manual_addon='?manual='+qso_manual;
+			e.preventDefault();
+			$.ajax({
+				url: base_url+'index.php/qso'+manual_addon,
+				method: 'POST',
+				type: 'post',
+				data: $(this).serialize(),
+				success: function(resdata) {
+					result = JSON.parse(resdata);
+					if (result.message == 'success') {
+						$("#noticer").removeClass("");
+						$("#noticer").addClass("alert alert-info");
+						$("#noticer").html("QSO Added");
+						$("#noticer").show();
+						reset_fields();
+						clearTimeout();
+						set_timers();
+						resetTimers(qso_manual);
+						htmx.trigger("#qso-last-table", "qso_event")
+						$("#saveQso").html(saveQsoButtonText).prop("disabled",false);
+						$("#callsign").val("");
+						$("#callsign").focus();
+						$("#noticer").fadeOut(2000);
+					} else {
+						$("#noticer").removeClass("");
+						$("#noticer").addClass("alert alert-warning");
+						$("#noticer").html(result.errors);
+						$("#noticer").show();
+						$("#saveQso").html(saveQsoButtonText).prop("disabled",false);
+					}
+				},
+				error: function() {
+						$("#noticer").removeClass("");
+						$("#noticer").addClass("alert alert-warning");
+						$("#noticer").html("Timeout while adding QSO. NOT added");
+						$("#noticer").show();
+						$("#saveQso").html(saveQsoButtonText).prop("disabled",false);
+				}
+			});
+		}
+		return false;
+	});
 	$('#reset_time').click(function() {
 		var now = new Date();
 		var localTime = now.getTime();
@@ -115,7 +171,7 @@ var favs={};
 			}
 		});
 	}
-	
+
 
 	var bc_bandmap = new BroadcastChannel('qso_window');
 	bc_bandmap.onmessage = function (ev) {
@@ -347,15 +403,7 @@ var favs={};
 		$('.satellite_names_list').append(items.join( "" ));
 	});
 
-	// Test Consistency value on submit form //
-	$("#qso_input").off('submit').on('submit', function(){
-		var _submit = true;
-		if ((typeof qso_manual !== "undefined")&&(qso_manual == "1")) {
-			if ($('#qso_input input[name="end_time"]').length == 1) { _submit = testTimeOffConsistency(); }
-		}
-		return _submit;
-	})
-});
+	});
 
 var selected_sat;
 var selected_sat_mode;
@@ -883,7 +931,7 @@ $("#locator").keyup(function(){
 					$('#locator').removeClass("workedGrid");
 					$('#locator').removeClass("newGrid");
 					$('#locator').attr('title', '');
-					
+
 					if (result.confirmed) {
 						$('#locator').addClass("confirmedGrid");
 						$('#locator').attr('title', 'Grid was already worked and confimred in the past');
@@ -1080,7 +1128,7 @@ function testTimeOffConsistency() {
 	$('#qso_input input[name="end_time"]').removeClass('inputError');
 	$('#qso_input .warningOnSubmit').hide();
 	$('#qso_input .warningOnSubmit_txt').empty();
-	if ( !( (parseInt(_start_time.replaceAll(':','')) <= parseInt(_end_time.replaceAll(':',''))) 
+	if ( !( (parseInt(_start_time.replaceAll(':','')) <= parseInt(_end_time.replaceAll(':','')))
 			|| ((_start_time.substring(0,2)=="23")&&(_end_time.substring(0,2)=="00")) ) ) {
 		$('#qso_input input[name="end_time"]').addClass('inputError');
 		$('#qso_input .warningOnSubmit_txt').html(text_error_timeoff_less_timeon);
@@ -1088,5 +1136,5 @@ function testTimeOffConsistency() {
 		$('#qso_input input[name="end_time"]').off('change').on('change',function(){ testTimeOffConsistency(); });
 		return false;
 	}
-	return true; 
+	return true;
 }
