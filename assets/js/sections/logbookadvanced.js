@@ -1,6 +1,8 @@
 var callBookProcessingDialog = null;
 var inCallbookProcessing = false;
 var inCallbookItemProcessing = false;
+var clicklines = [];
+var map;
 
 $('#band').change(function () {
 	var band = $("#band option:selected").text();
@@ -844,7 +846,7 @@ function mapQsos(form) {
 	$("#qsoList_wrapper").attr("Hidden", true);
 	$("#qsoList_info").attr("Hidden", true);
 
-	var amap = $('#advancedmap').val();
+	amap = $('#advancedmap').val();
 	if (amap == undefined) {
 		$(".qso_manager").append('<div id="advancedmap"></div>');
 	}
@@ -921,7 +923,7 @@ function loadMap(data) {
 		$(".qso_manager").append('<div id="advancedmap"></div>');
 	}
 
-	var map = new L.Map('advancedmap', {
+	map = new L.Map('advancedmap', {
 		fullscreenControl: true,
 		fullscreenControlOptions: {
 			position: 'topleft'
@@ -994,6 +996,8 @@ function loadMap(data) {
 			wrap: false,
 			steps: 100
 		}).addTo(map);
+
+		clicklines.push(geodesic);
 	});
 
 
@@ -1003,7 +1007,8 @@ function loadMap(data) {
 
     legend.onAdd = function(map) {
         var div = L.DomUtil.create("div", "legend");
-        div.innerHTML += "<h4>" + counter + " QSOs plotted</h4>";
+        div.innerHTML += "<h4>" + counter + " QSOs plotted</h4><br>";
+		div.innerHTML += "<label>Path lines<input id='pathlines' type='checkbox' onclick=toggleFunction(this.checked) checked='checked'><span class='checkmark'></span></label><br>";
         return div;
     };
 
@@ -1106,5 +1111,25 @@ function loadMap(data) {
 			error: function() {
 				$('#saveButton').prop("disabled", false);
 			},
+		});
+	}
+
+	function toggleFunction(bool) {
+		if(bool) {
+			addLines();
+		} else {
+			clearLines();
+		}
+	};
+
+	function clearLines() {
+		clicklines.forEach(function (item) {
+			map.removeLayer(item)
+		});
+	}
+
+	function addLines() {
+		clicklines.forEach(function (item) {
+			map.addLayer(item)
 		});
 	}
