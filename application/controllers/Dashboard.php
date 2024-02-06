@@ -14,10 +14,6 @@ class Dashboard extends CI_Controller {
 		// LoTW infos
 		$this->load->model('LotwCert');
 
-		if($this->optionslib->get_option('version2_trigger') == "false") {
-			redirect('welcome');
-		}
-
 		// Check if users logged in
 
 		if($this->user_model->validate_session() == 0) {
