@@ -1,12 +1,63 @@
 $( document ).ready(function() {
-	setTimeout(function() {
-		var callsignValue = localStorage.getItem("quicklogCallsign");
-		if (callsignValue !== null && callsignValue !== undefined) {
-		  $("#callsign").val(callsignValue);
-		  $("#mode").focus();
-		  localStorage.removeItem("quicklogCallsign");
+	clearTimeout();
+	set_timers();
+
+	function set_timers() {
+		setTimeout(function() {
+			var callsignValue = localStorage.getItem("quicklogCallsign");
+			if (callsignValue !== null && callsignValue !== undefined) {
+				$("#callsign").val(callsignValue);
+				$("#mode").focus();
+				localStorage.removeItem("quicklogCallsign");
+			}
+		}, 100);
+	}
+
+	$("#qso_input").off('submit').on('submit', function(e){
+		var _submit = true;
+		if ((typeof qso_manual !== "undefined")&&(qso_manual == "1")) {
+			if ($('#qso_input input[name="end_time"]').length == 1) { _submit = testTimeOffConsistency(); }
 		}
-	}, 100);
+		if ( _submit) {
+			manual_addon='?manual='+qso_manual;
+			e.preventDefault();
+			$.ajax({
+				url: base_url+'index.php/qso'+manual_addon,
+				method: 'POST',
+				type: 'post',
+				data: $(this).serialize(),
+				success: function(resdata) {
+					result = JSON.parse(resdata);
+					if (result.message == 'success') {
+						$("#noticer").removeClass("");
+						$("#noticer").addClass("alert alert-info");
+						$("#noticer").html("QSO Added");
+						$("#noticer").show();
+						reset_fields();
+						clearTimeout();
+						set_timers();
+						resetTimers(qso_manual);
+						htmx.trigger("#qso-last-table", "qso_event")
+						$("#callsign").val("");
+						$("#callsign").focus();
+						$("#noticer").fadeOut(2000);
+					} else {
+						$("#noticer").removeClass("");
+						$("#noticer").addClass("alert alert-warning");
+						$("#noticer").html(result.errors);
+						$("#noticer").show();
+					}
+				},
+				error: function() {
+						$("#noticer").removeClass("");
+						$("#noticer").addClass("alert alert-warning");
+						$("#noticer").html("Timeout while adding QSO. NOT added");
+						$("#noticer").show();
+				}
+			});
+		}
+		return false;
+	});
 	$('#reset_time').click(function() {
 		var now = new Date();
 		var localTime = now.getTime();
@@ -347,15 +398,7 @@ var favs={};
 		$('.satellite_names_list').append(items.join( "" ));
 	});
 
-	// Test Consistency value on submit form //
-	$("#qso_input").off('submit').on('submit', function(){
-		var _submit = true;
-		if ((typeof qso_manual !== "undefined")&&(qso_manual == "1")) {
-			if ($('#qso_input input[name="end_time"]').length == 1) { _submit = testTimeOffConsistency(); }
-		}
-		return _submit;
-	})
-});
+	});
 
 var selected_sat;
 var selected_sat_mode;
