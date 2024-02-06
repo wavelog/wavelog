@@ -28,11 +28,6 @@ class Logbook extends CI_Controller {
 		}
 		$this->load->model('stations');
 
-		// If environment is set to development then show the debug toolbar
-		if(ENVIRONMENT == 'development') {
-            $this->output->enable_profiler(TRUE);
-        }
-
 		$this->load->model('logbook_model');
 
 		$this->load->library('pagination');
