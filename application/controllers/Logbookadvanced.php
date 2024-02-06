@@ -79,6 +79,7 @@ class Logbookadvanced extends CI_Controller {
 			'assets/js/datetime-moment.js',
 			'assets/js/sections/logbookadvanced.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/logbookadvanced.js")),
 			'assets/js/sections/cqmap_geojson.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/cqmap_geojson.js")),
+			'assets/js/sections/itumap_geojson.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/itumap_geojson.js")),
 		];
 
 		$this->load->view('interface_assets/header', $data);
