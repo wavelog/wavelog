@@ -19,6 +19,8 @@ $( document ).ready(function() {
 			if ($('#qso_input input[name="end_time"]').length == 1) { _submit = testTimeOffConsistency(); }
 		}
 		if ( _submit) {
+			var saveQsoButtonText = $("#saveQso").html();
+			$("#saveQso").html('<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span> ' + saveQsoButtonText + '...').prop('disabled', true);
 			manual_addon='?manual='+qso_manual;
 			e.preventDefault();
 			$.ajax({
@@ -38,6 +40,7 @@ $( document ).ready(function() {
 						set_timers();
 						resetTimers(qso_manual);
 						htmx.trigger("#qso-last-table", "qso_event")
+						$("#saveQso").html(saveQsoButtonText).prop("disabled",false);
 						$("#callsign").val("");
 						$("#callsign").focus();
 						$("#noticer").fadeOut(2000);
@@ -46,6 +49,7 @@ $( document ).ready(function() {
 						$("#noticer").addClass("alert alert-warning");
 						$("#noticer").html(result.errors);
 						$("#noticer").show();
+						$("#saveQso").html(saveQsoButtonText).prop("disabled",false);
 					}
 				},
 				error: function() {
@@ -53,6 +57,7 @@ $( document ).ready(function() {
 						$("#noticer").addClass("alert alert-warning");
 						$("#noticer").html("Timeout while adding QSO. NOT added");
 						$("#noticer").show();
+						$("#saveQso").html(saveQsoButtonText).prop("disabled",false);
 				}
 			});
 		}
@@ -166,7 +171,7 @@ var favs={};
 			}
 		});
 	}
-	
+
 
 	var bc_bandmap = new BroadcastChannel('qso_window');
 	bc_bandmap.onmessage = function (ev) {
@@ -926,7 +931,7 @@ $("#locator").keyup(function(){
 					$('#locator').removeClass("workedGrid");
 					$('#locator').removeClass("newGrid");
 					$('#locator').attr('title', '');
-					
+
 					if (result.confirmed) {
 						$('#locator').addClass("confirmedGrid");
 						$('#locator').attr('title', 'Grid was already worked and confimred in the past');
@@ -1123,7 +1128,7 @@ function testTimeOffConsistency() {
 	$('#qso_input input[name="end_time"]').removeClass('inputError');
 	$('#qso_input .warningOnSubmit').hide();
 	$('#qso_input .warningOnSubmit_txt').empty();
-	if ( !( (parseInt(_start_time.replaceAll(':','')) <= parseInt(_end_time.replaceAll(':',''))) 
+	if ( !( (parseInt(_start_time.replaceAll(':','')) <= parseInt(_end_time.replaceAll(':','')))
 			|| ((_start_time.substring(0,2)=="23")&&(_end_time.substring(0,2)=="00")) ) ) {
 		$('#qso_input input[name="end_time"]').addClass('inputError');
 		$('#qso_input .warningOnSubmit_txt').html(text_error_timeoff_less_timeon);
@@ -1131,5 +1136,5 @@ function testTimeOffConsistency() {
 		$('#qso_input input[name="end_time"]').off('change').on('change',function(){ testTimeOffConsistency(); });
 		return false;
 	}
-	return true; 
+	return true;
 }
