@@ -918,6 +918,8 @@ function loadMap(data) {
 	// If map is already initialized
 	var container = L.DomUtil.get('advancedmap');
 
+	var bounds = L.latLngBounds()
+
 	if(container != null){
 		container._leaflet_id = null;
 		container.remove();
@@ -978,11 +980,16 @@ function loadMap(data) {
 		marker.on('mouseover',function(ev) {
 			ev.target.openPopup();
 		});
+		let lat_lng = [this.latlng1[0], this.latlng1[1]];
+		bounds.extend(lat_lng);
 
 		var marker2 = L.marker([this.latlng2[0], this.latlng2[1]], {icon: redIcon},{closeOnClick: false, autoClose: false}).addTo(map).bindPopup(popupmessage2);;
 		marker2.on('mouseover',function(ev) {
 			ev.target.openPopup();
 		});
+
+		lat_lng = [this.latlng2[0], this.latlng2[1]];
+		bounds.extend(lat_lng);
 
 		const multiplelines = [];
 		multiplelines.push(
@@ -1015,6 +1022,9 @@ function loadMap(data) {
     legend.addTo(map);
 
 	maidenhead = L.maidenheadqrb().addTo(map);
+
+
+	map.fitBounds(bounds);
 }
 
 	function createContentMessage(qso) {
