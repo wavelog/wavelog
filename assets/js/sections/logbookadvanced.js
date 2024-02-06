@@ -1007,8 +1007,8 @@ function loadMap(data) {
 
     legend.onAdd = function(map) {
         var div = L.DomUtil.create("div", "legend");
-        div.innerHTML += "<h4>" + counter + " QSOs plotted</h4><br>";
-		div.innerHTML += "<label>Path lines<input id='pathlines' type='checkbox' onclick=toggleFunction(this.checked) checked='checked'><span class='checkmark'></span></label><br>";
+        div.innerHTML += '<div>' + counter + " QSOs plotted</div>";
+		div.innerHTML += '<input id="pathlines" type="checkbox" onclick="toggleFunction(this.checked)" checked="checked" style="outline: none;"><span> Path lines</span>';
         return div;
     };
 
