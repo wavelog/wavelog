@@ -8,7 +8,7 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="default">
-	<link rel="manifest" href="<?php echo base_url(); ?>manifest.json"/>
+	<link rel="manifest" href="<?php echo base_url(); ?>manifest.json" />
 
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/buttons.dataTables.min.css" />
 
@@ -70,15 +70,15 @@
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light main-nav">
 		<div class="container">
-			<a class="navbar-brand" href="<?php echo site_url(); ?>"><img class="headerLogo" src="<?php echo base_url(); ?>assets/logo/<?php echo $this->optionslib->get_logo('header_logo'); ?>.png" alt="Logo"/></a> <?php if (ENVIRONMENT == "development") { ?><span class="badge text-bg-danger"><?php echo lang('menu_badge_developer_mode'); ?></span><?php } ?>
+			<a class="navbar-brand" href="<?php echo site_url(); ?>"><img class="headerLogo" src="<?php echo base_url(); ?>assets/logo/<?php echo $this->optionslib->get_logo('header_logo'); ?>.png" alt="Logo" /></a> <?php if (ENVIRONMENT == "development") { ?><span class="badge text-bg-danger"><?php echo lang('menu_badge_developer_mode'); ?></span><?php } ?>
 
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 
 			<div class="collapse navbar-collapse" id="navbarNav">
 
-				<ul class="navbar-nav">
+				<ul class="navbar-nav" style="flex-grow: 1;">
 					<li class="nav-item active">
-					<li class="nav-item dropdown">
+					<li class="nav-item dropdown"> <!-- LOGBOOK -->
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <?php echo lang('menu_logbook'); ?></a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item" href="<?php echo site_url('logbook'); ?>"><i class="fas fa-book"></i> <?php echo lang('menu_overview'); ?></a>
@@ -92,8 +92,7 @@
 					</li>
 
 					<?php if (($this->config->item('use_auth')) && ($this->session->userdata('user_type') >= 2)) { ?>
-						<!-- QSO Menu Dropdown -->
-						<li class="nav-item dropdown">
+						<li class="nav-item dropdown"> <!-- QSO -->
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo lang('menu_qso'); ?></a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<a class="dropdown-item" href="<?php echo site_url('qso?manual=0'); ?>" title="Log Live QSOs"><i class="fas fa-list"></i> <?php echo lang('menu_live_qso'); ?></a>
@@ -107,12 +106,12 @@
 								<a class="dropdown-item" href="<?php echo site_url('contesting?manual=1'); ?>" title="Post contest QSOs"><i class="fas fa-list"></i> <?php echo lang('menu_post_contest_logging'); ?></a>
 							</div>
 						</li>
-
-						<!-- Notes -->
-						<?php if ($this->session->userdata('user_show_notes') == 1) { ?>
-							<a class="nav-link" href="<?php echo site_url('notes'); ?>"><?php echo lang('menu_notes'); ?></a>
+						
+						<?php if ($this->session->userdata('user_show_notes') == 1) { ?><!-- NOTES -->
+							<a class="nav-link" href="<?php echo site_url('notes'); ?>"><?php echo lang('menu_notes'); ?></a> 
 						<?php } ?>
-						<li class="nav-item dropdown">
+
+						<li class="nav-item dropdown"> <!-- ANALYTICS -->
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo lang('menu_analytics'); ?></a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<a class="dropdown-item" href="<?php echo site_url('statistics'); ?>" title="Statistics"><i class="fas fa-chart-area"></i> <?php echo lang('menu_statistics'); ?></a>
@@ -139,7 +138,7 @@
 							</div>
 						</li>
 
-						<li class="nav-item dropdown">
+						<li class="nav-item dropdown"> <!-- AWARDS -->
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo lang('menu_awards'); ?></a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<a class="dropdown-item" href="<?php echo site_url('awards/cq'); ?>"><i class="fas fa-trophy"></i> <?php echo lang('menu_cq'); ?></a>
@@ -184,7 +183,7 @@
 							</div>
 						</li>
 
-						<li class="nav-item dropdown">
+						<li class="nav-item dropdown"> <!-- TOOLS -->
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Tools"><i class="fas fa-tools"></i>
 								<div class="d-inline d-lg-none" style="padding-left: 10px">Tools</div>
 							</a>
@@ -199,7 +198,7 @@
 							</div>
 						</li>
 
-						<?php if (($this->config->item('use_auth')) && ($this->session->userdata('user_type') == 99)) { ?>
+						<?php if (($this->config->item('use_auth')) && ($this->session->userdata('user_type') == 99)) { ?> <!-- ADMIN -->
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="<?php echo lang('menu_admin'); ?>"><i class="fas fa-users-cog"></i>
 									<div class="d-inline d-lg-none" style="padding-left: 10px"><?php echo lang('menu_admin'); ?></div>
@@ -245,8 +244,8 @@
 						<?php } ?>
 					<?php } ?>
 				</ul>
-
-				<?php if ($this->session->userdata('user_quicklog')  == 1) { ?>
+				<ul class="navbar-nav" style="float: right;">
+				<?php if ($this->session->userdata('user_quicklog')  == 1) { ?>  <!-- QUICKLOG/SEARCHBAR -->
 					<script>
 						function submitForm(action) {
 							var form = document.getElementById('quicklog-form');
@@ -257,9 +256,10 @@
 							}
 							form.submit();
 						}
+
 						function logQuicklog() {
 							if (localStorage.getItem("quicklogCallsign") !== "") {
-  								localStorage.removeItem("quicklogCallsign");
+								localStorage.removeItem("quicklogCallsign");
 							}
 							localStorage.setItem("quicklogCallsign", $("input[name='callsign']").val());
 							window.open("<?php echo site_url('qso?manual=0'); ?>", "_self");
@@ -312,7 +312,7 @@
 				<?php } ?>
 
 				<?php if (($this->config->item('use_auth')) && ($this->session->userdata('user_type') >= 2)) { ?>
-					<ul class="navbar-nav">
+					
 						<!-- Logged in As -->
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i> <?php echo $this->session->userdata('user_callsign'); ?></a>
@@ -433,7 +433,6 @@
 					</ul>
 
 				<?php } ?>
-
 			</div>
 		</div>
 	</nav>
