@@ -4,6 +4,10 @@ var inCallbookItemProcessing = false;
 var clicklines = [];
 var map;
 var maidenhead;
+var geojson;
+var itugeojson;
+var zonemarkers = [];
+var ituzonemarkers = [];
 
 $('#band').change(function () {
 	var band = $("#band option:selected").text();
@@ -1015,7 +1019,9 @@ function loadMap(data) {
         var div = L.DomUtil.create("div", "legend");
         div.innerHTML += '<div>' + counter + " QSOs plotted</div>";
 		div.innerHTML += '<input id="pathlines" type="checkbox" onclick="toggleFunction(this.checked)" checked="checked" style="outline: none;"><span> Path lines</span><br>';
-		div.innerHTML += '<input id="gridsquares" type="checkbox" onclick="toggleGridsquares(this.checked)" checked="checked" style="outline: none;"><span> Gridsquares</span>';
+		div.innerHTML += '<input id="gridsquares" type="checkbox" onclick="toggleGridsquares(this.checked)" checked="checked" style="outline: none;"><span> Gridsquares</span><br>';
+		div.innerHTML += '<input id="gridsquares" type="checkbox" onclick="toggleCqZones(this.checked)" style="outline: none;"><span> CQ Zones</span><br>';
+		div.innerHTML += '<input id="gridsquares" type="checkbox" onclick="toggleItuZones(this.checked)" style="outline: none;"><span> ITU Zones</span>';
         return div;
     };
 
@@ -1139,14 +1145,214 @@ function loadMap(data) {
 		}
 	};
 
+	const cqzonenames = [
+		[ "75", "-140" ],
+		[ "70", "-82.5" ],
+		[ "45", "-125" ],
+		[ "45", "-100" ],
+		[ "45", "-65" ],
+		[ "25.5", "-115" ],
+		[ "14.5", "-90" ],
+		[ "22", "-60" ],
+		[ "11.5", "-70" ],
+		[ "-5", "-100" ],
+		[ "-9", "-45" ],
+		[ "-45", "-106" ],
+		[ "-45", "-55" ],
+		[ "52", "-14" ],
+		[ "46", "11" ],
+		[ "60", "35" ],
+		[ "55", "65" ],
+		[ "70", "90" ],
+		[ "70", "150" ],
+		[ "42", "29" ],
+		[ "28", "53" ],
+		[ "6", "75" ],
+		[ "44", "93" ],
+		[ "33", "110" ],
+		[ "38", "134" ],
+		[ "16", "100" ],
+		[ "15", "140" ],
+		[ "0", "125" ],
+		[ "-25", "115" ],
+		[ "-25", "145" ],
+		[ "15", "-165" ],
+		[ "-25", "-165" ],
+		[ "32", "-26" ],
+		[ "25", "25.5" ],
+		[ "15", "-6" ],
+		[ "-5", "-6" ],
+		[ "6", "51" ],
+		[ "-45", "8" ],
+		[ "-25", "55"],
+		[  "78", "-10"],
+	];
+
+	const ituzonenames = [
+		["60","-160"],
+		["55","-125"],
+		["55","-100"],
+		["55","-78"],
+		["73","-40"],
+		["40","-119"],
+		["40","-100"],
+		["40","-80"],
+		["55","-60"],
+		["20","-102"],
+		["21","-75"],
+		["-3","-72"],
+		["-5","-45"],
+		["-30","-65"],
+		["-25","-45"],
+		["-50","-65"],
+		["61","-26"],
+		["70","10"],
+		["70","40"],
+		["70","62.5"],
+		["70","82.5"],
+		["70","100"],
+		["70","122.5"],
+		["70","142.5"],
+		["70","162.5"],
+		["70","180"],
+		["52","2"],
+		["45","18"],
+		["53","36"],
+		["53","62.5"],
+		["53","82.5"],
+		["53","100"],
+		["53","122.5"],
+		["53","142"],
+		["55","160"],
+		["35","-25"],
+		["35","0"],
+		["27.5","22.5"],
+		["27","42"],
+		["32","56"],
+		["10","75"],
+		["39","82.5"],
+		["33","100"],
+		["33","118"],
+		["33","140"],
+		["15","-10"],
+		["12.5","22"],
+		["5","40"],
+		["15","100"],
+		["10","120"],
+		["-4","150"],
+		["-7","17"],
+		["-12.5","45"],
+		["-2","115"],
+		["-20","140"],
+		["-20","170"],
+		["-30","24"],
+		["-25","120"],
+		["-40","140"],
+		["-40","170"],
+		["15","-170"],
+		["-15","-170"],
+		["-15","-135"],
+		["10","140"],
+		["10","162"],
+		["-23","-11"],
+		["-70","10"],
+		["-47.5","60"],
+		["-70","70"],
+		["-70","130"],
+		["-70","-170"],
+		["-70","-110"],
+		["-70","-050"],
+		["-82.5","0"],
+		["82.5","0"],
+		["40","-150"],
+		["15","-135"],
+		["-15","-95"],
+		["-40","-160"],
+		["-40","-125"],
+		["-40","-90"],
+		["50","-30"],
+		["25","-47.5"],
+		["-45","-40"],
+		["-45","10"],
+		["-25","70"],
+		["-25","95"],
+		["-50","95"],
+		["-54","140"],
+		["39","165"]
+	];
+
+	function toggleCqZones(bool) {
+		if(!bool) {
+			zonemarkers.forEach(function (item) {
+				map.removeLayer(item);
+			});
+			map.removeLayer(geojson);
+		} else {
+			geojson = L.geoJson(zonestuff, {style: style}).addTo(map);
+			for (var i = 0; i < cqzonenames.length; i++) {
+
+				var title = '<span class="grid-text" style="cursor: default"><font style="color: \'white\'; font-size: 1.5em; font-weight: 900;">' + (Number(i)+Number(1)) + '</font></span>';
+				var myIcon = L.divIcon({className: 'my-div-icon', html: title});
+
+				var marker = L.marker(
+					[cqzonenames[i][0], cqzonenames[i][1]], {
+						icon: myIcon,
+						title: (Number(i)+Number(1)),
+						zIndex: 1000,
+					}
+				).addTo(map);
+				zonemarkers.push(marker);
+			}
+		}
+	}
+
+	function toggleItuZones(bool) {
+		if(!bool) {
+			ituzonemarkers.forEach(function (item) {
+				map.removeLayer(item);
+			});
+			map.removeLayer(itugeojson);
+		} else {
+			itugeojson = L.geoJson(ituzonestuff, {style: style}).addTo(map);
+			for (var i = 0; i < ituzonenames.length; i++) {
+
+				var title = '<span class="grid-text" style="cursor: default"><font style="color: \'white\'; font-size: 1.5em; font-weight: 900;">' + (Number(i)+Number(1)) + '</font></span>';
+				var myIcon = L.divIcon({className: 'my-div-icon', html: title});
+
+				var marker = L.marker(
+					[ituzonenames[i][0], ituzonenames[i][1]], {
+						icon: myIcon,
+						title: (Number(i)+Number(1)),
+						zIndex: 1000,
+					}
+				).addTo(map);
+				ituzonemarkers.push(marker);
+			}
+		}
+	}
+
+	function style(feature) {
+		var bordercolor = "black";
+		if (isDarkModeTheme()) {
+            bordercolor = "white";
+        }
+		return {
+			fillColor: "white",
+			fillOpacity: 0,
+			opacity: 0.65,
+			color: bordercolor,
+			weight: 1,
+		};
+	}
+
 	function clearLines() {
 		clicklines.forEach(function (item) {
-			map.removeLayer(item)
+			map.removeLayer(item);
 		});
 	}
 
 	function addLines() {
 		clicklines.forEach(function (item) {
-			map.addLayer(item)
+			map.addLayer(item);
 		});
 	}
