@@ -106,9 +106,9 @@
 								<a class="dropdown-item" href="<?php echo site_url('contesting?manual=1'); ?>" title="Post contest QSOs"><i class="fas fa-list"></i> <?php echo lang('menu_post_contest_logging'); ?></a>
 							</div>
 						</li>
-						
+
 						<?php if ($this->session->userdata('user_show_notes') == 1) { ?><!-- NOTES -->
-							<a class="nav-link" href="<?php echo site_url('notes'); ?>"><?php echo lang('menu_notes'); ?></a> 
+							<a class="nav-link" href="<?php echo site_url('notes'); ?>"><?php echo lang('menu_notes'); ?></a>
 						<?php } ?>
 
 						<li class="nav-item dropdown"> <!-- ANALYTICS -->
@@ -184,9 +184,7 @@
 						</li>
 
 						<li class="nav-item dropdown"> <!-- TOOLS -->
-							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Tools"><i class="fas fa-tools"></i>
-								<div class="d-inline d-lg-none" style="padding-left: 10px">Tools</div>
-							</a>
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Tools">Tools</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<a class="dropdown-item" href="<?php echo site_url('hamsat'); ?>" title="Hams.at"><i class="fas fa-list"></i> Hams.at</a>
 								<?php if ($this->optionslib->get_option('dxcache_url') != '') { ?>
@@ -198,121 +196,78 @@
 							</div>
 						</li>
 
-						<?php if (($this->config->item('use_auth')) && ($this->session->userdata('user_type') == 99)) { ?> <!-- ADMIN -->
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="<?php echo lang('menu_admin'); ?>"><i class="fas fa-users-cog"></i>
-									<div class="d-inline d-lg-none" style="padding-left: 10px"><?php echo lang('menu_admin'); ?></div>
-								</a>
 
-								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<a class="dropdown-item" href="<?php echo site_url('user'); ?>" title="Manage user accounts"><i class="fas fa-user"></i> <?php echo lang('menu_user_account'); ?></a>
-
-									<div class="dropdown-divider"></div>
-
-									<a class="dropdown-item" href="<?php echo site_url('options'); ?>" title="Manage global options"><i class="fas fa-cog"></i> <?php echo lang('menu_global_options'); ?></a>
-
-									<div class="dropdown-divider"></div>
-
-									<a class="dropdown-item" href="<?php echo site_url('mode'); ?>" title="Manage QSO modes"><i class="fas fa-broadcast-tower"></i> <?php echo lang('menu_modes'); ?></a>
-
-									<div class="dropdown-divider"></div>
-
-									<a class="dropdown-item" href="<?php echo site_url('contesting/add'); ?>" title="Manage Contest names"><i class="fas fa-broadcast-tower"></i> <?php echo lang('menu_contests'); ?></a>
-
-									<div class="dropdown-divider"></div>
-
-									<a class="dropdown-item" href="<?php echo site_url('themes'); ?>" title="Manage Themes"><i class="fas fa-cog"></i> <?php echo lang('menu_themes'); ?></a>
-
-									<div class="dropdown-divider"></div>
-
-									<a class="dropdown-item" href="<?php echo site_url('backup'); ?>" title="Backup Wavelog content"><i class="fas fa-save"></i> <?php echo lang('menu_backup'); ?></a>
-
-									<div class="dropdown-divider"></div>
-
-									<a class="dropdown-item" href="<?php echo site_url('update'); ?>" title="Update Country Files"><i class="fas fa-sync"></i> <?php echo lang('menu_update_country_files'); ?></a>
-
-									<div class="dropdown-divider"></div>
-
-									<a class="dropdown-item" href="<?php echo site_url('maintenance'); ?>" title="maintenance"><i class="fas fa-tools"></i> <?php echo lang('menu_maintenance'); ?></a>
-
-									<div class="dropdown-divider"></div>
-
-									<a class="dropdown-item" href="<?php echo site_url('debug'); ?>" title="Debug Information"><i class="fas fa-tools"></i> <?php echo lang('menu_debug_information'); ?></a>
-
-								</div>
-							</li>
-						<?php } ?>
 					<?php } ?>
 				</ul>
 				<ul class="navbar-nav" style="float: right;">
-				<?php if ($this->session->userdata('user_quicklog')  == 1) { ?>  <!-- QUICKLOG/SEARCHBAR -->
-					<script>
-						function submitForm(action) {
-							var form = document.getElementById('quicklog-form');
-							var input = document.getElementById('quicklog-input');
-							if (action === 'search') {
-								form.action = "<?php echo site_url('search'); ?>";
-								form.method = "post";
-							}
-							form.submit();
-						}
-
-						function logQuicklog() {
-							if (localStorage.getItem("quicklogCallsign") !== "") {
-								localStorage.removeItem("quicklogCallsign");
-							}
-							localStorage.setItem("quicklogCallsign", $("input[name='callsign']").val());
-							window.open("<?php echo site_url('qso?manual=0'); ?>", "_self");
-						}
-					</script>
-					<?php if ($this->session->userdata('user_quicklog_enter')  == 1) { ?>
+					<?php if ($this->session->userdata('user_quicklog')  == 1) { ?> <!-- QUICKLOG/SEARCHBAR -->
 						<script>
-							function handleKeyPress(event) {
-								if (event.key === 'Enter') {
-									submitForm('search'); // Treat Enter key press as clicking the 'quicksearch-search' button
+							function submitForm(action) {
+								var form = document.getElementById('quicklog-form');
+								var input = document.getElementById('quicklog-input');
+								if (action === 'search') {
+									form.action = "<?php echo site_url('search'); ?>";
+									form.method = "post";
 								}
+								form.submit();
+							}
+
+							function logQuicklog() {
+								if (localStorage.getItem("quicklogCallsign") !== "") {
+									localStorage.removeItem("quicklogCallsign");
+								}
+								localStorage.setItem("quicklogCallsign", $("input[name='callsign']").val());
+								window.open("<?php echo site_url('qso?manual=0'); ?>", "_self");
 							}
 						</script>
+						<?php if ($this->session->userdata('user_quicklog_enter')  == 1) { ?>
+							<script>
+								function handleKeyPress(event) {
+									if (event.key === 'Enter') {
+										submitForm('search'); // Treat Enter key press as clicking the 'quicksearch-search' button
+									}
+								}
+							</script>
+						<?php } else { ?>
+							<script>
+								function handleKeyPress(event) {
+									if (event.key === 'Enter') {
+										logQuicklog(); // Treat Enter key press as clicking the 'quicksearch-log' button
+									}
+								}
+							</script>
+						<?php } ?>
+						<form id="quicklog-form" class="d-flex align-items-center" onsubmit="return false;">
+							<input class="form-control me-2" id="nav-bar-search-input" type="text" name="callsign" placeholder="<?php echo lang('menu_search_text_quicklog'); ?>" aria-label="Quicklog" onkeypress="handleKeyPress(event)">
+
+							<button title="<?php echo lang('menu_search_button_qicksearch_log'); ?>" class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="logQuicklog()"><i class="fas fa-plus"></i>
+							</button>
+
+							<button title="<?php echo lang('menu_search_button'); ?>" class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="submitForm('search')" style="margin-left: 5px"><i class="fas fa-search"></i>
+							</button>
+						</form>
 					<?php } else { ?>
-						<script>
-							function handleKeyPress(event) {
-								if (event.key === 'Enter') {
-									logQuicklog(); // Treat Enter key press as clicking the 'quicksearch-log' button
-								}
-							}
-						</script>
+						<form method="post" class="d-flex align-items-center" action="<?php echo site_url('search'); ?>">
+							<input class="form-control me-2" id="nav-bar-search-input" type="search" name="callsign" placeholder="<?php echo lang('menu_search_text'); ?>" aria-label="Search">
+							<button title="<?php echo lang('menu_search_button'); ?>" class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i>
+							</button>
+						</form>
 					<?php } ?>
-					<form id="quicklog-form" class="d-flex align-items-center" onsubmit="return false;">
-						<input class="form-control me-2" id="nav-bar-search-input" type="text" name="callsign" placeholder="<?php echo lang('menu_search_text_quicklog'); ?>" aria-label="Quicklog" onkeypress="handleKeyPress(event)">
 
-						<button title="<?php echo lang('menu_search_button_qicksearch_log'); ?>" class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="logQuicklog()"><i class="fas fa-plus"></i>
-						</button>
+					<?php if (($this->config->item('use_auth')) && ($this->session->userdata('user_type') >= 2)) { ?>
+						<!-- Logged in Content-->
+					<?php } else { ?>
+						<!-- Not Logged In-->
+						<form method="post" action="<?php echo site_url('user/login'); ?>" style="padding-left: 5px;" class="form-inline">
+							<input class="form-control me-sm-2" type="text" name="user_name" placeholder="Username" aria-label="Username">
+							<input class="form-control me-sm-2" type="password" name="user_password" placeholder="Password" aria-label="Password">
+							<input type="hidden" name="id" value="<?php echo $this->uri->segment(3); ?>" />
+							<button class="btn btn-outline-success me-sm-2" type="submit"><?php echo lang('menu_login_button'); ?></button>
+						</form>
+					<?php } ?>
 
-						<button title="<?php echo lang('menu_search_button'); ?>" class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="submitForm('search')" style="margin-left: 5px"><i class="fas fa-search"></i>
-						</button>
-					</form>
-				<?php } else { ?>
-					<form method="post" class="d-flex align-items-center" action="<?php echo site_url('search'); ?>">
-						<input class="form-control me-2" id="nav-bar-search-input" type="search" name="callsign" placeholder="<?php echo lang('menu_search_text'); ?>" aria-label="Search">
-						<button title="<?php echo lang('menu_search_button'); ?>" class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i>
-						</button>
-					</form>
-				<?php } ?>
+					<?php if (($this->config->item('use_auth')) && ($this->session->userdata('user_type') >= 2)) { ?>
 
-				<?php if (($this->config->item('use_auth')) && ($this->session->userdata('user_type') >= 2)) { ?>
-					<!-- Logged in Content-->
-				<?php } else { ?>
-					<!-- Not Logged In-->
-					<form method="post" action="<?php echo site_url('user/login'); ?>" style="padding-left: 5px;" class="form-inline">
-						<input class="form-control me-sm-2" type="text" name="user_name" placeholder="Username" aria-label="Username">
-						<input class="form-control me-sm-2" type="password" name="user_password" placeholder="Password" aria-label="Password">
-						<input type="hidden" name="id" value="<?php echo $this->uri->segment(3); ?>" />
-						<button class="btn btn-outline-success me-sm-2" type="submit"><?php echo lang('menu_login_button'); ?></button>
-					</form>
-				<?php } ?>
-
-				<?php if (($this->config->item('use_auth')) && ($this->session->userdata('user_type') >= 2)) { ?>
-					
 						<!-- Logged in As -->
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i> <?php echo $this->session->userdata('user_callsign'); ?></a>
@@ -429,10 +384,52 @@
 								</div>
 							</li>
 						<?php } ?>
+					<?php } ?>
+					<?php if (($this->config->item('use_auth')) && ($this->session->userdata('user_type') == 99)) { ?> <!-- ADMIN -->
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="<?php echo lang('menu_admin'); ?>"><i class="fas fa-users-cog"></i>
+								<div class="d-inline d-lg-none" style="padding-left: 10px"><?php echo lang('menu_admin'); ?></div>
+							</a>
 
-					</ul>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="<?php echo site_url('user'); ?>" title="Manage user accounts"><i class="fas fa-user"></i> <?php echo lang('menu_user_account'); ?></a>
 
-				<?php } ?>
+								<div class="dropdown-divider"></div>
+
+								<a class="dropdown-item" href="<?php echo site_url('options'); ?>" title="Manage global options"><i class="fas fa-cog"></i> <?php echo lang('menu_global_options'); ?></a>
+
+								<div class="dropdown-divider"></div>
+
+								<a class="dropdown-item" href="<?php echo site_url('mode'); ?>" title="Manage QSO modes"><i class="fas fa-broadcast-tower"></i> <?php echo lang('menu_modes'); ?></a>
+
+								<div class="dropdown-divider"></div>
+
+								<a class="dropdown-item" href="<?php echo site_url('contesting/add'); ?>" title="Manage Contest names"><i class="fas fa-broadcast-tower"></i> <?php echo lang('menu_contests'); ?></a>
+
+								<div class="dropdown-divider"></div>
+
+								<a class="dropdown-item" href="<?php echo site_url('themes'); ?>" title="Manage Themes"><i class="fas fa-cog"></i> <?php echo lang('menu_themes'); ?></a>
+
+								<div class="dropdown-divider"></div>
+
+								<a class="dropdown-item" href="<?php echo site_url('backup'); ?>" title="Backup Wavelog content"><i class="fas fa-save"></i> <?php echo lang('menu_backup'); ?></a>
+
+								<div class="dropdown-divider"></div>
+
+								<a class="dropdown-item" href="<?php echo site_url('update'); ?>" title="Update Country Files"><i class="fas fa-sync"></i> <?php echo lang('menu_update_country_files'); ?></a>
+
+								<div class="dropdown-divider"></div>
+
+								<a class="dropdown-item" href="<?php echo site_url('maintenance'); ?>" title="maintenance"><i class="fas fa-tools"></i> <?php echo lang('menu_maintenance'); ?></a>
+
+								<div class="dropdown-divider"></div>
+
+								<a class="dropdown-item" href="<?php echo site_url('debug'); ?>" title="Debug Information"><i class="fas fa-tools"></i> <?php echo lang('menu_debug_information'); ?></a>
+
+							</div>
+						</li>
+					<?php } ?>
+				</ul>
 			</div>
 		</div>
 	</nav>
