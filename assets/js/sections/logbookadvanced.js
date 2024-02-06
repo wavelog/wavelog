@@ -3,6 +3,7 @@ var inCallbookProcessing = false;
 var inCallbookItemProcessing = false;
 var clicklines = [];
 var map;
+var maidenhead;
 
 $('#band').change(function () {
 	var band = $("#band option:selected").text();
@@ -1000,22 +1001,20 @@ function loadMap(data) {
 		clicklines.push(geodesic);
 	});
 
-
-
 	/*Legend specific*/
     var legend = L.control({ position: "topright" });
 
     legend.onAdd = function(map) {
         var div = L.DomUtil.create("div", "legend");
         div.innerHTML += '<div>' + counter + " QSOs plotted</div>";
-		div.innerHTML += '<input id="pathlines" type="checkbox" onclick="toggleFunction(this.checked)" checked="checked" style="outline: none;"><span> Path lines</span>';
+		div.innerHTML += '<input id="pathlines" type="checkbox" onclick="toggleFunction(this.checked)" checked="checked" style="outline: none;"><span> Path lines</span><br>';
+		div.innerHTML += '<input id="gridsquares" type="checkbox" onclick="toggleGridsquares(this.checked)" checked="checked" style="outline: none;"><span> Gridsquares</span>';
         return div;
     };
 
     legend.addTo(map);
 
-	var layerControl = new L.Control.Layers(null, { 'Gridsquares': maidenhead = L.maidenheadqrb() }).addTo(map);
-	maidenhead.addTo(map);
+	maidenhead = L.maidenheadqrb().addTo(map);
 }
 
 	function createContentMessage(qso) {
@@ -1119,6 +1118,14 @@ function loadMap(data) {
 			addLines();
 		} else {
 			clearLines();
+		}
+	};
+
+	function toggleGridsquares(bool) {
+		if(!bool) {
+			map.removeLayer(maidenhead);
+		} else {
+			maidenhead.addTo(map);
 		}
 	};
 
