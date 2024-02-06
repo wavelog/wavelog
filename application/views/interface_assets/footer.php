@@ -2364,7 +2364,7 @@ function viewQsl(picture, callsign) {
             var webpath_qsl = "<?php echo $this->paths->getPathQsl(); ?>"; 
             var baseURL= "<?php echo base_url();?>";
             var $textAndPic = $('<div></div>');
-                $textAndPic.append('<center><img class="img-fluid w-qsl" style="height:auto;width:auto;"src="'+baseURL+'/'+webpath_qsl+'/'+picture+'" /><center>');
+                $textAndPic.append('<center><img class="img-fluid w-qsl" style="height:auto;width:auto;"src="'+baseURL+webpath_qsl+'/'+picture+'" /><center>');
             var title = '';
             if (callsign == null) {
                 title = 'QSL Card';
