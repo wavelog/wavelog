@@ -156,7 +156,7 @@ $lang['gen_hamradio_satellite_name'] = 'Nombre del Satélite';
 $lang['gen_hamradio_satellite_mode'] = 'Modo del Satélite';
 
 $lang['gen_hamradio_logbook'] = 'Libro de Guardia';
-$lang['gen_hamradio_active_logbook_hint'] = "Displaying all QSOs from station locations which are linked with this logbook";
+$lang['gen_hamradio_active_logbook_hint'] = "Displaying all QSOs of station locations which are linked to this logbook";
 $lang['gen_hamradio_active_logbook'] = 'Active Logbook';
 $lang['gen_hamradio_award'] = "Premio";
 
