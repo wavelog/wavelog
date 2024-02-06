@@ -613,17 +613,17 @@ class Logbook extends CI_Controller {
 		$data['query'] = $this->logbook_model->get_qso($id);
 		$data['dxccFlag'] = $this->dxccflag->get($data['query']->result()[0]->COL_DXCC);
 
-        if ($this->session->userdata('user_measurement_base') == NULL) {
-            $data['measurement_base'] = $this->config->item('measurement_base');
-        }
-        else {
-            $data['measurement_base'] = $this->session->userdata('user_measurement_base');
-        }
+		if ($this->session->userdata('user_measurement_base') == NULL) {
+			$data['measurement_base'] = $this->config->item('measurement_base');
+		}
+		else {
+			$data['measurement_base'] = $this->session->userdata('user_measurement_base');
+		}
 
-        $this->load->model('Qsl_model');
-        $data['qslimages'] = $this->Qsl_model->getQslForQsoId($id);
-        $data['primary_subdivision'] = $this->subdivisions->get_primary_subdivision_name($data['query']->result()[0]->COL_DXCC);
-        $data['secondary_subdivision'] = $this->subdivisions->get_secondary_subdivision_name($data['query']->result()[0]->COL_DXCC);
+		$this->load->model('Qsl_model');
+		$data['qslimages'] = $this->Qsl_model->getQslForQsoId($id);
+		$data['primary_subdivision'] = $this->subdivisions->get_primary_subdivision_name($data['query']->result()[0]->COL_DXCC);
+		$data['secondary_subdivision'] = $this->subdivisions->get_secondary_subdivision_name($data['query']->result()[0]->COL_DXCC);
 		$data['max_upload'] = ini_get('upload_max_filesize');
 		$this->load->view('interface_assets/mini_header', $data);
 		$this->load->view('view_log/qso');
