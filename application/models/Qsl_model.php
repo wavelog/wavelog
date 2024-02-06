@@ -127,4 +127,26 @@ class Qsl_model extends CI_Model {
 
 		return $this->db->insert_id();
 	}
+
+	// return path of Qsl file : u=url / p=real path //
+	function get_imagePath($pathorurl='u') {
+		$qsl_dir = "qsl_card";
+		// test if new folder directory exist // 
+		$userdata_dir = $this->config->item('userdata');
+		if (isset($userdata_dir)) {
+			if (!file_exists(realpath(APPPATH.'../').'/'.$userdata_dir)) {
+				mkdir(realpath(APPPATH.'../').'/'.$userdata_dir, 0755, true);
+			}
+			if (!file_exists(realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$qsl_dir)) {
+				mkdir(realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$qsl_dir, 0755, true);
+			}
+			if ($pathorurl=='u') {
+				return $userdata_dir.'/'.$qsl_dir;
+			} else {
+				return realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$qsl_dir;
+			}
+		} else {
+			return 'assets/qslcard';
+		}
+	}
 }

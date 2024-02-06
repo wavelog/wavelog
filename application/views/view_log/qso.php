@@ -633,9 +633,9 @@
 
         <div class="tab-pane fade" id="eqslcard" role="tabpanel" aria-labelledby="table-tab">
         <?php
-	if ($row->eqsl_image_file != null) {
-		echo '<img class="d-block" src="' . base_url() . '/images/eqsl_card_images/' . $row->eqsl_image_file .'" alt="eQSL picture">';
-	}
+	    if ($row->eqsl_image_file != null) {
+		    echo '<img class="d-block" src="' . base_url() . '/'. $this->paths->getPathEqsl() .'/' . $row->eqsl_image_file .'" alt="eQSL picture">';
+	    }
         ?>
         </div>
         <?php
