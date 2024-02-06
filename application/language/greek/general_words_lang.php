@@ -155,6 +155,7 @@ $lang['gen_hamradio_satellite_name'] = 'Όνομα δορυφόρου';
 $lang['gen_hamradio_satellite_mode'] = 'Λειτουργία δορυφόρου';
 
 $lang['gen_hamradio_logbook'] = 'Αρχείο επαφών';
+$lang['gen_hamradio_show_active_station_logbook'] = 'Showing QSOs from locations in your active station logbook';
 $lang['gen_hamradio_award'] = "Award";
 
 $lang['gen_hamradio_zones'] = 'Zones';
