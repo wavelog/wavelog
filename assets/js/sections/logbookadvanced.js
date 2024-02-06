@@ -4,6 +4,8 @@ var inCallbookItemProcessing = false;
 var clicklines = [];
 var map;
 var maidenhead;
+var geojson;
+var zonemarkers = [];
 
 $('#band').change(function () {
 	var band = $("#band option:selected").text();
@@ -1015,7 +1017,8 @@ function loadMap(data) {
         var div = L.DomUtil.create("div", "legend");
         div.innerHTML += '<div>' + counter + " QSOs plotted</div>";
 		div.innerHTML += '<input id="pathlines" type="checkbox" onclick="toggleFunction(this.checked)" checked="checked" style="outline: none;"><span> Path lines</span><br>';
-		div.innerHTML += '<input id="gridsquares" type="checkbox" onclick="toggleGridsquares(this.checked)" checked="checked" style="outline: none;"><span> Gridsquares</span>';
+		div.innerHTML += '<input id="gridsquares" type="checkbox" onclick="toggleGridsquares(this.checked)" checked="checked" style="outline: none;"><span> Gridsquares</span><br>';
+		div.innerHTML += '<input id="gridsquares" type="checkbox" onclick="toggleCqZones(this.checked)" style="outline: none;"><span> CQ Zones</span>';
         return div;
     };
 
@@ -1139,14 +1142,96 @@ function loadMap(data) {
 		}
 	};
 
+	const zonenames = [
+		[ "75", "-140" ],
+		[ "70", "-82.5" ],
+		[ "45", "-125" ],
+		[ "45", "-100" ],
+		[ "45", "-65" ],
+		[ "25.5", "-115" ],
+		[ "14.5", "-90" ],
+		[ "22", "-60" ],
+		[ "11.5", "-70" ],
+		[ "-5", "-100" ],
+		[ "-9", "-45" ],
+		[ "-45", "-106" ],
+		[ "-45", "-55" ],
+		[ "52", "-14" ],
+		[ "46", "11" ],
+		[ "60", "35" ],
+		[ "55", "65" ],
+		[ "70", "90" ],
+		[ "70", "150" ],
+		[ "42", "29" ],
+		[ "28", "53" ],
+		[ "6", "75" ],
+		[ "44", "93" ],
+		[ "33", "110" ],
+		[ "38", "134" ],
+		[ "16", "100" ],
+		[ "15", "140" ],
+		[ "0", "125" ],
+		[ "-25", "115" ],
+		[ "-25", "145" ],
+		[ "15", "-165" ],
+		[ "-25", "-165" ],
+		[ "32", "-26" ],
+		[ "25", "25.5" ],
+		[ "15", "-6" ],
+		[ "-5", "-6" ],
+		[ "6", "51" ],
+		[ "-45", "8" ],
+		[ "-25", "55"],
+		[  "78", "-10"],
+	  ];
+
+	function toggleCqZones(bool) {
+		if(!bool) {
+			zonemarkers.forEach(function (item) {
+				map.removeLayer(item);
+			});
+			map.removeLayer(geojson);
+		} else {
+			geojson = L.geoJson(zonestuff, {style: style}).addTo(map);
+			for (var i = 0; i < zonenames.length; i++) {
+
+				var title = '<span class="grid-text" style="cursor: default"><font style="color: \'white\'; font-size: 1.5em; font-weight: 900;">' + (Number(i)+Number(1)) + '</font></span>';
+				var myIcon = L.divIcon({className: 'my-div-icon', html: title});
+
+				var marker = L.marker(
+					[zonenames[i][0], zonenames[i][1]], {
+						icon: myIcon,
+						title: (Number(i)+Number(1)),
+						zIndex: 1000,
+					}
+				).addTo(map);
+				zonemarkers.push(marker);
+			}
+		}
+	}
+
+	function style(feature) {
+		var bordercolor = "black";
+		if (isDarkModeTheme()) {
+            bordercolor = "white";
+        }
+		return {
+			fillColor: "white",
+			fillOpacity: 0,
+			opacity: 0.65,
+			color: bordercolor,
+			weight: 1,
+		};
+	}
+
 	function clearLines() {
 		clicklines.forEach(function (item) {
-			map.removeLayer(item)
+			map.removeLayer(item);
 		});
 	}
 
 	function addLines() {
 		clicklines.forEach(function (item) {
-			map.addLayer(item)
+			map.addLayer(item);
 		});
 	}
