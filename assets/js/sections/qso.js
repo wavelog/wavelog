@@ -19,6 +19,7 @@ $( document ).ready(function() {
 			if ($('#qso_input input[name="end_time"]').length == 1) { _submit = testTimeOffConsistency(); }
 		}
 		if ( _submit) {
+			$("#saveQso").prop("disabled",true);
 			manual_addon='?manual='+qso_manual;
 			e.preventDefault();
 			$.ajax({
@@ -38,6 +39,7 @@ $( document ).ready(function() {
 						set_timers();
 						resetTimers(qso_manual);
 						htmx.trigger("#qso-last-table", "qso_event")
+						$("#saveQso").prop("disabled",false);
 						$("#callsign").val("");
 						$("#callsign").focus();
 						$("#noticer").fadeOut(2000);
@@ -46,6 +48,7 @@ $( document ).ready(function() {
 						$("#noticer").addClass("alert alert-warning");
 						$("#noticer").html(result.errors);
 						$("#noticer").show();
+						$("#saveQso").prop("disabled",false);
 					}
 				},
 				error: function() {
@@ -53,6 +56,7 @@ $( document ).ready(function() {
 						$("#noticer").addClass("alert alert-warning");
 						$("#noticer").html("Timeout while adding QSO. NOT added");
 						$("#noticer").show();
+						$("#saveQso").prop("disabled",false);
 				}
 			});
 		}
