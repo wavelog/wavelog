@@ -8,6 +8,12 @@ var geojson;
 var itugeojson;
 var zonemarkers = [];
 var ituzonemarkers = [];
+var iconsList = { 'qso': { 'color': '#FF0000', 'icon': 'fas fa-dot-circle' } };
+
+var stationIcon = L.divIcon({ 'className': 'cspot_station'});
+var qsoIcon = L.divIcon({ className: 'cspot_qso' }); //default (fas fa-dot-circle red)
+var qsoconfirmIcon = L.divIcon({ className: 'cspot_qsoconfirm' });
+var redIconImg = L.icon({ iconUrl: icon_dot_url, iconSize: [10, 10] }); // old //
 
 $('#band').change(function () {
 	var band = $("#band option:selected").text();
@@ -865,7 +871,7 @@ function mapQsos(form) {
 				de: form.de.value
 			},
 			success: function(data) {
-				loadMap(data);
+				loadMapOptions(data);
 			},
 			error: function() {
 				$('#mapButton').prop("disabled", false);
@@ -906,7 +912,7 @@ function mapQsos(form) {
 				qslimages: form.qslimages.value,
 			},
 			success: function(data) {
-				loadMap(data);
+				loadMapOptions(data);
 			},
 			error: function() {
 				$('#mapButton').prop("disabled", false);
@@ -915,7 +921,23 @@ function mapQsos(form) {
 	}
 };
 
-function loadMap(data) {
+function loadMapOptions(data) {
+	$.ajax({
+		url: base_url + 'index.php/user_options/get_map_custom',
+		type: 'GET',
+		dataType: 'json',
+	error: function () {
+	},
+	success: function (json_mapinfo) {
+			if (typeof json_mapinfo.qso !== "undefined") {
+				iconsList = json_mapinfo;
+			}
+			loadMap(data, iconsList)
+		}
+	});
+}
+
+function loadMap(data, iconsList) {
 	$('#mapButton').prop("disabled", false);
 	var osmUrl='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 	var osmAttrib='Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
@@ -980,14 +1002,20 @@ function loadMap(data) {
 		var popupmessage = createContentMessage(this);
 		var popupmessage2 = createContentMessageDx(this);
 
-		var marker = L.marker([this.latlng1[0], this.latlng1[1]], {icon: redIcon}, {closeOnClick: false, autoClose: false}).addTo(map).bindPopup(popupmessage);
+		var marker = L.marker([this.latlng1[0], this.latlng1[1]], {icon: stationIcon}, {closeOnClick: false, autoClose: false}).addTo(map).bindPopup(popupmessage);
+
 		marker.on('mouseover',function(ev) {
 			ev.target.openPopup();
 		});
 		let lat_lng = [this.latlng1[0], this.latlng1[1]];
 		bounds.extend(lat_lng);
 
-		var marker2 = L.marker([this.latlng2[0], this.latlng2[1]], {icon: redIcon},{closeOnClick: false, autoClose: false}).addTo(map).bindPopup(popupmessage2);;
+		if (this.confirmed) {
+			var marker2 = L.marker([this.latlng2[0], this.latlng2[1]], {icon: qsoconfirmIcon},{closeOnClick: false, autoClose: false}).addTo(map).bindPopup(popupmessage2);;
+		} else {
+			var marker2 = L.marker([this.latlng2[0], this.latlng2[1]], {icon: qsoIcon},{closeOnClick: false, autoClose: false}).addTo(map).bindPopup(popupmessage2);;
+		}
+
 		marker2.on('mouseover',function(ev) {
 			ev.target.openPopup();
 		});
@@ -1031,6 +1059,10 @@ function loadMap(data) {
 
 
 	map.fitBounds(bounds);
+
+	$.each(iconsList, function (icon, data) {
+		$('#advancedmap' + ' .cspot_' + icon).addClass(data.icon).css("color", data.color);
+	});
 }
 
 	function createContentMessage(qso) {

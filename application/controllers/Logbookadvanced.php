@@ -338,14 +338,13 @@ class Logbookadvanced extends CI_Controller {
 			$measurement_base = $this->session->userdata('user_measurement_base');
 		}
 
-		$CI =& get_instance();
 		// Get Date format
-		if($CI->session->userdata('user_date_format')) {
+		if($this->session->userdata('user_date_format')) {
 			// If Logged in and session exists
-			$custom_date_format = $CI->session->userdata('user_date_format');
+			$custom_date_format = $this->session->userdata('user_date_format');
 		} else {
 			// Get Default date format from /config/wavelog.php
-			$custom_date_format = $CI->config->item('qso_date_format');
+			$custom_date_format = $this->config->item('qso_date_format');
 		}
 
 		switch ($measurement_base) {
@@ -400,6 +399,7 @@ class Logbookadvanced extends CI_Controller {
 		$data['mycallsign'] = $qso['station_callsign'];
 		$data['datetime'] = date($custom_date_format, strtotime($qso['COL_TIME_ON'])). date(' H:i',strtotime($qso['COL_TIME_ON']));
 		$data['satname'] = $qso['COL_SAT_NAME'];
+		$data['confirmed'] = ((($qso['COL_EQSL_QSL_RCVD'] == 'Y') || ($qso['COL_LOTW_QSL_RCVD'] == 'Y') || ($qso['COL_QSL_RCVD'] == 'Y')) == true ? true : false);
 
 		return $data;
 	}
@@ -424,6 +424,7 @@ class Logbookadvanced extends CI_Controller {
 		$data['mycallsign'] = $qso['station_callsign'];
 		$data['datetime'] = date($custom_date_format, strtotime($qso['COL_TIME_ON'])). date(' H:i',strtotime($qso['COL_TIME_ON']));
 		$data['satname'] = $qso['COL_SAT_NAME'];
+		$data['confirmed'] = ((($qso['COL_EQSL_QSL_RCVD'] == 'Y') || ($qso['COL_LOTW_QSL_RCVD'] == 'Y') || ($qso['COL_QSL_RCVD'] == 'Y')) == true ? true : false);
 
 		return $data;
 	}
