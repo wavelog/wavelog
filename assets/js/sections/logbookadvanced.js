@@ -8,7 +8,14 @@ var geojson;
 var itugeojson;
 var zonemarkers = [];
 var ituzonemarkers = [];
-var iconsList = { 'qso': { 'color': '#FF0000', 'icon': 'fas fa-dot-circle', 'iconSize': [5, 5] } };
+
+var defaultlinecolor = 'blue';
+
+if (isDarkModeTheme()) {
+	defaultlinecolor = 'red';
+}
+
+var iconsList = { 'qso': { 'color': defaultlinecolor, 'icon': 'fas fa-dot-circle', 'iconSize': [5, 5] }, 'qsoconfirm': { 'color': defaultlinecolor, 'icon': 'fas fa-dot-circle', 'iconSize': [5, 5] } };
 
 var stationIcon = L.divIcon({ 'className': 'cspot_station', iconSize: [5, 5], iconAnchor: [5, 5]});
 var qsoIcon = L.divIcon({ className: 'cspot_qso', iconSize: [5, 5], iconAnchor: [5, 5] }); //default (fas fa-dot-circle red)
@@ -980,7 +987,6 @@ function loadMap(data, iconsList) {
 	});
 
 	var counter = 0;
-	var linecolor = 'red';
 
 	$.each(data, function(k, v) {
 		counter++;
