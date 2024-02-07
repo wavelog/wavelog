@@ -8,12 +8,12 @@ var geojson;
 var itugeojson;
 var zonemarkers = [];
 var ituzonemarkers = [];
-var iconsList = { 'qso': { 'color': '#FF0000', 'icon': 'fas fa-dot-circle' } };
+var iconsList = { 'qso': { 'color': '#FF0000', 'icon': 'fas fa-dot-circle', 'iconSize': [5, 5] } };
 
-var stationIcon = L.divIcon({ 'className': 'cspot_station'});
-var qsoIcon = L.divIcon({ className: 'cspot_qso' }); //default (fas fa-dot-circle red)
-var qsoconfirmIcon = L.divIcon({ className: 'cspot_qsoconfirm' });
-var redIconImg = L.icon({ iconUrl: icon_dot_url, iconSize: [10, 10] }); // old //
+var stationIcon = L.divIcon({ 'className': 'cspot_station', iconSize: [5, 5]});
+var qsoIcon = L.divIcon({ className: 'cspot_qso', iconSize: [5, 5] }); //default (fas fa-dot-circle red)
+var qsoconfirmIcon = L.divIcon({ className: 'cspot_qsoconfirm', iconSize: [5, 5] });
+var redIconImg = L.icon({ iconUrl: icon_dot_url, iconSize: [5, 5] }); // old //
 
 $('#band').change(function () {
 	var band = $("#band option:selected").text();
@@ -974,20 +974,13 @@ function loadMap(data, iconsList) {
 
 	var osm = new L.TileLayer(osmUrl, {minZoom: 1, maxZoom: 9, attribution: osmAttrib});
 
-	map.addLayer(osm);
-
-	var linecolor = 'blue';
-
-	if (isDarkModeTheme()) {
-		linecolor = 'red';
-	}
-
 	var redIcon = L.icon({
 		iconUrl: icon_dot_url,
 		iconSize: [10, 10], // size of the icon
 	});
 
 	var counter = 0;
+	var linecolor = 'red';
 
 	$.each(data, function(k, v) {
 		counter++;
@@ -1011,9 +1004,11 @@ function loadMap(data, iconsList) {
 		bounds.extend(lat_lng);
 
 		if (this.confirmed) {
-			var marker2 = L.marker([this.latlng2[0], this.latlng2[1]], {icon: qsoconfirmIcon},{closeOnClick: false, autoClose: false}).addTo(map).bindPopup(popupmessage2);;
+			var marker2 = L.marker([this.latlng2[0], this.latlng2[1]], {icon: qsoconfirmIcon},{closeOnClick: false, autoClose: false}).addTo(map).bindPopup(popupmessage2);
+			linecolor = iconsList.qsoconfirm.color;
 		} else {
-			var marker2 = L.marker([this.latlng2[0], this.latlng2[1]], {icon: qsoIcon},{closeOnClick: false, autoClose: false}).addTo(map).bindPopup(popupmessage2);;
+			var marker2 = L.marker([this.latlng2[0], this.latlng2[1]], {icon: qsoIcon},{closeOnClick: false, autoClose: false}).addTo(map).bindPopup(popupmessage2);
+			linecolor = iconsList.qso.color;
 		}
 
 		marker2.on('mouseover',function(ev) {
