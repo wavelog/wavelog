@@ -1058,6 +1058,14 @@ function loadMap(data, iconsList) {
 	$.each(iconsList, function (icon, data) {
 		$('#advancedmap' + ' .cspot_' + icon).addClass(data.icon).css("color", data.color);
 	});
+
+	var printer = L.easyPrint({
+		tileLayer: osm,
+		sizeModes: ['Current', 'A4Landscape', 'A4Portrait'],
+		filename: 'Wavelog',
+		exportOnly: true,
+		hideControlContainer: true
+  }).addTo(map);
 }
 
 	function createContentMessage(qso) {
