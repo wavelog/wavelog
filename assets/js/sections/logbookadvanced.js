@@ -17,7 +17,7 @@ if (isDarkModeTheme()) {
 
 var iconsList = { 'qso': { 'color': defaultlinecolor, 'icon': 'fas fa-dot-circle', 'iconSize': [5, 5] }, 'qsoconfirm': { 'color': defaultlinecolor, 'icon': 'fas fa-dot-circle', 'iconSize': [5, 5] } };
 
-var stationIcon = L.divIcon({ 'className': 'cspot_station', iconSize: [5, 5], iconAnchor: [5, 5]});
+var stationIcon = L.divIcon({ className: 'cspot_station', iconSize: [5, 5], iconAnchor: [5, 5]});
 var qsoIcon = L.divIcon({ className: 'cspot_qso', iconSize: [5, 5], iconAnchor: [5, 5] }); //default (fas fa-dot-circle red)
 var qsoconfirmIcon = L.divIcon({ className: 'cspot_qsoconfirm', iconSize: [5, 5], iconAnchor: [5, 5] });
 var redIconImg = L.icon({ iconUrl: icon_dot_url, iconSize: [5, 5] }); // old //
@@ -1009,7 +1009,7 @@ function loadMap(data, iconsList) {
 		let lat_lng = [this.latlng1[0], this.latlng1[1]];
 		bounds.extend(lat_lng);
 
-		if (this.confirmed) {
+		if (this.confirmed && iconsList.qsoconfirm.icon !== "0") {
 			var marker2 = L.marker([this.latlng2[0], this.latlng2[1]], {icon: qsoconfirmIcon},{closeOnClick: false, autoClose: false}).addTo(map).bindPopup(popupmessage2);
 			linecolor = iconsList.qsoconfirm.color;
 		} else {
