@@ -67,7 +67,7 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light main-nav">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light main-nav" id="header-menu">
 		<div class="container">
 			<a class="navbar-brand" href="<?php echo site_url(); ?>"><img class="headerLogo" src="<?php echo base_url(); ?>assets/logo/<?php echo $this->optionslib->get_logo('header_logo'); ?>.png" alt="Logo" /></a> <?php if (ENVIRONMENT == "development") { ?><span class="badge text-bg-danger"><?php echo lang('menu_badge_developer_mode'); ?></span><?php } ?>
 
@@ -396,12 +396,16 @@
 		</div>
 	</nav>
 	<script>
-		let dropdowns = document.querySelectorAll('.dropdown-toggle')
+		let headerMenu = document.getElementById('header-menu');
 
-		dropdowns.forEach((dd)=>{
-			dd.addEventListener('click', function (e) {
-				var el = this.nextElementSibling
-				el.style.display = el.style.display==='block'?'none':'block'
-			})
-		})
+		let dropdowns = document.querySelectorAll('.dropdown-toggle');
+
+		dropdowns.forEach((dd) => {
+			dd.addEventListener('click', function(e) {
+				if (headerMenu.clientWidth < 992) {
+					var el = this.nextElementSibling;
+					el.style.display = el.style.display === 'block' ? 'none' : 'block';
+				}
+			});
+		});
 	</script>
