@@ -10,6 +10,14 @@
 /* ============ desktop view ============ */
 @media all and (min-width: 992px) {
 
+	.navbar-nav-left .dropdown-menu > li > a:hover:after {
+		transform: rotate(-90deg);
+	}
+
+	.navbar-nav-right .dropdown-menu > li > a:hover:after {
+		transform: rotate(90deg);
+	}
+
 	.header-dropdown li {
 		position: relative;
 	}
@@ -55,6 +63,7 @@
 
 /* ============ small devices ============ */
 @media (max-width: 991px) {
+
 	.header-dropdown {
 		margin-left: 0.7rem;
 		margin-right: 0.7rem;
