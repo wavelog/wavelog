@@ -10,9 +10,9 @@ var zonemarkers = [];
 var ituzonemarkers = [];
 var iconsList = { 'qso': { 'color': '#FF0000', 'icon': 'fas fa-dot-circle', 'iconSize': [5, 5] } };
 
-var stationIcon = L.divIcon({ 'className': 'cspot_station', iconSize: [5, 5]});
-var qsoIcon = L.divIcon({ className: 'cspot_qso', iconSize: [5, 5] }); //default (fas fa-dot-circle red)
-var qsoconfirmIcon = L.divIcon({ className: 'cspot_qsoconfirm', iconSize: [5, 5] });
+var stationIcon = L.divIcon({ 'className': 'cspot_station', iconSize: [5, 5], iconAnchor: [5, 5]});
+var qsoIcon = L.divIcon({ className: 'cspot_qso', iconSize: [5, 5], iconAnchor: [5, 5] }); //default (fas fa-dot-circle red)
+var qsoconfirmIcon = L.divIcon({ className: 'cspot_qsoconfirm', iconSize: [5, 5], iconAnchor: [5, 5] });
 var redIconImg = L.icon({ iconUrl: icon_dot_url, iconSize: [5, 5] }); // old //
 
 $('#band').change(function () {
