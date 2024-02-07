@@ -284,13 +284,13 @@ class Logbook_model extends CI_Model {
         $data['COL_QRZCOM_QSO_UPLOAD_STATUS'] = 'N';
     }
 
-      $data['COL_MY_CITY'] = strtoupper(trim($station['station_city']));
-      $data['COL_MY_IOTA'] = strtoupper(trim($station['station_iota']));
-      $data['COL_MY_SOTA_REF'] = strtoupper(trim($station['station_sota']));
-      $data['COL_MY_WWFF_REF'] = strtoupper(trim($station['station_wwff']));
-      $data['COL_MY_POTA_REF'] = $station['station_pota'] == null ? '' : strtoupper(trim($station['station_pota']));
+      $data['COL_MY_IOTA'] = $station['station_iota'] ? strtoupper(trim($station['station_iota'])) : '';
+      $data['COL_MY_SOTA_REF'] = $station['station_sota'] ? strtoupper(trim($station['station_sota'])) : '';
+      $data['COL_MY_WWFF_REF'] = $station['station_wwff'] ? strtoupper(trim($station['station_wwff'])) : '';
+      $data['COL_MY_POTA_REF'] = $station['station_pota'] ? strtoupper(trim($station['station_pota'])) : '';
 
       $data['COL_STATION_CALLSIGN'] = strtoupper(trim($station['station_callsign']));
+      $data['COL_MY_CITY'] = strtoupper(trim($station['station_city']));
       $data['COL_MY_DXCC'] = strtoupper(trim($station['station_dxcc']));
       $data['COL_MY_COUNTRY'] = strtoupper(trim($station['station_country'] ?? ''));
       $data['COL_MY_CNTY'] = strtoupper(trim($station['station_cnty']));
