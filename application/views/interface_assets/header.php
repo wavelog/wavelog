@@ -76,8 +76,8 @@
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav navbar-nav-left">
 					<li class="nav-item dropdown"> <!-- LOGBOOK -->
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-bs-toggle="dropdown"> <?php echo lang('menu_logbook'); ?></a>
-						<ul class="dropdown-menu">
+						<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"> <?php echo lang('menu_logbook'); ?></a>
+						<ul class="dropdown-menu header-dropdown">
 							<li><a class="dropdown-item" href="<?php echo site_url('logbook'); ?>"><i class="fas fa-book"></i> <?php echo lang('menu_overview'); ?></a></li>
 							<div class="dropdown-divider"></div>
 							<li><a class="dropdown-item" href="<?php echo site_url('logbookadvanced'); ?>"><i class="fas fa-book-open"></i> <?php echo lang('menu_advanced'); ?></a></li>
@@ -90,8 +90,8 @@
 
 					<?php if (($this->config->item('use_auth')) && ($this->session->userdata('user_type') >= 2)) { ?>
 						<li class="nav-item dropdown"> <!-- QSO -->
-							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-bs-toggle="dropdown"><?php echo lang('menu_qso'); ?></a>
-							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><?php echo lang('menu_qso'); ?></a>
+							<ul class="dropdown-menu header-dropdown">
 								<li><a class="dropdown-item" href="<?php echo site_url('qso?manual=0'); ?>" title="Log Live QSOs"><i class="fas fa-list"></i> <?php echo lang('menu_live_qso'); ?></a></li>
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item" href="<?php echo site_url('qso?manual=1'); ?>" title="Log QSO made in the past"><i class="fas fa-list"></i> <?php echo lang('menu_post_qso'); ?></a></li>
@@ -109,8 +109,8 @@
 						<?php } ?>
 
 						<li class="nav-item dropdown"> <!-- ANALYTICS -->
-							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-bs-toggle="dropdown"><?php echo lang('menu_analytics'); ?></a>
-							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><?php echo lang('menu_analytics'); ?></a>
+							<ul class="dropdown-menu header-dropdown">
 								<li><a class="dropdown-item" href="<?php echo site_url('statistics'); ?>" title="Statistics"><i class="fas fa-chart-area"></i> <?php echo lang('menu_statistics'); ?></a></li>
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item" href="<?php echo site_url('gridmap'); ?>" title="Gridmap"><i class="fas fa-globe-europe"></i> <?php echo lang('menu_gridmap'); ?></a></li>
@@ -134,10 +134,9 @@
 								<li><a class="dropdown-item" href="<?php echo site_url('continents'); ?>" title="Continents"><i class="fas fa-globe-europe"></i> <?php echo lang('menu_continents'); ?></a></li>
 							</ul>
 						</li>
-
 						<li class="nav-item dropdown"> <!-- AWARDS -->
-							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-bs-toggle="dropdown"><?php echo lang('menu_awards'); ?></a>
-							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><?php echo lang('menu_awards'); ?></a>
+							<ul class="dropdown-menu header-dropdown">
 								<li><a class="dropdown-item" href="<?php echo site_url('awards/cq'); ?>"><i class="fas fa-trophy"></i> <?php echo lang('menu_cq'); ?></a></li>
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item" href="<?php echo site_url('awards/dok'); ?>"><i class="fas fa-trophy"></i> <?php echo lang('menu_dok'); ?></a></li>
@@ -148,9 +147,8 @@
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item" href="<?php echo site_url('awards/iota'); ?>"><i class="fas fa-trophy"></i> <?php echo lang('menu_iota'); ?></a></li>
 								<div class="dropdown-divider"></div>
-
-								<li><a class="dropdown-item dropdown-toggle" href="#"><i class="fas fa-trophy"></i> Gridmaster</a>
-									<ul class="submenu dropdown-menu" data-bs-toggle="dropdown">
+								<li><a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#"><i class="fas fa-trophy"></i> Gridmaster</a>
+									<ul class="submenu dropdown-menu">
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/gridmaster/dl'); ?>"><i class="fas fa-trophy"></i> <?php echo lang('menu_dl_gridmaster'); ?></a></li>
 										<div class="dropdown-divider"></div>
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/gridmaster/lx'); ?>"><i class="fas fa-trophy"></i> <?php echo lang('menu_lx_gridmaster'); ?></a></li>
@@ -182,8 +180,8 @@
 						</li>
 
 						<li class="nav-item dropdown"> <!-- TOOLS -->
-							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-bs-toggle="dropdown">Tools</a>
-							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Tools</a>
+							<ul class="dropdown-menu header-dropdown">
 								<li><a class="dropdown-item" href="<?php echo site_url('hamsat'); ?>" title="Hams.at"><i class="fas fa-list"></i> Hams.at</a></li>
 								<?php if ($this->optionslib->get_option('dxcache_url') != '') { ?>
 									<div class="dropdown-divider"></div>
@@ -196,43 +194,26 @@
 					<?php } ?>
 					<?php if (($this->config->item('use_auth')) && ($this->session->userdata('user_type') == 99)) { ?> <!-- ADMIN -->
 						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" title="<?php echo lang('menu_admin'); ?>"><i class="fas fa-users-cog"></i></a>
+							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" title="<?php echo lang('menu_admin'); ?>"><i class="fas fa-users-cog"></i></a>
 
-							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<div class="dropdown-menu header-dropdown">
 								<a class="dropdown-item" href="<?php echo site_url('user'); ?>" title="Manage user accounts"><i class="fas fa-user"></i> <?php echo lang('menu_user_account'); ?></a>
-
 								<div class="dropdown-divider"></div>
-
 								<a class="dropdown-item" href="<?php echo site_url('options'); ?>" title="Manage global options"><i class="fas fa-cog"></i> <?php echo lang('menu_global_options'); ?></a>
-
 								<div class="dropdown-divider"></div>
-
 								<a class="dropdown-item" href="<?php echo site_url('mode'); ?>" title="Manage QSO modes"><i class="fas fa-broadcast-tower"></i> <?php echo lang('menu_modes'); ?></a>
-
 								<div class="dropdown-divider"></div>
-
 								<a class="dropdown-item" href="<?php echo site_url('contesting/add'); ?>" title="Manage Contest names"><i class="fas fa-broadcast-tower"></i> <?php echo lang('menu_contests'); ?></a>
-
 								<div class="dropdown-divider"></div>
-
 								<a class="dropdown-item" href="<?php echo site_url('themes'); ?>" title="Manage Themes"><i class="fas fa-cog"></i> <?php echo lang('menu_themes'); ?></a>
-
 								<div class="dropdown-divider"></div>
-
 								<a class="dropdown-item" href="<?php echo site_url('backup'); ?>" title="Backup Wavelog content"><i class="fas fa-save"></i> <?php echo lang('menu_backup'); ?></a>
-
 								<div class="dropdown-divider"></div>
-
 								<a class="dropdown-item" href="<?php echo site_url('update'); ?>" title="Update Country Files"><i class="fas fa-sync"></i> <?php echo lang('menu_update_country_files'); ?></a>
-
 								<div class="dropdown-divider"></div>
-
 								<a class="dropdown-item" href="<?php echo site_url('maintenance'); ?>" title="maintenance"><i class="fas fa-tools"></i> <?php echo lang('menu_maintenance'); ?></a>
-
 								<div class="dropdown-divider"></div>
-
 								<a class="dropdown-item" href="<?php echo site_url('debug'); ?>" title="Debug Information"><i class="fas fa-tools"></i> <?php echo lang('menu_debug_information'); ?></a>
-
 							</div>
 						</li>
 					<?php } ?>
@@ -310,9 +291,9 @@
 
 						<!-- Logged in As -->
 						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-bs-toggle="dropdown"><i class="fas fa-user"></i> <?php echo $this->session->userdata('user_callsign'); ?></a>
+							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><i class="fas fa-user"></i> <?php echo $this->session->userdata('user_callsign'); ?></a>
 
-							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<ul class="dropdown-menu dropdown-menu-right header-dropdown">
 								<li><a class="dropdown-item" href="<?php echo site_url('user/edit') . "/" . $this->session->userdata('user_id'); ?>" title="Account"><i class="fas fa-user"></i> <?php echo lang('menu_account'); ?></a></li>
 
 								<li><a class="dropdown-item" href="<?php echo site_url('logbooks'); ?>" title="Manage station logbooks"><i class="fas fa-home"></i> <?php echo lang('menu_station_logbooks'); ?></a></li>
@@ -325,8 +306,8 @@
 
 								<li><a class="dropdown-item" href="<?php echo site_url('adif'); ?>" title="Amateur Data Interchange Format (ADIF) import / export"><i class="fas fa-sync"></i> <?php echo lang('menu_adif_import_export'); ?></a></li>
 
-								<li><a class="dropdown-item dropdown-toggle"><i class="fas fa-sync"></i> Other Export Options</a>
-									<ul class="submenu submenu-left dropdown-menu" data-bs-toggle="dropdown">
+								<li><a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-sync"></i> Other Export Options</a>
+									<ul class="submenu submenu-left dropdown-menu">
 										<li><a class="dropdown-item" href="<?php echo site_url('kmlexport'); ?>" title="KML Export for Google Earth"><i class="fas fa-sync"></i> <?php echo lang('menu_kml_export'); ?></a></li>
 
 										<li><a class="dropdown-item" href="<?php echo site_url('dxatlas'); ?>" title="DX Atlas Gridsquare Export"><i class="fas fa-sync"></i> <?php echo lang('menu_dx_atlas_gridsquare_export'); ?></a></li>
@@ -355,38 +336,22 @@
 								<li><a class="dropdown-item" href="<?php echo site_url('oqrs/requests'); ?>" title="OQRS Requests"><i class="fa fa-id-card"></i> <?php echo lang('menu_oqrs_requests'); ?> <?php if ($oqrs_requests > 0) {
 																																																				echo "<span class=\"badge text-bg-light\">" . $oqrs_requests . "</span>";
 																																																			} ?></a></li>
-
 								<li><a class="dropdown-item" href="<?php echo site_url('qslprint'); ?>" title="Print Requested QSLs"><i class="fas fa-print"></i> <?php echo lang('menu_print_requested_qsls'); ?></a></li>
-
 								<li><a class="dropdown-item" href="<?php echo site_url('labels'); ?>" title="Label setup"><i class="fas fa-print"></i> <?php echo lang('menu_labels'); ?></a></li>
-
 								<div class="dropdown-divider"></div>
-
 								<li><a class="dropdown-item" href="<?php echo site_url('lotw'); ?>" title="Synchronise with Logbook of the World (LoTW)"><i class="fas fa-sync"></i> <?php echo lang('menu_logbook_of_the_world'); ?></a></li>
-
 								<li><a class="dropdown-item" href="<?php echo site_url('eqsl/import'); ?>" title="eQSL import / export"><i class="fas fa-sync"></i> <?php echo lang('menu_eqsl_import_export'); ?></a></li>
-
 								<li><a class="dropdown-item" href="<?php echo site_url('hrdlog/export'); ?>" title="Upload to HRDLog.net logbook"><i class="fas fa-sync"></i> <?php echo lang('menu_hrd_logbook'); ?></a></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('qrz/export'); ?>" title="Upload to QRZ.com logbook"><i class="fas fa-sync"></i> <?php echo lang('menu_qrz_logbook'); ?></a></li>
-
 								<li><a class="dropdown-item" href="<?php echo site_url('webadif/export'); ?>" title="Upload to webADIF"><i class="fas fa-sync"></i> <?php echo lang('menu_qo_100_dx_club_upload'); ?></a></li>
-
 								<div class="dropdown-divider"></div>
-
 								<li><a class="dropdown-item" href="<?php echo site_url('api/help'); ?>" title="Manage API keys"><i class="fas fa-key"></i> <?php echo lang('menu_api_keys'); ?></a></li>
-
 								<li><a class="dropdown-item" href="<?php echo site_url('radio'); ?>" title="Interface with one or more radios"><i class="fas fa-broadcast-tower"></i> <?php echo lang('menu_hardware_interfaces'); ?></a></li>
-
 								<div class="dropdown-divider"></div>
-
 								<li><a class="dropdown-item" href="javascript:displayVersionDialog();" title="Version Information"><i class="fas fa-star"></i> <?php echo lang('options_version_dialog'); ?></a></li>
-
 								<li><a class="dropdown-item" target="_blank" href="https://github.com/wavelog/wavelog/wiki" title="Help"><i class="fas fa-question"></i> <?php echo lang('menu_help'); ?></a></li>
-
 								<li><a class="dropdown-item" target="_blank" href="https://github.com/wavelog/wavelog/discussions" title="Forum"><i class="far fa-comment-dots"></i> <?php echo lang('menu_forum'); ?></a></li>
-
 								<div class="dropdown-divider"></div>
-
 								<li><a class="dropdown-item" href="<?php echo site_url('user/logout'); ?>" title="Logout"><i class="fas fa-sign-out-alt"></i> <?php echo lang('menu_logout'); ?></a></li>
 							</ul>
 						</li>
@@ -414,8 +379,8 @@
 
 						if ($this->optionslib->get_option('menuitems')) { ?>
 							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-bs-toggle="dropdown">Extras</a>
-								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Extras</a>
+								<div class="dropdown-menu header-dropdown">
 									<?php
 									foreach (json_decode($this->optionslib->get_option('menuitems')) as $item) {
 										echo '<a class="dropdown-item" href="' . site_url($item->url) . '" title="' . $item->text . '"><i class="fas ' . $item->icon . '"></i> ' . $item->text . '</a>';
@@ -430,3 +395,13 @@
 			</div>
 		</div>
 	</nav>
+	<script>
+		let dropdowns = document.querySelectorAll('.dropdown-toggle')
+
+		dropdowns.forEach((dd)=>{
+			dd.addEventListener('click', function (e) {
+				var el = this.nextElementSibling
+				el.style.display = el.style.display==='block'?'none':'block'
+			})
+		})
+	</script>
