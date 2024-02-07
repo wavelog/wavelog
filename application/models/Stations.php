@@ -193,15 +193,6 @@ class Stations extends CI_Model {
         $this->db->delete($this->config->item('table_name'));
     }
 
-	function claim_user($id) {
-		$data = array(
-				'user_id' => $this->session->userdata('user_id'),
-		);
-
-		$this->db->where('station_id', $id);
-		$this->db->update('station_profile', $data);
-	}
-
 	function ClaimAllStationLocations($id = NULL) {
 		// if $id is empty then use session user_id
 		if (empty($id)) {
@@ -312,6 +303,7 @@ class Stations extends CI_Model {
 	}
 
     public function reassign($id) {
+		// DANGEROUS Function. Do not let any User without Admin call this one!!
 		// Clean ID
 		$clean_id = $this->security->xss_clean($id);
 
