@@ -4,12 +4,12 @@ class Maintenance extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
+		$this->load->model('user_model');
+		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 	}
 	
 	/* User Facing Links to Maintenance URLs */
 	public function index() {
-		$this->load->model('user_model');
-		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 		$this->load->model('Logbook_model');
 		$this->load->model('Stations');
 		$data['stations']=$this->Stations->all();
@@ -24,8 +24,6 @@ class Maintenance extends CI_Controller {
 	}
 
 	public function reassign() {
-		$this->load->model('user_model');
-		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 		$this->load->model('Logbook_model');
 		$this->load->model('Stations');
 		$call = xss_clean(($this->input->post('call')));
