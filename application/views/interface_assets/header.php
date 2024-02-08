@@ -256,20 +256,20 @@
 								}
 							</script>
 						<?php } ?>
-						<form id="quicklog-form" class="d-flex align-items-center" onsubmit="return false;">
-							<input class="form-control me-2" id="nav-bar-search-input" type="text" name="callsign" placeholder="<?php echo lang('menu_search_text_quicklog'); ?>" aria-label="Quicklog" onkeypress="handleKeyPress(event)">
+						<form id="quicklog-form" class="d-flex align-items-center me-3" onsubmit="return false;">
+							<div class="input-group">
+								<input class="form-control border-light" id="nav-bar-search-input" type="text" name="callsign" placeholder="<?php echo lang('menu_search_text_quicklog'); ?>" aria-label="Quicklog" onkeypress="handleKeyPress(event)">
 
-							<button title="<?php echo lang('menu_search_button_qicksearch_log'); ?>" class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="logQuicklog()"><i class="fas fa-plus"></i>
-							</button>
-
-							<button title="<?php echo lang('menu_search_button'); ?>" class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="submitForm('search')" style="margin-left: 5px"><i class="fas fa-search"></i>
-							</button>
+								<button title="<?php echo lang('menu_search_button_qicksearch_log'); ?>" class="btn btn-outline-success border-light" type="button" onclick="logQuicklog()"><i class="fas fa-plus"></i></button>
+								<button title="<?php echo lang('menu_search_button'); ?>" class="btn btn-outline-success border-light" type="button" onclick="submitForm('search')"><i class="fas fa-search"></i></button>
+							</div>
 						</form>
 					<?php } else { ?>
-						<form method="post" class="d-flex align-items-center" action="<?php echo site_url('search'); ?>">
-							<input class="form-control me-2" id="nav-bar-search-input" type="search" name="callsign" placeholder="<?php echo lang('menu_search_text'); ?>" aria-label="Search">
-							<button title="<?php echo lang('menu_search_button'); ?>" class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i>
-							</button>
+						<form method="post" class="d-flex align-items-center me-2" action="<?php echo site_url('search'); ?>">
+							<div class="input-group">
+								<input class="form-control border-light" id="nav-bar-search-input" type="search" name="callsign" placeholder="<?php echo lang('menu_search_text'); ?>" aria-label="Search">
+								<button title="<?php echo lang('menu_search_button'); ?>" class="btn btn-outline-success border-light" type="submit"><i class="fas fa-search"></i></button>
+							</div>
 						</form>
 					<?php } ?>
 
@@ -339,11 +339,11 @@
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-sync"></i> Third-Party Services</a>
 									<ul class="submenu submenu-left dropdown-menu">
-									<li><a class="dropdown-item" href="<?php echo site_url('lotw'); ?>" title="Synchronise with Logbook of the World (LoTW)"><i class="fas fa-sync"></i> <?php echo lang('menu_logbook_of_the_world'); ?></a></li>
-									<li><a class="dropdown-item" href="<?php echo site_url('eqsl/import'); ?>" title="eQSL import / export"><i class="fas fa-sync"></i> <?php echo lang('menu_eqsl_import_export'); ?></a></li>
-									<li><a class="dropdown-item" href="<?php echo site_url('hrdlog/export'); ?>" title="Upload to HRDLog.net logbook"><i class="fas fa-sync"></i> <?php echo lang('menu_hrd_logbook'); ?></a></li>
-									<li><a class="dropdown-item" href="<?php echo site_url('qrz/export'); ?>" title="Upload to QRZ.com logbook"><i class="fas fa-sync"></i> <?php echo lang('menu_qrz_logbook'); ?></a></li>
-									<li><a class="dropdown-item" href="<?php echo site_url('webadif/export'); ?>" title="Upload to webADIF"><i class="fas fa-sync"></i> <?php echo lang('menu_qo_100_dx_club_upload'); ?></a></li>
+										<li><a class="dropdown-item" href="<?php echo site_url('lotw'); ?>" title="Synchronise with Logbook of the World (LoTW)"><i class="fas fa-sync"></i> <?php echo lang('menu_logbook_of_the_world'); ?></a></li>
+										<li><a class="dropdown-item" href="<?php echo site_url('eqsl/import'); ?>" title="eQSL import / export"><i class="fas fa-sync"></i> <?php echo lang('menu_eqsl_import_export'); ?></a></li>
+										<li><a class="dropdown-item" href="<?php echo site_url('hrdlog/export'); ?>" title="Upload to HRDLog.net logbook"><i class="fas fa-sync"></i> <?php echo lang('menu_hrd_logbook'); ?></a></li>
+										<li><a class="dropdown-item" href="<?php echo site_url('qrz/export'); ?>" title="Upload to QRZ.com logbook"><i class="fas fa-sync"></i> <?php echo lang('menu_qrz_logbook'); ?></a></li>
+										<li><a class="dropdown-item" href="<?php echo site_url('webadif/export'); ?>" title="Upload to webADIF"><i class="fas fa-sync"></i> <?php echo lang('menu_qo_100_dx_club_upload'); ?></a></li>
 									</ul>
 								</li>
 								<div class="dropdown-divider"></div>
