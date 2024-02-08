@@ -2121,6 +2121,51 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
         return $query;
     }
 
+  function cdf_get_all_qsos($band, $mode, $dxcc, $cqz, $propagation, $fromdate, $todate) {
+	  $this->load->model('logbooks_model');
+	  $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+	  // If date is set, we add it to the where-statement
+	  if ($fromdate != "") {
+		  $from=" date(".$this->config->item('table_name').".COL_TIME_ON) >= '".$fromdate."'";
+	  }
+	  if ($todate != "") {
+		  $till=" date(".$this->config->item('table_name').".COL_TIME_ON) <= '".$todate."'";
+	  }
+
+      	  $location_list = "'".implode("','",$logbooks_locations_array)."'";
+
+	  $sql="SELECT 
+		  dx.prefix,dx.name,
+		  CASE
+		  WHEN q.col_mode = 'CW' THEN 'C'
+		  WHEN mo.qrgmode = 'DATA' THEN 'R'
+		  WHEN mo.qrgmode = 'SSB' THEN 'F'
+		  ELSE mo.qrgmode
+		  END AS mode,q.COL_BAND,
+		  COUNT(1) as menge
+			FROM ".$this->config->item('table_name')." q
+		INNER JOIN
+		dxcc_entities dx ON (dx.adif = q.COL_DXCC)
+		INNER JOIN
+		adif_modes mo ON (mo.mode = q.COL_MODE)
+		WHERE
+		(q.COL_QSL_RCVD = 'Y'
+		OR q.COL_LOTW_QSL_RCVD = 'Y'
+		OR q.COL_EQSL_QSL_RCVD = 'Y')
+		AND q.station_id in (".$location_list.")
+		GROUP BY dx.prefix,dx.name , CASE
+		WHEN q.col_mode = 'CW' THEN 'C'
+		WHEN mo.qrgmode = 'DATA' THEN 'R'
+		WHEN mo.qrgmode = 'SSB' THEN 'F'
+		ELSE mo.qrgmode
+		END,q.COL_BAND order by dx.prefix asc";
+
+	 $query = $this->db->query($sql)
+	 return $query;
+
+  }
+
     function totals_year() {
 
     $this->load->model('logbooks_model');
