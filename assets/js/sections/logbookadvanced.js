@@ -273,6 +273,7 @@ $(document).ready(function () {
 		if(container != null){
 			container._leaflet_id = null;
 			container.remove();
+			$(".coordinates").remove();
 		}
 
 		$("#qsoList").attr("Hidden", false);
@@ -956,7 +957,21 @@ function loadMap(data, iconsList) {
 	if(container != null){
 		container._leaflet_id = null;
 		container.remove();
+		$(".coordinates").remove();
 		$(".qso_manager").append('<div id="advancedmap"></div>');
+		$(".qso_manager").append('<div class="coordinates d-flex">' +
+        '<div class="cohidden">' + lang_gen_hamradio_latitude + '&nbsp;</div>' +
+        '<div class="cohidden col-auto text-success fw-bold" id="latDeg"></div>' +
+        '<div class="cohidden">' + lang_gen_hamradio_longitude + '&nbsp;</div>' +
+        '<div class="cohidden col-auto text-success fw-bold" id="lngDeg"></div>' +
+        '<div class="cohidden">' + lang_gen_hamradio_gridsquare + '&nbsp;</div>' +
+        '<div class="cohidden col-auto text-success fw-bold" id="locator"></div>' +
+        '<div class="cohidden">' + lang_gen_hamradio_distance + '&nbsp;</div>' +
+        '<div class="cohidden col-auto text-success fw-bold" id="distance"></div>' +
+        '<div class="cohidden">' + lang_gen_hamradio_bearing + '&nbsp;</div>' +
+        '<div class="cohidden col-auto text-success fw-bold" id="bearing"></div>' +
+		'</div>');
+		$('.cohidden').show();
 	}
 
 	map = new L.Map('advancedmap', {
@@ -1072,6 +1087,8 @@ function loadMap(data, iconsList) {
 		exportOnly: true,
 		hideControlContainer: true
   }).addTo(map);
+
+  map.on('mousemove', onMapMove);
 }
 
 	function createContentMessage(qso) {

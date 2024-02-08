@@ -5,7 +5,13 @@
  *
  */
 var custom_date_format = "<?php echo $custom_date_format ?>";
+var lang_gen_hamradio_latitude = '<?php echo lang('gen_hamradio_latitude'); ?>';
+var lang_gen_hamradio_longitude = '<?php echo lang('gen_hamradio_longitude'); ?>';
+var lang_gen_hamradio_gridsquare = '<?php echo lang('gen_hamradio_gridsquare'); ?>';
+var lang_gen_hamradio_distance = '<?php echo lang('gen_hamradio_distance'); ?>';
+var lang_gen_hamradio_bearing = '<?php echo lang('gen_hamradio_bearing'); ?>';
 <?php
+echo "var homegrid ='" . strtoupper($homegrid[0]) . "';";
 if (!isset($options)) {
    $options = "{\"datetime\":{\"show\":\"true\"},\"de\":{\"show\":\"true\"},\"dx\":{\"show\":\"true\"},\"mode\":{\"show\":\"true\"},\"rstr\":{\"show\":\"true\"},\"rsts\":{\"show\":\"true\"},\"band\":{\"show\":\"true\"},\"myrefs\":{\"show\":\"true\"},\"refs\":{\"show\":\"true\"},\"name\":{\"show\":\"true\"},\"qslvia\":{\"show\":\"true\"},\"qsl\":{\"show\":\"true\"},\"lotw\":{\"show\":\"true\"},\"eqsl\":{\"show\":\"true\"},\"qslmsg\":{\"show\":\"true\"},\"dxcc\":{\"show\":\"true\"},\"state\":{\"show\":\"true\"},\"cqzone\":{\"show\":\"true\"},\"iota\":{\"show\":\"true\"},\"pota\":{\"show\":\"true\"},\"operator\":{\"show\":\"true\"}}";
 }
