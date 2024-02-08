@@ -30,8 +30,8 @@ class Cfdexport extends CI_Controller {
 		$this->load->model('logbook_model');
 
 		// Parameters
-		$fromdate = $this->input->post('from');
-		$todate = $this->input->post('to');
+		$fromdate = xss_clean($this->input->post('from'));
+		$todate = xss_clean($this->input->post('to'));
 
 	  	$this->load->library('frequency');
 		// Get QSOs with Valid QRAs
