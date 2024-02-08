@@ -265,7 +265,7 @@
 							</div>
 						</form>
 					<?php } else { ?>
-						<form method="post" class="d-flex align-items-center me-2" action="<?php echo site_url('search'); ?>">
+						<form id="searchbar-form" method="post" class="d-flex align-items-center me-2" action="<?php echo site_url('search'); ?>">
 							<div class="input-group">
 								<input class="form-control border" id="nav-bar-search-input" type="search" name="callsign" placeholder="<?php echo lang('menu_search_text'); ?>" aria-label="Search">
 								<button title="<?php echo lang('menu_search_button'); ?>" class="btn btn-outline-success border" type="submit"><i class="fas fa-search"></i></button>
