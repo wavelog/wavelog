@@ -2121,16 +2121,20 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
         return $query;
     }
 
-  function cdf_get_all_qsos($band, $mode, $dxcc, $cqz, $propagation, $fromdate, $todate) {
+  function cfd_get_all_qsos($fromdate, $todate) {
 	  $this->load->model('logbooks_model');
 	  $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
 	  // If date is set, we add it to the where-statement
-	  if ($fromdate != "") {
-		  $from=" date(".$this->config->item('table_name').".COL_TIME_ON) >= '".$fromdate."'";
+	  if ($fromdate ?? ''!= "") {
+		  $from=" AND date(q.COL_TIME_ON) >= '".$fromdate."'";
+	  } else {
+		  $from="";
 	  }
-	  if ($todate != "") {
-		  $till=" date(".$this->config->item('table_name').".COL_TIME_ON) <= '".$todate."'";
+	  if ($todate ?? '' != "") {
+		  $till=" AND date(q.COL_TIME_ON) <= '".$todate."'";
+	  } else {
+		  $till='';
 	  }
 
       	  $location_list = "'".implode("','",$logbooks_locations_array)."'";
@@ -2142,26 +2146,28 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 		  WHEN mo.qrgmode = 'DATA' THEN 'R'
 		  WHEN mo.qrgmode = 'SSB' THEN 'F'
 		  ELSE mo.qrgmode
-		  END AS mode,q.COL_BAND,
-		  COUNT(1) as menge
+		  END AS mode,q.col_band as band,
+		  COUNT(1) as cnfmd
 			FROM ".$this->config->item('table_name')." q
 		INNER JOIN
 		dxcc_entities dx ON (dx.adif = q.COL_DXCC)
 		INNER JOIN
 		adif_modes mo ON (mo.mode = q.COL_MODE)
+		inner join bands b on (b.band=q.COL_BAND)
 		WHERE
 		(q.COL_QSL_RCVD = 'Y'
 		OR q.COL_LOTW_QSL_RCVD = 'Y'
 		OR q.COL_EQSL_QSL_RCVD = 'Y')
 		AND q.station_id in (".$location_list.")
+		AND (b.bandgroup='hf' or b.band = '6m') ".($from ?? '')." ".($till ?? '')."
 		GROUP BY dx.prefix,dx.name , CASE
 		WHEN q.col_mode = 'CW' THEN 'C'
 		WHEN mo.qrgmode = 'DATA' THEN 'R'
 		WHEN mo.qrgmode = 'SSB' THEN 'F'
 		ELSE mo.qrgmode
-		END,q.COL_BAND order by dx.prefix asc";
+		END,q.COL_BAND order by dx.prefix asc, q.col_band desc";
 
-	 $query = $this->db->query($sql)
+	 $query = $this->db->query($sql);
 	 return $query;
 
   }
