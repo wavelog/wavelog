@@ -561,6 +561,8 @@ function reset_fields() {
 	$('#input_usa_state').val("");
 	$('#qso-last-table').show();
 	$('#partial_view').hide();
+	$('.callsign-suggest').hide();
+	setRst($(".mode").val());
 	var $select = $('#wwff_ref').selectize();
 	var selectize = $select[0].selectize;
 	selectize.clear();
