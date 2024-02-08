@@ -47,6 +47,7 @@ class Logbookadvanced extends CI_Controller {
 		$pageData['sats'] = $this->bands->get_worked_sats();
 		$pageData['station_profile'] = $this->stations->all_of_user();
 		$pageData['active_station_info'] = $station_profile->row();
+		$pageData['homegrid'] = explode(',', $this->stations->find_gridsquare());
 
 		$pageData['bands'] = $this->bands->get_worked_bands();
 
@@ -80,6 +81,7 @@ class Logbookadvanced extends CI_Controller {
 			'assets/js/sections/logbookadvanced.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/logbookadvanced.js")),
 			'assets/js/sections/cqmap_geojson.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/cqmap_geojson.js")),
 			'assets/js/sections/itumap_geojson.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/itumap_geojson.js")),
+			'assets/js/leaflet/geocoding.js',
 		];
 
 		$this->load->view('interface_assets/header', $data);
