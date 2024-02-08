@@ -48,19 +48,6 @@
 
 <?php if ($visitor == false) { ?>
 <form class="d-flex align-items-center">
-			<label class="me-2" for="de"><?php echo lang('general_word_location'); ?></label>
-			<select id="de" name="de" class="form-select form-select-sm me-2 w-auto">
-				<?php foreach ($station_profile->result() as $station) { ?>
-					<option value="<?php echo $station->station_id; ?>"
-					<?php if ($station->station_id == $this->stations->find_active()) {
-						echo " selected =\"selected\"";
-					} ?>>
-					<?php echo lang('gen_hamradio_callsign') . ": " ?>
-					<?php echo $station->station_callsign; ?> (<?php echo $station->station_profile_name; ?>)
-				</option>
-				<?php } ?>
-			</select>
-
             <label class="my-1 me-2" for="band"><?php echo lang('gridsquares_band'); ?></label>
             <select class="form-select my-1 me-sm-2 w-auto"  id="band">
                 <option value="All"><?php echo lang('general_word_all')?></option>
