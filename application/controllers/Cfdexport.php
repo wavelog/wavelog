@@ -75,7 +75,7 @@ Entity                \          MHz:   ALL   1.8   3.5     7    10    14    18 
 			$output .= '  '.$bandachievements."\n";
 		}
 
-		header("Content-Disposition: attachment; filename=\"qsos.cfd\"");
+		header("Content-Disposition: attachment; filename=\"".strtoupper($this->session->userdata('user_callsign')).".CFD\"");
 		echo $output;
 
 	}
