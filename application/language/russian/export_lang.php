@@ -72,4 +72,5 @@ $lang['export_cabrillo_address_country'] = "Адрес (страна)";
 $lang['export_cabrillo_no_contests_in_log'] = "В вашем логе конест-сессий не найдено.";
 $lang['export_cabrillo_no_contests_for_stationlocation'] = "Для этого расположения станции контест-сессии не найдены!";
 
+$lang['export_cfd_description'] = "Export of CFD-File for DARC-Toplist (See <a href=\"https://toplist.darc.de\" target=\"_new\">https://toplist.darc.de</a>)";
 
