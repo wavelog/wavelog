@@ -7,10 +7,6 @@
             <?php echo lang('export_cfd_description'); ?>
         </div>
 
-        <div class="alert alert-warning" role="alert">
-            <?php echo lang('export_cfd_grisquare_warning'); ?>
-        </div>
-
         <div class="card-body">
 
             <form class="form" action="<?php echo site_url('cfdexport/export'); ?>" method="post" enctype="multipart/form-data">

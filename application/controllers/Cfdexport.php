@@ -36,8 +36,8 @@ class Cfdexport extends CI_Controller {
 	  	$this->load->library('frequency');
 		// Get QSOs with Valid QRAs
 		$qsos = $this->logbook_model->cfd_get_all_qsos($fromdate, $todate);
-
-		$output='--------------------------------------------------------------
+		$output=strtoupper($this->session->userdata('user_callsign'))."\n";
+		$output.='--------------------------------------------------------------
 MostWanted 1.42 - Overview Confirmed Entities
        (M=Mixed C=CW F=Fone R=Rest)
 ==============================================================
@@ -75,7 +75,7 @@ Entity                \          MHz:   ALL   1.8   3.5     7    10    14    18 
 			$output .= '  '.$bandachievements."\n";
 		}
 
-		// header("Content-Disposition: attachment; filename=\"qsos.cfd\"");
+		header("Content-Disposition: attachment; filename=\"qsos.cfd\"");
 		echo $output;
 
 	}
