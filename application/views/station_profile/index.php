@@ -70,9 +70,6 @@
 						<span class="badge text-bg-light"><?php echo $row->qso_total;?> <?php echo lang('gen_hamradio_qso'); ?></span>
 					</td>
 					<td style="text-align: center; vertical-align: middle;">
-						<?php if($row->user_id == "") { ?>
-							<a href="<?php echo site_url('station/claim_user')."/".$row->station_id; ?>" class="btn btn-outline-primary btn-sm"><i class="fas fa-user-plus"></i> <?php echo lang('station_location_claim_ownership'); ?></a>
-						<?php } ?>
 						<a href="<?php echo site_url('station/edit')."/".$row->station_id; ?>" title=<?php echo lang('admin_edit'); ?> class="btn btn-outline-primary btn-sm"><i class="fas fa-edit"></i></a>
 						</td>
 						<td style="text-align: center; vertical-align: middle;">
