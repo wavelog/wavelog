@@ -52,7 +52,7 @@ Entity                \          MHz:   ALL   1.8   3.5     7    10    14    18 
 			if ($row->cnfmd >=1) { $dxcc_list[$row->prefix][$nominal][$row->mode]=$row->mode; }
 		}
 		foreach ($dxcc_list as $pref => $vals) {	// Loop through new array
-			$output .= str_pad($pref,6," ")." ".str_pad($dxcc_list[$pref]['name'],30,".")."  ";
+			$output .= str_pad($pref,6," ")." ".str_pad(substr($dxcc_list[$pref]['name'],0,30),30,".")."  ";
 			$allm=0;
 			$allc=0;
 			$allf=0;
