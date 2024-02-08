@@ -258,17 +258,17 @@
 						<?php } ?>
 						<form id="quicklog-form" class="d-flex align-items-center me-3" onsubmit="return false;">
 							<div class="input-group">
-								<input class="form-control border-light" id="nav-bar-search-input" type="text" name="callsign" placeholder="<?php echo lang('menu_search_text_quicklog'); ?>" aria-label="Quicklog" onkeypress="handleKeyPress(event)">
+								<input class="form-control border" id="nav-bar-search-input" type="text" name="callsign" placeholder="<?php echo lang('menu_search_text_quicklog'); ?>" aria-label="Quicklog" onkeypress="handleKeyPress(event)">
 
-								<button title="<?php echo lang('menu_search_button_qicksearch_log'); ?>" class="btn btn-outline-success border-light" type="button" onclick="logQuicklog()"><i class="fas fa-plus"></i></button>
-								<button title="<?php echo lang('menu_search_button'); ?>" class="btn btn-outline-success border-light" type="button" onclick="submitForm('search')"><i class="fas fa-search"></i></button>
+								<button title="<?php echo lang('menu_search_button_qicksearch_log'); ?>" class="btn btn-outline-success border" type="button" onclick="logQuicklog()"><i class="fas fa-plus"></i></button>
+								<button title="<?php echo lang('menu_search_button'); ?>" class="btn btn-outline-success border" type="button" onclick="submitForm('search')"><i class="fas fa-search"></i></button>
 							</div>
 						</form>
 					<?php } else { ?>
 						<form method="post" class="d-flex align-items-center me-2" action="<?php echo site_url('search'); ?>">
 							<div class="input-group">
-								<input class="form-control border-light" id="nav-bar-search-input" type="search" name="callsign" placeholder="<?php echo lang('menu_search_text'); ?>" aria-label="Search">
-								<button title="<?php echo lang('menu_search_button'); ?>" class="btn btn-outline-success border-light" type="submit"><i class="fas fa-search"></i></button>
+								<input class="form-control border" id="nav-bar-search-input" type="search" name="callsign" placeholder="<?php echo lang('menu_search_text'); ?>" aria-label="Search">
+								<button title="<?php echo lang('menu_search_button'); ?>" class="btn btn-outline-success border" type="submit"><i class="fas fa-search"></i></button>
 							</div>
 						</form>
 					<?php } ?>
