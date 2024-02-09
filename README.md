@@ -24,7 +24,7 @@ https://demo.wavelog.org
 ## Requirements
 * Linux based Operating System (Windows stack may also work)
 * Apache (Nginx should work)
-* PHP Version 7.4 up to PHP 8.2 
+* PHP Version 7.4 up to PHP 8.2 (PHP 8.3. in friendly Usertest)
 * MySQL or MariaDB (MySQL 5.7 or higher // MariaDB 10.1 or higher)
 
 Notes
@@ -41,6 +41,9 @@ Wavelog-support can be reached by creating an issue here at github. If you've an
 
 
 ## Contributing
+
+Special thanks to our contributors, who are part of Wavelog by improving code!
+@abarrau, @dg0tm
 
 If you would like to contribute in any way to Wavelog, it is most appreciated. This has been developed in free time, help coding new features or writing documentation is always useful.
 

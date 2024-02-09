@@ -504,17 +504,43 @@
                     </tr>
                     <?php } ?>
 
-                    <?php if($row->COL_MY_WWFF_REF) { ?>
+                    <?php if($row->station_iota) { ?>
                     <tr>
-                        <td><?php echo lang('gen_hamradio_station') . ' ' . lang('gen_hamradio_wwff_reference'); ?></td>
-                        <td><?php echo $row->COL_MY_WWFF_REF; ?></td>
+                        <td><?php echo lang('gen_hamradio_station') . ' ' . lang('gen_hamradio_iota_reference'); ?></td>
+                        <td><?php echo $row->station_iota; ?></td>
                     </tr>
                     <?php } ?>
 
-                    <?php if($row->COL_MY_POTA_REF) { ?>
+                    <?php if($row->station_sota) { ?>
+                    <tr>
+                        <td><?php echo lang('gen_hamradio_station') . ' ' . lang('gen_hamradio_sota_reference'); ?></td>
+                        <td><?php echo $row->station_sota; ?></td>
+                    </tr>
+                    <?php } ?>
+
+                    <?php if($row->station_wwff) { ?>
+                    <tr>
+                        <td><?php echo lang('gen_hamradio_station') . ' ' . lang('gen_hamradio_wwff_reference'); ?></td>
+                        <td><?php echo $row->station_wwff; ?></td>
+                    </tr>
+                    <?php } ?>
+
+                    <?php if($row->station_pota) { ?>
                     <tr>
                         <td><?php echo lang('gen_hamradio_station') . ' ' . lang('gen_hamradio_pota_reference'); ?></td>
-                        <td><?php echo $row->COL_MY_POTA_REF; ?></td>
+                        <td><?php echo $row->station_pota; ?></td>
+                    </tr>
+                    <?php } ?>
+
+                    <?php if($row->station_sig) { ?>
+                    <tr>
+                        <td><?php echo lang('gen_hamradio_station') . ' ' . lang('gen_hamradio_sig'); ?></td>
+                        <td><?php echo $row->station_sig; ?></td>
+                    </tr>
+
+                    <tr>
+                        <td><?php echo lang('gen_hamradio_station') . ' ' . lang('gen_hamradio_sig_info'); ?></td>
+                        <td><?php echo $row->station_sig_info; ?></td>
                     </tr>
                     <?php } ?>
             </table>
@@ -607,9 +633,9 @@
 
         <div class="tab-pane fade" id="eqslcard" role="tabpanel" aria-labelledby="table-tab">
         <?php
-	if ($row->eqsl_image_file != null) {
-		echo '<img class="d-block" src="' . base_url() . '/images/eqsl_card_images/' . $row->eqsl_image_file .'" alt="eQSL picture">';
-	}
+	    if ($row->eqsl_image_file != null) {
+		    echo '<img class="d-block" src="' . base_url() . '/'. $this->paths->getPathEqsl() .'/' . $row->eqsl_image_file .'" alt="eQSL picture">';
+	    }
         ?>
         </div>
         <?php

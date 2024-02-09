@@ -18,18 +18,17 @@ class QSO extends CI_Controller {
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 	}
 
-	public function index()
-	{
+	public function index() {
 		$this->load->model('cat');
 		$this->load->model('stations');
 		$this->load->model('logbook_model');
 		$this->load->model('user_model');
 		$this->load->model('modes');
-        $this->load->model('bands');
-        if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+		$this->load->model('bands');
+		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 
 		$data['active_station_profile'] = $this->stations->find_active();
-        
+
 		$data['notice'] = false;
 		$data['stations'] = $this->stations->all_of_user();
 		$data['radios'] = $this->cat->radios();
@@ -50,21 +49,21 @@ class QSO extends CI_Controller {
 		$this->form_validation->set_rules('mode', 'Mode', 'required');
 		$this->form_validation->set_rules('locator', 'Locator', 'callback_check_locator');
 
-        // [eQSL default msg] GET user options (option_type='eqsl_default_qslmsg'; option_name='key_station_id'; option_key=station_id) //
+		// [eQSL default msg] GET user options (option_type='eqsl_default_qslmsg'; option_name='key_station_id'; option_key=station_id) //
 		$this->load->model('user_options_model');
 		$options_object = $this->user_options_model->get_options('eqsl_default_qslmsg',array('option_name'=>'key_station_id','option_key'=>$data['active_station_profile']))->result();
 		$data['qslmsg'] = (isset($options_object[0]->option_value))?$options_object[0]->option_value:'';
 
-		if ($this->form_validation->run() == FALSE)
-		{
+		if ($this->form_validation->run() == FALSE) {
 			$data['page_title'] = "Add QSO";
-
-			$this->load->view('interface_assets/header', $data);
-			$this->load->view('qso/index');
-			$this->load->view('interface_assets/footer');
-		}
-		else
-		{
+			if (validation_errors() != '') {	// we're coming from a failed ajax-call
+				echo json_encode(array('message' => 'Error','errors' => validation_errors()));
+			} else {	// we're not coming from a POST
+				$this->load->view('interface_assets/header', $data);
+				$this->load->view('qso/index');
+				$this->load->view('interface_assets/footer');
+			}
+		} else {
 			// Store Basic QSO Info for reuse
 			// Put data in an array first, then call set_userdata once.
 			// This solves the problem of CI dumping out the session
@@ -73,9 +72,9 @@ class QSO extends CI_Controller {
 			// $qso_data = [
 			// 18-Jan-2016 - make php v5.3 friendly!
 			$qso_data = array(
-                'start_date' => $this->input->post('start_date'),
-                'start_time' => $this->input->post('start_time'),
-                'end_time' => $this->input->post('end_time'),
+				'start_date' => $this->input->post('start_date'),
+				'start_time' => $this->input->post('start_time'),
+				'end_time' => $this->input->post('end_time'),
 				'time_stamp' => time(),
 				'band' => $this->input->post('band'),
 				'band_rx' => $this->input->post('band_rx'),
@@ -99,8 +98,8 @@ class QSO extends CI_Controller {
 
 			// If SAT name is set make it session set to sat
 			if($this->input->post('sat_name')) {
-        		$this->session->set_userdata('prop_mode', 'SAT');
-    		}
+				$this->session->set_userdata('prop_mode', 'SAT');
+			}
 
 			// Add QSO
 			// $this->logbook_model->add();
@@ -108,17 +107,7 @@ class QSO extends CI_Controller {
 			$this->logbook_model->create_qso();
 
 			// Get last 5 qsos
-			$data['query'] = $this->logbook_model->last_custom('5');
-
-			// Set Any Notice Messages
-			$data['notice'] = "QSO Added";
-
-			// Load view to create another contact
-			$data['page_title'] = "Add QSO";
-
-			$this->load->view('interface_assets/header', $data);
-			$this->load->view('qso/index');
-			$this->load->view('interface_assets/footer');
+            		echo json_encode(array('message' => 'success'));
 		}
 	}
 

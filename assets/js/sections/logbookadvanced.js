@@ -1,6 +1,26 @@
 var callBookProcessingDialog = null;
 var inCallbookProcessing = false;
 var inCallbookItemProcessing = false;
+var clicklines = [];
+var map;
+var maidenhead;
+var geojson;
+var itugeojson;
+var zonemarkers = [];
+var ituzonemarkers = [];
+
+var defaultlinecolor = 'blue';
+
+if (isDarkModeTheme()) {
+	defaultlinecolor = 'red';
+}
+
+var iconsList = { 'qso': { 'color': defaultlinecolor, 'icon': 'fas fa-dot-circle', 'iconSize': [5, 5] }, 'qsoconfirm': { 'color': defaultlinecolor, 'icon': 'fas fa-dot-circle', 'iconSize': [5, 5] } };
+
+var stationIcon = L.divIcon({ className: 'cspot_station', iconSize: [5, 5], iconAnchor: [5, 5]});
+var qsoIcon = L.divIcon({ className: 'cspot_qso', iconSize: [5, 5], iconAnchor: [5, 5] }); //default (fas fa-dot-circle red)
+var qsoconfirmIcon = L.divIcon({ className: 'cspot_qsoconfirm', iconSize: [5, 5], iconAnchor: [5, 5] });
+var redIconImg = L.icon({ iconUrl: icon_dot_url, iconSize: [5, 5] }); // old //
 
 $('#band').change(function () {
 	var band = $("#band option:selected").text();
@@ -253,6 +273,7 @@ $(document).ready(function () {
 		if(container != null){
 			container._leaflet_id = null;
 			container.remove();
+			$(".coordinates").remove();
 		}
 
 		$("#qsoList").attr("Hidden", false);
@@ -844,7 +865,7 @@ function mapQsos(form) {
 	$("#qsoList_wrapper").attr("Hidden", true);
 	$("#qsoList_info").attr("Hidden", true);
 
-	var amap = $('#advancedmap').val();
+	amap = $('#advancedmap').val();
 	if (amap == undefined) {
 		$(".qso_manager").append('<div id="advancedmap"></div>');
 	}
@@ -854,10 +875,11 @@ function mapQsos(form) {
 			url: base_url + 'index.php/logbookadvanced/mapSelectedQsos',
 			type: 'post',
 			data: {
-				ids: id_list
+				ids: id_list,
+				de: form.de.value
 			},
 			success: function(data) {
-				loadMap(data);
+				loadMapOptions(data);
 			},
 			error: function() {
 				$('#mapButton').prop("disabled", false);
@@ -898,7 +920,7 @@ function mapQsos(form) {
 				qslimages: form.qslimages.value,
 			},
 			success: function(data) {
-				loadMap(data);
+				loadMapOptions(data);
 			},
 			error: function() {
 				$('#mapButton').prop("disabled", false);
@@ -907,20 +929,52 @@ function mapQsos(form) {
 	}
 };
 
-function loadMap(data) {
+function loadMapOptions(data) {
+	$.ajax({
+		url: base_url + 'index.php/user_options/get_map_custom',
+		type: 'GET',
+		dataType: 'json',
+	error: function () {
+	},
+	success: function (json_mapinfo) {
+			if (typeof json_mapinfo.qso !== "undefined") {
+				iconsList = json_mapinfo;
+			}
+			loadMap(data, iconsList)
+		}
+	});
+}
+
+function loadMap(data, iconsList) {
 	$('#mapButton').prop("disabled", false);
 	var osmUrl='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 	var osmAttrib='Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
 	// If map is already initialized
 	var container = L.DomUtil.get('advancedmap');
 
+	var bounds = L.latLngBounds()
+
 	if(container != null){
 		container._leaflet_id = null;
 		container.remove();
+		$(".coordinates").remove();
 		$(".qso_manager").append('<div id="advancedmap"></div>');
+		$(".qso_manager").append('<div class="coordinates d-flex">' +
+        '<div class="cohidden">' + lang_gen_hamradio_latitude + '&nbsp;</div>' +
+        '<div class="cohidden col-auto text-success fw-bold" id="latDeg"></div>' +
+        '<div class="cohidden">' + lang_gen_hamradio_longitude + '&nbsp;</div>' +
+        '<div class="cohidden col-auto text-success fw-bold" id="lngDeg"></div>' +
+        '<div class="cohidden">' + lang_gen_hamradio_gridsquare + '&nbsp;</div>' +
+        '<div class="cohidden col-auto text-success fw-bold" id="locator"></div>' +
+        '<div class="cohidden">' + lang_gen_hamradio_distance + '&nbsp;</div>' +
+        '<div class="cohidden col-auto text-success fw-bold" id="distance"></div>' +
+        '<div class="cohidden">' + lang_gen_hamradio_bearing + '&nbsp;</div>' +
+        '<div class="cohidden col-auto text-success fw-bold" id="bearing"></div>' +
+		'</div>');
+		$('.cohidden').show();
 	}
 
-	var map = new L.Map('advancedmap', {
+	map = new L.Map('advancedmap', {
 		fullscreenControl: true,
 		fullscreenControlOptions: {
 			position: 'topleft'
@@ -939,17 +993,8 @@ function loadMap(data) {
 
 	map.setView([30, 0], 1.5);
 
-	var maidenhead = L.maidenheadqrb().addTo(map);
 
 	var osm = new L.TileLayer(osmUrl, {minZoom: 1, maxZoom: 9, attribution: osmAttrib});
-
-	map.addLayer(osm);
-
-	var linecolor = 'blue';
-
-	if (isDarkModeTheme()) {
-		linecolor = 'red';
-	}
 
 	var redIcon = L.icon({
 		iconUrl: icon_dot_url,
@@ -971,15 +1016,28 @@ function loadMap(data) {
 		var popupmessage = createContentMessage(this);
 		var popupmessage2 = createContentMessageDx(this);
 
-		var marker = L.marker([this.latlng1[0], this.latlng1[1]], {icon: redIcon}, {closeOnClick: false, autoClose: false}).addTo(map).bindPopup(popupmessage);
+		var marker = L.marker([this.latlng1[0], this.latlng1[1]], {icon: stationIcon}, {closeOnClick: false, autoClose: false}).addTo(map).bindPopup(popupmessage);
+
 		marker.on('mouseover',function(ev) {
 			ev.target.openPopup();
 		});
+		let lat_lng = [this.latlng1[0], this.latlng1[1]];
+		bounds.extend(lat_lng);
 
-		var marker2 = L.marker([this.latlng2[0], this.latlng2[1]], {icon: redIcon},{closeOnClick: false, autoClose: false}).addTo(map).bindPopup(popupmessage2);;
+		if (this.confirmed && iconsList.qsoconfirm.icon !== "0") {
+			var marker2 = L.marker([this.latlng2[0], this.latlng2[1]], {icon: qsoconfirmIcon},{closeOnClick: false, autoClose: false}).addTo(map).bindPopup(popupmessage2);
+			linecolor = iconsList.qsoconfirm.color;
+		} else {
+			var marker2 = L.marker([this.latlng2[0], this.latlng2[1]], {icon: qsoIcon},{closeOnClick: false, autoClose: false}).addTo(map).bindPopup(popupmessage2);
+			linecolor = iconsList.qso.color;
+		}
+
 		marker2.on('mouseover',function(ev) {
 			ev.target.openPopup();
 		});
+
+		lat_lng = [this.latlng2[0], this.latlng2[1]];
+		bounds.extend(lat_lng);
 
 		const multiplelines = [];
 		multiplelines.push(
@@ -994,6 +1052,8 @@ function loadMap(data) {
 			wrap: false,
 			steps: 100
 		}).addTo(map);
+
+		clicklines.push(geodesic);
 	});
 
 	/*Legend specific*/
@@ -1001,11 +1061,34 @@ function loadMap(data) {
 
     legend.onAdd = function(map) {
         var div = L.DomUtil.create("div", "legend");
-        div.innerHTML += "<h4>" + counter + " QSOs plotted</h4>";
+        div.innerHTML += '<div>' + counter + " QSOs plotted</div>";
+		div.innerHTML += '<input id="pathlines" type="checkbox" onclick="toggleFunction(this.checked)" checked="checked" style="outline: none;"><span> Path lines</span><br>';
+		div.innerHTML += '<input id="gridsquares" type="checkbox" onclick="toggleGridsquares(this.checked)" checked="checked" style="outline: none;"><span> Gridsquares</span><br>';
+		div.innerHTML += '<input id="gridsquares" type="checkbox" onclick="toggleCqZones(this.checked)" style="outline: none;"><span> CQ Zones</span><br>';
+		div.innerHTML += '<input id="gridsquares" type="checkbox" onclick="toggleItuZones(this.checked)" style="outline: none;"><span> ITU Zones</span>';
         return div;
     };
 
     legend.addTo(map);
+
+	maidenhead = L.maidenheadqrb().addTo(map);
+
+
+	map.fitBounds(bounds);
+
+	$.each(iconsList, function (icon, data) {
+		$('#advancedmap' + ' .cspot_' + icon).addClass(data.icon).css("color", data.color);
+	});
+
+	var printer = L.easyPrint({
+		tileLayer: osm,
+		sizeModes: ['Current', 'A4Landscape', 'A4Portrait'],
+		filename: 'Wavelog',
+		exportOnly: true,
+		hideControlContainer: true
+  }).addTo(map);
+
+  map.on('mousemove', onMapMove);
 }
 
 	function createContentMessage(qso) {
@@ -1101,5 +1184,233 @@ function loadMap(data) {
 			error: function() {
 				$('#saveButton').prop("disabled", false);
 			},
+		});
+	}
+
+	function toggleFunction(bool) {
+		if(bool) {
+			addLines();
+		} else {
+			clearLines();
+		}
+	};
+
+	function toggleGridsquares(bool) {
+		if(!bool) {
+			map.removeLayer(maidenhead);
+		} else {
+			maidenhead.addTo(map);
+		}
+	};
+
+	const cqzonenames = [
+		[ "75", "-140" ],
+		[ "70", "-82.5" ],
+		[ "45", "-125" ],
+		[ "45", "-100" ],
+		[ "45", "-65" ],
+		[ "25.5", "-115" ],
+		[ "14.5", "-90" ],
+		[ "22", "-60" ],
+		[ "11.5", "-70" ],
+		[ "-5", "-100" ],
+		[ "-9", "-45" ],
+		[ "-45", "-106" ],
+		[ "-45", "-55" ],
+		[ "52", "-14" ],
+		[ "46", "11" ],
+		[ "60", "35" ],
+		[ "55", "65" ],
+		[ "70", "90" ],
+		[ "70", "150" ],
+		[ "42", "29" ],
+		[ "28", "53" ],
+		[ "6", "75" ],
+		[ "44", "93" ],
+		[ "33", "110" ],
+		[ "38", "134" ],
+		[ "16", "100" ],
+		[ "15", "140" ],
+		[ "0", "125" ],
+		[ "-25", "115" ],
+		[ "-25", "145" ],
+		[ "15", "-165" ],
+		[ "-25", "-165" ],
+		[ "32", "-26" ],
+		[ "25", "25.5" ],
+		[ "15", "-6" ],
+		[ "-5", "-6" ],
+		[ "6", "51" ],
+		[ "-45", "8" ],
+		[ "-25", "55"],
+		[  "78", "-10"],
+	];
+
+	const ituzonenames = [
+		["60","-160"],
+		["55","-125"],
+		["55","-100"],
+		["55","-78"],
+		["73","-40"],
+		["40","-119"],
+		["40","-100"],
+		["40","-80"],
+		["55","-60"],
+		["20","-102"],
+		["21","-75"],
+		["-3","-72"],
+		["-5","-45"],
+		["-30","-65"],
+		["-25","-45"],
+		["-50","-65"],
+		["61","-26"],
+		["70","10"],
+		["70","40"],
+		["70","62.5"],
+		["70","82.5"],
+		["70","100"],
+		["70","122.5"],
+		["70","142.5"],
+		["70","162.5"],
+		["70","180"],
+		["52","2"],
+		["45","18"],
+		["53","36"],
+		["53","62.5"],
+		["53","82.5"],
+		["53","100"],
+		["53","122.5"],
+		["53","142"],
+		["55","160"],
+		["35","-25"],
+		["35","0"],
+		["27.5","22.5"],
+		["27","42"],
+		["32","56"],
+		["10","75"],
+		["39","82.5"],
+		["33","100"],
+		["33","118"],
+		["33","140"],
+		["15","-10"],
+		["12.5","22"],
+		["5","40"],
+		["15","100"],
+		["10","120"],
+		["-4","150"],
+		["-7","17"],
+		["-12.5","45"],
+		["-2","115"],
+		["-20","140"],
+		["-20","170"],
+		["-30","24"],
+		["-25","120"],
+		["-40","140"],
+		["-40","170"],
+		["15","-170"],
+		["-15","-170"],
+		["-15","-135"],
+		["10","140"],
+		["10","162"],
+		["-23","-11"],
+		["-70","10"],
+		["-47.5","60"],
+		["-70","70"],
+		["-70","130"],
+		["-70","-170"],
+		["-70","-110"],
+		["-70","-050"],
+		["-82.5","0"],
+		["82.5","0"],
+		["40","-150"],
+		["15","-135"],
+		["-15","-95"],
+		["-40","-160"],
+		["-40","-125"],
+		["-40","-90"],
+		["50","-30"],
+		["25","-47.5"],
+		["-45","-40"],
+		["-45","10"],
+		["-25","70"],
+		["-25","95"],
+		["-50","95"],
+		["-54","140"],
+		["39","165"]
+	];
+
+	function toggleCqZones(bool) {
+		if(!bool) {
+			zonemarkers.forEach(function (item) {
+				map.removeLayer(item);
+			});
+			map.removeLayer(geojson);
+		} else {
+			geojson = L.geoJson(zonestuff, {style: style}).addTo(map);
+			for (var i = 0; i < cqzonenames.length; i++) {
+
+				var title = '<span class="grid-text" style="cursor: default"><font style="color: \'white\'; font-size: 1.5em; font-weight: 900;">' + (Number(i)+Number(1)) + '</font></span>';
+				var myIcon = L.divIcon({className: 'my-div-icon', html: title});
+
+				var marker = L.marker(
+					[cqzonenames[i][0], cqzonenames[i][1]], {
+						icon: myIcon,
+						title: (Number(i)+Number(1)),
+						zIndex: 1000,
+					}
+				).addTo(map);
+				zonemarkers.push(marker);
+			}
+		}
+	}
+
+	function toggleItuZones(bool) {
+		if(!bool) {
+			ituzonemarkers.forEach(function (item) {
+				map.removeLayer(item);
+			});
+			map.removeLayer(itugeojson);
+		} else {
+			itugeojson = L.geoJson(ituzonestuff, {style: style}).addTo(map);
+			for (var i = 0; i < ituzonenames.length; i++) {
+
+				var title = '<span class="grid-text" style="cursor: default"><font style="color: \'white\'; font-size: 1.5em; font-weight: 900;">' + (Number(i)+Number(1)) + '</font></span>';
+				var myIcon = L.divIcon({className: 'my-div-icon', html: title});
+
+				var marker = L.marker(
+					[ituzonenames[i][0], ituzonenames[i][1]], {
+						icon: myIcon,
+						title: (Number(i)+Number(1)),
+						zIndex: 1000,
+					}
+				).addTo(map);
+				ituzonemarkers.push(marker);
+			}
+		}
+	}
+
+	function style(feature) {
+		var bordercolor = "black";
+		if (isDarkModeTheme()) {
+            bordercolor = "white";
+        }
+		return {
+			fillColor: "white",
+			fillOpacity: 0,
+			opacity: 0.65,
+			color: bordercolor,
+			weight: 1,
+		};
+	}
+
+	function clearLines() {
+		clicklines.forEach(function (item) {
+			map.removeLayer(item);
+		});
+	}
+
+	function addLines() {
+		clicklines.forEach(function (item) {
+			map.addLayer(item);
 		});
 	}

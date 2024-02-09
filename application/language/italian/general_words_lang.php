@@ -17,6 +17,7 @@ $lang['general_word_next'] = 'Next';
 $lang['general_word_previous'] = 'Previous';
 $lang['general_word_cancel'] = "Cancel";
 $lang['general_word_ok'] = "OK";
+$lang['general_word_show'] = "Show";
 $lang['general_word_attention'] = "Attention";
 $lang['general_word_enabled'] = "Enabled";
 $lang['general_word_disabled'] = "Disabled";
@@ -51,6 +52,9 @@ $lang['general_word_year'] = 'Anno';
 $lang['general_word_month'] = 'Mese';
 $lang['general_word_day'] = "Day";
 $lang['general_word_days'] = "Days";
+$lang['general_word_period'] = "Period";
+$lang['general_word_yearly'] = "Yearly";
+$lang['general_word_monthly'] = "Monthly";
 
 $lang['general_word_colors'] = "Colors";
 $lang['general_word_light'] = "Light/Laser";
@@ -151,6 +155,8 @@ $lang['gen_hamradio_satellite_name'] = 'Nome Satellite';
 $lang['gen_hamradio_satellite_mode'] = 'Modo Satellite';
 
 $lang['gen_hamradio_logbook'] = 'Logbook';
+$lang['gen_hamradio_active_logbook'] = 'Active Logbook';
+$lang['gen_hamradio_active_logbook_hint'] = "Displaying all QSOs of station locations which are linked to this logbook";
 $lang['gen_hamradio_award'] = "Award";
 
 $lang['gen_hamradio_zones'] = 'Zones';

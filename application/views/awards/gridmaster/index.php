@@ -26,19 +26,6 @@
   float: left;
   margin: 0 8px 0 0;
 }
-.coordinates {
-    justify-content: center;
-    align-items: stretch;
-}
-.cohidden {
-    display:none;
-}
-#latDeg, #lngDeg {
-    width: 170px;
-}
-#locator, #distance, #bearing {
-    width: 120px;
-}
 </style>
 <div class="container">
         <!-- Award Info Box -->

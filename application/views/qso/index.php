@@ -131,7 +131,7 @@
               </div>
 
               <div class="row">
-                <div class="mb-3 col-md-6">
+                <div class="mb-3 col">
                   <label for="mode"><?php echo lang('gen_hamradio_mode'); ?></label>
                   <select id="mode" class="form-select mode form-select-sm" name="mode">
                   <?php
@@ -146,7 +146,7 @@
                   </select>
                 </div>
 
-                <div class="mb-3 col-md-6">
+                <div class="mb-3 col">
                   <label for="band"><?php echo lang('gen_hamradio_band'); ?></label>
 
                   <select id="band" class="form-select form-select-sm" name="band">
@@ -163,6 +163,10 @@
                         }
                   ?>
                   </select>
+                </div>
+                <div class="mb-3 col">
+                  <label for="frequency"><?php echo lang('gen_hamradio_frequency'); ?></label>
+                  <input type="text" class="form-control form-control-sm" id="frequency" name="freq_display" value="<?php echo $this->session->userdata('freq'); ?>" />
                 </div>
               </div>
 
@@ -234,11 +238,6 @@
                 <option value="<?php echo $row->id; ?>" <?php if($this->session->userdata('radio') == $row->id) { echo "selected=\"selected\""; } ?>><?php echo $row->radio; ?></option>
                 <?php } ?>
                 </select>
-            </div>
-
-            <div class="mb-3">
-              <label for="frequency"><?php echo lang('gen_hamradio_frequency'); ?></label>
-              <input type="text" class="form-control" id="frequency" name="freq_display" value="<?php echo $this->session->userdata('freq'); ?>" />
             </div>
 
             <div class="mb-3">
@@ -559,7 +558,7 @@
         </div>
 
         <button type="reset" class="btn btn-secondary" onclick="reset_fields()"><?php echo lang('qso_btn_reset_qso'); ?></button>
-        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> <?php echo lang('qso_btn_save_qso'); ?></button>
+        <button type="submit" id="saveQso" name="saveQso" class="btn btn-primary"><i class="fas fa-save"></i> <?php echo lang('qso_btn_save_qso'); ?></button>
         <div class="alert alert-danger warningOnSubmit mt-3" style="display:none;"><span><i class="fas fa-times-circle"></i></span> <span class="warningOnSubmit_txt ms-1">Error</span></div>
       </div>
     </form>
@@ -569,6 +568,7 @@
 
   <div class="col-sm-7">
 
+<div id="noticer" role="alert"></div>
 <?php if($notice) { ?>
 <div id="notice-alerts" class="alert alert-info" role="alert">
   <?php echo $notice; ?>
@@ -649,7 +649,7 @@
 
         <div id="partial_view" style="font-size: 0.95rem;"></div>
 
-        <div id="qso-last-table" hx-get="<?php echo site_url('/qso/component_past_contacts'); ?>"  hx-trigger="load, every 5s">
+        <div id="qso-last-table" hx-get="<?php echo site_url('/qso/component_past_contacts'); ?>"  hx-trigger="load, qso_event, every 5s">
 
         </div>
       </div>

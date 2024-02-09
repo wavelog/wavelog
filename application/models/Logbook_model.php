@@ -284,15 +284,15 @@ class Logbook_model extends CI_Model {
         $data['COL_QRZCOM_QSO_UPLOAD_STATUS'] = 'N';
     }
 
-      $data['COL_MY_CITY'] = strtoupper(trim($station['station_city']));
-      $data['COL_MY_IOTA'] = strtoupper(trim($station['station_iota']));
-      $data['COL_MY_SOTA_REF'] = strtoupper(trim($station['station_sota']));
-      $data['COL_MY_WWFF_REF'] = strtoupper(trim($station['station_wwff']));
-      $data['COL_MY_POTA_REF'] = $station['station_pota'] == null ? '' : strtoupper(trim($station['station_pota']));
+      $data['COL_MY_IOTA'] = $station['station_iota'] ? strtoupper(trim($station['station_iota'])) : '';
+      $data['COL_MY_SOTA_REF'] = $station['station_sota'] ? strtoupper(trim($station['station_sota'])) : '';
+      $data['COL_MY_WWFF_REF'] = $station['station_wwff'] ? strtoupper(trim($station['station_wwff'])) : '';
+      $data['COL_MY_POTA_REF'] = $station['station_pota'] ? strtoupper(trim($station['station_pota'])) : '';
 
       $data['COL_STATION_CALLSIGN'] = strtoupper(trim($station['station_callsign']));
+      $data['COL_MY_CITY'] = strtoupper(trim($station['station_city']));
       $data['COL_MY_DXCC'] = strtoupper(trim($station['station_dxcc']));
-      $data['COL_MY_COUNTRY'] = strtoupper(trim($station['station_country']));
+      $data['COL_MY_COUNTRY'] = strtoupper(trim($station['station_country'] ?? ''));
       $data['COL_MY_CNTY'] = strtoupper(trim($station['station_cnty']));
       $data['COL_MY_CQ_ZONE'] = strtoupper(trim($station['station_cq']));
       $data['COL_MY_ITU_ZONE'] = strtoupper(trim($station['station_itu']));
@@ -547,24 +547,30 @@ class Logbook_model extends CI_Model {
         return $this->db->get($this->config->item('table_name'));
     }
 
-  public function get_callsigns($callsign){
-    $this->db->select('COL_CALL');
-    $this->db->distinct();
-    $this->db->like('COL_CALL', $callsign);
+    public function get_callsigns($callsign){
+	    $this->load->model('logbooks_model');
+	    $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+	    $this->db->select('COL_CALL');
+	    $this->db->distinct();
+	    $this->db->like('COL_CALL', $callsign);
+	    $this->db->where_in('station_id', $logbooks_locations_array);
 
-    return $this->db->get($this->config->item('table_name'));
+	    return $this->db->get($this->config->item('table_name'));
 
-  }
+    }
 
-  public function get_dok($callsign){
-    $this->db->select('COL_DARC_DOK');
-    $this->db->where('COL_CALL', $callsign);
-    $this->db->order_by("COL_TIME_ON", "desc");
-    $this->db->limit(1);
+    public function get_dok($callsign){
+	    $this->load->model('logbooks_model');
+	    $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+	    $this->db->select('COL_DARC_DOK');
+	    $this->db->where('COL_CALL', $callsign);
+	    $this->db->where_in('station_id', $logbooks_locations_array);
+	    $this->db->order_by("COL_TIME_ON", "desc");
+	    $this->db->limit(1);
 
-    return $this->db->get($this->config->item('table_name'));
+	    return $this->db->get($this->config->item('table_name'));
 
-  }
+    }
 
   function add_qso($data, $skipexport = false, $batchmode = false) {
 
@@ -1038,6 +1044,12 @@ class Logbook_model extends CI_Model {
 
 	  $station_profile=$this->stations->profile_clean($stationId);
 	  $stationCallsign=$station_profile->station_callsign;
+	  $iotaRef = $station_profile->station_iota ?? '';
+	  $sotaRef = $station_profile->station_sota ?? '';
+	  $wwffRef = $station_profile->station_wwff ?? '';
+	  $potaRef = $station_profile->station_pota ?? '';
+	  $sig     = $station_profile->station_sig ?? '';
+	  $sigInfo = $station_profile->station_sig_info ?? '';
 
 	  $mode = $this->get_main_mode_if_submode($this->input->post('mode'));
 	  if ($mode == null) {
@@ -1216,7 +1228,13 @@ class Logbook_model extends CI_Model {
 		  'COL_STATION_CALLSIGN' => $stationCallsign,
 		  'COL_OPERATOR' => $this->input->post('operator_callsign'),
 		  'COL_STATE' =>$this->input->post('usa_state'),
-		  'COL_CNTY' => $uscounty
+		  'COL_CNTY' => $uscounty,
+		  'COL_MY_IOTA' => $iotaRef,
+		  'COL_MY_SOTA_REF' => $sotaRef,
+		  'COL_MY_WWFF_REF' => $wwffRef,
+		  'COL_MY_POTA_REF' => $potaRef,
+		  'COL_MY_SIG' => $sig,
+		  'COL_MY_SIG_INFO' => $sigInfo
 	  );
 
 	  if ($this->exists_hrdlog_credentials($data['station_id'])) {
@@ -2103,6 +2121,57 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
         return $query;
     }
 
+  function cfd_get_all_qsos($fromdate, $todate) {
+	  $this->load->model('logbooks_model');
+	  $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+	  // If date is set, we add it to the where-statement
+	  if ($fromdate ?? ''!= "") {
+		  $from=" AND date(q.COL_TIME_ON) >= '".$fromdate."'";
+	  } else {
+		  $from="";
+	  }
+	  if ($todate ?? '' != "") {
+		  $till=" AND date(q.COL_TIME_ON) <= '".$todate."'";
+	  } else {
+		  $till='';
+	  }
+
+      	  $location_list = "'".implode("','",$logbooks_locations_array)."'";
+
+	  $sql="SELECT 
+		  dx.prefix,dx.name,
+		  CASE
+		  WHEN q.col_mode = 'CW' THEN 'C'
+		  WHEN mo.qrgmode = 'DATA' THEN 'R'
+		  WHEN mo.qrgmode = 'SSB' THEN 'F'
+		  ELSE mo.qrgmode
+		  END AS mode,q.col_band as band,
+		  COUNT(1) as cnfmd
+			FROM ".$this->config->item('table_name')." q
+		INNER JOIN
+		dxcc_entities dx ON (dx.adif = q.COL_DXCC)
+		INNER JOIN
+		adif_modes mo ON (mo.mode = q.COL_MODE)
+		inner join bands b on (b.band=q.COL_BAND)
+		WHERE
+		(q.COL_QSL_RCVD = 'Y'
+		OR q.COL_LOTW_QSL_RCVD = 'Y'
+		OR q.COL_EQSL_QSL_RCVD = 'Y')
+		AND q.station_id in (".$location_list.")
+		AND (b.bandgroup='hf' or b.band = '6m') ".($from ?? '')." ".($till ?? '')."
+		GROUP BY dx.prefix,dx.name , CASE
+		WHEN q.col_mode = 'CW' THEN 'C'
+		WHEN mo.qrgmode = 'DATA' THEN 'R'
+		WHEN mo.qrgmode = 'SSB' THEN 'F'
+		ELSE mo.qrgmode
+		END,q.COL_BAND order by dx.prefix asc, q.col_band desc";
+
+	 $query = $this->db->query($sql);
+	 return $query;
+
+  }
+
     function totals_year() {
 
     $this->load->model('logbooks_model');
@@ -2981,7 +3050,7 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
   }
 
   /* Used to check if the qso is already in the database */
-    function import_check($datetime, $callsign, $band, $mode, $station_callsign) {
+    function import_check($datetime, $callsign, $band, $mode, $station_callsign, $station_id = null) {
 	    $mode=$this->get_main_mode_from_mode($mode);
 
 	    $this->db->select('COL_PRIMARY_KEY, COL_TIME_ON, COL_CALL, COL_BAND');
@@ -2991,6 +3060,10 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 	    $this->db->where('COL_STATION_CALLSIGN', $station_callsign);
 	    $this->db->where('COL_BAND', $band);
 	    $this->db->where('COL_MODE', $mode);
+
+	    if(isset($station_id) && $station_id > 0) {
+		    $this->db->where('station_id', $station_id);
+	    }
 
 	    $query = $this->db->get($this->config->item('table_name'));
 
@@ -3768,10 +3841,12 @@ function lotw_last_qsl_date($user_id) {
 				  }
 
 				  $data['COL_MY_CITY'] = trim($row['station_city']);
-				  $data['COL_MY_IOTA'] = strtoupper(trim($row['station_iota']));
-				  $data['COL_MY_SOTA_REF'] = strtoupper(trim($row['station_sota']));
-				  $data['COL_MY_WWFF_REF'] = strtoupper(trim($row['station_wwff']));
-				  $data['COL_MY_POTA_REF'] = $row['station_pota'] == null ? '' : strtoupper(trim($row['station_pota']));
+				  $data['COL_MY_IOTA'] = strtoupper(trim($row['station_iota'] ?? ''));
+				  $data['COL_MY_SOTA_REF'] = strtoupper(trim($row['station_sota'] ?? ''));
+				  $data['COL_MY_WWFF_REF'] = strtoupper(trim($row['station_wwff'] ?? ''));
+				  $data['COL_MY_POTA_REF'] = strtoupper(trim($row['station_pota'] ?? ''));
+				  $data['COL_MY_SIG'] = strtoupper(trim($row['station_sig'] ?? ''));
+				  $data['COL_MY_SIG_INFO'] = strtoupper(trim($row['station_sig_info'] ?? ''));
 
 				  $data['COL_STATION_CALLSIGN'] = strtoupper(trim($row['station_callsign']));
 				  $data['COL_MY_DXCC'] = strtoupper(trim($row['station_dxcc']));
@@ -4264,7 +4339,7 @@ function lotw_last_qsl_date($user_id) {
       return '';
     }
 
-    
+
     public function check_missing_dxcc_id($all){
         // get all records with no COL_DXCC
         $this->db->select("COL_PRIMARY_KEY, COL_CALL, COL_TIME_ON, COL_TIME_OFF");

@@ -35,6 +35,27 @@ class Eqsl_images extends CI_Model {
 		return $this->db->get('eQSL_images');
 	}
 
+	// return path of eQsl file : u=url / p=real path //
+	function get_imagePath($pathorurl='u') {
+		$eqsl_dir = "eqsl_card";
+		// test if new folder directory exist // 
+		$userdata_dir = $this->config->item('userdata');
+		if (isset($userdata_dir)) {
+			if (!file_exists(realpath(APPPATH.'../').'/'.$userdata_dir)) {
+				mkdir(realpath(APPPATH.'../').'/'.$userdata_dir, 0755, true);
+			}
+			if (!file_exists(realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$eqsl_dir)) {
+				mkdir(realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$eqsl_dir, 0755, true);
+			}
+			if ($pathorurl=='u') {
+				return $userdata_dir.'/'.$eqsl_dir;
+			} else {
+				return realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$eqsl_dir;
+			}
+		} else {
+			return 'images/eqsl_card_images';
+		}
+	}
 }
 
 ?>

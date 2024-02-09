@@ -47,6 +47,7 @@ class Logbookadvanced extends CI_Controller {
 		$pageData['sats'] = $this->bands->get_worked_sats();
 		$pageData['station_profile'] = $this->stations->all_of_user();
 		$pageData['active_station_info'] = $station_profile->row();
+		$pageData['homegrid'] = explode(',', $this->stations->find_gridsquare());
 
 		$pageData['bands'] = $this->bands->get_worked_bands();
 
@@ -77,7 +78,10 @@ class Logbookadvanced extends CI_Controller {
 		$footerData['scripts'] = [
 			'assets/js/moment.min.js',
 			'assets/js/datetime-moment.js',
-			'assets/js/sections/logbookadvanced.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/logbookadvanced.js"))
+			'assets/js/sections/logbookadvanced.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/logbookadvanced.js")),
+			'assets/js/sections/cqmap_geojson.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/cqmap_geojson.js")),
+			'assets/js/sections/itumap_geojson.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/itumap_geojson.js")),
+			'assets/js/leaflet/geocoding.js',
 		];
 
 		$this->load->view('interface_assets/header', $data);
@@ -256,7 +260,7 @@ class Logbookadvanced extends CI_Controller {
 			'user_id' => (int)$this->session->userdata('user_id'),
 			'dateFrom' => '',
 			'dateTo' => '',
-			'de' => '',
+			'de' => (int)$this->input->post('de'),
 			'dx' => '',
 			'mode' => '',
 			'band' => '',
@@ -336,14 +340,13 @@ class Logbookadvanced extends CI_Controller {
 			$measurement_base = $this->session->userdata('user_measurement_base');
 		}
 
-		$CI =& get_instance();
 		// Get Date format
-		if($CI->session->userdata('user_date_format')) {
+		if($this->session->userdata('user_date_format')) {
 			// If Logged in and session exists
-			$custom_date_format = $CI->session->userdata('user_date_format');
+			$custom_date_format = $this->session->userdata('user_date_format');
 		} else {
 			// Get Default date format from /config/wavelog.php
-			$custom_date_format = $CI->config->item('qso_date_format');
+			$custom_date_format = $this->config->item('qso_date_format');
 		}
 
 		switch ($measurement_base) {
@@ -398,6 +401,7 @@ class Logbookadvanced extends CI_Controller {
 		$data['mycallsign'] = $qso['station_callsign'];
 		$data['datetime'] = date($custom_date_format, strtotime($qso['COL_TIME_ON'])). date(' H:i',strtotime($qso['COL_TIME_ON']));
 		$data['satname'] = $qso['COL_SAT_NAME'];
+		$data['confirmed'] = ((($qso['COL_EQSL_QSL_RCVD'] == 'Y') || ($qso['COL_LOTW_QSL_RCVD'] == 'Y') || ($qso['COL_QSL_RCVD'] == 'Y')) == true ? true : false);
 
 		return $data;
 	}
@@ -422,6 +426,7 @@ class Logbookadvanced extends CI_Controller {
 		$data['mycallsign'] = $qso['station_callsign'];
 		$data['datetime'] = date($custom_date_format, strtotime($qso['COL_TIME_ON'])). date(' H:i',strtotime($qso['COL_TIME_ON']));
 		$data['satname'] = $qso['COL_SAT_NAME'];
+		$data['confirmed'] = ((($qso['COL_EQSL_QSL_RCVD'] == 'Y') || ($qso['COL_LOTW_QSL_RCVD'] == 'Y') || ($qso['COL_QSL_RCVD'] == 'Y')) == true ? true : false);
 
 		return $data;
 	}
