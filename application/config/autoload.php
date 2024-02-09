@@ -127,7 +127,7 @@ $autoload['language'] = array(
 |
 */
 
-$autoload['model'] = array('user_options_model');
+$autoload['model'] = array('user_options_model', 'logbooks_model', 'stations', 'oqrs_model');
 
 
 /* End of file autoload.php */
