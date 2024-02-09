@@ -72,4 +72,5 @@ $lang['export_cabrillo_address_country'] = "国家";
 $lang['export_cabrillo_no_contests_in_log'] = "在日志中未发现任何竞赛";
 $lang['export_cabrillo_no_contests_for_stationlocation'] = "没有找到该台站位置的竞赛";
 
+$lang['export_cfd_description'] = "Export of CFD-File for DARC-Toplist (See <a href=\"https://toplist.darc.de\" target=\"_new\">https://toplist.darc.de</a>)";
 

@@ -72,4 +72,5 @@ $lang['export_cabrillo_address_country'] = "Dirección - País";
 $lang['export_cabrillo_no_contests_in_log'] = "No se encontraron concursos en tu registro.";
 $lang['export_cabrillo_no_contests_for_stationlocation'] = "¡No se encontraron concursos para esta localización de estación!";
 
+$lang['export_cfd_description'] = "Export of CFD-File for DARC-Toplist (See <a href=\"https://toplist.darc.de\" target=\"_new\">https://toplist.darc.de</a>)";
 
