@@ -550,12 +550,6 @@
                             <!-- Station Panel Contents -->
                             <div class="tab-pane fade" id="nav-station" role="tabpanel" aria-labelledby="nav-station-tab">
 
-                                <?php
-                                $CI =& get_instance();
-                                $CI->load->model('stations');
-                                $my_stations = $CI->stations->all_of_user();
-                                ?>
-
                                 <div class="mb-3">
                                     <label for="inputStationProfile">Change Station Profile</label>
                                     <select id="stationProfile" class="form-select" name="station_profile">

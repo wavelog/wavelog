@@ -13,7 +13,7 @@ class QSO extends CI_Controller {
 	{
 		parent::__construct();
 		$this->lang->load('qso');
-
+        $this->load->model('stations');
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 	}
@@ -239,6 +239,7 @@ class QSO extends CI_Controller {
         $data['modes'] = $this->modes->all();
         $data['bands'] = $this->bands->get_user_bands_for_qso_entry(true);
         $data['contest'] = $this->contesting_model->getActivecontests();
+        $data['my_stations'] = $this->stations->all_of_user();
 
         $this->load->view('qso/edit_ajax', $data);
     }
