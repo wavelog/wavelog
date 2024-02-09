@@ -492,7 +492,6 @@ class User extends CI_Controller {
 			}
 
 			// [MAP Custom] GET user options //
-			$this->load->model('user_options_model');
 			$options_object = $this->user_options_model->get_options('map_custom')->result();
 			if (count($options_object)>0) {
 				foreach ($options_object as $row) {
@@ -522,6 +521,8 @@ class User extends CI_Controller {
 				'station'=>array('0', 'fas fa-home', 'fas fa-broadcast-tower', 'fas fa-user', 'fas fa-dot-circle' ),
 				'qso'=>array('fas fa-broadcast-tower', 'fas fa-user', 'fas fa-dot-circle' ),
 				'qsoconfirm'=>array('0', 'fas fa-broadcast-tower', 'fas fa-user', 'fas fa-dot-circle', 'fas fa-check-circle' ));
+
+			$data['user_locations_quickswitch'] = ($this->user_options_model->get_options('header_menu', array('option_name'=>'locations_quickswitch'))->row()->option_value ?? 'false');
 							
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('user/edit', $data);
@@ -559,7 +560,6 @@ class User extends CI_Controller {
 							$data_options['user_map_'.$icon.'_icon'] = xss_clean($this->input->post('user_map_'.$icon.'_icon', true));
 							$data_options['user_map_'.$icon.'_color'] = xss_clean($this->input->post('user_map_'.$icon.'_color', true));
 						}
-						$this->load->model('user_options_model');
 						if (!empty($data_options['user_map_qso_icon'])) {
 							foreach ($array_icon as $icon) { 
 								$json = json_encode(array('icon'=>$data_options['user_map_'.$icon.'_icon'], 'color'=>$data_options['user_map_'.$icon.'_color']));
@@ -570,7 +570,7 @@ class User extends CI_Controller {
 							$this->user_options_model->del_option('map_custom','icon');
 							$this->user_options_model->del_option('map_custom','gridsquare');
 						}
-
+						$this->user_options_model->set_option('header_menu', 'locations_quickswitch', array('boolean'=>xss_clean($this->input->post('user_locations_quickswitch', true))));
 						$this->session->set_flashdata('success', lang('account_user').' '.$this->input->post('user_name', true).' '.lang('account_word_edited'));
 						redirect('user/edit/'.$this->uri->segment(3));
 					} else {
@@ -612,6 +612,7 @@ class User extends CI_Controller {
 			$data['user_qso_end_times'] = $this->input->post('user_qso_end_times');
 			$data['user_quicklog'] = $this->input->post('user_quicklog');
 			$data['user_quicklog_enter'] = $this->input->post('user_quicklog_enter');
+			$data['user_locations_quickswitch'] = $this->input->post('user_locations_quickswitch', true);
 			$data['language'] = $this->input->post('language');
 			$data['user_winkey'] = $this->input->post('user_winkey');
 			$this->load->view('user/edit');
@@ -623,15 +624,15 @@ class User extends CI_Controller {
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 		$query = $this->user_model->get_by_id($this->session->userdata('user_id'));
-    $q = $query->row();
-    $data['page_title'] = "Profile";
-    $data['user_name'] = $q->user_name;
-    $data['user_type'] = $q->user_type;
-    $data['user_email'] = $q->user_email;
-    $data['user_firstname'] = $q->user_firstname;
-    $data['user_lastname'] = $q->user_lastname;
-    $data['user_callsign'] = $q->user_callsign;
-    $data['user_locator'] = $q->user_locator;
+		$q = $query->row();
+		$data['page_title'] = "Profile";
+		$data['user_name'] = $q->user_name;
+		$data['user_type'] = $q->user_type;
+		$data['user_email'] = $q->user_email;
+		$data['user_firstname'] = $q->user_firstname;
+		$data['user_lastname'] = $q->user_lastname;
+		$data['user_callsign'] = $q->user_callsign;
+		$data['user_locator'] = $q->user_locator;
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('user/profile');
