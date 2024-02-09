@@ -95,12 +95,8 @@ if($this->session->userdata('user_id') != null) {
 <script>
     function set_active_location(current_active, new_active) {
         $.ajax({
-            url: base_url + 'index.php/station/set_active/' + current_active + '/' + new_active,
-            type: 'POST',
-            dataType: 'json',
-            data: {
-                is_ajax: true
-            },
+            url: base_url + 'index.php/station/set_active/' + current_active + '/' + new_active + '/1',
+            type: 'GET',
             success: function(response) {
                 location.reload();
             }
