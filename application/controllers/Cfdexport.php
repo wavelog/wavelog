@@ -28,6 +28,7 @@ class Cfdexport extends CI_Controller {
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 		$this->load->model('logbook_model');
+		$this->load->model('dxcc');
 
 		// Parameters
 		$fromdate = xss_clean($this->input->post('from'));
@@ -46,13 +47,15 @@ Entity                \          MHz:   ALL   1.8   3.5     7    10    14    18 
 -------------------------------------------------------------------------------------------------------'."\n";
 
 		$dxcc_list=[];	// Prepare Array
-		foreach ($qsos->result() as $row) {	// Loop through entities
+		foreach ($qsos->result() as $row) {	// Loop through entities which are cnfmd
 			$nominal=$this->frequency->defaultFrequencies[$row->band]['NOMINAL'];
 			$dxcc_list[$row->prefix]['name']=$row->name;
 			if ($row->cnfmd >=1) { $dxcc_list[$row->prefix][$nominal][$row->mode]=$row->mode; }
 		}
-		foreach ($dxcc_list as $pref => $vals) {	// Loop through new array
-			$output .= str_pad($pref,6," ")." ".str_pad(substr($dxcc_list[$pref]['name'],0,30),30,".")."  ";
+		$dxccs=$this->dxcc->list_current('prefix');
+		foreach ($dxccs->result() as $dxcc) {	// Loop through ALL active entities
+			$vals=$dxcc_list[$dxcc->prefix] ?? [];	// Set current Entity
+			$output .= str_pad($dxcc->prefix,6," ")." ".str_pad(substr($dxcc->name,0,30),30,".")."  ";
 			$allm=0;
 			$allc=0;
 			$allf=0;

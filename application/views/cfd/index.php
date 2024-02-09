@@ -1,6 +1,6 @@
 <div class="container">
 <br>
-    <h2><?php echo lang('export_cfd_header'); ?></h2>
+    <h2>CFD</h2>
 
     <div class="card">
         <div class="card-header">
