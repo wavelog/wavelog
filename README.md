@@ -42,6 +42,9 @@ Wavelog-support can be reached by creating an issue here at github. If you've an
 
 ## Contributing
 
+Special thanks to our contributors, who are part of Wavelog by improving code!
+@abarrau, @dg0tm
+
 If you would like to contribute in any way to Wavelog, it is most appreciated. This has been developed in free time, help coding new features or writing documentation is always useful.
 
 Please note that Wavelog was built using [Codeigniter](https://www.codeigniter.com/docs) version 3 and uses Bootstrap 5 for the user CSS framework documentation is available for this when building components.
