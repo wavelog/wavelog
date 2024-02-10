@@ -4,9 +4,9 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 class Timeline_model extends CI_Model
 {
     function get_timeline($band, $mode, $award, $qsl, $lotw, $eqsl)  {
-		$CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         if (!$logbooks_locations_array) {
             return null;
@@ -212,9 +212,9 @@ class Timeline_model extends CI_Model
     }
 
     public function timeline_qso_details($querystring, $band, $mode, $type){
-		$CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
 		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
 		$this->db->join('dxcc_entities', 'dxcc_entities.adif = '.$this->config->item('table_name').'.COL_DXCC', 'left outer');

@@ -100,9 +100,9 @@ class VUCC extends CI_Model
      * $confirmationMethod - qsl, lotw or both, use anything else to skip confirmed
      */
     function get_vucc_summary_col_vucc($band, $confirmationMethod) {
-		$CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         if (!$logbooks_locations_array) {
             return null;
@@ -144,9 +144,9 @@ class VUCC extends CI_Model
      * $confirmationMethod - qsl, lotw or both, use anything else to skip confirmed
      */
     function get_vucc_summary($band, $confirmationMethod) {
-	    $CI =& get_instance();
-	    $CI->load->model('logbooks_model');
-	    $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+	    
+	    $this->load->model('logbooks_model');
+	    $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
 	    if (!$logbooks_locations_array) {
 		    return null;

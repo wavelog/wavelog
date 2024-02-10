@@ -3,9 +3,9 @@
 class Qslprint_model extends CI_Model {
 
 	function mark_qsos_printed($station_id2 = NULL) {
-		$CI =& get_instance();
-		$CI->load->model('Stations');
-		$station_id = $CI->Stations->find_active();
+		
+		$this->load->model('Stations');
+		$station_id = $this->Stations->find_active();
 
 		$station_ids = array();
 
@@ -13,14 +13,14 @@ class Qslprint_model extends CI_Model {
 			array_push($station_ids, $station_id);
 		} else if ($station_id2 == 'All') {
 			// get all stations of user
-			$stations = $CI->Stations->all_of_user();
+			$stations = $this->Stations->all_of_user();
 			$station_ids = array();
 			foreach ($stations->result() as $row) {
 				array_push($station_ids, $row->station_id);
 			}
 		} else {
 			// be sure that station belongs to user
-			if (!$CI->Stations->check_station_is_accessible($station_id2)) {
+			if (!$this->Stations->check_station_is_accessible($station_id2)) {
 				return;
 			}
 			array_push($station_ids, $station_id2);
@@ -99,9 +99,9 @@ class Qslprint_model extends CI_Model {
 
 	function delete_from_qsl_queue($id) {
 		// be sure that QSO belongs to user
-		$CI =& get_instance();
-		$CI->load->model('logbook_model');
-		if (!$CI->logbook_model->check_qso_is_accessible($id)) {
+		
+		$this->load->model('logbook_model');
+		if (!$this->logbook_model->check_qso_is_accessible($id)) {
 			return;
 		}
 
@@ -117,9 +117,9 @@ class Qslprint_model extends CI_Model {
 
 	function add_qso_to_print_queue($id) {
 		// be sure that QSO belongs to user
-		$CI =& get_instance();
-		$CI->load->model('logbook_model');
-		if (!$CI->logbook_model->check_qso_is_accessible($id)) {
+		
+		$this->load->model('logbook_model');
+		if (!$this->logbook_model->check_qso_is_accessible($id)) {
 			return;
 		}
 

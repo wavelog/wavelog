@@ -5,9 +5,8 @@ class Dayswithqso_model extends CI_Model
 {
     function getDaysWithQso()
     {
-		$CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         if (!$logbooks_locations_array) {
             return null;
@@ -161,9 +160,8 @@ class Dayswithqso_model extends CI_Model
      * Returns all distinct dates from db on active profile
      */
     function getDates() {
-		$CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         if (!$logbooks_locations_array) {
             return null;

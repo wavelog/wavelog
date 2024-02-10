@@ -1,9 +1,8 @@
 <?php
 class Qsl_model extends CI_Model {
     function getQsoWithQslList() {
-        $CI =& get_instance();
-        $CI->load->model('logbooks_model');
-        $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+        $this->load->model('logbooks_model');
+        $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         $this->db->select('*');
         $this->db->from($this->config->item('table_name'));
@@ -19,9 +18,8 @@ class Qsl_model extends CI_Model {
         $clean_id = $this->security->xss_clean($id);
 
         // be sure that QSO belongs to user
-        $CI =& get_instance();
-        $CI->load->model('logbook_model');
-        if (!$CI->logbook_model->check_qso_is_accessible($clean_id)) {
+        $this->load->model('logbook_model');
+        if (!$this->logbook_model->check_qso_is_accessible($clean_id)) {
             return;
         }
 
@@ -37,9 +35,8 @@ class Qsl_model extends CI_Model {
         $clean_id = $this->security->xss_clean($qsoid);
 
         // be sure that QSO belongs to user
-        $CI =& get_instance();
-        $CI->load->model('logbook_model');
-        if (!$CI->logbook_model->check_qso_is_accessible($clean_id)) {
+        $this->load->model('logbook_model');
+        if (!$this->logbook_model->check_qso_is_accessible($clean_id)) {
             return;
         }
 
@@ -58,13 +55,12 @@ class Qsl_model extends CI_Model {
         $clean_id = $this->security->xss_clean($id);
 
         // be sure that QSO belongs to user
-        $CI =& get_instance();
-        $CI->load->model('logbook_model');
+        $this->load->model('logbook_model');
         $this->db->select('qsoid');
         $this->db->from('qsl_images');
         $this->db->where('id', $clean_id);
         $qsoid = $this->db->get()->row()->qsoid;
-        if (!$CI->logbook_model->check_qso_is_accessible($qsoid)) {
+        if (!$this->logbook_model->check_qso_is_accessible($qsoid)) {
             return;
         }
 
@@ -77,13 +73,12 @@ class Qsl_model extends CI_Model {
         $clean_id = $this->security->xss_clean($id);
 
         // be sure that QSO belongs to user
-        $CI =& get_instance();
-        $CI->load->model('logbook_model');
+        $this->load->model('logbook_model');
         $this->db->select('qsoid');
         $this->db->from('qsl_images');
         $this->db->where('id', $clean_id);
         $qsoid = $this->db->get()->row()->qsoid;
-        if (!$CI->logbook_model->check_qso_is_accessible($qsoid)) {
+        if (!$this->logbook_model->check_qso_is_accessible($qsoid)) {
             return;
         }
 
@@ -95,9 +90,8 @@ class Qsl_model extends CI_Model {
     }
 
     function searchQsos($callsign) {
-        $CI =& get_instance();
-        $CI->load->model('logbooks_model');
-        $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+        $this->load->model('logbooks_model');
+        $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
 		$this->db->select('*');
 		$this->db->from($this->config->item('table_name'));
@@ -112,9 +106,9 @@ class Qsl_model extends CI_Model {
 		$clean_filename = $this->security->xss_clean($filename);
 
 		// be sure that QSO belongs to user
-		$CI =& get_instance();
-		$CI->load->model('logbook_model');
-		if (!$CI->logbook_model->check_qso_is_accessible($clean_qsoid)) {
+		
+		$this->load->model('logbook_model');
+		if (!$this->logbook_model->check_qso_is_accessible($clean_qsoid)) {
 			return;
 		}
 

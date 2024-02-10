@@ -36,9 +36,8 @@ class Ffma_model extends CI_Model {
     ];
 
     function get_lotw() {
-        $CI =& get_instance();
-        $CI->load->model('logbooks_model');
-        $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+        $this->load->model('logbooks_model');
+        $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         if (!$logbooks_locations_array) {
             return null;
@@ -55,9 +54,8 @@ class Ffma_model extends CI_Model {
     }
 
     function get_paper() {
-        $CI =& get_instance();
-        $CI->load->model('logbooks_model');
-        $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+        $this->load->model('logbooks_model');
+        $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         if (!$logbooks_locations_array) {
             return null;
@@ -74,9 +72,8 @@ class Ffma_model extends CI_Model {
     }
 
     function get_worked() {
-        $CI =& get_instance();
-        $CI->load->model('logbooks_model');
-        $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+        $this->load->model('logbooks_model');
+        $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         if (!$logbooks_locations_array) {
             return null;
@@ -92,9 +89,8 @@ class Ffma_model extends CI_Model {
     }
 
     function get_vucc_lotw() {
-        $CI =& get_instance();
-        $CI->load->model('logbooks_model');
-        $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+        $this->load->model('logbooks_model');
+        $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         if (!$logbooks_locations_array) {
             return null;
@@ -124,9 +120,8 @@ class Ffma_model extends CI_Model {
     }
 
     function get_vucc_paper() {
-        $CI =& get_instance();
-        $CI->load->model('logbooks_model');
-        $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+        $this->load->model('logbooks_model');
+        $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         if (!$logbooks_locations_array) {
             return null;
@@ -156,9 +151,8 @@ class Ffma_model extends CI_Model {
     }
 
     function get_vucc_worked() {
-        $CI =& get_instance();
-        $CI->load->model('logbooks_model');
-        $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+        $this->load->model('logbooks_model');
+        $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         if (!$logbooks_locations_array) {
             return null;

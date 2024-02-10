@@ -4,9 +4,8 @@ class Gridmap_model extends CI_Model {
 
     function get_band_confirmed($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $logbooks_locations_array = NULL) {
         if ($logbooks_locations_array == NULL) {
-           $CI =& get_instance();
-           $CI->load->model('logbooks_model');
-           $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+           $this->load->model('logbooks_model');
+           $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
         }
         
         if (!$logbooks_locations_array) {
@@ -44,9 +43,8 @@ class Gridmap_model extends CI_Model {
 
     function get_band($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $logbooks_locations_array = NULL) {
         if ($logbooks_locations_array == NULL) {
-           $CI =& get_instance();
-           $CI->load->model('logbooks_model');
-           $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+           $this->load->model('logbooks_model');
+           $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
         }
 
         if (!$logbooks_locations_array) {
@@ -82,9 +80,8 @@ class Gridmap_model extends CI_Model {
 
     function get_band_worked_vucc_squares($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $logbooks_locations_array = NULL) {
         if ($logbooks_locations_array == NULL) {
-           $CI =& get_instance();
-           $CI->load->model('logbooks_model');
-           $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+           $this->load->model('logbooks_model');
+           $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
         }
 
         if (!$logbooks_locations_array) {
@@ -120,9 +117,8 @@ class Gridmap_model extends CI_Model {
 
     function get_band_confirmed_vucc_squares($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $logbooks_locations_array = NULL) {
         if ($logbooks_locations_array == NULL) {
-           $CI =& get_instance();
-           $CI->load->model('logbooks_model');
-           $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+           $this->load->model('logbooks_model');
+           $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
         }
         
         if (!$logbooks_locations_array) {
@@ -190,9 +186,8 @@ class Gridmap_model extends CI_Model {
 	 * Get's the worked modes from the log
 	 */
 	function get_worked_modes() {
-        $CI =& get_instance();
-        $CI->load->model('logbooks_model');
-        $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+        $this->load->model('logbooks_model');
+        $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
         
         if (!$logbooks_locations_array) {
             return null;

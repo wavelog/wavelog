@@ -6,8 +6,8 @@ class Note extends CI_Model {
         if ($api_key == null) {
 			$user_id = $this->session->userdata('user_id');
 		} else {
-			$CI =& get_instance();
-			$CI->load->model('api_model');
+			
+			$this->load->model('api_model');
 			if (strpos($this->api_model->access($api_key), 'r') !== false) {
 				$this->api_model->update_last_used($api_key);
 				$user_id = $this->api_model->key_userid($api_key);

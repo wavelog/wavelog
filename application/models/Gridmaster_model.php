@@ -63,9 +63,8 @@ class Gridmaster_model extends CI_Model {
     private $lx_zoom = 8;
 
     function get_lotw($dxcc) {
-        $CI =& get_instance();
-        $CI->load->model('logbooks_model');
-        $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+        $this->load->model('logbooks_model');
+        $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         if (!$logbooks_locations_array) {
             return null;
@@ -82,9 +81,8 @@ class Gridmaster_model extends CI_Model {
     }
 
     function get_paper($dxcc) {
-        $CI =& get_instance();
-        $CI->load->model('logbooks_model');
-        $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+        $this->load->model('logbooks_model');
+        $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         if (!$logbooks_locations_array) {
             return null;
@@ -101,9 +99,8 @@ class Gridmaster_model extends CI_Model {
     }
 
     function get_worked($dxcc) {
-        $CI =& get_instance();
-        $CI->load->model('logbooks_model');
-        $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+        $this->load->model('logbooks_model');
+        $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         if (!$logbooks_locations_array) {
             return null;
@@ -119,9 +116,8 @@ class Gridmaster_model extends CI_Model {
     }
 
     function get_vucc_lotw($dxcc) {
-        $CI =& get_instance();
-        $CI->load->model('logbooks_model');
-        $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+        $this->load->model('logbooks_model');
+        $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         if (!$logbooks_locations_array) {
             return null;
@@ -151,9 +147,8 @@ class Gridmaster_model extends CI_Model {
     }
 
     function get_vucc_paper($dxcc) {
-        $CI =& get_instance();
-        $CI->load->model('logbooks_model');
-        $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+        $this->load->model('logbooks_model');
+        $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         if (!$logbooks_locations_array) {
             return null;
@@ -183,9 +178,8 @@ class Gridmaster_model extends CI_Model {
     }
 
     function get_vucc_worked($dxcc) {
-        $CI =& get_instance();
-        $CI->load->model('logbooks_model');
-        $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+        $this->load->model('logbooks_model');
+        $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         if (!$logbooks_locations_array) {
             return null;

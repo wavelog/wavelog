@@ -3,9 +3,9 @@
 class IOTA extends CI_Model {
 
     function get_iota_array($iotaArray, $bands, $postdata) {
-		$CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         if (!$logbooks_locations_array) {
             return null;
@@ -33,8 +33,8 @@ class IOTA extends CI_Model {
             // If confirmed is checked, we add confirmed iotas to the array
             if ($postdata['confirmed'] != NULL) {
                 $confirmedIota = $this->getIotaBandConfirmed($location_list, $band, $postdata);
-                foreach ($confirmedIota as $ciota) {
-                    $iotaMatrix[$ciota->tag][$band] = '<div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("'.$ciota->tag.'","'. $band . '","'. $postdata['mode'] . '","IOTA")\'>C</a></div>';
+                foreach ($confirmedIota as $thisota) {
+                    $iotaMatrix[$thisota->tag][$band] = '<div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("'.$thisota->tag.'","'. $band . '","'. $postdata['mode'] . '","IOTA")\'>C</a></div>';
                 }
             }
         }
@@ -52,9 +52,9 @@ class IOTA extends CI_Model {
         // We want to remove the confirmed iotas in the list, since we do not want to display them
         if ($postdata['confirmed'] == NULL) {
             $confirmedIOTA = $this->getIotaConfirmed($location_list, $postdata);
-            foreach ($confirmedIOTA as $ciota) {
-                if (array_key_exists($ciota->tag, $iotaMatrix)) {
-                    unset($iotaMatrix[$ciota->tag]);
+            foreach ($confirmedIOTA as $thisota) {
+                if (array_key_exists($thisota->tag, $iotaMatrix)) {
+                    unset($iotaMatrix[$thisota->tag]);
                 }
             }
         }
@@ -115,9 +115,9 @@ class IOTA extends CI_Model {
     }
 
     function fetchIota($postdata) {
-		$CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         if (!$logbooks_locations_array) {
             return null;
@@ -253,9 +253,9 @@ class IOTA extends CI_Model {
      */
     function get_iota_summary($bands, $postdata)
     {
-		$CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         if (!$logbooks_locations_array) {
             return null;

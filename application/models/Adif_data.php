@@ -3,17 +3,16 @@
 class adif_data extends CI_Model {
 
     function export_all($api_key = null) {
-        $CI =& get_instance();
-        $CI->load->model('logbooks_model');
+        $this->load->model('logbooks_model');
         if ($api_key != null) {
-            $CI->load->model('api_model');
+            $this->load->model('api_model');
             if (strpos($this->api_model->access($api_key), 'r') !== false) {
                 $this->api_model->update_last_used($api_key);
                 $user_id = $this->api_model->key_userid($api_key);
                 $logbooks_locations_array = $this->list_station_locations($user_id);
             }
         } else {
-            $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+            $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
         }
 
         $this->db->select($this->config->item('table_name').'.*, station_profile.*, dxcc_entities.name as station_country');
@@ -105,9 +104,8 @@ class adif_data extends CI_Model {
 
     function export_custom($from, $to, $station_id, $exportLotw = false) {
         // be sure that station belongs to user
-        $CI =& get_instance();
-        $CI->load->model('Stations');
-        if (!$CI->Stations->check_station_is_accessible($station_id)) {
+        $this->load->model('Stations');
+        if (!$this->Stations->check_station_is_accessible($station_id)) {
             return;
         }
 
@@ -169,9 +167,8 @@ class adif_data extends CI_Model {
     }
 
 	function sig_all($type) {
-		$CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
 		$this->db->select(''.$this->config->item('table_name').'.*, station_profile.*, dxcc_entities.name as station_country');
 		$this->db->from($this->config->item('table_name'));

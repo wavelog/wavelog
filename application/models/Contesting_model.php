@@ -5,9 +5,8 @@ class Contesting_model extends CI_Model {
      * This function gets the QSOs to fill the "Contest Logbook" under the contesting form.
      */
     function getSessionQsos($qso) {
-        $CI =& get_instance();
-        $CI->load->model('Stations');
-        $station_id = $CI->Stations->find_active();
+        $this->load->model('Stations');
+        $station_id = $this->Stations->find_active();
 
         $qsoarray = explode(',', $qso);
 
@@ -27,9 +26,8 @@ class Contesting_model extends CI_Model {
     }
 
 	function getSession() {
-        $CI =& get_instance();
-        $CI->load->model('Stations');
-        $station_id = $CI->Stations->find_active();
+        $this->load->model('Stations');
+        $station_id = $this->Stations->find_active();
 
         $sql = "SELECT * from contest_session where station_id = " . $station_id;
 
@@ -40,9 +38,8 @@ class Contesting_model extends CI_Model {
 
 
 	function deleteSession() {
-        $CI =& get_instance();
-        $CI->load->model('Stations');
-        $station_id = $CI->Stations->find_active();
+        $this->load->model('Stations');
+        $station_id = $this->Stations->find_active();
 
         $sql = "delete from contest_session where station_id = " . $station_id;
 
@@ -51,9 +48,8 @@ class Contesting_model extends CI_Model {
     }
 
 	function setSession() {
-        $CI =& get_instance();
-        $CI->load->model('Stations');
-        $station_id = $CI->Stations->find_active();
+        $this->load->model('Stations');
+        $station_id = $this->Stations->find_active();
 
 		$qso = "";
 
@@ -207,9 +203,8 @@ class Contesting_model extends CI_Model {
 	}
 
 	function checkIfWorkedBefore($call, $band, $mode, $contest) {
-		$CI =& get_instance();
-		$CI->load->model('Stations');
-		$station_id = $CI->Stations->find_active();
+		$this->load->model('Stations');
+		$station_id = $this->Stations->find_active();
 
 		$contest_session = $this->getSession();
 		
@@ -264,9 +259,8 @@ class Contesting_model extends CI_Model {
     }
 
 	function get_logged_contests2() {
-		$CI =& get_instance();
-        $CI->load->model('Stations');
-        $station_id = $CI->Stations->find_active();
+		$this->load->model('Stations');
+        $station_id = $this->Stations->find_active();
 
 		$sql = "select col_contest_id, min(date(col_time_on)) mindate, max(date(col_time_on)) maxdate, year(col_time_on) year, month(col_time_on) month
 		from " . $this->config->item('table_name') . " 
