@@ -66,8 +66,7 @@
 			<a class="nav-link" href="<?php echo site_url('visitor/satellites/'.$slug);?>">Gridsquares</a>
 		</li>
 		<?php
-			$this->CI =& get_instance();
-			if ($this->CI->oqrs_enabled($slug)) {
+			if ($oqrs_enabled == true) {
 			?>
 			<li class="nav-item">
 				<a class="nav-link" href="<?php echo site_url('oqrs');?>">OQRS</a>
@@ -89,8 +88,7 @@
 		</ul>
 		<div class="m-2">
 			<?php if (!empty($slug)) {
-				$this->CI =& get_instance();
-				if ($this->CI->public_search_enabled($slug)) { ?>
+				if ($public_search_enabled == true) { ?>
 					<form method="post" name="searchForm" action="<?php echo site_url('visitor/search'); ?>" onsubmit="return validateForm()" class="d-flex align-items-center">
 						<input class="form-control me-sm-2" id="searchcall" type="search" name="callsign" placeholder="<?php echo lang('menu_search_text'); ?>" <?php if (isset($callsign) && $callsign != '') { echo 'value="'.strtoupper($callsign).'"'; } ?> aria-label="Search" data-toogle="tooltip" data-bs-placement="bottom" title="Please enter a callsign!">
 						<input type="hidden" name="public_slug" value="<?php echo $slug; ?>">

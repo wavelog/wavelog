@@ -112,6 +112,8 @@ class Visitor extends CI_Controller {
 
                 $data['page_title'] = "Dashboard";
                 $data['slug'] = $public_slug;
+				$data['oqrs_enabled'] = $this->oqrs_enabled($public_slug);
+				$data['public_search_enabled'] = $this->public_search_enabled($public_slug);
 
                 $this->load->model('dxcc');
                 $dxcc = $this->dxcc->list_current();
