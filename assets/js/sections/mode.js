@@ -10,6 +10,7 @@ $('.modetable').DataTable({
 		url: getDataTablesLanguageUrl(),
 	},
 	initComplete: function () {
+		var table = this.api();
 		this.api()
 			.columns('.select-filter')
 			.every(function () {
@@ -30,9 +31,9 @@ $('.modetable').DataTable({
 						select.append('<option value="' + d + '">' + d + '</option>');
 					});
 			});
+		table.columns.adjust().draw();
 	},
 });
-$($.fn.dataTable.tables(true)).DataTable().columns.adjust();
 
 function createModeDialog() {
 	$.ajax({
