@@ -11,8 +11,7 @@ $('.modetable').DataTable({
 	},
 	initComplete: function () {
 		var table = this.api();
-		this.api()
-			.columns('.select-filter')
+		table.columns('.select-filter')
 			.every(function () {
 				var column = this;
 				var select = $('<select class="form-select"><option value=""></option></select>')
