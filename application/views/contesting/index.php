@@ -113,7 +113,7 @@
 
                             <div style="display:none" class="mb-3 col-md-1 serials">
 								<label for="exch_serial_s"><?php echo lang('contesting_exchange_serial_s'); ?></label>
-								<input type="number" class="form-control form-control-sm" name="exch_serial_s" id="exch_serial_s" value="">
+								<input type="number" class="form-control form-control-sm" name="exch_serial_s" id="exch_serial_s" min="0" value="">
 							</div>
                             
                             <div style="display:none" class="mb-3 col-md-1 exchanges">
@@ -133,7 +133,7 @@
 
                             <div style="display:none" class="mb-3 col-md-1 serialr">
 								<label for="exch_serial_r"><?php echo lang('contesting_exchange_serial_r'); ?></label>
-								<input type="number" class="form-control form-control-sm" name="exch_serial_r" id="exch_serial_r" value="">
+								<input type="number" class="form-control form-control-sm" name="exch_serial_r" id="exch_serial_r" min="0" value="">
 							</div>
 							
 							<div style="display:none" class="mb-3 col-md-1 exchanger">
