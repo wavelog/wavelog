@@ -137,6 +137,20 @@ $(function () {
 	});
 });
 
+// Some Browsers (Firefox...) allow Chars in Serial Input. We don't want that.
+// reference: https://stackoverflow.com/questions/49923588/input-type-number-with-pattern-0-9-allows-letters-in-firefox
+$(function () {
+    $('#exch_serial_s, #exch_serial_r').on('keypress', function (e) {
+        var charCode = e.which || e.keyCode;
+        var charStr = String.fromCharCode(charCode);
+
+        if (!/^[0-9]+$/.test(charStr)) {
+            e.preventDefault();
+        }
+    });
+});
+
+
 // Here we capture keystrokes to execute functions
 document.onkeyup = function (e) {
 	// ALT-W wipe
