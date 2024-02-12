@@ -48,13 +48,13 @@
 			<div class="mb-3 row">
     			<label class="col-sm-2 col-form-label" for="marginTop">Margin Top</label>
 			    <div class="col-sm-4">
-				    <input name="marginTop" type="text" class="form-control" id="marginTop" aria-describedby="marginTopHelp">
+				    <input name="marginTop" type="text" class="form-control" pattern="[0-9]+([\.,][0-9]+)?" step="0.01" required id="marginTop" aria-describedby="marginTopHelp">
 			    	<small id="marginTopHelp" class="form-text text-muted">Top margin of labels</small>
 			    </div>
 
     			<label class="col-sm-2 col-form-label" for="marginLeft">Margin Left</label>
 			    <div class="col-sm-4">
-				    <input name="marginLeft" type="text" class="form-control" id="marginLeft" aria-describedby="marginLeftHelp">
+				    <input name="marginLeft" type="text" class="form-control" id="marginLeft" pattern="[0-9]+([\.,][0-9]+)?" step="0.01" required aria-describedby="marginLeftHelp">
 			    	<small id="marginLeftHelp" class="form-text text-muted">Left margin of labels.</small>
 			    </div>
   			</div>
@@ -62,13 +62,13 @@
   			<div class="mb-3 row">
     			<label class="col-sm-2 col-form-label" for="NX">Labels horizontally</label>
 			    <div class="col-sm-4">
-				    <input name="NX" type="number" min="1" max="40" step="1" class="form-control" id="NX" aria-describedby="NXHelp">
+				    <input name="NX" type="number" min="1" max="40" step="1" required class="form-control" id="NX" aria-describedby="NXHelp">
 			    	<small id="NXHelp" class="form-text text-muted">Number of labels horizontally across the page.</small>
 			    </div>
 
     			<label class="col-sm-2 col-form-label" for="NY">Labels vertically</label>
 			    <div class="col-sm-4">
-				    <input name="NY" type="number" min="1" max="40" step="1" class="form-control" id="NY" aria-describedby="NYHelp">
+				    <input name="NY" type="number" min="1" max="40" step="1" required class="form-control" id="NY" aria-describedby="NYHelp">
 			    	<small id="NYHelp" class="form-text text-muted">Number of labels vertically across the page.</small>
 			    </div>
   			</div>
@@ -76,13 +76,13 @@
   			<div class="mb-3 row">
     			<label class="col-sm-2 col-form-label" for="SpaceX">Horizontal space</label>
 			    <div class="col-sm-4">
-				    <input name="SpaceX" type="text" class="form-control" id="SpaceX">
+				    <input name="SpaceX" type="text" pattern="[0-9]+([\.,][0-9]+)?" step="0.01" required class="form-control" id="SpaceX">
 					<small id="NYHelp" class="form-text text-muted">Horizontal space between 2 labels.</small>
 			    </div>
 
     			<label class="col-sm-2 col-form-label" for="SpaceY">Vertical space</label>
 			    <div class="col-sm-4">
-				    <input name="SpaceY" type="text" class="form-control" id="SpaceY">
+				    <input name="SpaceY" type="text" pattern="[0-9]+([\.,][0-9]+)?" step="0.01" required class="form-control" id="SpaceY">
 					<small id="NYHelp" class="form-text text-muted">Vertical space between 2 labels.</small>
 			    </div>
   			</div>
@@ -90,13 +90,13 @@
 			<div class="mb-3 row">
     			<label class="col-sm-2 col-form-label" for="width">Width of label</label>
 			    <div class="col-sm-4">
-				    <input name="width" type="text" class="form-control" id="width" aria-describedby="widthHelp">
+				    <input name="width" type="text" class="form-control" pattern="[0-9]+([\.,][0-9]+)?" step="0.01" required id="width" aria-describedby="widthHelp">
 			    	<small id="widthHelp" class="form-text text-muted">Total width of one label.</small>
 			    </div>
 
     			<label class="col-sm-2 col-form-label" for="height">Height of label</label>
 			    <div class="col-sm-4">
-				    <input name="height" type="text" class="form-control" id="height" aria-describedby="heightHelp">
+				    <input name="height" type="text" class="form-control" pattern="[0-9]+([\.,][0-9]+)?" step="0.01" required id="height" aria-describedby="heightHelp">
 			    	<small id="heightHelp" class="form-text text-muted">Total height of one label</small>
 			    </div>
   			</div>
@@ -104,13 +104,13 @@
   			<div class="mb-3 row">
     			<label class="col-sm-2 col-form-label" for="font_size">Font Size</label>
 			    <div class="col-sm-4">
-				    <input name="font_size" type="number" min="1" max="40" step="1" class="form-control" id="font_size" value="8" aria-describedby="font_sizeHelp">
+				    <input name="font_size" type="number" min="1" max="40" step="1" required class="form-control" id="font_size" value="8" aria-describedby="font_sizeHelp">
 			    	<small id="font_sizeHelp" class="form-text text-muted">Font size used on the label don't go too big.</small>
 			    </div>
 
     			<label class="col-sm-2 col-form-label" for="font_size">QSOs on label</label>
 			    <div class="col-sm-4">
-				    <input name="label_qsos" type="number" min="1" max="40" step="1" class="form-control" id="font_size" value="5" aria-describedby="font_sizeHelp">
+				    <input name="label_qsos" type="number" min="1" max="40" step="1" required class="form-control" id="font_size" value="5" aria-describedby="font_sizeHelp">
 			    </div>
   			</div>
 
