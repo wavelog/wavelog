@@ -531,6 +531,7 @@ function reset_fields() {
 	$('#locator_info').text("");
 	$('#country').val("");
 	$('#continent').val("");
+	$('#comment').val("");
 	$('#lotw_info').text("");
 	$('#lotw_info').removeClass("lotw_info_red");
 	$('#lotw_info').removeClass("lotw_info_yellow");
