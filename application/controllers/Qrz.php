@@ -338,30 +338,32 @@ class Qrz extends CI_Controller {
 			}
 
 			$record['call']=str_replace("_","/",$record['call']);
-			$record['station_callsign']=str_replace("_","/",$record['station_callsign']);
-			$status = $this->logbook_model->import_check($time_on, $record['call'], $record['band'], $record['mode'], $record['station_callsign']);
+			$record['station_callsign']=str_replace("_","/",$record['station_callsign'] ?? '');
+			if ($record['station_callsign'] ?? '' != '') {
+				$status = $this->logbook_model->import_check($time_on, $record['call'], $record['band'], $record['mode'], $record['station_callsign']);
 
-			if($status[0] == "Found") {
-				$qrz_status = $this->logbook_model->qrz_update($time_on, $record['call'], $record['band'], $qsl_date, $record['qsl_rcvd'],$record['station_callsign']);
+				if($status[0] == "Found") {
+					$qrz_status = $this->logbook_model->qrz_update($time_on, $record['call'], $record['band'], $qsl_date, $record['qsl_rcvd'],$record['station_callsign']);
 
-				$table .= "<tr>";
-				$table .= "<td>".$record['station_callsign']."</td>";
-				$table .= "<td>".$time_on."</td>";
-				$table .= "<td>".$record['call']."</td>";
-				$table .= "<td>".$record['mode']."</td>";
-				$table .= "<td>".$record['qsl_rcvd']."</td>";
-				$table .= "<td>".$qsl_date."</td>";
-				$table .= "<td>QSO Record: ".$status[0]."</td>";
-				$table .= "</tr>";
-			} else {
-				$table .= "<tr>";
-				$table .= "<td>".$record['station_callsign']."</td>";
-				$table .= "<td>".$time_on."</td>";
-				$table .= "<td>".$record['call']."</td>";
-				$table .= "<td>".$record['mode']."</td>";
-				$table .= "<td>".$record['qsl_rcvd']."</td>";
-				$table .= "<td>QSO Record: ".$status[0]."</td>";
-				$table .= "</tr>";
+					$table .= "<tr>";
+					$table .= "<td>".$record['station_callsign']."</td>";
+					$table .= "<td>".$time_on."</td>";
+					$table .= "<td>".$record['call']."</td>";
+					$table .= "<td>".$record['mode']."</td>";
+					$table .= "<td>".$record['qsl_rcvd']."</td>";
+					$table .= "<td>".$qsl_date."</td>";
+					$table .= "<td>QSO Record: ".$status[0]."</td>";
+					$table .= "</tr>";
+				} else {
+					$table .= "<tr>";
+					$table .= "<td>".$record['station_callsign']."</td>";
+					$table .= "<td>".$time_on."</td>";
+					$table .= "<td>".$record['call']."</td>";
+					$table .= "<td>".$record['mode']."</td>";
+					$table .= "<td>".$record['qsl_rcvd']."</td>";
+					$table .= "<td>QSO Record: ".$status[0]."</td>";
+					$table .= "</tr>";
+				}
 			}
 		}
 

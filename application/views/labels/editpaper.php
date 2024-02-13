@@ -50,13 +50,13 @@
 			<div class="mb-3 row">
     			<label class="col-sm-2 col-form-label" for="width">Width of paper</label>
 			    <div class="col-sm-4">
-				    <input name="width" type="text" class="form-control" id="width" aria-describedby="widthHelp" value="<?php if(isset($paper->width)) { echo $paper->width; } ?>">
+				    <input name="width" type="text" class="form-control" id="width" pattern="[0-9]+([\.,][0-9]+)?" step="0.01" required aria-describedby="widthHelp" value="<?php if(isset($paper->width)) { echo $paper->width; } ?>">
 			    	<small id="widthHelp" class="form-text text-muted">Total width of paper.</small>
 			    </div>
 
     			<label class="col-sm-2 col-form-label" for="height">Height of paper</label>
 			    <div class="col-sm-4">
-				    <input name="height" type="text" class="form-control" id="height" aria-describedby="heightHelp" value="<?php if(isset($paper->height)) { echo $paper->height; } ?>">
+				    <input name="height" type="text" class="form-control" id="height" pattern="[0-9]+([\.,][0-9]+)?" step="0.01" required aria-describedby="heightHelp" value="<?php if(isset($paper->height)) { echo $paper->height; } ?>">
 			    	<small id="heightHelp" class="form-text text-muted">Total width of paper.</small>
 			    </div>
   			</div>
