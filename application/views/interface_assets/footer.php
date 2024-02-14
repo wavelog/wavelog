@@ -92,6 +92,18 @@ if($this->session->userdata('user_id') != null) {
 
 <!-- Version Dialog END -->
 
+<script>
+    function set_active_location(current_active, new_active) {
+        $.ajax({
+            url: base_url + 'index.php/station/set_active/' + current_active + '/' + new_active + '/1',
+            type: 'GET',
+            success: function(response) {
+                location.reload();
+            }
+        });
+    }
+</script>
+
 <?php if ($this->uri->segment(1) == "oqrs") { ?>
     <script src="<?php echo base_url() ;?>assets/js/sections/oqrs.js"></script>
 <?php } ?>
@@ -977,9 +989,6 @@ $($('#callsign')).on('keypress',function(e) {
 
 <?php
 }
-
-
-    $this->load->model('stations');
     $active_station_id = $this->stations->find_active();
     $station_profile = $this->stations->profile($active_station_id);
     $active_station_info = $station_profile->row();
