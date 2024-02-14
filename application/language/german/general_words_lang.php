@@ -28,6 +28,8 @@ $lang['general_word_filtering_on'] = "Filtern auf";
 $lang['general_word_not_display'] = "Not display";
 $lang['general_word_icon'] = "Icon";
 $lang['general_word_never'] = "Nie";
+$lang['general_word_active'] = "Active";
+$lang['general_word_inactive'] = "Inactive";
 
 $lang['general_word_date'] = 'Datum';
 $lang['general_word_startdate'] = "Start Datum";
