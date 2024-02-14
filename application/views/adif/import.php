@@ -56,6 +56,7 @@
                     <p><span class="badge text-bg-warning"><?php echo lang('general_word_warning') ?></span> <?php echo lang('gen_max_file_upload_size') ?><?php echo $max_upload; ?>B.</p>
 
                     <form class="form" id="upform" action="<?php echo site_url('adif/import'); ?>" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="fhash" id="fhash" value="<?php echo hash('sha256', $this->session->userdata('user_callsign') );?>">
                         <select name="station_profile" class="form-select mb-2 me-sm-2" style="width: 20%;">
                             <option value="0"><?php echo lang('adif_select_stationlocation') ?></option>
                             <?php foreach ($station_profile->result() as $station) { ?>

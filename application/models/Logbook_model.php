@@ -3215,13 +3215,15 @@ function lotw_last_qsl_date($user_id) {
 	  $a_qsos=[];
 	  foreach ($records as $record) {
 		  $one_error = $this->logbook_model->import($record, $station_id, $skipDuplicate, $markClublog, $markLotw,$dxccAdif, $markQrz, $markHrd, $skipexport, $operatorName, $apicall, $skipStationCheck, true);
-		  if ($one_error['error'] != '') {
+		  if ($one_error['error'] ?? '' != '') {
 			  $custom_errors.=$one_error['error']."<br/>";
 		  } else {
-			  array_push($a_qsos,$one_error['raw_qso']);
+			  array_push($a_qsos,$one_error['raw_qso'] ?? '');
 		  }
 	  }
-	  $this->db->insert_batch($this->config->item('table_name'), $a_qsos);
+	  if (count($a_qsos)>0) {
+		  $this->db->insert_batch($this->config->item('table_name'), $a_qsos);
+	  }
 	  return $custom_errors;
   }
     /*
@@ -3245,10 +3247,10 @@ function lotw_last_qsl_date($user_id) {
 	  if (($station_id !=0 ) && (!(isset($record['station_callsign'])))) {
 		  $record['station_callsign']=$station_profile_call;
 	  }
-
 	  if ((!$skipStationCheck) && ($station_id != 0) && (strtoupper($record['station_callsign']) != strtoupper($station_profile_call))) {     // Check if station_call from import matches profile ONLY when submitting via GUI.
-		  return "Wrong station callsign <b>\"".htmlentities($record['station_callsign'])."\"</b> while importing QSO with ".$record['call']." for <b>".$station_profile_call."</b> : SKIPPED" .
+		  $returner['error']="Wrong station callsign <b>\"".htmlentities($record['station_callsign'] ?? '')."\"</b> while importing QSO with ".$record['call'] ?? ''." for <b>".$station_profile_call ?? ''."</b> : SKIPPED" .
 			  "<br>See the <a target=\"_blank\" href=\"https://github.com/wavelog/Wavelog/wiki/ADIF-file-can't-be-imported\">Wavelog Wiki</a> for hints about errors in ADIF files.";
+		  return($returner);
 	  }
 
 	  $this->load->library('frequency');
