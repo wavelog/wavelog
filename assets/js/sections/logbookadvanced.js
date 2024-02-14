@@ -871,7 +871,7 @@ function mapQsos(form) {
 
 	amap = $('#advancedmap').val();
 	if (amap == undefined) {
-		$(".qso_manager").append('<div id="advancedmap"></div>');
+		$(".qso_manager").append('<div id="advancedmap" class="map-leaflet"></div>');
 	}
 
 	if (id_list.length > 0) {
@@ -962,7 +962,7 @@ function loadMap(data, iconsList) {
 		container._leaflet_id = null;
 		container.remove();
 		$(".coordinates").remove();
-		$(".qso_manager").append('<div id="advancedmap"></div>');
+		$(".qso_manager").append('<div id="advancedmap" class="map-leaflet"></div>');
 		$(".qso_manager").append('<div class="coordinates d-flex">' +
         '<div class="cohidden">' + lang_gen_hamradio_latitude + '&nbsp;</div>' +
         '<div class="cohidden col-auto text-success fw-bold" id="latDeg"></div>' +
@@ -1007,6 +1007,7 @@ function loadMap(data, iconsList) {
 
 	var counter = 0;
 
+	clicklines = [];
 	$.each(data, function(k, v) {
 		counter++;
 		// Need to fix so that marker is placed at same place as end of line, but this only needs to be done when longitude is < -170
