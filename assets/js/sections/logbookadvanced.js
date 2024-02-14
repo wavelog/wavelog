@@ -958,7 +958,7 @@ function loadMap(data, iconsList) {
 		container._leaflet_id = null;
 		container.remove();
 		$(".coordinates").remove();
-		$(".qso_manager").append('<div id="advancedmap"></div>');
+		$(".qso_manager").append('<div id="advancedmap" class="map-leaflet"></div>');
 		$(".qso_manager").append('<div class="coordinates d-flex">' +
         '<div class="cohidden">' + lang_gen_hamradio_latitude + '&nbsp;</div>' +
         '<div class="cohidden col-auto text-success fw-bold" id="latDeg"></div>' +
