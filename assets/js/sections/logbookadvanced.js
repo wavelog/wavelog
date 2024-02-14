@@ -8,6 +8,7 @@ var geojson;
 var itugeojson;
 var zonemarkers = [];
 var ituzonemarkers = [];
+var nightlayer;
 
 var defaultlinecolor = 'blue';
 
@@ -1065,7 +1066,8 @@ function loadMap(data, iconsList) {
 		div.innerHTML += '<input id="pathlines" type="checkbox" onclick="toggleFunction(this.checked)" checked="checked" style="outline: none;"><span> Path lines</span><br>';
 		div.innerHTML += '<input id="gridsquares" type="checkbox" onclick="toggleGridsquares(this.checked)" checked="checked" style="outline: none;"><span> Gridsquares</span><br>';
 		div.innerHTML += '<input id="gridsquares" type="checkbox" onclick="toggleCqZones(this.checked)" style="outline: none;"><span> CQ Zones</span><br>';
-		div.innerHTML += '<input id="gridsquares" type="checkbox" onclick="toggleItuZones(this.checked)" style="outline: none;"><span> ITU Zones</span>';
+		div.innerHTML += '<input id="gridsquares" type="checkbox" onclick="toggleItuZones(this.checked)" style="outline: none;"><span> ITU Zones</span><br>';
+		div.innerHTML += '<input id="gridsquares" type="checkbox" onclick="toggleNightShadow(this.checked)" style="outline: none;"><span> Show night shadow</span>';
         return div;
     };
 
@@ -1086,9 +1088,9 @@ function loadMap(data, iconsList) {
 		filename: 'Wavelog',
 		exportOnly: true,
 		hideControlContainer: true
-  }).addTo(map);
+	}).addTo(map);
 
-  map.on('mousemove', onMapMove);
+	map.on('mousemove', onMapMove);
 }
 
 	function createContentMessage(qso) {
@@ -1386,6 +1388,14 @@ function loadMap(data, iconsList) {
 				).addTo(map);
 				ituzonemarkers.push(marker);
 			}
+		}
+	}
+
+	function toggleNightShadow(bool) {
+		if(!bool) {
+			map.removeLayer(nightlayer);
+		} else {
+			nightlayer = L.terminator().addTo(map);
 		}
 	}
 
