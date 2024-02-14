@@ -35,20 +35,27 @@ $lang['menu_continents'] = 'Kontinenty';
 
 $lang['menu_awards'] = 'Diplomy';
 $lang['menu_cq'] = 'CQ';
-$lang['menu_dl_gridmaster'] = 'DL Gridmaster';
 $lang['menu_dok'] = 'DOK';
 $lang['menu_dxcc'] = 'DXCC';
-$lang['menu_iota'] = 'IOTA';
+$lang['menu_ffma'] = 'Fred Fish Memorial Award';
+$lang['menu_gridmaster'] = "Gridmaster";
+$lang['menu_dl_gridmaster'] = 'DL Gridmaster';
 $lang['menu_lx_gridmaster'] = 'LX Gridmaster';
+$lang['menu_ja_gridmaster'] = 'JA Gridmaster';
+$lang['menu_us_gridmaster'] = 'US Gridmaster';
+$lang['menu_iota'] = 'IOTA';
 $lang['menu_pota'] = 'POTA';
+$lang['menu_rac'] = 'RAC';
 $lang['menu_sig'] = 'SIG';
 $lang['menu_sota'] = 'SOTA';
-$lang['menu_us_counties'] = 'US okresy';
-$lang['menu_us_gridmaster'] = 'US Gridmaster';
+$lang['menu_us_counties'] = 'US Okresy';
 $lang['menu_vucc'] = 'VUCC';
 $lang['menu_waja'] = 'WAJA';
 $lang['menu_was'] = 'WAS';
 $lang['menu_wwff'] = 'WWFF';
+
+$lang['menu_tools'] = "Tools";
+$lang['menu_sat_timers'] = "SAT Timers";
 
 $lang['menu_admin'] = 'Admin';
 $lang['menu_user_account'] = 'Uživatelské účty';
@@ -59,26 +66,32 @@ $lang['menu_themes'] = 'Témata';
 $lang['menu_backup'] = 'Zálohování';
 $lang['menu_update_country_files'] = 'Aktualizace souborů';
 $lang['menu_debug_information'] = 'Informace pro ladění';
-
-$lang['menu_search_text'] = 'Hledat značku';
 $lang['menu_search_text_quicklog'] = "Add/Search Callsign";
 
-$lang['menu_search_button'] = 'Hledat';
+$lang['menu_search_text'] = 'Hledat značku';
 $lang['menu_search_button_qicksearch_log'] = "Log";
+
+$lang['menu_search_button'] = 'Hledat';
 $lang['menu_login_button'] = 'Přihlásit se';
 
 $lang['menu_account'] = 'Účet';
 $lang['menu_station_logbooks'] = 'Logy stanice';
 $lang['menu_station_locations'] = 'Umístění stanice';
+$lang['menu_select_location'] = "Select a Location";
+$lang['menu_select_location_show_all'] = "Show all";
+$lang['menu_choose_another_logbook'] = "Choose another Logbook";
 $lang['menu_bands'] = 'Pásmo';
 $lang['menu_adif_import_export'] = 'ADIF import / export';
+$lang['menu_other_export'] = "Other Export Options";
 $lang['menu_kml_export'] = 'KML export';
 $lang['menu_dx_atlas_gridsquare_export'] = 'DX Atlas export lokátorů';
 $lang['menu_sota_csv_export'] = 'SOTA CSV export';
 $lang['menu_cabrillo_export'] = 'Cabrillo export';
+$lang['menu_cfd_export'] = "CFD Export";
 $lang['menu_oqrs_requests'] = 'OQRS požadavky';
 $lang['menu_print_requested_qsls'] = 'Tisk žádaných QSL';
 $lang['menu_labels'] = 'Štítky';
+$lang['menu_third_party_services'] = "Third-Party Services";
 $lang['menu_logbook_of_the_world'] = 'Logbook of the World';
 $lang['menu_eqsl_import_export'] = 'eQSL import / export';
 $lang['menu_qrz_logbook'] = 'QRZ Logbook';
@@ -90,7 +103,5 @@ $lang['menu_help'] = 'Nápověda';
 $lang['menu_forum'] = 'Fórum';
 $lang['menu_logout'] = 'Odhlásit se';
 
-$lang['menu_ffma'] = "Fred Fish Memorial Award";
-$lang['menu_ja_gridmaster'] = 'JA Gridmaster';
+$lang['menu_extras'] = "Extras";
 $lang['menu_maintenance']='Maintenance';
-$lang['menu_rac'] = 'RAC';

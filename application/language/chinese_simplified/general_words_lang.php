@@ -28,6 +28,8 @@ $lang['general_word_filtering_on'] = "筛选打开";
 $lang['general_word_not_display'] = "不显示";
 $lang['general_word_icon'] = "图标";
 $lang['general_word_never'] = "从不";
+$lang['general_word_active'] = "Active";
+$lang['general_word_inactive'] = "Inactive";
 
 $lang['general_word_date'] = '日期';
 $lang['general_word_startdate'] = "开始时间";

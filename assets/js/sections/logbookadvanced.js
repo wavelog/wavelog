@@ -8,6 +8,7 @@ var geojson;
 var itugeojson;
 var zonemarkers = [];
 var ituzonemarkers = [];
+var nightlayer;
 
 var defaultlinecolor = 'blue';
 
@@ -241,7 +242,7 @@ function processNextCallbookItem() {
 		},
 		dataType: 'json',
 		success: function (data) {
-			if (data !== []) {
+			if (data != []) {
 				updateRow(data);
 			}
 			setTimeout("processNextCallbookItem()", 50);
@@ -280,8 +281,7 @@ $(document).ready(function () {
 		$("#qsoList_wrapper").attr("Hidden", false);
 		$("#qsoList_info").attr("Hidden", false);
 
-		$('#searchButton').prop("disabled", true);
-
+		$('#searchButton').prop("disabled", true).addClass("running");
 		$.ajax({
 			url: this.action,
 			type: 'post',
@@ -318,11 +318,11 @@ $(document).ready(function () {
 			},
 			dataType: 'json',
 			success: function (data) {
-				$('#searchButton').prop("disabled", false);
+				$('#searchButton').prop("disabled", false).removeClass("running");
 				loadQSOTable(data);
 			},
 			error: function (data) {
-				$('#searchButton').prop("disabled", false);
+				$('#searchButton').prop("disabled", false).removeClass("running");
 				BootstrapDialog.alert({
 					title: 'ERROR',
 					message: 'An error ocurred while making the request',
@@ -630,6 +630,10 @@ $(document).ready(function () {
 
 	function dupeSearch() {
 		$("#dupes").val("Y");
+		$('#dupeButton').prop('disabled', true).addClass('running');
+		setTimeout(() => {
+			$('#dupeButton').prop('disabled', false).removeClass("running");
+		}, 1000);
 		$('#searchForm').submit();
 	}
 
@@ -737,7 +741,7 @@ $(document).ready(function () {
 				'method' : method
 			},
 			success: function(data) {
-				if (data !== []) {
+				if (data != []) {
 					$.each(data, function(k, v) {
 						updateRow(this);
 						unselectQsoID(this.qsoID);
@@ -768,7 +772,7 @@ $(document).ready(function () {
 				'method' : method
 			},
 			success: function(data) {
-				if (data !== []) {
+				if (data != []) {
 					$.each(data, function(k, v) {
 						updateRow(this);
 						unselectQsoID(this.qsoID);
@@ -849,7 +853,7 @@ function printlabel() {
 }
 
 function mapQsos(form) {
-	$('#mapButton').prop("disabled", true);
+	$('#mapButton').prop("disabled", true).addClass("running");
 
 	var id_list=[];
 	var elements = $('#qsoList tbody input:checked');
@@ -882,7 +886,7 @@ function mapQsos(form) {
 				loadMapOptions(data);
 			},
 			error: function() {
-				$('#mapButton').prop("disabled", false);
+				$('#mapButton').prop("disabled", false).removeClass("running");
 			},
 		});
 	} else {
@@ -923,7 +927,7 @@ function mapQsos(form) {
 				loadMapOptions(data);
 			},
 			error: function() {
-				$('#mapButton').prop("disabled", false);
+				$('#mapButton').prop("disabled", false).removeClass("running");
 			},
 		});
 	}
@@ -946,7 +950,7 @@ function loadMapOptions(data) {
 }
 
 function loadMap(data, iconsList) {
-	$('#mapButton').prop("disabled", false);
+	$('#mapButton').prop("disabled", false).removeClass("running");
 	var osmUrl='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 	var osmAttrib='Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
 	// If map is already initialized
@@ -1066,7 +1070,8 @@ function loadMap(data, iconsList) {
 		div.innerHTML += '<input id="pathlines" type="checkbox" onclick="toggleFunction(this.checked)" checked="checked" style="outline: none;"><span> Path lines</span><br>';
 		div.innerHTML += '<input id="gridsquares" type="checkbox" onclick="toggleGridsquares(this.checked)" checked="checked" style="outline: none;"><span> Gridsquares</span><br>';
 		div.innerHTML += '<input id="gridsquares" type="checkbox" onclick="toggleCqZones(this.checked)" style="outline: none;"><span> CQ Zones</span><br>';
-		div.innerHTML += '<input id="gridsquares" type="checkbox" onclick="toggleItuZones(this.checked)" style="outline: none;"><span> ITU Zones</span>';
+		div.innerHTML += '<input id="gridsquares" type="checkbox" onclick="toggleItuZones(this.checked)" style="outline: none;"><span> ITU Zones</span><br>';
+		div.innerHTML += '<input id="gridsquares" type="checkbox" onclick="toggleNightShadow(this.checked)" style="outline: none;"><span> Show night shadow</span>';
         return div;
     };
 
@@ -1087,9 +1092,9 @@ function loadMap(data, iconsList) {
 		filename: 'Wavelog',
 		exportOnly: true,
 		hideControlContainer: true
-  }).addTo(map);
+	}).addTo(map);
 
-  map.on('mousemove', onMapMove);
+	map.on('mousemove', onMapMove);
 }
 
 	function createContentMessage(qso) {
@@ -1387,6 +1392,14 @@ function loadMap(data, iconsList) {
 				).addTo(map);
 				ituzonemarkers.push(marker);
 			}
+		}
+	}
+
+	function toggleNightShadow(bool) {
+		if(!bool) {
+			map.removeLayer(nightlayer);
+		} else {
+			nightlayer = L.terminator().addTo(map);
 		}
 	}
 
