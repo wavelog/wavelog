@@ -242,7 +242,7 @@ function processNextCallbookItem() {
 		},
 		dataType: 'json',
 		success: function (data) {
-			if (data !== []) {
+			if (data != []) {
 				updateRow(data);
 			}
 			setTimeout("processNextCallbookItem()", 50);
@@ -281,8 +281,7 @@ $(document).ready(function () {
 		$("#qsoList_wrapper").attr("Hidden", false);
 		$("#qsoList_info").attr("Hidden", false);
 
-		$('#searchButton').prop("disabled", true);
-
+		$('#searchButton').prop("disabled", true).addClass("running");
 		$.ajax({
 			url: this.action,
 			type: 'post',
@@ -319,11 +318,11 @@ $(document).ready(function () {
 			},
 			dataType: 'json',
 			success: function (data) {
-				$('#searchButton').prop("disabled", false);
+				$('#searchButton').prop("disabled", false).removeClass("running");
 				loadQSOTable(data);
 			},
 			error: function (data) {
-				$('#searchButton').prop("disabled", false);
+				$('#searchButton').prop("disabled", false).removeClass("running");
 				BootstrapDialog.alert({
 					title: 'ERROR',
 					message: 'An error ocurred while making the request',
@@ -631,6 +630,10 @@ $(document).ready(function () {
 
 	function dupeSearch() {
 		$("#dupes").val("Y");
+		$('#dupeButton').prop('disabled', true).addClass('running');
+		setTimeout(() => {
+			$('#dupeButton').prop('disabled', false).removeClass("running");
+		}, 1000);
 		$('#searchForm').submit();
 	}
 
@@ -738,7 +741,7 @@ $(document).ready(function () {
 				'method' : method
 			},
 			success: function(data) {
-				if (data !== []) {
+				if (data != []) {
 					$.each(data, function(k, v) {
 						updateRow(this);
 						unselectQsoID(this.qsoID);
@@ -769,7 +772,7 @@ $(document).ready(function () {
 				'method' : method
 			},
 			success: function(data) {
-				if (data !== []) {
+				if (data != []) {
 					$.each(data, function(k, v) {
 						updateRow(this);
 						unselectQsoID(this.qsoID);
@@ -850,7 +853,7 @@ function printlabel() {
 }
 
 function mapQsos(form) {
-	$('#mapButton').prop("disabled", true);
+	$('#mapButton').prop("disabled", true).addClass("running");
 
 	var id_list=[];
 	var elements = $('#qsoList tbody input:checked');
@@ -883,7 +886,7 @@ function mapQsos(form) {
 				loadMapOptions(data);
 			},
 			error: function() {
-				$('#mapButton').prop("disabled", false);
+				$('#mapButton').prop("disabled", false).removeClass("running");
 			},
 		});
 	} else {
@@ -924,7 +927,7 @@ function mapQsos(form) {
 				loadMapOptions(data);
 			},
 			error: function() {
-				$('#mapButton').prop("disabled", false);
+				$('#mapButton').prop("disabled", false).removeClass("running");
 			},
 		});
 	}
@@ -947,7 +950,7 @@ function loadMapOptions(data) {
 }
 
 function loadMap(data, iconsList) {
-	$('#mapButton').prop("disabled", false);
+	$('#mapButton').prop("disabled", false).removeClass("running");
 	var osmUrl='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 	var osmAttrib='Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
 	// If map is already initialized
