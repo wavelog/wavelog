@@ -35,20 +35,27 @@ $lang['menu_continents'] = 'Kontinente';
 
 $lang['menu_awards'] = 'Diplome';
 $lang['menu_cq'] = 'CQ';
-$lang['menu_dl_gridmaster'] = 'DL Gridmaster';
 $lang['menu_dok'] = 'DOK';
 $lang['menu_dxcc'] = 'DXCC';
-$lang['menu_iota'] = 'IOTA';
+$lang['menu_ffma'] = 'Fred Fish Memorial Award';
+$lang['menu_gridmaster'] = "Gridmaster";
+$lang['menu_dl_gridmaster'] = 'DL Gridmaster';
 $lang['menu_lx_gridmaster'] = 'LX Gridmaster';
+$lang['menu_ja_gridmaster'] = 'JA Gridmaster';
+$lang['menu_us_gridmaster'] = 'US Gridmaster';
+$lang['menu_iota'] = 'IOTA';
 $lang['menu_pota'] = 'POTA';
+$lang['menu_rac'] = 'RAC';
 $lang['menu_sig'] = 'SIG';
 $lang['menu_sota'] = 'SOTA';
 $lang['menu_us_counties'] = 'US Counties';
-$lang['menu_us_gridmaster'] = 'US Gridmaster';
 $lang['menu_vucc'] = 'VUCC';
 $lang['menu_waja'] = 'WAJA';
 $lang['menu_was'] = 'WAS';
 $lang['menu_wwff'] = 'WWFF';
+
+$lang['menu_tools'] = "Tools";
+$lang['menu_sat_timers'] = "SAT Timer";
 
 $lang['menu_admin'] = 'Admin';
 $lang['menu_user_account'] = 'Benutzerkonten';
@@ -59,26 +66,32 @@ $lang['menu_themes'] = 'Themes';
 $lang['menu_backup'] = 'Backup';
 $lang['menu_update_country_files'] = 'Update Länderinformationen';
 $lang['menu_debug_information'] = 'Debug Informationen';
-
-$lang['menu_search_text'] = 'Rufzeichensuche';
 $lang['menu_search_text_quicklog'] = "Logge/Suche Call";   //"Rufzeichen" wäre zu lang, daher nur "Call". Das wird verstanden.
 
+$lang['menu_search_text'] = 'Rufzeichensuche';
 $lang['menu_search_button'] = 'Suche';
+
 $lang['menu_search_button_qicksearch_log'] = "Logge";
 $lang['menu_login_button'] = 'Login';
 
 $lang['menu_account'] = 'Konto';
 $lang['menu_station_logbooks'] = 'Stationslogbücher';
 $lang['menu_station_locations'] = 'Stationsstandorte';
+$lang['menu_select_location'] = "Wähle einen Stationsstandort";
+$lang['menu_select_location_show_all'] = "Zeige alle";
+$lang['menu_choose_another_logbook'] = "Wähle ein anderes Logbuch";
 $lang['menu_bands'] = 'Bänder';
 $lang['menu_adif_import_export'] = 'ADIF Import / Export';
+$lang['menu_other_export'] = "Andere Export Optionen";
 $lang['menu_kml_export'] = 'KML Export';
 $lang['menu_dx_atlas_gridsquare_export'] = 'DX Atlas Planquadrat Export';
 $lang['menu_sota_csv_export'] = 'SOTA CSV Export';
 $lang['menu_cabrillo_export'] = 'Cabrillo Export';
+$lang['menu_cfd_export'] = "CFD Export";
 $lang['menu_oqrs_requests'] = 'OQRS Anforderungen';
 $lang['menu_print_requested_qsls'] = 'Druck angeforderter QSLs';
 $lang['menu_labels'] = 'Etiketten';
+$lang['menu_third_party_services'] = "Drittanbieter Dienste";
 $lang['menu_logbook_of_the_world'] = 'Logbook of the World';
 $lang['menu_eqsl_import_export'] = 'eQSL Import / Export';
 $lang['menu_qrz_logbook'] = 'QRZ Logbuch';
@@ -90,7 +103,5 @@ $lang['menu_help'] = 'Hilfe';
 $lang['menu_forum'] = 'Forum';
 $lang['menu_logout'] = 'Logout';
 
-$lang['menu_ffma'] = "Fred Fish Memorial Award";
-$lang['menu_ja_gridmaster'] = 'JA Gridmaster';
-$lang['menu_maintenance'] = 'Wartung';
-$lang['menu_rac'] = 'RAC';
+$lang['menu_extras'] = "Extras";
+$lang['menu_maintenance']='Wartung';
