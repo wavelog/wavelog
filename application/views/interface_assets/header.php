@@ -145,7 +145,7 @@
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item" href="<?php echo site_url('awards/iota'); ?>"><i class="fas fa-trophy"></i> <?php echo lang('menu_iota'); ?></a></li>
 								<div class="dropdown-divider"></div>
-								<li><a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#"><i class="fas fa-trophy"></i> Gridmaster</a>
+								<li><a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#"><i class="fas fa-trophy"></i> <?php echo lang('menu_gridmaster'); ?></a>
 									<ul class="submenu dropdown-menu">
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/gridmaster/dl'); ?>"><i class="fas fa-trophy"></i> <?php echo lang('menu_dl_gridmaster'); ?></a></li>
 										<div class="dropdown-divider"></div>
@@ -178,7 +178,7 @@
 						</li>
 
 						<li class="nav-item dropdown"> <!-- TOOLS -->
-							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Tools</a>
+							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><?php echo lang('menu_tools'); ?></a>
 							<ul class="dropdown-menu header-dropdown">
 								<li><a class="dropdown-item" href="<?php echo site_url('hamsat'); ?>" title="Hams.at"><i class="fas fa-list"></i> Hams.at</a></li>
 								<?php if ($this->optionslib->get_option('dxcache_url') != '') { ?>
@@ -186,7 +186,7 @@
 									<li><a class="dropdown-item" href="<?php echo site_url('bandmap/list'); ?>" title="Bandmap"><i class="fa fa-id-card"></i> <?php echo lang('menu_bandmap'); ?></a></li>
 								<?php } ?>
 								<div class="dropdown-divider"></div>
-								<li><a class="dropdown-item" href="<?php echo site_url('sattimers'); ?>" title="SAT Timers"><i class="fas fa-satellite"></i> SAT Timers</a></li>
+								<li><a class="dropdown-item" href="<?php echo site_url('sattimers'); ?>" title="SAT Timers"><i class="fas fa-satellite"></i> <?php echo lang('menu_sat_timers'); ?></a></li>
 							</ul>
 						</li>
 					<?php } ?>
@@ -306,7 +306,7 @@
 
 								<li><a class="dropdown-item" href="<?php echo site_url('adif'); ?>" title="Amateur Data Interchange Format (ADIF) import / export"><i class="fas fa-sync"></i> <?php echo lang('menu_adif_import_export'); ?></a></li>
 
-								<li><a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-sync"></i> Other Export Options</a>
+								<li><a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-sync"></i> <?php echo lang('menu_other_export'); ?></a>
 									<ul class="submenu submenu-left dropdown-menu">
 										<li><a class="dropdown-item" href="<?php echo site_url('kmlexport'); ?>" title="KML Export for Google Earth"><i class="fas fa-sync"></i> <?php echo lang('menu_kml_export'); ?></a></li>
 
@@ -316,7 +316,7 @@
 
 										<li><a class="dropdown-item" href="<?php echo site_url('cabrillo'); ?>" title="Cabrillo Export"><i class="fas fa-sync"></i> <?php echo lang('menu_cabrillo_export'); ?></a></li>
 
-										<li><a class="dropdown-item" href="<?php echo site_url('cfdexport'); ?>" title="CFD Export"><i class="fas fa-sync"></i> CFD Export</a></li>
+										<li><a class="dropdown-item" href="<?php echo site_url('cfdexport'); ?>" title="CFD Export"><i class="fas fa-sync"></i> <?php echo lang('menu_cfd_export'); ?></a></li>
 									</ul>
 								</li>
 
@@ -338,7 +338,7 @@
 								<li><a class="dropdown-item" href="<?php echo site_url('qslprint'); ?>" title="Print Requested QSLs"><i class="fas fa-print"></i> <?php echo lang('menu_print_requested_qsls'); ?></a></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('labels'); ?>" title="Label setup"><i class="fas fa-print"></i> <?php echo lang('menu_labels'); ?></a></li>
 								<div class="dropdown-divider"></div>
-								<li><a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-sync"></i> Third-Party Services</a>
+								<li><a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-sync"></i> <?php echo lang('menu_third_party_services'); ?></a>
 									<ul class="submenu submenu-left dropdown-menu">
 										<li><a class="dropdown-item" href="<?php echo site_url('lotw'); ?>" title="Synchronise with Logbook of the World (LoTW)"><i class="fas fa-sync"></i> <?php echo lang('menu_logbook_of_the_world'); ?></a></li>
 										<li><a class="dropdown-item" href="<?php echo site_url('eqsl/import'); ?>" title="eQSL import / export"><i class="fas fa-sync"></i> <?php echo lang('menu_eqsl_import_export'); ?></a></li>
@@ -363,11 +363,11 @@
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><i class="fas fa-map-marker-alt"></i> | <i class="fas fa-book"></i></a>
 							<ul class="dropdown-menu dropdown-menu-right header-dropdown">
-								<li><a class="dropdown-item disabled">Select a Location:</a></li>
+								<li><a class="dropdown-item disabled"><?php echo lang('menu_select_location'); ?>:</a></li>
 								<?php
 								$location_favorites = $this->user_options_model->get_options('station_location', array('option_name' => 'is_favorite', 'option_value' => 'true'));
 								$current_active_location = $this->stations->find_active();
-								$active_badge = '<span class="badge bg-success ms-2">Active</span>';
+								$active_badge = '<span class="badge bg-success ms-2">'.lang('general_word_active').'</span>';
 								foreach ($location_favorites->result() as $row) {
 									$profile_info = $this->stations->profile($row->option_key)->row();
 									$station_profile_name = ($profile_info) ? $profile_info->station_profile_name : 'Unknown Location';
@@ -379,10 +379,10 @@
 																												echo $active_badge; ?></a></li>
 									<?php } ?>
 								<?php } ?>
-								<li><a class="dropdown-item" href="<?php echo site_url('station'); ?>" title="Manage station logbooks">show all ...</a></li>
+								<li><a class="dropdown-item" href="<?php echo site_url('station'); ?>" title="Manage station logbooks"><?php echo lang('menu_select_location_show_all'); ?>...</a></li>
 								<div class="dropdown-divider"></div>
-								<li><a class="dropdown-item disabled">Active Logbook:<span class="badge text-bg-info ms-1"><?php echo $this->logbooks_model->find_name($this->session->userdata('active_station_logbook')); ?></span></a></li>
-								<li><a class="dropdown-item" href="<?php echo site_url('logbooks'); ?>" title="Manage station locations">Choose another Station Logbook....</a></li>
+								<li><a class="dropdown-item disabled"><?php echo lang('gen_hamradio_active_logbook'); ?>:<span class="badge text-bg-info ms-1"><?php echo $this->logbooks_model->find_name($this->session->userdata('active_station_logbook')); ?></span></a></li>
+								<li><a class="dropdown-item" href="<?php echo site_url('logbooks'); ?>" title="Manage station locations"><?php echo lang('menu_choose_another_logbook'); ?>...</a></li>
 							</ul>
 						</li>
 						<?php }
@@ -408,7 +408,7 @@
 
 						if ($this->optionslib->get_option('menuitems')) { ?>
 							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Extras</a>
+								<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><?php echo lang('menu_extras'); ?></a>
 								<div class="dropdown-menu header-dropdown">
 									<?php
 									foreach (json_decode($this->optionslib->get_option('menuitems')) as $item) {
