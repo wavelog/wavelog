@@ -867,7 +867,7 @@ function mapQsos(form) {
 
 	amap = $('#advancedmap').val();
 	if (amap == undefined) {
-		$(".qso_manager").append('<div id="advancedmap"></div>');
+		$(".qso_manager").append('<div id="advancedmap" class="map-leaflet"></div>');
 	}
 
 	if (id_list.length > 0) {
