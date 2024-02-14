@@ -203,7 +203,7 @@ function write_waz_timeline($timeline_array, $custom_date_format, $bandselect, $
                     <tr>
                         <td>#</td>
                         <td>'.$ci->lang->line('general_word_date').'</td>
-                        <td>'.$ci->lang->line('gen_hamradio_cqzone').'</td>
+                        <td>'.$ci->lang->line('gen_hamradio_cq_zone').'</td>
                         <td>'.$ci->lang->line('gridsquares_show_qsos').'</td>
                     </tr>
                 </thead>
