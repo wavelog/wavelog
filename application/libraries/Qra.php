@@ -113,6 +113,15 @@ class Qra {
 		
 		return array($lat * 180 / pi(), $lon * 180 / pi());
 	}
+
+	function echoQrbCalcLink($mygrid, $grid, $vucc) {
+		if (!empty($grid)) {
+			$echo = $grid . ' <a href="javascript:spawnQrbCalculator(\'' . $mygrid . '\',\'' . $grid . '\')"><i class="fas fa-globe"></i></a>';
+		} else if (!empty($vucc)) {
+			$echo = $vucc .' <a href="javascript:spawnQrbCalculator(\'' . $mygrid . '\',\'' . $vucc . '\')"><i class="fas fa-globe"></i></a>';
+		}
+		return $echo;
+	}
 }
 
 
