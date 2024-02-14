@@ -1003,6 +1003,7 @@ function loadMap(data, iconsList) {
 
 	var counter = 0;
 
+	clicklines = [];
 	$.each(data, function(k, v) {
 		counter++;
 		// Need to fix so that marker is placed at same place as end of line, but this only needs to be done when longitude is < -170
