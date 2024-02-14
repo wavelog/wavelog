@@ -26,7 +26,7 @@ function timeplot(form) {
 function plotTimeplotterChart(tmp) {
 	$("#container").remove();
 	$("#info").remove();
-	$("#timeplotter_div").append('<p id="info">' + tmp.qsocount + ' contacts were plotted.</p><div id="container" style="height: 600px;"></div>');
+	$("#timeplotter_div").append('<p id="info">' + tmp.qsocount + ' ' + lang_statistics_timeplotter_contacts_plotted + '</p><div id="container" style="height: 600px;"></div>');
 	var color = ifDarkModeThemeReturn('white', 'grey');
 	var options = {
 		chart: {
@@ -36,7 +36,7 @@ function plotTimeplotterChart(tmp) {
 			backgroundColor: getBodyBackground()
 		},
 		title: {
-			text: 'Time Distribution',
+			text: lang_statistics_timeplotter_chart_header,
 			style: {
 				color: color
 			}
@@ -55,7 +55,7 @@ function plotTimeplotterChart(tmp) {
 		},
 		yAxis: {
 			title: {
-				text: '# QSOs',
+				text: lang_statistics_timeplotter_number_of_qsos,
 				style: {
 					color: color
 				}
@@ -72,9 +72,9 @@ function plotTimeplotterChart(tmp) {
 		tooltip: {
 			formatter: function () {
 				if(this.point) {
-					return "Time: " + options.xAxis.categories[this.point.x] +
-						"<br />Callsign(s) worked (max 5): " + myComments[this.point.x] +
-						"<br />Number of QSOs: <strong>" + series.data[this.point.x] + "</strong>";
+					return lang_general_word_time + ": " + options.xAxis.categories[this.point.x] +
+						"<br />" + lang_statistics_timeplotter_callsigns_worked + ": " + myComments[this.point.x] +
+						"<br />" + lang_statistics_timeplotter_number_of_qsos + ": <strong>" + series.data[this.point.x] + "</strong>";
 				}
 			}
 		},
@@ -94,7 +94,7 @@ function plotTimeplotterChart(tmp) {
 	$.each(tmp.qsodata, function(){
 		myComments.push(this.calls);
 		options.xAxis.categories.push(this.time);
-		series.name = 'Number of QSOs';
+		series.name = lang_statistics_timeplotter_number_of_qsos;
 		series.data.push(this.count);
 	});
 
