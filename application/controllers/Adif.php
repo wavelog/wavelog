@@ -193,7 +193,7 @@ class adif extends CI_Controller {
 				$f_elements=explode(".",$fdata['upload_data']['file_name']);
 				if (strtolower($f_elements[count($f_elements)-1])=='zip') {
 					$f_adif = preg_replace('/\\.zip$/', '', $fdata['upload_data']['file_name']);
-					$p_adif = preg_replace('/^(.*)(_)(\S{2,4})$/', '$1.$3', $f_adif);	// Bug in CodeIgniter. Destroys Filename if there is more than one dot.
+					$p_adif = hash('sha256', $this->session->userdata('user_callsign') ).'.adif';
 					if (preg_match("/.*\.adi.?$/",strtolower($p_adif))) {	// Check if adi? inside zip
 						$zip = new ZipArchive;
 						if ($zip->open('./uploads/'.$fdata['upload_data']['file_name'])) {
