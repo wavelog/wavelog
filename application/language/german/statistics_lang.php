@@ -69,4 +69,15 @@ $lang['statistics_accumulated_worked_states'] = "Kumulierte Statistik gearbeitet
 $lang['statistics_accumulated_worked_iota'] = "Kumulierte Statistik gearbeiteter IOTA";
 $lang['statistics_accumulated_worked_cqzone'] = "Kumulierte Statistik gearbeiteter CQ Zonen";
 
+/*
+*
+* Timeplotter
+*
+*/
+ 
+$lang['statistics_timeplotter_description'] = "Der Zeitplotter wird verwendet, um Ihr Logbuch zu analysieren und herauszufinden, zu welchen Uhrzeiten Sie bestimmte CQ-Zonen oder DXCC-Länder auf einem ausgewählten Band gearbeitet haben.";
+$lang['statistics_timeplotter_contacts_plotted'] = "Kontakte wurden geplotted"; /* sentence starts with counter - 'XXXX contacts were plotted' */
+$lang['statistics_timeplotter_chart_header'] = "Uhrzeit Verteilung";
+$lang['statistics_timeplotter_number_of_qsos'] = "Anzahl QSOs";
+$lang['statistics_timeplotter_callsigns_worked'] = "gearbeitete Rufzeichen (max 5)";
 
