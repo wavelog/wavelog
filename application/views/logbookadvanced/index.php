@@ -409,9 +409,9 @@ $options = json_decode($options);
 			</option>
 			<?php } ?>
 		</select>
-        <button type="submit" class="btn btn-sm btn-primary me-1" id="searchButton"><?php echo lang('filter_search'); ?></button>
-        <button type="button" class="btn btn-sm btn-primary me-1" id="dupeButton"><?php echo lang('filter_dupes'); ?></button>
-        <button type="button" class="btn btn-sm btn-primary me-1" id="mapButton" onclick="mapQsos(this.form);"><?php echo lang('filter_map'); ?></button>
+        <button type="submit" class="btn btn-sm btn-primary me-1 ld-ext-right" id="searchButton"><?php echo lang('filter_search'); ?><div class="ld ld-ring ld-spin"></div></button>
+        <button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="dupeButton"><?php echo lang('filter_dupes'); ?><div class="ld ld-ring ld-spin"></div></button>
+        <button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="mapButton" onclick="mapQsos(this.form);"><?php echo lang('filter_map'); ?><div class="ld ld-ring ld-spin"></div></button>
 		<button type="options" class="btn btn-sm btn-primary me-1" id="optionButton"><?php echo lang('filter_options'); ?></button>
 		<button type="reset" class="btn btn-sm btn-danger me-1" id="resetButton"><?php echo lang('filter_reset'); ?></button>
 
