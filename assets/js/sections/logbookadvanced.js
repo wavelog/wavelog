@@ -1106,9 +1106,9 @@ function loadMap(data, iconsList) {
 	}
 
 	if (typeof cqzones_layer !== 'undefined') {
-		toggleGridsquares(cqzones_layer);
+		toggleCqZones(cqzones_layer);
 	} else {
-		toggleGridsquares(false);
+		toggleCqZones(false);
 	}
 
 	if (typeof ituzones_layer !== 'undefined') {
