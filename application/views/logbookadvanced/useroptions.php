@@ -1,3 +1,15 @@
+<div class="tabs">
+		<ul class="nav nav-tabs" id="myTab" role="tablist">
+			<li class="nav-item">
+				<a class="nav-link active" id="logbook-tab" data-bs-toggle="tab" href="#logbooktab" role="tab" aria-controls="home" aria-selected="true">Logbook</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" id="map-tab" data-bs-toggle="tab" href="#maptab" role="tab" aria-controls="map" aria-selected="false">Map</a>
+			</li>
+		</ul>
+	</div>
+<div class="tab-content" id="myTabContent">
+	<div class="tab-pane fade show active" id="logbooktab" role="tabpanel" aria-labelledby="logbook-tab">
 <table style="width:100%" class="table-sm table table-hover table-striped table-condensed text-start" id="useroptions">
 	<thead>
 		<tr>
@@ -96,3 +108,37 @@
 		</tr>
 	</tbody>
 </table>
+</div>
+	<div class="tab-pane fade show" id="maptab" role="tabpanel" aria-labelledby="map-tab">
+	<table style="width:100%" class="table-sm table table-hover table-striped table-condensed text-start" id="mapoptions">
+	<thead>
+		<tr>
+			<th class="text-start">Layer</th>
+			<th>Default on</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Path lines</td>
+			<td><div class="form-check"><input class="form-check-input" name="pathlines" type="checkbox" <?php if (($mapoptions['path_lines']->option_value ?? "false") == "true") { echo 'checked'; } ?>></div></td>
+		</tr>
+		<tr>
+			<td>Gridsquares</td>
+			<td><div class="form-check"><input class="form-check-input" name="gridsquareoverlay" type="checkbox" <?php if (($mapoptions['gridsquare_layer']->option_value ?? "false") == "true") { echo 'checked'; } ?>></div></td>
+		</tr>
+		<tr>
+			<td>CQ Zones</td>
+			<td><div class="form-check"><input class="form-check-input" name="cqzones" type="checkbox" <?php if (($mapoptions['cqzones_layer']->option_value ?? "false") == "true") { echo 'checked'; } ?>></div></td>
+		</tr>
+		<tr>
+			<td>ITU Zones</td>
+			<td><div class="form-check"><input class="form-check-input" name="ituzones" type="checkbox" <?php if (($mapoptions['ituzones_layer']->option_value ?? "false") == "true") { echo 'checked'; } ?>></div></td>
+		</tr>
+		<tr>
+			<td>Night Shadow</td>
+			<td><div class="form-check"><input class="form-check-input" name="nightshadow" type="checkbox" <?php if (($mapoptions['nightshadow_layer']->option_value ?? "false") == "true") { echo 'checked'; } ?>></div></td>
+		</tr>
+	</tbody>
+	</table>
+</div>
+</div>

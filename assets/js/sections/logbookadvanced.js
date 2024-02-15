@@ -985,7 +985,7 @@ function loadMap(data, iconsList) {
 		},
 	});
 
-	L.tileLayer(
+	var osm = L.tileLayer(
 		osmUrl,
 		{
 			attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
@@ -996,9 +996,6 @@ function loadMap(data, iconsList) {
 	).addTo(map);
 
 	map.setView([30, 0], 1.5);
-
-
-	var osm = new L.TileLayer(osmUrl, {minZoom: 1, maxZoom: 9, attribution: osmAttrib});
 
 	var redIcon = L.icon({
 		iconUrl: icon_dot_url,
@@ -1067,18 +1064,18 @@ function loadMap(data, iconsList) {
     legend.onAdd = function(map) {
         var div = L.DomUtil.create("div", "legend");
         div.innerHTML += '<div>' + counter + " QSOs plotted</div>";
-		div.innerHTML += '<input id="pathlines" type="checkbox" onclick="toggleFunction(this.checked)" checked="checked" style="outline: none;"><span> Path lines</span><br>';
-		div.innerHTML += '<input id="gridsquares" type="checkbox" onclick="toggleGridsquares(this.checked)" checked="checked" style="outline: none;"><span> Gridsquares</span><br>';
-		div.innerHTML += '<input id="gridsquares" type="checkbox" onclick="toggleCqZones(this.checked)" style="outline: none;"><span> CQ Zones</span><br>';
-		div.innerHTML += '<input id="gridsquares" type="checkbox" onclick="toggleItuZones(this.checked)" style="outline: none;"><span> ITU Zones</span><br>';
-		div.innerHTML += '<input id="gridsquares" type="checkbox" onclick="toggleNightShadow(this.checked)" style="outline: none;"><span> Show night shadow</span>';
+		div.innerHTML += '<input type="checkbox" onclick="toggleFunction(this.checked)" ' + (typeof path_lines !== 'undefined' && path_lines ? 'checked' : '') + ' style="outline: none;"><span> Path lines</span><br>';
+		div.innerHTML += '<input type="checkbox" onclick="toggleGridsquares(this.checked)" ' + (typeof gridsquare_layer !== 'undefined' && gridsquare_layer ? 'checked' : '') + ' style="outline: none;"><span> Gridsquares</span><br>';
+		div.innerHTML += '<input type="checkbox" onclick="toggleCqZones(this.checked)" ' + (typeof cqzones_layer !== 'undefined' && cqzones_layer ? 'checked' : '') + ' style="outline: none;"><span> CQ Zones</span><br>';
+		div.innerHTML += '<input type="checkbox" onclick="toggleItuZones(this.checked)" ' + (typeof ituzones_layer !== 'undefined' && ituzones_layer ? 'checked' : '') + ' style="outline: none;"><span> ITU Zones</span><br>';
+		div.innerHTML += '<input type="checkbox" onclick="toggleNightShadow(this.checked)" ' + (typeof nightshadow_layer !== 'undefined' && nightshadow_layer ? 'checked' : '') + ' style="outline: none;"><span> Night shadow</span>';
         return div;
     };
 
     legend.addTo(map);
 
 	maidenhead = L.maidenheadqrb().addTo(map);
-
+	nightlayer = L.terminator().addTo(map);
 
 	map.fitBounds(bounds);
 
@@ -1095,6 +1092,36 @@ function loadMap(data, iconsList) {
 	}).addTo(map);
 
 	map.on('mousemove', onMapMove);
+
+	if (typeof gridsquare_layer !== 'undefined') {
+		toggleGridsquares(gridsquare_layer);
+	} else {
+		toggleGridsquares(false); // Set default value to false if gridsquare_layer is not defined
+	}
+
+	if (typeof path_lines !== 'undefined') {
+		toggleFunction(path_lines);
+	} else {
+		toggleFunction(false); // Set default value to false if gridsquare_layer is not defined
+	}
+
+	if (typeof cqzones_layer !== 'undefined') {
+		toggleGridsquares(cqzones_layer);
+	} else {
+		toggleGridsquares(false); // Set default value to false if gridsquare_layer is not defined
+	}
+
+	if (typeof ituzones_layer !== 'undefined') {
+		toggleItuZones(ituzones_layer);
+	} else {
+		toggleItuZones(false); // Set default value to false if gridsquare_layer is not defined
+	}
+
+	if (typeof nightshadow_layer !== 'undefined') {
+		toggleNightShadow(nightshadow_layer);
+	} else {
+		toggleNightShadow(false); // Set default value to false if gridsquare_layer is not defined
+	}
 }
 
 	function createContentMessage(qso) {
@@ -1182,6 +1209,11 @@ function loadMap(data, iconsList) {
 				iota: $('input[name="iota"]').is(':checked') ? true : false,
 				pota: $('input[name="pota"]').is(':checked') ? true : false,
 				operator: $('input[name="operator"]').is(':checked') ? true : false,
+				gridsquare_layer: $('input[name="gridsquareoverlay"]').is(':checked') ? true : false,
+				path_lines: $('input[name="pathlines"]').is(':checked') ? true : false,
+				cqzone_layer: $('input[name="cqzones"]').is(':checked') ? true : false,
+				ituzone_layer: $('input[name="ituzones"]').is(':checked') ? true : false,
+				nightshadow_layer: $('input[name="nightshadow"]').is(':checked') ? true : false,
 			},
 			success: function(data) {
 				$('#saveButton').prop("disabled", false);
@@ -1350,7 +1382,9 @@ function loadMap(data, iconsList) {
 			zonemarkers.forEach(function (item) {
 				map.removeLayer(item);
 			});
-			map.removeLayer(geojson);
+			if (geojson != undefined) {
+				map.removeLayer(geojson);
+			}
 		} else {
 			geojson = L.geoJson(zonestuff, {style: style}).addTo(map);
 			for (var i = 0; i < cqzonenames.length; i++) {
@@ -1375,7 +1409,9 @@ function loadMap(data, iconsList) {
 			ituzonemarkers.forEach(function (item) {
 				map.removeLayer(item);
 			});
-			map.removeLayer(itugeojson);
+			if (itugeojson != undefined) {
+				map.removeLayer(itugeojson);
+			}
 		} else {
 			itugeojson = L.geoJson(ituzonestuff, {style: style}).addTo(map);
 			for (var i = 0; i < ituzonenames.length; i++) {
@@ -1399,7 +1435,7 @@ function loadMap(data, iconsList) {
 		if(!bool) {
 			map.removeLayer(nightlayer);
 		} else {
-			nightlayer = L.terminator().addTo(map);
+			nightlayer.addTo(map);
 		}
 	}
 

@@ -36,6 +36,14 @@ class Logbookadvanced extends CI_Controller {
 			$data['options'] = $userOptions[0]->option_value;
 		}
 
+		$mapoptions['gridsquare_layer'] = $this->user_options_model->get_options('LogbookAdvancedMap',array('option_name'=>'gridsquare_layer','option_key'=>'boolean'))->row();
+		$mapoptions['path_lines'] = $this->user_options_model->get_options('LogbookAdvancedMap',array('option_name'=>'path_lines','option_key'=>'boolean'))->row();
+		$mapoptions['cqzones_layer'] = $this->user_options_model->get_options('LogbookAdvancedMap',array('option_name'=>'cqzones_layer','option_key'=>'boolean'))->row();
+		$mapoptions['ituzones_layer'] = $this->user_options_model->get_options('LogbookAdvancedMap',array('option_name'=>'ituzones_layer','option_key'=>'boolean'))->row();
+		$mapoptions['nightshadow_layer'] = $this->user_options_model->get_options('LogbookAdvancedMap',array('option_name'=>'nightshadow_layer','option_key'=>'boolean'))->row();
+
+		$data['mapoptions'] = $mapoptions;
+
 		$active_station_id = $this->stations->find_active();
         $station_profile = $this->stations->profile($active_station_id);
 
@@ -440,6 +448,15 @@ class Logbookadvanced extends CI_Controller {
 		} else {
 			$data['options'] = null;
 		}
+
+		$mapoptions['gridsquare_layer'] = $this->user_options_model->get_options('LogbookAdvancedMap',array('option_name'=>'gridsquare_layer','option_key'=>'boolean'))->row();
+		$mapoptions['path_lines'] = $this->user_options_model->get_options('LogbookAdvancedMap',array('option_name'=>'path_lines','option_key'=>'boolean'))->row();
+		$mapoptions['cqzones_layer'] = $this->user_options_model->get_options('LogbookAdvancedMap',array('option_name'=>'cqzones_layer','option_key'=>'boolean'))->row();
+		$mapoptions['ituzones_layer'] = $this->user_options_model->get_options('LogbookAdvancedMap',array('option_name'=>'ituzones_layer','option_key'=>'boolean'))->row();
+		$mapoptions['nightshadow_layer'] = $this->user_options_model->get_options('LogbookAdvancedMap',array('option_name'=>'nightshadow_layer','option_key'=>'boolean'))->row();
+
+		$data['mapoptions'] = $mapoptions;
+
 		$this->load->view('logbookadvanced/useroptions', $data);
 	}
 
@@ -470,5 +487,12 @@ class Logbookadvanced extends CI_Controller {
 
 		$this->load->model('user_options_model');
 		$this->user_options_model->set_option('LogbookAdvanced', 'LogbookAdvanced', $obj);
+
+
+		$this->user_options_model->set_option('LogbookAdvancedMap', 'gridsquare_layer',  array('boolean' => xss_clean($this->input->post('gridsquare_layer'))));
+		$this->user_options_model->set_option('LogbookAdvancedMap', 'path_lines',  array('boolean' => xss_clean($this->input->post('path_lines'))));
+		$this->user_options_model->set_option('LogbookAdvancedMap', 'cqzones_layer',  array('boolean' => xss_clean($this->input->post('cqzone_layer'))));
+		$this->user_options_model->set_option('LogbookAdvancedMap', 'ituzones_layer',  array('boolean' => xss_clean($this->input->post('ituzone_layer'))));
+		$this->user_options_model->set_option('LogbookAdvancedMap', 'nightshadow_layer',  array('boolean' => xss_clean($this->input->post('nightshadow_layer'))));
 	}
 }
