@@ -15,6 +15,7 @@
                 <th>Callsign</th>
                 <th>Comment</th>
                 <th>Satellite</th>
+                <th>Mode</th>
                 <th>Gridsquare(s)</th>
                 <th></th>
                 <th></th>
@@ -80,7 +81,8 @@
                        }
 
                     ?>
-                    <td><span data-bs-toggle="tooltip" title="<?php if ($rove['mhz'] != '') { printf("%.3f", $rove['mhz']); echo " ".$direction ?? ''; } ?>"><?= $rove['satellite']['name'] ?></span> <span title="<?php echo $rove['mode']; ?>" class="badge <?php echo $modeclass; ?>"><?php echo $rove['mode']; ?></span></td>
+                    <td><span data-bs-toggle="tooltip" title="<?php if ($rove['mhz'] != '') { printf("%.3f", $rove['mhz']); echo " ".$direction ?? ''; } ?>"><?= $rove['satellite']['name'] ?></span></td>
+                    <td><span title="<?php echo $rove['mode']; ?>" class="badge <?php echo $modeclass; ?>"><?php echo $rove['mode']; ?></span></td>
                     <td>
 
 
