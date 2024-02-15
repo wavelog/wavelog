@@ -25,6 +25,12 @@ if (!isset($current_opts->operator)) {
 	echo "\nvar o_template = { operator: {show: 'true'}};";
 	echo "\nuser_options={...user_options, ...o_template}";
 }
+
+foreach ($mapoptions as $mo) {
+	if ($mo != null) {
+		echo "var " . $mo->option_name . "=" . $mo->option_value . ";";
+	}
+}
 ?>
 </script>
 <style>
