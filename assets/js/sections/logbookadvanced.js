@@ -1096,31 +1096,31 @@ function loadMap(data, iconsList) {
 	if (typeof gridsquare_layer !== 'undefined') {
 		toggleGridsquares(gridsquare_layer);
 	} else {
-		toggleGridsquares(false); // Set default value to false if gridsquare_layer is not defined
+		toggleGridsquares(false);
 	}
 
 	if (typeof path_lines !== 'undefined') {
 		toggleFunction(path_lines);
 	} else {
-		toggleFunction(false); // Set default value to false if gridsquare_layer is not defined
+		toggleFunction(false);
 	}
 
 	if (typeof cqzones_layer !== 'undefined') {
 		toggleGridsquares(cqzones_layer);
 	} else {
-		toggleGridsquares(false); // Set default value to false if gridsquare_layer is not defined
+		toggleGridsquares(false);
 	}
 
 	if (typeof ituzones_layer !== 'undefined') {
 		toggleItuZones(ituzones_layer);
 	} else {
-		toggleItuZones(false); // Set default value to false if gridsquare_layer is not defined
+		toggleItuZones(false);
 	}
 
 	if (typeof nightshadow_layer !== 'undefined') {
 		toggleNightShadow(nightshadow_layer);
 	} else {
-		toggleNightShadow(false); // Set default value to false if gridsquare_layer is not defined
+		toggleNightShadow(false);
 	}
 }
 
