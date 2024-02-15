@@ -280,7 +280,7 @@ class Timeline_model extends CI_Model
 
     public function get_gridsquare($band, $mode, $location_list, $qsl, $lotw, $eqsl) {
         // $sql = "select min(date(COL_TIME_ON)) date, col_gridsquare from "
-        $sql = "select min(date(COL_TIME_ON)) date, upper(substring(col_gridsquare, 1, 4)) gridsquare from "
+        $sql = "select min(COL_TIME_ON) date, upper(substring(col_gridsquare, 1, 4)) gridsquare from "
             .$this->config->item('table_name'). " thcv
             where station_id in (" . $location_list . ")";
 
@@ -310,7 +310,7 @@ class Timeline_model extends CI_Model
 
     public function get_vucc_grids($band, $mode, $location_list, $qsl, $lotw, $eqsl) {
         // $sql = "select min(date(COL_TIME_ON)) date, col_gridsquare from "
-        $sql = "select date(COL_TIME_ON) date, upper(col_vucc_grids) gridsquare from "
+        $sql = "select COL_TIME_ON as date, upper(col_vucc_grids) gridsquare from "
             .$this->config->item('table_name'). " thcv
             where station_id in (" . $location_list . ")";
 
