@@ -11,6 +11,17 @@ class Dxcalendar extends CI_Controller {
 		$url = 'http://www.ng3k.com/adxo.xml';
 		$data['rss'] = simplexml_load_file($url, null, LIBXML_NOCDATA);
 
+		// Get Date format
+		if($this->session->userdata('user_date_format')) {
+			// If Logged in and session exists
+			$custom_date_format = $this->session->userdata('user_date_format');
+		} else {
+			// Get Default date format from /config/cloudlog.php
+			$custom_date_format = $this->config->item('qso_date_format');
+		}
+
+		$data['custom_date_format'] = $custom_date_format;
+
 		$footerData['scripts'] = [
 			'assets/js/sections/dxcalendar.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/dxcalendar.js"))
 		];
