@@ -2094,7 +2094,7 @@ $(document).ready(function(){
         function selectize_usa_county() {
             var baseURL= "<?php echo base_url();?>";
             $('#stationCntyInputEdit').selectize({
-				delimiter: ';',
+                delimiter: ';',
                 maxItems: 1,
                 closeAfterSelect: true,
                 loadThrottle: 250,
@@ -2104,7 +2104,7 @@ $(document).ready(function(){
                 options: [],
                 create: false,
                 load: function(query, callback) {
-                    var state = $("#input_usa_state_edit option:selected").text();
+                    var state = $("#input_state_edit").val();
 
                     if (!query || state == "") return callback();
                     $.ajax({

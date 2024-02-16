@@ -346,7 +346,7 @@
 
             <div class="mb-3">
               <label for="input_usa_state"><?php echo lang('gen_hamradio_usa_state'); ?></label>
-              <select class="form-select" id="input_usa_state" name="usa_state">
+              <select class="form-select" id="input_usa_state" name="input_state_edit">
                 <option value=""></option>
                 <option value="AL">Alabama (AL)</option>
                 <option value="AK">Alaska (AK)</option>
