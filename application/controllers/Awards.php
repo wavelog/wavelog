@@ -1134,7 +1134,7 @@ class Awards extends CI_Controller {
         This displays the H26 map and requires the $band_type and $mode_type
     */
     public function helvetia_map() {
-		$stateString = 'AB,BC,MB,NB,NL,NT,NS,NU,ON,PE,QC,SK,YT';
+		$stateString = 'AG,AI,AR,BE,BL,BS,FR,GE,GL,GR,JU,LU,NE,NW,OW,SG,SH,SO,SZ,TG,TI,UR,VD,VS,ZG,ZH';
 		$helvetiaArray = explode(',', $stateString);
 
         $this->load->model('helvetia');
