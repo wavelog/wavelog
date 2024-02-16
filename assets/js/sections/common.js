@@ -133,14 +133,14 @@ function qso_edit(id) {
                 nl2br: false,
                 message: html,
                 onshown: function(dialog) {
-                    var state = $("#input_usa_state_edit option:selected").text();
+                    var state = $("#input_state_edit option:selected").text();
                     if (state != "") {
                         $("#stationCntyInputEdit").prop('disabled', false);
                         selectize_usa_county();
                     }
 
-                    $('#input_usa_state_edit').change(function(){
-                        var state = $("#input_usa_state_edit option:selected").text();
+                    $('#input_state_edit').change(function(){
+                        var state = $("#input_state_edit option:selected").text();
                         if (state != "") {
                             $("#stationCntyInputEdit").prop('disabled', false);
 
