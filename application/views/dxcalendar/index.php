@@ -24,7 +24,7 @@
 			$dxcc = $tempinfo[0];
 			$date = $tempinfo[1];
 
-			$dates = extractDates($date);
+			$dates = extractDates($date, $custom_date_format);
 
 			$description = $item->description;
 
@@ -58,7 +58,7 @@
 </div>
 <?php
 // Define a function to extract the dates from the date range
-function extractDates($dateRange) {
+function extractDates($dateRange, $custom_date_format) {
     // Split the date range into two parts: month-day and year
     $dateParts = explode(",", $dateRange);
     if (count($dateParts) != 2) {
@@ -88,7 +88,7 @@ function extractDates($dateRange) {
 
     // Check if parsing was successful
     if ($startDateTime !== false && $endDateTime !== false) {
-        return array($startDateTime->format("Y-m-d"), $endDateTime->format("Y-m-d"));
+        return array($startDateTime->format($custom_date_format), $endDateTime->format($custom_date_format));
     } else {
         return false; // Failed to parse dates
     }
