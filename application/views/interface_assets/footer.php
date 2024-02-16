@@ -2104,7 +2104,8 @@ $(document).ready(function(){
                 options: [],
                 create: false,
                 load: function(query, callback) {
-                    var state = $("#input_state_edit").val();
+                    var state = $("#input_state_edit option:selected").text();
+                    console.log = (state);
 
                     if (!query || state == "") return callback();
                     $.ajax({
