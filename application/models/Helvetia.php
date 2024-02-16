@@ -1,10 +1,10 @@
 <?php
 
-class h26 extends CI_Model {
+class helvetia extends CI_Model {
 
 	public $stateString = 'AG,AI,AR,BE,BL,BS,FR,GE,GL,GR,JU,LU,NE,NW,OW,SG,SH,SO,SZ,TG,TI,UR,VD,VS,ZG,ZH';
 
-	function get_h26_array($bands, $postdata) {
+	function get_helvetia_array($bands, $postdata) {
 		$CI =& get_instance();
 		$CI->load->model('logbooks_model');
 		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
@@ -17,7 +17,7 @@ class h26 extends CI_Model {
 
 		$stateArray = explode(',', $this->stateString);
 
-		$states = array(); // Used for keeping th26k of which states that are not worked
+		$states = array(); // Used for keeping thelvetiak of which states that are not worked
 
 		$qsl = "";
 		if ($postdata['confirmed'] != NULL) {
@@ -42,20 +42,20 @@ class h26 extends CI_Model {
 
 		foreach ($bands as $band) {
 			foreach ($stateArray as $state) {                   // Generating array for use in the table
-				$bandh26[$state][$band] = '-';                  // Sets all to dash to indicate no result
+				$bandhelvetia[$state][$band] = '-';                  // Sets all to dash to indicate no result
 			}
 
 			if ($postdata['worked'] != NULL) {
-				$h26Band = $this->geth26Worked($location_list, $band, $postdata);
-				foreach ($h26Band as $line) {
-					$bandh26[$line->col_state][$band] = '<div class="bg-danger awardsBgDanger"><a href=\'javascript:displayContacts("' . $line->col_state . '","' . $band . '","'. $postdata['mode'] . '","h26", "")\'>W</a></div>';
+				$helvetiaBand = $this->gethelvetiaWorked($location_list, $band, $postdata);
+				foreach ($helvetiaBand as $line) {
+					$bandhelvetia[$line->col_state][$band] = '<div class="bg-danger awardsBgDanger"><a href=\'javascript:displayContacts("' . $line->col_state . '","' . $band . '","'. $postdata['mode'] . '","helvetia", "")\'>W</a></div>';
 					$states[$line->col_state]['count']++;
 				}
 			}
 			if ($postdata['confirmed'] != NULL) {
-				$h26Band = $this->geth26Confirmed($location_list, $band, $postdata);
-				foreach ($h26Band as $line) {
-					$bandh26[$line->col_state][$band] = '<div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("' . $line->col_state . '","' . $band . '","'. $postdata['mode'] . '","h26", "'.$qsl.'")\'>C</a></div>';
+				$helvetiaBand = $this->gethelvetiaConfirmed($location_list, $band, $postdata);
+				foreach ($helvetiaBand as $line) {
+					$bandhelvetia[$line->col_state][$band] = '<div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("' . $line->col_state . '","' . $band . '","'. $postdata['mode'] . '","helvetia", "'.$qsl.'")\'>C</a></div>';
 					$states[$line->col_state]['count']++;
 				}
 			}
@@ -63,30 +63,30 @@ class h26 extends CI_Model {
 
 		// We want to remove the worked states in the list, since we do not want to display them
 		if ($postdata['worked'] == NULL) {
-			$h26Band = $this->geth26Worked($location_list, $postdata['band'], $postdata);
-			foreach ($h26Band as $line) {
-				unset($bandh26[$line->col_state]);
+			$helvetiaBand = $this->gethelvetiaWorked($location_list, $postdata['band'], $postdata);
+			foreach ($helvetiaBand as $line) {
+				unset($bandhelvetia[$line->col_state]);
 			}
 		}
 
 		// We want to remove the confirmed states in the list, since we do not want to display them
 		if ($postdata['confirmed'] == NULL) {
-			$h26Band = $this->geth26Confirmed($location_list, $postdata['band'], $postdata);
-			foreach ($h26Band as $line) {
-				unset($bandh26[$line->col_state]);
+			$helvetiaBand = $this->gethelvetiaConfirmed($location_list, $postdata['band'], $postdata);
+			foreach ($helvetiaBand as $line) {
+				unset($bandhelvetia[$line->col_state]);
 			}
 		}
 
 		if ($postdata['notworked'] == NULL) {
 			foreach ($stateArray as $state) {
 				if ($states[$state]['count'] == 0) {
-					unset($bandh26[$state]);
+					unset($bandhelvetia[$state]);
 				};
 			}
 		}
 
-		if (isset($bandh26)) {
-			return $bandh26;
+		if (isset($bandhelvetia)) {
+			return $bandhelvetia;
 		}
 		else {
 			return 0;
@@ -96,7 +96,7 @@ class h26 extends CI_Model {
 	/*
 	 * Function gets worked and confirmed summary on each band on the active stationprofile
 	 */
-	function get_h26_summary($bands, $postdata)
+	function get_helvetia_summary($bands, $postdata)
 	{
 		$CI =& get_instance();
 		$CI->load->model('logbooks_model');
@@ -111,17 +111,17 @@ class h26 extends CI_Model {
 		foreach ($bands as $band) {
 			$worked = $this->getSummaryByBand($band, $postdata, $location_list);
 			$confirmed = $this->getSummaryByBandConfirmed($band, $postdata, $location_list);
-			$h26Summary['worked'][$band] = $worked[0]->count;
-			$h26Summary['confirmed'][$band] = $confirmed[0]->count;
+			$helvetiaSummary['worked'][$band] = $worked[0]->count;
+			$helvetiaSummary['confirmed'][$band] = $confirmed[0]->count;
 		}
 
 		$workedTotal = $this->getSummaryByBand($postdata['band'], $postdata, $location_list);
 		$confirmedTotal = $this->getSummaryByBandConfirmed($postdata['band'], $postdata, $location_list);
 
-		$h26Summary['worked']['Total'] = $workedTotal[0]->count;
-		$h26Summary['confirmed']['Total'] = $confirmedTotal[0]->count;
+		$helvetiaSummary['worked']['Total'] = $workedTotal[0]->count;
+		$helvetiaSummary['confirmed']['Total'] = $confirmedTotal[0]->count;
 
-		return $h26Summary;
+		return $helvetiaSummary;
 	}
 
 	function getSummaryByBand($band, $postdata, $location_list)
@@ -135,7 +135,7 @@ class h26 extends CI_Model {
 		} else if ($band == 'All') {
 			$this->load->model('bands');
 
-			$bandslots = $this->bands->get_worked_bands('h26');
+			$bandslots = $this->bands->get_worked_bands('helvetia');
 
 			$bandslots_list = "'".implode("','",$bandslots)."'";
 
@@ -168,7 +168,7 @@ class h26 extends CI_Model {
 		} else if ($band == 'All') {
 			$this->load->model('bands');
 
-			$bandslots = $this->bands->get_worked_bands('h26');
+			$bandslots = $this->bands->get_worked_bands('helvetia');
 
 			$bandslots_list = "'".implode("','",$bandslots)."'";
 
@@ -196,7 +196,7 @@ class h26 extends CI_Model {
 	 * Function returns all worked, but not confirmed states
 	 * $postdata contains data from the form, in this case Lotw or QSL are used
 	 */
-	function geth26Worked($location_list, $band, $postdata) {
+	function gethelvetiaWorked($location_list, $band, $postdata) {
 		$sql = "SELECT distinct col_state FROM " . $this->config->item('table_name') . " thcv
 			where station_id in (" . $location_list . ")";
 
@@ -233,7 +233,7 @@ class h26 extends CI_Model {
 	 * Function returns all confirmed states on given band and on LoTW or QSL
 	 * $postdata contains data from the form, in this case Lotw or QSL are used
 	 */
-	function geth26Confirmed($location_list, $band, $postdata) {
+	function gethelvetiaConfirmed($location_list, $band, $postdata) {
 		$sql = "SELECT distinct col_state FROM " . $this->config->item('table_name') . " thcv
 			where station_id in (" . $location_list . ")";
 
@@ -295,7 +295,7 @@ class h26 extends CI_Model {
 		} else {
 			$this->load->model('bands');
 
-			$bandslots = $this->bands->get_worked_bands('h26');
+			$bandslots = $this->bands->get_worked_bands('helvetia');
 
 			$bandslots_list = "'".implode("','",$bandslots)."'";
 

@@ -581,19 +581,19 @@ class Awards extends CI_Controller {
         $this->load->view('interface_assets/footer', $footerData);
     }
 
-    public function h26() {
+    public function helvetia() {
 		$footerData = [];
 		$footerData['scripts'] = [
-			'assets/js/sections/h26map_geojson.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/h26map_geojson.js")),
-			'assets/js/sections/h26map.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/h26map.js")),
+			'assets/js/sections/helvetiamap_geojson.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/helvetiamap_geojson.js")),
+			'assets/js/sections/helvetiamap.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/helvetiamap.js")),
 			'assets/js/leaflet/L.Maidenhead.js',
 		];
 
-        $this->load->model('h26');
+        $this->load->model('helvetia');
 		$this->load->model('modes');
         $this->load->model('bands');
 
-        $data['worked_bands'] = $this->bands->get_worked_bands('h26');
+        $data['worked_bands'] = $this->bands->get_worked_bands('helvetia');
 		$data['modes'] = $this->modes->active(); // Used in the view for mode select
 
         if ($this->input->post('band') != NULL) {   // Band is not set when page first loads.
@@ -633,13 +633,13 @@ class Awards extends CI_Controller {
 			$postdata['mode'] = 'All';
         }
 
-        $data['h26_array'] = $this->h26->get_h26_array($bands, $postdata);
-        $data['h26_summary'] = $this->h26->get_h26_summary($bands, $postdata);
+        $data['helvetia_array'] = $this->helvetia->get_helvetia_array($bands, $postdata);
+        $data['helvetia_summary'] = $this->helvetia->get_helvetia_summary($bands, $postdata);
 
         // Render Page
         $data['page_title'] = "Awards - H26";
         $this->load->view('interface_assets/header', $data);
-        $this->load->view('awards/h26/index');
+        $this->load->view('awards/helvetia/index');
         $this->load->view('interface_assets/footer', $footerData);
     }
 
@@ -1133,11 +1133,11 @@ class Awards extends CI_Controller {
 
         This displays the H26 map and requires the $band_type and $mode_type
     */
-    public function h26_map() {
+    public function helvetia_map() {
 		$stateString = 'AB,BC,MB,NB,NL,NT,NS,NU,ON,PE,QC,SK,YT';
-		$h26Array = explode(',', $stateString);
+		$helvetiaArray = explode(',', $stateString);
 
-        $this->load->model('h26');
+        $this->load->model('helvetia');
 
 		$bands[] = $this->security->xss_clean($this->input->post('band'));
 
@@ -1151,16 +1151,16 @@ class Awards extends CI_Controller {
         $postdata['band'] = $this->security->xss_clean($this->input->post('band'));
         $postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
 
-        $h26_array = $this->h26->get_h26_array($bands, $postdata);
+        $helvetia_array = $this->helvetia->get_helvetia_array($bands, $postdata);
 
         $states = array();
 
-		foreach ($h26Array as $state) {                  	 // Generating array for use in the table
+		foreach ($helvetiaArray as $state) {                  	 // Generating array for use in the table
             $states[$state] = '-';                   // Inits each state's count
         }
 
 
-        foreach ($h26_array as $was => $value) {
+        foreach ($helvetia_array as $was => $value) {
             foreach ($value  as $key) {
                 if($key != "") {
                     if (strpos($key, '>W<') !== false) {

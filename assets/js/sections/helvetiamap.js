@@ -7,7 +7,7 @@ var clickmarkers = [];
 
 const states = 'AG,AI,AR,BE,BL,BS,FR,GE,GL,GR,JU,LU,NE,NW,OW,SG,SH,SO,SZ,TG,TI,UR,VD,VS,ZG,ZH';
 
-const h26markers = [
+const helvetiamarkers = [
     [ "55", "-115" ],      // AB Alberta
     [ "55", "-125" ],      // BC British Columbia
     [ "55", "-99" ],       // MB Manitoba
@@ -26,10 +26,10 @@ const h26markers = [
   var statearray = states.split(",");
 
 
-function load_h26_map() {
-    $('.nav-tabs a[href="#h26maptab"]').tab('show');
+function load_helvetia_map() {
+    $('.nav-tabs a[href="#helvetiamaptab"]').tab('show');
     $.ajax({
-        url: base_url + 'index.php/awards/h26_map',
+        url: base_url + 'index.php/awards/helvetia_map',
         type: 'post',
         data: {
             band: $('#band2').val(),
@@ -44,7 +44,7 @@ function load_h26_map() {
         },
         success: function(data) {
             province = data;
-            load_h26_map2(data);
+            load_helvetia_map2(data);
         },
         error: function() {
 
@@ -52,18 +52,18 @@ function load_h26_map() {
     });
 }
 
-function load_h26_map2(data) {
+function load_helvetia_map2(data) {
 
    // If map is already initialized
-  var container = L.DomUtil.get('h26map');
+  var container = L.DomUtil.get('helvetiamap');
 
   if(container != null){
 	  container._leaflet_id = null;
 	  container.remove();
-	  $("#h26maptab").append('<div id="h26map"></div>');
+	  $("#helvetiamaptab").append('<div id="helvetiamap"></div>');
   }
 
-  map = new L.Map('h26map', {
+  map = new L.Map('helvetiamap', {
 	  fullscreenControl: true,
 	  fullscreenControlOptions: {
 		position: 'topleft'
@@ -161,7 +161,7 @@ function createMarker(i) {
 	var title = '<span class="grid-text" style="cursor: default"><font style="color: \'white\'; font-size: 1em; font-weight: 900;">' + (statearray[i]) + '</font></span>';
 	var myIcon = L.divIcon({className: 'my-div-icon', html: title});
 	var marker = L.marker(
-	  [h26markers[i][0], h26markers[i][1]], {
+	  [helvetiamarkers[i][0], helvetiamarkers[i][1]], {
 		icon: myIcon,
 		title: (statearray[i]),
 		zIndex: 1000,
@@ -221,10 +221,10 @@ function style(feature) {
 function onClick(e) {
   zoomToFeature(e);
   var marker = e.target;
-  displayContactsOnMap($("#h26map"),marker.feature.id, $('#band2').val(), $('#mode').val(), 'h26');
+  displayContactsOnMap($("#helvetiamap"),marker.feature.id, $('#band2').val(), $('#mode').val(), 'helvetia');
 }
 
 function onClick2(e) {
 	var marker = e.target;
-	displayContactsOnMap($("#h26map"), marker.options.title, $('#band2').val(), $('#mode').val(), 'h26');
+	displayContactsOnMap($("#helvetiamap"), marker.options.title, $('#band2').val(), $('#mode').val(), 'helvetia');
   }

@@ -1932,9 +1932,9 @@ $(document).ready(function(){
  </script>
 <?php } ?>
 
-<?php if ($this->uri->segment(2) == "h26") { ?>
+<?php if ($this->uri->segment(2) == "helvetia") { ?>
 <script>
-    $('.tableh26').DataTable({
+    $('.tablehelvetia').DataTable({
         "pageLength": 25,
         responsive: false,
         ordering: false,

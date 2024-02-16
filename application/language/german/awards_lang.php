@@ -70,10 +70,10 @@ H26 -- Verwende alle 4 Textzeilen
 ___________________________________________________________________________________________
 */
 
-$lang['awards_h26_description_ln1'] = "HELVETIA 26 | SWITZERLAND AWARD";
-$lang['awards_h26_description_ln2'] = "Die USKA (Union Schweizerischer Kurzwellen Amateure) stiftet zwei Auszeichnungen, den HELVETIA 26 (H26) Award und den SWITZERLAND Award, um Aktivitäten auf den Bändern zu fördern, indem sie Kontakte über möglichst viele Schweizer Kantone auf verschiedenen Bändern anregen.";
-$lang['awards_h26_description_ln3'] = "Diese Auszeichnungen gibt es in zwei Versionen: eine für HF-Bänder und eine für VHF-Bänder (einschließlich SHF und UHF). Gültige Verbindungen für diese Auszeichnungen datieren bis zum 1. Januar 1980 zurück.";
-$lang['awards_h26_description_ln4'] = "Für weitere Informationen besuche bitte diesen Link: <a href='https://www.uska.ch/contest/uska-diplome/' target='_blank'>https://www.uska.ch/contest/uska-diplome/</a>.";
+$lang['awards_helvetia_description_ln1'] = "HELVETIA 26 | SWITZERLAND AWARD";
+$lang['awards_helvetia_description_ln2'] = "Die USKA (Union Schweizerischer Kurzwellen Amateure) stiftet zwei Auszeichnungen, den HELVETIA 26 (H26) Award und den SWITZERLAND Award, um Aktivitäten auf den Bändern zu fördern, indem sie Kontakte über möglichst viele Schweizer Kantone auf verschiedenen Bändern anregen.";
+$lang['awards_helvetia_description_ln3'] = "Diese Auszeichnungen gibt es in zwei Versionen: eine für HF-Bänder und eine für VHF-Bänder (einschließlich SHF und UHF). Gültige Verbindungen für diese Auszeichnungen datieren bis zum 1. Januar 1980 zurück.";
+$lang['awards_helvetia_description_ln4'] = "Für weitere Informationen besuche bitte diesen Link: <a href='https://www.uska.ch/contest/uska-diplome/' target='_blank'>https://www.uska.ch/contest/uska-diplome/</a>.";
 
 
 /*

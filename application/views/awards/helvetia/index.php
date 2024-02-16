@@ -3,7 +3,7 @@
 </script>
 
 <style>
-    #h26map {
+    #helvetiamap {
 	height: calc(100vh - 500px) !important;
 	max-height: 900px !important;
 }
@@ -57,16 +57,16 @@
         <div id="awardInfoButton">
             <script>
                 var lang_awards_info_button = "<?php echo lang('awards_info_button'); ?>";
-                var lang_award_info_ln1 = "<?php echo lang('awards_h26_description_ln1'); ?>";
-                var lang_award_info_ln2 = "<?php echo lang('awards_h26_description_ln2'); ?>";
-                var lang_award_info_ln3 = "<?php echo lang('awards_h26_description_ln3'); ?>";
-                var lang_award_info_ln4 = "<?php echo lang('awards_h26_description_ln4'); ?>";
+                var lang_award_info_ln1 = "<?php echo lang('awards_helvetia_description_ln1'); ?>";
+                var lang_award_info_ln2 = "<?php echo lang('awards_helvetia_description_ln2'); ?>";
+                var lang_award_info_ln3 = "<?php echo lang('awards_helvetia_description_ln3'); ?>";
+                var lang_award_info_ln4 = "<?php echo lang('awards_helvetia_description_ln4'); ?>";
             </script>
             <h2><?php echo $page_title; ?></h2>
             <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?php echo lang('awards_info_button'); ?></button>
         </div>
         <!-- End of Award Info Box -->
-    <form class="form" action="<?php echo site_url('awards/h26'); ?>" method="post" enctype="multipart/form-data">
+    <form class="form" action="<?php echo site_url('awards/helvetia'); ?>" method="post" enctype="multipart/form-data">
         <fieldset>
 
             <div class="mb-3 row">
@@ -150,8 +150,8 @@
                 <div class="col-md-10">
                     <button id="button2id" type="reset" name="button2id" class="btn btn-sm btn-warning">Reset</button>
                     <button id="button1id" type="submit" name="button1id" class="btn btn-sm btn-primary">Show</button>
-					<?php if ($h26_array) {
-                        ?><button type="button" onclick="load_h26_map();" class="btn btn-info btn-sm"><i class="fas fa-globe-americas"></i> Show h26 Map</button>
+					<?php if ($helvetia_array) {
+                        ?><button type="button" onclick="load_helvetia_map();" class="btn btn-info btn-sm"><i class="fas fa-globe-americas"></i> Show helvetia Map</button>
                     <?php }?>
                 </div>
             </div>
@@ -164,16 +164,16 @@
             <a class="nav-link active" id="table-tab" data-bs-toggle="tab" href="#table" role="tab" aria-controls="table" aria-selected="true">Table</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="map-tab" onclick="load_h26_map();" data-bs-toggle="tab" href="#h26maptab" role="tab" aria-controls="home" aria-selected="false">Map</a>
+            <a class="nav-link" id="map-tab" onclick="load_helvetia_map();" data-bs-toggle="tab" href="#helvetiamaptab" role="tab" aria-controls="home" aria-selected="false">Map</a>
         </li>
     </ul>
     <br />
 
     <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade" id="h26maptab" role="tabpanel" aria-labelledby="home-tab">
+        <div class="tab-pane fade" id="helvetiamaptab" role="tabpanel" aria-labelledby="home-tab">
     <br />
 
-    <div id="h26map" class="map-leaflet" ></div>
+    <div id="helvetiamap" class="map-leaflet" ></div>
 
     </div>
 
@@ -181,10 +181,10 @@
 
 
 <?php
-    if ($h26_array) {
+    if ($helvetia_array) {
         $i = 1;
     echo '
-    <table style="width:100%" class="table table-sm tableh26 table-bordered table-hover table-striped table-condensed text-center">
+    <table style="width:100%" class="table table-sm tablehelvetia table-bordered table-hover table-striped table-condensed text-center">
         <thead>
         <tr>
             <td>#</td>
@@ -196,10 +196,10 @@
         </thead>
         <tbody>';
 
-        foreach ($h26_array as $h26 => $value) {      // Fills the table with the data
+        foreach ($helvetia_array as $helvetia => $value) {      // Fills the table with the data
         echo '<tr>
             <td>' . $i++ . '</td>
-            <td>'. $h26 .'</td>';
+            <td>'. $helvetia .'</td>';
             foreach ($value  as $key) {
             echo '<td style="text-align: center">' . $key . '</td>';
             }
@@ -222,14 +222,14 @@
 
         <tr><td>Total worked</td>';
 
-        foreach ($h26_summary['worked'] as $h26) {      // Fills the table with the data
-            echo '<td style="text-align: center">' . $h26 . '</td>';
+        foreach ($helvetia_summary['worked'] as $helvetia) {      // Fills the table with the data
+            echo '<td style="text-align: center">' . $helvetia . '</td>';
         }
 
         echo '</tr><tr>
         <td>Total confirmed</td>';
-        foreach ($h26_summary['confirmed'] as $h26) {      // Fills the table with the data
-            echo '<td style="text-align: center">' . $h26 . '</td>';
+        foreach ($helvetia_summary['confirmed'] as $helvetia) {      // Fills the table with the data
+            echo '<td style="text-align: center">' . $helvetia . '</td>';
         }
 
         echo '</tr>
