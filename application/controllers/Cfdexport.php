@@ -39,7 +39,7 @@ class Cfdexport extends CI_Controller {
 		$qsos = $this->logbook_model->cfd_get_all_qsos($fromdate, $todate);
 		$output=strtoupper($this->session->userdata('user_callsign'))."\n";
 		$output.='--------------------------------------------------------------
-MostWanted 1.42 - Overview Confirmed Entities
+Wavelog '.$this->optionslib->get_option('version').' - Overview Confirmed Entities
        (M=Mixed C=CW F=Fone R=Rest)
 ==============================================================
 
