@@ -38,6 +38,7 @@ $lang['menu_cq'] = 'CQ';
 $lang['menu_dok'] = 'DOK';
 $lang['menu_dxcc'] = 'DXCC';
 $lang['menu_ffma'] = 'Fred Fish Memorial Award';
+$lang['menu_h26'] = "H26";
 $lang['menu_gridmaster'] = "Gridmaster";
 $lang['menu_dl_gridmaster'] = 'DL Gridmaster';
 $lang['menu_lx_gridmaster'] = 'LX Gridmaster';
