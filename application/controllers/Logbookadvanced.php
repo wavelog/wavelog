@@ -495,4 +495,17 @@ class Logbookadvanced extends CI_Controller {
 		$this->user_options_model->set_option('LogbookAdvancedMap', 'ituzones_layer',  array('boolean' => xss_clean($this->input->post('ituzone_layer'))));
 		$this->user_options_model->set_option('LogbookAdvancedMap', 'nightshadow_layer',  array('boolean' => xss_clean($this->input->post('nightshadow_layer'))));
 	}
+
+	public function editDialog() {
+		$this->load->view('logbookadvanced/edit');
+	}
+
+	public function saveBatchEditQsos() {
+		$ids = xss_clean($this->input->post('ids'));
+		$column = xss_clean($this->input->post('column'));
+		$value = xss_clean($this->input->post('value'));
+
+		$this->load->model('logbookadvanced_model');
+		$this->logbookadvanced_model->saveEditedQsos($ids, $column, $value);
+	}
 }

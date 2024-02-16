@@ -466,4 +466,25 @@ class Logbookadvanced_model extends CI_Model {
 
         return $this->db->get()->result();
     }
+
+	function saveEditedQsos($ids, $column, $value) {
+		switch($column) {
+			case "cqz": $column = 'COL_CQZ'; break;
+			case "dxcc": $column = 'COL_DXCC'; break;
+			case "iota": $column = 'COL_IOTA'; break;
+			case "was": $column = 'COL_STATE'; break;
+			case "propagation": $column = 'COL_PROP_MODE'; break;
+			default: return;
+		}
+		$this->load->model('user_model');
+
+		$data = array(
+			$column => $value
+		);
+
+		$this->db->where_in('COL_PRIMARY_KEY', $ids);
+		$this->db->update($this->config->item('table_name'), $data);
+
+		return array('message' => 'OK');
+    }
 }
