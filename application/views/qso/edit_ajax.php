@@ -300,7 +300,7 @@
                                         <?php foreach ($state_list->result() as $state) {
                                             $selected = ($qso->COL_STATE == $state->state) ? 'selected="selected"' : '';
                                         ?>
-                                            <option value="<?php echo $state->subdivision . ' (' . $state->state . ')'; ?>" <?php echo $selected; ?>>
+                                            <option value="<?php echo $state->state; ?>" <?php echo $selected; ?>>
                                                 <?php echo $state->subdivision . ' (' . $state->state . ')'; ?>
                                             </option>
                                         <?php } ?>
