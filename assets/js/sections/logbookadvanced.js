@@ -1495,15 +1495,15 @@ function loadMap(data, iconsList) {
 					message: html,
 					onshown: function(dialog) {
 						$('#editDxcc').html($('#dxcc').html());
-						$('#editDxcc option[value="-"]').remove();
-						$('#editDxcc').val('').trigger('chosen:updated');
+						$('#editDxcc option[value=""]').remove();
 
 						$('#editIota').html($('#iota').html());
-						$('#editIota option[value="-"]').remove();
-						$('#editIota').val('').trigger('chosen:updated');
 
 						$('#editPropagation').html($('#selectPropagation').html());
-						$('#editPropagation option[value="All"]').remove();
+						$('#editPropagation option[value=""]').remove();
+						var option = $('<option>');
+						option.val('').text('-');
+						$('#editPropagation').prepend(option);
 						$('#editPropagation').val('').trigger('chosen:updated');
 
 						$('#editColumn').change(function(){
