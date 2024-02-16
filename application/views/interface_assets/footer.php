@@ -2105,7 +2105,6 @@ $(document).ready(function(){
                 create: false,
                 load: function(query, callback) {
                     var state = $("#input_state_edit option:selected").text();
-                    console.log = (state);
 
                     if (!query || state == "") return callback();
                     $.ajax({
