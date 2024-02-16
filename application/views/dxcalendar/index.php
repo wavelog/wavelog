@@ -6,7 +6,8 @@
 		<table style="width:100%" class="table-sm table table-bordered table-hover table-striped table-condensed dxcalendar">
 			<thead>
 				<tr>
-					<th>Date</th>
+					<th>Date from</th>
+					<th>Date to</th>
 					<th>DXCC</th>
 					<th>Call</th>
 					<th>QSL info</th>
@@ -23,15 +24,11 @@
 			$dxcc = $tempinfo[0];
 			$date = $tempinfo[1];
 
-			$datesplit = explode('-', $date);
-
-			$from = $datesplit[0];
-			$to = $datesplit[1];
+			$dates = extractDates($date);
 
 			$description = $item->description;
 
 			$descsplit = explode("\n", $description);
-
 
 			$call = (string) $descsplit[3];
 			$call = str_replace('--', '', $call);
@@ -44,7 +41,8 @@
 			$info = (string) $descsplit[6];
 			$link = (string) $item->link;
 
-			echo "<td>$date</td>";
+			echo "<td>" . $dates[0] ?? '' . "</td>";
+			echo "<td>" . $dates[1] ?? '' . "</td>";
 			echo "<td>$dxcc</td>";
 			echo "<td>$call</td>";
 			echo "<td>$qslinfo</td>";
@@ -59,47 +57,39 @@
 
 </div>
 <?php
-function iCalDecoder($file) {
-        $ical = file_get_contents($file);
-        preg_match_all('/(BEGIN:VEVENT.*?END:VEVENT)/si', $ical, $result, PREG_PATTERN_ORDER);
-        for ($i = 0; $i < count($result[0]); $i++) {
-            $tmpbyline = explode("\r\n", $result[0][$i]);
+// Define a function to extract the dates from the date range
+function extractDates($dateRange) {
+    // Split the date range into two parts: month-day and year
+    $dateParts = explode(",", $dateRange);
+    if (count($dateParts) != 2) {
+        return false; // Invalid date range format
+    }
 
-            foreach ($tmpbyline as $item) {
-                $tmpholderarray = explode(":",$item);
-                if (count($tmpholderarray) >1) {
-                    $majorarray[$tmpholderarray[0]] = $tmpholderarray[1];
-                }
-            }
+	$monthDayPart = explode("-", trim($dateParts[0]));
+	$yearPart = trim($dateParts[1]);
 
-            if (preg_match('/DESCRIPTION:(.*)END:VEVENT/si', $result[0][$i], $regs)) {
-                $majorarray['DESCRIPTION'] = str_replace("  ", " ", str_replace("\r\n", "", $regs[1]));
-            }
-            $icalarray[] = $majorarray;
-            unset($majorarray);
+	// Extract the year from the year part
+	$year = substr($yearPart, -4);
 
-        }
-        return $icalarray;
+	$startDate = $monthDayPart[0] . ", " . $year;
+
+	if (strlen($monthDayPart[1]) < 3) {
+		$tempdate = explode(" ", $monthDayPart[0]);
+		$endDate = $tempdate[0] . " " . $monthDayPart[1] . ", " . $year;
+	} else {
+		$endDate = $monthDayPart[1] . ", " . $year;
+	}
+
+    // Parse the start date
+    $startDateTime = date_create_from_format("M j, Y", $startDate);
+
+    // Parse the end date
+    $endDateTime = date_create_from_format("M j, Y", $endDate);
+
+    // Check if parsing was successful
+    if ($startDateTime !== false && $endDateTime !== false) {
+        return array($startDateTime->format("Y-m-d"), $endDateTime->format("Y-m-d"));
+    } else {
+        return false; // Failed to parse dates
+    }
 }
-
-//read events
-// $events = iCalDecoder("http://dxcal.kj4z.com/dxcal");
-// $events = iCalDecoder($url = $_SERVER['DOCUMENT_ROOT']."/cloudlog/dxcal.ics");
-
-// //sort events into date order
-// usort($events, function($a, $b) {
-//     return $a['DTSTART;VALUE=DATE'] - $b['DTSTART;VALUE=DATE'];
-// });
-
-// foreach($events as $event){
-//     $now = date('Y-m-d H:i:s');//current date and time
-//     $eventdate = date('Y-m-d H:i:s', strtotime($event['DTSTART']));//user friendly date
-
-//     if($eventdate > $now){
-//         echo "
-//             <div class='eventHolder'>
-//                 <div class='eventDate'>$eventdate</div>
-//                 <div class='eventTitle'>".$event['SUMMARY']."</div>
-//             </div>";
-//     }
-// }
