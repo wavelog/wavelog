@@ -638,11 +638,12 @@ function getDataTablesLanguageUrl() {
     return "../assets/json/datatables_languages/" + lang_datatables_language + ".json";
 }
 
+var set_state;
 function statesDropdown(states, set_state = null) {
     var dropdown = $('#stateDropdown');
     dropdown.empty();
     dropdown.append($('<option>', {
-        value: '',
+        value: ''
     }));
     if (states.status == 'ok') {
         dropdown.prop('disabled', false);
@@ -658,7 +659,7 @@ function statesDropdown(states, set_state = null) {
         dropdown.empty();
         var option = $('<option>', {
             value: '',
-            text: 'No states for this DXCC in database'
+            text: 'No states for this DXCC available'
         });
         dropdown.append(option);
         dropdown.prop('disabled', true);

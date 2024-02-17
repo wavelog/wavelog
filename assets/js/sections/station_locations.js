@@ -6,7 +6,7 @@ $(document).ready(function () {
 		},
 	});
 
-	if (window.location.pathname.indexOf("/station/edit") !== -1) {
+	if (window.location.pathname.indexOf("/station/edit") !== -1 || window.location.pathname.indexOf("/station/create") !== -1) {
 		updateStateDropdown();
 		$("#dxcc_select").change(function () {
 			updateStateDropdown();
@@ -28,6 +28,7 @@ function updateStateDropdown() {
                     $('#stateInputLabel').html(response.subdivision_name);
 				} else {
                     statesDropdown(response);
+					$('#stateInputLabel').html('State');
                 }
 			},
 			error: function () {
