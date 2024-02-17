@@ -577,7 +577,7 @@ function reset_fields() {
 	var $select = $('#darc_dok').selectize();
 	var selectize = $select[0].selectize;
 	selectize.clear();
-	$select = $('#stationCntyInput').selectize();
+	$select = $('#stationCntyInputEdit').selectize();
 	selectize = $select[0].selectize;
 	selectize.clear();
 
