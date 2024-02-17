@@ -1,6 +1,6 @@
 <?php
 
-class helvetia extends CI_Model {
+class helvetia_model extends CI_Model {
 
 	public $stateString = 'AG,AI,AR,BE,BL,BS,FR,GE,GL,GR,JU,LU,NE,NW,OW,SG,SH,SO,SZ,TG,TI,UR,VD,VS,ZG,ZH';
 

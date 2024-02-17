@@ -589,7 +589,7 @@ class Awards extends CI_Controller {
 			'assets/js/leaflet/L.Maidenhead.js',
 		];
 
-        $this->load->model('helvetia');
+        $this->load->model('helvetia_model');
 		$this->load->model('modes');
         $this->load->model('bands');
 
@@ -633,8 +633,8 @@ class Awards extends CI_Controller {
 			$postdata['mode'] = 'All';
         }
 
-        $data['helvetia_array'] = $this->helvetia->get_helvetia_array($bands, $postdata);
-        $data['helvetia_summary'] = $this->helvetia->get_helvetia_summary($bands, $postdata);
+        $data['helvetia_array'] = $this->helvetia_model->get_helvetia_array($bands, $postdata);
+        $data['helvetia_summary'] = $this->helvetia_model->get_helvetia_summary($bands, $postdata);
 
         // Render Page
         $data['page_title'] = "Awards - H26";
@@ -1137,7 +1137,7 @@ class Awards extends CI_Controller {
 		$stateString = 'AG,AI,AR,BE,BL,BS,FR,GE,GL,GR,JU,LU,NE,NW,OW,SG,SH,SO,SZ,TG,TI,UR,VD,VS,ZG,ZH';
 		$helvetiaArray = explode(',', $stateString);
 
-        $this->load->model('helvetia');
+        $this->load->model('helvetia_model');
 
 		$bands[] = $this->security->xss_clean($this->input->post('band'));
 
@@ -1151,7 +1151,7 @@ class Awards extends CI_Controller {
         $postdata['band'] = $this->security->xss_clean($this->input->post('band'));
         $postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
 
-        $helvetia_array = $this->helvetia->get_helvetia_array($bands, $postdata);
+        $helvetia_array = $this->helvetia_model->get_helvetia_array($bands, $postdata);
 
         $states = array();
 
