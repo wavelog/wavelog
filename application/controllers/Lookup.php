@@ -132,7 +132,7 @@ class Lookup extends CI_Controller {
 	public function get_state_list() {
 		$this->load->library('subdivisions');
 
-		$dxcc = $this->input->post('dxcc');
+		$dxcc = xss_clean($this->input->post('dxcc'));
 		$states_result = $this->subdivisions->get_state_list($dxcc);
 		$subdivision_name = $this->subdivisions->get_primary_subdivision_name($dxcc);
 
