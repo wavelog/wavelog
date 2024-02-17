@@ -130,9 +130,9 @@ info.addTo(map);
 
   geojson = L.geoJson(mapcoordinates, {style: style, onEachFeature: onEachFeature}).addTo(map);
 
-  map.setView([70, -100], 3);
+  map.setView([46.8, 8.4], 8);
 
-  addMarkers();
+  //addMarkers();
 
   map.on('zoomed', function() {
     clearMarkers();
