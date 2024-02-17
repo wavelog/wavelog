@@ -2,9 +2,6 @@ $( document ).ready(function() {
 	clearTimeout();
 	set_timers();
 	updateStateDropdown();
-	$("#dxcc_id").change(function () {
-		updateStateDropdown();
-	});
 
 
 	function set_timers() {
@@ -804,9 +801,11 @@ $("#callsign").focusout(function() {
 				/*
 				* Update state with returned value
 				*/
-				if($("#stateDropdown").val() == "") {
-					$("#stateDropdown").val(result.callsign_state).trigger('change');
-				}
+				setTimeout(function() { // we have some kind of raceconditions here... just a hotfix atm
+					if($("#stateDropdown").val() == "") {
+						$("#stateDropdown").val(result.callsign_state);
+					}
+				}, 1000);
 
 				/*
 				* Update county with returned value
