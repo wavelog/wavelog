@@ -135,7 +135,7 @@ function createMarker(i) {
 	var marker = L.marker(
 		[i.properties.geo_point_2d.lat, i.properties.geo_point_2d.lon], {
 		icon: myIcon,
-		title: i.properties.kan_name,
+		title: i.properties.kan_code,
 		zIndex: 1000,
 	}
 	).addTo(map).on('click', onClick2);
@@ -194,10 +194,10 @@ function style(feature) {
 function onClick(e) {
 	zoomToFeature(e);
 	var marker = e.target;
-	displayContactsOnMap($("#helvetiamap"),marker.feature.kan_code, $('#band2').val(), $('#mode').val(), 'helvetia');
+	displayContactsOnMap($("#helvetiamap"),marker.feature.properties.kan_code[0], $('#band2').val(), $('#mode').val(), 'helvetia');
 }
 
 function onClick2(e) {
 	var marker = e.target;
-	displayContactsOnMap($("#helvetiamap"), marker.options.kan_code, $('#band2').val(), $('#mode').val(), 'helvetia');
+	displayContactsOnMap($("#helvetiamap"), marker.options.title[0], $('#band2').val(), $('#mode').val(), 'helvetia');
 }
