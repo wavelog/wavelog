@@ -308,7 +308,7 @@ function qso_edit(id) {
                     $('.modal-content #qslmsg').keyup(function(event) {
                         calcRemainingChars(event, '.modal-content');
                     });
-                    console.log('script is running');
+                    
                     $("#dxcc_id").change(function () {
                         updateStateDropdown();
                     });

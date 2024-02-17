@@ -345,27 +345,13 @@
             </div>
 
             <div class="mb-3">
-              <?php
-              $CI = &get_instance();
-              $CI->load->library('subdivisions');
-
-              //$subdivision_name = $CI->subdivisions->get_primary_subdivision_name($qso->COL_DXCC);  // TODO Show different subdivision name based on callsign dxcc
-              $state_list = $CI->subdivisions->get_state_list('291');                                 // USA hardcoded at the moment
-              ?>
-              <label for="stateDropdown"><?php echo lang('gen_hamradio_usa_state'); ?></label>
-              <select class="form-select" id="stateDropdown" name="input_state_edit">
-                <option value=""></option>
-                <?php foreach ($state_list->result() as $state) {
-                  $selected = ($qso->COL_STATE == $state->state) ? 'selected="selected"' : '';
-                ?>
-                  <option value="<?php echo $state->state; ?>" <?php echo $selected; ?>>
-                    <?php echo $state->subdivision . ' (' . $state->state . ')'; ?>
-                  </option>
-                <?php } ?>
-              </select>
+              <label for="stateInput" id="stateInputLabel"></label>
+                <select class="form-select" name="input_state_edit" id="stateDropdown">
+                  <option value=""></option>
+                </select>
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3" id="location_us_county">
                 <label for="stationCntyInput"><?php echo lang('gen_hamradio_county_reference'); ?></label>
                 <input disabled="disabled" class="form-control" id="stationCntyInput" type="text" name="county" value="" />
             </div>
