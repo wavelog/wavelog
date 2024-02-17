@@ -93,56 +93,24 @@
 		    			<small id="stationCityInputHelp" class="form-text text-muted"><?php echo lang("station_location_city_hint"); ?></small>
 		  			</div>
 
-					<!-- US State -->
-					<div class="mb-3" id="us_state">
-		    			<label for="stateInput"><?php echo lang("station_location_state"); ?></label>
-		    				<select class="form-select" name="station_state" id="StateHelp" aria-describedby="stationCntyInputHelp">
-							<?php
-							$CI = &get_instance();
-							$CI->load->library('subdivisions');
+					<!-- State -->
+					<script>
+						var set_state = '<?php echo $my_station_profile->state; ?>';
+					</script>
+					<div class="mb-3" id="location_state">
+		    			<label for="stateInput" id="stateInputLabel"></label>
+						<select class="form-select" name="station_state" id="stateDropdown">
+							<option value=""></option>
+						</select>
+						<small id="StateHelp" class="form-text text-muted"><?php echo lang("station_location_state_hint"); ?></small>
+					</div>
 
-							$state_list = $CI->subdivisions->get_state_list($my_station_profile->station_dxcc);
-							?>
-								<option value=""></option>
-							<?php foreach ($state_list->result() as $state) {
-								$selected = ($my_station_profile->state == $state->state) ? 'selected="selected"' : '';
-							?>
-								<option value="<?php echo $state->state; ?>" <?php echo $selected; ?>>
-									<?php echo $state->subdivision . ' (' . $state->state . ')'; ?>
-								</option>
-							<?php } ?>
-							</select>
-		    				<small id="StateHelp" class="form-text text-muted"><?php echo lang("station_location_state_hint"); ?></small>
-		 				</div>
-
-					<!-- Canada State -->
-					<div class="mb-3" id="canada_state">
-		    			<label for="stateInput"><?php echo lang("station_location_state"); ?></label>
-		    				<select class="form-select" name="station_ca_state" id="StateHelp" aria-describedby="stationCntyInputHelp">
-								<option value=""></option>
-								<option value="AB" <?php if($my_station_profile->state == "AB") { echo "selected"; } ?>>Alberta</option>
-								<option value="BC" <?php if($my_station_profile->state == "BC") { echo "selected"; } ?>>British Columbia</option>
-								<option value="MB" <?php if($my_station_profile->state == "MB") { echo "selected"; } ?>>Manitoba</option>
-								<option value="NB" <?php if($my_station_profile->state == "NB") { echo "selected"; } ?>>New Brunswick</option>
-								<option value="NL" <?php if($my_station_profile->state == "NL") { echo "selected"; } ?>>Newfoundland & Labrador</option>
-								<option value="NS" <?php if($my_station_profile->state == "NS") { echo "selected"; } ?>>Nova Scotia</option>
-								<option value="NT" <?php if($my_station_profile->state == "NT") { echo "selected"; } ?>>Northwest Territories</option>
-								<option value="NU" <?php if($my_station_profile->state == "NU") { echo "selected"; } ?>>Nunavut</option>
-								<option value="ON" <?php if($my_station_profile->state == "ON") { echo "selected"; } ?>>Ontario</option>
-								<option value="PE" <?php if($my_station_profile->state == "PE") { echo "selected"; } ?>>Prince Edward Island</option>
-								<option value="QC" <?php if($my_station_profile->state == "QC") { echo "selected"; } ?>>Quebec</option>
-								<option value="SK" <?php if($my_station_profile->state == "SK") { echo "selected"; } ?>>Saskatchewan</option>
-								<option value="YT" <?php if($my_station_profile->state == "YT") { echo "selected"; } ?>>Yukon</option>
-							</select>
-		    				<small id="StateHelp" class="form-text text-muted"><?php echo lang("station_location_state_hint"); ?></small>
-						</div>
-
-						<!-- US County -->
-						<div class="mb-3">
-							<label for="stationCntyInput"><?php echo lang("station_location_county"); ?></label>
-							<input disabled="disabled" type="text" class="form-control" name="station_cnty" id="stationCntyInput" aria-describedby="stationCntyInputHelp" value="<?php if(set_value('station_cnty') != "") { echo set_value('station_cnty'); } else { echo $my_station_profile->station_cnty; } ?>">
-							<small id="stationCntyInputHelp" class="form-text text-muted"><?php echo lang("station_location_county_hint"); ?></small>
-		  				</div>
+					<!-- US County -->
+					<div class="mb-3" id="location_us_county">
+						<label for="stationCntyInput"><?php echo lang("station_location_county"); ?></label>
+						<input disabled="disabled" type="text" class="form-control" name="station_cnty" id="stationCntyInput" aria-describedby="stationCntyInputHelp" value="<?php if(set_value('station_cnty') != "") { echo set_value('station_cnty'); } else { echo $my_station_profile->station_cnty; } ?>">
+						<small id="stationCntyInputHelp" class="form-text text-muted"><?php echo lang("station_location_county_hint"); ?></small>
+					</div>
 				</div>
 			</div>
 		</div>

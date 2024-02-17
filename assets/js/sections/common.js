@@ -627,6 +627,7 @@ function showQsoActionsMenu(_this) {
         }
     });
 }
+
 if ($('.table-responsive .dropdown-toggle').length>0) {
     $('.table-responsive .dropdown-toggle').off('mouseenter').on('mouseenter', function () {
         showQsoActionsMenu($(this).closest('.dropdown'));
@@ -635,6 +636,33 @@ if ($('.table-responsive .dropdown-toggle').length>0) {
 
 function getDataTablesLanguageUrl() {
     return "../assets/json/datatables_languages/" + lang_datatables_language + ".json";
+}
+
+function statesDropdown(states, set_state = null) {
+    var dropdown = $('#stateDropdown');
+    dropdown.empty();
+    dropdown.append($('<option>', {
+        value: '',
+    }));
+    if (states.status == 'ok') {
+        dropdown.prop('disabled', false);
+        $.each(states.data, function(index, state) {
+            var option = $('<option>', {
+                value: state.state,
+                text: state.subdivision + ' (' + state.state + ')'
+            });
+            dropdown.append(option);
+        });
+        $(dropdown).val(set_state);
+    } else {
+        dropdown.empty();
+        var option = $('<option>', {
+            value: '',
+            text: 'No states for this DXCC in database'
+        });
+        dropdown.append(option);
+        dropdown.prop('disabled', true);
+    }
 }
 
 console.log("Ready to unleash your coding prowess and join the fun?\n\n" +
