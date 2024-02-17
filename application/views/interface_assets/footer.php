@@ -596,9 +596,9 @@ $(function () {
 
 <script>
 $(document).ready(function() {
-	$('#create_station_profile #country').val($("#dxcc_select option:selected").text());
-	$("#create_station_profile #dxcc_select" ).change(function() {
-	$('#country').val($("#dxcc_select option:selected").text());
+	$('#create_station_profile #country').val($("#dxcc_id option:selected").text());
+	$("#create_station_profile #dxcc_id" ).change(function() {
+	$('#country').val($("#dxcc_id option:selected").text());
 
 	});
 });
@@ -606,20 +606,20 @@ $(document).ready(function() {
 
 <script>
 function printWarning() {
-    if ($("#dxcc_select option:selected").text().includes("<?php echo lang('gen_hamradio_deleted_dxcc'); ?>")) {
+    if ($("#dxcc_id option:selected").text().includes("<?php echo lang('gen_hamradio_deleted_dxcc'); ?>")) {
         $('#warningMessageDXCC').show();
-        $('#dxcc_select').css('border', '2px solid rgb(217, 83, 79)');
+        $('#dxcc_id').css('border', '2px solid rgb(217, 83, 79)');
         $('#warningMessageDXCC').text("<?php echo lang('station_location_dxcc_warning'); ?>");
     } else {
-        $('#dxcc_select').css('border', '');
+        $('#dxcc_id').css('border', '');
         $('#warningMessageDXCC').hide();
     }
 }
-$('#dxcc_select').ready(function() {
+$('#dxcc_id').ready(function() {
     printWarning();
 });
 
-$('#dxcc_select').on('change', function() {
+$('#dxcc_id').on('change', function() {
     printWarning();
 });
 </script>

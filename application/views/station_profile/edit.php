@@ -68,7 +68,7 @@
 					<div class="mb-3">
 					    <label for="stationDXCCInput"><?php echo lang("station_location_dxcc"); ?></label>
 					    <?php if ($dxcc_list->num_rows() > 0) { ?>
-					        <select class="form-select" id="dxcc_select" name="dxcc" aria-describedby="stationCallsignInputHelp">
+					        <select class="form-select" id="dxcc_id" name="dxcc" aria-describedby="stationCallsignInputHelp">
 					            <option value="0" <?php if($my_station_profile->station_dxcc == "0") { ?>selected<?php } ?>><?php echo "- " . lang('general_word_none') . " -"; ?></option>
 					            <?php foreach ($dxcc_list->result() as $dxcc) { ?>
 					                <?php $isDeleted = $dxcc->end !== NULL; ?>

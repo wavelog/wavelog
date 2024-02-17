@@ -312,42 +312,42 @@ function qso_edit(id) {
                     $("#dxcc_id").change(function () {
                         updateStateDropdown();
                     });
-                    // updateStateDropdown();
-                    function updateStateDropdown() {
-                        console.log('dropdown triggered');
-                        var selectedDxcc = $("#dxcc_id");
-
-                        if (selectedDxcc.val() !== "") {
-                            $.ajax({
-                                url: base_url + "index.php/lookup/get_state_list",
-                                type: "POST",
-                                data: { dxcc: selectedDxcc.val() },
-                                success: function (response) {
-                                    if (response.status === "ok") {
-                                        statesDropdown(response, set_state);
-                                        $('#stateInputLabel').html(response.subdivision_name);
-                                    } else {
-                                        statesDropdown(response);
-                                        $('#stateInputLabel').html('State');
-                                    }
-                                },
-                                error: function () {
-                                    console.log('ERROR', response.status);
-                                },
-                            });
-                        } 
-
-                        if (selectedDxcc.val() == '291' || selectedDxcc.val() == '110' || selectedDxcc.val() == '6') {
-                            $("#location_us_county").show();
-                        } else {
-                            $("#location_us_county").hide();
-                            $("#stationCntyInputEdit").val();
-                        }
-                    }
                 },
             });
         }
     });
+}
+
+function updateStateDropdown() {
+    console.log('dropdown triggered');
+    var selectedDxcc = $("#dxcc_id");
+
+    if (selectedDxcc.val() !== "") {
+        $.ajax({
+            url: base_url + "index.php/lookup/get_state_list",
+            type: "POST",
+            data: { dxcc: selectedDxcc.val() },
+            success: function (response) {
+                if (response.status === "ok") {
+                    statesDropdown(response, set_state);
+                    $('#stateInputLabel').html(response.subdivision_name);
+                } else {
+                    statesDropdown(response);
+                    $('#stateInputLabel').html('State');
+                }
+            },
+            error: function () {
+                console.log('ERROR', response.status);
+            },
+        });
+    } 
+
+    if (selectedDxcc.val() == '291' || selectedDxcc.val() == '110' || selectedDxcc.val() == '6') {
+        $("#location_us_county").show();
+    } else {
+        $("#location_us_county").hide();
+        $("#stationCntyInputEdit").val();
+    }
 }
 
 function spawnQrbCalculator(locator1, locator2) {
