@@ -123,7 +123,7 @@ info.onAdd = function (map) {
 // method that we will use to update the control based on feature properties passed
 info.update = function (props) {
     this._div.innerHTML = '<h4>Province</h4>' +  (props ?
-        '<b>' + props.id.substring(3,5) + ' - ' + props.name + '</b><br />' : 'Hover over a province');
+        '<b>' + props.kan_code + ' - ' + props.kan_name + '</b><br />' : 'Hover over a province');
 };
 
 info.addTo(map);
