@@ -1,31 +1,17 @@
-$(document).ready( function () {
+$(document).ready(function () {
+	$("#station_locations_table").DataTable({
+		stateSave: true,
+		language: {
+			url: getDataTablesLanguageUrl(),
+		},
+	});
 
-    // Use Jquery to hide div ca_state
+	if (window.location.pathname.indexOf("/station/edit") !== -1 || window.location.pathname.indexOf("/station/create") !== -1) {
+		selectize_usa_county();
+		updateStateDropdown();
+		$("#dxcc_id").change(function () {
+			updateStateDropdown();
+		});
+	}
+});
 
-    $('#station_locations_table').DataTable({
-        "stateSave": true,
-        "language": {
-            url: getDataTablesLanguageUrl(),
-        }
-    });
-
-    $("#canada_state").hide();
-
-    var selectedDXCCID = $('#dxcc_select').find(":selected").val();
-
-    if(selectedDXCCID == '1'){
-        $("#canada_state").show();
-        $("#us_state").hide();
-    }
-
-    $('#dxcc_select').change(function(){
-        if($(this).val() == '1'){ // or this.value == 'volvo'
-          console.log("CANADA!");
-          $("#canada_state").show();
-          $("#us_state").hide();
-        } else {
-            $("#canada_state").hide();
-            $("#us_state").show();
-        }
-    });
-} );

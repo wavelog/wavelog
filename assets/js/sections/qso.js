@@ -1,6 +1,11 @@
 $( document ).ready(function() {
 	clearTimeout();
 	set_timers();
+	updateStateDropdown();
+	$("#dxcc_id").change(function () {
+		updateStateDropdown();
+	});
+
 
 	function set_timers() {
 		setTimeout(function() {
@@ -216,8 +221,8 @@ var favs={};
 		}
 	});
 
-	$('#input_usa_state').change(function(){
-		var state = $("#input_usa_state option:selected").text();
+	$('#stateDropdown').change(function(){
+		var state = $("#stateDropdown option:selected").text();
 		if (state != "") {
 			$("#stationCntyInput").prop('disabled', false);
 
@@ -231,7 +236,7 @@ var favs={};
 				options: [],
 				create: false,
 				load: function(query, callback) {
-					var state = $("#input_usa_state option:selected").text();
+					var state = $("#stateDropdown option:selected").text();
 
 					if (!query || state == "") return callback();
 					$.ajax({
@@ -558,7 +563,7 @@ function reset_fields() {
 	$('#callsign-image-content').text("");
 	$('#qsl_via').val("");
 	$('#callsign_info').text("");
-	$('#input_usa_state').val("");
+	$('#stateDropdown').val("");
 	$('#qso-last-table').show();
 	$('#partial_view').hide();
 	$('.callsign-suggest').hide();
@@ -572,7 +577,7 @@ function reset_fields() {
 	var $select = $('#darc_dok').selectize();
 	var selectize = $select[0].selectize;
 	selectize.clear();
-	$select = $('#stationCntyInput').selectize();
+	$select = $('#stationCntyInputEdit').selectize();
 	selectize = $select[0].selectize;
 	selectize.clear();
 
@@ -581,6 +586,7 @@ function reset_fields() {
 	$('.callsign-suggest').hide();
 	$('.dxccsummary').remove();
 	$('#timesWorked').html(lang_qso_title_previous_contacts);
+	updateStateDropdown();
 }
 
 function resetTimers(manual) {
@@ -715,6 +721,7 @@ $("#callsign").focusout(function() {
 				}
 
 				$('#dxcc_id').val(result.dxcc.adif);
+				updateStateDropdown();
 				$('#cqz').val(result.dxcc.cqz);
 				$('#ituz').val(result.dxcc.ituz);
 
@@ -797,8 +804,8 @@ $("#callsign").focusout(function() {
 				/*
 				* Update state with returned value
 				*/
-				if($("#input_usa_state").val() == "") {
-					$("#input_usa_state").val(result.callsign_state).trigger('change');
+				if($("#stateDropdown").val() == "") {
+					$("#stateDropdown").val(result.callsign_state).trigger('change');
 				}
 
 				/*
@@ -1102,7 +1109,7 @@ function resetDefaultQSOFields() {
 	$('#callsign_info').removeClass("text-bg-secondary");
 	$('#callsign_info').removeClass("text-bg-success");
 	$('#callsign_info').removeClass("text-bg-danger");
-	$('#input_usa_state').val("");
+	$('#stateDropdown').val("");
 	$('#callsign-image').attr('style', 'display: none;');
 	$('#callsign-image-content').text("");
 	$('.dxccsummary').remove();

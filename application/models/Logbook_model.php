@@ -145,8 +145,8 @@ class Logbook_model extends CI_Model {
         $submode = $this->input->post('mode');
     }
 
-    if($this->input->post('county') && $this->input->post('usa_state')) {
-      $clean_county_input = trim($this->input->post('usa_state')) . "," . trim($this->input->post('county'));
+    if($this->input->post('county') && $this->input->post('input_state_edit')) {
+      $clean_county_input = trim($this->input->post('input_state_edit')) . "," . trim($this->input->post('county'));
     } else {
       $clean_county_input = null;
     }
@@ -234,7 +234,7 @@ class Logbook_model extends CI_Model {
             'COL_LON' => null,
             'COL_DXCC' => $dxcc_id,
             'COL_CQZ' => $cqz,
-            'COL_STATE' => $this->input->post('usa_state') == null ? '' : trim($this->input->post('usa_state')),
+            'COL_STATE' => $this->input->post('input_state_edit') == null ? '' : trim($this->input->post('input_state_edit')),
             'COL_CNTY' => $clean_county_input,
             'COL_SOTA_REF' => $this->input->post('sota_ref') == null ? '' : trim($this->input->post('sota_ref')),
             'COL_WWFF_REF' => $this->input->post('wwff_ref') == null ? '' : trim($this->input->post('wwff_ref')),
@@ -1079,8 +1079,8 @@ class Logbook_model extends CI_Model {
 
 	  if (stristr($this->input->post('usa_county') ?? '', ',')) {	// Already comma-seperated Conuty?
 		  $uscounty = $this->input->post('usa_county');
-	  } elseif ($this->input->post('usa_county') && $this->input->post('usa_state')) {	// Both filled (and no comma - because that fits one above)
-		  $uscounty = trim($this->input->post('usa_state') . "," . $this->input->post('usa_county'));
+	  } elseif ($this->input->post('usa_county') && $this->input->post('input_state_edit')) {	// Both filled (and no comma - because that fits one above)
+		  $uscounty = trim($this->input->post('input_state_edit') . "," . $this->input->post('usa_county'));
 	  } else {	// nothing from above?
 		  $uscounty = null;
 	  }
@@ -1227,7 +1227,7 @@ class Logbook_model extends CI_Model {
 		  'station_id' => $stationId,
 		  'COL_STATION_CALLSIGN' => $stationCallsign,
 		  'COL_OPERATOR' => $this->input->post('operator_callsign'),
-		  'COL_STATE' =>$this->input->post('usa_state'),
+		  'COL_STATE' =>$this->input->post('input_state_edit'),
 		  'COL_CNTY' => $uscounty,
 		  'COL_MY_IOTA' => $iotaRef,
 		  'COL_MY_SOTA_REF' => $sotaRef,
@@ -4665,7 +4665,7 @@ function lotw_last_qsl_date($user_id) {
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         $this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
-		$this->db->join('lotw_users', 'lotw_users.callsign = '.$this->config->item('table_name').'.col_call', 'left outer');
+		    $this->db->join('lotw_users', 'lotw_users.callsign = '.$this->config->item('table_name').'.col_call', 'left outer');
         $this->db->where_in($this->config->item('table_name').'.station_id', $logbooks_locations_array);
         $this->db->where('COL_STATE', $state);
         $this->db->where('COL_CNTY', $county);
@@ -4746,6 +4746,11 @@ function lotw_last_qsl_date($user_id) {
         $json["markers"][] = $plot;
       }
       return $json;
+    }
+
+    public function get_states_by_dxcc($dxcc) {
+        $this->db->where('adif', $dxcc);
+        return $this->db->get('primary_subdivisions');
     }
 }
 

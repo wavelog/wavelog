@@ -93,4 +93,13 @@ class Subdivisions {
 		}
 		return 'County';
 	}
+
+	public function get_state_list($dxcc) {
+		$CI =& get_instance();
+		$CI->load->model('logbook_model');
+
+		$states = $CI->logbook_model->get_states_by_dxcc($dxcc);
+
+		return $states;
+	}
 }
