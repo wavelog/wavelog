@@ -286,15 +286,14 @@
                                 <div class="mb-3">
                                     <?php 
                                         $CI =& get_instance();
-
                                         $CI->load->library('subdivisions');
 
                                         $subdivision_name = $CI->subdivisions->get_primary_subdivision_name($qso->COL_DXCC);
                                         $state_list = $CI->subdivisions->get_state_list($qso->COL_DXCC);
                                     ?>
-
-                                    <label for="input_state_edit"><?php echo $subdivision_name; ?></label>
-                                    <select class="form-select" id="input_state_edit" name="input_state_edit">
+                                    
+                                    <label for="stateDropdown" id="stateInputLabel"><?php echo $subdivision_name; ?></label>
+                                    <select class="form-select" id="stateDropdown" name="input_state_edit">
                                         <option value=""></option>
 
                                         <?php foreach ($state_list->result() as $state) {
@@ -308,7 +307,7 @@
                                 </div>
                                 
                                 <?php if ($qso->COL_DXCC == '291' || $qso->COL_DXCC == '110'  || $qso->COL_DXCC == '006') { ?>
-                                <div class="mb-3">
+                                <div class="mb-3" id="location_us_county">
                                     <label for="stationCntyInput">USA County</label>
                                     <input class="form-control" id="stationCntyInputEdit" type="text" name="usa_county" value="<?php echo $qso->COL_CNTY; ?>" />
                                 </div>

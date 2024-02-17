@@ -352,8 +352,8 @@
               //$subdivision_name = $CI->subdivisions->get_primary_subdivision_name($qso->COL_DXCC);  // TODO Show different subdivision name based on callsign dxcc
               $state_list = $CI->subdivisions->get_state_list('291');                                 // USA hardcoded at the moment
               ?>
-              <label for="input_usa_state"><?php echo lang('gen_hamradio_usa_state'); ?></label>
-              <select class="form-select" id="input_usa_state" name="input_state_edit">
+              <label for="stateDropdown"><?php echo lang('gen_hamradio_usa_state'); ?></label>
+              <select class="form-select" id="stateDropdown" name="input_state_edit">
                 <option value=""></option>
                 <?php foreach ($state_list->result() as $state) {
                   $selected = ($qso->COL_STATE == $state->state) ? 'selected="selected"' : '';

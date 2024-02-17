@@ -133,14 +133,14 @@ function qso_edit(id) {
                 nl2br: false,
                 message: html,
                 onshown: function(dialog) {
-                    var state = $("#input_state_edit option:selected").text();
+                    var state = $("#stateDropdown option:selected").text();
                     if (state != "") {
                         $("#stationCntyInputEdit").prop('disabled', false);
                         selectize_usa_county();
                     }
 
-                    $('#input_state_edit').change(function(){
-                        var state = $("#input_state_edit option:selected").text();
+                    $('#stateDropdown').change(function(){
+                        var state = $("#stateDropdown option:selected").text();
                         if (state != "") {
                             $("#stationCntyInputEdit").prop('disabled', false);
 
@@ -308,6 +308,42 @@ function qso_edit(id) {
                     $('.modal-content #qslmsg').keyup(function(event) {
                         calcRemainingChars(event, '.modal-content');
                     });
+                    console.log('script is running');
+                    $("#dxcc_id").change(function () {
+                        updateStateDropdown();
+                    });
+                    // updateStateDropdown();
+                    function updateStateDropdown() {
+                        console.log('dropdown triggered');
+                        var selectedDxcc = $("#dxcc_id");
+
+                        if (selectedDxcc.val() !== "") {
+                            $.ajax({
+                                url: base_url + "index.php/lookup/get_state_list",
+                                type: "POST",
+                                data: { dxcc: selectedDxcc.val() },
+                                success: function (response) {
+                                    if (response.status === "ok") {
+                                        statesDropdown(response, set_state);
+                                        $('#stateInputLabel').html(response.subdivision_name);
+                                    } else {
+                                        statesDropdown(response);
+                                        $('#stateInputLabel').html('State');
+                                    }
+                                },
+                                error: function () {
+                                    console.log('ERROR', response.status);
+                                },
+                            });
+                        } 
+
+                        if (selectedDxcc.val() == '291' || selectedDxcc.val() == '110' || selectedDxcc.val() == '6') {
+                            $("#location_us_county").show();
+                        } else {
+                            $("#location_us_county").hide();
+                            $("#stationCntyInputEdit").val();
+                        }
+                    }
                 },
             });
         }
