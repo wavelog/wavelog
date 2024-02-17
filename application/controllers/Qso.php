@@ -1,12 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-/*
-TODO
-	- Update Edit
-	- Store Radio Information
-	- Upload to clublog (request api key)
-*/
-
 class QSO extends CI_Controller {
 
 	function __construct()

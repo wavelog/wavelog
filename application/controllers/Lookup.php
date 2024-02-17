@@ -129,4 +129,26 @@ class Lookup extends CI_Controller {
 		}
 	}
 
+	public function get_state_list() {
+		$this->load->library('subdivisions');
+
+		$dxcc = xss_clean($this->input->post('dxcc'));
+		$states_result = $this->subdivisions->get_state_list($dxcc);
+		$subdivision_name = $this->subdivisions->get_primary_subdivision_name($dxcc);
+
+		if ($states_result->num_rows() > 0) {
+			$states_array = $states_result->result_array();
+			$result = array(
+				'status' => 'ok',
+				'subdivision_name' => $subdivision_name,
+				'data' => $states_array
+			);
+			header('Content-Type: application/json');
+        	echo json_encode($result);
+		} else {
+			header('Content-Type: application/json');
+			echo json_encode(array('status' => 'No States for this DXCC in Database'));
+		}
+	}
+
 }

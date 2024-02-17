@@ -133,14 +133,14 @@ function qso_edit(id) {
                 nl2br: false,
                 message: html,
                 onshown: function(dialog) {
-                    var state = $("#input_usa_state_edit option:selected").text();
+                    var state = $("#stateDropdown option:selected").text();
                     if (state != "") {
                         $("#stationCntyInputEdit").prop('disabled', false);
                         selectize_usa_county();
                     }
 
-                    $('#input_usa_state_edit').change(function(){
-                        var state = $("#input_usa_state_edit option:selected").text();
+                    $('#stateDropdown').change(function(){
+                        var state = $("#stateDropdown option:selected").text();
                         if (state != "") {
                             $("#stationCntyInputEdit").prop('disabled', false);
 
@@ -308,10 +308,46 @@ function qso_edit(id) {
                     $('.modal-content #qslmsg').keyup(function(event) {
                         calcRemainingChars(event, '.modal-content');
                     });
+                    
+                    $("#dxcc_id").change(function () {
+                        updateStateDropdown();
+                    });
                 },
             });
         }
     });
+}
+
+function updateStateDropdown() {
+    console.log('dropdown triggered');
+    var selectedDxcc = $("#dxcc_id");
+
+    if (selectedDxcc.val() !== "") {
+        $.ajax({
+            url: base_url + "index.php/lookup/get_state_list",
+            type: "POST",
+            data: { dxcc: selectedDxcc.val() },
+            success: function (response) {
+                if (response.status === "ok") {
+                    statesDropdown(response, set_state);
+                    $('#stateInputLabel').html(response.subdivision_name);
+                } else {
+                    statesDropdown(response);
+                    $('#stateInputLabel').html('State');
+                }
+            },
+            error: function () {
+                console.log('ERROR', response.status);
+            },
+        });
+    } 
+
+    if (selectedDxcc.val() == '291' || selectedDxcc.val() == '110' || selectedDxcc.val() == '6') {
+        $("#location_us_county").show();
+    } else {
+        $("#location_us_county").hide();
+        $("#stationCntyInputEdit").val();
+    }
 }
 
 function spawnQrbCalculator(locator1, locator2) {
@@ -627,6 +663,7 @@ function showQsoActionsMenu(_this) {
         }
     });
 }
+
 if ($('.table-responsive .dropdown-toggle').length>0) {
     $('.table-responsive .dropdown-toggle').off('mouseenter').on('mouseenter', function () {
         showQsoActionsMenu($(this).closest('.dropdown'));
@@ -635,6 +672,34 @@ if ($('.table-responsive .dropdown-toggle').length>0) {
 
 function getDataTablesLanguageUrl() {
     return "../assets/json/datatables_languages/" + lang_datatables_language + ".json";
+}
+
+var set_state;
+function statesDropdown(states, set_state = null) {
+    var dropdown = $('#stateDropdown');
+    dropdown.empty();
+    dropdown.append($('<option>', {
+        value: ''
+    }));
+    if (states.status == 'ok') {
+        dropdown.prop('disabled', false);
+        $.each(states.data, function(index, state) {
+            var option = $('<option>', {
+                value: state.state,
+                text: state.subdivision + ' (' + state.state + ')'
+            });
+            dropdown.append(option);
+        });
+        $(dropdown).val(set_state);
+    } else {
+        dropdown.empty();
+        var option = $('<option>', {
+            value: '',
+            text: 'No states for this DXCC available'
+        });
+        dropdown.append(option);
+        dropdown.prop('disabled', true);
+    }
 }
 
 console.log("Ready to unleash your coding prowess and join the fun?\n\n" +

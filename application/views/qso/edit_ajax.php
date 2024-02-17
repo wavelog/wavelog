@@ -284,67 +284,34 @@
 
 
                                 <div class="mb-3">
-                                    <label for="usa_state">USA State</label>
-                                    <select class="form-select" id="input_usa_state_edit" name="usa_state">
+                                    <?php 
+                                        $CI =& get_instance();
+                                        $CI->load->library('subdivisions');
+
+                                        $subdivision_name = $CI->subdivisions->get_primary_subdivision_name($qso->COL_DXCC);
+                                        $state_list = $CI->subdivisions->get_state_list($qso->COL_DXCC);
+                                    ?>
+                                    
+                                    <label for="stateDropdown" id="stateInputLabel"><?php echo $subdivision_name; ?></label>
+                                    <select class="form-select" id="stateDropdown" name="input_state_edit">
                                         <option value=""></option>
-                                        <option value="AL" <?php if($qso->COL_STATE == "AL") { echo "selected=\"selected\""; } ?>>Alabama (AL)</option>
-                                        <option value="AK" <?php if($qso->COL_STATE == "AK") { echo "selected=\"selected\""; } ?>>Alaska (AK)</option>
-                                        <option value="AZ" <?php if($qso->COL_STATE == "AZ") { echo "selected=\"selected\""; } ?>>Arizona (AZ)</option>
-                                        <option value="AR" <?php if($qso->COL_STATE == "AR") { echo "selected=\"selected\""; } ?>>Arkansas (AR)</option>
-                                        <option value="CA" <?php if($qso->COL_STATE == "CA") { echo "selected=\"selected\""; } ?>>California (CA)</option>
-                                        <option value="CO" <?php if($qso->COL_STATE == "CO") { echo "selected=\"selected\""; } ?>>Colorado (CO)</option>
-                                        <option value="CT" <?php if($qso->COL_STATE == "CT") { echo "selected=\"selected\""; } ?>>Connecticut (CT)</option>
-                                        <option value="DE" <?php if($qso->COL_STATE == "DE") { echo "selected=\"selected\""; } ?>>Delaware (DE)</option>
-                                        <option value="DC" <?php if($qso->COL_STATE == "DC") { echo "selected=\"selected\""; } ?>>District Of Columbia (DC)</option>
-                                        <option value="FL" <?php if($qso->COL_STATE == "FL") { echo "selected=\"selected\""; } ?>>Florida (FL)</option>
-                                        <option value="GA" <?php if($qso->COL_STATE == "GA") { echo "selected=\"selected\""; } ?>>Georgia (GA)</option>
-                                        <option value="HI" <?php if($qso->COL_STATE == "HI") { echo "selected=\"selected\""; } ?>>Hawaii (HI)</option>
-                                        <option value="ID" <?php if($qso->COL_STATE == "ID") { echo "selected=\"selected\""; } ?>>Idaho (ID)</option>
-                                        <option value="IL" <?php if($qso->COL_STATE == "IL") { echo "selected=\"selected\""; } ?>>Illinois (IL)</option>
-                                        <option value="IN" <?php if($qso->COL_STATE == "IN") { echo "selected=\"selected\""; } ?>>Indiana (IN)</option>
-                                        <option value="IA" <?php if($qso->COL_STATE == "IA") { echo "selected=\"selected\""; } ?>>Iowa (IA)</option>
-                                        <option value="KS" <?php if($qso->COL_STATE == "KS") { echo "selected=\"selected\""; } ?>>Kansas (KS)</option>
-                                        <option value="KY" <?php if($qso->COL_STATE == "KY") { echo "selected=\"selected\""; } ?>>Kentucky (KY)</option>
-                                        <option value="LA" <?php if($qso->COL_STATE == "LA") { echo "selected=\"selected\""; } ?>>Louisiana (LA)</option>
-                                        <option value="ME" <?php if($qso->COL_STATE == "ME") { echo "selected=\"selected\""; } ?>>Maine (ME)</option>
-                                        <option value="MD" <?php if($qso->COL_STATE == "MD") { echo "selected=\"selected\""; } ?>>Maryland (MD)</option>
-                                        <option value="MA" <?php if($qso->COL_STATE == "MA") { echo "selected=\"selected\""; } ?>>Massachusetts (MA)</option>
-                                        <option value="MI" <?php if($qso->COL_STATE == "MI") { echo "selected=\"selected\""; } ?>>Michigan (MI)</option>
-                                        <option value="MN" <?php if($qso->COL_STATE == "MN") { echo "selected=\"selected\""; } ?>>Minnesota (MN)</option>
-                                        <option value="MS" <?php if($qso->COL_STATE == "MS") { echo "selected=\"selected\""; } ?>>Mississippi (MS)</option>
-                                        <option value="MO" <?php if($qso->COL_STATE == "MO") { echo "selected=\"selected\""; } ?>>Missouri (MO)</option>
-                                        <option value="MT" <?php if($qso->COL_STATE == "MT") { echo "selected=\"selected\""; } ?>>Montana (MT)</option>
-                                        <option value="NE" <?php if($qso->COL_STATE == "NE") { echo "selected=\"selected\""; } ?>>Nebraska (NE)</option>
-                                        <option value="NV" <?php if($qso->COL_STATE == "NV") { echo "selected=\"selected\""; } ?>>Nevada (NV)</option>
-                                        <option value="NH" <?php if($qso->COL_STATE == "NH") { echo "selected=\"selected\""; } ?>>New Hampshire (NH)</option>
-                                        <option value="NJ" <?php if($qso->COL_STATE == "NJ") { echo "selected=\"selected\""; } ?>>New Jersey (NJ)</option>
-                                        <option value="NM" <?php if($qso->COL_STATE == "NM") { echo "selected=\"selected\""; } ?>>New Mexico (NM)</option>
-                                        <option value="NY" <?php if($qso->COL_STATE == "NY") { echo "selected=\"selected\""; } ?>>New York (NY)</option>
-                                        <option value="NC" <?php if($qso->COL_STATE == "NC") { echo "selected=\"selected\""; } ?>>North Carolina (NC)</option>
-                                        <option value="ND" <?php if($qso->COL_STATE == "ND") { echo "selected=\"selected\""; } ?>>North Dakota (ND)</option>
-                                        <option value="OH" <?php if($qso->COL_STATE == "OH") { echo "selected=\"selected\""; } ?>>Ohio (OH)</option>
-                                        <option value="OK" <?php if($qso->COL_STATE == "OK") { echo "selected=\"selected\""; } ?>>Oklahoma (OK)</option>
-                                        <option value="OR" <?php if($qso->COL_STATE == "OR") { echo "selected=\"selected\""; } ?>>Oregon (OR)</option>
-                                        <option value="PA" <?php if($qso->COL_STATE == "PA") { echo "selected=\"selected\""; } ?>>Pennsylvania (PA)</option>
-                                        <option value="RI" <?php if($qso->COL_STATE == "RI") { echo "selected=\"selected\""; } ?>>Rhode Island (RI)</option>
-                                        <option value="SC" <?php if($qso->COL_STATE == "SC") { echo "selected=\"selected\""; } ?>>South Carolina (SC)</option>
-                                        <option value="SD" <?php if($qso->COL_STATE == "SD") { echo "selected=\"selected\""; } ?>>South Dakota (SD)</option>
-                                        <option value="TN" <?php if($qso->COL_STATE == "TN") { echo "selected=\"selected\""; } ?>>Tennessee (TN)</option>
-                                        <option value="TX" <?php if($qso->COL_STATE == "TX") { echo "selected=\"selected\""; } ?>>Texas (TX)</option>
-                                        <option value="UT" <?php if($qso->COL_STATE == "UT") { echo "selected=\"selected\""; } ?>>Utah (UT)</option>
-                                        <option value="VT" <?php if($qso->COL_STATE == "VT") { echo "selected=\"selected\""; } ?>>Vermont (VT)</option>
-                                        <option value="VA" <?php if($qso->COL_STATE == "VA") { echo "selected=\"selected\""; } ?>>Virginia (VA)</option>
-                                        <option value="WA" <?php if($qso->COL_STATE == "WA") { echo "selected=\"selected\""; } ?>>Washington (WA)</option>
-                                        <option value="WV" <?php if($qso->COL_STATE == "WV") { echo "selected=\"selected\""; } ?>>West Virginia (WV)</option>
-                                        <option value="WI" <?php if($qso->COL_STATE == "WI") { echo "selected=\"selected\""; } ?>>Wisconsin (WI)</option>
-                                        <option value="WY" <?php if($qso->COL_STATE == "WY") { echo "selected=\"selected\""; } ?>>Wyoming (WY)</option>
+
+                                        <?php foreach ($state_list->result() as $state) {
+                                            $selected = ($qso->COL_STATE == $state->state) ? 'selected="selected"' : '';
+                                        ?>
+                                            <option value="<?php echo $state->state; ?>" <?php echo $selected; ?>>
+                                                <?php echo $state->subdivision . ' (' . $state->state . ')'; ?>
+                                            </option>
+                                        <?php } ?>
                                     </select>
                                 </div>
-
-                                <div class="mb-3">
+                                
+                                <?php if ($qso->COL_DXCC == '291' || $qso->COL_DXCC == '110'  || $qso->COL_DXCC == '006') { ?>
+                                <div class="mb-3" id="location_us_county">
                                     <label for="stationCntyInput">USA County</label>
-                                    <input disabled="disabled" class="form-control" id="stationCntyInputEdit" type="text" name="usa_county" value="<?php echo $qso->COL_CNTY; ?>" />
+                                    <input class="form-control" id="stationCntyInputEdit" type="text" name="usa_county" value="<?php echo $qso->COL_CNTY; ?>" />
                                 </div>
+                                <?php } ?> 
 
                                 <div class="mb-3">
                                     <label for="iota_ref">IOTA</label>
