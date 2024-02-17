@@ -192,7 +192,6 @@ function style(feature) {
 }
 
 function onClick(e) {
-	zoomToFeature(e);
 	var marker = e.target;
 	displayContactsOnMap($("#helvetiamap"),marker.feature.properties.kan_code[0], $('#band2').val(), $('#mode').val(), 'helvetia');
 }
