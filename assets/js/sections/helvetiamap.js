@@ -182,7 +182,7 @@ function resetHighlight(e) {
 
 function style(feature) {
     return {
-        fillColor: getColor(feature.id),
+        fillColor: getColor(feature.properties.kan_code),
         weight: 1,
         opacity: 1,
         color: 'white',
