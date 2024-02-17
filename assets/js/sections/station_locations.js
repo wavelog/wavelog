@@ -7,6 +7,7 @@ $(document).ready(function () {
 	});
 
 	if (window.location.pathname.indexOf("/station/edit") !== -1 || window.location.pathname.indexOf("/station/create") !== -1) {
+		selectize_usa_county();
 		updateStateDropdown();
 		$("#dxcc_select").change(function () {
 			updateStateDropdown();

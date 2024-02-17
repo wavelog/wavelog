@@ -2,6 +2,10 @@ $( document ).ready(function() {
 	clearTimeout();
 	set_timers();
 	updateStateDropdown();
+	$("#dxcc_id").change(function () {
+		updateStateDropdown();
+	});
+
 
 	function set_timers() {
 		setTimeout(function() {

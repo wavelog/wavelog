@@ -353,7 +353,7 @@
 
             <div class="mb-3" id="location_us_county">
                 <label for="stationCntyInput"><?php echo lang('gen_hamradio_county_reference'); ?></label>
-                <input disabled="disabled" class="form-control" id="stationCntyInput" type="text" name="county" value="" />
+                <input class="form-control" id="stationCntyInput" type="text" name="county" value="" />
             </div>
 
             <div class="mb-3">
