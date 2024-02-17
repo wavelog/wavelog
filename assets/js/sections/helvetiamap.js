@@ -122,15 +122,18 @@ info.onAdd = function (map) {
 
 // method that we will use to update the control based on feature properties passed
 info.update = function (props) {
-    this._div.innerHTML = '<h4>Province</h4>' +  (props ?
-        '<b>' + props.kan_code + ' - ' + props.kan_name + '</b><br />' : 'Hover over a province');
+    this._div.innerHTML = '<h4>Province</h4>' +  (props ? '<b>' + props.kan_code + ' - ' + props.kan_name + '</b><br />' : 'Hover over a province');
 };
 
 info.addTo(map);
 
-  geojson = L.geoJson(mapcoordinates, {style: style, onEachFeature: onEachFeature}).addTo(map);
+geojson = L.geoJSON (mapcoordinates, {
+	style: style,
+	onEachFeature: onEachFeature,
+}).addTo(map);
 
-  map.setView([46.8, 8.4], 8);
+
+map.setView([46.8, 8.4], 8);
 
   //addMarkers();
 
@@ -158,12 +161,12 @@ function clearMarkers() {
   }
 
 function createMarker(i) {
-	var title = '<span class="grid-text" style="cursor: default"><font style="color: \'white\'; font-size: 1em; font-weight: 900;">' + (statearray[i]) + '</font></span>';
+	var title = '<span class="grid-text" style="cursor: default"><font style="color: \'white\'; font-size: 1em; font-weight: 900;">' + (i.properties.kan_code) + '</font></span>';
 	var myIcon = L.divIcon({className: 'my-div-icon', html: title});
 	var marker = L.marker(
-	  [helvetiamarkers[i][0], helvetiamarkers[i][1]], {
+		[i.properties.geo_point_2d.lat, i.properties.geo_point_2d.lon], {
 		icon: myIcon,
-		title: (statearray[i]),
+		title: i.properties.kan_name,
 		zIndex: 1000,
 	  }
 	).addTo(map).on('click', onClick2);
@@ -196,6 +199,7 @@ function onEachFeature(feature, layer) {
         mouseout: resetHighlight,
         click: onClick
     });
+	createMarker(feature);
 }
 
 function zoomToFeature(e) {
@@ -221,10 +225,10 @@ function style(feature) {
 function onClick(e) {
   zoomToFeature(e);
   var marker = e.target;
-  displayContactsOnMap($("#helvetiamap"),marker.feature.id, $('#band2').val(), $('#mode').val(), 'helvetia');
+  displayContactsOnMap($("#helvetiamap"),marker.feature.kan_code, $('#band2').val(), $('#mode').val(), 'helvetia');
 }
 
 function onClick2(e) {
 	var marker = e.target;
-	displayContactsOnMap($("#helvetiamap"), marker.options.title, $('#band2').val(), $('#mode').val(), 'helvetia');
+	displayContactsOnMap($("#helvetiamap"), marker.options.kan_code, $('#band2').val(), $('#mode').val(), 'helvetia');
   }
