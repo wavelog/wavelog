@@ -4,6 +4,7 @@ class Dxcalendar extends CI_Controller {
 
 	public function index()	{
 		$this->load->model('user_model');
+		$this->load->model('logbook_model');
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 
 		$data['page_title'] = "DX Calendar";
@@ -27,6 +28,7 @@ class Dxcalendar extends CI_Controller {
 			$dxped->dxcc = $tempinfo[0];
 			$date = $tempinfo[1] ?? '';
 
+
 			$dxped->dates = $this->extractDates($date, $custom_date_format);
 
 			$dxped->description = $item->description;
@@ -34,7 +36,21 @@ class Dxcalendar extends CI_Controller {
 			$descsplit = explode("\n", $item->description);
 
 			$call = (string) $descsplit[3];
-			$dxped->call = str_replace('--', '', $call);
+			$dxped->call = trim(str_replace('--', '', $call));
+
+			$chk_dxcc=$this->logbook_model->dxcc_lookup($dxped->call,$dxped->dates[2]->format('Y-m-d'));
+			if ($chk_dxcc['adif'] ?? '' != '') {
+				$chk_dxcc_val=$chk_dxcc['adif'];
+				$dxped->no_dxcc=false;
+			} else {
+				$chk_dxcc_val=-1;
+				$dxped->no_dxcc=true;
+			}
+			$dxped->call_wked =$this->logbook_model->check_if_callsign_worked_in_logbook($dxped->call);
+			$dxped->call_cnfmd =$this->logbook_model->check_if_callsign_cnfmd_in_logbook($dxped->call);
+			$dxped->dxcc_wked =$this->logbook_model->check_if_dxcc_worked_in_logbook($chk_dxcc_val);
+			$dxped->dxcc_cnfmd =$this->logbook_model->check_if_dxcc_cnfmd_in_logbook($chk_dxcc_val);
+			$dxped->dxcc_adif = $chk_dxcc_val;
 			$qslinfo = (string) $descsplit[4];
 			$qslinfo = str_replace('--', '', $qslinfo);
 			$dxped->qslinfo = str_replace('QSL: ', '', $qslinfo);
@@ -90,7 +106,7 @@ class Dxcalendar extends CI_Controller {
 
 		// Check if parsing was successful
 		if ($startDateTime !== false && $endDateTime !== false) {
-			return array($startDateTime->format($custom_date_format), $endDateTime->format($custom_date_format));
+			return array($startDateTime->format($custom_date_format), $endDateTime->format($custom_date_format), $startDateTime, $endDateTime);
 		} else {
 			return false; // Failed to parse dates
 		}
