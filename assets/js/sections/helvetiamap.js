@@ -7,24 +7,7 @@ var clickmarkers = [];
 
 const states = 'AG,AI,AR,BE,BL,BS,FR,GE,GL,GR,JU,LU,NE,NW,OW,SG,SH,SO,SZ,TG,TI,UR,VD,VS,ZG,ZH';
 
-const helvetiamarkers = [
-    [ "55", "-115" ],      // AB Alberta
-    [ "55", "-125" ],      // BC British Columbia
-    [ "55", "-99" ],       // MB Manitoba
-    [ "46.5", "-66.4" ],   // NB New Brunswick
-    [ "54.5", "-62.5" ],   // NL Newfoundland And Labrador
-	[ "65", "-120" ],      // NT Northwest Territories
-	[ "45.2", "-63.2" ],   // NS Nova Scotia
-    [ "65", "-99" ],       // NU Nunavut
-    [ "52", "-89" ],       // ON Ontaria
-    [ "46.3", "-62.9" ],   // PE Prince Edward Island
-    [ "52", "-75" ],       // QC Quebec
-	[ "55", "-105" ],      // SK Saskatchewan
-    [ "65", "-135" ]       // YT Yukon
-];
-
-  var statearray = states.split(",");
-
+var statearray = states.split(",");
 
 function load_helvetia_map() {
     $('.nav-tabs a[href="#helvetiamaptab"]').tab('show');
@@ -146,20 +129,6 @@ map.setView([46.8, 8.4], 8);
   maidenhead.addTo(map);
 }
 
-function clearMarkers() {
-	clickmarkers.forEach(function (item) {
-	  map.removeLayer(item)
-	});
-  }
-
-  function addMarkers() {
-	var zoom = map.getZoom();
-
-	for (var i = 0; i < statearray.length; i++) {
-	  createMarker(i);
-	}
-  }
-
 function createMarker(i) {
 	var title = '<span class="grid-text" style="cursor: default"><font style="color: \'white\'; font-size: 1em; font-weight: 900;">' + (i.properties.kan_code) + '</font></span>';
 	var myIcon = L.divIcon({className: 'my-div-icon', html: title});
@@ -168,15 +137,15 @@ function createMarker(i) {
 		icon: myIcon,
 		title: i.properties.kan_name,
 		zIndex: 1000,
-	  }
+	}
 	).addTo(map).on('click', onClick2);
 	clickmarkers.push(marker);
-  }
+}
 
 function getColor(d) {
     return 	province[d] == 'C' ? 'green'  :
 			province[d] == 'W' ? 'orange' :
-									  'red';
+	'red';
 }
 
 function highlightFeature(e) {
@@ -223,12 +192,12 @@ function style(feature) {
 }
 
 function onClick(e) {
-  zoomToFeature(e);
-  var marker = e.target;
-  displayContactsOnMap($("#helvetiamap"),marker.feature.kan_code, $('#band2').val(), $('#mode').val(), 'helvetia');
+	zoomToFeature(e);
+	var marker = e.target;
+	displayContactsOnMap($("#helvetiamap"),marker.feature.kan_code, $('#band2').val(), $('#mode').val(), 'helvetia');
 }
 
 function onClick2(e) {
 	var marker = e.target;
 	displayContactsOnMap($("#helvetiamap"), marker.options.kan_code, $('#band2').val(), $('#mode').val(), 'helvetia');
-  }
+}
