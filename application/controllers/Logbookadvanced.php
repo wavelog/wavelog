@@ -527,4 +527,11 @@ class Logbookadvanced extends CI_Controller {
 		header("Content-Type: application/json");
 		print json_encode($q);
 	}
+
+	public function batchDeleteQsos() {
+		$ids = xss_clean($this->input->post('ids'));
+
+		$this->load->model('logbookadvanced_model');
+		$this->logbookadvanced_model->deleteQsos($ids);
+	}
 }
