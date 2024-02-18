@@ -3,7 +3,7 @@
 /***
  * Libary for common functions, used at many places
  */
-class Generichelpers
+class Genfunctions
 {
 	function addQslToQuery($postdata) {
 		$sql = '';
