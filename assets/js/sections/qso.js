@@ -721,7 +721,7 @@ $("#callsign").focusout(function() {
 				}
 
 				$('#dxcc_id').val(result.dxcc.adif);
-				updateStateDropdown();
+				await updateStateDropdown();
 				$('#cqz').val(result.dxcc.cqz);
 				$('#ituz').val(result.dxcc.ituz);
 
