@@ -8,8 +8,13 @@ class Contestcalendar extends CI_Controller {
 
 		$data['page_title'] = "Contest Calendar";
 
-		$url = 'https://www.contestcalendar.com/calendar.rss';
-		$data['rss'] = simplexml_load_file($url, null, LIBXML_NOCDATA);
+		$this->load->driver('cache', array('adapter' => 'file', 'backup' => 'file'));
+		$rssUrl = 'https://www.contestcalendar.com/calendar.rss';
+		if (!$rssRawData = $this->cache->get('RssRawContestCal')) {
+			$rssRawData = file_get_contents($rssUrl, true);
+			$this->cache->save('RssRawContestCal', $rssRawData, (60*60*12));
+		}
+		$data['rss'] = simplexml_load_string($rssRawData, null, LIBXML_NOCDATA);
 
 		$footerData['scripts'] = [
 			'assets/js/sections/dxcalendar.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/dxcalendar.js"))
