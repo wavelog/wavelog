@@ -623,7 +623,7 @@ $("#callsign").focusout(function() {
 		find_callsign=find_callsign.replace('Ø', '0');
 
 		// Replace / in a callsign with - to stop urls breaking
-		$.getJSON(base_url + 'index.php/logbook/json/' + find_callsign + '/' + sat_type + '/' + json_band + '/' + json_mode + '/' + $('#stationProfile').val(), function(result)
+		$.getJSON(base_url + 'index.php/logbook/json/' + find_callsign + '/' + sat_type + '/' + json_band + '/' + json_mode + '/' + $('#stationProfile').val(), async function(result)
 		{
 
 			// Make sure the typed callsign and json result match
@@ -638,7 +638,7 @@ $("#callsign").focusout(function() {
 
 					if($("#sat_name" ).val() != "") {
 						//logbook/jsonlookupgrid/io77/SAT/0/0
-						$.getJSON(base_url + 'index.php/logbook/jsonlookupcallsign/' + find_callsign + '/SAT/0/0', function(result)
+						await $.getJSON(base_url + 'index.php/logbook/jsonlookupcallsign/' + find_callsign + '/SAT/0/0', function(result)
 						{
 							// Reset CSS values before updating
 							$('#callsign').removeClass("workedGrid");
@@ -660,7 +660,7 @@ $("#callsign").focusout(function() {
 							}
 						})
 					} else {
-						$.getJSON(base_url + 'index.php/logbook/jsonlookupcallsign/' + find_callsign + '/0/' + $("#band").val() +'/' + $("#mode").val(), function(result)
+						await $.getJSON(base_url + 'index.php/logbook/jsonlookupcallsign/' + find_callsign + '/0/' + $("#band").val() +'/' + $("#mode").val(), function(result)
 						{
 							// Reset CSS values before updating
 							$('#callsign').removeClass("confirmedGrid");
