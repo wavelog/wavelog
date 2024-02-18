@@ -2,70 +2,69 @@
 
 class IOTA extends CI_Model {
 
-    function get_iota_array($iotaArray, $bands, $postdata) {
+	function get_iota_array($iotaArray, $bands, $postdata) {
 		$CI =& get_instance();
 		$CI->load->model('logbooks_model');
 		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
-        if (!$logbooks_locations_array) {
-            return null;
-        }
+		if (!$logbooks_locations_array) {
+			return null;
+		}
 
 		$location_list = "'".implode("','",$logbooks_locations_array)."'";
 
-        foreach ($bands as $band) {             	// Looping through bands and iota to generate the array needed for display
-            foreach ($iotaArray as $iota) {
-                $iotaMatrix[$iota->tag]['prefix'] = $iota->prefix;
-                $iotaMatrix[$iota->tag]['name'] = $iota->name;
-                if ($postdata['includedeleted'])
-                    $iotaMatrix[$iota->tag]['Deleted'] = isset($iota->status) && $iota->status == 'D' ? "<div class='alert-danger'>Y</div>" : '';
-                $iotaMatrix[$iota->tag][$band] = '-';
-            }
+		foreach ($bands as $band) {             	// Looping through bands and iota to generate the array needed for display
+			foreach ($iotaArray as $iota) {
+				$iotaMatrix[$iota->tag]['prefix'] = $iota->prefix;
+				$iotaMatrix[$iota->tag]['name'] = $iota->name;
+				if ($postdata['includedeleted'])
+					$iotaMatrix[$iota->tag]['Deleted'] = isset($iota->status) && $iota->status == 'D' ? "<div class='alert-danger'>Y</div>" : '';
+				$iotaMatrix[$iota->tag][$band] = '-';
+			}
 
-            // If worked is checked, we add worked iotas to the array
-            if ($postdata['worked'] != NULL) {
-                $workedIota = $this->getIotaBandWorked($location_list, $band, $postdata);
-                foreach ($workedIota as $wiota) {
-                    $iotaMatrix[$wiota->tag][$band] = '<div class="bg-danger awardsBgDanger"><a href=\'javascript:displayContacts("'.$wiota->tag.'","'. $band . '","'. $postdata['mode'] . '","IOTA")\'>W</a></div>';
-                }
-            }
+			// If worked is checked, we add worked iotas to the array
+			if ($postdata['worked'] ?? '' != '') {
+				$workedIota = $this->getIotaBandWorked($location_list, $band, $postdata);
+				foreach ($workedIota as $wiota) {
+					$iotaMatrix[$wiota->tag][$band] = '<div class="bg-danger awardsBgDanger"><a href=\'javascript:displayContacts("'.$wiota->tag.'","'. $band . '","'. $postdata['mode'] . '","IOTA")\'>W</a></div>';
+				}
+			}
 
-            // If confirmed is checked, we add confirmed iotas to the array
-            if ($postdata['confirmed'] != NULL) {
-                $confirmedIota = $this->getIotaBandConfirmed($location_list, $band, $postdata);
-                foreach ($confirmedIota as $ciota) {
-                    $iotaMatrix[$ciota->tag][$band] = '<div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("'.$ciota->tag.'","'. $band . '","'. $postdata['mode'] . '","IOTA")\'>C</a></div>';
-                }
-            }
-        }
+			// If confirmed is checked, we add confirmed iotas to the array
+			if ($postdata['confirmed'] ?? '' != '') {
+				$confirmedIota = $this->getIotaBandConfirmed($location_list, $band, $postdata);
+				foreach ($confirmedIota as $ciota) {
+					$iotaMatrix[$ciota->tag][$band] = '<div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("'.$ciota->tag.'","'. $band . '","'. $postdata['mode'] . '","IOTA")\'>C</a></div>';
+				}
+			}
+		}
 
-        // We want to remove the worked iotas in the list, since we do not want to display them
-        if ($postdata['worked'] == NULL) {
-            $workedIota = $this->getIotaWorked($location_list, $postdata);
-            foreach ($workedIota as $wiota) {
-                if (array_key_exists($wiota->tag, $iotaMatrix)) {
-                    unset($iotaMatrix[$wiota->tag]);
-                }
-            }
-        }
+		// We want to remove the worked iotas in the list, since we do not want to display them
+		if ($postdata['worked'] ?? '' == '') {
+			$workedIota = $this->getIotaWorked($location_list, $postdata);
+			foreach ($workedIota as $wiota) {
+				if (array_key_exists($wiota->tag, $iotaMatrix)) {
+					unset($iotaMatrix[$wiota->tag]);
+				}
+			}
+		}
 
-        // We want to remove the confirmed iotas in the list, since we do not want to display them
-        if ($postdata['confirmed'] == NULL) {
-            $confirmedIOTA = $this->getIotaConfirmed($location_list, $postdata);
-            foreach ($confirmedIOTA as $ciota) {
-                if (array_key_exists($ciota->tag, $iotaMatrix)) {
-                    unset($iotaMatrix[$ciota->tag]);
-                }
-            }
-        }
+		// We want to remove the confirmed iotas in the list, since we do not want to display them
+		if ($postdata['confirmed'] ?? '' == '') {
+			$confirmedIOTA = $this->getIotaConfirmed($location_list, $postdata);
+			foreach ($confirmedIOTA as $ciota) {
+				if (array_key_exists($ciota->tag, $iotaMatrix)) {
+					unset($iotaMatrix[$ciota->tag]);
+				}
+			}
+		}
 
-        if (isset($iotaMatrix)) {
-            return $iotaMatrix;
-        }
-        else {
-            return 0;
-        }
-    }
+		if (isset($iotaMatrix)) {
+			return $iotaMatrix;
+		} else {
+			return 0;
+		}
+	}
 
     function getIotaBandConfirmed($location_list, $band, $postdata) {
         $sql = "SELECT distinct col_iota as tag FROM " . $this->config->item('table_name') . " thcv
@@ -80,7 +79,7 @@ class IOTA extends CI_Model {
 
         $sql .= $this->addBandToQuery($band);
 
-        if ($postdata['includedeleted'] == NULL) {
+        if ($postdata['includedeleted'] ?? '' == '') {
             $sql .= " and coalesce(iota.status, '') <> 'D'";
         }
 
@@ -103,7 +102,7 @@ class IOTA extends CI_Model {
 
         $sql .= $this->addBandToQuery($band);
 
-        if ($postdata['includedeleted'] == NULL) {
+        if ($postdata['includedeleted'] ?? '' == '') {
             $sql .= " and coalesce(iota.status, '') <> 'D'";
         }
 
@@ -115,47 +114,47 @@ class IOTA extends CI_Model {
     }
 
     function fetchIota($postdata) {
-		$CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+	    $CI =& get_instance();
+	    $CI->load->model('logbooks_model');
+	    $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
-        if (!$logbooks_locations_array) {
-            return null;
-        }
+	    if (!$logbooks_locations_array) {
+		    return null;
+	    }
 
-		$location_list = "'".implode("','",$logbooks_locations_array)."'";
+	    $location_list = "'".implode("','",$logbooks_locations_array)."'";
 
-        $sql = "select tag, name, prefix, dxccid, status, lat1, lat2, lon1, lon2 from iota where 1=1";
+	    $sql = "select tag, name, prefix, dxccid, status, lat1, lat2, lon1, lon2 from iota where 1=1";
 
-        if ($postdata['includedeleted'] == NULL) {
-            $sql .= " and coalesce(iota.status, '') <> 'D'";
-        }
+	    if ($postdata['includedeleted'] ?? '' == '') {
+		    $sql .= " and coalesce(iota.status, '') <> 'D'";
+	    }
 
-        $sql .= $this->addContinentsToQuery($postdata);
+	    $sql .= $this->addContinentsToQuery($postdata);
 
-        if ($postdata['notworked'] == NULL) {
-            $sql .= " and exists (select 1 from " . $this->config->item('table_name') . " where station_id in (". $location_list . ") and col_iota = iota.tag";
+	    if ($postdata['notworked'] ?? '' == '') {
+		    $sql .= " and exists (select 1 from " . $this->config->item('table_name') . " where station_id in (". $location_list . ") and col_iota = iota.tag";
 
-			if ($postdata['mode'] != 'All') {
-				$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
-			}
+		    if ($postdata['mode'] != 'All') {
+			    $sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
+		    }
 
-            if ($postdata['band'] != 'All') {
-                if ($postdata['band'] == 'SAT') {
-                    $sql .= " and col_prop_mode ='" . $postdata['band'] . "'";
-                }
-                else {
-                    $sql .= " and col_prop_mode !='SAT'";
-                    $sql .= " and col_band ='" . $postdata['band'] . "'";
-                }
-            }
-            $sql .= ")";
-        }
+		    if ($postdata['band'] != 'All') {
+			    if ($postdata['band'] == 'SAT') {
+				    $sql .= " and col_prop_mode ='" . $postdata['band'] . "'";
+			    }
+			    else {
+				    $sql .= " and col_prop_mode !='SAT'";
+				    $sql .= " and col_band ='" . $postdata['band'] . "'";
+			    }
+		    }
+		    $sql .= ")";
+	    }
 
-        $sql .= ' order by tag';
-        $query = $this->db->query($sql);
+	    $sql .= ' order by tag';
+	    $query = $this->db->query($sql);
 
-        return $query->result();
+	    return $query->result();
     }
 
     function getIotaWorked($location_list, $postdata) {
@@ -176,7 +175,7 @@ class IOTA extends CI_Model {
 
         $sql .= $this->addBandToQuery($postdata['band']);
 
-        if ($postdata['includedeleted'] == NULL) {
+        if ($postdata['includedeleted'] ?? '' == '') {
             $sql .= " and coalesce(iota.status, '') <> 'D'";
         }
 
@@ -202,7 +201,7 @@ class IOTA extends CI_Model {
 			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
 		}
 
-        if ($postdata['includedeleted'] == NULL) {
+        if ($postdata['includedeleted'] ?? '' == '') {
             $sql .= " and coalesce(iota.status, '') <> 'D'";
         }
 
@@ -218,31 +217,31 @@ class IOTA extends CI_Model {
     // Made function instead of repeating this several times
     function addContinentsToQuery($postdata) {
         $sql = '';
-        if ($postdata['Africa'] == NULL) {
+        if ($postdata['Africa'] ?? '' == '') {
             $sql .= " and left(tag, 2) <> 'AF'";
         }
 
-        if ($postdata['Europe'] == NULL) {
+        if ($postdata['Europe'] ?? '' == '') {
             $sql .= " and left(tag, 2) <> 'EU'";
         }
 
-        if ($postdata['Asia'] == NULL) {
+        if ($postdata['Asia'] ?? '' == '') {
             $sql .= " and left(tag, 2) <> 'AS'";
         }
 
-        if ($postdata['SouthAmerica'] == NULL) {
+        if ($postdata['SouthAmerica'] ?? '' == '') {
             $sql .= " and left(tag, 2) <> 'SA'";
         }
 
-        if ($postdata['NorthAmerica'] == NULL) {
+        if ($postdata['NorthAmerica'] ?? '' == '') {
             $sql .= " and left(tag, 2) <> 'NA'";
         }
 
-        if ($postdata['Oceania'] == NULL) {
+        if ($postdata['Oceania'] ?? '' == '') {
             $sql .= " and left(tag, 2) <> 'OC'";
         }
 
-        if ($postdata['Antarctica'] == NULL) {
+        if ($postdata['Antarctica'] ?? '' == '') {
             $sql .= " and left(tag, 2) <> 'AN'";
         }
         return $sql;
@@ -302,7 +301,7 @@ class IOTA extends CI_Model {
             $sql .= " and thcv.col_band ='" . $band . "'";
         }
 
-        if ($postdata['includedeleted'] == NULL) {
+        if ($postdata['includedeleted'] ?? '' == '') {
             $sql .= " and coalesce(iota.status, '') <> 'D'";
         }
 
@@ -340,7 +339,7 @@ class IOTA extends CI_Model {
             $sql .= " and thcv.col_band ='" . $band . "'";
         }
 
-        if ($postdata['includedeleted'] == NULL) {
+        if ($postdata['includedeleted'] ?? '' == '') {
             $sql .= " and coalesce(iota.status, '') <> 'D'";
         }
 
