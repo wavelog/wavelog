@@ -66,6 +66,18 @@ $lang['awards_ffma_description_ln4'] = "如需了解更多信息，您可以访�
 
 /*
 ___________________________________________________________________________________________
+H26 -- Use all 4 Lines of Text
+___________________________________________________________________________________________
+*/
+
+$lang['awards_helvetia_description_ln1'] = "HELVETIA 26 | SWITZERLAND AWARD";
+$lang['awards_helvetia_description_ln2'] = "The USKA (Union of Swiss Shortwave Amateurs) sponsors two awards, the HELVETIA 26 (H26) Award and the SWITZERLAND Award, aimed at promoting activities on the bands by encouraging contacts across as many Swiss cantons as possible on multiple bands.";
+$lang['awards_helvetia_description_ln3'] = "These awards come in two versions: one for HF bands and the other for VHF (including SHF and UHF) bands. Valid connections for these awards date back to January 1, 1980";
+$lang['awards_helvetia_description_ln4'] = "For more information, you can visit this link: <a href='https://www.uska.ch/contest/uska-diplome/' target='_blank'>https://www.uska.ch/contest/uska-diplome/</a>.";
+
+
+/*
+___________________________________________________________________________________________
 IOTA -- Use all 4 Lines of Text
 ___________________________________________________________________________________________
 */

@@ -2,6 +2,7 @@
 $cq = 0;
 $dok = 0;
 $dxcc = 0;
+$helvetia = 0;
 $iota = 0;
 $pota = 0;
 $sig = 0;
@@ -45,6 +46,7 @@ $wwff = 0;
 					<th><?php echo lang('gen_hamradio_cq'); ?></th>
                     <th><?php echo lang('gen_hamradio_dok'); ?></th>
                     <th><?php echo lang('gen_hamradio_dxcc'); ?></th>
+					<th><?php echo lang('menu_helvetia'); ?></th>
                     <th><?php echo lang('gen_hamradio_iota'); ?></th>
 					<th><?php echo lang('gen_hamradio_pota'); ?></th>
 					<th><?php echo lang('gen_hamradio_sig'); ?></th>
@@ -72,6 +74,7 @@ $wwff = 0;
 					<td style="text-align: center; vertical-align: middle;" class='cq_<?php echo $band->id ?>'><input type="checkbox" <?php if ($band->cq == 1) {echo 'checked'; $cq++;}?>></td>
                     <td style="text-align: center; vertical-align: middle;" class='dok_<?php echo $band->id ?>'><input type="checkbox" <?php if ($band->dok == 1) {echo 'checked'; $dok++;}?>></td>
                     <td style="text-align: center; vertical-align: middle;" class='dxcc_<?php echo $band->id ?>'><input type="checkbox" <?php if ($band->dxcc == 1) {echo 'checked'; $dxcc++;}?>></td>
+					<td style="text-align: center; vertical-align: middle;" class='helvetia_<?php echo $band->id ?>'><input type="checkbox" <?php if ($band->helvetia == 1) {echo 'checked'; $helvetia++;}?>></td>
                     <td style="text-align: center; vertical-align: middle;" class='iota_<?php echo $band->id ?>'><input type="checkbox" <?php if ($band->iota == 1) {echo 'checked'; $iota++;}?>></td>
                     <td style="text-align: center; vertical-align: middle;" class='pota_<?php echo $band->id ?>'><input type="checkbox" <?php if ($band->pota == 1) {echo 'checked'; $pota++;}?>></td>
                     <td style="text-align: center; vertical-align: middle;" class='sig_<?php echo $band->id ?>'><input type="checkbox" <?php if ($band->sig == 1) {echo 'checked'; $sig++;}?>></td>
@@ -103,6 +106,7 @@ $wwff = 0;
 					<th class="master_cq"><input type="checkbox" <?php if ($cq > 0) echo 'checked';?>></th>
 					<th class="master_dok"><input type="checkbox" <?php if ($dok > 0) echo 'checked';?>></th>
 					<th class="master_dxcc"><input type="checkbox" <?php if ($dxcc > 0) echo 'checked';?>></th>
+					<th class="master_helvetia"><input type="checkbox" <?php if ($helvetia > 0) echo 'checked';?>></th>
 					<th class="master_iota"><input type="checkbox" <?php if ($iota > 0) echo 'checked';?>></th>
 					<th class="master_pota"><input type="checkbox" <?php if ($pota > 0) echo 'checked';?>></th>
 					<th class="master_sig"><input type="checkbox" <?php if ($sig > 0) echo 'checked';?>></th>
