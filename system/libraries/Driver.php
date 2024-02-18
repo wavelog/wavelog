@@ -49,6 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author		EllisLab Dev Team
  * @link
  */
+#[AllowDynamicProperties] 	// DJ7NT added for PHP 8.2 compat
 class CI_Driver_Library {
 
 	/**
