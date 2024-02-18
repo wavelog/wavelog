@@ -801,11 +801,9 @@ $("#callsign").focusout(function() {
 				/*
 				* Update state with returned value
 				*/
-				setTimeout(function() { // we have some kind of raceconditions here... just a hotfix atm
 					if($("#stateDropdown").val() == "") {
 						$("#stateDropdown").val(result.callsign_state);
 					}
-				}, 1000);
 
 				/*
 				* Update county with returned value
