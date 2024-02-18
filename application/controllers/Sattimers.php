@@ -21,7 +21,7 @@ class Sattimers extends CI_Controller {
 		$this->load->driver('cache', array('adapter' => 'file', 'backup' => 'file'));
 		if (!$RawData = $this->cache->get('SatTimers'.strtoupper($this->stations->find_gridsquare()))) {
 			$RawData = file_get_contents($url, true);
-			$this->cache->save('SatTimers'.strtoupper($this->stations->find_gridsquare()), $RawData, (60*10));
+			$this->cache->save('SatTimers'.strtoupper($this->stations->find_gridsquare()), $RawData, (60*1));
 		} 
 
 		$json = $RawData;
