@@ -2,6 +2,10 @@
 
 class CQ extends CI_Model{
 
+	function __construct() {
+		$this->load->library('Generichelpers');
+	}
+
     function get_cq_array($bands, $postdata, $location_list) {
         $cqZ = array(); // Used for keeping track of which states that are not worked
 
@@ -9,22 +13,8 @@ class CQ extends CI_Model{
             $cqZ[$i]['count'] = 0;                   // Inits each cq zone's count
         }
 
-        $qsl = "";
-        if ($postdata['confirmed'] != NULL) {
-            if ($postdata['qsl'] != NULL ) {
-                $qsl .= "Q";
-            }
-            if ($postdata['lotw'] != NULL ) {
-                $qsl .= "L";
-            }
-            if ($postdata['eqsl'] != NULL ) {
-                $qsl .= "E";
-            }
-            if ($postdata['qrz'] != NULL ) {
-                $qsl .= "Z";
-            }
-        }
-
+        $qsl = $this->generichelpers->gen_qsl_from_postdata($postdata);
+        
         foreach ($bands as $band) {
             for ($i = 1; $i <= 40; $i++) {
                 $bandCq[$i][$band] = '-';                  // Sets all to dash to indicate no result
@@ -89,7 +79,7 @@ class CQ extends CI_Model{
 			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
 		}
 
-        $sql .= $this->addBandToQuery($band);
+        $sql .= $this->generichelpers->addBandToQuery($band);
 
         $sql .= " and not exists (select 1 from " . $this->config->item('table_name') .
             " where station_id in (" . $location_list .
@@ -99,9 +89,9 @@ class CQ extends CI_Model{
 			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
 		}
 
-        $sql .= $this->addBandToQuery($band);
+        $sql .= $this->generichelpers->addBandToQuery($band);
 
-        $sql .= $this->addQslToQuery($postdata);
+        $sql .= $this->generichelpers->addQslToQuery($postdata);
 
         $sql .= ")";
 
@@ -122,56 +112,15 @@ class CQ extends CI_Model{
 			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
 		}
 
-        $sql .= $this->addBandToQuery($band);
+        $sql .= $this->generichelpers->addBandToQuery($band);
 
-        $sql .= $this->addQslToQuery($postdata);
+        $sql .= $this->generichelpers->addQslToQuery($postdata);
 
         $query = $this->db->query($sql);
 
         return $query->result();
     }
 
-    function addQslToQuery($postdata) {
-	    $sql = '';
-	    $qsl = array();
-	    if ($postdata['qrz'] != NULL || $postdata['lotw'] != NULL || $postdata['qsl'] != NULL || $postdata['eqsl'] != NULL) {
-		    $sql .= ' and (';
-		    if ($postdata['qsl'] != NULL) {
-			    array_push($qsl, "col_qsl_rcvd = 'Y'");
-		    }
-		    if ($postdata['lotw'] != NULL) {
-			    array_push($qsl, "col_lotw_qsl_rcvd = 'Y'");
-		    }
-		    if ($postdata['eqsl'] != NULL) {
-			    array_push($qsl, "col_eqsl_qsl_rcvd = 'Y'");
-		    }
-		    if ($postdata['qrz'] != NULL) {
-			    array_push($qsl, "COL_QRZCOM_QSO_DOWNLOAD_STATUS = 'Y'");
-		    }
-		    if (count($qsl) > 0) {
-			    $sql .= implode(' or ', $qsl);
-		    } else {
-			    $sql .= '1=0';
-		    }
-		    $sql .= ')';
-	    } else {
-		    $sql.=' and 1=0';
-	    }
-	    return $sql;
-    }
-
-    function addBandToQuery($band) {
-        $sql = '';
-        if ($band != 'All') {
-            if ($band == 'SAT') {
-                $sql .= " and col_prop_mode ='" . $band . "'";
-            } else {
-                $sql .= " and col_prop_mode !='SAT'";
-                $sql .= " and col_band ='" . $band . "'";
-            }
-        }
-        return $sql;
-    }
 
     /*
     * Function gets worked and confirmed summary on each band on the active stationprofile
@@ -248,7 +197,7 @@ class CQ extends CI_Model{
 			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
 		}
 
-        $sql .= $this->addQslToQuery($postdata);
+        $sql .= $this->generichelpers->addQslToQuery($postdata);
 
         $query = $this->db->query($sql);
 
