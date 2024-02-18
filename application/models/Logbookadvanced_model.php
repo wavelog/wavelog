@@ -466,4 +466,23 @@ class Logbookadvanced_model extends CI_Model {
 
         return $this->db->get()->result();
     }
+
+	function saveEditedQsos($ids, $column, $value) {
+		switch($column) {
+			case "cqz": $column = 'COL_CQZ'; break;
+			case "dxcc": $column = 'COL_DXCC'; break;
+			case "iota": $column = 'COL_IOTA'; break;
+			case "was": $column = 'COL_STATE'; break;
+			case "propagation": $column = 'COL_PROP_MODE'; break;
+			default: return;
+		}
+
+		$this->db->trans_start();
+		$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ".$this->config->item('table_name').".station_id = station_profile.station_id SET " . $column . " = ? WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
+
+		$query = $this->db->query($sql, array($value, json_decode($ids, true), $this->session->userdata('user_id')));
+		$this->db->trans_complete();
+
+		return array('message' => 'OK');
+    }
 }

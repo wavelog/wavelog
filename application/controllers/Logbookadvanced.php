@@ -87,6 +87,8 @@ class Logbookadvanced extends CI_Controller {
 			'assets/js/moment.min.js',
 			'assets/js/datetime-moment.js',
 			'assets/js/sections/logbookadvanced.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/logbookadvanced.js")),
+			'assets/js/sections/logbookadvanced_edit.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/logbookadvanced_edit.js")),
+			'assets/js/sections/logbookadvanced_map.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/logbookadvanced_map.js")),
 			'assets/js/sections/cqmap_geojson.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/cqmap_geojson.js")),
 			'assets/js/sections/itumap_geojson.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/itumap_geojson.js")),
 			'assets/js/leaflet/L.Terminator.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/leaflet/L.Terminator.js")),
@@ -494,5 +496,35 @@ class Logbookadvanced extends CI_Controller {
 		$this->user_options_model->set_option('LogbookAdvancedMap', 'cqzones_layer',  array('boolean' => xss_clean($this->input->post('cqzone_layer'))));
 		$this->user_options_model->set_option('LogbookAdvancedMap', 'ituzones_layer',  array('boolean' => xss_clean($this->input->post('ituzone_layer'))));
 		$this->user_options_model->set_option('LogbookAdvancedMap', 'nightshadow_layer',  array('boolean' => xss_clean($this->input->post('nightshadow_layer'))));
+	}
+
+	public function editDialog() {
+		$this->load->view('logbookadvanced/edit');
+	}
+
+	public function saveBatchEditQsos() {
+		$ids = xss_clean($this->input->post('ids'));
+		$column = xss_clean($this->input->post('column'));
+		$value = xss_clean($this->input->post('value'));
+
+		$this->load->model('logbookadvanced_model');
+		$this->logbookadvanced_model->saveEditedQsos($ids, $column, $value);
+
+		$data = $this->logbookadvanced_model->getQsosForAdif($ids, $this->session->userdata('user_id'));
+
+		$results = $data->result('array');
+
+        $qsos = [];
+        foreach ($results as $data) {
+            $qsos[] = new QSO($data);
+        }
+
+		$q = [];
+		foreach ($qsos as $qso) {
+			$q[] = $qso->toArray();
+		}
+
+		header("Content-Type: application/json");
+		print json_encode($q);
 	}
 }
