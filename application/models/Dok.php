@@ -2,6 +2,10 @@
 
 class DOK extends CI_Model {
 
+	function __construct() {
+		$this->load->library('Generichelpers');
+	}
+
 	function get_dok_array($bands, $postdata, $location_list) {
 		$doks = array();
 
@@ -13,21 +17,7 @@ class DOK extends CI_Model {
 			$doks[$dok->COL_DARC_DOK]['count'] = 0;
 		}
 
-		$qsl = "";
-		if ($postdata['confirmed'] != NULL) {
-			if ($postdata['qsl'] != NULL ) {
-				$qsl .= "Q";
-			}
-			if ($postdata['lotw'] != NULL ) {
-				$qsl .= "L";
-			}
-			if ($postdata['eqsl'] != NULL ) {
-				$qsl .= "E";
-			}
-			if ($postdata['qrz'] != NULL ) {
-				$qsl .= "Z";
-			}
-		}
+        	$qsl = $this->generichelpers->gen_qsl_from_postdata($postdata);
 
 		foreach ($bands as $band) {
 			foreach ($list as $dok) {
@@ -98,13 +88,13 @@ class DOK extends CI_Model {
 			$sql .= " AND (COL_MODE = '" . $postdata['mode'] . "' OR COL_SUBMODE = '" . $postdata['mode'] . "')";
 		}
 		$sql .= $this->addDokTypeToQuery($postdata['doks']);
-		$sql .= $this->addBandToQuery($band);
+		$sql .= $this->generichelpers->addBandToQuery($band);
 		$sql .= " AND NOT EXISTS (SELECT 1 from " . $this->config->item('table_name') .
 			" WHERE station_id in (" . $location_list .
 			") AND COL_DARC_DOK = thcv.COL_DARC_DOK AND COL_DARC_DOK <> '' AND COL_DARC_DOK <> 'NM' ";
 		$sql .= $this->addDokTypeToQuery($postdata['doks']);
-		$sql .= $this->addBandToQuery($band);
-		$sql .= $this->addQslToQuery($postdata);
+		$sql .= $this->generichelpers->addBandToQuery($band);
+		$sql .= $this->generichelpers->addQslToQuery($postdata);
 		$sql .= ")";
 		$query = $this->db->query($sql);
 
@@ -119,52 +109,12 @@ class DOK extends CI_Model {
 			$sql .= " AND (COL_MODE = '" . $postdata['mode'] . "' or COL_SUBMODE = '" . $postdata['mode'] . "')";
 		}
 		$sql .= $this->addDokTypeToQuery($postdata['doks']);
-		$sql .= $this->addBandToQuery($band);
-		$sql .= $this->addQslToQuery($postdata);
+		$sql .= $this->generichelpers->addBandToQuery($band);
+		$sql .= $this->generichelpers->addQslToQuery($postdata);
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
 
-	function addQslToQuery($postdata) {
-		$sql = '';
-		$qsl = array();
-		if ($postdata['qrz'] != NULL || $postdata['lotw'] != NULL || $postdata['qsl'] != NULL || $postdata['eqsl'] != NULL) {
-			$sql .= ' and (';
-			if ($postdata['qsl'] != NULL) {
-				array_push($qsl, "col_qsl_rcvd = 'Y'");
-			}
-			if ($postdata['lotw'] != NULL) {
-				array_push($qsl, "col_lotw_qsl_rcvd = 'Y'");
-			}
-			if ($postdata['eqsl'] != NULL) {
-				array_push($qsl, "col_eqsl_qsl_rcvd = 'Y'");
-			}
-			if ($postdata['qrz'] != NULL) {
-				array_push($qsl, "COL_QRZCOM_QSO_DOWNLOAD_STATUS = 'Y'");
-			}
-			if (count($qsl) > 0) {
-				$sql .= implode(' or ', $qsl);
-			} else {
-				$sql .= '1=0';
-			}
-			$sql .= ')';
-		} else {
-			$sql.=' and 1=0';
-		}
-		return $sql;
-	}
-	function addBandToQuery($band) {
-		$sql = '';
-		if ($band != 'All') {
-			if ($band == 'SAT') {
-				$sql .= " AND COL_PROP_MODE ='" . $band . "'";
-			} else {
-				$sql .= " AND COL_PROP_MODE !='SAT'";
-				$sql .= " AND col_BAND ='" . $band . "'";
-			}
-		}
-		return $sql;
-	}
 
 	function addDokTypeToQuery($doks) {
 		$sql = '';
@@ -236,7 +186,7 @@ class DOK extends CI_Model {
 		} else if ($postdata['doks'] == 'sdok') {
 			$sql .= " AND COL_DARC_DOK NOT REGEXP '^[A-Z][0-9]{2}$'";
 		}
-		$sql .= $this->addQslToQuery($postdata);
+		$sql .= $this->generichelpers->addQslToQuery($postdata);
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
