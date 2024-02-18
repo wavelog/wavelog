@@ -480,7 +480,7 @@ class Logbookadvanced_model extends CI_Model {
 		$this->db->trans_start();
 		$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ".$this->config->item('table_name').".station_id = station_profile.station_id SET " . $column . " = ? WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
 
-		$query = $this->db->query($sql, array($value, $ids, $this->session->userdata('user_id')));
+		$query = $this->db->query($sql, array($value, json_decode($ids, true), $this->session->userdata('user_id')));
 		$this->db->trans_complete();
 
 		return array('message' => 'OK');
