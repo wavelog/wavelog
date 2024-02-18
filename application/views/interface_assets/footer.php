@@ -1930,7 +1930,50 @@ $(document).ready(function(){
         $(".buttons-csv").css("color", "white");
     }
  </script>
-    <?php } ?>
+<?php } ?>
+
+<?php if ($this->uri->segment(2) == "helvetia") { ?>
+<script>
+    $('.tablehelvetia').DataTable({
+        "pageLength": 25,
+        responsive: false,
+        ordering: false,
+        "scrollY":        "400px",
+        "scrollCollapse": true,
+        "paging":         false,
+        "scrollX": true,
+        "language": {
+            url: getDataTablesLanguageUrl(),
+        },
+        dom: 'Bfrtip',
+        buttons: [
+            'csv'
+        ]
+    });
+
+    $('.tablesummary').DataTable({
+        info: false,
+        searching: false,
+        ordering: false,
+        "paging":         false,
+        "language": {
+            url: getDataTablesLanguageUrl(),
+        },
+        dom: 'Bfrtip',
+        "language": {
+            url: getDataTablesLanguageUrl(),
+        },
+        buttons: [
+            'csv'
+        ]
+    });
+
+    // change color of csv-button if dark mode is chosen
+    if (isDarkModeTheme()) {
+        $(".buttons-csv").css("color", "white");
+    }
+ </script>
+<?php } ?>
 
 <?php if ($this->uri->segment(2) == "vucc_band") { ?>
     <script>
