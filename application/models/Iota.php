@@ -1,8 +1,11 @@
 <?php
 
 class IOTA extends CI_Model {
+	function __construct() {
+		$this->load->library('Genfunctions');
+	}
 
-    function get_iota_array($iotaArray, $bands, $postdata) {
+    	function get_iota_array($iotaArray, $bands, $postdata) {
 		$CI =& get_instance();
 		$CI->load->model('logbooks_model');
 		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
@@ -78,7 +81,7 @@ class IOTA extends CI_Model {
 			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
 		}
 
-        $sql .= $this->addBandToQuery($band);
+        $sql .= $this->genfunctions->addBandToQuery($band);
 
         if ($postdata['includedeleted'] == NULL) {
             $sql .= " and coalesce(iota.status, '') <> 'D'";
@@ -101,7 +104,7 @@ class IOTA extends CI_Model {
 			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
 		}
 
-        $sql .= $this->addBandToQuery($band);
+        $sql .= $this->genfunctions->addBandToQuery($band);
 
         if ($postdata['includedeleted'] == NULL) {
             $sql .= " and coalesce(iota.status, '') <> 'D'";
@@ -170,11 +173,11 @@ class IOTA extends CI_Model {
 			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
 		}
 
-        $sql .= $this->addBandToQuery($postdata['band']);
+        $sql .= $this->genfunctions->addBandToQuery($postdata['band']);
 
         $sql .= " and (col_qsl_rcvd = 'Y' or col_lotw_qsl_rcvd = 'Y'))";
 
-        $sql .= $this->addBandToQuery($postdata['band']);
+        $sql .= $this->genfunctions->addBandToQuery($postdata['band']);
 
         if ($postdata['includedeleted'] == NULL) {
             $sql .= " and coalesce(iota.status, '') <> 'D'";
@@ -208,7 +211,7 @@ class IOTA extends CI_Model {
 
         $sql .= $this->addContinentsToQuery($postdata);
 
-        $sql .= $this->addBandToQuery($postdata['band']);
+        $sql .= $this->genfunctions->addBandToQuery($postdata['band']);
 
         $query = $this->db->query($sql);
 
@@ -357,17 +360,5 @@ class IOTA extends CI_Model {
         return $query->result();
     }
 
-    function addBandToQuery($band) {
-        $sql = '';
-        if ($band != 'All') {
-            if ($band == 'SAT') {
-                $sql .= " and col_prop_mode ='" . $band . "'";
-            } else {
-                $sql .= " and col_prop_mode !='SAT'";
-                $sql .= " and col_band ='" . $band . "'";
-            }
-        }
-        return $sql;
-    }
 }
 ?>

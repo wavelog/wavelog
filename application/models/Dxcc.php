@@ -2,6 +2,10 @@
 
 class DXCC extends CI_Model {
 
+	function __construct() {
+		$this->load->library('Genfunctions');
+	}
+
 	/**
 	 *	Function: mostactive
 	 *	Information: Returns the most active band
@@ -70,21 +74,7 @@ class DXCC extends CI_Model {
 
 		$location_list = "'".implode("','",$logbooks_locations_array)."'";
 
-		$qsl = "";
-		if ($postdata['confirmed'] != NULL) {
-			if ($postdata['qsl'] != NULL ) {
-				$qsl .= "Q";
-			}
-			if ($postdata['lotw'] != NULL ) {
-				$qsl .= "L";
-			}
-			if ($postdata['eqsl'] != NULL ) {
-				$qsl .= "E";
-			}
-			if ($postdata['qrz'] != NULL ) {
-				$qsl .= "Z";
-			}
-		}
+        	$qsl = $this->genfunctions->gen_qsl_from_postdata($postdata);
 
 		foreach ($bands as $band) {             	// Looping through bands and entities to generate the array needed for display
 			foreach ($dxccArray as $dxcc) {
@@ -146,13 +136,13 @@ class DXCC extends CI_Model {
 					where station_id in (" . $location_list .
 				  ") and col_dxcc > 0";
 
-		$sql .= $this->addBandToQuery($band);
+		$sql .= $this->genfunctions->addBandToQuery($band);
 
 		if ($postdata['mode'] != 'All') {
 			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
 		}
 
-		$sql .= $this->addQslToQuery($postdata);
+		$sql .= $this->genfunctions->addQslToQuery($postdata);
 
 		$sql .= " group by col_dxcc
 				) x on dxcc_entities.adif = x.col_dxcc";
@@ -174,7 +164,7 @@ class DXCC extends CI_Model {
 					select col_dxcc from ".$this->config->item('table_name')." thcv
 					where station_id in (" . $location_list .
 					") and col_dxcc > 0";
-		$sql .= $this->addBandToQuery($band);
+		$sql .= $this->genfunctions->addBandToQuery($band);
 		if ($postdata['mode'] != 'All') {
 			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
 		}
@@ -186,19 +176,6 @@ class DXCC extends CI_Model {
 		$sql .= $this->addContinentsToQuery($postdata);
 		$query = $this->db->query($sql);
 		return $query->result();
-	}
-
-	function addBandToQuery($band) {
-		$sql = '';
-		if ($band != 'All') {
-			if ($band == 'SAT') {
-				$sql .= " and col_prop_mode ='" . $band . "'";
-			} else {
-				$sql .= " and col_prop_mode !='SAT'";
-				$sql .= " and col_band ='" . $band . "'";
-			}
-		}
-		return $sql;
 	}
 
 	function fetchDxcc($postdata) {
@@ -255,20 +232,20 @@ class DXCC extends CI_Model {
 				from ".$this->config->item('table_name')." thcv
 				where station_id in (" . $location_list .
 				") and col_dxcc > 0";
-		$sql .= $this->addBandToQuery($postdata['band']);
+		$sql .= $this->genfunctions->addBandToQuery($postdata['band']);
 
 		if ($postdata['mode'] != 'All') {
 			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
 		}
 
 		$sql .= " and not exists (select 1 from ".$this->config->item('table_name')." where station_id in (". $location_list .") and col_dxcc = thcv.col_dxcc and col_dxcc > 0";
-		$sql .= $this->addBandToQuery($postdata['band']);
+		$sql .= $this->genfunctions->addBandToQuery($postdata['band']);
 
 		if ($postdata['mode'] != 'All') {
 			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
 		}
 
-		$sql .= $this->addQslToQuery($postdata);
+		$sql .= $this->genfunctions->addQslToQuery($postdata);
 		$sql .= ')';
 		$sql .= " group by col_dxcc
 	    ) ll on dxcc_entities.adif = ll.col_dxcc
@@ -291,13 +268,13 @@ class DXCC extends CI_Model {
 		where station_id in (". $location_list .
 		    ") and col_dxcc > 0";
 
-		$sql .= $this->addBandToQuery($postdata['band']);
+		$sql .= $this->genfunctions->addBandToQuery($postdata['band']);
 
 		if ($postdata['mode'] != 'All') {
 			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
 		}
 
-		$sql .= $this->addQslToQuery($postdata);
+		$sql .= $this->genfunctions->addQslToQuery($postdata);
 
 		$sql .= " group by col_dxcc
 	    ) ll on dxcc_entities.adif = ll.col_dxcc
@@ -313,37 +290,6 @@ class DXCC extends CI_Model {
 
 		return $query->result();
 	}
-
-	// Made function instead of repeating this several times
-	function addQslToQuery($postdata) {
-		$sql = '';
-		$qsl = array();
-		if ($postdata['qrz'] != NULL || $postdata['lotw'] != NULL || $postdata['qsl'] != NULL || $postdata['eqsl'] != NULL) {
-			$sql .= ' and (';
-			if ($postdata['qsl'] != NULL) {
-				array_push($qsl, "col_qsl_rcvd = 'Y'");
-			}
-			if ($postdata['lotw'] != NULL) {
-				array_push($qsl, "col_lotw_qsl_rcvd = 'Y'");
-			}
-			if ($postdata['eqsl'] != NULL) {
-				array_push($qsl, "col_eqsl_qsl_rcvd = 'Y'");
-			}
-			if ($postdata['qrz'] != NULL) {
-				array_push($qsl, "COL_QRZCOM_QSO_DOWNLOAD_STATUS = 'Y'");
-			}
-			if (count($qsl) > 0) {
-				$sql .= implode(' or ', $qsl);
-			} else {
-				$sql .= '1=0';
-			}
-			$sql .= ')';
-		} else {
-			$sql.=' and 1=0';
-		}
-		return $sql;
-	}
-
 
 	// Made function instead of repeating this several times
 	function addContinentsToQuery($postdata) {
@@ -471,7 +417,7 @@ class DXCC extends CI_Model {
 			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
 		}
 
-		$sql .= $this->addQslToQuery($postdata);
+		$sql .= $this->genfunctions->addQslToQuery($postdata);
 
 
 		if ($postdata['includedeleted'] == NULL) {

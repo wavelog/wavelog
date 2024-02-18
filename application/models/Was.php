@@ -1,6 +1,9 @@
 <?php
 
 class was extends CI_Model {
+	function __construct() {
+		$this->load->library('Genfunctions');
+	}
 
 	public $stateString = 'AK,AL,AR,AZ,CA,CO,CT,DE,FL,GA,HI,IA,ID,IL,IN,KS,KY,LA,MA,MD,ME,MI,MN,MO,MS,MT,NC,ND,NE,NH,NJ,NM,NV,NY,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VA,VT,WA,WI,WV,WY';
 
@@ -18,22 +21,8 @@ class was extends CI_Model {
 
 		$states = array(); // Used for keeping track of which states that are not worked
 
-		$qsl = "";
-		if ($postdata['confirmed'] != NULL) {
-			if ($postdata['qsl'] != NULL ) {
-				$qsl .= "Q";
-			}
-			if ($postdata['lotw'] != NULL ) {
-				$qsl .= "L";
-			}
-			if ($postdata['eqsl'] != NULL ) {
-				$qsl .= "E";
-			}
-			if ($postdata['qrz'] != NULL ) {
-				$qsl .= "Z";
-			}
-		}
-
+        	$qsl = $this->genfunctions->gen_qsl_from_postdata($postdata);
+	
 		foreach ($stateArray as $state) {                   // Generating array for use in the table
 			$states[$state]['count'] = 0;                   // Inits each state's count
 		}
@@ -182,7 +171,7 @@ class was extends CI_Model {
 			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
 		}
 
-		$sql .= $this->addQslToQuery($postdata);
+		$sql .= $this->genfunctions->addQslToQuery($postdata);
 
 		$sql .= $this->addStateToQuery();
 
@@ -205,7 +194,7 @@ class was extends CI_Model {
 
 		$sql .= $this->addStateToQuery();
 
-		$sql .= $this->addBandToQuery($band);
+		$sql .= $this->genfunctions->addBandToQuery($band);
 
 		$sql .= " and not exists (select 1 from ". $this->config->item('table_name') .
 			" where station_id in (". $location_list . ")" .
@@ -215,9 +204,9 @@ class was extends CI_Model {
 			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
 		}
 
-		$sql .= $this->addBandToQuery($band);
+		$sql .= $this->genfunctions->addBandToQuery($band);
 
-		$sql .= $this->addQslToQuery($postdata);
+		$sql .= $this->genfunctions->addQslToQuery($postdata);
 
 		$sql .= $this->addStateToQuery();
 
@@ -242,65 +231,13 @@ class was extends CI_Model {
 
 		$sql .= $this->addStateToQuery();
 
-		$sql .= $this->addBandToQuery($band);
+		$sql .= $this->genfunctions->addBandToQuery($band);
 
-		$sql .= $this->addQslToQuery($postdata);
+		$sql .= $this->genfunctions->addQslToQuery($postdata);
 
 		$query = $this->db->query($sql);
 
 		return $query->result();
-	}
-
-	function addQslToQuery($postdata) {
-		$sql = '';
-		$qsl = array();
-		if ($postdata['qrz'] != NULL || $postdata['lotw'] != NULL || $postdata['qsl'] != NULL || $postdata['eqsl'] != NULL) {
-			$sql .= ' and (';
-			if ($postdata['qsl'] != NULL) {
-				array_push($qsl, "col_qsl_rcvd = 'Y'");
-			}
-			if ($postdata['lotw'] != NULL) {
-				array_push($qsl, "col_lotw_qsl_rcvd = 'Y'");
-			}
-			if ($postdata['eqsl'] != NULL) {
-				array_push($qsl, "col_eqsl_qsl_rcvd = 'Y'");
-			}
-			if ($postdata['qrz'] != NULL) {
-				array_push($qsl, "COL_QRZCOM_QSO_DOWNLOAD_STATUS = 'Y'");
-			}
-			if (count($qsl) > 0) {
-				$sql .= implode(' or ', $qsl);
-			} else {
-				$sql .= '1=0';
-			}
-			$sql .= ')';
-		} else {
-			$sql.=' and 1=0';
-		}
-		return $sql;
-	}
-
-
-	function addBandToQuery($band) {
-		$sql = '';
-		if ($band != 'All') {
-			if ($band == 'SAT') {
-				$sql .= " and col_prop_mode ='" . $band . "'";
-			} else {
-				$sql .= " and col_prop_mode !='SAT'";
-				$sql .= " and col_band ='" . $band . "'";
-			}
-		} else {
-			$this->load->model('bands');
-
-			$bandslots = $this->bands->get_worked_bands('was');
-
-			$bandslots_list = "'".implode("','",$bandslots)."'";
-
-			$sql .= " and col_band in (" . $bandslots_list . ")" .
-				" and col_prop_mode !='SAT'";
-		}
-		return $sql;
 	}
 
 	function addStateToQuery() {
