@@ -476,14 +476,12 @@ class Logbookadvanced_model extends CI_Model {
 			case "propagation": $column = 'COL_PROP_MODE'; break;
 			default: return;
 		}
-		$this->load->model('user_model');
 
-		$data = array(
-			$column => $value
-		);
+		$this->db->trans_start();
+		$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ".$this->config->item('table_name').".station_id = station_profile.station_id SET " . $column . " = ? WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
 
-		$this->db->where_in('COL_PRIMARY_KEY', $ids);
-		$this->db->update($this->config->item('table_name'), $data);
+		$query = $this->db->query($sql, array($value, $ids, $this->session->userdata('user_id')));
+		$this->db->trans_complete();
 
 		return array('message' => 'OK');
     }
