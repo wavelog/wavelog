@@ -260,6 +260,7 @@ class Bands extends CI_Model {
 			'cq' 		 => $band['cq'] 		== "true" ? '1' : '0',
 			'dok' 		 => $band['dok'] 		== "true" ? '1' : '0',
 			'dxcc' 		 => $band['dxcc'] 		== "true" ? '1' : '0',
+			'helvetia' 		 => $band['helvetia'] 		== "true" ? '1' : '0',
 			'iota' 		 => $band['iota'] 		== "true" ? '1' : '0',
 			'pota' 		 => $band['pota'] 		== "true" ? '1' : '0',
 			'sig' 		 => $band['sig'] 		== "true" ? '1' : '0',
@@ -307,8 +308,8 @@ class Bands extends CI_Model {
 		   $this->db->insert('bands', $data);
 		}
 
-		$this->db->query("insert into bandxuser (bandid, userid, active, cq, dok, dxcc, iota, pota, sig, sota, uscounties, was, wwff, vucc)
-		select bands.id, " . $this->session->userdata('user_id') . ", 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 from bands where band ='".$data['band']."' and not exists (select 1 from bandxuser where userid = " . $this->session->userdata('user_id') . " and bandid = bands.id);");
+		$this->db->query("insert into bandxuser (bandid, userid, active, cq, dok, dxcc, helvetia, iota, pota, sig, sota, uscounties, was, wwff, vucc, waja)
+		select bands.id, " . $this->session->userdata('user_id') . ", 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 from bands where band ='".$data['band']."' and not exists (select 1 from bandxuser where userid = " . $this->session->userdata('user_id') . " and bandid = bands.id);");
 	}
 
 	function getband($id) {
