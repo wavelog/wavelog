@@ -12,7 +12,7 @@ class Contestcalendar extends CI_Controller {
 		$rssUrl = 'https://www.contestcalendar.com/calendar.rss';
 		if (!$rssRawData = $this->cache->get('RssRawContestCal')) {
 			$rssRawData = file_get_contents($rssUrl, true);
-			$this->cache->save('RssRawContestCal', $rssRawData, (60*12));
+			$this->cache->save('RssRawContestCal', $rssRawData, (60*60*12));
 		}
 		$data['rss'] = simplexml_load_string($rssRawData, null, LIBXML_NOCDATA);
 

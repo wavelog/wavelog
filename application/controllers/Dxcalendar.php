@@ -13,7 +13,7 @@ class Dxcalendar extends CI_Controller {
 		$rssUrl = 'http://www.ng3k.com/adxo.xml';
 		if (!$rssRawData = $this->cache->get('RssRawDxCal')) {
 			$rssRawData = file_get_contents($rssUrl, true);
-			$this->cache->save('RssRawDxCal', $rssRawData, (60*12));
+			$this->cache->save('RssRawDxCal', $rssRawData, (60*60*12));
 		}
 		$rssdata = simplexml_load_string($rssRawData, null, LIBXML_NOCDATA);
 
