@@ -664,19 +664,19 @@ class Awards extends CI_Controller {
 	    $data['modes'] = $this->modes->active(); // Used in the view for mode select
 
 	    if($this->input->method() === 'post') {
-		    $postdata['worked'] = $this->security->xss_clean($this->input->post('worked'));
-		    $postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed'));
-		    $postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked'));
-		    $postdata['includedeleted'] = $this->security->xss_clean($this->input->post('includedeleted'));
-		    $postdata['Africa'] = $this->security->xss_clean($this->input->post('Africa'));
-		    $postdata['Asia'] = $this->security->xss_clean($this->input->post('Asia'));
-		    $postdata['Europe'] = $this->security->xss_clean($this->input->post('Europe'));
-		    $postdata['NorthAmerica'] = $this->security->xss_clean($this->input->post('NorthAmerica'));
-		    $postdata['SouthAmerica'] = $this->security->xss_clean($this->input->post('SouthAmerica'));
-		    $postdata['Oceania'] = $this->security->xss_clean($this->input->post('Oceania'));
-		    $postdata['Antarctica'] = $this->security->xss_clean($this->input->post('Antarctica'));
-		    $postdata['band'] = $this->security->xss_clean($this->input->post('band'));
-		    $postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
+		    $postdata['worked'] = $this->security->xss_clean($this->input->post('worked')) ?? NULL;
+		    $postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed')) ?? NULL;
+		    $postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked')) ?? NULL;
+		    $postdata['includedeleted'] = $this->security->xss_clean($this->input->post('includedeleted')) ?? NULL;
+		    $postdata['Africa'] = $this->security->xss_clean($this->input->post('Africa')) ?? NULL;
+		    $postdata['Asia'] = $this->security->xss_clean($this->input->post('Asia')) ?? NULL;
+		    $postdata['Europe'] = $this->security->xss_clean($this->input->post('Europe')) ?? NULL;
+		    $postdata['NorthAmerica'] = $this->security->xss_clean($this->input->post('NorthAmerica')) ?? NULL;
+		    $postdata['SouthAmerica'] = $this->security->xss_clean($this->input->post('SouthAmerica')) ?? NULL;
+		    $postdata['Oceania'] = $this->security->xss_clean($this->input->post('Oceania')) ?? NULL;
+		    $postdata['Antarctica'] = $this->security->xss_clean($this->input->post('Antarctica')) ?? NULL;
+		    $postdata['band'] = $this->security->xss_clean($this->input->post('band')) ?? NULL;
+		    $postdata['mode'] = $this->security->xss_clean($this->input->post('mode')) ?? NULL;
 	    } else { // Setting default values at first load of page
 		    $postdata['worked'] = 1;
 		    $postdata['confirmed'] = 1;
