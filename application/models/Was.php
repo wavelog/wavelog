@@ -2,7 +2,7 @@
 
 class was extends CI_Model {
 	function __construct() {
-		$this->load->library('Generichelpers');
+		$this->load->library('Genfunctions');
 	}
 
 	public $stateString = 'AK,AL,AR,AZ,CA,CO,CT,DE,FL,GA,HI,IA,ID,IL,IN,KS,KY,LA,MA,MD,ME,MI,MN,MO,MS,MT,NC,ND,NE,NH,NJ,NM,NV,NY,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VA,VT,WA,WI,WV,WY';
@@ -21,7 +21,7 @@ class was extends CI_Model {
 
 		$states = array(); // Used for keeping track of which states that are not worked
 
-        	$qsl = $this->generichelpers->gen_qsl_from_postdata($postdata);
+        	$qsl = $this->genfunctions->gen_qsl_from_postdata($postdata);
 	
 		foreach ($stateArray as $state) {                   // Generating array for use in the table
 			$states[$state]['count'] = 0;                   // Inits each state's count
@@ -171,7 +171,7 @@ class was extends CI_Model {
 			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
 		}
 
-		$sql .= $this->generichelpers->addQslToQuery($postdata);
+		$sql .= $this->genfunctions->addQslToQuery($postdata);
 
 		$sql .= $this->addStateToQuery();
 
@@ -194,7 +194,7 @@ class was extends CI_Model {
 
 		$sql .= $this->addStateToQuery();
 
-		$sql .= $this->generichelpers->addBandToQuery($band);
+		$sql .= $this->genfunctions->addBandToQuery($band);
 
 		$sql .= " and not exists (select 1 from ". $this->config->item('table_name') .
 			" where station_id in (". $location_list . ")" .
@@ -204,9 +204,9 @@ class was extends CI_Model {
 			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
 		}
 
-		$sql .= $this->generichelpers->addBandToQuery($band);
+		$sql .= $this->genfunctions->addBandToQuery($band);
 
-		$sql .= $this->generichelpers->addQslToQuery($postdata);
+		$sql .= $this->genfunctions->addQslToQuery($postdata);
 
 		$sql .= $this->addStateToQuery();
 
@@ -231,9 +231,9 @@ class was extends CI_Model {
 
 		$sql .= $this->addStateToQuery();
 
-		$sql .= $this->generichelpers->addBandToQuery($band);
+		$sql .= $this->genfunctions->addBandToQuery($band);
 
-		$sql .= $this->generichelpers->addQslToQuery($postdata);
+		$sql .= $this->genfunctions->addQslToQuery($postdata);
 
 		$query = $this->db->query($sql);
 

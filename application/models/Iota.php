@@ -2,7 +2,7 @@
 
 class IOTA extends CI_Model {
 	function __construct() {
-		$this->load->library('Generichelpers');
+		$this->load->library('Genfunctions');
 	}
 
     	function get_iota_array($iotaArray, $bands, $postdata) {
@@ -81,7 +81,7 @@ class IOTA extends CI_Model {
 			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
 		}
 
-        $sql .= $this->generichelpers->addBandToQuery($band);
+        $sql .= $this->genfunctions->addBandToQuery($band);
 
         if ($postdata['includedeleted'] == NULL) {
             $sql .= " and coalesce(iota.status, '') <> 'D'";
@@ -104,7 +104,7 @@ class IOTA extends CI_Model {
 			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
 		}
 
-        $sql .= $this->generichelpers->addBandToQuery($band);
+        $sql .= $this->genfunctions->addBandToQuery($band);
 
         if ($postdata['includedeleted'] == NULL) {
             $sql .= " and coalesce(iota.status, '') <> 'D'";
@@ -173,11 +173,11 @@ class IOTA extends CI_Model {
 			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
 		}
 
-        $sql .= $this->generichelpers->addBandToQuery($postdata['band']);
+        $sql .= $this->genfunctions->addBandToQuery($postdata['band']);
 
         $sql .= " and (col_qsl_rcvd = 'Y' or col_lotw_qsl_rcvd = 'Y'))";
 
-        $sql .= $this->generichelpers->addBandToQuery($postdata['band']);
+        $sql .= $this->genfunctions->addBandToQuery($postdata['band']);
 
         if ($postdata['includedeleted'] == NULL) {
             $sql .= " and coalesce(iota.status, '') <> 'D'";
@@ -211,7 +211,7 @@ class IOTA extends CI_Model {
 
         $sql .= $this->addContinentsToQuery($postdata);
 
-        $sql .= $this->generichelpers->addBandToQuery($postdata['band']);
+        $sql .= $this->genfunctions->addBandToQuery($postdata['band']);
 
         $query = $this->db->query($sql);
 

@@ -3,7 +3,7 @@
 class CQ extends CI_Model{
 
 	function __construct() {
-		$this->load->library('Generichelpers');
+		$this->load->library('Genfunctions');
 	}
 
     function get_cq_array($bands, $postdata, $location_list) {
@@ -13,7 +13,7 @@ class CQ extends CI_Model{
             $cqZ[$i]['count'] = 0;                   // Inits each cq zone's count
         }
 
-        $qsl = $this->generichelpers->gen_qsl_from_postdata($postdata);
+        $qsl = $this->genfunctions->gen_qsl_from_postdata($postdata);
         
         foreach ($bands as $band) {
             for ($i = 1; $i <= 40; $i++) {
@@ -79,7 +79,7 @@ class CQ extends CI_Model{
 			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
 		}
 
-        $sql .= $this->generichelpers->addBandToQuery($band);
+        $sql .= $this->genfunctions->addBandToQuery($band);
 
         $sql .= " and not exists (select 1 from " . $this->config->item('table_name') .
             " where station_id in (" . $location_list .
@@ -89,9 +89,9 @@ class CQ extends CI_Model{
 			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
 		}
 
-        $sql .= $this->generichelpers->addBandToQuery($band);
+        $sql .= $this->genfunctions->addBandToQuery($band);
 
-        $sql .= $this->generichelpers->addQslToQuery($postdata);
+        $sql .= $this->genfunctions->addQslToQuery($postdata);
 
         $sql .= ")";
 
@@ -112,9 +112,9 @@ class CQ extends CI_Model{
 			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
 		}
 
-        $sql .= $this->generichelpers->addBandToQuery($band);
+        $sql .= $this->genfunctions->addBandToQuery($band);
 
-        $sql .= $this->generichelpers->addQslToQuery($postdata);
+        $sql .= $this->genfunctions->addQslToQuery($postdata);
 
         $query = $this->db->query($sql);
 
@@ -197,7 +197,7 @@ class CQ extends CI_Model{
 			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
 		}
 
-        $sql .= $this->generichelpers->addQslToQuery($postdata);
+        $sql .= $this->genfunctions->addQslToQuery($postdata);
 
         $query = $this->db->query($sql);
 

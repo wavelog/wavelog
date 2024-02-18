@@ -3,7 +3,7 @@
 class DXCC extends CI_Model {
 
 	function __construct() {
-		$this->load->library('Generichelpers');
+		$this->load->library('Genfunctions');
 	}
 
 	/**
@@ -74,7 +74,7 @@ class DXCC extends CI_Model {
 
 		$location_list = "'".implode("','",$logbooks_locations_array)."'";
 
-        	$qsl = $this->generichelpers->gen_qsl_from_postdata($postdata);
+        	$qsl = $this->genfunctions->gen_qsl_from_postdata($postdata);
 
 		foreach ($bands as $band) {             	// Looping through bands and entities to generate the array needed for display
 			foreach ($dxccArray as $dxcc) {
@@ -136,13 +136,13 @@ class DXCC extends CI_Model {
 					where station_id in (" . $location_list .
 				  ") and col_dxcc > 0";
 
-		$sql .= $this->generichelpers->addBandToQuery($band);
+		$sql .= $this->genfunctions->addBandToQuery($band);
 
 		if ($postdata['mode'] != 'All') {
 			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
 		}
 
-		$sql .= $this->generichelpers->addQslToQuery($postdata);
+		$sql .= $this->genfunctions->addQslToQuery($postdata);
 
 		$sql .= " group by col_dxcc
 				) x on dxcc_entities.adif = x.col_dxcc";
@@ -164,7 +164,7 @@ class DXCC extends CI_Model {
 					select col_dxcc from ".$this->config->item('table_name')." thcv
 					where station_id in (" . $location_list .
 					") and col_dxcc > 0";
-		$sql .= $this->generichelpers->addBandToQuery($band);
+		$sql .= $this->genfunctions->addBandToQuery($band);
 		if ($postdata['mode'] != 'All') {
 			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
 		}
@@ -232,20 +232,20 @@ class DXCC extends CI_Model {
 				from ".$this->config->item('table_name')." thcv
 				where station_id in (" . $location_list .
 				") and col_dxcc > 0";
-		$sql .= $this->generichelpers->addBandToQuery($postdata['band']);
+		$sql .= $this->genfunctions->addBandToQuery($postdata['band']);
 
 		if ($postdata['mode'] != 'All') {
 			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
 		}
 
 		$sql .= " and not exists (select 1 from ".$this->config->item('table_name')." where station_id in (". $location_list .") and col_dxcc = thcv.col_dxcc and col_dxcc > 0";
-		$sql .= $this->generichelpers->addBandToQuery($postdata['band']);
+		$sql .= $this->genfunctions->addBandToQuery($postdata['band']);
 
 		if ($postdata['mode'] != 'All') {
 			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
 		}
 
-		$sql .= $this->generichelpers->addQslToQuery($postdata);
+		$sql .= $this->genfunctions->addQslToQuery($postdata);
 		$sql .= ')';
 		$sql .= " group by col_dxcc
 	    ) ll on dxcc_entities.adif = ll.col_dxcc
@@ -268,13 +268,13 @@ class DXCC extends CI_Model {
 		where station_id in (". $location_list .
 		    ") and col_dxcc > 0";
 
-		$sql .= $this->generichelpers->addBandToQuery($postdata['band']);
+		$sql .= $this->genfunctions->addBandToQuery($postdata['band']);
 
 		if ($postdata['mode'] != 'All') {
 			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
 		}
 
-		$sql .= $this->generichelpers->addQslToQuery($postdata);
+		$sql .= $this->genfunctions->addQslToQuery($postdata);
 
 		$sql .= " group by col_dxcc
 	    ) ll on dxcc_entities.adif = ll.col_dxcc
@@ -417,7 +417,7 @@ class DXCC extends CI_Model {
 			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
 		}
 
-		$sql .= $this->generichelpers->addQslToQuery($postdata);
+		$sql .= $this->genfunctions->addQslToQuery($postdata);
 
 
 		if ($postdata['includedeleted'] == NULL) {

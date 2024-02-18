@@ -3,7 +3,7 @@
 class rac extends CI_Model {
 
 	function __construct() {
-		$this->load->library('Generichelpers');
+		$this->load->library('Genfunctions');
 	}
 
 	public $stateString = 'AB,BC,MB,NB,NL,NT,NS,NU,ON,PE,QC,SK,YT';
@@ -23,7 +23,7 @@ class rac extends CI_Model {
 
 		$states = array(); // Used for keeping track of which states that are not worked
 
-        	$qsl = $this->generichelpers->gen_qsl_from_postdata($postdata);
+        	$qsl = $this->genfunctions->gen_qsl_from_postdata($postdata);
 
 		foreach ($stateArray as $state) {                   // Generating array for use in the table
 			$states[$state]['count'] = 0;                   // Inits each state's count
@@ -173,7 +173,7 @@ class rac extends CI_Model {
 			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
 		}
 
-		$sql .= $this->generichelpers->addQslToQuery($postdata);
+		$sql .= $this->genfunctions->addQslToQuery($postdata);
 
 		$sql .= $this->addStateToQuery();
 
@@ -196,7 +196,7 @@ class rac extends CI_Model {
 
 		$sql .= $this->addStateToQuery();
 
-		$sql .= $this->generichelpers->addBandToQuery($band);
+		$sql .= $this->genfunctions->addBandToQuery($band);
 
 		$sql .= " and not exists (select 1 from ". $this->config->item('table_name') .
 			" where station_id in (". $location_list . ")" .
@@ -206,9 +206,9 @@ class rac extends CI_Model {
 			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
 		}
 
-		$sql .= $this->generichelpers->addBandToQuery($band);
+		$sql .= $this->genfunctions->addBandToQuery($band);
 
-		$sql .= $this->generichelpers->addQslToQuery($postdata);
+		$sql .= $this->genfunctions->addQslToQuery($postdata);
 
 		$sql .= $this->addStateToQuery();
 
@@ -233,9 +233,9 @@ class rac extends CI_Model {
 
 		$sql .= $this->addStateToQuery();
 
-		$sql .= $this->generichelpers->addBandToQuery($band);
+		$sql .= $this->genfunctions->addBandToQuery($band);
 
-		$sql .= $this->generichelpers->addQslToQuery($postdata);
+		$sql .= $this->genfunctions->addQslToQuery($postdata);
 
 		$query = $this->db->query($sql);
 

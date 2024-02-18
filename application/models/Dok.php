@@ -3,7 +3,7 @@
 class DOK extends CI_Model {
 
 	function __construct() {
-		$this->load->library('Generichelpers');
+		$this->load->library('Genfunctions');
 	}
 
 	function get_dok_array($bands, $postdata, $location_list) {
@@ -17,7 +17,7 @@ class DOK extends CI_Model {
 			$doks[$dok->COL_DARC_DOK]['count'] = 0;
 		}
 
-        	$qsl = $this->generichelpers->gen_qsl_from_postdata($postdata);
+        	$qsl = $this->genfunctions->gen_qsl_from_postdata($postdata);
 
 		foreach ($bands as $band) {
 			foreach ($list as $dok) {
@@ -88,13 +88,13 @@ class DOK extends CI_Model {
 			$sql .= " AND (COL_MODE = '" . $postdata['mode'] . "' OR COL_SUBMODE = '" . $postdata['mode'] . "')";
 		}
 		$sql .= $this->addDokTypeToQuery($postdata['doks']);
-		$sql .= $this->generichelpers->addBandToQuery($band);
+		$sql .= $this->genfunctions->addBandToQuery($band);
 		$sql .= " AND NOT EXISTS (SELECT 1 from " . $this->config->item('table_name') .
 			" WHERE station_id in (" . $location_list .
 			") AND COL_DARC_DOK = thcv.COL_DARC_DOK AND COL_DARC_DOK <> '' AND COL_DARC_DOK <> 'NM' ";
 		$sql .= $this->addDokTypeToQuery($postdata['doks']);
-		$sql .= $this->generichelpers->addBandToQuery($band);
-		$sql .= $this->generichelpers->addQslToQuery($postdata);
+		$sql .= $this->genfunctions->addBandToQuery($band);
+		$sql .= $this->genfunctions->addQslToQuery($postdata);
 		$sql .= ")";
 		$query = $this->db->query($sql);
 
@@ -109,8 +109,8 @@ class DOK extends CI_Model {
 			$sql .= " AND (COL_MODE = '" . $postdata['mode'] . "' or COL_SUBMODE = '" . $postdata['mode'] . "')";
 		}
 		$sql .= $this->addDokTypeToQuery($postdata['doks']);
-		$sql .= $this->generichelpers->addBandToQuery($band);
-		$sql .= $this->generichelpers->addQslToQuery($postdata);
+		$sql .= $this->genfunctions->addBandToQuery($band);
+		$sql .= $this->genfunctions->addQslToQuery($postdata);
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
@@ -186,7 +186,7 @@ class DOK extends CI_Model {
 		} else if ($postdata['doks'] == 'sdok') {
 			$sql .= " AND COL_DARC_DOK NOT REGEXP '^[A-Z][0-9]{2}$'";
 		}
-		$sql .= $this->generichelpers->addQslToQuery($postdata);
+		$sql .= $this->genfunctions->addQslToQuery($postdata);
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
