@@ -22,14 +22,18 @@ class Dxcluster_model extends CI_Model {
 			$CI->load->model('logbook_model');
 			$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
-			// CURL Functions
-			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, $dxcache_url);
-			curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog '.$this->optionslib->get_option('version').' DXLookup');
-			curl_setopt($ch, CURLOPT_HEADER, false);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			$jsonraw = curl_exec($ch);
-			curl_close($ch);
+			$this->load->driver('cache', array('adapter' => 'file', 'backup' => 'file'));
+			if (!$jsonraw = $this->cache->get('dxcache'.$band)) {
+				// CURL Functions
+				$ch = curl_init();
+				curl_setopt($ch, CURLOPT_URL, $dxcache_url);
+				curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog '.$this->optionslib->get_option('version').' DXLookup');
+				curl_setopt($ch, CURLOPT_HEADER, false);
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				$jsonraw = curl_exec($ch);
+				curl_close($ch);
+				$this->cache->save('dxcache'.$band, $jsonraw, 59);	// Cache DXClusterCache Instancewide for 59seconds
+			}
 			$json = json_decode($jsonraw);
 			$date = date('Ymd', time());
 
