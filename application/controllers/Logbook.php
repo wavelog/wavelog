@@ -173,6 +173,7 @@ class Logbook extends CI_Controller {
 			$return['bearing'] = $this->bearing($return['callsign_qra'], $measurement_base, $station_id);
 		}
 
+		sleep(1); // Debug to force RC
 		echo json_encode($return, JSON_PRETTY_PRINT);
 
 		return;
