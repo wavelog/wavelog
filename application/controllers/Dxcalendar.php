@@ -9,8 +9,13 @@ class Dxcalendar extends CI_Controller {
 
 		$data['page_title'] = "DX Calendar";
 
-		$url = 'http://www.ng3k.com/adxo.xml';
-		$rssdata = simplexml_load_file($url, null, LIBXML_NOCDATA);
+		$this->load->driver('cache', array('adapter' => 'file', 'backup' => 'file'));
+		$rssUrl = 'http://www.ng3k.com/adxo.xml';
+		if (!$rssRawData = $this->cache->get('RssRawDxCal')) {
+			$rssRawData = file_get_contents($rssUrl, true);
+			$this->cache->save('RssRawDxCal', $rssRawData, (60*12));
+		}
+		$rssdata = simplexml_load_string($rssRawData, null, LIBXML_NOCDATA);
 
 		// Get Date format
 		if($this->session->userdata('user_date_format')) {
