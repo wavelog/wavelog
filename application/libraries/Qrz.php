@@ -92,15 +92,14 @@ class Qrz {
             $data['lat'] = (string)$xml->Callsign->lat;
             $data['long'] = (string)$xml->Callsign->lon;
             $data['dxcc'] = (string)$xml->Callsign->dxcc;
+            $data['state'] = (string)$xml->Callsign->state;
             $data['iota'] = (string)$xml->Callsign->iota;
             $data['qslmgr'] = (string)$xml->Callsign->qslmgr;
             $data['image'] = (string)$xml->Callsign->image;
 
             if ($xml->Callsign->country == "United States") {
-                $data['state'] = (string)$xml->Callsign->state;
                 $data['us_county'] = (string)$xml->Callsign->county;
             } else {
-                $data['state'] = null;
                 $data['us_county'] = null;
             }
         } finally {
