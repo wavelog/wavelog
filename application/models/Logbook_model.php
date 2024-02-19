@@ -4745,7 +4745,9 @@ function lotw_last_qsl_date($user_id) {
             $stn_loc = array($row->lat, $row->long);
           }
         }
-        list($plot['lat'], $plot['lng']) = $stn_loc;
+        if (isset($stn_loc)) {
+          list($plot['lat'], $plot['lng']) = $stn_loc;
+        }
         // add plot //
         $json["markers"][] = $plot;
       }
