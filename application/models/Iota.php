@@ -71,7 +71,7 @@ class IOTA extends CI_Model {
     }
 
     function getIotaBandConfirmed($location_list, $band, $postdata) {
-        $sql = "SELECT distinct col_iota as tag FROM " . $this->config->item('table_name') . " thcv
+        $sql = "SELECT distinct UPPER(col_iota) as tag FROM " . $this->config->item('table_name') . " thcv
             join iota on thcv.col_iota = iota.tag
             where station_id in (" . $location_list .
             ") and thcv.col_iota is not null
@@ -95,7 +95,7 @@ class IOTA extends CI_Model {
     }
 
     function getIotaBandWorked($location_list, $band, $postdata) {
-        $sql = 'SELECT distinct col_iota as tag FROM ' . $this->config->item('table_name'). ' thcv
+        $sql = 'SELECT distinct UPPER(col_iota) as tag FROM ' . $this->config->item('table_name'). ' thcv
             join iota on thcv.col_iota = iota.tag
             where station_id in (' . $location_list .
             ') and thcv.col_iota is not null';
@@ -162,7 +162,7 @@ class IOTA extends CI_Model {
     }
 
     function getIotaWorked($location_list, $postdata) {
-        $sql = "SELECT distinct col_iota as tag FROM " . $this->config->item('table_name') . " thcv
+        $sql = "SELECT distinct UPPER(col_iota) as tag FROM " . $this->config->item('table_name') . " thcv
             join iota on thcv.col_iota = iota.tag
             where station_id in (" . $location_list .
             ") and thcv.col_iota is not null
@@ -195,7 +195,7 @@ class IOTA extends CI_Model {
     }
 
     function getIotaConfirmed($location_list, $postdata) {
-        $sql = "SELECT distinct col_iota as tag FROM " . $this->config->item('table_name') . " thcv
+        $sql = "SELECT distinct UPPER(col_iota) as tag FROM " . $this->config->item('table_name') . " thcv
             join iota on thcv.col_iota = iota.tag
             where station_id in (" . $location_list .
             ") and thcv.col_iota is not null
@@ -284,7 +284,7 @@ class IOTA extends CI_Model {
 
     function getSummaryByBand($band, $postdata, $location_list)
     {
-        $sql = "SELECT count(distinct thcv.col_iota) as count FROM " . $this->config->item('table_name') . " thcv";
+        $sql = "SELECT count(distinct UPPER(thcv.col_iota)) as count FROM " . $this->config->item('table_name') . " thcv";
         $sql .= ' join iota on thcv.col_iota = iota.tag';
 
         $sql .= " where station_id in (" . $location_list . ")";
