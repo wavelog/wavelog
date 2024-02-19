@@ -83,15 +83,12 @@ class Hamqth {
 			$data['dxcc'] = (string)$xml->search->adif; 
             $data['iota'] = (string)$xml->search->iota;
             $data['image'] = (string)$xml->search->picture;
-            $data['us_state'] = (string)$xml->search->us_state;
-            $data['us_county'] = (string)$xml->search->us_county;
+			$data['state'] = (string)$xml->search->us_state;
             $data['error'] = (string)$xml->session->error;
 
             if ($xml->search->country == "United States") {
-                $data['state'] = (string)$xml->search->us_state;
                 $data['us_county'] = (string)$xml->search->us_county;
             } else {
-                $data['state'] = null;
                 $data['us_county'] = null;
             }
         } finally {

@@ -380,6 +380,10 @@ class Logbook_model extends CI_Model {
 			$this->db->where('COL_STATE', $searchphrase);
 			$this->db->where_in('COL_DXCC', ['1']);
 			break;
+    case 'helvetia':
+      $this->db->where('COL_STATE', $searchphrase);
+      $this->db->where_in('COL_DXCC', ['287']);
+      break;
 		case 'SOTA':
 			$this->db->where('COL_SOTA_REF', $searchphrase);
 			break;

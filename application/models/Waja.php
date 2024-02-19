@@ -2,6 +2,10 @@
 
 class WAJA extends CI_Model {
 
+	function __construct() {
+		$this->load->library('Genfunctions');
+	}
+
 	public $jaPrefectures = array(
 		'01' => 'Hokkaido',
 		'02' => 'Aomori',
@@ -67,26 +71,11 @@ class WAJA extends CI_Model {
 		$wajaArray = explode(',', $this->prefectureString);
 
 		$prefectures = array(); // Used for keeping track of which states that are not worked
-
-		$qsl = "";
-		if ($postdata['confirmed'] != NULL) {
-			if ($postdata['qsl'] != NULL ) {
-				$qsl .= "Q";
-			}
-			if ($postdata['lotw'] != NULL ) {
-				$qsl .= "L";
-			}
-			if ($postdata['eqsl'] != NULL ) {
-				$qsl .= "E";
-			}
-			if ($postdata['qrz'] != NULL ) {
-				$qsl .= "Z";
-			}
-		}
-
-		foreach ($wajaArray as $state) {                  	 // Generating array for use in the table
+		foreach ($wajaArray as $state) {                         // Generating array for use in the table
 			$prefectures[$state]['count'] = 0;                   // Inits each state's count
 		}
+
+        	$qsl = $this->genfunctions->gen_qsl_from_postdata($postdata);
 
 
 		foreach ($bands as $band) {
@@ -151,13 +140,13 @@ class WAJA extends CI_Model {
 				where station_id in (" . $location_list .
 				") and col_dxcc > 0";
 
-		$sql .= $this->addBandToQuery($band);
+		$sql .= $this->genfunctions->addBandToQuery($band);
 
 		if ($postdata['mode'] != 'All') {
 			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
 		}
 
-		$sql .= $this->addQslToQuery($postdata);
+		$sql .= $this->genfunctions->addQslToQuery($postdata);
 
 		$sql .= " group by col_dxcc
 				) x on dxcc_entities.adif = x.col_dxcc";
@@ -180,7 +169,7 @@ class WAJA extends CI_Model {
 				where station_id in (" . $location_list .
 				") and col_dxcc > 0";
 
-		$sql .= $this->addBandToQuery($band);
+		$sql .= $this->genfunctions->addBandToQuery($band);
 
 		if ($postdata['mode'] != 'All') {
 			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
@@ -200,19 +189,6 @@ class WAJA extends CI_Model {
 		return $query->result();
 	}
 
-	function addBandToQuery($band) {
-		$sql = '';
-		if ($band != 'All') {
-			if ($band == 'SAT') {
-				$sql .= " and col_prop_mode ='" . $band . "'";
-			} else {
-				$sql .= " and col_prop_mode !='SAT'";
-				$sql .= " and col_band ='" . $band . "'";
-			}
-		}
-		return $sql;
-	}
-
 	/*
 	 * Function returns all worked, but not confirmed states
 	 * $postdata contains data from the form, in this case Lotw or QSL are used
@@ -227,7 +203,7 @@ class WAJA extends CI_Model {
 
 		$sql .= $this->addStateToQuery();
 
-		$sql .= $this->addBandToQuery($band);
+		$sql .= $this->genfunctions->addBandToQuery($band);
 
 		$sql .= " and not exists (select 1 from ". $this->config->item('table_name') .
 			" where station_id in (". $location_list . ")" .
@@ -237,9 +213,9 @@ class WAJA extends CI_Model {
 			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
 		}
 
-		$sql .= $this->addBandToQuery($band);
+		$sql .= $this->genfunctions->addBandToQuery($band);
 
-		$sql .= $this->addQslToQuery($postdata);
+		$sql .= $this->genfunctions->addQslToQuery($postdata);
 
 		$sql .= $this->addStateToQuery();
 
@@ -264,45 +240,16 @@ class WAJA extends CI_Model {
 
 		$sql .= $this->addStateToQuery();
 
-		$sql .= $this->addBandToQuery($band);
+		$sql .= $this->genfunctions->addBandToQuery($band);
 
-		$sql .= $this->addQslToQuery($postdata);
+		$sql .= $this->genfunctions->addQslToQuery($postdata);
 
 		$query = $this->db->query($sql);
 
 		return $query->result();
 	}
 
-	function addQslToQuery($postdata) {
-		$sql = '';
-		$qsl = array();
-		if ($postdata['qrz'] != NULL || $postdata['lotw'] != NULL || $postdata['qsl'] != NULL || $postdata['eqsl'] != NULL) {
-			$sql .= ' and (';
-			if ($postdata['qsl'] != NULL) {
-				array_push($qsl, "col_qsl_rcvd = 'Y'");
-			}
-			if ($postdata['lotw'] != NULL) {
-				array_push($qsl, "col_lotw_qsl_rcvd = 'Y'");
-			}
-			if ($postdata['eqsl'] != NULL) {
-				array_push($qsl, "col_eqsl_qsl_rcvd = 'Y'");
-			}
-			if ($postdata['qrz'] != NULL) {
-				array_push($qsl, "COL_QRZCOM_QSO_DOWNLOAD_STATUS = 'Y'");
-			}
-			if (count($qsl) > 0) {
-				$sql .= implode(' or ', $qsl);
-			} else {
-				$sql .= '1=0';
-			}
-			$sql .= ')';
-		} else {
-			$sql.=' and 1=0';
-		}
-		return $sql;
-	}
-
-
+	
 	/*
 	 * Function gets worked and confirmed summary on each band on the active stationprofile
 	 */
@@ -393,7 +340,7 @@ class WAJA extends CI_Model {
 			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
 		}
 
-		$sql .= $this->addQslToQuery($postdata);
+		$sql .= $this->genfunctions->addQslToQuery($postdata);
 
 		$sql .= $this->addStateToQuery();
 

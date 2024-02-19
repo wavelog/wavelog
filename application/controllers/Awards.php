@@ -581,12 +581,20 @@ class Awards extends CI_Controller {
         $this->load->view('interface_assets/footer', $footerData);
     }
 
-    public function iota ()	{
-        $this->load->model('iota');
+    public function helvetia() {
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/sections/helvetiamap_geojson.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/helvetiamap_geojson.js")),
+			'assets/js/sections/helvetiamap.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/helvetiamap.js")),
+			'assets/js/leaflet/L.Maidenhead.js',
+		];
+
+        $this->load->model('helvetia_model');
 		$this->load->model('modes');
         $this->load->model('bands');
 
-        $data['worked_bands'] = $this->bands->get_worked_bands('iota'); // Used in the view for band select
+        $data['worked_bands'] = $this->bands->get_worked_bands('helvetia');
+		$data['modes'] = $this->modes->active(); // Used in the view for mode select
 
         if ($this->input->post('band') != NULL) {   // Band is not set when page first loads.
             if ($this->input->post('band') == 'All') {         // Did the user specify a band? If not, use all bands
@@ -601,48 +609,99 @@ class Awards extends CI_Controller {
         }
 
         $data['bands'] = $bands; // Used for displaying selected band(s) in the table in the view
-		$data['modes'] = $this->modes->active(); // Used in the view for mode select
 
         if($this->input->method() === 'post') {
+            $postdata['qsl'] = $this->security->xss_clean($this->input->post('qsl'));
+            $postdata['lotw'] = $this->security->xss_clean($this->input->post('lotw'));
+            $postdata['eqsl'] = $this->security->xss_clean($this->input->post('eqsl'));
+            $postdata['qrz'] = $this->security->xss_clean($this->input->post('qrz'));
             $postdata['worked'] = $this->security->xss_clean($this->input->post('worked'));
             $postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed'));
             $postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked'));
-            $postdata['includedeleted'] = $this->security->xss_clean($this->input->post('includedeleted'));
-            $postdata['Africa'] = $this->security->xss_clean($this->input->post('Africa'));
-            $postdata['Asia'] = $this->security->xss_clean($this->input->post('Asia'));
-            $postdata['Europe'] = $this->security->xss_clean($this->input->post('Europe'));
-            $postdata['NorthAmerica'] = $this->security->xss_clean($this->input->post('NorthAmerica'));
-            $postdata['SouthAmerica'] = $this->security->xss_clean($this->input->post('SouthAmerica'));
-            $postdata['Oceania'] = $this->security->xss_clean($this->input->post('Oceania'));
-            $postdata['Antarctica'] = $this->security->xss_clean($this->input->post('Antarctica'));
             $postdata['band'] = $this->security->xss_clean($this->input->post('band'));
 			$postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
         }
         else { // Setting default values at first load of page
+            $postdata['qsl'] = 1;
+            $postdata['lotw'] = 1;
+            $postdata['eqsl'] = 0;
+            $postdata['qrz'] = 0;
             $postdata['worked'] = 1;
             $postdata['confirmed'] = 1;
             $postdata['notworked'] = 1;
-            $postdata['includedeleted'] = 0;
-            $postdata['Africa'] = 1;
-            $postdata['Asia'] = 1;
-            $postdata['Europe'] = 1;
-            $postdata['NorthAmerica'] = 1;
-            $postdata['SouthAmerica'] = 1;
-            $postdata['Oceania'] = 1;
-            $postdata['Antarctica'] = 1;
             $postdata['band'] = 'All';
 			$postdata['mode'] = 'All';
         }
 
-        $iotalist = $this->iota->fetchIota($postdata);
-        $data['iota_array'] = $this->iota->get_iota_array($iotalist, $bands, $postdata);
-        $data['iota_summary'] = $this->iota->get_iota_summary($bands, $postdata);
+        $data['helvetia_array'] = $this->helvetia_model->get_helvetia_array($bands, $postdata);
+        $data['helvetia_summary'] = $this->helvetia_model->get_helvetia_summary($bands, $postdata);
 
         // Render Page
-        $data['page_title'] = "Awards - IOTA (Islands On The Air)";
+        $data['page_title'] = "Awards - H26";
         $this->load->view('interface_assets/header', $data);
-        $this->load->view('awards/iota/index');
-        $this->load->view('interface_assets/footer');
+        $this->load->view('awards/helvetia/index');
+        $this->load->view('interface_assets/footer', $footerData);
+    }
+
+    public function iota ()	{
+	    $this->load->model('iota');
+	    $this->load->model('modes');
+	    $this->load->model('bands');
+
+	    $data['worked_bands'] = $this->bands->get_worked_bands('iota'); // Used in the view for band select
+
+	    if ($this->input->post('band') != NULL) {   // Band is not set when page first loads.
+		    if ($this->input->post('band') == 'All') {         // Did the user specify a band? If not, use all bands
+			    $bands = $data['worked_bands'];
+		    } else {
+			    $bands[] = $this->security->xss_clean($this->input->post('band'));
+		    }
+	    } else {
+		    $bands = $data['worked_bands'];
+	    }
+
+	    $data['bands'] = $bands; // Used for displaying selected band(s) in the table in the view
+	    $data['modes'] = $this->modes->active(); // Used in the view for mode select
+
+	    if($this->input->method() === 'post') {
+		    $postdata['worked'] = $this->security->xss_clean($this->input->post('worked')) ?? NULL;
+		    $postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed')) ?? NULL;
+		    $postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked')) ?? NULL;
+		    $postdata['includedeleted'] = $this->security->xss_clean($this->input->post('includedeleted')) ?? NULL;
+		    $postdata['Africa'] = $this->security->xss_clean($this->input->post('Africa')) ?? NULL;
+		    $postdata['Asia'] = $this->security->xss_clean($this->input->post('Asia')) ?? NULL;
+		    $postdata['Europe'] = $this->security->xss_clean($this->input->post('Europe')) ?? NULL;
+		    $postdata['NorthAmerica'] = $this->security->xss_clean($this->input->post('NorthAmerica')) ?? NULL;
+		    $postdata['SouthAmerica'] = $this->security->xss_clean($this->input->post('SouthAmerica')) ?? NULL;
+		    $postdata['Oceania'] = $this->security->xss_clean($this->input->post('Oceania')) ?? NULL;
+		    $postdata['Antarctica'] = $this->security->xss_clean($this->input->post('Antarctica')) ?? NULL;
+		    $postdata['band'] = $this->security->xss_clean($this->input->post('band')) ?? NULL;
+		    $postdata['mode'] = $this->security->xss_clean($this->input->post('mode')) ?? NULL;
+	    } else { // Setting default values at first load of page
+		    $postdata['worked'] = 1;
+		    $postdata['confirmed'] = 1;
+		    $postdata['notworked'] = 1;
+		    $postdata['includedeleted'] = 0;
+		    $postdata['Africa'] = 1;
+		    $postdata['Asia'] = 1;
+		    $postdata['Europe'] = 1;
+		    $postdata['NorthAmerica'] = 1;
+		    $postdata['SouthAmerica'] = 1;
+		    $postdata['Oceania'] = 1;
+		    $postdata['Antarctica'] = 1;
+		    $postdata['band'] = 'All';
+		    $postdata['mode'] = 'All';
+	    }
+
+	    $iotalist = $this->iota->fetchIota($postdata);
+	    $data['iota_array'] = $this->iota->get_iota_array($iotalist, $bands, $postdata);
+	    $data['iota_summary'] = $this->iota->get_iota_summary($bands, $postdata);
+
+	    // Render Page
+	    $data['page_title'] = "Awards - IOTA (Islands On The Air)";
+	    $this->load->view('interface_assets/header', $data);
+	    $this->load->view('awards/iota/index');
+	    $this->load->view('interface_assets/footer');
     }
 
     public function counties()	{
@@ -1044,6 +1103,61 @@ class Awards extends CI_Controller {
 
 
         foreach ($rac_array as $was => $value) {
+            foreach ($value  as $key) {
+                if($key != "") {
+                    if (strpos($key, '>W<') !== false) {
+                        $states[$was] = 'W';
+                        break;
+                    }
+                    if (strpos($key, '>C<') !== false) {
+                        $states[$was] = 'C';
+                        break;
+                    }
+                    if (strpos($key, '-') !== false) {
+                        $states[$was] = '-';
+                        break;
+                    }
+                }
+            }
+        }
+
+        header('Content-Type: application/json');
+        echo json_encode($states);
+    }
+
+    /*
+        function H26_map
+
+        This displays the H26 map and requires the $band_type and $mode_type
+    */
+    public function helvetia_map() {
+		$stateString = 'AG,AI,AR,BE,BL,BS,FR,GE,GL,GR,JU,LU,NE,NW,OW,SG,SH,SO,SZ,TG,TI,UR,VD,VS,ZG,ZH';
+		$helvetiaArray = explode(',', $stateString);
+
+        $this->load->model('helvetia_model');
+
+		$bands[] = $this->security->xss_clean($this->input->post('band'));
+
+        $postdata['qsl'] = $this->input->post('qsl') == 0 ? NULL: 1;
+        $postdata['lotw'] = $this->input->post('lotw') == 0 ? NULL: 1;
+        $postdata['eqsl'] = $this->input->post('eqsl') == 0 ? NULL: 1;
+        $postdata['qrz'] = $this->input->post('qrz') == 0 ? NULL: 1;
+        $postdata['worked'] = $this->input->post('worked') == 0 ? NULL: 1;
+        $postdata['confirmed'] = $this->input->post('confirmed')  == 0 ? NULL: 1;
+        $postdata['notworked'] = $this->input->post('notworked')  == 0 ? NULL: 1;
+        $postdata['band'] = $this->security->xss_clean($this->input->post('band'));
+        $postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
+
+        $helvetia_array = $this->helvetia_model->get_helvetia_array($bands, $postdata);
+
+        $states = array();
+
+		foreach ($helvetiaArray as $state) {                  	 // Generating array for use in the table
+            $states[$state] = '-';                   // Inits each state's count
+        }
+
+
+        foreach ($helvetia_array as $was => $value) {
             foreach ($value  as $key) {
                 if($key != "") {
                     if (strpos($key, '>W<') !== false) {

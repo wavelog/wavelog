@@ -405,8 +405,8 @@ class Logbookadvanced_model extends CI_Model {
 		if (!empty($callbook['state']) && empty($qso['COL_STATE'])) {
 			$updatedData['COL_STATE'] = $callbook['state'];
 		}
-		if (!empty($callbook['us_county']) && empty($qso['COL_USACA_COUNTIES'])) {
-			$updatedData['COL_USACA_COUNTIES'] = $callbook['us_county'];
+		if (!empty($callbook['us_county']) && empty($qso['COL_CNTY'])) {
+			$updatedData['COL_CNTY'] = $callbook['state'].','.$callbook['us_county'];
 		}
 		if (!empty($callbook['qslmgr']) && empty($qso['COL_QSL_VIA'])) {
 			$updatedData['COL_QSL_VIA'] = $callbook['qslmgr'];
@@ -465,5 +465,33 @@ class Logbookadvanced_model extends CI_Model {
         $this->db->order_by("id", "desc");
 
         return $this->db->get()->result();
+    }
+
+	function saveEditedQsos($ids, $column, $value) {
+		switch($column) {
+			case "cqz": $column = 'COL_CQZ'; break;
+			case "dxcc": $column = 'COL_DXCC'; break;
+			case "iota": $column = 'COL_IOTA'; break;
+			case "was": $column = 'COL_STATE'; break;
+			case "propagation": $column = 'COL_PROP_MODE'; break;
+			default: return;
+		}
+
+		$this->db->trans_start();
+		$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ".$this->config->item('table_name').".station_id = station_profile.station_id SET " . $column . " = ? WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
+
+		$query = $this->db->query($sql, array($value, json_decode($ids, true), $this->session->userdata('user_id')));
+		$this->db->trans_complete();
+
+		return array('message' => 'OK');
+    }
+
+	function deleteQsos($ids) {
+		$this->db->trans_start();
+
+		$sql = "delete from " . $this->config->item('table_name') . " WHERE col_primary_key in ? and station_id in (select station_id from station_profile where user_id = ?)";
+
+		$query = $this->db->query($sql, array(json_decode($ids, true), $this->session->userdata('user_id')));
+		$this->db->trans_complete();
     }
 }
