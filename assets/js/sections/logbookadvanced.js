@@ -356,6 +356,12 @@ $(document).ready(function () {
 			return;
 		}
 
+		var id_list=[];
+		elements.each(function() {
+			let id = $(this).first().closest('tr').data('qsoID')
+			id_list.push(id);
+		});
+
 		$('#deleteQsos').prop("disabled", true);
 
 		var table = $('#qsoList').DataTable();
@@ -369,19 +375,22 @@ $(document).ready(function () {
 			btnOKClass: 'btn-danger',
 			callback: function(result) {
 				if(result) {
-					elements.each(function() {
-						let id = $(this).first().closest('tr').data('qsoID')
-						$.ajax({
-							url: base_url + 'index.php/qso/delete_ajax',
-							type: 'post',
-							data: {'id': id
-							},
-							success: function(data) {
+					$.ajax({
+						url: base_url + 'index.php/logbookadvanced/batchDeleteQsos',
+						type: 'post',
+						data: {
+							'ids': JSON.stringify(id_list, null, 2)
+						},
+						success: function(data) {
+							elements.each(function() {
+								let id = $(this).first().closest('tr').data('qsoID')
 								var row = $("#qsoID-" + id);
-								table.row(row).remove().draw(false);
-							}
-						});
-						$('#deleteQsos').prop("disabled", false);
+								table.row(row).remove();
+							});
+							$('#deleteQsos').prop("disabled", false);
+							table.draw(false);
+							$('#checkBoxAll').prop("checked", false);
+						}
 					})
 				}
 			},

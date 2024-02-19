@@ -485,4 +485,13 @@ class Logbookadvanced_model extends CI_Model {
 
 		return array('message' => 'OK');
     }
+
+	function deleteQsos($ids) {
+		$this->db->trans_start();
+
+		$sql = "delete from " . $this->config->item('table_name') . " WHERE col_primary_key in ? and station_id in (select station_id from station_profile where user_id = ?)";
+
+		$query = $this->db->query($sql, array(json_decode($ids, true), $this->session->userdata('user_id')));
+		$this->db->trans_complete();
+    }
 }
