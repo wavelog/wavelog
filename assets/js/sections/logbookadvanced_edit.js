@@ -23,22 +23,7 @@ function editQsos() {
 				nl2br: false,
 				message: html,
 				onshown: function(dialog) {
-					$('#editDxcc').html($('#dxcc').html());
-					$('#editDxcc option[value=""]').remove();
-
-					$('#editIota').html($('#iota').html());
-
-					$('#editPropagation').html($('#selectPropagation').html());
-					$('#editPropagation option[value=""]').remove();
-					var option = $('<option>');
-					option.val('').text('-');
-					$('#editPropagation').prepend(option);
-					$('#editPropagation').val('').trigger('chosen:updated');
-
-					$('#editColumn').change(function(){
-						var type = $('#editColumn').val();
-						changeEditType(type);
-					});
+					prepareEditDialog();
 				},
 				buttons: [{
 					label: 'Save',
@@ -68,9 +53,54 @@ function editQsos() {
 	});
 }
 
+function prepareEditDialog() {
+	$('#editDxcc').html($('#dxcc').html());
+	$('#editDxcc option[value=""]').remove();
+
+	$('#editIota').html($('#iota').html());
+
+	$('#editStationLocation').html($('#de').html());
+	$('#editStationLocation option[value="All"]').remove();
+	$('#editStationLocation option:first').prop('selected', true);
+
+	$('#editPropagation').html($('#selectPropagation').html());
+	$('#editPropagation option[value=""]').remove();
+	var option = $('<option>');
+	option.val('').text('-');
+	$('#editPropagation').prepend(option);
+	$('#editPropagation').val('').trigger('chosen:updated');
+
+	/*
+	Populate the Satellite Names in edit dropdown
+	*/
+	$.getJSON(base_url+"assets/json/satellite_data.json", function( data ) {
+
+		// Build the options array
+		var items = [];
+		$.each( data, function( key, val ) {
+			items.push(
+				'<option value="' + key + '">' + key + '</option>'
+			);
+		});
+
+		// Add to the datalist
+		$('#editSatellite').append(items.join( "" ));
+		option.val('').text('-');
+		$('#editSatellite').prepend(option);
+		$('#editSatellite').val('').trigger('chosen:updated');
+	});
+
+	$('#editColumn').change(function(){
+		var type = $('#editColumn').val();
+		changeEditType(type);
+	});
+}
+
 function saveBatchEditQsos(id_list) {
 	var column = $("#editColumn").val();
 	var value;
+	var value2;
+
 	if (column == 'cqz') {
 		value = $("#editCqz").val();
 	}
@@ -86,6 +116,25 @@ function saveBatchEditQsos(id_list) {
 	if (column == 'propagation') {
 		value = $("#editPropagation").val();
 	}
+	if (column == 'station') {
+		value = $("#editStationLocation").val();
+	}
+	if (column == 'date') {
+		value = $("#editDate").val();
+	}
+	if (column == 'band') {
+		value = $("#editBand").val();
+		value2 = $("#editBandRx").val();
+	}
+	if (column == 'mode') {
+		value = $("#editMode").val();
+	}
+	if (column == 'satellite') {
+		value = $("#editSatellite").val();
+	}
+	if (column == 'sota' || column == 'pota' || column == 'wwff' || column == 'gridsquare' || column == 'comment' || column == 'operator' || column == 'qslvia') {
+		value = $("#editTextInput").val();
+	}
 
 	$.ajax({
 		url: base_url + 'index.php/logbookadvanced/saveBatchEditQsos',
@@ -93,7 +142,8 @@ function saveBatchEditQsos(id_list) {
 		data: {
 			ids: JSON.stringify(id_list, null, 2),
 			column: column,
-			value: value
+			value: value,
+			value2: value2
 		},
 		success: function (data) {
 			if (data != []) {
@@ -107,41 +157,40 @@ function saveBatchEditQsos(id_list) {
 }
 
 function changeEditType(type) {
+	$('#editCqz').hide();
+	$('#editIota').hide();
+	$('#editDxcc').hide();
+	$('#editState').hide();
+	$('#editPropagation').hide();
+	$('#editStationLocation').hide();
+	$('#editTextInput').hide();
+	$('#editDate').hide();
+	$('#editBand').hide();
+	$('#editMode').hide();
+	$('#editSatellite').hide();
+	$('#editBandRx').hide();
 	if (type == "dxcc") {
-		$('#editCqz').hide();
-		$('#editIota').hide();
 		$('#editDxcc').show();
-		$('#editState').hide();
-		$('#editPropagation').hide();
 	} else if (type == "iota") {
-		$('#editCqz').hide();
 		$('#editIota').show();
-		$('#editDxcc').hide();
-		$('#editState').hide();
-		$('#editPropagation').hide();
-	} else if (type == "vucc" || type == "sota" || type == "wwff") {
-		$('#editCqz').hide();
-		$('#editIota').hide();
-		$('#editDxcc').hide();
-		$('#editState').hide();
-		$('#editPropagation').hide();
 	} else if (type == "cqz") {
 		$('#editCqz').show();
-		$('#editIota').hide();
-		$('#editDxcc').hide();
-		$('#editState').hide();
-		$('#editPropagation').hide();
 	} else if (type == "was") {
-		$('#editCqz').hide();
-		$('#editIota').hide();
-		$('#editDxcc').hide();
 		$('#editState').show();
-		$('#editPropagation').hide();
 	} else if (type == "propagation") {
-		$('#editCqz').hide();
-		$('#editIota').hide();
-		$('#editDxcc').hide();
-		$('#editState').hide();
 		$('#editPropagation').show();
+	} else if (type == "station") {
+		$('#editStationLocation').show();
+	} else if (type == "band") {
+		$('#editBand').Show();
+		$('#editBandRx').Show();
+	}else if (type == "mode") {
+		$('#editMode').show();
+	} else if (type == "date") {
+		$('#editDate').show();
+	} else if (type == "satellite") {
+		$('#editSatellite').show();
+	} else if (type == "gridsquare" || type == "sota" || type == "wwff" || type == "operator" || type == "pota" || type == "comment" || type == "qslvia") {
+		$('#editTextInput').show();
 	}
 }

@@ -1,16 +1,31 @@
 <form method="post" class="d-flex align-items-center">
 		<select id="editColumn" name="type" class="form-select w-auto me-2">
+			<option value="band">Band</option>
+			<option value="date">Date</option>
+			<option value="comment">Comment</option>
 			<option value="cqz">CQ Zone</option>
 			<option value="dxcc">DXCC</option>
+			<option value="gridsquare">Gridsquare</option>
 			<option value="iota">IOTA</option>
-			<option value="was">US State</option>
+			<option value="mode">Mode</option>
+			<option value="operator">Operator</option>
+			<option value="pota">POTA</option>
 			<option value="propagation">Propagation</option>
+			<option value="qslvia">QSL via</option>
+			<option value="satellite">Satellite</option>
+			<option value="sota">SOTA</option>
+			<option value="station">Station Location</option>
+			<option value="wwff">WWFF</option>
+			<option value="was">US State</option>
 		</select>
 		<div>&nbsp;</div>
-		<input style="display:none" class="form-control input-group-sm w-auto" id="quicklookuptext" type="text" name="searchfield" placeholder="" aria-label="Search">
+
+		<input style="display:none" class="form-control input-group-sm w-auto" id="editTextInput" type="text" name="editTextInput" placeholder="" aria-label="editTextInput">
+
+		<input style="display:none" name="editDate" id="editDate" type="date" class="form-control form-control-sm w-auto">
 
 		<!-- CQ Zone -->
-		<select class="form-select w-auto" id="editCqz" name="cqz" required>
+		<select style="display:none" class="form-select w-auto" id="editCqz" name="cqz" required>
 			<?php
 			for ($i = 1; $i <= 40; $i++) {
 				echo '<option value="' . $i . '">' . $i . '</option>';
@@ -20,6 +35,45 @@
 
 		<select style="display:none" class="form-select w-auto" id="editDxcc" name="dxcc" required>
 
+		</select>
+
+		<select style="display:none" class="form-select w-auto" id="editSatellite" name="satellite" required>
+
+		</select>
+
+		<select id="editBand" class="form-select form-select-sm" name="editBand">
+			<?php foreach($bands as $key=>$bandgroup) {
+					echo '<optgroup label="' . strtoupper($key) . '">';
+					foreach($bandgroup as $band) {
+						echo '<option value="' . $band . '">' . $band . '</option>'."\n";
+					}
+					echo '</optgroup>';
+				}
+			?>
+		</select>
+
+		<select id="editBandRx" class="form-select form-select-sm" name="editBandRx">
+			<option value="">-</option>
+			<?php foreach($bands as $key=>$bandgroup) {
+					echo '<optgroup label="' . strtoupper($key) . '">';
+					foreach($bandgroup as $band) {
+						echo '<option value="' . $band . '">' . $band . '</option>'."\n";
+					}
+					echo '</optgroup>';
+				}
+			?>
+		</select>
+
+		<select style="display:none" id="editMode" class="form-select mode form-select-sm" name="editMode">
+		<?php
+			foreach($modes->result() as $mode){
+			if ($mode->submode == null) {
+				printf("<option value=\"%s\">%s</option>", $mode->mode, $mode->mode);
+			} else {
+				printf("<option value=\"%s\">&rArr; %s</option>", $mode->submode, $mode->submode);
+			}
+			}
+		?>
 		</select>
 
 		<select style="display:none" class="form-select w-auto" id="editPropagation" name="propagation" required>
@@ -81,6 +135,10 @@
 		</select>
 
 		<select style="display:none" class="form-select w-auto" id="editIota" name="iota_ref">
+
+		</select>
+
+		<select style="display:none" class="form-select w-auto" id="editStationLocation" name="station_location">
 
 		</select>
 	</form>

@@ -499,16 +499,22 @@ class Logbookadvanced extends CI_Controller {
 	}
 
 	public function editDialog() {
-		$this->load->view('logbookadvanced/edit');
+		$this->load->model('bands');
+		$this->load->model('modes');
+
+		$data['modes'] = $this->modes->active();
+		$data['bands'] = $this->bands->get_user_bands_for_qso_entry();
+		$this->load->view('logbookadvanced/edit', $data);
 	}
 
 	public function saveBatchEditQsos() {
 		$ids = xss_clean($this->input->post('ids'));
 		$column = xss_clean($this->input->post('column'));
 		$value = xss_clean($this->input->post('value'));
+		$value2 = xss_clean($this->input->post('value2'));
 
 		$this->load->model('logbookadvanced_model');
-		$this->logbookadvanced_model->saveEditedQsos($ids, $column, $value);
+		$this->logbookadvanced_model->saveEditedQsos($ids, $column, $value, $value2);
 
 		$data = $this->logbookadvanced_model->getQsosForAdif($ids, $this->session->userdata('user_id'));
 
