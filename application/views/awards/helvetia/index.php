@@ -151,7 +151,7 @@
                     <button id="button2id" type="reset" name="button2id" class="btn btn-sm btn-warning">Reset</button>
                     <button id="button1id" type="submit" name="button1id" class="btn btn-sm btn-primary">Show</button>
 					<?php if ($helvetia_array) {
-                        ?><button type="button" onclick="load_helvetia_map();" class="btn btn-info btn-sm"><i class="fas fa-globe-americas"></i> Show helvetia Map</button>
+                        ?><button type="button" onclick="load_helvetia_map();" class="btn btn-info btn-sm"><i class="fas fa-globe-americas"></i> Show Helvetia Map</button>
                     <?php }?>
                 </div>
             </div>
