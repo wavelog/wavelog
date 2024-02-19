@@ -309,8 +309,8 @@ function qso_edit(id) {
                         calcRemainingChars(event, '.modal-content');
                     });
                     
-                    $("#dxcc_id").change(function () {
-                        updateStateDropdown();
+                    $("#dxcc_id").change(async function () {
+                        await updateStateDropdown();
                     });
                 },
             });
@@ -318,12 +318,12 @@ function qso_edit(id) {
     });
 }
 
-function updateStateDropdown() {
+async function updateStateDropdown() {
     console.log('dropdown triggered');
     var selectedDxcc = $("#dxcc_id");
 
     if (selectedDxcc.val() !== "") {
-        $.ajax({
+        await $.ajax({
             url: base_url + "index.php/lookup/get_state_list",
             type: "POST",
             data: { dxcc: selectedDxcc.val() },
