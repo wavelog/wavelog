@@ -501,6 +501,9 @@ class Logbookadvanced extends CI_Controller {
 	public function editDialog() {
 		$this->load->model('bands');
 		$this->load->model('modes');
+		$this->load->model('logbookadvanced_model');
+
+		$data['stateDxcc'] = $this->logbookadvanced_model->getPrimarySubdivisonsDxccs();
 
 		$data['modes'] = $this->modes->active();
 		$data['bands'] = $this->bands->get_user_bands_for_qso_entry();
@@ -539,5 +542,15 @@ class Logbookadvanced extends CI_Controller {
 
 		$this->load->model('logbookadvanced_model');
 		$this->logbookadvanced_model->deleteQsos($ids);
+	}
+
+	public function getSubdivisionsForDxcc() {
+		$dxcc = xss_clean($this->input->post('dxcc'));
+
+		$this->load->model('logbookadvanced_model');
+		$result = $this->logbookadvanced_model->getSubdivisons($dxcc);
+
+		header("Content-Type: application/json");
+		print json_encode($result);
 	}
 }

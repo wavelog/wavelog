@@ -472,7 +472,7 @@ class Logbookadvanced_model extends CI_Model {
 			case "cqz": $column = 'COL_CQZ'; break;
 			case "dxcc": $column = 'COL_DXCC'; break;
 			case "iota": $column = 'COL_IOTA'; break;
-			case "was": $column = 'COL_STATE'; break;
+			case "state": $column = 'COL_STATE'; break;
 			case "propagation": $column = 'COL_PROP_MODE'; break;
 			case "station": $column = 'station_id'; break;
 			case "operator": $column = 'COL_OPERATOR'; break;
@@ -610,5 +610,22 @@ class Logbookadvanced_model extends CI_Model {
 
 		$query = $this->db->query($sql, array(json_decode($ids, true), $this->session->userdata('user_id')));
 		$this->db->trans_complete();
+    }
+
+	function getPrimarySubdivisonsDxccs() {
+		$sql = "select distinct primary_subdivisions.adif, dxcc_entities.name, dxcc_entities.prefix
+		from primary_subdivisions
+		join dxcc_entities on primary_subdivisions.adif = dxcc_entities.adif
+		order by prefix";
+
+		$query = $this->db->query($sql);
+		return $query->result();
+    }
+
+	function getSubdivisons($dxccid) {
+		$sql = "select * from primary_subdivisions where adif = ? order by subdivision";
+
+		$query = $this->db->query($sql, array($dxccid));
+		return $query->result();
     }
 }

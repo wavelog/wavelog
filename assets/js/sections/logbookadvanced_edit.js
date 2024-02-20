@@ -38,6 +38,7 @@ function editQsos() {
 							}
 						}
 						saveBatchEditQsos(id_list);
+
 						$('#editButton').prop("disabled", false);
 						$('#closeButton').prop("disabled", true);
 
@@ -98,6 +99,11 @@ function prepareEditDialog() {
 		var type = $('#editColumn').val();
 		changeEditType(type);
 	});
+
+	$('#editDxccState').change(function(){
+		var statedxcc = $('#editDxccState').val();
+		changeState(statedxcc);
+	});
 }
 function propagationCopy() {
 	promise = fixPropagation().then(propAppend);
@@ -135,8 +141,8 @@ function saveBatchEditQsos(id_list) {
 	if (column == 'iota') {
 		value = $("#editIota").val();
 	}
-	if (column == 'was') {
-		value = $("#editState").val();
+	if (column == 'state') {
+		value = $("#editDxccStateList").val();
 	}
 	if (column == 'propagation') {
 		value = $("#editPropagation").val();
@@ -195,14 +201,20 @@ function changeEditType(type) {
 	$('#editSatellite').hide();
 	$('#editBandRx').hide();
 	$('#editBandRxLabel').hide();
+	$('#editDxccState').hide();
+	$('#editDxccStateList').hide();
+	$('#editDxccStateListLabel').hide();
+	editDxccStateListLabel
 	if (type == "dxcc") {
 		$('#editDxcc').show();
 	} else if (type == "iota") {
 		$('#editIota').show();
 	} else if (type == "cqz") {
 		$('#editCqz').show();
-	} else if (type == "was") {
-		$('#editState').show();
+	} else if (type == "state") {
+		$('#editDxccState').show();
+		$('#editDxccStateList').show();
+		$('#editDxccStateListLabel').show();
 	} else if (type == "propagation") {
 		$('#editPropagation').show();
 	} else if (type == "station") {
@@ -220,4 +232,30 @@ function changeEditType(type) {
 	} else if (type == "gridsquare" || type == "sota" || type == "wwff" || type == "operator" || type == "pota" || type == "comment" || type == "qslvia") {
 		$('#editTextInput').show();
 	}
+}
+
+function changeState(dxcc) {
+	$('#editDxccStateList').empty();
+	$.ajax({
+		url: base_url + 'index.php/logbookadvanced/getSubdivisionsForDxcc',
+		type: 'post',
+		data: {
+			dxcc: dxcc
+		},
+		success: function (data) {
+			if (data != []) {
+				// Build the options array
+				var items = [];
+				$.each( data, function( key, val ) {
+					console.log(val);
+					items.push(
+						'<option value="' + val.state + '">' + val.state + ' - ' + val.subdivision + '</option>'
+					);
+				});
+
+				// Add to the datalist
+				$('#editDxccStateList').append(items.join( "" ));
+			}
+		}
+	});
 }
