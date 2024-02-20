@@ -506,14 +506,14 @@ class Logbookadvanced_model extends CI_Model {
 			$sigInfo = $station_profile->station_sig_info ?? '';
 
 			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
-			" SET " . $this->config->item('table_name')."STATION_ID = ?" .
-			", " . $this->config->item('table_name')."COL_MY_IOTA = ?" .
-			", " . $this->config->item('table_name')."COL_MY_SOTA_REF = ?" .
-			", " . $this->config->item('table_name')."COL_MY_WWFF_REF = ?" .
-			", " . $this->config->item('table_name')."COL_MY_POTA_REF = ?" .
-			", " . $this->config->item('table_name')."COL_MY_SIG = ?" .
-			", " . $this->config->item('table_name')."COL_MY_SIG_INFO = ?" .
-			", " . $this->config->item('table_name')."COL_STATION_CALLSIGN = ?" .
+			" SET " . $this->config->item('table_name').".STATION_ID = ?" .
+			", " . $this->config->item('table_name').".COL_MY_IOTA = ?" .
+			", " . $this->config->item('table_name').".COL_MY_SOTA_REF = ?" .
+			", " . $this->config->item('table_name').".COL_MY_WWFF_REF = ?" .
+			", " . $this->config->item('table_name').".COL_MY_POTA_REF = ?" .
+			", " . $this->config->item('table_name').".COL_MY_SIG = ?" .
+			", " . $this->config->item('table_name').".COL_MY_SIG_INFO = ?" .
+			", " . $this->config->item('table_name').".COL_STATION_CALLSIGN = ?" .
 			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
 
 			$query = $this->db->query($sql, array($stationid, $iotaRef, $sotaRef, $wwffRef, $potaRef, $sig, $sigInfo, $stationCallsign, json_decode($ids, true), $this->session->userdata('user_id')));
