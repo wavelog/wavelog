@@ -33,6 +33,12 @@ function editQsos() {
 						saveBatchEditQsos(id_list);
 						$('#editButton').prop("disabled", false);
 						$('#closeButton').prop("disabled", true);
+						var column = $("#editColumn").val();
+
+						if (column == 'date') {
+							var value = $("#editDate").val();
+							if (value.length == 0) return;
+						}
 						dialogItself.close();
 					}
 				},
