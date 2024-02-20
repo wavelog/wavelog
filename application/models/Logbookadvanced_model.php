@@ -467,20 +467,142 @@ class Logbookadvanced_model extends CI_Model {
         return $this->db->get()->result();
     }
 
-	function saveEditedQsos($ids, $column, $value) {
+	function saveEditedQsos($ids, $column, $value, $value2) {
 		switch($column) {
 			case "cqz": $column = 'COL_CQZ'; break;
 			case "dxcc": $column = 'COL_DXCC'; break;
 			case "iota": $column = 'COL_IOTA'; break;
-			case "was": $column = 'COL_STATE'; break;
+			case "state": $column = 'COL_STATE'; break;
 			case "propagation": $column = 'COL_PROP_MODE'; break;
+			case "station": $column = 'station_id'; break;
+			case "operator": $column = 'COL_OPERATOR'; break;
+			case "comment": $column = 'COL_COMMENT'; break;
+			case "band": $column = 'COL_BAND'; break;
+			case "mode": $column = 'COL_MODE'; break;
+			case "date": $column = 'COL_TIME_ON'; break;
+			case "pota": $column = 'COL_POTA_REF'; break;
+			case "sota": $column = 'COL_SOTA_REF'; break;
+			case "wwff": $column = 'COL_WWFF_REF'; break;
+			case "gridsquare": $column = 'COL_GRIDSQUARE'; break;
+			case "qslvia": $column = 'COL_QSL_VIA'; break;
+			case "satellite": $column = 'COL_SAT_NAME'; break;
 			default: return;
 		}
 
 		$this->db->trans_start();
-		$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ".$this->config->item('table_name').".station_id = station_profile.station_id SET " . $column . " = ? WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
 
-		$query = $this->db->query($sql, array($value, json_decode($ids, true), $this->session->userdata('user_id')));
+		if ($column == 'station_id') {
+
+			$this->load->model('stations');
+			// Need to copy over from station profile to my_columns
+			$station_profile = $this->stations->profile_clean($value);
+			$stationid = $value;
+			$stationCallsign = $station_profile->station_callsign;
+			$iotaRef = $station_profile->station_iota ?? '';
+			$sotaRef = $station_profile->station_sota ?? '';
+			$wwffRef = $station_profile->station_wwff ?? '';
+			$potaRef = $station_profile->station_pota ?? '';
+			$sig     = $station_profile->station_sig ?? '';
+			$sigInfo = $station_profile->station_sig_info ?? '';
+
+			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
+			" SET " . $this->config->item('table_name').".STATION_ID = ?" .
+			", " . $this->config->item('table_name').".COL_MY_IOTA = ?" .
+			", " . $this->config->item('table_name').".COL_MY_SOTA_REF = ?" .
+			", " . $this->config->item('table_name').".COL_MY_WWFF_REF = ?" .
+			", " . $this->config->item('table_name').".COL_MY_POTA_REF = ?" .
+			", " . $this->config->item('table_name').".COL_MY_SIG = ?" .
+			", " . $this->config->item('table_name').".COL_MY_SIG_INFO = ?" .
+			", " . $this->config->item('table_name').".COL_STATION_CALLSIGN = ?" .
+			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
+
+			$query = $this->db->query($sql, array($stationid, $iotaRef, $sotaRef, $wwffRef, $potaRef, $sig, $sigInfo, $stationCallsign, json_decode($ids, true), $this->session->userdata('user_id')));
+		} else if ($column == 'COL_BAND') {
+
+			$bandrx = $value2 == '' ? '' : $value2;
+			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
+			" SET " . $this->config->item('table_name').".COL_BAND = ?" .
+			", " . $this->config->item('table_name').".COL_BAND_RX = ?" .
+			", " . $this->config->item('table_name').".COL_FREQ = ?" .
+			", " . $this->config->item('table_name').".COL_FREQ_RX = ?" .
+			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
+
+			$this->load->library('frequency');
+			$frequencyBand = $this->frequency->defaultFrequencies[$value]['CW'];
+			$frequencyBandRx = $bandrx == '' ? null : $this->frequency->defaultFrequencies[$bandrx]['CW'];
+
+			$query = $this->db->query($sql, array($value, $value2, $frequencyBand, $frequencyBandRx, json_decode($ids, true), $this->session->userdata('user_id')));
+		} else if ($column == 'COL_GRIDSQUARE') {
+			$this->load->library('Qra');
+			$latlng=$this->qra->qra2latlong(trim(xss_clean($value) ?? ''));
+			if ($latlng[1] ?? '--' != '--') {
+				if (strpos(trim(xss_clean($value) ?? ''), ',') !== false) {
+					$grid_value = null;
+					$vucc_value = strtoupper(preg_replace('/\s+/', '', xss_clean($value) ?? ''));
+				} else {
+					$vucc_value = null;
+					$grid_value = strtoupper(trim(xss_clean($value) ?? ''));
+				}
+
+				$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
+					" SET " . $this->config->item('table_name').".COL_GRIDSQUARE = ?" .
+", " . $this->config->item('table_name').".COL_VUCC_GRIDS = ?" .
+					" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
+
+				$query = $this->db->query($sql, array($grid_value, $vucc_value, json_decode($ids, true), $this->session->userdata('user_id')));
+			}
+		} else if ($column == 'COL_MODE') {
+
+			$this->load->model('logbook_model');
+			$mode = $this->logbook_model->get_main_mode_if_submode($value);
+			if ($mode == null) {
+				$col_mode = $value;
+				$col_submode = null;
+			} else {
+				$col_mode = $mode;
+				$col_submode = $value;
+			}
+
+			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
+			" SET " . $this->config->item('table_name').".COL_MODE = ?" .
+			", " . $this->config->item('table_name').".COL_SUBMODE = ?" .
+			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
+
+			$query = $this->db->query($sql, array($col_mode, $col_submode, json_decode($ids, true), $this->session->userdata('user_id')));
+		} else if ($column == 'COL_QSL_VIA') {
+
+			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
+			" SET " . $this->config->item('table_name').".COL_QSL_VIA = ?" .
+			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
+
+			$query = $this->db->query($sql, array($value, json_decode($ids, true), $this->session->userdata('user_id')));
+		} else if ($column == 'COL_TIME_ON') {
+
+			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
+			" SET " . $this->config->item('table_name').".col_time_on = TIMESTAMP(CONCAT(DATE_FORMAT(?, '%Y-%m-%d'), ' ', cast(col_time_on as time)))" .
+			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
+
+			$query = $this->db->query($sql, array($value, json_decode($ids, true), $this->session->userdata('user_id')));
+
+		} else if ($column == 'COL_SAT_NAME') {
+
+			$propmode = $value == '' ? '' : 'SAT';
+			$satmode = $value2 ?? '';
+
+			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
+			" SET " . $this->config->item('table_name').".COL_SAT_NAME = ?" .
+			", " . $this->config->item('table_name').".COL_PROP_MODE = ?" .
+			", " . $this->config->item('table_name').".COL_SAT_MODE = ?" .
+			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
+
+			$query = $this->db->query($sql, array($value, $propmode, $satmode, json_decode($ids, true), $this->session->userdata('user_id')));
+		} else {
+
+			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ".$this->config->item('table_name').".station_id = station_profile.station_id SET " . $this->config->item('table_name').".".$column . " = ? WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
+
+			$query = $this->db->query($sql, array($value, json_decode($ids, true), $this->session->userdata('user_id')));
+		}
+
 		$this->db->trans_complete();
 
 		return array('message' => 'OK');
@@ -493,5 +615,22 @@ class Logbookadvanced_model extends CI_Model {
 
 		$query = $this->db->query($sql, array(json_decode($ids, true), $this->session->userdata('user_id')));
 		$this->db->trans_complete();
+    }
+
+	function getPrimarySubdivisonsDxccs() {
+		$sql = "select distinct primary_subdivisions.adif, dxcc_entities.name, dxcc_entities.prefix
+		from primary_subdivisions
+		join dxcc_entities on primary_subdivisions.adif = dxcc_entities.adif
+		order by prefix";
+
+		$query = $this->db->query($sql);
+		return $query->result();
+    }
+
+	function getSubdivisons($dxccid) {
+		$sql = "select * from primary_subdivisions where adif = ? order by subdivision";
+
+		$query = $this->db->query($sql, array($dxccid));
+		return $query->result();
     }
 }
