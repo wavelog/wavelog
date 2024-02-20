@@ -18,7 +18,7 @@ function editQsos() {
 		success: function (html) {
 			BootstrapDialog.show({
 				title: 'Batch edit for QSOs',
-				size: BootstrapDialog.SIZE_NORMAL,
+				size: BootstrapDialog.SIZE_WIDE,
 				cssClass: 'options',
 				nl2br: false,
 				message: html,
@@ -169,6 +169,7 @@ function changeEditType(type) {
 	$('#editMode').hide();
 	$('#editSatellite').hide();
 	$('#editBandRx').hide();
+	$('#editBandRxLabel').hide();
 	if (type == "dxcc") {
 		$('#editDxcc').show();
 	} else if (type == "iota") {
@@ -182,8 +183,9 @@ function changeEditType(type) {
 	} else if (type == "station") {
 		$('#editStationLocation').show();
 	} else if (type == "band") {
-		$('#editBand').Show();
-		$('#editBandRx').Show();
+		$('#editBand').show();
+		$('#editBandRx').show();
+		$('#editBandRxLabel').show();
 	}else if (type == "mode") {
 		$('#editMode').show();
 	} else if (type == "date") {

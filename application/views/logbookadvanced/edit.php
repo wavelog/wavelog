@@ -1,5 +1,5 @@
 <form method="post" class="d-flex align-items-center">
-		<select id="editColumn" name="type" class="form-select w-auto me-2">
+		<select id="editColumn" name="type" class="form-select form-select-sm w-auto me-2">
 			<option value="band">Band</option>
 			<option value="date">Date</option>
 			<option value="comment">Comment</option>
@@ -20,12 +20,12 @@
 		</select>
 		<div>&nbsp;</div>
 
-		<input style="display:none" class="form-control input-group-sm w-auto" id="editTextInput" type="text" name="editTextInput" placeholder="" aria-label="editTextInput">
+		<input style="display:none" class="form-control form-control-sm w-auto" id="editTextInput" type="text" name="editTextInput" placeholder="" aria-label="editTextInput">
 
 		<input style="display:none" name="editDate" id="editDate" type="date" class="form-control form-control-sm w-auto">
 
 		<!-- CQ Zone -->
-		<select style="display:none" class="form-select w-auto" id="editCqz" name="cqz" required>
+		<select style="display:none" class="form-select form-select-sm w-auto" id="editCqz" name="cqz" required>
 			<?php
 			for ($i = 1; $i <= 40; $i++) {
 				echo '<option value="' . $i . '">' . $i . '</option>';
@@ -33,15 +33,15 @@
 			?>
 		</select>
 
-		<select style="display:none" class="form-select w-auto" id="editDxcc" name="dxcc" required>
+		<select style="display:none" class="form-select form-select-sm w-auto" id="editDxcc" name="dxcc" required>
 
 		</select>
 
-		<select style="display:none" class="form-select w-auto" id="editSatellite" name="satellite" required>
+		<select style="display:none" class="form-select form-select-sm w-auto" id="editSatellite" name="satellite" required>
 
 		</select>
 
-		<select id="editBand" class="form-select form-select-sm" name="editBand">
+		<select id="editBand" class="form-select w-auto form-select-sm" name="editBand">
 			<?php foreach($bands as $key=>$bandgroup) {
 					echo '<optgroup label="' . strtoupper($key) . '">';
 					foreach($bandgroup as $band) {
@@ -52,7 +52,8 @@
 			?>
 		</select>
 
-		<select id="editBandRx" class="form-select form-select-sm" name="editBandRx">
+		<label id="editBandRxLabel" class="mx-2 w-auto" for="gridlabel">Band RX</label>
+		<select id="editBandRx" class="form-select w-auto form-select-sm" name="editBandRx">
 			<option value="">-</option>
 			<?php foreach($bands as $key=>$bandgroup) {
 					echo '<optgroup label="' . strtoupper($key) . '">';
@@ -64,7 +65,7 @@
 			?>
 		</select>
 
-		<select style="display:none" id="editMode" class="form-select mode form-select-sm" name="editMode">
+		<select style="display:none" id="editMode" class="form-select mode form-select-sm w-auto" name="editMode">
 		<?php
 			foreach($modes->result() as $mode){
 			if ($mode->submode == null) {
@@ -76,11 +77,12 @@
 		?>
 		</select>
 
-		<select style="display:none" class="form-select w-auto" id="editPropagation" name="propagation" required>
+		<select style="display:none" class="form-select w-auto form-select-sm" id="editPropagation" name="propagation" required>
 
 		</select>
 
-		<select style="display:none" class="form-select w-auto" id="editState" name="was">
+		<select style="display:none" class="form-select form-select-sm w-auto" id="editState" name="was">
+			<option value="">-</option>
 			<option value="AL">Alabama (AL)</option>
 			<option value="AK">Alaska (AK)</option>
 			<option value="AZ">Arizona (AZ)</option>
@@ -134,11 +136,11 @@
 			<option value="WY">Wyoming (WY)</option>
 		</select>
 
-		<select style="display:none" class="form-select w-auto" id="editIota" name="iota_ref">
+		<select style="display:none" class="form-select w-auto form-select-sm w-auto" id="editIota" name="iota_ref">
 
 		</select>
 
-		<select style="display:none" class="form-select w-auto" id="editStationLocation" name="station_location">
+		<select style="display:none" class="form-select w-auto form-select-sm w-auto" id="editStationLocation" name="station_location">
 
 		</select>
 	</form>
