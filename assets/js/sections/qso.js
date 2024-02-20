@@ -578,6 +578,16 @@ function reset_fields() {
 	selectize = $select[0].selectize;
 	selectize.clear();
 
+	var $select = $('#sota_ref').selectize();
+	var selectize = $select[0].selectize;
+	selectize.clear();
+
+	$('#sig').val("");
+	$('#sig_info').val("");
+	$('#sent').val("N");
+	$('#sent-method').val("");
+	$('#qsl_via').val("");
+
 	mymap.setView(pos, 12);
 	mymap.removeLayer(markers);
 	$('.callsign-suggest').hide();
