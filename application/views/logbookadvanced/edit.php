@@ -57,6 +57,8 @@
 		<select style="display:none" class="form-select form-select-sm w-auto" id="editSatellite" name="satellite" required>
 
 		</select>
+		<label style="display:none" id="editSatelliteModeLabel" class="mx-2 w-auto" for="editSatelliteMode">SAT Mode</label>
+		<input style="display:none" class="form-control form-control-sm w-auto" id="editSatelliteMode" type="text" name="editSatelliteMode" placeholder="" aria-label="editSatelliteMode">
 
 		<select id="editBand" class="form-select w-auto form-select-sm" name="editBand">
 			<?php foreach($bands as $key=>$bandgroup) {

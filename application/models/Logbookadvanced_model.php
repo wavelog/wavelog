@@ -587,13 +587,15 @@ class Logbookadvanced_model extends CI_Model {
 		} else if ($column == 'COL_SAT_NAME') {
 
 			$propmode = $value == '' ? '' : 'SAT';
+			$satmode = $value2 ?? '';
 
 			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
 			" SET " . $this->config->item('table_name').".COL_SAT_NAME = ?" .
 			", " . $this->config->item('table_name').".COL_PROP_MODE = ?" .
+			", " . $this->config->item('table_name').".COL_SAT_MODE = ?" .
 			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
 
-			$query = $this->db->query($sql, array($value, $propmode, json_decode($ids, true), $this->session->userdata('user_id')));
+			$query = $this->db->query($sql, array($value, $propmode, $satmode, json_decode($ids, true), $this->session->userdata('user_id')));
 		} else {
 
 			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ".$this->config->item('table_name').".station_id = station_profile.station_id SET " . $this->config->item('table_name').".".$column . " = ? WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
