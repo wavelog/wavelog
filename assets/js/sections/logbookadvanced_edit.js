@@ -247,7 +247,6 @@ function changeState(dxcc) {
 				// Build the options array
 				var items = [];
 				$.each( data, function( key, val ) {
-					console.log(val);
 					items.push(
 						'<option value="' + val.state + '">' + val.state + ' - ' + val.subdivision + '</option>'
 					);
