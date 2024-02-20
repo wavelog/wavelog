@@ -533,21 +533,24 @@ class Logbookadvanced_model extends CI_Model {
 
 			$query = $this->db->query($sql, array($value, $value2, $frequencyBand, $frequencyBandRx, json_decode($ids, true), $this->session->userdata('user_id')));
 		} else if ($column == 'COL_GRIDSQUARE') {
+			$this->load->library('Qra');
+			$latlng=$this->qra->qra2latlong(trim(xss_clean($value) ?? ''));
+			if ($latlng[1] ?? '--' != '--') {
+				if (strpos(trim(xss_clean($value) ?? ''), ',') !== false) {
+					$grid_value = null;
+					$vucc_value = strtoupper(preg_replace('/\s+/', '', xss_clean($value) ?? ''));
+				} else {
+					$vucc_value = null;
+					$grid_value = strtoupper(trim(xss_clean($value) ?? ''));
+				}
 
-			if (strpos(trim(xss_clean($value) ?? ''), ',') !== false) {
-				$grid_value = null;
-				$vucc_value = strtoupper(preg_replace('/\s+/', '', xss_clean($value) ?? ''));
-			} else {
-				$vucc_value = null;
-				$grid_value = strtoupper(trim(xss_clean($value) ?? ''));
+				$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
+					" SET " . $this->config->item('table_name').".COL_GRIDSQUARE = ?" .
+", " . $this->config->item('table_name').".COL_VUCC_GRIDS = ?" .
+					" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
+
+				$query = $this->db->query($sql, array($grid_value, $vucc_value, json_decode($ids, true), $this->session->userdata('user_id')));
 			}
-
-			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
-			" SET " . $this->config->item('table_name').".COL_GRIDSQUARE = ?" .
-			", " . $this->config->item('table_name').".COL_VUCC_GRIDS = ?" .
-			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
-
-			$query = $this->db->query($sql, array($grid_value, $vucc_value, json_decode($ids, true), $this->session->userdata('user_id')));
 		} else if ($column == 'COL_MODE') {
 
 			$this->load->model('logbook_model');
@@ -570,7 +573,7 @@ class Logbookadvanced_model extends CI_Model {
 
 			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
 			" SET " . $this->config->item('table_name').".COL_QSL_VIA = ?" .
-			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ? and coalesce(COL_QSL_VIA, '') = ''";
+			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
 
 			$query = $this->db->query($sql, array($value, json_decode($ids, true), $this->session->userdata('user_id')));
 		} else if ($column == 'COL_TIME_ON') {
