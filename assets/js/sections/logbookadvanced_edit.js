@@ -201,6 +201,7 @@ function changeEditType(type) {
 	$('#editBand').hide();
 	$('#editMode').hide();
 	$('#editSatellite').hide();
+	$('#editSatelliteMode').hide();
 	$('#editSatelliteModeLabel').hide();
 	$('#editBandRx').hide();
 	$('#editBandRxLabel').hide();
