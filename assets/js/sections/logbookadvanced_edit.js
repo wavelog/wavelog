@@ -105,6 +105,7 @@ function prepareEditDialog() {
 		changeState(statedxcc);
 	});
 }
+
 function propagationCopy() {
 	promise = fixPropagation().then(propAppend);
 }
@@ -162,6 +163,7 @@ function saveBatchEditQsos(id_list) {
 	}
 	if (column == 'satellite') {
 		value = $("#editSatellite").val();
+		value2 = $("#editSatelliteMode").val();
 	}
 	if (column == 'sota' || column == 'pota' || column == 'wwff' || column == 'gridsquare' || column == 'comment' || column == 'operator' || column == 'qslvia') {
 		value = $("#editTextInput").val();
@@ -199,6 +201,7 @@ function changeEditType(type) {
 	$('#editBand').hide();
 	$('#editMode').hide();
 	$('#editSatellite').hide();
+	$('#editSatelliteModeLabel').hide();
 	$('#editBandRx').hide();
 	$('#editBandRxLabel').hide();
 	$('#editDxccState').hide();
@@ -229,6 +232,8 @@ function changeEditType(type) {
 		$('#editDate').show();
 	} else if (type == "satellite") {
 		$('#editSatellite').show();
+		$('#editSatelliteMode').show();
+		$('#editSatelliteModeLabel').show();
 	} else if (type == "gridsquare" || type == "sota" || type == "wwff" || type == "operator" || type == "pota" || type == "comment" || type == "qslvia") {
 		$('#editTextInput').show();
 	}
