@@ -527,7 +527,11 @@ class Logbookadvanced_model extends CI_Model {
 			", " . $this->config->item('table_name').".COL_FREQ_RX = ?" .
 			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
 
-			$query = $this->db->query($sql, array($value, $value2, null, null, json_decode($ids, true), $this->session->userdata('user_id')));
+			$this->load->library('frequency');
+			$frequencyBand = $this->frequency->defaultFrequencies[$value]['CW'];
+			$frequencyBandRx = $bandrx == '' ? null : $this->frequency->defaultFrequencies[$bandrx]['CW'];
+
+			$query = $this->db->query($sql, array($value, $value2, $frequencyBand, $frequencyBandRx, json_decode($ids, true), $this->session->userdata('user_id')));
 		} else if ($column == 'COL_GRIDSQUARE') {
 
 			if (strpos(trim(xss_clean($value) ?? ''), ',') !== false) {
