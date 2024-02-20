@@ -63,12 +63,7 @@ function prepareEditDialog() {
 	$('#editStationLocation option[value="All"]').remove();
 	$('#editStationLocation option:first').prop('selected', true);
 
-	$('#editPropagation').html($('#selectPropagation').html());
-	$('#editPropagation option[value=""]').remove();
-	var option = $('<option>');
-	option.val('').text('-');
-	$('#editPropagation').prepend(option);
-	$('#editPropagation').val('').trigger('chosen:updated');
+	propagationCopy();
 
 	/*
 	Populate the Satellite Names in edit dropdown
@@ -85,6 +80,7 @@ function prepareEditDialog() {
 
 		// Add to the datalist
 		$('#editSatellite').append(items.join( "" ));
+		var option = $('<option>');
 		option.val('').text('-');
 		$('#editSatellite').prepend(option);
 		$('#editSatellite').val('').trigger('chosen:updated');
@@ -94,6 +90,27 @@ function prepareEditDialog() {
 		var type = $('#editColumn').val();
 		changeEditType(type);
 	});
+}
+function propagationCopy() {
+	promise = fixPropagation().then(propAppend);
+}
+
+function fixPropagation() {
+	d = new $.Deferred();
+	$('#editPropagation').html($('#selectPropagation').html());
+	$('#editPropagation option[value=""]').remove();
+	d.resolve();
+	return d.promise()
+}
+
+function propAppend() {
+	d = new $.Deferred();
+	var option = $('<option>');
+	option.val('').text('-');
+	$('#editPropagation').prepend(option);
+	$('#editPropagation').val('').trigger('chosen:updated');
+	d.resolve();
+	return d.promise()
 }
 
 function saveBatchEditQsos(id_list) {
