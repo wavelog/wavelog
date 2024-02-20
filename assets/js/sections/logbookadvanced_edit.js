@@ -30,15 +30,17 @@ function editQsos() {
 					cssClass: 'btn-primary btn-sm',
 					id: 'saveButton',
 					action: function (dialogItself) {
+						var column = $("#editColumn").val();
+						if (column == 'date') {
+							var value = $("#editDate").val();
+							if (value.length == 0) {
+								return;
+							}
+						}
 						saveBatchEditQsos(id_list);
 						$('#editButton').prop("disabled", false);
 						$('#closeButton').prop("disabled", true);
-						var column = $("#editColumn").val();
 
-						if (column == 'date') {
-							var value = $("#editDate").val();
-							if (value.length == 0) return;
-						}
 						dialogItself.close();
 					}
 				},
