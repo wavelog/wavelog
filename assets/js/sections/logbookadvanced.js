@@ -313,6 +313,7 @@ $(document).ready(function () {
 				});
 			},
 		});
+		$("#dupes").val("");
 		return false;
 	});
 
@@ -707,7 +708,6 @@ $(document).ready(function () {
 	});
 
 	$('#searchForm').on('reset', function(e) {
-		$("#dupes").val("");
 		setTimeout(function() {
 			$('#searchForm').submit();
 		});
