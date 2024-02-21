@@ -76,9 +76,9 @@ ________________________________________________________________________________
 */
 
 $lang['filter_general_from'] = 'From';
-$lang['filter_general_to'] = 'to';
-// $lang['gen_hamradio_de']             --> application/language/english/general_words_lang.php 
-// $lang['gen_hamradio_dx']             --> application/language/english/general_words_lang.php 
+$lang['filter_general_to'] = 'To';
+// $lang['gen_hamradio_de']             --> application/language/english/general_words_lang.php
+// $lang['gen_hamradio_dx']             --> application/language/english/general_words_lang.php
 // $lang['gen_hamradio_dxcc']           --> application/language/english/general_words_lang.php
 $lang['filter_general_none'] = '- NONE - (e.g. /MM, /AM)';
 // $lang['gen_hamradio_state']          --> application/language/english/general_words_lang.php
