@@ -18,6 +18,7 @@ $(document).ready(function () {
 				jdata=JSON.parse(data);
 				if (jdata.success == 1) {
 					$("#NewStationLogbookModal").modal('hide');
+					// todo: repopulate logbooks-table
 				} else {
 					$("#flashdata").html(jdata.flashdata);
 				}
@@ -27,6 +28,29 @@ $(document).ready(function () {
 			}
 		});
 		
+	});
+
+	$(document).on('click','.deleteLogbook', function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
+		if ((e.currentTarget.attributes.cnftext.value) && (confirm(e.currentTarget.attributes.cnftext.value))) {
+			$.ajax({
+				url: base_url + 'index.php/stationsetup/deleteLogbook_json',
+				type: 'post',
+				data: {
+					'id2delete': e.currentTarget.id,
+				},
+				success: function(data) {
+					jdata=JSON.parse(data);
+					if (jdata.success == 1) {
+						// todo: repopulate logbooks-table
+					} else {
+						$("#flashdata").html(jdata.flashdata);
+					}
+				},
+				error: function(e) {
+					$("#flashdata").html("An unknown Error occured");
+				}
+			});
+		}	
 	});
 
 	$("#station_logbooks_table").DataTable({

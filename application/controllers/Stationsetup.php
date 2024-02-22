@@ -34,8 +34,21 @@ class Stationsetup extends CI_Controller {
 		// Render Page
 		$data['page_title'] = "Station Setup";
 		$this->load->view('interface_assets/header', $data);
-		$this->load->view('stations/stationsetup');
+		$this->load->view('stationsetup/stationsetup');
 		$this->load->view('interface_assets/footer', $footerData);
+	}
+
+	public function deleteLogbook_json() {
+		$id2del=xss_clean($this->input->post('id2delete',true));
+		if ($id2del ?? '' != '') {
+			$this->load->model('logbooks_model');
+			$this->logbooks_model->delete($id2del);
+			$data['success']=1;
+		} else {
+			$data['success']=0;
+			$data['flashdata']='Error';
+		}
+		echo json_encode($data);
 	}
 
 	public function newLogbook_json() {

@@ -54,9 +54,8 @@
                                     </td>
                                     <td>
                                         <?php if($this->session->userdata('active_station_logbook') != $row->logbook_id) { ?>
-                                        <a href="<?php echo site_url('Logbooks/delete')."/".$row->logbook_id; ?>"
-                                            class="btn btn-danger btn-sm"
-                                            onclick="return confirm('<?php echo lang('station_logbooks_confirm_delete') . $row->logbook_name; ?>');"><i
+                                        <button id="<?php echo $row->logbook_id; ?>" class="deleteLogbook btn btn-danger btn-sm"
+                                            cnftext="'<?php echo lang('station_logbooks_confirm_delete') . $row->logbook_name; ?>'"><i
                                                 class="fas fa-trash-alt"></i></a>
                                         <?php } ?>
                                     </td>
