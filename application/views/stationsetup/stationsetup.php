@@ -40,8 +40,7 @@
                                     <td><?php echo $row->logbook_name;?></td>
                                     <td>
                                         <?php if($this->session->userdata('active_station_logbook') != $row->logbook_id) { ?>
-                                        <a href="<?php echo site_url('logbooks/set_active')."/".$row->logbook_id; ?>"
-                                            class="btn btn-outline-primary btn-sm"><?php echo lang('station_logbooks_set_active')?></a>
+                                        <button id="<?php echo $row->logbook_id; ?>" class="setActiveLogbook btn btn-outline-primary btn-sm"><?php echo lang('station_logbooks_set_active')?></button>
                                         <?php } else {
 											echo "<span class='badge badge-success'>" . lang('station_logbooks_active_logbook') . "</span>";
 											}?>
