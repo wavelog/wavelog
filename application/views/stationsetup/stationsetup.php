@@ -19,7 +19,7 @@
 					</div>
 					<div class="card-body">
                     <p class="card-text"><?php echo lang('station_logbooks_description_text')?></p>
-					<a class="btn btn-primary float-right mb-2" href="javascript:createStationLogbook();"><i class="fas fa-plus"></i> <?php echo lang('station_logbooks_create')?></a>
+					<a class="btn btn-primary btn-sm" href="javascript:createStationLogbook();"><i class="fas fa-plus"></i> <?php echo lang('station_logbooks_create')?></a>
                     <?php if ($my_logbooks->num_rows() > 0) { ?>
 
                     <div class="table-responsive">
@@ -95,7 +95,7 @@
                     <p class="card-text">Only one station may be active at a time. In the table below this is shown with
                         the "Active Station" badge.</p>
 
-                    <p><a href="javascript:createStationLocation();" class="btn btn-primary"><i
+                    <p><a href="javascript:createStationLocation();" class="btn btn-sm btn-primary"><i
                                 class="fas fa-plus"></i> Create a Station Location</a></p>
 								<?php if ($stations->num_rows() > 0) { ?>
 
