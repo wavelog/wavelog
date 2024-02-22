@@ -213,11 +213,11 @@ function loadLogbookTable(rows) {
 
 		var data = [];
 		data.push(logbook.logbook_name);
-		data.push(logbook.logbook_name);
-		data.push(logbook.logbook_name);
-		data.push(logbook.logbook_name);
-		data.push(logbook.logbook_name);
-		data.push(logbook.logbook_name);
+		data.push(logbook.logbook_state);
+		data.push(logbook.logbook_edit);
+		data.push(logbook.logbook_delete);
+		data.push(logbook.logbook_link);
+		data.push(logbook.logbook_publicsearch);
 
 		let createdRow = table.row.add(data).index();
 	}
