@@ -166,9 +166,7 @@ class Stationsetup extends CI_Controller {
 
 		$hres=[];
 		foreach ($result as $entry) {
-			// var_dump($entry);
 			$single=(Object)[];
-			// $single->logbook_id = $entry->logbook_id;
 			$single->station_name = $entry->station_profile_name;
 			$single->station_callsign = $entry->station_callsign;
 			$single->station_country = $this->stationcountry2html($entry->station_country, $entry->dxcc_end);
@@ -214,8 +212,7 @@ class Stationsetup extends CI_Controller {
 			return '<a href="' . site_url('station/delete'). "/" .$id . '" class="btn btn-danger btn-sm" title=' . lang('admin_delete') . ' onclick="return confirm(\'' . lang('station_location_confirm_del_stationlocation') . $station_profile_name . lang('station_location_confirm_del_stationlocation_qso') . '\');"><i class="fas fa-trash-alt"></i></a>';
 		}
 
-		return '<a href="'.site_url('station/delete').'/'.$id.'" class="btn btn-danger btn-sm" title=' . lang('admin_delete') . ' onclick="return confirm(' . lang('station_location_confirm_del_stationlocation') .
-			$station_profile_name . lang('station_location_confirm_del_stationlocation_qso') .'"><i class="fas fa-trash-alt"></i></a>';
+		return '';
 	}
 
 	private function stationcountry2html($station_country, $dxcc_end) {
