@@ -38,9 +38,26 @@ class Stationsetup extends CI_Controller {
 		$this->load->view('interface_assets/footer', $footerData);
 	}
 
+	public function newLogbook_json() {
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('stationLogbook_Name', 'Station Logbook Name', 'required');
+
+		if ($this->form_validation->run() == FALSE) {
+			$data['flashdata']=validation_errors();
+			$data['success']=0;
+			echo json_encode($data);
+		} else {	
+			$this->load->model('logbooks_model');
+			$this->logbooks_model->add();
+			$data['success']=1;
+			echo json_encode($data);
+		}
+	}
+
 	public function newLogbook() {
 		$data['page_title'] = "Create Station Logbook";
-		$this->load->view('logbooks/create', $data);
+		$this->load->view('stationsetup/create', $data);
 	}
 
 	public function newLocation() {
