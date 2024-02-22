@@ -18,7 +18,7 @@ $(document).ready(function () {
 				jdata=JSON.parse(data);
 				if (jdata.success == 1) {
 					$("#NewStationLogbookModal").modal('hide');
-					// todo: repopulate logbooks-table
+					reloadLogbooks();
 				} else {
 					$("#flashdata").html(jdata.flashdata);
 				}
@@ -41,7 +41,7 @@ $(document).ready(function () {
 				success: function(data) {
 					jdata=JSON.parse(data);
 					if (jdata.success == 1) {
-						// todo: repopulate logbooks-table
+						reloadLogbooks();
 					} else {
 						$("#flashdata").html(jdata.flashdata);
 					}
@@ -53,6 +53,27 @@ $(document).ready(function () {
 		}	
 	});
 
+	$(document).on('click','.setActiveLogbook', function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
+		$.ajax({
+			url: base_url + 'index.php/stationsetup/setActiveLogbook_json',
+			type: 'post',
+			data: {
+				'id2setActive': e.currentTarget.id,
+			},
+			success: function(data) {
+				jdata=JSON.parse(data);
+				if (jdata.success == 1) {
+					reloadLogbooks();
+				} else {
+					$("#flashdata").html(jdata.flashdata);
+				}
+			},
+			error: function(e) {
+				$("#flashdata").html("An unknown Error occured");
+			}
+		});
+	});
+
 	$("#station_logbooks_table").DataTable({
 		stateSave: true,
 		language: {
@@ -61,11 +82,14 @@ $(document).ready(function () {
 	});
 });
 
-function setActiveStationLocation() {
-
+function reloadLogbooks() {
+	// Repopulate logbooks-table
+}
+function reloadStations() {
+	// Repopulate locations-table
 }
 
-function setActiveStationLogbook() {
+function setActiveStationLocation() {
 
 }
 

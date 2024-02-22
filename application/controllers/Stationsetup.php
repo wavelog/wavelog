@@ -38,6 +38,19 @@ class Stationsetup extends CI_Controller {
 		$this->load->view('interface_assets/footer', $footerData);
 	}
 
+	public function setActiveLogbook_json() {
+		$id2act=xss_clean($this->input->post('id2setActive',true));
+		if ($id2act ?? '' != '') {
+			$this->load->model('logbooks_model');
+			$this->logbooks_model->set_logbook_active($id2act);
+			$data['success']=1;
+		} else {
+			$data['success']=0;
+			$data['flashdata']='Error';
+		}
+		echo json_encode($data);
+	}
+
 	public function deleteLogbook_json() {
 		$id2del=xss_clean($this->input->post('id2delete',true));
 		if ($id2del ?? '' != '') {
