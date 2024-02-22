@@ -49,8 +49,13 @@ class Stationsetup extends CI_Controller {
 			echo json_encode($data);
 		} else {	
 			$this->load->model('logbooks_model');
-			$this->logbooks_model->add();
-			$data['success']=1;
+			$newId=$this->logbooks_model->add(xss_clean($this->input->post('stationLogbook_Name', true)));
+			if ($newId > 0) {
+				$data['success']=1;
+			} else {
+				$data['success']=0;
+				$data['flashdata']='Error';
+			}
 			echo json_encode($data);
 		}
 	}

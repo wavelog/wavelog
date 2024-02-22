@@ -21,6 +21,9 @@ $(document).ready(function () {
 				} else {
 					$("#flashdata").html(jdata.flashdata);
 				}
+			},
+			error: function(e) {
+				$("#flashdata").html("An unknown Error occured");
 			}
 		});
 		
