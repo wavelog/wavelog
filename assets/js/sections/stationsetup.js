@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+	reloadStations();
 	$("#station_locations_table").DataTable({
 		stateSave: true,
 		language: {
@@ -105,7 +106,26 @@ function reloadLogbooks() {
 	return false;
 }
 function reloadStations() {
-	// Repopulate locations-table
+	$.ajax({
+		url: base_url + 'index.php/stationsetup/fetchLocations',
+		type: 'post',
+		dataType: 'json',
+		success: function (data) {
+			loadLocationTable(data);
+		},
+		error: function (data) {
+			BootstrapDialog.alert({
+				title: 'ERROR',
+				message: 'An error ocurred while making the request',
+				type: BootstrapDialog.TYPE_DANGER,
+				closable: false,
+				draggable: false,
+				callback: function (result) {
+				}
+			});
+		},
+	});
+	return false;
 }
 
 function setActiveStationLocation() {
@@ -218,6 +238,50 @@ function loadLogbookTable(rows) {
 		data.push(logbook.logbook_delete);
 		data.push(logbook.logbook_link);
 		data.push(logbook.logbook_publicsearch);
+
+		let createdRow = table.row.add(data).index();
+	}
+	table.draw();
+	$('[data-bs-toggle="tooltip"]').tooltip();
+}
+
+function loadLocationTable(rows) {
+	var uninitialized = $('#station_locations_table').filter(function() {
+		return !$.fn.DataTable.fnIsDataTable(this);
+	});
+
+	uninitialized.each(function() {
+		$(this).DataTable({
+			searching: false,
+			responsive: false,
+			ordering: true,
+			"scrollY": window.innerHeight - $('#searchForm').innerHeight() - 250,
+			"scrollCollapse": true,
+			"paging":         false,
+			"scrollX": true,
+			"language": {
+				url: getDataTablesLanguageUrl(),
+			},
+		});
+	});
+
+	var table = $('#station_locations_table').DataTable();
+
+	table.clear();
+
+	for (i = 0; i < rows.length; i++) {
+		let locations = rows[i];
+
+		var data = [];
+		data.push(locations.station_name);
+		data.push(locations.station_callsign);
+		data.push(locations.station_country);
+		data.push(locations.station_gridsquare);
+		data.push(locations.station_badge);
+		data.push(locations.station_edit);
+		data.push(locations.station_copylog);
+		data.push(locations.station_emptylog);
+		data.push(locations.station_delete);
 
 		let createdRow = table.row.add(data).index();
 	}
