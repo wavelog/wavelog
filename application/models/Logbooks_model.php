@@ -56,9 +56,8 @@ class Logbooks_model extends CI_Model {
 		$this->set_logbook_active($logbook_id, $id);
 	}
 
-	function delete($id) {
+	function delete($clean_id) {
 		// Clean ID
-		$clean_id = $this->security->xss_clean($id);
 
 		// do not delete active logbook
 		if ($this->session->userdata('active_station_logbook') === $clean_id) {
@@ -67,7 +66,7 @@ class Logbooks_model extends CI_Model {
 
 		// Delete logbook
 		$this->db->where('user_id', $this->session->userdata('user_id'));
-		$this->db->where('logbook_id', $id);
+		$this->db->where('logbook_id', $clean_id);
 		$this->db->delete('station_logbooks'); 
 	}
 
