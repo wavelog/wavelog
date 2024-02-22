@@ -1,9 +1,29 @@
 $(document).ready(function () {
+
 	$("#station_locations_table").DataTable({
 		stateSave: true,
 		language: {
 			url: getDataTablesLanguageUrl(),
 		},
+	});
+
+	$(document).on('click','.newLogbook', function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
+		$.ajax({
+			url: base_url + 'index.php/stationsetup/newLogbook_json',
+			type: 'post',
+			data: {
+				'stationLogbook_Name': $("#logbook_name").val(),
+			},
+			success: function(data) {
+				jdata=JSON.parse(data);
+				if (jdata.success == 1) {
+					$("#NewStationLogbookModal").modal('hide');
+				} else {
+					$("#flashdata").html(jdata.flashdata);
+				}
+			}
+		});
+		
 	});
 
 	$("#station_logbooks_table").DataTable({
@@ -31,17 +51,15 @@ function createStationLogbook() {
 				title: 'Create a new station logbook',
 				size: BootstrapDialog.SIZE_EXTRAWIDE,
 				cssClass: 'options',
+				id: "NewStationLogbookModal",
 				nl2br: false,
 				message: html,
 				onshown: function(dialog) {
 				},
 				buttons: [{
 					label: 'Save',
-					cssClass: 'btn-primary btn-sm',
-					id: 'saveButton',
-					action: function (dialogItself) {
-						dialogItself.close();
-					}
+					cssClass: 'btn-primary btn-sm newLogbook',
+					id: 'saveButtonNewLogbook',
 				},
 				{
 					label: lang_admin_close,
