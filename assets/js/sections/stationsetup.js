@@ -27,7 +27,7 @@ $(document).ready(function () {
 				$("#flashdata").html("An unknown Error occured");
 			}
 		});
-		
+
 	});
 
 	$(document).on('click','.deleteLogbook', function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
@@ -50,7 +50,7 @@ $(document).ready(function () {
 					$("#flashdata").html("An unknown Error occured");
 				}
 			});
-		}	
+		}
 	});
 
 	$(document).on('click','.setActiveLogbook', function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
@@ -83,7 +83,26 @@ $(document).ready(function () {
 });
 
 function reloadLogbooks() {
-	// Repopulate logbooks-table
+	$.ajax({
+		url: base_url + 'index.php/stationsetup/fetchLogbooks',
+		type: 'post',
+		dataType: 'json',
+		success: function (data) {
+			loadLogbookTable(data);
+		},
+		error: function (data) {
+			BootstrapDialog.alert({
+				title: 'ERROR',
+				message: 'An error ocurred while making the request',
+				type: BootstrapDialog.TYPE_DANGER,
+				closable: false,
+				draggable: false,
+				callback: function (result) {
+				}
+			});
+		},
+	});
+	return false;
 }
 function reloadStations() {
 	// Repopulate locations-table
@@ -164,3 +183,45 @@ function createStationLocation() {
 		}
 	});
 }
+
+function loadLogbookTable(rows) {
+	var uninitialized = $('#station_logbooks_table').filter(function() {
+		return !$.fn.DataTable.fnIsDataTable(this);
+	});
+
+	uninitialized.each(function() {
+		$(this).DataTable({
+			searching: false,
+			responsive: false,
+			ordering: true,
+			"scrollY": window.innerHeight - $('#searchForm').innerHeight() - 250,
+			"scrollCollapse": true,
+			"paging":         false,
+			"scrollX": true,
+			"language": {
+				url: getDataTablesLanguageUrl(),
+			},
+		});
+	});
+
+	var table = $('#station_logbooks_table').DataTable();
+
+	table.clear();
+
+	for (i = 0; i < rows.length; i++) {
+		let logbook = rows[i];
+
+		var data = [];
+		data.push(logbook.logbook_name);
+		data.push(logbook.logbook_name);
+		data.push(logbook.logbook_name);
+		data.push(logbook.logbook_name);
+		data.push(logbook.logbook_name);
+		data.push(logbook.logbook_name);
+
+		let createdRow = table.row.add(data).index();
+	}
+	table.draw();
+	$('[data-bs-toggle="tooltip"]').tooltip();
+}
+

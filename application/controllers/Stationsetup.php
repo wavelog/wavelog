@@ -73,7 +73,7 @@ class Stationsetup extends CI_Controller {
 			$data['flashdata']=validation_errors();
 			$data['success']=0;
 			echo json_encode($data);
-		} else {	
+		} else {
 			$this->load->model('logbooks_model');
 			$newId=$this->logbooks_model->add(xss_clean($this->input->post('stationLogbook_Name', true)));
 			if ($newId > 0) {
@@ -101,6 +101,13 @@ class Stationsetup extends CI_Controller {
 
 		$data['page_title'] = lang('station_location_create_header');
 		$this->load->view('station_profile/create', $data);
+	}
+
+	public function fetchLogbooks() {
+		$this->load->model('logbooks_model');
+
+		$result = $this->logbooks_model->show_all();
+		echo json_encode($result->result());
 	}
 
 
