@@ -3505,13 +3505,13 @@ function lotw_last_qsl_date($user_id) {
 		  }
 
 		  if (isset($record['ant_az'])){
-			  $input_ant_az = filter_var($record['ant_az'],FILTER_SANITIZE_NUMBER_INT);
+			  $input_ant_az = filter_var($record['ant_az'],FILTER_VALIDATE_FLOAT);
 		  } else {
 			  $input_ant_az = NULL;
 		  }
 
 		  if (isset($record['ant_el'])){
-			  $input_ant_el = filter_var($record['ant_el'],FILTER_SANITIZE_NUMBER_INT);
+			  $input_ant_el = filter_var($record['ant_el'],FILTER_VALIDATE_FLOAT);
 		  } else {
 			  $input_ant_el = NULL;
 		  }
