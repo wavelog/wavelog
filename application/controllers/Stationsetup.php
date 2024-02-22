@@ -105,11 +105,56 @@ class Stationsetup extends CI_Controller {
 
 	public function fetchLogbooks() {
 		$this->load->model('logbooks_model');
-
-		$result = $this->logbooks_model->show_all();
-		echo json_encode($result->result());
+		$hres=[];
+		$result = $this->logbooks_model->show_all()->result();
+		foreach ($result as $entry) {
+			// var_dump($entry);
+			$single=(Object)[];
+			$single->logbook_id=$entry->logbook_id;	
+			$single->logbook_name=$entry->logbook_name;	
+			$single->logbook_state=$this->lbstate2html($entry->logbook_id);
+			$single->logbook_edit=$this->lbedit2html($entry->logbook_id,$entry->logbook_name);
+			$single->logbook_delete=$this->lbdel2html($entry->logbook_id,$entry->logbook_name);
+			$single->logbook_link=$this->lblnk2html($entry->public_slug,$entry->logbook_name);
+			$single->logbook_publicsearch=($entry->public_search=='1') ? 'Enabled' : 'Disabled';
+			array_push($hres,$single);
+		}
+		echo json_encode($hres);
 	}
 
+	private function lbstate2html($id) {
+		if($this->session->userdata('active_station_logbook') != $id) {
+			$htmret='<button id="'.$id.'" class="setActiveLogbook btn btn-outline-primary btn-sm">'.lang('station_logbooks_set_active').'</button>';
+		} else {
+			$htmret="<span class='badge badge-success'>" . lang('station_logbooks_active_logbook') . "</span>";
+		}
+		return $htmret;
+	}
 
+	private function lbdel2html($id,$logbook_name) {
+                if($this->session->userdata('active_station_logbook') != $id) {
+                	$htmret='<button id="'.$id.'" class="deleteLogbook btn btn-danger btn-sm" cnftext="'.lang('station_logbooks_confirm_delete').$logbook_name.'"><i class="fas fa-trash-alt"></i></button>';
+		} else {
+			$htmret='';
+		}
+		return $htmret;
+	}
+
+	private function lblnk2html($public_slug,$logbook_name) {
+		if($public_slug != '') { 
+			$htmret='<a target="_blank" href="'.site_url('visitor')."/".$public_slug.'" class="btn btn-outline-primary btn-sm"><i class="fas fa-globe" title="'.lang('station_logbooks_view_public') . $logbook_name.'"></i></a>';
+		} else {
+			$htmret='';
+		}
+		return $htmret;
+	}
+
+	private function lbps2html($id,$logbook_name) {
+		return '<a href="'.site_url('logbooks/edit')."/".$id.'" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit" title="'.lang('station_logbooks_edit_logbook').': '.$logbook_name.'"></i></a>';
+	}
+
+	private function lbedit2html($id,$logbook_name) {
+		return '<a href="'.site_url('logbooks/edit')."/".$id.'" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit" title="'.lang('station_logbooks_edit_logbook').': '.$logbook_name.'"></i></a>';
+	}
 
 }
