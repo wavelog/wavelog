@@ -391,6 +391,7 @@ class Logbookadvanced extends CI_Controller {
 
 	public function calculate($qso, $locator1, $locator2, $measurement_base, $var_dist, $custom_date_format) {
 		$this->load->library('Qra');
+		$this->load->model('logbook_model');
 
 		$data['distance'] = $this->qra->distance($locator1, $locator2, $measurement_base) . $var_dist;
 		$data['bearing'] = $this->qra->get_bearing($locator1, $locator2) . "&#186;";
@@ -412,14 +413,15 @@ class Logbookadvanced extends CI_Controller {
 		$data['mycallsign'] = $qso['station_callsign'];
 		$data['datetime'] = date($custom_date_format, strtotime($qso['COL_TIME_ON'])). date(' H:i',strtotime($qso['COL_TIME_ON']));
 		$data['satname'] = $qso['COL_SAT_NAME'];
-		$data['confirmed'] = ((($qso['COL_EQSL_QSL_RCVD'] == 'Y') || ($qso['COL_LOTW_QSL_RCVD'] == 'Y') || ($qso['COL_QSL_RCVD'] == 'Y') || ($qso['COL_QRZCOM_QSO_DOWNLOAD_STATUS'] == 'Y')) == true ? true : false);
-
+		$data['confirmed'] = ($this->logbook_model->qso_is_confirmed($qso)==true) ? true : false;
+		
 		return $data;
 	}
 
 	public function calculateCoordinates($qso, $lat, $long, $mygrid, $measurement_base, $var_dist, $custom_date_format) {
 		$this->load->library('Qra');
-
+		$this->load->model('logbook_model');
+		
 		$latlng1 = $this->qra->qra2latlong($mygrid);
 		$latlng2[0] = $lat;
 		$latlng2[1] = $long;
@@ -437,7 +439,7 @@ class Logbookadvanced extends CI_Controller {
 		$data['mycallsign'] = $qso['station_callsign'];
 		$data['datetime'] = date($custom_date_format, strtotime($qso['COL_TIME_ON'])). date(' H:i',strtotime($qso['COL_TIME_ON']));
 		$data['satname'] = $qso['COL_SAT_NAME'];
-		$data['confirmed'] = ((($qso['COL_EQSL_QSL_RCVD'] == 'Y') || ($qso['COL_LOTW_QSL_RCVD'] == 'Y') || ($qso['COL_QSL_RCVD'] == 'Y') || ($qso['COL_QRZCOM_QSO_DOWNLOAD_STATUS'] == 'Y')) == true ? true : false);
+		$data['confirmed'] = ($this->logbook_model->qso_is_confirmed($qso)==true) ? true : false;
 
 		return $data;
 	}
