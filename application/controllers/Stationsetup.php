@@ -125,7 +125,7 @@ class Stationsetup extends CI_Controller {
 		if($this->session->userdata('active_station_logbook') != $id) {
 			$htmret='<button id="'.$id.'" class="setActiveLogbook btn btn-outline-primary btn-sm">'.lang('station_logbooks_set_active').'</button>';
 		} else {
-			$htmret="<span class='badge badge-success'>" . lang('station_logbooks_active_logbook') . "</span>";
+			$htmret="<span class='badge text-bg-success'>" . lang('station_logbooks_active_logbook') . "</span>";
 		}
 		return $htmret;
 	}
@@ -184,9 +184,9 @@ class Stationsetup extends CI_Controller {
 	private function stationbadge2html($id, $station_active, $qso_total, $current_active, $station_profile_name) {
 		$returntext = '';
 		if($station_active != 1) {
-			$returntext .= '<a href="' . site_url('station/set_active/') . $current_active. '/'. $id .  '" class="btn btn-outline-secondary btn-sm" onclick="return confirm(\''. lang('station_location_confirm_active') . $station_profile_name .'\');">' . lang('station_location_set_active') . '</a>';
+			$returntext .= '<a href="' . site_url('station/set_active/') . $current_active. '/'. $id .  '" class="btn btn-outline-secondary btn-sm" onclick="return confirm(\''. lang('station_location_confirm_active') . $station_profile_name .'\');">' . lang('station_location_set_active') . '</a><br/>';
 		} else {
-			$returntext .= '<span class="badge badge-success">' . lang('station_location_active') . '</span>';
+			$returntext .= '<span class="badge badge-success text-bg-success">' . lang('station_location_active') . '</span><br/>';
 		}
 
 		$returntext .= '<span class="badge badge-info">ID: ' .$id .'</span>';
