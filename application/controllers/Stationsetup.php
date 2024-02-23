@@ -38,6 +38,26 @@ class Stationsetup extends CI_Controller {
 		$this->load->view('interface_assets/footer', $footerData);
 	}
 
+	public function DeleteStation_json() {
+		$id2del=xss_clean($this->input->post('id2del',true));
+		if ($id2del ?? '' != '') {
+			$this->load->model('stations');
+			if ($this->stations->check_station_is_accessible($id2del)) {
+				$this->stations->delete($id2del);
+				$this->load->model('user_options_model');
+				$this->user_options_model->del_option('eqsl_default_qslmsg', 'key_station_id', array('option_key' => $id2del));
+				$data['success']=1;
+			} else {
+				$data['success']=0;
+				$data['flashdata']='Not allowed';
+			}
+		} else {
+			$data['success']=0;
+			$data['flashdata']='Error';
+		}
+		echo json_encode($data);
+	}
+
 	public function EmptyStation_json() {
 		$id2empty=xss_clean($this->input->post('id2Empty',true));
 		if ($id2empty ?? '' != '') {
@@ -240,7 +260,7 @@ class Stationsetup extends CI_Controller {
 
 	private function stationdelete2html($id, $station_profile_name, $station_active) {
 		if($station_active != 1) {
-			return '<a href="' . site_url('station/delete'). "/" .$id . '" class="btn btn-danger btn-sm" title="' . lang('admin_delete') . '" onclick="return confirm(\'' . lang('station_location_confirm_del_stationlocation') . $station_profile_name . lang('station_location_confirm_del_stationlocation_qso') . '\');"><i class="fas fa-trash-alt"></i></a>';
+			return '<button id="'.$id . '" class="DeleteStation btn btn-danger btn-sm" title="' . lang('admin_delete') . '" cnftext="' . lang('station_location_confirm_del_stationlocation') . $station_profile_name . lang('station_location_confirm_del_stationlocation_qso') . '"><i class="fas fa-trash-alt"></i></button>';
 		}
 
 		return '';
