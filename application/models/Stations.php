@@ -80,6 +80,13 @@ class Stations extends CI_Model {
 			$state = $this->input->post('station_state');
 		}
 
+		// Check if DXCC is USA, Alaska or Hawaii. If not true, we clear the County field due to complex adif specs
+		if (($this->input->post('dxcc') == 291 || $this->input->post('dxcc') == 006 || $this->input->post('dxcc') == 110) && $this->input->post('station_cnty') !="") {
+			$county = $this->input->post('station_cnty');
+		} else {
+			$county = '';
+		}
+
 		// Create data array with field values
 		$data = array(
 			'user_id' => $this->session->userdata('user_id'),
@@ -96,7 +103,7 @@ class Stations extends CI_Model {
 			'station_callsign' =>  xss_clean($this->input->post('station_callsign', true)),
 			'station_power' => is_numeric(xss_clean($this->input->post('station_power', true))) ? xss_clean($this->input->post('station_power', true)) : NULL,
 			'station_dxcc' =>  xss_clean($this->input->post('dxcc', true)),
-			'station_cnty' =>  xss_clean($this->input->post('station_cnty', true)),
+			'station_cnty' =>  $county,
 			'station_cq' =>  xss_clean($this->input->post('station_cq', true)),
 			'station_itu' =>  xss_clean($this->input->post('station_itu', true)),
 			'state' =>  $state,
@@ -133,6 +140,13 @@ class Stations extends CI_Model {
 			$state = $this->input->post('station_state');
 		}
 
+		// Check if DXCC is USA, Alaska or Hawaii. If not true, we clear the County field due to complex adif specs
+		if (($this->input->post('dxcc') == 291 || $this->input->post('dxcc') == 006 || $this->input->post('dxcc') == 110) && $this->input->post('station_cnty') !="") {
+			$county = $this->input->post('station_cnty');
+		} else {
+			$county = '';
+		}
+
 		$data = array(
 			'station_profile_name' => xss_clean($this->input->post('station_profile_name', true)),
 			'station_gridsquare' => xss_clean($this->input->post('gridsquare', true)),
@@ -146,7 +160,7 @@ class Stations extends CI_Model {
 			'station_callsign' => xss_clean($this->input->post('station_callsign', true)),
 			'station_power' => is_numeric(xss_clean($this->input->post('station_power', true))) ? xss_clean($this->input->post('station_power', true)) : NULL,
 			'station_dxcc' => xss_clean($this->input->post('dxcc', true)),
-			'station_cnty' => xss_clean($this->input->post('station_cnty', true)),
+			'station_cnty' =>  $county,
 			'station_cq' => xss_clean($this->input->post('station_cq', true)),
 			'station_itu' => xss_clean($this->input->post('station_itu', true)),
 			'state' => $state,
