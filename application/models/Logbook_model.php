@@ -4708,7 +4708,7 @@ function lotw_last_qsl_date($user_id) {
 
         // check if qso is confirmed //
         if (!$isVisitor) {
-          if (($row->COL_EQSL_QSL_RCVD=='Y') || ($row->COL_LOTW_QSL_RCVD=='Y') || ($row->COL_QSL_RCVD=='Y')) {
+          if (($row->COL_EQSL_QSL_RCVD=='Y') || ($row->COL_LOTW_QSL_RCVD=='Y') || ($row->COL_QSL_RCVD=='Y') || ($row->COL_QRZCOM_QSO_DOWNLOAD_STATUS=='Y')) {
             $plot['confirmed'] = "Y";
           }
         }
