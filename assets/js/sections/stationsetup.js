@@ -31,117 +31,24 @@ $(document).ready(function () {
 
 	});
 
-	$(document).on('click','.deleteLogbook', function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
-		if ((e.currentTarget.attributes.cnftext.value) && (confirm(e.currentTarget.attributes.cnftext.value))) {
-			$.ajax({
-				url: base_url + 'index.php/stationsetup/deleteLogbook_json',
-				type: 'post',
-				data: {
-					'id2delete': e.currentTarget.id,
-				},
-				success: function(data) {
-					jdata=JSON.parse(data);
-					if (jdata.success == 1) {
-						reloadLogbooks();
-					} else {
-						$("#flashdata").html(jdata.flashdata);
-					}
-				},
-				error: function(e) {
-					$("#flashdata").html("An unknown Error occured");
-				}
-			});
-		}
+	$(document).on('click','.deleteLogbook', async function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
+		await do_ajax('deleteLogbook_json','id2delete',reloadLogbooks,e);
 	});
 
-	$(document).on('click','.setActiveLogbook', function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
-		$.ajax({
-			url: base_url + 'index.php/stationsetup/setActiveLogbook_json',
-			type: 'post',
-			data: {
-				'id2setActive': e.currentTarget.id,
-			},
-			success: function(data) {
-				jdata=JSON.parse(data);
-				if (jdata.success == 1) {
-					reloadLogbooks();
-				} else {
-					$("#flashdata").html(jdata.flashdata);
-				}
-			},
-			error: function(e) {
-				$("#flashdata").html("An unknown Error occured");
-			}
-		});
+	$(document).on('click','.setActiveLogbook', async function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
+		await do_ajax('setActiveLogbook_json','id2setActive',reloadLogbooks,e);
 	});
 
-	$(document).on('click','.setActiveStation', function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
-		if ((e.currentTarget.attributes.cnftext.value) && (confirm(e.currentTarget.attributes.cnftext.value))) {
-			$.ajax({
-				url: base_url + 'index.php/stationsetup/setActiveStation_json',
-				type: 'post',
-				data: {
-					'id2setActive': e.currentTarget.id,
-				},
-				success: function(data) {
-					jdata=JSON.parse(data);
-					if (jdata.success == 1) {
-						reloadStations();
-					} else {
-						$("#flashdata").html(jdata.flashdata);
-					}
-				},
-				error: function(e) {
-					$("#flashdata").html("An unknown Error occured");
-				}
-			});
-		}
+	$(document).on('click','.setActiveStation', async function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
+		await do_ajax('setActiveStation_json','id2setActive',reloadStations,e);
 	});
 
-	$(document).on('click','.DeleteStation', function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
-		if ((e.currentTarget.attributes.cnftext.value) && (confirm(e.currentTarget.attributes.cnftext.value))) {
-			$.ajax({
-				url: base_url + 'index.php/stationsetup/DeleteStation_json',
-				type: 'post',
-				data: {
-					'id2del': e.currentTarget.id,
-				},
-				success: function(data) {
-					jdata=JSON.parse(data);
-					if (jdata.success == 1) {
-						reloadStations();
-					} else {
-						$("#flashdata").html(jdata.flashdata);
-					}
-				},
-				error: function(e) {
-					$("#flashdata").html("An unknown Error occured");
-				}
-			});
-		}
+	$(document).on('click','.DeleteStation', async function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
+		await do_ajax('DeleteStation_json','id2del',reloadStations,e);
 	});
 
-	$(document).on('click','.EmptyStation', function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
-		if ((e.currentTarget.attributes.cnftext.value) && (confirm(e.currentTarget.attributes.cnftext.value))) {
-			$.ajax({
-				url: base_url + 'index.php/stationsetup/EmptyStation_json',
-				type: 'post',
-				data: {
-					'id2Empty': e.currentTarget.id,
-				},
-				success: function(data) {
-					jdata=JSON.parse(data);
-					if (jdata.success == 1) {
-						reloadStations();
-					} else {
-						$("#flashdata").html(jdata.flashdata);
-					}
-				},
-				error: function(e) {
-					$("#flashdata").html("An unknown Error occured");
-				}
-			});
-		}
+	$(document).on('click','.EmptyStation', async function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
+		await do_ajax('EmptyStation_json','id2Empty',reloadStations,e);
 	});
 
 	$("#station_logbooks_table").DataTable({
@@ -151,6 +58,33 @@ $(document).ready(function () {
 		},
 	});
 });
+
+	async function do_ajax(ajax_uri,ajax_field,succ_callback,event_target) {
+		if (event_target.currentTarget.attributes.cnftext) {
+			if (!(confirm(event_target.currentTarget.attributes.cnftext.value))) {
+				return false;
+			}
+		}
+		$.ajax({
+			url: base_url + 'index.php/stationsetup/' + ajax_uri,
+			type: 'post',
+			data: {
+				[ajax_field]: event_target.currentTarget.id,
+			},
+			success: function(data) {
+				jdata=JSON.parse(data);
+				if (jdata.success == 1) {
+					succ_callback();
+				} else {
+					$("#flashdata").html(jdata.flashdata);
+				}
+			},
+			error: function(e) {
+				$("#flashdata").html("An unknown Error occured");
+			}
+		});
+	}
+
 
 function reloadLogbooks() {
 	$.ajax({
