@@ -38,6 +38,20 @@ class Stationsetup extends CI_Controller {
 		$this->load->view('interface_assets/footer', $footerData);
 	}
 
+	public function setActiveStation_json() {
+		$id2act=xss_clean($this->input->post('id2setActive',true));
+		if ($id2act ?? '' != '') {
+			$this->load->model('stations');
+			$current=$this->stations->find_active();
+			$this->stations->set_active($current, $id2act);
+			$data['success']=1;
+		} else {
+			$data['success']=0;
+			$data['flashdata']='Error';
+		}
+		echo json_encode($data);
+	}
+
 	public function setActiveLogbook_json() {
 		$id2act=xss_clean($this->input->post('id2setActive',true));
 		if ($id2act ?? '' != '') {
@@ -184,7 +198,7 @@ class Stationsetup extends CI_Controller {
 	private function stationbadge2html($id, $station_active, $qso_total, $current_active, $station_profile_name) {
 		$returntext = '';
 		if($station_active != 1) {
-			$returntext .= '<a href="' . site_url('station/set_active/') . $current_active. '/'. $id .  '" class="btn btn-outline-secondary btn-sm" onclick="return confirm(\''. lang('station_location_confirm_active') . $station_profile_name .'\');">' . lang('station_location_set_active') . '</a><br/>';
+			$returntext .= '<button id="'.$id.'" class="setActiveStation btn btn-outline-secondary btn-sm" cnftext="'. lang('station_location_confirm_active') . $station_profile_name .'">' . lang('station_location_set_active') . '</button><br/>';
 		} else {
 			$returntext .= '<span class="badge badge-success text-bg-success">' . lang('station_location_active') . '</span><br/>';
 		}
