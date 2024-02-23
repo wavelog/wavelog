@@ -136,7 +136,7 @@
 			<td><?php echo $row->station_callsign;?></td>
 			<td><?php echo $row->station_country == '' ? '- NONE -' : $row->station_country; if ($row->dxcc_end != NULL) { echo ' <span class="badge badge-danger">'.lang('gen_hamradio_deleted_dxcc').'</span>'; } ?></td>
 			<td><?php echo $row->station_gridsquare;?></td>
-			<td style="text-align: center" data-order="<?php echo $row->station_id;?>">
+			<td>
 				<?php if($row->station_active != 1) { ?>
 					<a href="<?php echo site_url('station/set_active/').$current_active."/".$row->station_id; ?>" class="btn btn-outline-secondary btn-sm" onclick="return confirm('<?php echo lang('station_location_confirm_active'); ?> <?php echo $row->station_profile_name; ?>');"><?php echo lang('station_location_set_active'); ?></a>
 				<?php } else { ?>

@@ -261,11 +261,11 @@ function loadLocationTable(rows) {
 			"scrollX": true,
 			"language": {
 				url: getDataTablesLanguageUrl(),
-			},,
+			},
 			'columnDefs': [
 				{ 'targets':4,	// Col 4 (Badge) needs some special things...
 				  'createdCell':  function (td, cellData, rowData, row, col) {
-				  			(td).attr('data-order',1);	// not sure how to add ID dynamic here
+				  			(td).attr('data-order', 1);	// not sure how to add ID dynamic here
 						  }
 				}
 			]
@@ -280,6 +280,7 @@ function loadLocationTable(rows) {
 		let locations = rows[i];
 
 		var data = [];
+
 		data.push(locations.station_name);
 		data.push(locations.station_callsign);
 		data.push(locations.station_country);
