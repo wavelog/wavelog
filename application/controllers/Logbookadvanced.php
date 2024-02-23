@@ -412,7 +412,7 @@ class Logbookadvanced extends CI_Controller {
 		$data['mycallsign'] = $qso['station_callsign'];
 		$data['datetime'] = date($custom_date_format, strtotime($qso['COL_TIME_ON'])). date(' H:i',strtotime($qso['COL_TIME_ON']));
 		$data['satname'] = $qso['COL_SAT_NAME'];
-		$data['confirmed'] = ((($qso['COL_EQSL_QSL_RCVD'] == 'Y') || ($qso['COL_LOTW_QSL_RCVD'] == 'Y') || ($qso['COL_QSL_RCVD'] == 'Y')) == true ? true : false);
+		$data['confirmed'] = ((($qso['COL_EQSL_QSL_RCVD'] == 'Y') || ($qso['COL_LOTW_QSL_RCVD'] == 'Y') || ($qso['COL_QSL_RCVD'] == 'Y') || ($qso['COL_QRZCOM_QSO_DOWNLOAD_STATUS'] == 'Y')) == true ? true : false);
 
 		return $data;
 	}
@@ -437,7 +437,7 @@ class Logbookadvanced extends CI_Controller {
 		$data['mycallsign'] = $qso['station_callsign'];
 		$data['datetime'] = date($custom_date_format, strtotime($qso['COL_TIME_ON'])). date(' H:i',strtotime($qso['COL_TIME_ON']));
 		$data['satname'] = $qso['COL_SAT_NAME'];
-		$data['confirmed'] = ((($qso['COL_EQSL_QSL_RCVD'] == 'Y') || ($qso['COL_LOTW_QSL_RCVD'] == 'Y') || ($qso['COL_QSL_RCVD'] == 'Y')) == true ? true : false);
+		$data['confirmed'] = ((($qso['COL_EQSL_QSL_RCVD'] == 'Y') || ($qso['COL_LOTW_QSL_RCVD'] == 'Y') || ($qso['COL_QSL_RCVD'] == 'Y') || ($qso['COL_QRZCOM_QSO_DOWNLOAD_STATUS'] == 'Y')) == true ? true : false);
 
 		return $data;
 	}
