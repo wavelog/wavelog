@@ -171,19 +171,7 @@ class Lotw extends CI_Controller {
         	// p12 certificate processed time to delete the file
         	unlink($data['upload_data']['full_path']);
 
-			// Get Array of the logged in users LoTW certs.
-			$data['lotw_cert_results'] = $this->LotwCert->lotw_certs($this->session->userdata('user_id'));
-
-	        // Set Page Title
-			$data['page_title'] = "Logbook of the World";
-
-			// Load Views
-			$this->load->view('interface_assets/header', $data);
-			$this->load->view('lotw_views/index');
-			$this->load->view('interface_assets/footer');
-
-
-
+	        redirect('lotw');
         }
     }
 
