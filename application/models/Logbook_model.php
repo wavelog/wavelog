@@ -4710,9 +4710,7 @@ function lotw_last_qsl_date($user_id) {
 
         // check if qso is confirmed //
         if (!$isVisitor) {
-          if (($row->COL_EQSL_QSL_RCVD=='Y') || ($row->COL_LOTW_QSL_RCVD=='Y') || ($row->COL_QSL_RCVD=='Y')) {
-            $plot['confirmed'] = "Y";
-          }
+          $plot['confirmed'] = ($this->qso_is_confirmed($row)==true)?"Y":"N";
         }
         // check lat / lng (depend info source) //
         if ($row->COL_GRIDSQUARE != null) {
@@ -4759,6 +4757,29 @@ function lotw_last_qsl_date($user_id) {
     public function get_states_by_dxcc($dxcc) {
         $this->db->where('adif', $dxcc);
         return $this->db->get('primary_subdivisions');
+    }
+
+    // return if qso is confirmed (depend user option "qsl method") //
+    public function qso_is_confirmed($qso) {
+      $confirmed = false;
+      $this->load->model('user_model');
+      $user_default_confirmation = $this->session->userdata('user_default_confirmation');
+      if (isset($user_default_confirmation)) {
+        $qso = (array) $qso;
+        if (strpos($user_default_confirmation, 'Q') !== false) {        // QSL
+          if ($qso['COL_QSL_RCVD']=='Y') { $confirmed = true; }
+        }
+        if (strpos($user_default_confirmation, 'L') !== false) { // LoTW
+          if ($qso['COL_LOTW_QSL_RCVD']=='Y') { $confirmed = true; }
+        }
+        if (strpos($user_default_confirmation, 'E') !== false) { // eQsl
+          if ($qso['COL_EQSL_QSL_RCVD']=='Y') { $confirmed = true; }
+        }
+        if (strpos($user_default_confirmation, 'Z') !== false) { // QRZ
+          if ($qso['COL_QRZCOM_QSO_DOWNLOAD_STATUS']=='Y') { $confirmed = true; }
+        }
+      }
+      return $confirmed;
     }
 }
 
