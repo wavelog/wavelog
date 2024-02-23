@@ -196,11 +196,14 @@ class AdifHelper {
 
         $line .= $this->getAdifFieldLine("MY_ITU_ZONE", $qso->station_itu);
 
-		if($qso->state) {
-			$county = trim($qso->state) . "," . trim($qso->station_cnty);
-		} else {
-			$county = trim($qso->station_cnty);
-		}
+        $line .= $this->getAdifFieldLine("MY_STATE", $qso->state);
+
+        // We fill county only if it has a value and it's USA, Alaska or Hawaii. Other countrys are not supported at the moment due complex adif specs
+		if ($qso->station_cnty && ($qso->station_dxcc == '291' || $qso->station_dxcc == '006' || $qso->station_dxcc == '110')) {
+            $county = trim($qso->state) . "," . trim($qso->station_cnty);
+        } else {
+            $county = '';
+        }        
 
         $line .= $this->getAdifFieldLine("MY_CNTY", $county);
 
@@ -234,7 +237,6 @@ class AdifHelper {
             MY_NAME
             MY_POSTAL_CODE
             MY_RIG
-            MY_STATE
             MY_STREET
             MY_USACA_COUNTIES
         */
