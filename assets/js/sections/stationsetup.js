@@ -76,24 +76,26 @@ $(document).ready(function () {
 	});
 
 	$(document).on('click','.setActiveStation', function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
-		$.ajax({
-			url: base_url + 'index.php/stationsetup/setActiveStation_json',
-			type: 'post',
-			data: {
-				'id2setActive': e.currentTarget.id,
-			},
-			success: function(data) {
-				jdata=JSON.parse(data);
-				if (jdata.success == 1) {
-					reloadStations();
-				} else {
-					$("#flashdata").html(jdata.flashdata);
+		if ((e.currentTarget.attributes.cnftext.value) && (confirm(e.currentTarget.attributes.cnftext.value))) {
+			$.ajax({
+				url: base_url + 'index.php/stationsetup/setActiveStation_json',
+				type: 'post',
+				data: {
+					'id2setActive': e.currentTarget.id,
+				},
+				success: function(data) {
+					jdata=JSON.parse(data);
+					if (jdata.success == 1) {
+						reloadStations();
+					} else {
+						$("#flashdata").html(jdata.flashdata);
+					}
+				},
+				error: function(e) {
+					$("#flashdata").html("An unknown Error occured");
 				}
-			},
-			error: function(e) {
-				$("#flashdata").html("An unknown Error occured");
-			}
-		});
+			});
+		}
 	});
 
 	$("#station_logbooks_table").DataTable({
