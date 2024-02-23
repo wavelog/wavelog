@@ -40,17 +40,15 @@ class Eqsl_images extends CI_Model {
 		$eqsl_dir = "eqsl_card";
 		// test if new folder directory exist // 
 		$userdata_dir = $this->config->item('userdata');
+		$user_name = $this->session->userdata('user_name');
 		if (isset($userdata_dir)) {
-			if (!file_exists(realpath(APPPATH.'../').'/'.$userdata_dir)) {
-				mkdir(realpath(APPPATH.'../').'/'.$userdata_dir, 0755, true);
-			}
-			if (!file_exists(realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$eqsl_dir)) {
-				mkdir(realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$eqsl_dir, 0755, true);
+			if (!file_exists(realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$user_name.'/'.$eqsl_dir)) {
+				mkdir(realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$user_name.'/'.$eqsl_dir, 0755, true);
 			}
 			if ($pathorurl=='u') {
-				return $userdata_dir.'/'.$eqsl_dir;
+				return $userdata_dir.'/'.$user_name.'/'.$eqsl_dir;
 			} else {
-				return realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$eqsl_dir;
+				return realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$user_name.'/'.$eqsl_dir;
 			}
 		} else {
 			return 'images/eqsl_card_images';
