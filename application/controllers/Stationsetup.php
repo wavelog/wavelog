@@ -38,6 +38,24 @@ class Stationsetup extends CI_Controller {
 		$this->load->view('interface_assets/footer', $footerData);
 	}
 
+	public function EmptyStation_json() {
+		$id2empty=xss_clean($this->input->post('id2Empty',true));
+		if ($id2empty ?? '' != '') {
+			$this->load->model('stations');
+			if ($this->stations->check_station_is_accessible($id2empty)) {
+				$this->stations->deletelog($id2empty);
+				$data['success']=1;
+			} else {
+				$data['success']=0;
+				$data['flashdata']='Not allowed';
+			}
+		} else {
+			$data['success']=0;
+			$data['flashdata']='Error';
+		}
+		echo json_encode($data);
+	}
+
 	public function setActiveStation_json() {
 		$id2act=xss_clean($this->input->post('id2setActive',true));
 		if ($id2act ?? '' != '') {
@@ -213,7 +231,7 @@ class Stationsetup extends CI_Controller {
 	}
 
 	private function stationemptylog2html($id) {
-		return '<a href="' . site_url('station/deletelog') . "/" . $id . '" class="btn btn-danger btn-sm" title="' . lang('station_location_emptylog') . '" onclick="return confirm(\'' . lang('station_location_confirm_del_qso') . '\')"><i class="fas fa-trash-alt"></i></a></td>';
+		return '<button id="'. $id . '" class="EmptyStation btn btn-danger btn-sm" title="' . lang('station_location_emptylog') . '" cnftext="' . lang('station_location_confirm_del_qso') . '"><i class="fas fa-trash-alt"></i></button>';
 	}
 
 	private function stationcopy2html($id) {
