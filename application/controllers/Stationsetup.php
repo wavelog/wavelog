@@ -171,7 +171,7 @@ class Stationsetup extends CI_Controller {
 			$single->station_callsign = $entry->station_callsign;
 			$single->station_country = $this->stationcountry2html($entry->station_country, $entry->dxcc_end);
 			$single->station_gridsquare = $entry->station_gridsquare;
-			$single->station_badge = $this->stationbadge2html($entry->station_id, $entry->station_active, $entry->station_profile_name, $entry->qso_total, $current_active, $entry->station_profile_name);
+			$single->station_badge = $this->stationbadge2html($entry->station_id, $entry->station_active, $entry->qso_total, $current_active, $entry->station_profile_name);
 			$single->station_edit = $this->stationedit2html($entry->station_id);
 			$single->station_emptylog = $this->stationemptylog2html($entry->station_id);
 			$single->station_copylog = $this->stationcopy2html($entry->station_id);
@@ -184,32 +184,31 @@ class Stationsetup extends CI_Controller {
 	private function stationbadge2html($id, $station_active, $qso_total, $current_active, $station_profile_name) {
 		$returntext = '';
 		if($station_active != 1) {
-			$returntext .= '<a href="' . site_url('station/set_active/') . $current_active. '/'. $id .
-			'" class="btn btn-outline-secondary btn-sm" onclick="return confirm(\''. lang('station_location_confirm_active') . $station_profile_name .'\')' . lang('station_location_set_active') . '</a>';
+			$returntext .= '<a href="' . site_url('station/set_active/') . $current_active. '/'. $id .  '" class="btn btn-outline-secondary btn-sm" onclick="return confirm(\''. lang('station_location_confirm_active') . $station_profile_name .'\');">' . lang('station_location_set_active') . '</a>';
 		} else {
 			$returntext .= '<span class="badge badge-success">' . lang('station_location_active') . '</span>';
 		}
 
 		$returntext .= '<span class="badge badge-info">ID: ' .$id .'</span>';
-		$returntext .='<span class="badge badge-light">' . $qso_total . lang('gen_hamradio_qso') . '</span>';
+		$returntext .='<span class="badge badge-light">' . $qso_total .' '. lang('gen_hamradio_qso') . '</span>';
 		return $returntext;
 	}
 
 	private function stationedit2html($id) {
-		return '<a href="' . site_url('station/edit')."/" . $id . '" title=' . lang('admin_edit') . ' class="btn btn-outline-primary btn-sm"><i class="fas fa-edit"></i></a>';
+		return '<a href="' . site_url('station/edit')."/" . $id . '" title="' . lang('admin_edit') . '" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit"></i></a>';
 	}
 
 	private function stationemptylog2html($id) {
-		return '<a href="' . site_url('station/deletelog') . "/" . $id . '" class="btn btn-danger btn-sm" title=' . lang('station_location_emptylog') . ' onclick="return confirm(\'' . lang('station_location_confirm_del_qso') . '\')"><i class="fas fa-trash-alt"></i></a></td>';
+		return '<a href="' . site_url('station/deletelog') . "/" . $id . '" class="btn btn-danger btn-sm" title="' . lang('station_location_emptylog') . '" onclick="return confirm(\'' . lang('station_location_confirm_del_qso') . '\')"><i class="fas fa-trash-alt"></i></a></td>';
 	}
 
 	private function stationcopy2html($id) {
-		return '<a href="' . site_url('station/copy') . "/" . $id . '" title=' . lang('admin_copy') . ' class="btn btn-outline-primary btn-sm"><i class="fas fa-copy"></i></a>';
+		return '<a href="' . site_url('station/copy') . "/" . $id . '" title="' . lang('admin_copy') . '" class="btn btn-outline-primary btn-sm"><i class="fas fa-copy"></i></a>';
 	}
 
 	private function stationdelete2html($id, $station_profile_name, $station_active) {
 		if($station_active != 1) {
-			return '<a href="' . site_url('station/delete'). "/" .$id . '" class="btn btn-danger btn-sm" title=' . lang('admin_delete') . ' onclick="return confirm(\'' . lang('station_location_confirm_del_stationlocation') . $station_profile_name . lang('station_location_confirm_del_stationlocation_qso') . '\');"><i class="fas fa-trash-alt"></i></a>';
+			return '<a href="' . site_url('station/delete'). "/" .$id . '" class="btn btn-danger btn-sm" title="' . lang('admin_delete') . '" onclick="return confirm(\'' . lang('station_location_confirm_del_stationlocation') . $station_profile_name . lang('station_location_confirm_del_stationlocation_qso') . '\');"><i class="fas fa-trash-alt"></i></a>';
 		}
 
 		return '';
