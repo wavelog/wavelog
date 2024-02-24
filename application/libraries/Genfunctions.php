@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 
 /***
- * Libary for common functions, used at many places
+ * Library for common functions, used at many places
  */
 class Genfunctions
 {
