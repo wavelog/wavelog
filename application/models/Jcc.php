@@ -1122,6 +1122,7 @@ class Jcc extends CI_Model {
 	function addStateToQuery() {
 		$sql = '';
 		$sql .= " and COL_DXCC in ('339')";
+		$sql .= " and (COL_CNTY LIKE '____' OR COL_CNTY LIKE '______')";
 		$sql .= " and COL_CNTY in ($this->jccString)";
 		return $sql;
 	}
