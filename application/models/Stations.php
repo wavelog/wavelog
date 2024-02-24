@@ -75,14 +75,14 @@ class Stations extends CI_Model {
 
 		// Check if the state is Canada and get the correct state
 		if ($this->input->post('dxcc') == 1 && $this->input->post('station_ca_state') !="") {
-			$state = $this->input->post('station_ca_state');
+			$state = xss_clean($this->input->post('station_ca_state', true));
 		} else {
-			$state = $this->input->post('station_state');
+			$state = xss_clean($this->input->post('station_state', true));
 		}
 
 		// Check if DXCC is USA, Alaska or Hawaii. If not true, we clear the County field due to complex adif specs
 		if (($this->input->post('dxcc') == 291 || $this->input->post('dxcc') == 006 || $this->input->post('dxcc') == 110) && $this->input->post('station_cnty') !="") {
-			$county = $this->input->post('station_cnty');
+			$county = xss_clean($this->input->post('station_cnty', true));
 		} else {
 			$county = '';
 		}
@@ -135,14 +135,14 @@ class Stations extends CI_Model {
 
 		// Check if the state is Canada and get the correct state
 		if ($this->input->post('dxcc') == 1 && $this->input->post('station_ca_state') !="") {
-			$state = $this->input->post('station_ca_state');
+			$state = xss_clean($this->input->post('station_ca_state', true));
 		} else {
-			$state = $this->input->post('station_state');
+			$state = xss_clean($this->input->post('station_state', true));
 		}
 
 		// Check if DXCC is USA, Alaska or Hawaii. If not true, we clear the County field due to complex adif specs
 		if (($this->input->post('dxcc') == 291 || $this->input->post('dxcc') == 006 || $this->input->post('dxcc') == 110) && $this->input->post('station_cnty') !="") {
-			$county = $this->input->post('station_cnty');
+			$county = xss_clean($this->input->post('station_cnty', true));
 		} else {
 			$county = '';
 		}
