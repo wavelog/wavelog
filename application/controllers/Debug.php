@@ -1,18 +1,24 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Debug extends CI_Controller {
+class Debug extends CI_Controller
+{
     function __construct()
     {
         parent::__construct();
 
         $this->load->model('user_model');
-        if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+        if (!$this->user_model->authorize(2)) {
+            $this->session->set_flashdata('notice', 'You\'re not allowed to do that!');
+            redirect('dashboard');
+        }
+
+        // $this->load->model('Debug');
+        $this->load->library('Permissions');
     }
 
     /* User Facing Links to Backup URLs */
     public function index()
     {
-        $this->load->library('Permissions');
         $this->load->helper('file');
 
         $this->load->model('MigrationVersion');
@@ -31,6 +37,20 @@ class Debug extends CI_Controller {
         $uploads_folder = $this->permissions->is_really_writable('uploads');
         $data['uploads_folder'] = $uploads_folder;
 
+        // Check if userdata config is enabled
+        $userdata_enabled = $this->config->item('userdata');
+        $data['userdata_enabled'] = $userdata_enabled;
+
+        if (isset($userdata_enabled)) {
+            // Test writing to userdata folder if option is enabled
+            $userdata_folder = $this->permissions->is_really_writable('userdata');
+            $data['userdata_folder'] = $userdata_folder;
+
+            // run the status check and return the array to the view
+            $userdata_status = $this->check_userdata_status($userdata_folder);
+            $data['userdata_status'] = $userdata_status;
+        }
+
         $data['page_title'] = "Debug";
 
         $this->load->view('interface_assets/header', $data);
@@ -38,4 +58,53 @@ class Debug extends CI_Controller {
         $this->load->view('interface_assets/footer');
     }
 
+    function check_userdata_status($userdata_folder)
+    {
+        $status = array();
+
+        // Check of the folder is writable
+        if ($userdata_folder == true) {
+
+            // Check if the qsl and eqsl folder are accessible and if there is any data the user could migrate
+            $qsl_dir = $this->permissions->is_really_writable('assets/qslcard');
+            $eqsl_dir = $this->permissions->is_really_writable('images/eqsl_card_images');
+
+            if ($qsl_dir == true && $eqsl_dir == true) {
+
+                // Check for content of the qsl card folder other the *.html files
+                $qsl_files = glob('assets/qslcard/*');
+                $qsl_files_filtered = array_filter($qsl_files, function ($file) {
+                    return !is_dir($file) && pathinfo($file, PATHINFO_EXTENSION) !== 'html';
+                });
+
+                // Check for content of the eqsl card folder other the *.html files
+                $eqsl_files = glob('images/eqsl_card_images/*');
+                $eqsl_files_filtered = array_filter($eqsl_files, function ($file) {
+                    return !is_dir($file) && pathinfo($file, PATHINFO_EXTENSION) !== 'html';
+                });
+
+                // Set the status info
+                if (!empty($qsl_files_filtered) || !empty($eqsl_files_filtered)) {
+                    $status['status'] = 'Config item "userdata" is enabled and there are files to migrate.';
+                    $status['btn_class'] = '';
+                    $status['btn_text'] = 'Migrate data now';
+                    $status['check'] = true;
+                } else {
+                    $status['status'] = 'Config item "userdata" is enabled but there are no files to migrate.';
+                    $status['btn_class'] = 'disabled';
+                    $status['btn_text'] = 'No data to migrate';
+                    $status['check'] = false;
+                }
+            }
+
+        // If the folder is not writable we don't need to continue
+        } else {
+            $status['status'] = 'Folder is not writable. Reload the page and check the folder permission.';
+            $status['btn_class'] = 'disabled';
+            $status['btn_text'] = 'No migration possible';
+            $status['check'] = false;
+        }
+
+        return $status;
+    }
 }
