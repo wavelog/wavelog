@@ -4,9 +4,12 @@
 
     <h2><?php echo $this->lang->line('general_word_eqslcards'); ?></h2>
 
-    <div class="alert alert-info" role="alert">
-    <?php echo $this->lang->line('qslcard_string_your_are_using'); ?> <?php echo $storage_used; ?> <?php echo $this->lang->line('qslcard_string_disk_space'); ?>
-    </div>
+    <?php $userdata_dir = $this->config->item('userdata');
+    if (isset($userdata_dir)) { ?>
+        <div class="alert alert-info" role="alert">
+            <?php echo lang('qslcard_string_your_are_using'); ?> <?php echo $storage_used; ?> <?php echo lang('qslcard_string_disk_space'); ?>
+        </div>
+    <?php } ?>
 
     <?php
 
