@@ -143,52 +143,64 @@
         echo '</table>
         <h2>Summary</h2>
 
-        <table class="table-sm tablesummary table table-bordered table-hover table-striped table-condensed text-center">
-        <thead>
-        <tr><td></td>';
-
+        <table class="table-sm tablesummary table table-bordered table-hover table-striped table-condensed text-center">';
         $sat = 0;
         if (in_array('SAT', $bands)) {
            $sat = 1;
         }
 
-        foreach($bands as $band) {
-            if ($band != 'SAT') {
-                echo '<td>' . $band . '</td>';
-            }
+        echo '<thead><tr>';
+        if (count($bands) > 1) {
+           echo '<td></td>';
+
+           foreach($bands as $band) {
+               if ($band != 'SAT') {
+                   echo '<td>' . $band . '</td>';
+               }
+           }
+           echo '<td><b>Total</b></td>';
+           if ($sat == 1) {
+              echo '<td>SAT</td>';
+           }
+        } else {
+           echo '<td></td><td><b>'.$bands[0].'</b></td>';
         }
-        echo '<td><b>Total</b></td>';
-        if ($sat == 1) {
-           echo '<td>SAT</td>';
-        }
-        echo '</tr>
-        </thead>
-        <tbody>
+        echo '</tr></thead>';
+        echo '<tbody>
 
         <tr><td>Total worked</td>';
 
-        $len_worked = count($jcc_summary['worked']);
-        $i = 0;
-        foreach ($jcc_summary['worked'] as $jcc) {      // Fills the table with the data
-            if ($i == $len_worked - 1 - $sat) {
-               echo '<td style="text-align: center"><b>' . $jcc . '</b></td>';
-            } else {
-               echo '<td style="text-align: center">' . $jcc . '</td>';
-            }
-            $i++;
+        if (count($bands) > 2) {
+           $len_worked = count($jcc_summary['worked']);
+           $j = 0;
+           foreach ($jcc_summary['worked'] as $jcc) {      // Fills the table with the data
+               if ($j == $len_worked - 1 - $sat) {
+                  echo '<td style="text-align: center"><b>' . $jcc . '</b></td>';
+               } else {
+                  echo '<td style="text-align: center">' . $jcc . '</td>';
+               }
+               $j++;
+           }
+        } else {
+           echo '<td style="text-align: center"><b>' . $jcc_summary['worked']['Total'] . '</b></td>';
         }
 
-        echo '</tr><tr>
-        <td>Total confirmed</td>';
-        $len_confirmed = count($jcc_summary['confirmed']);
-        $i = 0;
-        foreach ($jcc_summary['confirmed'] as $jcc) {      // Fills the table with the data
-            if ($i == $len_confirmed - 1 - $sat) {
-               echo '<td style="text-align: center"><b>' . $jcc . '</b></td>';
-            } else {
-               echo '<td style="text-align: center">' . $jcc . '</td>';
-            }
-            $i++;
+        echo '</tr><tr>';
+
+        echo '<td>Total confirmed</td>';
+        if (count($bands) > 2) {
+           $len_confirmed = count($jcc_summary['confirmed']);
+           $j = 0;
+           foreach ($jcc_summary['confirmed'] as $jcc) {      // Fills the table with the data
+               if ($j == $len_confirmed - 1 - $sat) {
+                  echo '<td style="text-align: center"><b>' . $jcc . '</b></td>';
+               } else {
+                  echo '<td style="text-align: center">' . $jcc . '</td>';
+               }
+               $j++;
+           }
+        } else {
+           echo '<td style="text-align: center"><b>' . $jcc_summary['worked']['Total'] . '</b></td>';
         }
 
         echo '</tr>
