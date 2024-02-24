@@ -35,24 +35,38 @@ class Eqsl_images extends CI_Model {
 		return $this->db->get('eQSL_images');
 	}
 
-	// return path of eQsl file : u=url / p=real path //
+	// return path of eQsl file : u=url / p=real path 
 	function get_imagePath($pathorurl='u') {
-		$eqsl_dir = "eqsl_card";
-		// test if new folder directory exist // 
+
+		// test if new folder directory option is enabled
 		$userdata_dir = $this->config->item('userdata');
+		
 		if (isset($userdata_dir)) {
-			if (!file_exists(realpath(APPPATH.'../').'/'.$userdata_dir)) {
-				mkdir(realpath(APPPATH.'../').'/'.$userdata_dir, 0755, true);
+
+			$eqsl_dir = "eqsl_card";
+
+			$user_id = $this->session->userdata('user_id');
+			
+			// check if there is a user_id in the session data and it's not empty
+			if ($user_id != '') {
+				
+                // create the folder
+                if (!file_exists(realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$user_id.'/'.$eqsl_dir)) {
+                    mkdir(realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$user_id.'/'.$eqsl_dir, 0755, true);
+                }
+
+                // and return it
+                if ($pathorurl=='u') {
+                    return $userdata_dir.'/'.$user_id.'/'.$eqsl_dir;
+                } else {
+                    return realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$user_id.'/'.$eqsl_dir;
+                }
+            } else {
+				log_message('Error', 'Can not get eqsl image path because no user_id in session data');
 			}
-			if (!file_exists(realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$eqsl_dir)) {
-				mkdir(realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$eqsl_dir, 0755, true);
-			}
-			if ($pathorurl=='u') {
-				return $userdata_dir.'/'.$eqsl_dir;
-			} else {
-				return realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$eqsl_dir;
-			}
-		} else {
+        } else {
+
+			// if the config option is not set we just return the old path
 			return 'images/eqsl_card_images';
 		}
 	}
