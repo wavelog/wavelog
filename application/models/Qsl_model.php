@@ -128,19 +128,21 @@ class Qsl_model extends CI_Model {
 		return $this->db->insert_id();
 	}
 
-	// return path of Qsl file : u=url / p=real path 
+	// return path of qsl file : u=url / p=real path 
 	function get_imagePath($pathorurl='u') {
 
-        // check if there is a user_id in the session data and it's not empty
-		$user_id = $this->session->userdata('user_id');
-        if ($user_id != '') {
+		// test if new folder directory option is enabled
+		$userdata_dir = $this->config->item('userdata');
+		
+		if (isset($userdata_dir)) {
 
-            $qsl_dir = "qsl_card";
+			$qsl_dir = "qsl_card";
 
-            // test if new folder directory exist 
-            $userdata_dir = $this->config->item('userdata');
-            if (isset($userdata_dir)) {
-
+			$user_id = $this->session->userdata('user_id');
+			
+			// check if there is a user_id in the session data and it's not empty
+			if ($user_id != '') {
+				
                 // create the folder
                 if (!file_exists(realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$user_id.'/'.$qsl_dir)) {
                     mkdir(realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$user_id.'/'.$qsl_dir, 0755, true);
@@ -153,10 +155,12 @@ class Qsl_model extends CI_Model {
                     return realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$user_id.'/'.$qsl_dir;
                 }
             } else {
+				log_message('Error', 'Can not get qsl card image path because no user_id in session data');
+			}
+        } else {
 
-                // if the config option is not set we just return the old path
-                return 'assets/qslcard';
-            }
-        }
+			// if the config option is not set we just return the old path
+			return 'assets/qslcard';
+		}
 	}
 }
