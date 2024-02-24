@@ -205,3 +205,14 @@ $lang['awards_waja_description_ln1'] = "WAJA - 通联全日本都道府县奖状
 $lang['awards_waja_description_ln2'] = "WAJA，通联全日本都道府县奖状，鼓励许可的业余无线电操作者与所有日本都道府县的电台通联";
 $lang['awards_waja_description_ln3'] = "也许可以通过展示出已经通联（或收听）过来自日本47个都道府县的电台发来的QSL卡片，并按照WAJA(HAJA)的顺序进行排列，都道府县的名称可以忽略";
 $lang['awards_waja_description_ln4'] = "请访问 <a href='https://www.jarl.org/English/4_Library/A-4-2_Awards/Award_Main.htm' target='_blank'>https://www.jarl.org/English/4_Library/A-4-2_Awards/Award_Main.htm</a> 获得更多信息";
+
+/*
+___________________________________________________________________________________________
+JCC -- Use all 4 Lines of Text
+___________________________________________________________________________________________
+*/
+
+$lang['awards_jcc_description_ln1'] = "JCC - Japan Century Cities Award";
+$lang['awards_jcc_description_ln2'] = "May be claimed for having contacted (heard) and received a QSL card from an amateur station located in each of at least 100 different cities of Japan.";
+$lang['awards_jcc_description_ln3'] = "JCC-200, 300, 400, 500, 600, 700 and 800 will be issued as separate awards. A list of QSL cards should be arranged in order of JCC reference number, however names of city may be omitted. An additional sticker will be issued at every 50 contacts like 150, 250, 350, 450, 550, 650, 750 cities.";
+$lang['awards_jcc_description_ln4'] = "For more information, please visit: <a href='https://www.jarl.org/English/4_Library/A-4-2_Awards/Award_Main.htm' target='_blank'>https://www.jarl.org/English/4_Library/A-4-2_Awards/Award_Main.htm</a>.";

@@ -45,6 +45,7 @@ $lang['menu_lx_gridmaster'] = 'LX Gridmaster';
 $lang['menu_ja_gridmaster'] = 'JA Gridmaster';
 $lang['menu_us_gridmaster'] = 'US Gridmaster';
 $lang['menu_iota'] = 'IOTA';
+$lang['menu_jcc'] = 'JCC';
 $lang['menu_pota'] = 'POTA';
 $lang['menu_rac'] = 'RAC';
 $lang['menu_sig'] = 'SIG';

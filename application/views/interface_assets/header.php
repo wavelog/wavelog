@@ -143,10 +143,6 @@
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item" href="<?php echo site_url('awards/ffma'); ?>"><i class="fas fa-trophy"></i> <?php echo lang('menu_ffma'); ?></a></li>
 								<div class="dropdown-divider"></div>
-								<li><a class="dropdown-item" href="<?php echo site_url('awards/helvetia'); ?>"><i class="fas fa-trophy"></i> H26</a></li>
-								<div class="dropdown-divider"></div>
-								<li><a class="dropdown-item" href="<?php echo site_url('awards/iota'); ?>"><i class="fas fa-trophy"></i> <?php echo lang('menu_iota'); ?></a></li>
-								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#"><i class="fas fa-trophy"></i> <?php echo lang('menu_gridmaster'); ?></a>
 									<ul class="submenu dropdown-menu">
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/gridmaster/dl'); ?>"><i class="fas fa-trophy"></i> <?php echo lang('menu_dl_gridmaster'); ?></a></li>
@@ -158,6 +154,12 @@
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/gridmaster/us'); ?>"><i class="fas fa-trophy"></i> <?php echo lang('menu_us_gridmaster'); ?></a></li>
 									</ul>
 								</li>
+								<div class="dropdown-divider"></div>
+								<li><a class="dropdown-item" href="<?php echo site_url('awards/helvetia'); ?>"><i class="fas fa-trophy"></i> H26</a></li>
+								<div class="dropdown-divider"></div>
+								<li><a class="dropdown-item" href="<?php echo site_url('awards/jcc'); ?>"><i class="fas fa-trophy"></i> <?php echo lang('menu_jcc'); ?></a></li>
+								<div class="dropdown-divider"></div>
+								<li><a class="dropdown-item" href="<?php echo site_url('awards/iota'); ?>"><i class="fas fa-trophy"></i> <?php echo lang('menu_iota'); ?></a></li>
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item" href="<?php echo site_url('awards/pota'); ?>"><i class="fas fa-trophy"></i> <?php echo lang('menu_pota'); ?></a></li>
 								<div class="dropdown-divider"></div>
