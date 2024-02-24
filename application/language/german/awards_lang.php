@@ -205,3 +205,14 @@ $lang['awards_waja_description_ln1'] = "WAJA - Worked All Japan prefectures Awar
 $lang['awards_waja_description_ln2'] = "WAJA, 'Worked All Japan prefectures in Amateur Radio', ermutigt lizenzierte Amateurfunkbetreiber dazu, mit allen Präfekturen in Japan zu arbeiten.";
 $lang['awards_waja_description_ln3'] = "Du kannst diesen Award beanspruchen, indem du (gehört hast) und eine QSL-Karte von einer Amateurstation in jedem der 47 Präfekturen Japans erhalten hast. Eine Liste der QSL-Karten sollte nach der WAJA (HAJA) Referenznummer geordnet sein, jedoch können die Namen der Präfekturen ausgelassen werden.";
 $lang['awards_waja_description_ln4'] = "Für weitere Informationen besuche bitte: <a href='https://www.jarl.org/English/4_Library/A-4-2_Awards/Award_Main.htm' target='_blank'>https://www.jarl.org/English/4_Library/A-4-2_Awards/Award_Main.htm</a>.";
+
+/*
+___________________________________________________________________________________________
+JCC -- Use all 4 Lines of Text
+___________________________________________________________________________________________
+*/
+
+$lang['awards_jcc_description_ln1'] = "JCC - Japan Century Cities Award";
+$lang['awards_jcc_description_ln2'] = "Kann beantragt werden, wenn Amateurfunkstationen aus mindestens 100 unterschiedlichen Städten Japans gearbeitet bzw. gehört wurden und eine QSL-Karte vorliegt.";
+$lang['awards_jcc_description_ln3'] = "JCC-200, 300, 400, 500, 600, 700 und 800 werden als separate Auszeichnungen vergeben. Eine Liste der QSL-Karten sollte in der Reihenfolge der JCC Referenznummern angelegt werden. Die Namen der Städte können ausgelassen werden. Weitere Sticker werden für jeweils 50 weitere Kontakte ausgestellt, z.B 150, 250, 350, 450, 550, 650, 750 Städte.";
+$lang['awards_jcc_description_ln4'] = "Für weitere Informationen besuche bitte: <a href='https://www.jarl.org/English/4_Library/A-4-2_Awards/Award_Main.htm' target='_blank'>https://www.jarl.org/English/4_Library/A-4-2_Awards/Award_Main.htm</a>.";
