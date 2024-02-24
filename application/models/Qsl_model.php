@@ -131,9 +131,9 @@ class Qsl_model extends CI_Model {
 	// return path of Qsl file : u=url / p=real path 
 	function get_imagePath($pathorurl='u') {
 
-        // check if there is a user_name in the session data and it's not emoty
-		$user_name = $this->session->userdata('user_name');
-        if ($user_name != '') {
+        // check if there is a user_id in the session data and it's not empty
+		$user_id = $this->session->userdata('user_id');
+        if ($user_id != '') {
 
             $qsl_dir = "qsl_card";
 
@@ -142,15 +142,15 @@ class Qsl_model extends CI_Model {
             if (isset($userdata_dir)) {
 
                 // create the folder
-                if (!file_exists(realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$user_name.'/'.$qsl_dir)) {
-                    mkdir(realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$user_name.'/'.$qsl_dir, 0755, true);
+                if (!file_exists(realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$user_id.'/'.$qsl_dir)) {
+                    mkdir(realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$user_id.'/'.$qsl_dir, 0755, true);
                 }
 
                 // and return it
                 if ($pathorurl=='u') {
-                    return $userdata_dir.'/'.$user_name.'/'.$qsl_dir;
+                    return $userdata_dir.'/'.$user_id.'/'.$qsl_dir;
                 } else {
-                    return realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$user_name.'/'.$qsl_dir;
+                    return realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$user_id.'/'.$qsl_dir;
                 }
             } else {
 
