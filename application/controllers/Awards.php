@@ -250,7 +250,7 @@ class Awards extends CI_Controller {
 	public function jcc ()	{
 		$footerData = [];
 
-		$this->load->model('jcc');
+		$this->load->model('jcc_model');
         $this->load->model('modes');
         $this->load->model('bands');
 
@@ -310,8 +310,8 @@ class Awards extends CI_Controller {
             $postdata['mode'] = 'All';
         }
 
-        $data['jcc_array'] = $this->jcc->get_jcc_array($bands, $postdata);
-        $data['jcc_summary'] = $this->jcc->get_jcc_summary($bands, $postdata);
+        $data['jcc_array'] = $this->jcc_model->get_jcc_array($bands, $postdata);
+        $data['jcc_summary'] = $this->jcc_model->get_jcc_summary($bands, $postdata);
 
 		// Render Page
 		$data['page_title'] = "Awards - JCC";

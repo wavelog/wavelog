@@ -1,6 +1,6 @@
 <?php
 
-class Jcc extends CI_Model {
+class Jcc_model extends CI_Model {
 
 	function __construct() {
 		$this->load->library('Genfunctions');
