@@ -121,7 +121,7 @@
     $i = 1;
     if ($jcc_array) {
         echo '
-                <table style="width:100%" class="table-sm table tablewaja table-bordered table-hover table-striped table-condensed text-center">
+                <table id="jccTable" style="width:100%" class="table-sm table table-bordered table-hover table-striped table-condensed text-center">
                     <thead>
                     <tr>
 						<td>Number</td>

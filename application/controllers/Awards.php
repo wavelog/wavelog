@@ -249,6 +249,7 @@ class Awards extends CI_Controller {
 
 	public function jcc ()	{
 		$footerData = [];
+        $footerData['scripts'] = ['assets/js/sections/jcc.js'];
 
 		$this->load->model('jcc_model');
         $this->load->model('modes');
