@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 
 /***
- * Paths Libary to return specific paths
+ * Paths Library to return specific paths
  */
 class Paths
 {
