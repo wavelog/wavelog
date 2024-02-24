@@ -1035,10 +1035,12 @@ class Jcc extends CI_Model {
 		$location_list = "'".implode("','",$logbooks_locations_array)."'";
 
 		foreach ($bands as $band) {
-			$worked = $this->getSummaryByBand($band, $postdata, $location_list);
-			$confirmed = $this->getSummaryByBandConfirmed($band, $postdata, $location_list);
-			$jccSummary['worked'][$band] = $worked[0]->count;
-			$jccSummary['confirmed'][$band] = $confirmed[0]->count;
+			if ($band != 'SAT') {
+				$worked = $this->getSummaryByBand($band, $postdata, $location_list);
+				$confirmed = $this->getSummaryByBandConfirmed($band, $postdata, $location_list);
+				$jccSummary['worked'][$band] = $worked[0]->count;
+				$jccSummary['confirmed'][$band] = $confirmed[0]->count;
+			}
 		}
 
 		$workedTotal = $this->getSummaryByBand($postdata['band'], $postdata, $location_list);
@@ -1046,6 +1048,13 @@ class Jcc extends CI_Model {
 
 		$jccSummary['worked']['Total'] = $workedTotal[0]->count;
 		$jccSummary['confirmed']['Total'] = $confirmedTotal[0]->count;
+
+		if (in_array('SAT', $bands)) {
+				$worked = $this->getSummaryByBand('SAT', $postdata, $location_list);
+				$confirmed = $this->getSummaryByBandConfirmed('SAT', $postdata, $location_list);
+				$jccSummary['worked']['SAT'] = $worked[0]->count;
+				$jccSummary['confirmed']['SAT'] = $confirmed[0]->count;
+		}
 
 		return $jccSummary;
 	}

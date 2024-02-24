@@ -133,7 +133,7 @@
         echo '</tr>
                     </thead>
                     <tbody>';
-        foreach ($jcc_array as $waja => $value) {      // Fills the table with the data
+        foreach ($jcc_array as $jcc => $value) {      // Fills the table with the data
             echo '<tr>';
             foreach ($value as $name => $key) {
 				echo '<td style="text-align: center">' . $key . '</td>';
@@ -147,24 +147,48 @@
         <thead>
         <tr><td></td>';
 
-        foreach($bands as $band) {
-            echo '<td>' . $band . '</td>';
+        $sat = 0;
+        if (in_array('SAT', $bands)) {
+           $sat = 1;
         }
-        echo '<td>Total</td>
-        </tr>
+
+        foreach($bands as $band) {
+            if ($band != 'SAT') {
+                echo '<td>' . $band . '</td>';
+            }
+        }
+        echo '<td><b>Total</b></td>';
+        if ($sat == 1) {
+           echo '<td>SAT</td>';
+        }
+        echo '</tr>
         </thead>
         <tbody>
 
         <tr><td>Total worked</td>';
 
-        foreach ($jcc_summary['worked'] as $waja) {      // Fills the table with the data
-            echo '<td style="text-align: center">' . $waja . '</td>';
+        $len_worked = count($jcc_summary['worked']);
+        $i = 0;
+        foreach ($jcc_summary['worked'] as $jcc) {      // Fills the table with the data
+            if ($i == $len_worked - 1 - $sat) {
+               echo '<td style="text-align: center"><b>' . $jcc . '</b></td>';
+            } else {
+               echo '<td style="text-align: center">' . $jcc . '</td>';
+            }
+            $i++;
         }
 
         echo '</tr><tr>
         <td>Total confirmed</td>';
-        foreach ($jcc_summary['confirmed'] as $waja) {      // Fills the table with the data
-            echo '<td style="text-align: center">' . $waja . '</td>';
+        $len_confirmed = count($jcc_summary['confirmed']);
+        $i = 0;
+        foreach ($jcc_summary['confirmed'] as $jcc) {      // Fills the table with the data
+            if ($i == $len_confirmed - 1 - $sat) {
+               echo '<td style="text-align: center"><b>' . $jcc . '</b></td>';
+            } else {
+               echo '<td style="text-align: center">' . $jcc . '</td>';
+            }
+            $i++;
         }
 
         echo '</tr>
