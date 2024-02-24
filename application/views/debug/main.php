@@ -334,7 +334,7 @@
                                 <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_sota'); ?>">Update</a></td>
                             </tr>
                             <tr>
-                                <td>WWFF file downlaod</td>
+                                <td>WWFF file download</td>
                                 <td><?php echo (($this->optionslib->get_option('wwff_file_update') ?? '') == '' ? '' : date($custom_date_format, strtotime($this->optionslib->get_option('wwff_file_update') ?? ''))  . ' ' . date("h:i", strtotime($this->optionslib->get_option('wwff_file_update') ?? '')))  ?></td>
                                 <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_wwff'); ?>">Update</a></td>
                             </tr>
