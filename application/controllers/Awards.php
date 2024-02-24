@@ -297,7 +297,7 @@ class Awards extends CI_Controller {
             $postdata['qrz'] = 0;
             $postdata['worked'] = 1;
             $postdata['confirmed'] = 1;
-            $postdata['notworked'] = 1;
+            $postdata['notworked'] = 0;
             $postdata['includedeleted'] = 0;
             $postdata['Africa'] = 1;
             $postdata['Asia'] = 1;

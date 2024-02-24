@@ -1,55 +1,3 @@
-<script>
-	var tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"
-</script>
-
-<style>
-    #wajamap {
-	height: calc(100vh - 500px) !important;
-	max-height: 900px !important;
-}
-/*Legend specific*/
-.legend {
-  padding: 6px 8px;
-  font: 14px Arial, Helvetica, sans-serif;
-  background: white;
-  background: rgba(255, 255, 255, 0.8);
-  line-height: 24px;
-  color: #555;
-}
-.legend h4 {
-  text-align: center;
-  font-size: 16px;
-  margin: 2px 12px 8px;
-  color: #555;
-}
-.legend span {
-  position: relative;
-  bottom: 3px;
-  color: #555;
-}
-.legend i {
-  width: 18px;
-  height: 18px;
-  float: left;
-  margin: 0 8px 0 0;
-  opacity: 0.7;
-  color: #555;
-}
-
-.info {
-    padding: 6px 8px;
-    font: 14px/16px Arial, Helvetica, sans-serif;
-    background: white;
-    background: rgba(255,255,255,0.8);
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
-    border-radius: 5px;
-	color: #555;
-}
-.info h4 {
-    margin: 0 0 5px;
-    color: #555;
-}
-</style>
 <div class="container">
         <!-- Award Info Box -->
         <br>
@@ -81,7 +29,7 @@
                         <label class="form-check-label" for="confirmed">Show confirmed</label>
                     </div>
                     <div class="form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="notworked" id="notworked" value="1" <?php if ($this->input->post('notworked') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
+                        <input class="form-check-input" type="checkbox" name="notworked" id="notworked" value="1" <?php if ($this->input->post('notworked')) echo ' checked="checked"'; ?> >
                         <label class="form-check-label" for="notworked">Show not worked</label>
                     </div>
                 </div>
@@ -150,9 +98,6 @@
                 <div class="col-md-10">
                     <button id="button2id" type="reset" name="button2id" class="btn btn-sm btn-warning">Reset</button>
                     <button id="button1id" type="submit" name="button1id" class="btn btn-sm btn-primary">Show</button>
-                    <?php if ($jcc_array) {
-                        ?><button type="button" onclick="load_waja_map();" class="btn btn-info btn-sm"><i class="fas fa-globe-americas"></i> Show WAJA Map</button>
-                    <?php }?>
                 </div>
             </div>
 
@@ -161,19 +106,12 @@
 
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active" id="table-tab" data-bs-toggle="tab" href="#table" role="tab" aria-controls="table" aria-selected="true">Table</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="map-tab" onclick="load_waja_map();" data-bs-toggle="tab" href="#wajamaptab" role="tab" aria-controls="home" aria-selected="false">Map</a>
+            <a class="nav-link active" id="table-tab" data-bs-toggle="tab" href="#table" role="tab" aria-controls="table" aria-selected="true">Results</a>
         </li>
     </ul>
     <br />
 
     <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade" id="wajamaptab" role="tabpanel" aria-labelledby="home-tab">
-    <br />
-
-    <div id="wajamap" class="map-leaflet" ></div>
 
     </div>
 
@@ -187,7 +125,7 @@
                     <thead>
                     <tr>
 						<td>Number</td>
-						<td>Prefecture</td>';
+						<td>City</td>';
 
         foreach($bands as $band) {
             echo '<td>' . $band . '</td>';
