@@ -42,7 +42,7 @@
                                         <?php if($this->session->userdata('active_station_logbook') != $row->logbook_id) { ?>
                                         <button id="<?php echo $row->logbook_id; ?>" class="setActiveLogbook btn btn-outline-primary btn-sm"><?php echo lang('station_logbooks_set_active')?></button>
                                         <?php } else {
-											echo "<span class='badge badge-success'>" . lang('station_logbooks_active_logbook') . "</span>";
+											echo "<span class='badge bg-success'>" . lang('station_logbooks_active_logbook') . "</span>";
 											}?>
                                     </td>
                                     <td>
@@ -69,9 +69,9 @@
                                     </td>
                                     <td>
                                         <?php if ($row->public_search == 1) {
-											echo "<span class='badge badge-success'>" . lang('general_word_enabled') . "</span>";
+											echo "<span class='badge bg-success'>" . lang('general_word_enabled') . "</span>";
 											} else {
-											echo "<span class='badge badge-dark'>" . lang('general_word_disabled') . "</span>";
+											echo "<span class='badge bg-dark'>" . lang('general_word_disabled') . "</span>";
 											} ?>
                                     </td>
                                 </tr>
@@ -146,7 +146,7 @@
 				<?php if($row->station_active != 1) { ?>
 					<a href="<?php echo site_url('station/set_active/').$current_active."/".$row->station_id; ?>" class="btn btn-outline-secondary btn-sm" onclick="return confirm('<?php echo lang('station_location_confirm_active'); ?> <?php echo $row->station_profile_name; ?>');"><?php echo lang('station_location_set_active'); ?></a>
 				<?php } else { ?>
-					<span class="badge badge-success"><?php echo lang('station_location_active'); ?></span>
+					<span class="badge bg-success"><?php echo lang('station_location_active'); ?></span>
 				<?php } ?>
 
 				<br>

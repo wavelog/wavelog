@@ -1,7 +1,5 @@
 $(document).ready(function () {
 
-	reloadStations();
-	reloadLogbooks();
 	$("#station_locations_table").DataTable({
 		stateSave: true,
 		language: {
