@@ -62,22 +62,24 @@ class Debug extends CI_Controller
     {
         $status = array();
 
-        // Check of the folder is writable
-        if ($userdata_folder == true) {
+        // Check if the folder is writable
+        if ($userdata_folder === true) {
+            log_message('debug', 'userdata config is true');
 
-            // Check if the qsl and eqsl folder are accessible and if there is any data the user could migrate
+            // Check if the qsl and eqsl folders are accessible and if there is any data the user could migrate
             $qsl_dir = $this->permissions->is_really_writable('assets/qslcard');
             $eqsl_dir = $this->permissions->is_really_writable('images/eqsl_card_images');
 
-            if ($qsl_dir == true && $eqsl_dir == true) {
+            if ($qsl_dir && $eqsl_dir) {
+                log_message('debug', 'qsl and eqsl folder are writable');
 
-                // Check for content of the qsl card folder other the *.html files
+                // Check for content of the qsl card folder other than *.html files
                 $qsl_files = glob('assets/qslcard/*');
                 $qsl_files_filtered = array_filter($qsl_files, function ($file) {
                     return !is_dir($file) && pathinfo($file, PATHINFO_EXTENSION) !== 'html';
                 });
 
-                // Check for content of the eqsl card folder other the *.html files
+                // Check for content of the eqsl card folder other than *.html files
                 $eqsl_files = glob('images/eqsl_card_images/*');
                 $eqsl_files_filtered = array_filter($eqsl_files, function ($file) {
                     return !is_dir($file) && pathinfo($file, PATHINFO_EXTENSION) !== 'html';
@@ -95,10 +97,14 @@ class Debug extends CI_Controller
                     $status['btn_text'] = 'No data to migrate';
                     $status['check'] = false;
                 }
+            } else {
+                $status['status'] = 'The folder "assets/qslcard" or "images/eqsl_card_images" do not exist or arent writable. Check both and reload the page.';
+                $status['btn_class'] = 'disabled';
+                $status['btn_text'] = 'No migration possible';
+                $status['check'] = false;
             }
-
-        // If the folder is not writable we don't need to continue
         } else {
+            // If the folder is not writable, we don't need to continue
             $status['status'] = 'Folder is not writable. Reload the page and check the folder permission.';
             $status['btn_class'] = 'disabled';
             $status['btn_text'] = 'No migration possible';
