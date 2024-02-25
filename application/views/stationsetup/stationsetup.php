@@ -123,6 +123,12 @@
 			<th></th>
 			<th scope="col"><?php echo lang('admin_edit'); ?></th>
 			<th scope="col"><?php echo lang('admin_copy'); ?></th>
+			<?php
+					$quickswitch_enabled = ($this->user_options_model->get_options('header_menu', array('option_name'=>'locations_quickswitch'))->row()->option_value ?? 'false');
+					if ($quickswitch_enabled == 'true') {
+					?>
+						<th scope="col">Favorite</th>
+					<?php } ?>
 			<th scope="col"><?php echo lang('station_location_emptylog'); ?></th>
 			<th scope="col"><?php echo lang('admin_delete'); ?></th>
 		</tr>
@@ -153,6 +159,19 @@
 				<td>
 				<a href="<?php echo site_url('station/copy')."/".$row->station_id; ?>" title=<?php echo lang('admin_copy'); ?> class="btn btn-outline-primary btn-sm"><i class="fas fa-copy"></i></a>
 			</td>
+			<?php
+					if ($quickswitch_enabled == 'true') {
+					?>
+						<td style="text-align: center; vertical-align: middle;">
+							<?php $locationFavorite = ($this->user_options_model->get_options('station_location', array('option_name'=>'is_favorite', 'option_key'=>$row->station_id))->row()->option_value ?? 'false');
+							if ($locationFavorite == 'true') {
+								$favStarClasses = 'class="fas fa-star" style="color: #ffc82b;"';
+							} else {
+								$favStarClasses = 'class="far fa-star" style="color: #a58118;"';
+							} ?>
+							<a href="<?php echo site_url('station/edit_favorite')."/".$row->station_id; ?>" title="mark/unmark as favorite" <?php echo $favStarClasses; ?>></a>
+						</td>
+					<?php } ?>
 			<td>
 				<a href="<?php echo site_url('station/deletelog')."/".$row->station_id; ?>" class="btn btn-danger btn-sm" title=<?php echo lang('station_location_emptylog'); ?> onclick="return confirm('<?php echo lang('station_location_confirm_del_qso'); ?>');"><i class="fas fa-trash-alt"></i></a></td>
 			</td>

@@ -216,6 +216,8 @@ class Stationsetup extends CI_Controller {
 		$current_active = $this->stations->find_active();
 		$data['is_there_qsos_with_no_station_id'] = $this->Logbook_model->check_for_station_id();
 
+		$quickswitch_enabled = ($this->user_options_model->get_options('header_menu', array('option_name'=>'locations_quickswitch'))->row()->option_value ?? 'false');
+
 		$hres=[];
 		foreach ($result as $entry) {
 			$single=(Object)[];
@@ -228,9 +230,24 @@ class Stationsetup extends CI_Controller {
 			$single->station_emptylog = $this->stationemptylog2html($entry->station_id);
 			$single->station_copylog = $this->stationcopy2html($entry->station_id);
 			$single->station_delete = $this->stationdelete2html($entry->station_id, $entry->station_profile_name, $entry->station_active);
+			$single->station_favorite = $this->stationfavorite2html($entry->station_id, $quickswitch_enabled);
 			array_push($hres,$single);
 		}
 		echo json_encode($hres);
+	}
+
+	private function stationfavorite2html($id, $quickswitch_enabled) {
+		if ($quickswitch_enabled == 'false') {
+			return '';
+		}
+
+		$locationFavorite = ($this->user_options_model->get_options('station_location', array('option_name'=>'is_favorite', 'option_key'=>$id))->row()->option_value ?? 'false');
+		if ($locationFavorite == 'true') {
+			$favStarClasses = 'class="fas fa-star" style="color: #ffc82b;"';
+		} else {
+			$favStarClasses = 'class="far fa-star" style="color: #a58118;"';
+		}
+		return '<a href="' . site_url('station/edit_favorite') . "/" . $id . '" title="mark/unmark as favorite"' . $favStarClasses . '</a>';
 	}
 
 	private function stationbadge2html($id, $station_active, $qso_total, $current_active, $station_profile_name) {

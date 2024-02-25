@@ -291,6 +291,9 @@ function loadLocationTable(rows) {
 		data.push(locations.station_badge);
 		data.push(locations.station_edit);
 		data.push(locations.station_copylog);
+		if (locations.station_favorite != ''){
+			data.push(locations.station_favorite);
+		}
 		data.push(locations.station_emptylog);
 		data.push(locations.station_delete);
 
