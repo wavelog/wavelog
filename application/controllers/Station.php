@@ -65,7 +65,7 @@ class Station extends CI_Controller
 					$this->user_options_model->set_option('eqsl_default_qslmsg', 'key_station_id', array($station_id => $eqsl_default_qslmsg));
 				}
 			}
-			redirect('station');
+			redirect('stationsetup');
 		}
 	}
 
@@ -99,10 +99,10 @@ class Station extends CI_Controller
 
 				$data['notice'] = lang('station_location') . $this->security->xss_clean($this->input->post('station_profile_name', true)) . " Updated";
 
-				redirect('station');
+				redirect('stationsetup');
 			}
 		} else {
-			redirect('station');
+			redirect('stationsetup');
 		}
 	}
 
@@ -125,10 +125,10 @@ class Station extends CI_Controller
 			} else {
 				$this->stations->add();
 
-				redirect('station');
+				redirect('stationsetup');
 			}
 		} else {
-			redirect('station');
+			redirect('stationsetup');
 		}
 	}
 
@@ -137,7 +137,7 @@ class Station extends CI_Controller
 		$this->load->model('stations');
 		$this->stations->edit_favorite($id);
 
-		redirect('station');
+		redirect('stationsetup');
 	}
 
 	function load_station_for_editing($id): array
@@ -173,7 +173,7 @@ class Station extends CI_Controller
 		}
 
 		//$this->stations->logbook_session_data();
-		redirect('station');
+		redirect('stationsetup');
 	}
 
 	function set_active($current, $new, $is_ajax = null)
@@ -185,7 +185,7 @@ class Station extends CI_Controller
 			return;
 		}
 
-		redirect('station');
+		redirect('stationsetup');
 	}
 
 	public function delete($id)
@@ -197,7 +197,7 @@ class Station extends CI_Controller
 			$this->load->model('user_options_model');
 			$this->user_options_model->del_option('eqsl_default_qslmsg', 'key_station_id', array('option_key' => $id));
 		}
-		redirect('station');
+		redirect('stationsetup');
 	}
 
 	public function deletelog($id)
@@ -206,7 +206,7 @@ class Station extends CI_Controller
 		if ($this->stations->check_station_is_accessible($id)) {
 			$this->stations->deletelog($id);
 		}
-		redirect('station');
+		redirect('stationsetup');
 	}
 
 	/*

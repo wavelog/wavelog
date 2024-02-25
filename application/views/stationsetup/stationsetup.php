@@ -94,8 +94,7 @@
                     <p class="card-text">Only one station may be active at a time. In the table below this is shown with
                         the "Active Station" badge.</p>
 
-                    <p><a href="javascript:createStationLocation();" class="btn btn-sm btn-primary"><i
-                                class="fas fa-plus"></i> Create a Station Location</a></p>
+						<p><a href="<?php echo site_url('station/create'); ?>" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> <?php echo lang('station_location_create'); ?></a></p>
 								<?php if ($stations->num_rows() > 0) { ?>
 
 <?php if($current_active == 0) { ?>
