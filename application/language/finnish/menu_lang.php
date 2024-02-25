@@ -106,3 +106,4 @@ $lang['menu_logout'] = 'Kirjaudu ulos';
 
 $lang['menu_extras'] = "Extras";
 $lang['menu_maintenance']='Maintenance';
+$lang['menu_station_setup'] = 'Station Setup';

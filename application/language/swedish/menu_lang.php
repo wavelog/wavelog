@@ -106,3 +106,4 @@ $lang['menu_logout'] = 'Logga ut';
 
 $lang['menu_extras'] = "Extras";
 $lang['menu_maintenance']='Underhåll';
+$lang['menu_station_setup'] = 'Station Setup';

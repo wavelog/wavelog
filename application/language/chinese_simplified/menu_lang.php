@@ -106,3 +106,4 @@ $lang['menu_logout'] = '注销';
 
 $lang['menu_extras'] = "Extras";
 $lang['menu_maintenance']='维护';
+$lang['menu_station_setup'] = 'Station Setup';
