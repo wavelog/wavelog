@@ -1,9 +1,16 @@
 <div class="container debug_main mb-4">
     <br>
-    <?php if ($this->session->flashdata('message')) { ?>
+    <?php if ($this->session->flashdata('success')) { ?>
         <!-- Display Message -->
-        <div class="alert-message error">
-            <p><?php echo $this->session->flashdata('message'); ?></p>
+        <div class="alert alert-success">
+            <p><?php echo $this->session->flashdata('success'); ?></p>
+        </div>
+    <?php } ?>
+
+    <?php if ($this->session->flashdata('error')) { ?>
+        <!-- Display Message -->
+        <div class="alert alert-danger">
+            <p><?php echo $this->session->flashdata('error'); ?></p>
         </div>
     <?php } ?>
 
@@ -131,7 +138,7 @@
                         <p>Here you can migrate existing QSL cards and eQSL cards to the new userdata folder.</p>
                         <p><b>Status: </b></p>
                         <p class="bg-secondary p-2"><?php echo $userdata_status['status']; ?></p>
-                        <button class="btn btn-primary <?php echo $userdata_status['btn_class']; ?>"><?php echo $userdata_status['btn_text']; ?></button>
+                        <a href="<?php echo site_url('debug/migrate_userdata'); ?>" class="btn btn-primary <?php echo $userdata_status['btn_class']; ?>"><?php echo $userdata_status['btn_text']; ?></a>
                     </div>
                 </div>
             <?php } ?>

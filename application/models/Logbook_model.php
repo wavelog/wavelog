@@ -4785,6 +4785,18 @@ function lotw_last_qsl_date($user_id) {
       }
       return $confirmed;
     }
+
+    public function get_user_id_from_qso($qso_id) {
+      $sql =    'SELECT station_profile.user_id
+                FROM '.$this->config->item('table_name').' 
+                INNER JOIN station_profile ON ('.$this->config->item('table_name').'.station_id = station_profile.station_id)
+                WHERE '.$this->config->item('table_name').'.COL_PRIMARY_KEY = ?';
+
+      $result = $this->db->query($sql, $qso_id);
+      $row = $result->row();
+
+      return $row->user_id;
+    }  
 }
 
 function validateADIFDate($date, $format = 'Ymd')

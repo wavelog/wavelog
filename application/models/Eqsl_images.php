@@ -43,7 +43,7 @@ class Eqsl_images extends CI_Model {
 		
 		if (isset($userdata_dir)) {
 
-			$eqsl_dir = "eqsl_card";
+			$eqsl_dir = "eqsl_card"; // make sure this is the same as in Debug_model.php function migrate_userdata()
 
 			$user_id = $this->session->userdata('user_id');
 			

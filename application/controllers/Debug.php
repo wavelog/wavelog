@@ -12,7 +12,6 @@ class Debug extends CI_Controller
             redirect('dashboard');
         }
 
-        // $this->load->model('Debug');
         $this->load->library('Permissions');
     }
 
@@ -66,7 +65,7 @@ class Debug extends CI_Controller
         $data['page_title'] = "Debug";
 
         $this->load->view('interface_assets/header', $data);
-        $this->load->view('debug/main');
+        $this->load->view('debug/index');
         $this->load->view('interface_assets/footer', $footerData);
     }
 
@@ -154,5 +153,26 @@ class Debug extends CI_Controller
         header('Content-Type: application/json');
         echo json_encode(array('status' => $status));
         return;
+    }
+
+    public function migrate_userdata()
+    {
+        // Check if users logged in
+        $this->load->model('user_model');
+        if ($this->user_model->validate_session() == 0) {
+            // user is not logged in
+            redirect('user/login');
+        } else {
+            $this->load->model('debug_model');
+            $migrate = $this->debug_model->migrate_userdata();
+
+            if ($migrate == true) {
+                $this->session->set_flashdata('success', 'File Migration was successfull, but please check also manually. If everything seems right you can delete the folders "assets/qslcard" and "images/eqsl_card_images".');
+                redirect('debug');
+            } else {
+                $this->session->set_flashdata('error', 'File Migration failed. Please check the Error Log.');
+                redirect('debug');
+            }
+        }
     }
 }

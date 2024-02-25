@@ -43,3 +43,4 @@ function updateCallsign(item) {
 	);
 	document.getElementById("station_call").innerHTML = call;
 }
+
