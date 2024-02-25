@@ -47,15 +47,17 @@
  *
  * This can be set to anything, but default usage is:
  *
- *     development
- *     testing
- *     production
+ *     development			Developer Mode - Shows for example PHP errors in frontend
+ *     maintenance			Maintenance Mode - Only Admin's are allowed to login
+ *     production			Production Mode - Regular Mode
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
 	#define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
 	if (file_exists('.debug')) {
 		define('ENVIRONMENT', 'development');
+	} else if (file_exists('.maintenance')) {
+		define('ENVIRONMENT', 'maintenance');
 	} else {
 		define('ENVIRONMENT', 'production');
 	}
@@ -75,7 +77,11 @@ switch (ENVIRONMENT)
 		ini_set('display_errors', 1);
 	break;
 
-	case 'testing':
+	case 'maintenance':
+		error_reporting(-1);
+		ini_set('display_errors', 1);
+	break;
+	
 	case 'production':
 		ini_set('display_errors', 0);
 		if (version_compare(PHP_VERSION, '5.3', '>='))

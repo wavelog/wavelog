@@ -417,7 +417,15 @@ class User_Model extends CI_Model {
 		if($u->num_rows() != 0)
 		{
 			if($this->_auth($password, $u->row()->user_password)) {
-				return 1;
+				if (ENVIRONMENT != "maintenance") {
+					return 1;
+				} else {
+					if($u->row()->user_type != 99){
+						return 0;
+					} else {
+						return 1;
+					}
+				}
 			}
 		}
 		return 0;
