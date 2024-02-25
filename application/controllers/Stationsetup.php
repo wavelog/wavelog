@@ -256,9 +256,9 @@ class Stationsetup extends CI_Controller {
 
 		$locationFavorite = ($this->user_options_model->get_options('station_location', array('option_name'=>'is_favorite', 'option_key'=>$id))->row()->option_value ?? 'false');
 		if ($locationFavorite == 'true') {
-			$favStarClasses = 'class="setFavorite fas fa-star" style="color: #ffc82b;"';
+			$favStarClasses = 'class="setFavorite fas fa-star btn btn-sm" style="color: #ffc82b;"';
 		} else {
-			$favStarClasses = 'class="setFavorite far fa-star" style="color: #a58118;"';
+			$favStarClasses = 'class="setFavorite far fa-star btn btn-sm" style="color: #a58118;"';
 		}
 		return '<button id ="' . $id .'" title="mark/unmark as favorite" ' . $favStarClasses . ' </a>';
 	}
