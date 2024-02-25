@@ -147,8 +147,8 @@
 				<?php } ?>
 
 				<br>
-				<span class="badge badge-info">ID: <?php echo $row->station_id;?></span>
-				<span class="badge badge-light"><?php echo $row->qso_total;?> <?php echo lang('gen_hamradio_qso'); ?></span>
+				<span class="badge bg-info">ID: <?php echo $row->station_id;?></span>
+				<span class="badge bg-light"><?php echo $row->qso_total;?> <?php echo lang('gen_hamradio_qso'); ?></span>
 			</td>
 			<td>
 				<a href="<?php echo site_url('station/edit')."/".$row->station_id; ?>" title=<?php echo lang('admin_edit'); ?> class="btn btn-outline-primary btn-sm"><i class="fas fa-edit"></i></a>

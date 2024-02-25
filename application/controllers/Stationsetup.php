@@ -273,11 +273,11 @@ class Stationsetup extends CI_Controller {
 		if($station_active != 1) {
 			$returntext .= '<button id="'.$id.'" class="setActiveStation btn btn-outline-secondary btn-sm" cnftext="'. lang('station_location_confirm_active') . $station_profile_name .'">' . lang('station_location_set_active') . '</button><br/>';
 		} else {
-			$returntext .= '<span class="badge badge-success text-bg-success">' . lang('station_location_active') . '</span><br/>';
+			$returntext .= '<span class="badge bg-success text-bg-success">' . lang('station_location_active') . '</span><br/>';
 		}
 
-		$returntext .= '<span class="badge badge-info">ID: ' .$id .'</span>';
-		$returntext .='<span class="badge badge-light">' . $qso_total .' '. lang('gen_hamradio_qso') . '</span>';
+		$returntext .= '<span class="badge bg-info">ID: ' .$id .'</span>';
+		$returntext .='<span class="badge bg-light">' . $qso_total .' '. lang('gen_hamradio_qso') . '</span>';
 		return $returntext;
 	}
 
