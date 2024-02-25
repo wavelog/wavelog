@@ -16,7 +16,7 @@ class Debug_model extends CI_Model {
         foreach (scandir($src) as $file) {
             // Ignore .html files
             if (pathinfo($file, PATHINFO_EXTENSION) === 'html') continue;
-            
+
 			if (!is_readable($src . '/' . $file)) continue;
 			if ($file != '.' && $file != '..') {
 
@@ -93,6 +93,8 @@ class Debug_model extends CI_Model {
         return $row->qsoid;
     }
 
-    
+    function check_for_not_migrated_files() {
+        
+    }
 
 }

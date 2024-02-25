@@ -136,7 +136,7 @@ class Qsl_model extends CI_Model {
 		
 		if (isset($userdata_dir)) {
 
-			$qsl_dir = "qsl_card";
+			$qsl_dir = "qsl_card"; // make sure this is the same as in Debug_model.php function migrate_userdata()
 
 			$user_id = $this->session->userdata('user_id');
 			
