@@ -707,8 +707,13 @@ class User extends CI_Controller {
 				$this->input->set_cookie($cookie);
 				redirect('dashboard');
 			} else {
-				$this->session->set_flashdata('error', 'Incorrect username or password!');
-				redirect('user/login');
+				if(ENVIRONMENT == 'maintenance') {
+					$this->session->set_flashdata('notice', 'Sorry. This instance is currently in maintenance mode. If this message appears unexpectedly or keeps showing up, please contact an administrator. Only administrators are currently allowed to log in.');
+					redirect('user/login');
+				} else {
+					$this->session->set_flashdata('error', 'Incorrect username or password!');
+					redirect('user/login');
+				}
 			}
 		}
 	}
