@@ -4511,7 +4511,7 @@ function lotw_last_qsl_date($user_id) {
     }
 
     public function check_for_station_id() {
-      $this->db->select('COL_PRIMARY_KEY, COL_TIME_ON, COL_CALL, COL_MODE, COL_BAND');
+      $this->db->select('COL_PRIMARY_KEY, COL_TIME_ON, COL_CALL, COL_MODE, COL_BAND, COL_STATION_CALLSIGN');
       $this->db->where('station_id =', NULL);
       $query = $this->db->get($this->config->item('table_name'));
       if($query->num_rows() >= 1) {

@@ -106,4 +106,3 @@ $lang['menu_forum'] = 'Fórum';
 $lang['menu_logout'] = 'Odhlásit se';
 
 $lang['menu_extras'] = "Extras";
-$lang['menu_maintenance']='Maintenance';

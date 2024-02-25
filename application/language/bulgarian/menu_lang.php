@@ -106,4 +106,3 @@ $lang['menu_forum'] = 'Forum';
 $lang['menu_logout'] = 'Logout';
 
 $lang['menu_extras'] = "Extras";
-$lang['menu_maintenance']='Maintenance';

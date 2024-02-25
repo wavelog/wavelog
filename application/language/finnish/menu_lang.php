@@ -106,4 +106,3 @@ $lang['menu_forum'] = 'Foorumi';
 $lang['menu_logout'] = 'Kirjaudu ulos';
 
 $lang['menu_extras'] = "Extras";
-$lang['menu_maintenance']='Maintenance';

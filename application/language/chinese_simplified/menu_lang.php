@@ -106,4 +106,3 @@ $lang['menu_forum'] = '论坛';
 $lang['menu_logout'] = '注销';
 
 $lang['menu_extras'] = "Extras";
-$lang['menu_maintenance']='维护';
