@@ -23,22 +23,23 @@ class Debug_model extends CI_Model {
                 // we need the qso_id from the database to get the necessary user_id
                 $qso_id = $this->get_qsoid_from_eqsl_filename($file);
 
-                // only copy the file if the qso_id is not empty
+                // check if the qso_id is empty, if yes we create a folder 'not assigned' instead of 'user_id'
                 if (!empty($qso_id)) {
-
                     // get the user_id for this qso_id
                     $user_id = $this->Logbook_model->get_user_id_from_qso($qso_id);
+                } else {
+                    $user_id = 'not_assigned';
+                }
 
-                    // make sure the target path exists
-                    $target = $userdata_dir.'/'.$user_id.'/'.$eqsl_dir;
-                    if (!file_exists(realpath(APPPATH.'../').'/'.$target)) {
-                        mkdir(realpath(APPPATH.'../').'/'.$target, 0755, true);
-                    }
+                // make sure the target path exists
+                $target = $userdata_dir.'/'.$user_id.'/'.$eqsl_dir;
+                if (!file_exists(realpath(APPPATH.'../').'/'.$target)) {
+                    mkdir(realpath(APPPATH.'../').'/'.$target, 0755, true);
+                }
 
-                    // then copy the file
-                    if (!copy($src.'/'.$file, $target.'/'. $file)) {
-                        return false; // Failed to copy file
-                    }
+                // then copy the file
+                if (!copy($src.'/'.$file, $target.'/'. $file)) {
+                    return false; // Failed to copy file
                 }
 			}
 		}
@@ -58,22 +59,23 @@ class Debug_model extends CI_Model {
                 // we need the qso_id from the database to get the necessary user_id
                 $qso_id = $this->get_qsoid_from_qsl_filename($file);
 
-                // only copy the file if the qso_id is not empty
+                // check if the qso_id is empty, if yes we create a folder 'not assigned' instead of 'user_id'
                 if (!empty($qso_id)) {
-
                     // get the user_id for this qso_id
                     $user_id = $this->Logbook_model->get_user_id_from_qso($qso_id);
+                } else {
+                    $user_id = 'not_assigned';
+                }
 
-                    // make sure the target path exists
-                    $target = $userdata_dir.'/'.$user_id.'/'.$qsl_dir;
-                    if (!file_exists(realpath(APPPATH.'../').'/'.$target)) {
-                        mkdir(realpath(APPPATH.'../').'/'.$target, 0755, true);
-                    }
+                // make sure the target path exists
+                $target = $userdata_dir.'/'.$user_id.'/'.$qsl_dir;
+                if (!file_exists(realpath(APPPATH.'../').'/'.$target)) {
+                    mkdir(realpath(APPPATH.'../').'/'.$target, 0755, true);
+                }
 
-                    // then copy the file
-                    if (!copy($src.'/'.$file, $target.'/'. $file)) {
-                        return false; // Failed to copy file
-                    }
+                // then copy the file
+                if (!copy($src.'/'.$file, $target.'/'. $file)) {
+                    return false; // Failed to copy file
                 }
 			}
 		}
