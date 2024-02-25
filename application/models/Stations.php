@@ -224,6 +224,17 @@ class Stations extends CI_Model {
 		$this->db->update('station_profile', $newdefault);
 	}
 
+	function edit_favorite($id) {
+		$cleanid = $this->security->xss_clean($id);
+
+		$is_favorite = $this->user_options_model->get_options('station_location', array('option_name'=>'is_favorite', 'option_key'=>$cleanid))->row()->option_value ?? 'false';
+		if ($is_favorite == 'true') {
+			$this->user_options_model->del_option('station_location', 'is_favorite', array('option_key'=>$cleanid));
+		} else if ($is_favorite == 'false') {
+			$this->user_options_model->set_option('station_location', 'is_favorite', array($cleanid=>'true'));
+		}
+	}
+
 	public function find_active() {
 		$this->db->where('user_id', $this->session->userdata('user_id'));
 		$this->db->where('station_active', 1);

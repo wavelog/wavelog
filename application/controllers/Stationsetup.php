@@ -90,6 +90,19 @@ class Stationsetup extends CI_Controller {
 		echo json_encode($data);
 	}
 
+	public function setFavorite_json() {
+		$id2fav = xss_clean($this->input->post('id2Favorite', true));
+		if ($id2fav ?? '' != '') {
+			$this->load->model('stations');
+			$this->stations->edit_favorite($id2fav);
+			$data['success'] = 1;
+		} else {
+			$data['success'] = 0;
+			$data['flashdata'] ='Error';
+		}
+		echo json_encode($data);
+	}
+
 	public function setActiveLogbook_json() {
 		$id2act=xss_clean($this->input->post('id2setActive',true));
 		if ($id2act ?? '' != '') {

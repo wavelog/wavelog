@@ -134,12 +134,9 @@ class Station extends CI_Controller
 
 	public function edit_favorite($id)
 	{
-		$is_favorite = $this->user_options_model->get_options('station_location', array('option_name'=>'is_favorite', 'option_key'=>$id))->row()->option_value ?? 'false';
-		if ($is_favorite == 'true') {
-			$this->user_options_model->del_option('station_location', 'is_favorite', array('option_key'=>$id));
-		} else if ($is_favorite == 'false') {
-			$this->user_options_model->set_option('station_location', 'is_favorite', array($id=>'true'));
-		}
+		$this->load->model('stations');
+		$this->stations->edit_favorite($id);
+
 		redirect('station');
 	}
 
@@ -183,11 +180,11 @@ class Station extends CI_Controller
 	{
 		$this->load->model('stations');
 		$this->stations->set_active($current, $new);
-		
+
 		if ($is_ajax != null) {
 			return;
 		}
-		
+
 		redirect('station');
 	}
 

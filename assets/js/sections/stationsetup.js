@@ -31,24 +31,28 @@ $(document).ready(function () {
 
 	});
 
-	$(document).on('click','.deleteLogbook', async function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
-		await do_ajax('deleteLogbook_json','id2delete',reloadLogbooks,e);
+	$(document).on('click', '.deleteLogbook', async function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
+		await do_ajax('deleteLogbook_json', 'id2delete', reloadLogbooks,e);
 	});
 
-	$(document).on('click','.setActiveLogbook', async function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
-		await do_ajax('setActiveLogbook_json','id2setActive',reloadLogbooks,e);
+	$(document).on('click', '.setActiveLogbook', async function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
+		await do_ajax('setActiveLogbook_json', 'id2setActive', reloadLogbooks,e);
 	});
 
-	$(document).on('click','.setActiveStation', async function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
-		await do_ajax('setActiveStation_json','id2setActive',reloadStations,e);
+	$(document).on('click', '.setActiveStation', async function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
+		await do_ajax('setActiveStation_json', 'id2setActive', reloadStations,e);
 	});
 
-	$(document).on('click','.DeleteStation', async function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
-		await do_ajax('DeleteStation_json','id2del',reloadStations,e);
+	$(document).on('click', '.DeleteStation', async function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
+		await do_ajax('DeleteStation_json', 'id2del', reloadStations,e);
 	});
 
-	$(document).on('click','.EmptyStation', async function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
-		await do_ajax('EmptyStation_json','id2Empty',reloadStations,e);
+	$(document).on('click', '.EmptyStation', async function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
+		await do_ajax('EmptyStation_json', 'id2Empty', reloadStations,e);
+	});
+
+	$(document).on('click', '.setFavorite', async function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
+		await do_ajax('setFavorite_json', 'id2Favorite', reloadStations,e);
 	});
 
 	$("#station_logbooks_table").DataTable({
@@ -59,7 +63,7 @@ $(document).ready(function () {
 	});
 });
 
-	async function do_ajax(ajax_uri,ajax_field,succ_callback,event_target) {
+	async function do_ajax(ajax_uri, ajax_field, succ_callback, event_target) {
 		if (event_target.currentTarget.attributes.cnftext) {
 			if (!(confirm(event_target.currentTarget.attributes.cnftext.value))) {
 				return false;
