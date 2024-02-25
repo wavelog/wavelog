@@ -1,4 +1,5 @@
 $(document).ready(function () {
+	reloadStations();
 
 	$("#station_locations_table").DataTable({
 		stateSave: true,
