@@ -146,7 +146,7 @@ function createStationLogbook() {
 		success: function (html) {
 			BootstrapDialog.show({
 				title: 'Create a new station logbook',
-				size: BootstrapDialog.SIZE_EXTRAWIDE,
+				size: BootstrapDialog.SIZE_NORMAL,
 				cssClass: 'options',
 				id: "NewStationLogbookModal",
 				nl2br: false,
