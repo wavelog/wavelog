@@ -180,10 +180,15 @@ class Stationsetup extends CI_Controller {
 			$single->logbook_edit=$this->lbedit2html($entry->logbook_id,$entry->logbook_name);
 			$single->logbook_delete=$this->lbdel2html($entry->logbook_id,$entry->logbook_name);
 			$single->logbook_link=$this->lblnk2html($entry->public_slug,$entry->logbook_name);
-			$single->logbook_publicsearch=($entry->public_search=='1') ? 'Enabled' : 'Disabled';
+			$single->logbook_publicsearch = $this->lbpublicsearch2html($entry->public_search);
 			array_push($hres,$single);
 		}
 		echo json_encode($hres);
+	}
+
+	private function lbpublicsearch2html($publicsearch) {
+		return ($publicsearch=='1' ? '<span class="badge text-bg-success">Enabled</span>' : 'Disabled');
+
 	}
 
 	private function lbstate2html($id) {
@@ -196,8 +201,8 @@ class Stationsetup extends CI_Controller {
 	}
 
 	private function lbdel2html($id, $logbook_name) {
-                if($this->session->userdata('active_station_logbook') != $id) {
-                	$htmret='<button id="'.$id.'" class="deleteLogbook btn btn-danger btn-sm" cnftext="'.lang('station_logbooks_confirm_delete').$logbook_name.'"><i class="fas fa-trash-alt"></i></button>';
+		if($this->session->userdata('active_station_logbook') != $id) {
+			$htmret='<button id="'.$id.'" class="deleteLogbook btn btn-danger btn-sm" cnftext="'.lang('station_logbooks_confirm_delete').$logbook_name.'"><i class="fas fa-trash-alt"></i></button>';
 		} else {
 			$htmret='';
 		}
