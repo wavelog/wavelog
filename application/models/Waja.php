@@ -55,8 +55,6 @@ class WAJA extends CI_Model {
 		'46' => 'Kagoshima',
 		'47' => 'Okinawa');
 
-	public $prefectureString = '01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47';
-
 	function get_waja_array($bands, $postdata) {
 		$CI =& get_instance();
 		$CI->load->model('logbooks_model');
@@ -68,7 +66,7 @@ class WAJA extends CI_Model {
 
 		$location_list = "'".implode("','",$logbooks_locations_array)."'";
 
-		$wajaArray = explode(',', $this->prefectureString);
+		$wajaArray = array_keys($this->jaPrefectures);
 
 		$prefectures = array(); // Used for keeping track of which states that are not worked
 		foreach ($wajaArray as $state) {                         // Generating array for use in the table
@@ -353,7 +351,7 @@ class WAJA extends CI_Model {
 	function addStateToQuery() {
 		$sql = '';
 		$sql .= " and COL_DXCC in ('339')";
-		$sql .= " and COL_STATE in ($this->prefectureString)";
+		$sql .= " and COL_STATE in (".implode(',', array_keys($this->jaPrefectures)).")";
 		return $sql;
 	}
 }
