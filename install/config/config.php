@@ -24,14 +24,13 @@ $config['datadir'] = null; // default to install directory
 |--------------------------------------------------------------------------
 |
 | 	'table_name'	SQL table where log can be found
-|	'locator'		Default locator used to calculate bearings/distance
+|	'locator'	Default locator used to calculate bearings/distance
 |	'display_freq'	Show or Hide frequnecy info 
 */
 
 $config['table_name'] = "TABLE_HRD_CONTACTS_V01"; 
 $config['locator'] = "%baselocator%"; 
-$config['display_freq'] = false;
-
+$config['display_freq'] = true;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,7 +39,7 @@ $config['display_freq'] = false;
 |
 | 	'qrz_username'	QRZ.com user login
 |	'qrz_password'	QRZ.com user password
-|   'use_fullname'  Get full names from QRZ, may not be GDPR compliant
+|	'use_fullname'  Get full names from QRZ, may not be GDPR compliant
 */
 
 $config['qrz_username'] = "%qrz_username%";
@@ -354,7 +353,6 @@ $config['allow_get_array'] = TRUE;
 |
 */
 $config['log_threshold'] = 0;
-$config['one_log'] = false;
 
 /*
 |--------------------------------------------------------------------------
@@ -366,6 +364,19 @@ $config['one_log'] = false;
 |
 */
 $config['log_path'] = '';
+
+/*
+|--------------------------------------------------------------------------
+| One Logfile (true) or daily logfile?
+|--------------------------------------------------------------------------
+|
+| Leave this setted to false unless you would like to have one big logfile
+| at application/logs/ directory.
+|
+| true == one big log
+| false (or non-existant): daily logs
+*/
+$config['one_log'] = false;
 
 /*
 |--------------------------------------------------------------------------
@@ -620,7 +631,7 @@ $config['compress_output'] = FALSE;
 |
 */
 $config['time_reference'] = 'UTC';
-date_default_timezone_set ( $config['time_reference'] );
+date_default_timezone_set($config['time_reference']);
 
 /*
 |--------------------------------------------------------------------------
@@ -665,4 +676,4 @@ $config['proxy_ips'] = '';
 |
 */
 
-// $config['userdata'] = "userdata";  
+$config['userdata'] = "userdata";  
