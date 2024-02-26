@@ -104,8 +104,8 @@ class Debug extends CI_Controller
                         $status['btn_class'] = '';
                         $status['btn_text'] = 'Migrate data now';
                     } else {
-                        $status['btn_class'] = 'disabled';
-                        $status['btn_text'] = 'Migration already done';
+                        $status['btn_class'] = '';
+                        $status['btn_text'] = 'Migration already done. Run again?';
                     }
                 } else {
                     $status['btn_class'] = 'disabled';
