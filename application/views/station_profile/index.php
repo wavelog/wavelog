@@ -30,7 +30,7 @@
 			<div class="alert alert-danger" role="alert">
 		  		<span class="badge rounded-pill text-bg-warning"><?php echo lang('general_word_warning'); ?></span> <?php echo lang('station_location_warning_reassign'); ?>
 				</br>
-				<?php echo lang('station_location_reassign_at'); ?> <a href="<?php echo site_url('maintenance/'); ?>" class="btn btn-warning"><i class="fas fa-sync"></i><?php echo lang('account_word_admin') . "/" . lang('general_word_maintenance'); ?></a>
+				<?php echo lang('station_location_reassign_at'); ?> <a href="<?php echo site_url('debug'); ?>" class="btn btn-warning"><i class="fas fa-sync"></i> <?php echo lang('account_word_admin') . "/" . lang('general_word_maintenance'); ?></a>
 			</div>
 		<?php } ?>
 

@@ -4511,7 +4511,7 @@ function lotw_last_qsl_date($user_id) {
     }
 
     public function check_for_station_id() {
-      $this->db->select('COL_PRIMARY_KEY, COL_TIME_ON, COL_CALL, COL_MODE, COL_BAND');
+      $this->db->select('COL_PRIMARY_KEY, COL_TIME_ON, COL_CALL, COL_MODE, COL_BAND, COL_STATION_CALLSIGN');
       $this->db->where('station_id =', NULL);
       $query = $this->db->get($this->config->item('table_name'));
       if($query->num_rows() >= 1) {
@@ -4785,6 +4785,21 @@ function lotw_last_qsl_date($user_id) {
       }
       return $confirmed;
     }
+
+    public function get_user_id_from_qso($qso_id) {
+
+      $clean_qsoid = $this->security->xss_clean($qso_id);
+
+      $sql =    'SELECT station_profile.user_id
+                FROM '.$this->config->item('table_name').' 
+                INNER JOIN station_profile ON ('.$this->config->item('table_name').'.station_id = station_profile.station_id)
+                WHERE '.$this->config->item('table_name').'.COL_PRIMARY_KEY = ?';
+
+      $result = $this->db->query($sql, $clean_qsoid);
+      $row = $result->row();
+
+      return $row->user_id;
+    }  
 }
 
 function validateADIFDate($date, $format = 'Ymd')
