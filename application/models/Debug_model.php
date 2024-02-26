@@ -47,6 +47,7 @@ class Debug_model extends CI_Model
                     // get the user_id for this qso_id
                     $get_user_id = $this->Logbook_model->get_user_id_from_qso($qso_id);
 
+                    // it can happen that the user_id is empty even there is a qso_id (deleted qso or deleted user)
                     if(!empty($get_user_id)) {
                         $user_id = $get_user_id;
                     } else {
@@ -87,6 +88,7 @@ class Debug_model extends CI_Model
                     // get the user_id for this qso_id
                     $get_user_id = $this->Logbook_model->get_user_id_from_qso($qso_id);
 
+                    // it can happen that the user_id is empty even there is a qso_id (deleted qso or deleted user)
                     if(!empty($get_user_id)) {
                         $user_id = $get_user_id;
                     } else {
