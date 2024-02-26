@@ -71,18 +71,20 @@ class Debug extends CI_Controller
 
     function check_userdata_status($userdata_folder)
     {
+        $this->load->model('debug_model');
+        
         $status = array();
 
         // Check if the folder is writable
         if ($userdata_folder === true) {
-            log_message('debug', 'userdata config is true');
 
             // Check if the qsl and eqsl folders are accessible and if there is any data the user could migrate
             $qsl_dir = $this->permissions->is_really_writable('assets/qslcard');
             $eqsl_dir = $this->permissions->is_really_writable('images/eqsl_card_images');
 
+            $flag_file = $this->debug_model->check_migrated_flag();
+
             if ($qsl_dir && $eqsl_dir) {
-                log_message('debug', 'qsl and eqsl folder are writable');
 
                 // Check for content of the qsl card folder other than *.html files
                 $qsl_files = glob('assets/qslcard/*');
@@ -98,28 +100,25 @@ class Debug extends CI_Controller
 
                 // Set the status info
                 if (!empty($qsl_files_filtered) || !empty($eqsl_files_filtered)) {
-                    $status['status'] = 'Config item "userdata" is enabled and there are files to migrate.';
-                    $status['btn_class'] = '';
-                    $status['btn_text'] = 'Migrate data now';
-                    $status['check'] = true;
+                    if (!$flag_file) {
+                        $status['btn_class'] = '';
+                        $status['btn_text'] = 'Migrate data now';
+                    } else {
+                        $status['btn_class'] = 'disabled';
+                        $status['btn_text'] = 'Migration already done';
+                    }
                 } else {
-                    $status['status'] = 'Config item "userdata" is enabled but there are no files to migrate.';
                     $status['btn_class'] = 'disabled';
                     $status['btn_text'] = 'No data to migrate';
-                    $status['check'] = false;
                 }
             } else {
-                $status['status'] = 'The folder "assets/qslcard" or "images/eqsl_card_images" do not exist or arent writable. Check both and reload the page.';
                 $status['btn_class'] = 'disabled';
                 $status['btn_text'] = 'No migration possible';
-                $status['check'] = false;
             }
         } else {
             // If the folder is not writable, we don't need to continue
-            $status['status'] = 'Folder is not writable. Reload the page and check the folder permission.';
             $status['btn_class'] = 'disabled';
             $status['btn_text'] = 'No migration possible';
-            $status['check'] = false;
         }
 
         return $status;
