@@ -35,20 +35,29 @@ $lang['menu_continents'] = 'Kontinenter';
 
 $lang['menu_awards'] = 'Awards';
 $lang['menu_cq'] = 'CQ';
-$lang['menu_dl_gridmaster'] = 'DL Gridmaster';
 $lang['menu_dok'] = 'DOK';
 $lang['menu_dxcc'] = 'DXCC';
-$lang['menu_iota'] = 'IOTA';
+$lang['menu_ffma'] = 'Fred Fish Memorial Award';
+$lang['menu_helvetia'] = "H26";
+$lang['menu_gridmaster'] = "Gridmaster";
+$lang['menu_dl_gridmaster'] = 'DL Gridmaster';
 $lang['menu_lx_gridmaster'] = 'LX Gridmaster';
+$lang['menu_ja_gridmaster'] = 'JA Gridmaster';
+$lang['menu_us_gridmaster'] = 'US Gridmaster';
+$lang['menu_iota'] = 'IOTA';
+$lang['menu_jcc'] = 'JCC';
 $lang['menu_pota'] = 'POTA';
+$lang['menu_rac'] = 'RAC';
 $lang['menu_sig'] = 'SIG';
 $lang['menu_sota'] = 'SOTA';
-$lang['menu_us_counties'] = 'USA:s grevskap';
-$lang['menu_us_gridmaster'] = 'US Gridmaster';
+$lang['menu_us_counties'] = 'US Counties';
 $lang['menu_vucc'] = 'VUCC';
 $lang['menu_waja'] = 'WAJA';
 $lang['menu_was'] = 'WAS';
 $lang['menu_wwff'] = 'WWFF';
+
+$lang['menu_tools'] = "Tools";
+$lang['menu_sat_timers'] = "SAT Timers";
 
 $lang['menu_admin'] = 'Administration';
 $lang['menu_user_account'] = 'Användarkonton';
@@ -59,26 +68,32 @@ $lang['menu_themes'] = 'Teman';
 $lang['menu_backup'] = 'Backup';
 $lang['menu_update_country_files'] = 'Uppdatera landsfiler';
 $lang['menu_debug_information'] = 'Debug Info';
-
-$lang['menu_search_text'] = 'Sök Callsign';
 $lang['menu_search_text_quicklog'] = "Add/Search Callsign";
 
-$lang['menu_search_button'] = 'Sök';
+$lang['menu_search_text'] = 'Sök Callsign';
 $lang['menu_search_button_qicksearch_log'] = "Log";
+
+$lang['menu_search_button'] = 'Sök';
 $lang['menu_login_button'] = 'Logga in';
 
 $lang['menu_account'] = 'Konto';
 $lang['menu_station_logbooks'] = 'Stationsloggböcker';
 $lang['menu_station_locations'] = 'Stationsplatser';
+$lang['menu_select_location'] = "Select a Location";
+$lang['menu_select_location_show_all'] = "Show all";
+$lang['menu_choose_another_logbook'] = "Choose another Logbook";
 $lang['menu_bands'] = 'Bands';
 $lang['menu_adif_import_export'] = 'ADIF Import / Export';
+$lang['menu_other_export'] = "Other Export Options";
 $lang['menu_kml_export'] = 'KML Export';
 $lang['menu_dx_atlas_gridsquare_export'] = 'DX Atlas Gridsquare Export';
 $lang['menu_sota_csv_export'] = 'SOTA CSV Export';
 $lang['menu_cabrillo_export'] = 'Cabrillo Export';
+$lang['menu_cfd_export'] = "CFD Export";
 $lang['menu_oqrs_requests'] = 'OQRS Förfrågningar';
 $lang['menu_print_requested_qsls'] = 'Skriv ut begärda QSL';
 $lang['menu_labels'] = 'Etiketter';
+$lang['menu_third_party_services'] = "Third-Party Services";
 $lang['menu_logbook_of_the_world'] = 'Logbook of the World';
 $lang['menu_eqsl_import_export'] = 'eQSL Import / Export';
 $lang['menu_qrz_logbook'] = 'QRZ Loggbok';
@@ -90,7 +105,4 @@ $lang['menu_help'] = 'Hjälp';
 $lang['menu_forum'] = 'Forum';
 $lang['menu_logout'] = 'Logga ut';
 
-$lang['menu_ffma'] = "Fred Fish Memorial Award";
-$lang['menu_ja_gridmaster'] = 'JA Gridmaster';
-$lang['menu_maintenance']='Underhåll';
-$lang['menu_rac'] = 'RAC';
+$lang['menu_extras'] = "Extras";

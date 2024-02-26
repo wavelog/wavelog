@@ -145,8 +145,8 @@ class Logbook_model extends CI_Model {
         $submode = $this->input->post('mode');
     }
 
-    if($this->input->post('county') && $this->input->post('usa_state')) {
-      $clean_county_input = trim($this->input->post('usa_state')) . "," . trim($this->input->post('county'));
+    if($this->input->post('county') && $this->input->post('input_state_edit')) {
+      $clean_county_input = trim($this->input->post('input_state_edit')) . "," . trim($this->input->post('county'));
     } else {
       $clean_county_input = null;
     }
@@ -234,7 +234,7 @@ class Logbook_model extends CI_Model {
             'COL_LON' => null,
             'COL_DXCC' => $dxcc_id,
             'COL_CQZ' => $cqz,
-            'COL_STATE' => $this->input->post('usa_state') == null ? '' : trim($this->input->post('usa_state')),
+            'COL_STATE' => $this->input->post('input_state_edit') == null ? '' : trim($this->input->post('input_state_edit')),
             'COL_CNTY' => $clean_county_input,
             'COL_SOTA_REF' => $this->input->post('sota_ref') == null ? '' : trim($this->input->post('sota_ref')),
             'COL_WWFF_REF' => $this->input->post('wwff_ref') == null ? '' : trim($this->input->post('wwff_ref')),
@@ -379,6 +379,14 @@ class Logbook_model extends CI_Model {
 		case 'RAC':
 			$this->db->where('COL_STATE', $searchphrase);
 			$this->db->where_in('COL_DXCC', ['1']);
+			break;
+		case 'helvetia':
+			$this->db->where('COL_STATE', $searchphrase);
+			$this->db->where_in('COL_DXCC', ['287']);
+			break;
+		case 'JCC':
+			$this->db->where('COL_CNTY', $searchphrase);
+			$this->db->where('COL_DXCC', '339');
 			break;
 		case 'SOTA':
 			$this->db->where('COL_SOTA_REF', $searchphrase);
@@ -1079,8 +1087,8 @@ class Logbook_model extends CI_Model {
 
 	  if (stristr($this->input->post('usa_county') ?? '', ',')) {	// Already comma-seperated Conuty?
 		  $uscounty = $this->input->post('usa_county');
-	  } elseif ($this->input->post('usa_county') && $this->input->post('usa_state')) {	// Both filled (and no comma - because that fits one above)
-		  $uscounty = trim($this->input->post('usa_state') . "," . $this->input->post('usa_county'));
+	  } elseif ($this->input->post('usa_county') && $this->input->post('input_state_edit')) {	// Both filled (and no comma - because that fits one above)
+		  $uscounty = trim($this->input->post('input_state_edit') . "," . $this->input->post('usa_county'));
 	  } else {	// nothing from above?
 		  $uscounty = null;
 	  }
@@ -1227,7 +1235,7 @@ class Logbook_model extends CI_Model {
 		  'station_id' => $stationId,
 		  'COL_STATION_CALLSIGN' => $stationCallsign,
 		  'COL_OPERATOR' => $this->input->post('operator_callsign'),
-		  'COL_STATE' =>$this->input->post('usa_state'),
+		  'COL_STATE' =>$this->input->post('input_state_edit'),
 		  'COL_CNTY' => $uscounty,
 		  'COL_MY_IOTA' => $iotaRef,
 		  'COL_MY_SOTA_REF' => $sotaRef,
@@ -3215,13 +3223,15 @@ function lotw_last_qsl_date($user_id) {
 	  $a_qsos=[];
 	  foreach ($records as $record) {
 		  $one_error = $this->logbook_model->import($record, $station_id, $skipDuplicate, $markClublog, $markLotw,$dxccAdif, $markQrz, $markHrd, $skipexport, $operatorName, $apicall, $skipStationCheck, true);
-		  if ($one_error['error'] != '') {
+		  if ($one_error['error'] ?? '' != '') {
 			  $custom_errors.=$one_error['error']."<br/>";
 		  } else {
-			  array_push($a_qsos,$one_error['raw_qso']);
+			  array_push($a_qsos,$one_error['raw_qso'] ?? '');
 		  }
 	  }
-	  $this->db->insert_batch($this->config->item('table_name'), $a_qsos);
+	  if (count($a_qsos)>0) {
+		  $this->db->insert_batch($this->config->item('table_name'), $a_qsos);
+	  }
 	  return $custom_errors;
   }
     /*
@@ -3245,10 +3255,10 @@ function lotw_last_qsl_date($user_id) {
 	  if (($station_id !=0 ) && (!(isset($record['station_callsign'])))) {
 		  $record['station_callsign']=$station_profile_call;
 	  }
-
 	  if ((!$skipStationCheck) && ($station_id != 0) && (strtoupper($record['station_callsign']) != strtoupper($station_profile_call))) {     // Check if station_call from import matches profile ONLY when submitting via GUI.
-		  return "Wrong station callsign <b>\"".htmlentities($record['station_callsign'])."\"</b> while importing QSO with ".$record['call']." for <b>".$station_profile_call."</b> : SKIPPED" .
+		  $returner['error']="Wrong station callsign <b>\"".htmlentities($record['station_callsign'] ?? '')."\"</b> while importing QSO with ".$record['call'] ?? ''." for <b>".$station_profile_call ?? ''."</b> : SKIPPED" .
 			  "<br>See the <a target=\"_blank\" href=\"https://github.com/wavelog/Wavelog/wiki/ADIF-file-can't-be-imported\">Wavelog Wiki</a> for hints about errors in ADIF files.";
+		  return($returner);
 	  }
 
 	  $this->load->library('frequency');
@@ -3499,13 +3509,15 @@ function lotw_last_qsl_date($user_id) {
 		  }
 
 		  if (isset($record['ant_az'])){
-			  $input_ant_az = filter_var($record['ant_az'],FILTER_SANITIZE_NUMBER_INT);
+			  $input_ant_az = filter_var($record['ant_az'],FILTER_VALIDATE_FLOAT);
+			  $input_ant_az = fmod($input_ant_az, 360);
 		  } else {
 			  $input_ant_az = NULL;
 		  }
 
 		  if (isset($record['ant_el'])){
-			  $input_ant_el = filter_var($record['ant_el'],FILTER_SANITIZE_NUMBER_INT);
+			  $input_ant_el = filter_var($record['ant_el'],FILTER_VALIDATE_FLOAT);
+			  $input_ant_el = fmod($input_ant_el, 90);
 		  } else {
 			  $input_ant_el = NULL;
 		  }
@@ -4499,7 +4511,7 @@ function lotw_last_qsl_date($user_id) {
     }
 
     public function check_for_station_id() {
-      $this->db->select('COL_PRIMARY_KEY, COL_TIME_ON, COL_CALL, COL_MODE, COL_BAND');
+      $this->db->select('COL_PRIMARY_KEY, COL_TIME_ON, COL_CALL, COL_MODE, COL_BAND, COL_STATION_CALLSIGN');
       $this->db->where('station_id =', NULL);
       $query = $this->db->get($this->config->item('table_name'));
       if($query->num_rows() >= 1) {
@@ -4663,7 +4675,7 @@ function lotw_last_qsl_date($user_id) {
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         $this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
-		$this->db->join('lotw_users', 'lotw_users.callsign = '.$this->config->item('table_name').'.col_call', 'left outer');
+		    $this->db->join('lotw_users', 'lotw_users.callsign = '.$this->config->item('table_name').'.col_call', 'left outer');
         $this->db->where_in($this->config->item('table_name').'.station_id', $logbooks_locations_array);
         $this->db->where('COL_STATE', $state);
         $this->db->where('COL_CNTY', $county);
@@ -4702,9 +4714,7 @@ function lotw_last_qsl_date($user_id) {
 
         // check if qso is confirmed //
         if (!$isVisitor) {
-          if (($row->COL_EQSL_QSL_RCVD=='Y') || ($row->COL_LOTW_QSL_RCVD=='Y') || ($row->COL_QSL_RCVD=='Y')) {
-            $plot['confirmed'] = "Y";
-          }
+          $plot['confirmed'] = ($this->qso_is_confirmed($row)==true)?"Y":"N";
         }
         // check lat / lng (depend info source) //
         if ($row->COL_GRIDSQUARE != null) {
@@ -4739,12 +4749,57 @@ function lotw_last_qsl_date($user_id) {
             $stn_loc = array($row->lat, $row->long);
           }
         }
-        list($plot['lat'], $plot['lng']) = $stn_loc;
+        if (isset($stn_loc)) {
+          list($plot['lat'], $plot['lng']) = $stn_loc;
+        }
         // add plot //
         $json["markers"][] = $plot;
       }
       return $json;
     }
+
+    public function get_states_by_dxcc($dxcc) {
+        $this->db->where('adif', $dxcc);
+        return $this->db->get('primary_subdivisions');
+    }
+
+    // return if qso is confirmed (depend user option "qsl method") //
+    public function qso_is_confirmed($qso) {
+      $confirmed = false;
+      $this->load->model('user_model');
+      $user_default_confirmation = $this->session->userdata('user_default_confirmation');
+      if (isset($user_default_confirmation)) {
+        $qso = (array) $qso;
+        if (strpos($user_default_confirmation, 'Q') !== false) {        // QSL
+          if ($qso['COL_QSL_RCVD']=='Y') { $confirmed = true; }
+        }
+        if (strpos($user_default_confirmation, 'L') !== false) { // LoTW
+          if ($qso['COL_LOTW_QSL_RCVD']=='Y') { $confirmed = true; }
+        }
+        if (strpos($user_default_confirmation, 'E') !== false) { // eQsl
+          if ($qso['COL_EQSL_QSL_RCVD']=='Y') { $confirmed = true; }
+        }
+        if (strpos($user_default_confirmation, 'Z') !== false) { // QRZ
+          if ($qso['COL_QRZCOM_QSO_DOWNLOAD_STATUS']=='Y') { $confirmed = true; }
+        }
+      }
+      return $confirmed;
+    }
+
+    public function get_user_id_from_qso($qso_id) {
+
+      $clean_qsoid = $this->security->xss_clean($qso_id);
+
+      $sql =    'SELECT station_profile.user_id
+                FROM '.$this->config->item('table_name').' 
+                INNER JOIN station_profile ON ('.$this->config->item('table_name').'.station_id = station_profile.station_id)
+                WHERE '.$this->config->item('table_name').'.COL_PRIMARY_KEY = ?';
+
+      $result = $this->db->query($sql, $clean_qsoid);
+      $row = $result->row();
+
+      return $row->user_id;
+    }  
 }
 
 function validateADIFDate($date, $format = 'Ymd')

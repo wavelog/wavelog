@@ -431,7 +431,7 @@ global $wavelog_url;
 										<div class="row">
 											<div class="col">
 												<div class="mb-3">
-													<label for="db_hostname" class="form-label">Hostname<i id="callbook_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="Usually 'localhost'. Optional with '...:[port]'. Default Port: 3306"></i></label>
+													<label for="db_hostname" class="form-label">Hostname or IP<i id="callbook_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="Usually 'localhost'. Optional with '...:[port]'. Default Port: 3306"></i></label>
 													<input type="text" id="db_hostname" value="localhost" class="form-control" name="db_hostname" />
 												</div>
 											</div>

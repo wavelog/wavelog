@@ -424,6 +424,7 @@
 									</div>
 									
 									<hr/>
+
 									<div class="mb-3">
 										<label for="quicklog"><?php echo lang('account_quicklog_feature'); ?></label>
 										<?php if(!isset($user_quicklog)) { $user_quicklog='0'; }?>
@@ -443,6 +444,18 @@
 										</select>
 										<small id="SelectDateFormatHelp" class="form-text text-muted"><?php echo lang('account_quicklog_enter_hint'); ?></small>
 									</div>
+									<?php if ($this->session->userdata('user_id') == $this->uri->segment(3)) { ?>
+									<hr/>
+
+									<div class="mb-3">
+										<label for="locations_quickswitch">Station Locations Quickswitch</label>
+										<select class="form-select" id="locations_quickswitch" name="user_locations_quickswitch">
+											<option value="false" <?php if ($user_locations_quickswitch == 'false') { echo " selected =\"selected\""; } ?>>Disabled</option>
+											<option value="true" <?php if ($user_locations_quickswitch == 'true') { echo " selected =\"selected\""; } ?>>Enabled</option>
+										</select>
+										<small id="SelectDateFormatHelp" class="form-text text-muted">Show the Station Locations Quickswitch in the main menu</small>
+									</div>
+									<?php } ?>
 								</div>
 							</div>
 						</div>

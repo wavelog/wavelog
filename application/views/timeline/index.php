@@ -203,7 +203,7 @@ function write_waz_timeline($timeline_array, $custom_date_format, $bandselect, $
                     <tr>
                         <td>#</td>
                         <td>'.$ci->lang->line('general_word_date').'</td>
-                        <td>'.$ci->lang->line('gen_hamradio_cqzone').'</td>
+                        <td>'.$ci->lang->line('gen_hamradio_cq_zone').'</td>
                         <td>'.$ci->lang->line('gridsquares_show_qsos').'</td>
                     </tr>
                 </thead>
@@ -229,6 +229,7 @@ function write_vucc_timeline($timeline_array, $custom_date_format, $bandselect, 
                     <tr>
                         <td>#</td>
                         <td>'.$ci->lang->line('general_word_date').'</td>
+                        <td>'.$ci->lang->line('general_word_time').'</td>
                         <td>'.$ci->lang->line('gen_hamradio_gridsquare').'</td>
                         <td>'.$ci->lang->line('gridsquares_show_qsos').'</td>
                     </tr>
@@ -240,6 +241,7 @@ function write_vucc_timeline($timeline_array, $custom_date_format, $bandselect, 
         echo '<tr>
                 <td>' . $i-- . '</td>
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
+                <td>' . date('H:i', $date_as_timestamp) . '</td>
                 <td>' . $line['gridsquare'] . '</td>
                 <td><a href=javascript:displayTimelineContacts("' . $line['gridsquare'] . '","'. $bandselect . '","'. $modeselect . '","' . $award .'")>'.$ci->lang->line('filter_options_show').'</a></td>
                </tr>';

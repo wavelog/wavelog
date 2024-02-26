@@ -25,6 +25,12 @@ if (!isset($current_opts->operator)) {
 	echo "\nvar o_template = { operator: {show: 'true'}};";
 	echo "\nuser_options={...user_options, ...o_template}";
 }
+
+foreach ($mapoptions as $mo) {
+	if ($mo != null) {
+		echo "var " . $mo->option_name . "=" . $mo->option_value . ";";
+	}
+}
 ?>
 </script>
 <style>
@@ -335,7 +341,6 @@ $options = json_decode($options);
             <button type="button" class="btn btn-sm btn-info me-1" id="exportAdif"><?php echo lang('filter_actions_create_adif'); ?></button>
             <button type="button" class="btn btn-sm btn-info me-1" id="printLabel"><?php echo lang('filter_actions_print_label'); ?></button>
             <button type="button" class="btn btn-sm btn-info me-1" id="qslSlideshow"><?php echo lang('filter_actions_qsl_slideshow'); ?></button>
-            <button type="button" class="btn btn-sm btn-danger me-1" id="deleteQsos"><?php echo lang('filter_actions_delete'); ?></button>
         </div>
     </div>
     <div class="quickfilterbody collapse">
@@ -409,9 +414,11 @@ $options = json_decode($options);
 			</option>
 			<?php } ?>
 		</select>
-        <button type="submit" class="btn btn-sm btn-primary me-1" id="searchButton"><?php echo lang('filter_search'); ?></button>
-        <button type="button" class="btn btn-sm btn-primary me-1" id="dupeButton"><?php echo lang('filter_dupes'); ?></button>
-        <button type="button" class="btn btn-sm btn-primary me-1" id="mapButton" onclick="mapQsos(this.form);"><?php echo lang('filter_map'); ?></button>
+        <button type="submit" class="btn btn-sm btn-primary me-1 ld-ext-right" id="searchButton"><?php echo lang('filter_search'); ?><div class="ld ld-ring ld-spin"></div></button>
+        <button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="dupeButton"><?php echo lang('filter_dupes'); ?><div class="ld ld-ring ld-spin"></div></button>
+        <button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="editButton">Edit<div class="ld ld-ring ld-spin"></div></button>
+		<button type="button" class="btn btn-sm btn-danger me-1" id="deleteQsos"><?php echo lang('filter_actions_delete'); ?></button>
+        <button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="mapButton" onclick="mapQsos(this.form);"><?php echo lang('filter_map'); ?><div class="ld ld-ring ld-spin"></div></button>
 		<button type="options" class="btn btn-sm btn-primary me-1" id="optionButton"><?php echo lang('filter_options'); ?></button>
 		<button type="reset" class="btn btn-sm btn-danger me-1" id="resetButton"><?php echo lang('filter_reset'); ?></button>
 

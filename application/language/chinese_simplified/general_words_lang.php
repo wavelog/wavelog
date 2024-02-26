@@ -28,6 +28,8 @@ $lang['general_word_filtering_on'] = "筛选打开";
 $lang['general_word_not_display'] = "不显示";
 $lang['general_word_icon'] = "图标";
 $lang['general_word_never'] = "从不";
+$lang['general_word_active'] = "Active";
+$lang['general_word_inactive'] = "Inactive";
 
 $lang['general_word_date'] = '日期';
 $lang['general_word_startdate'] = "开始时间";
@@ -127,6 +129,8 @@ $lang['gen_hamradio_callsign'] = '呼号';
 $lang['gen_hamradio_prefix'] = "前缀";
 $lang['gen_hamradio_suffix'] = "后缀";
 $lang['gen_hamradio_mode'] = '模式';
+$lang['gen_hamradio_ant_az'] = 'Antenna Azimuth';
+$lang['gen_hamradio_ant_el'] = 'Antenna Elevation';
 $lang['gen_hamradio_de'] = '本台呼号(De)';
 $lang['gen_hamradio_dx'] = '对方呼号(Dx)';
 $lang['gen_hamradio_rst_sent'] = 'Sent RST';

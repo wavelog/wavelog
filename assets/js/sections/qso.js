@@ -1,6 +1,8 @@
 $( document ).ready(function() {
 	clearTimeout();
 	set_timers();
+	updateStateDropdown();
+
 
 	function set_timers() {
 		setTimeout(function() {
@@ -216,8 +218,8 @@ var favs={};
 		}
 	});
 
-	$('#input_usa_state').change(function(){
-		var state = $("#input_usa_state option:selected").text();
+	$('#stateDropdown').change(function(){
+		var state = $("#stateDropdown option:selected").text();
 		if (state != "") {
 			$("#stationCntyInput").prop('disabled', false);
 
@@ -231,7 +233,7 @@ var favs={};
 				options: [],
 				create: false,
 				load: function(query, callback) {
-					var state = $("#input_usa_state option:selected").text();
+					var state = $("#stateDropdown option:selected").text();
 
 					if (!query || state == "") return callback();
 					$.ajax({
@@ -558,7 +560,7 @@ function reset_fields() {
 	$('#callsign-image-content').text("");
 	$('#qsl_via').val("");
 	$('#callsign_info').text("");
-	$('#input_usa_state').val("");
+	$('#stateDropdown').val("");
 	$('#qso-last-table').show();
 	$('#partial_view').hide();
 	$('.callsign-suggest').hide();
@@ -572,15 +574,26 @@ function reset_fields() {
 	var $select = $('#darc_dok').selectize();
 	var selectize = $select[0].selectize;
 	selectize.clear();
-	$select = $('#stationCntyInput').selectize();
+	$select = $('#stationCntyInputEdit').selectize();
 	selectize = $select[0].selectize;
 	selectize.clear();
+
+	var $select = $('#sota_ref').selectize();
+	var selectize = $select[0].selectize;
+	selectize.clear();
+
+	$('#sig').val("");
+	$('#sig_info').val("");
+	$('#sent').val("N");
+	$('#sent-method').val("");
+	$('#qsl_via').val("");
 
 	mymap.setView(pos, 12);
 	mymap.removeLayer(markers);
 	$('.callsign-suggest').hide();
 	$('.dxccsummary').remove();
 	$('#timesWorked').html(lang_qso_title_previous_contacts);
+	updateStateDropdown();
 }
 
 function resetTimers(manual) {
@@ -617,7 +630,7 @@ $("#callsign").focusout(function() {
 		find_callsign=find_callsign.replace('Ø', '0');
 
 		// Replace / in a callsign with - to stop urls breaking
-		$.getJSON(base_url + 'index.php/logbook/json/' + find_callsign + '/' + sat_type + '/' + json_band + '/' + json_mode + '/' + $('#stationProfile').val(), function(result)
+		$.getJSON(base_url + 'index.php/logbook/json/' + find_callsign + '/' + sat_type + '/' + json_band + '/' + json_mode + '/' + $('#stationProfile').val(), async function(result)
 		{
 
 			// Make sure the typed callsign and json result match
@@ -632,7 +645,7 @@ $("#callsign").focusout(function() {
 
 					if($("#sat_name" ).val() != "") {
 						//logbook/jsonlookupgrid/io77/SAT/0/0
-						$.getJSON(base_url + 'index.php/logbook/jsonlookupcallsign/' + find_callsign + '/SAT/0/0', function(result)
+						await $.getJSON(base_url + 'index.php/logbook/jsonlookupcallsign/' + find_callsign + '/SAT/0/0', function(result)
 						{
 							// Reset CSS values before updating
 							$('#callsign').removeClass("workedGrid");
@@ -654,7 +667,7 @@ $("#callsign").focusout(function() {
 							}
 						})
 					} else {
-						$.getJSON(base_url + 'index.php/logbook/jsonlookupcallsign/' + find_callsign + '/0/' + $("#band").val() +'/' + $("#mode").val(), function(result)
+						await $.getJSON(base_url + 'index.php/logbook/jsonlookupcallsign/' + find_callsign + '/0/' + $("#band").val() +'/' + $("#mode").val(), function(result)
 						{
 							// Reset CSS values before updating
 							$('#callsign').removeClass("confirmedGrid");
@@ -715,6 +728,7 @@ $("#callsign").focusout(function() {
 				}
 
 				$('#dxcc_id').val(result.dxcc.adif);
+				await updateStateDropdown();
 				$('#cqz').val(result.dxcc.cqz);
 				$('#ituz').val(result.dxcc.ituz);
 
@@ -797,9 +811,9 @@ $("#callsign").focusout(function() {
 				/*
 				* Update state with returned value
 				*/
-				if($("#input_usa_state").val() == "") {
-					$("#input_usa_state").val(result.callsign_state).trigger('change');
-				}
+					if($("#stateDropdown").val() == "") {
+						$("#stateDropdown").val(result.callsign_state);
+					}
 
 				/*
 				* Update county with returned value
@@ -1102,7 +1116,7 @@ function resetDefaultQSOFields() {
 	$('#callsign_info').removeClass("text-bg-secondary");
 	$('#callsign_info').removeClass("text-bg-success");
 	$('#callsign_info').removeClass("text-bg-danger");
-	$('#input_usa_state').val("");
+	$('#stateDropdown').val("");
 	$('#callsign-image').attr('style', 'display: none;');
 	$('#callsign-image-content').text("");
 	$('.dxccsummary').remove();

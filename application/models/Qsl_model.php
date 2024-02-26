@@ -1,9 +1,8 @@
 <?php
 class Qsl_model extends CI_Model {
     function getQsoWithQslList() {
-        $CI =& get_instance();
-        $CI->load->model('logbooks_model');
-        $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+        $this->load->model('logbooks_model');
+        $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         $this->db->select('*');
         $this->db->from($this->config->item('table_name'));
@@ -19,9 +18,8 @@ class Qsl_model extends CI_Model {
         $clean_id = $this->security->xss_clean($id);
 
         // be sure that QSO belongs to user
-        $CI =& get_instance();
-        $CI->load->model('logbook_model');
-        if (!$CI->logbook_model->check_qso_is_accessible($clean_id)) {
+        $this->load->model('logbook_model');
+        if (!$this->logbook_model->check_qso_is_accessible($clean_id)) {
             return;
         }
 
@@ -37,9 +35,8 @@ class Qsl_model extends CI_Model {
         $clean_id = $this->security->xss_clean($qsoid);
 
         // be sure that QSO belongs to user
-        $CI =& get_instance();
-        $CI->load->model('logbook_model');
-        if (!$CI->logbook_model->check_qso_is_accessible($clean_id)) {
+        $this->load->model('logbook_model');
+        if (!$this->logbook_model->check_qso_is_accessible($clean_id)) {
             return;
         }
 
@@ -58,13 +55,12 @@ class Qsl_model extends CI_Model {
         $clean_id = $this->security->xss_clean($id);
 
         // be sure that QSO belongs to user
-        $CI =& get_instance();
-        $CI->load->model('logbook_model');
+        $this->load->model('logbook_model');
         $this->db->select('qsoid');
         $this->db->from('qsl_images');
         $this->db->where('id', $clean_id);
         $qsoid = $this->db->get()->row()->qsoid;
-        if (!$CI->logbook_model->check_qso_is_accessible($qsoid)) {
+        if (!$this->logbook_model->check_qso_is_accessible($qsoid)) {
             return;
         }
 
@@ -77,13 +73,12 @@ class Qsl_model extends CI_Model {
         $clean_id = $this->security->xss_clean($id);
 
         // be sure that QSO belongs to user
-        $CI =& get_instance();
-        $CI->load->model('logbook_model');
+        $this->load->model('logbook_model');
         $this->db->select('qsoid');
         $this->db->from('qsl_images');
         $this->db->where('id', $clean_id);
         $qsoid = $this->db->get()->row()->qsoid;
-        if (!$CI->logbook_model->check_qso_is_accessible($qsoid)) {
+        if (!$this->logbook_model->check_qso_is_accessible($qsoid)) {
             return;
         }
 
@@ -95,9 +90,8 @@ class Qsl_model extends CI_Model {
     }
 
     function searchQsos($callsign) {
-        $CI =& get_instance();
-        $CI->load->model('logbooks_model');
-        $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+        $this->load->model('logbooks_model');
+        $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
 		$this->db->select('*');
 		$this->db->from($this->config->item('table_name'));
@@ -112,15 +106,14 @@ class Qsl_model extends CI_Model {
 		$clean_filename = $this->security->xss_clean($filename);
 
 		// be sure that QSO belongs to user
-		$CI =& get_instance();
-		$CI->load->model('logbook_model');
-		if (!$CI->logbook_model->check_qso_is_accessible($clean_qsoid)) {
+		$this->load->model('logbook_model');
+		if (!$this->logbook_model->check_qso_is_accessible($clean_qsoid)) {
 			return;
 		}
 
 		$data = array(
 			'qsoid' => $clean_qsoid,
-			'filename' => $filename
+			'filename' => $clean_filename
 		);
 
 		$this->db->insert('qsl_images', $data);
@@ -128,24 +121,38 @@ class Qsl_model extends CI_Model {
 		return $this->db->insert_id();
 	}
 
-	// return path of Qsl file : u=url / p=real path //
+	// return path of qsl file : u=url / p=real path 
 	function get_imagePath($pathorurl='u') {
-		$qsl_dir = "qsl_card";
-		// test if new folder directory exist // 
+
+		// test if new folder directory option is enabled
 		$userdata_dir = $this->config->item('userdata');
+		
 		if (isset($userdata_dir)) {
-			if (!file_exists(realpath(APPPATH.'../').'/'.$userdata_dir)) {
-				mkdir(realpath(APPPATH.'../').'/'.$userdata_dir, 0755, true);
+
+			$qsl_dir = "qsl_card"; // make sure this is the same as in Debug_model.php function migrate_userdata()
+
+			$user_id = $this->session->userdata('user_id');
+			
+			// check if there is a user_id in the session data and it's not empty
+			if ($user_id != '') {
+				
+                // create the folder
+                if (!file_exists(realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$user_id.'/'.$qsl_dir)) {
+                    mkdir(realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$user_id.'/'.$qsl_dir, 0755, true);
+                }
+
+                // and return it
+                if ($pathorurl=='u') {
+                    return $userdata_dir.'/'.$user_id.'/'.$qsl_dir;
+                } else {
+                    return realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$user_id.'/'.$qsl_dir;
+                }
+            } else {
+				log_message('Error', 'Can not get qsl card image path because no user_id in session data');
 			}
-			if (!file_exists(realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$qsl_dir)) {
-				mkdir(realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$qsl_dir, 0755, true);
-			}
-			if ($pathorurl=='u') {
-				return $userdata_dir.'/'.$qsl_dir;
-			} else {
-				return realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$qsl_dir;
-			}
-		} else {
+        } else {
+
+			// if the config option is not set we just return the old path
 			return 'assets/qslcard';
 		}
 	}

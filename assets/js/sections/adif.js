@@ -14,7 +14,7 @@ $(document).ready(function(){
 					arrayBuffer = this.result;
 					let chker = partof(arrayBuffer,4096);
 					if (chker.toUpperCase().includes('<QSO_DATE')) {
-						zip.file(file.name, arrayBuffer, { binary:true });
+						zip.file($("#fhash").val()+'.adif', arrayBuffer, { binary:true });
 						zip.generateAsync({type:"blob", compression:"DEFLATE"}).then(function(content){
 
 							//generated zip content to file type

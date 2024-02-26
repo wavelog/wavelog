@@ -48,7 +48,7 @@
 <script type="text/javascript" src="<?php echo base_url() ;?>assets/js/sections/eqslcharcounter.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ;?>assets/js/sections/version_dialog.js"></script>
 
-<script src="https://unpkg.com/htmx.org@1.6.1"></script>
+<script src="<?php echo base_url(); ?>assets/js/htmx.min.js"></script>
 
 <script>
     // Reinitialize tooltips after new content has been loaded
@@ -92,6 +92,18 @@ if($this->session->userdata('user_id') != null) {
 
 <!-- Version Dialog END -->
 
+<script>
+    function set_active_location(current_active, new_active) {
+        $.ajax({
+            url: base_url + 'index.php/station/set_active/' + current_active + '/' + new_active + '/1',
+            type: 'GET',
+            success: function(response) {
+                location.reload();
+            }
+        });
+    }
+</script>
+
 <?php if ($this->uri->segment(1) == "oqrs") { ?>
     <script src="<?php echo base_url() ;?>assets/js/sections/oqrs.js"></script>
 <?php } ?>
@@ -131,10 +143,6 @@ if($this->session->userdata('user_id') != null) {
 <?php if ($this->uri->segment(1) == "adif" || $this->uri->segment(1) == "qrz" || $this->uri->segment(1) == "hrdlog" || $this->uri->segment(1) == "webadif" || $this->uri->segment(1) == "sattimers") { ?>
     <!-- Javascript used for ADIF Import and Export Areas -->
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/moment.min.js"></script>
-<?php } ?>
-
-<?php if ($this->uri->segment(1) == "maintenance" ) { ?>
-    <script src="<?php echo base_url() ;?>assets/js/sections/maintenance.js"></script>
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "adif" ) { ?>
@@ -584,9 +592,9 @@ $(function () {
 
 <script>
 $(document).ready(function() {
-	$('#create_station_profile #country').val($("#dxcc_select option:selected").text());
-	$("#create_station_profile #dxcc_select" ).change(function() {
-	$('#country').val($("#dxcc_select option:selected").text());
+	$('#create_station_profile #country').val($("#dxcc_id option:selected").text());
+	$("#create_station_profile #dxcc_id" ).change(function() {
+	$('#country').val($("#dxcc_id option:selected").text());
 
 	});
 });
@@ -594,20 +602,20 @@ $(document).ready(function() {
 
 <script>
 function printWarning() {
-    if ($("#dxcc_select option:selected").text().includes("<?php echo lang('gen_hamradio_deleted_dxcc'); ?>")) {
+    if ($("#dxcc_id option:selected").text().includes("<?php echo lang('gen_hamradio_deleted_dxcc'); ?>")) {
         $('#warningMessageDXCC').show();
-        $('#dxcc_select').css('border', '2px solid rgb(217, 83, 79)');
+        $('#dxcc_id').css('border', '2px solid rgb(217, 83, 79)');
         $('#warningMessageDXCC').text("<?php echo lang('station_location_dxcc_warning'); ?>");
     } else {
-        $('#dxcc_select').css('border', '');
+        $('#dxcc_id').css('border', '');
         $('#warningMessageDXCC').hide();
     }
 }
-$('#dxcc_select').ready(function() {
+$('#dxcc_id').ready(function() {
     printWarning();
 });
 
-$('#dxcc_select').on('change', function() {
+$('#dxcc_id').on('change', function() {
     printWarning();
 });
 </script>
@@ -977,9 +985,6 @@ $($('#callsign')).on('keypress',function(e) {
 
 <?php
 }
-
-
-    $this->load->model('stations');
     $active_station_id = $this->stations->find_active();
     $station_profile = $this->stations->profile($active_station_id);
     $active_station_info = $station_profile->row();
@@ -1921,7 +1926,50 @@ $(document).ready(function(){
         $(".buttons-csv").css("color", "white");
     }
  </script>
-    <?php } ?>
+<?php } ?>
+
+<?php if ($this->uri->segment(2) == "helvetia") { ?>
+<script>
+    $('.tablehelvetia').DataTable({
+        "pageLength": 25,
+        responsive: false,
+        ordering: false,
+        "scrollY":        "400px",
+        "scrollCollapse": true,
+        "paging":         false,
+        "scrollX": true,
+        "language": {
+            url: getDataTablesLanguageUrl(),
+        },
+        dom: 'Bfrtip',
+        buttons: [
+            'csv'
+        ]
+    });
+
+    $('.tablesummary').DataTable({
+        info: false,
+        searching: false,
+        ordering: false,
+        "paging":         false,
+        "language": {
+            url: getDataTablesLanguageUrl(),
+        },
+        dom: 'Bfrtip',
+        "language": {
+            url: getDataTablesLanguageUrl(),
+        },
+        buttons: [
+            'csv'
+        ]
+    });
+
+    // change color of csv-button if dark mode is chosen
+    if (isDarkModeTheme()) {
+        $(".buttons-csv").css("color", "white");
+    }
+ </script>
+<?php } ?>
 
 <?php if ($this->uri->segment(2) == "vucc_band") { ?>
     <script>
@@ -2082,63 +2130,64 @@ $(document).ready(function(){
 
 <script>
 
-        function selectize_usa_county() {
-            var baseURL= "<?php echo base_url();?>";
-            $('#stationCntyInputEdit').selectize({
-				delimiter: ';',
-                maxItems: 1,
-                closeAfterSelect: true,
-                loadThrottle: 250,
-                valueField: 'name',
-                labelField: 'name',
-                searchField: 'name',
-                options: [],
-                create: false,
-                load: function(query, callback) {
-                    var state = $("#input_usa_state_edit option:selected").text();
+function selectize_usa_county() {
+    console.log('selectize_usa_county');
+    var baseURL= "<?php echo base_url();?>";
+    $('#stationCntyInputEdit').selectize({
+        delimiter: ';',
+        maxItems: 1,
+        closeAfterSelect: true,
+        loadThrottle: 250,
+        valueField: 'name',
+        labelField: 'name',
+        searchField: 'name',
+        options: [],
+        create: false,
+        load: function(query, callback) {
+            var state = $("#stateDropdown option:selected").text();
 
-                    if (!query || state == "") return callback();
-                    $.ajax({
-                        url: baseURL+'index.php/qso/get_county',
-                        type: 'GET',
-                        dataType: 'json',
-                        data: {
-                            query: query,
-                            state: state,
-                        },
-                        error: function() {
-                            callback();
-                        },
-                        success: function(res) {
-                            callback(res);
-                        }
-                    });
-                }
-            });
-        }
-
-        function qso_save() {
-            var baseURL= "<?php echo base_url();?>";
-            var myform = document.getElementById("qsoform");
-            var fd = new FormData(myform);
+            if (!query || state == "") return callback();
             $.ajax({
-                url: baseURL + 'index.php/qso/qso_save_ajax',
-                data: fd,
-                cache: false,
-                processData: false,
-                contentType: false,
-                type: 'POST',
-                success: function (dataofconfirm) {
-                    $(".edit-dialog").modal('hide');
-                    $(".qso-dialog").modal('hide');
-                    <?php if ($this->uri->segment(1) != "search" && $this->uri->segment(2) != "filter" && $this->uri->segment(1) != "qso" && $this->uri->segment(1) != "logbookadvanced") { ?>location.reload();<?php } ?>
+                url: baseURL+'index.php/qso/get_county',
+                type: 'GET',
+                dataType: 'json',
+                data: {
+                    query: query,
+                    state: state,
                 },
-                error: function(xhr, status, error) {
-                    console.log(xhr.responseText);
+                error: function() {
+                    callback();
+                },
+                success: function(res) {
+                    callback(res);
                 }
             });
         }
-        </script>
+    });
+}
+
+function qso_save() {
+    var baseURL= "<?php echo base_url();?>";
+    var myform = document.getElementById("qsoform");
+    var fd = new FormData(myform);
+    $.ajax({
+        url: baseURL + 'index.php/qso/qso_save_ajax',
+        data: fd,
+        cache: false,
+        processData: false,
+        contentType: false,
+        type: 'POST',
+        success: function (dataofconfirm) {
+            $(".edit-dialog").modal('hide');
+            $(".qso-dialog").modal('hide');
+            <?php if ($this->uri->segment(1) != "search" && $this->uri->segment(2) != "filter" && $this->uri->segment(1) != "qso" && $this->uri->segment(1) != "logbookadvanced") { ?>location.reload();<?php } ?>
+        },
+        error: function(xhr, status, error) {
+            console.log(xhr.responseText);
+        }
+    });
+}
+</script>
     <?php if ($this->uri->segment(1) == "timeline") { ?>
         <script>
             $('.timelinetable').DataTable({

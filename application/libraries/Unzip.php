@@ -133,7 +133,7 @@ class Unzip {
 
 						if ( ! @mkdir($this->_target_dir . '/' . $str))
 						{
-							$this->set_error('Desitnation path is not writable.');
+							$this->set_error('Destination path is not writable.');
 							return FALSE;
 						}
 

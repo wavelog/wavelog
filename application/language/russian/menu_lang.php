@@ -35,20 +35,29 @@ $lang['menu_continents'] = 'Континенты';
 
 $lang['menu_awards'] = 'Дипломы';
 $lang['menu_cq'] = 'CQ';
-$lang['menu_dl_gridmaster'] = 'DL Gridmaster';
 $lang['menu_dok'] = 'DOK';
 $lang['menu_dxcc'] = 'DXCC';
-$lang['menu_iota'] = 'IOTA';
+$lang['menu_ffma'] = 'Fred Fish Memorial Award';
+$lang['menu_helvetia'] = "H26";
+$lang['menu_gridmaster'] = "Gridmaster";
+$lang['menu_dl_gridmaster'] = 'DL Gridmaster';
 $lang['menu_lx_gridmaster'] = 'LX Gridmaster';
+$lang['menu_ja_gridmaster'] = 'JA Gridmaster';
+$lang['menu_us_gridmaster'] = 'US Gridmaster';
+$lang['menu_iota'] = 'IOTA';
+$lang['menu_jcc'] = 'JCC';
 $lang['menu_pota'] = 'POTA';
+$lang['menu_rac'] = 'RAC';
 $lang['menu_sig'] = 'SIG';
 $lang['menu_sota'] = 'SOTA';
 $lang['menu_us_counties'] = 'US Counties';
-$lang['menu_us_gridmaster'] = 'US Gridmaster';
 $lang['menu_vucc'] = 'VUCC';
 $lang['menu_waja'] = 'WAJA';
 $lang['menu_was'] = 'WAS';
 $lang['menu_wwff'] = 'WWFF';
+
+$lang['menu_tools'] = "Tools";
+$lang['menu_sat_timers'] = "SAT Timers";
 
 $lang['menu_admin'] = 'Администрирование';
 $lang['menu_user_account'] = 'Аккаунты пользователей';
@@ -59,26 +68,32 @@ $lang['menu_themes'] = 'Темы оформления';
 $lang['menu_backup'] = 'Резервное копирование';
 $lang['menu_update_country_files'] = 'Обновить файлы стран';
 $lang['menu_debug_information'] = 'Отладочная информация';
-
-$lang['menu_search_text'] = 'Поиск позывного';
 $lang['menu_search_text_quicklog'] = "Add/Search Callsign";
 
-$lang['menu_search_button'] = 'Поиск';
+$lang['menu_search_text'] = 'Поиск позывного';
 $lang['menu_search_button_qicksearch_log'] = "Log";
+
+$lang['menu_search_button'] = 'Поиск';
 $lang['menu_login_button'] = 'Вход';
 
 $lang['menu_account'] = 'Аккаунт';
 $lang['menu_station_logbooks'] = 'Аппаратные журналы';
 $lang['menu_station_locations'] = 'Расположения станции';
+$lang['menu_select_location'] = "Select a Location";
+$lang['menu_select_location_show_all'] = "Show all";
+$lang['menu_choose_another_logbook'] = "Choose another Logbook";
 $lang['menu_bands'] = 'Диапазоны';
 $lang['menu_adif_import_export'] = 'Импорт / экспорт ADIF';
+$lang['menu_other_export'] = "Other Export Options";
 $lang['menu_kml_export'] = 'Экспорт KML';
 $lang['menu_dx_atlas_gridsquare_export'] = 'Экспорт квадратов DX Atlas';
 $lang['menu_sota_csv_export'] = 'Экспорт SOTA CSV';
 $lang['menu_cabrillo_export'] = 'Экспорт Cabrillo';
+$lang['menu_cfd_export'] = "CFD Export";
 $lang['menu_oqrs_requests'] = 'Запросы OQRS';
 $lang['menu_print_requested_qsls'] = 'Распечатать запрошенные QSL';
 $lang['menu_labels'] = 'Наклейки';
+$lang['menu_third_party_services'] = "Third-Party Services";
 $lang['menu_logbook_of_the_world'] = 'Logbook of the World';
 $lang['menu_eqsl_import_export'] = 'Импорт / экспорт eQSL';
 $lang['menu_qrz_logbook'] = 'QRZ Logbook';
@@ -90,7 +105,4 @@ $lang['menu_help'] = 'Помощь';
 $lang['menu_forum'] = 'Форум';
 $lang['menu_logout'] = 'Выход';
 
-$lang['menu_ffma'] = "Fred Fish Memorial Award";
-$lang['menu_ja_gridmaster'] = 'JA Gridmaster';
-$lang['menu_maintenance']='Обслуживание';
-$lang['menu_rac'] = 'RAC';
+$lang['menu_extras'] = "Extras";

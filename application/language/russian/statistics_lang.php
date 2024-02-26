@@ -69,4 +69,15 @@ $lang['statistics_accumulated_worked_states'] = "Accumulated Number of States wo
 $lang['statistics_accumulated_worked_iota'] = "Accumulated Number of IOTAs worked";
 $lang['statistics_accumulated_worked_cqzone'] = "Accumulated Number of CQ Zones worked";
 
+/*
+*
+* Timeplotter
+*
+*/
+ 
+$lang['statistics_timeplotter_description'] = "The Timeplotter is used to analyze your logbook and find out at what times you worked certain CQ zones or DXCC countries on a selected band.";
+$lang['statistics_timeplotter_contacts_plotted'] = "contacts were plotted"; /* sentence starts with counter - 'XXXX contacts were plotted' */
+$lang['statistics_timeplotter_chart_header'] = "Time Distribution";
+$lang['statistics_timeplotter_number_of_qsos'] = "Number of QSOs";
+$lang['statistics_timeplotter_callsigns_worked'] = "Callsign(s) worked (max 5)";
 

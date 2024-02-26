@@ -28,6 +28,8 @@ $lang['general_word_filtering_on'] = "Filtering on";
 $lang['general_word_not_display'] = "Not display";
 $lang['general_word_icon'] = "Icon";
 $lang['general_word_never'] = "Never";
+$lang['general_word_active'] = "Active";
+$lang['general_word_inactive'] = "Inactive";
 
 $lang['general_word_date'] = 'Дата';
 $lang['general_word_startdate'] = "Start Date";
@@ -129,6 +131,8 @@ $lang['gen_hamradio_suffix'] = "Suffix";
 $lang['gen_hamradio_de'] = 'De';
 $lang['gen_hamradio_dx'] = 'Dx';
 $lang['gen_hamradio_mode'] = 'Режим';
+$lang['gen_hamradio_ant_az'] = 'Antenna Azimuth';
+$lang['gen_hamradio_ant_el'] = 'Antenna Elevation';
 $lang['gen_hamradio_rst_sent'] = 'Sent';
 $lang['gen_hamradio_rst_rcvd'] = 'Recv\'d';
 $lang['gen_hamradio_band'] = 'Обхват';

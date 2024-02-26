@@ -28,6 +28,8 @@ $lang['general_word_filtering_on'] = "Filtré sur";
 $lang['general_word_not_display'] = "Ne pas afficher";
 $lang['general_word_icon'] = "Icône";
 $lang['general_word_never'] = "Never";
+$lang['general_word_active'] = "Active";
+$lang['general_word_inactive'] = "Inactive";
 
 $lang['general_word_date'] = "Date";
 $lang['general_word_startdate'] = "Date début";
@@ -129,6 +131,8 @@ $lang['gen_hamradio_suffix'] = "Suffix";
 $lang['gen_hamradio_de'] = "De";
 $lang['gen_hamradio_dx'] = "Dx";
 $lang['gen_hamradio_mode'] = "Mode";
+$lang['gen_hamradio_ant_az'] = 'Antenna Azimuth';
+$lang['gen_hamradio_ant_el'] = 'Antenna Elevation';
 $lang['gen_hamradio_rst_sent'] = "Envoyé";
 $lang['gen_hamradio_rst_rcvd'] = "Reçu";
 $lang['gen_hamradio_band'] = "Bande";

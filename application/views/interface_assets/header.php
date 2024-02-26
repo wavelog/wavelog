@@ -69,7 +69,13 @@
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light main-nav" id="header-menu">
 		<div class="container">
-			<a class="navbar-brand" href="<?php echo site_url(); ?>"><img class="headerLogo" src="<?php echo base_url(); ?>assets/logo/<?php echo $this->optionslib->get_logo('header_logo'); ?>.png" alt="Logo" /></a> <?php if (ENVIRONMENT == "development") { ?><span class="badge text-bg-danger"><?php echo lang('menu_badge_developer_mode'); ?></span><?php } ?>
+			<a class="navbar-brand" href="<?php echo site_url(); ?>"><img class="headerLogo" src="<?php echo base_url(); ?>assets/logo/<?php echo $this->optionslib->get_logo('header_logo'); ?>.png" alt="Logo" /></a> 
+			<?php if (ENVIRONMENT == "development") { ?>
+				<span class="badge text-bg-danger"><?php echo lang('menu_badge_developer_mode'); ?></span>
+			<?php } ?>
+			<?php if (ENVIRONMENT == "maintenance") { ?>
+				<span class="badge text-bg-info">Maintenance</span>
+			<?php } ?>
 
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 
@@ -143,9 +149,7 @@
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item" href="<?php echo site_url('awards/ffma'); ?>"><i class="fas fa-trophy"></i> <?php echo lang('menu_ffma'); ?></a></li>
 								<div class="dropdown-divider"></div>
-								<li><a class="dropdown-item" href="<?php echo site_url('awards/iota'); ?>"><i class="fas fa-trophy"></i> <?php echo lang('menu_iota'); ?></a></li>
-								<div class="dropdown-divider"></div>
-								<li><a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#"><i class="fas fa-trophy"></i> Gridmaster</a>
+								<li><a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#"><i class="fas fa-trophy"></i> <?php echo lang('menu_gridmaster'); ?></a>
 									<ul class="submenu dropdown-menu">
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/gridmaster/dl'); ?>"><i class="fas fa-trophy"></i> <?php echo lang('menu_dl_gridmaster'); ?></a></li>
 										<div class="dropdown-divider"></div>
@@ -156,6 +160,12 @@
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/gridmaster/us'); ?>"><i class="fas fa-trophy"></i> <?php echo lang('menu_us_gridmaster'); ?></a></li>
 									</ul>
 								</li>
+								<div class="dropdown-divider"></div>
+								<li><a class="dropdown-item" href="<?php echo site_url('awards/helvetia'); ?>"><i class="fas fa-trophy"></i> H26</a></li>
+								<div class="dropdown-divider"></div>
+								<li><a class="dropdown-item" href="<?php echo site_url('awards/jcc'); ?>"><i class="fas fa-trophy"></i> <?php echo lang('menu_jcc'); ?></a></li>
+								<div class="dropdown-divider"></div>
+								<li><a class="dropdown-item" href="<?php echo site_url('awards/iota'); ?>"><i class="fas fa-trophy"></i> <?php echo lang('menu_iota'); ?></a></li>
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item" href="<?php echo site_url('awards/pota'); ?>"><i class="fas fa-trophy"></i> <?php echo lang('menu_pota'); ?></a></li>
 								<div class="dropdown-divider"></div>
@@ -178,15 +188,19 @@
 						</li>
 
 						<li class="nav-item dropdown"> <!-- TOOLS -->
-							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Tools</a>
+							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><?php echo lang('menu_tools'); ?></a>
 							<ul class="dropdown-menu header-dropdown">
+								<li><a class="dropdown-item" href="<?php echo site_url('dxcalendar'); ?>" title="SAT Timers"><i class="fas fa-satellite"></i> DX Calendar</a></li>
+								<div class="dropdown-divider"></div>
+								<li><a class="dropdown-item" href="<?php echo site_url('contestcalendar'); ?>" title="SAT Timers"><i class="fas fa-satellite"></i> Contest Calendar</a></li>
+								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item" href="<?php echo site_url('hamsat'); ?>" title="Hams.at"><i class="fas fa-list"></i> Hams.at</a></li>
 								<?php if ($this->optionslib->get_option('dxcache_url') != '') { ?>
 									<div class="dropdown-divider"></div>
 									<li><a class="dropdown-item" href="<?php echo site_url('bandmap/list'); ?>" title="Bandmap"><i class="fa fa-id-card"></i> <?php echo lang('menu_bandmap'); ?></a></li>
 								<?php } ?>
 								<div class="dropdown-divider"></div>
-								<li><a class="dropdown-item" href="<?php echo site_url('sattimers'); ?>" title="SAT Timers"><i class="fas fa-satellite"></i> SAT Timers</a></li>
+								<li><a class="dropdown-item" href="<?php echo site_url('sattimers'); ?>" title="SAT Timers"><i class="fas fa-satellite"></i> <?php echo lang('menu_sat_timers'); ?></a></li>
 							</ul>
 						</li>
 					<?php } ?>
@@ -208,8 +222,6 @@
 								<a class="dropdown-item" href="<?php echo site_url('backup'); ?>" title="Backup Wavelog content"><i class="fas fa-save"></i> <?php echo lang('menu_backup'); ?></a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="<?php echo site_url('update'); ?>" title="Update Country Files"><i class="fas fa-sync"></i> <?php echo lang('menu_update_country_files'); ?></a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="<?php echo site_url('maintenance'); ?>" title="maintenance"><i class="fas fa-tools"></i> <?php echo lang('menu_maintenance'); ?></a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="<?php echo site_url('debug'); ?>" title="Debug Information"><i class="fas fa-tools"></i> <?php echo lang('menu_debug_information'); ?></a>
 							</div>
@@ -293,18 +305,20 @@
 
 							<ul class="dropdown-menu dropdown-menu-right header-dropdown">
 								<li><a class="dropdown-item" href="<?php echo site_url('user/edit') . "/" . $this->session->userdata('user_id'); ?>" title="Account"><i class="fas fa-user"></i> <?php echo lang('menu_account'); ?></a></li>
-
-								<li><a class="dropdown-item" href="<?php echo site_url('logbooks'); ?>" title="Manage station logbooks"><i class="fas fa-home"></i> <?php echo lang('menu_station_logbooks'); ?></a></li>
-
-								<li><a class="dropdown-item" href="<?php echo site_url('station'); ?>" title="Manage station locations"><i class="fas fa-home"></i> <?php echo lang('menu_station_locations'); ?></a></li>
-
+								<?php
+								$quickswitch_enabled = ($this->user_options_model->get_options('header_menu', array('option_name' => 'locations_quickswitch'))->row()->option_value ?? 'false');
+								if ($quickswitch_enabled != 'true') {
+								?>
+									<li><a class="dropdown-item" href="<?php echo site_url('logbooks'); ?>" title="Manage station logbooks"><i class="fas fa-home"></i> <?php echo lang('menu_station_logbooks'); ?></a></li>
+									<li><a class="dropdown-item" href="<?php echo site_url('station'); ?>" title="Manage station locations"><i class="fas fa-home"></i> <?php echo lang('menu_station_locations'); ?></a></li>
+								<?php } ?>
 								<li><a class="dropdown-item" href="<?php echo site_url('band'); ?>" title="Manage Bands"><i class="fas fa-cog"></i> <?php echo lang('menu_bands'); ?></a></li>
 
 								<div class="dropdown-divider"></div>
 
 								<li><a class="dropdown-item" href="<?php echo site_url('adif'); ?>" title="Amateur Data Interchange Format (ADIF) import / export"><i class="fas fa-sync"></i> <?php echo lang('menu_adif_import_export'); ?></a></li>
 
-								<li><a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-sync"></i> Other Export Options</a>
+								<li><a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-sync"></i> <?php echo lang('menu_other_export'); ?></a>
 									<ul class="submenu submenu-left dropdown-menu">
 										<li><a class="dropdown-item" href="<?php echo site_url('kmlexport'); ?>" title="KML Export for Google Earth"><i class="fas fa-sync"></i> <?php echo lang('menu_kml_export'); ?></a></li>
 
@@ -314,24 +328,21 @@
 
 										<li><a class="dropdown-item" href="<?php echo site_url('cabrillo'); ?>" title="Cabrillo Export"><i class="fas fa-sync"></i> <?php echo lang('menu_cabrillo_export'); ?></a></li>
 
-										<li><a class="dropdown-item" href="<?php echo site_url('cfdexport'); ?>" title="CFD Export"><i class="fas fa-sync"></i> CFD Export</a></li>
+										<li><a class="dropdown-item" href="<?php echo site_url('cfdexport'); ?>" title="CFD Export"><i class="fas fa-sync"></i> <?php echo lang('menu_cfd_export'); ?></a></li>
 									</ul>
 								</li>
 
 								<div class="dropdown-divider"></div>
 
 								<?php
-								$CI = &get_instance();
-								$CI->load->model('oqrs_model');
-								$CI->load->model('logbooks_model');
-								$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+								$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 								if ($logbooks_locations_array) {
 									$location_list = "'" . implode("','", $logbooks_locations_array) . "'";
 								} else {
 									$location_list = null;
 								}
 
-								$oqrs_requests = $CI->oqrs_model->oqrs_requests($location_list);
+								$oqrs_requests = $this->oqrs_model->oqrs_requests($location_list);
 								?>
 								<li><a class="dropdown-item" href="<?php echo site_url('oqrs/requests'); ?>" title="OQRS Requests"><i class="fa fa-id-card"></i> <?php echo lang('menu_oqrs_requests'); ?> <?php if ($oqrs_requests > 0) {
 																																																				echo "<span class=\"badge text-bg-light\">" . $oqrs_requests . "</span>";
@@ -339,7 +350,7 @@
 								<li><a class="dropdown-item" href="<?php echo site_url('qslprint'); ?>" title="Print Requested QSLs"><i class="fas fa-print"></i> <?php echo lang('menu_print_requested_qsls'); ?></a></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('labels'); ?>" title="Label setup"><i class="fas fa-print"></i> <?php echo lang('menu_labels'); ?></a></li>
 								<div class="dropdown-divider"></div>
-								<li><a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-sync"></i> Third-Party Services</a>
+								<li><a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-sync"></i> <?php echo lang('menu_third_party_services'); ?></a>
 									<ul class="submenu submenu-left dropdown-menu">
 										<li><a class="dropdown-item" href="<?php echo site_url('lotw'); ?>" title="Synchronise with Logbook of the World (LoTW)"><i class="fas fa-sync"></i> <?php echo lang('menu_logbook_of_the_world'); ?></a></li>
 										<li><a class="dropdown-item" href="<?php echo site_url('eqsl/import'); ?>" title="eQSL import / export"><i class="fas fa-sync"></i> <?php echo lang('menu_eqsl_import_export'); ?></a></li>
@@ -359,8 +370,34 @@
 								<li><a class="dropdown-item" href="<?php echo site_url('user/logout'); ?>" title="Logout"><i class="fas fa-sign-out-alt"></i> <?php echo lang('menu_logout'); ?></a></li>
 							</ul>
 						</li>
-
 						<?php
+						if ($quickswitch_enabled == 'true') { ?>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><i class="fas fa-map-marker-alt"></i> | <i class="fas fa-book"></i></a>
+							<ul class="dropdown-menu dropdown-menu-right header-dropdown">
+								<li><a class="dropdown-item disabled"><?php echo lang('menu_select_location'); ?>:</a></li>
+								<?php
+								$location_favorites = $this->user_options_model->get_options('station_location', array('option_name' => 'is_favorite', 'option_value' => 'true'));
+								$current_active_location = $this->stations->find_active();
+								$active_badge = '<span class="badge bg-success ms-2">'.lang('general_word_active').'</span>';
+								foreach ($location_favorites->result() as $row) {
+									$profile_info = $this->stations->profile($row->option_key)->row();
+									$station_profile_name = ($profile_info) ? $profile_info->station_profile_name : 'Unknown Location';
+									$new_active = $row->option_key;
+									if ($new_active != $current_active_location) { ?>
+										<li><a type="button" onclick="set_active_location('<?php echo $current_active_location; ?>', '<?php echo $new_active; ?>')" class="dropdown-item"><i class="fas fa-map-marker-alt me-2"></i><?php echo $station_profile_name; ?></a></li>
+									<?php } else { ?>
+										<li><a class="dropdown-item"><i class="fas fa-map-marker-alt me-2"></i><?php echo $station_profile_name;
+																												echo $active_badge; ?></a></li>
+									<?php } ?>
+								<?php } ?>
+								<li><a class="dropdown-item" href="<?php echo site_url('station'); ?>" title="Manage station logbooks"><?php echo lang('menu_select_location_show_all'); ?>...</a></li>
+								<div class="dropdown-divider"></div>
+								<li><a class="dropdown-item disabled"><?php echo lang('gen_hamradio_active_logbook'); ?>:<span class="badge text-bg-info ms-1"><?php echo $this->logbooks_model->find_name($this->session->userdata('active_station_logbook')); ?></span></a></li>
+								<li><a class="dropdown-item" href="<?php echo site_url('logbooks'); ?>" title="Manage station locations"><?php echo lang('menu_choose_another_logbook'); ?>...</a></li>
+							</ul>
+						</li>
+						<?php }
 						// Can add extra menu items by defining them in options. The format is json.
 						// Useful to add extra things in Wavelog without the need for modifying files. If you add extras, these files will not be overwritten when updating.
 						//
@@ -383,7 +420,7 @@
 
 						if ($this->optionslib->get_option('menuitems')) { ?>
 							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Extras</a>
+								<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><?php echo lang('menu_extras'); ?></a>
 								<div class="dropdown-menu header-dropdown">
 									<?php
 									foreach (json_decode($this->optionslib->get_option('menuitems')) as $item) {

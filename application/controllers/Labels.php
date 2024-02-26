@@ -76,15 +76,24 @@ class Labels extends CI_Controller {
 		$data['papertypes'] = $this->labels_model->fetchPapertypes($this->session->userdata('user_id'));
 
 		$this->form_validation->set_rules('label_name', 'Label Name', 'required');
+		$this->form_validation->set_rules('paper_type_id', 'Paper Type', 'required');
+		$this->form_validation->set_rules('measurementType', 'Measurement', 'required');
+		$this->form_validation->set_rules('marginTop', 'Top Margin', 'required');
+		$this->form_validation->set_rules('marginLeft', 'Left Margin', 'required');
+		$this->form_validation->set_rules('NX', 'QSLs Horizontally', 'required');
+		$this->form_validation->set_rules('NY', 'QSLs Vertically', 'required');
+		$this->form_validation->set_rules('SpaceX', 'Horizontal Space', 'required');
+		$this->form_validation->set_rules('SpaceY', 'Vertical Space', 'required');
+		$this->form_validation->set_rules('width', 'Label width', 'required');
+		$this->form_validation->set_rules('height', 'Label height', 'required');
+		$this->form_validation->set_rules('font_size', 'Size of Font', 'required');
+		$this->form_validation->set_rules('label_qsos', 'Number of QSOs on label', 'required');
 
-		if ($this->form_validation->run() == FALSE)
-		{
+		if ($this->form_validation->run() == FALSE) {
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('labels/create');
 			$this->load->view('interface_assets/footer');
-		}
-		else
-		{
+		} else {
 			$this->load->model('labels_model');
 			$this->labels_model->addLabel();
 
@@ -108,15 +117,14 @@ class Labels extends CI_Controller {
 		$this->load->library('form_validation');
 
 		$this->form_validation->set_rules('paper_name', 'Paper Name', 'required');
+		$this->form_validation->set_rules('width', 'Paper Width', 'required');
+		$this->form_validation->set_rules('height', 'Paper Height', 'required');
 
-		if ($this->form_validation->run() == FALSE)
-		{
+		if ($this->form_validation->run() == FALSE) {
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('labels/createpaper');
 			$this->load->view('interface_assets/footer');
-		}
-		else
-		{
+		} else {
 			$this->load->model('labels_model');
 			try {
 				$this->labels_model->addPaper();
@@ -273,7 +281,7 @@ class Labels extends CI_Controller {
 			$qso_data[] = [
 				'time' => $qso->COL_TIME_ON,
 				'band' => $qso->COL_BAND,
-				'mode' => $qso->COL_MODE,
+				'mode' => ($qso->COL_SUBMODE ?? $qso->COL_MODE),
 				'rst' => $qso->COL_RST_SENT,
 				'mygrid' => $qso->station_gridsquare,
 				'via' => $qso->COL_QSL_VIA,
@@ -372,9 +380,29 @@ class Labels extends CI_Controller {
 
 	public function updateLabel($id) {
 		$this->load->model('labels_model');
-		$this->labels_model->updateLabel($id);
-		$this->session->set_flashdata('message', 'Label was saved.');
-		redirect('labels');
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('label_name', 'Label Name', 'required');
+		$this->form_validation->set_rules('paper_type_id', 'Paper Type', 'required');
+		$this->form_validation->set_rules('measurementType', 'Measurement', 'required');
+		$this->form_validation->set_rules('marginTop', 'Top Margin', 'required');
+		$this->form_validation->set_rules('marginLeft', 'Left Margin', 'required');
+		$this->form_validation->set_rules('NX', 'QSLs Horizontally', 'required');
+		$this->form_validation->set_rules('NY', 'QSLs Vertically', 'required');
+		$this->form_validation->set_rules('SpaceX', 'Horizontal Space', 'required');
+		$this->form_validation->set_rules('SpaceY', 'Vertical Space', 'required');
+		$this->form_validation->set_rules('width', 'Label width', 'required');
+		$this->form_validation->set_rules('height', 'Label height', 'required');
+		$this->form_validation->set_rules('font_size', 'Size of Font', 'required');
+		$this->form_validation->set_rules('label_qsos', 'Number of QSOs on label', 'required');
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->edit($id);
+		} else {
+			$this->labels_model->updateLabel($id);
+			$this->session->set_flashdata('message', 'Label was saved.');
+			redirect('labels');
+		}
 	}
 
 	public function delete($id) {
@@ -411,15 +439,25 @@ class Labels extends CI_Controller {
 
 	public function updatePaper($id) {
 		$this->load->model('labels_model');
-		try {
-			$this->labels_model->updatePaper($id);
-		} catch (\Throwable $th) {
-			$this->session->set_flashdata('error', 'Your paper could not be saved. Remember that it can\'t have the same name as existing paper types.');
-			$cleanid = $this->security->xss_clean($id);
-			redirect('labels/editpaper/'.$cleanid);
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('paper_name', 'Paper Name', 'required');
+		$this->form_validation->set_rules('width', 'Paper Width', 'required');
+		$this->form_validation->set_rules('height', 'Paper Height', 'required');
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->editPaper($id);
+		} else {
+			try {
+				$this->labels_model->updatePaper($id);
+			} catch (\Throwable $th) {
+				$this->session->set_flashdata('error', 'Your paper could not be saved. Remember that it can\'t have the same name as existing paper types.');
+				$cleanid = $this->security->xss_clean($id);
+				redirect('labels/editpaper/'.$cleanid);
+			}
+			$this->session->set_flashdata('message', 'Paper was saved.');
+			redirect('labels');
 		}
-		$this->session->set_flashdata('message', 'Paper was saved.');
-		redirect('labels');
 	}
 
 	function label_cnt_with_paper($paper_id) {

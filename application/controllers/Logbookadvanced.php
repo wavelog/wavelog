@@ -36,6 +36,14 @@ class Logbookadvanced extends CI_Controller {
 			$data['options'] = $userOptions[0]->option_value;
 		}
 
+		$mapoptions['gridsquare_layer'] = $this->user_options_model->get_options('LogbookAdvancedMap',array('option_name'=>'gridsquare_layer','option_key'=>'boolean'))->row();
+		$mapoptions['path_lines'] = $this->user_options_model->get_options('LogbookAdvancedMap',array('option_name'=>'path_lines','option_key'=>'boolean'))->row();
+		$mapoptions['cqzones_layer'] = $this->user_options_model->get_options('LogbookAdvancedMap',array('option_name'=>'cqzones_layer','option_key'=>'boolean'))->row();
+		$mapoptions['ituzones_layer'] = $this->user_options_model->get_options('LogbookAdvancedMap',array('option_name'=>'ituzones_layer','option_key'=>'boolean'))->row();
+		$mapoptions['nightshadow_layer'] = $this->user_options_model->get_options('LogbookAdvancedMap',array('option_name'=>'nightshadow_layer','option_key'=>'boolean'))->row();
+
+		$data['mapoptions'] = $mapoptions;
+
 		$active_station_id = $this->stations->find_active();
         $station_profile = $this->stations->profile($active_station_id);
 
@@ -79,8 +87,11 @@ class Logbookadvanced extends CI_Controller {
 			'assets/js/moment.min.js',
 			'assets/js/datetime-moment.js',
 			'assets/js/sections/logbookadvanced.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/logbookadvanced.js")),
+			'assets/js/sections/logbookadvanced_edit.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/logbookadvanced_edit.js")),
+			'assets/js/sections/logbookadvanced_map.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/logbookadvanced_map.js")),
 			'assets/js/sections/cqmap_geojson.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/cqmap_geojson.js")),
 			'assets/js/sections/itumap_geojson.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/itumap_geojson.js")),
+			'assets/js/leaflet/L.Terminator.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/leaflet/L.Terminator.js")),
 			'assets/js/leaflet/geocoding.js',
 		];
 
@@ -380,6 +391,7 @@ class Logbookadvanced extends CI_Controller {
 
 	public function calculate($qso, $locator1, $locator2, $measurement_base, $var_dist, $custom_date_format) {
 		$this->load->library('Qra');
+		$this->load->model('logbook_model');
 
 		$data['distance'] = $this->qra->distance($locator1, $locator2, $measurement_base) . $var_dist;
 		$data['bearing'] = $this->qra->get_bearing($locator1, $locator2) . "&#186;";
@@ -401,14 +413,15 @@ class Logbookadvanced extends CI_Controller {
 		$data['mycallsign'] = $qso['station_callsign'];
 		$data['datetime'] = date($custom_date_format, strtotime($qso['COL_TIME_ON'])). date(' H:i',strtotime($qso['COL_TIME_ON']));
 		$data['satname'] = $qso['COL_SAT_NAME'];
-		$data['confirmed'] = ((($qso['COL_EQSL_QSL_RCVD'] == 'Y') || ($qso['COL_LOTW_QSL_RCVD'] == 'Y') || ($qso['COL_QSL_RCVD'] == 'Y')) == true ? true : false);
-
+		$data['confirmed'] = ($this->logbook_model->qso_is_confirmed($qso)==true) ? true : false;
+		
 		return $data;
 	}
 
 	public function calculateCoordinates($qso, $lat, $long, $mygrid, $measurement_base, $var_dist, $custom_date_format) {
 		$this->load->library('Qra');
-
+		$this->load->model('logbook_model');
+		
 		$latlng1 = $this->qra->qra2latlong($mygrid);
 		$latlng2[0] = $lat;
 		$latlng2[1] = $long;
@@ -426,7 +439,7 @@ class Logbookadvanced extends CI_Controller {
 		$data['mycallsign'] = $qso['station_callsign'];
 		$data['datetime'] = date($custom_date_format, strtotime($qso['COL_TIME_ON'])). date(' H:i',strtotime($qso['COL_TIME_ON']));
 		$data['satname'] = $qso['COL_SAT_NAME'];
-		$data['confirmed'] = ((($qso['COL_EQSL_QSL_RCVD'] == 'Y') || ($qso['COL_LOTW_QSL_RCVD'] == 'Y') || ($qso['COL_QSL_RCVD'] == 'Y')) == true ? true : false);
+		$data['confirmed'] = ($this->logbook_model->qso_is_confirmed($qso)==true) ? true : false;
 
 		return $data;
 	}
@@ -439,6 +452,15 @@ class Logbookadvanced extends CI_Controller {
 		} else {
 			$data['options'] = null;
 		}
+
+		$mapoptions['gridsquare_layer'] = $this->user_options_model->get_options('LogbookAdvancedMap',array('option_name'=>'gridsquare_layer','option_key'=>'boolean'))->row();
+		$mapoptions['path_lines'] = $this->user_options_model->get_options('LogbookAdvancedMap',array('option_name'=>'path_lines','option_key'=>'boolean'))->row();
+		$mapoptions['cqzones_layer'] = $this->user_options_model->get_options('LogbookAdvancedMap',array('option_name'=>'cqzones_layer','option_key'=>'boolean'))->row();
+		$mapoptions['ituzones_layer'] = $this->user_options_model->get_options('LogbookAdvancedMap',array('option_name'=>'ituzones_layer','option_key'=>'boolean'))->row();
+		$mapoptions['nightshadow_layer'] = $this->user_options_model->get_options('LogbookAdvancedMap',array('option_name'=>'nightshadow_layer','option_key'=>'boolean'))->row();
+
+		$data['mapoptions'] = $mapoptions;
+
 		$this->load->view('logbookadvanced/useroptions', $data);
 	}
 
@@ -469,5 +491,68 @@ class Logbookadvanced extends CI_Controller {
 
 		$this->load->model('user_options_model');
 		$this->user_options_model->set_option('LogbookAdvanced', 'LogbookAdvanced', $obj);
+
+
+		$this->user_options_model->set_option('LogbookAdvancedMap', 'gridsquare_layer',  array('boolean' => xss_clean($this->input->post('gridsquare_layer'))));
+		$this->user_options_model->set_option('LogbookAdvancedMap', 'path_lines',  array('boolean' => xss_clean($this->input->post('path_lines'))));
+		$this->user_options_model->set_option('LogbookAdvancedMap', 'cqzones_layer',  array('boolean' => xss_clean($this->input->post('cqzone_layer'))));
+		$this->user_options_model->set_option('LogbookAdvancedMap', 'ituzones_layer',  array('boolean' => xss_clean($this->input->post('ituzone_layer'))));
+		$this->user_options_model->set_option('LogbookAdvancedMap', 'nightshadow_layer',  array('boolean' => xss_clean($this->input->post('nightshadow_layer'))));
+	}
+
+	public function editDialog() {
+		$this->load->model('bands');
+		$this->load->model('modes');
+		$this->load->model('logbookadvanced_model');
+
+		$data['stateDxcc'] = $this->logbookadvanced_model->getPrimarySubdivisonsDxccs();
+
+		$data['modes'] = $this->modes->active();
+		$data['bands'] = $this->bands->get_user_bands_for_qso_entry();
+		$this->load->view('logbookadvanced/edit', $data);
+	}
+
+	public function saveBatchEditQsos() {
+		$ids = xss_clean($this->input->post('ids'));
+		$column = xss_clean($this->input->post('column'));
+		$value = xss_clean($this->input->post('value'));
+		$value2 = xss_clean($this->input->post('value2'));
+
+		$this->load->model('logbookadvanced_model');
+		$this->logbookadvanced_model->saveEditedQsos($ids, $column, $value, $value2);
+
+		$data = $this->logbookadvanced_model->getQsosForAdif($ids, $this->session->userdata('user_id'));
+
+		$results = $data->result('array');
+
+        $qsos = [];
+        foreach ($results as $data) {
+            $qsos[] = new QSO($data);
+        }
+
+		$q = [];
+		foreach ($qsos as $qso) {
+			$q[] = $qso->toArray();
+		}
+
+		header("Content-Type: application/json");
+		print json_encode($q);
+	}
+
+	public function batchDeleteQsos() {
+		$ids = xss_clean($this->input->post('ids'));
+
+		$this->load->model('logbookadvanced_model');
+		$this->logbookadvanced_model->deleteQsos($ids);
+	}
+
+	public function getSubdivisionsForDxcc() {
+		$dxcc = xss_clean($this->input->post('dxcc'));
+
+		$this->load->model('logbookadvanced_model');
+		$result = $this->logbookadvanced_model->getSubdivisons($dxcc);
+
+		header("Content-Type: application/json");
+		print json_encode($result);
 	}
 }

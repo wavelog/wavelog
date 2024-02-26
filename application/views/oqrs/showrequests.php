@@ -27,7 +27,7 @@ function echo_qsl_method($method) {
 <div class="row">
 	<form id="searchForm" name="searchForm" action="<?php echo base_url()."index.php/oqrs/search";?>" method="post">
 		<div class="row">
-			<div class="forn-group col-lg-2 col-md-2 col-sm-3 col-xl">
+			<div class="forn-group w-auto col-lg-2 col-md-2 col-sm-3 col-xl">
 				<label class="form-label" for="de">De</label>
 				<select id="de" name="de" class="form-select form-select-sm">
 					<option value="">All</option>
@@ -38,12 +38,12 @@ function echo_qsl_method($method) {
 					?>
 				</select>
 			</div>
-			<div class="forn-group col-lg-2 col-md-2 col-sm-3 col-xl">
+			<div class="forn-group w-auto col-lg-2 col-md-2 col-sm-3 col-xl">
 				<label class="form-label" for="dx">Dx</label>
 				<input type="text" name="dx" id="dx" class="form-control form-control-sm" value="">
 			</div>
-			
-			<div class="forn-group col-lg-2 col-md-2 col-sm-3 col-xl">
+
+			<div class="forn-group w-auto col-lg-2 col-md-2 col-sm-3 col-xl">
 				<label for="status">OQRS Status</label>
 				<select id="status" name="status" class="form-select form-select-sm">
 					<option value="">All</option>
@@ -52,7 +52,7 @@ function echo_qsl_method($method) {
 					<option value="2">Request done</option>
 				</select>
 			</div>
-			<div class="forn-group col-lg-2 col-md-2 col-sm-3 col-xl">
+			<div class="forn-group w-auto col-lg-2 col-md-2 col-sm-3 col-xl">
 				<label for="oqrsResults"># Results</label>
 				<select id="oqrsResults" name="oqrsResults" class="form-select form-select-sm">
 					<option value="50">50</option>
@@ -66,17 +66,12 @@ function echo_qsl_method($method) {
 				<label>&nbsp;</label><br>
 				<button type="submit" class="btn btn-sm btn-primary" id="searchButton">Search</button>
 				<button type="reset" class="btn btn-sm btn-danger" id="resetButton">Reset</button>
+				<span class="h6">With selected :</span>
+				<button type="button" class="btn btn-sm btn-warning" id="markOqrs">Mark as done</button>
+				<button type="button" class="btn btn-sm btn-danger" id="deleteOqrs">Delete</button>
 			</div>
 		</div>
 	</form>
-</div>
-<div class="row">
-	<div class=" mb-2">
-		<span class="h6">With selected :</span>
-		<button type="button" class="btn btn-sm btn-warning" id="markOqrs">Mark as done</button>
-        <button type="button" class="btn btn-sm btn-danger" id="deleteOqrs">Delete</button>
-		<span id="infoBox"></span>
-	</div>
 </div>
 <table style="width:100%" class="table-sm oqrstable table table-striped table-bordered table-hover table-condensed text-center" id="qsoList">
 	<thead>

@@ -28,6 +28,8 @@ $lang['general_word_filtering_on'] = "Отфильтровано по";
 $lang['general_word_not_display'] = "Not display";
 $lang['general_word_icon'] = "Icon";
 $lang['general_word_never'] = "Never";
+$lang['general_word_active'] = "Active";
+$lang['general_word_inactive'] = "Inactive";
 
 $lang['general_word_date'] = 'Дата';
 $lang['general_word_startdate'] = "Дата начала";
@@ -130,6 +132,8 @@ $lang['gen_hamradio_callsign'] = 'Позывной';
 $lang['gen_hamradio_de'] = 'от';
 $lang['gen_hamradio_dx'] = 'DX';
 $lang['gen_hamradio_mode'] = 'Вид модуляции';
+$lang['gen_hamradio_ant_az'] = 'Antenna Azimuth';
+$lang['gen_hamradio_ant_el'] = 'Antenna Elevation';
 $lang['gen_hamradio_rst_sent'] = 'Отправлено';
 $lang['gen_hamradio_rst_rcvd'] = 'Получено';
 $lang['gen_hamradio_bandgroup'] = "Bandgroup";
