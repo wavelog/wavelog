@@ -45,7 +45,13 @@ class Debug_model extends CI_Model
                 // check if the qso_id is empty, if yes we create a folder 'not assigned' instead of 'user_id'
                 if (!empty($qso_id)) {
                     // get the user_id for this qso_id
-                    $user_id = $this->Logbook_model->get_user_id_from_qso($qso_id);
+                    $get_user_id = $this->Logbook_model->get_user_id_from_qso($qso_id);
+
+                    if(!empty($get_user_id)) {
+                        $user_id = $get_user_id;
+                    } else {
+                        $user_id = 'not_assigned';
+                    } 
                 } else {
                     $user_id = 'not_assigned';
                 }
@@ -79,7 +85,13 @@ class Debug_model extends CI_Model
                 // check if the qso_id is empty, if yes we create a folder 'not assigned' instead of 'user_id'
                 if (!empty($qso_id)) {
                     // get the user_id for this qso_id
-                    $user_id = $this->Logbook_model->get_user_id_from_qso($qso_id);
+                    $get_user_id = $this->Logbook_model->get_user_id_from_qso($qso_id);
+
+                    if(!empty($get_user_id)) {
+                        $user_id = $get_user_id;
+                    } else {
+                        $user_id = 'not_assigned';
+                    }
                 } else {
                     $user_id = 'not_assigned';
                 }
