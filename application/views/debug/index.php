@@ -136,8 +136,6 @@
                     <div class="card-header">Migrate Userdata</div>
                     <div class="card-body">
                         <p>Here you can migrate existing QSL cards and eQSL cards to the new userdata folder.</p>
-                        <p><b>Status: </b></p>
-                        <p class="bg-secondary p-2"><?php echo $userdata_status['status']; ?></p>
                         <a href="<?php echo site_url('debug/migrate_userdata'); ?>" class="btn btn-primary <?php echo $userdata_status['btn_class']; ?>"><?php echo $userdata_status['btn_text']; ?></a>
                     </div>
                 </div>
