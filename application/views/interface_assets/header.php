@@ -69,7 +69,7 @@
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light main-nav" id="header-menu">
 		<div class="container">
-			<a class="navbar-brand" href="<?php echo site_url(); ?>"><img class="headerLogo" src="<?php echo base_url(); ?>assets/logo/<?php echo $this->optionslib->get_logo('header_logo'); ?>.png" alt="Logo" /></a> 
+			<a class="navbar-brand" href="<?php echo site_url(); ?>"><img class="headerLogo" src="<?php echo base_url(); ?>assets/logo/<?php echo $this->optionslib->get_logo('header_logo'); ?>.png" alt="Logo" /></a>
 			<?php if (ENVIRONMENT == "development") { ?>
 				<span class="badge text-bg-danger"><?php echo lang('menu_badge_developer_mode'); ?></span>
 			<?php } ?>
@@ -373,31 +373,31 @@
 						</li>
 						<?php
 						if ($quickswitch_enabled == 'true') { ?>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><i class="fas fa-map-marker-alt"></i> | <i class="fas fa-book"></i></a>
-							<ul class="dropdown-menu dropdown-menu-right header-dropdown">
-								<li><a class="dropdown-item disabled"><?php echo lang('menu_select_location'); ?>:</a></li>
-								<?php
-								$location_favorites = $this->user_options_model->get_options('station_location', array('option_name' => 'is_favorite', 'option_value' => 'true'));
-								$current_active_location = $this->stations->find_active();
-								$active_badge = '<span class="badge bg-success ms-2">'.lang('general_word_active').'</span>';
-								foreach ($location_favorites->result() as $row) {
-									$profile_info = $this->stations->profile($row->option_key)->row();
-									$station_profile_name = ($profile_info) ? $profile_info->station_profile_name : 'Unknown Location';
-									$new_active = $row->option_key;
-									if ($new_active != $current_active_location) { ?>
-										<li><a type="button" onclick="set_active_location('<?php echo $current_active_location; ?>', '<?php echo $new_active; ?>')" class="dropdown-item"><i class="fas fa-map-marker-alt me-2"></i><?php echo $station_profile_name; ?></a></li>
-									<?php } else { ?>
-										<li><a class="dropdown-item"><i class="fas fa-map-marker-alt me-2"></i><?php echo $station_profile_name;
-																												echo $active_badge; ?></a></li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><i class="fas fa-map-marker-alt"></i> | <i class="fas fa-book"></i></a>
+								<ul class="dropdown-menu dropdown-menu-right header-dropdown">
+									<li><a class="dropdown-item disabled"><?php echo lang('menu_select_location'); ?>:</a></li>
+									<?php
+									$location_favorites = $this->user_options_model->get_options('station_location', array('option_name' => 'is_favorite', 'option_value' => 'true'));
+									$current_active_location = $this->stations->find_active();
+									$active_badge = '<span class="badge bg-success ms-2">' . lang('general_word_active') . '</span>';
+									foreach ($location_favorites->result() as $row) {
+										$profile_info = $this->stations->profile($row->option_key)->row();
+										$station_profile_name = ($profile_info) ? $profile_info->station_profile_name : 'Unknown Location';
+										$new_active = $row->option_key;
+										if ($new_active != $current_active_location) { ?>
+											<li><a type="button" onclick="set_active_location('<?php echo $current_active_location; ?>', '<?php echo $new_active; ?>')" class="dropdown-item"><i class="fas fa-map-marker-alt me-2"></i><?php echo $station_profile_name; ?></a></li>
+										<?php } else { ?>
+											<li><a class="dropdown-item"><i class="fas fa-map-marker-alt me-2"></i><?php echo $station_profile_name;
+																													echo $active_badge; ?></a></li>
+										<?php } ?>
 									<?php } ?>
-								<?php } ?>
-								<li><a class="dropdown-item" href="<?php echo site_url('stationsetup'); ?>" title="Manage station logbooks"><?php echo lang('menu_select_location_show_all'); ?>...</a></li>
-								<div class="dropdown-divider"></div>
-								<li><a class="dropdown-item disabled"><?php echo lang('gen_hamradio_active_logbook'); ?>:<span class="badge text-bg-info ms-1"><?php echo $this->logbooks_model->find_name($this->session->userdata('active_station_logbook')); ?></span></a></li>
-								<li><a class="dropdown-item" href="<?php echo site_url('stationsetup'); ?>" title="Manage station locations"><?php echo lang('menu_choose_another_logbook'); ?>...</a></li>
-							</ul>
-						</li>
+									<div class="dropdown-divider"></div>
+									<li><a class="dropdown-item disabled"><?php echo lang('gen_hamradio_active_logbook'); ?>:<span class="badge text-bg-info ms-1"><?php echo $this->logbooks_model->find_name($this->session->userdata('active_station_logbook')); ?></span></a></li>
+									<div class="dropdown-divider"></div>
+									<li><a class="dropdown-item" href="<?php echo site_url('stationsetup'); ?>" title="Manage station locations"><?php echo lang('menu_station_setup'); ?></a></li>
+								</ul>
+							</li>
 						<?php }
 						// Can add extra menu items by defining them in options. The format is json.
 						// Useful to add extra things in Wavelog without the need for modifying files. If you add extras, these files will not be overwritten when updating.

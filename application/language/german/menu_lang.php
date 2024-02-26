@@ -80,8 +80,7 @@ $lang['menu_account'] = 'Konto';
 $lang['menu_station_logbooks'] = 'Stationslogbücher';
 $lang['menu_station_locations'] = 'Stationsstandorte';
 $lang['menu_select_location'] = "Wähle einen Stationsstandort";
-$lang['menu_select_location_show_all'] = "Zeige alle";
-$lang['menu_choose_another_logbook'] = "Wähle ein anderes Logbuch";
+$lang['menu_station_setup'] = 'Stations Setup';
 $lang['menu_bands'] = 'Bänder';
 $lang['menu_adif_import_export'] = 'ADIF Import / Export';
 $lang['menu_other_export'] = "Andere Export Optionen";
@@ -107,4 +106,3 @@ $lang['menu_logout'] = 'Logout';
 
 $lang['menu_extras'] = "Extras";
 $lang['menu_maintenance']='Wartung';
-$lang['menu_station_setup'] = 'Station Setup';

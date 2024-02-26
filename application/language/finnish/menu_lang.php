@@ -80,8 +80,7 @@ $lang['menu_account'] = 'Käyttäjätili';
 $lang['menu_station_logbooks'] = 'Station Logbooks';
 $lang['menu_station_locations'] = 'Station Locations';
 $lang['menu_select_location'] = "Select a Location";
-$lang['menu_select_location_show_all'] = "Show all";
-$lang['menu_choose_another_logbook'] = "Choose another Logbook";
+$lang['menu_station_setup'] = 'Station Setup';
 $lang['menu_bands'] = 'Bandit';
 $lang['menu_adif_import_export'] = 'ADIF Tuonti / Vienti';
 $lang['menu_other_export'] = "Other Export Options";
@@ -107,4 +106,3 @@ $lang['menu_logout'] = 'Kirjaudu ulos';
 
 $lang['menu_extras'] = "Extras";
 $lang['menu_maintenance']='Maintenance';
-$lang['menu_station_setup'] = 'Station Setup';

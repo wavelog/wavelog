@@ -80,8 +80,7 @@ $lang['menu_account'] = '账户';
 $lang['menu_station_logbooks'] = '电台站日志簿';
 $lang['menu_station_locations'] = '电台站位置';
 $lang['menu_select_location'] = "Select a Location";
-$lang['menu_select_location_show_all'] = "Show all";
-$lang['menu_choose_another_logbook'] = "Choose another Logbook";
+$lang['menu_station_setup'] = 'Station Setup';
 $lang['menu_bands'] = '波段';
 $lang['menu_adif_import_export'] = 'ADIF 导入/导出';
 $lang['menu_other_export'] = "Other Export Options";
@@ -107,4 +106,3 @@ $lang['menu_logout'] = '注销';
 
 $lang['menu_extras'] = "Extras";
 $lang['menu_maintenance']='维护';
-$lang['menu_station_setup'] = 'Station Setup';
