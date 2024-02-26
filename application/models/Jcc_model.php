@@ -922,8 +922,6 @@ class Jcc_model extends CI_Model {
 			$sql .= " and dxcc_entities.end is null";
 		}
 
-		$sql .= $this->addContinentsToQuery($postdata);
-
 		$query = $this->db->query($sql);
 
 		return $query->result();
@@ -948,8 +946,6 @@ class Jcc_model extends CI_Model {
 		if ($postdata['includedeleted'] == NULL) {
 			$sql .= " and dxcc_entities.end is null";
 		}
-
-		$sql .= $this->addContinentsToQuery($postdata);
 
 		$query = $this->db->query($sql);
 
