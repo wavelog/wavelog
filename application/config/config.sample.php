@@ -15,6 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $config['app_name'] = "Wavelog";
 $config['directory'] = "logbook";
 $config['callbook'] = "hamqth"; // Options are hamqth or qrz
+
 $config['datadir'] = null; // default to install directory
 
 /*
@@ -675,4 +676,4 @@ $config['proxy_ips'] = '';
 |
 */
 
-// $config['userdata'] = "userdata";  
+$config['userdata'] = "userdata";  
