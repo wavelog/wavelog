@@ -225,8 +225,8 @@ $lang['general_word_today'] = '今天';
 
 $lang['dashboard_php_version_warning'] = '您需要升级您的 PHP 版本。 最低版本为 7.4。 你的版本是';
 $lang['dashboard_country_files_warning'] = '您需要更新国家/地区文件！ 请前往<a href="'.site_url('update').'">此处</a>执行此操作！';
-$lang['dashboard_locations_warning'] = '您没有电台站位置。 前往<a href="'.site_url('station') .'">此处</a>创建它！';
-$lang['dashboard_logbooks_warning'] = '你没有电台日志。 请前往<a href="'.site_url('logbooks') .'">此处</a>创建它！';
+$lang['dashboard_locations_warning'] = '您没有电台站位置。 前往<a href="'.site_url('stationsetup') .'">此处</a>创建它！';
+$lang['dashboard_logbooks_warning'] = '你没有电台日志。 请前往<a href="'.site_url('stationsetup') .'">此处</a>创建它！';
 
 $lang['hams_at_no_activations_found'] = '未找到即将进行的激活。 请稍后再回来查看。';
 
