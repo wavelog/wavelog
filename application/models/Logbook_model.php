@@ -4787,12 +4787,15 @@ function lotw_last_qsl_date($user_id) {
     }
 
     public function get_user_id_from_qso($qso_id) {
+
+      $clean_qsoid = $this->security->xss_clean($qso_id);
+
       $sql =    'SELECT station_profile.user_id
                 FROM '.$this->config->item('table_name').' 
                 INNER JOIN station_profile ON ('.$this->config->item('table_name').'.station_id = station_profile.station_id)
                 WHERE '.$this->config->item('table_name').'.COL_PRIMARY_KEY = ?';
 
-      $result = $this->db->query($sql, $qso_id);
+      $result = $this->db->query($sql, $clean_qsoid);
       $row = $result->row();
 
       return $row->user_id;
