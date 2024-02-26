@@ -244,7 +244,7 @@ class Stationsetup extends CI_Controller {
 			$single->station_callsign = $entry->station_callsign;
 			$single->station_country = $this->stationcountry2html($entry->station_country, $entry->dxcc_end);
 			$single->station_gridsquare = $entry->station_gridsquare;
-			$single->station_badge = $this->stationbadge2html($entry->station_active, $entry->qso_total, $current_active, $entry->station_profile_name);
+			$single->station_badge = $this->stationbadge2html($entry->station_active, $entry->qso_total, $current_active, $entry->station_profile_name,$entry->station_id);
 			$single->station_edit = $this->stationedit2html($entry->station_id);
 			$single->station_emptylog = $this->stationemptylog2html($entry->station_id);
 			$single->station_copylog = $this->stationcopy2html($entry->station_id);
@@ -273,7 +273,7 @@ class Stationsetup extends CI_Controller {
 		return '<span class="badge bg-info">'.$station_id.'</span>';
 	}
 
-	private function stationbadge2html($station_active, $qso_total, $current_active, $station_profile_name) {
+	private function stationbadge2html($station_active, $qso_total, $current_active, $station_profile_name, $id) {
 		$returntext = '';
 		if($station_active != 1) {
 			$returntext .= '<button id="'.$id.'" class="setActiveStation btn btn-outline-secondary btn-sm" cnftext="'. lang('station_location_confirm_active') . $station_profile_name .'">' . lang('station_location_set_active') . '</button><br/>';
