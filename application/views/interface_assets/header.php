@@ -303,10 +303,8 @@
 								$quickswitch_enabled = ($this->user_options_model->get_options('header_menu', array('option_name' => 'locations_quickswitch'))->row()->option_value ?? 'false');
 								if ($quickswitch_enabled != 'true') {
 								?>
-									<li><a class="dropdown-item" href="<?php echo site_url('logbooks'); ?>" title="Manage station logbooks"><i class="fas fa-home"></i> <?php echo lang('menu_station_logbooks'); ?></a></li>
-									<li><a class="dropdown-item" href="<?php echo site_url('station'); ?>" title="Manage station locations"><i class="fas fa-home"></i> <?php echo lang('menu_station_locations'); ?></a></li>
+									<li><a class="dropdown-item" href="<?php echo site_url('stationsetup'); ?>" title="Manage station setup"><i class="fas fa-home"></i> <?php echo lang('menu_station_setup'); ?></a></li>
 								<?php } ?>
-								<li><a class="dropdown-item" href="<?php echo site_url('stationsetup'); ?>" title="Manage station setup"><i class="fas fa-home"></i> <?php echo lang('menu_station_setup'); ?></a></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('band'); ?>" title="Manage Bands"><i class="fas fa-cog"></i> <?php echo lang('menu_bands'); ?></a></li>
 
 								<div class="dropdown-divider"></div>
@@ -386,10 +384,10 @@
 																												echo $active_badge; ?></a></li>
 									<?php } ?>
 								<?php } ?>
-								<li><a class="dropdown-item" href="<?php echo site_url('station'); ?>" title="Manage station logbooks"><?php echo lang('menu_select_location_show_all'); ?>...</a></li>
+								<li><a class="dropdown-item" href="<?php echo site_url('stationsetup'); ?>" title="Manage station logbooks"><?php echo lang('menu_select_location_show_all'); ?>...</a></li>
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item disabled"><?php echo lang('gen_hamradio_active_logbook'); ?>:<span class="badge text-bg-info ms-1"><?php echo $this->logbooks_model->find_name($this->session->userdata('active_station_logbook')); ?></span></a></li>
-								<li><a class="dropdown-item" href="<?php echo site_url('logbooks'); ?>" title="Manage station locations"><?php echo lang('menu_choose_another_logbook'); ?>...</a></li>
+								<li><a class="dropdown-item" href="<?php echo site_url('stationsetup'); ?>" title="Manage station locations"><?php echo lang('menu_choose_another_logbook'); ?>...</a></li>
 							</ul>
 						</li>
 						<?php }
