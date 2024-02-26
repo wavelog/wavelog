@@ -270,7 +270,7 @@ function loadLocationTable(rows) {
 				url: getDataTablesLanguageUrl(),
 			},
 			'columnDefs': [
-				{ 'targets':4,	// Col 4 (Badge) needs some special things...
+				{ 'targets':0,
 				  'createdCell':  function (td, cellData, rowData, row, col) {
 				  			(td).attr('data-order', 1);	// not sure how to add ID dynamic here
 						  }
@@ -288,6 +288,7 @@ function loadLocationTable(rows) {
 
 		var data = [];
 
+		data.push(locations.station_id);
 		data.push(locations.station_name);
 		data.push(locations.station_callsign);
 		data.push(locations.station_country);

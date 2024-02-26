@@ -58,6 +58,7 @@ $lang['station_location_updated_suff'] = ' Обновлено.';
 $lang['station_location_warning'] = 'Внимание. Вам нужно установить активное расположение станции. Перейдите в меню Позывной->Расположение станции, чтобы выбрать.';
 $lang['station_location_reassign_at'] = 'Пожалуйста, переназначьте их в ';
 $lang['station_location_warning_reassign'] = 'Из-за недавних изменений в Wavelog вам нужно переназначить QSO вашим профилям станции.';
+$lang['station_location_id'] = 'ID';
 $lang['station_location_name'] = 'Название профиля';
 $lang['station_location_name_hint'] = 'Короткое название профиля расположения станции, к примеру: Home (HM54ip)';
 $lang['station_location_callsign'] = 'Позывной станции';

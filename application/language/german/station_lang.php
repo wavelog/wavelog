@@ -58,6 +58,7 @@ $lang['station_location_updated_suff'] = ' aktualisiert.'; // nur letztes Wort i
 $lang['station_location_warning'] = 'Achtung: Du musst einen aktiven Stationsstandort auswählen. Gehe zu Rufzeichen -> Stationsstandorte um einen zu aktivieren.';
 $lang['station_location_reassign_at'] = 'Bitte mache die Zuordnung in ';
 $lang['station_location_warning_reassign'] = 'Aufgrund von Änderungen in Wavelog musst du QSOs wieder einem Stationsstandort zuordnen.';
+$lang['station_location_id'] = 'ID';
 $lang['station_location_name'] = 'Station Name';
 $lang['station_location_name_hint'] = 'Kurzname für den Stationsstandort. Zum Beispiel: Home (HM54ip)';
 $lang['station_location_callsign'] = 'Station Rufzeichen';
