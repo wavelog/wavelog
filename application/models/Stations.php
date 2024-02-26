@@ -75,9 +75,16 @@ class Stations extends CI_Model {
 
 		// Check if the state is Canada and get the correct state
 		if ($this->input->post('dxcc') == 1 && $this->input->post('station_ca_state') !="") {
-			$state = $this->input->post('station_ca_state');
+			$state = xss_clean($this->input->post('station_ca_state', true));
 		} else {
-			$state = $this->input->post('station_state');
+			$state = xss_clean($this->input->post('station_state', true));
+		}
+
+		// Check if DXCC is USA, Alaska or Hawaii. If not true, we clear the County field due to complex adif specs
+		if (($this->input->post('dxcc') == 291 || $this->input->post('dxcc') == 006 || $this->input->post('dxcc') == 110) && $this->input->post('station_cnty') !="") {
+			$county = xss_clean($this->input->post('station_cnty', true));
+		} else {
+			$county = '';
 		}
 
 		// Create data array with field values
@@ -96,7 +103,7 @@ class Stations extends CI_Model {
 			'station_callsign' =>  xss_clean($this->input->post('station_callsign', true)),
 			'station_power' => is_numeric(xss_clean($this->input->post('station_power', true))) ? xss_clean($this->input->post('station_power', true)) : NULL,
 			'station_dxcc' =>  xss_clean($this->input->post('dxcc', true)),
-			'station_cnty' =>  xss_clean($this->input->post('station_cnty', true)),
+			'station_cnty' =>  $county,
 			'station_cq' =>  xss_clean($this->input->post('station_cq', true)),
 			'station_itu' =>  xss_clean($this->input->post('station_itu', true)),
 			'state' =>  $state,
@@ -128,9 +135,16 @@ class Stations extends CI_Model {
 
 		// Check if the state is Canada and get the correct state
 		if ($this->input->post('dxcc') == 1 && $this->input->post('station_ca_state') !="") {
-			$state = $this->input->post('station_ca_state');
+			$state = xss_clean($this->input->post('station_ca_state', true));
 		} else {
-			$state = $this->input->post('station_state');
+			$state = xss_clean($this->input->post('station_state', true));
+		}
+
+		// Check if DXCC is USA, Alaska or Hawaii. If not true, we clear the County field due to complex adif specs
+		if (($this->input->post('dxcc') == 291 || $this->input->post('dxcc') == 006 || $this->input->post('dxcc') == 110) && $this->input->post('station_cnty') !="") {
+			$county = xss_clean($this->input->post('station_cnty', true));
+		} else {
+			$county = '';
 		}
 
 		$data = array(
@@ -146,7 +160,7 @@ class Stations extends CI_Model {
 			'station_callsign' => xss_clean($this->input->post('station_callsign', true)),
 			'station_power' => is_numeric(xss_clean($this->input->post('station_power', true))) ? xss_clean($this->input->post('station_power', true)) : NULL,
 			'station_dxcc' => xss_clean($this->input->post('dxcc', true)),
-			'station_cnty' => xss_clean($this->input->post('station_cnty', true)),
+			'station_cnty' =>  $county,
 			'station_cq' => xss_clean($this->input->post('station_cq', true)),
 			'station_itu' => xss_clean($this->input->post('station_itu', true)),
 			'state' => $state,

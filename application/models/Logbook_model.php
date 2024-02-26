@@ -380,10 +380,14 @@ class Logbook_model extends CI_Model {
 			$this->db->where('COL_STATE', $searchphrase);
 			$this->db->where_in('COL_DXCC', ['1']);
 			break;
-    case 'helvetia':
-      $this->db->where('COL_STATE', $searchphrase);
-      $this->db->where_in('COL_DXCC', ['287']);
-      break;
+		case 'helvetia':
+			$this->db->where('COL_STATE', $searchphrase);
+			$this->db->where_in('COL_DXCC', ['287']);
+			break;
+		case 'JCC':
+			$this->db->where('COL_CNTY', $searchphrase);
+			$this->db->where('COL_DXCC', '339');
+			break;
 		case 'SOTA':
 			$this->db->where('COL_SOTA_REF', $searchphrase);
 			break;
@@ -3505,13 +3509,15 @@ function lotw_last_qsl_date($user_id) {
 		  }
 
 		  if (isset($record['ant_az'])){
-			  $input_ant_az = filter_var($record['ant_az'],FILTER_SANITIZE_NUMBER_INT);
+			  $input_ant_az = filter_var($record['ant_az'],FILTER_VALIDATE_FLOAT);
+			  $input_ant_az = fmod($input_ant_az, 360);
 		  } else {
 			  $input_ant_az = NULL;
 		  }
 
 		  if (isset($record['ant_el'])){
-			  $input_ant_el = filter_var($record['ant_el'],FILTER_SANITIZE_NUMBER_INT);
+			  $input_ant_el = filter_var($record['ant_el'],FILTER_VALIDATE_FLOAT);
+			  $input_ant_el = fmod($input_ant_el, 90);
 		  } else {
 			  $input_ant_el = NULL;
 		  }
@@ -4708,9 +4714,7 @@ function lotw_last_qsl_date($user_id) {
 
         // check if qso is confirmed //
         if (!$isVisitor) {
-          if (($row->COL_EQSL_QSL_RCVD=='Y') || ($row->COL_LOTW_QSL_RCVD=='Y') || ($row->COL_QSL_RCVD=='Y')) {
-            $plot['confirmed'] = "Y";
-          }
+          $plot['confirmed'] = ($this->qso_is_confirmed($row)==true)?"Y":"N";
         }
         // check lat / lng (depend info source) //
         if ($row->COL_GRIDSQUARE != null) {
@@ -4757,6 +4761,29 @@ function lotw_last_qsl_date($user_id) {
     public function get_states_by_dxcc($dxcc) {
         $this->db->where('adif', $dxcc);
         return $this->db->get('primary_subdivisions');
+    }
+
+    // return if qso is confirmed (depend user option "qsl method") //
+    public function qso_is_confirmed($qso) {
+      $confirmed = false;
+      $this->load->model('user_model');
+      $user_default_confirmation = $this->session->userdata('user_default_confirmation');
+      if (isset($user_default_confirmation)) {
+        $qso = (array) $qso;
+        if (strpos($user_default_confirmation, 'Q') !== false) {        // QSL
+          if ($qso['COL_QSL_RCVD']=='Y') { $confirmed = true; }
+        }
+        if (strpos($user_default_confirmation, 'L') !== false) { // LoTW
+          if ($qso['COL_LOTW_QSL_RCVD']=='Y') { $confirmed = true; }
+        }
+        if (strpos($user_default_confirmation, 'E') !== false) { // eQsl
+          if ($qso['COL_EQSL_QSL_RCVD']=='Y') { $confirmed = true; }
+        }
+        if (strpos($user_default_confirmation, 'Z') !== false) { // QRZ
+          if ($qso['COL_QRZCOM_QSO_DOWNLOAD_STATUS']=='Y') { $confirmed = true; }
+        }
+      }
+      return $confirmed;
     }
 }
 

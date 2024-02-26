@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 
 defined('BASEPATH') OR exit('No direct script access allowed');
@@ -30,6 +29,7 @@ $lang['general_word_filtering_on'] = "Filtering on";
 $lang['general_word_never'] = "Never";
 $lang['general_word_active'] = "Active";
 $lang['general_word_inactive'] = "Inactive";
+
 $lang['general_word_export'] = "Export";
 $lang['general_word_import'] = "Import";
 $lang['general_word_startdate'] = "Start Date";
@@ -132,6 +132,8 @@ $lang['gen_hamradio_callsign'] = 'Signal';
 $lang['gen_hamradio_de'] = 'De';
 $lang['gen_hamradio_dx'] = 'Dx';
 $lang['gen_hamradio_mode'] = 'Mode';
+$lang['gen_hamradio_ant_az'] = 'Antenna Azimuth';
+$lang['gen_hamradio_ant_el'] = 'Antenna Elevation';
 $lang['gen_hamradio_rst_sent'] = 'Skickat';
 $lang['gen_hamradio_rst_rcvd'] = 'Mottagen\'d';
 $lang['gen_hamradio_band'] = 'Band';
@@ -158,6 +160,7 @@ $lang['gen_hamradio_satellite_name'] = 'Satellitnamn';
 $lang['gen_hamradio_satellite_mode'] = 'Satellite-mode';
 
 $lang['gen_hamradio_award'] = "Award";
+
 $lang['gen_hamradio_active_logbook_hint'] = "Displaying all QSOs of station locations which are linked to this logbook";
 $lang['gen_hamradio_logbook'] = 'Loggbok';
 $lang['gen_hamradio_active_logbook'] = 'Active Logbook';

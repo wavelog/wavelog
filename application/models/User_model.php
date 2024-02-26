@@ -397,13 +397,29 @@ class User_Model extends CI_Model {
 			$user_type = $this->session->userdata('user_type');
 			$user_hash = $this->session->userdata('user_hash');
 
-			if($this->_auth($user_id."-".$user_type, $user_hash)) {
-				// Freshen the session
-				$this->update_session($user_id);
-				return 1;
-			} else {
-				$this->clear_session();
-				return 0;
+			if(ENVIRONMENT != 'maintenance') {
+				if($this->_auth($user_id."-".$user_type, $user_hash)) {
+					// Freshen the session
+					$this->update_session($user_id);
+					return 1;
+				} else {
+					$this->clear_session();
+					return 0;
+				}
+			} else {  // handle the maintenance mode and kick out user on page reload if not an admin
+				if($user_type == '99') {
+					if($this->_auth($user_id."-".$user_type, $user_hash)) {
+						// Freshen the session
+						$this->update_session($user_id);
+						return 1;
+					} else {
+						$this->clear_session();
+						return 0;
+					}
+				} else {
+					$this->clear_session();
+					return 0;
+				}
 			}
 		} else {
 			return 0;
@@ -417,7 +433,15 @@ class User_Model extends CI_Model {
 		if($u->num_rows() != 0)
 		{
 			if($this->_auth($password, $u->row()->user_password)) {
-				return 1;
+				if (ENVIRONMENT != "maintenance") {
+					return 1;
+				} else {
+					if($u->row()->user_type != 99){
+						return 0;
+					} else {
+						return 1;
+					}
+				}
 			}
 		}
 		return 0;

@@ -247,6 +247,80 @@ class Awards extends CI_Controller {
 		$this->load->view('interface_assets/footer', $footerData);
 	}
 
+	public function jcc ()	{
+		$footerData = [];
+        $footerData['scripts'] = ['assets/js/sections/jcc.js'];
+
+		$this->load->model('jcc_model');
+        $this->load->model('modes');
+        $this->load->model('bands');
+
+        $data['worked_bands'] = $this->bands->get_worked_bands('jcc');
+        $data['modes'] = $this->modes->active();
+
+        if ($this->input->post('band') != NULL) {   			// Band is not set when page first loads.
+            if ($this->input->post('band') == 'All') {         // Did the user specify a band? If not, use all bands
+                $bands = $data['worked_bands'];
+            }
+            else {
+                $bands[] = $this->security->xss_clean($this->input->post('band'));
+            }
+        }
+        else {
+            $bands = $data['worked_bands'];
+        }
+
+        $data['bands'] = $bands; // Used for displaying selected band(s) in the table in the view
+
+        if($this->input->method() === 'post') {
+            $postdata['qsl'] = $this->security->xss_clean($this->input->post('qsl'));
+            $postdata['lotw'] = $this->security->xss_clean($this->input->post('lotw'));
+            $postdata['eqsl'] = $this->security->xss_clean($this->input->post('eqsl'));
+            $postdata['qrz'] = $this->security->xss_clean($this->input->post('qrz'));
+            $postdata['worked'] = $this->security->xss_clean($this->input->post('worked'));
+            $postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed'));
+            $postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked'));
+            $postdata['includedeleted'] = $this->security->xss_clean($this->input->post('includedeleted'));
+            $postdata['Africa'] = $this->security->xss_clean($this->input->post('Africa'));
+            $postdata['Asia'] = $this->security->xss_clean($this->input->post('Asia'));
+            $postdata['Europe'] = $this->security->xss_clean($this->input->post('Europe'));
+            $postdata['NorthAmerica'] = $this->security->xss_clean($this->input->post('NorthAmerica'));
+            $postdata['SouthAmerica'] = $this->security->xss_clean($this->input->post('SouthAmerica'));
+            $postdata['Oceania'] = $this->security->xss_clean($this->input->post('Oceania'));
+            $postdata['Antarctica'] = $this->security->xss_clean($this->input->post('Antarctica'));
+            $postdata['band'] = $this->security->xss_clean($this->input->post('band'));
+            $postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
+        }
+        else { // Setting default values at first load of page
+            $postdata['qsl'] = 1;
+            $postdata['lotw'] = 1;
+            $postdata['eqsl'] = 0;
+            $postdata['qrz'] = 0;
+            $postdata['worked'] = 1;
+            $postdata['confirmed'] = 1;
+            $postdata['notworked'] = 0;
+            $postdata['includedeleted'] = 0;
+            $postdata['Africa'] = 1;
+            $postdata['Asia'] = 1;
+            $postdata['Europe'] = 1;
+            $postdata['NorthAmerica'] = 1;
+            $postdata['SouthAmerica'] = 1;
+            $postdata['Oceania'] = 1;
+            $postdata['Antarctica'] = 1;
+            $postdata['band'] = 'All';
+            $postdata['mode'] = 'All';
+        }
+
+        $data['jcc_array'] = $this->jcc_model->get_jcc_array($bands, $postdata);
+        $data['jcc_summary'] = $this->jcc_model->get_jcc_summary($bands, $postdata);
+
+		// Render Page
+		$data['page_title'] = "Awards - JCC";
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('awards/jcc/index');
+		$this->load->view('interface_assets/footer', $footerData);
+	}
+
     public function vucc()	{
         $this->load->model('vucc');
         $this->load->model('bands');
