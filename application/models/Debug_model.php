@@ -29,12 +29,15 @@ class Debug_model extends CI_Model
 
         $this->load->model('Logbook_model');
 
+        $allowed_file_extensions = ['jpg', 'jpeg', 'gif', 'png'];
+
         // *****   EQSL   ***** //
 
         // Let's scan the whole folder and get necessary data for each file
         foreach (scandir($this->src_eqsl) as $file) {
-            // Ignore .html files
-            if (pathinfo($file, PATHINFO_EXTENSION) === 'html') continue;
+            // Ignore files if they are not jpg, png or gif
+            $file_extension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+            if (!in_array($file_extension, $allowed_file_extensions)) continue;
 
             if (!is_readable($this->src_eqsl . '/' . $file)) continue;
             if ($file != '.' && $file != '..') {
@@ -74,8 +77,9 @@ class Debug_model extends CI_Model
     
         // Let's scan the whole folder and get necessary data for each file
         foreach (scandir($this->src_qsl) as $file) {
-            // Ignore .html files
-            if (pathinfo($file, PATHINFO_EXTENSION) === 'html') continue;
+            // Ignore files if they are not jpg, png or gif
+            $file_extension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+            if (!in_array($file_extension, $allowed_file_extensions)) continue;
 
             if (!is_readable($this->src_qsl . '/' . $file)) continue;
             if ($file != '.' && $file != '..') {
