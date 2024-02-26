@@ -239,11 +239,12 @@ class Stationsetup extends CI_Controller {
 		$hres=[];
 		foreach ($result as $entry) {
 			$single=(Object)[];
+			$single->station_id = $this->stationid2html($entry->station_id);
 			$single->station_name = $entry->station_profile_name;
 			$single->station_callsign = $entry->station_callsign;
 			$single->station_country = $this->stationcountry2html($entry->station_country, $entry->dxcc_end);
 			$single->station_gridsquare = $entry->station_gridsquare;
-			$single->station_badge = $this->stationbadge2html($entry->station_id, $entry->station_active, $entry->qso_total, $current_active, $entry->station_profile_name);
+			$single->station_badge = $this->stationbadge2html($entry->station_active, $entry->qso_total, $current_active, $entry->station_profile_name);
 			$single->station_edit = $this->stationedit2html($entry->station_id);
 			$single->station_emptylog = $this->stationemptylog2html($entry->station_id);
 			$single->station_copylog = $this->stationcopy2html($entry->station_id);
@@ -268,7 +269,11 @@ class Stationsetup extends CI_Controller {
 		return '<button id ="' . $id .'" title="mark/unmark as favorite" ' . $favStarClasses . ' </a>';
 	}
 
-	private function stationbadge2html($id, $station_active, $qso_total, $current_active, $station_profile_name) {
+	private function stationid2html($station_id) {
+		return '<span class="badge bg-info">'.$station_id.'</span>';
+	}
+
+	private function stationbadge2html($station_active, $qso_total, $current_active, $station_profile_name) {
 		$returntext = '';
 		if($station_active != 1) {
 			$returntext .= '<button id="'.$id.'" class="setActiveStation btn btn-outline-secondary btn-sm" cnftext="'. lang('station_location_confirm_active') . $station_profile_name .'">' . lang('station_location_set_active') . '</button><br/>';
@@ -276,7 +281,6 @@ class Stationsetup extends CI_Controller {
 			$returntext .= '<span class="badge bg-success text-bg-success">' . lang('station_location_active') . '</span><br/>';
 		}
 
-		$returntext .= '<span class="badge bg-info">ID: ' .$id .'</span>';
 		$returntext .='<span class="badge bg-light">' . $qso_total .' '. lang('gen_hamradio_qso') . '</span>';
 		return $returntext;
 	}

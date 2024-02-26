@@ -113,6 +113,7 @@
 <table id="station_locations_table" class="table-sm table table-hover table-striped table-condensed">
 	<thead>
 		<tr>
+			<th scope="col"><?php echo lang('station_location_id'); ?></th>
 			<th scope="col"><?php echo lang('station_location_name'); ?></th>
 			<th scope="col"><?php echo lang('station_location_callsign'); ?></th>
 			<th scope="col"><?php echo lang('general_word_country'); ?></th>
@@ -133,6 +134,9 @@
 	<tbody>
 		<?php foreach ($stations->result() as $row) { ?>
 		<tr>
+			<td>
+				<?php echo $row->station_id;?><br>
+			</td>
 			<td>
 				<?php echo $row->station_profile_name;?><br>
 			</td>
