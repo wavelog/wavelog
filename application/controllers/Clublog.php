@@ -13,12 +13,16 @@ class Clublog extends CI_Controller {
 
 	// Upload ADIF to Clublog
 	public function upload() {
-		$this->load->model('clublog_model');
+		if (ENVIRONMENT != 'maintenance') {
+			$this->load->model('clublog_model');
 
-		$users = $this->clublog_model->get_clublog_users();
+			$users = $this->clublog_model->get_clublog_users();
 
-		foreach ($users as $user) {
-			$this->uploadUser($user->user_id, $user->user_clublog_name, $user->user_clublog_password);
+			foreach ($users as $user) {
+				$this->uploadUser($user->user_id, $user->user_clublog_name, $user->user_clublog_password);
+			}
+		} else {
+			echo "Maintenance Mode is active. Try again later.";
 		}
 	}
 

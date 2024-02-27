@@ -272,35 +272,39 @@ class Update extends CI_Controller {
 	}
 
     public function update_clublog_scp() {
-        $strFile = $this->make_update_path("clublog_scp.txt");
-        $url = "https://cdn.clublog.org/clublog.scp.gz";
-        set_time_limit(300);
-        echo "Downloading Club Log SCP file...<br>";
-        $gz = gzopen($url, 'r');
-        if ($gz)
-        {
-            $data = "";
-            while (!gzeof($gz)) {
-                $data .= gzgetc($gz);
-            }
-            gzclose($gz);
-            if (file_put_contents($strFile, $data) !== FALSE)
+        if (ENVIRONMENT != 'maintenance') {
+            $strFile = $this->make_update_path("clublog_scp.txt");
+            $url = "https://cdn.clublog.org/clublog.scp.gz";
+            set_time_limit(300);
+            echo "Downloading Club Log SCP file...<br>";
+            $gz = gzopen($url, 'r');
+            if ($gz)
             {
-                $nCount = count(file($strFile));
-                if ($nCount > 0)
+                $data = "";
+                while (!gzeof($gz)) {
+                    $data .= gzgetc($gz);
+                }
+                gzclose($gz);
+                if (file_put_contents($strFile, $data) !== FALSE)
                 {
-                    echo "DONE: " . number_format($nCount) . " callsigns loaded";
-					$datetime = new DateTime("now", new DateTimeZone('UTC'));
-					$datetime = $datetime->format('Ymd h:i');
-					$this->optionslib->update('scp_update', $datetime , 'no');
+                    $nCount = count(file($strFile));
+                    if ($nCount > 0)
+                    {
+                        echo "DONE: " . number_format($nCount) . " callsigns loaded";
+                        $datetime = new DateTime("now", new DateTimeZone('UTC'));
+                        $datetime = $datetime->format('Ymd h:i');
+                        $this->optionslib->update('scp_update', $datetime , 'no');
+                    } else {
+                        echo "FAILED: Empty file";
+                    }
                 } else {
-                    echo "FAILED: Empty file";
+                    echo "FAILED: Could not write to Club Log SCP file";
                 }
             } else {
-                echo "FAILED: Could not write to Club Log SCP file";
+                echo "FAILED: Could not connect to Club Log";
             }
         } else {
-            echo "FAILED: Could not connect to Club Log";
+            echo "Maintenance Mode is active. Try again later.";
         }
     }
 
@@ -322,47 +326,51 @@ class Update extends CI_Controller {
     }
 
     public function lotw_users() {
-        $mtime = microtime();
-        $mtime = explode(" ",$mtime);
-        $mtime = $mtime[1] + $mtime[0];
-        $starttime = $mtime;
+        if (ENVIRONMENT != 'maintenance') {
+            $mtime = microtime();
+            $mtime = explode(" ",$mtime);
+            $mtime = $mtime[1] + $mtime[0];
+            $starttime = $mtime;
 
-        $file = 'https://lotw.arrl.org/lotw-user-activity.csv';
+            $file = 'https://lotw.arrl.org/lotw-user-activity.csv';
 
-        $handle = fopen($file, "r");
-        if ($handle === FALSE) {
-            echo "Something went wrong with fetching the LoTW uses file";
-            return;
-        }
-        $this->db->empty_table("lotw_users");
-        $i = 0;
-        $data = fgetcsv($handle,1000,",");
-        do {
-            if ($data[0]) {
-                $lotwdata[$i]['callsign'] = $data[0];
-                $lotwdata[$i]['lastupload'] = $data[1] . ' ' . $data[2];
-                if (($i % 2000) == 0) {
-                    $this->db->insert_batch('lotw_users', $lotwdata);
-                    unset($lotwdata);
-                    // echo 'Record ' . $i . '<br />';
-                }
-                $i++;
+            $handle = fopen($file, "r");
+            if ($handle === FALSE) {
+                echo "Something went wrong with fetching the LoTW uses file";
+                return;
             }
-        } while ($data = fgetcsv($handle,1000,","));
-        fclose($handle);
+            $this->db->empty_table("lotw_users");
+            $i = 0;
+            $data = fgetcsv($handle,1000,",");
+            do {
+                if ($data[0]) {
+                    $lotwdata[$i]['callsign'] = $data[0];
+                    $lotwdata[$i]['lastupload'] = $data[1] . ' ' . $data[2];
+                    if (($i % 2000) == 0) {
+                        $this->db->insert_batch('lotw_users', $lotwdata);
+                        unset($lotwdata);
+                        // echo 'Record ' . $i . '<br />';
+                    }
+                    $i++;
+                }
+            } while ($data = fgetcsv($handle,1000,","));
+            fclose($handle);
 
-        $this->db->insert_batch('lotw_users', $lotwdata);
+            $this->db->insert_batch('lotw_users', $lotwdata);
 
-        $mtime = microtime();
-        $mtime = explode(" ",$mtime);
-        $mtime = $mtime[1] + $mtime[0];
-        $endtime = $mtime;
-        $totaltime = ($endtime - $starttime);
-        echo "This page was created in ".$totaltime." seconds <br />";
-        echo "Records inserted: " . $i . " <br/>";
-		$datetime = new DateTime("now", new DateTimeZone('UTC'));
-		$datetime = $datetime->format('Ymd h:i');
-		$this->optionslib->update('lotw_users_update', $datetime , 'no');
+            $mtime = microtime();
+            $mtime = explode(" ",$mtime);
+            $mtime = $mtime[1] + $mtime[0];
+            $endtime = $mtime;
+            $totaltime = ($endtime - $starttime);
+            echo "This page was created in ".$totaltime." seconds <br />";
+            echo "Records inserted: " . $i . " <br/>";
+            $datetime = new DateTime("now", new DateTimeZone('UTC'));
+            $datetime = $datetime->format('Ymd h:i');
+            $this->optionslib->update('lotw_users_update', $datetime , 'no');
+        } else {
+            echo "Maintenance Mode is active. Try again later.";
+        }
     }
 
     public function lotw_check() {
@@ -382,27 +390,31 @@ class Update extends CI_Controller {
      * Used for autoupdating the DOK file which is used in the QSO entry dialog for autocompletion.
      */
     public function update_dok() {
-        $contents = file_get_contents('https://www.df2et.de/cqrlog/dok_and_sdok.txt', true);
+        if (ENVIRONMENT != 'maintenance') {
+            $contents = file_get_contents('https://www.df2et.de/cqrlog/dok_and_sdok.txt', true);
 
-        if($contents === FALSE) {
-            echo "Something went wrong with fetching the DOK file.";
-        } else {
-            $file = './assets/json/dok.txt';
-
-            if (file_put_contents($file, $contents) !== FALSE) {     // Save our content to the file.
-                $nCount = count(file($file));
-                if ($nCount > 0)
-                {
-                    echo "DONE: " . number_format($nCount) . " DOKs and SDOKs saved";
-					$datetime = new DateTime("now", new DateTimeZone('UTC'));
-					$datetime = $datetime->format('Ymd h:i');
-					$this->optionslib->update('dok_file_update', $datetime , 'no');
-                } else {
-                    echo"FAILED: Empty file";
-                }
+            if($contents === FALSE) {
+                echo "Something went wrong with fetching the DOK file.";
             } else {
-                echo"FAILED: Could not write to dok.txt file";
+                $file = './assets/json/dok.txt';
+
+                if (file_put_contents($file, $contents) !== FALSE) {     // Save our content to the file.
+                    $nCount = count(file($file));
+                    if ($nCount > 0)
+                    {
+                        echo "DONE: " . number_format($nCount) . " DOKs and SDOKs saved";
+                        $datetime = new DateTime("now", new DateTimeZone('UTC'));
+                        $datetime = $datetime->format('Ymd h:i');
+                        $this->optionslib->update('dok_file_update', $datetime , 'no');
+                    } else {
+                        echo"FAILED: Empty file";
+                    }
+                } else {
+                    echo"FAILED: Could not write to dok.txt file";
+                }
             }
+        } else {
+            echo "Maintenance Mode is active. Try again later.";
         }
     }
 
@@ -410,45 +422,49 @@ class Update extends CI_Controller {
      * Used for autoupdating the SOTA file which is used in the QSO entry dialog for autocompletion.
      */
     public function update_sota() {
-        $csvfile = 'https://www.sotadata.org.uk/summitslist.csv';
+        if (ENVIRONMENT != 'maintenance') {
+            $csvfile = 'https://www.sotadata.org.uk/summitslist.csv';
 
-        $sotafile = './assets/json/sota.txt';
+            $sotafile = './assets/json/sota.txt';
 
-        $csvhandle = fopen($csvfile,"r");
-        if ($csvhandle === FALSE) {
-            echo "Something went wrong with fetching the SOTA file";
-            return;
-        }
-
-        $data = fgetcsv($csvhandle,1000,","); // Skip line we are not interested in
-        $data = fgetcsv($csvhandle,1000,","); // Skip line we are not interested in
-        $data = fgetcsv($csvhandle,1000,",");
-        $sotafilehandle = fopen($sotafile, 'w');
-
-        if ($sotafilehandle === FALSE) {
-            echo"FAILED: Could not write to sota.txt file";
-            return;
-        }
-
-        $nCount = 0;
-        do {
-            if ($data[0]) {
-                fwrite($sotafilehandle, $data[0].PHP_EOL);
-                $nCount++;
+            $csvhandle = fopen($csvfile,"r");
+            if ($csvhandle === FALSE) {
+                echo "Something went wrong with fetching the SOTA file";
+                return;
             }
-        } while ($data = fgetcsv($csvhandle,1000,","));
 
-        fclose($csvhandle);
-        fclose($sotafilehandle);
+            $data = fgetcsv($csvhandle,1000,","); // Skip line we are not interested in
+            $data = fgetcsv($csvhandle,1000,","); // Skip line we are not interested in
+            $data = fgetcsv($csvhandle,1000,",");
+            $sotafilehandle = fopen($sotafile, 'w');
 
-        if ($nCount > 0)
-        {
-            echo "DONE: " . number_format($nCount) . " SOTA's saved";
-			$datetime = new DateTime("now", new DateTimeZone('UTC'));
-			$datetime = $datetime->format('Ymd h:i');
-			$this->optionslib->update('sota_file_update', $datetime , 'no');
+            if ($sotafilehandle === FALSE) {
+                echo"FAILED: Could not write to sota.txt file";
+                return;
+            }
+
+            $nCount = 0;
+            do {
+                if ($data[0]) {
+                    fwrite($sotafilehandle, $data[0].PHP_EOL);
+                    $nCount++;
+                }
+            } while ($data = fgetcsv($csvhandle,1000,","));
+
+            fclose($csvhandle);
+            fclose($sotafilehandle);
+
+            if ($nCount > 0)
+            {
+                echo "DONE: " . number_format($nCount) . " SOTA's saved";
+                $datetime = new DateTime("now", new DateTimeZone('UTC'));
+                $datetime = $datetime->format('Ymd h:i');
+                $this->optionslib->update('sota_file_update', $datetime , 'no');
+            } else {
+                echo"FAILED: Empty file";
+            }
         } else {
-            echo"FAILED: Empty file";
+            echo "Maintenance Mode is active. Try again later.";
         }
     }
 
@@ -456,95 +472,103 @@ class Update extends CI_Controller {
      * Pulls the WWFF directory for autocompletion in QSO dialogs
      */
     public function update_wwff() {
-        $csvfile = 'https://wwff.co/wwff-data/wwff_directory.csv';
+        if (ENVIRONMENT != 'maintenance') {
+            $csvfile = 'https://wwff.co/wwff-data/wwff_directory.csv';
 
-        $wwfffile = './assets/json/wwff.txt';
+            $wwfffile = './assets/json/wwff.txt';
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $csvfile);
-        curl_setopt($ch, CURLOPT_HEADER, false);
-        curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $csv = curl_exec($ch);
-        curl_close($ch);
-        if ($csv === FALSE) {
-            echo "Something went wrong with fetching the WWFF file";
-            return;
-        }
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $csvfile);
+            curl_setopt($ch, CURLOPT_HEADER, false);
+            curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $csv = curl_exec($ch);
+            curl_close($ch);
+            if ($csv === FALSE) {
+                echo "Something went wrong with fetching the WWFF file";
+                return;
+            }
 
-        $wwfffilehandle = fopen($wwfffile, 'w');
-        if ($wwfffilehandle === FALSE) {
-            echo"FAILED: Could not write to wwff.txt file";
-            return;
-        }
+            $wwfffilehandle = fopen($wwfffile, 'w');
+            if ($wwfffilehandle === FALSE) {
+                echo"FAILED: Could not write to wwff.txt file";
+                return;
+            }
 
-        $data = str_getcsv($csv,"\n");
-        $nCount = 0;
-        foreach ($data as $idx => $row) {
-           if ($idx == 0) continue; // Skip line we are not interested in
-           $row = str_getcsv($row, ',');
-           if ($row[0]) {
-              fwrite($wwfffilehandle, $row[0].PHP_EOL);
-              $nCount++;
-           }
-        }
+            $data = str_getcsv($csv,"\n");
+            $nCount = 0;
+            foreach ($data as $idx => $row) {
+            if ($idx == 0) continue; // Skip line we are not interested in
+            $row = str_getcsv($row, ',');
+            if ($row[0]) {
+                fwrite($wwfffilehandle, $row[0].PHP_EOL);
+                $nCount++;
+            }
+            }
 
-        fclose($wwfffilehandle);
+            fclose($wwfffilehandle);
 
-        if ($nCount > 0)
-        {
-            echo "DONE: " . number_format($nCount) . " WWFF's saved";
-			$datetime = new DateTime("now", new DateTimeZone('UTC'));
-			$datetime = $datetime->format('Ymd h:i');
-			$this->optionslib->update('wwff_file_update', $datetime , 'no');
+            if ($nCount > 0)
+            {
+                echo "DONE: " . number_format($nCount) . " WWFF's saved";
+                $datetime = new DateTime("now", new DateTimeZone('UTC'));
+                $datetime = $datetime->format('Ymd h:i');
+                $this->optionslib->update('wwff_file_update', $datetime , 'no');
+            } else {
+                echo"FAILED: Empty file";
+            }
         } else {
-            echo"FAILED: Empty file";
+            echo "Maintenance Mode is active. Try again later.";
         }
     }
 
     public function update_pota() {
-        $csvfile = 'https://pota.app/all_parks.csv';
+        if (ENVIRONMENT != 'maintenance') {
+            $csvfile = 'https://pota.app/all_parks.csv';
 
-        $potafile = './assets/json/pota.txt';
+            $potafile = './assets/json/pota.txt';
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $csvfile);
-        curl_setopt($ch, CURLOPT_HEADER, false);
-        curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $csv = curl_exec($ch);
-        curl_close($ch);
-        if ($csv === FALSE) {
-            echo "Something went wrong with fetching the POTA file";
-            return;
-        }
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $csvfile);
+            curl_setopt($ch, CURLOPT_HEADER, false);
+            curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $csv = curl_exec($ch);
+            curl_close($ch);
+            if ($csv === FALSE) {
+                echo "Something went wrong with fetching the POTA file";
+                return;
+            }
 
-        $potafilehandle = fopen($potafile, 'w');
-        if ($potafilehandle === FALSE) {
-            echo"FAILED: Could not write to pota.txt file";
-            return;
-        }
-        $data = str_getcsv($csv,"\n");
-        $nCount = 0;
-        foreach ($data as $idx => $row) {
-           if ($idx == 0) continue; // Skip line we are not interested in
-           $row = str_getcsv($row, ',');
-           if ($row[0]) {
-              fwrite($potafilehandle, $row[0].PHP_EOL);
-              $nCount++;
-           }
-        }
+            $potafilehandle = fopen($potafile, 'w');
+            if ($potafilehandle === FALSE) {
+                echo"FAILED: Could not write to pota.txt file";
+                return;
+            }
+            $data = str_getcsv($csv,"\n");
+            $nCount = 0;
+            foreach ($data as $idx => $row) {
+            if ($idx == 0) continue; // Skip line we are not interested in
+            $row = str_getcsv($row, ',');
+            if ($row[0]) {
+                fwrite($potafilehandle, $row[0].PHP_EOL);
+                $nCount++;
+            }
+            }
 
-        fclose($potafilehandle);
+            fclose($potafilehandle);
 
-        if ($nCount > 0)
-        {
-            echo "DONE: " . number_format($nCount) . " POTA's saved";
-			$datetime = new DateTime("now", new DateTimeZone('UTC'));
-			$datetime = $datetime->format('Ymd h:i');
-			$this->optionslib->update('pota_file_update', $datetime , 'no');
+            if ($nCount > 0)
+            {
+                echo "DONE: " . number_format($nCount) . " POTA's saved";
+                $datetime = new DateTime("now", new DateTimeZone('UTC'));
+                $datetime = $datetime->format('Ymd h:i');
+                $this->optionslib->update('pota_file_update', $datetime , 'no');
+            } else {
+                echo"FAILED: Empty file";
+            }
         } else {
-            echo"FAILED: Empty file";
+            echo "Maintenance Mode is active. Try again later.";
         }
     }
 

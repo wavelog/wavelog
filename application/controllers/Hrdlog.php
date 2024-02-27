@@ -12,29 +12,32 @@ class Hrdlog extends CI_Controller {
      * All QSOs not previously uploaded, will then be uploaded, one at a time
      */
     public function upload() {
-        $this->setOptions();
+        if (ENVIRONMENT != 'maintenance') {
+            $this->setOptions();
 
-        $this->load->model('logbook_model');
+            $this->load->model('logbook_model');
 
-        $station_ids = $this->logbook_model->get_station_id_with_hrdlog_code();
+            $station_ids = $this->logbook_model->get_station_id_with_hrdlog_code();
 
-        if ($station_ids) {
-            foreach ($station_ids as $station) {
-                $hrdlog_username = $station->hrdlog_username;
-                $hrdlog_code = $station->hrdlog_code;
-                if ($this->mass_upload_qsos($station->station_id, $hrdlog_username, $hrdlog_code)) {
-                    echo "QSOs have been uploaded to hrdlog.net.";
-                    log_message('info', 'QSOs have been uploaded to hrdlog.net.');
-                } else {
-                    echo "No QSOs found for upload.";
-                    log_message('info', 'No QSOs found for upload.');
+            if ($station_ids) {
+                foreach ($station_ids as $station) {
+                    $hrdlog_username = $station->hrdlog_username;
+                    $hrdlog_code = $station->hrdlog_code;
+                    if ($this->mass_upload_qsos($station->station_id, $hrdlog_username, $hrdlog_code)) {
+                        echo "QSOs have been uploaded to hrdlog.net.";
+                        log_message('info', 'QSOs have been uploaded to hrdlog.net.');
+                    } else {
+                        echo "No QSOs found for upload.";
+                        log_message('info', 'No QSOs found for upload.');
+                    }
                 }
+            } else {
+                echo "No station profiles with a hrdlog Code found.";
+                log_message('error', "No station profiles with a hrdlog Code found.");
             }
         } else {
-            echo "No station profiles with a hrdlog Code found.";
-            log_message('error', "No station profiles with a hrdlog Code found.");
+            echo "Maintenance Mode is active. Try again later.";
         }
-
     }
 
     function setOptions() {
