@@ -52,7 +52,15 @@
 	} ?>
 
 	<script>
-		var userName = '<?php echo $this->session->userdata('user_name'); ?>'
+		var userName = '<?php echo $this->session->userdata('user_name'); ?>';
+		<?php
+		if ($this->uri->segment(1) == "qso") {
+                	$actstation=$this->stations->find_active() ?? '';
+                	echo "var activeStationId = '".$actstation."';\n";
+                	$profile_info = $this->stations->profile($actstation)->row();
+                	echo "var activeStationTXPower = '".xss_clean($profile_info->station_power)."';\n";
+		}
+                ?>
 	</script>
 
 	<?php if (file_exists(APPPATH . '../assets/js/sections/custom.js')) {
