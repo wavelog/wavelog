@@ -527,9 +527,17 @@ function changebadge(entityname) {
 	}
 }
 
+function reset_to_default() {
+	reset_fields();
+	$("#stationProfile").val(activeStationId);
+	$("#selectPropagation").val("");
+	$("#frequency_rx").val("");
+	$("#band_rx").val("");
+	$("#transmit_power").val(activeStationTXPower);
+}
+
 /* Function: reset_fields is used to reset the fields on the QSO page */
 function reset_fields() {
-
 	$('#locator_info').text("");
 	$('#country').val("");
 	$('#continent').val("");
