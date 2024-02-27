@@ -54,57 +54,57 @@ class Qrz {
 	}
 
 
-	public function search($callsign, $key, $use_fullname = false)
-	{
-        $data = null;
-        try {
-            // URL to the XML Source
-            $xml_feed_url = 'http://xmldata.qrz.com/xml/current/?s=' . $key . ';callsign=' . $callsign . '';
+	public function search($callsign, $key, $use_fullname = false) {
+		$data = null;
+		try {
+			// URL to the XML Source
+			$xml_feed_url = 'http://xmldata.qrz.com/xml/current/?s=' . $key . ';callsign=' . $callsign . '';
 
-            // CURL Functions
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $xml_feed_url);
-            curl_setopt($ch, CURLOPT_HEADER, false);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            $xml = curl_exec($ch);
-            curl_close($ch);
+			// CURL Functions
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $xml_feed_url);
+			curl_setopt($ch, CURLOPT_HEADER, false);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			$xml = curl_exec($ch);
+			$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+			curl_close($ch);
+			if ($httpcode != 200) return $data['error'] = 'Problems with qrz.com communication'; // Exit function if no 200. If request fails, 0 is returned
+			// Create XML object
+			$xml = simplexml_load_string($xml);
+			if (!empty($xml->Session->Error)) return $data['error'] = $xml->Session->Error;
 
-            // Create XML object
-            $xml = simplexml_load_string($xml);
-            if (!empty($xml->Session->Error)) return $data['error'] = $xml->Session->Error;
+			// Return Required Fields
+			$data['callsign'] = (string)$xml->Callsign->call;
 
-            // Return Required Fields
-            $data['callsign'] = (string)$xml->Callsign->call;
+			if ($use_fullname === true) {
+				$data['name'] =  (string)$xml->Callsign->fname. ' ' . (string)$xml->Callsign->name;
+			} else {
+				$data['name'] = (string)$xml->Callsign->fname;
+			}
+			$data['name'] = trim($data['name']);
 
-            if ($use_fullname === true) {
-                $data['name'] =  (string)$xml->Callsign->fname. ' ' . (string)$xml->Callsign->name;
-            } else {
-                $data['name'] = (string)$xml->Callsign->fname;
-            }
-            $data['name'] = trim($data['name']);
+			// Sanitise gridsquare to only allow up to 8 characters
+			$unclean_gridsquare = (string)$xml->Callsign->grid; // Get the gridsquare from QRZ convert to string
+			$clean_gridsquare = strlen($unclean_gridsquare) > 8 ? substr($unclean_gridsquare,0,8) : $unclean_gridsquare; // Trim gridsquare to 8 characters max
+			$data['gridsquare'] = $clean_gridsquare;
 
-            // Sanitise gridsquare to only allow up to 8 characters
-            $unclean_gridsquare = (string)$xml->Callsign->grid; // Get the gridsquare from QRZ convert to string
-            $clean_gridsquare = strlen($unclean_gridsquare) > 8 ? substr($unclean_gridsquare,0,8) : $unclean_gridsquare; // Trim gridsquare to 8 characters max
-            $data['gridsquare'] = $clean_gridsquare;
+			$data['city'] = (string)$xml->Callsign->addr2;
+			$data['lat'] = (string)$xml->Callsign->lat;
+			$data['long'] = (string)$xml->Callsign->lon;
+			$data['dxcc'] = (string)$xml->Callsign->dxcc;
+			$data['state'] = (string)$xml->Callsign->state;
+			$data['iota'] = (string)$xml->Callsign->iota;
+			$data['qslmgr'] = (string)$xml->Callsign->qslmgr;
+			$data['image'] = (string)$xml->Callsign->image;
 
-            $data['city'] = (string)$xml->Callsign->addr2;
-            $data['lat'] = (string)$xml->Callsign->lat;
-            $data['long'] = (string)$xml->Callsign->lon;
-            $data['dxcc'] = (string)$xml->Callsign->dxcc;
-            $data['state'] = (string)$xml->Callsign->state;
-            $data['iota'] = (string)$xml->Callsign->iota;
-            $data['qslmgr'] = (string)$xml->Callsign->qslmgr;
-            $data['image'] = (string)$xml->Callsign->image;
+			if ($xml->Callsign->country == "United States") {
+				$data['us_county'] = (string)$xml->Callsign->county;
+			} else {
+				$data['us_county'] = null;
+			}
+		} finally {
 
-            if ($xml->Callsign->country == "United States") {
-                $data['us_county'] = (string)$xml->Callsign->county;
-            } else {
-                $data['us_county'] = null;
-            }
-        } finally {
-
-            return $data;
-        }
+			return $data;
+		}
 	}
 }
