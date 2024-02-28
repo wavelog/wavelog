@@ -62,7 +62,7 @@ class Eqsl_images extends CI_Model {
                     return realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$user_id.'/'.$eqsl_dir;
                 }
             } else {
-				log_message('Error', 'Can not get eqsl image path because no user_id in session data');
+				log_message('info', 'Can not get eqsl image path because no user_id in session data');
 			}
         } else {
 
