@@ -970,17 +970,6 @@ $($('#callsign')).on('keypress',function(e) {
 	if ($this->optionslib->get_option('dxcache_url') != ''){ ?>
 	<script type="text/javascript">
 		var dxcluster_provider = '<?php echo base_url(); ?>index.php/dxcluster';
-		$(document).ready(function() {
-			$("#check_cluster").on("click", function() {
-				$.ajax({ url: dxcluster_provider+"/qrg_lookup/"+$("#frequency").val()/1000, cache: false, dataType: "json" }).done(
-					function(dxspot) {
-						reset_fields();
-						$("#callsign").val(dxspot.spotted);
-						$("#callsign").trigger("blur");
-					}
-				);
-			});
-		});
 	</script>
 
 <?php
@@ -1037,38 +1026,6 @@ $($('#callsign')).on('keypress',function(e) {
 
     var manual = <?php echo $_GET['manual']; ?>;
 
-    $(document).ready(function() {
-
-    $('.callsign-suggest').hide();
-
-    setRst($(".mode").val());
-
-    /* On Page Load */
-    var catcher = function() {
-      var changed = false;
-      $('form').each(function() {
-        if ($(this).data('initialForm') != $(this).serialize()) {
-          changed = true;
-          $(this).addClass('changed');
-        } else {
-          $(this).removeClass('changed');
-        }
-      });
-      if (changed) {
-        return 'Unsaved QSO!';
-      }
-    };
-
-     // Callsign always has focus on load
-      $("#callsign").focus();
-
-      if ( ! manual ) {
-        $(function($) {
-           resetTimers(0);
-        });
-      }
-    });
-
 <?php if ($this->session->userdata('user_qso_end_times')  == 1) { ?>
     $('#callsign').focusout(function() {
       if (! manual && $('#callsign').val() != '') {
@@ -1082,32 +1039,6 @@ $($('#callsign')).on('keypress',function(e) {
        }
     });
 <?php } ?>
-
-  jQuery(function($) {
-  var input = $('#callsign');
-  input.on('keydown', function() {
-    var key = event.keyCode || event.charCode;
-
-    if( key == 8 || key == 46 ) {
-      reset_fields();
-    }
-  });
-
-  $(document).keyup(function(e) {
-	  if (e.charCode === 0) {
-		  let fixedcall = $('#callsign').val();
-		  $('#callsign').val(fixedcall.replace('Ø', '0'));
-	  }
-	  if (e.key === "Escape") { // escape key maps to keycode `27`
-		  reset_fields();
-		  if ( ! manual ) {
-		     resetTimers(0)
-		  }
-		  $('#callsign').val("");
-		  $("#callsign").focus();
-	  }
-  });
-});
 
 <?php if ($this->session->userdata('user_sota_lookup') == 1) { ?>
 	$('#sota_ref').change(function() {
@@ -1172,27 +1103,6 @@ $($('#callsign')).on('keypress',function(e) {
 	});
 <?php } ?>
 
-	$('#stationProfile').change(function() {
-		var stationProfile = $('#stationProfile').val();
-		$.ajax({
-			url: base_url+'index.php/qso/get_station_power',
-			type: 'post',
-			data: {'stationProfile': stationProfile},
-			success: function(res) {
-				$('#transmit_power').val(res.station_power);
-			},
-			error: function() {
-				$('#transmit_power').val('');
-			},
-		});
-        // [eQSL default msg] change value on change station profle //
-        qso_set_eqsl_qslmsg(stationProfile,false,'.qso_panel');
-	});
-    // [eQSL default msg] change value on clic //
-    $('.qso_panel .qso_eqsl_qslmsg_update').off('click').on('click',function() {
-        qso_set_eqsl_qslmsg($('.qso_panel #stationProfile').val(),true,'.qso_panel');
-        $('#charsLeft').text(" ");
-    });
 
 <?php if ($this->session->userdata('user_qth_lookup') == 1) { ?>
     $('#qth').focusout(function() {
@@ -1265,41 +1175,6 @@ $($('#callsign')).on('keypress',function(e) {
 <?php if ( $this->uri->segment(1) == "qso" || ($this->uri->segment(1) == "contesting" && $this->uri->segment(2) != "add")) { ?>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/moment.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datetime-moment.js"></script>
-    <script>
-
-    $('#notice-alerts').delay(1000).fadeOut(5000);
-
-    function setRst(mode) {
-        if(mode == 'JT65' || mode == 'JT65B' || mode == 'JT6C' || mode == 'JTMS' || mode == 'ISCAT' || mode == 'MSK144' || mode == 'JTMSK' || mode == 'QRA64' || mode == 'FT8' || mode == 'FT4' || mode == 'JS8' || mode == 'JT9' || mode == 'JT9-1' || mode == 'ROS'){
-            $('#rst_sent').val('-5');
-            $('#rst_rcvd').val('-5');
-        } else if (mode == 'FSK441' || mode == 'JT6M') {
-            $('#rst_sent').val('26');
-            $('#rst_rcvd').val('26');
-        } else if (mode == 'CW' || mode == 'RTTY' || mode == 'PSK31' || mode == 'PSK63') {
-            $('#rst_sent').val('599');
-            $('#rst_rcvd').val('599');
-        } else {
-            $('#rst_sent').val('59');
-            $('#rst_rcvd').val('59');
-        }
-    }
-
-    function getUTCTimeStamp(el) {
-       var now = new Date();
-       var localTime = now.getTime();
-       var utc = localTime + (now.getTimezoneOffset() * 60000);
-       $(el).attr('value', ("0" + now.getUTCHours()).slice(-2)+':'+("0" + now.getUTCMinutes()).slice(-2)+':'+("0" + now.getUTCSeconds()).slice(-2));
-    }
-
-    function getUTCDateStamp(el) {
-       var now = new Date();
-       var localTime = now.getTime();
-       var utc = localTime + (now.getTimezoneOffset() * 60000);
-       $(el).attr('value', ("0" + now.getUTCDate()).slice(-2)+'-'+("0" + (now.getUTCMonth()+1)).slice(-2)+'-'+now.getUTCFullYear());
-    }
-
-    </script>
 
     <script>
     // Javascript for controlling rig frequency.
