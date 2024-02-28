@@ -33,6 +33,9 @@ $( document ).ready(function() {
 				success: function(resdata) {
 					result = JSON.parse(resdata);
 					if (result.message == 'success') {
+						activeStationId=result.activeStationId;
+						activeStationOP=result.activeStationOP;
+						activeStationTXPower=result.activeStationTXPower;
 						$("#noticer").removeClass("");
 						$("#noticer").addClass("alert alert-info");
 						$("#noticer").html("QSO Added");
@@ -527,6 +530,10 @@ function changebadge(entityname) {
 	}
 }
 
+$('#btn_fullreset').click(function() {
+	reset_to_default();
+});
+
 function reset_to_default() {
 	reset_fields();
 	$("#stationProfile").val(activeStationId);
@@ -534,6 +541,8 @@ function reset_to_default() {
 	$("#frequency_rx").val("");
 	$("#band_rx").val("");
 	$("#transmit_power").val(activeStationTXPower);
+	$("#sat_name").val("");
+	$("#sat_mode").val("");
 }
 
 /* Function: reset_fields is used to reset the fields on the QSO page */
@@ -566,6 +575,7 @@ function reset_fields() {
 	$('#callsign_info').removeClass("text-bg-danger");
 	$('#callsign-image').attr('style', 'display: none;');
 	$('#callsign-image-content').text("");
+	$("#operator_callsign").val(activeStationOP);
 	$('#qsl_via').val("");
 	$('#callsign_info').text("");
 	$('#stateDropdown').val("");
@@ -912,6 +922,9 @@ $('#band').change(function() {
 		$('#frequency').val(result);
 		$('#frequency_rx').val("");
 	});
+	$("#selectPropagation").val("");
+	$("#sat_name").val("");
+	$("#sat_mode").val("");
 });
 
 /* On Key up Calculate Bearing and Distance */
