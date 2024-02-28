@@ -506,7 +506,13 @@
           <input size="20" id="country" type="hidden" name="country" value="" />
         </div>
 
-        <button type="reset" class="btn btn-secondary" onclick="reset_fields()"><?php echo lang('qso_btn_reset_qso'); ?></button>
+	<div class="btn-group" role="group">
+        <button type="button" class="btn btn-secondary" onclick="reset_fields()"><?php echo lang('qso_btn_reset_qso'); ?></button>
+	<button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></button>
+	<ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+      		<li><a class="dropdown-item" href="#" id="btn_fullreset">Reset to Default</a></li>
+    	</ul>
+	</div>
         <button type="submit" id="saveQso" name="saveQso" class="btn btn-primary"><i class="fas fa-save"></i> <?php echo lang('qso_btn_save_qso'); ?></button>
         <div class="alert alert-danger warningOnSubmit mt-3" style="display:none;"><span><i class="fas fa-times-circle"></i></span> <span class="warningOnSubmit_txt ms-1">Error</span></div>
       </div>
