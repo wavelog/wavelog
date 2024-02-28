@@ -319,7 +319,6 @@ function qso_edit(id) {
 }
 
 async function updateStateDropdown() {
-    console.log('dropdown triggered');
     var selectedDxcc = $("#dxcc_id");
 
     if (selectedDxcc.val() !== "") {
