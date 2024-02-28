@@ -1,11 +1,4 @@
-$( document ).ready(function() {
-	clearTimeout();
-	set_timers();
-	updateStateDropdown();
-
-	$('#notice-alerts').delay(1000).fadeOut(5000);
-
-	function setRst(mode) {
+function setRst(mode) {
 		if(mode == 'JT65' || mode == 'JT65B' || mode == 'JT6C' || mode == 'JTMS' || mode == 'ISCAT' || mode == 'MSK144' || mode == 'JTMSK' || mode == 'QRA64' || mode == 'FT8' || mode == 'FT4' || mode == 'JS8' || mode == 'JT9' || mode == 'JT9-1' || mode == 'ROS'){
 			$('#rst_sent').val('-5');
 			$('#rst_rcvd').val('-5');
@@ -21,7 +14,14 @@ $( document ).ready(function() {
 		}
 	}
 
-	function getUTCTimeStamp(el) {
+$( document ).ready(function() {
+	clearTimeout();
+	set_timers();
+	updateStateDropdown();
+
+	$('#notice-alerts').delay(1000).fadeOut(5000);
+
+		function getUTCTimeStamp(el) {
 		var now = new Date();
 		var localTime = now.getTime();
 		var utc = localTime + (now.getTimezoneOffset() * 60000);
