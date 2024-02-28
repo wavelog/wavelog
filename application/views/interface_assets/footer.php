@@ -1177,28 +1177,29 @@ $($('#callsign')).on('keypress',function(e) {
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datetime-moment.js"></script>
 
     <script>
-    // Javascript for controlling rig frequency.
-	  var updateFromCAT = function() {
-      var cat2UI = function(ui, cat, allow_empty, allow_zero, callback_on_update) {
-        // Check, if cat-data is available
-        if(cat == null) {
-          return;
-        } else if (typeof allow_empty !== 'undefined' && !allow_empty && cat == '') {
-          return;
-        } else if (typeof allow_zero !== 'undefined' && !allow_zero && cat == '0' ) {
-          return;
-        }
-        // Only update the ui-element, if cat-data has changed
-        if (ui.data('catValue') != cat) {
-          ui.val(cat);
-          ui.data('catValue',cat);
-          if (typeof callback_on_update === 'function') { callback_on_update(cat); }
-        }
-      }
+    $( document ).ready(function() {
+	    // Javascript for controlling rig frequency.
+	    var updateFromCAT = function() {
+		    var cat2UI = function(ui, cat, allow_empty, allow_zero, callback_on_update) {
+			    // Check, if cat-data is available
+			    if(cat == null) {
+				    return;
+			    } else if (typeof allow_empty !== 'undefined' && !allow_empty && cat == '') {
+				    return;
+			    } else if (typeof allow_zero !== 'undefined' && !allow_zero && cat == '0' ) {
+				    return;
+			    }
+			    // Only update the ui-element, if cat-data has changed
+			    if (ui.data('catValue') != cat) {
+				    ui.val(cat);
+				    ui.data('catValue',cat);
+				    if (typeof callback_on_update === 'function') { callback_on_update(cat); }
+			    }
+		    }
 
-		  if($('select.radios option:selected').val() != '0') {
-			  radioID = $('select.radios option:selected').val();
-			  $.getJSON( "radio/json/" + radioID, function( data ) {
+		    if($('select.radios option:selected').val() != '0') {
+			    radioID = $('select.radios option:selected').val();
+			    $.getJSON( "radio/json/" + radioID, function( data ) {
 	  /* {
 	  "frequency": "2400210000",
 	      "frequency_rx": "10489710000",
@@ -1209,85 +1210,91 @@ $($('#callsign')).on('keypress',function(e) {
 	      "prop_mode": "SAT",
 	      "error": "not_logged_id" // optional, reserved for errors
 	  }  */
-				  if (data.error) {
-					  if (data.error == 'not_logged_in') {
-						  $(".radio_cat_state" ).remove();
-						  if($('.radio_login_error').length == 0) {
-							  $('.qso_panel').prepend('<div class="alert alert-danger radio_login_error" role="alert"><i class="fas fa-broadcast-tower"></i> You\'re not logged it. Please <a href="<?php echo base_url();?>">login</a></div>');
-						  }
-					  }
-					  // Put future Errorhandling here
-				  } else {
-					  if($('.radio_login_error').length != 0) {
-						  $(".radio_login_error" ).remove();
-					  }
-            cat2UI($('#frequency'),data.frequency,false,true,function(d){$("#band").val(frequencyToBand(d))});
-            cat2UI($('#frequency_rx'),data.frequency_rx,false,true,function(d){$("#band_rx").val(frequencyToBand(d))});
-            cat2UI($('.mode'),data.mode,false,false,function(d){setRst($(".mode").val())});
-            cat2UI($('#sat_name'),data.satname,false,false);
-            cat2UI($('#sat_mode'),data.satmode,false,false);
-            cat2UI($('#transmit_power'),data.power,false,false);
-            cat2UI($('#selectPropagation'),data.prop_mode,false,false);
+				    if (data.error) {
+					    if (data.error == 'not_logged_in') {
+						    $(".radio_cat_state" ).remove();
+						    if($('.radio_login_error').length == 0) {
+							    $('.qso_panel').prepend('<div class="alert alert-danger radio_login_error" role="alert"><i class="fas fa-broadcast-tower"></i> You\'re not logged it. Please <a href="<?php echo base_url();?>">login</a></div>');
+						    }
+					    }
+					    // Put future Errorhandling here
+				    } else {
+					    if($('.radio_login_error').length != 0) {
+						    $(".radio_login_error" ).remove();
+					    }
+					    cat2UI($('#frequency'),data.frequency,false,true,function(d){
+						    if ($("#band").val() != frequencyToBand(d)) {
+							    $("#band").val(frequencyToBand(d)).trigger('change');	// Let's only change if we really have a different band!
+						    }
+					    });
 
-					  // Display CAT Timeout warning based on the figure given in the config file
-					  var minutes = Math.floor(<?php echo $this->optionslib->get_option('cat_timeout_interval'); ?> / 60);
+					    cat2UI($('#frequency_rx'),data.frequency_rx,false,true,function(d){$("#band_rx").val(frequencyToBand(d))});
+					    cat2UI($('.mode'),data.mode,false,false,function(d){setRst($(".mode").val())});
+					    cat2UI($('#sat_name'),data.satname,false,false);
+					    cat2UI($('#sat_mode'),data.satmode,false,false);
+					    cat2UI($('#transmit_power'),data.power,false,false);
+					    cat2UI($('#selectPropagation'),data.prop_mode,false,false);
 
-					  if(data.updated_minutes_ago > minutes) {
-						  $(".radio_cat_state" ).remove();
-						  if($('.radio_timeout_error').length == 0) {
-							  $('#radio_status').prepend('<div class="alert alert-danger radio_timeout_error" role="alert"><i class="fas fa-broadcast-tower"></i> Radio connection timed-out: ' + $('select.radios option:selected').text() + ' data is ' + data.updated_minutes_ago + ' minutes old.</div>');
-						  } else {
-							  $('.radio_timeout_error').html('Radio connection timed-out: ' + $('select.radios option:selected').text() + ' data is ' + data.updated_minutes_ago + ' minutes old.');
-						  }
-					  } else {
-						  $(".radio_timeout_error" ).remove();
-						  text = '<i class="fas fa-broadcast-tower"></i><span style="margin-left:10px;"></span><b>TX:</b> '+(Math.round(parseInt(data.frequency)/100)/10000).toFixed(4)+' MHz';
-						  if(data.mode != null) {
-							  text = text+'<span style="margin-left:10px"></span>'+data.mode;
-						  }
-						  if(data.power != null && data.power != 0) {
-							  text = text+'<span style="margin-left:10px"></span>'+data.power+' W';
-						  }
-              ptext = '';
-						  if(data.prop_mode != null && data.prop_mode != '') {
-							  ptext = ptext + data.prop_mode;
-							  if (data.prop_mode == 'SAT') {
-								  ptext = ptext + ' ' + data.satname;
-							  }
-						  }
-						  if(data.frequency_rx != null && data.frequency_rx != 0) {
-							  ptext = ptext + '<span style="margin-left:10px"></span><b>RX:</b> ' + (Math.round(parseInt(data.frequency_rx)/1000)/1000).toFixed(3) + ' MHz';
-						  }
-              if( ptext != '') { text = text + '<span style="margin-left:10px"></span>(' + ptext + ')';}
-						  if (! $('#radio_cat_state').length) {
-							  $('#radio_status').prepend('<div aria-hidden="true"><div id="radio_cat_state" class="alert alert-success radio_cat_state" role="alert">'+text+'</div></div>');
-						  } else {
-							  $('#radio_cat_state').html(text);
-						  }
-					  }
-				  }
-			  });
-		  }
-	  };
+					    // Display CAT Timeout warning based on the figure given in the config file
+					    var minutes = Math.floor(<?php echo $this->optionslib->get_option('cat_timeout_interval'); ?> / 60);
 
-	  // Update frequency every three second
-	  setInterval(updateFromCAT, 3000);
+					    if(data.updated_minutes_ago > minutes) {
+						    $(".radio_cat_state" ).remove();
+						    if($('.radio_timeout_error').length == 0) {
+							    $('#radio_status').prepend('<div class="alert alert-danger radio_timeout_error" role="alert"><i class="fas fa-broadcast-tower"></i> Radio connection timed-out: ' + $('select.radios option:selected').text() + ' data is ' + data.updated_minutes_ago + ' minutes old.</div>');
+						    } else {
+							    $('.radio_timeout_error').html('Radio connection timed-out: ' + $('select.radios option:selected').text() + ' data is ' + data.updated_minutes_ago + ' minutes old.');
+						    }
+					    } else {
+						    $(".radio_timeout_error" ).remove();
+						    text = '<i class="fas fa-broadcast-tower"></i><span style="margin-left:10px;"></span><b>TX:</b> '+(Math.round(parseInt(data.frequency)/100)/10000).toFixed(4)+' MHz';
+						    if(data.mode != null) {
+							    text = text+'<span style="margin-left:10px"></span>'+data.mode;
+						    }
+						    if(data.power != null && data.power != 0) {
+							    text = text+'<span style="margin-left:10px"></span>'+data.power+' W';
+						    }
+						    ptext = '';
+						    if(data.prop_mode != null && data.prop_mode != '') {
+							    ptext = ptext + data.prop_mode;
+							    if (data.prop_mode == 'SAT') {
+								    ptext = ptext + ' ' + data.satname;
+							    }
+						    }
+						    if(data.frequency_rx != null && data.frequency_rx != 0) {
+							    ptext = ptext + '<span style="margin-left:10px"></span><b>RX:</b> ' + (Math.round(parseInt(data.frequency_rx)/1000)/1000).toFixed(3) + ' MHz';
+						    }
+						    if( ptext != '') { text = text + '<span style="margin-left:10px"></span>(' + ptext + ')';}
+						    if (! $('#radio_cat_state').length) {
+							    $('#radio_status').prepend('<div aria-hidden="true"><div id="radio_cat_state" class="alert alert-success radio_cat_state" role="alert">'+text+'</div></div>');
+						    } else {
+							    $('#radio_cat_state').html(text);
+						    }
+					    }
+				    }
+			    });
+		    }
+	    };
 
-	  // If a radios selected from drop down select radio update.
-	  $('.radios').change(updateFromCAT);
+	    // Update frequency every three second
+	    setInterval(updateFromCAT, 3000);
 
-	  // If no radio is selected clear data
-	  $( ".radios" ).change(function() {
-		  if ($(".radios option:selected").val() == 0) {
-			  $("#sat_name").val("");
-			  $("#sat_mode").val("");
-			  $("#frequency").val("");
-			  $("#frequency_rx").val("");
-			  $("#band_rx").val("");
-			  $("#selectPropagation").val($("#selectPropagation option:first").val());
-			  $(".radio_timeout_error" ).remove();
-		  }
-	  });
+	    // If a radios selected from drop down select radio update.
+	    $('.radios').change(updateFromCAT);
+
+	    // If no radio is selected clear data
+	    $( ".radios" ).change(function() {
+		    if ($(".radios option:selected").val() == 0) {
+			    $("#sat_name").val("");
+			    $("#sat_mode").val("");
+			    $("#frequency").val("");
+			    $("#frequency_rx").val("");
+			    $("#band_rx").val("");
+			    $("#selectPropagation").val($("#selectPropagation option:first").val());
+			    $(".radio_timeout_error" ).remove();
+		    }
+	    });
+    });
   </script>
 
 <?php } ?>
