@@ -18,6 +18,7 @@ class Migration_harmonize_keys extends CI_Migration {
 		$this->db->query("ALTER TABLE `notes` CHANGE COLUMN `user_id` `user_id` INT UNSIGNED NOT NULL;");
 		$this->db->query("ALTER TABLE `lotw_certs` CHANGE COLUMN `user_id` `user_id` INT UNSIGNED NOT NULL;");
 		$this->db->query("ALTER TABLE `label_types` CHANGE COLUMN `user_id` `user_id` INT UNSIGNED NOT NULL;");
+		$this->db->query("update `paper_types` set user_id=0 where user_id=-1;");	// Make user_id 0 as template for papers
 		$this->db->query("ALTER TABLE `paper_types` CHANGE COLUMN `user_id` `user_id` INT UNSIGNED NOT NULL;");
 		$this->db->query("ALTER TABLE `eQSL_images` CHANGE COLUMN `qso_id` `qso_id` BIGINT(20) UNSIGNED NOT NULL;");
 		$this->db->query("ALTER TABLE `contest_session` CHANGE COLUMN `station_id` `station_id` INT UNSIGNED NOT NULL;");
@@ -42,6 +43,7 @@ class Migration_harmonize_keys extends CI_Migration {
 		$this->db->query("ALTER TABLE `lotw_certs` CHANGE COLUMN `user_id` `user_id` INT NULL DEFAULT NULL;");
 		$this->db->query("ALTER TABLE `label_types` CHANGE COLUMN `user_id` `user_id` INT(5) NULL DEFAULT NULL;");
 		$this->db->query("ALTER TABLE `paper_types` CHANGE COLUMN `user_id` `user_id` INT(5) NULL DEFAULT NULL;");
+		$this->db->query("update `paper_types` set user_id=-1 where user_id=0;");
 		$this->db->query("ALTER TABLE `eQSL_images` CHANGE COLUMN `qso_id` `qso_id` VARCHAR(250) NOT NULL;");
 		$this->db->query("ALTER TABLE `contest_session` CHANGE COLUMN `station_id` `station_id` BIGINT(20) UNSIGNED NOT NULL;");
 		$this->db->query("ALTER TABLE `qsl_images` CHANGE COLUMN `qsoid` `qsoid` INT NULL;");
