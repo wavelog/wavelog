@@ -732,6 +732,8 @@ $( document ).ready(function() {
 		var selectize = $select[0].selectize;
 		selectize.clear();
 
+		$('#notes').val("");
+
 		$('#sig').val("");
 		$('#sig_info').val("");
 		$('#sent').val("N");
