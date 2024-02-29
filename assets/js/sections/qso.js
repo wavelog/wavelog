@@ -665,6 +665,7 @@ $( document ).ready(function() {
 	/* Function: reset_fields is used to reset the fields on the QSO page */
 	function reset_fields() {
 		$('#locator_info').text("");
+		$('#comment').val("");
 		$('#country').val("");
 		$('#continent').val("");
 		$('#lotw_info').text("");
