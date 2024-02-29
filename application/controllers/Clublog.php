@@ -6,6 +6,16 @@
 
 class Clublog extends CI_Controller {
 
+	function __construct()
+	{
+		parent::__construct();
+		
+		if (ENVIRONMENT == 'maintenance' && $this->session->userdata('user_id') == '') {
+            echo "Maintenance Mode is active. Try again later.\n";
+			redirect('user/login');
+		}
+	}
+
 	// Show frontend if there is one
 	public function index() {
 		$this->config->load('config');
@@ -13,16 +23,12 @@ class Clublog extends CI_Controller {
 
 	// Upload ADIF to Clublog
 	public function upload() {
-		if (ENVIRONMENT != 'maintenance') {
-			$this->load->model('clublog_model');
+		$this->load->model('clublog_model');
 
-			$users = $this->clublog_model->get_clublog_users();
+		$users = $this->clublog_model->get_clublog_users();
 
-			foreach ($users as $user) {
-				$this->uploadUser($user->user_id, $user->user_clublog_name, $user->user_clublog_password);
-			}
-		} else {
-			echo "Maintenance Mode is active. Try again later.";
+		foreach ($users as $user) {
+			$this->uploadUser($user->user_id, $user->user_clublog_name, $user->user_clublog_password);
 		}
 	}
 

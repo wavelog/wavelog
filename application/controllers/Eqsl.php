@@ -4,8 +4,15 @@ class eqsl extends CI_Controller {
 
 	/* Controls who can access the controller and its functions */
 	function __construct() {
+
 		parent::__construct();
+
 		$this->load->helper(array('form', 'url'));
+
+		if (ENVIRONMENT == 'maintenance' && $this->session->userdata('user_id') == '') {
+            echo "Maintenance Mode is active. Try again later.\n";
+			redirect('user/login');
+		}
 	}
 
     // Default view when loading controller.
@@ -704,19 +711,15 @@ class eqsl extends CI_Controller {
 	 * Used for CRON job
 	 */
 	public function sync() {
-		if (ENVIRONMENT != 'maintenance') {
-			ini_set('memory_limit', '-1');
-			set_time_limit(0);
-			$this->load->model('eqslmethods_model');
+		ini_set('memory_limit', '-1');
+		set_time_limit(0);
+		$this->load->model('eqslmethods_model');
 
-			$users = $this->eqslmethods_model->get_eqsl_users();
+		$users = $this->eqslmethods_model->get_eqsl_users();
 
-			foreach ($users as $user) {
-				$this->uploadUser($user->user_id, $user->user_eqsl_name, $user->user_eqsl_password);
-				$this->downloadUser($user->user_id, $user->user_eqsl_name, $user->user_eqsl_password);
-			}
-		} else {
-			echo "Maintenance Mode is active. Try again later.";
+		foreach ($users as $user) {
+			$this->uploadUser($user->user_id, $user->user_eqsl_name, $user->user_eqsl_password);
+			$this->downloadUser($user->user_id, $user->user_eqsl_name, $user->user_eqsl_password);
 		}
 	}
 

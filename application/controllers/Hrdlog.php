@@ -11,32 +11,39 @@ class Hrdlog extends CI_Controller {
      * When called from the url wavelog/hrdlog/upload, the function loops through all station_id's with a hrdlog code defined.
      * All QSOs not previously uploaded, will then be uploaded, one at a time
      */
+
+    function __construct()
+	{
+		parent::__construct();
+		
+		if (ENVIRONMENT == 'maintenance' && $this->session->userdata('user_id') == '') {
+            echo "Maintenance Mode is active. Try again later.\n";
+			redirect('user/login');
+		}
+	}
+
     public function upload() {
-        if (ENVIRONMENT != 'maintenance') {
-            $this->setOptions();
+        $this->setOptions();
 
-            $this->load->model('logbook_model');
+        $this->load->model('logbook_model');
 
-            $station_ids = $this->logbook_model->get_station_id_with_hrdlog_code();
+        $station_ids = $this->logbook_model->get_station_id_with_hrdlog_code();
 
-            if ($station_ids) {
-                foreach ($station_ids as $station) {
-                    $hrdlog_username = $station->hrdlog_username;
-                    $hrdlog_code = $station->hrdlog_code;
-                    if ($this->mass_upload_qsos($station->station_id, $hrdlog_username, $hrdlog_code)) {
-                        echo "QSOs have been uploaded to hrdlog.net.";
-                        log_message('info', 'QSOs have been uploaded to hrdlog.net.');
-                    } else {
-                        echo "No QSOs found for upload.";
-                        log_message('info', 'No QSOs found for upload.');
-                    }
+        if ($station_ids) {
+            foreach ($station_ids as $station) {
+                $hrdlog_username = $station->hrdlog_username;
+                $hrdlog_code = $station->hrdlog_code;
+                if ($this->mass_upload_qsos($station->station_id, $hrdlog_username, $hrdlog_code)) {
+                    echo "QSOs have been uploaded to hrdlog.net.";
+                    log_message('info', 'QSOs have been uploaded to hrdlog.net.');
+                } else {
+                    echo "No QSOs found for upload.";
+                    log_message('info', 'No QSOs found for upload.');
                 }
-            } else {
-                echo "No station profiles with a hrdlog Code found.";
-                log_message('error', "No station profiles with a hrdlog Code found.");
             }
         } else {
-            echo "Maintenance Mode is active. Try again later.";
+            echo "No station profiles with a hrdlog Code found.";
+            log_message('error', "No station profiles with a hrdlog Code found.");
         }
     }
 

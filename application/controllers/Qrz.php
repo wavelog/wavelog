@@ -6,6 +6,16 @@
 
 class Qrz extends CI_Controller {
 
+	function __construct()
+	{
+		parent::__construct();
+		
+		if (ENVIRONMENT == 'maintenance' && $this->session->userdata('user_id') == '') {
+            echo "Maintenance Mode is active. Try again later.\n";
+			redirect('user/login');
+		}
+	}
+
 	// Show frontend if there is one
 	public function index() {
 		$this->config->load('config');
@@ -17,30 +27,26 @@ class Qrz extends CI_Controller {
 	 * All QSOs not previously uploaded, will then be uploaded, one at a time
 	 */
 	public function upload() {
-		if (ENVIRONMENT != 'maintenance') {
-			$this->setOptions();
+		$this->setOptions();
 
-			$this->load->model('logbook_model');
+		$this->load->model('logbook_model');
 
-			$station_ids = $this->logbook_model->get_station_id_with_qrz_api();
+		$station_ids = $this->logbook_model->get_station_id_with_qrz_api();
 
-			if ($station_ids) {
-				foreach ($station_ids as $station) {
-					$qrz_api_key = $station->qrzapikey;
-					if($this->mass_upload_qsos($station->station_id, $qrz_api_key, true)) {
-						echo "QSOs have been uploaded to QRZ.com.";
-						log_message('info', 'QSOs have been uploaded to QRZ.com.');
-					} else{
-						echo "No QSOs found for upload.";
-						log_message('info', 'No QSOs found for upload.');
-					}
+		if ($station_ids) {
+			foreach ($station_ids as $station) {
+				$qrz_api_key = $station->qrzapikey;
+				if($this->mass_upload_qsos($station->station_id, $qrz_api_key, true)) {
+					echo "QSOs have been uploaded to QRZ.com.";
+					log_message('info', 'QSOs have been uploaded to QRZ.com.');
+				} else{
+					echo "No QSOs found for upload.";
+					log_message('info', 'No QSOs found for upload.');
 				}
-			} else {
-				echo "No station profiles with a QRZ API Key found.";
-				log_message('error', "No station profiles with a QRZ API Key found.");
 			}
 		} else {
-			echo "Maintenance Mode is active. Try again later.";
+			echo "No station profiles with a QRZ API Key found.";
+			log_message('error', "No station profiles with a QRZ API Key found.");
 		}
 	}
 
@@ -203,58 +209,54 @@ class Qrz extends CI_Controller {
 	} // end function
 
 	function download($user_id_to_load = null, $lastqrz = null, $show_views = false) {
-		if (ENVIRONMENT != 'maintenance') {
-			$this->load->model('user_model');
-			$this->load->model('logbook_model');
+		$this->load->model('user_model');
+		$this->load->model('logbook_model');
 
 
-			$api_keys = $this->logbook_model->get_qrz_apikeys();
+		$api_keys = $this->logbook_model->get_qrz_apikeys();
 
-			if ($api_keys) {
-				foreach ($api_keys as $station) {
-					if ((($user_id_to_load != null) && ($user_id_to_load != $station->user_id))) {	// Skip User if we're called with a specific user_id
-						continue;
-					} 
-					if ($lastqrz == null) {
-						$lastqrz = $this->logbook_model->qrz_last_qsl_date($station->user_id);
-					}
-					$qrz_api_key = $station->qrzapikey;
-					$result=($this->mass_download_qsos($qrz_api_key, $lastqrz));
-					if (isset($result['tableheaders'])) {
-						$data['tableheaders']=$result['tableheaders'];
-						if (isset($data['table'])) {
-							$data['table'].=$result['table'];
-						} else {
-							$data['table']=$result['table'];
-						}
-					}
+		if ($api_keys) {
+			foreach ($api_keys as $station) {
+				if ((($user_id_to_load != null) && ($user_id_to_load != $station->user_id))) {	// Skip User if we're called with a specific user_id
+					continue;
+				} 
+				if ($lastqrz == null) {
+					$lastqrz = $this->logbook_model->qrz_last_qsl_date($station->user_id);
 				}
-			} else {
-				echo "No station profiles with a QRZ API Key found.";
-				log_message('error', "No station profiles with a QRZ API Key found.");
-			}
-
-			$this->load->model('user_model');
-			if ($this->user_model->authorize(2)) {	// Only Output results if authorized User
-				if(isset($data['tableheaders'])) {
-					if ($data['table'] != '') {
-						$data['table'].='</table>';
-					}
-					if($show_views == TRUE) {
-						$data['page_title'] = "QRZ ADIF Information";
-						$this->load->view('interface_assets/header', $data);
-						$this->load->view('qrz/analysis');
-						$this->load->view('interface_assets/footer');
+				$qrz_api_key = $station->qrzapikey;
+				$result=($this->mass_download_qsos($qrz_api_key, $lastqrz));
+				if (isset($result['tableheaders'])) {
+					$data['tableheaders']=$result['tableheaders'];
+					if (isset($data['table'])) {
+						$data['table'].=$result['table'];
 					} else {
-						return '';
+						$data['table']=$result['table'];
 					}
-				} else {
-					echo "Downloaded QRZ report contains no matches.";
 				}
 			}
 		} else {
-			echo "Maintenance Mode is active. Try again later.";
-		}	
+			echo "No station profiles with a QRZ API Key found.";
+			log_message('error', "No station profiles with a QRZ API Key found.");
+		}
+
+		$this->load->model('user_model');
+		if ($this->user_model->authorize(2)) {	// Only Output results if authorized User
+			if(isset($data['tableheaders'])) {
+				if ($data['table'] != '') {
+					$data['table'].='</table>';
+				}
+				if($show_views == TRUE) {
+					$data['page_title'] = "QRZ ADIF Information";
+					$this->load->view('interface_assets/header', $data);
+					$this->load->view('qrz/analysis');
+					$this->load->view('interface_assets/footer');
+				} else {
+					return '';
+				}
+			} else {
+				echo "Downloaded QRZ report contains no matches.";
+			}
+		}
 	}
 
 	function mass_download_qsos($qrz_api_key = '', $lastqrz = '1900-01-01', $trusted = false) {
