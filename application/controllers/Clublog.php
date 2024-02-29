@@ -6,6 +6,16 @@
 
 class Clublog extends CI_Controller {
 
+	function __construct()
+	{
+		parent::__construct();
+		
+		if (ENVIRONMENT == 'maintenance' && $this->session->userdata('user_id') == '') {
+            echo "Maintenance Mode is active. Try again later.\n";
+			redirect('user/login');
+		}
+	}
+
 	// Show frontend if there is one
 	public function index() {
 		$this->config->load('config');

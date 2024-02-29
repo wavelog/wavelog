@@ -4,8 +4,15 @@ class eqsl extends CI_Controller {
 
 	/* Controls who can access the controller and its functions */
 	function __construct() {
+
 		parent::__construct();
+
 		$this->load->helper(array('form', 'url'));
+
+		if (ENVIRONMENT == 'maintenance' && $this->session->userdata('user_id') == '') {
+            echo "Maintenance Mode is active. Try again later.\n";
+			redirect('user/login');
+		}
 	}
 
     // Default view when loading controller.

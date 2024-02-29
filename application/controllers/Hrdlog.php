@@ -11,6 +11,17 @@ class Hrdlog extends CI_Controller {
      * When called from the url wavelog/hrdlog/upload, the function loops through all station_id's with a hrdlog code defined.
      * All QSOs not previously uploaded, will then be uploaded, one at a time
      */
+
+    function __construct()
+	{
+		parent::__construct();
+		
+		if (ENVIRONMENT == 'maintenance' && $this->session->userdata('user_id') == '') {
+            echo "Maintenance Mode is active. Try again later.\n";
+			redirect('user/login');
+		}
+	}
+
     public function upload() {
         $this->setOptions();
 
@@ -34,7 +45,6 @@ class Hrdlog extends CI_Controller {
             echo "No station profiles with a hrdlog Code found.";
             log_message('error', "No station profiles with a hrdlog Code found.");
         }
-
     }
 
     function setOptions() {
