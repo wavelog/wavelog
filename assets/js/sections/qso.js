@@ -403,12 +403,16 @@ $( document ).ready(function() {
 					callback(res);
 				}
 			});
+		},
+		onChange: function(value) {
+			if (value !== '') {
+				$('#sota_info').show();
+				$('#sota_info').html('<a target="_blank" href="https://summits.sota.org.uk/summit/'+ value +'"><img width="32" height="32" src="'+base_url+'images/icons/sota.org.uk.png"></a>');
+				$('#sota_info').attr('title', 'Lookup '+ value +' summit info on sota.org.uk');
+			} else {
+				$('#sota_info').hide();
+			}
 		}
-	});
-
-	$('#sota_ref').change(function(){
-		$('#sota_info').html('<a target="_blank" href="https://summits.sota.org.uk/summit/'+$('#sota_ref').val()+'"><img width="32" height="32" src="'+base_url+'images/icons/sota.org.uk.png"></a>');
-		$('#sota_info').attr('title', 'Lookup '+$('#sota_ref').val()+' summit info on sota.org.uk');
 	});
 
 	$('#wwff_ref').selectize({
@@ -436,14 +440,18 @@ $( document ).ready(function() {
 					callback(res);
 				}
 			});
+		},
+		onChange: function(value) {
+			if (value !== '') {
+				$('#wwff_info').show();
+				$('#wwff_info').html('<a target="_blank" href="https://www.cqgma.org/zinfo.php?ref='+ value +'"><img width="32" height="32" src="'+base_url+'images/icons/wwff.co.png"></a>');
+				$('#wwff_info').attr('title', 'Lookup '+ value +' reference info on cqgma.org');
+			} else {
+				$('#wwff_info').hide();
+			}
 		}
 	});
-
-	$('#wwff_ref').change(function(){
-		$('#wwff_info').html('<a target="_blank" href="https://www.cqgma.org/zinfo.php?ref='+$('#wwff_ref').val()+'"><img width="32" height="32" src="'+base_url+'images/icons/wwff.co.png"></a>');
-		$('#wwff_info').attr('title', 'Lookup '+$('#wwff_ref').val()+' reference info on cqgma.org');
-	});
-
+	
 	$('#pota_ref').selectize({
 		maxItems: 1,
 		closeAfterSelect: true,
@@ -469,12 +477,16 @@ $( document ).ready(function() {
 					callback(res);
 				}
 			});
+		},
+		onChange: function(value) {
+			if (value != '') {
+				$('#pota_info').show();
+				$('#pota_info').html('<a target="_blank" href="https://pota.app/#/park/'+ value +'"><img width="32" height="32" src="'+base_url+'images/icons/pota.app.png"></a>');
+				$('#pota_info').attr('title', 'Lookup '+ value +' reference info on pota.co');
+			} else {
+				$('#pota_info').hide();
+			}
 		}
-	});
-
-	$('#pota_ref').change(function(){
-		$('#pota_info').html('<a target="_blank" href="https://pota.app/#/park/'+$('#pota_ref').val()+'"><img width="32" height="32" src="'+base_url+'images/icons/pota.app.png"></a>');
-		$('#pota_info').attr('title', 'Lookup '+$('#pota_ref').val()+' reference info on pota.co');
 	});
 
 	$('#darc_dok').selectize({
@@ -656,7 +668,7 @@ $( document ).ready(function() {
 		$("#stationProfile").val(activeStationId);
 		$("#selectPropagation").val("");
 		$("#frequency_rx").val("");
-		$("#band_rx").val("");
+ 		$("#band_rx").val("");
 		$("#transmit_power").val(activeStationTXPower);
 		$("#sat_name").val("");
 		$("#sat_mode").val("");
@@ -665,6 +677,7 @@ $( document ).ready(function() {
 	/* Function: reset_fields is used to reset the fields on the QSO page */
 	function reset_fields() {
 		$('#locator_info').text("");
+		$('#comment').val("");
 		$('#country').val("");
 		$('#continent').val("");
 		$('#lotw_info').text("");
@@ -673,14 +686,12 @@ $( document ).ready(function() {
 		$('#lotw_info').removeClass("lotw_info_orange");
 		$('#qrz_info').text("").hide();
 		$('#hamqth_info').text("").hide();
-		$('#sota_info').text("");
 		$('#dxcc_id').val("");
 		$('#cqz').val("");
 		$('#name').val("");
 		$('#qth').val("");
 		$('#locator').val("");
 		$('#iota_ref').val("");
-		$('#sota_ref').val("");
 		$("#locator").removeClass("confirmedGrid");
 		$("#locator").removeClass("workedGrid");
 		$("#locator").removeClass("newGrid");
@@ -701,6 +712,9 @@ $( document ).ready(function() {
 		$('#partial_view').hide();
 		$('.callsign-suggest').hide();
 		setRst($(".mode").val());
+		var $select = $('#sota_ref').selectize();
+		var selectize = $select[0].selectize;
+		selectize.clear();
 		var $select = $('#wwff_ref').selectize();
 		var selectize = $select[0].selectize;
 		selectize.clear();
@@ -717,6 +731,8 @@ $( document ).ready(function() {
 		var $select = $('#sota_ref').selectize();
 		var selectize = $select[0].selectize;
 		selectize.clear();
+
+		$('#notes').val("");
 
 		$('#sig').val("");
 		$('#sig_info').val("");
