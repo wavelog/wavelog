@@ -61,7 +61,6 @@ class Station extends CI_Controller
 				// [eQSL default msg] ADD to user options (option_type='eqsl_default_qslmsg'; option_name='key_station_id'; option_key=station_id; option_value=value) //
 				$eqsl_default_qslmsg = xss_clean($this->input->post('eqsl_default_qslmsg', true));
 				if (!empty(trim($eqsl_default_qslmsg))) {
-					$this->load->model('user_options_model');
 					$this->user_options_model->set_option('eqsl_default_qslmsg', 'key_station_id', array($station_id => $eqsl_default_qslmsg));
 				}
 			}
@@ -78,7 +77,6 @@ class Station extends CI_Controller
 
 			if ($this->form_validation->run() == FALSE) {
 				// [eQSL default msg] GET from user options (option_type='eqsl_default_qslmsg'; option_name='key_station_id'; option_key=station_id) //
-				$this->load->model('user_options_model');
 				$options_object = $this->user_options_model->get_options('eqsl_default_qslmsg', array('option_name' => 'key_station_id', 'option_key' => $id))->result();
 				$data['eqsl_default_qslmsg'] = (isset($options_object[0]->option_value)) ? $options_object[0]->option_value : '';
 
@@ -89,7 +87,6 @@ class Station extends CI_Controller
 				if ($this->stations->edit() !== false) {
 					// [eQSL default msg] ADD to user options (option_type='eqsl_default_qslmsg'; option_name='key_station_id'; option_key=station_id; option_value=value) //
 					$eqsl_default_qslmsg = xss_clean($this->input->post('eqsl_default_qslmsg', true));
-					$this->load->model('user_options_model');
 					if (!empty(trim($eqsl_default_qslmsg))) {
 						$this->user_options_model->set_option('eqsl_default_qslmsg', 'key_station_id', array($id => $eqsl_default_qslmsg));
 					} else {
@@ -120,7 +117,6 @@ class Station extends CI_Controller
 
 			if ($this->form_validation->run() == FALSE) {
 				// [eQSL default msg] GET from user options (same as edit()) //
-				$this->load->model('user_options_model');
 				$options_object = $this->user_options_model->get_options('eqsl_default_qslmsg', array('option_name' => 'key_station_id', 'option_key' => $id))->result();
 				$data['eqsl_default_qslmsg'] = (isset($options_object[0]->option_value)) ? $options_object[0]->option_value : '';
 
@@ -132,7 +128,6 @@ class Station extends CI_Controller
 					// [eQSL default msg] ADD to user options (same as create()) //
 					$eqsl_default_qslmsg = xss_clean($this->input->post('eqsl_default_qslmsg', true));
 					if (!empty(trim($eqsl_default_qslmsg))) {
-						$this->load->model('user_options_model');
 						$this->user_options_model->set_option('eqsl_default_qslmsg', 'key_station_id', array($station_id => $eqsl_default_qslmsg));
 					}
 				}
