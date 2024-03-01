@@ -119,12 +119,23 @@ class Station extends CI_Controller
 			$data['my_station_profile']->station_profile_name = '';
 
 			if ($this->form_validation->run() == FALSE) {
+				// [eQSL default msg] GET from user options (same as edit()) //
+				$this->load->model('user_options_model');
+				$options_object = $this->user_options_model->get_options('eqsl_default_qslmsg', array('option_name' => 'key_station_id', 'option_key' => $id))->result();
+				$data['eqsl_default_qslmsg'] = (isset($options_object[0]->option_value)) ? $options_object[0]->option_value : '';
+
 				$this->load->view('interface_assets/header', $data);
 				$this->load->view('station_profile/edit');
 				$this->load->view('interface_assets/footer');
 			} else {
-				$this->stations->add();
-
+				if (($station_id = $this->stations->add()) !== false) {
+					// [eQSL default msg] ADD to user options (same as create()) //
+					$eqsl_default_qslmsg = xss_clean($this->input->post('eqsl_default_qslmsg', true));
+					if (!empty(trim($eqsl_default_qslmsg))) {
+						$this->load->model('user_options_model');
+						$this->user_options_model->set_option('eqsl_default_qslmsg', 'key_station_id', array($station_id => $eqsl_default_qslmsg));
+					}
+				}
 				redirect('station');
 			}
 		} else {
