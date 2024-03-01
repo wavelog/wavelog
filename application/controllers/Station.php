@@ -252,7 +252,7 @@ class Station extends CI_Controller
 		echo json_encode($json);
 	}
 
-	// [eQSL default msg] Function return options from this station (but can be general use) //
+	// [eQSL default msg] Function return options from this station (but can be general use), using with js call on qso page //
 	public function get_options()
 	{
 		$return_json = array();
