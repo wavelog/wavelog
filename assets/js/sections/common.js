@@ -601,8 +601,8 @@ function displayQsl(id) {
 // [eQSL default msg] function to load default qslmsg to qslmsg field on qso add/edit //
 function qso_set_eqsl_qslmsg(station_id, force_diff_to_origin=false, object='') {
     $.ajax({
-        url: base_url+'index.php/station/get_options',
-        type: 'post', data: {'option_type':'eqsl_default_qslmsg','option_name':'key_station_id','option_key':station_id },
+        url: base_url+'index.php/qso/get_eqsl_default_qslmsg',
+        type: 'post', data: {'option_key':station_id },
         success: function(res) {
             if (typeof res.eqsl_default_qslmsg !== "undefined") {
                 object = (object!='')?(object+' '):'';
