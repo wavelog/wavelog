@@ -163,6 +163,8 @@ $( document ).ready(function() {
 						$("#callsign").val("");
 						$("#callsign").focus();
 						$("#noticer").fadeOut(2000);
+						var triggerEl = document.querySelector('#myTab a[href="#qso"]')
+						bootstrap.Tab.getInstance(triggerEl).show() // Select tab by name
 					} else {
 						$("#noticer").removeClass("");
 						$("#noticer").addClass("alert alert-warning");
