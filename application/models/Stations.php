@@ -55,7 +55,6 @@ class Stations extends CI_Model {
 		$this->db->where('station_id', $clean_id);
 		$row=$this->db->get('station_profile')->row();
 
-		$this->load->model('user_options_model');
 		$options_object = $this->user_options_model->get_options('eqsl_default_qslmsg', array('option_name' => 'key_station_id', 'option_key' => $id))->result();
 		$row->eqsl_default_qslmsg = $options_object[0]->option_value ?? '';
 		return $row;
@@ -139,7 +138,6 @@ class Stations extends CI_Model {
 			$new_station_id = $this->db->insert_id();
 			$eqsl_default_qslmsg = xss_clean($this->input->post('eqsl_default_qslmsg', true));
 			if (!empty(trim($eqsl_default_qslmsg))) {
-				$this->load->model('user_options_model');
 				$this->user_options_model->set_option('eqsl_default_qslmsg', 'key_station_id', array($new_station_id => $eqsl_default_qslmsg));
 			}
 			return $new_station_id;
@@ -201,7 +199,6 @@ class Stations extends CI_Model {
 		$this->db->update('station_profile', $data);
 
 		$eqsl_default_qslmsg = xss_clean($this->input->post('eqsl_default_qslmsg', true) ?? '');
-		$this->load->model('user_options_model');
 		$this->user_options_model->set_option('eqsl_default_qslmsg', 'key_station_id', array(xss_clean($this->input->post('station_id', true)) => $eqsl_default_qslmsg));
 	}
 
@@ -213,7 +210,6 @@ class Stations extends CI_Model {
 		if ($clean_id === $this->find_active()) {
 			return;
 		}
-		$this->load->model('user_options_model');
 		$this->user_options_model->del_option('eqsl_default_qslmsg', 'key_station_id', array('option_key' => $id));
 
 		// Delete QSOs

@@ -579,7 +579,6 @@ class QSO extends CI_Controller {
 	   $return_json = array();
 	   $option_key = $this->input->post('option_key');
 	   if ($option_key > 0) {
-		   $this->load->model('user_options_model');
 		   $options_object = $this->user_options_model->get_options('eqsl_default_qslmsg', array('option_name' => 'key_station_id', 'option_key' => $option_key))->result();
 		   $return_json['eqsl_default_qslmsg'] = (isset($options_object[0]->option_value)) ? $options_object[0]->option_value : '';
 	   }
