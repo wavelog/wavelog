@@ -57,14 +57,7 @@ class Station extends CI_Controller
 			$this->load->view('station_profile/create');
 			$this->load->view('interface_assets/footer');
 		} else {
-			if (($station_id = $this->stations->add()) !== false) {
-				// [eQSL default msg] ADD to user options (option_type='eqsl_default_qslmsg'; option_name='key_station_id'; option_key=station_id; option_value=value) //
-				$eqsl_default_qslmsg = xss_clean($this->input->post('eqsl_default_qslmsg', true));
-				if (!empty(trim($eqsl_default_qslmsg))) {
-					$this->load->model('user_options_model');
-					$this->user_options_model->set_option('eqsl_default_qslmsg', 'key_station_id', array($station_id => $eqsl_default_qslmsg));
-				}
-			}
+			$this->stations->add();
 			redirect('stationsetup');
 		}
 	}
@@ -77,28 +70,13 @@ class Station extends CI_Controller
 			$data['page_title'] = lang('station_location_edit') . $data['my_station_profile']->station_profile_name;
 
 			if ($this->form_validation->run() == FALSE) {
-				// [eQSL default msg] GET from user options (option_type='eqsl_default_qslmsg'; option_name='key_station_id'; option_key=station_id) //
-				$this->load->model('user_options_model');
-				$options_object = $this->user_options_model->get_options('eqsl_default_qslmsg', array('option_name' => 'key_station_id', 'option_key' => $id))->result();
-				$data['eqsl_default_qslmsg'] = (isset($options_object[0]->option_value)) ? $options_object[0]->option_value : '';
-
 				$this->load->view('interface_assets/header', $data);
 				$this->load->view('station_profile/edit');
 				$this->load->view('interface_assets/footer');
 			} else {
-				if ($this->stations->edit() !== false) {
-					// [eQSL default msg] ADD to user options (option_type='eqsl_default_qslmsg'; option_name='key_station_id'; option_key=station_id; option_value=value) //
-					$eqsl_default_qslmsg = xss_clean($this->input->post('eqsl_default_qslmsg', true));
-					$this->load->model('user_options_model');
-					if (!empty(trim($eqsl_default_qslmsg))) {
-						$this->user_options_model->set_option('eqsl_default_qslmsg', 'key_station_id', array($id => $eqsl_default_qslmsg));
-					} else {
-						$this->user_options_model->del_option('eqsl_default_qslmsg', 'key_station_id', array('option_key' => $id));
-					}
+				if ($this->stations->edit()) {
+					$data['notice'] = lang('station_location') . $this->security->xss_clean($this->input->post('station_profile_name', true)) . " Updated";
 				}
-
-				$data['notice'] = lang('station_location') . $this->security->xss_clean($this->input->post('station_profile_name', true)) . " Updated";
-
 				redirect('stationsetup');
 			}
 		} else {
@@ -152,9 +130,9 @@ class Station extends CI_Controller
 
 		$item_id_clean = $this->security->xss_clean($id);
 
-		$station_profile_query = $this->stations->profile($item_id_clean);
+		// $station_profile_query = $this->stations->profile($item_id_clean);
 
-		$data['my_station_profile'] = $station_profile_query->row();
+		$data['my_station_profile'] = $this->stations->profile_full($item_id_clean);
 
 		$data['dxcc_list'] = $this->dxcc->list();
 
@@ -193,9 +171,6 @@ class Station extends CI_Controller
 		$this->load->model('stations');
 		if ($this->stations->check_station_is_accessible($id)) {
 			$this->stations->delete($id);
-			// [eQSL default msg] DELETE user options //
-			$this->load->model('user_options_model');
-			$this->user_options_model->del_option('eqsl_default_qslmsg', 'key_station_id', array('option_key' => $id));
 		}
 		redirect('stationsetup');
 	}
