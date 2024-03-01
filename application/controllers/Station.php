@@ -130,8 +130,6 @@ class Station extends CI_Controller
 
 		$item_id_clean = $this->security->xss_clean($id);
 
-		// $station_profile_query = $this->stations->profile($item_id_clean);
-
 		$data['my_station_profile'] = $this->stations->profile_full($item_id_clean);
 
 		$data['dxcc_list'] = $this->dxcc->list();
@@ -218,19 +216,4 @@ class Station extends CI_Controller
 		echo json_encode($json);
 	}
 
-	// [eQSL default msg] Function return options from this station (but can be general use) //
-	public function get_options()
-	{
-		$return_json = array();
-		$option_type = $this->input->post('option_type');
-		$option_name = $this->input->post('option_name');
-		$option_key = $this->input->post('option_key');
-		if (!empty($option_type) && !empty($option_name) && ($option_key > 0)) {
-			$this->load->model('user_options_model');
-			$options_object = $this->user_options_model->get_options($option_type, array('option_name' => $option_name, 'option_key' => $option_key))->result();
-			$return_json[$option_type] = (isset($options_object[0]->option_value)) ? $options_object[0]->option_value : '';
-		}
-		header('Content-Type: application/json');
-		echo json_encode($return_json);
-	}
 }
