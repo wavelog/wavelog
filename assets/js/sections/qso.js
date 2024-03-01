@@ -161,10 +161,10 @@ $( document ).ready(function() {
 						htmx.trigger("#qso-last-table", "qso_event")
 						$("#saveQso").html(saveQsoButtonText).prop("disabled",false);
 						$("#callsign").val("");
-						$("#callsign").focus();
 						$("#noticer").fadeOut(2000);
 						var triggerEl = document.querySelector('#myTab a[href="#qso"]')
 						bootstrap.Tab.getInstance(triggerEl).show() // Select tab by name
+						$("#callsign").focus();
 					} else {
 						$("#noticer").removeClass("");
 						$("#noticer").addClass("alert alert-warning");
