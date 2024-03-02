@@ -62,6 +62,6 @@ class Migration_harmonize_keys extends CI_Migration {
 	function get_max_from_tbl($tbl,$col) {
 		$query = $this->db->query("select max(".$col.") as MAXI from ".$tbl.";");
 		$row = $query->row();
-		return $row->MAXI;
+		return $row->MAXI ?? 0;
 	}
 }
