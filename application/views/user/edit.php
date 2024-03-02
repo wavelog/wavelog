@@ -51,13 +51,13 @@
 									<div class="mb-3">
 										<label><?php echo lang('account_username'); ?></label>
 										<input class="form-control" type="text" name="user_name" value="<?php if(isset($user_name)) { echo $user_name; } ?>" />
-										<?php if(isset($username_error)) { echo "<small class=\"error\">".$username_error."</small>"; } ?>
+										<?php if(isset($username_error)) { echo "<small class=\"badge bg-danger\">".$username_error."</small>"; } ?>
 									</div>
 
 									<div class="mb-3">
 										<label><?php echo lang('account_email_address'); ?></label>
 										<input class="form-control" type="text" name="user_email" value="<?php if(isset($user_email)) { echo $user_email; } ?>" />
-										<?php if(isset($email_error)) { echo "<small class=\"error\">".$email_error."</small>"; } ?>
+										<?php if(isset($email_error)) { echo "<small class=\"badge bg-danger\">".$email_error."</small>"; } ?>
 									</div>
 									
 									<div class="mb-3">
@@ -66,8 +66,10 @@
 											<input class="form-control" type="password" name="user_password" />
 											<span class="input-group-btn"><button class="btn btn-default btn-pwd-showhide" type="button"><i class="fa fa-eye-slash"></i></button></span>
 										</div>
-										<?php if(isset($password_error)) { echo "<small class=\"error\">".$password_error."</small>"; } else { ?>
-										<small class="form-text text-muted"><?php echo lang('account_leave_blank_to_keep_existing_password'); ?></small>
+										<?php if(isset($password_error)) { 
+											echo "<small class=\"badge bg-danger\">".$password_error."</small>"; 
+											} else if (!isset($user_add)) { ?>
+											<small class="form-text text-muted"><?php echo lang('account_leave_blank_to_keep_existing_password'); ?></small>
 										<?php } ?>
 									</div>
 
@@ -100,14 +102,14 @@
 									<div class="mb-3">
 										<label><?php echo lang('account_first_name'); ?></label>
 										<input class="form-control" type="text" name="user_firstname" value="<?php if(isset($user_firstname)) { echo $user_firstname; } ?>" />
-											<?php if(isset($firstname_error)) { echo "<small class=\"error\">".$firstname_error."</small>"; } else { ?>
+											<?php if(isset($firstname_error)) { echo "<small class=\"badge bg-danger\">".$firstname_error."</small>"; } else { ?>
 											<?php } ?>
 									</div>
 
 									<div class="mb-3">
 										<label><?php echo lang('account_last_name'); ?></label>
 										<input class="form-control" type="text" name="user_lastname" value="<?php if(isset($user_lastname)) { echo $user_lastname; } ?>" />
-											<?php if(isset($lastname_error)) { echo "<small class=\"error\">".$lastname_error."</small>"; } else { ?>
+											<?php if(isset($lastname_error)) { echo "<small class=\"badge bg-danger\">".$lastname_error."</small>"; } else { ?>
 											<?php } ?>
 									</div>
 								</div>
@@ -121,14 +123,14 @@
 									<div class="mb-3">
 										<label><?php echo lang('account_callsign'); ?></label>
 										<input class="form-control" type="text" name="user_callsign" value="<?php if(isset($user_callsign)) { echo $user_callsign; } ?>" />
-											<?php if(isset($callsign_error)) { echo "<small class=\"error\">".$callsign_error."</small>"; } else { ?>
+											<?php if(isset($callsign_error)) { echo "<small class=\"badge bg-danger\">".$callsign_error."</small>"; } else { ?>
 											<?php } ?>
 									</div>
 
 									<div class="mb-3">
 										<label><?php echo lang('account_gridsquare'); ?></label>
 										<input class="form-control" type="text" name="user_locator" value="<?php if(isset($user_locator)) { echo $user_locator; } ?>" />
-											<?php if(isset($locator_error)) { echo "<small class=\"error\">".$locator_error."</small>"; } else { ?>
+											<?php if(isset($locator_error)) { echo "<small class=\"badge bg-danger\">".$locator_error."</small>"; } else { ?>
 											<?php } ?>
 									</div>
 								</div>
@@ -648,7 +650,7 @@
 									<div class="mb-3">
 										<label><?php echo lang('account_logbook_of_the_world_lotw_username'); ?></label>
 										<input class="form-control" type="text" name="user_lotw_name" value="<?php if(isset($user_lotw_name)) { echo $user_lotw_name; } ?>" />
-										<?php if(isset($userlotwname_error)) { echo "<small class=\"error\">".$userlotwname_error."</small>"; } ?>
+										<?php if(isset($userlotwname_error)) { echo "<small class=\"badge bg-danger\">".$userlotwname_error."</small>"; } ?>
 									</div>
 
 									<div class="mb-3">
@@ -657,8 +659,10 @@
 											<input class="form-control" type="password" name="user_lotw_password" />
 											<span class="input-group-btn"><button class="btn btn-default btn-pwd-showhide" type="button"><i class="fa fa-eye-slash"></i></button></span>
 										</div>
-										<?php if(isset($lotwpassword_error)) { echo "<small class=\"error\">".$lotwpassword_error."</small>"; } else { ?>
-										<small class="form-text text-muted"><?php echo lang('account_leave_blank_to_keep_existing_password'); ?></small>
+										<?php if(isset($lotwpassword_error)) { 
+											echo "<small class=\"badge bg-danger\">".$lotwpassword_error."</small>"; 
+											} else if (!isset($user_add)) { ?>
+												<small class="form-text text-muted"><?php echo lang('account_leave_blank_to_keep_existing_password'); ?></small>
 										<?php } ?>
 									</div>
 								</div>
@@ -673,7 +677,7 @@
 									<div class="mb-3">
 										<label><?php echo lang('account_eqslcc_username'); ?></label>
 										<input class="form-control" type="text" name="user_eqsl_name" value="<?php if(isset($user_eqsl_name)) { echo $user_eqsl_name; } ?>" />
-											<?php if(isset($eqslusername_error)) { echo "<small class=\"error\">".$eqslusername_error."</small>"; } ?>
+											<?php if(isset($eqslusername_error)) { echo "<small class=\"badge bg-danger\">".$eqslusername_error."</small>"; } ?>
 									</div>
 
 									<div class="mb-3">
@@ -682,8 +686,10 @@
 											<input class="form-control" type="password" name="user_eqsl_password" />
 											<span class="input-group-btn"><button class="btn btn-default btn-pwd-showhide" type="button"><i class="fa fa-eye-slash"></i></button></span>
 										</div>
-										<?php if(isset($eqslpassword_error)) { echo "<small class=\"error\">".$eqslpassword_error."</small>"; } else { ?>
-										<small class="form-text text-muted"><?php echo lang('account_leave_blank_to_keep_existing_password'); ?></small>
+										<?php if(isset($eqslpassword_error)) { 
+											echo "<small class=\"badge bg-danger\">".$eqslpassword_error."</small>"; 
+											} else if (!isset($user_add)) { ?>
+												<small class="form-text text-muted"><?php echo lang('account_leave_blank_to_keep_existing_password'); ?></small>
 										<?php } ?>
 									</div>
 								</div>
@@ -699,7 +705,7 @@
 										<label><?php echo lang('account_clublog_email_callsign'); ?></label>
 										<input class="form-control" type="text" name="user_clublog_name" value="<?php if(isset($user_clublog_name)) { echo $user_clublog_name; } ?>" />
 										<small class="form-text text-muted"><?php echo lang('account_the_email_or_callsign_you_use_to_login_to_club_log'); ?></small>
-										<?php if(isset($userclublogname_error)) { echo "<small class=\"error\">".$userclublogname_error."</small>"; } ?>
+										<?php if(isset($userclublogname_error)) { echo "<small class=\"badge bg-danger\">".$userclublogname_error."</small>"; } ?>
 									</div>
 
 									<div class="mb-3">
@@ -708,8 +714,10 @@
 											<input class="form-control" type="password" name="user_clublog_password" />
 											<span class="input-group-btn"><button class="btn btn-default btn-pwd-showhide" type="button"><i class="fa fa-eye-slash"></i></button></span>
 										</div>
-										<?php if(isset($clublogpassword_error)) { echo "<small class=\"error\">".$clublogpassword_error."</small>"; } else { ?>
-										<small class="form-text text-muted"><?php echo lang('account_leave_blank_to_keep_existing_password'); ?></small>
+										<?php if(isset($clublogpassword_error)) { 
+											echo "<small class=\"badge bg-danger\">".$clublogpassword_error."</small>"; 
+											} else if (!isset($user_add)) { ?>
+												<small class="form-text text-muted"><?php echo lang('account_leave_blank_to_keep_existing_password'); ?></small>
 										<?php } ?>
 									</div>
 								</div>
