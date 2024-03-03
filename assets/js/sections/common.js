@@ -702,6 +702,45 @@ function statesDropdown(states, set_state = null) {
     }
 }
 
+// Location Quickswitcher
+function quickswitcher_show_activebadge(current_active) {
+    $('#quickswitcher_active_badge_' + current_active).removeClass('d-none');
+}
+
+function current_active_ajax(callback) {
+    $.ajax({
+        url: base_url + 'index.php/stationsetup/getActiveStation',
+        type: 'GET',
+        dataType: 'json',
+        success: function(response) {
+            var current_active = response;
+            callback(current_active); 
+        }
+    });
+}
+
+function set_active_location(new_active) {
+    current_active_ajax(function(current_active) {
+        $.ajax({
+            url: base_url + 'index.php/stationsetup/setActiveStation_json',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                id2setActive: new_active
+            }, 
+            success: function(response) {
+                $('#quickswitcher_active_badge_' + current_active).addClass('d-none');
+                $('#quickswitcher_active_badge_' + new_active).removeClass('d-none');
+            },
+            error: function(xhr, status, error) { 
+                console.error('Error while setting the new active location: ' + error);
+            }
+        });
+    });
+}
+
+
+
 console.log("Ready to unleash your coding prowess and join the fun?\n\n" +
     "Check out our GitHub Repository and dive into the coding adventure:\n\n" +
     "🚀 https://www.github.com/wavelog/wavelog");
