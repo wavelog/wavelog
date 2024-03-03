@@ -735,6 +735,11 @@ function set_active_location(new_active) {
 
                 $('#quickswitcher_listbutton_' + new_active).addClass('disabled');
                 $('#quickswitcher_active_badge_' + new_active).removeClass('d-none');
+
+                // if we are on the stationsetup page the function reloadStations exists and we can run it
+                if (typeof reloadStations === 'function') {
+                    reloadStations();
+                }
             },
             error: function(xhr, status, error) { 
                 console.error('Error while setting the new active location: ' + error);
