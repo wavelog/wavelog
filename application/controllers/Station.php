@@ -110,10 +110,10 @@ class Station extends CI_Controller
 		}
 	}
 
-	public function edit_favorite($id)
+	public function edit_favourite($id)
 	{
 		$this->load->model('stations');
-		$this->stations->edit_favorite($id);
+		$this->stations->edit_favourite($id);
 
 		redirect('stationsetup');
 	}

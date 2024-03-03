@@ -97,7 +97,7 @@ class Stationsetup extends CI_Controller {
 		$id2fav = xss_clean($this->input->post('id2Favorite', true));
 		if ($id2fav ?? '' != '') {
 			$this->load->model('stations');
-			$this->stations->edit_favorite($id2fav);
+			$this->stations->edit_favourite($id2fav);
 			$data['success'] = 1;
 		} else {
 			$data['success'] = 0;
