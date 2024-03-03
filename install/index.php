@@ -53,8 +53,7 @@ function isExtensionInstalled($extensionName)
 	return in_array($extensionName, get_loaded_extensions());
 }
 
-function delDir($dir)
-{
+function delDir($dir) {
 	$files = glob($dir . '*', GLOB_MARK);
 	foreach ($files as $file) {
 		if (substr($file, -1) == '/') {
@@ -91,7 +90,7 @@ if ($_POST) {
 	$core = new Core();
 	$database = new Database();
 
-	if ($_POST['database_check'] == true) {
+	if ($_POST['database_check'] ?? false == true) {
 
 		$result = $database->database_check($_POST);
 		echo $result;
