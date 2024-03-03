@@ -176,7 +176,7 @@ function qso_edit(id) {
             $('.menuOnBody').remove();
             BootstrapDialog.show({
                 title: lang_general_word_qso_data,
-                cssClass: 'edit-dialog, bg-black bg-opacity-50',
+                cssClass: 'edit-dialog bg-black bg-opacity-50',
                 size: BootstrapDialog.SIZE_WIDE,
                 nl2br: false,
                 message: html,
