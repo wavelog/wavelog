@@ -4,7 +4,9 @@ $dok = 0;
 $dxcc = 0;
 $helvetia = 0;
 $iota = 0;
+$jcc = 0;
 $pota = 0;
+$rac = 0;
 $sig = 0;
 $sota = 0;
 $uscounties = 0;
@@ -48,7 +50,9 @@ $wwff = 0;
                     <th><?php echo lang('gen_hamradio_dxcc'); ?></th>
 					<th><?php echo lang('menu_helvetia'); ?></th>
                     <th><?php echo lang('gen_hamradio_iota'); ?></th>
+                    <th><?php echo lang('menu_jcc'); ?></th>
 					<th><?php echo lang('gen_hamradio_pota'); ?></th>
+					<th><?php echo lang('menu_rac'); ?></th>
 					<th><?php echo lang('gen_hamradio_sig'); ?></th>
                     <th><?php echo lang('gen_hamradio_sota'); ?></th>
                     <th><?php echo lang('gen_hamradio_county_reference'); ?></th>
@@ -76,7 +80,9 @@ $wwff = 0;
                     <td style="text-align: center; vertical-align: middle;" class='dxcc_<?php echo $band->id ?>'><input type="checkbox" <?php if ($band->dxcc == 1) {echo 'checked'; $dxcc++;}?>></td>
 					<td style="text-align: center; vertical-align: middle;" class='helvetia_<?php echo $band->id ?>'><input type="checkbox" <?php if ($band->helvetia == 1) {echo 'checked'; $helvetia++;}?>></td>
                     <td style="text-align: center; vertical-align: middle;" class='iota_<?php echo $band->id ?>'><input type="checkbox" <?php if ($band->iota == 1) {echo 'checked'; $iota++;}?>></td>
+                    <td style="text-align: center; vertical-align: middle;" class='jcc_<?php echo $band->id ?>'><input type="checkbox" <?php if ($band->jcc == 1) {echo 'checked'; $jcc++;}?>></td>
                     <td style="text-align: center; vertical-align: middle;" class='pota_<?php echo $band->id ?>'><input type="checkbox" <?php if ($band->pota == 1) {echo 'checked'; $pota++;}?>></td>
+					<td style="text-align: center; vertical-align: middle;" class='rac_<?php echo $band->id ?>'><input type="checkbox" <?php if ($band->rac == 1) {echo 'checked'; $rac++;}?>></td>
                     <td style="text-align: center; vertical-align: middle;" class='sig_<?php echo $band->id ?>'><input type="checkbox" <?php if ($band->sig == 1) {echo 'checked'; $sig++;}?>></td>
                     <td style="text-align: center; vertical-align: middle;" class='sota_<?php echo $band->id ?>'><input type="checkbox" <?php if ($band->sota == 1) {echo 'checked'; $sota++;}?>></td>
                     <td style="text-align: center; vertical-align: middle;" class='uscounties_<?php echo $band->id ?>'><input type="checkbox" <?php if ($band->uscounties == 1) {echo 'checked'; $uscounties++;}?>></td>
@@ -108,7 +114,9 @@ $wwff = 0;
 					<th class="master_dxcc"><input type="checkbox" <?php if ($dxcc > 0) echo 'checked';?>></th>
 					<th class="master_helvetia"><input type="checkbox" <?php if ($helvetia > 0) echo 'checked';?>></th>
 					<th class="master_iota"><input type="checkbox" <?php if ($iota > 0) echo 'checked';?>></th>
+					<th class="master_jcc"><input type="checkbox" <?php if ($jcc > 0) echo 'checked';?>></th>
 					<th class="master_pota"><input type="checkbox" <?php if ($pota > 0) echo 'checked';?>></th>
+					<th class="master_rac"><input type="checkbox" <?php if ($rac > 0) echo 'checked';?>></th>
 					<th class="master_sig"><input type="checkbox" <?php if ($sig > 0) echo 'checked';?>></th>
 					<th class="master_sota"><input type="checkbox" <?php if ($sota > 0) echo 'checked';?>></th>
 					<th class="master_uscounties"><input type="checkbox" <?php if ($uscounties > 0) echo 'checked';?>></th>

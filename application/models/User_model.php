@@ -200,8 +200,10 @@ class User_Model extends CI_Model {
 			// Add user and insert bandsettings for user
 			$this->db->insert($this->config->item('auth_table'), $data);
 			$insert_id = $this->db->insert_id();
-			$this->db->query("insert into bandxuser (bandid, userid, active, cq, dok, dxcc, helvetia, iota, pota, sig, sota, uscounties, was, wwff, vucc, waja, rac) select bands.id, " . $insert_id . ", 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 from bands;");
-			$this->db->query("insert into paper_types (user_id,paper_name,metric,width,orientation,height) SELECT ".$insert_id.", paper_name, metric, width, orientation,height FROM paper_types where user_id = 0;");	// Templates have user_id 0
+
+			$this->db->query("insert into bandxuser (bandid, userid) select bands.id, " . $insert_id . " from bands;");
+			$this->db->query("insert into paper_types (user_id,paper_name,metric,width,orientation,height) SELECT ".$insert_id.", paper_name, metric, width, orientation,height FROM paper_types where user_id = 0;");
+
 			return OK;
 		} else {
 			return EUSERNAMEEXISTS;
