@@ -730,11 +730,12 @@ function set_active_location(new_active) {
                 id2setActive: new_active
             }, 
             success: function(response) {
-                $('#quickswitcher_listbutton_' + current_active).removeClass('disabled');
-                $('#quickswitcher_active_badge_' + current_active).addClass('d-none');
+                $('[id^="quickswitcher_listbutton_"]').not('#quickswitcher_listbutton_' + new_active).removeClass('disabled');
+                $('[id^="quickswitcher_active_badge_"]').not('#quickswitcher_active_badge_' + new_active).addClass('d-none');
 
                 $('#quickswitcher_listbutton_' + new_active).addClass('disabled');
                 $('#quickswitcher_active_badge_' + new_active).removeClass('d-none');
+
 
                 // if we are on the stationsetup page the function reloadStations exists and we can run it
                 if (typeof reloadStations === 'function') {

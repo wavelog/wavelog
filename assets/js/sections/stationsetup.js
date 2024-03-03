@@ -79,6 +79,9 @@ $(document).ready(function () {
 				jdata=JSON.parse(data);
 				if (jdata.success == 1) {
 					succ_callback();
+
+					// we also want to switch the active badge in the quickswitcher
+					set_active_location(event_target.currentTarget.id);
 				} else {
 					$("#flashdata").html(jdata.flashdata);
 				}
