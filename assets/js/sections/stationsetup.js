@@ -135,10 +135,6 @@ function reloadStations() {
 	return false;
 }
 
-function setActiveStationLocation() {
-
-}
-
 function createStationLogbook() {
 	$.ajax({
 		url: base_url + 'index.php/stationsetup/newLogbook',
