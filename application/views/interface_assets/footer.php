@@ -2084,7 +2084,6 @@ $(document).ready(function(){
 <script>
 
 function selectize_usa_county() {
-    console.log('selectize_usa_county');
     var baseURL= "<?php echo base_url();?>";
     $('#stationCntyInputEdit').selectize({
         delimiter: ';',
