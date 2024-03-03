@@ -409,16 +409,16 @@
 
 										if ($is_favorite) { ?>
 											<li id="quickswitcher_listitem_<?php echo $station_id; ?>">
-												<a id="quickswitcher_listbutton_<?php echo $station_id; ?>" type="button" onclick="set_active_location('<?php echo $station_id; ?>')" class="dropdown-item">
+												<a id="quickswitcher_listbutton_<?php echo $station_id; ?>" type="button" onclick="set_active_location('<?php echo $station_id; ?>')" class="dropdown-item quickswitcher">
 													<i class="fas fa-map-marker-alt me-2"></i><?php echo $station_profile_name; echo $active_badge; ?>
 												</a>
 											</li>
 										<?php }
 									} ?>
 									<div class="dropdown-divider"></div>
-									<li><a class="dropdown-item disabled"><?php echo lang('gen_hamradio_active_logbook'); ?>:<span class="badge text-bg-info ms-1"><?php echo $this->logbooks_model->find_name($this->session->userdata('active_station_logbook')); ?></span></a></li>
+									<li><a class="dropdown-item quickswitcher disabled"><?php echo lang('gen_hamradio_active_logbook'); ?>:<span class="badge text-bg-info ms-1"><?php echo $this->logbooks_model->find_name($this->session->userdata('active_station_logbook')); ?></span></a></li>
 									<div class="dropdown-divider"></div>
-									<li><a class="dropdown-item" href="<?php echo site_url('stationsetup'); ?>" title="Manage station locations"><?php echo lang('menu_station_setup'); ?></a></li>
+									<li><a class="dropdown-item" href="<?php echo site_url('stationsetup'); ?>" title="Manage station locations"><?php echo lang('menu_station_setup'); ?>...</a></li>
 								</ul>
 							</li>
 						<?php }
