@@ -88,6 +88,7 @@ class Stationsetup extends CI_Controller {
 		echo json_encode($data);
 	}
 
+	// get active station for quickswitcher
 	public function getActiveStation() {
 		$active_loc = $this->stations->find_active();
 		echo json_encode($active_loc);
