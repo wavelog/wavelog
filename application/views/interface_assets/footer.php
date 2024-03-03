@@ -4,6 +4,7 @@
     */
     var option_map_tile_server = '<?php echo $this->optionslib->get_option('option_map_tile_server');?>';
     var option_map_tile_server_copyright = '<?php echo $this->optionslib->get_option('option_map_tile_server_copyright');?>';
+    var lang_datatables_language = '<?php echo lang('datatables_language'); ?>';
 
     var base_url = "<?php echo base_url(); ?>"; // Base URL
     var site_url = "<?php echo site_url(); ?>"; // Site URL
@@ -12,7 +13,7 @@
 
     // get the user_callsign from session
     var my_call = "<?php echo $this->session->userdata('user_callsign'); ?>".toUpperCase();
-    
+
     /*
     General Language
     */
@@ -3049,10 +3050,6 @@ if (isset($scripts) && is_array($scripts)){
 	}
 }
 ?>
-    <script>
-      <?php
-      echo "var lang_datatables_language = '" . lang("datatables_language") . "';"
-      ?>
-    </script>
+
   </body>
 </html>
