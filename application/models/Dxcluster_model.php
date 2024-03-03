@@ -5,12 +5,11 @@ use Wavelog\Dxcc\Dxcc;
 class Dxcluster_model extends CI_Model {
 	public function dxc_spotlist($band = '20m', $maxage = 60, $de = '') {
 		$this->load->helper(array('psr4_autoloader'));
-		$CI =& get_instance();
 
-		if($CI->session->userdata('user_date_format')) {
-			$custom_date_format = $CI->session->userdata('user_date_format');
+		if($this->session->userdata('user_date_format')) {
+			$custom_date_format = $this->session->userdata('user_date_format');
 		} else {
-			$custom_date_format = $CI->config->item('qso_date_format');
+			$custom_date_format = $this->config->item('qso_date_format');
 		}
 
 		$dxcache_url = ($this->optionslib->get_option('dxcache_url') == '' ? 'https://dxc.jo30.de/dxcache' : $this->optionslib->get_option('dxcache_url'));
@@ -20,9 +19,9 @@ class Dxcluster_model extends CI_Model {
 		} else {
 			$dxcache_url = $dxcache_url . '/spots/'.$band;
 		}
-		$CI->load->model('logbooks_model');
-		$CI->load->model('logbook_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		// $this->load->model('logbooks_model');  lives in the autoloader
+		$this->load->model('logbook_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
 		$this->load->driver('cache', array('adapter' => 'file', 'backup' => 'file'));
 		if (!$jsonraw = $this->cache->get('dxcache'.$band)) {
@@ -45,7 +44,7 @@ class Dxcluster_model extends CI_Model {
 		if (strlen($jsonraw)>20) {
 			$spotsout=[];
 			foreach($json as $singlespot){
-				$spotband = $CI->frequency->GetBand($singlespot->frequency*1000);
+				$spotband = $this->frequency->GetBand($singlespot->frequency*1000);
 				$singlespot->band=$spotband;
 				if (($band != 'All') && ($band != $spotband)) { continue; }
 				$datetimecurrent = new DateTime("now", new DateTimeZone('UTC')); // Today's Date/Time
