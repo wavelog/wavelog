@@ -91,17 +91,9 @@ if($this->session->userdata('user_id') != null) {
 ?>
 
 <!-- Version Dialog END -->
-
 <script>
-    function set_active_location(current_active, new_active) {
-        $.ajax({
-            url: base_url + 'index.php/station/set_active/' + current_active + '/' + new_active + '/1',
-            type: 'GET',
-            success: function(response) {
-                location.reload();
-            }
-        });
-    }
+    var current_active_location = "<?php echo $this->stations->find_active(); ?>";
+    quickswitcher_show_activebadge(current_active_location);
 </script>
 
 <?php if ($this->uri->segment(1) == "oqrs") { ?>

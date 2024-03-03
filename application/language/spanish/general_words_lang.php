@@ -228,8 +228,8 @@ $lang['general_word_today'] = 'Hoy';
 
 $lang['dashboard_php_version_warning'] = 'Necesita actualizar su versión de PHP. La versión mínima es 7.4. Su versión es ';
 $lang['dashboard_country_files_warning'] = 'Necesita actualizar su archivo de países. ¡Haga clic <a href="'.site_url('update').'">aquí</a> para hacerlo!';
-$lang['dashboard_locations_warning'] = 'No tiene localizaciones de estaciones. ¡Haga clic <a href="'. site_url('station') . '">aquí</a> para crear una!';
-$lang['dashboard_logbooks_warning'] = 'No tiene libro de guardias. ¡Haga clic <a href="'. site_url('logbooks') . '">aquí</a> para crear uno!';
+$lang['dashboard_locations_warning'] = 'No tiene localizaciones de estaciones. ¡Haga clic <a href="'. site_url('stationsetup') . '">aquí</a> para crear una!';
+$lang['dashboard_logbooks_warning'] = 'No tiene libro de guardias. ¡Haga clic <a href="'. site_url('stationsetup') . '">aquí</a> para crear uno!';
 
 $lang['hams_at_no_activations_found'] = 'No hay activaciones próximas. Por favor vuelve a revisar más tarde.';
 

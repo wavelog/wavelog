@@ -601,8 +601,8 @@ function displayQsl(id) {
 // [eQSL default msg] function to load default qslmsg to qslmsg field on qso add/edit //
 function qso_set_eqsl_qslmsg(station_id, force_diff_to_origin=false, object='') {
     $.ajax({
-        url: base_url+'index.php/station/get_options',
-        type: 'post', data: {'option_type':'eqsl_default_qslmsg','option_name':'key_station_id','option_key':station_id },
+        url: base_url+'index.php/qso/get_eqsl_default_qslmsg',
+        type: 'post', data: {'option_key':station_id },
         success: function(res) {
             if (typeof res.eqsl_default_qslmsg !== "undefined") {
                 object = (object!='')?(object+' '):'';
@@ -701,6 +701,55 @@ function statesDropdown(states, set_state = null) {
         dropdown.prop('disabled', true);
     }
 }
+
+// Location Quickswitcher
+function quickswitcher_show_activebadge(current_active) {
+    $('#quickswitcher_active_badge_' + current_active).removeClass('d-none');
+    $('#quickswitcher_list_button_' + current_active).addClass('disabled');
+}
+
+function current_active_ajax(callback) {
+    $.ajax({
+        url: base_url + 'index.php/stationsetup/getActiveStation',
+        type: 'GET',
+        dataType: 'json',
+        success: function(response) {
+            var current_active = response;
+            callback(current_active); 
+        }
+    });
+}
+
+function set_active_loc_quickswitcher(new_active) {
+    current_active_ajax(function(current_active) {
+        $.ajax({
+            url: base_url + 'index.php/stationsetup/setActiveStation_json',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                id2setActive: new_active
+            }, 
+            success: function(response) {
+                $('[id^="quickswitcher_list_button_"]').not('#quickswitcher_list_button_' + new_active).removeClass('disabled');
+                $('[id^="quickswitcher_active_badge_"]').not('#quickswitcher_active_badge_' + new_active).addClass('d-none');
+
+                $('#quickswitcher_list_button_' + new_active).addClass('disabled');
+                $('#quickswitcher_active_badge_' + new_active).removeClass('d-none');
+
+
+                // if we are on the stationsetup page the function reloadStations exists and we can run it
+                if (typeof reloadStations === 'function') {
+                    reloadStations();
+                }
+            },
+            error: function(xhr, status, error) { 
+                console.error('Error while setting the new active location: ' + error);
+            }
+        });
+    });
+}
+
+
 
 console.log("Ready to unleash your coding prowess and join the fun?\n\n" +
     "Check out our GitHub Repository and dive into the coding adventure:\n\n" +

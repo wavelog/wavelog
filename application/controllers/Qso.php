@@ -575,6 +575,17 @@ class QSO extends CI_Controller {
 	   $this->load->view('qso/components/previous_contacts', $data);
    }
 
+   public function get_eqsl_default_qslmsg() {	// Get ONLY Default eQSL-Message with this function. This is ONLY for QSO relevant!
+	   $return_json = array();
+	   $option_key = $this->input->post('option_key');
+	   if ($option_key > 0) {
+		   $options_object = $this->user_options_model->get_options('eqsl_default_qslmsg', array('option_name' => 'key_station_id', 'option_key' => $option_key))->result();
+		   $return_json['eqsl_default_qslmsg'] = (isset($options_object[0]->option_value)) ? $options_object[0]->option_value : '';
+	   }
+	   header('Content-Type: application/json');
+	   echo json_encode($return_json);
+   }
+
    function check_locator($grid) {
       $grid = $this->input->post('locator');
       // Allow empty locator
