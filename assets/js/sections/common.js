@@ -366,6 +366,63 @@ function qso_edit(id) {
     });
 }
 
+function qso_save() {
+    var myform = $("#qsoform")[0];
+    var fd = new FormData(myform);
+    $.ajax({
+        url: base_url + 'index.php/qso/qso_save_ajax',
+        data: fd,
+        cache: false,
+        processData: false,
+        contentType: false,
+        type: 'POST',
+        success: function (dataofconfirm) {
+            $(".edit-dialog").modal('hide');
+            $(".qso-dialog").modal('hide');
+            if (reload_after_qso_safe == true) {
+                location.reload();
+            }
+        },
+        error: function(xhr, status, error) {
+            console.log(xhr.responseText);
+        }
+    });
+}
+
+function selectize_usa_county() {
+    $('#stationCntyInputEdit').selectize({
+        delimiter: ';',
+        maxItems: 1,
+        closeAfterSelect: true,
+        loadThrottle: 250,
+        valueField: 'name',
+        labelField: 'name',
+        searchField: 'name',
+        options: [],
+        create: false,
+        load: function(query, callback) {
+            var state = $("#stateDropdown option:selected").text();
+
+            if (!query || state == "") return callback();
+            $.ajax({
+                url: base_url + 'index.php/qso/get_county',
+                type: 'GET',
+                dataType: 'json',
+                data: {
+                    query: query,
+                    state: state,
+                },
+                error: function() {
+                    callback();
+                },
+                success: function(res) {
+                    callback(res);
+                }
+            });
+        }
+    });
+}
+
 async function updateStateDropdown() {
     console.log('dropdown triggered');
     var selectedDxcc = $("#dxcc_id");

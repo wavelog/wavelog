@@ -2081,65 +2081,18 @@ $(document).ready(function(){
     </script>
 <?php } ?>
 
+
 <script>
-
-function selectize_usa_county() {
-    var baseURL= "<?php echo base_url();?>";
-    $('#stationCntyInputEdit').selectize({
-        delimiter: ';',
-        maxItems: 1,
-        closeAfterSelect: true,
-        loadThrottle: 250,
-        valueField: 'name',
-        labelField: 'name',
-        searchField: 'name',
-        options: [],
-        create: false,
-        load: function(query, callback) {
-            var state = $("#stateDropdown option:selected").text();
-
-            if (!query || state == "") return callback();
-            $.ajax({
-                url: baseURL+'index.php/qso/get_county',
-                type: 'GET',
-                dataType: 'json',
-                data: {
-                    query: query,
-                    state: state,
-                },
-                error: function() {
-                    callback();
-                },
-                success: function(res) {
-                    callback(res);
-                }
-            });
-        }
-    });
-}
-
-function qso_save() {
-    var baseURL= "<?php echo base_url();?>";
-    var myform = document.getElementById("qsoform");
-    var fd = new FormData(myform);
-    $.ajax({
-        url: baseURL + 'index.php/qso/qso_save_ajax',
-        data: fd,
-        cache: false,
-        processData: false,
-        contentType: false,
-        type: 'POST',
-        success: function (dataofconfirm) {
-            $(".edit-dialog").modal('hide');
-            $(".qso-dialog").modal('hide');
-            <?php if ($this->uri->segment(1) != "search" && $this->uri->segment(2) != "filter" && $this->uri->segment(1) != "qso" && $this->uri->segment(1) != "logbookadvanced") { ?>location.reload();<?php } ?>
-        },
-        error: function(xhr, status, error) {
-            console.log(xhr.responseText);
-        }
-    });
-}
+    var reload_after_qso_safe = false;
+    <?php if (
+	$this->uri->segment(1) != "search" && 
+	$this->uri->segment(2) != "filter" && 
+	$this->uri->segment(1) != "qso" && 
+	$this->uri->segment(1) != "logbookadvanced") { ?>
+		reload_after_qso_safe = true;
+	<?php } ?>
 </script>
+
     <?php if ($this->uri->segment(1) == "timeline") { ?>
         <script>
             $('.timelinetable').DataTable({
