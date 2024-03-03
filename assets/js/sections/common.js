@@ -705,7 +705,7 @@ function statesDropdown(states, set_state = null) {
 // Location Quickswitcher
 function quickswitcher_show_activebadge(current_active) {
     $('#quickswitcher_active_badge_' + current_active).removeClass('d-none');
-    $('#quickswitcher_listbutton_' + current_active).addClass('disabled');
+    $('#quickswitcher_list_button_' + current_active).addClass('disabled');
 }
 
 function current_active_ajax(callback) {
@@ -730,10 +730,10 @@ function set_active_loc_quickswitcher(new_active) {
                 id2setActive: new_active
             }, 
             success: function(response) {
-                $('[id^="quickswitcher_listbutton_"]').not('#quickswitcher_listbutton_' + new_active).removeClass('disabled');
+                $('[id^="quickswitcher_list_button_"]').not('#quickswitcher_list_button_' + new_active).removeClass('disabled');
                 $('[id^="quickswitcher_active_badge_"]').not('#quickswitcher_active_badge_' + new_active).addClass('d-none');
 
-                $('#quickswitcher_listbutton_' + new_active).addClass('disabled');
+                $('#quickswitcher_list_button_' + new_active).addClass('disabled');
                 $('#quickswitcher_active_badge_' + new_active).removeClass('d-none');
 
 
