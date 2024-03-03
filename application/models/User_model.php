@@ -203,6 +203,9 @@ class User_Model extends CI_Model {
 
 			$this->db->query("insert into bandxuser (bandid, userid) select bands.id, " . $insert_id . " from bands;");
 			$this->db->query("insert into paper_types (user_id,paper_name,metric,width,orientation,height) SELECT ".$insert_id.", paper_name, metric, width, orientation,height FROM paper_types where user_id = 0;");
+			$this->db->query("insert into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $insert_id . ", 'map_custom','icon','qso','{\"icon\":\"fas fa-dot-circle\",\"color\":\"#ff0000\"}');");
+			$this->db->query("insert into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $insert_id . ", 'map_custom','icon','qsoconfirm','{\"icon\":\"fas fa-dot-circle\",\"color\":\"#00ff00\"}');");
+			$this->db->query("insert into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $insert_id . ", 'map_custom','icon','station','{\"icon\":\"fas fa-broadcast-tower\",\"color\":\"#0000ff\"}');");
 
 			return OK;
 		} else {
