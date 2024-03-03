@@ -409,7 +409,7 @@
 
 										if ($is_favorite) { ?>
 											<li id="quickswitcher_listitem_<?php echo $station_id; ?>">
-												<a id="quickswitcher_listbutton_<?php echo $station_id; ?>" type="button" onclick="set_active_location('<?php echo $station_id; ?>')" class="dropdown-item quickswitcher">
+												<a id="quickswitcher_listbutton_<?php echo $station_id; ?>" type="button" onclick="set_active_loc_quickswitcher('<?php echo $station_id; ?>')" class="dropdown-item quickswitcher">
 													<i class="fas fa-map-marker-alt me-2"></i><?php echo $station_profile_name; echo $active_badge; ?>
 												</a>
 											</li>

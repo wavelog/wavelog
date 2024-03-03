@@ -81,7 +81,7 @@ $(document).ready(function () {
 					succ_callback();
 
 					// we also want to switch the active badge in the quickswitcher
-					set_active_location(event_target.currentTarget.id);
+					set_active_loc_quickswitcher(event_target.currentTarget.id);
 				} else {
 					$("#flashdata").html(jdata.flashdata);
 				}

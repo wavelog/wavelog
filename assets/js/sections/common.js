@@ -720,7 +720,7 @@ function current_active_ajax(callback) {
     });
 }
 
-function set_active_location(new_active) {
+function set_active_loc_quickswitcher(new_active) {
     current_active_ajax(function(current_active) {
         $.ajax({
             url: base_url + 'index.php/stationsetup/setActiveStation_json',
