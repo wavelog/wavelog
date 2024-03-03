@@ -106,7 +106,7 @@ class Dxcluster_model extends CI_Model {
 
 		    // CURL Functions
 		    $ch = curl_init();
-		    curl_setopt($ch, CURLOPT_URL, $dxcache_url ?? 'https://dxc.jo30.de/dxcache');
+		    curl_setopt($ch, CURLOPT_URL, $dxcache_url);
 		    curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog '.$this->optionslib->get_option('version').' DXLookup by QRG');
 		    curl_setopt($ch, CURLOPT_HEADER, false);
 		    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
