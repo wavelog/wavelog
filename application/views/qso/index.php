@@ -40,7 +40,7 @@
           <li class="nav-item">
             <a class="nav-link" id="qsl-tab" data-bs-toggle="tab" href="#qsl" role="tab" aria-controls="qsl" aria-selected="false"><?php echo lang('gen_hamradio_qsl'); ?></a>
           </li>
-	
+
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" id="fav_item" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-star"></i></a>
     <div class="dropdown-menu">
@@ -120,7 +120,7 @@
               <!-- Callsign Input -->
               <div class="row">
                 <div class="mb-3 col-md-12">
-                  <label for="callsign"><?php echo lang('gen_hamradio_callsign'); ?></label><?php if ($this->optionslib->get_option('dxcache_url') != '') { ?>&nbsp;<i id="check_cluster" data-bs-toggle="tooltip" title="Search DXCluster for latest Spot" class="fas fa-search"></i> <?php } ?>
+                  <label for="callsign"><?php echo lang('gen_hamradio_callsign'); ?></label>&nbsp;<i id="check_cluster" data-bs-toggle="tooltip" title="Search DXCluster for latest Spot" class="fas fa-search"></i>
                   <div class="input-group">
                     <input type="text" class="form-control" id="callsign" name="callsign" required>
                     <span id="qrz_info" class="input-group-text btn-included-on-field d-none py-0"></span>

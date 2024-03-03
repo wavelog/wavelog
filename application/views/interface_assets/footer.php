@@ -965,9 +965,7 @@ $($('#callsign')).on('keypress',function(e) {
 <script src="<?php echo base_url() ;?>assets/js/sections/qso.js"></script>
 <?php if ($this->session->userdata('isWinkeyEnabled')) { ?>
 	<script src="<?php echo base_url() ;?>assets/js/winkey.js"></script>
-<?php }
-
-	if ($this->optionslib->get_option('dxcache_url') != ''){ ?>
+<?php }	?>
 	<script type="text/javascript">
 		var dxcluster_provider = '<?php echo base_url(); ?>index.php/dxcluster';
 		$(document).ready(function() {
@@ -984,7 +982,6 @@ $($('#callsign')).on('keypress',function(e) {
 	</script>
 
 <?php
-}
     $active_station_id = $this->stations->find_active();
     $station_profile = $this->stations->profile($active_station_id);
     $active_station_info = $station_profile->row();
@@ -2410,7 +2407,7 @@ function qso_save() {
 <script>
 function viewQsl(picture, callsign) {
 
-            var webpath_qsl = "<?php echo $this->paths->getPathQsl(); ?>"; 
+            var webpath_qsl = "<?php echo $this->paths->getPathQsl(); ?>";
             var baseURL= "<?php echo base_url();?>";
             var $textAndPic = $('<div></div>');
                 $textAndPic.append('<center><img class="img-fluid w-qsl" style="height:auto;width:auto;"src="'+baseURL+webpath_qsl+'/'+picture+'" /><center>');
@@ -2473,7 +2470,7 @@ function deleteQsl(id) {
 </script>
 <script>
 function viewEqsl(picture, callsign) {
-            var webpath_eqsl = '<?php echo $this->paths->getPathEqsl(); ?>'; 
+            var webpath_eqsl = '<?php echo $this->paths->getPathEqsl(); ?>';
             var baseURL= "<?php echo base_url();?>";
             var $textAndPic = $('<div></div>');
                 $textAndPic.append('<img class="img-fluid" style="height:auto;width:auto;"src="'+baseURL+webpath_eqsl+'/'+picture+'" />');
@@ -2624,7 +2621,7 @@ function viewEqsl(picture, callsign) {
     });
     }
     function uploadQsl() {
-        var webpath_qsl = "<?php echo $this->paths->getPathQsl(); ?>"; 
+        var webpath_qsl = "<?php echo $this->paths->getPathQsl(); ?>";
         var baseURL= "<?php echo base_url();?>";
         var formdata = new FormData(document.getElementById("fileinfo"));
 

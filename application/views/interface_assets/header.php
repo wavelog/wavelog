@@ -69,7 +69,7 @@
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light main-nav" id="header-menu">
 		<div class="container">
-			<a class="navbar-brand" href="<?php echo site_url(); ?>"><img class="headerLogo" src="<?php echo base_url(); ?>assets/logo/<?php echo $this->optionslib->get_logo('header_logo'); ?>.png" alt="Logo" /></a> 
+			<a class="navbar-brand" href="<?php echo site_url(); ?>"><img class="headerLogo" src="<?php echo base_url(); ?>assets/logo/<?php echo $this->optionslib->get_logo('header_logo'); ?>.png" alt="Logo" /></a>
 			<?php if (ENVIRONMENT == "development") { ?>
 				<span class="badge text-bg-danger"><?php echo lang('menu_badge_developer_mode'); ?></span>
 			<?php } ?>
@@ -195,10 +195,8 @@
 								<li><a class="dropdown-item" href="<?php echo site_url('contestcalendar'); ?>" title="SAT Timers"><i class="fas fa-satellite"></i> Contest Calendar</a></li>
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item" href="<?php echo site_url('hamsat'); ?>" title="Hams.at"><i class="fas fa-list"></i> Hams.at</a></li>
-								<?php if ($this->optionslib->get_option('dxcache_url') != '') { ?>
-									<div class="dropdown-divider"></div>
-									<li><a class="dropdown-item" href="<?php echo site_url('bandmap/list'); ?>" title="Bandmap"><i class="fa fa-id-card"></i> <?php echo lang('menu_bandmap'); ?></a></li>
-								<?php } ?>
+								<div class="dropdown-divider"></div>
+								<li><a class="dropdown-item" href="<?php echo site_url('bandmap/list'); ?>" title="Bandmap"><i class="fa fa-id-card"></i> <?php echo lang('menu_bandmap'); ?></a></li>
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item" href="<?php echo site_url('sattimers'); ?>" title="SAT Timers"><i class="fas fa-satellite"></i> <?php echo lang('menu_sat_timers'); ?></a></li>
 							</ul>
