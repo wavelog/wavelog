@@ -88,11 +88,17 @@ class Stationsetup extends CI_Controller {
 		echo json_encode($data);
 	}
 
+	// get active station for quickswitcher
+	public function getActiveStation() {
+		$active_loc = $this->stations->find_active();
+		echo json_encode($active_loc);
+	}	
+
 	public function setFavorite_json() {
 		$id2fav = xss_clean($this->input->post('id2Favorite', true));
 		if ($id2fav ?? '' != '') {
 			$this->load->model('stations');
-			$this->stations->edit_favorite($id2fav);
+			$this->stations->edit_favourite($id2fav);
 			$data['success'] = 1;
 		} else {
 			$data['success'] = 0;

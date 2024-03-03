@@ -257,7 +257,7 @@ class Stations extends CI_Model {
 		$this->db->update('station_profile', $newdefault);
 	}
 
-	function edit_favorite($id) {
+	function edit_favourite($id) {
 		$cleanid = $this->security->xss_clean($id);
 
 		$is_favorite = $this->user_options_model->get_options('station_location', array('option_name'=>'is_favorite', 'option_key'=>$cleanid))->row()->option_value ?? 'false';
