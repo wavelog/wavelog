@@ -1038,7 +1038,7 @@ class Logbook_model extends CI_Model {
 
 	  $entity = $this->get_entity($this->input->post('dxcc_id'));
 	  $stationId = $this->input->post('station_profile');
-	  $country = ucwords(strtolower($entity['name']), "- (/");
+	  $country = ucwords(strtolower($entity['name'] ?? ''), "- (/");	// Prevent Errors, if JS-Fence doesn't help
 
 	  // be sure that station belongs to user
 	  $this->load->model('stations');
@@ -4513,6 +4513,7 @@ function lotw_last_qsl_date($user_id) {
     public function check_for_station_id() {
       $this->db->select('COL_PRIMARY_KEY, COL_TIME_ON, COL_CALL, COL_MODE, COL_BAND, COL_STATION_CALLSIGN');
       $this->db->where('station_id =', NULL);
+      $this->db->or_where("station_id",0);
       $query = $this->db->get($this->config->item('table_name'));
       if($query->num_rows() >= 1) {
         return $query->result();
@@ -4571,26 +4572,29 @@ function lotw_last_qsl_date($user_id) {
     public function update_station_ids($station_id,$station_callsign,$qsoids) {
 
 	    if (! empty($qsoids)) {
-			 $data = array(
-				 'station_id' => $station_id,
-			 );
+		    $data = array(
+			    'station_id' => $station_id,
+		    );
 
-			 $this->db->where_in('COL_PRIMARY_KEY', $qsoids);
-			 $this->db->where(array('station_id' => NULL));
-			 if ($station_callsign == '') {
-				$this->db->where(array('col_station_callsign' => NULL));
-			 } else {
-				$this->db->where('col_station_callsign', $station_callsign);
-			 }
-			 $this->db->update($this->config->item('table_name'), $data);
-			 if ($this->db->affected_rows() > 0) {
-				 return TRUE;
-			 } else {
-				 return FALSE;
-			 }
-		 } else {
-			 return FALSE;
-		 }
+		    $this->db->where_in('COL_PRIMARY_KEY', $qsoids);
+		    $this->db->group_start();
+		    $this->db->where(array('station_id' => NULL));
+		    $this->db->or_where(array('station_id' => 0));	// 0 is also unassigned, compare mig_185
+		    $this->db->group_end();
+		    if ($station_callsign == '') {
+			    $this->db->where(array('col_station_callsign' => NULL));
+		    } else {
+			    $this->db->where('col_station_callsign', $station_callsign);
+		    }
+		    $this->db->update($this->config->item('table_name'), $data);
+		    if ($this->db->affected_rows() > 0) {
+			    return TRUE;
+		    } else {
+			    return FALSE;
+		    }
+	    } else {
+		    return FALSE;
+	    }
     }
 
     public function parse_frequency($frequency)
