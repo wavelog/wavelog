@@ -13,17 +13,21 @@ var lang_gen_hamradio_bearing = '<?php echo lang('gen_hamradio_bearing'); ?>';
 <?php
 echo "var homegrid ='" . strtoupper($homegrid[0]) . "';";
 if (!isset($options)) {
-   $options = "{\"datetime\":{\"show\":\"true\"},\"de\":{\"show\":\"true\"},\"dx\":{\"show\":\"true\"},\"mode\":{\"show\":\"true\"},\"rstr\":{\"show\":\"true\"},\"rsts\":{\"show\":\"true\"},\"band\":{\"show\":\"true\"},\"myrefs\":{\"show\":\"true\"},\"refs\":{\"show\":\"true\"},\"name\":{\"show\":\"true\"},\"qslvia\":{\"show\":\"true\"},\"qsl\":{\"show\":\"true\"},\"lotw\":{\"show\":\"true\"},\"eqsl\":{\"show\":\"true\"},\"qslmsg\":{\"show\":\"true\"},\"dxcc\":{\"show\":\"true\"},\"state\":{\"show\":\"true\"},\"cqzone\":{\"show\":\"true\"},\"iota\":{\"show\":\"true\"},\"pota\":{\"show\":\"true\"},\"operator\":{\"show\":\"true\"}}";
+   $options = "{\"datetime\":{\"show\":\"true\"},\"de\":{\"show\":\"true\"},\"dx\":{\"show\":\"true\"},\"mode\":{\"show\":\"true\"},\"rstr\":{\"show\":\"true\"},\"rsts\":{\"show\":\"true\"},\"band\":{\"show\":\"true\"},\"myrefs\":{\"show\":\"true\"},\"refs\":{\"show\":\"true\"},\"name\":{\"show\":\"true\"},\"qslvia\":{\"show\":\"true\"},\"qsl\":{\"show\":\"true\"},\"lotw\":{\"show\":\"true\"},\"eqsl\":{\"show\":\"true\"},\"qslmsg\":{\"show\":\"true\"},\"dxcc\":{\"show\":\"true\"},\"state\":{\"show\":\"true\"},\"cqzone\":{\"show\":\"true\"},\"iota\":{\"show\":\"true\"},\"pota\":{\"show\":\"true\"},\"operator\":{\"show\":\"true\"},\"comment\":{\"show\":\"true\"}}";
 }
 $current_opts=json_decode($options);
 echo "var user_options = $options;";
 if (!isset($current_opts->pota)) {
-        echo "\nvar o_template = { pota: {show: 'true'}};";
-        echo "\nuser_options={...user_options, ...o_template}";
+	echo "\nvar o_template = { pota: {show: 'true'}};";
+	echo "\nuser_options={...user_options, ...o_template};";
 }
 if (!isset($current_opts->operator)) {
 	echo "\nvar o_template = { operator: {show: 'true'}};";
-	echo "\nuser_options={...user_options, ...o_template}";
+	echo "\nuser_options={...user_options, ...o_template};";
+}
+if (!isset($current_opts->comment)) {
+	echo "\nvar o_template = { comment: {show: 'true'}};";
+	echo "\nuser_options={...user_options, ...o_template};";
 }
 
 foreach ($mapoptions as $mo) {
@@ -493,6 +497,9 @@ $options = json_decode($options);
 			} ?>
 			<?php if (($options->operator->show ?? "true") == "true") {
 				echo '<th>' . lang('gen_hamradio_operator') . '</th>';
+			} ?>
+			<?php if (($options->comment->show ?? "true") == "true") {
+				echo '<th>' . lang('general_word_comment') . '</th>';
 			} ?>
         </tr>
     </thead>

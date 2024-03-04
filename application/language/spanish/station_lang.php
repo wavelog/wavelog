@@ -58,6 +58,7 @@ $lang['station_location_updated_suff'] = ' Actualizada.';
 $lang['station_location_warning'] = 'Atención: Debe configurar una Localización de Estación como activa. vaya a Indicativo->Localización de Estación para seleccionar una.';
 $lang['station_location_reassign_at'] = 'Por favor, reasignelas en ';
 $lang['station_location_warning_reassign'] = 'Debido a cambios recientes en Wavelog, debe reasignar sus QSO a sus perfiles de estación.';
+$lang['station_location_id'] = 'ID';
 $lang['station_location_name'] = 'Nombre de Perfil';
 $lang['station_location_name_hint'] = 'Nombre corto para la Localización de Estación. Ejemplo: Casa (HM54ip)';
 $lang['station_location_callsign'] = 'Indicativo de la Estación';

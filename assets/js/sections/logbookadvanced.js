@@ -87,6 +87,9 @@ function updateRow(qso) {
 	if ( (user_options.operator) && (user_options.operator.show == "true")){
 		cells.eq(c++).html(qso.operator);
 	}
+	if ( (user_options.comment) && (user_options.comment.show == "true")){
+		cells.eq(c++).html(qso.comment);
+	}
 
 	$('[data-bs-toggle="tooltip"]').tooltip();
 	return row;
@@ -188,6 +191,9 @@ function loadQSOTable(rows) {
 		}
 		if (user_options.operator.show == "true"){
 			data.push(qso.operator);
+		}
+		if (user_options.comment.show == "true"){
+			data.push(qso.comment);
 		}
 
 		let createdRow = table.row.add(data).index();
@@ -872,6 +878,7 @@ function saveOptions() {
 			iota: $('input[name="iota"]').is(':checked') ? true : false,
 			pota: $('input[name="pota"]').is(':checked') ? true : false,
 			operator: $('input[name="operator"]').is(':checked') ? true : false,
+			comment: $('input[name="comment"]').is(':checked') ? true : false,
 			gridsquare_layer: $('input[name="gridsquareoverlay"]').is(':checked') ? true : false,
 			path_lines: $('input[name="pathlines"]').is(':checked') ? true : false,
 			cqzone_layer: $('input[name="cqzones"]').is(':checked') ? true : false,

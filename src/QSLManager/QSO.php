@@ -67,6 +67,7 @@ class QSO
 	private string $lastupload;
 	private string $lotw_hint;
 	private string $operator;
+	private string $comment;
 
 	/**
 	 * @param array $data Does no validation, it's assumed to be a row from the database in array format
@@ -119,6 +120,7 @@ class QSO
 			'COL_COUNTRY',
 			'COL_IOTA',
 			'COL_OPERATOR',
+			'COL_COMMENT',
 		];
 
 
@@ -207,6 +209,8 @@ class QSO
 		$this->lastupload = (($data['lastupload'] ?? null) === null) ? '' : date($custom_date_format . " H:i", strtotime($data['lastupload'] ?? null));
 		$this->lotw_hint = $this->getLotwHint($data['lastupload'] ?? null);
 		$this->operator = ($data['COL_OPERATOR'] === null) ? '' :$data['COL_OPERATOR'];
+
+		$this->comment = $data['COL_COMMENT'] ?? '';
 	}
 
 	/**
@@ -822,6 +826,7 @@ class QSO
 			'callsign' => $this->callsign,
 			'lastupload' => $this->lastupload,
 			'lotw_hint' => $this->lotw_hint,
+			'comment' => $this->comment
 		];
 	}
 
