@@ -13,10 +13,10 @@ class Dxcluster extends CI_Controller {
 
 	function spots($band,$age = '', $de = '') {
 		if ($age == '') {
-			$age = $this->optionslib->get_option('dxcluster_maxage');
+			$age = $this->optionslib->get_option('dxcluster_maxage') ?? 60;
 		}
 		if ($de == '') {
-			$de = $this->optionslib->get_option('dxcluster_decont');
+			$de = $this->optionslib->get_option('dxcluster_decont') ?? 'EU';
 		}
 		$calls_found=$this->dxcluster_model->dxc_spotlist($band, $age, $de);
 			header('Content-Type: application/json');
