@@ -58,6 +58,7 @@ $lang['station_location_updated_suff'] = ' Updated.';
 $lang['station_location_warning'] = 'Attention: You need to set an active station location. Go to Callsign->Station Location to select one.';
 $lang['station_location_reassign_at'] = 'Please reassign them at ';
 $lang['station_location_warning_reassign'] = 'Due to recent changes within Wavelog you need to reassign QSOs to your station profiles.';
+$lang['station_location_id'] = 'ID';
 $lang['station_location_name'] = 'Profile Name';
 $lang['station_location_name_hint'] = 'Shortname for the station location. For example: Home (HM54ip)';
 $lang['station_location_callsign'] = 'Station Callsign';

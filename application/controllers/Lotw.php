@@ -26,6 +26,11 @@ class Lotw extends CI_Controller {
 
 		// Load language files
 		$this->lang->load('lotw');
+
+		if (ENVIRONMENT == 'maintenance' && $this->session->userdata('user_id') == '') {
+            echo "Maintenance Mode is active. Try again later.\n";
+			redirect('user/login');
+		}
 	}
 
 	/*
@@ -352,7 +357,7 @@ class Lotw extends CI_Controller {
 
 			/*
 			|	Download QSO Matches from LoTW
-			 */
+			*/
 		if ($this->user_model->authorize(2)) {
 			echo "<br><br>";
 			$sync_user_id=$this->session->userdata('user_id');

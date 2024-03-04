@@ -1060,6 +1060,7 @@ $( document ).ready(function() {
 		$.get(base_url + 'index.php/qso/band_to_freq/' + $(this).val() + '/' + $('.mode').val(), function(result) {
 			$('#frequency').val(result);
 			$('#frequency_rx').val("");
+			$('#band_rx').val("");
 		});
 		$("#selectPropagation").val("");
 		$("#sat_name").val("");

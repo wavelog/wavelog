@@ -6,6 +6,16 @@
 
 class Qrz extends CI_Controller {
 
+	function __construct()
+	{
+		parent::__construct();
+		
+		if (ENVIRONMENT == 'maintenance' && $this->session->userdata('user_id') == '') {
+            echo "Maintenance Mode is active. Try again later.\n";
+			redirect('user/login');
+		}
+	}
+
 	// Show frontend if there is one
 	public function index() {
 		$this->config->load('config');
@@ -38,7 +48,6 @@ class Qrz extends CI_Controller {
 			echo "No station profiles with a QRZ API Key found.";
 			log_message('error', "No station profiles with a QRZ API Key found.");
 		}
-
 	}
 
 	function setOptions() {
@@ -247,7 +256,7 @@ class Qrz extends CI_Controller {
 			} else {
 				echo "Downloaded QRZ report contains no matches.";
 			}
-		}	
+		}
 	}
 
 	function mass_download_qsos($qrz_api_key = '', $lastqrz = '1900-01-01', $trusted = false) {

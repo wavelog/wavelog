@@ -14,25 +14,30 @@ class Logbooks_model extends CI_Model {
 		return $query->num_rows();
 	}
 
-	function add() {
+	function add($logbook_name = '') {
 		// Create data array with field values
-		$data = array(
-			'user_id' => $this->session->userdata('user_id'),
-			'logbook_name' =>  xss_clean($this->input->post('stationLogbook_Name', true)),
-		);
+		if ($logbook_name ?? '' != '') {
+			$data = array(
+				'user_id' => $this->session->userdata('user_id'),
+				'logbook_name' =>  $logbook_name,
+			);
 
-		// Insert Records
-		$this->db->insert('station_logbooks', $data);
-		$logbook_id = $this->db->insert_id();
+			// Insert Records
+			$this->db->insert('station_logbooks', $data);
+			$logbook_id = $this->db->insert_id();
 
-		// check if user has no active logbook yet
-		if ($this->session->userdata('active_station_logbook') === null) {
-			// set logbook active
-			$this->set_logbook_active($logbook_id);
+			// check if user has no active logbook yet
+			if ($this->session->userdata('active_station_logbook') === null) {
+				// set logbook active
+				$this->set_logbook_active($logbook_id);
 
-			// update user session data
-			$this->load->model('user_model');
-			$this->user_model->update_session($this->session->userdata('user_id'));
+				// update user session data
+				$this->load->model('user_model');
+				$this->user_model->update_session($this->session->userdata('user_id'));
+			}
+			return $logbook_id;
+		} else {
+			return -1;
 		}
 	}
 
@@ -51,9 +56,8 @@ class Logbooks_model extends CI_Model {
 		$this->set_logbook_active($logbook_id, $id);
 	}
 
-	function delete($id) {
+	function delete($clean_id) {
 		// Clean ID
-		$clean_id = $this->security->xss_clean($id);
 
 		// do not delete active logbook
 		if ($this->session->userdata('active_station_logbook') === $clean_id) {
@@ -62,7 +66,7 @@ class Logbooks_model extends CI_Model {
 
 		// Delete logbook
 		$this->db->where('user_id', $this->session->userdata('user_id'));
-		$this->db->where('logbook_id', $id);
+		$this->db->where('logbook_id', $clean_id);
 		$this->db->delete('station_logbooks'); 
 	}
 

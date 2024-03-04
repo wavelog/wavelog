@@ -20,7 +20,7 @@ class Band extends CI_Controller {
 		$this->load->model('bands');
 
 		$data['bands'] = $this->bands->get_all_bands_for_user();
-		
+
 		// Render Page
 		$data['page_title'] = "Bands";
 		$this->load->view('interface_assets/header', $data);
@@ -28,7 +28,7 @@ class Band extends CI_Controller {
 		$this->load->view('interface_assets/footer');
 	}
 
-	public function create() 
+	public function create()
 	{
 		$this->load->model('bands');
 		$this->load->library('form_validation');
@@ -41,7 +41,7 @@ class Band extends CI_Controller {
 			$this->load->view('bands/create', $data);
 		}
 		else
-		{	
+		{
 			$this->bands->add();
 		}
 	}
@@ -55,7 +55,7 @@ class Band extends CI_Controller {
 		$band_query = $this->bands->getband($item_id_clean);
 
 		$data['my_band'] = $band_query->row();
-		
+
 		$data['page_title'] = "Edit Band";
 
         $this->load->view('bands/edit', $data);
@@ -122,8 +122,11 @@ class Band extends CI_Controller {
 		$band['cq'] 		= $this->security->xss_clean($this->input->post('cq'));
 		$band['dok'] 		= $this->security->xss_clean($this->input->post('dok'));
 		$band['dxcc'] 		= $this->security->xss_clean($this->input->post('dxcc'));
-		$band['helvetia'] 		= $this->security->xss_clean($this->input->post('helvetia'));
+		$band['helvetia'] 	= $this->security->xss_clean($this->input->post('helvetia'));
 		$band['iota'] 		= $this->security->xss_clean($this->input->post('iota'));
+		$band['jcc'] 		= $this->security->xss_clean($this->input->post('jcc'));
+		$band['pota'] 		= $this->security->xss_clean($this->input->post('pota'));
+		$band['rac'] 		= $this->security->xss_clean($this->input->post('rac'));
 		$band['sig'] 		= $this->security->xss_clean($this->input->post('sig'));
 		$band['sota']		= $this->security->xss_clean($this->input->post('sota'));
 		$band['uscounties'] = $this->security->xss_clean($this->input->post('uscounties'));
@@ -131,11 +134,10 @@ class Band extends CI_Controller {
 		$band['wwff'] 		= $this->security->xss_clean($this->input->post('wwff'));
 		$band['vucc'] 		= $this->security->xss_clean($this->input->post('vucc'));
 		$band['waja'] 		= $this->security->xss_clean($this->input->post('waja'));
-		$band['pota'] 		= $this->security->xss_clean($this->input->post('pota'));
-        
+
 		$this->load->model('bands');
         $this->bands->saveBand($id, $band);
-        
+
 		header('Content-Type: application/json');
         echo json_encode(array('message' => 'OK'));
 		return;
@@ -144,10 +146,10 @@ class Band extends CI_Controller {
 	public function saveBandAward() {
 		$award  = $this->security->xss_clean($this->input->post('award'));
 		$status	= $this->security->xss_clean($this->input->post('status'));
-        
+
 		$this->load->model('bands');
         $this->bands->saveBandAward($award, $status);
-        
+
 		header('Content-Type: application/json');
         echo json_encode(array('message' => 'OK'));
 		return;

@@ -1,7 +1,7 @@
 <script>
 	var dxcluster_provider="<?php echo base_url(); ?>index.php/dxcluster";
 	var cat_timeout_interval="<?php echo $this->optionslib->get_option('cat_timeout_interval'); ?>";
-	var dxcluster_maxage=<?php echo $this->optionslib->get_option('dxcluster_maxage'); ?>;
+	var dxcluster_maxage=<?php echo $this->optionslib->get_option('dxcluster_maxage') ?? 60; ?>;
 	var custom_date_format = "<?php echo $custom_date_format ?>";
 </script>
 
