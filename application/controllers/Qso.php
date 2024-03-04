@@ -99,8 +99,16 @@ class QSO extends CI_Controller {
 			//change to create_qso function as add and create_qso duplicate functionality
 			$this->logbook_model->create_qso();
 
+			$retuner=[];
+                	$actstation=$this->stations->find_active() ?? '';
+                	$returner['activeStationId'] = $actstation;
+                	$profile_info = $this->stations->profile($actstation)->row();
+                	$returner['activeStationTXPower'] = xss_clean($profile_info->station_power);
+                	$returner['activeStationOP'] = xss_clean($this->session->userdata('operator_callsign'));
+			$returner['message']='success';
+
 			// Get last 5 qsos
-            		echo json_encode(array('message' => 'success'));
+            		echo json_encode($returner);
 		}
 	}
 
