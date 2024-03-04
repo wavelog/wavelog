@@ -1,21 +1,24 @@
-<script type="text/javascript">
-  /*
-  *
-  * Define global javascript variables
-  *
-  */
-  var base_url = "<?php echo base_url(); ?>"; // Base URL
-  var site_url = "<?php echo site_url(); ?>"; // Site URL
-  var icon_dot_url = "<?php echo base_url();?>assets/images/dot.png";
-  // get the user_callsign from session
- var my_call = "<?php echo $this->session->userdata('user_callsign'); ?>".toUpperCase();
-</script>
-
 <script>
+    /*
+    Global used Variables
+    */
+    var option_map_tile_server = '<?php echo $this->optionslib->get_option('option_map_tile_server');?>';
+    var option_map_tile_server_copyright = '<?php echo $this->optionslib->get_option('option_map_tile_server_copyright');?>';
+    var lang_datatables_language = '<?php echo lang('datatables_language'); ?>';
+
+    var base_url = "<?php echo base_url(); ?>"; // Base URL
+    var site_url = "<?php echo site_url(); ?>"; // Site URL
+
+    var icon_dot_url = "<?php echo base_url();?>assets/images/dot.png";
+
+    // get the user_callsign from session
+    var my_call = "<?php echo $this->session->userdata('user_callsign'); ?>".toUpperCase();
+
     /*
     General Language
     */
     var lang_general_word_qso_data = "<?php echo lang('general_word_qso_data'); ?>";
+    var lang_general_edit_qso = "<?php echo lang('general_edit_qso'); ?>";
     var lang_general_word_danger = "<?php echo lang('general_word_danger'); ?>";
     var lang_general_word_attention = "<?php echo lang('general_word_attention'); ?>";
     var lang_general_word_warning = "<?php echo lang('general_word_warning'); ?>";
@@ -28,7 +31,9 @@
     var lang_general_word_not_worked = "<?php echo lang('general_word_not_worked'); ?>";
     var lang_admin_close = "<?php echo lang('admin_close'); ?>";
     var lang_admin_clear = "<?php echo lang('admin_clear'); ?>";
+
 </script>
+
 <!-- General JS Files used across Wavelog -->
 <script src="<?php echo base_url(); ?>assets/js/jquery-3.3.1.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery.fancybox.min.js"></script>
@@ -1661,58 +1666,6 @@ $(document).ready(function(){
 		<script src="<?php echo base_url(); ?>assets/js/sections/webadif.js"></script>
 	<?php } ?>
 
-	<script>
-		function displayQso(id) {
-			var baseURL= "<?php echo base_url();?>";
-			$.ajax({
-				url: baseURL + 'index.php/logbook/view/' + id,
-				type: 'post',
-				success: function(html) {
-					BootstrapDialog.show({
-						title: lang_general_word_qso_data,
-						cssClass: 'qso-dialog',
-						size: BootstrapDialog.SIZE_WIDE,
-						nl2br: false,
-						message: html,
-						onshown: function(dialog) {
-							var qsoid = $("#qsoid").text();
-							$(".editButton").html('<a class="btn btn-primary" id="edit_qso" href="javascript:qso_edit('+qsoid+')"><i class="fas fa-edit"></i><?php echo lang('general_edit_qso'); ?></a>');
-							var lat = $("#lat").text();
-							var long = $("#long").text();
-							var callsign = $("#callsign").text();
-							var mymap = L.map('mapqso').setView([lat,long], 5);
-
-							var tiles = L.tileLayer('<?php echo $this->optionslib->get_option('option_map_tile_server');?>', {
-								maxZoom: 18,
-								attribution: '<?php echo $this->optionslib->get_option('option_map_tile_server_copyright');?>',
-							}).addTo(mymap);
-
-
-                            var printer = L.easyPrint({
-                                tileLayer: tiles,
-                                sizeModes: ['Current'],
-                                filename: 'myMap',
-                                exportOnly: true,
-                                hideControlContainer: true
-                            }).addTo(mymap);
-
-							var redIcon = L.icon({
-								iconUrl: icon_dot_url,
-								iconSize:     [18, 18], // size of the icon
-							});
-
-							L.marker([lat,long], {icon: redIcon}).addTo(mymap)
-								.bindPopup(callsign);
-
-						},
-					});
-
-				}
-			});
-		}
-		</script>
-
-
 <?php if ($this->uri->segment(2) == "dxcc") { ?>
 <script>
     $('.tabledxcc').DataTable({
@@ -1999,66 +1952,18 @@ $(document).ready(function(){
     </script>
 <?php } ?>
 
+
 <script>
-
-function selectize_usa_county() {
-    console.log('selectize_usa_county');
-    var baseURL= "<?php echo base_url();?>";
-    $('#stationCntyInputEdit').selectize({
-        delimiter: ';',
-        maxItems: 1,
-        closeAfterSelect: true,
-        loadThrottle: 250,
-        valueField: 'name',
-        labelField: 'name',
-        searchField: 'name',
-        options: [],
-        create: false,
-        load: function(query, callback) {
-            var state = $("#stateDropdown option:selected").text();
-
-            if (!query || state == "") return callback();
-            $.ajax({
-                url: baseURL+'index.php/qso/get_county',
-                type: 'GET',
-                dataType: 'json',
-                data: {
-                    query: query,
-                    state: state,
-                },
-                error: function() {
-                    callback();
-                },
-                success: function(res) {
-                    callback(res);
-                }
-            });
-        }
-    });
-}
-
-function qso_save() {
-    var baseURL= "<?php echo base_url();?>";
-    var myform = document.getElementById("qsoform");
-    var fd = new FormData(myform);
-    $.ajax({
-        url: baseURL + 'index.php/qso/qso_save_ajax',
-        data: fd,
-        cache: false,
-        processData: false,
-        contentType: false,
-        type: 'POST',
-        success: function (dataofconfirm) {
-            $(".edit-dialog").modal('hide');
-            $(".qso-dialog").modal('hide');
-            <?php if ($this->uri->segment(1) != "search" && $this->uri->segment(2) != "filter" && $this->uri->segment(1) != "qso" && $this->uri->segment(1) != "logbookadvanced") { ?>location.reload();<?php } ?>
-        },
-        error: function(xhr, status, error) {
-            console.log(xhr.responseText);
-        }
-    });
-}
+    var reload_after_qso_safe = false;
+    <?php if (
+	$this->uri->segment(1) != "search" && 
+	$this->uri->segment(2) != "filter" && 
+	$this->uri->segment(1) != "qso" && 
+	$this->uri->segment(1) != "logbookadvanced") { ?>
+		reload_after_qso_safe = true;
+	<?php } ?>
 </script>
+
     <?php if ($this->uri->segment(1) == "timeline") { ?>
         <script>
             $('.timelinetable').DataTable({
@@ -2968,10 +2873,6 @@ if (isset($scripts) && is_array($scripts)){
 	}
 }
 ?>
-    <script>
-      <?php
-      echo "var lang_datatables_language = '" . lang("datatables_language") . "';"
-      ?>
-    </script>
+
   </body>
 </html>
