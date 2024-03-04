@@ -414,14 +414,14 @@ class Logbookadvanced extends CI_Controller {
 		$data['datetime'] = date($custom_date_format, strtotime($qso['COL_TIME_ON'])). date(' H:i',strtotime($qso['COL_TIME_ON']));
 		$data['satname'] = $qso['COL_SAT_NAME'];
 		$data['confirmed'] = ($this->logbook_model->qso_is_confirmed($qso)==true) ? true : false;
-		
+
 		return $data;
 	}
 
 	public function calculateCoordinates($qso, $lat, $long, $mygrid, $measurement_base, $var_dist, $custom_date_format) {
 		$this->load->library('Qra');
 		$this->load->model('logbook_model');
-		
+
 		$latlng1 = $this->qra->qra2latlong($mygrid);
 		$latlng2[0] = $lat;
 		$latlng2[1] = $long;
@@ -486,6 +486,7 @@ class Logbookadvanced extends CI_Controller {
 		$json_string['iota']['show'] = $this->input->post('iota');
 		$json_string['pota']['show'] = $this->input->post('pota');
 		$json_string['operator']['show'] = $this->input->post('operator');
+		$json_string['comment']['show'] = $this->input->post('comment');
 
 		$obj['column_settings']= json_encode($json_string);
 
