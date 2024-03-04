@@ -18,7 +18,7 @@ $lang['qso_transmit_power_helptext'] = 'Saisissez la ouissance en Watts en utili
 
 $lang['qso_sota_ref_helptext'] = 'Par exemple: GM/NS-001.';
 $lang['qso_wwff_ref_helptext'] = 'Par exemple: DLFF-0069.';
-$lang['qso_pota_ref_helptext'] = 'Par exemple: PA-0150.';
+$lang['qso_pota_ref_helptext'] = 'Par exemple: PA-0150. Multiple values allowed.';
 
 $lang['qso_sig_helptext'] = 'Par exemple: GMA';
 $lang['qso_sig_info_helptext'] = 'Par exemple: DA/NW-357';

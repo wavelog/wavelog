@@ -18,7 +18,7 @@ $lang['qso_transmit_power_helptext'] = 'Zadej výkon ve Wattech. Jsou povolen po
 
 $lang['qso_sota_ref_helptext'] = 'Příklad: GM/NS-001.';
 $lang['qso_wwff_ref_helptext'] = 'Příklad: DLFF-0069.';
-$lang['qso_pota_ref_helptext'] = 'Příklad: PA-0150.';
+$lang['qso_pota_ref_helptext'] = 'Příklad: PA-0150. Multiple values allowed.';
 
 $lang['qso_sig_helptext'] = 'Příklad: GMA';
 $lang['qso_sig_info_helptext'] = 'Příklad: DA/NW-357';

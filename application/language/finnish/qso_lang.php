@@ -18,7 +18,7 @@ $lang['qso_transmit_power_helptext'] = 'Anna teholukema Watteina käyttäen vain
 
 $lang['qso_sota_ref_helptext'] = 'Esimerkiksi: OH/JS-004.';
 $lang['qso_wwff_ref_helptext'] = 'Esimerkiksi: OHFF-1234.';
-$lang['qso_pota_ref_helptext'] = 'Esimerkiksi: PA-0150.';
+$lang['qso_pota_ref_helptext'] = 'Esimerkiksi: PA-0150. Multiple values allowed.';
 
 $lang['qso_sig_helptext'] = 'Esimerkiksi: GMA';
 $lang['qso_sig_info_helptext'] = 'Esimerkiksi: DA/NW-357';
