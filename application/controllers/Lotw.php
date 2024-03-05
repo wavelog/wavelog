@@ -500,7 +500,7 @@ class Lotw extends CI_Controller {
 
 				$time_on = date('Y-m-d', strtotime($record['qso_date'])) ." ".date('H:i', strtotime($record['time_on']));
 
-				$qsl_date = date('Y-m-d', strtotime($record['qslrdate'])) ." ".date('H:i', strtotime($record['qslrdate']));
+				$qsl_date = date('Y-m-d H:i', strtotime($record['app_lotw_rxqsl']));
 
 				if (isset($record['time_off'])) {
 					$time_off = date('Y-m-d', strtotime($record['qso_date'])) ." ".date('H:i', strtotime($record['time_off']));
@@ -517,6 +517,7 @@ class Lotw extends CI_Controller {
 				$status = $this->logbook_model->import_check($time_on, $record['call'], $record['band'], $record['mode'], $record['station_callsign']);
 
 				if($status[0] == "Found") {
+					$qso_id4lotw=$status[1];
 					if (isset($record['state'])) {
 						$state = $record['state'];
 					} else {
@@ -559,7 +560,7 @@ class Lotw extends CI_Controller {
 						$ituz = "";
 					}
 
-					$lotw_status = $this->logbook_model->lotw_update($time_on, $record['call'], $record['band'], $qsl_date, $record['qsl_rcvd'], $state, $qsl_gridsquare, $qsl_vucc_grids, $iota, $cnty, $cqz, $ituz, $record['station_callsign']);
+					$lotw_status = $this->logbook_model->lotw_update($time_on, $record['call'], $record['band'], $qsl_date, $record['qsl_rcvd'], $state, $qsl_gridsquare, $qsl_vucc_grids, $iota, $cnty, $cqz, $ituz, $record['station_callsign'],$qso_id4lotw);
 
 					$table .= "<tr>";
 						$table .= "<td>".$record['station_callsign']."</td>";
