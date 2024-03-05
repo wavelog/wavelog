@@ -35,7 +35,8 @@ $lang['qso_error_timeoff_less_timeon'] = "结束时间小于开始时间";
 
 // Button Text on /qso Display
 
-$lang['qso_btn_reset_qso'] = '重置';
+$lang['qso_btn_clear_qso'] = 'Clear';
+$lang['qso_btn_reset_to_default'] = 'Reset to Default';
 $lang['qso_btn_save_qso'] = '保存 QSO';
 $lang['qso_btn_edit_qso'] = '编辑 QSO';
 $lang['qso_delete_warning'] = "警告！您确定要删除 QSO 和 ";
