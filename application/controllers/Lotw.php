@@ -500,7 +500,7 @@ class Lotw extends CI_Controller {
 
 				$time_on = date('Y-m-d', strtotime($record['qso_date'])) ." ".date('H:i', strtotime($record['time_on']));
 
-				$qsl_date = date('Y-m-d', strtotime($record['qslrdate'])) ." ".date('H:i', strtotime($record['qslrdate']));
+				$qsl_date = date('Y-m-d H:i', strtotime($record['app_lotw_rxqsl']));
 
 				if (isset($record['time_off'])) {
 					$time_off = date('Y-m-d', strtotime($record['qso_date'])) ." ".date('H:i', strtotime($record['time_off']));
