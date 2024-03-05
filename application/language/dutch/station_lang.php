@@ -89,7 +89,7 @@ $lang['station_location_iota_hint_ln1'] = "Station IOTA reference. For example: 
 $lang['station_location_iota_hint_ln2'] = "You can look up IOTA references at the <a target='_blank' href='https://www.iota-world.org/iota-directory/annex-f-short-title-iota-reference-number-list.html'>IOTA World</a> website.";
 $lang['station_location_sota_hint_ln1'] = "Station SOTA reference. You can look up SOTA references at the <a target='_blank' href='https://www.sotamaps.org/'>SOTA Maps</a> website.";
 $lang['station_location_wwff_hint_ln1'] = "Station WWFF reference. You can look up WWFF references at the <a target='_blank' href='https://www.cqgma.org/mvs/'>GMA Map</a> website.";
-$lang['station_location_pota_hint_ln1'] = "Station POTA reference. You can look up POTA references at the <a target='_blank' href='https://pota.app/#/map/'>POTA Map</a> website.";
+$lang['station_location_pota_hint_ln1'] = "Station POTA reference(s). Mulitple comma separated values allowed. You can look up POTA references at the <a target='_blank' href='https://pota.app/#/map/'>POTA Map</a> website.";
 $lang['station_location_signature'] = "Signature";
 $lang['station_location_signature_name'] = "Signature Name";
 $lang['station_location_signature_name_hint'] = "Station Signature (e.g. GMA)..";

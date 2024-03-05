@@ -89,7 +89,7 @@ $lang['station_location_iota_hint_ln1'] = "Референция IOTA, к при�
 $lang['station_location_iota_hint_ln2'] = "Вы можете посмотреть референции IOTA на сайте <a target='_blank' href='https://www.iota-world.org/iota-directory/annex-f-short-title-iota-reference-number-list.html'>IOTA World</a>.";
 $lang['station_location_sota_hint_ln1'] = "Референция SOTA. Вы можете посмотреть референции SOTA на сайте <a target='_blank' href='https://www.sotamaps.org/'>SOTA Maps</a>.";
 $lang['station_location_wwff_hint_ln1'] = "Референция WWFF. Вы можете посмотреть референции WWFF на сайте <a target='_blank' href='https://www.cqgma.org/mvs/'>GMA Map</a>.";
-$lang['station_location_pota_hint_ln1'] = "Референция POTA. Вы можете посмотреть референции POTA на сайте <a target='_blank' href='https://pota.app/#/map/'>POTA Map</a>.";
+$lang['station_location_pota_hint_ln1'] = "Station POTA reference(s). Mulitple comma separated values allowed. You can look up POTA references at the <a target='_blank' href='https://pota.app/#/map/'>POTA Map</a> website.";
 $lang['station_location_signature'] = "Подпись";
 $lang['station_location_signature_name'] = "Имя подписи";
 $lang['station_location_signature_name_hint'] = "Подпись станции (т.е. GMA)..";
