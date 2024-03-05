@@ -987,6 +987,9 @@ $( document ).ready(function() {
 							} else {
 								$('#timesWorked').html(lang_qso_title_previous_contacts);
 							}
+							if($('#iota_ref').val() == "") {
+								$('#iota_ref').val(result.callsign_iota);
+							}
 							// Hide the last QSO table
 							$('#qso-last-table').hide();
 							$('#partial_view').show();
