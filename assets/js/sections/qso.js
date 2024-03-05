@@ -455,7 +455,7 @@ $( document ).ready(function() {
 	});
 	
 	$('#pota_ref').selectize({
-		maxItems: 1,
+		maxItems: null,
 		closeAfterSelect: true,
 		loadThrottle: 250,
 		valueField: 'name',
@@ -481,7 +481,7 @@ $( document ).ready(function() {
 			});
 		},
 		onChange: function(value) {
-			if (value != '') {
+			if (value !== '' && value.indexOf(',') === -1) {
 				$('#pota_info').show();
 				$('#pota_info').html('<a target="_blank" href="https://pota.app/#/park/'+ value +'"><img width="32" height="32" src="'+base_url+'images/icons/pota.app.png"></a>');
 				$('#pota_info').attr('title', 'Lookup '+ value +' reference info on pota.co');

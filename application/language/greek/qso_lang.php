@@ -18,7 +18,7 @@ $lang['qso_transmit_power_helptext'] = 'Δώστε τιμή ισχύος σε Wa
 
 $lang['qso_sota_ref_helptext'] = 'Για παράδειγμα: GM/NS-001.';
 $lang['qso_wwff_ref_helptext'] = 'Για παράδειγμα: DLFF-0069.';
-$lang['qso_pota_ref_helptext'] = 'Για παράδειγμα: PA-0150.';
+$lang['qso_pota_ref_helptext'] = 'Για παράδειγμα: PA-0150. Multiple values allowed.';
 
 $lang['qso_sig_helptext'] = 'Για παράδειγμα: GMA';
 $lang['qso_sig_info_helptext'] = 'Για παράδειγμα: DA/NW-357';

@@ -291,7 +291,7 @@ function qso_edit(id) {
                     });
 
                     $('#pota_ref_edit').selectize({
-                        maxItems: 1,
+                        maxItems: null,
                         closeAfterSelect: true,
                         loadThrottle: 250,
                         valueField: 'name',

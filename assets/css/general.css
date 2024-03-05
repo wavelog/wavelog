@@ -857,6 +857,12 @@ label {
 	--bs-badge-color: rgb(217 119 6) !important;
 }
 
+.spw-buttons {
+	--bs-btn-padding-x: 0.3rem;
+	--bs-btn-padding-y: 0.1rem;
+	display: none;
+}
+
 .quickswitcher.disabled {
     --bs-dropdown-link-disabled-color: initial !important;
 }
@@ -865,3 +871,4 @@ label {
 	text-align: center; 
 	vertical-align: middle;
 }
+

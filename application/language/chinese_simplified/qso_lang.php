@@ -18,7 +18,7 @@ $lang['qso_transmit_power_helptext'] = '以W为单位设置功率值。在输入
 
 $lang['qso_sota_ref_helptext'] = '例如: GM/NS-001.';
 $lang['qso_wwff_ref_helptext'] = '例如: DLFF-0069.';
-$lang['qso_pota_ref_helptext'] = '例如: PA-0150.';
+$lang['qso_pota_ref_helptext'] = '例如: PA-0150. Multiple values allowed.';
 
 $lang['qso_sig_helptext'] = '例如: GMA';
 $lang['qso_sig_info_helptext'] = '例如: DA/NW-357';
