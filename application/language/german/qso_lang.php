@@ -35,7 +35,8 @@ $lang['qso_error_timeoff_less_timeon'] = "TimeOff is less than TimeOn";
 
 // Button Text on /qso Display
 
-$lang['qso_btn_reset_qso'] = 'Zurücksetzen';
+$lang['qso_btn_clear_qso'] = 'Leeren';
+$lang['qso_btn_reset_to_default'] = 'Auf Standardwerte zurücksetzen';
 $lang['qso_btn_save_qso'] = 'Speichere QSO';
 $lang['qso_btn_edit_qso'] = 'Editiere QSO';
 $lang['qso_delete_warning'] = "Warnung! Bist du sicher, dass du dieses QSO löschen willst mit ";

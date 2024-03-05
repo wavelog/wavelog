@@ -35,7 +35,8 @@ $lang['qso_error_timeoff_less_timeon'] = "Heure de fin inférieure à celle de d
 
 // Button Text on /qso Display
 
-$lang['qso_btn_reset_qso'] = 'Réinitialiser';
+$lang['qso_btn_clear_qso'] = 'Clear';
+$lang['qso_btn_reset_to_default'] = 'Reset to Default';
 $lang['qso_btn_save_qso'] = 'Enregistrer QSO';
 $lang['qso_btn_edit_qso'] = 'Edit QSO';
 $lang['qso_delete_warning'] = "Warning! Are you sure you want delete QSO with ";
