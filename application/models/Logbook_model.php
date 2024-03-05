@@ -1490,10 +1490,6 @@ class Logbook_model extends CI_Model {
 		$this->db->select('COL_CALL, COL_IOTA, COL_TIME_ON');
 		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
 		$this->db->where('COL_CALL', $callsign);
-		$where = "COL_IOTA != \"\"";
-
-		$this->db->where($where);
-
 		$this->db->order_by("COL_TIME_ON", "desc");
 		$this->db->limit(1);
 		$query = $this->db->get($this->config->item('table_name'));
