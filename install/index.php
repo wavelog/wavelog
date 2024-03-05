@@ -1,12 +1,22 @@
 <?php
-/* 
+/*
 New Wavelog Installer
 
-This installer guides an user through the install process and all 
+This installer guides a user through the install process and all
 necessary parameters for the new Wavelog Installation.
 
 HB9HIL - January 2024
 */
+
+// #########################################################
+// Unattended install
+// #########################################################
+if (file_exists('config_unattended.php')) {
+	require_once('install_unattended.php');
+	run_unattended_install();
+	return;
+}
+
 
 // #########################################################
 // PRECONFIGURATION
@@ -20,7 +30,7 @@ $db_file_path = $db_config_path . "database.php";
 $root_mode_file = '.root_mode';
 
 // Wanted Pre-Check Parameters
-// PHP 
+// PHP
 $min_php_version = '7.4.0';
 $max_execution_time = 600;		// Seconds
 $max_upload_file_size = 8;  	// Megabyte
@@ -42,10 +52,6 @@ $mariadb_version = 10.1;
 $mysql_version = 5.7;
 
 // ######################################################### END OF PRECONFIGURATION
-
-
-
-
 
 // Function to check if a PHP extension is installed
 function isExtensionInstalled($extensionName)
@@ -274,7 +280,7 @@ global $wavelog_url;
 													<?php
 													$maxUploadFileSize = ini_get('upload_max_filesize');
 													$maxUploadFileSizeBytes = (int)($maxUploadFileSize) * (1024 * 1024); // convert to bytes
-													if ($maxUploadFileSizeBytes > ($max_upload_file_size * 1024 * 1024)) { // compare with given value in bytes 
+													if ($maxUploadFileSizeBytes > ($max_upload_file_size * 1024 * 1024)) { // compare with given value in bytes
 													?>
 														<span class="badge text-bg-success"><?php echo $maxUploadFileSize; ?></span>
 													<?php } else {
@@ -293,7 +299,7 @@ global $wavelog_url;
 													<?php
 													$maxUploadFileSize = ini_get('post_max_size');
 													$maxUploadFileSizeBytes = (int)($maxUploadFileSize) * (1024 * 1024); // convert to bytes
-													if ($maxUploadFileSizeBytes > ($post_max_size * 1024 * 1024)) { // compare with given value in bytes 
+													if ($maxUploadFileSizeBytes > ($post_max_size * 1024 * 1024)) { // compare with given value in bytes
 													?>
 														<span class="badge text-bg-success"><?php echo $maxUploadFileSize; ?></span>
 													<?php } else {
@@ -484,7 +490,7 @@ global $wavelog_url;
 								</div>
 
 								<div class="row">
-									<div class="col-md-6 mb-2">
+								<div class="col-md-6 mb-2">
 										<label for="callsign" class="form-label">Callsign</label>
 										<input type="text" id="callsign" tabindex="3" placeholder="4W7EST" class="form-control" name="callsign" />
 									</div>
@@ -494,10 +500,13 @@ global $wavelog_url;
 									</div>
 								</div>
 
-								<div class="row">
-									<div class="col-md-6 mb-2">
-										<label for="userlocator" class="form-label">Gridsquare/Locator</label>
-										<input type="text" id="userlocator" tabindex="4" placeholder="HA44AA" class="form-control" name="userlocator" />
+								<div class="row">								<div class="col-md-6 mb-2">
+										<div class="row">
+											<div class="col">
+												<label for="city" class="form-label">City</label>
+												<input type="text" id="city" tabindex="7" placeholder="City" class="form-control" name="city" />
+											</div>
+										</div>
 									</div>
 									<div class="col-md-6 mb-2">
 										<label for="cnfm_password" class="form-label">Confirm Password</label>
@@ -506,8 +515,423 @@ global $wavelog_url;
 								</div>
 								<div class="row">
 									<div class="col-md-6 mb-2">
-										<label for="user_email" class="form-label">E-Mail Address</label>
-										<input type="email" id="user_email" tabindex="5" placeholder="ham.radio@example.com" class="form-control mb-2" name="user_email" />
+										<label for="dxcc" class="form-label">DXCC</label>
+										<select class="form-select" id="dxcc_id" name="dxcc" aria-describedby="stationCallsignInputHelp">
+										<option value="0" selected="">- None -</option>
+										<option value="2">Abu Ail Is - A1 (Deleted DXCC)</option>
+										<option value="3">Afghanistan - YA</option>
+										<option value="4">Agalega &amp; St Brandon Islands - 3B7</option>
+										<option value="5">Aland Islands - OH0</option>
+										<option value="6">Alaska - KL7</option>
+										<option value="7">Albania - ZA</option>
+										<option value="8">Aldabra - VQ9/A (Deleted DXCC)</option>
+										<option value="400">Algeria - 7X</option>
+										<option value="9">American Samoa - KH8</option>
+										<option value="10">Amsterdam &amp; St Paul Islands - FT5Z</option>
+										<option value="11">Andaman &amp; Nicobar Islands - VU4</option>
+										<option value="203">Andorra - C31</option>
+										<option value="401">Angola - D2</option>
+										<option value="12">Anguilla - VP2E</option>
+										<option value="195">Annobon - 3C0</option>
+										<option value="13">Antarctica - CE9</option>
+										<option value="94">Antigua &amp; Barbuda - V2</option>
+										<option value="100">Argentina - LU</option>
+										<option value="14">Armenia - EK</option>
+										<option value="91">Aruba - P4</option>
+										<option value="205">Ascension Island - ZD8</option>
+										<option value="15">Asiatic Russia - UA0</option>
+										<option value="508">Austral Islands - FO/A</option>
+										<option value="150">Australia - VK</option>
+										<option value="206">Austria - OE</option>
+										<option value="17">Aves Island - YV0</option>
+										<option value="18">Azerbaijan - 4J</option>
+										<option value="149">Azores - CU</option>
+										<option value="60">Bahamas - C6A</option>
+										<option value="304">Bahrain - A9</option>
+										<option value="19">Bajo Nuevo - HK0 (Deleted DXCC)</option>
+										<option value="20">Baker Howland Islands - KH1</option>
+										<option value="21">Balearic Islands - EA6</option>
+										<option value="490">Banaba Island - T33</option>
+										<option value="305">Bangladesh - S2</option>
+										<option value="62">Barbados - 8P</option>
+										<option value="27">Belarus - EU</option>
+										<option value="209">Belgium - ON</option>
+										<option value="66">Belize - V3</option>
+										<option value="416">Benin - TY</option>
+										<option value="64">Bermuda - VP9</option>
+										<option value="306">Bhutan - A5</option>
+										<option value="23">Blenheim Reef - 1B (Deleted DXCC)</option>
+										<option value="104">Bolivia - CP</option>
+										<option value="520">Bonaire - PJ4</option>
+										<option value="85">Bonaire, Curacao (neth Antilles) - PJ2/D (Deleted DXCC)</option>
+										<option value="501">Bosnia-herzegovina - E7</option>
+										<option value="402">Botswana - A2</option>
+										<option value="24">Bouvet Island - 3Y/B</option>
+										<option value="108">Brazil - PY</option>
+										<option value="25">British North Borneo - ZC5 (Deleted DXCC)</option>
+										<option value="26">British Somaliland - VQ6 (Deleted DXCC)</option>
+										<option value="65">British Virgin Islands - VP2V</option>
+										<option value="345">Brunei - V8</option>
+										<option value="212">Bulgaria - LZ</option>
+										<option value="480">Burkina Faso - XT</option>
+										<option value="404">Burundi - 9U</option>
+										<option value="312">Cambodia - XU</option>
+										<option value="406">Cameroon - TJ</option>
+										<option value="1">Canada - VE</option>
+										<option value="28">Canal Zone - KZ5 (Deleted DXCC)</option>
+										<option value="29">Canary Islands - EA8</option>
+										<option value="409">Cape Verde - D4</option>
+										<option value="69">Cayman Islands - ZF</option>
+										<option value="30">Celebe &amp; Molucca Islands - PK6 (Deleted DXCC)</option>
+										<option value="408">Central African Republic - TL</option>
+										<option value="31">Central Kiribati - T31</option>
+										<option value="32">Ceuta &amp; Melilla - EA9</option>
+										<option value="410">Chad - TT</option>
+										<option value="33">Chagos Islands - VQ9</option>
+										<option value="34">Chatham Island - ZL7</option>
+										<option value="512">Chesterfield Islands - FK/C</option>
+										<option value="112">Chile - CE</option>
+										<option value="318">China - BY</option>
+										<option value="35">Christmas Island - VK9X</option>
+										<option value="36">Clipperton Island - FO/C</option>
+										<option value="38">Cocos (keeling) Island - VK9C</option>
+										<option value="37">Cocos Island - TI9</option>
+										<option value="116">Colombia - HK</option>
+										<option value="39">Comoro Islands - FH8 (Deleted DXCC)</option>
+										<option value="411">Comoros - D6</option>
+										<option value="489">Conway Reef - 3D2/C</option>
+										<option value="214">Corsica - TK</option>
+										<option value="308">Costa Rica - TI</option>
+										<option value="428">Cote D'ivoire - TU</option>
+										<option value="40">Crete - SV9</option>
+										<option value="497">Croatia - 9A</option>
+										<option value="41">Crozet Island - FT5/W</option>
+										<option value="70">Cuba - CO</option>
+										<option value="517">Curacao - PJ2</option>
+										<option value="215">Cyprus - 5B</option>
+										<option value="503">Czech Republic - OK</option>
+										<option value="218">Czechoslovakia - OK/D (Deleted DXCC)</option>
+										<option value="42">Damao, Diu - CR8/D (Deleted DXCC)</option>
+										<option value="414">Dem. Rep. Of The Congo - 9Q</option>
+										<option value="221">Denmark - OZ</option>
+										<option value="43">Desecheo Island - KP5</option>
+										<option value="44">Desroches - VQ9/D (Deleted DXCC)</option>
+										<option value="382">Djibouti - J2</option>
+										<option value="45">Dodecanese - SV5</option>
+										<option value="95">Dominica - J7</option>
+										<option value="72">Dominican Republic - HI</option>
+										<option value="344">Dprk (north Korea) - P5</option>
+										<option value="513">Ducie Island - VP6/D</option>
+										<option value="46">East Malaysia - 9M6</option>
+										<option value="47">Easter Island - CE0Y</option>
+										<option value="48">Eastern Kiribati - T32</option>
+										<option value="120">Ecuador - HC</option>
+										<option value="478">Egypt - SU</option>
+										<option value="74">El Salvador - YS</option>
+										<option value="223">England - G</option>
+										<option value="49">Equatorial Guinea - 3C</option>
+										<option value="51">Eritrea - E3</option>
+										<option value="52">Estonia - ES</option>
+										<option value="53">Ethiopia - ET</option>
+										<option value="54">European Russia - UA</option>
+										<option value="141">Falkland Islands - VP8</option>
+										<option value="222">Faroe Islands - OY</option>
+										<option value="55">Farquhar - VQ9/F (Deleted DXCC)</option>
+										<option value="230">Federal Republic Of Germany - DL</option>
+										<option value="56">Fernando De Noronha - PY0F</option>
+										<option value="176">Fiji Islands - 3D2</option>
+										<option value="224">Finland - OH</option>
+										<option value="227">France - F</option>
+										<option value="61">Franz Josef Land - R1F</option>
+										<option value="57">French Equatorial Africa - FQ8 (Deleted DXCC)</option>
+										<option value="63">French Guiana - FY</option>
+										<option value="67">French India - FN8 (Deleted DXCC)</option>
+										<option value="58">French Indo-china - FI8 (Deleted DXCC)</option>
+										<option value="175">French Polynesia - FO</option>
+										<option value="59">French West Africa - FF (Deleted DXCC)</option>
+										<option value="420">Gabon - TR</option>
+										<option value="71">Galapagos Islands - HC8</option>
+										<option value="75">Georgia - 4L</option>
+										<option value="229">German Democratic Republic - DM (Deleted DXCC)</option>
+										<option value="81">Germany - DL/D (Deleted DXCC)</option>
+										<option value="93">Geyser Reef - 1G (Deleted DXCC)</option>
+										<option value="424">Ghana - 9G</option>
+										<option value="233">Gibraltar - ZB2</option>
+										<option value="99">Glorioso Island - FT/G</option>
+										<option value="101">Goa - CR8/G (Deleted DXCC)</option>
+										<option value="102">Gold Coast Togoland - ZD4 (Deleted DXCC)</option>
+										<option value="236">Greece - SV</option>
+										<option value="237">Greenland - OX</option>
+										<option value="77">Grenada - J3</option>
+										<option value="79">Guadeloupe - FG</option>
+										<option value="103">Guam - KH2</option>
+										<option value="105">Guantanamo Bay - KG4</option>
+										<option value="76">Guatemala - TG</option>
+										<option value="106">Guernsey - GU</option>
+										<option value="107">Guinea - 3XA</option>
+										<option value="109">Guinea-bissau - J5</option>
+										<option value="129">Guyana - 8R</option>
+										<option value="78">Haiti - HH</option>
+										<option value="110">Hawaii - KH6</option>
+										<option value="111">Heard Island - VK0H</option>
+										<option value="80">Honduras - HR</option>
+										<option value="321">Hong Kong - VR</option>
+										<option value="239">Hungary - HA</option>
+										<option value="242">Iceland - TF</option>
+										<option value="113">Ifni - EA9/I (Deleted DXCC)</option>
+										<option value="324">India - VU</option>
+										<option value="327">Indonesia - YB</option>
+										<option value="330">Iran - EP</option>
+										<option value="333">Iraq - YI</option>
+										<option value="245">Ireland - EI</option>
+										<option value="114">Isle Of Man - GD</option>
+										<option value="336">Israel - 4X</option>
+										<option value="115">Italian Somali - I5 (Deleted DXCC)</option>
+										<option value="248">Italy - I</option>
+										<option value="117">Itu Hq - 4U1ITU</option>
+										<option value="82">Jamaica - 6Y</option>
+										<option value="118">Jan Mayen - JX</option>
+										<option value="339">Japan - JA</option>
+										<option value="119">Java - PK1 (Deleted DXCC)</option>
+										<option value="122">Jersey - GJ</option>
+										<option value="123">Johnston Island - KH3</option>
+										<option value="342">Jordan - JY</option>
+										<option value="124">Juan De Nova, Europa - FT/J</option>
+										<option value="125">Juan Fernandez Islands - CE0Z</option>
+										<option value="126">Kaliningrad - UA2</option>
+										<option value="127">Kamaran Islands - VS9K (Deleted DXCC)</option>
+										<option value="128">Karelo-finn Rep - UN1 (Deleted DXCC)</option>
+										<option value="130">Kazakhstan - UN</option>
+										<option value="430">Kenya - 5Z</option>
+										<option value="131">Kerguelen Island - FT5/X</option>
+										<option value="133">Kermadec Island - ZL8</option>
+										<option value="468">Kingdom Of Eswatini - 3DA</option>
+										<option value="134">Kingman Reef - KH5K (Deleted DXCC)</option>
+										<option value="138">Kure Island - KH7K</option>
+										<option value="139">Kuria Muria Island - VS9H (Deleted DXCC)</option>
+										<option value="348">Kuwait - 9K</option>
+										<option value="68">Kuwait/saudi Arabia Neut. Zone - 8Z5 (Deleted DXCC)</option>
+										<option value="135">Kyrgyzstan - EX</option>
+										<option value="142">Lakshadweep Islands - VU7</option>
+										<option value="143">Laos - XW</option>
+										<option value="145">Latvia - YL</option>
+										<option value="354">Lebanon - OD</option>
+										<option value="432">Lesotho - 7P</option>
+										<option value="434">Liberia - EL</option>
+										<option value="436">Libya - 5A</option>
+										<option value="251">Liechtenstein - HB0</option>
+										<option value="146">Lithuania - LY</option>
+										<option value="147">Lord Howe Island - VK9L</option>
+										<option value="254">Luxembourg - LX</option>
+										<option value="152">Macao - XX9</option>
+										<option value="153">Macquarie Island - VK0M</option>
+										<option value="438">Madagascar - 5R</option>
+										<option value="256">Madeira Islands - CT3</option>
+										<option value="440">Malawi - 7Q</option>
+										<option value="155">Malaya - VS2 (Deleted DXCC)</option>
+										<option value="159">Maldives - 8Q</option>
+										<option value="442">Mali - TZ</option>
+										<option value="161">Malpelo Island - HK0/M</option>
+										<option value="257">Malta - 9H</option>
+										<option value="151">Malyj Vysotskij Island - R1M (Deleted DXCC)</option>
+										<option value="164">Manchuria - C9 (Deleted DXCC)</option>
+										<option value="166">Mariana Islands - KH0</option>
+										<option value="167">Market Reef - OJ0</option>
+										<option value="509">Marquesas Islands - FO/M</option>
+										<option value="168">Marshall Islands - V7</option>
+										<option value="84">Martinique - FM</option>
+										<option value="444">Mauritania - 5T</option>
+										<option value="165">Mauritius Island - 3B8</option>
+										<option value="169">Mayotte - FH</option>
+										<option value="171">Mellish Reef - VK9M</option>
+										<option value="50">Mexico - XE</option>
+										<option value="173">Micronesia - V6</option>
+										<option value="174">Midway Island - KH4</option>
+										<option value="177">Minami Torishima - JD/M</option>
+										<option value="178">Minerva Reef - 1M (Deleted DXCC)</option>
+										<option value="179">Moldova - ER</option>
+										<option value="260">Monaco - 3A</option>
+										<option value="363">Mongolia - JT</option>
+										<option value="514">Montenegro - 4O</option>
+										<option value="96">Montserrat - VP2M</option>
+										<option value="446">Morocco - CN</option>
+										<option value="180">Mount Athos - SV/A</option>
+										<option value="181">Mozambique - C9</option>
+										<option value="309">Myanmar - XZ</option>
+										<option value="464">Namibia - V5</option>
+										<option value="157">Nauru - C21</option>
+										<option value="182">Navassa Island - KP1</option>
+										<option value="369">Nepal - 9N</option>
+										<option value="263">Netherlands - PA</option>
+										<option value="183">Netherlands Borneo - PK5 (Deleted DXCC)</option>
+										<option value="184">Netherlands New Guinea - JZ0 (Deleted DXCC)</option>
+										<option value="162">New Caledonia - FK</option>
+										<option value="170">New Zealand - ZL</option>
+										<option value="16">New Zealand Subantarctic Islands - ZL9</option>
+										<option value="186">Newfoundland Labrador - VO (Deleted DXCC)</option>
+										<option value="86">Nicaragua - YN</option>
+										<option value="187">Niger - 5U</option>
+										<option value="450">Nigeria - 5N</option>
+										<option value="188">Niue - E6</option>
+										<option value="189">Norfolk Island - VK9N</option>
+										<option value="191">North Cook Islands - E5/N</option>
+										<option value="502">North Macedonia - Z3</option>
+										<option value="265">Northern Ireland - GI</option>
+										<option value="266">Norway - LA</option>
+										<option value="192">Ogasawara - JD/O</option>
+										<option value="193">Okinawa - KR6 (Deleted DXCC)</option>
+										<option value="194">Okino Tori-shima - 7J1 (Deleted DXCC)</option>
+										<option value="370">Oman - A4</option>
+										<option value="372">Pakistan - AP</option>
+										<option value="22">Palau - T8</option>
+										<option value="510">Palestine - E4</option>
+										<option value="196">Palestine (deleted) - ZC6 (Deleted DXCC)</option>
+										<option value="197">Palmyra &amp; Jarvis Islands - KH5</option>
+										<option value="88">Panama - HP</option>
+										<option value="163">Papua New Guinea - P2</option>
+										<option value="198">Papua Terr - VK9/P (Deleted DXCC)</option>
+										<option value="132">Paraguay - ZP</option>
+										<option value="493">Penguin Islands - ZS0 (Deleted DXCC)</option>
+										<option value="243">People's Dem Rep Of Yemen - VS9A (Deleted DXCC)</option>
+										<option value="136">Peru - OA</option>
+										<option value="199">Peter 1 Island - 3Y/P</option>
+										<option value="375">Philippines - DU</option>
+										<option value="172">Pitcairn Island - VP6</option>
+										<option value="269">Poland - SP</option>
+										<option value="272">Portugal - CT</option>
+										<option value="200">Portuguese Timor - CR8/T (Deleted DXCC)</option>
+										<option value="505">Pratas Island - BV9P</option>
+										<option value="201">Prince Edward &amp; Marion Islands - ZS8</option>
+										<option value="202">Puerto Rico - KP4</option>
+										<option value="376">Qatar - A7</option>
+										<option value="137">Republic Of Korea - HL</option>
+										<option value="522">Republic Of Kosovo - Z6</option>
+										<option value="462">Republic Of South Africa - ZS</option>
+										<option value="521">Republic Of South Sudan - Z8</option>
+										<option value="412">Republic Of The Congo - TN</option>
+										<option value="453">Reunion Island - FR</option>
+										<option value="204">Revillagigedo - XF4</option>
+										<option value="207">Rodriguez Island - 3B9</option>
+										<option value="275">Romania - YO</option>
+										<option value="460">Rotuma - 3D2/R</option>
+										<option value="208">Ruanda-urundi - 9U (Deleted DXCC)</option>
+										<option value="454">Rwanda - 9X</option>
+										<option value="210">Saar - 9S4 (Deleted DXCC)</option>
+										<option value="519">Saba &amp; St Eustatius - PJ5</option>
+										<option value="211">Sable Island - CY0</option>
+										<option value="516">Saint Barthelemy - FJ</option>
+										<option value="250">Saint Helena - ZD7</option>
+										<option value="249">Saint Kitts &amp; Nevis - V4</option>
+										<option value="97">Saint Lucia - J6</option>
+										<option value="213">Saint Martin - FS</option>
+										<option value="252">Saint Paul Island - CY9</option>
+										<option value="253">Saint Peter And Paul Rocks - PY0S</option>
+										<option value="277">Saint Pierre &amp; Miquelon - FP</option>
+										<option value="98">Saint Vincent - J8</option>
+										<option value="190">Samoa - 5W</option>
+										<option value="216">San Andres Island - HK0S</option>
+										<option value="217">San Felix Islands - CE0X</option>
+										<option value="278">San Marino - T7</option>
+										<option value="219">Sao Tome &amp; Principe - S9</option>
+										<option value="220">Sarawak - VS4 (Deleted DXCC)</option>
+										<option value="225">Sardinia - IS0</option>
+										<option value="378">Saudi Arabia - HZ</option>
+										<option value="226">Saudi Arabia/iraq Neut Zone - 8Z4 (Deleted DXCC)</option>
+										<option value="506">Scarborough Reef - BS7H</option>
+										<option value="279">Scotland - GM</option>
+										<option value="456">Senegal - 6W</option>
+										<option value="296">Serbia - YT</option>
+										<option value="228">Serrana Bank &amp; Roncador Cay - HK0/S (Deleted DXCC)</option>
+										<option value="379">Seychelles Islands - S7</option>
+										<option value="458">Sierra Leone - 9L</option>
+										<option value="231">Sikkim - AC3 (Deleted DXCC)</option>
+										<option value="381">Singapore - 9V</option>
+										<option value="518">Sint Maarten - PJ7</option>
+										<option value="255">Sint Maarten, Saba, St Eustatius - PJ7/D (Deleted DXCC)</option>
+										<option value="504">Slovak Republic - OM</option>
+										<option value="499">Slovenia - S5</option>
+										<option value="185">Solomon Islands - H4</option>
+										<option value="232">Somalia - T5</option>
+										<option value="234">South Cook Islands - E5/S</option>
+										<option value="235">South Georgia Island - VP0G</option>
+										<option value="238">South Orkney Islands - VP8O</option>
+										<option value="240">South Sandwich Islands - VP0S</option>
+										<option value="241">South Shetland Islands - VP8H</option>
+										<option value="244">Southern Sudan - ST0/D (Deleted DXCC)</option>
+										<option value="246">Sov Military Order Of Malta - 1A0</option>
+										<option value="281">Spain - EA</option>
+										<option value="247">Spratly Islands - 1S</option>
+										<option value="315">Sri Lanka - 4S</option>
+										<option value="466">Sudan - ST</option>
+										<option value="258">Sumatra - PK4 (Deleted DXCC)</option>
+										<option value="140">Suriname - PZ</option>
+										<option value="259">Svalbard - JW</option>
+										<option value="515">Swains Island - KH8/S</option>
+										<option value="261">Swan Island - KS4 (Deleted DXCC)</option>
+										<option value="284">Sweden - SM</option>
+										<option value="287">Switzerland - HB</option>
+										<option value="384">Syria - YK</option>
+										<option value="386">Taiwan - BU</option>
+										<option value="262">Tajikistan - EY</option>
+										<option value="264">Tangier - CN2 (Deleted DXCC)</option>
+										<option value="470">Tanzania - 5H</option>
+										<option value="507">Temotu Province - H40</option>
+										<option value="267">Terr New Guinea - VK9/T (Deleted DXCC)</option>
+										<option value="387">Thailand - HS</option>
+										<option value="422">The Gambia - C5</option>
+										<option value="268">Tibet - AC4 (Deleted DXCC)</option>
+										<option value="511">Timor-leste - 4W</option>
+										<option value="483">Togo - 5V7</option>
+										<option value="270">Tokelau Islands - ZK3</option>
+										<option value="160">Tonga - A3</option>
+										<option value="271">Trieste - I1 (Deleted DXCC)</option>
+										<option value="273">Trindade &amp; Martim Vaz Islands - PY0T</option>
+										<option value="90">Trinidad &amp; Tobago - 9Y</option>
+										<option value="274">Tristan Da Cunha &amp; Gough Islands - ZD9</option>
+										<option value="276">Tromelin Island - FT/T</option>
+										<option value="474">Tunisia - 3V</option>
+										<option value="390">Turkey - TA</option>
+										<option value="280">Turkmenistan - EZ</option>
+										<option value="89">Turks &amp; Caicos Islands - VP5</option>
+										<option value="282">Tuvalu - T2</option>
+										<option value="286">Uganda - 5X</option>
+										<option value="283">Uk Bases On Cyprus - ZC4</option>
+										<option value="288">Ukraine - UR</option>
+										<option value="391">United Arab Emirates - A6</option>
+										<option value="289">United Nations Hq - 4U1UN</option>
+										<option value="291">United States Of America - K</option>
+										<option value="144">Uruguay - CX</option>
+										<option value="285">Us Virgin Islands - KP2</option>
+										<option value="292">Uzbekistan - UJ</option>
+										<option value="158">Vanuatu - YJ</option>
+										<option value="295">Vatican City - HV</option>
+										<option value="148">Venezuela - YV</option>
+										<option value="293">Viet Nam - 3W</option>
+										<option value="297">Wake Island - KH9</option>
+										<option value="294">Wales - GW</option>
+										<option value="298">Wallis &amp; Futuna Islands - FW</option>
+										<option value="488">Walvis Bay - ZS9 (Deleted DXCC)</option>
+										<option value="299">West Malaysia - 9M2</option>
+										<option value="301">Western Kiribati - T30</option>
+										<option value="302">Western Sahara - S0</option>
+										<option value="303">Willis Island - VK9W</option>
+										<option value="492">Yemen - 7O</option>
+										<option value="154">Yemen Arab Republic - 4W (Deleted DXCC)</option>
+										<option value="482">Zambia - 9J</option>
+										<option value="307">Zanzibar - VQ1 (Deleted DXCC)</option>
+										<option value="452">Zimbabwe - Z2</option>
+										</select>
+									</div>
+
+
+								<div class="col-md-6 mb-2">
+										<label for="userlocator" class="form-label">Gridsquare/Locator</label>
+										<input type="text" id="userlocator" tabindex="4" placeholder="HA44AA" class="form-control" name="userlocator" />
+									</div>
+
+								</div>
+								<div class="row">
+								<div class="col-md-6 mb-2">
 										<label for="timezone" class="form-label">Timezone</label>
 										<select id="timezone" tabindex="6" class="form-select" name="timezone">
 										<?php
@@ -607,6 +1031,10 @@ global $wavelog_url;
 											}
 											?>
 										</select>
+									</div>
+										<div class="col-md-6 mb-2">
+										<label for="user_email" class="form-label">E-Mail Address</label>
+										<input type="email" id="user_email" tabindex="5" placeholder="ham.radio@example.com" class="form-control mb-2" name="user_email" />
 									</div>
 									<div class="col-md-6 mb-2">
 										<div class="alert alert-danger" id="userform_warnings" style="display: none; margin-top: 30px;"></div>
@@ -983,7 +1411,7 @@ global $wavelog_url;
 					} else {
 						$('#ContinueButton').css('display', 'none');
 					}
-					
+
 				}
 
 				function prevTab() {

@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *
  * Add WWFF columnds to database to reflect latest ADIF v3.1.3 spec changes
  * See http://www.adif.org.uk/313/ADIF_313_annotated.htm
- * 
+ *
  */
 
 class Migration_add_wwff_columns extends CI_Migration {
@@ -29,11 +29,6 @@ class Migration_add_wwff_columns extends CI_Migration {
                         $this->db->where('COL_SIG', 'WWFF');
                         $this->db->update($this->config->item('table_name'));
 
-                        // Add MY_WWFF_REF to station profile
-                        $fields = array(
-                                'station_wwff varchar(50) DEFAULT NULL',
-                        );
-                        $this->dbforge->add_column('station_profile', $fields);
                 }
         }
 
@@ -41,6 +36,5 @@ class Migration_add_wwff_columns extends CI_Migration {
         {
                 $this->dbforge->drop_column($this->config->item('table_name'), 'COL_WWFF_REF');
                 $this->dbforge->drop_column($this->config->item('table_name'), 'COL_MY_WWFF_REF');
-                $this->dbforge->drop_column('station_profile', 'station_wwff');
         }
 }
