@@ -3144,7 +3144,6 @@ function lotw_update($datetime, $callsign, $band, $qsl_date, $qsl_status, $state
     $this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i\') = "'.$datetime.'"');
     $this->db->where('COL_CALL', $callsign);
     $this->db->where('COL_BAND', $band);
-    $this->db->where('ifnull(COL_LOTW_QSL_RCVD,\'\') !=', $qsl_status); // Prevent QSO from beeing updated twice (or more)
     $this->db->where('COL_STATION_CALLSIGN', $station_callsign);
 
     $this->db->update($this->config->item('table_name'), $data);
