@@ -89,7 +89,7 @@ $lang['station_location_iota_hint_ln1'] = "IOTA Referenznummer der Station. Zum 
 $lang['station_location_iota_hint_ln2'] = "Du kannst IOTA Referenznummern auf der <a target='_blank' href='https://www.iota-world.org/iota-directory/annex-f-short-title-iota-reference-number-list.html'>IOTA World Website</a> nachschlagen.";
 $lang['station_location_sota_hint_ln1'] = "SOTA Referenznummer der Station. Du kannst SOTA Referenznummern auf der <a target='_blank' href='https://www.sotamaps.org/'>SOTA Maps Webseite</a> nachschlagen.";
 $lang['station_location_wwff_hint_ln1'] = "WWFF Referenznummer der Station. Du kannst WWFF Referenznummern auf der <a target='_blank' href='https://www.cqgma.org/mvs/'>GMA Map Webseite</a> nachschlagen.";
-$lang['station_location_pota_hint_ln1'] = "POTA Referenznummer der Station. Du kannst POTA Referenznummern auf der <a target='_blank' href='https://pota.app/#/map/'>POTA Map Webseite</a> nachschlagen.";
+$lang['station_location_pota_hint_ln1'] = "POTA Referenznummer(n) der Station. Mehrere kommaseparierte Einträge erlaubt. Du kannst POTA Referenznummern auf der <a target='_blank' href='https://pota.app/#/map/'>POTA Map Webseite</a> nachschlagen.";
 $lang['station_location_signature'] = "Signaturen";
 $lang['station_location_signature_name'] = "Signatur Bezeichnung";
 $lang['station_location_signature_name_hint'] = "Signatur/Referenz der Station (z.B. GMA)..";
