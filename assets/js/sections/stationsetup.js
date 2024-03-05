@@ -80,8 +80,10 @@ $(document).ready(function () {
 				if (jdata.success == 1) {
 					succ_callback();
 
-					// we also want to switch the active badge in the quickswitcher
-					set_active_loc_quickswitcher(event_target.currentTarget.id);
+					// we also want to switch the active badge in the quickswitcher if a new active location is set
+					if (ajax_uri == 'setActiveStation_json') {
+						set_active_loc_quickswitcher(event_target.currentTarget.id);
+					}
 				} else {
 					$("#flashdata").html(jdata.flashdata);
 				}

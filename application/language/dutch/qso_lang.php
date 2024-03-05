@@ -18,7 +18,7 @@ $lang['qso_transmit_power_helptext'] = 'Geef vermogen in Watt. Vermeld alleen ci
 
 $lang['qso_sota_ref_helptext'] = 'Bijvoorbeeld: GM/NS-001.';
 $lang['qso_wwff_ref_helptext'] = 'Bijvoorbeeld: DLFF-0069.';
-$lang['qso_pota_ref_helptext'] = 'Bijvoorbeeld: PA-0150.';
+$lang['qso_pota_ref_helptext'] = 'Bijvoorbeeld: PA-0150. Multiple values allowed.';
 
 $lang['qso_sig_helptext'] = 'Bijvoorbeeld: GMA';
 $lang['qso_sig_info_helptext'] = 'Bijvoorbeeld: DA/NW-357';

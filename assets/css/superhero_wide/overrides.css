@@ -190,9 +190,19 @@ div.alert-danger {
 
 .selectize-input.focus {
 	color: #495057;
-	background-color: #fff;
+	background-color: #2b3d51;
 	border-color: #f1b287;
 	box-shadow: 0 0 0 0.2rem rgba(223, 105, 26, 0.25);
+}
+
+.selectize-control.multi .selectize-input > div {
+	background: #4e5d6c;
+	color: #fff;
+}
+
+.spw-buttons {
+	background-color: #657687;
+	--bs-btn-border-color: transparent;
 }
 
 .selectize-input.dropdown-active {

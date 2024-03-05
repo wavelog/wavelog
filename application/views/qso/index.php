@@ -377,7 +377,7 @@
                 <small id="sotaRefHelp" class="form-text text-muted"><?php echo lang('qso_sota_ref_helptext'); ?></small>
               </div>
               <div class="mb-3 col-md-3 align-self-center">
-                <small id="sota_info" class="badge text-bg-secondary"></small>
+                <button id="sota_info" class="btn btn-secondary spw-buttons"></button>
               </div>
             </div>
 
@@ -388,7 +388,7 @@
                 <small id="wwffRefHelp" class="form-text text-muted"><?php echo lang('qso_wwff_ref_helptext'); ?></small>
               </div>
               <div class="mb-3 col-md-3 align-self-center">
-                <small id="wwff_info" class="badge text-bg-secondary"></small>
+                <button id="wwff_info" class="btn btn-secondary spw-buttons"></button>
               </div>
             </div>
 
@@ -399,7 +399,7 @@
                 <small id="potaRefHelp" class="form-text text-muted"><?php echo lang('qso_pota_ref_helptext'); ?></small>
               </div>
               <div class="mb-3 col-md-3 align-self-center">
-                <small id="pota_info" class="badge text-bg-secondary"></small>
+                <button id="pota_info" class="btn btn-secondary spw-buttons"></button>
               </div>
             </div>
 

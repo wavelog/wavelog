@@ -301,7 +301,22 @@
                     <?php if($row->COL_POTA_REF != null) { ?>
                     <tr>
                         <td><?php echo lang('gen_hamradio_pota_reference'); ?></td>
-                        <td><a href="https://pota.app/#/park/<?php echo $row->COL_POTA_REF; ?>" target="_blank"><?php echo $row->COL_POTA_REF; ?></a></td>
+                        <td>
+                            <?php
+                            $pota_refs = explode(',', $row->COL_POTA_REF);
+                            $link_output = '';
+                            
+                            foreach ($pota_refs as $pota_ref) {
+                                $pota_ref = trim($pota_ref);
+                                if (!empty($pota_ref)) {
+                                    $link_output .= '<a href="https://pota.app/#/park/' . $pota_ref . '" target="_blank">' . $pota_ref . '</a>, ';
+                                }
+                            }
+                            
+                            $link_output = rtrim($link_output, ', ');
+                            echo $link_output;
+                            ?>
+                        </td>
                     </tr>
                     <?php } ?>
 
