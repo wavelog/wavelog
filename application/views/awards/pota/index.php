@@ -42,10 +42,12 @@
 	<?php
 		if ($pota_all->num_rows() > 0) {
 			foreach ($pota_all->result() as $row) {
+				$references = explode(',', $row->COL_POTA_REF);
+					foreach ($references as $reference) {
 	?>
 	
 	<tr>
-		<td style="text-align: center"><?php echo $row->COL_POTA_REF; ?></td>
+		<td style="text-align: center"><?php echo $reference; ?></td>
 		<td style="text-align: center"><?php $timestamp = strtotime($row->COL_TIME_ON); echo date($custom_date_format, $timestamp); ?></td>
 		<td style="text-align: center"><?php $timestamp = strtotime($row->COL_TIME_ON); echo date('H:i', $timestamp); ?></td>
 		<td style="text-align: center"><?php echo $row->COL_CALL; ?></td>
@@ -54,7 +56,8 @@
 		<td style="text-align: center"><?php echo $row->COL_RST_RCVD; ?></td>
 	</tr>
 	<?php
-		  }
+				}
+			}
 		}
 	?>
 	
