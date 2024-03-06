@@ -206,6 +206,7 @@ class User_Model extends CI_Model {
 			$this->db->query("insert into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $insert_id . ", 'map_custom','icon','qso','{\"icon\":\"fas fa-dot-circle\",\"color\":\"#ff0000\"}');");
 			$this->db->query("insert into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $insert_id . ", 'map_custom','icon','qsoconfirm','{\"icon\":\"fas fa-dot-circle\",\"color\":\"#00ff00\"}');");
 			$this->db->query("insert into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $insert_id . ", 'map_custom','icon','station','{\"icon\":\"fas fa-broadcast-tower\",\"color\":\"#0000ff\"}');");
+			$this->db->query("insert into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $insert_id . ", 'map_custom','gridsquare','show','0');");
 
 			return OK;
 		} else {
