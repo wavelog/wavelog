@@ -3141,6 +3141,10 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 		    $data['COL_CLUBLOG_QSO_UPLOAD_STATUS'] = 'M';
 	    }
 
+	    $this->db->group_start();
+	    $this->db->where('date_format(COL_LOTW_QSLRDATE, \'%Y-%m-%d %H:%i\') != "'.$qsl_date.'"');
+	    $this->db->or_where('COL_LOTW_QSLRDATE is null');
+	    $this->db->group_end();
 	    $this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i\') = "'.$datetime.'"');
 	    $this->db->where('COL_CALL', $callsign);
 	    $this->db->where('COL_BAND', $band);
