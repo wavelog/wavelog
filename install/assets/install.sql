@@ -473,6 +473,7 @@ CREATE TABLE `users` (
   `user_eqsl_name` varchar(32) DEFAULT NULL,
   `user_eqsl_password` varchar(64) DEFAULT NULL,
   `user_eqsl_qth_nickname` varchar(32) DEFAULT NULL,
+  `active_station_logbook` int(11) DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_name` (`user_name`),
   UNIQUE KEY `user_email` (`user_email`)
@@ -481,7 +482,7 @@ CREATE TABLE `users` (
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('1', '%%FIRSTUSER_NAME%%', '%%FIRSTUSER_PASS%%', '%%FIRSTUSER_MAIL%%', '99', '%%FIRSTUSER_CALL%%', '%%FIRSTUSER_LOCATOR%%', '%%FIRSTUSER_FIRSTNAME%%', '%%FIRSTUSER_LASTNAME%%', '%%FIRSTUSER_TIMEZONE%%', null, null, null, null, null);
+INSERT INTO `users` VALUES ('1', '%%FIRSTUSER_NAME%%', '%%FIRSTUSER_PASS%%', '%%FIRSTUSER_MAIL%%', '99', '%%FIRSTUSER_CALL%%', '%%FIRSTUSER_LOCATOR%%', '%%FIRSTUSER_FIRSTNAME%%', '%%FIRSTUSER_LASTNAME%%', '%%FIRSTUSER_TIMEZONE%%', null, null, null, null, null, 1);
 
 -- ----------------------------
 -- Records of station_logbooks
