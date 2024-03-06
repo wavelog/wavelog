@@ -58,15 +58,6 @@ $( document ).ready(function() {
 		$('#charsLeft').text(" ");
 	});
 
-	var input = $('#callsign');
-	input.on('keydown', function() {
-		var key = event.keyCode || event.charCode;
-
-		if( key == 8 || key == 46 ) {
-			reset_fields();
-		}
-	});
-
 	$(document).keyup(function(e) {
 		if (e.charCode === 0) {
 			let fixedcall = $('#callsign').val();
