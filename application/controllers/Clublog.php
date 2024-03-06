@@ -109,11 +109,16 @@ class Clublog extends CI_Controller {
 							// If Clublog Accepts mark the QSOs
 							if (preg_match('/\baccepted\b/', $response)) {
 								echo "QSOs uploaded and Logbook QSOs marked as sent to Clublog"."<br>";
-
 								$this->load->model('clublog_model');
 								$this->clublog_model->mark_qsos_sent($station_row->station_id);
 								echo "Clublog upload for ".$station_row->station_callsign."<br>";
 								log_message('info', 'Clublog upload for '.$station_row->station_callsign.' successfully sent.');
+							} else if (preg_match('/checksum duplicate/',$response)) {
+								echo "QSOs uploaded (asduplicate!) and Logbook QSOs marked as sent to Clublog"."<br>";
+								$this->load->model('clublog_model');
+								$this->clublog_model->mark_qsos_sent($station_row->station_id);
+								echo "Clublog upload for ".$station_row->station_callsign."<br>";
+								log_message('info', 'Clublog DUPLICATE upload for '.$station_row->station_callsign.' successfully sent.');
 							} else {
 								echo "Error ".$response;
 								log_message('error', 'Clublog upload for '.$station_row->station_callsign.' failed reason '.$response);
