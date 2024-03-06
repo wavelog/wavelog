@@ -120,7 +120,7 @@ class Clublog extends CI_Controller {
 								echo "Clublog upload for ".$station_row->station_callsign."<br>";
 								log_message('info', 'Clublog DUPLICATE upload for '.$station_row->station_callsign.' successfully sent.');
 							} else {
-								echo "Error ".$response;
+								echo "Error ".$response."<br />";
 								log_message('error', 'Clublog upload for '.$station_row->station_callsign.' failed reason '.$response);
 							}
 
