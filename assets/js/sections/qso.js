@@ -17,7 +17,13 @@ function setRst(mode) {
 $( document ).ready(function() {
 	clearTimeout();
 	set_timers();
-	updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputEdit');
+	updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputQso');
+
+	// if the dxcc id changes we need to update the state dropdown and clear the county value to avoid wrong data
+	$("#dxcc_id").change(function () {
+		updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputQso');
+		$('#stationCntyInputQso').val('');
+	});
 
 	$('#notice-alerts').delay(1000).fadeOut(5000);
 
