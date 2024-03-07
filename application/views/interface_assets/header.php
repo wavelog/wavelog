@@ -319,7 +319,7 @@
 									<li><a class="dropdown-item" href="<?php echo site_url('stationsetup'); ?>" title="Manage station setup"><i class="fas fa-home"></i> <?php echo lang('menu_station_setup'); ?></a></li>
 								<?php } ?>
 								<li><a class="dropdown-item" href="<?php echo site_url('band'); ?>" title="Manage Bands"><i class="fas fa-cog"></i> <?php echo lang('menu_bands'); ?></a></li>
-								<li><a class="dropdown-item" href="<?php echo site_url('satellites'); ?>" title="Manage Satellites"><i class="fas fa-cog"></i> Satellites</a></li>
+								<li><a class="dropdown-item" href="<?php echo site_url('satellite'); ?>" title="Manage Satellites"><i class="fas fa-cog"></i> Satellites</a></li>
 
 								<div class="dropdown-divider"></div>
 
@@ -386,7 +386,7 @@
 									<?php
 									// let's get all stations for the logged in user
 									$all_user_locations = $this->stations->all_of_user($this->session->userdata('user_id'));
-									
+
 									// and the set favourites as array
 									$location_favorites_result = $this->user_options_model->get_options('station_location', array('option_name' => 'is_favorite', 'option_value' => 'true'));
 									$location_favorites = $location_favorites_result->result_array();
