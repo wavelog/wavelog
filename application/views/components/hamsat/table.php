@@ -2,13 +2,13 @@
     <br>
     <h2>Hamsat - Satellite Rovers</h2>
     <p>This data is from <a target="_blank" href="https://hams.at/">https://hams.at/</a>.
-    <?php if ($workable_only) {
+    <?php if ($user_hamsat_workable_only) {
     echo " Only workable passes shown.";
     } else {
     echo " All passes shown.";
     }?>
     </p>
-    <?php if ($workable_only && $this->session->userdata('user_hamsat_key') == '') { ?>
+    <?php if ($user_hamsat_workable_only && $user_hamsat_key == '') { ?>
     <div class="alert alert-warning" role="warning">
        Private feed key empty. Please set the feed key in your profile.
     </div>
@@ -35,7 +35,7 @@
            </thead>
            <tbody>
                <?php foreach ($rovedata['data'] as $rove) :
-               if ($workable_only) {
+               if ($user_hamsat_workable_only) {
                   if (!$rove['is_workable']) {
                      continue;
                   }
@@ -119,7 +119,7 @@
                        </td>
                        <td>
                        <?php
-                          if ($this->session->userdata('user_hamsat_key') != '') {
+                          if ($user_hamsat_key != '') {
                              if ($rove['is_workable']) {
                                 echo date("H:i", strtotime($rove['workable_start_at']))." - ".date("H:i", strtotime($rove['workable_end_at']));
                              } else {
@@ -141,7 +141,7 @@
                        ?>
                        <td>
                        <?php
-                          if ($rove['is_workable'] || $this->session->userdata('user_hamsat_key') == '') { ?>
+                          if ($rove['is_workable'] || $user_hamsat_key == '') { ?>
    <a href="https://sat.fg8oj.com/sked.php?s%5B%5D=<?php echo $sat; ?>&l=<?php echo strtoupper($gridsquare); ?>&el1=0&l2=<?php echo $rove['grids'][0]; ?>&el2=0&duration=1&start=0&OK=Search" target="_blank">Sked</a>
                        <?php } ?>
                        </td>
