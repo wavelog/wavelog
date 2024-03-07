@@ -851,7 +851,7 @@ class Logbook extends CI_Controller {
 					if($callsign['callsign']['error'] == "Session does not exist or expired") {
 						$hamqth_session_key = $this->hamqth->session($this->config->item('hamqth_username'), $this->config->item('hamqth_password'));
 						$this->session->set_userdata('hamqth_session_key', $hamqth_session_key);
-						$callsign['callsign'] = $this->hamqth->search($callsign, $this->session->userdata('hamqth_session_key'));
+						$callsign['callsign'] = $this->hamqth->search($id, $this->session->userdata('hamqth_session_key'));
 					}
 					if (isset($data['callsign']['gridsquare'])) {
 						$this->load->model('logbook_model');

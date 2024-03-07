@@ -27,7 +27,7 @@ class Logbooks extends CI_Controller {
 		$this->load->view('interface_assets/footer');
     }
 
-    public function create() 
+    public function create()
 	{
 		$this->load->library('form_validation');
 
@@ -41,11 +41,11 @@ class Logbooks extends CI_Controller {
 			$this->load->view('interface_assets/footer');
 		}
 		else
-		{	
+		{
             $this->load->model('logbooks_model');
 			$this->logbooks_model->add();
-			
-			redirect('logbooks');
+
+			redirect('stationsetup');
 		}
 	}
 
@@ -65,7 +65,7 @@ class Logbooks extends CI_Controller {
 		$data['station_locations_list'] = $this->stations->all_of_user();
 
 		$data['station_locations_linked'] = $this->logbooks_model->list_logbooks_linked($station_logbook_id);
-		
+
 		$data['page_title'] = "Edit Station Logbook";
 
 		$this->form_validation->set_rules('station_logbook_id', 'Station Logbook Name', 'required');
@@ -99,27 +99,27 @@ class Logbooks extends CI_Controller {
 		$this->logbooks_model->set_logbook_active($id);
 		$this->user_model->update_session($this->session->userdata('user_id'));
 
-		redirect('logbooks');
+		redirect('stationsetup');
 	}
 
     public function delete($id) {
 		$this->load->model('logbooks_model');
 		$this->logbooks_model->delete($id);
-		
-		redirect('logbooks');
+
+		redirect('stationsetup');
 	}
 
 	public function delete_relationship($logbook_id, $station_id) {
 		$this->load->model('logbooks_model');
 		$this->logbooks_model->delete_relationship($logbook_id, $station_id);
-		
+
 		redirect('logbooks/edit/'.$logbook_id);
 	}
 
 	public function publicslug_validate() {
 		$this->load->model('logbooks_model');
 		$result = $this->logbooks_model->is_public_slug_available($this->input->post('public_slug'));
-		
+
 		if($result == true) {
 			$data['slugAvailable'] = true;
 		} else {
@@ -151,8 +151,8 @@ class Logbooks extends CI_Controller {
 		{
 			$this->load->model('logbooks_model');
 			$result = $this->logbooks_model->is_public_slug_available($this->input->post('public_slug'));
-			
-	
+
+
 			if($result == true) {
 				$returndata = $this->logbooks_model->save_public_slug($this->input->post('public_slug'), $this->input->post('logbook_id'));
 				echo "<div class=\"alert alert-success\" role=\"alert\">Public Slug Saved</div>";

@@ -161,9 +161,14 @@ div.alert-danger {
 
 .selectize-input.focus {
 	color: #444;
-	background-color: #fff;
+	background-color: #222222;
 	border-color: #739ac2;
 	box-shadow: 0 0 0 0.2rem rgba(55, 90, 127, 0.25);
+}
+
+.selectize-control.multi .selectize-input > div {
+	background: #4c4c4c;
+	color: #fff;
 }
 
 .selectize-dropdown,

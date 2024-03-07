@@ -18,7 +18,7 @@ $lang['qso_transmit_power_helptext'] = 'Give power value in Watts. Include only 
 
 $lang['qso_sota_ref_helptext'] = 'For example: GM/NS-001.';
 $lang['qso_wwff_ref_helptext'] = 'For example: DLFF-0069.';
-$lang['qso_pota_ref_helptext'] = 'For example: PA-0150.';
+$lang['qso_pota_ref_helptext'] = 'For example: PA-0150. Multiple values allowed.';
 
 $lang['qso_sig_helptext'] = 'For example: GMA';
 $lang['qso_sig_info_helptext'] = 'For example: DA/NW-357';
@@ -35,7 +35,8 @@ $lang['qso_error_timeoff_less_timeon'] = "TimeOff is less than TimeOn";
 
 // Button Text on /qso Display
 
-$lang['qso_btn_reset_qso'] = 'Reset';
+$lang['qso_btn_clear_qso'] = 'Clear';
+$lang['qso_btn_reset_to_default'] = 'Reset to Default';
 $lang['qso_btn_save_qso'] = 'Save QSO';
 $lang['qso_btn_edit_qso'] = 'Edit QSO';
 $lang['qso_delete_warning'] = "Warning! Are you sure you want delete QSO with ";

@@ -44,6 +44,8 @@ class Database
 		$newquery  = str_replace("%%FIRSTUSER_FIRSTNAME%%", $data['firstname'], $newquery);
 		$newquery  = str_replace("%%FIRSTUSER_LASTNAME%%", $data['lastname'], $newquery);
 		$newquery  = str_replace("%%FIRSTUSER_TIMEZONE%%", $data['timezone'], $newquery);
+		$newquery  = str_replace("%%FIRSTUSER_DXCC%%", $data['dxcc'], $newquery);
+		$newquery  = str_replace("%%FIRSTUSER_CITY%%", $data['city'], $newquery);
 
 
 		mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
@@ -69,7 +71,7 @@ class Database
 		try {
 			$timeout = 5;  /* five seconds for timeout */
 			$link = mysqli_init();
-			
+
 			$link->options(MYSQLI_OPT_CONNECT_TIMEOUT, $timeout);
 
 			$link->real_connect($data['db_hostname'], $data['db_username'], $data['db_password'], $data['db_name']);
