@@ -185,9 +185,7 @@ class User_Model extends CI_Model {
 				'user_qso_end_times' => xss_clean($user_qso_end_times),
 				'user_quicklog' => xss_clean($user_quicklog),
 				'user_quicklog_enter' => xss_clean($user_quicklog_enter),
-				'language' => xss_clean($language),
-				'hamsat_key' => xss_clean($user_hamsat_key),
-				'hamsat_workable_only' => xss_clean($user_hamsat_workable_only),
+				'language' => xss_clean($language)
 			);
 
 			// Check the password is valid
@@ -210,6 +208,8 @@ class User_Model extends CI_Model {
 			$this->db->query("insert into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $insert_id . ", 'map_custom','icon','qsoconfirm','{\"icon\":\"fas fa-dot-circle\",\"color\":\"#00ff00\"}');");
 			$this->db->query("insert into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $insert_id . ", 'map_custom','icon','station','{\"icon\":\"fas fa-broadcast-tower\",\"color\":\"#0000ff\"}');");
 			$this->db->query("insert into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $insert_id . ", 'map_custom','gridsquare','show','0');");
+			$this->db->query("insert into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $insert_id . ", 'hamsat','hamsat_key','api','".xss_clean($user_hamsat_key)."');");
+			$this->db->query("insert into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $insert_id . ", 'hamsat','hamsat_key','workable','".xss_clean($user_hamsat_workable_only)."');");
 
 			return OK;
 		} else {
@@ -259,9 +259,10 @@ class User_Model extends CI_Model {
 					'user_quicklog_enter' => xss_clean($fields['user_quicklog_enter']),
 					'language' => xss_clean($fields['language']),
 					'winkey' => xss_clean($fields['user_winkey']),
-					'hamsat_key' => xss_clean($fields['user_hamsat_key']),
-					'hamsat_workable_only' => xss_clean($fields['user_hamsat_workable_only']),
 				);
+
+				$this->db->query("replace into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $fields['id'] . ", 'hamsat','hamsat_key','api','".xss_clean($fields['user_hamsat_key'])."');");
+				$this->db->query("replace into user_options (user_id, option_type, option_name, option_key, option_value) values (" . $fields['id'] . ", 'hamsat','hamsat_key','workable','".xss_clean($fields['user_hamsat_workable_only'])."');");
 
 				// Check to see if the user is allowed to change user levels
 				if($this->session->userdata('user_type') == 99) {
@@ -319,6 +320,7 @@ class User_Model extends CI_Model {
 
 		if($this->exists_by_id($user_id)) {
 			$this->db->query("DELETE FROM ".$this->config->item('auth_table')." WHERE user_id = '".$user_id."'");
+			$this->db->query("delete from user_options where user_id=?",$user_id);
 
 			return 1;
 		} else {
@@ -391,9 +393,7 @@ class User_Model extends CI_Model {
 			'active_station_logbook' => $u->row()->active_station_logbook,
 			'language' => isset($u->row()->language) ? $u->row()->language: 'english',
 			'isWinkeyEnabled' => $u->row()->winkey,
-			'hasQrzKey' => $this->hasQrzKey($u->row()->user_id),
-			'user_hamsat_key' => $u->row()->hamsat_key,
-			'user_hamsat_workable_only' => isset($u->row()->hamsat_workable_only) ? $u->row()->hamsat_workable_only: 0,
+			'hasQrzKey' => $this->hasQrzKey($u->row()->user_id)
 		);
 
 		$this->session->set_userdata($userdata);
