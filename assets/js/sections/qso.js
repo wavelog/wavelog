@@ -17,7 +17,13 @@ function setRst(mode) {
 $( document ).ready(function() {
 	clearTimeout();
 	set_timers();
-	updateStateDropdown();
+	updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputQso');
+
+	// if the dxcc id changes we need to update the state dropdown and clear the county value to avoid wrong data
+	$("#dxcc_id").change(function () {
+		updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputQso');
+		$('#stationCntyInputQso').val('');
+	});
 
 	$('#notice-alerts').delay(1000).fadeOut(5000);
 
@@ -331,9 +337,9 @@ $( document ).ready(function() {
 	$('#stateDropdown').change(function(){
 		var state = $("#stateDropdown option:selected").text();
 		if (state != "") {
-			$("#stationCntyInput").prop('disabled', false);
+			$("#stationCntyInputQso").prop('disabled', false);
 
-			$('#stationCntyInput').selectize({
+			$('#stationCntyInputQso').selectize({
 				maxItems: 1,
 				closeAfterSelect: true,
 				loadThrottle: 250,
@@ -365,9 +371,9 @@ $( document ).ready(function() {
 			});
 
 		} else {
-			$("#stationCntyInput").prop('disabled', true);
-			//$('#stationCntyInput')[0].selectize.destroy();
-			$("#stationCntyInput").val("");
+			$("#stationCntyInputQso").prop('disabled', true);
+			//$('#stationCntyInputQso')[0].selectize.destroy();
+			$("#stationCntyInputQso").val("");
 		}
 	});
 
@@ -717,7 +723,7 @@ $( document ).ready(function() {
 		var $select = $('#darc_dok').selectize();
 		var selectize = $select[0].selectize;
 		selectize.clear();
-		$select = $('#stationCntyInputEdit').selectize();
+		$select = $('#stationCntyInputQso').selectize();
 		selectize = $select[0].selectize;
 		selectize.clear();
 
@@ -738,7 +744,7 @@ $( document ).ready(function() {
 		$('.callsign-suggest').hide();
 		$('.dxccsummary').remove();
 		$('#timesWorked').html(lang_qso_title_previous_contacts);
-		updateStateDropdown();
+		updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputEdit');
 		clearTimeout();
 		set_timers();
 		resetTimers(qso_manual);
@@ -876,7 +882,7 @@ $( document ).ready(function() {
 							}
 
 							$('#dxcc_id').val(result.dxcc.adif);
-							await updateStateDropdown();
+							await updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputEdit');
 							$('#cqz').val(result.dxcc.cqz);
 							$('#ituz').val(result.dxcc.ituz);
 
@@ -966,9 +972,10 @@ $( document ).ready(function() {
 							/*
 							 * Update county with returned value
 							 */
-							if( $('#stationCntyInput').has('option').length == 0 && result.callsign_us_county != "") {
-								var $county_select = $('#stationCntyInput').selectize();
-								var county_selectize = $county_select[0].selectize;
+							selectize_usa_county('#stateDropdown', '#stationCntyInputQso');
+							if( $('#stationCntyInputQso').has('option').length == 0 && result.callsign_us_county != "") {
+								var county_select = $('#stationCntyInputQso').selectize();
+								var county_selectize = county_select[0].selectize;
 								county_selectize.addOption({name: result.callsign_us_county});
 								county_selectize.setValue(result.callsign_us_county, false);
 							}
