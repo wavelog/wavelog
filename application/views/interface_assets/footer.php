@@ -2559,64 +2559,6 @@ function viewEqsl(picture, callsign) {
     <script src="<?php echo base_url() ;?>assets/js/sections/contesting.js?v2"></script>
 <?php } ?>
 
-<?php if ($this->uri->segment(1) == "station") { ?>
-<script>
-    var baseURL= "<?php echo base_url();?>";
-
-	var state = $("#StateHelp option:selected").text();
-	if (state != "") {
-		$("#stationCntyInput").prop('disabled', false);
-		station_profile_selectize_usa_county();
-	}
-
-    $('#StateHelp').change(function(){
-        var state = $("#StateHelp option:selected").text();
-        if (state != "") {
-            $("#stationCntyInput").prop('disabled', false);
-			station_profile_selectize_usa_county();
-        } else {
-            $("#stationCntyInput").prop('disabled', true);
-            //$('#stationCntyInput')[0].selectize.destroy();
-            $("#stationCntyInput").val("");
-        }
-    });
-
-    function station_profile_selectize_usa_county() {
-		$('#stationCntyInput').selectize({
-			maxItems: 1,
-			closeAfterSelect: true,
-			loadThrottle: 250,
-			valueField: 'name',
-			labelField: 'name',
-			searchField: 'name',
-			options: [],
-			create: false,
-			load: function(query, callback) {
-				var state = $("#StateHelp option:selected").text();
-
-				if (!query || state == "") return callback();
-				$.ajax({
-					url: baseURL+'index.php/station/get_county',
-					type: 'GET',
-					dataType: 'json',
-					data: {
-						query: query,
-						state: state,
-					},
-					error: function() {
-						callback();
-					},
-					success: function(res) {
-						callback(res);
-					}
-				});
-			}
-		});
-	}
-</script>
-
-<?php } ?>
-
 <?php if ($this->uri->segment(2) == "counties" || $this->uri->segment(2) == "counties_details") { ?>
 <script>
     $('.countiestable').DataTable({

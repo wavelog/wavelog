@@ -131,24 +131,56 @@ class Lookup extends CI_Controller {
 
 	public function get_state_list() {
 		$this->load->library('subdivisions');
-
+	
 		$dxcc = xss_clean($this->input->post('dxcc'));
 		$states_result = $this->subdivisions->get_state_list($dxcc);
 		$subdivision_name = $this->subdivisions->get_primary_subdivision_name($dxcc);
-
+	
 		if ($states_result->num_rows() > 0) {
 			$states_array = $states_result->result_array();
-			$result = array(
+				$result = array(
 				'status' => 'ok',
 				'subdivision_name' => $subdivision_name,
 				'data' => $states_array
 			);
 			header('Content-Type: application/json');
-        	echo json_encode($result);
+			echo json_encode($result);
 		} else {
 			header('Content-Type: application/json');
 			echo json_encode(array('status' => 'No States for this DXCC in Database'));
 		}
 	}
+	
+
+    public function get_county() {
+        $json = [];
+
+        if(!empty($this->input->get("query"))) {
+            $county = $this->input->get("state");
+            $cleanedcounty = explode('(', $county);
+            $cleanedcounty = trim($cleanedcounty[0]);
+
+            $file = 'assets/json/US_counties.csv';
+
+            if (is_readable($file)) {
+                $lines = file($file, FILE_IGNORE_NEW_LINES);
+                $input = preg_quote($cleanedcounty, '~');
+                $reg = '~^'. $input .'(.*)$~';
+                $result = preg_grep($reg, $lines);
+                $json = [];
+                $i = 0;
+                foreach ($result as &$value) {
+                    $county = explode(',', $value);
+                    // Limit to 100 as to not slowdown browser too much
+                    if (count($json) <= 100) {
+                        $json[] = ["name"=>$county[1]];
+                    }
+                }
+            }
+        }
+
+        header('Content-Type: application/json');
+        echo json_encode($json);
+    }
 
 }
