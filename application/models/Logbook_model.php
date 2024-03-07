@@ -4766,6 +4766,7 @@ function lotw_last_qsl_date($user_id) {
 
     public function get_states_by_dxcc($dxcc) {
         $this->db->where('adif', $dxcc);
+        $this->db->order_by('subdivision', 'ASC');
         return $this->db->get('primary_subdivisions');
     }
 
