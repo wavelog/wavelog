@@ -149,7 +149,8 @@ class User_Model extends CI_Model {
 		$measurement, $user_date_format, $user_stylesheet, $user_qth_lookup, $user_sota_lookup, $user_wwff_lookup,
 		$user_pota_lookup, $user_show_notes, $user_column1, $user_column2, $user_column3, $user_column4, $user_column5,
 		$user_show_profile_image, $user_previous_qsl_type, $user_amsat_status_upload, $user_mastodon_url,
-		$user_default_band, $user_default_confirmation, $user_qso_end_times, $user_quicklog, $user_quicklog_enter, $language) {
+		$user_default_band, $user_default_confirmation, $user_qso_end_times, $user_quicklog, $user_quicklog_enter,
+		$language, $user_hamsat_key, $user_hamsat_workable_only) {
 		// Check that the user isn't already used
 		if(!$this->exists($username)) {
 			$data = array(
@@ -185,6 +186,8 @@ class User_Model extends CI_Model {
 				'user_quicklog' => xss_clean($user_quicklog),
 				'user_quicklog_enter' => xss_clean($user_quicklog_enter),
 				'language' => xss_clean($language),
+				'hamsat_key' => xss_clean($user_hamsat_key),
+				'hamsat_workable_only' => xss_clean($user_hamsat_workable_only),
 			);
 
 			// Check the password is valid
@@ -256,6 +259,8 @@ class User_Model extends CI_Model {
 					'user_quicklog_enter' => xss_clean($fields['user_quicklog_enter']),
 					'language' => xss_clean($fields['language']),
 					'winkey' => xss_clean($fields['user_winkey']),
+					'hamsat_key' => xss_clean($fields['user_hamsat_key']),
+					'hamsat_workable_only' => xss_clean($fields['user_hamsat_workable_only']),
 				);
 
 				// Check to see if the user is allowed to change user levels
@@ -387,6 +392,8 @@ class User_Model extends CI_Model {
 			'language' => isset($u->row()->language) ? $u->row()->language: 'english',
 			'isWinkeyEnabled' => $u->row()->winkey,
 			'hasQrzKey' => $this->hasQrzKey($u->row()->user_id),
+			'user_hamsat_key' => $u->row()->hamsat_key,
+			'user_hamsat_workable_only' => isset($u->row()->hamsat_workable_only) ? $u->row()->hamsat_workable_only: 0,
 		);
 
 		$this->session->set_userdata($userdata);

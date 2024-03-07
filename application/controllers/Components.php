@@ -16,10 +16,24 @@ class Components extends CI_Controller {
     public function index() {
         $this->load->model('stations');
         $url = 'https://hams.at/api/alerts/upcoming';
-        $json = file_get_contents($url);
+        $hamsat_key = '';
+        if ($this->session->userdata('user_hamsat_key') != '') {
+           $hamsat_key = $this->session->userdata('user_hamsat_key');
+           $options = array(
+              'http' => array(
+                 'method' => 'GET',
+                 'header' => "Authorization: Bearer ".$hamsat_key."\r\n"
+              )
+           );
+           $context = stream_context_create($options);
+           $json = file_get_contents($url, false, $context);
+        } else {
+           $json = file_get_contents($url);
+        }
         $data['rovedata'] = json_decode($json, true);
+        $data['workable_only'] = $this->session->userdata('user_hamsat_workable_only');
         $data['gridsquare'] = strtoupper($this->stations->find_gridsquare());
-        
+
         // load view
         $this->load->view('components/hamsat/table', $data);
     }
