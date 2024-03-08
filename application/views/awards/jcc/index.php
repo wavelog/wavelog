@@ -200,7 +200,7 @@
                $j++;
            }
         } else {
-           echo '<td style="text-align: center"><b>' . $jcc_summary['worked']['Total'] . '</b></td>';
+           echo '<td style="text-align: center"><b>' . $jcc_summary['confirmed']['Total'] . '</b></td>';
         }
 
         echo '</tr>
