@@ -10,7 +10,7 @@ class Migration_rm_eqsl_dbl extends CI_Migration
 	public function up()
 	{
 		$dbltrbl = 1;
-		// while ($dbltrbl>0) {	// Enable this after Development // Need this to make sure we also delete eQSLs with  an amount>2. So repeat until we have no more dupes
+		while ($dbltrbl>0) {
 		$sql = 'SELECT MIN(id) as id,qso_id FROM eQSL_images GROUP BY qso_id HAVING count(1)>1;';
 		$query = $this->db->query($sql);
 		$dbltrbl = $query->num_rows();
@@ -62,16 +62,16 @@ class Migration_rm_eqsl_dbl extends CI_Migration
 				}
 			}
 			foreach ($eqsl2del as $oneeqsl) {
-				//$this->db->query('delete from eQSL_images where id=?',$oneeqsl);	// Enable this after development
+				$this->db->query('delete from eQSL_images where id=?',$oneeqsl);
 			}
 		}
-		// } // Enable this after development
-		/* Enable this after development
+		}
+		
 		$index = $this->db->query("SHOW INDEX FROM eQSL_images WHERE Key_name = 'qso_id_UNIQUE'")->num_rows();
 		if ($index == 0) {
 			$this->db->query("ALTER TABLE `eQSL_images` ADD UNIQUE INDEX `qso_id_UNIQUE` (`qso_id` ASC);");
 		}
-		*/
+		
 	}
 
 	public function down()
