@@ -620,8 +620,6 @@ class eqsl extends CI_Controller {
 				if (file_put_contents($this->Eqsl_images->get_imagePath('p') .'/'. $filename, $content) !== false) {
 					$this->Eqsl_images->save_image($id, $filename);
 				}
-			} else {
-				log_message("Debug","DBL for ".$id." prevented");
 			}
 		}
 		return $error;
