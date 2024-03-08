@@ -178,6 +178,7 @@ class Contesting extends CI_Controller {
 	 *  Function is used for dupe-checking in contestinglogging
 	 */
 	public function checkIfWorkedBefore() {
+		session_write_close();
 		$call = $this->input->post('call');
 		$band = $this->input->post('band');
 		$mode = $this->input->post('mode');
@@ -186,7 +187,6 @@ class Contesting extends CI_Controller {
 		$this->load->model('Contesting_model');
 
 		$result = $this->Contesting_model->checkIfWorkedBefore($call, $band, $mode, $contest);
-		
 		header('Content-Type: application/json');
 		if ($result && $result->num_rows()) {
 			$timeb4=substr($result->row()->b4,0,5);
