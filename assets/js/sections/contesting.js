@@ -282,6 +282,7 @@ $("#callsign").keyup(async function (e) {
 	}
 	else if (call.length <= 2) {
 		$('.callsign-suggestions').text("");
+		$('#bearing_info').html("");
 	}
 });
 
@@ -501,7 +502,7 @@ function logQso() {
 				}
 
 				$('#name').val("");
-
+				$('#bearing_info').html("");
 				$('#callsign').val("");
 				$('#comment').val("");
 				$('#exch_rcvd').val("");
