@@ -43,7 +43,7 @@ class Migration_rm_eqsl_dbl extends CI_Migration
 						$user_id = 'not_assigned';
 					}
 
-					// target path
+					// target path with userdata dir
 					$target_path = $userdata_dir . '/' . $user_id . '/eqsl_card';
 
 					// then remove the file
@@ -53,7 +53,7 @@ class Migration_rm_eqsl_dbl extends CI_Migration
 						log_message('debug', "Mig 186: Dupe file: '" . $target_path . "/" . $res . "' were deleted because it was a dupe.");
 					}
 				} else {
-
+					// if 'userdata' is disabled we can use the old paths
 					if (!unlink('images/eqsl_card_images/' . $res)) {
 						log_message('error', "Mig 186: Dupe file: 'images/eqsl_card_images/" . $res . "' could not be deleted. There is no file with this filename. This shouldn't be a problem.");
 					} else {
