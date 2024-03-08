@@ -48,16 +48,16 @@ class Migration_rm_eqsl_dbl extends CI_Migration
 
 					// then remove the file
 					if (!unlink($target_path . '/' . $res)) {
-						log_message('error', "Mig 186: Dupe file: '" . $target_path . "/" . $res . "' could not be deleted. There is no file with this filename. This shouldn't be a problem.");
+						log_message('error', "Mig 186: File: '" . $target_path . "/" . $res . "' could not be deleted. There is no file with this filename. This shouldn't be a problem.");
 					} else {
-						log_message('debug', "Mig 186: Dupe file: '" . $target_path . "/" . $res . "' was deleted because it was a dupe.");
+						log_message('debug', "Mig 186: File: '" . $target_path . "/" . $res . "' was deleted because it was a dupe.");
 					}
 				} else {
 					// if 'userdata' is disabled we can use the old paths
 					if (!unlink('images/eqsl_card_images/' . $res)) {
-						log_message('error', "Mig 186: Dupe file: 'images/eqsl_card_images/" . $res . "' could not be deleted. There is no file with this filename. This shouldn't be a problem.");
+						log_message('error', "Mig 186: File: 'images/eqsl_card_images/" . $res . "' could not be deleted. There is no file with this filename. This shouldn't be a problem.");
 					} else {
-						log_message('debug', "Mig 186: Dupe file: 'images/eqsl_card_images/" . $res . "' was deleted because it was a dupe.");
+						log_message('debug', "Mig 186: File: 'images/eqsl_card_images/" . $res . "' was deleted because it was a dupe.");
 					}
 				}
 			}
