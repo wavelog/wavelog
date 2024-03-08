@@ -1,34 +1,28 @@
-<div class="container" id="edit_band_dialog">
+<div class="container" id="edit_satellite_dialog">
 	<form>
 
-		<input type="hidden" name="id" value="<?php echo $my_band->id; ?>">
-		<div class="mb-3">
-			<label for="bandInput"><?php echo lang('gen_hamradio_band'); ?></label>
-			<input type="text" class="form-control" name="band" id="bandInput" aria-describedby="bandInputHelp" value="<?php if(set_value('band') != "") { echo set_value('band'); } else { echo $my_band->band; } ?>" required>
-			<small id="bandInputHelp" class="form-text text-muted"><?php echo lang('options_bands_name_band'); ?></small>
+	<input type="hidden" name="id" value="<?php echo $satellite->id; ?>">
+		<div class = "row">
+			<div class="mb-3 col-md-6">
+				<label for="nameInput">Satellite name</label>
+				<input type="text" class="form-control" name="nameInput" id="nameInput" aria-describedby="nameInputHelp" value="<?php if(set_value('band') != "") { echo set_value('band'); } else { echo $satellite->name; } ?>" required>
+				<small id="nameInputHelp" class="form-text text-muted">Satellite name</small>
+			</div>
+			<div class="mb-3 col-md-6">
+				<label for="exportNameInput">Export name</label>
+				<input type="text" class="form-control" name="exportNameInput" id="exportNameInput" aria-describedby="exportNameInputHelp" value="<?php if(set_value('band') != "") { echo set_value('band'); } else { echo $satellite->exportname; } ?>" required>
+				<small id="exportNameInputHelp" class="form-text text-muted">If external services uses another name for the satellite, like LoTW</small>
+			</div>
 		</div>
-		<div class="mb-3">
-			<label for="bandGroup"><?php echo lang('gen_hamradio_bandgroup'); ?></label>
-			<input type="text" class="form-control" name="bandgroup" id="bandGroup" aria-describedby="bandgroupInputHelp" value="<?php if(set_value('bandgroup') != "") { echo set_value('bandgroup'); } else { echo $my_band->bandgroup; } ?>" required>
-			<small id="bandgroupInputHelp" class="form-text text-muted"><?php echo lang('options_bands_name_bandgroup'); ?></small>
-		</div>
-		<div class="mb-3">
-			<label for="ssbqrg"><?php echo lang('options_bands_ssb_qrg'); ?></label>
-			<input type="text" class="form-control" name="ssbqrg" id="ssbqrg" aria-describedby="ssbqrgInputHelp" value="<?php echo $my_band->ssb; ?>" required>
-			<small id="ssbqrgInputHelp" class="form-text text-muted"><?php echo lang('options_bands_ssb_qrg_hint'); ?></small>
-		</div>
-		<div class="mb-3">
-			<label for="dataqrg"><?php echo lang('options_bands_data_qrg'); ?></label>
-			<input type="text" class="form-control" name="dataqrg" id="dataqrg" aria-describedby="dataqrgInputHelp" value="<?php echo $my_band->data; ?>" required>
-			<small id="dataqrgInputHelp" class="form-text text-muted"><?php echo lang('options_bands_data_qrg_hint'); ?></small>
-		</div>
-		<div class="mb-3">
-			<label for="cwqrg"><?php echo lang('options_bands_cw_qrg'); ?></label>
-			<input type="text" class="form-control" name="cwqrg" id="cwqrg" aria-describedby="cwqrgInputHelp" value="<?php echo $my_band->cw; ?>" required>
-			<small id="cwqrgInputHelp" class="form-text text-muted"><?php echo lang('options_bands_cw_qrg_hint'); ?></small>
+		<div class = "row">
+			<div class="mb-3 col-md-6">
+				<label for="orbit">Orbit</label>
+				<input type="text" class="form-control" name="orbit" id="orbit" aria-describedby="orbitHelp" value="<?php if(set_value('band') != "") { echo set_value('band'); } else { echo $satellite->orbit; } ?>" required>
+				<small id="sorbitHelp" class="form-text text-muted">Enter which orbit the satellite has (LEO, MEO, GEO)</small>
+			</div>
 		</div>
 
-		<button type="button" onclick="saveUpdatedBand(this.form);" class="btn btn-primary"><i class="fas fa-plus-square"></i> <?php echo lang('options_save'); ?></button>
+		<button type="button" onclick="saveUpdatedSatellite(this.form);" class="btn btn-sm btn-primary"><i class="fas fa-plus-square"></i> <?php echo lang('options_save'); ?></button>
 
-	</form>
+		</form>
 </div>

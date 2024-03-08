@@ -32,7 +32,7 @@
 					<td style="text-align: center; vertical-align: middle;" class="satellite_<?php echo $sat->id ?>"><?php echo $sat->satname ?></td>
 					<td style="text-align: center; vertical-align: middle;"><?php echo $sat->exportname ?></td>
 					<?php echo '<td style="text-align: center; vertical-align: middle;"><span class="badge ';
-					switch ($sat->orbit) {
+					switch (strtoupper($sat->orbit)) {
 					case 'LEO':
 						echo 'bg-primary';
 						break;
@@ -49,7 +49,7 @@
 						echo '">'.$sat->orbit.'</span></td>';
 					?>
 					<td style="text-align: center; vertical-align: middle;"><?php echo $sat->modename ?></td>
-					<td style="text-align: center; vertical-align: middle;"><button onclick="editSatelliteDialog()" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></i></button></td>
+					<td style="text-align: center; vertical-align: middle;"><button onclick="editSatelliteDialog(<?php echo $sat->id ?>)" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></i></button></td>
 					<td style="text-align: center; vertical-align: middle;"><button onclick="deleteSatellite('<?php echo $sat->id . '\',\'' . $sat->satname ?>')" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button></td>
 				</tr>
 

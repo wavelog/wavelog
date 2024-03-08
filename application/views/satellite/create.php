@@ -34,7 +34,7 @@
 			<div class="mb-3 col-md-6">
 				<label for="orbit">Orbit</label>
 				<input type="text" class="form-control" name="orbit" id="orbit" aria-describedby="orbitHelp" required>
-				<small id="sorbitHelp" class="form-text text-muted">Enter which orbit the satellite has (LEO, MEO, GEO(</small>
+				<small id="sorbitHelp" class="form-text text-muted">Enter which orbit the satellite has (LEO, MEO, GEO)</small>
 			</div>
 			<div class="mb-3 col-md-6">
 				<label for="mode">Satellite mode name</label>

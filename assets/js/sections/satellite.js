@@ -74,7 +74,7 @@ function editSatelliteDialog(id) {
 		success: function (html) {
 			BootstrapDialog.show({
 				title: 'Edit satellite',
-				size: BootstrapDialog.SIZE_NORMAL,
+				size: BootstrapDialog.SIZE_WIDE,
 				cssClass: 'edit-band-dialog',
 				nl2br: false,
 				message: html,
@@ -91,15 +91,17 @@ function editSatelliteDialog(id) {
 
 function saveUpdatedSatellite(form) {
 	$(".alert").remove();
-	if (form.band.value == "") {
-		$('#edit_band_dialog').prepend('<div class="alert alert-danger" role="alert"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please enter a band!</div>');
+	if (form.nameInput.value == "") {
+		$('#edit_satellite_dialog').prepend('<div class="alert alert-danger" role="alert"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please enter a name!</div>');
 	}
 	else {
 		$.ajax({
-			url: base_url + 'index.php/satellite/saveupdatedband',
+			url: base_url + 'index.php/satellite/saveupdatedsatellite',
 			type: 'post',
 			data: {'id': form.id.value,
-				'name': form.name.value,
+					'name': form.nameInput.value,
+					'exportname': form.exportNameInput.value,
+					'orbit': form.orbit.value,
 			},
 			success: function (html) {
 				location.reload();

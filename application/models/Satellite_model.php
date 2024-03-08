@@ -20,13 +20,9 @@ class Satellite_model extends CI_Model {
 	}
 
 	function saveupdatedsatellite($id, $satellite) {
-		$data = array(
-			'name' 		=> $satellite['name'],
-        );
-
         $this->db->where('satellite.id', $id);
 
-        $this->db->update('satellite', $data);
+        $this->db->update('satellite', $satellite);
 
         return true;
 	}
@@ -61,7 +57,7 @@ class Satellite_model extends CI_Model {
 
 	function getsatellite($id) {
 		$this->db->where('id', $id);
-		return $this->db->get('bands');
+		return $this->db->get('satellite');
 	}
 
 }

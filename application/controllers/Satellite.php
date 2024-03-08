@@ -64,6 +64,8 @@ class Satellite extends CI_Controller {
 
 		$id = $this->security->xss_clean($this->input->post('id', true));
 		$satellite['name'] 	= $this->security->xss_clean($this->input->post('name'));
+		$satellite['exportname'] 	= $this->security->xss_clean($this->input->post('exportname'));
+		$satellite['orbit'] 	= $this->security->xss_clean($this->input->post('orbit'));
 
         $this->satellite_model->saveupdatedsatellite($id, $satellite);
 		echo json_encode(array('message' => 'OK'));
