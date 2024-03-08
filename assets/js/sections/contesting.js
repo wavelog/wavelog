@@ -281,15 +281,10 @@ async function getCallbook() {
 	var call = $("#callsign").val();
 	if (call.length >= 3) {
 		$('#callsign_info').text("");
-		$.ajax({
-			url: base_url + 'index.php/logbook/json/' + call + '/0/'+$("#band").val()+'/'+$("#band").val() + '/' + current_active_location,
-			type: 'get',
-			success: function (result) {
-				try {
-					res=JSON.parse(result);
-					$('#bearing_info').text(res.bearing);
-				} catch {}
-			}
+		$.getJSON(base_url + 'index.php/logbook/json/' + call + '/0/'+$("#band").val()+'/'+$("#band").val() + '/' + current_active_location, function(result) {
+			try {
+				$('#bearing_info').text(result.bearing);
+			} catch {}
 		});
 	}
 }
