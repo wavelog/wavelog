@@ -268,6 +268,7 @@ $("#callsign").keyup(async function (e) {
 		  });
 
 		await checkIfWorkedBefore();
+		await getCallbook();
 		var qTable = $('.qsotable').DataTable();
 		qTable.search(call).draw();
 	}
@@ -275,6 +276,23 @@ $("#callsign").keyup(async function (e) {
 		$('.callsign-suggestions').text("");
 	}
 });
+
+async function getCallbook() {
+	var call = $("#callsign").val();
+	if (call.length >= 3) {
+		$('#callsign_info').text("");
+		$.ajax({
+			url: base_url + 'index.php/logbook/json/' + call + '/0/'+$("#band").val()+'/'+$("#band").val() + '/' + current_active_location,
+			type: 'get',
+			success: function (result) {
+				try {
+					res=JSON.parse(result);
+					$('#bearing_info').text(res.bearing);
+				} catch {}
+			}
+		});
+	}
+}
 
 async function checkIfWorkedBefore() {
 	var call = $("#callsign").val();
@@ -350,6 +368,7 @@ $('#mode').change(function () {
 		$('#frequency_rx').val("");
 	});
 	setRst($("#mode").val());
+	getCallbook();
 	checkIfWorkedBefore();
 });
 
@@ -360,6 +379,7 @@ $('#band').change(function () {
 		$('#frequency').val(result);
 		$('#frequency_rx').val("");
 	});
+	getCallbook();
 	checkIfWorkedBefore();
 });
 
