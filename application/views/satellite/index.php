@@ -20,7 +20,7 @@
 				<tr>
 					<th>Name</th>
 					<th>Export name</th>
-                    <th>Orbit</th>
+					<th>Orbit</th>
 					<th>Mode</th>
 					<th>Edit</th>
 					<th>Delete</th>
