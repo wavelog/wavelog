@@ -4,6 +4,7 @@
 class Map extends CI_Controller {
 
 	function index() {
+		redirect('dashboard');
     }
 
 	// Generic fonction for return Json for MAP //
