@@ -6,6 +6,7 @@ $lang['awards_info_button'] = "Award Info";
 $lang['awards_show_worked'] = "Show worked";
 $lang['awards_show_confirmed'] = "Show confirmed";
 $lang['awards_show_not_worked'] = "Show not worked";
+$lang['awards_qsl_type'] = "Show QSO with QSL Type";
 $lang['awards_show_cq_map'] = "Show CQ Zone Map";
 $lang['awards_summary'] = "Summary";
 $lang['awards_total'] = "Total";

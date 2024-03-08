@@ -6,6 +6,7 @@ $lang['awards_info_button'] = "Информация о дипломе";
 $lang['awards_show_worked'] = "Показать сработанные";
 $lang['awards_show_confirmed'] = "Показать подтверждённые";
 $lang['awards_show_not_worked'] = "Показать не сработанные";
+$lang['awards_qsl_type'] = "Show QSO with QSL Type";
 $lang['awards_show_cq_map'] = "Показать карту зон CQ";
 $lang['awards_summary'] = "Сводка";
 $lang['awards_total'] = "Всего";
