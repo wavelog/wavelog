@@ -25,12 +25,12 @@
         echo '<table style="width:100%" class="qsltable table table-sm table-bordered table-hover table-striped table-condensed">
         <thead>
         <tr>
-        <th style=\'text-align: center\'>' . lang('gen_hamradio_callsign') . '</th>
-        <th style=\'text-align: center\'>' . lang('gen_hamradio_mode') . '</th>
-        <th style=\'text-align: center\'>' . lang('general_word_date') . '</th>
-        <th style=\'text-align: center\'>' . lang('general_word_time') . '</th>
-        <th style=\'text-align: center\'>' . lang('gen_hamradio_band') . '</th>
-        <th style=\'text-align: center\'>' . lang('gen_hamradio_qsl') . '</th>
+        <th style=\'text-align: center\'>'.lang('gen_hamradio_callsign').'</th>
+        <th style=\'text-align: center\'>'.lang('gen_hamradio_mode').'</th>
+        <th style=\'text-align: center\'>'.lang('general_word_date').'</th>
+        <th style=\'text-align: center\'>'.lang('general_word_time').'</th>
+        <th style=\'text-align: center\'>'.lang('gen_hamradio_band').'</th>
+        <th style=\'text-align: center\'>'.lang('gen_hamradio_qsl').' '.lang('general_word_date').'</th>
         <th style=\'text-align: center\'></th>
         <th style=\'text-align: center\'></th>
         <th style=\'text-align: center\'></th>
@@ -39,7 +39,7 @@
 
         foreach ($qslarray->result() as $qsl) {
             echo '<tr>';
-            echo '<td style=\'text-align: center\'>' . str_replace("0", "&Oslash;", $qsl->COL_CALL) . '</td>';
+            echo '<td style=\'text-align: center\'>'.str_replace("0", "&Oslash;", $qsl->COL_CALL).'</td>';
             echo '<td style=\'text-align: center\'>';
             echo $qsl->COL_SUBMODE == null ? $qsl->COL_MODE : $qsl->COL_SUBMODE;
             echo '</td>';
@@ -58,10 +58,13 @@
                 echo strtolower($qsl->COL_BAND);
             };
             echo '</td>';
-            echo '<td style=\'text-align: center\'>' . $qsl->filename . '</td>';
-            echo '<td id="' . $qsl->id . '" style=\'text-align: center\'><button onclick="deleteQsl(\'' . $qsl->id . '\')" class="btn btn-sm btn-danger">Delete</button></td>';
-            echo '<td style=\'text-align: center\'><button onclick="viewQsl(\'' . $qsl->filename . '\', \'' . $qsl->COL_CALL . '\')" class="btn btn-sm btn-success">View</button></td>';
-            echo '<td style=\'text-align: center\'><button onclick="addQsosToQsl(\'' . $qsl->filename . '\')" class="btn btn-sm btn-success">Add Qsos</button></td>';
+            echo '<td style=\'text-align: center\'>';
+            $timestamp = strtotime($qsl->COL_QSLRDATE);
+            echo date($custom_date_format, $timestamp);
+            echo '</td>';
+            echo '<td id="'.$qsl->id.'" style=\'text-align: center\'><button onclick="deleteQsl(\''.$qsl->id.'\')" class="btn btn-sm btn-danger">Delete</button></td>';
+            echo '<td style=\'text-align: center\'><button onclick="viewQsl(\''.$qsl->filename.'\', \''.$qsl->COL_CALL.'\')" class="btn btn-sm btn-success">View</button></td>';
+            echo '<td style=\'text-align: center\'><button onclick="addQsosToQsl(\''.$qsl->filename.'\')" class="btn btn-sm btn-success">Add Qsos</button></td>';
             echo '</tr>';
         }
 
