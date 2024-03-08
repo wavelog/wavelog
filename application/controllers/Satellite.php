@@ -27,7 +27,7 @@ class Satellite extends CI_Controller {
 		];
 
 		// Render Page
-		$data['page_title'] = "Satellites";
+		$pageData['page_title'] = "Satellites";
 		$this->load->view('interface_assets/header', $pageData);
 		$this->load->view('satellite/index');
 		$this->load->view('interface_assets/footer', $footerData);
