@@ -5,7 +5,7 @@ class Satellite_model extends CI_Model {
 	function get_all_satellites() {
 		$sql = "select satellite.id, satellite.name as satname, group_concat(distinct satellitemode.name separator ', ') as modename, satellite.exportname, satellite.orbit
 		from satellite
-		join satellitemode on satellite.id = satellitemode.satelliteid
+		left outer join satellitemode on satellite.id = satellitemode.satelliteid
 		group by satellite.name, satellite.exportname, satellite.orbit, satellite.id";
 
 		return $this->db->query($sql)->result();
@@ -33,7 +33,9 @@ class Satellite_model extends CI_Model {
 
 	function add() {
 		$data = array(
-			'name' 		=> xss_clean($this->input->post('name', true)),
+			'name' 			=> xss_clean($this->input->post('name', true)),
+			'exportname' 	=> xss_clean($this->input->post('exportname', true)),
+			'orbit' 		=> xss_clean($this->input->post('orbit', true)),
 		);
 
 		$this->db->where('name', xss_clean($this->input->post('name', true)));
@@ -41,6 +43,18 @@ class Satellite_model extends CI_Model {
 
 		if ($result->num_rows() == 0) {
 		   $this->db->insert('satellite', $data);
+		   $insert_id = $this->db->insert_id();
+
+		   $data = array(
+				'name' 				=> xss_clean($this->input->post('name', true)),
+				'satelliteid' 		=> $insert_id,
+				'uplinkmode'		=> xss_clean($this->input->post('uplinkmode', true)),
+				'uplinkfrequency'	=> xss_clean($this->input->post('uplinkfrequency', true)),
+				'downlinkmode'		=> xss_clean($this->input->post('downlinkmode', true)),
+				'downlinkfrequency'	=> xss_clean($this->input->post('downlinkfrequency', true)),
+			);
+
+			$this->db->where('name', xss_clean($this->input->post('name', true)));
 		}
 
 	}

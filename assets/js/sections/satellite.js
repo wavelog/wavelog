@@ -23,7 +23,7 @@ function createSatelliteDialog() {
 		success: function (html) {
 			BootstrapDialog.show({
 				title: 'Create satellite',
-				size: BootstrapDialog.SIZE_NORMAL,
+				size: BootstrapDialog.SIZE_WIDE,
 				cssClass: 'create-band-dialog',
 				nl2br: false,
 				message: html,
@@ -40,19 +40,22 @@ function createSatelliteDialog() {
 
 function createSatellite(form) {
 	$(".alert").remove();
-	if (form.band.value == "") {
-		$('#create_mode').prepend('<div class="alert alert-danger" role="alert"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please enter a band!</div>');
+	if (form.nameInput.value == "") {
+		$('#create_satellite').prepend('<div class="alert alert-danger" role="alert"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please enter a name!</div>');
 	}
 	else {
 		$.ajax({
-			url: base_url + 'index.php/satellite/create',
+			url: base_url + 'index.php/satellite/createSatellite',
 			type: 'post',
 			data: {
-				'band': form.band.value,
-				'bandgroup': form.bandgroup.value,
-				'ssbqrg': form.ssbqrg.value,
-				'dataqrg': form.dataqrg.value,
-				'cwqrg': form.cwqrg.value
+				'name': form.nameInput.value,
+				'exportname': form.exportNameInput.value,
+				'orbit': form.orbit.value,
+				'modename': form.mode.value,
+				'uplinkmode': form.uplinkMode.value,
+				'uplinkfrequency': form.uplinkFrequency.value,
+				'downlinkmode': form.downlinkMode.value,
+				'downlinkfrequency': form.downlinkFrequency.value,
 			},
 			success: function (html) {
 				location.reload();

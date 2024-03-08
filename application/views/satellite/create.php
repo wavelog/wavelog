@@ -21,7 +21,7 @@
 		<div class = "row">
 			<div class="mb-3 col-md-6">
 				<label for="nameInput">Satellite name</label>
-				<input type="text" class="form-control" name="band" id="nameInput" aria-describedby="nameInputHelp" required>
+				<input type="text" class="form-control" name="nameInput" id="nameInput" aria-describedby="nameInputHelp" required>
 				<small id="nameInputHelp" class="form-text text-muted">Satellite name</small>
 			</div>
 			<div class="mb-3 col-md-6">

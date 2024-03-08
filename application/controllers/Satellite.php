@@ -38,6 +38,12 @@ class Satellite extends CI_Controller {
 		$this->load->view('satellite/create', $data);
 	}
 
+	public function createSatellite() {
+		$this->load->model('satellite_model');
+
+		$this->satellite_model->add();
+	}
+
 	public function edit()
 	{
 		$this->load->model('satellite_model');
