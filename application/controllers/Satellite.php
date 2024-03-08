@@ -52,7 +52,10 @@ class Satellite extends CI_Controller {
 
 		$satellite_query = $this->satellite_model->getsatellite($item_id_clean);
 
+		$mode_query = $this->satellite_model->getsatmodes($item_id_clean);
+
 		$data['satellite'] = $satellite_query->row();
+		$data['satmodes'] = $mode_query->result();
 
 		$data['page_title'] = "Edit Satellite";
 

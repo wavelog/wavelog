@@ -60,6 +60,11 @@ class Satellite_model extends CI_Model {
 		return $this->db->get('satellite');
 	}
 
+	function getsatmodes($id) {
+		$this->db->where('satelliteid', $id);
+		return $this->db->get('satellitemode');
+	}
+
 }
 
 ?>
