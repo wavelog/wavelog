@@ -6,6 +6,7 @@ $lang['awards_info_button'] = "Diplom Info";
 $lang['awards_show_worked'] = "Zeige gearbeitete";
 $lang['awards_show_confirmed'] = "Zeige bestätigte";
 $lang['awards_show_not_worked'] = "Zeige nicht gearbeitete";
+$lang['awards_qsl_type'] = "Show QSO with QSL Type";
 $lang['awards_show_cq_map'] = "Zeige CQ Zonen Karte";
 $lang['awards_summary'] = "Zusammenfassung";
 $lang['awards_total'] = "Gesamt";
