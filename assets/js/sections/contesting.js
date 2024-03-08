@@ -251,6 +251,14 @@ $('#start_date').change(function() {
 	}
 });
 
+
+$("#callsign").on( "blur", function() {
+	var call = $(this).val();
+	if ((call.length>=3) && ($("#bearing_info").html().length == 0)) {
+		getCallbook();
+	}
+});
+
 // On Key up check and suggest callsigns
 $("#callsign").keyup(async function (e) {
 	var call = $(this).val();
