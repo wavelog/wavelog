@@ -172,6 +172,7 @@ document.onkeyup = function (e) {
 		reset_log_fields();
 		// Space to jump to either callsign or the various exchanges
 	} else if (e.which == 32) {
+		getCallbook();
 		var exchangetype = $("#exchangetype").val();
 		if (exchangetype == 'Exchange') {
 			if ($(document.activeElement).attr("id") == "callsign") {
@@ -268,7 +269,6 @@ $("#callsign").keyup(async function (e) {
 		  });
 
 		await checkIfWorkedBefore();
-		await getCallbook();
 		var qTable = $('.qsotable').DataTable();
 		qTable.search(call).draw();
 	}
@@ -280,10 +280,9 @@ $("#callsign").keyup(async function (e) {
 async function getCallbook() {
 	var call = $("#callsign").val();
 	if (call.length >= 3) {
-		$('#callsign_info').text("");
 		$.getJSON(base_url + 'index.php/logbook/json/' + call + '/0/'+$("#band").val()+'/'+$("#band").val() + '/' + current_active_location, function(result) {
 			try {
-				$('#bearing_info').text(result.bearing);
+				$('#bearing_info').html(result.bearing);
 			} catch {}
 		});
 	}
@@ -322,6 +321,7 @@ async function reset_log_fields() {
 	$("#callsign").focus();
 	setRst($("#mode").val());
 	$('#callsign_info').text("");
+	$('#bearing_info').text("");
 
 	await refresh_qso_table(sessiondata);
 	var qTable = $('.qsotable').DataTable();
@@ -363,7 +363,6 @@ $('#mode').change(function () {
 		$('#frequency_rx').val("");
 	});
 	setRst($("#mode").val());
-	getCallbook();
 	checkIfWorkedBefore();
 });
 
@@ -374,7 +373,6 @@ $('#band').change(function () {
 		$('#frequency').val(result);
 		$('#frequency_rx').val("");
 	});
-	getCallbook();
 	checkIfWorkedBefore();
 });
 
