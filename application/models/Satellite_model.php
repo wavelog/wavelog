@@ -15,14 +15,30 @@ class Satellite_model extends CI_Model {
 		// Clean ID
 		$clean_id = $this->security->xss_clean($id);
 
-		// Delete Mode
+		// Delete Satellite
 		$this->db->delete('satellite', array('id' => $clean_id));
+	}
+
+	function deleteSatMode($id) {
+		// Clean ID
+		$clean_id = $this->security->xss_clean($id);
+
+		// Delete Satellite
+		$this->db->delete('satellitemode', array('id' => $clean_id));
 	}
 
 	function saveupdatedsatellite($id, $satellite) {
         $this->db->where('satellite.id', $id);
 
         $this->db->update('satellite', $satellite);
+
+        return true;
+	}
+
+	function saveSatelliteMode($id, $satmode) {
+		$this->db->where('satellitemode.id', $id);
+
+        $this->db->update('satellitemode', $satmode);
 
         return true;
 	}
@@ -38,10 +54,10 @@ class Satellite_model extends CI_Model {
 		$result = $this->db->get('satellite');
 
 		if ($result->num_rows() == 0) {
-		   $this->db->insert('satellite', $data);
-		   $insert_id = $this->db->insert_id();
+			$this->db->insert('satellite', $data);
+			$insert_id = $this->db->insert_id();
 
-		   $data = array(
+			$data = array(
 				'name' 				=> xss_clean($this->input->post('name', true)),
 				'satelliteid' 		=> $insert_id,
 				'uplinkmode'		=> xss_clean($this->input->post('uplinkmode', true)),

@@ -149,9 +149,7 @@ function editSatmode(id) {
 	var tbl_row = $(".satmode_" + id).closest('tr');
 	tbl_row.find('.row_data')
 	.attr('contenteditable', 'true')
-	.attr('edit_type', 'button')
-	.addClass('bg-danger')
-	.css('padding','3px')
+	.addClass('bg-danger');
 
 	tbl_row.find('.row_data').each(function(index, val)
 	{
@@ -162,8 +160,22 @@ function editSatmode(id) {
 }
 
 function saveChanges(id) {
-	//do the saving
-    // //Brings back Rediger and Slett buttons.
+	$.ajax({
+		url: base_url + 'index.php/satellite/saveSatModeChanges',
+		type: 'post',
+		data: {
+			'id': id,
+			'name': $('#modename_'+id).first().closest('td').html(),
+			'uplink_mode': $('#uplink_mode_'+id).first().closest('td').html(),
+			'uplink_freq': $('#uplink_freq_'+id).first().closest('td').html(),
+			'downlink_mode': $('#downlink_mode_'+id).first().closest('td').html(),
+			'downlink_freq': $('#downlink_freq_'+id).first().closest('td').html(),
+		},
+		success: function (data) {
+
+		}
+	});
+
     restoreLine(id);
 }
 
@@ -180,9 +192,8 @@ function cancelChanges(id) {
 function restoreLine(id) {
 	var tbl_row = $(".satmode_" + id).closest('tr');
 	tbl_row.find('.row_data')
-	.attr('edit_type', 'click')
-	.removeClass('bg-danger')
-	.css('padding','')
+	.attr('contenteditable', 'false')
+	.removeClass('bg-danger');
 
     $(".satmode_" + id).find("#cancelButton").replaceWith(
         '<td style="text-align: center; vertical-align: middle;" id="deleteButton">' + '<button type="button" class="btn btn-sm btn-danger" onclick="deleteSatmode(' + id + ');' + '"><i class="fas fa-trash-alt"></i></button>' + '</td>'
@@ -204,16 +215,16 @@ function deleteSatmode(id) {
 		btnCancelClass: 'btn-secondary btn-sm',
 		callback: function (result) {
 			if (result) {
-				// $.ajax({
-				// 	url: base_url + 'index.php/satellite/delete',
-				// 	type: 'post',
-				// 	data: {
-				// 		'id': id
-				// 	},
-				// 	success: function (data) {
-				// 		$(".satellite_" + id).parent("tr:first").remove(); // removes satellite from table
-				// 	}
-				// });
+				$.ajax({
+					url: base_url + 'index.php/satellite/deleteSatMode',
+					type: 'post',
+					data: {
+						'id': id
+					},
+					success: function (data) {
+						$(".satmode_" + id).remove(); // removes satellite from table
+					}
+				});
 			}
 		}
 	});

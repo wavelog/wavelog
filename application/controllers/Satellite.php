@@ -81,6 +81,12 @@ class Satellite extends CI_Controller {
 		$this->satellite_model->delete($id);
 	}
 
+	public function deleteSatMode() {
+	    $id = $this->input->post('id');
+		$this->load->model('satellite_model');
+		$this->satellite_model->deleteSatMode($id);
+	}
+
 	public function saveSatellite() {
 		$id 				= $this->security->xss_clean($this->input->post('id'));
 		$satellite['name'] 	= $this->security->xss_clean($this->input->post('name'));
@@ -92,4 +98,25 @@ class Satellite extends CI_Controller {
         echo json_encode(array('message' => 'OK'));
 		return;
     }
+
+	public function saveSatModeChanges() {
+		$id 						= $this->security->xss_clean($this->input->post('id'));
+		$satmode['name'] 			= $this->security->xss_clean($this->input->post('name'));
+		$satmode['uplink_mode'] 	= $this->security->xss_clean($this->input->post('uplink_mode'));
+		$satmode['uplink_freq'] 	= $this->security->xss_clean($this->input->post('uplink_freq'));
+		$satmode['downlink_mode'] 	= $this->security->xss_clean($this->input->post('downlink_mode'));
+		$satmode['downlink_freq'] 	= $this->security->xss_clean($this->input->post('downlink_freq'));
+
+		$this->load->model('satellite_model');
+        $this->satellite_model->saveSatelliteMode($id, $satmode);
+
+		header('Content-Type: application/json');
+        echo json_encode(array('message' => 'OK'));
+		return;
+    }
+
+	public function addSatMode() {
+
+	}
+
 }
