@@ -117,7 +117,8 @@ function deleteSatellite(id, satellite) {
 		type: BootstrapDialog.TYPE_DANGER,
 		closable: true,
 		draggable: true,
-		btnOKClass: 'btn-danger',
+		btnOKClass: 'btn-danger btn-sm',
+		btnCancelClass: 'btn-secondary btn-sm',
 		callback: function (result) {
 			if (result) {
 				$.ajax({
@@ -130,6 +131,89 @@ function deleteSatellite(id, satellite) {
 						$(".satellite_" + id).parent("tr:first").remove(); // removes satellite from table
 					}
 				});
+			}
+		}
+	});
+}
+
+function editSatmode(id) {
+
+    $(".satmode_" + id).find("#deleteButton").replaceWith(
+        '<td style="text-align: center; vertical-align: middle;" id="cancelButton">' + '<button type="button" class="btn btn-sm btn-danger" onclick="cancelChanges(' + id + ');' + '">Cancel</button>' + '</td>'
+    );
+
+	$(".satmode_" + id).find("#editButton").replaceWith(
+        '<td style="text-align: center; vertical-align: middle;" id="saveButton">' + '<button type="button" class="btn btn-sm btn-success" onclick="saveChanges(' + id + ');' + '">Save</button>' + '</td>'
+    );
+
+	var tbl_row = $(".satmode_" + id).closest('tr');
+	tbl_row.find('.row_data')
+	.attr('contenteditable', 'true')
+	.attr('edit_type', 'button')
+	.addClass('bg-danger')
+	.css('padding','3px')
+
+	tbl_row.find('.row_data').each(function(index, val)
+	{
+		$(this).attr('original_entry', $(this).html());
+	});
+
+	$('#modename_' + id).focus();
+}
+
+function saveChanges(id) {
+	//do the saving
+    // //Brings back Rediger and Slett buttons.
+    restoreLine(id);
+}
+
+function cancelChanges(id) {
+	var tbl_row = $(".satmode_" + id).closest('tr');
+	tbl_row.find('.row_data').each(function(index, val)
+	{
+		$(this).html( $(this).attr('original_entry') );
+	});
+
+	restoreLine(id);
+}
+
+function restoreLine(id) {
+	var tbl_row = $(".satmode_" + id).closest('tr');
+	tbl_row.find('.row_data')
+	.attr('edit_type', 'click')
+	.removeClass('bg-danger')
+	.css('padding','')
+
+    $(".satmode_" + id).find("#cancelButton").replaceWith(
+        '<td style="text-align: center; vertical-align: middle;" id="deleteButton">' + '<button type="button" class="btn btn-sm btn-danger" onclick="deleteSatmode(' + id + ');' + '"><i class="fas fa-trash-alt"></i></button>' + '</td>'
+    );
+
+	$(".satmode_" + id).find("#saveButton").replaceWith(
+        '<td style="text-align: center; vertical-align: middle;" id="editButton">' + '<button type="button" class="btn btn-sm btn-success" onclick="editSatmode(' + id + ');' + '"><i class="fas fa-edit"></i></button>' + '</td>'
+    );
+}
+
+function deleteSatmode(id) {
+	BootstrapDialog.confirm({
+		title: lang_general_word_danger,
+		message: 'Do you really want to delete this mode?',
+		type: BootstrapDialog.TYPE_DANGER,
+		closable: true,
+		draggable: true,
+		btnOKClass: 'btn-danger btn-sm',
+		btnCancelClass: 'btn-secondary btn-sm',
+		callback: function (result) {
+			if (result) {
+				// $.ajax({
+				// 	url: base_url + 'index.php/satellite/delete',
+				// 	type: 'post',
+				// 	data: {
+				// 		'id': id
+				// 	},
+				// 	success: function (data) {
+				// 		$(".satellite_" + id).parent("tr:first").remove(); // removes satellite from table
+				// 	}
+				// });
 			}
 		}
 	});

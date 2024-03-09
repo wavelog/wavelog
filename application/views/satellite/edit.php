@@ -42,14 +42,14 @@
 		</thead>
 		<tbody>
 			<?php foreach ($satmodes as $mode) { ?>
-			<tr>
-				<td style="text-align: center; vertical-align: middle;" class="satmode_<?php echo $mode->id ?>"><?php echo $mode->name ?></td>
-				<td style="text-align: center; vertical-align: middle;"><?php echo $mode->uplink_mode ?></td>
-				<td style="text-align: center; vertical-align: middle;"><?php echo $mode->uplink_freq ?></td>
-				<td style="text-align: center; vertical-align: middle;"><?php echo $mode->downlink_mode ?></td>
-				<td style="text-align: center; vertical-align: middle;"><?php echo $mode->downlink_freq ?></td>
-				<td style="text-align: center; vertical-align: middle;"><button onclick="editSatmode(<?php echo $mode->id ?>)" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></i></button></td>
-				<td style="text-align: center; vertical-align: middle;"><button onclick="deleteSatmode('<?php echo $mode->id . '\',\'' . $mode->name ?>')" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button></td>
+			<tr class="satmode_<?php echo $mode->id ?>">
+				<td id="modename_<?php echo $mode->id ?>" class="row_data" style="text-align: center; vertical-align: middle;" ><?php echo $mode->name ?></td>
+				<td id="uplink_mode_<?php echo $mode->id ?>" class="row_data" style="text-align: center; vertical-align: middle;"><?php echo $mode->uplink_mode ?></td>
+				<td id="uplink_freq_<?php echo $mode->id ?>" class="row_data" style="text-align: center; vertical-align: middle;"><?php echo $mode->uplink_freq ?></td>
+				<td id="downlink_mode_<?php echo $mode->id ?>" class="row_data" style="text-align: center; vertical-align: middle;"><?php echo $mode->downlink_mode ?></td>
+				<td id="downlink_freq_<?php echo $mode->id ?>" class="row_data" style="text-align: center; vertical-align: middle;"><?php echo $mode->downlink_freq ?></td>
+				<td id="editButton" style="text-align: center; vertical-align: middle;"><button onclick="editSatmode(<?php echo $mode->id ?>)" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></button></td>
+				<td id="deleteButton" style="text-align: center; vertical-align: middle;"><button onclick="deleteSatmode('<?php echo $mode->id . '\',\'' . $mode->name ?>')" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button></td>
 			</tr>
 
 			<?php } ?>
