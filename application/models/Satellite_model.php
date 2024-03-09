@@ -66,7 +66,7 @@ class Satellite_model extends CI_Model {
 				'downlinkfrequency'	=> xss_clean($this->input->post('downlinkfrequency', true)),
 			);
 
-			$this->db->where('name', xss_clean($this->input->post('name', true)));
+			$this->db->insert('satellitemdoe', $data);
 		}
 
 	}
@@ -79,6 +79,21 @@ class Satellite_model extends CI_Model {
 	function getsatmodes($id) {
 		$this->db->where('satelliteid', $id);
 		return $this->db->get('satellitemode');
+	}
+
+	function insertSatelliteMode() {
+		$data = array(
+			'name' 				=> xss_clean($this->input->post('name', true)),
+			'satelliteid' 		=> xss_clean($this->input->post('id', true)),
+			'uplink_mode'		=> xss_clean($this->input->post('uplinkmode', true)),
+			'uplink_freq'		=> xss_clean($this->input->post('uplinkfrequency', true)),
+			'downlink_mode'		=> xss_clean($this->input->post('downlinkmode', true)),
+			'downlink_freq'		=> xss_clean($this->input->post('downlinkfrequency', true)),
+		);
+
+		$this->db->insert('satellitemode', $data);
+
+        return true;
 	}
 
 }

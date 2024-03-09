@@ -1,7 +1,7 @@
 <div class="container" id="edit_satellite_dialog">
 	<form>
 
-	<input type="hidden" name="id" value="<?php echo $satellite->id; ?>">
+	<input type="hidden" id="satelliteid" name="id" value="<?php echo $satellite->id; ?>">
 		<div class = "row">
 			<div class="mb-3 col-md-6">
 				<label for="nameInput">Satellite name</label>
@@ -28,7 +28,7 @@
 <br />
 <div class="table-responsive">
 
-<table style="width:100%" class="sattable table table-sm table-striped">
+<table style="width:100%" class="satmodetable table table-sm table-striped">
 		<thead>
 			<tr>
 				<th style="text-align: center; vertical-align: middle;">Name</th>

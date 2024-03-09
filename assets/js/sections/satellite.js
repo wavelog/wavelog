@@ -231,13 +231,45 @@ function deleteSatmode(id) {
 }
 
 function addSatMode() {
-	$('.sattable tbody').append($('<tr>')
-		.append($('<td style="text-align: center; vertical-align: middle;" >').append(""))
-		.append($('<td style="text-align: center; vertical-align: middle;" >').append(""))
-		.append($('<td style="text-align: center; vertical-align: middle;" >').append(""))
-		.append($('<td style="text-align: center; vertical-align: middle;" >').append(""))
-		.append($('<td style="text-align: center; vertical-align: middle;" >').append(""))
-		.append($('<td style="text-align: center; vertical-align: middle;" >').append('<button type="button" class="btn btn-sm btn-success" onclick="">Save</button>'))
-		.append($('<td style="text-align: center; vertical-align: middle;" >').append('<button type="button" class="btn btn-sm btn-danger" onclick="">Cancel</button>'))
+	$('.satmodetable tbody').append($('<tr>')
+		.append($('<td class="row_data" style="text-align: center; vertical-align: middle;">').append("").attr('contenteditable', 'true').addClass('bg-danger'))
+		.append($('<td class="row_data" style="text-align: center; vertical-align: middle;">').append("").attr('contenteditable', 'true').addClass('bg-danger'))
+		.append($('<td class="row_data" style="text-align: center; vertical-align: middle;">').append("").attr('contenteditable', 'true').addClass('bg-danger'))
+		.append($('<td class="row_data" style="text-align: center; vertical-align: middle;">').append("").attr('contenteditable', 'true').addClass('bg-danger'))
+		.append($('<td class="row_data" style="text-align: center; vertical-align: middle;">').append("").attr('contenteditable', 'true').addClass('bg-danger'))
+		.append($('<td style="text-align: center; vertical-align: middle;">').append('<button type="button" class="btn btn-sm btn-success savenewline">Save</button>'))
+		.append($('<td style="text-align: center; vertical-align: middle;">').append('<button type="button" class="btn btn-sm btn-danger cancelnewline">Cancel</button>'))
 	)
+	$('.satmodetable tr:last-child td:first-child').focus();
+
+	$(".cancelnewline").click(function() {
+		$(this).closest("tr").remove();
+	});
+
+	$(".savenewline").click(function() {
+		var modename = $(this).closest("tr").find('td:eq(0)').html();
+		var uplink_mode = $(this).closest("tr").find('td:eq(1)').html();
+		var uplink_freq = $(this).closest("tr").find('td:eq(2)').html();
+		var downlink_mode = $(this).closest("tr").find('td:eq(3)').html();
+		var downlink_freq = $(this).closest("tr").find('td:eq(4)').html();
+		var id = $('#satelliteid').val();
+		$.ajax({
+			url: base_url + 'index.php/satellite/addSatMode',
+			type: 'post',
+			data: {
+				'id': id,
+				'name': modename,
+				'uplinkmode': uplink_mode,
+				'uplinkfreq': uplink_freq,
+				'downlinkmode': downlink_mode,
+				'downlinkfreq': downlink_freq,
+			},
+			success: function (data) {
+				var tbl_row = $(this).closest('tr');
+				tbl_row.find('.row_data')
+				.attr('contenteditable', 'false')
+				.removeClass('bg-danger');
+			}
+		});
+	});
 }
