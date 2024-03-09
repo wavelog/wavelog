@@ -60,13 +60,13 @@ class Satellite_model extends CI_Model {
 			$data = array(
 				'name' 				=> xss_clean($this->input->post('name', true)),
 				'satelliteid' 		=> $insert_id,
-				'uplinkmode'		=> xss_clean($this->input->post('uplinkmode', true)),
-				'uplinkfrequency'	=> xss_clean($this->input->post('uplinkfrequency', true)),
-				'downlinkmode'		=> xss_clean($this->input->post('downlinkmode', true)),
-				'downlinkfrequency'	=> xss_clean($this->input->post('downlinkfrequency', true)),
+				'uplink_mode'		=> xss_clean($this->input->post('uplinkmode', true)),
+				'uplink_freq'		=> xss_clean($this->input->post('uplinkfrequency', true)),
+				'downlink_mode'		=> xss_clean($this->input->post('downlinkmode', true)),
+				'downlink_freq'		=> xss_clean($this->input->post('downlinkfrequency', true)),
 			);
 
-			$this->db->insert('satellitemdoe', $data);
+			$this->db->insert('satellitemode', $data);
 		}
 
 	}
@@ -85,10 +85,10 @@ class Satellite_model extends CI_Model {
 		$data = array(
 			'name' 				=> xss_clean($this->input->post('name', true)),
 			'satelliteid' 		=> xss_clean($this->input->post('id', true)),
-			'uplink_mode'		=> xss_clean($this->input->post('uplinkmode', true)),
-			'uplink_freq'		=> xss_clean($this->input->post('uplinkfrequency', true)),
-			'downlink_mode'		=> xss_clean($this->input->post('downlinkmode', true)),
-			'downlink_freq'		=> xss_clean($this->input->post('downlinkfrequency', true)),
+			'uplink_mode'		=> xss_clean($this->input->post('uplink_mode', true)),
+			'uplink_freq'		=> xss_clean($this->input->post('uplink_freq', true)),
+			'downlink_mode'		=> xss_clean($this->input->post('downlink_mode', true)),
+			'downlink_freq'		=> xss_clean($this->input->post('downlink_freq', true)),
 		);
 
 		$this->db->insert('satellitemode', $data);

@@ -261,10 +261,10 @@ function addSatMode() {
 			data: {
 				'id': id,
 				'name': modename,
-				'uplinkmode': uplink_mode,
-				'uplinkfreq': uplink_freq,
-				'downlinkmode': downlink_mode,
-				'downlinkfreq': downlink_freq,
+				'uplink_mode': uplink_mode,
+				'uplink_freq': uplink_freq,
+				'downlink_mode': downlink_mode,
+				'downlink_freq': downlink_freq,
 			},
 			success: function (data) {
 				var tbl_row = $(tempthis).closest('tr');
