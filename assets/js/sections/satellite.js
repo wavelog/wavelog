@@ -229,3 +229,15 @@ function deleteSatmode(id) {
 		}
 	});
 }
+
+function addSatMode() {
+	$('.sattable tbody').append($('<tr>')
+		.append($('<td style="text-align: center; vertical-align: middle;" >').append(""))
+		.append($('<td style="text-align: center; vertical-align: middle;" >').append(""))
+		.append($('<td style="text-align: center; vertical-align: middle;" >').append(""))
+		.append($('<td style="text-align: center; vertical-align: middle;" >').append(""))
+		.append($('<td style="text-align: center; vertical-align: middle;" >').append(""))
+		.append($('<td style="text-align: center; vertical-align: middle;" >').append('<button type="button" class="btn btn-sm btn-success" onclick="">Save</button>'))
+		.append($('<td style="text-align: center; vertical-align: middle;" >').append('<button type="button" class="btn btn-sm btn-danger" onclick="">Cancel</button>'))
+	)
+}

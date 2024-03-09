@@ -25,7 +25,7 @@
 		<button type="button" onclick="saveUpdatedSatellite(this.form);" class="btn btn-sm btn-primary"><i class="fas fa-plus-square"></i> Save satellite</button>
 
 		</form>
-<br /><br />
+<br />
 <div class="table-responsive">
 
 <table style="width:100%" class="sattable table table-sm table-striped">
@@ -55,6 +55,8 @@
 			<?php } ?>
 		</tbody>
 	<table>
+
+	<button type="button" onclick="addSatMode();" class="btn btn-sm btn-primary"><i class="fas fa-plus-square"></i> Add satellite mode</button>
 
 </div>
 </div>
