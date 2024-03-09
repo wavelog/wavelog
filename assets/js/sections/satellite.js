@@ -237,8 +237,8 @@ function addSatMode() {
 		.append($('<td class="row_data" style="text-align: center; vertical-align: middle;">').append("").attr('contenteditable', 'true').addClass('bg-danger'))
 		.append($('<td class="row_data" style="text-align: center; vertical-align: middle;">').append("").attr('contenteditable', 'true').addClass('bg-danger'))
 		.append($('<td class="row_data" style="text-align: center; vertical-align: middle;">').append("").attr('contenteditable', 'true').addClass('bg-danger'))
-		.append($('<td style="text-align: center; vertical-align: middle;">').append('<button type="button" class="btn btn-sm btn-success savenewline">Save</button>'))
-		.append($('<td style="text-align: center; vertical-align: middle;">').append('<button type="button" class="btn btn-sm btn-danger cancelnewline">Cancel</button>'))
+		.append($('<td id="saveButton" style="text-align: center; vertical-align: middle;">').append('<button type="button" class="btn btn-sm btn-success savenewline">Save</button>'))
+		.append($('<td id="cancelButton" style="text-align: center; vertical-align: middle;">').append('<button type="button" class="btn btn-sm btn-danger cancelnewline">Cancel</button>'))
 	)
 	$('.satmodetable tr:last-child td:first-child').focus();
 
@@ -253,6 +253,8 @@ function addSatMode() {
 		var downlink_mode = $(this).closest("tr").find('td:eq(3)').html();
 		var downlink_freq = $(this).closest("tr").find('td:eq(4)').html();
 		var id = $('#satelliteid').val();
+
+		var tempthis = this;
 		$.ajax({
 			url: base_url + 'index.php/satellite/addSatMode',
 			type: 'post',
@@ -265,10 +267,17 @@ function addSatMode() {
 				'downlinkfreq': downlink_freq,
 			},
 			success: function (data) {
-				var tbl_row = $(this).closest('tr');
+				var tbl_row = $(tempthis).closest('tr');
 				tbl_row.find('.row_data')
 				.attr('contenteditable', 'false')
 				.removeClass('bg-danger');
+				tbl_row.find("#cancelButton").replaceWith(
+					'<td style="text-align: center; vertical-align: middle;" id="deleteButton">' + '<button type="button" class="btn btn-sm btn-danger" onclick="deleteSatmode();' + '"><i class="fas fa-trash-alt"></i></button>' + '</td>'
+				);
+
+				tbl_row.find("#saveButton").replaceWith(
+					'<td style="text-align: center; vertical-align: middle;" id="editButton">' + '<button type="button" class="btn btn-sm btn-success" onclick="editSatmode();' + '"><i class="fas fa-edit"></i></button>' + '</td>'
+				);
 			}
 		});
 	});
