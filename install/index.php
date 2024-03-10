@@ -1108,12 +1108,6 @@ global $wavelog_url;
 					return;
 				}
 
-				if (db_hostname.includes('"') || db_username.includes('"') || db_password.includes('"') || db_name.includes('"')) {
-					$('#db_connection_testresult').addClass('alert-danger');
-					$('#db_connection_testresult').html('Error: Input cannot contain double quotes (").');
-					return;
-				}
-
 				if (db_hostname.includes('\\') || db_username.includes('\\') || db_password.includes('\\') || db_name.includes('\\')) {
 					$('#db_connection_testresult').addClass('alert-danger');
 					$('#db_connection_testresult').html('Error: Input cannot contain a backslash (\\).');

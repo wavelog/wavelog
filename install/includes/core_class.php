@@ -117,9 +117,12 @@ class Core
 		// Open the file
 		$database_file = file_get_contents($template_path);
 
+		// Sanitize DB Password from single quotes
+		$sanitized_db_pwd = preg_replace("/\'/i",'\\\'',$data['db_password']);
+
 		$new  = str_replace("%HOSTNAME%", $data['db_hostname'], $database_file);
 		$new  = str_replace("%USERNAME%", $data['db_username'], $new);
-		$new  = str_replace("%PASSWORD%", $data['db_password'], $new);
+		$new  = str_replace("%PASSWORD%", $sanitized_db_pwd, $new);
 		$new  = str_replace("%DATABASE%", $data['db_name'], $new);
 
 		// Write the new database.php file
