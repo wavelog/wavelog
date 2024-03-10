@@ -247,11 +247,11 @@ function addSatMode() {
 	});
 
 	$(".savenewline").click(function() {
-		var modename = $(this).closest("tr").find('td:eq(0)').html();
-		var uplink_mode = $(this).closest("tr").find('td:eq(1)').html();
-		var uplink_freq = $(this).closest("tr").find('td:eq(2)').html();
-		var downlink_mode = $(this).closest("tr").find('td:eq(3)').html();
-		var downlink_freq = $(this).closest("tr").find('td:eq(4)').html();
+		var modename = $(this).closest("tr").find('td:eq(0)');
+		var uplink_mode = $(this).closest("tr").find('td:eq(1)');
+		var uplink_freq = $(this).closest("tr").find('td:eq(2)');
+		var downlink_mode = $(this).closest("tr").find('td:eq(3)');
+		var downlink_freq = $(this).closest("tr").find('td:eq(4)');
 		var id = $('#satelliteid').val();
 
 		var tempthis = this;
@@ -260,14 +260,22 @@ function addSatMode() {
 			type: 'post',
 			data: {
 				'id': id,
-				'name': modename,
-				'uplink_mode': uplink_mode,
-				'uplink_freq': uplink_freq,
-				'downlink_mode': downlink_mode,
-				'downlink_freq': downlink_freq,
+				'name': modename.html(),
+				'uplink_mode': uplink_mode.html(),
+				'uplink_freq': uplink_freq.html(),
+				'downlink_mode': downlink_mode.html(),
+				'downlink_freq': downlink_freq.html(),
 			},
 			success: function (data) {
 				var tbl_row = $(tempthis).closest('tr');
+				tbl_row.addClass('satmode_'+data.inserted_id);
+
+				modename.attr('id','modename_'+data.inserted_id);
+				uplink_mode.attr('id','uplink_mode_'+data.inserted_id);
+				uplink_freq.attr('id','uplink_freq_'+data.inserted_id);
+				downlink_mode.attr('id','downlink_mode_'+data.inserted_id);
+				downlink_freq.attr('id','downlink_freq_'+data.inserted_id);
+
 				tbl_row.find('.row_data')
 				.attr('contenteditable', 'false')
 				.removeClass('bg-danger');
