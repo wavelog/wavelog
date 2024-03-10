@@ -93,7 +93,9 @@ class Satellite_model extends CI_Model {
 
 		$this->db->insert('satellitemode', $data);
 
-        return true;
+		$insert_id = $this->db->insert_id();
+
+        return $insert_id;
 	}
 
 }

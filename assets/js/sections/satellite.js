@@ -272,11 +272,11 @@ function addSatMode() {
 				.attr('contenteditable', 'false')
 				.removeClass('bg-danger');
 				tbl_row.find("#cancelButton").replaceWith(
-					'<td style="text-align: center; vertical-align: middle;" id="deleteButton">' + '<button type="button" class="btn btn-sm btn-danger" onclick="deleteSatmode();' + '"><i class="fas fa-trash-alt"></i></button>' + '</td>'
+					'<td style="text-align: center; vertical-align: middle;" id="deleteButton">' + '<button type="button" class="btn btn-sm btn-danger" onclick="deleteSatmode('+data.inserted_id+');' + '"><i class="fas fa-trash-alt"></i></button>' + '</td>'
 				);
 
 				tbl_row.find("#saveButton").replaceWith(
-					'<td style="text-align: center; vertical-align: middle;" id="editButton">' + '<button type="button" class="btn btn-sm btn-success" onclick="editSatmode();' + '"><i class="fas fa-edit"></i></button>' + '</td>'
+					'<td style="text-align: center; vertical-align: middle;" id="editButton">' + '<button type="button" class="btn btn-sm btn-success" onclick="editSatmode('+data.inserted_id+');' + '"><i class="fas fa-edit"></i></button>' + '</td>'
 				);
 			}
 		});
