@@ -6,6 +6,7 @@ $lang['awards_info_button'] = "Informations complémentaires";
 $lang['awards_show_worked'] = "Voir les \"réalisés\"";
 $lang['awards_show_confirmed'] = "Voir les \"confirmés\"";
 $lang['awards_show_not_worked'] = "Voir les \"non réalisés\"";
+$lang['awards_qsl_type'] = "Show QSO with QSL Type";
 $lang['awards_show_cq_map'] = "Voir la carte";
 $lang['awards_summary'] = "Résumé";
 $lang['awards_total'] = "Total";

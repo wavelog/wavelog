@@ -36,7 +36,7 @@
             </div>
 
             <div class="mb-3 row">
-                <div class="col-md-2">QSL Type</div>
+                <div class="col-md-2"><?php echo lang('awards_qsl_type'); ?></div>
                 <div class="col-md-10">
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" name="qsl" value="1" id="qsl" <?php if ($this->input->post('qsl') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
@@ -200,7 +200,7 @@
                $j++;
            }
         } else {
-           echo '<td style="text-align: center"><b>' . $jcc_summary['worked']['Total'] . '</b></td>';
+           echo '<td style="text-align: center"><b>' . $jcc_summary['confirmed']['Total'] . '</b></td>';
         }
 
         echo '</tr>

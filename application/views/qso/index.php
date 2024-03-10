@@ -352,8 +352,8 @@
             </div>
 
             <div class="mb-3" id="location_us_county">
-                <label for="stationCntyInputEdit"><?php echo lang('gen_hamradio_county_reference'); ?></label>
-                <input class="form-control" id="stationCntyInputEdit" type="text" name="county" value="" />
+                <label for="stationCntyInputQso"><?php echo lang('gen_hamradio_county_reference'); ?></label>
+                <input class="form-control" id="stationCntyInputQso" type="text" name="county" value="" />
             </div>
 
             <div class="mb-3">
@@ -377,7 +377,7 @@
                 <small id="sotaRefHelp" class="form-text text-muted"><?php echo lang('qso_sota_ref_helptext'); ?></small>
               </div>
               <div class="mb-3 col-md-3 align-self-center">
-                <button id="sota_info" class="btn btn-secondary spw-buttons"></button>
+                <small id="sota_info" class="btn btn-secondary spw-buttons"></small>
               </div>
             </div>
 
@@ -388,7 +388,7 @@
                 <small id="wwffRefHelp" class="form-text text-muted"><?php echo lang('qso_wwff_ref_helptext'); ?></small>
               </div>
               <div class="mb-3 col-md-3 align-self-center">
-                <button id="wwff_info" class="btn btn-secondary spw-buttons"></button>
+                <small id="wwff_info" class="btn btn-secondary spw-buttons"></small>
               </div>
             </div>
 
@@ -399,7 +399,7 @@
                 <small id="potaRefHelp" class="form-text text-muted"><?php echo lang('qso_pota_ref_helptext'); ?></small>
               </div>
               <div class="mb-3 col-md-3 align-self-center">
-                <button id="pota_info" class="btn btn-secondary spw-buttons"></button>
+                <small id="pota_info" class="btn btn-secondary spw-buttons"></small>
               </div>
             </div>
 

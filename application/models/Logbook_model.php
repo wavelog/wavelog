@@ -1678,7 +1678,8 @@ class Logbook_model extends CI_Model {
 		  $this->db->join('lotw_users', $this->config->item('table_name').'.COL_CALL = lotw_users.callsign', 'left outer');
 		  $this->db->join('primary_subdivisions', $this->config->item('table_name').'.COL_DXCC = primary_subdivisions.adif AND '.$this->config->item('table_name').'.COL_STATE = primary_subdivisions.state', 'left outer');
 		  $this->db->where('COL_PRIMARY_KEY', $id);
-
+      $this->db->limit(1);
+      
 		  return $this->db->get();
 	  } else {
 		  return;
@@ -4766,6 +4767,7 @@ function lotw_last_qsl_date($user_id) {
 
     public function get_states_by_dxcc($dxcc) {
         $this->db->where('adif', $dxcc);
+        $this->db->order_by('subdivision', 'ASC');
         return $this->db->get('primary_subdivisions');
     }
 

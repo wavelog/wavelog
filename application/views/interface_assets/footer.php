@@ -732,56 +732,6 @@ function showActivatorsMap(call, count, grids) {
 
 </script>
 
-<?php if ($this->uri->segment(1) == "map" && $this->uri->segment(2) == "custom") { ?>
-<script type="text/javascript" src="<?php echo base_url();?>assets/js/leaflet/L.Maidenhead.js"></script>
-    <script id="leafembed" type="text/javascript" src="<?php echo base_url();?>assets/js/leaflet/leafembed.js" tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"></script>
-    <script type="text/javascript">
-      $(function () {
-        $('[data-bs-toggle="tooltip"]').tooltip()
-      });
-
-        <?php if($qra == "set") { ?>
-        var q_lat = <?php echo $qra_lat; ?>;
-        var q_lng = <?php echo $qra_lng; ?>;
-        <?php } else { ?>
-        var q_lat = 40.313043;
-        var q_lng = -32.695312;
-        <?php } ?>
-
-        var qso_loc = '<?php echo site_url('map/map_plot_json/');?>';
-        var q_zoom = 3;
-
-      $(document).ready(function(){
-            <?php if ($this->config->item('map_gridsquares') != FALSE) { ?>
-              var grid = "Yes";
-            <?php } else { ?>
-              var grid = "No";
-            <?php } ?>
-            initmap(grid, 'custommap', {'initmap_only':true});
-            // Check and change date if to < from //
-            $('.custom-map-QSOs input[name="to"]').off('change').on('change', function() {
-                if ($('.custom-map-QSOs input[name="to"]').val().replaceAll('-','') < $('.custom-map-QSOs input[name="from"]').val().replaceAll('-','')) {
-                    $('.custom-map-QSOs input[name="from"]').val($('.custom-map-QSOs input[name="to"]').val());
-                }
-            });
-            $('.custom-map-QSOs input[name="from"]').off('change').on('change', function() {
-                if ($('.custom-map-QSOs input[name="from"]').val().replaceAll('-','') > $('.custom-map-QSOs input[name="to"]').val().replaceAll('-','')) {
-                    $('.custom-map-QSOs input[name="to"]').val($('.custom-map-QSOs input[name="from"]').val());
-                }
-            });
-            // Form "submit" //
-            $('.custom-map-QSOs .btn_submit_map_custom').off('click').on('click',function() {
-                var customdata = {'dataPost':{'date_from': $('.custom-map-QSOs input[name="from"]').val(), 'date_to': $('.custom-map-QSOs input[name="to"]').val(),
-                                            'band': $('.custom-map-QSOs select[name="band"]').val(), 'mode': $('.custom-map-QSOs select[name="mode"]').val(),
-                                            'prop_mode': $('.custom-map-QSOs select[name="prop_mode"]').val(), 'isCustom':true }, 'map_id':'#custommap'};
-                initplot(qso_loc, customdata);
-            })
-
-
-      });
-    </script>
-<?php } ?>
-
 <?php if ($this->uri->segment(1) == "" || $this->uri->segment(1) == "dashboard" ) { ?>
     <script type="text/javascript" src="<?php echo base_url();?>assets/js/leaflet/L.Maidenhead.js"></script>
     <script id="leafembed" type="text/javascript" src="<?php echo base_url();?>assets/js/leaflet/leafembed.js" tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"></script>
@@ -2557,64 +2507,6 @@ function viewEqsl(picture, callsign) {
         var manual = <?php echo $_GET['manual']; ?>;
     </script>
     <script src="<?php echo base_url() ;?>assets/js/sections/contesting.js?v2"></script>
-<?php } ?>
-
-<?php if ($this->uri->segment(1) == "station") { ?>
-<script>
-    var baseURL= "<?php echo base_url();?>";
-
-	var state = $("#StateHelp option:selected").text();
-	if (state != "") {
-		$("#stationCntyInput").prop('disabled', false);
-		station_profile_selectize_usa_county();
-	}
-
-    $('#StateHelp').change(function(){
-        var state = $("#StateHelp option:selected").text();
-        if (state != "") {
-            $("#stationCntyInput").prop('disabled', false);
-			station_profile_selectize_usa_county();
-        } else {
-            $("#stationCntyInput").prop('disabled', true);
-            //$('#stationCntyInput')[0].selectize.destroy();
-            $("#stationCntyInput").val("");
-        }
-    });
-
-    function station_profile_selectize_usa_county() {
-		$('#stationCntyInput').selectize({
-			maxItems: 1,
-			closeAfterSelect: true,
-			loadThrottle: 250,
-			valueField: 'name',
-			labelField: 'name',
-			searchField: 'name',
-			options: [],
-			create: false,
-			load: function(query, callback) {
-				var state = $("#StateHelp option:selected").text();
-
-				if (!query || state == "") return callback();
-				$.ajax({
-					url: baseURL+'index.php/station/get_county',
-					type: 'GET',
-					dataType: 'json',
-					data: {
-						query: query,
-						state: state,
-					},
-					error: function() {
-						callback();
-					},
-					success: function(res) {
-						callback(res);
-					}
-				});
-			}
-		});
-	}
-</script>
-
 <?php } ?>
 
 <?php if ($this->uri->segment(2) == "counties" || $this->uri->segment(2) == "counties_details") { ?>

@@ -1,3 +1,19 @@
+function setRst(mode) {
+	if(mode == 'JT65' || mode == 'JT65B' || mode == 'JT6C' || mode == 'JTMS' || mode == 'ISCAT' || mode == 'MSK144' || mode == 'JTMSK' || mode == 'QRA64' || mode == 'FT8' || mode == 'FT4' || mode == 'JS8' || mode == 'JT9' || mode == 'JT9-1' || mode == 'ROS'){
+		$('#rst_sent').val('-5');
+		$('#rst_rcvd').val('-5');
+	} else if (mode == 'FSK441' || mode == 'JT6M') {
+		$('#rst_sent').val('26');
+		$('#rst_rcvd').val('26');
+	} else if (mode == 'CW' || mode == 'RTTY' || mode == 'PSK31' || mode == 'PSK63') {
+		$('#rst_sent').val('599');
+		$('#rst_rcvd').val('599');
+	} else {
+		$('#rst_sent').val('59');
+		$('#rst_rcvd').val('59');
+	}
+}
+
 function qsl_rcvd(id, method) {
     $(".ld-ext-right-r-"+method).addClass('running');
     $(".ld-ext-right-r-"+method).prop('disabled', true);
@@ -184,7 +200,7 @@ function qso_edit(id) {
                     var state = $("#stateDropdown option:selected").text();
                     if (state != "") {
                         $("#stationCntyInputEdit").prop('disabled', false);
-                        selectize_usa_county();
+                        selectize_usa_county('#stateDropdown', '#stationCntyInputEdit');
                     }
 
                     $('#stateDropdown').change(function(){
@@ -192,11 +208,10 @@ function qso_edit(id) {
                         if (state != "") {
                             $("#stationCntyInputEdit").prop('disabled', false);
 
-                            selectize_usa_county();
+                            selectize_usa_county('#stateDropdown', '#stationCntyInputEdit');
 
                         } else {
                             $("#stationCntyInputEdit").prop('disabled', true);
-                            //$('#stationCntyInput')[0].selectize.destroy();
                             $("#stationCntyInputEdit").val("");
                         }
                     });
@@ -358,7 +373,7 @@ function qso_edit(id) {
                     });
                     
                     $("#dxcc_id").change(async function () {
-                        await updateStateDropdown();
+                        await updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputEdit');
                     });
                 },
             });
@@ -389,8 +404,8 @@ function qso_save() {
     });
 }
 
-function selectize_usa_county() {
-    $('#stationCntyInputEdit').selectize({
+function selectize_usa_county(state_field, county_field) {
+    $(county_field).selectize({ 
         delimiter: ';',
         maxItems: 1,
         closeAfterSelect: true,
@@ -401,11 +416,11 @@ function selectize_usa_county() {
         options: [],
         create: false,
         load: function(query, callback) {
-            var state = $("#stateDropdown option:selected").text();
+            var state = $(state_field + ' option:selected').text();
 
             if (!query || state == "") return callback();
             $.ajax({
-                url: base_url + 'index.php/qso/get_county',
+                url: base_url + 'index.php/lookup/get_county',
                 type: 'GET',
                 dataType: 'json',
                 data: {
@@ -423,8 +438,8 @@ function selectize_usa_county() {
     });
 }
 
-async function updateStateDropdown() {
-    var selectedDxcc = $("#dxcc_id");
+async function updateStateDropdown(dxcc_field, state_label, county_div, county_input) {
+    var selectedDxcc = $(dxcc_field);
 
     if (selectedDxcc.val() !== "") {
         await $.ajax({
@@ -434,10 +449,10 @@ async function updateStateDropdown() {
             success: function (response) {
                 if (response.status === "ok") {
                     statesDropdown(response, set_state);
-                    $('#stateInputLabel').html(response.subdivision_name);
+                    $(state_label).html(response.subdivision_name);
                 } else {
                     statesDropdown(response);
-                    $('#stateInputLabel').html('State');
+                    $(state_label).html('State');
                 }
             },
             error: function () {
@@ -447,10 +462,10 @@ async function updateStateDropdown() {
     } 
 
     if (selectedDxcc.val() == '291' || selectedDxcc.val() == '110' || selectedDxcc.val() == '6') {
-        $("#location_us_county").show();
+        $(county_div).show();
     } else {
-        $("#location_us_county").hide();
-        $("#stationCntyInputEdit").val();
+        $(county_div).hide();
+        $(county_input).val();
     }
 }
 
