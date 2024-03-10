@@ -8,6 +8,16 @@ class Update extends CI_Controller {
 			lotw_users - imports lotw users
 	*/
 
+    function __construct()
+	{
+		parent::__construct();
+		
+		if (ENVIRONMENT == 'maintenance' && $this->session->userdata('user_id') == '') {
+            echo "Maintenance Mode is active. Try again later.\n";
+			redirect('user/login');
+		}
+	}
+
 	public function index()
 	{
 	    $data['page_title'] = "Updates";
@@ -290,9 +300,9 @@ class Update extends CI_Controller {
                 if ($nCount > 0)
                 {
                     echo "DONE: " . number_format($nCount) . " callsigns loaded";
-					$datetime = new DateTime("now", new DateTimeZone('UTC'));
-					$datetime = $datetime->format('Ymd h:i');
-					$this->optionslib->update('scp_update', $datetime , 'no');
+                    $datetime = new DateTime("now", new DateTimeZone('UTC'));
+                    $datetime = $datetime->format('Ymd h:i');
+                    $this->optionslib->update('scp_update', $datetime , 'no');
                 } else {
                     echo "FAILED: Empty file";
                 }
@@ -360,9 +370,9 @@ class Update extends CI_Controller {
         $totaltime = ($endtime - $starttime);
         echo "This page was created in ".$totaltime." seconds <br />";
         echo "Records inserted: " . $i . " <br/>";
-		$datetime = new DateTime("now", new DateTimeZone('UTC'));
-		$datetime = $datetime->format('Ymd h:i');
-		$this->optionslib->update('lotw_users_update', $datetime , 'no');
+        $datetime = new DateTime("now", new DateTimeZone('UTC'));
+        $datetime = $datetime->format('Ymd h:i');
+        $this->optionslib->update('lotw_users_update', $datetime , 'no');
     }
 
     public function lotw_check() {
@@ -394,9 +404,9 @@ class Update extends CI_Controller {
                 if ($nCount > 0)
                 {
                     echo "DONE: " . number_format($nCount) . " DOKs and SDOKs saved";
-					$datetime = new DateTime("now", new DateTimeZone('UTC'));
-					$datetime = $datetime->format('Ymd h:i');
-					$this->optionslib->update('dok_file_update', $datetime , 'no');
+                    $datetime = new DateTime("now", new DateTimeZone('UTC'));
+                    $datetime = $datetime->format('Ymd h:i');
+                    $this->optionslib->update('dok_file_update', $datetime , 'no');
                 } else {
                     echo"FAILED: Empty file";
                 }
@@ -444,9 +454,9 @@ class Update extends CI_Controller {
         if ($nCount > 0)
         {
             echo "DONE: " . number_format($nCount) . " SOTA's saved";
-			$datetime = new DateTime("now", new DateTimeZone('UTC'));
-			$datetime = $datetime->format('Ymd h:i');
-			$this->optionslib->update('sota_file_update', $datetime , 'no');
+            $datetime = new DateTime("now", new DateTimeZone('UTC'));
+            $datetime = $datetime->format('Ymd h:i');
+            $this->optionslib->update('sota_file_update', $datetime , 'no');
         } else {
             echo"FAILED: Empty file";
         }
@@ -481,12 +491,12 @@ class Update extends CI_Controller {
         $data = str_getcsv($csv,"\n");
         $nCount = 0;
         foreach ($data as $idx => $row) {
-           if ($idx == 0) continue; // Skip line we are not interested in
-           $row = str_getcsv($row, ',');
-           if ($row[0]) {
-              fwrite($wwfffilehandle, $row[0].PHP_EOL);
-              $nCount++;
-           }
+        if ($idx == 0) continue; // Skip line we are not interested in
+        $row = str_getcsv($row, ',');
+        if ($row[0]) {
+            fwrite($wwfffilehandle, $row[0].PHP_EOL);
+            $nCount++;
+        }
         }
 
         fclose($wwfffilehandle);
@@ -494,9 +504,9 @@ class Update extends CI_Controller {
         if ($nCount > 0)
         {
             echo "DONE: " . number_format($nCount) . " WWFF's saved";
-			$datetime = new DateTime("now", new DateTimeZone('UTC'));
-			$datetime = $datetime->format('Ymd h:i');
-			$this->optionslib->update('wwff_file_update', $datetime , 'no');
+            $datetime = new DateTime("now", new DateTimeZone('UTC'));
+            $datetime = $datetime->format('Ymd h:i');
+            $this->optionslib->update('wwff_file_update', $datetime , 'no');
         } else {
             echo"FAILED: Empty file";
         }
@@ -527,12 +537,12 @@ class Update extends CI_Controller {
         $data = str_getcsv($csv,"\n");
         $nCount = 0;
         foreach ($data as $idx => $row) {
-           if ($idx == 0) continue; // Skip line we are not interested in
-           $row = str_getcsv($row, ',');
-           if ($row[0]) {
-              fwrite($potafilehandle, $row[0].PHP_EOL);
-              $nCount++;
-           }
+        if ($idx == 0) continue; // Skip line we are not interested in
+        $row = str_getcsv($row, ',');
+        if ($row[0]) {
+            fwrite($potafilehandle, $row[0].PHP_EOL);
+            $nCount++;
+        }
         }
 
         fclose($potafilehandle);
@@ -540,9 +550,9 @@ class Update extends CI_Controller {
         if ($nCount > 0)
         {
             echo "DONE: " . number_format($nCount) . " POTA's saved";
-			$datetime = new DateTime("now", new DateTimeZone('UTC'));
-			$datetime = $datetime->format('Ymd h:i');
-			$this->optionslib->update('pota_file_update', $datetime , 'no');
+            $datetime = new DateTime("now", new DateTimeZone('UTC'));
+            $datetime = $datetime->format('Ymd h:i');
+            $this->optionslib->update('pota_file_update', $datetime , 'no');
         } else {
             echo"FAILED: Empty file";
         }

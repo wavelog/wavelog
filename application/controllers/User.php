@@ -95,6 +95,8 @@ class User extends CI_Controller {
 				$data['user_qso_end_times'] = $this->input->post('user_qso_end_times');
 				$data['user_quicklog'] = $this->input->post('user_quicklog');
 				$data['user_quicklog_enter'] = $this->input->post('user_quicklog_enter');
+				$data['user_hamsat_key'] = $this->input->post('user_hamsat_key');
+				$data['user_hamsat_workable_only'] = $this->input->post('user_hamsat_workable_only');
 				$data['language'] = $this->input->post('language');
 				$this->load->view('user/edit', $data);
 			} else {
@@ -134,6 +136,8 @@ class User extends CI_Controller {
 				$this->input->post('user_quicklog'),
 				$this->input->post('user_quicklog_enter'),
 				$this->input->post('language'),
+				$this->input->post('user_hamsat_key'),
+				$this->input->post('user_hamsat_workable_only'),
 				)) {
 				// Check for errors
 				case EUSERNAMEEXISTS:
@@ -491,6 +495,26 @@ class User extends CI_Controller {
 				$data['user_winkey'] = $q->winkey;
 			}
 
+			if($this->input->post('user_hamsat_key', true)) {
+				$data['user_hamsat_key'] = $this->input->post('user_hamsat_key', true);
+			} else {
+				$hkey_opt=$this->user_options_model->get_options('hamsat',array('option_name'=>'hamsat_key','option_key'=>'api'))->result();
+				if (count($hkey_opt)>0) {
+					$data['user_hamsat_key'] = $hkey_opt[0]->option_value;
+				} else {
+					$data['user_hamsat_key'] = '';
+				}
+			}
+
+			if($this->input->post('user_hamsat_workable_only')) {
+				$data['user_hamsat_workable_only'] = $this->input->post('user_hamsat_workable_only', false);
+			} else {
+				$hkey_opt=$this->user_options_model->get_options('hamsat',array('option_name'=>'hamsat_key','option_key'=>'workable'))->result();
+				if (count($hkey_opt)>0) {
+					$data['user_hamsat_workable_only'] = $hkey_opt[0]->option_value;
+				}
+			}
+
 			// [MAP Custom] GET user options //
 			$options_object = $this->user_options_model->get_options('map_custom')->result();
 			if (count($options_object)>0) {
@@ -615,6 +639,8 @@ class User extends CI_Controller {
 			$data['user_locations_quickswitch'] = $this->input->post('user_locations_quickswitch', true);
 			$data['language'] = $this->input->post('language');
 			$data['user_winkey'] = $this->input->post('user_winkey');
+			$data['user_hamsat_key'] = $this->input->post('user_hamsat_key');
+			$data['user_hamsat_workable_only'] = $this->input->post('user_hamsat_workable_only');
 			$this->load->view('user/edit');
 			$this->load->view('interface_assets/footer');
 		}

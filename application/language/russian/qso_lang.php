@@ -18,7 +18,7 @@ $lang['qso_transmit_power_helptext'] = 'Укажите мощность в Ва�
 
 $lang['qso_sota_ref_helptext'] = 'Например: GM/NS-001.';
 $lang['qso_wwff_ref_helptext'] = 'Например: DLFF-0069.';
-$lang['qso_pota_ref_helptext'] = 'Например: PA-0150.';
+$lang['qso_pota_ref_helptext'] = 'Например: PA-0150. Multiple values allowed.';
 
 $lang['qso_sig_helptext'] = 'Например: GMA';
 $lang['qso_sig_info_helptext'] = 'Например: DA/NW-357';
@@ -35,7 +35,8 @@ $lang['qso_error_timeoff_less_timeon'] = "TimeOff is less than TimeOn";
 
 // Button Text on /qso Display
 
-$lang['qso_btn_reset_qso'] = 'Сброс';
+$lang['qso_btn_clear_qso'] = 'Clear';
+$lang['qso_btn_reset_to_default'] = 'Reset to Default';
 $lang['qso_btn_save_qso'] = 'Сохранить QSO';
 $lang['qso_btn_edit_qso'] = 'Изменить QSO';
 $lang['qso_delete_warning'] = "Предупреждение! Вы уверены в том, что хотите удалить QSO c ";

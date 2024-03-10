@@ -228,8 +228,8 @@ $lang['general_word_today'] = 'Сегодня';
 
 $lang['dashboard_php_version_warning'] = 'Вам нужнго обновить версию PHP. Минимальная версия 7.4. Ваша версия';
 $lang['dashboard_country_files_warning'] = 'Вам нужно обновить файлы стран! Пеерйдите <a href="'.site_url('update').'">сюда</a>, чтобы сделать это!';
-$lang['dashboard_locations_warning'] = 'У вас нет расположений станций! Перейдите <a href="'. site_url('station') . '">сюда</a>, чтобы создать!';
-$lang['dashboard_logbooks_warning'] = 'У вас нет аппаратного журнала! Перейдите <a href="'. site_url('logbooks') . '">сюда</a>, чтобы создать его!';
+$lang['dashboard_locations_warning'] = 'У вас нет расположений станций! Перейдите <a href="'. site_url('stationsetup') . '">сюда</a>, чтобы создать!';
+$lang['dashboard_logbooks_warning'] = 'У вас нет аппаратного журнала! Перейдите <a href="'. site_url('stationsetup') . '">сюда</a>, чтобы создать его!';
 
 $lang['hams_at_no_activations_found'] = 'не найдены предстоящие активации. Проверьте позже.';
 

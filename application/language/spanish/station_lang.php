@@ -58,6 +58,7 @@ $lang['station_location_updated_suff'] = ' Actualizada.';
 $lang['station_location_warning'] = 'Atención: Debe configurar una Localización de Estación como activa. vaya a Indicativo->Localización de Estación para seleccionar una.';
 $lang['station_location_reassign_at'] = 'Por favor, reasignelas en ';
 $lang['station_location_warning_reassign'] = 'Debido a cambios recientes en Wavelog, debe reasignar sus QSO a sus perfiles de estación.';
+$lang['station_location_id'] = 'ID';
 $lang['station_location_name'] = 'Nombre de Perfil';
 $lang['station_location_name_hint'] = 'Nombre corto para la Localización de Estación. Ejemplo: Casa (HM54ip)';
 $lang['station_location_callsign'] = 'Indicativo de la Estación';
@@ -88,7 +89,7 @@ $lang['station_location_iota_hint_ln1'] = "Referencia IOTA de la Estación. Ejem
 $lang['station_location_iota_hint_ln2'] = "Puede buscar las referencias IOTA en el sitio web de <a target='_blank' href='https://www.iota-world.org/iota-directory/annex-f-short-title-iota-reference-number-list.html'>IOTA World</a>.";
 $lang['station_location_sota_hint_ln1'] = "Referencia SOTA de la Estación. Puede buscar las referencias SOTA en el sitio web de <a target='_blank' href='https://www.sotamaps.org/'>SOTA Maps</a>.";
 $lang['station_location_wwff_hint_ln1'] = "Referencia WWFF de la Estación. Puede buscar las referencias WWFF en el sitio web de <a target='_blank' href='https://www.cqgma.org/mvs/'>GMA Map</a>.";
-$lang['station_location_pota_hint_ln1'] = "Referencia POTA de la Estación. Puede buscar las referencias POTA en el sitio web de <a target='_blank' href='https://pota.app/#/map/'>POTA Map</a>.";
+$lang['station_location_pota_hint_ln1'] = "Station POTA reference(s). Mulitple comma separated values allowed. You can look up POTA references at the <a target='_blank' href='https://pota.app/#/map/'>POTA Map</a> website.";
 $lang['station_location_signature'] = "Firma";
 $lang['station_location_signature_name'] = "Nombre de la Firma";
 $lang['station_location_signature_name_hint'] = "Firma de la Estación (ej. GMA).";

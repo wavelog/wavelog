@@ -1,3 +1,19 @@
+function setRst(mode) {
+	if(mode == 'JT65' || mode == 'JT65B' || mode == 'JT6C' || mode == 'JTMS' || mode == 'ISCAT' || mode == 'MSK144' || mode == 'JTMSK' || mode == 'QRA64' || mode == 'FT8' || mode == 'FT4' || mode == 'JS8' || mode == 'JT9' || mode == 'JT9-1' || mode == 'ROS'){
+		$('#rst_sent').val('-5');
+		$('#rst_rcvd').val('-5');
+	} else if (mode == 'FSK441' || mode == 'JT6M') {
+		$('#rst_sent').val('26');
+		$('#rst_rcvd').val('26');
+	} else if (mode == 'CW' || mode == 'RTTY' || mode == 'PSK31' || mode == 'PSK63') {
+		$('#rst_sent').val('599');
+		$('#rst_rcvd').val('599');
+	} else {
+		$('#rst_sent').val('59');
+		$('#rst_rcvd').val('59');
+	}
+}
+
 function qsl_rcvd(id, method) {
     $(".ld-ext-right-r-"+method).addClass('running');
     $(".ld-ext-right-r-"+method).prop('disabled', true);
@@ -88,6 +104,54 @@ function qsl_ignore(id, method) {
     });
 }
 
+function displayQso(id) {
+    $.ajax({
+        url: base_url + 'index.php/logbook/view/' + id,
+        type: 'post',
+        success: function(html) {
+            BootstrapDialog.show({
+                title: lang_general_word_qso_data,
+                cssClass: 'qso-dialog',
+                size: BootstrapDialog.SIZE_WIDE,
+                nl2br: false,
+                message: html,
+                onshown: function(dialog) {
+                    var qsoid = $("#qsoid").text();
+                    $(".editButton").html('<a class="btn btn-primary" id="edit_qso" href="javascript:qso_edit('+qsoid+')"><i class="fas fa-edit"></i>'+lang_general_edit_qso+'</a>');
+                    var lat = $("#lat").text();
+                    var long = $("#long").text();
+                    var callsign = $("#callsign").text();
+                    var mymap = L.map('mapqso').setView([lat,long], 5);
+
+                    var tiles = L.tileLayer(option_map_tile_server, {
+                        maxZoom: 18,
+                        attribution: option_map_tile_server_copyright,
+                    }).addTo(mymap);
+
+
+                    var printer = L.easyPrint({
+                        tileLayer: tiles,
+                        sizeModes: ['Current'],
+                        filename: 'myMap',
+                        exportOnly: true,
+                        hideControlContainer: true
+                    }).addTo(mymap);
+
+                    var redIcon = L.icon({
+                        iconUrl: icon_dot_url,
+                        iconSize:     [18, 18], // size of the icon
+                    });
+
+                    L.marker([lat,long], {icon: redIcon}).addTo(mymap)
+                        .bindPopup(callsign);
+
+                },
+            });
+
+        }
+    });
+}
+
 function qso_delete(id, call) {
     BootstrapDialog.confirm({
         title: lang_general_word_danger,
@@ -128,7 +192,7 @@ function qso_edit(id) {
             $('.menuOnBody').remove();
             BootstrapDialog.show({
                 title: lang_general_word_qso_data,
-                cssClass: 'edit-dialog',
+                cssClass: 'edit-dialog bg-black bg-opacity-50',
                 size: BootstrapDialog.SIZE_WIDE,
                 nl2br: false,
                 message: html,
@@ -136,7 +200,7 @@ function qso_edit(id) {
                     var state = $("#stateDropdown option:selected").text();
                     if (state != "") {
                         $("#stationCntyInputEdit").prop('disabled', false);
-                        selectize_usa_county();
+                        selectize_usa_county('#stateDropdown', '#stationCntyInputEdit');
                     }
 
                     $('#stateDropdown').change(function(){
@@ -144,11 +208,10 @@ function qso_edit(id) {
                         if (state != "") {
                             $("#stationCntyInputEdit").prop('disabled', false);
 
-                            selectize_usa_county();
+                            selectize_usa_county('#stateDropdown', '#stationCntyInputEdit');
 
                         } else {
                             $("#stationCntyInputEdit").prop('disabled', true);
-                            //$('#stationCntyInput')[0].selectize.destroy();
                             $("#stationCntyInputEdit").val("");
                         }
                     });
@@ -243,7 +306,7 @@ function qso_edit(id) {
                     });
 
                     $('#pota_ref_edit').selectize({
-                        maxItems: 1,
+                        maxItems: null,
                         closeAfterSelect: true,
                         loadThrottle: 250,
                         valueField: 'name',
@@ -310,7 +373,7 @@ function qso_edit(id) {
                     });
                     
                     $("#dxcc_id").change(async function () {
-                        await updateStateDropdown();
+                        await updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputEdit');
                     });
                 },
             });
@@ -318,9 +381,65 @@ function qso_edit(id) {
     });
 }
 
-async function updateStateDropdown() {
-    console.log('dropdown triggered');
-    var selectedDxcc = $("#dxcc_id");
+function qso_save() {
+    var myform = $("#qsoform")[0];
+    var fd = new FormData(myform);
+    $.ajax({
+        url: base_url + 'index.php/qso/qso_save_ajax',
+        data: fd,
+        cache: false,
+        processData: false,
+        contentType: false,
+        type: 'POST',
+        success: function (dataofconfirm) {
+            $(".edit-dialog").modal('hide');
+            $(".qso-dialog").modal('hide');
+            if (reload_after_qso_safe == true) {
+                location.reload();
+            }
+        },
+        error: function(xhr, status, error) {
+            console.log(xhr.responseText);
+        }
+    });
+}
+
+function selectize_usa_county(state_field, county_field) {
+    $(county_field).selectize({ 
+        delimiter: ';',
+        maxItems: 1,
+        closeAfterSelect: true,
+        loadThrottle: 250,
+        valueField: 'name',
+        labelField: 'name',
+        searchField: 'name',
+        options: [],
+        create: false,
+        load: function(query, callback) {
+            var state = $(state_field + ' option:selected').text();
+
+            if (!query || state == "") return callback();
+            $.ajax({
+                url: base_url + 'index.php/lookup/get_county',
+                type: 'GET',
+                dataType: 'json',
+                data: {
+                    query: query,
+                    state: state,
+                },
+                error: function() {
+                    callback();
+                },
+                success: function(res) {
+                    callback(res);
+                }
+            });
+        }
+    });
+}
+
+async function updateStateDropdown(dxcc_field, state_label, county_div, county_input) {
+    var selectedDxcc = $(dxcc_field);
 
     if (selectedDxcc.val() !== "") {
         await $.ajax({
@@ -330,10 +449,10 @@ async function updateStateDropdown() {
             success: function (response) {
                 if (response.status === "ok") {
                     statesDropdown(response, set_state);
-                    $('#stateInputLabel').html(response.subdivision_name);
+                    $(state_label).html(response.subdivision_name);
                 } else {
                     statesDropdown(response);
-                    $('#stateInputLabel').html('State');
+                    $(state_label).html('State');
                 }
             },
             error: function () {
@@ -343,10 +462,10 @@ async function updateStateDropdown() {
     } 
 
     if (selectedDxcc.val() == '291' || selectedDxcc.val() == '110' || selectedDxcc.val() == '6') {
-        $("#location_us_county").show();
+        $(county_div).show();
     } else {
-        $("#location_us_county").hide();
-        $("#stationCntyInputEdit").val();
+        $(county_div).hide();
+        $(county_input).val();
     }
 }
 
@@ -601,8 +720,8 @@ function displayQsl(id) {
 // [eQSL default msg] function to load default qslmsg to qslmsg field on qso add/edit //
 function qso_set_eqsl_qslmsg(station_id, force_diff_to_origin=false, object='') {
     $.ajax({
-        url: base_url+'index.php/station/get_options',
-        type: 'post', data: {'option_type':'eqsl_default_qslmsg','option_name':'key_station_id','option_key':station_id },
+        url: base_url+'index.php/qso/get_eqsl_default_qslmsg',
+        type: 'post', data: {'option_key':station_id },
         success: function(res) {
             if (typeof res.eqsl_default_qslmsg !== "undefined") {
                 object = (object!='')?(object+' '):'';
@@ -701,6 +820,55 @@ function statesDropdown(states, set_state = null) {
         dropdown.prop('disabled', true);
     }
 }
+
+// Location Quickswitcher
+function quickswitcher_show_activebadge(current_active) {
+    $('#quickswitcher_active_badge_' + current_active).removeClass('d-none');
+    $('#quickswitcher_list_button_' + current_active).addClass('disabled');
+}
+
+function current_active_ajax(callback) {
+    $.ajax({
+        url: base_url + 'index.php/stationsetup/getActiveStation',
+        type: 'GET',
+        dataType: 'json',
+        success: function(response) {
+            var current_active = response;
+            callback(current_active); 
+        }
+    });
+}
+
+function set_active_loc_quickswitcher(new_active) {
+    current_active_ajax(function(current_active) {
+        $.ajax({
+            url: base_url + 'index.php/stationsetup/setActiveStation_json',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                id2setActive: new_active
+            }, 
+            success: function(response) {
+                $('[id^="quickswitcher_list_button_"]').not('#quickswitcher_list_button_' + new_active).removeClass('disabled');
+                $('[id^="quickswitcher_active_badge_"]').not('#quickswitcher_active_badge_' + new_active).addClass('d-none');
+
+                $('#quickswitcher_list_button_' + new_active).addClass('disabled');
+                $('#quickswitcher_active_badge_' + new_active).removeClass('d-none');
+
+
+                // if we are on the stationsetup page the function reloadStations exists and we can run it
+                if (typeof reloadStations === 'function') {
+                    reloadStations();
+                }
+            },
+            error: function(xhr, status, error) { 
+                console.error('Error while setting the new active location: ' + error);
+            }
+        });
+    });
+}
+
+
 
 console.log("Ready to unleash your coding prowess and join the fun?\n\n" +
     "Check out our GitHub Repository and dive into the coding adventure:\n\n" +

@@ -1038,7 +1038,7 @@ class Logbook_model extends CI_Model {
 
 	  $entity = $this->get_entity($this->input->post('dxcc_id'));
 	  $stationId = $this->input->post('station_profile');
-	  $country = ucwords(strtolower($entity['name']), "- (/");
+	  $country = ucwords(strtolower($entity['name'] ?? ''), "- (/");	// Prevent Errors, if JS-Fence doesn't help
 
 	  // be sure that station belongs to user
 	  $this->load->model('stations');
@@ -1490,10 +1490,6 @@ class Logbook_model extends CI_Model {
 		$this->db->select('COL_CALL, COL_IOTA, COL_TIME_ON');
 		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
 		$this->db->where('COL_CALL', $callsign);
-		$where = "COL_IOTA != \"\"";
-
-		$this->db->where($where);
-
 		$this->db->order_by("COL_TIME_ON", "desc");
 		$this->db->limit(1);
 		$query = $this->db->get($this->config->item('table_name'));
@@ -1682,7 +1678,8 @@ class Logbook_model extends CI_Model {
 		  $this->db->join('lotw_users', $this->config->item('table_name').'.COL_CALL = lotw_users.callsign', 'left outer');
 		  $this->db->join('primary_subdivisions', $this->config->item('table_name').'.COL_DXCC = primary_subdivisions.adif AND '.$this->config->item('table_name').'.COL_STATE = primary_subdivisions.state', 'left outer');
 		  $this->db->where('COL_PRIMARY_KEY', $id);
-
+      $this->db->limit(1);
+      
 		  return $this->db->get();
 	  } else {
 		  return;
@@ -3108,88 +3105,94 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 
   }
 
-function lotw_update($datetime, $callsign, $band, $qsl_date, $qsl_status, $state, $qsl_gridsquare, $qsl_vucc_grids, $iota, $cnty, $cqz, $ituz, $station_callsign) {
+    function lotw_update($datetime, $callsign, $band, $qsl_date, $qsl_status, $state, $qsl_gridsquare, $qsl_vucc_grids, $iota, $cnty, $cqz, $ituz, $station_callsign, $qsoid) {
 
-	$data = array(
-      'COL_LOTW_QSLRDATE' => $qsl_date,
-      'COL_LOTW_QSL_RCVD' => $qsl_status,
-      'COL_LOTW_QSL_SENT' => 'Y'
-    );
-	if($state != "") {
-      $data['COL_STATE'] = $state;
-	}
-	if($iota != "") {
-      $data['COL_IOTA'] = $iota;
-	}
+	    $data = array(
+		    'COL_LOTW_QSLRDATE' => $qsl_date,
+		    'COL_LOTW_QSL_RCVD' => $qsl_status,
+		    'COL_LOTW_QSL_SENT' => 'Y'
+	    );
+	    if($state != "") {
+		    $data['COL_STATE'] = $state;
+	    }
+	    if($iota != "") {
+		    $data['COL_IOTA'] = $iota;
+	    }
 
-	if($cnty != "") {
-      $data['COL_CNTY'] = $cnty;
-	}
+	    if($cnty != "") {
+		    $data['COL_CNTY'] = $cnty;
+	    }
 
-	if($cqz != "") {
-      $data['COL_CQZ'] = $cqz;
-	}
+	    if($cqz != "") {
+		    $data['COL_CQZ'] = $cqz;
+	    }
 
-	if($ituz != "") {
-      $data['COL_ITUZ'] = $ituz;
-	}
+	    if($ituz != "") {
+		    $data['COL_ITUZ'] = $ituz;
+	    }
 
-	// Check if QRZ or ClubLog is already uploaded. If so, set qso to reupload to qrz.com (M) or clublog
-	$qsql = "select COL_CLUBLOG_QSO_UPLOAD_STATUS as CL_STATE, COL_QRZCOM_QSO_UPLOAD_STATUS as QRZ_STATE from ".$this->config->item('table_name')." where COL_BAND=? and COL_CALL=? and COL_STATION_CALLSIGN=? and date_format(COL_TIME_ON, '%Y-%m-%d %H:%i') = ?";
-	$query = $this->db->query($qsql, array($band, $callsign,$station_callsign,$datetime));
-	$row = $query->row();
-	if (($row->QRZ_STATE ?? '') == 'Y') {
-		$data['COL_QRZCOM_QSO_UPLOAD_STATUS'] = 'M';
-	}
-	if (($row->CL_STATE ?? '') == 'Y') {
-		$data['COL_CLUBLOG_QSO_UPLOAD_STATUS'] = 'M';
-	}
+	    // Check if QRZ or ClubLog is already uploaded. If so, set qso to reupload to qrz.com (M) or clublog
+	    $qsql = "select COL_CLUBLOG_QSO_UPLOAD_STATUS as CL_STATE, COL_QRZCOM_QSO_UPLOAD_STATUS as QRZ_STATE from ".$this->config->item('table_name')." where COL_BAND=? and COL_CALL=? and COL_STATION_CALLSIGN=? and date_format(COL_TIME_ON, '%Y-%m-%d %H:%i') = ? and COL_PRIMARY_KEY = ?";
+	    $query = $this->db->query($qsql, array($band, $callsign,$station_callsign,$datetime,$qsoid));
+	    $row = $query->row();
+	    if (($row->QRZ_STATE ?? '') == 'Y') {
+		    $data['COL_QRZCOM_QSO_UPLOAD_STATUS'] = 'M';
+	    }
+	    if (($row->CL_STATE ?? '') == 'Y') {
+		    $data['COL_CLUBLOG_QSO_UPLOAD_STATUS'] = 'M';
+	    }
 
-    $this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i\') = "'.$datetime.'"');
-    $this->db->where('COL_CALL', $callsign);
-    $this->db->where('COL_BAND', $band);
-    $this->db->where('ifnull(COL_LOTW_QSL_RCVD,\'\') !=', $qsl_status); // Prevent QSO from beeing updated twice (or more)
-    $this->db->where('COL_STATION_CALLSIGN', $station_callsign);
+	    $this->db->group_start();
+	    $this->db->where('date_format(COL_LOTW_QSLRDATE, \'%Y-%m-%d %H:%i\') != "'.$qsl_date.'"');
+	    $this->db->or_where('COL_LOTW_QSLRDATE is null');
+	    $this->db->group_end();
+	    $this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i\') = "'.$datetime.'"');
+	    $this->db->where('COL_CALL', $callsign);
+	    $this->db->where('COL_BAND', $band);
+	    $this->db->where('COL_STATION_CALLSIGN', $station_callsign);
+	    $this->db->where('COL_PRIMARY_KEY', $qsoid);
 
-    $this->db->update($this->config->item('table_name'), $data);
-	unset($data);
+	    $this->db->update($this->config->item('table_name'), $data);
+	    unset($data);
 
-	if($qsl_gridsquare != "" || $qsl_vucc_grids != "") {
-      $data = array(
-        'COL_DISTANCE' => 0
-      );
-         $this->db->select('station_profile.station_gridsquare as station_gridsquare');
-         $this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i\') = "'.$datetime.'"');
-         $this->db->where('COL_CALL', $callsign);
-         $this->db->where('COL_BAND', $band);
-         $this->db->join('station_profile', $this->config->item('table_name').'.station_id = station_profile.station_id', 'left outer');
-         $this->db->limit(1);
-         $query = $this->db->get($this->config->item('table_name'));
-         $row = $query->row();
-         $station_gridsquare = '';
-         if (isset($row)) {
-            $station_gridsquare = $row->station_gridsquare;
-         }
-         if(!$this->load->is_loaded('Qra')) {
-            $this->load->library('Qra');
-         }
-         if ($qsl_gridsquare != "") {
-            $data['COL_GRIDSQUARE'] = $qsl_gridsquare;
-            $data['COL_DISTANCE'] = $this->qra->distance($station_gridsquare, $qsl_gridsquare, 'K');
-         } elseif ($qsl_vucc_grids != "") {
-            $data['COL_VUCC_GRIDS'] = $qsl_vucc_grids;
-            $data['COL_DISTANCE'] = $this->qra->distance($station_gridsquare, $qsl_vucc_grids, 'K');
-         }
+	    if($qsl_gridsquare != "" || $qsl_vucc_grids != "") {
+		    $data = array(
+			    'COL_DISTANCE' => 0
+		    );
+		    $this->db->select('station_profile.station_gridsquare as station_gridsquare');
+		    $this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i\') = "'.$datetime.'"');
+		    $this->db->where('COL_CALL', $callsign);
+		    $this->db->where('COL_BAND', $band);
+		    $this->db->where('COL_PRIMARY_KEY', $qsoid);
+		    $this->db->join('station_profile', $this->config->item('table_name').'.station_id = station_profile.station_id', 'left outer');
+		    $this->db->limit(1);
+		    $query = $this->db->get($this->config->item('table_name'));
+		    $row = $query->row();
+		    $station_gridsquare = '';
+		    if (isset($row)) {
+			    $station_gridsquare = $row->station_gridsquare;
+		    }
+		    if(!$this->load->is_loaded('Qra')) {
+			    $this->load->library('Qra');
+		    }
+		    if ($qsl_gridsquare != "") {
+			    $data['COL_GRIDSQUARE'] = $qsl_gridsquare;
+			    $data['COL_DISTANCE'] = $this->qra->distance($station_gridsquare, $qsl_gridsquare, 'K');
+		    } elseif ($qsl_vucc_grids != "") {
+			    $data['COL_VUCC_GRIDS'] = $qsl_vucc_grids;
+			    $data['COL_DISTANCE'] = $this->qra->distance($station_gridsquare, $qsl_vucc_grids, 'K');
+		    }
 
-      $this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i\') = "'.$datetime.'"');
-      $this->db->where('COL_CALL', $callsign);
-      $this->db->where('COL_BAND', $band);
+		    $this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i\') = "'.$datetime.'"');
+		    $this->db->where('COL_CALL', $callsign);
+		    $this->db->where('COL_BAND', $band);
+		    $this->db->where('COL_PRIMARY_KEY', $qsoid);
 
-      $this->db->update($this->config->item('table_name'), $data);
+		    $this->db->update($this->config->item('table_name'), $data);
+	    }
+
+	    return "Updated";
     }
-
-    return "Updated";
-  }
 
   function qrz_last_qsl_date($user_id) {
 	  $sql="SELECT date_format(MAX(COALESCE(COL_QRZCOM_QSO_DOWNLOAD_DATE, str_to_date('1900-01-01','%Y-%m-%d'))),'%Y-%m-%d') MAXDATE
@@ -4513,6 +4516,7 @@ function lotw_last_qsl_date($user_id) {
     public function check_for_station_id() {
       $this->db->select('COL_PRIMARY_KEY, COL_TIME_ON, COL_CALL, COL_MODE, COL_BAND, COL_STATION_CALLSIGN');
       $this->db->where('station_id =', NULL);
+      $this->db->or_where("station_id",0);
       $query = $this->db->get($this->config->item('table_name'));
       if($query->num_rows() >= 1) {
         return $query->result();
@@ -4571,26 +4575,29 @@ function lotw_last_qsl_date($user_id) {
     public function update_station_ids($station_id,$station_callsign,$qsoids) {
 
 	    if (! empty($qsoids)) {
-			 $data = array(
-				 'station_id' => $station_id,
-			 );
+		    $data = array(
+			    'station_id' => $station_id,
+		    );
 
-			 $this->db->where_in('COL_PRIMARY_KEY', $qsoids);
-			 $this->db->where(array('station_id' => NULL));
-			 if ($station_callsign == '') {
-				$this->db->where(array('col_station_callsign' => NULL));
-			 } else {
-				$this->db->where('col_station_callsign', $station_callsign);
-			 }
-			 $this->db->update($this->config->item('table_name'), $data);
-			 if ($this->db->affected_rows() > 0) {
-				 return TRUE;
-			 } else {
-				 return FALSE;
-			 }
-		 } else {
-			 return FALSE;
-		 }
+		    $this->db->where_in('COL_PRIMARY_KEY', $qsoids);
+		    $this->db->group_start();
+		    $this->db->where(array('station_id' => NULL));
+		    $this->db->or_where(array('station_id' => 0));	// 0 is also unassigned, compare mig_185
+		    $this->db->group_end();
+		    if ($station_callsign == '') {
+			    $this->db->where(array('col_station_callsign' => NULL));
+		    } else {
+			    $this->db->where('col_station_callsign', $station_callsign);
+		    }
+		    $this->db->update($this->config->item('table_name'), $data);
+		    if ($this->db->affected_rows() > 0) {
+			    return TRUE;
+		    } else {
+			    return FALSE;
+		    }
+	    } else {
+		    return FALSE;
+	    }
     }
 
     public function parse_frequency($frequency)
@@ -4760,6 +4767,7 @@ function lotw_last_qsl_date($user_id) {
 
     public function get_states_by_dxcc($dxcc) {
         $this->db->where('adif', $dxcc);
+        $this->db->order_by('subdivision', 'ASC');
         return $this->db->get('primary_subdivisions');
     }
 

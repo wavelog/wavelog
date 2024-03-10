@@ -1,12 +1,12 @@
 <div class="container">
 	<h3>
-	  <?php if (isset($user_add)) { 
+	  <?php if (isset($user_add)) {
 		echo lang('account_create_user_account');
 	  } else {
 		echo lang('account_edit_account')." <small class=\"text-muted\">".$user_name."</small>";
-	  }  
+	  }
 	  ?>
-	  
+
 	</h3>
 
 	<?php if($this->session->flashdata('success')) { ?>
@@ -51,23 +51,25 @@
 									<div class="mb-3">
 										<label><?php echo lang('account_username'); ?></label>
 										<input class="form-control" type="text" name="user_name" value="<?php if(isset($user_name)) { echo $user_name; } ?>" />
-										<?php if(isset($username_error)) { echo "<small class=\"error\">".$username_error."</small>"; } ?>
+										<?php if(isset($username_error)) { echo "<small class=\"badge bg-danger\">".$username_error."</small>"; } ?>
 									</div>
 
 									<div class="mb-3">
 										<label><?php echo lang('account_email_address'); ?></label>
 										<input class="form-control" type="text" name="user_email" value="<?php if(isset($user_email)) { echo $user_email; } ?>" />
-										<?php if(isset($email_error)) { echo "<small class=\"error\">".$email_error."</small>"; } ?>
+										<?php if(isset($email_error)) { echo "<small class=\"badge bg-danger\">".$email_error."</small>"; } ?>
 									</div>
-									
+
 									<div class="mb-3">
 										<label><?php echo lang('account_password'); ?></label>
 										<div class="input-group">
 											<input class="form-control" type="password" name="user_password" />
 											<span class="input-group-btn"><button class="btn btn-default btn-pwd-showhide" type="button"><i class="fa fa-eye-slash"></i></button></span>
 										</div>
-										<?php if(isset($password_error)) { echo "<small class=\"error\">".$password_error."</small>"; } else { ?>
-										<small class="form-text text-muted"><?php echo lang('account_leave_blank_to_keep_existing_password'); ?></small>
+										<?php if(isset($password_error)) {
+											echo "<small class=\"badge bg-danger\">".$password_error."</small>";
+											} else if (!isset($user_add)) { ?>
+											<small class="form-text text-muted"><?php echo lang('account_leave_blank_to_keep_existing_password'); ?></small>
 										<?php } ?>
 									</div>
 
@@ -100,14 +102,14 @@
 									<div class="mb-3">
 										<label><?php echo lang('account_first_name'); ?></label>
 										<input class="form-control" type="text" name="user_firstname" value="<?php if(isset($user_firstname)) { echo $user_firstname; } ?>" />
-											<?php if(isset($firstname_error)) { echo "<small class=\"error\">".$firstname_error."</small>"; } else { ?>
+											<?php if(isset($firstname_error)) { echo "<small class=\"badge bg-danger\">".$firstname_error."</small>"; } else { ?>
 											<?php } ?>
 									</div>
 
 									<div class="mb-3">
 										<label><?php echo lang('account_last_name'); ?></label>
 										<input class="form-control" type="text" name="user_lastname" value="<?php if(isset($user_lastname)) { echo $user_lastname; } ?>" />
-											<?php if(isset($lastname_error)) { echo "<small class=\"error\">".$lastname_error."</small>"; } else { ?>
+											<?php if(isset($lastname_error)) { echo "<small class=\"badge bg-danger\">".$lastname_error."</small>"; } else { ?>
 											<?php } ?>
 									</div>
 								</div>
@@ -121,14 +123,14 @@
 									<div class="mb-3">
 										<label><?php echo lang('account_callsign'); ?></label>
 										<input class="form-control" type="text" name="user_callsign" value="<?php if(isset($user_callsign)) { echo $user_callsign; } ?>" />
-											<?php if(isset($callsign_error)) { echo "<small class=\"error\">".$callsign_error."</small>"; } else { ?>
+											<?php if(isset($callsign_error)) { echo "<small class=\"badge bg-danger\">".$callsign_error."</small>"; } else { ?>
 											<?php } ?>
 									</div>
 
 									<div class="mb-3">
 										<label><?php echo lang('account_gridsquare'); ?></label>
 										<input class="form-control" type="text" name="user_locator" value="<?php if(isset($user_locator)) { echo $user_locator; } ?>" />
-											<?php if(isset($locator_error)) { echo "<small class=\"error\">".$locator_error."</small>"; } else { ?>
+											<?php if(isset($locator_error)) { echo "<small class=\"badge bg-danger\">".$locator_error."</small>"; } else { ?>
 											<?php } ?>
 									</div>
 								</div>
@@ -179,9 +181,9 @@
 
 									<div class="mb-3">
 										<label><?php echo lang('account_timezone'); ?></label>
-										<?php 
+										<?php
 										if(!isset($user_timezone)) { $user_timezone='151'; }
-										echo form_dropdown('user_timezone', $timezones, $user_timezone); 
+										echo form_dropdown('user_timezone', $timezones, $user_timezone);
 										?>
 									</div>
 
@@ -422,7 +424,7 @@
 											<option value="0" <?php if ($user_show_notes == 0) { echo " selected =\"selected\""; } ?>><?php echo lang('general_word_no'); ?></option>
 										</select>
 									</div>
-									
+
 									<hr/>
 
 									<div class="mb-3">
@@ -476,7 +478,7 @@
 												<input type="hidden" name="user_map_station_icon" value="<?php echo $user_map_station_icon; ?>">
 												<div class="form-select icon_overSelect"><?php echo (($user_map_station_icon=="0")?substr($this->lang->line('general_word_not_display'),0,10).'.':("<i class='".$user_map_station_icon."'></i>")); ?></div>
 											</div>
-											<div class="col-md-3 icon_selectBox_data" data-boxcontent="station"> 
+											<div class="col-md-3 icon_selectBox_data" data-boxcontent="station">
 												<?php foreach($map_icon_select['station'] as $val) {
 													echo "<label data-value='".$val."'>".(($val=="0")?$this->lang->line('general_word_not_display'):("<i class='".$val."'></i>"))."</label>";
 												} ?>
@@ -494,7 +496,7 @@
 												<input type="hidden" name="user_map_qso_icon" value="<?php echo $user_map_qso_icon; ?>">
 												<div class="form-select icon_overSelect"><?php echo "<i class='".$user_map_qso_icon."'></i>"; ?></div>
 											</div>
-											<div class="col-md-3 icon_selectBox_data" data-boxcontent="qso"> 
+											<div class="col-md-3 icon_selectBox_data" data-boxcontent="qso">
 												<?php foreach($map_icon_select['qso'] as $val) {
 													echo "<label data-value='".$val."'><i class='".$val."'></i></label>";
 												} ?>
@@ -514,7 +516,7 @@
 												<input type="hidden" name="user_map_qsoconfirm_icon" value="<?php echo $user_map_qsoconfirm_icon; ?>">
 												<div class="form-select icon_overSelect"><?php echo (($user_map_qsoconfirm_icon=="0")?$this->lang->line('general_word_no'):("<i class='".$user_map_qsoconfirm_icon."'></i>")); ?></div>
 											</div>
-											<div class="col-md-3 icon_selectBox_data" data-boxcontent="qsoconfirm"> 
+											<div class="col-md-3 icon_selectBox_data" data-boxcontent="qsoconfirm">
 												<?php foreach($map_icon_select['qsoconfirm'] as $val) {
 													echo "<label data-value='".$val."'>".(($val=="0")?$this->lang->line('general_word_no'):("<i class='".$val."'></i>"))."</label>";
 												} ?>
@@ -595,6 +597,8 @@
 											<?php echo '<input class="form-check-input" type="checkbox" name="user_default_confirmation_qsl" id="user_default_confirmation_qsl"';
 											if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'Q') !== false) {
 												echo ' checked';
+											} else if (!isset($user_default_confirmation)) {
+												echo ' checked';
 											}
 											echo '>'; ?>
 											<label class="form-check-label" for="user_default_confirmation_qsl"><?php echo lang('gen_hamradio_qsl'); ?></label>
@@ -602,6 +606,8 @@
 										<div class="form-check-inline">
 											<?php echo '<input class="form-check-input" type="checkbox" name="user_default_confirmation_lotw" id="user_default_confirmation_lotw"';
 											if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'L') !== false) {
+												echo ' checked';
+											} else if (!isset($user_default_confirmation)) {
 												echo ' checked';
 											}
 											echo '>'; ?>
@@ -619,7 +625,7 @@
 											<?php echo '<input class="form-check-input" type="checkbox" name="user_default_confirmation_qrz" id="user_default_confirmation_qrz"';
 											if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'Z') !== false) {
 												echo ' checked';
-											} 
+											}
 											echo '>'; ?>
 											<label class="form-check-label" for="user_default_confirmation_qrz">QRZ.com</label>
 										</div>
@@ -648,7 +654,7 @@
 									<div class="mb-3">
 										<label><?php echo lang('account_logbook_of_the_world_lotw_username'); ?></label>
 										<input class="form-control" type="text" name="user_lotw_name" value="<?php if(isset($user_lotw_name)) { echo $user_lotw_name; } ?>" />
-										<?php if(isset($userlotwname_error)) { echo "<small class=\"error\">".$userlotwname_error."</small>"; } ?>
+										<?php if(isset($userlotwname_error)) { echo "<small class=\"badge bg-danger\">".$userlotwname_error."</small>"; } ?>
 									</div>
 
 									<div class="mb-3">
@@ -657,8 +663,10 @@
 											<input class="form-control" type="password" name="user_lotw_password" />
 											<span class="input-group-btn"><button class="btn btn-default btn-pwd-showhide" type="button"><i class="fa fa-eye-slash"></i></button></span>
 										</div>
-										<?php if(isset($lotwpassword_error)) { echo "<small class=\"error\">".$lotwpassword_error."</small>"; } else { ?>
-										<small class="form-text text-muted"><?php echo lang('account_leave_blank_to_keep_existing_password'); ?></small>
+										<?php if(isset($lotwpassword_error)) {
+											echo "<small class=\"badge bg-danger\">".$lotwpassword_error."</small>";
+											} else if (!isset($user_add)) { ?>
+												<small class="form-text text-muted"><?php echo lang('account_leave_blank_to_keep_existing_password'); ?></small>
 										<?php } ?>
 									</div>
 								</div>
@@ -673,7 +681,7 @@
 									<div class="mb-3">
 										<label><?php echo lang('account_eqslcc_username'); ?></label>
 										<input class="form-control" type="text" name="user_eqsl_name" value="<?php if(isset($user_eqsl_name)) { echo $user_eqsl_name; } ?>" />
-											<?php if(isset($eqslusername_error)) { echo "<small class=\"error\">".$eqslusername_error."</small>"; } ?>
+											<?php if(isset($eqslusername_error)) { echo "<small class=\"badge bg-danger\">".$eqslusername_error."</small>"; } ?>
 									</div>
 
 									<div class="mb-3">
@@ -682,8 +690,10 @@
 											<input class="form-control" type="password" name="user_eqsl_password" />
 											<span class="input-group-btn"><button class="btn btn-default btn-pwd-showhide" type="button"><i class="fa fa-eye-slash"></i></button></span>
 										</div>
-										<?php if(isset($eqslpassword_error)) { echo "<small class=\"error\">".$eqslpassword_error."</small>"; } else { ?>
-										<small class="form-text text-muted"><?php echo lang('account_leave_blank_to_keep_existing_password'); ?></small>
+										<?php if(isset($eqslpassword_error)) {
+											echo "<small class=\"badge bg-danger\">".$eqslpassword_error."</small>";
+											} else if (!isset($user_add)) { ?>
+												<small class="form-text text-muted"><?php echo lang('account_leave_blank_to_keep_existing_password'); ?></small>
 										<?php } ?>
 									</div>
 								</div>
@@ -699,7 +709,7 @@
 										<label><?php echo lang('account_clublog_email_callsign'); ?></label>
 										<input class="form-control" type="text" name="user_clublog_name" value="<?php if(isset($user_clublog_name)) { echo $user_clublog_name; } ?>" />
 										<small class="form-text text-muted"><?php echo lang('account_the_email_or_callsign_you_use_to_login_to_club_log'); ?></small>
-										<?php if(isset($userclublogname_error)) { echo "<small class=\"error\">".$userclublogname_error."</small>"; } ?>
+										<?php if(isset($userclublogname_error)) { echo "<small class=\"badge bg-danger\">".$userclublogname_error."</small>"; } ?>
 									</div>
 
 									<div class="mb-3">
@@ -708,8 +718,10 @@
 											<input class="form-control" type="password" name="user_clublog_password" />
 											<span class="input-group-btn"><button class="btn btn-default btn-pwd-showhide" type="button"><i class="fa fa-eye-slash"></i></button></span>
 										</div>
-										<?php if(isset($clublogpassword_error)) { echo "<small class=\"error\">".$clublogpassword_error."</small>"; } else { ?>
-										<small class="form-text text-muted"><?php echo lang('account_leave_blank_to_keep_existing_password'); ?></small>
+										<?php if(isset($clublogpassword_error)) {
+											echo "<small class=\"badge bg-danger\">".$clublogpassword_error."</small>";
+											} else if (!isset($user_add)) { ?>
+												<small class="form-text text-muted"><?php echo lang('account_leave_blank_to_keep_existing_password'); ?></small>
 										<?php } ?>
 									</div>
 								</div>
@@ -776,6 +788,32 @@
 								</div>
 							</div>
 						</div>
+					</div>
+
+					<div class="row">
+						<!-- Hams.at Settings -->
+						<div class="col-md">
+							<div class="card">
+								<div class="card-header"><?php echo lang('account_hamsat'); ?></div>
+								<div class="card-body">
+									<div class="mb-3">
+									<label><?php echo lang('account_hamsat_private_feed_key'); ?></label>
+										<input class="form-control" type="text" name="user_hamsat_key" value="<?php if(isset($user_hamsat_key)) { echo $user_hamsat_key; } ?>" />
+										<small class="form-text text-muted"><?php echo lang('account_hamsat_hint'); ?></a></small>
+									</div>
+									<div class="mb-3">
+										<label><?php echo lang('account_hamsat_workable_only'); ?></label>
+										<?php if(!isset($user_hamsat_workable_only)) { $user_hamsat_workable_only='0'; }?>
+										<select class="form-select" name="user_hamsat_workable_only" id="user_hamsat_workable_only">
+											<option value="0" <?php if ($user_hamsat_workable_only == 0) { echo 'selected="selected"'; } ?>><?php echo lang('general_word_no'); ?></option>
+											<option value="1" <?php if ($user_hamsat_workable_only == 1) { echo 'selected="selected"'; } ?>><?php echo lang('general_word_yes'); ?></option>
+										</select>
+										<small class="form-text text-muted"><?php echo lang('account_hamsat_workable_only_hint'); ?></small>
+									</div>
+								</div>
+							</div>
+						</div>
+
 					</div>
 				</div>
 			</div>

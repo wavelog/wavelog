@@ -227,8 +227,8 @@ $lang['general_word_today'] = "Aujourd'hui";
 
 $lang['dashboard_php_version_warning'] = "Vous devez mettre à jour votre version PHP. La version minimale est 7.4. Votre version est";
 $lang['dashboard_country_files_warning'] = "Vous devez mettre à jour les fichiers pays ! Cliquez <a href=\"".site_url('update')."\">ici</a> pour le faire !";
-$lang['dashboard_locations_warning'] = "Vous n'avez pas de lieu de station. Cliquez <a href=\"". site_url('station') . "\">ici</a> pour en créer un !";
-$lang['dashboard_logbooks_warning'] = "Vous n'avez pas de journal de travail pour la station. Aller sur cette <a href=\"". site_url('logbooks') . "\">page</a> pour en créer un !";
+$lang['dashboard_locations_warning'] = "Vous n'avez pas de lieu de station. Cliquez <a href=\"". site_url('stationsetup') . "\">ici</a> pour en créer un !";
+$lang['dashboard_logbooks_warning'] = "Vous n'avez pas de journal de travail pour la station. Aller sur cette <a href=\"". site_url('stationsetup') . "\">page</a> pour en créer un !";
 
 $lang['hams_at_no_activations_found'] = "Aucune activation à venir trouvée. Veuillez revenir plus tard.";
 

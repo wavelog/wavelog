@@ -99,8 +99,16 @@ class QSO extends CI_Controller {
 			//change to create_qso function as add and create_qso duplicate functionality
 			$this->logbook_model->create_qso();
 
+			$retuner=[];
+                	$actstation=$this->stations->find_active() ?? '';
+                	$returner['activeStationId'] = $actstation;
+                	$profile_info = $this->stations->profile($actstation)->row();
+                	$returner['activeStationTXPower'] = xss_clean($profile_info->station_power);
+                	$returner['activeStationOP'] = xss_clean($this->session->userdata('operator_callsign'));
+			$returner['message']='success';
+
 			// Get last 5 qsos
-            		echo json_encode(array('message' => 'success'));
+            		echo json_encode($returner);
 		}
 	}
 
@@ -492,41 +500,6 @@ class QSO extends CI_Controller {
         echo json_encode($json);
     }
 
-    /*
-	 * Function is used for autocompletion of Counties in the station profile form
-	 */
-    public function get_county() {
-        $json = [];
-
-        if(!empty($this->input->get("query"))) {
-            //$query = isset($_GET['query']) ? $_GET['query'] : FALSE;
-            $county = $this->input->get("state");
-            $cleanedcounty = explode('(', $county);
-            $cleanedcounty = trim($cleanedcounty[0]);
-
-            $file = 'assets/json/US_counties.csv';
-
-            if (is_readable($file)) {
-                $lines = file($file, FILE_IGNORE_NEW_LINES);
-                $input = preg_quote($cleanedcounty, '~');
-                $reg = '~^'. $input .'(.*)$~';
-                $result = preg_grep($reg, $lines);
-                $json = [];
-                $i = 0;
-                foreach ($result as &$value) {
-                    $county = explode(',', $value);
-                    // Limit to 100 as to not slowdown browser too much
-                    if (count($json) <= 300) {
-                        $json[] = ["name"=>$county[1]];
-                    }
-                }
-            }
-        }
-
-        header('Content-Type: application/json');
-        echo json_encode($json);
-    }
-
    public function get_sota_info() {
       $this->load->library('sota');
 
@@ -573,6 +546,17 @@ class QSO extends CI_Controller {
 
 	   // Load view
 	   $this->load->view('qso/components/previous_contacts', $data);
+   }
+
+   public function get_eqsl_default_qslmsg() {	// Get ONLY Default eQSL-Message with this function. This is ONLY for QSO relevant!
+	   $return_json = array();
+	   $option_key = $this->input->post('option_key');
+	   if ($option_key > 0) {
+		   $options_object = $this->user_options_model->get_options('eqsl_default_qslmsg', array('option_name' => 'key_station_id', 'option_key' => $option_key))->result();
+		   $return_json['eqsl_default_qslmsg'] = (isset($options_object[0]->option_value)) ? $options_object[0]->option_value : '';
+	   }
+	   header('Content-Type: application/json');
+	   echo json_encode($return_json);
    }
 
    function check_locator($grid) {

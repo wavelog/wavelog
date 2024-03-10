@@ -4,6 +4,7 @@
 class Map extends CI_Controller {
 
 	function index() {
+		redirect('dashboard');
     }
 
 	// Generic fonction for return Json for MAP //
@@ -12,18 +13,9 @@ class Map extends CI_Controller {
 		$this->load->model('logbook_model');
 
 		// set informations //
-		if ($this->input->post('isCustom') == true) {
-			$date_from = xss_clean($this->input->post('date_from'));
-			$date_to = xss_clean($this->input->post('date_to'));
-			$band = xss_clean($this->input->post('band'));
-			$mode = xss_clean($this->input->post('mode'));
-			$prop_mode = xss_clean($this->input->post('prop_mode'));
-			$qsos = $this->logbook_model->map_custom_qsos($date_from, $date_to, $band, $mode, $prop_mode);
-		} else {
-			$nb_qso = (intval($this->input->post('nb_qso'))>0)?xss_clean($this->input->post('nb_qso')):18;
-			$offset = (intval($this->input->post('offset'))>0)?xss_clean($this->input->post('offset')):null;
-			$qsos = $this->logbook_model->get_qsos($nb_qso, $offset);
-		}
+		$nb_qso = (intval($this->input->post('nb_qso'))>0)?xss_clean($this->input->post('nb_qso')):18;
+		$offset = (intval($this->input->post('offset'))>0)?xss_clean($this->input->post('offset')):null;
+		$qsos = $this->logbook_model->get_qsos($nb_qso, $offset);
 		// [PLOT] ADD plot //
 		$plot_array = $this->logbook_model->get_plot_array_for_map($qsos->result());
 		// [MAP Custom] ADD Station //

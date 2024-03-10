@@ -18,7 +18,7 @@ $lang['qso_transmit_power_helptext'] = 'Zadej výkon ve Wattech. Jsou povolen po
 
 $lang['qso_sota_ref_helptext'] = 'Příklad: GM/NS-001.';
 $lang['qso_wwff_ref_helptext'] = 'Příklad: DLFF-0069.';
-$lang['qso_pota_ref_helptext'] = 'Příklad: PA-0150.';
+$lang['qso_pota_ref_helptext'] = 'Příklad: PA-0150. Multiple values allowed.';
 
 $lang['qso_sig_helptext'] = 'Příklad: GMA';
 $lang['qso_sig_info_helptext'] = 'Příklad: DA/NW-357';
@@ -35,7 +35,8 @@ $lang['qso_error_timeoff_less_timeon'] = "TimeOff is less than TimeOn";
 
 // Button Text on /qso Display
 
-$lang['qso_btn_reset_qso'] = 'Vymazat';
+$lang['qso_btn_clear_qso'] = 'Clear';
+$lang['qso_btn_reset_to_default'] = 'Reset to Default';
 $lang['qso_btn_save_qso'] = 'Uložit spojení';
 $lang['qso_btn_edit_qso'] = 'Editovat spojení';
 $lang['qso_delete_warning'] = "Warning! Are you sure you want delete QSO with ";

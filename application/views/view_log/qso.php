@@ -301,7 +301,22 @@
                     <?php if($row->COL_POTA_REF != null) { ?>
                     <tr>
                         <td><?php echo lang('gen_hamradio_pota_reference'); ?></td>
-                        <td><a href="https://pota.app/#/park/<?php echo $row->COL_POTA_REF; ?>" target="_blank"><?php echo $row->COL_POTA_REF; ?></a></td>
+                        <td>
+                            <?php
+                            $pota_refs = explode(',', $row->COL_POTA_REF);
+                            $link_output = '';
+                            
+                            foreach ($pota_refs as $pota_ref) {
+                                $pota_ref = trim($pota_ref);
+                                if (!empty($pota_ref)) {
+                                    $link_output .= '<a href="https://pota.app/#/park/' . $pota_ref . '" target="_blank">' . $pota_ref . '</a>, ';
+                                }
+                            }
+                            
+                            $link_output = rtrim($link_output, ', ');
+                            echo $link_output;
+                            ?>
+                        </td>
                     </tr>
                     <?php } ?>
 
@@ -336,6 +351,8 @@
                         <td><?php echo lang('gen_hamradio_dok'); ?></td>
                         <?php if (preg_match('/^[A-Y]\d{2}$/', $row->COL_DARC_DOK)) { ?>
                         <td><a href="https://www.darc.de/<?php echo $row->COL_DARC_DOK; ?>" target="_blank"><?php echo $row->COL_DARC_DOK; ?></a></td>
+                        <?php } else if (preg_match('/^DV[ABCDEFGHIKLMNOPQRSTUVWXY]$/', $row->COL_DARC_DOK)) { ?>
+                        <td><a href="https://www.darc.de/der-club/distrikte/<?php echo strtolower(substr($row->COL_DARC_DOK, 2, 1)); ?>" target="_blank"><?php echo $row->COL_DARC_DOK; ?></a></td>
                         <?php } else if (preg_match('/^Z\d{2}$/', $row->COL_DARC_DOK)) { ?>
                         <td><a href="https://<?php echo $row->COL_DARC_DOK; ?>.vfdb.org" target="_blank"><?php echo $row->COL_DARC_DOK; ?></a></td>
                         <?php } else { ?>

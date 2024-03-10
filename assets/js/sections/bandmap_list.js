@@ -8,7 +8,8 @@ $(function() {
 
 	function get_dtable () {
 		var table = $('.spottable').DataTable({
-			"retrieve":true,
+			"paging": false,
+			"retrieve": true,
 			"language": {
 				url: getDataTablesLanguageUrl(),
 			},

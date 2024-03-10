@@ -18,7 +18,7 @@ $lang['qso_transmit_power_helptext'] = 'Anna teholukema Watteina käyttäen vain
 
 $lang['qso_sota_ref_helptext'] = 'Esimerkiksi: OH/JS-004.';
 $lang['qso_wwff_ref_helptext'] = 'Esimerkiksi: OHFF-1234.';
-$lang['qso_pota_ref_helptext'] = 'Esimerkiksi: PA-0150.';
+$lang['qso_pota_ref_helptext'] = 'Esimerkiksi: PA-0150. Multiple values allowed.';
 
 $lang['qso_sig_helptext'] = 'Esimerkiksi: GMA';
 $lang['qso_sig_info_helptext'] = 'Esimerkiksi: DA/NW-357';
@@ -35,7 +35,8 @@ $lang['qso_error_timeoff_less_timeon'] = "TimeOff is less than TimeOn";
 
 // Button Text on /qso Display
 
-$lang['qso_btn_reset_qso'] = 'Tyhjennä';
+$lang['qso_btn_clear_qso'] = 'Clear';
+$lang['qso_btn_reset_to_default'] = 'Reset to Default';
 $lang['qso_btn_save_qso'] = 'TALLENNA QSO';
 $lang['qso_btn_edit_qso'] = 'muokkaa QSO:a';
 $lang['qso_delete_warning'] = "Warning! Are you sure you want delete QSO with ";

@@ -174,7 +174,7 @@ $lang['gen_hamradio_county_reference'] = 'USA County';
 $lang['gen_hamradio_iota_reference'] = 'IOTA Reference';
 $lang['gen_hamradio_sota_reference'] = 'SOTA Reference';
 $lang['gen_hamradio_wwff_reference'] = 'WWFF Reference';
-$lang['gen_hamradio_pota_reference'] = 'POTA Reference';
+$lang['gen_hamradio_pota_reference'] = 'POTA Reference(s)';
 $lang['gen_hamradio_dok'] = 'DOK';
 $lang['gen_hamradio_state'] = 'State';
 $lang['gen_hamradio_iota'] = 'IOTA';
@@ -227,8 +227,8 @@ $lang['general_word_today'] = 'Today';
 
 $lang['dashboard_php_version_warning'] = 'You need to upgrade your PHP version. Minimum version is 7.4. Your version is';
 $lang['dashboard_country_files_warning'] = 'You need to update country files! Go <a href="'.site_url('update').'">here</a> to do it!';
-$lang['dashboard_locations_warning'] = 'You have no station locations. Go <a href="'. site_url('station') . '">here</a> to create it!';
-$lang['dashboard_logbooks_warning'] = 'You have no station logbook. Go <a href="'. site_url('logbooks') . '">here</a> to create it!';
+$lang['dashboard_locations_warning'] = 'You have no station locations. Go <a href="'. site_url('stationsetup') . '">here</a> to create it!';
+$lang['dashboard_logbooks_warning'] = 'You have no station logbook. Go <a href="'. site_url('stationsetup') . '">here</a> to create it!';
 
 $lang['hams_at_no_activations_found'] = 'No upcoming activations found. Please check back later.';
 
