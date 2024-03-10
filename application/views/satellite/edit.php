@@ -56,7 +56,7 @@
 		</tbody>
 	<table>
 
-	<button type="button" onclick="addSatMode();" class="btn btn-sm btn-primary"><i class="fas fa-plus-square"></i> Add satellite mode</button>
+	<button type="button" onclick="addSatMode();" class="btn btn-sm btn-primary addsatmode"><i class="fas fa-plus-square"></i> Add satellite mode</button>
 
 </div>
 </div>

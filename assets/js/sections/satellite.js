@@ -14,6 +14,10 @@ $(document).ready(function () {
 			url: getDataTablesLanguageUrl(),
 		}
 	});
+
+	$(document).on('click','.editSatmode', function (e) {
+		editSatmode(e.currentTarget.id);
+	});
 });
 
 function createSatelliteDialog() {
@@ -160,6 +164,7 @@ function editSatmode(id) {
 }
 
 function saveChanges(id) {
+	$('.addsatmode').prop("disabled", false);
 	$.ajax({
 		url: base_url + 'index.php/satellite/saveSatModeChanges',
 		type: 'post',
@@ -180,6 +185,7 @@ function saveChanges(id) {
 }
 
 function cancelChanges(id) {
+	$('.addsatmode').prop("disabled", false);
 	var tbl_row = $(".satmode_" + id).closest('tr');
 	tbl_row.find('.row_data').each(function(index, val)
 	{
@@ -231,6 +237,7 @@ function deleteSatmode(id) {
 }
 
 function addSatMode() {
+	$('.addsatmode').prop("disabled", true)
 	$('.satmodetable tbody').append($('<tr>')
 		.append($('<td class="row_data" style="text-align: center; vertical-align: middle;">').append("").attr('contenteditable', 'true').addClass('bg-danger'))
 		.append($('<td class="row_data" style="text-align: center; vertical-align: middle;">').append("").attr('contenteditable', 'true').addClass('bg-danger'))
@@ -244,9 +251,11 @@ function addSatMode() {
 
 	$(".cancelnewline").click(function() {
 		$(this).closest("tr").remove();
+		$('.addsatmode').prop("disabled", false);
 	});
 
 	$(".savenewline").click(function() {
+		$('.addsatmode').prop("disabled", false);
 		var modename = $(this).closest("tr").find('td:eq(0)');
 		var uplink_mode = $(this).closest("tr").find('td:eq(1)');
 		var uplink_freq = $(this).closest("tr").find('td:eq(2)');
@@ -280,11 +289,11 @@ function addSatMode() {
 				.attr('contenteditable', 'false')
 				.removeClass('bg-danger');
 				tbl_row.find("#cancelButton").replaceWith(
-					'<td style="text-align: center; vertical-align: middle;" id="deleteButton">' + '<button type="button" class="btn btn-sm btn-danger" onclick="deleteSatmode('+data.inserted_id+');' + '"><i class="fas fa-trash-alt"></i></button>' + '</td>'
+					'<td style="text-align: center; vertical-align: middle;" id="deleteButton">' + '<button type="button" class="btn btn-sm btn-danger" onclick="deleteSatmode('+data.inserted_id+');' + '"><i class="fas fa-trash-alt"></i></button></td>'
 				);
 
 				tbl_row.find("#saveButton").replaceWith(
-					'<td style="text-align: center; vertical-align: middle;" id="editButton">' + '<button type="button" class="btn btn-sm btn-success" onclick="editSatmode('+data.inserted_id+');' + '"><i class="fas fa-edit"></i></button>' + '</td>'
+					'<td style="text-align: center; vertical-align: middle;" id="editButton">' + '<button type="button" class="btn btn-sm btn-success editSatmode" id="'+data.inserted_id+'"><i class="fas fa-edit"></i></button></td>'
 				);
 			}
 		});
