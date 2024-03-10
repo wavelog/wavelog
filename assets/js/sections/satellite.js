@@ -86,6 +86,7 @@ function editSatelliteDialog(id) {
 					label: lang_admin_close,
 					action: function (dialogItself) {
 						dialogItself.close();
+						location.reload();
 					}
 				}]
 			});

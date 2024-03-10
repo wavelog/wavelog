@@ -62,6 +62,7 @@ class Migration_satellite_table extends CI_Migration {
 				array('name' => 'LEDSAT', 'exportname' => '', 'orbit' => 'LEO'),
 				array('name' => 'Lilacsat-1', 'exportname' => '', 'orbit' => 'LEO'),
 				array('name' => 'MO-112', 'exportname' => '', 'orbit' => 'LEO'),
+				array('name' => 'NO-44', 'exportname' => '', 'orbit' => 'LEO'),
 				array('name' => 'NO-84', 'exportname' => '', 'orbit' => 'LEO'),
 				array('name' => 'NO-104', 'exportname' => '', 'orbit' => 'LEO'),
 				array('name' => 'PO-101', 'exportname' => '', 'orbit' => 'LEO'),
@@ -170,6 +171,7 @@ class Migration_satellite_table extends CI_Migration {
 			$this->db->query("INSERT INTO satellitemode (name, satelliteid, uplink_mode, uplink_freq, downlink_mode, downlink_freq)	SELECT 'U/U', id, 'PKT', '435310000', 'PKT', '435190000' FROM satellite WHERE name = 'LEDSAT';");
 			$this->db->query("INSERT INTO satellitemode (name, satelliteid, uplink_mode, uplink_freq, downlink_mode, downlink_freq) SELECT 'V/U', id, 'FM', '144350000', 'FM', '437200000' FROM satellite WHERE name = 'Lilacsat-1';");
 			$this->db->query("INSERT INTO satellitemode (name, satelliteid, uplink_mode, uplink_freq, downlink_mode, downlink_freq) SELECT 'V/U', id, 'PKT', '145987500', 'PKT', '436925000' FROM satellite WHERE name = 'MO-112';");
+			$this->db->query("INSERT INTO satellitemode (name, satelliteid, uplink_mode, uplink_freq, downlink_mode, downlink_freq) SELECT 'V', id, 'PKT', '145825000', 'PKT', '145825000' FROM satellite WHERE name = 'NO-44';");
 			$this->db->query("INSERT INTO satellitemode (name, satelliteid, uplink_mode, uplink_freq, downlink_mode, downlink_freq) SELECT 'A/U', id, 'LSB', '28120000', 'FM', '435350000' FROM satellite WHERE name = 'NO-84';");
 			$this->db->query("INSERT INTO satellitemode (name, satelliteid, uplink_mode, uplink_freq, downlink_mode, downlink_freq) SELECT 'V', id, 'PKT', '145825000', 'PKT', '145825000' FROM satellite WHERE name = 'NO-84';");
 			$this->db->query("INSERT INTO satellitemode (name, satelliteid, uplink_mode, uplink_freq, downlink_mode, downlink_freq) SELECT 'A/U', id, 'LSB', '29481500', 'FM', '435350000' FROM satellite WHERE name = 'NO-104';");
