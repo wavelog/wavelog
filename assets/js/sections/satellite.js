@@ -151,6 +151,7 @@ function editSatmode(id) {
     );
 
 	var tbl_row = $(".satmode_" + id).closest('tr');
+	tbl_row.addClass('editRow');
 	tbl_row.find('.row_data')
 	.attr('contenteditable', 'true')
 	.addClass('bg-danger');
@@ -197,6 +198,7 @@ function cancelChanges(id) {
 
 function restoreLine(id) {
 	var tbl_row = $(".satmode_" + id).closest('tr');
+	tbl_row.removeClass('editRow');
 	tbl_row.find('.row_data')
 	.attr('contenteditable', 'false')
 	.removeClass('bg-danger');
@@ -238,7 +240,7 @@ function deleteSatmode(id) {
 
 function addSatMode() {
 	$('.addsatmode').prop("disabled", true)
-	$('.satmodetable tbody').append($('<tr>')
+	$('.satmodetable tbody').append($('<tr class="editRow">')
 		.append($('<td class="row_data" style="text-align: center; vertical-align: middle;">').append("").attr('contenteditable', 'true').addClass('bg-danger'))
 		.append($('<td class="row_data" style="text-align: center; vertical-align: middle;">').append("").attr('contenteditable', 'true').addClass('bg-danger'))
 		.append($('<td class="row_data" style="text-align: center; vertical-align: middle;">').append("").attr('contenteditable', 'true').addClass('bg-danger'))
@@ -278,6 +280,7 @@ function addSatMode() {
 			success: function (data) {
 				var tbl_row = $(tempthis).closest('tr');
 				tbl_row.addClass('satmode_'+data.inserted_id);
+				tbl_row.removeClass('editRow');
 
 				modename.attr('id','modename_'+data.inserted_id);
 				uplink_mode.attr('id','uplink_mode_'+data.inserted_id);
