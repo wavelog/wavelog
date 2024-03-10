@@ -58,7 +58,7 @@ class Satellite_model extends CI_Model {
 			$insert_id = $this->db->insert_id();
 
 			$data = array(
-				'name' 				=> xss_clean($this->input->post('name', true)),
+				'name' 				=> xss_clean($this->input->post('modename', true)),
 				'satelliteid' 		=> $insert_id,
 				'uplink_mode'		=> xss_clean($this->input->post('uplinkmode', true)),
 				'uplink_freq'		=> xss_clean($this->input->post('uplinkfrequency', true)),
