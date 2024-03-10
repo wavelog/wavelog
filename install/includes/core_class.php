@@ -118,8 +118,8 @@ class Core
 		$database_file = file_get_contents($template_path);
 
 		// Sanitize DB Password from single quotes
-		$sanitized_db_pwd = preg_replace("/\\/i",'\\\\',$data['db_password']);	// Escape the Escape char ( '\' becomes '\\' )
-		$sanitized_db_pwd = preg_replace("/\'/i",'\\\'',$data['db_password']);  // Escape the ' ( ' becomes \' )
+		$sanitized_db_pwd = preg_replace("/\\\/i",'\\\\',$input);       // Escape the Escape char ( '\' becomes '\\' )
+		$sanitized_db_pwd = preg_replace("/\'/i",'\\\\\'',$sanitized_db_pwd);  // Escape the ' ( ' becomes \' )
 
 		$new  = str_replace("%HOSTNAME%", $data['db_hostname'], $database_file);
 		$new  = str_replace("%USERNAME%", $data['db_username'], $new);
