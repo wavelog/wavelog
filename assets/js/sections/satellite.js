@@ -15,10 +15,21 @@ $(document).ready(function () {
 		}
 	});
 
+	$(document).on('click','.deleteSatmode', function (e) {
+		deleteSatmode(e.currentTarget.id,e.currentTarget.attributes.infotext.value);
+	});
+
 	$(document).on('click','.editSatmode', function (e) {
 		editSatmode(e.currentTarget.id);
 	});
 });
+
+	function sanit(text) {
+		out = text.replace("\\"," ");
+		out = text.replace("\"","'");
+		return $("<textarea/>").text(out).html();
+	}
+
 
 function createSatelliteDialog() {
 	$.ajax({
@@ -205,18 +216,18 @@ function restoreLine(id) {
 	.removeClass('bg-danger');
 
     $(".satmode_" + id).find("#cancelButton").replaceWith(
-        '<td style="text-align: center; vertical-align: middle;" id="deleteButton">' + '<button type="button" class="btn btn-sm btn-danger" onclick="deleteSatmode(' + id + ');' + '"><i class="fas fa-trash-alt"></i></button>' + '</td>'
+        '<td style="text-align: center; vertical-align: middle;" id="deleteButton">' + '<button type="button" class="btn btn-sm btn-danger deleteSatmode" infotext id="' + id + '"><i class="fas fa-trash-alt"></i></button>' + '</td>'
     );
 
 	$(".satmode_" + id).find("#saveButton").replaceWith(
-        '<td style="text-align: center; vertical-align: middle;" id="editButton">' + '<button type="button" class="btn btn-sm btn-success" onclick="editSatmode(' + id + ');' + '"><i class="fas fa-edit"></i></button>' + '</td>'
+        '<td style="text-align: center; vertical-align: middle;" id="editButton">' + '<button type="button" class="btn btn-sm btn-success editSatmode" id="' + id + '"><i class="fas fa-edit"></i></button>' + '</td>'
     );
 }
 
-function deleteSatmode(id) {
+function deleteSatmode(id, satmode) {
 	BootstrapDialog.confirm({
 		title: lang_general_word_danger,
-		message: 'Do you really want to delete this mode?',
+		message: 'Do you really want to delete the mode ' + satmode +'?',
 		type: BootstrapDialog.TYPE_DANGER,
 		closable: true,
 		draggable: true,
@@ -293,7 +304,7 @@ function addSatMode() {
 				.attr('contenteditable', 'false')
 				.removeClass('bg-danger');
 				tbl_row.find("#cancelButton").replaceWith(
-					'<td style="text-align: center; vertical-align: middle;" id="deleteButton">' + '<button type="button" class="btn btn-sm btn-danger" onclick="deleteSatmode('+data.inserted_id+');' + '"><i class="fas fa-trash-alt"></i></button></td>'
+					'<td style="text-align: center; vertical-align: middle;" id="deleteButton">' + '<button type="button" class="btn btn-sm btn-danger deleteSatmode" id="'+data.inserted_id+'" infotext="'+sanit(modename.html())+'"><i class="fas fa-trash-alt"></i></button></td>'
 				);
 
 				tbl_row.find("#saveButton").replaceWith(
