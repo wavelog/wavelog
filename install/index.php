@@ -1108,12 +1108,6 @@ global $wavelog_url;
 					return;
 				}
 
-				if (db_hostname.includes('\\') || db_username.includes('\\') || db_password.includes('\\') || db_name.includes('\\')) {
-					$('#db_connection_testresult').addClass('alert-danger');
-					$('#db_connection_testresult').html('Error: Input cannot contain a backslash (\\).');
-					return;
-				}
-
 				var originalButtonText = $('#db_connection_test_button').html();
 				$('#db_connection_test_button').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Connecting...').prop('disabled', true);
 
