@@ -12,9 +12,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |	'callbook'		Selects which Callbook lookup to use defaults "hamqth" but supports "qrz"
 */
 
-$config['app_name'] = "Wavelog";
-$config['directory'] = "logbook";
-$config['callbook'] = "hamqth"; // Options are hamqth or qrz
+$config['app_name'] = 'Wavelog';
+$config['directory'] = 'logbook';
+$config['callbook'] = 'hamqth'; // Options are hamqth or qrz
 
 $config['datadir'] = null; // default to install directory
 
@@ -28,8 +28,8 @@ $config['datadir'] = null; // default to install directory
 |	'display_freq'	Show or Hide frequnecy info
 */
 
-$config['table_name'] = "TABLE_HRD_CONTACTS_V01";
-$config['locator'] = "";
+$config['table_name'] = 'TABLE_HRD_CONTACTS_V01';
+$config['locator'] = '';
 $config['display_freq'] = true;
 
 /*
@@ -42,8 +42,8 @@ $config['display_freq'] = true;
 |	'use_fullname'  Get full names from QRZ, may not be GDPR compliant
 */
 
-$config['qrz_username'] = "";
-$config['qrz_password'] = "";
+$config['qrz_username'] = '';
+$config['qrz_password'] = '';
 $config['use_fullname'] = false;
 
 /*
@@ -54,8 +54,8 @@ $config['use_fullname'] = false;
 | 	'hamqth_username'	HamQTH user login
 |	'hamqth_password'	HamQTH user password
 */
-$config['hamqth_username'] = "";
-$config['hamqth_password'] = "";
+$config['hamqth_username'] = '';
+$config['hamqth_password'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -70,11 +70,11 @@ $config['hamqth_password'] = "";
 */
 
 $config['use_auth'] = true;
-$config['auth_table'] = "users";
-$config['auth_mode'] = "3";
+$config['auth_table'] = 'users';
+$config['auth_mode'] = '3';
 
-$config['auth_level'][3] = "Operator";
-$config['auth_level'][99] = "Administrator";
+$config['auth_level'][3] = 'Operator';
+$config['auth_level'][99] = 'Administrator';
 
 /*
 |--------------------------------------------------------------------------
@@ -676,4 +676,4 @@ $config['proxy_ips'] = '';
 |
 */
 
-$config['userdata'] = "userdata";  
+$config['userdata'] = 'userdata';  
