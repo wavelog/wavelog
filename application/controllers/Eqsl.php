@@ -616,8 +616,10 @@ class eqsl extends CI_Controller {
 				return $error;
 			}
 			$filename = uniqid().'.jpg';
-			if (file_put_contents($this->Eqsl_images->get_imagePath('p') .'/'. $filename, $content) !== false) {
-				$this->Eqsl_images->save_image($id, $filename);
+			if($this->Eqsl_images->get_image($id) == "No Image") {
+				if (file_put_contents($this->Eqsl_images->get_imagePath('p') .'/'. $filename, $content) !== false) {
+					$this->Eqsl_images->save_image($id, $filename);
+				}
 			}
 		}
 		return $error;
