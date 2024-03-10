@@ -142,8 +142,8 @@ class Migration_satellite_table extends CI_Migration {
 
 			$this->dbforge->create_table('satellitemode');
 
-			$this->db->query("INSERT INTO satellitemode (name, satelliteid, uplink_mode, uplink_freq, downlink_mode, downlink_freq)	SELECT 'V', id, 'PKT', '145825000', 'PKT', '145825000' FROM satellite WHERE name = 'AISAT-1';");
-			$this->db->query("INSERT INTO satellitemode (name, satelliteid, uplink_mode, uplink_freq, downlink_mode, downlink_freq)	SELECT 'V', id, 'PKT', '145825000', 'PKT', '145825000' FROM satellite WHERE name = 'ARISS';");
+			$this->db->query("INSERT INTO satellitemode (name, satelliteid, uplink_mode, uplink_freq, downlink_mode, downlink_freq)	SELECT 'V/V', id, 'PKT', '145825000', 'PKT', '145825000' FROM satellite WHERE name = 'AISAT-1';");
+			$this->db->query("INSERT INTO satellitemode (name, satelliteid, uplink_mode, uplink_freq, downlink_mode, downlink_freq)	SELECT 'V/V', id, 'PKT', '145825000', 'PKT', '145825000' FROM satellite WHERE name = 'ARISS';");
 			$this->db->query("INSERT INTO satellitemode (name, satelliteid, uplink_mode, uplink_freq, downlink_mode, downlink_freq)	SELECT 'V/U', id, 'FM', '145990000', 'FM', '437800000' FROM satellite WHERE name = 'ARISS';");
 			$this->db->query("INSERT INTO satellitemode (name, satelliteid, uplink_mode, uplink_freq, downlink_mode, downlink_freq)	SELECT 'U/V', id, 'LSB', '432150000', 'USB', '145950000' FROM satellite WHERE name = 'AO-7';");
 			$this->db->query("INSERT INTO satellitemode (name, satelliteid, uplink_mode, uplink_freq, downlink_mode, downlink_freq)	SELECT 'V/A', id, 'USB', '145900000', 'USB', '29450000' FROM satellite WHERE name = 'AO-7';");
@@ -154,6 +154,7 @@ class Migration_satellite_table extends CI_Migration {
 			$this->db->query("INSERT INTO satellitemode (name, satelliteid, uplink_mode, uplink_freq, downlink_mode, downlink_freq)	SELECT 'L/V', id, 'FM', '1267350000', 'FM', '145880000' FROM satellite WHERE name = 'AO-92';");
 			$this->db->query("INSERT INTO satellitemode (name, satelliteid, uplink_mode, uplink_freq, downlink_mode, downlink_freq)	SELECT 'V/U', id, 'FM', '144350000', 'FM', '437200000' FROM satellite WHERE name = 'CAS-3H';");
 			$this->db->query("INSERT INTO satellitemode (name, satelliteid, uplink_mode, uplink_freq, downlink_mode, downlink_freq)	SELECT 'V/U', id, 'LSB', '435220000', 'USB', '145870000' FROM satellite WHERE name = 'CAS-4A';");
+			$this->db->query("INSERT INTO satellitemode (name, satelliteid, uplink_mode, uplink_freq, downlink_mode, downlink_freq)	SELECT 'V/U', id, 'LSB', '435220000', 'USB', '145870000' FROM satellite WHERE name = 'CAS-4B';");
 			$this->db->query("INSERT INTO satellitemode (name, satelliteid, uplink_mode, uplink_freq, downlink_mode, downlink_freq)	SELECT 'H/U', id, 'USB', '21435000', 'USB', '435505000' FROM satellite WHERE name = 'FO-118';");
 			$this->db->query("INSERT INTO satellitemode (name, satelliteid, uplink_mode, uplink_freq, downlink_mode, downlink_freq)	SELECT 'V/U', id, 'LSB', '145820000', 'USB', '435540000' FROM satellite WHERE name = 'FO-118';");
 			$this->db->query("INSERT INTO satellitemode (name, satelliteid, uplink_mode, uplink_freq, downlink_mode, downlink_freq)	SELECT 'V/U', id, 'FM', '145925000', 'FM', '435600000' FROM satellite WHERE name = 'FO-118';");
@@ -171,9 +172,9 @@ class Migration_satellite_table extends CI_Migration {
 			$this->db->query("INSERT INTO satellitemode (name, satelliteid, uplink_mode, uplink_freq, downlink_mode, downlink_freq)	SELECT 'U/U', id, 'PKT', '435310000', 'PKT', '435190000' FROM satellite WHERE name = 'LEDSAT';");
 			$this->db->query("INSERT INTO satellitemode (name, satelliteid, uplink_mode, uplink_freq, downlink_mode, downlink_freq) SELECT 'V/U', id, 'FM', '144350000', 'FM', '437200000' FROM satellite WHERE name = 'Lilacsat-1';");
 			$this->db->query("INSERT INTO satellitemode (name, satelliteid, uplink_mode, uplink_freq, downlink_mode, downlink_freq) SELECT 'V/U', id, 'PKT', '145987500', 'PKT', '436925000' FROM satellite WHERE name = 'MO-112';");
-			$this->db->query("INSERT INTO satellitemode (name, satelliteid, uplink_mode, uplink_freq, downlink_mode, downlink_freq) SELECT 'V', id, 'PKT', '145825000', 'PKT', '145825000' FROM satellite WHERE name = 'NO-44';");
+			$this->db->query("INSERT INTO satellitemode (name, satelliteid, uplink_mode, uplink_freq, downlink_mode, downlink_freq) SELECT 'V/V', id, 'PKT', '145825000', 'PKT', '145825000' FROM satellite WHERE name = 'NO-44';");
 			$this->db->query("INSERT INTO satellitemode (name, satelliteid, uplink_mode, uplink_freq, downlink_mode, downlink_freq) SELECT 'A/U', id, 'LSB', '28120000', 'FM', '435350000' FROM satellite WHERE name = 'NO-84';");
-			$this->db->query("INSERT INTO satellitemode (name, satelliteid, uplink_mode, uplink_freq, downlink_mode, downlink_freq) SELECT 'V', id, 'PKT', '145825000', 'PKT', '145825000' FROM satellite WHERE name = 'NO-84';");
+			$this->db->query("INSERT INTO satellitemode (name, satelliteid, uplink_mode, uplink_freq, downlink_mode, downlink_freq) SELECT 'V/V', id, 'PKT', '145825000', 'PKT', '145825000' FROM satellite WHERE name = 'NO-84';");
 			$this->db->query("INSERT INTO satellitemode (name, satelliteid, uplink_mode, uplink_freq, downlink_mode, downlink_freq) SELECT 'A/U', id, 'LSB', '29481500', 'FM', '435350000' FROM satellite WHERE name = 'NO-104';");
 			$this->db->query("INSERT INTO satellitemode (name, satelliteid, uplink_mode, uplink_freq, downlink_mode, downlink_freq) SELECT 'U/V', id, 'FM', '437500000', 'FM', '145900000' FROM satellite WHERE name = 'PO-101';");
 			$this->db->query("INSERT INTO satellitemode (name, satelliteid, uplink_mode, uplink_freq, downlink_mode, downlink_freq) SELECT 'S/X', id, 'USB', '2400175000', 'USB', '10489675000' FROM satellite WHERE name = 'QO-100';");
@@ -198,6 +199,8 @@ class Migration_satellite_table extends CI_Migration {
 			$this->db->query("INSERT INTO satellitemode (name, satelliteid, uplink_mode, uplink_freq, downlink_mode, downlink_freq) SELECT 'U/V', id, 'LSB', '435160000', 'USB', '145805000' FROM satellite WHERE name = 'XW-2C';");
 			$this->db->query("INSERT INTO satellitemode (name, satelliteid, uplink_mode, uplink_freq, downlink_mode, downlink_freq) SELECT 'U/V', id, 'LSB', '435220000', 'USB', '145870000' FROM satellite WHERE name = 'XW-2D';");
 			$this->db->query("INSERT INTO satellitemode (name, satelliteid, uplink_mode, uplink_freq, downlink_mode, downlink_freq) SELECT 'U/V', id, 'LSB', '435340000', 'USB', '145990000' FROM satellite WHERE name = 'XW-2F';");
+			$this->db->query("INSERT INTO satellitemode (name, satelliteid, uplink_mode, uplink_freq, downlink_mode, downlink_freq) SELECT 'V/U', id, 'LSB', '145940000', 'USB', '435070000' FROM satellite WHERE name = 'UKUBE1';");
+			$this->db->query("INSERT INTO satellitemode (name, satelliteid, uplink_mode, uplink_freq, downlink_mode, downlink_freq) SELECT 'V/U', id, 'FM', '145820000', 'FREEDV', '435840000' FROM satellite WHERE name = 'TAURUS';");
 		}
 	}
 
