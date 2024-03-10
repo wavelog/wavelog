@@ -19,7 +19,7 @@
 			<thead>
 				<tr>
 					<th>Name</th>
-					<th>Export name</th>
+					<th>Export Name</th>
 					<th>Orbit</th>
 					<th>Mode</th>
 					<th>Edit</th>

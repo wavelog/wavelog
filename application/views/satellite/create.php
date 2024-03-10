@@ -25,7 +25,7 @@
 				<small id="nameInputHelp" class="form-text text-muted">Satellite name</small>
 			</div>
 			<div class="mb-3 col-md-6">
-				<label for="exportNameInput">Export name</label>
+				<label for="exportNameInput">Export Name</label>
 				<input type="text" class="form-control" name="exportNameInput" id="exportNameInput" aria-describedby="exportNameInputHelp" required>
 				<small id="exportNameInputHelp" class="form-text text-muted">If external services uses another name for the satellite, like LoTW</small>
 			</div>
