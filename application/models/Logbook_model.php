@@ -3345,7 +3345,7 @@ function lotw_last_qsl_date($user_id) {
 		  $input_submode = $submode;
 	  }
 
-	  $input_submode = (($input_submode ?? '') === '') ? null : $input_submode;	// Make Sure submode is NULL if empty
+	  $input_submode = (($input_submode ?? '') == '') ? null : $input_submode;	// Make Sure submode is NULL if empty
 	  $input_mode = (($input_mode ?? '') == '') ? null : $input_mode;	// Make Sure mode is NULL if empty
 
 
