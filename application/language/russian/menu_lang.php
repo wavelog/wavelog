@@ -105,3 +105,4 @@ $lang['menu_forum'] = 'Форум';
 $lang['menu_logout'] = 'Выход';
 
 $lang['menu_extras'] = "Extras";
+$lang['menu_satellites'] = 'Satellites';

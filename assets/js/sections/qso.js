@@ -503,7 +503,7 @@ $( document ).ready(function() {
 	/*
 	  Populate the Satellite Names Field on the QSO Panel
 	  */
-	$.getJSON(base_url+"assets/json/satellite_data.json", function( data ) {
+	$.getJSON(site_url + "/satellite/satellite_data", function( data ) {
 
 		// Build the options array
 		var items = [];
@@ -531,7 +531,7 @@ $( document ).ready(function() {
 				selected_sat_mode = value;
 
 				// get Json file
-				$.getJSON(base_url + "assets/json/satellite_data.json", function( data ) {
+				$.getJSON(site_url + "/satellite/satellite_data", function( data ) {
 
 					// Build the options array
 					var sat_modes = [];
@@ -569,7 +569,7 @@ $( document ).ready(function() {
 				$('.satellite_modes_list').find('option').remove().end();
 				selected_sat = value;
 				// get Json file
-				$.getJSON( base_url+"assets/json/satellite_data.json", function( data ) {
+				$.getJSON(site_url + "/satellite/satellite_data", function( data ) {
 
 					// Build the options array
 					var sat_modes = [];
