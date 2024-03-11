@@ -224,6 +224,8 @@
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="<?php echo site_url('contesting/add'); ?>" title="Manage Contest names"><i class="fas fa-broadcast-tower"></i> <?php echo lang('menu_contests'); ?></a>
 								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="<?php echo site_url('satellite'); ?>" title="Manage Satellites"><i class="fas fa-cog"></i> <?php echo lang('menu_satellites'); ?></a>
+								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="<?php echo site_url('themes'); ?>" title="Manage Themes"><i class="fas fa-cog"></i> <?php echo lang('menu_themes'); ?></a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="<?php echo site_url('backup'); ?>" title="Backup Wavelog content"><i class="fas fa-save"></i> <?php echo lang('menu_backup'); ?></a>
@@ -319,7 +321,7 @@
 									<li><a class="dropdown-item" href="<?php echo site_url('stationsetup'); ?>" title="Manage station setup"><i class="fas fa-home"></i> <?php echo lang('menu_station_setup'); ?></a></li>
 								<?php } ?>
 								<li><a class="dropdown-item" href="<?php echo site_url('band'); ?>" title="Manage Bands"><i class="fas fa-cog"></i> <?php echo lang('menu_bands'); ?></a></li>
-								<li><a class="dropdown-item" href="<?php echo site_url('satellite'); ?>" title="Manage Satellites"><i class="fas fa-cog"></i> <?php echo lang('menu_satellites'); ?></a></li>
+
 
 								<div class="dropdown-divider"></div>
 
