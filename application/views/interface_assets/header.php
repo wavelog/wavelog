@@ -224,7 +224,7 @@
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="<?php echo site_url('contesting/add'); ?>" title="Manage Contest names"><i class="fas fa-broadcast-tower"></i> <?php echo lang('menu_contests'); ?></a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="<?php echo site_url('satellite'); ?>" title="Manage Satellites"><i class="fas fa-cog"></i> <?php echo lang('menu_satellites'); ?></a>
+								<a class="dropdown-item" href="<?php echo site_url('satellite'); ?>" title="Manage Satellites"><i class="fas fa-satellite"></i> <?php echo lang('menu_satellites'); ?></a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="<?php echo site_url('themes'); ?>" title="Manage Themes"><i class="fas fa-cog"></i> <?php echo lang('menu_themes'); ?></a>
 								<div class="dropdown-divider"></div>
