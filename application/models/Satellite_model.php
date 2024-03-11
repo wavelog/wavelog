@@ -90,13 +90,32 @@ class Satellite_model extends CI_Model {
 			'downlink_mode'		=> xss_clean($this->input->post('downlink_mode', true)),
 			'downlink_freq'		=> xss_clean($this->input->post('downlink_freq', true)),
 		);
-
 		$this->db->insert('satellitemode', $data);
-
 		$insert_id = $this->db->insert_id();
-
-        return $insert_id;
+		return $insert_id;
 	}
+
+	function satellite_data() {
+		$this->db->select('satellite.name AS satellite, satellitemode.name AS satmode, satellitemode.uplink_mode AS Uplink_Mode, satellitemode.uplink_freq AS Uplink_Freq, satellitemode.downlink_mode AS Downlink_Mode, satellitemode.downlink_freq AS Downlink_Freq');
+		$this->db->join('satellitemode', 'satellite.id = satellitemode.satelliteid', 'LEFT OUTER');
+		$query = $this->db->get('satellite');
+		log_message('debug', 'SQL: '.$this->db->last_query());
+		return $query->result();
+	}
+
+     function array_group_by($flds, $arr) {
+            $groups = array();
+                foreach ($arr as $rec) {
+                         $keys = array_map(function($f) use($rec) { return $rec[$f]; }, $flds);
+                               $k = implode('@', $keys);
+                               if (isset($groups[$k])) {
+                                          $groups[$k][] = $rec;
+                                                } else {
+                                                           $groups[$k] = array($rec);
+                                                                 }
+                                   }
+                return $groups;
+              }
 
 }
 

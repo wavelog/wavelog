@@ -77,7 +77,7 @@ function prepareEditDialog() {
 	/*
 	Populate the Satellite Names in edit dropdown
 	*/
-	$.getJSON(base_url+"assets/json/satellite_data.json", function( data ) {
+	$.getJSON(site_url + "/satellite/satellite_data", function( data ) {
 
 		// Build the options array
 		var items = [];
