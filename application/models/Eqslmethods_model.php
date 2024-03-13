@@ -4,18 +4,29 @@ class Eqslmethods_model extends CI_Model {
 
 	function mark_all_as_sent() {
 		$data = array(
-            'COL_EQSL_QSL_SENT' => 'Y',
-            'COL_EQSL_QSLSDATE'  => date('Y-m-d')." 00:00:00",
-        );
+			'COL_EQSL_QSL_SENT' => 'Y',
+			'COL_EQSL_QSLSDATE'  => date('Y-m-d')." 00:00:00",
+		);
 
-        $this->db->group_start();
-		$this->db->where('COL_EQSL_QSL_SENT', 'N');
-        $this->db->or_where('COL_EQSL_QSL_SENT', 'R');
-        $this->db->or_where('COL_EQSL_QSL_SENT', 'Q');
-        $this->db->or_where('COL_EQSL_QSL_SENT', null);
-		$this->db->group_end();
-       
-        $this->db->update($this->config->item('table_name'), $data);
+		$userid=$this->session->userdata('user_id');
+		if ($userid ?? '' != '') {
+			$stations = $this->get_all_user_locations($userid);
+			$logbooks_locations_array = array();
+			foreach ($stations->result() as $row) {
+				array_push($logbooks_locations_array, $row->station_id);
+			}
+			if (count($logbooks_locations_array)>0) {
+				$this->db->where_in('station_id', $logbooks_locations_array);
+				$this->db->group_start();
+				$this->db->where('COL_EQSL_QSL_SENT', 'N');
+				$this->db->or_where('COL_EQSL_QSL_SENT', 'R');
+				$this->db->or_where('COL_EQSL_QSL_SENT', 'Q');
+				$this->db->or_where('COL_EQSL_QSL_SENT', null);
+				$this->db->group_end();
+
+				$this->db->update($this->config->item('table_name'), $data);
+			}
+		}
 	}
 
     function get_eqsl_users() {
