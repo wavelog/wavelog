@@ -55,6 +55,15 @@ $(document).ready(function () {
 		await do_ajax('setFavorite_json', 'id2Favorite', reloadStations,e);
 	});
 
+	$(document).on('click', '.editContainerName', async function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
+		editContainerDialog(e);
+	});
+
+	$(document).on('click', '.saveContainerName', async function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
+		saveContainerName(e);
+	});
+
+
 	$("#station_logbooks_table").DataTable({
 		stateSave: true,
 		language: {
@@ -94,6 +103,48 @@ $(document).ready(function () {
 		});
 	}
 
+	function editContainerDialog(e) {
+		$.ajax({
+			url: base_url + 'index.php/stationsetup/editContainerName',
+			type: 'post',
+			data: {
+				id: e.currentTarget.id,
+			},
+			success: function (data) {
+				BootstrapDialog.show({
+					title: 'Edit container name',
+					size: BootstrapDialog.SIZE_NORMAL,
+					cssClass: 'options',
+					id: "NewStationLogbookModal",
+					nl2br: false,
+					message: data,
+					onshown: function(dialog) {
+					},
+					buttons: [{
+						label: 'Save',
+						cssClass: 'btn-primary btn-sm saveContainerName',
+					},
+					{
+						label: lang_admin_close,
+						cssClass: 'btn-sm',
+						id: 'closeButton',
+						action: function (dialogItself) {
+							dialogItself.close();
+						}
+					}],
+				});
+			},
+			error: function (data) {
+
+			},
+		});
+		return false;
+	}
+
+	function saveContainerName() {
+
+	}
+
 
 function reloadLogbooks() {
 	$.ajax({
@@ -117,6 +168,7 @@ function reloadLogbooks() {
 	});
 	return false;
 }
+
 function reloadStations() {
 	$.ajax({
 		url: base_url + 'index.php/stationsetup/fetchLocations',

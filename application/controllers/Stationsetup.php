@@ -92,7 +92,7 @@ class Stationsetup extends CI_Controller {
 	public function getActiveStation() {
 		$active_loc = $this->stations->find_active();
 		echo json_encode($active_loc);
-	}	
+	}
 
 	public function setFavorite_json() {
 		$id2fav = xss_clean($this->input->post('id2Favorite', true));
@@ -158,6 +158,18 @@ class Stationsetup extends CI_Controller {
 	public function newLogbook() {
 		$data['page_title'] = "Create Station Logbook";
 		$this->load->view('stationsetup/create', $data);
+	}
+
+	public function editContainerName() {
+		$this->load->model('stationsetup_model');
+		$data['container'] = $this->stationsetup_model->getContainer(xss_clean($this->input->post('id', true)))->row();
+		$data['page_title'] = "Edit container name";
+		$this->load->view('stationsetup/edit', $data);
+	}
+
+	public function saveContainerName() {
+		$this->load->model('stationsetup_model');
+		$this->stationsetup_model->saveContainer();
 	}
 
 	public function newLocation() {
