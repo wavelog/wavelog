@@ -47,7 +47,7 @@
 											}?>
                                     </td>
                                     <td>
-									<a class="btn btn-outline-primary btn-sm" href="javascript:editLinkedLocations(<?php echo $row->logbook_id; ?>);"><i class="fas fa-edit"></i></a>
+									<button class="btn btn-outline-primary btn-sm editLinkedLocations" id="<?php echo $row->logbook_id; ?>);"><i class="fas fa-edit"></i></button>
                                     </td>
                                     <td>
                                         <?php if($this->session->userdata('active_station_logbook') != $row->logbook_id) { ?>
@@ -57,7 +57,7 @@
                                         <?php } ?>
                                     </td>
                                     <td>
-										<a href="" title=<?php echo lang('admin_edit'); ?> class="btn btn-outline-primary btn-sm"><i class="fas fa-edit"></i></a>
+										<button class="btn btn-outline-primary btn-sm editVisitorLink" id="<?php echo $row->logbook_id; ?>"><i class="fas fa-edit"></i></button>
                                         <?php if($row->public_slug != '') { ?>
                                         <a target="_blank"
                                             href="<?php echo site_url('visitor')."/".$row->public_slug; ?>"

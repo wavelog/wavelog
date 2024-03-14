@@ -63,6 +63,14 @@ $(document).ready(function () {
 		saveContainerName(e);
 	});
 
+	$(document).on('click', '.editLinkedLocations', async function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
+		editLinkedLocations(e);
+	});
+
+	$(document).on('click', '.editVisitorLink', async function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
+		editVisitorLink(e);
+	});
+
 
 	$("#station_logbooks_table").DataTable({
 		stateSave: true,
@@ -143,6 +151,82 @@ $(document).ready(function () {
 
 	function saveContainerName() {
 
+	}
+
+	function editLinkedLocations(e) {
+		$.ajax({
+			url: base_url + 'index.php/stationsetup/editLinkedLocations',
+			type: 'post',
+			data: {
+				id: e.currentTarget.id,
+			},
+			success: function (data) {
+				BootstrapDialog.show({
+					title: 'Edit linked locations',
+					size: BootstrapDialog.SIZE_WIDE,
+					cssClass: 'options',
+					id: "NewStationLogbookModal",
+					nl2br: false,
+					message: data,
+					onshown: function(dialog) {
+					},
+					buttons: [{
+						label: 'Save',
+						cssClass: 'btn-primary btn-sm',
+					},
+					{
+						label: lang_admin_close,
+						cssClass: 'btn-sm',
+						id: 'closeButton',
+						action: function (dialogItself) {
+							dialogItself.close();
+						}
+					}],
+				});
+			},
+			error: function (data) {
+
+			},
+		});
+		return false;
+	}
+
+	function editVisitorLink(e) {
+		$.ajax({
+			url: base_url + 'index.php/stationsetup/editVisitorLink',
+			type: 'post',
+			data: {
+				id: e.currentTarget.id,
+			},
+			success: function (data) {
+				BootstrapDialog.show({
+					title: 'Edit visitor link',
+					size: BootstrapDialog.SIZE_NORMAL,
+					cssClass: 'options',
+					id: "NewStationLogbookModal",
+					nl2br: false,
+					message: data,
+					onshown: function(dialog) {
+					},
+					buttons: [{
+						label: 'Save',
+						cssClass: 'btn-primary btn-sm',
+					},
+					{
+						label: lang_admin_close,
+						cssClass: 'btn-sm',
+						id: 'closeButton',
+						action: function (dialogItself) {
+							dialogItself.close();
+						}
+					}],
+				});
+			},
+			error: function (data) {
+
+			},
+		});
+		return false;
 	}
 
 

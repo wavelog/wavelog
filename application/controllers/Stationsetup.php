@@ -172,6 +172,24 @@ class Stationsetup extends CI_Controller {
 		$this->stationsetup_model->saveContainer();
 	}
 
+	public function editLinkedLocations() {
+		$this->load->model('logbooks_model');
+		$station_logbook_details_query = $this->logbooks_model->logbook(xss_clean($this->input->post('id', true)));
+		$data['station_logbook_details'] = $station_logbook_details_query->row();
+		$data['station_locations_linked'] = $this->logbooks_model->list_logbooks_linked($this->input->post('id', true));
+		$data['page_title'] = "Edit lined locations";
+		$this->load->view('stationsetup/linkedlocations', $data);
+	}
+
+	public function editVisitorLink() {
+		$this->load->model('logbooks_model');
+		$station_logbook_details_query = $this->logbooks_model->logbook(xss_clean($this->input->post('id', true)));
+		$data['station_logbook_details'] = $station_logbook_details_query->row();
+		$data['station_locations_list'] = $this->stations->all_of_user();
+		$data['page_title'] = "Edit visitor site";
+		$this->load->view('stationsetup/visitor', $data);
+	}
+
 	public function newLocation() {
 		$this->load->model('stations');
 		$this->load->model('dxcc');
