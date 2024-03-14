@@ -20,7 +20,7 @@
 					<div class="card-body">
                     <p class="card-text"><?php echo lang('station_logbooks_description_text')?></p>
 					<a class="btn btn-primary btn-sm" href="javascript:createStationLogbook();"><i class="fas fa-plus"></i> <?php echo lang('station_logbooks_create')?></a>
-					<a class="btn btn-primary btn-sm" href="javascript:createStationLogbook();"><i class="fas fa-edit"></i> Linked locations</a>
+
                     <?php if ($my_logbooks->num_rows() > 0) { ?>
 
                     <div class="table-responsive">
@@ -29,7 +29,7 @@
                                 <tr>
                                     <th scope="col"><?php echo lang('general_word_name')?></th>
                                     <th scope="col"><?php echo lang('station_logbooks_status')?></th>
-                                    <th scope="col"><?php echo lang('admin_edit')?></th>
+                                    <th scope="col">Linked locations</th>
                                     <th scope="col"><?php echo lang('admin_delete')?></th>
                                     <th scope="col">Visitor site</th>
                                     <th scope="col"><?php echo lang('station_logbooks_public_search')?></th>
@@ -47,14 +47,11 @@
 											}?>
                                     </td>
                                     <td>
-                                        <a href="<?php echo site_url('logbooks/edit')."/".$row->logbook_id; ?>"
-                                            class="btn btn-outline-primary btn-sm"><i class="fas fa-edit"
-                                                title="<?php echo lang('station_logbooks_edit_logbook') . ': ' . $row->logbook_name;?>"></i>
-                                        </a>
+									<a class="btn btn-outline-primary btn-sm" href="javascript:editLinkedLocations(<?php echo $row->logbook_id; ?>);"><i class="fas fa-edit"></i></a>
                                     </td>
                                     <td>
                                         <?php if($this->session->userdata('active_station_logbook') != $row->logbook_id) { ?>
-                                        <button id="<?php echo $row->logbook_id; ?>" class="deleteLogbook btn btn-danger btn-sm"
+                                        <button id="<?php echo $row->logbook_id; ?>" class="deleteLogbook btn btn-outline-danger btn-sm"
                                             cnftext="'<?php echo lang('station_logbooks_confirm_delete') . $row->logbook_name; ?>'"><i
                                                 class="fas fa-trash-alt"></i></a>
                                         <?php } ?>
