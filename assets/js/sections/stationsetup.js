@@ -183,7 +183,7 @@ $(document).ready(function () {
 				name: $('#logbook_name').val()
 			},
 			success: function (data) {
-				location.reload();
+				reloadLogbooks();
 			},
 			error: function (data) {
 

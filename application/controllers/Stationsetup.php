@@ -214,20 +214,26 @@ class Stationsetup extends CI_Controller {
 		$result = $this->logbooks_model->show_all()->result();
 		foreach ($result as $entry) {
 			$single=(Object)[];
-			$single->logbook_id=$entry->logbook_id;
-			$single->logbook_name=$entry->logbook_name;
-			$single->logbook_state=$this->lbstate2html($entry->logbook_id);
-			$single->logbook_edit=$this->lbedit2html($entry->logbook_id,$entry->logbook_name);
-			$single->logbook_delete=$this->lbdel2html($entry->logbook_id,$entry->logbook_name);
-			$single->logbook_link=$this->lblnk2html($entry->public_slug,$entry->logbook_name);
-			$single->logbook_publicsearch = $this->lbpublicsearch2html($entry->public_search);
+			$single->logbook_id = $entry->logbook_id;
+			$single->logbook_name = $this->lbname2html($entry->logbook_id, $entry->logbook_name);
+			$single->logbook_state = $this->lbstate2html($entry->logbook_id);
+			$single->logbook_edit = $this->lbedit2html($entry->logbook_id);
+			$single->logbook_delete = $this->lbdel2html($entry->logbook_id, $entry->logbook_name);
+			$single->logbook_link = $this->lblnk2html($entry->public_slug, $entry->logbook_name, $entry->logbook_id);
+			$single->logbook_publicsearch = $this->lbpublicsearch2html($entry->public_search, $entry->logbook_id);
 			array_push($hres,$single);
 		}
 		echo json_encode($hres);
 	}
 
-	private function lbpublicsearch2html($publicsearch) {
-		return ($publicsearch=='1' ? '<span class="badge text-bg-success">Enabled</span>' : 'Disabled');
+	private function lbname2html($id, $name) {
+		return $name . ' <i id="' . $id . '" class="editContainerName fas fa-edit" role="button"></i>';
+	}
+
+	private function lbpublicsearch2html($publicsearch, $id) {
+		$htmret = ($publicsearch=='1' ? '<span class="badge text-bg-success">Enabled</span>' : '<span class="badge bg-dark">Disabled</span>');
+		$htmret .= '<div class="form-check" style="margin-top: -1.5em"><input id="'.$id.'" class="form-check-input publicSearchCheckbox" type="checkbox"'. ($publicsearch=='1' ? 'checked' : '') . '/></div>';
+		return $htmret;
 
 	}
 
@@ -242,28 +248,24 @@ class Stationsetup extends CI_Controller {
 
 	private function lbdel2html($id, $logbook_name) {
 		if($this->session->userdata('active_station_logbook') != $id) {
-			$htmret='<button id="'.$id.'" class="deleteLogbook btn btn-danger btn-sm" cnftext="'.lang('station_logbooks_confirm_delete').$logbook_name.'"><i class="fas fa-trash-alt"></i></button>';
+			$htmret='<button id="'.$id.'" class="deleteLogbook btn btn-outline-danger btn-sm" cnftext="'.lang('station_logbooks_confirm_delete').$logbook_name.'"><i class="fas fa-trash-alt"></i></button>';
 		} else {
 			$htmret='';
 		}
 		return $htmret;
 	}
 
-	private function lblnk2html($public_slug, $logbook_name) {
+	private function lblnk2html($public_slug, $logbook_name, $id) {
+		$htmret = '<button class="btn btn-outline-primary btn-sm editVisitorLink" id="' . $id . '"><i class="fas fa-edit"></i></button> ';
 		if($public_slug != '') {
-			$htmret='<a target="_blank" href="'.site_url('visitor')."/".$public_slug.'" class="btn btn-outline-primary btn-sm"><i class="fas fa-globe" title="'.lang('station_logbooks_view_public') . $logbook_name.'"></i></a>';
-		} else {
-			$htmret='';
+			$htmret .= '<a target="_blank" href="'.site_url('visitor')."/".$public_slug.'" class="btn btn-outline-primary btn-sm"><i class="fas fa-globe" title="'.lang('station_logbooks_view_public') . $logbook_name.'"></i></a>';
+			$htmret .= '<button id="' . $id . '" class="deletePublicSlug btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></button>';
 		}
 		return $htmret;
 	}
 
-	private function lbps2html($id, $logbook_name) {
-		return '<a href="'.site_url('logbooks/edit')."/".$id.'" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit" title="'.lang('station_logbooks_edit_logbook').': '.$logbook_name.'"></i></a>';
-	}
-
-	private function lbedit2html($id, $logbook_name) {
-		return '<a href="'.site_url('logbooks/edit')."/".$id.'" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit" title="'.lang('station_logbooks_edit_logbook').': '.$logbook_name.'"></i></a>';
+	private function lbedit2html($id) {
+		return '<button class="btn btn-outline-primary btn-sm editLinkedLocations" id="' . $id . '"><i class="fas fa-edit"></i></button>';
 	}
 
 	public function fetchLocations() {
