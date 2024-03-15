@@ -59,10 +59,6 @@ $(document).ready(function () {
 		editContainerDialog(e);
 	});
 
-	$(document).on('click', '.saveContainerName', async function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
-		saveContainerName(e);
-	});
-
 	$(document).on('click', '.editLinkedLocations', async function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
 		editLinkedLocations(e);
 	});
@@ -131,6 +127,10 @@ $(document).ready(function () {
 					buttons: [{
 						label: 'Save',
 						cssClass: 'btn-primary btn-sm saveContainerName',
+						action: function (dialogItself) {
+							saveContainerName();
+							dialogItself.close();
+						}
 					},
 					{
 						label: lang_admin_close,
@@ -150,7 +150,20 @@ $(document).ready(function () {
 	}
 
 	function saveContainerName() {
+		$.ajax({
+			url: base_url + 'index.php/stationsetup/saveContainerName',
+			type: 'post',
+			data: {
+				id: $('#logbookid').val(),
+				name: $('#logbook_name').val()
+			},
+			success: function (data) {
+				location.reload();
+			},
+			error: function (data) {
 
+			},
+		});
 	}
 
 	function editLinkedLocations(e) {

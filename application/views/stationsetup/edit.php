@@ -12,6 +12,7 @@
 		<?php } ?>
 
 		<?php $this->load->helper('form'); ?>
+		<input type="hidden" id="logbookid" name="id" value="<?php echo $container->logbook_id; ?>">
 
 		<div class="mb-3">
 			<label for="stationLogbookNameInput">Container name</label>
