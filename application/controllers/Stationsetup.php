@@ -190,6 +190,11 @@ class Stationsetup extends CI_Controller {
 		$this->load->view('stationsetup/visitor', $data);
 	}
 
+	public function saveVisitorLink() {
+		$this->load->model('stationsetup_model');
+		$this->stationsetup_model->saveVisitorLink();
+	}
+
 	public function newLocation() {
 		$this->load->model('stations');
 		$this->load->model('dxcc');
@@ -347,5 +352,19 @@ class Stationsetup extends CI_Controller {
 
 		return $returntext;
 	}
+
+	public function remove_publicslug() {
+		$id = xss_clean($this->input->post('id',true));
+		if ($id ?? '' != '') {
+				$this->load->model('stationsetup_model');
+				$this->stationsetup_model->remove_public_slug($id);
+				$data['success']=1;
+		} else {
+			$data['success']=0;
+			$data['flashdata']='Not allowed';
+		}
+		echo json_encode($data);
+	}
+
 
 }

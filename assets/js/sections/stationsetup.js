@@ -67,6 +67,9 @@ $(document).ready(function () {
 		editVisitorLink(e);
 	});
 
+	$(document).on('click', '.deletePublicSlug', async function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
+		await do_ajax('remove_publicslug', 'id', reloadLogbooks,e);
+	});
 
 	$("#station_logbooks_table").DataTable({
 		stateSave: true,
@@ -224,6 +227,10 @@ $(document).ready(function () {
 					buttons: [{
 						label: 'Save',
 						cssClass: 'btn-primary btn-sm',
+						action: function (dialogItself) {
+							saveVisitorLink();
+							dialogItself.close();
+						}
 					},
 					{
 						label: lang_admin_close,
@@ -234,6 +241,24 @@ $(document).ready(function () {
 						}
 					}],
 				});
+			},
+			error: function (data) {
+
+			},
+		});
+		return false;
+	}
+
+	function saveVisitorLink() {
+		$.ajax({
+			url: base_url + 'index.php/stationsetup/saveVisitorLink',
+			type: 'post',
+			data: {
+				id: $('#logbook_id').val(),
+				name: $('#publicSlugInput').val()
+			},
+			success: function (data) {
+				reloadLogbooks();
 			},
 			error: function (data) {
 
