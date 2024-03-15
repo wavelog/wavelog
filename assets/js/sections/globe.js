@@ -1,3 +1,4 @@
+$(document).ready(function() {
 	main();
 
 	async function main() {
@@ -27,7 +28,7 @@
 		fdata.append('de','1');
 		fdata.append('qsoresults','100');
 
-		const response = await fetch('/index.php/logbookadvanced/mapQsos', {
+		const response = await fetch(base_url + 'logbookadvanced/mapQsos', {
 			method: "POST", 
 			mode: "cors", 
 			cache: "no-cache", 
@@ -50,3 +51,4 @@
 			.arcDashAnimateTime(() => 4000 + 500)
 		(document.getElementById('globeViz'))
 	}
+});
