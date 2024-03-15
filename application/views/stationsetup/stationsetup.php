@@ -70,10 +70,10 @@
                                     <td>
                                         <?php if ($row->public_search == 1) {
 											echo "<span class='badge bg-success'>" . lang('general_word_enabled') . "</span>";?>
-											<div class="form-check" style="margin-top: -1.5em"><input class="form-check-input" type="checkbox" checked /></div>
+											<div class="form-check" style="margin-top: -1.5em"><input id="<?php echo $row->logbook_id; ?>" class="form-check-input publicSearchCheckbox" type="checkbox" checked /></div>
 										<?php } else {
 											echo "<span class='badge bg-dark'>" . lang('general_word_disabled') . "</span>"; ?>
-											<div class="form-check" style="margin-top: -1.5em"><input class="form-check-input" type="checkbox" /></div>
+											<div class="form-check" style="margin-top: -1.5em"><input id="<?php echo $row->logbook_id; ?>" class="form-check-input publicSearchCheckbox" type="checkbox" /></div>
 										<?php } ?>
                                     </td>
                                 </tr>

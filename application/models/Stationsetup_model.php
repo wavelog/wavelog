@@ -34,6 +34,16 @@ class Stationsetup_model extends CI_Model {
 		$this->db->where('logbook_id', xss_clean($this->input->post('id', true)));
 		$this->db->update('station_logbooks');
 	}
+
+	function togglePublicSearch($id, $publicSearch) {
+		$data = array(
+			'public_search' => ($publicSearch === 'true' ? 1 : 0)
+		);
+
+		$this->db->where('user_id', $this->session->userdata('user_id'));
+		$this->db->where('logbook_id', $id);
+		$this->db->update('station_logbooks', $data);
+	}
 }
 
 ?>

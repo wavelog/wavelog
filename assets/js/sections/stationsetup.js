@@ -71,6 +71,10 @@ $(document).ready(function () {
 		await do_ajax('remove_publicslug', 'id', reloadLogbooks,e);
 	});
 
+	$(document).on('click', '.publicSearchCheckbox', async function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
+		togglePublicSearch(e.currentTarget.id, this);
+	});
+
 	$("#station_logbooks_table").DataTable({
 		stateSave: true,
 		language: {
@@ -108,6 +112,24 @@ $(document).ready(function () {
 				$("#flashdata").html("An unknown Error occured");
 			}
 		});
+	}
+
+	function togglePublicSearch(id, thisvar) {
+		$.ajax({
+			url: base_url + 'index.php/stationsetup/togglePublicSearch',
+			type: 'post',
+			data: {
+				id: id,
+				checked: $(thisvar).is(':checked')
+			},
+			success: function (data) {
+				reloadLogbooks();
+			},
+			error: function (data) {
+
+			},
+		});
+		return false;
 	}
 
 	function editContainerDialog(e) {

@@ -366,5 +366,20 @@ class Stationsetup extends CI_Controller {
 		echo json_encode($data);
 	}
 
+	public function togglePublicSearch() {
+		$id = xss_clean($this->input->post('id',true));
+		$publicSearch = xss_clean($this->input->post('checked',true));
+		if ($id ?? '' != '') {
+				$this->load->model('stationsetup_model');
+				$this->stationsetup_model->togglePublicSearch($id, $publicSearch);
+				$data['success']=1;
+		} else {
+			$data['success']=0;
+			$data['flashdata']='Not allowed';
+		}
+		echo json_encode($data);
+
+	}
+
 
 }
