@@ -174,6 +174,7 @@ class Stationsetup extends CI_Controller {
 
 	public function editLinkedLocations() {
 		$this->load->model('logbooks_model');
+		$data['station_locations_list'] = $this->stations->all_of_user();
 		$station_logbook_details_query = $this->logbooks_model->logbook(xss_clean($this->input->post('id', true)));
 		$data['station_logbook_details'] = $station_logbook_details_query->row();
 		$data['station_locations_linked'] = $this->logbooks_model->list_logbooks_linked($this->input->post('id', true));
