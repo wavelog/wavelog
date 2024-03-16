@@ -12,7 +12,13 @@ $(document).ready(function() {
 			OneQsoArc.endLat=element.latlng2[0];	
 			OneQsoArc.endLng=element.latlng2[1];	
 			OneQsoArc.name=element.callsign;
-			OneQsoArc.color = [['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)], ['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)]]
+			if (element.confirmed) {
+				OneQsoArc.color = 'green';
+			} else {
+				OneQsoArc.color = 'red';
+			}
+			// OneQsoArc.color = [['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)], ['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)]]
+			OneQsoArc.altitude=0.15;
 			globePayArc.push(OneQsoArc);	
 			let OneQsoLab={};
 			OneQsoLab.lat=element.latlng2[0];
@@ -46,6 +52,9 @@ $(document).ready(function() {
 			.labelsData(labelData)
 			.arcsData(arcsData)
 			.arcColor('color')
+			//.arcAltitude('altitude')
+			.arcAltitudeAutoScale(.3)
+			.arcStroke(.2)
 			.arcDashLength(() => 1)
 			.arcDashGap(() => 0)
 			.arcDashAnimateTime(() => 4000 + 500)
