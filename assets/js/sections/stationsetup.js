@@ -68,7 +68,7 @@ $(document).ready(function () {
 	});
 
 	$(document).on('click', '.deletePublicSlug', async function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
-		await do_ajax('remove_publicslug', 'id', reloadLogbooks,e);
+		await do_ajax('remove_publicslug', 'id', reloadLogbooks, e);
 	});
 
 	$(document).on('click', '.publicSearchCheckbox', async function (e) {	// Dynamic binding, since element doesn't exists when loading this JS

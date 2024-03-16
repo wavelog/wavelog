@@ -259,7 +259,7 @@ class Stationsetup extends CI_Controller {
 		$htmret = '<button class="btn btn-outline-primary btn-sm editVisitorLink" id="' . $id . '"><i class="fas fa-edit"></i></button> ';
 		if($public_slug != '') {
 			$htmret .= '<a target="_blank" href="'.site_url('visitor')."/".$public_slug.'" class="btn btn-outline-primary btn-sm"><i class="fas fa-globe" title="'.lang('station_logbooks_view_public') . $logbook_name.'"></i></a>';
-			$htmret .= '<button id="' . $id . '" class="deletePublicSlug btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></button>';
+			$htmret .= ' <button id="' . $id . '" class="deletePublicSlug btn btn-outline-danger btn-sm" cnftext="Are you sure you want to delete the public slug?"><i class="fas fa-trash-alt"></i></button>';
 		}
 		return $htmret;
 	}

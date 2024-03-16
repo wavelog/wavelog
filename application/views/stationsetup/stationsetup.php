@@ -64,7 +64,7 @@
                                             class="btn btn-outline-primary btn-sm"><i class="fas fa-globe"
                                                 title="<?php echo lang('station_logbooks_view_public') . $row->logbook_name;?>"></i>
                                         </a>
-										<button id="<?php echo $row->logbook_id; ?>" class="deletePublicSlug btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
+										<button id="<?php echo $row->logbook_id; ?>" class="deletePublicSlug btn btn-outline-danger btn-sm" cnftext="Are you sure you want to delete the public slug?"><i class="fas fa-trash-alt"></i></button>
                                         <?php } ?>
                                     </td>
                                     <td>
