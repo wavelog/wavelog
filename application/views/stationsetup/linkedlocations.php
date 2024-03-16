@@ -1,40 +1,31 @@
+<form method="post" action="<?php echo site_url('logbooks/edit/'); ?><?php echo $station_logbook_details->logbook_id; ?>" name="create_profile">
+<input type="hidden" name="logbook_id" value="<?php echo $station_logbook_details->logbook_id; ?>">
 
-<div class="row">
-		<div class="col-md">
-			<div class="card">
-				<div class="card-header"><?php echo lang('station_location_plural'); ?></div>
-				<div class="card-body">
-					<form method="post" action="<?php echo site_url('logbooks/edit/'); ?><?php echo $station_logbook_details->logbook_id; ?>" name="create_profile">
-					<input type="hidden" name="logbook_id" value="<?php echo $station_logbook_details->logbook_id; ?>">
+<?php
+	$linked_stations = array();
+	if ($station_locations_linked) {
+		foreach ($station_locations_linked->result() as $row) {
+			$linked_stations[] = $row->station_id;
+		}
+	}
+?>
 
-					<?php
-						$linked_stations = array();
-						if ($station_locations_linked) {
-							foreach ($station_locations_linked->result() as $row) {
-								$linked_stations[] = $row->station_id;
-							}
-						}
-					?>
+<div class="mb-3">
+	<label for="StationLocationsSelect"><?php echo lang('station_logbooks_select_avail_loc'); ?></label>
+	<select name="SelectedStationLocation" class="form-select" id="StationLocationSelect" aria-describedby="StationLocationSelectHelp">
+		<?php foreach ($station_locations_list->result() as $row) {
+			if (!in_array($row->station_id, $linked_stations)) { ?>
+			<option value="<?php echo $row->station_id;?>"><?php echo $row->station_profile_name;?> (<?php echo lang('gen_hamradio_callsign'); ?>: <?php echo $row->station_callsign;?> <?php echo lang('gen_hamradio_dxcc'); ?>: <?php echo $row->station_country; if ($row->dxcc_end != NULL) { echo ' ('.lang('gen_hamradio_deleted_dxcc').')'; } ?>)</option>
+			<?php } ?>
+		<?php } ?>
+	</select>
+</div>
 
-					<div class="mb-3">
-						<label for="StationLocationsSelect"><?php echo lang('station_logbooks_select_avail_loc'); ?></label>
-						<select name="SelectedStationLocation" class="form-select" id="StationLocationSelect" aria-describedby="StationLocationSelectHelp">
-							<?php foreach ($station_locations_list->result() as $row) {
-								if (!in_array($row->station_id, $linked_stations)) { ?>
-								<option value="<?php echo $row->station_id;?>"><?php echo $row->station_profile_name;?> (<?php echo lang('gen_hamradio_callsign'); ?>: <?php echo $row->station_callsign;?> <?php echo lang('gen_hamradio_dxcc'); ?>: <?php echo $row->station_country; if ($row->dxcc_end != NULL) { echo ' ('.lang('gen_hamradio_deleted_dxcc').')'; } ?>)</option>
-								<?php } ?>
-							<?php } ?>
-						</select>
-					</div>
+<input type="hidden" class="form-control" name="station_logbook_id" value="<?php echo $station_logbook_details->logbook_id; ?>" required>
 
-					<input type="hidden" class="form-control" name="station_logbook_id" value="<?php echo $station_logbook_details->logbook_id; ?>" required>
-
-					<button type="submit" class="btn btn-sm btn-primary"><i class="fas fa-link"></i> <?php echo lang('station_logbooks_link_loc'); ?></button>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+<button type="submit" class="btn btn-sm btn-primary"><i class="fas fa-link"></i> <?php echo lang('station_logbooks_link_loc'); ?></button>
+</form>
+<br />
 
 <table id="station_logbooks_linked_table" class="table table-hover table-sm table-striped">
 	<thead class="thead-light">
