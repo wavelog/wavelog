@@ -29,6 +29,7 @@ class Map extends CI_Controller {
 	public function glob_plot() {
 		$footerData = [];
 		$footerData['scripts'] = [
+			'assets/js/globe/globe.gl.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/globe/globe.gl.js")),
 			'assets/js/sections/globe.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/globe.js")),
 		];
 		$this->load->view('interface_assets/header');
