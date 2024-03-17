@@ -365,12 +365,13 @@ class Labels extends CI_Controller {
 		if ($grid) { $text .= "My call: ".$qso['mycall']." Grid: ".$qso['mygrid']."\n"; }
 		if ($reference) {
 			$ref_text = "";
-			if (!empty($qso['sig']) && !empty($qso['sig_info'])) { $ref_text .= $qso['sig'].":".$qso['sig_info']." ";}
-			if (!empty($qso['sota'])) { $ref_text .= "SOTA:".$qso['sota']." ";}
-			if (!empty($qso['iota'])) { $ref_text .= "IOTA:".$qso['iota']." ";}
-			if (!empty($qso['pota'])) { $ref_text .= "POTA:".$qso['pota']." ";}
-			if (!empty($qso['wwff'])) { $ref_text .= "WWFF:".$qso['wwff'];}
-			$text .= $ref_text."\n";
+			$ref_avail = false;
+			if (!empty($qso['sig']) && !empty($qso['sig_info'])) { $ref_text .= $qso['sig'].":".$qso['sig_info']." "; $ref_avail = true;}
+			if (!empty($qso['sota'])) { $ref_text .= "SOTA:".$qso['sota']." "; $ref_avail = true;}
+			if (!empty($qso['iota'])) { $ref_text .= "IOTA:".$qso['iota']." "; $ref_avail = true;}
+			if (!empty($qso['pota'])) { $ref_text .= "POTA:".$qso['pota']." "; $ref_avail = true;}
+			if (!empty($qso['wwff'])) { $ref_text .= "WWFF:".$qso['wwff']; $ref_avail = true;}
+			if ($ref_avail == true) {$text .= $ref_text."\n";}
 		}
 		$text .= "Thanks for the QSO".($numofqsos>1 ? 's' : '');
 		$text .= " | ".($qso['qsl_recvd'] == 'Y' ? 'TNX' : 'PSE')." QSL";
