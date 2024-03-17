@@ -21,11 +21,11 @@
 	</select>
 </div>
 
-<input type="hidden" class="form-control" name="station_logbook_id" value="<?php echo $station_logbook_details->logbook_id; ?>" required>
+<input type="hidden" class="form-control" id="station_logbook_id" name="station_logbook_id" value="<?php echo $station_logbook_details->logbook_id; ?>" required>
 
-<button type="submit" class="btn btn-sm btn-primary"><i class="fas fa-link"></i> <?php echo lang('station_logbooks_link_loc'); ?></button>
 </form>
-<br />
+<button class="btn btn-sm btn-primary" onclick="linkLocations();"><i class="fas fa-link"></i> <?php echo lang('station_logbooks_link_loc'); ?></button>
+<br /><br />
 
 <table id="station_logbooks_linked_table" class="table table-hover table-sm table-striped">
 	<thead class="thead-light">
@@ -45,18 +45,10 @@
 			<td style="text-align: center; vertical-align: middle;"><?php echo $row->station_profile_name;?></td>
 			<td style="text-align: center; vertical-align: middle;"><?php echo $row->station_callsign;?></td>
 			<td style="text-align: center; vertical-align: middle;"><?php echo $row->station_country; if ($row->end != NULL) { echo ' <span class="badge text-bg-danger">'.lang('gen_hamradio_deleted_dxcc').'</span>'; } ?></td>
-			<td style="text-align: center; vertical-align: middle;"><a href="<?php echo site_url('logbooks/delete_relationship/'); ?><?php echo $station_logbook_details->logbook_id; ?>/<?php echo $row->station_id;?>" class="btn btn-sm btn-danger"><i class="fas fa-unlink"></i></a></td>
+			<td style="text-align: center; vertical-align: middle;"><button class="btn btn-sm btn-danger" onclick="unLinkLocations('<?php echo $station_logbook_details->logbook_id; ?>','<?php echo $row->station_id;?>')"><i class="fas fa-unlink"></i></button>
 		</tr>
 		<?php
 				}
-			} else {
-		?>
-		<tr>
-			<td style="text-align: center; vertical-align: middle;" colspan="2"><?php echo lang('station_logbooks_no_linked_loc'); ?></td>
-			<td style="text-align: center; vertical-align: middle;"></td>
-			<td style="text-align: center; vertical-align: middle;"></td>
-			<td style="text-align: center; vertical-align: middle;"></td>
-		</tr>
-		<?php } ?>
+			} ?>
 	</tbody>
 </table>

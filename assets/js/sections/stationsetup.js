@@ -209,10 +209,6 @@ $(document).ready(function () {
 					onshown: function(dialog) {
 					},
 					buttons: [{
-						label: 'Save',
-						cssClass: 'btn-primary btn-sm',
-					},
-					{
 						label: lang_admin_close,
 						cssClass: 'btn-sm',
 						id: 'closeButton',
@@ -503,5 +499,63 @@ function loadLocationTable(rows) {
 	}
 	table.draw();
 	$('[data-bs-toggle="tooltip"]').tooltip();
+}
+
+function linkLocations() {
+	var locationid = $('#StationLocationSelect').val();
+	var containerid = $('#station_logbook_id').val();
+	var locationtext = $('#StationLocationSelect option:selected').text();
+	var locationarray = locationtext.split(" ");
+
+	if (locationid == null) return;
+
+	$.ajax({
+		url: base_url + 'index.php/stationsetup/linkLocations',
+		type: 'post',
+		data: {
+			containerid: containerid,
+			locationid: locationid
+		},
+		success: function(data) {
+			jdata=JSON.parse(data);
+			if (jdata.success == 1) {
+				$("#StationLocationSelect").find('[value="'+ locationid +'"]').remove();
+				// add to table
+				$('#station_logbooks_linked_table').append($('<tr>')
+					.append($('<td style="text-align: center; vertical-align: middle;">').append(locationarray[0]))
+					.append($('<td style="text-align: center; vertical-align: middle;">').append(locationarray[2]))
+					.append($('<td style="text-align: center; vertical-align: middle;">').append(locationarray[4].slice(0, -1)))
+					.append($('<td style="text-align: center; vertical-align: middle;">').append('<button class="btn btn-sm btn-danger" onclick="unLinkLocations('+containerid+','+locationid+');"><i class="fas fa-unlink"></i></button>'))
+				)
+			} else {
+				$("#flashdata").html(jdata.flashdata);
+			}
+		},
+		error: function(e) {
+			$("#flashdata").html("An unknown Error occured");
+		}
+	});
+}
+
+function unLinkLocations(containerid, locationid) {
+	$.ajax({
+		url: base_url + 'index.php/stationsetup/unLinkLocations',
+		type: 'post',
+		data: {
+			containerid: containerid,
+			locationid: locationid
+		},
+		success: function (data) {
+			jdata=JSON.parse(data);
+			if (jdata.success == 1) {
+
+			} else {
+				$("#flashdata").data(jdata.flashdata);
+			}
+		},
+		error: function(e) {
+			$("#flashdata").html("An unknown Error occured");
+		}
+	});
 }
 

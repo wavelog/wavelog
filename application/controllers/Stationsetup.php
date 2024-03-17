@@ -381,8 +381,32 @@ class Stationsetup extends CI_Controller {
 			$data['flashdata']='Not allowed';
 		}
 		echo json_encode($data);
-
 	}
 
+	public function unLinkLocations() {
+		$containerid = xss_clean($this->input->post('containerid',true));
+		$locationid = xss_clean($this->input->post('locationid',true));
+		$this->load->model('stationsetup_model');
+		$this->stationsetup_model->unLinkLocations($containerid, $locationid);
+		$data['success']=1;
+		echo json_encode($data);
+	}
+
+	public function linkLocations() {
+		$containerid = xss_clean($this->input->post('containerid',true));
+		$locationid = xss_clean($this->input->post('locationid',true));
+
+		$this->load->model('stationsetup_model');
+
+		if(!$this->stationsetup_model->relationship_exists($containerid, $locationid)) {
+			// If no link exists, create
+			$this->stationsetup_model->create_logbook_location_link($containerid, $locationid);
+			$data['success']=1;
+		} else {
+			$data['success']=0;
+			$data['flashdata']='Error';
+		}
+		echo json_encode($data);
+	}
 
 }
