@@ -2,8 +2,8 @@
 					<p><?php echo lang('station_logbooks_public_slug_hint'); ?></p>
 					<p><?php echo lang('station_logbooks_public_slug_format1')?><br>
 					<?php echo site_url('visitor'); ?>/<?php echo lang('station_logbooks_public_slug_format2'); ?></p>
-					<form hx-post="<?php echo site_url('logbooks/save_publicslug/'); ?>" hx-target="#publicSlugForm" style="display: inline;">
-					<div id="publicSlugForm">
+					<form style="display: inline;">
+					<div id="visitorLinkInfo">
 					</div>
 					<div class="mb-3">
 						<input type="hidden" name="logbook_id" id="logbook_id" value="<?php echo $station_logbook_details->logbook_id; ?>">

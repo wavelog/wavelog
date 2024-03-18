@@ -28,10 +28,10 @@ class Stationsetup_model extends CI_Model {
 		$this->db->update('station_logbooks');
 	}
 
-	function saveVisitorLink() {
-		$this->db->set('public_slug', xss_clean($this->input->post('name', true)));
+	function saveVisitorLink($id, $name) {
+		$this->db->set('public_slug', $name);
 		$this->db->where('user_id', $this->session->userdata('user_id'));
-		$this->db->where('logbook_id', xss_clean($this->input->post('id', true)));
+		$this->db->where('logbook_id', $id);
 		$this->db->update('station_logbooks');
 	}
 

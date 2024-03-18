@@ -192,8 +192,21 @@ class Stationsetup extends CI_Controller {
 	}
 
 	public function saveVisitorLink() {
+		$name = xss_clean($this->input->post('name', true));
+		$id = xss_clean($this->input->post('id', true));
+
 		$this->load->model('stationsetup_model');
-		$this->stationsetup_model->saveVisitorLink();
+		$result = $this->stationsetup_model->is_public_slug_available($name);
+
+		if($result == true) {
+			$this->stationsetup_model->saveVisitorLink($id, $name);
+			$data['success'] = 1;
+		} else {
+			$data['success'] = 0;
+			$data['flashdata'] = 'Error. Link is already in use!';
+		}
+
+		echo json_encode($data);
 	}
 
 	public function newLocation() {
@@ -408,5 +421,4 @@ class Stationsetup extends CI_Controller {
 		}
 		echo json_encode($data);
 	}
-
 }

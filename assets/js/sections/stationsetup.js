@@ -246,8 +246,7 @@ $(document).ready(function () {
 						label: 'Save',
 						cssClass: 'btn-primary btn-sm',
 						action: function (dialogItself) {
-							saveVisitorLink();
-							dialogItself.close();
+							saveVisitorLink(dialogItself);
 						}
 					},
 					{
@@ -267,21 +266,33 @@ $(document).ready(function () {
 		return false;
 	}
 
-	function saveVisitorLink() {
-		$.ajax({
-			url: base_url + 'index.php/stationsetup/saveVisitorLink',
-			type: 'post',
-			data: {
-				id: $('#logbook_id').val(),
-				name: $('#publicSlugInput').val()
-			},
-			success: function (data) {
-				reloadLogbooks();
-			},
-			error: function (data) {
+	function saveVisitorLink(dialogItself) {
+		$('.alert').remove();
+		if (/^([a-zA-Z0-9-]+)$/.test($('#publicSlugInput').val())) {
+			$.ajax({
+				url: base_url + 'index.php/stationsetup/saveVisitorLink',
+				type: 'post',
+				data: {
+					id: $('#logbook_id').val(),
+					name: $('#publicSlugInput').val()
+				},
+				success: function (data) {
+					jdata=JSON.parse(data);
+					if (jdata.success == 1) {
+						dialogItself.close();
+						reloadLogbooks();
+					} else {
+						$('#visitorLinkInfo').append('<div class="alert alert-danger" role="alert">'+jdata.flashdata+'</div>');
+					}
 
-			},
-		});
+				},
+				error: function (data) {
+
+				},
+			});
+		} else {
+			$('#visitorLinkInfo').append('<div class="alert alert-danger" role="alert">Invalid characters entered in link!</div>');
+		}
 		return false;
 	}
 
