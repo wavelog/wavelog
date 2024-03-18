@@ -548,6 +548,13 @@ function unLinkLocations(containerid, locationid) {
 		success: function (data) {
 			jdata=JSON.parse(data);
 			if (jdata.success == 1) {
+				let row = $('#locationid_'+locationid);
+				let cells = row.find('td');
+				var items = [];
+				items.push(
+					'<option value="' + locationid + '">' + cells.eq(0).text() + ' (Callsign: ' + cells.eq(1).text() + ' DXCC: ' + cells.eq(2).text() + ')</option>'
+				);
+				$('#StationLocationSelect').append(items.join( "" ));
 				$('#locationid_'+locationid).remove();
 			} else {
 				$("#flashdata").data(jdata.flashdata);
