@@ -41,7 +41,7 @@
 			if ($station_locations_linked) {
 				foreach ($station_locations_linked->result() as $row) {
 		?>
-		<tr>
+		<tr id="locationid_<?php echo $row->station_id; ?>">
 			<td style="text-align: center; vertical-align: middle;"><?php echo $row->station_profile_name;?></td>
 			<td style="text-align: center; vertical-align: middle;"><?php echo $row->station_callsign;?></td>
 			<td style="text-align: center; vertical-align: middle;"><?php echo $row->station_country; if ($row->end != NULL) { echo ' <span class="badge text-bg-danger">'.lang('gen_hamradio_deleted_dxcc').'</span>'; } ?></td>

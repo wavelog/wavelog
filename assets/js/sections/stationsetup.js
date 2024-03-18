@@ -521,7 +521,7 @@ function linkLocations() {
 			if (jdata.success == 1) {
 				$("#StationLocationSelect").find('[value="'+ locationid +'"]').remove();
 				// add to table
-				$('#station_logbooks_linked_table').append($('<tr>')
+				$('#station_logbooks_linked_table').append($('<tr id="locationid_'+locationid+'">')
 					.append($('<td style="text-align: center; vertical-align: middle;">').append(locationarray[0]))
 					.append($('<td style="text-align: center; vertical-align: middle;">').append(locationarray[2]))
 					.append($('<td style="text-align: center; vertical-align: middle;">').append(locationarray[4].slice(0, -1)))
@@ -548,7 +548,7 @@ function unLinkLocations(containerid, locationid) {
 		success: function (data) {
 			jdata=JSON.parse(data);
 			if (jdata.success == 1) {
-
+				$('#locationid_'+locationid).remove();
 			} else {
 				$("#flashdata").data(jdata.flashdata);
 			}
