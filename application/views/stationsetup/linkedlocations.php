@@ -1,4 +1,3 @@
-<form method="post" action="<?php echo site_url('logbooks/edit/'); ?><?php echo $station_logbook_details->logbook_id; ?>" name="create_profile">
 <input type="hidden" name="logbook_id" value="<?php echo $station_logbook_details->logbook_id; ?>">
 
 <?php
@@ -23,7 +22,6 @@
 
 <input type="hidden" class="form-control" id="station_logbook_id" name="station_logbook_id" value="<?php echo $station_logbook_details->logbook_id; ?>" required>
 
-</form>
 <button class="btn btn-sm btn-primary" onclick="linkLocations();"><i class="fas fa-link"></i> <?php echo lang('station_logbooks_link_loc'); ?></button>
 <br /><br />
 
