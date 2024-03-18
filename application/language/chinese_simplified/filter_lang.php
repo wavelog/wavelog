@@ -117,6 +117,7 @@ $lang['filter_actions_print_label'] = '打印标签';
 $lang['filter_actions_start_print_title'] = '打印标签';
 $lang['filter_actions_print_include_via'] = "包含通过";
 $lang['filter_actions_print_include_grid'] = '包含网格？';
+$lang['filter_actions_print_include_ref'] = "Include reference? (SIG, SOTA, POTA, IOTA, WWFF; If available in location)";
 $lang['filter_actions_start_print'] = '开始打印编号';
 $lang['filter_actions_print'] = '打印';
 $lang['filter_actions_qsl_slideshow'] = 'QSL 展示窗';
