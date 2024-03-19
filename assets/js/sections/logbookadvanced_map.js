@@ -705,14 +705,15 @@ function loadMap(data, iconsList) {
 	function renderGlobe(arcsData,labelData) {
 		Globe()
 		.globeImageUrl(base_url + '/assets/images/earth-blue-marble.jpg')
+		.pointOfView({ lat: arcsData[0].startLat, lng: arcsData[0].startLng, altitude:1}, 100)
 		.labelsData(labelData)
 		.arcsData(arcsData)
 		.arcColor('color')
 		//.arcAltitude('altitude')
 		.arcAltitudeAutoScale(.3)
 		.arcStroke(.2)
-		.arcDashLength(() => 1)
-		.arcDashGap(() => 0)
+		.arcDashLength(() => .1)
+		.arcDashGap(() => 0.01)
 		.arcDashAnimateTime(() => 4000 + 500)
 		(document.getElementById('advancedmap'))
 	}
