@@ -588,3 +588,132 @@ function loadMap(data, iconsList) {
 			});
 		}
 	};
+
+	function mapGlobeQsos(form) {
+		var container = L.DomUtil.get('advancedmap');
+		if(container != null){
+			container._leaflet_id = null;
+			container.remove();
+			$(".coordinates").remove();
+		}
+
+		var id_list=[];
+		var elements = $('#qsoList tbody input:checked');
+		var nElements = elements.length;
+
+		elements.each(function() {
+			let id = $(this).first().closest('tr').data('qsoID')
+			id_list.push(id);
+			unselectQsoID(id);
+		});
+
+		$("#qsoList").attr("Hidden", true);
+		$("#qsoList_wrapper").attr("Hidden", true);
+		$("#qsoList_info").attr("Hidden", true);
+
+		amap = $('#advancedmap').val();
+		if (amap == undefined) {
+			$(".qso_manager").append('<div id="advancedmap" class="map-leaflet"></div>');
+		}
+
+		if (id_list.length > 0) {
+			$.ajax({
+				url: base_url + 'index.php/logbookadvanced/mapSelectedQsos',
+				type: 'post',
+				data: {
+					ids: id_list,
+					de: form.de.value
+				},
+				success: function(data) {
+					globemap(data);
+				},
+				error: function() {
+
+				},
+			});
+		} else {
+			$.ajax({
+				url: base_url + 'index.php/logbookadvanced/mapQsos',
+				type: 'post',
+				data: {
+					dateFrom: form.dateFrom.value,
+					dateTo: form.dateTo.value,
+					de: form.de.value,
+					dx: form.dx.value,
+					mode: form.mode.value,
+					band: form.band.value,
+					qslSent: form.qslSent.value,
+					qslReceived: form.qslReceived.value,
+					qslSentMethod: this.qslSentMethod.value,
+					qslReceivedMethod: this.qslReceivedMethod.value,
+					iota: form.iota.value,
+					dxcc: form.dxcc.value,
+					propmode: form.selectPropagation.value,
+					gridsquare: form.gridsquare.value,
+					state: form.state.value,
+					qsoresults: form.qsoResults.value,
+					sats: form.sats.value,
+					cqzone: form.cqzone.value,
+					lotwSent: form.lotwSent.value,
+					lotwReceived: form.lotwReceived.value,
+					eqslSent: form.eqslSent.value,
+					eqslReceived: form.eqslReceived.value,
+					qslvia: $('[name="qslviainput"]').val(),
+					sota: form.sota.value,
+					pota: form.pota.value,
+					operator: form.operator.value,
+					wwff: form.wwff.value,
+					qslimages: form.qslimages.value,
+				},
+				success: function(data) {
+					globemap(data);
+				},
+				error: function() {
+
+				},
+			});
+		}
+	};
+
+	function globemap(x) {
+		globePayArc=[];
+		globePayLab=[];
+		x.forEach((element) => {
+			let OneQsoArc={};
+			OneQsoArc.startLat=element.latlng1[0];
+			OneQsoArc.startLng=element.latlng1[1];
+			OneQsoArc.endLat=element.latlng2[0];
+			OneQsoArc.endLng=element.latlng2[1];
+			OneQsoArc.name=element.callsign;
+			if (element.confirmed) {
+				OneQsoArc.color = 'green';
+			} else {
+				OneQsoArc.color = 'red';
+			}
+			// OneQsoArc.color = [['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)], ['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)]]
+			OneQsoArc.altitude=0.15;
+			globePayArc.push(OneQsoArc);
+			let OneQsoLab={};
+			OneQsoLab.lat=element.latlng2[0];
+			OneQsoLab.lng=element.latlng2[1];
+			OneQsoLab.text=element.callsign;
+			globePayLab.push(OneQsoLab);
+		});
+		renderGlobe(globePayArc,globePayLab);
+	}
+
+	function renderGlobe(arcsData,labelData) {
+		Globe()
+		.globeImageUrl(base_url + '/assets/images/earth-blue-marble.jpg')
+		.labelsData(labelData)
+		.arcsData(arcsData)
+		.arcColor('color')
+		//.arcAltitude('altitude')
+		.arcAltitudeAutoScale(.3)
+		.arcStroke(.2)
+		.arcDashLength(() => 1)
+		.arcDashGap(() => 0)
+		.arcDashAnimateTime(() => 4000 + 500)
+		(document.getElementById('advancedmap'))
+	}
+
