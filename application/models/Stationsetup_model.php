@@ -147,6 +147,15 @@ class Stationsetup_model extends CI_Model {
 			return true;
 		}
 	}
+
+	function locationInfo($id) {
+		$userid = $this->session->userdata('user_id'); // Fallback to session-uid, if userid is omitted
+		$this->db->select('station_profile.station_profile_name, station_profile.station_callsign, dxcc_entities.name as station_country, dxcc_entities.end as dxcc_end');
+		$this->db->where('user_id', $userid);
+		$this->db->where('station_id', $id);
+		$this->db->join('dxcc_entities','station_profile.station_dxcc = dxcc_entities.adif','left outer');
+		return $this->db->get('station_profile');
+	}
 }
 
 ?>

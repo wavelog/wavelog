@@ -415,6 +415,7 @@ class Stationsetup extends CI_Controller {
 			// If no link exists, create
 			$this->stationsetup_model->create_logbook_location_link($containerid, $locationid);
 			$data['success']=1;
+			$data['locationdata'] = $this->stationsetup_model->locationInfo($locationid)->result();
 		} else {
 			$data['success']=0;
 			$data['flashdata']='Error';

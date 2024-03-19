@@ -530,12 +530,13 @@ function linkLocations() {
 		success: function(data) {
 			jdata=JSON.parse(data);
 			if (jdata.success == 1) {
+				console.log(jdata);
 				$("#StationLocationSelect").find('[value="'+ locationid +'"]').remove();
 				// add to table
 				$('#station_logbooks_linked_table').append($('<tr id="locationid_'+locationid+'">')
-					.append($('<td style="text-align: center; vertical-align: middle;">').append(locationarray[0]))
-					.append($('<td style="text-align: center; vertical-align: middle;">').append(locationarray[2]))
-					.append($('<td style="text-align: center; vertical-align: middle;">').append(locationarray[4].slice(0, -1)))
+					.append($('<td style="text-align: center; vertical-align: middle;">').append(jdata.locationdata[0].station_profile_name))
+					.append($('<td style="text-align: center; vertical-align: middle;">').append(jdata.locationdata[0].station_callsign))
+					.append($('<td style="text-align: center; vertical-align: middle;">').append(jdata.locationdata[0].station_country+(jdata.locationdata[0].dxcc_end == null ? '' : ' <span class="badge bg-danger">Deleted DXCC</span>')))
 					.append($('<td style="text-align: center; vertical-align: middle;">').append('<button class="btn btn-sm btn-danger" onclick="unLinkLocations('+containerid+','+locationid+');"><i class="fas fa-unlink"></i></button>'))
 				)
 			} else {
