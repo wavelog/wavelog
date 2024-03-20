@@ -232,4 +232,5 @@ $lang['dashboard_logbooks_warning'] = '你没有电台日志。 请前往<a href
 
 $lang['hams_at_no_activations_found'] = '未找到即将进行的激活。 请稍后再回来查看。';
 
+$lang['gen_add_to_contest'] = "Add QSOs to Contest";
 $lang['datatables_language'] = "en-GB";

@@ -232,5 +232,6 @@ $lang['dashboard_locations_warning'] = 'No tiene localizaciones de estaciones. �
 $lang['dashboard_logbooks_warning'] = 'No tiene libro de guardias. ¡Haga clic <a href="'. site_url('stationsetup') . '">aquí</a> para crear uno!';
 
 $lang['hams_at_no_activations_found'] = 'No hay activaciones próximas. Por favor vuelve a revisar más tarde.';
+$lang['gen_add_to_contest'] = "Add QSOs to Contest";
 
 $lang['datatables_language'] = "es-ES";
