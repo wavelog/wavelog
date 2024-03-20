@@ -86,7 +86,7 @@
                                             echo '<optgroup label="' . strtoupper($key) . '">';
                                             foreach($bandgroup as $band) {
                                                 echo '<option value="' . $band . '"';
-                                                if (strtolower($qso->COL_BAND) == $band) echo ' selected';
+                                                if (strtolower($qso->COL_BAND ?? '') == $band) echo ' selected';
                                                 echo '>' . $band . '</option>'."\n";
                                             }
                                             echo '</optgroup>';
@@ -103,7 +103,7 @@
                                             echo '<optgroup label="' . strtoupper($key) . '">';
                                             foreach($bandgroup as $band) {
                                                 echo '<option value="' . $band . '"';
-                                                if (strtolower($qso->COL_BAND_RX) == $band) echo ' selected';
+                                                if (strtolower($qso->COL_BAND_RX ?? '') == $band) echo ' selected';
                                                 echo '>' . $band . '</option>'."\n";
                                             }
                                             echo '</optgroup>';
