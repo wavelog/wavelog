@@ -118,7 +118,7 @@
 					<th><?php echo lang('gen_hamradio_call'); ?></th>
 					<th>DXCC</th>
 					<th style="width:150px;">Spotter</th>
-					<th>Message</th>
+					<th><?php echo lang('general_word_message'); ?></th>
 				</tr>
 			</thead>
 
