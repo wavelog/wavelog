@@ -69,27 +69,13 @@
 			<label class="my-1 me-2" for="decontSelect">Spots de</label>
 			<select class="form-select form-select-sm my-1 me-sm-2 w-auto" id="decontSelect" name="dxcluster_decont" aria-describedby="dxcluster_decontHelp" required>
 				<option value="Any">*</option>
-				<option value="AF" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'AF') {
-										echo " selected";
-									} ?>>Africa</option>
-				<option value="AN" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'AN') {
-										echo " selected";
-									} ?>>Antarctica</option>
-				<option value="AS" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'AS') {
-										echo " selected";
-									} ?>>Asia</option>
-				<option value="EU" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'EU') {
-										echo " selected";
-									} ?>>Europe</option>
-				<option value="NA" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'NA') {
-										echo " selected";
-									} ?>>North America</option>
-				<option value="OC" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'OC') {
-										echo " selected";
-									} ?>>Oceania</option>
-				<option value="SA" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'SA') {
-										echo " selected";
-									} ?>>South America</option>
+				<option value="AF" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'AF') {echo " selected";} ?>>Africa</option>
+				<option value="AN" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'AN') {echo " selected";} ?>>Antarctica</option>
+				<option value="AS" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'AS') {echo " selected";} ?>>Asia</option>
+				<option value="EU" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'EU') {echo " selected";} ?>>Europe</option>
+				<option value="NA" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'NA') {echo " selected";} ?>>North America</option>
+				<option value="OC" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'OC') {echo " selected";} ?>>Oceania</option>
+				<option value="SA" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'SA') {echo " selected";} ?>>South America</option>
 			</select>
 
 			<label class="my-1 me-2" for="band"><?php echo lang('gen_hamradio_band'); ?></label>
