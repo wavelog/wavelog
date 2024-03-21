@@ -244,7 +244,7 @@ $(document).ready(function () {
 					},
 					buttons: [{
 						label: 'Save',
-						cssClass: 'btn-primary btn-sm',
+						cssClass: 'btn-primary btn-sm visitorSaveButton',
 						action: function (dialogItself) {
 							saveVisitorLink(dialogItself);
 						}
@@ -267,7 +267,8 @@ $(document).ready(function () {
 	}
 
 	function saveVisitorLink(dialogItself) {
-		$('.alert').remove();
+		$('.visitorSaveButton').prop("disabled", true);
+		$('.alertvisitor').remove();
 		if (/^([a-zA-Z0-9-]+)$/.test($('#publicSlugInput').val())) {
 			$.ajax({
 				url: base_url + 'index.php/stationsetup/saveVisitorLink',
@@ -282,16 +283,18 @@ $(document).ready(function () {
 						dialogItself.close();
 						reloadLogbooks();
 					} else {
-						$('#visitorLinkInfo').append('<div class="alert alert-danger" role="alert">'+jdata.flashdata+'</div>');
+						$('#visitorLinkInfo').append('<div class="alertvisitor alert alert-danger" role="alert">'+jdata.flashdata+'</div>');
+						$('.visitorSaveButton').prop("disabled", false);
 					}
 
 				},
 				error: function (data) {
-
+					$('.visitorSaveButton').prop("disabled", false);
 				},
 			});
 		} else {
-			$('#visitorLinkInfo').append('<div class="alert alert-danger" role="alert">Invalid characters entered in link!</div>');
+			$('.visitorSaveButton').prop("disabled", false);
+			$('#visitorLinkInfo').append('<div class="alertvisitor alert alert-danger" role="alert">Invalid characters entered in link!</div>');
 		}
 		return false;
 	}
