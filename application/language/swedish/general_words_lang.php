@@ -233,6 +233,7 @@ $lang['dashboard_country_files_warning'] = 'You need to update country files! Go
 $lang['dashboard_locations_warning'] = 'You have no station locations. Go <a href="'. site_url('stationsetup') . '">here</a> to create it!';
 $lang['dashboard_logbooks_warning'] = 'You have no station logbook. Go <a href="'. site_url('stationsetup') . '">here</a> to create it!';
 
+$lang['gen_add_to_contest'] = "Add QSOs to Contest";
 $lang['hams_at_no_activations_found'] = 'No upcoming activations found. Please check back later.';
 
 $lang['datatables_language'] = "en-GB";

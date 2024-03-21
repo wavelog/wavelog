@@ -233,4 +233,5 @@ $lang['dashboard_logbooks_warning'] = 'You have no station logbook. Go <a href="
 
 $lang['hams_at_no_activations_found'] = 'No upcoming activations found. Please check back later.';
 
+$lang['gen_add_to_contest'] = "Add QSOs to Contest";
 $lang['datatables_language'] = "en-GB";

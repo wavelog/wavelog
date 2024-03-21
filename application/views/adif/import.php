@@ -57,6 +57,7 @@
 
                     <form class="form" id="upform" action="<?php echo site_url('adif/import'); ?>" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="fhash" id="fhash" value="<?php echo hash('sha256', $this->session->userdata('user_callsign') );?>">
+                        <div class="small form-text text-muted"><?php echo lang('adif_select_stationlocation') ?></div>
                         <select name="station_profile" class="form-select mb-2 me-sm-2" style="width: 20%;">
                             <option value="0"><?php echo lang('adif_select_stationlocation') ?></option>
                             <?php foreach ($station_profile->result() as $station) { ?>
@@ -65,7 +66,15 @@
                                                                                     } ?>><?php echo lang('gen_hamradio_callsign') . ": " ?><?php echo $station->station_callsign; ?> (<?php echo $station->station_profile_name; ?>)</option>
                             <?php } ?>
                         </select>
-                        <label class="visually-hidden" for="inlineFormInputName2"><?php echo lang('adif_file_label') ?></label>
+                        <div class="small form-text text-muted"><?php echo lang('gen_add_to_contest') ?></div>
+                        <select name="contest" id="contest" class="form-select mb-2 me-sm-2" style="width: 20%;">
+                        	<option value="" selected>No Contest</option>
+                            <?php 
+				foreach ($contests as $contest) {
+                                echo '<option value="'.$contest['adifname'].'">'.$contest['name'].'</option>';
+                            } ?>
+			</select>
+ 			<label class="visually-hidden" for="inlineFormInputName2"><?php echo lang('adif_file_label') ?></label>
                         <input class="form-control mb-2 me-sm-2 w-auto" type="file" name="userfile" id="userfile" size="20" />
 
                         <div class="mb-3 row">
