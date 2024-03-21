@@ -371,7 +371,7 @@ function qso_edit(id) {
                     $('.modal-content #qslmsg').keyup(function(event) {
                         calcRemainingChars(event, '.modal-content');
                     });
-                    
+
                     $("#dxcc_id").change(async function () {
                         await updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputEdit');
                     });
@@ -405,7 +405,7 @@ function qso_save() {
 }
 
 function selectize_usa_county(state_field, county_field) {
-    $(county_field).selectize({ 
+    $(county_field).selectize({
         delimiter: ';',
         maxItems: 1,
         closeAfterSelect: true,
@@ -459,7 +459,7 @@ async function updateStateDropdown(dxcc_field, state_label, county_div, county_i
                 console.log('ERROR', response.status);
             },
         });
-    } 
+    }
 
     if (selectedDxcc.val() == '291' || selectedDxcc.val() == '110' || selectedDxcc.val() == '6') {
         $(county_div).show();
@@ -789,10 +789,6 @@ if ($('.table-responsive .dropdown-toggle').length>0) {
     });
 }
 
-function getDataTablesLanguageUrl() {
-    return "../assets/json/datatables_languages/" + lang_datatables_language + ".json";
-}
-
 var set_state;
 function statesDropdown(states, set_state = null) {
     var dropdown = $('#stateDropdown');
@@ -834,7 +830,7 @@ function current_active_ajax(callback) {
         dataType: 'json',
         success: function(response) {
             var current_active = response;
-            callback(current_active); 
+            callback(current_active);
         }
     });
 }
@@ -847,7 +843,7 @@ function set_active_loc_quickswitcher(new_active) {
             dataType: 'json',
             data: {
                 id2setActive: new_active
-            }, 
+            },
             success: function(response) {
                 $('[id^="quickswitcher_list_button_"]').not('#quickswitcher_list_button_' + new_active).removeClass('disabled');
                 $('[id^="quickswitcher_active_badge_"]').not('#quickswitcher_active_badge_' + new_active).addClass('d-none');
@@ -861,7 +857,7 @@ function set_active_loc_quickswitcher(new_active) {
                     reloadStations();
                 }
             },
-            error: function(xhr, status, error) { 
+            error: function(xhr, status, error) {
                 console.error('Error while setting the new active location: ' + error);
             }
         });
