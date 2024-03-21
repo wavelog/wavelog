@@ -197,6 +197,12 @@ class Stationsetup extends CI_Controller {
 
 		$this->load->model('stationsetup_model');
 		$result = $this->stationsetup_model->is_public_slug_available($name);
+		if (!($result)) {
+			$current_lb4slug=$this->stationsetup_model->public_slug_exists_logbook_id($name);
+			if ($current_lb4slug == $id) {
+				$result=true;	// Set to true if we want to update the SAME slug for the SAME Logbook
+			}
+		}
 
 		if($result == true) {
 			$this->stationsetup_model->saveVisitorLink($id, $name);
