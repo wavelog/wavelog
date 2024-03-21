@@ -92,7 +92,7 @@ class Stationsetup extends CI_Controller {
 	public function getActiveStation() {
 		$active_loc = $this->stations->find_active();
 		echo json_encode($active_loc);
-	}	
+	}
 
 	public function setFavorite_json() {
 		$id2fav = xss_clean($this->input->post('id2Favorite', true));
@@ -160,6 +160,61 @@ class Stationsetup extends CI_Controller {
 		$this->load->view('stationsetup/create', $data);
 	}
 
+	public function editContainerName() {
+		$this->load->model('stationsetup_model');
+		$data['container'] = $this->stationsetup_model->getContainer(xss_clean($this->input->post('id', true)))->row();
+		$data['page_title'] = "Edit container name";
+		$this->load->view('stationsetup/edit', $data);
+	}
+
+	public function saveContainerName() {
+		$this->load->model('stationsetup_model');
+		$this->stationsetup_model->saveContainer();
+	}
+
+	public function editLinkedLocations() {
+		$this->load->model('logbooks_model');
+		$data['station_locations_list'] = $this->stations->all_of_user();
+		$station_logbook_details_query = $this->logbooks_model->logbook(xss_clean($this->input->post('id', true)));
+		$data['station_logbook_details'] = $station_logbook_details_query->row();
+		$data['station_locations_linked'] = $this->logbooks_model->list_logbooks_linked($this->input->post('id', true));
+		$data['page_title'] = "Edit lined locations";
+		$this->load->view('stationsetup/linkedlocations', $data);
+	}
+
+	public function editVisitorLink() {
+		$this->load->model('logbooks_model');
+		$station_logbook_details_query = $this->logbooks_model->logbook(xss_clean($this->input->post('id', true)));
+		$data['station_logbook_details'] = $station_logbook_details_query->row();
+		$data['station_locations_list'] = $this->stations->all_of_user();
+		$data['page_title'] = "Edit visitor site";
+		$this->load->view('stationsetup/visitor', $data);
+	}
+
+	public function saveVisitorLink() {
+		$name = xss_clean($this->input->post('name', true));
+		$id = xss_clean($this->input->post('id', true));
+
+		$this->load->model('stationsetup_model');
+		$result = $this->stationsetup_model->is_public_slug_available($name);
+		if (!($result)) {
+			$current_lb4slug=$this->stationsetup_model->public_slug_exists_logbook_id($name);
+			if ($current_lb4slug == $id) {
+				$result=true;	// Set to true if we want to update the SAME slug for the SAME Logbook
+			}
+		}
+
+		if($result == true) {
+			$this->stationsetup_model->saveVisitorLink($id, $name);
+			$data['success'] = 1;
+		} else {
+			$data['success'] = 0;
+			$data['flashdata'] = 'Error. Link is already in use!';
+		}
+
+		echo json_encode($data);
+	}
+
 	public function newLocation() {
 		$this->load->model('stations');
 		$this->load->model('dxcc');
@@ -178,20 +233,26 @@ class Stationsetup extends CI_Controller {
 		$result = $this->logbooks_model->show_all()->result();
 		foreach ($result as $entry) {
 			$single=(Object)[];
-			$single->logbook_id=$entry->logbook_id;
-			$single->logbook_name=$entry->logbook_name;
-			$single->logbook_state=$this->lbstate2html($entry->logbook_id);
-			$single->logbook_edit=$this->lbedit2html($entry->logbook_id,$entry->logbook_name);
-			$single->logbook_delete=$this->lbdel2html($entry->logbook_id,$entry->logbook_name);
-			$single->logbook_link=$this->lblnk2html($entry->public_slug,$entry->logbook_name);
-			$single->logbook_publicsearch = $this->lbpublicsearch2html($entry->public_search);
+			$single->logbook_id = $entry->logbook_id;
+			$single->logbook_name = $this->lbname2html($entry->logbook_id, $entry->logbook_name);
+			$single->logbook_state = $this->lbstate2html($entry->logbook_id);
+			$single->logbook_edit = $this->lbedit2html($entry->logbook_id);
+			$single->logbook_delete = $this->lbdel2html($entry->logbook_id, $entry->logbook_name);
+			$single->logbook_link = $this->lblnk2html($entry->public_slug, $entry->logbook_name, $entry->logbook_id);
+			$single->logbook_publicsearch = $this->lbpublicsearch2html($entry->public_search, $entry->logbook_id);
 			array_push($hres,$single);
 		}
 		echo json_encode($hres);
 	}
 
-	private function lbpublicsearch2html($publicsearch) {
-		return ($publicsearch=='1' ? '<span class="badge text-bg-success">Enabled</span>' : 'Disabled');
+	private function lbname2html($id, $name) {
+		return $name . ' <i id="' . $id . '" class="editContainerName fas fa-edit" role="button"></i>';
+	}
+
+	private function lbpublicsearch2html($publicsearch, $id) {
+		$htmret = ($publicsearch=='1' ? '<span class="badge text-bg-success">Enabled</span>' : '<span class="badge bg-dark">Disabled</span>');
+		$htmret .= '<div class="form-check" style="margin-top: -1.5em"><input id="'.$id.'" class="form-check-input publicSearchCheckbox" type="checkbox"'. ($publicsearch=='1' ? 'checked' : '') . '/></div>';
+		return $htmret;
 
 	}
 
@@ -206,28 +267,24 @@ class Stationsetup extends CI_Controller {
 
 	private function lbdel2html($id, $logbook_name) {
 		if($this->session->userdata('active_station_logbook') != $id) {
-			$htmret='<button id="'.$id.'" class="deleteLogbook btn btn-danger btn-sm" cnftext="'.lang('station_logbooks_confirm_delete').$logbook_name.'"><i class="fas fa-trash-alt"></i></button>';
+			$htmret='<button id="'.$id.'" class="deleteLogbook btn btn-outline-danger btn-sm" cnftext="'.lang('station_logbooks_confirm_delete').$logbook_name.'"><i class="fas fa-trash-alt"></i></button>';
 		} else {
 			$htmret='';
 		}
 		return $htmret;
 	}
 
-	private function lblnk2html($public_slug, $logbook_name) {
+	private function lblnk2html($public_slug, $logbook_name, $id) {
+		$htmret = '<button class="btn btn-outline-primary btn-sm editVisitorLink" id="' . $id . '"><i class="fas fa-edit"></i></button> ';
 		if($public_slug != '') {
-			$htmret='<a target="_blank" href="'.site_url('visitor')."/".$public_slug.'" class="btn btn-outline-primary btn-sm"><i class="fas fa-globe" title="'.lang('station_logbooks_view_public') . $logbook_name.'"></i></a>';
-		} else {
-			$htmret='';
+			$htmret .= '<a target="_blank" href="'.site_url('visitor')."/".$public_slug.'" class="btn btn-outline-primary btn-sm"><i class="fas fa-globe" title="'.lang('station_logbooks_view_public') . $logbook_name.'"></i></a>';
+			$htmret .= ' <button id="' . $id . '" class="deletePublicSlug btn btn-outline-danger btn-sm" cnftext="Are you sure you want to delete the public slug?"><i class="fas fa-trash-alt"></i></button>';
 		}
 		return $htmret;
 	}
 
-	private function lbps2html($id, $logbook_name) {
-		return '<a href="'.site_url('logbooks/edit')."/".$id.'" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit" title="'.lang('station_logbooks_edit_logbook').': '.$logbook_name.'"></i></a>';
-	}
-
-	private function lbedit2html($id, $logbook_name) {
-		return '<a href="'.site_url('logbooks/edit')."/".$id.'" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit" title="'.lang('station_logbooks_edit_logbook').': '.$logbook_name.'"></i></a>';
+	private function lbedit2html($id) {
+		return '<button class="btn btn-outline-primary btn-sm editLinkedLocations" id="' . $id . '"><i class="fas fa-edit"></i></button>';
 	}
 
 	public function fetchLocations() {
@@ -318,4 +375,57 @@ class Stationsetup extends CI_Controller {
 		return $returntext;
 	}
 
+	public function remove_publicslug() {
+		$id = xss_clean($this->input->post('id',true));
+		if ($id ?? '' != '') {
+				$this->load->model('stationsetup_model');
+				$this->stationsetup_model->remove_public_slug($id);
+				$data['success']=1;
+		} else {
+			$data['success']=0;
+			$data['flashdata']='Not allowed';
+		}
+		echo json_encode($data);
+	}
+
+	public function togglePublicSearch() {
+		$id = xss_clean($this->input->post('id',true));
+		$publicSearch = xss_clean($this->input->post('checked',true));
+		if ($id ?? '' != '') {
+				$this->load->model('stationsetup_model');
+				$this->stationsetup_model->togglePublicSearch($id, $publicSearch);
+				$data['success']=1;
+		} else {
+			$data['success']=0;
+			$data['flashdata']='Not allowed';
+		}
+		echo json_encode($data);
+	}
+
+	public function unLinkLocations() {
+		$containerid = xss_clean($this->input->post('containerid',true));
+		$locationid = xss_clean($this->input->post('locationid',true));
+		$this->load->model('stationsetup_model');
+		$this->stationsetup_model->unLinkLocations($containerid, $locationid);
+		$data['success']=1;
+		echo json_encode($data);
+	}
+
+	public function linkLocations() {
+		$containerid = xss_clean($this->input->post('containerid',true));
+		$locationid = xss_clean($this->input->post('locationid',true));
+
+		$this->load->model('stationsetup_model');
+
+		if(!$this->stationsetup_model->relationship_exists($containerid, $locationid)) {
+			// If no link exists, create
+			$this->stationsetup_model->create_logbook_location_link($containerid, $locationid);
+			$data['success']=1;
+			$data['locationdata'] = $this->stationsetup_model->locationInfo($locationid)->result();
+		} else {
+			$data['success']=0;
+			$data['flashdata']='Error';
+		}
+		echo json_encode($data);
+	}
 }

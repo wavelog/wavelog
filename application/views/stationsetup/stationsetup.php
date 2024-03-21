@@ -20,6 +20,7 @@
 					<div class="card-body">
                     <p class="card-text"><?php echo lang('station_logbooks_description_text')?></p>
 					<a class="btn btn-primary btn-sm" href="javascript:createStationLogbook();"><i class="fas fa-plus"></i> <?php echo lang('station_logbooks_create')?></a>
+
                     <?php if ($my_logbooks->num_rows() > 0) { ?>
 
                     <div class="table-responsive">
@@ -28,16 +29,16 @@
                                 <tr>
                                     <th scope="col"><?php echo lang('general_word_name')?></th>
                                     <th scope="col"><?php echo lang('station_logbooks_status')?></th>
-                                    <th scope="col"><?php echo lang('admin_edit')?></th>
+                                    <th scope="col">Linked locations</th>
                                     <th scope="col"><?php echo lang('admin_delete')?></th>
-                                    <th scope="col"><?php echo lang('station_logbooks_link')?></th>
+                                    <th scope="col">Visitor site</th>
                                     <th scope="col"><?php echo lang('station_logbooks_public_search')?></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php foreach ($my_logbooks->result() as $row) { ?>
                                 <tr>
-                                    <td><?php echo $row->logbook_name;?></td>
+                                    <td><?php echo $row->logbook_name;?> <i id="<?php echo $row->logbook_id ?>" class="editContainerName fas fa-edit" role="button"></i></td>
                                     <td>
                                         <?php if($this->session->userdata('active_station_logbook') != $row->logbook_id) { ?>
                                         <button id="<?php echo $row->logbook_id; ?>" class="setActiveLogbook btn btn-outline-primary btn-sm"><?php echo lang('station_logbooks_set_active')?></button>
@@ -46,33 +47,34 @@
 											}?>
                                     </td>
                                     <td>
-                                        <a href="<?php echo site_url('logbooks/edit')."/".$row->logbook_id; ?>"
-                                            class="btn btn-outline-primary btn-sm"><i class="fas fa-edit"
-                                                title="<?php echo lang('station_logbooks_edit_logbook') . ': ' . $row->logbook_name;?>"></i>
-                                        </a>
+									<button class="btn btn-outline-primary btn-sm editLinkedLocations" id="<?php echo $row->logbook_id; ?>);"><i class="fas fa-edit"></i></button>
                                     </td>
                                     <td>
                                         <?php if($this->session->userdata('active_station_logbook') != $row->logbook_id) { ?>
-                                        <button id="<?php echo $row->logbook_id; ?>" class="deleteLogbook btn btn-danger btn-sm"
+                                        <button id="<?php echo $row->logbook_id; ?>" class="deleteLogbook btn btn-outline-danger btn-sm"
                                             cnftext="'<?php echo lang('station_logbooks_confirm_delete') . $row->logbook_name; ?>'"><i
                                                 class="fas fa-trash-alt"></i></a>
                                         <?php } ?>
                                     </td>
                                     <td>
+										<button class="btn btn-outline-primary btn-sm editVisitorLink" id="<?php echo $row->logbook_id; ?>"><i class="fas fa-edit"></i></button>
                                         <?php if($row->public_slug != '') { ?>
                                         <a target="_blank"
                                             href="<?php echo site_url('visitor')."/".$row->public_slug; ?>"
                                             class="btn btn-outline-primary btn-sm"><i class="fas fa-globe"
                                                 title="<?php echo lang('station_logbooks_view_public') . $row->logbook_name;?>"></i>
                                         </a>
+										<button id="<?php echo $row->logbook_id; ?>" class="deletePublicSlug btn btn-outline-danger btn-sm" cnftext="Are you sure you want to delete the public slug?"><i class="fas fa-trash-alt"></i></button>
                                         <?php } ?>
                                     </td>
                                     <td>
                                         <?php if ($row->public_search == 1) {
-											echo "<span class='badge bg-success'>" . lang('general_word_enabled') . "</span>";
-											} else {
-											echo "<span class='badge bg-dark'>" . lang('general_word_disabled') . "</span>";
-											} ?>
+											echo "<span class='badge bg-success'>" . lang('general_word_enabled') . "</span>";?>
+											<div class="form-check" style="margin-top: -1.5em"><input id="<?php echo $row->logbook_id; ?>" class="form-check-input publicSearchCheckbox" type="checkbox" checked /></div>
+										<?php } else {
+											echo "<span class='badge bg-dark'>" . lang('general_word_disabled') . "</span>"; ?>
+											<div class="form-check" style="margin-top: -1.5em"><input id="<?php echo $row->logbook_id; ?>" class="form-check-input publicSearchCheckbox" type="checkbox" /></div>
+										<?php } ?>
                                     </td>
                                 </tr>
                                 <?php } ?>
