@@ -19,6 +19,7 @@ $lang['general_word_cancel'] = "Abbrechen";
 $lang['general_word_ok'] = "OK";
 $lang['general_word_show'] = "Anzeigen";
 $lang['general_word_attention'] = "Achtung";
+$lang['general_word_message'] = "Nachricht";
 $lang['general_word_enabled'] = "Eingeschaltet";
 $lang['general_word_disabled'] = "Ausgeschaltet";
 $lang['general_word_export'] = "Exportieren";

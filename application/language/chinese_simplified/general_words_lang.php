@@ -19,6 +19,7 @@ $lang['general_word_cancel'] = "取消";
 $lang['general_word_ok'] = "确认";
 $lang['general_word_show'] = "Show";
 $lang['general_word_attention'] = "注意";
+$lang['general_word_message'] = "Message";
 $lang['general_word_enabled'] = "已启用";
 $lang['general_word_disabled'] = "已禁用";
 $lang['general_word_export'] = "导出";
