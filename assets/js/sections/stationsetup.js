@@ -516,6 +516,7 @@ function loadLocationTable(rows) {
 }
 
 function linkLocations() {
+	$('.linkLocationButton').prop("disabled", true);
 	var locationid = $('#StationLocationSelect').val();
 	var containerid = $('#station_logbook_id').val();
 	var locationtext = $('#StationLocationSelect option:selected').text();
@@ -533,26 +534,28 @@ function linkLocations() {
 		success: function(data) {
 			jdata=JSON.parse(data);
 			if (jdata.success == 1) {
-				console.log(jdata);
 				$("#StationLocationSelect").find('[value="'+ locationid +'"]').remove();
 				// add to table
 				$('#station_logbooks_linked_table').append($('<tr id="locationid_'+locationid+'">')
 					.append($('<td style="text-align: center; vertical-align: middle;">').append(jdata.locationdata[0].station_profile_name))
 					.append($('<td style="text-align: center; vertical-align: middle;">').append(jdata.locationdata[0].station_callsign))
 					.append($('<td style="text-align: center; vertical-align: middle;">').append(jdata.locationdata[0].station_country+(jdata.locationdata[0].dxcc_end == null ? '' : ' <span class="badge bg-danger">Deleted DXCC</span>')))
-					.append($('<td style="text-align: center; vertical-align: middle;">').append('<button class="btn btn-sm btn-danger" onclick="unLinkLocations('+containerid+','+locationid+');"><i class="fas fa-unlink"></i></button>'))
+					.append($('<td style="text-align: center; vertical-align: middle;">').append('<button class="btn btn-sm btn-danger unlinkbutton" onclick="unLinkLocations('+containerid+','+locationid+');"><i class="fas fa-unlink"></i></button>'))
 				)
 			} else {
 				$("#flashdata").html(jdata.flashdata);
 			}
+			$('.linkLocationButton').prop("disabled", false);
 		},
 		error: function(e) {
 			$("#flashdata").html("An unknown Error occured");
+			$('.linkLocationButton').prop("disabled", false);
 		}
 	});
 }
 
 function unLinkLocations(containerid, locationid) {
+	$('.unlinkbutton').prop("disabled", true);
 	$.ajax({
 		url: base_url + 'index.php/stationsetup/unLinkLocations',
 		type: 'post',
@@ -571,8 +574,10 @@ function unLinkLocations(containerid, locationid) {
 				);
 				$('#StationLocationSelect').append(items.join( "" ));
 				$('#locationid_'+locationid).remove();
+				$('.unlinkbutton').prop("disabled", false);
 			} else {
 				$("#flashdata").data(jdata.flashdata);
+				$('.unlinkbutton').prop("disabled", false);
 			}
 		},
 		error: function(e) {

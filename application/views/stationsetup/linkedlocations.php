@@ -22,7 +22,7 @@
 
 <input type="hidden" class="form-control" id="station_logbook_id" name="station_logbook_id" value="<?php echo $station_logbook_details->logbook_id; ?>" required>
 
-<button class="btn btn-sm btn-primary" onclick="linkLocations();"><i class="fas fa-link"></i> <?php echo lang('station_logbooks_link_loc'); ?></button>
+<button class="btn btn-sm btn-primary linkLocationButton" onclick="linkLocations();"><i class="fas fa-link"></i> <?php echo lang('station_logbooks_link_loc'); ?></button>
 <br /><br />
 
 <table id="station_logbooks_linked_table" class="table table-hover table-sm table-striped">
@@ -43,7 +43,7 @@
 			<td style="text-align: center; vertical-align: middle;"><?php echo $row->station_profile_name;?></td>
 			<td style="text-align: center; vertical-align: middle;"><?php echo $row->station_callsign;?></td>
 			<td style="text-align: center; vertical-align: middle;"><?php echo $row->station_country; if ($row->end != NULL) { echo ' <span class="badge text-bg-danger">'.lang('gen_hamradio_deleted_dxcc').'</span>'; } ?></td>
-			<td style="text-align: center; vertical-align: middle;"><button class="btn btn-sm btn-danger" onclick="unLinkLocations('<?php echo $station_logbook_details->logbook_id; ?>','<?php echo $row->station_id;?>')"><i class="fas fa-unlink"></i></button>
+			<td style="text-align: center; vertical-align: middle;"><button class="btn btn-sm btn-danger unlinkbutton" onclick="unLinkLocations('<?php echo $station_logbook_details->logbook_id; ?>','<?php echo $row->station_id;?>')"><i class="fas fa-unlink"></i></button>
 		</tr>
 		<?php
 				}
