@@ -93,6 +93,7 @@ $(function() {
 						}
 						data[0].push('<a href="javascript:spawnLookupModal(\''+single.dxcc_spotted.dxcc_id+'\',\'dxcc\')";>'+dxcc_wked_info+'</a>');
 						data[0].push(single.spotter);
+						data[0].push(single.message || '');
 						if (oldtable.length > 0) {
 							let update=false;
 							oldtable.each( function (srow) {
