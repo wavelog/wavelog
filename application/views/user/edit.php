@@ -543,23 +543,62 @@
 						<?php } ?>
 					</div>
 
-					<div class="row">
+					<div class="row mb-3">
 						<!-- Previous QSL -->
 						<div class="col-md">
 							<div class="card">
 								<div class="card-header"><?php echo lang('account_previous_qsl_type'); ?></div>
 								<div class="card-body">
-									<div class="mb-3">
-										<label for="profileimages"><?php echo lang('account_select_the_type_of_qsl_to_show_in_the_previous_qsos_section'); ?></label>
-										<?php if(!isset($user_previous_qsl_type)) { $user_previous_qsl_type='0'; }?>
-										<select class="form-select" id="previousqsltype" name="user_previous_qsl_type">
-											<option value="0" <?php if ($user_previous_qsl_type == 0) { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_qsl'); ?></option>
-											<option value="1" <?php if ($user_previous_qsl_type == 1) { echo " selected =\"selected\""; } ?>><?php echo lang('lotw_short'); ?></option>
-											<option value="2" <?php if ($user_previous_qsl_type == 2) { echo " selected =\"selected\""; } ?>><?php echo lang('eqsl_short'); ?></option>
-											<option value="4" <?php if ($user_previous_qsl_type == 4) { echo " selected =\"selected\""; } ?>>QRZ</option>
-										</select>
+									<div class="row">
+										<div class="mb-3">
+											<label for="profileimages"><?php echo lang('account_select_the_type_of_qsl_to_show_in_the_previous_qsos_section'); ?></label>
+											<?php if(!isset($user_previous_qsl_type)) { $user_previous_qsl_type='0'; }?>
+											<select class="form-select" id="previousqsltype" name="user_previous_qsl_type">
+												<option value="0" <?php if ($user_previous_qsl_type == 0) { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_qsl'); ?></option>
+												<option value="1" <?php if ($user_previous_qsl_type == 1) { echo " selected =\"selected\""; } ?>><?php echo lang('lotw_short'); ?></option>
+												<option value="2" <?php if ($user_previous_qsl_type == 2) { echo " selected =\"selected\""; } ?>><?php echo lang('eqsl_short'); ?></option>
+												<option value="4" <?php if ($user_previous_qsl_type == 4) { echo " selected =\"selected\""; } ?>>QRZ</option>
+											</select>
+										</div>
 									</div>
 
+								</div>
+							</div>
+						</div>
+						<div class="col-md">
+							<div class="card">
+								<div class="card-header"><?php echo lang('account_references_show'); ?></div>
+								<div class="card-body">
+									<div class="row">
+										<div class="mb-3">
+											<label for="references_select"><?php echo lang('account_show_references_on_1st_tab'); ?></label>
+											<div class="form-check form-switch">
+												<input name="user_iota_to_qso_tab" class="form-check-input" type="checkbox" role="switch" id="iotaToQsoTab" <?php if ($user_iota_to_qso_tab ?? false) { echo 'checked'; } ?>>
+												<label class="form-check-label" for="iotaToQsoTab" ><?php echo lang('gen_hamradio_iota_reference'); ?></label>
+											</div>
+											<div class="form-check form-switch">
+												<input name="user_sota_to_qso_tab" class="form-check-input" type="checkbox" role="switch" id="sotaToQsoTab" <?php if ($user_sota_to_qso_tab ?? false) { echo 'checked'; } ?>>
+												<label class="form-check-label" for="sotaToQsoTab" ><?php echo lang('gen_hamradio_sota_reference'); ?></label>
+											</div>
+											<div class="form-check form-switch">
+												<input name="user_wwff_to_qso_tab" class="form-check-input" type="checkbox" role="switch" id="wwffToQsoTab" <?php if ($user_wwff_to_qso_tab ?? false) { echo 'checked'; } ?>>
+												<label class="form-check-label" for="wwffToQsoTab" ><?php echo lang('gen_hamradio_wwff_reference'); ?></label>
+											</div>
+											<div class="form-check form-switch">
+												<input name="user_pota_to_qso_tab" class="form-check-input" type="checkbox" role="switch" id="potaToQsoTab" <?php if ($user_pota_to_qso_tab ?? false) { echo 'checked'; } ?>>
+												<label class="form-check-label" for="potaToQsoTab" ><?php echo lang('gen_hamradio_pota_reference'); ?></label>
+											</div>
+											<div class="form-check form-switch">
+												<input name="user_sig_to_qso_tab" class="form-check-input" type="checkbox" role="switch" id="sigToQsoTab" <?php if ($user_sig_to_qso_tab ?? false) { echo 'checked'; } ?>>
+												<label class="form-check-label" for="sigToQsoTab" ><?php echo lang('gen_hamradio_sig'); ?> / <?php echo lang('gen_hamradio_sig_info'); ?></label>
+											</div>
+											<div class="form-check form-switch">
+												<input name="user_dok_to_qso_tab" class="form-check-input" type="checkbox" role="switch" id="dokToQsoTab" <?php if ($user_dok_to_qso_tab ?? false) { echo 'checked'; } ?>>
+												<label class="form-check-label" for="dokToQsoTab" ><?php echo lang('gen_hamradio_dok'); ?></label>
+											</div>
+										</div>
+									</div>
+									<button type="button" onclick="clearRefSwitches();" class="btn btn-primary"><i class="fas fa-recycle"></i> Reset</button>
 								</div>
 							</div>
 						</div>
