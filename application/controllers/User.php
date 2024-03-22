@@ -97,6 +97,7 @@ class User extends CI_Controller {
 				$data['user_quicklog_enter'] = $this->input->post('user_quicklog_enter');
 				$data['user_hamsat_key'] = $this->input->post('user_hamsat_key');
 				$data['user_hamsat_workable_only'] = $this->input->post('user_hamsat_workable_only');
+				$data['user_iota_to_qso_tab'] = $this->input->post('user_iota_to_qso_tab');
 				$data['language'] = $this->input->post('language');
 				$this->load->view('user/edit', $data);
 			} else {
@@ -137,7 +138,8 @@ class User extends CI_Controller {
 				$this->input->post('user_quicklog_enter'),
 				$this->input->post('language'),
 				$this->input->post('user_hamsat_key'),
-				$this->input->post('user_hamsat_workable_only')
+				$this->input->post('user_hamsat_workable_only'),
+				$this->input->post('user_iota_to_qso_tab')
 				)) {
 				// Check for errors
 				case EUSERNAMEEXISTS:
