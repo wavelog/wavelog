@@ -132,3 +132,6 @@ $lang['account_hamsat_private_feed_key'] = "Private Feed Key";
 $lang['account_hamsat_hint'] = "Siehe dein Profil unter <a href='https://hams.at/users/settings' target='_blank'>https://hams.at/users/settings</a>.";
 $lang['account_hamsat_workable_only'] = "Zeige nur Überflüge an, die gearbeitet werden können";
 $lang['account_hamsat_workable_only_hint'] = "Wenn aktiviert, werden nur sichtbare Überflüge basierend auf dem Locator des hams.at Profils angezeigt. Dazu muss der Private Feed Key konfiguriert sein.";
+
+$lang['account_references_show'] = "Zeige Referenzen auf QSO-Reiter";
+$lang['account_show_references_on_1st_tab'] = "Die aktivierten Elemente werden auf dem QSO-Reiter statt des allgemeinen Reiters angezeigt.";
