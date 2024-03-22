@@ -219,13 +219,25 @@
               <?php } ?>
 
               <?php if ($user_wwff_to_qso_tab) { ?>
-              <div class="mb3 row">
+              <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label" for="wwff_ref"><?php echo lang('gen_hamradio_wwff_reference'); ?></label>
                 <div class="col-sm-7 align-self-center">
                   <input class="form-control" id="wwff_ref" type="text" name="wwff_ref" value="" />
                 </div>
                 <div class="col-sm-2 align-self-center">
                   <small id="wwff_info" class="btn btn-secondary spw-buttons"></small>
+                </div>
+              </div>
+              <?php } ?>
+
+              <?php if ($user_pota_to_qso_tab) { ?>
+              <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label" for="pota_ref"><?php echo lang('gen_hamradio_pota_reference'); ?></label>
+                <div class="col-sm-7 align-self-center">
+                  <input class="form-control" id="pota_ref" type="text" name="pota_ref" value="" />
+                </div>
+                <div class="col-sm-2 align-self-center">
+                  <small id="pota_info" class="btn btn-secondary spw-buttons"></small>
                 </div>
               </div>
               <?php } ?>
@@ -438,6 +450,7 @@
             </div>
             <?php } ?>
 
+            <?php if (!$user_pota_to_qso_tab) { ?>
             <div class="row">
               <div class="mb-3 col-md-9">
                 <label for="pota_ref"><?php echo lang('gen_hamradio_pota_reference'); ?></label>
@@ -448,6 +461,7 @@
                 <small id="pota_info" class="btn btn-secondary spw-buttons"></small>
               </div>
             </div>
+            <?php } ?>
 
             <div class="mb-3">
               <label for="sig"><?php echo lang('gen_hamradio_sig'); ?></label>
