@@ -588,6 +588,10 @@
 												<input name="user_pota_to_qso_tab" class="form-check-input" type="checkbox" role="switch" id="potaToQsoTab" <?php if ($user_pota_to_qso_tab) { echo 'checked'; } ?>>
 												<label class="form-check-label" for="potaToQsoTab" ><?php echo lang('gen_hamradio_pota_reference'); ?></label>
 											</div>
+											<div class="form-check form-switch">
+												<input name="user_sig_to_qso_tab" class="form-check-input" type="checkbox" role="switch" id="sigToQsoTab" <?php if ($user_sig_to_qso_tab) { echo 'checked'; } ?>>
+                                    <label class="form-check-label" for="sigToQsoTab" ><?php echo lang('gen_hamradio_sig'); ?> / <?php echo lang('gen_hamradio_sig_info'); ?></label>
+											</div>
 										</div>
 									</div>
 								</div>

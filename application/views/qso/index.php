@@ -242,6 +242,22 @@
               </div>
               <?php } ?>
 
+              <?php if ($user_sig_to_qso_tab) { ?>
+              <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label" for="sig"><?php echo lang('gen_hamradio_sig'); ?></label>
+                <div class="col-sm-9">
+                  <input class="form-control" id="sig" type="text" name="sig" value="" />
+                </div>
+              </div>
+
+              <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label" for="sig_info"><?php echo lang('gen_hamradio_sig_info'); ?></label>
+                <div class="col-sm-9">
+                  <input class="form-control" id="sig_info" type="text" name="sig_info" value="" />
+                </div>
+              </div>
+              <?php } ?>
+
               <div class="mb-3 row">
                 <label for="qth" class="col-sm-3 col-form-label"><?php echo lang('general_word_location'); ?></label>
                 <div class="col-sm-9">
@@ -463,6 +479,7 @@
             </div>
             <?php } ?>
 
+            <?php if (!$user_sig_to_qso_tab) { ?>
             <div class="mb-3">
               <label for="sig"><?php echo lang('gen_hamradio_sig'); ?></label>
               <input class="form-control" id="sig" type="text" name="sig" value="" />
@@ -474,6 +491,7 @@
               <input class="form-control" id="sig_info" type="text" name="sig_info" value="" />
               <small id="sigInfoHelp" class="form-text text-muted"><?php echo lang('qso_sig_info_helptext'); ?></small>
             </div>
+            <?php } ?>
 
             <div class="mb-3">
               <label for="darc_dok"><?php echo lang('gen_hamradio_dok'); ?></label>

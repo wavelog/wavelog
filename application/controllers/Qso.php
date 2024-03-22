@@ -61,6 +61,13 @@ class QSO extends CI_Controller {
 			$data['user_pota_to_qso_tab'] = 0;
 		}
 
+		$qkey_opt=$this->user_options_model->get_options('qso_tab',array('option_name'=>'sig','option_key'=>'show'))->result();
+		if (count($qkey_opt)>0) {
+			$data['user_sig_to_qso_tab'] = $qkey_opt[0]->option_value;
+		} else {
+			$data['user_sig_to_qso_tab'] = 0;
+		}
+
 		$this->load->library('form_validation');
 
 		$this->form_validation->set_rules('start_date', 'Date', 'required');
