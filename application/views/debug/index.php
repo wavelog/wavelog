@@ -291,7 +291,7 @@
                                 </tr>
                                 <tr>
                                     <td>Update Wavelog</td>
-                            		<td><a class="btn btn-sm btn-primary" href="debug/selfupdate">Update</a></td>
+                            		<td><a class="btn btn-sm btn-primary" href="debug/selfupdate" onClick='this.classList.add("disabled");'>Update</a></td>
                                 </tr>
                             </table>
                             </table>
