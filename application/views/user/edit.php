@@ -598,6 +598,7 @@
 											</div>
 										</div>
 									</div>
+									<button type="button" onclick="clearRefSwitches();" class="btn btn-primary mb-5 mt-3"><i class="fas fa-recycle"></i> Reset</button>
 								</div>
 							</div>
 						</div>

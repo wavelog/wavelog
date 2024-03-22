@@ -24,7 +24,7 @@ $(document).ready(function(){
             }
         ]
     });
-    
+
     $('.icon_selectBox').off('click').on('click', function(){
         var boxcontent = $(this).attr('data-boxcontent');
         if ($('.icon_selectBox_data[data-boxcontent="'+boxcontent+'"]').is(":hidden")) { $('.icon_selectBox_data[data-boxcontent="'+boxcontent+'"]').show(); } else { $('.icon_selectBox_data[data-boxcontent="'+boxcontent+'"]').hide(); }
@@ -46,7 +46,7 @@ $(document).ready(function(){
     $('.collapse').on('shown.bs.collapse', function(e) {
         var $card = $(this).closest('.accordion-item');
         var $open = $($(this).data('parent')).find('.collapse.show');
-        
+
         var additionalOffset = 0;
         if($card.prevAll().filter($open.closest('.accordion-item')).length !== 0)
         {
@@ -91,7 +91,7 @@ $(document).ready(function(){
                         },
                         success: function(result) {
                             wait_dialog.close();
-        
+
                             if (result) {
                                 $('#pwd_reset_message').addClass('alert-success');
                                 $('#pwd_reset_message').text(lang_admin_password_reset_processed + " " + pwd_reset_user_name + " (" + pwd_reset_user_email + ")");
@@ -113,6 +113,21 @@ $(document).ready(function(){
                 }
             },
         }).getModalHeader().find('.modal-title').after('<i class="fas fa-spinner fa-spin fa-2x"></i>');
-        
+
     });
 });
+
+function clearRefSwitches() {
+   var iotaSwitch = document.getElementById("iotaToQsoTab");
+   iotaSwitch.checked = false;
+   var sotaSwitch = document.getElementById("sotaToQsoTab");
+   sotaSwitch.checked = false;
+   var wwffSwitch = document.getElementById("wwffToQsoTab");
+   wwffSwitch.checked = false;
+   var potaSwitch = document.getElementById("potaToQsoTab");
+   potaSwitch.checked = false;
+   var sigSwitch = document.getElementById("sigToQsoTab");
+   sigSwitch.checked = false;
+   var dokSwitch = document.getElementById("dokToQsoTab");
+   dokSwitch.checked = false;
+}
