@@ -5,7 +5,7 @@ class Migration_add_contest_table extends CI_Migration {
 	public function up()
 	{
 		// create contest table
-		$this->db->query("create table contest (id integer not null auto_increment, name varchar(256), adifname varchar(256), active integer default 1, primary key (id)) ENGINE=myisam DEFAULT CHARSET=utf8;");
+		$this->db->query("create table contest (id integer not null auto_increment, name varchar(256), adifname varchar(256), active integer default 1, primary key (id)) ENGINE=InnoDB DEFAULT CHARSET=utf8;");
 
         $this->db->query("INSERT INTO contest (name, adifname, active) values ('Other','Other',1);");
         $this->db->query("INSERT INTO contest (name, adifname, active) values ('PODXS Great Pumpkin Sprint','070-160M-SPRINT',1);");
