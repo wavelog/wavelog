@@ -59,7 +59,7 @@
             };
             echo '</td>';
             echo '<td style=\'text-align: center\'>';
-            $timestamp = strtotime($qsl->COL_QSLRDATE);
+            $timestamp = strtotime($qsl->COL_QSLRDATE ?? '');
             echo date($custom_date_format, $timestamp);
             echo '</td>';
             echo '<td id="'.$qsl->id.'" style=\'text-align: center\'><button onclick="deleteQsl(\''.$qsl->id.'\')" class="btn btn-sm btn-danger">Delete</button></td>';
