@@ -543,23 +543,41 @@
 						<?php } ?>
 					</div>
 
-					<div class="row">
+					<div class="row mb-3">
 						<!-- Previous QSL -->
 						<div class="col-md">
 							<div class="card">
 								<div class="card-header"><?php echo lang('account_previous_qsl_type'); ?></div>
 								<div class="card-body">
-									<div class="mb-3">
-										<label for="profileimages"><?php echo lang('account_select_the_type_of_qsl_to_show_in_the_previous_qsos_section'); ?></label>
-										<?php if(!isset($user_previous_qsl_type)) { $user_previous_qsl_type='0'; }?>
-										<select class="form-select" id="previousqsltype" name="user_previous_qsl_type">
-											<option value="0" <?php if ($user_previous_qsl_type == 0) { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_qsl'); ?></option>
-											<option value="1" <?php if ($user_previous_qsl_type == 1) { echo " selected =\"selected\""; } ?>><?php echo lang('lotw_short'); ?></option>
-											<option value="2" <?php if ($user_previous_qsl_type == 2) { echo " selected =\"selected\""; } ?>><?php echo lang('eqsl_short'); ?></option>
-											<option value="4" <?php if ($user_previous_qsl_type == 4) { echo " selected =\"selected\""; } ?>>QRZ</option>
-										</select>
+									<div class="row">
+										<div class="mb-3">
+											<label for="profileimages"><?php echo lang('account_select_the_type_of_qsl_to_show_in_the_previous_qsos_section'); ?></label>
+											<?php if(!isset($user_previous_qsl_type)) { $user_previous_qsl_type='0'; }?>
+											<select class="form-select" id="previousqsltype" name="user_previous_qsl_type">
+												<option value="0" <?php if ($user_previous_qsl_type == 0) { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_qsl'); ?></option>
+												<option value="1" <?php if ($user_previous_qsl_type == 1) { echo " selected =\"selected\""; } ?>><?php echo lang('lotw_short'); ?></option>
+												<option value="2" <?php if ($user_previous_qsl_type == 2) { echo " selected =\"selected\""; } ?>><?php echo lang('eqsl_short'); ?></option>
+												<option value="4" <?php if ($user_previous_qsl_type == 4) { echo " selected =\"selected\""; } ?>>QRZ</option>
+											</select>
+										</div>
 									</div>
 
+								</div>
+							</div>
+						</div>
+						<div class="col-md">
+							<div class="card">
+								<div class="card-header"><?php echo lang('account_references_show'); ?></div>
+								<div class="card-body">
+									<div class="row">
+										<div class="mb-3">
+											<label for="references_select"><?php echo lang('account_show_references_on_1st_tab'); ?></label>
+											<div class="form-check form-switch">
+												<input name="user_iota_to_qso_tab" class="form-check-input" type="checkbox" role="switch" id="iotaToQsoTab" <?php if ($user_iota_to_qso_tab) { echo 'checked'; } ?>>
+												<label class="form-check-label" for="iotaToQsoTab" ><?php echo lang('gen_hamradio_iota'); ?></label>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>

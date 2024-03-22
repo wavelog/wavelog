@@ -515,6 +515,15 @@ class User extends CI_Controller {
 				}
 			}
 
+			if($this->input->post('user_iota_to_qso_tab')) {
+				$data['user_iota_to_qso_tab'] = $this->input->post('user_iota_to_qso_tab', false);
+			} else {
+				$qkey_opt=$this->user_options_model->get_options('qso_tab',array('option_name'=>'iota','option_key'=>'show'))->result();
+				if (count($qkey_opt)>0) {
+					$data['user_iota_to_qso_tab'] = $qkey_opt[0]->option_value;
+				}
+			}
+
 			// [MAP Custom] GET user options //
 			$options_object = $this->user_options_model->get_options('map_custom')->result();
 			if (count($options_object)>0) {

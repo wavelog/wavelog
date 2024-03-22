@@ -190,6 +190,22 @@
                 </div>
               </div>
 
+            <?php if ($user_iota_to_qso_tab) { ?>
+            <div class="mb-3 row">
+              <label class="col-sm-3 col-form-label" for="iota_ref"><?php echo lang('gen_hamradio_iota_reference'); ?></label>
+                    <div class="col-sm-9">
+                    <select class="form-select" id="iota_ref" name="iota_ref">
+                        <option value =""></option>
+                        <?php
+                        foreach($iota as $i){
+                            echo '<option value=' . $i->tag . '>' . $i->tag . ' - ' . $i->name . '</option>';
+                        }
+                        ?>
+                    </select>
+                    </div>
+            </div>
+            <?php } ?>
+
               <div class="mb-3 row">
                 <label for="qth" class="col-sm-3 col-form-label"><?php echo lang('general_word_location'); ?></label>
                 <div class="col-sm-9">
@@ -356,6 +372,7 @@
                 <input class="form-control" id="stationCntyInputQso" type="text" name="county" value="" />
             </div>
 
+            <?php if (!$user_iota_to_qso_tab) { ?>
             <div class="mb-3">
               <label for="iota_ref"><?php echo lang('gen_hamradio_iota_reference'); ?></label>
                     <select class="form-select" id="iota_ref" name="iota_ref">
@@ -369,6 +386,7 @@
 
                     </select>
             </div>
+            <?php } ?>
 
             <div class="row">
               <div class="mb-3 col-md-9">
