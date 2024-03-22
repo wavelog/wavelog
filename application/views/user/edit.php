@@ -574,7 +574,11 @@
 											<label for="references_select"><?php echo lang('account_show_references_on_1st_tab'); ?></label>
 											<div class="form-check form-switch">
 												<input name="user_iota_to_qso_tab" class="form-check-input" type="checkbox" role="switch" id="iotaToQsoTab" <?php if ($user_iota_to_qso_tab) { echo 'checked'; } ?>>
-												<label class="form-check-label" for="iotaToQsoTab" ><?php echo lang('gen_hamradio_iota'); ?></label>
+												<label class="form-check-label" for="iotaToQsoTab" ><?php echo lang('gen_hamradio_iota_reference'); ?></label>
+											</div>
+											<div class="form-check form-switch">
+												<input name="user_sota_to_qso_tab" class="form-check-input" type="checkbox" role="switch" id="sotaToQsoTab" <?php if ($user_sota_to_qso_tab) { echo 'checked'; } ?>>
+												<label class="form-check-label" for="sotaToQsoTab" ><?php echo lang('gen_hamradio_sota_reference'); ?></label>
 											</div>
 										</div>
 									</div>

@@ -190,21 +190,33 @@
                 </div>
               </div>
 
-            <?php if ($user_iota_to_qso_tab) { ?>
-            <div class="mb-3 row">
-              <label class="col-sm-3 col-form-label" for="iota_ref"><?php echo lang('gen_hamradio_iota_reference'); ?></label>
-                    <div class="col-sm-9">
-                    <select class="form-select" id="iota_ref" name="iota_ref">
-                        <option value =""></option>
-                        <?php
-                        foreach($iota as $i){
-                            echo '<option value=' . $i->tag . '>' . $i->tag . ' - ' . $i->name . '</option>';
-                        }
-                        ?>
-                    </select>
-                    </div>
-            </div>
-            <?php } ?>
+              <?php if ($user_iota_to_qso_tab) { ?>
+              <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label" for="iota_ref"><?php echo lang('gen_hamradio_iota_reference'); ?></label>
+                      <div class="col-sm-9 align-self-center">
+                      <select class="form-select" id="iota_ref" name="iota_ref">
+                          <option value =""></option>
+                          <?php
+                          foreach($iota as $i){
+                              echo '<option value=' . $i->tag . '>' . $i->tag . ' - ' . $i->name . '</option>';
+                          }
+                          ?>
+                      </select>
+                      </div>
+              </div>
+              <?php } ?>
+
+              <?php if ($user_sota_to_qso_tab) { ?>
+              <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label" for="sota_ref"><?php echo lang('gen_hamradio_sota_reference'); ?></label>
+                <div class="col-sm-7 align-self-center">
+                  <input class="form-control" id="sota_ref" type="text" name="sota_ref" value="" />
+                </div>
+                <div class="col-sm-2 align-self-center">
+                  <small id="sota_info" class="btn btn-secondary spw-buttons"></small>
+                </div>
+              </div>
+              <?php } ?>
 
               <div class="mb-3 row">
                 <label for="qth" class="col-sm-3 col-form-label"><?php echo lang('general_word_location'); ?></label>
@@ -388,6 +400,7 @@
             </div>
             <?php } ?>
 
+            <?php if (!$user_sota_to_qso_tab) { ?>
             <div class="row">
               <div class="mb-3 col-md-9">
                 <label for="sota_ref"><?php echo lang('gen_hamradio_sota_reference'); ?></label>
@@ -398,6 +411,7 @@
                 <small id="sota_info" class="btn btn-secondary spw-buttons"></small>
               </div>
             </div>
+            <?php } ?>
 
             <div class="row">
               <div class="mb-3 col-md-9">
