@@ -590,7 +590,11 @@
 											</div>
 											<div class="form-check form-switch">
 												<input name="user_sig_to_qso_tab" class="form-check-input" type="checkbox" role="switch" id="sigToQsoTab" <?php if ($user_sig_to_qso_tab) { echo 'checked'; } ?>>
-                                    <label class="form-check-label" for="sigToQsoTab" ><?php echo lang('gen_hamradio_sig'); ?> / <?php echo lang('gen_hamradio_sig_info'); ?></label>
+												<label class="form-check-label" for="sigToQsoTab" ><?php echo lang('gen_hamradio_sig'); ?> / <?php echo lang('gen_hamradio_sig_info'); ?></label>
+											</div>
+											<div class="form-check form-switch">
+												<input name="user_dok_to_qso_tab" class="form-check-input" type="checkbox" role="switch" id="dokToQsoTab" <?php if ($user_dok_to_qso_tab) { echo 'checked'; } ?>>
+												<label class="form-check-label" for="dokToQsoTab" ><?php echo lang('gen_hamradio_dok'); ?></label>
 											</div>
 										</div>
 									</div>

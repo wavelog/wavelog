@@ -258,6 +258,15 @@
               </div>
               <?php } ?>
 
+              <?php if ($user_dok_to_qso_tab) { ?>
+              <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label" for="darc_dok"><?php echo lang('gen_hamradio_dok'); ?></label>
+                <div class="col-sm-9">
+                  <input class="form-control" id="darc_dok" type="text" name="darc_dok" value="" />
+                </div>
+              </div>
+              <?php } ?>
+
               <div class="mb-3 row">
                 <label for="qth" class="col-sm-3 col-form-label"><?php echo lang('general_word_location'); ?></label>
                 <div class="col-sm-9">
@@ -493,11 +502,14 @@
             </div>
             <?php } ?>
 
+            <?php if (!$user_dok_to_qso_tab) { ?>
             <div class="mb-3">
               <label for="darc_dok"><?php echo lang('gen_hamradio_dok'); ?></label>
               <input class="form-control" id="darc_dok" type="text" name="darc_dok" value="" />
               <small id="dokHelp" class="form-text text-muted"><?php echo lang('qso_dok_helptext'); ?></small>
             </div>
+            <?php } ?>
+
           </div>
 
           <!-- Satellite Panel -->
