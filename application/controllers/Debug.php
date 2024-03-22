@@ -153,9 +153,11 @@ class Debug extends CI_Controller
 	public function selfupdate() { 
 		if (file_exists('.git')) {
 			try {
+				$st=exec('touch ./.maintenance');
 				$st=exec('git stash push --include-untracked');
 				$st=exec('git pull --rebase');
 				$st=exec('git stash pop');
+				$st=exec('rm ./.maintenance');
                		} catch (\Throwable $th) {
 			}
 		}
