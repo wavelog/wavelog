@@ -199,9 +199,9 @@
 						<li class="nav-item dropdown"> <!-- TOOLS -->
 							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><?php echo lang('menu_tools'); ?></a>
 							<ul class="dropdown-menu header-dropdown">
-								<li><a class="dropdown-item" href="<?php echo site_url('dxcalendar'); ?>" title="SAT Timers"><i class="fas fa-satellite"></i> DX Calendar</a></li>
+								<li><a class="dropdown-item" href="<?php echo site_url('dxcalendar'); ?>" title="DX Calendar"><i class="fas fa-calendar"></i> <?php echo lang('menu_dx_calendar'); ?></a></li>
 								<div class="dropdown-divider"></div>
-								<li><a class="dropdown-item" href="<?php echo site_url('contestcalendar'); ?>" title="SAT Timers"><i class="fas fa-satellite"></i> Contest Calendar</a></li>
+								<li><a class="dropdown-item" href="<?php echo site_url('contestcalendar'); ?>" title="Contest Calendar"><i class="fas fa-calendar"></i> <?php echo lang('menu_contest_calendar'); ?></a></li>
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item" href="<?php echo site_url('hamsat'); ?>" title="Hams.at"><i class="fas fa-list"></i> Hams.at</a></li>
 								<div class="dropdown-divider"></div>

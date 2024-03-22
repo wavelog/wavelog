@@ -117,6 +117,7 @@ $lang['filter_actions_print_label'] = 'Print Label';
 $lang['filter_actions_start_print_title'] = 'Print Labels';
 $lang['filter_actions_print_include_via'] = "Include Via";
 $lang['filter_actions_print_include_grid'] = 'Include Grid?';
+$lang['filter_actions_print_include_ref'] = "Include reference? (SIG, SOTA, POTA, IOTA, WWFF; If available in location)";
 $lang['filter_actions_start_print'] = 'Start printing at?';
 $lang['filter_actions_print'] = 'Print';
 $lang['filter_actions_qsl_slideshow'] = 'QSL Slideshow';

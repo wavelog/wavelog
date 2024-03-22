@@ -33,6 +33,48 @@ class QSO extends CI_Controller {
 		$data['user_default_band'] = $this->session->userdata('user_default_band');
 		$data['sat_active'] = array_search("SAT", $this->bands->get_user_bands(), true);
 
+		$qkey_opt=$this->user_options_model->get_options('qso_tab',array('option_name'=>'iota','option_key'=>'show'))->result();
+		if (count($qkey_opt)>0) {
+			$data['user_iota_to_qso_tab'] = $qkey_opt[0]->option_value;
+		} else {
+			$data['user_iota_to_qso_tab'] = 0;
+		}
+
+		$qkey_opt=$this->user_options_model->get_options('qso_tab',array('option_name'=>'sota','option_key'=>'show'))->result();
+		if (count($qkey_opt)>0) {
+			$data['user_sota_to_qso_tab'] = $qkey_opt[0]->option_value;
+		} else {
+			$data['user_sota_to_qso_tab'] = 0;
+		}
+
+		$qkey_opt=$this->user_options_model->get_options('qso_tab',array('option_name'=>'wwff','option_key'=>'show'))->result();
+		if (count($qkey_opt)>0) {
+			$data['user_wwff_to_qso_tab'] = $qkey_opt[0]->option_value;
+		} else {
+			$data['user_wwff_to_qso_tab'] = 0;
+		}
+
+		$qkey_opt=$this->user_options_model->get_options('qso_tab',array('option_name'=>'pota','option_key'=>'show'))->result();
+		if (count($qkey_opt)>0) {
+			$data['user_pota_to_qso_tab'] = $qkey_opt[0]->option_value;
+		} else {
+			$data['user_pota_to_qso_tab'] = 0;
+		}
+
+		$qkey_opt=$this->user_options_model->get_options('qso_tab',array('option_name'=>'sig','option_key'=>'show'))->result();
+		if (count($qkey_opt)>0) {
+			$data['user_sig_to_qso_tab'] = $qkey_opt[0]->option_value;
+		} else {
+			$data['user_sig_to_qso_tab'] = 0;
+		}
+
+		$qkey_opt=$this->user_options_model->get_options('qso_tab',array('option_name'=>'dok','option_key'=>'show'))->result();
+		if (count($qkey_opt)>0) {
+			$data['user_dok_to_qso_tab'] = $qkey_opt[0]->option_value;
+		} else {
+			$data['user_dok_to_qso_tab'] = 0;
+		}
+
 		$this->load->library('form_validation');
 
 		$this->form_validation->set_rules('start_date', 'Date', 'required');

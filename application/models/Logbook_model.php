@@ -1679,7 +1679,7 @@ class Logbook_model extends CI_Model {
 		  $this->db->join('primary_subdivisions', $this->config->item('table_name').'.COL_DXCC = primary_subdivisions.adif AND '.$this->config->item('table_name').'.COL_STATE = primary_subdivisions.state', 'left outer');
 		  $this->db->where('COL_PRIMARY_KEY', $id);
       $this->db->limit(1);
-      
+
 		  return $this->db->get();
 	  } else {
 		  return;
@@ -2144,7 +2144,7 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 
       	  $location_list = "'".implode("','",$logbooks_locations_array)."'";
 
-	  $sql="SELECT 
+	  $sql="SELECT
 		  dx.prefix,dx.name,
 		  CASE
 		  WHEN q.col_mode = 'CW' THEN 'C'
@@ -3492,12 +3492,14 @@ function lotw_last_qsl_date($user_id) {
 
 		  // Sanitise RX Power
 		  if (isset($record['rx_pwr'])){
-			  // Check if RX_PWR is "K" which N1MM+ uses to indicate 1000W
-			  if($record['rx_pwr'] == "K") {
-				  $rx_pwr = 1000;
-			  } else {
-				  $rx_pwr = filter_var($record['rx_pwr'],FILTER_VALIDATE_FLOAT);
-			  }
+			switch(strtoupper($record['rx_pwr'])) {
+				case 'K': $rx_pwr = 1000; break;
+				case 'KW': $rx_pwr = 1000; break;
+				case '1TT': $rx_pwr = 100; break;
+				case 'ETT': $rx_pwr = 100; break;
+				case 'NN': $rx_pwr = 99; break;
+				default: $rx_pwr = filter_var($record['rx_pwr'],FILTER_VALIDATE_FLOAT);
+			}
 		  }else{
 			  $rx_pwr = NULL;
 		  }
@@ -4802,7 +4804,7 @@ function lotw_last_qsl_date($user_id) {
       $clean_qsoid = $this->security->xss_clean($qso_id);
 
       $sql =    'SELECT station_profile.user_id
-                FROM '.$this->config->item('table_name').' 
+                FROM '.$this->config->item('table_name').'
                 INNER JOIN station_profile ON ('.$this->config->item('table_name').'.station_id = station_profile.station_id)
                 WHERE '.$this->config->item('table_name').'.COL_PRIMARY_KEY = ?';
 
@@ -4810,7 +4812,7 @@ function lotw_last_qsl_date($user_id) {
       $row = $result->row();
 
       return $row->user_id;
-    }  
+    }
 }
 
 function validateADIFDate($date, $format = 'Ymd')

@@ -117,6 +117,7 @@ $lang['filter_actions_print_label'] = "Imprimer Etiquette";
 $lang['filter_actions_start_print_title'] = "Impression d'étiquettes";
 $lang['filter_actions_print_include_via'] = "Ajouter Via";
 $lang['filter_actions_print_include_grid'] = "Ajouter Locator";
+$lang['filter_actions_print_include_ref'] = "Include reference? (SIG, SOTA, POTA, IOTA, WWFF; If available in location)";
 $lang['filter_actions_start_print'] = "Commencer à imprimer à";
 $lang['filter_actions_print'] = "Imprimer";
 $lang['filter_actions_qsl_slideshow'] = "Diaporama QSL";

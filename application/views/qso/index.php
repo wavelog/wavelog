@@ -190,6 +190,83 @@
                 </div>
               </div>
 
+              <?php if ($user_iota_to_qso_tab ?? false) { ?>
+              <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label" for="iota_ref"><?php echo lang('gen_hamradio_iota_reference'); ?></label>
+                      <div class="col-sm-9 align-self-center">
+                      <select class="form-select" id="iota_ref" name="iota_ref">
+                          <option value =""></option>
+                          <?php
+                          foreach($iota as $i){
+                              echo '<option value=' . $i->tag . '>' . $i->tag . ' - ' . $i->name . '</option>';
+                          }
+                          ?>
+                      </select>
+                      </div>
+              </div>
+              <?php } ?>
+
+              <?php if ($user_sota_to_qso_tab ?? false) { ?>
+              <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label" for="sota_ref"><?php echo lang('gen_hamradio_sota_reference'); ?></label>
+                <div class="col-sm-7 align-self-center">
+                  <input class="form-control" id="sota_ref" type="text" name="sota_ref" value="" />
+                </div>
+                <div class="col-sm-2 align-self-center">
+                  <small id="sota_info" class="btn btn-secondary spw-buttons"></small>
+                </div>
+              </div>
+              <?php } ?>
+
+              <?php if ($user_wwff_to_qso_tab ?? false) { ?>
+              <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label" for="wwff_ref"><?php echo lang('gen_hamradio_wwff_reference'); ?></label>
+                <div class="col-sm-7 align-self-center">
+                  <input class="form-control" id="wwff_ref" type="text" name="wwff_ref" value="" />
+                </div>
+                <div class="col-sm-2 align-self-center">
+                  <small id="wwff_info" class="btn btn-secondary spw-buttons"></small>
+                </div>
+              </div>
+              <?php } ?>
+
+              <?php if ($user_pota_to_qso_tab ?? false) { ?>
+              <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label" for="pota_ref"><?php echo lang('gen_hamradio_pota_reference'); ?></label>
+                <div class="col-sm-7 align-self-center">
+                  <input class="form-control" id="pota_ref" type="text" name="pota_ref" value="" />
+                </div>
+                <div class="col-sm-2 align-self-center">
+                  <small id="pota_info" class="btn btn-secondary spw-buttons"></small>
+                </div>
+              </div>
+              <?php } ?>
+
+              <?php if ($user_sig_to_qso_tab ?? false) { ?>
+              <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label" for="sig"><?php echo lang('gen_hamradio_sig'); ?></label>
+                <div class="col-sm-9">
+                  <input class="form-control" id="sig" type="text" name="sig" value="" />
+                </div>
+              </div>
+
+              <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label" for="sig_info"><?php echo lang('gen_hamradio_sig_info'); ?></label>
+                <div class="col-sm-9">
+                  <input class="form-control" id="sig_info" type="text" name="sig_info" value="" />
+                </div>
+              </div>
+              <?php } ?>
+
+              <?php if ($user_dok_to_qso_tab ?? false) { ?>
+              <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label" for="darc_dok"><?php echo lang('gen_hamradio_dok'); ?></label>
+                <div class="col-sm-9">
+                  <input class="form-control" id="darc_dok" type="text" name="darc_dok" value="" />
+                </div>
+              </div>
+              <?php } ?>
+
               <div class="mb-3 row">
                 <label for="qth" class="col-sm-3 col-form-label"><?php echo lang('general_word_location'); ?></label>
                 <div class="col-sm-9">
@@ -356,6 +433,7 @@
                 <input class="form-control" id="stationCntyInputQso" type="text" name="county" value="" />
             </div>
 
+            <?php if (!$user_iota_to_qso_tab ?? false) { ?>
             <div class="mb-3">
               <label for="iota_ref"><?php echo lang('gen_hamradio_iota_reference'); ?></label>
                     <select class="form-select" id="iota_ref" name="iota_ref">
@@ -369,7 +447,9 @@
 
                     </select>
             </div>
+            <?php } ?>
 
+            <?php if (!$user_sota_to_qso_tab ?? false) { ?>
             <div class="row">
               <div class="mb-3 col-md-9">
                 <label for="sota_ref"><?php echo lang('gen_hamradio_sota_reference'); ?></label>
@@ -380,7 +460,9 @@
                 <small id="sota_info" class="btn btn-secondary spw-buttons"></small>
               </div>
             </div>
+            <?php } ?>
 
+            <?php if (!$user_wwff_to_qso_tab ?? false) { ?>
             <div class="row">
               <div class="mb-3 col-md-9">
                 <label for="wwff_ref"><?php echo lang('gen_hamradio_wwff_reference'); ?></label>
@@ -391,7 +473,9 @@
                 <small id="wwff_info" class="btn btn-secondary spw-buttons"></small>
               </div>
             </div>
+            <?php } ?>
 
+            <?php if (!$user_pota_to_qso_tab ?? false) { ?>
             <div class="row">
               <div class="mb-3 col-md-9">
                 <label for="pota_ref"><?php echo lang('gen_hamradio_pota_reference'); ?></label>
@@ -402,7 +486,9 @@
                 <small id="pota_info" class="btn btn-secondary spw-buttons"></small>
               </div>
             </div>
+            <?php } ?>
 
+            <?php if (!$user_sig_to_qso_tab ?? false) { ?>
             <div class="mb-3">
               <label for="sig"><?php echo lang('gen_hamradio_sig'); ?></label>
               <input class="form-control" id="sig" type="text" name="sig" value="" />
@@ -414,12 +500,16 @@
               <input class="form-control" id="sig_info" type="text" name="sig_info" value="" />
               <small id="sigInfoHelp" class="form-text text-muted"><?php echo lang('qso_sig_info_helptext'); ?></small>
             </div>
+            <?php } ?>
 
+            <?php if (!$user_dok_to_qso_tab ?? false) { ?>
             <div class="mb-3">
               <label for="darc_dok"><?php echo lang('gen_hamradio_dok'); ?></label>
               <input class="form-control" id="darc_dok" type="text" name="darc_dok" value="" />
               <small id="dokHelp" class="form-text text-muted"><?php echo lang('qso_dok_helptext'); ?></small>
             </div>
+            <?php } ?>
+
           </div>
 
           <!-- Satellite Panel -->

@@ -153,18 +153,6 @@ if($this->session->userdata('user_id') != null) {
     <script src="<?php echo base_url() ;?>assets/js/sections/notes.js"></script>
 <?php } ?>
 
-<?php if ($this->uri->segment(1) == "logbooks" && $this->uri->segment(2) == "edit") { ?>
-<script>
-    function removeSlug() {
-        var slugLink = document.getElementById("slugLink");
-        if (slugLink !== null) {
-            slugLink.style.display = "none";
-        }
-        document.getElementById('publicSlugInput').value = ''
-    }
-</script>
-<?php } ?>
-
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datatables.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/dataTables.buttons.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/buttons.html5.min.js"></script>
@@ -1906,9 +1894,9 @@ $(document).ready(function(){
 <script>
     var reload_after_qso_safe = false;
     <?php if (
-	$this->uri->segment(1) != "search" && 
-	$this->uri->segment(2) != "filter" && 
-	$this->uri->segment(1) != "qso" && 
+	$this->uri->segment(1) != "search" &&
+	$this->uri->segment(2) != "filter" &&
+	$this->uri->segment(1) != "qso" &&
 	$this->uri->segment(1) != "logbookadvanced") { ?>
 		reload_after_qso_safe = true;
 	<?php } ?>

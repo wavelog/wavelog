@@ -19,6 +19,7 @@ $lang['general_word_cancel'] = "Cancel";
 $lang['general_word_ok'] = "OK";
 $lang['general_word_show'] = "Show";
 $lang['general_word_attention'] = "Attention";
+$lang['general_word_message'] = "Message";
 $lang['general_word_enabled'] = "Enabled";
 $lang['general_word_disabled'] = "Disabled";
 $lang['general_word_export'] = "Export";
@@ -232,4 +233,5 @@ $lang['dashboard_logbooks_warning'] = 'You have no station logbook. Go <a href="
 
 $lang['hams_at_no_activations_found'] = 'No upcoming activations found. Please check back later.';
 
+$lang['gen_add_to_contest'] = "Add QSOs to Contest";
 $lang['datatables_language'] = "en-GB";

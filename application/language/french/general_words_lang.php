@@ -19,6 +19,7 @@ $lang['general_word_cancel'] = "Annuler";
 $lang['general_word_ok'] = "OK";
 $lang['general_word_show'] = "Show";
 $lang['general_word_attention'] = "Attention";
+$lang['general_word_message'] = "Message";
 $lang['general_word_enabled'] = "Activé";
 $lang['general_word_disabled'] = "Désactivé";
 $lang['general_word_export'] = "Export";
@@ -232,4 +233,5 @@ $lang['dashboard_logbooks_warning'] = "Vous n'avez pas de journal de travail pou
 
 $lang['hams_at_no_activations_found'] = "Aucune activation à venir trouvée. Veuillez revenir plus tard.";
 
+$lang['gen_add_to_contest'] = "Add QSOs to Contest";
 $lang['datatables_language'] = "fr-FR";

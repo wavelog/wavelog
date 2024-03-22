@@ -139,6 +139,9 @@ class adif extends CI_Controller {
 	}
 
 	public function index() {
+		$this->load->model('contesting_model');
+		$data['contests']=$this->contesting_model->getActivecontests();
+
 		$this->load->model('stations');
 
 		$data['page_title'] = "ADIF Import / Export";
@@ -183,6 +186,7 @@ class adif extends CI_Controller {
 			$this->load->view('interface_assets/footer');
 		} else {
 			if ($this->stations->check_station_is_accessible($this->input->post('station_profile'))) {
+				$contest=$this->security->xss_clean($this->input->post('contest')) ?? '';
 				$stopnow=false;
 				$fdata = array('upload_data' => $this->upload->data());
 				ini_set('memory_limit', '-1');
@@ -222,6 +226,9 @@ class adif extends CI_Controller {
 					$alladif=[];
 					while($record = $this->adif_parser->get_record())
 					{
+						if ($contest != '') {
+							$record['contest_id']=$contest;
+						}
 						if(count($record) == 0) {
 							break;
 						};

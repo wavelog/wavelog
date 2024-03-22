@@ -19,6 +19,7 @@ $lang['general_word_cancel'] = "Abbrechen";
 $lang['general_word_ok'] = "OK";
 $lang['general_word_show'] = "Anzeigen";
 $lang['general_word_attention'] = "Achtung";
+$lang['general_word_message'] = "Nachricht";
 $lang['general_word_enabled'] = "Eingeschaltet";
 $lang['general_word_disabled'] = "Ausgeschaltet";
 $lang['general_word_export'] = "Exportieren";
@@ -232,4 +233,5 @@ $lang['dashboard_logbooks_warning'] = 'Es wurde kein Stationslogbuch angelegt. K
 
 $lang['hams_at_no_activations_found'] = 'Keine bevorstehenden Aktivierungen gefunden. Bitte später noch einmal vorbeischauen.';
 
+$lang['gen_add_to_contest'] = "QSOs zu Contest hinzuf&uuml;gen";
 $lang['datatables_language'] = "de-DE";

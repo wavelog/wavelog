@@ -36,14 +36,6 @@ class Visitor extends CI_Controller {
 
         $this->load->model('user_model');
 
-		// Check if users logged in
-		if($this->user_model->validate_session() != 0) {
-            // If environment is set to development then show the debug toolbar
-		    if(ENVIRONMENT == 'development') {
-                $this->output->enable_profiler(TRUE);
-            }
-		}
-
         // Check slug passed and is valid
         if ($this->security->xss_clean($public_slug, TRUE) === FALSE)
         {
@@ -164,7 +156,7 @@ class Visitor extends CI_Controller {
 		$qsos = $this->logbook_model->get_qsos('18', null, $logbooks_locations_array);
 		// [PLOT] ADD plot //
 		$plot_array = $this->logbook_model->get_plot_array_for_map($qsos->result());
-	
+
 		header('Content-Type: application/json; charset=utf-8');
 		echo json_encode($plot_array);
 	}
