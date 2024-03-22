@@ -573,27 +573,27 @@
 										<div class="mb-3">
 											<label for="references_select"><?php echo lang('account_show_references_on_1st_tab'); ?></label>
 											<div class="form-check form-switch">
-												<input name="user_iota_to_qso_tab" class="form-check-input" type="checkbox" role="switch" id="iotaToQsoTab" <?php if ($user_iota_to_qso_tab) { echo 'checked'; } ?>>
+												<input name="user_iota_to_qso_tab" class="form-check-input" type="checkbox" role="switch" id="iotaToQsoTab" <?php if ($user_iota_to_qso_tab ?? false) { echo 'checked'; } ?>>
 												<label class="form-check-label" for="iotaToQsoTab" ><?php echo lang('gen_hamradio_iota_reference'); ?></label>
 											</div>
 											<div class="form-check form-switch">
-												<input name="user_sota_to_qso_tab" class="form-check-input" type="checkbox" role="switch" id="sotaToQsoTab" <?php if ($user_sota_to_qso_tab) { echo 'checked'; } ?>>
+												<input name="user_sota_to_qso_tab" class="form-check-input" type="checkbox" role="switch" id="sotaToQsoTab" <?php if ($user_sota_to_qso_tab ?? false) { echo 'checked'; } ?>>
 												<label class="form-check-label" for="sotaToQsoTab" ><?php echo lang('gen_hamradio_sota_reference'); ?></label>
 											</div>
 											<div class="form-check form-switch">
-												<input name="user_wwff_to_qso_tab" class="form-check-input" type="checkbox" role="switch" id="wwffToQsoTab" <?php if ($user_wwff_to_qso_tab) { echo 'checked'; } ?>>
+												<input name="user_wwff_to_qso_tab" class="form-check-input" type="checkbox" role="switch" id="wwffToQsoTab" <?php if ($user_wwff_to_qso_tab ?? false) { echo 'checked'; } ?>>
 												<label class="form-check-label" for="wwffToQsoTab" ><?php echo lang('gen_hamradio_wwff_reference'); ?></label>
 											</div>
 											<div class="form-check form-switch">
-												<input name="user_pota_to_qso_tab" class="form-check-input" type="checkbox" role="switch" id="potaToQsoTab" <?php if ($user_pota_to_qso_tab) { echo 'checked'; } ?>>
+												<input name="user_pota_to_qso_tab" class="form-check-input" type="checkbox" role="switch" id="potaToQsoTab" <?php if ($user_pota_to_qso_tab ?? false) { echo 'checked'; } ?>>
 												<label class="form-check-label" for="potaToQsoTab" ><?php echo lang('gen_hamradio_pota_reference'); ?></label>
 											</div>
 											<div class="form-check form-switch">
-												<input name="user_sig_to_qso_tab" class="form-check-input" type="checkbox" role="switch" id="sigToQsoTab" <?php if ($user_sig_to_qso_tab) { echo 'checked'; } ?>>
+												<input name="user_sig_to_qso_tab" class="form-check-input" type="checkbox" role="switch" id="sigToQsoTab" <?php if ($user_sig_to_qso_tab ?? false) { echo 'checked'; } ?>>
 												<label class="form-check-label" for="sigToQsoTab" ><?php echo lang('gen_hamradio_sig'); ?> / <?php echo lang('gen_hamradio_sig_info'); ?></label>
 											</div>
 											<div class="form-check form-switch">
-												<input name="user_dok_to_qso_tab" class="form-check-input" type="checkbox" role="switch" id="dokToQsoTab" <?php if ($user_dok_to_qso_tab) { echo 'checked'; } ?>>
+												<input name="user_dok_to_qso_tab" class="form-check-input" type="checkbox" role="switch" id="dokToQsoTab" <?php if ($user_dok_to_qso_tab ?? false) { echo 'checked'; } ?>>
 												<label class="form-check-label" for="dokToQsoTab" ><?php echo lang('gen_hamradio_dok'); ?></label>
 											</div>
 										</div>
