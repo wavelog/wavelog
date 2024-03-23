@@ -155,6 +155,7 @@ class Debug extends CI_Controller
 			try {
 				$st=exec('touch '.realpath(APPPATH.'../').'/.maintenance');
 				$st=exec('git stash push --include-untracked');
+				$st=exec('git fetch');
 				$st=exec('git pull');
 				$st=exec('git stash pop');
 				$st=exec('rm '.realpath(APPPATH.'../').'/.maintenance');
