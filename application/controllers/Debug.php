@@ -153,11 +153,11 @@ class Debug extends CI_Controller
 	public function selfupdate() { 
 		if (file_exists('.git')) {
 			try {
-				$st=exec('touch ./.maintenance');
+				$st=exec('touch '.realpath(APPPATH.'../').'/.maintenance');
 				$st=exec('git stash push --include-untracked');
-				$st=exec('git pull --rebase');
+				$st=exec('git pull');
 				$st=exec('git stash pop');
-				$st=exec('rm ./.maintenance');
+				$st=exec('rm '.realpath(APPPATH.'../').'/.maintenance');
                		} catch (\Throwable $th) {
 			}
 		}

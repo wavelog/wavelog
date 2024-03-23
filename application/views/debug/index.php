@@ -204,7 +204,7 @@
                     </table>
                 </div>
             </div>
-            <?php if (file_exists('.git')) { ?>
+            <?php if (file_exists(realpath(APPPATH.'../').'/.git')) { ?>
                 <?php
                 //Below is a failsafe where git commands fail
                 try {
@@ -217,7 +217,7 @@
                         $commitDate = trim(exec('git log --pretty="%ci" -n1 HEAD'));
                         $line = trim(exec('git log -n 1 --pretty=%D HEAD'));
                         $pieces = explode(', ', $line);
-                        $lastFetch = trim(exec('stat -c %Y .git/FETCH_HEAD'));
+                        $lastFetch = trim(exec('stat -c %Y '.realpath(APPPATH.'../').'/.git/FETCH_HEAD'));
                         //Below is a failsafe for systems without the stat command
                         try {
                             $dt = new DateTime("@$lastFetch");
