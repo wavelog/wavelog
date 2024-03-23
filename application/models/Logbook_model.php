@@ -4031,7 +4031,7 @@ function lotw_last_qsl_date($user_id) {
      */
     public function check_dxcc_table($call, $date){
 
-    $csadditions = '/^P$|^R$|^A$|^M$/';
+    $csadditions = '/^T$|^P$|^R$|^A$|^M$/';
 
 		$dxcc_exceptions = $this->db->select('`entity`, `adif`, `cqz`, `cont`')
              ->where('call', $call)
@@ -4121,7 +4121,7 @@ function lotw_last_qsl_date($user_id) {
 
     public function dxcc_lookup($call, $date){
 
-    $csadditions = '/^P$|^R$|^A$|^M$/';
+    $csadditions = '/^T$|^P$|^R$|^A$|^M$/';
 
 		$dxcc_exceptions = $this->db->select('`entity`, `adif`, `cqz`,`cont`')
 				->where('call', $call)
@@ -4219,7 +4219,7 @@ function lotw_last_qsl_date($user_id) {
       $c = '';
 
       $lidadditions = '/^QRP$|^LGT$/';
-      $csadditions = '/^P$|^R$|^A$|^M$|^LH$/';
+      $csadditions = '/^T$|^P$|^R$|^A$|^M$|^LH$/';
       $noneadditions = '/^MM$|^AM$/';
 
       # First check if the call is in the proper format, A/B/C where A and C
