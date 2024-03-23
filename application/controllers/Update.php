@@ -45,7 +45,6 @@ class Update extends CI_Controller {
      */
 	public function dxcc_entities() {
 		// Load Database connectors
-		$this->load->model('dxcc_entities');
 
 		// Load the cty file
 		$xml_data = simplexml_load_file($this->make_update_path("cty.xml"));
@@ -97,7 +96,6 @@ class Update extends CI_Controller {
      */
 	public function dxcc_exceptions() {
 		// Load Database connectors
-		$this->load->model('dxcc_exceptions');
 		// Load the cty file
 		$xml_data = simplexml_load_file($this->make_update_path("cty.xml"));
 
@@ -139,7 +137,6 @@ class Update extends CI_Controller {
      */
 	public function dxcc_prefixes() {
 		// Load Database connectors
-		$this->load->model('dxcc_prefixes');
 		// Load the cty file
 		$xml_data = simplexml_load_file($this->make_update_path("cty.xml"));
 

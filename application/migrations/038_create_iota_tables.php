@@ -5,7 +5,7 @@ class Migration_create_iota_tables extends CI_Migration {
 	public function up()
 	{
 		// create iota table
-		$this->db->query("CREATE TABLE `iota` (`Tag` VARCHAR(8) NOT NULL, `Name` LONGTEXT, `Prefix` VARCHAR(16), `DXCCID` INTEGER DEFAULT 0, `Lat1` FLOAT NULL DEFAULT 0, `Lat2` FLOAT NULL DEFAULT 0, `Lon1` FLOAT NULL DEFAULT 0, `Lon2` FLOAT NULL DEFAULT 0, `Status` VARCHAR(1), `Notes` VARCHAR(50), INDEX (`DXCCID`)) ENGINE=myisam DEFAULT CHARSET=utf8;");
+		$this->db->query("CREATE TABLE `iota` (`Tag` VARCHAR(8) NOT NULL, `Name` LONGTEXT, `Prefix` VARCHAR(16), `DXCCID` INTEGER DEFAULT 0, `Lat1` FLOAT NULL DEFAULT 0, `Lat2` FLOAT NULL DEFAULT 0, `Lon1` FLOAT NULL DEFAULT 0, `Lon2` FLOAT NULL DEFAULT 0, `Status` VARCHAR(1), `Notes` VARCHAR(50), INDEX (`DXCCID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8;");
 
 		$this->db->query("INSERT INTO `iota` (`Tag`, `Name`, `Prefix`, `DXCCID`, `Lat1`, `Lat2`, `Lon1`, `Lon2`, `Status`, `Notes`) VALUES ('AF-001', 'Agalega Islands', '3B6', 4, 10, 10.75, 56.25, 57, NULL, NULL);");
 		$this->db->query("INSERT INTO `iota` (`Tag`, `Name`, `Prefix`, `DXCCID`, `Lat1`, `Lat2`, `Lon1`, `Lon2`, `Status`, `Notes`) VALUES ('AF-002', 'Amsterdam & St Paul Islands', 'FT*Z', 10, 37.75, 39, 77.25, 77.75, NULL, NULL);");
