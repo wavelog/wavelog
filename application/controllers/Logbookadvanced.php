@@ -93,6 +93,7 @@ class Logbookadvanced extends CI_Controller {
 			'assets/js/sections/itumap_geojson.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/itumap_geojson.js")),
 			'assets/js/leaflet/L.Terminator.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/leaflet/L.Terminator.js")),
 			'assets/js/leaflet/geocoding.js',
+			'assets/js/globe/globe.gl.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/globe/globe.gl.js")),
 		];
 
 		$this->load->view('interface_assets/header', $data);
