@@ -160,6 +160,7 @@ class Debug extends CI_Controller
 				$st=exec('git stash pop');
 				$st=exec('rm '.realpath(APPPATH.'../').'/.maintenance');
                		} catch (\Throwable $th) {
+				log_message("Error","Error at selfupdating");
 			}
 		}
 		redirect('debug');
