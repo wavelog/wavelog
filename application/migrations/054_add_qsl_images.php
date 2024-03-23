@@ -9,7 +9,7 @@ class Migration_add_qsl_images extends CI_Migration {
         // create qsl images table
         $this->db->query("CREATE TABLE IF NOT EXISTS `qsl_images` 
                     (`id` integer NOT NULL auto_increment, `qsoid` int, `filename` text, primary key (id)) 
-                    ENGINE=myisam DEFAULT CHARSET=utf8;");
+                    ENGINE=InnoDB DEFAULT CHARSET=utf8;");
     }
 
     public function down()

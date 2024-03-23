@@ -14,7 +14,7 @@ class Migration_migration extends CI_Migration {
 		$this->db->query("ALTER TABLE cat CHANGE COLUMN uplink_mode uplink_mode varchar(255) DEFAULT NULL; # was varchar(255) NOT NULL");
 		$this->db->query("ALTER TABLE cat ENGINE=InnoDB DEFAULT CHARSET=utf8mb4; # was ENGINE=InnoDB DEFAULT CHARSET=latin1");
 		$this->db->query("ALTER TABLE config ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4; # was ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8");
-		$this->db->query("ALTER TABLE dxcc ENGINE=MyISAM DEFAULT CHARSET=utf8mb4; # was ENGINE=MyISAM DEFAULT CHARSET=utf8");
+		$this->db->query("ALTER TABLE dxcc ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
 		$this->db->query("ALTER TABLE dxccexceptions ENGINE=InnoDB AUTO_INCREMENT=166 DEFAULT CHARSET=utf8mb4; # was ENGINE=InnoDB AUTO_INCREMENT=166 DEFAULT CHARSET=utf8");
 		$this->db->query("ALTER TABLE notes ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4; # was ENGINE=InnoDB DEFAULT CHARSET=latin1");
 
@@ -23,7 +23,7 @@ class Migration_migration extends CI_Migration {
 
 		$this->db->query("ALTER TABLE station_profile ENGINE=InnoDB DEFAULT CHARSET=utf8mb4; # was ENGINE=InnoDB DEFAULT CHARSET=latin1");
 		$this->db->query("ALTER TABLE timezones CHANGE COLUMN name name varchar(120) COLLATE utf8mb4_bin NOT NULL; # was varchar(120) COLLATE utf8_bin NOT NULL");
-		$this->db->query("ALTER TABLE timezones ENGINE=MyISAM AUTO_INCREMENT=151 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin; # was ENGINE=MyISAM AUTO_INCREMENT=151 DEFAULT CHARSET=utf8 COLLATE=utf8_bin");
+		$this->db->query("ALTER TABLE timezones ENGINE=InnoDB AUTO_INCREMENT=151 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;");
 		$this->db->query("ALTER TABLE users CHANGE COLUMN user_callsign user_callsign varchar(32) NOT NULL COMMENT 'User''s callsign'; # was varchar(255) NOT NULL");
 		$this->db->query("ALTER TABLE users CHANGE COLUMN user_firstname user_firstname varchar(32) NOT NULL COMMENT 'User''s first name'; # was varchar(255) NOT NULL");
 		$this->db->query("ALTER TABLE users CHANGE COLUMN user_locator user_locator varchar(16) NOT NULL COMMENT 'User''s locator'; # was varchar(255) NOT NULL");
@@ -32,7 +32,7 @@ class Migration_migration extends CI_Migration {
 
 		$this->db->query("ALTER TABLE users ADD COLUMN user_eqsl_qth_nickname varchar(32) DEFAULT NULL;");
 
-		$this->db->query("ALTER TABLE users ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4; # was ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1");
+		$this->db->query("ALTER TABLE users ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;");
 		$this->db->query("CREATE TABLE IF NOT EXISTS contest_template (
 		  id int(11) NOT NULL AUTO_INCREMENT,
 		  name varchar(255) NOT NULL,
@@ -87,7 +87,6 @@ class Migration_migration extends CI_Migration {
 
 		$this->db->query("ALTER TABLE ".$this->config->item('table_name')." CHANGE COLUMN COL_FREQ_RX COL_FREQ_RX bigint(13) DEFAULT NULL; # was int(11) DEFAULT NULL");
 		$this->db->query("ALTER TABLE ".$this->config->item('table_name')." CHANGE COLUMN COL_FREQ COL_FREQ bigint(13) DEFAULT NULL; # was int(11) DEFAULT NULL");
-		// $this->db->query("ALTER TABLE ".$this->config->item('table_name')." ENGINE=MyISAM DEFAULT CHARSET=utf8mb4; # was ENGINE=MyISAM DEFAULT CHARSET=latin1"); // Is already MyISAM
 
 		$this->db->db_debug = true;
 	}
