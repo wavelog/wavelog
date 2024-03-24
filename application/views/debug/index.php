@@ -468,5 +468,9 @@
 </div>
 
 <script>
-    var local_branch = '<?php echo $branch; ?>';
+    <?php if (file_exists(realpath(APPPATH . '../') . '/.git')) { ?>
+        var local_branch = '<?php echo $branch; ?>';
+    <?php } else { ?>
+        var local_branch = 'n/a';
+    <?php } ?>
 </script>
