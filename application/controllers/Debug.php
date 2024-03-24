@@ -166,6 +166,10 @@ class Debug extends CI_Controller
 		redirect('debug');
 	}
 
+	public function wavelog_version() {
+		$version_tag = $this->optionslib->get_option('version');
+		echo $version_tag;
+	}
 
 	public function migrate_userdata() {
 		// Check if users logged in

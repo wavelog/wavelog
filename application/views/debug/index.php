@@ -204,7 +204,7 @@
                     </table>
                 </div>
             </div>
-            <?php if (file_exists(realpath(APPPATH.'../').'/.git')) { ?>
+            <?php if (file_exists(realpath(APPPATH . '../') . '/.git')) { ?>
                 <?php
                 //Below is a failsafe where git commands fail
                 try {
@@ -217,7 +217,7 @@
                         $commitDate = trim(exec('git log --pretty="%ci" -n1 HEAD'));
                         $line = trim(exec('git log -n 1 --pretty=%D HEAD'));
                         $pieces = explode(', ', $line);
-                        $lastFetch = trim(exec('stat -c %Y '.realpath(APPPATH.'../').'/.git/FETCH_HEAD'));
+                        $lastFetch = trim(exec('stat -c %Y ' . realpath(APPPATH . '../') . '/.git/FETCH_HEAD'));
                         //Below is a failsafe for systems without the stat command
                         try {
                             $dt = new DateTime("@$lastFetch");
@@ -283,18 +283,17 @@
                                         <?php } ?>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>Last Fetch</td>
-                                    <td>
-                                        <?php echo ($dt == null ? '' : $dt->format(\DateTime::RFC850)); ?>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Update Wavelog</td>
-                            		<td><a class="btn btn-sm btn-primary" href="debug/selfupdate" onClick='this.classList.add("disabled");'>Update</a></td>
-                                </tr>
                             </table>
-                            </table>
+                            <div class="border-bottom border-top pt-2 pb-2 mt-2 mb-2" id="version_check">
+                                <p id="version_check_result"></p>
+                                <small id="last_version_check"></small>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <button class="btn btn-primary me-3 ld-ext-right" onClick="update_version_check();" id="version_check_button">Check for new Version<div class="ld ld-ring ld-spin"></div></button>
+                                    <a class="btn btn-primary" style="display: none;" id="version_update_button" href="debug/selfupdate" onClick='this.classList.add("disabled");'>Update now</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
             <?php }
