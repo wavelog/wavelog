@@ -78,10 +78,14 @@ function version_check(callback) {
     });
 }
 
-function update_version_check() {
+function update_version_check(local_branch) {
 	version_check(function(is_latest_version, latest_tag) {
 		$('#version_check_result').removeClass('alert alert-success alert-warning alert-danger').text('');
-		$('#version_update_button').hide();
+		if (local_branch == 'master') {
+			$('#version_update_button').hide();
+		} else {
+			$('#version_update_button').show();
+		}
 		var timestamp = Date.now();
 
         if (is_latest_version !== null) {
@@ -103,6 +107,6 @@ function update_version_check() {
 }
 
 $(document).ready(function () {
-    update_version_check();
+    update_version_check(local_branch);
 });
 

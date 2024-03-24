@@ -289,10 +289,10 @@
                                 <small id="last_version_check"></small>
                             </div>
                             <div class="row">
-                                <div class="col">
-                                    <button class="btn btn-primary me-3 ld-ext-right" onClick="update_version_check();" id="version_check_button">Check for new version<div class="ld ld-ring ld-spin"></div></button>
-                                    <a class="btn btn-primary" style="display: none;" id="version_update_button" href="debug/selfupdate" onClick='this.classList.add("disabled");'>Update now</a>
-                                </div>
+                            <div class="col">
+                                <button class="btn btn-primary me-3 ld-ext-right" onClick="update_version_check('<?php echo $branch; ?>');" id="version_check_button">Check for new version<div class="ld ld-ring ld-spin"></div></button>
+                                <a class="btn btn-primary" style="display: none;" id="version_update_button" href="debug/selfupdate" onClick='this.classList.add("disabled");'>Update now</a>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -460,3 +460,7 @@
     </div>
 
 </div>
+
+<script>
+    var local_branch = '<?php echo $branch; ?>';
+</script>
