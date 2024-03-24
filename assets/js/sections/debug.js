@@ -88,7 +88,7 @@ function update_version_check(local_branch) {
 		}
 		var timestamp = Date.now();
 
-        if (is_latest_version !== null) {
+        if (is_latest_version !== null && local_branch == 'master') {
             if (is_latest_version) {
 				$('#version_check_result').addClass('alert alert-success');
                 $('#version_check_result').text("Wavelog is up to date!");
@@ -98,8 +98,8 @@ function update_version_check(local_branch) {
 				$('#version_update_button').show();
             }
         } else {
-			$('#version_check_result').addClass('alert alert-danger');
-            $('#version_check_result').text("Failed to determine the latest version.");
+			$('#version_check_result').addClass('alert alert-warning');
+            $('#version_check_result').text("You are not on 'master' branch. You still can pull the latest changes but Wavelog can not check the version tag.");
         }
 
 		$('#last_version_check').text("Last version check: " + new Date(timestamp).toUTCString());
