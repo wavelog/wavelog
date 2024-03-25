@@ -226,7 +226,7 @@
                         }
                         if (isset($pieces[1])) {
                             $remote = substr($pieces[1], 0, strpos($pieces[1], '/'));
-			    $branch = trim(exec('git rev-parse --abbrev-ref HEAD')); // Get ONLY Name of the Branch we're on
+			    			$branch = trim(exec('git rev-parse --abbrev-ref HEAD')); // Get ONLY Name of the Branch we're on
                             $url = trim(exec('git remote get-url ' . $remote));
                             if (strpos($url, 'https://github.com') !== false) {
                                 $owner = preg_replace('/https:\/\/github\.com\/(\w+)\/Wavelog\.git/', '$1', $url);
