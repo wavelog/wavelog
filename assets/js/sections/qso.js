@@ -1243,6 +1243,9 @@ $( document ).ready(function() {
 				$('.callsign-suggestions').text(scps.filter((call) => call.includes($(this).val().toUpperCase())).join(' '));
 				highlight(ccall.toUpperCase());
 			}
+		} else {
+			$('.callsign-suggest').hide();
+			scps=[];
 		}
 	});
 
