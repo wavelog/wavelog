@@ -95,7 +95,7 @@ function update_version_check(local_branch) {
 			}
 		} else {
 			$('#version_check_result').addClass('alert alert-warning');
-			$('#version_check_result').text("The Remote Repository doesn't know your branch");
+			$('#version_check_result').text("The Remote Repository doesn't know your branch.");
 		}
 
 		$('#last_version_check').text("Last version check: " + new Date(timestamp).toUTCString());
