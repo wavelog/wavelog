@@ -169,7 +169,7 @@ class Debug extends CI_Controller
 	public function wavelog_fetch() {
 		$a_versions=[];
 		try {
-			$st=exec('git fetch');
+			$st=exec('git fetch');	// Fetch latest things from Repo. ONLY Fetch. Doesn't hurt since it isn't a pull!
                         $versions['branch'] = trim(exec('git rev-parse --abbrev-ref HEAD')); // Get ONLY Name of the Branch we're on
 			$versions['latest_commit_hash']=substr(trim(exec('git log --pretty="%H" -n1 origin'.'/'.$versions['branch'])),0,8);	// fetch latest commit-hash from repo
 		}  catch (Exception $e) {
