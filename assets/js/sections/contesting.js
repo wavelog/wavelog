@@ -268,7 +268,7 @@ $("#callsign").keyup(async function (e) {
 
 		if ($(this).val().length >= 3) {
 			$callsign = $(this).val().replace('Ø', '0');
-			if (scps.filter((call => call.startsWith($(this).val().toUpperCase()))).length <= 0) {
+			if (scps.filter((call => call.includes($(this).val().toUpperCase()))).length <= 0) {
 				$.ajax({
 					url: 'lookup/scp',
 					method: 'POST',
@@ -282,7 +282,7 @@ $("#callsign").keyup(async function (e) {
 					}
 				});
 			} else {
-				$('.callsign-suggestions').text(scps.filter((call) => call.startsWith($(this).val().toUpperCase())).join(' '));
+				$('.callsign-suggestions').text(scps.filter((call) => call.includes($(this).val().toUpperCase())).join(' '));
 				highlight(call.toUpperCase());
 			}
 		}

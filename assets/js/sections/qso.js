@@ -1222,10 +1222,11 @@ $( document ).ready(function() {
 	var scps=[];
 	// On Key up check and suggest callsigns
 	$("#callsign").keyup(function() {
+		var ccall = $(this).val();
 		if ($(this).val().length >= 3) {
 			$('.callsign-suggest').show();
 			$callsign = $(this).val().replace('Ø', '0');
-			if (scps.filter((call => call.startsWith($(this).val().toUpperCase()))).length <= 0) {
+			if (scps.filter((call => call.includes($(this).val().toUpperCase()))).length <= 0) {
 				$.ajax({
 					url: 'lookup/scp',
 					method: 'POST',
@@ -1235,13 +1236,37 @@ $( document ).ready(function() {
 					success: function(result) {
 						$('.callsign-suggestions').text(result);
 						scps=result.split(" ");
+						highlight(ccall.toUpperCase());
 					}
 				});
 			} else {
-				$('.callsign-suggestions').text(scps.filter((call) => call.startsWith($(this).val().toUpperCase())).join(' '));
+				$('.callsign-suggestions').text(scps.filter((call) => call.includes($(this).val().toUpperCase())).join(' '));
+				highlight(ccall.toUpperCase());
 			}
 		}
 	});
+
+RegExp.escape = function (text) {
+	return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+}
+
+
+function highlight(term, base) {
+	if (!term) return;
+	base = base || document.body;
+	var re = new RegExp("(" + RegExp.escape(term) + ")", "gi");
+	var replacement = "<span class=\"text-primary\">" + term + "</span>";
+	$(".callsign-suggestions", base).contents().each(function (i, el) {
+		if (el.nodeType === 3) {
+			var data = el.data;
+			if (data = data.replace(re, replacement)) {
+				var wrapper = $("<span>").html(data);
+				$(el).before(wrapper.contents()).remove();
+			}
+		}
+	});
+}
+
 
 	//Reset QSO form Fields function
 	function resetDefaultQSOFields() {
