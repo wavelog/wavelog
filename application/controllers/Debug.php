@@ -166,10 +166,26 @@ class Debug extends CI_Controller
 		redirect('debug');
 	}
 
-	public function wavelog_version() {
-		$version_tag = $this->optionslib->get_option('version');
+	public function wavelog_fetch() {
+		$a_versions=[];
+		try {
+			$st=exec('git fetch');
+                        $line = trim(exec('git log -n 1 --pretty=%D HEAD'));	// Get local branch-descriptor
+                        $pieces = explode(', ', $line);
+                        $versions['branch'] = substr($pieces[1], strpos($pieces[1], '/') + 1);
+			$versions['latest_commit_hash']=substr(trim(exec('git log --pretty="%H" -n1 HEAD..origin'.'/'.$versions['branch'])),0,8);	// fetch latest commit-hash from repo
+		}  catch (Exception $e) {
+			$versions['latest_commit_hash']='';
+			$versions['branch']='';
+		}
 		header('Content-Type: application/json');
-		echo json_encode($version_tag);
+		echo json_encode($versions);
+	}
+
+	public function wavelog_version() {
+		$commit_hash=substr(trim(exec('git log --pretty="%H" -n1 HEAD')),0,8);	// Get latest LOCAL Hash
+		header('Content-Type: application/json');
+		echo json_encode($commit_hash);
 	}
 
 	public function migrate_userdata() {
