@@ -101,8 +101,3 @@ function update_version_check(local_branch) {
 		$('#last_version_check').text("Last version check: " + new Date(timestamp).toUTCString());
 	});
 }
-
-$(document).ready(function () {
-    update_version_check(local_branch);
-});
-
