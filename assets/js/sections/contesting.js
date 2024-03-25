@@ -259,22 +259,33 @@ $("#callsign").on( "blur", function() {
 	}
 });
 
+var scps=[];
+
 // On Key up check and suggest callsigns
 $("#callsign").keyup(async function (e) {
 	var call = $(this).val();
 	if ((!((e.keyCode == 10 || e.keyCode == 13) && (e.ctrlKey || e.metaKey))) && (call.length >= 3)) {	// prevent checking again when pressing CTRL-Enter
 
-		$.ajax({
-			url: 'lookup/scp',
-			method: 'POST',
-			data: {
-			  callsign: $(this).val().toUpperCase()
-			},
-			success: function(result) {
-			  $('.callsign-suggestions').text(result);
-			  highlight(call.toUpperCase());
+		if ($(this).val().length >= 3) {
+			$callsign = $(this).val().replace('Ø', '0');
+			if (scps.filter((call => call.startsWith($(this).val().toUpperCase()))).length <= 0) {
+				$.ajax({
+					url: 'lookup/scp',
+					method: 'POST',
+					data: {
+						callsign: $callsign.toUpperCase()
+					},
+					success: function(result) {
+						$('.callsign-suggestions').text(result);
+						scps=result.split(" ");
+						highlight(call.toUpperCase());
+					}
+				});
+			} else {
+				$('.callsign-suggestions').text(scps.filter((call) => call.startsWith($(this).val().toUpperCase())).join(' '));
+				highlight(call.toUpperCase());
 			}
-		  });
+		}
 
 		await checkIfWorkedBefore();
 		var qTable = $('.qsotable').DataTable();

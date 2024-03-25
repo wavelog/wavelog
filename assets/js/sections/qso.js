@@ -1219,21 +1219,27 @@ $( document ).ready(function() {
 		}
 	});
 
+	var scps=[];
 	// On Key up check and suggest callsigns
 	$("#callsign").keyup(function() {
 		if ($(this).val().length >= 3) {
 			$('.callsign-suggest').show();
 			$callsign = $(this).val().replace('Ø', '0');
-			$.ajax({
-				url: 'lookup/scp',
-				method: 'POST',
-				data: {
-					callsign: $callsign.toUpperCase()
-				},
-				success: function(result) {
-					$('.callsign-suggestions').text(result);
-				}
-			});
+			if (scps.filter((call => call.startsWith($(this).val().toUpperCase()))).length <= 0) {
+				$.ajax({
+					url: 'lookup/scp',
+					method: 'POST',
+					data: {
+						callsign: $callsign.toUpperCase()
+					},
+					success: function(result) {
+						$('.callsign-suggestions').text(result);
+						scps=result.split(" ");
+					}
+				});
+			} else {
+				$('.callsign-suggestions').text(scps.filter((call) => call.startsWith($(this).val().toUpperCase())).join(' '));
+			}
 		}
 	});
 
