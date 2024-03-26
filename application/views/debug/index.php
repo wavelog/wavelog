@@ -208,7 +208,7 @@
                 <?php
                 //Below is a failsafe where git commands fail
                 try {
-                    $commitHash = trim(exec('git log --pretty="%H" -n1 HEAD'));
+                    $commitHash = trim(exec('git log --pretty="%H" -n1 HEAD'));	// Get last LOCAL commit of HEAD
                     $branch = '';
                     $remote = '';
                     $owner = '';
@@ -226,12 +226,12 @@
                         }
                         if (isset($pieces[1])) {
                             $remote = substr($pieces[1], 0, strpos($pieces[1], '/'));
-                            $branch = substr($pieces[1], strpos($pieces[1], '/') + 1);
+			    			$branch = trim(exec('git rev-parse --abbrev-ref HEAD')); // Get ONLY Name of the Branch we're on
                             $url = trim(exec('git remote get-url ' . $remote));
                             if (strpos($url, 'https://github.com') !== false) {
-                                $owner = preg_replace('/https:\/\/github\.com\/(\w+)\/Wavelog\.git/', '$1', $url);
+                                $owner = preg_replace('/https:\/\/github\.com\/(\w+)\/[w|W]avelog\.git/', '$1', $url);
                             } else if (strpos($url, 'git@github.com') !== false) {
-                                $owner = preg_replace('/git@github\.com:(\w+)\/Wavelog\.git/', '$1', $url);
+                                $owner = preg_replace('/git@github\.com:(\w+)\/[w|W]avelog\.git/', '$1', $url);
                             }
                         }
                         $tag = trim(exec('git describe --tags ' . $commitHash));
@@ -267,7 +267,7 @@
                                     <td>Commit</td>
                                     <td>
                                         <?php if ($commitHash != "") { ?>
-                                            <a target="_blank" href="https://github.com/wavelog/wavelog/commit/<?php echo $commitHash ?>"><span class="badge text-bg-success"><?php echo substr($commitHash, 0, 8); ?></span></a>
+                                            <a target="_blank" href="https://github.com/<?php echo $owner; ?>/Wavelog/commit/<?php echo $commitHash ?>"><span class="badge text-bg-success"><?php echo substr($commitHash, 0, 8); ?></span></a>
                                         <?php } else { ?>
                                             <span class="badge text-bg-danger">n/a</span>
                                         <?php } ?>
