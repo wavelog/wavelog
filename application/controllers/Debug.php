@@ -166,6 +166,25 @@ class Debug extends CI_Controller
 		redirect('debug');
 	}
 
+	public function wavelog_fetch() {
+		$a_versions=[];
+		try {
+			$st=exec('git fetch');	// Fetch latest things from Repo. ONLY Fetch. Doesn't hurt since it isn't a pull!
+                        $versions['branch'] = trim(exec('git rev-parse --abbrev-ref HEAD')); // Get ONLY Name of the Branch we're on
+			$versions['latest_commit_hash']=substr(trim(exec('git log --pretty="%H" -n1 origin'.'/'.$versions['branch'])),0,8);	// fetch latest commit-hash from repo
+		}  catch (Exception $e) {
+			$versions['latest_commit_hash']='';
+			$versions['branch']='';
+		}
+		header('Content-Type: application/json');
+		echo json_encode($versions);
+	}
+
+	public function wavelog_version() {
+		$commit_hash=substr(trim(exec('git log --pretty="%H" -n1 HEAD')),0,8);	// Get latest LOCAL Hash
+		header('Content-Type: application/json');
+		echo json_encode($commit_hash);
+	}
 
 	public function migrate_userdata() {
 		// Check if users logged in
