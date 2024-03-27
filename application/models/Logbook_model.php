@@ -68,6 +68,12 @@ class Logbook_model extends CI_Model {
             $stx = null;
             break;
       }
+
+      if ($srx_string !== null) $srx_string = trim(xss_clean($srx_string));
+      if ($stx_string !== null) $stx_string = trim(xss_clean($stx_string));
+      if ($srx        !== null) $srx        = trim(xss_clean($srx));
+      if ($stx        !== null) $stx        = trim(xss_clean($stx));
+
     } else {
       $srx_string = null;
       $stx_string = null;
@@ -158,9 +164,9 @@ class Logbook_model extends CI_Model {
     }
 
     $qso_locator = strtoupper(trim(xss_clean($this->input->post('locator')) ?? ''));
-    $qso_name = $this->input->post('name');
+    $qso_name = trim(xss_clean($this->input->post('name')));
     $qso_age = null;
-    $qso_usa_state = $this->input->post('input_state_edit') == null ? '' : $this->input->post('input_state_edit');
+    $qso_usa_state = $this->input->post('input_state_edit') == null ? '' : trim(xss_clean($this->input->post('input_state_edit'));
     $qso_rx_power = null;
 
     if ($this->input->post('copyexchangeto')) {
@@ -169,19 +175,24 @@ class Logbook_model extends CI_Model {
           $darc_dok = $srx_string;
           break;
         case 'locator':
-          $qso_locator = strtoupper(trim(xss_clean($srx_string)));
+          // Matching 4-10 character-locator
+          if ( preg_match('/^[A-R]{2}[0-9]{2}([A-X]{2}([0-9]{2}([A-X]{2})?)?)?$/',$srx_string) ) {
+            $qso_locator = $srx_string;
+          }
           break;
         case 'name':
           $qso_name = $srx_string;
           break;
         case 'age':
-          $qso_age = $srx_string;
+          $qso_age = intval($srx_string);
           break;
         case 'state':
-          $qso_usa_state = $srx_string;
+          if ( preg_match('/^[A-Z]{2}$/', $srx_string) ) {
+            $qso_usa_state = $srx_string;
+          }
           break;
         case 'power':
-          $qso_rx_power = $srx_string;
+          $qso_rx_power = intval($srx_string);
           break;
         // Example for more sophisticated exchanges and their split into the db:
         //case 'name/power':
