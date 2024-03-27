@@ -258,8 +258,8 @@
 											<option value="Country" <?php if ($user_column2 == "Country") { echo " selected =\"selected\""; } ?>><?php echo lang('general_word_country'); ?></option>
 											<option value="IOTA" <?php if ($user_column2 == "IOTA") { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_iota'); ?></option>
 											<option value="SOTA" <?php if ($user_column2 == "SOTA") { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_sota'); ?></option>
-											<option value="WWFF" <?php if ($user_column1 == "WWFF") { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_wwff'); ?></option>
-											<option value="POTA" <?php if ($user_column1 == "POTA") { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_pota'); ?></option>
+											<option value="WWFF" <?php if ($user_column2 == "WWFF") { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_wwff'); ?></option>
+											<option value="POTA" <?php if ($user_column2 == "POTA") { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_pota'); ?></option>
 											<option value="State" <?php if ($user_column2 == "State") { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_state'); ?></option>
 											<option value="Grid" <?php if ($user_column2 == "Grid") { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_gridsquare'); ?></option>
 											<option value="Distance" <?php if ($user_column2 == "Distance") { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_distance'); ?></option>
@@ -280,8 +280,8 @@
 											<option value="Country" <?php if ($user_column3 == "Country") { echo " selected =\"selected\""; } ?>><?php echo lang('general_word_country'); ?></option>
 											<option value="IOTA" <?php if ($user_column3 == "IOTA") { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_iota'); ?></option>
 											<option value="SOTA" <?php if ($user_column3 == "SOTA") { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_sota'); ?></option>
-											<option value="WWFF" <?php if ($user_column1 == "WWFF") { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_wwff'); ?></option>
-											<option value="POTA" <?php if ($user_column1 == "POTA") { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_pota'); ?></option>
+											<option value="WWFF" <?php if ($user_column3 == "WWFF") { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_wwff'); ?></option>
+											<option value="POTA" <?php if ($user_column3 == "POTA") { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_pota'); ?></option>
 											<option value="State" <?php if ($user_column3 == "State") { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_state'); ?></option>
 											<option value="Grid" <?php if ($user_column3 == "Grid") { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_gridsquare'); ?></option>
 											<option value="Distance" <?php if ($user_column3 == "Distance") { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_distance'); ?></option>
@@ -302,8 +302,8 @@
 											<option value="Country" <?php if ($user_column4 == "Country") { echo " selected =\"selected\""; } ?>><?php echo lang('general_word_country'); ?></option>
 											<option value="IOTA" <?php if ($user_column4 == "IOTA") { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_iota'); ?></option>
 											<option value="SOTA" <?php if ($user_column4 == "SOTA") { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_sota'); ?></option>
-											<option value="WWFF" <?php if ($user_column1 == "WWFF") { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_wwff'); ?></option>
-											<option value="POTA" <?php if ($user_column1 == "POTA") { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_pota'); ?></option>
+											<option value="WWFF" <?php if ($user_column4 == "WWFF") { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_wwff'); ?></option>
+											<option value="POTA" <?php if ($user_column4 == "POTA") { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_pota'); ?></option>
 											<option value="State" <?php if ($user_column4 == "State") { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_state'); ?></option>
 											<option value="Grid" <?php if ($user_column4 == "Grid") { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_gridsquare'); ?></option>
 											<option value="Distance" <?php if ($user_column4 == "Distance") { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_distance'); ?></option>
@@ -325,8 +325,8 @@
 											<option value="Country" <?php if ($user_column5 == "Country") { echo " selected =\"selected\""; } ?>><?php echo lang('general_word_country'); ?></option>
 											<option value="IOTA" <?php if ($user_column5 == "IOTA") { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_iota'); ?></option>
 											<option value="SOTA" <?php if ($user_column5 == "SOTA") { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_sota'); ?></option>
-											<option value="WWFF" <?php if ($user_column1 == "WWFF") { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_wwff'); ?></option>
-											<option value="POTA" <?php if ($user_column1 == "POTA") { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_pota'); ?></option>
+											<option value="WWFF" <?php if ($user_column5 == "WWFF") { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_wwff'); ?></option>
+											<option value="POTA" <?php if ($user_column5 == "POTA") { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_pota'); ?></option>
 											<option value="State" <?php if ($user_column5 == "State") { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_state'); ?></option>
 											<option value="Grid" <?php if ($user_column5 == "Grid") { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_gridsquare'); ?></option>
 											<option value="Distance" <?php if ($user_column5 == "Distance") { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_distance'); ?></option>
