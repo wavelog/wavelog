@@ -34,7 +34,7 @@ async function reset_contest_session() {
 	setExchangetype("None");
 	$("#contestname").val("Other").change();
 	$(".contest_qso_table_contents").empty();
-	$('#copyexchangetodok').prop('checked', false);
+ 	$('#copyexchangeto').val("None");
 
 	if (!$.fn.DataTable.isDataTable('.qsotable')) {
 		$.fn.dataTable.moment('DD-MM-YYYY HH:mm:ss');
@@ -72,7 +72,7 @@ async function reset_contest_session() {
 }
 
 // Storing the contestid in contest session
-$('#contestname').change(function () {
+$('#contestname, #copyexchangeto').change(function () {
 	var formdata = new FormData(document.getElementById("qso_input"));
 	setSession(formdata);
 });
@@ -80,12 +80,13 @@ $('#contestname').change(function () {
 // Storing the exchange type in contest session
 $('#exchangetype').change(function () {
 	var exchangetype = $("#exchangetype").val();
+	setExchangetype(exchangetype);
 	var formdata = new FormData(document.getElementById("qso_input"));
 	setSession(formdata);
-	setExchangetype(exchangetype);
 });
 
 async function setSession(formdata) {
+    formdata.set('copyexchangeto',$("#copyexchangeto option:selected").index());
 	await $.ajax({
 		url: base_url + 'index.php/contesting/setSession',
 		type: 'post',
@@ -436,6 +437,33 @@ function setExchangetype(exchangetype) {
 		$(".gridsquarer").show();
 		$(".gridsquares").show();
 	}
+
+    // To track the transition, the code for the exchangecopy is kept
+    // separate.
+	switch(exchangetype) {
+      case 'None':
+      case 'Serial':
+      case 'Serialgridsquare':
+      case 'Gridsquare':
+        if ($("#copyexchangeto").prop('disabled') == false) {
+          $("#copyexchangeto").prop('disabled','disabled');
+          $("#copyexchangeto").data('oldValue',$("#copyexchangeto").val());
+          $("#copyexchangeto").val('None');
+        } else {
+          // Do nothing
+        }
+        break;
+      case 'Exchange':
+      case 'Serialexchange':
+        if ($("#copyexchangeto").prop('disabled') == false) {
+          // Do nothing
+        } else {
+          $("#copyexchangeto").val($("#copyexchangeto").data('oldValue') ?? 'None');
+          $("#copyexchangeto").prop('disabled',false);
+        }
+        break;
+      default:
+    }
 }
 
 /*
@@ -543,8 +571,8 @@ async function getSession() {
 
 async function restoreContestSession(data) {
 	if (data) {
-		if (data.copytodok == "1") {
-			$('#copyexchangetodok').prop('checked', true);
+		if (data.copytodok != "") {
+			$('#copyexchangeto option')[data.copytodok].selected = true;
 		}
 
 		if (data.contestid != "") {
