@@ -25,7 +25,7 @@
 						</div>
 					<?php } else { ?>
 						<h5>Check for DXCC Data Updates</h5>
-						<input type="submit" class="btn btn-primary" id="btn_update_dxcc" value="Update DXCC Data" />
+						<button type="submit" class="btn btn-primary ld-ext-right" id="btn_update_dxcc"><div class="ld ld-ring ld-spin"></div>Update DXCC Data</button>
 
 						<div id="dxcc_update_status">Status:</br></div>
 
@@ -37,14 +37,17 @@
 							You can choose to check just the QSOs in the logbook that are missing DXCC metadata or to re-check the entire logbook
 							and update existing metadata as well, in case it has changed.
 						</p>
-						<p><a class="btn btn-primary" href="<?php echo site_url('update/check_missing_dxcc');?>">Check QSOs missing DXCC data</a></p>
-						<p><a class="btn btn-primary" href="<?php echo site_url('update/check_missing_dxcc/all');?>">Re-check all QSOs in logbook</a></p>
+						<p><a class="btn btn-primary" hx-get="<?php echo site_url('update/check_missing_dxcc');?>"hx-target="#missing_dxcc_results" href="<?php echo site_url('update/check_missing_dxcc');?>">Check QSOs missing DXCC data</a></p>
+						<div id="missing_dxcc_results"></div>
+						<p><a class="btn btn-primary" hx-get="<?php echo site_url('update/check_missing_dxcc/all');?>" hx-target="#missing_dxcc_results_all" href="<?php echo site_url('update/check_missing_dxcc/all');?>">Re-check all QSOs in logbook</a></p>
+						<div id="missing_dxcc_results_all"></div>
 
 						<h5>Apply Continent Data to Logbook</h5>
 						<p class="card-text">
 							This function can be used to update QSO continent information for all QSOs in Wavelog missing that information.
 						</p>
-						<p><a class="btn btn-primary" href="<?php echo site_url('update/check_missing_continent');?>">Check QSOs missing continent data</a></p>
+						<p><a class="btn btn-primary" hx-get="<?php echo site_url('update/check_missing_continent');?>" hx-target="#continent_results" href="<?php echo site_url('update/check_missing_continent');?>">Check QSOs missing continent data</a></p>
+						<div id="continent_results"></div>
 						<style>
 							#dxcc_update_status{
 							display: None;

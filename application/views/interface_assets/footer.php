@@ -1269,6 +1269,8 @@ $($('#callsign')).on('keypress',function(e) {
 <script>
 $(document).ready(function(){
     $('#btn_update_dxcc').bind('click', function(){
+		$(".ld-ext-right").addClass("running");
+		$(".ld-ext-right").prop("disabled", true);
         $('#dxcc_update_status').show();
         $.ajax({url:"update/dxcc"});
         setTimeout(update_stats,5000);
@@ -1279,7 +1281,10 @@ $(document).ready(function(){
 
             if ((val  === null) || (val.substring(0,4) !="DONE")){
                 setTimeout(update_stats, 5000);
-            }
+            } else {
+				$(".ld-ext-right").removeClass("running");
+				$(".ld-ext-right").prop("disabled", false);
+			}
         });
 
     }
