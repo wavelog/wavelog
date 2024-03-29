@@ -157,16 +157,11 @@ class Logbook_model extends CI_Model {
       $clean_county_input = null;
     }
 
-    if($this->input->post('copyexchangetodok')) {
-      $darc_dok = $this->input->post('exch_rcvd');
-    } else {
-      $darc_dok = $this->input->post('darc_dok');
-    }
-
+    $darc_dok = trim(xss_clean($this->input->post('darc_dok')))
     $qso_locator = strtoupper(trim(xss_clean($this->input->post('locator')) ?? ''));
     $qso_name = trim(xss_clean($this->input->post('name')));
     $qso_age = null;
-    $qso_usa_state = $this->input->post('input_state_edit') == null ? '' : trim(xss_clean($this->input->post('input_state_edit'));
+    $qso_state = $this->input->post('input_state_edit') == null ? '' : trim(xss_clean($this->input->post('input_state_edit')));
     $qso_rx_power = null;
 
     if ($this->input->post('copyexchangeto')) {
@@ -187,8 +182,8 @@ class Logbook_model extends CI_Model {
           $qso_age = intval($srx_string);
           break;
         case 'state':
-          if ( preg_match('/^[A-Z]{2}$/', $srx_string) ) {
-            $qso_usa_state = $srx_string;
+          if ( preg_match('/^[A-Z]{2}/', $srx_string) && $srx_string != "DX" ) {
+            $qso_state = $srx_string;
           }
           break;
         case 'power':
@@ -283,7 +278,7 @@ class Logbook_model extends CI_Model {
             'COL_LON' => null,
             'COL_DXCC' => $dxcc_id,
             'COL_CQZ' => $cqz,
-            'COL_STATE' => $qso_usa_state,
+            'COL_STATE' => $qso_state,
             'COL_CNTY' => $clean_county_input,
             'COL_SOTA_REF' => $this->input->post('sota_ref') == null ? '' : trim($this->input->post('sota_ref')),
             'COL_WWFF_REF' => $this->input->post('wwff_ref') == null ? '' : trim($this->input->post('wwff_ref')),
