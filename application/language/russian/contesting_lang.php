@@ -28,6 +28,7 @@ $lang['contesting_title_callsign_suggestions'] = 'Предложение поз�
 $lang['contesting_title_contest_logbook'] = 'Журнал контеста';
 
 $lang['contesting_copy_exch_to_dok'] = 'Копировать принятый обмен в поле DOK базы данных!';
+$lang['contesting_copy_exch_notice'] = 'Exchange is only copied if it is matching rules for the selected field!';
 $lang['contesting_copy_exch_to_none'] = 'Копировать принятую контроль в поле no additional базы данных!';
 $lang['contesting_copy_exch_to_power'] = 'Копировать принятую контроль в поле RX-Power базы данных!';
 $lang['contesting_copy_exch_to_state'] = 'Копировать принятую контроль в поле US-State базы данных!';

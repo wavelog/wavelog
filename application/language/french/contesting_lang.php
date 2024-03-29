@@ -28,6 +28,7 @@ $lang['contesting_title_callsign_suggestions'] = "Suggestion d'indicatif";
 $lang['contesting_title_contest_logbook'] = "Journal de trafic du concours";
 
 $lang['contesting_copy_exch_to_dok'] = "Copiez l'échange reçu dans le champ DOK de la base de données !";
+$lang['contesting_copy_exch_notice'] = "Copiez l'échange reçu dans le champ DOK de la base de données !";
 $lang['contesting_copy_exch_to_none'] = "Copiez l'échange reçu dans le champ no additional de la base de données !";
 $lang['contesting_copy_exch_to_power'] = "Copiez l'échange reçu dans le champ RX-Power de la base de données !";
 $lang['contesting_copy_exch_to_state'] = "Copiez l'échange reçu dans le champ US-State de la base de données !";

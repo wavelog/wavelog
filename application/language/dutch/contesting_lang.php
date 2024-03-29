@@ -28,6 +28,7 @@ $lang['contesting_title_callsign_suggestions'] = 'Roepnaam suggesties';
 $lang['contesting_title_contest_logbook'] = 'Contest Logboek';
 
 $lang['contesting_copy_exch_to_dok'] = 'Copy received exchange to DOK field in the database!';
+$lang['contesting_copy_exch_notice'] = 'Exchange is only copied if it is matching rules for the selected field!';
 $lang['contesting_copy_exch_to_none'] = 'Copy received exchange to no additional field in the database!';
 $lang['contesting_copy_exch_to_power'] = 'Copy received exchange to RX-Power field in the database!';
 $lang['contesting_copy_exch_to_state'] = 'Copy received exchange to US-State field in the database!';

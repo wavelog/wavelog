@@ -165,7 +165,7 @@
                         <div class="mb-3 row">
                           <div class="col-md-12">
                               <div class="form-check-inline">
-                                  <select class="form-select form-select-sm" id="copyexchangeto" name="copyexchangeto">
+                                  <select class="form-select form-select-sm" id="copyexchangeto" name="copyexchangeto" title="<?php echo lang('contesting_copy_exch_notice'); ?>">
                                       <option value='None'><?php echo lang('contesting_copy_exch_to_none'); ?></option>
                                       <option value='dok'><?php echo lang('contesting_copy_exch_to_dok'); ?></option>
                                       <option value='name'><?php echo lang('contesting_copy_exch_to_name'); ?></option>
