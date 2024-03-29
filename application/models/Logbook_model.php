@@ -4382,15 +4382,12 @@ function lotw_last_qsl_date($user_id) {
                 // Manual call
                 $d = $this->check_dxcc_table($row['COL_CALL'], $qso_date);
 
-                // Stored procedure call
-                //$d = $this->check_dxcc_stored_proc($row["COL_CALL"], $qso_date);
-
                 if ($d[0] != 'Not Found'){
                     $sql = sprintf("update %s set COL_COUNTRY = '%s', COL_DXCC='%s' where COL_PRIMARY_KEY=%d",
                                     $this->config->item('table_name'), addslashes(ucwords(strtolower($d[1]), "- (/")), $d[0], $row['COL_PRIMARY_KEY']);
                     $this->db->query($sql);
                     //print($sql."\n");
-                    printf("Updating %s to %s and %s\n<br/>", $row['COL_PRIMARY_KEY'], ucwords(strtolower($d[1]), "- (/"), $d[0]);
+                    // printf("Updating %s to %s and %s\n<br/>", $row['COL_PRIMARY_KEY'], ucwords(strtolower($d[1]), "- (/"), $d[0]);
                     $count++;
                 }
             }

@@ -11,7 +11,7 @@ class Update extends CI_Controller {
     function __construct()
 	{
 		parent::__construct();
-		
+
 		if (ENVIRONMENT == 'maintenance' && $this->session->userdata('user_id') == '') {
             echo "Maintenance Mode is active. Try again later.\n";
 			redirect('user/login');
@@ -258,22 +258,45 @@ class Update extends CI_Controller {
 	}
 
 	public function check_missing_dxcc($all = false){
-	    $this->load->model('logbook_model');
-        $this->logbook_model->check_missing_dxcc_id($all);
+		$this->load->model('user_model');
+		if (!$this->user_model->authorize(99)) {
+			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!');
+			redirect('dashboard');
+		}
 
+		$this->load->model('logbook_model');
+        $this->logbook_model->check_missing_dxcc_id($all);
 	}
 
 	public function check_missing_continent() {
+		$this->load->model('user_model');
+		if (!$this->user_model->authorize(99)) {
+			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!');
+			redirect('dashboard');
+		}
+
 		$this->load->model('logbook_model');
 		$this->logbook_model->check_missing_continent();
 	}
 
 	public function update_distances() {
+		$this->load->model('user_model');
+		if (!$this->user_model->authorize(99)) {
+			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!');
+			redirect('dashboard');
+		}
+
 		$this->load->model('logbook_model');
 		$this->logbook_model->update_distances();
 	}
 
 	public function check_missing_grid($all = false){
+		$this->load->model('user_model');
+		if (!$this->user_model->authorize(99)) {
+			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!');
+			redirect('dashboard');
+		}
+
 	    $this->load->model('logbook_model');
         $this->logbook_model->check_missing_grid_id($all);
 	}
