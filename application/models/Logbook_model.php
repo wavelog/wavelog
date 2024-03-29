@@ -4368,8 +4368,6 @@ function lotw_last_qsl_date($user_id) {
         if (!$all){
             $this->db->where("COL_DXCC is NULL");
         }
-		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
-		$this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
 
         $r = $this->db->get($this->config->item('table_name'));
 
