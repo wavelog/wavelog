@@ -28,7 +28,7 @@ $lang['contesting_title_callsign_suggestions'] = 'Rufzeichenvorschläge';
 $lang['contesting_title_contest_logbook'] = 'Contest-Logbuch';
 
 $lang['contesting_copy_exch_to_dok'] = 'Kopiere den erhaltenen Exchange in das DOK Feld der Datenbank!';
-$lang['contesting_copy_exch_notice'] = 'Exchange is only copied if it is matching rules for the selected field!';
+$lang['contesting_copy_exch_notice'] = 'Exchange wird nur kopiert, wenn der Wert Regeln für das Zielfeld erfüllt!';
 $lang['contesting_copy_exch_to_none'] = 'Kopiere den erhaltenen Exchange in kein weiteres Feld der Datenbank!';
 $lang['contesting_copy_exch_to_power'] = 'Kopiere den erhaltenen Exchange in das RX-Power Feld der Datenbank!';
 $lang['contesting_copy_exch_to_state'] = 'Kopiere den erhaltenen Exchange in das US-State Feld der Datenbank!';

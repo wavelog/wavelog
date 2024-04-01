@@ -182,7 +182,7 @@ class Logbook_model extends CI_Model {
           $qso_age = intval($srx_string);
           break;
         case 'state':
-          if ( preg_match('/^[A-Z]{2}/', $srx_string) && $srx_string != "DX" ) {
+          if ( preg_match('/^[A-Za-z]*$/', $srx_string) && $srx_string != "DX" ) {
             $qso_state = $srx_string;
           }
           break;
@@ -192,9 +192,9 @@ class Logbook_model extends CI_Model {
         // Example for more sophisticated exchanges and their split into the db:
         //case 'name/power':
         //  if (strlen($srx_string) == 0) break;
-        //  $exch_pt = explode(" ",$srx_string);
+        //  $exch_pt = explode("/",$srx_string);
         //  $qso_name = $exch_pt[0];
-        //  if (count($exch_pt)>1) $qso_power = $exch_pt[1];
+        //  if (count($exch_pt)>1) $qso_rx_power = intval($exch_pt[1]);
         //  break;
         default:
       }
