@@ -202,29 +202,40 @@ class Stations extends CI_Model {
 		$this->user_options_model->set_option('eqsl_default_qslmsg', 'key_station_id', array(xss_clean($this->input->post('station_id', true)) => $eqsl_default_qslmsg));
 	}
 
-	function delete($id) {
+	function delete($id,$force = false) {
 		// Clean ID
 		$clean_id = $this->security->xss_clean($id);
 
 		// do not delete active station
-		if ($clean_id === $this->find_active()) {
+		if ((!($force)) && ($clean_id === $this->find_active())) {
 			return;
 		}
+
+		# Del options for that station_id
 		$this->user_options_model->del_option('eqsl_default_qslmsg', 'key_station_id', array('option_key' => $id));
 
-		// Delete QSOs
-		$this->db->where('station_id', $id);
-		$this->db->delete($this->config->item('table_name'));
+		// Delete Contents of log for that station_id
+		$this->deletelog($clean_id);
 
-		// Delete Station Profile
+		// Delete Station Profile, links, contests and oqrs-requests
+		$this->db->query("DELETE c FROM contest_session c WHERE c.station_id =?",$clean_id);
+		$this->db->query("DELETE FROM oqrs WHERE station_id = ?",$clean_id);
+		$this->db->query("DELETE FROM station_logbooks_relationship WHERE station_location_id = ?",$clean_id);
 		$this->db->delete('station_profile', array('station_id' => $clean_id));
 	}
 
 	function deletelog($id) {
-        // Delete QSOs
-        $this->db->where('station_id', $id);
-        $this->db->delete($this->config->item('table_name'));
-    }
+		// Clean ID
+		$clean_id = $this->security->xss_clean($id);
+
+		// Todo: Fetch EACH COL_PRIMARY_KEY (via inner join) from Log-table and delete also eQSL-file within filesystem (Function missing here) depending on path-configuration
+		$this->db->query("DELETE e FROM `eQSL_images` e inner join ".$this->config->item('table_name')." qsos where e.qso_id=qsos.COL_PRIMARY_KEY and qsos.station_id=?",$clean_id);
+		// Todo: Fetch EACH COL_PRIMARY_KEY (via inner join) from Log-table and delete also QSL-file within filesystem (Function missing here) depending on path-configuration
+		$this->db->query("DELETE q FROM qsl_images q inner join ".$this->config->item('table_name')." qsos WHERE q.qsoid=qsos.COL_PRIMARY_KEY and qsos.station_id = ?",$clean_id);
+
+		// Delete QSOs
+		$this->db->query("DELETE FROM ".$this->config->item('table_name')." WHERE station_id = ?",$clean_id);
+	}
 
 	function set_active($current, $new) {
 		// Clean inputs

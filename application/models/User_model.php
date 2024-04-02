@@ -330,21 +330,12 @@ class User_Model extends CI_Model {
 	// FUNCTION: bool delete()
 	// Deletes a user
 	function delete($user_id) {
-
 		if($this->exists_by_id($user_id)) {
 			$this->load->model('Stations');
 			$stations = $this->Stations->all_of_user($user_id);
-                        foreach ($stations->result() as $row) {
-				// Todo: Fetch EACH COL_PRIMARY_KEY (via inner join) from Log-table and delete also eQSL-file within filesystem (Function missing here) depending on path-configuration
-				$this->db->query("DELETE e FROM `eQSL_images` e inner join ".$this->config->item('table_name')." qsos where e.qso_id=qsos.COL_PRIMARY_KEY and qsos.station_id=?",$row->station_id);
-				// Todo: Fetch EACH COL_PRIMARY_KEY (via inner join) from Log-table and delete also QSL-file within filesystem (Function missing here) depending on path-configuration
-				$this->db->query("DELETE q FROM qsl_images q inner join ".$this->config->item('table_name')." qsos WHERE q.qsoid=qsos.COL_PRIMARY_KEY and qsos.station_id = ?",$row->station_id);
-
-				$this->db->query("DELETE c FROM contest_session c WHERE c.station_id =?",$row->station_id);
-				$this->db->query("DELETE FROM oqrs WHERE station_id = ?",$row->station_id);
-				$this->db->query("DELETE FROM ".$this->config->item('table_name')." WHERE station_id = ?",$row->station_id);
-				$this->db->query("DELETE FROM station_logbooks_relationship WHERE station_location_id = ?",$row->station_id);
-                        }
+			foreach ($stations->result() as $row) {
+				$this->Stations->delete($row->station_id,true);
+			}
 			// Delete QSOs from $this->config->item('table_name')
 			$this->db->query("DELETE FROM bandxuser WHERE userid = ?",$user_id);
 			$this->db->query("DELETE FROM api WHERE user_id = ?",$user_id);
