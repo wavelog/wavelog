@@ -332,9 +332,29 @@ class User_Model extends CI_Model {
 	function delete($user_id) {
 
 		if($this->exists_by_id($user_id)) {
-			$this->db->query("DELETE FROM ".$this->config->item('auth_table')." WHERE user_id = '".$user_id."'");
+			$this->load->model('Stations');
+			$stations = $this->Stations->all_of_user($user_id);
+                        foreach ($stations->result() as $row) {
+				$this->db->query("DELETE e FROM `eQSL_images` e inner join ".$this->config->item('table_name')." qsos where e.qso_id=qsos.COL_PRIMARY_KEY and qsos.station_id=?",$row->station_id);
+				$this->db->query("DELETE q FROM qsl_images q inner join ".$this->config->item('table_name')." qsos WHERE q.qsoid=qsos.COL_PRIMARY_KEY and qsos.station_id = ?",$row->station_id);
+				$this->db->query("DELETE c FROM contest_session c WHERE c.station_id =?",$row->station_id);
+				$this->db->query("DELETE FROM oqrs WHERE station_id = ?",$row->station_id);
+				$this->db->query("DELETE FROM ".$this->config->item('table_name')." WHERE station_id = ?",$row->station_id);
+				$this->db->query("DELETE FROM station_logbooks_relationship WHERE station_location_id = ?",$row->station_id);
+                        }
+			// Delete QSOs from $this->config->item('table_name')
+			$this->db->query("DELETE FROM bandxuser WHERE userid = ?",$user_id);
+			$this->db->query("DELETE FROM api WHERE user_id = ?",$user_id);
+			$this->db->query("DELETE FROM cat WHERE user_id = ?",$user_id);
+			$this->db->query("DELETE FROM lotw_certs WHERE user_id = ?",$user_id);
+			$this->db->query("DELETE FROM notes WHERE user_id = ?",$user_id);
+			$this->db->query("DELETE FROM paper_types WHERE user_id = ?",$user_id);
+			$this->db->query("DELETE FROM label_types WHERE user_id = ?",$user_id);
+			$this->db->query("DELETE FROM queries WHERE userid = ?",$user_id);
+			$this->db->query("DELETE FROM station_profile WHERE user_id = ?",$user_id);
+			$this->db->query("DELETE FROM station_logbooks WHERE user_id = ?",$user_id);
+			$this->db->query("DELETE FROM ".$this->config->item('auth_table')." WHERE user_id = ?",$user_id);
 			$this->db->query("delete from user_options where user_id=?",$user_id);
-
 			return 1;
 		} else {
 			return 0;
