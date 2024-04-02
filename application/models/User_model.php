@@ -335,8 +335,11 @@ class User_Model extends CI_Model {
 			$this->load->model('Stations');
 			$stations = $this->Stations->all_of_user($user_id);
                         foreach ($stations->result() as $row) {
+				// Todo: Fetch EACH COL_PRIMARY_KEY (via inner join) from Log-table and delete also eQSL-file within filesystem (Function missing here) depending on path-configuration
 				$this->db->query("DELETE e FROM `eQSL_images` e inner join ".$this->config->item('table_name')." qsos where e.qso_id=qsos.COL_PRIMARY_KEY and qsos.station_id=?",$row->station_id);
+				// Todo: Fetch EACH COL_PRIMARY_KEY (via inner join) from Log-table and delete also QSL-file within filesystem (Function missing here) depending on path-configuration
 				$this->db->query("DELETE q FROM qsl_images q inner join ".$this->config->item('table_name')." qsos WHERE q.qsoid=qsos.COL_PRIMARY_KEY and qsos.station_id = ?",$row->station_id);
+
 				$this->db->query("DELETE c FROM contest_session c WHERE c.station_id =?",$row->station_id);
 				$this->db->query("DELETE FROM oqrs WHERE station_id = ?",$row->station_id);
 				$this->db->query("DELETE FROM ".$this->config->item('table_name')." WHERE station_id = ?",$row->station_id);
@@ -353,8 +356,8 @@ class User_Model extends CI_Model {
 			$this->db->query("DELETE FROM queries WHERE userid = ?",$user_id);
 			$this->db->query("DELETE FROM station_profile WHERE user_id = ?",$user_id);
 			$this->db->query("DELETE FROM station_logbooks WHERE user_id = ?",$user_id);
-			$this->db->query("DELETE FROM ".$this->config->item('auth_table')." WHERE user_id = ?",$user_id);
 			$this->db->query("delete from user_options where user_id=?",$user_id);
+			$this->db->query("DELETE FROM ".$this->config->item('auth_table')." WHERE user_id = ?",$user_id);
 			return 1;
 		} else {
 			return 0;
