@@ -3045,14 +3045,25 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
     }
 
     /* Delete QSO based on the QSO ID */
-  function delete($id) {
-	  if ($this->check_qso_is_accessible($id)) {
-		  $this->db->where('COL_PRIMARY_KEY', $id);
-		  $this->db->delete($this->config->item('table_name'));
-	  } else {
-		  return;
-	  }
-  }
+    function delete($id) {
+	    if ($this->check_qso_is_accessible($id)) {
+		    $this->db->where('COL_PRIMARY_KEY', $id);
+		    $this->db->delete($this->config->item('table_name'));
+
+		    // todo: remove qsl_image from Filesystem
+		    $this->db->where('qsoid', $id);
+		    $this->db->delete("qsl_images");
+
+		    // todo: remove eqsl_image from Filesystem
+		    $this->db->where('qso_id', $id);
+		    $this->db->delete("`eQSL_images`");
+
+		    $this->db->where('qsoid', $id);
+		    $this->db->delete("oqrs");
+	    } else {
+		    return;
+	    }
+    }
 
   /* Used to check if the qso is already in the database */
     function import_check($datetime, $callsign, $band, $mode, $station_callsign, $station_id = null) {
