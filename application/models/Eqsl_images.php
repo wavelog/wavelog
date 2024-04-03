@@ -19,7 +19,7 @@ class Eqsl_images extends CI_Model {
 		// QSO belongs to station_profile. But since we have folders for Users (and therefore an extra indirect relation) we need to lookup user for station first...
 		$eqsl_img=$this->db->query('SELECT e.image_file,e.id, qso.station_id, s.user_id FROM `eQSL_images` e INNER JOIN '.$this->config->item('table_name').' qso ON (e.qso_id = qso.COL_PRIMARY_KEY) inner join station_profile s on (s.station_id=qso.station_id) where qso.COL_PRIMARY_KEY=?',$qso_id);
 		foreach ($eqsl_img->result() as $row) {
-			if ($user_id ?? '' == '') {					// Calling as User? Check if User-id matches User-id from QSO
+			if (($user_id ?? '') == '') {					// Calling as User? Check if User-id matches User-id from QSO
 				$user_id = $this->session->userdata('user_id');
 				if ($row->user_id != $user_id) {
 					return "No Image";				// Image doesn't belong to user, so return
