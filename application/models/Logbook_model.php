@@ -3047,16 +3047,14 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
     /* Delete QSO based on the QSO ID */
     function delete($id) {
 	    if ($this->check_qso_is_accessible($id)) {
+		    $this->load->model('qsl_model');
+		    $this->load->model('eqsl_images');
+
+		    $this->qsl_model->del_image_for_qso($id);
+		    $this->eqsl_images->del_image($id);
+
 		    $this->db->where('COL_PRIMARY_KEY', $id);
 		    $this->db->delete($this->config->item('table_name'));
-
-		    // todo: remove qsl_image from Filesystem
-		    $this->db->where('qsoid', $id);
-		    $this->db->delete("qsl_images");
-
-		    // todo: remove eqsl_image from Filesystem
-		    $this->db->where('qso_id', $id);
-		    $this->db->delete("`eQSL_images`");
 
 		    $this->db->where('qsoid', $id);
 		    $this->db->delete("oqrs");

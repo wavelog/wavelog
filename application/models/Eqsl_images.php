@@ -25,7 +25,7 @@ class Eqsl_images extends CI_Model {
 					return "No Image";				// Image doesn't belong to user, so return
 				}
 			}
-			$image=get_imagePath('p',$row->user_id).'/'.$row->image_file;
+			$image=$this->get_imagePath('p',$row->user_id).'/'.$row->image_file;
 			log_message("Error",$image);	// todo: chk and unlink
 			return $image;
 		}

@@ -60,9 +60,8 @@ class Qsl_model extends CI_Model {
 					return "No Image";				// Image doesn't belong to user, so return
 				}
 			}
-			$image=get_imagePath('p',$row->user_id).'/'.$row->filename;
-			log_message("Error",$image);	// todo: chk and unlink
-			return $image;
+			$image=$this->get_imagePath('p',$row->user_id).'/'.$row->filename;
+			unlink($image);
 		}
 	}
 
