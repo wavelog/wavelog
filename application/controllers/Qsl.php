@@ -42,15 +42,8 @@ class Qsl extends CI_Controller {
     public function delete() {
         $this->load->model('user_model');
         if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
-
         $id = $this->input->post('id');
         $this->load->model('Qsl_model');
-
-        $path = $this->Qsl_model->get_imagePath('p');
-        $file = $this->Qsl_model->getFilename($id)->row();
-        $filename = $file->filename;
-        unlink($path.'/'.$filename);
-
         $this->Qsl_model->deleteQsl($id);
     }
 
