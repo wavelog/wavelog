@@ -157,7 +157,7 @@ class Logbook_model extends CI_Model {
       $clean_county_input = null;
     }
 
-    $darc_dok = trim(xss_clean($this->input->post('darc_dok')))
+    $darc_dok = trim(xss_clean($this->input->post('darc_dok')));
     $qso_locator = strtoupper(trim(xss_clean($this->input->post('locator')) ?? ''));
     $qso_name = trim(xss_clean($this->input->post('name')));
     $qso_age = null;
