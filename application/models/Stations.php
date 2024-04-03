@@ -202,7 +202,7 @@ class Stations extends CI_Model {
 		$this->user_options_model->set_option('eqsl_default_qslmsg', 'key_station_id', array(xss_clean($this->input->post('station_id', true)) => $eqsl_default_qslmsg));
 	}
 
-	function delete($id,$force = false) {
+	function delete($id,$force = false, $user_id = null) {
 		// Clean ID
 		$clean_id = $this->security->xss_clean($id);
 
@@ -215,7 +215,7 @@ class Stations extends CI_Model {
 		$this->user_options_model->del_option('eqsl_default_qslmsg', 'key_station_id', array('option_key' => $id));
 
 		// Delete Contents of log for that station_id
-		$this->deletelog($clean_id);
+		$this->deletelog($clean_id, $user_id);
 
 		// Delete Station Profile, links, contests and oqrs-requests
 		$this->db->query("DELETE c FROM contest_session c WHERE c.station_id =?",$clean_id);
@@ -224,15 +224,18 @@ class Stations extends CI_Model {
 		$this->db->delete('station_profile', array('station_id' => $clean_id));
 	}
 
-	function deletelog($id) {
+	function deletelog($id, $user_id = null) {
 		// Clean ID
 		$clean_id = $this->security->xss_clean($id);
 
-		// Todo: Fetch EACH COL_PRIMARY_KEY (via inner join) from Log-table and delete also eQSL-file within filesystem (Function missing here) depending on path-configuration
-		$this->db->query("DELETE e FROM `eQSL_images` e inner join ".$this->config->item('table_name')." qsos where e.qso_id=qsos.COL_PRIMARY_KEY and qsos.station_id=?",$clean_id);
-		// Todo: Fetch EACH COL_PRIMARY_KEY (via inner join) from Log-table and delete also QSL-file within filesystem (Function missing here) depending on path-configuration
-		$this->db->query("DELETE q FROM qsl_images q inner join ".$this->config->item('table_name')." qsos WHERE q.qsoid=qsos.COL_PRIMARY_KEY and qsos.station_id = ?",$clean_id);
+		$this->load->model('qsl_model');
+		$this->load->model('eqsl_images');
 
+		$qsos=$this->db->query("select COL_PRIMARY_KEY as id from ".$this->config->item('table_name')." where station_id=?",$clean_id);
+		foreach ($qsos->result() as $qso) {
+			$this->qsl_model->del_image_for_qso($qso->id, $user_id);
+			$this->eqsl_images->del_image($qso->id, $user_id);
+		}
 		// Delete QSOs
 		$this->db->query("DELETE FROM ".$this->config->item('table_name')." WHERE station_id = ?",$clean_id);
 	}

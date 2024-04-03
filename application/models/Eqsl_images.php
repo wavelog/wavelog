@@ -26,7 +26,7 @@ class Eqsl_images extends CI_Model {
 				}
 			}
 			$image=$this->get_imagePath('p',$row->user_id).'/'.$row->image_file;
-			log_message("Error",$image);	// todo: chk and unlink
+			unlink($image);
 			return $image;
 		}
 	}
@@ -61,7 +61,7 @@ class Eqsl_images extends CI_Model {
 
 			$eqsl_dir = "eqsl_card"; // make sure this is the same as in Debug_model.php function migrate_userdata()
 
-			if ($user_id ?? '' == '') {
+			if (($user_id ?? '') == '') {
 				$user_id = $this->session->userdata('user_id');
 			}
 

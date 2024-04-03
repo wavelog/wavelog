@@ -54,7 +54,7 @@ class Qsl_model extends CI_Model {
 		// QSO belongs to station_profile. But since we have folders for Users (and therefore an extra indirect relation) we need to lookup user for station first...
 		$qsl_img=$this->db->query('SELECT e.filename, e.id, qso.station_id, s.user_id FROM qsl_images e INNER JOIN '.$this->config->item('table_name').' qso ON (e.qsoid = qso.COL_PRIMARY_KEY) inner join station_profile s on (s.station_id=qso.station_id) where qso.COL_PRIMARY_KEY=?',$qso_id);
 		foreach ($qsl_img->result() as $row) {
-			if ($user_id ?? '' == '') {					// Calling as User? Check if User-id matches User-id from QSO
+			if (($user_id ?? '') == '') {					// Calling as User? Check if User-id matches User-id from QSO
 				$user_id = $this->session->userdata('user_id');
 				if ($row->user_id != $user_id) {
 					return "No Image";				// Image doesn't belong to user, so return
@@ -150,7 +150,7 @@ class Qsl_model extends CI_Model {
 
 			$qsl_dir = "qsl_card"; // make sure this is the same as in Debug_model.php function migrate_userdata()
 
-			if ($user_id ?? '' == '') {
+			if (($user_id ?? '') == '') {
 				$user_id = $this->session->userdata('user_id');
 			}
 

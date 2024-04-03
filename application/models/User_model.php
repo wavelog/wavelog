@@ -334,7 +334,7 @@ class User_Model extends CI_Model {
 			$this->load->model('Stations');
 			$stations = $this->Stations->all_of_user($user_id);
 			foreach ($stations->result() as $row) {
-				$this->Stations->delete($row->station_id,true);
+				$this->Stations->delete($row->station_id,true, $user_id);
 			}
 			// Delete QSOs from $this->config->item('table_name')
 			$this->db->query("DELETE FROM bandxuser WHERE userid = ?",$user_id);
