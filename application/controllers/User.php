@@ -741,6 +741,7 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('id', 'user_id', 'required');
 
 		$data = $query->row();
+		$data->page_title = "Delete User";
 
 		if ($this->form_validation->run() == FALSE)
 		{
