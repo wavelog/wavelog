@@ -27,6 +27,7 @@ class Eqsl_images extends CI_Model {
 			}
 			$image=$this->get_imagePath('p',$row->user_id).'/'.$row->image_file;
 			unlink($image);
+			$this->db->delete('eQSL_images', array('id' => $row->id));
 			return $image;
 		}
 	}

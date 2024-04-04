@@ -62,6 +62,7 @@ class Qsl_model extends CI_Model {
 			}
 			$image=$this->get_imagePath('p',$row->user_id).'/'.$row->filename;
 			unlink($image);
+			$this->db->delete('qsl_images', array('id' => $row->id));
 		}
 	}
 
