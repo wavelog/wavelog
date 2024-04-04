@@ -17,6 +17,8 @@ class Hamqth {
 		curl_setopt($ch, CURLOPT_URL, $xml_feed_url);
 		curl_setopt($ch, CURLOPT_HEADER, false);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 10); 
 		$xml = curl_exec($ch);
 		curl_close($ch);
 
@@ -40,6 +42,8 @@ class Hamqth {
 		curl_setopt($ch, CURLOPT_URL, $xml_feed_url);
 		curl_setopt($ch, CURLOPT_HEADER, false);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
 		$xml = curl_exec($ch);
 		curl_close($ch);
 
@@ -66,6 +70,8 @@ class Hamqth {
             curl_setopt($ch, CURLOPT_URL, $xml_feed_url);
             curl_setopt($ch, CURLOPT_HEADER, false);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+        	curl_setopt($ch, CURLOPT_TIMEOUT, 10);
             $xml = curl_exec($ch);
             curl_close($ch);
 
