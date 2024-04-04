@@ -202,29 +202,43 @@ class Stations extends CI_Model {
 		$this->user_options_model->set_option('eqsl_default_qslmsg', 'key_station_id', array(xss_clean($this->input->post('station_id', true)) => $eqsl_default_qslmsg));
 	}
 
-	function delete($id) {
+	function delete($id,$force = false, $user_id = null) {
 		// Clean ID
 		$clean_id = $this->security->xss_clean($id);
 
 		// do not delete active station
-		if ($clean_id === $this->find_active()) {
+		if ((!($force)) && ($clean_id === $this->find_active())) {
 			return;
 		}
+
+		# Del options for that station_id
 		$this->user_options_model->del_option('eqsl_default_qslmsg', 'key_station_id', array('option_key' => $id));
 
-		// Delete QSOs
-		$this->db->where('station_id', $id);
-		$this->db->delete($this->config->item('table_name'));
+		// Delete Contents of log for that station_id
+		$this->deletelog($clean_id, $user_id);
 
-		// Delete Station Profile
+		// Delete Station Profile, links, contests and oqrs-requests
+		$this->db->query("DELETE c FROM contest_session c WHERE c.station_id =?",$clean_id);
+		$this->db->query("DELETE FROM oqrs WHERE station_id = ?",$clean_id);
+		$this->db->query("DELETE FROM station_logbooks_relationship WHERE station_location_id = ?",$clean_id);
 		$this->db->delete('station_profile', array('station_id' => $clean_id));
 	}
 
-	function deletelog($id) {
-        // Delete QSOs
-        $this->db->where('station_id', $id);
-        $this->db->delete($this->config->item('table_name'));
-    }
+	function deletelog($id, $user_id = null) {
+		// Clean ID
+		$clean_id = $this->security->xss_clean($id);
+
+		$this->load->model('qsl_model');
+		$this->load->model('eqsl_images');
+
+		$qsos=$this->db->query("select COL_PRIMARY_KEY as id from ".$this->config->item('table_name')." where station_id=?",$clean_id);
+		foreach ($qsos->result() as $qso) {
+			$this->qsl_model->del_image_for_qso($qso->id, $user_id);
+			$this->eqsl_images->del_image($qso->id, $user_id);
+		}
+		// Delete QSOs
+		$this->db->query("DELETE FROM ".$this->config->item('table_name')." WHERE station_id = ?",$clean_id);
+	}
 
 	function set_active($current, $new) {
 		// Clean inputs

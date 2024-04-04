@@ -330,11 +330,25 @@ class User_Model extends CI_Model {
 	// FUNCTION: bool delete()
 	// Deletes a user
 	function delete($user_id) {
-
 		if($this->exists_by_id($user_id)) {
-			$this->db->query("DELETE FROM ".$this->config->item('auth_table')." WHERE user_id = '".$user_id."'");
+			$this->load->model('Stations');
+			$stations = $this->Stations->all_of_user($user_id);
+			foreach ($stations->result() as $row) {
+				$this->Stations->delete($row->station_id,true, $user_id);
+			}
+			// Delete QSOs from $this->config->item('table_name')
+			$this->db->query("DELETE FROM bandxuser WHERE userid = ?",$user_id);
+			$this->db->query("DELETE FROM api WHERE user_id = ?",$user_id);
+			$this->db->query("DELETE FROM cat WHERE user_id = ?",$user_id);
+			$this->db->query("DELETE FROM lotw_certs WHERE user_id = ?",$user_id);
+			$this->db->query("DELETE FROM notes WHERE user_id = ?",$user_id);
+			$this->db->query("DELETE FROM paper_types WHERE user_id = ?",$user_id);
+			$this->db->query("DELETE FROM label_types WHERE user_id = ?",$user_id);
+			$this->db->query("DELETE FROM queries WHERE userid = ?",$user_id);
+			$this->db->query("DELETE FROM station_profile WHERE user_id = ?",$user_id);
+			$this->db->query("DELETE FROM station_logbooks WHERE user_id = ?",$user_id);
 			$this->db->query("delete from user_options where user_id=?",$user_id);
-
+			$this->db->query("DELETE FROM ".$this->config->item('auth_table')." WHERE user_id = ?",$user_id);
 			return 1;
 		} else {
 			return 0;

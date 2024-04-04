@@ -15,6 +15,23 @@ class Eqsl_images extends CI_Model {
 		}
 	}
 
+	function del_image($qso_id, $user_id = null) {
+		// QSO belongs to station_profile. But since we have folders for Users (and therefore an extra indirect relation) we need to lookup user for station first...
+		$eqsl_img=$this->db->query('SELECT e.image_file,e.id, qso.station_id, s.user_id FROM `eQSL_images` e INNER JOIN '.$this->config->item('table_name').' qso ON (e.qso_id = qso.COL_PRIMARY_KEY) inner join station_profile s on (s.station_id=qso.station_id) where qso.COL_PRIMARY_KEY=?',$qso_id);
+		foreach ($eqsl_img->result() as $row) {
+			if (($user_id ?? '') == '') {					// Calling as User? Check if User-id matches User-id from QSO
+				$user_id = $this->session->userdata('user_id');
+				if ($row->user_id != $user_id) {
+					return "No Image";				// Image doesn't belong to user, so return
+				}
+			}
+			$image=$this->get_imagePath('p',$row->user_id).'/'.$row->image_file;
+			unlink($image);
+			$this->db->delete('eQSL_images', array('id' => $row->id));
+			return $image;
+		}
+	}
+
 	function save_image($qso_id, $image_name) {
 		$data = array(
 		        'qso_id' => $qso_id,
@@ -36,36 +53,37 @@ class Eqsl_images extends CI_Model {
 	}
 
 	// return path of eQsl file : u=url / p=real path 
-	function get_imagePath($pathorurl='u') {
+	function get_imagePath($pathorurl='u', $user_id = null) {
 
 		// test if new folder directory option is enabled
 		$userdata_dir = $this->config->item('userdata');
-		
+
 		if (isset($userdata_dir)) {
 
 			$eqsl_dir = "eqsl_card"; // make sure this is the same as in Debug_model.php function migrate_userdata()
 
-			$user_id = $this->session->userdata('user_id');
-			
+			if (($user_id ?? '') == '') {
+				$user_id = $this->session->userdata('user_id');
+			}
+
 			// check if there is a user_id in the session data and it's not empty
 			if ($user_id != '') {
-				
-                // create the folder
-                if (!file_exists(realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$user_id.'/'.$eqsl_dir)) {
-                    mkdir(realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$user_id.'/'.$eqsl_dir, 0755, true);
-                }
 
-                // and return it
-                if ($pathorurl=='u') {
-                    return $userdata_dir.'/'.$user_id.'/'.$eqsl_dir;
-                } else {
-                    return realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$user_id.'/'.$eqsl_dir;
-                }
-            } else {
+				// create the folder
+				if (!file_exists(realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$user_id.'/'.$eqsl_dir)) {
+					mkdir(realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$user_id.'/'.$eqsl_dir, 0755, true);
+				}
+
+				// and return it
+				if ($pathorurl=='u') {
+					return $userdata_dir.'/'.$user_id.'/'.$eqsl_dir;
+				} else {
+					return realpath(APPPATH.'../').'/'.$userdata_dir.'/'.$user_id.'/'.$eqsl_dir;
+				}
+			} else {
 				log_message('info', 'Can not get eqsl image path because no user_id in session data');
 			}
-        } else {
-
+		} else {
 			// if the config option is not set we just return the old path
 			return 'images/eqsl_card_images';
 		}
