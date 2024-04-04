@@ -342,7 +342,7 @@ class Stationsetup extends CI_Controller {
 			$returntext .= '<span class="badge bg-success text-bg-success">' . lang('station_location_active') . '</span><br/>';
 		}
 
-		$returntext .='<span class="badge bg-light">' . $qso_total .' '. lang('gen_hamradio_qso') . '</span>';
+		$returntext .='<span class="badge bg-dark">' . $qso_total .' '. lang('gen_hamradio_qso') . '</span>';
 		return $returntext;
 	}
 
