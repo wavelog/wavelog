@@ -4,8 +4,10 @@ $('#band').change(function(){
 	var band = $("#band option:selected").text();
 	if (band != "SAT") {
 		$("#sats").prop('disabled', true);
+		$("#orbits").prop('disabled', true);
 	} else {
 		$("#sats").prop('disabled', false);
+		$("#orbits").prop('disabled', false);
 	}
 });
 
