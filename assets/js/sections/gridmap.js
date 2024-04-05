@@ -53,6 +53,7 @@ function gridPlot(form, visitor=true) {
             eqsl: $("#eqsl").is(":checked"),
             qrz: $("#qrz").is(":checked"),
             sat: $("#sats").val(),
+            orbit: $("#orbits").val(),
 		},
 		success: function (data) {
             $('.cohidden').show();

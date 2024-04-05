@@ -20,6 +20,7 @@ $lang['gridsquares_show_qsos'] = "Show QSO's";
 $lang['gridsquares_show_map'] = "Show Map";
 $lang['gridsquares_band'] = 'Band';
 $lang['gridsquares_mode'] = 'Mode';
+$lang['gridsquares_orbit'] = 'Orbit';
 $lang['gridsquares_sat'] = 'Satellite';
 $lang['gridsquares_confirmation'] = 'Confirmation';
 
