@@ -406,14 +406,16 @@ class Awards extends CI_Controller {
 		$data['page_title'] = "Log View - " . $type;
 		$data['filter'] = $type." ".$searchphrase." and band ".$band;
 		if ($band == 'SAT') {
-			if ($sat != 'All') {
+			if ($sat != 'All' && $sat != null) {
 				$data['filter'] .= " and sat ".$sat;
 			}
-			if ($orbit != 'All') {
+			if ($orbit != 'All' && $orbit != null) {
 				$data['filter'] .= " and orbit type ".$orbit;
 			}
 		}
-		$data['filter'] .= " and mode ".$mode;
+		if ($mode != null && strtolower($mode) != 'all') {
+			$data['filter'] .= " and mode ".$mode;
+		}
 		if (!empty($qsltype)) {
 			$data['filter'] .= " and ".implode('/', $qsltype);
 		}

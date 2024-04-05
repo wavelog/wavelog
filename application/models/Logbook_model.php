@@ -352,7 +352,7 @@ class Logbook_model extends CI_Model {
 		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
 		$this->db->join('dxcc_entities', 'dxcc_entities.adif = '.$this->config->item('table_name').'.COL_DXCC', 'left outer');
 		$this->db->join('lotw_users', 'lotw_users.callsign = '.$this->config->item('table_name').'.col_call', 'left outer');
-		if ($type == 'VUCC') {
+		if ($band == 'SAT' && $type == 'VUCC') {
 			$this->db->join('satellite', 'satellite.name = '.$this->config->item('table_name').'.col_sat_name', 'left outer');
 		}
 		switch ($type) {
@@ -370,11 +370,13 @@ class Logbook_model extends CI_Model {
 				$this->db->where("station_gridsquare like '%" . $searchphrase . "%'");
 			} else {
 				$this->db->where("(COL_GRIDSQUARE like '" . $searchphrase . "%' OR COL_VUCC_GRIDS like '%" . $searchphrase ."%')");
-				if ($sat != 'All') {
-					$this->db->where("COL_SAT_NAME = '$sat'");
-				}
-				if ($orbit != 'All') {
-					$this->db->where("satellite.orbit = '$orbit'");
+				if ($band == 'SAT' && $type == 'VUCC') {
+					if ($sat != 'All' && $sat != null) {
+						$this->db->where("COL_SAT_NAME = '$sat'");
+					}
+					if ($orbit != 'All' && $orbit != null) {
+						$this->db->where("satellite.orbit = '$orbit'");
+					}
 				}
 			}
 			break;
@@ -476,9 +478,7 @@ class Logbook_model extends CI_Model {
 
 		$this->db->limit(500);
 
-		$result =  $this->db->get($this->config->item('table_name'));
-		return $result;
-		//return $this->db->get($this->config->item('table_name'));
+		return $this->db->get($this->config->item('table_name'));
 	}
 
 	public function activated_grids_qso_details($searchphrase, $band, $mode){
