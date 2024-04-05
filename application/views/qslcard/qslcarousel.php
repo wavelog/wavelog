@@ -1,5 +1,4 @@
 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-<?php if (count($qslimages) > 1) { ?>
 <ol class="carousel-indicators">
     <?php
     $i = 0;
@@ -13,7 +12,6 @@
     }
     ?>
 </ol>
-<?php } ?>
 <div class="carousel-inner">
 
     <?php
@@ -29,7 +27,6 @@
     }
     ?>
 </div>
-<?php if (count($qslimages) > 1) { ?>
 	<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
 		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 		<span class="visually-hidden">Previous</span>
@@ -38,5 +35,4 @@
 		<span class="carousel-control-next-icon" aria-hidden="true"></span>
 		<span class="visually-hidden">Next</span>
 	</a>
-<?php } ?>
 </div>
