@@ -134,6 +134,8 @@ function spawnGridsquareModal(loc_4char) {
 			'Searchphrase': loc_4char,
 			'Band': $("#band").val(),
 			'Mode': $("#mode").val(),
+			'Sat': $("#sats").val(),
+			'Orbit': $("#orbits").val(),
 			'Type': 'VUCC'
 		})
 		if (type == 'activated') {

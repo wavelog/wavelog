@@ -345,13 +345,16 @@ class Logbook_model extends CI_Model {
 	/*
 	 * Used to fetch QSOs from the logbook in the awards
 	 */
-	public function qso_details($searchphrase, $band, $mode, $type, $qsl, $searchmode = null){
+	public function qso_details($searchphrase, $band, $mode, $type, $qsl, $sat = null, $orbit = null, $searchmode = null){
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
 		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
 		$this->db->join('dxcc_entities', 'dxcc_entities.adif = '.$this->config->item('table_name').'.COL_DXCC', 'left outer');
 		$this->db->join('lotw_users', 'lotw_users.callsign = '.$this->config->item('table_name').'.col_call', 'left outer');
+		if ($type == 'VUCC') {
+			$this->db->join('satellite', 'satellite.name = '.$this->config->item('table_name').'.col_sat_name', 'left outer');
+		}
 		switch ($type) {
 		case 'DXCC':
 			$this->db->where('COL_COUNTRY', $searchphrase);
@@ -367,6 +370,12 @@ class Logbook_model extends CI_Model {
 				$this->db->where("station_gridsquare like '%" . $searchphrase . "%'");
 			} else {
 				$this->db->where("(COL_GRIDSQUARE like '" . $searchphrase . "%' OR COL_VUCC_GRIDS like '%" . $searchphrase ."%')");
+				if ($sat != 'All') {
+					$this->db->where("COL_SAT_NAME = '$sat'");
+				}
+				if ($orbit != 'All') {
+					$this->db->where("satellite.orbit = '$orbit'");
+				}
 			}
 			break;
 		case 'CQZone':
