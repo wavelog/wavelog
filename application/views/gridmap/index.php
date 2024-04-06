@@ -47,7 +47,7 @@
                 } ?>
             </select>
             <?php if (count($sats_available) != 0) { ?>
-                <label class="my-1 me-2" for="distplot_sats"><?php echo lang('gridsquares_sat'); ?></label>
+                <label class="my-1 me-2" id="satslabel" for="distplot_sats"><?php echo lang('gridsquares_sat'); ?></label>
                 <select class="form-select my-1 me-sm-2 w-auto"  id="sats" <?php if ($user_default_band != "SAT") { ?>disabled<?php } ?>>
                     <option value="All"><?php echo lang('general_word_all')?></option>
                     <?php foreach($sats_available as $sat) {
@@ -57,7 +57,7 @@
             <?php } else { ?>
                 <input id="sats" type="hidden" value="All"></input>
             <?php } ?>
-			<label class="my-1 me-2" for="orbits"><?php echo lang('gridsquares_orbit'); ?></label>
+			<label class="my-1 me-2" id="orbitslabel" for="orbits"><?php echo lang('gridsquares_orbit'); ?></label>
             <select class="form-select my-1 me-sm-2 w-auto"  id="orbits">
 			<option value="All"><?php echo lang('general_word_all')?></option>
                     <?php
