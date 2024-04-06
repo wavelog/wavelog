@@ -3,6 +3,8 @@ var modalloading=false;
 $('#band').change(function(){
 	var band = $("#band option:selected").text();
 	if (band != "SAT") {
+		$("#sats").val('All');
+		$("#orbits").val('All');
 		$("#sats").hide();
 		$("#orbits").hide();
 		$("#satslabel").hide();
