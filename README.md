@@ -42,8 +42,8 @@ Wavelog-support can be reached by creating an issue here at github. If you've an
 
 ## Contributing
 
-Special thanks to our contributors, who are part of Wavelog by improving code!
-@abarrau, @dg0tm
+Special thanks to our contributors, who are part of Wavelog by improving code!  
+[F4ANS](https://github.com/abarrau), [DG0TM](https://github.com/dg0tm), [DG9VH](https://github.com/dg9vh), [DJ3CE](https://github.com/dj3ce)
 
 If you would like to contribute in any way to Wavelog, it is most appreciated. This has been developed in free time, help coding new features or writing documentation is always useful.
 
