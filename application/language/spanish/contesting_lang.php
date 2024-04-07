@@ -27,6 +27,7 @@ $lang['contesting_btn_save_qso'] = 'Guardar QSO';
 $lang['contesting_title_callsign_suggestions'] = 'Indicativos sugeridos';
 $lang['contesting_title_contest_logbook'] = 'Libro de guardia del concurso';
 
-$lang['contesting_copy_exch_to_dok'] = '¡Copiar intercambio recibido al campo DOK de la base de datos!';
+$lang['contesting_copy_exch_to'] = '¡Copiar intercambio recibido al campo';
+$lang['contesting_copy_exch_hint'] = 'Exchange is only copied if it is matching rules for the selected field!';
 
 
