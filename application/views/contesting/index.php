@@ -160,9 +160,9 @@
                             </div>
                         </div>
 
-                        <button type="button" class="btn btn-sm btn-secondary" onclick="reset_log_fields()"><i class="fas fa-sync-alt"></i> <?php echo lang('contesting_btn_reset_qso'); ?></button>
-                        <button type="button" class="btn btn-sm btn-primary" onclick="logQso();"><i class="fas fa-save"></i> <?php echo lang('contesting_btn_save_qso'); ?></button>
-                        <div class="mb-3 row">
+                        <button type="button" class="mb-3 btn btn-sm btn-secondary" onclick="reset_log_fields()"><i class="fas fa-sync-alt"></i> <?php echo lang('contesting_btn_reset_qso'); ?></button>
+                        <button type="button" class="mb-3 btn btn-sm btn-primary" onclick="logQso();"><i class="fas fa-save"></i> <?php echo lang('contesting_btn_save_qso'); ?></button>
+                        <div class="row">
                             <label class="col-auto control-label" for="radio"><?php echo lang('contesting_copy_exch_to'); ?></label>
                             <div class="form-check-inline col-auto">
                                 <select class="form-select form-select-sm" id="copyexchangeto" name="copyexchangeto" title="<?php echo lang('contesting_copy_exch_hint'); ?>">
