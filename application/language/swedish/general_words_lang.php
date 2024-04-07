@@ -19,6 +19,7 @@ $lang['general_word_not_display'] = "Not display";
 $lang['general_word_show'] = "Show";
 $lang['general_word_icon'] = "Icon";
 
+$lang['general_word_message'] = "Message";
 $lang['general_word_cancel'] = "Cancel";
 $lang['general_word_ok'] = "OK";
 $lang['general_word_attention'] = "Attention";
@@ -50,6 +51,7 @@ $lang['general_word_satellite_short'] = 'Sat';
 $lang['general_word_notes'] = 'Anteckningar';
 $lang['general_word_country'] = 'Land';
 $lang['general_word_city'] = 'City';
+$lang['general_word_age'] = 'Age';
 
 $lang['general_word_total'] = 'Totalt';
 $lang['general_word_day'] = "Day";
@@ -154,6 +156,7 @@ $lang['gen_hamradio_qslvia'] = 'QSL via';
 $lang['gen_hamradio_qslmsg'] = 'QSL Msg';
 $lang['gen_hamradio_locator'] = 'Lokator';
 $lang['gen_hamradio_transmit_power'] = 'Effekt (W)';
+$lang['gen_hamradio_receive_power'] = 'RX Power (W)';
 $lang['gen_hamradio_propagation_mode'] = 'Propagation Mode';
 
 $lang['gen_hamradio_satellite_name'] = 'Satellitnamn';
@@ -232,6 +235,7 @@ $lang['dashboard_country_files_warning'] = 'You need to update country files! Go
 $lang['dashboard_locations_warning'] = 'You have no station locations. Go <a href="'. site_url('stationsetup') . '">here</a> to create it!';
 $lang['dashboard_logbooks_warning'] = 'You have no station logbook. Go <a href="'. site_url('stationsetup') . '">here</a> to create it!';
 
+$lang['gen_add_to_contest'] = "Add QSOs to Contest";
 $lang['hams_at_no_activations_found'] = 'No upcoming activations found. Please check back later.';
 
 $lang['datatables_language'] = "en-GB";

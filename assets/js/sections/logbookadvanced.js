@@ -812,6 +812,7 @@ function printlabel() {
 				'startat': $('#startat').val(),
 				'grid': $('#gridlabel')[0].checked,
 				'via': $('#via')[0].checked,
+				'reference': $('#reference')[0].checked
 			},
 		xhr:function(){
 			var xhr = new XMLHttpRequest();

@@ -1,32 +1,3 @@
-
-
-<style>
-/*Legend specific*/
-.legend {
-  padding: 6px 8px;
-  font: 14px Arial, Helvetica, sans-serif;
-  background: white;
-  line-height: 24px;
-  color: #555;
-  border-radius: 10px;
-}
-.legend h4 {
-  text-align: center;
-  font-size: 16px;
-  margin: 2px 12px 8px;
-  color: #777;
-}
-.legend span {
-  position: relative;
-  bottom: 3px;
-}
-.legend i {
-  width: 18px;
-  height: 18px;
-  float: left;
-  margin: 0 8px 0 0;
-}
-</style>
 <div class="container">
 
 	<br>
@@ -47,8 +18,8 @@
                 } ?>
             </select>
             <?php if (count($sats_available) != 0) { ?>
-                <label class="my-1 me-2" for="distplot_sats"><?php echo lang('gridsquares_sat'); ?></label>
-                <select class="form-select my-1 me-sm-2 w-auto"  id="sats" <?php if ($user_default_band != "SAT") { ?>disabled<?php } ?>>
+                <label class="my-1 me-2" id="satslabel" for="distplot_sats" <?php if ($user_default_band != "SAT") { ?>style="display: none;"<?php } ?>><?php echo lang('gridsquares_sat'); ?></label>
+                <select class="form-select my-1 me-sm-2 w-auto"  id="sats" <?php if ($user_default_band != "SAT") { ?>style="display: none;"<?php } ?>>
                     <option value="All"><?php echo lang('general_word_all')?></option>
                     <?php foreach($sats_available as $sat) {
                         echo '<option value="' . $sat . '"' . '>' . $sat . '</option>'."\n";
@@ -57,6 +28,15 @@
             <?php } else { ?>
                 <input id="sats" type="hidden" value="All"></input>
             <?php } ?>
+                <label class="my-1 me-2" id="orbitslabel" for="orbits" <?php if ($user_default_band != "SAT") { ?>style="display: none;"<?php } ?>><?php echo lang('gridsquares_orbit'); ?></label>
+                <select class="form-select my-1 me-sm-2 w-auto"  id="orbits" <?php if ($user_default_band != "SAT") { ?>style="display: none;"<?php } ?>>
+                    <option value="All"><?php echo lang('general_word_all')?></option>
+                    <?php
+                    foreach($orbits as $orbit){
+                         echo '<option value="' . $orbit . '">' . strtoupper($orbit) . '</option>'."\n";
+                    }
+                    ?>
+            </select>
 			<label class="my-1 me-2" for="mode"><?php echo lang('gridsquares_mode'); ?></label>
             <select class="form-select my-1 me-sm-2 w-auto"  id="mode">
 			<option value="All"><?php echo lang('general_word_all')?></option>

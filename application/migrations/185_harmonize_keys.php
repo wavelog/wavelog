@@ -34,7 +34,7 @@ class Migration_harmonize_keys extends CI_Migration {
 	}
 
 	public function down(){
-		$this->db->query("ALTER TABLE ".$this->config->item('table_name')." ENGINE=MyISAM;");
+		// $this->db->query("ALTER TABLE ".$this->config->item('table_name')." ENGINE=MyISAM;");
 		$this->db->query("ALTER TABLE ".$this->config->item('table_name')." CHANGE COLUMN `station_id` `station_id` INT(11) NOT NULL;");
 		$this->db->query("ALTER TABLE ".$this->config->item('table_name')." CHANGE COLUMN `COL_PRIMARY_KEY` `COL_PRIMARY_KEY` INT UNSIGNED NOT NULL AUTO_INCREMENT;");
 		$this->db->query("ALTER TABLE ".$this->config->item('table_name')." AUTO_INCREMENT=".$this->get_max_from_tbl($this->config->item('table_name'),"`COL_PRIMARY_KEY`").";");

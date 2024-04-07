@@ -34,7 +34,7 @@ async function reset_contest_session() {
 	setExchangetype("None");
 	$("#contestname").val("Other").change();
 	$(".contest_qso_table_contents").empty();
-	$('#copyexchangetodok').prop('checked', false);
+ 	$('#copyexchangeto').val("None");
 
 	if (!$.fn.DataTable.isDataTable('.qsotable')) {
 		$.fn.dataTable.moment('DD-MM-YYYY HH:mm:ss');
@@ -72,7 +72,7 @@ async function reset_contest_session() {
 }
 
 // Storing the contestid in contest session
-$('#contestname').change(function () {
+$('#contestname, #copyexchangeto').change(function () {
 	var formdata = new FormData(document.getElementById("qso_input"));
 	setSession(formdata);
 });
@@ -80,12 +80,13 @@ $('#contestname').change(function () {
 // Storing the exchange type in contest session
 $('#exchangetype').change(function () {
 	var exchangetype = $("#exchangetype").val();
+	setExchangetype(exchangetype);
 	var formdata = new FormData(document.getElementById("qso_input"));
 	setSession(formdata);
-	setExchangetype(exchangetype);
 });
 
 async function setSession(formdata) {
+    formdata.set('copyexchangeto',$("#copyexchangeto option:selected").index());
 	await $.ajax({
 		url: base_url + 'index.php/contesting/setSession',
 		type: 'post',
@@ -111,17 +112,10 @@ if ( ! manual ) {
 }
 
 // We don't want spaces to be written in callsign
-$(function () {
-	$('#callsign').on('keypress', function (e) {
-		if (e.which == 32) {
-			return false;
-		}
-	});
-});
-
 // We don't want spaces to be written in exchange
+// We don't want spaces to be written in time :)
 $(function () {
-	$('#exch_rcvd').on('keypress', function (e) {
+	$('#callsign, #exch_rcvd, #start_time').on('keypress', function (e) {
 		if (e.which == 32) {
 			return false;
 		}
@@ -174,6 +168,12 @@ document.onkeyup = function (e) {
 	} else if (e.which == 32) {
 		getCallbook();
 		var exchangetype = $("#exchangetype").val();
+
+		if (manual && $(document.activeElement).attr("id") == "start_time") {
+			$("#callsign").focus();
+			return false;
+		}
+        
 		if (exchangetype == 'Exchange') {
 			if ($(document.activeElement).attr("id") == "callsign") {
 				$("#exch_rcvd").focus();
@@ -259,22 +259,33 @@ $("#callsign").on( "blur", function() {
 	}
 });
 
+var scps=[];
+
 // On Key up check and suggest callsigns
 $("#callsign").keyup(async function (e) {
 	var call = $(this).val();
 	if ((!((e.keyCode == 10 || e.keyCode == 13) && (e.ctrlKey || e.metaKey))) && (call.length >= 3)) {	// prevent checking again when pressing CTRL-Enter
 
-		$.ajax({
-			url: 'lookup/scp',
-			method: 'POST',
-			data: {
-			  callsign: $(this).val().toUpperCase()
-			},
-			success: function(result) {
-			  $('.callsign-suggestions').text(result);
-			  highlight(call.toUpperCase());
+		if ($(this).val().length >= 3) {
+			$callsign = $(this).val().replace('Ø', '0');
+			if (scps.filter((call => call.includes($(this).val().toUpperCase()))).length <= 0) {
+				$.ajax({
+					url: 'lookup/scp',
+					method: 'POST',
+					data: {
+						callsign: $callsign.toUpperCase()
+					},
+					success: function(result) {
+						$('.callsign-suggestions').text(result);
+						scps=result.split(" ");
+						highlight(call.toUpperCase());
+					}
+				});
+			} else {
+				$('.callsign-suggestions').text(scps.filter((call) => call.includes($(this).val().toUpperCase())).join(' '));
+				highlight(call.toUpperCase());
 			}
-		  });
+		}
 
 		await checkIfWorkedBefore();
 		var qTable = $('.qsotable').DataTable();
@@ -426,6 +437,33 @@ function setExchangetype(exchangetype) {
 		$(".gridsquarer").show();
 		$(".gridsquares").show();
 	}
+
+    // To track the transition, the code for the exchangecopy is kept
+    // separate.
+	switch(exchangetype) {
+      case 'None':
+      case 'Serial':
+      case 'Serialgridsquare':
+      case 'Gridsquare':
+        if ($("#copyexchangeto").prop('disabled') == false) {
+          $("#copyexchangeto").prop('disabled','disabled');
+          $("#copyexchangeto").data('oldValue',$("#copyexchangeto").val());
+          $("#copyexchangeto").val('None');
+        } else {
+          // Do nothing
+        }
+        break;
+      case 'Exchange':
+      case 'Serialexchange':
+        if ($("#copyexchangeto").prop('disabled') == false) {
+          // Do nothing
+        } else {
+          $("#copyexchangeto").val($("#copyexchangeto").data('oldValue') ?? 'None');
+          $("#copyexchangeto").prop('disabled',false);
+        }
+        break;
+      default:
+    }
 }
 
 /*
@@ -508,7 +546,11 @@ function logQso() {
 				$('#exch_rcvd').val("");
 				$('#exch_gridsquare_r').val("");
 				$('#exch_serial_r').val("");
-				$("#callsign").focus();
+				if (manual) {
+					$("#start_time").focus().select();
+				} else {
+					$("#callsign").focus();
+				}
 				await setSession(formdata);
 
 				await refresh_qso_table(sessiondata);
@@ -529,8 +571,8 @@ async function getSession() {
 
 async function restoreContestSession(data) {
 	if (data) {
-		if (data.copytodok == "1") {
-			$('#copyexchangetodok').prop('checked', true);
+		if (data.copytodok != "") {
+			$('#copyexchangeto option')[data.copytodok].selected = true;
 		}
 
 		if (data.contestid != "") {

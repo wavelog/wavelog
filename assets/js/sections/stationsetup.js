@@ -55,6 +55,26 @@ $(document).ready(function () {
 		await do_ajax('setFavorite_json', 'id2Favorite', reloadStations,e);
 	});
 
+	$(document).on('click', '.editContainerName', async function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
+		editContainerDialog(e);
+	});
+
+	$(document).on('click', '.editLinkedLocations', async function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
+		editLinkedLocations(e);
+	});
+
+	$(document).on('click', '.editVisitorLink', async function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
+		editVisitorLink(e);
+	});
+
+	$(document).on('click', '.deletePublicSlug', async function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
+		await do_ajax('remove_publicslug', 'id', reloadLogbooks, e);
+	});
+
+	$(document).on('click', '.publicSearchCheckbox', async function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
+		togglePublicSearch(e.currentTarget.id, this);
+	});
+
 	$("#station_logbooks_table").DataTable({
 		stateSave: true,
 		language: {
@@ -94,6 +114,191 @@ $(document).ready(function () {
 		});
 	}
 
+	function togglePublicSearch(id, thisvar) {
+		$.ajax({
+			url: base_url + 'index.php/stationsetup/togglePublicSearch',
+			type: 'post',
+			data: {
+				id: id,
+				checked: $(thisvar).is(':checked')
+			},
+			success: function (data) {
+				reloadLogbooks();
+			},
+			error: function (data) {
+
+			},
+		});
+		return false;
+	}
+
+	function editContainerDialog(e) {
+		$.ajax({
+			url: base_url + 'index.php/stationsetup/editContainerName',
+			type: 'post',
+			data: {
+				id: e.currentTarget.id,
+			},
+			success: function (data) {
+				BootstrapDialog.show({
+					title: 'Edit container name',
+					size: BootstrapDialog.SIZE_NORMAL,
+					cssClass: 'options',
+					id: "NewStationLogbookModal",
+					nl2br: false,
+					message: data,
+					onshown: function(dialog) {
+					},
+					buttons: [{
+						label: 'Save',
+						cssClass: 'btn-primary btn-sm saveContainerName',
+						action: function (dialogItself) {
+							saveContainerName();
+							dialogItself.close();
+						}
+					},
+					{
+						label: lang_admin_close,
+						cssClass: 'btn-sm',
+						id: 'closeButton',
+						action: function (dialogItself) {
+							dialogItself.close();
+						}
+					}],
+				});
+			},
+			error: function (data) {
+
+			},
+		});
+		return false;
+	}
+
+	function saveContainerName() {
+		$.ajax({
+			url: base_url + 'index.php/stationsetup/saveContainerName',
+			type: 'post',
+			data: {
+				id: $('#logbookid').val(),
+				name: $('#logbook_name').val()
+			},
+			success: function (data) {
+				reloadLogbooks();
+			},
+			error: function (data) {
+
+			},
+		});
+	}
+
+	function editLinkedLocations(e) {
+		$.ajax({
+			url: base_url + 'index.php/stationsetup/editLinkedLocations',
+			type: 'post',
+			data: {
+				id: e.currentTarget.id,
+			},
+			success: function (data) {
+				BootstrapDialog.show({
+					title: 'Edit linked locations',
+					size: BootstrapDialog.SIZE_WIDE,
+					cssClass: 'options',
+					id: "NewStationLogbookModal",
+					nl2br: false,
+					message: data,
+					onshown: function(dialog) {
+					},
+					buttons: [{
+						label: lang_admin_close,
+						cssClass: 'btn-sm',
+						id: 'closeButton',
+						action: function (dialogItself) {
+							dialogItself.close();
+						}
+					}],
+				});
+			},
+			error: function (data) {
+
+			},
+		});
+		return false;
+	}
+
+	function editVisitorLink(e) {
+		$.ajax({
+			url: base_url + 'index.php/stationsetup/editVisitorLink',
+			type: 'post',
+			data: {
+				id: e.currentTarget.id,
+			},
+			success: function (data) {
+				BootstrapDialog.show({
+					title: 'Edit visitor link',
+					size: BootstrapDialog.SIZE_NORMAL,
+					cssClass: 'options',
+					id: "NewStationLogbookModal",
+					nl2br: false,
+					message: data,
+					onshown: function(dialog) {
+					},
+					buttons: [{
+						label: 'Save',
+						cssClass: 'btn-primary btn-sm visitorSaveButton',
+						action: function (dialogItself) {
+							saveVisitorLink(dialogItself);
+						}
+					},
+					{
+						label: lang_admin_close,
+						cssClass: 'btn-sm',
+						id: 'closeButton',
+						action: function (dialogItself) {
+							dialogItself.close();
+						}
+					}],
+				});
+			},
+			error: function (data) {
+
+			},
+		});
+		return false;
+	}
+
+	function saveVisitorLink(dialogItself) {
+		$('.visitorSaveButton').prop("disabled", true);
+		$('.alertvisitor').remove();
+		if (/^([a-zA-Z0-9-]+)$/.test($('#publicSlugInput').val())) {
+			$.ajax({
+				url: base_url + 'index.php/stationsetup/saveVisitorLink',
+				type: 'post',
+				data: {
+					id: $('#logbook_id').val(),
+					name: $('#publicSlugInput').val()
+				},
+				success: function (data) {
+					jdata=JSON.parse(data);
+					if (jdata.success == 1) {
+						dialogItself.close();
+						reloadLogbooks();
+					} else {
+						$('#visitorLinkInfo').append('<div class="alertvisitor alert alert-danger" role="alert">'+jdata.flashdata+'</div>');
+						$('.visitorSaveButton').prop("disabled", false);
+					}
+
+				},
+				error: function (data) {
+					$('.visitorSaveButton').prop("disabled", false);
+				},
+			});
+		} else {
+			$('.visitorSaveButton').prop("disabled", false);
+			$('#visitorLinkInfo').append('<div class="alertvisitor alert alert-danger" role="alert">Invalid characters entered in link!</div>');
+		}
+		return false;
+	}
+
 
 function reloadLogbooks() {
 	$.ajax({
@@ -117,6 +322,7 @@ function reloadLogbooks() {
 	});
 	return false;
 }
+
 function reloadStations() {
 	$.ajax({
 		url: base_url + 'index.php/stationsetup/fetchLocations',
@@ -307,5 +513,76 @@ function loadLocationTable(rows) {
 	}
 	table.draw();
 	$('[data-bs-toggle="tooltip"]').tooltip();
+}
+
+function linkLocations() {
+	$('.linkLocationButton').prop("disabled", true);
+	var locationid = $('#StationLocationSelect').val();
+	var containerid = $('#station_logbook_id').val();
+	var locationtext = $('#StationLocationSelect option:selected').text();
+	var locationarray = locationtext.split(" ");
+
+	if (locationid == null) return;
+
+	$.ajax({
+		url: base_url + 'index.php/stationsetup/linkLocations',
+		type: 'post',
+		data: {
+			containerid: containerid,
+			locationid: locationid
+		},
+		success: function(data) {
+			jdata=JSON.parse(data);
+			if (jdata.success == 1) {
+				$("#StationLocationSelect").find('[value="'+ locationid +'"]').remove();
+				// add to table
+				$('#station_logbooks_linked_table').append($('<tr id="locationid_'+locationid+'">')
+					.append($('<td style="text-align: center; vertical-align: middle;">').append(jdata.locationdata[0].station_profile_name))
+					.append($('<td style="text-align: center; vertical-align: middle;">').append(jdata.locationdata[0].station_callsign))
+					.append($('<td style="text-align: center; vertical-align: middle;">').append(jdata.locationdata[0].station_country+(jdata.locationdata[0].dxcc_end == null ? '' : ' <span class="badge bg-danger">Deleted DXCC</span>')))
+					.append($('<td style="text-align: center; vertical-align: middle;">').append('<button class="btn btn-sm btn-danger unlinkbutton" onclick="unLinkLocations('+containerid+','+locationid+');"><i class="fas fa-unlink"></i></button>'))
+				)
+			} else {
+				$("#flashdata").html(jdata.flashdata);
+			}
+			$('.linkLocationButton').prop("disabled", false);
+		},
+		error: function(e) {
+			$("#flashdata").html("An unknown Error occured");
+			$('.linkLocationButton').prop("disabled", false);
+		}
+	});
+}
+
+function unLinkLocations(containerid, locationid) {
+	$('.unlinkbutton').prop("disabled", true);
+	$.ajax({
+		url: base_url + 'index.php/stationsetup/unLinkLocations',
+		type: 'post',
+		data: {
+			containerid: containerid,
+			locationid: locationid
+		},
+		success: function (data) {
+			jdata=JSON.parse(data);
+			if (jdata.success == 1) {
+				let row = $('#locationid_'+locationid);
+				let cells = row.find('td');
+				var items = [];
+				items.push(
+					'<option value="' + locationid + '">' + cells.eq(0).text() + ' (Callsign: ' + cells.eq(1).text() + ' DXCC: ' + cells.eq(2).text() + ')</option>'
+				);
+				$('#StationLocationSelect').append(items.join( "" ));
+				$('#locationid_'+locationid).remove();
+				$('.unlinkbutton').prop("disabled", false);
+			} else {
+				$("#flashdata").data(jdata.flashdata);
+				$('.unlinkbutton').prop("disabled", false);
+			}
+		},
+		error: function(e) {
+			$("#flashdata").html("An unknown Error occured");
+		}
+	});
 }
 

@@ -17,6 +17,8 @@ class Qrz {
 		curl_setopt($ch, CURLOPT_URL, $xml_feed_url);
 		curl_setopt($ch, CURLOPT_HEADER, false);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
 		$xml = curl_exec($ch);
 		curl_close($ch);
 		
@@ -40,6 +42,8 @@ class Qrz {
 		curl_setopt($ch, CURLOPT_URL, $xml_feed_url);
 		curl_setopt($ch, CURLOPT_HEADER, false);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
 		$xml = curl_exec($ch);
 		curl_close($ch);
 		
@@ -65,6 +69,8 @@ class Qrz {
 			curl_setopt($ch, CURLOPT_URL, $xml_feed_url);
 			curl_setopt($ch, CURLOPT_HEADER, false);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+        	curl_setopt($ch, CURLOPT_TIMEOUT, 10);
 			$xml = curl_exec($ch);
 			$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 			curl_close($ch);

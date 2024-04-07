@@ -179,18 +179,42 @@ class Bands extends CI_Model {
 
 		$location_list = "'".implode("','",$logbooks_locations_array)."'";
 
-        // get all worked sats from database
-        $sql = "SELECT distinct col_sat_name FROM ".$this->config->item('table_name')." WHERE station_id in (" . $location_list . ") and coalesce(col_sat_name, '') <> '' ORDER BY col_sat_name";
+		// get all worked sats from database
+		$sql = "SELECT distinct col_sat_name FROM ".$this->config->item('table_name')." WHERE station_id in (" . $location_list . ") and coalesce(col_sat_name, '') <> '' ORDER BY col_sat_name";
 
-        $data = $this->db->query($sql);
+		$data = $this->db->query($sql);
 
-        $worked_sats = array();
-        foreach($data->result() as $row){
-            array_push($worked_sats, $row->col_sat_name);
-        }
+		$worked_sats = array();
+		foreach($data->result() as $row){
+			array_push($worked_sats, $row->col_sat_name);
+		}
 
-        return $worked_sats;
-    }
+		return $worked_sats;
+	}
+
+	function get_worked_orbits() {
+		$CI =& get_instance();
+		$CI->load->model('logbooks_model');
+		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+		if (!$logbooks_locations_array) {
+			return array();
+		}
+
+		$location_list = "'".implode("','",$logbooks_locations_array)."'";
+
+		// get all worked orbit types from database
+		$sql = "SELECT DISTINCT satellite.orbit AS orbit FROM ".$this->config->item('table_name')." LEFT JOIN satellite ON COL_SAT_NAME = satellite.name WHERE station_id in (" . $location_list . ") AND COL_PROP_MODE = 'SAT' AND satellite.orbit IS NOT NULL ORDER BY orbit ASC";
+
+		$data = $this->db->query($sql);
+
+		$worked_orbits = array();
+		foreach($data->result() as $row){
+			array_push($worked_orbits, $row->orbit);
+		}
+
+		return $worked_orbits;
+	}
 
 	function get_worked_bands_dok() {
 		$CI =& get_instance();

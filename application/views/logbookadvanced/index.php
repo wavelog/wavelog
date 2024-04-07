@@ -422,7 +422,13 @@ $options = json_decode($options);
         <button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="dupeButton"><?php echo lang('filter_dupes'); ?><div class="ld ld-ring ld-spin"></div></button>
         <button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="editButton">Edit<div class="ld ld-ring ld-spin"></div></button>
 		<button type="button" class="btn btn-sm btn-danger me-1" id="deleteQsos"><?php echo lang('filter_actions_delete'); ?></button>
-        <button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="mapButton" onclick="mapQsos(this.form);"><?php echo lang('filter_map'); ?><div class="ld ld-ring ld-spin"></div></button>
+		<div class="btn-group me-1" role="group">
+            <button type="button" class="btn btn-sm btn-primary ld-ext-right" id="mapButton" onclick="mapQsos(this.form);"><?php echo lang('filter_map'); ?><div class="ld ld-ring ld-spin"></div></button>
+			<button id="btnGroupDrop1" type="button" class="btn btn-sm btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></button>
+			<ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                <li><button type="button" class="dropdown-item" onclick="mapGlobeQsos(this.form);" id="mapGlobeButton">Globe map</button></li>
+            </ul>
+        </div>
 		<button type="options" class="btn btn-sm btn-primary me-1" id="optionButton"><?php echo lang('filter_options'); ?></button>
 		<button type="reset" class="btn btn-sm btn-danger me-1" id="resetButton"><?php echo lang('filter_reset'); ?></button>
 

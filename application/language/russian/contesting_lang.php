@@ -27,6 +27,7 @@ $lang['contesting_btn_save_qso'] = 'Сохранить QSO';
 $lang['contesting_title_callsign_suggestions'] = 'Предложение позывных';
 $lang['contesting_title_contest_logbook'] = 'Журнал контеста';
 
-$lang['contesting_copy_exch_to_dok'] = 'Копировать принятый обмен в поле DOK базы данных!';
+$lang['contesting_copy_exch_to'] = 'Copy received exchange to';
+$lang['contesting_copy_exch_hint'] = 'Exchange is only copied if it is matching rules for the selected field!';
 
 

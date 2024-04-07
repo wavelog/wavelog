@@ -25,4 +25,17 @@ class Map extends CI_Controller {
 		echo json_encode(array_merge($plot_array, $station_array));
 	}
 
+	// Generic fonction for return Json for MAP //
+	public function glob_plot() {
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/globe/globe.gl.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/globe/globe.gl.js")),
+			'assets/js/sections/globe.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/globe.js")),
+		];
+		$this->load->view('interface_assets/header');
+		$this->load->view('globe/index');
+		$this->load->view('interface_assets/footer',$footerData);
+
+	}
+
 }

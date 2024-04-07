@@ -27,6 +27,7 @@ $lang['contesting_btn_save_qso'] = 'QSO\'yu kaydet';
 $lang['contesting_title_callsign_suggestions'] = 'Çağrı Kodu Önerileri';
 $lang['contesting_title_contest_logbook'] = 'Yarışma kayıt defteri';
 
-$lang['contesting_copy_exch_to_dok'] = 'Copy received exchange to DOK field in the database!';
+$lang['contesting_copy_exch_to'] = 'Copy received exchange to';
+$lang['contesting_copy_exch_hint'] = 'Exchange is only copied if it is matching rules for the selected field!';
 
 

@@ -68,6 +68,12 @@ class Logbook_model extends CI_Model {
             $stx = null;
             break;
       }
+
+      if ($srx_string !== null) $srx_string = trim(xss_clean($srx_string));
+      if ($stx_string !== null) $stx_string = trim(xss_clean($stx_string));
+      if ($srx        !== null) $srx        = trim(xss_clean($srx));
+      if ($stx        !== null) $stx        = trim(xss_clean($stx));
+
     } else {
       $srx_string = null;
       $stx_string = null;
@@ -151,11 +157,49 @@ class Logbook_model extends CI_Model {
       $clean_county_input = null;
     }
 
-    if($this->input->post('copyexchangetodok')) {
-      $darc_dok = $this->input->post('exch_rcvd');
-    } else {
-      $darc_dok = $this->input->post('darc_dok');
+    $darc_dok = trim(xss_clean($this->input->post('darc_dok')));
+    $qso_locator = strtoupper(trim(xss_clean($this->input->post('locator')) ?? ''));
+    $qso_name = trim(xss_clean($this->input->post('name')));
+    $qso_age = null;
+    $qso_state = $this->input->post('input_state_edit') == null ? '' : trim(xss_clean($this->input->post('input_state_edit')));
+    $qso_rx_power = null;
+
+    if ($this->input->post('copyexchangeto')) {
+      switch($this->input->post('copyexchangeto')) {
+        case 'dok':
+          $darc_dok = $srx_string;
+          break;
+        case 'locator':
+          // Matching 4-10 character-locator
+          if ( preg_match('/^[A-R]{2}[0-9]{2}([A-X]{2}([0-9]{2}([A-X]{2})?)?)?$/',$srx_string) ) {
+            $qso_locator = $srx_string;
+          }
+          break;
+        case 'name':
+          $qso_name = $srx_string;
+          break;
+        case 'age':
+          $qso_age = intval($srx_string);
+          break;
+        case 'state':
+          if ( preg_match('/^[A-Za-z]*$/', $srx_string) && $srx_string != "DX" ) {
+            $qso_state = $srx_string;
+          }
+          break;
+        case 'power':
+          $qso_rx_power = intval($srx_string);
+          break;
+        // Example for more sophisticated exchanges and their split into the db:
+        //case 'name/power':
+        //  if (strlen($srx_string) == 0) break;
+        //  $exch_pt = explode("/",$srx_string);
+        //  $qso_name = $exch_pt[0];
+        //  if (count($exch_pt)>1) $qso_rx_power = intval($exch_pt[1]);
+        //  break;
+        default:
+      }
     }
+
 
     if ($this->input->post('qsl_sent')) {
         $qsl_sent = $this->input->post('qsl_sent');
@@ -193,7 +237,7 @@ class Logbook_model extends CI_Model {
             'COL_SUBMODE' => $submode,
             'COL_RST_RCVD' => $this->input->post('rst_rcvd'),
             'COL_RST_SENT' => $this->input->post('rst_sent'),
-            'COL_NAME' => $this->input->post('name'),
+            'COL_NAME' => $qso_name,
             'COL_COMMENT' => $this->input->post('comment'),
             'COL_SAT_NAME' => $this->input->post('sat_name') == null ? '' : strtoupper($this->input->post('sat_name')),
             'COL_SAT_MODE' => $this->input->post('sat_mode') == null ? '' : strtoupper($this->input->post('sat_mode')),
@@ -216,7 +260,7 @@ class Logbook_model extends CI_Model {
             'COL_ANT_AZ' => null,
             'COL_ANT_EL' => null,
             'COL_A_INDEX' => null,
-            'COL_AGE' => null,
+            'COL_AGE' => $qso_age,
             'COL_TEN_TEN' => null,
             'COL_TX_PWR' => $tx_power,
             'COL_STX' => $stx,
@@ -229,12 +273,12 @@ class Logbook_model extends CI_Model {
             'COL_MAX_BURSTS' => null,
             'COL_K_INDEX' => null,
             'COL_SFI' => null,
-            'COL_RX_PWR' => null,
+            'COL_RX_PWR' => $qso_rx_power,
             'COL_LAT' => null,
             'COL_LON' => null,
             'COL_DXCC' => $dxcc_id,
             'COL_CQZ' => $cqz,
-            'COL_STATE' => $this->input->post('input_state_edit') == null ? '' : trim($this->input->post('input_state_edit')),
+            'COL_STATE' => $qso_state,
             'COL_CNTY' => $clean_county_input,
             'COL_SOTA_REF' => $this->input->post('sota_ref') == null ? '' : trim($this->input->post('sota_ref')),
             'COL_WWFF_REF' => $this->input->post('wwff_ref') == null ? '' : trim($this->input->post('wwff_ref')),
@@ -299,10 +343,10 @@ class Logbook_model extends CI_Model {
     }
 
     // Decide whether its single gridsquare or a multi which makes it vucc_grids
-    if (strpos(trim(xss_clean($this->input->post('locator')) ?? ''), ',') !== false) {
-      $data['COL_VUCC_GRIDS'] = strtoupper(preg_replace('/\s+/', '', xss_clean($this->input->post('locator')) ?? ''));
+    if (strpos($qso_locator, ',') !== false) {
+      $data['COL_VUCC_GRIDS'] = strtoupper(preg_replace('/\s+/', '', $qso_locator));
     } else {
-      $data['COL_GRIDSQUARE'] = strtoupper(trim(xss_clean($this->input->post('locator')) ?? ''));
+      $data['COL_GRIDSQUARE'] = $qso_locator;
     }
 
     // if eQSL username set, default SENT & RCVD to 'N' else leave as null
@@ -345,13 +389,16 @@ class Logbook_model extends CI_Model {
 	/*
 	 * Used to fetch QSOs from the logbook in the awards
 	 */
-	public function qso_details($searchphrase, $band, $mode, $type, $qsl, $searchmode = null){
+	public function qso_details($searchphrase, $band, $mode, $type, $qsl, $sat = null, $orbit = null, $searchmode = null){
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
 		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
 		$this->db->join('dxcc_entities', 'dxcc_entities.adif = '.$this->config->item('table_name').'.COL_DXCC', 'left outer');
 		$this->db->join('lotw_users', 'lotw_users.callsign = '.$this->config->item('table_name').'.col_call', 'left outer');
+		if ($band == 'SAT' && $type == 'VUCC') {
+			$this->db->join('satellite', 'satellite.name = '.$this->config->item('table_name').'.col_sat_name', 'left outer');
+		}
 		switch ($type) {
 		case 'DXCC':
 			$this->db->where('COL_COUNTRY', $searchphrase);
@@ -367,6 +414,14 @@ class Logbook_model extends CI_Model {
 				$this->db->where("station_gridsquare like '%" . $searchphrase . "%'");
 			} else {
 				$this->db->where("(COL_GRIDSQUARE like '" . $searchphrase . "%' OR COL_VUCC_GRIDS like '%" . $searchphrase ."%')");
+				if ($band == 'SAT' && $type == 'VUCC') {
+					if ($sat != 'All' && $sat != null) {
+						$this->db->where("COL_SAT_NAME = '$sat'");
+					}
+					if ($orbit != 'All' && $orbit != null) {
+						$this->db->where("satellite.orbit = '$orbit'");
+					}
+				}
 			}
 			break;
 		case 'CQZone':
@@ -467,9 +522,7 @@ class Logbook_model extends CI_Model {
 
 		$this->db->limit(500);
 
-		$result =  $this->db->get($this->config->item('table_name'));
-		return $result;
-		//return $this->db->get($this->config->item('table_name'));
+		return $this->db->get($this->config->item('table_name'));
 	}
 
 	public function activated_grids_qso_details($searchphrase, $band, $mode){
@@ -1679,7 +1732,7 @@ class Logbook_model extends CI_Model {
 		  $this->db->join('primary_subdivisions', $this->config->item('table_name').'.COL_DXCC = primary_subdivisions.adif AND '.$this->config->item('table_name').'.COL_STATE = primary_subdivisions.state', 'left outer');
 		  $this->db->where('COL_PRIMARY_KEY', $id);
       $this->db->limit(1);
-      
+
 		  return $this->db->get();
 	  } else {
 		  return;
@@ -2144,7 +2197,7 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 
       	  $location_list = "'".implode("','",$logbooks_locations_array)."'";
 
-	  $sql="SELECT 
+	  $sql="SELECT
 		  dx.prefix,dx.name,
 		  CASE
 		  WHEN q.col_mode = 'CW' THEN 'C'
@@ -3045,14 +3098,23 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
     }
 
     /* Delete QSO based on the QSO ID */
-  function delete($id) {
-	  if ($this->check_qso_is_accessible($id)) {
-		  $this->db->where('COL_PRIMARY_KEY', $id);
-		  $this->db->delete($this->config->item('table_name'));
-	  } else {
-		  return;
-	  }
-  }
+    function delete($id) {
+	    if ($this->check_qso_is_accessible($id)) {
+		    $this->load->model('qsl_model');
+		    $this->load->model('eqsl_images');
+
+		    $this->qsl_model->del_image_for_qso($id);
+		    $this->eqsl_images->del_image($id);
+
+		    $this->db->where('COL_PRIMARY_KEY', $id);
+		    $this->db->delete($this->config->item('table_name'));
+
+		    $this->db->where('qsoid', $id);
+		    $this->db->delete("oqrs");
+	    } else {
+		    return;
+	    }
+    }
 
   /* Used to check if the qso is already in the database */
     function import_check($datetime, $callsign, $band, $mode, $station_callsign, $station_id = null) {
@@ -3345,6 +3407,9 @@ function lotw_last_qsl_date($user_id) {
 		  $input_submode = $submode;
 	  }
 
+	  $input_submode = (($input_submode ?? '') == '') ? null : $input_submode;	// Make Sure submode is NULL if empty
+	  $input_mode = (($input_mode ?? '') == '') ? null : $input_mode;	// Make Sure mode is NULL if empty
+
 
 	  // Check if QSO is already in the database
 	  if ($skipDuplicate != NULL) {
@@ -3489,12 +3554,14 @@ function lotw_last_qsl_date($user_id) {
 
 		  // Sanitise RX Power
 		  if (isset($record['rx_pwr'])){
-			  // Check if RX_PWR is "K" which N1MM+ uses to indicate 1000W
-			  if($record['rx_pwr'] == "K") {
-				  $rx_pwr = 1000;
-			  } else {
-				  $rx_pwr = filter_var($record['rx_pwr'],FILTER_VALIDATE_FLOAT);
-			  }
+			switch(strtoupper($record['rx_pwr'])) {
+				case 'K': $rx_pwr = 1000; break;
+				case 'KW': $rx_pwr = 1000; break;
+				case '1TT': $rx_pwr = 100; break;
+				case 'ETT': $rx_pwr = 100; break;
+				case 'NN': $rx_pwr = 99; break;
+				default: $rx_pwr = filter_var($record['rx_pwr'],FILTER_VALIDATE_FLOAT);
+			}
 		  }else{
 			  $rx_pwr = NULL;
 		  }
@@ -4026,7 +4093,7 @@ function lotw_last_qsl_date($user_id) {
      */
     public function check_dxcc_table($call, $date){
 
-    $csadditions = '/^P$|^R$|^A$|^M$/';
+    $csadditions = '/^T$|^P$|^R$|^A$|^M$/';
 
 		$dxcc_exceptions = $this->db->select('`entity`, `adif`, `cqz`, `cont`')
              ->where('call', $call)
@@ -4116,7 +4183,7 @@ function lotw_last_qsl_date($user_id) {
 
     public function dxcc_lookup($call, $date){
 
-    $csadditions = '/^P$|^R$|^A$|^M$/';
+    $csadditions = '/^T$|^P$|^R$|^A$|^M$/';
 
 		$dxcc_exceptions = $this->db->select('`entity`, `adif`, `cqz`,`cont`')
 				->where('call', $call)
@@ -4214,7 +4281,7 @@ function lotw_last_qsl_date($user_id) {
       $c = '';
 
       $lidadditions = '/^QRP$|^LGT$/';
-      $csadditions = '/^P$|^R$|^A$|^M$|^LH$/';
+      $csadditions = '/^T$|^P$|^R$|^A$|^M$|^LH$/';
       $noneadditions = '/^MM$|^AM$/';
 
       # First check if the call is in the proper format, A/B/C where A and C
@@ -4377,15 +4444,12 @@ function lotw_last_qsl_date($user_id) {
                 // Manual call
                 $d = $this->check_dxcc_table($row['COL_CALL'], $qso_date);
 
-                // Stored procedure call
-                //$d = $this->check_dxcc_stored_proc($row["COL_CALL"], $qso_date);
-
                 if ($d[0] != 'Not Found'){
                     $sql = sprintf("update %s set COL_COUNTRY = '%s', COL_DXCC='%s' where COL_PRIMARY_KEY=%d",
                                     $this->config->item('table_name'), addslashes(ucwords(strtolower($d[1]), "- (/")), $d[0], $row['COL_PRIMARY_KEY']);
                     $this->db->query($sql);
                     //print($sql."\n");
-                    printf("Updating %s to %s and %s\n<br/>", $row['COL_PRIMARY_KEY'], ucwords(strtolower($d[1]), "- (/"), $d[0]);
+                    // printf("Updating %s to %s and %s\n<br/>", $row['COL_PRIMARY_KEY'], ucwords(strtolower($d[1]), "- (/"), $d[0]);
                     $count++;
                 }
             }
@@ -4799,7 +4863,7 @@ function lotw_last_qsl_date($user_id) {
       $clean_qsoid = $this->security->xss_clean($qso_id);
 
       $sql =    'SELECT station_profile.user_id
-                FROM '.$this->config->item('table_name').' 
+                FROM '.$this->config->item('table_name').'
                 INNER JOIN station_profile ON ('.$this->config->item('table_name').'.station_id = station_profile.station_id)
                 WHERE '.$this->config->item('table_name').'.COL_PRIMARY_KEY = ?';
 
@@ -4807,7 +4871,7 @@ function lotw_last_qsl_date($user_id) {
       $row = $result->row();
 
       return $row->user_id;
-    }  
+    }
 }
 
 function validateADIFDate($date, $format = 'Ymd')

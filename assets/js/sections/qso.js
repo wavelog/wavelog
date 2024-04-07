@@ -503,7 +503,7 @@ $( document ).ready(function() {
 	/*
 	  Populate the Satellite Names Field on the QSO Panel
 	  */
-	$.getJSON(base_url+"assets/json/satellite_data.json", function( data ) {
+	$.getJSON(site_url + "/satellite/satellite_data", function( data ) {
 
 		// Build the options array
 		var items = [];
@@ -531,7 +531,7 @@ $( document ).ready(function() {
 				selected_sat_mode = value;
 
 				// get Json file
-				$.getJSON(base_url + "assets/json/satellite_data.json", function( data ) {
+				$.getJSON(site_url + "/satellite/satellite_data", function( data ) {
 
 					// Build the options array
 					var sat_modes = [];
@@ -569,7 +569,7 @@ $( document ).ready(function() {
 				$('.satellite_modes_list').find('option').remove().end();
 				selected_sat = value;
 				// get Json file
-				$.getJSON( base_url+"assets/json/satellite_data.json", function( data ) {
+				$.getJSON(site_url + "/satellite/satellite_data", function( data ) {
 
 					// Build the options array
 					var sat_modes = [];
@@ -849,8 +849,10 @@ $( document ).ready(function() {
 							}
 							$('#qrz_info').html('<a target="_blank" href="https://www.qrz.com/db/'+callsign+'"><img width="30" height="30" src="'+base_url+'images/icons/qrz.com.png"></a>');
 							$('#qrz_info').attr('title', 'Lookup '+callsign+' info on qrz.com').removeClass('d-none');
+							$('#qrz_info').show();
 							$('#hamqth_info').html('<a target="_blank" href="https://www.hamqth.com/'+callsign+'"><img width="30" height="30" src="'+base_url+'images/icons/hamqth.com.png"></a>');
 							$('#hamqth_info').attr('title', 'Lookup '+callsign+' info on hamqth.com').removeClass('d-none');
+							$('#hamqth_info').show();
 
 							var $dok_select = $('#darc_dok').selectize();
 							var dok_selectize = $dok_select[0].selectize;
@@ -1219,23 +1221,57 @@ $( document ).ready(function() {
 		}
 	});
 
+	var scps=[];
 	// On Key up check and suggest callsigns
 	$("#callsign").keyup(function() {
+		var ccall = $(this).val();
 		if ($(this).val().length >= 3) {
 			$('.callsign-suggest').show();
 			$callsign = $(this).val().replace('Ø', '0');
-			$.ajax({
-				url: 'lookup/scp',
-				method: 'POST',
-				data: {
-					callsign: $callsign.toUpperCase()
-				},
-				success: function(result) {
-					$('.callsign-suggestions').text(result);
-				}
-			});
+			if (scps.filter((call => call.includes($(this).val().toUpperCase()))).length <= 0) {
+				$.ajax({
+					url: 'lookup/scp',
+					method: 'POST',
+					data: {
+						callsign: $callsign.toUpperCase()
+					},
+					success: function(result) {
+						$('.callsign-suggestions').text(result);
+						scps=result.split(" ");
+						highlight(ccall.toUpperCase());
+					}
+				});
+			} else {
+				$('.callsign-suggestions').text(scps.filter((call) => call.includes($(this).val().toUpperCase())).join(' '));
+				highlight(ccall.toUpperCase());
+			}
+		} else {
+			$('.callsign-suggest').hide();
+			scps=[];
 		}
 	});
+
+RegExp.escape = function (text) {
+	return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+}
+
+
+function highlight(term, base) {
+	if (!term) return;
+	base = base || document.body;
+	var re = new RegExp("(" + RegExp.escape(term) + ")", "gi");
+	var replacement = "<span class=\"text-primary\">" + term + "</span>";
+	$(".callsign-suggestions", base).contents().each(function (i, el) {
+		if (el.nodeType === 3) {
+			var data = el.data;
+			if (data = data.replace(re, replacement)) {
+				var wrapper = $("<span>").html(data);
+				$(el).before(wrapper.contents()).remove();
+			}
+		}
+	});
+}
+
 
 	//Reset QSO form Fields function
 	function resetDefaultQSOFields() {

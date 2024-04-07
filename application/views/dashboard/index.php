@@ -226,11 +226,11 @@ function echo_table_col($row, $name) {
 				<td width="50%"><?php echo $total_countries; ?></td>
 			</tr>
 			<tr>
-				<td width="50%"><a href="#" onclick="return false" title="QSL Cards / eQSL / LoTW" data-bs-toggle="tooltip"><?php echo lang('general_word_confirmed'); ?></a></td>
+				<td width="50%"><a href="#" onclick="return false" title="QSL Cards / LoTW / eQSL" data-bs-toggle="tooltip"><?php echo lang('general_word_confirmed'); ?></a></td>
 				<td width="50%">
 					<?php echo $total_countries_confirmed_paper; ?> /
-					<?php echo $total_countries_confirmed_eqsl; ?> /
-					<?php echo $total_countries_confirmed_lotw; ?>
+					<?php echo $total_countries_confirmed_lotw; ?> /
+					<?php echo $total_countries_confirmed_eqsl; ?>
 				</td>
 			</tr>
 
@@ -267,27 +267,6 @@ function echo_table_col($row, $name) {
 		</table>
 		<?php } ?>
 
-		<?php if((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE) && ($total_eqsl_sent != 0 || $total_eqsl_rcvd != 0)) { ?>
-		<table class="table table-striped border-top">
-			<tr class="titles">
-				<td colspan="2"><i class="fas fa-address-card"></i> <?php echo lang('general_word_eqslcards'); ?></td>
-				<td colspan="1"><?php echo lang('general_word_today'); ?></td>
-			</tr>
-
-			<tr>
-				<td width="50%"><?php echo lang('general_word_sent'); ?></td>
-				<td width="25%"><?php echo $total_eqsl_sent; ?></td>
-				<td width="25%"><a href="javascript:displayContacts('','All','All','EQSLSDATE','');"><?php echo $eqsl_sent_today; ?></a></td>
-			</tr>
-
-			<tr>
-				<td width="50%"><?php echo lang('general_word_received'); ?></td>
-				<td width="25%"><?php echo $total_eqsl_rcvd; ?></td>
-				<td width="25%"><a href="javascript:displayContacts('','All','All','EQSLRDATE','');"><?php echo $eqsl_rcvd_today; ?></a></td>
-			</tr>
-		</table>
-		<?php } ?>
-
 		<?php if((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === false) && ($total_lotw_sent != 0 || $total_lotw_rcvd != 0)) { ?>
 		<table class="table table-striped border-top">
 			<tr class="titles">
@@ -305,6 +284,27 @@ function echo_table_col($row, $name) {
 				<td width="50%"><?php echo lang('general_word_received'); ?></td>
 				<td width="25%"><?php echo $total_lotw_rcvd; ?></td>
 				<td width="25%"><a href="javascript:displayContacts('','all','all','LOTWRDATE','');"><?php echo $lotw_rcvd_today; ?></a></td>
+			</tr>
+		</table>
+		<?php } ?>
+
+		<?php if((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE) && ($total_eqsl_sent != 0 || $total_eqsl_rcvd != 0)) { ?>
+		<table class="table table-striped border-top">
+			<tr class="titles">
+				<td colspan="2"><i class="fas fa-address-card"></i> <?php echo lang('general_word_eqslcards'); ?></td>
+				<td colspan="1"><?php echo lang('general_word_today'); ?></td>
+			</tr>
+
+			<tr>
+				<td width="50%"><?php echo lang('general_word_sent'); ?></td>
+				<td width="25%"><?php echo $total_eqsl_sent; ?></td>
+				<td width="25%"><a href="javascript:displayContacts('','All','All','EQSLSDATE','');"><?php echo $eqsl_sent_today; ?></a></td>
+			</tr>
+
+			<tr>
+				<td width="50%"><?php echo lang('general_word_received'); ?></td>
+				<td width="25%"><?php echo $total_eqsl_rcvd; ?></td>
+				<td width="25%"><a href="javascript:displayContacts('','All','All','EQSLRDATE','');"><?php echo $eqsl_rcvd_today; ?></a></td>
 			</tr>
 		</table>
 		<?php } ?>

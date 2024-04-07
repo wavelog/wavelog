@@ -105,3 +105,6 @@ $lang['menu_forum'] = '论坛';
 $lang['menu_logout'] = '注销';
 
 $lang['menu_extras'] = "Extras";
+$lang['menu_satellites'] = 'Satellites';
+$lang['menu_dx_calendar'] = 'DX Calendar';
+$lang['menu_contest_calendar'] = 'Contest Calendar';

@@ -97,6 +97,12 @@ class User extends CI_Controller {
 				$data['user_quicklog_enter'] = $this->input->post('user_quicklog_enter');
 				$data['user_hamsat_key'] = $this->input->post('user_hamsat_key');
 				$data['user_hamsat_workable_only'] = $this->input->post('user_hamsat_workable_only');
+				$data['user_iota_to_qso_tab'] = $this->input->post('user_iota_to_qso_tab');
+				$data['user_sota_to_qso_tab'] = $this->input->post('user_sota_to_qso_tab');
+				$data['user_wwff_to_qso_tab'] = $this->input->post('user_wwff_to_qso_tab');
+				$data['user_pota_to_qso_tab'] = $this->input->post('user_pota_to_qso_tab');
+				$data['user_sig_to_qso_tab'] = $this->input->post('user_sig_to_qso_tab');
+				$data['user_dok_to_qso_tab'] = $this->input->post('user_dok_to_qso_tab');
 				$data['language'] = $this->input->post('language');
 				$this->load->view('user/edit', $data);
 			} else {
@@ -138,6 +144,12 @@ class User extends CI_Controller {
 				$this->input->post('language'),
 				$this->input->post('user_hamsat_key'),
 				$this->input->post('user_hamsat_workable_only'),
+				$this->input->post('user_iota_to_qso_tab'),
+				$this->input->post('user_sota_to_qso_tab'),
+				$this->input->post('user_wwff_to_qso_tab'),
+				$this->input->post('user_pota_to_qso_tab'),
+				$this->input->post('user_sig_to_qso_tab'),
+				$this->input->post('user_dok_to_qso_tab')
 				)) {
 				// Check for errors
 				case EUSERNAMEEXISTS:
@@ -515,6 +527,60 @@ class User extends CI_Controller {
 				}
 			}
 
+			if($this->input->post('user_iota_to_qso_tab')) {
+				$data['user_iota_to_qso_tab'] = $this->input->post('user_iota_to_qso_tab', false);
+			} else {
+				$qkey_opt=$this->user_options_model->get_options('qso_tab',array('option_name'=>'iota','option_key'=>'show'))->result();
+				if (count($qkey_opt)>0) {
+					$data['user_iota_to_qso_tab'] = $qkey_opt[0]->option_value;
+				}
+			}
+
+			if($this->input->post('user_sota_to_qso_tab')) {
+				$data['user_sota_to_qso_tab'] = $this->input->post('user_sota_to_qso_tab', false);
+			} else {
+				$qkey_opt=$this->user_options_model->get_options('qso_tab',array('option_name'=>'sota','option_key'=>'show'))->result();
+				if (count($qkey_opt)>0) {
+					$data['user_sota_to_qso_tab'] = $qkey_opt[0]->option_value;
+				}
+			}
+
+			if($this->input->post('user_wwff_to_qso_tab')) {
+				$data['user_wwff_to_qso_tab'] = $this->input->post('user_wwff_to_qso_tab', false);
+			} else {
+				$qkey_opt=$this->user_options_model->get_options('qso_tab',array('option_name'=>'wwff','option_key'=>'show'))->result();
+				if (count($qkey_opt)>0) {
+					$data['user_wwff_to_qso_tab'] = $qkey_opt[0]->option_value;
+				}
+			}
+
+			if($this->input->post('user_pota_to_qso_tab')) {
+				$data['user_pota_to_qso_tab'] = $this->input->post('user_pota_to_qso_tab', false);
+			} else {
+				$qkey_opt=$this->user_options_model->get_options('qso_tab',array('option_name'=>'pota','option_key'=>'show'))->result();
+				if (count($qkey_opt)>0) {
+					$data['user_pota_to_qso_tab'] = $qkey_opt[0]->option_value;
+				}
+			}
+
+			if($this->input->post('user_sig_to_qso_tab')) {
+				$data['user_sig_to_qso_tab'] = $this->input->post('user_sig_to_qso_tab', false);
+			} else {
+				$qkey_opt=$this->user_options_model->get_options('qso_tab',array('option_name'=>'sig','option_key'=>'show'))->result();
+				if (count($qkey_opt)>0) {
+					$data['user_sig_to_qso_tab'] = $qkey_opt[0]->option_value;
+				}
+			}
+
+			if($this->input->post('user_dok_to_qso_tab')) {
+				$data['user_dok_to_qso_tab'] = $this->input->post('user_dok_to_qso_tab', false);
+			} else {
+				$qkey_opt=$this->user_options_model->get_options('qso_tab',array('option_name'=>'dok','option_key'=>'show'))->result();
+				if (count($qkey_opt)>0) {
+					$data['user_dok_to_qso_tab'] = $qkey_opt[0]->option_value;
+				}
+			}
+
 			// [MAP Custom] GET user options //
 			$options_object = $this->user_options_model->get_options('map_custom')->result();
 			if (count($options_object)>0) {
@@ -675,6 +741,7 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('id', 'user_id', 'required');
 
 		$data = $query->row();
+		$data->page_title = "Delete User";
 
 		if ($this->form_validation->run() == FALSE)
 		{

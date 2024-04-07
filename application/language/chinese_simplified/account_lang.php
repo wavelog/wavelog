@@ -132,3 +132,6 @@ $lang['account_hamsat_private_feed_key'] = "Private Feed Key";
 $lang['account_hamsat_hint'] = "See your profile at <a href='https://hams.at/users/settings' target='_blank'>https://hams.at/users/settings</a>.";
 $lang['account_hamsat_workable_only'] = "Show Workable Passes Only";
 $lang['account_hamsat_workable_only_hint'] = "If enabled shows only workable passes based on the gridsquare set in your hams.at account. Requires private feed key to be set.";
+
+$lang['account_references_show'] = "Show Reference Fields on QSO Tab";
+$lang['account_show_references_on_1st_tab'] = "The enabled items will be shown on the QSO tab rather than the General tab.";

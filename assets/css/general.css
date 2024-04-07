@@ -872,3 +872,47 @@ label {
 	vertical-align: middle;
 }
 
+.table .editRow {
+	--bs-table-bg: none !important;
+	--bs-table-accent-bg: none !important;
+}
+
+/* Used in maps */
+.legend {
+	padding: 6px 8px;
+	font: 14px Arial, Helvetica, sans-serif;
+	background: white;
+	line-height: 24px;
+	color: #555;
+	border-radius: 10px;
+}
+.legend h4 {
+	text-align: center;
+	font-size: 16px;
+	margin: 2px 12px 8px;
+	color: #777;
+}
+.legend span {
+	position: relative;
+	bottom: 3px;
+}
+.legend i {
+	width: 18px;
+	height: 18px;
+	float: left;
+	margin: 0 8px 0 0;
+}
+
+.info {
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+	color: #555;
+}
+.info h4 {
+    margin: 0 0 5px;
+    color: #555;
+}

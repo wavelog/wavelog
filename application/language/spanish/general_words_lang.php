@@ -19,6 +19,7 @@ $lang['general_word_cancel'] = "Cancelar";
 $lang['general_word_ok'] = "OK";
 $lang['general_word_show'] = "Show";
 
+$lang['general_word_message'] = "Message";
 $lang['general_word_attention'] = "Atención";
 $lang['general_word_enabled'] = "Activado";
 $lang['general_word_disabled'] = "Desactivado";
@@ -49,6 +50,7 @@ $lang['general_word_satellite_short'] = 'Sat';
 $lang['general_word_notes'] = 'Notas';
 $lang['general_word_country'] = 'País';
 $lang['general_word_city'] = 'Ciudad';
+$lang['general_word_age'] = 'Age';
 
 $lang['general_word_total'] = 'Total';
 $lang['general_word_year'] = 'Año';
@@ -154,6 +156,7 @@ $lang['gen_hamradio_qslvia'] = 'QSL via';
 $lang['gen_hamradio_qslmsg'] = 'Mensaje QSL';
 $lang['gen_hamradio_locator'] = 'Localizador';
 $lang['gen_hamradio_transmit_power'] = 'Potencia de transmisión (W)';
+$lang['gen_hamradio_receive_power'] = 'RX Power (W)';
 $lang['gen_hamradio_propagation_mode'] = 'Modo de propagación';
 
 $lang['gen_hamradio_satellite_name'] = 'Nombre del Satélite';
@@ -232,5 +235,6 @@ $lang['dashboard_locations_warning'] = 'No tiene localizaciones de estaciones. �
 $lang['dashboard_logbooks_warning'] = 'No tiene libro de guardias. ¡Haga clic <a href="'. site_url('stationsetup') . '">aquí</a> para crear uno!';
 
 $lang['hams_at_no_activations_found'] = 'No hay activaciones próximas. Por favor vuelve a revisar más tarde.';
+$lang['gen_add_to_contest'] = "Add QSOs to Contest";
 
 $lang['datatables_language'] = "es-ES";

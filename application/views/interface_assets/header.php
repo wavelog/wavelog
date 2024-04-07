@@ -199,9 +199,9 @@
 						<li class="nav-item dropdown"> <!-- TOOLS -->
 							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><?php echo lang('menu_tools'); ?></a>
 							<ul class="dropdown-menu header-dropdown">
-								<li><a class="dropdown-item" href="<?php echo site_url('dxcalendar'); ?>" title="SAT Timers"><i class="fas fa-satellite"></i> DX Calendar</a></li>
+								<li><a class="dropdown-item" href="<?php echo site_url('dxcalendar'); ?>" title="DX Calendar"><i class="fas fa-calendar"></i> <?php echo lang('menu_dx_calendar'); ?></a></li>
 								<div class="dropdown-divider"></div>
-								<li><a class="dropdown-item" href="<?php echo site_url('contestcalendar'); ?>" title="SAT Timers"><i class="fas fa-satellite"></i> Contest Calendar</a></li>
+								<li><a class="dropdown-item" href="<?php echo site_url('contestcalendar'); ?>" title="Contest Calendar"><i class="fas fa-calendar"></i> <?php echo lang('menu_contest_calendar'); ?></a></li>
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item" href="<?php echo site_url('hamsat'); ?>" title="Hams.at"><i class="fas fa-list"></i> Hams.at</a></li>
 								<div class="dropdown-divider"></div>
@@ -223,6 +223,8 @@
 								<a class="dropdown-item" href="<?php echo site_url('mode'); ?>" title="Manage QSO modes"><i class="fas fa-broadcast-tower"></i> <?php echo lang('menu_modes'); ?></a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="<?php echo site_url('contesting/add'); ?>" title="Manage Contest names"><i class="fas fa-broadcast-tower"></i> <?php echo lang('menu_contests'); ?></a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="<?php echo site_url('satellite'); ?>" title="Manage Satellites"><i class="fas fa-satellite"></i> <?php echo lang('menu_satellites'); ?></a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="<?php echo site_url('themes'); ?>" title="Manage Themes"><i class="fas fa-cog"></i> <?php echo lang('menu_themes'); ?></a>
 								<div class="dropdown-divider"></div>
@@ -320,6 +322,7 @@
 								<?php } ?>
 								<li><a class="dropdown-item" href="<?php echo site_url('band'); ?>" title="Manage Bands"><i class="fas fa-cog"></i> <?php echo lang('menu_bands'); ?></a></li>
 
+
 								<div class="dropdown-divider"></div>
 
 								<li><a class="dropdown-item" href="<?php echo site_url('adif'); ?>" title="Amateur Data Interchange Format (ADIF) import / export"><i class="fas fa-sync"></i> <?php echo lang('menu_adif_import_export'); ?></a></li>
@@ -385,7 +388,7 @@
 									<?php
 									// let's get all stations for the logged in user
 									$all_user_locations = $this->stations->all_of_user($this->session->userdata('user_id'));
-									
+
 									// and the set favourites as array
 									$location_favorites_result = $this->user_options_model->get_options('station_location', array('option_name' => 'is_favorite', 'option_value' => 'true'));
 									$location_favorites = $location_favorites_result->result_array();

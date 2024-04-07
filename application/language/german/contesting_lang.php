@@ -27,6 +27,7 @@ $lang['contesting_btn_save_qso'] = 'Speichere QSO';
 $lang['contesting_title_callsign_suggestions'] = 'Rufzeichenvorschläge';
 $lang['contesting_title_contest_logbook'] = 'Contest-Logbuch';
 
-$lang['contesting_copy_exch_to_dok'] = 'Kopiere den erhaltenen Exchange in das DOK Feld der Datenbank!';
+$lang['contesting_copy_exch_to'] = 'Kopiere Exchange zu';
+$lang['contesting_copy_exch_hint'] = 'Exchange wird nur kopiert, wenn der Wert Regeln für das Zielfeld erfüllt!';
 
 

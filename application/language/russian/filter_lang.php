@@ -117,6 +117,7 @@ $lang['filter_actions_start_print_title'] = 'Печать наклеек';
 $lang['filter_actions_print_include_via'] = "Включить через?";
 $lang['filter_actions_print_include_grid'] = 'Включить квадрат?';
 $lang['filter_actions_start_print'] = 'Начать печать в?';
+$lang['filter_actions_print_include_ref'] = "Include reference? (SIG, SOTA, POTA, IOTA, WWFF; If available in location)";
 $lang['filter_actions_print'] = 'Печать';
 $lang['filter_actions_qsl_slideshow'] = 'Слайдшоу QSL';
 $lang['filter_actions_delete'] = 'Удалить';

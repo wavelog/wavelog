@@ -19,6 +19,7 @@ $lang['general_word_cancel'] = "Отмена";
 $lang['general_word_ok'] = "ОК";
 $lang['general_word_show'] = "Show";
 $lang['general_word_attention'] = "Внимание";
+$lang['general_word_message'] = "Message";
 $lang['general_word_enabled'] = "Включено";
 $lang['general_word_disabled'] = "Выключено";
 $lang['general_word_export'] = "Экспорт";
@@ -48,6 +49,7 @@ $lang['general_word_satellite_short'] = 'Спутн.';
 $lang['general_word_notes'] = 'Заметки';
 $lang['general_word_country'] = 'Страна';
 $lang['general_word_city'] = 'City';
+$lang['general_word_age'] = 'Age';
 
 $lang['general_word_total'] = 'Всего';
 $lang['general_word_year'] = 'Год';
@@ -154,6 +156,7 @@ $lang['gen_hamradio_qslvia'] = 'QSL через';
 $lang['gen_hamradio_qslmsg'] = 'сообщение QSL ';
 $lang['gen_hamradio_locator'] = 'Локатор';
 $lang['gen_hamradio_transmit_power'] = 'Мощность передачи (Вт)';
+$lang['gen_hamradio_receive_power'] = 'RX Power (W)';
 $lang['gen_hamradio_propagation_mode'] = 'Тип прохождения';
 
 $lang['gen_hamradio_satellite_name'] = 'Название спутника';
@@ -232,5 +235,6 @@ $lang['dashboard_locations_warning'] = 'У вас нет расположени�
 $lang['dashboard_logbooks_warning'] = 'У вас нет аппаратного журнала! Перейдите <a href="'. site_url('stationsetup') . '">сюда</a>, чтобы создать его!';
 
 $lang['hams_at_no_activations_found'] = 'не найдены предстоящие активации. Проверьте позже.';
+$lang['gen_add_to_contest'] = "Add QSOs to Contest";
 
 $lang['datatables_language'] = "en-GB";

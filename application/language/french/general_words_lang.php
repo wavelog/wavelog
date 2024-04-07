@@ -19,6 +19,7 @@ $lang['general_word_cancel'] = "Annuler";
 $lang['general_word_ok'] = "OK";
 $lang['general_word_show'] = "Show";
 $lang['general_word_attention'] = "Attention";
+$lang['general_word_message'] = "Message";
 $lang['general_word_enabled'] = "Activé";
 $lang['general_word_disabled'] = "Désactivé";
 $lang['general_word_export'] = "Export";
@@ -48,6 +49,7 @@ $lang['general_word_satellite_short'] = "Sat";
 $lang['general_word_notes'] = "Notes";
 $lang['general_word_country'] = "Pays";
 $lang['general_word_city'] = "Ville";
+$lang['general_word_age'] = "Âge";
 
 $lang['general_word_total'] = "Total";
 $lang['general_word_year'] = "Année";
@@ -153,6 +155,7 @@ $lang['gen_hamradio_qslvia'] = "QSL via";
 $lang['gen_hamradio_qslmsg'] = "QSL Msg";
 $lang['gen_hamradio_locator'] = "Locator";
 $lang['gen_hamradio_transmit_power'] = "Puissance Emission (W)";
+$lang['gen_hamradio_receive_power'] = "Puissance RX (W)";
 $lang['gen_hamradio_propagation_mode'] = "Mode Propagation";
 
 $lang['gen_hamradio_satellite_name'] = "Nom du Satellite";
@@ -232,4 +235,5 @@ $lang['dashboard_logbooks_warning'] = "Vous n'avez pas de journal de travail pou
 
 $lang['hams_at_no_activations_found'] = "Aucune activation à venir trouvée. Veuillez revenir plus tard.";
 
+$lang['gen_add_to_contest'] = "Add QSOs to Contest";
 $lang['datatables_language'] = "fr-FR";
