@@ -373,10 +373,12 @@ class Awards extends CI_Controller {
 		$searchphrase = str_replace('"', "", $this->security->xss_clean($this->input->post("Searchphrase")));
 		$band = str_replace('"', "", $this->security->xss_clean($this->input->post("Band")));
 		$mode = str_replace('"', "", $this->security->xss_clean($this->input->post("Mode")));
+		$sat = str_replace('"', "", $this->security->xss_clean($this->input->post("Sat")));
+		$orbit = str_replace('"', "", $this->security->xss_clean($this->input->post("Orbit")));
 		$type = $this->security->xss_clean($this->input->post('Type'));
 		$qsl = $this->input->post('QSL') == null ? '' : $this->security->xss_clean($this->input->post('QSL'));
 		$searchmode = $this->input->post('searchmode') == null ? '' : $this->security->xss_clean($this->input->post('searchmode'));
-		$data['results'] = $this->logbook_model->qso_details($searchphrase, $band, $mode, $type, $qsl, $searchmode);
+		$data['results'] = $this->logbook_model->qso_details($searchphrase, $band, $mode, $type, $qsl, $sat, $orbit, $searchmode);
 
 		// This is done because we have two different ways to get dxcc info in Wavelog. Once is using the name (in awards), and the other one is using the ADIF DXCC.
 		// We replace the values to make it look a bit nicer
@@ -402,7 +404,18 @@ class Awards extends CI_Controller {
 
 		// Render Page
 		$data['page_title'] = "Log View - " . $type;
-		$data['filter'] = $type . " " . $searchphrase . " and band ".$band . " and mode ".$mode;
+		$data['filter'] = $type." ".$searchphrase." and band ".$band;
+		if ($band == 'SAT') {
+			if ($sat != 'All' && $sat != null) {
+				$data['filter'] .= " and sat ".$sat;
+			}
+			if ($orbit != 'All' && $orbit != null) {
+				$data['filter'] .= " and orbit type ".$orbit;
+			}
+		}
+		if ($mode != null && strtolower($mode) != 'all') {
+			$data['filter'] .= " and mode ".$mode;
+		}
 		if (!empty($qsltype)) {
 			$data['filter'] .= " and ".implode('/', $qsltype);
 		}
