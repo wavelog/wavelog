@@ -48,7 +48,7 @@
             </select>
             <?php if (count($sats_available) != 0) { ?>
                 <label class="my-1 me-2" id="satslabel" for="distplot_sats"><?php echo lang('gridsquares_sat'); ?></label>
-                <select class="form-select my-1 me-sm-2 w-auto"  id="sats" <?php if ($user_default_band != "SAT") { ?>disabled<?php } ?>>
+                <select class="form-select my-1 me-sm-2 w-auto"  id="sats">
                     <option value="All"><?php echo lang('general_word_all')?></option>
                     <?php foreach($sats_available as $sat) {
                         echo '<option value="' . $sat . '"' . '>' . $sat . '</option>'."\n";
