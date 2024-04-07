@@ -49,6 +49,7 @@ $lang['general_word_satellite_short'] = 'Sat';
 $lang['general_word_notes'] = 'Note';
 $lang['general_word_country'] = 'Paese';
 $lang['general_word_city'] = 'City';
+$lang['general_word_age'] = 'Age';
 
 $lang['general_word_total'] = 'Totale';
 $lang['general_word_year'] = 'Anno';
@@ -154,6 +155,7 @@ $lang['gen_hamradio_qslvia'] = 'QSL via';
 $lang['gen_hamradio_qslmsg'] = 'QSL Msg';
 $lang['gen_hamradio_locator'] = 'Locatore';
 $lang['gen_hamradio_transmit_power'] = 'Potenza di Trasmissione (W)';
+$lang['gen_hamradio_receive_power'] = 'RX Power (W)';
 $lang['gen_hamradio_propagation_mode'] = 'Modo di Propagazione';
 
 $lang['gen_hamradio_satellite_name'] = 'Nome Satellite';

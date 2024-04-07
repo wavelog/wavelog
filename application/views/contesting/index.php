@@ -163,19 +163,18 @@
                         <button type="button" class="btn btn-sm btn-secondary" onclick="reset_log_fields()"><i class="fas fa-sync-alt"></i> <?php echo lang('contesting_btn_reset_qso'); ?></button>
                         <button type="button" class="btn btn-sm btn-primary" onclick="logQso();"><i class="fas fa-save"></i> <?php echo lang('contesting_btn_save_qso'); ?></button>
                         <div class="mb-3 row">
-                          <div class="col-md-12">
-                              <div class="form-check-inline">
-                                  <select class="form-select form-select-sm" id="copyexchangeto" name="copyexchangeto" title="<?php echo lang('contesting_copy_exch_notice'); ?>">
-                                      <option value='None'><?php echo lang('contesting_copy_exch_to_none'); ?></option>
-                                      <option value='dok'><?php echo lang('contesting_copy_exch_to_dok'); ?></option>
-                                      <option value='name'><?php echo lang('contesting_copy_exch_to_name'); ?></option>
-                                      <option value='age'><?php echo lang('contesting_copy_exch_to_age'); ?></option>
-                                      <option value='state'><?php echo lang('contesting_copy_exch_to_state'); ?></option>
-                                      <option value='power'><?php echo lang('contesting_copy_exch_to_power'); ?></option>
-                                      <option value='locator'><?php echo lang('contesting_copy_exch_to_locator'); ?></option>
-                                  </select>
-                              </div>
-                          </div>
+                            <label class="col-auto control-label" for="radio"><?php echo lang('contesting_copy_exch_to'); ?></label>
+                            <div class="form-check-inline col-auto">
+                                <select class="form-select form-select-sm" id="copyexchangeto" name="copyexchangeto" title="<?php echo lang('contesting_copy_exch_hint'); ?>">
+                                    <option value='None'><?php echo lang('general_word_none'); ?></option>
+                                    <option value='dok'><?php echo lang('gen_hamradio_dok'); ?></option>
+                                    <option value='name'><?php echo lang('general_word_name'); ?></option>
+                                    <option value='age'><?php echo lang('general_word_age'); ?></option>
+                                    <option value='state'><?php echo lang('gen_hamradio_state'); ?></option>
+                                    <option value='power'><?php echo lang('gen_hamradio_receive_power'); ?></option>
+                                    <option value='locator'><?php echo lang('gen_hamradio_locator'); ?></option>
+                                </select>
+                            </div>
                       </div>
                     </form>
                 </div>

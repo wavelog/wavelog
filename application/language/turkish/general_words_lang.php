@@ -49,6 +49,7 @@ $lang['general_word_satellite_short'] = 'Uydu';
 $lang['general_word_notes'] = 'Notlar';
 $lang['general_word_country'] = 'Ülke';
 $lang['general_word_city'] = 'City';
+$lang['general_word_age'] = 'Age';
 
 $lang['general_word_total'] = 'Toplam';
 $lang['general_word_year'] = 'Yıl';
@@ -154,6 +155,7 @@ $lang['gen_hamradio_qslvia'] = 'QSL via';
 $lang['gen_hamradio_qslmsg'] = 'QSL Msg';
 $lang['gen_hamradio_locator'] = 'Konum kodu';
 $lang['gen_hamradio_transmit_power'] = 'Yayın Gücü (W)';
+$lang['gen_hamradio_receive_power'] = 'RX Power (W)';
 $lang['gen_hamradio_propagation_mode'] = 'Yayın Mode';
 
 $lang['gen_hamradio_satellite_name'] = 'Uydu Adı';

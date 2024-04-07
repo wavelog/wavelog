@@ -49,6 +49,7 @@ $lang['general_word_satellite_short'] = 'Спутн.';
 $lang['general_word_notes'] = 'Заметки';
 $lang['general_word_country'] = 'Страна';
 $lang['general_word_city'] = 'City';
+$lang['general_word_age'] = 'Age';
 
 $lang['general_word_total'] = 'Всего';
 $lang['general_word_year'] = 'Год';
@@ -155,6 +156,7 @@ $lang['gen_hamradio_qslvia'] = 'QSL через';
 $lang['gen_hamradio_qslmsg'] = 'сообщение QSL ';
 $lang['gen_hamradio_locator'] = 'Локатор';
 $lang['gen_hamradio_transmit_power'] = 'Мощность передачи (Вт)';
+$lang['gen_hamradio_receive_power'] = 'RX Power (W)';
 $lang['gen_hamradio_propagation_mode'] = 'Тип прохождения';
 
 $lang['gen_hamradio_satellite_name'] = 'Название спутника';

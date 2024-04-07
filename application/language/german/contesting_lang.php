@@ -27,13 +27,7 @@ $lang['contesting_btn_save_qso'] = 'Speichere QSO';
 $lang['contesting_title_callsign_suggestions'] = 'Rufzeichenvorschläge';
 $lang['contesting_title_contest_logbook'] = 'Contest-Logbuch';
 
-$lang['contesting_copy_exch_to_dok'] = 'Kopiere den erhaltenen Exchange in das DOK Feld der Datenbank!';
-$lang['contesting_copy_exch_notice'] = 'Exchange wird nur kopiert, wenn der Wert Regeln für das Zielfeld erfüllt!';
-$lang['contesting_copy_exch_to_none'] = 'Kopiere den erhaltenen Exchange in kein weiteres Feld der Datenbank!';
-$lang['contesting_copy_exch_to_power'] = 'Kopiere den erhaltenen Exchange in das RX-Power Feld der Datenbank!';
-$lang['contesting_copy_exch_to_state'] = 'Kopiere den erhaltenen Exchange in das US-State Feld der Datenbank!';
-$lang['contesting_copy_exch_to_age'] = 'Kopiere den erhaltenen Exchange in das Lebensalter Feld der Datenbank!';
-$lang['contesting_copy_exch_to_name'] = 'Kopiere den erhaltenen Exchange in das Namens Feld der Datenbank!';
-$lang['contesting_copy_exch_to_locator'] = 'Kopiere den erhaltenen Exchange in das Locator Feld der Datenbank!';
+$lang['contesting_copy_exch_to'] = 'Kopiere Exchange zu';
+$lang['contesting_copy_exch_hint'] = 'Exchange wird nur kopiert, wenn der Wert Regeln für das Zielfeld erfüllt!';
 
 

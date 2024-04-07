@@ -49,6 +49,7 @@ $lang['general_word_satellite_short'] = '卫星';
 $lang['general_word_notes'] = '笔记';
 $lang['general_word_country'] = 'DXCC 实体';
 $lang['general_word_city'] = '城市';
+$lang['general_word_age'] = 'Age';
 
 $lang['general_word_total'] = '总计';
 $lang['general_word_year'] = '年';
@@ -154,6 +155,7 @@ $lang['gen_hamradio_qslvia'] = 'QSL via';
 $lang['gen_hamradio_qslmsg'] = 'QSL 信息';
 $lang['gen_hamradio_locator'] = '定位地图';
 $lang['gen_hamradio_transmit_power'] = '发射功率 (W)';
+$lang['gen_hamradio_receive_power'] = 'RX Power (W)';
 $lang['gen_hamradio_propagation_mode'] = '传播模式';
 
 $lang['gen_hamradio_satellite_name'] = '卫星名称';
