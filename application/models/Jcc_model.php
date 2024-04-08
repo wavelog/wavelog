@@ -885,10 +885,12 @@ class Jcc_model extends CI_Model {
 		}
 
 		if ($postdata['notworked'] == NULL) {
-			foreach ($jccArray as $city) {
-				if ($cities[$city]['count'] == 0) {
-					unset($bandJcc[$city]);
-				};
+			if (isset($bandJcc)) {
+				foreach ($jccArray as $city) {
+					if ($cities[$city]['count'] == 0) {
+						unset($bandJcc[$city]);
+					};
+				}
 			}
 		}
 
