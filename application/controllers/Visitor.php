@@ -26,6 +26,9 @@ class Visitor extends CI_Controller {
 		elseif($method == "exportmap") {
             $this->exportmap();
         }
+		elseif($method == "mapqsos") {
+            $this->mapqsos();
+        }
         else {
             $this->index($method);
         }
@@ -414,13 +417,44 @@ class Visitor extends CI_Controller {
 	}
 
 	public function exportmap() {
-		$slug = $this->security->xss_clean($this->uri->segment(3));
-        $data['slug'] = $slug;
+		// $data['slug'] = $this->security->xss_clean($this->uri->segment(3));
+		// $data['qsocount'] = $this->security->xss_clean($this->uri->segment(4));
 
 		$data['page_title'] = "Export Map";
 		$this->load->view('visitor/exportmap/header', $data);
 		$this->load->view('visitor/exportmap/exportmap', $data);
 		$this->load->view('visitor/exportmap/footer');
+	}
+
+	public function mapqsos() {
+		$this->load->model('logbook_model');
+
+		$this->load->library('qra');
+
+        $slug = $this->security->xss_clean($this->input->get('slug'));
+		$qsocount = $this->security->xss_clean($this->input->get('qsocount')) == '' ? '100' : $this->security->xss_clean($this->input->get('qsocount'));
+
+        $this->load->model('logbooks_model');
+        $logbook_id = $this->logbooks_model->public_slug_exists_logbook_id($slug);
+        if($logbook_id != false)
+        {
+            // Get associated station locations for mysql queries
+            $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($logbook_id);
+
+			if (!$logbooks_locations_array) {
+				show_404('Empty Logbook');
+			}
+        } else {
+            log_message('error', $slug.' has no associated station locations');
+            show_404('Unknown Public Page.');
+        }
+
+		$qsos = $this->logbook_model->get_qsos($qsocount, null, $logbooks_locations_array);
+		// [PLOT] ADD plot //
+		$plot_array = $this->logbook_model->get_plot_array_for_map($qsos->result());
+
+		header('Content-Type: application/json; charset=utf-8');
+		echo json_encode($plot_array);
 	}
 
 }

@@ -3,23 +3,28 @@ $(document).ready(function () {
 });
 
 function mapQsos(form) {
-	$('#mapButton').prop("disabled", true).addClass("running");
+	const queryString = window.location.search;
+	const urlParams = new URLSearchParams(queryString);
+	const slug = urlParams.get('slug');
+	const qsocount = urlParams.get('qsocount');
+	const showgrid = urlParams.get('showgrid');
 
 	$.ajax({
-		url: base_url + 'index.php/visitor/map/'+slug,
-		type: 'post',
+		url: base_url + 'index.php/visitor/mapqsos/',
+		type: 'get',
 		data: {
-			qsocount: '100'
+			slug: slug,
+			qsocount: qsocount
 		},
 		success: function(data) {
-			loadMap(data);
+			loadMap(data, showgrid);
 		},
 		error: function() {
 		},
 	});
 };
 
-function loadMap(data) {
+function loadMap(data, showgrid) {
 	var osmUrl='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 	var osmAttrib='Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
 	// If map is already initialized
@@ -70,7 +75,9 @@ function loadMap(data) {
 		var marker = L.marker([this.lat, this.lng], {icon: redIcon}, {closeOnClick: false, autoClose: false}).addTo(map);
 	});
 
-	maidenhead = L.maidenheadqrb().addTo(map);
+	if (showgrid === "true") {
+		maidenhead = L.maidenheadqrb().addTo(map);
+	}
 
 	map.addLayer(osm);
 

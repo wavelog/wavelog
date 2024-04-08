@@ -1,6 +1,3 @@
-<script>
-var slug = '<?php echo $slug; ?>';
-</script>
 <style>
     #exportmap {
 	height: calc(100vh - 480px) !important;
