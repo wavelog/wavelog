@@ -1,0 +1,84 @@
+$(document).ready(function () {
+	mapQsos();
+});
+
+function mapQsos(form) {
+	$('#mapButton').prop("disabled", true).addClass("running");
+
+	$.ajax({
+		url: base_url + 'index.php/visitor/map/'+slug,
+		type: 'post',
+		data: {
+			qsocount: '100'
+		},
+		success: function(data) {
+			loadMap(data);
+		},
+		error: function() {
+		},
+	});
+};
+
+function loadMap(data) {
+	var osmUrl='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+	var osmAttrib='Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
+	// If map is already initialized
+	var container = L.DomUtil.get('exportmap');
+
+	var bounds = L.latLngBounds()
+
+	if(container != null){
+		container._leaflet_id = null;
+		container.remove();
+		$("body").append('<div id="exportmap" class="map-leaflet"></div>');
+	}
+
+	map = new L.Map('exportmap', {
+		fullscreenControl: true,
+		fullscreenControlOptions: {
+			position: 'topleft'
+		},
+	});
+
+	var osm = L.tileLayer(
+		osmUrl,
+		{
+			attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+			maxZoom: 18,
+			zoom: 3,
+            minZoom: 2,
+		}
+	).addTo(map);
+
+	map.setView([30, 0], 1.5);
+
+	var redIcon = L.icon({
+		iconUrl: icon_dot_url,
+		iconSize: [10, 10], // size of the icon
+	});
+
+	var counter = 0;
+
+	clicklines = [];
+	$.each(data.markers, function(k, v) {
+		counter++;
+
+		if (this.lat < -170) {
+			this.lat =  parseFloat(this.lat)+360;
+		}
+
+		var marker = L.marker([this.lat, this.lng], {icon: redIcon}, {closeOnClick: false, autoClose: false}).addTo(map);
+	});
+
+	maidenhead = L.maidenheadqrb().addTo(map);
+
+	map.addLayer(osm);
+
+	var printer = L.easyPrint({
+		tileLayer: osm,
+		sizeModes: ['Current', 'A4Landscape', 'A4Portrait'],
+		filename: 'Wavelog',
+		exportOnly: true,
+		hideControlContainer: true
+	}).addTo(map);
+}

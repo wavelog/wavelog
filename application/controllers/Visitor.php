@@ -23,6 +23,9 @@ class Visitor extends CI_Controller {
         elseif($method == "search") {
             $this->search($method);
         }
+		elseif($method == "exportmap") {
+            $this->exportmap();
+        }
         else {
             $this->index($method);
         }
@@ -408,6 +411,16 @@ class Visitor extends CI_Controller {
 			$this->load->view('public_search/empty.php', $data);
 			$this->load->view('visitor/layout/footer');
 		}
+	}
+
+	public function exportmap() {
+		$slug = $this->security->xss_clean($this->uri->segment(3));
+        $data['slug'] = $slug;
+
+		$data['page_title'] = "Export Map";
+		$this->load->view('visitor/exportmap/header', $data);
+		$this->load->view('visitor/exportmap/exportmap', $data);
+		$this->load->view('visitor/exportmap/footer');
 	}
 
 }
