@@ -461,7 +461,7 @@ function loadMap(data, iconsList) {
 		'<tr>';
 		if (qso.satname != "") {
 			table += '<td>Band</td>' +
-			'<td>' + qso.satname + '</td>' +
+			'<td>SAT ' + qso.satname + '</td>' +
 			'</tr>' +
 			'<tr>';
 		} else {
