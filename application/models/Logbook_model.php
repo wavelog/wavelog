@@ -412,6 +412,14 @@ class Logbook_model extends CI_Model {
 		case 'VUCC':
 			if ($searchmode == 'activated') {
 				$this->db->where("station_gridsquare like '%" . $searchphrase . "%'");
+				if ($band == 'SAT' && $type == 'VUCC') {
+					if ($sat != 'All' && $sat != null) {
+						$this->db->where("COL_SAT_NAME = '$sat'");
+					}
+					if ($orbit != 'All' && $orbit != null) {
+						$this->db->where("satellite.orbit = '$orbit'");
+					}
+				}
 			} else {
 				$this->db->where("(COL_GRIDSQUARE like '" . $searchphrase . "%' OR COL_VUCC_GRIDS like '%" . $searchphrase ."%')");
 				if ($band == 'SAT' && $type == 'VUCC') {

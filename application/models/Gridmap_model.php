@@ -197,7 +197,7 @@ class Gridmap_model extends CI_Model {
 		return $sql;
 	}
 
-	// Adds confirmation to query
+	// Adds orbit type to query
 	function addOrbitToQuery($orbit) {
 		$sql = '';
 		if ($orbit != 'All') {
