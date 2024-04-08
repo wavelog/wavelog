@@ -1,6 +1,6 @@
 <style>
     #exportmap {
-	height: calc(100vh - 480px) !important;
+	height: 100vh;
 	max-height: 900px !important;
 }
 </style>

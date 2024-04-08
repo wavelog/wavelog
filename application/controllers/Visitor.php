@@ -417,9 +417,6 @@ class Visitor extends CI_Controller {
 	}
 
 	public function exportmap() {
-		// $data['slug'] = $this->security->xss_clean($this->uri->segment(3));
-		// $data['qsocount'] = $this->security->xss_clean($this->uri->segment(4));
-
 		$data['page_title'] = "Export Map";
 		$this->load->view('visitor/exportmap/header', $data);
 		$this->load->view('visitor/exportmap/exportmap', $data);
@@ -435,12 +432,12 @@ class Visitor extends CI_Controller {
 		$qsocount = $this->security->xss_clean($this->input->get('qsocount')) == '' ? '100' : $this->security->xss_clean($this->input->get('qsocount'));
 		$band = $this->security->xss_clean($this->input->get('band'));
 
-        $this->load->model('logbooks_model');
-        $logbook_id = $this->logbooks_model->public_slug_exists_logbook_id($slug);
+		$this->load->model('stationsetup_model');
+        $logbook_id = $this->stationsetup_model->public_slug_exists_logbook_id($slug);
         if($logbook_id != false)
         {
             // Get associated station locations for mysql queries
-            $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($logbook_id);
+            $logbooks_locations_array = $this->stationsetup_model->get_container_relations($logbook_id);
 
 			if (!$logbooks_locations_array) {
 				show_404('Empty Logbook');
@@ -450,12 +447,59 @@ class Visitor extends CI_Controller {
             show_404('Unknown Public Page.');
         }
 
-		$qsos = $this->logbook_model->get_qsos($qsocount, null, $logbooks_locations_array);
-		// [PLOT] ADD plot //
-		$plot_array = $this->logbook_model->get_plot_array_for_map($qsos->result());
+		$qsos = $this->logbook_model->get_qsos($qsocount, null, $logbooks_locations_array, $band);
+
+		$mappedcoordinates = array();
+		foreach ($qsos->result('array') as $qso) {
+			if (!empty($qso['COL_MY_GRIDSQUARE']) || !empty($qso['COL_MY_VUCC_GRIDS'])) {
+				if (!empty($qso['COL_GRIDSQUARE'])  || !empty($qso['COL_VUCC_GRIDS'])) {
+					$mappedcoordinates[] = $this->calculate($qso, ($qso['COL_MY_GRIDSQUARE'] ?? '') == '' ? $qso['COL_MY_VUCC_GRIDS'] : $qso['COL_MY_GRIDSQUARE'], ($qso['COL_GRIDSQUARE'] ?? '') == '' ? $qso['COL_VUCC_GRIDS'] : $qso['COL_GRIDSQUARE']);
+				} else {
+					if (!empty($qso['lat'])  || !empty($qso['long'])) {
+						$mappedcoordinates[] = $this->calculateCoordinates($qso, $qso['lat'], $qso['long'], ($qso['COL_MY_GRIDSQUARE'] ?? '') == '' ? $qso['COL_MY_VUCC_GRIDS'] : $qso['COL_MY_GRIDSQUARE']);
+					}
+				}
+			}
+		}
 
 		header('Content-Type: application/json; charset=utf-8');
-		echo json_encode($plot_array);
+		echo json_encode($mappedcoordinates);
 	}
 
+	public function calculate($qso, $locator1, $locator2) {
+		$this->load->library('Qra');
+		$this->load->model('logbook_model');
+
+		$latlng1 = $this->qra->qra2latlong($locator1);
+		$latlng2 = $this->qra->qra2latlong($locator2);
+		$latlng1[0] = number_format((float)$latlng1[0], 3, '.', '');;
+		$latlng1[1] = number_format((float)$latlng1[1], 3, '.', '');;
+		$latlng2[0] = number_format((float)$latlng2[0], 3, '.', '');;
+		$latlng2[1] = number_format((float)$latlng2[1], 3, '.', '');;
+
+		$data['latlng1'] = $latlng1;
+		$data['latlng2'] = $latlng2;
+		$data['confirmed'] = ($this->logbook_model->qso_is_confirmed($qso)==true) ? true : false;
+
+		return $data;
+	}
+
+	public function calculateCoordinates($qso, $lat, $long, $mygrid) {
+		$this->load->library('Qra');
+		$this->load->model('logbook_model');
+
+		$latlng1 = $this->qra->qra2latlong($mygrid);
+		$latlng2[0] = $lat;
+		$latlng2[1] = $long;
+		$latlng1[0] = number_format((float)$latlng1[0], 3, '.', '');;
+		$latlng1[1] = number_format((float)$latlng1[1], 3, '.', '');;
+		$latlng2[0] = number_format((float)$latlng2[0], 3, '.', '');;
+		$latlng2[1] = number_format((float)$latlng2[1], 3, '.', '');;
+
+		$data['latlng1'] = $latlng1;
+		$data['latlng2'] = $latlng2;
+		$data['confirmed'] = ($this->logbook_model->qso_is_confirmed($qso)==true) ? true : false;
+
+		return $data;
+	}
 }

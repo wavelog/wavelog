@@ -1,4 +1,5 @@
 var zonemarkers = [];
+var clicklines = [];
 
 $(document).ready(function () {
 	mapQsos();
@@ -12,6 +13,7 @@ function mapQsos(form) {
 	const showgrid = urlParams.get('showgrid');
 	const showcq = urlParams.get('showcq');
 	const band = urlParams.get('band');
+	const showlines = urlParams.get('showlines');
 
 	$.ajax({
 		url: base_url + 'index.php/visitor/mapqsos/',
@@ -22,14 +24,14 @@ function mapQsos(form) {
 			band: band
 		},
 		success: function(data) {
-			loadMap(data, showgrid, showcq);
+			loadMap(data, showgrid, showcq, showlines);
 		},
 		error: function() {
 		},
 	});
 };
 
-function loadMap(data, showgrid, showcq) {
+function loadMap(data, showgrid, showcq, showlines) {
 	var osmUrl='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 	var osmAttrib='Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
 	// If map is already initialized
@@ -70,14 +72,37 @@ function loadMap(data, showgrid, showcq) {
 	var counter = 0;
 
 	clicklines = [];
-	$.each(data.markers, function(k, v) {
-		counter++;
+	$.each(data, function(k, v) {
+		linecolor = 'red';
 
-		if (this.lat < -170) {
-			this.lat =  parseFloat(this.lat)+360;
+		if (this.latlng2[1] < -170) {
+			this.latlng2[1] =  parseFloat(this.latlng2[1])+360;
+		}
+		if (this.latlng1[1] < -170) {
+			this.latlng1[1] =  parseFloat(this.latlng1[1])+360;
 		}
 
-		var marker = L.marker([this.lat, this.lng], {icon: redIcon}, {closeOnClick: false, autoClose: false}).addTo(map);
+		var marker = L.marker([this.latlng1[0], this.latlng1[1]], {icon: redIcon}, {closeOnClick: false, autoClose: false}).addTo(map);
+
+		var marker2 = L.marker([this.latlng2[0], this.latlng2[1]], {icon: redIcon},{closeOnClick: false, autoClose: false}).addTo(map);
+
+		if (showlines === "true") {
+			const multiplelines = [];
+			multiplelines.push(
+				new L.LatLng(this.latlng1[0], this.latlng1[1]),
+				new L.LatLng(this.latlng2[0], this.latlng2[1])
+			)
+
+			const geodesic = L.geodesic(multiplelines, {
+				weight: 1,
+				opacity: 1,
+				color: linecolor,
+				wrap: false,
+				steps: 100
+			}).addTo(map);
+
+			map.addLayer(geodesic);
+		}
 	});
 
 	if (showgrid === "true") {
@@ -101,7 +126,6 @@ function loadMap(data, showgrid, showcq) {
 			zonemarkers.push(marker);
 		}
 	}
-
 
 	map.addLayer(osm);
 

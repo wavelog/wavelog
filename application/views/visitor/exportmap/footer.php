@@ -25,6 +25,7 @@
     <script id="leafembed" type="text/javascript" src="<?php echo base_url();?>assets/js/leaflet/leafembed.js" tileUrl="<?php echo $this->optionslib->get_option('map_tile_server');?>"></script>
 	<script type="text/javascript" src="<?php echo base_url();?>assets/js/sections/exportmap.js"></script>
 	<script type="text/javascript" src="<?php echo base_url();?>assets/js/sections/cqmap_geojson.js"></script>
+	<script type="text/javascript" src="<?php echo base_url();?>assets/js/leaflet/leaflet.geodesic.js"></script>
 
 	</body>
 </html>
