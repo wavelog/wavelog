@@ -433,6 +433,7 @@ class Visitor extends CI_Controller {
 
         $slug = $this->security->xss_clean($this->input->get('slug'));
 		$qsocount = $this->security->xss_clean($this->input->get('qsocount')) == '' ? '100' : $this->security->xss_clean($this->input->get('qsocount'));
+		$band = $this->security->xss_clean($this->input->get('band'));
 
         $this->load->model('logbooks_model');
         $logbook_id = $this->logbooks_model->public_slug_exists_logbook_id($slug);

@@ -1,3 +1,5 @@
+var zonemarkers = [];
+
 $(document).ready(function () {
 	mapQsos();
 });
@@ -8,23 +10,26 @@ function mapQsos(form) {
 	const slug = urlParams.get('slug');
 	const qsocount = urlParams.get('qsocount');
 	const showgrid = urlParams.get('showgrid');
+	const showcq = urlParams.get('showcq');
+	const band = urlParams.get('band');
 
 	$.ajax({
 		url: base_url + 'index.php/visitor/mapqsos/',
 		type: 'get',
 		data: {
 			slug: slug,
-			qsocount: qsocount
+			qsocount: qsocount,
+			band: band
 		},
 		success: function(data) {
-			loadMap(data, showgrid);
+			loadMap(data, showgrid, showcq);
 		},
 		error: function() {
 		},
 	});
 };
 
-function loadMap(data, showgrid) {
+function loadMap(data, showgrid, showcq) {
 	var osmUrl='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 	var osmAttrib='Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
 	// If map is already initialized
@@ -79,6 +84,25 @@ function loadMap(data, showgrid) {
 		maidenhead = L.maidenheadqrb().addTo(map);
 	}
 
+	if (showcq === "true") {
+		geojson = L.geoJson(zonestuff, {style: style}).addTo(map);
+		for (var i = 0; i < cqzonenames.length; i++) {
+
+			var title = '<span class="grid-text" style="cursor: default"><font style="color: \'white\'; font-size: 1.5em; font-weight: 900;">' + (Number(i)+Number(1)) + '</font></span>';
+			var myIcon = L.divIcon({className: 'my-div-icon', html: title});
+
+			var marker = L.marker(
+				[cqzonenames[i][0], cqzonenames[i][1]], {
+					icon: myIcon,
+					title: (Number(i)+Number(1)),
+					zIndex: 1000,
+				}
+			).addTo(map);
+			zonemarkers.push(marker);
+		}
+	}
+
+
 	map.addLayer(osm);
 
 	var printer = L.easyPrint({
@@ -89,3 +113,60 @@ function loadMap(data, showgrid) {
 		hideControlContainer: true
 	}).addTo(map);
 }
+
+function style(feature) {
+	var bordercolor = "black";
+	if (isDarkModeTheme()) {
+		bordercolor = "white";
+	}
+	return {
+		fillColor: "white",
+		fillOpacity: 0,
+		opacity: 0.65,
+		color: bordercolor,
+		weight: 1,
+	};
+}
+
+const cqzonenames = [
+	[ "75", "-140" ],
+	[ "70", "-82.5" ],
+	[ "45", "-125" ],
+	[ "45", "-100" ],
+	[ "45", "-65" ],
+	[ "25.5", "-115" ],
+	[ "14.5", "-90" ],
+	[ "22", "-60" ],
+	[ "11.5", "-70" ],
+	[ "-5", "-100" ],
+	[ "-9", "-45" ],
+	[ "-45", "-106" ],
+	[ "-45", "-55" ],
+	[ "52", "-14" ],
+	[ "46", "11" ],
+	[ "60", "35" ],
+	[ "55", "65" ],
+	[ "70", "90" ],
+	[ "70", "150" ],
+	[ "42", "29" ],
+	[ "28", "53" ],
+	[ "6", "75" ],
+	[ "44", "93" ],
+	[ "33", "110" ],
+	[ "38", "134" ],
+	[ "16", "100" ],
+	[ "15", "140" ],
+	[ "0", "125" ],
+	[ "-25", "115" ],
+	[ "-25", "145" ],
+	[ "15", "-165" ],
+	[ "-25", "-165" ],
+	[ "32", "-26" ],
+	[ "25", "25.5" ],
+	[ "15", "-6" ],
+	[ "-5", "-6" ],
+	[ "6", "51" ],
+	[ "-45", "8" ],
+	[ "-25", "55"],
+	[  "78", "-10"],
+];
