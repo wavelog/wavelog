@@ -4846,7 +4846,6 @@ function lotw_last_qsl_date($user_id) {
     // return if qso is confirmed (depend user option "qsl method") //
     public function qso_is_confirmed($qso) {
       $confirmed = false;
-      $this->load->model('user_model');
       $user_default_confirmation = $this->session->userdata('user_default_confirmation');
       if (isset($user_default_confirmation)) {
         $qso = (array) $qso;
