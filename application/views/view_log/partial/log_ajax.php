@@ -31,15 +31,15 @@ function echo_table_col($row, $name) {
 		case 'SOTA':    echo '<td>' . ($row->COL_SOTA_REF ?? '') . '</td>'; break;
 		case 'WWFF':    echo '<td>' . ($row->COL_WWFF_REF ?? '') . '</td>'; break;
 		case 'POTA':    echo '<td>' . ($row->COL_POTA_REF ?? '') . '</td>'; break;
-		case 'Grid':    
-            $ci->load->library('qra'); 
+		case 'Grid':
+            $ci->load->library('qra');
             echo '<td>' . ($ci->qra->echoQrbCalcLink($row->station_gridsquare, $row->COL_VUCC_GRIDS, $row->COL_GRIDSQUARE)) . '</td>'; break;
 		case 'Distance':echo '<td>' . ($row->COL_DISTANCE ? $row->COL_DISTANCE . '&nbsp;km' : '') . '</td>'; break;
-		case 'Band':    
-            $ci->load->library('frequency'); 
+		case 'Band':
+            $ci->load->library('frequency');
             echo '<td>'; if($row->COL_SAT_NAME ?? '' != '') { echo '<a href="https://db.satnogs.org/search/?q='.$row->COL_SAT_NAME.'" target="_blank"><span data-bs-toggle="tooltip" title="'.($row->COL_BAND ?? '').'">'.$row->COL_SAT_NAME.'</span></a></td>'; } else { if ($row->COL_FREQ ?? ''!= '') { echo ' <span data-bs-toggle="tooltip" title="'.$ci->frequency->hz_to_mhz($row->COL_FREQ ?? 0).'">'. strtolower($row->COL_BAND ?? '').'</span>'; } else { echo strtolower($row->COL_BAND ?? ''); } } echo '</td>'; break;
-		case 'Frequency':    
-            $ci->load->library('frequency'); 
+		case 'Frequency':
+            $ci->load->library('frequency');
             echo '<td>'; if($row->COL_SAT_NAME ?? '' != '') { echo '<a href="https://db.satnogs.org/search/?q='.$row->COL_SAT_NAME.'" target="_blank">'; if ($row->COL_FREQ != null) { echo ' <span data-bs-toggle="tooltip" title="'.$ci->frequency->hz_to_mhz($row->COL_FREQ).'">'.$row->COL_SAT_NAME.'</span>'; } else { echo $row->COL_SAT_NAME; } echo '</a></td>'; } else { if ($row->COL_FREQ != null) { echo ' <span data-bs-toggle="tooltip" title="'.$row->COL_BAND.'">'.$ci->frequency->hz_to_mhz($row->COL_FREQ).'</span>'; } else { echo strtolower($row->COL_BAND); } } echo '</td>'; break;
 		case 'State':   echo '<td>' . ($row->COL_STATE ?? '') . '</td>'; break;
 		case 'Operator':echo '<td>' . ($row->COL_OPERATOR ?? '') . '</td>'; break;
@@ -88,7 +88,7 @@ function echo_table_col($row, $name) {
         </thead>
         <tbody>
 
-        <?php  $i = 0;  
+        <?php  $i = 0;
             foreach ($results->result() as $row) {
                 // Get Date format
                 if($this->session->userdata('user_date_format')) {
@@ -127,7 +127,7 @@ function echo_table_col($row, $name) {
                 echo_table_col($row, $this->session->userdata('user_column3')==""?'RSTR':$this->session->userdata('user_column3'));
                 echo_table_col($row, $this->session->userdata('user_column4')==""?'Band':$this->session->userdata('user_column4'));
                 echo_table_col($row, $this->session->userdata('user_column5'));
-			
+
 				if(($this->config->item('use_auth')) && ($this->session->userdata('user_type') >= 2)) { ?>
                 <td id="qsl_<?php echo $row->COL_PRIMARY_KEY; ?>" class="qsl">
                 <span <?php if ($row->COL_QSL_SENT != "N") {
@@ -149,7 +149,7 @@ function echo_table_col($row, $name) {
                           break;
                        }
                         if ($row->COL_QSLSDATE != null) {
-                            $timestamp = strtotime($row->COL_QSLSDATE); echo " "  .($timestamp != '' ? date($custom_date_format, $timestamp) : ''); 
+                            $timestamp = strtotime($row->COL_QSLSDATE); echo " "  .($timestamp != '' ? date($custom_date_format, $timestamp) : '');
                         }
                      } else { echo "class=\"qsl-red"; }
                        if ($row->COL_QSL_SENT_VIA != "") {
@@ -187,7 +187,7 @@ function echo_table_col($row, $name) {
                           break;
                        }
                        if ($row->COL_QSLRDATE != null) {
-                            $timestamp = strtotime($row->COL_QSLRDATE); echo " "  .($timestamp != '' ? date($custom_date_format, $timestamp) : ''); 
+                            $timestamp = strtotime($row->COL_QSLRDATE); echo " "  .($timestamp != '' ? date($custom_date_format, $timestamp) : '');
                        }
                      } else { echo "class=\"qsl-red"; }
                        if ($row->COL_QSL_RCVD_VIA != "") {
@@ -246,9 +246,9 @@ function echo_table_col($row, $name) {
             <?php if(($this->config->item('use_auth')) && ($this->session->userdata('user_type') >= 2)) { ?>
                 <td>
                     <div class="dropdown">
-                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="btn btn-sm btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-cog"></i>
-                        </a>
+                        </div>
 
                         <div class="dropdown-menu menuOnResultTab" data-bs-toggle="popover" data-bs-placement="auto" data-qsoid="qso_<?php echo $row->COL_PRIMARY_KEY; ?>">
                             <a class="dropdown-item" id="edit_qso" href="javascript:qso_edit(<?php echo $row->COL_PRIMARY_KEY; ?>)"><i class="fas fa-edit"></i> <?php echo lang('general_edit_qso'); ?></a>
