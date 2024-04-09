@@ -1,6 +1,6 @@
 <?php
 if ($qsos->result() != NULL) {
-	echo '<table style="width:100%" class="qsolist table-sm table-bordered table-hover table-striped table-condensed">
+	echo '<table style="width:100%" class="table qsolist table-sm table-bordered table-hover table-striped table-condensed">
 	<thead>
 	<tr>
 		<th style=\'text-align: center\'>'.lang('gen_hamradio_callsign').'</th>

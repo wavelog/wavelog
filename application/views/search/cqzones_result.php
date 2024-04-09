@@ -1,7 +1,7 @@
 <?php
 if ($qsos->result() != NULL) {
 	Echo 'The following QSOs were found to have an incorrect CQ zone that this DXCC normally has:';
-	echo '<table style="width:100%" class="qsolist table-sm table-bordered table-hover table-striped table-condensed">
+	echo '<table style="width:100%" class="qsolist table table-sm table-bordered table-hover table-striped table-condensed">
 	<thead>
 	<tr>
 	<th style=\'text-align: center\'>Date</th>
