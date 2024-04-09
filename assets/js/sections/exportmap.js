@@ -1,6 +1,19 @@
 var zonemarkers = [];
 var clicklines = [];
 
+var iconsList = { 'qso': { 'color': defaultlinecolor, 'icon': 'fas fa-dot-circle', 'iconSize': [5, 5] }, 'qsoconfirm': { 'color': defaultlinecolor, 'icon': 'fas fa-dot-circle', 'iconSize': [5, 5] } };
+
+var stationIcon = L.divIcon({ className: 'cspot_station', iconSize: [5, 5], iconAnchor: [5, 5]});
+var qsoIcon = L.divIcon({ className: 'cspot_qso', iconSize: [5, 5], iconAnchor: [5, 5] }); //default (fas fa-dot-circle red)
+var qsoconfirmIcon = L.divIcon({ className: 'cspot_qsoconfirm', iconSize: [5, 5], iconAnchor: [5, 5] });
+var redIconImg = L.icon({ iconUrl: icon_dot_url, iconSize: [5, 5] }); // old //
+
+var defaultlinecolor = 'blue';
+
+if (isDarkModeTheme()) {
+	defaultlinecolor = 'red';
+}
+
 $(document).ready(function () {
 	mapQsos();
 });
@@ -24,14 +37,34 @@ function mapQsos(form) {
 			band: band
 		},
 		success: function(data) {
-			loadMap(data, showgrid, showcq, showlines);
+
+			loadMapOptions(data, showgrid, showcq, showlines, slug);
 		},
 		error: function() {
 		},
 	});
 };
 
-function loadMap(data, showgrid, showcq, showlines) {
+function loadMapOptions(data, showgrid, showcq, showlines, slug) {
+	$.ajax({
+		url: base_url + 'index.php/visitor/get_map_custom',
+		type: 'POST',
+		dataType: 'json',
+		data: {
+			slug: slug,
+		},
+		error: function () {
+		},
+		success: function (json_mapinfo) {
+			if (typeof json_mapinfo.qso !== "undefined") {
+				iconsList = json_mapinfo;
+			}
+			loadMap(data, showgrid, showcq, showlines, iconsList);
+		}
+	});
+}
+
+function loadMap(data, showgrid, showcq, showlines, iconsList) {
 	var osmUrl='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 	var osmAttrib='Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
 	// If map is already initialized
@@ -73,7 +106,6 @@ function loadMap(data, showgrid, showcq, showlines) {
 
 	clicklines = [];
 	$.each(data, function(k, v) {
-		linecolor = 'red';
 
 		if (this.latlng2[1] < -170) {
 			this.latlng2[1] =  parseFloat(this.latlng2[1])+360;
@@ -82,9 +114,17 @@ function loadMap(data, showgrid, showcq, showlines) {
 			this.latlng1[1] =  parseFloat(this.latlng1[1])+360;
 		}
 
-		var marker = L.marker([this.latlng1[0], this.latlng1[1]], {icon: redIcon}, {closeOnClick: false, autoClose: false}).addTo(map);
+		var marker = L.marker([this.latlng1[0], this.latlng1[1]], {icon: stationIcon}, {closeOnClick: false, autoClose: false}).addTo(map);
 
-		var marker2 = L.marker([this.latlng2[0], this.latlng2[1]], {icon: redIcon},{closeOnClick: false, autoClose: false}).addTo(map);
+		// var marker2 = L.marker([this.latlng2[0], this.latlng2[1]], {icon: redIcon},{closeOnClick: false, autoClose: false}).addTo(map);
+
+		if (this.confirmed && iconsList.qsoconfirm.icon !== "0") {
+			var marker2 = L.marker([this.latlng2[0], this.latlng2[1]], {icon: qsoconfirmIcon},{closeOnClick: false, autoClose: false}).addTo(map);
+			linecolor = iconsList.qsoconfirm.color;
+		} else {
+			var marker2 = L.marker([this.latlng2[0], this.latlng2[1]], {icon: qsoIcon},{closeOnClick: false, autoClose: false}).addTo(map);
+			linecolor = iconsList.qso.color;
+		}
 
 		if (showlines === "true") {
 			const multiplelines = [];
@@ -126,6 +166,10 @@ function loadMap(data, showgrid, showcq, showlines) {
 			zonemarkers.push(marker);
 		}
 	}
+
+	$.each(iconsList, function (icon, data) {
+		$('#exportmap' + ' .cspot_' + icon).addClass(data.icon).css("color", data.color);
+	});
 
 	map.addLayer(osm);
 

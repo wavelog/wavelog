@@ -174,6 +174,19 @@ class Stationsetup_model extends CI_Model {
 			return array(-1);	// Put some default-Value here, if no relation found
 		}
 	}
+
+	function public_slug_exists_userid($slug) {
+		$this->db->where('public_slug', $this->security->xss_clean($slug));
+		$query = $this->db->get('station_logbooks');
+
+		if ($query->num_rows() > 0){
+			foreach ($query->result() as $row) {
+				return $row->user_id;
+			}
+		} else {
+			return -1;
+		}
+	}
 }
 
 ?>

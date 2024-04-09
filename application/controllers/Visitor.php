@@ -29,6 +29,9 @@ class Visitor extends CI_Controller {
 		elseif($method == "mapqsos") {
             $this->mapqsos();
         }
+		elseif($method == "get_map_custom") {
+            $this->get_map_custom();
+        }
         else {
             $this->index($method);
         }
@@ -448,15 +451,17 @@ class Visitor extends CI_Controller {
         }
 
 		$qsos = $this->logbook_model->get_qsos($qsocount, null, $logbooks_locations_array, $band);
+		$userid = $this->stationsetup_model->public_slug_exists_userid($slug);
+		$user_default_confirmation = $this->get_user_default_confirmation($userid);
 
 		$mappedcoordinates = array();
 		foreach ($qsos->result('array') as $qso) {
 			if (!empty($qso['COL_MY_GRIDSQUARE']) || !empty($qso['COL_MY_VUCC_GRIDS'])) {
 				if (!empty($qso['COL_GRIDSQUARE'])  || !empty($qso['COL_VUCC_GRIDS'])) {
-					$mappedcoordinates[] = $this->calculate($qso, ($qso['COL_MY_GRIDSQUARE'] ?? '') == '' ? $qso['COL_MY_VUCC_GRIDS'] : $qso['COL_MY_GRIDSQUARE'], ($qso['COL_GRIDSQUARE'] ?? '') == '' ? $qso['COL_VUCC_GRIDS'] : $qso['COL_GRIDSQUARE']);
+					$mappedcoordinates[] = $this->calculate($qso, ($qso['COL_MY_GRIDSQUARE'] ?? '') == '' ? $qso['COL_MY_VUCC_GRIDS'] : $qso['COL_MY_GRIDSQUARE'], ($qso['COL_GRIDSQUARE'] ?? '') == '' ? $qso['COL_VUCC_GRIDS'] : $qso['COL_GRIDSQUARE'], $user_default_confirmation);
 				} else {
 					if (!empty($qso['lat'])  || !empty($qso['long'])) {
-						$mappedcoordinates[] = $this->calculateCoordinates($qso, $qso['lat'], $qso['long'], ($qso['COL_MY_GRIDSQUARE'] ?? '') == '' ? $qso['COL_MY_VUCC_GRIDS'] : $qso['COL_MY_GRIDSQUARE']);
+						$mappedcoordinates[] = $this->calculateCoordinates($qso, $qso['lat'], $qso['long'], ($qso['COL_MY_GRIDSQUARE'] ?? '') == '' ? $qso['COL_MY_VUCC_GRIDS'] : $qso['COL_MY_GRIDSQUARE'], $user_default_confirmation);
 					}
 				}
 			}
@@ -466,7 +471,7 @@ class Visitor extends CI_Controller {
 		echo json_encode($mappedcoordinates);
 	}
 
-	public function calculate($qso, $locator1, $locator2) {
+	public function calculate($qso, $locator1, $locator2, $user_default_confirmation) {
 		$this->load->library('Qra');
 		$this->load->model('logbook_model');
 
@@ -479,12 +484,12 @@ class Visitor extends CI_Controller {
 
 		$data['latlng1'] = $latlng1;
 		$data['latlng2'] = $latlng2;
-		$data['confirmed'] = ($this->logbook_model->qso_is_confirmed($qso)==true) ? true : false;
+		$data['confirmed'] = ($this->qso_is_confirmed($qso, $user_default_confirmation)==true) ? true : false;
 
 		return $data;
 	}
 
-	public function calculateCoordinates($qso, $lat, $long, $mygrid) {
+	public function calculateCoordinates($qso, $lat, $long, $mygrid, $user_default_confirmation) {
 		$this->load->library('Qra');
 		$this->load->model('logbook_model');
 
@@ -498,8 +503,57 @@ class Visitor extends CI_Controller {
 
 		$data['latlng1'] = $latlng1;
 		$data['latlng2'] = $latlng2;
-		$data['confirmed'] = ($this->logbook_model->qso_is_confirmed($qso)==true) ? true : false;
+		$data['confirmed'] = ($this->qso_is_confirmed($qso, $user_default_confirmation)==true) ? true : false;
 
 		return $data;
+	}
+
+	// [MAP Custom] //
+	public function get_map_custom() {
+		$this->load->model('stationsetup_model');
+		$slug = $this->security->xss_clean($this->input->post('slug'));
+		$userid = $this->stationsetup_model->public_slug_exists_userid($slug);
+
+		$this->load->model('user_options_model');
+
+		$result=$this->user_options_model->get_options('map_custom', null, $userid);
+		$jsonout=[];
+		foreach($result->result() as $options) {
+			if ($options->option_name=='icon') $jsonout[$options->option_key]=json_decode($options->option_value,true);
+				else $jsonout[$options->option_name.'_'.$options->option_key]=$options->option_value;
+		}
+		header('Content-Type: application/json');
+		echo json_encode($jsonout);
+	}
+
+	function qso_is_confirmed($qso, $user_default_confirmation) {
+		$confirmed = false;
+		$qso = (array) $qso;
+		if (strpos($user_default_confirmation, 'Q') !== false) { // QSL
+			if ($qso['COL_QSL_RCVD']=='Y') { $confirmed = true; }
+		}
+		if (strpos($user_default_confirmation, 'L') !== false) { // LoTW
+			if ($qso['COL_LOTW_QSL_RCVD']=='Y') { $confirmed = true; }
+		}
+		if (strpos($user_default_confirmation, 'E') !== false) { // eQsl
+			if ($qso['COL_EQSL_QSL_RCVD']=='Y') { $confirmed = true; }
+		}
+		if (strpos($user_default_confirmation, 'Z') !== false) { // QRZ
+			if ($qso['COL_QRZCOM_QSO_DOWNLOAD_STATUS']=='Y') { $confirmed = true; }
+		}
+		return $confirmed;
+	}
+
+	function get_user_default_confirmation($userid) {
+		$this->db->where('user_id', $userid);
+		$query = $this->db->get('users');
+
+		if ($query->num_rows() > 0){
+			foreach ($query->result() as $row) {
+				return $row->user_default_confirmation;
+			}
+		} else {
+			return '';
+		}
 	}
 }
