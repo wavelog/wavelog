@@ -408,6 +408,10 @@ $(function () {
                 $('[data-bs-toggle="tooltip"]').tooltip();
                 $(".runbutton").removeClass('running');
                 $(".runbutton").prop('disabled', false);
+
+				$('.table-responsive .dropdown-toggle').off('mouseenter').on('mouseenter', function () {
+                        showQsoActionsMenu($(this).closest('.dropdown'));
+                    });
             });
     }
 
