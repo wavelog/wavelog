@@ -68,6 +68,8 @@ class QSO
 	private string $lotw_hint;
 	private string $operator;
 	private string $comment;
+	/** Orbit type **/
+	private string $orbit;
 
 	/**
 	 * @param array $data Does no validation, it's assumed to be a row from the database in array format
@@ -154,7 +156,7 @@ class QSO
 		$this->rstS = $data['COL_RST_SENT'];
 		$this->propagationMode = $data['COL_PROP_MODE'] ?? '';
 		$this->satelliteMode = $data['COL_SAT_MODE'] != '' ? (strlen($data['COL_SAT_MODE']) == 2 ? (strtoupper($data['COL_SAT_MODE'][0]).'/'.strtoupper($data['COL_SAT_MODE'][1])) : strtoupper($data['COL_SAT_MODE'])) : '';
-		$this->satelliteName = $data['COL_SAT_NAME'] ?? '';
+		$this->satelliteName = $data['COL_SAT_NAME'] != '' ? ($data['orbit'] != '' ? $data['COL_SAT_NAME']." (".$data['orbit'].") " : $data['COL_SAT_NAME']) : '';
 
 		$this->name = $data['COL_NAME'] ?? '';
 		$this->email = $data['COL_EMAIL'] ?? '';
@@ -211,6 +213,8 @@ class QSO
 		$this->operator = ($data['COL_OPERATOR'] === null) ? '' :$data['COL_OPERATOR'];
 
 		$this->comment = $data['COL_COMMENT'] ?? '';
+
+		$this->orbit = $data['orbit'] ?? '';
 	}
 
 	/**
@@ -826,7 +830,8 @@ class QSO
 			'callsign' => $this->callsign,
 			'lastupload' => $this->lastupload,
 			'lotw_hint' => $this->lotw_hint,
-			'comment' => $this->comment
+			'comment' => $this->comment,
+			'orbit' => $this->orbit
 		];
 	}
 

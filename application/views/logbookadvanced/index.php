@@ -166,6 +166,15 @@ $options = json_decode($options);
 				} ?>
                         </select>
                     </div>
+                    <div hidden class="orbits_dropdown mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
+                        <label class="form-label" for="orbits"><?php echo lang('general_word_orbit'); ?></label>
+                        <select class="form-select form-select-sm" id="orbits">
+                            <option value="All"><?php echo lang('general_word_all'); ?></option>
+                            <?php foreach($orbits as $orbit) {
+					echo '<option value="' . htmlentities($orbit) . '"' . '>' . htmlentities($orbit) . '</option>'."\n";
+				} ?>
+                        </select>
+                    </div>
                     <div class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                         <label class="form-label" for="selectPropagation"><?php echo lang('filter_general_propagation'); ?></label>
                         <select id="selectPropagation" name="selectPropagation" class="form-select form-select-sm">
@@ -199,7 +208,6 @@ $options = json_decode($options);
                           echo '<option value="'. $i . '">'. $i .'</option>';
                       }
                       ?>
-                            ?>
                         </select>
                     </div>
                     <div class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
