@@ -45,6 +45,7 @@ $lang['general_word_location'] = 'Místo';
 $lang['general_word_comment'] = 'Komentář';
 $lang['general_word_general'] = 'Obecné';
 $lang['general_word_satellite'] = 'Satelit';
+$lang['general_word_orbit'] = 'Orbit';
 $lang['general_word_satellite_short'] = 'Sat';
 $lang['general_word_notes'] = 'Poznámky';
 $lang['general_word_country'] = 'Země';

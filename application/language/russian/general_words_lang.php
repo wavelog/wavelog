@@ -45,6 +45,7 @@ $lang['general_word_location'] = 'QTH';
 $lang['general_word_comment'] = 'Комментарий';
 $lang['general_word_general'] = 'Общее';
 $lang['general_word_satellite'] = 'Спутник';
+$lang['general_word_orbit'] = 'Orbit';
 $lang['general_word_satellite_short'] = 'Спутн.';
 $lang['general_word_notes'] = 'Заметки';
 $lang['general_word_country'] = 'Страна';

@@ -45,6 +45,7 @@ $lang['general_word_location'] = 'Местоположение';
 $lang['general_word_comment'] = 'Коментар';
 $lang['general_word_general'] = 'Общи';
 $lang['general_word_satellite'] = 'Сателит';
+$lang['general_word_orbit'] = 'Orbit';
 $lang['general_word_satellite_short'] = 'Сат';
 $lang['general_word_notes'] = 'Бележки';
 $lang['general_word_country'] = 'Държава';
