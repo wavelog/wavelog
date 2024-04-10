@@ -410,7 +410,7 @@ class DxccFlag
     );
 
     public function get($dxcc) {
-		if ($dxcc ?? '' == '') { $dxcc='0'; }	// Failover if Empty or NULL
-        return $this->dxccFlags[$dxcc];
+      if (($dxcc ?? '') == '') { $dxcc='0'; }	// Failover if Empty or NULL
+      return $this->dxccFlags[$dxcc];
     }
 }
