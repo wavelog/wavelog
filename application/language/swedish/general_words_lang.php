@@ -47,6 +47,7 @@ $lang['general_word_location'] = 'QTH';
 $lang['general_word_comment'] = 'Notering';
 $lang['general_word_general'] = 'Allmänt';
 $lang['general_word_satellite'] = 'Satellit';
+$lang['general_word_orbit'] = 'Orbit';
 $lang['general_word_satellite_short'] = 'Sat';
 $lang['general_word_notes'] = 'Anteckningar';
 $lang['general_word_country'] = 'Land';

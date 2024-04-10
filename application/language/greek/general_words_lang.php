@@ -45,6 +45,7 @@ $lang['general_word_location'] = 'Τοποθεσία';
 $lang['general_word_comment'] = 'Σχόλιο';
 $lang['general_word_general'] = 'Γενικα';
 $lang['general_word_satellite'] = 'Δορυφόρος';
+$lang['general_word_orbit'] = 'Orbit';
 $lang['general_word_satellite_short'] = 'Δορ';
 $lang['general_word_notes'] = 'Σημειώσεις';
 $lang['general_word_country'] = 'Χώρα';

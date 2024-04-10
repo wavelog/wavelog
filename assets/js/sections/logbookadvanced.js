@@ -6,8 +6,10 @@ $('#band').change(function () {
 	var band = $("#band option:selected").text();
 	if (band != "SAT") {
 		$(".sats_dropdown").attr("hidden", true);
+		$(".orbits_dropdown").attr("hidden", true);
 	} else {
 		$(".sats_dropdown").removeAttr("hidden");
+		$(".orbits_dropdown").removeAttr("hidden");
 	}
 });
 
@@ -15,8 +17,10 @@ $('#selectPropagation').change(function () {
 	var prop_mode = $("#selectPropagation option:selected").text();
 	if (prop_mode != "Satellite") {
 		$(".sats_dropdown").attr("hidden", true);
+		$(".orbits_dropdown").attr("hidden", true);
 	} else {
 		$(".sats_dropdown").removeAttr("hidden");
+		$(".orbits_dropdown").removeAttr("hidden");
 	}
 });
 
@@ -289,6 +293,7 @@ $(document).ready(function () {
 				state: this.state.value,
 				qsoresults: this.qsoResults.value,
 				sats: this.sats.value,
+				orbits: this.orbits.value,
 				cqzone: this.cqzone.value,
 				lotwSent: this.lotwSent.value,
 				lotwReceived: this.lotwReceived.value,

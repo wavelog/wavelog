@@ -53,6 +53,7 @@ class Logbookadvanced extends CI_Controller {
 		$pageData['dxccarray'] = $this->logbook_model->fetchDxcc();
 		$pageData['iotaarray'] = $this->logbook_model->fetchIota();
 		$pageData['sats'] = $this->bands->get_worked_sats();
+		$pageData['orbits'] = $this->bands->get_worked_orbits();
 		$pageData['station_profile'] = $this->stations->all_of_user();
 		$pageData['active_station_info'] = $station_profile->row();
 		$pageData['homegrid'] = explode(',', $this->stations->find_gridsquare());
@@ -124,6 +125,7 @@ class Logbookadvanced extends CI_Controller {
 			'cqzone' => xss_clean($this->input->post('cqzone')),
 			'qsoresults' => xss_clean($this->input->post('qsoresults')),
 			'sats' => xss_clean($this->input->post('sats')),
+			'orbits' => xss_clean($this->input->post('orbits')),
 			'lotwSent' => xss_clean($this->input->post('lotwSent')),
 			'lotwReceived' => xss_clean($this->input->post('lotwReceived')),
 			'eqslSent' => xss_clean($this->input->post('eqslSent')),
@@ -288,6 +290,7 @@ class Logbookadvanced extends CI_Controller {
 			'cqzone' => '',
 			'qsoresults' => count($this->input->post('ids')),
 			'sats' => '',
+			'orbits' => '',
 			'lotwSent' => '',
 			'lotwReceived' => '',
 			'eqslSent' => '',
@@ -328,6 +331,7 @@ class Logbookadvanced extends CI_Controller {
 			'cqzone' => xss_clean($this->input->post('cqzone')),
 			'qsoresults' => xss_clean($this->input->post('qsoresults')),
 			'sats' => xss_clean($this->input->post('sats')),
+			'orbits' => xss_clean($this->input->post('orbits')),
 			'lotwSent' => xss_clean($this->input->post('lotwSent')),
 			'lotwReceived' => xss_clean($this->input->post('lotwReceived')),
 			'eqslSent' => xss_clean($this->input->post('eqslSent')),
@@ -414,6 +418,7 @@ class Logbookadvanced extends CI_Controller {
 		$data['mycallsign'] = $qso['station_callsign'];
 		$data['datetime'] = date($custom_date_format, strtotime($qso['COL_TIME_ON'])). date(' H:i',strtotime($qso['COL_TIME_ON']));
 		$data['satname'] = $qso['COL_SAT_NAME'];
+		$data['orbit'] = $qso['orbit'];
 		$data['confirmed'] = ($this->logbook_model->qso_is_confirmed($qso)==true) ? true : false;
 
 		return $data;
@@ -440,6 +445,7 @@ class Logbookadvanced extends CI_Controller {
 		$data['mycallsign'] = $qso['station_callsign'];
 		$data['datetime'] = date($custom_date_format, strtotime($qso['COL_TIME_ON'])). date(' H:i',strtotime($qso['COL_TIME_ON']));
 		$data['satname'] = $qso['COL_SAT_NAME'];
+		$data['orbit'] = $qso['orbit'];
 		$data['confirmed'] = ($this->logbook_model->qso_is_confirmed($qso)==true) ? true : false;
 
 		return $data;

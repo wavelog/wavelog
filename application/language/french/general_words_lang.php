@@ -45,6 +45,7 @@ $lang['general_word_location'] = "Lieu";
 $lang['general_word_comment'] = "Commentaire";
 $lang['general_word_general'] = "Général";
 $lang['general_word_satellite'] = "Satellite";
+$lang['general_word_orbit'] = 'Orbit';
 $lang['general_word_satellite_short'] = "Sat";
 $lang['general_word_notes'] = "Notes";
 $lang['general_word_country'] = "Pays";
