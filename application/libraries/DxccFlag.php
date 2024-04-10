@@ -409,8 +409,11 @@ class DxccFlag
       '522' => "\u{1F1FD}\u{1F1F0}" //REPUBLIC OF KOSOVO
     );
 
-    public function get($dxcc) {
-		if ($dxcc ?? '' == '') { $dxcc='0'; }	// Failover if Empty or NULL
-        return $this->dxccFlags[$dxcc];
+    public function get($dxcc = 0) {
+       if ($dxcc == 0) {
+          return 0;
+       } else {
+          return $this->dxccFlags[$dxcc];
+       }
     }
 }
