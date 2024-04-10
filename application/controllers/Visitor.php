@@ -23,6 +23,15 @@ class Visitor extends CI_Controller {
         elseif($method == "search") {
             $this->search($method);
         }
+		elseif($method == "exportmap") {
+            $this->exportmap();
+        }
+		elseif($method == "mapqsos") {
+            $this->mapqsos();
+        }
+		elseif($method == "get_map_custom") {
+            $this->get_map_custom();
+        }
         else {
             $this->index($method);
         }
@@ -410,4 +419,141 @@ class Visitor extends CI_Controller {
 		}
 	}
 
+	public function exportmap() {
+		$data['page_title'] = "Export Map";
+		$this->load->view('visitor/exportmap/header', $data);
+		$this->load->view('visitor/exportmap/exportmap', $data);
+		$this->load->view('visitor/exportmap/footer');
+	}
+
+	public function mapqsos() {
+		$this->load->model('logbook_model');
+
+		$this->load->library('qra');
+
+        $slug = $this->security->xss_clean($this->input->get('slug'));
+		$qsocount = $this->security->xss_clean($this->input->get('qsocount')) == '' ? '100' : $this->security->xss_clean($this->input->get('qsocount'));
+		$band = $this->security->xss_clean($this->input->get('band'));
+
+		$this->load->model('stationsetup_model');
+        $logbook_id = $this->stationsetup_model->public_slug_exists_logbook_id($slug);
+        if($logbook_id != false)
+        {
+            // Get associated station locations for mysql queries
+            $logbooks_locations_array = $this->stationsetup_model->get_container_relations($logbook_id);
+
+			if (!$logbooks_locations_array) {
+				show_404('Empty Logbook');
+			}
+        } else {
+            log_message('error', $slug.' has no associated station locations');
+            show_404('Unknown Public Page.');
+        }
+
+		$qsos = $this->logbook_model->get_qsos($qsocount, null, $logbooks_locations_array, $band);
+		$userid = $this->stationsetup_model->public_slug_exists_userid($slug);
+		$user_default_confirmation = $this->get_user_default_confirmation($userid);
+
+		$mappedcoordinates = array();
+		foreach ($qsos->result('array') as $qso) {
+			if (!empty($qso['COL_MY_GRIDSQUARE']) || !empty($qso['COL_MY_VUCC_GRIDS'])) {
+				if (!empty($qso['COL_GRIDSQUARE'])  || !empty($qso['COL_VUCC_GRIDS'])) {
+					$mappedcoordinates[] = $this->calculate($qso, ($qso['COL_MY_GRIDSQUARE'] ?? '') == '' ? $qso['COL_MY_VUCC_GRIDS'] : $qso['COL_MY_GRIDSQUARE'], ($qso['COL_GRIDSQUARE'] ?? '') == '' ? $qso['COL_VUCC_GRIDS'] : $qso['COL_GRIDSQUARE'], $user_default_confirmation);
+				} else {
+					if (!empty($qso['lat'])  || !empty($qso['long'])) {
+						$mappedcoordinates[] = $this->calculateCoordinates($qso, $qso['lat'], $qso['long'], ($qso['COL_MY_GRIDSQUARE'] ?? '') == '' ? $qso['COL_MY_VUCC_GRIDS'] : $qso['COL_MY_GRIDSQUARE'], $user_default_confirmation);
+					}
+				}
+			}
+		}
+
+		header('Content-Type: application/json; charset=utf-8');
+		echo json_encode($mappedcoordinates);
+	}
+
+	public function calculate($qso, $locator1, $locator2, $user_default_confirmation) {
+		$this->load->library('Qra');
+		$this->load->model('logbook_model');
+
+		$latlng1 = $this->qra->qra2latlong($locator1);
+		$latlng2 = $this->qra->qra2latlong($locator2);
+		$latlng1[0] = number_format((float)$latlng1[0], 3, '.', '');;
+		$latlng1[1] = number_format((float)$latlng1[1], 3, '.', '');;
+		$latlng2[0] = number_format((float)$latlng2[0], 3, '.', '');;
+		$latlng2[1] = number_format((float)$latlng2[1], 3, '.', '');;
+
+		$data['latlng1'] = $latlng1;
+		$data['latlng2'] = $latlng2;
+		$data['confirmed'] = ($this->qso_is_confirmed($qso, $user_default_confirmation)==true) ? true : false;
+
+		return $data;
+	}
+
+	public function calculateCoordinates($qso, $lat, $long, $mygrid, $user_default_confirmation) {
+		$this->load->library('Qra');
+		$this->load->model('logbook_model');
+
+		$latlng1 = $this->qra->qra2latlong($mygrid);
+		$latlng2[0] = $lat;
+		$latlng2[1] = $long;
+		$latlng1[0] = number_format((float)$latlng1[0], 3, '.', '');;
+		$latlng1[1] = number_format((float)$latlng1[1], 3, '.', '');;
+		$latlng2[0] = number_format((float)$latlng2[0], 3, '.', '');;
+		$latlng2[1] = number_format((float)$latlng2[1], 3, '.', '');;
+
+		$data['latlng1'] = $latlng1;
+		$data['latlng2'] = $latlng2;
+		$data['confirmed'] = ($this->qso_is_confirmed($qso, $user_default_confirmation)==true) ? true : false;
+
+		return $data;
+	}
+
+	// [MAP Custom] //
+	public function get_map_custom() {
+		$this->load->model('stationsetup_model');
+		$slug = $this->security->xss_clean($this->input->post('slug'));
+		$userid = $this->stationsetup_model->public_slug_exists_userid($slug);
+
+		$this->load->model('user_options_model');
+
+		$result=$this->user_options_model->get_options('map_custom', null, $userid);
+		$jsonout=[];
+		foreach($result->result() as $options) {
+			if ($options->option_name=='icon') $jsonout[$options->option_key]=json_decode($options->option_value,true);
+				else $jsonout[$options->option_name.'_'.$options->option_key]=$options->option_value;
+		}
+		header('Content-Type: application/json');
+		echo json_encode($jsonout);
+	}
+
+	function qso_is_confirmed($qso, $user_default_confirmation) {
+		$confirmed = false;
+		$qso = (array) $qso;
+		if (strpos($user_default_confirmation, 'Q') !== false) { // QSL
+			if ($qso['COL_QSL_RCVD']=='Y') { $confirmed = true; }
+		}
+		if (strpos($user_default_confirmation, 'L') !== false) { // LoTW
+			if ($qso['COL_LOTW_QSL_RCVD']=='Y') { $confirmed = true; }
+		}
+		if (strpos($user_default_confirmation, 'E') !== false) { // eQsl
+			if ($qso['COL_EQSL_QSL_RCVD']=='Y') { $confirmed = true; }
+		}
+		if (strpos($user_default_confirmation, 'Z') !== false) { // QRZ
+			if ($qso['COL_QRZCOM_QSO_DOWNLOAD_STATUS']=='Y') { $confirmed = true; }
+		}
+		return $confirmed;
+	}
+
+	function get_user_default_confirmation($userid) {
+		$this->db->where('user_id', $userid);
+		$query = $this->db->get('users');
+
+		if ($query->num_rows() > 0){
+			foreach ($query->result() as $row) {
+				return $row->user_default_confirmation;
+			}
+		} else {
+			return '';
+		}
+	}
 }

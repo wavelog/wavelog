@@ -1697,7 +1697,7 @@ class Logbook_model extends CI_Model {
     return $query;
   }
 
-  function get_qsos($num, $offset, $StationLocationsArray = null) {
+  function get_qsos($num, $offset, $StationLocationsArray = null, $band = '') {
     if($StationLocationsArray == null) {
       $this->load->model('logbooks_model');
       $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
@@ -1719,6 +1719,16 @@ class Logbook_model extends CI_Model {
 	  $this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
 	  $this->db->join('dxcc_entities', $this->config->item('table_name').'.col_dxcc = dxcc_entities.adif', 'left');
 	  $this->db->join('lotw_users', 'lotw_users.callsign = '.$this->config->item('table_name').'.col_call', 'left outer');
+
+	  if ($band != '') {
+		if ($band == 'SAT') {
+			$this->db->where($this->config->item('table_name').'.col_prop_mode', 'SAT');
+		} else {
+			$this->db->where($this->config->item('table_name').'.col_prop_mode !="SAT"');
+			$this->db->where($this->config->item('table_name').'.col_band', $band);
+		}
+	  }
+
 	  $this->db->where_in($this->config->item('table_name').'.station_id', $logbooks_locations_array);
 	  $this->db->order_by(''.$this->config->item('table_name').'.COL_TIME_ON', "desc");
 
