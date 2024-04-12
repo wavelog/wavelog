@@ -25,6 +25,7 @@ class Distances_model extends CI_Model
 				$gridsquare = explode(',', $station_gridsquare); // We need to convert to an array, since a user can enter several gridsquares
 
 				$this->db->select('COL_PRIMARY_KEY,COL_DISTANCE,col_call callsign, col_gridsquare grid');
+				$this->db->join('satellite', 'satellite.name = '.$this->config->item('table_name').'.COL_SAT_NAME', 'left outer');
 				$this->db->where('LENGTH(col_gridsquare) >', 0);
 
 				if ($postdata['band'] == 'sat') {
@@ -35,6 +36,10 @@ class Distances_model extends CI_Model
 				}
 				else {
 					$this->db->where('col_band', $postdata['band']);
+				}
+
+				if ($postdata['orbit'] != 'All') {
+					$this->db->where('satellite.orbit', $postdata['orbit']);
 				}
 
 				$this->db->where('station_id', $station_id);
