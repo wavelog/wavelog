@@ -41,3 +41,9 @@
 		</tr>
 	</tbody>
 </table>
+<?php if($slug !== "") { ?>
+		<div id="slugLink" class="alert alert-info" role="alert" style="margin-top: 20px;">
+			<p>Visit export map:</p>
+			<p><a href="<?php echo site_url('visitor/exportmap'); ?>/<?php echo $slug; ?>" target="_blank"><?php echo site_url('visitor/exportmap'); ?>/<?php echo $slug; ?></a></p>
+</div>
+<?php } ?>

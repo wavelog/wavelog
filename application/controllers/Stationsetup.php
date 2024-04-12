@@ -440,6 +440,7 @@ class Stationsetup extends CI_Controller {
 		$container = $this->stationsetup_model->getContainer(xss_clean($this->input->post('id', true)))->row();
 		$slug = $container->public_slug;
 		$data['logbookid'] = xss_clean($this->input->post('id', true));
+		$data['slug'] = $slug;
 
 		$exportmapoptions['gridsquare_layer'] = $this->user_options_model->get_options('ExportMapOptions',array('option_name'=>'gridsquare_layer','option_key'=>$slug))->row();
 		$exportmapoptions['path_lines'] = $this->user_options_model->get_options('ExportMapOptions',array('option_name'=>'path_lines','option_key'=>$slug))->row();
