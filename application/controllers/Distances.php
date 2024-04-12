@@ -19,6 +19,8 @@ class Distances extends CI_Controller {
         $this->load->model('bands');
         $data['bands_available'] = $this->bands->get_worked_bands_distances();
         $data['sats_available'] = $this->bands->get_worked_sats();
+		$data['orbits'] = $this->bands->get_worked_orbits();
+		$data['user_default_band'] = $this->session->userdata('user_default_band');
 
         $this->load->view('interface_assets/header', $data);
         $this->load->view('distances/index');

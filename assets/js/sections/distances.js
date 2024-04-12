@@ -1,20 +1,33 @@
 $('#distplot_bands').change(function(){
 	var band = $("#distplot_bands option:selected").text();
 	if (band != "SAT") {
-		$("#distplot_sats").prop('disabled', true);
+		$("#distplot_sats").hide();
+		$("#orbits").hide();
+		$("#satslabel").hide();
+		$("#orbitslabel").hide();
+		$("#distplot_sats").val('All');
+		$("#orbits").val('All');
 	} else {
-		$("#distplot_sats").prop('disabled', false);
+		$("#distplot_sats").show();
+		$("#orbits").show();
+		$("#orbitslabel").show();
+		$("#satslabel").show();
 	}
 });
 
 function distPlot(form) {
+	$(".ld-ext-right-plot").addClass('running');
+    $(".ld-ext-right-plot").prop('disabled', true);
+    $('#plot').prop("disabled", true);
 	$(".alert").remove();
 	var baseURL= "<?php echo base_url();?>";
 	$.ajax({
 		url: base_url+'index.php/distances/get_distances',
 		type: 'post',
 		data: {'band': form.distplot_bands.value,
-			'sat': form.distplot_sats.value},
+			'sat': form.distplot_sats.value,
+			'orbit': form.orbits.value
+		},
 		success: function(tmp) {
 			if (tmp.ok == 'OK') {
 				if (!($('#information').length > 0))
@@ -128,12 +141,14 @@ function distPlot(form) {
 				}
 				$("#distances_div").append('<div class="alert alert-danger" role="alert"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' + tmp.Error + '</div>');
 			}
+			$(".ld-ext-right-plot").removeClass('running');
+            $(".ld-ext-right-plot").prop('disabled', false);
+            $('#plot').prop("disabled", false);
 		}
 	});
 }
 
 function getDistanceQsos(distance) {
-	// alert('Category: ' + distance);
 	$.ajax({
 		url: base_url + 'index.php/distances/getDistanceQsos',
 		type: 'post',
@@ -141,6 +156,7 @@ function getDistanceQsos(distance) {
 			'distance': distance,
 			'band': $("#distplot_bands").val(),
 			'sat' : $("#distplot_sats").val(),
+			'orbit': $("#orbits").val(),
 		},
 		success: function (html) {
 			BootstrapDialog.show({
@@ -150,8 +166,8 @@ function getDistanceQsos(distance) {
 				nl2br: false,
 				message: html,
 				onshown: function(dialog) {
-				   $('[data-bs-toggle="tooltip"]').tooltip();
-				   $('.contacttable').DataTable({
+						$('[data-bs-toggle="tooltip"]').tooltip();
+						$('.contacttable').DataTable({
 						"pageLength": 25,
 						responsive: false,
 						ordering: false,
