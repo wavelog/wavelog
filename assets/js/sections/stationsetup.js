@@ -189,6 +189,7 @@ $(document).ready(function () {
 				cqzone_layer: $('input[name="cqzone_layer"]').is(':checked') ? true : false,
 				nightshadow_layer: $('input[name="nightshadow_layer"]').is(':checked') ? true : false,
 				qsocount: $('#qsocount').val(),
+				band: $('#band').val(),
 				id: $('#logbookid').val(),
 			},
 			success: function(data) {

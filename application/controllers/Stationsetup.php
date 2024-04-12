@@ -432,6 +432,11 @@ class Stationsetup extends CI_Controller {
 
 	public function editExportmapOptions() {
 		$this->load->model('stationsetup_model');
+
+		$this->load->model('bands');
+
+		$data['bands'] = $this->bands->get_user_bands();
+
 		$container = $this->stationsetup_model->getContainer(xss_clean($this->input->post('id', true)))->row();
 		$slug = $container->public_slug;
 		$data['logbookid'] = xss_clean($this->input->post('id', true));
@@ -441,6 +446,7 @@ class Stationsetup extends CI_Controller {
 		$exportmapoptions['cqzone_layer'] = $this->user_options_model->get_options('ExportMapOptions',array('option_name'=>'cqzone_layer','option_key'=>$slug))->row();
 		$exportmapoptions['qsocount'] = $this->user_options_model->get_options('ExportMapOptions',array('option_name'=>'qsocount','option_key'=>$slug))->row();
 		$exportmapoptions['nightshadow_layer'] = $this->user_options_model->get_options('ExportMapOptions',array('option_name'=>'nightshadow_layer','option_key'=>$slug))->row();
+		$exportmapoptions['band'] = $this->user_options_model->get_options('ExportMapOptions',array('option_name'=>'band','option_key'=>$slug))->row();
 
 		$data['exportmapoptions'] = $exportmapoptions;
 
@@ -460,5 +466,6 @@ class Stationsetup extends CI_Controller {
 		$this->user_options_model->set_option('ExportMapOptions', 'cqzone_layer',  array($slug => xss_clean($this->input->post('cqzone_layer'))));
 		$this->user_options_model->set_option('ExportMapOptions', 'nightshadow_layer',  array($slug => xss_clean($this->input->post('nightshadow_layer'))));
 		$this->user_options_model->set_option('ExportMapOptions', 'qsocount',  array($slug => xss_clean($this->input->post('qsocount'))));
+		$this->user_options_model->set_option('ExportMapOptions', 'band',  array($slug => xss_clean($this->input->post('band'))));
 	}
 }

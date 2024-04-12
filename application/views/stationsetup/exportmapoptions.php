@@ -27,5 +27,17 @@
 			<td># QSOs shown</td>
 			<td><input class="form-control input-group-sm" type="number" id="qsocount" name="qsos" value="<?php echo ($exportmapoptions['qsocount']->option_value ?? 250); ?>"></td>
 		</tr>
+		<tr>
+			<td>Band</td>
+			<td><select id="band" class="form-select form-select-sm my-1 me-sm-2 w-auto" name="band">
+				<option value="">All</option>
+				<?php foreach ($bands as $band) {
+						echo '<option value="' . $band . '"';
+						if ($band == ($exportmapoptions['band']->option_value ?? '')) echo ' selected';
+						echo '>' . $band . '</option>' . "\n";
+				}
+				?>
+			</select></td>
+		</tr>
 	</tbody>
 </table>
