@@ -33,15 +33,6 @@ class DXCC extends CI_Model {
 		}
 	}
 
-	function search(){
-		print_r($this->input->get());
-		return;
-	}
-
-	function empty_table($table) {
-		$this->db->empty_table($table);
-	}
-
 	/*
 	 * Fetches a list of all dxcc's, both current and deleted
 	 */
@@ -153,6 +144,8 @@ class DXCC extends CI_Model {
 
 		$sql .= $this->addContinentsToQuery($postdata);
 
+		$sql .= $this->addOrbitToQuery($postdata);
+
 		$query = $this->db->query($sql);
 
 		return $query->result();
@@ -174,6 +167,9 @@ class DXCC extends CI_Model {
 			$sql .= " and dxcc_entities.end is null";
 		}
 		$sql .= $this->addContinentsToQuery($postdata);
+
+		$sql .= $this->addOrbitToQuery($postdata);
+
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
@@ -219,6 +215,8 @@ class DXCC extends CI_Model {
 
 		$sql .= $this->addContinentsToQuery($postdata);
 
+		$sql .= $this->addOrbitToQuery($postdata);
+
 		$sql .= ' order by prefix';
 		$query = $this->db->query($sql);
 
@@ -256,6 +254,9 @@ class DXCC extends CI_Model {
 		}
 
 		$sql .= $this->addContinentsToQuery($postdata);
+
+		$sql .= $this->addOrbitToQuery($postdata);
+
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
@@ -285,6 +286,8 @@ class DXCC extends CI_Model {
 		}
 
 		$sql .= $this->addContinentsToQuery($postdata);
+
+		$sql .= $this->addOrbitToQuery($postdata);
 
 		$query = $this->db->query($sql);
 
@@ -386,10 +389,22 @@ class DXCC extends CI_Model {
 
 		$sql .= $this->addContinentsToQuery($postdata);
 
+		$sql .= $this->addOrbitToQuery($postdata);
+
 		$query = $this->db->query($sql);
 
 		return $query->result();
 	}
+
+		// Adds orbit type to query
+		function addOrbitToQuery($postdata) {
+			$sql = '';
+			if ($postdata['orbit'] != 'All') {
+				$sql .= ' AND satellite.orbit = \''.$postdata['orbit'].'\'';
+			}
+
+			return $sql;
+		}
 
 	function getSummaryByBandConfirmed($band, $postdata, $location_list) {
 		$sql = "SELECT count(distinct thcv.col_dxcc) as count FROM " . $this->config->item('table_name') . " thcv";
@@ -418,6 +433,8 @@ class DXCC extends CI_Model {
 		}
 
 		$sql .= $this->genfunctions->addQslToQuery($postdata);
+
+		$sql .= $this->addOrbitToQuery($postdata);
 
 
 		if ($postdata['includedeleted'] == NULL) {

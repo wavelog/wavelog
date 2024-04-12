@@ -122,7 +122,34 @@
                     </select>
                 </div>
             </div>
-
+			<div class="mb-3 row">
+			<?php if (count($sats_available) != 0) { ?>
+                <label class="col-md-2 control-label" id="satslabel" for="distplot_sats"><?php echo lang('gridsquares_sat'); ?></label>
+				<div class="col-md-2">
+                <select class="form-select form-select-sm"  id="sats" name="sats">
+                    <option value="All"><?php echo lang('general_word_all')?></option>
+                    <?php foreach($sats_available as $sat) {
+                        echo '<option value="' . $sat . '"' . '>' . $sat . '</option>'."\n";
+                    } ?>
+                </select>
+				</div>
+            <?php } else { ?>
+                <input id="sats" type="hidden" value="All"></input>
+            <?php } ?>
+			</div>
+			<div class="mb-3 row">
+                <label class="col-md-2 control-label" id="orbitslabel" for="orbits"><?php echo lang('gridsquares_orbit'); ?></label>
+				<div class="col-md-2">
+                <select class="form-select form-select-sm"  id="orbits" name="orbits">
+                    <option value="All"><?php echo lang('general_word_all')?></option>
+                    <?php
+                    foreach($orbits as $orbit){
+                        echo '<option value="' . $orbit . '">' . strtoupper($orbit) . '</option>'."\n";
+                    }
+                    ?>
+            </select>
+				</div>
+				</div>
             <div class="mb-3 row">
                 <label class="col-md-2 control-label" for="mode">Mode</label>
                 <div class="col-md-2">
