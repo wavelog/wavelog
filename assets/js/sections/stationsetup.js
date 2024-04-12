@@ -74,6 +74,9 @@ $(document).ready(function () {
 	$(document).on('click', '.publicSearchCheckbox', async function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
 		togglePublicSearch(e.currentTarget.id, this);
 	});
+	$(document).on('click', '.editExportmapOptions', async function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
+		editExportmapDialog(e.currentTarget.id);
+	});
 
 	$("#station_logbooks_table").DataTable({
 		stateSave: true,
@@ -131,6 +134,74 @@ $(document).ready(function () {
 		});
 		return false;
 	}
+
+	function editExportmapDialog(id) {
+		$.ajax({
+			url: base_url + 'index.php/stationsetup/editExportmapOptions',
+			type: 'post',
+			data: {
+				id: id,
+			},
+			success: function (data) {
+				BootstrapDialog.show({
+					title: 'Edit Export Map options',
+					size: BootstrapDialog.SIZE_NORMAL,
+					cssClass: 'options',
+					id: "NewStationLogbookModal",
+					nl2br: false,
+					message: data,
+					onshown: function(dialog) {
+					},
+					buttons: [{
+						label: 'Save',
+						cssClass: 'btn-primary btn-sm saveExportmapOptions',
+						action: function (dialogItself) {
+							saveExportmapOptions();
+							dialogItself.close();
+						}
+					},
+					{
+						label: lang_admin_close,
+						cssClass: 'btn-sm',
+						id: 'closeButton',
+						action: function (dialogItself) {
+							dialogItself.close();
+						}
+					}],
+				});
+			},
+			error: function (data) {
+
+			},
+		});
+		return false;
+	}
+
+	function saveExportmapOptions() {
+		$('#saveButton').prop("disabled", true);
+		$('#closeButton').prop("disabled", true);
+		$.ajax({
+			url: base_url + 'index.php/stationsetup/saveExportmapOptions',
+			type: 'post',
+			data: {
+				gridsquare_layer: $('input[name="gridsquare_layer"]').is(':checked') ? true : false,
+				path_lines: $('input[name="path_lines"]').is(':checked') ? true : false,
+				cqzone_layer: $('input[name="cqzone_layer"]').is(':checked') ? true : false,
+				nightshadow_layer: $('input[name="nightshadow_layer"]').is(':checked') ? true : false,
+				qsocount: $('#qsocount').val(),
+				band: $('#band').val(),
+				id: $('#logbookid').val(),
+			},
+			success: function(data) {
+				$('#saveButton').prop("disabled", false);
+				$('#closeButton').prop("disabled", false);
+			},
+			error: function() {
+				$('#saveButton').prop("disabled", false);
+			},
+		});
+	}
+
 
 	function editContainerDialog(e) {
 		$.ajax({
