@@ -420,6 +420,9 @@ class Visitor extends CI_Controller {
 	}
 
 	public function exportmap() {
+		$slug = $this->security->xss_clean($this->uri->segment(3));
+        $data['slug'] = $slug;
+
 		$data['page_title'] = "Export Map";
 		$this->load->view('visitor/exportmap/header', $data);
 		$this->load->view('visitor/exportmap/exportmap', $data);
@@ -431,13 +434,13 @@ class Visitor extends CI_Controller {
 
 		$this->load->library('qra');
 
-        $slug = $this->security->xss_clean($this->input->get('slug'));
-		$qsocount = $this->security->xss_clean($this->input->get('qsocount')) == '' ? '100' : $this->security->xss_clean($this->input->get('qsocount'));
-		$band = $this->security->xss_clean($this->input->get('band'));
+        $slug = $this->security->xss_clean($this->input->post('slug'));
+		$qsocount = $this->security->xss_clean($this->input->post('qsocount')) == '' ? '100' : $this->security->xss_clean($this->input->post('qsocount'));
+		$band = $this->security->xss_clean($this->input->post('band'));
 
 		$this->load->model('stationsetup_model');
         $logbook_id = $this->stationsetup_model->public_slug_exists_logbook_id($slug);
-        if($logbook_id != false)
+        if ($logbook_id != false)
         {
             // Get associated station locations for mysql queries
             $logbooks_locations_array = $this->stationsetup_model->get_container_relations($logbook_id);
@@ -522,6 +525,12 @@ class Visitor extends CI_Controller {
 			if ($options->option_name=='icon') $jsonout[$options->option_key]=json_decode($options->option_value,true);
 				else $jsonout[$options->option_name.'_'.$options->option_key]=$options->option_value;
 		}
+		$jsonout['gridsquare_layer'] = $this->user_options_model->get_options('ExportMapOptions',array('option_name'=>'gridsquare_layer','option_key'=>$slug), $userid)->row()->option_value ?? true;
+		$jsonout['path_lines'] = $this->user_options_model->get_options('ExportMapOptions',array('option_name'=>'path_lines','option_key'=>$slug), $userid)->row()->option_value ?? true;
+		$jsonout['cqzone_layer'] = $this->user_options_model->get_options('ExportMapOptions',array('option_name'=>'cqzone_layer','option_key'=>$slug), $userid)->row()->option_value ?? true;
+		$jsonout['qsocount'] = $this->user_options_model->get_options('ExportMapOptions',array('option_name'=>'qsocount','option_key'=>$slug), $userid)->row()->option_value ?? 250;
+		$jsonout['nightshadow_layer'] = $this->user_options_model->get_options('ExportMapOptions',array('option_name'=>'nightshadow_layer','option_key'=>$slug), $userid)->row()->option_value ?? true;
+
 		header('Content-Type: application/json');
 		echo json_encode($jsonout);
 	}

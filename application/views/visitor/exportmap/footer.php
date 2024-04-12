@@ -26,6 +26,7 @@
 	<script type="text/javascript" src="<?php echo base_url();?>assets/js/sections/exportmap.js"></script>
 	<script type="text/javascript" src="<?php echo base_url();?>assets/js/sections/cqmap_geojson.js"></script>
 	<script type="text/javascript" src="<?php echo base_url();?>assets/js/leaflet/leaflet.geodesic.js"></script>
+	<script type="text/javascript" src="<?php echo base_url();?>assets/js/leaflet/L.Terminator.js"></script>
 
 	</body>
 </html>

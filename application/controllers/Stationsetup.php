@@ -279,6 +279,7 @@ class Stationsetup extends CI_Controller {
 		if($public_slug != '') {
 			$htmret .= '<a target="_blank" href="'.site_url('visitor')."/".$public_slug.'" class="btn btn-outline-primary btn-sm"><i class="fas fa-globe" title="'.lang('station_logbooks_view_public') . $logbook_name.'"></i></a>';
 			$htmret .= ' <button id="' . $id . '" class="deletePublicSlug btn btn-outline-danger btn-sm" cnftext="Are you sure you want to delete the public slug?"><i class="fas fa-trash-alt"></i></button>';
+			$htmret .= ' <button id="' . $id . '" class="editExportmapOptions btn btn-outline-primary btn-sm"><i class="fas fa-globe-europe"></i></button>';
 		}
 		return $htmret;
 	}
@@ -427,5 +428,37 @@ class Stationsetup extends CI_Controller {
 			$data['flashdata']='Error';
 		}
 		echo json_encode($data);
+	}
+
+	public function editExportmapOptions() {
+		$this->load->model('stationsetup_model');
+		$container = $this->stationsetup_model->getContainer(xss_clean($this->input->post('id', true)))->row();
+		$slug = $container->public_slug;
+		$data['logbookid'] = xss_clean($this->input->post('id', true));
+
+		$exportmapoptions['gridsquare_layer'] = $this->user_options_model->get_options('ExportMapOptions',array('option_name'=>'gridsquare_layer','option_key'=>$slug))->row();
+		$exportmapoptions['path_lines'] = $this->user_options_model->get_options('ExportMapOptions',array('option_name'=>'path_lines','option_key'=>$slug))->row();
+		$exportmapoptions['cqzone_layer'] = $this->user_options_model->get_options('ExportMapOptions',array('option_name'=>'cqzone_layer','option_key'=>$slug))->row();
+		$exportmapoptions['qsocount'] = $this->user_options_model->get_options('ExportMapOptions',array('option_name'=>'qsocount','option_key'=>$slug))->row();
+		$exportmapoptions['nightshadow_layer'] = $this->user_options_model->get_options('ExportMapOptions',array('option_name'=>'nightshadow_layer','option_key'=>$slug))->row();
+
+		$data['exportmapoptions'] = $exportmapoptions;
+
+		$data['page_title'] = "Edit Export Map options";
+		$this->load->view('stationsetup/exportmapoptions', $data);
+	}
+
+	public function saveExportmapOptions() {
+		$this->load->model('stationsetup_model');
+		$container = $this->stationsetup_model->getContainer(xss_clean($this->input->post('id', true)))->row();
+		$slug = $container->public_slug;
+
+		$this->load->model('user_options_model');
+
+		$this->user_options_model->set_option('ExportMapOptions', 'gridsquare_layer',  array($slug => xss_clean($this->input->post('gridsquare_layer'))));
+		$this->user_options_model->set_option('ExportMapOptions', 'path_lines',  array($slug => xss_clean($this->input->post('path_lines'))));
+		$this->user_options_model->set_option('ExportMapOptions', 'cqzone_layer',  array($slug => xss_clean($this->input->post('cqzone_layer'))));
+		$this->user_options_model->set_option('ExportMapOptions', 'nightshadow_layer',  array($slug => xss_clean($this->input->post('nightshadow_layer'))));
+		$this->user_options_model->set_option('ExportMapOptions', 'qsocount',  array($slug => xss_clean($this->input->post('qsocount'))));
 	}
 }

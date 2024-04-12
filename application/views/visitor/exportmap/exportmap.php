@@ -1,3 +1,6 @@
+<script>
+var slug = '<?php echo $slug; ?>';
+</script>
 <style>
     #exportmap {
 	height: 100vh;

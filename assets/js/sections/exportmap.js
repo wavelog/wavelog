@@ -18,34 +18,17 @@ $(document).ready(function () {
 	mapQsos();
 });
 
-function mapQsos(form) {
-	const queryString = window.location.search;
-	const urlParams = new URLSearchParams(queryString);
-	const slug = urlParams.get('slug');
-	const qsocount = urlParams.get('qsocount');
-	const showgrid = urlParams.get('showgrid');
-	const showcq = urlParams.get('showcq');
-	const band = urlParams.get('band');
-	const showlines = urlParams.get('showlines');
+function mapQsos() {
+	// const queryString = window.location.search;
+	// const urlParams = new URLSearchParams(queryString);
+	// const slug = urlParams.get('slug');
+	// const qsocount = urlParams.get('qsocount');
+	// const showgrid = urlParams.get('showgrid');
+	// const showcq = urlParams.get('showcq');
+	// const band = urlParams.get('band');
+	// const showlines = urlParams.get('showlines');
+	let iconsList;
 
-	$.ajax({
-		url: base_url + 'index.php/visitor/mapqsos/',
-		type: 'get',
-		data: {
-			slug: slug,
-			qsocount: qsocount,
-			band: band
-		},
-		success: function(data) {
-
-			loadMapOptions(data, showgrid, showcq, showlines, slug);
-		},
-		error: function() {
-		},
-	});
-};
-
-function loadMapOptions(data, showgrid, showcq, showlines, slug) {
 	$.ajax({
 		url: base_url + 'index.php/visitor/get_map_custom',
 		type: 'POST',
@@ -59,12 +42,32 @@ function loadMapOptions(data, showgrid, showcq, showlines, slug) {
 			if (typeof json_mapinfo.qso !== "undefined") {
 				iconsList = json_mapinfo;
 			}
-			loadMap(data, showgrid, showcq, showlines, iconsList);
+			loadQsos(slug, iconsList);
 		}
+	});
+
+
+};
+
+function loadQsos(slug, iconsList) {
+	$.ajax({
+		url: base_url + 'index.php/visitor/mapqsos',
+		type: 'post',
+		data: {
+			slug: slug,
+			qsocount: iconsList.qsocount,
+			band: iconsList.band
+		},
+		success: function(data) {
+
+			loadMap(data, iconsList);
+		},
+		error: function() {
+		},
 	});
 }
 
-function loadMap(data, showgrid, showcq, showlines, iconsList) {
+function loadMap(data, iconsList) {
 	var osmUrl='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 	var osmAttrib='Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
 	// If map is already initialized
@@ -126,7 +129,7 @@ function loadMap(data, showgrid, showcq, showlines, iconsList) {
 			linecolor = iconsList.qso.color;
 		}
 
-		if (showlines === "true") {
+		if (iconsList.path_lines === "true") {
 			const multiplelines = [];
 			multiplelines.push(
 				new L.LatLng(this.latlng1[0], this.latlng1[1]),
@@ -145,11 +148,15 @@ function loadMap(data, showgrid, showcq, showlines, iconsList) {
 		}
 	});
 
-	if (showgrid === "true") {
+	if (iconsList.gridsquare_layer === "true") {
 		maidenhead = L.maidenheadqrb().addTo(map);
 	}
 
-	if (showcq === "true") {
+	if (iconsList.nightshadow_layer === "true") {
+		nightlayer = L.terminator().addTo(map);
+	}
+
+	if (iconsList.cqzone_layer === "true") {
 		geojson = L.geoJson(zonestuff, {style: style}).addTo(map);
 		for (var i = 0; i < cqzonenames.length; i++) {
 
