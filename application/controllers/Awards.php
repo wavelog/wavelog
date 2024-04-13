@@ -1413,8 +1413,8 @@ class Awards extends CI_Controller {
         $postdata['SouthAmerica'] = $this->input->post('SouthAmerica') == 0 ? NULL: 1;
         $postdata['Oceania'] = $this->input->post('Oceania') == 0 ? NULL: 1;
         $postdata['Antarctica'] = $this->input->post('Antarctica') == 0 ? NULL: 1;
-		$postdata['sat'] = $this->security->xss_clean($this->input->post('sat'));
-		$postdata['orbit'] = $this->security->xss_clean($this->input->post('orbit'));
+        $postdata['sat'] = $this->security->xss_clean($this->input->post('sat'));
+        $postdata['orbit'] = $this->security->xss_clean($this->input->post('orbit'));
 
         $dxcclist = $this->dxcc->fetchdxcc($postdata);
 

@@ -2,7 +2,6 @@ var osmUrl = $('#dxccmapjs').attr("tileUrl");
 
 $('#band2').change(function(){
    var band = $("#band2 option:selected").text();
-   console.log("TEST: "+band)
    if (band != "SAT") {
       $("#sats").val('All');
       $("#orbits").val('All');
@@ -37,7 +36,7 @@ function load_dxcc_map() {
             SouthAmerica: +$('#SouthAmerica').prop('checked'),
             Oceania: +$('#Oceania').prop('checked'),
             Antarctica: +$('#Antarctica').prop('checked'),
-			sat: $("#sats").val(),
+            sat: $("#sats").val(),
             orbit: $("#orbits").val(),
         },
         success: function(data) {
@@ -173,5 +172,5 @@ function addMarker(L, D, mapColor, map) {
 
 function onClick(e) {
     var marker = e.target;
-    displayContactsOnMap($("#dxccmap"),marker.options.adif, $('#band2').val(), $('#mode').val(), 'DXCC2');
+    displayContactsOnMap($("#dxccmap"),marker.options.adif, $('#band2').val(), $('#sats').val(), $('#orbits').val(), $('#mode').val(), 'DXCC2');
 }
