@@ -127,9 +127,11 @@
                 <label class="col-md-2 control-label" id="satslabel" for="distplot_sats"><?php echo lang('gridsquares_sat'); ?></label>
 				<div class="col-md-2">
                 <select class="form-select form-select-sm"  id="sats" name="sats">
-                    <option value="All"><?php echo lang('general_word_all')?></option>
+                    <option value="All" <?php if ($this->input->post('sats') == "All" || $this->input->method() !== 'post') echo ' selected'; ?>><?php echo lang('general_word_all')?></option>
                     <?php foreach($sats_available as $sat) {
-                        echo '<option value="' . $sat . '"' . '>' . $sat . '</option>'."\n";
+                        echo '<option value="' . $sat . '"';
+						if ($this->input->post('sats') == $sat) echo ' selected';
+						echo '>' . $sat . '</option>'."\n";
                     } ?>
                 </select>
 				</div>
@@ -141,10 +143,12 @@
                 <label class="col-md-2 control-label" id="orbitslabel" for="orbits"><?php echo lang('gridsquares_orbit'); ?></label>
 				<div class="col-md-2">
                 <select class="form-select form-select-sm"  id="orbits" name="orbits">
-                    <option value="All"><?php echo lang('general_word_all')?></option>
+                    <option value="All" <?php if ($this->input->post('orbits') == "All" || $this->input->method() !== 'post') echo ' selected'; ?>><?php echo lang('general_word_all')?></option>
                     <?php
                     foreach($orbits as $orbit){
-                        echo '<option value="' . $orbit . '">' . strtoupper($orbit) . '</option>'."\n";
+                        echo '<option value="' . $orbit . '"';
+						if ($this->input->post('orbits') == $orbit) echo ' selected';
+						echo '>' . strtoupper($orbit) . '</option>'."\n";
                     }
                     ?>
             </select>
