@@ -1,5 +1,19 @@
 var osmUrl = $('#dxccmapjs').attr("tileUrl");
 
+$('#band2').change(function(){
+   var band = $("#band2 option:selected").text();
+   console.log("TEST: "+band)
+   if (band != "SAT") {
+      $("#sats").val('All');
+      $("#orbits").val('All');
+      $("#satrow").hide();
+      $("#orbitrow").hide();
+   } else {
+      $("#satrow").show();
+      $("#orbitrow").show();
+   }
+});
+
 function load_dxcc_map() {
     $('.nav-tabs a[href="#dxccmaptab"]').tab('show');
     $.ajax({
