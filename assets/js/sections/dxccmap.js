@@ -23,12 +23,14 @@ function load_dxcc_map() {
             SouthAmerica: +$('#SouthAmerica').prop('checked'),
             Oceania: +$('#Oceania').prop('checked'),
             Antarctica: +$('#Antarctica').prop('checked'),
+			sat: $("#sats").val(),
+            orbit: $("#orbits").val(),
         },
         success: function(data) {
             load_dxcc_map2(data, worked, confirmed, notworked);
         },
         error: function() {
-            
+
         },
     });
 }
@@ -67,7 +69,7 @@ function load_dxcc_map2(data, worked, confirmed, notworked) {
         var D = data[i];
         if (D['status'] != 'x') {
             var mapColor = 'red';
-    
+
             if (D['status'] == 'C') {
                 mapColor = 'green';
                 if (confirmed != '0') {
@@ -84,8 +86,8 @@ function load_dxcc_map2(data, worked, confirmed, notworked) {
                     notworkedcount--;
                 }
             }
-    
-            
+
+
         // Make a check here and hide what I don't want to show
             if (notworked != '0') {
                 if (mapColor == 'red') {
@@ -129,7 +131,7 @@ function addMarker(L, D, mapColor, map) {
     border-radius: 3rem 3rem 0;
     transform: rotate(45deg);
     border: 1px solid #FFFFFF`
-  
+
     const icon = L.divIcon({
         className: "my-custom-pin",
         iconAnchor: [0, 24],
