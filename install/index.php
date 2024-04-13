@@ -281,7 +281,7 @@ global $wavelog_url;
 													<?php
 													$maxUploadFileSize = ini_get('upload_max_filesize');
 													$maxUploadFileSizeBytes = (int)($maxUploadFileSize) * (1024 * 1024); // convert to bytes
-													if ($maxUploadFileSizeBytes > ($max_upload_file_size * 1024 * 1024)) { // compare with given value in bytes
+													if ($maxUploadFileSizeBytes >= ($max_upload_file_size * 1024 * 1024)) { // compare with given value in bytes
 													?>
 														<span class="badge text-bg-success"><?php echo $maxUploadFileSize; ?></span>
 													<?php } else {
@@ -300,7 +300,7 @@ global $wavelog_url;
 													<?php
 													$maxUploadFileSize = ini_get('post_max_size');
 													$maxUploadFileSizeBytes = (int)($maxUploadFileSize) * (1024 * 1024); // convert to bytes
-													if ($maxUploadFileSizeBytes > ($post_max_size * 1024 * 1024)) { // compare with given value in bytes
+													if ($maxUploadFileSizeBytes >= ($post_max_size * 1024 * 1024)) { // compare with given value in bytes
 													?>
 														<span class="badge text-bg-success"><?php echo $maxUploadFileSize; ?></span>
 													<?php } else {
