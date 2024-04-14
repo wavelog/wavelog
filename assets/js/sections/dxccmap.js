@@ -13,6 +13,13 @@ $('#band2').change(function(){
    }
 });
 
+$('#sats').change(function(){
+   var sat = $("#sats option:selected").text();
+      $("#band2").val('SAT');
+   if (sat != "All") {
+   }
+});
+
 function load_dxcc_map() {
     $('.nav-tabs a[href="#dxccmaptab"]').tab('show');
     $.ajax({
