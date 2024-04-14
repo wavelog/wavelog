@@ -38,7 +38,7 @@ class DOK extends CI_Model {
 				$dokBand = $this->getDokConfirmed($location_list, $band, $postdata);
 				foreach ($dokBand as $line) {
 					if (array_key_exists($line->COL_DARC_DOK, $bandDok)) {   /* For now ignore DOKs which are logged but not existing in the official lists any more */
-						$bandDok[$line->COL_DARC_DOK][$band] = '<div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("' . $line->COL_DARC_DOK . '","' . $band . '","All","All"' . $postdata['mode'] . '","DOK", "'.$qsl.'")\'>C</a></div>';
+						$bandDok[$line->COL_DARC_DOK][$band] = '<div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("' . $line->COL_DARC_DOK . '","' . $band . '","All","All","' . $postdata['mode'] . '","DOK", "'.$qsl.'")\'>C</a></div>';
 						$doks[$line->COL_DARC_DOK]['count']++;
 					}
 				}
