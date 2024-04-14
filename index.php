@@ -54,7 +54,9 @@
  * NOTE: If you change these, also change the error_reporting() code below
  */
 	#define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
-	if (file_exists('.debug')) {
+	if (isset($_SERVER['CI_ENV'])) {
+		define('ENVIRONMENT', $_SERVER['CI_ENV']) {
+	elseif (file_exists('.debug')) {
 		define('ENVIRONMENT', 'development');
 	} else if (file_exists('.maintenance')) {
 		define('ENVIRONMENT', 'maintenance');
@@ -81,7 +83,7 @@ switch (ENVIRONMENT)
 		error_reporting(-1);
 		ini_set('display_errors', 1);
 	break;
-	
+
 	case 'production':
 		ini_set('display_errors', 0);
 		if (version_compare(PHP_VERSION, '5.3', '>='))

@@ -24,6 +24,9 @@ if (file_exists('config_unattended.php')) {
 
 // Config Paths
 $db_config_path = '../application/config/';
+if (isset($_SERVER['CI_ENV'])) {
+	$db_config_path ='../application/'.$_SERVER['CI_ENV'].'/';
+}
 $db_file_path = $db_config_path . "database.php";
 
 // if you need to disabled all button locks you can create a root_mode file in the /install directory
