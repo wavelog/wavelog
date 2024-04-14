@@ -319,13 +319,13 @@ function echo_table_col($row, $name) {
 			<tr>
 				<td width="50%"><?php echo lang('general_word_sent'); ?></td>
 				<td width="25%"><?php echo $total_qrz_sent; ?></td>
-				<td width="25%"><a href="javascript:displayContacts('','all','all','QRZSDATE','');"><?php echo $qrz_sent_today; ?></a></td>
+				<td width="25%"><a href="javascript:displayContacts('','all','all','All','All','QRZSDATE','');"><?php echo $qrz_sent_today; ?></a></td>
 			</tr>
 
 			<tr>
 				<td width="50%"><?php echo lang('general_word_received'); ?></td>
 				<td width="25%"><?php echo $total_qrz_rcvd; ?></td>
-				<td width="25%"><a href="javascript:displayContacts('','all','all','QRZRDATE','');"><?php echo $qrz_rcvd_today; ?></a></td>
+				<td width="25%"><a href="javascript:displayContacts('','all','all','All','All','QRZRDATE','');"><?php echo $qrz_rcvd_today; ?></a></td>
 			</tr>
 		</table>
 		<?php } ?>
