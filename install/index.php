@@ -6,6 +6,7 @@ This installer guides a user through the install process and all
 necessary parameters for the new Wavelog Installation.
 
 HB9HIL - January 2024
+DJ7NT - Docker Readiness - April 2024
 */
 
 // #########################################################
