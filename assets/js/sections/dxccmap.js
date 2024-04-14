@@ -2,7 +2,7 @@ var osmUrl = $('#dxccmapjs').attr("tileUrl");
 
 $('#band2').change(function(){
    var band = $("#band2 option:selected").text();
-   if (band != "SAT" && band != "Every band") {
+   if (band != "SAT") {
       $("#sats").val('All');
       $("#orbits").val('All');
       $("#satrow").hide();
