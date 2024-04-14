@@ -86,14 +86,14 @@ class WAJA extends CI_Model {
 			if ($postdata['worked'] != NULL) {
 				$wajaBand = $this->getWajaWorked($location_list, $band, $postdata);
 				foreach ($wajaBand as $line) {
-					$bandWaja[$line->col_state][$band] = '<div class="bg-danger awardsBgDanger"><a href=\'javascript:displayContacts("' . $line->col_state . '","' . $band . '","'. $postdata['mode'] . '","WAJA", "")\'>W</a></div>';
+					$bandWaja[$line->col_state][$band] = '<div class="bg-danger awardsBgDanger"><a href=\'javascript:displayContacts("' . $line->col_state . '","' . $band . '","All","All","'. $postdata['mode'] . '","WAJA", "")\'>W</a></div>';
 					$prefectures[$line->col_state]['count']++;
 				}
 			}
 			if ($postdata['confirmed'] != NULL) {
 				$wajaBand = $this->getWajaConfirmed($location_list, $band, $postdata);
 				foreach ($wajaBand as $line) {
-					$bandWaja[$line->col_state][$band] = '<div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("' . $line->col_state . '","' . $band . '","'. $postdata['mode'] . '","WAJA", "'.$qsl.'")\'>C</a></div>';
+					$bandWaja[$line->col_state][$band] = '<div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("' . $line->col_state . '","' . $band . '","All","All","'. $postdata['mode'] . '","WAJA", "'.$qsl.'")\'>C</a></div>';
 					$prefectures[$line->col_state]['count']++;
 				}
 			}

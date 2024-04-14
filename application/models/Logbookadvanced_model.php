@@ -59,6 +59,10 @@ class Logbookadvanced_model extends CI_Model {
 				}
 			}
 		}
+		if ($searchCriteria['orbits'] !== 'All' && $searchCriteria['orbits'] !== '') {
+			$conditions[] = "orbit = ?";
+			$binding[] = $searchCriteria['orbits'];
+		}
 		if ($searchCriteria['qslSent'] !== '') {
 			$condition = "COL_QSL_SENT = ?";
 			if ($searchCriteria['qslSent'] == 'N') {
@@ -216,6 +220,7 @@ class Logbookadvanced_model extends CI_Model {
 			SELECT *
 			FROM " . $this->config->item('table_name') . " qsos
 			INNER JOIN station_profile ON qsos.station_id=station_profile.station_id
+			LEFT OUTER JOIN satellite ON qsos.COL_SAT_NAME = satellite.name
 			LEFT OUTER JOIN dxcc_entities ON qsos.col_dxcc=dxcc_entities.adif
 			LEFT OUTER JOIN lotw_users ON qsos.col_call=lotw_users.callsign
 			LEFT OUTER JOIN (

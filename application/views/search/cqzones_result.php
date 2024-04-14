@@ -1,7 +1,7 @@
 <?php
 if ($qsos->result() != NULL) {
 	Echo 'The following QSOs were found to have an incorrect CQ zone that this DXCC normally has:';
-	echo '<table style="width:100%" class="qsolist table-sm table-bordered table-hover table-striped table-condensed">
+	echo '<table style="width:100%" class="qsolist table table-sm table-bordered table-hover table-striped table-condensed">
 	<thead>
 	<tr>
 	<th style=\'text-align: center\'>Date</th>
@@ -35,7 +35,7 @@ if ($qsos->result() != NULL) {
 		echo '<td style=\'text-align: center\'><a id="edit_qso" href="javascript:displayQso(' . $qso->COL_PRIMARY_KEY . ')">' . str_replace("0","&Oslash;",strtoupper($qso->COL_CALL)) . '</a></td>';
 		echo '<td style=\'text-align: center\'>'; echo $qso->COL_SUBMODE==null?$qso->COL_MODE:$qso->COL_SUBMODE; echo '</td>';
 		echo '<td style=\'text-align: center\'>'; if($qso->COL_SAT_NAME != null) { echo $qso->COL_SAT_NAME; } else { echo strtolower($qso->COL_BAND); }; echo '</td>';
-		echo '<td style=\'text-align: center\'>'; echo strlen($qso->COL_GRIDSQUARE)==0?$qso->COL_VUCC_GRIDS:$qso->COL_GRIDSQUARE; echo '</td>';
+		echo '<td style=\'text-align: center\'>'; echo strlen($qso->COL_GRIDSQUARE ?? '')==0?$qso->COL_VUCC_GRIDS:$qso->COL_GRIDSQUARE; echo '</td>';
 		echo '<td style=\'text-align: center\'>' . $qso->COL_CQZ . '</td>';
 		echo '<td style=\'text-align: center\'>' . $qso->correctcqzone . '</td>';
 		echo '<td style=\'text-align: center\'>' . ucwords(strtolower($qso->COL_COUNTRY), "- (/") . '</td>';

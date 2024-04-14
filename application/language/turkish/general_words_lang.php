@@ -45,6 +45,7 @@ $lang['general_word_location'] = 'Konum';
 $lang['general_word_comment'] = 'Yorum';
 $lang['general_word_general'] = 'Genel';
 $lang['general_word_satellite'] = 'Uydu';
+$lang['general_word_orbit'] = 'Orbit';
 $lang['general_word_satellite_short'] = 'Uydu';
 $lang['general_word_notes'] = 'Notlar';
 $lang['general_word_country'] = 'Ülke';

@@ -41,27 +41,27 @@ class Core
 		// Validate First Name
 		if (isset($_POST['firstname']) && !empty($_POST['firstname'])) {
 			$counter++;
-		} 
+		}
 
 		// Validate Last Name
 		if (isset($_POST['lastname']) && !empty($_POST['lastname'])) {
 			$counter++;
-		} 
+		}
 
 		// Validate Username
 		if (isset($_POST['username']) && !empty($_POST['username'])) {
 			$counter++;
-		} 
+		}
 
 		// Validate Callsign
 		if (isset($_POST['callsign']) && !empty($_POST['callsign'])) {
 			$counter++;
-		} 
+		}
 
 		// Validate Password
 		if (isset($_POST['password']) && !empty($_POST['password'])) {
 			$counter++;
-		} 
+		}
 
 		// Validate Locator
 		if (isset($_POST['userlocator']) && !empty($_POST['userlocator'])) {
@@ -78,7 +78,7 @@ class Core
 		// Validate Confirm Password
 		if (isset($_POST['cnfm_password']) && !empty($_POST['cnfm_password'])) {
 			$counter++;
-		} 
+		}
 
 		// Validate Email Address
 		if (isset($_POST['user_email']) && filter_var($_POST['user_email'], FILTER_VALIDATE_EMAIL)) {
@@ -90,7 +90,7 @@ class Core
 		// Validate Timezone
 		if (isset($_POST['timezone']) && is_numeric($_POST['timezone'])) {
 			$counter++;
-		} 
+		}
 
 		// Check if all the required fields have been entered
 		if ($counter == '13') {
@@ -107,12 +107,13 @@ class Core
 	}
 
 	// Function to write the config file
-	function write_config($data)
-	{
+	function write_config($data) {
 
-		// Config path
 		$template_path 	= 'config/database.php';
 		$output_path 	= $_SERVER['DOCUMENT_ROOT'] . '/' . $data['directory'] . '/application/config/database.php';
+		if (isset($_ENV['CI_ENV'])) {
+			$output_path 	= $_SERVER['DOCUMENT_ROOT'] . '/' . $data['directory'] . '/application/config/'.$_ENV['CI_ENV'].'/database.php';
+		}
 
 		// Open the file
 		$database_file = file_get_contents($template_path);
@@ -147,12 +148,13 @@ class Core
 	}
 
 	// Function to write the config file
-	function write_configfile($data)
-	{
+	function write_configfile($data) {
 
-		// Config path
 		$template_path 	= 'config/config.php';
 		$output_path 	= $_SERVER['DOCUMENT_ROOT'] . '/' . $data['directory'] . '/application/config/config.php';
+		if (isset($_ENV['CI_ENV'])) {
+			$output_path 	= $_SERVER['DOCUMENT_ROOT'] . '/' . $data['directory'] . '/application/config/'.$_ENV['CI_ENV'].'/config.php';
+		}
 
 		// Open the file
 		$database_file = file_get_contents($template_path);

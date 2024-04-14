@@ -22,12 +22,16 @@
                     <option value="sat">SAT</option>
                 <?php } ?>
                 <?php foreach($bands_available as $band) {
-                    echo '<option value="' . $band . '"' . '>' . $band . '</option>'."\n";
+                    echo '<option value="'.$band.'"';
+                    if ($user_default_band == $band) {
+                        echo ' selected="selected"';
+                    }
+                    echo '>'.$band.'</option>'."\n";
                 } ?>
             </select>
             <?php if (count($sats_available) != 0) { ?>
-                <label class="my-1 me-2" for="distplot_sats"><?php echo lang('general_word_satellite')?></label>
-                <select class="form-select my-1 me-sm-2 w-auto"  id="distplot_sats">
+                <label class="my-1 me-2" id="satslabel" for="distplot_sats" <?php if ($user_default_band != "SAT") { ?>style="display: none;"<?php } ?>><?php echo lang('general_word_satellite')?></label>
+                <select class="form-select my-1 me-sm-2 w-auto"  id="distplot_sats" <?php if ($user_default_band != "SAT") { ?>style="display: none;"<?php } ?>>
                     <option value="All"><?php echo lang('general_word_all')?></option>
                     <?php foreach($sats_available as $sat) {
                         echo '<option value="' . $sat . '"' . '>' . $sat . '</option>'."\n";
@@ -36,7 +40,16 @@
             <?php } else { ?>
                 <input id="distplot_sats" type="hidden" value="All"></input>
             <?php } ?>
-            <button id="plot" type="button" name="plot" class="btn btn-primary" onclick="distPlot(this.form)"><?php echo lang('filter_options_show')?></button>
+			<label class="my-1 me-2" id="orbitslabel" for="orbits" <?php if ($user_default_band != "SAT") { ?>style="display: none;"<?php } ?>><?php echo lang('gridsquares_orbit'); ?></label>
+                <select class="form-select my-1 me-sm-2 w-auto"  id="orbits" <?php if ($user_default_band != "SAT") { ?>style="display: none;"<?php } ?>>
+                    <option value="All"><?php echo lang('general_word_all')?></option>
+                    <?php
+                    foreach($orbits as $orbit){
+                        echo '<option value="' . $orbit . '">' . strtoupper($orbit) . '</option>'."\n";
+                    }
+                    ?>
+            </select>
+            <button id="plot" type="button" name="plot" class="btn btn-primary ld-ext-right ld-ext-right-plot" onclick="distPlot(this.form)"><?php echo lang('filter_options_show')?><div class="ld ld-ring ld-spin"></div></button>
         </form>
     </div>
 

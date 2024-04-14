@@ -45,6 +45,7 @@ $lang['general_word_location'] = '位置';
 $lang['general_word_comment'] = '备注';
 $lang['general_word_general'] = '通用';
 $lang['general_word_satellite'] = '卫星';
+$lang['general_word_orbit'] = 'Orbit';
 $lang['general_word_satellite_short'] = '卫星';
 $lang['general_word_notes'] = '笔记';
 $lang['general_word_country'] = 'DXCC 实体';

@@ -45,6 +45,7 @@ $lang['general_word_location'] = 'Sijainti';
 $lang['general_word_comment'] = 'Kommentti';
 $lang['general_word_general'] = 'Yleinen';
 $lang['general_word_satellite'] = 'Satelliitti';
+$lang['general_word_orbit'] = 'Orbit';
 $lang['general_word_satellite_short'] = 'Sat';
 $lang['general_word_notes'] = 'Muistiinpanot';
 $lang['general_word_country'] = 'Maa';

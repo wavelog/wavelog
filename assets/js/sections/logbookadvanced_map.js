@@ -461,7 +461,11 @@ function loadMap(data, iconsList) {
 		'<tr>';
 		if (qso.satname != "") {
 			table += '<td>Band</td>' +
-			'<td>' + qso.satname + '</td>' +
+			'<td>SAT ' + qso.satname
+			if (qso.orbit != "") {
+				table += ' (' + qso.orbit + ') '
+			}
+			table += '</td>' +
 			'</tr>' +
 			'<tr>';
 		} else {
@@ -567,6 +571,7 @@ function loadMap(data, iconsList) {
 					state: form.state.value,
 					qsoresults: form.qsoResults.value,
 					sats: form.sats.value,
+					orbits: form.orbits.value,
 					cqzone: form.cqzone.value,
 					lotwSent: form.lotwSent.value,
 					lotwReceived: form.lotwReceived.value,
@@ -653,6 +658,7 @@ function loadMap(data, iconsList) {
 					state: form.state.value,
 					qsoresults: form.qsoResults.value,
 					sats: form.sats.value,
+					orbits: form.orbits.value,
 					cqzone: form.cqzone.value,
 					lotwSent: form.lotwSent.value,
 					lotwReceived: form.lotwReceived.value,
