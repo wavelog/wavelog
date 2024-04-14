@@ -115,8 +115,6 @@ function echo_table_col($row, $name) {
   <div class="col-sm-4">
   	<div class="table-responsive">
 
-	  	<div id="radio_display" hx-get="<?php echo site_url('visitor/radio_display_component'); ?>" hx-trigger="load, every 5s"></div>
-
 
     	<table class="table table-striped">
 			<tr class="titles">

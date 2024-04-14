@@ -78,7 +78,7 @@
 		<ul class="navbar-nav ms-auto">
 			<?php if($this->optionslib->get_option('public_github_button') != "false") { ?>  <!--  != false  causes to set it on per default -->
 				<li class="nav-item">
-					<a class="btn btn-secondary" href="https://github.com/wavelog/wavelog">Visit Wavelog on Github</a>
+					<a class="btn btn-secondary" href="https://github.com/wavelog/wavelog" target="_blank">Visit Wavelog on Github</a>
 				</li>
 			<?php } ?>
 			<?php if ($this->uri->segment(1) != "oqrs") { ?>
