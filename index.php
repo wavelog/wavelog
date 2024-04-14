@@ -54,8 +54,8 @@
  * NOTE: If you change these, also change the error_reporting() code below
  */
 	#define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
-	if (isset($_SERVER['CI_ENV'])) {
-		define('ENVIRONMENT', $_SERVER['CI_ENV']);
+	if (isset($_ENV['CI_ENV'])) {
+		define('ENVIRONMENT', $_ENV['CI_ENV']);
 	} else if (file_exists('.debug')) {
 		define('ENVIRONMENT', 'development');
 	} else if (file_exists('.maintenance')) {
