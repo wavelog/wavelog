@@ -409,6 +409,16 @@ class Visitor extends CI_Controller {
 
 	public function exportmap() {
 		$slug = $this->security->xss_clean($this->uri->segment(3));
+		$lastqso = $this->security->xss_clean($this->uri->segment(4));
+
+		if ($lastqso === "lastqso") {
+			$this->load->model('visitor_model');
+			$result = $this->visitor_model->getlastqsodate($slug)->row();
+			header('Content-Type: application/json');
+			echo json_encode($result->lastqso);
+			return;
+		}
+
         $data['slug'] = $slug;
 
 		$data['page_title'] = "Export Map";
@@ -418,7 +428,7 @@ class Visitor extends CI_Controller {
 	}
 
 	public function mapqsos() {
-		$this->load->model('logbook_model');
+		$this->load->model('visitor_model');
 
 		$this->load->library('qra');
 
@@ -441,7 +451,7 @@ class Visitor extends CI_Controller {
             show_404('Unknown Public Page.');
         }
 
-		$qsos = $this->logbook_model->get_qsos($qsocount, null, $logbooks_locations_array, $band);
+		$qsos = $this->visitor_model->get_qsos($qsocount, $logbooks_locations_array, $band);
 		$userid = $this->stationsetup_model->public_slug_exists_userid($slug);
 		$user_default_confirmation = $this->get_user_default_confirmation($userid);
 
