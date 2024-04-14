@@ -55,7 +55,7 @@
  */
 	#define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
 	if (isset($_SERVER['CI_ENV'])) {
-		define('ENVIRONMENT', $_SERVER['CI_ENV']) {
+		define('ENVIRONMENT', $_SERVER['CI_ENV']);
 	} else if (file_exists('.debug')) {
 		define('ENVIRONMENT', 'development');
 	} else if (file_exists('.maintenance')) {
