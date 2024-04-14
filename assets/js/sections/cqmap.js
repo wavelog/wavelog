@@ -215,7 +215,7 @@ function style(feature) {
 
 function onClick(e) {
     var marker = e.target;
-    displayContactsOnMap($("#cqmap"),marker.options.title, $('#band2').val(), $('#mode').val(), 'CQZone');
+    displayContactsOnMap($("#cqmap"),marker.options.title, $('#band2').val(), 'All', 'All', $('#mode').val(), 'CQZone');
 }
 
 function onClick2(e) {
