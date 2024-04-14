@@ -6,6 +6,7 @@ This installer guides a user through the install process and all
 necessary parameters for the new Wavelog Installation.
 
 HB9HIL - January 2024
+DJ7NT - Docker Readiness - April 2024
 */
 
 // #########################################################
@@ -24,6 +25,9 @@ if (file_exists('config_unattended.php')) {
 
 // Config Paths
 $db_config_path = '../application/config/';
+if (isset($_ENV['CI_ENV'])) {
+	$db_config_path ='../application/config/'.$_ENV['CI_ENV'].'/';
+}
 $db_file_path = $db_config_path . "database.php";
 
 // if you need to disabled all button locks you can create a root_mode file in the /install directory
@@ -112,11 +116,11 @@ if ($_POST) {
 			} elseif ($database->create_tables($_POST) == false) {
 				$message = $core->show_message('error', "The database tables could not be created, please verify your settings.");
 			} elseif ($core->write_config($_POST) == false) {
-				$message = $core->show_message('error', "The database configuration file could not be written, please chmod /application/config/database.php file to 777");
+				$message = $core->show_message('error', "The database configuration file could not be written, please chmod ".$db_config_path."/database.php file to 777");
 			}
 
 			if ($core->write_configfile($_POST) == false) {
-				$message = $core->show_message('error', "The config configuration file could not be written, please chmod /application/config/config.php file to 777");
+				$message = $core->show_message('error', "The config configuration file could not be written, please chmod ".$db_config_path."/config.php file to 777");
 			}
 
 			// If no errors, redirect to registration page
@@ -1455,7 +1459,7 @@ global $wavelog_url;
 	<body>
 		<div class="container mt-4 p-2" style="max-width: 600px; ">
 			<div class="card p-2 justify-content-center" style="min-height: 200px; margin-top: 200px;">
-				<p class="error text-center">Please make the /application/config/ folder writable. <strong>Example</strong>:<br /><br /><code>chmod -R 777 application/config/</code><br /><br /><i>Don't forget to restore the permissions afterwards.</i></p>
+				<p class="error text-center">Please make the <?php echo $db_config_path; ?> folder writable. <strong>Example</strong>:<br /><br /><code>chmod -R 777 <?php echo $db_config_path; ?></code><br /><br /><i>Don't forget to restore the permissions afterwards.</i></p>
 			</div>
 		</div>
 	</body>
