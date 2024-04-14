@@ -29,7 +29,7 @@ class IOTA extends CI_Model {
             if ($postdata['worked'] != NULL) {
                 $workedIota = $this->getIotaBandWorked($location_list, $band, $postdata);
                 foreach ($workedIota as $wiota) {
-                    $iotaMatrix[$wiota->tag][$band] = '<div class="bg-danger awardsBgDanger"><a href=\'javascript:displayContacts("'.$wiota->tag.'","'. $band . '","'. $postdata['mode'] . '","IOTA")\'>W</a></div>';
+                    $iotaMatrix[$wiota->tag][$band] = '<div class="bg-danger awardsBgDanger"><a href=\'javascript:displayContacts("'.$wiota->tag.'","'. $band . '","All","All","'. $postdata['mode'] . '","IOTA")\'>W</a></div>';
                 }
             }
 
@@ -37,7 +37,7 @@ class IOTA extends CI_Model {
             if ($postdata['confirmed'] != NULL) {
                 $confirmedIota = $this->getIotaBandConfirmed($location_list, $band, $postdata);
                 foreach ($confirmedIota as $ciota) {
-                    $iotaMatrix[$ciota->tag][$band] = '<div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("'.$ciota->tag.'","'. $band . '","'. $postdata['mode'] . '","IOTA")\'>C</a></div>';
+                    $iotaMatrix[$ciota->tag][$band] = '<div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("'.$ciota->tag.'","'. $band . '","All","All","'. $postdata['mode'] . '","IOTA")\'>C</a></div>';
                 }
             }
         }

@@ -335,7 +335,7 @@ function onClick(e) {
   zoomToFeature(e);
   var marker = e.target;
   var res =  marker.feature.id.substring(3, 5);
-  displayContactsOnMap($("#wasmap"), res, $('#band2').val(), $('#mode').val(), 'WAS');
+  displayContactsOnMap($("#wasmap"), res, $('#band2').val(), 'All', 'All', $('#mode').val(), 'WAS');
 }
 
 function onClick2(e) {

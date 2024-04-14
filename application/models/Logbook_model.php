@@ -396,15 +396,31 @@ class Logbook_model extends CI_Model {
 		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
 		$this->db->join('dxcc_entities', 'dxcc_entities.adif = '.$this->config->item('table_name').'.COL_DXCC', 'left outer');
 		$this->db->join('lotw_users', 'lotw_users.callsign = '.$this->config->item('table_name').'.col_call', 'left outer');
-		if ($band == 'SAT' && $type == 'VUCC') {
+		if ($band == 'SAT' && ($type == 'VUCC' || $type == 'DXCC' || $type == 'DXCC2')) {
 			$this->db->join('satellite', 'satellite.name = '.$this->config->item('table_name').'.col_sat_name', 'left outer');
 		}
 		switch ($type) {
 		case 'DXCC':
 			$this->db->where('COL_COUNTRY', $searchphrase);
+			if ($band == 'SAT' && $type == 'DXCC') {
+				if ($sat != 'All' && $sat != null) {
+					$this->db->where("COL_SAT_NAME = '$sat'");
+				}
+				if ($orbit != 'All' && $orbit != null) {
+					$this->db->where("satellite.orbit = '$orbit'");
+				}
+			}
 			break;
 		case 'DXCC2':
 			$this->db->where('COL_DXCC', $searchphrase);
+			if ($band == 'SAT' && $type == 'DXCC2') {
+				if ($sat != 'All' && $sat != null) {
+					$this->db->where("COL_SAT_NAME = '$sat'");
+				}
+				if ($orbit != 'All' && $orbit != null) {
+					$this->db->where("satellite.orbit = '$orbit'");
+				}
+			}
 			break;
 		case 'IOTA':
 			$this->db->where('COL_IOTA', $searchphrase);

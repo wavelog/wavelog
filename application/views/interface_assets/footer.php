@@ -2239,13 +2239,15 @@ function viewEqsl(picture, callsign) {
   /*
    * Used to fetch QSOs from the logbook in the awards
    */
-    function displayContacts(searchphrase, band, mode, type, qsl) {
+    function displayContacts(searchphrase, band, sat, orbit, mode, type, qsl) {
         $.ajax({
             url: base_url + 'index.php/awards/qso_details_ajax',
             type: 'post',
             data: {
                 'Searchphrase': searchphrase,
                 'Band': band,
+                'Sat': sat,
+                'Orbit': orbit,
                 'Mode': mode,
                 'Type': type,
                 'QSL' : qsl
@@ -2290,13 +2292,15 @@ function viewEqsl(picture, callsign) {
         });
     }
 
-    function displayContactsOnMap(target, searchphrase, band, mode, type, qsl) {
+    function displayContactsOnMap(target, searchphrase, band, sat, orbit, mode, type, qsl) {
 	    $.ajax({
 	    url: base_url + 'index.php/awards/qso_details_ajax',
 		    type: 'post',
 		    data: {
 		    'Searchphrase': searchphrase,
 			    'Band': band,
+			    'Sat': sat,
+			    'Orbit': orbit,
 			    'Mode': mode,
 			    'Type': type,
 			    'QSL' : qsl

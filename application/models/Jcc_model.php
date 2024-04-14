@@ -855,14 +855,14 @@ class Jcc_model extends CI_Model {
 			if ($postdata['worked'] != NULL) {
 				$jccBand = $this->getJccWorked($location_list, $band, $postdata);
 				foreach ($jccBand as $line) {
-					$bandJcc[$line->col_cnty][$band] = '<div class="bg-danger awardsBgDanger"><a href=\'javascript:displayContacts("' . $line->col_cnty . '","' . $band . '","'. $postdata['mode'] . '","JCC", "")\'>W</a></div>';
+					$bandJcc[$line->col_cnty][$band] = '<div class="bg-danger awardsBgDanger"><a href=\'javascript:displayContacts("' . $line->col_cnty . '","' . $band . '","All","All","'. $postdata['mode'] . '","JCC", "")\'>W</a></div>';
 					$cities[$line->col_cnty]['count']++;
 				}
 			}
 			if ($postdata['confirmed'] != NULL) {
 				$jccBand = $this->getJccConfirmed($location_list, $band, $postdata);
 				foreach ($jccBand as $line) {
-					$bandJcc[$line->col_cnty][$band] = '<div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("' . $line->col_cnty . '","' . $band . '","'. $postdata['mode'] . '","JCC", "'.$qsl.'")\'>C</a></div>';
+					$bandJcc[$line->col_cnty][$band] = '<div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("' . $line->col_cnty . '","' . $band . '","All","All","'. $postdata['mode'] . '","JCC", "'.$qsl.'")\'>C</a></div>';
 					$cities[$line->col_cnty]['count']++;
 				}
 			}

@@ -103,6 +103,10 @@ class Awards extends CI_Controller {
 		$this->load->model('modes');
 		$this->load->model('bands');
 
+		$data['orbits'] = $this->bands->get_worked_orbits();
+		$data['sats_available'] = $this->bands->get_worked_sats();
+		$data['user_default_band'] = $this->session->userdata('user_default_band');
+
 		$data['worked_bands'] = $this->bands->get_worked_bands('dxcc'); // Used in the view for band select
 		$data['modes'] = $this->modes->active(); // Used in the view for mode select
 
@@ -138,6 +142,8 @@ class Awards extends CI_Controller {
 			$postdata['Antarctica'] = $this->security->xss_clean($this->input->post('Antarctica'));
 			$postdata['band'] = $this->security->xss_clean($this->input->post('band'));
 			$postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
+			$postdata['sat'] = $this->security->xss_clean($this->input->post('sats'));
+			$postdata['orbit'] = $this->security->xss_clean($this->input->post('orbits'));
 		}
 		else { // Setting default values at first load of page
 			$postdata['qsl'] = 1;
@@ -157,6 +163,8 @@ class Awards extends CI_Controller {
 			$postdata['Antarctica'] = 1;
 			$postdata['band'] = 'All';
 			$postdata['mode'] = 'All';
+			$postdata['sat'] = 'All';
+			$postdata['orbit'] = 'All';
 		}
 
 		$dxcclist = $this->dxcc->fetchdxcc($postdata);
@@ -1405,6 +1413,8 @@ class Awards extends CI_Controller {
         $postdata['SouthAmerica'] = $this->input->post('SouthAmerica') == 0 ? NULL: 1;
         $postdata['Oceania'] = $this->input->post('Oceania') == 0 ? NULL: 1;
         $postdata['Antarctica'] = $this->input->post('Antarctica') == 0 ? NULL: 1;
+        $postdata['sat'] = $this->security->xss_clean($this->input->post('sat'));
+        $postdata['orbit'] = $this->security->xss_clean($this->input->post('orbit'));
 
         $dxcclist = $this->dxcc->fetchdxcc($postdata);
 
