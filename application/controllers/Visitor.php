@@ -415,7 +415,7 @@ class Visitor extends CI_Controller {
 			$this->load->model('visitor_model');
 			$result = $this->visitor_model->getlastqsodate($slug)->row();
 			header('Content-Type: application/json');
-			echo json_encode($result->lastqso);
+			echo json_encode($result);
 			return;
 		}
 
