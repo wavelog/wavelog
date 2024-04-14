@@ -25,7 +25,7 @@ if (file_exists('config_unattended.php')) {
 // Config Paths
 $db_config_path = '../application/config/';
 if (isset($_ENV['CI_ENV'])) {
-	$db_config_path ='../application/'.$_ENV['CI_ENV'].'/';
+	$db_config_path ='../application/config/'.$_ENV['CI_ENV'].'/';
 }
 $db_file_path = $db_config_path . "database.php";
 
@@ -1458,7 +1458,7 @@ global $wavelog_url;
 	<body>
 		<div class="container mt-4 p-2" style="max-width: 600px; ">
 			<div class="card p-2 justify-content-center" style="min-height: 200px; margin-top: 200px;">
-				<p class="error text-center">Please make the /application/config/ folder writable. <strong>Example</strong>:<br /><br /><code>chmod -R 777 <php echo $db_config_path ?></code><br /><br /><i>Don't forget to restore the permissions afterwards.</i></p>
+				<p class="error text-center">Please make the <?php echo $db_config_path; ?> folder writable. <strong>Example</strong>:<br /><br /><code>chmod -R 777 <?php echo $db_config_path; ?></code><br /><br /><i>Don't forget to restore the permissions afterwards.</i></p>
 			</div>
 		</div>
 	</body>
