@@ -112,8 +112,8 @@ class Core
 		$template_path 	= 'config/database.php';
 		$output_path 	= $_SERVER['DOCUMENT_ROOT'] . '/' . $data['directory'] . '/application/config/database.php';
 		if (isset($_ENV['CI_ENV'])) {
-			$template_path  = $_ENV['CI_ENV'].'/database.php';
-			$output_path 	= $_SERVER['DOCUMENT_ROOT'] . '/' . $data['directory'] . '/application/'.$_ENV['CI_ENV'].'/database.php';
+			$template_path  = 'config/'.$_ENV['CI_ENV'].'/database.php';
+			$output_path 	= $_SERVER['DOCUMENT_ROOT'] . '/' . $data['directory'] . '/application/config/'.$_ENV['CI_ENV'].'/database.php';
 		}
 
 		// Open the file
@@ -154,8 +154,8 @@ class Core
 		$template_path 	= 'config/config.php';
 		$output_path 	= $_SERVER['DOCUMENT_ROOT'] . '/' . $data['directory'] . '/application/config/config.php';
 		if (isset($_ENV['CI_ENV'])) {
-			$template_path  = $_ENV['CI_ENV'].'/config.php';
-			$output_path 	= $_SERVER['DOCUMENT_ROOT'] . '/' . $data['directory'] . '/application/'.$_ENV['CI_ENV'].'/config.php';
+			$template_path  = 'config/'.$_ENV['CI_ENV'].'/config.php';
+			$output_path 	= $_SERVER['DOCUMENT_ROOT'] . '/' . $data['directory'] . '/application/config/'.$_ENV['CI_ENV'].'/config.php';
 		}
 
 		// Open the file

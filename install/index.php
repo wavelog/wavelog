@@ -25,7 +25,7 @@ if (file_exists('config_unattended.php')) {
 // Config Paths
 $db_config_path = '../application/config/';
 if (isset($_ENV['CI_ENV'])) {
-	$db_config_path ='../application/'.$_ENV['CI_ENV'].'/';
+	$db_config_path ='../application/config/'.$_ENV['CI_ENV'].'/';
 }
 $db_file_path = $db_config_path . "database.php";
 
