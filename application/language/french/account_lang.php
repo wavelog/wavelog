@@ -46,6 +46,8 @@ $lang['account_quicklog_enter_search'] = "Recherche l'indicatif";
 $lang['account_measurement_preferences'] = "Unité de mesure";
 $lang['account_select_how_you_would_like_dates_shown_when_logged_into_your_account'] = "(Sélectionnez le format de date à afficher)";
 $lang['account_choose_which_unit_distances_will_be_shown_in'] = "(Sélectionner l'unité de mesure à afficher)";
+$lang['account_qrg_format'] = "Format of Frequency";
+$lang['account_qrg_format_hint'] = "Choose which unit the frequency should be shown in";
 $lang['account_wavelog_language'] = "Langue utilisée par Wavelog";
 $lang['account_choose_wavelog_language'] = "(Sélectionner la langue à utiliser)";
 
