@@ -131,6 +131,47 @@
                     </table>
                 </div>
             </div>
+            <div class="card">
+                <div class="card-header">
+                    Config Maintenance
+                </div>
+                <div class="card-body">
+                    <?php if ($this->config->item('auth_mode') != '3') { ?>
+                        <div class="alert alert-primary">
+                            <div class="alert alert-danger" role="alert">
+                                <span class="badge rounded-pill text-bg-warning">Warning</span> Your authentication mode is outdated and possibly unsafe
+                            </div>
+                            <p>Please edit your ./application/config/config.php File:</br>
+                                Go to your application/config Folder and compare config.sample.php with your config.php</br></br>
+                                Change <span class="badge rounded-pill text-bg-secondary">$config['auth_mode']</span> to the value <span class="badge rounded-pill text-bg-secondary">3</span> (Strongly recommended)
+                            </p>
+                        </div>
+                    <?php
+                    } else { ?>
+                        <div class="mb-2">
+                            <span class="badge rounded-pill text-bg-success">Ok</span> Authentication Mode is set correctly
+                        </div>
+                    <?php } ?>
+
+                    <?php if (!$this->config->item('cl_multilanguage')) { ?>
+                        <div class="alert alert-primary">
+                            <div class="alert alert-danger" role="alert" style="margin-bottom: 0px !important;">
+                                <span class="badge rounded-pill text-bg-warning">Warning</span> You didn't enabled Multilanguage support in your config.php
+                            </div>
+                            <p>Please edit your ./application/config/config.php File and add some rows to it:</br></br>
+                                Go to your application/config Folder and compare config.sample.php with your config.php</br>
+                                You'll probably find a block with language-settings. Please include this block into your current config.php
+                            </p>
+                        </div>
+
+                    <?php
+                    } else { ?>
+                        <div class="mb-2">
+                            <span class="badge rounded-pill text-bg-success">Ok</span> Multiuser-Language Support is enabled
+                        </div>
+                    <?php } ?>
+                </div>
+            </div>
             <?php if (isset($userdata_enabled)) { ?>
                 <div class="card">
                     <div class="card-header">Migrate Userdata</div>
@@ -208,7 +249,7 @@
                 <?php
                 //Below is a failsafe where git commands fail
                 try {
-                    $commitHash = trim(exec('git log --pretty="%H" -n1 HEAD'));	// Get last LOCAL commit of HEAD
+                    $commitHash = trim(exec('git log --pretty="%H" -n1 HEAD'));    // Get last LOCAL commit of HEAD
                     $branch = '';
                     $remote = '';
                     $owner = '';
@@ -226,7 +267,7 @@
                         }
                         if (isset($pieces[1])) {
                             $remote = substr($pieces[1], 0, strpos($pieces[1], '/'));
-			    			$branch = trim(exec('git rev-parse --abbrev-ref HEAD')); // Get ONLY Name of the Branch we're on
+                            $branch = trim(exec('git rev-parse --abbrev-ref HEAD')); // Get ONLY Name of the Branch we're on
                             $url = trim(exec('git remote get-url ' . $remote));
                             if (strpos($url, 'https://github.com') !== false) {
                                 $owner = preg_replace('/https:\/\/github\.com\/(\w+)\/[w|W]avelog\.git/', '$1', $url);
@@ -295,10 +336,10 @@
                                 <small id="last_version_check"></small>
                             </div>
                             <div class="row">
-                            <div class="col">
-                                <button class="btn btn-primary me-3 ld-ext-right" onClick="update_version_check('<?php echo $branch; ?>');" id="version_check_button">Check for new version<div class="ld ld-ring ld-spin"></div></button>
-                                <a class="btn btn-primary" style="display: none;" id="version_update_button" href="debug/selfupdate" onClick='this.classList.add("disabled");'>Update now</a>
-                            </div>
+                                <div class="col">
+                                    <button class="btn btn-primary me-3 ld-ext-right" onClick="update_version_check('<?php echo $branch; ?>');" id="version_check_button">Check for new version<div class="ld ld-ring ld-spin"></div></button>
+                                    <a class="btn btn-primary" style="display: none;" id="version_update_button" href="debug/selfupdate" onClick='this.classList.add("disabled");'>Update now</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -436,29 +477,6 @@
                 } else { ?>
                     <div class="alert alert-secondary" role="alert" style="margin-bottom: 0px !important;">
                         <span class="badge rounded-pill text-bg-success">Everything ok</span> Every QSO in your Database is assigned to a station-profile (location)
-                    </div>
-                <?php } ?>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    Settings Maintenance
-                </div>
-                <?php if (!$this->config->item('cl_multilanguage')) { ?>
-                    <div class="alert alert-danger" role="alert" style="margin-bottom: 0px !important;">
-                        <span class="badge rounded-pill text-bg-warning">Warning</span> You didn't enabled Multilanguage support in your config.php
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">Please edit your ./application/config/config.php File and add some rows to it:</br></br>
-                            Go to your application/config Folder and compare config.sample.php with your config.php</br>
-                            You'll probably find a block with language-settings. Please include this block into your current config.php
-                        </p>
-                    </div>
-
-                <?php
-                } else { ?>
-                    <div class="alert alert-secondary" role="alert" style="margin-bottom: 0px !important;">
-                        <span class="badge rounded-pill text-bg-success">Everything ok</span> You have enabled Multuser-Language support
                     </div>
                 <?php } ?>
             </div>
