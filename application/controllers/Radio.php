@@ -37,6 +37,7 @@
 
 		$this->load->model('cat');
 		$query = $this->cat->status();
+		$qrg_unit = ($this->user_options_model->get_options('user_settings', array('option_name'=>'qrg_unit'))->row()->option_value ?? 'K');
 		if ($query->num_rows() > 0)
 		{
 			echo "<tr class=\"titles\">";
@@ -54,9 +55,9 @@
 				if (empty($row->frequency) || $row->frequency == "0") {
 					echo "<td>- / -</td>";
 				} elseif (empty($row->frequency_rx) || $row->frequency_rx == "0") {
-					echo "<td>".$this->frequency->hz_to_mhz($row->frequency)."</td>";
+					echo "<td>".$this->frequency->unit_conversion($row->frequency, $qrg_unit)."</td>";
 				} else {
-					echo "<td>".$this->frequency->hz_to_mhz($row->frequency_rx)." / ".$this->frequency->hz_to_mhz($row->frequency)."</td>";
+					echo "<td>".$this->frequency->unit_conversion($row->frequency_rx, $qrg_unit)." / ".$this->frequency->unit_conversion($row->frequency, $qrg_unit)."</td>";
 				}
 
 				if (empty($row->mode) || $row->mode == "non") {

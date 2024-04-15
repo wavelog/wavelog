@@ -91,12 +91,12 @@
                     <?php if($this->config->item('display_freq') == true) { ?>
                     <tr>
                         <td><?php echo lang('gen_hamradio_frequency'); ?></td>
-                        <td><?php echo $this->frequency->hz_to_mhz($row->COL_FREQ); ?></td>
+                        <td><?php echo $this->frequency->unit_conversion($row->COL_FREQ, $this->user_options_model->get_options('user_settings', array('option_name'=>'qrg_unit'))->row()->option_value ?? 'K'); ?></td>
                     </tr>
                     <?php if($row->COL_FREQ_RX != 0) { ?>
                     <tr>
                         <td><?php echo lang('gen_hamradio_frequency_rx'); ?></td>
-                        <td><?php echo $this->frequency->hz_to_mhz($row->COL_FREQ_RX); ?></td>
+                        <td><?php echo $this->frequency->unit_conversion($row->COL_FREQ_RX, $this->user_options_model->get_options('user_settings', array('option_name'=>'qrg_unit'))->row()->option_value ?? 'K'); ?></td>
                     </tr>
                     <?php }} ?>
 
