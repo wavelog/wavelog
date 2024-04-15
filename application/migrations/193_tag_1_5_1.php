@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         Tag Wavelog as Version 1.5
 */
 
-class Migration_tag_1_5 extends CI_Migration {
+class Migration_tag_1_5_1 extends CI_Migration {
 
     public function up()
     {
