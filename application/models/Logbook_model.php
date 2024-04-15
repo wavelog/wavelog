@@ -2136,7 +2136,7 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
   }
 
 
-  function check_if_grid_worked_in_logbook($grid, $StationLocationsArray = null, $band = null) {
+  function check_if_grid_worked_in_logbook($grid, $StationLocationsArray = null, $band = null, $cnfm = null) {
 
     if($StationLocationsArray == null) {
       $this->load->model('logbooks_model');
@@ -2145,7 +2145,26 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
       $logbooks_locations_array = $StationLocationsArray;
     }
 
-    $this->db->select('COL_GRIDSQUARE');
+    switch($cnfm) {
+    case 'qsl':
+       $this->db->select('COL_QSL_RCVD as gridorcnfm');
+       $this->db->group_by('COL_QSL_RCVD');
+       break;
+    case 'lotw':
+       $this->db->select('COL_LOTW_QSL_RCVD as gridorcnfm');
+       $this->db->group_by('COL_LOTW_QSL_RCVD');
+       break;
+    case 'eqsl':
+       $this->db->select('COL_EQSL_QSL_RCVD as gridorcnfm');
+       $this->db->group_by('COL_EQSL_QSL_RCVD');
+       break;
+    default:
+       $this->db->select('SUBSTR(COL_GRIDSQUARE,1 ,4) as gridorcnfm');
+       $this->db->group_by('gridorcnfm');
+       break;
+       break;
+    }
+    $this->db->order_by('gridorcnfm');
     $this->db->where_in('station_id', $logbooks_locations_array);
     $this->db->group_start();
     $this->db->like('COL_GRIDSQUARE', $grid);
@@ -2158,11 +2177,10 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
       // Where col_sat_name is not empty
       $this->db->where('COL_SAT_NAME !=', '');
     }
-    $this->db->limit('2');
 
     $query = $this->db->get($this->config->item('table_name'));
 
-    return $query->num_rows();
+    return $query;
 
   }
 
