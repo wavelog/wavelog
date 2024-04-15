@@ -407,7 +407,6 @@ class API extends CI_Controller {
 						$arr[] = $line->gridorcnfm;
 					}
 					if (in_array('Y', $arr)) {
-						print_r($arr);
 						echo json_encode(['gridsquare' => strtoupper($grid), 'result' => 'Confirmed']);
 					} else {
 						echo json_encode(['gridsquare' => strtoupper($grid), 'result' => 'Worked']);
