@@ -215,6 +215,18 @@
 										</select>
 										<small id="user_measurement_base_Help" class="form-text text-muted"><?php echo lang('account_choose_which_unit_distances_will_be_shown_in'); ?></small>
 									</div>
+
+									<div class="mb-3">
+										<label for="qrg_format"><?php echo lang('account_qrg_format'); ?></label>
+										<?php if(!isset($user_qrg_format)) { $user_qrg_format='K'; }?>
+										<select class="form-select" id="qrg_format" name="user_qrg_format">
+											<option value="H" <?php if ($user_qrg_format == 'H') { echo " selected =\"selected\""; } ?>>Hertz (Hz)</option>
+											<option value="K" <?php if ($user_qrg_format == 'K') { echo " selected =\"selected\""; } ?>>Kilohertz (kHz)</option>
+											<option value="M" <?php if ($user_qrg_format == 'M') { echo " selected =\"selected\""; } ?>>Megahertz (MHz)</option>
+											<option value="G" <?php if ($user_qrg_format == 'G') { echo " selected =\"selected\""; } ?>>Gigahertz (GHz)</option>
+										</select>
+										<small id="SelectDateFormatHelp" class="form-text text-muted"><?php echo lang('account_qrg_format_hint'); ?></small>
+									</div>
 								</div>
 							</div>
 						</div>
