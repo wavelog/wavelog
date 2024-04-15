@@ -613,6 +613,7 @@ class User extends CI_Controller {
 				'qsoconfirm'=>array('0', 'fas fa-broadcast-tower', 'fas fa-user', 'fas fa-dot-circle', 'fas fa-check-circle' ));
 
 			$data['user_locations_quickswitch'] = ($this->user_options_model->get_options('header_menu', array('option_name'=>'locations_quickswitch'))->row()->option_value ?? 'false');
+			$data['user_qrg_format'] = ($this->user_options_model->get_options('user_settings', array('option_name'=>'qrg_unit'))->row()->option_value ?? 'K');
 							
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('user/edit', $data);
@@ -661,6 +662,7 @@ class User extends CI_Controller {
 							$this->user_options_model->del_option('map_custom','gridsquare');
 						}
 						$this->user_options_model->set_option('header_menu', 'locations_quickswitch', array('boolean'=>xss_clean($this->input->post('user_locations_quickswitch', true))));
+						$this->user_options_model->set_option('user_settings', 'qrg_unit', array('unit'=>xss_clean($this->input->post('user_qrg_format', true))));
 						$this->session->set_flashdata('success', lang('account_user').' '.$this->input->post('user_name', true).' '.lang('account_word_edited'));
 						redirect('user/edit/'.$this->uri->segment(3));
 					} else {
@@ -703,6 +705,7 @@ class User extends CI_Controller {
 			$data['user_quicklog'] = $this->input->post('user_quicklog');
 			$data['user_quicklog_enter'] = $this->input->post('user_quicklog_enter');
 			$data['user_locations_quickswitch'] = $this->input->post('user_locations_quickswitch', true);
+			$data['user_qrg_format'] = $this->input->post('user_qrg_format', true);
 			$data['language'] = $this->input->post('language');
 			$data['user_winkey'] = $this->input->post('user_winkey');
 			$data['user_hamsat_key'] = $this->input->post('user_hamsat_key');
