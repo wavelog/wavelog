@@ -181,64 +181,157 @@
 
         <div class="col">
             <div class="card">
-                <div class="card-header">PHP Modules</div>
+                <div class="card-header">PHP</div>
                 <div class="card-body">
-                    <table width="100%">
-                        <tr>
-                            <td>curl</td>
-                            <td>
-                                <?php if (in_array('curl', get_loaded_extensions())) { ?>
-                                    <span class="badge text-bg-success">Installed</span>
-                                <?php } else { ?>
-                                    <span class="badge text-bg-danger">Not Installed</span>
-                                <?php } ?>
-                            </td>
-                        </tr>
+                    <div class="row">
+                        <div class="col border-end">
+                            <p><u>Modules</u></p>
+                            <table width="100%">
+                                <tr>
+                                    <td>curl</td>
+                                    <td>
+                                        <?php if (in_array('curl', get_loaded_extensions())) { ?>
+                                            <span class="badge text-bg-success">Installed</span>
+                                        <?php } else { ?>
+                                            <span class="badge text-bg-danger">Not Installed</span>
+                                        <?php } ?>
+                                    </td>
+                                </tr>
 
-                        <tr>
-                            <td>MySQL</td>
-                            <td>
-                                <?php if (in_array('mysqli', get_loaded_extensions())) { ?>
-                                    <span class="badge text-bg-success">Installed</span>
-                                <?php } else { ?>
-                                    <span class="badge text-bg-danger">Not Installed</span>
-                                <?php } ?>
-                            </td>
-                        </tr>
+                                <tr>
+                                    <td>MySQL</td>
+                                    <td>
+                                        <?php if (in_array('mysqli', get_loaded_extensions())) { ?>
+                                            <span class="badge text-bg-success">Installed</span>
+                                        <?php } else { ?>
+                                            <span class="badge text-bg-danger">Not Installed</span>
+                                        <?php } ?>
+                                    </td>
+                                </tr>
 
-                        <tr>
-                            <td>mbstring</td>
-                            <td>
-                                <?php if (in_array('mbstring', get_loaded_extensions())) { ?>
-                                    <span class="badge text-bg-success">Installed</span>
-                                <?php } else { ?>
-                                    <span class="badge text-bg-danger">Not Installed</span>
-                                <?php } ?>
-                            </td>
-                        </tr>
+                                <tr>
+                                    <td>mbstring</td>
+                                    <td>
+                                        <?php if (in_array('mbstring', get_loaded_extensions())) { ?>
+                                            <span class="badge text-bg-success">Installed</span>
+                                        <?php } else { ?>
+                                            <span class="badge text-bg-danger">Not Installed</span>
+                                        <?php } ?>
+                                    </td>
+                                </tr>
 
-                        <tr>
-                            <td>xml</td>
-                            <td>
-                                <?php if (in_array('xml', get_loaded_extensions())) { ?>
-                                    <span class="badge text-bg-success">Installed</span>
-                                <?php } else { ?>
-                                    <span class="badge text-bg-danger">Not Installed</span>
-                                <?php } ?>
-                            </td>
-                        </tr>
+                                <tr>
+                                    <td>xml</td>
+                                    <td>
+                                        <?php if (in_array('xml', get_loaded_extensions())) { ?>
+                                            <span class="badge text-bg-success">Installed</span>
+                                        <?php } else { ?>
+                                            <span class="badge text-bg-danger">Not Installed</span>
+                                        <?php } ?>
+                                    </td>
+                                </tr>
 
-                        <tr>
-                            <td>zip</td>
-                            <td>
-                                <?php if (in_array('zip', get_loaded_extensions())) { ?>
-                                    <span class="badge text-bg-success">Installed</span>
-                                <?php } else { ?>
-                                    <span class="badge text-bg-danger">Not Installed</span>
-                                <?php } ?>
-                            </td>
-                        </tr>
-                    </table>
+                                <tr>
+                                    <td>zip</td>
+                                    <td>
+                                        <?php if (in_array('zip', get_loaded_extensions())) { ?>
+                                            <span class="badge text-bg-success">Installed</span>
+                                        <?php } else { ?>
+                                            <span class="badge text-bg-danger">Not Installed</span>
+                                        <?php } ?>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col">
+                            <p><u>Settings</u></p>
+                            <?php 
+                            $max_execution_time = 600;		// Seconds
+                            $max_upload_file_size = 8;  	// Megabyte
+                            $post_max_size = 8;				// Megabyte
+                            $memory_limit = 256;            // Megabyte
+                            $req_allow_url_fopen = '1';		// 1 = on
+                            ?>
+                            <table width="100%">
+                            <tr>
+                                <td>max_execution_time</td>
+                                <td><?php echo '> ' . $max_execution_time . ' s'; ?></td>
+                                <td>
+                                    <?php
+                                    $maxExecutionTime = ini_get('max_execution_time');
+                                    if ($maxExecutionTime >= $max_execution_time) { ?>
+                                        <span class="badge text-bg-success"><?php echo $maxExecutionTime . ' s'; ?></span>
+                                    <?php } else { ?>
+                                        <span class="badge text-bg-warning"><?php echo $maxExecutionTime; ?></span>
+                                    <?php } ?>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>max_upload_file_size</td>
+                                <td><?php echo '> ' . $max_upload_file_size . 'M'; ?></td>
+                                <td>
+                                    <?php
+                                    $maxUploadFileSize = ini_get('upload_max_filesize');
+                                    $maxUploadFileSizeBytes = (int)($maxUploadFileSize) * (1024 * 1024); // convert to bytes
+                                    if ($maxUploadFileSizeBytes >= ($max_upload_file_size * 1024 * 1024)) { // compare with given value in bytes
+                                    ?>
+                                        <span class="badge text-bg-success"><?php echo $maxUploadFileSize; ?></span>
+                                    <?php } else { ?>
+                                        <span class="badge text-bg-warning"><?php echo $maxUploadFileSize; ?></span>
+                                    <?php } ?>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>post_max_size</td>
+                                <td><?php echo '> ' . $post_max_size . 'M'; ?></td>
+                                <td>
+                                    <?php
+                                    $postMaxSize = ini_get('post_max_size');
+                                    $postMaxSizeBytes = (int)($postMaxSize) * (1024 * 1024); // convert to bytes
+                                    if ($postMaxSizeBytes >= ($post_max_size * 1024 * 1024)) { // compare with given value in bytes
+                                    ?>
+                                        <span class="badge text-bg-success"><?php echo $postMaxSize; ?></span>
+                                    <?php } else { ?>
+                                        <span class="badge text-bg-warning"><?php echo $postMaxSize; ?></span>
+                                    <?php } ?>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>memory_limit</td>
+                                <td><?php echo '> ' . $memory_limit . 'M'; ?></td>
+                                <td>
+                                    <?php
+                                    $memoryLimit = ini_get('memory_limit');
+                                    $memoryLimitBytes = (int)($memoryLimit) * (1024 * 1024); // convert to bytes
+                                    if ($memoryLimitBytes >= ($memory_limit * 1024 * 1024)) { // compare with given value in bytes
+                                    ?>
+                                        <span class="badge text-bg-success"><?php echo $memoryLimit; ?></span>
+                                    <?php } else { ?>
+                                        <span class="badge text-bg-warning"><?php echo $memoryLimit; ?></span>
+                                    <?php } ?>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>allow_url_fopen</td>
+                                <td>On</td>
+                                <td>
+                                    <?php
+                                    $get_allow_url_fopen = ini_get('allow_url_fopen');
+                                    if ($get_allow_url_fopen == $req_allow_url_fopen) {
+                                    ?>
+                                        <span class="badge text-bg-success">On</span>
+                                    <?php } else { ?>
+                                        <span class="badge text-bg-danger">Off</span>
+                                    <?php } ?>
+                                </td>
+                            </tr>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
             <?php if (file_exists(realpath(APPPATH . '../') . '/.git')) { ?>
