@@ -2162,7 +2162,6 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
        $this->db->select('SUBSTR(COL_GRIDSQUARE,1 ,4) as gridorcnfm');
        $this->db->group_by('gridorcnfm');
        break;
-       break;
     }
     $this->db->order_by('gridorcnfm');
     $this->db->where_in('station_id', $logbooks_locations_array);
