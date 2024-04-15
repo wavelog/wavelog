@@ -39,6 +39,10 @@
                             <td>Migration</td>
                             <td><?php echo (isset($migration_version) ? $migration_version : "<span class='badge text-bg-danger'>There is something wrong with your Migration in Database!</span>"); ?></td>
                         </tr>
+                        <tr>
+                            <td>Environment</td>
+                            <td><?php echo ENVIRONMENT; ?></td>
+                        </tr>
 
                     </table>
                 </div>
@@ -62,16 +66,8 @@
                             <td>MySQL Version</td>
                             <td><?php echo $this->db->version(); ?></td>
                         </tr>
-                    </table>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header">Codeigniter</div>
-                <div class="card-body">
-                    <table width="100%">
                         <tr>
-                            <td>Version</td>
+                            <td>Codeigniter Version</td>
                             <td><?php echo CI_VERSION; ?></td>
                         </tr>
                     </table>
