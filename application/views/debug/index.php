@@ -39,6 +39,10 @@
                             <td>Migration</td>
                             <td><?php echo (isset($migration_version) ? $migration_version : "<span class='badge text-bg-danger'>There is something wrong with your Migration in Database!</span>"); ?></td>
                         </tr>
+                        <tr>
+                            <td>Environment</td>
+                            <td><?php echo ENVIRONMENT; ?></td>
+                        </tr>
 
                     </table>
                 </div>
@@ -62,16 +66,8 @@
                             <td>MySQL Version</td>
                             <td><?php echo $this->db->version(); ?></td>
                         </tr>
-                    </table>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header">Codeigniter</div>
-                <div class="card-body">
-                    <table width="100%">
                         <tr>
-                            <td>Version</td>
+                            <td>Codeigniter Version</td>
                             <td><?php echo CI_VERSION; ?></td>
                         </tr>
                     </table>
@@ -131,6 +127,47 @@
                     </table>
                 </div>
             </div>
+            <div class="card">
+                <div class="card-header">
+                    Config Maintenance
+                </div>
+                <div class="card-body">
+                    <?php if ($this->config->item('auth_mode') != '3') { ?>
+                        <div class="alert alert-primary">
+                            <div class="alert alert-danger" role="alert">
+                                <span class="badge rounded-pill text-bg-warning">Warning</span> Your authentication mode is outdated and possibly unsafe
+                            </div>
+                            <p>Please edit your ./application/config/config.php File:</br>
+                                Go to your application/config Folder and compare config.sample.php with your config.php</br></br>
+                                Change <span class="badge rounded-pill text-bg-secondary">$config['auth_mode']</span> to the value <span class="badge rounded-pill text-bg-secondary">3</span> (Strongly recommended)
+                            </p>
+                        </div>
+                    <?php
+                    } else { ?>
+                        <div class="mb-2">
+                            <span class="badge rounded-pill text-bg-success">Ok</span> Authentication Mode is set correctly
+                        </div>
+                    <?php } ?>
+
+                    <?php if (!$this->config->item('cl_multilanguage')) { ?>
+                        <div class="alert alert-primary">
+                            <div class="alert alert-danger" role="alert" style="margin-bottom: 0px !important;">
+                                <span class="badge rounded-pill text-bg-warning">Warning</span> You didn't enabled Multilanguage support in your config.php
+                            </div>
+                            <p>Please edit your ./application/config/config.php File and add some rows to it:</br></br>
+                                Go to your application/config Folder and compare config.sample.php with your config.php</br>
+                                You'll probably find a block with language-settings. Please include this block into your current config.php
+                            </p>
+                        </div>
+
+                    <?php
+                    } else { ?>
+                        <div class="mb-2">
+                            <span class="badge rounded-pill text-bg-success">Ok</span> Multiuser-Language Support is enabled
+                        </div>
+                    <?php } ?>
+                </div>
+            </div>
             <?php if (isset($userdata_enabled)) { ?>
                 <div class="card">
                     <div class="card-header">Migrate Userdata</div>
@@ -144,71 +181,164 @@
 
         <div class="col">
             <div class="card">
-                <div class="card-header">PHP Modules</div>
+                <div class="card-header">PHP</div>
                 <div class="card-body">
-                    <table width="100%">
-                        <tr>
-                            <td>curl</td>
-                            <td>
-                                <?php if (in_array('curl', get_loaded_extensions())) { ?>
-                                    <span class="badge text-bg-success">Installed</span>
-                                <?php } else { ?>
-                                    <span class="badge text-bg-danger">Not Installed</span>
-                                <?php } ?>
-                            </td>
-                        </tr>
+                    <div class="row">
+                        <div class="col border-end">
+                            <p><u>Modules</u></p>
+                            <table width="100%">
+                                <tr>
+                                    <td>php-curl</td>
+                                    <td>
+                                        <?php if (in_array('curl', get_loaded_extensions())) { ?>
+                                            <span class="badge text-bg-success">Installed</span>
+                                        <?php } else { ?>
+                                            <span class="badge text-bg-danger">Not Installed</span>
+                                        <?php } ?>
+                                    </td>
+                                </tr>
 
-                        <tr>
-                            <td>MySQL</td>
-                            <td>
-                                <?php if (in_array('mysqli', get_loaded_extensions())) { ?>
-                                    <span class="badge text-bg-success">Installed</span>
-                                <?php } else { ?>
-                                    <span class="badge text-bg-danger">Not Installed</span>
-                                <?php } ?>
-                            </td>
-                        </tr>
+                                <tr>
+                                    <td>php-mysql</td>
+                                    <td>
+                                        <?php if (in_array('mysqli', get_loaded_extensions())) { ?>
+                                            <span class="badge text-bg-success">Installed</span>
+                                        <?php } else { ?>
+                                            <span class="badge text-bg-danger">Not Installed</span>
+                                        <?php } ?>
+                                    </td>
+                                </tr>
 
-                        <tr>
-                            <td>mbstring</td>
-                            <td>
-                                <?php if (in_array('mbstring', get_loaded_extensions())) { ?>
-                                    <span class="badge text-bg-success">Installed</span>
-                                <?php } else { ?>
-                                    <span class="badge text-bg-danger">Not Installed</span>
-                                <?php } ?>
-                            </td>
-                        </tr>
+                                <tr>
+                                    <td>php-mbstring</td>
+                                    <td>
+                                        <?php if (in_array('mbstring', get_loaded_extensions())) { ?>
+                                            <span class="badge text-bg-success">Installed</span>
+                                        <?php } else { ?>
+                                            <span class="badge text-bg-danger">Not Installed</span>
+                                        <?php } ?>
+                                    </td>
+                                </tr>
 
-                        <tr>
-                            <td>xml</td>
-                            <td>
-                                <?php if (in_array('xml', get_loaded_extensions())) { ?>
-                                    <span class="badge text-bg-success">Installed</span>
-                                <?php } else { ?>
-                                    <span class="badge text-bg-danger">Not Installed</span>
-                                <?php } ?>
-                            </td>
-                        </tr>
+                                <tr>
+                                    <td>php-xml</td>
+                                    <td>
+                                        <?php if (in_array('xml', get_loaded_extensions())) { ?>
+                                            <span class="badge text-bg-success">Installed</span>
+                                        <?php } else { ?>
+                                            <span class="badge text-bg-danger">Not Installed</span>
+                                        <?php } ?>
+                                    </td>
+                                </tr>
 
-                        <tr>
-                            <td>zip</td>
-                            <td>
-                                <?php if (in_array('zip', get_loaded_extensions())) { ?>
-                                    <span class="badge text-bg-success">Installed</span>
-                                <?php } else { ?>
-                                    <span class="badge text-bg-danger">Not Installed</span>
-                                <?php } ?>
-                            </td>
-                        </tr>
-                    </table>
+                                <tr>
+                                    <td>php-zip</td>
+                                    <td>
+                                        <?php if (in_array('zip', get_loaded_extensions())) { ?>
+                                            <span class="badge text-bg-success">Installed</span>
+                                        <?php } else { ?>
+                                            <span class="badge text-bg-danger">Not Installed</span>
+                                        <?php } ?>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col">
+                            <p><u>Settings</u></p>
+                            <?php
+                            $max_execution_time = 600;        // Seconds
+                            $max_upload_file_size = 8;      // Megabyte
+                            $post_max_size = 8;                // Megabyte
+                            $memory_limit = 256;            // Megabyte
+                            $req_allow_url_fopen = '1';        // 1 = on
+                            ?>
+                            <table width="100%">
+                                <tr>
+                                    <td>max_execution_time</td>
+                                    <td><?php echo '> ' . $max_execution_time . ' s'; ?></td>
+                                    <td>
+                                        <?php
+                                        $maxExecutionTime = ini_get('max_execution_time');
+                                        if ($maxExecutionTime >= $max_execution_time) { ?>
+                                            <span class="badge text-bg-success"><?php echo $maxExecutionTime . ' s'; ?></span>
+                                        <?php } else { ?>
+                                            <span class="badge text-bg-warning"><?php echo $maxExecutionTime; ?></span>
+                                        <?php } ?>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>max_upload_file_size</td>
+                                    <td><?php echo '> ' . $max_upload_file_size . 'M'; ?></td>
+                                    <td>
+                                        <?php
+                                        $maxUploadFileSize = ini_get('upload_max_filesize');
+                                        $maxUploadFileSizeBytes = (int)($maxUploadFileSize) * (1024 * 1024); // convert to bytes
+                                        if ($maxUploadFileSizeBytes >= ($max_upload_file_size * 1024 * 1024)) { // compare with given value in bytes
+                                        ?>
+                                            <span class="badge text-bg-success"><?php echo $maxUploadFileSize; ?></span>
+                                        <?php } else { ?>
+                                            <span class="badge text-bg-warning"><?php echo $maxUploadFileSize; ?></span>
+                                        <?php } ?>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>post_max_size</td>
+                                    <td><?php echo '> ' . $post_max_size . 'M'; ?></td>
+                                    <td>
+                                        <?php
+                                        $postMaxSize = ini_get('post_max_size');
+                                        $postMaxSizeBytes = (int)($postMaxSize) * (1024 * 1024); // convert to bytes
+                                        if ($postMaxSizeBytes >= ($post_max_size * 1024 * 1024)) { // compare with given value in bytes
+                                        ?>
+                                            <span class="badge text-bg-success"><?php echo $postMaxSize; ?></span>
+                                        <?php } else { ?>
+                                            <span class="badge text-bg-warning"><?php echo $postMaxSize; ?></span>
+                                        <?php } ?>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>memory_limit</td>
+                                    <td><?php echo '> ' . $memory_limit . 'M'; ?></td>
+                                    <td>
+                                        <?php
+                                        $memoryLimit = ini_get('memory_limit');
+                                        $memoryLimitBytes = (int)($memoryLimit) * (1024 * 1024); // convert to bytes
+                                        if ($memoryLimitBytes >= ($memory_limit * 1024 * 1024)) { // compare with given value in bytes
+                                        ?>
+                                            <span class="badge text-bg-success"><?php echo $memoryLimit; ?></span>
+                                        <?php } else { ?>
+                                            <span class="badge text-bg-warning"><?php echo $memoryLimit; ?></span>
+                                        <?php } ?>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>allow_url_fopen</td>
+                                    <td>On</td>
+                                    <td>
+                                        <?php
+                                        $get_allow_url_fopen = ini_get('allow_url_fopen');
+                                        if ($get_allow_url_fopen == $req_allow_url_fopen) {
+                                        ?>
+                                            <span class="badge text-bg-success">On</span>
+                                        <?php } else { ?>
+                                            <span class="badge text-bg-danger">Off</span>
+                                        <?php } ?>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
             <?php if (file_exists(realpath(APPPATH . '../') . '/.git')) { ?>
                 <?php
                 //Below is a failsafe where git commands fail
                 try {
-                    $commitHash = trim(exec('git log --pretty="%H" -n1 HEAD'));	// Get last LOCAL commit of HEAD
+                    $commitHash = trim(exec('git log --pretty="%H" -n1 HEAD'));    // Get last LOCAL commit of HEAD
                     $branch = '';
                     $remote = '';
                     $owner = '';
@@ -226,7 +356,7 @@
                         }
                         if (isset($pieces[1])) {
                             $remote = substr($pieces[1], 0, strpos($pieces[1], '/'));
-			    			$branch = trim(exec('git rev-parse --abbrev-ref HEAD')); // Get ONLY Name of the Branch we're on
+                            $branch = trim(exec('git rev-parse --abbrev-ref HEAD')); // Get ONLY Name of the Branch we're on
                             $url = trim(exec('git remote get-url ' . $remote));
                             if (strpos($url, 'https://github.com') !== false) {
                                 $owner = preg_replace('/https:\/\/github\.com\/(\w+)\/[w|W]avelog\.git/', '$1', $url);
@@ -295,10 +425,10 @@
                                 <small id="last_version_check"></small>
                             </div>
                             <div class="row">
-                            <div class="col">
-                                <button class="btn btn-primary me-3 ld-ext-right" onClick="update_version_check('<?php echo $branch; ?>');" id="version_check_button">Check for new version<div class="ld ld-ring ld-spin"></div></button>
-                                <a class="btn btn-primary" style="display: none;" id="version_update_button" href="debug/selfupdate" onClick='this.classList.add("disabled");'>Update now</a>
-                            </div>
+                                <div class="col">
+                                    <button class="btn btn-primary me-3 ld-ext-right" onClick="update_version_check('<?php echo $branch; ?>');" id="version_check_button">Check for new version<div class="ld ld-ring ld-spin"></div></button>
+                                    <a class="btn btn-primary" style="display: none;" id="version_update_button" href="debug/selfupdate" onClick='this.classList.add("disabled");'>Update now</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -436,29 +566,6 @@
                 } else { ?>
                     <div class="alert alert-secondary" role="alert" style="margin-bottom: 0px !important;">
                         <span class="badge rounded-pill text-bg-success">Everything ok</span> Every QSO in your Database is assigned to a station-profile (location)
-                    </div>
-                <?php } ?>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    Settings Maintenance
-                </div>
-                <?php if (!$this->config->item('cl_multilanguage')) { ?>
-                    <div class="alert alert-danger" role="alert" style="margin-bottom: 0px !important;">
-                        <span class="badge rounded-pill text-bg-warning">Warning</span> You didn't enabled Multilanguage support in your config.php
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">Please edit your ./application/config/config.php File and add some rows to it:</br></br>
-                            Go to your application/config Folder and compare config.sample.php with your config.php</br>
-                            You'll probably find a block with language-settings. Please include this block into your current config.php
-                        </p>
-                    </div>
-
-                <?php
-                } else { ?>
-                    <div class="alert alert-secondary" role="alert" style="margin-bottom: 0px !important;">
-                        <span class="badge rounded-pill text-bg-success">Everything ok</span> You have enabled Multuser-Language support
                     </div>
                 <?php } ?>
             </div>
