@@ -188,7 +188,7 @@
                             <p><u>Modules</u></p>
                             <table width="100%">
                                 <tr>
-                                    <td>curl</td>
+                                    <td>php-curl</td>
                                     <td>
                                         <?php if (in_array('curl', get_loaded_extensions())) { ?>
                                             <span class="badge text-bg-success">Installed</span>
@@ -199,7 +199,7 @@
                                 </tr>
 
                                 <tr>
-                                    <td>MySQL</td>
+                                    <td>php-mysql</td>
                                     <td>
                                         <?php if (in_array('mysqli', get_loaded_extensions())) { ?>
                                             <span class="badge text-bg-success">Installed</span>
@@ -210,7 +210,7 @@
                                 </tr>
 
                                 <tr>
-                                    <td>mbstring</td>
+                                    <td>php-mbstring</td>
                                     <td>
                                         <?php if (in_array('mbstring', get_loaded_extensions())) { ?>
                                             <span class="badge text-bg-success">Installed</span>
@@ -221,7 +221,7 @@
                                 </tr>
 
                                 <tr>
-                                    <td>xml</td>
+                                    <td>php-xml</td>
                                     <td>
                                         <?php if (in_array('xml', get_loaded_extensions())) { ?>
                                             <span class="badge text-bg-success">Installed</span>
@@ -232,7 +232,7 @@
                                 </tr>
 
                                 <tr>
-                                    <td>zip</td>
+                                    <td>php-zip</td>
                                     <td>
                                         <?php if (in_array('zip', get_loaded_extensions())) { ?>
                                             <span class="badge text-bg-success">Installed</span>
