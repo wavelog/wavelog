@@ -1,9 +1,8 @@
-name: Wavelog Image CI DEV
+name: Wavelog create Dockerimage and publish it
 
 on:
-  push:
-    branches:
-      - 'master'
+  release:
+    types: [published]
   workflow_dispatch:
 
 jobs:
@@ -35,4 +34,4 @@ jobs:
         context: .
         platforms: linux/amd64,linux/arm64,linux/arm/v7
         push: true
-        tags: ghcr.io/int2001/wavelog:${{ github.ref_name == 'master' && 'latest' || github.ref_name }}
+        tags: ghcr.io/wavelog/wavelog:${{ github.ref_name == 'master' && 'latest' || github.ref_name }}
