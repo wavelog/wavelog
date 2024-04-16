@@ -9,6 +9,7 @@ RUN apt-get update \
 && apt-get install -y curl libxml2-dev libonig-dev libzip-dev cron \
 && docker-php-ext-install mysqli mbstring xml zip
 RUN a2enmod rewrite
+ENV CI_ENV=docker
 
 WORKDIR /var/www/html
 RUN curl -L https://api.github.com/repos/wavelog/wavelog/tarball/dev | tar -xz --strip=1
