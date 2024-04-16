@@ -1,14 +1,34 @@
 FROM php:8.3-apache
+
+# Install dependencies
+RUN set -ex; \
+    \
+    apt-get update; \
+    apt-get install -y --no-install-recommends \
+        curl \
+        libxml2-dev \
+        libonig-dev \
+        libzip-dev \
+        cron \
+    ; \
+    \
+    docker-php-ext-install -j "$(nproc)" \
+        mysqli \
+        mbstring \
+        xml \
+        zip \
+    ; \
+    \
+    a2enmod rewrite; \
+    \
+    rm -rf /var/lib/apt/lists/*;
+
 RUN touch /usr/local/etc/php/conf.d/uploads.ini \
 && echo "file_uploads = On" >> /usr/local/etc/php/conf.d/uploads.ini \
 && echo "memory_limit = 256M" >> /usr/local/etc/php/conf.d/uploads.ini \
 && echo "upload_max_filesize = 64M" >> /usr/local/etc/php/conf.d/uploads.ini \
 && echo "post_max_size = 64M" >> /usr/local/etc/php/conf.d/uploads.ini \
 && echo "max_execution_time = 600" >> /usr/local/etc/php/conf.d/uploads.ini
-RUN apt-get update \
-&& apt-get install -y curl libxml2-dev libonig-dev libzip-dev cron \
-&& docker-php-ext-install mysqli mbstring xml zip
-RUN a2enmod rewrite
 ENV CI_ENV=docker
 
 COPY ./ /var/www/html/
