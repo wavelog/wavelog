@@ -11,8 +11,8 @@ RUN apt-get update \
 RUN a2enmod rewrite
 ENV CI_ENV=docker
 
+COPY ./ /var/www/html/
 WORKDIR /var/www/html
-RUN curl -L https://api.github.com/repos/wavelog/wavelog/tarball/dev | tar -xz --strip=1
 RUN chown -R www-data:www-data /var/www/html
 
 RUN mkdir ./userdata
