@@ -71,27 +71,25 @@
 </script>
 
 <script>
+    // converts Hertz to user defined unit
     function qrg_conversion(qrg) {
         var qrg_unit = "<?php echo $this->user_options_model->get_options('user_settings', array('option_name'=>'qrg_unit'))->row()->option_value ?? 'K'; ?>";
-        var divider = 1;
         var frac_dig = 0;
 
         if (qrg_unit == 'K') {
-            divider = 1000;
             frac_dig = 3;
         } else if (qrg_unit == 'M') {
-            divider = 1000000;
             frac_dig = 3;
         } else if (qrg_unit == 'G') {
-            divider = 1000000000;
             frac_dig = 4;
         }
 
-        var calc_qrg = (Math.round(parseInt(qrg))/divider).toFixed(frac_dig);
+        var calc_qrg = (Math.round(parseInt(qrg))/qrg_factor(qrg_unit)).toFixed(frac_dig);
 
         return calc_qrg;
     }
 
+    // returns unit text based on user option
     function qrg_unit_text() {
         var qrg_unit = "<?php echo $this->user_options_model->get_options('user_settings', array('option_name'=>'qrg_unit'))->row()->option_value ?? 'K'; ?>";
 
@@ -107,6 +105,23 @@
 
         return unit;
     }
+
+    // returns necessary factor for qrg conversion
+    function qrg_factor() {
+        var qrg_unit = "<?php echo $this->user_options_model->get_options('user_settings', array('option_name'=>'qrg_unit'))->row()->option_value ?? 'K'; ?>";
+        var factor = 1;
+        if (qrg_unit == 'K') {
+            factor = 1000;
+        } else if (qrg_unit == 'M') {
+            factor = 1000000;
+        } else if (qrg_unit == 'G') {
+            factor = 1000000000;
+        }
+
+        return factor;
+    }
+
+
 </script>
 
 <!-- Version Dialog START -->
