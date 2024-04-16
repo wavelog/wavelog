@@ -84,11 +84,10 @@ class Logbook extends CI_Controller {
         echo json_encode($return, JSON_PRETTY_PRINT);
     }
 
-	function json($tempcallsign, $temptype, $tempband, $tempmode, $tempstation_id = null) {
+	function json($tempcallsign, $tempband, $tempmode, $tempstation_id = null) {
 		session_write_close();
 		// Cleaning for security purposes
 		$callsign = $this->security->xss_clean($tempcallsign);
-		$type = $this->security->xss_clean($temptype);
 		$band = $this->security->xss_clean($tempband);
 		$mode = $this->security->xss_clean($tempmode);
 		$station_id = $this->security->xss_clean($tempstation_id);
@@ -152,8 +151,8 @@ class Logbook extends CI_Controller {
 		$return['qsl_manager'] 			= $this->nval($callbook['qslmgr'] ?? '', $this->logbook_model->call_qslvia($callsign));
 		$return['callsign_state'] 		= $this->nval($callbook['state'] ?? '', $this->logbook_model->call_state($callsign));
 		$return['callsign_us_county'] 	= $this->nval($callbook['us_county'] ?? '', $this->logbook_model->call_us_county($callsign));
-		$return['workedBefore'] 		= $this->worked_grid_before($return['callsign_qra'], $type, $band, $mode);
-		$return['confirmed'] 		= $this->confirmed_grid_before($return['callsign_qra'], $type, $band, $mode);
+		$return['workedBefore'] 		= $this->worked_grid_before($return['callsign_qra'], $band, $mode);
+		$return['confirmed'] 		= $this->confirmed_grid_before($return['callsign_qra'], $band, $mode);
 		$return['timesWorked'] 		= $this->logbook_model->times_worked($lookupcall);
 
 		if ($this->session->userdata('user_show_profile_image')) {
@@ -201,7 +200,7 @@ class Logbook extends CI_Controller {
 		return (($val2 ?? "") === "" ? ($val1 ?? "") : ($val2 ?? ""));
 	}
 
-	function confirmed_grid_before($gridsquare, $type, $band, $mode) {
+	function confirmed_grid_before($gridsquare, $band, $mode) {
 		if (strlen($gridsquare) < 4)
 			return false;
 
@@ -235,7 +234,7 @@ class Logbook extends CI_Controller {
 			}
 
 
-			if($type == "SAT") {
+			if($band == "SAT") {
 				$this->db->where('COL_PROP_MODE', 'SAT');
 				if ($extrawhere != '') {
 					$this->db->where('('.$extrawhere.')');
@@ -270,7 +269,7 @@ class Logbook extends CI_Controller {
 		return false;
 	}
 
-	function worked_grid_before($gridsquare, $type, $band, $mode)
+	function worked_grid_before($gridsquare, $band, $mode)
 	{
 		if (strlen($gridsquare) < 4)
 			return false;
@@ -279,7 +278,7 @@ class Logbook extends CI_Controller {
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
 		if(!empty($logbooks_locations_array)) {
-			if($type == "SAT") {
+			if($band == "SAT") {
 				$this->db->where('COL_PROP_MODE', 'SAT');
 			} else {
 				$this->db->where('COL_MODE', $this->logbook_model->get_main_mode_from_mode($mode));
