@@ -70,6 +70,45 @@
     }
 </script>
 
+<script>
+    function qrg_conversion(qrg) {
+        var qrg_unit = "<?php echo $this->user_options_model->get_options('user_settings', array('option_name'=>'qrg_unit'))->row()->option_value ?? 'K'; ?>";
+        var divider = 1;
+        var frac_dig = 0;
+
+        if (qrg_unit == 'K') {
+            divider = 1000;
+            frac_dig = 3;
+        } else if (qrg_unit == 'M') {
+            divider = 1000000;
+            frac_dig = 3;
+        } else if (qrg_unit == 'G') {
+            divider = 1000000000;
+            frac_dig = 4;
+        }
+
+        var calc_qrg = (Math.round(parseInt(qrg))/divider).toFixed(frac_dig);
+
+        return calc_qrg;
+    }
+
+    function qrg_unit_text() {
+        var qrg_unit = "<?php echo $this->user_options_model->get_options('user_settings', array('option_name'=>'qrg_unit'))->row()->option_value ?? 'K'; ?>";
+
+        if (qrg_unit == 'H') {
+            unit = ' Hz';
+        } else if (qrg_unit == 'K') {
+            unit = ' kHz';
+        } else if (qrg_unit == 'M') {
+            unit = ' MHz';
+        } else if (qrg_unit == 'G') {
+            unit = ' GHz';
+        }
+
+        return unit;
+    }
+</script>
+
 <!-- Version Dialog START -->
 
 <?php
@@ -1183,7 +1222,7 @@ $($('#callsign')).on('keypress',function(e) {
 						    }
 					    } else {
 						    $(".radio_timeout_error" ).remove();
-						    text = '<i class="fas fa-broadcast-tower"></i><span style="margin-left:10px;"></span><b>TX:</b> '+(Math.round(parseInt(data.frequency)/100)/10000).toFixed(4)+' MHz';
+						    text = '<i class="fas fa-broadcast-tower"></i><span style="margin-left:10px;"></span><b>TX:</b> '+qrg_conversion(data.frequency)+qrg_unit_text();
 						    if(data.mode != null) {
 							    text = text+'<span style="margin-left:10px"></span>'+data.mode;
 						    }
