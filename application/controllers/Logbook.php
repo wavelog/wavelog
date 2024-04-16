@@ -134,7 +134,7 @@ class Logbook extends CI_Controller {
 
 		$lookupcall=$this->get_plaincall($callsign);
 
-		$return['partial'] = $this->partial($lookupcall);
+		$return['partial'] = $this->partial($lookupcall, $band);
 
 		$callbook = $this->logbook_model->loadCallBook($callsign, $this->config->item('use_fullname'));
 
@@ -625,7 +625,7 @@ class Logbook extends CI_Controller {
 		$this->load->view('interface_assets/footer');
 	}
 
-	function partial($id) {
+	function partial($id, $band = null) {
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize($this->config->item('auth_mode'))) { return; }
 
@@ -879,7 +879,7 @@ class Logbook extends CI_Controller {
 
 				if (isset($callsign['callsign']['gridsquare'])) {
 					$this->load->model('logbook_model');
-					$callsign['grid_worked'] = $this->logbook_model->check_if_grid_worked_in_logbook(strtoupper(substr($callsign['callsign']['gridsquare'],0,4)), 0, $this->session->userdata('user_default_band'))->num_rows();
+					$callsign['grid_worked'] = $this->logbook_model->check_if_grid_worked_in_logbook(strtoupper(substr($callsign['callsign']['gridsquare'],0,4)), 0, $band)->num_rows();
 				}
 				if (isset($callsign['callsign']['error'])) {
 					$callsign['error'] = $callsign['callsign']['error'];
