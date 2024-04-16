@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - 'CI_Pipe'
+  workflow_dispatch:
 
 jobs:
   build:
