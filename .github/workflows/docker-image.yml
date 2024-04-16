@@ -5,6 +5,10 @@ on:
     types: [published]
   workflow_dispatch:
 
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -23,7 +27,7 @@ jobs:
       id: meta
       uses: docker/metadata-action@v5
       with:
-        images: ${{ env.REGISTRY_IMAGE }}
+        images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v3
     - name: Set up Docker Buildx
@@ -34,4 +38,5 @@ jobs:
         context: .
         platforms: linux/amd64,linux/arm64,linux/arm/v7
         push: true
-        tags: ghcr.io/wavelog/wavelog:${{ github.ref_name == 'master' && 'latest' || github.ref_name }}
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
