@@ -1,6 +1,9 @@
 name: Wavelog create Dockerimage and publish it
 
 on:
+  push:
+    branches:
+      - 'dev'
   release:
     types: [published]
   workflow_dispatch:
