@@ -3,7 +3,7 @@ name: Wavelog Image CI DEV
 on:
   push:
     branches:
-      - 'CI_Pipe'
+      - 'master'
   workflow_dispatch:
 
 jobs:
