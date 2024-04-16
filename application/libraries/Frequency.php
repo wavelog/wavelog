@@ -1,6 +1,5 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
-class Frequency
-{
+class Frequency {
 
 	public $defaultFrequencies = array(
 		'160m' => array(
@@ -132,8 +131,7 @@ class Frequency
 	);
 
 	/* Class to convert band and mode into a frequency in a format based on the specifications of the database table */
-	public function convert_band($band, $mode = 'SSB')
-	{
+	public function convert_band($band, $mode = 'SSB') {
 		// Converting LSB and USB to SSB
 		if ($mode == 'LSB' or $mode == 'USB') {
 			$mode = "SSB";
@@ -147,8 +145,7 @@ class Frequency
 		return $this->getDefaultFrequency($band, $mode);
 	}
 
-	function getDefaultFrequency($band, $mode)
-	{
+	function getDefaultFrequency($band, $mode) {
 		$CI = &get_instance();
 		$db = &$CI->db;
 
@@ -162,8 +159,7 @@ class Frequency
 		return $result->$mode;
 	}
 
-	public function GetBand($Frequency)
-	{
+	public function GetBand($Frequency) {
 		$Band = NULL;
 		if ($Frequency > 1000000 && $Frequency < 2000000) {
 			$Band = "160m";
@@ -224,8 +220,7 @@ class Frequency
 	}
 
 	// converts a frequency into the user defined unit
-	function unit_conversion($frequency, $unit = 'K')
-	{
+	function unit_conversion($frequency, $unit = 'K') {
 		if ($unit == 'H') {
 			$divider = 1;
 			$unit_text = " Hz";
