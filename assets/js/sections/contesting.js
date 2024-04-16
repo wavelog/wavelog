@@ -300,7 +300,7 @@ $("#callsign").keyup(async function (e) {
 async function getCallbook() {
 	var call = $("#callsign").val();
 	if (call.length >= 3) {
-		$.getJSON(base_url + 'index.php/logbook/json/' + call + '/0/'+$("#band").val()+'/'+$("#band").val() + '/' + current_active_location, function(result) {
+		$.getJSON(base_url + 'index.php/logbook/json/' + call + '/'+$("#band").val()+'/'+$("#band").val() + '/' + current_active_location, function(result) {
 			try {
 				$('#bearing_info').html(result.bearing);
 			} catch {}

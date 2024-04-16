@@ -364,6 +364,13 @@ class API extends CI_Controller {
 				$band = null;
 			}
 
+			// If $obj['cnfm'] exists
+			if(isset($obj['cnfm'])) {
+				$cnfm = $obj['cnfm'];
+			} else {
+				$cnfm = null;
+			}
+
 			$this->load->model('logbooks_model');
 
 			if($this->logbooks_model->public_slug_exists($logbook_slug)) {
@@ -388,15 +395,24 @@ class API extends CI_Controller {
 				// Search Logbook for callsign
 				$this->load->model('logbook_model');
 
-				$result = $this->logbook_model->check_if_grid_worked_in_logbook($grid, $logbooks_locations_array, $band);
-
+				$query = $this->logbook_model->check_if_grid_worked_in_logbook($grid, $logbooks_locations_array, $band, $cnfm);
 				http_response_code(201);
-				if($result > 0)
-				{
+				if ($query->num_rows() == 0) {
+					echo json_encode(['gridsquare' => strtoupper($grid), 'result' => 'Not Found']);
+				} else if ($cnfm == null) {
 					echo json_encode(['gridsquare' => strtoupper($grid), 'result' => 'Found']);
 				} else {
-					echo json_encode(['gridsquare' => strtoupper($grid), 'result' => 'Not Found']);
+					$arr = [];
+					foreach($query->result() as $line) {
+						$arr[] = $line->gridorcnfm;
+					}
+					if (in_array('Y', $arr)) {
+						echo json_encode(['gridsquare' => strtoupper($grid), 'result' => 'Confirmed']);
+					} else {
+						echo json_encode(['gridsquare' => strtoupper($grid), 'result' => 'Worked']);
+					}
 				}
+
 			} else {
 				// Logbook not found
 				http_response_code(404);

@@ -752,14 +752,11 @@ $( document ).ready(function() {
 			$('.callsign-suggest').hide();
 
 			if($("#sat_name").val() != ""){
-				var sat_type = "SAT";
-				var json_band = "0";
-				var json_mode = "0";
+				var json_band = "SAT";
 			} else {
-				var sat_type = "0";
 				var json_band = $("#band").val();
-				var json_mode = $("#mode").val();
 			}
+			var json_mode = $("#mode").val();
 
 			var find_callsign = $(this).val().toUpperCase();
 			var callsign = find_callsign;
@@ -768,7 +765,7 @@ $( document ).ready(function() {
 				find_callsign=find_callsign.replace('Ø', '0');
 
 				// Replace / in a callsign with - to stop urls breaking
-				$.getJSON(base_url + 'index.php/logbook/json/' + find_callsign + '/' + sat_type + '/' + json_band + '/' + json_mode + '/' + $('#stationProfile').val(), async function(result)
+				$.getJSON(base_url + 'index.php/logbook/json/' + find_callsign + '/' + json_band + '/' + json_mode + '/' + $('#stationProfile').val(), async function(result)
 					{
 
 						// Make sure the typed callsign and json result match
