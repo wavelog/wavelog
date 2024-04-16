@@ -99,7 +99,6 @@ class Satellite_model extends CI_Model {
 		$this->db->select('satellite.name AS satellite, satellitemode.name AS satmode, satellitemode.uplink_mode AS Uplink_Mode, satellitemode.uplink_freq AS Uplink_Freq, satellitemode.downlink_mode AS Downlink_Mode, satellitemode.downlink_freq AS Downlink_Freq');
 		$this->db->join('satellitemode', 'satellite.id = satellitemode.satelliteid', 'LEFT OUTER');
 		$query = $this->db->get('satellite');
-		log_message('debug', 'SQL: '.$this->db->last_query());
 		return $query->result();
 	}
 
