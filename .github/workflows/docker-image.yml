@@ -1,7 +1,9 @@
 name: Wavelog Image CI DEV
 
-on: 
-  workflow_dispatch:
+on:
+  push:
+    branches:
+      - 'CI_Pipe'
 
 jobs:
   build:
