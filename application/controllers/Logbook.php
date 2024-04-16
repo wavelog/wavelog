@@ -855,7 +855,7 @@ class Logbook extends CI_Controller {
 					}
 					if (isset($data['callsign']['gridsquare'])) {
 						$this->load->model('logbook_model');
-						$callsign['grid_worked'] = $this->logbook_model->check_if_grid_worked_in_logbook(strtoupper(substr($data['callsign']['gridsquare'],0,4)), 0, $this->session->userdata('user_default_band'));
+						$callsign['grid_worked'] = $this->logbook_model->check_if_grid_worked_in_logbook(strtoupper(substr($data['callsign']['gridsquare'],0,4)), 0, $this->session->userdata('user_default_band'))->num_rows();
 					}
 					if (isset($callsign['callsign']['dxcc'])) {
 						$this->load->model('logbook_model');
@@ -879,7 +879,7 @@ class Logbook extends CI_Controller {
 
 				if (isset($callsign['callsign']['gridsquare'])) {
 					$this->load->model('logbook_model');
-					$callsign['grid_worked'] = $this->logbook_model->check_if_grid_worked_in_logbook(strtoupper(substr($callsign['callsign']['gridsquare'],0,4)), 0, $this->session->userdata('user_default_band'));
+					$callsign['grid_worked'] = $this->logbook_model->check_if_grid_worked_in_logbook(strtoupper(substr($callsign['callsign']['gridsquare'],0,4)), 0, $this->session->userdata('user_default_band'))->num_rows();
 				}
 				if (isset($callsign['callsign']['error'])) {
 					$callsign['error'] = $callsign['callsign']['error'];
@@ -935,7 +935,7 @@ class Logbook extends CI_Controller {
 
 						$data['callsign'] = $this->qrz->search($id, $this->session->userdata('qrz_session_key'), $this->config->item('use_fullname'));
 						if (isset($data['callsign']['gridsquare'])) {
-							$data['grid_worked'] = $this->logbook_model->check_if_grid_worked_in_logbook(strtoupper(substr($data['callsign']['gridsquare'],0,4)), 0, $this->session->userdata('user_default_band'));
+							$data['grid_worked'] = $this->logbook_model->check_if_grid_worked_in_logbook(strtoupper(substr($data['callsign']['gridsquare'],0,4)), 0, $this->session->userdata('user_default_band'))->num_rows();
 						}
 						if (isset($data['callsign']['dxcc'])) {
 							$entity = $this->logbook_model->get_entity($data['callsign']['dxcc']);
@@ -962,7 +962,7 @@ class Logbook extends CI_Controller {
 							$data['callsign'] = $this->hamqth->search($id, $this->session->userdata('hamqth_session_key'));
 						}
 						if (isset($data['callsign']['gridsquare'])) {
-							$data['grid_worked'] = $this->logbook_model->check_if_grid_worked_in_logbook(strtoupper(substr($data['callsign']['gridsquare'],0,4)), 0, $this->session->userdata('user_default_band'));
+							$data['grid_worked'] = $this->logbook_model->check_if_grid_worked_in_logbook(strtoupper(substr($data['callsign']['gridsquare'],0,4)), 0, $this->session->userdata('user_default_band'))->num_rows();
 						}
 						if (isset($data['callsign']['dxcc'])) {
 							$entity = $this->logbook_model->get_entity($data['callsign']['dxcc']);
