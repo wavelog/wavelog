@@ -166,7 +166,22 @@
                 </div>
                 <div class="mb-3 col">
                   <label for="frequency"><?php echo lang('gen_hamradio_frequency'); ?></label>
-                  <input type="text" class="form-control form-control-sm" id="frequency" name="freq_display" value="<?php echo $this->session->userdata('freq'); ?>" />
+                  <div class="input-group">
+                    <input type="text" class="form-control form-control-sm" id="frequency" name="freq_display" value="<?php echo $this->session->userdata('freq'); ?>" />
+                    <span class="input-group-text">
+                      <?php 
+                      $user_qrg_unit = $this->user_options_model->get_options('user_settings', array('option_name'=>'qrg_unit'))->row()->option_value ?? 'K'; 
+                      if ($user_qrg_unit == 'H') {
+                        echo 'Hz';
+                      } else if ($user_qrg_unit == 'K') {
+                        echo 'kHz';
+                      } else if ($user_qrg_unit == 'M') {
+                        echo 'MHz';
+                      } else if ($user_qrg_unit == 'G') {
+                        echo 'GHz';
+                      }
+                      ?></span>
+                  </div>
                 </div>
               </div>
 
