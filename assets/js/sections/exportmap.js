@@ -78,7 +78,7 @@ function loadMap(data, iconsList) {
 	if(container != null){
 		container._leaflet_id = null;
 		container.remove();
-		$("body").append('<div id="exportmap" class="map-leaflet"></div>');
+		$("body").append('<div id="exportmap" style="width:auto" class="map-leaflet"></div>');
 	}
 
 	map = new L.Map('exportmap', {
