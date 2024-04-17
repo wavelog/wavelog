@@ -1,5 +1,6 @@
 <script>
 var slug = '<?php echo $slug; ?>';
+var tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"
 </script>
 <style>
     #exportmap {
