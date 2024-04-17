@@ -1198,8 +1198,7 @@ L.Control.EasyPrint = L.Control.extend({
 		var plugin = this;
 		var widthForExport = this.mapContainer.style.width;
 		var heightForExport = parseInt(plugin.mapContainer.style.height.replace('px'));
-		if (this.originalState.widthWasAuto && sizemode === 'CurrentSize' || this.originalState.widthWasPercentage && sizemode === 'CurrentSize') {
-			// widthForExport = this.originalState.mapWidth;
+		if (sizemode === 'CurrentSize') {
 			widthForExport = this.mapContainer.getBoundingClientRect().width;
 			heightForExport = this.mapContainer.getBoundingClientRect().height;
 		} 
