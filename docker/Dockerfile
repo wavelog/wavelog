@@ -5,17 +5,12 @@ RUN set -ex; \
     \
     apt-get update; \
     apt-get install -y --no-install-recommends \
-        curl \
-        libxml2-dev \
-        libonig-dev \
         libzip-dev \
         cron \
     ; \
     \
     docker-php-ext-install -j "$(nproc)" \
         mysqli \
-        mbstring \
-        xml \
         zip \
     ; \
     \
