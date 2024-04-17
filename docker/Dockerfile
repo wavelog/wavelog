@@ -23,12 +23,17 @@ RUN set -ex; \
     \
     rm -rf /var/lib/apt/lists/*;
 
-RUN touch /usr/local/etc/php/conf.d/uploads.ini \
-&& echo "file_uploads = On" >> /usr/local/etc/php/conf.d/uploads.ini \
-&& echo "memory_limit = 256M" >> /usr/local/etc/php/conf.d/uploads.ini \
-&& echo "upload_max_filesize = 64M" >> /usr/local/etc/php/conf.d/uploads.ini \
-&& echo "post_max_size = 64M" >> /usr/local/etc/php/conf.d/uploads.ini \
-&& echo "max_execution_time = 600" >> /usr/local/etc/php/conf.d/uploads.ini
+# Enabling custom upload settings in PHP
+RUN set -ex; \
+    \
+    { \
+        echo 'file_uploads = On'; \
+        echo 'memory_limit = 256M'; \
+        echo 'upload_max_filesize = 64M'; \
+        echo 'post_max_size = 64M'; \
+        echo 'max_execution_time = 600'; \
+    } > $PHP_INI_DIR/conf.d/wavelog.ini;
+
 ENV CI_ENV=docker
 
 COPY ./ /var/www/html/
