@@ -434,6 +434,9 @@
 
                         if($row->COL_SAT_NAME != null) {
                             $twitter_band_sat = $row->COL_SAT_NAME." \u{1F6F0}\u{FE0F}";
+                            if($row->COL_ANT_EL != null && $row->COL_ANT_AZ != null ) {
+                                $twitter_band_sat .= " (".$row->COL_ANT_EL."° el / ".$row->COL_ANT_AZ."° az)";
+                            }
                             $hashtags = "#hamr #wavelog #amsat";
                         } else {
                             $twitter_band_sat = $row->COL_BAND;
