@@ -340,5 +340,5 @@ function onClick(e) {
 
 function onClick2(e) {
     var marker = e.target;
-    displayContactsOnMap($("#wasmap"), marker.options.title, $('#band2').val(), $('#mode').val(), 'WAS')
+    displayContactsOnMap($("#wasmap"), marker.options.title, $('#band2').val(), 'All', 'All', $('#mode').val(), 'WAS')
 }
