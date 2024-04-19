@@ -198,5 +198,5 @@ function onClick(e) {
 
 function onClick2(e) {
 	var marker = e.target;
-	displayContactsOnMap($("#helvetiamap"), marker.options.title[0], $('#band2').val(), $('#mode').val(), 'helvetia');
+	displayContactsOnMap($("#helvetiamap"), marker.options.title[0], $('#band2').val(), 'All', 'All', $('#mode').val(), 'helvetia');
 }
