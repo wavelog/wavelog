@@ -181,6 +181,9 @@
                         echo 'GHz';
                       }
                       ?></span>
+                      <script>
+                        var user_qrg_unit = "<?php $this->user_options_model->get_options('user_settings', array('option_name'=>'qrg_unit'))->row()->option_value ?? 'K'; ?>";
+                      </script>
                   </div>
                 </div>
               </div>
