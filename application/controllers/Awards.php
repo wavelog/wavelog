@@ -1505,6 +1505,18 @@ class Awards extends CI_Controller {
     }
 
 	public function wab() {
+		$this->load->model('bands');
+        $this->load->model('gridmap_model');
+		$this->load->model('stations');
+
+		$data['modes'] = $this->gridmap_model->get_worked_modes();
+		$data['bands'] = $this->bands->get_worked_bands();
+		$data['orbits'] = $this->bands->get_worked_orbits();
+		$data['sats_available'] = $this->bands->get_worked_sats();
+
+		$data['user_default_band'] = $this->session->userdata('user_default_band');
+		$data['user_default_confirmation'] = $this->session->userdata('user_default_confirmation');
+
 		$footerData = [];
 		$footerData['scripts'] = [
 			'assets/js/sections/wab.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/wab.js"))
