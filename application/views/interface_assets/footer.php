@@ -52,6 +52,7 @@
 <script type="text/javascript" src="<?php echo base_url() ;?>assets/js/sections/common.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ;?>assets/js/sections/eqslcharcounter.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ;?>assets/js/sections/version_dialog.js"></script>
+<script type="text/javascript" src="<?php echo base_url() ;?>assets/js/showdown.min.js"></script>
 
 <script src="<?php echo base_url(); ?>assets/js/htmx.min.js"></script>
 
