@@ -33,6 +33,14 @@ function plotmap() {
 }
 
 function wabmap(data) {
+	var container = L.DomUtil.get('wabmap');
+
+	if(container != null){
+		container._leaflet_id = null;
+		container.remove();
+		$("#mapcontainer").append('<div id="wabmap" style="width: 100%; height: 85vh;"></div>');
+	}
+
 	$(".ld-ext-right-plot").removeClass('running');
 	$(".ld-ext-right-plot").prop('disabled', false);
 	$('#plot').prop("disabled", false);

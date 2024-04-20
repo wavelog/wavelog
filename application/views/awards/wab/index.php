@@ -100,5 +100,6 @@
             <button id="plot" type="button" name="plot" class="btn btn-primary me-1 ld-ext-right ld-ext-right-plot" onclick="plotmap()"><?php echo lang('gridsquares_button_plot'); ?><div class="ld ld-ring ld-spin"></div></button>
 </form>
 </div>
-
+<div id="mapcontainer">
     <div id="wabmap" style="width: 100%; height: 85vh;"></div>
+</div>
