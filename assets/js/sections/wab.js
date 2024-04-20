@@ -136,3 +136,7 @@ function wabmap(data) {
 
     legend.addTo(map);
 };
+
+$(document).ready(function(){
+	plotmap();
+ })
