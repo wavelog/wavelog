@@ -1503,4 +1503,39 @@ class Awards extends CI_Controller {
             }
         }
     }
+
+	public function wab() {
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/sections/wab.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/wab.js"))
+		];
+
+		// Render page
+		$data['page_title'] = "Awards - Worked All Britain";
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('awards/wab/index');
+		$this->load->view('interface_assets/footer', $footerData);
+      }
+
+	  public function wab_map() {
+		$CI =& get_instance();
+		$CI->load->model('logbooks_model');
+		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+        $this->load->model('wab');
+
+        $bands[] = 'All';
+
+        if ($logbooks_locations_array) {
+			$location_list = "'".implode("','",$logbooks_locations_array)."'";
+            $wab_array = $this->wab->get_wab_array($bands, $location_list);
+		} else {
+            $location_list = null;
+            $wab_array = null;
+        }
+
+        header('Content-Type: application/json');
+        echo json_encode($wab_array);
+      }
+
 }
