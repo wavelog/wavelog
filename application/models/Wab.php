@@ -1,14 +1,18 @@
 <?php
 
-class Wab extends CI_Model{
+class Wab extends CI_Model {
 
-    function get_wab_array($band, $location_list) {
+	function __construct() {
+		$this->load->library('Genfunctions');
+	}
+
+    function get_wab_array($band, $location_list, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit) {
 		$worked = array();
 		$confirmed = array();
 
-		$worked = $this->getWabWorked($location_list, $band);
+		$worked = $this->getWabWorked($location_list, $band, $mode, $sat, $orbit);
 
-		$confirmed = $this->getWabConfirmed($location_list, $band);
+		$confirmed = $this->getWabConfirmed($location_list, $band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit);
 
 		$wabarray = array();
 
@@ -40,9 +44,23 @@ class Wab extends CI_Model{
      * Function returns all worked, but not confirmed states
      * $postdata contains data from the form, in this case Lotw or QSL are used
      */
-    function getWabWorked($location_list, $band) {
+    function getWabWorked($location_list, $band, $mode, $sat, $orbit) {
         $sql = "SELECT distinct col_sig_info FROM " . $this->config->item('table_name') . " thcv
         where station_id in (" . $location_list . ") and col_sig = 'WAB' and coalesce(col_sig_info, '') <> ''";
+
+		$sql .= $this->genfunctions->addBandToQuery($band);
+
+		if ($band == 'SAT') {
+			if ($sat != 'All') {
+				$sql .= " and col_sat_name ='" . $sat . "'";
+			}
+		}
+
+		if ($mode != 'All') {
+			$sql .= " and (col_mode = '" . $mode . "' or col_submode = '" . $mode . "')";
+		}
+
+		$sql .= $this->addOrbitToQuery($orbit);
 
         $query = $this->db->query($sql);
 
@@ -53,28 +71,68 @@ class Wab extends CI_Model{
      * Function returns all confirmed states on given band and on LoTW or QSL
      * $postdata contains data from the form, in this case Lotw or QSL are used
      */
-    function getWabConfirmed($location_list, $bands) {
+    function getWabConfirmed($location_list, $band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit) {
         $sql = "SELECT distinct col_sig_info FROM " . $this->config->item('table_name') . " thcv
             where station_id in (" . $location_list . ") and col_sig = 'WAB' and coalesce(col_sig_info, '') <> ''";
 
-        $sql .= $this->addQslToQuery();
+		$sql .= $this->genfunctions->addBandToQuery($band);
+
+		if ($band == 'SAT') {
+			if ($sat != 'All') {
+				$sql .= " and col_sat_name ='" . $sat . "'";
+			}
+		}
+
+		if ($mode != 'All') {
+			$sql .= " and (col_mode = '" . $mode . "' or col_submode = '" . $mode . "')";
+		}
+
+		$sql .= $this->addOrbitToQuery($orbit);
+
+        $sql .= $this->addQslToQuery($qsl, $lotw, $eqsl, $qrz);
 
         $query = $this->db->query($sql);
 
         return $query->result();
     }
 
-    function addQslToQuery() {
-        $sql = 'and (';
-        $qsl = array();
-		array_push($qsl, "col_qsl_rcvd = 'Y'");
-		array_push($qsl, "col_lotw_qsl_rcvd = 'Y'");
-		//array_push($qsl, "col_eqsl_qsl_rcvd = 'Y'");
-		$sql .= implode(' or ', $qsl);
-		$sql .= ')';
-        return $sql;
-    }
+    function addQslToQuery($qsl, $lotw, $eqsl, $qrz) {
+		$sql = '';
+		$qslarray = array();
+		if ($qrz != NULL || $lotw != NULL || $qsl != NULL || $eqsl != NULL) {
+			$sql .= ' and (';
+			if ($qsl != NULL) {
+				array_push($qslarray, "col_qsl_rcvd = 'Y'");
+			}
+			if ($lotw != NULL) {
+				array_push($qslarray, "col_lotw_qsl_rcvd = 'Y'");
+			}
+			if ($eqsl != NULL) {
+				array_push($qslarray, "col_eqsl_qsl_rcvd = 'Y'");
+			}
+			if ($qrz != NULL) {
+				array_push($qslarray, "COL_QRZCOM_QSO_DOWNLOAD_STATUS = 'Y'");
+			}
+			if (count($qslarray) > 0) {
+				$sql .= implode(' or ', $qslarray);
+			} else {
+				$sql .= '1=0';
+			}
+			$sql .= ')';
+		} else {
+			$sql.=' and 1=0';
+		}
+		return $sql;
+	}
 
+	// Adds orbit type to query
+	function addOrbitToQuery($orbit) {
+		$sql = '';
+		if ($orbit != 'All') {
+			$sql .= ' AND satellite.orbit = \''.$orbit.'\'';
+		}
 
+		return $sql;
+	}
 
 }

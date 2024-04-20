@@ -7,11 +7,22 @@ var wab_squares = $.ajax({
 	}
 })
 
-$.when(wab_squares).done(function() {
+function plotmap() {
+	$(".ld-ext-right-plot").addClass('running');
+    $(".ld-ext-right-plot").prop('disabled', true);
+    $('#plot').prop("disabled", true);
 	$.ajax({
 		url: site_url + '/awards/wab_map',
 		type: 'post',
 		data: {
+			band: $("#band").val(),
+            mode: $("#mode").val(),
+            qsl:  $("#qsl").is(":checked"),
+            lotw: $("#lotw").is(":checked"),
+            eqsl: $("#eqsl").is(":checked"),
+            qrz: $("#qrz").is(":checked"),
+            sat: $("#sats").val(),
+            orbit: $("#orbits").val(),
 		},
 		success: function (data) {
 			wabmap(data);
@@ -19,9 +30,12 @@ $.when(wab_squares).done(function() {
 		error: function (data) {
 		},
 	})
-})
+}
 
 function wabmap(data) {
+	$(".ld-ext-right-plot").removeClass('running');
+	$(".ld-ext-right-plot").prop('disabled', false);
+	$('#plot').prop("disabled", false);
 	var map = L.map('wabmap').setView([51.5074, -0.1278], 9);
 	var confirmedcount = 0;
 	var workedcount = 0;
