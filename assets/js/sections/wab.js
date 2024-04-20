@@ -1,3 +1,20 @@
+$('#band').change(function(){
+	var band = $("#band option:selected").text();
+	if (band != "SAT") {
+		$("#sats").val('All');
+		$("#orbits").val('All');
+		$("#sats").hide();
+		$("#orbits").hide();
+		$("#satslabel").hide();
+		$("#orbitslabel").hide();
+	} else {
+		$("#sats").show();
+		$("#orbits").show();
+		$("#orbitslabel").show();
+		$("#satslabel").show();
+	}
+});
+
 var wab_squares = $.ajax({
 	url: base_url+"assets/js/sections/wab_geojson.js",
 	dataType: "json",
@@ -44,7 +61,13 @@ function wabmap(data) {
 	$(".ld-ext-right-plot").removeClass('running');
 	$(".ld-ext-right-plot").prop('disabled', false);
 	$('#plot').prop("disabled", false);
-	var map = L.map('wabmap').setView([51.5074, -0.1278], 9);
+	var map = L.map('wabmap',{
+		fullscreenControl: true,
+		fullscreenControlOptions: {
+			position: 'topleft'
+		},
+	}).setView([51.5074, -0.1278], 9);
+
 	var confirmedcount = 0;
 	var workedcount = 0;
 
