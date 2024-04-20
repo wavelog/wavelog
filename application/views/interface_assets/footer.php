@@ -72,8 +72,13 @@
 
 <script>
     // converts Hertz to user defined unit
-    function qrg_conversion(qrg) {
-        var qrg_unit = "<?php echo $this->user_options_model->get_options('user_settings', array('option_name'=>'qrg_unit'))->row()->option_value ?? 'K'; ?>";
+    function qrg_conversion(qrg, unit) {
+        var qrg_unit;
+        if (unit == '') {
+            qrg_unit = "<?php echo $this->user_options_model->get_options('user_settings', array('option_name'=>'qrg_unit'))->row()->option_value ?? 'K'; ?>";
+        } else {
+            qrg_unit = unit;
+        }
         var frac_dig = 0;
 
         if (qrg_unit == 'K') {
@@ -107,8 +112,8 @@
     }
 
     // returns necessary factor for qrg conversion
-    function qrg_factor() {
-        var qrg_unit = "<?php echo $this->user_options_model->get_options('user_settings', array('option_name'=>'qrg_unit'))->row()->option_value ?? 'K'; ?>";
+    function qrg_factor(unit = "<?php echo $this->user_options_model->get_options('user_settings', array('option_name'=>'qrg_unit'))->row()->option_value ?? 'K'; ?>") {
+        var qrg_unit = unit;
         var factor = 1;
         if (qrg_unit == 'K') {
             factor = 1000;
@@ -120,6 +125,23 @@
 
         return factor;
     }
+
+    // converts other formats then Hertz to needed format based on user options
+    function qrg_rev_conversion(qrg, unit) {
+
+        var user_unit = "<?php echo $this->user_options_model->get_options('user_settings', array('option_name'=>'qrg_unit'))->row()->option_value ?? 'K'; ?>";
+        var user_factor = qrg_factor(user_unit);
+        var target_factor = qrg_factor(unit);
+
+        // convert back to hertz
+        var qrg_in_hertz = qrg * user_factor;
+
+        // converts to target format
+        var converted_qrg = qrg_in_hertz / target_factor;
+
+        return converted_qrg;
+    }
+
 
 
 </script>
