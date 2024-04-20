@@ -262,7 +262,7 @@ const ituzonenames = [
 
 function loadMap(data, iconsList) {
 	$('#mapButton').prop("disabled", false).removeClass("running");
-	var osmUrl='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+	var osmUrl = tileUrl;
 	var osmAttrib='Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
 	// If map is already initialized
 	var container = L.DomUtil.get('advancedmap');
