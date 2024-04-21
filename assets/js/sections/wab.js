@@ -18,7 +18,7 @@ $('#band').change(function(){
 var wab_squares = $.ajax({
 	url: base_url+"assets/js/sections/wab_geojson.js",
 	dataType: "json",
-	success: console.log("WAB data successfully loaded."),
+	success: '',
 	error: function(xhr) {
 		alert(xhr.statusText)
 	}
@@ -123,7 +123,7 @@ function wabmap(data) {
 		fullscreenControlOptions: {
 			position: 'topleft'
 		},
-	}).setView([51.5074, -1], 9);
+	}).setView([52, -1], 9);
 
 	var confirmedcount = 0;
 	var workedcount = 0;
@@ -133,26 +133,26 @@ function wabmap(data) {
 	}).addTo(map);
 
 	// Add requested external GeoJSON to map
-	var kywab_squares = L.geoJSON(wab_squares.responseJSON, {
+	var geo_wab_squares = L.geoJSON(wab_squares.responseJSON, {
 		style: function(feature) {
-				if (feature.properties && feature.properties.name) {
-						if (data[feature.properties.name] == 'C') {
-							confirmedcount++;
-							return {
-								fillColor: 'green',
-								fill: true,
-								fillOpacity: 0.8,
-							};
-						}
-						if (data[feature.properties.name] == 'W') {
-							workedcount++;
-							return {
-								fillColor: 'orange',
-								fill: true,
-								fillOpacity: 0.8,
-							};
-						}
+			if (feature.properties && feature.properties.name) {
+				if (data[feature.properties.name] == 'C') {
+					confirmedcount++;
+					return {
+						fillColor: 'green',
+						fill: true,
+						fillOpacity: 0.8,
+					};
 				}
+				if (data[feature.properties.name] == 'W') {
+					workedcount++;
+					return {
+						fillColor: 'orange',
+						fill: true,
+						fillOpacity: 0.8,
+					};
+				}
+			}
 		},
 		pointToLayer: function(feature, latlng) {
 			if (feature.properties && feature.properties.name) {
@@ -162,10 +162,12 @@ function wabmap(data) {
 					html: feature.properties.name
 				});
 
-				// Create a marker at the location of the point
-				return L.marker(latlng, {
+				var sqmarker = L.marker(latlng, {
 					icon: labelIcon
 				});
+
+				// Create a marker at the location of the point
+				return sqmarker;
 			}
 		},
 		onEachFeature: function(feature, layer) {
@@ -178,15 +180,15 @@ function wabmap(data) {
 	// Function to update labels based on zoom level
 	function updateLabels() {
 		var currentZoom = map.getZoom();
-		kywab_squares.eachLayer(function(layer) {
-			if (currentZoom >= 8) {
-				// Show labels if zoom level is 10 or higher
-				layer.getElement().style.display = 'block';
-			} else {
-				// Hide labels if zoom level is less than 10
-				layer.getElement().style.display = 'none';
-			}
-		});
+		if (currentZoom >= 9) {
+			$('.leaflet-marker-icon').show();
+			$('.leaflet-interactive').show();
+		} else if (currentZoom = 8) {
+			$('.leaflet-marker-icon').hide();
+		} else {
+			$('.leaflet-interactive').hide();
+			$('.leaflet-marker-icon').hide();
+		}
 	}
 
 	// Update labels when the map zoom changes
