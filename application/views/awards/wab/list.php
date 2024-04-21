@@ -10,7 +10,7 @@
 				<?php foreach ($wab_array as $wab => $key) { ?>
 				<tr>
 					<td style="text-align: center; vertical-align: middle;" ><?php echo '<a href=\'javascript:displayContacts("'. $wab .'","'. $postdata['band'] . '","' . $postdata['sat'] . '","' . $postdata['orbit'] . '","' . $postdata['mode'] . '","WAB")\'>'. $wab; ?></td>
-					<td style="text-align: center; vertical-align: middle;" ><?php echo $key == 'W' ? 'Yes' : 'No'; ?></td>
+					<td style="text-align: center; vertical-align: middle;" ><?php echo $key == 'C' ? 'Yes' : 'No'; ?></td>
 				</tr>
 
 				<?php } ?>
