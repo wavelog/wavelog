@@ -40,6 +40,42 @@ class Wab extends CI_Model {
 		return $wabarray;
     }
 
+	function get_wab_list($band, $location_list, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit) {
+		$worked = array();
+		$confirmed = array();
+
+		$worked = $this->getWabWorked($location_list, $band, $mode, $sat, $orbit);
+
+		$confirmed = $this->getWabConfirmed($location_list, $band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit);
+
+		$wabarray = array();
+
+		$workedGridArray = array();
+		foreach ($worked as $w) {
+			array_push($workedGridArray, $w->col_sig_info);
+			$wabarray += array(
+				$w->col_sig_info => 'W'
+			);
+		}
+
+		$confirmedGridArray = array();
+		foreach ($confirmed as $c) {
+			array_push($confirmedGridArray, $c->col_sig_info);
+
+			if(array_key_exists($c->col_sig_info, $wabarray)){
+				$wabarray[$c->col_sig_info] = 'C';
+			} else {
+				$wabarray += array(
+					$c->col_sig_info => 'C'
+				);
+			}
+		}
+
+		ksort($wabarray);
+
+		return $wabarray;
+    }
+
     /*
      * Function returns all worked, but not confirmed states
      * $postdata contains data from the form, in this case Lotw or QSL are used

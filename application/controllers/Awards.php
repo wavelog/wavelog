@@ -1538,7 +1538,6 @@ class Awards extends CI_Controller {
 		$qrz = $this->security->xss_clean($this->input->post('qrz'));
 		$sat = $this->security->xss_clean($this->input->post('sat'));
 		$orbit = $this->security->xss_clean($this->input->post('orbit'));
-		$this->load->model('gridmap_model');
 
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
@@ -1555,6 +1554,38 @@ class Awards extends CI_Controller {
 
         header('Content-Type: application/json');
         echo json_encode($wab_array);
+      }
+
+	  public function wab_list() {
+		$band = $this->security->xss_clean($this->input->post('band'));
+		$mode = $this->security->xss_clean($this->input->post('mode'));
+		$qsl = $this->security->xss_clean($this->input->post('qsl'));
+		$lotw = $this->security->xss_clean($this->input->post('lotw'));
+		$eqsl = $this->security->xss_clean($this->input->post('eqsl'));
+		$qrz = $this->security->xss_clean($this->input->post('qrz'));
+		$sat = $this->security->xss_clean($this->input->post('sat'));
+		$orbit = $this->security->xss_clean($this->input->post('orbit'));
+
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+        $this->load->model('wab');
+
+        if ($logbooks_locations_array) {
+			$location_list = "'".implode("','",$logbooks_locations_array)."'";
+            $wab_array = $this->wab->get_wab_list($band, $location_list, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit);
+		} else {
+            $location_list = null;
+            $wab_array = null;
+        }
+
+		$data['wab_array'] = $wab_array;
+		$data['postdata']['band'] = $band;
+		$data['postdata']['mode'] = $mode;
+		$data['postdata']['sat'] = $sat;
+		$data['postdata']['orbit'] = $orbit;
+
+		$this->load->view('awards/wab/list', $data);
       }
 
 }

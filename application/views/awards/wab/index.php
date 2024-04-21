@@ -88,7 +88,7 @@
                         <label class="form-check-label" for="eqsl">eQSL</label>
                     </div>
                     <div class="form-check-inline">
-                     <?php echo '<input class="form-check-input" type="checkbox" name="qrz" id="qrz"';
+                    <?php echo '<input class="form-check-input" type="checkbox" name="qrz" id="qrz"';
                         if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'Z') !== false) {
                             echo ' checked' ;
                         }
@@ -97,7 +97,8 @@
                     </div>
                 </div>
 
-            <button id="plot" type="button" name="plot" class="btn btn-primary me-1 ld-ext-right ld-ext-right-plot" onclick="plotmap()"><?php echo lang('gridsquares_button_plot'); ?><div class="ld ld-ring ld-spin"></div></button>
+            <button id="plot" type="button" name="plot" class="btn btn-primary me-1 ld-ext-right ld-ext-right-plot" onclick="plotmap()">Map<div class="ld ld-ring ld-spin"></div></button>
+			<button id="list" type="button" name="list" class="btn btn-primary me-1 ld-ext-right ld-ext-right-list" onclick="showlist()">List<div class="ld ld-ring ld-spin"></div></button>
 </form>
 </div>
 <div id="mapcontainer">

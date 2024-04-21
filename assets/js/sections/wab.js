@@ -24,7 +24,64 @@ var wab_squares = $.ajax({
 	}
 })
 
+function showlist() {
+	$(".ld-ext-right-list").addClass('running');
+    $(".ld-ext-right-list").prop('disabled', true);
+    $('#list').prop("disabled", true);
+	$.ajax({
+		url: site_url + '/awards/wab_list',
+		type: 'post',
+		data: {
+			band: $("#band").val(),
+            mode: $("#mode").val(),
+            qsl:  $("#qsl").is(":checked"),
+            lotw: $("#lotw").is(":checked"),
+            eqsl: $("#eqsl").is(":checked"),
+            qrz: $("#qrz").is(":checked"),
+            sat: $("#sats").val(),
+            orbit: $("#orbits").val(),
+		},
+		success: function (data) {
+			wablist(data);
+		},
+		error: function (data) {
+		},
+	})
+}
+
+function wablist(data) {
+	$('#wablist').remove();
+	var container = L.DomUtil.get('wabmap');
+
+	if(container != null){
+		container._leaflet_id = null;
+		container.remove();
+	}
+	$("#mapcontainer").append('<div id="wablist"></div>');
+	$("#wablist").append(data);
+	$(".ld-ext-right-list").removeClass('running');
+	$(".ld-ext-right-list").prop('disabled', false);
+	$('#list').prop("disabled", false);
+	$('.wabtable').DataTable({
+		"pageLength": 25,
+		responsive: false,
+		ordering: false,
+		"scrollY":        "550px",
+		"scrollCollapse": true,
+		"paging":         false,
+		"scrollX": true,
+		"language": {
+			url: getDataTablesLanguageUrl(),
+		},
+		dom: 'Bfrtip',
+		buttons: [
+			'csv'
+		]
+	});
+}
+
 function plotmap() {
+	$('#wablist').remove();
 	$(".ld-ext-right-plot").addClass('running');
     $(".ld-ext-right-plot").prop('disabled', true);
     $('#plot').prop("disabled", true);
@@ -55,8 +112,8 @@ function wabmap(data) {
 	if(container != null){
 		container._leaflet_id = null;
 		container.remove();
-		$("#mapcontainer").append('<div id="wabmap" style="width: 100%; height: 85vh;"></div>');
 	}
+	$("#mapcontainer").append('<div id="wabmap" style="width: 100%; height: 85vh;"></div>');
 
 	$(".ld-ext-right-plot").removeClass('running');
 	$(".ld-ext-right-plot").prop('disabled', false);
@@ -66,7 +123,7 @@ function wabmap(data) {
 		fullscreenControlOptions: {
 			position: 'topleft'
 		},
-	}).setView([51.5074, -0.1278], 9);
+	}).setView([51.5074, -1], 9);
 
 	var confirmedcount = 0;
 	var workedcount = 0;
@@ -114,7 +171,7 @@ function wabmap(data) {
 		onEachFeature: function(feature, layer) {
 			layer.on('click', function() {
 				// Code to execute when the area is clicked
-				displayContactsOnMap($("#wabmap"), feature.properties.name, 'All', 'All', 'All', 'All', 'WAB');
+				displayContactsOnMap($("#wabmap"), feature.properties.name, $('#band').val(), $('#sats').val(), $('#orbits').val(), $('#mode').val(), 'WAB');
 			});
 		}
 	}).addTo(map);
@@ -159,7 +216,3 @@ function wabmap(data) {
 
     legend.addTo(map);
 };
-
-$(document).ready(function(){
-	plotmap();
- })
