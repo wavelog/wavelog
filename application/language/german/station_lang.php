@@ -113,4 +113,6 @@ $lang['station_location_oqrs_email_alert'] = "OQRS Email Benachrichtigung";
 $lang['station_location_oqrs_email_hint'] = "Stelle sicher, dass du E-Mail unter Admin/Globale Optionen konfiguriert hast.";
 $lang['station_location_oqrs_text'] = "OQRS Text";
 $lang['station_location_oqrs_text_hint'] = "Einige Informationen, die du zum QSL-Vorgang hinzufügen möchtest.";
+$lang['station_location_ignore'] = "Ignore Clublog Upload";
+$lang['station_location_ignore_hint'] = "If enabled, the QSO at this location won't be uploaded to Clublog.";
 $lang['station_location_clublog_realtime_upload']='ClubLog Realtime Upload';
