@@ -180,6 +180,15 @@ function wabmap(data) {
 	// Function to update labels based on zoom level
 	function updateLabels() {
 		var currentZoom = map.getZoom();
+		geo_wab_squares.eachLayer(function(layer) {
+			if (currentZoom >= 8) {
+				// Show squares if zoom level is 8 or higher
+				layer.getElement().style.display = 'block';
+			} else {
+				// Hide squares if zoom level is less than 8
+				layer.getElement().style.display = 'none';
+			}
+		});
 		if (currentZoom >= 9) {
 			$('.leaflet-marker-icon').show();
 			$('.leaflet-interactive').show();
