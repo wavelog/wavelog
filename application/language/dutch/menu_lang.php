@@ -108,3 +108,4 @@ $lang['menu_extras'] = "Extras";
 $lang['menu_satellites'] = 'Satellites';
 $lang['menu_dx_calendar'] = 'DX Calendar';
 $lang['menu_contest_calendar'] = 'Contest Calendar';
+$lang['menu_wab'] = 'WAB';

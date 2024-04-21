@@ -217,3 +217,15 @@ $lang['awards_jcc_description_ln1'] = "JCC - Japan Century Cities Award";
 $lang['awards_jcc_description_ln2'] = "May be claimed for having contacted (heard) and received a QSL card from an amateur station located in each of at least 100 different cities of Japan.";
 $lang['awards_jcc_description_ln3'] = "JCC-200, 300, 400, 500, 600, 700 and 800 will be issued as separate awards. A list of QSL cards should be arranged in order of JCC reference number, however names of city may be omitted. An additional sticker will be issued at every 50 contacts like 150, 250, 350, 450, 550, 650, 750 cities.";
 $lang['awards_jcc_description_ln4'] = "For more information, please visit: <a href='https://www.jarl.org/English/4_Library/A-4-2_Awards/Award_Main.htm' target='_blank'>https://www.jarl.org/English/4_Library/A-4-2_Awards/Award_Main.htm</a>.";
+
+
+/*
+___________________________________________________________________________________________
+WAB -- Use all 4 Lines of Text
+___________________________________________________________________________________________
+*/
+
+$lang['awards_wab_description_ln1'] = "WAB - Worked All Britain Award";
+$lang['awards_wab_description_ln2'] = "WAB, Worked All Britain squares in Amateur Radio, encourages licensed ham radio operators to work all the squares in Great Britain.";
+$lang['awards_wab_description_ln3'] = "May be claimed for having contacted an amateur station located in the required amount of squares, described on the page linked below.";
+$lang['awards_wab_description_ln4'] = "For more information, please visit: <a href='https://wab.intermip.net/default.php' target='_blank'>https://wab.intermip.net/default.php</a>.";
