@@ -1773,6 +1773,13 @@ class Logbook_model extends CI_Model {
 	  }
   }
 
+  // returns the number of qso's total on this instance
+  function count_all_qso() {
+    $sql = 'SELECT COUNT(*) AS total FROM '. $this->config->item('table_name').' WHERE station_id IS NOT NULL;';
+    $query = $this->db->query($sql);
+    return $query->row()->total;
+  }
+
     /*
      * Function returns the QSOs from the logbook, which have not been either marked as uploaded to hrdlog, or has been modified with an edit
      */

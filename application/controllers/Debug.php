@@ -26,6 +26,8 @@ class Debug extends CI_Controller
 		$footerData['scripts'] = ['assets/js/sections/debug.js'];
 
 		$data['stations'] = $this->Stations->all();
+		
+		$data['qso_total'] = $this->Logbook_model->count_all_qso();
 
 		$data['qsos_with_no_station_id'] = $this->Logbook_model->check_for_station_id();
 		if ($data['qsos_with_no_station_id']) {
