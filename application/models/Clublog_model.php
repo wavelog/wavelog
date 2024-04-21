@@ -73,6 +73,7 @@ class Clublog_model extends CI_Model {
 		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
 		$this->db->join('dxcc_entities', 'station_profile.station_dxcc = dxcc_entities.adif', 'left outer');
 		$this->db->where($this->config->item('table_name').'.station_id', $station_id);
+		$this->db->where('station_profile.clublogignore', 0);
 		$this->db->group_start();
 		$this->db->where("COL_CLUBLOG_QSO_UPLOAD_STATUS", null);
 		$this->db->or_where("COL_CLUBLOG_QSO_UPLOAD_STATUS", "");
