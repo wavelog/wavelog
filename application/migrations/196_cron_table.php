@@ -14,6 +14,11 @@ class Migration_cron_table extends CI_Migration {
 					'constraint' => '255',
 					'null' => FALSE,
 				),
+				'enabled' => array(
+					'type' => 'TINYINT',
+					'constraint' => '1',
+					'null' => FALSE,
+				),
 				'description' => array(
 					'type' => 'VARCHAR',
 					'constraint' => '255',
@@ -33,6 +38,10 @@ class Migration_cron_table extends CI_Migration {
 					'type' => 'TIMESTAMP',
 					'null' => TRUE,
 				),
+				'next_run' => array(
+					'type' => 'TIMESTAMP',
+					'null' => TRUE,
+				),
 			));
 			
 			$this->dbforge->add_key('id', TRUE);
@@ -40,18 +49,18 @@ class Migration_cron_table extends CI_Migration {
 			$this->dbforge->create_table('cron');
 
 			$data = array(
-				array('id' => 'upload_clublog', 'description' => 'Upload QSOs to Clublog', 'function' => 'index.php/clublog/upload', 'expression' => '3 */6 * * *', 'last_run' => null ),
-				array('id' => 'upload_lotw', 'description' => 'Upload QSOs to LoTW', 'function' => 'index.php/lotw/lotw_upload', 'expression' => '0 */1 * * *', 'last_run' => null ),
-				array('id' => 'upload_qrz', 'description' => 'Upload QSOs to QRZ', 'function' => 'index.php/qrz/upload', 'expression' => '6 */6 * * *', 'last_run' => null ),
-				array('id' => 'download_qrz', 'description' => 'Download QSOs from QRZ', 'function' => 'index.php/qrz/download', 'expression' => '18 */6 * * *', 'last_run' => null ),
-				array('id' => 'upload_hrd', 'description' => 'Upload QSOs to HRD', 'function' => 'index.php/hrdlog/upload', 'expression' => '12 */6 * * *', 'last_run' => null ),
-				array('id' => 'sync_eqsl', 'description' => 'Upload/download QSOs to/from Eqsl', 'function' => 'index.php/eqsl/sync', 'expression' => '9 */6 * * *', 'last_run' => null ),
-				array('id' => 'lotw_activity', 'description' => 'Update LOTW Users Activity', 'function' => 'index.php/update/lotw_users', 'expression' => '10 1 * * 1', 'last_run' => null ),
-				array('id' => 'clublog_scp', 'description' => 'Update Clublog SCP Database File', 'function' => 'index.php/update/update_clublog_scp', 'expression' => '@weekly', 'last_run' => null ),
-				array('id' => 'update_dok', 'description' => 'Update DOK File', 'function' => 'index.php/update/update_dok', 'expression' => '@monthly', 'last_run' => null ),
-				array('id' => 'update_sota', 'description' => 'Update SOTA File', 'function' => 'index.php/update/update_sota', 'expression' => '@monthly', 'last_run' => null ),
-				array('id' => 'update_wwff', 'description' => 'Update WWFF File', 'function' => 'index.php/update/update_wwff', 'expression' => '@monthly', 'last_run' => null ),
-				array('id' => 'update_pota', 'description' => 'Update POTA File', 'function' => 'index.php/update/update_pota', 'expression' => '@monthly', 'last_run' => null ),
+				array('id' => 'upload_clublog', 'enabled' => '1', 'description' => 'Upload QSOs to Clublog', 'function' => 'index.php/clublog/upload', 'expression' => '3 */6 * * *', 'last_run' => null, 'next_run' => null ),
+				array('id' => 'upload_lotw', 'enabled' => '1', 'description' => 'Upload QSOs to LoTW', 'function' => 'index.php/lotw/lotw_upload', 'expression' => '0 */1 * * *', 'last_run' => null, 'next_run' => null ),
+				array('id' => 'upload_qrz', 'enabled' => '1', 'description' => 'Upload QSOs to QRZ', 'function' => 'index.php/qrz/upload', 'expression' => '6 */6 * * *', 'last_run' => null, 'next_run' => null ),
+				array('id' => 'download_qrz', 'enabled' => '1', 'description' => 'Download QSOs from QRZ', 'function' => 'index.php/qrz/download', 'expression' => '18 */6 * * *', 'last_run' => null, 'next_run' => null ),
+				array('id' => 'upload_hrd', 'enabled' => '1', 'description' => 'Upload QSOs to HRD', 'function' => 'index.php/hrdlog/upload', 'expression' => '12 */6 * * *', 'last_run' => null, 'next_run' => null ),
+				array('id' => 'sync_eqsl', 'enabled' => '1', 'description' => 'Upload/download QSOs to/from Eqsl', 'function' => 'index.php/eqsl/sync', 'expression' => '9 */6 * * *', 'last_run' => null, 'next_run' => null ),
+				array('id' => 'lotw_activity', 'enabled' => '1', 'description' => 'Update LOTW Users Activity', 'function' => 'index.php/update/lotw_users', 'expression' => '10 1 * * 1', 'last_run' => null, 'next_run' => null ),
+				array('id' => 'clublog_scp', 'enabled' => '1', 'description' => 'Update Clublog SCP Database File', 'function' => 'index.php/update/update_clublog_scp', 'expression' => '@weekly', 'last_run' => null, 'next_run' => null ),
+				array('id' => 'update_dok', 'enabled' => '1', 'description' => 'Update DOK File', 'function' => 'index.php/update/update_dok', 'expression' => '@monthly', 'last_run' => null, 'next_run' => null ),
+				array('id' => 'update_sota', 'enabled' => '1', 'description' => 'Update SOTA File', 'function' => 'index.php/update/update_sota', 'expression' => '@monthly', 'last_run' => null, 'next_run' => null ),
+				array('id' => 'update_wwff', 'enabled' => '1', 'description' => 'Update WWFF File', 'function' => 'index.php/update/update_wwff', 'expression' => '@monthly', 'last_run' => null, 'next_run' => null ),
+				array('id' => 'update_pota', 'enabled' => '1', 'description' => 'Update POTA File', 'function' => 'index.php/update/update_pota', 'expression' => '@monthly', 'last_run' => null, 'next_run' => null ),
 			);
 			
 			$this->db->insert_batch('cron', $data);

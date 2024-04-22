@@ -20,4 +20,13 @@ class Cron_model extends CI_Model
 		$this->db->where('id', $cron);
 		$this->db->update('cron', $data);
 	}
+
+	function set_next_run($cron,$timestamp) {
+		$data = array(
+			'next_run' => $timestamp
+		);
+
+		$this->db->where('id', $cron);
+		$this->db->update('cron', $data);
+	}
 }

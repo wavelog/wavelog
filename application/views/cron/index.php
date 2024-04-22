@@ -44,7 +44,7 @@
                                                                         $cron->expression .
                                                                         '</code>'; ?></td>
                                 <td style="vertical-align: middle;"><?php echo $cron->last_run ?? 'never'; ?></td>
-                                <td></td>
+                                <td style="vertical-align: middle;"><?php echo $cron->next_run ?? 'never'; ?></td>
                                 <td></td>
                                 <td></td>
                             </tr>
