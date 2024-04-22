@@ -114,5 +114,5 @@ $lang['station_location_oqrs_email_hint'] = "Make sure email is set up under adm
 $lang['station_location_oqrs_text'] = "OQRS Text";
 $lang['station_location_oqrs_text_hint'] = "Some info you want to add regarding QSL'ing.";
 $lang['station_location_ignore'] = "Ignore Clublog Upload";
-$lang['station_location_ignore_hint'] = "If enabled, the QSO at this location won't be uploaded to Clublog.";
+$lang['station_location_ignore_hint'] = "If enabled, the QSOs made from this location will not be uploaded to Clublog.";
 $lang['station_location_clublog_realtime_upload']='ClubLog Realtime Upload';
