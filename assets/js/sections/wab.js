@@ -142,6 +142,7 @@ function wabmap(data) {
 						fillColor: 'green',
 						fill: true,
 						fillOpacity: 0.8,
+						className: 'confirmed-square'
 					};
 				}
 				if (data[feature.properties.name] == 'W') {
@@ -150,15 +151,25 @@ function wabmap(data) {
 						fillColor: 'orange',
 						fill: true,
 						fillOpacity: 0.8,
+						className: 'worked-square'
 					};
 				}
 			}
 		},
 		pointToLayer: function(feature, latlng) {
 			if (feature.properties && feature.properties.name) {
+				var classname = 'text-labels';
+
+				if (data[feature.properties.name] == 'C') {
+					classname = 'confirmed-labels';
+				}
+				if (data[feature.properties.name] == 'W') {
+					classname = 'worked-labels';
+				}
+
 				// Create a custom icon that displays the name from the GeoJSON data
 				var labelIcon = L.divIcon({
-					className: 'text-labels', // Set class for CSS styling
+					className: classname, // Set class for CSS styling
 					html: feature.properties.name
 				});
 
@@ -190,14 +201,16 @@ function wabmap(data) {
 			}
 		});
 		if (currentZoom >= 9) {
-			$('.leaflet-marker-icon').show();
+			$('.text-labels').show();
 			$('.leaflet-interactive').show();
 		} else if (currentZoom = 8) {
-			$('.leaflet-marker-icon').hide();
+			$('.text-labels').hide();
 		} else {
 			$('.leaflet-interactive').hide();
-			$('.leaflet-marker-icon').hide();
+			$('.text-labels').hide();
 		}
+		$('.confirmed-square').show();
+		$('.worked-square').show();
 	}
 
 	// Update labels when the map zoom changes
