@@ -212,6 +212,8 @@ class Qrz extends CI_Controller {
 		$this->load->model('user_model');
 		$this->load->model('logbook_model');
 
+		$this->load->model('cron_model');
+		$this->cron_model->set_last_run('download_qrz');
 
 		$api_keys = $this->logbook_model->get_qrz_apikeys();
 

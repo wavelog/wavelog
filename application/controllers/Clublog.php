@@ -25,6 +25,9 @@ class Clublog extends CI_Controller {
 	public function upload() {
 		$this->load->model('clublog_model');
 
+		$this->load->model('cron_model');
+		$this->cron_model->set_last_run('upload_clublog');
+
 		$users = $this->clublog_model->get_clublog_users();
 
 		foreach ($users as $user) {

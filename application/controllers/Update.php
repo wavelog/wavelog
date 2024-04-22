@@ -20,6 +20,9 @@ class Update extends CI_Controller {
 
 	public function index()
 	{
+        $this->load->model('user_model');
+		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+
 	    $data['page_title'] = "Updates";
 	    $this->load->view('interface_assets/header', $data);
 	    $this->load->view('update/index');
@@ -352,6 +355,10 @@ class Update extends CI_Controller {
     }
 
     public function lotw_users() {
+
+        $this->load->model('cron_model');
+		$this->cron_model->set_last_run('lotw_activity');
+
         $mtime = microtime();
         $mtime = explode(" ",$mtime);
         $mtime = $mtime[1] + $mtime[0];
@@ -412,6 +419,10 @@ class Update extends CI_Controller {
      * Used for autoupdating the DOK file which is used in the QSO entry dialog for autocompletion.
      */
     public function update_dok() {
+
+        $this->load->model('cron_model');
+		$this->cron_model->set_last_run('update_dok');
+
         $contents = file_get_contents('https://www.df2et.de/cqrlog/dok_and_sdok.txt', true);
 
         if($contents === FALSE) {
@@ -440,6 +451,10 @@ class Update extends CI_Controller {
      * Used for autoupdating the SOTA file which is used in the QSO entry dialog for autocompletion.
      */
     public function update_sota() {
+
+        $this->load->model('cron_model');
+		$this->cron_model->set_last_run('update_sota');
+
         $csvfile = 'https://www.sotadata.org.uk/summitslist.csv';
 
         $sotafile = './assets/json/sota.txt';
@@ -486,6 +501,10 @@ class Update extends CI_Controller {
      * Pulls the WWFF directory for autocompletion in QSO dialogs
      */
     public function update_wwff() {
+
+        $this->load->model('cron_model');
+		$this->cron_model->set_last_run('update_wwff');
+
         $csvfile = 'https://wwff.co/wwff-data/wwff_directory.csv';
 
         $wwfffile = './assets/json/wwff.txt';
@@ -533,6 +552,10 @@ class Update extends CI_Controller {
     }
 
     public function update_pota() {
+
+        $this->load->model('cron_model');
+		$this->cron_model->set_last_run('update_pota');
+
         $csvfile = 'https://pota.app/all_parks.csv';
 
         $potafile = './assets/json/pota.txt';
