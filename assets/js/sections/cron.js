@@ -13,12 +13,13 @@ $('.crontable').DataTable({
 	"language": {
 		url: getDataTablesLanguageUrl(),
 	},
-	responsive: false,
-	ordering: false,
-	"scrollY": "500px",
+	responsive: true,
+	ordering: true,
+	"scrollY": "600px",
 	"scrollCollapse": true,
 	"paging": false,
 	"scrollX": true,
+	"autoWidth": false,
 	"language": {
 		url: getDataTablesLanguageUrl(),
 	}

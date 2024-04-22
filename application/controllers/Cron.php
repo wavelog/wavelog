@@ -1,20 +1,24 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Cron extends CI_Controller
+require_once './src/Cron/vendor/autoload.php';
+
+class cron extends CI_Controller
 {
-	function __construct() {
+	function __construct()
+	{
 		parent::__construct();
 
-		$this->load->model('user_model');
-		if (!$this->user_model->authorize(2)) {
-			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!');
-			redirect('dashboard');
+		if (ENVIRONMENT == 'maintenance' && $this->session->userdata('user_id') == '') {
+            echo "Maintenance Mode is active. Try again later.\n";
+			redirect('user/login');
 		}
-
-		$this->load->library('Permissions');
 	}
 
 	public function index() {
+
+        $this->load->model('user_model');
+		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+
 		$this->load->helper('file');
 
 		$this->load->model('cron_model');
@@ -29,4 +33,8 @@ class Cron extends CI_Controller
 		$this->load->view('cron/index');
 		$this->load->view('interface_assets/footer', $footerData);
 	}
+
+    public function run() {
+        echo "works\n";
+    }
 }

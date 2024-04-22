@@ -27,13 +27,8 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Name</th>
-                            <th>Function</th>
-                            <th>Minute</th>
-                            <th>Hour</th>
-                            <th>Day (Month)</th>
-                            <th>Month</th>
-                            <th>Day (Week)</th>
+                            <th>Description</th>
+                            <th>Cron Expression</th>
                             <th>Last Run</th>
                             <th>Next Run</th>
                             <th></th>
@@ -43,15 +38,12 @@
                     <tbody>
                         <?php foreach ($crons as $cron) { ?>
                             <tr>
-                                <td style="text-align: center; vertical-align: middle;" class='band_<?php echo $cron->id; ?>'><?php echo $cron->id; ?></td>
-                                <td style="text-align: center; vertical-align: middle;" class='band_<?php echo $cron->name; ?>'><?php echo $cron->name; ?></td>
-                                <td style="text-align: center; vertical-align: middle;" class='band_<?php echo $cron->function; ?>'><?php echo $cron->function; ?></td>
-                                <td style="text-align: center; vertical-align: middle;" class='band_<?php echo $cron->minute; ?>'><?php echo $cron->minute; ?></td>
-                                <td style="text-align: center; vertical-align: middle;" class='band_<?php echo $cron->hour; ?>'><?php echo $cron->hour; ?></td>
-                                <td style="text-align: center; vertical-align: middle;" class='band_<?php echo $cron->day_month; ?>'><?php echo $cron->day_month; ?></td>
-                                <td style="text-align: center; vertical-align: middle;" class='band_<?php echo $cron->month; ?>'><?php echo $cron->month; ?></td>
-                                <td style="text-align: center; vertical-align: middle;" class='band_<?php echo $cron->day_week; ?>'><?php echo $cron->day_week; ?></td>
-                                <td style="text-align: center; vertical-align: middle;" class='band_<?php echo $cron->last_run; ?>'><?php echo $cron->last_run; ?></td>
+                                <td style="vertical-align: middle;" class='cron_<?php echo $cron->id; ?>'><?php echo $cron->id; ?></td>
+                                <td style="vertical-align: middle;"><?php echo $cron->description; ?></td>
+                                <td style="vertical-align: middle;"><?php echo '<code>' .
+                                                                        $cron->expression .
+                                                                        '</code>'; ?></td>
+                                <td style="vertical-align: middle;"><?php echo $cron->last_run ?? 'never'; ?></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -59,11 +51,6 @@
                         <?php } ?>
                     </tbody>
                     <tfoot>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
                         <th></th>
                         <th></th>
                         <th></th>
