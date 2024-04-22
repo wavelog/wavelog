@@ -7,10 +7,10 @@
         </div>
         <div class="card-body">
             <p class="card-text">
-                The Cron Manager helps the admin to manage cronjobs without the need of an CLI Access.
+                The Cron Manager assists the administrator in managing cron jobs without requiring CLI access.
             </p>
             <p class="card-text">
-                To run cronjobs based on the data below remove all old cronjobs and create a new cronjob:
+                To execute cron jobs based on the data below, remove all old cron jobs and create a new one:
             </p>
             <div class="main_cronjob">
                 <pre><code id="main_cronjob">* * * * * curl --silent <?php echo base_url(); ?>index.php/cron/run &>/dev/null</code><span data-bs-toggle="tooltip" title="<?php echo lang('copy_to_clipboard'); ?>" onclick='copyCron("main_cronjob")'><i class="copy-icon fas fa-copy"></i></span></pre>
