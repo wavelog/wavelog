@@ -10,13 +10,11 @@ class Migration_cron_table extends CI_Migration {
 
 			$this->dbforge->add_field(array(
 				'id' => array(
-					'type' => 'INT',
-					'constraint' => 6,
-					'unsigned' => TRUE,
-					'auto_increment' => TRUE,
-					'null' => FALSE
+					'type' => 'VARCHAR',
+					'constraint' => '255',
+					'null' => FALSE,
 				),
-				'name' => array(
+				'description' => array(
 					'type' => 'VARCHAR',
 					'constraint' => '255',
 					'null' => TRUE,
@@ -26,29 +24,9 @@ class Migration_cron_table extends CI_Migration {
 					'constraint' => '255',
 					'null' => FALSE,
 				),
-				'minute' => array(
+				'expression' => array(
 					'type' => 'VARCHAR',
-					'constraint' => '10',
-					'null' => TRUE,
-				),
-				'hour' => array(
-					'type' => 'VARCHAR',
-					'constraint' => '10',
-					'null' => TRUE,
-				),
-				'day_month' => array(
-					'type' => 'VARCHAR',
-					'constraint' => '10',
-					'null' => TRUE,
-				),
-				'month' => array(
-					'type' => 'VARCHAR',
-					'constraint' => '10',
-					'null' => TRUE,
-				),
-				'day_week' => array(
-					'type' => 'VARCHAR',
-					'constraint' => '10',
+					'constraint' => '100',
 					'null' => TRUE,
 				),
 				'last_run' => array(
@@ -62,18 +40,18 @@ class Migration_cron_table extends CI_Migration {
 			$this->dbforge->create_table('cron');
 
 			$data = array(
-				array('name' => 'Upload QSOs to Clublog', 'function' => 'index.php/clublog/upload', 'minute' => '3', 'hour' => '*/6', 'day_month' => '*', 'month' => '*', 'day_week' => '*', 'last_run' => null ),
-				array('name' => 'Upload QSOs to LoTW', 'function' => 'index.php/lotw/lotw_upload', 'minute' => '0', 'hour' => '*/1', 'day_month' => '*', 'month' => '*', 'day_week' => '*', 'last_run' => null ),
-				array('name' => 'Upload QSOs to QRZ', 'function' => 'index.php/qrz/upload', 'minute' => '6', 'hour' => '*/6', 'day_month' => '*', 'month' => '*', 'day_week' => '*', 'last_run' => null ),
-				array('name' => 'Download QSOs from QRZ', 'function' => 'index.php/qrz/download', 'minute' => '18', 'hour' => '*/6', 'day_month' => '*', 'month' => '*', 'day_week' => '*', 'last_run' => null ),
-				array('name' => 'Upload QSOs to HRD', 'function' => 'index.php/hrdlog/upload', 'minute' => '12', 'hour' => '*/6', 'day_month' => '*', 'month' => '*', 'day_week' => '*', 'last_run' => null ),
-				array('name' => 'Upload/download QSOs to/from Eqsl', 'function' => 'index.php/eqsl/sync', 'minute' => '9', 'hour' => '*/6', 'day_month' => '*', 'month' => '*', 'day_week' => '*', 'last_run' => null ),
-				array('name' => 'Update LOTW Users Activity', 'function' => 'index.php/update/lotw_users', 'minute' => '10', 'hour' => '1', 'day_month' => '*', 'month' => '*', 'day_week' => '1', 'last_run' => null ),
-				array('name' => 'Update Clublog SCP Database File', 'function' => 'index.php/update/update_clublog_scp', 'minute' => '20', 'hour' => '0', 'day_month' => '*', 'month' => '*', 'day_week' => '0', 'last_run' => null ),
-				array('name' => 'Update DOK File', 'function' => 'index.php/update/update_dok', 'minute' => '0', 'hour' => '1', 'day_month' => '1', 'month' => '*', 'day_week' => '*', 'last_run' => null ),
-				array('name' => 'Update SOTA File', 'function' => 'index.php/update/update_sota', 'minute' => '5', 'hour' => '1', 'day_month' => '1', 'month' => '*', 'day_week' => '*', 'last_run' => null ),
-				array('name' => 'Update WWFF File', 'function' => 'index.php/update/update_wwff', 'minute' => '10', 'hour' => '1', 'day_month' => '1', 'month' => '*', 'day_week' => '*', 'last_run' => null ),
-				array('name' => 'Update POTA File', 'function' => 'index.php/update/update_pota', 'minute' => '15', 'hour' => '1', 'day_month' => '1', 'month' => '*', 'day_week' => '*', 'last_run' => null ),
+				array('id' => 'upload_clublog', 'description' => 'Upload QSOs to Clublog', 'function' => 'index.php/clublog/upload', 'expression' => '3 */6 * * *', 'last_run' => null ),
+				array('id' => 'upload_lotw', 'description' => 'Upload QSOs to LoTW', 'function' => 'index.php/lotw/lotw_upload', 'expression' => '0 */1 * * *', 'last_run' => null ),
+				array('id' => 'upload_qrz', 'description' => 'Upload QSOs to QRZ', 'function' => 'index.php/qrz/upload', 'expression' => '6 */6 * * *', 'last_run' => null ),
+				array('id' => 'download_qrz', 'description' => 'Download QSOs from QRZ', 'function' => 'index.php/qrz/download', 'expression' => '18 */6 * * *', 'last_run' => null ),
+				array('id' => 'upload_hrd', 'description' => 'Upload QSOs to HRD', 'function' => 'index.php/hrdlog/upload', 'expression' => '12 */6 * * *', 'last_run' => null ),
+				array('id' => 'sync_eqsl', 'description' => 'Upload/download QSOs to/from Eqsl', 'function' => 'index.php/eqsl/sync', 'expression' => '9 */6 * * *', 'last_run' => null ),
+				array('id' => 'lotw_activity', 'description' => 'Update LOTW Users Activity', 'function' => 'index.php/update/lotw_users', 'expression' => '10 1 * * 1', 'last_run' => null ),
+				array('id' => 'clublog_scp', 'description' => 'Update Clublog SCP Database File', 'function' => 'index.php/update/update_clublog_scp', 'expression' => '@weekly', 'last_run' => null ),
+				array('id' => 'update_dok', 'description' => 'Update DOK File', 'function' => 'index.php/update/update_dok', 'expression' => '@monthly', 'last_run' => null ),
+				array('id' => 'update_sota', 'description' => 'Update SOTA File', 'function' => 'index.php/update/update_sota', 'expression' => '@monthly', 'last_run' => null ),
+				array('id' => 'update_wwff', 'description' => 'Update WWFF File', 'function' => 'index.php/update/update_wwff', 'expression' => '@monthly', 'last_run' => null ),
+				array('id' => 'update_pota', 'description' => 'Update POTA File', 'function' => 'index.php/update/update_pota', 'expression' => '@monthly', 'last_run' => null ),
 			);
 			
 			$this->db->insert_batch('cron', $data);
