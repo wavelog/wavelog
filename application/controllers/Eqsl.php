@@ -713,6 +713,10 @@ class eqsl extends CI_Controller {
 	 * Used for CRON job
 	 */
 	public function sync() {
+
+		$this->load->model('cron_model');
+		$this->cron_model->set_last_run('sync_eqsl');
+
 		ini_set('memory_limit', '-1');
 		set_time_limit(0);
 		$this->load->model('eqslmethods_model');

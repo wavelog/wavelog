@@ -25,6 +25,9 @@ class Hrdlog extends CI_Controller {
     public function upload() {
         $this->setOptions();
 
+        $this->load->model('cron_model');
+		$this->cron_model->set_last_run('upload_hrd');
+
         $this->load->model('logbook_model');
 
         $station_ids = $this->logbook_model->get_station_id_with_hrdlog_code();

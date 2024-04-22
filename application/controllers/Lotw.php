@@ -198,6 +198,9 @@ class Lotw extends CI_Controller {
 			echo "You must install php OpenSSL for LoTW functions to work";
 		}
 
+		$this->load->model('cron_model');
+		$this->cron_model->set_last_run('upload_lotw');
+
 		// Get Station Profile Data
 		$this->load->model('Stations');
 

@@ -305,6 +305,10 @@ class Update extends CI_Controller {
 	}
 
     public function update_clublog_scp() {
+
+        $this->load->model('cron_model');
+		$this->cron_model->set_last_run('clublog_scp');
+
         $strFile = $this->make_update_path("clublog_scp.txt");
         $url = "https://cdn.clublog.org/clublog.scp.gz";
         set_time_limit(300);
