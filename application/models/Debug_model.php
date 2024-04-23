@@ -173,4 +173,10 @@ class Debug_model extends CI_Model
             return null;
         }
     }
+
+	public function calls_without_station_id() {
+		$query=$this->db->query("select distinct COL_STATION_CALLSIGN from ".$this->config->item('table_name')." where station_id is null or station_id = ''");
+		$result = $query->result_array();
+		return $result;
+    }
 }
