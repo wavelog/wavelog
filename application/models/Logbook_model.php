@@ -4626,12 +4626,6 @@ function lotw_last_qsl_date($user_id) {
         $this->db->trans_complete();
     }
 
-    public function calls_without_station_id() {
-		$query=$this->db->query("select distinct COL_STATION_CALLSIGN from ".$this->config->item('table_name')." where station_id is null or station_id = ''");
-	    $result = $query->result_array();
-	    return $result;
-    }
-
     public function check_for_station_id() {
       $this->db->select('COL_PRIMARY_KEY, COL_TIME_ON, COL_CALL, COL_MODE, COL_BAND, COL_STATION_CALLSIGN');
       $this->db->where('station_id =', NULL);
