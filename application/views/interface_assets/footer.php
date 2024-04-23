@@ -106,6 +106,10 @@ if($this->session->userdata('user_id') != null) {
     <script src="<?php echo base_url() ;?>assets/js/sections/oqrs.js"></script>
 <?php } ?>
 
+<?php if ($this->uri->segment(1) == "cron") { ?>
+    <script src="<?php echo base_url() ;?>assets/js/cronstrue.min.js"async></script>
+<?php } ?>
+
 <?php if ($this->uri->segment(1) == "options") { ?>
     <script>
         $('#sendTestMailButton').click(function() {
