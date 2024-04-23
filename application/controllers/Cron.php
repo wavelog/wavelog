@@ -54,7 +54,6 @@ class cron extends CI_Controller
 					$isdue_result = 'true';
 					echo "CRON: ".$cron->id." -> is due: ".$isdue_result."\n";
 					echo "CRON: ".$cron->id." -> RUNNING...\n";
-					flush();
 
 					$url = base_url().$cron->function;
 
@@ -71,18 +70,15 @@ class cron extends CI_Controller
 					} else {
 						echo "ERROR: Something went wrong with ".$cron->id."\n";
 					}
-					flush();
 				} else {
 					$isdue_result = 'false';
 					echo "CRON: ".$cron->id." -> is due: ".$isdue_result."\n";
-					flush();
 				}
 				
 
 
 				$next_run = $cronjob->getNextRunDate(date('Y-m-d H:i:s'))->format('Y-m-d H:i:s');
 				echo "CRON: ".$cron->id." -> Next Run: ".$next_run."\n";
-				flush();
 				$this->cron_model->set_next_run($cron->id,$next_run);
 
 
@@ -92,7 +88,6 @@ class cron extends CI_Controller
 
 			} else {
 				echo 'CRON: '.$cron->id." is disabled.\n";
-				flush();
 
 				// set the next_run timestamp to null to indicate that this cron is disabled
 				$this->cron_model->set_next_run($cron->id,null);
