@@ -31,7 +31,7 @@ class Debug extends CI_Controller
 
 		$data['qsos_with_no_station_id'] = $this->Logbook_model->check_for_station_id();
 		if ($data['qsos_with_no_station_id']) {
-			$data['calls_wo_sid'] = $this->Logbook_model->calls_without_station_id();
+			$data['calls_wo_sid'] = $this->Debug_model->calls_without_station_id();
 		}
 
 		$data['migration_version'] = $this->Debug_model->getMigrationVersion();
