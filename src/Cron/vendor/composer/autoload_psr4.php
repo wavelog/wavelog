@@ -6,6 +6,5 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Webmozart\\Assert\\' => array($vendorDir . '/webmozart/assert/src'),
-    'Cron\\' => array($vendorDir . '/dragonmantank/cron-expression/src/Cron'),
+    'Poliander\\Cron\\' => array($vendorDir . '/poliander/cron/src/Cron'),
 );

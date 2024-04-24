@@ -4,27 +4,19 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitc843a10f6a48aee8e39e84cc2007546a
+class ComposerStaticInit30a2d19c77e0de955a833ba9de073b84
 {
     public static $prefixLengthsPsr4 = array (
-        'W' => 
+        'P' => 
         array (
-            'Webmozart\\Assert\\' => 17,
-        ),
-        'C' => 
-        array (
-            'Cron\\' => 5,
+            'Poliander\\Cron\\' => 15,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'Webmozart\\Assert\\' => 
+        'Poliander\\Cron\\' => 
         array (
-            0 => __DIR__ . '/..' . '/webmozart/assert/src',
-        ),
-        'Cron\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron',
+            0 => __DIR__ . '/..' . '/poliander/cron/src/Cron',
         ),
     );
 
@@ -35,9 +27,9 @@ class ComposerStaticInitc843a10f6a48aee8e39e84cc2007546a
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitc843a10f6a48aee8e39e84cc2007546a::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitc843a10f6a48aee8e39e84cc2007546a::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitc843a10f6a48aee8e39e84cc2007546a::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit30a2d19c77e0de955a833ba9de073b84::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit30a2d19c77e0de955a833ba9de073b84::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit30a2d19c77e0de955a833ba9de073b84::$classMap;
 
         }, null, ClassLoader::class);
     }
