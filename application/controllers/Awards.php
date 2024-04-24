@@ -330,7 +330,10 @@ class Awards extends CI_Controller {
 	}
 
     public function jcc_export() {
-       return json_encode(array('test' => 'abcd'));
+       $fp = fopen( 'php://output', 'w' );
+       fputcsv($fp, array('Car', 'Year', 'Miles' ));
+       fclose($fp);
+       return;
     }
 
     public function vucc()	{

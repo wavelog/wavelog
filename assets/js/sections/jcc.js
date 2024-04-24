@@ -18,12 +18,11 @@ $(document).ready(function () {
 });
 
 function export_qsos() {
-   console.log("TEST");
    $.ajax({
        url: base_url + 'index.php/awards/jcc_export',
        type: 'post',
        xhrFields: {
-          responseType: 'blob',
+          responseType: 'text/csv;charset=utf8',
        },
        data: {
            band: $('#band2').val(),
@@ -48,13 +47,18 @@ function export_qsos() {
        },
        success: function(data) {
            var a = document.createElement('a');
-           var url = window.URL.createObjectURL(data);
+           var fileData = ['\ufeff'+data];
+           console.log(fileData);
+           var blob = new Blob(fileData,{
+              type: "text/csv;charset=utf-8;"
+           });
+           var url = URL.createObjectURL(blob);
            a.href = url;
-           a.download = 'report.csv';
-           document.body.append(a);
+           a.download = 'qso_export.csv';
+
+           document.body.appendChild(a);
            a.click();
-           a.remove();
-           window.URL.revokeObjectURL(url);
+           document.body.removeChild(a);
        },
        error: function() {
           console.log("error");
