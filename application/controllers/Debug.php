@@ -18,23 +18,23 @@ class Debug extends CI_Controller
 	public function index() {
 		$this->load->helper('file');
 
-		$this->load->model('MigrationVersion');
 		$this->load->model('Logbook_model');
+		$this->load->model('Debug_model');
 		$this->load->model('Stations');
 
 		$footerData = [];
 		$footerData['scripts'] = ['assets/js/sections/debug.js'];
 
 		$data['stations'] = $this->Stations->all();
-		
-		$data['qso_total'] = $this->Logbook_model->count_all_qso();
+
+		$data['qso_total'] = $this->Debug_model->count_all_qso();
 
 		$data['qsos_with_no_station_id'] = $this->Logbook_model->check_for_station_id();
 		if ($data['qsos_with_no_station_id']) {
-			$data['calls_wo_sid'] = $this->Logbook_model->calls_without_station_id();
+			$data['calls_wo_sid'] = $this->Debug_model->calls_without_station_id();
 		}
 
-		$data['migration_version'] = $this->MigrationVersion->getMigrationVersion();
+		$data['migration_version'] = $this->Debug_model->getMigrationVersion();
 
 		// Test writing to backup folder
 		$backup_folder = $this->permissions->is_really_writable('backup');
@@ -152,7 +152,7 @@ class Debug extends CI_Controller
 		return;
 	}
 
-	public function selfupdate() { 
+	public function selfupdate() {
 		if (file_exists('.git')) {
 			try {
 				$st=exec('touch '.realpath(APPPATH.'../').'/.maintenance');
