@@ -55,7 +55,7 @@ class Debug_model extends CI_Model
                         $user_id = $get_user_id;
                     } else {
                         $user_id = 'not_assigned';
-                    } 
+                    }
                 } else {
                     $user_id = 'not_assigned';
                 }
@@ -74,7 +74,7 @@ class Debug_model extends CI_Model
         }
 
         // *****   QSL Cards   ***** //
-    
+
         // Let's scan the whole folder and get necessary data for each file
         foreach (scandir($this->src_qsl) as $file) {
             // Ignore files if they are not jpg, png or gif
@@ -152,5 +152,31 @@ class Debug_model extends CI_Model
 
         $row = $result->row();
         return $row->qsoid;
+    }
+
+	// Returns the number of qso's total on this instance
+	function count_all_qso() {
+		$sql = 'SELECT COUNT(*) AS total FROM '. $this->config->item('table_name').' WHERE station_id IS NOT NULL;';
+		$query = $this->db->query($sql);
+		return $query->row()->total;
+	}
+
+	function getMigrationVersion() {
+        $this->db->select_max('version');
+        $query = $this->db->get('migrations');
+        $migration_version = $query->row();
+
+        if ($query->num_rows() == 1) {
+            $migration_version = $query->row()->version;
+            return $migration_version;
+        } else {
+            return null;
+        }
+    }
+
+	public function calls_without_station_id() {
+		$query=$this->db->query("select distinct COL_STATION_CALLSIGN from ".$this->config->item('table_name')." where station_id is null or station_id = ''");
+		$result = $query->result_array();
+		return $result;
     }
 }

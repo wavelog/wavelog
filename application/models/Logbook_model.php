@@ -1777,13 +1777,6 @@ class Logbook_model extends CI_Model {
 	  }
   }
 
-  // returns the number of qso's total on this instance
-  function count_all_qso() {
-    $sql = 'SELECT COUNT(*) AS total FROM '. $this->config->item('table_name').' WHERE station_id IS NOT NULL;';
-    $query = $this->db->query($sql);
-    return $query->row()->total;
-  }
-
     /*
      * Function returns the QSOs from the logbook, which have not been either marked as uploaded to hrdlog, or has been modified with an edit
      */
@@ -4631,12 +4624,6 @@ function lotw_last_qsl_date($user_id) {
            print "No QSOs affected.";
         }
         $this->db->trans_complete();
-    }
-
-    public function calls_without_station_id() {
-		$query=$this->db->query("select distinct COL_STATION_CALLSIGN from ".$this->config->item('table_name')." where station_id is null or station_id = ''");
-	    $result = $query->result_array();
-	    return $result;
     }
 
     public function check_for_station_id() {
