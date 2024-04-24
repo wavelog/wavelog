@@ -329,6 +329,10 @@ class Awards extends CI_Controller {
 		$this->load->view('interface_assets/footer', $footerData);
 	}
 
+    public function jcc_export() {
+       return json_encode(array('test' => 'abcd'));
+    }
+
     public function vucc()	{
         $this->load->model('vucc');
         $this->load->model('bands');

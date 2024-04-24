@@ -98,6 +98,7 @@
                 <div class="col-md-10">
                     <button id="button2id" type="reset" name="button2id" class="btn btn-sm btn-warning">Reset</button>
                     <button id="button1id" type="submit" name="button1id" class="btn btn-sm btn-primary">Show</button>
+                    <button id="button3id" type="button" onclick="export_qsos();" name="button3id" class="btn btn-sm btn-info">Export</button>
                 </div>
             </div>
 
