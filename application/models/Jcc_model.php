@@ -1132,7 +1132,68 @@ class Jcc_model extends CI_Model {
 		return $sql;
 	}
 
-	function exportJcc() {
+	function exportJcc($postdata) {
+		$CI =& get_instance();
+		$CI->load->model('logbooks_model');
+		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+		if (!$logbooks_locations_array) {
+			return null;
+		}
+
+		$location_list = "'".implode("','",$logbooks_locations_array)."'";
+
+		$jccArray = array_keys($this->jaCities);
+
+		$sql = "SELECT distinct col_cnty FROM " . $this->config->item('table_name') . " thcv
+			where station_id in (" . $location_list . ")";
+
+		if ($postdata['mode'] != 'All') {
+			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
+		}
+
+		$sql .= $this->addStateToQuery();
+
+		$sql .= $this->genfunctions->addBandToQuery($postdata['band']);
+
+		$sql .= " and not exists (select 1 from ". $this->config->item('table_name') .
+			" where station_id in (". $location_list . ")" .
+			" and col_cnty = thcv.col_cnty";
+
+		if ($postdata['mode'] != 'All') {
+			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
+		}
+
+		$sql .= $this->genfunctions->addBandToQuery($postdata['band']);
+
+		$sql .= $this->genfunctions->addQslToQuery($postdata);
+
+		$sql .= $this->addStateToQuery();
+
+		$sql .= ")";
+
+		$query = $this->db->query($sql);
+
+		$jccs = array();
+		foreach($query->result() as $line) {
+			$jccs[] = $line->col_cnty;
+		}
+		$qsos = array();
+		foreach($jccs as $jcc) {
+			$qso = $this->getFirstQso($location_list, $jcc);
+			$qsos[] = array('cnty' => $qso[0]->COL_CNTY, 'call' => $qso[0]->COL_CALL, 'date' => $qso[0]->COL_TIME_ON, 'band' => $qso[0]->COL_BAND, 'mode' => $qso[0]->COL_MODE);
+		}
+
+		return $qsos;
+	}
+
+	function getFirstQso($location_list, $jcc) {
+		$sql = 'SELECT COL_CNTY, COL_CALL, COL_TIME_ON, COL_BAND, COL_MODE FROM '.$this->config->item('table_name').' t1
+			WHERE station_id in ('.$location_list.')';
+		$sql .= ' AND COL_CNTY = \''.$jcc.'\'';
+		$sql .= ' ORDER BY COL_TIME_ON ASC LIMIT 1';
+		$query = $this->db->query($sql);
+		return $query->result();
 	}
 }
 ?>

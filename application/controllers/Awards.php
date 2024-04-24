@@ -331,28 +331,23 @@ class Awards extends CI_Controller {
 
     public function jcc_export() {
         $this->load->model('Jcc_model');
-        $qsl = $this->security->xss_clean($this->input->post('qsl'));
-        $lotw = $this->security->xss_clean($this->input->post('lotw'));
-        $eqsl = $this->security->xss_clean($this->input->post('eqsl'));
-        $qrz = $this->security->xss_clean($this->input->post('qrz'));
-        $worked = $this->security->xss_clean($this->input->post('worked'));
-        $confirmed = $this->security->xss_clean($this->input->post('confirmed'));
-        $notworked = $this->security->xss_clean($this->input->post('notworked'));
-        $includedeleted = $this->security->xss_clean($this->input->post('includedeleted'));
-        $Africa = $this->security->xss_clean($this->input->post('Africa'));
-        $Asia = $this->security->xss_clean($this->input->post('Asia'));
-        $Europe = $this->security->xss_clean($this->input->post('Europe'));
-        $NorthAmerica = $this->security->xss_clean($this->input->post('NorthAmerica'));
-        $SouthAmerica = $this->security->xss_clean($this->input->post('SouthAmerica'));
-        $Oceania = $this->security->xss_clean($this->input->post('Oceania'));
-        $Antarctica = $this->security->xss_clean($this->input->post('Antarctica'));
-        $band = $this->security->xss_clean($this->input->post('band'));
-        $mode = $this->security->xss_clean($this->input->post('mode'));
+        $postdata['qsl'] = $this->security->xss_clean($this->input->post('qsl'));
+        $postdata['lotw'] = $this->security->xss_clean($this->input->post('lotw'));
+        $postdata['eqsl'] = $this->security->xss_clean($this->input->post('eqsl'));
+        $postdata['qrz'] = $this->security->xss_clean($this->input->post('qrz'));
+        $postdata['worked'] = $this->security->xss_clean($this->input->post('worked'));
+        $postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed'));
+        $postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked'));
+        $postdata['band'] = $this->security->xss_clean($this->input->post('band'));
+        $postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
 
-        $qsos = $this->Jcc_model->exportJcc();
+        $qsos = $this->Jcc_model->exportJcc($postdata);
 
         $fp = fopen( 'php://output', 'w' );
         fputcsv($fp, array('No', 'Callsign', 'Date', 'Band', 'Mode'), ';');
+        foreach ($qsos as $qso) {
+           fputcsv($fp, array($qso['cnty'], $qso['call'], $qso['date'], $qso['band'], $qso['mode']), ';');
+        }
         fclose($fp);
         return;
     }
