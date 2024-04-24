@@ -1131,5 +1131,8 @@ class Jcc_model extends CI_Model {
 		$sql .= " and COL_CNTY in (".implode(',', array_keys($this->jaCities)).")";
 		return $sql;
 	}
+
+	function exportJcc() {
+	}
 }
 ?>
