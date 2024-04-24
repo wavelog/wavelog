@@ -1,19 +1,12 @@
-<?php
-
-namespace Poliander\Cron;
-
-use \DateTime;
-use \DateTimeInterface;
-use \DateTimeZone;
-use \Exception;
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
  * Cron expression parser and validator
  *
  * @author René Pollesch
+ * edited by HB9HIL 04/2024
  */
-class CronExpression
-{
+class CronExpression {
     /**
      * Weekday name look-up table
      */
@@ -95,8 +88,7 @@ class CronExpression
      * @param string $expression a cron expression, e.g. "* * * * *"
      * @param DateTimeZone|null $timeZone time zone object
      */
-    public function __construct(string $expression, DateTimeZone $timeZone = null)
-    {
+    public function __construct(string $expression, DateTimeZone $timeZone = null) {
         $this->timeZone = $timeZone;
         $this->expression = $expression;
 
@@ -112,8 +104,7 @@ class CronExpression
      *
      * @return bool
      */
-    public function isValid(): bool
-    {
+    public function isValid(): bool {
         return null !== $this->registers;
     }
 
@@ -124,8 +115,7 @@ class CronExpression
      * @return bool
      * @throws Exception
      */
-    public function isMatching($when = null): bool
-    {
+    public function isMatching($when = null): bool {
         if (false === ($when instanceof DateTimeInterface)) {
             $when = (new DateTime())->setTimestamp($when === null ? time() : $when);
         }
@@ -144,8 +134,7 @@ class CronExpression
      * @return int|bool next matching timestamp, or false on error
      * @throws Exception
      */
-    public function getNext($start = null)
-    {
+    public function getNext($start = null) {
         if ($this->isValid()) {
             $next = $this->toDateTime($start);
 
@@ -163,8 +152,7 @@ class CronExpression
      * @param mixed $start a DateTime object, a timestamp (int) or "now" if not set
      * @return DateTime
      */
-    private function toDateTime($start): DateTime
-    {
+    private function toDateTime($start): DateTime {
         if ($start instanceof DateTimeInterface) {
             $next = $start;
         } elseif ((int)$start > 0) {
@@ -191,8 +179,7 @@ class CronExpression
      * @param array $pos
      * @return bool
      */
-    private function increase(DateTimeInterface $next, array $pos): bool
-    {
+    private function increase(DateTimeInterface $next, array $pos): bool {
         switch (true) {
             case false === isset($this->registers[3][$pos[3]]):
                 // next month, reset day/hour/minute
@@ -228,8 +215,7 @@ class CronExpression
      * @param array $segments
      * @return bool
      */
-    private function match(array $segments): bool
-    {
+    private function match(array $segments): bool {
         foreach ($this->registers as $i => $item) {
             if (isset($item[(int)$segments[$i]]) === false) {
                 return false;
@@ -246,8 +232,7 @@ class CronExpression
      * @return array
      * @throws Exception
      */
-    private function parse(string $expression): array
-    {
+    private function parse(string $expression): array {
         $segments = preg_split('/\s+/', trim($expression));
 
         if (is_array($segments) && sizeof($segments) === 5) {
@@ -277,8 +262,7 @@ class CronExpression
      * @param string $segment
      * @throws Exception
      */
-    private function parseSegment(array &$register, int $index, string $segment): void
-    {
+    private function parseSegment(array &$register, int $index, string $segment): void {
         $allowed = [false, false, false, self::MONTH_NAMES, self::WEEKDAY_NAMES];
 
         // month names, weekdays
@@ -299,8 +283,7 @@ class CronExpression
      * @param string $element
      * @throws Exception
      */
-    private function parseElement(array &$register, int $index, string $element): void
-    {
+    private function parseElement(array &$register, int $index, string $element): void {
         $step = 1;
         $segments = explode('/', $element);
 
@@ -328,8 +311,7 @@ class CronExpression
      * @param int $stepping
      * @throws Exception
      */
-    private function parseRange(array &$register, int $index, string $range, int $stepping): void
-    {
+    private function parseRange(array &$register, int $index, string $range, int $stepping): void {
         if ($range === '*') {
             $rangeArr = [self::VALUE_BOUNDARIES[$index]['min'], self::VALUE_BOUNDARIES[$index]['max']];
         } else {
@@ -346,8 +328,7 @@ class CronExpression
      * @param array $range
      * @param int $stepping
      */
-    private function fillRange(array &$register, int $index, array $range, int $stepping): void
-    {
+    private function fillRange(array &$register, int $index, array $range, int $stepping): void {
         $boundary = self::VALUE_BOUNDARIES[$index]['max'] + self::VALUE_BOUNDARIES[$index]['mod'];
         $length = $range[1] - $range[0];
 
@@ -363,8 +344,7 @@ class CronExpression
      * @param int $index
      * @throws Exception
      */
-    private function validateRange(array $range, int $index): void
-    {
+    private function validateRange(array $range, int $index): void {
         if (sizeof($range) !== 2) {
             throw new Exception('invalid range notation');
         }
@@ -384,13 +364,13 @@ class CronExpression
      * @param int $step
      * @throws Exception
      */
-    private function validateValue(string $value, int $index, int $step = 1): void
-    {
+    private function validateValue(string $value, int $index, int $step = 1): void {
         if (false === ctype_digit($value)) {
             throw new Exception('non-integer value');
         }
 
-        if (intval($value) < self::VALUE_BOUNDARIES[$index]['min'] ||
+        if (
+            intval($value) < self::VALUE_BOUNDARIES[$index]['min'] ||
             intval($value) > self::VALUE_BOUNDARIES[$index]['max']
         ) {
             throw new Exception('value out of boundary');
@@ -406,8 +386,7 @@ class CronExpression
      * @param int $index
      * @throws Exception
      */
-    private function validateStepping(array $segments, int $index): void
-    {
+    private function validateStepping(array $segments, int $index): void {
         if (sizeof($segments) !== 2) {
             throw new Exception('invalid stepping notation');
         }
@@ -421,8 +400,7 @@ class CronExpression
      * @param array $segments
      * @throws Exception
      */
-    private function validateDate(array $segments): void
-    {
+    private function validateDate(array $segments): void {
         $year = date('Y');
 
         for ($y = 0; $y < 27; $y++) {

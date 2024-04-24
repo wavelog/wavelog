@@ -1,12 +1,9 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-require_once './src/Cron/vendor/autoload.php';
-
 // TODO 
 // Add 'add' / 'edit' functions to be able to add/edit the crons in the cron manager view
 
-class cron extends CI_Controller 
-{
+class cron extends CI_Controller {
 	function __construct() {
 
 		parent::__construct();
@@ -20,7 +17,10 @@ class cron extends CI_Controller
 	public function index() {
 
 		$this->load->model('user_model');
-		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+		if (!$this->user_model->authorize(99)) {
+			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!');
+			redirect('dashboard');
+		}
 
 		$this->load->helper('file');
 
@@ -51,18 +51,20 @@ class cron extends CI_Controller
 			if ($cron->enabled == 1) {
 
 				// calculate the crons expression
-				$cronjob = new Poliander\Cron\CronExpression($cron->expression);
-				$dt = new \DateTime();
+				$this->load->library('CronExpression');
+				$cronjob = CronExpression::parse($cron->expression); // Verwende die statische Methode der CronExpression-Klasse
+				$dt = new DateTime();
 				$isdue = $cronjob->isMatching($dt);
+
 				if ($isdue == true) {
 					$isdue_result = 'true';
 
 					// TODO Add log_message level debug here to have logging for the cron manager
 
-					echo "CRON: ".$cron->id." -> is due: ".$isdue_result."\n";  
-					echo "CRON: ".$cron->id." -> RUNNING...\n";
+					echo "CRON: " . $cron->id . " -> is due: " . $isdue_result . "\n";
+					echo "CRON: " . $cron->id . " -> RUNNING...\n";
 
-					$url = base_url().$cron->function;
+					$url = base_url() . $cron->function;
 
 					$ch = curl_init();
 					curl_setopt($ch, CURLOPT_URL, $url);
@@ -73,33 +75,31 @@ class cron extends CI_Controller
 					curl_close($ch);
 
 					if ($crun !== false) {
-						echo "CRON: ".$cron->id." -> CURL Result: ".$crun."\n";
+						echo "CRON: " . $cron->id . " -> CURL Result: " . $crun . "\n";
 
 						// TODO Proper testing if '!== false' is enough for all functions. 
 						// TODO Make Curl Result available in Cron Manager view?
 
 					} else {
-						echo "ERROR: Something went wrong with ".$cron->id."\n";
+						echo "ERROR: Something went wrong with " . $cron->id . "\n";
 
 						// TODO Add a flag or some kind of warning for the cron manager view?
 
 					}
 				} else {
 					$isdue_result = 'false';
-					echo "CRON: ".$cron->id." -> is due: ".$isdue_result."\n";
+					echo "CRON: " . $cron->id . " -> is due: " . $isdue_result . "\n";
 				}
 
 				$next_run = $cronjob->getNext();
 				$next_run_date = date('Y-m-d H:i:s', $next_run);
 				echo "CRON: " . $cron->id . " -> Next Run: " . $next_run_date . "\n";
 				$this->cron_model->set_next_run($cron->id, $next_run_date);
-
 			} else {
-				echo 'CRON: '.$cron->id." is disabled.\n";
+				echo 'CRON: ' . $cron->id . " is disabled.\n";
 
 				// Set the next_run timestamp to null to indicate in the view/database that this cron is disabled
-				$this->cron_model->set_next_run($cron->id,null);
-
+				$this->cron_model->set_next_run($cron->id, null);
 			}
 		}
 	}
