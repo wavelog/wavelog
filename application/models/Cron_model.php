@@ -12,6 +12,15 @@ class Cron_model extends CI_Model
 		return $results;
 	}
 
+	function cron($id) {
+
+		$clean_id = $this->security->xss_clean($id);
+
+		$this->db->where('id', $clean_id);
+
+		return $this->db->get('cron');
+	}
+
 	function set_last_run($cron) {
 		$data = array(
 			'last_run' => date('Y-m-d H:i:s')

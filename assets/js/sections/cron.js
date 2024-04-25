@@ -1,5 +1,14 @@
 $(document).ready(function () {
-	// empty yet
+	$('.crontable tbody tr').each(function(){
+        var expression = $(this).find('td:eq(2)').text().trim();
+        var humanReadable = cronstrue.toString(expression);
+
+        $(this).find('#humanreadable_tooltip').attr('data-bs-original-title', humanReadable).tooltip();
+    });
+	
+	$(document).on('click', '.editCron', async function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
+		editCron(e);
+	});
 });
 
 function copyCron(id) {
@@ -44,3 +53,23 @@ $('.crontable').DataTable({
 		url: getDataTablesLanguageUrl(),
 	}
 });
+
+function editCron(e) {
+	$.ajax({
+		url: base_url + 'index.php/cron/editDialog',
+		type: 'post',
+		data: {
+			id: e.currentTarget.id,
+		},
+		success: function (data) {
+			$('body').append(data);
+
+			var editCronModal = new bootstrap.Modal(document.getElementById('editCronModal'));
+			editCronModal.show();
+		},
+		error: function (data) {
+
+		},
+	});
+	return false;
+}

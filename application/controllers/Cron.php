@@ -108,4 +108,16 @@ class cron extends CI_Controller {
 			$this->cronexpression = null;
 		}
 	}
+
+	public function editDialog() {
+
+		$this->load->model('cron_model');
+
+		$cron_query = $this->cron_model->cron(xss_clean($this->input->post('id', true)));
+
+		$data['crondetails'] = $cron_query->row();
+		$data['page_title'] = "Edit Cronjob";
+
+		$this->load->view('cron/edit', $data);
+	}
 }

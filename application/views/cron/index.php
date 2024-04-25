@@ -28,7 +28,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Description</th>
-                            <th>Cron Expression</th>
+                            <th>Intervall</th>
                             <th>Last Run</th>
                             <th>Next Run</th>
                             <th></th>
@@ -40,12 +40,10 @@
                             <tr>
                                 <td style="vertical-align: middle;" class='cron_<?php echo $cron->id; ?>'><?php echo $cron->id; ?></td>
                                 <td style="vertical-align: middle;"><?php echo $cron->description; ?></td>
-                                <td style="vertical-align: middle;"><?php echo '<code>' .
-                                                                        $cron->expression .
-                                                                        '</code>'; ?></td>
+                                <td style="vertical-align: middle;" id="humanreadable_tooltip" data-bs-toggle="tooltip"><?php echo '<code>'.$cron->expression.'</code>'; ?></td>
                                 <td style="vertical-align: middle;"><?php echo $cron->last_run ?? 'never'; ?></td>
                                 <td style="vertical-align: middle;"><?php echo $cron->next_run ?? 'never'; ?></td>
-                                <td></td>
+                                <td style="vertical-align: middle;"><button id="<?php echo $cron->id; ?>" class="editCron btn btn-outline-primary btn-sm"><i class="fas fa-edit"></i></button></td>
                                 <td></td>
                             </tr>
                         <?php } ?>
