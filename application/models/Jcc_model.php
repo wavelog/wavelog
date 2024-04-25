@@ -1178,14 +1178,14 @@ class Jcc_model extends CI_Model {
 		$qsos = array();
 		foreach($jccs as $jcc) {
 			$qso = $this->getFirstQso($location_list, $jcc);
-			$qsos[] = array('call' => $qso[0]->COL_CALL, 'date' => $qso[0]->COL_TIME_ON, 'band' => $qso[0]->COL_BAND, 'mode' => $qso[0]->COL_MODE, 'cnty' => $qso[0]->COL_CNTY, 'jcc' => $this->jaCities[$qso[0]->COL_CNTY]);
+			$qsos[] = array('call' => $qso[0]->COL_CALL, 'date' => $qso[0]->COL_TIME_ON, 'band' => $qso[0]->COL_BAND, 'mode' => $qso[0]->COL_MODE, 'prop_mode' => $qso[0]->COL_PROP_MODE, 'cnty' => $qso[0]->COL_CNTY, 'jcc' => $this->jaCities[$qso[0]->COL_CNTY]);
 		}
 
 		return $qsos;
 	}
 
 	function getFirstQso($location_list, $jcc) {
-		$sql = 'SELECT COL_CNTY, COL_CALL, COL_TIME_ON, COL_BAND, COL_MODE FROM '.$this->config->item('table_name').' t1
+		$sql = 'SELECT COL_CNTY, COL_CALL, COL_TIME_ON, COL_BAND, COL_MODE, COL_PROP_MODE FROM '.$this->config->item('table_name').' t1
 			WHERE station_id in ('.$location_list.')';
 		$sql .= ' AND COL_CNTY = \''.$jcc.'\'';
 		$sql .= ' ORDER BY COL_TIME_ON ASC LIMIT 1';
