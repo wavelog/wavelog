@@ -344,9 +344,11 @@ class Awards extends CI_Controller {
         $qsos = $this->Jcc_model->exportJcc($postdata);
 
         $fp = fopen( 'php://output', 'w' );
-        fputcsv($fp, array('No', 'Callsign', 'Date', 'Band', 'Mode'), ';');
+        $i=1;
+        fputcsv($fp, array('No', 'Callsign', 'Date', 'Band', 'Mode', 'Remarks'), ';');
         foreach ($qsos as $qso) {
-           fputcsv($fp, array($qso['cnty'], $qso['call'], $qso['date'], $qso['band'], $qso['mode']), ';');
+           fputcsv($fp, array($i, $qso['call'], $qso['date'], $qso['band'], $qso['mode'], $qso['cnty']), ';');
+           $i++;
         }
         fclose($fp);
         return;
