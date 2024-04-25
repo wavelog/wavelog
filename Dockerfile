@@ -1,4 +1,5 @@
 FROM php:8.3-apache
+ENV CI_ENV=docker
 
 # Install dependencies
 RUN set -ex; \
@@ -28,8 +29,6 @@ RUN set -ex; \
         echo 'post_max_size = 64M'; \
         echo 'max_execution_time = 600'; \
     } > $PHP_INI_DIR/conf.d/wavelog.ini;
-
-ENV CI_ENV=docker
 
 COPY ./ /var/www/html/
 WORKDIR /var/www/html
