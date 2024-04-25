@@ -21,6 +21,24 @@ class Cron_model extends CI_Model
 		return $this->db->get('cron');
 	}
 
+	function set_modified($cron) {
+		$data = array(
+			'modified' => date('Y-m-d H:i:s')
+		);
+
+		$this->db->where('id', $cron);
+		$this->db->update('cron', $data);
+	}
+
+	function set_status($cron, $status) {
+		$data = array(
+			'status' => $status
+		);
+
+		$this->db->where('id', $cron);
+		$this->db->update('cron', $data);
+	}
+
 	function set_last_run($cron) {
 		$data = array(
 			'last_run' => date('Y-m-d H:i:s')
@@ -37,5 +55,17 @@ class Cron_model extends CI_Model
 
 		$this->db->where('id', $cron);
 		$this->db->update('cron', $data);
+	}
+
+	function set_cron_enabled($cron, $cron_enabled) {
+		$data = array (
+			'enabled' => ($cron_enabled === 'true' ? 1 : 0),
+			'status' => ($cron_enabled === 'true' ? 'pending' : 'disabled'),
+		);
+
+		$this->db->where('id', $cron);
+		$this->db->update('cron', $data);
+		
+		$this->set_modified($cron);
 	}
 }

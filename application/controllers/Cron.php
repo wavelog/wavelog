@@ -12,6 +12,8 @@ class cron extends CI_Controller {
 			echo "Maintenance Mode is active. Try again later.\n";
 			redirect('user/login');
 		}
+
+		$this->load->model('cron_model');
 	}
 
 	public function index() {
@@ -24,10 +26,11 @@ class cron extends CI_Controller {
 
 		$this->load->helper('file');
 
-		$this->load->model('cron_model');
-
 		$footerData = [];
-		$footerData['scripts'] = ['assets/js/sections/cron.js'];
+		$footerData['scripts'] = [
+			'assets/js/cronstrue.min.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/cronstrue.min.js")),
+			'assets/js/sections/cron.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/cron.js"))
+		];
 
 		$data['page_title'] = "Cron Manager";
 		$data['crons'] = $this->cron_model->get_crons();
@@ -43,9 +46,9 @@ class cron extends CI_Controller {
 
 		// TODO Add an API Key to the cronjob to improve security?
 
-		$this->load->model('cron_model');
-
 		$crons = $this->cron_model->get_crons();
+
+		$status = 'pending';
 
 		foreach ($crons as $cron) {
 			if ($cron->enabled == 1) {
@@ -59,6 +62,10 @@ class cron extends CI_Controller {
 				$cronjob = $this->cronexpression;
 				$dt = new DateTime();
 				$isdue = $cronjob->isMatching($dt);
+
+				$next_run = $cronjob->getNext();
+				$next_run_date = date('Y-m-d H:i:s', $next_run);
+				$this->cron_model->set_next_run($cron->id, $next_run_date);
 
 				if ($isdue == true) {
 					$isdue_result = 'true';
@@ -81,37 +88,39 @@ class cron extends CI_Controller {
 					if ($crun !== false) {
 						echo "CRON: " . $cron->id . " -> CURL Result: " . $crun . "\n";
 
+						$status = 'healthy';
+
 						// TODO Proper testing if '!== false' is enough for all functions. 
 						// TODO Make Curl Result available in Cron Manager view?
 
 					} else {
 						echo "ERROR: Something went wrong with " . $cron->id . "\n";
 
+						$status = 'failed';
+
 						// TODO Add a flag or some kind of warning for the cron manager view?
 
 					}
 				} else {
 					$isdue_result = 'false';
-					echo "CRON: " . $cron->id . " -> is due: " . $isdue_result . "\n";
+					echo "CRON: " . $cron->id . " -> is due: " . $isdue_result . " -> Next Run: " . $next_run_date . "\n";
+					$status = 'healthy';
 				}
 
-				$next_run = $cronjob->getNext();
-				$next_run_date = date('Y-m-d H:i:s', $next_run);
-				echo "CRON: " . $cron->id . " -> Next Run: " . $next_run_date . "\n";
-				$this->cron_model->set_next_run($cron->id, $next_run_date);
 			} else {
-				echo 'CRON: ' . $cron->id . " is disabled.\n";
+				echo 'CRON: ' . $cron->id . " is disabled. skipped..\n";
+				$status = 'disabled';
 
 				// Set the next_run timestamp to null to indicate in the view/database that this cron is disabled
 				$this->cron_model->set_next_run($cron->id, null);
 			}
+			$this->cron_model->set_status($cron->id, $status);
+
 			$this->cronexpression = null;
 		}
 	}
 
 	public function editDialog() {
-
-		$this->load->model('cron_model');
 
 		$cron_query = $this->cron_model->cron(xss_clean($this->input->post('id', true)));
 
@@ -119,5 +128,72 @@ class cron extends CI_Controller {
 		$data['page_title'] = "Edit Cronjob";
 
 		$this->load->view('cron/edit', $data);
+	}
+
+	public function toogleEnableCronSwitch() {
+
+		$id = xss_clean($this->input->post('id',true));
+		$cron_enabled = xss_clean($this->input->post('checked',true));
+
+		if ($id ?? '' != '') {
+				$this->cron_model->set_cron_enabled($id, $cron_enabled);
+				$data['success']=1;
+		} else {
+			$data['success']=0;
+			$data['flashdata']='Not allowed';
+		}
+		echo json_encode($data);
+	}
+
+	public function fetchCrons() {
+		$hres=[];
+		$result = $this->cron_model->get_crons();
+
+		foreach ($result as $cron) {
+			$single = (object) [];
+			$single->cron_id = $cron->id;
+			$single->cron_description = $cron->description;
+			$single->cron_status = $this->cronStatus2html($cron->enabled, $cron->status);
+			$single->cron_expression = $this->cronExpression2html($cron->expression);
+			$single->cron_last_run = $cron->last_run ?? 'never';
+			$single->cron_next_run = ($cron->enabled == '1') ? ($cron->next_run ?? 'calculating..') : 'never';
+			$single->cron_edit = $this->cronEdit2html($cron->id);
+			$single->cron_enabled = $this->cronEnabled2html($cron->id, $cron->enabled);
+			array_push($hres, $single);
+		}		
+		echo json_encode($hres);
+	}
+
+	private function cronStatus2html($enabled, $status) {
+		if ($enabled == '1') { 
+			if ($status == 'healthy') {
+				$htmlret = '<span class="badge text-bg-success">healthy</span>';
+			} else {
+				$htmlret = '<span class="badge text-bg-warning">'.$status.'</span>';
+			}
+		} else {
+			$htmlret = '<span class="badge text-bg-secondary">disabled</span>';
+		}
+		return $htmlret;
+	}
+
+	private function cronExpression2html($expression) {
+		$htmlret = '<code>'.$expression.'</code>';
+		return $htmlret;
+	}
+
+	private function cronEdit2html($id) {
+		$htmlret = '<button id="'.$id.'" class="editCron btn btn-outline-primary btn-sm"><i class="fas fa-edit"></i></button>';
+		return $htmlret;
+	}
+
+	private function cronEnabled2html($id, $enabled) {
+		if ($enabled == '1') {
+			$checked = 'checked';
+		} else {
+			$checked = '';
+		}
+		$htmlret = '<div class="form-check form-switch"><input name="cron_enable_switch" class="form-check-input enableCronSwitch" type="checkbox" role="switch" id="'.$id.'" '.$checked.'></div>';
+		return $htmlret;
 	}
 }
