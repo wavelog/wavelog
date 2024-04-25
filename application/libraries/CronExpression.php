@@ -86,14 +86,14 @@ class CronExpression {
 
     /**
      * @param string $expression a cron expression, e.g. "* * * * *"
-     * @param DateTimeZone|null $timeZone time zone object
+     * @param DateTimeZone|null $timeZone time zone objectstring $expression, DateTimeZone $timeZone = null
      */
-    public function __construct(string $expression, DateTimeZone $timeZone = null) {
-        $this->timeZone = $timeZone;
-        $this->expression = $expression;
+    public function __construct($data) {
+        $this->timeZone = $data['timeZone'];
+        $this->expression = $data['expression'];
 
         try {
-            $this->registers = $this->parse($expression);
+            $this->registers = $this->parse($data['expression']);
         } catch (Exception $e) {
             $this->registers = null;
         }

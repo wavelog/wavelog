@@ -51,8 +51,12 @@ class cron extends CI_Controller {
 			if ($cron->enabled == 1) {
 
 				// calculate the crons expression
-				$this->load->library('CronExpression');
-				$cronjob = CronExpression::parse($cron->expression); // Verwende die statische Methode der CronExpression-Klasse
+				$data = array(
+					'expression' => $cron->expression,
+					'timeZone' => null
+				);
+				$this->load->library('CronExpression', $data);
+				$cronjob = $this->cronexpression;
 				$dt = new DateTime();
 				$isdue = $cronjob->isMatching($dt);
 
@@ -101,6 +105,7 @@ class cron extends CI_Controller {
 				// Set the next_run timestamp to null to indicate in the view/database that this cron is disabled
 				$this->cron_model->set_next_run($cron->id, null);
 			}
+			$this->cronexpression = null;
 		}
 	}
 }
