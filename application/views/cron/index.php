@@ -54,7 +54,7 @@
                                         <span class="badge text-bg-secondary">disabled</span>
                                     <?php } ?>
                                 </td>
-                                <td style="vertical-align: middle;" id="humanreadable_tooltip" data-bs-toggle="tooltip"><?php echo '<code>' . $cron->expression . '</code>'; ?></td>
+                                <td style="vertical-align: middle;"><?php echo '<code id="humanreadable_tooltip" data-bs-toggle="tooltip">' . $cron->expression . '</code>'; ?></td>
                                 <td style="vertical-align: middle;"><?php echo $cron->last_run ?? 'never'; ?></td>
                                 <td style="vertical-align: middle;"><?php if ($cron->enabled == '1') {
                                                                         echo $cron->next_run ?? 'never';

@@ -178,7 +178,7 @@ class cron extends CI_Controller {
 	}
 
 	private function cronExpression2html($expression) {
-		$htmlret = '<code>'.$expression.'</code>';
+		$htmlret = '<code id="humanreadable_tooltip" data-bs-toggle="tooltip">'.$expression.'</code>';
 		return $htmlret;
 	}
 

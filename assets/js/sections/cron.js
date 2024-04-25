@@ -1,6 +1,5 @@
 $(document).ready(function () {
-	init_datatable()
-	init_expression_tooltips();
+	init_datatable();
 
 	$(document).on('click', '.editCron', async function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
 		editCronDialog(e);
@@ -53,6 +52,7 @@ function init_datatable() {
             }
         ]
     });
+	init_expression_tooltips();
 }
 
 function editCronDialog(e) {
