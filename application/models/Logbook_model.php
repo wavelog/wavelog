@@ -3338,22 +3338,24 @@ function lotw_last_qsl_date($user_id) {
 	  return '1900-01-01 00:00:00.000';
   }
 
-  function import_bulk($records, $station_id = "0", $skipDuplicate = false, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markHrd = false,$skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false) {
-	  $custom_errors='';
-	  $a_qsos=[];
-	  foreach ($records as $record) {
-		  $one_error = $this->logbook_model->import($record, $station_id, $skipDuplicate, $markClublog, $markLotw,$dxccAdif, $markQrz, $markHrd, $skipexport, $operatorName, $apicall, $skipStationCheck, true);
-		  if ($one_error['error'] ?? '' != '') {
-			  $custom_errors.=$one_error['error']."<br/>";
-		  } else {
-			  array_push($a_qsos,$one_error['raw_qso'] ?? '');
-		  }
-	  }
-	  if (count($a_qsos)>0) {
-		  $this->db->insert_batch($this->config->item('table_name'), $a_qsos);
-	  }
-	  return $custom_errors;
-  }
+    function import_bulk($records, $station_id = "0", $skipDuplicate = false, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markHrd = false,$skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false) {
+	    $custom_errors='';
+	    $a_qsos=[];
+	    foreach ($records as $record) {
+		    $one_error = $this->logbook_model->import($record, $station_id, $skipDuplicate, $markClublog, $markLotw,$dxccAdif, $markQrz, $markHrd, $skipexport, $operatorName, $apicall, $skipStationCheck, true);
+		    if ($one_error['error'] ?? '' != '') {
+			    $custom_errors.=$one_error['error']."<br/>";
+		    } else {
+			    array_push($a_qsos,$one_error['raw_qso'] ?? '');
+		    }
+	    }
+	    $records='';
+	    gc_collect_cycles();
+	    if (count($a_qsos)>0) {
+		    $this->db->insert_batch($this->config->item('table_name'), $a_qsos);
+	    }
+	    return $custom_errors;
+    }
     /*
      * $skipDuplicate - used in ADIF import to skip duplicate checking when importing QSOs
      * $markLoTW - used in ADIF import to mark QSOs as exported to LoTW when importing QSOs
@@ -3998,6 +4000,8 @@ function lotw_last_qsl_date($user_id) {
 		  if ($batchmode) {
 			  $raw_qso=$this->add_qso($data, $skipexport, $batchmode);
 			  $returner['raw_qso']=$raw_qso;
+			  $data='';
+			  $raw_qso='';
 		  } else {
 			  $this->add_qso($data, $skipexport);
 		  }
@@ -4010,6 +4014,7 @@ function lotw_last_qsl_date($user_id) {
 	  } else {
 		  $returner=$my_error;
 	  }
+	  $record=[];
 	  return $returner;
   }
 
