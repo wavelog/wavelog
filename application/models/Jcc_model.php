@@ -1150,24 +1150,9 @@ class Jcc_model extends CI_Model {
 		}
 
 		$sql .= $this->addStateToQuery();
-
 		$sql .= $this->genfunctions->addBandToQuery($postdata['band']);
-
-		$sql .= " and not exists (select 1 from ". $this->config->item('table_name') .
-			" where station_id in (". $location_list . ")" .
-			" and col_cnty = thcv.col_cnty";
-
-		if ($postdata['mode'] != 'All') {
-			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
-		}
-
-		$sql .= $this->genfunctions->addBandToQuery($postdata['band']);
-
 		$sql .= $this->genfunctions->addQslToQuery($postdata);
-
-		$sql .= $this->addStateToQuery();
-
-		$sql .= ")";
+		$sql .= ' ORDER BY COL_CNTY ASC';
 
 		$query = $this->db->query($sql);
 
@@ -1177,16 +1162,22 @@ class Jcc_model extends CI_Model {
 		}
 		$qsos = array();
 		foreach($jccs as $jcc) {
-			$qso = $this->getFirstQso($location_list, $jcc);
+			$qso = $this->getFirstQso($location_list, $jcc, $postdata);
 			$qsos[] = array('call' => $qso[0]->COL_CALL, 'date' => $qso[0]->COL_TIME_ON, 'band' => $qso[0]->COL_BAND, 'mode' => $qso[0]->COL_MODE, 'prop_mode' => $qso[0]->COL_PROP_MODE, 'cnty' => $qso[0]->COL_CNTY, 'jcc' => $this->jaCities[$qso[0]->COL_CNTY]);
 		}
 
 		return $qsos;
 	}
 
-	function getFirstQso($location_list, $jcc) {
+	function getFirstQso($location_list, $jcc, $postdata) {
 		$sql = 'SELECT COL_CNTY, COL_CALL, COL_TIME_ON, COL_BAND, COL_MODE, COL_PROP_MODE FROM '.$this->config->item('table_name').' t1
 			WHERE station_id in ('.$location_list.')';
+		if ($postdata['mode'] != 'All') {
+			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
+		}
+		$sql .= $this->addStateToQuery();
+		$sql .= $this->genfunctions->addBandToQuery($postdata['band']);
+		$sql .= $this->genfunctions->addQslToQuery($postdata);
 		$sql .= ' AND COL_CNTY = \''.$jcc.'\'';
 		$sql .= ' ORDER BY COL_TIME_ON ASC LIMIT 1';
 		$query = $this->db->query($sql);
