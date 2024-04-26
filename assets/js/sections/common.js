@@ -246,6 +246,9 @@ function qso_edit(id) {
                                   document.getElementById("distance").value = null;
                                },
                             });
+                        } else if ($(this).val().length == 0) {
+                           $('#locator_info').fadeOut("slow");
+                           document.getElementById("distance").value = null;
                         }
                     });
 
