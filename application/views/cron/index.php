@@ -25,16 +25,17 @@
                     <div class="alert alert-<?php echo $mastercron['status_class'] ?? 'danger'; ?> d-inline-block">
                         Status Master-Cron: <?php echo $mastercron['status'] ?? 'Not running'; ?>
                     </div>
-                    <!-- <a class="ms-2 refresh_icon" href="<?php echo site_url('cron'); ?>"><i class="fas fa-sync"></i></a> -->
                 </div>
             </div>
         </div>
     </div>
+    
     <div class="card">
         <div class="card-header">
             Cron List
         </div>
         <div class="card-body">
+            <?php if ($mastercron['status_class'] != 'danger') { ?>
             <div class="table-responsive">
                 <table id="cron_table" style="width:100%" class="crontable table table-sm table-striped">
                     <thead>
@@ -85,6 +86,12 @@
                     </tbody>
                 </table>
             </div>
+            <?php } else { ?>
+                <div class="text-center">
+                    <h4>Your Mastercron isn't running.<br>Copy the cron above to a external cron service or into your server's cron to use this cron manager.</h4>
+                    <p>On a basic linux server with shell access use this command to edit your crons:<pre><code>crontab -e</code></pre></p>
+                </div>
+            <?php } ?>
         </div>
     </div>
 </div>
