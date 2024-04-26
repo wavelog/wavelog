@@ -26,7 +26,7 @@ class Clublog extends CI_Controller {
 		$this->load->model('clublog_model');
 
 		$this->load->model('cron_model');
-		$this->cron_model->set_last_run('upload_clublog');
+		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
 
 		$users = $this->clublog_model->get_clublog_users();
 

@@ -26,7 +26,7 @@ class Hrdlog extends CI_Controller {
         $this->setOptions();
 
         $this->load->model('cron_model');
-		$this->cron_model->set_last_run('upload_hrd');
+		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
 
         $this->load->model('logbook_model');
 

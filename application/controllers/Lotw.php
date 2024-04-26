@@ -199,7 +199,7 @@ class Lotw extends CI_Controller {
 		}
 
 		$this->load->model('cron_model');
-		$this->cron_model->set_last_run('upload_lotw');
+		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
 
 		// Get Station Profile Data
 		$this->load->model('Stations');

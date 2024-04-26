@@ -30,7 +30,7 @@ class Qrz extends CI_Controller {
 		$this->setOptions();
 
 		$this->load->model('cron_model');
-		$this->cron_model->set_last_run('upload_qrz');
+		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
 
 		$this->load->model('logbook_model');
 
@@ -216,7 +216,7 @@ class Qrz extends CI_Controller {
 		$this->load->model('logbook_model');
 
 		$this->load->model('cron_model');
-		$this->cron_model->set_last_run('download_qrz');
+		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
 
 		$api_keys = $this->logbook_model->get_qrz_apikeys();
 

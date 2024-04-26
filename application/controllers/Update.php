@@ -307,7 +307,7 @@ class Update extends CI_Controller {
     public function update_clublog_scp() {
 
         $this->load->model('cron_model');
-		$this->cron_model->set_last_run('clublog_scp');
+		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
 
         $strFile = $this->make_update_path("clublog_scp.txt");
         $url = "https://cdn.clublog.org/clublog.scp.gz";
@@ -361,7 +361,7 @@ class Update extends CI_Controller {
     public function lotw_users() {
 
         $this->load->model('cron_model');
-		$this->cron_model->set_last_run('lotw_activity');
+		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
 
         $mtime = microtime();
         $mtime = explode(" ",$mtime);
@@ -425,7 +425,7 @@ class Update extends CI_Controller {
     public function update_dok() {
 
         $this->load->model('cron_model');
-		$this->cron_model->set_last_run('update_dok');
+		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
 
         $contents = file_get_contents('https://www.df2et.de/cqrlog/dok_and_sdok.txt', true);
 
@@ -457,7 +457,7 @@ class Update extends CI_Controller {
     public function update_sota() {
 
         $this->load->model('cron_model');
-		$this->cron_model->set_last_run('update_sota');
+		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
 
         $csvfile = 'https://www.sotadata.org.uk/summitslist.csv';
 
@@ -507,7 +507,7 @@ class Update extends CI_Controller {
     public function update_wwff() {
 
         $this->load->model('cron_model');
-		$this->cron_model->set_last_run('update_wwff');
+		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
 
         $csvfile = 'https://wwff.co/wwff-data/wwff_directory.csv';
 
@@ -558,7 +558,7 @@ class Update extends CI_Controller {
     public function update_pota() {
 
         $this->load->model('cron_model');
-		$this->cron_model->set_last_run('update_pota');
+		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
 
         $csvfile = 'https://pota.app/all_parks.csv';
 
