@@ -329,6 +329,31 @@ class Awards extends CI_Controller {
 		$this->load->view('interface_assets/footer', $footerData);
 	}
 
+    public function jcc_export() {
+        $this->load->model('Jcc_model');
+        $postdata['qsl'] = $this->security->xss_clean($this->input->post('qsl'));
+        $postdata['lotw'] = $this->security->xss_clean($this->input->post('lotw'));
+        $postdata['eqsl'] = $this->security->xss_clean($this->input->post('eqsl'));
+        $postdata['qrz'] = $this->security->xss_clean($this->input->post('qrz'));
+        $postdata['worked'] = $this->security->xss_clean($this->input->post('worked'));
+        $postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed'));
+        $postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked'));
+        $postdata['band'] = $this->security->xss_clean($this->input->post('band'));
+        $postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
+
+        $qsos = $this->Jcc_model->exportJcc($postdata);
+
+        $fp = fopen( 'php://output', 'w' );
+        $i=1;
+        fputcsv($fp, array('No', 'Callsign', 'Date', 'Band', 'Mode', 'Remarks'), ';');
+        foreach ($qsos as $qso) {
+           fputcsv($fp, array($i, $qso['call'], $qso['date'], ($qso['prop_mode'] != null ? $qso['band'].' / '.$qso['prop_mode'] : $qso['band']), $qso['mode'], $qso['cnty'].' - '.$qso['jcc']), ';');
+           $i++;
+        }
+        fclose($fp);
+        return;
+    }
+
     public function vucc()	{
         $this->load->model('vucc');
         $this->load->model('bands');

@@ -825,9 +825,8 @@ class Jcc_model extends CI_Model {
 	);
 
 	function get_jcc_array($bands, $postdata) {
-		$CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
 		if (!$logbooks_locations_array) {
 			return null;
@@ -1020,9 +1019,8 @@ class Jcc_model extends CI_Model {
 	 */
 	function get_jcc_summary($bands, $postdata)
 	{
-		$CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
 		if (!$logbooks_locations_array) {
 			return null;
@@ -1130,6 +1128,60 @@ class Jcc_model extends CI_Model {
 		$sql .= " and (COL_CNTY LIKE '____' OR COL_CNTY LIKE '10____')";
 		$sql .= " and COL_CNTY in (".implode(',', array_keys($this->jaCities)).")";
 		return $sql;
+	}
+
+	function exportJcc($postdata) {
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+		if (!$logbooks_locations_array) {
+			return null;
+		}
+
+		$location_list = "'".implode("','",$logbooks_locations_array)."'";
+
+		$jccArray = array_keys($this->jaCities);
+
+		$sql = "SELECT distinct col_cnty FROM " . $this->config->item('table_name') . " thcv
+			where station_id in (" . $location_list . ")";
+
+		if ($postdata['mode'] != 'All') {
+			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
+		}
+
+		$sql .= $this->addStateToQuery();
+		$sql .= $this->genfunctions->addBandToQuery($postdata['band']);
+		$sql .= $this->genfunctions->addQslToQuery($postdata);
+		$sql .= ' ORDER BY COL_CNTY ASC';
+
+		$query = $this->db->query($sql);
+
+		$jccs = array();
+		foreach($query->result() as $line) {
+			$jccs[] = $line->col_cnty;
+		}
+		$qsos = array();
+		foreach($jccs as $jcc) {
+			$qso = $this->getFirstQso($location_list, $jcc, $postdata);
+			$qsos[] = array('call' => $qso[0]->COL_CALL, 'date' => $qso[0]->COL_TIME_ON, 'band' => $qso[0]->COL_BAND, 'mode' => $qso[0]->COL_MODE, 'prop_mode' => $qso[0]->COL_PROP_MODE, 'cnty' => $qso[0]->COL_CNTY, 'jcc' => $this->jaCities[$qso[0]->COL_CNTY]);
+		}
+
+		return $qsos;
+	}
+
+	function getFirstQso($location_list, $jcc, $postdata) {
+		$sql = 'SELECT COL_CNTY, COL_CALL, COL_TIME_ON, COL_BAND, COL_MODE, COL_PROP_MODE FROM '.$this->config->item('table_name').' t1
+			WHERE station_id in ('.$location_list.')';
+		if ($postdata['mode'] != 'All') {
+			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
+		}
+		$sql .= $this->addStateToQuery();
+		$sql .= $this->genfunctions->addBandToQuery($postdata['band']);
+		$sql .= $this->genfunctions->addQslToQuery($postdata);
+		$sql .= ' AND COL_CNTY = \''.$jcc.'\'';
+		$sql .= ' ORDER BY COL_TIME_ON ASC LIMIT 1';
+		$query = $this->db->query($sql);
+		return $query->result();
 	}
 }
 ?>
