@@ -34,6 +34,7 @@
                                 <?php
                                 // List of available Presets
                                 $presets = array(
+                                    '' => 'Custom',
                                     '*/5 * * * *' => 'Every 5 Minutes',
                                     '*/15 * * * *' => 'Every 15 Minutes',
                                     '0 * * * *' => 'Every Hour',
@@ -41,12 +42,11 @@
                                     '0 0 * * *' => 'Every Day at Midnight',
                                     '0 3 * * 1' => 'Every Monday at 03:00',
                                     '0 0 1 * *' => 'First Day of Every Month at midnight',
-                                    '0 2 1 */2 *' => 'Every 2 Months at 02:00',
-                                    '' => 'Custom'
+                                    '0 2 1 */2 *' => 'Every 2 Months at 02:00'
                                 );
                                 ?>
 
-                                <select class="form-select mb-4" id="edit_cron_expression_dropdowm" name="edit_cron_expression_dropdowm">
+                                <select class="form-select mb-4" id="edit_cron_expression_dropdown" name="edit_cron_expression_dropdown">
                                     <?php foreach ($presets as $cron_preset => $label) : ?>
                                         <option value="<?php echo $cron_preset; ?>" <?php if ($cron->expression == $cron_preset) { echo " selected=\"selected\""; } ?>><?php echo $label; ?></option>
                                     <?php endforeach; ?>
@@ -54,7 +54,8 @@
 
                                 <p class="text-center"> - OR -</p>
                                 <p>Enter your own Cron Expression</p>
-                                <input type="text" class="form-control" style="font-family: Courier New;" name="edit_cron_expression_custom" id="edit_cron_expression_custom" value="<?php echo htmlspecialchars($cron->expression); ?>">
+                                <input type="text" class="form-control mb-1" style="font-family: Courier New;" name="edit_cron_expression_custom" id="edit_cron_expression_custom" value="<?php echo htmlspecialchars($cron->expression); ?>">
+                                <em id="exp_humanreadable" style="display: none;">TEST</em>
                             </td>
                         </tr>
                     </tbody>

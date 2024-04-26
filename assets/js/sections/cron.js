@@ -4,6 +4,7 @@ $(document).ready(function () {
 	$(document).on('click', '.editCron', async function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
 		editCronDialog(e);
 	});
+
 	$(document).on('click', '.enableCronSwitch', async function (e) {	// Dynamic binding, since element doesn't exists when loading this JS
 		toggleEnableCronSwitch(e.currentTarget.id, this);
 	});
@@ -55,7 +56,21 @@ function init_datatable() {
 	init_expression_tooltips();
 }
 
+function modalEventListener() {
+	$('#edit_cron_expression_custom').on('input change',function(e){
+		console.log('changed custom');
+		humanReadableInEditDialog()
+	});
+
+	$('#edit_cron_expression_dropdown').change(function() {
+		console.log('changed dropdown');
+		humanReadableInEditDialog()
+	});
+}
+
 function editCronDialog(e) {
+	$('#editCronModal').remove();
+
 	$.ajax({
 		url: base_url + 'index.php/cron/editDialog',
 		type: 'post',
@@ -67,6 +82,7 @@ function editCronDialog(e) {
 
 			var editCronModal = new bootstrap.Modal(document.getElementById('editCronModal'));
 			editCronModal.show();
+			modalEventListener();
 		},
 		error: function (data) {
 
@@ -74,6 +90,34 @@ function editCronDialog(e) {
 	});
 	return false;
 }
+
+function humanReadableInEditDialog() {
+    var exp_inputID = $('#edit_cron_expression_custom');
+    var exp_dropdownID = $('#edit_cron_expression_dropdown');
+    var exp_humanreadableID = $('#exp_humanreadable');
+    var humanReadable = '';
+
+    exp_inputID.on('input', function() {
+        exp_dropdownID.val('');
+    });
+
+    if (exp_dropdownID.val() == '') {
+        exp_humanreadableID.show();
+
+        try {
+            humanReadable = cronstrue.toString(exp_inputID.val());
+        } catch (error) {
+            humanReadable = 'waiting for complete expression...';
+        }
+
+        exp_humanreadableID.text(humanReadable);
+    } else {
+        exp_humanreadableID.hide();
+
+        exp_inputID.val(exp_dropdownID.val());
+    }
+}
+
 
 function toggleEnableCronSwitch(id, thisvar) {
 	$.ajax({
