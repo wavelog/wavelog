@@ -1,6 +1,9 @@
 <div class="container mb-4 mt-2">
     <br>
     <h2><?php echo $page_title; ?></h2>
+
+    <div style="display: none;" id="cron_message_area" role="alert"></div>
+
     <div class="card">
         <div class="card-header">
             How it works
@@ -70,16 +73,6 @@
                             </tr>
                         <?php } ?>
                     </tbody>
-                    <tfoot>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tfoot>
                 </table>
             </div>
         </div>

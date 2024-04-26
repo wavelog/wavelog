@@ -66,6 +66,29 @@ function modalEventListener() {
 	});
 }
 
+function displayMessages(category, message) {
+    var html_class;
+    var message_area = $('#cron_message_area');
+
+    if (category == 'success') {
+        html_class = 'alert alert-success';
+    } else if (category == 'warning') {
+        html_class = 'alert alert-warning';
+    } else if (category == 'error') {
+        html_class = 'alert alert-danger';
+    } else {
+        html_class = 'alert alert-info';
+    }
+
+    message_area.show();
+    message_area.addClass(html_class);
+    message_area.text(message);
+
+    setTimeout(function() {
+        message_area.fadeOut();
+    }, 7000);
+}
+
 function editCronDialog(e) {
 	$('#editCronModal').remove();
 
@@ -105,12 +128,19 @@ function editCron() {
 			cron_expression: $cron_expression,
 			cron_enabled: $cron_enabled
 		},
-		success: function (data) {
-			reloadCrons();
+		success: function(response) {
+			if (response.success) {
+				reloadCrons();
+				displayMessages(response.messagecategory,response.message);
+			} else {
+				displayMessages(response.messagecategory,response.message);
+			}
 		},
-		error: function (data) {
-		},
+		error: function(response) {
+			displayMessages('error','The query failed for a unknown reason');
+		}
 	});
+	
 }
 
 function humanReadableInEditDialog() {

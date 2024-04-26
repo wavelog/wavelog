@@ -59,6 +59,7 @@ class cron extends CI_Controller {
 					'timeZone' => null
 				);
 				$this->load->library('CronExpression', $data);
+
 				$cronjob = $this->cronexpression;
 				$dt = new DateTime();
 				$isdue = $cronjob->isMatching($dt);
@@ -142,8 +143,27 @@ class cron extends CI_Controller {
 		$expression = xss_clean($this->input->post('cron_expression',true));
 		$enabled = xss_clean($this->input->post('cron_enabled',true));
 
-		$this->cron_model->edit_cron($id, $description, $expression, $enabled);
+		$data = array(
+			'expression' => $expression,
+			'timeZone' => null
+		);
+		$this->load->library('CronExpression', $data);
+		$cron = $this->cronexpression;
 
+		if ($cron->isValid()) {
+			$this->cron_model->edit_cron($id, $description, $expression, $enabled);
+			$this->cronexpression = null;
+
+			header("Content-type: application/json");
+			echo json_encode(['success' => true, 'messagecategory' => 'success', 'message' => 'Changes saved for Cronjob "'.$id.'"']);
+
+		} else {
+			$this->session->set_flashdata('error', 'The Cron Expression you entered is not valid');
+			$this->cronexpression = null;
+
+			header("Content-type: application/json");
+			echo json_encode(['success' => false, 'messagecategory' => 'error', 'message' => 'The expression "'.$expression.'" is not valid. Please try again.']);
+		}
 	}
 
 	public function toogleEnableCronSwitch() {
