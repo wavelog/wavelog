@@ -83,12 +83,30 @@ function editCronDialog(e) {
 			var editCronModal = new bootstrap.Modal(document.getElementById('editCronModal'));
 			editCronModal.show();
 			modalEventListener();
+			$('[data-bs-toggle="tooltip"]').tooltip();
 		},
 		error: function (data) {
 
 		},
 	});
 	return false;
+}
+
+function editCron() {
+	var $cron_id = '';
+	var $cron_description = '';
+	var $cron_expression = '';
+	var $cron_enabled = '';
+	$.ajax({
+		url: base_url + 'index.php/cron/edit',
+		method: 'POST',
+		data: {
+			cron_id: $cron_id,
+			cron_description: $cron_description,
+			cron_expression: $cron_expression,
+			cron_enabled: $cron_enabled
+		}
+	});
 }
 
 function humanReadableInEditDialog() {
@@ -191,52 +209,3 @@ function loadCronTable(rows) {
 	init_expression_tooltips();
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const SPECIAL_EXPRESSIONS = {
-//     '@yearly': '0 0 1 1 *',
-//     '@annualy': '0 0 1 1 *',
-//     '@monthly': '0 0 1 * *',
-//     '@weekly': '0 0 * * 0',
-//     '@daily': '0 0 * * *',
-//     '@midnight': '0 0 * * *',
-//     '@hourly': '0 * * * *'
-// };
-
-// function convSpecialExpression(expression) {
-//     if (expression.startsWith('@')) {
-//         const specialExpression = SPECIAL_EXPRESSIONS[expression];
-//         if (specialExpression) {
-//             return specialExpression;
-//         } else {
-//             throw new Error('Unknown special expression');
-//         }
-//     } else {
-//         return expression;
-//     }
-// }

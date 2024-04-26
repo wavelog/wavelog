@@ -130,6 +130,22 @@ class cron extends CI_Controller {
 		$this->load->view('cron/edit', $data);
 	}
 
+	public function edit() {
+		$this->load->model('user_model');
+		if (!$this->user_model->authorize(99)) {
+			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!');
+			redirect('dashboard');
+		}
+
+		$id = xss_clean($this->input->post('id',true));
+		$description = xss_clean($this->input->post('description',true));
+		$expression = xss_clean($this->input->post('expression',true));
+		$enabled = xss_clean($this->input->post('enabled',true));
+
+		$this->cron_model->update_cron($id, $description, $expression, $enabled);
+
+	}
+
 	public function toogleEnableCronSwitch() {
 
 		$id = xss_clean($this->input->post('id',true));

@@ -9,7 +9,14 @@
                     <tbody>
                         <tr>
                             <th scope="row">Identifier</th>
-                            <td><?php echo $cron->id; ?></td>
+                            <td>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" disabled style="font-family: Courier New;" name="edit_cron_id" id="edit_cron_id" value="<?php echo $cron->id; ?>">
+                                    <span class="input-group-text" data-bs-toggle="tooltip" data-bs-placement="right" title="ID's can't be changed">
+                                        <i class="fas fa-info"></i>
+                                    </span>
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <th scope="row">Enabled</th>
@@ -48,7 +55,9 @@
 
                                 <select class="form-select mb-4" id="edit_cron_expression_dropdown" name="edit_cron_expression_dropdown">
                                     <?php foreach ($presets as $cron_preset => $label) : ?>
-                                        <option value="<?php echo $cron_preset; ?>" <?php if ($cron->expression == $cron_preset) { echo " selected=\"selected\""; } ?>><?php echo $label; ?></option>
+                                        <option value="<?php echo $cron_preset; ?>" <?php if ($cron->expression == $cron_preset) {
+                                                                                        echo " selected=\"selected\"";
+                                                                                    } ?>><?php echo $label; ?></option>
                                     <?php endforeach; ?>
                                 </select>
 
