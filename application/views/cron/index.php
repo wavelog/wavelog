@@ -66,9 +66,7 @@
                                                                     } ?></td>
                                 <td style="vertical-align: middle;"><button id="<?php echo $cron->id; ?>" class="editCron btn btn-outline-primary btn-sm"><i class="fas fa-edit"></i></button></td>
                                 <td style="vertical-align: middle;">
-                                    <div class="form-check form-switch"><input name="cron_enable_switch" class="form-check-input enableCronSwitch" type="checkbox" role="switch" id="<?php echo $cron->id; ?>" <?php if ($cron->enabled ?? '0') {
-                                                                                                                                                                                                                    echo 'checked';
-                                                                                                                                                                                                                } ?>></div>
+                                    <div class="form-check form-switch"><input name="cron_enable_switch" class="form-check-input enableCronSwitch" type="checkbox" role="switch" id="<?php echo $cron->id; ?>" <?php if ($cron->enabled ?? '0') { echo 'checked'; } ?>></div>
                                 </td>
                             </tr>
                         <?php } ?>

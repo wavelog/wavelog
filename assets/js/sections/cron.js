@@ -31,62 +31,62 @@ function init_expression_tooltips() {
 }
 
 function init_datatable() {
-    $('.crontable').DataTable({
-        "pageLength": 25,
-        responsive: true,
-        ordering: true,
-        "scrollY": "600px",
-        "scrollCollapse": true,
-        "paging": false,
-        "scrollX": true,
-        "autoWidth": false,
-        "language": {
-            url: getDataTablesLanguageUrl(),
-        },
+	$('.crontable').DataTable({
+		"pageLength": 25,
+		responsive: true,
+		ordering: true,
+		"scrollY": "600px",
+		"scrollCollapse": true,
+		"paging": false,
+		"scrollX": true,
+		"autoWidth": false,
+		"language": {
+			url: getDataTablesLanguageUrl(),
+		},
 		dom: 'Bfrtip',
-        buttons: [
-            {
-                text: 'Refresh',
-                action: function (e, dt, node, config) {
-                    reloadCrons();
-                }
-            }
-        ]
-    });
+		buttons: [
+			{
+				text: 'Refresh',
+				action: function (e, dt, node, config) {
+					reloadCrons();
+				}
+			}
+		]
+	});
 	init_expression_tooltips();
 }
 
 function modalEventListener() {
-	$('#edit_cron_expression_custom').on('input change',function(e){
+	$('#edit_cron_expression_custom').on('input change', function (e) {
 		humanReadableInEditDialog()
 	});
 
-	$('#edit_cron_expression_dropdown').change(function() {
+	$('#edit_cron_expression_dropdown').change(function () {
 		humanReadableInEditDialog()
 	});
 }
 
 function displayMessages(category, message) {
-    var html_class;
-    var message_area = $('#cron_message_area');
+	var html_class;
+	var message_area = $('#cron_message_area');
 
-    if (category == 'success') {
-        html_class = 'alert alert-success';
-    } else if (category == 'warning') {
-        html_class = 'alert alert-warning';
-    } else if (category == 'error') {
-        html_class = 'alert alert-danger';
-    } else {
-        html_class = 'alert alert-info';
-    }
+	if (category == 'success') {
+		html_class = 'alert alert-success';
+	} else if (category == 'warning') {
+		html_class = 'alert alert-warning';
+	} else if (category == 'error') {
+		html_class = 'alert alert-danger';
+	} else {
+		html_class = 'alert alert-info';
+	}
 
-    message_area.show();
-    message_area.addClass(html_class);
-    message_area.text(message);
+	message_area.show();
+	message_area.addClass(html_class);
+	message_area.text(message);
 
-    setTimeout(function() {
-        message_area.fadeOut();
-    }, 7000);
+	setTimeout(function () {
+		message_area.fadeOut();
+	}, 7000);
 }
 
 function editCronDialog(e) {
@@ -115,9 +115,9 @@ function editCronDialog(e) {
 
 function editCron() {
 	var $cron_id = $('#edit_cron_id').val();
-    var $cron_description = $('#edit_cron_description').val();
-    var $cron_expression = $('#edit_cron_expression_custom').val();
-    var $cron_enabled = $('#edit_' + $cron_id).is(':checked') ? 'true' : 'false';
+	var $cron_description = $('#edit_cron_description').val();
+	var $cron_expression = $('#edit_cron_expression_custom').val();
+	var $cron_enabled = $('#edit_' + $cron_id).is(':checked') ? 'true' : 'false';
 
 	$.ajax({
 		url: base_url + 'index.php/cron/edit',
@@ -128,46 +128,46 @@ function editCron() {
 			cron_expression: $cron_expression,
 			cron_enabled: $cron_enabled
 		},
-		success: function(response) {
+		success: function (response) {
 			if (response.success) {
 				reloadCrons();
-				displayMessages(response.messagecategory,response.message);
+				displayMessages(response.messagecategory, response.message);
 			} else {
-				displayMessages(response.messagecategory,response.message);
+				displayMessages(response.messagecategory, response.message);
 			}
 		},
-		error: function(response) {
-			displayMessages('error','The query failed for a unknown reason');
+		error: function (response) {
+			displayMessages('error', 'The query failed for a unknown reason');
 		}
 	});
-	
+
 }
 
 function humanReadableInEditDialog() {
-    var exp_inputID = $('#edit_cron_expression_custom');
-    var exp_dropdownID = $('#edit_cron_expression_dropdown');
-    var exp_humanreadableID = $('#exp_humanreadable');
-    var humanReadable = '';
+	var exp_inputID = $('#edit_cron_expression_custom');
+	var exp_dropdownID = $('#edit_cron_expression_dropdown');
+	var exp_humanreadableID = $('#exp_humanreadable');
+	var humanReadable = '';
 
-    exp_inputID.on('input', function() {
-        exp_dropdownID.val('');
-    });
+	exp_inputID.on('input', function () {
+		exp_dropdownID.val('');
+	});
 
-    if (exp_dropdownID.val() == '') {
-        exp_humanreadableID.show();
+	if (exp_dropdownID.val() == '') {
+		exp_humanreadableID.show();
 
-        try {
-            humanReadable = cronstrue.toString(exp_inputID.val());
-        } catch (error) {
-            humanReadable = 'waiting for complete expression...';
-        }
+		try {
+			humanReadable = cronstrue.toString(exp_inputID.val());
+		} catch (error) {
+			humanReadable = 'waiting for complete expression...';
+		}
 
-        exp_humanreadableID.text(humanReadable);
-    } else {
-        exp_humanreadableID.hide();
+		exp_humanreadableID.text(humanReadable);
+	} else {
+		exp_humanreadableID.hide();
 
-        exp_inputID.val(exp_dropdownID.val());
-    }
+		exp_inputID.val(exp_dropdownID.val());
+	}
 }
 
 
