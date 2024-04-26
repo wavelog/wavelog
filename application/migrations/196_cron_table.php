@@ -160,7 +160,7 @@ class Migration_cron_table extends CI_Migration {
 					'status' => 'pending',
 					'description' => 'Update SOTA File',
 					'function' => 'index.php/update/update_sota',
-					'expression' => '0 0 1 * *',
+					'expression' => '5 0 1 * *',
 					'last_run' => ($this->optionslib->get_option('sota_file_update') ? date("Y-m-d H:i", strtotime($this->optionslib->get_option('sota_file_update'))) : null),
 					'next_run' => null
 				),
@@ -170,7 +170,7 @@ class Migration_cron_table extends CI_Migration {
 					'status' => 'pending',
 					'description' => 'Update WWFF File',
 					'function' => 'index.php/update/update_wwff',
-					'expression' => '0 0 1 * *',
+					'expression' => '10 0 1 * *',
 					'last_run' => ($this->optionslib->get_option('wwff_file_update') ? date("Y-m-d H:i", strtotime($this->optionslib->get_option('wwff_file_update'))) : null),
 					'next_run' => null
 				),
@@ -180,7 +180,7 @@ class Migration_cron_table extends CI_Migration {
 					'status' => 'pending',
 					'description' => 'Update POTA File',
 					'function' => 'index.php/update/update_pota',
-					'expression' => '0 0 1 * *',
+					'expression' => '15 0 1 * *',
 					'last_run' => ($this->optionslib->get_option('pota_file_update') ? date("Y-m-d H:i", strtotime($this->optionslib->get_option('pota_file_update'))) : null),
 					'next_run' => null
 				),
@@ -190,7 +190,7 @@ class Migration_cron_table extends CI_Migration {
 					'status' => 'pending',
 					'description' => 'Update DXCC data',
 					'function' => 'index.php/update/dxcc',
-					'expression' => '0 0 1 */2 *',
+					'expression' => '20 0 1 */2 *',
 					'last_run' => ($this->optionslib->get_option('dxcc_clublog_update') ? date("Y-m-d H:i", strtotime($this->optionslib->get_option('dxcc_clublog_update'))) : null),
 					'next_run' => null
 				),
