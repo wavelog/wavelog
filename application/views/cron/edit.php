@@ -5,8 +5,62 @@
                 <h5 class="modal-title" id="cronEditLabel">Edit Cronjob</h5>
             </div>
             <div class="modal-body">
-                <p>We want to edit "<?php echo $crondetails->id; ?>" here</p>
+                <table class="table table-sm">
+                    <tbody>
+                        <tr>
+                            <th scope="row">Identifier</th>
+                            <td><?php echo $cron->id; ?></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Enabled</th>
+                            <td>
+                                <div class="form-check form-switch">
+                                    <input name="edit_acron_enable_switch" class="form-check-input" type="checkbox" role="switch" id="edit_a<?php echo $cron->id; ?>" <?php if ($cron->enabled ?? '0') {
+                                                                                                                                                                            echo 'checked';
+                                                                                                                                                                        } ?>>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Description</th>
+                            <td>
+                                <textarea class="form-control" name="edit_acron_description" id="edit_acron_description" maxlength="240" rows="2" style="width:100%;"><?php echo $cron->description; ?></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Intervall</th>
+                            <td>
+                                <p>Choose a preset from the dropdown</p>
+                                <?php
+                                // List of available Presets
+                                $presets = array(
+                                    '*/5 * * * *' => 'Every 5 Minutes',
+                                    '*/15 * * * *' => 'Every 15 Minutes',
+                                    '0 * * * *' => 'Every Hour',
+                                    '0 */2 * * *' => 'Every 2 Hours',
+                                    '0 0 * * *' => 'Every Day at Midnight',
+                                    '0 3 * * 1' => 'Every Monday at 03:00',
+                                    '0 0 1 * *' => 'First Day of Every Month at midnight',
+                                    '0 2 1 */2 *' => 'Every 2 Months at 02:00',
+                                    '' => 'Custom'
+                                );
+                                ?>
+
+                                <select class="form-select mb-4" id="edit_cron_expression_dropdowm" name="edit_cron_expression_dropdowm">
+                                    <?php foreach ($presets as $cron_preset => $label) : ?>
+                                        <option value="<?php echo $cron_preset; ?>" <?php if ($cron->expression == $cron_preset) { echo " selected=\"selected\""; } ?>><?php echo $label; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+
+                                <p class="text-center"> - OR -</p>
+                                <p>Enter your own Cron Expression</p>
+                                <input type="text" class="form-control" style="font-family: Courier New;" name="edit_cron_expression_custom" id="edit_cron_expression_custom" value="<?php echo htmlspecialchars($cron->expression); ?>">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><?php echo lang('admin_save'); ?></button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?php echo lang('general_word_cancel'); ?></button>

@@ -124,7 +124,7 @@ class cron extends CI_Controller {
 
 		$cron_query = $this->cron_model->cron(xss_clean($this->input->post('id', true)));
 
-		$data['crondetails'] = $cron_query->row();
+		$data['cron'] = $cron_query->row();
 		$data['page_title'] = "Edit Cronjob";
 
 		$this->load->view('cron/edit', $data);
