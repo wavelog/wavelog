@@ -22,7 +22,7 @@
                             <th scope="row">Enabled</th>
                             <td>
                                 <div class="form-check form-switch">
-                                    <input name="edit_acron_enable_switch" class="form-check-input" type="checkbox" role="switch" id="edit_a<?php echo $cron->id; ?>" <?php if ($cron->enabled ?? '0') {
+                                    <input name="edit_cron_enable_switch" class="form-check-input" type="checkbox" role="switch" id="edit_<?php echo $cron->id; ?>" <?php if ($cron->enabled ?? '0') {
                                                                                                                                                                             echo 'checked';
                                                                                                                                                                         } ?>>
                                 </div>
@@ -31,7 +31,7 @@
                         <tr>
                             <th scope="row">Description</th>
                             <td>
-                                <textarea class="form-control" name="edit_acron_description" id="edit_acron_description" maxlength="240" rows="2" style="width:100%;"><?php echo $cron->description; ?></textarea>
+                                <textarea class="form-control" name="edit_cron_description" id="edit_cron_description" maxlength="240" rows="2" style="width:100%;"><?php echo $cron->description; ?></textarea>
                             </td>
                         </tr>
                         <tr>
@@ -72,7 +72,7 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><?php echo lang('admin_save'); ?></button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="editCron()" ><?php echo lang('admin_save'); ?></button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?php echo lang('general_word_cancel'); ?></button>
             </div>
         </div>

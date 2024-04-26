@@ -137,12 +137,12 @@ class cron extends CI_Controller {
 			redirect('dashboard');
 		}
 
-		$id = xss_clean($this->input->post('id',true));
-		$description = xss_clean($this->input->post('description',true));
-		$expression = xss_clean($this->input->post('expression',true));
-		$enabled = xss_clean($this->input->post('enabled',true));
+		$id = xss_clean($this->input->post('cron_id',true));
+		$description = xss_clean($this->input->post('cron_description',true));
+		$expression = xss_clean($this->input->post('cron_expression',true));
+		$enabled = xss_clean($this->input->post('cron_enabled',true));
 
-		$this->cron_model->update_cron($id, $description, $expression, $enabled);
+		$this->cron_model->edit_cron($id, $description, $expression, $enabled);
 
 	}
 

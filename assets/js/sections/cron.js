@@ -58,12 +58,10 @@ function init_datatable() {
 
 function modalEventListener() {
 	$('#edit_cron_expression_custom').on('input change',function(e){
-		console.log('changed custom');
 		humanReadableInEditDialog()
 	});
 
 	$('#edit_cron_expression_dropdown').change(function() {
-		console.log('changed dropdown');
 		humanReadableInEditDialog()
 	});
 }
@@ -93,10 +91,11 @@ function editCronDialog(e) {
 }
 
 function editCron() {
-	var $cron_id = '';
-	var $cron_description = '';
-	var $cron_expression = '';
-	var $cron_enabled = '';
+	var $cron_id = $('#edit_cron_id').val();
+    var $cron_description = $('#edit_cron_description').val();
+    var $cron_expression = $('#edit_cron_expression_custom').val();
+    var $cron_enabled = $('#edit_' + $cron_id).is(':checked') ? '1' : '0';
+
 	$.ajax({
 		url: base_url + 'index.php/cron/edit',
 		method: 'POST',
@@ -105,7 +104,13 @@ function editCron() {
 			cron_description: $cron_description,
 			cron_expression: $cron_expression,
 			cron_enabled: $cron_enabled
-		}
+		},
+		success: function (data) {
+			reloadCrons();
+			console.log('edit success');
+		},
+		error: function (data) {
+		},
 	});
 }
 

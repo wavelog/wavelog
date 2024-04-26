@@ -68,4 +68,18 @@ class Cron_model extends CI_Model
 		
 		$this->set_modified($cron);
 	}
+
+	function edit_cron($id, $description, $expression, $enabled) {
+		
+		$data = array (
+			'description' => $description,
+			'expression' => $expression,
+			'enabled' => ($enabled === 'true' ? 1 : 0)
+		);
+
+		$this->db->where('id', $id);
+		$this->db->update('cron', $data);
+		
+		$this->set_modified($id);
+	}
 }
