@@ -9,14 +9,24 @@
             How it works
         </div>
         <div class="card-body">
-            <p class="card-text">
-                The Cron Manager assists the administrator in managing cron jobs without requiring CLI access.
-            </p>
-            <p class="card-text">
-                To execute cron jobs based on the data below, remove all old cron jobs and create a new one:
-            </p>
-            <div class="main_cronjob">
-                <pre><code id="main_cronjob">* * * * * curl --silent <?php echo base_url(); ?>index.php/cron/run &>/dev/null</code><span data-bs-toggle="tooltip" title="<?php echo lang('copy_to_clipboard'); ?>" onclick='copyCron("main_cronjob")'><i class="copy-icon fas fa-copy"></i></span></pre>
+            <div class="row">
+                <div class="col-auto">
+                    <p class="card-text">
+                        The Cron Manager assists the administrator in managing cron jobs without requiring CLI access.
+                    </p>
+                    <p class="card-text">
+                        To execute cron jobs based on the data below, remove all old cron jobs and create a new one:
+                    </p>
+                    <div class="main_cronjob">
+                        <pre><code id="main_cronjob">* * * * * curl --silent <?php echo base_url(); ?>index.php/cron/run &>/dev/null</code><span data-bs-toggle="tooltip" title="<?php echo lang('copy_to_clipboard'); ?>" onclick='copyCron("main_cronjob")'><i class="copy-icon fas fa-copy"></i></span></pre>
+                    </div>
+                </div>
+                <div class="col text-end" id="alert_status">
+                    <div class="alert alert-<?php echo $mastercron['status_class'] ?? 'danger'; ?> d-inline-block">
+                        Status Master-Cron: <?php echo $mastercron['status'] ?? 'Not running'; ?>
+                    </div>
+                    <!-- <a class="ms-2 refresh_icon" href="<?php echo site_url('cron'); ?>"><i class="fas fa-sync"></i></a> -->
+                </div>
             </div>
         </div>
     </div>
@@ -66,7 +76,9 @@
                                                                     } ?></td>
                                 <td style="vertical-align: middle;"><button id="<?php echo $cron->id; ?>" class="editCron btn btn-outline-primary btn-sm"><i class="fas fa-edit"></i></button></td>
                                 <td style="vertical-align: middle;">
-                                    <div class="form-check form-switch"><input name="cron_enable_switch" class="form-check-input enableCronSwitch" type="checkbox" role="switch" id="<?php echo $cron->id; ?>" <?php if ($cron->enabled ?? '0') { echo 'checked'; } ?>></div>
+                                    <div class="form-check form-switch"><input name="cron_enable_switch" class="form-check-input enableCronSwitch" type="checkbox" role="switch" id="<?php echo $cron->id; ?>" <?php if ($cron->enabled ?? '0') {
+                                                                                                                                                                                                                    echo 'checked';
+                                                                                                                                                                                                                } ?>></div>
                                 </td>
                             </tr>
                         <?php } ?>

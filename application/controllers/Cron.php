@@ -32,6 +32,10 @@ class cron extends CI_Controller {
 		$data['page_title'] = "Cron Manager";
 		$data['crons'] = $this->cron_model->get_crons();
 
+		$mastercron = array();
+		$mastercron = $this->get_mastercron_status();
+		$data['mastercron'] = $mastercron;
+
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('cron/index');
 		$this->load->view('interface_assets/footer', $footerData);
@@ -105,6 +109,10 @@ class cron extends CI_Controller {
 			$this->cron_model->set_status($cron->id, $status);
 			$this->cronexpression = null;
 		}
+
+		$datetime = new DateTime("now", new DateTimeZone('UTC'));
+		$datetime = $datetime->format('Ymd H:i:s');
+		$this->optionslib->update('mastercron_last_run', $datetime , 'no');
 	}
 
 	public function editDialog() {
@@ -217,4 +225,38 @@ class cron extends CI_Controller {
 		$htmlret = '<div class="form-check form-switch"><input name="cron_enable_switch" class="form-check-input enableCronSwitch" type="checkbox" role="switch" id="' . $id . '" ' . $checked . '></div>';
 		return $htmlret;
 	}
+
+	private function get_mastercron_status() {
+		$warning_timelimit_seconds = 120; 	// yellow - warning please check
+		$error_timelimit_seconds = 600; 	// red - "not running"
+	
+		$result = array();
+	
+		$last_run = $this->optionslib->get_option('mastercron_last_run') ?? null;
+	
+		if ($last_run != null) {
+			$timestamp_last_run = DateTime::createFromFormat('Ymd H:i:s', $last_run, new DateTimeZone('UTC'));
+			$now = new DateTime(); 
+			$diff = $now->getTimestamp() - $timestamp_last_run->getTimestamp(); 
+
+			if ($diff >= 0 && $diff <= $warning_timelimit_seconds) {
+				$result['status'] = 'OK';
+				$result['status_class'] = 'success';
+			} else {
+				if ($diff <= $error_timelimit_seconds) {
+					$result['status'] = 'Last run occurred more than ' . $warning_timelimit_seconds . ' seconds ago.<br>Please check your master cron! It should run every minute (* * * * *).';
+					$result['status_class'] = 'warning';
+				} else {
+					$result['status'] = 'Last run occurred more than ' . ($error_timelimit_seconds / 60) . ' minutes ago.<br>Seems like your Mastercron isn\'t running!<br>It should run every minute (* * * * *).';
+					$result['status_class'] = 'danger';
+				}
+			}
+		} else {
+			$result['status'] = 'Not running';
+			$result['status_class'] = 'danger';
+		}
+	
+		return $result;
+	}
+		
 }
