@@ -94,7 +94,7 @@ function editCron() {
 	var $cron_id = $('#edit_cron_id').val();
     var $cron_description = $('#edit_cron_description').val();
     var $cron_expression = $('#edit_cron_expression_custom').val();
-    var $cron_enabled = $('#edit_' + $cron_id).is(':checked') ? '1' : '0';
+    var $cron_enabled = $('#edit_' + $cron_id).is(':checked') ? 'true' : 'false';
 
 	$.ajax({
 		url: base_url + 'index.php/cron/edit',
@@ -107,7 +107,6 @@ function editCron() {
 		},
 		success: function (data) {
 			reloadCrons();
-			console.log('edit success');
 		},
 		error: function (data) {
 		},

@@ -22,9 +22,7 @@
                             <th scope="row">Enabled</th>
                             <td>
                                 <div class="form-check form-switch">
-                                    <input name="edit_cron_enable_switch" class="form-check-input" type="checkbox" role="switch" id="edit_<?php echo $cron->id; ?>" <?php if ($cron->enabled ?? '0') {
-                                                                                                                                                                            echo 'checked';
-                                                                                                                                                                        } ?>>
+                                    <input name="edit_cron_enable_switch" class="form-check-input" type="checkbox" role="switch" id="edit_<?php echo $cron->id; ?>" <?php if ($cron->enabled ?? '0') { echo 'checked'; } ?>>
                                 </div>
                             </td>
                         </tr>
@@ -64,7 +62,7 @@
                                 <p class="text-center"> - OR -</p>
                                 <p>Enter your own Cron Expression</p>
                                 <input type="text" class="form-control mb-1" style="font-family: Courier New;" name="edit_cron_expression_custom" id="edit_cron_expression_custom" value="<?php echo htmlspecialchars($cron->expression); ?>">
-                                <em id="exp_humanreadable" style="display: none;">TEST</em>
+                                <em id="exp_humanreadable" style="display: none;"></em>
                             </td>
                         </tr>
                     </tbody>
