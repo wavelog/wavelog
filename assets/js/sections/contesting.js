@@ -94,10 +94,9 @@ async function setSession(formdata) {
 		processData: false,
 		contentType: false,
 		success: function (data) {
-
+			sessiondata=data;
 		}
 	});
-	sessiondata=await getSession();			// refresh Sessiondata
 }
 
 // realtime clock
