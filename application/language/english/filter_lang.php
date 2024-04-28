@@ -32,6 +32,7 @@ $lang['filter_search_dxcc'] = 'Search DXCC';
 $lang['filter_search_state'] = 'Search State';
 $lang['filter_search_gridsquare'] = 'Search Gridsquare';
 $lang['filter_search_cq_zone'] = 'Search CQ Zone';
+$lang['filter_search_itu_zone'] = 'Search ITU Zone';
 $lang['filter_search_mode'] = 'Search Mode';
 $lang['filter_search_band'] = 'Search Band';
 $lang['filter_search_iota'] = 'Search IOTA';
