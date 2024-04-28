@@ -477,6 +477,7 @@ function logQso() {
 	if ($("#callsign").val().length > 0) {
 
 		$('.callsign-suggestions').text("");
+		$('#callsign_info').text("");
 
 		var table = $('.qsotable').DataTable();
 		var exchangetype = $("#exchangetype").val();
