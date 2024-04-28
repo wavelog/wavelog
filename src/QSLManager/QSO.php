@@ -34,6 +34,7 @@ class QSO
 	private string $deWWFFReference;
 	/** Awards */
 	private string $cqzone;
+	private string $ituzone;
 	private string $state;
 	private string $dxcc;
 	private string $iota;
@@ -199,6 +200,7 @@ class QSO
 		$this->eqsl = $this->getEqslString($data, $custom_date_format);
 
 		$this->cqzone = ($data['COL_CQZ'] === null) ? '' : $this->geCqLink($data['COL_CQZ']);
+		$this->ituzone = ($data['COL_ITUZ'] === null) ? '' : $this->geCqLink($data['COL_ITUZ']);
 		$this->state = ($data['COL_STATE'] === null) ? '' :$data['COL_STATE'];
 		$this->dxcc = (($data['name'] ?? null) === null) ? '- NONE -' : '<a href="javascript:spawnLookupModal('.$data['COL_DXCC'].',\'dxcc\');">'.ucwords(strtolower($data['name']), "- (/").'</a>';
 		$this->iota = ($data['COL_IOTA'] === null) ? '' : $this->getIotaLink($data['COL_IOTA']);
@@ -786,6 +788,11 @@ class QSO
 		return '<span id="cqzone">' . $this->cqzone . '</span>';
 	}
 
+	public function getItuzone(): string
+	{
+		return '<span id="ituzone">' . $this->ituzone . '</span>';
+	}
+
 	public function getState(): string
 	{
 		return '<span id="state">' . $this->state . '</span>';
@@ -825,6 +832,7 @@ class QSO
 			'pota' => $this->dxPOTAReference,
 			'operator' => $this->getOperator(),
 			'cqzone' => $this->getCqzone(),
+			'ituzone' => $this->getItuzone(),
 			'iota' => $this->getIOTA(),
 			'end' => $this->end === null ? null : $this->end->format("Y-m-d"),
 			'callsign' => $this->callsign,
