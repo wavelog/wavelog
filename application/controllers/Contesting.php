@@ -51,23 +51,23 @@ class Contesting extends CI_Controller {
 		echo json_encode($this->Contesting_model->getSessionQsos($qso));
 	}
 
-    public function getSession() {
-	    session_write_close();
-	    $this->load->model('Contesting_model');
+	public function getSession() {
+		session_write_close();
+		$this->load->model('Contesting_model');
 
-	    header('Content-Type: application/json');
-	    echo json_encode($this->Contesting_model->getSession());
-    }
+		header('Content-Type: application/json');
+		echo json_encode($this->Contesting_model->getSession());
+	}
 
 	public function deleteSession() {
-        $this->load->model('Contesting_model');
+		$this->load->model('Contesting_model');
 
-        $qso = $this->input->post('qso');
+		$qso = $this->input->post('qso');
 
-        $data = $this->Contesting_model->deleteSession($qso);
+		$data = $this->Contesting_model->deleteSession($qso);
 
-        return json_encode($data);
-    }
+		return json_encode($data);
+	}
 
 	public function setSession() {
 		$this->load->model('Contesting_model');
@@ -191,7 +191,7 @@ class Contesting extends CI_Controller {
 		header('Content-Type: application/json');
 		if ($result && $result->num_rows()) {
 			$timeb4=substr($result->row()->b4,0,5);
-        		$custom_date_format = $this->session->userdata('user_date_format');
+			$custom_date_format = $this->session->userdata('user_date_format');
 			$abstimeb4=date($custom_date_format, strtotime($result->row()->COL_TIME_OFF)).' '.date('H:i',strtotime($result->row()->COL_TIME_OFF));
 			echo json_encode(array('message' => 'Worked at '.$abstimeb4.' ('.$timeb4.' ago) before'));
 		}
