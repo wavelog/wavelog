@@ -377,10 +377,12 @@ if ($('#frequency').val() == "") {
 
 /* on mode change */
 $('#mode').change(function () {
+		if ($('#radio').val() == '0') {
 	$.get('qso/band_to_freq/' + $('#band').val() + '/' + $('.mode').val(), function (result) {
 		$('#frequency').val(result);
 		$('#frequency_rx').val("");
 	});
+	}
 	setRst($("#mode").val());
 	checkIfWorkedBefore();
 });
@@ -388,10 +390,12 @@ $('#mode').change(function () {
 /* Calculate Frequency */
 /* on band change */
 $('#band').change(function () {
+		if ($('#radio').val() == '0') {
 	$.get('qso/band_to_freq/' + $(this).val() + '/' + $('.mode').val(), function (result) {
 		$('#frequency').val(result);
 		$('#frequency_rx').val("");
 	});
+	}
 	checkIfWorkedBefore();
 });
 
