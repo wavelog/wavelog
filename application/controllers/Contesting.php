@@ -15,46 +15,48 @@ class Contesting extends CI_Controller {
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 	}
 
-    public function index() {
-        $this->load->model('cat');
-        $this->load->model('stations');
-        $this->load->model('modes');
+	public function index() {
+		$this->load->model('cat');
+		$this->load->model('stations');
+		$this->load->model('modes');
 		$this->load->model('contesting_model');
 		$this->load->model('bands');
 
 		$data['my_gridsquare'] = $this->stations->find_gridsquare();
-        $data['radios'] = $this->cat->radios();
-        $data['modes'] = $this->modes->active();
+		$data['radios'] = $this->cat->radios();
+		$data['modes'] = $this->modes->active();
 		$data['contestnames'] = $this->contesting_model->getActivecontests();
 		$data['bands'] = $this->bands->get_user_bands_for_qso_entry();
 
 		$this->load->library('form_validation');
 
-        $this->form_validation->set_rules('start_date', 'Date', 'required');
-        $this->form_validation->set_rules('start_time', 'Time', 'required');
-        $this->form_validation->set_rules('callsign', 'Callsign', 'required');
+		$this->form_validation->set_rules('start_date', 'Date', 'required');
+		$this->form_validation->set_rules('start_time', 'Time', 'required');
+		$this->form_validation->set_rules('callsign', 'Callsign', 'required');
 
 		$data['page_title'] = "Contest Logging";
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('contesting/index');
 		$this->load->view('interface_assets/footer');
-    }
+	}
 
-    public function getSessionQsos() {
-        $this->load->model('Contesting_model');
+	public function getSessionQsos() {
+		session_write_close();
+		$this->load->model('Contesting_model');
 
-        $qso = $this->input->post('qso');
+		$qso = $this->input->post('qso');
 
 		header('Content-Type: application/json');
 		echo json_encode($this->Contesting_model->getSessionQsos($qso));
-    }
+	}
 
-	public function getSession() {
-        $this->load->model('Contesting_model');
+    public function getSession() {
+	    session_write_close();
+	    $this->load->model('Contesting_model');
 
-        header('Content-Type: application/json');
-		echo json_encode($this->Contesting_model->getSession());
+	    header('Content-Type: application/json');
+	    echo json_encode($this->Contesting_model->getSession());
     }
 
 	public function deleteSession() {
