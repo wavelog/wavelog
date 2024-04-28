@@ -637,34 +637,33 @@ async function refresh_qso_table(data) {
 				table.clear();
 
 				var mode = '';
-				var data;
-				$.each(html, function () {
-					if (this.col_submode == null || this.col_submode == '') {
-						mode = this.col_mode;
-					} else {
-						mode = this.col_submode;
-					}
+				var data = [];
+                $.each(html, function () {
+                    if (this.col_submode == null || this.col_submode == '') {
+                        mode = this.col_mode;
+                    } else {
+                        mode = this.col_submode;
+                    }
 
-					data = [[
-						this.col_time_on,
-						this.col_call,
-						this.col_band,
-						mode,
-						this.col_rst_sent,
-						this.col_rst_rcvd,
-						this.col_stx_string,
-						this.col_srx_string,
-						this.col_stx,
-						this.col_srx,
-						this.col_gridsquare,
-						this.col_vucc_grids
-					]];
+                    data.push([
+                        this.col_time_on,
+                        this.col_call,
+                        this.col_band,
+                        mode,
+                        this.col_rst_sent,
+                        this.col_rst_rcvd,
+                        this.col_stx_string,
+                        this.col_srx_string,
+                        this.col_stx,
+                        this.col_srx,
+                        this.col_gridsquare,
+                        this.col_vucc_grids
+                    ]);
+                });
 
-					if (data.length > 0) {
-						table.rows.add(data).draw();
-					}
-
-				});
+                if (data.length > 0) {
+                    table.rows.add(data).draw();
+                }
 
 			}
 		});
