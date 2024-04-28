@@ -53,13 +53,13 @@ async function reset_contest_session() {
 			"columnDefs": [
 				{
 					"render": function ( data, type, row ) {
-						return pad(row[8],3);
+						return row[8] !== null && row[8] !== '' ? pad(row[8], 3) : '';
 					},
 					"targets" : 8
 				},
 				{
 					"render": function ( data, type, row ) {
-						return pad(row[9],3);
+						return row[9] !== null && row[9] !== '' ? pad(row[9], 3) : '';
 					},
 					"targets" : 9
 				}
@@ -624,13 +624,13 @@ async function refresh_qso_table(data) {
 						"columnDefs": [
 							{
 								"render": function ( data, type, row ) {
-									return pad(row[8],3);
+									return row[8] !== null && row[8] !== '' ? pad(row[8], 3) : '';
 								},
 								"targets" : 8
 							},
 							{
 								"render": function ( data, type, row ) {
-									return pad(row[9],3);
+									return row[9] !== null && row[9] !== '' ? pad(row[9], 3) : '';
 								},
 								"targets" : 9
 							}
