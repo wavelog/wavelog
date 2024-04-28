@@ -32,6 +32,7 @@ $lang['filter_search_dxcc'] = 'Buscar DXCC';
 $lang['filter_search_state'] = 'Buscar Estado';
 $lang['filter_search_gridsquare'] = 'Buscar Gridsquare';
 $lang['filter_search_cq_zone'] = 'Buscar Zona CQ';
+$lang['filter_search_itu_zone'] = 'Search ITU Zone';
 $lang['filter_search_mode'] = 'Buscar Modo';
 $lang['filter_search_band'] = 'Buscar Banda';
 $lang['filter_search_iota'] = 'Buscar IOTA';
@@ -77,8 +78,8 @@ ________________________________________________________________________________
 
 $lang['filter_general_from'] = 'Desde';
 $lang['filter_general_to'] = 'a';
-// $lang['gen_hamradio_de']             --> application/language/english/general_words_lang.php 
-// $lang['gen_hamradio_dx']             --> application/language/english/general_words_lang.php 
+// $lang['gen_hamradio_de']             --> application/language/english/general_words_lang.php
+// $lang['gen_hamradio_dx']             --> application/language/english/general_words_lang.php
 // $lang['gen_hamradio_dxcc']           --> application/language/english/general_words_lang.php
 $lang['filter_general_none'] = '- Ninguno - (ej. /MM, /AM)';
 // $lang['gen_hamradio_state']          --> application/language/english/general_words_lang.php

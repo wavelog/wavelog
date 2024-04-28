@@ -13,7 +13,7 @@ var lang_gen_hamradio_bearing = '<?php echo lang('gen_hamradio_bearing'); ?>';
 <?php
 echo "var homegrid ='" . strtoupper($homegrid[0]) . "';";
 if (!isset($options)) {
-   $options = "{\"datetime\":{\"show\":\"true\"},\"de\":{\"show\":\"true\"},\"dx\":{\"show\":\"true\"},\"mode\":{\"show\":\"true\"},\"rstr\":{\"show\":\"true\"},\"rsts\":{\"show\":\"true\"},\"band\":{\"show\":\"true\"},\"myrefs\":{\"show\":\"true\"},\"refs\":{\"show\":\"true\"},\"name\":{\"show\":\"true\"},\"qslvia\":{\"show\":\"true\"},\"qsl\":{\"show\":\"true\"},\"lotw\":{\"show\":\"true\"},\"eqsl\":{\"show\":\"true\"},\"qslmsg\":{\"show\":\"true\"},\"dxcc\":{\"show\":\"true\"},\"state\":{\"show\":\"true\"},\"cqzone\":{\"show\":\"true\"},\"iota\":{\"show\":\"true\"},\"pota\":{\"show\":\"true\"},\"operator\":{\"show\":\"true\"},\"comment\":{\"show\":\"true\"}}";
+   $options = "{\"datetime\":{\"show\":\"true\"},\"de\":{\"show\":\"true\"},\"dx\":{\"show\":\"true\"},\"mode\":{\"show\":\"true\"},\"rstr\":{\"show\":\"true\"},\"rsts\":{\"show\":\"true\"},\"band\":{\"show\":\"true\"},\"myrefs\":{\"show\":\"true\"},\"refs\":{\"show\":\"true\"},\"name\":{\"show\":\"true\"},\"qslvia\":{\"show\":\"true\"},\"qsl\":{\"show\":\"true\"},\"lotw\":{\"show\":\"true\"},\"eqsl\":{\"show\":\"true\"},\"qslmsg\":{\"show\":\"true\"},\"dxcc\":{\"show\":\"true\"},\"state\":{\"show\":\"true\"},\"cqzone\":{\"show\":\"true\"},\"ituzone\":{\"show\":\"true\"},\"iota\":{\"show\":\"true\"},\"pota\":{\"show\":\"true\"},\"operator\":{\"show\":\"true\"},\"comment\":{\"show\":\"true\"}}";
 }
 $current_opts=json_decode($options);
 echo "var user_options = $options;";
@@ -29,6 +29,10 @@ if (!isset($current_opts->comment)) {
 	echo "\nvar o_template = { comment: {show: 'true'}};";
 	echo "\nuser_options={...user_options, ...o_template};";
 }
+if (!isset($current_opts->ituzone)) {
+	echo "\nvar o_template = { ituzone: {show: 'true'}};";
+	echo "\nuser_options={...user_options, ...o_template};";
+}
 
 foreach ($mapoptions as $mo) {
 	if ($mo != null) {
@@ -39,31 +43,6 @@ foreach ($mapoptions as $mo) {
 	var tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"
 </script>
 <style>
-/*Legend specific*/
-.legend {
-  padding: 6px 8px;
-  font: 14px Arial, Helvetica, sans-serif;
-  background: white;
-  line-height: 24px;
-  color: #555;
-  border-radius: 10px;
-}
-.legend h4 {
-  text-align: center;
-  font-size: 16px;
-  margin: 2px 12px 8px;
-  color: #777;
-}
-.legend span {
-  position: relative;
-  bottom: 3px;
-}
-.legend i {
-  width: 18px;
-  height: 18px;
-  float: left;
-  margin: 0 8px 0 0;
-}
 .row>[class*="col-"] {
     padding-right: 5px;
     padding-left: 5px;
@@ -205,10 +184,21 @@ $options = json_decode($options);
                         <select id="cqzone" name="cqzone" class="form-select form-select-sm">
                             <option value=""><?php echo lang('general_word_all'); ?></option>
                             <?php
-                      for ($i = 1; $i<=40; $i++) {
-                          echo '<option value="'. $i . '">'. $i .'</option>';
-                      }
-                      ?>
+								for ($i = 1; $i<=40; $i++) {
+									echo '<option value="'. $i . '">'. $i .'</option>';
+								}
+							?>
+                        </select>
+                    </div>
+					<div class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
+                        <label class="form-label" for="ituzone">ITU Zone</label>
+                        <select id="ituzone" name="ituzone" class="form-select form-select-sm">
+                            <option value=""><?php echo lang('general_word_all'); ?></option>
+                            <?php
+							for ($i = 1; $i<=90; $i++) {
+								echo '<option value="'. $i . '">'. $i .'</option>';
+							}
+							?>
                         </select>
                     </div>
                     <div class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
@@ -374,6 +364,9 @@ $options = json_decode($options);
 			<?php if (($options->cqzone->show ?? "true") == "true") { ?>
                 <button type="button" class="btn btn-sm btn-primary me-1" id="searchCqZone"><?php echo lang('filter_search_cq_zone'); ?></button><?php
             } ?>
+			<?php if (($options->ituzone->show ?? "true") == "true") { ?>
+                <button type="button" class="btn btn-sm btn-primary me-1" id="searchItuZone"><?php echo lang('filter_search_itu_zone'); ?></button><?php
+            } ?>
 			<?php if (($options->mode->show ?? "true") == "true") { ?>
                 <button type="button" class="btn btn-sm btn-primary me-1" id="searchMode"><?php echo lang('filter_search_mode'); ?></button><?php
             } ?>
@@ -503,6 +496,9 @@ $options = json_decode($options);
 			} ?>
 			<?php if (($options->cqzone->show ?? "true") == "true") {
 				echo '<th>' . lang('gen_hamradio_cq_zone') . '</th>';
+			} ?>
+			<?php if (($options->ituzone->show ?? "true") == "true") {
+				echo '<th>' . lang('gen_hamradio_itu_zone') . '</th>';
 			} ?>
 			<?php if (($options->iota->show ?? "true") == "true") {
 				echo '<th>' . lang('gen_hamradio_iota') . '</th>';
