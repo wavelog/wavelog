@@ -165,7 +165,6 @@ document.onkeyup = function (e) {
 		reset_log_fields();
 		// Space to jump to either callsign or the various exchanges
 	} else if (e.which == 32) {
-		getCallbook();
 		var exchangetype = $("#exchangetype").val();
 
 		if (manual && $(document.activeElement).attr("id") == "start_time") {
