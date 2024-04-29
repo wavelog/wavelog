@@ -71,7 +71,7 @@ class Contesting extends CI_Controller {
 
 	public function setSession() {
 		$this->load->model('Contesting_model');
-
+		$this->Contesting_model->setSession();
 		header('Content-Type: application/json');
 		echo json_encode($this->Contesting_model->getSession());
 	}
@@ -83,13 +83,10 @@ class Contesting extends CI_Controller {
 		$this->form_validation->set_rules('name', 'Contest Name', 'required');
 		$this->form_validation->set_rules('adifname', 'Adif Contest Name', 'required');
 
-		if ($this->form_validation->run() == FALSE)
-		{
+		if ($this->form_validation->run() == FALSE) {
 			$data['page_title'] = "Create Mode";
 			$this->load->view('contesting/create', $data);
-		}
-		else
-		{
+		} else {
 			$this->Contesting_model->add();
 		}
 	}
