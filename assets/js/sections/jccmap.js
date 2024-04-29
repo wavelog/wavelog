@@ -70,18 +70,13 @@ function load_jcc_map2(data, worked, confirmed, notworked) {
     for (const [key, value] of Object.entries(jccstuff)) {
        var D = [];
        if (key in data) {
-          console.log("found");
           if (confirmed.checked == true) {
-             console.log("TEST: "+key);
-             console.log("TEST: "+data[key][1]);
-             console.log("TEST: "+value[0]);
              if (data[key][1] == 1) {
                 mapColor = 'green';
                 D['prefix'] = key;
                 D['name'] = value[0];
                 D['lat'] = value[1];
                 D['long'] = value[2];
-                console.log("T: "+D);
                 addMarker(L, D, mapColor, map);
                 confirmedcount++;
                 continue;
@@ -97,7 +92,6 @@ function load_jcc_map2(data, worked, confirmed, notworked) {
              workednotconfirmedcount++;
           }
        } else {
-          console.log("notfound");
           if (notworked.checked == true) {
              mapColor = 'red';
              D['prefix'] = key;
