@@ -17,6 +17,7 @@ $lang['awards_total_confirmed'] = "Total confirmed";
 $lang['awards_cq_page_title'] = "Awards - CQ Magazine WAZ";
 $lang['awards_itu_page_title'] = "Awards - ITU Zones";
 $lang['awards_show_itu_map'] = "Show ITU Zone Map";
+$lang['awards_show_jcc_map'] = "Show JCC Map";
 
 /*
 ___________________________________________________________________________________________
