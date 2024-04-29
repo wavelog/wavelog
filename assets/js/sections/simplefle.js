@@ -7,6 +7,7 @@ var freq = "";
 var callsign = "";
 var errors = [];
 var qsoList = [];
+var modes_regex = modes_regex(Modes);
 
 $("#simpleFleInfoButton").click(function (event) {
 	var awardInfoLines = [
@@ -141,11 +142,10 @@ function handleInput() {
 			} else if (item.match(/^[0-2][0-9][0-5][0-9]$/)) {
 				qsotime = item;
 			} else if (
-				item.match(/^CW$|^SSB$|^LSB$|^USB$|^FM$|^AM$|^PSK$|^FT8$/i)
+				item.match(modes_regex)
 			) {
 				if (mode != "") {
 					freq = 0;
-					console.log("QRG is 0 now");
 				}
 				mode = item.toUpperCase();
 			} else if (
@@ -502,22 +502,38 @@ function getFreqFromBand(band, mode) {
 	}
 }
 
-function getSettingsMode(mode) {
-	if (
-		mode === "AM" ||
-		mode === "FM" ||
-		mode === "SSB" ||
-		mode === "LSB" ||
-		mode === "USB"
-	) {
-		return "SSB";
-	}
+function getSettingsMode(mode, modesArray = Modes) {
+	var settingsMode = 'DATA';
 
-	if (mode === "CW") {
-		return "CW";
-	}
+    for (var i = 0; i < modesArray.length; i++) {
+        if (modesArray[i]['submode'] === mode) {
+            settingsMode = modesArray[i]['qrgmode'];
+        }else if (modesArray[i]['mode'] === mode) {
+            settingsMode = modesArray[i]['qrgmode'];
+        }
+    }
 
-	return "DIGI";
+	return settingsMode; 
+}
+
+function modes_regex(modesArray) {
+    var regexPattern = '^';
+    
+    for (var i = 0; i < modesArray.length; i++) {
+
+		var modeValue = modesArray[i]['mode'] + '$|^';
+		var submodeValue = '';
+
+		if (modesArray[i]['submode'] !== null) {
+			submodeValue = modesArray[i]['submode'] + '$|^';
+		}
+
+		regexPattern += modeValue + submodeValue;
+    }
+
+	regexPattern = regexPattern.slice(0, -2);
+
+    return new RegExp(regexPattern, 'i');
 }
 
 var htmlSettings = "";
