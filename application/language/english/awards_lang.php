@@ -9,6 +9,7 @@ $lang['awards_show_not_worked'] = "Show not worked";
 $lang['awards_qsl_type'] = "Show QSO with QSL Type";
 $lang['awards_show_cq_map'] = "Show CQ Zone Map";
 $lang['awards_show_itu_map'] = "Show ITU Zone Map";
+$lang['awards_show_jcc_map'] = "Show JCC Map";
 $lang['awards_summary'] = "Summary";
 $lang['awards_total'] = "Total";
 $lang['awards_total_worked'] = "Total worked";
