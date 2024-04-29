@@ -134,7 +134,7 @@ function addMarker(L, D, mapColor, map) {
     L.marker(
     [D['lat'], D['long']], {
         icon: myIcon,
-        adif: D['adif'],
+        prefix: D['prefix'],
         title: D['prefix'] + ' - ' + D['name'],
     }
     ).addTo(map).on('click', onClick);
@@ -142,7 +142,7 @@ function addMarker(L, D, mapColor, map) {
     L.marker(
         [D['lat'], D['long']], {
             icon: icon,
-            adif: D['adif'],
+            prefix: D['prefix'],
             title: D['prefix'] + ' - ' + D['name'],
         }
         ).addTo(map).on('click', onClick);
@@ -150,5 +150,5 @@ function addMarker(L, D, mapColor, map) {
 
 function onClick(e) {
     var marker = e.target;
-    displayContactsOnMap($("#jccmap"),marker.options.adif, $('#band2').val(), $('#sats').val(), $('#orbits').val(), $('#mode').val(), 'DXCC2');
+    displayContactsOnMap($("#jccmap"),marker.options.prefix, $('#band2').val(), 'All', 'All', $('#mode').val(), 'JCC');
 }
