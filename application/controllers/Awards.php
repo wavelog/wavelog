@@ -257,7 +257,11 @@ class Awards extends CI_Controller {
 
 	public function jcc ()	{
 		$footerData = [];
-        $footerData['scripts'] = ['assets/js/sections/jcc.js'];
+		$footerData['scripts'] = [
+			'assets/js/sections/jcc.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/jcc.js")),
+			'assets/js/sections/jcc_geojson.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/jcc_geojson.js")),
+			'assets/js/sections/jccmap.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/jccmap.js"))
+		];
 
 		$this->load->model('jcc_model');
         $this->load->model('modes');
@@ -1446,6 +1450,46 @@ class Awards extends CI_Controller {
         $dxcc_array = $this->dxcc->get_dxcc_array($dxcclist, $bands, $postdata);
 
         $i = 0;
+
+        foreach ($dxcclist as $dxcc) {
+            $newdxcc[$i]['adif'] = $dxcc->adif;
+            $newdxcc[$i]['prefix'] = $dxcc->prefix;
+            $newdxcc[$i]['name'] = ucwords(strtolower($dxcc->name), "- (/");
+            if ($dxcc->Enddate!=null) {
+                $newdxcc[$i]['name'] .= ' (deleted)';
+            }
+            $newdxcc[$i]['lat'] = $dxcc->lat;
+            $newdxcc[$i]['long'] = $dxcc->long;
+            $newdxcc[$i++]['status'] = isset($dxcc_array[$dxcc->adif]) ? $this->returnStatus($dxcc_array[$dxcc->adif]) : 'x';
+        }
+
+        header('Content-Type: application/json');
+        echo json_encode($newdxcc);
+    }
+
+    /*
+        function jcc_map
+        This displays the DXCC map
+    */
+    public function jcc_map() {
+        $this->load->model('dxcc');
+        $this->load->model('bands');
+
+        $bands[] = $this->security->xss_clean($this->input->post('band'));
+
+        $postdata['qsl'] = $this->input->post('qsl') == 0 ? NULL: 1;
+        $postdata['lotw'] = $this->input->post('lotw') == 0 ? NULL: 1;
+        $postdata['eqsl'] = $this->input->post('eqsl') == 0 ? NULL: 1;
+        $postdata['qrz'] = $this->input->post('qrz') == 0 ? NULL: 1;
+        $postdata['worked'] = $this->input->post('worked') == 0 ? NULL: 1;
+        $postdata['confirmed'] = $this->input->post('confirmed')  == 0 ? NULL: 1;
+        $postdata['notworked'] = $this->input->post('notworked')  == 0 ? NULL: 1;
+        $postdata['band'] = $this->security->xss_clean($this->input->post('band'));
+        $postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
+
+        $i = 0;
+        echo json_encode(null);
+        return;
 
         foreach ($dxcclist as $dxcc) {
             $newdxcc[$i]['adif'] = $dxcc->adif;
