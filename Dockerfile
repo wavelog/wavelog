@@ -17,7 +17,7 @@ RUN set -e; \
     \
     a2enmod rewrite; \
     \
-    rm -rf /var/lib/apt/lists/*;
+    apt-get clean;
 
 # Enabling custom upload settings in PHP
 RUN set -e; \
