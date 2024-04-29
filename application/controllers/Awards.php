@@ -255,11 +255,10 @@ class Awards extends CI_Controller {
 		$this->load->view('interface_assets/footer', $footerData);
 	}
 
-	public function jcc ()	{
+	public function jcc () {
 		$footerData = [];
 		$footerData['scripts'] = [
 			'assets/js/sections/jcc.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/jcc.js")),
-			'assets/js/sections/jcc_geojson.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/jcc_geojson.js")),
 			'assets/js/sections/jccmap.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/jccmap.js"))
 		];
 
@@ -357,6 +356,14 @@ class Awards extends CI_Controller {
         fclose($fp);
         return;
     }
+
+    public function jcc_cities() {
+        $this->load->model('Jcc_model');
+        $data = $this->Jcc_model->jccCities();
+        header('Content-Type: application/json');
+        echo json_encode($data, JSON_PRETTY_PRINT);
+    }
+
 
     public function vucc()	{
         $this->load->model('vucc');
