@@ -1472,7 +1472,7 @@ class Awards extends CI_Controller {
         This displays the DXCC map
     */
     public function jcc_map() {
-        $this->load->model('dxcc');
+        $this->load->model('jcc_model');
         $this->load->model('bands');
 
         $bands[] = $this->security->xss_clean($this->input->post('band'));
@@ -1487,24 +1487,19 @@ class Awards extends CI_Controller {
         $postdata['band'] = $this->security->xss_clean($this->input->post('band'));
         $postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
 
-        $i = 0;
-        echo json_encode(null);
-        return;
+        $jcc_wkd = $this->jcc_model->fetch_jcc_wkd($postdata);
+        $jcc_cnfm = $this->jcc_model->fetch_jcc_cnfm($postdata);
 
-        foreach ($dxcclist as $dxcc) {
-            $newdxcc[$i]['adif'] = $dxcc->adif;
-            $newdxcc[$i]['prefix'] = $dxcc->prefix;
-            $newdxcc[$i]['name'] = ucwords(strtolower($dxcc->name), "- (/");
-            if ($dxcc->Enddate!=null) {
-                $newdxcc[$i]['name'] .= ' (deleted)';
-            }
-            $newdxcc[$i]['lat'] = $dxcc->lat;
-            $newdxcc[$i]['long'] = $dxcc->long;
-            $newdxcc[$i++]['status'] = isset($dxcc_array[$dxcc->adif]) ? $this->returnStatus($dxcc_array[$dxcc->adif]) : 'x';
+        $jccs = [];
+        foreach ($jcc_wkd as $jcc) {
+           $jccs[$jcc->COL_CNTY] = array(1, 0);
+        }
+        foreach ($jcc_cnfm as $jcc) {
+           $jccs[$jcc->COL_CNTY][1] = 1;
         }
 
         header('Content-Type: application/json');
-        echo json_encode($newdxcc);
+        echo json_encode($jccs);
     }
 
     /*

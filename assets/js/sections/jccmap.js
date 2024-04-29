@@ -54,50 +54,43 @@ function load_jcc_map2(data, worked, confirmed, notworked) {
     var notworkedcount = 0;
     var confirmedcount = 0;
     var workednotconfirmedcount = 0;
+
     jccstuff.forEach((jcc) => {
-       console.log(jcc[0]);
        var D = [];
-       D['prefix'] = jcc[0];
-       D['lat'] = jcc[2];
-       D['long'] = jcc[3];
-       addMarker(L, D, 'blue', map);
-    });
-
-    for (var i = 0; i < data.length; i++) {
-        var D = data[i];
-        if (D['status'] != 'x') {
-            var mapColor = 'red';
-
-            if (D['status'] == 'C') {
+       if (jcc[0] in data) {
+          if (confirmed.checked == true) {
+             if (data[jcc[0]][1] == 1) {
                 mapColor = 'green';
-                if (confirmed != '0') {
-                    addMarker(L, D, mapColor, map);
-                    confirmedcount++;
-                }
-            }
-            if (D['status'] == 'W') {
-                mapColor = 'orange';
-                if (worked != '0') {
-                    addMarker(L, D, mapColor, map);
-                    workednotconfirmedcount++;
-                }
-            }
-            if (D['status'] == '-') {
-                mapColor = 'red';
-                if (notworked != '0') {
-                    addMarker(L, D, mapColor, map);
-                    notworkedcount++;
-                }
-            }
-        }
-    }
+                D['prefix'] = jcc[0];
+                D['lat'] = jcc[2];
+                D['long'] = jcc[3];
+                addMarker(L, D, mapColor, map);
+                confirmedcount++;
+                return;
+             }
+          }
+          if (worked.checked == true) {
+             mapColor = 'orange';
+             D['prefix'] = jcc[0];
+             D['lat'] = jcc[2];
+             D['long'] = jcc[3];
+             addMarker(L, D, mapColor, map);
+             workednotconfirmedcount++;
+          }
+       } else {
+          if (notworked.checked == true) {
+             mapColor = 'red';
+             D['prefix'] = jcc[0];
+             D['lat'] = jcc[2];
+             D['long'] = jcc[3];
+             addMarker(L, D, mapColor, map);
+             notworkedcount++;
+          }
+       }
+    });
 
     /*Legend specific*/
     var legend = L.control({ position: "topright" });
-
-    if (notworked.checked == false) {
-        notworkedcount = 0;
-    }
 
     legend.onAdd = function(map) {
         var div = L.DomUtil.create("div", "legend");

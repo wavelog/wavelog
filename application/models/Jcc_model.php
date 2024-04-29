@@ -1183,5 +1183,31 @@ class Jcc_model extends CI_Model {
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
+
+	function fetch_jcc_wkd($postdata) {
+		$sql = 'SELECT DISTINCT `COL_CNTY` FROM '.$this->config->item('table_name').' WHERE 1';
+		$sql .= $this->addStateToQuery();
+		$sql .= $this->genfunctions->addBandToQuery($postdata['band']);
+		if ($postdata['mode'] != 'All') {
+			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
+		}
+		$sql .= ' ORDER BY COL_CNTY ASC';
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+
+	function fetch_jcc_cnfm($postdata) {
+		$sql = 'SELECT DISTINCT `COL_CNTY` FROM '.$this->config->item('table_name').' WHERE 1';
+		$sql .= $this->addStateToQuery();
+		$sql .= $this->genfunctions->addBandToQuery($postdata['band']);
+		if ($postdata['mode'] != 'All') {
+			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
+		}
+		$sql .= $this->genfunctions->addQslToQuery($postdata);
+		$sql .= ' ORDER BY COL_CNTY ASC';
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+
 }
 ?>
