@@ -1239,8 +1239,6 @@ class Jcc_model extends CI_Model {
 
 		$location_list = "'".implode("','",$logbooks_locations_array)."'";
 
-		$jccArray = array_keys($this->jaCities);
-
 		$sql = "SELECT distinct col_cnty FROM " . $this->config->item('table_name') . " thcv
 			where station_id in (" . $location_list . ")";
 
@@ -1262,7 +1260,7 @@ class Jcc_model extends CI_Model {
 		$qsos = array();
 		foreach($jccs as $jcc) {
 			$qso = $this->getFirstQso($location_list, $jcc, $postdata);
-			$qsos[] = array('call' => $qso[0]->COL_CALL, 'date' => $qso[0]->COL_TIME_ON, 'band' => $qso[0]->COL_BAND, 'mode' => $qso[0]->COL_MODE, 'prop_mode' => $qso[0]->COL_PROP_MODE, 'cnty' => $qso[0]->COL_CNTY, 'jcc' => $this->jaCities[$qso[0]->COL_CNTY]);
+			$qsos[] = array('call' => $qso[0]->COL_CALL, 'date' => $qso[0]->COL_TIME_ON, 'band' => $qso[0]->COL_BAND, 'mode' => $qso[0]->COL_MODE, 'prop_mode' => $qso[0]->COL_PROP_MODE, 'cnty' => $qso[0]->COL_CNTY, 'jcc' => $this->jaCities[$qso[0]->COL_CNTY]['name']);
 		}
 
 		return $qsos;
