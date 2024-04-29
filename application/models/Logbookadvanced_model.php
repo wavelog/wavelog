@@ -152,6 +152,11 @@ class Logbookadvanced_model extends CI_Model {
 			$binding[] = $searchCriteria['cqzone'];
 		}
 
+		if ($searchCriteria['ituzone'] !== '') {
+			$conditions[] = "COL_ITUZ = ?";
+			$binding[] = $searchCriteria['ituzone'];
+		}
+
 		if ($searchCriteria['qslvia'] !== '') {
 			$conditions[] = "COL_QSL_VIA like ?";
 			$binding[] = $searchCriteria['qslvia'].'%';
@@ -475,6 +480,7 @@ class Logbookadvanced_model extends CI_Model {
 	function saveEditedQsos($ids, $column, $value, $value2) {
 		switch($column) {
 			case "cqz": $column = 'COL_CQZ'; break;
+			case "ituz": $column = 'COL_ITUZ'; break;
 			case "dxcc": $column = 'COL_DXCC'; break;
 			case "iota": $column = 'COL_IOTA'; break;
 			case "state": $column = 'COL_STATE'; break;

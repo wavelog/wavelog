@@ -123,6 +123,7 @@ class Logbookadvanced extends CI_Controller {
 			'gridsquare' => xss_clean($this->input->post('gridsquare')),
 			'state' => xss_clean($this->input->post('state')),
 			'cqzone' => xss_clean($this->input->post('cqzone')),
+			'ituzone' => xss_clean($this->input->post('ituzone')),
 			'qsoresults' => xss_clean($this->input->post('qsoresults')),
 			'sats' => xss_clean($this->input->post('sats')),
 			'orbits' => xss_clean($this->input->post('orbits')),
@@ -288,6 +289,7 @@ class Logbookadvanced extends CI_Controller {
 			'gridsquare' => '',
 			'state' => '',
 			'cqzone' => '',
+			'ituzone' => '',
 			'qsoresults' => count($this->input->post('ids')),
 			'sats' => '',
 			'orbits' => '',
@@ -329,6 +331,7 @@ class Logbookadvanced extends CI_Controller {
 			'gridsquare' => xss_clean($this->input->post('gridsquare')),
 			'state' => xss_clean($this->input->post('state')),
 			'cqzone' => xss_clean($this->input->post('cqzone')),
+			'ituzone' => xss_clean($this->input->post('ituzone')),
 			'qsoresults' => xss_clean($this->input->post('qsoresults')),
 			'sats' => xss_clean($this->input->post('sats')),
 			'orbits' => xss_clean($this->input->post('orbits')),
@@ -490,6 +493,7 @@ class Logbookadvanced extends CI_Controller {
 		$json_string['dxcc']['show'] = $this->input->post('dxcc');
 		$json_string['state']['show'] = $this->input->post('state');
 		$json_string['cqzone']['show'] = $this->input->post('cqzone');
+		$json_string['ituzone']['show'] = $this->input->post('ituzone');
 		$json_string['iota']['show'] = $this->input->post('iota');
 		$json_string['pota']['show'] = $this->input->post('pota');
 		$json_string['operator']['show'] = $this->input->post('operator');

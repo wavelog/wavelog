@@ -451,6 +451,9 @@ class Logbook_model extends CI_Model {
 		case 'CQZone':
 			$this->db->where('COL_CQZ', $searchphrase);
 			break;
+		case 'ITU':
+			$this->db->where('COL_ITUZ', $searchphrase);
+			break;
 		case 'WAS':
 			$this->db->where('COL_STATE', $searchphrase);
 			$this->db->where_in('COL_DXCC', ['291', '6', '110']);
