@@ -13,7 +13,8 @@ class SimpleFLE extends CI_Controller {
 		$this->load->model('bands');
 
 		$data['station_profile'] = $this->stations->all_of_user();			// Used in the view for station location select
-		$data['bands'] = $this->bands->get_all_bands();						// Fetching Bands for FLE
+		$data['bands'] = $this->bands->get_all_bands();						// Fetching Bands for SFLE
+		$data['modes'] = $this->modes_array();								// Fetching Modes for SFLE
 		$data['active_station_profile'] = $this->stations->find_active();	// Prepopulate active Station in Station Location Selector
 		$data['sat_active'] = array_search("SAT", $this->bands->get_user_bands(), true);
 
@@ -36,4 +37,24 @@ class SimpleFLE extends CI_Controller {
 	public function displaySyntax() {
 		$this->load->view('simplefle/syntax_help');
 	}
+
+	private function modes_array() {
+
+		$this->load->model('modes');
+
+		$result = $this->modes->all()->result_array();
+		$modes = array();
+
+		foreach ($result as $row) {
+			$modes[] = array(
+				'mode' => $row['mode'],
+				'submode' => $row['submode'],
+				'qrgmode' => $row['qrgmode']
+			);
+		}
+
+		return $modes;
+	}
+	
+	
 }
