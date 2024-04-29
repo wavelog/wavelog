@@ -62,6 +62,7 @@ function load_jcc_map2(data, worked, confirmed, notworked) {
              if (data[jcc[0]][1] == 1) {
                 mapColor = 'green';
                 D['prefix'] = jcc[0];
+                D['name'] = jcc[1];
                 D['lat'] = jcc[2];
                 D['long'] = jcc[3];
                 addMarker(L, D, mapColor, map);
@@ -72,6 +73,7 @@ function load_jcc_map2(data, worked, confirmed, notworked) {
           if (worked.checked == true) {
              mapColor = 'orange';
              D['prefix'] = jcc[0];
+             D['name'] = jcc[1];
              D['lat'] = jcc[2];
              D['long'] = jcc[3];
              addMarker(L, D, mapColor, map);
@@ -81,6 +83,7 @@ function load_jcc_map2(data, worked, confirmed, notworked) {
           if (notworked.checked == true) {
              mapColor = 'red';
              D['prefix'] = jcc[0];
+             D['name'] = jcc[1];
              D['lat'] = jcc[2];
              D['long'] = jcc[3];
              addMarker(L, D, mapColor, map);
