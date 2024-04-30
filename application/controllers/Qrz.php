@@ -89,7 +89,8 @@ class Qrz extends CI_Controller {
 					log_message('error', 'QRZ upload failed for qso for Station_ID '.$station_id.' //  Call: ' . $qso->COL_CALL . ' Band: ' . $qso->COL_BAND . ' Mode: ' . $qso->COL_MODE . ' Time: ' . $qso->COL_TIME_ON . ' // Message: '.$result['message']);
 					$errormessages[] = $result['message'] . ' Call: ' . $qso->COL_CALL . ' Band: ' . $qso->COL_BAND . ' Mode: ' . $qso->COL_MODE . ' Time: ' . $qso->COL_TIME_ON;
 					$result['status'] = 'Error';
-					/* 'Update station_profile set qrz_realtime=-1 where station_id=?',$station_id)
+        				$sql = 'update station_profile set qrzrealtime = -1 where station_id = ?';
+        				$this->db->query($sql,$station_id);
 					break; /* If key is invalid, immediate stop syncing for more QSOs of this station */
 				} else {
 					log_message('error', 'QRZ upload failed for qso: Call: ' . $qso->COL_CALL . ' Band: ' . $qso->COL_BAND . ' Mode: ' . $qso->COL_MODE . ' Time: ' . $qso->COL_TIME_ON);
