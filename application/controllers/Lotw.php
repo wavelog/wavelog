@@ -528,6 +528,8 @@ class Lotw extends CI_Controller {
 						// Only overwrite if incoming grid is at least of the same length/precision than existing in the QSO record
 						if (strlen($record['gridsquare']) >= strlen($status[2])) {
 							$qsl_gridsquare = $record['gridsquare'];
+						} else {
+							$qsl_gridsquare = "";
 						}
 					} else {
 						$qsl_gridsquare = "";
