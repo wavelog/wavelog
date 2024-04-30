@@ -224,8 +224,7 @@ class adif extends CI_Controller {
 					$this->adif_parser->initialize();
 					$custom_errors = "";
 					$alladif=[];
-					while($record = $this->adif_parser->get_record())
-					{
+					while($record = $this->adif_parser->get_record()) {
 						if ($contest != '') {
 							$record['contest_id']=$contest;
 						}

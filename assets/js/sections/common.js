@@ -246,6 +246,45 @@ function qso_edit(id) {
                                   document.getElementById("distance").value = null;
                                },
                             });
+                        } else if ($(this).val().length == 0) {
+                           $('#locator_info').fadeOut("slow");
+                           document.getElementById("distance").value = null;
+                        }
+                    });
+
+                    $('#vucc_grids').change(function(){
+                        if ($(this).val().length >= 9) {
+                            $.ajax({
+                               url: base_url + 'index.php/logbook/searchbearing',
+                               type: 'post',
+                               data: {
+                                  grid: $(this).val(),
+                                  stationProfile: $('#stationProfile').val()
+                               },
+                               success: function(data) {
+                                  $('#locator_info').html(data).fadeIn("slow");
+                               },
+                               error: function() {
+                                  $('#locator_info').text("Error loading bearing!").fadeIn("slow");
+                               },
+                            });
+                            $.ajax({
+                               url: base_url + 'index.php/logbook/searchdistance',
+                               type: 'post',
+                               data: {
+                                  grid: $(this).val(),
+                                  stationProfile: $('#stationProfile').val()
+                               },
+                               success: function(data) {
+                                  document.getElementById("distance").value = data;
+                               },
+                               error: function() {
+                                  document.getElementById("distance").value = null;
+                               },
+                            });
+                        } else if ($(this).val().length == 0) {
+                           $('#locator_info').fadeOut("slow");
+                           document.getElementById("distance").value = null;
                         }
                     });
 

@@ -320,6 +320,14 @@
 				<h5 class="card-header">ClubLog</h5> <!-- This does not need Multilanguage Support -->
 				<div class="card-body">
 					<div class="mb-3">
+						<label for="clublogignore"><?php echo lang("station_location_ignore"); ?></label>
+						<select class="form-select" id="clublogignore" name="clublogignore">
+							<option value="1" <?php if ($my_station_profile->clublogignore == 1) { echo " selected =\"selected\""; } ?>><?php echo lang("general_word_yes"); ?></option>
+							<option value="0" <?php if ($my_station_profile->clublogignore == 0) { echo " selected =\"selected\""; } ?>><?php echo lang("general_word_no"); ?></option>
+						</select>
+						<small class="form-text text-muted"><?php echo lang("station_location_ignore_hint"); ?></small>
+					</div>
+					<div class="mb-3" id="clublogrealtimediv">
 						<label for="clublogrealtime"><?php echo lang("station_location_clublog_realtime_upload"); ?></label>
 						<select class="form-select" id="clublogrealtime" name="clublogrealtime">
 							<option value="1" <?php if ($my_station_profile->clublogrealtime == 1) { echo " selected =\"selected\""; } ?>><?php echo lang("general_word_yes"); ?></option>

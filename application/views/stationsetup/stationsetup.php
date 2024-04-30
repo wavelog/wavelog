@@ -21,7 +21,7 @@
                     <p class="card-text"><?php echo lang('station_logbooks_description_text')?></p>
 					<a class="btn btn-primary btn-sm" href="javascript:createStationLogbook();"><i class="fas fa-plus"></i> <?php echo lang('station_logbooks_create')?></a>
 
-                    <?php if ($my_logbooks->num_rows() > 0) { ?>
+
 
                     <div class="table-responsive">
                         <table id="station_logbooks_table" class="table-sm table table-hover table-striped table-condensed">
@@ -82,7 +82,7 @@
                             </tbody>
 							</table>
                     </div>
-                    <?php } ?>
+
                 </div>
             </div>
 
@@ -96,7 +96,6 @@
 				<p class="card-text"><?php echo lang('station_location_header_ln3'); ?></p>
 
 						<p><a href="<?php echo site_url('station/create'); ?>" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> <?php echo lang('station_location_create'); ?></a></p>
-								<?php if ($stations->num_rows() > 0) { ?>
 
 <?php if($current_active == 0) { ?>
 <div class="alert alert-danger" role="alert">
@@ -190,7 +189,7 @@
 	</tbody>
 				</table>
 </div>
-<?php } ?>
+
                 </div>
             </div>
         </div>

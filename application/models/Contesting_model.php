@@ -1,60 +1,56 @@
 <?php
 class Contesting_model extends CI_Model {
 
-    /*
-     * This function gets the QSOs to fill the "Contest Logbook" under the contesting form.
-     */
-    function getSessionQsos($qso) {
-        $CI =& get_instance();
-        $CI->load->model('Stations');
-        $station_id = $CI->Stations->find_active();
+	/*
+	 * This function gets the QSOs to fill the "Contest Logbook" under the contesting form.
+	 */
+	function getSessionQsos($qso) {
+		$this->load->model('Stations');
+		$station_id = $this->Stations->find_active();
 
-        $qsoarray = explode(',', $qso);
+		$qsoarray = explode(',', $qso);
 
-        $contestid = $qsoarray[2];
-        $date = DateTime::createFromFormat('d-m-Y H:i:s', $qsoarray[0]);
-        if ($date == false) $date = DateTime::createFromFormat('d-m-Y H:i', $qsoarray[0]);
-        $date = $date->format('Y-m-d H:i:s');
+		$contestid = $qsoarray[2];
+		$date = DateTime::createFromFormat('d-m-Y H:i:s', $qsoarray[0]);
+		if ($date == false) $date = DateTime::createFromFormat('d-m-Y H:i', $qsoarray[0]);
+		$date = $date->format('Y-m-d H:i:s');
 
-        $sql = "SELECT date_format(col_time_on, '%d-%m-%Y %H:%i:%s') as col_time_on, col_call, col_band, col_mode,
-       		col_submode, col_rst_sent, col_rst_rcvd, coalesce(col_srx, '') col_srx, coalesce(col_srx_string, '') col_srx_string,
-       		coalesce(col_stx, '') col_stx, coalesce(col_stx_string, '') col_stx_string, coalesce(col_gridsquare, '') col_gridsquare,
-       		coalesce(col_vucc_grids, '') col_vucc_grids FROM " .
-            $this->config->item('table_name') .
-            " WHERE station_id =  ?  AND COL_TIME_ON >= ? AND COL_CONTEST_ID = ? ORDER BY COL_PRIMARY_KEY ASC";
+		$sql = "SELECT date_format(col_time_on, '%d-%m-%Y %H:%i:%s') as col_time_on, col_call, col_band, col_mode,
+			col_submode, col_rst_sent, col_rst_rcvd, coalesce(col_srx, '') col_srx, coalesce(col_srx_string, '') col_srx_string,
+			coalesce(col_stx, '') col_stx, coalesce(col_stx_string, '') col_stx_string, coalesce(col_gridsquare, '') col_gridsquare,
+			coalesce(col_vucc_grids, '') col_vucc_grids FROM " .
+			$this->config->item('table_name') .
+			" WHERE station_id =  ?  AND COL_TIME_ON >= ? AND COL_CONTEST_ID = ? ORDER BY COL_PRIMARY_KEY ASC";
 
-        $data = $this->db->query($sql,array($station_id, $date, $contestid));
-        return $data->result();
-    }
+		$data = $this->db->query($sql,array($station_id, $date, $contestid));
+		return $data->result();
+	}
 
 	function getSession() {
-        $CI =& get_instance();
-        $CI->load->model('Stations');
-        $station_id = $CI->Stations->find_active();
+		$this->load->model('Stations');
+		$station_id = $this->Stations->find_active();
 
-        $sql = "SELECT * from contest_session where station_id = " . $station_id;
+		$sql = "SELECT * from contest_session where station_id = " . $station_id;
 
-        $data = $this->db->query($sql);
-        return $data->row();
-    }
+		$data = $this->db->query($sql);
+		return $data->row();
+	}
 
 
 
 	function deleteSession() {
-        $CI =& get_instance();
-        $CI->load->model('Stations');
-        $station_id = $CI->Stations->find_active();
+		$this->load->model('Stations');
+		$station_id = $this->Stations->find_active();
 
-        $sql = "delete from contest_session where station_id = " . $station_id;
+		$sql = "delete from contest_session where station_id = " . $station_id;
 
-        $this->db->query($sql);
+		$this->db->query($sql);
 		return;
-    }
+	}
 
 	function setSession() {
-        $CI =& get_instance();
-        $CI->load->model('Stations');
-        $station_id = $CI->Stations->find_active();
+		$this->load->model('Stations');
+		$station_id = $this->Stations->find_active();
 
 		$qso = "";
 
@@ -74,9 +70,9 @@ class Contesting_model extends CI_Model {
 			'station_id' 			=> $station_id,
 		);
 
-        $sql = "SELECT * from contest_session where station_id = " . $station_id;
+		$sql = "SELECT * from contest_session where station_id = " . $station_id;
 
-        $querydata = $this->db->query($sql);
+		$querydata = $this->db->query($sql);
 
 		if ($querydata->num_rows() == 0) {
 			$this->db->insert('contest_session', $data);
@@ -84,23 +80,23 @@ class Contesting_model extends CI_Model {
 		}
 
 		$result = $querydata->row();
-        	$qsoarray = explode(',', $result->qso);
+		$qsoarray = explode(',', $result->qso);
 		if ($qsoarray[1] != "") {
 			$data['qso'] = $result->qso;
 		}
 
 		$this->updateSession($data, $station_id);
-		
+
 		return;
-    }
+	}
 
 	function updateSession($data, $station_id) {
 		$this->db->where('station_id', $station_id);
 
 		$this->db->update('contest_session', $data);
-    }
+	}
 
-    function getActivecontests() {
+	function getActivecontests() {
 
 		$sql = "SELECT name, adifname FROM contest WHERE active = 1 ORDER BY name ASC";
 
@@ -208,15 +204,14 @@ class Contesting_model extends CI_Model {
 	}
 
 	function checkIfWorkedBefore($call, $band, $mode, $contest) {
-		$CI =& get_instance();
-		$CI->load->model('Stations');
-		$station_id = $CI->Stations->find_active();
+		$this->load->model('Stations');
+		$station_id = $this->Stations->find_active();
 
 		$contest_session = $this->getSession();
-		
+
 		if ($contest_session && $contest_session->qso != "") {
 			$qsoarray = explode(',', $contest_session->qso);
-	
+
 			$date = DateTime::createFromFormat('d-m-Y H:i:s', $qsoarray[0]);
 			if ($date == false) $date = DateTime::createFromFormat('d-m-Y H:i', $qsoarray[0]);
 			$date = $date->format('Y-m-d H:i:s');
@@ -231,49 +226,48 @@ class Contesting_model extends CI_Model {
 			$this->db->where("COL_MODE", xss_clean($mode));
 			$this->db->or_where("COL_SUBMODE", xss_clean($mode));
 			$this->db->group_end();
-        		$this->db->order_by($this->config->item('table_name').".COL_TIME_ON", "DESC");
+			$this->db->order_by($this->config->item('table_name').".COL_TIME_ON", "DESC");
 			$query = $this->db->get($this->config->item('table_name'));
-	
+
 			return $query;
 		}
 		return;
 	}
 
 	function export_custom($from, $to, $contest_id, $station_id) {
-        $this->db->select(''.$this->config->item('table_name').'.*, station_profile.*');
-        $this->db->from($this->config->item('table_name'));
-        $this->db->where($this->config->item('table_name').'.station_id', $station_id);
+		$this->db->select(''.$this->config->item('table_name').'.*, station_profile.*');
+		$this->db->from($this->config->item('table_name'));
+		$this->db->where($this->config->item('table_name').'.station_id', $station_id);
 
-        // If date is set, we format the date and add it to the where-statement
-        if ($from != 0) {
-            $from = DateTime::createFromFormat('Y-m-d', $from);
-            $from = $from->format('Y-m-d');
-            $this->db->where("date(".$this->config->item('table_name').".COL_TIME_ON) >= '".$from."'");
-        }
-        if ($to != 0) {
-            $to = DateTime::createFromFormat('Y-m-d', $to);
-            $to = $to->format('Y-m-d');
-            $this->db->where("date(".$this->config->item('table_name').".COL_TIME_ON) <= '".$to."'");
-        }
+		// If date is set, we format the date and add it to the where-statement
+		if ($from != 0) {
+			$from = DateTime::createFromFormat('Y-m-d', $from);
+			$from = $from->format('Y-m-d');
+			$this->db->where("date(".$this->config->item('table_name').".COL_TIME_ON) >= '".$from."'");
+		}
+		if ($to != 0) {
+			$to = DateTime::createFromFormat('Y-m-d', $to);
+			$to = $to->format('Y-m-d');
+			$this->db->where("date(".$this->config->item('table_name').".COL_TIME_ON) <= '".$to."'");
+		}
 
 		$this->db->where($this->config->item('table_name').'.COL_CONTEST_ID', $contest_id);
 
-        $this->db->order_by($this->config->item('table_name').".COL_TIME_ON", "ASC");
+		$this->db->order_by($this->config->item('table_name').".COL_TIME_ON", "ASC");
 
-        $this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
+		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
 
-        return $this->db->get();
-    }
+		return $this->db->get();
+	}
 
 	function get_logged_contests2() {
-		$CI =& get_instance();
-        $CI->load->model('Stations');
-        $station_id = $CI->Stations->find_active();
+		$this->load->model('Stations');
+		$station_id = $this->Stations->find_active();
 
 		$sql = "select col_contest_id, min(date(col_time_on)) mindate, max(date(col_time_on)) maxdate, year(col_time_on) year, month(col_time_on) month
-		from " . $this->config->item('table_name') . " 
-		where coalesce(COL_CONTEST_ID, '') <> '' 
-		and station_id =" . $station_id;
+			from " . $this->config->item('table_name') . " 
+			where coalesce(COL_CONTEST_ID, '') <> '' 
+			and station_id =" . $station_id;
 
 		$sql .= " group by COL_CONTEST_ID , year(col_time_on), month(col_time_on) order by year(col_time_on) desc";
 
@@ -285,9 +279,9 @@ class Contesting_model extends CI_Model {
 	function get_logged_years($station_id) {
 
 		$sql = "select distinct year(col_time_on) year
-		from " . $this->config->item('table_name') . " 
-		where coalesce(COL_CONTEST_ID, '') <> '' 
-		and station_id =" . $station_id;
+			from " . $this->config->item('table_name') . " 
+			where coalesce(COL_CONTEST_ID, '') <> '' 
+			and station_id =" . $station_id;
 
 		$sql .= " order by year(col_time_on) desc";
 
@@ -298,27 +292,27 @@ class Contesting_model extends CI_Model {
 
 	function get_logged_contests($station_id, $year) {
 		$sql = "select distinct col_contest_id
-		from " . $this->config->item('table_name') . " 
-		where coalesce(COL_CONTEST_ID, '') <> '' 
-		and station_id =" . $station_id .
-		" and year(col_time_on) ='" . $year . "'";
+			from " . $this->config->item('table_name') . " 
+			where coalesce(COL_CONTEST_ID, '') <> '' 
+			and station_id =" . $station_id .
+			" and year(col_time_on) ='" . $year . "'";
 
 		$sql .= " order by COL_CONTEST_ID asc";
 
 		$data = $this->db->query($sql);
 
-        return $data->result();
-    }
+		return $data->result();
+	}
 
 	function get_contest_dates($station_id, $year, $contestid) {
 		$sql = "select distinct (date(col_time_on)) date
-		from " . $this->config->item('table_name') . " 
-		where coalesce(COL_CONTEST_ID, '') <> '' 
-		and station_id =" . $station_id .
-		" and year(col_time_on) ='" . $year . "' and col_contest_id ='" . $contestid . "'";
+			from " . $this->config->item('table_name') . " 
+			where coalesce(COL_CONTEST_ID, '') <> '' 
+			and station_id =" . $station_id .
+			" and year(col_time_on) ='" . $year . "' and col_contest_id ='" . $contestid . "'";
 
 		$data = $this->db->query($sql);
 
-        return $data->result();
+		return $data->result();
 	}
 }

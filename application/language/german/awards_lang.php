@@ -15,7 +15,9 @@ $lang['awards_total_confirmed'] = "Gesamt bestätigt";
 
 
 $lang['awards_cq_page_title'] = "Diplome - CQ Magazin WAZ";
-
+$lang['awards_itu_page_title'] = "Awards - ITU Zones";
+$lang['awards_show_itu_map'] = "Zeige Karte der ITU-Zonen";
+$lang['awards_show_jcc_map'] = "Zeige Karte der JCCs";
 
 /*
 ___________________________________________________________________________________________
@@ -217,3 +219,24 @@ $lang['awards_jcc_description_ln1'] = "JCC - Japan Century Cities Award";
 $lang['awards_jcc_description_ln2'] = "Kann beantragt werden, wenn Amateurfunkstationen aus mindestens 100 unterschiedlichen Städten Japans gearbeitet bzw. gehört wurden und eine QSL-Karte vorliegt.";
 $lang['awards_jcc_description_ln3'] = "JCC-200, 300, 400, 500, 600, 700 und 800 werden als separate Auszeichnungen vergeben. Eine Liste der QSL-Karten sollte in der Reihenfolge der JCC Referenznummern angelegt werden. Die Namen der Städte können ausgelassen werden. Weitere Sticker werden für jeweils 50 weitere Kontakte ausgestellt, z.B 150, 250, 350, 450, 550, 650, 750 Städte.";
 $lang['awards_jcc_description_ln4'] = "Für weitere Informationen besuche bitte: <a href='https://www.jarl.org/English/4_Library/A-4-2_Awards/Award_Main.htm' target='_blank'>https://www.jarl.org/English/4_Library/A-4-2_Awards/Award_Main.htm</a>.";
+
+
+/*
+___________________________________________________________________________________________
+WAB -- Use all 4 Lines of Text
+___________________________________________________________________________________________
+*/
+
+$lang['awards_wab_description_ln1'] = "WAB - Worked All Britain Award";
+$lang['awards_wab_description_ln2'] = "WAB, Worked All Britain squares in Amateur Radio, encourages licensed ham radio operators to work all the squares in Great Britain.";
+$lang['awards_wab_description_ln3'] = "May be claimed for having contacted an amateur station located in the required amount of squares, described on the page linked below.";
+$lang['awards_wab_description_ln4'] = "For more information, please visit: <a href='https://wab.intermip.net/default.php' target='_blank'>https://wab.intermip.net/default.php</a>.";
+/*
+___________________________________________________________________________________________
+ITU
+___________________________________________________________________________________________
+*/
+
+$lang['awards_itu_description_ln1'] = "ITU Zones";
+$lang['awards_itu_description_ln2'] = "The Classic Worked ITU Zones award may be claimed by producing evidence of having contacted land based amateur radio stations in at least 70 of the 75 broadcasting zones as defined by the International Telecommunications Union (ITU).";
+$lang['awards_itu_description_ln3'] = "You can find more information on the website of <a href='https://rsgb.org/main/files/2019/01/Worked_ITU_Zones_Award_Form_2019.pdf' target='_blank'>RSGB</a>.";

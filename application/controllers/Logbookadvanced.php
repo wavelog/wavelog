@@ -123,6 +123,7 @@ class Logbookadvanced extends CI_Controller {
 			'gridsquare' => xss_clean($this->input->post('gridsquare')),
 			'state' => xss_clean($this->input->post('state')),
 			'cqzone' => xss_clean($this->input->post('cqzone')),
+			'ituzone' => xss_clean($this->input->post('ituzone')),
 			'qsoresults' => xss_clean($this->input->post('qsoresults')),
 			'sats' => xss_clean($this->input->post('sats')),
 			'orbits' => xss_clean($this->input->post('orbits')),
@@ -288,6 +289,7 @@ class Logbookadvanced extends CI_Controller {
 			'gridsquare' => '',
 			'state' => '',
 			'cqzone' => '',
+			'ituzone' => '',
 			'qsoresults' => count($this->input->post('ids')),
 			'sats' => '',
 			'orbits' => '',
@@ -329,6 +331,7 @@ class Logbookadvanced extends CI_Controller {
 			'gridsquare' => xss_clean($this->input->post('gridsquare')),
 			'state' => xss_clean($this->input->post('state')),
 			'cqzone' => xss_clean($this->input->post('cqzone')),
+			'ituzone' => xss_clean($this->input->post('ituzone')),
 			'qsoresults' => xss_clean($this->input->post('qsoresults')),
 			'sats' => xss_clean($this->input->post('sats')),
 			'orbits' => xss_clean($this->input->post('orbits')),
@@ -381,10 +384,10 @@ class Logbookadvanced extends CI_Controller {
 		foreach ($qsos as $qso) {
 			if (!empty($qso['COL_MY_GRIDSQUARE']) || !empty($qso['COL_MY_VUCC_GRIDS'])) {
 				if (!empty($qso['COL_GRIDSQUARE'])  || !empty($qso['COL_VUCC_GRIDS'])) {
-					$mappedcoordinates[] = $this->calculate($qso, ($qso['COL_MY_GRIDSQUARE'] ?? '') == '' ? $qso['COL_MY_VUCC_GRIDS'] : $qso['COL_MY_GRIDSQUARE'], ($qso['COL_GRIDSQUARE'] ?? '') == '' ? $qso['COL_VUCC_GRIDS'] : $qso['COL_GRIDSQUARE'], $measurement_base, $var_dist, $custom_date_format);
+					$mappedcoordinates[] = $this->calculate($qso, ($qso['station_gridsquare'] ?? ''), ($qso['COL_GRIDSQUARE'] ?? '') == '' ? $qso['COL_VUCC_GRIDS'] : $qso['COL_GRIDSQUARE'], $measurement_base, $var_dist, $custom_date_format);
 				} else {
 					if (!empty($qso['lat'])  || !empty($qso['long'])) {
-						$mappedcoordinates[] = $this->calculateCoordinates($qso, $qso['lat'], $qso['long'], ($qso['COL_MY_GRIDSQUARE'] ?? '') == '' ? $qso['COL_MY_VUCC_GRIDS'] : $qso['COL_MY_GRIDSQUARE'], $measurement_base, $var_dist, $custom_date_format);
+						$mappedcoordinates[] = $this->calculateCoordinates($qso, $qso['lat'], $qso['long'], ($qso['station_gridsquare'] ?? ''), $measurement_base, $var_dist, $custom_date_format);
 					}
 				}
 			}
@@ -490,6 +493,7 @@ class Logbookadvanced extends CI_Controller {
 		$json_string['dxcc']['show'] = $this->input->post('dxcc');
 		$json_string['state']['show'] = $this->input->post('state');
 		$json_string['cqzone']['show'] = $this->input->post('cqzone');
+		$json_string['ituzone']['show'] = $this->input->post('ituzone');
 		$json_string['iota']['show'] = $this->input->post('iota');
 		$json_string['pota']['show'] = $this->input->post('pota');
 		$json_string['operator']['show'] = $this->input->post('operator');

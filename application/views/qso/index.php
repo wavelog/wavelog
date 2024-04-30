@@ -122,7 +122,7 @@
                 <div class="mb-3 col-md-12">
                   <label for="callsign"><?php echo lang('gen_hamradio_callsign'); ?></label>&nbsp;<i id="check_cluster" data-bs-toggle="tooltip" title="Search DXCluster for latest Spot" class="fas fa-search"></i>
                   <div class="input-group">
-                    <input type="text" class="form-control" id="callsign" name="callsign" required>
+                    <input tabindex="1" type="text" class="form-control" id="callsign" name="callsign" required>
                     <span id="qrz_info" class="input-group-text btn-included-on-field d-none py-0"></span>
                     <span id="hamqth_info" class="input-group-text btn-included-on-field d-none py-0"></span>
                   </div>
@@ -192,19 +192,19 @@
               <div class="row">
                 <div class="mb-3 col-md-6">
                   <label for="rst_sent"><?php echo lang('gen_hamradio_rsts'); ?></label>
-                  <input type="text" class="form-control form-control-sm" name="rst_sent" id="rst_sent" value="59">
+                  <input tabindex="2" type="text" class="form-control form-control-sm" name="rst_sent" id="rst_sent" value="59">
                 </div>
 
                 <div class="mb-3 col-md-6">
                   <label for="rst_rcvd"><?php echo lang('gen_hamradio_rstr'); ?></label>
-                  <input type="text" class="form-control form-control-sm" name="rst_rcvd" id="rst_rcvd" value="59">
+                  <input tabindex="3" type="text" class="form-control form-control-sm" name="rst_rcvd" id="rst_rcvd" value="59">
                 </div>
               </div>
 
               <div class="mb-3 row">
                   <label for="name" class="col-sm-3 col-form-label"><?php echo lang('general_word_name'); ?></label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control form-control-sm" name="name" id="name" value="">
+                    <input tabindex="4" type="text" class="form-control form-control-sm" name="name" id="name" value="">
                 </div>
               </div>
 
@@ -288,14 +288,14 @@
               <div class="mb-3 row">
                 <label for="qth" class="col-sm-3 col-form-label"><?php echo lang('general_word_location'); ?></label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control form-control-sm" name="qth" id="qth" value="">
+                    <input tabindex="5" type="text" class="form-control form-control-sm" name="qth" id="qth" value="">
                 </div>
               </div>
 
               <div class="mb-3 row">
                   <label for="locator" class="col-sm-3 col-form-label"><?php echo lang('gen_hamradio_gridsquare'); ?></label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control form-control-sm" name="locator" id="locator" value="">
+                    <input tabindex="6" type="text" class="form-control form-control-sm" name="locator" id="locator" value="">
                     <small id="locator_info" class="form-text text-muted"></small>
                 </div>
               </div>
@@ -305,7 +305,7 @@
               <div class="mb-3 row">
                   <label for="comment" class="col-sm-3 col-form-label"><?php echo lang('general_word_comment'); ?></label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control form-control-sm" name="comment" id="comment" value="">
+                    <input tabindex="7"type="text" class="form-control form-control-sm" name="comment" id="comment" value="">
                 </div>
               </div>
 
@@ -615,13 +615,13 @@
         </div>
 
         <div class="btn-group" role="group">
-              <button type="button" class="btn btn-secondary" id="btn_reset"><?php echo lang('qso_btn_clear_qso'); ?></button>
+              <button tabindex="9" type="button" class="btn btn-secondary" id="btn_reset"><?php echo lang('qso_btn_clear_qso'); ?></button>
         <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></button>
         <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                 <li><a class="dropdown-item" href="#" id="btn_fullreset"><?php echo lang('qso_btn_reset_to_default'); ?></a></li>
             </ul>
         </div>
-        <button type="submit" id="saveQso" name="saveQso" class="btn btn-primary"><i class="fas fa-save"></i> <?php echo lang('qso_btn_save_qso'); ?></button>
+        <button tabindex="8" type="submit" id="saveQso" name="saveQso" class="btn btn-primary"><i class="fas fa-save"></i> <?php echo lang('qso_btn_save_qso'); ?></button>
         <div class="alert alert-danger warningOnSubmit mt-3" style="display:none;"><span><i class="fas fa-times-circle"></i></span> <span class="warningOnSubmit_txt ms-1">Error</span></div>
       </div>
     </form>

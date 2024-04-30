@@ -43,7 +43,14 @@
                             <td>Environment</td>
                             <td><?php echo ENVIRONMENT; ?></td>
                         </tr>
-
+                        <tr class="blank-row">
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr>
+                            <td>Total QSO on this instance</td>
+                            <td><?php echo $qso_total . ' QSOs'; ?></td>
+                        </tr>
                     </table>
                 </div>
             </div>

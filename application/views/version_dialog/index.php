@@ -25,44 +25,45 @@
                 }
                 if ($versionDialogMode == 'release_notes' || $versionDialogMode == 'both' || $versionDialogMode == 'disabled') {
                 ?>
-                <div>
-                    <?php
-                    $url = 'https://api.github.com/repos/wavelog/wavelog/releases';
-                    $options = [
-                        'http' => [
-                            'header' => 'User-Agent: Wavelog - Amateur Radio Logbook'
-                        ]
-                    ];
-                    $context = stream_context_create($options);
-                    $response = file_get_contents($url, false, $context);
+                    <div>
+                        <?php
+                        $url = 'https://api.github.com/repos/wavelog/wavelog/releases';
+                        $options = [
+                            'http' => [
+                                'header' => 'User-Agent: Wavelog - Amateur Radio Logbook'
+                            ]
+                        ];
+                        $context = stream_context_create($options);
+                        $response = file_get_contents($url, false, $context);
 
-                    if ($response !== false) {
-                        $data = json_decode($response, true);
+                        if ($response !== false) {
+                            $data = json_decode($response, true);
 
-			$current_version=$this->optionslib->get_option('version');
-                        if ($data !== null && !empty($data)) {
-                            foreach ($data as $singledata) {
-				if ($singledata['tag_name']==$current_version) {
-                            		$firstRelease = $singledata;
-					continue;
-				}
-			    }
+                            $current_version = $this->optionslib->get_option('version');
+                            if ($data !== null && !empty($data)) {
+                                foreach ($data as $singledata) {
+                                    if ($singledata['tag_name'] == $current_version) {
+                                        $firstRelease = $singledata;
+                                        continue;
+                                    }
+                                }
 
-                            $releaseBody = isset($firstRelease['body']) ? $firstRelease['body'] : 'No release information available';
-                            $htmlReleaseBody = htmlspecialchars($releaseBody);
-                            $htmlReleaseBodyWithLinks = preg_replace('/(https?:\/\/[^\s<]+)/', '<a href="$1" target="_blank">$1</a>', $htmlReleaseBody);
+                                $releaseBody = isset($firstRelease['body']) ? $firstRelease['body'] : 'No release information available';
+                                $htmlReleaseBody = htmlspecialchars($releaseBody);
+                                $htmlReleaseBodyWithLinks = preg_replace('/(https?:\/\/[^\s<]+)/', '<a href="$1" target="_blank">$1</a>', $htmlReleaseBody);
 
-                            $releaseName = isset($firstRelease['name']) ? $firstRelease['name'] : 'No version name information available';
-                            echo "<h4>".$releaseName."</h4>";
-                            echo nl2br($htmlReleaseBodyWithLinks);
+                                $releaseName = isset($firstRelease['name']) ? $firstRelease['name'] : 'No version name information available';
+                                echo "<h4>" . $releaseName . "</h4>";
+                                echo "<div id='markdownDiv' style='display: none;'>" . $releaseBody . "</div>";
+                                echo "<div id='formattedHTMLDiv'></div>";
+                            } else {
+                                echo 'Error at parsing JSON-Data or got empty result from github.';
+                            }
                         } else {
-                            echo 'Error at parsing JSON-Data or got empty result from github.';
+                            echo 'Error at getting the data from GitHub.';
                         }
-                    } else {
-                        echo 'Error at getting the data from GitHub.';
-                    }
-                    ?>
-                </div>
+                        ?>
+                    </div>
                 <?php
                 }
                 ?>
@@ -71,7 +72,7 @@
                 <?php
                 if ($versionDialogMode !== 'disabled') {
                 ?>
-                <button class="btn btn-secondary" onclick="dismissVersionDialog()" data-bs-dismiss="modal"><?php echo lang('options_version_dialog_dismiss'); ?></button>
+                    <button class="btn btn-secondary" onclick="dismissVersionDialog()" data-bs-dismiss="modal"><?php echo lang('options_version_dialog_dismiss'); ?></button>
                 <?php
                 }
                 ?>

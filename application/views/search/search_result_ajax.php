@@ -15,7 +15,7 @@ function echo_table_header_col($name) {
 		case 'Band':      echo lang('gen_hamradio_band'); break;
 		case 'Frequency': echo lang('gen_hamradio_frequency'); break;
 		case 'Operator':  echo lang('gen_hamradio_operator'); break;
-		case 'Location':  echo lang('cloudlog_station_profile'); break;
+		case 'Location':  echo lang('wavelog_station_profile'); break;
 		case 'Name':      echo lang('general_word_name'); break;
 	}
 }

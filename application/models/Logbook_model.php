@@ -451,6 +451,9 @@ class Logbook_model extends CI_Model {
 		case 'CQZone':
 			$this->db->where('COL_CQZ', $searchphrase);
 			break;
+		case 'ITU':
+			$this->db->where('COL_ITUZ', $searchphrase);
+			break;
 		case 'WAS':
 			$this->db->where('COL_STATE', $searchphrase);
 			$this->db->where_in('COL_DXCC', ['291', '6', '110']);
@@ -479,6 +482,10 @@ class Logbook_model extends CI_Model {
 		case 'DOK':
 			$this->db->where('COL_DARC_DOK', $searchphrase);
 			break;
+		case 'WAB':
+			$this->db->where('COL_SIG', 'WAB');
+			$this->db->where('COL_SIG_INFO', $searchphrase);
+		break;
 		case 'WAJA':
 			$state = str_pad($searchphrase, 2, '0', STR_PAD_LEFT);
 			$this->db->where('COL_STATE', $state);
@@ -1254,6 +1261,12 @@ class Logbook_model extends CI_Model {
 		  $lotwrdate = $qso->COL_LOTW_QSLRDATE;
 	  }
 
+	  if ($this->input->post('distance')) {
+		  $distance = $this->input->post('distance');
+	  } else {
+		  $distance = null;
+	  }
+
 	  $data = array(
 		  'COL_TIME_ON' => $this->input->post('time_on'),
 		  'COL_TIME_OFF' => $this->input->post('time_off'),
@@ -1267,7 +1280,7 @@ class Logbook_model extends CI_Model {
 		  'COL_RST_SENT' => $this->input->post('rst_sent'),
 		  'COL_GRIDSQUARE' => strtoupper(trim($this->input->post('locator'))),
 		  'COL_VUCC_GRIDS' => strtoupper(preg_replace('/\s+/', '', $this->input->post('vucc_grids'))),
-		  'COL_DISTANCE' => $this->input->post('distance'),
+		  'COL_DISTANCE' => $distance,
 		  'COL_COMMENT' => $this->input->post('comment'),
 		  'COL_NAME' => $this->input->post('name'),
 		  'COL_COUNTRY' => $country,
@@ -3334,22 +3347,24 @@ function lotw_last_qsl_date($user_id) {
 	  return '1900-01-01 00:00:00.000';
   }
 
-  function import_bulk($records, $station_id = "0", $skipDuplicate = false, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markHrd = false,$skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false) {
-	  $custom_errors='';
-	  $a_qsos=[];
-	  foreach ($records as $record) {
-		  $one_error = $this->logbook_model->import($record, $station_id, $skipDuplicate, $markClublog, $markLotw,$dxccAdif, $markQrz, $markHrd, $skipexport, $operatorName, $apicall, $skipStationCheck, true);
-		  if ($one_error['error'] ?? '' != '') {
-			  $custom_errors.=$one_error['error']."<br/>";
-		  } else {
-			  array_push($a_qsos,$one_error['raw_qso'] ?? '');
-		  }
-	  }
-	  if (count($a_qsos)>0) {
-		  $this->db->insert_batch($this->config->item('table_name'), $a_qsos);
-	  }
-	  return $custom_errors;
-  }
+    function import_bulk($records, $station_id = "0", $skipDuplicate = false, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markHrd = false,$skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false) {
+	    $custom_errors='';
+	    $a_qsos=[];
+	    foreach ($records as $record) {
+		    $one_error = $this->logbook_model->import($record, $station_id, $skipDuplicate, $markClublog, $markLotw,$dxccAdif, $markQrz, $markHrd, $skipexport, $operatorName, $apicall, $skipStationCheck, true);
+		    if ($one_error['error'] ?? '' != '') {
+			    $custom_errors.=$one_error['error']."<br/>";
+		    } else {
+			    array_push($a_qsos,$one_error['raw_qso'] ?? '');
+		    }
+	    }
+	    $records='';
+	    gc_collect_cycles();
+	    if (count($a_qsos)>0) {
+		    $this->db->insert_batch($this->config->item('table_name'), $a_qsos);
+	    }
+	    return $custom_errors;
+    }
     /*
      * $skipDuplicate - used in ADIF import to skip duplicate checking when importing QSOs
      * $markLoTW - used in ADIF import to mark QSOs as exported to LoTW when importing QSOs
@@ -3994,6 +4009,8 @@ function lotw_last_qsl_date($user_id) {
 		  if ($batchmode) {
 			  $raw_qso=$this->add_qso($data, $skipexport, $batchmode);
 			  $returner['raw_qso']=$raw_qso;
+			  $data='';
+			  $raw_qso='';
 		  } else {
 			  $this->add_qso($data, $skipexport);
 		  }
@@ -4006,6 +4023,7 @@ function lotw_last_qsl_date($user_id) {
 	  } else {
 		  $returner=$my_error;
 	  }
+	  $record=[];
 	  return $returner;
   }
 
@@ -4620,12 +4638,6 @@ function lotw_last_qsl_date($user_id) {
            print "No QSOs affected.";
         }
         $this->db->trans_complete();
-    }
-
-    public function calls_without_station_id() {
-		$query=$this->db->query("select distinct COL_STATION_CALLSIGN from ".$this->config->item('table_name')." where station_id is null or station_id = ''");
-	    $result = $query->result_array();
-	    return $result;
     }
 
     public function check_for_station_id() {
