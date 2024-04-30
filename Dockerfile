@@ -70,6 +70,6 @@ RUN touch /etc/crontab && \
     echo "20 2 1 */1 * curl --silent http://localhost/update/update_pota &>/dev/null" >> /etc/crontab && \
     echo "0 3 1 */1 *  curl --silent http://localhost/update/update_dok &>/dev/null" >> /etc/crontab
 RUN chmod 0644 /etc/crontab
-RUN crontab </etc/crontab
+RUN crontab /etc/crontab
 RUN mkdir -p /var/log/cron
 RUN sed -i 's/^exec /service cron start\n\nexec /' /usr/local/bin/apache2-foreground
