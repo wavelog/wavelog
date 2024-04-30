@@ -181,7 +181,7 @@ function handleInput() {
 				)
 			) {
 				callsign = item.toUpperCase();
-			} else if (itemNumber > 0 && item.match(/^\d{1,3}$/)) {
+			} else if (itemNumber > 0 && item.match(/^[-+]?\d{1,3}$/)) {
 				if (rst_s === null) {
 					rst_s = item;
 				} else {
@@ -614,26 +614,63 @@ function getReportByMode(rst, mode) {
 	if (rst === null) {
 		if (settingsMode === "SSB") {
 			return "59";
-		}
+		} else if (settingsMode === "DATA") {
+			switch(mode) {
+				// return +0dB for Digimodes except for Digitalvoice Modes
+				case "DIGITALVOICE": return "599";
+				case "C4FM": return "599";
+				case "DMR": return "599";
+				case "DSTAR": return "599";
+				case "FREEDV": return "599";
+				case "M17": return "599";
 
+				default: return "+0dB";
+			}
+		}
+	
 		return "599";
-	}
 
-	if (settingsMode === "SSB") {
+	} else {
+
+		if (settingsMode === "SSB") {
+			if (rst.length === 1) {
+				return "5" + rst;
+			}
+			if (rst.length === 3) {
+				return rst.slice(0, 2);
+			}
+
+			return rst;
+
+		} else if (rst.startsWith('+') || rst.startsWith('-')) {
+			return rst + "dB";
+		}
+		
 		if (rst.length === 1) {
-			return "5" + rst;
-		}
-		if (rst.length === 3) {
-			return rst.slice(0, 2);
-		}
+			switch(mode) {
+				case "CW": return "5" + rst + "9";
+				case "DIGITALVOICE": return "5" + rst + "9";
+				case "C4FM": return "5" + rst + "9";
+				case "DMR": return "5" + rst + "9";
+				case "DSTAR": return "5" + rst + "9";
+				case "FREEDV": return "5" + rst + "9";
+				case "M17": return "5" + rst + "9";
 
-		return rst;
-	}
+				default: return "+" + rst + "dB";
+			};
+		} else if (rst.length === 2) {
+			switch(mode) {
+				case "CW": return rst + "9";
+				case "DIGITALVOICE": return rst + "9";
+				case "C4FM": return rst + "9";
+				case "DMR": return rst + "9";
+				case "DSTAR": return rst + "9";
+				case "FREEDV": return rst + "9";
+				case "M17": return rst + "9";
 
-	if (rst.length === 1) {
-		return "5" + rst + "9";
-	} else if (rst.length === 2) {
-		return rst + "9";
+				default: return "+" + rst + "dB";
+			};
+		} 
 	}
 
 	return rst;
@@ -775,8 +812,8 @@ $(".js-save-to-log").click(function () {
 
 					qsoList.forEach((item) => {
 						var callsign = item[2];
-						var rst_rcvd = item[7];
-						var rst_sent = item[6];
+						var rst_rcvd = item[7].replace(/dB$/, '');
+						var rst_sent = item[6].replace(/dB$/, '');
 						var start_date = item[0];
 						var start_time =
 							item[1][0] +
