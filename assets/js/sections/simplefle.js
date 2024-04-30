@@ -617,12 +617,12 @@ function getReportByMode(rst, mode) {
 		} else if (settingsMode === "DATA") {
 			switch(mode) {
 				// return +0dB for Digimodes except for Digitalvoice Modes
-				case "DIGITALVOICE": return "599";
-				case "C4FM": return "599";
-				case "DMR": return "599";
-				case "DSTAR": return "599";
-				case "FREEDV": return "599";
-				case "M17": return "599";
+				case "DIGITALVOICE": 	return "59";
+				case "C4FM": 			return "59";
+				case "DMR": 			return "59";
+				case "DSTAR": 			return "59";
+				case "FREEDV": 			return "59";
+				case "M17": 			return "59";
 
 				default: return "+0dB";
 			}
@@ -648,27 +648,27 @@ function getReportByMode(rst, mode) {
 		
 		if (rst.length === 1) {
 			switch(mode) {
-				case "CW": return "5" + rst + "9";
-				case "DIGITALVOICE": return "5" + rst + "9";
-				case "C4FM": return "5" + rst + "9";
-				case "DMR": return "5" + rst + "9";
-				case "DSTAR": return "5" + rst + "9";
-				case "FREEDV": return "5" + rst + "9";
-				case "M17": return "5" + rst + "9";
+				case "CW": 				return "5" + rst + "9";
+				case "DIGITALVOICE": 	return "5" + rst;
+				case "C4FM": 			return "5" + rst;
+				case "DMR": 			return "5" + rst;
+				case "DSTAR": 			return "5" + rst;
+				case "FREEDV": 			return "5" + rst;
+				case "M17": 			return "5" + rst;
 
-				default: return "+" + rst + "dB";
+				default: 				return "+" + rst + "dB";
 			};
 		} else if (rst.length === 2) {
 			switch(mode) {
-				case "CW": return rst + "9";
-				case "DIGITALVOICE": return rst + "9";
-				case "C4FM": return rst + "9";
-				case "DMR": return rst + "9";
-				case "DSTAR": return rst + "9";
-				case "FREEDV": return rst + "9";
-				case "M17": return rst + "9";
+				case "CW": 				return rst + "9";
+				case "DIGITALVOICE": 	return rst;
+				case "C4FM": 			return rst;
+				case "DMR": 			return rst;
+				case "DSTAR": 			return rst;
+				case "FREEDV": 			return rst;
+				case "M17": 			return rst;
 
-				default: return "+" + rst + "dB";
+				default: 				return "+" + rst + "dB";
 			};
 		} 
 	}
