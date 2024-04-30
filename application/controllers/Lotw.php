@@ -525,7 +525,10 @@ class Lotw extends CI_Controller {
 					}
 					// Present only if the QSLing station specified a single valid grid square value in its station location uploaded to LoTW.
 					if (isset($record['gridsquare'])) {
-						$qsl_gridsquare = $record['gridsquare'];
+						// Only overwrite if incoming grid is at least of the same length/precision than existing in the QSO record
+						if (strlen($record['gridsquare']) >= strlen($status[2])) {
+							$qsl_gridsquare = $record['gridsquare'];
+						}
 					} else {
 						$qsl_gridsquare = "";
 					}
