@@ -233,8 +233,9 @@
                 <div class="mb-3 col-sm-6">
                     <label for="qrzrealtime"><?php echo lang("station_location_qrz_realtime_upload"); ?></label>
                     <select class="form-select" id="qrzrealtime" name="qrzrealtime">
-                        <option value="1"><?php echo lang("general_word_yes"); ?></option>
-                        <option value="0" selected><?php echo lang("general_word_no"); ?></option>
+                        <option value="-1" selected><?php echo lang("general_word_disabled"); ?></option>
+                        <option value="1"><?php echo lang("general_word_realtime"); ?></option>
+                        <option value="0"><?php echo lang("general_word_enabled"); ?></option>
                     </select>
                 </div>
             </div>
