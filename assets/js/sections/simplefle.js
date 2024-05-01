@@ -181,7 +181,7 @@ function handleInput() {
 				)
 			) {
 				callsign = item.toUpperCase();
-			} else if (itemNumber > 0 && item.match(/^[-+]?\d{1,3}$/)) {
+			} else if (itemNumber > 0 && item.match(/^[-+]\d{1,2}|\d{1,3}$|\d{1,3}[-+]d{1,2}$/)) {
 				if (rst_s === null) {
 					rst_s = item;
 				} else {
@@ -406,8 +406,6 @@ function clearSession() {
 	$("#qsodate").val("");
 	$("#qsoTable tbody").empty();
 	$("#my-sota-wwff").val("");
-	// $("#station-call").val("");        	Do not clear that?
-	// $("#operator").val("");				Do not clear that?
 	$(".qso-area").val("");
 	$("#my-grid").val("");
 	qsoList = [];
