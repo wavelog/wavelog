@@ -67,6 +67,7 @@ $lang['general_word_worked'] = '已通联';
 $lang['general_word_worked_not_confirmed'] = "已通联未确认";
 $lang['general_word_not_worked'] = "未通联";
 $lang['general_word_confirmed'] = '已确认';
+$lang['general_word_not_confirmed'] = "Not Confirmed";
 $lang['general_word_confirmation'] = "确认";
 $lang['general_word_needed'] = '待通联';
 

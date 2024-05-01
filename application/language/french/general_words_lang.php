@@ -67,6 +67,7 @@ $lang['general_word_worked'] = "Réalisés";
 $lang['general_word_worked_not_confirmed'] = "Réalisés non  confirmés";
 $lang['general_word_not_worked'] = "Non réalisés";
 $lang['general_word_confirmed'] = "Confirmés";
+$lang['general_word_not_confirmed'] = "Not Confirmed";
 $lang['general_word_confirmation'] = "Confirmation";
 $lang['general_word_needed'] = "Demandés";
 
