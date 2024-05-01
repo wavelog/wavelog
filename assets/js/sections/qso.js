@@ -220,7 +220,15 @@ $( document ).ready(function() {
 		$('#mode').val(favs[this.innerText].mode);
 	});
 
-
+	function conv_qrg_display() {
+		console.log("Frequency changed");
+		var qrg = $('#frequency').val();
+		console.log("Origin Frequency:", qrg);
+		var conv_qrg = qrg_conversion(qrg);
+		console.log("Converted frequency:", conv_qrg);
+		$('#frequency_converted').val(conv_qrg);
+	}
+	
 	function del_fav(name) {
 		if (confirm("Are you sure to delete Fav?")) {
 			$.ajax({
@@ -1038,11 +1046,14 @@ $( document ).ready(function() {
 	/* Calculate Frequency */
 	/* on band change */
 	$('#band').change(function() {
-		$.get(base_url + 'index.php/qso/band_to_freq/' + $(this).val() + '/' + $('.mode').val(), function(result) {
-			$('#frequency').val(result);
-			$('#frequency_rx').val("");
-			$('#band_rx').val("");
-		});
+		if ($('#radio').val() == 0) {
+			$.get(base_url + 'index.php/qso/band_to_freq/' + $(this).val() + '/' + $('.mode').val(), function(result) {
+				$('#frequency').val(result);
+				$('#frequency_converted').val(qrg_conversion(result));
+			});
+		}
+		$('#frequency_rx').val("");
+		$('#band_rx').val("");
 		$("#selectPropagation").val("");
 		$("#sat_name").val("");
 		$("#sat_mode").val("");
