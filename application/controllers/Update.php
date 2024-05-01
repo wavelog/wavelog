@@ -578,5 +578,46 @@ class Update extends CI_Controller {
         }
     }
 
+	public function update_tle() {
+		$mtime = microtime();
+        $mtime = explode(" ",$mtime);
+        $mtime = $mtime[1] + $mtime[0];
+        $starttime = $mtime;
+
+        $file = 'https://www.amsat.org/tle/dailytle.txt';
+
+        $handle = fopen($file, "r");
+        if ($handle === FALSE) {
+            echo "Something went wrong with fetching the Amsat TLE file";
+            return;
+        }
+        $this->db->empty_table("tle");
+        $i = 0;
+		$satname = '';
+		$tleline1 = '';
+		$tleline2 = '';
+		while (($line = fgets($handle)) !== false) {
+			$i++;
+			$satname = $line;
+			$tleline1 = fgets($handle);
+			$tleline2 = fgets($handle);
+
+			$sql = "INSERT INTO tle (satelliteid, tle)	select id, '" . $tleline1 . "\n" . $tleline2 . "' from satellite where name = '" . $satname . "'";
+			$this->db->query($sql);
+		}
+		fclose($handle);
+
+        $mtime = microtime();
+        $mtime = explode(" ",$mtime);
+        $mtime = $mtime[1] + $mtime[0];
+        $endtime = $mtime;
+        $totaltime = ($endtime - $starttime);
+        echo "This page was created in ".$totaltime." seconds <br />";
+        echo "Records inserted: " . $i . " <br/>";
+        $datetime = new DateTime("now", new DateTimeZone('UTC'));
+        $datetime = $datetime->format('Ymd h:i');
+        $this->optionslib->update('tle_update', $datetime , 'no');
+	}
+
 }
 ?>

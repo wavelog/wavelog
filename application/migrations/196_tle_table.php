@@ -26,6 +26,11 @@ class Migration_tle_table extends CI_Migration {
 					'type' => 'TEXT',
 					'null' => TRUE,
 				),
+				'updated' => array(
+					'type' => 'timestamp',
+					'null' => false,
+					'default' => 'CURRENT_TIMESTAMP'
+				),
 			));
 			$this->dbforge->add_key('id', TRUE);
 
