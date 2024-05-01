@@ -21,6 +21,46 @@ class Qrz extends CI_Controller {
 		$this->config->load('config');
 	}
 
+	/* 
+	 * API Key Status Test
+	 */
+
+	public function qrz_apitest() {
+		$apikey = xss_clean($this->input->post('APIKEY'));
+		$url = 'http://logbook.qrz.com/api'; // TODO: Move this to database
+  
+		$post_data['KEY'] = $apikey;
+		$post_data['ACTION'] = 'STATUS';
+  
+		$ch = curl_init( $url );
+		curl_setopt( $ch, CURLOPT_POST, true);
+		curl_setopt( $ch, CURLOPT_POSTFIELDS, $post_data);
+		curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1);
+		curl_setopt( $ch, CURLOPT_HEADER, 0);
+		curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT, 20);
+		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true);
+		
+		$content = curl_exec($ch);
+		curl_close($ch);
+
+		if ($content){
+			if (stristr($content,'RESULT=OK')) {
+				$result['status'] = 'OK';
+				$result['message'] = $content;
+			}
+			else {
+				$result['status'] = 'Failed';
+				$result['message'] = $content;
+			}
+		}
+		if(curl_errno($ch)){
+			$result['status'] = 'error';
+			$result['message'] = 'Curl error: '. curl_errno($ch);
+		}
+		header('Content-Type: application/json');
+		echo json_encode($result);
+	}
+
 	/*
 	 * Upload QSO to QRZ.com
 	 * When called from the url wavelog/qrz/upload, the function loops through all station_id's with a qrz api key defined.
@@ -36,12 +76,14 @@ class Qrz extends CI_Controller {
 		if ($station_ids) {
 			foreach ($station_ids as $station) {
 				$qrz_api_key = $station->qrzapikey;
-				if($this->mass_upload_qsos($station->station_id, $qrz_api_key, true)) {
-					echo "QSOs have been uploaded to QRZ.com.";
-					log_message('info', 'QSOs have been uploaded to QRZ.com.');
-				} else{
-					echo "No QSOs found for upload.";
-					log_message('info', 'No QSOs found for upload.');
+				if ($station->qrzrealtime>=0) {
+					if($this->mass_upload_qsos($station->station_id, $qrz_api_key, true)) {
+						echo "QSOs have been uploaded to QRZ.com. for station_id ".$station->station_id;
+					} else{
+						echo "No QSOs found for upload and station_id ".$station->station_id;
+					}
+				} else {
+					echo "Station ".$station->station_id." disabled for upload to QRZ.com.";
 				}
 			}
 		} else {
@@ -84,11 +126,11 @@ class Qrz extends CI_Controller {
 					$i++;
 					$result['status'] = 'OK';
 				} elseif ( ($result['status']=='error') && (substr($result['message'],0,11)  == 'STATUS=AUTH')) {
-					log_message('error', 'QRZ upload failed for qso: Call: ' . $qso->COL_CALL . ' Band: ' . $qso->COL_BAND . ' Mode: ' . $qso->COL_MODE . ' Time: ' . $qso->COL_TIME_ON);
-					log_message('error', 'QRZ upload failed with the following message: ' .$result['message']);
-					log_message('error', 'QRZ upload stopped for Station_ID: ' .$station_id);
+					log_message('error', 'QRZ upload failed for qso for Station_ID '.$station_id.' //  Call: ' . $qso->COL_CALL . ' Band: ' . $qso->COL_BAND . ' Mode: ' . $qso->COL_MODE . ' Time: ' . $qso->COL_TIME_ON . ' // Message: '.$result['message']);
 					$errormessages[] = $result['message'] . ' Call: ' . $qso->COL_CALL . ' Band: ' . $qso->COL_BAND . ' Mode: ' . $qso->COL_MODE . ' Time: ' . $qso->COL_TIME_ON;
 					$result['status'] = 'Error';
+        				$sql = 'update station_profile set qrzrealtime = -1 where station_id = ?';
+        				$this->db->query($sql,$station_id);
 					break; /* If key is invalid, immediate stop syncing for more QSOs of this station */
 				} else {
 					log_message('error', 'QRZ upload failed for qso: Call: ' . $qso->COL_CALL . ' Band: ' . $qso->COL_BAND . ' Mode: ' . $qso->COL_MODE . ' Time: ' . $qso->COL_TIME_ON);
@@ -148,21 +190,27 @@ class Qrz extends CI_Controller {
 		$this->load->model('logbook_model');
 		$result = $this->logbook_model->exists_qrz_api_key($postData['station_id']);
 		$qrz_api_key = $result->qrzapikey;
+		$qrz_enabled = $result->qrzrealtime;
 		header('Content-type: application/json');
-		$result = $this->mass_upload_qsos($postData['station_id'], $qrz_api_key);
-		if ($result['status'] == 'OK') {
-			$stationinfo = $this->stations->stations_with_qrz_api_key();
-			$info = $stationinfo->result();
+		if ($qrz_enabled>=0) {
+			$result = $this->mass_upload_qsos($postData['station_id'], $qrz_api_key);
+			if ($result['status'] == 'OK') {
+				$stationinfo = $this->stations->stations_with_qrz_api_key();
+				$info = $stationinfo->result();
 
-			$data['status'] = 'OK';
-			$data['info'] = $info;
-			$data['infomessage'] = $result['count'] . " QSOs are now uploaded to QRZ.com";
-			$data['errormessages'] = $result['errormessages'];
-			echo json_encode($data);
+				$data['status'] = 'OK';
+				$data['info'] = $info;
+				$data['infomessage'] = $result['count'] . " QSOs are now uploaded to QRZ.com";
+				$data['errormessages'] = $result['errormessages'];
+				echo json_encode($data);
+			} else {
+				$data['status'] = 'Error';
+				$data['info'] = 'Error: No QSOs found to upload.';
+				$data['errormessages'] = $result['errormessages'];
+				echo json_encode($data);
+			}
 		} else {
-			$data['status'] = 'Error';
-			$data['info'] = 'Error: No QSOs found to upload.';
-			$data['errormessages'] = $result['errormessages'];
+			$data['status']='QRZ Disabled for station'.$this->security->xss_clean($postData['station_id']);
 			echo json_encode($data);
 		}
 	}

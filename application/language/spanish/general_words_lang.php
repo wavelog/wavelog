@@ -67,6 +67,7 @@ $lang['general_word_light'] = "Luz/Láser";
 $lang['general_word_worked'] = 'Realizados';
 $lang['general_word_worked_not_confirmed'] = "Trabajados no confirmados";
 $lang['general_word_not_worked'] = "No logrados";
+$lang['general_word_not_confirmed'] = "Not Confirmed";
 $lang['general_word_confirmed'] = 'Confirmados';
 $lang['general_word_confirmation'] = "Confirmación";
 $lang['general_word_needed'] = 'Solicitadas';
@@ -237,5 +238,7 @@ $lang['dashboard_logbooks_warning'] = 'No tiene libro de guardias. ¡Haga clic <
 
 $lang['hams_at_no_activations_found'] = 'No hay activaciones próximas. Por favor vuelve a revisar más tarde.';
 $lang['gen_add_to_contest'] = "Add QSOs to Contest";
+$lang['general_word_realtime'] = "Realtime";
 
+$lang['general_word_realtime'] = "Realtime";
 $lang['datatables_language'] = "es-ES";
