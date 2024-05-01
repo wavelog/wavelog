@@ -237,4 +237,5 @@ $lang['dashboard_logbooks_warning'] = 'Es wurde kein Stationslogbuch angelegt. K
 $lang['hams_at_no_activations_found'] = 'Keine bevorstehenden Aktivierungen gefunden. Bitte später noch einmal vorbeischauen.';
 
 $lang['gen_add_to_contest'] = "QSOs zu Contest hinzuf&uuml;gen";
+$lang['general_word_realtime'] = "Realtime";
 $lang['datatables_language'] = "de-DE";

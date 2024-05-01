@@ -237,6 +237,8 @@ $lang['dashboard_locations_warning'] = 'You have no station locations. Go <a hre
 $lang['dashboard_logbooks_warning'] = 'You have no station logbook. Go <a href="'. site_url('stationsetup') . '">here</a> to create it!';
 
 $lang['gen_add_to_contest'] = "Add QSOs to Contest";
+$lang['general_word_realtime'] = "Realtime";
 $lang['hams_at_no_activations_found'] = 'No upcoming activations found. Please check back later.';
+$lang['general_word_realtime'] = "Realtime";
 
 $lang['datatables_language'] = "en-GB";

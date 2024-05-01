@@ -237,5 +237,7 @@ $lang['dashboard_logbooks_warning'] = 'У вас нет аппаратного �
 
 $lang['hams_at_no_activations_found'] = 'не найдены предстоящие активации. Проверьте позже.';
 $lang['gen_add_to_contest'] = "Add QSOs to Contest";
+$lang['general_word_realtime'] = "Realtime";
 
+$lang['general_word_realtime'] = "Realtime";
 $lang['datatables_language'] = "en-GB";

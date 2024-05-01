@@ -237,4 +237,5 @@ $lang['dashboard_logbooks_warning'] = "Vous n'avez pas de journal de travail pou
 $lang['hams_at_no_activations_found'] = "Aucune activation à venir trouvée. Veuillez revenir plus tard.";
 
 $lang['gen_add_to_contest'] = "Add QSOs to Contest";
+$lang['general_word_realtime'] = "Realtime";
 $lang['datatables_language'] = "fr-FR";
