@@ -1875,7 +1875,7 @@ class Logbook_model extends CI_Model {
      * Function returns all the station_id's with QRZ API Key's
      */
   function get_station_id_with_qrz_api() {
-	  $sql = 'select station_id, qrzapikey from station_profile
+	  $sql = 'select station_id, qrzapikey, qrzrealtime from station_profile
 		  where coalesce(qrzapikey, "") <> ""';
 
 	  $query = $this->db->query($sql);
@@ -2085,7 +2085,6 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
     $this->db->limit('2');
 
     $query = $this->db->get($this->config->item('table_name'));
-
     return $query->num_rows();
 
   }
@@ -3184,7 +3183,7 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
     function import_check($datetime, $callsign, $band, $mode, $station_callsign, $station_id = null) {
 	    $mode=$this->get_main_mode_from_mode($mode);
 
-	    $this->db->select('COL_PRIMARY_KEY, COL_TIME_ON, COL_CALL, COL_BAND');
+	    $this->db->select('COL_PRIMARY_KEY, COL_TIME_ON, COL_CALL, COL_BAND, COL_GRIDSQUARE');
 	    $this->db->where('COL_TIME_ON >= DATE_ADD(DATE_FORMAT("'.$datetime.'", \'%Y-%m-%d %H:%i\' ), INTERVAL -15 MINUTE )');
 	    $this->db->where('COL_TIME_ON <= DATE_ADD(DATE_FORMAT("'.$datetime.'", \'%Y-%m-%d %H:%i\' ), INTERVAL 15 MINUTE )');
 	    $this->db->where('COL_CALL', $callsign);
@@ -3201,9 +3200,9 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 	    if ($query->num_rows() > 0)
 	    {
 		    $ret = $query->row();
-		    return ["Found", $ret->COL_PRIMARY_KEY];
+		    return ["Found", $ret->COL_PRIMARY_KEY, $ret->COL_GRIDSQUARE];
 	    } else {
-		    return ["No Match", 0];
+		    return ["No Match", 0, ''];
 	    }
     }
 

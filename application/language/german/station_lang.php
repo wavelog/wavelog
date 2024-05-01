@@ -100,7 +100,7 @@ $lang['station_location_eqsl_defaultqslmsg'] = "Standard QSLMSG";
 $lang['station_location_eqsl_defaultqslmsg_hint'] = "Definiere eine Standard-Nachricht, welche für jedes QSO in diesem Stationsstandort an eQSL übertragen wird.";
 $lang['station_location_qrz_subscription'] = 'Abonnement erforderlich';
 $lang['station_location_qrz_hint'] = "Finde deinen 'QRZ Logbook API Key' in den <a href='https://logbook.qrz.com/logbook' target='_blank'>QRZ.com Logbuch Einstellungen";
-$lang['station_location_qrz_realtime_upload'] = 'QRZ.com Logbuch Echtzeit Upload';
+$lang['station_location_qrz_realtime_upload'] = 'QRZ.com Logbuch Upload';
 $lang['station_location_hrdlog_username'] = "HRDLog.net Benutzername";
 $lang['station_location_hrdlog_username_hint'] = "Der Benutzername mit dem du bei HRDlog.net registriert bist (normalerweise dein Rufzeichen).";
 $lang['station_location_hrdlog_code'] = "HRDLog.net API Key";

@@ -67,6 +67,7 @@ $lang['general_word_worked'] = 'Сработано';
 $lang['general_word_worked_not_confirmed'] = "Сработано, не подтверждено";
 $lang['general_word_not_worked'] = "Не сработано";
 $lang['general_word_confirmed'] = 'Подтверждено';
+$lang['general_word_not_confirmed'] = "Not Confirmed";
 $lang['general_word_confirmation'] = "Пожтверждение";
 $lang['general_word_needed'] = 'Необходимо';
 
@@ -237,5 +238,7 @@ $lang['dashboard_logbooks_warning'] = 'У вас нет аппаратного �
 
 $lang['hams_at_no_activations_found'] = 'не найдены предстоящие активации. Проверьте позже.';
 $lang['gen_add_to_contest'] = "Add QSOs to Contest";
+$lang['general_word_realtime'] = "Realtime";
 
+$lang['general_word_realtime'] = "Realtime";
 $lang['datatables_language'] = "en-GB";

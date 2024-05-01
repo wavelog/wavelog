@@ -100,7 +100,7 @@ $lang['station_location_eqsl_defaultqslmsg'] = "QSLMSG por Defecto";
 $lang['station_location_eqsl_defaultqslmsg_hint'] = "Defina un mensaje por defecto que será añadido y enviado para cada QSO para esta localización de estación.";
 $lang['station_location_qrz_subscription'] = 'Requiere Suscripción';
 $lang['station_location_qrz_hint'] = "Encuentre su clave API en la <a href='https://logbook.qrz.com/logbook' target='_blank'>página de Configuración de libro de guardia en QRZ.com";
-$lang['station_location_qrz_realtime_upload'] = 'Subida en Tiempo Real del Libro de Guardia a QRZ.com';
+$lang['station_location_qrz_realtime_upload'] = 'Subida del Libro de Guardia a QRZ.com';
 $lang['station_location_hrdlog_username'] = "Nombre de Usuario de HRDLog.net";
 $lang['station_location_hrdlog_username_hint'] = "El nombre de usuario con el que se registró en HRDlog.net (usualmente su indicativo).";
 $lang['station_location_hrdlog_code'] = "Código API de HRDLog.net";
