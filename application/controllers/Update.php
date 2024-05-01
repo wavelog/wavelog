@@ -584,28 +584,44 @@ class Update extends CI_Controller {
         $mtime = $mtime[1] + $mtime[0];
         $starttime = $mtime;
 
-        $file = 'https://www.amsat.org/tle/dailytle.txt';
+		$url = 'https://www.amsat.org/tle/dailytle.txt';
+		$curl = curl_init($url);
 
-        $handle = fopen($file, "r");
-        if ($handle === FALSE) {
-            echo "Something went wrong with fetching the Amsat TLE file";
-            return;
-        }
-        $this->db->empty_table("tle");
-        $i = 0;
-		$satname = '';
-		$tleline1 = '';
-		$tleline2 = '';
-		while (($line = fgets($handle)) !== false) {
-			$i++;
-			$satname = $line;
-			$tleline1 = fgets($handle);
-			$tleline2 = fgets($handle);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
 
-			$sql = "INSERT INTO tle (satelliteid, tle)	select id, '" . $tleline1 . "\n" . $tleline2 . "' from satellite where name = '" . $satname . "'";
-			$this->db->query($sql);
+		$response = curl_exec($curl);
+
+		$count = 0;
+
+		if ($response === false) {
+			echo 'Error: ' . curl_error($curl);
+		} else {
+			$this->db->empty_table("tle");
+			// Split the response into an array of lines
+			$lines = explode("\n", $response);
+
+			$satname = '';
+			$tleline1 = '';
+			$tleline2 = '';
+
+			// Process each line
+			for ($i = 0; $i < count($lines); $i += 3) {
+				$count++;
+				// Check if there are at least three lines remaining
+				if (isset($lines[$i], $lines[$i + 1], $lines[$i + 2])) {
+					// Get the three lines
+					$satname = $lines[$i];
+					$tleline1 = $lines[$i + 1];
+					$tleline2 = $lines[$i + 2];
+
+					$sql = "INSERT INTO tle (satelliteid, tle)	select id, '" . $tleline1 . "\n" . $tleline2 . "' from satellite where name = '" . $satname . "'";
+					$this->db->query($sql);
+				}
+			}
 		}
-		fclose($handle);
+
+		curl_close($curl);
 
         $mtime = microtime();
         $mtime = explode(" ",$mtime);
@@ -613,7 +629,7 @@ class Update extends CI_Controller {
         $endtime = $mtime;
         $totaltime = ($endtime - $starttime);
         echo "This page was created in ".$totaltime." seconds <br />";
-        echo "Records inserted: " . $i . " <br/>";
+        echo "Records inserted: " . $count . " <br/>";
         $datetime = new DateTime("now", new DateTimeZone('UTC'));
         $datetime = $datetime->format('Ymd h:i');
         $this->optionslib->update('tle_update', $datetime , 'no');

@@ -15,6 +15,7 @@ class Satellite_model extends CI_Model {
 		$sql = "select satellite.id, satellite.name as satname, tle.tle
 		from satellite
 		join tle on satellite.id = tle.satelliteid
+		order by satellite.name
 		";
 
 		return $this->db->query($sql)->result();
