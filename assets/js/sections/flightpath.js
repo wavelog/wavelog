@@ -321,6 +321,20 @@ var sats = (function (L, d3, satelliteJs) {
 		}
 	).addTo(leafletMap);
 
+	/*Legend specific*/
+    var legend = L.control({ position: "topright" });
+
+    legend.onAdd = function(map) {
+        var div = L.DomUtil.create("div", "legend");
+        div.innerHTML += "<h4>Satellite Orbit</h4>";
+        div.innerHTML += "<i style='background: rgba(255, 0, 0, 0.5)'></i><span>LEO</span><br>";
+        div.innerHTML += "<i style='background: rgba(0, 255, 0, 0.5)'></i><span>MEO</span><br>";
+        div.innerHTML += "<i style='background: rgba(0, 0, 255, 0.5)'></i><span>GEO</span><br>";
+        return div;
+    };
+
+    legend.addTo(leafletMap);
+
     attributionControl = L.control.attribution({
       prefix: ''
     }).addTo(leafletMap);
