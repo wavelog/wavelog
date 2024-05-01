@@ -67,6 +67,7 @@ $lang['general_word_worked'] = 'Gearbeitet';
 $lang['general_word_worked_not_confirmed'] = "Gearbeitet, nicht bestätigt";
 $lang['general_word_not_worked'] = "Nicht gearbeitet";
 $lang['general_word_confirmed'] = 'Bestätigt';
+$lang['general_word_not_confirmed'] = "Nicht Bestätigt";
 $lang['general_word_confirmation'] = "Bestätigung";
 $lang['general_word_needed'] = 'Benötigt';
 
@@ -237,4 +238,5 @@ $lang['dashboard_logbooks_warning'] = 'Es wurde kein Stationslogbuch angelegt. K
 $lang['hams_at_no_activations_found'] = 'Keine bevorstehenden Aktivierungen gefunden. Bitte später noch einmal vorbeischauen.';
 
 $lang['gen_add_to_contest'] = "QSOs zu Contest hinzuf&uuml;gen";
+$lang['general_word_realtime'] = "Realtime";
 $lang['datatables_language'] = "de-DE";
