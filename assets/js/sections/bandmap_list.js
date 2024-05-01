@@ -48,12 +48,14 @@ $(function() {
 				table.page.len(50);
 				let oldtable=table.data();
 				table.clear();
+				let spots2render=0;
 				if (dxspots.length>0) {
 					dxspots.sort(SortByQrg);
 					dxspots.forEach((single) => {
 						if ((cwn == 'wkd') && (!(single.worked_dxcc))) { return; }
 						if ((cwn == 'cnf') && (!(single.cnfmd_dxcc))) { return; }
 						if ((cwn == 'ucnf') && ((single.cnfmd_dxcc))) { return; }
+						spots2render++;
 						var data=[];
 						if (single.cnfmd_dxcc) {
 							dxcc_wked_info="text-success";
@@ -117,6 +119,10 @@ $(function() {
 						$(".fresh").removeClass("fresh");
 					},10000);
 				} else {
+					table.clear();
+					table.draw();
+				}
+				if (spots2render == 0) {
 					table.clear();
 					table.draw();
 				}

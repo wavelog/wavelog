@@ -2085,7 +2085,6 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
     $this->db->limit('2');
 
     $query = $this->db->get($this->config->item('table_name'));
-
     return $query->num_rows();
 
   }
