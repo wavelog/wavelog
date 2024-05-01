@@ -67,6 +67,7 @@ $lang['general_word_colors'] = "Colors";
 $lang['general_word_light'] = "Light/Laser";
 $lang['general_word_worked'] = 'Körda';
 $lang['general_word_worked_not_confirmed'] = "Worked not confirmed";
+$lang['general_word_not_confirmed'] = "Not Confirmed";
 $lang['general_word_confirmation'] = "Confirmation";
 $lang['general_word_not_worked'] = "Not worked";
 $lang['general_word_confirmed'] = 'Bekräftade';

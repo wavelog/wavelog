@@ -67,6 +67,7 @@ $lang['general_word_worked'] = 'Сработано';
 $lang['general_word_worked_not_confirmed'] = "Сработано, не подтверждено";
 $lang['general_word_not_worked'] = "Не сработано";
 $lang['general_word_confirmed'] = 'Подтверждено';
+$lang['general_word_not_confirmed'] = "Not Confirmed";
 $lang['general_word_confirmation'] = "Пожтверждение";
 $lang['general_word_needed'] = 'Необходимо';
 

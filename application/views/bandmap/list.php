@@ -68,14 +68,14 @@
 			</select>
 			<label class="my-1 me-2" for="cwnSelect">DXCC-Status</label>
 			<select class="form-select form-select-sm my-1 me-sm-2 w-auto" id="cwnSelect" name="dxcluster_cwn" aria-describedby="dxcluster_cwnHelp" required>
-				<option value="All">*</option>
-				<option value="wkd">Worked</option>
-				<option value="cnf">Confirmed</option>
-				<option value="ucnf">Unconfirmed</option>
+				<option value="All"><?php echo lang('general_word_all'); ?></option>
+				<option value="wkd"><?php echo lang('general_word_worked'); ?></option>
+				<option value="cnf"><?php echo lang('general_word_confirmed'); ?></option>
+				<option value="ucnf"><?php echo lang('general_word_not_confirmed'); ?></option>
 			</select>
 			<label class="my-1 me-2" for="decontSelect">Spots de</label>
 			<select class="form-select form-select-sm my-1 me-sm-2 w-auto" id="decontSelect" name="dxcluster_decont" aria-describedby="dxcluster_decontHelp" required>
-				<option value="Any">*</option>
+				<option value="Any"><?php echo lang('general_word_all'); ?></option>
 				<option value="AF" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'AF') {echo " selected";} ?>>Africa</option>
 				<option value="AN" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'AN') {echo " selected";} ?>>Antarctica</option>
 				<option value="AS" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'AS') {echo " selected";} ?>>Asia</option>

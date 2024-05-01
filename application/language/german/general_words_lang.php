@@ -67,6 +67,7 @@ $lang['general_word_worked'] = 'Gearbeitet';
 $lang['general_word_worked_not_confirmed'] = "Gearbeitet, nicht bestätigt";
 $lang['general_word_not_worked'] = "Nicht gearbeitet";
 $lang['general_word_confirmed'] = 'Bestätigt';
+$lang['general_word_not_confirmed'] = "Nicht Bestätigt";
 $lang['general_word_confirmation'] = "Bestätigung";
 $lang['general_word_needed'] = 'Benötigt';
 
