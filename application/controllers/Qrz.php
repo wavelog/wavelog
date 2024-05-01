@@ -37,6 +37,7 @@ class Qrz extends CI_Controller {
 		curl_setopt( $ch, CURLOPT_POSTFIELDS, $post_data);
 		curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1);
 		curl_setopt( $ch, CURLOPT_HEADER, 0);
+		curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT, 20);
 		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true);
 		
 		$content = curl_exec($ch);
