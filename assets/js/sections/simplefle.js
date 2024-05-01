@@ -616,7 +616,7 @@ function getReportByMode(rst, mode) {
 			return "59";
 		} else if (settingsMode === "DATA") {
 			switch(mode) {
-				// return +0dB for Digimodes except for Digitalvoice Modes
+				// return +0 dB for Digimodes except for Digitalvoice Modes
 				case "DIGITALVOICE": 	return "59";
 				case "C4FM": 			return "59";
 				case "DMR": 			return "59";
@@ -624,7 +624,7 @@ function getReportByMode(rst, mode) {
 				case "FREEDV": 			return "59";
 				case "M17": 			return "59";
 
-				default: return "+0dB";
+				default: return "+0 dB";
 			}
 		}
 	
@@ -643,7 +643,7 @@ function getReportByMode(rst, mode) {
 			return rst;
 
 		} else if (rst.startsWith('+') || rst.startsWith('-')) {
-			return rst + "dB";
+			return rst + " dB";
 		}
 		
 		if (rst.length === 1) {
@@ -656,7 +656,7 @@ function getReportByMode(rst, mode) {
 				case "FREEDV": 			return "5" + rst;
 				case "M17": 			return "5" + rst;
 
-				default: 				return "+" + rst + "dB";
+				default: 				return "+" + rst + " dB";
 			};
 		} else if (rst.length === 2) {
 			switch(mode) {
@@ -668,7 +668,7 @@ function getReportByMode(rst, mode) {
 				case "FREEDV": 			return rst;
 				case "M17": 			return rst;
 
-				default: 				return "+" + rst + "dB";
+				default: 				return "+" + rst + " dB";
 			};
 		} 
 	}
@@ -812,8 +812,8 @@ $(".js-save-to-log").click(function () {
 
 					qsoList.forEach((item) => {
 						var callsign = item[2];
-						var rst_rcvd = item[7].replace(/dB$/, '');
-						var rst_sent = item[6].replace(/dB$/, '');
+						var rst_rcvd = item[7].replace(/dB$/, ''); // we don't want 'dB' in the database
+						var rst_sent = item[6].replace(/dB$/, ''); // *
 						var start_date = item[0];
 						var start_time =
 							item[1][0] +
