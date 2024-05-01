@@ -140,6 +140,7 @@ class Satellite extends CI_Controller {
 
 	public function flightpath() {
 		$this->load->model('satellite_model');
+		$this->load->model('stations');
 
 		$pageData['satellites'] = $this->satellite_model->get_all_satellites_with_tle();
 
@@ -151,6 +152,11 @@ class Satellite extends CI_Controller {
 			'assets/js/sections/satellite_functions.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/satellite_functions.js")),
 			'assets/js/sections/flightpath.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/flightpath.js")),
 		];
+
+		$homegrid = explode(',', $this->stations->find_gridsquare());
+
+		$this->load->library('Qra');
+		$pageData['latlng'] = $this->qra->qra2latlong($homegrid[0]);
 
 		// Render Page
 		$pageData['page_title'] = "Satellite Flightpath";

@@ -2,6 +2,8 @@ var satmarker;
 var icon_dot_url = base_url + "assets/icons/saticon.png";
 var saticon = L.icon({ iconUrl: icon_dot_url, iconSize: [30, 30] });
 
+var homeicon = L.icon({ iconUrl: icon_home_url, iconSize: [15, 15] });
+
 var sats = (function (L, d3, satelliteJs) {
   var RADIANS = Math.PI / 180;
   var DEGREES = 180 / Math.PI;
@@ -317,6 +319,14 @@ var sats = (function (L, d3, satelliteJs) {
 		[0, 0], {
 			icon: saticon,
 			title: satellite,
+			zIndex: 1000,
+		}
+	).addTo(leafletMap);
+
+	L.marker(
+		[homelat, homelon], {
+			icon: homeicon,
+			title: 'Home',
 			zIndex: 1000,
 		}
 	).addTo(leafletMap);

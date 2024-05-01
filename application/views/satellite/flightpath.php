@@ -2,6 +2,11 @@
 <script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@3.0/dist/fetch.umd.min.js"></script>
 <script src="https://d3js.org/d3.v5.min.js"></script>
 <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+<script>
+	const homelat = "<?php echo $latlng[0]; ?>";
+	const homelon = "<?php echo $latlng[1]; ?>";
+	var icon_home_url = "<?php echo base_url();?>assets/images/dot.png";
+</script>
 <style>
     .footprint--LEO {
       fill: rgba(255, 0, 0, 0.5);
