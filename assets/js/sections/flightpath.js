@@ -299,7 +299,7 @@ var sats = (function (L, d3, satelliteJs) {
     }
   };
 
-  function init() {
+  function init(satellite) {
     svgLayer = L.svg();
     leafletMap = L.map('sat_map', {
       zoom: 3,
@@ -313,17 +313,10 @@ var sats = (function (L, d3, satelliteJs) {
       ]
     });
 
-	// L.terminator().addTo(leafletMap);
-
-	// L.marker(["50","7"],{
-	// 	title: "blabla",
-	//         zIndex: 1000}
-	// ).addTo(leafletMap);
-
 	satmarker = L.marker(
 		[0, 0], {
 			icon: saticon,
-			title: 'sat',
+			title: satellite,
 			zIndex: 1000,
 		}
 	).addTo(leafletMap);
@@ -357,7 +350,7 @@ var sats = (function (L, d3, satelliteJs) {
       .rate(1)
       .date(TLE_DATA_DATE);
     sats = parsedTles.map(function (tle) {
-      var sat = new Satellite(tle, new Date(2024, 4, 18));
+      var sat = new Satellite(tle, new Date());
       sat.halfAngle(30);
       // sat.halfAngle(sat.getOrbitType() === 'LEO' ? Math.random() * (30 - 15) + 15 : Math.random() * 4 + 1);
       return sat;
@@ -429,7 +422,7 @@ var sats = (function (L, d3, satelliteJs) {
   }
 
   function start(data) {
-	init();
+	init(data.satellite);
 	initSats(parseTle(data.tle));
   }
 
