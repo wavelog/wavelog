@@ -138,4 +138,34 @@ class Satellite extends CI_Controller {
 		echo json_encode($sat_list, JSON_FORCE_OBJECT);
 	}
 
+	public function flightpath() {
+		$this->load->model('satellite_model');
+
+		$pageData['satellites'] = $this->satellite_model->get_all_satellites_with_tle();
+
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/sections/satellite.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/satellite.js")),
+			'assets/js/sections/three-orbit-controls.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/three-orbit-controls.js")),
+			'assets/js/leaflet/Leaflet.Antimeridian.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/leaflet/Leaflet.Antimeridian.js")),
+			'assets/js/sections/satellite_functions.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/satellite_functions.js")),
+			'assets/js/sections/flightpath.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/flightpath.js")),
+		];
+
+		// Render Page
+		$pageData['page_title'] = "Satellite Flightpath";
+		$this->load->view('interface_assets/header', $pageData);
+		$this->load->view('satellite/flightpath');
+		$this->load->view('interface_assets/footer', $footerData);
+	}
+
+	public function get_tle() {
+		$sat = $this->security->xss_clean($this->input->post('sat'));
+		$this->load->model('satellite_model');
+		$satellite_data = $this->satellite_model->get_tle($sat);
+
+		header('Content-Type: application/json');
+		echo json_encode($satellite_data, JSON_FORCE_OBJECT);
+	}
+
 }
