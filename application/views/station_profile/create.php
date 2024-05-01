@@ -227,7 +227,11 @@
             <div class="row">
                 <div class="mb-3 col-sm-6">
                     <label for="qrzApiKey">QRZ.com Logbook API Key</label>  <!-- This does not need Multilanguage Support -->
-                    <input type="text" class="form-control" name="qrzapikey" pattern="^([A-F0-9]{4}-){3}[A-F0-9]{4}$" id="qrzApiKey" aria-describedby="qrzApiKeyHelp">
+					<div class="input-group">
+                    	<input type="text" class="form-control" name="qrzapikey" pattern="^([A-F0-9]{4}-){3}[A-F0-9]{4}$" id="qrzApiKey" aria-describedby="qrzApiKeyHelp">
+						<button class="btn btn-secondary" type="button" id="qrz_apitest_btn">Test API-Key</button>
+					</div>
+					<div class="alert mt-3" style="display: none;" id="qrz_apitest_msg"></div>
                     <small id="qrzApiKeyHelp" class="form-text text-muted"><?php echo lang("station_location_qrz_hint"); ?></a></small>
                 </div>
                 <div class="mb-3 col-sm-6">

@@ -21,6 +21,45 @@ class Qrz extends CI_Controller {
 		$this->config->load('config');
 	}
 
+	/* 
+	 * API Key Status Test
+	 */
+
+	public function qrz_apitest() {
+		$apikey = xss_clean($this->input->post('APIKEY'));
+		$url = 'http://logbook.qrz.com/api'; // TODO: Move this to database
+  
+		$post_data['KEY'] = $apikey;
+		$post_data['ACTION'] = 'STATUS';
+  
+		$ch = curl_init( $url );
+		curl_setopt( $ch, CURLOPT_POST, true);
+		curl_setopt( $ch, CURLOPT_POSTFIELDS, $post_data);
+		curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1);
+		curl_setopt( $ch, CURLOPT_HEADER, 0);
+		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true);
+		
+		$content = curl_exec($ch);
+		curl_close($ch);
+
+		if ($content){
+			if (stristr($content,'RESULT=OK')) {
+				$result['status'] = 'OK';
+				$result['message'] = $content;
+			}
+			else {
+				$result['status'] = 'Failed';
+				$result['message'] = $content;
+			}
+		}
+		if(curl_errno($ch)){
+			$result['status'] = 'error';
+			$result['message'] = 'Curl error: '. curl_errno($ch);
+		}
+		header('Content-Type: application/json');
+		echo json_encode($result);
+	}
+
 	/*
 	 * Upload QSO to QRZ.com
 	 * When called from the url wavelog/qrz/upload, the function loops through all station_id's with a qrz api key defined.
