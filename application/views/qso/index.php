@@ -164,13 +164,17 @@
                   ?>
                   </select>
                 </div>
+                <?php 
+                $user_qrg_unit = $this->user_options_model->get_options('user_settings', array('option_name'=>'qrg_unit'))->row()->option_value ?? 'K'; 
+                $session_qrg = $this->session->userdata('freq');
+                ?>
                 <div class="mb-3 col">
                   <label for="frequency"><?php echo lang('gen_hamradio_frequency'); ?></label>
+                  <input  type="text" class="form-control form-control-sm" id="frequency" name="freq_display" value="<?php echo $session_qrg; ?>" />
                   <div class="input-group">
-                    <input type="text" class="form-control form-control-sm" id="frequency" name="freq_display" value="<?php echo $this->session->userdata('freq'); ?>" />
+                    <input type="text" class="form-control form-control-sm" id="frequency_converted" name="freq_user" value="<?php echo $this->frequency->unit_conversion($session_qrg, $user_qrg_unit, false); ?>" />
                     <span class="input-group-text">
-                      <?php 
-                      $user_qrg_unit = $this->user_options_model->get_options('user_settings', array('option_name'=>'qrg_unit'))->row()->option_value ?? 'K'; 
+                      <?php
                       if ($user_qrg_unit == 'H') {
                         echo 'Hz';
                       } else if ($user_qrg_unit == 'K') {

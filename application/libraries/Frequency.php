@@ -220,7 +220,7 @@ class Frequency {
 	}
 
 	// converts a frequency into the user defined unit
-	function unit_conversion($frequency, $unit = 'K') {
+	function unit_conversion($frequency, $unit = 'K', $show_unit = true) {
 		if ($unit == 'H') {
 			$divider = 1;
 			$unit_text = " Hz";
@@ -236,9 +236,13 @@ class Frequency {
 		} else if ($unit == 'G') {
 			$divider = 1000000000;
 			$unit_text = " GHz";
-			$decimal = 3;
+			$decimal = 6;
 		}
-		return number_format(($frequency / $divider), $decimal, '.', '') . $unit_text;
+		if ($show_unit) {
+			return number_format(($frequency / $divider), $decimal, '.', '') . $unit_text;
+		} else {
+			return number_format(($frequency / $divider), $decimal, '.', '');
+		}
 	}
 }
 /* End of file Frequency.php */

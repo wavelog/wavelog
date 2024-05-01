@@ -76,7 +76,7 @@
     function qrg_conversion(qrg, unit) {
         var qrg_unit;
         if (unit == '') {
-            qrg_unit = "<?php echo $this->user_options_model->get_options('user_settings', array('option_name'=>'qrg_unit'))->row()->option_value ?? 'K'; ?>";
+            qrg_unit = <?php echo $this->user_options_model->get_options('user_settings', array('option_name'=>'qrg_unit'))->row()->option_value ?? 'K'; ?>;
         } else {
             qrg_unit = unit;
         }
@@ -87,10 +87,10 @@
         } else if (qrg_unit == 'M') {
             frac_dig = 3;
         } else if (qrg_unit == 'G') {
-            frac_dig = 4;
+            frac_dig = 10;
         }
 
-        var calc_qrg = (Math.round(parseInt(qrg))/qrg_factor(qrg_unit)).toFixed(frac_dig);
+        var calc_qrg = Math.abs((Math.round(parseInt(qrg))/qrg_factor(qrg_unit)));
 
         return calc_qrg;
     }
