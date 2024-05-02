@@ -298,15 +298,20 @@
 				<div class="card-body">
 					<div class="mb-3">
 						<label for="qrzApiKey">QRZ.com Logbook API Key</label> <!-- This does not need Multilanguage Support -->
-						<input type="text" class="form-control" name="qrzapikey" pattern="^([A-F0-9]{4}-){3}[A-F0-9]{4}$" id="qrzApiKey" aria-describedby="qrzApiKeyHelp" value="<?php if(set_value('qrzapikey') != "") { echo set_value('qrzapikey'); } else { echo $my_station_profile->qrzapikey; } ?>">
+						<div class="input-group">
+							<input type="text" class="form-control" name="qrzapikey" pattern="^([A-F0-9]{4}-){3}[A-F0-9]{4}$" id="qrzApiKey" aria-describedby="qrzApiKeyHelp" value="<?php if(set_value('qrzapikey') != "") { echo set_value('qrzapikey'); } else { echo $my_station_profile->qrzapikey; } ?>">
+							<button class="btn btn-secondary" type="button" id="qrz_apitest_btn">Test API-Key</button>
+						</div>
+						<div class="alert mt-3" style="display: none;" id="qrz_apitest_msg"></div>
 						<small id="qrzApiKeyHelp" class="form-text text-muted"><?php echo lang("station_location_qrz_hint"); ?></a></small>
 					</div>
 
 					<div class="mb-3">
 						<label for="qrzrealtime"><?php echo lang("station_location_qrz_realtime_upload"); ?></label>
 						<select class="form-select" id="qrzrealtime" name="qrzrealtime">
-							<option value="1" <?php if ($my_station_profile->qrzrealtime == 1) { echo " selected =\"selected\""; } ?>><?php echo lang("general_word_yes"); ?></option>
-							<option value="0" <?php if ($my_station_profile->qrzrealtime == 0) { echo " selected =\"selected\""; } ?>><?php echo lang("general_word_no"); ?></option>
+							<option value="-1" <?php if ($my_station_profile->qrzrealtime == -1) { echo " selected =\"selected\""; } ?>><?php echo lang("general_word_disabled"); ?></option>
+							<option value="1" <?php if ($my_station_profile->qrzrealtime == 1) { echo " selected =\"selected\""; } ?>><?php echo lang("general_word_realtime"); ?></option>
+							<option value="0" <?php if ($my_station_profile->qrzrealtime == 0) { echo " selected =\"selected\""; } ?>><?php echo lang("general_word_enabled"); ?></option>
 						</select>
 					</div>
 				</div>

@@ -255,9 +255,12 @@ class Awards extends CI_Controller {
 		$this->load->view('interface_assets/footer', $footerData);
 	}
 
-	public function jcc ()	{
+	public function jcc () {
 		$footerData = [];
-        $footerData['scripts'] = ['assets/js/sections/jcc.js'];
+		$footerData['scripts'] = [
+			'assets/js/sections/jcc.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/jcc.js")),
+			'assets/js/sections/jccmap.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/jccmap.js"))
+		];
 
 		$this->load->model('jcc_model');
         $this->load->model('modes');
@@ -353,6 +356,14 @@ class Awards extends CI_Controller {
         fclose($fp);
         return;
     }
+
+    public function jcc_cities() {
+        $this->load->model('Jcc_model');
+        $data = $this->Jcc_model->jccCities();
+        header('Content-Type: application/json');
+        echo json_encode($data, JSON_PRETTY_PRINT);
+    }
+
 
     public function vucc()	{
         $this->load->model('vucc');
@@ -1461,6 +1472,41 @@ class Awards extends CI_Controller {
 
         header('Content-Type: application/json');
         echo json_encode($newdxcc);
+    }
+
+    /*
+        function jcc_map
+        This displays the DXCC map
+    */
+    public function jcc_map() {
+        $this->load->model('jcc_model');
+        $this->load->model('bands');
+
+        $bands[] = $this->security->xss_clean($this->input->post('band'));
+
+        $postdata['qsl'] = $this->input->post('qsl') == 0 ? NULL: 1;
+        $postdata['lotw'] = $this->input->post('lotw') == 0 ? NULL: 1;
+        $postdata['eqsl'] = $this->input->post('eqsl') == 0 ? NULL: 1;
+        $postdata['qrz'] = $this->input->post('qrz') == 0 ? NULL: 1;
+        $postdata['worked'] = $this->input->post('worked') == 0 ? NULL: 1;
+        $postdata['confirmed'] = $this->input->post('confirmed')  == 0 ? NULL: 1;
+        $postdata['notworked'] = $this->input->post('notworked')  == 0 ? NULL: 1;
+        $postdata['band'] = $this->security->xss_clean($this->input->post('band'));
+        $postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
+
+        $jcc_wkd = $this->jcc_model->fetch_jcc_wkd($postdata);
+        $jcc_cnfm = $this->jcc_model->fetch_jcc_cnfm($postdata);
+
+        $jccs = [];
+        foreach ($jcc_wkd as $jcc) {
+           $jccs[$jcc->COL_CNTY] = array(1, 0);
+        }
+        foreach ($jcc_cnfm as $jcc) {
+           $jccs[$jcc->COL_CNTY][1] = 1;
+        }
+
+        header('Content-Type: application/json');
+        echo json_encode($jccs);
     }
 
     /*

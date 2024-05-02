@@ -67,6 +67,7 @@ $lang['general_word_worked'] = 'Pracowane';
 $lang['general_word_worked_not_confirmed'] = "Worked not confirmed";
 $lang['general_word_not_worked'] = "Not worked";
 $lang['general_word_confirmed'] = 'Potwierdzone';
+$lang['general_word_not_confirmed'] = "Not Confirmed";
 $lang['general_word_confirmation'] = "Confirmation";
 $lang['general_word_needed'] = 'Wymagane';
 
@@ -237,4 +238,5 @@ $lang['dashboard_logbooks_warning'] = 'You have no station logbook. Go <a href="
 $lang['hams_at_no_activations_found'] = 'No upcoming activations found. Please check back later.';
 
 $lang['gen_add_to_contest'] = "Add QSOs to Contest";
+$lang['general_word_realtime'] = "Realtime";
 $lang['datatables_language'] = "en-GB";
