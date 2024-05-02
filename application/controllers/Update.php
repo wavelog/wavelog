@@ -604,7 +604,6 @@ class Update extends CI_Controller {
 			$satname = '';
 			$tleline1 = '';
 			$tleline2 = '';
-
 			// Process each line
 			for ($i = 0; $i < count($lines); $i += 3) {
 				$count++;
@@ -614,9 +613,8 @@ class Update extends CI_Controller {
 					$satname = $lines[$i];
 					$tleline1 = $lines[$i + 1];
 					$tleline2 = $lines[$i + 2];
-
-					$sql = "INSERT INTO tle (satelliteid, tle)	select id, '" . $tleline1 . "\n" . $tleline2 . "' from satellite where name = '" . $satname . "' or exportname = '" . $satname . "'";
-					$this->db->query($sql);
+					$sql = "INSERT INTO tle (satelliteid, tle) select id, ? from satellite where name = ? or exportname = ?";
+					$this->db->query($sql,array($tleline1."\n".$tleline2,$satname,$satname));
 				}
 			}
 		}
