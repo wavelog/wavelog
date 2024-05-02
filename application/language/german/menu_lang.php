@@ -109,4 +109,4 @@ $lang['menu_satellites'] = 'Satelliten';
 $lang['menu_dx_calendar'] = 'DX Calendar';
 $lang['menu_contest_calendar'] = 'Contest Calendar';
 $lang['menu_wab'] = 'WAB';
-$lang['menu_itu'] = 'ITU Zones';
+$lang['menu_itu'] = 'ITU';
