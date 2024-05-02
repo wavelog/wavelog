@@ -615,7 +615,7 @@ class Update extends CI_Controller {
 					$tleline1 = $lines[$i + 1];
 					$tleline2 = $lines[$i + 2];
 
-					$sql = "INSERT INTO tle (satelliteid, tle)	select id, '" . $tleline1 . "\n" . $tleline2 . "' from satellite where name = '" . $satname . "'";
+					$sql = "INSERT INTO tle (satelliteid, tle)	select id, '" . $tleline1 . "\n" . $tleline2 . "' from satellite where name = '" . $satname . "' or exportname = '" . $satname . "'";
 					$this->db->query($sql);
 				}
 			}
