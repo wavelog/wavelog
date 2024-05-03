@@ -54,6 +54,11 @@
 <script type="text/javascript" src="<?php echo base_url() ;?>assets/js/sections/version_dialog.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ;?>assets/js/showdown.min.js"></script>
 
+<script type="module" defer>
+  		import { polyfillCountryFlagEmojis } from "<?php echo base_url() ;?>assets/js/country-flag-emoji-polyfill.js";
+		polyfillCountryFlagEmojis();
+</script>
+
 <script src="<?php echo base_url(); ?>assets/js/htmx.min.js"></script>
 
 <script>
