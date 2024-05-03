@@ -110,8 +110,8 @@ class Hamsat extends CI_Controller {
 				}
 			}
 
-			$workable_start_at = strtotime($decoded_json->data[$i]->workable_start_at);
-			$workable_end_at = strtotime($decoded_json->data[$i]->workable_end_at);
+			$workable_start_at = strtotime($decoded_json->data[$i]->workable_start_at ?? '');
+			$workable_end_at = strtotime($decoded_json->data[$i]->workable_end_at ?? '');
 			$decoded_json->data[$i]->workable_from_to = date("H:i", $workable_start_at).' - '.date("H:i", $workable_end_at);
 
 			if (strtoupper($decoded_json->data[$i]->satellite->name) == 'GREENCUBE') {
