@@ -106,7 +106,7 @@ function loadActivationsTable(rows, show_workable_only) {
 				data.push('<span data-bs-toggle="tooltip" class="badge bg-danger" data-bs-original-title="Not Workable">No</span>');
 			}
 		} else {
-			data.push('');
+			data.push('<span data-bs-toggle=\"tooltip\" title=\"Unkown\" class=\"badge bg-warning\">Unknown</span>');
 		}
 		data.push("<a href=\""+activation.url+"\" target=\"_blank\">Track</a>");
 		if (activation.is_workable == true) {
