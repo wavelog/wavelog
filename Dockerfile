@@ -57,18 +57,7 @@ RUN set -e; \
 
 RUN echo "Installing cronjobs" \
 RUN touch /etc/crontab && \
-    echo "0 */12 * * * curl --silent http://localhost/clublog/upload &>/dev/null" >> /etc/crontab && \
-    echo "10 */12 * * * curl --silent http://localhost/eqsl/sync &>/dev/null" >> /etc/crontab && \
-    echo "20 */12 * * * curl --silent http://localhost/qrz/upload &>/dev/null" >> /etc/crontab && \
-    echo "30 */12 * * * curl --silent http://localhost/qrz/download &>/dev/null" >> /etc/crontab && \
-    echo "40 */12 * * * curl --silent http://localhost/hrdlog/upload &>/dev/null" >> /etc/crontab && \
-    echo "0 1 * * * curl --silent http://localhost/lotw/lotw_upload &>/dev/null" >> /etc/crontab && \
-    echo "10 1 * * * curl --silent http://localhost/update/lotw_users &>/dev/null" >> /etc/crontab && \
-    echo "20 1 * * 1 curl --silent http://localhost/update/update_clublog_scp &>/dev/null" >> /etc/crontab && \
-    echo "0 2 1 */1 * curl --silent http://localhost/update/update_sota &>/dev/null" >> /etc/crontab && \
-    echo "10 2 1 */1 * curl --silent http://localhost/update/update_wwff &>/dev/null" >> /etc/crontab && \
-    echo "20 2 1 */1 * curl --silent http://localhost/update/update_pota &>/dev/null" >> /etc/crontab && \
-    echo "0 3 1 */1 *  curl --silent http://localhost/update/update_dok &>/dev/null" >> /etc/crontab
+    echo "* * * * * curl --silent http://localhost/index.php/cron/run &>/dev/null" >>/etc/crontab
 RUN chmod 0644 /etc/crontab
 RUN crontab /etc/crontab
 RUN mkdir -p /var/log/cron
