@@ -901,6 +901,13 @@ function set_active_loc_quickswitcher(new_active) {
             }
         });
     });
+
+    // If the user is in the QSO view we change the station in the QSO input aswell
+    if (window.location.pathname.indexOf("qso") !== -1) {
+        if ($('#stationProfile option[value="' + new_active + '"]').length > 0) {
+            $('#stationProfile').val(new_active);
+        }
+    }
 }
 
 
