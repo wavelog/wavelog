@@ -82,6 +82,9 @@ function updateRow(qso) {
 	if (user_options.cqzone.show == "true"){
 		cells.eq(c++).html(qso.cqzone);
 	}
+	if (user_options.ituzone.show == "true"){
+		cells.eq(c++).html(qso.ituzone);
+	}
 	if (user_options.iota.show == "true"){
 		cells.eq(c++).html(qso.iota);
 	}
@@ -186,6 +189,9 @@ function loadQSOTable(rows) {
 		}
 		if (user_options.cqzone.show == "true"){
 			data.push(qso.cqzone);
+		}
+		if (user_options.ituzone.show == "true"){
+			data.push(qso.ituzone);
 		}
 		if (user_options.iota.show == "true"){
 			data.push(qso.iota);
@@ -295,6 +301,7 @@ $(document).ready(function () {
 				sats: this.sats.value,
 				orbits: this.orbits.value,
 				cqzone: this.cqzone.value,
+				ituzone: this.ituzone.value,
 				lotwSent: this.lotwSent.value,
 				lotwReceived: this.lotwReceived.value,
 				eqslSent: this.eqslSent.value,
@@ -514,6 +521,10 @@ $(document).ready(function () {
 		quickSearch('cqzone');
 	});
 
+	$('#searchItuZone').click(function (event) {
+		quickSearch('ituzone');
+	});
+
 	$('#searchMode').click(function (event) {
 		quickSearch('mode');
 	});
@@ -665,6 +676,7 @@ $(document).ready(function () {
 			switch (type) {
 				case 'dxcc': 		col1 = currentRow.find('#dxcc').html(); col1 = col1.match(/\d/g); col1 = col1.join(""); break;
 				case 'cqzone': 		col1 = currentRow.find('#cqzone').text(); break;
+				case 'ituzone': 	col1 = currentRow.find('#ituzone').text(); break;
 				case 'iota': 		col1 = currentRow.find('#iota').text(); col1 = col1.trim(); break;
 				case 'state': 		col1 = currentRow.find('#state').text(); break;
 				case 'dx': 			col1 = currentRow.find('#dx').text(); col1 = col1.match(/^([^\s]+)/gm); break;
@@ -881,6 +893,7 @@ function saveOptions() {
 			dxcc: $('input[name="dxcc"]').is(':checked') ? true : false,
 			state: $('input[name="state"]').is(':checked') ? true : false,
 			cqzone: $('input[name="cqzone"]').is(':checked') ? true : false,
+			ituzone: $('input[name="ituzone"]').is(':checked') ? true : false,
 			iota: $('input[name="iota"]').is(':checked') ? true : false,
 			pota: $('input[name="pota"]').is(':checked') ? true : false,
 			operator: $('input[name="operator"]').is(':checked') ? true : false,

@@ -198,6 +198,10 @@ class Lotw extends CI_Controller {
 			echo "You must install php OpenSSL for LoTW functions to work";
 		}
 
+		// set the last run in cron table for the correct cron id
+		$this->load->model('cron_model');
+		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+
 		// Get Station Profile Data
 		$this->load->model('Stations');
 
@@ -524,10 +528,11 @@ class Lotw extends CI_Controller {
 						$state = "";
 					}
 					// Present only if the QSLing station specified a single valid grid square value in its station location uploaded to LoTW.
+					$qsl_gridsquare = "";
 					if (isset($record['gridsquare'])) {
-						$qsl_gridsquare = $record['gridsquare'];
-					} else {
-						$qsl_gridsquare = "";
+						if (strlen($record['gridsquare']) > strlen($status[2]) || substr(strtoupper($status[2]), 0, 4) != substr(strtoupper($record['gridsquare']), 0, 4)) {
+							$qsl_gridsquare = $record['gridsquare'];
+						}
 					}
 
 					if (isset($record['vucc_grids'])) {

@@ -15,7 +15,9 @@ $lang['awards_total_confirmed'] = "Total confirmed";
 
 
 $lang['awards_cq_page_title'] = "Awards - CQ Magazine WAZ";
-
+$lang['awards_itu_page_title'] = "Awards - ITU Zones";
+$lang['awards_show_itu_map'] = "Show ITU Zone Map";
+$lang['awards_show_jcc_map'] = "Show JCC Map";
 
 /*
 ___________________________________________________________________________________________
@@ -229,3 +231,12 @@ $lang['awards_wab_description_ln1'] = "WAB - Worked All Britain Award";
 $lang['awards_wab_description_ln2'] = "WAB, Worked All Britain squares in Amateur Radio, encourages licensed ham radio operators to work all the squares in Great Britain.";
 $lang['awards_wab_description_ln3'] = "May be claimed for having contacted an amateur station located in the required amount of squares, described on the page linked below.";
 $lang['awards_wab_description_ln4'] = "For more information, please visit: <a href='https://wab.intermip.net/default.php' target='_blank'>https://wab.intermip.net/default.php</a>.";
+/*
+___________________________________________________________________________________________
+ITU
+___________________________________________________________________________________________
+*/
+
+$lang['awards_itu_description_ln1'] = "ITU Zones";
+$lang['awards_itu_description_ln2'] = "The Classic Worked ITU Zones award may be claimed by producing evidence of having contacted land based amateur radio stations in at least 70 of the 75 broadcasting zones as defined by the International Telecommunications Union (ITU).";
+$lang['awards_itu_description_ln3'] = "You can find more information on the website of <a href='https://rsgb.org/main/files/2019/01/Worked_ITU_Zones_Award_Form_2019.pdf' target='_blank'>RSGB</a>.";

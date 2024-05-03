@@ -32,6 +32,7 @@ $lang['filter_search_dxcc'] = '搜索 DXCC';
 $lang['filter_search_state'] = '搜索 州/省';
 $lang['filter_search_gridsquare'] = '搜索 网格';
 $lang['filter_search_cq_zone'] = '搜索 CQ 分区';
+$lang['filter_search_itu_zone'] = 'Search ITU Zone';
 $lang['filter_search_mode'] = '搜索 模式';
 $lang['filter_search_band'] = '搜索 频段';
 $lang['filter_search_iota'] = '搜索 IOTA';
@@ -77,8 +78,8 @@ ________________________________________________________________________________
 
 $lang['filter_general_from'] = '开始日期';
 $lang['filter_general_to'] = '截止日期';
-// $lang['gen_hamradio_de']             --> application/language/english/general_words_lang.php 
-// $lang['gen_hamradio_dx']             --> application/language/english/general_words_lang.php 
+// $lang['gen_hamradio_de']             --> application/language/english/general_words_lang.php
+// $lang['gen_hamradio_dx']             --> application/language/english/general_words_lang.php
 // $lang['gen_hamradio_dxcc']           --> application/language/english/general_words_lang.php
 $lang['filter_general_none'] = '- 无 - (例如 /MM, /AM)';
 // $lang['gen_hamradio_state']          --> application/language/english/general_words_lang.php

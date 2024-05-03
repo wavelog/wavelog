@@ -21,6 +21,7 @@ class Debug extends CI_Controller
 		$this->load->model('Logbook_model');
 		$this->load->model('Debug_model');
 		$this->load->model('Stations');
+		$this->load->model('cron_model');
 
 		$footerData = [];
 		$footerData['scripts'] = ['assets/js/sections/debug.js'];
@@ -61,6 +62,14 @@ class Debug extends CI_Controller
 			$userdata_status = $this->check_userdata_status($userdata_folder);
 			$data['userdata_status'] = $userdata_status;
 		}
+
+		$data['dxcc_update'] = $this->cron_model->cron('update_dxcc')->row();
+		$data['dok_update'] = $this->cron_model->cron('update_update_dok')->row();
+		$data['lotw_user_update'] = $this->cron_model->cron('update_lotw_users')->row();
+		$data['pota_update'] = $this->cron_model->cron('update_update_pota')->row();
+		$data['scp_update'] = $this->cron_model->cron('update_update_clublog_scp')->row();
+		$data['sota_update'] = $this->cron_model->cron('update_update_sota')->row();
+		$data['wwff_update'] = $this->cron_model->cron('update_update_wwff')->row();
 
 		$data['page_title'] = "Debug";
 
