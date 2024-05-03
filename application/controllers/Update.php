@@ -180,6 +180,7 @@ class Update extends CI_Controller {
 	// Updates the DXCC & Exceptions from the Club Log Cty.xml file.
 	public function dxcc() {
 
+        // set the last run in cron table for the correct cron id
         $this->load->model('cron_model');
 		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
 
@@ -307,6 +308,7 @@ class Update extends CI_Controller {
 
     public function update_clublog_scp() {
 
+        // set the last run in cron table for the correct cron id
         $this->load->model('cron_model');
 		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
 
@@ -358,6 +360,7 @@ class Update extends CI_Controller {
 
     public function lotw_users() {
 
+        // set the last run in cron table for the correct cron id
         $this->load->model('cron_model');
 		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
 
@@ -419,6 +422,7 @@ class Update extends CI_Controller {
      */
     public function update_dok() {
 
+        // set the last run in cron table for the correct cron id
         $this->load->model('cron_model');
 		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
 
@@ -448,6 +452,7 @@ class Update extends CI_Controller {
      */
     public function update_sota() {
 
+        // set the last run in cron table for the correct cron id
         $this->load->model('cron_model');
 		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
 
@@ -495,6 +500,7 @@ class Update extends CI_Controller {
      */
     public function update_wwff() {
 
+        // set the last run in cron table for the correct cron id
         $this->load->model('cron_model');
 		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
 
@@ -543,6 +549,7 @@ class Update extends CI_Controller {
 
     public function update_pota() {
 
+        // set the last run in cron table for the correct cron id
         $this->load->model('cron_model');
 		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
 

@@ -106,6 +106,7 @@ if($this->session->userdata('user_id') != null) {
     <script src="<?php echo base_url() ;?>assets/js/sections/oqrs.js"></script>
 <?php } ?>
 
+<!-- JS library to convert cron format to human readable -->
 <?php if ($this->uri->segment(1) == "cron") { ?>
     <script src="<?php echo base_url() ;?>assets/js/cronstrue.min.js"async></script>
 <?php } ?>

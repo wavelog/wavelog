@@ -2,6 +2,7 @@
 
 class Cron_model extends CI_Model
 {
+	// get all crons from the database
     function get_crons() {
 		$this->db->from('cron');
 
@@ -12,6 +13,7 @@ class Cron_model extends CI_Model
 		return $results;
 	}
 
+	// get details for a specific cron
 	function cron($id) {
 
 		$clean_id = $this->security->xss_clean($id);
@@ -21,6 +23,7 @@ class Cron_model extends CI_Model
 		return $this->db->get('cron');
 	}
 
+	// set the modified timestamp
 	function set_modified($cron) {
 		$data = array(
 			'modified' => date('Y-m-d H:i:s')
@@ -30,6 +33,7 @@ class Cron_model extends CI_Model
 		$this->db->update('cron', $data);
 	}
 
+	// set a new status for the cron
 	function set_status($cron, $status) {
 		$data = array(
 			'status' => $status
@@ -39,6 +43,7 @@ class Cron_model extends CI_Model
 		$this->db->update('cron', $data);
 	}
 
+	// set the last run
 	function set_last_run($cron) {
 		$data = array(
 			'last_run' => date('Y-m-d H:i:s')
@@ -48,6 +53,7 @@ class Cron_model extends CI_Model
 		$this->db->update('cron', $data);
 	}
 
+	// set the calculated next run
 	function set_next_run($cron,$timestamp) {
 		$data = array(
 			'next_run' => $timestamp
@@ -57,6 +63,7 @@ class Cron_model extends CI_Model
 		$this->db->update('cron', $data);
 	}
 
+	// set the cron enabled flag
 	function set_cron_enabled($cron, $cron_enabled) {
 		$data = array (
 			'enabled' => ($cron_enabled === 'true' ? 1 : 0),
@@ -69,6 +76,7 @@ class Cron_model extends CI_Model
 		$this->set_modified($cron);
 	}
 
+	// set the edited details for a cron
 	function edit_cron($id, $description, $expression, $enabled) {
 		
 		$data = array (
