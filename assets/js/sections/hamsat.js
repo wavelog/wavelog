@@ -123,9 +123,12 @@ function loadActivationsTable(rows, show_workable_only) {
 	$('[data-bs-toggle="tooltip"]').tooltip();
 }
 
-$(document).ready(function () {
+$(document).ready(function() {
    const obj = {
       value: workable_preset,
    };
    loadHamsAt(obj);
+   setInterval(function() {
+      loadHamsAt(obj);
+   }, 60000);
 });
