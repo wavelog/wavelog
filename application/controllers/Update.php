@@ -20,6 +20,9 @@ class Update extends CI_Controller {
 
 	public function index()
 	{
+        $this->load->model('user_model');
+		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+
 	    $data['page_title'] = "Updates";
 	    $this->load->view('interface_assets/header', $data);
 	    $this->load->view('update/index');
@@ -176,6 +179,11 @@ class Update extends CI_Controller {
 
 	// Updates the DXCC & Exceptions from the Club Log Cty.xml file.
 	public function dxcc() {
+
+        // set the last run in cron table for the correct cron id
+        $this->load->model('cron_model');
+		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+
 	    $this->update_status("Downloading file");
 
 	    // give it 10 minutes...
@@ -236,9 +244,6 @@ class Update extends CI_Controller {
 			$html .= "Dxcc Prefixes: ".$this->db->count_all('dxcc_prefixes')."<br/>";
 		} else {
 			$html = $done."....<br/>";
-			$datetime = new DateTime("now", new DateTimeZone('UTC'));
-			$datetime = $datetime->format('Ymd h:i');
-			$this->optionslib->update('dxcc_clublog_update', $datetime , 'no');
 		}
 
 		file_put_contents($this->make_update_path("status.html"), $html);
@@ -302,6 +307,11 @@ class Update extends CI_Controller {
 	}
 
     public function update_clublog_scp() {
+
+        // set the last run in cron table for the correct cron id
+        $this->load->model('cron_model');
+		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+
         $strFile = $this->make_update_path("clublog_scp.txt");
         $url = "https://cdn.clublog.org/clublog.scp.gz";
         set_time_limit(300);
@@ -320,9 +330,6 @@ class Update extends CI_Controller {
                 if ($nCount > 0)
                 {
                     echo "DONE: " . number_format($nCount) . " callsigns loaded";
-                    $datetime = new DateTime("now", new DateTimeZone('UTC'));
-                    $datetime = $datetime->format('Ymd h:i');
-                    $this->optionslib->update('scp_update', $datetime , 'no');
                 } else {
                     echo "FAILED: Empty file";
                 }
@@ -352,6 +359,11 @@ class Update extends CI_Controller {
     }
 
     public function lotw_users() {
+
+        // set the last run in cron table for the correct cron id
+        $this->load->model('cron_model');
+		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+
         $mtime = microtime();
         $mtime = explode(" ",$mtime);
         $mtime = $mtime[1] + $mtime[0];
@@ -390,9 +402,6 @@ class Update extends CI_Controller {
         $totaltime = ($endtime - $starttime);
         echo "This page was created in ".$totaltime." seconds <br />";
         echo "Records inserted: " . $i . " <br/>";
-        $datetime = new DateTime("now", new DateTimeZone('UTC'));
-        $datetime = $datetime->format('Ymd h:i');
-        $this->optionslib->update('lotw_users_update', $datetime , 'no');
     }
 
     public function lotw_check() {
@@ -412,6 +421,11 @@ class Update extends CI_Controller {
      * Used for autoupdating the DOK file which is used in the QSO entry dialog for autocompletion.
      */
     public function update_dok() {
+
+        // set the last run in cron table for the correct cron id
+        $this->load->model('cron_model');
+		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+
         $contents = file_get_contents('https://www.df2et.de/cqrlog/dok_and_sdok.txt', true);
 
         if($contents === FALSE) {
@@ -424,9 +438,6 @@ class Update extends CI_Controller {
                 if ($nCount > 0)
                 {
                     echo "DONE: " . number_format($nCount) . " DOKs and SDOKs saved";
-                    $datetime = new DateTime("now", new DateTimeZone('UTC'));
-                    $datetime = $datetime->format('Ymd h:i');
-                    $this->optionslib->update('dok_file_update', $datetime , 'no');
                 } else {
                     echo"FAILED: Empty file";
                 }
@@ -440,6 +451,11 @@ class Update extends CI_Controller {
      * Used for autoupdating the SOTA file which is used in the QSO entry dialog for autocompletion.
      */
     public function update_sota() {
+
+        // set the last run in cron table for the correct cron id
+        $this->load->model('cron_model');
+		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+
         $csvfile = 'https://www.sotadata.org.uk/summitslist.csv';
 
         $sotafile = './assets/json/sota.txt';
@@ -474,9 +490,6 @@ class Update extends CI_Controller {
         if ($nCount > 0)
         {
             echo "DONE: " . number_format($nCount) . " SOTA's saved";
-            $datetime = new DateTime("now", new DateTimeZone('UTC'));
-            $datetime = $datetime->format('Ymd h:i');
-            $this->optionslib->update('sota_file_update', $datetime , 'no');
         } else {
             echo"FAILED: Empty file";
         }
@@ -486,6 +499,11 @@ class Update extends CI_Controller {
      * Pulls the WWFF directory for autocompletion in QSO dialogs
      */
     public function update_wwff() {
+
+        // set the last run in cron table for the correct cron id
+        $this->load->model('cron_model');
+		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+
         $csvfile = 'https://wwff.co/wwff-data/wwff_directory.csv';
 
         $wwfffile = './assets/json/wwff.txt';
@@ -524,15 +542,17 @@ class Update extends CI_Controller {
         if ($nCount > 0)
         {
             echo "DONE: " . number_format($nCount) . " WWFF's saved";
-            $datetime = new DateTime("now", new DateTimeZone('UTC'));
-            $datetime = $datetime->format('Ymd h:i');
-            $this->optionslib->update('wwff_file_update', $datetime , 'no');
         } else {
             echo"FAILED: Empty file";
         }
     }
 
     public function update_pota() {
+
+        // set the last run in cron table for the correct cron id
+        $this->load->model('cron_model');
+		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+
         $csvfile = 'https://pota.app/all_parks.csv';
 
         $potafile = './assets/json/pota.txt';
@@ -570,9 +590,6 @@ class Update extends CI_Controller {
         if ($nCount > 0)
         {
             echo "DONE: " . number_format($nCount) . " POTA's saved";
-            $datetime = new DateTime("now", new DateTimeZone('UTC'));
-            $datetime = $datetime->format('Ymd h:i');
-            $this->optionslib->update('pota_file_update', $datetime , 'no');
         } else {
             echo"FAILED: Empty file";
         }
