@@ -20,7 +20,7 @@
     <p>
     <?php if ($user_hamsat_workable_only && $user_hamsat_key == '') { ?>
     <div class="alert alert-warning" role="warning">
-       Cannot filter workable passes only without private feed key. Please set the feed key in your profile.
+       Cannot filter workable passes only without private feed key. Please set the feed key in <a href="<?php echo site_url('user/edit/').$this->session->userdata('user_id'); ?>">your profile</a>.
     </div>
     <?php } ?>
     <table style="width:100%" class="table table-hover table-striped" id="activationsList">
