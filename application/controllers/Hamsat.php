@@ -24,6 +24,12 @@ class Hamsat extends CI_Controller {
 		} else {
 			$data['user_hamsat_workable_only'] = 0;
 		}
+		$hkey_opt=$this->user_options_model->get_options('hamsat',array('option_name'=>'hamsat_key','option_key'=>'api'))->result();
+		if (count($hkey_opt)>0) {
+			$data['user_hamsat_key'] = $hkey_opt[0]->option_value;
+		} else {
+			$data['user_hamsat_key']='';
+		}
 
 		// Load public view
 		$data['page_title'] = "Hamsat - Satellite Roving";
@@ -108,7 +114,6 @@ class Hamsat extends CI_Controller {
 			$workable_end_at = strtotime($decoded_json->data[$i]->workable_end_at);
 			$decoded_json->data[$i]->workable_from_to = date("H:i", $workable_start_at).' - '.date("H:i", $workable_end_at);
 
-			$decoded_json->data[$i]->sked = 'TEST';
 			if (strtoupper($decoded_json->data[$i]->satellite->name) == 'GREENCUBE') {
 				$decoded_json->data[$i]->sat_export_name = 'IO-117';
 			} else {
