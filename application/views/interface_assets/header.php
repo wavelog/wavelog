@@ -150,21 +150,21 @@
 						<li class="nav-item dropdown"> <!-- AWARDS -->
 							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><?php echo lang('menu_awards'); ?></a>
 							<ul class="dropdown-menu header-dropdown">
-								<li><a class="dropdown-item" href="<?php echo site_url('awards/cq'); ?>"><i class="fas fa-trophy"></i> <?php echo lang('menu_cq'); ?></a></li>
-								<div class="dropdown-divider"></div>
-								<li><a class="dropdown-item" href="<?php echo site_url('awards/itu'); ?>"><i class="fas fa-trophy"></i> <?php echo lang('menu_itu'); ?></a></li>
-								<div class="dropdown-divider"></div>
-								<li><a class="dropdown-item" href="<?php echo site_url('awards/dxcc'); ?>"><i class="fas fa-trophy"></i> <?php echo lang('menu_dxcc'); ?></a></li>
-								<div class="dropdown-divider"></div>
-								
-								
-								<li><a class="dropdown-item" href="<?php echo site_url('awards/wwff'); ?>"><i class="fas fa-trophy"></i> <?php echo lang('menu_wwff'); ?></a></li>
-								<div class="dropdown-divider"></div>
-								<li><a class="dropdown-item" href="<?php echo site_url('awards/sig'); ?>"><i class="fas fa-trophy"></i> <?php echo lang('menu_sig'); ?></a></li>
-								<div class="dropdown-divider"></div>
-								<li><a class="dropdown-item" href="<?php echo site_url('awards/vucc'); ?>"><i class="fas fa-trophy"></i> <?php echo lang('menu_vucc'); ?></a></li>
-								<div class="dropdown-divider"></div>
-								<li><a class="dropdown-item" href="<?php echo site_url('awards/ffma'); ?>"><i class="fas fa-trophy"></i> <?php echo lang('menu_ffma'); ?></a></li>
+								<li><a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#"><i class="fas fa-globe"></i> International</a>
+									<ul class="submenu dropdown-menu">
+										<li><a class="dropdown-item" href="<?php echo site_url('awards/cq'); ?>"><i class="fas fa-trophy"></i> <?php echo lang('menu_cq'); ?></a></li>
+										<div class="dropdown-divider"></div>
+										<li><a class="dropdown-item" href="<?php echo site_url('awards/dxcc'); ?>"><i class="fas fa-trophy"></i> <?php echo lang('menu_dxcc'); ?></a></li>
+										<div class="dropdown-divider"></div>
+										<li><a class="dropdown-item" href="<?php echo site_url('awards/itu'); ?>"><i class="fas fa-trophy"></i> <?php echo lang('menu_itu'); ?></a></li>
+										<div class="dropdown-divider"></div>
+										<li><a class="dropdown-item" href="<?php echo site_url('awards/sig'); ?>"><i class="fas fa-trophy"></i> <?php echo lang('menu_sig'); ?></a></li>
+										<div class="dropdown-divider"></div>
+										<li><a class="dropdown-item" href="<?php echo site_url('awards/vucc'); ?>"><i class="fas fa-trophy"></i> <?php echo lang('menu_vucc'); ?></a></li>
+										<div class="dropdown-divider"></div>
+										<li><a class="dropdown-item" href="<?php echo site_url('awards/wwff'); ?>"><i class="fas fa-trophy"></i> <?php echo lang('menu_wwff'); ?></a></li>
+									</ul>
+								</li>
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#"><i class="fas fa-trophy"></i> xOTA</a>
 									<ul class="submenu dropdown-menu">
@@ -225,6 +225,8 @@
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/was'); ?>"><i class="fas fa-trophy"></i> <?php echo lang('menu_was'); ?></a></li>
 										<div class="dropdown-divider"></div>
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/gridmaster/us'); ?>"><i class="fas fa-trophy"></i> <?php echo lang('menu_us_gridmaster'); ?></a></li>
+										<div class="dropdown-divider"></div>
+										<li><a class="dropdown-item" href="<?php echo site_url('awards/ffma'); ?>"><i class="fas fa-trophy"></i> <?php echo lang('menu_ffma'); ?></a></li>
 									</ul>
 								</li>
 							</ul>
