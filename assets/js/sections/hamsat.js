@@ -17,7 +17,7 @@ function loadHamsAt(show_workable_only) {
        url: base_url + 'index.php/hamsat/activations',
        type: 'post',
        success: function(result) {
-             loadActivationsTable(result, show_workable_only);
+             loadActivationsTable(result, workable_only);
        }
     });
 }
@@ -64,12 +64,17 @@ function loadActivationsTable(rows, show_workable_only) {
 	var table = $('#activationsList').DataTable();
 
 	table.clear();
+	workable_rows = 0;
 
 	for (i = 0; i < rows.length; i++) {
 		let activation = rows[i];
 
 		if (workable_only == "1" && activation.is_workable == false) {
 			continue;
+		} else {
+			if (activation.is_workable == true) {
+				workable_rows++;
+			}
 		}
 
 		var data = [];
@@ -118,6 +123,15 @@ function loadActivationsTable(rows, show_workable_only) {
 		let createdRow = table.row.add(data).index();
 		table.rows(createdRow).nodes().to$().data('activationID', activation.id);
 		table.row(createdRow).node().id = 'activationID-' + activation.id;
+	}
+	if (workable_only == '1') {
+		if (rows.length > workable_rows) {
+			$('#toggle_workable').html('Show all passes ('+rows.length+')');
+		}
+	} else {
+		if (workable_rows < rows.length) {
+			$('#toggle_workable').html('Show workable passes only ('+workable_rows+')');
+		}
 	}
 	table.draw();
 	$('[data-bs-toggle="tooltip"]').tooltip();
