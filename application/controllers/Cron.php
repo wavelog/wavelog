@@ -43,76 +43,87 @@ class cron extends CI_Controller {
 
 	public function run() {
 
-		// This is the main function, which handles all crons, runs them if enabled and writes the 'next run' timestamp to the database
+		// This is the main function (called 'mastercron'), which handles all crons, runs them if enabled and writes the 'next run' timestamp to the database
 
-		// TODO Add an API Key to the cronjob to improve security?
+		// we want to check if the client ip is allowed to run the mastercron
+		$this->load->library('Network');
 
-		$crons = $this->cron_model->get_crons();
+		// if the config item 'cron_ip' is not define we allow all ip ranges
+		$ip_allowed = $this->network->validate_client_ip($this->config->item('cron_ip') ?? '0.0.0.0/0');
 
-		$status = 'pending';
+		if ($ip_allowed) {
+			log_message('debug', 'Client IP is allowed to run the mastercron: '. $this->network->get_client_ip());
 
-		foreach ($crons as $cron) {
-			if ($cron->enabled == 1) {
+			$crons = $this->cron_model->get_crons();
 
-				// calculate the crons expression
-				$data = array(
-					'expression' => $cron->expression,
-					'timeZone' => null
-				);
-				$this->load->library('CronExpression', $data);
+			$status = 'pending';
 
-				$cronjob = $this->cronexpression;
-				$dt = new DateTime();
-				$isdue = $cronjob->isMatching($dt);
+			foreach ($crons as $cron) {
+				if ($cron->enabled == 1) {
 
-				$next_run = $cronjob->getNext();
-				$next_run_date = date('Y-m-d H:i:s', $next_run);
-				$this->cron_model->set_next_run($cron->id, $next_run_date);
+					// calculate the crons expression
+					$data = array(
+						'expression' => $cron->expression,
+						'timeZone' => null
+					);
+					$this->load->library('CronExpression', $data);
 
-				if ($isdue == true) {
-					$isdue_result = 'true';
+					$cronjob = $this->cronexpression;
+					$dt = new DateTime();
+					$isdue = $cronjob->isMatching($dt);
 
-					// TODO Add log_message level debug here to have logging for the cron manager
+					$next_run = $cronjob->getNext();
+					$next_run_date = date('Y-m-d H:i:s', $next_run);
+					$this->cron_model->set_next_run($cron->id, $next_run_date);
 
-					echo "CRON: " . $cron->id . " -> is due: " . $isdue_result . "\n";
-					echo "CRON: " . $cron->id . " -> RUNNING...\n";
+					if ($isdue == true) {
+						$isdue_result = 'true';
 
-					$url = base_url() . $cron->function;
+						// TODO Add log_message level debug here to have logging for the cron manager
 
-					$ch = curl_init();
-					curl_setopt($ch, CURLOPT_URL, $url);
-					curl_setopt($ch, CURLOPT_HEADER, false);
-					curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
-					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-					$crun = curl_exec($ch);
-					curl_close($ch);
+						echo "CRON: " . $cron->id . " -> is due: " . $isdue_result . "\n";
+						echo "CRON: " . $cron->id . " -> RUNNING...\n";
 
-					if ($crun !== false) {
-						echo "CRON: " . $cron->id . " -> CURL Result: " . $crun . "\n";
-						$status = 'healthy';
+						$url = base_url() . $cron->function;
+
+						$ch = curl_init();
+						curl_setopt($ch, CURLOPT_URL, $url);
+						curl_setopt($ch, CURLOPT_HEADER, false);
+						curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
+						curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+						$crun = curl_exec($ch);
+						curl_close($ch);
+
+						if ($crun !== false) {
+							echo "CRON: " . $cron->id . " -> CURL Result: " . $crun . "\n";
+							$status = 'healthy';
+						} else {
+							echo "ERROR: Something went wrong with " . $cron->id . "\n";
+							$status = 'failed';
+						}
 					} else {
-						echo "ERROR: Something went wrong with " . $cron->id . "\n";
-						$status = 'failed';
+						$isdue_result = 'false';
+						echo "CRON: " . $cron->id . " -> is due: " . $isdue_result . " -> Next Run: " . $next_run_date . "\n";
+						$status = 'healthy';
 					}
 				} else {
-					$isdue_result = 'false';
-					echo "CRON: " . $cron->id . " -> is due: " . $isdue_result . " -> Next Run: " . $next_run_date . "\n";
-					$status = 'healthy';
+					echo 'CRON: ' . $cron->id . " is disabled. skipped..\n";
+					$status = 'disabled';
+
+					// Set the next_run timestamp to null to indicate in the view/database that this cron is disabled
+					$this->cron_model->set_next_run($cron->id, null);
 				}
-			} else {
-				echo 'CRON: ' . $cron->id . " is disabled. skipped..\n";
-				$status = 'disabled';
-
-				// Set the next_run timestamp to null to indicate in the view/database that this cron is disabled
-				$this->cron_model->set_next_run($cron->id, null);
+				$this->cron_model->set_status($cron->id, $status);
+				$this->cronexpression = null;
 			}
-			$this->cron_model->set_status($cron->id, $status);
-			$this->cronexpression = null;
-		}
 
-		$datetime = new DateTime("now", new DateTimeZone('UTC'));
-		$datetime = $datetime->format('Ymd H:i:s');
-		$this->optionslib->update('mastercron_last_run', $datetime , 'no');
+			$datetime = new DateTime("now", new DateTimeZone('UTC'));
+			$datetime = $datetime->format('Ymd H:i:s');
+			$this->optionslib->update('mastercron_last_run', $datetime , 'no');
+		} else {
+			log_message('debug', 'Client IP is NOT ALLOWED to run the master cron: '.$this->network->get_client_ip());
+			echo "You are not allowed to run the master cron from this IP Adress.\n";
+		}
 	}
 
 	public function editDialog() {
