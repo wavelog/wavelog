@@ -56,10 +56,16 @@ RUN set -e; \
     chmod -R g+rw ./images/eqsl_card_images/; \
     chmod -R g+rw ./install/;
 
-RUN echo "Installing cronjobs" \
-RUN touch /etc/crontab && \
-    echo "* * * * * curl --silent http://localhost/index.php/cron/run &>/dev/null" >>/etc/crontab
-RUN chmod 0644 /etc/crontab
-RUN crontab /etc/crontab
-RUN mkdir -p /var/log/cron
-RUN sed -i 's/^exec /service cron start\n\nexec /' /usr/local/bin/apache2-foreground
+# Create the cron job
+RUN set -e; \
+    \
+    touch /etc/cron.d/wavelog; \
+    echo "* * * * * curl --silent http://localhost/index.php/cron/run &>/dev/null" >> /etc/cron.d/wavelog; \
+    \
+    chmod 0644 /etc/cron.d/wavelog;\
+    \
+    crontab /etc/cron.d/wavelog;\
+    \
+    mkdir -p /var/log/cron; \
+    \
+    sed -i 's/^exec /service cron start\n\nexec /' /usr/local/bin/apache2-foreground;
