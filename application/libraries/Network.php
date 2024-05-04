@@ -6,21 +6,42 @@
 class Network
 {
 	// returns true or false if client ip matches the ip range defined in config.php
-	function validate_client_ip($allowed_ip) {
+	function validate_client_ip($allowed_ips) {
 
-		$allowed_ips = explode(', ', $allowed_ip);
-
+		$host_array = explode(', ', $allowed_ips);
 		$client_ip = $this->get_client_ip();
 
-		$ip_allowed = false;
-		foreach ($allowed_ips as $allowed_ip) {
+		$result = false;
+		foreach ($host_array as $allowed_host) {
+
+			// remove the http scheme
+			if (substr($allowed_host, 0, 4) === "http") {
+				$p = parse_url($allowed_host);
+				$host = $p['host'];
+			} else {
+				$host = $allowed_host;
+			}
+
+			// if the user typed in just 0.0.0.0 we need the CIDR
+			if ($host == '0.0.0.0'){
+				$host .= '/0';
+			}
+
+			// we need an IP adress. So get the IP by hostname if it is one.
+			if ((bool)ip2long($host)) {
+				$allowed_ip = $host;
+			} else {
+				$allowed_ip = gethostbyname($host);
+			}
+
+			// now we can check if the ip is in range
 			if ($this->ip_in_range($client_ip, $allowed_ip)) {
-				$ip_allowed = true;
+				$result = true;
 				break;
 			}
 		}
-
-		return $ip_allowed;
+		
+		return $result;
 	}
 
 	// gets the client ip
@@ -41,9 +62,6 @@ class Network
 
 	// calculates the ip range
 	function ip_in_range($ip, $range) {
-		if ($range == 'localhost') {
-			$range = '127.0.0.1';
-		}
 		if (strpos($range, '/') !== false) {
 			list($subnet, $mask) = explode('/', $range, 2);
 			if ((ip2long($ip) & ~((1 << (32 - $mask)) - 1)) == ip2long($subnet)) {

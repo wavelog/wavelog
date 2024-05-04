@@ -686,8 +686,8 @@ $config['userdata'] = 'userdata';
 |	'cron_ip'		List of IP Adresses / Networks which are allowed to run the mastercron job 'cron/run'
 |
 |   Type in the IP Addresses and optional subnet. If more then one seperate with comma e.g. '192.168.0.0/24, 192.168.1.17, localhost'
-|	'0.0.0.0' means all IP's are allowed.
+|	'0.0.0.0/0' means all IP's are allowed.
 |
 */
 
-// $config['cron_ip'] = '0.0.0.0';
+// $config['cron_ip'] = '0.0.0.0/0';
