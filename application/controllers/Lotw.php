@@ -190,185 +190,204 @@ class Lotw extends CI_Controller {
 	*/
 	public function lotw_upload() {
 
-		$this->load->model('user_model');
-		$this->user_model->authorize(2);
+		$run = false;
+        
+        if ($this->input->post('safecall') == true) {
+            $run = true;
+        } else {
+            // we want to check if the client ip is allowed to run the cronjob if we don't have a safe call
+		    $this->load->library('Network');
+		    $ip_allowed = $this->network->validate_client_ip($this->config->item('cron_ip') ?? '0.0.0.0/0');
+            if ($ip_allowed) {
+                $run = true;
+            }
+        }
 
-		// Fire OpenSSL missing error if not found
-		if (!extension_loaded('openssl')) {
-			echo "You must install php OpenSSL for LoTW functions to work";
-		}
+        if ($run) {
 
-		// set the last run in cron table for the correct cron id
-		$this->load->model('cron_model');
-		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+			$this->load->model('user_model');
+			$this->user_model->authorize(2);
 
-		// Get Station Profile Data
-		$this->load->model('Stations');
-
-		if ($this->user_model->authorize(2)) {
-			$station_profiles = $this->Stations->all_of_user($this->session->userdata('user_id'));
-			$sync_user_id=$this->session->userdata('user_id');
-		} else {
-			$station_profiles = $this->Stations->all();
-			$sync_user_id=null;
-		}
-
-		// Array of QSO IDs being Uploaded
-
-		$qso_id_array = array();
-
-		// Build TQ8 Outputs
-		if ($station_profiles->num_rows() >= 1) {
-
-			foreach ($station_profiles->result() as $station_profile) {
-
-				// Get Certificate Data
-				$this->load->model('LotwCert');
-				$data['station_profile'] = $station_profile;
-				$data['lotw_cert_info'] = $this->LotwCert->lotw_cert_details($station_profile->station_callsign, $station_profile->station_dxcc);
-
-				// If Station Profile has no LoTW Cert continue on.
-				if(!isset($data['lotw_cert_info']->cert_dxcc_id)) {
-					continue;
-				}
-
-				// Check if LoTW certificate itself is valid
-				// Validty of QSO dates will be checked later
-				$current_date = date('Y-m-d H:i:s');
-				if ($current_date <= $data['lotw_cert_info']->date_created) {
-					echo $data['lotw_cert_info']->callsign.": LoTW certificate not valid yet!";
-					continue;
-				}
-				if ($current_date >= $data['lotw_cert_info']->date_expires) {
-					echo $data['lotw_cert_info']->callsign.": LoTW certificate expired!";
-					continue;
-				}
-
-				// Get QSOs
-
-				$this->load->model('Logbook_model');
-
-				$data['qsos'] = $this->Logbook_model->get_lotw_qsos_to_upload($data['station_profile']->station_id, $data['lotw_cert_info']->qso_start_date, $data['lotw_cert_info']->qso_end_date);
-
-				// Nothing to upload
-				if(empty($data['qsos']->result())){
-					if ($this->user_model->authorize(2)) {	// Only be verbose if we have a session
-						echo $station_profile->station_callsign." (".$station_profile->station_profile_name.") No QSOs to Upload <br>";
-					}
-					continue;
-				}
-
-				foreach ($data['qsos']->result() as $temp_qso) {
-					array_push($qso_id_array, $temp_qso->COL_PRIMARY_KEY);
-				}
-
-				// Build File to save
-				$adif_to_save = $this->load->view('lotw_views/adif_views/adif_export', $data, TRUE);
-				if (strpos($adif_to_save, '<SIGN_LOTW_V2.0:1:6>')) {
-					// Signing failed
-					echo "Signing failed.";
-					continue;
-				}
-
-				// create folder to store upload file
-				if (!file_exists('./uploads/lotw')) {
-					mkdir('./uploads/lotw', 0775, true);
-				}
-
-				// Build Filename
-				$filename_for_saving = './uploads/lotw/'.preg_replace('/[^a-z0-9]+/', '-', strtolower($data['lotw_cert_info']->callsign))."-".date("Y-m-d-H-i-s")."-wavelog.tq8";
-
-				$gzdata = gzencode($adif_to_save, 9);
-				$fp = fopen($filename_for_saving, "w");
-				fwrite($fp, $gzdata);
-				fclose($fp);
-
-				//The URL that accepts the file upload.
-				$url = 'https://lotw.arrl.org/lotw/upload';
-
-				//The name of the field for the uploaded file.
-				$uploadFieldName = 'upfile';
-
-				//The full path to the file that you want to upload
-				$filePath = realpath($filename_for_saving);
-
-				//Initiate cURL
-				$ch = curl_init();
-
-				//Set the URL
-				curl_setopt($ch, CURLOPT_URL, $url);
-
-				//Set the HTTP request to POST
-				curl_setopt($ch, CURLOPT_POST, true);
-
-				//Tell cURL to return the output as a string.
-				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-				//If the function curl_file_create exists
-				if(function_exists('curl_file_create')){
-					//Use the recommended way, creating a CURLFile object.
-					$filePath = curl_file_create($filePath);
-				} else{
-					//Otherwise, do it the old way.
-					//Get the canonicalized pathname of our file and prepend
-					//the @ character.
-					$filePath = '@' . realpath($filePath);
-					//Turn off SAFE UPLOAD so that it accepts files
-					//starting with an @
-					curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false);
-				}
-
-				//Setup our POST fields
-				$postFields = array(
-					$uploadFieldName => $filePath
-				);
-
-				curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
-
-				//Execute the request
-				$result = curl_exec($ch);
-
-				//If an error occured, throw an exception
-				//with the error message.
-				if(curl_errno($ch)){
-					throw new Exception(curl_error($ch));
-				}
-
-				$pos = strpos($result, "<!-- .UPL.  accepted -->");
-
-				if ($pos === false) {
-					// Upload of TQ8 Failed for unknown reason
-					echo $station_profile->station_callsign." (".$station_profile->station_profile_name.") Upload Failed"."<br>";
-				} else {
-					// Upload of TQ8 was successfull
-
-					echo "Upload Successful - ".$filename_for_saving."<br>";
-
-					$this->LotwCert->last_upload($data['lotw_cert_info']->lotw_cert_id);
-
-					// Mark QSOs as Sent
-					foreach ($qso_id_array as $qso_number) {
-						$this->Logbook_model->mark_lotw_sent($qso_number);
-					}
-				}
-
-				// Delete TQ8 File - This is done regardless of whether upload was succcessful
-				unlink(realpath($filename_for_saving));
+			// Fire OpenSSL missing error if not found
+			if (!extension_loaded('openssl')) {
+				echo "You must install php OpenSSL for LoTW functions to work";
 			}
-		} else {
-			echo "No Station Profiles found to upload to LoTW";
-		}
 
-			/*
-			|	Download QSO Matches from LoTW
-			*/
-		if ($this->user_model->authorize(2)) {
-			echo "<br><br>";
-			$sync_user_id=$this->session->userdata('user_id');
+			// set the last run in cron table for the correct cron id
+			$this->load->model('cron_model');
+			$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+
+			// Get Station Profile Data
+			$this->load->model('Stations');
+
+			if ($this->user_model->authorize(2)) {
+				$station_profiles = $this->Stations->all_of_user($this->session->userdata('user_id'));
+				$sync_user_id=$this->session->userdata('user_id');
+			} else {
+				$station_profiles = $this->Stations->all();
+				$sync_user_id=null;
+			}
+
+			// Array of QSO IDs being Uploaded
+
+			$qso_id_array = array();
+
+			// Build TQ8 Outputs
+			if ($station_profiles->num_rows() >= 1) {
+
+				foreach ($station_profiles->result() as $station_profile) {
+
+					// Get Certificate Data
+					$this->load->model('LotwCert');
+					$data['station_profile'] = $station_profile;
+					$data['lotw_cert_info'] = $this->LotwCert->lotw_cert_details($station_profile->station_callsign, $station_profile->station_dxcc);
+
+					// If Station Profile has no LoTW Cert continue on.
+					if(!isset($data['lotw_cert_info']->cert_dxcc_id)) {
+						continue;
+					}
+
+					// Check if LoTW certificate itself is valid
+					// Validty of QSO dates will be checked later
+					$current_date = date('Y-m-d H:i:s');
+					if ($current_date <= $data['lotw_cert_info']->date_created) {
+						echo $data['lotw_cert_info']->callsign.": LoTW certificate not valid yet!";
+						continue;
+					}
+					if ($current_date >= $data['lotw_cert_info']->date_expires) {
+						echo $data['lotw_cert_info']->callsign.": LoTW certificate expired!";
+						continue;
+					}
+
+					// Get QSOs
+
+					$this->load->model('Logbook_model');
+
+					$data['qsos'] = $this->Logbook_model->get_lotw_qsos_to_upload($data['station_profile']->station_id, $data['lotw_cert_info']->qso_start_date, $data['lotw_cert_info']->qso_end_date);
+
+					// Nothing to upload
+					if(empty($data['qsos']->result())){
+						if ($this->user_model->authorize(2)) {	// Only be verbose if we have a session
+							echo $station_profile->station_callsign." (".$station_profile->station_profile_name.") No QSOs to Upload <br>";
+						}
+						continue;
+					}
+
+					foreach ($data['qsos']->result() as $temp_qso) {
+						array_push($qso_id_array, $temp_qso->COL_PRIMARY_KEY);
+					}
+
+					// Build File to save
+					$adif_to_save = $this->load->view('lotw_views/adif_views/adif_export', $data, TRUE);
+					if (strpos($adif_to_save, '<SIGN_LOTW_V2.0:1:6>')) {
+						// Signing failed
+						echo "Signing failed.";
+						continue;
+					}
+
+					// create folder to store upload file
+					if (!file_exists('./uploads/lotw')) {
+						mkdir('./uploads/lotw', 0775, true);
+					}
+
+					// Build Filename
+					$filename_for_saving = './uploads/lotw/'.preg_replace('/[^a-z0-9]+/', '-', strtolower($data['lotw_cert_info']->callsign))."-".date("Y-m-d-H-i-s")."-wavelog.tq8";
+
+					$gzdata = gzencode($adif_to_save, 9);
+					$fp = fopen($filename_for_saving, "w");
+					fwrite($fp, $gzdata);
+					fclose($fp);
+
+					//The URL that accepts the file upload.
+					$url = 'https://lotw.arrl.org/lotw/upload';
+
+					//The name of the field for the uploaded file.
+					$uploadFieldName = 'upfile';
+
+					//The full path to the file that you want to upload
+					$filePath = realpath($filename_for_saving);
+
+					//Initiate cURL
+					$ch = curl_init();
+
+					//Set the URL
+					curl_setopt($ch, CURLOPT_URL, $url);
+
+					//Set the HTTP request to POST
+					curl_setopt($ch, CURLOPT_POST, true);
+
+					//Tell cURL to return the output as a string.
+					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+					//If the function curl_file_create exists
+					if(function_exists('curl_file_create')){
+						//Use the recommended way, creating a CURLFile object.
+						$filePath = curl_file_create($filePath);
+					} else{
+						//Otherwise, do it the old way.
+						//Get the canonicalized pathname of our file and prepend
+						//the @ character.
+						$filePath = '@' . realpath($filePath);
+						//Turn off SAFE UPLOAD so that it accepts files
+						//starting with an @
+						curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false);
+					}
+
+					//Setup our POST fields
+					$postFields = array(
+						$uploadFieldName => $filePath
+					);
+
+					curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+
+					//Execute the request
+					$result = curl_exec($ch);
+
+					//If an error occured, throw an exception
+					//with the error message.
+					if(curl_errno($ch)){
+						throw new Exception(curl_error($ch));
+					}
+
+					$pos = strpos($result, "<!-- .UPL.  accepted -->");
+
+					if ($pos === false) {
+						// Upload of TQ8 Failed for unknown reason
+						echo $station_profile->station_callsign." (".$station_profile->station_profile_name.") Upload Failed"."<br>";
+					} else {
+						// Upload of TQ8 was successfull
+
+						echo "Upload Successful - ".$filename_for_saving."<br>";
+
+						$this->LotwCert->last_upload($data['lotw_cert_info']->lotw_cert_id);
+
+						// Mark QSOs as Sent
+						foreach ($qso_id_array as $qso_number) {
+							$this->Logbook_model->mark_lotw_sent($qso_number);
+						}
+					}
+
+					// Delete TQ8 File - This is done regardless of whether upload was succcessful
+					unlink(realpath($filename_for_saving));
+				}
+			} else {
+				echo "No Station Profiles found to upload to LoTW";
+			}
+
+				/*
+				|	Download QSO Matches from LoTW
+				*/
+			if ($this->user_model->authorize(2)) {
+				echo "<br><br>";
+				$sync_user_id=$this->session->userdata('user_id');
+			} else {
+				$sync_user_id=null;
+			}
+			echo $this->lotw_download($sync_user_id);
+			
 		} else {
-			$sync_user_id=null;
-		}
-		echo $this->lotw_download($sync_user_id);
+            echo "You're not allowed to run this cron.\n";
+        }
 	}
 
 	/*

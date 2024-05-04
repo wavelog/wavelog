@@ -23,17 +23,37 @@ class Clublog extends CI_Controller {
 
 	// Upload ADIF to Clublog
 	public function upload() {
-		$this->load->model('clublog_model');
 
-		// set the last run in cron table for the correct cron id
-		$this->load->model('cron_model');
-		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+		$run = false;
+        
+        if ($this->input->post('safecall') == true) {
+            $run = true;
+        } else {
+            // we want to check if the client ip is allowed to run the cronjob if we don't have a safe call
+		    $this->load->library('Network');
+		    $ip_allowed = $this->network->validate_client_ip($this->config->item('cron_ip') ?? '0.0.0.0/0');
+            if ($ip_allowed) {
+                $run = true;
+            }
+        }
 
-		$users = $this->clublog_model->get_clublog_users();
+        if ($run) {
 
-		foreach ($users as $user) {
-			$this->uploadUser($user->user_id, $user->user_clublog_name, $user->user_clublog_password);
-		}
+			$this->load->model('clublog_model');
+
+			// set the last run in cron table for the correct cron id
+			$this->load->model('cron_model');
+			$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+
+			$users = $this->clublog_model->get_clublog_users();
+
+			foreach ($users as $user) {
+				$this->uploadUser($user->user_id, $user->user_clublog_name, $user->user_clublog_password);
+			}
+
+		} else {
+            echo "You're not allowed to run this cron.\n";
+        }
 	}
 
 	function uploadUser($userid, $username, $password) {

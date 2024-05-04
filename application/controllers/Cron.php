@@ -79,7 +79,7 @@ class cron extends CI_Controller {
 					if ($isdue == true) {
 						$isdue_result = 'true';
 
-						// TODO Add log_message level debug here to have logging for the cron manager
+						log_message('debug', 'CRON: START '. $cron->id);
 
 						echo "CRON: " . $cron->id . " -> is due: " . $isdue_result . "\n";
 						echo "CRON: " . $cron->id . " -> RUNNING...\n";
@@ -91,14 +91,21 @@ class cron extends CI_Controller {
 						curl_setopt($ch, CURLOPT_HEADER, false);
 						curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
 						curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+						curl_setopt($ch, CURLOPT_POST, true);
+						$postdata = array(
+							'safecall' => true
+						);
+						curl_setopt($ch, CURLOPT_POSTFIELDS, $postdata);
 						$crun = curl_exec($ch);
 						curl_close($ch);
 
 						if ($crun !== false) {
-							echo "CRON: " . $cron->id . " -> CURL Result: " . $crun . "\n";
+							echo "CRON: END " . $cron->id . " -> CURL Result: " . $crun . "\n";
+							log_message('debug', "CRON: END " . $cron->id . " -> CURL Result: " . $crun);
 							$status = 'healthy';
 						} else {
-							echo "ERROR: Something went wrong with " . $cron->id . "\n";
+							echo "CRON ERROR: Something went wrong with " . $cron->id . "\n";
+							log_message('error', "CRON ERROR: Something went wrong with " . $cron->id);
 							$status = 'failed';
 						}
 					} else {

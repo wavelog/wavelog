@@ -180,55 +180,72 @@ class Update extends CI_Controller {
 	// Updates the DXCC & Exceptions from the Club Log Cty.xml file.
 	public function dxcc() {
 
-        // set the last run in cron table for the correct cron id
-        $this->load->model('cron_model');
-		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+        $run = false;
 
-	    $this->update_status("Downloading file");
+        if ($this->input->post('safecall') == true) {
+            $run = true;
+        } else {
+            // we want to check if the client ip is allowed to run the cronjob if we don't have a safe call
+		    $this->load->library('Network');
+		    $ip_allowed = $this->network->validate_client_ip($this->config->item('cron_ip') ?? '0.0.0.0/0');
+            if ($ip_allowed) {
+                $run = true;
+            }
+        }
 
-	    // give it 10 minutes...
-	    set_time_limit(600);
+        if ($run) {
+            // set the last run in cron table for the correct cron id
+            $this->load->model('cron_model');
+            $this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
 
-		// Load Migration data if any.
-		$this->load->library('migration');
-		$this->fix_migrations();
-		$this->migration->latest();
+            $this->update_status("Downloading file");
 
-		// Download latest file.
-		$url = "https://cdn.clublog.org/cty.php?api=608df94896cb9c5421ae748235492b43815610c9";
+            // give it 10 minutes...
+            set_time_limit(600);
 
-		$gz = gzopen($url, 'r');
-		if ($gz === FALSE) {
-			$this->update_status("FAILED: Could not download from clublog.org");
-			log_message('error', 'FAILED: Could not download exceptions from clublog.org');
-			return;
-		}
+            // Load Migration data if any.
+            $this->load->library('migration');
+            $this->fix_migrations();
+            $this->migration->latest();
 
-		$data = "";
-		while (!gzeof($gz)) {
-		  $data .= gzgetc($gz);
-		}
-		gzclose($gz);
+            // Download latest file.
+            $url = "https://cdn.clublog.org/cty.php?api=608df94896cb9c5421ae748235492b43815610c9";
 
-		if (file_put_contents($this->make_update_path("cty.xml"), $data) === FALSE) {
-			$this->update_status("FAILED: Could not write to cty.xml file");
-			return;
-		}
+            $gz = gzopen($url, 'r');
+            if ($gz === FALSE) {
+                $this->update_status("FAILED: Could not download from clublog.org");
+                log_message('error', 'FAILED: Could not download exceptions from clublog.org');
+                return;
+            }
 
-	    // Clear the tables, ready for new data
-		$this->db->empty_table("dxcc_entities");
-		$this->db->empty_table("dxcc_exceptions");
-		$this->db->empty_table("dxcc_prefixes");
-		$this->update_status();
+            $data = "";
+            while (!gzeof($gz)) {
+            $data .= gzgetc($gz);
+            }
+            gzclose($gz);
 
-	    // Parse the three sections of the file and update the tables
-	    $this->db->trans_start();
-		$this->dxcc_entities();
-		$this->dxcc_exceptions();
-		$this->dxcc_prefixes();
-		$this->db->trans_complete();
+            if (file_put_contents($this->make_update_path("cty.xml"), $data) === FALSE) {
+                $this->update_status("FAILED: Could not write to cty.xml file");
+                return;
+            }
 
-		$this->update_status("DONE");
+            // Clear the tables, ready for new data
+            $this->db->empty_table("dxcc_entities");
+            $this->db->empty_table("dxcc_exceptions");
+            $this->db->empty_table("dxcc_prefixes");
+            $this->update_status();
+
+            // Parse the three sections of the file and update the tables
+            $this->db->trans_start();
+            $this->dxcc_entities();
+            $this->dxcc_exceptions();
+            $this->dxcc_prefixes();
+            $this->db->trans_complete();
+
+            $this->update_status("DONE");
+        } else {
+            echo "You're not allowed to run this cron.\n";
+        }
 	}
 
 	public function update_status($done=""){
@@ -308,36 +325,54 @@ class Update extends CI_Controller {
 
     public function update_clublog_scp() {
 
-        // set the last run in cron table for the correct cron id
-        $this->load->model('cron_model');
-		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
-
-        $strFile = $this->make_update_path("clublog_scp.txt");
-        $url = "https://cdn.clublog.org/clublog.scp.gz";
-        set_time_limit(300);
-        echo "Downloading Club Log SCP file...<br>";
-        $gz = gzopen($url, 'r');
-        if ($gz)
-        {
-            $data = "";
-            while (!gzeof($gz)) {
-                $data .= gzgetc($gz);
+        $run = false;
+        
+        if ($this->input->post('safecall') == true) {
+            $run = true;
+        } else {
+            // we want to check if the client ip is allowed to run the cronjob if we don't have a safe call
+		    $this->load->library('Network');
+		    $ip_allowed = $this->network->validate_client_ip($this->config->item('cron_ip') ?? '0.0.0.0/0');
+            if ($ip_allowed) {
+                $run = true;
             }
-            gzclose($gz);
-            if (file_put_contents($strFile, $data) !== FALSE)
+        }
+
+        if ($run) {
+
+            // set the last run in cron table for the correct cron id
+            $this->load->model('cron_model');
+            $this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+
+            $strFile = $this->make_update_path("clublog_scp.txt");
+            $url = "https://cdn.clublog.org/clublog.scp.gz";
+            set_time_limit(300);
+            echo "Downloading Club Log SCP file...<br>";
+            $gz = gzopen($url, 'r');
+            if ($gz)
             {
-                $nCount = count(file($strFile));
-                if ($nCount > 0)
+                $data = "";
+                while (!gzeof($gz)) {
+                    $data .= gzgetc($gz);
+                }
+                gzclose($gz);
+                if (file_put_contents($strFile, $data) !== FALSE)
                 {
-                    echo "DONE: " . number_format($nCount) . " callsigns loaded";
+                    $nCount = count(file($strFile));
+                    if ($nCount > 0)
+                    {
+                        echo "DONE: " . number_format($nCount) . " callsigns loaded";
+                    } else {
+                        echo "FAILED: Empty file";
+                    }
                 } else {
-                    echo "FAILED: Empty file";
+                    echo "FAILED: Could not write to Club Log SCP file";
                 }
             } else {
-                echo "FAILED: Could not write to Club Log SCP file";
+                echo "FAILED: Could not connect to Club Log";
             }
         } else {
-            echo "FAILED: Could not connect to Club Log";
+            echo "You're not allowed to run this cron.\n";
         }
     }
 
@@ -360,48 +395,66 @@ class Update extends CI_Controller {
 
     public function lotw_users() {
 
-        // set the last run in cron table for the correct cron id
-        $this->load->model('cron_model');
-		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
-
-        $mtime = microtime();
-        $mtime = explode(" ",$mtime);
-        $mtime = $mtime[1] + $mtime[0];
-        $starttime = $mtime;
-
-        $file = 'https://lotw.arrl.org/lotw-user-activity.csv';
-
-        $handle = fopen($file, "r");
-        if ($handle === FALSE) {
-            echo "Something went wrong with fetching the LoTW uses file";
-            return;
-        }
-        $this->db->empty_table("lotw_users");
-        $i = 0;
-        $data = fgetcsv($handle,1000,",");
-        do {
-            if ($data[0]) {
-                $lotwdata[$i]['callsign'] = $data[0];
-                $lotwdata[$i]['lastupload'] = $data[1] . ' ' . $data[2];
-                if (($i % 2000) == 0) {
-                    $this->db->insert_batch('lotw_users', $lotwdata);
-                    unset($lotwdata);
-                    // echo 'Record ' . $i . '<br />';
-                }
-                $i++;
+        $run = false;
+        
+        if ($this->input->post('safecall') == true) {
+            $run = true;
+        } else {
+            // we want to check if the client ip is allowed to run the cronjob if we don't have a safe call
+		    $this->load->library('Network');
+		    $ip_allowed = $this->network->validate_client_ip($this->config->item('cron_ip') ?? '0.0.0.0/0');
+            if ($ip_allowed) {
+                $run = true;
             }
-        } while ($data = fgetcsv($handle,1000,","));
-        fclose($handle);
+        }
 
-        $this->db->insert_batch('lotw_users', $lotwdata);
+        if ($run) {
 
-        $mtime = microtime();
-        $mtime = explode(" ",$mtime);
-        $mtime = $mtime[1] + $mtime[0];
-        $endtime = $mtime;
-        $totaltime = ($endtime - $starttime);
-        echo "This page was created in ".$totaltime." seconds <br />";
-        echo "Records inserted: " . $i . " <br/>";
+            // set the last run in cron table for the correct cron id
+            $this->load->model('cron_model');
+            $this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+
+            $mtime = microtime();
+            $mtime = explode(" ",$mtime);
+            $mtime = $mtime[1] + $mtime[0];
+            $starttime = $mtime;
+
+            $file = 'https://lotw.arrl.org/lotw-user-activity.csv';
+
+            $handle = fopen($file, "r");
+            if ($handle === FALSE) {
+                echo "Something went wrong with fetching the LoTW uses file";
+                return;
+            }
+            $this->db->empty_table("lotw_users");
+            $i = 0;
+            $data = fgetcsv($handle,1000,",");
+            do {
+                if ($data[0]) {
+                    $lotwdata[$i]['callsign'] = $data[0];
+                    $lotwdata[$i]['lastupload'] = $data[1] . ' ' . $data[2];
+                    if (($i % 2000) == 0) {
+                        $this->db->insert_batch('lotw_users', $lotwdata);
+                        unset($lotwdata);
+                        // echo 'Record ' . $i . '<br />';
+                    }
+                    $i++;
+                }
+            } while ($data = fgetcsv($handle,1000,","));
+            fclose($handle);
+
+            $this->db->insert_batch('lotw_users', $lotwdata);
+
+            $mtime = microtime();
+            $mtime = explode(" ",$mtime);
+            $mtime = $mtime[1] + $mtime[0];
+            $endtime = $mtime;
+            $totaltime = ($endtime - $starttime);
+            echo "This page was created in ".$totaltime." seconds <br />";
+            echo "Records inserted: " . $i . " <br/>";
+        } else {
+            echo "You're not allowed to run this cron.\n";
+        }
     }
 
     public function lotw_check() {
@@ -422,28 +475,46 @@ class Update extends CI_Controller {
      */
     public function update_dok() {
 
-        // set the last run in cron table for the correct cron id
-        $this->load->model('cron_model');
-		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
-
-        $contents = file_get_contents('https://www.df2et.de/cqrlog/dok_and_sdok.txt', true);
-
-        if($contents === FALSE) {
-            echo "Something went wrong with fetching the DOK file.";
+        $run = false;
+        
+        if ($this->input->post('safecall') == true) {
+            $run = true;
         } else {
-            $file = './assets/json/dok.txt';
-
-            if (file_put_contents($file, $contents) !== FALSE) {     // Save our content to the file.
-                $nCount = count(file($file));
-                if ($nCount > 0)
-                {
-                    echo "DONE: " . number_format($nCount) . " DOKs and SDOKs saved";
-                } else {
-                    echo"FAILED: Empty file";
-                }
-            } else {
-                echo"FAILED: Could not write to dok.txt file";
+            // we want to check if the client ip is allowed to run the cronjob if we don't have a safe call
+		    $this->load->library('Network');
+		    $ip_allowed = $this->network->validate_client_ip($this->config->item('cron_ip') ?? '0.0.0.0/0');
+            if ($ip_allowed) {
+                $run = true;
             }
+        }
+
+        if ($run) {
+
+            // set the last run in cron table for the correct cron id
+            $this->load->model('cron_model');
+            $this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+
+            $contents = file_get_contents('https://www.df2et.de/cqrlog/dok_and_sdok.txt', true);
+
+            if($contents === FALSE) {
+                echo "Something went wrong with fetching the DOK file.";
+            } else {
+                $file = './assets/json/dok.txt';
+
+                if (file_put_contents($file, $contents) !== FALSE) {     // Save our content to the file.
+                    $nCount = count(file($file));
+                    if ($nCount > 0)
+                    {
+                        echo "DONE: " . number_format($nCount) . " DOKs and SDOKs saved";
+                    } else {
+                        echo"FAILED: Empty file";
+                    }
+                } else {
+                    echo"FAILED: Could not write to dok.txt file";
+                }
+            }
+        } else {
+            echo "You're not allowed to run this cron.\n";
         }
     }
 
@@ -452,46 +523,64 @@ class Update extends CI_Controller {
      */
     public function update_sota() {
 
-        // set the last run in cron table for the correct cron id
-        $this->load->model('cron_model');
-		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
-
-        $csvfile = 'https://www.sotadata.org.uk/summitslist.csv';
-
-        $sotafile = './assets/json/sota.txt';
-
-        $csvhandle = fopen($csvfile,"r");
-        if ($csvhandle === FALSE) {
-            echo "Something went wrong with fetching the SOTA file";
-            return;
-        }
-
-        $data = fgetcsv($csvhandle,1000,","); // Skip line we are not interested in
-        $data = fgetcsv($csvhandle,1000,","); // Skip line we are not interested in
-        $data = fgetcsv($csvhandle,1000,",");
-        $sotafilehandle = fopen($sotafile, 'w');
-
-        if ($sotafilehandle === FALSE) {
-            echo"FAILED: Could not write to sota.txt file";
-            return;
-        }
-
-        $nCount = 0;
-        do {
-            if ($data[0]) {
-                fwrite($sotafilehandle, $data[0].PHP_EOL);
-                $nCount++;
-            }
-        } while ($data = fgetcsv($csvhandle,1000,","));
-
-        fclose($csvhandle);
-        fclose($sotafilehandle);
-
-        if ($nCount > 0)
-        {
-            echo "DONE: " . number_format($nCount) . " SOTA's saved";
+        $run = false;
+        
+        if ($this->input->post('safecall') == true) {
+            $run = true;
         } else {
-            echo"FAILED: Empty file";
+            // we want to check if the client ip is allowed to run the cronjob if we don't have a safe call
+		    $this->load->library('Network');
+		    $ip_allowed = $this->network->validate_client_ip($this->config->item('cron_ip') ?? '0.0.0.0/0');
+            if ($ip_allowed) {
+                $run = true;
+            }
+        }
+
+        if ($run) {
+
+            // set the last run in cron table for the correct cron id
+            $this->load->model('cron_model');
+            $this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+
+            $csvfile = 'https://www.sotadata.org.uk/summitslist.csv';
+
+            $sotafile = './assets/json/sota.txt';
+
+            $csvhandle = fopen($csvfile,"r");
+            if ($csvhandle === FALSE) {
+                echo "Something went wrong with fetching the SOTA file";
+                return;
+            }
+
+            $data = fgetcsv($csvhandle,1000,","); // Skip line we are not interested in
+            $data = fgetcsv($csvhandle,1000,","); // Skip line we are not interested in
+            $data = fgetcsv($csvhandle,1000,",");
+            $sotafilehandle = fopen($sotafile, 'w');
+
+            if ($sotafilehandle === FALSE) {
+                echo"FAILED: Could not write to sota.txt file";
+                return;
+            }
+
+            $nCount = 0;
+            do {
+                if ($data[0]) {
+                    fwrite($sotafilehandle, $data[0].PHP_EOL);
+                    $nCount++;
+                }
+            } while ($data = fgetcsv($csvhandle,1000,","));
+
+            fclose($csvhandle);
+            fclose($sotafilehandle);
+
+            if ($nCount > 0)
+            {
+                echo "DONE: " . number_format($nCount) . " SOTA's saved";
+            } else {
+                echo"FAILED: Empty file";
+            }
+        } else {
+            echo "You're not allowed to run this cron.\n";
         }
     }
 
@@ -500,98 +589,134 @@ class Update extends CI_Controller {
      */
     public function update_wwff() {
 
-        // set the last run in cron table for the correct cron id
-        $this->load->model('cron_model');
-		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
-
-        $csvfile = 'https://wwff.co/wwff-data/wwff_directory.csv';
-
-        $wwfffile = './assets/json/wwff.txt';
-
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $csvfile);
-        curl_setopt($ch, CURLOPT_HEADER, false);
-        curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $csv = curl_exec($ch);
-        curl_close($ch);
-        if ($csv === FALSE) {
-            echo "Something went wrong with fetching the WWFF file";
-            return;
-        }
-
-        $wwfffilehandle = fopen($wwfffile, 'w');
-        if ($wwfffilehandle === FALSE) {
-            echo"FAILED: Could not write to wwff.txt file";
-            return;
-        }
-
-        $data = str_getcsv($csv,"\n");
-        $nCount = 0;
-        foreach ($data as $idx => $row) {
-        if ($idx == 0) continue; // Skip line we are not interested in
-        $row = str_getcsv($row, ',');
-        if ($row[0]) {
-            fwrite($wwfffilehandle, $row[0].PHP_EOL);
-            $nCount++;
-        }
-        }
-
-        fclose($wwfffilehandle);
-
-        if ($nCount > 0)
-        {
-            echo "DONE: " . number_format($nCount) . " WWFF's saved";
+        $run = false;
+        
+        if ($this->input->post('safecall') == true) {
+            $run = true;
         } else {
-            echo"FAILED: Empty file";
+            // we want to check if the client ip is allowed to run the cronjob if we don't have a safe call
+		    $this->load->library('Network');
+		    $ip_allowed = $this->network->validate_client_ip($this->config->item('cron_ip') ?? '0.0.0.0/0');
+            if ($ip_allowed) {
+                $run = true;
+            }
+        }
+
+        if ($run) {
+
+            // set the last run in cron table for the correct cron id
+            $this->load->model('cron_model');
+            $this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+
+            $csvfile = 'https://wwff.co/wwff-data/wwff_directory.csv';
+
+            $wwfffile = './assets/json/wwff.txt';
+
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $csvfile);
+            curl_setopt($ch, CURLOPT_HEADER, false);
+            curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $csv = curl_exec($ch);
+            curl_close($ch);
+            if ($csv === FALSE) {
+                echo "Something went wrong with fetching the WWFF file";
+                return;
+            }
+
+            $wwfffilehandle = fopen($wwfffile, 'w');
+            if ($wwfffilehandle === FALSE) {
+                echo"FAILED: Could not write to wwff.txt file";
+                return;
+            }
+
+            $data = str_getcsv($csv,"\n");
+            $nCount = 0;
+            foreach ($data as $idx => $row) {
+            if ($idx == 0) continue; // Skip line we are not interested in
+            $row = str_getcsv($row, ',');
+            if ($row[0]) {
+                fwrite($wwfffilehandle, $row[0].PHP_EOL);
+                $nCount++;
+            }
+            }
+
+            fclose($wwfffilehandle);
+
+            if ($nCount > 0)
+            {
+                echo "DONE: " . number_format($nCount) . " WWFF's saved";
+            } else {
+                echo"FAILED: Empty file";
+            }
+        } else {
+            echo "You're not allowed to run this cron.\n";
         }
     }
 
     public function update_pota() {
 
-        // set the last run in cron table for the correct cron id
-        $this->load->model('cron_model');
-		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
-
-        $csvfile = 'https://pota.app/all_parks.csv';
-
-        $potafile = './assets/json/pota.txt';
-
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $csvfile);
-        curl_setopt($ch, CURLOPT_HEADER, false);
-        curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $csv = curl_exec($ch);
-        curl_close($ch);
-        if ($csv === FALSE) {
-            echo "Something went wrong with fetching the POTA file";
-            return;
-        }
-
-        $potafilehandle = fopen($potafile, 'w');
-        if ($potafilehandle === FALSE) {
-            echo"FAILED: Could not write to pota.txt file";
-            return;
-        }
-        $data = str_getcsv($csv,"\n");
-        $nCount = 0;
-        foreach ($data as $idx => $row) {
-        if ($idx == 0) continue; // Skip line we are not interested in
-        $row = str_getcsv($row, ',');
-        if ($row[0]) {
-            fwrite($potafilehandle, $row[0].PHP_EOL);
-            $nCount++;
-        }
-        }
-
-        fclose($potafilehandle);
-
-        if ($nCount > 0)
-        {
-            echo "DONE: " . number_format($nCount) . " POTA's saved";
+        $run = false;
+        
+        if ($this->input->post('safecall') == true) {
+            $run = true;
         } else {
-            echo"FAILED: Empty file";
+            // we want to check if the client ip is allowed to run the cronjob if we don't have a safe call
+		    $this->load->library('Network');
+		    $ip_allowed = $this->network->validate_client_ip($this->config->item('cron_ip') ?? '0.0.0.0/0');
+            if ($ip_allowed) {
+                $run = true;
+            }
+        }
+
+        if ($run) {
+
+            // set the last run in cron table for the correct cron id
+            $this->load->model('cron_model');
+            $this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+
+            $csvfile = 'https://pota.app/all_parks.csv';
+
+            $potafile = './assets/json/pota.txt';
+
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $csvfile);
+            curl_setopt($ch, CURLOPT_HEADER, false);
+            curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $csv = curl_exec($ch);
+            curl_close($ch);
+            if ($csv === FALSE) {
+                echo "Something went wrong with fetching the POTA file";
+                return;
+            }
+
+            $potafilehandle = fopen($potafile, 'w');
+            if ($potafilehandle === FALSE) {
+                echo"FAILED: Could not write to pota.txt file";
+                return;
+            }
+            $data = str_getcsv($csv,"\n");
+            $nCount = 0;
+            foreach ($data as $idx => $row) {
+            if ($idx == 0) continue; // Skip line we are not interested in
+            $row = str_getcsv($row, ',');
+            if ($row[0]) {
+                fwrite($potafilehandle, $row[0].PHP_EOL);
+                $nCount++;
+            }
+            }
+
+            fclose($potafilehandle);
+
+            if ($nCount > 0)
+            {
+                echo "DONE: " . number_format($nCount) . " POTA's saved";
+            } else {
+                echo"FAILED: Empty file";
+            }
+        } else {
+            echo "You're not allowed to run this cron.\n";
         }
     }
 

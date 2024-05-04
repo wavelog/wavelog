@@ -23,31 +23,51 @@ class Hrdlog extends CI_Controller {
 	}
 
     public function upload() {
-        $this->setOptions();
 
-        // set the last run in cron table for the correct cron id
-        $this->load->model('cron_model');
-		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
-
-        $this->load->model('logbook_model');
-
-        $station_ids = $this->logbook_model->get_station_id_with_hrdlog_code();
-
-        if ($station_ids) {
-            foreach ($station_ids as $station) {
-                $hrdlog_username = $station->hrdlog_username;
-                $hrdlog_code = $station->hrdlog_code;
-                if ($this->mass_upload_qsos($station->station_id, $hrdlog_username, $hrdlog_code)) {
-                    echo "QSOs have been uploaded to hrdlog.net.";
-                    log_message('info', 'QSOs have been uploaded to hrdlog.net.');
-                } else {
-                    echo "No QSOs found for upload.";
-                    log_message('info', 'No QSOs found for upload.');
-                }
-            }
+        $run = false;
+        
+        if ($this->input->post('safecall') == true) {
+            $run = true;
         } else {
-            echo "No station profiles with a hrdlog Code found.";
-            log_message('error', "No station profiles with a hrdlog Code found.");
+            // we want to check if the client ip is allowed to run the cronjob if we don't have a safe call
+		    $this->load->library('Network');
+		    $ip_allowed = $this->network->validate_client_ip($this->config->item('cron_ip') ?? '0.0.0.0/0');
+            if ($ip_allowed) {
+                $run = true;
+            }
+        }
+
+        if ($run) {
+
+            $this->setOptions();
+
+            // set the last run in cron table for the correct cron id
+            $this->load->model('cron_model');
+            $this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+
+            $this->load->model('logbook_model');
+
+            $station_ids = $this->logbook_model->get_station_id_with_hrdlog_code();
+
+            if ($station_ids) {
+                foreach ($station_ids as $station) {
+                    $hrdlog_username = $station->hrdlog_username;
+                    $hrdlog_code = $station->hrdlog_code;
+                    if ($this->mass_upload_qsos($station->station_id, $hrdlog_username, $hrdlog_code)) {
+                        echo "QSOs have been uploaded to hrdlog.net.";
+                        log_message('info', 'QSOs have been uploaded to hrdlog.net.');
+                    } else {
+                        echo "No QSOs found for upload.";
+                        log_message('info', 'No QSOs found for upload.');
+                    }
+                }
+            } else {
+                echo "No station profiles with a hrdlog Code found.";
+                log_message('error', "No station profiles with a hrdlog Code found.");
+            }
+            
+        } else {
+            echo "You're not allowed to run this cron.\n";
         }
     }
 

@@ -67,32 +67,51 @@ class Qrz extends CI_Controller {
 	 * All QSOs not previously uploaded, will then be uploaded, one at a time
 	 */
 	public function upload() {
-		$this->setOptions();
 
-		// set the last run in cron table for the correct cron id
-		$this->load->model('cron_model');
-		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+		$run = false;
+        
+        if ($this->input->post('safecall') == true) {
+            $run = true;
+        } else {
+            // we want to check if the client ip is allowed to run the cronjob if we don't have a safe call
+		    $this->load->library('Network');
+		    $ip_allowed = $this->network->validate_client_ip($this->config->item('cron_ip') ?? '0.0.0.0/0');
+            if ($ip_allowed) {
+                $run = true;
+            }
+        }
 
-		$this->load->model('logbook_model');
+        if ($run) {
+			
+			$this->setOptions();
 
-		$station_ids = $this->logbook_model->get_station_id_with_qrz_api();
+			// set the last run in cron table for the correct cron id
+			$this->load->model('cron_model');
+			$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
 
-		if ($station_ids) {
-			foreach ($station_ids as $station) {
-				$qrz_api_key = $station->qrzapikey;
-				if ($station->qrzrealtime>=0) {
-					if($this->mass_upload_qsos($station->station_id, $qrz_api_key, true)) {
-						echo "QSOs have been uploaded to QRZ.com. for station_id ".$station->station_id;
-					} else{
-						echo "No QSOs found for upload and station_id ".$station->station_id;
+			$this->load->model('logbook_model');
+
+			$station_ids = $this->logbook_model->get_station_id_with_qrz_api();
+
+			if ($station_ids) {
+				foreach ($station_ids as $station) {
+					$qrz_api_key = $station->qrzapikey;
+					if ($station->qrzrealtime>=0) {
+						if($this->mass_upload_qsos($station->station_id, $qrz_api_key, true)) {
+							echo "QSOs have been uploaded to QRZ.com. for station_id ".$station->station_id;
+						} else{
+							echo "No QSOs found for upload and station_id ".$station->station_id;
+						}
+					} else {
+						echo "Station ".$station->station_id." disabled for upload to QRZ.com.";
 					}
-				} else {
-					echo "Station ".$station->station_id." disabled for upload to QRZ.com.";
 				}
+			} else {
+				echo "No station profiles with a QRZ API Key found.";
+				log_message('error', "No station profiles with a QRZ API Key found.");
 			}
 		} else {
-			echo "No station profiles with a QRZ API Key found.";
-			log_message('error', "No station profiles with a QRZ API Key found.");
+			echo "You're not allowed to run this cron.\n";
 		}
 	}
 
@@ -261,56 +280,75 @@ class Qrz extends CI_Controller {
 	} // end function
 
 	function download($user_id_to_load = null, $lastqrz = null, $show_views = false) {
-		$this->load->model('user_model');
-		$this->load->model('logbook_model');
 
-		$this->load->model('cron_model');
-		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+		$run = false;
+        
+        if ($this->input->post('safecall') == true) {
+            $run = true;
+        } else {
+            // we want to check if the client ip is allowed to run the cronjob if we don't have a safe call
+		    $this->load->library('Network');
+		    $ip_allowed = $this->network->validate_client_ip($this->config->item('cron_ip') ?? '0.0.0.0/0');
+            if ($ip_allowed) {
+                $run = true;
+            }
+        }
 
-		$api_keys = $this->logbook_model->get_qrz_apikeys();
+        if ($run) {
 
-		if ($api_keys) {
-			foreach ($api_keys as $station) {
-				if ((($user_id_to_load != null) && ($user_id_to_load != $station->user_id))) {	// Skip User if we're called with a specific user_id
-					continue;
-				} 
-				if ($lastqrz == null) {
-					$lastqrz = $this->logbook_model->qrz_last_qsl_date($station->user_id);
-				}
-				$qrz_api_key = $station->qrzapikey;
-				$result=($this->mass_download_qsos($qrz_api_key, $lastqrz));
-				if (isset($result['tableheaders'])) {
-					$data['tableheaders']=$result['tableheaders'];
-					if (isset($data['table'])) {
-						$data['table'].=$result['table'];
-					} else {
-						$data['table']=$result['table'];
+			$this->load->model('user_model');
+			$this->load->model('logbook_model');
+
+			$this->load->model('cron_model');
+			$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+
+			$api_keys = $this->logbook_model->get_qrz_apikeys();
+
+			if ($api_keys) {
+				foreach ($api_keys as $station) {
+					if ((($user_id_to_load != null) && ($user_id_to_load != $station->user_id))) {	// Skip User if we're called with a specific user_id
+						continue;
+					} 
+					if ($lastqrz == null) {
+						$lastqrz = $this->logbook_model->qrz_last_qsl_date($station->user_id);
 					}
+					$qrz_api_key = $station->qrzapikey;
+					$result=($this->mass_download_qsos($qrz_api_key, $lastqrz));
+					if (isset($result['tableheaders'])) {
+						$data['tableheaders']=$result['tableheaders'];
+						if (isset($data['table'])) {
+							$data['table'].=$result['table'];
+						} else {
+							$data['table']=$result['table'];
+						}
+					}
+				}
+			} else {
+				echo "No station profiles with a QRZ API Key found.";
+				log_message('error', "No station profiles with a QRZ API Key found.");
+			}
+
+			$this->load->model('user_model');
+			if ($this->user_model->authorize(2)) {	// Only Output results if authorized User
+				if(isset($data['tableheaders'])) {
+					if ($data['table'] != '') {
+						$data['table'].='</table>';
+					}
+					if($show_views == TRUE) {
+						$data['page_title'] = "QRZ ADIF Information";
+						$this->load->view('interface_assets/header', $data);
+						$this->load->view('qrz/analysis');
+						$this->load->view('interface_assets/footer');
+					} else {
+						return '';
+					}
+				} else {
+					echo "Downloaded QRZ report contains no matches.";
 				}
 			}
 		} else {
-			echo "No station profiles with a QRZ API Key found.";
-			log_message('error', "No station profiles with a QRZ API Key found.");
-		}
-
-		$this->load->model('user_model');
-		if ($this->user_model->authorize(2)) {	// Only Output results if authorized User
-			if(isset($data['tableheaders'])) {
-				if ($data['table'] != '') {
-					$data['table'].='</table>';
-				}
-				if($show_views == TRUE) {
-					$data['page_title'] = "QRZ ADIF Information";
-					$this->load->view('interface_assets/header', $data);
-					$this->load->view('qrz/analysis');
-					$this->load->view('interface_assets/footer');
-				} else {
-					return '';
-				}
-			} else {
-				echo "Downloaded QRZ report contains no matches.";
-			}
-		}
+            echo "You're not allowed to run this cron.\n";
+        }
 	}
 
 	function mass_download_qsos($qrz_api_key = '', $lastqrz = '1900-01-01', $trusted = false) {
