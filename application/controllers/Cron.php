@@ -52,7 +52,7 @@ class cron extends CI_Controller {
 		$ip_allowed = $this->network->validate_client_ip($this->config->item('cron_ip') ?? '0.0.0.0/0');
 
 		if ($ip_allowed) {
-			log_message('debug', 'Client IP is allowed to run the mastercron: '. $this->network->get_client_ip());
+			log_message('info', 'Client IP is allowed to run the mastercron: '. $this->network->get_client_ip());
 
 			$crons = $this->cron_model->get_crons();
 
