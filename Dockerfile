@@ -45,6 +45,7 @@ RUN set -e; \
     \
     chown -R root:www-data /var/www/html; \
     \
+    chmod -R g+rw ./application/cache/; \
     chmod -R g+rw ./application/config/; \
     chmod -R g+rw ./application/logs/; \
     chmod -R g+rw ./assets/; \
