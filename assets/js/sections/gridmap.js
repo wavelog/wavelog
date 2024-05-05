@@ -9,11 +9,13 @@ $('#band').change(function(){
 		$("#orbits").hide();
 		$("#satslabel").hide();
 		$("#orbitslabel").hide();
+        $('#propagation').val('').prop('disabled', false);
 	} else {
 		$("#sats").show();
 		$("#orbits").show();
 		$("#orbitslabel").show();
 		$("#satslabel").show();
+        $('#propagation').val('SAT').prop('disabled', true);
 	}
 });
 
@@ -62,6 +64,7 @@ function gridPlot(form, visitor=true) {
             qrz: $("#qrz").is(":checked"),
             sat: $("#sats").val(),
             orbit: $("#orbits").val(),
+            propagation: $('#propagation').val()
 		},
 		success: function (data) {
             $('.cohidden').show();
@@ -142,6 +145,7 @@ function spawnGridsquareModal(loc_4char) {
 			'Mode': $("#mode").val(),
 			'Sat': $("#sats").val(),
 			'Orbit': $("#orbits").val(),
+            'Propagation': $('#propagation').val(),
 			'Type': 'VUCC'
 		})
 		if (type == 'activated') {

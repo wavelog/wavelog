@@ -389,7 +389,7 @@ class Logbook_model extends CI_Model {
 	/*
 	 * Used to fetch QSOs from the logbook in the awards
 	 */
-	public function qso_details($searchphrase, $band, $mode, $type, $qsl, $sat = null, $orbit = null, $searchmode = null){
+	public function qso_details($searchphrase, $band, $mode, $type, $qsl, $sat = null, $orbit = null, $searchmode = null, $propagation = null){
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -446,6 +446,9 @@ class Logbook_model extends CI_Model {
 						$this->db->where("satellite.orbit = '$orbit'");
 					}
 				}
+        if ($propagation != '' && $propagation != null) {
+          $this->db->where("COL_PROP_MODE = '$propagation'");
+        }
 			}
 			break;
 		case 'CQZone':
