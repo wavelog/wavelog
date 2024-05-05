@@ -457,6 +457,15 @@
 										</select>
 										<small id="SelectDateFormatHelp" class="form-text text-muted">Show the Station Locations Quickswitch in the main menu</small>
 									</div>
+
+									<div class="mb-3">
+										<label for="utc_headermenu">UTC Time in Menu</label>
+										<select class="form-select" id="utc_headermenu" name="user_utc_headermenu">
+											<option value="false" <?php if ($user_utc_headermenu == 'false') { echo " selected =\"selected\""; } ?>>Disabled</option>
+											<option value="true" <?php if ($user_utc_headermenu == 'true') { echo " selected =\"selected\""; } ?>>Enabled</option>
+										</select>
+										<small id="SelectDateFormatHelp" class="form-text text-muted">Show the current UTC Time in the menu</small>
+									</div>
 									<?php } ?>
 								</div>
 							</div>
