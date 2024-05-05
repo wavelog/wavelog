@@ -14,6 +14,7 @@ $lang['gridsquares_activated_but_not_confirmed_is_red'] = 'Aktiviert aber nicht 
 $lang['gridsquares_this_map_does_not_include_satellite_internet_or_repeater_qsos'] = 'Diese Karte beinhaltet keine Satelliten-, Internet- oder Relais-QSOs';
 
 $lang['gridsquares_grid_squares'] = 'Planquadrate';
+$lang['gridsquares_orbit'] = "Orbit";
 $lang['gridsquares_total_count'] = 'Summe';
 $lang['gridsquares_minimum_count'] = "Minimale Anzahl";
 $lang['gridsquares_show_qsos'] = "Zeige QSO's";

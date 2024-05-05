@@ -14,6 +14,7 @@ $lang['gridsquares_this_map_does_not_include_satellite_internet_or_repeater_qsos
 
 $lang['gridsquares_grid_squares'] = 'grid square';
 $lang['gridsquares_total_count'] = 'Totalt antal';
+$lang['gridsquares_orbit'] = "Orbit";
 
 $lang['gridsquares_minimum_count'] = "Minimum Count";
 $lang['gridsquares_show_qsos'] = "Show QSO's";
