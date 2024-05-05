@@ -36,8 +36,8 @@ class Update extends CI_Controller {
 	public function dxcc_entities() {
 
         // Load the cty file
-        $this->load->library('Genfunctions');
-		$xml_data = simplexml_load_file($this->genfunctions->make_update_path("cty.xml"));
+        $this->load->library('Paths');
+		$xml_data = simplexml_load_file($this->paths->make_update_path("cty.xml"));
 
 		//$xml_data->entities->entity->count();
 
@@ -87,8 +87,8 @@ class Update extends CI_Controller {
 	public function dxcc_exceptions() {
 
         // Load the cty file
-        $this->load->library('Genfunctions');
-		$xml_data = simplexml_load_file($this->genfunctions->make_update_path("cty.xml"));
+        $this->load->library('Paths');
+		$xml_data = simplexml_load_file($this->paths->make_update_path("cty.xml"));
 
 		$count = 0;
 		$a_data=[];
@@ -129,8 +129,8 @@ class Update extends CI_Controller {
 	public function dxcc_prefixes() {
 		
 		// Load the cty file
-        $this->load->library('Genfunctions');
-		$xml_data = simplexml_load_file($this->genfunctions->make_update_path("cty.xml"));
+        $this->load->library('Paths');
+		$xml_data = simplexml_load_file($this->paths->make_update_path("cty.xml"));
 
 		$count = 0;
 		$a_data=[];
@@ -169,7 +169,7 @@ class Update extends CI_Controller {
 	// Updates the DXCC & Exceptions from the Club Log Cty.xml file.
 	public function dxcc() {
 
-        $this->load->library('Genfunctions');
+        $this->load->library('Paths');
 
         // set the last run in cron table for the correct cron id
         $this->load->model('cron_model');
@@ -201,7 +201,7 @@ class Update extends CI_Controller {
         }
         gzclose($gz);
 
-        if (file_put_contents($this->genfunctions->make_update_path("cty.xml"), $data) === FALSE) {
+        if (file_put_contents($this->paths->make_update_path("cty.xml"), $data) === FALSE) {
             $this->update_status("FAILED: Could not write to cty.xml file");
             return;
         }
@@ -224,7 +224,7 @@ class Update extends CI_Controller {
 
 	public function update_status($done=""){
 
-        $this->load->library('Genfunctions');
+        $this->load->library('Paths');
 
 		if ($done != "Downloading file"){
 			// Check that everything is done?
@@ -239,7 +239,7 @@ class Update extends CI_Controller {
 			$html = $done."....<br/>";
 		}
 
-		file_put_contents($this->genfunctions->make_update_path("status.html"), $html);
+		file_put_contents($this->paths->make_update_path("status.html"), $html);
 	}
 
 

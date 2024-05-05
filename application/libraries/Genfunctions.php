@@ -111,16 +111,4 @@ class Genfunctions
 		}
 	}
 
-	function make_update_path($path) {
-
-		$CI = & get_instance();
-
-		$path = "updates/" . $path;
-        $datadir = $CI->config->item('datadir');
-        if(!$datadir) {
-            return $path;
-        }
-        return $datadir . "/" . $path;
-	}
-
 }

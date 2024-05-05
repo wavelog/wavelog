@@ -6,11 +6,11 @@ class Update_model extends CI_Model {
     function clublog_scp() {
         // set the last run in cron table for the correct cron id
         $this->load->model('cron_model');
-        $this->load->library('Genfunctions');
+        $this->load->library('Paths');
 
         $this->cron_model->set_last_run($this->router->class . '_' . $this->router->method);
 
-        $strFile = $this->genfunctions->make_update_path("clublog_scp.txt");
+        $strFile = $this->paths->make_update_path("clublog_scp.txt");
 
         $url = "https://cdn.clublog.org/clublog.scp.gz";
         set_time_limit(300);
