@@ -467,6 +467,14 @@
 									<li><a class="dropdown-item" href="<?php echo site_url('stationsetup'); ?>" title="Manage station locations"><?php echo lang('menu_station_setup'); ?>...</a></li>
 								</ul>
 							</li>
+							<?php
+							$utc_headermenu = ($this->user_options_model->get_options('header_menu', array('option_name' => 'utc_headermenu'))->row()->option_value ?? 'false');
+							if ($utc_headermenu == 'true') { ?>
+								<li class="nav-link disabled">
+									<a id="utc_header" style="width: 70px; display: inline-block;"></a>
+								</li>
+
+							<?php } ?>
 						<?php }
 
 						// Can add extra menu items by defining them in options. The format is json.

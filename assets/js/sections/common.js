@@ -910,6 +910,24 @@ function set_active_loc_quickswitcher(new_active) {
     });
 }
 
+$(document).ready(function() {
+    if ($('#utc_header').length > 0) {
+        function getCurrentUTCTime() {
+            var now = new Date();
+            var hours = now.getUTCHours().toString().padStart(2, '0');
+            var minutes = now.getUTCMinutes().toString().padStart(2, '0');
+            var seconds = now.getUTCSeconds().toString().padStart(2, '0');
+            return hours + ':' + minutes + ':' + seconds;
+        }
+
+        function updateUTCTime() {
+            $('#utc_header').text(getCurrentUTCTime() + 'z');
+        }
+
+        setInterval(updateUTCTime, 1000);
+        updateUTCTime();
+    }
+});
 
 
 console.log("Ready to unleash your coding prowess and join the fun?\n\n" +
