@@ -6,7 +6,7 @@
 
     <?php if ($visitor == false) { ?>
         <form class="form">
-            <div class="row mb-3">
+            <div class="row mb-2">
                 <label class="col-md-1" for="band"><?php echo lang('gridsquares_band'); ?></label>
                 <div class="col-sm-2">
                     <select class="form-select form-select-sm" id="band">
@@ -36,8 +36,8 @@
                 <?php } ?>
 
                 <label class="col-md-1" for="propagation">Propagation</label>
-                <div class="col-sm-2">
-                    <select class="form-select form-select-sm" id="propagation">
+                <div class="col-sm-4">
+                    <select class="form-select form-select-sm w-auto" id="propagation">
                         <option value=""><?php echo lang('general_word_all'); ?></option>
                         <option value="AS">Aircraft Scatter</option>
                         <option value="AUR">Aurora</option>
@@ -59,9 +59,9 @@
                         <option value="TR">Tropospheric ducting</option>
                     </select>
                 </div>
-
+                    
             </div>
-            <div class="row mb-3">
+            <div class="row mb-2">
                 <label class="col-md-1" for="mode"><?php echo lang('gridsquares_mode'); ?></label>
                 <div class="col-sm-2">
                     <select class="form-select form-select-sm" id="mode">
@@ -76,8 +76,8 @@
                     </select>
                 </div>
                 <label class="col-md-1" id="orbitslabel" for="orbits" <?php if ($user_default_band != "SAT") { ?>style="display: none;" <?php } ?>><?php echo lang('gridsquares_orbit'); ?></label>
-                <div class="col-sm-2">
-                    <select class="form-select form-select-sm" id="orbits" <?php if ($user_default_band != "SAT") { ?>style="display: none;" <?php } ?>>
+                <div class="col-sm-2" id="orbits_div" <?php if ($user_default_band != "SAT") { ?>style="display: none;" <?php } ?>>
+                    <select class="form-select form-select-sm" id="orbits">
                         <option value="All"><?php echo lang('general_word_all') ?></option>
                         <?php
                         foreach ($orbits as $orbit) {
@@ -86,11 +86,9 @@
                         ?>
                     </select>
                 </div>
-            </div>
 
-            <div class="row mb-3">
-                <label class="col-md-2"><?php echo lang('gridsquares_confirmation'); ?></label>
-                <div class="col-sm-8">
+                <label class="col-md-1"><?php echo lang('gridsquares_confirmation'); ?></label>
+                <div class="col-sm-4">
                     <div>
                         <div class="form-check-inline">
                             <?php echo '<input class="form-check-input" type="checkbox" name="qsl" id="qsl"';
@@ -127,8 +125,9 @@
                     </div>
                 </div>
             </div>
-            <button id="plot" type="button" name="plot" class="btn btn-primary me-1 mb-3 ld-ext-right ld-ext-right-plot" onclick="gridPlot(this.form,<?php echo $visitor == true ? "true" : "false"; ?>)"><?php echo lang('gridsquares_button_plot'); ?><div class="ld ld-ring ld-spin"></div></button>
-            <button id="clear" type="button" name="clear" class="btn btn-primary me-1 mb-3 ld-ext-right ld-ext-right-clear" onclick="clearMarkers()"><?php echo lang('gridsquares_button_clear_markers'); ?><div class="ld ld-ring ld-spin"></div></button>
+            <button id="plot" type="button" name="plot" class="btn btn-sm btn-primary me-1 mb-1 ld-ext-right ld-ext-right-plot" onclick="gridPlot(this.form,<?php echo $visitor == true ? "true" : "false"; ?>)"><?php echo lang('gridsquares_button_plot'); ?><div class="ld ld-ring ld-spin"></div></button>
+            <button id="clear" type="button" name="clear" class="btn btn-sm btn-primary me-1 mb-1 ld-ext-right ld-ext-right-clear" onclick="clearMarkers()"><?php echo lang('gridsquares_button_clear_markers'); ?><div class="ld ld-ring ld-spin"></div></button>
+            
         </form>
     <?php } ?>
 

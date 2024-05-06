@@ -6,13 +6,13 @@ $('#band').change(function(){
 		$("#sat").val('All');
 		$("#orbits").val('All');
 		$("#sats_div").hide();
-		$("#orbits").hide();
+		$("#orbits_div").hide();
 		$("#satslabel").hide();
 		$("#orbitslabel").hide();
         $('#propagation').val('').prop('disabled', false);
 	} else {
 		$("#sats_div").show();
-		$("#orbits").show();
+		$("#orbits_div").show();
 		$("#orbitslabel").show();
 		$("#satslabel").show();
         $('#propagation').val('SAT').prop('disabled', true);
