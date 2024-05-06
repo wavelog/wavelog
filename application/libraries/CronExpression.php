@@ -69,6 +69,9 @@ class CronExpression {
         ]
     ];
 
+    /**
+     * @expression look-up table
+     */
     private const SPECIAL_EXPRESSIONS = [
         '@yearly' => '0 0 1 1 *',
         '@annually' => '0 0 1 1 *',
