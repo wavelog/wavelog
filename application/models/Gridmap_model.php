@@ -28,7 +28,9 @@ class Gridmap_model extends CI_Model {
                     $sql .= " and col_sat_name ='" . $sat . "'";
                 }
             } else {
-                $sql .= " and col_prop_mode ='" . $propagation . "'";
+                if ($propagation != '') {
+                	$sql .= " and col_prop_mode ='" . $propagation . "'";
+            	}
                 $sql .= " and col_band ='" . $band . "'";
             }
         } else {
@@ -74,7 +76,9 @@ class Gridmap_model extends CI_Model {
                     $sql .= " and col_sat_name ='" . $sat . "'";
                 }
             } else {
-                $sql .= " and col_prop_mode ='" . $propagation . "'";
+                if ($propagation != '') {
+                	$sql .= " and col_prop_mode ='" . $propagation . "'";
+            	}
                 $sql .= " and col_band ='" . $band . "'";
             }
         } else {
@@ -118,7 +122,9 @@ class Gridmap_model extends CI_Model {
                     $sql .= " and col_sat_name ='" . $sat . "'";
                 }
             } else {
-                $sql .= " and col_prop_mode ='" . $propagation . "'";
+                if ($propagation != '') {
+                	$sql .= " and col_prop_mode ='" . $propagation . "'";
+            	}
                 $sql .= " and col_band ='" . $band . "'";
             }
         } else {
@@ -163,7 +169,9 @@ class Gridmap_model extends CI_Model {
                     $sql .= " and col_sat_name ='" . $sat . "'";
                 }
             } else {
-                $sql .= " and col_prop_mode ='" . $propagation . "'";
+                if ($propagation != '') {
+                	$sql .= " and col_prop_mode ='" . $propagation . "'";
+            	}
                 $sql .= " and col_band ='" . $band . "'";
             }
         } else {
