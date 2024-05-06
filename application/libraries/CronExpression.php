@@ -5,6 +5,9 @@
  *
  * @author René Pollesch
  * edited by HB9HIL 04/2024
+ * 
+ * Source: https://github.com/poliander/cron
+ * Lic: GnuGPL 3
  */
 class CronExpression {
     /**
