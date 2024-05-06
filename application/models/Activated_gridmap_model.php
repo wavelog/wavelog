@@ -22,7 +22,7 @@ class Activated_gridmap_model extends CI_Model {
 		if ($band != 'All') {
             if ($band == 'SAT') {
                 $sql .= " and col_prop_mode ='" . $band . "'";
-                if ($sat != 'All') {
+                if ($sat != 'All' && $sat != '') {
                     $sql .= " and col_sat_name ='" . $sat . "'";
                 }
             } else {
@@ -65,7 +65,7 @@ class Activated_gridmap_model extends CI_Model {
 		if ($band != 'All') {
             if ($band == 'SAT') {
                 $sql .= " and col_prop_mode ='" . $band . "'";
-                if ($sat != 'All') {
+                if ($sat != 'All' && $sat != '') {
                     $sql .= " and col_sat_name ='" . $sat . "'";
                 }
             } else {
@@ -107,7 +107,7 @@ class Activated_gridmap_model extends CI_Model {
 		if ($band != 'All') {
             if ($band == 'SAT') {
                 $sql .= " and col_prop_mode ='" . $band . "'";
-                if ($sat != 'All') {
+                if ($sat != 'All' && $sat != '') {
                     $sql .= " and col_sat_name ='" . $sat . "'";
                 }
             } else {
@@ -150,7 +150,7 @@ class Activated_gridmap_model extends CI_Model {
 		if ($band != 'All') {
             if ($band == 'SAT') {
                 $sql .= " and col_prop_mode ='" . $band . "'";
-                if ($sat != 'All') {
+                if ($sat != 'All' && $sat != '') {
                     $sql .= " and col_sat_name ='" . $sat . "'";
                 }
             } else {

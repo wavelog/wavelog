@@ -3,15 +3,15 @@ var modalloading=false;
 $('#band').change(function(){
 	var band = $("#band option:selected").text();
 	if (band != "SAT") {
-		$("#sats").val('All');
+		$("#sat").val('All');
 		$("#orbits").val('All');
-		$("#sats").hide();
+		$("#sats_div").hide();
 		$("#orbits").hide();
 		$("#satslabel").hide();
 		$("#orbitslabel").hide();
         $('#propagation').val('').prop('disabled', false);
 	} else {
-		$("#sats").show();
+		$("#sats_div").show();
 		$("#orbits").show();
 		$("#orbitslabel").show();
 		$("#satslabel").show();
@@ -62,7 +62,7 @@ function gridPlot(form, visitor=true) {
             lotw: $("#lotw").is(":checked"),
             eqsl: $("#eqsl").is(":checked"),
             qrz: $("#qrz").is(":checked"),
-            sat: $("#sats").val(),
+            sat: $("#sat").val(),
             orbit: $("#orbits").val(),
             propagation: $('#propagation').val()
 		},
@@ -143,7 +143,7 @@ function spawnGridsquareModal(loc_4char) {
 			'Searchphrase': loc_4char,
 			'Band': $("#band").val(),
 			'Mode': $("#mode").val(),
-			'Sat': $("#sats").val(),
+			'Sat': $("#sat").val(),
 			'Orbit': $("#orbits").val(),
             'Propagation': $('#propagation').val(),
 			'Type': 'VUCC'

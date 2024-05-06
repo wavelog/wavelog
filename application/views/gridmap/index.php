@@ -23,8 +23,8 @@
 
                 <?php if (count($sats_available) != 0) { ?>
                     <label class="col-md-1" id="satslabel" for="distplot_sats" <?php if ($user_default_band != "SAT") { ?>style="display: none;" <?php } ?>><?php echo lang('gridsquares_sat'); ?></label>
-                    <div class="col-sm-2" id="sats" <?php if ($user_default_band != "SAT") { ?>style="display: none;" <?php } ?>>
-                        <select class="form-select form-select-sm">
+                    <div class="col-sm-2" id="sats_div" <?php if ($user_default_band != "SAT") { ?>style="display: none;" <?php } ?>>
+                        <select class="form-select form-select-sm" id="sat">
                             <option value="All"><?php echo lang('general_word_all') ?></option>
                             <?php foreach ($sats_available as $sat) {
                                 echo '<option value="' . $sat . '"' . '>' . $sat . '</option>' . "\n";
