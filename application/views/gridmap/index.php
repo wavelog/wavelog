@@ -54,7 +54,7 @@
                         <option value="MS">Meteor scatter</option>
                         <option value="RPT">Terrestrial or atmospheric repeater or transponder</option>
                         <option value="RS">Rain scatter</option>
-                        <option value="SAT">Satellite</option>
+                        <option value="SAT" <?php if ($user_default_band == $band) {echo 'selected="selected"';} ?>>Satellite</option>
                         <option value="TEP">Trans-equatorial</option>
                         <option value="TR">Tropospheric ducting</option>
                     </select>
