@@ -222,7 +222,7 @@ class Logbookadvanced_model extends CI_Model {
 		}
 
 		$sql = "
-			SELECT *
+			SELECT *, dxcc_entities.name AS station_country
 			FROM " . $this->config->item('table_name') . " qsos
 			INNER JOIN station_profile ON qsos.station_id=station_profile.station_id
 			LEFT OUTER JOIN satellite ON qsos.COL_SAT_NAME = satellite.name
@@ -239,10 +239,17 @@ class Logbookadvanced_model extends CI_Model {
 			ORDER BY qsos.COL_TIME_ON desc, qsos.COL_PRIMARY_KEY desc
 			LIMIT $limit
 		";
-		$data = $this->db->query($sql, $binding);
+		return $this->db->query($sql, $binding);
 
-        $results = $data->result('array');
-		return $results;
+	}
+
+	public function getSearchResult($searchCriteria) {
+		return $this->searchDb($searchCriteria);
+	}
+
+	public function getSearchResultArray($searchCriteria) {
+		$result = $this->searchDb($searchCriteria);
+		return $result->result('array');
 	}
 
   /*
@@ -250,7 +257,7 @@ class Logbookadvanced_model extends CI_Model {
    * @return array
    */
   public function searchQsos($searchCriteria) : array {
-		$results = $this->searchDb($searchCriteria);
+		$results = $this->getSearchResultArray($searchCriteria);
 
         $qsos = [];
         foreach ($results as $data) {

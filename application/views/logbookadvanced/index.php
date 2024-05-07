@@ -139,7 +139,7 @@ $options = json_decode($options);
                     </div>
                     <div hidden class="sats_dropdown mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                         <label class="form-label" for="sats"><?php echo lang('general_word_satellite'); ?></label>
-                        <select class="form-select form-select-sm" id="sats">
+                        <select class="form-select form-select-sm" id="sats" name="sats">
                             <option value="All"><?php echo lang('general_word_all'); ?></option>
                             <?php foreach($sats as $sat) {
 					echo '<option value="' . htmlentities($sat) . '"' . '>' . htmlentities($sat) . '</option>'."\n";
@@ -148,7 +148,7 @@ $options = json_decode($options);
                     </div>
                     <div hidden class="orbits_dropdown mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                         <label class="form-label" for="orbits"><?php echo lang('general_word_orbit'); ?></label>
-                        <select class="form-select form-select-sm" id="orbits">
+                        <select class="form-select form-select-sm" id="orbits" name="orbits">
                             <option value="All"><?php echo lang('general_word_all'); ?></option>
                             <?php foreach($orbits as $orbit) {
 					echo '<option value="' . htmlentities($orbit) . '"' . '>' . htmlentities($orbit) . '</option>'."\n";
@@ -157,7 +157,7 @@ $options = json_decode($options);
                     </div>
                     <div class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                         <label class="form-label" for="selectPropagation"><?php echo lang('filter_general_propagation'); ?></label>
-                        <select id="selectPropagation" name="selectPropagation" class="form-select form-select-sm">
+                        <select id="selectPropagation" class="form-select form-select-sm" name="propmode">
                             <option value=""><?php echo lang('general_word_all'); ?></option>
                             <option value="AS">Aircraft Scatter</option>
                             <option value="AUR">Aurora</option>
@@ -310,7 +310,7 @@ $options = json_decode($options);
             </div>
             <div class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                 <label for="qslvia"><?php echo lang('filter_qsl_via'); ?></label>
-                <input type="search" name="qslviainput" class="form-control form-control-sm">
+                <input type="search" name="qslvia" class="form-control form-control-sm">
             </div>
             <div class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                 <label for="qslimages"><?php echo lang('filter_qsl_images'); ?></label>
@@ -401,11 +401,13 @@ $options = json_decode($options);
         <button type="button" class="btn btn-sm btn-primary me-1" data-bs-toggle="collapse"
             data-bs-target=".actionbody"><?php echo lang('filter_actions'); ?></button>
         <label for="qsoResults" class="me-2"><?php echo lang('filter_results'); ?></label>
-        <select id="qsoResults" name="qsoResults" class="form-select form-select-sm me-2 w-auto">
+        <select id="qsoResults" name="qsoresults" class="form-select form-select-sm me-2 w-auto">
             <option value="250">250</option>
             <option value="1000">1000</option>
             <option value="2500">2500</option>
             <option value="5000">5000</option>
+			<option value="7500">7500</option>
+			<option value="10000">10000</option>
         </select>
 		<label class="me-2" for="de"><?php echo lang('general_word_location'); ?></label>
 		<select id="de" name="de" class="form-select form-select-sm me-2 w-auto">
