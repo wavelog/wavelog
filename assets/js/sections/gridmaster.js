@@ -13,8 +13,7 @@ function gridPlot(form, dxcc) {
     if(container != null){
         container._leaflet_id = null;
         container.remove();
-        $("#gridmapcontainer").append('<div id="gridsquare_map" class="map-leaflet" style="width: 100%;"></div>');
-        set_map_height();
+        $("#gridmapcontainer").append('<div id="gridsquare_map" class="map-leaflet" style="width: 100%; height: 800px"></div>');
     }
 
     ajax_url = site_url + '/awards/getGridmasterGridsjs/'+dxcc;
@@ -28,7 +27,6 @@ function gridPlot(form, dxcc) {
 
       success: function (data) {
             $('.cohidden').show();
-            set_map_height();
             $(".ld-ext-right-plot").removeClass('running');
             $(".ld-ext-right-plot").prop('disabled', false);
             $('#plot').prop("disabled", false);
@@ -153,8 +151,5 @@ function spawnGridsquareModal(loc_4char) {
 }
 
 $(document).ready(function(){
-    gridPlot(this.form, dxcc);
-    $(window).resize(function () {
-        set_map_height();
-    });
+   gridPlot(this.form, dxcc);
 })

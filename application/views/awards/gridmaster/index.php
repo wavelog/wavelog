@@ -1,4 +1,4 @@
-<div class="container gridsquare_map_form">
+<div class="container">
         <!-- Award Info Box -->
         <br>
         <div id="awardInfoButton">
@@ -23,7 +23,7 @@
 
 
 <div id="gridmapcontainer">
-	<div id="gridsquare_map" class="map-leaflet" style="width: 100%;"></div>
+	<div id="gridsquare_map" class="map-leaflet" style="width: 100%; height: 800px"></div>
 </div>
 <div class="coordinates d-flex">
         <div class="cohidden"><?php echo lang('gen_hamradio_latitude')?>: </div>

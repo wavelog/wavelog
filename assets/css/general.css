@@ -666,6 +666,11 @@ div#station_logbooks_linked_table_paginate {
 	margin-bottom: 0px;
 }
 
+#advancedmap {
+	height: calc(100vh - 280px) !important;
+	max-height: 1000px !important;
+}
+
 .lotw-cert-list table {
 	margin-bottom: 0px;
 }
@@ -835,14 +840,9 @@ label {
 }
 
 .coordinates {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-	justify-content: center;
+    justify-content: center;
     align-items: stretch;
 }
-
 .cohidden {
     display:none;
 }
