@@ -39,7 +39,8 @@ function gridPlot(form, visitor=true) {
     if(container != null){
         container._leaflet_id = null;
         container.remove();
-        $("#gridmapcontainer").append('<div id="gridsquare_map" class="map-leaflet" style="width: 100%; height: 800px"></div>');
+        $("#gridmapcontainer").append('<div id="gridsquare_map" class="map-leaflet" style="width: 100%;"></div>');
+        set_map_height();
     }
 
     if (typeof type == 'undefined') { type=''; }
@@ -68,6 +69,7 @@ function gridPlot(form, visitor=true) {
 		},
 		success: function (data) {
             $('.cohidden').show();
+            set_map_height();
             $(".ld-ext-right-plot").removeClass('running');
             $(".ld-ext-right-plot").prop('disabled', false);
             $('#plot').prop("disabled", false);
@@ -219,5 +221,8 @@ function clearMarkers() {
 }
 
 $(document).ready(function(){
-   gridPlot(this.form, visitor);
+    gridPlot(this.form, visitor);
+    $(window).resize(function () {
+        set_map_height();
+    });
 })
