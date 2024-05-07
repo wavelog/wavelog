@@ -37,7 +37,7 @@
 
                 <label class="col-md-1" for="propagation">Propagation</label>
                 <div class="col-sm-4">
-                    <select class="form-select form-select-sm w-auto" id="propagation">
+                    <select class="form-select form-select-sm w-auto" id="propagation" <?php if ($user_default_band == 'SAT') {echo 'disabled';} ?>>
                         <option value=""><?php echo lang('general_word_all'); ?></option>
                         <option value="AS">Aircraft Scatter</option>
                         <option value="AUR">Aurora</option>
