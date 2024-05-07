@@ -3,17 +3,19 @@ var modalloading=false;
 $('#band').change(function(){
 	var band = $("#band option:selected").text();
 	if (band != "SAT") {
-		$("#sats").val('All');
+		$("#sat").val('All');
 		$("#orbits").val('All');
-		$("#sats").hide();
-		$("#orbits").hide();
+		$("#sats_div").hide();
+		$("#orbits_div").hide();
 		$("#satslabel").hide();
 		$("#orbitslabel").hide();
+        $('#propagation').val('').prop('disabled', false);
 	} else {
-		$("#sats").show();
-		$("#orbits").show();
+		$("#sats_div").show();
+		$("#orbits_div").show();
 		$("#orbitslabel").show();
 		$("#satslabel").show();
+        $('#propagation').val('SAT').prop('disabled', true);
 	}
 });
 
@@ -60,8 +62,9 @@ function gridPlot(form, visitor=true) {
             lotw: $("#lotw").is(":checked"),
             eqsl: $("#eqsl").is(":checked"),
             qrz: $("#qrz").is(":checked"),
-            sat: $("#sats").val(),
+            sat: $("#sat").val(),
             orbit: $("#orbits").val(),
+            propagation: $('#propagation').val()
 		},
 		success: function (data) {
             $('.cohidden').show();
@@ -140,8 +143,9 @@ function spawnGridsquareModal(loc_4char) {
 			'Searchphrase': loc_4char,
 			'Band': $("#band").val(),
 			'Mode': $("#mode").val(),
-			'Sat': $("#sats").val(),
+			'Sat': $("#sat").val(),
 			'Orbit': $("#orbits").val(),
+            'Propagation': $('#propagation').val(),
 			'Type': 'VUCC'
 		})
 		if (type == 'activated') {
