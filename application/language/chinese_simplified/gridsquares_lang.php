@@ -14,6 +14,7 @@ $lang['gridsquares_this_map_does_not_include_satellite_internet_or_repeater_qsos
 
 $lang['gridsquares_grid_squares'] = '网格';
 $lang['gridsquares_total_count'] = '总数';
+$lang['gridsquares_orbit'] = "Orbit";
 
 $lang['gridsquares_minimum_count'] = "最低数量";
 $lang['gridsquares_show_qsos'] = "显示 QSO";

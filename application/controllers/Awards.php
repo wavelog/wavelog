@@ -419,10 +419,11 @@ class Awards extends CI_Controller {
 		$mode = str_replace('"', "", $this->security->xss_clean($this->input->post("Mode")));
 		$sat = str_replace('"', "", $this->security->xss_clean($this->input->post("Sat")));
 		$orbit = str_replace('"', "", $this->security->xss_clean($this->input->post("Orbit")));
+        $propagation = str_replace('"', "", $this->security->xss_clean($this->input->post("Propagation")) ?? '');
 		$type = $this->security->xss_clean($this->input->post('Type'));
 		$qsl = $this->input->post('QSL') == null ? '' : $this->security->xss_clean($this->input->post('QSL'));
 		$searchmode = $this->input->post('searchmode') == null ? '' : $this->security->xss_clean($this->input->post('searchmode'));
-		$data['results'] = $this->logbook_model->qso_details($searchphrase, $band, $mode, $type, $qsl, $sat, $orbit, $searchmode);
+		$data['results'] = $this->logbook_model->qso_details($searchphrase, $band, $mode, $type, $qsl, $sat, $orbit, $searchmode, $propagation);
 
 		// This is done because we have two different ways to get dxcc info in Wavelog. Once is using the name (in awards), and the other one is using the ADIF DXCC.
 		// We replace the values to make it look a bit nicer
@@ -457,6 +458,9 @@ class Awards extends CI_Controller {
 				$data['filter'] .= " and orbit type ".$orbit;
 			}
 		}
+        if ($propagation != '' && $propagation != null) {
+            $data['filter'] .= " and propagation ".$propagation;
+        }
 		if ($mode != null && strtolower($mode) != 'all') {
 			$data['filter'] .= " and mode ".$mode;
 		}
