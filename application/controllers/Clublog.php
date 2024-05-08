@@ -72,6 +72,7 @@ class Clublog extends CI_Controller {
 							$file_info = get_file_info('uploads/clublog'.$ranid.$station_row->station_id.'.adi');
 
 							// initialise the curl request
+							// New: https://clublog.org/getmatches.php?api=[key]&email=$clean_username&password=$clean_password&callsign=$station_row->station_callsign&startyear=2024&startmonth=4&startday=17
 							$request = curl_init('https://clublog.org/putlogs.php');
 
 							if($this->config->item('directory') != "") {
