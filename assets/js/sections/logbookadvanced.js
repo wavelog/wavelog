@@ -294,10 +294,10 @@ $(document).ready(function () {
 				iota: this.iota.value,
 				operator: this.operator.value,
 				dxcc: this.dxcc.value,
-				propmode: this.selectPropagation.value,
+				propmode: this.propmode.value,
 				gridsquare: this.gridsquare.value,
 				state: this.state.value,
-				qsoresults: this.qsoResults.value,
+				qsoresults: this.qsoresults.value,
 				sats: this.sats.value,
 				orbits: this.orbits.value,
 				cqzone: this.cqzone.value,
@@ -306,7 +306,7 @@ $(document).ready(function () {
 				lotwReceived: this.lotwReceived.value,
 				eqslSent: this.eqslSent.value,
 				eqslReceived: this.eqslReceived.value,
-				qslvia: $('[name="qslviainput"]').val(),
+				qslvia: $('[name="qslvia"]').val(),
 				sota: this.sota.value,
 				pota: this.pota.value,
 				wwff: this.wwff.value,
@@ -421,10 +421,7 @@ $(document).ready(function () {
 
 	$('#exportAdif').click(function (event) {
 		var elements = $('#qsoList tbody input:checked');
-		var nElements = elements.length;
-		if (nElements == 0) {
-			return;
-		}
+
 		$('#exportAdif').prop("disabled", true);
 		var id_list=[];
 		elements.each(function() {
@@ -432,26 +429,39 @@ $(document).ready(function () {
 			id_list.push(id);
 			unselectQsoID(id);
 		});
+
 		xhttp = new XMLHttpRequest();
-		xhttp.onreadystatechange = function() {
-			var a;
-			if (xhttp.readyState === 4 && xhttp.status === 200) {
-				// Trick for making downloadable link
-				a = document.createElement('a');
-				a.href = window.URL.createObjectURL(xhttp.response);
-				// Give filename you wish to download
-				a.download = "logbook_export.adi";
-				a.style.display = 'none';
-				document.body.appendChild(a);
-				a.click();
-			}
-		};
-		// Post data to URL which handles post request
-		xhttp.open("POST", site_url+'/logbookadvanced/export_to_adif', true);
-		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		// You should set responseType as blob for binary responses
-		xhttp.responseType = 'blob';
-		xhttp.send("id=" + JSON.stringify(id_list, null, 2)+"&sortorder=" +$('.table').DataTable().order());
+			xhttp.onreadystatechange = function() {
+				var a;
+				if (xhttp.readyState === 4 && xhttp.status === 200) {
+					// Trick for making downloadable link
+					a = document.createElement('a');
+					a.href = window.URL.createObjectURL(xhttp.response);
+					// Give filename you wish to download
+					a.download = "logbook_export.adi";
+					a.style.display = 'none';
+					document.body.appendChild(a);
+					a.click();
+				}
+			};
+
+		if (id_list.length > 0) {
+			// Post data to URL which handles post request
+			xhttp.open("POST", site_url+'/logbookadvanced/export_to_adif', true);
+			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			// You should set responseType as blob for binary responses
+			xhttp.responseType = 'blob';
+			xhttp.send("id=" + JSON.stringify(id_list, null, 2)+"&sortorder=" +$('.table').DataTable().order());
+		} else {
+
+			// Post data to URL which handles post request
+			xhttp.open("POST", site_url+'/logbookadvanced/export_to_adif_params', true);
+			xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+			// You should set responseType as blob for binary responses
+
+			xhttp.responseType = 'blob';
+			xhttp.send($('#searchForm').serialize());
+		}
 		$('#exportAdif').prop("disabled", false);
 	});
 
