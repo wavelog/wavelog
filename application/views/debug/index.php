@@ -68,7 +68,7 @@
                             <td>PHP Version</td>
                             <td>
                               <?php
-                                 if (version_compare(phpversion(), '8', '>')) {
+                                 if (version_compare(PHP_VERSION, '8.0.0') >= 0) {
                                     echo phpversion()." <span class=\"badge text-bg-success\">OK</span>";
                                  } else {
                                     echo phpversion()." <span data-bs-toggle=\"tooltip\" title=\"Please update!\" class=\"badge text-bg-warning\">Deprecated</span>";
