@@ -472,7 +472,7 @@
 						$utc_headermenu = ($this->user_options_model->get_options('header_menu', array('option_name' => 'utc_headermenu'))->row()->option_value ?? 'false');
 						if ($utc_headermenu == 'true') { 
 						?>
-							<li class="nav-link disabled">
+							<li class="nav-link disabled" id="utc_header_li">
 								<a id="utc_header" style="width: 70px; display: inline-block;"></a>
 							</li>
 
