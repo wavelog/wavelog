@@ -208,7 +208,11 @@ class Logbookadvanced_model extends CI_Model {
 			$where = "AND $where";
 		}
 
-		$limit = $searchCriteria['qsoresults'];
+		$limit = '';
+
+		if ($searchCriteria['qsoresults'] != 'All') {
+			$limit = 'limit ' . $searchCriteria['qsoresults'];
+		}
 
 		$where2 = '';
 
@@ -237,7 +241,7 @@ class Logbookadvanced_model extends CI_Model {
 			$where
 			$where2
 			ORDER BY qsos.COL_TIME_ON desc, qsos.COL_PRIMARY_KEY desc
-			LIMIT $limit
+			$limit
 		";
 		return $this->db->query($sql, $binding);
 
