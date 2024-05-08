@@ -406,8 +406,6 @@ $options = json_decode($options);
             <option value="1000">1000</option>
             <option value="2500">2500</option>
             <option value="5000">5000</option>
-			<option value="7500">7500</option>
-			<option value="10000">10000</option>
         </select>
 		<label class="me-2" for="de"><?php echo lang('general_word_location'); ?></label>
 		<select id="de" name="de" class="form-select form-select-sm me-2 w-auto">
