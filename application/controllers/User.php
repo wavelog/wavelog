@@ -275,7 +275,11 @@ class User extends CI_Controller {
 			if($this->input->post('user_password', true)) {
 				$data['user_password'] = $this->input->post('user_password',true);
 			} else {
-				$data['user_password'] = $q->user_password;
+				if ($q->user_password !== '' && $q->user_password !== null) {
+					$data['user_password'] = '**********';
+				} else {
+					$data['user_password'] = '';
+				}
 			}
 
 			if($this->input->post('user_type', true)) {
@@ -341,13 +345,21 @@ class User extends CI_Controller {
 			if($this->input->post('user_clublog_password')) {
 				$data['user_clublog_password'] = $this->input->post('user_clublog_password', true);
 			} else {
-				$data['user_clublog_password'] = $q->user_clublog_password;
+				if ($q->user_clublog_password !== '' && $q->user_clublog_password !== null) {
+					$data['user_clublog_password'] = '**********';
+				} else {
+					$data['user_clublog_password'] = '';
+				}
 			}
 
 			if($this->input->post('user_lotw_password')) {
 				$data['user_lotw_password'] = $this->input->post('user_lotw_password', true);
 			} else {
-				$data['user_lotw_password'] = $q->user_lotw_password;
+				if ($q->user_lotw_password !== '' && $q->user_lotw_password !== null) {
+					$data['user_lotw_password'] = '**********';
+				} else {
+					$data['user_lotw_password'] = '';
+				}
 			}
 
 			if($this->input->post('user_eqsl_name')) {
@@ -359,7 +371,11 @@ class User extends CI_Controller {
 			if($this->input->post('user_eqsl_password')) {
 				$data['user_eqsl_password'] = $this->input->post('user_eqsl_password', true);
 			} else {
-				$data['user_eqsl_password'] = $q->user_eqsl_password;
+				if ($q->user_eqsl_password !== '' && $q->user_eqsl_password !== null) {
+					$data['user_eqsl_password'] = '**********';
+				} else {
+					$data['user_eqsl_password'] = '';
+				}
 			}
 
 			if($this->input->post('user_measurement_base')) {
