@@ -68,10 +68,10 @@
                             <td>PHP Version</td>
                             <td>
                               <?php
-                                 if (version_compare(phpversion(), '8', '<')) {
-                                    echo "<span data-bs-toggle=\"tooltip\" title=\"Deprecated. Please update!\" class=\"badge text-bg-warning\">".phpversion()."</span>";
+                                 if (version_compare(phpversion(), '8', '>')) {
+                                    echo phpversion()." <span class=\"badge text-bg-success\">OK</span>";
                                  } else {
-                                    echo "<span class=\"badge text-bg-success\">".phpversion()."</span>";
+                                    echo phpversion()." <span data-bs-toggle=\"tooltip\" title=\"Please update!\" class=\"badge text-bg-warning\">Deprecated</span>";
                                  }
                               ?>
                            </td>
