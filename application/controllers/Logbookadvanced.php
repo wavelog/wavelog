@@ -201,6 +201,17 @@ class Logbookadvanced extends CI_Controller {
 		$this->load->view('adif/data/exportall', $data);
 	}
 
+	function export_to_adif_params() {
+		$this->load->model('logbookadvanced_model');
+
+		$postdata = $this->input->post();
+		$postdata['user_id'] = (int)$this->session->userdata('user_id');
+		$postdata['qsoresults'] = 'All';
+		$data['qsos'] = $this->logbookadvanced_model->getSearchResult($postdata);
+
+		$this->load->view('adif/data/exportall', $data);
+	}
+
 	function update_qsl() {
 		$this->load->model('logbookadvanced_model');
 
@@ -306,7 +317,7 @@ class Logbookadvanced extends CI_Controller {
 			'ids' => xss_clean($this->input->post('ids'))
 		);
 
-		$result = $this->logbookadvanced_model->searchDb($searchCriteria);
+		$result = $this->logbookadvanced_model->getSearchResultArray($searchCriteria);
 		$this->prepareMappedQSos($result);
 	}
 
@@ -347,7 +358,7 @@ class Logbookadvanced extends CI_Controller {
 			'qslimages' => xss_clean($this->input->post('qslimages')),
 		);
 
-		$result = $this->logbookadvanced_model->searchDb($searchCriteria);
+		$result = $this->logbookadvanced_model->getSearchResultArray($searchCriteria);
 		$this->prepareMappedQSos($result);
 	}
 

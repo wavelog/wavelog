@@ -535,65 +535,65 @@ function mapQsos(form) {
 		$("#lba_div").append('<div id="advancedmap" class="map-leaflet"></div>');
 	}
 
-	if (id_list.length > 0) {
-		$.ajax({
-			url: base_url + 'index.php/logbookadvanced/mapSelectedQsos',
-			type: 'post',
-			data: {
-				ids: id_list,
-				de: form.de.value
-			},
-			success: function(data) {
-				loadMapOptions(data);
-			},
-			error: function() {
-				$('#mapButton').prop("disabled", false).removeClass("running");
-			},
-		});
-	} else {
-		$.ajax({
-			url: base_url + 'index.php/logbookadvanced/mapQsos',
-			type: 'post',
-			data: {
-				dateFrom: form.dateFrom.value,
-				dateTo: form.dateTo.value,
-				de: form.de.value,
-				dx: form.dx.value,
-				mode: form.mode.value,
-				band: form.band.value,
-				qslSent: form.qslSent.value,
-				qslReceived: form.qslReceived.value,
-				qslSentMethod: this.qslSentMethod.value,
-				qslReceivedMethod: this.qslReceivedMethod.value,
-				iota: form.iota.value,
-				dxcc: form.dxcc.value,
-				propmode: form.selectPropagation.value,
-				gridsquare: form.gridsquare.value,
-				state: form.state.value,
-				qsoresults: form.qsoResults.value,
-				sats: form.sats.value,
-				orbits: form.orbits.value,
-				cqzone: form.cqzone.value,
-				lotwSent: form.lotwSent.value,
-				lotwReceived: form.lotwReceived.value,
-				eqslSent: form.eqslSent.value,
-				eqslReceived: form.eqslReceived.value,
-				qslvia: $('[name="qslviainput"]').val(),
-				sota: form.sota.value,
-				pota: form.pota.value,
-				operator: form.operator.value,
-				wwff: form.wwff.value,
-				qslimages: form.qslimages.value,
-			},
-			success: function(data) {
-				loadMapOptions(data);
-			},
-			error: function() {
-				$('#mapButton').prop("disabled", false).removeClass("running");
-			},
-		});
-	}
-};
+		if (id_list.length > 0) {
+			$.ajax({
+				url: base_url + 'index.php/logbookadvanced/mapSelectedQsos',
+				type: 'post',
+				data: {
+					ids: id_list,
+					de: form.de.value
+				},
+				success: function(data) {
+					loadMapOptions(data);
+				},
+				error: function() {
+					$('#mapButton').prop("disabled", false).removeClass("running");
+				},
+			});
+		} else {
+			$.ajax({
+				url: base_url + 'index.php/logbookadvanced/mapQsos',
+				type: 'post',
+				data: {
+					dateFrom: form.dateFrom.value,
+					dateTo: form.dateTo.value,
+					de: form.de.value,
+					dx: form.dx.value,
+					mode: form.mode.value,
+					band: form.band.value,
+					qslSent: form.qslSent.value,
+					qslReceived: form.qslReceived.value,
+					qslSentMethod: this.qslSentMethod.value,
+					qslReceivedMethod: this.qslReceivedMethod.value,
+					iota: form.iota.value,
+					dxcc: form.dxcc.value,
+					propmode: form.propmode.value,
+					gridsquare: form.gridsquare.value,
+					state: form.state.value,
+					qsoresults: form.qsoresults.value,
+					sats: form.sats.value,
+					orbits: form.orbits.value,
+					cqzone: form.cqzone.value,
+					lotwSent: form.lotwSent.value,
+					lotwReceived: form.lotwReceived.value,
+					eqslSent: form.eqslSent.value,
+					eqslReceived: form.eqslReceived.value,
+					qslvia: $('[name="qslvia"]').val(),
+					sota: form.sota.value,
+					pota: form.pota.value,
+					operator: form.operator.value,
+					wwff: form.wwff.value,
+					qslimages: form.qslimages.value,
+				},
+				success: function(data) {
+					loadMapOptions(data);
+				},
+				error: function() {
+					$('#mapButton').prop("disabled", false).removeClass("running");
+				},
+			});
+		}
+	};
 
 function mapGlobeQsos(form) {
 	var container = L.DomUtil.get('advancedmap');
@@ -635,47 +635,47 @@ function mapGlobeQsos(form) {
 			},
 			error: function() {
 
-			},
-		});
-	} else {
-		$.ajax({
-			url: base_url + 'index.php/logbookadvanced/mapQsos',
-			type: 'post',
-			data: {
-				dateFrom: form.dateFrom.value,
-				dateTo: form.dateTo.value,
-				de: form.de.value,
-				dx: form.dx.value,
-				mode: form.mode.value,
-				band: form.band.value,
-				qslSent: form.qslSent.value,
-				qslReceived: form.qslReceived.value,
-				qslSentMethod: this.qslSentMethod.value,
-				qslReceivedMethod: this.qslReceivedMethod.value,
-				iota: form.iota.value,
-				dxcc: form.dxcc.value,
-				propmode: form.selectPropagation.value,
-				gridsquare: form.gridsquare.value,
-				state: form.state.value,
-				qsoresults: form.qsoResults.value,
-				sats: form.sats.value,
-				orbits: form.orbits.value,
-				cqzone: form.cqzone.value,
-				lotwSent: form.lotwSent.value,
-				lotwReceived: form.lotwReceived.value,
-				eqslSent: form.eqslSent.value,
-				eqslReceived: form.eqslReceived.value,
-				qslvia: $('[name="qslviainput"]').val(),
-				sota: form.sota.value,
-				pota: form.pota.value,
-				operator: form.operator.value,
-				wwff: form.wwff.value,
-				qslimages: form.qslimages.value,
-			},
-			success: function(data) {
-				globemap(data);
-			},
-			error: function() {
+				},
+			});
+		} else {
+			$.ajax({
+				url: base_url + 'index.php/logbookadvanced/mapQsos',
+				type: 'post',
+				data: {
+					dateFrom: form.dateFrom.value,
+					dateTo: form.dateTo.value,
+					de: form.de.value,
+					dx: form.dx.value,
+					mode: form.mode.value,
+					band: form.band.value,
+					qslSent: form.qslSent.value,
+					qslReceived: form.qslReceived.value,
+					qslSentMethod: this.qslSentMethod.value,
+					qslReceivedMethod: this.qslReceivedMethod.value,
+					iota: form.iota.value,
+					dxcc: form.dxcc.value,
+					propmode: form.propmode.value,
+					gridsquare: form.gridsquare.value,
+					state: form.state.value,
+					qsoresults: form.qsoresults.value,
+					sats: form.sats.value,
+					orbits: form.orbits.value,
+					cqzone: form.cqzone.value,
+					lotwSent: form.lotwSent.value,
+					lotwReceived: form.lotwReceived.value,
+					eqslSent: form.eqslSent.value,
+					eqslReceived: form.eqslReceived.value,
+					qslvia: $('[name="qslvia"]').val(),
+					sota: form.sota.value,
+					pota: form.pota.value,
+					operator: form.operator.value,
+					wwff: form.wwff.value,
+					qslimages: form.qslimages.value,
+				},
+				success: function(data) {
+					globemap(data);
+				},
+				error: function() {
 
 			},
 		});
