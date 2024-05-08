@@ -66,7 +66,15 @@
 
                         <tr>
                             <td>PHP Version</td>
-                            <td><?php echo phpversion(); ?></td>
+                            <td>
+                              <?php
+                                 if (version_compare(phpversion(), '8', '<')) {
+                                    echo "<span class=\"badge text-bg-warning\">".phpversion()."</span>";
+                                 } else {
+                                    echo "<span class=\"badge text-bg-success\">".phpversion()."</span>";
+                                 }
+                              ?>
+                           </td>
                         </tr>
 
                         <tr>
