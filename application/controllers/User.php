@@ -534,7 +534,7 @@ class User extends CI_Controller {
 			if($this->input->post('user_hamsat_key', true)) {
 				$data['user_hamsat_key'] = $this->input->post('user_hamsat_key', true);
 			} else {
-				$hkey_opt=$this->user_options_model->get_options('hamsat',array('option_name'=>'hamsat_key','option_key'=>'api'))->result();
+				$hkey_opt=$this->user_options_model->get_options('hamsat',array('option_name'=>'hamsat_key','option_key'=>'api'), $this->uri->segment(3))->result();
 				if (count($hkey_opt)>0) {
 					$data['user_hamsat_key'] = $hkey_opt[0]->option_value;
 				} else {
@@ -545,7 +545,7 @@ class User extends CI_Controller {
 			if($this->input->post('user_hamsat_workable_only')) {
 				$data['user_hamsat_workable_only'] = $this->input->post('user_hamsat_workable_only', false);
 			} else {
-				$hkey_opt=$this->user_options_model->get_options('hamsat',array('option_name'=>'hamsat_key','option_key'=>'workable'))->result();
+				$hkey_opt=$this->user_options_model->get_options('hamsat',array('option_name'=>'hamsat_key','option_key'=>'workable'), $this->uri->segment(3))->result();
 				if (count($hkey_opt)>0) {
 					$data['user_hamsat_workable_only'] = $hkey_opt[0]->option_value;
 				}
@@ -554,7 +554,7 @@ class User extends CI_Controller {
 			if($this->input->post('user_iota_to_qso_tab')) {
 				$data['user_iota_to_qso_tab'] = $this->input->post('user_iota_to_qso_tab', false);
 			} else {
-				$qkey_opt=$this->user_options_model->get_options('qso_tab',array('option_name'=>'iota','option_key'=>'show'))->result();
+				$qkey_opt=$this->user_options_model->get_options('qso_tab',array('option_name'=>'iota','option_key'=>'show'), $this->uri->segment(3))->result();
 				if (count($qkey_opt)>0) {
 					$data['user_iota_to_qso_tab'] = $qkey_opt[0]->option_value;
 				}
@@ -563,7 +563,7 @@ class User extends CI_Controller {
 			if($this->input->post('user_sota_to_qso_tab')) {
 				$data['user_sota_to_qso_tab'] = $this->input->post('user_sota_to_qso_tab', false);
 			} else {
-				$qkey_opt=$this->user_options_model->get_options('qso_tab',array('option_name'=>'sota','option_key'=>'show'))->result();
+				$qkey_opt=$this->user_options_model->get_options('qso_tab',array('option_name'=>'sota','option_key'=>'show'), $this->uri->segment(3))->result();
 				if (count($qkey_opt)>0) {
 					$data['user_sota_to_qso_tab'] = $qkey_opt[0]->option_value;
 				}
@@ -572,7 +572,7 @@ class User extends CI_Controller {
 			if($this->input->post('user_wwff_to_qso_tab')) {
 				$data['user_wwff_to_qso_tab'] = $this->input->post('user_wwff_to_qso_tab', false);
 			} else {
-				$qkey_opt=$this->user_options_model->get_options('qso_tab',array('option_name'=>'wwff','option_key'=>'show'))->result();
+				$qkey_opt=$this->user_options_model->get_options('qso_tab',array('option_name'=>'wwff','option_key'=>'show'), $this->uri->segment(3))->result();
 				if (count($qkey_opt)>0) {
 					$data['user_wwff_to_qso_tab'] = $qkey_opt[0]->option_value;
 				}
@@ -581,7 +581,7 @@ class User extends CI_Controller {
 			if($this->input->post('user_pota_to_qso_tab')) {
 				$data['user_pota_to_qso_tab'] = $this->input->post('user_pota_to_qso_tab', false);
 			} else {
-				$qkey_opt=$this->user_options_model->get_options('qso_tab',array('option_name'=>'pota','option_key'=>'show'))->result();
+				$qkey_opt=$this->user_options_model->get_options('qso_tab',array('option_name'=>'pota','option_key'=>'show'), $this->uri->segment(3))->result();
 				if (count($qkey_opt)>0) {
 					$data['user_pota_to_qso_tab'] = $qkey_opt[0]->option_value;
 				}
@@ -590,7 +590,7 @@ class User extends CI_Controller {
 			if($this->input->post('user_sig_to_qso_tab')) {
 				$data['user_sig_to_qso_tab'] = $this->input->post('user_sig_to_qso_tab', false);
 			} else {
-				$qkey_opt=$this->user_options_model->get_options('qso_tab',array('option_name'=>'sig','option_key'=>'show'))->result();
+				$qkey_opt=$this->user_options_model->get_options('qso_tab',array('option_name'=>'sig','option_key'=>'show'), $this->uri->segment(3))->result();
 				if (count($qkey_opt)>0) {
 					$data['user_sig_to_qso_tab'] = $qkey_opt[0]->option_value;
 				}
@@ -599,7 +599,7 @@ class User extends CI_Controller {
 			if($this->input->post('user_dok_to_qso_tab')) {
 				$data['user_dok_to_qso_tab'] = $this->input->post('user_dok_to_qso_tab', false);
 			} else {
-				$qkey_opt=$this->user_options_model->get_options('qso_tab',array('option_name'=>'dok','option_key'=>'show'))->result();
+				$qkey_opt=$this->user_options_model->get_options('qso_tab',array('option_name'=>'dok','option_key'=>'show'), $this->uri->segment(3))->result();
 				if (count($qkey_opt)>0) {
 					$data['user_dok_to_qso_tab'] = $qkey_opt[0]->option_value;
 				}
@@ -636,8 +636,8 @@ class User extends CI_Controller {
 				'qso'=>array('fas fa-broadcast-tower', 'fas fa-user', 'fas fa-dot-circle' ),
 				'qsoconfirm'=>array('0', 'fas fa-broadcast-tower', 'fas fa-user', 'fas fa-dot-circle', 'fas fa-check-circle' ));
 
-			$data['user_locations_quickswitch'] = ($this->user_options_model->get_options('header_menu', array('option_name'=>'locations_quickswitch'))->row()->option_value ?? 'false');
-			$data['user_utc_headermenu'] = ($this->user_options_model->get_options('header_menu', array('option_name'=>'utc_headermenu'))->row()->option_value ?? 'false');
+			$data['user_locations_quickswitch'] = ($this->user_options_model->get_options('header_menu', array('option_name'=>'locations_quickswitch'), $this->uri->segment(3))->row()->option_value ?? 'false');
+			$data['user_utc_headermenu'] = ($this->user_options_model->get_options('header_menu', array('option_name'=>'utc_headermenu'), $this->uri->segment(3))->row()->option_value ?? 'false');
 							
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('user/edit', $data);
