@@ -73,7 +73,6 @@ $lang['account_upload_status_of_sat_qsos_to'] = "Envoi des statuts des QSO par S
 $lang['account_logbook_of_the_world'] = "Logbook of the World";
 $lang['account_logbook_of_the_world_lotw_username'] = "Utilisateur";
 $lang['account_logbook_of_the_world_lotw_password'] = "Mot de passe";
-$lang['account_leave_blank_to_keep_existing_password'] = "(Laisser vide pour conserver le mot de passe existant)";
 
 $lang['account_clublog'] = "Club Log";
 $lang['account_clublog_email_callsign'] = "Email/Callsign";

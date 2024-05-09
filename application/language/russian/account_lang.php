@@ -75,7 +75,6 @@ $lang['account_upload_status_of_sat_qsos_to'] = 'Загружать статус
 $lang['account_logbook_of_the_world'] = 'Logbook of the World';
 $lang['account_logbook_of_the_world_lotw_username'] = 'Логин';
 $lang['account_logbook_of_the_world_lotw_password'] = 'Пароль';
-$lang['account_leave_blank_to_keep_existing_password'] = 'Оставьте пустым для сохранения текущего пароля';
 
 $lang['account_clublog'] = 'Club Log';
 $lang['account_clublog_email_callsign'] = 'Емэйл/позывной';
