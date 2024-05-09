@@ -36,7 +36,7 @@ class Clublog extends CI_Controller {
 		}
 	}
 
-	// Download ADIF to Clublog
+	// Download ADIF from Clublog
 	public function download() {
 		$this->load->model('clublog_model');
 
@@ -72,8 +72,6 @@ class Clublog extends CI_Controller {
 			foreach ($station_profiles->result() as $station_row) {
 				if($station_row->qso_total > 0) {
 					$lastrec=$this->clublog_model->clublog_last_qsl_rcvd_date($station_row->station_callsign);
-					// $string = $this->load->view('adif/data/clublog_down', $data, TRUE);
-
 					$url='https://clublog.org/getmatches.php?api=608df94896cb9c5421ae748235492b43815610c9&email='.$clean_username.'&password='.$clean_password.'&callsign='.$station_row->station_callsign.'&startyear='.substr($lastrec,0,4).'&startmonth='.substr($lastrec,4,2).'&startday='.substr($lastrec,6,2);
 					$request = curl_init($url);
 
@@ -86,7 +84,11 @@ class Clublog extends CI_Controller {
 					if(curl_errno($request)) {
 						echo curl_error($request);
 					} else {
-						log_message("Error",$response);
+						$cl_qsls=json_decode($response);
+						var_dump($cl_qsls);
+						// todo: iterate
+						// todo: transform plain band to real_band // no way to do that, so fallback to "like". e.g.: "6" was provided by Clublog. Do they mean 6m or 6cm?
+    						$this->logbook_model->clublog_update($oneqsl[2], $onesql[0], $onesql[3], 'Y', $station_row->station_callsign);
 					}
 					
 				}
