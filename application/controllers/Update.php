@@ -31,26 +31,13 @@ class Update extends CI_Controller {
 	}
 
     /*
-     * Create a path to a file in the updates folder, respecting the datadir
-     * configuration option.
-     */
-    private function make_update_path($path) {
-        $path = "updates/" . $path;
-        $datadir = $this->config->item('datadir');
-        if(!$datadir) {
-            return $path;
-        }
-        return $datadir . "/" . $path;
-    }
-
-    /*
      * Load the dxcc entities
      */
 	public function dxcc_entities() {
-		// Load Database connectors
 
-		// Load the cty file
-		$xml_data = simplexml_load_file($this->make_update_path("cty.xml"));
+        // Load the cty file
+        $this->load->library('Paths');
+		$xml_data = simplexml_load_file($this->paths->make_update_path("cty.xml"));
 
 		//$xml_data->entities->entity->count();
 
@@ -98,9 +85,10 @@ class Update extends CI_Controller {
      * Load the dxcc exceptions
      */
 	public function dxcc_exceptions() {
-		// Load Database connectors
-		// Load the cty file
-		$xml_data = simplexml_load_file($this->make_update_path("cty.xml"));
+
+        // Load the cty file
+        $this->load->library('Paths');
+		$xml_data = simplexml_load_file($this->paths->make_update_path("cty.xml"));
 
 		$count = 0;
 		$a_data=[];
@@ -139,9 +127,10 @@ class Update extends CI_Controller {
      * Load the dxcc prefixes
      */
 	public function dxcc_prefixes() {
-		// Load Database connectors
+		
 		// Load the cty file
-		$xml_data = simplexml_load_file($this->make_update_path("cty.xml"));
+        $this->load->library('Paths');
+		$xml_data = simplexml_load_file($this->paths->make_update_path("cty.xml"));
 
 		$count = 0;
 		$a_data=[];
@@ -180,58 +169,62 @@ class Update extends CI_Controller {
 	// Updates the DXCC & Exceptions from the Club Log Cty.xml file.
 	public function dxcc() {
 
+        $this->load->library('Paths');
+
         // set the last run in cron table for the correct cron id
         $this->load->model('cron_model');
-		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+        $this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
 
-	    $this->update_status("Downloading file");
+        $this->update_status("Downloading file");
 
-	    // give it 10 minutes...
-	    set_time_limit(600);
+        // give it 10 minutes...
+        set_time_limit(600);
 
-		// Load Migration data if any.
-		$this->load->library('migration');
-		$this->fix_migrations();
-		$this->migration->latest();
+        // Load Migration data if any.
+        $this->load->library('migration');
+        $this->fix_migrations();
+        $this->migration->latest();
 
-		// Download latest file.
-		$url = "https://cdn.clublog.org/cty.php?api=608df94896cb9c5421ae748235492b43815610c9";
+        // Download latest file.
+        $url = "https://cdn.clublog.org/cty.php?api=608df94896cb9c5421ae748235492b43815610c9";
 
-		$gz = gzopen($url, 'r');
-		if ($gz === FALSE) {
-			$this->update_status("FAILED: Could not download from clublog.org");
-			log_message('error', 'FAILED: Could not download exceptions from clublog.org');
-			return;
-		}
+        $gz = gzopen($url, 'r');
+        if ($gz === FALSE) {
+            $this->update_status("FAILED: Could not download from clublog.org");
+            log_message('error', 'FAILED: Could not download exceptions from clublog.org');
+            return;
+        }
 
-		$data = "";
-		while (!gzeof($gz)) {
-		  $data .= gzgetc($gz);
-		}
-		gzclose($gz);
+        $data = "";
+        while (!gzeof($gz)) {
+        $data .= gzgetc($gz);
+        }
+        gzclose($gz);
 
-		if (file_put_contents($this->make_update_path("cty.xml"), $data) === FALSE) {
-			$this->update_status("FAILED: Could not write to cty.xml file");
-			return;
-		}
+        if (file_put_contents($this->paths->make_update_path("cty.xml"), $data) === FALSE) {
+            $this->update_status("FAILED: Could not write to cty.xml file");
+            return;
+        }
 
-	    // Clear the tables, ready for new data
-		$this->db->empty_table("dxcc_entities");
-		$this->db->empty_table("dxcc_exceptions");
-		$this->db->empty_table("dxcc_prefixes");
-		$this->update_status();
+        // Clear the tables, ready for new data
+        $this->db->empty_table("dxcc_entities");
+        $this->db->empty_table("dxcc_exceptions");
+        $this->db->empty_table("dxcc_prefixes");
+        $this->update_status();
 
-	    // Parse the three sections of the file and update the tables
-	    $this->db->trans_start();
-		$this->dxcc_entities();
-		$this->dxcc_exceptions();
-		$this->dxcc_prefixes();
-		$this->db->trans_complete();
+        // Parse the three sections of the file and update the tables
+        $this->db->trans_start();
+        $this->dxcc_entities();
+        $this->dxcc_exceptions();
+        $this->dxcc_prefixes();
+        $this->db->trans_complete();
 
-		$this->update_status("DONE");
+        $this->update_status("DONE");
 	}
 
 	public function update_status($done=""){
+
+        $this->load->library('Paths');
 
 		if ($done != "Downloading file"){
 			// Check that everything is done?
@@ -246,18 +239,18 @@ class Update extends CI_Controller {
 			$html = $done."....<br/>";
 		}
 
-		file_put_contents($this->make_update_path("status.html"), $html);
+		file_put_contents($this->paths->make_update_path("status.html"), $html);
 	}
 
 
 	private function fix_migrations(){
-        $res = $this->db->query("select version from migrations");
+        $res = $this->db->query("SELECT version FROM migrations");
         if ($res->num_rows() >0){
             $row = $res->row();
             $version = $row->version;
 
             if ($version < 7){
-                $this->db->query("update migrations set version=7");
+                $this->db->query("UPDATE migrations SET version=7");
             }
         }
 	}
@@ -308,37 +301,10 @@ class Update extends CI_Controller {
 
     public function update_clublog_scp() {
 
-        // set the last run in cron table for the correct cron id
-        $this->load->model('cron_model');
-		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+        $this->load->model('Update_model');
+        $result = $this->Update_model->clublog_scp();
+        echo $result;
 
-        $strFile = $this->make_update_path("clublog_scp.txt");
-        $url = "https://cdn.clublog.org/clublog.scp.gz";
-        set_time_limit(300);
-        echo "Downloading Club Log SCP file...<br>";
-        $gz = gzopen($url, 'r');
-        if ($gz)
-        {
-            $data = "";
-            while (!gzeof($gz)) {
-                $data .= gzgetc($gz);
-            }
-            gzclose($gz);
-            if (file_put_contents($strFile, $data) !== FALSE)
-            {
-                $nCount = count(file($strFile));
-                if ($nCount > 0)
-                {
-                    echo "DONE: " . number_format($nCount) . " callsigns loaded";
-                } else {
-                    echo "FAILED: Empty file";
-                }
-            } else {
-                echo "FAILED: Could not write to Club Log SCP file";
-            }
-        } else {
-            echo "FAILED: Could not connect to Club Log";
-        }
     }
 
     public function download_lotw_users() {
@@ -360,48 +326,10 @@ class Update extends CI_Controller {
 
     public function lotw_users() {
 
-        // set the last run in cron table for the correct cron id
-        $this->load->model('cron_model');
-		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+        $this->load->model('Update_model');
+        $result = $this->Update_model->lotw_users();
+        echo $result;
 
-        $mtime = microtime();
-        $mtime = explode(" ",$mtime);
-        $mtime = $mtime[1] + $mtime[0];
-        $starttime = $mtime;
-
-        $file = 'https://lotw.arrl.org/lotw-user-activity.csv';
-
-        $handle = fopen($file, "r");
-        if ($handle === FALSE) {
-            echo "Something went wrong with fetching the LoTW uses file";
-            return;
-        }
-        $this->db->empty_table("lotw_users");
-        $i = 0;
-        $data = fgetcsv($handle,1000,",");
-        do {
-            if ($data[0]) {
-                $lotwdata[$i]['callsign'] = $data[0];
-                $lotwdata[$i]['lastupload'] = $data[1] . ' ' . $data[2];
-                if (($i % 2000) == 0) {
-                    $this->db->insert_batch('lotw_users', $lotwdata);
-                    unset($lotwdata);
-                    // echo 'Record ' . $i . '<br />';
-                }
-                $i++;
-            }
-        } while ($data = fgetcsv($handle,1000,","));
-        fclose($handle);
-
-        $this->db->insert_batch('lotw_users', $lotwdata);
-
-        $mtime = microtime();
-        $mtime = explode(" ",$mtime);
-        $mtime = $mtime[1] + $mtime[0];
-        $endtime = $mtime;
-        $totaltime = ($endtime - $starttime);
-        echo "This page was created in ".$totaltime." seconds <br />";
-        echo "Records inserted: " . $i . " <br/>";
     }
 
     public function lotw_check() {
@@ -422,29 +350,10 @@ class Update extends CI_Controller {
      */
     public function update_dok() {
 
-        // set the last run in cron table for the correct cron id
-        $this->load->model('cron_model');
-		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
-
-        $contents = file_get_contents('https://www.df2et.de/cqrlog/dok_and_sdok.txt', true);
-
-        if($contents === FALSE) {
-            echo "Something went wrong with fetching the DOK file.";
-        } else {
-            $file = './assets/json/dok.txt';
-
-            if (file_put_contents($file, $contents) !== FALSE) {     // Save our content to the file.
-                $nCount = count(file($file));
-                if ($nCount > 0)
-                {
-                    echo "DONE: " . number_format($nCount) . " DOKs and SDOKs saved";
-                } else {
-                    echo"FAILED: Empty file";
-                }
-            } else {
-                echo"FAILED: Could not write to dok.txt file";
-            }
-        }
+        $this->load->model('Update_model');
+        $result = $this->Update_model->dok();
+        echo $result;
+        
     }
 
     /*
@@ -452,47 +361,10 @@ class Update extends CI_Controller {
      */
     public function update_sota() {
 
-        // set the last run in cron table for the correct cron id
-        $this->load->model('cron_model');
-		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
-
-        $csvfile = 'https://www.sotadata.org.uk/summitslist.csv';
-
-        $sotafile = './assets/json/sota.txt';
-
-        $csvhandle = fopen($csvfile,"r");
-        if ($csvhandle === FALSE) {
-            echo "Something went wrong with fetching the SOTA file";
-            return;
-        }
-
-        $data = fgetcsv($csvhandle,1000,","); // Skip line we are not interested in
-        $data = fgetcsv($csvhandle,1000,","); // Skip line we are not interested in
-        $data = fgetcsv($csvhandle,1000,",");
-        $sotafilehandle = fopen($sotafile, 'w');
-
-        if ($sotafilehandle === FALSE) {
-            echo"FAILED: Could not write to sota.txt file";
-            return;
-        }
-
-        $nCount = 0;
-        do {
-            if ($data[0]) {
-                fwrite($sotafilehandle, $data[0].PHP_EOL);
-                $nCount++;
-            }
-        } while ($data = fgetcsv($csvhandle,1000,","));
-
-        fclose($csvhandle);
-        fclose($sotafilehandle);
-
-        if ($nCount > 0)
-        {
-            echo "DONE: " . number_format($nCount) . " SOTA's saved";
-        } else {
-            echo"FAILED: Empty file";
-        }
+        $this->load->model('Update_model');
+        $result = $this->Update_model->sota();
+        echo $result;
+        
     }
 
     /*
@@ -500,99 +372,18 @@ class Update extends CI_Controller {
      */
     public function update_wwff() {
 
-        // set the last run in cron table for the correct cron id
-        $this->load->model('cron_model');
-		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+        $this->load->model('Update_model');
+        $result = $this->Update_model->wwff();
+        echo $result;
 
-        $csvfile = 'https://wwff.co/wwff-data/wwff_directory.csv';
-
-        $wwfffile = './assets/json/wwff.txt';
-
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $csvfile);
-        curl_setopt($ch, CURLOPT_HEADER, false);
-        curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $csv = curl_exec($ch);
-        curl_close($ch);
-        if ($csv === FALSE) {
-            echo "Something went wrong with fetching the WWFF file";
-            return;
-        }
-
-        $wwfffilehandle = fopen($wwfffile, 'w');
-        if ($wwfffilehandle === FALSE) {
-            echo"FAILED: Could not write to wwff.txt file";
-            return;
-        }
-
-        $data = str_getcsv($csv,"\n");
-        $nCount = 0;
-        foreach ($data as $idx => $row) {
-        if ($idx == 0) continue; // Skip line we are not interested in
-        $row = str_getcsv($row, ',');
-        if ($row[0]) {
-            fwrite($wwfffilehandle, $row[0].PHP_EOL);
-            $nCount++;
-        }
-        }
-
-        fclose($wwfffilehandle);
-
-        if ($nCount > 0)
-        {
-            echo "DONE: " . number_format($nCount) . " WWFF's saved";
-        } else {
-            echo"FAILED: Empty file";
-        }
     }
 
     public function update_pota() {
 
-        // set the last run in cron table for the correct cron id
-        $this->load->model('cron_model');
-		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
-
-        $csvfile = 'https://pota.app/all_parks.csv';
-
-        $potafile = './assets/json/pota.txt';
-
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $csvfile);
-        curl_setopt($ch, CURLOPT_HEADER, false);
-        curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $csv = curl_exec($ch);
-        curl_close($ch);
-        if ($csv === FALSE) {
-            echo "Something went wrong with fetching the POTA file";
-            return;
-        }
-
-        $potafilehandle = fopen($potafile, 'w');
-        if ($potafilehandle === FALSE) {
-            echo"FAILED: Could not write to pota.txt file";
-            return;
-        }
-        $data = str_getcsv($csv,"\n");
-        $nCount = 0;
-        foreach ($data as $idx => $row) {
-        if ($idx == 0) continue; // Skip line we are not interested in
-        $row = str_getcsv($row, ',');
-        if ($row[0]) {
-            fwrite($potafilehandle, $row[0].PHP_EOL);
-            $nCount++;
-        }
-        }
-
-        fclose($potafilehandle);
-
-        if ($nCount > 0)
-        {
-            echo "DONE: " . number_format($nCount) . " POTA's saved";
-        } else {
-            echo"FAILED: Empty file";
-        }
+        $this->load->model('Update_model');
+        $result = $this->Update_model->pota();
+        echo $result;
+        
     }
 
 }
