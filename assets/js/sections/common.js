@@ -661,7 +661,7 @@ function changeLookupType(type) {
         $('#quicklookupcqz').hide();
         $('#quicklookupwas').hide();
         $('#quicklookuptext').hide();
-    } else if (type == "vucc" || type == "sota" || type == "wwff") {
+    } else if (type == "vucc" || type == "sota" || type == "wwff" || type == "lotw") {
         $('#quicklookuptext').show();
         $('#quicklookupiota').hide();
         $('#quicklookupdxcc').hide();
@@ -698,6 +698,7 @@ function getLookupResult() {
 			iota: $('#quicklookupiota').val(),
 			sota: $('#quicklookuptext').val(),
 			wwff: $('#quicklookuptext').val(),
+			lotw: $('#quicklookuptext').val(),
 		},
 		success: function (html) {
 			$('#lookupresulttable').html(html);
