@@ -929,6 +929,28 @@ $(document).ready(function() {
     }
 });
 
+// auto setting of gridmap height
+function set_map_height() {
+    //header menu
+    var headerNavHeight = $('nav').outerHeight();
+    // console.log('nav: ' + headerNavHeight);
+
+    // line with coordinates
+    var coordinatesHeight = $('.coordinates').outerHeight();
+    // console.log('.coordinates: ' + coordinatesHeight);
+
+    // form for gridsquare map
+    var gridsquareFormHeight = $('.gridsquare_map_form').outerHeight();
+    // console.log('.gridsquare_map_form: ' + gridsquareFormHeight);
+
+    // calculate correct map height
+    var gridsquareMapHeight = window.innerHeight - headerNavHeight - coordinatesHeight - gridsquareFormHeight;
+
+    // and set it
+    $('#gridsquare_map').css('height', gridsquareMapHeight + 'px');
+    // console.log('#gridsquare_map: ' + gridsquareMapHeight);
+}
+
 
 console.log("Ready to unleash your coding prowess and join the fun?\n\n" +
     "Check out our GitHub Repository and dive into the coding adventure:\n\n" +
