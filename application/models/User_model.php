@@ -151,7 +151,9 @@ class User_Model extends CI_Model {
 		$user_show_profile_image, $user_previous_qsl_type, $user_amsat_status_upload, $user_mastodon_url,
 		$user_default_band, $user_default_confirmation, $user_qso_end_times, $user_quicklog, $user_quicklog_enter,
 		$language, $user_hamsat_key, $user_hamsat_workable_only, $user_iota_to_qso_tab, $user_sota_to_qso_tab,
-		$user_wwff_to_qso_tab, $user_pota_to_qso_tab, $user_sig_to_qso_tab, $user_dok_to_qso_tab) {
+		$user_wwff_to_qso_tab, $user_pota_to_qso_tab, $user_sig_to_qso_tab, $user_dok_to_qso_tab, 
+		$user_lotw_name, $user_lotw_password, $user_eqsl_name, $user_eqsl_password, $user_clublog_name, $user_clublog_password, 
+		$user_winkey) {
 		// Check that the user isn't already used
 		if(!$this->exists($username)) {
 			$data = array(
@@ -186,7 +188,14 @@ class User_Model extends CI_Model {
 				'user_qso_end_times' => xss_clean($user_qso_end_times),
 				'user_quicklog' => xss_clean($user_quicklog),
 				'user_quicklog_enter' => xss_clean($user_quicklog_enter),
-				'language' => xss_clean($language)
+				'language' => xss_clean($language),
+				'user_lotw_name' => xss_clean($user_lotw_name),
+				'user_lotw_password' => xss_clean($user_lotw_password),
+				'user_eqsl_name' => xss_clean($user_eqsl_name),
+				'user_eqsl_password' => xss_clean($user_eqsl_password),
+				'user_clublog_name' => xss_clean($user_clublog_name),
+				'user_clublog_password' => xss_clean($user_clublog_password),
+				'winkey' => xss_clean($user_winkey)
 			);
 
 			// Check the password is valid

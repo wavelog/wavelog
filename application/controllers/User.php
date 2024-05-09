@@ -149,7 +149,14 @@ class User extends CI_Controller {
 				$this->input->post('user_wwff_to_qso_tab'),
 				$this->input->post('user_pota_to_qso_tab'),
 				$this->input->post('user_sig_to_qso_tab'),
-				$this->input->post('user_dok_to_qso_tab')
+				$this->input->post('user_dok_to_qso_tab'),
+				$this->input->post('user_lotw_name'),
+				$this->input->post('user_lotw_password'),
+				$this->input->post('user_eqsl_name'),
+				$this->input->post('user_eqsl_password'),
+				$this->input->post('user_clublog_name'),
+				$this->input->post('user_clublog_password'),
+				$this->input->post('user_winkey')
 				)) {
 				// Check for errors
 				case EUSERNAMEEXISTS:
