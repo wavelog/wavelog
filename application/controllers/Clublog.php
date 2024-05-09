@@ -65,33 +65,30 @@ class Clublog extends CI_Controller {
 		$this->load->helper('file');
 
 		$this->load->model('clublog_model');
+		$this->load->model('logbook_model');
 
-		$station_profiles = $this->clublog_model->all_enabled($clean_userid);
-
-		if($station_profiles->num_rows()){
+		$station_profiles = $this->clublog_model->all_enabled($clean_userid);	// Fetch unique Calls per User with aggregated station_ids
+		if ($station_profiles->num_rows()) {
 			foreach ($station_profiles->result() as $station_row) {
-				if($station_row->qso_total > 0) {
-					$lastrec=$this->clublog_model->clublog_last_qsl_rcvd_date($station_row->station_callsign);
-					$url='https://clublog.org/getmatches.php?api=608df94896cb9c5421ae748235492b43815610c9&email='.$clean_username.'&password='.$clean_password.'&callsign='.$station_row->station_callsign.'&startyear='.substr($lastrec,0,4).'&startmonth='.substr($lastrec,4,2).'&startday='.substr($lastrec,6,2);
-					$request = curl_init($url);
+				$lastrec=$this->clublog_model->clublog_last_qsl_rcvd_date($station_row->station_callsign);
+				$url='https://clublog.org/getmatches.php?api=608df94896cb9c5421ae748235492b43815610c9&email='.$clean_username.'&password='.$clean_password.'&callsign='.$station_row->station_callsign.'&startyear='.substr($lastrec,0,4).'&startmonth='.substr($lastrec,4,2).'&startday='.substr($lastrec,6,2);
+				$request = curl_init($url);
 
-					// recieve a file
-					curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
-					$response = curl_exec($request);
-					$info = curl_getinfo($request);
-					curl_close ($request);
+				// recieve a file
+				curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
+				$response = curl_exec($request);
+				$info = curl_getinfo($request);
+				curl_close ($request);
 
-					if(curl_errno($request)) {
-						echo curl_error($request);
-					} else {
-						$cl_qsls=json_decode($response);
-						var_dump($cl_qsls);
-						// todo: iterate
-						// todo: transform plain band to real_band // no way to do that, so fallback to "like". e.g.: "6" was provided by Clublog. Do they mean 6m or 6cm?
-    						$this->logbook_model->clublog_update($oneqsl[2], $onesql[0], $onesql[3], 'Y', $station_row->station_callsign);
+				if(curl_errno($request)) {
+					echo curl_error($request);
+				} else {
+					$cl_qsls=json_decode($response);
+					foreach ($cl_qsls as $oneqsl) {
+						$this->logbook_model->clublog_update($oneqsl[2], $oneqsl[0], $oneqsl[3], 'Y', $station_row->station_callsign, $station_row->station_ids);
 					}
-					
 				}
+
 			}
 		}
 	}

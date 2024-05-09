@@ -105,13 +105,12 @@ class Clublog_model extends CI_Model {
 	}
 	
 	function all_enabled($userid) {
-		$this->db->select('station_profile.station_id, station_profile.station_callsign, count('.$this->config->item('table_name').'.station_id) as qso_total');
-		$this->db->from('station_profile');
-		$this->db->join($this->config->item('table_name'),'station_profile.station_id = '.$this->config->item('table_name').'.station_id','left');
-		$this->db->group_by('station_profile.station_id');
-		$this->db->where('station_profile.user_id', $userid);
-		$this->db->where('station_profile.clublogignore', 0);
-		return $this->db->get();
+		$sql="select sp.station_callsign, group_concat(sp.station_id) as station_ids from station_profile sp 
+			inner join users u on (u.user_id=sp.user_id)
+			where u.user_clublog_name is not null and u.user_clublog_password is not null and sp.clublogignore=0 and u.user_id=?
+			group by sp.station_callsign";
+		$query = $this->db->query($sql,$userid);
+		return $query;
 	}
 
 	function all_with_count($userid) {
