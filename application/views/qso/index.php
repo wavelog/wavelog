@@ -694,7 +694,13 @@
 
         <div id="partial_view" style="font-size: 0.95rem;"></div>
 
-        <div id="qso-last-table" hx-get="<?php echo site_url('/qso/component_past_contacts'); ?>"  hx-trigger="load, qso_event, every 5s">
+		<?php
+		$result = $this->optionslib->get_option('disable_refresh_past_contacts');
+		if($result === null) { ?>
+			<div id="qso-last-table" hx-get="<?php echo site_url('/qso/component_past_contacts'); ?>" hx-trigger="load, qso_event, every 5s">
+		<?php } else { ?>
+			<div id="qso-last-table" hx-get="<?php echo site_url('/qso/component_past_contacts'); ?>" hx-trigger="load, qso_event">
+		<?php } ?>
 
         </div>
       </div>
