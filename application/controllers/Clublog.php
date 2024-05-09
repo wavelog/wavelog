@@ -36,9 +36,24 @@ class Clublog extends CI_Controller {
 		}
 	}
 
+	// Download ADIF to Clublog
+	public function download() {
+		$this->load->model('clublog_model');
+
+		// set the last run in cron table for the correct cron id
+		$this->load->model('cron_model');
+		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+
+		$users = $this->clublog_model->get_clublog_users();
+
+		foreach ($users as $user) {
+			$this->downloadUser($user->user_id, $user->user_clublog_name, $user->user_clublog_password);
+		}
+	}
+
 	function downloadUser($userid, $username, $password) {
 		$clean_username = $this->security->xss_clean($username);
-		$clean_passord = $this->security->xss_clean($password);
+		$clean_password = $this->security->xss_clean($password);
 		$clean_userid = $this->security->xss_clean($userid);
 
 		$this->config->load('config');
@@ -51,94 +66,29 @@ class Clublog extends CI_Controller {
 
 		$this->load->model('clublog_model');
 
-		$station_profiles = $this->clublog_model->all_with_count($clean_userid);
+		$station_profiles = $this->clublog_model->all_enabled($clean_userid);
 
 		if($station_profiles->num_rows()){
-			foreach ($station_profiles->result() as $station_row)
-			{
+			foreach ($station_profiles->result() as $station_row) {
 				if($station_row->qso_total > 0) {
-					$data['qsos'] = $this->clublog_model->get_clublog_qsos($station_row->station_id);
+					$lastrec=$this->clublog_model->clublog_last_qsl_rcvd_date($station_row->station_callsign);
+					// $string = $this->load->view('adif/data/clublog_down', $data, TRUE);
 
-					if($data['qsos']->num_rows()){
-						$string = $this->load->view('adif/data/clublog', $data, TRUE);
+					$url='https://clublog.org/getmatches.php?api=608df94896cb9c5421ae748235492b43815610c9&email='.$clean_username.'&password='.$clean_password.'&callsign='.$station_row->station_callsign.'&startyear='.substr($lastrec,0,4).'&startmonth='.substr($lastrec,4,2).'&startday='.substr($lastrec,6,2);
+					$request = curl_init($url);
 
-						$ranid = uniqid();
+					// recieve a file
+					curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
+					$response = curl_exec($request);
+					$info = curl_getinfo($request);
+					curl_close ($request);
 
-						if ( ! write_file('uploads/clublog'.$ranid.$station_row->station_id.'.adi', $string)) {
-						     echo 'Unable to write the file - Make the folder Upload folder has write permissions.';
-						}
-						else {
-
-							$file_info = get_file_info('uploads/clublog'.$ranid.$station_row->station_id.'.adi');
-
-							// initialise the curl request
-							// New: https://clublog.org/getmatches.php?api=[key]&email=$clean_username&password=$clean_password&callsign=$station_row->station_callsign&startyear=2024&startmonth=4&startday=17
-							$request = curl_init('https://clublog.org/putlogs.php');
-
-							if($this->config->item('directory') != "") {
-								 $filepath = $_SERVER['DOCUMENT_ROOT']."/".$this->config->item('directory')."/".$file_info['server_path'];
-							} else {
-								 $filepath = $_SERVER['DOCUMENT_ROOT']."/".$file_info['server_path'];
-							}
-
-							if (function_exists('curl_file_create')) { // php 5.5+
-							  $cFile = curl_file_create($filepath);
-							} else { //
-							  $cFile = '@' . realpath($filepath);
-							}
-
-							// send a file
-							curl_setopt($request, CURLOPT_POST, true);
-							curl_setopt(
-							    $request,
-							    CURLOPT_POSTFIELDS,
-							    array(
-							      'email' => $clean_username,
-							      'password' => $clean_passord,
-							      'callsign' => $station_row->station_callsign,
-							      'api' => "608df94896cb9c5421ae748235492b43815610c9",
-							      'file' => $cFile
-							    ));
-
-							// output the response
-							curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
-							$response = curl_exec($request);
-							$info = curl_getinfo($request);
-
-							if(curl_errno($request)) {
-							    echo curl_error($request);
-							}
-							curl_close ($request);
-
-
-							// If Clublog Accepts mark the QSOs
-							if (preg_match('/\baccepted\b/', $response)) {
-								echo "QSOs uploaded and Logbook QSOs marked as sent to Clublog"."<br>";
-								$this->load->model('clublog_model');
-								$this->clublog_model->mark_qsos_sent($station_row->station_id);
-								echo "Clublog upload for ".$station_row->station_callsign."<br>";
-								log_message('info', 'Clublog upload for '.$station_row->station_callsign.' successfully sent.');
-							} else if (preg_match('/checksum duplicate/',$response)) {
-								echo "QSOs uploaded (asduplicate!) and Logbook QSOs marked as sent to Clublog"."<br>";
-								$this->load->model('clublog_model');
-								$this->clublog_model->mark_qsos_sent($station_row->station_id);
-								echo "Clublog upload for ".$station_row->station_callsign."<br>";
-								log_message('info', 'Clublog DUPLICATE upload for '.$station_row->station_callsign.' successfully sent.');
-							} else {
-								echo "Error ".$response."<br />";
-								log_message('error', 'Clublog upload for '.$station_row->station_callsign.' failed reason '.$response);
-							}
-
-							// Delete the ADIF file used for clublog
-							unlink('uploads/clublog'.$ranid.$station_row->station_id.'.adi');
-
-						}
-
+					if(curl_errno($request)) {
+						echo curl_error($request);
 					} else {
-						echo "Nothing awaiting upload to clublog for ".$station_row->station_callsign."<br>";
-
-						log_message('info', 'Nothing awaiting upload to clublog for '.$station_row->station_callsign);
+						log_message("Error",$response);
 					}
+					
 				}
 			}
 		}
