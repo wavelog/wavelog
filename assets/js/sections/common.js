@@ -661,7 +661,7 @@ function changeLookupType(type) {
         $('#quicklookupcqz').hide();
         $('#quicklookupwas').hide();
         $('#quicklookuptext').hide();
-    } else if (type == "vucc" || type == "sota" || type == "wwff") {
+    } else if (type == "vucc" || type == "sota" || type == "wwff" || type == "lotw") {
         $('#quicklookuptext').show();
         $('#quicklookupiota').hide();
         $('#quicklookupdxcc').hide();
@@ -698,6 +698,7 @@ function getLookupResult() {
 			iota: $('#quicklookupiota').val(),
 			sota: $('#quicklookuptext').val(),
 			wwff: $('#quicklookuptext').val(),
+			lotw: $('#quicklookuptext').val(),
 		},
 		success: function (html) {
 			$('#lookupresulttable').html(html);
@@ -928,6 +929,28 @@ $(document).ready(function() {
         updateUTCTime();
     }
 });
+
+// auto setting of gridmap height
+function set_map_height() {
+    //header menu
+    var headerNavHeight = $('nav').outerHeight();
+    // console.log('nav: ' + headerNavHeight);
+
+    // line with coordinates
+    var coordinatesHeight = $('.coordinates').outerHeight();
+    // console.log('.coordinates: ' + coordinatesHeight);
+
+    // form for gridsquare map
+    var gridsquareFormHeight = $('.gridsquare_map_form').outerHeight();
+    // console.log('.gridsquare_map_form: ' + gridsquareFormHeight);
+
+    // calculate correct map height
+    var gridsquareMapHeight = window.innerHeight - headerNavHeight - coordinatesHeight - gridsquareFormHeight;
+
+    // and set it
+    $('#gridsquare_map').css('height', gridsquareMapHeight + 'px');
+    // console.log('#gridsquare_map: ' + gridsquareMapHeight);
+}
 
 
 console.log("Ready to unleash your coding prowess and join the fun?\n\n" +
