@@ -75,7 +75,6 @@ $lang['account_upload_status_of_sat_qsos_to'] = '上传卫星状态到';
 $lang['account_logbook_of_the_world'] = 'Logbook of the World（LoTW）';
 $lang['account_logbook_of_the_world_lotw_username'] = 'Logbook of The World (LoTW) 用户名';
 $lang['account_logbook_of_the_world_lotw_password'] = 'Logbook of The World (LoTW) 密码';
-$lang['account_leave_blank_to_keep_existing_password'] = '留空以保留现有密码';
 
 $lang['account_clublog'] = 'Clublog';
 $lang['account_clublog_email_callsign'] = 'Clublog 邮件地址/呼号';
