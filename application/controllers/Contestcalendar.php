@@ -8,8 +8,21 @@ class Contestcalendar extends CI_Controller {
 
 		$data['page_title'] = "Contest Calendar";
 
+		// get the raw data and parse it
 		$rssRawData = $this->getRssData();
-		$data['rss'] = $this->parseRSS($rssRawData);
+		$parsed = $this->parseRSS($rssRawData);
+
+		// and give it to the view
+		$data['contestsToday'] = $this->contestsToday($parsed);
+		$data['contestsNextWeekend'] = $this->contestsNextWeekend($parsed);
+		$data['contestsNextWeek'] = $this->contestsNextWeek($parsed);
+
+		// Get Date format
+		if($this->session->userdata('user_date_format')) {
+			$data['custom_date_format'] = $this->session->userdata('user_date_format');
+		} else {
+			$data['custom_date_format'] = $this->config->item('qso_date_format');
+		}
 
 		$footerData['scripts'] = [
 			'assets/js/sections/dxcalendar.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/dxcalendar.js"))
@@ -37,8 +50,8 @@ class Contestcalendar extends CI_Controller {
 			// write the start time to the array. the whole time range is in the 'description' tag of the rssRawData
 			$description = (string) $item->description;
 			$timeRange = $this->parseTimeRange($description);
-			$contest['start'] = $timeRange['start']->format('Y-m-d H:i:s');
-			$contest['end'] = $timeRange['end']->format('Y-m-d H:i:s');
+			$contest['start'] = $timeRange['start'];
+			$contest['end'] = $timeRange['end'];
 	
 			// and write the link to the array
 			$contest['link'] = (string) $item->link;
@@ -111,6 +124,58 @@ class Contestcalendar extends CI_Controller {
 		}
 	
 		return $rssRawData;
+	}
+
+	private function contestsToday($rss) {
+		$contestsToday = array();
+	
+		$today = date('Y-m-d');
+	
+		foreach ($rss as $contest) {
+			$start = date('Y-m-d', strtotime($contest['start']->format('Y-m-d')));
+			if ($start === $today) {
+				$contestsToday[] = $contest;
+			}
+		}
+	
+		return $contestsToday;
+	}
+
+	private function contestsNextWeekend($rss) {
+		$contestsNextWeekend = array();
+	
+		$today = date('Y-m-d');
+	
+		$nextFriday = date('Y-m-d', strtotime('next friday', strtotime($today)));
+		$nextSunday = date('Y-m-d', strtotime('next sunday', strtotime($today)));
+	
+		foreach ($rss as $contest) {
+			$start = date('Y-m-d', strtotime($contest['start']->format('Y-m-d')));
+	
+			if ($start >= $nextFriday && $start <= $nextSunday) {
+				$contestsNextWeekend[] = $contest;
+			}
+		}
+	
+		return $contestsNextWeekend;
+	}
+	
+	private function contestsNextWeek($rss) {
+		$contestsNextWeek = array();
+	
+		$today = date('Y-m-d');
+	
+		$nextMonday = date('Y-m-d', strtotime('next monday', strtotime($today)));
+	
+		foreach ($rss as $contest) {
+			$start = date('Y-m-d', strtotime($contest['start']->format('Y-m-d')));
+	
+			if ($start >= $nextMonday) {
+				$contestsNextWeek[] = $contest;
+			}
+		}
+	
+		return $contestsNextWeek;
 	}
 		
 }
