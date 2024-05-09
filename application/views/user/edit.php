@@ -80,7 +80,7 @@
 											<?php
 												$levels = $this->config->item('auth_level');
 												foreach ($levels as $key => $value) {
-													echo '<option value="'. $key . '" '. (($user_type == $key)?"selected=\"selected\"":""). '>' . $value . '</option>';
+													echo '<option value="'. $key . '" '. (($user_type ?? '') == $key ? "selected=\"selected\"":""). '>' . $value . '</option>';
 												}
 											?>
 											</select>
