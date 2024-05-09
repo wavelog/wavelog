@@ -291,32 +291,42 @@ class User_Model extends CI_Model {
 					return EEMAILEXISTS;
 				}
 
+				$pwd_placeholder = '**********';
+
 				// Hash password
 				if($fields['user_password'] != NULL)
 				{
-					$data['user_password'] = $this->_hash($fields['user_password']);
-					if($data['user_password'] == EPASSWORDINVALID) {
-						return EPASSWORDINVALID;
+					if ($fields['user_password'] !== $pwd_placeholder) {
+						$data['user_password'] = $this->_hash($fields['user_password']);
+						if($data['user_password'] == EPASSWORDINVALID) {
+							return EPASSWORDINVALID;
+						}
 					}
 				}
 
 				if($fields['user_lotw_password'] != '')
 				{
-					$data['user_lotw_password'] = $fields['user_lotw_password'];
+					if ($fields['user_lotw_password'] !== $pwd_placeholder) {
+						$data['user_lotw_password'] = $fields['user_lotw_password'];
+					}
 				} else {
 					$data['user_lotw_password'] = NULL;
 				}
 
 				if($fields['user_clublog_password'] != '')
 				{
-					$data['user_clublog_password'] = $fields['user_clublog_password'];
+					if ($fields['user_clublog_password'] !== $pwd_placeholder) {
+						$data['user_clublog_password'] = $fields['user_clublog_password'];
+					}
 				} else {
 					$data['user_clublog_password'] = NULL;
 				}
 
 				if($fields['user_eqsl_password'] != '')
 				{
-					$data['user_eqsl_password'] = $fields['user_eqsl_password'];
+					if ($fields['user_eqsl_password'] !== $pwd_placeholder) {
+						$data['user_eqsl_password'] = $fields['user_eqsl_password'];
+					}
 				} else {
 					$data['user_eqsl_password'] = NULL;
 				}

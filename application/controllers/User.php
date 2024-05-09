@@ -227,6 +227,7 @@ class User extends CI_Controller {
 		$query = $this->user_model->get_by_id($this->uri->segment(3));
 
 		$data['existing_languages'] = $this->find();
+		$pwd_placeholder = '**********';
 
 		$this->load->model('bands');
 		$this->load->library('form_validation');
@@ -276,7 +277,7 @@ class User extends CI_Controller {
 				$data['user_password'] = $this->input->post('user_password',true);
 			} else {
 				if ($q->user_password !== '' && $q->user_password !== null) {
-					$data['user_password'] = '**********';
+					$data['user_password'] = $pwd_placeholder;
 				} else {
 					$data['user_password'] = '';
 				}
@@ -346,7 +347,7 @@ class User extends CI_Controller {
 				$data['user_clublog_password'] = $this->input->post('user_clublog_password', true);
 			} else {
 				if ($q->user_clublog_password !== '' && $q->user_clublog_password !== null) {
-					$data['user_clublog_password'] = '**********';
+					$data['user_clublog_password'] = $pwd_placeholder;
 				} else {
 					$data['user_clublog_password'] = '';
 				}
@@ -356,7 +357,7 @@ class User extends CI_Controller {
 				$data['user_lotw_password'] = $this->input->post('user_lotw_password', true);
 			} else {
 				if ($q->user_lotw_password !== '' && $q->user_lotw_password !== null) {
-					$data['user_lotw_password'] = '**********';
+					$data['user_lotw_password'] = $pwd_placeholder;
 				} else {
 					$data['user_lotw_password'] = '';
 				}
@@ -372,7 +373,7 @@ class User extends CI_Controller {
 				$data['user_eqsl_password'] = $this->input->post('user_eqsl_password', true);
 			} else {
 				if ($q->user_eqsl_password !== '' && $q->user_eqsl_password !== null) {
-					$data['user_eqsl_password'] = '**********';
+					$data['user_eqsl_password'] = $pwd_placeholder;
 				} else {
 					$data['user_eqsl_password'] = '';
 				}
