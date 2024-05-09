@@ -1,7 +1,7 @@
 <div id="qso-last-table">
 
 <div class="table-responsive" style="font-size: 0.95rem;">
-  <table class="table">
+  <table class="table table-striped">
     <tr class="log_title titles">
       <th><?php echo lang('general_word_date'); ?>/<?php echo lang('general_word_time'); ?></th>
 	<th><?php echo lang('gen_hamradio_call'); ?></th>
@@ -61,13 +61,13 @@ function echo_table_col($row, $name) {
 		case 'SOTA':    echo '<td>' . ($row->COL_SOTA_REF) . '</td>'; break;
 		case 'WWFF':    echo '<td>' . ($row->COL_WWFF_REF) . '</td>'; break;
 		case 'POTA':    echo '<td>' . ($row->COL_POTA_REF) . '</td>'; break;
-		case 'Grid':   
-			$ci->load->library('qra'); 
+		case 'Grid':
+			$ci->load->library('qra');
 			echo '<td>' . ($ci->qra->echoQrbCalcLink($row->COL_MY_GRIDSQUARE, $row->COL_VUCC_GRIDS, $row->COL_GRIDSQUARE)) . '</td>'; break;
 		case 'Distance':    echo '<td>' . ($row->COL_DISTANCE ? $row->COL_DISTANCE . '&nbsp;km' : '') . '</td>'; break;
 		case 'Band':    echo '<td>'; if($row->COL_SAT_NAME != null) { echo '<a href="https://db.satnogs.org/search/?q='.$row->COL_SAT_NAME.'" target="_blank">'.$row->COL_SAT_NAME.'</a></td>'; } else { echo strtolower($row->COL_BAND); } echo '</td>'; break;
-		case 'Frequency':   
-			$ci->load->library('frequency'); 
+		case 'Frequency':
+			$ci->load->library('frequency');
 			echo '<td>'; if($row->COL_SAT_NAME != null) { echo '<a href="https://db.satnogs.org/search/?q='.$row->COL_SAT_NAME.'" target="_blank">'.$row->COL_SAT_NAME.'</a></td>'; } else { if($row->COL_FREQ != null) { echo $ci->frequency->hz_to_mhz($row->COL_FREQ); } else { echo strtolower($row->COL_BAND); } } echo '</td>'; break;
 		case 'State':   echo '<td>' . ($row->COL_STATE) . '</td>'; break;
 		case 'Operator': echo '<td>' . ($row->COL_OPERATOR) . '</td>'; break;
