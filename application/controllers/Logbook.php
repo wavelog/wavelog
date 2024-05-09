@@ -656,7 +656,7 @@ class Logbook extends CI_Controller {
 		if (!empty($logbooks_locations_array) && $query->num_rows() > 0)
 		{
 			$html .= "<div class=\"table-responsive\">";
-			$html .= "<table class=\"table\">";
+			$html .= "<table class=\"table table-striped\">";
 				$html .= "<tr>";
 					$html .= "<th>Date</th>";
 					$html .= "<th>Callsign</th>";
