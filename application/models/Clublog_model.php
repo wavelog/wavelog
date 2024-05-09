@@ -103,7 +103,12 @@ class Clublog_model extends CI_Model {
 			return '19700101';
 		}
 	}
-	
+
+	function disable_sync4call($call, $stations) {
+		$sql="update station_profile set clublogignore=1 where station_callsign=? and station_id in (".$stations.")";
+		$query = $this->db->query($sql,$call);
+	}
+
 	function all_enabled($userid) {
 		$sql="select sp.station_callsign, group_concat(sp.station_id) as station_ids from station_profile sp 
 			inner join users u on (u.user_id=sp.user_id)

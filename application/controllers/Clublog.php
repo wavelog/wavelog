@@ -79,13 +79,18 @@ class Clublog extends CI_Controller {
 				$response = curl_exec($request);
 				$info = curl_getinfo($request);
 				curl_close ($request);
-
 				if(curl_errno($request)) {
 					echo curl_error($request);
+				} elseif (preg_match_all('/Invalid callsign/',$response)) {	// We're trying to download calls for a station we're not granted. Disable Clublog-Transfer for that station(s)
+					$this->clublog_model->disable_sync4call($station_row->station_callsign,$station_row->station_ids);
 				} else {
-					$cl_qsls=json_decode($response);
-					foreach ($cl_qsls as $oneqsl) {
-						$this->logbook_model->clublog_update($oneqsl[2], $oneqsl[0], $oneqsl[3], 'Y', $station_row->station_callsign, $station_row->station_ids);
+					try {
+						$cl_qsls=json_decode($response);
+						foreach ($cl_qsls as $oneqsl) {
+							$this->logbook_model->clublog_update($oneqsl[2], $oneqsl[0], $oneqsl[3], 'Y', $station_row->station_callsign, $station_row->station_ids);
+						}
+					} catch (Exception $e) {
+						log_message("Error","Something gone wrong while trying to Download for station(s) ".$station_row->station_ids." / Call: ".$station_row->station_callsign);
 					}
 				}
 
