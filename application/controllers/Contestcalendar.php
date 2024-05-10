@@ -132,6 +132,11 @@ class Contestcalendar extends CI_Controller {
 		$today = date('Y-m-d');
 	
 		foreach ($rss as $contest) {
+			if (!($contest['start'] instanceof DateTime)) {
+				log_message('debug',"Invalid Time format for contest: " . $contest['title']);
+				continue;
+			}
+	
 			$start = date('Y-m-d', strtotime($contest['start']->format('Y-m-d')));
 			if ($start === $today) {
 				$contestsToday[] = $contest;
@@ -150,6 +155,10 @@ class Contestcalendar extends CI_Controller {
 		$nextSunday = date('Y-m-d', strtotime('next sunday', strtotime($today)));
 	
 		foreach ($rss as $contest) {
+			if (!($contest['start'] instanceof DateTime)) {
+				log_message('debug',"Invalid Time format for contest: " . $contest['title']);
+				continue;
+			}
 			$start = date('Y-m-d', strtotime($contest['start']->format('Y-m-d')));
 	
 			if ($start >= $nextFriday && $start <= $nextSunday) {
@@ -168,6 +177,10 @@ class Contestcalendar extends CI_Controller {
 		$nextMonday = date('Y-m-d', strtotime('next monday', strtotime($today)));
 	
 		foreach ($rss as $contest) {
+			if (!($contest['start'] instanceof DateTime)) {
+				log_message('debug',"Invalid Time format for contest: " . $contest['title']);
+				continue;
+			}
 			$start = date('Y-m-d', strtotime($contest['start']->format('Y-m-d')));
 	
 			if ($start >= $nextMonday) {
