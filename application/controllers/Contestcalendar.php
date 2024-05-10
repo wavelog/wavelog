@@ -148,24 +148,30 @@ class Contestcalendar extends CI_Controller {
 
 	private function contestsNextWeekend($rss) {
 		$contestsNextWeekend = array();
-	
+		
 		$today = date('Y-m-d');
-	
-		$nextFriday = date('Y-m-d', strtotime('next friday', strtotime($today)));
-		$nextSunday = date('Y-m-d', strtotime('next sunday', strtotime($today)));
-	
+		$currentDayOfWeek = date('N', strtotime($today));
+		
+		if ($currentDayOfWeek >= 1 && $currentDayOfWeek <= 4) {
+			$nextFriday = date('Y-m-d', strtotime('next friday', strtotime($today)));
+			$nextSunday = date('Y-m-d', strtotime('next sunday', strtotime($today)));
+		} else {
+			$nextFriday = date('Y-m-d', strtotime('friday this week', strtotime($today)));
+			$nextSunday = date('Y-m-d', strtotime('sunday this week', strtotime($today)));
+		}
+		
 		foreach ($rss as $contest) {
 			if (!($contest['start'] instanceof DateTime)) {
 				log_message('debug',"Invalid Time format for contest: " . $contest['title']);
 				continue;
 			}
 			$start = date('Y-m-d', strtotime($contest['start']->format('Y-m-d')));
-	
-			if ($start >= $nextFriday && $start <= $nextSunday) {
+			
+			if ($start >= $nextFriday && $start <= $nextSunday && $start >= $today) {
 				$contestsNextWeekend[] = $contest;
 			}
 		}
-	
+		
 		return $contestsNextWeekend;
 	}
 	
