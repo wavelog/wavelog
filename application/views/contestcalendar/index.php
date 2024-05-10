@@ -4,27 +4,31 @@
 	<p>This data is from <a target="_blank" href="https://www.contestcalendar.com/">https://www.contestcalendar.com/</a></p>
 
 	<?php
-	function generateTableRows($contests, $custom_date_format) { ?>
-		<table style="width:100%" class="table-sm table table-bordered table-hover table-striped table-condensed">
-			<thead>
-				<tr>
-					<th>Contest</th>
-					<th>Start</th>
-					<th>End</th>
-					<th>Link</th>
-				</tr>
-			</thead>
-			<tbody>
-				<?php foreach ($contests as $contest) { ?>
+	function generateTableRows($contests, $custom_date_format) {
+		if (empty($contests)) { ?>
+			<p>No Contests</p>
+		<?php } else { ?>
+			<table style="width:100%" class="table-sm table table-bordered table-hover table-striped table-condensed">
+				<thead>
 					<tr>
-						<td><b><?php echo $contest['title']; ?></b></td>
-						<td><?php echo $contest['start']->format('d M - H:i'); ?></td>
-						<td><?php echo $contest['end']->format('d M - H:i'); ?></td>
-						<td><a class='btn btn-secondary btn-sm' href='<?php echo $contest['link']; ?>' target='_blank'>Show Details</a></td>
+						<th>Contest</th>
+						<th>Start</th>
+						<th>End</th>
+						<th>Link</th>
 					</tr>
-				<?php } ?>
-			</tbody>
-		</table>
+				</thead>
+				<tbody>
+					<?php foreach ($contests as $contest) { ?>
+						<tr>
+							<td><b><?php echo $contest['title']; ?></b></td>
+							<td><?php echo $contest['start']->format('d M - H:i'); ?></td>
+							<td><?php echo $contest['end']->format('d M - H:i'); ?></td>
+							<td><a class='btn btn-secondary btn-sm' href='<?php echo $contest['link']; ?>' target='_blank'>Show Details</a></td>
+						</tr>
+					<?php } ?>
+				</tbody>
+			</table>
+		<?php } ?>
 	<?php } ?>
 
 	<div class="row mb-3">
