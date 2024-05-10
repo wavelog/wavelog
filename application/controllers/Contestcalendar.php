@@ -109,29 +109,28 @@ class Contestcalendar extends CI_Controller {
 
 		$this->load->driver('cache', array('adapter' => 'file', 'backup' => 'file'));
 
-		//if (!$rssRawData = $this->cache->get('RssRawContestCal')) {
+		if (!$rssRawData = $this->cache->get('RssRawContestCal')) {
 
-		//$rssUrl = 'https://www.contestcalendar.com/calendar.rss';
-		$rssUrl = 'http://localhost/rss/test.rss';
+			$rssUrl = 'https://www.contestcalendar.com/calendar.rss';
 
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $rssUrl);
-		curl_setopt($ch, CURLOPT_HEADER, false);
-		curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		$rssRawData = curl_exec($ch);
-		curl_close($ch);
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $rssUrl);
+			curl_setopt($ch, CURLOPT_HEADER, false);
+			curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			$rssRawData = curl_exec($ch);
+			curl_close($ch);
 
-		if ($rssRawData === FALSE) {
-			$msg = "Something went wrong with fetching the Contest Data";
-			log_message('error', $msg);
-			return;
+			if ($rssRawData === FALSE) {
+				$msg = "Something went wrong with fetching the Contest Data";
+				log_message('error', $msg);
+				return;
+			}
+
+			$this->cache->save('RssRawContestCal', $rssRawData, (60 * 60 * 12)); // 12 hours cache time
+
+			curl_close($ch);
 		}
-
-		//$this->cache->save('RssRawContestCal', $rssRawData, (60*60*12)); // 12 hours cache time
-
-		curl_close($ch);
-		//}
 
 		return $rssRawData;
 	}
@@ -147,10 +146,10 @@ class Contestcalendar extends CI_Controller {
 
 			$start = date('Y-m-d', strtotime($contest['start']->format('Y-m-d')));
 			$end = date('Y-m-d', strtotime($contest['end']->format('Y-m-d')));
-			
+
 			if ($start <= $this->today && $end >= $this->today) {
 				$contestsToday[] = $contest;
-			}			
+			}
 		}
 
 		return $contestsToday;
