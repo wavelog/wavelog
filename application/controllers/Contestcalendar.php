@@ -182,8 +182,20 @@ class Contestcalendar extends CI_Controller {
 				$contestsNextWeekend[] = $contest;
 			}
 			if ($start <= $nextSunday && $end >= $nextFriday) {
+				$contestExists = false;
+				foreach ($contestsNextWeekend as $existingContest) {
+					if ($existingContest['title'] === $contest['title']) {
+						$contestExists = true;
+						break;
+					}
+				}
+				if (!$contestExists) {
 				$contestsNextWeekend[] = $contest;
+				$contestsNextWeekend[] = $contest;
+					$contestsNextWeekend[] = $contest;
+				}
 			}
+			
 		}
 
 		return $contestsNextWeekend;
