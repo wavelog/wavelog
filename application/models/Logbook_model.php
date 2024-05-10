@@ -3209,29 +3209,49 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 	    }
     }
 
-  function qrz_update($datetime, $callsign, $band, $qsl_date, $qsl_status, $station_callsign) {
+    function clublog_update($datetime, $callsign, $band, $qsl_status, $station_callsign, $station_ids) {
 
-	  $data = array(
-		  'COL_QRZCOM_QSO_DOWNLOAD_DATE' => $qsl_date,
-		  'COL_QRZCOM_QSO_DOWNLOAD_STATUS' => $qsl_status,
-	  );
+	    $logbooks_locations_array=explode(",",$station_ids);
+	    $data = array(
+		    'COL_CLUBLOG_QSO_DOWNLOAD_DATE' => date('Y-m-d'),
+		    'COL_CLUBLOG_QSO_DOWNLOAD_STATUS' => $qsl_status,
+	    );
 
+	    $this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i:%s\') = "'.$datetime.'"');
+	    $this->db->where('COL_CALL', $callsign);
+	    $this->db->where("replace(replace(COL_BAND,'cm',''),'m','')", $band); // no way to achieve a real bandmatch, so fallback to match without unit. e.g.: "6" was provided by Clublog. Do they mean 6m or 6cm?
+	    $this->db->where('COL_STATION_CALLSIGN', $station_callsign);
+	    $this->db->where_in('station_id', $logbooks_locations_array);
 
-	  $this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i\') = "'.$datetime.'"');
-	  $this->db->where('COL_CALL', $callsign);
-	  $this->db->where('COL_BAND', $band);
-	  $this->db->where('COL_STATION_CALLSIGN', $station_callsign);
+	    if ($this->db->update($this->config->item('table_name'). ' use index (idx_HRD_COL_CALL_station_id)', $data)) {
+		    unset($data);
+		    return "Updated";
+	    } else {
+		    unset($data);
+		    return "Not updated";
+	    }
+    }
 
-	  if ($this->db->update($this->config->item('table_name'), $data)) {
-		  unset($data);
-		  return "Updated";
-	  } else {
-		  unset($data);
-		  return "Not updated";
-	  }
+    function qrz_update($datetime, $callsign, $band, $qsl_date, $qsl_status, $station_callsign) {
 
+	    $data = array(
+		    'COL_QRZCOM_QSO_DOWNLOAD_DATE' => $qsl_date,
+		    'COL_QRZCOM_QSO_DOWNLOAD_STATUS' => $qsl_status,
+	    );
 
-  }
+	    $this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i\') = "'.$datetime.'"');
+	    $this->db->where('COL_CALL', $callsign);
+	    $this->db->where('COL_BAND', $band);
+	    $this->db->where('COL_STATION_CALLSIGN', $station_callsign);
+
+	    if ($this->db->update($this->config->item('table_name'), $data)) {
+		    unset($data);
+		    return "Updated";
+	    } else {
+		    unset($data);
+		    return "Not updated";
+	    }
+    }
 
     function lotw_update($datetime, $callsign, $band, $qsl_date, $qsl_status, $state, $qsl_gridsquare, $qsl_vucc_grids, $iota, $cnty, $cqz, $ituz, $station_callsign, $qsoid) {
 
