@@ -566,6 +566,7 @@
 												<option value="1" <?php if ($user_previous_qsl_type == 1) { echo " selected =\"selected\""; } ?>><?php echo lang('lotw_short'); ?></option>
 												<option value="2" <?php if ($user_previous_qsl_type == 2) { echo " selected =\"selected\""; } ?>><?php echo lang('eqsl_short'); ?></option>
 												<option value="4" <?php if ($user_previous_qsl_type == 4) { echo " selected =\"selected\""; } ?>>QRZ</option>
+												<option value="8" <?php if ($user_previous_qsl_type == 8) { echo " selected =\"selected\""; } ?>>Clublog</option>
 											</select>
 										</div>
 									</div>
@@ -675,6 +676,14 @@
 											}
 											echo '>'; ?>
 											<label class="form-check-label" for="user_default_confirmation_qrz">QRZ.com</label>
+										</div>
+										<div class="form-check-inline">
+											<?php echo '<input class="form-check-input" type="checkbox" name="user_default_confirmation_clublog" id="user_default_confirmation_clublog"';
+											if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'C') !== false) {
+												echo ' checked';
+											}
+											echo '>'; ?>
+											<label class="form-check-label" for="user_default_confirmation_clublog">Clublog</label>
 										</div>
 									</div>
 								</div>

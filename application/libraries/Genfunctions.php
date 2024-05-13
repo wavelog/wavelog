@@ -22,6 +22,9 @@ class Genfunctions
 			if ($postdata['qrz'] != NULL) {
 				array_push($qsl, "COL_QRZCOM_QSO_DOWNLOAD_STATUS = 'Y'");
 			}
+			if ($postdata['clublog'] != NULL) {
+				array_push($qsl, "COL_CLUBLOG_QSO_DOWNLOAD_STATUS = 'Y'");
+			}
 			if (count($qsl) > 0) {
 				$sql .= implode(' or ', $qsl);
 			} else {
@@ -58,6 +61,9 @@ class Genfunctions
 			}
 			if ($postdata['eqsl'] != NULL ) {
 				$qsl .= "E";
+			}
+			if ($postdata['clublog'] != NULL ) {
+				$qsl .= "C";
 			}
 			if ($postdata['qrz'] != NULL ) {
 				$qsl .= "Z";
