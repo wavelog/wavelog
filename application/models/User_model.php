@@ -415,6 +415,7 @@ class User_Model extends CI_Model {
 			'operator_callsign'	 => ((($this->session->userdata('operator_callsign') ?? '') == '') ? $u->row()->user_callsign : $this->session->userdata('operator_callsign')),
 			'user_locator'		 => $u->row()->user_locator,
 			'user_lotw_name'	 => $u->row()->user_lotw_name,
+			'user_clublog_name'	 => $u->row()->user_clublog_name ?? '',
 			'user_eqsl_name'	 => $u->row()->user_eqsl_name,
 			'user_eqsl_qth_nickname' => $u->row()->user_eqsl_qth_nickname,
 			'user_hash'		 => $this->_hash($u->row()->user_id."-".$u->row()->user_type),
