@@ -76,7 +76,7 @@ function echo_table_col($row, $name) {
                     <?php if ( strpos($this->session->userdata('user_default_confirmation'),'L')>0 && ($this->session->userdata('user_lotw_name') != "") ) { ?>
                         <th>LoTW</th>
                     <?php } ?>
-    		    <?php if ( strpos($this->session->userdata('user_default_confirmation'),'Q')>0 && ($this->session->userdata('hasQrzKey') != "") ) { ?>
+    		    <?php if ( strpos($this->session->userdata('user_default_confirmation'),'Z')>0 && ($this->session->userdata('hasQrzKey') != "") ) { ?>
                         <th>QRZ</th>
                     <?php } ?>
     		    <?php if ( strpos($this->session->userdata('user_default_confirmation'),'C')>0  ) { ?>
@@ -231,7 +231,7 @@ function echo_table_col($row, $name) {
                     </td>
                 <?php } ?>
 
-		<?php if ( strpos($this->session->userdata('user_default_confirmation'),'Q')>0 && ($this->session->userdata('hasQrzKey') != "") ) { ?>
+		<?php if ( strpos($this->session->userdata('user_default_confirmation'),'Z')>0 && ($this->session->userdata('hasQrzKey') != "") ) { ?>
                     <td class="qrz">
                         <span <?php if ($row->COL_QRZCOM_QSO_UPLOAD_STATUS == "Y") { echo "title=\"QRZ ".lang('general_word_sent'); if ($row->COL_QRZCOM_QSO_UPLOAD_DATE != null) { $timestamp = strtotime($row->COL_QRZCOM_QSO_UPLOAD_DATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="qrz-<?php echo ($row->COL_QRZCOM_QSO_UPLOAD_STATUS=='Y')?'green':'red'?>">&#9650;</span>
                         <span <?php if ($row->COL_QRZCOM_QSO_DOWNLOAD_STATUS == "Y") { echo "title=\"QRZ ".lang('general_word_received'); if ($row->COL_QRZCOM_QSO_DOWNLOAD_DATE != null) { $timestamp = strtotime($row->COL_QRZCOM_QSO_DOWNLOAD_DATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="qrz-<?php echo ($row->COL_QRZCOM_QSO_DOWNLOAD_STATUS=='Y')?'green':'red'?>">&#9660;</span>
