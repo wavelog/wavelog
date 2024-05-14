@@ -1,4 +1,7 @@
+var hamsAtTimer;
+
 function loadHamsAt(show_workable_only) {
+    clearInterval(hamsAtTimer);
     workable_only = show_workable_only.value;
     if (feed_key_set > 1) {
        if (workable_only == '1') {
@@ -20,6 +23,12 @@ function loadHamsAt(show_workable_only) {
              loadActivationsTable(result, workable_only);
        }
     });
+    obj = {
+       value: workable_only,
+    };
+    hamsAtTimer = setInterval(function() {
+       loadHamsAt(obj);
+    }, 60000);
 }
 
 function loadActivationsTable(rows, show_workable_only) {
@@ -142,7 +151,7 @@ $(document).ready(function() {
       value: workable_preset,
    };
    loadHamsAt(obj);
-   setInterval(function() {
+   hamsAtTimer = setInterval(function() {
       loadHamsAt(obj);
    }, 60000);
 });
