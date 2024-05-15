@@ -37,10 +37,9 @@ WORKDIR /var/www/html
 # Setting permissions as: https://github.com/wavelog/Wavelog/wiki/Installation
 RUN set -e; \
     \
-    mkdir ./userdata; \
     mkdir ./application/config/docker; \
     \
-    mv ./.htaccess.sample ./.htaccess; \
+    mv ./htaccess.sample ./.htaccess; \
     sed -i "s/\$config\['index_page'\] = 'index.php';/\$config\['index_page'\] = '';/g" ./install/config/config.php; \
     \
     chown -R root:www-data /var/www/html; \
