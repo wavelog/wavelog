@@ -37,7 +37,6 @@ WORKDIR /var/www/html
 # Setting permissions as: https://github.com/wavelog/Wavelog/wiki/Installation
 RUN set -e; \
     \
-    mkdir ./userdata; \
     mkdir ./application/config/docker; \
     \
     mv ./htaccess.sample ./.htaccess; \
