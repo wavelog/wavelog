@@ -323,6 +323,7 @@ class Lotw extends CI_Controller {
 				//with the error message.
 				if(curl_errno($ch)){
 					echo $station_profile->station_callsign." (".$station_profile->station_profile_name.") Upload Failed"."<br>";
+					$this->LotwCert->last_upload($data['lotw_cert_info']->lotw_cert_id, "Upload failed");
 				}
 
 				$pos = strpos($result, "<!-- .UPL.  accepted -->");
@@ -330,12 +331,13 @@ class Lotw extends CI_Controller {
 				if ($pos === false) {
 					// Upload of TQ8 Failed for unknown reason
 					echo $station_profile->station_callsign." (".$station_profile->station_profile_name.") Upload Failed"."<br>";
+					$this->LotwCert->last_upload($data['lotw_cert_info']->lotw_cert_id, "Upload failed");
 				} else {
 					// Upload of TQ8 was successfull
 
 					echo "Upload Successful - ".$filename_for_saving."<br>";
 
-					$this->LotwCert->last_upload($data['lotw_cert_info']->lotw_cert_id);
+					$this->LotwCert->last_upload($data['lotw_cert_info']->lotw_cert_id, "Success");
 
 					// Mark QSOs as Sent
 					foreach ($qso_id_array as $qso_number) {
