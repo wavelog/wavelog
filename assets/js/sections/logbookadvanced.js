@@ -689,7 +689,7 @@ $(document).ready(function () {
 				case 'ituzone': 	col1 = currentRow.find('#ituzone').text(); break;
 				case 'iota': 		col1 = currentRow.find('#iota').text(); col1 = col1.trim(); break;
 				case 'state': 		col1 = currentRow.find('#state').text(); break;
-				case 'dx': 			col1 = currentRow.find('#dx').text(); col1 = col1.match(/^([^\s]+)/gm); break;
+				case 'dx': 			col1 = currentRow.find('#dx').text().replace('Ø', '0'); col1 = col1.match(/^([^\s]+)/gm); break;
 				case 'gridsquare': 	col1 = $(currentRow).find('#dxgrid').text(); col1 = col1.substring(0, 4); break;
 				case 'sota': 		col1 = $(currentRow).find('#dxsota').text(); break;
 				case 'wwff': 		col1 = $(currentRow).find('#dxwwff').text(); break;
