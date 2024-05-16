@@ -677,3 +677,17 @@ $config['proxy_ips'] = '';
 */
 
 $config['userdata'] = 'userdata';  
+
+/*
+|--------------------------------------------------------------------------
+| Disable Syncing to 3rd party-Services at UI
+|--------------------------------------------------------------------------
+|
+| Here you can disable triggering the syncing-logics by Users.
+| Helpful if u have a huge instance or active-users, because of preventing race-conditions between UI and Cron
+|
+*/
+
+$config['disable_manual_lotw'] = false;
+$config['disable_manual_eqsl'] = false;
+$config['disable_manual_hrdlog'] = false;
