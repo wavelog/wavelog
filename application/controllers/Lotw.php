@@ -314,6 +314,7 @@ class Lotw extends CI_Controller {
 				);
 
 				curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+				curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
 
 				//Execute the request
 				$result = curl_exec($ch);
@@ -321,7 +322,7 @@ class Lotw extends CI_Controller {
 				//If an error occured, throw an exception
 				//with the error message.
 				if(curl_errno($ch)){
-					throw new Exception(curl_error($ch));
+					echo $station_profile->station_callsign." (".$station_profile->station_profile_name.") Upload Failed"."<br>";
 				}
 
 				$pos = strpos($result, "<!-- .UPL.  accepted -->");
