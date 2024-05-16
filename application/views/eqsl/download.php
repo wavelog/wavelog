@@ -37,6 +37,7 @@
 				<th>Mode</th>
 				<th>Submode</th>
 				<th>Band</th>
+				<th>Propagation Mode</th>
 				<th>Action</th>
 			</tr></thead><tbody>
 <?php
@@ -53,6 +54,7 @@ foreach ($qslsnotdownloaded->result_array() as $qsl) {
 		echo "<td></td>";
 	}
 	echo "<td>".$qsl['COL_BAND']."</td>";
+	echo "<td>".$qsl['COL_PROP_MODE']."</td>";
 	echo "<td><a href=\"".site_url()."/eqsl/image/".$qsl['COL_PRIMARY_KEY']."\" data-fancybox=\"images\" data-width=\"528\" data-height=\"336\" class=\"btn btn-primary btn-sm\">View/Download</a></td>";
 }
 	echo "</tr>";
