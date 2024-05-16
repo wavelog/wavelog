@@ -8,10 +8,12 @@
       <li class="nav-item">
         <a class="nav-link" href="<?php echo site_url('eqsl/import');?>">Download QSOs</a>
       </li>
+<?php if (!($this->config->item('disable_manual_eqsl'))) { ?>
       <li class="nav-item">
         <a class="nav-link" href="<?php echo site_url('eqsl/Export');?>">Upload QSOs</a>
       </li>
-	  <li class="nav-item">
+<?php } ?>
+      <li class="nav-item">
         <a class="nav-link" href="<?php echo site_url('eqsl/tools');?>">Tools</a>
       </li>
       <li class="nav-item">

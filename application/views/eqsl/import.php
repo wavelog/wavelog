@@ -7,11 +7,12 @@
       <li class="nav-item">
         <a class="nav-link active" href="<?php echo site_url('eqsl/import');?>">Download QSOs</a>
       </li>
+<?php if (!($this->config->item('disable_manual_eqsl'))) { ?>
       <li class="nav-item">
         <a class="nav-link" href="<?php echo site_url('eqsl/Export');?>">Upload QSOs</a>
       </li>
-
-	  <li class="nav-item">
+<?php } ?>
+      <li class="nav-item">
         <a class="nav-link" href="<?php echo site_url('eqsl/tools');?>">Tools</a>
       </li>
       <li class="nav-item">
@@ -43,6 +44,7 @@
                     <input class="form-control w-auto" type="file" name="userfile" size="20" />
 			</div>
 			<hr class="divider">
+<?php if (!($this->config->item('disable_manual_eqsl'))) { ?>
 			<div class="form-check">
 			  <input class="form-check-input" type="radio" name="eqslimport" id="fetch" value="fetch"  checked="checked"/>
 			  <label class="form-check-label" for="exampleRadios1">Import directly from eQSL</label>
@@ -56,6 +58,7 @@
 		         	<div class="mb-3 col-sm-5" style="vertical-align:middle;"><label class="form-label"><?php echo "(Select a date, only if you want to force an import with an older date)"; //$this->lang->line(''); ?></label></div>
 				</div>
 			</div>
+<?php } ?>
 			<hr class="divider">
 			<div class="mb-3"><input class="btn btn-primary" type="submit" value="Import eQSL QSO Matches" /></div>
 		</form>
