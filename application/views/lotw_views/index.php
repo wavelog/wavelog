@@ -139,13 +139,13 @@
 	<br>
 
 	<!-- Card Starts -->
+	<?php
+	if (!($this->config->item('disable_manual_lotw'))) { ?>
 	<div class="card">
 		<div class="card-header">
 			<?php echo lang('lotw_title_information'); ?>
 		</div>
 
-		<?php
-		if (!($this->config->item('disable_manual_lotw'))) { ?>
 		<div class="card-body">
 			<button class="btn btn-outline-success" hx-get="<?php echo site_url('lotw/lotw_upload'); ?>"  hx-target="#lotw_manual_results">
 				<?php echo lang('lotw_btn_manual_sync'); ?>
@@ -153,7 +153,7 @@
 
 			<div id="lotw_manual_results"></div>
 		</div>
-		<?php } ?>
 	</div>
+	<?php } ?>
 
 </div>
