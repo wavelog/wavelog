@@ -107,9 +107,9 @@ function loadActivationsTable(rows, show_workable_only) {
 		grids = [];
 		for (var j=0; j < activation.grids_wkd.length; j++) {
 			if (activation.grids_wkd[j] == 1) {
-				grids.push("<span data-bs-toggle=\"tooltip\" title=\"Worked\" class=\"badge bg-success\">"+activation.grids[j]+"</span>")
+				grids.push("<span data-bs-toggle=\"tooltip\" title=\"Worked\" class=\"badge bg-success\">"+activation.grids[j].substring(0, 4)+"</span>")
 			} else {
-				grids.push("<span data-bs-toggle=\"tooltip\" title=\"Not Worked\" class=\"badge bg-danger\">"+activation.grids[j]+"</span>")
+				grids.push("<span data-bs-toggle=\"tooltip\" title=\"Not Worked\" class=\"badge bg-danger\">"+activation.grids[j].substring(0, 4)+"</span>")
 			}
 		}
 		data.push(grids.join(' '));
