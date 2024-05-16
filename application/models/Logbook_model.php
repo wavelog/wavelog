@@ -3549,14 +3549,14 @@ function lotw_last_qsl_date($user_id) {
 		  if(isset($record['rst_rcvd'])) {
 			  $rst_rx = $record['rst_rcvd'];
 		  } else {
-			  $rst_rx = "59";
+			  $rst_rx = "";
 		  }
 
 		  // RST Sent
 		  if(isset($record['rst_sent'])) {
 			  $rst_tx = $record['rst_sent'];
 		  } else {
-			  $rst_tx = "59";
+			  $rst_tx = "";
 		  }
 
 		  if(isset($record['cqz'])) {
