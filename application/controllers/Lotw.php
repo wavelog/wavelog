@@ -206,8 +206,14 @@ class Lotw extends CI_Controller {
 		$this->load->model('Stations');
 
 		if ($this->user_model->authorize(2)) {
-			$station_profiles = $this->Stations->all_of_user($this->session->userdata('user_id'));
-			$sync_user_id=$this->session->userdata('user_id');
+			if (($this->config->item('disable_manual_lotw') ?? '') != '') {
+				$station_profiles = $this->Stations->all_of_user($this->session->userdata('user_id'));
+				$sync_user_id=$this->session->userdata('user_id');
+			} else {
+            			echo "Manual syncing is diabled by configuration";
+				redirect('dashboard');
+				exit();
+			}
 		} else {
 			$station_profiles = $this->Stations->all();
 			$sync_user_id=null;
