@@ -186,7 +186,7 @@
               <div class="mb-3 row">
                   <label for="name" class="col-sm-3 col-form-label"><?php echo lang('general_word_name'); ?></label>
                   <div class="col-sm-9">
-                    <input tabindex="4" type="text" class="form-control form-control-sm" name="name" id="name" value="">
+                    <input tabindex="4" type="text" class="form-control form-control-sm" name="name" id="name" maxlength="128" value="">
                 </div>
               </div>
 
@@ -270,7 +270,7 @@
               <div class="mb-3 row">
                 <label for="qth" class="col-sm-3 col-form-label"><?php echo lang('general_word_location'); ?></label>
                 <div class="col-sm-9">
-                    <input tabindex="5" type="text" class="form-control form-control-sm" name="qth" id="qth" value="">
+                    <input tabindex="5" type="text" class="form-control form-control-sm" name="qth" id="qth" maxlength="64" value="">
                 </div>
               </div>
 
