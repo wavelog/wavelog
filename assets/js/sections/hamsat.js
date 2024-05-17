@@ -92,7 +92,7 @@ function loadActivationsTable(rows, show_workable_only) {
 		if (activation.callsign_wkd == 1) {;
 			data.push("<span class=\"text-success\">"+activation.callsign+"</span>");
 		} else {
-			data.push(activation.callsign);
+			data.push(activation.callsign.replaceAll('0', 'Ø'));
 		}
 		data.push(activation.comment);
 		freq = parseFloat(activation.mhz).toFixed(3);
