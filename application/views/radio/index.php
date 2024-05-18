@@ -19,8 +19,8 @@
 	    <p class="card-text">Below is a list of active radios that are connected to Wavelog.</p>
 	    <p class="card-text">If you haven't connected any radios yet, see the API page to generate API keys.</p>
 	    <div class="table-responsive">
-		    <!-- Display Radio Statuses -->	  
-			<table class="table table-striped status"></table>
+		    <!-- Display Radio Statuses -->
+			<table class="table table-sm table-condensated table-striped status"></table>
 		</div>
 
 		<p class="card-text">
