@@ -90,7 +90,7 @@ function loadActivationsTable(rows, show_workable_only) {
 		data.push(activation.aos_at_date);
 		data.push(activation.aos_to_los);
 		if (activation.callsign_wkd == 1) {;
-			data.push("<span class=\"text-success\">"+activation.callsign+"</span>");
+			data.push("<span class=\"text-success\">"+activation.callsign.replaceAll('0', 'Ø')+"</span>");
 		} else {
 			data.push(activation.callsign.replaceAll('0', 'Ø'));
 		}
