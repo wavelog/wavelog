@@ -440,7 +440,7 @@ function createContentMessage(qso) {
 	var table = '<table><tbody>' +
 	'<tr>' +
 	'<td>' +
-	'Station callsign: ' + qso.mycallsign +
+	'Station callsign: ' + qso.mycallsign.replaceAll('0', 'Ø') +
 	"</td></tr>" +
 	'<tr>' +
 	'<td>' +
@@ -453,10 +453,10 @@ function createContentMessageDx(qso) {
 	var table = '<table><tbody>' +
 	'<tr>' +
 	'<td>Callsign</td>' +
-	'<td>' + qso.callsign + '</td>' +
+	'<td>' + qso.callsign.replaceAll('0', 'Ø') + '</td>' +
 	'</tr>' +
 	'<tr>' +
-	'<td>Date/time</td>' +
+	'<td>Date/Time</td>' +
 	'<td>' + qso.datetime + '</td>' +
 	'</tr>' +
 	'<tr>';

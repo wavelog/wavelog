@@ -30,6 +30,7 @@
         <th style=\'text-align: center\'>'.$this->lang->line('general_word_date').'</th>
         <th style=\'text-align: center\'>'.$this->lang->line('general_word_time').'</th>
         <th style=\'text-align: center\'>'.$this->lang->line('gen_hamradio_band').'</th>
+        <th style=\'text-align: center\'>'.$this->lang->line('gen_hamradio_propagation_mode').'</th>
         <th style=\'text-align: center\'>'.$this->lang->line('gen_hamradio_qsl').' '.$this->lang->line('general_word_date').'</th>
         <th style=\'text-align: center\'></th>
         </tr>
@@ -49,6 +50,9 @@
          echo '</td>';
          echo '<td style=\'text-align: center\'>';
          if($qsl->COL_SAT_NAME != null) { echo $qsl->COL_SAT_NAME; } else { echo strtolower($qsl->COL_BAND); };
+         echo '</td>';
+         echo '<td style=\'text-align: center\'>';
+         if($qsl->COL_PROP_MODE != null) { echo $qsl->COL_PROP_MODE; };
          echo '</td>';
          echo '<td style=\'text-align: center\'>';
          $timestamp = strtotime($qsl->COL_EQSL_QSLRDATE); echo date($custom_date_format, $timestamp);
