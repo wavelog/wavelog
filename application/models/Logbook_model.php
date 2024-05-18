@@ -4862,9 +4862,13 @@ function lotw_last_qsl_date($user_id) {
       foreach ($qsos_result as $row) {
         $plot = array('lat'=>0, 'lng'=>0, 'html'=>'', 'label'=>'', 'confirmed'=>'N');
 
-        $plot['label'] = $row->COL_CALL;
+        $plot['label'] = str_replace('0', '&Oslash;', $row->COL_CALL);
 
-        $plot['html'] = "Callsign: ".$row->COL_CALL."<br />Date/Time: ".$row->COL_TIME_ON."<br />";
+        $plot['html'] = "";
+        if ($row->COL_NAME != null) {
+           $plot['html'] .= "Name: ".$row->COL_NAME."<br />";
+        }
+        $plot['html'] .= "Date/Time: ".$row->COL_TIME_ON."<br />";
         $plot['html'] .= ($row->COL_SAT_NAME != null) ? ("SAT: ".$row->COL_SAT_NAME."<br />") : ("Band: ".$row->COL_BAND."<br />");
         $plot['html'] .= "Mode: ".($row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE)."<br />";
 
