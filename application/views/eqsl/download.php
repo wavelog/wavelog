@@ -63,7 +63,8 @@ foreach ($qslsnotdownloaded->result_array() as $qsl) {
 ?>
 		</tbody></table>
 		<br /><br />
-		<?php echo form_open_multipart('eqsl/download');?>
+		<?php if (!($this->config->item('disable_manual_eqsl'))) {
+			echo form_open_multipart('eqsl/download');?>
 
 			<div class="form-check">
 			  <input class="form-check-input" type="hidden" name="eqsldownload" id="download" value="download" checked />
@@ -72,7 +73,7 @@ foreach ($qslsnotdownloaded->result_array() as $qsl) {
 			<p><div class="alert alert-danger" role="alert">Due to a rate limit of approximately 10 seconds per eQSL picture download calling this function will take a long time to complete! Thus you may have to call this function several times depending on the amount of outstanding cards. This may run into a script timeout depending on the PHP configuration.</div></p>
 
 		<input class="btn btn-primary" type="submit" value="Download un-synced eQSL cards" />
-
+			<?php } ?>
 		</form>
 
 <?php
