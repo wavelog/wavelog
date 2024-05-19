@@ -226,17 +226,12 @@ class Logbookadvanced_model extends CI_Model {
 		}
 
 		$sql = "
-			SELECT *, dxcc_entities.name AS station_country
+			SELECT *, dxcc_entities.name AS station_country,exists(select 1 from qsl_images where qsoid = qsos.COL_PRIMARY_KEY) as qslcount
 			FROM " . $this->config->item('table_name') . " qsos
 			INNER JOIN station_profile ON qsos.station_id=station_profile.station_id
 			LEFT OUTER JOIN satellite ON qsos.COL_SAT_NAME = satellite.name
 			LEFT OUTER JOIN dxcc_entities ON qsos.col_dxcc=dxcc_entities.adif
 			LEFT OUTER JOIN lotw_users ON qsos.col_call=lotw_users.callsign
-			LEFT OUTER JOIN (
-				select count(*) as qslcount, qsoid
-				from qsl_images
-				group by qsoid
-			) x on qsos.COL_PRIMARY_KEY = x.qsoid
 			WHERE station_profile.user_id =  ?
 			$where
 			$where2
