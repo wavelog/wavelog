@@ -502,8 +502,11 @@ class Lotw extends CI_Controller {
 			$tableheaders .= "</tr>";
 
 			$table = "";
-			while($record = $this->adif_parser->get_record())
-			{
+			while($record = $this->adif_parser->get_record()) {
+				// Check for LoTW confirmation in ADIF record and skip if not existent
+				if (!isset($record['app_lotw_rxqsl'])) {
+					continue;
+				}
 
 				$time_on = date('Y-m-d', strtotime($record['qso_date'])) ." ".date('H:i', strtotime($record['time_on']));
 
