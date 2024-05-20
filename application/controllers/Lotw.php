@@ -253,7 +253,7 @@ class Lotw extends CI_Controller {
 				// Nothing to upload
 				if(empty($data['qsos']->result())){
 					if ($this->user_model->authorize(2)) {	// Only be verbose if we have a session
-						echo $station_profile->station_callsign." (".$station_profile->station_profile_name.") No QSOs to Upload <br>";
+						echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): No QSOs to upload.<br>";
 					}
 					continue;
 				}
@@ -320,20 +320,32 @@ class Lotw extends CI_Controller {
 				$result = curl_exec($ch);
 
 				if(curl_errno($ch)){
-					echo $station_profile->station_callsign." (".$station_profile->station_profile_name.") Upload Failed"."<br>";
+					echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): Upload Failed - ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).")<br>";
 					$this->LotwCert->last_upload($data['lotw_cert_info']->lotw_cert_id, "Upload failed");
+					if (curl_errno($ch) == 28) {  // break on timeout
+						echo "Timeout reached. Stopping subsequent uploads.<br>";
+						break;
+					} else {
+						continue;
+					}
 				}
 
 				$pos = strpos($result, "<!-- .UPL.  accepted -->");
 
 				if ($pos === false) {
 					// Upload of TQ8 Failed for unknown reason
-					echo $station_profile->station_callsign." (".$station_profile->station_profile_name.") Upload Failed"."<br>";
+					echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): Upload Failed - ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).")<br>";
 					$this->LotwCert->last_upload($data['lotw_cert_info']->lotw_cert_id, "Upload failed");
+					if (curl_errno($ch) == 28) {  // break on timeout
+						echo "Timeout reached. Stopping subsequent uploads.<br>";
+						break;
+					} else {
+						continue;
+					}
 				} else {
 					// Upload of TQ8 was successfull
 
-					echo "Upload Successful - ".$filename_for_saving."<br>";
+					echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): Upload Successful - ".$filename_for_saving."<br>";
 
 					$this->LotwCert->last_upload($data['lotw_cert_info']->lotw_cert_id, "Success");
 
@@ -490,8 +502,11 @@ class Lotw extends CI_Controller {
 			$tableheaders .= "</tr>";
 
 			$table = "";
-			while($record = $this->adif_parser->get_record())
-			{
+			while($record = $this->adif_parser->get_record()) {
+				// Check for LoTW confirmation in ADIF record and skip if not existent
+				if (!isset($record['app_lotw_rxqsl'])) {
+					continue;
+				}
 
 				$time_on = date('Y-m-d', strtotime($record['qso_date'])) ." ".date('H:i', strtotime($record['time_on']));
 
@@ -673,9 +688,21 @@ class Lotw extends CI_Controller {
 					$result = "Temporary download directory ".dirname($file)." is not writable. Aborting!";
 					continue;
 				}
-				file_put_contents($file, file_get_contents($lotw_url));
+				$ch = curl_init();
+				curl_setopt($ch, CURLOPT_URL, $lotw_url);
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
+				$content = curl_exec($ch);
+				if(curl_errno($ch)){
+					$result = "LoTW download failed for user ".$data['user_lotw_name'].": ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).").";
+					if (curl_errno($ch) == 28) {  // break on timeout
+						$result .= "<br>Timeout reached. Stopping subsequent downloads.";
+						break;
+					}
+				}
+				file_put_contents($file, $content);
 				if (file_get_contents($file, false, null, 0, 39) != "ARRL Logbook of the World Status Report") {
-					$result = "LoTW downloading failed for User ".$data['user_lotw_name']." either due to it being down or incorrect logins.";
+					$result = "Downloaded LoTW report for user ".$data['user_lotw_name']." is invalid. Check your credentials.";
 					continue;
 				}
 
@@ -747,10 +774,19 @@ class Lotw extends CI_Controller {
 			}
 
 			if (is_writable(dirname($file)) && (!file_exists($file) || is_writable($file))) {
-				file_put_contents($file, file_get_contents($lotw_url));
+				$ch = curl_init();
+				curl_setopt($ch, CURLOPT_URL, $lotw_url);
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
+				$content = curl_exec($ch);
+				if(!curl_errno($ch)){
+					file_put_contents($file, $content);
 
-				ini_set('memory_limit', '-1');
-				$this->loadFromFile($file);
+					ini_set('memory_limit', '-1');
+					$this->loadFromFile($file);
+				} else {
+					print "LoTW download failed for user ".$data['user_lotw_name'].": ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).").";
+				}
 			} else {
 				if (!is_writable(dirname($file))) {
 					$data['errormsg'] = 'Directory '.dirname($file).' is not writable!';
