@@ -21,8 +21,8 @@
 				<div class="tab-pane active" id="export" role="tabpanel" aria-labelledby="export-tab">
             <p>Here you can see all QSOs which have not been previously uploaded to a HRDLog logbook.</p>
             <p>You need to set a HRDLog Logbook API Code in your station profile. Only station profiles with an API Key set are displayed.</p>
-            <p>The Code can be demanded at <a href="http://www.hrdlog.net/EditUser.aspx" target="new" class="link">http://www.hrdlog.net/EditUser.aspx</a></p>
-            <?php if (!($this->config->item('disable_manual_eqsl'))) { echo '<p><span class="badge text-bg-warning">Warning</span> This might take a while as QSO uploads are processed sequentially.</p>'; } ?>
+            <p>The Code can be requested at <a href="http://www.hrdlog.net/EditUser.aspx" target="new" class="link">http://www.hrdlog.net/EditUser.aspx</a></p>
+            <?php if (!($this->config->item('disable_manual_hrdlog'))) { echo '<p><span class="badge text-bg-warning">Warning</span> This might take a while as QSO uploads are processed sequentially.</p>'; } ?>
 
 <?php
             if ($station_profile->result()) {
@@ -46,7 +46,7 @@
 			    echo '<td id ="modcount'.$station->station_id.'">' . $station->modcount . '</td>';
 			    echo '<td id ="notcount'.$station->station_id.'">' . $station->notcount . '</td>';
 			    echo '<td id ="totcount'.$station->station_id.'">' . $station->totcount . '</td>';
-			    if (!($this->config->item('disable_manual_eqsl'))) {
+			    if (!($this->config->item('disable_manual_hrdlog'))) {
 				    echo '<td><button id="HrdlogUpload" type="button" name="HrdlogUpload" class="btn btn-primary btn-sm ld-ext-right ld-ext-right-'.$station->station_id.'" onclick="ExportHrd('. $station->station_id .')"><i class="fas fa-cloud-upload-alt"></i> Upload<div class="ld ld-ring ld-spin"></div></button></td>';
 			    } else {
 				    echo '<td>&nbsp;</td>';

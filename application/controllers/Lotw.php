@@ -210,7 +210,7 @@ class Lotw extends CI_Controller {
 				$station_profiles = $this->Stations->all_of_user($this->session->userdata('user_id'));
 				$sync_user_id=$this->session->userdata('user_id');
 			} else {
-            			echo "Manual syncing is diabled by configuration";
+				echo "Manual syncing is disabled by configuration";
 				redirect('dashboard');
 				exit();
 			}
@@ -696,7 +696,11 @@ class Lotw extends CI_Controller {
 
 	public function import() {	// Is only called via frontend. Cron uses "upload". within download the download is called
 		$this->load->model('user_model');
-		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); exit(); }
+		if(!$this->user_model->authorize(2)) {
+			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!');
+			redirect('dashboard');
+			exit();
+		}
 
 		if (!($this->config->item('disable_manual_lotw'))) {
 			$data['page_title'] = "LoTW ADIF Import";
@@ -792,7 +796,9 @@ class Lotw extends CI_Controller {
 				}
 			}
 		} else {
-			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); exit();
+			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!');
+			redirect('dashboard');
+			exit();
 		}
 	} // end function
 
