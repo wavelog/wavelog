@@ -100,6 +100,9 @@ function updateRow(qso) {
 	if ( (user_options.propagation) && (user_options.propagation.show == "true")){
 		cells.eq(c++).html(qso.propagation);
 	}
+	if ( (user_options.contest) && (user_options.contest.show == "true")){
+		cells.eq(c++).html(qso.contest);
+	}
 
 	$('[data-bs-toggle="tooltip"]').tooltip();
 	return row;
@@ -210,6 +213,9 @@ function loadQSOTable(rows) {
 		}
 		if (user_options.propagation.show == "true"){
 			data.push(qso.propagation);
+		}
+		if (user_options.contest.show == "true"){
+			data.push(qso.contest);
 		}
 
 		let createdRow = table.row.add(data).index();
@@ -915,6 +921,7 @@ function saveOptions() {
 			operator: $('input[name="operator"]').is(':checked') ? true : false,
 			comment: $('input[name="comment"]').is(':checked') ? true : false,
 			propagation: $('input[name="propagation"]').is(':checked') ? true : false,
+			contest: $('input[name="contest"]').is(':checked') ? true : false,
 			gridsquare_layer: $('input[name="gridsquareoverlay"]').is(':checked') ? true : false,
 			path_lines: $('input[name="pathlines"]').is(':checked') ? true : false,
 			cqzone_layer: $('input[name="cqzones"]').is(':checked') ? true : false,
