@@ -26,7 +26,7 @@
 				<div class="tab-pane active" id="export" role="tabpanel" aria-labelledby="export-tab">
             <p>Here you can see all QSOs which have not been previously uploaded to a QRZ logbook.</p>
             <p>You need to set a QRZ Logbook API key in your station profile. Only station profiles with an API Key set are displayed.</p>
-            <p><span class="badge text-bg-warning">Warning</span> This might take a while as QSO uploads are processed sequentially.</p>
+            <?php if (!($this->config->item('disable_manual_qrz'))) { echo '<p><span class="badge text-bg-warning">Warning</span> This might take a while as QSO uploads are processed sequentially.</p>'; } ?>
 
 <?php
             if ($station_profile->result()) {
