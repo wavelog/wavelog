@@ -253,7 +253,7 @@ class Lotw extends CI_Controller {
 				// Nothing to upload
 				if(empty($data['qsos']->result())){
 					if ($this->user_model->authorize(2)) {	// Only be verbose if we have a session
-						echo $station_profile->station_callsign." (".$station_profile->station_profile_name.") No QSOs to upload.<br>";
+						echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): No QSOs to upload.<br>";
 					}
 					continue;
 				}
@@ -320,7 +320,7 @@ class Lotw extends CI_Controller {
 				$result = curl_exec($ch);
 
 				if(curl_errno($ch)){
-					echo $station_profile->station_callsign." (".$station_profile->station_profile_name.") Upload Failed: ".curl_strerror(curl_errno($ch))."<br>";
+					echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): Upload Failed - ".curl_strerror(curl_errno($ch))."<br>";
 					$this->LotwCert->last_upload($data['lotw_cert_info']->lotw_cert_id, "Upload failed");
 					continue;
 				}
@@ -329,13 +329,13 @@ class Lotw extends CI_Controller {
 
 				if ($pos === false) {
 					// Upload of TQ8 Failed for unknown reason
-					echo $station_profile->station_callsign." (".$station_profile->station_profile_name.") Upload Failed: ".curl_strerror(curl_errno($ch))."<br>";
+					echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): Upload Failed - ".curl_strerror(curl_errno($ch))."<br>";
 					$this->LotwCert->last_upload($data['lotw_cert_info']->lotw_cert_id, "Upload failed");
 					continue;
 				} else {
 					// Upload of TQ8 was successfull
 
-					echo "Upload Successful - ".$filename_for_saving."<br>";
+					echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): Upload Successful - ".$filename_for_saving."<br>";
 
 					$this->LotwCert->last_upload($data['lotw_cert_info']->lotw_cert_id, "Success");
 
