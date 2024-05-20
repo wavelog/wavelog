@@ -36,8 +36,9 @@
             \"iota\":{\"show\":\"true\"},
             \"pota\":{\"show\":\"true\"},
             \"operator\":{\"show\":\"true\"},
-            \"comment\":{\"show\":\"true\",
-            \"propagation\":{\"show\":\"true\"}}";
+            \"comment\":{\"show\":\"true\"},
+            \"propagation\":{\"show\":\"true\"}
+        }";
     }
     $current_opts = json_decode($options);
     echo "var user_options = $options;";
