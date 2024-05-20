@@ -758,10 +758,19 @@ class Lotw extends CI_Controller {
 			}
 
 			if (is_writable(dirname($file)) && (!file_exists($file) || is_writable($file))) {
-				file_put_contents($file, file_get_contents($lotw_url));
+				$ch = curl_init();
+				curl_setopt($ch, CURLOPT_URL, $lotw_url);
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
+				$content = curl_exec($ch);
+				if(!curl_errno($ch)){
+					file_put_contents($file, $content);
 
-				ini_set('memory_limit', '-1');
-				$this->loadFromFile($file);
+					ini_set('memory_limit', '-1');
+					$this->loadFromFile($file);
+				} else {
+					print "LoTW download failed for user ".$data['user_lotw_name'].": ".curl_strerror(curl_errno($ch)).".";
+				}
 			} else {
 				if (!is_writable(dirname($file))) {
 					$data['errormsg'] = 'Directory '.dirname($file).' is not writable!';
