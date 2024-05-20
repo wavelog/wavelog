@@ -320,18 +320,28 @@ class Lotw extends CI_Controller {
 				$result = curl_exec($ch);
 
 				if(curl_errno($ch)){
-					echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): Upload Failed - ".curl_strerror(curl_errno($ch))."<br>";
+					echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): Upload Failed - ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).")<br>";
 					$this->LotwCert->last_upload($data['lotw_cert_info']->lotw_cert_id, "Upload failed");
-					continue;
+					if (curl_errno($ch) == 28) {  // break on timeout
+						echo "Timeout reached. Stopping subsequent uploads.<br>";
+						break;
+					} else {
+						continue;
+					}
 				}
 
 				$pos = strpos($result, "<!-- .UPL.  accepted -->");
 
 				if ($pos === false) {
 					// Upload of TQ8 Failed for unknown reason
-					echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): Upload Failed - ".curl_strerror(curl_errno($ch))."<br>";
+					echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): Upload Failed - ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).")<br>";
 					$this->LotwCert->last_upload($data['lotw_cert_info']->lotw_cert_id, "Upload failed");
-					continue;
+					if (curl_errno($ch) == 28) {  // break on timeout
+						echo "Timeout reached. Stopping subsequent uploads.<br>";
+						break;
+					} else {
+						continue;
+					}
 				} else {
 					// Upload of TQ8 was successfull
 
@@ -681,8 +691,11 @@ class Lotw extends CI_Controller {
 				curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
 				$content = curl_exec($ch);
 				if(curl_errno($ch)){
-					$result = "LoTW download failed for user ".$data['user_lotw_name'].": ".curl_strerror(curl_errno($ch)).".";
-					continue;
+					$result = "LoTW download failed for user ".$data['user_lotw_name'].": ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).").";
+					if (curl_errno($ch) == 28) {  // break on timeout
+						$result .= "<br>Timeout reached. Stopping subsequent downloads.";
+						break;
+					}
 				}
 				file_put_contents($file, $content);
 				if (file_get_contents($file, false, null, 0, 39) != "ARRL Logbook of the World Status Report") {
@@ -769,7 +782,7 @@ class Lotw extends CI_Controller {
 					ini_set('memory_limit', '-1');
 					$this->loadFromFile($file);
 				} else {
-					print "LoTW download failed for user ".$data['user_lotw_name'].": ".curl_strerror(curl_errno($ch)).".";
+					print "LoTW download failed for user ".$data['user_lotw_name'].": ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).").";
 				}
 			} else {
 				if (!is_writable(dirname($file))) {
