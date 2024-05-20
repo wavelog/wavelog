@@ -60,14 +60,13 @@ class Logbookadvanced extends CI_Controller {
 
 		$pageData['bands'] = $this->bands->get_worked_bands();
 
-		$CI =& get_instance();
 		// Get Date format
-		if($CI->session->userdata('user_date_format')) {
+		if($this->session->userdata('user_date_format')) {
 			// If Logged in and session exists
-			$pageData['custom_date_format'] = $CI->session->userdata('user_date_format');
+			$pageData['custom_date_format'] = $this->session->userdata('user_date_format');
 		} else {
 			// Get Default date format from /config/wavelog.php
-			$pageData['custom_date_format'] = $CI->config->item('qso_date_format');
+			$pageData['custom_date_format'] = $this->config->item('qso_date_format');
 		}
 
 		switch ($pageData['custom_date_format']) {
@@ -509,6 +508,7 @@ class Logbookadvanced extends CI_Controller {
 		$json_string['pota']['show'] = $this->input->post('pota');
 		$json_string['operator']['show'] = $this->input->post('operator');
 		$json_string['comment']['show'] = $this->input->post('comment');
+		$json_string['propagation']['show'] = $this->input->post('propagation');
 
 		$obj['column_settings']= json_encode($json_string);
 

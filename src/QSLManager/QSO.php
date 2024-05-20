@@ -839,7 +839,8 @@ class QSO
 			'lastupload' => $this->lastupload,
 			'lotw_hint' => $this->lotw_hint,
 			'comment' => $this->comment,
-			'orbit' => $this->orbit
+			'orbit' => $this->orbit,
+			'propagation' => $this->getPropagationMode(),
 		];
 	}
 
