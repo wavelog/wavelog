@@ -218,10 +218,10 @@ class Logbookadvanced_model extends CI_Model {
 
 		if ($searchCriteria['qslimages'] !== '') {
 			if ($searchCriteria['qslimages'] == 'Y') {
-				$where2 .= ' and x.qslcount > "0"';
+				$where2 .= ' and exists(select 1 from qsl_images where qsoid = qsos.COL_PRIMARY_KEY)';
 			}
 			if ($searchCriteria['qslimages'] == 'N') {
-				$where2 .= ' and x.qslcount is null';
+				$where2 .= ' and not exists(select 1 from qsl_images where qsoid = qsos.COL_PRIMARY_KEY)';
 			}
 		}
 
