@@ -13,7 +13,32 @@
     <?php
     echo "var homegrid ='" . strtoupper($homegrid[0]) . "';";
     if (!isset($options)) {
-        $options = "{\"datetime\":{\"show\":\"true\"},\"de\":{\"show\":\"true\"},\"dx\":{\"show\":\"true\"},\"mode\":{\"show\":\"true\"},\"rstr\":{\"show\":\"true\"},\"rsts\":{\"show\":\"true\"},\"band\":{\"show\":\"true\"},\"myrefs\":{\"show\":\"true\"},\"refs\":{\"show\":\"true\"},\"name\":{\"show\":\"true\"},\"qslvia\":{\"show\":\"true\"},\"qsl\":{\"show\":\"true\"},\"lotw\":{\"show\":\"true\"},\"eqsl\":{\"show\":\"true\"},\"qslmsg\":{\"show\":\"true\"},\"dxcc\":{\"show\":\"true\"},\"state\":{\"show\":\"true\"},\"cqzone\":{\"show\":\"true\"},\"ituzone\":{\"show\":\"true\"},\"iota\":{\"show\":\"true\"},\"pota\":{\"show\":\"true\"},\"operator\":{\"show\":\"true\"},\"comment\":{\"show\":\"true\",\"propagation\":{\"show\":\"true\"}}";
+        $options = "{
+            \"datetime\":{\"show\":\"true\"},
+            \"de\":{\"show\":\"true\"},
+            \"dx\":{\"show\":\"true\"},
+            \"mode\":{\"show\":\"true\"},
+            \"rstr\":{\"show\":\"true\"},
+            \"rsts\":{\"show\":\"true\"},
+            \"band\":{\"show\":\"true\"},
+            \"myrefs\":{\"show\":\"true\"},
+            \"refs\":{\"show\":\"true\"},
+            \"name\":{\"show\":\"true\"},
+            \"qslvia\":{\"show\":\"true\"},
+            \"qsl\":{\"show\":\"true\"},
+            \"lotw\":{\"show\":\"true\"},
+            \"eqsl\":{\"show\":\"true\"},
+            \"qslmsg\":{\"show\":\"true\"},
+            \"dxcc\":{\"show\":\"true\"},
+            \"state\":{\"show\":\"true\"},
+            \"cqzone\":{\"show\":\"true\"},
+            \"ituzone\":{\"show\":\"true\"},
+            \"iota\":{\"show\":\"true\"},
+            \"pota\":{\"show\":\"true\"},
+            \"operator\":{\"show\":\"true\"},
+            \"comment\":{\"show\":\"true\"},
+            \"propagation\":{\"show\":\"true\"}
+        }";
     }
     $current_opts = json_decode($options);
     echo "var user_options = $options;";
