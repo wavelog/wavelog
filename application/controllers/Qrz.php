@@ -186,36 +186,40 @@ class Qrz extends CI_Controller {
 	 * Used for ajax-function when selecting log for upload to qrz
 	 */
 	public function upload_station() {
-		$this->setOptions();
-		$this->load->model('stations');
+		if (!($this->config->item('disable_manual_qrz'))) {
+			$this->setOptions();
+			$this->load->model('stations');
 
-		$postData = $this->input->post();
+			$postData = $this->input->post();
 
-		$this->load->model('logbook_model');
-		$result = $this->logbook_model->exists_qrz_api_key($postData['station_id']);
-		$qrz_api_key = $result->qrzapikey;
-		$qrz_enabled = $result->qrzrealtime;
-		header('Content-type: application/json');
-		if ($qrz_enabled>=0) {
-			$result = $this->mass_upload_qsos($postData['station_id'], $qrz_api_key);
-			if ($result['status'] == 'OK') {
-				$stationinfo = $this->stations->stations_with_qrz_api_key();
-				$info = $stationinfo->result();
+			$this->load->model('logbook_model');
+			$result = $this->logbook_model->exists_qrz_api_key($postData['station_id']);
+			$qrz_api_key = $result->qrzapikey;
+			$qrz_enabled = $result->qrzrealtime;
+			header('Content-type: application/json');
+			if ($qrz_enabled>=0) {
+				$result = $this->mass_upload_qsos($postData['station_id'], $qrz_api_key);
+				if ($result['status'] == 'OK') {
+					$stationinfo = $this->stations->stations_with_qrz_api_key();
+					$info = $stationinfo->result();
 
-				$data['status'] = 'OK';
-				$data['info'] = $info;
-				$data['infomessage'] = $result['count'] . " QSOs are now uploaded to QRZ.com";
-				$data['errormessages'] = $result['errormessages'];
-				echo json_encode($data);
+					$data['status'] = 'OK';
+					$data['info'] = $info;
+					$data['infomessage'] = $result['count'] . " QSOs are now uploaded to QRZ.com";
+					$data['errormessages'] = $result['errormessages'];
+					echo json_encode($data);
+				} else {
+					$data['status'] = 'Error';
+					$data['info'] = 'Error: No QSOs found to upload.';
+					$data['errormessages'] = $result['errormessages'];
+					echo json_encode($data);
+				}
 			} else {
-				$data['status'] = 'Error';
-				$data['info'] = 'Error: No QSOs found to upload.';
-				$data['errormessages'] = $result['errormessages'];
+				$data['status']='QRZ Disabled for station'.$this->security->xss_clean($postData['station_id']);
 				echo json_encode($data);
 			}
 		} else {
-			$data['status']='QRZ Disabled for station'.$this->security->xss_clean($postData['station_id']);
-			echo json_encode($data);
+			redirect('dashboard');
 		}
 	}
 

@@ -5,7 +5,10 @@
 	</div>
 <?php } ?>
 <br>
+	<?php
+	if (!($this->config->item('disable_manual_lotw'))) { ?>
 	<a class="btn btn-outline-primary btn-sm float-end" href="<?php echo site_url('/lotw/import'); ?>" role="button"><i class="fas fa-cloud-download-alt"></i> <?php echo lang('lotw_btn_lotw_import'); ?></a>
+	<?php } ?>
 	<h2><?php echo lang('lotw_title'); ?></h2>
 
 	<!-- Card Starts -->
@@ -136,6 +139,8 @@
 	<br>
 
 	<!-- Card Starts -->
+	<?php
+	if (!($this->config->item('disable_manual_lotw'))) { ?>
 	<div class="card">
 		<div class="card-header">
 			<?php echo lang('lotw_title_information'); ?>
@@ -149,5 +154,6 @@
 			<div id="lotw_manual_results"></div>
 		</div>
 	</div>
+	<?php } ?>
 
 </div>

@@ -9,9 +9,11 @@
 				<li class="nav-item">
 					<a class="nav-link active" id="export-tab" data-bs-toggle="tab" href="#export" role="tab" aria-controls="import" aria-selected="true">Upload Logbook</a>
 				</li>
+				<?php if (!($this->config->item('disable_manual_qrz'))) { ?>
 				<li class="nav-item">
 					<a class="nav-link" id="mark-tab" data-bs-toggle="tab" href="#import" role="tab" aria-controls="import" aria-selected="false">Download QSOs</a>
 				</li>
+				<?php } ?>
 				<li class="nav-item">
 					<a class="nav-link" id="mark-tab" data-bs-toggle="tab" href="#mark" role="tab" aria-controls="export" aria-selected="false">Mark QSOs</a>
 				</li>
@@ -22,9 +24,9 @@
         <div class="card-body">
 			<div class="tab-content">
 				<div class="tab-pane active" id="export" role="tabpanel" aria-labelledby="export-tab">
-            <p>Here you can see and upload all QSOs which have not been previously uploaded to a QRZ logbook.</p>
+            <p>Here you can see all QSOs which have not been previously uploaded to a QRZ logbook.</p>
             <p>You need to set a QRZ Logbook API key in your station profile. Only station profiles with an API Key set are displayed.</p>
-            <p><span class="badge text-bg-warning">Warning</span> This might take a while as QSO uploads are processed sequentially.</p>
+            <?php if (!($this->config->item('disable_manual_qrz'))) { echo '<p><span class="badge text-bg-warning">Warning</span> This might take a while as QSO uploads are processed sequentially.</p>'; } ?>
 
 <?php
             if ($station_profile->result()) {
@@ -48,7 +50,11 @@
                     echo '<td id ="modcount'.$station->station_id.'">' . $station->modcount . '</td>';
                     echo '<td id ="notcount'.$station->station_id.'">' . $station->notcount . '</td>';
                     echo '<td id ="totcount'.$station->station_id.'">' . $station->totcount . '</td>';
-                    echo '<td><button id="qrzUpload" type="button" name="qrzUpload" class="btn btn-primary btn-sm ld-ext-right ld-ext-right-'.$station->station_id.'" onclick="ExportQrz('. $station->station_id .')"><i class="fas fa-cloud-upload-alt"></i> Upload<div class="ld ld-ring ld-spin"></div></button></td>';
+		    if (!($this->config->item('disable_manual_qrz'))) {
+			    echo '<td><button id="qrzUpload" type="button" name="qrzUpload" class="btn btn-primary btn-sm ld-ext-right ld-ext-right-'.$station->station_id.'" onclick="ExportQrz('. $station->station_id .')"><i class="fas fa-cloud-upload-alt"></i> Upload<div class="ld ld-ring ld-spin"></div></button></td>';
+		    } else {
+			    echo '<td>&nbsp;</td>';
+		    }
                     echo '</tr>';
                 }
                 echo '</tfoot></table>';
@@ -60,6 +66,7 @@
         ?>
 
         </div>
+		<?php if (!($this->config->item('disable_manual_qrz'))) { ?>
 			<div class="tab-pane fade" id="import" role="tabpanel" aria-labelledby="home-tab">
 
 				<form class="form" action="<?php echo site_url('qrz/import_qrz'); ?>" method="post" enctype="multipart/form-data">
@@ -74,7 +81,7 @@
 					<button type="submit" class="btn btn-sm btn-primary" value="Export">Download from QRZ  Logbook</button>
 				</form>
 			</div>
-
+		<?php } ?>
 		<div class="tab-pane fade" id="mark" role="tabpanel" aria-labelledby="home-tab">
 
 				<form class="form" action="<?php echo site_url('qrz/mark_qrz'); ?>" method="post" enctype="multipart/form-data">

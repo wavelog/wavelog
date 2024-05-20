@@ -12,12 +12,11 @@ class Hrdlog extends CI_Controller {
      * All QSOs not previously uploaded, will then be uploaded, one at a time
      */
 
-    function __construct()
-	{
+	function __construct() {
 		parent::__construct();
-		
+
 		if (ENVIRONMENT == 'maintenance' && $this->session->userdata('user_id') == '') {
-            echo "Maintenance Mode is active. Try again later.\n";
+			echo "Maintenance Mode is active. Try again later.\n";
 			redirect('user/login');
 		}
 	}
@@ -139,32 +138,36 @@ class Hrdlog extends CI_Controller {
      * Used for ajax-function when selecting log for upload to hrdlog
      */
     public function upload_station() {
-        $this->setOptions();
-        $this->load->model('stations');
+	    if (!($this->config->item('disable_manual_hrdlog'))) {
+		    $this->setOptions();
+		    $this->load->model('stations');
 
-        $postData = $this->input->post();
+		    $postData = $this->input->post();
 
-        $this->load->model('logbook_model');
-        $result = $this->logbook_model->exists_hrdlog_credentials($postData['station_id']);
-        $hrdlog_username = $result->hrdlog_username;
-        $hrdlog_code = $result->hrdlog_code;
-        header('Content-type: application/json');
-        $result = $this->mass_upload_qsos($postData['station_id'], $hrdlog_username, $hrdlog_code);
-        if ($result['status'] == 'OK') {
-            $stationinfo = $this->stations->stations_with_hrdlog_code();
-            $info = $stationinfo->result();
+		    $this->load->model('logbook_model');
+		    $result = $this->logbook_model->exists_hrdlog_credentials($postData['station_id']);
+		    $hrdlog_username = $result->hrdlog_username;
+		    $hrdlog_code = $result->hrdlog_code;
+		    header('Content-type: application/json');
+		    $result = $this->mass_upload_qsos($postData['station_id'], $hrdlog_username, $hrdlog_code);
+		    if ($result['status'] == 'OK') {
+			    $stationinfo = $this->stations->stations_with_hrdlog_code();
+			    $info = $stationinfo->result();
 
-            $data['status'] = 'OK';
-            $data['info'] = $info;
-            $data['infomessage'] = $result['count'] . " QSOs are now uploaded to hrdlog";
-            $data['errormessages'] = $result['errormessages'];
-            echo json_encode($data);
-        } else {
-            $data['status'] = 'Error';
-            $data['info'] = 'No QSOs found to upload.';
-            $data['errormessages'] = $result['errormessages'];
-            echo json_encode($data);
-        }
+			    $data['status'] = 'OK';
+			    $data['info'] = $info;
+			    $data['infomessage'] = $result['count'] . " QSOs are now uploaded to hrdlog";
+			    $data['errormessages'] = $result['errormessages'];
+			    echo json_encode($data);
+		    } else {
+			    $data['status'] = 'Error';
+			    $data['info'] = 'No QSOs found to upload.';
+			    $data['errormessages'] = $result['errormessages'];
+			    echo json_encode($data);
+		    }
+	    } else {
+		    redirect('dashboard');
+	    }
     }
 
     public function mark_hrdlog() {
