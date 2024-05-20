@@ -218,20 +218,22 @@ class Logbookadvanced_model extends CI_Model {
 
 		if ($searchCriteria['qslimages'] !== '') {
 			if ($searchCriteria['qslimages'] == 'Y') {
-				$where2 .= ' and x.qslcount > "0"';
+				$where2 .= ' and exists(select 1 from qsl_images where qsoid = qsos.COL_PRIMARY_KEY)';
 			}
 			if ($searchCriteria['qslimages'] == 'N') {
-				$where2 .= ' and x.qslcount is null';
+				$where2 .= ' and not exists(select 1 from qsl_images where qsoid = qsos.COL_PRIMARY_KEY)';
 			}
 		}
 
 		$sql = "
-			SELECT *, dxcc_entities.name AS station_country,exists(select 1 from qsl_images where qsoid = qsos.COL_PRIMARY_KEY) as qslcount
+			SELECT *, dxcc_entities.name as dxccname, mydxcc.name AS station_country, exists(select 1 from qsl_images where qsoid = qsos.COL_PRIMARY_KEY) as qslcount, contest.name as contestname
 			FROM " . $this->config->item('table_name') . " qsos
 			INNER JOIN station_profile ON qsos.station_id=station_profile.station_id
 			LEFT OUTER JOIN satellite ON qsos.COL_SAT_NAME = satellite.name
-			LEFT OUTER JOIN dxcc_entities ON qsos.col_dxcc=dxcc_entities.adif
-			LEFT OUTER JOIN lotw_users ON qsos.col_call=lotw_users.callsign
+			LEFT OUTER JOIN dxcc_entities ON qsos.col_dxcc = dxcc_entities.adif
+			left outer join dxcc_entities mydxcc on qsos.col_my_dxcc = mydxcc.adif
+			LEFT OUTER JOIN lotw_users ON qsos.col_call = lotw_users.callsign
+			LEFT OUTER JOIN contest ON qsos.col_contest_id = contest.adifname
 			WHERE station_profile.user_id =  ?
 			$where
 			$where2

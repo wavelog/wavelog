@@ -13,7 +13,33 @@
     <?php
     echo "var homegrid ='" . strtoupper($homegrid[0]) . "';";
     if (!isset($options)) {
-        $options = "{\"datetime\":{\"show\":\"true\"},\"de\":{\"show\":\"true\"},\"dx\":{\"show\":\"true\"},\"mode\":{\"show\":\"true\"},\"rstr\":{\"show\":\"true\"},\"rsts\":{\"show\":\"true\"},\"band\":{\"show\":\"true\"},\"myrefs\":{\"show\":\"true\"},\"refs\":{\"show\":\"true\"},\"name\":{\"show\":\"true\"},\"qslvia\":{\"show\":\"true\"},\"qsl\":{\"show\":\"true\"},\"lotw\":{\"show\":\"true\"},\"eqsl\":{\"show\":\"true\"},\"qslmsg\":{\"show\":\"true\"},\"dxcc\":{\"show\":\"true\"},\"state\":{\"show\":\"true\"},\"cqzone\":{\"show\":\"true\"},\"ituzone\":{\"show\":\"true\"},\"iota\":{\"show\":\"true\"},\"pota\":{\"show\":\"true\"},\"operator\":{\"show\":\"true\"},\"comment\":{\"show\":\"true\",\"propagation\":{\"show\":\"true\"}}";
+        $options = "{
+            \"datetime\":{\"show\":\"true\"},
+            \"de\":{\"show\":\"true\"},
+            \"dx\":{\"show\":\"true\"},
+            \"mode\":{\"show\":\"true\"},
+            \"rstr\":{\"show\":\"true\"},
+            \"rsts\":{\"show\":\"true\"},
+            \"band\":{\"show\":\"true\"},
+            \"myrefs\":{\"show\":\"true\"},
+            \"refs\":{\"show\":\"true\"},
+            \"name\":{\"show\":\"true\"},
+            \"qslvia\":{\"show\":\"true\"},
+            \"qsl\":{\"show\":\"true\"},
+            \"lotw\":{\"show\":\"true\"},
+            \"eqsl\":{\"show\":\"true\"},
+            \"qslmsg\":{\"show\":\"true\"},
+            \"dxcc\":{\"show\":\"true\"},
+            \"state\":{\"show\":\"true\"},
+            \"cqzone\":{\"show\":\"true\"},
+            \"ituzone\":{\"show\":\"true\"},
+            \"iota\":{\"show\":\"true\"},
+            \"pota\":{\"show\":\"true\"},
+            \"operator\":{\"show\":\"true\"},
+            \"comment\":{\"show\":\"true\"},
+            \"propagation\":{\"show\":\"true\"},
+			\"contest\":{\"show\":\"true\"}
+        }";
     }
     $current_opts = json_decode($options);
     echo "var user_options = $options;";
@@ -37,6 +63,11 @@
         echo "\nvar o_template = { propagation: {show: 'true'}};";
         echo "\nuser_options={...user_options, ...o_template};";
     }
+	if (!isset($current_opts->contest)) {
+        echo "\nvar o_template = { contest: {show: 'true'}};";
+        echo "\nuser_options={...user_options, ...o_template};";
+    }
+
 
     foreach ($mapoptions as $mo) {
         if ($mo != null) {
@@ -517,6 +548,9 @@ $options = json_decode($options);
                     } ?>
 					<?php if (($options->propagation->show ?? "true") == "true") {
                         echo '<th>' . lang('filter_general_propagation') . '</th>';
+                    } ?>
+					<?php if (($options->contest->show ?? "true") == "true") {
+                        echo '<th>Contest</th>';
                     } ?>
                 </tr>
             </thead>
