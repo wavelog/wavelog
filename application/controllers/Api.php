@@ -160,7 +160,10 @@ class API extends CI_Controller {
 	*/
 	function qso($dryrun = false) {
 		header('Content-type: application/json');
+		set_time_limit(0);
+		ini_set('memory_limit', '-1');
 
+		session_write_close();
 		$this->load->model('api_model');
 
 		$this->load->model('stations');
@@ -169,7 +172,9 @@ class API extends CI_Controller {
 		$return_count = 0;
 
 		// Decode JSON and store
-		$obj = json_decode(file_get_contents("php://input"), true);
+		$raw = file_get_contents("php://input");
+		$obj = json_decode($raw,true);
+		$raw='';
 		if ($obj === NULL) {
 		    echo json_encode(['status' => 'failed', 'reason' => "wrong JSON"]);
 		    die();
@@ -182,6 +187,7 @@ class API extends CI_Controller {
 		}
 
 		$userid = $this->api_model->key_userid($obj['key']);
+		$this->api_model->update_last_used(($obj['key']));
 
 		if(!isset($obj['station_profile_id']) || $this->stations->check_station_against_user($obj['station_profile_id'], $userid) == false) {
 			http_response_code(401);
@@ -198,49 +204,32 @@ class API extends CI_Controller {
 
 			// Feed in the ADIF string
 			$this->adif_parser->feed($obj['string']);
-
-			// Create QSO Record
-			while($record = $this->adif_parser->get_record())
-			{
-				if(count($record) == 0)
-				{
-					break;
-				};
-
-
-				if( !($dryrun) && (isset($obj['station_profile_id']))) {
-					if(isset($record['station_callsign']) && $this->stations->check_station_against_callsign($obj['station_profile_id'], $record['station_callsign']) == false) {
-						http_response_code(401);
-						echo json_encode(['status' => 'failed', 'reason' => "station callsign does not match station callsign in station profile."]);
-						die();
-					}
-
+			$obj['string']='';
+			$return_msg=[];
+			$return_count=0;
+			if( !($dryrun) && (isset($obj['station_profile_id']))) {
+				$custom_errors = "";
+				$alladif=[];
+				gc_collect_cycles();
+				while($record = $this->adif_parser->get_record()) {
 					if(!(isset($record['call'])) || (trim($record['call']) == '')) {
-						http_response_code(401);
-						echo json_encode(['status' => 'failed', 'reason' => "QSO Call is empty."]);
-						die();
+						continue;
 					}
+					if(count($record) == 0) {
+						break;
+					};
+					array_push($alladif,$record);
+					$return_count++;
+				};
+				$record='';	// free memory
+				gc_collect_cycles();
+				$custom_errors = $this->logbook_model->import_bulk($alladif, $obj['station_profile_id'], false, false, false, false, false, false, true, false, true, false);
+				$alladif=[];
+				$return_msg[]='';
+			} else {
+				$return_msg[]='Dryrun works';
+			}
 
-					if ( ((!(isset($record['distance']))) || ($record['distance'] == '')) && ((isset($record['gridsquare'])) && ($record['gridsquare'] != '')) ) {
-						$mygrid=$this->stations->gridsquare_from_station($obj['station_profile_id']);
-						$this->load->library('Qra');
-						$record['distance'] = $this->qra->distance($mygrid, $record['gridsquare'], 'K');
-					}
-
-					$this->api_model->update_last_used(($obj['key']));
-
-					$msg = $this->logbook_model->import($record, $obj['station_profile_id'], NULL, NULL, NULL, NULL, NULL, NULL, false, false, true);
-
-					if ( $msg == "" ) {
-						$return_count++;
-					} else {
-						$return_msg[] = $msg;
-					}
-				} else {
-					$return_msg[]='Dryrun works';
-				}
-
-			};
 			http_response_code(201);
 			echo json_encode(['status' => 'created', 'type' => $obj['type'], 'string' => $obj['string'], 'imported_count' => $return_count, 'messages' => $return_msg ]);
 
@@ -364,6 +353,13 @@ class API extends CI_Controller {
 				$band = null;
 			}
 
+			// If $obj['cnfm'] exists
+			if(isset($obj['cnfm'])) {
+				$cnfm = $obj['cnfm'];
+			} else {
+				$cnfm = null;
+			}
+
 			$this->load->model('logbooks_model');
 
 			if($this->logbooks_model->public_slug_exists($logbook_slug)) {
@@ -388,15 +384,24 @@ class API extends CI_Controller {
 				// Search Logbook for callsign
 				$this->load->model('logbook_model');
 
-				$result = $this->logbook_model->check_if_grid_worked_in_logbook($grid, $logbooks_locations_array, $band);
-
+				$query = $this->logbook_model->check_if_grid_worked_in_logbook($grid, $logbooks_locations_array, $band, $cnfm);
 				http_response_code(201);
-				if($result > 0)
-				{
+				if ($query->num_rows() == 0) {
+					echo json_encode(['gridsquare' => strtoupper($grid), 'result' => 'Not Found']);
+				} else if ($cnfm == null) {
 					echo json_encode(['gridsquare' => strtoupper($grid), 'result' => 'Found']);
 				} else {
-					echo json_encode(['gridsquare' => strtoupper($grid), 'result' => 'Not Found']);
+					$arr = [];
+					foreach($query->result() as $line) {
+						$arr[] = $line->gridorcnfm;
+					}
+					if (in_array('Y', $arr)) {
+						echo json_encode(['gridsquare' => strtoupper($grid), 'result' => 'Confirmed']);
+					} else {
+						echo json_encode(['gridsquare' => strtoupper($grid), 'result' => 'Worked']);
+					}
 				}
+
 			} else {
 				// Logbook not found
 				http_response_code(404);

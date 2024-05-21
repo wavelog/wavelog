@@ -1,5 +1,25 @@
 var osmUrl = $('#dxccmapjs').attr("tileUrl");
 
+$('#band2').change(function(){
+   var band = $("#band2 option:selected").text();
+   if (band != "SAT") {
+      $("#sats").val('All');
+      $("#orbits").val('All');
+      $("#satrow").hide();
+      $("#orbitrow").hide();
+   } else {
+      $("#satrow").show();
+      $("#orbitrow").show();
+   }
+});
+
+$('#sats').change(function(){
+   var sat = $("#sats option:selected").text();
+      $("#band2").val('SAT');
+   if (sat != "All") {
+   }
+});
+
 function load_dxcc_map() {
     $('.nav-tabs a[href="#dxccmaptab"]').tab('show');
     $.ajax({
@@ -23,12 +43,14 @@ function load_dxcc_map() {
             SouthAmerica: +$('#SouthAmerica').prop('checked'),
             Oceania: +$('#Oceania').prop('checked'),
             Antarctica: +$('#Antarctica').prop('checked'),
+            sat: $("#sats").val(),
+            orbit: $("#orbits").val(),
         },
         success: function(data) {
             load_dxcc_map2(data, worked, confirmed, notworked);
         },
         error: function() {
-            
+
         },
     });
 }
@@ -59,7 +81,7 @@ function load_dxcc_map2(data, worked, confirmed, notworked) {
         }
     ).addTo(map);
 
-    var notworkedcount = data.length;
+    var notworkedcount = 0;
     var confirmedcount = 0;
     var workednotconfirmedcount = 0;
 
@@ -67,13 +89,12 @@ function load_dxcc_map2(data, worked, confirmed, notworked) {
         var D = data[i];
         if (D['status'] != 'x') {
             var mapColor = 'red';
-    
+
             if (D['status'] == 'C') {
                 mapColor = 'green';
                 if (confirmed != '0') {
                     addMarker(L, D, mapColor, map);
                     confirmedcount++;
-                    notworkedcount--;
                 }
             }
             if (D['status'] == 'W') {
@@ -81,15 +102,13 @@ function load_dxcc_map2(data, worked, confirmed, notworked) {
                 if (worked != '0') {
                     addMarker(L, D, mapColor, map);
                     workednotconfirmedcount++;
-                    notworkedcount--;
                 }
             }
-    
-            
-        // Make a check here and hide what I don't want to show
-            if (notworked != '0') {
-                if (mapColor == 'red') {
+            if (D['status'] == '-') {
+                mapColor = 'red';
+                if (notworked != '0') {
                     addMarker(L, D, mapColor, map);
+                    notworkedcount++;
                 }
             }
         }
@@ -129,7 +148,7 @@ function addMarker(L, D, mapColor, map) {
     border-radius: 3rem 3rem 0;
     transform: rotate(45deg);
     border: 1px solid #FFFFFF`
-  
+
     const icon = L.divIcon({
         className: "my-custom-pin",
         iconAnchor: [0, 24],
@@ -157,5 +176,5 @@ function addMarker(L, D, mapColor, map) {
 
 function onClick(e) {
     var marker = e.target;
-    displayContactsOnMap($("#dxccmap"),marker.options.adif, $('#band2').val(), $('#mode').val(), 'DXCC2');
+    displayContactsOnMap($("#dxccmap"),marker.options.adif, $('#band2').val(), $('#sats').val(), $('#orbits').val(), $('#mode').val(), 'DXCC2');
 }

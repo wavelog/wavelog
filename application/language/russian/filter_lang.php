@@ -31,6 +31,7 @@ $lang['filter_search_dxcc'] = 'Поиск DXCC';
 $lang['filter_search_state'] = 'Поиск штата';
 $lang['filter_search_gridsquare'] = 'Поиск квадрата';
 $lang['filter_search_cq_zone'] = 'Поиск зоны CQ';
+$lang['filter_search_itu_zone'] = 'Search ITU Zone';
 $lang['filter_search_mode'] = 'Поиск вида модуляции';
 $lang['filter_search_band'] = 'Поиск диапазона';
 $lang['filter_search_iota'] = 'Поиск IOTA';
@@ -76,8 +77,8 @@ ________________________________________________________________________________
 
 $lang['filter_general_from'] = 'От';
 $lang['filter_general_to'] = 'к';
-// $lang['gen_hamradio_de']             --> application/language/english/general_words_lang.php 
-// $lang['gen_hamradio_dx']             --> application/language/english/general_words_lang.php 
+// $lang['gen_hamradio_de']             --> application/language/english/general_words_lang.php
+// $lang['gen_hamradio_dx']             --> application/language/english/general_words_lang.php
 // $lang['gen_hamradio_dxcc']           --> application/language/english/general_words_lang.php
 $lang['filter_general_none'] = '- без - (т.е. /MM, /AM)';
 // $lang['gen_hamradio_state']          --> application/language/english/general_words_lang.php

@@ -8,19 +8,26 @@ class Genfunctions
 	function addQslToQuery($postdata) {
 		$sql = '';
 		$qsl = array();
-		if ($postdata['qrz'] != NULL || $postdata['lotw'] != NULL || $postdata['qsl'] != NULL || $postdata['eqsl'] != NULL) {
+		if ( (($postdata['clublog'] ?? '') != '') || 
+			(($postdata['qrz'] ?? '') != '') || 
+			(($postdata['lotw'] ?? '') != '') || 
+			(($postdata['qsl'] ?? '') != '') ||
+			(($postdata['eqsl'] ?? '') != '') ) {
 			$sql .= ' and (';
-			if ($postdata['qsl'] != NULL) {
+			if (($postdata['qsl'] ?? '') != '') {
 				array_push($qsl, "col_qsl_rcvd = 'Y'");
 			}
-			if ($postdata['lotw'] != NULL) {
+			if (($postdata['lotw'] ?? '') != '') {
 				array_push($qsl, "col_lotw_qsl_rcvd = 'Y'");
 			}
-			if ($postdata['eqsl'] != NULL) {
+			if (($postdata['eqsl'] ?? '') != '') {
 				array_push($qsl, "col_eqsl_qsl_rcvd = 'Y'");
 			}
-			if ($postdata['qrz'] != NULL) {
+			if (($postdata['qrz'] ?? '') != '') {
 				array_push($qsl, "COL_QRZCOM_QSO_DOWNLOAD_STATUS = 'Y'");
+			}
+			if (($postdata['clublog'] ?? '') != '') {
+				array_push($qsl, "COL_CLUBLOG_QSO_DOWNLOAD_STATUS = 'Y'");
 			}
 			if (count($qsl) > 0) {
 				$sql .= implode(' or ', $qsl);
@@ -50,16 +57,19 @@ class Genfunctions
 	function gen_qsl_from_postdata($postdata) {
 		$qsl='';
 		if ($postdata['confirmed'] != NULL) {
-			if ($postdata['qsl'] != NULL ) {
+			if (($postdata['qsl'] ?? '')!= '' ) {
 				$qsl .= "Q";
 			}
-			if ($postdata['lotw'] != NULL ) {
+			if (($postdata['lotw'] ?? '')!= '' ) {
 				$qsl .= "L";
 			}
-			if ($postdata['eqsl'] != NULL ) {
+			if (($postdata['eqsl'] ?? '')!= '' ) {
 				$qsl .= "E";
 			}
-			if ($postdata['qrz'] != NULL ) {
+			if (($postdata['clublog'] ?? '')!= '' ) {
+				$qsl .= "C";
+			}
+			if (($postdata['qrz'] ?? '')!= '' ) {
 				$qsl .= "Z";
 			}
 		}

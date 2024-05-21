@@ -8,6 +8,7 @@
     echo " All passes shown.";
     }?>
     </p>
+    <button type="button" onclick="loadHamsAt();" class="btn btn-info btn-sm">Show All Passes</button>
     <?php if ($user_hamsat_workable_only && $user_hamsat_key == '') { ?>
     <div class="alert alert-warning" role="warning">
        Private feed key empty. Please set the feed key in your profile.
@@ -43,7 +44,7 @@
                    <tr>
                        <td>
                            <?php
-   
+
                            // Get Date format
                            if ($this->session->userdata('user_date_format')) {
                                // If Logged in and session exists
@@ -52,12 +53,12 @@
                                // Get Default date format from /config/wavelog.php
                                $custom_date_format = $this->config->item('qso_date_format');
                            }
-   
+
                            ?>
-   
+
                            <?php $timestamp = strtotime($rove['aos_at']);
                               echo date($custom_date_format, $timestamp); ?>
-   
+
                        </td>
                        <td>
                            <?php echo date("H:i:s", $timestamp)." - ".date("H:i:s", strtotime($rove['los_at'])); ?>
@@ -96,26 +97,26 @@
                           } else if ($rove['mode'] == 'FM') {
                              $modeclass = 'hamsatBgFm';
                           }
-   
+
                        ?>
                        <td><span data-bs-toggle="tooltip" title="<?php if ($rove['mhz'] != '') { printf("%.3f", $rove['mhz']); echo " ".$direction ?? ''; } ?>"><?= $rove['satellite']['name'] ?></span></td>
                        <td><span title="<?php echo $rove['mode']; ?>" class="badge <?php echo $modeclass; ?>"><?php echo $rove['mode']; ?></span></td>
                        <td>
-   
-   
+
+
                            <?php
                            // Load the logbook model and call check_if_grid_worked_in_logbook
                            foreach ($rove['grids'] as $grid) {
                            $worked = $CI->logbook_model->check_if_grid_worked_in_logbook($grid, null, "SAT");
-                              if ($worked != 0) {
+                              if ($worked->num_rows() != 0) {
                                   echo " <span data-bs-toggle=\"tooltip\" title=\"Worked\" class=\"badge bg-success\">" . $grid . "</span>";
                               } else {
                                   echo " <span data-bs-toggle=\"tooltip\" title=\"Not Worked\" class=\"badge bg-danger\">" . $grid . "</span>";
                               }
                            }
                            ?>
-   
-   
+
+
                        </td>
                        <td>
                        <?php

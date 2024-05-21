@@ -53,13 +53,13 @@ async function reset_contest_session() {
 			"columnDefs": [
 				{
 					"render": function ( data, type, row ) {
-						return pad(row[8],3);
+						return row[8] !== null && row[8] !== '' ? pad(row[8], 3) : '';
 					},
 					"targets" : 8
 				},
 				{
 					"render": function ( data, type, row ) {
-						return pad(row[9],3);
+						return row[9] !== null && row[9] !== '' ? pad(row[9], 3) : '';
 					},
 					"targets" : 9
 				}
@@ -94,10 +94,9 @@ async function setSession(formdata) {
 		processData: false,
 		contentType: false,
 		success: function (data) {
-
+			sessiondata=data;
 		}
 	});
-	sessiondata=await getSession();			// refresh Sessiondata
 }
 
 // realtime clock
@@ -166,7 +165,6 @@ document.onkeyup = function (e) {
 		reset_log_fields();
 		// Space to jump to either callsign or the various exchanges
 	} else if (e.which == 32) {
-		getCallbook();
 		var exchangetype = $("#exchangetype").val();
 
 		if (manual && $(document.activeElement).attr("id") == "start_time") {
@@ -300,7 +298,7 @@ $("#callsign").keyup(async function (e) {
 async function getCallbook() {
 	var call = $("#callsign").val();
 	if (call.length >= 3) {
-		$.getJSON(base_url + 'index.php/logbook/json/' + call + '/0/'+$("#band").val()+'/'+$("#band").val() + '/' + current_active_location, function(result) {
+		$.getJSON(base_url + 'index.php/logbook/json/' + call + '/'+$("#band").val()+'/'+$("#band").val() + '/' + current_active_location, function(result) {
 			try {
 				$('#bearing_info').html(result.bearing);
 			} catch {}
@@ -378,10 +376,12 @@ if ($('#frequency').val() == "") {
 
 /* on mode change */
 $('#mode').change(function () {
+		if ($('#radio').val() == '0') {
 	$.get('qso/band_to_freq/' + $('#band').val() + '/' + $('.mode').val(), function (result) {
 		$('#frequency').val(result);
 		$('#frequency_rx').val("");
 	});
+	}
 	setRst($("#mode").val());
 	checkIfWorkedBefore();
 });
@@ -389,10 +389,12 @@ $('#mode').change(function () {
 /* Calculate Frequency */
 /* on band change */
 $('#band').change(function () {
+		if ($('#radio').val() == '0') {
 	$.get('qso/band_to_freq/' + $(this).val() + '/' + $('.mode').val(), function (result) {
 		$('#frequency').val(result);
 		$('#frequency_rx').val("");
 	});
+	}
 	checkIfWorkedBefore();
 });
 
@@ -474,6 +476,7 @@ function logQso() {
 	if ($("#callsign").val().length > 0) {
 
 		$('.callsign-suggestions').text("");
+		$('#callsign_info').text("");
 
 		var table = $('.qsotable').DataTable();
 		var exchangetype = $("#exchangetype").val();
@@ -621,13 +624,13 @@ async function refresh_qso_table(data) {
 						"columnDefs": [
 							{
 								"render": function ( data, type, row ) {
-									return pad(row[8],3);
+									return row[8] !== null && row[8] !== '' ? pad(row[8], 3) : '';
 								},
 								"targets" : 8
 							},
 							{
 								"render": function ( data, type, row ) {
-									return pad(row[9],3);
+									return row[9] !== null && row[9] !== '' ? pad(row[9], 3) : '';
 								},
 								"targets" : 9
 							}
@@ -638,34 +641,33 @@ async function refresh_qso_table(data) {
 				table.clear();
 
 				var mode = '';
-				var data;
-				$.each(html, function () {
-					if (this.col_submode == null || this.col_submode == '') {
-						mode = this.col_mode;
-					} else {
-						mode = this.col_submode;
-					}
+				var data = [];
+                $.each(html, function () {
+                    if (this.col_submode == null || this.col_submode == '') {
+                        mode = this.col_mode;
+                    } else {
+                        mode = this.col_submode;
+                    }
 
-					data = [[
-						this.col_time_on,
-						this.col_call,
-						this.col_band,
-						mode,
-						this.col_rst_sent,
-						this.col_rst_rcvd,
-						this.col_stx_string,
-						this.col_srx_string,
-						this.col_stx,
-						this.col_srx,
-						this.col_gridsquare,
-						this.col_vucc_grids
-					]];
+                    data.push([
+                        this.col_time_on,
+                        this.col_call,
+                        this.col_band,
+                        mode,
+                        this.col_rst_sent,
+                        this.col_rst_rcvd,
+                        this.col_stx_string,
+                        this.col_srx_string,
+                        this.col_stx,
+                        this.col_srx,
+                        this.col_gridsquare,
+                        this.col_vucc_grids
+                    ]);
+                });
 
-					if (data.length > 0) {
-						table.rows.add(data).draw();
-					}
-
-				});
+                if (data.length > 0) {
+                    table.rows.add(data).draw();
+                }
 
 			}
 		});

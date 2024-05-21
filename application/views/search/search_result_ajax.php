@@ -15,7 +15,7 @@ function echo_table_header_col($name) {
 		case 'Band':      echo lang('gen_hamradio_band'); break;
 		case 'Frequency': echo lang('gen_hamradio_frequency'); break;
 		case 'Operator':  echo lang('gen_hamradio_operator'); break;
-		case 'Location':  echo lang('cloudlog_station_profile'); break;
+		case 'Location':  echo lang('wavelog_station_profile'); break;
 		case 'Name':      echo lang('general_word_name'); break;
 	}
 }
@@ -119,6 +119,9 @@ $ci =& get_instance();
                 <?php } ?>
 		<?php if($this->session->userdata('hasQrzKey') != "") { ?>
                     <th>QRZ</th>
+                <?php } ?>
+		<?php if($this->session->userdata('user_clublog_name') != ''){ ?>
+                    <th>Clublog</th>
                 <?php } ?>
             <?php } ?>
                 <th><?php echo lang('gen_hamradio_station'); ?></th>
@@ -344,6 +347,36 @@ $ci =& get_instance();
                 }
                 echo ' class="qrz-';
                 echo ($row->COL_QRZCOM_QSO_DOWNLOAD_STATUS=='Y')?'green':'red';
+                echo '">&#9660;</span>';
+                echo '</td>';
+                } ?>
+
+		<?php if($this->session->userdata('user_clublog_name') != '') { 
+                echo '<td style=\'text-align: center\' class="clublog">';
+                echo '<span ';
+                if ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == "Y") {
+                   echo "title=\"Clublog ".lang('general_word_sent');
+                   if ($row->COL_CLUBLOG_QSO_UPLOAD_DATE != null) {
+                     $timestamp = strtotime($row->COL_CLUBLOG_QSO_UPLOAD_DATE);
+                     echo " ".($timestamp != '' ? date($custom_date_format, $timestamp) : '');
+                   }
+                   echo "\" data-bs-toggle=\"tooltip\"";
+                }
+                echo ' class="clublog-';
+                echo ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS=='Y')?'green':'red';
+                echo '">&#9650;</span>';
+
+                echo '<span ';
+                if ($row->COL_CLUBLOG_QSO_DOWNLOAD_STATUS == "Y") {
+                   echo "title=\"Clublog ".lang('general_word_received');
+                   if ($row->COL_CLUBLOG_QSO_DOWNLOAD_DATE != null) {
+                      $timestamp = strtotime($row->COL_CLUBLOG_QSO_DOWNLOAD_DATE);
+                      echo " ".($timestamp != '' ? date($custom_date_format, $timestamp) : '');
+                   }
+                   echo "\" data-bs-toggle=\"tooltip\"";
+                }
+                echo ' class="clublog-';
+                echo ($row->COL_CLUBLOG_QSO_DOWNLOAD_STATUS=='Y')?'green':'red';
                 echo '">&#9660;</span>';
                 echo '</td>';
                 } ?>

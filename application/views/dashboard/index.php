@@ -191,7 +191,7 @@ function echo_table_col($row, $name) {
   	<div class="table-responsive">
 
 
-		<div id="radio_display" hx-get="<?php echo site_url('visitor/radio_display_component'); ?>" hx-trigger="load, every 5s"></div>
+		<div id="radio_display" hx-get="<?php echo site_url('dashboard/radio_display_component'); ?>" hx-trigger="load, every 5s"></div>
 		
     	<table class="table table-striped border-top">
 			<tr class="titles">
@@ -250,13 +250,13 @@ function echo_table_col($row, $name) {
 			<tr>
 				<td width="50%"><?php echo lang('general_word_sent'); ?></td>
 				<td width="25%"><?php echo $total_qsl_sent; ?></td>
-				<td width="25%"><a href="javascript:displayContacts('','All','All','QSLSDATE','');"><?php echo $qsl_sent_today; ?></a></td>
+				<td width="25%"><a href="javascript:displayContacts('','All','All','All','All','QSLSDATE','');"><?php echo $qsl_sent_today; ?></a></td>
 			</tr>
 
 			<tr>
 				<td width="50%"><?php echo lang('general_word_received'); ?></td>
 				<td width="25%"><?php echo $total_qsl_rcvd; ?></td>
-				<td width="25%"><a href="javascript:displayContacts('','All','All','QSLRDATE','');"><?php echo $qsl_rcvd_today; ?></a></td>
+				<td width="25%"><a href="javascript:displayContacts('','All','All','All','All','QSLRDATE','');"><?php echo $qsl_rcvd_today; ?></a></td>
 			</tr>
 
 			<tr>
@@ -277,13 +277,13 @@ function echo_table_col($row, $name) {
 			<tr>
 				<td width="50%"><?php echo lang('general_word_sent'); ?></td>
 				<td width="25%"><?php echo $total_lotw_sent; ?></td>
-				<td width="25%"><a href="javascript:displayContacts('','all','all','LOTWSDATE','');"><?php echo $lotw_sent_today; ?></a></td>
+				<td width="25%"><a href="javascript:displayContacts('','all','all','All','All','LOTWSDATE','');"><?php echo $lotw_sent_today; ?></a></td>
 			</tr>
 
 			<tr>
 				<td width="50%"><?php echo lang('general_word_received'); ?></td>
 				<td width="25%"><?php echo $total_lotw_rcvd; ?></td>
-				<td width="25%"><a href="javascript:displayContacts('','all','all','LOTWRDATE','');"><?php echo $lotw_rcvd_today; ?></a></td>
+				<td width="25%"><a href="javascript:displayContacts('','all','all','All','All','LOTWRDATE','');"><?php echo $lotw_rcvd_today; ?></a></td>
 			</tr>
 		</table>
 		<?php } ?>
@@ -298,13 +298,13 @@ function echo_table_col($row, $name) {
 			<tr>
 				<td width="50%"><?php echo lang('general_word_sent'); ?></td>
 				<td width="25%"><?php echo $total_eqsl_sent; ?></td>
-				<td width="25%"><a href="javascript:displayContacts('','All','All','EQSLSDATE','');"><?php echo $eqsl_sent_today; ?></a></td>
+            <td width="25%"><a href="javascript:displayContacts('','All','All','All','All','EQSLSDATE','');"><?php echo $eqsl_sent_today; ?></a></td>
 			</tr>
 
 			<tr>
 				<td width="50%"><?php echo lang('general_word_received'); ?></td>
 				<td width="25%"><?php echo $total_eqsl_rcvd; ?></td>
-				<td width="25%"><a href="javascript:displayContacts('','All','All','EQSLRDATE','');"><?php echo $eqsl_rcvd_today; ?></a></td>
+				<td width="25%"><a href="javascript:displayContacts('','All','All','All','All','EQSLRDATE','');"><?php echo $eqsl_rcvd_today; ?></a></td>
 			</tr>
 		</table>
 		<?php } ?>
@@ -319,13 +319,13 @@ function echo_table_col($row, $name) {
 			<tr>
 				<td width="50%"><?php echo lang('general_word_sent'); ?></td>
 				<td width="25%"><?php echo $total_qrz_sent; ?></td>
-				<td width="25%"><a href="javascript:displayContacts('','all','all','QRZSDATE','');"><?php echo $qrz_sent_today; ?></a></td>
+				<td width="25%"><a href="javascript:displayContacts('','all','all','All','All','QRZSDATE','');"><?php echo $qrz_sent_today; ?></a></td>
 			</tr>
 
 			<tr>
 				<td width="50%"><?php echo lang('general_word_received'); ?></td>
 				<td width="25%"><?php echo $total_qrz_rcvd; ?></td>
-				<td width="25%"><a href="javascript:displayContacts('','all','all','QRZRDATE','');"><?php echo $qrz_rcvd_today; ?></a></td>
+				<td width="25%"><a href="javascript:displayContacts('','all','all','All','All','QRZRDATE','');"><?php echo $qrz_rcvd_today; ?></a></td>
 			</tr>
 		</table>
 		<?php } ?>

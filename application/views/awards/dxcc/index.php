@@ -122,7 +122,38 @@
                     </select>
                 </div>
             </div>
-
+            <div id="satrow" class="mb-3 row" <?php if ($this->input->post('band') != 'SAT' && $this->input->post('band') != 'All') echo "style=\"display: none\""; ?>>
+			<?php if (count($sats_available) != 0) { ?>
+                <label class="col-md-2 control-label" id="satslabel" for="distplot_sats"><?php echo lang('gridsquares_sat'); ?></label>
+				<div class="col-md-2">
+                <select class="form-select form-select-sm"  id="sats" name="sats">
+                    <option value="All" <?php if ($this->input->post('sats') == "All" || $this->input->method() !== 'post') echo ' selected'; ?>><?php echo lang('general_word_all')?></option>
+                    <?php foreach($sats_available as $sat) {
+                        echo '<option value="' . $sat . '"';
+						if ($this->input->post('sats') == $sat) echo ' selected';
+						echo '>' . $sat . '</option>'."\n";
+                    } ?>
+                </select>
+				</div>
+            <?php } else { ?>
+                <input id="sats" type="hidden" value="All"></input>
+            <?php } ?>
+			</div>
+         <div id="orbitrow" class="mb-3 row" <?php if ($this->input->post('band') != 'SAT' && $this->input->post('band') != 'All') echo "style=\"display: none\""; ?>>
+                <label class="col-md-2 control-label" id="orbitslabel" for="orbits"><?php echo lang('gridsquares_orbit'); ?></label>
+				<div class="col-md-2">
+                <select class="form-select form-select-sm"  id="orbits" name="orbits">
+                    <option value="All" <?php if ($this->input->post('orbits') == "All" || $this->input->method() !== 'post') echo ' selected'; ?>><?php echo lang('general_word_all')?></option>
+                    <?php
+                    foreach($orbits as $orbit){
+                        echo '<option value="' . $orbit . '"';
+						if ($this->input->post('orbits') == $orbit) echo ' selected';
+						echo '>' . strtoupper($orbit) . '</option>'."\n";
+                    }
+                    ?>
+            </select>
+				</div>
+				</div>
             <div class="mb-3 row">
                 <label class="col-md-2 control-label" for="mode">Mode</label>
                 <div class="col-md-2">

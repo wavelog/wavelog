@@ -38,14 +38,14 @@ class helvetia_model extends CI_Model {
 			if ($postdata['worked'] != NULL) {
 				$helvetiaBand = $this->gethelvetiaWorked($location_list, $band, $postdata);
 				foreach ($helvetiaBand as $line) {
-					$bandhelvetia[$line->col_state][$band] = '<div class="bg-danger awardsBgDanger"><a href=\'javascript:displayContacts("' . $line->col_state . '","' . $band . '","'. $postdata['mode'] . '","helvetia", "")\'>W</a></div>';
+					$bandhelvetia[$line->col_state][$band] = '<div class="bg-danger awardsBgDanger"><a href=\'javascript:displayContacts("' . $line->col_state . '","' . $band . '","All","All","'. $postdata['mode'] . '","helvetia", "")\'>W</a></div>';
 					$states[$line->col_state]['count']++;
 				}
 			}
 			if ($postdata['confirmed'] != NULL) {
 				$helvetiaBand = $this->gethelvetiaConfirmed($location_list, $band, $postdata);
 				foreach ($helvetiaBand as $line) {
-					$bandhelvetia[$line->col_state][$band] = '<div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("' . $line->col_state . '","' . $band . '","'. $postdata['mode'] . '","helvetia", "'.$qsl.'")\'>C</a></div>';
+					$bandhelvetia[$line->col_state][$band] = '<div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("' . $line->col_state . '","' . $band . '","All","All","'. $postdata['mode'] . '","helvetia", "'.$qsl.'")\'>C</a></div>';
 					$states[$line->col_state]['count']++;
 				}
 			}

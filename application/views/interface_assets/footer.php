@@ -52,6 +52,12 @@
 <script type="text/javascript" src="<?php echo base_url() ;?>assets/js/sections/common.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ;?>assets/js/sections/eqslcharcounter.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ;?>assets/js/sections/version_dialog.js"></script>
+<script type="text/javascript" src="<?php echo base_url() ;?>assets/js/showdown.min.js"></script>
+
+<script type="module" defer>
+  		import { polyfillCountryFlagEmojis } from "<?php echo base_url() ;?>assets/js/country-flag-emoji-polyfill.js";
+		polyfillCountryFlagEmojis();
+</script>
 
 <script src="<?php echo base_url(); ?>assets/js/htmx.min.js"></script>
 
@@ -103,6 +109,11 @@ if($this->session->userdata('user_id') != null) {
 
 <?php if ($this->uri->segment(1) == "oqrs") { ?>
     <script src="<?php echo base_url() ;?>assets/js/sections/oqrs.js"></script>
+<?php } ?>
+
+<!-- JS library to convert cron format to human readable -->
+<?php if ($this->uri->segment(1) == "cron") { ?>
+    <script src="<?php echo base_url() ;?>assets/js/cronstrue.min.js"async></script>
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "options") { ?>
@@ -2239,13 +2250,15 @@ function viewEqsl(picture, callsign) {
   /*
    * Used to fetch QSOs from the logbook in the awards
    */
-    function displayContacts(searchphrase, band, mode, type, qsl) {
+    function displayContacts(searchphrase, band, sat, orbit, mode, type, qsl) {
         $.ajax({
             url: base_url + 'index.php/awards/qso_details_ajax',
             type: 'post',
             data: {
                 'Searchphrase': searchphrase,
                 'Band': band,
+                'Sat': sat,
+                'Orbit': orbit,
                 'Mode': mode,
                 'Type': type,
                 'QSL' : qsl
@@ -2290,13 +2303,15 @@ function viewEqsl(picture, callsign) {
         });
     }
 
-    function displayContactsOnMap(target, searchphrase, band, mode, type, qsl) {
+    function displayContactsOnMap(target, searchphrase, band, sat, orbit, mode, type, qsl) {
 	    $.ajax({
 	    url: base_url + 'index.php/awards/qso_details_ajax',
 		    type: 'post',
 		    data: {
 		    'Searchphrase': searchphrase,
 			    'Band': band,
+			    'Sat': sat,
+			    'Orbit': orbit,
 			    'Mode': mode,
 			    'Type': type,
 			    'QSL' : qsl

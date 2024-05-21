@@ -20,4 +20,16 @@ class Paths
         $CI->load->model('Qsl_model');
         return $CI->Qsl_model->get_imagePath();
     }
+
+    function make_update_path($path) {
+
+		$CI = & get_instance();
+
+		$path = "updates/" . $path;
+        $datadir = $CI->config->item('datadir');
+        if(!$datadir) {
+            return $path;
+        }
+        return $datadir . "/" . $path;
+	}
 }

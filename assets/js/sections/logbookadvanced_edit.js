@@ -136,6 +136,9 @@ function saveBatchEditQsos(id_list) {
 	if (column == 'cqz') {
 		value = $("#editCqz").val();
 	}
+	if (column == 'ituz') {
+		value = $("#editItuz").val();
+	}
 	if (column == 'dxcc') {
 		value = $("#editDxcc").val();
 	}
@@ -191,6 +194,7 @@ function saveBatchEditQsos(id_list) {
 
 function changeEditType(type) {
 	$('#editCqz').hide();
+	$('#editItuz').hide();
 	$('#editIota').hide();
 	$('#editDxcc').hide();
 	$('#editState').hide();
@@ -215,6 +219,8 @@ function changeEditType(type) {
 		$('#editIota').show();
 	} else if (type == "cqz") {
 		$('#editCqz').show();
+	} else if (type == "ituz") {
+		$('#editItuz').show();
 	} else if (type == "state") {
 		$('#editDxccState').show();
 		$('#editDxccStateList').show();

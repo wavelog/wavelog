@@ -7,6 +7,7 @@ var freq = "";
 var callsign = "";
 var errors = [];
 var qsoList = [];
+var modes_regex = modes_regex(Modes);
 
 $("#simpleFleInfoButton").click(function (event) {
 	var awardInfoLines = [
@@ -141,11 +142,10 @@ function handleInput() {
 			} else if (item.match(/^[0-2][0-9][0-5][0-9]$/)) {
 				qsotime = item;
 			} else if (
-				item.match(/^CW$|^SSB$|^LSB$|^USB$|^FM$|^AM$|^PSK$|^FT8$/i)
+				item.match(modes_regex)
 			) {
 				if (mode != "") {
 					freq = 0;
-					console.log("QRG is 0 now");
 				}
 				mode = item.toUpperCase();
 			} else if (
@@ -181,7 +181,7 @@ function handleInput() {
 				)
 			) {
 				callsign = item.toUpperCase();
-			} else if (itemNumber > 0 && item.match(/^\d{1,3}$/)) {
+			} else if (itemNumber > 0 && item.match(/^[-+]\d{1,2}|\d{1,3}$|\d{1,3}[-+]d{1,2}$/)) {
 				if (rst_s === null) {
 					rst_s = item;
 				} else {
@@ -406,8 +406,6 @@ function clearSession() {
 	$("#qsodate").val("");
 	$("#qsoTable tbody").empty();
 	$("#my-sota-wwff").val("");
-	// $("#station-call").val("");        	Do not clear that?
-	// $("#operator").val("");				Do not clear that?
 	$(".qso-area").val("");
 	$("#my-grid").val("");
 	qsoList = [];
@@ -425,35 +423,71 @@ $(".js-download-qso").click(function () {
 });
 
 function getBandFromFreq(freq) {
-	if (freq > 1.7 && freq < 2) {
-		return "160m";
-	} else if (freq > 3.4 && freq < 4) {
-		return "80m";
-	} else if (freq > 6.9 && freq < 7.3) {
-		return "40m";
-	} else if (freq > 5 && freq < 6) {
-		return "60m";
-	} else if (freq > 10 && freq < 11) {
-		return "30m";
-	} else if (freq > 13 && freq < 15) {
-		return "20m";
-	} else if (freq > 18 && freq < 19) {
-		return "17m";
-	} else if (freq > 20 && freq < 22) {
-		return "15m";
-	} else if (freq > 24 && freq < 25) {
-		return "12m";
-	} else if (freq > 27 && freq < 30) {
-		return "10m";
-	} else if (freq > 50 && freq < 55) {
-		return "6m";
-	} else if (freq > 144 && freq < 149) {
-		return "2m";
-	} else if (freq > 430 && freq < 460) {
-		return "70cm";
-	}
-
-	return "";
+    if (freq >= 0.13 && freq <= 0.14) {
+        return "2190m";
+    } else if (freq >= 0.4 && freq <= 0.49) {
+        return "630m";
+    } else if (freq >= 0.5 && freq <= 0.51) {
+        return "560m";
+    } else if (freq >= 1.6 && freq <= 2.2) {
+        return "160m";
+    } else if (freq >= 3.4 && freq <= 4.0) {
+        return "80m";
+    } else if (freq >= 5.0 && freq <= 5.5) {
+        return "60m";
+    } else if (freq >= 7.0 && freq <= 7.3) {
+        return "40m";
+    } else if (freq >= 10.0 && freq <= 10.2) {
+        return "30m";
+    } else if (freq >= 14.0 && freq <= 14.4) {
+        return "20m";
+    } else if (freq >= 18.0 && freq <= 18.2) {
+        return "17m";
+    } else if (freq >= 21.0 && freq <= 21.5) {
+        return "15m";
+    } else if (freq >= 24.8 && freq <= 25.0) {
+        return "12m";
+    } else if (freq >= 28.0 && freq <= 30.0) {
+        return "10m";
+    } else if (freq >= 50 && freq <= 54) {
+        return "6m";
+    } else if (freq >= 69 && freq <= 72) {
+        return "4m";
+    } else if (freq >= 144 && freq <= 148) {
+        return "2m";
+    } else if (freq >= 222 && freq <= 225) {
+        return "1.25m";
+    } else if (freq >= 420 && freq <= 450) {
+        return "70cm";
+    } else if (freq >= 902 && freq <= 928) {
+        return "33cm";
+    } else if (freq >= 1240 && freq <= 1300) {
+        return "23cm";
+    } else if (freq >= 2300 && freq <= 2450) {
+        return "13cm";
+    } else if (freq >= 3300 && freq <= 3500) {
+        return "9cm";
+    } else if (freq >= 5650 && freq <= 5925) {
+        return "6cm";
+    } else if (freq >= 10000 && freq <= 10500) {
+        return "3cm";
+    } else if (freq >= 24000 && freq <= 24250) {
+        return "1.25cm";
+    } else if (freq >= 47000 && freq <= 47200) {
+        return "6mm";
+    } else if (freq >= 75500 && freq <= 81000) {
+        return "4mm";
+    } else if (freq >= 119980 && freq <= 123000) {
+        return "2.5mm";
+    } else if (freq >= 134000 && freq <= 149000) {
+        return "2mm";
+    } else if (freq >= 241000 && freq <= 250000) {
+        return "1mm";
+    } else if (freq >= 300000 && freq <= 7500000) {
+        return "submm";
+    } else {
+        return "Unknown";
+    }
 }
 
 function getFreqFromBand(band, mode) {
@@ -466,22 +500,38 @@ function getFreqFromBand(band, mode) {
 	}
 }
 
-function getSettingsMode(mode) {
-	if (
-		mode === "AM" ||
-		mode === "FM" ||
-		mode === "SSB" ||
-		mode === "LSB" ||
-		mode === "USB"
-	) {
-		return "SSB";
-	}
+function getSettingsMode(mode, modesArray = Modes) {
+	var settingsMode = 'DATA';
 
-	if (mode === "CW") {
-		return "CW";
-	}
+    for (var i = 0; i < modesArray.length; i++) {
+        if (modesArray[i]['submode'] === mode) {
+            settingsMode = modesArray[i]['qrgmode'];
+        }else if (modesArray[i]['mode'] === mode) {
+            settingsMode = modesArray[i]['qrgmode'];
+        }
+    }
 
-	return "DIGI";
+	return settingsMode; 
+}
+
+function modes_regex(modesArray) {
+    var regexPattern = '^';
+    
+    for (var i = 0; i < modesArray.length; i++) {
+
+		var modeValue = modesArray[i]['mode'] + '$|^';
+		var submodeValue = '';
+
+		if (modesArray[i]['submode'] !== null) {
+			submodeValue = modesArray[i]['submode'] + '$|^';
+		}
+
+		regexPattern += modeValue + submodeValue;
+    }
+
+	regexPattern = regexPattern.slice(0, -2);
+
+    return new RegExp(regexPattern, 'i');
 }
 
 var htmlSettings = "";
@@ -562,26 +612,63 @@ function getReportByMode(rst, mode) {
 	if (rst === null) {
 		if (settingsMode === "SSB") {
 			return "59";
-		}
+		} else if (settingsMode === "DATA") {
+			switch(mode) {
+				// return +0 dB for Digimodes except for Digitalvoice Modes
+				case "DIGITALVOICE": 	return "59";
+				case "C4FM": 			return "59";
+				case "DMR": 			return "59";
+				case "DSTAR": 			return "59";
+				case "FREEDV": 			return "59";
+				case "M17": 			return "59";
 
+				default: return "+0 dB";
+			}
+		}
+	
 		return "599";
-	}
 
-	if (settingsMode === "SSB") {
+	} else {
+
+		if (settingsMode === "SSB") {
+			if (rst.length === 1) {
+				return "5" + rst;
+			}
+			if (rst.length === 3) {
+				return rst.slice(0, 2);
+			}
+
+			return rst;
+
+		} else if (rst.startsWith('+') || rst.startsWith('-')) {
+			return rst + " dB";
+		}
+		
 		if (rst.length === 1) {
-			return "5" + rst;
-		}
-		if (rst.length === 3) {
-			return rst.slice(0, 2);
-		}
+			switch(mode) {
+				case "CW": 				return "5" + rst + "9";
+				case "DIGITALVOICE": 	return "5" + rst;
+				case "C4FM": 			return "5" + rst;
+				case "DMR": 			return "5" + rst;
+				case "DSTAR": 			return "5" + rst;
+				case "FREEDV": 			return "5" + rst;
+				case "M17": 			return "5" + rst;
 
-		return rst;
-	}
+				default: 				return "+" + rst + " dB";
+			};
+		} else if (rst.length === 2) {
+			switch(mode) {
+				case "CW": 				return rst + "9";
+				case "DIGITALVOICE": 	return rst;
+				case "C4FM": 			return rst;
+				case "DMR": 			return rst;
+				case "DSTAR": 			return rst;
+				case "FREEDV": 			return rst;
+				case "M17": 			return rst;
 
-	if (rst.length === 1) {
-		return "5" + rst + "9";
-	} else if (rst.length === 2) {
-		return rst + "9";
+				default: 				return "+" + rst + " dB";
+			};
+		} 
 	}
 
 	return rst;
@@ -723,8 +810,8 @@ $(".js-save-to-log").click(function () {
 
 					qsoList.forEach((item) => {
 						var callsign = item[2];
-						var rst_rcvd = item[7];
-						var rst_sent = item[6];
+						var rst_rcvd = item[7].replace(/dB$/, ''); // we don't want 'dB' in the database
+						var rst_sent = item[6].replace(/dB$/, ''); // *
 						var start_date = item[0];
 						var start_time =
 							item[1][0] +

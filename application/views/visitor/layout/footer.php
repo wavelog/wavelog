@@ -8,7 +8,6 @@
 <script type="text/javascript" src="<?php echo base_url() ;?>assets/js/darkmodehelpers.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/bootstrapdialog/js/bootstrap-dialog.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ;?>assets/js/easyprint.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/htmx.min.js"></script>
 
 <script type="text/javascript">
   /*
@@ -59,6 +58,32 @@
 
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/leaflet/L.MaidenheadColoured.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/sections/gridmap.js?"></script>
+
+<script>
+  
+  // auto setting of gridmap height
+  function set_map_height() {
+
+      //header menu
+      var headerNavHeight = $('nav').outerHeight();
+      // console.log('nav: ' + headerNavHeight);
+
+      // line with coordinates
+      // var coordinatesHeight = $('.coordinates').outerHeight();
+      // console.log('.coordinates: ' + coordinatesHeight);
+
+      // form for gridsquare map
+      var gridsquareFormHeight = $('.gridsquare_map_form').outerHeight();
+      // console.log('.gridsquare_map_form: ' + gridsquareFormHeight);
+
+      // calculate correct map height
+      var gridsquareMapHeight = window.innerHeight - headerNavHeight - gridsquareFormHeight - 8;
+
+      // and set it
+      $('#gridsquare_map').css('height', gridsquareMapHeight + 'px');
+      // console.log('#gridsquare_map: ' + gridsquareMapHeight);
+  }
+</script>  
 
 <script>
 

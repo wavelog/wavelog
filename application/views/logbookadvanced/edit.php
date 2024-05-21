@@ -7,6 +7,7 @@
 			<option value="dxcc">DXCC</option>
 			<option value="gridsquare">Gridsquare</option>
 			<option value="iota">IOTA</option>
+			<option value="ituz">ITU Zone</option>
 			<option value="mode">Mode</option>
 			<option value="operator">Operator</option>
 			<option value="pota">POTA</option>
@@ -28,6 +29,15 @@
 		<select style="display:none" class="form-select form-select-sm w-auto" id="editCqz" name="cqz" required>
 			<?php
 			for ($i = 1; $i <= 40; $i++) {
+				echo '<option value="' . $i . '">' . $i . '</option>';
+			}
+			?>
+		</select>
+
+		<!-- ITU Zone -->
+		<select style="display:none" class="form-select form-select-sm w-auto" id="editItuz" name="ituz" required>
+			<?php
+			for ($i = 1; $i <= 90; $i++) {
 				echo '<option value="' . $i . '">' . $i . '</option>';
 			}
 			?>

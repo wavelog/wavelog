@@ -91,6 +91,10 @@
 			<td><div class="form-check"><input class="form-check-input" name="cqzone" type="checkbox" <?php if (($options->cqzone->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
+			<td><?php echo lang('gen_hamradio_itu_zone'); ?></td>
+			<td><div class="form-check"><input class="form-check-input" name="ituzone" type="checkbox" <?php if (($options->ituzone->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
+		</tr>
+		<tr>
 			<td><?php echo lang('gen_hamradio_sota'); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="sota" type="checkbox" <?php if (($options->sota->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
@@ -109,6 +113,14 @@
 		<tr>
 			<td><?php echo lang('general_word_comment'); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="comment" type="checkbox" <?php if (($options->comment->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
+		</tr>
+		<tr>
+			<td><?php echo lang('filter_general_propagation'); ?></td>
+			<td><div class="form-check"><input class="form-check-input" name="propagation" type="checkbox" <?php if (($options->propagation->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
+		</tr>
+		<tr>
+			<td>Contest</td>
+			<td><div class="form-check"><input class="form-check-input" name="contest" type="checkbox" <?php if (($options->contest->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 	</tbody>
 </table>

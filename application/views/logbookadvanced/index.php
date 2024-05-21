@@ -1,87 +1,102 @@
 <script type="text/javascript">
-/*
- *
- * Define custom date format
- *
- */
-var custom_date_format = "<?php echo $custom_date_format ?>";
-var lang_gen_hamradio_latitude = '<?php echo lang('gen_hamradio_latitude'); ?>';
-var lang_gen_hamradio_longitude = '<?php echo lang('gen_hamradio_longitude'); ?>';
-var lang_gen_hamradio_gridsquare = '<?php echo lang('gen_hamradio_gridsquare'); ?>';
-var lang_gen_hamradio_distance = '<?php echo lang('gen_hamradio_distance'); ?>';
-var lang_gen_hamradio_bearing = '<?php echo lang('gen_hamradio_bearing'); ?>';
-<?php
-echo "var homegrid ='" . strtoupper($homegrid[0]) . "';";
-if (!isset($options)) {
-   $options = "{\"datetime\":{\"show\":\"true\"},\"de\":{\"show\":\"true\"},\"dx\":{\"show\":\"true\"},\"mode\":{\"show\":\"true\"},\"rstr\":{\"show\":\"true\"},\"rsts\":{\"show\":\"true\"},\"band\":{\"show\":\"true\"},\"myrefs\":{\"show\":\"true\"},\"refs\":{\"show\":\"true\"},\"name\":{\"show\":\"true\"},\"qslvia\":{\"show\":\"true\"},\"qsl\":{\"show\":\"true\"},\"lotw\":{\"show\":\"true\"},\"eqsl\":{\"show\":\"true\"},\"qslmsg\":{\"show\":\"true\"},\"dxcc\":{\"show\":\"true\"},\"state\":{\"show\":\"true\"},\"cqzone\":{\"show\":\"true\"},\"iota\":{\"show\":\"true\"},\"pota\":{\"show\":\"true\"},\"operator\":{\"show\":\"true\"},\"comment\":{\"show\":\"true\"}}";
-}
-$current_opts=json_decode($options);
-echo "var user_options = $options;";
-if (!isset($current_opts->pota)) {
-	echo "\nvar o_template = { pota: {show: 'true'}};";
-	echo "\nuser_options={...user_options, ...o_template};";
-}
-if (!isset($current_opts->operator)) {
-	echo "\nvar o_template = { operator: {show: 'true'}};";
-	echo "\nuser_options={...user_options, ...o_template};";
-}
-if (!isset($current_opts->comment)) {
-	echo "\nvar o_template = { comment: {show: 'true'}};";
-	echo "\nuser_options={...user_options, ...o_template};";
-}
+    /*
+     *
+     * Define custom date format
+     *
+     */
+    var custom_date_format = "<?php echo $custom_date_format ?>";
+    var lang_gen_hamradio_latitude = '<?php echo lang('gen_hamradio_latitude'); ?>';
+    var lang_gen_hamradio_longitude = '<?php echo lang('gen_hamradio_longitude'); ?>';
+    var lang_gen_hamradio_gridsquare = '<?php echo lang('gen_hamradio_gridsquare'); ?>';
+    var lang_gen_hamradio_distance = '<?php echo lang('gen_hamradio_distance'); ?>';
+    var lang_gen_hamradio_bearing = '<?php echo lang('gen_hamradio_bearing'); ?>';
+    <?php
+    echo "var homegrid ='" . strtoupper($homegrid[0]) . "';";
+    if (!isset($options)) {
+        $options = "{
+            \"datetime\":{\"show\":\"true\"},
+            \"de\":{\"show\":\"true\"},
+            \"dx\":{\"show\":\"true\"},
+            \"mode\":{\"show\":\"true\"},
+            \"rstr\":{\"show\":\"true\"},
+            \"rsts\":{\"show\":\"true\"},
+            \"band\":{\"show\":\"true\"},
+            \"myrefs\":{\"show\":\"true\"},
+            \"refs\":{\"show\":\"true\"},
+            \"name\":{\"show\":\"true\"},
+            \"qslvia\":{\"show\":\"true\"},
+            \"qsl\":{\"show\":\"true\"},
+            \"lotw\":{\"show\":\"true\"},
+            \"eqsl\":{\"show\":\"true\"},
+            \"qslmsg\":{\"show\":\"true\"},
+            \"dxcc\":{\"show\":\"true\"},
+            \"state\":{\"show\":\"true\"},
+            \"cqzone\":{\"show\":\"true\"},
+            \"ituzone\":{\"show\":\"true\"},
+            \"iota\":{\"show\":\"true\"},
+            \"pota\":{\"show\":\"true\"},
+            \"operator\":{\"show\":\"true\"},
+            \"comment\":{\"show\":\"true\"},
+            \"propagation\":{\"show\":\"true\"},
+			\"contest\":{\"show\":\"true\"}
+        }";
+    }
+    $current_opts = json_decode($options);
+    echo "var user_options = $options;";
+    if (!isset($current_opts->pota)) {
+        echo "\nvar o_template = { pota: {show: 'true'}};";
+        echo "\nuser_options={...user_options, ...o_template};";
+    }
+    if (!isset($current_opts->operator)) {
+        echo "\nvar o_template = { operator: {show: 'true'}};";
+        echo "\nuser_options={...user_options, ...o_template};";
+    }
+    if (!isset($current_opts->comment)) {
+        echo "\nvar o_template = { comment: {show: 'true'}};";
+        echo "\nuser_options={...user_options, ...o_template};";
+    }
+    if (!isset($current_opts->ituzone)) {
+        echo "\nvar o_template = { ituzone: {show: 'true'}};";
+        echo "\nuser_options={...user_options, ...o_template};";
+    }
+	if (!isset($current_opts->propagation)) {
+        echo "\nvar o_template = { propagation: {show: 'true'}};";
+        echo "\nuser_options={...user_options, ...o_template};";
+    }
+	if (!isset($current_opts->contest)) {
+        echo "\nvar o_template = { contest: {show: 'true'}};";
+        echo "\nuser_options={...user_options, ...o_template};";
+    }
 
-foreach ($mapoptions as $mo) {
-	if ($mo != null) {
-		echo "var " . $mo->option_name . "=" . $mo->option_value . ";";
-	}
-}
-?>
+
+    foreach ($mapoptions as $mo) {
+        if ($mo != null) {
+            echo "var " . $mo->option_name . "=" . $mo->option_value . ";";
+        }
+    }
+    ?>
+    var tileUrl = "<?php echo $this->optionslib->get_option('option_map_tile_server'); ?>"
 </script>
 <style>
-/*Legend specific*/
-.legend {
-  padding: 6px 8px;
-  font: 14px Arial, Helvetica, sans-serif;
-  background: white;
-  line-height: 24px;
-  color: #555;
-  border-radius: 10px;
-}
-.legend h4 {
-  text-align: center;
-  font-size: 16px;
-  margin: 2px 12px 8px;
-  color: #777;
-}
-.legend span {
-  position: relative;
-  bottom: 3px;
-}
-.legend i {
-  width: 18px;
-  height: 18px;
-  float: left;
-  margin: 0 8px 0 0;
-}
-.row>[class*="col-"] {
-    padding-right: 5px;
-    padding-left: 5px;
-}
+    .row>[class*="col-"] {
+        padding-right: 5px;
+        padding-left: 5px;
+    }
 </style>
 <?php
 $options = json_decode($options);
 ?>
-<div class="container-fluid qso_manager pt-3 ps-4 pe-4">
-    <?php if ($this->session->flashdata('message')) { ?>
-    <!-- Display Message -->
-    <div class="alert-message error">
-        <p><?php echo $this->session->flashdata('message'); ?></p>
-    </div>
-    <?php } ?>
-    <div class="row">
+<div id="lba_div">
+    <div class="container-fluid qso_manager pt-3 ps-4 pe-4">
+        <?php if ($this->session->flashdata('message')) { ?>
+            <!-- Display Message -->
+            <div class="alert-message error">
+                <p><?php echo $this->session->flashdata('message'); ?></p>
+            </div>
+        <?php } ?>
+        <div class="row">
 
-        <form id="searchForm" name="searchForm" action="<?php echo base_url()."index.php/logbookadvanced/search";?>"
-            method="post">
+        <form id="searchForm" name="searchForm" action="<?php echo base_url()."index.php/logbookadvanced/search";?>" method="post">
             <input type="hidden" id="dupes" name="dupes" value="">
             <div class="filterbody collapse">
                 <div class="row">
@@ -132,8 +147,7 @@ $options = json_decode($options);
                     </div>
                     <div class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                         <label class="form-label" for="gridsquare"><?php echo lang('gen_hamradio_gridsquare'); ?></label>
-                        <input type="text" name="gridsquare" id="gridsquare" class="form-control form-control-sm"
-                            value="">
+                        <input type="text" name="gridsquare" id="gridsquare" class="form-control form-control-sm" value="">
                     </div>
                     <div class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                         <label class="form-label" for="mode"><?php echo lang('gen_hamradio_mode'); ?></label>
@@ -159,7 +173,7 @@ $options = json_decode($options);
                     </div>
                     <div hidden class="sats_dropdown mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                         <label class="form-label" for="sats"><?php echo lang('general_word_satellite'); ?></label>
-                        <select class="form-select form-select-sm" id="sats">
+                        <select class="form-select form-select-sm" id="sats" name="sats">
                             <option value="All"><?php echo lang('general_word_all'); ?></option>
                             <?php foreach($sats as $sat) {
 					echo '<option value="' . htmlentities($sat) . '"' . '>' . htmlentities($sat) . '</option>'."\n";
@@ -168,7 +182,7 @@ $options = json_decode($options);
                     </div>
                     <div hidden class="orbits_dropdown mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                         <label class="form-label" for="orbits"><?php echo lang('general_word_orbit'); ?></label>
-                        <select class="form-select form-select-sm" id="orbits">
+                        <select class="form-select form-select-sm" id="orbits" name="orbits">
                             <option value="All"><?php echo lang('general_word_all'); ?></option>
                             <?php foreach($orbits as $orbit) {
 					echo '<option value="' . htmlentities($orbit) . '"' . '>' . htmlentities($orbit) . '</option>'."\n";
@@ -177,7 +191,7 @@ $options = json_decode($options);
                     </div>
                     <div class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                         <label class="form-label" for="selectPropagation"><?php echo lang('filter_general_propagation'); ?></label>
-                        <select id="selectPropagation" name="selectPropagation" class="form-select form-select-sm">
+                        <select id="selectPropagation" class="form-select form-select-sm" name="propmode">
                             <option value=""><?php echo lang('general_word_all'); ?></option>
                             <option value="AS">Aircraft Scatter</option>
                             <option value="AUR">Aurora</option>
@@ -204,10 +218,21 @@ $options = json_decode($options);
                         <select id="cqzone" name="cqzone" class="form-select form-select-sm">
                             <option value=""><?php echo lang('general_word_all'); ?></option>
                             <?php
-                      for ($i = 1; $i<=40; $i++) {
-                          echo '<option value="'. $i . '">'. $i .'</option>';
-                      }
-                      ?>
+								for ($i = 1; $i<=40; $i++) {
+									echo '<option value="'. $i . '">'. $i .'</option>';
+								}
+							?>
+                        </select>
+                    </div>
+					<div class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
+                        <label class="form-label" for="ituzone">ITU Zone</label>
+                        <select id="ituzone" name="ituzone" class="form-select form-select-sm">
+                            <option value=""><?php echo lang('general_word_all'); ?></option>
+                            <?php
+							for ($i = 1; $i<=90; $i++) {
+								echo '<option value="'. $i . '">'. $i .'</option>';
+							}
+							?>
                         </select>
                     </div>
                     <div class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
@@ -319,7 +344,7 @@ $options = json_decode($options);
             </div>
             <div class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                 <label for="qslvia"><?php echo lang('filter_qsl_via'); ?></label>
-                <input type="search" name="qslviainput" class="form-control form-control-sm">
+                <input type="search" name="qslvia" class="form-control form-control-sm">
             </div>
             <div class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                 <label for="qslimages"><?php echo lang('filter_qsl_images'); ?></label>
@@ -373,6 +398,9 @@ $options = json_decode($options);
 			<?php if (($options->cqzone->show ?? "true") == "true") { ?>
                 <button type="button" class="btn btn-sm btn-primary me-1" id="searchCqZone"><?php echo lang('filter_search_cq_zone'); ?></button><?php
             } ?>
+			<?php if (($options->ituzone->show ?? "true") == "true") { ?>
+                <button type="button" class="btn btn-sm btn-primary me-1" id="searchItuZone"><?php echo lang('filter_search_itu_zone'); ?></button><?php
+            } ?>
 			<?php if (($options->mode->show ?? "true") == "true") { ?>
                 <button type="button" class="btn btn-sm btn-primary me-1" id="searchMode"><?php echo lang('filter_search_mode'); ?></button><?php
             } ?>
@@ -398,16 +426,16 @@ $options = json_decode($options);
     </div>
 <div class="row pt-2">
     <div class="mb-3 d-flex align-items-center col-lg d-flex flex-row justify-content-center align-items-center">
-        <button type="button" class="btn btn-sm btn-primary me-1" data-bs-toggle="collapse"
+        <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse"
             data-bs-target=".quickfilterbody"><?php echo lang('filter_quickfilters'); ?></button>
-        <button type="button" class="btn btn-sm btn-primary me-1" data-bs-toggle="collapse"
+        <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse"
             data-bs-target=".qslfilterbody"><?php echo lang('filter_qsl_filters'); ?></button>
-        <button type="button" class="btn btn-sm btn-primary me-1" data-bs-toggle="collapse"
+        <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse"
             data-bs-target=".filterbody"><?php echo lang('filter_filters'); ?></button>
-        <button type="button" class="btn btn-sm btn-primary me-1" data-bs-toggle="collapse"
+        <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse"
             data-bs-target=".actionbody"><?php echo lang('filter_actions'); ?></button>
         <label for="qsoResults" class="me-2"><?php echo lang('filter_results'); ?></label>
-        <select id="qsoResults" name="qsoResults" class="form-select form-select-sm me-2 w-auto">
+        <select id="qsoResults" name="qsoresults" class="form-select form-select-sm me-2 w-auto">
             <option value="250">250</option>
             <option value="1000">1000</option>
             <option value="2500">2500</option>
@@ -440,84 +468,94 @@ $options = json_decode($options);
 		<button type="options" class="btn btn-sm btn-primary me-1" id="optionButton"><?php echo lang('filter_options'); ?></button>
 		<button type="reset" class="btn btn-sm btn-danger me-1" id="resetButton"><?php echo lang('filter_reset'); ?></button>
 
+            </div>
+        </div>
+        </form>
+        <table style="width:100%" class="table-sm table table-bordered table-hover table-striped table-condensed text-center" id="qsoList">
+            <thead>
+                <tr>
+                    <th>
+                        <div class="form-check" style="margin-top: -1.5em"><input class="form-check-input" type="checkbox" id="checkBoxAll" /></div>
+                    </th>
+                    <?php if (($options->datetime->show ?? "true") == "true") {
+                        echo '<th>' . lang('general_word_datetime') . '</th>';
+                    } ?>
+                    <?php if (($options->de->show ?? "true") == "true") {
+                        echo '<th>' . lang('gen_hamradio_de') . '</th>';
+                    } ?>
+                    <?php if (($options->dx->show ?? "true") == "true") {
+                        echo '<th>' . lang('gen_hamradio_dx') . '</th>';
+                    } ?>
+                    <?php if (($options->mode->show ?? "true") == "true") {
+                        echo '<th>' . lang('gen_hamradio_mode') . '</th>';
+                    } ?>
+                    <?php if (($options->rsts->show ?? "true") == "true") {
+                        echo '<th>' . lang('gen_hamradio_rsts') . '</th>';
+                    } ?>
+                    <?php if (($options->rstr->show ?? "true") == "true") {
+                        echo '<th>' . lang('gen_hamradio_rstr') . '</th>';
+                    } ?>
+                    <?php if (($options->band->show ?? "true") == "true") {
+                        echo '<th>' . lang('gen_hamradio_band') . '</th>';
+                    } ?>
+                    <?php if (($options->myrefs->show ?? "true") == "true") {
+                        echo '<th>' . lang('gen_hamradio_myrefs') . '</th>';
+                    } ?>
+                    <?php if (($options->refs->show ?? "true") == "true") {
+                        echo '<th>' . lang('gen_hamradio_refs') . '</th>';
+                    } ?>
+                    <?php if (($options->name->show ?? "true") == "true") {
+                        echo '<th>' . lang('general_word_name') . '</th>';
+                    } ?>
+                    <?php if (($options->qslvia->show ?? "true") == "true") {
+                        echo '<th>' . lang('gen_hamradio_qslvia') . '</th>';
+                    } ?>
+                    <?php if (($options->qsl->show ?? "true") == "true") {
+                        echo '<th>' . lang('gen_hamradio_qsl') . '</th>';
+                    } ?>
+                    <?php if ($this->session->userdata('user_eqsl_name') != ""  && ($options->eqsl->show ?? "true") == "true") {
+                        echo '<th class="eqslconfirmation">eQSL</th>';
+                    } ?>
+                    <?php if ($this->session->userdata('user_lotw_name') != "" && ($options->lotw->show ?? "true") == "true") {
+                        echo '<th class="lotwconfirmation">LoTW</th>';
+                    } ?>
+                    <?php if (($options->qslmsg->show ?? "true") == "true") {
+                        echo '<th>' . lang('gen_hamradio_qslmsg') . '</th>';
+                    } ?>
+                    <?php if (($options->dxcc->show ?? "true") == "true") {
+                        echo '<th>' . lang('gen_hamradio_dxcc') . '</th>';
+                    } ?>
+                    <?php if (($options->state->show ?? "true") == "true") {
+                        echo '<th>' . lang('gen_hamradio_state') . '</th>';
+                    } ?>
+                    <?php if (($options->cqzone->show ?? "true") == "true") {
+                        echo '<th>' . lang('gen_hamradio_cq_zone') . '</th>';
+                    } ?>
+                    <?php if (($options->ituzone->show ?? "true") == "true") {
+                        echo '<th>' . lang('gen_hamradio_itu_zone') . '</th>';
+                    } ?>
+                    <?php if (($options->iota->show ?? "true") == "true") {
+                        echo '<th>' . lang('gen_hamradio_iota') . '</th>';
+                    } ?>
+                    <?php if (($options->pota->show ?? "true") == "true") {
+                        echo '<th>' . lang('gen_hamradio_pota') . '</th>';
+                    } ?>
+                    <?php if (($options->operator->show ?? "true") == "true") {
+                        echo '<th>' . lang('gen_hamradio_operator') . '</th>';
+                    } ?>
+                    <?php if (($options->comment->show ?? "true") == "true") {
+                        echo '<th>' . lang('general_word_comment') . '</th>';
+                    } ?>
+					<?php if (($options->propagation->show ?? "true") == "true") {
+                        echo '<th>' . lang('filter_general_propagation') . '</th>';
+                    } ?>
+					<?php if (($options->contest->show ?? "true") == "true") {
+                        echo '<th>Contest</th>';
+                    } ?>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
     </div>
-</div>
-</form>
-<table style="width:100%" class="table-sm table table-bordered table-hover table-striped table-condensed text-center" id="qsoList">
-    <thead>
-        <tr>
-            <th>
-                <div class="form-check" style="margin-top: -1.5em"><input class="form-check-input" type="checkbox" id="checkBoxAll" /></div>
-            </th>
-			<?php if (($options->datetime->show ?? "true") == "true") {
-				echo '<th>' . lang('general_word_datetime') . '</th>';
-			} ?>
-			<?php if (($options->de->show ?? "true") == "true") {
-				echo '<th>' . lang('gen_hamradio_de') . '</th>';
-			} ?>
-			<?php if (($options->dx->show ?? "true") == "true") {
-				echo '<th>' . lang('gen_hamradio_dx') . '</th>';
-			} ?>
-			<?php if (($options->mode->show ?? "true") == "true") {
-				echo '<th>' . lang('gen_hamradio_mode') . '</th>';
-			} ?>
-			<?php if (($options->rsts->show ?? "true") == "true") {
-				echo '<th>' . lang('gen_hamradio_rsts') . '</th>';
-			} ?>
-			<?php if (($options->rstr->show ?? "true") == "true") {
-				echo '<th>' . lang('gen_hamradio_rstr') . '</th>';
-			} ?>
-            <?php if (($options->band->show ?? "true") == "true") {
-				echo '<th>' . lang('gen_hamradio_band') . '</th>';
-			} ?>
-			<?php if (($options->myrefs->show ?? "true") == "true") {
-				echo '<th>' . lang('gen_hamradio_myrefs') . '</th>';
-			} ?>
-			<?php if (($options->refs->show ?? "true") == "true") {
-				echo '<th>' . lang('gen_hamradio_refs') . '</th>';
-			} ?>
-			<?php if (($options->name->show ?? "true") == "true") {
-				echo '<th>' . lang('general_word_name') . '</th>';
-			} ?>
-			<?php if (($options->qslvia->show ?? "true") == "true") {
-				echo '<th>' . lang('gen_hamradio_qslvia') . '</th>';
-			} ?>
-			<?php if (($options->qsl->show ?? "true") == "true") {
-				echo '<th>' . lang('gen_hamradio_qsl') . '</th>';
-			} ?>
-            <?php if ($this->session->userdata('user_eqsl_name') != ""  && ($options->eqsl->show ?? "true") == "true"){
-					echo '<th class="eqslconfirmation">eQSL</th>';
-				} ?>
-            <?php if ($this->session->userdata('user_lotw_name') != "" && ($options->lotw->show ?? "true") == "true"){
-					echo '<th class="lotwconfirmation">LoTW</th>';
-				} ?>
-			<?php if (($options->qslmsg->show ?? "true") == "true") {
-				echo '<th>' . lang('gen_hamradio_qslmsg') . '</th>';
-			} ?>
-			<?php if (($options->dxcc->show ?? "true") == "true") {
-				echo '<th>' . lang('gen_hamradio_dxcc') . '</th>';
-			} ?>
-			<?php if (($options->state->show ?? "true") == "true") {
-				echo '<th>' . lang('gen_hamradio_state') . '</th>';
-			} ?>
-			<?php if (($options->cqzone->show ?? "true") == "true") {
-				echo '<th>' . lang('gen_hamradio_cq_zone') . '</th>';
-			} ?>
-			<?php if (($options->iota->show ?? "true") == "true") {
-				echo '<th>' . lang('gen_hamradio_iota') . '</th>';
-			} ?>
-			<?php if (($options->pota->show ?? "true") == "true") {
-				echo '<th>' . lang('gen_hamradio_pota') . '</th>';
-			} ?>
-			<?php if (($options->operator->show ?? "true") == "true") {
-				echo '<th>' . lang('gen_hamradio_operator') . '</th>';
-			} ?>
-			<?php if (($options->comment->show ?? "true") == "true") {
-				echo '<th>' . lang('general_word_comment') . '</th>';
-			} ?>
-        </tr>
-    </thead>
-    <tbody>
-    </tbody>
-</table>
 </div>

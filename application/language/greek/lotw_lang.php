@@ -18,7 +18,7 @@ $lang['lotw_date_created'] = 'Ημερομηνία Δημιουργίας';
 $lang['lotw_date_expires'] = 'Ημερομηνία Λήξης ';
 $lang['lotw_qso_start_date'] = 'Ημερομηνία έναρξης QSO';
 $lang['lotw_qso_end_date'] = 'Ημερομηνία λήξης QSO';
-$lang['lotw_status'] = 'Κατάσταση / Τελευταία μεταφόρτωση';
+$lang['lotw_status'] = 'Κατάσταση';
 $lang['lotw_options'] = 'Επιλογές';
 $lang['lotw_valid'] = 'Εγκυρος';
 $lang['lotw_expired'] = 'Ληγμένο';
@@ -60,7 +60,7 @@ $lang['lotw_cert_expired'] = 'Τουλάχιστον ένα από τα πιστ
 
 // Lotw User
 $lang['lotw_user'] = 'This station uses LoTW.';
-$lang['lotw_last_upload'] = 'Last upload';
+$lang['lotw_last_upload'] = 'Τελευταία μεταφόρτωση';
 
 // Upload folder permissions
 $lang['lotw_upload_folder_permissions'] = 'Upload folder is not writable. Please contact your admin.';

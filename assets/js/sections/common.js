@@ -246,6 +246,45 @@ function qso_edit(id) {
                                   document.getElementById("distance").value = null;
                                },
                             });
+                        } else if ($(this).val().length == 0) {
+                           $('#locator_info').fadeOut("slow");
+                           document.getElementById("distance").value = null;
+                        }
+                    });
+
+                    $('#vucc_grids').change(function(){
+                        if ($(this).val().length >= 9) {
+                            $.ajax({
+                               url: base_url + 'index.php/logbook/searchbearing',
+                               type: 'post',
+                               data: {
+                                  grid: $(this).val(),
+                                  stationProfile: $('#stationProfile').val()
+                               },
+                               success: function(data) {
+                                  $('#locator_info').html(data).fadeIn("slow");
+                               },
+                               error: function() {
+                                  $('#locator_info').text("Error loading bearing!").fadeIn("slow");
+                               },
+                            });
+                            $.ajax({
+                               url: base_url + 'index.php/logbook/searchdistance',
+                               type: 'post',
+                               data: {
+                                  grid: $(this).val(),
+                                  stationProfile: $('#stationProfile').val()
+                               },
+                               success: function(data) {
+                                  document.getElementById("distance").value = data;
+                               },
+                               error: function() {
+                                  document.getElementById("distance").value = null;
+                               },
+                            });
+                        } else if ($(this).val().length == 0) {
+                           $('#locator_info').fadeOut("slow");
+                           document.getElementById("distance").value = null;
                         }
                     });
 
@@ -622,7 +661,7 @@ function changeLookupType(type) {
         $('#quicklookupcqz').hide();
         $('#quicklookupwas').hide();
         $('#quicklookuptext').hide();
-    } else if (type == "vucc" || type == "sota" || type == "wwff") {
+    } else if (type == "vucc" || type == "sota" || type == "wwff" || type == "lotw") {
         $('#quicklookuptext').show();
         $('#quicklookupiota').hide();
         $('#quicklookupdxcc').hide();
@@ -659,6 +698,7 @@ function getLookupResult() {
 			iota: $('#quicklookupiota').val(),
 			sota: $('#quicklookuptext').val(),
 			wwff: $('#quicklookuptext').val(),
+			lotw: $('#quicklookuptext').val(),
 		},
 		success: function (html) {
 			$('#lookupresulttable').html(html);
@@ -856,6 +896,13 @@ function set_active_loc_quickswitcher(new_active) {
                 if (typeof reloadStations === 'function') {
                     reloadStations();
                 }
+
+                // If the user is in the QSO view we change the station in the QSO input aswell
+                if (window.location.pathname.indexOf("qso") !== -1) {
+                    if ($('#stationProfile option[value="' + new_active + '"]').length > 0) {
+                        $('#stationProfile').val(new_active);
+                    }
+                }
             },
             error: function(xhr, status, error) {
                 console.error('Error while setting the new active location: ' + error);
@@ -864,6 +911,46 @@ function set_active_loc_quickswitcher(new_active) {
     });
 }
 
+$(document).ready(function() {
+    if ($('#utc_header').length > 0) {
+        function getCurrentUTCTime() {
+            var now = new Date();
+            var hours = now.getUTCHours().toString().padStart(2, '0');
+            var minutes = now.getUTCMinutes().toString().padStart(2, '0');
+            var seconds = now.getUTCSeconds().toString().padStart(2, '0');
+            return hours + ':' + minutes + ':' + seconds;
+        }
+
+        function updateUTCTime() {
+            $('#utc_header').text(getCurrentUTCTime() + 'z');
+        }
+
+        setInterval(updateUTCTime, 1000);
+        updateUTCTime();
+    }
+});
+
+// auto setting of gridmap height
+function set_map_height() {
+    //header menu
+    var headerNavHeight = $('nav').outerHeight();
+    // console.log('nav: ' + headerNavHeight);
+
+    // line with coordinates
+    var coordinatesHeight = $('.coordinates').outerHeight();
+    // console.log('.coordinates: ' + coordinatesHeight);
+
+    // form for gridsquare map
+    var gridsquareFormHeight = $('.gridsquare_map_form').outerHeight();
+    // console.log('.gridsquare_map_form: ' + gridsquareFormHeight);
+
+    // calculate correct map height
+    var gridsquareMapHeight = window.innerHeight - headerNavHeight - coordinatesHeight - gridsquareFormHeight;
+
+    // and set it
+    $('#gridsquare_map').css('height', gridsquareMapHeight + 'px');
+    // console.log('#gridsquare_map: ' + gridsquareMapHeight);
+}
 
 
 console.log("Ready to unleash your coding prowess and join the fun?\n\n" +

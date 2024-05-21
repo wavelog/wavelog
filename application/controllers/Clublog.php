@@ -25,10 +25,76 @@ class Clublog extends CI_Controller {
 	public function upload() {
 		$this->load->model('clublog_model');
 
+		// set the last run in cron table for the correct cron id
+		$this->load->model('cron_model');
+		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+
 		$users = $this->clublog_model->get_clublog_users();
 
 		foreach ($users as $user) {
 			$this->uploadUser($user->user_id, $user->user_clublog_name, $user->user_clublog_password);
+		}
+	}
+
+	// Download ADIF from Clublog
+	public function download() {
+		$this->load->model('clublog_model');
+
+		// set the last run in cron table for the correct cron id
+		$this->load->model('cron_model');
+		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+
+		$users = $this->clublog_model->get_clublog_users();
+
+		foreach ($users as $user) {
+			$this->downloadUser($user->user_id, $user->user_clublog_name, $user->user_clublog_password);
+		}
+	}
+
+	function downloadUser($userid, $username, $password) {
+		$clean_username = $this->security->xss_clean($username);
+		$clean_password = $this->security->xss_clean($password);
+		$clean_userid = $this->security->xss_clean($userid);
+
+		$this->config->load('config');
+		ini_set('memory_limit', '-1');
+		ini_set('display_errors', 1);
+		ini_set('display_startup_errors', 1);
+		error_reporting(E_ALL);
+
+		$this->load->helper('file');
+
+		$this->load->model('clublog_model');
+		$this->load->model('logbook_model');
+
+		$station_profiles = $this->clublog_model->all_enabled($clean_userid);	// Fetch unique Calls per User with aggregated station_ids
+		if ($station_profiles->num_rows()) {
+			foreach ($station_profiles->result() as $station_row) {
+				$lastrec=$this->clublog_model->clublog_last_qsl_rcvd_date($station_row->station_callsign);
+				$url='https://clublog.org/getmatches.php?api=608df94896cb9c5421ae748235492b43815610c9&email='.$clean_username.'&password='.$clean_password.'&callsign='.$station_row->station_callsign.'&startyear='.substr($lastrec,0,4).'&startmonth='.substr($lastrec,4,2).'&startday='.substr($lastrec,6,2);
+				$request = curl_init($url);
+
+				// recieve a file
+				curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
+				$response = curl_exec($request);
+				$info = curl_getinfo($request);
+				curl_close ($request);
+				if(curl_errno($request)) {
+					echo curl_error($request);
+				} elseif (preg_match_all('/Invalid callsign/',$response)) {	// We're trying to download calls for a station we're not granted. Disable Clublog-Transfer for that station(s)
+					$this->clublog_model->disable_sync4call($station_row->station_callsign,$station_row->station_ids);
+				} else {
+					try {
+						$cl_qsls=json_decode($response);
+						foreach ($cl_qsls as $oneqsl) {
+							$this->logbook_model->clublog_update($oneqsl[2], $oneqsl[0], $oneqsl[3], 'Y', $station_row->station_callsign, $station_row->station_ids);
+						}
+					} catch (Exception $e) {
+						log_message("Error","Something gone wrong while trying to Download for station(s) ".$station_row->station_ids." / Call: ".$station_row->station_callsign);
+					}
+				}
+
+			}
 		}
 	}
 

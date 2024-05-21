@@ -100,7 +100,7 @@ $lang['station_location_eqsl_defaultqslmsg'] = "Default QSLMSG";
 $lang['station_location_eqsl_defaultqslmsg_hint'] = "Define a default message that will be populated and sent for each QSO for this station location.";
 $lang['station_location_qrz_subscription'] = 'Требуется подписка';
 $lang['station_location_qrz_hint'] = "Ваш ключ API находится на  <a href='https://logbook.qrz.com/logbook' target='_blank'>странице настроек журнала QRZ.com";
-$lang['station_location_qrz_realtime_upload'] = 'Загрузка в журнал QRZ.com в реальном времени';
+$lang['station_location_qrz_realtime_upload'] = 'Загрузка в журнал QRZ.com';
 $lang['station_location_hrdlog_username'] = "HRDLog.net Username";
 $lang['station_location_hrdlog_username_hint'] = "The username you are registered with at HRDlog.net (usually your callsign).";
 $lang['station_location_hrdlog_code'] = "HRDLog.net API Key";
@@ -113,4 +113,6 @@ $lang['station_location_oqrs_email_alert'] = "Оповещение о OQRS о е
 $lang['station_location_oqrs_email_hint'] = "Убедитесь, что емэйл сконфигурирован администратором в общих настройках.";
 $lang['station_location_oqrs_text'] = "Текст OQRS";
 $lang['station_location_oqrs_text_hint'] = "Информация, которую вы хотите добавить, касающаяся QSL.";
+$lang['station_location_ignore'] = "Ignore Clublog Upload";
+$lang['station_location_ignore_hint'] = "If enabled, the QSOs made from this location will not be uploaded to Clublog.";
 $lang['station_location_clublog_realtime_upload']='ClubLog Realtime Upload';

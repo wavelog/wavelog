@@ -21,7 +21,7 @@
                     <p class="card-text"><?php echo lang('station_logbooks_description_text')?></p>
 					<a class="btn btn-primary btn-sm" href="javascript:createStationLogbook();"><i class="fas fa-plus"></i> <?php echo lang('station_logbooks_create')?></a>
 
-                    <?php if ($my_logbooks->num_rows() > 0) { ?>
+
 
                     <div class="table-responsive">
                         <table id="station_logbooks_table" class="table-sm table table-hover table-striped table-condensed">
@@ -65,6 +65,7 @@
                                                 title="<?php echo lang('station_logbooks_view_public') . $row->logbook_name;?>"></i>
                                         </a>
 										<button id="<?php echo $row->logbook_id; ?>" class="deletePublicSlug btn btn-outline-danger btn-sm" cnftext="Are you sure you want to delete the public slug?"><i class="fas fa-trash-alt"></i></button>
+										<button id="<?php echo $row->logbook_id; ?>" class="editExportmapOptions btn btn-outline-primary btn-sm"><i class="fas fa-globe-europe"></i></button>
                                         <?php } ?>
                                     </td>
                                     <td>
@@ -81,7 +82,7 @@
                             </tbody>
 							</table>
                     </div>
-                    <?php } ?>
+
                 </div>
             </div>
 
@@ -95,7 +96,6 @@
 				<p class="card-text"><?php echo lang('station_location_header_ln3'); ?></p>
 
 						<p><a href="<?php echo site_url('station/create'); ?>" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> <?php echo lang('station_location_create'); ?></a></p>
-								<?php if ($stations->num_rows() > 0) { ?>
 
 <?php if($current_active == 0) { ?>
 <div class="alert alert-danger" role="alert">
@@ -189,7 +189,7 @@
 	</tbody>
 				</table>
 </div>
-<?php } ?>
+
                 </div>
             </div>
         </div>

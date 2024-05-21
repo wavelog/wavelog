@@ -12,7 +12,7 @@ class LotwCert extends CI_Model {
 	*/
 	function lotw_certs($user_id) {
 
-		$this->db->select('lotw_certs.lotw_cert_id as lotw_cert_id, lotw_certs.callsign as callsign, dxcc_entities.name as cert_dxcc, dxcc_entities.end as cert_dxcc_end, lotw_certs.qso_start_date as qso_start_date, lotw_certs.qso_end_date as qso_end_date, lotw_certs.date_created as date_created, lotw_certs.date_expires as date_expires, lotw_certs.last_upload as last_upload');
+		$this->db->select('lotw_certs.lotw_cert_id as lotw_cert_id, lotw_certs.callsign as callsign, dxcc_entities.name as cert_dxcc, dxcc_entities.end as cert_dxcc_end, lotw_certs.qso_start_date as qso_start_date, lotw_certs.qso_end_date as qso_end_date, lotw_certs.date_created as date_created, lotw_certs.date_expires as date_expires, lotw_certs.last_upload as last_upload, lotw_certs.last_upload_fail as last_upload_fail, lotw_certs.last_upload_status as last_upload_status');
 		$this->db->where('user_id', $user_id);
 		$this->db->join('dxcc_entities','lotw_certs.cert_dxcc_id = dxcc_entities.adif','left');
 		$this->db->order_by('cert_dxcc', 'ASC');
@@ -77,19 +77,29 @@ class LotwCert extends CI_Model {
 		$this->db->delete('lotw_certs');
 	}
 
-	function last_upload($certID) {
+	function last_upload($certID, $message) {
 
-      $data = array(
-           'last_upload' => date("Y-m-d H:i:s"),
-      );
+		if ($message == "Success") {
+			$data = array(
+				'last_upload' => date("Y-m-d H:i:s"),
+				'last_upload_status' => $message,
+			);
 
+			$this->db->where('lotw_cert_id', $certID);
+			$this->db->update('lotw_certs', $data);
+			return "Updated";
+		}
+		else if ($message == "Upload failed") {
+			$data = array(
+				'last_upload_fail' => date("Y-m-d H:i:s"),
+				'last_upload_status' => $message,
+			);
 
-    $this->db->where('lotw_cert_id', $certID);
-
-    $this->db->update('lotw_certs', $data);
-
-    return "Updated";
-  }
+			$this->db->where('lotw_cert_id', $certID);
+			$this->db->update('lotw_certs', $data);
+			return "Updated";
+		}
+	}
 
 	function empty_table($table) {
 		$this->db->empty_table($table);

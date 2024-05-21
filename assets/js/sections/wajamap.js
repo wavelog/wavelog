@@ -307,10 +307,10 @@ function onClick(e) {
   zoomToFeature(e);
   var marker = e.target;
   var res =  marker.feature.id.replace(/\D/g,'');
-  displayContactsOnMap($("#wajamap"),res, $('#band2').val(), $('#mode').val(), 'WAJA');
+  displayContactsOnMap($("#wajamap"),res, $('#band2').val(), 'All', 'All', $('#mode').val(), 'WAJA');
 }
 
 function onClick2(e) {
   var marker = e.target;
-  displayContactsOnMap($("#wajamap"), marker.options.title, $('#band2').val(), $('#mode').val(), 'WAJA');
+  displayContactsOnMap($("#wajamap"), marker.options.title, $('#band2').val(), 'All', 'All', $('#mode').val(), 'WAJA');
 }

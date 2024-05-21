@@ -67,6 +67,7 @@ $lang['general_word_worked'] = '已通联';
 $lang['general_word_worked_not_confirmed'] = "已通联未确认";
 $lang['general_word_not_worked'] = "未通联";
 $lang['general_word_confirmed'] = '已确认';
+$lang['general_word_not_confirmed'] = "Not Confirmed";
 $lang['general_word_confirmation'] = "确认";
 $lang['general_word_needed'] = '待通联';
 
@@ -237,4 +238,5 @@ $lang['dashboard_logbooks_warning'] = '你没有电台日志。 请前往<a href
 $lang['hams_at_no_activations_found'] = '未找到即将进行的激活。 请稍后再回来查看。';
 
 $lang['gen_add_to_contest'] = "Add QSOs to Contest";
+$lang['general_word_realtime'] = "Realtime";
 $lang['datatables_language'] = "en-GB";

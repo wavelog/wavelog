@@ -1,3 +1,12 @@
+<script>
+   var tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"
+</script>
+<style>
+    #jccmap {
+       height: calc(100vh - 480px) !important;
+       max-height: 900px !important;
+    }
+</style>
 <div class="container">
         <!-- Award Info Box -->
         <br>
@@ -98,6 +107,10 @@
                 <div class="col-md-10">
                     <button id="button2id" type="reset" name="button2id" class="btn btn-sm btn-warning">Reset</button>
                     <button id="button1id" type="submit" name="button1id" class="btn btn-sm btn-primary">Show</button>
+                    <?php if ($jcc_array) {?>
+                    <button type="button" onclick="load_jcc_map();" class="btn btn-info btn-sm"><i class="fas fa-globe-asia"></i> <?php echo lang('awards_show_jcc_map'); ?></button>
+                    <button id="button3id" type="button" onclick="export_qsos();" name="button3id" class="btn btn-sm btn-info">Export</button>
+                    <?php } ?>
                 </div>
             </div>
 
@@ -108,10 +121,17 @@
         <li class="nav-item">
             <a class="nav-link active" id="table-tab" data-bs-toggle="tab" href="#table" role="tab" aria-controls="table" aria-selected="true">Results</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" onclick="load_jcc_map();" id="map-tab" data-bs-toggle="tab" href="#jccmaptab" role="tab" aria-controls="home" aria-selected="false"><?php echo lang('filter_map'); ?></a>
+        </li>
     </ul>
     <br />
 
     <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade" id="jccmaptab" role="tabpanel" aria-labelledby="home-tab">
+    <br />
+
+    <div id="jccmap" class="map-leaflet" ></div>
 
     </div>
 

@@ -108,3 +108,14 @@ $lang['menu_extras'] = "Extras";
 $lang['menu_satellites'] = 'Satellites';
 $lang['menu_dx_calendar'] = 'DX Calendar';
 $lang['menu_contest_calendar'] = 'Contest Calendar';
+$lang['menu_wab'] = 'WAB';
+$lang['menu_itu'] = 'ITU';
+
+$lang['menu_canada'] = 'Canada';
+$lang['menu_germany'] = 'Germany';
+$lang['menu_great_britain'] = 'Great Britain';
+$lang['menu_japan'] = 'Japan';
+$lang['menu_luxemburg'] = 'Luxemburg';
+$lang['menu_switzerland'] = 'Switzerland';
+$lang['menu_usa'] = 'USA';
+
