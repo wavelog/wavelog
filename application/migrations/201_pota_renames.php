@@ -607,6 +607,7 @@ class Migration_pota_renames extends CI_Migration
 
 	public function down()
 	{
+		// Downgrade impossible
 	}
 
 	function update_db($from, $to) {
