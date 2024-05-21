@@ -231,6 +231,39 @@ class Migration_pota_migrations extends CI_Migration
 		//'YS' => '',
 		'YO' => 'RO',
 		'PJ2' => 'CW',
+
+		// Changes not mentioned separately?!
+		'K' => 'US',
+		'G' => 'GB',
+		'C5' => 'GM',
+		'D4' => 'CV',
+		'EI' => 'IE',
+		'GI' => 'GB',
+		'GM' => 'GB',
+		'GW' => 'GB',
+		'HP' => 'PA',
+		'J5' => 'GW',
+		'LZ' => 'BG',
+		'ON' => 'BE',
+		'PJ2' => 'CW',
+		'PY' => 'BR',
+		'S5' => 'SI',
+		'SV' => 'GR',
+		'T3' => 'GD',
+		'T7' => 'SM',
+		'TA' => 'TR',
+		'TB' => 'GT',
+		'TI' => 'CR',
+		'VK' => 'AU',
+		'XV2' => 'VN',
+		'YB' => 'ID',
+		'YS' => 'SV',
+		'YT' => 'RS',
+		'ZL' => 'NZ',
+		'ZP' => 'PY',
+		'ZR' => 'ZA',
+		'5H3' => 'TZ',
+		'3V8' => 'TN',
 	);
 
 	public function up()
@@ -245,7 +278,7 @@ class Migration_pota_migrations extends CI_Migration
 	}
 
 	function update_db($from, $to) {
-		$sql= "UPDATE ".$this->config->item('table_name')." SET COL_POTA_REF = REPLACE(COL_POTA_REF, '".$from."-', '".$to."-') WHERE SUBSTRING(COL_POTA_REF,1,3) = '".$from."-';";
+		$sql= "UPDATE ".$this->config->item('table_name')." SET COL_POTA_REF = REPLACE(COL_POTA_REF, '".$from."-', '".$to."-') WHERE SUBSTRING(COL_POTA_REF,1,".(strlen($from)+1).") = '".$from."-';";
 		$this->db->query($sql);
 	}
 
