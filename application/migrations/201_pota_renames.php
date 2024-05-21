@@ -596,6 +596,8 @@ class Migration_pota_renames extends CI_Migration
 		'GW-0221' => 'GB-1215',
 		'GW-0222' => 'GB-1216',
 		'GW-0223' => 'GB-1217',
+
+		'LA-2524' => 'BV-0001',
 	);
 
 	public function up()
