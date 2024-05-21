@@ -3,6 +3,7 @@ $(document).ready(function(){
 		e.preventDefault();
 		var fi = document.getElementById("userfile");
 		var file = fi.files[0];;
+		$("#prepare_sub").prop("disabled",true);
 		if (JSZip.support.blob) {	// Check if Browser supports ZIP
 			var zip = new JSZip();
 			//add all files to zip 
@@ -14,7 +15,6 @@ $(document).ready(function(){
 					arrayBuffer = this.result;
 					let chker = partof(arrayBuffer,4096);
 					if (chker.toUpperCase().includes('<QSO_DATE')) {
-						$("#prepare_sub").prop("disabled",true);
 						zip.file($("#fhash").val()+'.adif', arrayBuffer, { binary:true });
 						zip.generateAsync({type:"blob", compression:"DEFLATE"}).then(function(content){
 
@@ -29,6 +29,7 @@ $(document).ready(function(){
 							return;
 						});
 					} else {
+						$("#prepare_sub").prop("disabled",false);
 						alert("Unsupported File. Must be ADIF");
 					}
 
