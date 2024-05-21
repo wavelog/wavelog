@@ -389,7 +389,7 @@ class Logbook_model extends CI_Model {
 	/*
 	 * Used to fetch QSOs from the logbook in the awards
 	 */
-	public function qso_details($searchphrase, $band, $mode, $type, $qsl, $sat = null, $orbit = null, $searchmode = null){
+	public function qso_details($searchphrase, $band, $mode, $type, $qsl, $sat = null, $orbit = null, $searchmode = null, $propagation = null){
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -446,6 +446,9 @@ class Logbook_model extends CI_Model {
 						$this->db->where("satellite.orbit = '$orbit'");
 					}
 				}
+        if ($propagation != '' && $propagation != null) {
+          $this->db->where("COL_PROP_MODE = '$propagation'");
+        }
 			}
 			break;
 		case 'CQZone':
@@ -3206,29 +3209,49 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 	    }
     }
 
-  function qrz_update($datetime, $callsign, $band, $qsl_date, $qsl_status, $station_callsign) {
+    function clublog_update($datetime, $callsign, $band, $qsl_status, $station_callsign, $station_ids) {
 
-	  $data = array(
-		  'COL_QRZCOM_QSO_DOWNLOAD_DATE' => $qsl_date,
-		  'COL_QRZCOM_QSO_DOWNLOAD_STATUS' => $qsl_status,
-	  );
+	    $logbooks_locations_array=explode(",",$station_ids);
+	    $data = array(
+		    'COL_CLUBLOG_QSO_DOWNLOAD_DATE' => date('Y-m-d'),
+		    'COL_CLUBLOG_QSO_DOWNLOAD_STATUS' => $qsl_status,
+	    );
 
+	    $this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i:%s\') = "'.$datetime.'"');
+	    $this->db->where('COL_CALL', $callsign);
+	    $this->db->where("replace(replace(COL_BAND,'cm',''),'m','')", $band); // no way to achieve a real bandmatch, so fallback to match without unit. e.g.: "6" was provided by Clublog. Do they mean 6m or 6cm?
+	    $this->db->where('COL_STATION_CALLSIGN', $station_callsign);
+	    $this->db->where_in('station_id', $logbooks_locations_array);
 
-	  $this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i\') = "'.$datetime.'"');
-	  $this->db->where('COL_CALL', $callsign);
-	  $this->db->where('COL_BAND', $band);
-	  $this->db->where('COL_STATION_CALLSIGN', $station_callsign);
+	    if ($this->db->update($this->config->item('table_name'). ' use index (idx_HRD_COL_CALL_station_id)', $data)) {
+		    unset($data);
+		    return "Updated";
+	    } else {
+		    unset($data);
+		    return "Not updated";
+	    }
+    }
 
-	  if ($this->db->update($this->config->item('table_name'), $data)) {
-		  unset($data);
-		  return "Updated";
-	  } else {
-		  unset($data);
-		  return "Not updated";
-	  }
+    function qrz_update($datetime, $callsign, $band, $qsl_date, $qsl_status, $station_callsign) {
 
+	    $data = array(
+		    'COL_QRZCOM_QSO_DOWNLOAD_DATE' => $qsl_date,
+		    'COL_QRZCOM_QSO_DOWNLOAD_STATUS' => $qsl_status,
+	    );
 
-  }
+	    $this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i\') = "'.$datetime.'"');
+	    $this->db->where('COL_CALL', $callsign);
+	    $this->db->where('COL_BAND', $band);
+	    $this->db->where('COL_STATION_CALLSIGN', $station_callsign);
+
+	    if ($this->db->update($this->config->item('table_name'), $data)) {
+		    unset($data);
+		    return "Updated";
+	    } else {
+		    unset($data);
+		    return "Not updated";
+	    }
+    }
 
     function lotw_update($datetime, $callsign, $band, $qsl_date, $qsl_status, $state, $qsl_gridsquare, $qsl_vucc_grids, $iota, $cnty, $cqz, $ituz, $station_callsign, $qsoid) {
 
@@ -3526,14 +3549,14 @@ function lotw_last_qsl_date($user_id) {
 		  if(isset($record['rst_rcvd'])) {
 			  $rst_rx = $record['rst_rcvd'];
 		  } else {
-			  $rst_rx = "59";
+			  $rst_rx = "";
 		  }
 
 		  // RST Sent
 		  if(isset($record['rst_sent'])) {
 			  $rst_tx = $record['rst_sent'];
 		  } else {
-			  $rst_tx = "59";
+			  $rst_tx = "";
 		  }
 
 		  if(isset($record['cqz'])) {
@@ -4839,9 +4862,13 @@ function lotw_last_qsl_date($user_id) {
       foreach ($qsos_result as $row) {
         $plot = array('lat'=>0, 'lng'=>0, 'html'=>'', 'label'=>'', 'confirmed'=>'N');
 
-        $plot['label'] = $row->COL_CALL;
+        $plot['label'] = str_replace('0', '&Oslash;', $row->COL_CALL);
 
-        $plot['html'] = "Callsign: ".$row->COL_CALL."<br />Date/Time: ".$row->COL_TIME_ON."<br />";
+        $plot['html'] = "";
+        if ($row->COL_NAME != null) {
+           $plot['html'] .= "Name: ".$row->COL_NAME."<br />";
+        }
+        $plot['html'] .= "Date/Time: ".$row->COL_TIME_ON."<br />";
         $plot['html'] .= ($row->COL_SAT_NAME != null) ? ("SAT: ".$row->COL_SAT_NAME."<br />") : ("Band: ".$row->COL_BAND."<br />");
         $plot['html'] .= "Mode: ".($row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE)."<br />";
 

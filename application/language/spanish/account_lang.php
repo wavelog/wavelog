@@ -77,7 +77,6 @@ $lang['account_upload_status_of_sat_qsos_to'] = 'Subir los estados de QSOs de SA
 $lang['account_logbook_of_the_world'] = 'Logbook of the World';
 $lang['account_logbook_of_the_world_lotw_username'] = 'Nombre de Usuario Logbook of The World (LoTW)';
 $lang['account_logbook_of_the_world_lotw_password'] = 'Contraseña Logbook of The World (LoTW)';
-$lang['account_leave_blank_to_keep_existing_password'] = 'Deje la contraseña en blanco para mantener la contraseña actual';
 
 $lang['account_clublog'] = 'Club Log';
 $lang['account_clublog_email_callsign'] = 'Correo/Indicativo de Club Log';

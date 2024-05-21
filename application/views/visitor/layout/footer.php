@@ -60,6 +60,32 @@
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/sections/gridmap.js?"></script>
 
 <script>
+  
+  // auto setting of gridmap height
+  function set_map_height() {
+
+      //header menu
+      var headerNavHeight = $('nav').outerHeight();
+      // console.log('nav: ' + headerNavHeight);
+
+      // line with coordinates
+      // var coordinatesHeight = $('.coordinates').outerHeight();
+      // console.log('.coordinates: ' + coordinatesHeight);
+
+      // form for gridsquare map
+      var gridsquareFormHeight = $('.gridsquare_map_form').outerHeight();
+      // console.log('.gridsquare_map_form: ' + gridsquareFormHeight);
+
+      // calculate correct map height
+      var gridsquareMapHeight = window.innerHeight - headerNavHeight - gridsquareFormHeight - 8;
+
+      // and set it
+      $('#gridsquare_map').css('height', gridsquareMapHeight + 'px');
+      // console.log('#gridsquare_map: ' + gridsquareMapHeight);
+  }
+</script>  
+
+<script>
 
   var layer = L.tileLayer('<?php echo $this->optionslib->get_option('option_map_tile_server');?>', {
     maxZoom: 18,

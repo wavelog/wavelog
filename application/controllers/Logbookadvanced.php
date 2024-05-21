@@ -60,14 +60,13 @@ class Logbookadvanced extends CI_Controller {
 
 		$pageData['bands'] = $this->bands->get_worked_bands();
 
-		$CI =& get_instance();
 		// Get Date format
-		if($CI->session->userdata('user_date_format')) {
+		if($this->session->userdata('user_date_format')) {
 			// If Logged in and session exists
-			$pageData['custom_date_format'] = $CI->session->userdata('user_date_format');
+			$pageData['custom_date_format'] = $this->session->userdata('user_date_format');
 		} else {
 			// Get Default date format from /config/wavelog.php
-			$pageData['custom_date_format'] = $CI->config->item('qso_date_format');
+			$pageData['custom_date_format'] = $this->config->item('qso_date_format');
 		}
 
 		switch ($pageData['custom_date_format']) {
@@ -201,6 +200,17 @@ class Logbookadvanced extends CI_Controller {
 		$this->load->view('adif/data/exportall', $data);
 	}
 
+	function export_to_adif_params() {
+		$this->load->model('logbookadvanced_model');
+
+		$postdata = $this->input->post();
+		$postdata['user_id'] = (int)$this->session->userdata('user_id');
+		$postdata['qsoresults'] = 'All';
+		$data['qsos'] = $this->logbookadvanced_model->getSearchResult($postdata);
+
+		$this->load->view('adif/data/exportall', $data);
+	}
+
 	function update_qsl() {
 		$this->load->model('logbookadvanced_model');
 
@@ -306,7 +316,7 @@ class Logbookadvanced extends CI_Controller {
 			'ids' => xss_clean($this->input->post('ids'))
 		);
 
-		$result = $this->logbookadvanced_model->searchDb($searchCriteria);
+		$result = $this->logbookadvanced_model->getSearchResultArray($searchCriteria);
 		$this->prepareMappedQSos($result);
 	}
 
@@ -347,7 +357,7 @@ class Logbookadvanced extends CI_Controller {
 			'qslimages' => xss_clean($this->input->post('qslimages')),
 		);
 
-		$result = $this->logbookadvanced_model->searchDb($searchCriteria);
+		$result = $this->logbookadvanced_model->getSearchResultArray($searchCriteria);
 		$this->prepareMappedQSos($result);
 	}
 
@@ -498,6 +508,8 @@ class Logbookadvanced extends CI_Controller {
 		$json_string['pota']['show'] = $this->input->post('pota');
 		$json_string['operator']['show'] = $this->input->post('operator');
 		$json_string['comment']['show'] = $this->input->post('comment');
+		$json_string['propagation']['show'] = $this->input->post('propagation');
+		$json_string['contest']['show'] = $this->input->post('contest');
 
 		$obj['column_settings']= json_encode($json_string);
 

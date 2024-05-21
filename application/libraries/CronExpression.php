@@ -5,6 +5,9 @@
  *
  * @author René Pollesch
  * edited by HB9HIL 04/2024
+ * 
+ * Source: https://github.com/poliander/cron
+ * Lic: GnuGPL 3
  */
 class CronExpression {
     /**
@@ -68,6 +71,20 @@ class CronExpression {
             'mod' => 0
         ]
     ];
+
+    /**
+     * @expression look-up table
+     */
+    private const SPECIAL_EXPRESSIONS = [
+        '@yearly' => '0 0 1 1 *',
+        '@annually' => '0 0 1 1 *',
+        '@monthly' => '0 0 1 * *',
+        '@weekly' => '0 0 * * 0',
+        '@daily' => '0 0 * * *',
+        '@midnight' => '0 0 * * *',
+        '@hourly' => '0 * * * *'
+    ];
+    
 
     /**
      * @var DateTimeZone|null
@@ -249,8 +266,18 @@ class CronExpression {
             }
 
             return $registers;
-        }
 
+        } else if (strpos($expression, '@') === 0) {
+
+            $special = trim($expression);
+
+            if (isset(self::SPECIAL_EXPRESSIONS[$special])) {
+
+                $special_expression = self::SPECIAL_EXPRESSIONS[$special];
+                return $this->parse($special_expression);
+
+            }
+        }
         throw new Exception('invalid number of segments');
     }
 

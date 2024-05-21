@@ -418,6 +418,11 @@
                     <h3>QRZ.com</h3>
                         <p><?php echo lang('gen_this_qso_was_confirmed_on'); ?> <?php $timestamp = strtotime($row->COL_QRZCOM_QSO_DOWNLOAD_DATE); echo date($custom_date_format, $timestamp); ?>.</p>
                     <?php } ?>
+
+                    <?php if($row->COL_CLUBLOG_QSO_DOWNLOAD_STATUS == "Y" && $row->COL_CLUBLOG_QSO_DOWNLOAD_DATE != null) { ?>
+                    <h3>Clublog</h3>
+                        <p><?php echo lang('gen_this_qso_was_confirmed_on'); ?> <?php $timestamp = strtotime($row->COL_CLUBLOG_QSO_DOWNLOAD_DATE); echo date($custom_date_format, $timestamp); ?>.</p>
+                    <?php } ?>
             </div>
 
                 <div class="col-md">

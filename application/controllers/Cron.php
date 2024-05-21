@@ -1,6 +1,9 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class cron extends CI_Controller {
+
+	private $min_php_version;
+
 	function __construct() {
 
 		parent::__construct();
@@ -11,6 +14,9 @@ class cron extends CI_Controller {
 		}
 
 		$this->load->model('cron_model');
+
+		// Minimum PHP Version for the Cron Manager
+		$this->min_php_version = '8.1.0';
 	}
 
 	public function index() {
@@ -35,6 +41,7 @@ class cron extends CI_Controller {
 		$mastercron = array();
 		$mastercron = $this->get_mastercron_status();
 		$data['mastercron'] = $mastercron;
+		$data['min_php_version'] = $this->min_php_version;
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('cron/index');
@@ -45,74 +52,81 @@ class cron extends CI_Controller {
 
 		// This is the main function, which handles all crons, runs them if enabled and writes the 'next run' timestamp to the database
 
-		// TODO Add an API Key to the cronjob to improve security?
+		// check for min. PHP version
+		if (version_compare(PHP_VERSION, $this->min_php_version) >= 0) {
 
-		$crons = $this->cron_model->get_crons();
+			// TODO Add an API Key to the cronjob to improve security?
 
-		$status = 'pending';
+			$crons = $this->cron_model->get_crons();
 
-		foreach ($crons as $cron) {
-			if ($cron->enabled == 1) {
+			$status = 'pending';
 
-				// calculate the crons expression
-				$data = array(
-					'expression' => $cron->expression,
-					'timeZone' => null
-				);
-				$this->load->library('CronExpression', $data);
+			foreach ($crons as $cron) {
+				if ($cron->enabled == 1) {
 
-				$cronjob = $this->cronexpression;
-				$dt = new DateTime();
-				$isdue = $cronjob->isMatching($dt);
+					// calculate the crons expression
+					$data = array(
+						'expression' => $cron->expression,
+						'timeZone' => null
+					);
+					$this->load->library('CronExpression', $data);
 
-				$next_run = $cronjob->getNext();
-				$next_run_date = date('Y-m-d H:i:s', $next_run);
-				$this->cron_model->set_next_run($cron->id, $next_run_date);
+					$cronjob = $this->cronexpression;
+					$dt = new DateTime();
+					$isdue = $cronjob->isMatching($dt);
 
-				if ($isdue == true) {
-					$isdue_result = 'true';
+					$next_run = $cronjob->getNext();
+					$next_run_date = date('Y-m-d H:i:s', $next_run);
+					$this->cron_model->set_next_run($cron->id, $next_run_date);
 
-					// TODO Add log_message level debug here to have logging for the cron manager
+					if ($isdue == true) {
+						$isdue_result = 'true';
 
-					echo "CRON: " . $cron->id . " -> is due: " . $isdue_result . "\n";
-					echo "CRON: " . $cron->id . " -> RUNNING...\n";
+						// TODO Add log_message level debug here to have logging for the cron manager
 
-					$url = base_url() . $cron->function;
+						echo "CRON: " . $cron->id . " -> is due: " . $isdue_result . "\n";
+						echo "CRON: " . $cron->id . " -> RUNNING...\n";
 
-					$ch = curl_init();
-					curl_setopt($ch, CURLOPT_URL, $url);
-					curl_setopt($ch, CURLOPT_HEADER, false);
-					curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
-					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-					$crun = curl_exec($ch);
-					curl_close($ch);
+						$url = base_url() . $cron->function;
 
-					if ($crun !== false) {
-						echo "CRON: " . $cron->id . " -> CURL Result: " . $crun . "\n";
-						$status = 'healthy';
+						$ch = curl_init();
+						curl_setopt($ch, CURLOPT_URL, $url);
+						curl_setopt($ch, CURLOPT_HEADER, false);
+						curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
+						curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+						$crun = curl_exec($ch);
+						curl_close($ch);
+
+						if ($crun !== false) {
+							echo "CRON: " . $cron->id . " -> CURL Result: " . $crun . "\n";
+							$status = 'healthy';
+						} else {
+							echo "ERROR: Something went wrong with " . $cron->id . "\n";
+							$status = 'failed';
+						}
 					} else {
-						echo "ERROR: Something went wrong with " . $cron->id . "\n";
-						$status = 'failed';
+						$isdue_result = 'false';
+						echo "CRON: " . $cron->id . " -> is due: " . $isdue_result . " -> Next Run: " . $next_run_date . "\n";
+						$status = 'healthy';
 					}
 				} else {
-					$isdue_result = 'false';
-					echo "CRON: " . $cron->id . " -> is due: " . $isdue_result . " -> Next Run: " . $next_run_date . "\n";
-					$status = 'healthy';
+					echo 'CRON: ' . $cron->id . " is disabled. skipped..\n";
+					$status = 'disabled';
+
+					// Set the next_run timestamp to null to indicate in the view/database that this cron is disabled
+					$this->cron_model->set_next_run($cron->id, null);
 				}
-			} else {
-				echo 'CRON: ' . $cron->id . " is disabled. skipped..\n";
-				$status = 'disabled';
-
-				// Set the next_run timestamp to null to indicate in the view/database that this cron is disabled
-				$this->cron_model->set_next_run($cron->id, null);
+				$this->cron_model->set_status($cron->id, $status);
+				$this->cronexpression = null;
 			}
-			$this->cron_model->set_status($cron->id, $status);
-			$this->cronexpression = null;
-		}
 
-		$datetime = new DateTime("now", new DateTimeZone('UTC'));
-		$datetime = $datetime->format('Ymd H:i:s');
-		$this->optionslib->update('mastercron_last_run', $datetime , 'no');
+			$datetime = new DateTime("now", new DateTimeZone('UTC'));
+			$datetime = $datetime->format('Ymd H:i:s');
+			$this->optionslib->update('mastercron_last_run', $datetime , 'no');
+		} else {
+			log_message('error', 'CRON: PHP Version '. PHP_VERSION . ' not supported. Minimum Version is: ' . $this->min_php_version);
+			echo 'CRON: PHP Version '. PHP_VERSION . ' not supported. Minimum Version is: ' . $this->min_php_version . "\n";
+		}
 	}
 
 	public function editDialog() {

@@ -18,7 +18,7 @@ $lang['lotw_date_created'] = 'Date Created';
 $lang['lotw_date_expires'] = 'Date Expires';
 $lang['lotw_qso_start_date'] = 'QSO Start Date';
 $lang['lotw_qso_end_date'] = 'QSO End Date';
-$lang['lotw_status'] = 'Status / Last upload';
+$lang['lotw_status'] = 'Status';
 $lang['lotw_options'] = 'Options';
 $lang['lotw_valid'] = 'Valid';
 $lang['lotw_expired'] = 'Expired';
@@ -60,7 +60,7 @@ $lang['lotw_cert_expired'] = 'At least one of your LoTW certificates is expired!
 
 // Lotw User
 $lang['lotw_user'] = 'This station uses LoTW.';
-$lang['lotw_last_upload'] = 'Last upload';
+$lang['lotw_last_upload'] = 'Last Upload';
 
 // Upload folder permissions
 $lang['lotw_upload_folder_permissions'] = 'Upload folder is not writable. Please contact your admin.';

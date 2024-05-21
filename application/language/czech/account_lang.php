@@ -77,7 +77,6 @@ $lang['account_upload_status_of_sat_qsos_to'] = 'Nahrávání stavu SAT QSOs na'
 $lang['account_logbook_of_the_world'] = 'Logbook of the World';
 $lang['account_logbook_of_the_world_lotw_username'] = 'Přihlašovací jméno Logbook of The World (LoTW)';
 $lang['account_logbook_of_the_world_lotw_password'] = 'Heslo Logbook of The World (LoTW)';
-$lang['account_leave_blank_to_keep_existing_password'] = 'Ponechte prázdné, pokud chcete zachovat stávající heslo';
 
 $lang['account_clublog'] = 'Club Log';
 $lang['account_clublog_email_callsign'] = 'Email nebo značka volacího znaku Club Logu';

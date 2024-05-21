@@ -1,21 +1,5 @@
 
-
-<style>
-.coordinates {
-    justify-content: center;
-    align-items: stretch;
-}
-.cohidden {
-    display:none;
-}
-#latDeg, #lngDeg {
-    width: 170px;
-}
-#locator, #distance, #bearing {
-    width: 120px;
-}
-</style>
-<div class="container">
+<div class="container gridsquare_map_form">
         <!-- Award Info Box -->
         <br>
         <div id="awardInfoButton">
@@ -40,7 +24,7 @@
 </div>
 
 <div id="gridmapcontainer">
-	<div id="gridsquare_map" class="map-leaflet" style="width: 100%; height: 800px"></div>
+	<div id="gridsquare_map" class="map-leaflet" style="width: 100%;"></div>
 </div>
 <div class="coordinates d-flex">
         <div class="cohidden"><?php echo lang('gen_hamradio_latitude')?>: </div>

@@ -1,7 +1,7 @@
 <div id="qso-last-table">
 
 <div class="table-responsive" style="font-size: 0.95rem;">
-  <table class="table">
+  <table class="table table-striped">
     <tr class="log_title titles">
       <th><?php echo lang('general_word_date'); ?>/<?php echo lang('general_word_time'); ?></th>
 	<th><?php echo lang('gen_hamradio_call'); ?></th>

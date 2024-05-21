@@ -22,29 +22,36 @@ foreach($rss as $item) {
 	echo "<td>" . $item->dates[0] ?? '' . "</td>";
 	echo "<td>" . $item->dates[1] ?? '' . "</td>";
 	echo "<td>";
-	if ($item->dxcc_adif >= 1) { 
+	if ($item->dxcc_adif >= 1) {
 		echo '<a href="javascript:spawnLookupModal(\''.$item->dxcc_adif.'\',\'dxcc\')">';
 	}
-	if ($item->dxcc_cnfmd) { 
-		echo '<span class="text-success">'; 
-	} elseif ($item->dxcc_wked) { 
-		echo '<span class="text-warning">'; 
-	} elseif ($item->no_dxcc)  { 
-		echo '<span>'; 
-	} else  { 
-		echo '<span class="text-danger">'; 
+
+	if ($item->dxcc_cnfmd) {
+		echo '<span class="badge bg-success">';
+	} elseif ($item->dxcc_wked) {
+		echo '<span class="badge bg-warning">';
+	} elseif ($item->no_dxcc)  {
+		echo '<span>';
+	} else  {
+		echo '<span class="badge bg-danger">';
 	}
+
 	echo $item->dxcc."</span>";
-	if ($item->dxcc_adif >= 1) {  echo "</a>"; }
-	echo "</td><td";
-	if ($item->call_cnfmd) { 
-		echo ' class"text-success">'; 
-	} elseif ($item->call_wked) { 
-		echo ' class="text-warning">'; 
-	} else  { 
-		echo ' class="text-danger">'; 
-	} 
-	echo $item->call."</td>";
+
+	if ($item->dxcc_adif >= 1) {
+		echo "</a>";
+	}
+	echo "</td><td><span";
+
+	if ($item->call_cnfmd) {
+		echo ' class"badge bg-success">';
+	} elseif ($item->call_wked) {
+		echo ' class="badge bg-warning">';
+	} else  {
+		echo ' class="badge bg-danger">';
+
+	}
+	echo $item->call."</span></td>";
 	echo "<td>$item->qslinfo</td>";
 	echo "<td>$item->source</td>";
 	echo "<td>$item->info</td>";
@@ -57,6 +64,3 @@ foreach($rss as $item) {
 	</table>
 
 </div>
-<?php
-// Define a function to extract the dates from the date range
-
