@@ -10,15 +10,94 @@ class Migration_pota_migrations extends CI_Migration
 {
 
 	var $map = array(
+		// First process all entities whose previous prefix is also an ISO reference for a new/other entity
+		// Ensures that those entities are not renamed twice
+		'CP' => 'BO'
+		// No parks in FO/A and FO/C prior to the parks update. So skipping
+		//'FO' => 'PF'
+		//'FO' => 'CP'
+		'CN' => 'MA'
+		'BY' => 'CN'
+		'CA' => 'CL'
+		'VE' => 'CA'
+		'CV' => 'UY'
+		'D4' => 'CV'
+		'CU' => 'PT'
+		'CO' => 'CU'
+		'HK' => 'CO'
+		'VR' => 'HK'
+		'HR' => 'HN'
+		'9A' => 'HR'
+		'FK' => 'NC'
+		'VP8' => 'FK'
+		'TF' => 'IS'
+		'FT5Z' => 'TF'
+		'FT5' => 'TF'
+		'FT' => 'TF'
+		'GI' => 'GB'
+		'ZB' => 'GI'
+		'GD' => 'IM'
+		'J3' => 'GD'
+		'GW' => 'GB'
+		'J5' => 'GW'
+		'LA' => 'NO'
+		'XW' => 'LA'
+		'OM' => 'SK'
+		'A4' => 'OM'
+		'PA' => 'NL'
+		'HP' => 'PA'
+		'PY' => 'BR'
+		'PY0S' => 'BR'
+		'PY0F' => 'BR'
+		'PY0T' => 'BR'
+		'ZP' => 'PY'
+		'UA0' => 'RU'
+		'R1F' => 'RU'
+		'UA2' => 'RU'
+		'SM' => 'SE'
+		'T7' => 'SM'
+		'ST0' => 'SS'
+		'ST' => 'SD'
+		'S9' => 'ST'
+		'ZA' => 'AL'
+		'ZR' => 'ZA'
+		'ZS8' => 'ZA'
+		'ES' => 'EE'
+		'EA' => 'ES'
+		'TJ' => 'CM'
+		'EY' => 'TJ'
+		'TZ' => 'ML'
+		'5H3' => 'TZ'
+		'GM' => 'GB'
+		'C5' => 'GM'
+		'TL' => 'CF'
+		'4W' => 'TL'
+		'TG' => 'GT'
+		'5V' => 'TG'
+		'TK' => 'FR'
+		'ZK3' => 'TK'
+		'TT' => 'TD'
+		'9Y' => 'TT'
+		'TN' => 'CG'
+		'3V8' => 'TN'
+		'TR' => 'GA'
+		'TA' => 'TR'
+		'UM' => 'KG'
+		'KH1' => 'UM'
+		'VU4' => 'IN'
+		'VU7' => 'IN'
+		'VU' => 'IN'
+		'YJ8' => 'VU'
+
 		// Changes on 2024-02-20
 		'4O' => 'ME',
 		// Changes on 2024-02-22
-		'ES' => 'EE',
+		//'ES' => 'EE',
 		'S0' => 'EH',
 		'9J2' => 'ZM',
 		'7O' => 'YE',
 		// Changes on 2024-02-24
-		'TF' => 'IS',
+		//'TF' => 'IS',
 		'Z2' => 'ZW',
 		'8R' => 'GY',
 		'V2' => 'AG',
@@ -28,7 +107,7 @@ class Migration_pota_migrations extends CI_Migration
 		'3DA' => 'SZ',
 		'9N' => 'NP',
 		'3B8' => 'MU',
-		'ZA' => 'AL',
+		//'ZA' => 'AL',
 		'4J' => 'AZ',
 		'3C' => 'GQ',
 		'E3' => 'ER',
@@ -70,12 +149,12 @@ class Migration_pota_migrations extends CI_Migration
 		'7Q7' => 'MW',
 		//'' => 'ML',
 		'5T' => 'MR',
-		'CN' => 'MA',
+		//'CN' => 'MA',
 		'5N' => 'NG',
 		'9X5' => 'RW',
 		'6W' => 'SN',
 		'9L1' => 'SL',
-		'OM' => 'SK',
+		//'OM' => 'SK',
 		'ZC6' => 'PS',
 		'PJ7' => 'SX',
 		//'5H3' => '',
@@ -94,7 +173,7 @@ class Migration_pota_migrations extends CI_Migration
 		'V5' => 'NA',
 		'CP' => 'BO',
 		'PZ' => 'SR',
-		'VP8' => 'FK',
+		//'VP8' => 'FK',
 		'YA' => 'AF',
 		'VP2E' => 'AI',
 		'T8' => 'PW',
@@ -105,7 +184,7 @@ class Migration_pota_migrations extends CI_Migration
 		'VP2M' => 'MS',
 		'J8' => 'VC',
 		'UL' => 'KZ',
-		'UM' => 'KG',
+		//'UM' => 'KG',
 		'XX9' => 'MO',
 		'P29' => 'PG',
 		'UO' => 'MD',
@@ -119,16 +198,16 @@ class Migration_pota_migrations extends CI_Migration
 		'V85' => 'BN',
 		'YK' => 'SY',
 		'A6' => 'AE',
-		'TL' => 'CF',
-		'TT' => 'TD',
+		//'TL' => 'CF',
+		//'TT' => 'TD',
 		'TY' => 'BJ',
-		'TR' => 'GA',
+		//'TR' => 'GA',
 		'TU' => 'CI',
 		//'' => 'SD',
 		'SU' => 'EG',
 		'XT' => 'BF',
 		//'T33' => '',
-		'ST0' => 'SS',
+		//'ST0' => 'SS',
 		//'Z6' => '',
 		'CE9' => 'AQ',
 		'GJ' => 'JE',
@@ -150,13 +229,13 @@ class Migration_pota_migrations extends CI_Migration
 		'OE' => 'AT',
 		'HB' => 'CH',
 		'LX' => 'LU',
-		'HR' => 'HN',
+		//'HR' => 'HN',
 		'8P' => 'BB',
 		'DU' => 'PH',
 		'6Y' => 'JM',
 		'A2' => 'BW',
 		'C9' => 'MZ',
-		'CV' => 'UY',
+		//'CV' => 'UY',
 		//'9Y' => '',
 		'C6' => 'BS',
 		'J6' => 'LC',
@@ -170,9 +249,9 @@ class Migration_pota_migrations extends CI_Migration
 		'9G1' => 'GH',
 		'OK' => 'CZ',
 		//'4W' => '',
-		'GD' => 'IM',
+		//'GD' => 'IM',
 		// Changes on 2024-03-03
-		'PA' => 'NL',
+		//'PA' => 'NL',
 		'DA' => 'DE',
 		'CT' => 'PT',
 		'JA' => 'JP',
@@ -213,7 +292,7 @@ class Migration_pota_migrations extends CI_Migration
 		// CHanges on 2024-03-14
 		'OA' => 'PE',
 		'OH' => 'FI',
-		'TG' => 'GT',
+		//'TG' => 'GT',
 		//'T7' => ''
 		//'TA' => ''
 		// Changes on 2024-03-15
@@ -235,23 +314,23 @@ class Migration_pota_migrations extends CI_Migration
 		// Changes not mentioned separately?!
 		'K' => 'US',
 		'G' => 'GB',
-		'C5' => 'GM',
-		'D4' => 'CV',
+		//'C5' => 'GM',
+		//'D4' => 'CV',
 		'EI' => 'IE',
-		'GI' => 'GB',
-		'GM' => 'GB',
-		'GW' => 'GB',
-		'HP' => 'PA',
-		'J5' => 'GW',
+		//'GI' => 'GB',
+		//'GM' => 'GB',
+		//'GW' => 'GB',
+		//'HP' => 'PA',
+		//'J5' => 'GW',
 		'LZ' => 'BG',
 		'ON' => 'BE',
 		'PJ2' => 'CW',
-		'PY' => 'BR',
+		//'PY' => 'BR',
 		'S5' => 'SI',
 		'SV' => 'GR',
-		'T3' => 'GD',
-		'T7' => 'SM',
-		'TA' => 'TR',
+		//'T3' => 'GD',
+		//'T7' => 'SM',
+		//'TA' => 'TR',
 		'TB' => 'GT',
 		'TI' => 'CR',
 		'VK' => 'AU',
@@ -260,10 +339,10 @@ class Migration_pota_migrations extends CI_Migration
 		'YS' => 'SV',
 		'YT' => 'RS',
 		'ZL' => 'NZ',
-		'ZP' => 'PY',
-		'ZR' => 'ZA',
-		'5H3' => 'TZ',
-		'3V8' => 'TN',
+		//'ZP' => 'PY',
+		//'ZR' => 'ZA',
+		//'5H3' => 'TZ',
+		//'3V8' => 'TN',
 	);
 
 	public function up()
