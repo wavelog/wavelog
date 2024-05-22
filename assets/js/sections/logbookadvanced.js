@@ -52,9 +52,6 @@ function updateRow(qso) {
 	if (user_options.myrefs.show == "true"){
 		cells.eq(c++).text(qso.deRefs);
 	}
-	if (user_options.refs.show == "true"){
-		cells.eq(c++).html(qso.dxRefs);
-	}
 	if (user_options.name.show == "true"){
 		cells.eq(c++).text(qso.name);
 	}
@@ -102,6 +99,21 @@ function updateRow(qso) {
 	}
 	if ( (user_options.contest) && (user_options.contest.show == "true")){
 		cells.eq(c++).html(qso.contest);
+	}
+	if ( (user_options.gridsquare) && (user_options.gridsquare.show == "true")){
+		cells.eq(c++).html(qso.gridsquare);
+	}
+	if ( (user_options.sota) && (user_options.sota.show == "true")){
+		cells.eq(c++).html(qso.sota);
+	}
+	if ( (user_options.dok) && (user_options.dok.show == "true")){
+		cells.eq(c++).html(qso.dok);
+	}
+	if ( (user_options.wwff) && (user_options.wwff.show == "true")){
+		cells.eq(c++).html(qso.wwff);
+	}
+	if ( (user_options.sig) && (user_options.sig.show == "true")){
+		cells.eq(c++).html(qso.sig);
 	}
 
 	$('[data-bs-toggle="tooltip"]').tooltip();
@@ -166,9 +178,6 @@ function loadQSOTable(rows) {
 		if (user_options.myrefs.show == "true"){
 			data.push(qso.deRefs);
 		}
-		if (user_options.refs.show == "true"){
-			data.push(qso.dxRefs);
-		}
 		if (user_options.name.show == "true"){
 			data.push(qso.name);
 		}
@@ -216,6 +225,21 @@ function loadQSOTable(rows) {
 		}
 		if (user_options.contest.show == "true"){
 			data.push(qso.contest);
+		}
+		if (user_options.gridsquare.show == "true"){
+			data.push(qso.gridsquare);
+		}
+		if (user_options.sota.show == "true"){
+			data.push(qso.sota);
+		}
+		if (user_options.dok.show == "true"){
+			data.push(qso.dok);
+		}
+		if (user_options.wwff.show == "true"){
+			data.push(qso.wwff);
+		}
+		if (user_options.sig.show == "true"){
+			data.push(qso.sig);
 		}
 
 		let createdRow = table.row.add(data).index();
@@ -905,7 +929,6 @@ function saveOptions() {
 			rstr: $('input[name="rstr"]').is(':checked') ? true : false,
 			band: $('input[name="band"]').is(':checked') ? true : false,
 			myrefs: $('input[name="myrefs"]').is(':checked') ? true : false,
-			refs: $('input[name="refs"]').is(':checked') ? true : false,
 			name: $('input[name="name"]').is(':checked') ? true : false,
 			qslvia: $('input[name="qslvia"]').is(':checked') ? true : false,
 			qsl: $('input[name="qsl"]').is(':checked') ? true : false,
@@ -922,6 +945,11 @@ function saveOptions() {
 			comment: $('input[name="comment"]').is(':checked') ? true : false,
 			propagation: $('input[name="propagation"]').is(':checked') ? true : false,
 			contest: $('input[name="contest"]').is(':checked') ? true : false,
+			gridsquare: $('input[name="gridsquare"]').is(':checked') ? true : false,
+			sota: $('input[name="sota"]').is(':checked') ? true : false,
+			dok: $('input[name="dok"]').is(':checked') ? true : false,
+			wwff: $('input[name="wwff"]').is(':checked') ? true : false,
+			sig: $('input[name="sig"]').is(':checked') ? true : false,
 			gridsquare_layer: $('input[name="gridsquareoverlay"]').is(':checked') ? true : false,
 			path_lines: $('input[name="pathlines"]').is(':checked') ? true : false,
 			cqzone_layer: $('input[name="cqzones"]').is(':checked') ? true : false,
