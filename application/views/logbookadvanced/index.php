@@ -370,9 +370,9 @@ $options = json_decode($options);
             <button type="button" class="btn btn-sm btn-success me-1" id="sentBureau"><?php echo lang('filter_actions_sent_bureau'); ?></button>
             <button type="button" class="btn btn-sm btn-success me-1" id="sentDirect"><?php echo lang('filter_actions_sent_direct'); ?></button>
             <button type="button" class="btn btn-sm btn-success me-1" id="sentElectronic"><?php echo lang('filter_actions_sent_electronic'); ?></button>
-            <button type="button" class="btn btn-sm btn-warning me-1" id="dontSend"><?php echo lang('filter_actions_not_sent'); ?></button>
-            <button type="button" class="btn btn-sm btn-warning me-1" id="notRequired"><?php echo lang('filter_actions_qsl_n_required'); ?></button>
-            <button type="button" class="btn btn-sm btn-warning me-1" id="notReceived"><?php echo lang('filter_actions_not_rcvd'); ?></button>
+            <button type="button" class="btn btn-sm btn-danger me-1" id="dontSend"><?php echo lang('filter_actions_not_sent'); ?></button>
+            <button type="button" class="btn btn-sm btn-danger me-1" id="notRequired"><?php echo lang('filter_actions_qsl_n_required'); ?></button>
+            <button type="button" class="btn btn-sm btn-danger me-1" id="notReceived"><?php echo lang('filter_actions_not_rcvd'); ?></button>
             <button type="button" class="btn btn-sm btn-warning me-1" id="receivedBureau"><?php echo lang('filter_actions_recv_bureau'); ?></button>
             <button type="button" class="btn btn-sm btn-warning me-1" id="receivedDirect"><?php echo lang('filter_actions_recv_direct'); ?></button>
             <button type="button" class="btn btn-sm btn-warning me-1" id="receivedElectronic"><?php echo lang('filter_actions_recv_electronic'); ?></button>
