@@ -9,7 +9,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Migration_pota_renames extends CI_Migration
 {
 
-	var $map = array(
+	var $k_map = array(
 		'K-0053' => 'AS-0001',
 		'K-0130' => 'AS-0002',
 		'K-9703' => 'AS-0003',
@@ -147,7 +147,9 @@ class Migration_pota_renames extends CI_Migration
 		'K-0807' => 'VI-0006',
 		'K-0906' => 'VI-0007',
 		'K-0968' => 'VI-0008',
+	);
 
+	var $gi_map = array(
 		'GI-0001' => 'GB-0772',
 		'GI-0002' => 'GB-0773',
 		'GI-0003' => 'GB-0774',
@@ -182,7 +184,9 @@ class Migration_pota_renames extends CI_Migration
 		'GI-0032' => 'GB-0803',
 		'GI-0033' => 'GB-0804',
 		'GI-0034' => 'GB-0805',
+	);
 		
+	var $gm_map = array(
 		'GM-0001' => 'GB-0806',
 		'GM-0002' => 'GB-0807',
 		'GM-0003' => 'GB-0808',
@@ -372,7 +376,9 @@ class Migration_pota_renames extends CI_Migration
 		'GM-0187' => 'GB-0992',
 		'GM-0188' => 'GB-0993',
 		'GM-0189' => 'GB-0994',
+	);
 		
+	var $gw_map = array(
 		'GW-0001' => 'GB-0995',
 		'GW-0002' => 'GB-0996',
 		'GW-0003' => 'GB-0997',
@@ -596,22 +602,25 @@ class Migration_pota_renames extends CI_Migration
 		'GW-0221' => 'GB-1215',
 		'GW-0222' => 'GB-1216',
 		'GW-0223' => 'GB-1217',
+	);
 
+	var $la_map = array(
 		'LA-2524' => 'BV-0001',
 	);
 
 	public function up()
 	{
-		$this->db->select('COUNT(COL_PRIMARY_KEY) AS count');
-		$this->db->where('COL_POTA_REF !=', "");
-		$query = $this->db->get($this->config->item('table_name'));
-		$row = $query->row();
-		if ($row->count > 0) {
-			foreach ($this->map as $key => $value) {
-				$this->update_db($key, $value);
+		$prefixes =  array( 'K', 'GI', 'GM', 'GW', 'LA' );
+		foreach ($prefixes as $prefix) {
+			$this->db->select("COUNT(COL_PRIMARY_KEY) AS count");
+			$this->db->where("SUBSTR(COL_POTA_REF, 1, ".strlen($prefix).") =", $prefix);
+			$query = $this->db->get($this->config->item('table_name'));
+			$row = $query->row();
+			if ($row->count > 0) {
+				foreach ($this->{strtolower($prefix).'_map'} AS $key => $value) {
+					$this->update_db($key, $value);
+				}
 			}
-		} else {
-			log_message('info', 'No POTA references found. Renames skipped.');
 		}
 	}
 
