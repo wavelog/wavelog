@@ -26,7 +26,7 @@ class Sattimers extends CI_Controller {
 
 		$json = $RawData;
 
-		$data['activations'] = json_decode($json, true)['data'];
+		$data['activations'] = json_decode($json, true)['data'] ?? [];
 		$data['gridsquare'] = strtoupper($this->stations->find_gridsquare());
 
 		$data['page_title'] = "Satellite Timers";
