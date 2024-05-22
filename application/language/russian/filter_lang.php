@@ -113,6 +113,7 @@ $lang['filter_actions_recv_bureau'] = 'Получено (бюро)';
 $lang['filter_actions_recv_direct'] = 'Получено (напрямую)';
 $lang['filter_actions_recv_electronic'] = 'Получено (электронно)';
 $lang['filter_actions_create_adif'] = 'Создать ADIF';
+$lang['filter_actions_not_rcvd'] = "Not Received";
 $lang['filter_actions_print_label'] = 'Напечатать наклейки';
 $lang['filter_actions_start_print_title'] = 'Печать наклеек';
 $lang['filter_actions_print_include_via'] = "Включить через?";

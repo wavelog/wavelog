@@ -507,6 +507,9 @@ $(document).ready(function () {
 	$('#notRequired').click(function (event) {
 		handleQsl('I','', 'notRequired');
 	});
+	$('#notReceived').click(function (event) {
+		handleQslReceived('N','', 'notReceived');
+	});
 	$('#receivedBureau').click(function (event) {
 		handleQslReceived('Y','B', 'receivedBureau');
 	});
