@@ -24,10 +24,22 @@ class Sattimers extends CI_Controller {
 			$this->cache->save('SatTimers'.strtoupper($this->stations->find_gridsquare()), $RawData, (60*1));
 		} 
 
-		$json = $RawData;
 
-		$data['activations'] = json_decode($json, true)['data'];
+		$json = $RawData;
+		$response = json_decode($json, true);
+		if (array_key_exists('data', $response)) {
+			$data['activations'] = json_decode($json, true)['data'] ?? [];
+		} else if (array_key_exists('error', $response)) {
+			$this->session->set_flashdata('message', 'Error: '.$response['error']);
+			$data['activations'] = [];
+		} else {
+			$data['activations'] = [];
+		}
+
 		$data['gridsquare'] = strtoupper($this->stations->find_gridsquare());
+		if ($data['gridsquare'] == "0") {
+			$this->session->set_flashdata('message', lang('dashboard_locations_warning'));
+		}
 
 		$data['page_title'] = "Satellite Timers";
 
