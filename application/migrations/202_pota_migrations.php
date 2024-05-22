@@ -668,8 +668,16 @@ class Migration_pota_migrations extends CI_Migration
 
 	public function up()
 	{
-		foreach ($this->map as $key => $value) {
-			$this->update_db($key, $value);
+		$this->db->select('COUNT(COL_PRIMARY_KEY) AS count');
+		$this->db->where('COL_POTA_REF !=', "");
+		$query = $this->db->get($this->config->item('table_name'));
+		$row = $query->row();
+		if ($row->count > 0) {
+			foreach ($this->map as $key => $value) {
+				$this->update_db($key, $value);
+			}
+		} else {
+			log_message('info', 'No POTA references found. Migrations skipped.');
 		}
 	}
 
