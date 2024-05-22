@@ -13,9 +13,7 @@ class Migration_pota_migrations extends CI_Migration
 		// First process all entities whose previous prefix is also an ISO reference for a new/other entity
 		// Ensures that those entities are not renamed twice
 		'CP' => 'BO',
-		// No parks in FO/A and FO/C prior to the parks update. So skipping
-		//'FO' => 'PF',
-		//'FO' => 'CP',
+		'FO' => 'PF',
 		'CN' => 'MA',
 		'BY' => 'CN',
 		'CA' => 'CL',
@@ -365,7 +363,6 @@ class Migration_pota_migrations extends CI_Migration
 		'CY9' => 'CA',
 		'E5' => 'CK',
 		'EV' => 'BY',
-		'FO' => 'PF',
 		'H40' => 'SB',
 		'HC8' => 'EC',
 		'IS0' => 'IT',
