@@ -523,8 +523,8 @@ $options = json_decode($options);
                     <?php if (($options->band->show ?? "true") == "true") {
                         echo '<th>' . lang('gen_hamradio_band') . '</th>';
                     } ?>
-                    <?php if (($options->myrefs->show ?? "true") == "true") {
-                        echo '<th>' . lang('gen_hamradio_myrefs') . '</th>';
+					<?php if (($options->gridsquare->show ?? "true") == "true") {
+                        echo '<th>Gridsquare</th>';
                     } ?>
                     <?php if (($options->name->show ?? "true") == "true") {
                         echo '<th>' . lang('general_word_name') . '</th>';
@@ -574,9 +574,6 @@ $options = json_decode($options);
 					<?php if (($options->contest->show ?? "true") == "true") {
                         echo '<th>Contest</th>';
                     } ?>
-					<?php if (($options->gridsquare->show ?? "true") == "true") {
-                        echo '<th>Gridsquare</th>';
-                    } ?>
 					<?php if (($options->sota->show ?? "true") == "true") {
                         echo '<th>SOTA</th>';
                     } ?>
@@ -588,6 +585,9 @@ $options = json_decode($options);
                     } ?>
 					<?php if (($options->sig->show ?? "true") == "true") {
                         echo '<th>SIG</th>';
+                    } ?>
+					<?php if (($options->myrefs->show ?? "true") == "true") {
+                        echo '<th>' . lang('gen_hamradio_myrefs') . '</th>';
                     } ?>
                 </tr>
             </thead>

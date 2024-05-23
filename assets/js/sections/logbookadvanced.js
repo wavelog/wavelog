@@ -49,8 +49,8 @@ function updateRow(qso) {
 	if (user_options.band.show == "true"){
 		cells.eq(c++).text(qso.band);
 	}
-	if (user_options.myrefs.show == "true"){
-		cells.eq(c++).text(qso.deRefs);
+	if ( (user_options.gridsquare) && (user_options.gridsquare.show == "true")){
+		cells.eq(c++).html(qso.gridsquare);
 	}
 	if (user_options.name.show == "true"){
 		cells.eq(c++).text(qso.name);
@@ -100,9 +100,6 @@ function updateRow(qso) {
 	if ( (user_options.contest) && (user_options.contest.show == "true")){
 		cells.eq(c++).html(qso.contest);
 	}
-	if ( (user_options.gridsquare) && (user_options.gridsquare.show == "true")){
-		cells.eq(c++).html(qso.gridsquare);
-	}
 	if ( (user_options.sota) && (user_options.sota.show == "true")){
 		cells.eq(c++).html(qso.sota);
 	}
@@ -114,6 +111,9 @@ function updateRow(qso) {
 	}
 	if ( (user_options.sig) && (user_options.sig.show == "true")){
 		cells.eq(c++).html(qso.sig);
+	}
+	if (user_options.myrefs.show == "true"){
+		cells.eq(c++).text(qso.deRefs);
 	}
 
 	$('[data-bs-toggle="tooltip"]').tooltip();
@@ -175,8 +175,8 @@ function loadQSOTable(rows) {
 		if (user_options.band.show == "true"){
 			data.push(qso.band);
 		}
-		if (user_options.myrefs.show == "true"){
-			data.push(qso.deRefs);
+		if (user_options.gridsquare.show == "true"){
+			data.push(qso.gridsquare);
 		}
 		if (user_options.name.show == "true"){
 			data.push(qso.name);
@@ -226,9 +226,6 @@ function loadQSOTable(rows) {
 		if (user_options.contest.show == "true"){
 			data.push(qso.contest);
 		}
-		if (user_options.gridsquare.show == "true"){
-			data.push(qso.gridsquare);
-		}
 		if (user_options.sota.show == "true"){
 			data.push(qso.sota);
 		}
@@ -240,6 +237,9 @@ function loadQSOTable(rows) {
 		}
 		if (user_options.sig.show == "true"){
 			data.push(qso.sig);
+		}
+		if (user_options.myrefs.show == "true"){
+			data.push(qso.deRefs);
 		}
 
 		let createdRow = table.row.add(data).index();
