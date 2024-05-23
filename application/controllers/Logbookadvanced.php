@@ -493,7 +493,6 @@ class Logbookadvanced extends CI_Controller {
 		$json_string['rsts']['show'] = $this->input->post('rsts');
 		$json_string['band']['show'] = $this->input->post('band');
 		$json_string['myrefs']['show'] = $this->input->post('myrefs');
-		$json_string['refs']['show'] = $this->input->post('refs');
 		$json_string['name']['show'] = $this->input->post('name');
 		$json_string['qslvia']['show'] = $this->input->post('qslvia');
 		$json_string['qsl']['show'] = $this->input->post('qsl');
@@ -510,6 +509,10 @@ class Logbookadvanced extends CI_Controller {
 		$json_string['comment']['show'] = $this->input->post('comment');
 		$json_string['propagation']['show'] = $this->input->post('propagation');
 		$json_string['contest']['show'] = $this->input->post('contest');
+		$json_string['gridsquare']['show'] = $this->input->post('gridsquare');
+		$json_string['sota']['show'] = $this->input->post('sota');
+		$json_string['dok']['show'] = $this->input->post('dok');
+		$json_string['sig']['show'] = $this->input->post('sig');
 
 		$obj['column_settings']= json_encode($json_string);
 
