@@ -408,10 +408,10 @@ class Logbookadvanced_model extends CI_Model {
 			$updatedData['COL_QTH'] = $callbook['city'];
 		}
 		if (!empty($callbook['lat']) && empty($qso['COL_LAT'])) {
-			$updatedData['COL_LAT'] = $callbook['lat'];
+			$updatedData['COL_LAT'] = substr(($callbook['lat'] ?? ''),0,11);
 		}
 		if (!empty($callbook['long']) && empty($qso['COL_LON'])) {
-			$updatedData['COL_LON'] = $callbook['long'];
+			$updatedData['COL_LON'] = substr(($callbook['long'] ?? ''),0,11);
 		}
 		if (!empty($callbook['iota']) && empty($qso['COL_IOTA'])) {
 			$updatedData['COL_IOTA'] = $callbook['iota'];
