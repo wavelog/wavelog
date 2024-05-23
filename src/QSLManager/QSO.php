@@ -818,7 +818,7 @@ class QSO
 			'name' => $this->getName(),
 			'dxcc' => $this->getDXCC(),
 			'state' => $this->getState(),
-			'pota' => $this->dxPOTAReference,
+			'pota' => $this->getFormattedPota(),
 			'operator' => $this->getOperator(),
 			'cqzone' => $this->getCqzone(),
 			'ituzone' => $this->getItuzone(),
@@ -929,6 +929,10 @@ class QSO
 
 	private function getFormattedWwff() {
 		return '<a href="https://www.cqgma.org/zinfo.php?ref=' . $this->dxWWFFReference . '" target="_blank"><span id="dxwwff">'. $this->dxWWFFReference . '</span></a>';
+	}
+
+	private function getFormattedPota() {
+		return '<a href="https://pota.app/#/park/' . $this->dxPOTAReference . '" target="_blank"><span id="dxpota">'. $this->dxPOTAReference . '</span></a>';
 	}
 
 	private function getFormattedQSLSent(): string
