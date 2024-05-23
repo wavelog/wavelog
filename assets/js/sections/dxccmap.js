@@ -81,7 +81,7 @@ function load_dxcc_map2(data, worked, confirmed, notworked) {
         }
     ).addTo(map);
 
-    var notworkedcount = data.length;
+    var notworkedcount = 0;
     var confirmedcount = 0;
     var workednotconfirmedcount = 0;
 
@@ -95,7 +95,6 @@ function load_dxcc_map2(data, worked, confirmed, notworked) {
                 if (confirmed != '0') {
                     addMarker(L, D, mapColor, map);
                     confirmedcount++;
-                    notworkedcount--;
                 }
             }
             if (D['status'] == 'W') {
@@ -103,15 +102,13 @@ function load_dxcc_map2(data, worked, confirmed, notworked) {
                 if (worked != '0') {
                     addMarker(L, D, mapColor, map);
                     workednotconfirmedcount++;
-                    notworkedcount--;
                 }
             }
-
-
-        // Make a check here and hide what I don't want to show
-            if (notworked != '0') {
-                if (mapColor == 'red') {
+            if (D['status'] == '-') {
+                mapColor = 'red';
+                if (notworked != '0') {
                     addMarker(L, D, mapColor, map);
+                    notworkedcount++;
                 }
             }
         }

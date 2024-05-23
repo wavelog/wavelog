@@ -63,13 +63,12 @@
 									<div class="mb-3">
 										<label><?php echo lang('account_password'); ?></label>
 										<div class="input-group">
-											<input class="form-control" type="password" name="user_password" />
+											<input class="form-control" type="password" name="user_password" value="<?php if(isset($user_password)) { echo $user_password; } ?>" />
 											<span class="input-group-btn"><button class="btn btn-default btn-pwd-showhide" type="button"><i class="fa fa-eye-slash"></i></button></span>
 										</div>
 										<?php if(isset($password_error)) {
 											echo "<small class=\"badge bg-danger\">".$password_error."</small>";
 											} else if (!isset($user_add)) { ?>
-											<small class="form-text text-muted"><?php echo lang('account_leave_blank_to_keep_existing_password'); ?></small>
 										<?php } ?>
 									</div>
 
@@ -81,7 +80,7 @@
 											<?php
 												$levels = $this->config->item('auth_level');
 												foreach ($levels as $key => $value) {
-													echo '<option value="'. $key . '" '. (($user_type == $key)?"selected=\"selected\"":""). '>' . $value . '</option>';
+													echo '<option value="'. $key . '" '. (($user_type ?? '') == $key ? "selected=\"selected\"":""). '>' . $value . '</option>';
 												}
 											?>
 											</select>
@@ -457,6 +456,15 @@
 										</select>
 										<small id="SelectDateFormatHelp" class="form-text text-muted">Show the Station Locations Quickswitch in the main menu</small>
 									</div>
+
+									<div class="mb-3">
+										<label for="utc_headermenu">UTC Time in Menu</label>
+										<select class="form-select" id="utc_headermenu" name="user_utc_headermenu">
+											<option value="false" <?php if ($user_utc_headermenu == 'false') { echo " selected =\"selected\""; } ?>>Disabled</option>
+											<option value="true" <?php if ($user_utc_headermenu == 'true') { echo " selected =\"selected\""; } ?>>Enabled</option>
+										</select>
+										<small id="SelectDateFormatHelp" class="form-text text-muted">Show the current UTC Time in the menu</small>
+									</div>
 									<?php } ?>
 								</div>
 							</div>
@@ -558,6 +566,7 @@
 												<option value="1" <?php if ($user_previous_qsl_type == 1) { echo " selected =\"selected\""; } ?>><?php echo lang('lotw_short'); ?></option>
 												<option value="2" <?php if ($user_previous_qsl_type == 2) { echo " selected =\"selected\""; } ?>><?php echo lang('eqsl_short'); ?></option>
 												<option value="4" <?php if ($user_previous_qsl_type == 4) { echo " selected =\"selected\""; } ?>>QRZ</option>
+												<option value="8" <?php if ($user_previous_qsl_type == 8) { echo " selected =\"selected\""; } ?>>Clublog</option>
 											</select>
 										</div>
 									</div>
@@ -668,6 +677,14 @@
 											echo '>'; ?>
 											<label class="form-check-label" for="user_default_confirmation_qrz">QRZ.com</label>
 										</div>
+										<div class="form-check-inline">
+											<?php echo '<input class="form-check-input" type="checkbox" name="user_default_confirmation_clublog" id="user_default_confirmation_clublog"';
+											if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'C') !== false) {
+												echo ' checked';
+											}
+											echo '>'; ?>
+											<label class="form-check-label" for="user_default_confirmation_clublog">Clublog</label>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -699,13 +716,12 @@
 									<div class="mb-3">
 										<label><?php echo lang('account_logbook_of_the_world_lotw_password'); ?></label>
 										<div class="input-group">
-											<input class="form-control" type="password" name="user_lotw_password" />
+											<input class="form-control" type="password" name="user_lotw_password" value="<?php if(isset($user_lotw_password)) { echo $user_lotw_password; } ?>" />
 											<span class="input-group-btn"><button class="btn btn-default btn-pwd-showhide" type="button"><i class="fa fa-eye-slash"></i></button></span>
 										</div>
 										<?php if(isset($lotwpassword_error)) {
 											echo "<small class=\"badge bg-danger\">".$lotwpassword_error."</small>";
 											} else if (!isset($user_add)) { ?>
-												<small class="form-text text-muted"><?php echo lang('account_leave_blank_to_keep_existing_password'); ?></small>
 										<?php } ?>
 									</div>
 								</div>
@@ -726,13 +742,12 @@
 									<div class="mb-3">
 										<label><?php echo lang('account_eqslcc_password'); ?></label>
 										<div class="input-group">
-											<input class="form-control" type="password" name="user_eqsl_password" />
+											<input class="form-control" type="password" name="user_eqsl_password" value="<?php if(isset($user_eqsl_password)) { echo $user_eqsl_password; } ?>" />
 											<span class="input-group-btn"><button class="btn btn-default btn-pwd-showhide" type="button"><i class="fa fa-eye-slash"></i></button></span>
 										</div>
 										<?php if(isset($eqslpassword_error)) {
 											echo "<small class=\"badge bg-danger\">".$eqslpassword_error."</small>";
 											} else if (!isset($user_add)) { ?>
-												<small class="form-text text-muted"><?php echo lang('account_leave_blank_to_keep_existing_password'); ?></small>
 										<?php } ?>
 									</div>
 								</div>
@@ -754,13 +769,12 @@
 									<div class="mb-3">
 										<label><?php echo lang('account_clublog_password'); ?></label>
 										<div class="input-group">
-											<input class="form-control" type="password" name="user_clublog_password" />
+											<input class="form-control" type="password" name="user_clublog_password" value="<?php if(isset($user_clublog_password)) { echo $user_clublog_password; } ?>" />
 											<span class="input-group-btn"><button class="btn btn-default btn-pwd-showhide" type="button"><i class="fa fa-eye-slash"></i></button></span>
 										</div>
 										<?php if(isset($clublogpassword_error)) {
 											echo "<small class=\"badge bg-danger\">".$clublogpassword_error."</small>";
 											} else if (!isset($user_add)) { ?>
-												<small class="form-text text-muted"><?php echo lang('account_leave_blank_to_keep_existing_password'); ?></small>
 										<?php } ?>
 									</div>
 								</div>

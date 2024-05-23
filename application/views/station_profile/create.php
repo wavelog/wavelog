@@ -184,8 +184,15 @@
 				<textarea class="form-control" name="eqsl_default_qslmsg" id="eqslDefaultQSLMsg" aria-describedby="eqsldefaultqslmsghelp" maxlength="240" rows="2" style="width:100%;"></textarea>
 				<small id="eqsldefaultqslmsghelp" class="form-text text-muted"><?php echo lang("station_location_eqsl_defaultqslmsg_hint"); ?></small>
 			</div>
-
-            <div class="mb-3">
+			<div class="mb-3">
+				<label for="clublogignore"><?php echo lang("station_location_ignore"); ?></label>
+				<select class="form-select" id="clublogignore" name="clublogignore">
+					<option value="1" ><?php echo lang("general_word_yes"); ?></option>
+					<option value="0" selected><?php echo lang("general_word_no"); ?></option>
+				</select>
+				<small class="form-text text-muted"><?php echo lang("station_location_ignore_hint"); ?></small>
+			</div>
+            <div class="mb-3" id="clublogrealtimediv">
 				<label for="clublogrealtime"><?php echo lang("station_location_clublog_realtime_upload"); ?></label>
 				<select class="form-select" id="clublogrealtime" name="clublogrealtime">
 					<option value="1"><?php echo lang("general_word_yes"); ?></option>
@@ -220,14 +227,19 @@
             <div class="row">
                 <div class="mb-3 col-sm-6">
                     <label for="qrzApiKey">QRZ.com Logbook API Key</label>  <!-- This does not need Multilanguage Support -->
-                    <input type="text" class="form-control" name="qrzapikey" pattern="^([A-F0-9]{4}-){3}[A-F0-9]{4}$" id="qrzApiKey" aria-describedby="qrzApiKeyHelp">
+					<div class="input-group">
+                    	<input type="text" class="form-control" name="qrzapikey" pattern="^([A-F0-9]{4}-){3}[A-F0-9]{4}$" id="qrzApiKey" aria-describedby="qrzApiKeyHelp">
+						<button class="btn btn-secondary" type="button" id="qrz_apitest_btn">Test API-Key</button>
+					</div>
+					<div class="alert mt-3" style="display: none;" id="qrz_apitest_msg"></div>
                     <small id="qrzApiKeyHelp" class="form-text text-muted"><?php echo lang("station_location_qrz_hint"); ?></a></small>
                 </div>
                 <div class="mb-3 col-sm-6">
                     <label for="qrzrealtime"><?php echo lang("station_location_qrz_realtime_upload"); ?></label>
                     <select class="form-select" id="qrzrealtime" name="qrzrealtime">
-                        <option value="1"><?php echo lang("general_word_yes"); ?></option>
-                        <option value="0" selected><?php echo lang("general_word_no"); ?></option>
+                        <option value="-1" selected><?php echo lang("general_word_disabled"); ?></option>
+                        <option value="1"><?php echo lang("general_word_realtime"); ?></option>
+                        <option value="0"><?php echo lang("general_word_enabled"); ?></option>
                     </select>
                 </div>
             </div>

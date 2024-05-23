@@ -35,7 +35,7 @@ function updateRow(qso) {
 		cells.eq(c++).text(qso.de);
 	}
 	if (user_options.dx.show == "true"){
-		cells.eq(c++).html('<span class="qso_call"><a id="edit_qso" href="javascript:displayQso('+qso.qsoID+')"><span id="dx">'+qso.dx+'</span></a><span class="qso_icons">' + (qso.callsign == '' ? '' : ' <a href="https://lotw.arrl.org/lotwuser/act?act='+qso.callsign+'" target="_blank"><small id="lotw_info" class="badge bg-success'+qso.lotw_hint+'" data-bs-toggle="tooltip" title="LoTW User. Last upload was ' + qso.lastupload + '">L</small></a>') + ' <a target="_blank" href="https://www.qrz.com/db/'+qso.dx+'"><img width="16" height="16" src="'+base_url+ 'images/icons/qrz.png" alt="Lookup ' + qso.dx + ' on QRZ.com"></a> <a target="_blank" href="https://www.hamqth.com/'+qso.dx+'"><img width="16" height="16" src="'+base_url+ 'images/icons/hamqth.png" alt="Lookup ' + qso.dx + ' on HamQTH"></a> <a target="_blank" href="https://clublog.org/logsearch.php?log='+qso.dx+'&call='+qso.de+'"><img width="16" height="16" src="'+base_url+'images/icons/clublog.png" alt="Clublog Log Search"></a></span></span>');
+		cells.eq(c++).html('<span class="qso_call"><a id="edit_qso" href="javascript:displayQso('+qso.qsoID+')"><span id="dx">'+qso.dx.replaceAll('0', 'Ø')+'</span></a><span class="qso_icons">' + (qso.callsign == '' ? '' : ' <a href="https://lotw.arrl.org/lotwuser/act?act='+qso.callsign+'" target="_blank"><small id="lotw_info" class="badge bg-success'+qso.lotw_hint+'" data-bs-toggle="tooltip" title="LoTW User. Last upload was ' + qso.lastupload + '">L</small></a>') + ' <a target="_blank" href="https://www.qrz.com/db/'+qso.dx+'"><img width="16" height="16" src="'+base_url+ 'images/icons/qrz.png" alt="Lookup ' + qso.dx.replaceAll('0', 'Ø') + ' on QRZ.com"></a> <a target="_blank" href="https://www.hamqth.com/'+qso.dx+'"><img width="16" height="16" src="'+base_url+ 'images/icons/hamqth.png" alt="Lookup ' + qso.dx.replaceAll('0', 'Ø') + ' on HamQTH"></a> <a target="_blank" href="https://clublog.org/logsearch.php?log='+qso.dx+'&call='+qso.de+'"><img width="16" height="16" src="'+base_url+'images/icons/clublog.png" alt="Clublog Log Search"></a></span></span>');
 	}
 	if (user_options.mode.show == "true"){
 		cells.eq(c++).text(qso.mode);
@@ -49,11 +49,8 @@ function updateRow(qso) {
 	if (user_options.band.show == "true"){
 		cells.eq(c++).text(qso.band);
 	}
-	if (user_options.myrefs.show == "true"){
-		cells.eq(c++).text(qso.deRefs);
-	}
-	if (user_options.refs.show == "true"){
-		cells.eq(c++).html(qso.dxRefs);
+	if ( (user_options.gridsquare) && (user_options.gridsquare.show == "true")){
+		cells.eq(c++).html(qso.gridsquare);
 	}
 	if (user_options.name.show == "true"){
 		cells.eq(c++).text(qso.name);
@@ -74,13 +71,16 @@ function updateRow(qso) {
 		cells.eq(c++).text(qso.qslMessage);
 	}
 	if (user_options.dxcc.show == "true"){
-		cells.eq(c++).html(qso.dxcc);
+		cells.eq(c++).html(qso.dxccname);
 	}
 	if (user_options.state.show == "true"){
 		cells.eq(c++).html(qso.state);
 	}
 	if (user_options.cqzone.show == "true"){
 		cells.eq(c++).html(qso.cqzone);
+	}
+	if (user_options.ituzone.show == "true"){
+		cells.eq(c++).html(qso.ituzone);
 	}
 	if (user_options.iota.show == "true"){
 		cells.eq(c++).html(qso.iota);
@@ -93,6 +93,27 @@ function updateRow(qso) {
 	}
 	if ( (user_options.comment) && (user_options.comment.show == "true")){
 		cells.eq(c++).html(qso.comment);
+	}
+	if ( (user_options.propagation) && (user_options.propagation.show == "true")){
+		cells.eq(c++).html(qso.propagation);
+	}
+	if ( (user_options.contest) && (user_options.contest.show == "true")){
+		cells.eq(c++).html(qso.contest);
+	}
+	if ( (user_options.sota) && (user_options.sota.show == "true")){
+		cells.eq(c++).html(qso.sota);
+	}
+	if ( (user_options.dok) && (user_options.dok.show == "true")){
+		cells.eq(c++).html(qso.dok);
+	}
+	if ( (user_options.wwff) && (user_options.wwff.show == "true")){
+		cells.eq(c++).html(qso.wwff);
+	}
+	if ( (user_options.sig) && (user_options.sig.show == "true")){
+		cells.eq(c++).html(qso.sig);
+	}
+	if (user_options.myrefs.show == "true"){
+		cells.eq(c++).text(qso.deRefs);
 	}
 
 	$('[data-bs-toggle="tooltip"]').tooltip();
@@ -140,7 +161,7 @@ function loadQSOTable(rows) {
 			data.push(qso.de);
 		}
 		if (user_options.dx.show == "true"){
-			data.push('<span class="qso_call"><a id="edit_qso" href="javascript:displayQso('+qso.qsoID+')"><span id="dx">'+qso.dx+'</span></a><span class="qso_icons">' + (qso.callsign == '' ? '' : ' <a href="https://lotw.arrl.org/lotwuser/act?act='+qso.callsign+'" target="_blank"><small id="lotw_info" class="badge bg-success'+qso.lotw_hint+'" data-bs-toggle="tooltip" title="LoTW User. Last upload was ' + qso.lastupload + ' ">L</small></a>') + ' <a target="_blank" href="https://www.qrz.com/db/'+qso.dx+'"><img width="16" height="16" src="'+base_url+ 'images/icons/qrz.png" alt="Lookup ' + qso.dx + ' on QRZ.com"></a> <a target="_blank" href="https://www.hamqth.com/'+qso.dx+'"><img width="16" height="16" src="'+base_url+ 'images/icons/hamqth.png" alt="Lookup ' + qso.dx + ' on HamQTH"></a> <a target="_blank" href="https://clublog.org/logsearch.php?log='+qso.dx+'&call='+qso.de+'"><img width="16" height="16" src="'+base_url+'images/icons/clublog.png" alt="Clublog Log Search"></a></span></span>');
+			data.push('<span class="qso_call"><a id="edit_qso" href="javascript:displayQso('+qso.qsoID+')"><span id="dx">'+qso.dx.replaceAll('0', 'Ø')+'</span></a><span class="qso_icons">' + (qso.callsign == '' ? '' : ' <a href="https://lotw.arrl.org/lotwuser/act?act='+qso.callsign+'" target="_blank"><small id="lotw_info" class="badge bg-success'+qso.lotw_hint+'" data-bs-toggle="tooltip" title="LoTW User. Last upload was ' + qso.lastupload + ' ">L</small></a>') + ' <a target="_blank" href="https://www.qrz.com/db/'+qso.dx+'"><img width="16" height="16" src="'+base_url+ 'images/icons/qrz.png" alt="Lookup ' + qso.dx.replaceAll('0', 'Ø') + ' on QRZ.com"></a> <a target="_blank" href="https://www.hamqth.com/'+qso.dx+'"><img width="16" height="16" src="'+base_url+ 'images/icons/hamqth.png" alt="Lookup ' + qso.dx.replaceAll('0', 'Ø') + ' on HamQTH"></a> <a target="_blank" href="https://clublog.org/logsearch.php?log='+qso.dx+'&call='+qso.de+'"><img width="16" height="16" src="'+base_url+'images/icons/clublog.png" alt="Clublog Log Search"></a></span></span>');
 		}
 		if (user_options.mode.show == "true"){
 			data.push(qso.mode);
@@ -154,11 +175,8 @@ function loadQSOTable(rows) {
 		if (user_options.band.show == "true"){
 			data.push(qso.band);
 		}
-		if (user_options.myrefs.show == "true"){
-			data.push(qso.deRefs);
-		}
-		if (user_options.refs.show == "true"){
-			data.push(qso.dxRefs);
+		if (user_options.gridsquare.show == "true"){
+			data.push(qso.gridsquare);
 		}
 		if (user_options.name.show == "true"){
 			data.push(qso.name);
@@ -187,6 +205,9 @@ function loadQSOTable(rows) {
 		if (user_options.cqzone.show == "true"){
 			data.push(qso.cqzone);
 		}
+		if (user_options.ituzone.show == "true"){
+			data.push(qso.ituzone);
+		}
 		if (user_options.iota.show == "true"){
 			data.push(qso.iota);
 		}
@@ -198,6 +219,27 @@ function loadQSOTable(rows) {
 		}
 		if (user_options.comment.show == "true"){
 			data.push(qso.comment);
+		}
+		if (user_options.propagation.show == "true"){
+			data.push(qso.propagation);
+		}
+		if (user_options.contest.show == "true"){
+			data.push(qso.contest);
+		}
+		if (user_options.sota.show == "true"){
+			data.push(qso.sota);
+		}
+		if (user_options.dok.show == "true"){
+			data.push(qso.dok);
+		}
+		if (user_options.wwff.show == "true"){
+			data.push(qso.wwff);
+		}
+		if (user_options.sig.show == "true"){
+			data.push(qso.sig);
+		}
+		if (user_options.myrefs.show == "true"){
+			data.push(qso.deRefs);
 		}
 
 		let createdRow = table.row.add(data).index();
@@ -288,18 +330,19 @@ $(document).ready(function () {
 				iota: this.iota.value,
 				operator: this.operator.value,
 				dxcc: this.dxcc.value,
-				propmode: this.selectPropagation.value,
+				propmode: this.propmode.value,
 				gridsquare: this.gridsquare.value,
 				state: this.state.value,
-				qsoresults: this.qsoResults.value,
+				qsoresults: this.qsoresults.value,
 				sats: this.sats.value,
 				orbits: this.orbits.value,
 				cqzone: this.cqzone.value,
+				ituzone: this.ituzone.value,
 				lotwSent: this.lotwSent.value,
 				lotwReceived: this.lotwReceived.value,
 				eqslSent: this.eqslSent.value,
 				eqslReceived: this.eqslReceived.value,
-				qslvia: $('[name="qslviainput"]').val(),
+				qslvia: $('[name="qslvia"]').val(),
 				sota: this.sota.value,
 				pota: this.pota.value,
 				wwff: this.wwff.value,
@@ -414,10 +457,7 @@ $(document).ready(function () {
 
 	$('#exportAdif').click(function (event) {
 		var elements = $('#qsoList tbody input:checked');
-		var nElements = elements.length;
-		if (nElements == 0) {
-			return;
-		}
+
 		$('#exportAdif').prop("disabled", true);
 		var id_list=[];
 		elements.each(function() {
@@ -425,26 +465,39 @@ $(document).ready(function () {
 			id_list.push(id);
 			unselectQsoID(id);
 		});
+
 		xhttp = new XMLHttpRequest();
-		xhttp.onreadystatechange = function() {
-			var a;
-			if (xhttp.readyState === 4 && xhttp.status === 200) {
-				// Trick for making downloadable link
-				a = document.createElement('a');
-				a.href = window.URL.createObjectURL(xhttp.response);
-				// Give filename you wish to download
-				a.download = "logbook_export.adi";
-				a.style.display = 'none';
-				document.body.appendChild(a);
-				a.click();
-			}
-		};
-		// Post data to URL which handles post request
-		xhttp.open("POST", site_url+'/logbookadvanced/export_to_adif', true);
-		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		// You should set responseType as blob for binary responses
-		xhttp.responseType = 'blob';
-		xhttp.send("id=" + JSON.stringify(id_list, null, 2)+"&sortorder=" +$('.table').DataTable().order());
+			xhttp.onreadystatechange = function() {
+				var a;
+				if (xhttp.readyState === 4 && xhttp.status === 200) {
+					// Trick for making downloadable link
+					a = document.createElement('a');
+					a.href = window.URL.createObjectURL(xhttp.response);
+					// Give filename you wish to download
+					a.download = "logbook_export.adi";
+					a.style.display = 'none';
+					document.body.appendChild(a);
+					a.click();
+				}
+			};
+
+		if (id_list.length > 0) {
+			// Post data to URL which handles post request
+			xhttp.open("POST", site_url+'/logbookadvanced/export_to_adif', true);
+			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			// You should set responseType as blob for binary responses
+			xhttp.responseType = 'blob';
+			xhttp.send("id=" + JSON.stringify(id_list, null, 2)+"&sortorder=" +$('.table').DataTable().order());
+		} else {
+
+			// Post data to URL which handles post request
+			xhttp.open("POST", site_url+'/logbookadvanced/export_to_adif_params', true);
+			xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+			// You should set responseType as blob for binary responses
+
+			xhttp.responseType = 'blob';
+			xhttp.send($('#searchForm').serialize());
+		}
 		$('#exportAdif').prop("disabled", false);
 	});
 
@@ -477,6 +530,9 @@ $(document).ready(function () {
 	});
 	$('#notRequired').click(function (event) {
 		handleQsl('I','', 'notRequired');
+	});
+	$('#notReceived').click(function (event) {
+		handleQslReceived('N','', 'notReceived');
 	});
 	$('#receivedBureau').click(function (event) {
 		handleQslReceived('Y','B', 'receivedBureau');
@@ -512,6 +568,10 @@ $(document).ready(function () {
 
 	$('#searchCqZone').click(function (event) {
 		quickSearch('cqzone');
+	});
+
+	$('#searchItuZone').click(function (event) {
+		quickSearch('ituzone');
 	});
 
 	$('#searchMode').click(function (event) {
@@ -665,9 +725,10 @@ $(document).ready(function () {
 			switch (type) {
 				case 'dxcc': 		col1 = currentRow.find('#dxcc').html(); col1 = col1.match(/\d/g); col1 = col1.join(""); break;
 				case 'cqzone': 		col1 = currentRow.find('#cqzone').text(); break;
+				case 'ituzone': 	col1 = currentRow.find('#ituzone').text(); break;
 				case 'iota': 		col1 = currentRow.find('#iota').text(); col1 = col1.trim(); break;
 				case 'state': 		col1 = currentRow.find('#state').text(); break;
-				case 'dx': 			col1 = currentRow.find('#dx').text(); col1 = col1.match(/^([^\s]+)/gm); break;
+				case 'dx': 			col1 = currentRow.find('#dx').text().replaceAll('Ø', '0'); col1 = col1.match(/^([^\s]+)/gm); break;
 				case 'gridsquare': 	col1 = $(currentRow).find('#dxgrid').text(); col1 = col1.substring(0, 4); break;
 				case 'sota': 		col1 = $(currentRow).find('#dxsota').text(); break;
 				case 'wwff': 		col1 = $(currentRow).find('#dxwwff').text(); break;
@@ -871,7 +932,6 @@ function saveOptions() {
 			rstr: $('input[name="rstr"]').is(':checked') ? true : false,
 			band: $('input[name="band"]').is(':checked') ? true : false,
 			myrefs: $('input[name="myrefs"]').is(':checked') ? true : false,
-			refs: $('input[name="refs"]').is(':checked') ? true : false,
 			name: $('input[name="name"]').is(':checked') ? true : false,
 			qslvia: $('input[name="qslvia"]').is(':checked') ? true : false,
 			qsl: $('input[name="qsl"]').is(':checked') ? true : false,
@@ -881,10 +941,18 @@ function saveOptions() {
 			dxcc: $('input[name="dxcc"]').is(':checked') ? true : false,
 			state: $('input[name="state"]').is(':checked') ? true : false,
 			cqzone: $('input[name="cqzone"]').is(':checked') ? true : false,
+			ituzone: $('input[name="ituzone"]').is(':checked') ? true : false,
 			iota: $('input[name="iota"]').is(':checked') ? true : false,
 			pota: $('input[name="pota"]').is(':checked') ? true : false,
 			operator: $('input[name="operator"]').is(':checked') ? true : false,
 			comment: $('input[name="comment"]').is(':checked') ? true : false,
+			propagation: $('input[name="propagation"]').is(':checked') ? true : false,
+			contest: $('input[name="contest"]').is(':checked') ? true : false,
+			gridsquare: $('input[name="gridsquare"]').is(':checked') ? true : false,
+			sota: $('input[name="sota"]').is(':checked') ? true : false,
+			dok: $('input[name="dok"]').is(':checked') ? true : false,
+			wwff: $('input[name="wwff"]').is(':checked') ? true : false,
+			sig: $('input[name="sig"]').is(':checked') ? true : false,
 			gridsquare_layer: $('input[name="gridsquareoverlay"]').is(':checked') ? true : false,
 			path_lines: $('input[name="pathlines"]').is(':checked') ? true : false,
 			cqzone_layer: $('input[name="cqzones"]').is(':checked') ? true : false,

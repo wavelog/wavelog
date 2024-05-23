@@ -47,7 +47,7 @@
 	?>
 	
 	<tr>
-		<td style="text-align: center"><?php echo $reference; ?></td>
+		<td style="text-align: center"><a target="_blank" href="https://pota.app/#/park/<?php echo $reference; ?>"><?php echo $reference; ?></a></td>
 		<td style="text-align: center"><?php $timestamp = strtotime($row->COL_TIME_ON); echo date($custom_date_format, $timestamp); ?></td>
 		<td style="text-align: center"><?php $timestamp = strtotime($row->COL_TIME_ON); echo date('H:i', $timestamp); ?></td>
 		<td style="text-align: center"><?php echo $row->COL_CALL; ?></td>

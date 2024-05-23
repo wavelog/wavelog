@@ -15,65 +15,66 @@ class Contesting extends CI_Controller {
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 	}
 
-    public function index() {
-        $this->load->model('cat');
-        $this->load->model('stations');
-        $this->load->model('modes');
+	public function index() {
+		$this->load->model('cat');
+		$this->load->model('stations');
+		$this->load->model('modes');
 		$this->load->model('contesting_model');
 		$this->load->model('bands');
 
 		$data['my_gridsquare'] = $this->stations->find_gridsquare();
-        $data['radios'] = $this->cat->radios();
-        $data['modes'] = $this->modes->active();
+		$data['radios'] = $this->cat->radios();
+		$data['modes'] = $this->modes->active();
 		$data['contestnames'] = $this->contesting_model->getActivecontests();
 		$data['bands'] = $this->bands->get_user_bands_for_qso_entry();
 
 		$this->load->library('form_validation');
 
-        $this->form_validation->set_rules('start_date', 'Date', 'required');
-        $this->form_validation->set_rules('start_time', 'Time', 'required');
-        $this->form_validation->set_rules('callsign', 'Callsign', 'required');
+		$this->form_validation->set_rules('start_date', 'Date', 'required');
+		$this->form_validation->set_rules('start_time', 'Time', 'required');
+		$this->form_validation->set_rules('callsign', 'Callsign', 'required');
 
 		$data['page_title'] = "Contest Logging";
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('contesting/index');
 		$this->load->view('interface_assets/footer');
-    }
+	}
 
-    public function getSessionQsos() {
-        $this->load->model('Contesting_model');
+	public function getSessionQsos() {
+		session_write_close();
+		$this->load->model('Contesting_model');
 
-        $qso = $this->input->post('qso');
+		$qso = $this->input->post('qso');
 
 		header('Content-Type: application/json');
 		echo json_encode($this->Contesting_model->getSessionQsos($qso));
-    }
+	}
 
 	public function getSession() {
-        $this->load->model('Contesting_model');
+		session_write_close();
+		$this->load->model('Contesting_model');
 
-        header('Content-Type: application/json');
+		header('Content-Type: application/json');
 		echo json_encode($this->Contesting_model->getSession());
-    }
+	}
 
 	public function deleteSession() {
-        $this->load->model('Contesting_model');
+		$this->load->model('Contesting_model');
 
-        $qso = $this->input->post('qso');
+		$qso = $this->input->post('qso');
 
-        $data = $this->Contesting_model->deleteSession($qso);
+		$data = $this->Contesting_model->deleteSession($qso);
 
-        return json_encode($data);
-    }
+		return json_encode($data);
+	}
 
 	public function setSession() {
-        $this->load->model('Contesting_model');
-
-        $this->Contesting_model->setSession();
-
-        return json_encode("ok");
-    }
+		$this->load->model('Contesting_model');
+		$this->Contesting_model->setSession();
+		header('Content-Type: application/json');
+		echo json_encode($this->Contesting_model->getSession());
+	}
 
 	public function create() {
 		$this->load->model('Contesting_model');
@@ -82,13 +83,10 @@ class Contesting extends CI_Controller {
 		$this->form_validation->set_rules('name', 'Contest Name', 'required');
 		$this->form_validation->set_rules('adifname', 'Adif Contest Name', 'required');
 
-		if ($this->form_validation->run() == FALSE)
-		{
+		if ($this->form_validation->run() == FALSE) {
 			$data['page_title'] = "Create Mode";
 			$this->load->view('contesting/create', $data);
-		}
-		else
-		{
+		} else {
 			$this->Contesting_model->add();
 		}
 	}
@@ -190,7 +188,7 @@ class Contesting extends CI_Controller {
 		header('Content-Type: application/json');
 		if ($result && $result->num_rows()) {
 			$timeb4=substr($result->row()->b4,0,5);
-        		$custom_date_format = $this->session->userdata('user_date_format');
+			$custom_date_format = $this->session->userdata('user_date_format');
 			$abstimeb4=date($custom_date_format, strtotime($result->row()->COL_TIME_OFF)).' '.date('H:i',strtotime($result->row()->COL_TIME_OFF));
 			echo json_encode(array('message' => 'Worked at '.$abstimeb4.' ('.$timeb4.' ago) before'));
 		}

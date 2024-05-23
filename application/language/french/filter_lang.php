@@ -32,6 +32,7 @@ $lang['filter_search_dxcc'] = "Même DXCC";
 $lang['filter_search_state'] = "Même Etat";
 $lang['filter_search_gridsquare'] = "Même Locator";
 $lang['filter_search_cq_zone'] = "Même Zone CQ";
+$lang['filter_search_itu_zone'] = 'Search ITU Zone';
 $lang['filter_search_mode'] = "Même Mode";
 $lang['filter_search_band'] = "Même Band";
 $lang['filter_search_iota'] = "Même IOTA";
@@ -77,8 +78,8 @@ ________________________________________________________________________________
 
 $lang['filter_general_from'] = "Date, du";
 $lang['filter_general_to'] = "au";
-// $lang['gen_hamradio_de']             --> application/language/english/general_words_lang.php 
-// $lang['gen_hamradio_dx']             --> application/language/english/general_words_lang.php 
+// $lang['gen_hamradio_de']             --> application/language/english/general_words_lang.php
+// $lang['gen_hamradio_dx']             --> application/language/english/general_words_lang.php
 // $lang['gen_hamradio_dxcc']           --> application/language/english/general_words_lang.php
 $lang['filter_general_none'] = "- AUCUN - (ex: /MM, /AM)";
 // $lang['gen_hamradio_state']          --> application/language/english/general_words_lang.php
@@ -112,6 +113,7 @@ $lang['filter_actions_qsl_n_required'] = "QSL Non requis";
 $lang['filter_actions_recv_bureau'] = "Reçue (Bureau)";
 $lang['filter_actions_recv_direct'] = "Reçue (Direct)";
 $lang['filter_actions_recv_electronic'] = "Reçue (Numérique)";
+$lang['filter_actions_not_rcvd'] = "Not Received";
 $lang['filter_actions_create_adif'] = "Exporter en ADIF";
 $lang['filter_actions_print_label'] = "Imprimer Etiquette";
 $lang['filter_actions_start_print_title'] = "Impression d'étiquettes";

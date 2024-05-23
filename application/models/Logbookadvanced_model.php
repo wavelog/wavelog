@@ -152,6 +152,11 @@ class Logbookadvanced_model extends CI_Model {
 			$binding[] = $searchCriteria['cqzone'];
 		}
 
+		if ($searchCriteria['ituzone'] !== '') {
+			$conditions[] = "COL_ITUZ = ?";
+			$binding[] = $searchCriteria['ituzone'];
+		}
+
 		if ($searchCriteria['qslvia'] !== '') {
 			$conditions[] = "COL_QSL_VIA like ?";
 			$binding[] = $searchCriteria['qslvia'].'%';
@@ -203,41 +208,49 @@ class Logbookadvanced_model extends CI_Model {
 			$where = "AND $where";
 		}
 
-		$limit = $searchCriteria['qsoresults'];
+		$limit = '';
+
+		if ($searchCriteria['qsoresults'] != 'All') {
+			$limit = 'limit ' . $searchCriteria['qsoresults'];
+		}
 
 		$where2 = '';
 
 		if ($searchCriteria['qslimages'] !== '') {
 			if ($searchCriteria['qslimages'] == 'Y') {
-				$where2 .= ' and x.qslcount > "0"';
+				$where2 .= ' and exists(select 1 from qsl_images where qsoid = qsos.COL_PRIMARY_KEY)';
 			}
 			if ($searchCriteria['qslimages'] == 'N') {
-				$where2 .= ' and x.qslcount is null';
+				$where2 .= ' and not exists(select 1 from qsl_images where qsoid = qsos.COL_PRIMARY_KEY)';
 			}
 		}
 
 		$sql = "
-			SELECT *
+			SELECT *, dxcc_entities.name as dxccname, mydxcc.name AS station_country, exists(select 1 from qsl_images where qsoid = qsos.COL_PRIMARY_KEY) as qslcount, contest.name as contestname
 			FROM " . $this->config->item('table_name') . " qsos
 			INNER JOIN station_profile ON qsos.station_id=station_profile.station_id
 			LEFT OUTER JOIN satellite ON qsos.COL_SAT_NAME = satellite.name
-			LEFT OUTER JOIN dxcc_entities ON qsos.col_dxcc=dxcc_entities.adif
-			LEFT OUTER JOIN lotw_users ON qsos.col_call=lotw_users.callsign
-			LEFT OUTER JOIN (
-				select count(*) as qslcount, qsoid
-				from qsl_images
-				group by qsoid
-			) x on qsos.COL_PRIMARY_KEY = x.qsoid
+			LEFT OUTER JOIN dxcc_entities ON qsos.col_dxcc = dxcc_entities.adif
+			left outer join dxcc_entities mydxcc on qsos.col_my_dxcc = mydxcc.adif
+			LEFT OUTER JOIN lotw_users ON qsos.col_call = lotw_users.callsign
+			LEFT OUTER JOIN contest ON qsos.col_contest_id = contest.adifname
 			WHERE station_profile.user_id =  ?
 			$where
 			$where2
 			ORDER BY qsos.COL_TIME_ON desc, qsos.COL_PRIMARY_KEY desc
-			LIMIT $limit
+			$limit
 		";
-		$data = $this->db->query($sql, $binding);
+		return $this->db->query($sql, $binding);
 
-        $results = $data->result('array');
-		return $results;
+	}
+
+	public function getSearchResult($searchCriteria) {
+		return $this->searchDb($searchCriteria);
+	}
+
+	public function getSearchResultArray($searchCriteria) {
+		$result = $this->searchDb($searchCriteria);
+		return $result->result('array');
 	}
 
   /*
@@ -245,7 +258,7 @@ class Logbookadvanced_model extends CI_Model {
    * @return array
    */
   public function searchQsos($searchCriteria) : array {
-		$results = $this->searchDb($searchCriteria);
+		$results = $this->getSearchResultArray($searchCriteria);
 
         $qsos = [];
         foreach ($results as $data) {
@@ -268,17 +281,13 @@ class Logbookadvanced_model extends CI_Model {
 		$order = $this->getSortorder($sortorder);
 
         $sql = "
-            SELECT qsos.*, d2.*, lotw_users.*, station_profile.*, x.qslcount, dxcc_entities.name AS station_country
+            SELECT qsos.*, lotw_users.*, station_profile.*, dxcc_entities.name AS station_country, d2.name as dxccname, exists(select 1 from qsl_images where qsoid = qsos.COL_PRIMARY_KEY) as qslcount, contest.name as contestname
 			FROM " . $this->config->item('table_name') . " qsos
 			INNER JOIN station_profile ON qsos.station_id = station_profile.station_id
 			LEFT OUTER JOIN dxcc_entities ON qsos.COL_MY_DXCC = dxcc_entities.adif
 			LEFT OUTER JOIN dxcc_entities d2 ON qsos.COL_DXCC = d2.adif
 			LEFT OUTER JOIN lotw_users ON qsos.col_call=lotw_users.callsign
-			LEFT OUTER JOIN (
-				select count(*) as qslcount, qsoid
-				from qsl_images
-				group by qsoid
-			) x on qsos.COL_PRIMARY_KEY = x.qsoid
+			LEFT OUTER JOIN contest ON qsos.col_contest_id = contest.adifname
 			WHERE station_profile.user_id =  ?
 			$where
 			$order
@@ -399,10 +408,10 @@ class Logbookadvanced_model extends CI_Model {
 			$updatedData['COL_QTH'] = $callbook['city'];
 		}
 		if (!empty($callbook['lat']) && empty($qso['COL_LAT'])) {
-			$updatedData['COL_LAT'] = $callbook['lat'];
+			$updatedData['COL_LAT'] = substr(($callbook['lat'] ?? ''),0,11);
 		}
 		if (!empty($callbook['long']) && empty($qso['COL_LON'])) {
-			$updatedData['COL_LON'] = $callbook['long'];
+			$updatedData['COL_LON'] = substr(($callbook['long'] ?? ''),0,11);
 		}
 		if (!empty($callbook['iota']) && empty($qso['COL_IOTA'])) {
 			$updatedData['COL_IOTA'] = $callbook['iota'];
@@ -475,6 +484,7 @@ class Logbookadvanced_model extends CI_Model {
 	function saveEditedQsos($ids, $column, $value, $value2) {
 		switch($column) {
 			case "cqz": $column = 'COL_CQZ'; break;
+			case "ituz": $column = 'COL_ITUZ'; break;
 			case "dxcc": $column = 'COL_DXCC'; break;
 			case "iota": $column = 'COL_IOTA'; break;
 			case "state": $column = 'COL_STATE'; break;

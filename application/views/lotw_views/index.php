@@ -5,7 +5,10 @@
 	</div>
 <?php } ?>
 <br>
+	<?php
+	if (!($this->config->item('disable_manual_lotw'))) { ?>
 	<a class="btn btn-outline-primary btn-sm float-end" href="<?php echo site_url('/lotw/import'); ?>" role="button"><i class="fas fa-cloud-download-alt"></i> <?php echo lang('lotw_btn_lotw_import'); ?></a>
+	<?php } ?>
 	<h2><?php echo lang('lotw_title'); ?></h2>
 
 	<!-- Card Starts -->
@@ -40,6 +43,7 @@
 							<th scope="col"><?php echo lang('lotw_date_created'); ?></th>
 							<th scope="col"><?php echo lang('lotw_date_expires'); ?></th>
 							<th scope="col"><?php echo lang('lotw_status'); ?></th>
+							<th scope="col"><?php echo lang('lotw_last_upload'); ?></th>
 							<th scope="col"><?php echo lang('lotw_options'); ?></th>
 						</tr>
 					</thead>
@@ -90,10 +94,24 @@
 									<?php } else { ?>
 										<span class="badge text-bg-success"><?php echo lang('lotw_valid'); ?></span>
 									<?php } ?>
-
+								</td>
+								<td>
 									<?php if ($row->last_upload) {
-										$last_upload = date($this->config->item('qso_date_format').' H:i:s', strtotime( $row->last_upload )); ?>
-										<span class="badge text-bg-success"><?php echo $last_upload; ?></span>
+										$last_upload = date($this->config->item('qso_date_format').' H:i:s', strtotime( $row->last_upload ));
+										if ($row->last_upload_fail) {
+											$last_upload_fail = date($this->config->item('qso_date_format').' H:i:s', strtotime( $row->last_upload_fail ));
+										} else {
+											$last_upload_fail = null;
+										}
+										if ($last_upload_fail > $last_upload) { ?>
+											<span data-bs-toggle="tooltip" data-bs-original-title="<?php echo $row->last_upload_status;?>. Last success: <?php echo $last_upload; ?>" class="badge text-bg-danger"><?php echo $last_upload_fail; ?></span>
+										<?php } else {
+											if ($last_upload_fail && $row->last_upload_status)  { ?>
+												<span data-bs-toggle="tooltip" data-bs-original-title="<?php echo $row->last_upload_status;?>. Last fail: <?php echo $last_upload_fail; ?>" class="badge text-bg-success"><?php echo $last_upload; ?></span>
+											<?php } else { ?>
+												<span class="badge text-bg-success"><?php echo $last_upload; ?></span>
+											<?php } ?>
+										<?php } ?>
 									<?php } else { ?>
 										<span class="badge text-bg-warning"><?php echo lang('lotw_not_synced'); ?></span>
 									<?php } ?>
@@ -121,6 +139,8 @@
 	<br>
 
 	<!-- Card Starts -->
+	<?php
+	if (!($this->config->item('disable_manual_lotw'))) { ?>
 	<div class="card">
 		<div class="card-header">
 			<?php echo lang('lotw_title_information'); ?>
@@ -134,5 +154,6 @@
 			<div id="lotw_manual_results"></div>
 		</div>
 	</div>
+	<?php } ?>
 
 </div>

@@ -32,6 +32,7 @@ $lang['filter_search_dxcc'] = 'Buscar DXCC';
 $lang['filter_search_state'] = 'Buscar Estado';
 $lang['filter_search_gridsquare'] = 'Buscar Gridsquare';
 $lang['filter_search_cq_zone'] = 'Buscar Zona CQ';
+$lang['filter_search_itu_zone'] = 'Search ITU Zone';
 $lang['filter_search_mode'] = 'Buscar Modo';
 $lang['filter_search_band'] = 'Buscar Banda';
 $lang['filter_search_iota'] = 'Buscar IOTA';
@@ -77,8 +78,8 @@ ________________________________________________________________________________
 
 $lang['filter_general_from'] = 'Desde';
 $lang['filter_general_to'] = 'a';
-// $lang['gen_hamradio_de']             --> application/language/english/general_words_lang.php 
-// $lang['gen_hamradio_dx']             --> application/language/english/general_words_lang.php 
+// $lang['gen_hamradio_de']             --> application/language/english/general_words_lang.php
+// $lang['gen_hamradio_dx']             --> application/language/english/general_words_lang.php
 // $lang['gen_hamradio_dxcc']           --> application/language/english/general_words_lang.php
 $lang['filter_general_none'] = '- Ninguno - (ej. /MM, /AM)';
 // $lang['gen_hamradio_state']          --> application/language/english/general_words_lang.php
@@ -112,6 +113,7 @@ $lang['filter_actions_qsl_n_required'] = 'QSL no Requerida';
 $lang['filter_actions_recv_bureau'] = 'Recibido (Buró)';
 $lang['filter_actions_recv_direct'] = 'Recibido (Directa)';
 $lang['filter_actions_recv_electronic'] = 'Recibido (Electrónico)';
+$lang['filter_actions_not_rcvd'] = "Not Received";
 $lang['filter_actions_create_adif'] = 'Crear ADIF';
 $lang['filter_actions_print_label'] = 'Imprimir Etiqueta';
 $lang['filter_actions_start_print_title'] = 'Imprimir Etiquetas';

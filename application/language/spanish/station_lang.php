@@ -100,7 +100,7 @@ $lang['station_location_eqsl_defaultqslmsg'] = "QSLMSG por Defecto";
 $lang['station_location_eqsl_defaultqslmsg_hint'] = "Defina un mensaje por defecto que será añadido y enviado para cada QSO para esta localización de estación.";
 $lang['station_location_qrz_subscription'] = 'Requiere Suscripción';
 $lang['station_location_qrz_hint'] = "Encuentre su clave API en la <a href='https://logbook.qrz.com/logbook' target='_blank'>página de Configuración de libro de guardia en QRZ.com";
-$lang['station_location_qrz_realtime_upload'] = 'Subida en Tiempo Real del Libro de Guardia a QRZ.com';
+$lang['station_location_qrz_realtime_upload'] = 'Subida del Libro de Guardia a QRZ.com';
 $lang['station_location_hrdlog_username'] = "Nombre de Usuario de HRDLog.net";
 $lang['station_location_hrdlog_username_hint'] = "El nombre de usuario con el que se registró en HRDlog.net (usualmente su indicativo).";
 $lang['station_location_hrdlog_code'] = "Código API de HRDLog.net";
@@ -113,6 +113,8 @@ $lang['station_location_oqrs_email_alert'] = "Alerta de Email de OQRS";
 $lang['station_location_oqrs_email_hint'] = "Asegúrese que su correo está bien configurado en las opciones globales y de administrador.";
 $lang['station_location_oqrs_text'] = "Texto OQRS";
 $lang['station_location_oqrs_text_hint'] = "Algúna información que desee agregar acerca de su forma de hacer QSL.";
+$lang['station_location_ignore'] = "Ignore Clublog Upload";
+$lang['station_location_ignore_hint'] = "If enabled, the QSOs made from this location will not be uploaded to Clublog.";
 $lang['station_location_clublog_realtime_upload']='Subida en Tiempo Real en ClubLog';
 
 

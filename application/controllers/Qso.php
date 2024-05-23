@@ -431,9 +431,11 @@ class QSO extends CI_Controller {
 
 	function band_to_freq($band, $mode) {
 
-		$this->load->library('frequency');
+		if ($band != null and $band != 'null') {
+			$this->load->library('frequency');
+			echo $this->frequency->convert_band($band, $mode);
+		}
 
-		echo $this->frequency->convert_band($band, $mode);
 	}
 
 	/*

@@ -19,7 +19,15 @@ $('#version_dialog_mode').on('change', function () {
     showCustomTextarea();
 });
 
-// JavaScript-Funktion displayVersionDialog für Bootstrap 5
+function markdownToHTML() {
+    var markdownContent = $('#markdownDiv').text();
+    var converter = new showdown.Converter({
+        simplifiedAutoLink: true
+    });
+    var html = converter.makeHtml(markdownContent);
+    $('#formattedHTMLDiv').html(html);
+}
+
 function displayVersionDialog() {
 
 	$.ajax({
@@ -29,13 +37,12 @@ function displayVersionDialog() {
 		success: function(data) {
 			$('body').append(data);
 
-			// Aktiviere das Bootstrap-Modal
 			var versionDialogModal = new bootstrap.Modal(document.getElementById('versionDialogModal'));
 			versionDialogModal.show();
+			markdownToHTML();
 		},
 		error: function() {
-			// Behandlung von Fehlern
-			console.log('Fehler beim Laden der PHP-Datei.');
+			console.log('Error loading the versiondialog view.');
 		}
 	});
 }

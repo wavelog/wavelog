@@ -2,10 +2,18 @@
 var custom_date_format = "<?php echo $custom_date_format ?>";
 </script>
 <div class="container">
+    <?php if ($this->session->flashdata('message')) { ?>
+        <!-- Display Message -->
+        <div class="alert alert-danger" role="alert">
+            <p><?php echo $this->session->flashdata('message'); ?></p>
+        </div>
+    <?php } ?>
 <div class="table-responsive">
    <br>
     <h2>Satellite Timers</h2>
-    <p>This data is from <a target="_blank" href="https://www.df2et.de/tevel/">https://www.df2et.de/tevel/</a> calculated for current station location grid <?php echo strtoupper($gridsquare);?>.</p>
+    <?php if ($gridsquare != 0) { ?>
+       <p>This data is from <a target="_blank" href="https://www.df2et.de/tevel/">https://www.df2et.de/tevel/</a> calculated for current station location grid <?php echo strtoupper($gridsquare);?>.</p>
+    <?php } ?>
     <script type="text/javascript">
         let dateArray = [];
         dateArray.push(0);

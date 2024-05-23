@@ -68,7 +68,7 @@ function loadQsos(slug, iconsList) {
 }
 
 function loadMap(data, iconsList) {
-	var osmUrl='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+	var osmUrl=tileUrl;
 	var osmAttrib='Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
 	// If map is already initialized
 	var container = L.DomUtil.get('exportmap');

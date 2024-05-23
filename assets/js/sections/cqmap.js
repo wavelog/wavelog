@@ -222,5 +222,5 @@ function onClick2(e) {
 	zoomToFeature(e);
 	console.log(e);
     var marker = e.target;
-    displayContactsOnMap($("#cqmap"),marker.feature.properties.cq_zone_number, $('#band2').val(), $('#mode').val(), 'CQZone');
+    displayContactsOnMap($("#cqmap"),marker.feature.properties.cq_zone_number, $('#band2').val(), 'All', 'All', $('#mode').val(), 'CQZone');
 }

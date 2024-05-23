@@ -32,6 +32,7 @@ $lang['filter_search_dxcc'] = '搜索 DXCC';
 $lang['filter_search_state'] = '搜索 州/省';
 $lang['filter_search_gridsquare'] = '搜索 网格';
 $lang['filter_search_cq_zone'] = '搜索 CQ 分区';
+$lang['filter_search_itu_zone'] = 'Search ITU Zone';
 $lang['filter_search_mode'] = '搜索 模式';
 $lang['filter_search_band'] = '搜索 频段';
 $lang['filter_search_iota'] = '搜索 IOTA';
@@ -77,8 +78,8 @@ ________________________________________________________________________________
 
 $lang['filter_general_from'] = '开始日期';
 $lang['filter_general_to'] = '截止日期';
-// $lang['gen_hamradio_de']             --> application/language/english/general_words_lang.php 
-// $lang['gen_hamradio_dx']             --> application/language/english/general_words_lang.php 
+// $lang['gen_hamradio_de']             --> application/language/english/general_words_lang.php
+// $lang['gen_hamradio_dx']             --> application/language/english/general_words_lang.php
 // $lang['gen_hamradio_dxcc']           --> application/language/english/general_words_lang.php
 $lang['filter_general_none'] = '- 无 - (例如 /MM, /AM)';
 // $lang['gen_hamradio_state']          --> application/language/english/general_words_lang.php
@@ -112,6 +113,7 @@ $lang['filter_actions_qsl_n_required'] = '未获取 QSL';
 $lang['filter_actions_recv_bureau'] = '已接收 (卡片局)';
 $lang['filter_actions_recv_direct'] = '已接收 (直邮)';
 $lang['filter_actions_recv_electronic'] = '已接收 (电子)';
+$lang['filter_actions_not_rcvd'] = "Not Received";
 $lang['filter_actions_create_adif'] = '创建 ADIF';
 $lang['filter_actions_print_label'] = '打印标签';
 $lang['filter_actions_start_print_title'] = '打印标签';

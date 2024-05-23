@@ -255,9 +255,12 @@ class Awards extends CI_Controller {
 		$this->load->view('interface_assets/footer', $footerData);
 	}
 
-	public function jcc ()	{
+	public function jcc () {
 		$footerData = [];
-        $footerData['scripts'] = ['assets/js/sections/jcc.js'];
+		$footerData['scripts'] = [
+			'assets/js/sections/jcc.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/jcc.js")),
+			'assets/js/sections/jccmap.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/jccmap.js"))
+		];
 
 		$this->load->model('jcc_model');
         $this->load->model('modes');
@@ -329,6 +332,39 @@ class Awards extends CI_Controller {
 		$this->load->view('interface_assets/footer', $footerData);
 	}
 
+    public function jcc_export() {
+        $this->load->model('Jcc_model');
+        $postdata['qsl'] = $this->security->xss_clean($this->input->post('qsl'));
+        $postdata['lotw'] = $this->security->xss_clean($this->input->post('lotw'));
+        $postdata['eqsl'] = $this->security->xss_clean($this->input->post('eqsl'));
+        $postdata['qrz'] = $this->security->xss_clean($this->input->post('qrz'));
+        $postdata['worked'] = $this->security->xss_clean($this->input->post('worked'));
+        $postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed'));
+        $postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked'));
+        $postdata['band'] = $this->security->xss_clean($this->input->post('band'));
+        $postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
+
+        $qsos = $this->Jcc_model->exportJcc($postdata);
+
+        $fp = fopen( 'php://output', 'w' );
+        $i=1;
+        fputcsv($fp, array('No', 'Callsign', 'Date', 'Band', 'Mode', 'Remarks'), ';');
+        foreach ($qsos as $qso) {
+           fputcsv($fp, array($i, $qso['call'], $qso['date'], ($qso['prop_mode'] != null ? $qso['band'].' / '.$qso['prop_mode'] : $qso['band']), $qso['mode'], $qso['cnty'].' - '.$qso['jcc']), ';');
+           $i++;
+        }
+        fclose($fp);
+        return;
+    }
+
+    public function jcc_cities() {
+        $this->load->model('Jcc_model');
+        $data = $this->Jcc_model->jccCities();
+        header('Content-Type: application/json');
+        echo json_encode($data, JSON_PRETTY_PRINT);
+    }
+
+
     public function vucc()	{
         $this->load->model('vucc');
         $this->load->model('bands');
@@ -383,10 +419,11 @@ class Awards extends CI_Controller {
 		$mode = str_replace('"', "", $this->security->xss_clean($this->input->post("Mode")));
 		$sat = str_replace('"', "", $this->security->xss_clean($this->input->post("Sat")));
 		$orbit = str_replace('"', "", $this->security->xss_clean($this->input->post("Orbit")));
+        $propagation = str_replace('"', "", $this->security->xss_clean($this->input->post("Propagation")) ?? '');
 		$type = $this->security->xss_clean($this->input->post('Type'));
 		$qsl = $this->input->post('QSL') == null ? '' : $this->security->xss_clean($this->input->post('QSL'));
 		$searchmode = $this->input->post('searchmode') == null ? '' : $this->security->xss_clean($this->input->post('searchmode'));
-		$data['results'] = $this->logbook_model->qso_details($searchphrase, $band, $mode, $type, $qsl, $sat, $orbit, $searchmode);
+		$data['results'] = $this->logbook_model->qso_details($searchphrase, $band, $mode, $type, $qsl, $sat, $orbit, $searchmode, $propagation);
 
 		// This is done because we have two different ways to get dxcc info in Wavelog. Once is using the name (in awards), and the other one is using the ADIF DXCC.
 		// We replace the values to make it look a bit nicer
@@ -421,6 +458,9 @@ class Awards extends CI_Controller {
 				$data['filter'] .= " and orbit type ".$orbit;
 			}
 		}
+        if ($propagation != '' && $propagation != null) {
+            $data['filter'] .= " and propagation ".$propagation;
+        }
 		if ($mode != null && strtolower($mode) != 'all') {
 			$data['filter'] .= " and mode ".$mode;
 		}
@@ -1439,6 +1479,41 @@ class Awards extends CI_Controller {
     }
 
     /*
+        function jcc_map
+        This displays the DXCC map
+    */
+    public function jcc_map() {
+        $this->load->model('jcc_model');
+        $this->load->model('bands');
+
+        $bands[] = $this->security->xss_clean($this->input->post('band'));
+
+        $postdata['qsl'] = $this->input->post('qsl') == 0 ? NULL: 1;
+        $postdata['lotw'] = $this->input->post('lotw') == 0 ? NULL: 1;
+        $postdata['eqsl'] = $this->input->post('eqsl') == 0 ? NULL: 1;
+        $postdata['qrz'] = $this->input->post('qrz') == 0 ? NULL: 1;
+        $postdata['worked'] = $this->input->post('worked') == 0 ? NULL: 1;
+        $postdata['confirmed'] = $this->input->post('confirmed')  == 0 ? NULL: 1;
+        $postdata['notworked'] = $this->input->post('notworked')  == 0 ? NULL: 1;
+        $postdata['band'] = $this->security->xss_clean($this->input->post('band'));
+        $postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
+
+        $jcc_wkd = $this->jcc_model->fetch_jcc_wkd($postdata);
+        $jcc_cnfm = $this->jcc_model->fetch_jcc_cnfm($postdata);
+
+        $jccs = [];
+        foreach ($jcc_wkd as $jcc) {
+           $jccs[$jcc->COL_CNTY] = array(1, 0);
+        }
+        foreach ($jcc_cnfm as $jcc) {
+           $jccs[$jcc->COL_CNTY][1] = 1;
+        }
+
+        header('Content-Type: application/json');
+        echo json_encode($jccs);
+    }
+
+    /*
         function iota
         This displays the IOTA map
     */
@@ -1503,4 +1578,215 @@ class Awards extends CI_Controller {
             }
         }
     }
+
+	public function wab() {
+		$this->load->model('bands');
+        $this->load->model('gridmap_model');
+		$this->load->model('stations');
+
+		$data['modes'] = $this->gridmap_model->get_worked_modes();
+		$data['bands'] = $this->bands->get_worked_bands();
+		$data['orbits'] = $this->bands->get_worked_orbits();
+		$data['sats_available'] = $this->bands->get_worked_sats();
+
+		$data['user_default_band'] = $this->session->userdata('user_default_band');
+		$data['user_default_confirmation'] = $this->session->userdata('user_default_confirmation');
+
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/sections/wab.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/wab.js"))
+		];
+
+		// Render page
+		$data['page_title'] = "Awards - Worked All Britain";
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('awards/wab/index');
+		$this->load->view('interface_assets/footer', $footerData);
+      }
+
+	  public function wab_map() {
+		$band = $this->security->xss_clean($this->input->post('band'));
+		$mode = $this->security->xss_clean($this->input->post('mode'));
+		$qsl = $this->security->xss_clean($this->input->post('qsl'));
+		$lotw = $this->security->xss_clean($this->input->post('lotw'));
+		$eqsl = $this->security->xss_clean($this->input->post('eqsl'));
+		$qrz = $this->security->xss_clean($this->input->post('qrz'));
+		$sat = $this->security->xss_clean($this->input->post('sat'));
+		$orbit = $this->security->xss_clean($this->input->post('orbit'));
+
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+        $this->load->model('wab');
+
+        if ($logbooks_locations_array) {
+			$location_list = "'".implode("','",$logbooks_locations_array)."'";
+            $wab_array = $this->wab->get_wab_array($band, $location_list, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit);
+		} else {
+            $location_list = null;
+            $wab_array = null;
+        }
+
+        header('Content-Type: application/json');
+        echo json_encode($wab_array);
+      }
+
+	  public function wab_list() {
+		$band = $this->security->xss_clean($this->input->post('band'));
+		$mode = $this->security->xss_clean($this->input->post('mode'));
+		$qsl = $this->security->xss_clean($this->input->post('qsl'));
+		$lotw = $this->security->xss_clean($this->input->post('lotw'));
+		$eqsl = $this->security->xss_clean($this->input->post('eqsl'));
+		$qrz = $this->security->xss_clean($this->input->post('qrz'));
+		$sat = $this->security->xss_clean($this->input->post('sat'));
+		$orbit = $this->security->xss_clean($this->input->post('orbit'));
+
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+        $this->load->model('wab');
+
+        if ($logbooks_locations_array) {
+			$location_list = "'".implode("','",$logbooks_locations_array)."'";
+            $wab_array = $this->wab->get_wab_list($band, $location_list, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit);
+		} else {
+            $location_list = null;
+            $wab_array = null;
+        }
+
+		$data['wab_array'] = $wab_array;
+		$data['postdata']['band'] = $band;
+		$data['postdata']['mode'] = $mode;
+		$data['postdata']['sat'] = $sat;
+		$data['postdata']['orbit'] = $orbit;
+
+		$this->load->view('awards/wab/list', $data);
+      }
+
+	public function itu() {
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/sections/itumap_geojson.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/itumap_geojson.js")),
+			'assets/js/sections/itumap.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/itumap.js"))
+		];
+
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+        $this->load->model('itu');
+		$this->load->model('modes');
+        $this->load->model('bands');
+
+        $data['worked_bands'] = $this->bands->get_worked_bands('cq');
+		$data['modes'] = $this->modes->active(); // Used in the view for mode select
+
+        if ($this->input->post('band') != NULL) {   // Band is not set when page first loads.
+            if ($this->input->post('band') == 'All') {         // Did the user specify a band? If not, use all bands
+                $bands = $data['worked_bands'];
+            }
+            else {
+                $bands[] = $this->input->post('band');
+            }
+        }
+        else {
+            $bands = $data['worked_bands'];
+        }
+
+        $data['bands'] = $bands; // Used for displaying selected band(s) in the table in the view
+
+        if($this->input->method() === 'post') {
+            $postdata['qsl'] = $this->security->xss_clean($this->input->post('qsl'));
+            $postdata['lotw'] = $this->security->xss_clean($this->input->post('lotw'));
+            $postdata['eqsl'] = $this->security->xss_clean($this->input->post('eqsl'));
+            $postdata['qrz'] = $this->security->xss_clean($this->input->post('qrz'));
+            $postdata['worked'] = $this->security->xss_clean($this->input->post('worked'));
+            $postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed'));
+            $postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked'));
+            $postdata['band'] = $this->security->xss_clean($this->input->post('band'));
+			$postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
+        }
+        else { // Setting default values at first load of page
+            $postdata['qsl'] = 1;
+            $postdata['lotw'] = 1;
+            $postdata['eqsl'] = 0;
+            $postdata['qrz'] = 0;
+            $postdata['worked'] = 1;
+            $postdata['confirmed'] = 1;
+            $postdata['notworked'] = 1;
+            $postdata['band'] = 'All';
+			$postdata['mode'] = 'All';
+        }
+
+        if ($logbooks_locations_array) {
+			$location_list = "'".implode("','",$logbooks_locations_array)."'";
+            $data['itu_array'] = $this->itu->get_itu_array($bands, $postdata, $location_list);
+            $data['itu_summary'] = $this->itu->get_itu_summary($bands, $postdata, $location_list);
+		} else {
+            $location_list = null;
+            $data['itu_array'] = null;
+            $data['itu_summary'] = null;
+        }
+
+        // Render page
+        $data['page_title'] = "Awards - ITU Zones";
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('awards/itu/index');
+		$this->load->view('interface_assets/footer', $footerData);
+	}
+
+	 /*
+        function itu_map
+        This displays the ITU Zone map and requires the $band_type and $mode_type
+    */
+    public function itu_map() {
+        $this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+        $this->load->model('itu');
+
+        $bands[] = $this->input->post('band');
+
+        $postdata['qsl'] = $this->input->post('qsl') == 0 ? NULL: 1;
+        $postdata['lotw'] = $this->input->post('lotw') == 0 ? NULL: 1;
+        $postdata['eqsl'] = $this->input->post('eqsl') == 0 ? NULL: 1;
+        $postdata['qrz'] = $this->input->post('qrz') == 0 ? NULL: 1;
+        $postdata['worked'] = $this->input->post('worked') == 0 ? NULL: 1;
+        $postdata['confirmed'] = $this->input->post('confirmed')  == 0 ? NULL: 1;
+        $postdata['notworked'] = $this->input->post('notworked')  == 0 ? NULL: 1;
+        $postdata['band'] = $this->security->xss_clean($this->input->post('band'));
+		$postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
+
+        if ($logbooks_locations_array) {
+			$location_list = "'".implode("','",$logbooks_locations_array)."'";
+            $itu_array = $this->itu->get_itu_array($bands, $postdata, $location_list);
+		} else {
+            $location_list = null;
+            $itu_array = null;
+        }
+
+		$zones = array();
+
+        foreach ($itu_array as $itu => $value) {
+            foreach ($value  as $key) {
+                if($key != "") {
+                    if (strpos($key, '>W<') !== false) {
+                        $zones[] = 'W';
+                        break;
+                    }
+                    if (strpos($key, '>C<') !== false) {
+                        $zones[] = 'C';
+                        break;
+                    }
+                    if (strpos($key, '-') !== false) {
+                        $zones[] = '-';
+                        break;
+                    }
+                }
+            }
+        }
+
+        header('Content-Type: application/json');
+        echo json_encode($zones);
+    }
+
 }

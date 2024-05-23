@@ -226,5 +226,5 @@ function onClick(e) {
 
 function onClick2(e) {
 	var marker = e.target;
-	displayContactsOnMap($("#racmap"), marker.options.title, $('#band2').val(), $('#mode').val(), 'RAC');
+	displayContactsOnMap($("#racmap"), marker.options.title, $('#band2').val(), 'All', 'All', $('#mode').val(), 'RAC');
   }

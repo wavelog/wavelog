@@ -16,191 +16,191 @@ class eqsl extends CI_Controller {
 	}
 
     // Default view when loading controller.
-    public function index() {
+	public function index() {
 
-        $this->lang->load('qslcard');
+		$this->lang->load('qslcard');
 		$this->load->model('eqsl_images');
 		$this->load->library('Genfunctions');
-        $folder_name = $this->eqsl_images->get_imagePath('p');
-        $data['storage_used'] = $this->genfunctions->sizeFormat($this->genfunctions->folderSize($folder_name));
+		$folder_name = $this->eqsl_images->get_imagePath('p');
+		$data['storage_used'] = $this->genfunctions->sizeFormat($this->genfunctions->folderSize($folder_name));
 
 
-        // Render Page
-        $data['page_title'] = "eQSL Cards";
+		// Render Page
+		$data['page_title'] = "eQSL Cards";
 
-        
-        $data['qslarray'] = $this->eqsl_images->eqsl_qso_list();
 
-        $this->load->view('interface_assets/header', $data);
-        $this->load->view('eqslcard/index');
-        $this->load->view('interface_assets/footer');
-    }
+		$data['qslarray'] = $this->eqsl_images->eqsl_qso_list();
+
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('eqslcard/index');
+		$this->load->view('interface_assets/footer');
+	}
+
 	public function import() {
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 
-		$this->load->model('stations');
-		$data['station_profile'] = $this->stations->all_of_user();
-        	$active_station_id = $this->stations->find_active();
-        	$station_profile = $this->stations->profile($active_station_id);
-		$data['active_station_info'] = $station_profile->row();
+			$this->load->model('stations');
+			$data['station_profile'] = $this->stations->all_of_user();
+			$active_station_id = $this->stations->find_active();
+			$station_profile = $this->stations->profile($active_station_id);
+			$data['active_station_info'] = $station_profile->row();
 
-		// Check if eQSL Nicknames have been defined
-		$this->load->model('eqslmethods_model');
-		$eqsl_locations = $this->eqslmethods_model->all_of_user_with_eqsl_nick_defined();
-		if($eqsl_locations->num_rows() == 0) {
-			$this->session->set_flashdata('error', 'eQSL Nicknames in Station Profiles aren\'t defined!');
-		}
-
-		ini_set('memory_limit', '-1');
-		set_time_limit(0);
-
-		$config['upload_path'] = './uploads/';
-		$config['allowed_types'] = 'adi|ADI';
-
-		$this->load->library('upload', $config);
-
-		$eqsl_results = array();
-		if ($this->input->post('eqslimport') == 'fetch')
-		{
-			$this->load->library('EqslImporter');
-
-			// Get credentials for eQSL
-			$query = $this->user_model->get_by_id($this->session->userdata('user_id'));
-			$q = $query->row();
-			$eqsl_password = $q->user_eqsl_password;
-
-			// Validate that eQSL credentials are not empty
-			if ($eqsl_password == '')
-			{
-				$this->session->set_flashdata('warning', 'You have not defined your eQSL.cc credentials!');
-				redirect('eqsl/import');
+			// Check if eQSL Nicknames have been defined
+			$this->load->model('eqslmethods_model');
+			$eqsl_locations = $this->eqslmethods_model->all_of_user_with_eqsl_nick_defined();
+			if($eqsl_locations->num_rows() == 0) {
+				$this->session->set_flashdata('error', 'eQSL Nicknames in Station Profiles aren\'t defined!');
 			}
 
-			$eqsl_force_from_date = (!$this->input->post('eqsl_force_from_date')=="")?$this->input->post('eqsl_force_from_date'):"";
-			foreach ($eqsl_locations->result_array() as $eqsl_location) {
-				$this->eqslimporter->from_callsign_and_QTH(
-					$eqsl_location['station_callsign'],
-					$eqsl_location['eqslqthnickname'],
-					$config['upload_path'],
-					$eqsl_location['station_id']
-				);
+			ini_set('memory_limit', '-1');
+			set_time_limit(0);
 
-				$eqsl_results[] = $this->eqslimporter->fetch($eqsl_password, $eqsl_force_from_date);
-			}
-		} elseif ($this->input->post('eqslimport') == 'upload') {
-			$station_id4upload=$this->input->post('station_profile');
-			if ($this->stations->check_station_is_accessible($station_id4upload)) {
-				$station_callsign=$this->stations->profile($station_id4upload)->row()->station_callsign;
-				if ( ! $this->upload->do_upload())
+			$config['upload_path'] = './uploads/';
+			$config['allowed_types'] = 'adi|ADI';
+
+			$this->load->library('upload', $config);
+
+			$eqsl_results = array();
+			if (($this->input->post('eqslimport') == 'fetch') && (!($this->config->item('disable_manual_eqsl')))) { 
+				$this->load->library('EqslImporter');
+
+				// Get credentials for eQSL
+				$query = $this->user_model->get_by_id($this->session->userdata('user_id'));
+				$q = $query->row();
+				$eqsl_password = $q->user_eqsl_password;
+
+				// Validate that eQSL credentials are not empty
+				if ($eqsl_password == '')
 				{
-					$data['page_title'] = "eQSL Import";
-					$data['error'] = $this->upload->display_errors();
+					$this->session->set_flashdata('warning', 'You have not defined your eQSL.cc credentials!');
+					redirect('eqsl/import');
+				}
 
-					$this->load->view('interface_assets/header', $data);
-					$this->load->view('eqsl/import');
-					$this->load->view('interface_assets/footer');
+				$eqsl_force_from_date = (!$this->input->post('eqsl_force_from_date')=="")?$this->input->post('eqsl_force_from_date'):"";
+				foreach ($eqsl_locations->result_array() as $eqsl_location) {
+					$this->eqslimporter->from_callsign_and_QTH(
+						$eqsl_location['station_callsign'],
+						$eqsl_location['eqslqthnickname'],
+						$config['upload_path'],
+						$eqsl_location['station_id']
+					);
 
-					return;
+					$eqsl_results[] = $this->eqslimporter->fetch($eqsl_password, $eqsl_force_from_date);
+				}
+			} elseif (($this->input->post('eqslimport') == 'upload')) {
+				$station_id4upload=$this->input->post('station_profile');
+				if ($this->stations->check_station_is_accessible($station_id4upload)) {
+					$station_callsign=$this->stations->profile($station_id4upload)->row()->station_callsign;
+					if ( ! $this->upload->do_upload())
+					{
+						$data['page_title'] = "eQSL Import";
+						$data['error'] = $this->upload->display_errors();
+
+						$this->load->view('interface_assets/header', $data);
+						$this->load->view('eqsl/import');
+						$this->load->view('interface_assets/footer');
+
+						return;
+					} else {
+						$data = array('upload_data' => $this->upload->data());
+
+						$this->load->library('EqslImporter');
+						$this->eqslimporter->from_file('./uploads/'.$data['upload_data']['file_name'], $station_callsign, $station_id4upload);
+
+						$eqsl_results[] = $this->eqslimporter->import();
+					}
 				} else {
-					$data = array('upload_data' => $this->upload->data());
-
-					$this->load->library('EqslImporter');
-					$this->eqslimporter->from_file('./uploads/'.$data['upload_data']['file_name'], $station_callsign, $station_id4upload);
-
-					$eqsl_results[] = $this->eqslimporter->import();
+					log_message('error',$station_id4upload." is not valid for user!");
 				}
 			} else {
-				log_message('error',$station_id4upload." is not valid for user!");
+				$data['page_title'] = "eQSL Import";
+
+				$this->load->view('interface_assets/header', $data);
+				$this->load->view('eqsl/import');
+				$this->load->view('interface_assets/footer');
+
+				return;
 			}
-		} else {
-			$data['page_title'] = "eQSL Import";
+
+			$data['eqsl_results'] = $eqsl_results;
+			$data['page_title'] = "eQSL Import Information";
 
 			$this->load->view('interface_assets/header', $data);
-			$this->load->view('eqsl/import');
+			$this->load->view('eqsl/analysis');
 			$this->load->view('interface_assets/footer');
-
-			return;
-		}
-
-		$data['eqsl_results'] = $eqsl_results;
-		$data['page_title'] = "eQSL Import Information";
-
-		$this->load->view('interface_assets/header', $data);
-		$this->load->view('eqsl/analysis');
-		$this->load->view('interface_assets/footer');
 	} // end function
 
 	public function export() {
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 
-		// Check if eQSL Nicknames have been defined
+			// Check if eQSL Nicknames have been defined
 			$this->load->model('stations');
 			if($this->stations->are_eqsl_nicks_defined() == 0) {
 				$this->session->set_flashdata('error', 'eQSL Nicknames in Station Profiles aren\'t defined!');
 			}
 
-		ini_set('memory_limit', '-1');
-		set_time_limit(0);
-		$this->load->model('eqslmethods_model');
-		
-		$data['page_title'] = "eQSL QSO Upload";
-		$custom_date_format = $this->session->userdata('user_date_format');
-		
-		if ($this->input->post('eqslexport') == "export") {
-			// Get credentials for eQSL
-			$query = $this->user_model->get_by_id($this->session->userdata('user_id'));
-			$q = $query->row();
-			$data['user_eqsl_name'] = $q->user_eqsl_name;
-			$data['user_eqsl_password'] = $q->user_eqsl_password;
-			
-			// Validate that eQSL credentials are not empty
-			if ($data['user_eqsl_name'] == '' || $data['user_eqsl_password'] == '')
-			{
-				$this->session->set_flashdata('warning', 'You have not defined your eQSL.cc credentials!'); redirect('eqsl/import');
+			ini_set('memory_limit', '-1');
+			set_time_limit(0);
+			$this->load->model('eqslmethods_model');
+
+			$data['page_title'] = "eQSL QSO Upload";
+			$custom_date_format = $this->session->userdata('user_date_format');
+
+			if ((!($this->config->item('disable_manual_eqsl'))) && ($this->input->post('eqslexport') == "export")) {
+				// Get credentials for eQSL
+				$query = $this->user_model->get_by_id($this->session->userdata('user_id'));
+				$q = $query->row();
+				$data['user_eqsl_name'] = $q->user_eqsl_name;
+				$data['user_eqsl_password'] = $q->user_eqsl_password;
+
+				// Validate that eQSL credentials are not empty
+				if ($data['user_eqsl_name'] == '' || $data['user_eqsl_password'] == '')
+				{
+					$this->session->set_flashdata('warning', 'You have not defined your eQSL.cc credentials!'); redirect('eqsl/import');
+				}
+
+				$rows = '';
+				// Grab the list of QSOs to send information about
+				// perform an HTTP get on each one, and grab the status back
+				$qslsnotsent = $this->eqslmethods_model->eqsl_not_yet_sent();
+
+				foreach ($qslsnotsent->result_array() as $qsl) {
+					$rows .= "<tr>";
+					// eQSL username changes for linked account.
+					// i.e. when operating /P it must be callsign/p
+					// the password, however, is always the same as the main account
+					$data['user_eqsl_name'] = $qsl['station_callsign'];
+					$adif = $this->generateAdif($qsl, $data);
+
+					$status = $this->uploadQso($adif, $qsl);
+
+					$timestamp = strtotime($qsl['COL_TIME_ON']);
+					$rows .= "<td>".date($custom_date_format, $timestamp)."</td>";
+					$rows .= "<td>".date('H:i', $timestamp)."</td>";
+					$rows .= "<td>".str_replace("0","&Oslash;",$qsl['COL_CALL'])."</td>";
+					$rows .= "<td>".$qsl['COL_MODE']."</td>";
+					if(isset($qsl['COL_SUBMODE'])) {
+						$rows .= "<td>".$qsl['COL_SUBMODE']."</td>";
+					} else {
+						$rows .= "<td></td>";
+					}
+					$rows .= "<td>".$qsl['COL_BAND']."</td>";
+					$rows .= "<td>".$status."</td>";
+				}
+				$rows .= "</tr>";
+				$data['eqsl_table'] = $this->generateResultTable($custom_date_format, $rows);
+			} else {
+				$qslsnotsent = $this->eqslmethods_model->eqsl_not_yet_sent();
+				if ($qslsnotsent->num_rows() > 0) {
+					$data['eqsl_table'] = $this->writeEqslNotSent($qslsnotsent->result_array(), $custom_date_format);
+				}
 			}
 
-			$rows = '';
-			// Grab the list of QSOs to send information about
-			// perform an HTTP get on each one, and grab the status back
-			$qslsnotsent = $this->eqslmethods_model->eqsl_not_yet_sent();
-			
-			foreach ($qslsnotsent->result_array() as $qsl) {
-				$rows .= "<tr>";
-				// eQSL username changes for linked account.
-				// i.e. when operating /P it must be callsign/p
-				// the password, however, is always the same as the main account
-				$data['user_eqsl_name'] = $qsl['station_callsign'];
-				$adif = $this->generateAdif($qsl, $data);
-				
-				$status = $this->uploadQso($adif, $qsl);
-				
-				$timestamp = strtotime($qsl['COL_TIME_ON']);
-				$rows .= "<td>".date($custom_date_format, $timestamp)."</td>";
-				$rows .= "<td>".date('H:i', $timestamp)."</td>";
-				$rows .= "<td>".str_replace("0","&Oslash;",$qsl['COL_CALL'])."</td>";
-				$rows .= "<td>".$qsl['COL_MODE']."</td>";
-				if(isset($qsl['COL_SUBMODE'])) {
-					$rows .= "<td>".$qsl['COL_SUBMODE']."</td>";
-				} else {
-					$rows .= "<td></td>";
-				}
-				$rows .= "<td>".$qsl['COL_BAND']."</td>";
-				$rows .= "<td>".$status."</td>";
-			}
-			$rows .= "</tr>";
-			$data['eqsl_table'] = $this->generateResultTable($custom_date_format, $rows);
-		} else {
-			$qslsnotsent = $this->eqslmethods_model->eqsl_not_yet_sent();
-			if ($qslsnotsent->num_rows() > 0) {
-				$data['eqsl_table'] = $this->writeEqslNotSent($qslsnotsent->result_array(), $custom_date_format);
-			}
-		}
-		
-		$this->load->view('interface_assets/header', $data);
-		$this->load->view('eqsl/export');
-		$this->load->view('interface_assets/footer');
+			$this->load->view('interface_assets/header', $data);
+			$this->load->view('eqsl/export');
+			$this->load->view('interface_assets/footer');
 	}
 
 	function uploadQso($adif, $qsl) {
@@ -713,6 +713,11 @@ class eqsl extends CI_Controller {
 	 * Used for CRON job
 	 */
 	public function sync() {
+
+		// set the last run in cron table for the correct cron id
+		$this->load->model('cron_model');
+		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+
 		ini_set('memory_limit', '-1');
 		set_time_limit(0);
 		$this->load->model('eqslmethods_model');
