@@ -6,8 +6,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 // of parks
 // See https://docs.pota.app/docs/changes.html
 
-class Migration_pota_renames extends CI_Migration
-{
+class Migration_pota_renames extends CI_Migration {
 
 	var $k_map = array(
 		'K-0053' => 'AS-0001',
@@ -608,9 +607,9 @@ class Migration_pota_renames extends CI_Migration
 		'LA-2524' => 'BV-0001',
 	);
 
-	public function up()
-	{
+	public function up() {
 		$prefixes =  array( 'K', 'GI', 'GM', 'GW', 'LA' );
+		$this->add_ix('TMP_HRD_IDX_COL_POTA','`COL_POTA_REF`,`COL_DXCC`');
 		// QSO table
 		foreach ($prefixes as $prefix) {
 			$this->db->select("COUNT(COL_PRIMARY_KEY) AS count");
@@ -637,8 +636,7 @@ class Migration_pota_renames extends CI_Migration
 		}
 	}
 
-	public function down()
-	{
+	public function down() {
 	}
 
 	function update_db($from, $to) {
@@ -649,6 +647,14 @@ class Migration_pota_renames extends CI_Migration
 	function update_db_profiles($from, $to) {
 		$this->db->where('station_pota', $from);
 		$this->db->update('station_profile', array('station_pota' => $to));
+	}
+
+	private function add_ix($index,$cols) {
+		$ix_exist = $this->db->query("SHOW INDEX FROM ".$this->config->item('table_name')." WHERE Key_name = '".$index."'")->num_rows();
+		if ($ix_exist == 0) {
+			$sql = "ALTER TABLE ".$this->config->item('table_name')." ADD INDEX `".$index."` (".$cols.");";
+			$this->db->query($sql);
+		}
 	}
 
 }
