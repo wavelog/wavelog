@@ -704,7 +704,6 @@ class Migration_pota_migrations extends CI_Migration
 			$sql .= "AND COL_DXCC IN (".$this->tld2dxcc[$to].")";
 		}
 		$sql .= ";";
-		log_message("Error","SQL\n".$sql);
 		$this->db->query($sql);
 	}
 
