@@ -1266,7 +1266,7 @@ class Migration_pota_migration extends CI_Migration {
 
 	public function up() {
 		$prefixes =  array( 'K', 'GI', 'GM', 'GW', 'LA' );
-		$this->add_ix_rename('TMP_HRD_IDX_COL_POTA','`COL_POTA_REF`,`COL_DXCC`');
+		$this->add_ix('TMP_HRD_IDX_COL_POTA','`COL_POTA_REF`,`COL_DXCC`');
 		// QSO table
 		foreach ($prefixes as $prefix) {
 			$this->db->select("COUNT(COL_PRIMARY_KEY) AS count");
@@ -1317,7 +1317,7 @@ class Migration_pota_migration extends CI_Migration {
 		} else {
 			log_message('info', 'No POTA references found. Migrations skipped.');
 		}
-		$this->rm_ix_migration('TMP_HRD_IDX_COL_POTA');
+		$this->rm_ix('TMP_HRD_IDX_COL_POTA');
 	}
 
 	public function down() {
@@ -1333,7 +1333,7 @@ class Migration_pota_migration extends CI_Migration {
 		$this->db->update('station_profile', array('station_pota' => $to));
 	}
 
-	private function add_ix_rename($index,$cols) {
+	private function add_ix($index,$cols) {
 		$ix_exist = $this->db->query("SHOW INDEX FROM ".$this->config->item('table_name')." WHERE Key_name = '".$index."'")->num_rows();
 		if ($ix_exist == 0) {
 			$sql = "ALTER TABLE ".$this->config->item('table_name')." ADD INDEX `".$index."` (".$cols.");";
@@ -1356,7 +1356,7 @@ class Migration_pota_migration extends CI_Migration {
 		$this->db->query($sql);
 	}
 
-	private function rm_ix_migration($index) {
+	private function rm_ix($index) {
 		$ix_exist = $this->db->query("SHOW INDEX FROM ".$this->config->item('table_name')." WHERE Key_name = '".$index."'")->num_rows();
 		if ($ix_exist >= 1) {
 			$sql = "ALTER TABLE ".$this->config->item('table_name')." DROP INDEX `".$index."`;";
