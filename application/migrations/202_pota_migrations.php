@@ -668,6 +668,7 @@ class Migration_pota_migrations extends CI_Migration
 
 	public function up()
 	{
+		// QSO table
 		$this->db->select('COUNT(COL_PRIMARY_KEY) AS count');
 		$this->db->where('COL_POTA_REF !=', "");
 		$query = $this->db->get($this->config->item('table_name'));
@@ -675,6 +676,19 @@ class Migration_pota_migrations extends CI_Migration
 		if ($row->count > 0) {
 			foreach ($this->map as $key => $value) {
 				$this->update_db($key, $value);
+			}
+		} else {
+			log_message('info', 'No POTA references found. Migrations skipped.');
+		}
+
+		// Station profiles
+		$this->db->select('COUNT(station_id) AS count');
+		$this->db->where('station_pota !=', "");
+		$query = $this->db->get('station_profile');
+		$row = $query->row();
+		if ($row->count > 0) {
+			foreach ($this->map as $key => $value) {
+				$this->update_db_profiles($key, $value);
 			}
 		} else {
 			log_message('info', 'No POTA references found. Migrations skipped.');
@@ -690,6 +704,12 @@ class Migration_pota_migrations extends CI_Migration
 		if (array_key_exists($to, $this->tld2dxcc)) {
 			$sql .= "AND COL_DXCC IN (".$this->tld2dxcc[$to].")";
 		}
+		$sql .= ";";
+		$this->db->query($sql);
+	}
+
+	function update_db_profiles($from, $to) {
+		$sql= "UPDATE station_profile SET station_pota = REPLACE(station_pota, '".$from."-', '".$to."-') WHERE SUBSTRING(station_pota,1,".(strlen($from)+1).") = '".$from."-';";
 		$sql .= ";";
 		$this->db->query($sql);
 	}

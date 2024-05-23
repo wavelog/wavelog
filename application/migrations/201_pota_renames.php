@@ -611,6 +611,7 @@ class Migration_pota_renames extends CI_Migration
 	public function up()
 	{
 		$prefixes =  array( 'K', 'GI', 'GM', 'GW', 'LA' );
+		// QSO table
 		foreach ($prefixes as $prefix) {
 			$this->db->select("COUNT(COL_PRIMARY_KEY) AS count");
 			$this->db->where("SUBSTR(COL_POTA_REF, 1, ".strlen($prefix).") =", $prefix);
@@ -619,6 +620,18 @@ class Migration_pota_renames extends CI_Migration
 			if ($row->count > 0) {
 				foreach ($this->{strtolower($prefix).'_map'} AS $key => $value) {
 					$this->update_db($key, $value);
+				}
+			}
+		}
+		// Station profiles
+		foreach ($prefixes as $prefix) {
+			$this->db->select("COUNT(station_id) AS count");
+			$this->db->where("SUBSTR(station_pota, 1, ".strlen($prefix).") =", $prefix);
+			$query = $this->db->get('station_profile');
+			$row = $query->row();
+			if ($row->count > 0) {
+				foreach ($this->{strtolower($prefix).'_map'} AS $key => $value) {
+					$this->update_db_profiles($key, $value);
 				}
 			}
 		}
@@ -631,6 +644,11 @@ class Migration_pota_renames extends CI_Migration
 	function update_db($from, $to) {
 		$this->db->where('COL_POTA_REF', $from);
 		$this->db->update($this->config->item('table_name'), array('COL_POTA_REF' => $to));
+	}
+
+	function update_db_profiles($from, $to) {
+		$this->db->where('station_pota', $from);
+		$this->db->update('station_profile', array('station_pota' => $to));
 	}
 
 }
