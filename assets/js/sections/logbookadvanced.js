@@ -71,7 +71,7 @@ function updateRow(qso) {
 		cells.eq(c++).text(qso.qslMessage);
 	}
 	if (user_options.dxcc.show == "true"){
-		cells.eq(c++).html(qso.dxcc);
+		cells.eq(c++).html(qso.dxccname);
 	}
 	if (user_options.state.show == "true"){
 		cells.eq(c++).html(qso.state);
@@ -530,6 +530,9 @@ $(document).ready(function () {
 	});
 	$('#notRequired').click(function (event) {
 		handleQsl('I','', 'notRequired');
+	});
+	$('#notReceived').click(function (event) {
+		handleQslReceived('N','', 'notReceived');
 	});
 	$('#receivedBureau').click(function (event) {
 		handleQslReceived('Y','B', 'receivedBureau');

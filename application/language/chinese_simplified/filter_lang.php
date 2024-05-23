@@ -113,6 +113,7 @@ $lang['filter_actions_qsl_n_required'] = '未获取 QSL';
 $lang['filter_actions_recv_bureau'] = '已接收 (卡片局)';
 $lang['filter_actions_recv_direct'] = '已接收 (直邮)';
 $lang['filter_actions_recv_electronic'] = '已接收 (电子)';
+$lang['filter_actions_not_rcvd'] = "Not Received";
 $lang['filter_actions_create_adif'] = '创建 ADIF';
 $lang['filter_actions_print_label'] = '打印标签';
 $lang['filter_actions_start_print_title'] = '打印标签';
