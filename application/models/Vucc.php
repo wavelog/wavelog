@@ -253,8 +253,7 @@ class VUCC extends CI_Model
             }
         }
         foreach ($workedGridArray as $grid) {
-            $this->load->model('logbook_model');
-            $result = $this->logbook_model->vucc_qso_details($grid, $band);
+            $result = $this->grid_detail($grid, $band);
             $callsignlist = '';
             foreach($result->result() as $call) {
                 $callsignlist .= $call->COL_CALL . '<br/>';
@@ -267,6 +266,25 @@ class VUCC extends CI_Model
         } else {
             return null;
         }
+    }
+
+	function grid_detail($gridsquare, $band) {
+		$location_list = "'".implode("','",$this->logbooks_locations_array)."'";
+        $sql = "select COL_CALL from " . $this->config->item('table_name') .
+                " where station_id in (" . $location_list . ")" .
+                " and (col_gridsquare like '" . $gridsquare. "%'
+                    or col_vucc_grids like '%" . $gridsquare. "%')";
+
+        if ($band != 'All') {
+            if ($band == 'SAT') {
+                $sql .= " and col_prop_mode ='" . $band . "'";
+            } else {
+                $sql .= " and col_prop_mode !='SAT'";
+                $sql .= " and col_band ='" . $band . "'";
+            }
+        }
+
+        return $this->db->query($sql);
     }
 
     function markConfirmedGrids($band, $workedGridArray) {
