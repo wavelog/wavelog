@@ -17,7 +17,6 @@ class Activators extends CI_Controller
 
     public function index()
     {
-        // Render Page
         $data['page_title'] = "Gridsquare Activators";
 
         $this->load->model('Activators_model');
@@ -36,9 +35,14 @@ class Activators extends CI_Controller
         $data['activators_vucc_array'] = $this->Activators_model->get_activators_vucc($band, $this->input->post('leogeo'));
         $data['bandselect'] = $band;
 
+        $footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/sections/activators.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/activators.js")),
+		];
+
         $this->load->view('interface_assets/header', $data);
         $this->load->view('activators/index');
-        $this->load->view('interface_assets/footer');
+        $this->load->view('interface_assets/footer', $footerData);
     }
 
     public function details()
