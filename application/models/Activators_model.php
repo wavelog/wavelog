@@ -5,9 +5,8 @@ class Activators_model extends CI_Model
 {
    function get_activators($band, $mincount, $leogeo)
    {
-      $CI = &get_instance();
-      $CI->load->model('logbooks_model');
-      $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+      $this->load->model('logbooks_model');
+      $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
       if ($mincount == '' || $mincount == 0 || !is_numeric($mincount)) {
          $mincount = 2;
@@ -52,9 +51,8 @@ class Activators_model extends CI_Model
 
    function get_activators_vucc($band, $leogeo)
    {
-      $CI = &get_instance();
-      $CI->load->model('logbooks_model');
-      $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+      $this->load->model('logbooks_model');
+      $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
       if (!$logbooks_locations_array) {
          return null;
@@ -94,9 +92,8 @@ class Activators_model extends CI_Model
    }
    function get_max_activated_grids()
    {
-      $CI = &get_instance();
-      $CI->load->model('logbooks_model');
-      $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+      $this->load->model('logbooks_model');
+      $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
       if (!$logbooks_locations_array) {
          return array();
