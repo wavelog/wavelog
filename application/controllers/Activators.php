@@ -33,8 +33,8 @@ class Activators extends CI_Controller
             $mincount = 2; 
         }
 
-        if ($this->input->post('orbit') != NULL) {   // orbit is not set when page first loads.
-            $orbit = $this->input->post('orbit');
+        if ($this->input->post('leogeo') != NULL) {   // orbit is not set when page first loads.
+            $orbit = $this->input->post('leogeo');
         } else {
             $orbit = 'both';
         }
