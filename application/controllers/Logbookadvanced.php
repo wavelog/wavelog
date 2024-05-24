@@ -57,6 +57,7 @@ class Logbookadvanced extends CI_Controller {
 		$pageData['station_profile'] = $this->stations->all_of_user();
 		$pageData['active_station_info'] = $station_profile->row();
 		$pageData['homegrid'] = explode(',', $this->stations->find_gridsquare());
+		$pageData['active_station_id'] = $active_station_id;
 
 		$pageData['bands'] = $this->bands->get_worked_bands();
 

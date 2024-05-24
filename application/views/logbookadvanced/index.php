@@ -471,7 +471,7 @@ $options = json_decode($options);
 			<option value="All"><?php echo lang('general_word_all'); ?></option>
 			<?php foreach ($station_profile->result() as $station) { ?>
 				<option value="<?php echo $station->station_id; ?>"
-				<?php if ($station->station_id == $this->stations->find_active()) {
+				<?php if ($station->station_id == $active_station_id) {
 					echo " selected =\"selected\"";
                 } ?>>
 				<?php echo lang('gen_hamradio_callsign') . ": " ?>

@@ -2,6 +2,14 @@
 
 class VUCC extends CI_Model
 {
+
+	private $logbooks_locations_array;
+	public function __construct()
+	{
+		$this->load->model('logbooks_model');
+		$this->logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+	}
+
     /*
      *  Fetches worked and confirmed gridsquare on each band and total
      */
@@ -100,15 +108,12 @@ class VUCC extends CI_Model
      * $confirmationMethod - qsl, lotw or both, use anything else to skip confirmed
      */
     function get_vucc_summary_col_vucc($band, $confirmationMethod) {
-		$CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
-        if (!$logbooks_locations_array) {
+        if (!$this->logbooks_locations_array) {
             return null;
         }
 
-		$location_list = "'".implode("','",$logbooks_locations_array)."'";
+		$location_list = "'".implode("','",$this->logbooks_locations_array)."'";
 
         $sql = "select distinct col_vucc_grids
             from " . $this->config->item('table_name') .
@@ -144,15 +149,11 @@ class VUCC extends CI_Model
      * $confirmationMethod - qsl, lotw or both, use anything else to skip confirmed
      */
     function get_vucc_summary($band, $confirmationMethod) {
-	    $CI =& get_instance();
-	    $CI->load->model('logbooks_model');
-	    $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-
-	    if (!$logbooks_locations_array) {
+	    if (!$this->logbooks_locations_array) {
 		    return null;
 	    }
 
-	    $location_list = "'".implode("','",$logbooks_locations_array)."'";
+	    $location_list = "'".implode("','",$this->logbooks_locations_array)."'";
 
 	    $sql = "select distinct upper(substring(log.col_gridsquare, 1, 4)) gridsquare
 		    from " . $this->config->item('table_name') . " log".
@@ -252,8 +253,7 @@ class VUCC extends CI_Model
             }
         }
         foreach ($workedGridArray as $grid) {
-            $this->load->model('logbook_model');
-            $result = $this->logbook_model->vucc_qso_details($grid, $band);
+            $result = $this->grid_detail($grid, $band);
             $callsignlist = '';
             foreach($result->result() as $call) {
                 $callsignlist .= $call->COL_CALL . '<br/>';
@@ -266,6 +266,25 @@ class VUCC extends CI_Model
         } else {
             return null;
         }
+    }
+
+	function grid_detail($gridsquare, $band) {
+		$location_list = "'".implode("','",$this->logbooks_locations_array)."'";
+        $sql = "select COL_CALL from " . $this->config->item('table_name') .
+                " where station_id in (" . $location_list . ")" .
+                " and (col_gridsquare like '" . $gridsquare. "%'
+                    or col_vucc_grids like '%" . $gridsquare. "%')";
+
+        if ($band != 'All') {
+            if ($band == 'SAT') {
+                $sql .= " and col_prop_mode ='" . $band . "'";
+            } else {
+                $sql .= " and col_prop_mode !='SAT'";
+                $sql .= " and col_band ='" . $band . "'";
+            }
+        }
+
+        return $this->db->query($sql);
     }
 
     function markConfirmedGrids($band, $workedGridArray) {
