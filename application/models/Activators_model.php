@@ -18,7 +18,11 @@ class Activators_model extends CI_Model
 
       $location_list = "'" . implode("','", $logbooks_locations_array) . "'";
 
-      $sql = "select COL_CALL as `call`, COUNT(DISTINCT(SUBSTR(COL_GRIDSQUARE,1,4))) AS `count`, GROUP_CONCAT(DISTINCT SUBSTR(`COL_GRIDSQUARE`,1,4) ORDER BY `COL_GRIDSQUARE` SEPARATOR ', ') AS `grids` from " . $this->config->item('table_name') . " WHERE station_id in (" . $location_list . ")";
+      $sql =   "SELECT COL_CALL as `call`, 
+               COUNT(DISTINCT(SUBSTR(COL_GRIDSQUARE,1,4))) AS `count`, 
+               GROUP_CONCAT(DISTINCT SUBSTR(`COL_GRIDSQUARE`,1,4) ORDER BY `COL_GRIDSQUARE` SEPARATOR ', ') AS `grids` 
+               FROM " . $this->config->item('table_name') . " WHERE station_id in (" . $location_list . ")";
+               
       if ($band != 'All') {
          if ($band == 'SAT') {
             switch ($leogeo) {
@@ -60,7 +64,10 @@ class Activators_model extends CI_Model
 
       $location_list = "'" . implode("','", $logbooks_locations_array) . "'";
 
-      $sql = "SELECT DISTINCT COL_CALL AS `call`, GROUP_CONCAT(COL_VUCC_GRIDS) AS `vucc_grids` FROM " . $this->config->item('table_name') . " WHERE station_id in (" . $location_list . ")";
+      $sql =   "SELECT DISTINCT COL_CALL AS `call`, 
+               GROUP_CONCAT(COL_VUCC_GRIDS) AS `vucc_grids` FROM " . $this->config->item('table_name') . 
+               " WHERE station_id in (" . $location_list . ")";
+
       if ($band != 'All') {
          if ($band == 'SAT') {
             switch ($leogeo) {
@@ -103,7 +110,9 @@ class Activators_model extends CI_Model
 
       // Get max no of activated grids of single operator
       $data = $this->db->query(
-         "select COUNT(DISTINCT(SUBSTR(COL_GRIDSQUARE,1,4))) AS `count` from " . $this->config->item('table_name') . " WHERE station_id in (" . $location_list . ") AND `COL_GRIDSQUARE` != '' GROUP BY `COL_CALL` ORDER BY `count` DESC LIMIT 1"
+         "SELECT COUNT(DISTINCT(SUBSTR(COL_GRIDSQUARE,1,4))) AS `count` from " . $this->config->item('table_name') . 
+         " WHERE station_id in (" . $location_list . ") AND 
+         `COL_GRIDSQUARE` != '' GROUP BY `COL_CALL` ORDER BY `count` DESC LIMIT 1"
       );
       foreach ($data->result() as $row) {
          $max =  $row->count;
