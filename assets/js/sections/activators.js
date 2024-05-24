@@ -34,15 +34,20 @@ function showHideLeoGeo(bandselect) {
 }
 
 function displayActivatorsContacts(call, band, leogeo) {
+	var data = { 
+        Searchphrase: call, 
+        Band: band,
+        Type: 'CALL'
+    };
+
+    if (leogeo != 'both') {
+        data.Orbit = leogeo;
+    }
+
 	$.ajax({
 		url: base_url + "index.php/awards/qso_details_ajax",
 		type: "post",
-		data: { 
-			Searchphrase: call, 
-			Band: band, 
-			Orbit: leogeo,
-			Type: 'CALL'
-		},
+		data: data,
 		success: function (html) {
 			BootstrapDialog.show({
 				title: lang_general_word_qso_data,

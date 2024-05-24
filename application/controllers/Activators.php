@@ -27,12 +27,26 @@ class Activators extends CI_Controller
             $band = 'All';
         }
 
+        if ($this->input->post('mincount') != NULL) {   // mincount is not set when page first loads.
+            $mincount = $this->input->post('mincount');
+        } else {
+            $mincount = 2; 
+        }
+
+        if ($this->input->post('orbit') != NULL) {   // orbit is not set when page first loads.
+            $orbit = $this->input->post('orbit');
+        } else {
+            $orbit = 'both';
+        }
+
         $this->load->model('bands');
 
         $data['worked_bands'] = $this->bands->get_worked_bands();
+        $data['mincount'] = $mincount;
         $data['maxactivatedgrids'] = $this->Activators_model->get_max_activated_grids();
-        $data['activators_array'] = $this->Activators_model->get_activators($band, $this->input->post('mincount'), $this->input->post('leogeo'));
-        $data['activators_vucc_array'] = $this->Activators_model->get_activators_vucc($band, $this->input->post('leogeo'));
+        $data['orbit'] = $orbit;
+        $data['activators_array'] = $this->Activators_model->get_activators($band, $mincount, $orbit);
+        $data['activators_vucc_array'] = $this->Activators_model->get_activators_vucc($band, $orbit);
         $data['bandselect'] = $band;
 
         $footerData = [];

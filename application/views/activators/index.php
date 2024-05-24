@@ -7,10 +7,10 @@
             <label class="col-md-1 control-label" for="band"><?php echo lang('gen_hamradio_band'); ?></label>
             <div class="col-md-3">
                 <select id="band" name="band" class="form-select">
-                    <option value="All" <?php if ($this->input->post('band') == "All" || $this->input->method() !== 'post') echo ' selected'; ?>><?php echo lang('general_word_all'); ?></option>
+                    <option value="All" <?php if ($bandselect == "All") echo ' selected'; ?>><?php echo lang('general_word_all'); ?></option>
                     <?php foreach ($worked_bands as $band) {
                         echo '<option value="' . $band . '"';
-                        if ($this->input->post('band') == $band) echo ' selected';
+                        if ($bandselect == $band) echo ' selected';
                         echo '>' . $band . '</option>' . "\n";
                     } ?>
                 </select>
@@ -20,9 +20,9 @@
             <label class="col-md-1 control-label" for="leogeo">LEO/GEO</label>
             <div class="col-md-3">
                 <select id="leogeo" name="leogeo" class="form-select">
-                    <option value="both" <?php if ($this->input->post('leogeo') == "both" || $this->input->method() !== 'post') echo ' selected'; ?>>Both</option>
-                    <option value="leo" <?php if ($this->input->post('leogeo') == "leo") echo ' selected'; ?>>LEO</option>
-                    <option value="geo" <?php if ($this->input->post('leogeo') == "geo") echo ' selected'; ?>>GEO</option>
+                    <option value="both" <?php if ($orbit == 'both') echo ' selected'; ?>>Both</option>
+                    <option value="leo" <?php if ($orbit == 'leo') echo ' selected'; ?>>LEO</option>
+                    <option value="geo" <?php if ($orbit == 'geo') echo ' selected'; ?>>GEO</option>
                 </select>
             </div>
         </div>
@@ -34,7 +34,7 @@
                     $i = 1;
                     do {
                         echo '<option value="' . $i . '"';
-                        if ($this->input->post('mincount') == $i || ($this->input->method() !== 'post' && $i == 2)) echo ' selected';
+                        if ($mincount == $i) echo ' selected';
                         echo '>' . $i . '</option>' . "\n";
                         $i++;
                     } while ($i <= $maxactivatedgrids);
@@ -70,13 +70,11 @@
             $vucc_grids[$line->call] = $line->vucc_grids;
         }
     }
-    if ($this->input->post('band') != NULL) {
-        if ($activators_array) {
+    if ($activators_array) {
 
-            $result = write_activators($activators_array, $vucc_grids, $custom_date_format, $this->input->post('band'), $this->input->post('leogeo'));
-        } else {
-            echo '<div class="alert alert-danger" role="alert">Nothing found!</div>';
-        }
+        $result = write_activators($activators_array, $vucc_grids, $custom_date_format, $bandselect, $orbit);
+    } else {
+        echo '<div class="alert alert-danger" role="alert">Nothing found!</div>';
     }
     ?>
 
