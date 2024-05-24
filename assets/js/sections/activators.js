@@ -35,9 +35,14 @@ function showHideLeoGeo(bandselect) {
 
 function displayActivatorsContacts(call, band, leogeo) {
 	$.ajax({
-		url: base_url + "index.php/activators/details",
+		url: base_url + "index.php/awards/qso_details_ajax",
 		type: "post",
-		data: { Callsign: call, Band: band, LeoGeo: leogeo },
+		data: { 
+			Searchphrase: call, 
+			Band: band, 
+			Orbit: leogeo,
+			Type: 'CALL'
+		},
 		success: function (html) {
 			BootstrapDialog.show({
 				title: lang_general_word_qso_data,
@@ -47,6 +52,9 @@ function displayActivatorsContacts(call, band, leogeo) {
 				message: html,
 				onshown: function (dialog) {
 					$('[data-bs-toggle="tooltip"]').tooltip();
+					$('.table-responsive .dropdown-toggle').off('mouseenter').on('mouseenter', function () {
+						showQsoActionsMenu($(this).closest('.dropdown'));
+					});
 				},
 				buttons: [
 					{

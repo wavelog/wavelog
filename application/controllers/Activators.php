@@ -45,44 +45,4 @@ class Activators extends CI_Controller
         $this->load->view('interface_assets/footer', $footerData);
     }
 
-    public function details()
-    {
-        $this->load->model('logbook_model');
-
-        $call = str_replace('"', "", $this->input->post("Callsign"));
-        $band = str_replace('"', "", $this->input->post("Band"));
-        $leogeo = str_replace('"', "", $this->input->post("LeoGeo"));
-        $data['results'] = $this->logbook_model->activator_details($call, $band, $leogeo);
-        $data['filter'] = "Call " . $call;
-        switch ($band) {
-            case 'All':
-                $data['page_title'] = "Log View All Bands";
-                $data['filter'] .= " and Band All";
-                break;
-            case 'SAT':
-                $data['page_title'] = "Log View SAT";
-                $data['filter'] .= " and Band SAT";
-                break;
-            default:
-                $data['page_title'] = "Log View Band";
-                $data['filter'] .= " and Band " . $band;
-                break;
-        }
-        if ($band == "SAT") {
-            switch ($leogeo) {
-                case 'both':
-                    $data['filter'] .= " and GEO/LEO";
-                    break;
-                case 'leo':
-                    $data['filter'] .= " and LEO";
-                    break;
-                case 'geo':
-                    $data['filter'] .= " and GEO";
-                    break;
-            }
-        }
-
-
-        $this->load->view('activators/details', $data);
-    }
 }
