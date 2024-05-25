@@ -5,7 +5,7 @@ $('.modetable').DataTable({
 	"scrollY": "500px",
 	"scrollCollapse": true,
 	"paging": false,
-	"scrollX": true,	
+	"scrollX": true,
 	"language": {
 		url: getDataTablesLanguageUrl(),
 	},
@@ -32,7 +32,6 @@ $('.modetable').DataTable({
 			});
 	},
 });
-$($.fn.dataTable.tables(true)).DataTable().columns.adjust();
 
 function createModeDialog() {
 	$.ajax({
