@@ -123,8 +123,18 @@ class Options extends CI_Controller {
 				$this->session->set_flashdata('success', $this->lang->line('options_logbook_map_changed_to').$this->input->post('logbookMap'));
 			}
 
+			// Update public maps within the options system
+			$public_maps_update_status = $this->optionslib->update('public_maps', $this->input->post('publicMaps'), 'yes');
+
+			// If the option was saved successfully set a flashsession with success note
+			if($public_maps_update_status == TRUE) {
+				$this->session->set_flashdata('success', 'Public Maps are now ' . $this->input->post('publicMaps'));
+			}
+
+			// Update public github button within the options system
 			$public_github_button_update_status = $this->optionslib->update('public_github_button', $this->input->post('publicGithubButton'), 'yes');
 
+			// If the option was saved successfully set a flashsession with success note
 			if($public_github_button_update_status == TRUE) {
 				$this->session->set_flashdata('success', 'Public Github Button is now ' . $this->input->post('publicGithubButton'));
 			}
