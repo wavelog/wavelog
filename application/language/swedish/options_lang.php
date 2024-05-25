@@ -7,6 +7,7 @@ $lang['options_message1'] = 'Wavelog-alternativ är globala inställningar som a
 
 $lang['options_appearance'] = 'Utseende';
 $lang['options_theme'] = 'Tema';
+$lang['options_saved'] = "Options saved";
 $lang['options_global_theme_choice_this_is_used_when_users_arent_logged_in'] = 'Globalt temaval, detta används när användare inte är inloggade.';
 $lang['options_public_search_bar'] = 'Offentlig sökfält';
 $lang['options_this_allows_non_logged_in_users_to_access_the_search_functions'] = 'Detta tillåter icke-inloggade användare att komma åt sökfunktionerna.';
@@ -16,11 +17,8 @@ $lang['options_dashboard_map'] = 'Dashboard karta';
 $lang['options_this_allows_the_map_on_the_dashboard_to_be_disabled_or_placed_on_the_right'] = 'This allows the map on the dashboard to be disabled or placed on the right.';
 $lang['options_logbook_map'] = 'Loggbok Karta';
 $lang['options_this_allows_to_disable_the_map_in_the_logbook'] = 'Detta gör det möjligt att inaktivera kartan i loggboken.';
-$lang['options_theme_changed_to'] = 'Temat ändrades till ';
-$lang['options_global_search_changed_to'] = 'Global sökning ändrad till ';
-$lang['options_dashboard_banner_changed_to'] = 'Dashboard banner ändrad till ';
-$lang['options_dashboard_map_changed_to'] = 'Dashboard karta ändrad till ';
-$lang['options_logbook_map_changed_to'] = 'Loggbokskarta ändrad till ';
+$lang['options_public_maps'] = "Public Maps";
+$lang['options_this_allows_to_disable_all_maps_in_the_public_view'] = "This allows to disable all maps in the public view. This affects the main map and the gridsquares map.";
 
 $lang['options_radios'] = 'Radios';
 $lang['options_radio_settings'] = 'Radioinställningar';
