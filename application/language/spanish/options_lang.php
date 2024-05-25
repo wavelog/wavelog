@@ -7,6 +7,7 @@ $lang['options_message1'] = 'Las Opciones de Wavelog son configuraciones globale
 
 $lang['options_appearance'] = 'Apariencia';
 $lang['options_theme'] = 'Tema';
+$lang['options_saved'] = "Options saved";
 $lang['options_global_theme_choice_this_is_used_when_users_arent_logged_in'] = 'Elección global de Tema, se utiliza cuando ningún usuario ha iniciado sesión.';
 $lang['options_public_search_bar'] = 'Barra de Búsqueda Pública';
 $lang['options_this_allows_non_logged_in_users_to_access_the_search_functions'] = 'Esto le permite acceder a las funciones de búsqueda a usuarios que no han iniciado sesión.';
@@ -18,11 +19,6 @@ $lang['options_logbook_map'] = 'Mapa en Libro de Guardia';
 $lang['options_this_allows_to_disable_the_map_in_the_logbook'] = 'Esto pemrite deshabilitar el mapa en el libro de guardia.';
 $lang['options_public_maps'] = "Public Maps";
 $lang['options_this_allows_to_disable_all_maps_in_the_public_view'] = "This allows to disable all maps in the public view. This affects the main map and the gridsquares map.";
-$lang['options_theme_changed_to'] = 'Tema cambiado a ';
-$lang['options_global_search_changed_to'] = 'Búsqueda Global cambiado a ';
-$lang['options_dashboard_banner_changed_to'] = 'Marquesina en la Vista General cambiada a ';
-$lang['options_dashboard_map_changed_to'] = 'Mapa en la Vista General cambiado a ';
-$lang['options_logbook_map_changed_to'] = 'Mapa en Libro de Guardia cambiado a ';
 
 $lang['options_radios'] = 'Radios';
 $lang['options_radio_settings'] = 'Configuración de Radio';

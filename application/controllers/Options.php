@@ -88,7 +88,7 @@ class Options extends CI_Controller {
 
 			// If theme update is complete set a flashsession with a success note
 			if($theme_update_status == TRUE) {
-				$this->session->set_flashdata('success', $this->lang->line('options_theme_changed_to').$this->input->post('theme'));
+				$this->session->set_flashdata('success', $this->lang->line('options_saved'));
 			}
 
 			// Update theme choice within the options system
@@ -96,7 +96,7 @@ class Options extends CI_Controller {
 
 			// If theme update is complete set a flashsession with a success note
 			if($search_update_status == TRUE) {
-				$this->session->set_flashdata('success', $this->lang->line('options_global_search_changed_to').$this->input->post('globalSearch'));
+				$this->session->set_flashdata('success', $this->lang->line('options_saved'));
 			}
 
 			// Update dashboard banner within the options system
@@ -104,7 +104,7 @@ class Options extends CI_Controller {
 
 			// If dashboard banner update is complete set a flashsession with a success note
 			if($dasboard_banner_update_status == TRUE) {
-				$this->session->set_flashdata('success', $this->lang->line('options_dashboard_banner_changed_to').$this->input->post('dashboardBanner'));
+				$this->session->set_flashdata('success', $this->lang->line('options_saved'));
 			}
 
 			// Update dashboard map within the options system
@@ -112,7 +112,7 @@ class Options extends CI_Controller {
 
 			// If dashboard map update is complete set a flashsession with a success note
 			if($dashboard_map_update_status == TRUE) {
-				$this->session->set_flashdata('success', $this->lang->line('options_dashboard_map_changed_to').$this->input->post('dashboardMap'));
+				$this->session->set_flashdata('success', $this->lang->line('options_saved'));
 			}
 
 			// Update logbook map within the options system
@@ -120,7 +120,7 @@ class Options extends CI_Controller {
 
 			// If logbook map update is complete set a flashsession with a success note
 			if($logbook_map_update_status == TRUE) {
-				$this->session->set_flashdata('success', $this->lang->line('options_logbook_map_changed_to').$this->input->post('logbookMap'));
+				$this->session->set_flashdata('success', $this->lang->line('options_saved'));
 			}
 
 			// Update public maps within the options system
@@ -128,7 +128,7 @@ class Options extends CI_Controller {
 
 			// If the option was saved successfully set a flashsession with success note
 			if($public_maps_update_status == TRUE) {
-				$this->session->set_flashdata('success', 'Public Maps are now ' . $this->input->post('publicMaps'));
+				$this->session->set_flashdata('success', $this->lang->line('options_saved'));
 			}
 
 			// Update public github button within the options system
@@ -136,7 +136,7 @@ class Options extends CI_Controller {
 
 			// If the option was saved successfully set a flashsession with success note
 			if($public_github_button_update_status == TRUE) {
-				$this->session->set_flashdata('success', 'Public Github Button is now ' . $this->input->post('publicGithubButton'));
+				$this->session->set_flashdata('success', $this->lang->line('options_saved'));
 			}
 
 			// Redirect back to /appearance
