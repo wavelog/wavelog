@@ -397,7 +397,7 @@ class Logbookadvanced extends CI_Controller {
 				if (!empty($qso['COL_GRIDSQUARE'])  || !empty($qso['COL_VUCC_GRIDS'])) {
 					$mappedcoordinates[] = $this->calculate($qso, ($qso['station_gridsquare'] ?? ''), ($qso['COL_GRIDSQUARE'] ?? '') == '' ? $qso['COL_VUCC_GRIDS'] : $qso['COL_GRIDSQUARE'], $measurement_base, $var_dist, $custom_date_format);
 				} else {
-					if (!empty($qso['lat'])  || !empty($qso['long'])) {
+					if (!empty($qso['lat'])  && !empty($qso['long'])) {
 						$mappedcoordinates[] = $this->calculateCoordinates($qso, $qso['lat'], $qso['long'], ($qso['station_gridsquare'] ?? ''), $measurement_base, $var_dist, $custom_date_format);
 					}
 				}
