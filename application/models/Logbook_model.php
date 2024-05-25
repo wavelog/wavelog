@@ -3372,8 +3372,14 @@ function lotw_last_qsl_date($user_id) {
     function import_bulk($records, $station_id = "0", $skipDuplicate = false, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markHrd = false,$skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false) {
 	    $custom_errors='';
 	    $a_qsos=[];
+		if (!$this->stations->check_station_is_accessible($station_id) && $apicall == false ) {
+			return 'Station not accessible<br>';
+		}
+		$station_id_ok = true;
+		$station_profile=$this->stations->profile_clean($station_id);
+
 	    foreach ($records as $record) {
-		    $one_error = $this->logbook_model->import($record, $station_id, $skipDuplicate, $markClublog, $markLotw,$dxccAdif, $markQrz, $markHrd, $skipexport, $operatorName, $apicall, $skipStationCheck, true);
+		    $one_error = $this->logbook_model->import($record, $station_id, $skipDuplicate, $markClublog, $markLotw,$dxccAdif, $markQrz, $markHrd, $skipexport, $operatorName, $apicall, $skipStationCheck, true, $station_id_ok, $station_profile);
 		    if ($one_error['error'] ?? '' != '') {
 			    $custom_errors.=$one_error['error']."<br/>";
 		    } else {
@@ -3395,14 +3401,18 @@ function lotw_last_qsl_date($user_id) {
      * $markHrd - used in ADIF import to mark QSOs as exported to HRDLog.net Logbook when importing QSOs
      * $skipexport - used in ADIF import to skip the realtime upload to QRZ Logbook when importing QSOs from ADIF
      */
-  function import($record, $station_id = "0", $skipDuplicate = false, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markHrd = false,$skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false, $batchmode = false) {
+  function import($record, $station_id = "0", $skipDuplicate = false, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markHrd = false,$skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false, $batchmode = false, $station_id_ok = false, $station_profile = null) {
 	  // be sure that station belongs to user
 	  $this->load->model('stations');
-	  if (!$this->stations->check_station_is_accessible($station_id) && $apicall == false ) {
-		  return 'Station not accessible<br>';
+	  if ($station_id_ok == false) {
+		if (!$this->stations->check_station_is_accessible($station_id) && $apicall == false) {
+			return 'Station not accessible<br>';
+		}
 	  }
 
-	  $station_profile=$this->stations->profile_clean($station_id);
+	  if ($station_profile == null) {
+		  $station_profile=$this->stations->profile_clean($station_id);
+	  }
 	  $station_profile_call=$station_profile->station_callsign;
 
 	  if (($station_id !=0 ) && (!(isset($record['station_callsign'])))) {
