@@ -4193,7 +4193,7 @@ function lotw_last_qsl_date($user_id) {
 
     function get_main_mode_if_submode($mode) {
 	    if (array_key_exists($mode,$this->oop_modes)) {
-		    return($this->oop_modes[$mode]);
+		    return($this->oop_modes[$mode][0]);
 	    } else {
 		    return null;
 	    }
