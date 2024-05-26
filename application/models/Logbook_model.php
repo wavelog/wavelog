@@ -2,6 +2,19 @@
 
 class Logbook_model extends CI_Model {
 
+	private $station_result=[];
+	public function __construct() {
+		$this->oop_populate_modes();
+	}
+
+	private $oop_modes=[];
+	private function oop_populate_modes() {
+		$r = $this->db->get('adif_modes');
+		foreach($r->result_array() as $row){
+			$this->oop_modes[$row['submode']][]=($row['mode'] ?? '');
+		}
+	}
+
   /* Add QSO to Logbook */
   function create_qso() {
 
@@ -4004,15 +4017,17 @@ function lotw_last_qsl_date($user_id) {
 
 		  // Collect field information from the station profile table thats required for the QSO.
 		  if($station_id != "0") {
+	    		if (!(array_key_exists($station_id,$this->station_result))) {
 			  $this->db->select('station_profile.*, dxcc_entities.name as station_country');
 			  $this->db->where('station_id', $station_id);
 			  $this->db->join('dxcc_entities', 'station_profile.station_dxcc = dxcc_entities.adif', 'left outer');
-			  $station_result = $this->db->get('station_profile');
+			  $this->station_result[$station_id] = $this->db->get('station_profile');
+			}
 
-			  if ($station_result->num_rows() > 0){
+			  if ($this->station_result[$station_id]->num_rows() > 0){
 				  $data['station_id'] = $station_id;
 
-				  $row = $station_result->row_array();
+				  $row = $this->station_result[$station_id]->row_array();
 
 				  if (strpos(trim($row['station_gridsquare']), ',') !== false) {
 					  $data['COL_MY_VUCC_GRIDS'] = strtoupper(trim($row['station_gridsquare']));
@@ -4177,17 +4192,12 @@ function lotw_last_qsl_date($user_id) {
     }
 
     function get_main_mode_if_submode($mode) {
-		$this->db->select('mode');
-        $this->db->where('submode', $mode);
-
-        $query = $this->db->get('adif_modes');
-        if ($query->num_rows() > 0){
-            $row = $query->row_array();
-            return $row['mode'];
-        } else {
-            return null;
-        }
-	}
+	    if (array_key_exists($mode,$this->oop_modes)) {
+		    return($this->oop_modes[$mode]);
+	    } else {
+		    return null;
+	    }
+    }
 
     /*
      * Check the dxxc_prefixes table and return (dxcc, country)
@@ -4284,95 +4294,98 @@ function lotw_last_qsl_date($user_id) {
 
     public function dxcc_lookup($call, $date){
 
-    $csadditions = '/^T$|^P$|^R$|^A$|^M$/';
+	    $csadditions = '/^T$|^P$|^R$|^A$|^M$/';
 
-		$dxcc_exceptions = $this->db->select('`entity`, `adif`, `cqz`,`cont`')
-				->where('call', $call)
-				->where('(start <= ', $date)
-				->or_where('start is null)', NULL, false)
-				->where('(end >= ', $date)
-				->or_where('end is null)', NULL, false)
-				->get('dxcc_exceptions');
+	    $dxcc_exceptions = $this->db->select('`entity`, `adif`, `cqz`,`cont`')
+				 ->where('call', $call)
+				 ->where('(start <= ', $date)
+				 ->or_where('start is null)', NULL, false)
+				 ->where('(end >= ', $date)
+				 ->or_where('end is null)', NULL, false)
+				 ->get('dxcc_exceptions');
 
-			if ($dxcc_exceptions->num_rows() > 0){
-				$row = $dxcc_exceptions->row_array();
-				return $row;
-			} else {
+	    if ($dxcc_exceptions->num_rows() > 0){
+		    $row = $dxcc_exceptions->row_array();
+		    return $row;
+	    } else {
 
-        if (preg_match('/(^KG4)[A-Z09]{3}/', $call)) {       // KG4/ and KG4 5 char calls are Guantanamo Bay. If 4 or 6 char, it is USA
-          $call = "K";
-        } elseif (preg_match('/(^OH\/)|(\/OH[1-9]?$)/', $call)) {   # non-Aland prefix!
-          $call = "OH";                                             # make callsign OH = finland
-        } elseif (preg_match('/(^CX\/)|(\/CX[1-9]?$)/', $call)) {   # non-Antarctica prefix!
-          $call = "CX";                                             # make callsign CX = Uruguay
-        } elseif (preg_match('/(^3D2R)|(^3D2.+\/R)/', $call)) {     # seems to be from Rotuma
-          $call = "3D2/R";                                          # will match with Rotuma
-        } elseif (preg_match('/^3D2C/', $call)) {                   # seems to be from Conway Reef
-          $call = "3D2/C";                                          # will match with Conway
-        } elseif (preg_match('/(^LZ\/)|(\/LZ[1-9]?$)/', $call)) {   # LZ/ is LZ0 by DXCC but this is VP8h
-          $call = "LZ";
-        } elseif (preg_match('/(^KG4)[A-Z09]{2}/', $call)) {
-          $call = "KG4";
-        } elseif (preg_match('/(^KG4)[A-Z09]{1}/', $call)) {
-          $call = "K";
-        } elseif (preg_match('/\w\/\w/', $call)) {
-          if (preg_match_all('/^((\d|[A-Z])+\/)?((\d|[A-Z]){3,})(\/(\d|[A-Z])+)?(\/(\d|[A-Z])+)?$/', $call, $matches)) {
-              $prefix = $matches[1][0];
-              $callsign = $matches[3][0];
-              $suffix = $matches[5][0];
-            if ($prefix) {
-                $prefix = substr($prefix, 0, -1); # Remove the / at the end
-            }
-            if ($suffix) {
-                $suffix = substr($suffix, 1); # Remove the / at the beginning
-            };
-            if (preg_match($csadditions, $suffix)) {
-              if ($prefix) {
-                $call = $prefix;
-              } else {
-                $call = $callsign;
-              }
-            } else {
-              $result = $this->wpx($call, 1);                       # use the wpx prefix instead
-              if ($result == '') {
-                $row['adif'] = 0;
-                $row['cont'] = '';
-                $row['entity'] = '- NONE -';
-                $row['cqz'] = 0;
-                $row['long'] = '0';
-                $row['lat'] = '0';
-                return $row;
-              } else {
-                $call = $result . "AA";
-              }
-          }
-    		}
-      }
+		    if (preg_match('/(^KG4)[A-Z09]{3}/', $call)) {       // KG4/ and KG4 5 char calls are Guantanamo Bay. If 4 or 6 char, it is USA
+			    $call = "K";
+		    } elseif (preg_match('/(^OH\/)|(\/OH[1-9]?$)/', $call)) {   # non-Aland prefix!
+			    $call = "OH";                                             # make callsign OH = finland
+		    } elseif (preg_match('/(^CX\/)|(\/CX[1-9]?$)/', $call)) {   # non-Antarctica prefix!
+			    $call = "CX";                                             # make callsign CX = Uruguay
+		    } elseif (preg_match('/(^3D2R)|(^3D2.+\/R)/', $call)) {     # seems to be from Rotuma
+			    $call = "3D2/R";                                          # will match with Rotuma
+		    } elseif (preg_match('/^3D2C/', $call)) {                   # seems to be from Conway Reef
+			    $call = "3D2/C";                                          # will match with Conway
+		    } elseif (preg_match('/(^LZ\/)|(\/LZ[1-9]?$)/', $call)) {   # LZ/ is LZ0 by DXCC but this is VP8h
+			    $call = "LZ";
+		    } elseif (preg_match('/(^KG4)[A-Z09]{2}/', $call)) {
+			    $call = "KG4";
+		    } elseif (preg_match('/(^KG4)[A-Z09]{1}/', $call)) {
+			    $call = "K";
+		    } elseif (preg_match('/\w\/\w/', $call)) {
+			    if (preg_match_all('/^((\d|[A-Z])+\/)?((\d|[A-Z]){3,})(\/(\d|[A-Z])+)?(\/(\d|[A-Z])+)?$/', $call, $matches)) {
+				    $prefix = $matches[1][0];
+				    $callsign = $matches[3][0];
+				    $suffix = $matches[5][0];
+				    if ($prefix) {
+					    $prefix = substr($prefix, 0, -1); # Remove the / at the end
+				    }
+				    if ($suffix) {
+					    $suffix = substr($suffix, 1); # Remove the / at the beginning
+				    };
+				    if (preg_match($csadditions, $suffix)) {
+					    if ($prefix) {
+						    $call = $prefix;
+					    } else {
+						    $call = $callsign;
+					    }
+				    } else {
+					    $result = $this->wpx($call, 1);                       # use the wpx prefix instead
+					    if ($result == '') {
+						    $row['adif'] = 0;
+						    $row['cont'] = '';
+						    $row['entity'] = '- NONE -';
+						    $row['cqz'] = 0;
+						    $row['long'] = '0';
+						    $row['lat'] = '0';
+						    return $row;
+					    } else {
+						    $call = $result . "AA";
+					    }
+				    }
+			    }
+		    }
 
-				$len = strlen($call);
+		    $len = strlen($call);
 
-				// query the table, removing a character from the right until a match
-				for ($i = $len; $i > 0; $i--){
-					//printf("searching for %s\n", substr($call, 0, $i));
-					$dxcc_result = $this->db->select('*')
-            ->where('call', substr($call, 0, $i))
-            ->where('(start <= ', $date)
-            ->or_where("start is null)", NULL, false)
-            ->where('(end >= ', $date)
-            ->or_where("end is null)", NULL, false)
-            ->get('dxcc_prefixes');
+			// Fetch all candidates in one shot instead of looping
+		    $dxcc_result = $this->db->select('*')
+			      ->like('call', substr($call, 0, 1),'after')
+			      ->where('(start <= ', $date)
+			      ->or_where("start is null)", NULL, false)
+			      ->where('(end >= ', $date)
+			      ->or_where("end is null)", NULL, false)
+			      ->get('dxcc_prefixes');
 
-					//$dxcc_result = $this->db->query("select `call`, `entity`, `adif` from dxcc_prefixes where `call` = '".substr($call, 0, $i) ."'");
-					//print $this->db->last_query();
+		    foreach($dxcc_result->result_array() as $row){
+			    $dxcc_array[$row['call']]=$row;
+		    }
 
-					if ($dxcc_result->num_rows() > 0){
-					  $row = $dxcc_result->row_array();
-					  return $row;
-					}
-				}
-			}
+		    // query the table, removing a character from the right until a match
+		    for ($i = $len; $i > 0; $i--){
+			    //printf("searching for %s\n", substr($call, 0, $i));
+			    if (array_key_exists(substr($call,0,$i),$dxcc_array)) {
+				    $row = $dxcc_array[substr($call,0,$i)];
+				    // $row = $dxcc_result->row_array();
+				    return $row;
+			    }
+		    }
+	    }
 
-        return array("Not Found", "Not Found");
+	    return array("Not Found", "Not Found");
     }
 
     function wpx($testcall, $i) {

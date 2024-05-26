@@ -357,7 +357,7 @@ if ( ! function_exists('highlight_code'))
 		return str_replace(
 			array('phptagopen', 'phptagclose', 'asptagopen', 'asptagclose', 'backslashtmp', 'scriptclose'),
 			array('&lt;?', '?&gt;', '&lt;%', '%&gt;', '\\', '&lt;/script&gt;'),
-			$str
+			$str ?? ''
 		);
 	}
 }
