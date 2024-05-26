@@ -4204,106 +4204,107 @@ function lotw_last_qsl_date($user_id) {
      */
     public function check_dxcc_table($call, $date){
 
-    $csadditions = '/^T$|^P$|^R$|^A$|^M$/';
-
-		$dxcc_exceptions = $this->db->select('`entity`, `adif`, `cqz`, `cont`')
-             ->where('call', $call)
-             ->where('(start <= ', $date)
-             ->or_where('start is null)', NULL, false)
-             ->where('(end >= ', $date)
-             ->or_where('end is null)', NULL, false)
-             ->get('dxcc_exceptions');
-
-		if ($dxcc_exceptions->num_rows() > 0){
-			$row = $dxcc_exceptions->row_array();
-			return array($row['adif'], $row['entity'], $row['cqz'], $row['cont']);
-		}
-    if (preg_match('/(^KG4)[A-Z09]{3}/', $call)) {      // KG4/ and KG4 5 char calls are Guantanamo Bay. If 4 or 6 char, it is USA
-      $call = "K";
-    } elseif (preg_match('/(^OH\/)|(\/OH[1-9]?$)/', $call)) {   # non-Aland prefix!
-      $call = "OH";                                             # make callsign OH = finland
-    } elseif (preg_match('/(^CX\/)|(\/CX[1-9]?$)/', $call)) {   # non-Antarctica prefix!
-      $call = "CX";                                             # make callsign CX = Uruguay
-    } elseif (preg_match('/(^3D2R)|(^3D2.+\/R)/', $call)) {     # seems to be from Rotuma
-      $call = "3D2/R";                                          # will match with Rotuma
-    } elseif (preg_match('/^3D2C/', $call)) {                   # seems to be from Conway Reef
-      $call = "3D2/C";                                          # will match with Conway
-    } elseif (preg_match('/(^LZ\/)|(\/LZ[1-9]?$)/', $call)) {   # LZ/ is LZ0 by DXCC but this is VP8h
-      $call = "LZ";
-    } elseif (preg_match('/(^KG4)[A-Z09]{2}/', $call)) {
-      $call = "KG4";
-    } elseif (preg_match('/(^KG4)[A-Z09]{1}/', $call)) {
-      $call = "K";
-		} elseif (preg_match('/\w\/\w/', $call)) {
-      if (preg_match_all('/^((\d|[A-Z])+\/)?((\d|[A-Z]){3,})(\/(\d|[A-Z])+)?(\/(\d|[A-Z])+)?$/', $call, $matches)) {
-        $prefix = $matches[1][0];
-        $callsign = $matches[3][0];
-        $suffix = $matches[5][0];
-      if ($prefix) {
-          $prefix = substr($prefix, 0, -1); # Remove the / at the end
-      }
-      if ($suffix) {
-          $suffix = substr($suffix, 1); # Remove the / at the beginning
-      };
-      if (preg_match($csadditions, $suffix)) {
-        if ($prefix) {
-          $call = $prefix;
-        } else {
-          $call = $callsign;
-        }
-      } else {
-        $result = $this->wpx($call, 1);                       # use the wpx prefix instead
-        if ($result == '') {
-          $row['adif'] = 0;
-          $row['entity'] = '- NONE -';
-          $row['cqz'] = 0;
-          $row['cont'] = '';
-          return array($row['adif'], $row['entity'], $row['cqz'], $row['cont']);
-        } else {
-          $call = $result . "AA";
-        }
-      }
-    }
-  }
-
-		$len = strlen($call);
-
-		// query the table, removing a character from the right until a match
-		for ($i = $len; $i > 0; $i--){
-            //printf("searching for %s\n", substr($call, 0, $i));
-            $dxcc_result = $this->db->select('`call`, `entity`, `adif`, `cqz`, `cont`')
-                                    ->where('call', substr($call, 0, $i))
-                                    ->where('(start <= ', $date)
-                                    ->or_where("start is null)", NULL, false)
-                                    ->where('(end >= ', $date)
-                                    ->or_where("end is null)", NULL, false)
-                                    ->get('dxcc_prefixes');
-
-            //$dxcc_result = $this->db->query("select `call`, `entity`, `adif` from dxcc_prefixes where `call` = '".substr($call, 0, $i) ."'");
-            //print $this->db->last_query();
-
-            if ($dxcc_result->num_rows() > 0){
-                $row = $dxcc_result->row_array();
-                return array($row['adif'], $row['entity'], $row['cqz'], $row['cont']);
-            }
-        }
-
-        return array("Not Found", "Not Found");
-
-  }
-
-    public function dxcc_lookup($call, $date){
-
 	    $csadditions = '/^T$|^P$|^R$|^A$|^M$/';
 
-	    $dxcc_exceptions = $this->db->select('`entity`, `adif`, `cqz`,`cont`')
-				 ->where('call', $call)
+	    $dxcc_exceptions = $this->db->select('`entity`, `adif`, `cqz`, `cont`')
+				 ->where('`call`', $call)
 				 ->where('(start <= ', $date)
 				 ->or_where('start is null)', NULL, false)
 				 ->where('(end >= ', $date)
 				 ->or_where('end is null)', NULL, false)
 				 ->get('dxcc_exceptions');
 
+	    if ($dxcc_exceptions->num_rows() > 0){
+		    $row = $dxcc_exceptions->row_array();
+		    return array($row['adif'], $row['entity'], $row['cqz'], $row['cont']);
+	    }
+	    if (preg_match('/(^KG4)[A-Z09]{3}/', $call)) {      // KG4/ and KG4 5 char calls are Guantanamo Bay. If 4 or 6 char, it is USA
+		    $call = "K";
+	    } elseif (preg_match('/(^OH\/)|(\/OH[1-9]?$)/', $call)) {   # non-Aland prefix!
+		    $call = "OH";                                             # make callsign OH = finland
+	    } elseif (preg_match('/(^CX\/)|(\/CX[1-9]?$)/', $call)) {   # non-Antarctica prefix!
+		    $call = "CX";                                             # make callsign CX = Uruguay
+	    } elseif (preg_match('/(^3D2R)|(^3D2.+\/R)/', $call)) {     # seems to be from Rotuma
+		    $call = "3D2/R";                                          # will match with Rotuma
+	    } elseif (preg_match('/^3D2C/', $call)) {                   # seems to be from Conway Reef
+		    $call = "3D2/C";                                          # will match with Conway
+	    } elseif (preg_match('/(^LZ\/)|(\/LZ[1-9]?$)/', $call)) {   # LZ/ is LZ0 by DXCC but this is VP8h
+		    $call = "LZ";
+	    } elseif (preg_match('/(^KG4)[A-Z09]{2}/', $call)) {
+		    $call = "KG4";
+	    } elseif (preg_match('/(^KG4)[A-Z09]{1}/', $call)) {
+		    $call = "K";
+	    } elseif (preg_match('/\w\/\w/', $call)) {
+		    if (preg_match_all('/^((\d|[A-Z])+\/)?((\d|[A-Z]){3,})(\/(\d|[A-Z])+)?(\/(\d|[A-Z])+)?$/', $call, $matches)) {
+			    $prefix = $matches[1][0];
+			    $callsign = $matches[3][0];
+			    $suffix = $matches[5][0];
+			    if ($prefix) {
+				    $prefix = substr($prefix, 0, -1); # Remove the / at the end
+			    }
+			    if ($suffix) {
+				    $suffix = substr($suffix, 1); # Remove the / at the beginning
+			    };
+			    if (preg_match($csadditions, $suffix)) {
+				    if ($prefix) {
+					    $call = $prefix;
+				    } else {
+					    $call = $callsign;
+				    }
+			    } else {
+				    $result = $this->wpx($call, 1);                       # use the wpx prefix instead
+				    if ($result == '') {
+					    $row['adif'] = 0;
+					    $row['entity'] = '- NONE -';
+					    $row['cqz'] = 0;
+					    $row['cont'] = '';
+					    return array($row['adif'], $row['entity'], $row['cqz'], $row['cont']);
+				    } else {
+					    $call = $result . "AA";
+				    }
+			    }
+		    }
+	    }
+
+	    $len = strlen($call);
+	    $dxcc_array=[];
+	    // Fetch all candidates in one shot instead of looping
+	    $dxcc_result=$this->db->query("SELECT `call`, `entity`, `adif`, `cqz`, `cont`
+		    FROM `dxcc_prefixes`
+		    WHERE ? like concat(`call`,'%')
+		    and `call` like ?
+		    AND (`start` <= ?  OR start is null)
+		    AND (`end` >= ?  OR end is null) order by length(`call`) desc limit 1",array($call,substr($call,0,1).'%',$date,$date));
+
+	    foreach($dxcc_result->result_array() as $row){
+		    $dxcc_array[$row['call']]=$row;
+	    }
+
+	    // query the table, removing a character from the right until a match
+	    for ($i = $len; $i > 0; $i--){
+		    //printf("searching for %s\n", substr($call, 0, $i));
+		    if (array_key_exists(substr($call,0,$i),$dxcc_array)) {
+			    $row = $dxcc_array[substr($call,0,$i)];
+			    // $row = $dxcc_result->row_array();
+			    return array($row['adif'], $row['entity'], $row['cqz'], $row['cont']);
+		    }
+	    }
+
+	    return array("Not Found", "Not Found");
+
+    }
+
+    public function dxcc_lookup($call, $date) {
+
+	    $csadditions = '/^T$|^P$|^R$|^A$|^M$/';
+
+	    $dxcc_exceptions = $this->db->select('`entity`, `adif`, `cqz`,`cont`')
+				 ->where('`call`', $call)
+				 ->where('(start <= ', $date)
+				 ->or_where('start is null)', NULL, false)
+				 ->where('(end >= ', $date)
+				 ->or_where('end is null)', NULL, false)
+				 ->get('dxcc_exceptions');
 	    if ($dxcc_exceptions->num_rows() > 0){
 		    $row = $dxcc_exceptions->row_array();
 		    return $row;
@@ -4360,15 +4361,15 @@ function lotw_last_qsl_date($user_id) {
 		    }
 
 		    $len = strlen($call);
+		    $dxcc_array=[];
 
-			// Fetch all candidates in one shot instead of looping
-		    $dxcc_result = $this->db->select('*')
-			      ->like('call', substr($call, 0, 1),'after')
-			      ->where('(start <= ', $date)
-			      ->or_where("start is null)", NULL, false)
-			      ->where('(end >= ', $date)
-			      ->or_where("end is null)", NULL, false)
-			      ->get('dxcc_prefixes');
+		    // Fetch all candidates in one shot instead of looping
+		    $dxcc_result=$this->db->query("SELECT `call`, `entity`, `adif`, `cqz`, `cont`
+			    FROM `dxcc_prefixes`
+			    WHERE ? like concat(`call`,'%')
+			    and `call` like ?
+			    AND (`start` <= ?  OR start is null)
+			    AND (`end` >= ?  OR end is null) order by length(`call`) desc limit 1",array($call,substr($call,0,1).'%',$date,$date));
 
 		    foreach($dxcc_result->result_array() as $row){
 			    $dxcc_array[$row['call']]=$row;
