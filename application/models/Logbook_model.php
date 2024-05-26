@@ -2,6 +2,7 @@
 
 class Logbook_model extends CI_Model {
 
+	private $station_result=[];
 	public function __construct() {
 		$this->oop_populate_modes();
 	}
@@ -4016,15 +4017,17 @@ function lotw_last_qsl_date($user_id) {
 
 		  // Collect field information from the station profile table thats required for the QSO.
 		  if($station_id != "0") {
+	    		if (!(array_key_exists($station_id,$this->station_result))) {
 			  $this->db->select('station_profile.*, dxcc_entities.name as station_country');
 			  $this->db->where('station_id', $station_id);
 			  $this->db->join('dxcc_entities', 'station_profile.station_dxcc = dxcc_entities.adif', 'left outer');
-			  $station_result = $this->db->get('station_profile');
+			  $this->station_result[$station_id] = $this->db->get('station_profile');
+			}
 
-			  if ($station_result->num_rows() > 0){
+			  if ($this->station_result[$station_id]->num_rows() > 0){
 				  $data['station_id'] = $station_id;
 
-				  $row = $station_result->row_array();
+				  $row = $this->station_result[$station_id]->row_array();
 
 				  if (strpos(trim($row['station_gridsquare']), ',') !== false) {
 					  $data['COL_MY_VUCC_GRIDS'] = strtoupper(trim($row['station_gridsquare']));
