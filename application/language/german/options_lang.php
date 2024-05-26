@@ -7,6 +7,7 @@ $lang['options_message1'] = 'Wavelog Optionen sind globe Einstellungen, die für
 
 $lang['options_appearance'] = 'Erscheinungsbild';
 $lang['options_theme'] = 'Thema';
+$lang['options_saved'] = "Optionen gespeichert";
 $lang['options_global_theme_choice_this_is_used_when_users_arent_logged_in'] = 'Globales Thema. Dies wird verwendet, wenn keine Benutzer angemeldet sind.';
 $lang['options_public_search_bar'] = 'Öffentliches Suchfeld';
 $lang['options_this_allows_non_logged_in_users_to_access_the_search_functions'] = 'Dies erlaubt nicht angemeldeten Benutzern, die Suchfunktion zu nutzen.';
@@ -16,11 +17,8 @@ $lang['options_dashboard_map'] = 'Dashboard Karte';
 $lang['options_this_allows_the_map_on_the_dashboard_to_be_disabled_or_placed_on_the_right'] = 'Dies erlaubt es, die Karte auf dem Dashboard rechts anzuzeigen oder zu deaktivieren.';
 $lang['options_logbook_map'] = 'Logbook Karte';
 $lang['options_this_allows_to_disable_the_map_in_the_logbook'] = 'Dies erlaubt, die Karte im Logbuch zu deaktivieren.';
-$lang['options_theme_changed_to'] = 'Thema geändert zu ';
-$lang['options_global_search_changed_to'] = 'Globale Suche geändert zu ';
-$lang['options_dashboard_banner_changed_to'] = 'Dashboard Benachrichtigungsbanner geändert zu ';
-$lang['options_dashboard_map_changed_to'] = 'Dashboard Karte geändert zu ';
-$lang['options_logbook_map_changed_to'] = 'Logbook Karte geändert zu ';
+$lang['options_public_maps'] = "Öffentliche Karten";
+$lang['options_this_allows_to_disable_all_maps_in_the_public_view'] = "Dies erlaubt die Karten auf der öffentlichen Seite zu deaktivieren. Dies betrifft die Haupt-Karte, als auch die Planquadrat-Karte.";
 
 $lang['options_radios'] = 'Funkgeräte';
 $lang['options_radio_settings'] = 'Funkgeräteeinstellungen';

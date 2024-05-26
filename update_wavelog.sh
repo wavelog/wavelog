@@ -10,7 +10,7 @@
 # The user and group that own the WAVELOG_SUBDIR directories. Passed to 'chown' as-is.
 DIR_OWNERSHIP="root:www-data"
 # The list of directories that need to have ownership restored after a git pull
-declare -a WAVELOG_SUBDIRS=("application/config" "assets" "backup" "updates" "uploads" "images/eqsl_card_images")
+declare -a WAVELOG_SUBDIRS=("application/config" "assets" "backup" "updates" "uploads" "images/eqsl_card_images" "userdata")
 # The name of the Git remote to fetch/pull from
 GIT_REMOTE="origin"
 # If true, pull from the HEAD of the configured origin, otherwise the latest tag
