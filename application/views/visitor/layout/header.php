@@ -61,11 +61,12 @@
 
 		<ul class="navbar-nav">
 		<?php
-		if (!empty($slug)) { ?>
-		<li class="nav-item">
-			<a class="nav-link" href="<?php echo site_url('visitor/satellites/'.$slug);?>">Gridsquares</a>
-		</li>
-		<?php
+		if (!empty($slug)) { 
+			if ($this->optionslib->get_option('public_maps') == 'true') { ?>
+				<li class="nav-item">
+					<a class="nav-link" href="<?php echo site_url('visitor/satellites/'.$slug);?>">Gridsquares</a>
+				</li>
+		<?php }
 			$this->CI =& get_instance();
 			if ($this->CI->oqrs_enabled($slug)) {
 			?>
