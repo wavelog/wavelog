@@ -152,6 +152,7 @@ class adif extends CI_Controller {
         $station_profile = $this->stations->profile($active_station_id);
 
 		$data['active_station_info'] = $station_profile->row();
+		$data['active_station_id'] = $active_station_id;
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('adif/import');
