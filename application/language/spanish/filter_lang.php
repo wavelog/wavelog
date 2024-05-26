@@ -113,6 +113,7 @@ $lang['filter_actions_qsl_n_required'] = 'QSL no Requerida';
 $lang['filter_actions_recv_bureau'] = 'Recibido (Buró)';
 $lang['filter_actions_recv_direct'] = 'Recibido (Directa)';
 $lang['filter_actions_recv_electronic'] = 'Recibido (Electrónico)';
+$lang['filter_actions_not_rcvd'] = "Not Received";
 $lang['filter_actions_create_adif'] = 'Crear ADIF';
 $lang['filter_actions_print_label'] = 'Imprimir Etiqueta';
 $lang['filter_actions_start_print_title'] = 'Imprimir Etiquetas';

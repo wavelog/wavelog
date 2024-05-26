@@ -46,7 +46,9 @@ function echo_table_col($row, $name) {
 </div>
 
 <!-- Map -->
-<div id="map" class="map-leaflet" style="width: 100%; height: 365px"></div>
+<?php if ($this->optionslib->get_option('public_maps') == 'true') { ?>
+	<div id="map" class="map-leaflet" style="width: 100%; height: 365px"></div>
+<?php } ?>
 
 <div id="container" style="padding-top: 0px; margin-top: 5px;" class="container dashboard">
 

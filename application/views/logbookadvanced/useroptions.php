@@ -51,10 +51,6 @@
 			<td><div class="form-check"><input class="form-check-input" name="myrefs" type="checkbox" <?php if (($options->myrefs->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td><?php echo lang('gen_hamradio_refs'); ?></td>
-			<td><div class="form-check"><input class="form-check-input" name="refs" type="checkbox" <?php if (($options->refs->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
-		</tr>
-		<tr>
 			<td><?php echo lang('general_word_name'); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="name" type="checkbox" <?php if (($options->name->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
@@ -121,6 +117,22 @@
 		<tr>
 			<td>Contest</td>
 			<td><div class="form-check"><input class="form-check-input" name="contest" type="checkbox" <?php if (($options->contest->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
+		</tr>
+		<tr>
+			<td>Gridsquare</td>
+			<td><div class="form-check"><input class="form-check-input" name="gridsquare" type="checkbox" <?php if (($options->gridsquare->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
+		</tr>
+		<tr>
+			<td>DOK</td>
+			<td><div class="form-check"><input class="form-check-input" name="dok" type="checkbox" <?php if (($options->dok->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
+		</tr>
+		<tr>
+			<td>WWFF</td>
+			<td><div class="form-check"><input class="form-check-input" name="wwff" type="checkbox" <?php if (($options->wwff->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
+		</tr>
+		<tr>
+			<td>SIG</td>
+			<td><div class="form-check"><input class="form-check-input" name="sig" type="checkbox" <?php if (($options->sig->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 	</tbody>
 </table>

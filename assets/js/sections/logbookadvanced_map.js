@@ -327,6 +327,12 @@ function loadMap(data, iconsList) {
 			this.latlng1[1] =  parseFloat(this.latlng1[1])+360;
 		}
 
+		if ((this.latlng1[1] - this.latlng2[1]) < -180) {
+			this.latlng2[1] =  parseFloat(this.latlng2[1]) -360;
+		} else if ((this.latlng1[1] - this.latlng2[1]) > 180) {
+			this.latlng2[1] =  parseFloat(this.latlng2[1]) +360;
+		}
+
 		var popupmessage = createContentMessage(this);
 		var popupmessage2 = createContentMessageDx(this);
 

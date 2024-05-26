@@ -58,8 +58,8 @@
 		         	<div class="mb-3 col-sm-5" style="vertical-align:middle;"><label class="form-label"><?php echo "(Select a date, only if you want to force an import with an older date)"; //$this->lang->line(''); ?></label></div>
 				</div>
 			</div>
-<?php } ?>
 			<hr class="divider">
+<?php } ?>
 			<div class="mb-3"><input class="btn btn-primary" type="submit" value="Import eQSL QSO Matches" /></div>
 		</form>
   </div>
