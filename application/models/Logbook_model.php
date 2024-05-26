@@ -2,6 +2,18 @@
 
 class Logbook_model extends CI_Model {
 
+	public function __construct() {
+		$this->oop_populate_modes();
+	}
+
+	private $oop_modes=[];
+	private function oop_populate_modes() {
+		$r = $this->db->get('adif_modes');
+		foreach($r->result_array() as $row){
+			$this->oop_modes[$row['submode']][]=($row['mode'] ?? '');
+		}
+	}
+
   /* Add QSO to Logbook */
   function create_qso() {
 
@@ -4177,17 +4189,12 @@ function lotw_last_qsl_date($user_id) {
     }
 
     function get_main_mode_if_submode($mode) {
-		$this->db->select('mode');
-        $this->db->where('submode', $mode);
-
-        $query = $this->db->get('adif_modes');
-        if ($query->num_rows() > 0){
-            $row = $query->row_array();
-            return $row['mode'];
-        } else {
-            return null;
-        }
-	}
+	    if (array_key_exists($mode,$this->oop_modes)) {
+		    return($this->oop_modes[$mode]);
+	    } else {
+		    return null;
+	    }
+    }
 
     /*
      * Check the dxxc_prefixes table and return (dxcc, country)

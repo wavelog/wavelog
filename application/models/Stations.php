@@ -2,6 +2,10 @@
 
 class Stations extends CI_Model {
 
+	public function __construct() {
+	}
+
+
     function all_with_count() {
 
 		$this->db->select('station_profile.*, dxcc_entities.name as station_country, dxcc_entities.end as dxcc_end, count('.$this->config->item('table_name').'.station_id) as qso_total');
