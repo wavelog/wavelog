@@ -95,6 +95,15 @@
                         </div>
 
                         <div class="mb-3">
+                            <label for="publicMaps"><?php echo lang('options_public_maps'); ?></label>
+                            <select class="form-select" id="publicMaps" name="publicMaps" aria-describedby="publicMapsHelp" required>
+                                <option value='true' <?php if($this->optionslib->get_option('public_maps') == "true") { echo "selected=\"selected\""; } ?>>Enabled</option>
+                                <option value='false' <?php if($this->optionslib->get_option('public_maps') == "false") { echo "selected=\"selected\""; } ?>>Disabled</option>
+                            </select>
+                            <small id="publicMapsHelp" class="form-text text-muted"><?php echo lang('options_this_allows_to_disable_all_maps_in_the_public_view'); ?></small>
+                        </div>
+
+                        <div class="mb-3">
                             <label for="publicGithubButton">Public Github Button</label>
                             <select class="form-select" id="publicGithubButton" name="publicGithubButton" aria-describedby="publicGithubButtonHelp" required>
                                 <option value='true' <?php if($this->optionslib->get_option('public_github_button') == "true") { echo "selected=\"selected\""; } ?>>Enabled</option>

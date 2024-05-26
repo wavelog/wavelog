@@ -7,6 +7,7 @@ $lang['options_message1'] = 'Možnosti Wavelogu jsou globální nastavení použ
 
 $lang['options_appearance'] = 'Vzhled';
 $lang['options_theme'] = 'Téma';
+$lang['options_saved'] = "Options saved";
 $lang['options_global_theme_choice_this_is_used_when_users_arent_logged_in'] = 'Globální volba motivu, která se používá, když uživatelé nejsou přihlášeni.';
 $lang['options_public_search_bar'] = 'Veřejná vyhledávací lišta';
 $lang['options_this_allows_non_logged_in_users_to_access_the_search_functions'] = 'Tímto se umožní ne přihlášeným uživatelům přístup ke vyhledávacím funkcím.';
@@ -16,11 +17,8 @@ $lang['options_dashboard_map'] = 'Mapa na palubní desce';
 $lang['options_this_allows_the_map_on_the_dashboard_to_be_disabled_or_placed_on_the_right'] = 'Toto umožňuje zakázat mapu na palubní desce nebo ji umístit na pravou stranu.';
 $lang['options_logbook_map'] = 'Mapa v logbooku';
 $lang['options_this_allows_to_disable_the_map_in_the_logbook'] = 'Toto umožňuje zakázat mapu v logbooku.';
-$lang['options_theme_changed_to'] = 'Téma změněno na ';
-$lang['options_global_search_changed_to'] = 'Globální vyhledávání změněno na ';
-$lang['options_dashboard_banner_changed_to'] = 'Banner na palubní desce změněn na ';
-$lang['options_dashboard_map_changed_to'] = 'Mapa na palubní desce změněna na ';
-$lang['options_logbook_map_changed_to'] = 'Mapa v logbooku změněna na ';
+$lang['options_public_maps'] = "Public Maps";
+$lang['options_this_allows_to_disable_all_maps_in_the_public_view'] = "This allows to disable all maps in the public view. This affects the main map and the gridsquares map.";
 
 $lang['options_radios'] = 'Rádia';
 $lang['options_radio_settings'] = 'Nastavení rádia';
