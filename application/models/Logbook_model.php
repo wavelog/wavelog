@@ -400,6 +400,9 @@ class Logbook_model extends CI_Model {
 			$this->db->join('satellite', 'satellite.name = '.$this->config->item('table_name').'.col_sat_name', 'left outer');
 		}
 		switch ($type) {
+    case 'CALL':
+      $this->db->where('COL_CALL', $searchphrase);
+      break;
 		case 'DXCC':
 			$this->db->where('COL_COUNTRY', $searchphrase);
 			if ($band == 'SAT' && $type == 'DXCC') {
