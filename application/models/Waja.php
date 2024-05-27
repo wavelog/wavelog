@@ -190,7 +190,6 @@ class WAJA extends CI_Model {
 		}
 
 		$sql .= $this->addStateToQuery();
-
 		$sql .= $this->genfunctions->addBandToQuery($band);
 
 		$sql .= " and not exists (select 1 from ". $this->config->item('table_name') .
@@ -202,13 +201,9 @@ class WAJA extends CI_Model {
 		}
 
 		$sql .= $this->genfunctions->addBandToQuery($band);
-
 		$sql .= $this->genfunctions->addQslToQuery($postdata);
-
 		$sql .= $this->addStateToQuery();
-
 		$sql .= ")";
-
 		$query = $this->db->query($sql);
 
 		return $query->result();
@@ -227,16 +222,12 @@ class WAJA extends CI_Model {
 		}
 
 		$sql .= $this->addStateToQuery();
-
 		$sql .= $this->genfunctions->addBandToQuery($band);
-
 		$sql .= $this->genfunctions->addQslToQuery($postdata);
-
 		$query = $this->db->query($sql);
 
 		return $query->result();
 	}
-
 	
 	/*
 	 * Function gets worked and confirmed summary on each band on the active stationprofile
@@ -272,6 +263,7 @@ class WAJA extends CI_Model {
 			$bandslots_list = "'".implode("','",$bandslots)."'";
 
 			$sql .= " and thcv.col_band in (" . $bandslots_list . ")";
+			$sql .= " and thcv.col_prop_mode !='SAT'";
 		} else {
 			$sql .= " and thcv.col_prop_mode !='SAT'";
 			$sql .= " and thcv.col_band ='" . $band . "'";
@@ -296,12 +288,10 @@ class WAJA extends CI_Model {
 			$sql .= " and thcv.col_prop_mode ='" . $band . "'";
 		} else if ($band == 'All') {
 			$this->load->model('bands');
-
 			$bandslots = $this->bands->get_worked_bands('waja');
-
 			$bandslots_list = "'".implode("','",$bandslots)."'";
-
 			$sql .= " and thcv.col_band in (" . $bandslots_list . ")";
+			$sql .= " and thcv.col_prop_mode !='SAT'";
 		} else {
 			$sql .= " and thcv.col_prop_mode !='SAT'";
 			$sql .= " and thcv.col_band ='" . $band . "'";
@@ -312,9 +302,7 @@ class WAJA extends CI_Model {
 		}
 
 		$sql .= $this->genfunctions->addQslToQuery($postdata);
-
 		$sql .= $this->addStateToQuery();
-
 		$query = $this->db->query($sql);
 
 		return $query->result();
