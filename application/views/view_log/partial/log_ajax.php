@@ -68,18 +68,20 @@ function echo_table_col($row, $name) {
                 echo_table_header_col($this, $this->session->userdata('user_column4')==""?'Band':$this->session->userdata('user_column4'));
                 echo_table_header_col($this, $this->session->userdata('user_column5'));
 
-                    if(($this->config->item('use_auth')) && ($this->session->userdata('user_type') >= 2)) { ?>
+                    if(($this->config->item('use_auth')) && ($this->session->userdata('user_type') >= 2)) { 
+    		    	if ( strpos($this->session->userdata('user_default_confirmation'),'Q') !== false  ) { ?>
                     	<th>QSL</th>
-                    <?php if ( strpos($this->session->userdata('user_default_confirmation'),'E')>0 && ($this->session->userdata('user_eqsl_name') != "") ) { ?>
+                    <?php } ?>
+                    <?php if ( strpos($this->session->userdata('user_default_confirmation'),'E') !== false && ($this->session->userdata('user_eqsl_name') != "") ) { ?>
                         <th>eQSL</th>
                     <?php } ?>
-                    <?php if ( strpos($this->session->userdata('user_default_confirmation'),'L')>0 && ($this->session->userdata('user_lotw_name') != "") ) { ?>
+                    <?php if ( strpos($this->session->userdata('user_default_confirmation'),'L') !== false && ($this->session->userdata('user_lotw_name') != "") ) { ?>
                         <th>LoTW</th>
                     <?php } ?>
-    		    <?php if ( strpos($this->session->userdata('user_default_confirmation'),'Z')>0 && ($this->session->userdata('hasQrzKey') != "") ) { ?>
+    		    <?php if ( strpos($this->session->userdata('user_default_confirmation'),'Z') !== false && ($this->session->userdata('hasQrzKey') != "") ) { ?>
                         <th>QRZ</th>
                     <?php } ?>
-    		    <?php if ( strpos($this->session->userdata('user_default_confirmation'),'C')>0  ) { ?>
+    		    <?php if ( strpos($this->session->userdata('user_default_confirmation'),'C') !== false  ) { ?>
                         <th>Clublog</th>
                     <?php } ?>
                 <?php } ?>
@@ -131,7 +133,8 @@ function echo_table_col($row, $name) {
                 echo_table_col($row, $this->session->userdata('user_column4')==""?'Band':$this->session->userdata('user_column4'));
                 echo_table_col($row, $this->session->userdata('user_column5'));
 
-				if(($this->config->item('use_auth')) && ($this->session->userdata('user_type') >= 2)) { ?>
+				if(($this->config->item('use_auth')) && ($this->session->userdata('user_type') >= 2)) { 
+    		    			if ( substr_count($this->session->userdata('user_default_confirmation'),'Q')>0  ) { ?>
                 <td id="qsl_<?php echo $row->COL_PRIMARY_KEY; ?>" class="qsl">
                 <span <?php if ($row->COL_QSL_SENT != "N") {
                        switch ($row->COL_QSL_SENT) {
@@ -211,7 +214,7 @@ function echo_table_col($row, $name) {
                        } ?>">&#9660;</span>
                 </td>
 
-                <?php if (strpos($this->session->userdata('user_default_confirmation'),'E')>0 && ($this->session->userdata('user_eqsl_name') != "")){ ?>
+                <?php } if (substr_count($this->session->userdata('user_default_confirmation'),'E')>0 && ($this->session->userdata('user_eqsl_name') != "")){ ?>
                     <td class="eqsl">
                         <span <?php if ($row->COL_EQSL_QSL_SENT == "Y") { echo "title=\"".lang('eqsl_short')." ".lang('general_word_sent'); if ($row->COL_EQSL_QSLSDATE != null) { $timestamp = strtotime($row->COL_EQSL_QSLSDATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="eqsl-<?php echo ($row->COL_EQSL_QSL_SENT=='Y')?'green':'red'?>">&#9650;</span>
                         <span <?php if ($row->COL_EQSL_QSL_RCVD == "Y") { echo "title=\"".lang('eqsl_short')." ".lang('general_word_received'); if ($row->COL_EQSL_QSLRDATE != null) { $timestamp = strtotime($row->COL_EQSL_QSLRDATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="eqsl-<?php echo ($row->COL_EQSL_QSL_RCVD=='Y')?'green':'red'?>">
@@ -224,14 +227,14 @@ function echo_table_col($row, $name) {
                     </td>
                 <?php } ?>
 
-                <?php if ( strpos($this->session->userdata('user_default_confirmation'),'L')>0 && ($this->session->userdata('user_lotw_name') != "") ) { ?>
+                <?php if ( substr_count($this->session->userdata('user_default_confirmation'),'L')>0 && ($this->session->userdata('user_lotw_name') != "") ) { ?>
                     <td class="lotw">
                         <span <?php if ($row->COL_LOTW_QSL_SENT == "Y") { echo "title=\"".lang('lotw_short')." ".lang('general_word_sent'); if ($row->COL_LOTW_QSLSDATE != null) { $timestamp = strtotime($row->COL_LOTW_QSLSDATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="lotw-<?php echo ($row->COL_LOTW_QSL_SENT=='Y')?'green':'red'?>">&#9650;</span>
                         <span <?php if ($row->COL_LOTW_QSL_RCVD == "Y") { echo "title=\"".lang('lotw_short')." ".lang('general_word_received'); if ($row->COL_LOTW_QSLRDATE != null) { $timestamp = strtotime($row->COL_LOTW_QSLRDATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="lotw-<?php echo ($row->COL_LOTW_QSL_RCVD=='Y')?'green':'red'?>">&#9660;</span>
                     </td>
                 <?php } ?>
 
-		<?php if ( strpos($this->session->userdata('user_default_confirmation'),'Z')>0 && ($this->session->userdata('hasQrzKey') != "") ) { ?>
+		<?php if ( substr_count($this->session->userdata('user_default_confirmation'),'Z')>0 && ($this->session->userdata('hasQrzKey') != "") ) { ?>
                     <td class="qrz">
                         <span <?php if ($row->COL_QRZCOM_QSO_UPLOAD_STATUS == "Y") { echo "title=\"QRZ ".lang('general_word_sent'); if ($row->COL_QRZCOM_QSO_UPLOAD_DATE != null) { $timestamp = strtotime($row->COL_QRZCOM_QSO_UPLOAD_DATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="qrz-<?php echo ($row->COL_QRZCOM_QSO_UPLOAD_STATUS=='Y')?'green':'red'?>">&#9650;</span>
                         <span <?php if ($row->COL_QRZCOM_QSO_DOWNLOAD_STATUS == "Y") { echo "title=\"QRZ ".lang('general_word_received'); if ($row->COL_QRZCOM_QSO_DOWNLOAD_DATE != null) { $timestamp = strtotime($row->COL_QRZCOM_QSO_DOWNLOAD_DATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="qrz-<?php echo ($row->COL_QRZCOM_QSO_DOWNLOAD_STATUS=='Y')?'green':'red'?>">&#9660;</span>
@@ -239,7 +242,7 @@ function echo_table_col($row, $name) {
                 <?php } ?>
 
 
-		<?php if ( strpos($this->session->userdata('user_default_confirmation'),'C')>0  ) { ?>
+		<?php if ( substr_count($this->session->userdata('user_default_confirmation'),'C')>0  ) { ?>
                     <td class="clublog">
                         <span <?php if ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == "Y") { echo "title=\"Clublog ".lang('general_word_sent'); if ($row->COL_CLUBLOG_QSO_UPLOAD_DATE != null) { $timestamp = strtotime($row->COL_CLUBLOG_QSO_UPLOAD_DATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="clublog-<?php echo ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS=='Y')?'green':'red'?>">&#9650;</span>
                         <span <?php if ($row->COL_CLUBLOG_QSO_DOWNLOAD_STATUS == "Y") { echo "title=\"Clublog ".lang('general_word_received'); if ($row->COL_CLUBLOG_QSO_DOWNLOAD_DATE != null) { $timestamp = strtotime($row->COL_CLUBLOG_QSO_DOWNLOAD_DATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="clublog-<?php echo ($row->COL_CLUBLOG_QSO_DOWNLOAD_STATUS=='Y')?'green':'red'?>">&#9660;</span>
