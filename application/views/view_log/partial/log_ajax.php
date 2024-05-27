@@ -69,19 +69,19 @@ function echo_table_col($row, $name) {
                 echo_table_header_col($this, $this->session->userdata('user_column5'));
 
                     if(($this->config->item('use_auth')) && ($this->session->userdata('user_type') >= 2)) { 
-    		    	if ( substr_count($this->session->userdata('user_default_confirmation'),'Q') >0  ) { ?>
+    		    	if ( strpos($this->session->userdata('user_default_confirmation'),'Q') !== false  ) { ?>
                     	<th>QSL</th>
                     <?php } ?>
-                    <?php if ( substr_count($this->session->userdata('user_default_confirmation'),'E')>0 && ($this->session->userdata('user_eqsl_name') != "") ) { ?>
+                    <?php if ( strpos($this->session->userdata('user_default_confirmation'),'E') !== false && ($this->session->userdata('user_eqsl_name') != "") ) { ?>
                         <th>eQSL</th>
                     <?php } ?>
-                    <?php if ( substr_count($this->session->userdata('user_default_confirmation'),'L')>0 && ($this->session->userdata('user_lotw_name') != "") ) { ?>
+                    <?php if ( strpos($this->session->userdata('user_default_confirmation'),'L') !== false && ($this->session->userdata('user_lotw_name') != "") ) { ?>
                         <th>LoTW</th>
                     <?php } ?>
-    		    <?php if ( substr_count($this->session->userdata('user_default_confirmation'),'Z')>0 && ($this->session->userdata('hasQrzKey') != "") ) { ?>
+    		    <?php if ( strpos($this->session->userdata('user_default_confirmation'),'Z') !== false && ($this->session->userdata('hasQrzKey') != "") ) { ?>
                         <th>QRZ</th>
                     <?php } ?>
-    		    <?php if ( substr_count($this->session->userdata('user_default_confirmation'),'C')>0  ) { ?>
+    		    <?php if ( strpos($this->session->userdata('user_default_confirmation'),'C') !== false  ) { ?>
                         <th>Clublog</th>
                     <?php } ?>
                 <?php } ?>
