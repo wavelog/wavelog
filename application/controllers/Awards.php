@@ -1395,6 +1395,7 @@ class Awards extends CI_Controller {
         $postdata['eqsl'] = $this->input->post('eqsl') == 0 ? NULL: 1;
         $postdata['qrz'] = $this->input->post('qrz') == 0 ? NULL: 1;
         $postdata['worked'] = $this->input->post('worked') == 0 ? NULL: 1;
+        $postdata['clublog'] = $this->input->post('clublog') == 0 ? NULL: 1;
         $postdata['confirmed'] = $this->input->post('confirmed')  == 0 ? NULL: 1;
         $postdata['notworked'] = $this->input->post('notworked')  == 0 ? NULL: 1;
         $postdata['band'] = $this->security->xss_clean($this->input->post('band'));
