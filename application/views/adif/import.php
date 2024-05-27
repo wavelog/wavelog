@@ -61,7 +61,7 @@
                         <select name="station_profile" class="form-select mb-2 me-sm-2" style="width: 20%;">
                             <option value="0"><?php echo lang('adif_select_stationlocation') ?></option>
                             <?php foreach ($station_profile->result() as $station) { ?>
-                                <option value="<?php echo $station->station_id; ?>" <?php if ($station->station_id == $this->stations->find_active()) {
+                                <option value="<?php echo $station->station_id; ?>" <?php if ($station->station_id == $active_station_id) {
                                                                                         echo " selected =\"selected\"";
                                                                                     } ?>><?php echo lang('gen_hamradio_callsign') . ": " ?><?php echo $station->station_callsign; ?> (<?php echo $station->station_profile_name; ?>)</option>
                             <?php } ?>
@@ -69,7 +69,7 @@
                         <div class="small form-text text-muted"><?php echo lang('gen_add_to_contest') ?></div>
                         <select name="contest" id="contest" class="form-select mb-2 me-sm-2" style="width: 20%;">
                         	<option value="" selected>No Contest</option>
-                            <?php 
+                            <?php
 				foreach ($contests as $contest) {
                                 echo '<option value="'.$contest['adifname'].'">'.$contest['name'].'</option>';
                             } ?>
@@ -172,7 +172,7 @@
                                                                                     } ?>><?php echo lang('gen_hamradio_callsign') . ": " ?><?php echo $station->station_callsign; ?> (<?php echo $station->station_profile_name; ?>)</option>
                             <?php } ?>
                         </select>
-                        <br>                                                            
+                        <br>
                         <label for="from"><?php echo lang('gen_from_date') . ": " ?></label>
                         <input name="from" id="from" type="date" class="form-control w-auto">
                         <br>
@@ -218,7 +218,7 @@
                             <?php } ?>
                         </select>
                         <p><span class="badge text-bg-warning"><?php echo lang('general_word_warning') ?></span> <?php echo lang('adif_lotw_export_if_selected') ?></p>
-                        <br>                                                            
+                        <br>
                         <label for="from"><?php echo lang('gen_from_date') . ": " ?></label>
                         <input name="from" id="from" type="date" class="form-control w-auto">
                         <br>
