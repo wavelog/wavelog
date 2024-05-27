@@ -171,8 +171,8 @@ function handleInput() {
 				qsotime = qsotime.slice(0, -2) + item;
 			} else if (
 				item.match(
-					//         SOTA                |         IOTA          |           POTA              |          WWFF            //
-					/^[A-Z0-9]{1,3}\/[A-Z]{2}-\d{3}|[AENOS]*[FNSUACA]-\d{3}|(?!.*FF)[A-Z0-9]{1,3}-\d{4,5}|[A-Z0-9]{1,3}[F]{2}-\d{4}$/i
+					//          SOTA               |         IOTA          |                           POTA                                   |           WWFF            //
+					/^[A-Z0-9]{1,3}\/[A-Z]{2}-\d{3}|[AENOS]*[FNSUACA]-\d{3}|(?!.*FF)[A-Z0-9]{1,3}-\d{4,5}(?:,((?!.*FF)[A-Z0-9]{1,3}-\d{4,5}))*|[A-Z0-9]{1,3}[F]{2}-\d{4}$/i
 				)
 			) {
 				sotaWwff = item.toUpperCase();
@@ -690,7 +690,7 @@ function isIOTA(value) {
 }
 
 function isPOTA(value) {
-	if (value.match(/^(?!.*FF)[A-Z0-9]{1,3}-\d{4,5}$/)) {
+	if (value.match(/^(?!.*FF)[A-Z0-9]{1,3}-\d{4,5}(?:,((?!.*FF)[A-Z0-9]{1,3}-\d{4,5}))*$/)) {
 		return true;
 	}
 }
