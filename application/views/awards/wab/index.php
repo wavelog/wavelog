@@ -95,6 +95,14 @@
                         echo '>'; ?>
                         <label class="form-check-label" for="qrz">QRZ.com</label>
                     </div>
+		    <div>
+                     <?php echo '<input class="form-check-input" type="checkbox" name="clublog" id="clublog"';
+                        if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'C') !== false) {
+                            echo ' checked' ;
+                        }
+                        echo '>'; ?>
+                        <label class="form-check-label" for="clublog">Clublog</label>
+                    </div>
                 </div>
 
             <button id="plot" type="button" name="plot" class="btn btn-primary me-1 ld-ext-right ld-ext-right-plot" onclick="plotmap()">Map<div class="ld ld-ring ld-spin"></div></button>

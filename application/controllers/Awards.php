@@ -65,6 +65,7 @@ class Awards extends CI_Controller {
 			$postdata['lotw'] = $this->security->xss_clean($this->input->post('lotw'));
 			$postdata['eqsl'] = $this->security->xss_clean($this->input->post('eqsl'));
 			$postdata['qrz'] = $this->security->xss_clean($this->input->post('qrz'));
+			$postdata['clublog'] = $this->security->xss_clean($this->input->post('clublog'));
 			$postdata['worked'] = $this->security->xss_clean($this->input->post('worked'));
 			$postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed'));
 			$postdata['band'] = $this->security->xss_clean($this->input->post('band'));
@@ -74,6 +75,7 @@ class Awards extends CI_Controller {
 			$postdata['lotw'] = 1;
 			$postdata['eqsl'] = 0;
 			$postdata['qrz'] = 0;
+			$postdata['clublog'] = 0;
 			$postdata['worked'] = 1;
 			$postdata['confirmed'] = 1;
 			$postdata['band'] = 'All';
@@ -129,6 +131,7 @@ class Awards extends CI_Controller {
 			$postdata['lotw'] = $this->security->xss_clean($this->input->post('lotw'));
 			$postdata['eqsl'] = $this->security->xss_clean($this->input->post('eqsl'));
 			$postdata['qrz'] = $this->security->xss_clean($this->input->post('qrz'));
+			$postdata['clublog'] = $this->security->xss_clean($this->input->post('clublog'));
 			$postdata['worked'] = $this->security->xss_clean($this->input->post('worked'));
 			$postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed'));
 			$postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked'));
@@ -445,6 +448,9 @@ class Awards extends CI_Controller {
 		}
 		if (strpos($qsl, "Z") !== false) {
 			$qsltype[] = "QRZ.com";
+		}
+		if (strpos($qsl, "C") !== false) {
+			$qsltype[] = "Clublog";
 		}
 
 		// Render Page
@@ -1440,6 +1446,7 @@ class Awards extends CI_Controller {
         $postdata['lotw'] = $this->input->post('lotw') == 0 ? NULL: 1;
         $postdata['eqsl'] = $this->input->post('eqsl') == 0 ? NULL: 1;
         $postdata['qrz'] = $this->input->post('qrz') == 0 ? NULL: 1;
+        $postdata['clublog'] = $this->input->post('clublog') == 0 ? NULL: 1;
         $postdata['worked'] = $this->input->post('worked') == 0 ? NULL: 1;
         $postdata['confirmed'] = $this->input->post('confirmed')  == 0 ? NULL: 1;
         $postdata['notworked'] = $this->input->post('notworked')  == 0 ? NULL: 1;
@@ -1492,6 +1499,7 @@ class Awards extends CI_Controller {
         $postdata['lotw'] = $this->input->post('lotw') == 0 ? NULL: 1;
         $postdata['eqsl'] = $this->input->post('eqsl') == 0 ? NULL: 1;
         $postdata['qrz'] = $this->input->post('qrz') == 0 ? NULL: 1;
+        $postdata['clublog'] = $this->input->post('clublog') == 0 ? NULL: 1;
         $postdata['worked'] = $this->input->post('worked') == 0 ? NULL: 1;
         $postdata['confirmed'] = $this->input->post('confirmed')  == 0 ? NULL: 1;
         $postdata['notworked'] = $this->input->post('notworked')  == 0 ? NULL: 1;
@@ -1529,7 +1537,7 @@ class Awards extends CI_Controller {
         $postdata['confirmed'] = $this->input->post('confirmed')  == 0 ? NULL: 1;
         $postdata['notworked'] = $this->input->post('notworked')  == 0 ? NULL: 1;
         $postdata['band'] = $this->input->post('band');
-		    $postdata['mode'] = $this->input->post('mode');
+	$postdata['mode'] = $this->input->post('mode');
         $postdata['includedeleted'] = $this->input->post('includedeleted') == 0 ? NULL: 1;
         $postdata['Africa'] = $this->input->post('Africa') == 0 ? NULL: 1;
         $postdata['Asia'] = $this->input->post('Asia') == 0 ? NULL: 1;
@@ -1579,89 +1587,97 @@ class Awards extends CI_Controller {
         }
     }
 
-	public function wab() {
-		$this->load->model('bands');
-        $this->load->model('gridmap_model');
-		$this->load->model('stations');
+    public function wab() {
+	    $this->load->model('bands');
+	    $this->load->model('gridmap_model');
+	    $this->load->model('stations');
 
-		$data['modes'] = $this->gridmap_model->get_worked_modes();
-		$data['bands'] = $this->bands->get_worked_bands();
-		$data['orbits'] = $this->bands->get_worked_orbits();
-		$data['sats_available'] = $this->bands->get_worked_sats();
+	    $data['modes'] = $this->gridmap_model->get_worked_modes();
+	    $data['bands'] = $this->bands->get_worked_bands();
+	    $data['orbits'] = $this->bands->get_worked_orbits();
+	    $data['sats_available'] = $this->bands->get_worked_sats();
 
-		$data['user_default_band'] = $this->session->userdata('user_default_band');
-		$data['user_default_confirmation'] = $this->session->userdata('user_default_confirmation');
+	    $data['user_default_band'] = $this->session->userdata('user_default_band');
+	    $data['user_default_confirmation'] = $this->session->userdata('user_default_confirmation');
 
-		$footerData = [];
-		$footerData['scripts'] = [
-			'assets/js/sections/wab.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/wab.js"))
-		];
+	    $footerData = [];
+	    $footerData['scripts'] = [
+		    'assets/js/sections/wab.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/wab.js"))
+	    ];
 
-		// Render page
-		$data['page_title'] = "Awards - Worked All Britain";
-		$this->load->view('interface_assets/header', $data);
-		$this->load->view('awards/wab/index');
-		$this->load->view('interface_assets/footer', $footerData);
-      }
+	    // Render page
+	    $data['page_title'] = "Awards - Worked All Britain";
+	    $this->load->view('interface_assets/header', $data);
+	    $this->load->view('awards/wab/index');
+	    $this->load->view('interface_assets/footer', $footerData);
+    }
 
-	  public function wab_map() {
-		$band = $this->security->xss_clean($this->input->post('band'));
-		$mode = $this->security->xss_clean($this->input->post('mode'));
-		$qsl = $this->security->xss_clean($this->input->post('qsl'));
-		$lotw = $this->security->xss_clean($this->input->post('lotw'));
-		$eqsl = $this->security->xss_clean($this->input->post('eqsl'));
-		$qrz = $this->security->xss_clean($this->input->post('qrz'));
-		$sat = $this->security->xss_clean($this->input->post('sat'));
-		$orbit = $this->security->xss_clean($this->input->post('orbit'));
+    public function wab_map() {
+	    $postdata['qsl'] = $this->security->xss_clean($this->input->post('qsl'));
+	    $postdata['lotw'] = $this->security->xss_clean($this->input->post('lotw'));
+	    $postdata['eqsl'] = $this->security->xss_clean($this->input->post('eqsl'));
+	    $postdata['qrz'] = $this->security->xss_clean($this->input->post('qrz'));
+	    $postdata['clublog'] = $this->security->xss_clean($this->input->post('clublog'));
+	    $postdata['worked'] = $this->security->xss_clean($this->input->post('worked'));
+	    $postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed'));
+	    $postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked'));
+	    $postdata['band'] = $this->security->xss_clean($this->input->post('band'));
+	    $postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
+	    $postdata['sat'] = $this->security->xss_clean($this->input->post('sat'));
+	    $postdata['orbit'] = $this->security->xss_clean($this->input->post('orbit'));
 
-		$this->load->model('logbooks_model');
-		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+	    $this->load->model('logbooks_model');
+	    $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
-        $this->load->model('wab');
+	    $this->load->model('wab');
 
-        if ($logbooks_locations_array) {
-			$location_list = "'".implode("','",$logbooks_locations_array)."'";
-            $wab_array = $this->wab->get_wab_array($band, $location_list, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit);
-		} else {
-            $location_list = null;
-            $wab_array = null;
-        }
+	    if ($logbooks_locations_array) {
+		    $location_list = "'".implode("','",$logbooks_locations_array)."'";
+		    $wab_array = $this->wab->get_wab_array($location_list, $postdata);
+	    } else {
+		    $location_list = null;
+		    $wab_array = null;
+	    }
 
-        header('Content-Type: application/json');
-        echo json_encode($wab_array);
-      }
+	    header('Content-Type: application/json');
+	    echo json_encode($wab_array);
+    }
 
-	  public function wab_list() {
-		$band = $this->security->xss_clean($this->input->post('band'));
-		$mode = $this->security->xss_clean($this->input->post('mode'));
-		$qsl = $this->security->xss_clean($this->input->post('qsl'));
-		$lotw = $this->security->xss_clean($this->input->post('lotw'));
-		$eqsl = $this->security->xss_clean($this->input->post('eqsl'));
-		$qrz = $this->security->xss_clean($this->input->post('qrz'));
-		$sat = $this->security->xss_clean($this->input->post('sat'));
-		$orbit = $this->security->xss_clean($this->input->post('orbit'));
+    public function wab_list() {
+	    $postdata['qsl'] = $this->security->xss_clean($this->input->post('qsl'));
+	    $postdata['lotw'] = $this->security->xss_clean($this->input->post('lotw'));
+	    $postdata['eqsl'] = $this->security->xss_clean($this->input->post('eqsl'));
+	    $postdata['qrz'] = $this->security->xss_clean($this->input->post('qrz'));
+	    $postdata['clublog'] = $this->security->xss_clean($this->input->post('clublog'));
+	    $postdata['worked'] = $this->security->xss_clean($this->input->post('worked'));
+	    $postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed'));
+	    $postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked'));
+	    $postdata['band'] = $this->security->xss_clean($this->input->post('band'));
+	    $postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
+	    $postdata['sat'] = $this->security->xss_clean($this->input->post('sat'));
+	    $postdata['orbit'] = $this->security->xss_clean($this->input->post('orbit'));
 
-		$this->load->model('logbooks_model');
-		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+	    $this->load->model('logbooks_model');
+	    $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
-        $this->load->model('wab');
+	    $this->load->model('wab');
 
-        if ($logbooks_locations_array) {
-			$location_list = "'".implode("','",$logbooks_locations_array)."'";
-            $wab_array = $this->wab->get_wab_list($band, $location_list, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit);
-		} else {
-            $location_list = null;
-            $wab_array = null;
-        }
+	    if ($logbooks_locations_array) {
+		    $location_list = "'".implode("','",$logbooks_locations_array)."'";
+		    $wab_array = $this->wab->get_wab_list($location_list, $postdata);
+	    } else {
+		    $location_list = null;
+		    $wab_array = null;
+	    }
 
-		$data['wab_array'] = $wab_array;
-		$data['postdata']['band'] = $band;
-		$data['postdata']['mode'] = $mode;
-		$data['postdata']['sat'] = $sat;
-		$data['postdata']['orbit'] = $orbit;
+	    $data['wab_array'] = $wab_array;
+	    $data['postdata']['band'] = $postdata['band'];
+	    $data['postdata']['mode'] = $postdata['mode'];
+	    $data['postdata']['sat'] = $postdata['sat'];
+	    $data['postdata']['orbit'] = $postdata['orbit'];
 
-		$this->load->view('awards/wab/list', $data);
-      }
+	    $this->load->view('awards/wab/list', $data);
+    }
 
 	public function itu() {
 		$footerData = [];
@@ -1694,22 +1710,24 @@ class Awards extends CI_Controller {
 
         $data['bands'] = $bands; // Used for displaying selected band(s) in the table in the view
 
-        if($this->input->method() === 'post') {
-            $postdata['qsl'] = $this->security->xss_clean($this->input->post('qsl'));
-            $postdata['lotw'] = $this->security->xss_clean($this->input->post('lotw'));
-            $postdata['eqsl'] = $this->security->xss_clean($this->input->post('eqsl'));
-            $postdata['qrz'] = $this->security->xss_clean($this->input->post('qrz'));
-            $postdata['worked'] = $this->security->xss_clean($this->input->post('worked'));
-            $postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed'));
-            $postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked'));
-            $postdata['band'] = $this->security->xss_clean($this->input->post('band'));
-			$postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
-        }
+	if($this->input->method() === 'post') {
+		$postdata['qsl'] = $this->security->xss_clean($this->input->post('qsl'));
+		$postdata['lotw'] = $this->security->xss_clean($this->input->post('lotw'));
+		$postdata['eqsl'] = $this->security->xss_clean($this->input->post('eqsl'));
+		$postdata['qrz'] = $this->security->xss_clean($this->input->post('qrz'));
+		$postdata['clublog'] = $this->security->xss_clean($this->input->post('clublog'));
+		$postdata['worked'] = $this->security->xss_clean($this->input->post('worked'));
+		$postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed'));
+		$postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked'));
+		$postdata['band'] = $this->security->xss_clean($this->input->post('band'));
+		$postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
+	}
         else { // Setting default values at first load of page
             $postdata['qsl'] = 1;
             $postdata['lotw'] = 1;
             $postdata['eqsl'] = 0;
             $postdata['qrz'] = 0;
+            $postdata['clublog'] = 0;
             $postdata['worked'] = 1;
             $postdata['confirmed'] = 1;
             $postdata['notworked'] = 1;
@@ -1750,6 +1768,7 @@ class Awards extends CI_Controller {
         $postdata['lotw'] = $this->input->post('lotw') == 0 ? NULL: 1;
         $postdata['eqsl'] = $this->input->post('eqsl') == 0 ? NULL: 1;
         $postdata['qrz'] = $this->input->post('qrz') == 0 ? NULL: 1;
+        $postdata['clublog'] = $this->input->post('clublog') == 0 ? NULL: 1;
         $postdata['worked'] = $this->input->post('worked') == 0 ? NULL: 1;
         $postdata['confirmed'] = $this->input->post('confirmed')  == 0 ? NULL: 1;
         $postdata['notworked'] = $this->input->post('notworked')  == 0 ? NULL: 1;
