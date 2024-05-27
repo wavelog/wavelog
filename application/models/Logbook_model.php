@@ -4868,7 +4868,7 @@ function lotw_last_qsl_date($user_id) {
         if ($row->COL_NAME != null) {
            $plot['html'] .= "Name: ".$row->COL_NAME."<br />";
         }
-        
+
         // Get Date format
         if($this->session->userdata('user_date_format')) {
           // If Logged in and session exists
@@ -4877,15 +4877,15 @@ function lotw_last_qsl_date($user_id) {
           // Get Default date format from /config/wavelog.php
           $user_date_format = $this->config->item('qso_date_format');
         }
-        
+
         $qso_time_on = new DateTime($row->COL_TIME_ON);
 
         if ($this->uri->segment(1) == 'visitor') {
-		      $qso_time_on = $qso_time_on->format('Y-m-d');
+          $qso_time_on = $qso_time_on->format('Y-m-d');
         } else {
           $qso_time_on = $qso_time_on->format($user_date_format.' H:m:i');
         }
-      
+
         $plot['html'] .= "Date/Time: ".$qso_time_on."<br />";
         $plot['html'] .= ($row->COL_SAT_NAME != null) ? ("SAT: ".$row->COL_SAT_NAME."<br />") : ("Band: ".$row->COL_BAND."<br />");
         $plot['html'] .= "Mode: ".($row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE)."<br />";
