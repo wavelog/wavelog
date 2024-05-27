@@ -4868,6 +4868,7 @@ function lotw_last_qsl_date($user_id) {
         if ($row->COL_NAME != null) {
            $plot['html'] .= "Name: ".$row->COL_NAME."<br />";
         }
+        $date_cat = "Date";
 
         // Get Date format
         if($this->session->userdata('user_date_format')) {
@@ -4881,16 +4882,18 @@ function lotw_last_qsl_date($user_id) {
         $qso_time_on = new DateTime($row->COL_TIME_ON);
 
         if ($this->uri->segment(1) == 'visitor') {
-          $visitor_date_format = 'Y-m-d';
+          $visitor_date_format = $this->config->item('qso_date_format');
           if ($this->config->item('show_time')) {
             $visitor_date_format .= ' H:i';
+            $date_cat .= "/Time";
           }
           $qso_time_on = $qso_time_on->format($visitor_date_format);
         } else {
           $qso_time_on = $qso_time_on->format($user_date_format.' H:i');
+          $date_cat .= "/Time";
         }
 
-        $plot['html'] .= "Date/Time: ".$qso_time_on."<br />";
+        $plot['html'] .= $date_cat.": ".$qso_time_on."<br />";
         $plot['html'] .= ($row->COL_SAT_NAME != null) ? ("SAT: ".$row->COL_SAT_NAME."<br />") : ("Band: ".$row->COL_BAND."<br />");
         $plot['html'] .= "Mode: ".($row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE)."<br />";
 
