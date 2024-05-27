@@ -279,6 +279,7 @@ class IOTA extends CI_Model {
 			$bandslots = $this->bands->get_worked_bands('iota');
 			$bandslots_list = "'".implode("','",$bandslots)."'";
 			$sql .= " and thcv.col_band in (" . $bandslots_list . ")";
+			$sql .= " and thcv.col_prop_mode !='SAT'";
 		} else {
 			$sql .= " and thcv.col_prop_mode !='SAT'";
 			$sql .= " and thcv.col_band ='" . $band . "'";
@@ -305,6 +306,7 @@ class IOTA extends CI_Model {
 			$bandslots = $this->bands->get_worked_bands('iota');
 			$bandslots_list = "'".implode("','",$bandslots)."'";
 			$sql .= " and thcv.col_band in (" . $bandslots_list . ")";
+			$sql .= " and thcv.col_prop_mode !='SAT'";
 		} else {
 			$sql .= " and thcv.col_prop_mode !='SAT'";
 			$sql .= " and thcv.col_band ='" . $band . "'";
