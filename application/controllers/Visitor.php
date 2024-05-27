@@ -2,9 +2,14 @@
 
 class Visitor extends CI_Controller {
 
+	// Define number of QSO per page
+	private $qso_per_page;
+
 	function __construct()
 	{
 		parent::__construct();
+
+		$this->qso_per_page = 25;
 	}
 
     function _remap($method) {
@@ -84,7 +89,7 @@ class Visitor extends CI_Controller {
 				$this->load->library('pagination');
 				$config['base_url'] = base_url().'index.php/visitor/'.$public_slug;
 				$config['total_rows'] = $this->logbook_model->total_qsos($logbooks_locations_array);
-				$config['per_page'] = '25';
+				$config['per_page'] = $this->qso_per_page;
 				$config['num_links'] = 6;
 				$config['full_tag_open'] = '';
 				$config['full_tag_close'] = '';
@@ -123,7 +128,7 @@ class Visitor extends CI_Controller {
                 $data['total_lotw_sent'] = $QSLStatsBreakdownArray['LoTW_Sent'];
                 $data['total_lotw_rcvd'] = $QSLStatsBreakdownArray['LoTW_Received'];
 
-                $data['results'] = $this->logbook_model->get_qsos($config['per_page'],$this->uri->segment(3),$logbooks_locations_array);
+                $data['results'] = $this->logbook_model->get_qsos($this->qso_per_page,$this->uri->segment(3),$logbooks_locations_array);
 
                 $data['page_title'] = "Dashboard";
                 $data['slug'] = $public_slug;
@@ -163,7 +168,7 @@ class Visitor extends CI_Controller {
             show_404('Unknown Public Page.');
         }
 
-		$qsos = $this->logbook_model->get_qsos('18', null, $logbooks_locations_array);
+		$qsos = $this->logbook_model->get_qsos($this->qso_per_page, $this->uri->segment(4), $logbooks_locations_array);
 		// [PLOT] ADD plot //
 		$plot_array = $this->logbook_model->get_plot_array_for_map($qsos->result());
 
