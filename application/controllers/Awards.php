@@ -115,12 +115,10 @@ class Awards extends CI_Controller {
 		if ($this->input->post('band') != NULL) {   // Band is not set when page first loads.
 			if ($this->input->post('band') == 'All') {         // Did the user specify a band? If not, use all bands
 				$bands = $data['worked_bands'];
-			}
-			else {
+			} else {
 				$bands[] = $this->security->xss_clean($this->input->post('band'));
 			}
-		}
-		else {
+		} else {
 			$bands = $data['worked_bands'];
 		}
 
@@ -148,8 +146,7 @@ class Awards extends CI_Controller {
 			$postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
 			$postdata['sat'] = $this->security->xss_clean($this->input->post('sats'));
 			$postdata['orbit'] = $this->security->xss_clean($this->input->post('orbits'));
-		}
-		else { // Setting default values at first load of page
+		} else { // Setting default values at first load of page
 			$postdata['qsl'] = 1;
 			$postdata['lotw'] = 1;
 			$postdata['eqsl'] = 0;
