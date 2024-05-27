@@ -784,7 +784,7 @@ class Awards extends CI_Controller {
         $this->load->view('interface_assets/footer', $footerData);
     }
 
-    public function iota ()	{
+    public function iota () {
 	    $this->load->model('iota');
 	    $this->load->model('modes');
 	    $this->load->model('bands');
@@ -805,6 +805,11 @@ class Awards extends CI_Controller {
 	    $data['modes'] = $this->modes->active(); // Used in the view for mode select
 
 	    if($this->input->method() === 'post') {
+		    $postdata['qsl'] = $this->input->post('qsl') == 0 ? NULL: 1;
+		    $postdata['lotw'] = $this->input->post('lotw') == 0 ? NULL: 1;
+		    $postdata['eqsl'] = $this->input->post('eqsl') == 0 ? NULL: 1;
+		    $postdata['qrz'] = $this->input->post('qrz') == 0 ? NULL: 1;
+		    $postdata['clublog'] = $this->input->post('clublog') == 0 ? NULL: 1;
 		    $postdata['worked'] = $this->security->xss_clean($this->input->post('worked')) ?? NULL;
 		    $postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed')) ?? NULL;
 		    $postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked')) ?? NULL;
@@ -819,6 +824,11 @@ class Awards extends CI_Controller {
 		    $postdata['band'] = $this->security->xss_clean($this->input->post('band')) ?? NULL;
 		    $postdata['mode'] = $this->security->xss_clean($this->input->post('mode')) ?? NULL;
 	    } else { // Setting default values at first load of page
+		    $postdata['qsl'] = 1;
+		    $postdata['lotw'] = 1;
+		    $postdata['eqsl'] = 0;
+		    $postdata['qrz'] = 0;
+		    $postdata['clublog'] = 0;
 		    $postdata['worked'] = 1;
 		    $postdata['confirmed'] = 1;
 		    $postdata['notworked'] = 1;
