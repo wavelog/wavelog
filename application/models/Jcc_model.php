@@ -2,8 +2,13 @@
 
 class Jcc_model extends CI_Model {
 
+	
+	private $location_list=null;
 	function __construct() {
 		$this->load->library('Genfunctions');
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$this->location_list = "'".implode("','",$logbooks_locations_array)."'";
 	}
 
 	public $jaCities = array(
@@ -924,14 +929,6 @@ class Jcc_model extends CI_Model {
 	);
 
 	function get_jcc_array($bands, $postdata) {
-		$this->load->model('logbooks_model');
-		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-
-		if (!$logbooks_locations_array) {
-			return null;
-		}
-
-		$location_list = "'".implode("','",$logbooks_locations_array)."'";
 
 		$jccArray = array_keys($this->jaCities);
 
@@ -951,14 +948,14 @@ class Jcc_model extends CI_Model {
 			}
 
 			if ($postdata['worked'] != NULL) {
-				$jccBand = $this->getJccWorked($location_list, $band, $postdata);
+				$jccBand = $this->getJccWorked($this->location_list, $band, $postdata);
 				foreach ($jccBand as $line) {
 					$bandJcc[$line->col_cnty][$band] = '<div class="bg-danger awardsBgDanger"><a href=\'javascript:displayContacts("' . $line->col_cnty . '","' . $band . '","All","All","'. $postdata['mode'] . '","JCC", "")\'>W</a></div>';
 					$cities[$line->col_cnty]['count']++;
 				}
 			}
 			if ($postdata['confirmed'] != NULL) {
-				$jccBand = $this->getJccConfirmed($location_list, $band, $postdata);
+				$jccBand = $this->getJccConfirmed($this->location_list, $band, $postdata);
 				foreach ($jccBand as $line) {
 					$bandJcc[$line->col_cnty][$band] = '<div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("' . $line->col_cnty . '","' . $band . '","All","All","'. $postdata['mode'] . '","JCC", "'.$qsl.'")\'>C</a></div>';
 					$cities[$line->col_cnty]['count']++;
@@ -968,7 +965,7 @@ class Jcc_model extends CI_Model {
 
 		// We want to remove the worked cities in the list, since we do not want to display them
 		if ($postdata['worked'] == NULL) {
-			$jccBand = $this->getJccWorked($location_list, $postdata['band'], $postdata);
+			$jccBand = $this->getJccWorked($this->location_list, $postdata['band'], $postdata);
 			foreach ($jccBand as $line) {
 				unset($bandJcc[$line->col_cnty]);
 			}
@@ -976,7 +973,7 @@ class Jcc_model extends CI_Model {
 
 		// We want to remove the confirmed cities in the list, since we do not want to display them
 		if ($postdata['confirmed'] == NULL) {
-			$wasBand = $this->getJccConfirmed($location_list, $postdata['band'], $postdata);
+			$wasBand = $this->getJccConfirmed($this->location_list, $postdata['band'], $postdata);
 			foreach ($wasBand as $line) {
 				unset($bandJcc[$line->col_cnty]);
 			}
@@ -1116,35 +1113,25 @@ class Jcc_model extends CI_Model {
 	/*
 	 * Function gets worked and confirmed summary on each band on the active stationprofile
 	 */
-	function get_jcc_summary($bands, $postdata)
-	{
-		$this->load->model('logbooks_model');
-		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-
-		if (!$logbooks_locations_array) {
-			return null;
-		}
-
-		$location_list = "'".implode("','",$logbooks_locations_array)."'";
-
+	function get_jcc_summary($bands, $postdata) {
 		foreach ($bands as $band) {
 			if ($band != 'SAT') {
-				$worked = $this->getSummaryByBand($band, $postdata, $location_list);
-				$confirmed = $this->getSummaryByBandConfirmed($band, $postdata, $location_list);
+				$worked = $this->getSummaryByBand($band, $postdata, $this->location_list);
+				$confirmed = $this->getSummaryByBandConfirmed($band, $postdata, $this->location_list);
 				$jccSummary['worked'][$band] = $worked[0]->count;
 				$jccSummary['confirmed'][$band] = $confirmed[0]->count;
 			}
 		}
 
-		$workedTotal = $this->getSummaryByBand($postdata['band'], $postdata, $location_list);
-		$confirmedTotal = $this->getSummaryByBandConfirmed($postdata['band'], $postdata, $location_list);
+		$workedTotal = $this->getSummaryByBand($postdata['band'], $postdata, $this->location_list);
+		$confirmedTotal = $this->getSummaryByBandConfirmed($postdata['band'], $postdata, $this->location_list);
 
 		$jccSummary['worked']['Total'] = $workedTotal[0]->count;
 		$jccSummary['confirmed']['Total'] = $confirmedTotal[0]->count;
 
 		if (in_array('SAT', $bands)) {
-				$worked = $this->getSummaryByBand('SAT', $postdata, $location_list);
-				$confirmed = $this->getSummaryByBandConfirmed('SAT', $postdata, $location_list);
+				$worked = $this->getSummaryByBand('SAT', $postdata, $this->location_list);
+				$confirmed = $this->getSummaryByBandConfirmed('SAT', $postdata, $this->location_list);
 				$jccSummary['worked']['SAT'] = $worked[0]->count;
 				$jccSummary['confirmed']['SAT'] = $confirmed[0]->count;
 		}
@@ -1152,8 +1139,7 @@ class Jcc_model extends CI_Model {
 		return $jccSummary;
 	}
 
-	function getSummaryByBand($band, $postdata, $location_list)
-	{
+	function getSummaryByBand($band, $postdata, $location_list) {
 		$sql = "SELECT count(distinct thcv.col_cnty) as count FROM " . $this->config->item('table_name') . " thcv";
 
 		$sql .= " where station_id in (" . $location_list . ")";
@@ -1185,8 +1171,7 @@ class Jcc_model extends CI_Model {
 		return $query->result();
 	}
 
-	function getSummaryByBandConfirmed($band, $postdata, $location_list)
-	{
+	function getSummaryByBandConfirmed($band, $postdata, $location_list) {
 		$sql = "SELECT count(distinct thcv.col_cnty) as count FROM " . $this->config->item('table_name') . " thcv";
 
 		$sql .= " where station_id in (" . $location_list . ")";
@@ -1230,17 +1215,8 @@ class Jcc_model extends CI_Model {
 	}
 
 	function exportJcc($postdata) {
-		$this->load->model('logbooks_model');
-		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-
-		if (!$logbooks_locations_array) {
-			return null;
-		}
-
-		$location_list = "'".implode("','",$logbooks_locations_array)."'";
-
 		$sql = "SELECT distinct col_cnty FROM " . $this->config->item('table_name') . " thcv
-			where station_id in (" . $location_list . ")";
+			where station_id in (" . $this->location_list . ")";
 
 		if ($postdata['mode'] != 'All') {
 			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
@@ -1259,7 +1235,7 @@ class Jcc_model extends CI_Model {
 		}
 		$qsos = array();
 		foreach($jccs as $jcc) {
-			$qso = $this->getFirstQso($location_list, $jcc, $postdata);
+			$qso = $this->getFirstQso($this->location_list, $jcc, $postdata);
 			$qsos[] = array('call' => $qso[0]->COL_CALL, 'date' => $qso[0]->COL_TIME_ON, 'band' => $qso[0]->COL_BAND, 'mode' => $qso[0]->COL_MODE, 'prop_mode' => $qso[0]->COL_PROP_MODE, 'cnty' => $qso[0]->COL_CNTY, 'jcc' => $this->jaCities[$qso[0]->COL_CNTY]['name']);
 		}
 
@@ -1282,7 +1258,8 @@ class Jcc_model extends CI_Model {
 	}
 
 	function fetch_jcc_wkd($postdata) {
-		$sql = 'SELECT DISTINCT `COL_CNTY` FROM '.$this->config->item('table_name').' WHERE 1';
+		$sql = 'SELECT DISTINCT `COL_CNTY` FROM '.$this->config->item('table_name').' WHERE 1
+			and station_id in ('.$this->location_list.')';
 		$sql .= $this->addStateToQuery();
 		$sql .= $this->genfunctions->addBandToQuery($postdata['band']);
 		if ($postdata['mode'] != 'All') {
@@ -1294,7 +1271,8 @@ class Jcc_model extends CI_Model {
 	}
 
 	function fetch_jcc_cnfm($postdata) {
-		$sql = 'SELECT DISTINCT `COL_CNTY` FROM '.$this->config->item('table_name').' WHERE 1';
+		$sql = 'SELECT DISTINCT `COL_CNTY` FROM '.$this->config->item('table_name').' WHERE 1
+			and station_id in ('.$this->location_list.')';
 		$sql .= $this->addStateToQuery();
 		$sql .= $this->genfunctions->addBandToQuery($postdata['band']);
 		if ($postdata['mode'] != 'All') {

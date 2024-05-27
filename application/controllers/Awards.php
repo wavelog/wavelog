@@ -266,67 +266,66 @@ class Awards extends CI_Controller {
 		];
 
 		$this->load->model('jcc_model');
-        $this->load->model('modes');
-        $this->load->model('bands');
+		$this->load->model('modes');
+		$this->load->model('bands');
 
-        $data['worked_bands'] = $this->bands->get_worked_bands('jcc');
-        $data['modes'] = $this->modes->active();
+		$data['worked_bands'] = $this->bands->get_worked_bands('jcc');
+		$data['modes'] = $this->modes->active();
 
-        if ($this->input->post('band') != NULL) {   			// Band is not set when page first loads.
-            if ($this->input->post('band') == 'All') {         // Did the user specify a band? If not, use all bands
-                $bands = $data['worked_bands'];
-            }
-            else {
-                $bands[] = $this->security->xss_clean($this->input->post('band'));
-            }
-        }
-        else {
-            $bands = $data['worked_bands'];
-        }
+		if ($this->input->post('band') != NULL) {   			// Band is not set when page first loads.
+			if ($this->input->post('band') == 'All') {         // Did the user specify a band? If not, use all bands
+				$bands = $data['worked_bands'];
+			} else {
+				$bands[] = $this->security->xss_clean($this->input->post('band'));
+			}
+		} else {
+			$bands = $data['worked_bands'];
+		}
 
-        $data['bands'] = $bands; // Used for displaying selected band(s) in the table in the view
+		$data['bands'] = $bands; // Used for displaying selected band(s) in the table in the view
 
-        if($this->input->method() === 'post') {
-            $postdata['qsl'] = $this->security->xss_clean($this->input->post('qsl'));
-            $postdata['lotw'] = $this->security->xss_clean($this->input->post('lotw'));
-            $postdata['eqsl'] = $this->security->xss_clean($this->input->post('eqsl'));
-            $postdata['qrz'] = $this->security->xss_clean($this->input->post('qrz'));
-            $postdata['worked'] = $this->security->xss_clean($this->input->post('worked'));
-            $postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed'));
-            $postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked'));
-            $postdata['includedeleted'] = $this->security->xss_clean($this->input->post('includedeleted'));
-            $postdata['Africa'] = $this->security->xss_clean($this->input->post('Africa'));
-            $postdata['Asia'] = $this->security->xss_clean($this->input->post('Asia'));
-            $postdata['Europe'] = $this->security->xss_clean($this->input->post('Europe'));
-            $postdata['NorthAmerica'] = $this->security->xss_clean($this->input->post('NorthAmerica'));
-            $postdata['SouthAmerica'] = $this->security->xss_clean($this->input->post('SouthAmerica'));
-            $postdata['Oceania'] = $this->security->xss_clean($this->input->post('Oceania'));
-            $postdata['Antarctica'] = $this->security->xss_clean($this->input->post('Antarctica'));
-            $postdata['band'] = $this->security->xss_clean($this->input->post('band'));
-            $postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
-        }
-        else { // Setting default values at first load of page
-            $postdata['qsl'] = 1;
-            $postdata['lotw'] = 1;
-            $postdata['eqsl'] = 0;
-            $postdata['qrz'] = 0;
-            $postdata['worked'] = 1;
-            $postdata['confirmed'] = 1;
-            $postdata['notworked'] = 0;
-            $postdata['includedeleted'] = 0;
-            $postdata['Africa'] = 1;
-            $postdata['Asia'] = 1;
-            $postdata['Europe'] = 1;
-            $postdata['NorthAmerica'] = 1;
-            $postdata['SouthAmerica'] = 1;
-            $postdata['Oceania'] = 1;
-            $postdata['Antarctica'] = 1;
-            $postdata['band'] = 'All';
-            $postdata['mode'] = 'All';
-        }
+		if($this->input->method() === 'post') {
+			$postdata['qsl'] = $this->security->xss_clean($this->input->post('qsl'));
+			$postdata['lotw'] = $this->security->xss_clean($this->input->post('lotw'));
+			$postdata['eqsl'] = $this->security->xss_clean($this->input->post('eqsl'));
+			$postdata['qrz'] = $this->security->xss_clean($this->input->post('qrz'));
+			$postdata['clublog'] = $this->security->xss_clean($this->input->post('clublog'));
+			$postdata['worked'] = $this->security->xss_clean($this->input->post('worked'));
+			$postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed'));
+			$postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked'));
+			$postdata['includedeleted'] = $this->security->xss_clean($this->input->post('includedeleted'));
+			$postdata['Africa'] = $this->security->xss_clean($this->input->post('Africa'));
+			$postdata['Asia'] = $this->security->xss_clean($this->input->post('Asia'));
+			$postdata['Europe'] = $this->security->xss_clean($this->input->post('Europe'));
+			$postdata['NorthAmerica'] = $this->security->xss_clean($this->input->post('NorthAmerica'));
+			$postdata['SouthAmerica'] = $this->security->xss_clean($this->input->post('SouthAmerica'));
+			$postdata['Oceania'] = $this->security->xss_clean($this->input->post('Oceania'));
+			$postdata['Antarctica'] = $this->security->xss_clean($this->input->post('Antarctica'));
+			$postdata['band'] = $this->security->xss_clean($this->input->post('band'));
+			$postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
+		} else { // Setting default values at first load of page
+			$postdata['qsl'] = 1;
+			$postdata['lotw'] = 1;
+			$postdata['eqsl'] = 0;
+			$postdata['qrz'] = 0;
+			$postdata['clublog'] = 0;
+			$postdata['worked'] = 1;
+			$postdata['confirmed'] = 1;
+			$postdata['notworked'] = 0;
+			$postdata['includedeleted'] = 0;
+			$postdata['Africa'] = 1;
+			$postdata['Asia'] = 1;
+			$postdata['Europe'] = 1;
+			$postdata['NorthAmerica'] = 1;
+			$postdata['SouthAmerica'] = 1;
+			$postdata['Oceania'] = 1;
+			$postdata['Antarctica'] = 1;
+			$postdata['band'] = 'All';
+			$postdata['mode'] = 'All';
+		}
 
-        $data['jcc_array'] = $this->jcc_model->get_jcc_array($bands, $postdata);
-        $data['jcc_summary'] = $this->jcc_model->get_jcc_summary($bands, $postdata);
+		$data['jcc_array'] = $this->jcc_model->get_jcc_array($bands, $postdata);
+		$data['jcc_summary'] = $this->jcc_model->get_jcc_summary($bands, $postdata);
 
 		// Render Page
 		$data['page_title'] = "Awards - JCC";
@@ -335,37 +334,38 @@ class Awards extends CI_Controller {
 		$this->load->view('interface_assets/footer', $footerData);
 	}
 
-    public function jcc_export() {
-        $this->load->model('Jcc_model');
-        $postdata['qsl'] = $this->security->xss_clean($this->input->post('qsl'));
-        $postdata['lotw'] = $this->security->xss_clean($this->input->post('lotw'));
-        $postdata['eqsl'] = $this->security->xss_clean($this->input->post('eqsl'));
-        $postdata['qrz'] = $this->security->xss_clean($this->input->post('qrz'));
-        $postdata['worked'] = $this->security->xss_clean($this->input->post('worked'));
-        $postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed'));
-        $postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked'));
-        $postdata['band'] = $this->security->xss_clean($this->input->post('band'));
-        $postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
+	public function jcc_export() {
+		$this->load->model('Jcc_model');
+		$postdata['qsl'] = $this->security->xss_clean($this->input->post('qsl'));
+		$postdata['lotw'] = $this->security->xss_clean($this->input->post('lotw'));
+		$postdata['eqsl'] = $this->security->xss_clean($this->input->post('eqsl'));
+		$postdata['qrz'] = $this->security->xss_clean($this->input->post('qrz'));
+		$postdata['clublog'] = $this->security->xss_clean($this->input->post('clublog'));
+		$postdata['worked'] = $this->security->xss_clean($this->input->post('worked'));
+		$postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed'));
+		$postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked'));
+		$postdata['band'] = $this->security->xss_clean($this->input->post('band'));
+		$postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
 
-        $qsos = $this->Jcc_model->exportJcc($postdata);
+		$qsos = $this->Jcc_model->exportJcc($postdata);
 
-        $fp = fopen( 'php://output', 'w' );
-        $i=1;
-        fputcsv($fp, array('No', 'Callsign', 'Date', 'Band', 'Mode', 'Remarks'), ';');
-        foreach ($qsos as $qso) {
-           fputcsv($fp, array($i, $qso['call'], $qso['date'], ($qso['prop_mode'] != null ? $qso['band'].' / '.$qso['prop_mode'] : $qso['band']), $qso['mode'], $qso['cnty'].' - '.$qso['jcc']), ';');
-           $i++;
-        }
-        fclose($fp);
-        return;
-    }
+		$fp = fopen( 'php://output', 'w' );
+		$i=1;
+		fputcsv($fp, array('No', 'Callsign', 'Date', 'Band', 'Mode', 'Remarks'), ';');
+		foreach ($qsos as $qso) {
+			fputcsv($fp, array($i, $qso['call'], $qso['date'], ($qso['prop_mode'] != null ? $qso['band'].' / '.$qso['prop_mode'] : $qso['band']), $qso['mode'], $qso['cnty'].' - '.$qso['jcc']), ';');
+			$i++;
+		}
+		fclose($fp);
+		return;
+	}
 
-    public function jcc_cities() {
-        $this->load->model('Jcc_model');
-        $data = $this->Jcc_model->jccCities();
-        header('Content-Type: application/json');
-        echo json_encode($data, JSON_PRETTY_PRINT);
-    }
+	public function jcc_cities() {
+		$this->load->model('Jcc_model');
+		$data = $this->Jcc_model->jccCities();
+		header('Content-Type: application/json');
+		echo json_encode($data, JSON_PRETTY_PRINT);
+	}
 
 
     public function vucc()	{
@@ -1491,35 +1491,35 @@ class Awards extends CI_Controller {
         This displays the DXCC map
     */
     public function jcc_map() {
-        $this->load->model('jcc_model');
-        $this->load->model('bands');
+	    $this->load->model('jcc_model');
+	    $this->load->model('bands');
 
-        $bands[] = $this->security->xss_clean($this->input->post('band'));
+	    $bands[] = $this->security->xss_clean($this->input->post('band'));
 
-        $postdata['qsl'] = $this->input->post('qsl') == 0 ? NULL: 1;
-        $postdata['lotw'] = $this->input->post('lotw') == 0 ? NULL: 1;
-        $postdata['eqsl'] = $this->input->post('eqsl') == 0 ? NULL: 1;
-        $postdata['qrz'] = $this->input->post('qrz') == 0 ? NULL: 1;
-        $postdata['clublog'] = $this->input->post('clublog') == 0 ? NULL: 1;
-        $postdata['worked'] = $this->input->post('worked') == 0 ? NULL: 1;
-        $postdata['confirmed'] = $this->input->post('confirmed')  == 0 ? NULL: 1;
-        $postdata['notworked'] = $this->input->post('notworked')  == 0 ? NULL: 1;
-        $postdata['band'] = $this->security->xss_clean($this->input->post('band'));
-        $postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
+	    $postdata['qsl'] = $this->input->post('qsl') == 0 ? NULL: 1;
+	    $postdata['lotw'] = $this->input->post('lotw') == 0 ? NULL: 1;
+	    $postdata['eqsl'] = $this->input->post('eqsl') == 0 ? NULL: 1;
+	    $postdata['qrz'] = $this->input->post('qrz') == 0 ? NULL: 1;
+	    $postdata['clublog'] = $this->input->post('clublog') == 0 ? NULL: 1;
+	    $postdata['worked'] = $this->input->post('worked') == 0 ? NULL: 1;
+	    $postdata['confirmed'] = $this->input->post('confirmed')  == 0 ? NULL: 1;
+	    $postdata['notworked'] = $this->input->post('notworked')  == 0 ? NULL: 1;
+	    $postdata['band'] = $this->security->xss_clean($this->input->post('band'));
+	    $postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
 
-        $jcc_wkd = $this->jcc_model->fetch_jcc_wkd($postdata);
-        $jcc_cnfm = $this->jcc_model->fetch_jcc_cnfm($postdata);
+	    $jcc_wkd = $this->jcc_model->fetch_jcc_wkd($postdata);
+	    $jcc_cnfm = $this->jcc_model->fetch_jcc_cnfm($postdata);
 
-        $jccs = [];
-        foreach ($jcc_wkd as $jcc) {
-           $jccs[$jcc->COL_CNTY] = array(1, 0);
-        }
-        foreach ($jcc_cnfm as $jcc) {
-           $jccs[$jcc->COL_CNTY][1] = 1;
-        }
+	    $jccs = [];
+	    foreach ($jcc_wkd as $jcc) {
+		    $jccs[$jcc->COL_CNTY] = array(1, 0);
+	    }
+	    foreach ($jcc_cnfm as $jcc) {
+		    $jccs[$jcc->COL_CNTY][1] = 1;
+	    }
 
-        header('Content-Type: application/json');
-        echo json_encode($jccs);
+	    header('Content-Type: application/json');
+	    echo json_encode($jccs);
     }
 
     /*
