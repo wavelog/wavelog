@@ -7,6 +7,7 @@ $lang['options_message1'] = 'Это глобальные настройки, и�
 
 $lang['options_appearance'] = 'Внешний вид';
 $lang['options_theme'] = 'Тема оформления';
+$lang['options_saved'] = "Options saved";
 $lang['options_global_theme_choice_this_is_used_when_users_arent_logged_in'] = 'Тема оформления по умолчанию, используется, когда пользователи не вошли в систему.';
 $lang['options_public_search_bar'] = 'Публично доступный поиск по журналу';
 $lang['options_this_allows_non_logged_in_users_to_access_the_search_functions'] = 'Разрешение пользователям, не вошедшим в систему, получить доступ к функциям поиска.';
@@ -16,11 +17,8 @@ $lang['options_dashboard_map'] = 'Карта на экране сводных д
 $lang['options_this_allows_the_map_on_the_dashboard_to_be_disabled_or_placed_on_the_right'] = 'Включение отображения карты на экране сводных данных во всю ширину или справа';
 $lang['options_logbook_map'] = 'Карта на экране обычного вида журнала ';
 $lang['options_this_allows_to_disable_the_map_in_the_logbook'] = 'Включение отображения карты на экране обычного вида журнала.';
-$lang['options_theme_changed_to'] = 'Тема оформления переключена на ';
-$lang['options_global_search_changed_to'] = 'Публично доступный поиск переключен в состояние ';
-$lang['options_dashboard_banner_changed_to'] = 'Баннер на экране сводных данных переключен в состояние ';
-$lang['options_dashboard_map_changed_to'] = 'Карта на экране сводных данных переключена в состояние ';
-$lang['options_logbook_map_changed_to'] = 'Карта на экране обычного вида журнала переключена в состояние ';
+$lang['options_public_maps'] = "Public Maps";
+$lang['options_this_allows_to_disable_all_maps_in_the_public_view'] = "This allows to disable all maps in the public view. This affects the main map and the gridsquares map.";
 
 $lang['options_radios'] = 'Радиоинтерфейсы';
 $lang['options_radio_settings'] = 'Радиоинтерфейсы';
