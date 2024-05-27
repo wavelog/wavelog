@@ -4881,7 +4881,11 @@ function lotw_last_qsl_date($user_id) {
         $qso_time_on = new DateTime($row->COL_TIME_ON);
 
         if ($this->uri->segment(1) == 'visitor') {
-          $qso_time_on = $qso_time_on->format('Y-m-d');
+          $visitor_date_format = 'Y-m-d';
+          if ($this->config->item('show_time')) {
+            $visitor_date_format .= ' H:i';
+          }
+          $qso_time_on = $qso_time_on->format($visitor_date_format);
         } else {
           $qso_time_on = $qso_time_on->format($user_date_format.' H:i');
         }
