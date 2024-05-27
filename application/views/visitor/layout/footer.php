@@ -36,7 +36,7 @@
         <?php } ?>
 
         <?php if(isset($slug)) { ?>
-        var qso_loc = '<?php echo site_url('visitor/map/'.$slug);?>';
+        var qso_loc = '<?php echo site_url('visitor/map/'.$slug.'/'.$this->uri->segment(3));?>';
         <?php } ?>
         var q_zoom = 3;
 
