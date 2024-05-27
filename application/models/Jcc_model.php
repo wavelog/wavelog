@@ -991,8 +991,7 @@ class Jcc_model extends CI_Model {
 
 		if (isset($bandJcc)) {
 			return $bandJcc;
-		}
-		else {
+		} else {
 			return 0;
 		}
 	}
@@ -1003,7 +1002,6 @@ class Jcc_model extends CI_Model {
 				select col_dxcc from ".$this->config->item('table_name')." thcv
 				where station_id in (" . $location_list .
 				") and col_dxcc > 0";
-
 		$sql .= $this->genfunctions->addBandToQuery($band);
 
 		if ($postdata['mode'] != 'All') {
@@ -1011,7 +1009,6 @@ class Jcc_model extends CI_Model {
 		}
 
 		$sql .= $this->genfunctions->addQslToQuery($postdata);
-
 		$sql .= " group by col_dxcc
 				) x on dxcc_entities.adif = x.col_dxcc";
 
@@ -1062,9 +1059,7 @@ class Jcc_model extends CI_Model {
 		}
 
 		$sql .= $this->addStateToQuery();
-
 		$sql .= $this->genfunctions->addBandToQuery($band);
-
 		$sql .= " and not exists (select 1 from ". $this->config->item('table_name') .
 			" where station_id in (". $location_list . ")" .
 			" and col_cnty = thcv.col_cnty";
@@ -1074,11 +1069,8 @@ class Jcc_model extends CI_Model {
 		}
 
 		$sql .= $this->genfunctions->addBandToQuery($band);
-
 		$sql .= $this->genfunctions->addQslToQuery($postdata);
-
 		$sql .= $this->addStateToQuery();
-
 		$sql .= ")";
 
 		$query = $this->db->query($sql);
@@ -1141,16 +1133,13 @@ class Jcc_model extends CI_Model {
 
 	function getSummaryByBand($band, $postdata, $location_list) {
 		$sql = "SELECT count(distinct thcv.col_cnty) as count FROM " . $this->config->item('table_name') . " thcv";
-
 		$sql .= " where station_id in (" . $location_list . ")";
 
 		if ($band == 'SAT') {
 			$sql .= " and thcv.col_prop_mode ='" . $band . "'";
 		} else if ($band == 'All') {
 			$this->load->model('bands');
-
 			$bandslots = $this->bands->get_worked_bands('was');
-
 			$bandslots_list = "'".implode("','",$bandslots)."'";
 
 			$sql .= " and thcv.col_band in (" . $bandslots_list . ")" .
@@ -1173,16 +1162,13 @@ class Jcc_model extends CI_Model {
 
 	function getSummaryByBandConfirmed($band, $postdata, $location_list) {
 		$sql = "SELECT count(distinct thcv.col_cnty) as count FROM " . $this->config->item('table_name') . " thcv";
-
 		$sql .= " where station_id in (" . $location_list . ")";
 
 		if ($band == 'SAT') {
 			$sql .= " and thcv.col_prop_mode ='" . $band . "'";
 		} else if ($band == 'All') {
 			$this->load->model('bands');
-
 			$bandslots = $this->bands->get_worked_bands('was');
-
 			$bandslots_list = "'".implode("','",$bandslots)."'";
 
 			$sql .= " and thcv.col_band in (" . $bandslots_list . ")" .
@@ -1197,11 +1183,8 @@ class Jcc_model extends CI_Model {
 		}
 
 		$sql .= $this->genfunctions->addQslToQuery($postdata);
-
 		$sql .= $this->addStateToQuery();
-
 		$query = $this->db->query($sql);
-
 		return $query->result();
 	}
 
