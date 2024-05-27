@@ -41,40 +41,57 @@ class Visitor extends CI_Controller {
 	{
 
         // Check slug passed and is valid
-        if ($this->security->xss_clean($public_slug, TRUE) === FALSE)
-        {
+        if ($this->security->xss_clean($public_slug, TRUE) === FALSE) {
+
             // Public Slug failed the XSS test
             log_message('error', '[Visitor] XSS Attack detected on public_slug '. $public_slug);
             show_404('Unknown Public Page.');
+
         } else {
+
             // Checked slug passed and clean
             log_message('info', '[Visitor] public_slug '. $public_slug .' loaded');
 
-            // Check if the slug is contained in the station_logbooks table
-            $this->load->model('logbooks_model');
+            // Load necessary models
+            $this->load->model('dxcc');
+			$this->load->model('cat');
+            $this->load->model('logbook_model');
+			$this->load->model('logbooks_model');
+			
             if($this->logbooks_model->public_slug_exists($public_slug)) {
-                // Load the public view
 
+                // Load the public view
 				$logbook_id = $this->logbooks_model->public_slug_exists_logbook_id($public_slug);
-                if($logbook_id != false)
-                {
+				
+                if($logbook_id != false) {
+					
                     // Get associated station locations for mysql queries
                     $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($logbook_id);
 
 					if (!$logbooks_locations_array) {
 						show_404('Empty Logbook');
 					}
+
                 } else {
                     log_message('error', $public_slug.' has no associated station locations');
                     show_404('Unknown Public Page.');
                 }
 
-                $this->load->model('logbook_model');
-
                 // Public visitor so no QRA to setup
                 $data['qra'] = "none";
 
-                $this->load->model('cat');
+				// Pagination Configuration
+				$this->load->library('pagination');
+				$config['base_url'] = base_url().'index.php/visitor/'.$public_slug;
+				$config['total_rows'] = $this->logbook_model->total_qsos();
+				$config['per_page'] = '25';
+				$config['num_links'] = 6;
+				$config['full_tag_open'] = '';
+				$config['full_tag_close'] = '';
+				$config['cur_tag_open'] = '<strong class="active"><a href="">';
+				$config['cur_tag_close'] = '</a></strong>';
+
+				$this->pagination->initialize($config);
 
                 // Store info
                 $data['todays_qsos'] = $this->logbook_model->todays_qsos($logbooks_locations_array);
@@ -90,6 +107,10 @@ class Visitor extends CI_Controller {
                 $data['total_countries_confirmed_eqsl'] = $CountriesBreakdown['Countries_Worked_EQSL'];
                 $data['total_countries_confirmed_lotw'] = $CountriesBreakdown['Countries_Worked_LOTW'];
 
+				$dxcc = $this->dxcc->list_current();
+                $current = $this->logbook_model->total_countries_current($logbooks_locations_array);
+                $data['total_countries_needed'] = count($dxcc->result()) - $current;
+
                 $QSLStatsBreakdownArray =$this->logbook_model->get_QSLStats($logbooks_locations_array);
 
                 $data['total_qsl_sent'] = $QSLStatsBreakdownArray['QSL_Sent'];
@@ -102,21 +123,15 @@ class Visitor extends CI_Controller {
                 $data['total_lotw_sent'] = $QSLStatsBreakdownArray['LoTW_Sent'];
                 $data['total_lotw_rcvd'] = $QSLStatsBreakdownArray['LoTW_Received'];
 
-                $data['last_five_qsos'] = $this->logbook_model->get_last_qsos('18', $logbooks_locations_array);
+                $data['results'] = $this->logbook_model->get_qsos($config['per_page'],$this->uri->segment(3),$logbooks_locations_array);
 
                 $data['page_title'] = "Dashboard";
                 $data['slug'] = $public_slug;
 
-                $this->load->model('dxcc');
-                $dxcc = $this->dxcc->list_current();
-
-                $current = $this->logbook_model->total_countries_current($logbooks_locations_array);
-
-                $data['total_countries_needed'] = count($dxcc->result()) - $current;
-
                 $this->load->view('visitor/layout/header', $data);
                 $this->load->view('visitor/index');
                 $this->load->view('visitor/layout/footer');
+
             } else {
                 // Show 404
                 log_message('error', '[Visitor] XSS Attack detected on public_slug '. $public_slug);
