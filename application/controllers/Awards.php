@@ -368,113 +368,113 @@ class Awards extends CI_Controller {
 	}
 
 
-    public function vucc()	{
-        $this->load->model('vucc');
-        $this->load->model('bands');
-        $data['worked_bands'] = $this->bands->get_worked_bands('vucc');
+	public function vucc()	{
+		$this->load->model('vucc');
+		$this->load->model('bands');
+		$data['worked_bands'] = $this->bands->get_worked_bands('vucc');
 
-        $data['vucc_array'] = $this->vucc->get_vucc_array($data);
+		$data['vucc_array'] = $this->vucc->get_vucc_array($data);
 
-        // Render Page
-        $data['page_title'] = "Awards - VUCC";
-        $this->load->view('interface_assets/header', $data);
-        $this->load->view('awards/vucc/index');
-        $this->load->view('interface_assets/footer');
-    }
+		// Render Page
+		$data['page_title'] = "Awards - VUCC";
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('awards/vucc/index');
+		$this->load->view('interface_assets/footer');
+	}
 
-    public function vucc_band(){
-        $this->load->model('vucc');
-        $band = str_replace('"', "", $this->security->xss_clean($this->input->get("Band")));
-        $type = str_replace('"', "", $this->security->xss_clean($this->input->get("Type")));
-        $data['vucc_array'] = $this->vucc->vucc_details($band, $type);
-        $data['type'] = $type;
+	public function vucc_band(){
+		$this->load->model('vucc');
+		$band = str_replace('"', "", $this->security->xss_clean($this->input->get("Band")));
+		$type = str_replace('"', "", $this->security->xss_clean($this->input->get("Type")));
+		$data['vucc_array'] = $this->vucc->vucc_details($band, $type);
+		$data['type'] = $type;
 
-        // Render Page
-        $data['page_title'] = "VUCC - " .$band . " Band";
-        $data['filter'] = "band ".$band;
-        $data['band'] = $band;
-        $this->load->view('interface_assets/header', $data);
-        $this->load->view('awards/vucc/band');
-        $this->load->view('interface_assets/footer');
-    }
+		// Render Page
+		$data['page_title'] = "VUCC - " .$band . " Band";
+		$data['filter'] = "band ".$band;
+		$data['band'] = $band;
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('awards/vucc/band');
+		$this->load->view('interface_assets/footer');
+	}
 
-    public function vucc_details_ajax(){
-        $this->load->model('logbook_model');
+	public function vucc_details_ajax(){
+		$this->load->model('logbook_model');
 
-        $gridsquare = str_replace('"', "", $this->security->xss_clean($this->input->post("Gridsquare")));
-        $band = str_replace('"', "", $this->security->xss_clean($this->input->post("Band")));
-        $data['results'] = $this->logbook_model->vucc_qso_details($gridsquare, $band);
+		$gridsquare = str_replace('"', "", $this->security->xss_clean($this->input->post("Gridsquare")));
+		$band = str_replace('"', "", $this->security->xss_clean($this->input->post("Band")));
+		$data['results'] = $this->logbook_model->vucc_qso_details($gridsquare, $band);
 
-        // Render Page
-        $data['page_title'] = "Log View - VUCC";
-        $data['filter'] = "vucc " . $gridsquare . " and band ".$band;
-        $this->load->view('awards/details', $data);
-    }
+		// Render Page
+		$data['page_title'] = "Log View - VUCC";
+		$data['filter'] = "vucc " . $gridsquare . " and band ".$band;
+		$this->load->view('awards/details', $data);
+	}
 
 	/*
 	 * Used to fetch QSOs from the logbook in the awards
 	 */
-    public function qso_details_ajax(){
-	    $this->load->model('logbook_model');
+	public function qso_details_ajax() {
+		$this->load->model('logbook_model');
 
-	    $searchphrase = str_replace('"', "", $this->security->xss_clean($this->input->post("Searchphrase")));
-	    $band = str_replace('"', "", $this->security->xss_clean($this->input->post("Band")));
-	    $mode = str_replace('"', "", $this->security->xss_clean($this->input->post("Mode")));
-	    $sat = str_replace('"', "", $this->security->xss_clean($this->input->post("Sat")));
-	    $orbit = str_replace('"', "", $this->security->xss_clean($this->input->post("Orbit")));
-	    $propagation = str_replace('"', "", $this->security->xss_clean($this->input->post("Propagation")) ?? '');
-	    $type = $this->security->xss_clean($this->input->post('Type'));
-	    $qsl = $this->input->post('QSL') == null ? '' : $this->security->xss_clean($this->input->post('QSL'));
-	    $searchmode = $this->input->post('searchmode') == null ? '' : $this->security->xss_clean($this->input->post('searchmode'));
-	    $data['results'] = $this->logbook_model->qso_details($searchphrase, $band, $mode, $type, $qsl, $sat, $orbit, $searchmode, $propagation);
+		$searchphrase = str_replace('"', "", $this->security->xss_clean($this->input->post("Searchphrase")));
+		$band = str_replace('"', "", $this->security->xss_clean($this->input->post("Band")));
+		$mode = str_replace('"', "", $this->security->xss_clean($this->input->post("Mode")));
+		$sat = str_replace('"', "", $this->security->xss_clean($this->input->post("Sat")));
+		$orbit = str_replace('"', "", $this->security->xss_clean($this->input->post("Orbit")));
+		$propagation = str_replace('"', "", $this->security->xss_clean($this->input->post("Propagation")) ?? '');
+		$type = $this->security->xss_clean($this->input->post('Type'));
+		$qsl = $this->input->post('QSL') == null ? '' : $this->security->xss_clean($this->input->post('QSL'));
+		$searchmode = $this->input->post('searchmode') == null ? '' : $this->security->xss_clean($this->input->post('searchmode'));
+		$data['results'] = $this->logbook_model->qso_details($searchphrase, $band, $mode, $type, $qsl, $sat, $orbit, $searchmode, $propagation);
 
-	    // This is done because we have two different ways to get dxcc info in Wavelog. Once is using the name (in awards), and the other one is using the ADIF DXCC.
-	    // We replace the values to make it look a bit nicer
-	    if ($type == 'DXCC2') {
-		    $type = 'DXCC';
-		    $dxccname = $this->logbook_model->get_entity($searchphrase);
-		    $searchphrase = $dxccname['name'];
-	    }
+		// This is done because we have two different ways to get dxcc info in Wavelog. Once is using the name (in awards), and the other one is using the ADIF DXCC.
+		// We replace the values to make it look a bit nicer
+		if ($type == 'DXCC2') {
+			$type = 'DXCC';
+			$dxccname = $this->logbook_model->get_entity($searchphrase);
+			$searchphrase = $dxccname['name'];
+		}
 
-	    $qsltype = [];
-	    if (strpos($qsl, "Q") !== false) {
-		    $qsltype[] = "QSL";
-	    }
-	    if (strpos($qsl, "L") !== false) {
-		    $qsltype[] = "LoTW";
-	    }
-	    if (strpos($qsl, "E") !== false) {
-		    $qsltype[] = "eQSL";
-	    }
-	    if (strpos($qsl, "Z") !== false) {
-		    $qsltype[] = "QRZ.com";
-	    }
-	    if (strpos($qsl, "C") !== false) {
-		    $qsltype[] = "Clublog";
-	    }
+		$qsltype = [];
+		if (strpos($qsl, "Q") !== false) {
+			$qsltype[] = "QSL";
+		}
+		if (strpos($qsl, "L") !== false) {
+			$qsltype[] = "LoTW";
+		}
+		if (strpos($qsl, "E") !== false) {
+			$qsltype[] = "eQSL";
+		}
+		if (strpos($qsl, "Z") !== false) {
+			$qsltype[] = "QRZ.com";
+		}
+		if (strpos($qsl, "C") !== false) {
+			$qsltype[] = "Clublog";
+		}
 
-	    // Render Page
-	    $data['page_title'] = "Log View - " . $type;
-	    $data['filter'] = $type." ".$searchphrase." and band ".$band;
-	    if ($band == 'SAT') {
-		    if ($sat != 'All' && $sat != null) {
-			    $data['filter'] .= " and sat ".$sat;
-		    }
-		    if ($orbit != 'All' && $orbit != null) {
-			    $data['filter'] .= " and orbit type ".$orbit;
-		    }
-	    }
-	    if ($propagation != '' && $propagation != null) {
-		    $data['filter'] .= " and propagation ".$propagation;
-	    }
-	    if ($mode != null && strtolower($mode) != 'all') {
-		    $data['filter'] .= " and mode ".$mode;
-	    }
-	    if (!empty($qsltype)) {
-		    $data['filter'] .= " and ".implode('/', $qsltype);
-	    }
-	    $this->load->view('awards/details', $data);
-    }
+		// Render Page
+		$data['page_title'] = "Log View - " . $type;
+		$data['filter'] = $type." ".$searchphrase." and band ".$band;
+		if ($band == 'SAT') {
+			if ($sat != 'All' && $sat != null) {
+				$data['filter'] .= " and sat ".$sat;
+			}
+			if ($orbit != 'All' && $orbit != null) {
+				$data['filter'] .= " and orbit type ".$orbit;
+			}
+		}
+		if ($propagation != '' && $propagation != null) {
+			$data['filter'] .= " and propagation ".$propagation;
+		}
+		if ($mode != null && strtolower($mode) != 'all') {
+			$data['filter'] .= " and mode ".$mode;
+		}
+		if (!empty($qsltype)) {
+			$data['filter'] .= " and ".implode('/', $qsltype);
+		}
+		$this->load->view('awards/details', $data);
+	}
 
 	/*
 		Handles showing worked SOTAs
