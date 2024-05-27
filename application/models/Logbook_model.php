@@ -4883,7 +4883,7 @@ function lotw_last_qsl_date($user_id) {
         if ($this->uri->segment(1) == 'visitor') {
           $qso_time_on = $qso_time_on->format('Y-m-d');
         } else {
-          $qso_time_on = $qso_time_on->format($user_date_format.' H:m:i');
+          $qso_time_on = $qso_time_on->format($user_date_format.' H:i');
         }
 
         $plot['html'] .= "Date/Time: ".$qso_time_on."<br />";
