@@ -545,6 +545,9 @@ class Logbook_model extends CI_Model {
 			if (strpos($qsl, "Z") !== false) {
 				$qslfilter[] = 'COL_QRZCOM_QSO_DOWNLOAD_STATUS = "Y"';
 			}
+			if (strpos($qsl, "C") !== false) {
+				$qslfilter[] = 'COL_CLUBLOG_QSO_DOWNLOAD_STATUS = "Y"';
+			}
 			$sql = "(".implode(' OR ', $qslfilter).")";
 			$this->db->where($sql);
 		}

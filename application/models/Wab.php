@@ -108,6 +108,7 @@ class Wab extends CI_Model {
 	 * $postdata contains data from the form, in this case Lotw or QSL are used
 	 */
 	function getWabConfirmed($location_list, $postdata) { // $mode, $qsl, $lotw, $eqsl, $qrz, $clublog, $sat, $orbit) {
+		var_dump($postdata);
 		$sql = "SELECT distinct col_sig_info FROM " . $this->config->item('table_name') . " thcv
 			where station_id in (" . $location_list . ") and col_sig = 'WAB' and coalesce(col_sig_info, '') <> ''";
 

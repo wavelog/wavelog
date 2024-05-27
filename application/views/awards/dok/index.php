@@ -66,6 +66,10 @@
                         <input class="form-check-input" type="checkbox" name="qrz" value="1" id="qrz" <?php if ($this->input->post('qrz')) echo ' checked="checked"'; ?> >
                         <label class="form-check-label" for="qrz">QRZ.com</label>
                     </div>
+                    <div class="form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="clublog" value="1" id="clublog" <?php if ($this->input->post('clublog')) echo ' checked="checked"'; ?> >
+                        <label class="form-check-label" for="clublog">Clublog</label>
+                    </div>
                 </div>
             </div>
 

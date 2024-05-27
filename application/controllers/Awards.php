@@ -127,14 +127,15 @@ class Awards extends CI_Controller {
 		$data['bands'] = $bands; // Used for displaying selected band(s) in the table in the view
 
 		if($this->input->method() === 'post') {
-			$postdata['qsl'] = $this->security->xss_clean($this->input->post('qsl'));
-			$postdata['lotw'] = $this->security->xss_clean($this->input->post('lotw'));
-			$postdata['eqsl'] = $this->security->xss_clean($this->input->post('eqsl'));
-			$postdata['qrz'] = $this->security->xss_clean($this->input->post('qrz'));
-			$postdata['clublog'] = $this->security->xss_clean($this->input->post('clublog'));
-			$postdata['worked'] = $this->security->xss_clean($this->input->post('worked'));
-			$postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed'));
-			$postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked'));
+			$postdata['qsl'] = $this->input->post('qsl') == 0 ? NULL: 1;
+			$postdata['lotw'] = $this->input->post('lotw') == 0 ? NULL: 1;
+			$postdata['eqsl'] = $this->input->post('eqsl') == 0 ? NULL: 1;
+			$postdata['qrz'] = $this->input->post('qrz') == 0 ? NULL: 1;
+			$postdata['clublog'] = $this->input->post('clublog') == 0 ? NULL: 1;
+			$postdata['worked'] = $this->input->post('worked') == 0 ? NULL: 1;
+			$postdata['confirmed'] = $this->input->post('confirmed')  == 0 ? NULL: 1;
+			$postdata['notworked'] = $this->input->post('notworked')  == 0 ? NULL: 1;
+
 			$postdata['includedeleted'] = $this->security->xss_clean($this->input->post('includedeleted'));
 			$postdata['Africa'] = $this->security->xss_clean($this->input->post('Africa'));
 			$postdata['Asia'] = $this->security->xss_clean($this->input->post('Asia'));
@@ -414,67 +415,67 @@ class Awards extends CI_Controller {
 	/*
 	 * Used to fetch QSOs from the logbook in the awards
 	 */
-	public function qso_details_ajax(){
-		$this->load->model('logbook_model');
+    public function qso_details_ajax(){
+	    $this->load->model('logbook_model');
 
-		$searchphrase = str_replace('"', "", $this->security->xss_clean($this->input->post("Searchphrase")));
-		$band = str_replace('"', "", $this->security->xss_clean($this->input->post("Band")));
-		$mode = str_replace('"', "", $this->security->xss_clean($this->input->post("Mode")));
-		$sat = str_replace('"', "", $this->security->xss_clean($this->input->post("Sat")));
-		$orbit = str_replace('"', "", $this->security->xss_clean($this->input->post("Orbit")));
-        $propagation = str_replace('"', "", $this->security->xss_clean($this->input->post("Propagation")) ?? '');
-		$type = $this->security->xss_clean($this->input->post('Type'));
-		$qsl = $this->input->post('QSL') == null ? '' : $this->security->xss_clean($this->input->post('QSL'));
-		$searchmode = $this->input->post('searchmode') == null ? '' : $this->security->xss_clean($this->input->post('searchmode'));
-		$data['results'] = $this->logbook_model->qso_details($searchphrase, $band, $mode, $type, $qsl, $sat, $orbit, $searchmode, $propagation);
+	    $searchphrase = str_replace('"', "", $this->security->xss_clean($this->input->post("Searchphrase")));
+	    $band = str_replace('"', "", $this->security->xss_clean($this->input->post("Band")));
+	    $mode = str_replace('"', "", $this->security->xss_clean($this->input->post("Mode")));
+	    $sat = str_replace('"', "", $this->security->xss_clean($this->input->post("Sat")));
+	    $orbit = str_replace('"', "", $this->security->xss_clean($this->input->post("Orbit")));
+	    $propagation = str_replace('"', "", $this->security->xss_clean($this->input->post("Propagation")) ?? '');
+	    $type = $this->security->xss_clean($this->input->post('Type'));
+	    $qsl = $this->input->post('QSL') == null ? '' : $this->security->xss_clean($this->input->post('QSL'));
+	    $searchmode = $this->input->post('searchmode') == null ? '' : $this->security->xss_clean($this->input->post('searchmode'));
+	    $data['results'] = $this->logbook_model->qso_details($searchphrase, $band, $mode, $type, $qsl, $sat, $orbit, $searchmode, $propagation);
 
-		// This is done because we have two different ways to get dxcc info in Wavelog. Once is using the name (in awards), and the other one is using the ADIF DXCC.
-		// We replace the values to make it look a bit nicer
-		if ($type == 'DXCC2') {
-			$type = 'DXCC';
-			$dxccname = $this->logbook_model->get_entity($searchphrase);
-			$searchphrase = $dxccname['name'];
-		}
+	    // This is done because we have two different ways to get dxcc info in Wavelog. Once is using the name (in awards), and the other one is using the ADIF DXCC.
+	    // We replace the values to make it look a bit nicer
+	    if ($type == 'DXCC2') {
+		    $type = 'DXCC';
+		    $dxccname = $this->logbook_model->get_entity($searchphrase);
+		    $searchphrase = $dxccname['name'];
+	    }
 
-		$qsltype = [];
-		if (strpos($qsl, "Q") !== false) {
-			$qsltype[] = "QSL";
-		}
-		if (strpos($qsl, "L") !== false) {
-			$qsltype[] = "LoTW";
-		}
-		if (strpos($qsl, "E") !== false) {
-			$qsltype[] = "eQSL";
-		}
-		if (strpos($qsl, "Z") !== false) {
-			$qsltype[] = "QRZ.com";
-		}
-		if (strpos($qsl, "C") !== false) {
-			$qsltype[] = "Clublog";
-		}
+	    $qsltype = [];
+	    if (strpos($qsl, "Q") !== false) {
+		    $qsltype[] = "QSL";
+	    }
+	    if (strpos($qsl, "L") !== false) {
+		    $qsltype[] = "LoTW";
+	    }
+	    if (strpos($qsl, "E") !== false) {
+		    $qsltype[] = "eQSL";
+	    }
+	    if (strpos($qsl, "Z") !== false) {
+		    $qsltype[] = "QRZ.com";
+	    }
+	    if (strpos($qsl, "C") !== false) {
+		    $qsltype[] = "Clublog";
+	    }
 
-		// Render Page
-		$data['page_title'] = "Log View - " . $type;
-		$data['filter'] = $type." ".$searchphrase." and band ".$band;
-		if ($band == 'SAT') {
-			if ($sat != 'All' && $sat != null) {
-				$data['filter'] .= " and sat ".$sat;
-			}
-			if ($orbit != 'All' && $orbit != null) {
-				$data['filter'] .= " and orbit type ".$orbit;
-			}
-		}
-        if ($propagation != '' && $propagation != null) {
-            $data['filter'] .= " and propagation ".$propagation;
-        }
-		if ($mode != null && strtolower($mode) != 'all') {
-			$data['filter'] .= " and mode ".$mode;
-		}
-		if (!empty($qsltype)) {
-			$data['filter'] .= " and ".implode('/', $qsltype);
-		}
-		$this->load->view('awards/details', $data);
-	}
+	    // Render Page
+	    $data['page_title'] = "Log View - " . $type;
+	    $data['filter'] = $type." ".$searchphrase." and band ".$band;
+	    if ($band == 'SAT') {
+		    if ($sat != 'All' && $sat != null) {
+			    $data['filter'] .= " and sat ".$sat;
+		    }
+		    if ($orbit != 'All' && $orbit != null) {
+			    $data['filter'] .= " and orbit type ".$orbit;
+		    }
+	    }
+	    if ($propagation != '' && $propagation != null) {
+		    $data['filter'] .= " and propagation ".$propagation;
+	    }
+	    if ($mode != null && strtolower($mode) != 'all') {
+		    $data['filter'] .= " and mode ".$mode;
+	    }
+	    if (!empty($qsltype)) {
+		    $data['filter'] .= " and ".implode('/', $qsltype);
+	    }
+	    $this->load->view('awards/details', $data);
+    }
 
 	/*
 		Handles showing worked SOTAs
@@ -1338,6 +1339,7 @@ class Awards extends CI_Controller {
         $postdata['lotw'] = $this->input->post('lotw') == 0 ? NULL: 1;
         $postdata['eqsl'] = $this->input->post('eqsl') == 0 ? NULL: 1;
         $postdata['qrz'] = $this->input->post('qrz') == 0 ? NULL: 1;
+        $postdata['clublog'] = $this->input->post('clublog') == 0 ? NULL: 1;
         $postdata['worked'] = $this->input->post('worked') == 0 ? NULL: 1;
         $postdata['confirmed'] = $this->input->post('confirmed')  == 0 ? NULL: 1;
         $postdata['notworked'] = $this->input->post('notworked')  == 0 ? NULL: 1;
