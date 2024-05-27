@@ -40,8 +40,6 @@ class Visitor extends CI_Controller {
 	public function index($public_slug = NULL)
 	{
 
-        $this->load->model('user_model');
-
         // Check slug passed and is valid
         if ($this->security->xss_clean($public_slug, TRUE) === FALSE)
         {
