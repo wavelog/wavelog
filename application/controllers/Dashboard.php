@@ -50,6 +50,7 @@ class Dashboard extends CI_Controller {
 		$data['current_active'] = $this->stations->find_active();
 
 		$data['themesWithoutMode'] = $this->setup_model->checkThemesWithoutMode();
+		$data['dashboard_map'] = $this->optionslib->get_option('dashboard_map');
 
 		$setup_required = false;
 
