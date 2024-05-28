@@ -5,6 +5,7 @@ var band = "";
 var mode = "";
 var freq = "";
 var callsign = "";
+var gridsquare = "";
 var errors = [];
 var qsoList = [];
 var modes_regex = modes_regex(Modes);
@@ -221,6 +222,7 @@ function handleInput() {
 	var mode = "";
 	var freq = "";
 	var callsign = "";
+	var gridsquare = "";
 	var sotaWwff = "";
 	qsoList = [];
 	$("#qsoTable tbody").empty();
@@ -230,8 +232,10 @@ function handleInput() {
 	lines.forEach((row) => {
 		var rst_s = null;
 		var rst_r = null;
+		var gridsquare = "";
 		items = row.startsWith("day ") ? [row] : row.split(" ");
 		var itemNumber = 0;
+		var call_rec = false;
 
 		items.forEach((item) => {
 			if (item === "") {
@@ -286,9 +290,14 @@ function handleInput() {
 			} else if (
 				item.match(
 					/([a-zA-Z0-9]{1,3}[0-9][a-zA-Z0-9]{0,3}[a-zA-Z])|.*\/([a-zA-Z0-9]{1,3}[0-9][a-zA-Z0-9]{0,3}[a-zA-Z])|([a-zA-Z0-9]{1,3}[0-9][a-zA-Z0-9]{0,3}[a-zA-Z])\/.*/
-				)
+				) && call_rec !== true
 			) {
 				callsign = item.toUpperCase();
+				call_rec = true;
+			} else if (
+				item.match(/^[A-R]{2}[0-9]{2}([A-X]{2}([0-9]{2}([A-X]{2})?)?)?$/i)
+			) {
+				gridsquare = item.toUpperCase();
 			} else if (itemNumber > 0 && item.match(/^[-+]\d{1,2}|\d{1,3}$|\d{1,3}[-+]d{1,2}$/)) {
 				if (rst_s === null) {
 					rst_s = item;
@@ -337,6 +346,7 @@ function handleInput() {
 				freq,
 				band,
 				mode,
+				gridsquare,
 				rst_s,
 				rst_r,
 				sotaWwff,
@@ -362,7 +372,7 @@ function handleInput() {
 			<td>${mode}</td>
 			<td>${rst_s}</td>
 			<td>${rst_r}</td>
-			<td>${operator}</td>
+			<td>${gridsquare}</td>
 			<td>${sotaWwffText}</td>
 			</tr>`);
 
@@ -703,11 +713,11 @@ function isTimeEntered() {
 }
 
 function isExampleDataEntered() {
-	let isExampleData = false;
-	if (textarea.value.startsWith("*example-data*")) {
-		isExampleData = true;
-	}
-	return isExampleData;
+    let isExampleData = false;
+    if (textarea.val().startsWith("*example-data*")) {
+        isExampleData = true;
+    }
+    return isExampleData;
 }
 
 function getAdifTag(tagName, value) {
@@ -911,8 +921,9 @@ $(".js-save-to-log").click(function () {
 
 					qsoList.forEach((item) => {
 						var callsign = item[2];
+						var gridsquare = item[6];
 						var rst_rcvd = item[7].replace(/dB$/, ''); // we don't want 'dB' in the database
-						var rst_sent = item[6].replace(/dB$/, ''); // *
+						var rst_sent = item[8].replace(/dB$/, ''); // *
 						var start_date = item[0];
 						var start_time =
 							item[1][0] +
@@ -928,14 +939,14 @@ $(".js-save-to-log").click(function () {
 						var iota_ref = "";
 						var pota_ref = "";
 						var wwff_ref = "";
-						if (isSOTA(item[8])) {
-							sota_ref = item[8];
-						} else if (isIOTA(item[8])) {
-							iota_ref = item[8];
-						} else if (isPOTA(item[8])) {
-							pota_ref = item[8];
-						} else if (isWWFF(item[8])) {
-							wwff_ref = item[8];
+						if (isSOTA(item[9])) {
+							sota_ref = item[9];
+						} else if (isIOTA(item[9])) {
+							iota_ref = item[9];
+						} else if (isPOTA(item[9])) {
+							pota_ref = item[9];
+						} else if (isWWFF(item[9])) {
+							wwff_ref = item[9];
 						}
 
 						$.ajax({
@@ -943,6 +954,7 @@ $(".js-save-to-log").click(function () {
 							type: "post",
 							data: {
 								callsign: callsign,
+								locator: gridsquare,
 								rst_rcvd: rst_rcvd,
 								rst_sent: rst_sent,
 								start_date: start_date,
