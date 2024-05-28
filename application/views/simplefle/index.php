@@ -122,7 +122,7 @@
 			</div>
 			<div class="card-body">
 				<div class="qsoList">
-					<table class="table contacttable table-striped table-hover sfletable" id="qsoTable">
+					<table class="table table-striped table-hover sfletable" id="qsoTable">
 						<thead>
 							<tr>
 								<th><?php echo lang('general_word_date'); ?></th>
@@ -144,7 +144,7 @@
 					<div class="col-6 col-sm-6">
 						<span class="js-qso-count"></span>
 					</div>
-					<div class="col-6 col-sm-6 text-end">
+					<div class="col-6 col-sm-6 text-end" id="refs_hint">
 						<?php echo lang('qso_simplefle_refs_hint'); ?>
 					</div>
 				</div>

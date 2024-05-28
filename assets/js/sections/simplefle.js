@@ -804,7 +804,50 @@ $(document).ready(function () {
 		$("#qsoTable").html(tabledata);
 		handleInput();
 	}
+
+	$(window).on('resize', resizeElements);
+	$(document).ready(resizeElements);
+
 });
+
+function resizeElements() {
+	var textarea = $('#sfle_textarea');
+	var textareaOffset = 40;
+
+	var tableFrame = $('.sfletable.table');
+	var tableFrameOffset = 140;
+
+	var table = $('#qsoTableBody');
+	var tableoOffset = 160;
+
+	if ($(window).width() >= 768) {
+		var newHeight = $(window).height() - textarea.offset().top - textareaOffset;
+		textarea.css('height', newHeight + 'px');
+
+		var newHeight = $(window).height() - tableFrame.offset().top - tableFrameOffset;
+		tableFrame.css('height', newHeight + 'px');
+
+		var newHeight = $(window).height() - table.offset().top - tableoOffset;
+		table.css('height', newHeight + 'px');
+
+		$('.js-reload-qso').removeClass('btn-sm');
+		$('.js-save-to-log').removeClass('btn-sm');
+		$('.js-empty-qso').removeClass('btn-sm');
+		$('#js-syntax').removeClass('btn-sm');
+		$('#js-options').removeClass('btn-sm');
+
+	} else {
+		textarea.css('height', 'auto');
+		tableFrame.css('height', '530px');
+		table.css('height', '400px');
+
+		$('.js-reload-qso').addClass('btn-sm');
+		$('.js-save-to-log').addClass('btn-sm');
+		$('.js-empty-qso').addClass('btn-sm');
+		$('#js-syntax').addClass('btn-sm');
+		$('#js-options').addClass('btn-sm');
+	}
+}
 
 $(".js-save-to-log").click(function () {
 	if (textarea.val() === "") {
