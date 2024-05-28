@@ -16,7 +16,9 @@
 			var lang_qso_simplefle_syntax_help = "<?php echo lang('qso_simplefle_syntax_help_button'); ?>";
 			var lang_qso_simplefle_syntax_help_title = "<?php echo lang('qso_simplefle_syntax_help_title'); ?>";
 			var lang_qso_simplefle_syntax_help_close_w_sample = "<?php echo lang('qso_simplefle_syntax_help_close_w_sample'); ?>";
+			var lang_qso_simplefle_options = "<?php echo lang('qso_simplefle_options'); ?>";
 			var lang_admin_close = "<?php echo lang('admin_close'); ?>";
+			var lang_admin_save = "<?php echo lang('admin_save'); ?>";
 			var lang_qso_simplefle_error_band = "<?php echo lang('qso_simplefle_error_band'); ?>";
 			var lang_qso_simplefle_error_mode = "<?php echo lang('qso_simplefle_error_mode'); ?>";
 			var lang_qso_simplefle_error_time = "<?php echo lang('qso_simplefle_error_time'); ?>";
@@ -56,7 +58,7 @@
 	<div class="row mt-4">
 		<!-- START BASIC QSO DATA -->
 		<div class="card col-xs-12 col-md-4 simplefle" style="border: none">
-			
+
 			<div class="card-header">
 				<?php echo lang('qso_simplefle_qso_data'); ?>
 			</div>
@@ -109,7 +111,7 @@
 				<div class="row">
 					<div class="col">
 						<p><?php echo lang('qso_simplefle_enter_the_data'); ?></p>
-						<textarea name="qso" class="form-control qso-area" cols="auto" rows="11" id="textarea"></textarea>
+						<textarea name="qso" class="form-control qso-area" cols="auto" rows="11" id="textarea" style="font-family: 'Courier New', sans-serif;"></textarea>
 					</div>
 				</div>
 			</div>
@@ -148,17 +150,14 @@
 				</div>
 			</div>
 			<div class="row mt-2">
-				<div class="col-3 col-sm-3">
+				<div class="btn-group" role="group" aria-label="sfle button group">
+
 					<button class="btn btn-primary js-reload-qso"><?php echo lang('qso_simplefle_reload'); ?></button>
-				</div>
-				<div class="col-3 col-sm-3">
 					<button class="btn btn-warning js-save-to-log"><?php echo lang('qso_simplefle_save'); ?></button>
-				</div>
-				<div class="col-3 col-sm-3">
 					<button class="btn btn-danger js-empty-qso"><?php echo lang('qso_simplefle_clear'); ?></button>
-				</div>
-				<div class="col-3 col-sm-3">
 					<button class="btn btn-success" id="js-syntax"><?php echo lang('qso_simplefle_syntax_help_button'); ?></button>
+					<button class="btn btn-secondary" id="js-options"><?php echo lang('admin_options'); ?></button>
+
 				</div>
 			</div>
 		</div>

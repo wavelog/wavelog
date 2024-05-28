@@ -88,6 +88,63 @@ ssb
 	});
 });
 
+$("#js-options").click(function (event) {
+	$("#js-options").prop("disabled", false);
+	$.ajax({
+		url: base_url + "index.php/simplefle/displayOptions",
+		type: "post",
+		success: function (html) {
+			BootstrapDialog.show({
+				title: "<h4>" + lang_qso_simplefle_options + "</h4>",
+				nl2br: false,
+				message: html,
+				buttons: [
+					{
+						label: lang_admin_save,
+						cssClass: 'btn-primary btn-sm',
+						id: 'saveButton',
+						action: function (dialogItself) {
+							$('#optionButton').prop("disabled", false);
+							$('#closeButton').prop("disabled", true);
+							saveOptions();
+							dialogItself.close();
+							location.reload();
+						}
+					},
+					{
+						label: lang_admin_close,
+						cssClass: 'btn-sm',
+						id: 'closeButton',
+						action: function (dialogItself) {
+							$('#optionButton').prop("disabled", false);
+							dialogItself.close();
+						}
+					},
+				],
+			});
+		},
+	});
+});
+
+function saveOptions() {
+	$('#saveButton').prop("disabled", true);
+	$('#closeButton').prop("disabled", true);
+	$.ajax({
+		url: base_url + 'index.php/simplefle/saveOptions',
+		type: 'post',
+		data: {
+			callbook_lookup: $('input[name="callbook_lookup"]').is(':checked') ? true : false,
+		},
+		success: function(data) {
+			$('#saveButton').prop("disabled", false);
+			$('#closeButton').prop("disabled", false);
+		},
+		error: function() {
+			$('#saveButton').prop("disabled", false);
+		},
+	});
+}
+
 function updateUTCTime() {
 	const utcTimeElement = document.getElementById("utc-time");
 	const now = new Date();
