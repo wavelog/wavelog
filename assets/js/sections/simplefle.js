@@ -1,4 +1,4 @@
-var $textarea = $("textarea");
+var textarea = $("#sfle_textarea");
 var qsodate = "";
 var qsotime = "";
 var band = "";
@@ -67,7 +67,7 @@ ssb
 33 ok1xxx  4 3
 									`;
 
-										$textarea.val(logData.trim());
+										textarea.val(logData.trim());
 										handleInput();
 										BootstrapDialog.closeAll();
 									}
@@ -175,7 +175,7 @@ function handleInput() {
 	qsoList = [];
 	$("#qsoTable tbody").empty();
 
-	var text = $textarea.val().trim();
+	var text = textarea.val().trim();
 	lines = text.split("\n");
 	lines.forEach((row) => {
 		var rst_s = null;
@@ -400,23 +400,23 @@ function checkMainFieldsErrors() {
 		$("#operator").css("border", "");
 		$("#warningOperatorField").hide();
 	}
-	if ($("textarea").val() === "") {
-		$("#textarea").css("border", "2px solid rgb(217, 83, 79)");
+	if (textarea.val() === "") {
+		textarea.css("border", "2px solid rgb(217, 83, 79)");
 		setTimeout(function () {
-			$("#textarea").css("border", "");
+			textarea.css("border", "");
 		}, 2000);
 	} else {
-		$("#textarea").css("border", "");
+		textarea.css("border", "");
 	}
 }
 
-$textarea.keydown(function (event) {
+textarea.keydown(function (event) {
 	if (event.which == 13) {
 		handleInput();
 	}
 });
 
-$textarea.focus(function () {
+textarea.focus(function () {
 	errors = [];
 	checkMainFieldsErrors();
 	showErrors();
@@ -807,10 +807,10 @@ $(document).ready(function () {
 });
 
 $(".js-save-to-log").click(function () {
-	if ($("textarea").val() === "") {
-		$("#textarea").css("border", "2px solid rgb(217, 83, 79)");
+	if (textarea.val() === "") {
+		textarea.css("border", "2px solid rgb(217, 83, 79)");
 		setTimeout(function () {
-			$("#textarea").css("border", "");
+			textarea.css("border", "");
 		}, 2000);
 		return false;
 	}

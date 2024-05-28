@@ -111,7 +111,7 @@
 				<div class="row">
 					<div class="col">
 						<p><?php echo lang('qso_simplefle_enter_the_data'); ?></p>
-						<textarea name="qso" class="form-control qso-area" cols="auto" rows="11" id="textarea" style="font-family: 'Courier New', sans-serif;"></textarea>
+						<textarea name="qso" class="form-control qso-area" cols="auto" rows="11" id="sfle_textarea" style="font-family: 'Courier New', sans-serif;"></textarea>
 					</div>
 				</div>
 			</div>
