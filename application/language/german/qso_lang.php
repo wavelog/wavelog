@@ -98,3 +98,5 @@ $lang['qso_simplefle_syntax_help_ln7'] = "Das erste QSO war um 21:34 Uhr, und da
 $lang['qso_simplefle_syntax_help_ln8'] = "Für unser nächstes QSO um 21:40 Uhr am 14.05.2021 haben wir das Band auf 40m geändert, sind aber immer noch auf SSB. Wenn keine RST-Informationen angegeben sind, verwendet die Syntax bei jedem neuen QSO 59. Daher können wir ein weiteres QSO hinzufügen welches um die exakt selbe Zeit zwei Tage später stattfand. Das Datum muss im Format YYYY-MM-DD eingegeben werden.";
 $lang['qso_simplefle_syntax_help_ln9'] = "Eine vollständige Übersicht aller Befehle und der notwendigen Syntax findest du in <a href='https://github.com/wavelog/wavelog/wiki/SimpleFLE' target='_blank'>diesem Artikel</a> in unserem Wiki.";
          
+$lang['qso_simplefle_options'] = 'Optionen';
+

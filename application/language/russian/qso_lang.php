@@ -98,3 +98,5 @@ $lang['qso_simplefle_syntax_help_ln7'] = "Первое QSO состоялось 
 $lang['qso_simplefle_syntax_help_ln8'] = "Для следующего QSO в 21:40 14 мая 2021 года мы сменили диапазон на 40 м, но по-прежнему на SSB. Если информация о RST не указана, то синтаксис будет использовать 59 для каждого нового QSO. Поэтому мы можем добавить еще одно QSO, состоявшееся точно в это же время двумя днями позже. Дата должна быть в формате YYYY-MM-DD.";
 $lang['qso_simplefle_syntax_help_ln9'] = "A full summary of all commands and the necessary syntax can be found in <a href='https://github.com/wavelog/wavelog/wiki/SimpleFLE' target='_blank'>this article</a> of our Wiki.";
     
+$lang['qso_simplefle_options'] = 'Options';
+

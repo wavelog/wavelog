@@ -97,4 +97,6 @@ $lang['qso_simplefle_syntax_help_ln6'] = "我们的下一个 QSO 是在 2021 年
 $lang['qso_simplefle_syntax_help_ln7'] = "A full summary of all commands and the necessary syntax can be found in <a href='https://github.com/wavelog/wavelog/wiki/SimpleFLE' target='_blank'>this article</a> of our Wiki.";
 $lang['qso_simplefle_syntax_help_ln8'] = "";
 $lang['qso_simplefle_syntax_help_ln9'] = "";
-    
+
+$lang['qso_simplefle_options'] = 'Options';
+
