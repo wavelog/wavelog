@@ -190,6 +190,8 @@ class Logbookadvanced extends CI_Controller {
 	}
 
 	function export_to_adif() {
+		ini_set('memory_limit', '-1');
+		set_time_limit(0);
 		$this->load->model('logbookadvanced_model');
 
 		$ids = xss_clean($this->input->post('id'));
@@ -202,6 +204,8 @@ class Logbookadvanced extends CI_Controller {
 	}
 
 	function export_to_adif_params() {
+		ini_set('memory_limit', '-1');
+		set_time_limit(0);
 		$this->load->model('logbookadvanced_model');
 
 		$postdata = $this->input->post();

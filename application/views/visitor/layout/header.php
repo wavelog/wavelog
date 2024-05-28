@@ -62,7 +62,8 @@
 		<ul class="navbar-nav">
 		<?php
 		if (!empty($slug)) { 
-			if ($this->optionslib->get_option('public_maps') == 'true') { ?>
+			$public_maps_option = $this->optionslib->get_option('public_maps') ?? 'true';
+			if ($public_maps_option == 'true') { ?>
 				<li class="nav-item">
 					<a class="nav-link" href="<?php echo site_url('visitor/satellites/'.$slug);?>">Gridsquares</a>
 				</li>

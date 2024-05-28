@@ -30,12 +30,12 @@ function echo_table_col($row, $name) {
 		case 'SOTA':    echo '<td>' . ($row->COL_SOTA_REF) . '</td>'; break;
 		case 'WWFF':    echo '<td>' . ($row->COL_WWFF_REF) . '</td>'; break;
 		case 'POTA':    echo '<td>' . ($row->COL_POTA_REF) . '</td>'; break;
-		case 'Grid':    
+		case 'Grid':
 			$ci->load->library('qra');
 			echo '<td>' . ($ci->qra->echoQrbCalcLink($row->station_gridsquare, $row->COL_VUCC_GRIDS, $row->COL_GRIDSQUARE)) . '</td>'; break;
 		case 'Distance':    echo '<td>' . ($row->COL_DISTANCE ? $row->COL_DISTANCE . '&nbsp;km' : '') . '</td>'; break;
 		case 'Band':    echo '<td>'; if($row->COL_SAT_NAME != null) { echo '<a href="https://db.satnogs.org/search/?q='.$row->COL_SAT_NAME.'" target="_blank">'.$row->COL_SAT_NAME.'</a></td>'; } else { echo strtolower($row->COL_BAND); } echo '</td>'; break;
-		case 'Frequency':    
+		case 'Frequency':
 			$ci->load->library('frequency');
 			echo '<td>'; if($row->COL_SAT_NAME != null) { echo '<a href="https://db.satnogs.org/search/?q='.$row->COL_SAT_NAME.'" target="_blank">'.$row->COL_SAT_NAME.'</a></td>'; } else { if($row->COL_FREQ != null) { echo $ci->frequency->hz_to_mhz($row->COL_FREQ); } else { echo strtolower($row->COL_BAND); } } echo '</td>'; break;
 		case 'State':   echo '<td>' . ($row->COL_STATE) . '</td>'; break;
@@ -114,7 +114,7 @@ function echo_table_col($row, $name) {
 <?php } ?>
 </div>
 
-<?php if($this->optionslib->get_option('dashboard_map') != "false" && $this->optionslib->get_option('dashboard_map') != "map_at_right") { ?>
+<?php if($dashboard_map != "false" && $dashboard_map != "map_at_right") { ?>
 <!-- Map -->
 <div id="map" class="map-leaflet" style="width: 100%; height: 350px"></div>
 <?php } ?>
@@ -184,7 +184,7 @@ function echo_table_col($row, $name) {
   </div>
 
   <div class="col-sm-4">
-  	<?php if($this->optionslib->get_option('dashboard_map') == "map_at_right") { ?>
+  	<?php if($dashboard_map == "map_at_right") { ?>
 	<!-- Map -->
 	<div id="map" class="map-leaflet" style="width: 100%; height: 350px;  margin-bottom: 15px;"></div>
 	<?php } ?>
@@ -192,7 +192,7 @@ function echo_table_col($row, $name) {
 
 
 		<div id="radio_display" hx-get="<?php echo site_url('dashboard/radio_display_component'); ?>" hx-trigger="load, every 5s"></div>
-		
+
     	<table class="table table-striped border-top">
 			<tr class="titles">
 				<td colspan="2"><i class="fas fa-chart-bar"></i> <?php echo lang('dashboard_qso_breakdown'); ?></td>

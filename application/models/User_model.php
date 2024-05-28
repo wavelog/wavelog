@@ -151,8 +151,8 @@ class User_Model extends CI_Model {
 		$user_show_profile_image, $user_previous_qsl_type, $user_amsat_status_upload, $user_mastodon_url,
 		$user_default_band, $user_default_confirmation, $user_qso_end_times, $user_quicklog, $user_quicklog_enter,
 		$language, $user_hamsat_key, $user_hamsat_workable_only, $user_iota_to_qso_tab, $user_sota_to_qso_tab,
-		$user_wwff_to_qso_tab, $user_pota_to_qso_tab, $user_sig_to_qso_tab, $user_dok_to_qso_tab, 
-		$user_lotw_name, $user_lotw_password, $user_eqsl_name, $user_eqsl_password, $user_clublog_name, $user_clublog_password, 
+		$user_wwff_to_qso_tab, $user_pota_to_qso_tab, $user_sig_to_qso_tab, $user_dok_to_qso_tab,
+		$user_lotw_name, $user_lotw_password, $user_eqsl_name, $user_eqsl_password, $user_clublog_name, $user_clublog_password,
 		$user_winkey) {
 		// Check that the user isn't already used
 		if(!$this->exists($username)) {
@@ -403,9 +403,11 @@ class User_Model extends CI_Model {
 	// FUNCTION: void update_session()
 	// Updates a user's login session after they've logged in
 	// TODO: This should return bool TRUE/FALSE or 0/1
-	function update_session($id) {
+	function update_session($id, $u = null) {
 
-		$u = $this->get_by_id($id);
+		if ($u == null) {
+			$u = $this->get_by_id($id);
+		}
 
 		$userdata = array(
 			'user_id'		 => $u->row()->user_id,
@@ -455,7 +457,7 @@ class User_Model extends CI_Model {
 	// FUNCTION: bool validate_session()
 	// Validate a user's login session
 	// If the user's session is corrupted in any way, it will clear the session
-	function validate_session() {
+	function validate_session($u = null) {
 
 		if($this->session->userdata('user_id'))
 		{
@@ -466,7 +468,7 @@ class User_Model extends CI_Model {
 			if(ENVIRONMENT != 'maintenance') {
 				if($this->_auth($user_id."-".$user_type, $user_hash)) {
 					// Freshen the session
-					$this->update_session($user_id);
+					$this->update_session($user_id, $u);
 					return 1;
 				} else {
 					$this->clear_session();
@@ -476,7 +478,7 @@ class User_Model extends CI_Model {
 				if($user_type == '99') {
 					if($this->_auth($user_id."-".$user_type, $user_hash)) {
 						// Freshen the session
-						$this->update_session($user_id);
+						$this->update_session($user_id, $u);
 						return 1;
 					} else {
 						$this->clear_session();
@@ -533,8 +535,12 @@ class User_Model extends CI_Model {
 		if($this->config->item('auth_mode') > $level) {
 			$level = $this->config->item('auth_mode');
 		}
-		if(($this->validate_session()) && ($u->row()->user_type >= $level) || $this->config->item('use_auth') == FALSE || $level == 0) {
-			$this->set_last_seen($u->row()->user_id);
+		if(($this->validate_session($u)) && ($u->row()->user_type >= $level) || $this->config->item('use_auth') == FALSE || $level == 0) {
+			$ls=new DateTime($u->row()->last_seen ?? '1971-01-01');
+			$n=new DateTime("now");
+			if ($ls->diff($n)->format('%s') > 60) {	// Reduce load of the Spy-Function. shouldn't be called at anytimne. 60seconds diff is enough
+				$this->set_last_seen($u->row()->user_id);
+			}
 			return 1;
 		} else {
 			return 0;
