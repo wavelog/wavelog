@@ -4367,7 +4367,7 @@ function lotw_last_qsl_date($user_id) {
 		    $dxcc_array=[];
 
 		    // Fetch all candidates in one shot instead of looping
-		    $dxcc_result=$this->db->query("SELECT `call`, `entity`, `adif`, `cqz`, `cont`
+		    $dxcc_result=$this->db->query("SELECT *
 			    FROM `dxcc_prefixes`
 			    WHERE ? like concat(`call`,'%')
 			    and `call` like ?
