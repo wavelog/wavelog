@@ -9,6 +9,56 @@ var errors = [];
 var qsoList = [];
 var modes_regex = modes_regex(Modes);
 
+$(document).ready(function () {
+	setInterval(updateUTCTime, 1000);
+	updateUTCTime();
+	var tabledata = localStorage.getItem(`user_${user_id}_tabledata`);
+	var mycall = localStorage.getItem(`user_${user_id}_my-call`);
+	var operator = localStorage.getItem(`user_${user_id}_operator`);
+	var mysotawwff = localStorage.getItem(`user_${user_id}_my-sota-wwff`);
+	var qsoarea = localStorage.getItem(`user_${user_id}_qso-area`);
+	var qsodate = localStorage.getItem(`user_${user_id}_qsodate`);
+	var myPower = localStorage.getItem(`user_${user_id}_my-power`);
+	var myGrid = localStorage.getItem(`user_${user_id}_my-grid`);
+
+	if (mycall != null) {
+		$("#station-call").val(mycall);
+	}
+
+	if (operator != null) {
+		$("#operator").val(operator);
+	}
+
+	if (mysotawwff != null) {
+		$("#my-sota-wwff").val(mysotawwff);
+	}
+
+	if (qsoarea != null) {
+		$(".qso-area").val(qsoarea);
+	}
+
+	if (qsodate != null) {
+		$("#qsodate").val(qsodate);
+	}
+
+	if (myPower != null) {
+		$("#my-power").val(myPower);
+	}
+
+	if (myGrid != null) {
+		$("#my-grid").val(myGrid);
+	}
+
+	if (tabledata != null) {
+		$("#qsoTable").html(tabledata);
+		handleInput();
+	}
+
+	$(window).on('resize', resizeElements);
+	$(document).ready(resizeElements);
+
+});
+
 $("#simpleFleInfoButton").click(function (event) {
 	var awardInfoLines = [
 		lang_qso_simplefle_info_ln2,
@@ -759,56 +809,6 @@ function isWWFF(value) {
 
 	return false;
 }
-
-$(document).ready(function () {
-	setInterval(updateUTCTime, 1000);
-	updateUTCTime();
-	var tabledata = localStorage.getItem(`user_${user_id}_tabledata`);
-	var mycall = localStorage.getItem(`user_${user_id}_my-call`);
-	var operator = localStorage.getItem(`user_${user_id}_operator`);
-	var mysotawwff = localStorage.getItem(`user_${user_id}_my-sota-wwff`);
-	var qsoarea = localStorage.getItem(`user_${user_id}_qso-area`);
-	var qsodate = localStorage.getItem(`user_${user_id}_qsodate`);
-	var myPower = localStorage.getItem(`user_${user_id}_my-power`);
-	var myGrid = localStorage.getItem(`user_${user_id}_my-grid`);
-
-	if (mycall != null) {
-		$("#station-call").val(mycall);
-	}
-
-	if (operator != null) {
-		$("#operator").val(operator);
-	}
-
-	if (mysotawwff != null) {
-		$("#my-sota-wwff").val(mysotawwff);
-	}
-
-	if (qsoarea != null) {
-		$(".qso-area").val(qsoarea);
-	}
-
-	if (qsodate != null) {
-		$("#qsodate").val(qsodate);
-	}
-
-	if (myPower != null) {
-		$("#my-power").val(myPower);
-	}
-
-	if (myGrid != null) {
-		$("#my-grid").val(myGrid);
-	}
-
-	if (tabledata != null) {
-		$("#qsoTable").html(tabledata);
-		handleInput();
-	}
-
-	$(window).on('resize', resizeElements);
-	$(document).ready(resizeElements);
-
-});
 
 function resizeElements() {
 	var textarea = $('#sfle_textarea');
