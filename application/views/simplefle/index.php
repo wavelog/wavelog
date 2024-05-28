@@ -132,7 +132,7 @@
 								<th><?php echo lang('gen_hamradio_mode'); ?></th>
 								<th><?php echo lang('gen_hamradio_rsts'); ?></th>
 								<th><?php echo lang('gen_hamradio_rstr'); ?></th>
-								<th><?php echo lang('gen_hamradio_operator'); ?></th>
+								<th><?php echo lang('gen_hamradio_gridsquare'); ?></th>
 								<th><?php echo lang('gen_hamradio_refs'); ?>*</th>
 							</tr>
 						</thead>
