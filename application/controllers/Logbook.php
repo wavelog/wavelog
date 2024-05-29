@@ -84,13 +84,17 @@ class Logbook extends CI_Controller {
         echo json_encode($return, JSON_PRETTY_PRINT);
     }
 
-	function json($tempcallsign, $tempband, $tempmode, $tempstation_id = null) {
+	function json($tempcallsign, $tempband, $tempmode, $tempstation_id = null, $date = "") {
 		session_write_close();
+		if (($date ?? '') != '') {
+			$date=date("Y-m-d",strtotime($date));
+		}
 		// Cleaning for security purposes
 		$callsign = $this->security->xss_clean($tempcallsign);
 		$band = $this->security->xss_clean($tempband);
 		$mode = $this->security->xss_clean($tempmode);
 		$station_id = $this->security->xss_clean($tempstation_id);
+		$date = $this->security->xss_clean($date);
 
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize($this->config->item('auth_mode'))) { return; }
@@ -129,7 +133,7 @@ class Logbook extends CI_Controller {
 			"image" => "",
 		];
 
-		$return['dxcc'] = $this->dxcheck($callsign);
+		$return['dxcc'] = $this->dxcheck($callsign,$date);
 
 		$lookupcall=$this->get_plaincall($callsign);
 
