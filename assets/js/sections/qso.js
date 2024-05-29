@@ -765,7 +765,7 @@ $( document ).ready(function() {
 				find_callsign=find_callsign.replace('Ø', '0');
 
 				// Replace / in a callsign with - to stop urls breaking
-				$.getJSON(base_url + 'index.php/logbook/json/' + find_callsign + '/' + json_band + '/' + json_mode + '/' + $('#stationProfile').val(), async function(result)
+				$.getJSON(base_url + 'index.php/logbook/json/' + find_callsign + '/' + json_band + '/' + json_mode + '/' + $('#stationProfile').val() + '/' + $('#start_date').val(), async function(result)
 					{
 
 						// Make sure the typed callsign and json result match
