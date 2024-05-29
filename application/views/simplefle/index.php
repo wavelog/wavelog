@@ -83,12 +83,11 @@
 								<?php echo lang('qso_simplefle_station_call_location'); ?>
 							</label>
 							<select name="station_profile" class="station_id form-select" id="station-call">
-								<option value="-">-</option>
 								<?php foreach ($station_profile->result() as $station) { ?>
 									<option value="<?php echo $station->station_id; ?>" <?php if ($station->station_id == $this->stations->find_active()) {
 																							echo 'selected';
 																						} ?>>
-										<?php echo lang('gen_hamradio_callsign') . ": " . $station->station_callsign . " (" . $station->station_profile_name . ")"; ?>
+										<?php echo $station->station_callsign . " (" . $station->station_profile_name . ")"; ?>
 									</option>
 								<?php } ?>
 							</select>
