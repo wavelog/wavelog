@@ -539,6 +539,7 @@ class User_Model extends CI_Model {
 			$ls = strtotime($u->row()->last_seen ?? '1971-01-01');
 			$n = time();
 			if (($n - $ls) > 60) {	// Reduce load. 'set_last_seen()' Shouldn't be called at anytime. 60 seconds diff is enough.
+
 				$this->set_last_seen($u->row()->user_id);
 			}
 			return 1;
