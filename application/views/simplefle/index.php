@@ -156,7 +156,7 @@
 					<button class="btn btn-warning js-save-to-log"><?php echo lang('qso_simplefle_save'); ?></button>
 					<button class="btn btn-danger js-empty-qso"><?php echo lang('qso_simplefle_clear'); ?></button>
 					<button class="btn btn-success" id="js-syntax"><?php echo lang('qso_simplefle_syntax_help_button'); ?></button>
-					<button class="btn btn-secondary" id="js-options"><?php echo lang('admin_options'); ?></button>
+					<!-- <button class="btn btn-secondary" id="js-options"><?php echo lang('admin_options'); ?></button> -->
 
 				</div>
 			</div>
