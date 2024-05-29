@@ -135,6 +135,11 @@ function loadActivationsTable(rows, show_workable_only) {
 		table.rows(createdRow).nodes().to$().data('activationID', activation.id);
 		table.row(createdRow).node().id = 'activationID-' + activation.id;
 	}
+	if (workable_rows == rows.length) {
+		console.log("TEST: "+rows.length+"-"+workable_rows);
+		$('#toggle_workable').hide();
+		$('#workable_hint').hide();
+	}
 	if (workable_only == '1') {
 		if (rows.length > workable_rows) {
 			$('#toggle_workable').html('Show all passes ('+rows.length+')');
