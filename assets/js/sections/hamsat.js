@@ -136,7 +136,6 @@ function loadActivationsTable(rows, show_workable_only) {
 		table.row(createdRow).node().id = 'activationID-' + activation.id;
 	}
 	if (workable_rows == rows.length) {
-		console.log("TEST: "+rows.length+"-"+workable_rows);
 		$('#toggle_workable').hide();
 		$('#workable_hint').hide();
 	}
