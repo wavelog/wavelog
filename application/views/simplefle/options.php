@@ -1,4 +1,4 @@
-<table style="width:100%" class="table-sm table table-hover table-striped table-condensed text-start" id="useroptions">
+<!-- <table style="width:100%" class="table-sm table table-hover table-striped table-condensed text-start" id="useroptions">
     <thead>
         <tr>
             <th class="text-start">Option</th>
@@ -15,4 +15,6 @@
             </td>
         </tr>
     </tbody>
-</table>
+</table> -->
+
+<p> No Options yet </p>

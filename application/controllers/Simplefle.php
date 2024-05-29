@@ -40,7 +40,7 @@ class SimpleFLE extends CI_Controller {
 
 	public function displayOptions() {
 
-		$data['callbook_lookup'] = $this->user_options_model->get_options('SimpleFLE',array('option_name'=>'callbook_lookup','option_key'=>'boolean'))->row()->option_value;
+		$data['callbook_lookup'] = $this->user_options_model->get_options('SimpleFLE',array('option_name'=>'callbook_lookup','option_key'=>'boolean'))->row()->option_value ?? 'true';
 
 		$this->load->view('simplefle/options', $data);
 
@@ -48,7 +48,11 @@ class SimpleFLE extends CI_Controller {
 
 	public function saveOptions() {
 
-		$this->user_options_model->set_option('SimpleFLE', 'callbook_lookup',  array('boolean' => xss_clean($this->input->post('callbook_lookup'))));
+		if($this->input->post('callbook_lookup')) {
+			$this->user_options_model->set_option('SimpleFLE', 'callbook_lookup',  array('boolean' => xss_clean($this->input->post('callbook_lookup'))));
+		} else {
+			log_message('debug', 'SimpleFLE, saveOptions(); No Options to save. No Post Data');
+		}
 
 	}
 
