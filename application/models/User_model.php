@@ -538,7 +538,7 @@ class User_Model extends CI_Model {
 		if(($this->validate_session($u)) && ($u->row()->user_type >= $level) || $this->config->item('use_auth') == FALSE || $level == 0) {
 			$ls=new DateTime($u->row()->last_seen ?? '1971-01-01');
 			$n=new DateTime("now");
-			if ($ls->diff($n)->format('%s') > 60) {	// Reduce load of the Spy-Function. shouldn't be called at anytimne. 60seconds diff is enough
+			if ($n->getTimestamp()-$ls->getTimestamp() > 60) {	// Reduce load of the Spy-Function. shouldn't be called at anytimne. 60seconds diff is enough
 				$this->set_last_seen($u->row()->user_id);
 			}
 			return 1;
