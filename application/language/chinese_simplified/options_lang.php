@@ -7,6 +7,7 @@ $lang['options_message1'] = '本设置是针对所有用户的全局设置，会
 
 $lang['options_appearance'] = '外观';
 $lang['options_theme'] = '主题';
+$lang['options_saved'] = "Options saved";
 $lang['options_global_theme_choice_this_is_used_when_users_arent_logged_in'] = '全局主题选择，当用户未登录时使用。';
 $lang['options_public_search_bar'] = '公共搜索栏';
 $lang['options_this_allows_non_logged_in_users_to_access_the_search_functions'] = '允许未登录的用户访问搜索功能。';
@@ -16,11 +17,8 @@ $lang['options_dashboard_map'] = '仪表盘的地图';
 $lang['options_this_allows_the_map_on_the_dashboard_to_be_disabled_or_placed_on_the_right'] = '允许禁用仪表板上的地图或将其放置在右侧。';
 $lang['options_logbook_map'] = '日志地图';
 $lang['options_this_allows_to_disable_the_map_in_the_logbook'] = '允许禁用日志中的地图。';
-$lang['options_theme_changed_to'] = '主题更改为 ';
-$lang['options_global_search_changed_to'] = '全局搜索更改为 ';
-$lang['options_dashboard_banner_changed_to'] = '仪表板横幅更改为 ';
-$lang['options_dashboard_map_changed_to'] = '仪表板地图更改为 ';
-$lang['options_logbook_map_changed_to'] = '日志地图更改为 ';
+$lang['options_public_maps'] = "Public Maps";
+$lang['options_this_allows_to_disable_all_maps_in_the_public_view'] = "This allows to disable all maps in the public view. This affects the main map and the gridsquares map.";
 
 $lang['options_radios'] = '电台';
 $lang['options_radio_settings'] = '电台设置';

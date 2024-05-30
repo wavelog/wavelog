@@ -3,6 +3,13 @@ use Wavelog\QSLManager\QSO;
 
 class Logbookadvanced_model extends CI_Model {
 
+	private $logbooks_locations_array;
+	public function __construct()
+	{
+		$this->load->model('logbooks_model');
+		$this->logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+	}
+
 	public function searchDb($searchCriteria) {
 		$conditions = [];
 		$binding = [$searchCriteria['user_id']];
@@ -226,7 +233,7 @@ class Logbookadvanced_model extends CI_Model {
 		}
 
 		$sql = "
-			SELECT *, dxcc_entities.name as dxccname, mydxcc.name AS station_country, exists(select 1 from qsl_images where qsoid = qsos.COL_PRIMARY_KEY) as qslcount, contest.name as contestname
+			SELECT qsos.*, dxcc_entities.*, station_profile.*, satellite.*, dxcc_entities.name as dxccname, mydxcc.name AS station_country, exists(select 1 from qsl_images where qsoid = qsos.COL_PRIMARY_KEY) as qslcount, contest.name as contestname
 			FROM " . $this->config->item('table_name') . " qsos
 			INNER JOIN station_profile ON qsos.station_id=station_profile.station_id
 			LEFT OUTER JOIN satellite ON qsos.COL_SAT_NAME = satellite.name
@@ -436,18 +443,14 @@ class Logbookadvanced_model extends CI_Model {
     }
 
 	function get_modes() {
-		$CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-
-		if (!$logbooks_locations_array) {
+		if (!$this->logbooks_locations_array) {
 			return null;
 		}
 
 		$modes = array();
 
 		$this->db->select('distinct col_mode, coalesce(col_submode, "") col_submode', FALSE);
-		$this->db->where_in('station_id', $logbooks_locations_array);
+		$this->db->where_in('station_id', $this->logbooks_locations_array);
 		$this->db->order_by('col_mode, col_submode', 'ASC');
 
 		$query = $this->db->get($this->config->item('table_name'));
@@ -467,15 +470,11 @@ class Logbookadvanced_model extends CI_Model {
 	}
 
 	function getQslsForQsoIds($ids) {
-		$CI =& get_instance();
-        $CI->load->model('logbooks_model');
-        $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-
         $this->db->select('*');
 		$this->db->from($this->config->item('table_name'));
         $this->db->join('qsl_images', 'qsl_images.qsoid = ' . $this->config->item('table_name') . '.col_primary_key');
         $this->db->where_in('qsoid', $ids);
-		$this->db->where_in('station_id', $logbooks_locations_array);
+		$this->db->where_in('station_id', $this->logbooks_locations_array);
         $this->db->order_by("id", "desc");
 
         return $this->db->get()->result();

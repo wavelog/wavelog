@@ -15,12 +15,14 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/datatables.min.css" />
 
 	<!-- Bootstrap CSS -->
-	<?php if ($this->optionslib->get_theme()) { ?>
-		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/<?php echo $this->optionslib->get_theme(); ?>/bootstrap.min.css">
+	<?php
+	$theme = $this->optionslib->get_theme();
+	if ($theme) { ?>
+		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/<?php echo $theme; ?>/bootstrap.min.css">
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/general.css">
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/selectize.bootstrap4.css" />
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap-dialog.css" />
-		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/<?php echo $this->optionslib->get_theme(); ?>/overrides.css">
+		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/<?php echo $theme; ?>/overrides.css">
 	<?php } ?>
 
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/fontawesome/css/all.css">
@@ -470,13 +472,13 @@
 							<?php } ?>
 						<?php
 						$utc_headermenu = ($this->user_options_model->get_options('header_menu', array('option_name' => 'utc_headermenu'))->row()->option_value ?? 'false');
-						if ($utc_headermenu == 'true') { 
+						if ($utc_headermenu == 'true') {
 						?>
 							<li class="nav-link disabled" id="utc_header_li">
 								<a id="utc_header" style="width: 70px; display: inline-block;"></a>
 							</li>
 
-						<?php } 
+						<?php }
 
 						// Can add extra menu items by defining them in options. The format is json.
 						// Useful to add extra things in Wavelog without the need for modifying files. If you add extras, these files will not be overwritten when updating.
@@ -497,13 +499,14 @@
 						// 		"icon":"fa-globe-europe"
 						// }
 						// ]','yes');
+						$menuitems = $this->optionslib->get_option('menuitems');
 
-						if ($this->optionslib->get_option('menuitems')) { ?>
+						if ($menuitems) { ?>
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><?php echo lang('menu_extras'); ?></a>
 								<div class="dropdown-menu header-dropdown">
 									<?php
-									foreach (json_decode($this->optionslib->get_option('menuitems')) as $item) {
+									foreach (json_decode($menuitems) as $item) {
 										echo '<a class="dropdown-item" href="' . site_url($item->url) . '" title="' . $item->text . '"><i class="fas ' . $item->icon . '"></i> ' . $item->text . '</a>';
 									}
 									?>

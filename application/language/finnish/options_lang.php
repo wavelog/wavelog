@@ -7,6 +7,7 @@ $lang['options_message1'] = 'Wavelog Options are global settings used for all us
 
 $lang['options_appearance'] = 'Ulkoasu';
 $lang['options_theme'] = 'Teema';
+$lang['options_saved'] = "Options saved";
 $lang['options_global_theme_choice_this_is_used_when_users_arent_logged_in'] = 'Yleisen teeman valinta, joka vaikuttaa sivuston vierailijoihin. ';
 $lang['options_public_search_bar'] = 'Julkinen hakukenttä';
 $lang['options_this_allows_non_logged_in_users_to_access_the_search_functions'] = 'Tämä mahdollistaa vieraiden suorittaa hakuja kirjautumatta.';
@@ -16,11 +17,8 @@ $lang['options_dashboard_map'] = 'Dashboard Map';
 $lang['options_this_allows_the_map_on_the_dashboard_to_be_disabled_or_placed_on_the_right'] = 'This allows the map on the dashboard to be disabled or placed on the right.';
 $lang['options_logbook_map'] = 'Logbook Map';
 $lang['options_this_allows_to_disable_the_map_in_the_logbook'] = 'This allows to disable the map in the logbook.';
-$lang['options_theme_changed_to'] = 'Vaihdettu teema on ';
-$lang['options_global_search_changed_to'] = 'Julkinen haku on vaihdettu: ';
-$lang['options_dashboard_banner_changed_to'] = 'Dashboard banner changed to ';
-$lang['options_dashboard_map_changed_to'] = 'Dashboard map changed to ';
-$lang['options_logbook_map_changed_to'] = 'Logbook map changed to ';
+$lang['options_public_maps'] = "Public Maps";
+$lang['options_this_allows_to_disable_all_maps_in_the_public_view'] = "This allows to disable all maps in the public view. This affects the main map and the gridsquares map.";
 
 $lang['options_radios'] = 'Radiot';
 $lang['options_radio_settings'] = 'Radion asetukset';

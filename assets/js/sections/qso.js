@@ -765,7 +765,7 @@ $( document ).ready(function() {
 				find_callsign=find_callsign.replace('Ø', '0');
 
 				// Replace / in a callsign with - to stop urls breaking
-				$.getJSON(base_url + 'index.php/logbook/json/' + find_callsign + '/' + json_band + '/' + json_mode + '/' + $('#stationProfile').val(), async function(result)
+				$.getJSON(base_url + 'index.php/logbook/json/' + find_callsign + '/' + json_band + '/' + json_mode + '/' + $('#stationProfile').val() + '/' + $('#start_date').val(), async function(result)
 					{
 
 						// Make sure the typed callsign and json result match
@@ -1029,20 +1029,24 @@ $( document ).ready(function() {
 
 	/* on mode change */
 	$('.mode').change(function() {
-		$.get(base_url + 'index.php/qso/band_to_freq/' + $('#band').val() + '/' + $('.mode').val(), function(result) {
-			$('#frequency').val(result);
-			$('#frequency_rx').val("");
-		});
+		if ($('#radio').val() == 0) {
+			$.get(base_url + 'index.php/qso/band_to_freq/' + $('#band').val() + '/' + $('.mode').val(), function(result) {
+				$('#frequency').val(result);
+			});
+		}
+		$('#frequency_rx').val("");
 	});
 
 	/* Calculate Frequency */
 	/* on band change */
 	$('#band').change(function() {
-		$.get(base_url + 'index.php/qso/band_to_freq/' + $(this).val() + '/' + $('.mode').val(), function(result) {
-			$('#frequency').val(result);
-			$('#frequency_rx').val("");
-			$('#band_rx').val("");
-		});
+		if ($('#radio').val() == 0) {
+			$.get(base_url + 'index.php/qso/band_to_freq/' + $(this).val() + '/' + $('.mode').val(), function(result) {
+				$('#frequency').val(result);
+			});
+		}
+		$('#frequency_rx').val("");
+		$('#band_rx').val("");
 		$("#selectPropagation").val("");
 		$("#sat_name").val("");
 		$("#sat_mode").val("");
