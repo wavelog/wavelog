@@ -4,6 +4,7 @@
   var text_error_timeoff_less_timeon = "<?php echo lang('qso_error_timeoff_less_timeon'); ?>";
   var lang_qso_title_previous_contacts = "<?php echo lang('qso_title_previous_contacts'); ?>";
   var lang_qso_title_times_worked_before = "<?php echo lang('qso_title_times_worked_before'); ?>";
+  var lang_qso_title_not_worked_before = "<?php echo lang('qso_title_not_worked_before'); ?>";
 </script>
 
 <div class="row qsopane">

@@ -7,6 +7,7 @@ $lang['qso_title_qso_map'] = 'QSO Haritası';
 $lang['qso_title_suggestions'] = 'Öneriler';
 $lang['qso_title_previous_contacts'] = 'Önceki Görüşmeler';
 $lang['qso_title_times_worked_before'] = "times worked before";
+$lang['qso_title_not_worked_before'] = "Not worked before";
 $lang['qso_title_image'] = 'Profil Resmi';
 $lang['qso_previous_max_shown'] = "Max. 5 previous contacts are shown";
 

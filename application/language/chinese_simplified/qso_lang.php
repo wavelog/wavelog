@@ -7,6 +7,7 @@ $lang['qso_title_qso_map'] = 'QSO 地图';
 $lang['qso_title_suggestions'] = '建议';
 $lang['qso_title_previous_contacts'] = '先前通联';
 $lang['qso_title_times_worked_before'] = "先前通联的次数";
+$lang['qso_title_not_worked_before'] = "Not worked before";
 $lang['qso_title_image'] = '操作员照片';
 $lang['qso_previous_max_shown'] = "最多五次先前通联将会被显示";
 

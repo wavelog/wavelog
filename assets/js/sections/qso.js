@@ -964,7 +964,11 @@ $( document ).ready(function() {
 							}
 
 							if(result.timesWorked != "") {
-								$('#timesWorked').html(result.timesWorked + ' ' + lang_qso_title_times_worked_before);
+								if (result.timesWorked == '0') {
+									$('#timesWorked').html(lang_qso_title_not_worked_before);
+								} else {
+									$('#timesWorked').html(result.timesWorked + ' ' + lang_qso_title_times_worked_before);
+								}
 							} else {
 								$('#timesWorked').html(lang_qso_title_previous_contacts);
 							}
