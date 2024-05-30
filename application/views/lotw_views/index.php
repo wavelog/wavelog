@@ -97,13 +97,11 @@
 								</td>
 								<td>
 									<?php if ($row->last_upload) {
-										$last_upload = date($this->config->item('qso_date_format').' H:i:s', strtotime( $row->last_upload ));
-										if ($row->last_upload_fail) {
-											$last_upload_fail = date($this->config->item('qso_date_format').' H:i:s', strtotime( $row->last_upload_fail ));
-										} else {
-											$last_upload_fail = null;
-										}
-										if ($last_upload_fail > $last_upload) { ?>
+										$last_upload_ts = strtotime($row->last_upload ?? '1970-01-01');
+										$last_upload = date($this->config->item('qso_date_format').' H:i:s', $last_upload_ts);
+										$last_upload_fail_ts = strtotime($row->last_upload_fail ?? '1970-01-01');
+										$last_upload_fail = date($this->config->item('qso_date_format').' H:i:s', $last_upload_fail_ts);
+										if ($last_upload_fail_ts > $last_upload_ts) { ?>
 											<span data-bs-toggle="tooltip" data-bs-original-title="<?php echo $row->last_upload_status;?>. Last success: <?php echo $last_upload; ?>" class="badge text-bg-danger"><?php echo $last_upload_fail; ?></span>
 										<?php } else {
 											if ($last_upload_fail && $row->last_upload_status)  { ?>
