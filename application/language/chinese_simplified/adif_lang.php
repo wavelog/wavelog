@@ -32,21 +32,21 @@ $lang['adif_select_stationlocation'] = "选择台站位置";
 // The File Input is translated by the Browser
 $lang['adif_file_label'] = "ADIF 文件";
 
-$lang['adif_hint_no_info_in_file'] = "如果导入的ADIF文件不包含此信息，选择此项";
+$lang['adif_hint_no_info_in_file'] = "如果导入的 ADIF 文件不包含此信息，选择此项";
 
-$lang['adif_import_dup'] = "导入重复的QSO";
-$lang['adif_mark_imported_lotw'] = "标记导入的QSO为已上传至 LoTW";
-$lang['adif_mark_imported_hrdlog'] = "标记导入的QSO为已上传至 HRDLog Logbook";
-$lang['adif_mark_imported_qrz'] = "标记导入的QSO为已上传至 QRZ Logbook";
-$lang['adif_mark_imported_clublog'] = "标记导入的QSO为已上传至 Clublog Logbook";
+$lang['adif_import_dup'] = "导入重复的 QSO";
+$lang['adif_mark_imported_lotw'] = "标记导入的 QSO 为已上传至 LoTW";
+$lang['adif_mark_imported_hrdlog'] = "标记导入的 QSO 为已上传至 HRDLog Logbook";
+$lang['adif_mark_imported_qrz'] = "标记导入的 QSO 为已上传至 QRZ Logbook";
+$lang['adif_mark_imported_clublog'] = "标记导入的 QSO 为已上传至 Clublog Logbook";
 
-$lang['adif_dxcc_from_adif'] = "使用ADIF文件中的DXCC信息";
-$lang['adif_dxcc_from_adif_hint'] = "如果不选择，Wavelog将会自动判断QSO的DXCC";
+$lang['adif_dxcc_from_adif'] = "使用 ADIF 文件中的 DXCC 信息";
+$lang['adif_dxcc_from_adif_hint'] = "如果不选择，Wavelog 将会自动判断 QSO 的 DXCC";
 
 $lang['adif_always_use_login_call_as_op'] = "总是在导入时使用登录的呼号作为操作者名称";
 
 $lang['adif_ignore_station_call'] = "导入时忽略台站的呼号";
-$lang['adif_ignore_station_call_hint'] = "如果选择，Wavelog会尝试导入ADIF文件中的 <b>所有</b> QSO，而不判断是否与所选台站位置匹配";
+$lang['adif_ignore_station_call_hint'] = "如果选择，Wavelog 会尝试导入 ADIF 文件中的 <b>所有</b> QSO，而不判断是否与所选台站位置匹配";
 
 $lang['adif_upload'] = "上传";
 
@@ -123,9 +123,9 @@ ________________________________________________________________________________
 
 $lang['dcl_results'] = "DCL DOK 更新结果";
 $lang['dcl_info_updated'] = "DOK 的 DCL 信息已更新。";
-$lang['dcl_qsos_updated'] = "已更新的QSO";
-$lang['dcl_qsos_ignored'] = "已忽略的QSO";
-$lang['dcl_qsos_unmatched'] = "无法匹配的QSO";
+$lang['dcl_qsos_updated'] = "已更新的 QSO";
+$lang['dcl_qsos_ignored'] = "已忽略的 QSO";
+$lang['dcl_qsos_unmatched'] = "无法匹配的 QSO";
 $lang['dcl_no_qsos_updated'] = "未找到可以更新的 QSO。";
 $lang['dcl_dok_errors'] = "DOK 错误";
 $lang['dcl_dok_errors_details'] = "与 DCL 相比，日志中 DOK 的数据不同";

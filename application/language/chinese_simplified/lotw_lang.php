@@ -63,4 +63,4 @@ $lang['lotw_user'] = '这个电台使用 LOTW';
 $lang['lotw_last_upload'] = '最后一次上传是';
 
 // Upload folder permissions
-$lang['lotw_upload_folder_permissions'] = 'Upload folder is not writable. Please contact your admin.';
+$lang['lotw_upload_folder_permissions'] = '上传目录非可写，请联系本站管理员。';

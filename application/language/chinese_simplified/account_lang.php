@@ -7,7 +7,7 @@ $lang['account_column1_text'] = '第1列';
 $lang['account_column2_text'] = '第2列';
 $lang['account_column3_text'] = '第3列';
 $lang['account_column4_text'] = '第4列';
-$lang['account_column5_text'] = '第5列（仅日志页面展示）';
+$lang['account_column5_text'] = '第5列(仅日志页面展示)';
 
 $lang['account_create_user_account'] = '创建账户';
 $lang['account_edit_account'] = '编辑账户';
@@ -72,7 +72,7 @@ $lang['account_please_set_your_qrzcom_hamqthcom_credentials_in_the_general_confi
 $lang['account_amsat_status_upload'] = '上传AMSAT';
 $lang['account_upload_status_of_sat_qsos_to'] = '上传卫星状态到';
 
-$lang['account_logbook_of_the_world'] = 'Logbook of the World（LoTW）';
+$lang['account_logbook_of_the_world'] = 'Logbook of the World(LoTW)';
 $lang['account_logbook_of_the_world_lotw_username'] = 'Logbook of The World (LoTW) 用户名';
 $lang['account_logbook_of_the_world_lotw_password'] = 'Logbook of The World (LoTW) 密码';
 

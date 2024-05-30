@@ -6,7 +6,7 @@ $lang['awards_info_button'] = "奖状详情";
 $lang['awards_show_worked'] = "显示已通联";
 $lang['awards_show_confirmed'] = "显示已确认";
 $lang['awards_show_not_worked'] = "显示未通联";
-$lang['awards_qsl_type'] = "Show QSO with QSL Type";
+$lang['awards_qsl_type'] = "显示 QSL 分类下的 QSO";
 $lang['awards_show_cq_map'] = "查看CQ分区地图";
 $lang['awards_summary'] = "概览";
 $lang['awards_total'] = "总计";
@@ -16,8 +16,8 @@ $lang['awards_total_confirmed'] = "共确认";
 
 $lang['awards_cq_page_title'] = "CQ 杂志 WAZ 奖状";
 $lang['awards_itu_page_title'] = "Awards - ITU Zones";
-$lang['awards_show_itu_map'] = "Show ITU Zone Map";
-$lang['awards_show_jcc_map'] = "Show JCC Map";
+$lang['awards_show_itu_map'] = "显示 ITU 分区地图";
+$lang['awards_show_jcc_map'] = "显示 JCC 地图";
 
 /*
 ___________________________________________________________________________________________

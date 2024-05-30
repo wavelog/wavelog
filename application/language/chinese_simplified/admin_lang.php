@@ -12,14 +12,14 @@ $lang['admin_user_list'] = '用户列表';
 $lang['admin_user'] = '用户名';
 $lang['admin_email'] = '电子邮件';
 $lang['admin_type'] = '用户类型';
-$lang['admin_last_seen'] = "Last seen";
-$lang['admin_last_qso'] = "Last QSO:";
-$lang['admin_no_qso_in_log'] = "No QSOs in Log";
-$lang['admin_refresh_list'] = "Refresh List";
+$lang['admin_last_seen'] = "上次出现";
+$lang['admin_last_qso'] = "上个 QSO:";
+$lang['admin_no_qso_in_log'] = "日志为空";
+$lang['admin_refresh_list'] = "刷新列表";
 $lang['admin_options'] = '设置';
 
-$lang['admin_station_logbooks'] = 'Logbooks';
-$lang['admin_station_locations'] = 'Locations';
+$lang['admin_station_logbooks'] = '日志簿';
+$lang['admin_station_locations'] = '地点';
 
 $lang['admin_create_user'] = '创建用户';
 $lang['admin_delete'] = '删除用户';
@@ -38,7 +38,7 @@ $lang['admin_password_reset'] = "重置密码";
 
 $lang['admin_email_settings_incorrect'] = "邮件设定出现错误";
 $lang['admin_password_reset_processed'] = "密码重置邮件已发送";
-$lang['admin_confirm_pwd_reset'] = "Do you really want to send this user a password-reset link?";
+$lang['admin_confirm_pwd_reset'] = "确认发送重置密码链接？";
 
 
 // Contest Menu
