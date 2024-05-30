@@ -8,10 +8,12 @@ function loadHamsAt(show_workable_only) {
            $('#workable_hint').text("Only workable passes shown.");
            $('#toggle_workable').prop('value', 0);
            $('#toggle_workable').html('Show all passes');
+           $('#toggle_workable').show()
        } else {
            $('#workable_hint').text("All passes shown.");
            $('#toggle_workable').prop('value', 1);
            $('#toggle_workable').html('Show workable passes only');
+           $('#toggle_workable').show()
        }
     }
 
