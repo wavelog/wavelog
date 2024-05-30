@@ -4540,41 +4540,33 @@ function lotw_last_qsl_date($user_id) {
     }
 
 
-    public function check_missing_dxcc_id($all){
-        // get all records with no COL_DXCC
-        $this->db->select("COL_PRIMARY_KEY, COL_CALL, COL_TIME_ON, COL_TIME_OFF");
+    public function check_missing_dxcc_id($all) {
+	    ini_set('memory_limit', '-1');	// This consumes a much of Memory!
+	    $this->db->trans_start();	// Transaction has to be started here, because otherwise we're trying to update rows which are locked by the select
+	    $this->db->select("COL_PRIMARY_KEY, COL_CALL, COL_TIME_ON, COL_TIME_OFF"); // get all records with no COL_DXCC
 
-        // check which to update - records with no dxcc or all records
-        if (!$all){
-            $this->db->where("COL_DXCC is NULL");
-        }
+	    if (!$all) { // check which to update - records with no dxcc or all records
+		    $this->db->where("COL_DXCC is NULL");
+	    }
 
-        $r = $this->db->get($this->config->item('table_name'));
+	    $r = $this->db->get($this->config->item('table_name'));
 
-        $count = 0;
-        $this->db->trans_start();
-        //query dxcc_prefixes
-        if ($r->num_rows() > 0){
-            foreach($r->result_array() as $row){
-                $qso_date = $row['COL_TIME_OFF']=='' ? $row['COL_TIME_ON'] : $row['COL_TIME_OFF'];
-                $qso_date = date("Y-m-d", strtotime($qso_date));
-
-                // Manual call
-                $d = $this->check_dxcc_table($row['COL_CALL'], $qso_date);
-
-                if ($d[0] != 'Not Found'){
-                    $sql = sprintf("update %s set COL_COUNTRY = '%s', COL_DXCC='%s' where COL_PRIMARY_KEY=%d",
-                                    $this->config->item('table_name'), addslashes(ucwords(strtolower($d[1]), "- (/")), $d[0], $row['COL_PRIMARY_KEY']);
-                    $this->db->query($sql);
-                    //print($sql."\n");
-                    // printf("Updating %s to %s and %s\n<br/>", $row['COL_PRIMARY_KEY'], ucwords(strtolower($d[1]), "- (/"), $d[0]);
-                    $count++;
-                }
-            }
-        }
-        $this->db->trans_complete();
-
-        print("$count updated\n");
+	    $count = 0;
+	    if ($r->num_rows() > 0){ //query dxcc_prefixes
+		    $sql = "update ".$this->config->item('table_name')." set COL_COUNTRY = ?, COL_DXCC=? where COL_PRIMARY_KEY=?";
+		    $q = $this->db->conn_id->prepare($sql);	// PREPARE this statement. For DB this means: No parsing overhead, parse once use many (see execute query below)
+		    foreach($r->result_array() as $row){
+			    $qso_date = $row['COL_TIME_OFF']=='' ? $row['COL_TIME_ON'] : $row['COL_TIME_OFF'];
+			    $qso_date = date("Y-m-d", strtotime($qso_date));
+			    $d = $this->check_dxcc_table($row['COL_CALL'], $qso_date);
+			    if ($d[0] != 'Not Found'){
+				    $q->execute(array(addslashes(ucwords(strtolower($d[1]), "- (/")), $d[0], $row['COL_PRIMARY_KEY']));
+				    $count++;
+			    }
+		    }
+	    }
+	    $this->db->trans_complete();
+	    print("$count updated\n");
     }
 
     public function check_missing_continent(){
