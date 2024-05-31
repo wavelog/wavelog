@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $lang['error_no_active_station_profile'] = '注意：你需要设置一个活动的电台站地址';
 
-$lang['notice_turn_the_radio_on'] = '你今天还没进行QSO，是时候打开你的电台开始通联了！';
+$lang['notice_turn_the_radio_on'] = '你今天还没进行 QSO，是时候打开你的电台开始通联了！';
 
 $lang['general_word_important'] = '重要';
 $lang['general_word_warning'] = '注意';
@@ -45,7 +45,7 @@ $lang['general_word_location'] = '位置';
 $lang['general_word_comment'] = '备注';
 $lang['general_word_general'] = '通用';
 $lang['general_word_satellite'] = '卫星';
-$lang['general_word_orbit'] = 'Orbit';
+$lang['general_word_orbit'] = '环绕';
 $lang['general_word_satellite_short'] = '卫星';
 $lang['general_word_notes'] = '笔记';
 $lang['general_word_country'] = 'DXCC 实体';

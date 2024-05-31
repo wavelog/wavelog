@@ -55,8 +55,8 @@ $lang['lotw_p12_export_step_four'] = '在下方上传文件';
 $lang['lotw_confirmed'] = '该 QSO 已在 LoTW 确认';
 
 // LoTW Expiry
-$lang['lotw_cert_expiring'] = '至少有一个LoTW证书即将过期!';
-$lang['lotw_cert_expired'] = '至少有一个LoTW证书已经过期!';
+$lang['lotw_cert_expiring'] = '至少有一个 LoTW 证书即将过期!';
+$lang['lotw_cert_expired'] = '至少有一个 LoTW 证书已经过期!';
 
 // Lotw User
 $lang['lotw_user'] = '这个电台使用 LOTW';

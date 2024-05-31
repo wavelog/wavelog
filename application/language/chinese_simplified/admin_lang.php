@@ -2,8 +2,8 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$lang['admin_user_line1'] = 'Wavelog至少需要配置一个用户才能运行。';
-$lang['admin_user_line2'] = '用户可以被分配不同的角色，这些角色赋予他们不同的权限，例如向日志簿添加 QSO 和访问Wavelog API。';
+$lang['admin_user_line1'] = 'Wavelog 至少需要配置一个用户才能运行。';
+$lang['admin_user_line2'] = '用户可以被分配不同的角色，这些角色赋予他们不同的权限，例如向日志簿添加 QSO 和访问 Wavelog API。';
 $lang['admin_user_line3'] = '页面右上方显示当前登录的用户。';
 $lang['admin_user_line4'] = "通过'重置密码'按钮，你可以向用户发送一封带有重置密码链接的邮件。您需要确保全局设定中的邮件设置配置正确";
 
@@ -30,7 +30,7 @@ $lang['admin_update'] = '更新';
 $lang['admin_copy'] = '复制';
 $lang['admin_save'] = '保存';
 $lang['admin_close'] = '关闭';
-$lang['admin_clear'] = "Clear";
+$lang['admin_clear'] = "清除";
 $lang['admin_user_accounts'] = '用户账户';
 $lang['admin_danger'] = '危险';
 $lang['admin_experimental'] = "实验性功能";
