@@ -7,6 +7,7 @@ $lang['qso_title_qso_map'] = 'QSO 地图';
 $lang['qso_title_suggestions'] = '建议';
 $lang['qso_title_previous_contacts'] = '先前通联';
 $lang['qso_title_times_worked_before'] = "先前通联的次数";
+$lang['qso_title_not_worked_before'] = "Not worked before";
 $lang['qso_title_image'] = '操作员照片';
 $lang['qso_previous_max_shown'] = "最多五次先前通联将会被显示";
 
@@ -18,7 +19,7 @@ $lang['qso_transmit_power_helptext'] = '以W为单位设置功率值。在输入
 
 $lang['qso_sota_ref_helptext'] = '例如: GM/NS-001.';
 $lang['qso_wwff_ref_helptext'] = '例如: DLFF-0069.';
-$lang['qso_pota_ref_helptext'] = '例如: PA-0150. Multiple values allowed.';
+$lang['qso_pota_ref_helptext'] = '例如: PA-0150. 可使用多个值';
 
 $lang['qso_sig_helptext'] = '例如: GMA';
 $lang['qso_sig_info_helptext'] = '例如: DA/NW-357';
@@ -35,8 +36,8 @@ $lang['qso_error_timeoff_less_timeon'] = "结束时间小于开始时间";
 
 // Button Text on /qso Display
 
-$lang['qso_btn_clear_qso'] = 'Clear';
-$lang['qso_btn_reset_to_default'] = 'Reset to Default';
+$lang['qso_btn_clear_qso'] = '清除';
+$lang['qso_btn_reset_to_default'] = '重置为默认';
 $lang['qso_btn_save_qso'] = '保存 QSO';
 $lang['qso_btn_edit_qso'] = '编辑 QSO';
 $lang['qso_delete_warning'] = "警告！您确定要删除 QSO 和 ";
@@ -64,13 +65,13 @@ $lang['qso_simplefle_operator'] = "操作员";
 $lang['qso_simplefle_operator_hint'] = "例如 BA1AA";
 $lang['qso_simplefle_station_call_location'] = "位置";
 $lang['qso_simplefle_station_call_location_hint'] = "如果您确实在新位置进行操作，请首先创建一个新的<a href=".site_url('station') .">电台站位置</a>";
-$lang['qso_simplefle_utc_time'] = "当前UTC时间";
+$lang['qso_simplefle_utc_time'] = "当前 UTC 时间";
 $lang['qso_simplefle_enter_the_data'] = "输入信息";
 $lang['qso_simplefle_syntax_help_close_w_sample'] = "关闭并加载示例数据";
-$lang['qso_simplefle_reload'] = "重新加载QSO列表";
-$lang['qso_simplefle_save'] = "保存QSO列表";
+$lang['qso_simplefle_reload'] = "重新加载 QSO 列表";
+$lang['qso_simplefle_save'] = "保存 QSO 列表";
 $lang['qso_simplefle_clear'] = "清除记录会话";
-$lang['qso_simplefle_refs_hint'] = "Refs 可以是 <u>S</u>OTA、<u>I</u>OTA、<u>P</u>OTA 或 <u>W</u>WFF";
+$lang['qso_simplefle_refs_hint'] = "标识代码可以是 <u>S</u>OTA、<u>I</u>OTA、<u>P</u>OTA 或 <u>W</u>WFF";
 
 $lang['qso_simplefle_error_band'] = "找不到波段！";
 $lang['qso_simplefle_error_mode'] = "找不到模式！";
@@ -94,7 +95,7 @@ $lang['qso_simplefle_syntax_help_ln3'] = "例如，如果您在 20m 上与 DF3CB
 $lang['qso_simplefle_syntax_help_ln4'] = "如果您不提供任何 RST 信息，语法将使用 59 (599 用于数据)。我们的下一个 QSO 不是双方都是 59，所以我们首先提供发送的 RST 信息。它比第一个 QSO 晚了 2 分钟。";
 $lang['qso_simplefle_syntax_help_ln5'] = "第一个 QSO 是在 21:34，第二个 QSO 在 21:36，比第一个 QSO 晚了 2 分钟。我们写下 6，因为这是这里唯一改变的数据。关于波段和模式的信息没有改变，因此省略了这些数据。";
 $lang['qso_simplefle_syntax_help_ln6'] = "我们的下一个 QSO 是在 2021 年 5 月 14 日的 21:40，我们将波段更改为 40m，但仍然在 SSB 上。如果没有给出 RST 信息，语法将为每个新的 QSO 使用 59。因此，我们可以添加另一个 QSO，它在两天后的同一时间发生。日期必须是 YYYY-MM-DD 格式。";
-$lang['qso_simplefle_syntax_help_ln7'] = "A full summary of all commands and the necessary syntax can be found in <a href='https://github.com/wavelog/wavelog/wiki/SimpleFLE' target='_blank'>this article</a> of our Wiki.";
+$lang['qso_simplefle_syntax_help_ln7'] = "完整的可用指令和语法可在 Wavelog Wiki 中的 <a href='https://github.com/wavelog/wavelog/wiki/SimpleFLE' target='_blank'>这篇文章</a> 查看。";
 $lang['qso_simplefle_syntax_help_ln8'] = "";
 $lang['qso_simplefle_syntax_help_ln9'] = "";
 

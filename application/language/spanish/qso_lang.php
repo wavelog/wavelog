@@ -7,6 +7,7 @@ $lang['qso_title_qso_map'] = 'Mapa de QSO';
 $lang['qso_title_suggestions'] = 'Sugerencias';
 $lang['qso_title_previous_contacts'] = 'Contactos previos';
 $lang['qso_title_times_worked_before'] = "times worked before";
+$lang['qso_title_not_worked_before'] = "Not worked before";
 $lang['qso_title_image'] = 'Imagen de Perfil';
 $lang['qso_previous_max_shown'] = "Se muestra máx. de 5 contactos previos";
 

@@ -7,6 +7,7 @@ $lang['qso_title_qso_map'] = 'Χάρτης QSO';
 $lang['qso_title_suggestions'] = 'Εισήγησης';
 $lang['qso_title_previous_contacts'] = 'Προηγούμενες Επαφές';
 $lang['qso_title_times_worked_before'] = "times worked before";
+$lang['qso_title_not_worked_before'] = "Not worked before";
 $lang['qso_title_image'] = 'Εικόνα προφίλ';
 $lang['qso_previous_max_shown'] = "Max. 5 previous contacts are shown";
 

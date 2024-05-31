@@ -9,14 +9,14 @@ $lang['menu_overview'] = '概览';
 $lang['menu_advanced'] = '详细信息';
 
 $lang['menu_qso'] = 'QSO';
-$lang['menu_live_qso'] = '添加QSO（实时）';
-$lang['menu_post_qso'] = '添加QSO（手动）';
-$lang['menu_fast_log_entry'] = "快速记录QSO";
+$lang['menu_live_qso'] = '添加 QSO（实时）';
+$lang['menu_post_qso'] = '添加 QSO（手动）';
+$lang['menu_fast_log_entry'] = "快速记录 QSO";
 $lang['menu_live_contest_logging'] = '比赛日志（实时）';
 $lang['menu_post_contest_logging'] = '比赛日志（手动）';
 $lang['menu_bandmap'] = '波段地图';
-$lang['menu_view_qsl'] = '浏览QSL卡片';
-$lang['menu_view_eqsl'] = '浏览eQSL卡片';
+$lang['menu_view_qsl'] = '浏览 QSL 卡片';
+$lang['menu_view_eqsl'] = '浏览 eQSL 卡片';
 
 $lang['menu_notes'] = '笔记';
 
@@ -56,8 +56,8 @@ $lang['menu_waja'] = 'WAJA';
 $lang['menu_was'] = 'WAS';
 $lang['menu_wwff'] = 'WWFF';
 
-$lang['menu_tools'] = "Tools";
-$lang['menu_sat_timers'] = "SAT Timers";
+$lang['menu_tools'] = "工具";
+$lang['menu_sat_timers'] = "卫星过境时钟";
 
 $lang['menu_admin'] = '管理';
 $lang['menu_user_account'] = '用户账户';
@@ -79,11 +79,11 @@ $lang['menu_login_button'] = '登录';
 $lang['menu_account'] = '账户';
 $lang['menu_station_logbooks'] = '电台站日志簿';
 $lang['menu_station_locations'] = '电台站位置';
-$lang['menu_select_location'] = "Select a Location";
-$lang['menu_station_setup'] = 'Station Setup';
+$lang['menu_select_location'] = "选择电台站位置";
+$lang['menu_station_setup'] = '设置台站';
 $lang['menu_bands'] = '波段';
 $lang['menu_adif_import_export'] = 'ADIF 导入/导出';
-$lang['menu_other_export'] = "Other Export Options";
+$lang['menu_other_export'] = "其它导出选项";
 $lang['menu_kml_export'] = 'KML 导出';
 $lang['menu_dx_atlas_gridsquare_export'] = 'DX Atlas Gridsquare 导出';
 $lang['menu_sota_csv_export'] = 'SOTA CSV 导出';
@@ -92,7 +92,7 @@ $lang['menu_cfd_export'] = "CFD Export";
 $lang['menu_oqrs_requests'] = 'OQRS';
 $lang['menu_print_requested_qsls'] = '打印请求的QSL卡片';
 $lang['menu_labels'] = '标签';
-$lang['menu_third_party_services'] = "Third-Party Services";
+$lang['menu_third_party_services'] = "第三方服务";
 $lang['menu_logbook_of_the_world'] = 'Logbook of the World';
 $lang['menu_eqsl_import_export'] = 'eQSL 导入/导出';
 $lang['menu_qrz_logbook'] = 'QRZ 日志簿';
@@ -105,17 +105,17 @@ $lang['menu_forum'] = '论坛';
 $lang['menu_logout'] = '注销';
 
 $lang['menu_extras'] = "Extras";
-$lang['menu_satellites'] = 'Satellites';
-$lang['menu_dx_calendar'] = 'DX Calendar';
-$lang['menu_contest_calendar'] = 'Contest Calendar';
+$lang['menu_satellites'] = '卫星';
+$lang['menu_dx_calendar'] = 'DX 日志';
+$lang['menu_contest_calendar'] = '竞赛日志';
 $lang['menu_wab'] = 'WAB';
 $lang['menu_itu'] = 'ITU';
 
-$lang['menu_canada'] = 'Canada';
-$lang['menu_germany'] = 'Germany';
-$lang['menu_great_britain'] = 'Great Britain';
-$lang['menu_japan'] = 'Japan';
-$lang['menu_luxemburg'] = 'Luxemburg';
-$lang['menu_switzerland'] = 'Switzerland';
-$lang['menu_usa'] = 'USA';
+$lang['menu_canada'] = '加拿大';
+$lang['menu_germany'] = '德国';
+$lang['menu_great_britain'] = '英国';
+$lang['menu_japan'] = '日本';
+$lang['menu_luxemburg'] = '卢森堡';
+$lang['menu_switzerland'] = '瑞士';
+$lang['menu_usa'] = '美国';
 
