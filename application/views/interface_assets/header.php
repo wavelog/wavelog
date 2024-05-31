@@ -55,7 +55,6 @@
 
 	<script>
 		var userName = '<?php echo $this->session->userdata('user_name'); ?>';
-
 		<?php
 		if ($this->uri->segment(1) == "qso") {
                 	$actstation=$this->stations->find_active() ?? '';
