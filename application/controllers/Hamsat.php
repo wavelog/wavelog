@@ -16,7 +16,31 @@ class Hamsat extends CI_Controller {
 	public function index() {
 		$data['scripts'] = [
 			'assets/js/sections/hamsat.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/hamsat.js")),
+			'assets/js/moment.min.js',
+			'assets/js/datetime-moment.js'
 		];
+
+		// Get Date format
+		if($this->session->userdata('user_date_format')) {
+			// If Logged in and session exists
+			$pageData['custom_date_format'] = $this->session->userdata('user_date_format');
+		} else {
+			// Get Default date format from /config/wavelog.php
+			$pageData['custom_date_format'] = $this->config->item('qso_date_format');
+		}
+
+		switch ($pageData['custom_date_format']) {
+			case "d/m/y": $pageData['custom_date_format'] = 'DD/MM/YY'; break;
+			case "d/m/Y": $pageData['custom_date_format'] = 'DD/MM/YYYY'; break;
+			case "m/d/y": $pageData['custom_date_format'] = 'MM/DD/YY'; break;
+			case "m/d/Y": $pageData['custom_date_format'] = 'MM/DD/YYYY'; break;
+			case "d.m.Y": $pageData['custom_date_format'] = 'DD.MM.YYYY'; break;
+			case "y/m/d": $pageData['custom_date_format'] = 'YY/MM/DD'; break;
+			case "Y-m-d": $pageData['custom_date_format'] = 'YYYY-MM-DD'; break;
+			case "M d, Y": $pageData['custom_date_format'] = 'MMM DD, YYYY'; break;
+			case "M d, y": $pageData['custom_date_format'] = 'MMM DD, YY'; break;
+			default: $pageData['custom_date_format'] = 'DD/MM/YYYY';
+		}
 
 		$hkey_opt=$this->user_options_model->get_options('hamsat',array('option_name'=>'hamsat_key','option_key'=>'workable'))->result();
 		if (count($hkey_opt)>0) {
@@ -34,7 +58,7 @@ class Hamsat extends CI_Controller {
 		// Load public view
 		$data['page_title'] = "Hamsat - Satellite Roving";
 		$this->load->view('interface_assets/header', $data);
-		$this->load->view('/hamsat/index');
+		$this->load->view('/hamsat/index', $pageData);
 		$this->load->view('interface_assets/footer');
 	}
 

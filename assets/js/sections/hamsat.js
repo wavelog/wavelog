@@ -65,6 +65,7 @@ function loadActivationsTable(rows, show_workable_only) {
 	};
 
 	uninitialized.each(function() {
+		$.fn.dataTable.moment(custom_date_format);
 		$(this).DataTable({
 			"pageLength": 25,
 			"columnDefs": [{

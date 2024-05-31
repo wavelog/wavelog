@@ -1,3 +1,7 @@
+<script type="text/javascript">
+    /* Define custom date format */
+    var custom_date_format = "<?php echo $custom_date_format ?>";
+</script>
 <div class="container">
     <br>
     <h2>Hamsat - Satellite Rovers</h2>
