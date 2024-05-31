@@ -25,7 +25,7 @@
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/<?php echo $theme; ?>/overrides.css">
 	<?php } ?>
 
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/fontawesome/css/all.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/fontawesome/css/all.min.css">
 
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.fancybox.min.css" />
 
