@@ -29,22 +29,12 @@ function mapQsos() {
 	// const showlines = urlParams.get('showlines');
 	let iconsList;
 
-	$.ajax({
-		url: base_url + 'index.php/visitor/get_map_custom',
-		type: 'POST',
-		dataType: 'json',
-		data: {
-			slug: slug,
-		},
-		error: function () {
-		},
-		success: function (json_mapinfo) {
-			if (typeof json_mapinfo.qso !== "undefined") {
-				iconsList = json_mapinfo;
-			}
-			loadQsos(slug, iconsList);
-		}
-	});
+	let json_mapinfo = user_map_custom;
+
+	if (typeof json_mapinfo.qso !== "undefined") {
+		iconsList = json_mapinfo;
+	}
+	loadQsos(slug, iconsList);
 
 
 };
