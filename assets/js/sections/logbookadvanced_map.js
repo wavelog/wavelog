@@ -504,19 +504,11 @@ function createContentMessageDx(qso) {
 }
 
 function loadMapOptions(data) {
-	$.ajax({
-		url: base_url + 'index.php/user_options/get_map_custom',
-		type: 'GET',
-		dataType: 'json',
-	error: function () {
-	},
-	success: function (json_mapinfo) {
-			if (typeof json_mapinfo.qso !== "undefined") {
-				iconsList = json_mapinfo;
-			}
-			loadMap(data, iconsList)
-		}
-	});
+	let json_mapinfo = user_map_custom;
+	if (typeof json_mapinfo.qso !== "undefined") {
+		iconsList = json_mapinfo;
+	}
+	loadMap(data, iconsList)
 }
 
 function mapQsos(form) {
