@@ -79,10 +79,10 @@
 				<div class="row">
 					<div class="col-xs-12 col-lg-6">
 						<div class="mb-3">
-							<label for="station-call">
+							<label for="stationProfile">
 								<?php echo lang('qso_simplefle_station_call_location'); ?>
 							</label>
-							<select name="station_profile" class="station_id form-select" id="station-call">
+							<select name="station_profile" class="station_id form-select" id="stationProfile">
 								<?php foreach ($station_profile->result() as $station) { ?>
 									<option value="<?php echo $station->station_id; ?>" <?php if ($station->station_id == $this->stations->find_active()) {
 																							echo 'selected';
