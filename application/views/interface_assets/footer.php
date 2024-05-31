@@ -1147,18 +1147,16 @@ $($('#callsign')).on('keypress',function(e) {
 		    if($('select.radios option:selected').val() != '0') {
 			    radioID = $('select.radios option:selected').val();
 			    $.getJSON( "radio/json/" + radioID, function( data ) {
-
-                /* {
-                "frequency": "2400210000",
-                    "frequency_rx": "10489710000",
-                    "mode": "SSB",
-                    "satmode": "S/X",
-                    "satname": "QO-100"
-                    "power": "20"
-                    "prop_mode": "SAT",
-                    "error": "not_logged_id" // optional, reserved for errors
-                }  */
-                
+        /* {
+        "frequency": "2400210000",
+            "frequency_rx": "10489710000",
+            "mode": "SSB",
+            "satmode": "S/X",
+            "satname": "QO-100"
+            "power": "20"
+            "prop_mode": "SAT",
+            "error": "not_logged_id" // optional, reserved for errors
+        }  */
 				    if (data.error) {
 					    if (data.error == 'not_logged_in') {
 						    $(".radio_cat_state" ).remove();
