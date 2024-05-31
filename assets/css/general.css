@@ -716,31 +716,46 @@ div#station_logbooks_linked_table_paginate {
 	margin-right: 30px;
 }
 
-.sfletable {
-	height: 470px;
+@media (min-width: 768px) {
+
+	.sfletable.table {
+		width: 100%;
+	}
+
+	.sfletable.table thead,
+	.sfletable.table tbody tr {
+		display: block;
+		width: 100%;
+		table-layout: fixed;
+		display: inline-table;
+	}
+
+	.sfletable.table tbody {
+		width: 95%;
+		overflow-y: scroll;
+		position: absolute;
+	}
+
+	.simplefle {
+		--bs-card-bg: none;
+	}
+
+	#sfle_textarea {
+		width: 100%;
+		box-sizing: border-box;
+	}
 }
 
-.sfletable.table {
-	width: 100%;
-}
+@media (max-width: 767px) {
 
-.sfletable.table thead,
-.sfletable.table tbody tr {
-	display: block;
-	width: 100%;
-	table-layout: fixed;
-	display: inline-table;
-}
+	.sfletable.table {
+		overflow-x: auto;
+		font-size: 0.8em;
+	}
 
-.sfletable.table tbody {
-	width: 95%;
-	overflow-y: scroll;
-	max-height: 440px;
-	position: absolute;
-}
-
-.simplefle {
-	--bs-card-bg: none;
+	#refs_hint {
+		font-size: 0.8em;
+	}
 }
 
 .red {

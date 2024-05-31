@@ -98,4 +98,6 @@ $lang['qso_simplefle_syntax_help_ln6'] = "If you don't provide any RST informati
 $lang['qso_simplefle_syntax_help_ln7'] = "The first QSO was at 21:34, and the second one 2 minutes later at 21:36. We write down 6 because this is the only data that changed here. The information about band and mode didn't change, so this data is omitted.";
 $lang['qso_simplefle_syntax_help_ln8'] = "For our next QSO at 21:40 on 14th May, 2021, we changed the band to 40m but still on SSB. If no RST information is given, the syntax will use 59 for every new QSO. Therefore we can add another QSO which took place at the exact same time two days later. The date must be in format YYYY-MM-DD.";
 $lang['qso_simplefle_syntax_help_ln9'] = "A full summary of all commands and the necessary syntax can be found in <a href='https://github.com/wavelog/wavelog/wiki/SimpleFLE' target='_blank'>this article</a> of our Wiki.";
-    
+ 
+$lang['qso_simplefle_options'] = 'Options';
+
