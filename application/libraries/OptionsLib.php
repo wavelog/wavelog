@@ -138,4 +138,23 @@ class OptionsLib {
         }
     }
 
+    function get_map_custom() {
+
+        $CI =& get_instance();
+
+        $jsonout = [];
+		
+        $result = $CI->user_options_model->get_options('map_custom');
+
+        foreach($result->result() as $options) {
+            if ($options->option_name == 'icon') {
+                $jsonout[$options->option_key] = json_decode($options->option_value,true);
+            } else  {
+                $jsonout[$options->option_name.'_'.$options->option_key]=$options->option_value;
+            }
+        } 
+        
+        return json_encode($jsonout);
+    }
+
 }
