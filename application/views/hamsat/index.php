@@ -8,13 +8,8 @@
     </script>
     <?php if ($user_hamsat_key != '') { ?>
     <span id="workable_hint">
-       <?php if ($user_hamsat_workable_only == '1') {
-          echo " Only workable passes shown.";
-       } else {
-          echo " All passes shown.";
-       } ?>
     </span>
-    <button id="toggle_workable" value="<?php echo $user_hamsat_workable_only ? '0' : '1'; ?>" type="button" onclick="loadHamsAt(this);" class="btn btn-info btn-sm"><?php echo $user_hamsat_workable_only ? 'Show all passes' : 'Show workable passes only'; ?></button>
+    <button id="toggle_workable" value="<?php echo $user_hamsat_workable_only ? '0' : '1'; ?>" type="button" onclick="loadHamsAt(this);" class="btn btn-info btn-sm" style="display: none;"><?php echo $user_hamsat_workable_only ? 'Show all passes' : 'Show workable passes only'; ?></button>
     <?php } ?>
     </p>
     <p>
