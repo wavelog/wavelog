@@ -16,6 +16,8 @@ class Hamsat extends CI_Controller {
 	public function index() {
 		$data['scripts'] = [
 			'assets/js/sections/hamsat.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/hamsat.js")),
+			'assets/js/moment.min.js',
+			'assets/js/datetime-moment.js'
 		];
 
 		// Get Date format
@@ -40,12 +42,6 @@ class Hamsat extends CI_Controller {
 			default: $pageData['custom_date_format'] = 'DD/MM/YYYY';
 		}
 
-		$footerData = [];
-		$footerData['scripts'] = [
-			'assets/js/moment.min.js',
-			'assets/js/datetime-moment.js'
-		];
-
 		$hkey_opt=$this->user_options_model->get_options('hamsat',array('option_name'=>'hamsat_key','option_key'=>'workable'))->result();
 		if (count($hkey_opt)>0) {
 			$data['user_hamsat_workable_only'] = $hkey_opt[0]->option_value;
@@ -63,7 +59,7 @@ class Hamsat extends CI_Controller {
 		$data['page_title'] = "Hamsat - Satellite Roving";
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('/hamsat/index', $pageData);
-		$this->load->view('interface_assets/footer'); //, $footerData);
+		$this->load->view('interface_assets/footer');
 	}
 
 	public function activations() {
