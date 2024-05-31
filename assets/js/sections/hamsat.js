@@ -1,41 +1,60 @@
 var hamsAtTimer;
+var workableRows = 0;
 
 function loadHamsAt(show_workable_only) {
-    clearInterval(hamsAtTimer);
-    workable_only = show_workable_only.value;
-    if (feed_key_set > 1) {
-       if (workable_only == '1') {
-           $('#workable_hint').text("Only workable passes shown.");
-           $('#toggle_workable').prop('value', 0);
-           $('#toggle_workable').html('Show all passes');
-           $('#toggle_workable').show()
-       } else {
-           $('#workable_hint').text("All passes shown.");
-           $('#toggle_workable').prop('value', 1);
-           $('#toggle_workable').html('Show workable passes only');
-           $('#toggle_workable').show()
-       }
-    }
+	clearInterval(hamsAtTimer);
+	workable_only = show_workable_only.value;
 
-    $.ajax({
-       dataType: "json",
-       url: base_url + 'index.php/hamsat/activations',
-       type: 'post',
-       success: function(result) {
-             loadActivationsTable(result, workable_only);
-       }
-    });
-    obj = {
-       value: workable_only,
-    };
-    hamsAtTimer = setInterval(function() {
-       loadHamsAt(obj);
-    }, 60000);
+	$.ajax({
+		dataType: "json",
+		url: base_url + 'index.php/hamsat/activations',
+		type: 'post',
+		success: function(result) {
+			loadActivationsTable(result, workable_only);
+		}
+	});
+	obj = {
+		value: workable_only,
+	};
+	hamsAtTimer = setInterval(function() {
+		loadHamsAt(obj);
+	}, 60000);
+}
+
+function configureButton(rowLength) {
+	if (feed_key_set > 1) {
+		if (workableRows != rowLength) {
+			if (workable_only == '1') {
+				$('#workable_hint').text("Only workable passes shown.");
+				$('#toggle_workable').prop('value', 0);
+				if (rowLength > workableRows) {
+					$('#toggle_workable').html('Show all passes ('+rowLength+')');
+				} else {
+					$('#toggle_workable').html('Show all passes');
+				}
+				$('#toggle_workable').show()
+			} else {
+				$('#workable_hint').text("All passes shown.");
+				$('#toggle_workable').prop('value', 1);
+				if (workableRows < rowLength) {
+					$('#toggle_workable').html('Show workable passes only ('+workableRows+')');
+				} else {
+					$('#toggle_workable').html('Show workable passes only');
+				}
+				$('#toggle_workable').show()
+			}
+		}
+	}
 }
 
 function loadActivationsTable(rows, show_workable_only) {
 	var uninitialized = $('#activationsList').filter(function() {
-		return !$.fn.DataTable.fnIsDataTable(this);
+		if ($.fn.DataTable.fnIsDataTable(this)) {
+			return false;
+		} else {
+			configureButton(rows.length);
+			return true;
+		}
 	});
 
 	$.fn.dataTable.ext.buttons.clear = {
@@ -69,13 +88,18 @@ function loadActivationsTable(rows, show_workable_only) {
 					text: lang_admin_clear
 				},
 			],
+			initComplete: function () {
+				configureButton(rows.length);
+			},
 		});
 	});
+
+	configureButton(rows.length);
 
 	var table = $('#activationsList').DataTable();
 
 	table.clear();
-	workable_rows = 0;
+	workableRows = 0;
 
 	for (i = 0; i < rows.length; i++) {
 		let activation = rows[i];
@@ -84,7 +108,7 @@ function loadActivationsTable(rows, show_workable_only) {
 			continue;
 		} else {
 			if (activation.is_workable == true) {
-				workable_rows++;
+				workableRows++;
 			}
 		}
 
@@ -137,29 +161,16 @@ function loadActivationsTable(rows, show_workable_only) {
 		table.rows(createdRow).nodes().to$().data('activationID', activation.id);
 		table.row(createdRow).node().id = 'activationID-' + activation.id;
 	}
-	if (workable_rows == rows.length) {
-		$('#toggle_workable').hide();
-		$('#workable_hint').hide();
-	}
-	if (workable_only == '1') {
-		if (rows.length > workable_rows) {
-			$('#toggle_workable').html('Show all passes ('+rows.length+')');
-		}
-	} else {
-		if (workable_rows < rows.length) {
-			$('#toggle_workable').html('Show workable passes only ('+workable_rows+')');
-		}
-	}
 	table.draw();
 	$('[data-bs-toggle="tooltip"]').tooltip();
 }
 
 $(document).ready(function() {
-   const obj = {
-      value: workable_preset,
-   };
-   loadHamsAt(obj);
-   hamsAtTimer = setInterval(function() {
-      loadHamsAt(obj);
-   }, 60000);
+	const obj = {
+		value: workable_preset,
+	};
+	loadHamsAt(obj);
+	hamsAtTimer = setInterval(function() {
+		loadHamsAt(obj);
+	}, 60000);
 });
