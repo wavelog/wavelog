@@ -18,18 +18,18 @@ $lang['options_this_allows_the_map_on_the_dashboard_to_be_disabled_or_placed_on_
 $lang['options_logbook_map'] = '日志地图';
 $lang['options_this_allows_to_disable_the_map_in_the_logbook'] = '允许禁用日志中的地图。';
 $lang['options_public_maps'] = "Public Maps";
-$lang['options_this_allows_to_disable_all_maps_in_the_public_view'] = "This allows to disable all maps in the public view. This affects the main map and the gridsquares map.";
+$lang['options_this_allows_to_disable_all_maps_in_the_public_view'] = "选中以在公共视图中禁用地图，包括主地图和网格地图。";
 
 $lang['options_radios'] = '电台';
 $lang['options_radio_settings'] = '电台设置';
 $lang['options_radio_timeout_warning'] = '电台连接超时警告';
-$lang['options_the_radio_timeout_warning_is_used_on_the_qso_entry_panel_to_alert_you_to_radio_interface_disconnects'] = '在QSO输入面板上使用电台连接超时警告，提醒您无线电接口断开。';
+$lang['options_the_radio_timeout_warning_is_used_on_the_qso_entry_panel_to_alert_you_to_radio_interface_disconnects'] = '在 QSO 输入面板上使用电台连接超时警告，提醒您无线电接口断开。';
 $lang['options_this_number_is_in_seconds'] = '此数字以秒为单位。';
 $lang['options_radio_timeout_warning_changed_to'] = '无线电超时警告更改为 ';
 
 $lang['options_email'] = '电子邮件';
 $lang['options_outgoing_protocol'] = '传出协议';
-$lang['options_smtp_encryption'] = 'SMTP加密';
+$lang['options_smtp_encryption'] = 'SMTP 加密';
 $lang['options_email_address'] = '电子邮件地址';
 $lang['options_email_sender_name'] = '发件人姓名';
 $lang['options_smtp_host'] = 'SMTP 主机';
@@ -51,14 +51,14 @@ $lang['options_send_testmail_hint'] = "邮件将会发送到填写在个人信�
 $lang['options_send_testmail_failed'] = "测试邮件发送失败，请检查设置";
 $lang['options_send_testmail_success'] = "测试邮件发送成功，设置正常";
 
-$lang['options_oqrs'] = 'OQRS设置';
+$lang['options_oqrs'] = 'OQRS 设置';
 $lang['options_global_text'] = '全局文本';
 $lang['options_this_text_is_an_optional_text_that_can_be_displayed_on_top_of_the_oqrs_page'] = '该文本是一个可选文本，可以显示在OQRS页面的顶部。';
 $lang['options_grouped_search'] = '分组搜索';
 $lang['options_when_this_is_on_all_station_locations_with_oqrs_active_will_be_searched_at_once'] = '当此选项打开时，所有具有OQRS活动的电台位置将同时搜索';
 $lang['options_grouped_search_show_station_name'] = "在分组搜索结果中显示台站名称";
 $lang['options_grouped_search_show_station_name_hint'] = "如果分组搜索被启用，台站名称将会显示在表格当中";
-$lang['options_oqrs_options_have_been_saved'] = 'OQRS选项已保存';
+$lang['options_oqrs_options_have_been_saved'] = 'OQRS 选项已保存';
 
 $lang['options_save'] = '保存';
 $lang['options_dxcluster_provider'] = 'DXClusterCache 的信息来源';
@@ -85,7 +85,7 @@ $lang['options_version_dialog_mode_release_notes'] = "只有发布版的更新�
 $lang['options_version_dialog_mode_custom_text'] = "只有自定义文字";
 $lang['options_version_dialog_mode_both'] = "发布版的更新内容和自定义文字";
 $lang['options_version_dialog_mode_disabled'] = "禁用";
-$lang['options_version_dialog_mode_hint'] = "版本信息将会对所有用户显示. 用户可以选择在阅读后关闭对话框，选择是否显示GitHub上发布版的更新内容还是自定义文字，或者两者";
+$lang['options_version_dialog_mode_hint'] = "版本信息将会对所有用户显示. 用户可以选择在阅读后关闭对话框，选择是否显示 GitHub 上发布版的更新内容还是自定义文字，或者两者";
 $lang['options_version_dialog_custom_text'] = "版本信息————自定义文字";
 $lang['options_version_dialog_custom_text_hint'] = "自定义文字将会在对话框中显示";
 $lang['options_version_dialog_mode_changed_to'] = "版本信息模式切换为";
@@ -112,11 +112,11 @@ $lang['options_bands_activateall_warning'] = "警告！你要启用所有波段�
 $lang['options_bands_deactivate_all'] = "停用所有";
 $lang['options_bands_deactivateall_warning'] = "警告！你要停用所有波段吗？";
 $lang['options_bands_ssb_qrg'] = "SSB 频率";
-$lang['options_bands_ssb_qrg_hint'] = "波段中 SSB 的频率（以Hz为单位）";
+$lang['options_bands_ssb_qrg_hint'] = "波段中 SSB 的频率（以 Hz 为单位）";
 $lang['options_bands_data_qrg'] = "DATA 频率";
-$lang['options_bands_data_qrg_hint'] = "波段中 DATA 的频率（以Hz为单位）";
+$lang['options_bands_data_qrg_hint'] = "波段中 DATA 的频率（以 Hz 为单位）";
 $lang['options_bands_cw_qrg'] = "CW 频率";
-$lang['options_bands_cw_qrg_hint'] = "波段中 CW 的频率（以Hz为单位）";
+$lang['options_bands_cw_qrg_hint'] = "波段中 CW 的频率（以 Hz 为单位）";
 
 $lang['options_bands_name_band'] = "波段名称（例如：20m）";
 $lang['options_bands_name_bandgroup'] = "频段名称（例如：HF、VHF、UHF、SHF）";
