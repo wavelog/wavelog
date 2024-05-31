@@ -426,20 +426,24 @@ class Visitor extends CI_Controller {
 		$slug = $this->security->xss_clean($this->uri->segment(3));
 		$lastqso = $this->security->xss_clean($this->uri->segment(4));
 
-		if ($lastqso === "lastqso") {
-			$this->load->model('visitor_model');
-			$result = $this->visitor_model->getlastqsodate($slug)->row();
-			header('Content-Type: application/json');
-			echo json_encode($result);
-			return;
+		if (!empty($slug)) {
+			if ($lastqso === "lastqso") {
+				$this->load->model('visitor_model');
+				$result = $this->visitor_model->getlastqsodate($slug)->row();
+				header('Content-Type: application/json');
+				echo json_encode($result);
+				return;
+			}
+
+			$data['slug'] = $slug;
+
+			$data['page_title'] = "Export Map";
+			$this->load->view('visitor/exportmap/header', $data);
+			$this->load->view('visitor/exportmap/exportmap', $data);
+			$this->load->view('visitor/exportmap/footer');
+		} else {
+			redirect('user/login');
 		}
-
-        $data['slug'] = $slug;
-
-		$data['page_title'] = "Export Map";
-		$this->load->view('visitor/exportmap/header', $data);
-		$this->load->view('visitor/exportmap/exportmap', $data);
-		$this->load->view('visitor/exportmap/footer');
 	}
 
 	public function mapqsos() {
