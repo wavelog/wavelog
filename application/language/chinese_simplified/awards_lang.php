@@ -6,7 +6,7 @@ $lang['awards_info_button'] = "奖状详情";
 $lang['awards_show_worked'] = "显示已通联";
 $lang['awards_show_confirmed'] = "显示已确认";
 $lang['awards_show_not_worked'] = "显示未通联";
-$lang['awards_qsl_type'] = "Show QSO with QSL Type";
+$lang['awards_qsl_type'] = "显示 QSL 分类下的 QSO";
 $lang['awards_show_cq_map'] = "查看CQ分区地图";
 $lang['awards_summary'] = "概览";
 $lang['awards_total'] = "总计";
@@ -16,8 +16,8 @@ $lang['awards_total_confirmed'] = "共确认";
 
 $lang['awards_cq_page_title'] = "CQ 杂志 WAZ 奖状";
 $lang['awards_itu_page_title'] = "Awards - ITU Zones";
-$lang['awards_show_itu_map'] = "Show ITU Zone Map";
-$lang['awards_show_jcc_map'] = "Show JCC Map";
+$lang['awards_show_itu_map'] = "显示 ITU 分区地图";
+$lang['awards_show_jcc_map'] = "显示 JCC 地图";
 
 /*
 ___________________________________________________________________________________________
@@ -74,9 +74,9 @@ ________________________________________________________________________________
 */
 
 $lang['awards_helvetia_description_ln1'] = "HELVETIA 26 | SWITZERLAND AWARD";
-$lang['awards_helvetia_description_ln2'] = "The USKA (Union of Swiss Shortwave Amateurs) sponsors two awards, the HELVETIA 26 (H26) Award and the SWITZERLAND Award, aimed at promoting activities on the bands by encouraging contacts across as many Swiss cantons as possible on multiple bands.";
-$lang['awards_helvetia_description_ln3'] = "These awards come in two versions: one for HF bands and the other for VHF (including SHF and UHF) bands. Valid connections for these awards date back to January 1, 1980";
-$lang['awards_helvetia_description_ln4'] = "For more information, you can visit this link: <a href='https://www.uska.ch/contest/uska-diplome/' target='_blank'>https://www.uska.ch/contest/uska-diplome/</a>.";
+$lang['awards_helvetia_description_ln2'] = "USKA（瑞士短波业余爱好者联盟）设立两个奖项：HELVETIA 26（H26）奖和 SWITZERLAND 奖，旨在通过鼓励在多个波段上通联尽可能多的瑞士州。";
+$lang['awards_helvetia_description_ln3'] = "这些奖项有两类：一个适用于 HF 频段，另一个适用于 VHF（包括 SHF 和 UHF）频段。这些奖项的有效连接可追溯到 1980 年 1 月 1 日";
+$lang['awards_helvetia_description_ln4'] = "如了解更多信息可在：<a href='https://www.uska.ch/contest/uska-diplome/' target='_blank'>https://www.uska.ch/contest/uska-diplome/</a> 查看";
 
 
 /*
@@ -215,10 +215,10 @@ JCC -- Use all 4 Lines of Text
 ___________________________________________________________________________________________
 */
 
-$lang['awards_jcc_description_ln1'] = "JCC - Japan Century Cities Award";
-$lang['awards_jcc_description_ln2'] = "May be claimed for having contacted (heard) and received a QSL card from an amateur station located in each of at least 100 different cities of Japan.";
-$lang['awards_jcc_description_ln3'] = "JCC-200, 300, 400, 500, 600, 700 and 800 will be issued as separate awards. A list of QSL cards should be arranged in order of JCC reference number, however names of city may be omitted. An additional sticker will be issued at every 50 contacts like 150, 250, 350, 450, 550, 650, 750 cities.";
-$lang['awards_jcc_description_ln4'] = "For more information, please visit: <a href='https://www.jarl.org/English/4_Library/A-4-2_Awards/Award_Main.htm' target='_blank'>https://www.jarl.org/English/4_Library/A-4-2_Awards/Award_Main.htm</a>.";
+$lang['awards_jcc_description_ln1'] = "JCC - 日本世纪城市奖";
+$lang['awards_jcc_description_ln2'] = "通联（收听）并收到日本 100 个不同城市的电台卡片，即可申请。";
+$lang['awards_jcc_description_ln3'] = "此外 JCC 还有数量为 200, 300, 400, 500, 600, 700 and 800 的奖项类别。QSL 卡片应记录 JCC 标识代号，城市名称为无效。额外的贴纸会在每 50 个通联记录发放，如 150, 250, 350, 450, 550, 650, 750 个城市数量";
+$lang['awards_jcc_description_ln4'] = "更多信息可在：<a href='https://www.jarl.org/English/4_Library/A-4-2_Awards/Award_Main.htm' target='_blank'>https://www.jarl.org/English/4_Library/A-4-2_Awards/Award_Main.htm</a> 查看";
 
 
 /*
@@ -227,16 +227,16 @@ WAB -- Use all 4 Lines of Text
 ___________________________________________________________________________________________
 */
 
-$lang['awards_wab_description_ln1'] = "WAB - Worked All Britain Award";
-$lang['awards_wab_description_ln2'] = "WAB, Worked All Britain squares in Amateur Radio, encourages licensed ham radio operators to work all the squares in Great Britain.";
-$lang['awards_wab_description_ln3'] = "May be claimed for having contacted an amateur station located in the required amount of squares, described on the page linked below.";
-$lang['awards_wab_description_ln4'] = "For more information, please visit: <a href='https://wab.intermip.net/default.php' target='_blank'>https://wab.intermip.net/default.php</a>.";
+$lang['awards_wab_description_ln1'] = "WAB - 通联大不列颠奖";
+$lang['awards_wab_description_ln2'] = "WAB（Worked All Britain squares in Amateur Ra​​dio）鼓励业余无线电操作员通联英国所有网格";
+$lang['awards_wab_description_ln3'] = "达成既定数量的通联网格可申请，可在如下链接查看";
+$lang['awards_wab_description_ln4'] = "更多信息请查看 <a href='https://wab.intermip.net/default.php' target='_blank'>https://wab.intermip.net/default.php</a>";
 /*
 ___________________________________________________________________________________________
 ITU
 ___________________________________________________________________________________________
 */
 
-$lang['awards_itu_description_ln1'] = "ITU Zones";
-$lang['awards_itu_description_ln2'] = "The Classic Worked ITU Zones award may be claimed by producing evidence of having contacted land based amateur radio stations in at least 70 of the 75 broadcasting zones as defined by the International Telecommunications Union (ITU).";
-$lang['awards_itu_description_ln3'] = "You can find more information on the website of <a href='https://rsgb.org/main/files/2019/01/Worked_ITU_Zones_Award_Form_2019.pdf' target='_blank'>RSGB</a>.";
+$lang['awards_itu_description_ln1'] = "ITU 分区";
+$lang['awards_itu_description_ln2'] = "通联全球 75 个 ITU 分区中的 70 个可申请该奖";
+$lang['awards_itu_description_ln3'] = "更多信息请查看 <a href='https://rsgb.org/main/files/2019/01/Worked_ITU_Zones_Award_Form_2019.pdf' target='_blank'>RSGB</a>";

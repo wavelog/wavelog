@@ -1376,4 +1376,3 @@ L.easyPrint = function (options) {
 };
 
 })));
-//# sourceMappingURL=bundle.js.map
