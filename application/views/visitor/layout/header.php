@@ -33,7 +33,6 @@
 
 	<script>
 		var userName = 'visitor';
-		let user_map_custom = JSON.parse('<?php echo $this->optionslib->get_map_custom(true,$slug) ?? ''; ?>');
 	</script>
 
 	<?php if (file_exists(APPPATH . '../assets/js/sections/custom.js')) {

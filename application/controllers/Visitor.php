@@ -101,6 +101,8 @@ class Visitor extends CI_Controller {
                 $data['month_qsos'] = $this->logbook_model->month_qsos($logbooks_locations_array);
                 $data['year_qsos'] = $this->logbook_model->year_qsos($logbooks_locations_array);
 
+				$data['user_map_custom'] = $this->optionslib->get_map_custom(true,$public_slug);
+
                 // Load  Countries Breakdown data into array
                 $CountriesBreakdown = $this->logbook_model->total_countries_confirmed($logbooks_locations_array);
 
@@ -438,6 +440,8 @@ class Visitor extends CI_Controller {
 			$data['slug'] = $slug;
 
 			$data['page_title'] = "Export Map";
+			$data['user_map_custom'] = $this->optionslib->get_map_custom(true,$slug);
+
 			$this->load->view('visitor/exportmap/header', $data);
 			$this->load->view('visitor/exportmap/exportmap', $data);
 			$this->load->view('visitor/exportmap/footer');

@@ -56,8 +56,6 @@
 	<script>
 		var userName = '<?php echo $this->session->userdata('user_name'); ?>';
 
-    	let user_map_custom = JSON.parse('<?php echo $this->session->userdata('user_map_custom') ?? ''; ?>');
-
 		<?php
 		if ($this->uri->segment(1) == "qso") {
                 	$actstation=$this->stations->find_active() ?? '';

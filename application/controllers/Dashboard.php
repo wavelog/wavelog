@@ -53,6 +53,8 @@ class Dashboard extends CI_Controller
 		$data['themesWithoutMode'] = $this->setup_model->checkThemesWithoutMode();
 		$data['dashboard_map'] = $this->optionslib->get_option('dashboard_map');
 
+		$data['user_map_custom'] = $this->optionslib->get_map_custom();
+
 		$this->load->model('cat');
 		$this->load->model('vucc');
 

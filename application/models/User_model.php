@@ -437,7 +437,6 @@ class User_Model extends CI_Model {
 			'user_column3' => isset($u->row()->user_column3) ? $u->row()->user_column3: 'RSTR',
 			'user_column4' => isset($u->row()->user_column4) ? $u->row()->user_column4: 'Band',
 			'user_column5' => isset($u->row()->user_column5) ? $u->row()->user_column5: 'Country',
-			'user_map_custom' => $this->optionslib->get_map_custom(),
 			'user_previous_qsl_type' => isset($u->row()->user_previous_qsl_type) ? $u->row()->user_previous_qsl_type: 0,
 			'user_amsat_status_upload' => isset($u->row()->user_amsat_status_upload) ? $u->row()->user_amsat_status_upload: 0,
 			'user_mastodon_url'	 => $u->row()->user_mastodon_url,

@@ -2,7 +2,7 @@
 
 	var slug = '<?php echo $slug; ?>';
 	var tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"
-	let user_map_custom = JSON.parse('<?php echo $this->optionslib->get_map_custom(true,$slug) ?? ''; ?>');
+	let user_map_custom = JSON.parse('<?php echo $user_map_custom; ?>');
 
 </script>
 <style>
