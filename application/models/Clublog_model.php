@@ -101,6 +101,10 @@ class Clublog_model extends CI_Model
 							} else {
 								$return =  "Error " . $response;
 								log_message('error', 'Clublog upload for ' . $station_row->station_callsign . ' failed reason ' . $response);
+								if (substr($response,0,13) == 'Upload denied') {	// Deactivate Upload for Station if Clublog rejects it (prevent being blacklisted at Clublog)
+        								$sql = 'update station_profile set clublogignore = 1 where station_id = ?';
+        								$this->db->query($sql,$station_row->station_id);
+								}
 							}
 
 							// Delete the ADIF file used for clublog
