@@ -23,7 +23,7 @@ $(document).ready(function () {
 	var myGrid = localStorage.getItem(`user_${user_id}_my-grid`);
 
 	if (mycall != null) {
-		$("#station-call").val(mycall);
+		$("#stationProfile").val(mycall);
 	}
 
 	if (operator != null) {
@@ -213,7 +213,7 @@ function handleInput() {
 
 	var operator = $("#operator").val();
 	operator = operator.toUpperCase();
-	var ownCallsign = $("#station-call").val().toUpperCase();
+	var ownCallsign = $("#stationProfile").val().toUpperCase();
 	ownCallsign = ownCallsign.toUpperCase();
 
 	var extraQsoDate = qsodate;
@@ -384,7 +384,7 @@ function handleInput() {
 			);
 			localStorage.setItem(
 				`user_${user_id}_my-call`,
-				$("#station-call").val()
+				$("#stationProfile").val()
 			);
 			localStorage.setItem(
 				`user_${user_id}_operator`,
@@ -443,12 +443,12 @@ function handleInput() {
 }
 
 function checkMainFieldsErrors() {
-	if ($("#station-call").val() === "-") {
+	if ($("#stationProfile").val() === "-") {
 		$("#warningStationCall").show();
-		$("#station-call").css("border", "2px solid rgb(217, 83, 79)");
+		$("#stationProfile").css("border", "2px solid rgb(217, 83, 79)");
 		$("#warningStationCall").text(lang_qso_simplefle_error_stationcall);
 	} else {
-		$("#station-call").css("border", "");
+		$("#stationProfile").css("border", "");
 		$("#warningStationCall").hide();
 	}
 
@@ -912,7 +912,7 @@ $(".js-save-to-log").click(function () {
 				if (result) {
 					var operator = $("#operator").val();
 					operator = operator.toUpperCase();
-					var ownCallsign = $("#station-call").val().toUpperCase();
+					var ownCallsign = $("#stationProfile").val().toUpperCase();
 					ownCallsign = ownCallsign.toUpperCase();
 					// var mySotaWwff = $("#my-sota-wwff").val().toUpperCase();
 
