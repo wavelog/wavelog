@@ -31,7 +31,7 @@ class Eqslmethods_model extends CI_Model {
                 $eqsl_location['station_id']
             );
 
-            $eqsl_results[] = $this->eqslimporter->fetch($password);
+            $eqsl_results[] = $this->eqslimporter->fetch($password); // Hint: for debugging add YYYYMMDD as second argument to force from older date
         }
     }
 
