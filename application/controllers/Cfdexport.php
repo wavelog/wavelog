@@ -34,7 +34,6 @@ class Cfdexport extends CI_Controller {
 		$fromdate = xss_clean($this->input->post('from'));
 		$todate = xss_clean($this->input->post('to'));
 
-	  	$this->load->library('frequency');
 		// Get QSOs with Valid QRAs
 		$qsos = $this->logbook_model->cfd_get_all_qsos($fromdate, $todate);
 		$output=strtoupper($this->session->userdata('user_callsign'))."\n";
