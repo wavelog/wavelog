@@ -66,6 +66,7 @@ class eqsl extends CI_Controller {
 
 		$eqsl_results = array();
 		if (($this->input->post('eqslimport') == 'fetch') && (!($this->config->item('disable_manual_eqsl')))) {
+
 			$this->load->library('EqslImporter');
 
 			// Get credentials for eQSL
@@ -130,7 +131,7 @@ class eqsl extends CI_Controller {
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('eqsl/analysis');
 		$this->load->view('interface_assets/footer');
-	} // end function
+	}
 
 	public function export() {
 		$this->load->model('user_model');
@@ -207,8 +208,6 @@ class eqsl extends CI_Controller {
 		$this->load->view('interface_assets/footer');
 	}
 
-
-
 	function generateResultTable($custom_date_format, $rows) {
 		$table = '<table = style="width:100%" class="table-sm table table-bordered table-hover table-striped table-condensed text-center">';
 		$table .= "<thead><tr class=\"titles\">";
@@ -226,8 +225,6 @@ class eqsl extends CI_Controller {
 
 		return $table;
 	}
-
-
 
 	function writeEqslNotSent($qslsnotsent, $custom_date_format) {
 		$table = '<table = style="width:100%" class="table-sm table qsotable table-bordered table-hover table-striped table-condensed text-center">';
@@ -288,7 +285,7 @@ class eqsl extends CI_Controller {
 			$password = $q->user_eqsl_password;
 
 			$image_url = $this->electronicqsl->card_image($username, urlencode($password), $callsign, $band, $mode, $year, $month, $day, $hour, $minute);
-			$file = file_get_contents($image_url, true);
+			$file = file_get_contents($image_url, true);  // TODO use curl instead
 
 			$dom = new domDocument;
 			$dom->loadHTML($file);
@@ -438,6 +435,7 @@ class eqsl extends CI_Controller {
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('eqsl/result');
 			$this->load->view('interface_assets/footer');
+			
 		} else {
 
 			$data['page_title'] = "eQSL Card Image Download";
