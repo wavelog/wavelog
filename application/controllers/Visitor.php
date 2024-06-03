@@ -31,9 +31,6 @@ class Visitor extends CI_Controller {
 		elseif($method == "mapqsos") {
             $this->mapqsos();
         }
-		elseif($method == "get_map_custom") {
-            $this->get_map_custom();
-        }
         else {
             $this->index($method);
         }
@@ -103,6 +100,8 @@ class Visitor extends CI_Controller {
                 $data['total_qsos'] = $this->logbook_model->total_qsos($logbooks_locations_array);
                 $data['month_qsos'] = $this->logbook_model->month_qsos($logbooks_locations_array);
                 $data['year_qsos'] = $this->logbook_model->year_qsos($logbooks_locations_array);
+
+				$data['user_map_custom'] = $this->optionslib->get_map_custom(true,$public_slug);
 
                 // Load  Countries Breakdown data into array
                 $CountriesBreakdown = $this->logbook_model->total_countries_confirmed($logbooks_locations_array);
@@ -429,20 +428,26 @@ class Visitor extends CI_Controller {
 		$slug = $this->security->xss_clean($this->uri->segment(3));
 		$lastqso = $this->security->xss_clean($this->uri->segment(4));
 
-		if ($lastqso === "lastqso") {
-			$this->load->model('visitor_model');
-			$result = $this->visitor_model->getlastqsodate($slug)->row();
-			header('Content-Type: application/json');
-			echo json_encode($result);
-			return;
+		if (!empty($slug)) {
+			if ($lastqso === "lastqso") {
+				$this->load->model('visitor_model');
+				$result = $this->visitor_model->getlastqsodate($slug)->row();
+				header('Content-Type: application/json');
+				echo json_encode($result);
+				return;
+			}
+
+			$data['slug'] = $slug;
+
+			$data['page_title'] = "Export Map";
+			$data['user_map_custom'] = $this->optionslib->get_map_custom(true,$slug);
+
+			$this->load->view('visitor/exportmap/header', $data);
+			$this->load->view('visitor/exportmap/exportmap', $data);
+			$this->load->view('visitor/exportmap/footer');
+		} else {
+			redirect('user/login');
 		}
-
-        $data['slug'] = $slug;
-
-		$data['page_title'] = "Export Map";
-		$this->load->view('visitor/exportmap/header', $data);
-		$this->load->view('visitor/exportmap/exportmap', $data);
-		$this->load->view('visitor/exportmap/footer');
 	}
 
 	public function mapqsos() {
@@ -525,47 +530,6 @@ class Visitor extends CI_Controller {
 		$data['confirmed'] = ($this->qso_is_confirmed($qso, $user_default_confirmation)==true) ? true : false;
 
 		return $data;
-	}
-
-	// [MAP Custom] //
-	public function get_map_custom() {
-		$this->load->model('stationsetup_model');
-		$slug = $this->security->xss_clean($this->input->post('slug'));
-		$userid = $this->stationsetup_model->public_slug_exists_userid($slug);
-
-		$this->load->model('user_options_model');
-
-		$result = $this->user_options_model->get_options('map_custom', null, $userid);
-		$jsonout = [];
-		foreach($result->result() as $options) {
-			if ($options->option_name=='icon') $jsonout[$options->option_key]=json_decode($options->option_value,true);
-				else $jsonout[$options->option_name.'_'.$options->option_key]=$options->option_value;
-		}
-
-		if (count($jsonout) == 0) {
-			$jsonout['qso'] = array(
-				"icon" => "fas fa-dot-circle",
-				"color" => "#ff0000"
-			);
-			$jsonout['qsoconfirm'] = array(
-				"icon" => "fas fa-dot-circle",
-				"color" => "#00aa00"
-			);
-			$jsonout['station'] = array(
-				"icon" => "fas fa-broadcast-tower",
-				"color" => "#0000ff"
-			);
-		}
-
-		$jsonout['gridsquare_layer'] = $this->user_options_model->get_options('ExportMapOptions',array('option_name'=>'gridsquare_layer','option_key'=>$slug), $userid)->row()->option_value ?? true;
-		$jsonout['path_lines'] = $this->user_options_model->get_options('ExportMapOptions',array('option_name'=>'path_lines','option_key'=>$slug), $userid)->row()->option_value ?? true;
-		$jsonout['cqzone_layer'] = $this->user_options_model->get_options('ExportMapOptions',array('option_name'=>'cqzone_layer','option_key'=>$slug), $userid)->row()->option_value ?? true;
-		$jsonout['qsocount'] = $this->user_options_model->get_options('ExportMapOptions',array('option_name'=>'qsocount','option_key'=>$slug), $userid)->row()->option_value ?? 250;
-		$jsonout['nightshadow_layer'] = $this->user_options_model->get_options('ExportMapOptions',array('option_name'=>'nightshadow_layer','option_key'=>$slug), $userid)->row()->option_value ?? true;
-		$jsonout['band'] = $this->user_options_model->get_options('ExportMapOptions',array('option_name'=>'band','option_key'=>$slug), $userid)->row()->option_value ?? '';
-
-		header('Content-Type: application/json');
-		echo json_encode($jsonout);
 	}
 
 	function qso_is_confirmed($qso, $user_default_confirmation) {

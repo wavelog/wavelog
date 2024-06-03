@@ -43,6 +43,7 @@ class Logbookadvanced extends CI_Controller {
 		$mapoptions['nightshadow_layer'] = $this->user_options_model->get_options('LogbookAdvancedMap',array('option_name'=>'nightshadow_layer','option_key'=>'boolean'))->row();
 
 		$data['mapoptions'] = $mapoptions;
+		$data['user_map_custom'] = $this->optionslib->get_map_custom();
 
 		$active_station_id = $this->stations->find_active();
         $station_profile = $this->stations->profile($active_station_id);

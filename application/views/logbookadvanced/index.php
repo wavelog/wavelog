@@ -1,10 +1,10 @@
 <script type="text/javascript">
     /*
-     *
-     * Define custom date format
-     *
+     * Custom user settings
      */
     var custom_date_format = "<?php echo $custom_date_format ?>";
+    let user_map_custom = JSON.parse('<?php echo $user_map_custom; ?>');
+
     var lang_gen_hamradio_latitude = '<?php echo lang('gen_hamradio_latitude'); ?>';
     var lang_gen_hamradio_longitude = '<?php echo lang('gen_hamradio_longitude'); ?>';
     var lang_gen_hamradio_gridsquare = '<?php echo lang('gen_hamradio_gridsquare'); ?>';

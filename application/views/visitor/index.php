@@ -130,6 +130,9 @@ function echo_table_col($row, $name)
 <!-- Map -->
 <?php $public_maps_option = $this->optionslib->get_option('public_maps') ?? 'true';
 if ($public_maps_option == 'true') { ?>
+	<script>
+		let user_map_custom = JSON.parse('<?php echo $user_map_custom; ?>');
+	</script>
 	<div id="map" class="map-leaflet" style="width: 100%; height: 365px"></div>
 <?php } ?>
 
