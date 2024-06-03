@@ -114,5 +114,5 @@ $lang['station_location_oqrs_email_hint'] = "Stelle sicher, dass du E-Mail unter
 $lang['station_location_oqrs_text'] = "OQRS Text";
 $lang['station_location_oqrs_text_hint'] = "Einige Informationen, die du zum QSL-Vorgang hinzufügen möchtest.";
 $lang['station_location_ignore'] = "Ignoriere Clublog-Upload";
-$lang['station_location_ignore_hint'] = "Wenn aktiviert, werden die QSOs, die von diesem Standort gemacht wurden, beim Clublog-Upload ignoriert.<br/> Sofern das Feld \"von allein\" auf deaktiviert springt, bitte bei Clublog die Einstellungen f&uuml;r diesen Call &uuml;berpr&uuml;fen";
+$lang['station_location_ignore_hint'] = "Wenn aktiviert, werden die QSOs, die von diesem Standort gemacht wurden, beim Clublog-Upload ignoriert.<br/> Sofern das Feld \"von allein\" auf deaktiviert springt, bitte bei Clublog die Einstellungen für diesen Call überprüfen.";
 $lang['station_location_clublog_realtime_upload']='ClubLog Realtime Upload';
