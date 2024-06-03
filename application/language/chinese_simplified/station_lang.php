@@ -114,7 +114,7 @@ $lang['station_location_oqrs_email_hint'] = "确认邮件功能在站点设置�
 $lang['station_location_oqrs_text'] = "OQRS 文本";
 $lang['station_location_oqrs_text_hint'] = "QSL 信息";
 $lang['station_location_ignore'] = "忽略 Clublog 上传";
-$lang['station_location_ignore_hint'] = "如启用，此台站产生的 QSO 不会上传至 Clublog";
+$lang['station_location_ignore_hint'] = "If enabled, the QSOs made from this location will not be uploaded to Clublog. If this is deactivated on it's own please check if the Call is properly configured at Clublog";
 $lang['station_location_clublog_realtime_upload']='ClubLog 实时上传';
 
 

@@ -3,8 +3,7 @@
 class Clublog_model extends CI_Model
 {
 
-	function get_clublog_users()
-	{
+	function get_clublog_users() {
 		$this->db->select('user_clublog_name, user_clublog_password, user_id');
 		$this->db->where('coalesce(user_clublog_name, "") != ""');
 		$this->db->where('coalesce(user_clublog_password, "") != ""');
@@ -12,8 +11,7 @@ class Clublog_model extends CI_Model
 		return $query->result();
 	}
 
-	function uploadUser($userid, $username, $password)
-	{
+	function uploadUser($userid, $username, $password) {
 		$clean_username = $this->security->xss_clean($username);
 		$clean_passord = $this->security->xss_clean($password);
 		$clean_userid = $this->security->xss_clean($userid);
@@ -101,6 +99,14 @@ class Clublog_model extends CI_Model
 							} else {
 								$return =  "Error " . $response;
 								log_message('error', 'Clublog upload for ' . $station_row->station_callsign . ' failed reason ' . $response);
+								if (substr($response,0,13) == 'Upload denied') {	// Deactivate Upload for Station if Clublog rejects it due to non-configured Call (prevent being blacklisted at Clublog)
+        								$sql = 'update station_profile set clublogignore = 1 where station_id = ?';
+        								$this->db->query($sql,$station_row->station_id);
+								}
+								if (substr($response,0,14) == 'Login rejected') {	// Deactivate Upload for Station if Clublog rejects it due to wrong credentials (prevent being blacklisted at Clublog)
+        								$sql = 'update station_profile set clublogignore = 1 where station_id = ?';
+        								$this->db->query($sql,$station_row->station_id);
+								}
 							}
 
 							// Delete the ADIF file used for clublog
@@ -118,8 +124,7 @@ class Clublog_model extends CI_Model
 		return $return . "\n";
 	}
 
-	function downloadUser($userid, $username, $password)
-	{
+	function downloadUser($userid, $username, $password) {
 		$clean_username = $this->security->xss_clean($username);
 		$clean_password = $this->security->xss_clean($password);
 		$clean_userid = $this->security->xss_clean($userid);
@@ -179,8 +184,7 @@ class Clublog_model extends CI_Model
 		return $return . "\n";
 	}
 
-	function mark_qsos_sent($station_id)
-	{
+	function mark_qsos_sent($station_id) {
 		$data = array(
 			'COL_CLUBLOG_QSO_UPLOAD_DATE' => date('Y-m-d'),
 			'COL_CLUBLOG_QSO_UPLOAD_STATUS' => "Y",
@@ -196,8 +200,7 @@ class Clublog_model extends CI_Model
 		$this->db->update($this->config->item('table_name'), $data);
 	}
 
-	function mark_qso_sent($qso_id)
-	{
+	function mark_qso_sent($qso_id) {
 		$data = array(
 			'COL_CLUBLOG_QSO_UPLOAD_DATE' => date('Y-m-d'),
 			'COL_CLUBLOG_QSO_UPLOAD_STATUS' => "Y",
@@ -207,8 +210,7 @@ class Clublog_model extends CI_Model
 		$this->db->update($this->config->item('table_name'), $data);
 	}
 
-	function get_last_five($station_id)
-	{
+	function get_last_five($station_id) {
 		$this->db->where('station_id', $station_id);
 		$this->db->group_start();
 		$this->db->where("COL_CLUBLOG_QSO_UPLOAD_STATUS", null);
@@ -221,8 +223,7 @@ class Clublog_model extends CI_Model
 		return $query;
 	}
 
-	function mark_all_qsos_notsent($station_id)
-	{
+	function mark_all_qsos_notsent($station_id) {
 		$data = array(
 			'COL_CLUBLOG_QSO_UPLOAD_DATE' => null,
 			'COL_CLUBLOG_QSO_UPLOAD_STATUS' => "M",
@@ -234,8 +235,7 @@ class Clublog_model extends CI_Model
 		$this->db->update($this->config->item('table_name'), $data);
 	}
 
-	function get_clublog_qsos($station_id)
-	{
+	function get_clublog_qsos($station_id) {
 		$this->db->select('*, dxcc_entities.name as station_country');
 		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
 		$this->db->join('dxcc_entities', 'station_profile.station_dxcc = dxcc_entities.adif', 'left outer');
@@ -253,8 +253,7 @@ class Clublog_model extends CI_Model
 		return $query;
 	}
 
-	function clublog_last_qsl_rcvd_date($callsign)
-	{
+	function clublog_last_qsl_rcvd_date($callsign) {
 		$qso_table_name = $this->config->item('table_name');
 		$this->db->from($qso_table_name);
 
@@ -279,14 +278,12 @@ class Clublog_model extends CI_Model
 		}
 	}
 
-	function disable_sync4call($call, $stations)
-	{
+	function disable_sync4call($call, $stations) {
 		$sql = "update station_profile set clublogignore=1 where station_callsign=? and station_id in (" . $stations . ")";
 		$query = $this->db->query($sql, $call);
 	}
 
-	function all_enabled($userid)
-	{
+	function all_enabled($userid) {
 		$sql = "select sp.station_callsign, group_concat(sp.station_id) as station_ids from station_profile sp 
 			inner join users u on (u.user_id=sp.user_id)
 			where u.user_clublog_name is not null and u.user_clublog_password is not null and sp.clublogignore=0 and u.user_id=?
@@ -295,8 +292,7 @@ class Clublog_model extends CI_Model
 		return $query;
 	}
 
-	function all_with_count($userid)
-	{
+	function all_with_count($userid) {
 		$this->db->select('station_profile.station_id, station_profile.station_callsign, count(' . $this->config->item('table_name') . '.station_id) as qso_total');
 		$this->db->from('station_profile');
 		$this->db->join($this->config->item('table_name'), 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id', 'left');
