@@ -354,10 +354,9 @@ class Eqslmethods_model extends CI_Model {
 
     // Show all QSOs we need to send to eQSL
     function eqsl_not_yet_sent($userid = null) {
-        $CI = &get_instance();
         if ($userid == null) {
-            $CI->load->model('logbooks_model');
-            $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+            $this->load->model('logbooks_model');
+            $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
         } else {
             $stations = $this->get_all_user_locations($userid);
             $logbooks_locations_array = array();
@@ -386,10 +385,9 @@ class Eqslmethods_model extends CI_Model {
 
     // Show all QSOs whose eQSL card images we did not download yet
     function eqsl_not_yet_downloaded($userid = null) {
-        $CI = &get_instance();
         if ($userid == null) {
-            $CI->load->model('logbooks_model');
-            $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+            $this->load->model('logbooks_model');
+            $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
         } else {
             $stations = $this->get_all_user_locations($userid);
             $logbooks_locations_array = array();
