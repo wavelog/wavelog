@@ -528,9 +528,8 @@ class Awards extends CI_Controller {
 			'assets/js/sections/cqmap.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/cqmap.js"))
 		];
 
-		$CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         $this->load->model('cq');
 		$this->load->model('modes');
@@ -1320,9 +1319,8 @@ class Awards extends CI_Controller {
         This displays the CQ Zone map and requires the $band_type and $mode_type
     */
     public function cq_map() {
-        $CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         $this->load->model('cq');
 
