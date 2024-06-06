@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="<?php echo $language['code']; ?>">
 
 <head>
 	<!-- Required meta tags -->
@@ -77,7 +77,7 @@
 			} ?> - Wavelog</title>
 </head>
 
-<body>
+<body dir="<?php echo $language['direction']; ?>">
 	<nav class="navbar navbar-expand-lg navbar-light bg-light main-nav" id="header-menu">
 		<div class="container">
 			<a class="navbar-brand" href="<?php echo site_url(); ?>"><img class="headerLogo" src="<?php echo base_url(); ?>assets/logo/<?php echo $this->optionslib->get_logo('header_logo'); ?>.png" alt="Logo" /></a>
