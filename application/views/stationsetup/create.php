@@ -14,9 +14,9 @@
 		<?php $this->load->helper('form'); ?>
 
 		<div class="mb-3">
-			<label for="stationLogbookNameInput"><?php echo __("Station Logbook Name");?></label>
+			<label for="stationLogbookNameInput"><?= __("Station Logbook Name");?></label>
 			<input type="text" class="form-control" name="logbook_name" id="logbook_name" aria-describedby="stationLogbookNameHelp" placeholder="Home QTH" required>
-			<small id="stationLogbookNameHelp" class="form-text text-muted"><?php echo __("You can call a station logbook anything.");?></small>
+			<small id="stationLogbookNameHelp" class="form-text text-muted"><?= __("You can call a station logbook anything.");?></small>
 		</div>
 
 

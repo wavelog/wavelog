@@ -94,12 +94,12 @@
 					<p><span class="badge text-bg-warning">Warning</span> If a date range is not selected then all QSOs will be marked!</p>
 					<div class="row">
                     <div class="mb-3 col-md-3">
-                        <label for="from"><?php echo __("From date") . ": " ?></label>
+                        <label for="from"><?= __("From date") . ": " ?></label>
                         <input name="from" id="from" type="date" class="form-control w-auto">
                     </div>
 
                     <div class="mb-3 col-md-3">
-                        <label for="to"><?php echo __("To date") . ": " ?></label>
+                        <label for="to"><?= __("To date") . ": " ?></label>
                         <input name="to" id="to" type="date" class="form-control w-auto">
                     </div>
                 </div>

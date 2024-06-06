@@ -10,10 +10,10 @@ if ($results) { ?>
     <table style="width:100%" id="publicsearchtable" class="publicsearchtable table table-sm table-striped table-hover">
         <thead>
             <tr class="titles">
-                <th><?php echo __("Date"); ?></th>
-                <th><?php echo __("Call"); ?></th>
-                <th><?php echo __("Mode"); ?></th>
-                <th><?php echo __("Band"); ?></th>
+                <th><?= __("Date"); ?></th>
+                <th><?= __("Call"); ?></th>
+                <th><?= __("Mode"); ?></th>
+                <th><?= __("Band"); ?></th>
                 <th>Station Callsign</th>
             </tr>
         </thead>

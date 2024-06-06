@@ -1,16 +1,16 @@
 <div class="table-responsive">
 	<table class="table table-sm table-striped table-hover">
 		<tr class="titles">
-            <td><?php echo __("Date"); ?></td>
+            <td><?= __("Date"); ?></td>
             <?php if(($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE || ($this->config->item('show_time'))) { ?>
-            <td><?php echo __("Time"); ?></td>
+            <td><?= __("Time"); ?></td>
             <?php } ?>
-            <td><?php echo __("Call"); ?></td>
-            <td><?php echo __("Mode"); ?></td>
-            <td><?php echo __("RST (S)"); ?></td>
-            <td><?php echo __("RST (R)"); ?></td>
-            <td><?php echo __("Band"); ?></td>
-            <td><?php echo __("Country"); ?></td>
+            <td><?= __("Call"); ?></td>
+            <td><?= __("Mode"); ?></td>
+            <td><?= __("RST (S)"); ?></td>
+            <td><?= __("RST (R)"); ?></td>
+            <td><?= __("Band"); ?></td>
+            <td><?= __("Country"); ?></td>
             <?php if(($this->config->item('use_auth')) && ($this->session->userdata('user_type') >= 2)) { ?>
                 <td>QSL</td>
                 <?php if($this->session->userdata('user_eqsl_name') != "") { ?>
@@ -19,7 +19,7 @@
                 <?php if($this->session->userdata('user_lotw_name') != "") { ?>
                     <td>LoTW</td>
                 <?php } ?>
-                <td><?php echo __("Station"); ?></td>
+                <td><?= __("Station"); ?></td>
                 <td></td>
             <?php } ?>
         </tr>
@@ -132,28 +132,28 @@
                     </a>
 
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" id="edit_qso" href="javascript:qso_edit(<?php echo $row->COL_PRIMARY_KEY; ?>)"><i class="fas fa-edit"></i> <?php echo __("Edit QSO"); ?></a>
+                        <a class="dropdown-item" id="edit_qso" href="javascript:qso_edit(<?php echo $row->COL_PRIMARY_KEY; ?>)"><i class="fas fa-edit"></i> <?= __("Edit QSO"); ?></a>
 
                         <?php if($row->COL_QSL_SENT !='Y') { ?>
                             <div class="qsl_sent_<?php echo $row->COL_PRIMARY_KEY; ?>">
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:qsl_sent(<?php echo $row->COL_PRIMARY_KEY; ?>, 'B')" ><i class="fas fa-envelope"></i> <?php echo __("Mark QSL Sent (Bureau)"); ?></a>
-                                <a class="dropdown-item" href="javascript:qsl_sent(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D')" ><i class="fas fa-envelope"></i> <?php echo __("Mark QSL Sent (Direct)"); ?></a>
+                                <a class="dropdown-item" href="javascript:qsl_sent(<?php echo $row->COL_PRIMARY_KEY; ?>, 'B')" ><i class="fas fa-envelope"></i> <?= __("Mark QSL Sent (Bureau)"); ?></a>
+                                <a class="dropdown-item" href="javascript:qsl_sent(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D')" ><i class="fas fa-envelope"></i> <?= __("Mark QSL Sent (Direct)"); ?></a>
                             </div>
                         <?php } ?>
 
                         <?php if($row->COL_QSL_RCVD !='Y') { ?>
                             <div class="qsl_rcvd_<?php echo $row->COL_PRIMARY_KEY; ?>">
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:qsl_rcvd(<?php echo $row->COL_PRIMARY_KEY; ?>, 'B')" ><i class="fas fa-envelope"></i> <?php echo __("Mark QSL Received (Bureau)"); ?></a>
-                                <a class="dropdown-item" href="javascript:qsl_rcvd(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D')" ><i class="fas fa-envelope"></i> <?php echo __("Mark QSL Received (Direct)"); ?></a>
-                                <a class="dropdown-item" href="javascript:qsl_requested(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D')" ><i class="fas fa-envelope"></i><?php echo __("Mark QSL Card Requested"); ?></a>
-                                <a class="dropdown-item" href="javascript:qsl_ignore(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D')" ><i class="fas fa-envelope"></i><?php echo __("Mark QSL Card Not Required"); ?></a>
+                                <a class="dropdown-item" href="javascript:qsl_rcvd(<?php echo $row->COL_PRIMARY_KEY; ?>, 'B')" ><i class="fas fa-envelope"></i> <?= __("Mark QSL Received (Bureau)"); ?></a>
+                                <a class="dropdown-item" href="javascript:qsl_rcvd(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D')" ><i class="fas fa-envelope"></i> <?= __("Mark QSL Received (Direct)"); ?></a>
+                                <a class="dropdown-item" href="javascript:qsl_requested(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D')" ><i class="fas fa-envelope"></i><?= __("Mark QSL Card Requested"); ?></a>
+                                <a class="dropdown-item" href="javascript:qsl_ignore(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D')" ><i class="fas fa-envelope"></i><?= __("Mark QSL Card Not Required"); ?></a>
                             </div>
                         <?php } ?>
 
                     </div>
-                    <a class="dropdown-item" href="javascript:qso_delete(<?php echo $row->COL_PRIMARY_KEY; ?>, '<?php echo $row->COL_CALL; ?>')"><i class="fas fa-trash-alt"></i> <?php echo __("Delete QSO"); ?></a>
+                    <a class="dropdown-item" href="javascript:qso_delete(<?php echo $row->COL_PRIMARY_KEY; ?>, '<?php echo $row->COL_CALL; ?>')"><i class="fas fa-trash-alt"></i> <?= __("Delete QSO"); ?></a>
                 </div>
 			</td>
 			<?php } ?>

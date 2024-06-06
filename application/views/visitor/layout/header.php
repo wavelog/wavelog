@@ -94,10 +94,10 @@
 				$this->CI =& get_instance();
 				if ($this->CI->public_search_enabled($slug)) { ?>
 					<form method="post" name="searchForm" action="<?php echo site_url('visitor/search'); ?>" onsubmit="return validateForm()" class="d-flex align-items-center">
-						<input class="form-control me-sm-2" id="searchcall" type="search" name="callsign" placeholder="<?php echo __("Search Callsign"); ?>" <?php if (isset($callsign) && $callsign != '') { echo 'value="'.strtoupper($callsign).'"'; } ?> aria-label="Search" data-toogle="tooltip" data-bs-placement="bottom" title="Please enter a callsign!">
+						<input class="form-control me-sm-2" id="searchcall" type="search" name="callsign" placeholder="<?= __("Search Callsign"); ?>" <?php if (isset($callsign) && $callsign != '') { echo 'value="'.strtoupper($callsign).'"'; } ?> aria-label="Search" data-toogle="tooltip" data-bs-placement="bottom" title="Please enter a callsign!">
 						<input type="hidden" name="public_slug" value="<?php echo $slug; ?>">
-						<button title="<?php echo __("Search"); ?>" class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i>
-							<div class="d-inline d-lg-none" style="padding-left: 10px"><?php echo __("Search"); ?></div>
+						<button title="<?= __("Search"); ?>" class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i>
+							<div class="d-inline d-lg-none" style="padding-left: 10px"><?= __("Search"); ?></div>
 						</button>
 					</form>
 				<?php }

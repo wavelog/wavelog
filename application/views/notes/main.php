@@ -2,13 +2,13 @@
 
 	<div class="card">
 	  <div class="card-header">
-	  	<h2 class="card-title"><?php echo __("Notes"); ?></h2>
+	  	<h2 class="card-title"><?= __("Notes"); ?></h2>
 	    <ul class="nav nav-tabs card-header-tabs">
 	      <li class="nav-item">
-	        <a class="nav-link active" href="<?php echo site_url('notes'); ?>"><?php echo __("Notes"); ?></a>
+	        <a class="nav-link active" href="<?php echo site_url('notes'); ?>"><?= __("Notes"); ?></a>
 	      </li>
 	      <li class="nav-item">
-	        <a class="nav-link" href="<?php echo site_url('notes/add'); ?>"><?php echo __("Create Note"); ?></a>
+	        <a class="nav-link" href="<?php echo site_url('notes/add'); ?>"><?= __("Create Note"); ?></a>
 	      </li>
 	    </ul>
 	  </div>

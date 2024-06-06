@@ -3,7 +3,7 @@
 	<thead>
 		<tr>
 			<th class="text-start">Options</th>
-			<th><?php echo __("Show"); ?></th>
+			<th><?= __("Show"); ?></th>
 		</tr>
 	</thead>
 	<tbody>

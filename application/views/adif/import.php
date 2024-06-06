@@ -18,13 +18,13 @@
                                                                                                                                                         echo 'true';
                                                                                                                                                     } else {
                                                                                                                                                         echo 'false';
-                                                                                                                                                    } ?>"><?php echo __("ADIF Import") ?></a>
+                                                                                                                                                    } ?>"><?= __("ADIF Import") ?></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="export-tab" data-bs-toggle="tab" href="#export" role="tab" aria-controls="export" aria-selected="false"><?php echo __("ADIF Export") ?></a>
+                    <a class="nav-link" id="export-tab" data-bs-toggle="tab" href="#export" role="tab" aria-controls="export" aria-selected="false"><?= __("ADIF Export") ?></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="lotw-tab" data-bs-toggle="tab" href="#lotw" role="tab" aria-controls="lotw" aria-selected="false"><?php echo __("Logbook of the World") ?></a>
+                    <a class="nav-link" id="lotw-tab" data-bs-toggle="tab" href="#lotw" role="tab" aria-controls="lotw" aria-selected="false"><?= __("Logbook of the World") ?></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link <?php if ($showtab == 'dcl') {
@@ -33,7 +33,7 @@
                                                                                                                                                 echo 'true';
                                                                                                                                             } else {
                                                                                                                                                 echo 'false';
-                                                                                                                                            } ?>"><?php echo __("DARC DCL") ?></a>
+                                                                                                                                            } ?>"><?= __("DARC DCL") ?></a>
                 </li>
             </ul>
         </div>
@@ -52,21 +52,21 @@
                         </div>
                     <?php } ?>
 
-                    <p><span class="badge text-bg-warning"><?php echo __("Important") ?></span> <?php echo __("Log Files must have the file type *.adi") ?></p>
-                    <p><span class="badge text-bg-warning"><?php echo __("Warning") ?></span> <?php echo __("Maximum file upload size is ") ?><?php echo $max_upload; ?>B.</p>
+                    <p><span class="badge text-bg-warning"><?= __("Important") ?></span> <?= __("Log Files must have the file type *.adi") ?></p>
+                    <p><span class="badge text-bg-warning"><?= __("Warning") ?></span> <?= __("Maximum file upload size is ") ?><?php echo $max_upload; ?>B.</p>
 
                     <form class="form" id="upform" action="<?php echo site_url('adif/import'); ?>" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="fhash" id="fhash" value="<?php echo hash('sha256', $this->session->userdata('user_callsign') );?>">
-                        <div class="small form-text text-muted"><?php echo __("Select Station Location") ?></div>
+                        <div class="small form-text text-muted"><?= __("Select Station Location") ?></div>
                         <select name="station_profile" class="form-select mb-2 me-sm-2" style="width: 20%;">
-                            <option value="0"><?php echo __("Select Station Location") ?></option>
+                            <option value="0"><?= __("Select Station Location") ?></option>
                             <?php foreach ($station_profile->result() as $station) { ?>
                                 <option value="<?php echo $station->station_id; ?>" <?php if ($station->station_id == $active_station_id) {
                                                                                         echo " selected =\"selected\"";
-                                                                                    } ?>><?php echo __("Callsign") . ": " ?><?php echo $station->station_callsign; ?> (<?php echo $station->station_profile_name; ?>)</option>
+                                                                                    } ?>><?= __("Callsign") . ": " ?><?php echo $station->station_callsign; ?> (<?php echo $station->station_profile_name; ?>)</option>
                             <?php } ?>
                         </select>
-                        <div class="small form-text text-muted"><?php echo __("Add QSOs to Contest") ?></div>
+                        <div class="small form-text text-muted"><?= __("Add QSOs to Contest") ?></div>
                         <select name="contest" id="contest" class="form-select mb-2 me-sm-2" style="width: 20%;">
                         	<option value="" selected>No Contest</option>
                             <?php
@@ -74,14 +74,14 @@
                                 echo '<option value="'.$contest['adifname'].'">'.$contest['name'].'</option>';
                             } ?>
 			</select>
- 			<label class="visually-hidden" for="inlineFormInputName2"><?php echo __("ADIF File") ?></label>
+ 			<label class="visually-hidden" for="inlineFormInputName2"><?= __("ADIF File") ?></label>
                         <input class="form-control mb-2 me-sm-2 w-auto" type="file" name="userfile" id="userfile" size="20" />
 
                         <div class="mb-3 row">
                             <div class="col-md-10">
                                 <div class="form-check-inline">
                                     <input class="form-check-input" type="checkbox" name="skipDuplicate" value="1" id="skipDuplicate">
-                                    <label class="form-check-label" for="skipDuplicate"><?php echo __("Import duplicate QSOs") ?></label>
+                                    <label class="form-check-label" for="skipDuplicate"><?= __("Import duplicate QSOs") ?></label>
                                 </div>
                             </div>
                         </div>
@@ -90,9 +90,9 @@
                             <div class="col-md-10">
                                 <div class="form-check-inline">
                                     <input class="form-check-input" type="checkbox" name="markLotw" value="1" id="markLotwImport">
-                                    <label class="form-check-label" for="markLotwImport"><?php echo __("Mark imported QSOs as uploaded to LoTW") ?></label>
+                                    <label class="form-check-label" for="markLotwImport"><?= __("Mark imported QSOs as uploaded to LoTW") ?></label>
                                 </div>
-                                <div class="small form-text text-muted"><?php echo __("Select if ADIF being imported does not contain this information.") ?></div>
+                                <div class="small form-text text-muted"><?= __("Select if ADIF being imported does not contain this information.") ?></div>
                             </div>
                         </div>
 
@@ -100,9 +100,9 @@
                             <div class="col-md-10">
                                 <div class="form-check-inline">
                                     <input class="form-check-input" type="checkbox" name="markHrd" value="1" id="markHrdImport">
-                                    <label class="form-check-label" for="markHrdImport"><?php echo __("Mark imported QSOs as uploaded to HRDLog.net Logbook") ?></label>
+                                    <label class="form-check-label" for="markHrdImport"><?= __("Mark imported QSOs as uploaded to HRDLog.net Logbook") ?></label>
                                 </div>
-                                <div class="small form-text text-muted"><?php echo __("Select if ADIF being imported does not contain this information.") ?></div>
+                                <div class="small form-text text-muted"><?= __("Select if ADIF being imported does not contain this information.") ?></div>
                             </div>
                         </div>
 
@@ -110,9 +110,9 @@
                             <div class="col-md-10">
                                 <div class="form-check-inline">
                                     <input class="form-check-input" type="checkbox" name="markQrz" value="1" id="markQrzImport">
-                                    <label class="form-check-label" for="markQrzImport"><?php echo __("Mark imported QSOs as uploaded to QRZ Logbook") ?></label>
+                                    <label class="form-check-label" for="markQrzImport"><?= __("Mark imported QSOs as uploaded to QRZ Logbook") ?></label>
                                 </div>
-                                <div class="small form-text text-muted"><?php echo __("Select if ADIF being imported does not contain this information.") ?></div>
+                                <div class="small form-text text-muted"><?= __("Select if ADIF being imported does not contain this information.") ?></div>
                             </div>
                         </div>
 
@@ -120,9 +120,9 @@
                             <div class="col-md-10">
                                 <div class="form-check-inline">
                                     <input class="form-check-input" type="checkbox" name="markClublog" value="1" id="markClublogImport">
-                                    <label class="form-check-label" for="markClublogImport"><?php echo __("Mark imported QSOs as uploaded to Clublog Logbook") ?></label>
+                                    <label class="form-check-label" for="markClublogImport"><?= __("Mark imported QSOs as uploaded to Clublog Logbook") ?></label>
                                 </div>
-                                <div class="small form-text text-muted"><?php echo __("Select if ADIF being imported does not contain this information.") ?></div>
+                                <div class="small form-text text-muted"><?= __("Select if ADIF being imported does not contain this information.") ?></div>
                             </div>
                         </div>
 
@@ -130,9 +130,9 @@
                             <div class="col-md-10">
                                 <div class="form-check-inline">
                                     <input class="form-check-input" type="checkbox" name="dxccAdif" value="1" id="dxccAdif">
-                                    <label class="form-check-label" for="dxccAdif"><?php echo __("Use DXCC information from ADIF") ?></label>
+                                    <label class="form-check-label" for="dxccAdif"><?= __("Use DXCC information from ADIF") ?></label>
                                 </div>
-                                <div class="small form-text text-muted"><?php echo __("If not selected, Wavelog will attempt to determine DXCC information automatically.") ?></div>
+                                <div class="small form-text text-muted"><?= __("If not selected, Wavelog will attempt to determine DXCC information automatically.") ?></div>
                             </div>
                         </div>
 
@@ -140,7 +140,7 @@
                             <div class="col-md-10">
                                 <div class="form-check-inline">
                                     <input class="form-check-input" type="checkbox" name="operatorName" value="1" id="operatorName">
-                                    <label class="form-check-label" for="operatorName"><?php echo __("Always use login-callsign as operator-name on import") ?></label>
+                                    <label class="form-check-label" for="operatorName"><?= __("Always use login-callsign as operator-name on import") ?></label>
                                 </div>
                             </div>
                         </div>
@@ -149,34 +149,34 @@
                             <div class="col-md-10">
                                 <div class="form-check-inline">
                                     <input class="form-check-input" type="checkbox" name="skipStationCheck" value="1" id="skipStationCheck">
-                                    <label class="form-check-label" for="skipStationCheck"><span class="badge text-bg-warning"><?php echo __("DANGER") ?></span> <?php echo __("Ignore Stationcallsign on import") ?></label>
+                                    <label class="form-check-label" for="skipStationCheck"><span class="badge text-bg-warning"><?= __("DANGER") ?></span> <?= __("Ignore Stationcallsign on import") ?></label>
                                 </div>
-                                <div class="small form-text text-muted"><?php echo __("If selected, Wavelog will try to import <b>all</b> QSO's of the ADIF, regardless if they match to the chosen station-location.") ?></div>
+                                <div class="small form-text text-muted"><?= __("If selected, Wavelog will try to import <b>all</b> QSO's of the ADIF, regardless if they match to the chosen station-location.") ?></div>
                             </div>
                         </div>
 
-                        <button id="prepare_sub" class="btn btn-sm btn-primary mb-2" value="Upload"><?php echo __("Upload") ?></button>
+                        <button id="prepare_sub" class="btn btn-sm btn-primary mb-2" value="Upload"><?= __("Upload") ?></button>
                     </form>
                 </div>
 
                 <div class="tab-pane fade" id="export" role="tabpanel" aria-labelledby="home-tab">
 
                     <form class="form" action="<?php echo site_url('adif/export_custom'); ?>" method="post" enctype="multipart/form-data">
-                        <h5 class="card-title"><?php echo __("Take your logbook file anywhere!") ?> </h5>
-                        <p class="card-text"><?php echo __("Exporting ADIFs allows you to import contacts into third party applications like LoTW, Awards or just for keeping a backup.") ?> </p>
+                        <h5 class="card-title"><?= __("Take your logbook file anywhere!") ?> </h5>
+                        <p class="card-text"><?= __("Exporting ADIFs allows you to import contacts into third party applications like LoTW, Awards or just for keeping a backup.") ?> </p>
                         <select name="station_profile" class="form-select mb-2 me-sm-2" style="width: 20%;">
-                            <option value="0"><?php echo __("Select Station Location") ?></option>
+                            <option value="0"><?= __("Select Station Location") ?></option>
                             <?php foreach ($station_profile->result() as $station) { ?>
                                 <option value="<?php echo $station->station_id; ?>" <?php if ($station->station_id == $this->stations->find_active()) {
                                                                                         echo " selected =\"selected\"";
-                                                                                    } ?>><?php echo __("Callsign") . ": " ?><?php echo $station->station_callsign; ?> (<?php echo $station->station_profile_name; ?>)</option>
+                                                                                    } ?>><?= __("Callsign") . ": " ?><?php echo $station->station_callsign; ?> (<?php echo $station->station_profile_name; ?>)</option>
                             <?php } ?>
                         </select>
                         <br>
-                        <label for="from"><?php echo __("From date") . ": " ?></label>
+                        <label for="from"><?= __("From date") . ": " ?></label>
                         <input name="from" id="from" type="date" class="form-control w-auto">
                         <br>
-                        <label for="to"><?php echo __("To date") . ": " ?></label>
+                        <label for="to"><?= __("To date") . ": " ?></label>
                         <input name="to" id="to" type="date" class="form-control w-auto">
 
                         <br>
@@ -184,7 +184,7 @@
                             <div class="col-md-10">
                                 <div class="form-check-inline">
                                     <input class="form-check-input" type="checkbox" name="markLotw" value="1" id="markLotwExport">
-                                    <label class="form-check-label" for="markLotwExport"><?php echo __("Mark exported QSOs as uploaded to LoTW") ?></label>
+                                    <label class="form-check-label" for="markLotwExport"><?= __("Mark exported QSOs as uploaded to LoTW") ?></label>
                                 </div>
                             </div>
                         </div>
@@ -192,40 +192,40 @@
                             <div class="col-md-10">
                                 <div class="form-check-inline">
                                     <input class="form-check-input" type="checkbox" name="exportLotw" value="1" id="exportLotw">
-                                    <label class="form-check-label" for="exportLotw"><?php echo __("Export QSOs not uploaded to LoTW") ?></label>
+                                    <label class="form-check-label" for="exportLotw"><?= __("Export QSOs not uploaded to LoTW") ?></label>
                                 </div>
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-sm btn-primary" value="Export"><?php echo __("Export QSO's") ?></button>
+                        <button type="submit" class="btn btn-sm btn-primary" value="Export"><?= __("Export QSO's") ?></button>
                     </form>
 
                     <br><br>
 
-                    <h5><?php echo __("Export Satellite-Only QSOs") ?></h5>
-                    <p><a href="<?php echo site_url('adif/exportsat'); ?>" title="Export All Satellite Contacts" target="_blank" class="btn btn-sm btn-primary"><?php echo __("Export All Satellite QSOs") ?></a></p>
+                    <h5><?= __("Export Satellite-Only QSOs") ?></h5>
+                    <p><a href="<?php echo site_url('adif/exportsat'); ?>" title="Export All Satellite Contacts" target="_blank" class="btn btn-sm btn-primary"><?= __("Export All Satellite QSOs") ?></a></p>
 
-                    <p><a href="<?php echo site_url('adif/exportsatlotw'); ?>" title="Export All Satellite QSOs Confirmed on LoTW" target="_blank" class="btn btn-sm btn-primary"><?php echo __("Export All Satellite QSOs Confirmed on LoTW") ?></a></p>
+                    <p><a href="<?php echo site_url('adif/exportsatlotw'); ?>" title="Export All Satellite QSOs Confirmed on LoTW" target="_blank" class="btn btn-sm btn-primary"><?= __("Export All Satellite QSOs Confirmed on LoTW") ?></a></p>
                 </div>
 
 
                 <div class="tab-pane fade" id="lotw" role="tabpanel" aria-labelledby="home-tab">
                     <form class="form" action="<?php echo site_url('adif/mark_lotw'); ?>" method="post" enctype="multipart/form-data">
                         <select name="station_profile" class="form-select mb-2 me-sm-2" style="width: 20%;">
-                            <option value="0"><?php echo __("Select Station Location") ?></option>
+                            <option value="0"><?= __("Select Station Location") ?></option>
                             <?php foreach ($station_profile->result() as $station) { ?>
-                                <option value="<?php echo $station->station_id; ?>"><?php echo __("Callsign") . ": " ?><?php echo $station->station_callsign; ?> (<?php echo $station->station_profile_name; ?>)</option>
+                                <option value="<?php echo $station->station_id; ?>"><?= __("Callsign") . ": " ?><?php echo $station->station_callsign; ?> (<?php echo $station->station_profile_name; ?>)</option>
                             <?php } ?>
                         </select>
-                        <p><span class="badge text-bg-warning"><?php echo __("Warning") ?></span> <?php echo __("If a date range is not selected then all QSOs will be marked!") ?></p>
+                        <p><span class="badge text-bg-warning"><?= __("Warning") ?></span> <?= __("If a date range is not selected then all QSOs will be marked!") ?></p>
                         <br>
-                        <label for="from"><?php echo __("From date") . ": " ?></label>
+                        <label for="from"><?= __("From date") . ": " ?></label>
                         <input name="from" id="from" type="date" class="form-control w-auto">
                         <br>
-                        <label for="to"><?php echo __("To date") . ": " ?></label>
+                        <label for="to"><?= __("To date") . ": " ?></label>
                         <input name="to" id="to" type="date" class="form-control w-auto">
                         <br>
-                        <button type="button" class="btn btn-sm btn-primary" id="markExportedToLotw" value="Export"><?php echo __("Mark QSOs as exported to LoTW") ?></button>
+                        <button type="button" class="btn btn-sm btn-primary" id="markExportedToLotw" value="Export"><?= __("Mark QSOs as exported to LoTW") ?></button>
                     </form>
                 </div>
                 <div class="tab-pane <?php if ($showtab == 'dcl') {
@@ -239,38 +239,38 @@
                         </div>
                     <?php } ?>
 
-                    <p class="card-text"><?php echo __("Go to") ?> <a href="http://dcl.darc.de/dml/export_adif_form.php" target="_blank"><?php echo __("DARC DCL") ?></a> <?php echo __("and export your logbook with confirmed DOKs. To speed up the process you can select only DL QSOs to download (i.e. put \"DL\" into Prefix List). The downloaded ADIF file can be uploaded here in order to update QSOs with DOK info.") ?></p>
+                    <p class="card-text"><?= __("Go to") ?> <a href="http://dcl.darc.de/dml/export_adif_form.php" target="_blank"><?= __("DARC DCL") ?></a> <?= __("and export your logbook with confirmed DOKs. To speed up the process you can select only DL QSOs to download (i.e. put \"DL\" into Prefix List). The downloaded ADIF file can be uploaded here in order to update QSOs with DOK info.") ?></p>
                     <form class="form" action="<?php echo site_url('adif/dcl'); ?>" method="post" enctype="multipart/form-data">
 
                         <div class="mb-3 row">
                             <div class="col-md-10">
                                 <div class="form-check-inline">
                                     <input class="form-check-input" type="checkbox" name="onlyConfirmed" value="1" id="onlyConfirmed" checked>
-                                    <label class="form-check-label" for="onlyConfirmed"><?php echo __("Only import DOK data from QSOs confirmed on DCL.") ?></label>
+                                    <label class="form-check-label" for="onlyConfirmed"><?= __("Only import DOK data from QSOs confirmed on DCL.") ?></label>
                                 </div>
-                                <div class="small form-text text-muted"><?php echo __("Uncheck if you also want to update DOK with data from unconfirmed QSOs in DCL.") ?></div>
+                                <div class="small form-text text-muted"><?= __("Uncheck if you also want to update DOK with data from unconfirmed QSOs in DCL.") ?></div>
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <div class="col-md-10">
                                 <div class="form-check-inline">
                                     <input class="form-check-input" type="checkbox" name="overwriteDok" value="1" id="overwriteDok">
-                                    <label class="form-check-label" for="overwriteDok"><span class="badge text-bg-warning"><?php echo __("Warning") ?></span> <?php echo __("Overwrite exisiting DOK in log by DCL (if different).") ?></label>
+                                    <label class="form-check-label" for="overwriteDok"><span class="badge text-bg-warning"><?= __("Warning") ?></span> <?= __("Overwrite exisiting DOK in log by DCL (if different).") ?></label>
                                 </div>
-                                <div class="small form-text text-muted"><?php echo __("If checked Wavelog will forcibly overwrite existing DOK with DOK from DCL log.") ?></div>
+                                <div class="small form-text text-muted"><?= __("If checked Wavelog will forcibly overwrite existing DOK with DOK from DCL log.") ?></div>
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <div class="col-md-10">
                                 <div class="form-check-inline">
                                     <input class="form-check-input" type="checkbox" name="ignoreAmbiguous" value="1" id="ignoreAmbiguous" checked>
-                                    <label class="form-check-label" for="ignoreAmbiguous"><?php echo __("Ignore QSOs that cannot be matched.") ?></label>
+                                    <label class="form-check-label" for="ignoreAmbiguous"><?= __("Ignore QSOs that cannot be matched.") ?></label>
                                 </div>
-                                <div class="small form-text text-muted"><?php echo __("If unchecked information about QSO which could not be found in Wavelog will be displayed.") ?></div>
+                                <div class="small form-text text-muted"><?= __("If unchecked information about QSO which could not be found in Wavelog will be displayed.") ?></div>
                             </div>
                         </div>
                         <input class="file-input mb-2 me-sm-2" type="file" name="userfile" size="20" />
-                        <button type="submit" class="btn btn-sm btn-primary mb-2" value="Upload"><?php echo __("Upload") ?></button>
+                        <button type="submit" class="btn btn-sm btn-primary mb-2" value="Upload"><?= __("Upload") ?></button>
                     </form>
                 </div>
             </div>

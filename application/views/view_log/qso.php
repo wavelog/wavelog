@@ -3,10 +3,10 @@
 
     <ul style="margin-bottom: 10px;" class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active" id="table-tab" data-bs-toggle="tab" href="#qsodetails" role="tab" aria-controls="table" aria-selected="true"><?php echo __("QSO Details"); ?></a>
+            <a class="nav-link active" id="table-tab" data-bs-toggle="tab" href="#qsodetails" role="tab" aria-controls="table" aria-selected="true"><?= __("QSO Details"); ?></a>
         </li>
         <li class="nav-item">
-            <a id="station-tab" class="nav-link" data-bs-toggle="tab" href="#stationdetails" role="tab" aria-controls="table" aria-selected="true"><?php echo __("Station Location"); ?></a>
+            <a id="station-tab" class="nav-link" data-bs-toggle="tab" href="#stationdetails" role="tab" aria-controls="table" aria-selected="true"><?= __("Station Location"); ?></a>
         </li>
         <?php
         if ($row->COL_NOTES != null) {?>
@@ -68,7 +68,7 @@
 
                         ?>
 
-                        <td><?php echo __("Date/Time"); ?></td>
+                        <td><?= __("Date/Time"); ?></td>
                         <?php if(($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE || ($this->config->item('show_time'))) { ?>
                         <td><?php $timestamp = strtotime($row->COL_TIME_ON); echo date($custom_date_format, $timestamp); $timestamp = strtotime($row->COL_TIME_ON); $time_on = date('H:i', $timestamp); echo " at ".$time_on; ?>
                         <?php $timestamp = strtotime($row->COL_TIME_OFF); $time_off = date('H:i', $timestamp); if ($time_on != $time_off) { echo " - ".$time_off; } ?>
@@ -79,39 +79,39 @@
                     </tr>
 
                     <tr>
-                        <td><?php echo __("Callsign"); ?></td>
+                        <td><?= __("Callsign"); ?></td>
                         <td><b><?php echo str_replace("0","&Oslash;",strtoupper($row->COL_CALL)); ?></b> <a target="_blank" href="https://www.qrz.com/db/<?php echo strtoupper($row->COL_CALL); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/qrz.png" alt="Lookup <?php echo strtoupper($row->COL_CALL); ?> on QRZ.com"></a> <a target="_blank" href="https://www.hamqth.com/<?php echo strtoupper($row->COL_CALL); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/hamqth.png" alt="Lookup <?php echo strtoupper($row->COL_CALL); ?> on HamQTH"></a> <a target="_blank" href="http://www.eqsl.cc/Member.cfm?<?php echo strtoupper($row->COL_CALL); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/eqsl.png" alt="Lookup <?php echo strtoupper($row->COL_CALL); ?> on eQSL.cc"></a> <a target="_blank" href="https://clublog.org/logsearch.php?log=<?php echo strtoupper($row->COL_CALL); ?>&call=<?php echo strtoupper($row->station_callsign); ?>"><img width="16" height="16" src="<?php echo base_url(); ?>images/icons/clublog.png" alt="Clublog Log Search"></a></td>
                     </tr>
 
                     <tr>
-                        <td><?php echo __("Band"); ?></td>
+                        <td><?= __("Band"); ?></td>
                         <td><?php echo $row->COL_BAND; ?></td>
                     </tr>
 
                     <?php if($this->config->item('display_freq') == true) { ?>
                     <tr>
-                        <td><?php echo __("Frequency"); ?></td>
+                        <td><?= __("Frequency"); ?></td>
                         <td><?php echo $this->frequency->hz_to_mhz($row->COL_FREQ); ?></td>
                     </tr>
                     <?php if($row->COL_FREQ_RX != 0) { ?>
                     <tr>
-                        <td><?php echo __("Frequency (RX)"); ?></td>
+                        <td><?= __("Frequency (RX)"); ?></td>
                         <td><?php echo $this->frequency->hz_to_mhz($row->COL_FREQ_RX); ?></td>
                     </tr>
                     <?php }} ?>
 
                     <tr>
-                        <td><?php echo __("Mode"); ?></td>
+                        <td><?= __("Mode"); ?></td>
                         <td><?php echo $row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE; ?></td>
                     </tr>
 
                     <tr>
-                        <td><?php echo __("RST (S)"); ?></td>
+                        <td><?= __("RST (S)"); ?></td>
                         <td><?php echo $row->COL_RST_SENT; ?> <?php if ($row->COL_STX) { ?>(<?php printf("%03d", $row->COL_STX);?>)<?php } ?> <?php if ($row->COL_STX_STRING) { ?>(<?php echo $row->COL_STX_STRING;?>)<?php } ?></td>
                     </tr>
 
                     <tr>
-                        <td><?php echo __("RST (R)"); ?></td>
+                        <td><?= __("RST (R)"); ?></td>
                         <td><?php echo $row->COL_RST_RCVD; ?> <?php if ($row->COL_SRX) { ?>(<?php printf("%03d", $row->COL_SRX);?>)<?php } ?> <?php if ($row->COL_SRX_STRING) { ?>(<?php echo $row->COL_SRX_STRING;?>)<?php } ?></td>
                     </tr>
 
@@ -125,7 +125,7 @@
                     <?php if($row->COL_GRIDSQUARE != null && strlen($row->COL_GRIDSQUARE) >= 4) { ?>
                     <!-- Total Distance Between the Station Profile Gridsquare and Logged Square -->
                     <tr>
-                        <td><?php echo __("Total Distance"); //Total distance ?></td>
+                        <td><?= __("Total Distance"); //Total distance ?></td>
                         <td>
                             <?php
                                 // Cacluate Distance
@@ -188,7 +188,7 @@
 
                     <?php if($row->COL_NAME != null) { ?>
                     <tr>
-                        <td><?php echo __("Name"); ?></td>
+                        <td><?= __("Name"); ?></td>
                         <td><?php echo $row->COL_NAME; ?></td>
                     </tr>
                     <?php } ?>
@@ -196,7 +196,7 @@
                     <?php if(($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE) { ?>
                     <?php if($row->COL_COMMENT != null) { ?>
                     <tr>
-                        <td><?php echo __("Comment"); ?></td>
+                        <td><?= __("Comment"); ?></td>
                         <td><?php echo $row->COL_COMMENT; ?></td>
                     </tr>
                     <?php } ?>
@@ -204,42 +204,42 @@
 
                     <?php if($row->COL_SAT_NAME != null) { ?>
                     <tr>
-                        <td><?php echo __("Satellite Name"); ?></td>
+                        <td><?= __("Satellite Name"); ?></td>
                         <td><a href="https://db.satnogs.org/search/?q=<?php echo $row->COL_SAT_NAME; ?>" target="_blank"><?php echo $row->COL_SAT_NAME; ?></a></td>
                     </tr>
                     <?php } ?>
 
                     <?php if($row->COL_SAT_MODE != null) { ?>
                     <tr>
-                        <td><?php echo __("Satellite Mode"); ?></td>
+                        <td><?= __("Satellite Mode"); ?></td>
                         <td><?php echo (strlen($row->COL_SAT_MODE) == 2 ? (strtoupper($row->COL_SAT_MODE[0]).'/'.strtoupper($row->COL_SAT_MODE[1])) : strtoupper($row->COL_SAT_MODE)); ?></td>
                     </tr>
                     <?php } ?>
 
                     <?php if($row->COL_ANT_AZ != null) { ?>
                     <tr>
-                        <td><?php echo __("Antenna Azimuth"); ?></td>
+                        <td><?= __("Antenna Azimuth"); ?></td>
                         <td><?php echo round($row->COL_ANT_AZ, 1); ?>&deg; <span style="margin-left: 2px; display: inline-block; transform: rotate(<?php echo (-45+$row->COL_ANT_AZ); ?>deg);"><i class="fas fa-location-arrow fa-xs"></i></span></td>
                     </tr>
                     <?php } ?>
 
                     <?php if($row->COL_ANT_EL != null) { ?>
                     <tr>
-                        <td><?php echo __("Antenna Elevation"); ?></td>
+                        <td><?= __("Antenna Elevation"); ?></td>
                         <td><?php echo round($row->COL_ANT_EL, 1); ?>&deg; <span style="margin-left: 2px; display: inline-block; transform: rotate(<?php echo (-$row->COL_ANT_EL); ?>deg);"><i class="fas fa-arrow-right fa-xs"></i></span></td>
                     </tr>
                     <?php } ?>
 
                     <?php if($row->name != null) { ?>
                     <tr>
-                        <td><?php echo __("Country"); ?></td>
+                        <td><?= __("Country"); ?></td>
                         <td><?php echo ucwords(strtolower(($row->name)), "- (/"); if ($dxccFlag != null) { echo " ".$dxccFlag; } if ($row->end != null) { echo ' <span class="badge text-bg-danger">'.__("Deleted DXCC").'</span>'; } ?></td>
                     </tr>
                     <?php } ?>
 
                     <?php if($row->COL_CONT != null) { ?>
                     <tr>
-                        <td><?php echo __("Continent"); ?></td>
+                        <td><?= __("Continent"); ?></td>
                         <td>
                         <?php
                            switch($row->COL_CONT) {
@@ -272,35 +272,35 @@
 
                     <?php if($row->COL_CONTEST_ID != null) { ?>
                     <tr>
-                        <td><?php echo __("Contest Name"); ?></td>
+                        <td><?= __("Contest Name"); ?></td>
                         <td><?php echo $row->COL_CONTEST_ID; ?></td>
                     </tr>
                     <?php } ?>
 
                     <?php if($row->COL_IOTA != null) { ?>
                     <tr>
-                        <td><?php echo __("IOTA Reference"); ?></td>
+                        <td><?= __("IOTA Reference"); ?></td>
                         <td><a href="https://www.iota-world.org/iotamaps/?grpref=<?php echo $row->COL_IOTA; ?>" target="_blank"><?php echo $row->COL_IOTA; ?></a></td>
                     </tr>
                     <?php } ?>
 
                     <?php if($row->COL_SOTA_REF != null) { ?>
                     <tr>
-                        <td><?php echo __("SOTA Reference"); ?></td>
+                        <td><?= __("SOTA Reference"); ?></td>
                         <td><a href="https://summits.sota.org.uk/summit/<?php echo $row->COL_SOTA_REF; ?>" target="_blank"><?php echo $row->COL_SOTA_REF; ?></a></td>
                     </tr>
                     <?php } ?>
 
                     <?php if($row->COL_WWFF_REF != null) { ?>
                     <tr>
-                        <td><?php echo __("WWFF Reference"); ?></td>
+                        <td><?= __("WWFF Reference"); ?></td>
                         <td><a href="https://www.cqgma.org/zinfo.php?ref=<?php echo $row->COL_WWFF_REF; ?>" target="_blank"><?php echo $row->COL_WWFF_REF; ?></a></td>
                     </tr>
                     <?php } ?>
 
                     <?php if($row->COL_POTA_REF != null) { ?>
                     <tr>
-                        <td><?php echo __("POTA Reference(s)"); ?></td>
+                        <td><?= __("POTA Reference(s)"); ?></td>
                         <td>
                             <?php
                             $pota_refs = explode(',', $row->COL_POTA_REF);
@@ -322,14 +322,14 @@
 
                     <?php if($row->COL_SIG != null) { ?>
                     <tr>
-                        <td><?php echo __("Sig"); ?></td>
+                        <td><?= __("Sig"); ?></td>
                         <td><?php echo $row->COL_SIG; ?></td>
                     </tr>
                     <?php } ?>
 
                     <?php if($row->COL_SIG_INFO != null) { ?>
                     <tr>
-                        <td><?php echo __("Sig Info"); ?></td>
+                        <td><?= __("Sig Info"); ?></td>
                         <?php
                         switch ($row->COL_SIG) {
                         case "GMA":
@@ -348,7 +348,7 @@
 
                     <?php if($row->COL_DARC_DOK != null) { ?>
                     <tr>
-                        <td><?php echo __("DOK"); ?></td>
+                        <td><?= __("DOK"); ?></td>
                         <?php if (preg_match('/^[A-Y]\d{2}$/', $row->COL_DARC_DOK)) { ?>
                         <td><a href="https://www.darc.de/<?php echo $row->COL_DARC_DOK; ?>" target="_blank"><?php echo $row->COL_DARC_DOK; ?></a></td>
                         <?php } else if (preg_match('/^DV[ABCDEFGHIKLMNOPQRSTUVWXY]$/', $row->COL_DARC_DOK)) { ?>
@@ -363,19 +363,19 @@
 
                 </table>
                 <?php if($row->COL_QSL_SENT == "Y" || $row->COL_QSL_RCVD == "Y") { ?>
-                    <h3><?php echo __("QSL Info"); ?></h3>
+                    <h3><?= __("QSL Info"); ?></h3>
 
                     <?php if($row->COL_QSL_SENT == "Y") {?>
                         <?php if ($row->COL_QSL_SENT_VIA == "B") { ?>
-                            <p><?php echo __("QSL Card has been sent via the bureau"); ?>
+                            <p><?= __("QSL Card has been sent via the bureau"); ?>
                         <?php } else if($row->COL_QSL_SENT_VIA == "D") { ?>
-                            <p><?php echo __("QSL Card has been sent via direct"); ?>
+                            <p><?= __("QSL Card has been sent via direct"); ?>
                         <?php } else if($row->COL_QSL_SENT_VIA == "E") { ?>
-                            <p><?php echo __("QSL Card has been sent electronically"); ?>
+                            <p><?= __("QSL Card has been sent electronically"); ?>
                         <?php } else if($row->COL_QSL_SENT_VIA == "M") { ?>
-                            <p><?php echo __("QSL Card has been sent via manager"); ?>
+                            <p><?= __("QSL Card has been sent via manager"); ?>
                         <?php } else { ?>
-                            <p><?php echo __("QSL Card has been sent"); ?>
+                            <p><?= __("QSL Card has been sent"); ?>
                         <?php } ?>
                         <?php if ($row->COL_QSLSDATE != null) { ?>
                             <?php $timestamp = strtotime($row->COL_QSLSDATE); echo " (".date($custom_date_format, $timestamp).")"; ?></p>
@@ -384,15 +384,15 @@
 
                     <?php if($row->COL_QSL_RCVD == "Y") { ?>
                         <?php if ($row->COL_QSL_RCVD_VIA == "B") { ?>
-                            <p><?php echo __("QSL Card has been received via the bureau"); ?>
+                            <p><?= __("QSL Card has been received via the bureau"); ?>
                         <?php } else if($row->COL_QSL_RCVD_VIA == "D") { ?>
-                            <p><?php echo __("QSL Card has been received via direct"); ?>
+                            <p><?= __("QSL Card has been received via direct"); ?>
                         <?php } else if($row->COL_QSL_RCVD_VIA == "E") { ?>
-                            <p><?php echo __("QSL Card has been received electronically"); ?>
+                            <p><?= __("QSL Card has been received electronically"); ?>
                         <?php } else if($row->COL_QSL_RCVD_VIA == "M") { ?>
-                            <p><?php echo __("QSL Card has been received via manager"); ?>
+                            <p><?= __("QSL Card has been received via manager"); ?>
                         <?php } else { ?>
-                            <p><?php echo __("QSL Card has been received"); ?>
+                            <p><?= __("QSL Card has been received"); ?>
                         <?php } ?>
                         <?php if ($row->COL_QSLRDATE != null) { ?>
                             <?php $timestamp = strtotime($row->COL_QSLRDATE); echo " (".date($custom_date_format, $timestamp).")"; ?></p>
@@ -401,27 +401,27 @@
 
                 <?php } ?>
                     <?php if($row->lotwuser != null) { ?>
-                    <br /><p><?php echo __("This station uses LoTW."); ?> <a href="https://lotw.arrl.org/lotwuser/act?act=<?php echo $row->COL_CALL;?>" target="_blank"><?php echo __("Last Upload").'</a>: '; ?><?php $timestamp = strtotime($row->lastupload); echo date($custom_date_format, $timestamp); $timestamp = strtotime($row->lastupload); echo " ".date('H:i', $timestamp);?> UTC.</p>
+                    <br /><p><?= __("This station uses LoTW."); ?> <a href="https://lotw.arrl.org/lotwuser/act?act=<?php echo $row->COL_CALL;?>" target="_blank"><?= __("Last Upload").'</a>: '; ?><?php $timestamp = strtotime($row->lastupload); echo date($custom_date_format, $timestamp); $timestamp = strtotime($row->lastupload); echo " ".date('H:i', $timestamp);?> UTC.</p>
                     <?php } ?>
 
                     <?php if($row->COL_LOTW_QSL_RCVD == "Y" && $row->COL_LOTW_QSLRDATE != null) { ?>
-                    <h3><?php echo __("LoTW"); ?></h3>
-                    <p><?php echo __("This QSO was confirmed on"); ?> <?php $timestamp = strtotime($row->COL_LOTW_QSLRDATE); echo date($custom_date_format, $timestamp); ?>.</p>
+                    <h3><?= __("LoTW"); ?></h3>
+                    <p><?= __("This QSO was confirmed on"); ?> <?php $timestamp = strtotime($row->COL_LOTW_QSLRDATE); echo date($custom_date_format, $timestamp); ?>.</p>
                     <?php } ?>
 
                     <?php if($row->COL_EQSL_QSL_RCVD == "Y" && $row->COL_EQSL_QSLRDATE != null) { ?>
                     <h3>eQSL</h3>
-                        <p><?php echo __("This QSO was confirmed on"); ?> <?php $timestamp = strtotime($row->COL_EQSL_QSLRDATE); echo date($custom_date_format, $timestamp); ?>.</p>
+                        <p><?= __("This QSO was confirmed on"); ?> <?php $timestamp = strtotime($row->COL_EQSL_QSLRDATE); echo date($custom_date_format, $timestamp); ?>.</p>
                     <?php } ?>
 
                     <?php if($row->COL_QRZCOM_QSO_DOWNLOAD_STATUS == "Y" && $row->COL_QRZCOM_QSO_DOWNLOAD_DATE != null) { ?>
                     <h3>QRZ.com</h3>
-                        <p><?php echo __("This QSO was confirmed on"); ?> <?php $timestamp = strtotime($row->COL_QRZCOM_QSO_DOWNLOAD_DATE); echo date($custom_date_format, $timestamp); ?>.</p>
+                        <p><?= __("This QSO was confirmed on"); ?> <?php $timestamp = strtotime($row->COL_QRZCOM_QSO_DOWNLOAD_DATE); echo date($custom_date_format, $timestamp); ?>.</p>
                     <?php } ?>
 
                     <?php if($row->COL_CLUBLOG_QSO_DOWNLOAD_STATUS == "Y" && $row->COL_CLUBLOG_QSO_DOWNLOAD_DATE != null) { ?>
                     <h3>Clublog</h3>
-                        <p><?php echo __("This QSO was confirmed on"); ?> <?php $timestamp = strtotime($row->COL_CLUBLOG_QSO_DOWNLOAD_DATE); echo date($custom_date_format, $timestamp); ?>.</p>
+                        <p><?= __("This QSO was confirmed on"); ?> <?php $timestamp = strtotime($row->COL_CLUBLOG_QSO_DOWNLOAD_DATE); echo date($custom_date_format, $timestamp); ?>.</p>
                     <?php } ?>
             </div>
 
@@ -431,8 +431,8 @@
 
                     <?php if(($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE) { ?>
                         <br>
-                            <div style="display: inline-block;"><p class="editButton"><a class="btn btn-primary" href="<?php echo site_url('qso/edit'); ?>/<?php echo $row->COL_PRIMARY_KEY; ?>" href="javascript:;"><i class="fas fa-edit"></i> <?php echo __("Edit QSO"); ?></a></p></div>
-                            <div style="display: inline-block;"><form method="POST" action="<?php echo site_url('search'); ?>"><input type="hidden" value="<?php echo strtoupper($row->COL_CALL); ?>" name="callsign"><button class="btn btn-primary" type="submit"><i class="fas fa-eye"></i> <?php echo __("More QSOs"); ?></button></form></div>
+                            <div style="display: inline-block;"><p class="editButton"><a class="btn btn-primary" href="<?php echo site_url('qso/edit'); ?>/<?php echo $row->COL_PRIMARY_KEY; ?>" href="javascript:;"><i class="fas fa-edit"></i> <?= __("Edit QSO"); ?></a></p></div>
+                            <div style="display: inline-block;"><form method="POST" action="<?php echo site_url('search'); ?>"><input type="hidden" value="<?php echo strtoupper($row->COL_CALL); ?>" name="callsign"><button class="btn btn-primary" type="submit"><i class="fas fa-eye"></i> <?= __("More QSOs"); ?></button></form></div>
                     <?php } ?>
 
                     <?php
@@ -500,86 +500,86 @@
         </div>
 
         <div class="tab-pane fade" id="stationdetails" role="tabpanel" aria-labelledby="table-tab">
-            <h3><?php echo __("Station") . ' ' . __("Details"); ?></h3>
+            <h3><?= __("Station") . ' ' . __("Details"); ?></h3>
 
             <table width="100%">
                     <tr>
-                        <td><?php echo __("Station") . ' ' . __("Callsign"); ?></td>
+                        <td><?= __("Station") . ' ' . __("Callsign"); ?></td>
                         <td><?php echo $row->station_callsign; ?></td>
                     </tr>
                     <tr>
-                        <td><?php echo __("Station") . ' ' . __("Name"); ?></td>
+                        <td><?= __("Station") . ' ' . __("Name"); ?></td>
                         <td><?php echo $row->station_profile_name; ?></td>
                     </tr>
                     <tr>
-                        <td><?php echo __("Station") . ' ' . __("Gridsquare"); ?></td>
+                        <td><?= __("Station") . ' ' . __("Gridsquare"); ?></td>
                         <td><?php echo $row->station_gridsquare; ?></td>
                     </tr>
 
                     <?php if($row->station_city) { ?>
                     <tr>
-                        <td><?php echo __("Station") . ' ' . __("City"); ?></td>
+                        <td><?= __("Station") . ' ' . __("City"); ?></td>
                         <td><?php echo $row->station_city; ?></td>
                     </tr>
                     <?php } ?>
 
                     <?php if($row->station_country) { ?>
                     <tr>
-                        <td><?php echo __("Station") . ' ' . __("Country"); ?></td>
+                        <td><?= __("Station") . ' ' . __("Country"); ?></td>
                         <td><?php echo ucwords(strtolower(($row->station_country)), "- (/"); if ($row->station_end != null) echo ' <span class="badge text-bg-danger">'.__("Deleted DXCC").'</span>'; ?></td>
                     </tr>
                     <?php } ?>
 
                     <?php if($row->COL_OPERATOR) { ?>
                     <tr>
-                        <td><?php echo __("Station") . ' ' . __("Operator"); ?></td>
+                        <td><?= __("Station") . ' ' . __("Operator"); ?></td>
                         <td><?php echo $row->COL_OPERATOR; ?></td>
                     </tr>
                     <?php } ?>
 
                     <?php if($row->COL_TX_PWR) { ?>
                     <tr>
-                        <td><?php echo __("Station") . ' ' . __("Transmit Power (W)"); ?></td>
+                        <td><?= __("Station") . ' ' . __("Transmit Power (W)"); ?></td>
                         <td><?php echo $row->COL_TX_PWR; ?> W</td>
                     </tr>
                     <?php } ?>
 
                     <?php if($row->station_iota) { ?>
                     <tr>
-                        <td><?php echo __("Station") . ' ' . __("IOTA Reference"); ?></td>
+                        <td><?= __("Station") . ' ' . __("IOTA Reference"); ?></td>
                         <td><?php echo $row->station_iota; ?></td>
                     </tr>
                     <?php } ?>
 
                     <?php if($row->station_sota) { ?>
                     <tr>
-                        <td><?php echo __("Station") . ' ' . __("SOTA Reference"); ?></td>
+                        <td><?= __("Station") . ' ' . __("SOTA Reference"); ?></td>
                         <td><?php echo $row->station_sota; ?></td>
                     </tr>
                     <?php } ?>
 
                     <?php if($row->station_wwff) { ?>
                     <tr>
-                        <td><?php echo __("Station") . ' ' . __("WWFF Reference"); ?></td>
+                        <td><?= __("Station") . ' ' . __("WWFF Reference"); ?></td>
                         <td><?php echo $row->station_wwff; ?></td>
                     </tr>
                     <?php } ?>
 
                     <?php if($row->station_pota) { ?>
                     <tr>
-                        <td><?php echo __("Station") . ' ' . __("POTA Reference(s)"); ?></td>
+                        <td><?= __("Station") . ' ' . __("POTA Reference(s)"); ?></td>
                         <td><?php echo $row->station_pota; ?></td>
                     </tr>
                     <?php } ?>
 
                     <?php if($row->station_sig) { ?>
                     <tr>
-                        <td><?php echo __("Station") . ' ' . __("Sig"); ?></td>
+                        <td><?= __("Station") . ' ' . __("Sig"); ?></td>
                         <td><?php echo $row->station_sig; ?></td>
                     </tr>
 
                     <tr>
-                        <td><?php echo __("Station") . ' ' . __("Sig Info"); ?></td>
+                        <td><?= __("Station") . ' ' . __("Sig Info"); ?></td>
                         <td><?php echo $row->station_sig_info; ?></td>
                     </tr>
                     <?php } ?>
@@ -587,7 +587,7 @@
         </div>
 
         <div class="tab-pane fade" id="notesdetails" role="tabpanel" aria-labelledby="table-tab">
-            <h3><?php echo __("Notes"); ?></h3>
+            <h3><?= __("Notes"); ?></h3>
             <?php if (isset($row->COL_NOTES)) { echo nl2br($row->COL_NOTES); } ?>
         </div>
 
@@ -619,7 +619,7 @@
             }
             ?>
 
-            <p><div class="alert alert-warning" role="alert"><span class="badge text-bg-warning"><?php echo __("Warning"); ?></span> <?php echo __("Maximum file upload size is "); ?> <?php echo $max_upload; ?>B.</div></p>
+            <p><div class="alert alert-warning" role="alert"><span class="badge text-bg-warning"><?= __("Warning"); ?></span> <?= __("Maximum file upload size is "); ?> <?php echo $max_upload; ?>B.</div></p>
 
             <form class="form" id="fileinfo" name="fileinfo" enctype="multipart/form-data">
             <div class="row">
@@ -627,17 +627,17 @@
                         <fieldset>
 
                             <div class="mb-3">
-                                <label for="qslcardfront"><?php echo __("Uploaded QSL Card front image"); ?></label>
+                                <label for="qslcardfront"><?= __("Uploaded QSL Card front image"); ?></label>
                                 <input class="form-control" type="file" id="qslcardfront" name="qslcardfront" accept="image/*" >
                             </div>
 
                             <input type="hidden" class="form-control" id="qsoinputid" name="qsoid" value="<?php echo $row->COL_PRIMARY_KEY; ?>">
-                            <button type="button" onclick="uploadQsl();" id="button1id"  name="button1id" class="btn btn-primary"><?php echo __("Upload QSL Card image"); ?></button>
+                            <button type="button" onclick="uploadQsl();" id="button1id"  name="button1id" class="btn btn-primary"><?= __("Upload QSL Card image"); ?></button>
 
                 </div>
                 <div class="col-md">
                             <div class="mb-3">
-                                <label for="qslcardback"><?php echo __("Uploaded QSL Card back image"); ?></label>
+                                <label for="qslcardback"><?= __("Uploaded QSL Card back image"); ?></label>
                                 <input class="form-control" type="file" id="qslcardback" name="qslcardback" accept="image/*">
                             </div>
 
@@ -649,21 +649,21 @@
             <p>
             <div class="row">
                 <div class="col-md">
-                        <button type="button" onclick="qsl_rcvd(<?php echo $row->COL_PRIMARY_KEY; ?>, 'B');" id="qslrxb"  name="qslrxb" class="btn btn-sm btn-success ld-ext-right ld-ext-right-r-B"><i class="fas fa-envelope"></i> <?php echo __("Mark QSL Received (Bureau)"); ?> <div class="ld ld-ring ld-spin"></div></button>
+                        <button type="button" onclick="qsl_rcvd(<?php echo $row->COL_PRIMARY_KEY; ?>, 'B');" id="qslrxb"  name="qslrxb" class="btn btn-sm btn-success ld-ext-right ld-ext-right-r-B"><i class="fas fa-envelope"></i> <?= __("Mark QSL Received (Bureau)"); ?> <div class="ld ld-ring ld-spin"></div></button>
 
-                        <button type="button" onclick="qsl_rcvd(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D');" id="qslrxd"  name="qslrxd" class="btn btn-sm btn-success ld-ext-right ld-ext-right-r-D"><i class="fas fa-envelope"></i> <?php echo __("Mark QSL Received (Direct)"); ?> <div class="ld ld-ring ld-spin"></div></button>
+                        <button type="button" onclick="qsl_rcvd(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D');" id="qslrxd"  name="qslrxd" class="btn btn-sm btn-success ld-ext-right ld-ext-right-r-D"><i class="fas fa-envelope"></i> <?= __("Mark QSL Received (Direct)"); ?> <div class="ld ld-ring ld-spin"></div></button>
 
-                        <button type="button" onclick="qsl_rcvd(<?php echo $row->COL_PRIMARY_KEY; ?>, 'E');" id="qslrxe"  name="qslrxe" class="btn btn-sm btn-success ld-ext-right ld-ext-right-r-E"><i class="fas fa-envelope"></i> <?php echo __("Mark QSL Received (Electronic)"); ?> <div class="ld ld-ring ld-spin"></div></button>
+                        <button type="button" onclick="qsl_rcvd(<?php echo $row->COL_PRIMARY_KEY; ?>, 'E');" id="qslrxe"  name="qslrxe" class="btn btn-sm btn-success ld-ext-right ld-ext-right-r-E"><i class="fas fa-envelope"></i> <?= __("Mark QSL Received (Electronic)"); ?> <div class="ld ld-ring ld-spin"></div></button>
                 </div>
             </div>
             <p>
             <div class="row">
                 <div class="col-md">
-                        <button type="button" onclick="qsl_requested(<?php echo $row->COL_PRIMARY_KEY; ?>, 'B');" id="qsltxb"  name="qsltxb" class="btn btn-sm btn-warning ld-ext-right ld-ext-right-t-B"><i class="fas fa-envelope"></i> <?php echo __("Mark QSL Card Requested (Bureau)"); ?> <div class="ld ld-ring ld-spin"></div></button>
+                        <button type="button" onclick="qsl_requested(<?php echo $row->COL_PRIMARY_KEY; ?>, 'B');" id="qsltxb"  name="qsltxb" class="btn btn-sm btn-warning ld-ext-right ld-ext-right-t-B"><i class="fas fa-envelope"></i> <?= __("Mark QSL Card Requested (Bureau)"); ?> <div class="ld ld-ring ld-spin"></div></button>
 
-                        <button type="button" onclick="qsl_requested(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D');" id="qsltxd"  name="qsltxd" class="btn btn-sm btn-warning ld-ext-right ld-ext-right-t-D"><i class="fas fa-envelope"></i> <?php echo __("Mark QSL Card Requested (Direct)"); ?> <div class="ld ld-ring ld-spin"></div></button>
+                        <button type="button" onclick="qsl_requested(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D');" id="qsltxd"  name="qsltxd" class="btn btn-sm btn-warning ld-ext-right ld-ext-right-t-D"><i class="fas fa-envelope"></i> <?= __("Mark QSL Card Requested (Direct)"); ?> <div class="ld ld-ring ld-spin"></div></button>
 
-                        <button type="button" onclick="qsl_ignore(<?php echo $row->COL_PRIMARY_KEY; ?>, 'I');" id="qsltxi"  name="qsltxi" class="btn btn-sm btn-warning ld-ext-right ld-ext-right-ignore"><i class="fas fa-envelope"></i> <?php echo __("Mark QSL Card Not Required"); ?> <div class="ld ld-ring ld-spin"></div></button>
+                        <button type="button" onclick="qsl_ignore(<?php echo $row->COL_PRIMARY_KEY; ?>, 'I');" id="qsltxi"  name="qsltxi" class="btn btn-sm btn-warning ld-ext-right ld-ext-right-ignore"><i class="fas fa-envelope"></i> <?= __("Mark QSL Card Not Required"); ?> <div class="ld ld-ring ld-spin"></div></button>
 
                 </div>
             </div>

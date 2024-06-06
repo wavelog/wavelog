@@ -2,12 +2,12 @@
 
     <br>
 
-    <h2><?php echo __("QSL Cards"); ?></h2>
+    <h2><?= __("QSL Cards"); ?></h2>
 
     <?php $userdata_dir = $this->config->item('userdata');
     if (isset($userdata_dir)) { ?>
         <div class="alert alert-info" role="alert">
-            <?php echo __("You are using"); ?> <?php echo $storage_used; ?> <?php echo __("of disk space to store QSL Card assets"); ?>
+            <?= __("You are using"); ?> <?php echo $storage_used; ?> <?= __("of disk space to store QSL Card assets"); ?>
         </div>
     <?php } ?>
 

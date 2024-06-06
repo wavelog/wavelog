@@ -10,11 +10,11 @@
 ?>
 
 <div class="mb-3">
-	<label for="StationLocationsSelect"><?php echo __("Select Available Station Locations"); ?></label>
+	<label for="StationLocationsSelect"><?= __("Select Available Station Locations"); ?></label>
 	<select name="SelectedStationLocation" class="form-select" id="StationLocationSelect" aria-describedby="StationLocationSelectHelp">
 		<?php foreach ($station_locations_list->result() as $row) {
 			if (!in_array($row->station_id, $linked_stations)) { ?>
-			<option value="<?php echo $row->station_id;?>"><?php echo $row->station_profile_name;?> (<?php echo __("Callsign"); ?>: <?php echo $row->station_callsign;?> <?php echo __("DXCC"); ?>: <?php echo $row->station_country; if ($row->dxcc_end != NULL) { echo ' ('.__("Deleted DXCC").')'; } ?>)</option>
+			<option value="<?php echo $row->station_id;?>"><?php echo $row->station_profile_name;?> (<?= __("Callsign"); ?>: <?php echo $row->station_callsign;?> <?= __("DXCC"); ?>: <?php echo $row->station_country; if ($row->dxcc_end != NULL) { echo ' ('.__("Deleted DXCC").')'; } ?>)</option>
 			<?php } ?>
 		<?php } ?>
 	</select>
@@ -22,16 +22,16 @@
 
 <input type="hidden" class="form-control" id="station_logbook_id" name="station_logbook_id" value="<?php echo $station_logbook_details->logbook_id; ?>" required>
 
-<button class="btn btn-sm btn-primary linkLocationButton" onclick="linkLocations();"><i class="fas fa-link"></i> <?php echo __("Link Location"); ?></button>
+<button class="btn btn-sm btn-primary linkLocationButton" onclick="linkLocations();"><i class="fas fa-link"></i> <?= __("Link Location"); ?></button>
 <br /><br />
 
 <table id="station_logbooks_linked_table" class="table table-hover table-sm table-striped">
 	<thead class="thead-light">
 		<tr>
-			<th style="text-align: center; vertical-align: middle;" scope="col"><?php echo __("Profile Name"); ?></th>
-			<th style="text-align: center; vertical-align: middle;" scope="col"><?php echo __("Station Callsign"); ?></th>
-			<th style="text-align: center; vertical-align: middle;" scope="col"><?php echo __("DXCC"); ?></th>
-			<th style="text-align: center; vertical-align: middle;" scope="col"><?php echo __("Unlink Station Location"); ?></th>
+			<th style="text-align: center; vertical-align: middle;" scope="col"><?= __("Profile Name"); ?></th>
+			<th style="text-align: center; vertical-align: middle;" scope="col"><?= __("Station Callsign"); ?></th>
+			<th style="text-align: center; vertical-align: middle;" scope="col"><?= __("DXCC"); ?></th>
+			<th style="text-align: center; vertical-align: middle;" scope="col"><?= __("Unlink Station Location"); ?></th>
 		</tr>
 	</thead>
 	<tbody>

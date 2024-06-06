@@ -28,31 +28,31 @@
 
 			<form method="post" action="<?php echo site_url('contesting/edit/'); ?><?php echo $contest->id; ?>" name="edit_contest">
 				<div class="mb-3">
-					<label for="contestnameInput"><?php echo __("Contest Name"); ?></label>
+					<label for="contestnameInput"><?= __("Contest Name"); ?></label>
 					<input type="text" class="form-control" name="name" id="nameInput" aria-describedby="contestnameInputHelp" value="<?php if(set_value('name') != "") { echo set_value('name'); } else { echo $contest->name; } ?>" required>
-					<small id="contestnameInputHelp" class="form-text text-muted"><?php echo __("Name of the Contest"); ?></small>
+					<small id="contestnameInputHelp" class="form-text text-muted"><?= __("Name of the Contest"); ?></small>
 				</div>
 
 				<div class="mb-3">
-					<label for="adifnameInput"><?php echo __("Contest ADIF Name"); ?></label>
+					<label for="adifnameInput"><?= __("Contest ADIF Name"); ?></label>
 					<input type="text" class="form-control" name="adifname" id="adifnameInput" aria-describedby="adifnameInputHelp" value="<?php if(set_value('adifname') != "") { echo set_value('adifname'); } else { echo $contest->adifname; } ?>">
-					<small id="adifnameInputHelp" class="form-text text-muted"><?php echo __("Name of Contest in ADIF-specification"); ?></small>
+					<small id="adifnameInputHelp" class="form-text text-muted"><?= __("Name of Contest in ADIF-specification"); ?></small>
 				</div>
 
 				<div class="mb-3">
-					<label for="activeInput"><?php echo __("Active"); ?></label>
+					<label for="activeInput"><?= __("Active"); ?></label>
 					<select id="activeInput" class="form-select mode form-select-sm" name="active">
         				<option value="1" <?php echo $contest->active == 1 ? "selected=\"selected\"" : ""; ?>>
-            				<?php echo __("Active"); ?>
+            				<?= __("Active"); ?>
         				</option>
         				<option value="0" <?php echo $contest->active == 0 ? "selected=\"selected\"" : ""; ?>>
-            				<?php echo __("Not Active"); ?>
+            				<?= __("Not Active"); ?>
         				</option>
     				</select>
-					<small id="activeInputHelp" class="form-text text-muted"><?php echo __("Set to active if to be listed in Contest-list"); ?></small>
+					<small id="activeInputHelp" class="form-text text-muted"><?= __("Set to active if to be listed in Contest-list"); ?></small>
 				</div>
 
-				<button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-plus-square"></i> <?php echo __("Save"); ?></button>
+				<button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-plus-square"></i> <?= __("Save"); ?></button>
 
 			</form>
 		</div>

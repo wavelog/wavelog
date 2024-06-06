@@ -21,18 +21,18 @@
 
 		<form>
 		<div class="mb-3">
-		    <label for="contestInput"><?php echo __("Name"); ?></label>
+		    <label for="contestInput"><?= __("Name"); ?></label>
 		    <input type="text" class="form-control" name="contestname" id="contestInput" aria-describedby="contestInputHelp" required>
-		    <small id="contestInputHelp" class="form-text text-muted"><?php echo __("Name of the Contest"); ?></small>
+		    <small id="contestInputHelp" class="form-text text-muted"><?= __("Name of the Contest"); ?></small>
 		  </div>
 
 		  <div class="mb-3">
-		    <label for="adifcontestInput"><?php echo __("ADIF Name"); ?></label>
+		    <label for="adifcontestInput"><?= __("ADIF Name"); ?></label>
 		    <input type="text" class="form-control" name="adifcontestname" id="adifcontestInput" aria-describedby="adifcontestInputHelp">
-		    <small id="adifcontestInputHelp" class="form-text text-muted"><?php echo __("Name of Contest in ADIF-specification"); ?></small>
+		    <small id="adifcontestInputHelp" class="form-text text-muted"><?= __("Name of Contest in ADIF-specification"); ?></small>
 		  </div>
 
-			<button type="button" onclick="createContest(this.form);" class="btn btn-primary btn-sm"><i class="fas fa-plus-square"></i> <?php echo __("Create"); ?></button>
+			<button type="button" onclick="createContest(this.form);" class="btn btn-primary btn-sm"><i class="fas fa-plus-square"></i> <?= __("Create"); ?></button>
 
 		</form>
 </div>

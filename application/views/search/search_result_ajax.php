@@ -86,11 +86,11 @@ function echo_table_col($row, $name) {
 	<table style="width:100%" class="table table-sm tablewas table-bordered table-hover table-striped table-condensed text-center">
 		<thead>
         <tr class="titles">
-            <th><?php echo __("Date"); ?></th>
+            <th><?= __("Date"); ?></th>
             <?php if(($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE || ($this->config->item('show_time'))) { ?>
-            <th><?php echo __("Time"); ?></th>
+            <th><?= __("Time"); ?></th>
             <?php } ?>
-            <th><?php echo __("Call"); ?></th>
+            <th><?= __("Call"); ?></th>
 <?php
 $ci =& get_instance();
 			echo '<th>';
@@ -124,7 +124,7 @@ $ci =& get_instance();
                     <th>Clublog</th>
                 <?php } ?>
             <?php } ?>
-                <th><?php echo __("Station"); ?></th>
+                <th><?= __("Station"); ?></th>
             <?php if(($this->config->item('use_auth')) && ($this->session->userdata('user_type') >= 2)) { ?>
                 <th></th>
             <?php } ?>
@@ -397,35 +397,35 @@ $ci =& get_instance();
                         </a>
 
                         <div class="dropdown-menu menuOnResultTab" aria-labelledby="dropdownMenuLink" data-qsoid="qso_<?php echo $row->COL_PRIMARY_KEY; ?>">
-                            <a class="dropdown-item" id="edit_qso" href="javascript:qso_edit(<?php echo $row->COL_PRIMARY_KEY; ?>)"><i class="fas fa-edit"></i> <?php echo __("Edit QSO"); ?></a>
+                            <a class="dropdown-item" id="edit_qso" href="javascript:qso_edit(<?php echo $row->COL_PRIMARY_KEY; ?>)"><i class="fas fa-edit"></i> <?= __("Edit QSO"); ?></a>
 
                             <?php if($row->COL_QSL_SENT !='Y') { ?>
                                 <div class="qsl_sent_<?php echo $row->COL_PRIMARY_KEY; ?>">
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="javascript:qsl_sent(<?php echo $row->COL_PRIMARY_KEY; ?>, 'B')" ><i class="fas fa-envelope"></i> <?php echo __("Mark QSL Sent (Bureau)"); ?></a>
-                                    <a class="dropdown-item" href="javascript:qsl_sent(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D')" ><i class="fas fa-envelope"></i> <?php echo __("Mark QSL Sent (Direct)"); ?></a>
+                                    <a class="dropdown-item" href="javascript:qsl_sent(<?php echo $row->COL_PRIMARY_KEY; ?>, 'B')" ><i class="fas fa-envelope"></i> <?= __("Mark QSL Sent (Bureau)"); ?></a>
+                                    <a class="dropdown-item" href="javascript:qsl_sent(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D')" ><i class="fas fa-envelope"></i> <?= __("Mark QSL Sent (Direct)"); ?></a>
                                 </div>
                             <?php } ?>
 
                             <?php if($row->COL_QSL_RCVD !='Y') { ?>
                                 <div class="qsl_rcvd_<?php echo $row->COL_PRIMARY_KEY; ?>">
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="javascript:qsl_rcvd(<?php echo $row->COL_PRIMARY_KEY; ?>, 'B')" ><i class="fas fa-envelope"></i> <?php echo __("Mark QSL Received (Bureau)"); ?></a>
-                                    <a class="dropdown-item" href="javascript:qsl_rcvd(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D')" ><i class="fas fa-envelope"></i> <?php echo __("Mark QSL Received (Direct)"); ?></a>
-                                    <a class="dropdown-item" href="javascript:qsl_requested(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D')" ><i class="fas fa-envelope"></i><?php echo __("Mark QSL Card Requested"); ?></a>
-                                    <a class="dropdown-item" href="javascript:qsl_ignore(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D')" ><i class="fas fa-envelope"></i><?php echo __("Mark QSL Card Not Required"); ?></a>
+                                    <a class="dropdown-item" href="javascript:qsl_rcvd(<?php echo $row->COL_PRIMARY_KEY; ?>, 'B')" ><i class="fas fa-envelope"></i> <?= __("Mark QSL Received (Bureau)"); ?></a>
+                                    <a class="dropdown-item" href="javascript:qsl_rcvd(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D')" ><i class="fas fa-envelope"></i> <?= __("Mark QSL Received (Direct)"); ?></a>
+                                    <a class="dropdown-item" href="javascript:qsl_requested(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D')" ><i class="fas fa-envelope"></i><?= __("Mark QSL Card Requested"); ?></a>
+                                    <a class="dropdown-item" href="javascript:qsl_ignore(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D')" ><i class="fas fa-envelope"></i><?= __("Mark QSL Card Not Required"); ?></a>
                                 </div>
                             <?php } ?>
 
                             <div class="dropdown-divider"></div>
 
-                            <a class="dropdown-item" href="https://www.qrz.com/db/<?php echo $row->COL_CALL; ?>" target="_blank"><i class="fas fa-question"></i><?php echo __("Lookup on QRZ.com"); ?></a>
+                            <a class="dropdown-item" href="https://www.qrz.com/db/<?php echo $row->COL_CALL; ?>" target="_blank"><i class="fas fa-question"></i><?= __("Lookup on QRZ.com"); ?></a>
 
-                            <a class="dropdown-item" href="https://www.hamqth.com/<?php echo $row->COL_CALL; ?>" target="_blank"><i class="fas fa-question"></i><?php echo __("Lookup on HamQTH"); ?></a>
+                            <a class="dropdown-item" href="https://www.hamqth.com/<?php echo $row->COL_CALL; ?>" target="_blank"><i class="fas fa-question"></i><?= __("Lookup on HamQTH"); ?></a>
 
                             <div class="dropdown-divider"></div>
 
-                            <a class="dropdown-item" href="javascript:qso_delete(<?php echo $row->COL_PRIMARY_KEY; ?>, '<?php echo $row->COL_CALL; ?>')"><i class="fas fa-trash-alt"></i> <?php echo __("Delete QSO"); ?></a>
+                            <a class="dropdown-item" href="javascript:qso_delete(<?php echo $row->COL_PRIMARY_KEY; ?>, '<?php echo $row->COL_CALL; ?>')"><i class="fas fa-trash-alt"></i> <?= __("Delete QSO"); ?></a>
                         </div>
                     </div>
                 </td>

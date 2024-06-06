@@ -1,7 +1,7 @@
 <div class="container">
     <h2><?php echo $page_title; ?></h2>
 
-    <h3><?php echo __("Filtering on"); ?> <?php echo $filter ?></h3>
+    <h3><?= __("Filtering on"); ?> <?php echo $filter ?></h3>
     <?php
     $i = 1;
     if ($counties_array) {

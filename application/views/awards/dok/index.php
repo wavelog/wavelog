@@ -3,24 +3,24 @@
         <br>
         <div id="awardInfoButton">
             <script>
-            var lang_awards_info_button = "<?php echo __("Award Info"); ?>";
-            var lang_award_info_ln1 = "<?php echo __("DOK Award"); ?>";
-            var lang_award_info_ln2 = "<?php echo __("Germany extends over 630 km from East to West and nearly 900 km from North to South. Around 70,000 of Germany's 82 million inhabitants are licensed hams, with more than 40,000 of them being members of DARC. DOK is a system that provides individual local chapters with an identifier and means 'Deutscher Ortsverband Kenner' (English: 'German Local Association Identifier')."); ?>";
-            var lang_award_info_ln3 = "<?php echo __("The DOK consists of a letter for the district and a two-digit number for the local chapter, like P03 Friedrichshafen (city of the 'Hamradio exhibition') or F41 Baunatal (location of the DARC headquarters). Note: A zero in a DOK is a common mistake, often being logged as the letter O."); ?>";
+            var lang_awards_info_button = "<?= __("Award Info"); ?>";
+            var lang_award_info_ln1 = "<?= __("DOK Award"); ?>";
+            var lang_award_info_ln2 = "<?= __("Germany extends over 630 km from East to West and nearly 900 km from North to South. Around 70,000 of Germany's 82 million inhabitants are licensed hams, with more than 40,000 of them being members of DARC. DOK is a system that provides individual local chapters with an identifier and means 'Deutscher Ortsverband Kenner' (English: 'German Local Association Identifier')."); ?>";
+            var lang_award_info_ln3 = "<?= __("The DOK consists of a letter for the district and a two-digit number for the local chapter, like P03 Friedrichshafen (city of the 'Hamradio exhibition') or F41 Baunatal (location of the DARC headquarters). Note: A zero in a DOK is a common mistake, often being logged as the letter O."); ?>";
             var lang_award_info_ln4 = "<?php echo sprintf(_pgettext("uses 'DARC Website' and 'here'", "This information is provided by the %s. Information about the DOK Awards and its rules can be found %s."), "<a href='https://www.darc.de/der-club/referate/conteste/wag-contest/en/service/districtsdoks/' target='_blank'>DARC website</a>", "<a href='https://www.darc.de/der-club/referate/conteste/wag-contest/en/service/award-check/' target='_blank'>here</a>"); ?>";
             </script>
             <h2><?php echo $page_title; ?></h2>
-            <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?php echo __("Award Info"); ?></button>
+            <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?= __("Award Info"); ?></button>
         </div>
         <!-- End of Award Info Box -->
             <form class="form" action="<?php echo site_url('awards/dok'); ?>" method="post" enctype="multipart/form-data">
             <fieldset>
 
             <div class="mb-3 row">
-                <label class="col-md-2 control-label" for="band"><?php echo __('DOK / SDOK'); ?></label>
+                <label class="col-md-2 control-label" for="band"><?= __('DOK / SDOK'); ?></label>
                 <div class="col-md-2">
                     <select id="doks" name="doks" class="form-select form-select-sm">
-                        <option value="both" <?php if ($this->input->post('doks') == "both" || $this->input->method() !== 'post') echo ' selected'; ?> ><?php echo __('DOK + SDOK'); ?></option>
+                        <option value="both" <?php if ($this->input->post('doks') == "both" || $this->input->method() !== 'post') echo ' selected'; ?> ><?= __('DOK + SDOK'); ?></option>
                         <?php echo '<option value="dok"';
                             if ($this->input->post('doks') == 'dok') echo ' selected';
                             echo '>DOK</option>'."\n";
@@ -34,37 +34,37 @@
             </div>
 
             <div class="mb-3 row">
-                <div class="col-md-2" for="checkboxes"><?php echo __('Worked / Confirmed'); ?></div>
+                <div class="col-md-2" for="checkboxes"><?= __('Worked / Confirmed'); ?></div>
                 <div class="col-md-10">
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" name="worked" id="worked" value="1" <?php if ($this->input->post('worked') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="worked"><?php echo __('Show worked'); ?></label>
+                        <label class="form-check-label" for="worked"><?= __('Show worked'); ?></label>
                     </div>
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" name="confirmed" id="confirmed" value="1" <?php if ($this->input->post('confirmed') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="confirmed"><?php echo __('Show confirmed'); ?></label>
+                        <label class="form-check-label" for="confirmed"><?= __('Show confirmed'); ?></label>
                     </div>
                 </div>
             </div>
 
             <div class="mb-3 row">
-                <div class="col-md-2"><?php echo __("Show QSO with QSL Type"); ?></div>
+                <div class="col-md-2"><?= __("Show QSO with QSL Type"); ?></div>
                 <div class="col-md-10">
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" name="qsl" value="1" id="qsl" <?php if ($this->input->post('qsl') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="qsl"><?php echo __('QSL'); ?></label>
+                        <label class="form-check-label" for="qsl"><?= __('QSL'); ?></label>
                     </div>
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" name="lotw" value="1" id="lotw" <?php if ($this->input->post('lotw') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="lotw"><?php echo __('LoTW'); ?></label>
+                        <label class="form-check-label" for="lotw"><?= __('LoTW'); ?></label>
                     </div>
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" name="eqsl" value="1" id="eqsl" <?php if ($this->input->post('eqsl')) echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="eqsl"><?php echo __('eQSL'); ?></label>
+                        <label class="form-check-label" for="eqsl"><?= __('eQSL'); ?></label>
                     </div>
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" name="qrz" value="1" id="qrz" <?php if ($this->input->post('qrz')) echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="qrz"><?php echo __('QRZ.com'); ?></label>
+                        <label class="form-check-label" for="qrz"><?= __('QRZ.com'); ?></label>
                     </div>
                 </div>
             </div>

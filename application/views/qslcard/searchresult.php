@@ -1,11 +1,11 @@
 <div class="table-responsive">
 	<table class="table table-sm table-striped table-hover">
 		<tr class="titles">
-			<td><?php echo __("Date"); ?></td>
+			<td><?= __("Date"); ?></td>
 			<?php if(($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE || ($this->config->item('show_time'))) { ?>
-				<td><?php echo __("Time"); ?></td>
+				<td><?= __("Time"); ?></td>
 			<?php } ?>
-			<td><?php echo __("Call"); ?></td>
+			<td><?= __("Call"); ?></td>
 			<?php
 			echo '<td>';
 			switch($this->session->userdata('user_column1')==""?'Mode':$this->session->userdata('user_column1')) {

@@ -3,14 +3,14 @@
         <br>
         <div id="awardInfoButton">
             <script>
-            var lang_awards_info_button = "<?php echo __("Award Info"); ?>";
-            var lang_award_info_ln1 = "<?php echo __("POTA Awards"); ?>";
-            var lang_award_info_ln2 = "<?php echo __("Parks on the Air® (POTA) started in early 2017 when the ARRL's National Parks on the Air special event ended. A group of volunteers wanted to continue the fun beyond the one-year event, and thus, POTA was born."); ?>";
-            var lang_award_info_ln3 = "<?php echo __("POTA works similarly to SOTA, with Activators and Hunters. For the awards, there are several categories based on the number of parks, geographic areas, and more."); ?>";
+            var lang_awards_info_button = "<?= __("Award Info"); ?>";
+            var lang_award_info_ln1 = "<?= __("POTA Awards"); ?>";
+            var lang_award_info_ln2 = "<?= __("Parks on the Air® (POTA) started in early 2017 when the ARRL's National Parks on the Air special event ended. A group of volunteers wanted to continue the fun beyond the one-year event, and thus, POTA was born."); ?>";
+            var lang_award_info_ln3 = "<?= __("POTA works similarly to SOTA, with Activators and Hunters. For the awards, there are several categories based on the number of parks, geographic areas, and more."); ?>";
             var lang_award_info_ln4 = "<?php echo sprintf(_pgettext("uses 'the website'", "For more information about the available awards and categories, please visit the %s."), "<a href='https://parksontheair.com/pota-awards/' target='_blank'>Parks on the Air® website</a>"); ?>";
             </script>
             <h2><?php echo $page_title; ?></h2>
-            <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?php echo __("Award Info"); ?></button>
+            <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?= __("Award Info"); ?></button>
         </div>
         <!-- End of Award Info Box -->
 	<?php
@@ -28,13 +28,13 @@
 	<thead>
 		
 	<tr>
-		<th style="text-align: center"><?php echo __("POTA Reference(s)") ?></th>
-		<th style="text-align: center"><?php echo __("Date") ?></th>
-		<th style="text-align: center"><?php echo __("Time") ?></th>
-		<th style="text-align: center"><?php echo __("Callsign") ?></th>
-		<th style="text-align: center"><?php echo __("Band") ?></th>
-		<th style="text-align: center"><?php echo __("RST (S)") ?></th>
-		<th style="text-align: center"><?php echo __("RST (R)") ?></th>
+		<th style="text-align: center"><?= __("POTA Reference(s)") ?></th>
+		<th style="text-align: center"><?= __("Date") ?></th>
+		<th style="text-align: center"><?= __("Time") ?></th>
+		<th style="text-align: center"><?= __("Callsign") ?></th>
+		<th style="text-align: center"><?= __("Band") ?></th>
+		<th style="text-align: center"><?= __("RST (S)") ?></th>
+		<th style="text-align: center"><?= __("RST (R)") ?></th>
 	</tr>
 	</thead>
 	

@@ -145,12 +145,12 @@ if ($public_maps_option == 'true') { ?>
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr class="titles">
-							<th><?php echo __("Date"); ?></th>
+							<th><?= __("Date"); ?></th>
 
 							<?php if (($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE || ($this->config->item('show_time'))) { ?>
-								<th><?php echo __("Time"); ?></th>
+								<th><?= __("Time"); ?></th>
 							<?php } ?>
-							<th><?php echo __("Call"); ?></th>
+							<th><?= __("Call"); ?></th>
 							<?php
 							echo_table_header_col($this, $this->session->userdata('user_column1') == "" ? 'Mode' : $this->session->userdata('user_column1'));
 							echo_table_header_col($this, $this->session->userdata('user_column2') == "" ? 'RSTS' : $this->session->userdata('user_column2'));
@@ -235,36 +235,36 @@ if ($public_maps_option == 'true') { ?>
 			<div class="table-responsive">
 				<table class="table table-striped">
 					<tr class="titles">
-						<td colspan="2"><i class="fas fa-chart-bar"></i> <?php echo __("QSOs Breakdown"); ?></td>
+						<td colspan="2"><i class="fas fa-chart-bar"></i> <?= __("QSOs Breakdown"); ?></td>
 					</tr>
 
 					<tr>
-						<td width="50%"><?php echo __("Total"); ?></td>
+						<td width="50%"><?= __("Total"); ?></td>
 						<td width="50%"><?php echo $total_qsos; ?></td>
 					</tr>
 
 					<tr>
-						<td width="50%"><?php echo __("Year"); ?></td>
+						<td width="50%"><?= __("Year"); ?></td>
 						<td width="50%"><?php echo $year_qsos; ?></td>
 					</tr>
 
 					<tr>
-						<td width="50%"><?php echo __("Month"); ?></td>
+						<td width="50%"><?= __("Month"); ?></td>
 						<td width="50%"><?php echo $month_qsos; ?></td>
 					</tr>
 				</table>
 
 				<table class="table table-striped">
 					<tr class="titles">
-						<td colspan="2"><i class="fas fa-globe-europe"></i> <?php echo __("Countries Breakdown"); ?></td>
+						<td colspan="2"><i class="fas fa-globe-europe"></i> <?= __("Countries Breakdown"); ?></td>
 					</tr>
 
 					<tr>
-						<td width="50%"><?php echo __("Worked"); ?></td>
+						<td width="50%"><?= __("Worked"); ?></td>
 						<td width="50%"><?php echo $total_countries; ?></td>
 					</tr>
 					<tr>
-						<td width="50%"><a href="#" onclick="return false" title="QSL Cards / eQSL / LoTW" data-bs-toggle="tooltip"><?php echo __("Confirmed"); ?></a></td>
+						<td width="50%"><a href="#" onclick="return false" title="QSL Cards / eQSL / LoTW" data-bs-toggle="tooltip"><?= __("Confirmed"); ?></a></td>
 						<td width="50%">
 							<?php echo $total_countries_confirmed_paper; ?> /
 							<?php echo $total_countries_confirmed_eqsl; ?> /
@@ -273,7 +273,7 @@ if ($public_maps_option == 'true') { ?>
 					</tr>
 
 					<tr>
-						<td width="50%"><?php echo __("Needed"); ?></td>
+						<td width="50%"><?= __("Needed"); ?></td>
 						<td width="50%"><?php echo $total_countries_needed; ?></td>
 					</tr>
 				</table>
@@ -281,21 +281,21 @@ if ($public_maps_option == 'true') { ?>
 				<?php if ((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE) && ($total_qsl_sent != 0 || $total_qsl_rcvd != 0 || $total_qsl_requested != 0)) { ?>
 					<table class="table table-striped">
 						<tr class="titles">
-							<td colspan="2"><i class="fas fa-envelope"></i> <?php echo __("QSL Cards"); ?></td>
+							<td colspan="2"><i class="fas fa-envelope"></i> <?= __("QSL Cards"); ?></td>
 						</tr>
 
 						<tr>
-							<td width="50%"><?php echo __("Sent"); ?></td>
+							<td width="50%"><?= __("Sent"); ?></td>
 							<td width="50%"><?php echo $total_qsl_sent; ?></td>
 						</tr>
 
 						<tr>
-							<td width="50%"><?php echo __("Received"); ?></td>
+							<td width="50%"><?= __("Received"); ?></td>
 							<td width="50%"><?php echo $total_qsl_rcvd; ?></td>
 						</tr>
 
 						<tr>
-							<td width="50%"><?php echo __("Requested"); ?></td>
+							<td width="50%"><?= __("Requested"); ?></td>
 							<td width="50%"><?php echo $total_qsl_requested; ?></td>
 						</tr>
 					</table>
@@ -304,16 +304,16 @@ if ($public_maps_option == 'true') { ?>
 				<?php if ((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE) && ($total_eqsl_sent != 0 || $total_eqsl_rcvd != 0)) { ?>
 					<table class="table table-striped">
 						<tr class="titles">
-							<td colspan="2"><i class="fas fa-address-card"></i> <?php echo __("eQSL Cards"); ?></td>
+							<td colspan="2"><i class="fas fa-address-card"></i> <?= __("eQSL Cards"); ?></td>
 						</tr>
 
 						<tr>
-							<td width="50%"><?php echo __("Sent"); ?></td>
+							<td width="50%"><?= __("Sent"); ?></td>
 							<td width="50%"><?php echo $total_eqsl_sent; ?></td>
 						</tr>
 
 						<tr>
-							<td width="50%"><?php echo __("Received"); ?></td>
+							<td width="50%"><?= __("Received"); ?></td>
 							<td width="50%"><?php echo $total_eqsl_rcvd; ?></td>
 						</tr>
 					</table>
@@ -322,16 +322,16 @@ if ($public_maps_option == 'true') { ?>
 				<?php if ((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE) && ($total_lotw_sent != 0 || $total_lotw_rcvd != 0)) { ?>
 					<table class="table table-striped">
 						<tr class="titles">
-							<td colspan="2"><i class="fas fa-list"></i> <?php echo __("Logbook of the World"); ?></td>
+							<td colspan="2"><i class="fas fa-list"></i> <?= __("Logbook of the World"); ?></td>
 						</tr>
 
 						<tr>
-							<td width="50%"><?php echo __("Sent"); ?></td>
+							<td width="50%"><?= __("Sent"); ?></td>
 							<td width="50%"><?php echo $total_lotw_sent; ?></td>
 						</tr>
 
 						<tr>
-							<td width="50%"><?php echo __("Received"); ?></td>
+							<td width="50%"><?= __("Received"); ?></td>
 							<td width="50%"><?php echo $total_lotw_rcvd; ?></td>
 						</tr>
 					</table>

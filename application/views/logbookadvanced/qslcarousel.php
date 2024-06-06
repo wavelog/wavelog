@@ -27,16 +27,16 @@
 		<table style="width:100%" class="table-sm table table-bordered table-hover table-striped table-condensed text-center">
 		<thead>
 			<tr>
-				<th><?php echo __("Callsign"); ?></th>
-				<th><?php echo __("Date/Time"); ?></th>
-				<th><?php echo __("Mode"); ?></th>
-				<th><?php echo __("Band"); ?></th>
-				<th><?php echo __("Name"); ?></th>
-				<th><?php echo __("DXCC"); ?></th>
-				<th><?php echo __("State"); ?></th>
-				<th><?php echo __("CQ Zone"); ?></th>
-				<th><?php echo __("IOTA"); ?></th>
-				<th><?php echo __("Gridsquare"); ?></th>
+				<th><?= __("Callsign"); ?></th>
+				<th><?= __("Date/Time"); ?></th>
+				<th><?= __("Mode"); ?></th>
+				<th><?= __("Band"); ?></th>
+				<th><?= __("Name"); ?></th>
+				<th><?= __("DXCC"); ?></th>
+				<th><?= __("State"); ?></th>
+				<th><?= __("CQ Zone"); ?></th>
+				<th><?= __("IOTA"); ?></th>
+				<th><?= __("Gridsquare"); ?></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -64,11 +64,11 @@
 <?php if (count($qslimages) > 1) { ?>
 	<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
 		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-		<span class="visually-hidden"><?php echo __("Previous"); ?></span>
+		<span class="visually-hidden"><?= __("Previous"); ?></span>
 	</a>
 	<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
 		<span class="carousel-control-next-icon" aria-hidden="true"></span>
-		<span class="visually-hidden"><?php echo __("Next"); ?></span>
+		<span class="visually-hidden"><?= __("Next"); ?></span>
 	</a>
 <?php } ?>
 </div>

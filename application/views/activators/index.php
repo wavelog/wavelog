@@ -1,13 +1,13 @@
 <div class="container">
-    <h1><?php echo __("Gridsquare Activators"); ?></h1>
+    <h1><?= __("Gridsquare Activators"); ?></h1>
 
     <form class="form" action="<?php echo site_url('activators'); ?>" method="post" enctype="multipart/form-data">
         <!-- Select Basic -->
         <div class="mb-3 row">
-            <label class="col-md-1 control-label" for="band"><?php echo __("Band"); ?></label>
+            <label class="col-md-1 control-label" for="band"><?= __("Band"); ?></label>
             <div class="col-md-3">
                 <select id="band" name="band" class="form-select">
-                    <option value="All" <?php if ($bandselect == "All") echo ' selected'; ?>><?php echo __("All"); ?></option>
+                    <option value="All" <?php if ($bandselect == "All") echo ' selected'; ?>><?= __("All"); ?></option>
                     <?php foreach ($worked_bands as $band) {
                         echo '<option value="' . $band . '"';
                         if ($bandselect == $band) echo ' selected';
@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="mb-3 row">
-            <label class="col-md-1 control-label" for="mincount"><?php echo __("Minimum Count"); ?></label>
+            <label class="col-md-1 control-label" for="mincount"><?= __("Minimum Count"); ?></label>
             <div class="col-md-3">
                 <select id="mincount" name="mincount" class="form-select">
                     <?php
@@ -47,7 +47,7 @@
         <div class="mb-3 row">
             <label class="col-md-1 control-label" for="button1id"></label>
             <div class="col-md-10">
-                <button id="button1id" type="submit" name="button1id" class="btn btn-primary"><?php echo __("Show"); ?></button>
+                <button id="button1id" type="submit" name="button1id" class="btn btn-primary"><?= __("Show"); ?></button>
             </div>
         </div>
 

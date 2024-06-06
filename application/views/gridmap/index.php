@@ -7,10 +7,10 @@
     <?php if ($visitor == false) { ?>
         <form class="form">
             <div class="row mb-2">
-                <label class="col-md-1" for="band"><?php echo __("Band"); ?></label>
+                <label class="col-md-1" for="band"><?= __("Band"); ?></label>
                 <div class="col-sm-2">
                     <select class="form-select form-select-sm" id="band">
-                        <option value="All"><?php echo __("All") ?></option>
+                        <option value="All"><?= __("All") ?></option>
                         <?php foreach ($bands as $band) {
                             echo '<option value="' . $band . '"';
                             if ($user_default_band == $band) {
@@ -22,10 +22,10 @@
                 </div>
 
                 <?php if (count($sats_available) != 0) { ?>
-                    <label class="col-md-1" id="satslabel" for="distplot_sats" <?php if ($user_default_band != "SAT") { ?>style="display: none;" <?php } ?>><?php echo __("Satellite"); ?></label>
+                    <label class="col-md-1" id="satslabel" for="distplot_sats" <?php if ($user_default_band != "SAT") { ?>style="display: none;" <?php } ?>><?= __("Satellite"); ?></label>
                     <div class="col-sm-2" id="sats_div" <?php if ($user_default_band != "SAT") { ?>style="display: none;" <?php } ?>>
                         <select class="form-select form-select-sm" id="sat">
-                            <option value="All"><?php echo __("All") ?></option>
+                            <option value="All"><?= __("All") ?></option>
                             <?php foreach ($sats_available as $sat) {
                                 echo '<option value="' . $sat . '"' . '>' . $sat . '</option>' . "\n";
                             } ?>
@@ -38,7 +38,7 @@
                 <label class="col-md-1" for="propagation">Propagation</label>
                 <div class="col-sm-4">
                     <select class="form-select form-select-sm w-auto" id="propagation" <?php if ($user_default_band == 'SAT') {echo 'disabled';} ?>>
-                        <option value=""><?php echo __("All"); ?></option>
+                        <option value=""><?= __("All"); ?></option>
                         <option value="AS">Aircraft Scatter</option>
                         <option value="AUR">Aurora</option>
                         <option value="AUE">Aurora-E</option>
@@ -62,10 +62,10 @@
                     
             </div>
             <div class="row mb-2">
-                <label class="col-md-1" for="mode"><?php echo __("Mode"); ?></label>
+                <label class="col-md-1" for="mode"><?= __("Mode"); ?></label>
                 <div class="col-sm-2">
                     <select class="form-select form-select-sm" id="mode">
-                        <option value="All"><?php echo __("All") ?></option>
+                        <option value="All"><?= __("All") ?></option>
                         <?php
                         foreach ($modes as $mode) {
                             if ($mode->submode ?? '' == '') {
@@ -75,10 +75,10 @@
                         ?>
                     </select>
                 </div>
-                <label class="col-md-1" id="orbitslabel" for="orbits" <?php if ($user_default_band != "SAT") { ?>style="display: none;" <?php } ?>><?php echo __("Orbit"); ?></label>
+                <label class="col-md-1" id="orbitslabel" for="orbits" <?php if ($user_default_band != "SAT") { ?>style="display: none;" <?php } ?>><?= __("Orbit"); ?></label>
                 <div class="col-sm-2" id="orbits_div" <?php if ($user_default_band != "SAT") { ?>style="display: none;" <?php } ?>>
                     <select class="form-select form-select-sm" id="orbits">
-                        <option value="All"><?php echo __("All") ?></option>
+                        <option value="All"><?= __("All") ?></option>
                         <?php
                         foreach ($orbits as $orbit) {
                             echo '<option value="' . $orbit . '">' . strtoupper($orbit) . '</option>' . "\n";
@@ -87,7 +87,7 @@
                     </select>
                 </div>
 
-                <label class="col-md-1"><?php echo __("Confirmation"); ?></label>
+                <label class="col-md-1"><?= __("Confirmation"); ?></label>
                 <div class="col-sm-4">
                     <div>
                         <div class="form-check-inline">
@@ -125,8 +125,8 @@
                     </div>
                 </div>
             </div>
-            <button id="plot" type="button" name="plot" class="btn btn-sm btn-primary me-1 mb-1 ld-ext-right ld-ext-right-plot" onclick="gridPlot(this.form,<?php echo $visitor == true ? "true" : "false"; ?>)"><?php echo __("Plot"); ?><div class="ld ld-ring ld-spin"></div></button>
-            <button id="clear" type="button" name="clear" class="btn btn-sm btn-primary me-1 mb-1 ld-ext-right ld-ext-right-clear" onclick="clearMarkers()"><?php echo __("Clear Markers"); ?><div class="ld ld-ring ld-spin"></div></button>
+            <button id="plot" type="button" name="plot" class="btn btn-sm btn-primary me-1 mb-1 ld-ext-right ld-ext-right-plot" onclick="gridPlot(this.form,<?php echo $visitor == true ? "true" : "false"; ?>)"><?= __("Plot"); ?><div class="ld ld-ring ld-spin"></div></button>
+            <button id="clear" type="button" name="clear" class="btn btn-sm btn-primary me-1 mb-1 ld-ext-right ld-ext-right-clear" onclick="clearMarkers()"><?= __("Clear Markers"); ?><div class="ld ld-ring ld-spin"></div></button>
             
         </form>
     <?php } ?>
@@ -143,15 +143,15 @@
     <div id="gridsquare_map" class="map-leaflet" style="width: 100%;"></div>
 </div>
 <div class="coordinates d-flex">
-    <div class="cohidden"><?php echo __("Latitude") ?>:&nbsp;</div>
+    <div class="cohidden"><?= __("Latitude") ?>:&nbsp;</div>
     <div class="cohidden col-auto text-success fw-bold" id="latDeg"></div>
-    <div class="cohidden"><?php echo __("Longitude") ?>:&nbsp;</div>
+    <div class="cohidden"><?= __("Longitude") ?>:&nbsp;</div>
     <div class="cohidden col-auto text-success fw-bold" id="lngDeg"></div>
-    <div class="cohidden"><?php echo __("Gridsquare") ?>:&nbsp;</div>
+    <div class="cohidden"><?= __("Gridsquare") ?>:&nbsp;</div>
     <div class="cohidden col-auto text-success fw-bold" id="locator"></div>
-    <div class="cohidden"><?php echo __("Distance") ?>:&nbsp;</div>
+    <div class="cohidden"><?= __("Distance") ?>:&nbsp;</div>
     <div class="cohidden col-auto text-success fw-bold" id="distance"></div>
-    <div class="cohidden"><?php echo __("Bearing") ?>:&nbsp;</div>
+    <div class="cohidden"><?= __("Bearing") ?>:&nbsp;</div>
     <div class="cohidden col-auto text-success fw-bold" id="bearing"></div>
 </div>
 <script>

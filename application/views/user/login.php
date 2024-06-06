@@ -42,21 +42,21 @@ body {
 			<?php $this->form_validation->set_error_delimiters('', ''); ?>
                 <input type="hidden" name="id" value="<?php echo $this->uri->segment(3); ?>" />
                 <div>
-                    <label for="floatingInput"><strong><?php echo __("Username"); ?></strong></label>
-                    <input type="text" name="user_name" class="form-control" id="floatingInput" placeholder="<?php echo __("Username"); ?>"
+                    <label for="floatingInput"><strong><?= __("Username"); ?></strong></label>
+                    <input type="text" name="user_name" class="form-control" id="floatingInput" placeholder="<?= __("Username"); ?>"
                         value="<?php echo $this->input->post('user_name'); ?>" autofocus>
                 </div>
                 <div>
-                    <label for="floatingPassword"><strong><?php echo __("Password"); ?></strong></label>
+                    <label for="floatingPassword"><strong><?= __("Password"); ?></strong></label>
                     <input type="password" name="user_password" class="form-control" id="floatingPassword"
-                        placeholder="<?php echo __("Password"); ?>">
+                        placeholder="<?= __("Password"); ?>">
                 </div>
 
                 <div>
-                    <p><small><a class="" href="<?php echo site_url('user/forgot_password'); ?>"><?php echo __("Forgot your password?"); ?></a></small></p>
+                    <p><small><a class="" href="<?php echo site_url('user/forgot_password'); ?>"><?= __("Forgot your password?"); ?></a></small></p>
                 </div>
 					<?php $this->load->view('layout/messages'); ?>
-                <button class="w-100 btn btn-primary" type="submit"><?php echo __("Login"); ?> →</button>
+                <button class="w-100 btn btn-primary" type="submit"><?= __("Login"); ?> →</button>
             </form>
         </div>
     </div>

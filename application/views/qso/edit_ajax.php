@@ -235,16 +235,16 @@
                                         </select>
                                     </div>
                                     <div class="mb-3 col-sm-6">
-                                        <label for="continent"><?php echo __("Continent"); ?></label>
+                                        <label for="continent"><?= __("Continent"); ?></label>
                                         <select class="form-select" id="continent" name="continent">
                                             <option value=""></option>
-                                            <option value="AF" <?php if($qso->COL_CONT == "AF") { echo "selected=\"selected\""; } ?>><?php echo __("Africa"); ?></option>
-                                            <option value="AN" <?php if($qso->COL_CONT == "AN") { echo "selected=\"selected\""; } ?>><?php echo __("Antarctica"); ?></option>
-                                            <option value="AS" <?php if($qso->COL_CONT == "AS") { echo "selected=\"selected\""; } ?>><?php echo __("Asia"); ?></option>
-                                            <option value="EU" <?php if($qso->COL_CONT == "EU") { echo "selected=\"selected\""; } ?>><?php echo __("Europe"); ?></option>
-                                            <option value="NA" <?php if($qso->COL_CONT == "NA") { echo "selected=\"selected\""; } ?>><?php echo __("North America"); ?></option>
-                                            <option value="OC" <?php if($qso->COL_CONT == "OC") { echo "selected=\"selected\""; } ?>><?php echo __("Oceania"); ?></option>
-                                            <option value="SA" <?php if($qso->COL_CONT == "SA") { echo "selected=\"selected\""; } ?>><?php echo __("South America"); ?></option>
+                                            <option value="AF" <?php if($qso->COL_CONT == "AF") { echo "selected=\"selected\""; } ?>><?= __("Africa"); ?></option>
+                                            <option value="AN" <?php if($qso->COL_CONT == "AN") { echo "selected=\"selected\""; } ?>><?= __("Antarctica"); ?></option>
+                                            <option value="AS" <?php if($qso->COL_CONT == "AS") { echo "selected=\"selected\""; } ?>><?= __("Asia"); ?></option>
+                                            <option value="EU" <?php if($qso->COL_CONT == "EU") { echo "selected=\"selected\""; } ?>><?= __("Europe"); ?></option>
+                                            <option value="NA" <?php if($qso->COL_CONT == "NA") { echo "selected=\"selected\""; } ?>><?= __("North America"); ?></option>
+                                            <option value="OC" <?php if($qso->COL_CONT == "OC") { echo "selected=\"selected\""; } ?>><?= __("Oceania"); ?></option>
+                                            <option value="SA" <?php if($qso->COL_CONT == "SA") { echo "selected=\"selected\""; } ?>><?= __("South America"); ?></option>
                                         </select>
                                     </div>
                                 </div>
@@ -473,11 +473,11 @@
                                         <div class="mb-3 row">
                                             <div>
                                                 <div class="alert alert-info" role="alert">
-                                                    <span class="badge text-bg-info"><?php echo __("Info"); ?></span> <?php echo __("This note content is exported to QSL services like eqsl.cc."); ?>
+                                                    <span class="badge text-bg-info"><?= __("Info"); ?></span> <?= __("This note content is exported to QSL services like eqsl.cc."); ?>
                                                 </div>
                                             </div>
                                             <div>
-                                                <label for="qslmsg"><?php echo __("Notes"); ?><span class="qso_eqsl_qslmsg_update" title="<?php echo __("Get the default message for eQSL, for this station."); ?>"><i class="fas fa-redo-alt"></i></span></label>
+                                                <label for="qslmsg"><?= __("Notes"); ?><span class="qso_eqsl_qslmsg_update" title="<?= __("Get the default message for eQSL, for this station."); ?>"><i class="fas fa-redo-alt"></i></span></label>
 						                        <label class="position-absolute end-0 mb-2 me-3" for="qslmsg" id="charsLeft"> </label>
                                                 <textarea  type="text" class="form-control" id="qslmsg" name="qslmsg" rows="5" maxlength="240"><?php echo $qso->COL_QSLMSG; ?></textarea>
                                                 <div id="qslmsg_hide" style="display:none;"><?php echo $qso->COL_QSLMSG; ?></div>

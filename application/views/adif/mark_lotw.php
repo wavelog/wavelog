@@ -9,11 +9,11 @@
 
     <div class="card">
         <div class="card-header">
-            <?php echo __("QSOs marked")?>
+            <?= __("QSOs marked")?>
         </div>
         <div class="card-body">
-            <h3 class="card-title"><?php echo __("Yay, its done!")?></h3>
-            <p class="card-text"><?php echo __("The QSOs are marked as exported to LoTW.")?></p>
+            <h3 class="card-title"><?= __("Yay, its done!")?></h3>
+            <p class="card-text"><?= __("The QSOs are marked as exported to LoTW.")?></p>
         </div>
     </div>
 

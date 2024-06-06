@@ -45,7 +45,7 @@
 
                         <!-- Form options for selecting global theme choice -->
                         <div class="mb-3">
-                            <label for="themeSelect"><?php echo __("Theme"); ?></label>
+                            <label for="themeSelect"><?= __("Theme"); ?></label>
                             <select class="form-select" id="themeSelect" name="theme" aria-describedby="themeHelp" required>
 								<?php
 								foreach ($themes as $theme) {
@@ -57,7 +57,7 @@
 								}
 								?>
                                 </select>
-                            <small id="themeHelp" class="form-text text-muted"><?php echo __("Global Theme Choice, this is used when users arent logged in."); ?></small>
+                            <small id="themeHelp" class="form-text text-muted"><?= __("Global Theme Choice, this is used when users arent logged in."); ?></small>
                         </div>
                         
                         
@@ -67,40 +67,40 @@
                             </select>
 
                         <div class="mb-3">
-                            <label for="dashboardBanner"><?php echo __("Dashboard Notification Banner"); ?></label>
+                            <label for="dashboardBanner"><?= __("Dashboard Notification Banner"); ?></label>
                             <select class="form-select" id="dashboardBanner" name="dashboardBanner" aria-describedby="dashboardBannerHelp" required>
                                 <option value='true' <?php if($this->optionslib->get_option('dashboard_banner') == "true") { echo "selected=\"selected\""; } ?>>Enabled</option>
                                 <option value='false' <?php if($this->optionslib->get_option('dashboard_banner') == "false") { echo "selected=\"selected\""; } ?>>Disabled</option>
                             </select>
-                            <small id="dashboardBannerHelp" class="form-text text-muted"><?php echo __("This allows to disable the global notification banner on the dashboard."); ?></small>
+                            <small id="dashboardBannerHelp" class="form-text text-muted"><?= __("This allows to disable the global notification banner on the dashboard."); ?></small>
                         </div>
 
                         <div class="mb-3">
-                            <label for="dashboardMap"><?php echo __("Dashboard Map"); ?></label>
+                            <label for="dashboardMap"><?= __("Dashboard Map"); ?></label>
                             <select class="form-select" id="dashboardMap" name="dashboardMap" aria-describedby="dashboardMapHelp" required>
                                 <option value='true' <?php if($this->optionslib->get_option('dashboard_map') == "true") { echo "selected=\"selected\""; } ?>>Enabled</option>
                                 <option value='false' <?php if($this->optionslib->get_option('dashboard_map') == "false") { echo "selected=\"selected\""; } ?>>Disabled</option>
                                 <option value='map_at_right' <?php if($this->optionslib->get_option('dashboard_map') == "map_at_right") { echo "selected=\"selected\""; } ?>>Map at right</option>
                             </select>
-                            <small id="dashboardMapHelp" class="form-text text-muted"><?php echo __("This allows the map on the dashboard to be disabled or placed on the right."); ?></small>
+                            <small id="dashboardMapHelp" class="form-text text-muted"><?= __("This allows the map on the dashboard to be disabled or placed on the right."); ?></small>
                         </div>
 
                         <div class="mb-3">
-                            <label for="logbookMap"><?php echo __("Logbook Map"); ?></label>
+                            <label for="logbookMap"><?= __("Logbook Map"); ?></label>
                             <select class="form-select" id="logbookMap" name="logbookMap" aria-describedby="logbookMapHelp" required>
                                 <option value='true' <?php if($this->optionslib->get_option('logbook_map') == "true") { echo "selected=\"selected\""; } ?>>Enabled</option>
                                 <option value='false' <?php if($this->optionslib->get_option('logbook_map') == "false") { echo "selected=\"selected\""; } ?>>Disabled</option>
                             </select>
-                            <small id="logbookMapHelp" class="form-text text-muted"><?php echo __("This allows to disable the map in the logbook."); ?></small>
+                            <small id="logbookMapHelp" class="form-text text-muted"><?= __("This allows to disable the map in the logbook."); ?></small>
                         </div>
 
                         <div class="mb-3">
-                            <label for="publicMaps"><?php echo __("Public Maps"); ?></label>
+                            <label for="publicMaps"><?= __("Public Maps"); ?></label>
                             <select class="form-select" id="publicMaps" name="publicMaps" aria-describedby="publicMapsHelp" required>
                                 <option value='true' <?php if($this->optionslib->get_option('public_maps') == "true") { echo "selected=\"selected\""; } ?>>Enabled</option>
                                 <option value='false' <?php if($this->optionslib->get_option('public_maps') == "false") { echo "selected=\"selected\""; } ?>>Disabled</option>
                             </select>
-                            <small id="publicMapsHelp" class="form-text text-muted"><?php echo __("This allows to disable all maps in the public view. This affects the main map and the gridsquares map."); ?></small>
+                            <small id="publicMapsHelp" class="form-text text-muted"><?= __("This allows to disable all maps in the public view. This affects the main map and the gridsquares map."); ?></small>
                         </div>
 
                         <div class="mb-3">
@@ -113,7 +113,7 @@
                         </div>
 
                         <!-- Save the Form -->
-                        <input class="btn btn-primary" type="submit" value="<?php echo __("Save"); ?>" />
+                        <input class="btn btn-primary" type="submit" value="<?= __("Save"); ?>" />
                     </form>
                 </div>
             </div>

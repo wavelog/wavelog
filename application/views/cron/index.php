@@ -18,7 +18,7 @@
                         To execute cron jobs based on the data below, remove all old cron jobs and create a new one:
                     </p>
                     <div class="main_cronjob">
-                        <pre><code id="main_cronjob">* * * * * curl --silent <?php echo base_url(); ?>index.php/cron/run &>/dev/null</code><span data-bs-toggle="tooltip" title="<?php echo __("Copy to clipboard"); ?>" onclick='copyCron("main_cronjob")'><i class="copy-icon fas fa-copy"></i></span></pre>
+                        <pre><code id="main_cronjob">* * * * * curl --silent <?php echo base_url(); ?>index.php/cron/run &>/dev/null</code><span data-bs-toggle="tooltip" title="<?= __("Copy to clipboard"); ?>" onclick='copyCron("main_cronjob")'><i class="copy-icon fas fa-copy"></i></span></pre>
                     </div>
                 </div>
                 <div class="col text-end" id="alert_status">

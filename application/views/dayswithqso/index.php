@@ -1,5 +1,5 @@
 <script>
-    var lang_days_with_qso_short = "<?php echo __("Days with QSOs"); ?>";
+    var lang_days_with_qso_short = "<?= __("Days with QSOs"); ?>";
 </script>
 
 <div class="container">
@@ -34,8 +34,8 @@
     }
     ?>
     <canvas id="myChartDiff" width="400" height="150"></canvas>
-    <h2><?php echo __("Longest streak with QSOs in the log"); ?></h2>
-    <p><?php echo __("A maximum of the 10 longest streaks are shown!"); ?></p>
+    <h2><?= __("Longest streak with QSOs in the log"); ?></h2>
+    <p><?= __("A maximum of the 10 longest streaks are shown!"); ?></p>
 
     <?php 
     // Get Date format
@@ -75,7 +75,7 @@
     }
     ?>
 
-    <h2><?php echo __("Current streak with QSOs in the log"); ?></h2>
+    <h2><?= __("Current streak with QSOs in the log"); ?></h2>
     <?php
     if (is_array($currentstreak)) {
         echo '<div id="streaks" class="table-responsive"><table class="qsotable table table-sm table-bordered table-hover table-striped table-condensed">';
@@ -98,7 +98,7 @@
     }
     elseif (is_array($almostcurrentstreak)) {
         ?>
-        <div class="alert alert-warning" role="alert"><?php echo __("If you make a QSO today, you can continue to extend your streak... or else your current streak will be broken!"); ?></div>
+        <div class="alert alert-warning" role="alert"><?= __("If you make a QSO today, you can continue to extend your streak... or else your current streak will be broken!"); ?></div>
         <?php
         echo '<div id="streaks" class="table-responsive"><table class="qsotable table table-sm table-bordered table-hover table-striped table-condensed">';
 

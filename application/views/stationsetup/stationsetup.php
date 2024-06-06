@@ -15,11 +15,11 @@
 
             <div class="card">
                 <div class="card-header">
-				<?php echo __("Station Logbooks")?>
+				<?= __("Station Logbooks")?>
 					</div>
 					<div class="card-body">
-                    <p class="card-text"><?php echo __("Station Logbooks allow you to group Station Locations, this allows you to see all the locations across one session from the logbook areas to the analytics. Great for when your operating in multiple locations but they are part of the same DXCC or VUCC Circle.")?></p>
-					<a class="btn btn-primary btn-sm" href="javascript:createStationLogbook();"><i class="fas fa-plus"></i> <?php echo __("Create Station Logbook")?></a>
+                    <p class="card-text"><?= __("Station Logbooks allow you to group Station Locations, this allows you to see all the locations across one session from the logbook areas to the analytics. Great for when your operating in multiple locations but they are part of the same DXCC or VUCC Circle.")?></p>
+					<a class="btn btn-primary btn-sm" href="javascript:createStationLogbook();"><i class="fas fa-plus"></i> <?= __("Create Station Logbook")?></a>
 
 
 
@@ -27,12 +27,12 @@
                         <table id="station_logbooks_table" class="table-sm table table-hover table-striped table-condensed">
                             <thead>
                                 <tr>
-                                    <th scope="col"><?php echo __("Name")?></th>
-                                    <th scope="col"><?php echo __("Status")?></th>
+                                    <th scope="col"><?= __("Name")?></th>
+                                    <th scope="col"><?= __("Status")?></th>
                                     <th scope="col">Linked locations</th>
-                                    <th scope="col"><?php echo __("Delete")?></th>
+                                    <th scope="col"><?= __("Delete")?></th>
                                     <th scope="col">Visitor site</th>
-                                    <th scope="col"><?php echo __("Public Search")?></th>
+                                    <th scope="col"><?= __("Public Search")?></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -41,7 +41,7 @@
                                     <td><?php echo $row->logbook_name;?> <i id="<?php echo $row->logbook_id ?>" class="editContainerName fas fa-edit" role="button"></i></td>
                                     <td>
                                         <?php if($this->session->userdata('active_station_logbook') != $row->logbook_id) { ?>
-                                        <button id="<?php echo $row->logbook_id; ?>" class="setActiveLogbook btn btn-outline-primary btn-sm"><?php echo __("Set as Active Logbook")?></button>
+                                        <button id="<?php echo $row->logbook_id; ?>" class="setActiveLogbook btn btn-outline-primary btn-sm"><?= __("Set as Active Logbook")?></button>
                                         <?php } else {
 											echo "<span class='badge bg-success'>" . __("Active Logbook") . "</span>";
 											}?>
@@ -52,7 +52,7 @@
                                     <td>
                                         <?php if($this->session->userdata('active_station_logbook') != $row->logbook_id) { ?>
                                         <button id="<?php echo $row->logbook_id; ?>" class="deleteLogbook btn btn-outline-danger btn-sm"
-                                            cnftext="'<?php echo __("Are you sure you want to delete the following station logbook? You must re-link any locations linked here to another logbook.: ") . $row->logbook_name; ?>'"><i
+                                            cnftext="'<?= __("Are you sure you want to delete the following station logbook? You must re-link any locations linked here to another logbook.: ") . $row->logbook_name; ?>'"><i
                                                 class="fas fa-trash-alt"></i></a>
                                         <?php } ?>
                                     </td>
@@ -62,7 +62,7 @@
                                         <a target="_blank"
                                             href="<?php echo site_url('visitor')."/".$row->public_slug; ?>"
                                             class="btn btn-outline-primary btn-sm"><i class="fas fa-globe"
-                                                title="<?php echo __("View Public Page for Logbook: ") . $row->logbook_name;?>"></i>
+                                                title="<?= __("View Public Page for Logbook: ") . $row->logbook_name;?>"></i>
                                         </a>
 										<button id="<?php echo $row->logbook_id; ?>" class="deletePublicSlug btn btn-outline-danger btn-sm" cnftext="Are you sure you want to delete the public slug?"><i class="fas fa-trash-alt"></i></button>
 										<button id="<?php echo $row->logbook_id; ?>" class="editExportmapOptions btn btn-outline-primary btn-sm"><i class="fas fa-globe-europe"></i></button>
@@ -91,23 +91,23 @@
                     Station Locations
                 </div>
                 <div class="card-body">
-				<p class="card-text"><?php echo __("Station Locations define operating locations, such as your QTH, a friends QTH, or a portable station."); ?></p>
-				<p class="card-text"><?php echo __("Similar to logbooks, a station profile keeps a set of QSOs together."); ?></p>
-				<p class="card-text"><?php echo __("Only one station may be active at a time. In the table below this is shown with the -Active Station- badge."); ?></p>
+				<p class="card-text"><?= __("Station Locations define operating locations, such as your QTH, a friends QTH, or a portable station."); ?></p>
+				<p class="card-text"><?= __("Similar to logbooks, a station profile keeps a set of QSOs together."); ?></p>
+				<p class="card-text"><?= __("Only one station may be active at a time. In the table below this is shown with the -Active Station- badge."); ?></p>
 
-						<p><a href="<?php echo site_url('station/create'); ?>" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> <?php echo __("Create a Station Location"); ?></a></p>
+						<p><a href="<?php echo site_url('station/create'); ?>" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> <?= __("Create a Station Location"); ?></a></p>
 
 <?php if($current_active == 0) { ?>
 <div class="alert alert-danger" role="alert">
-<?php echo __("Attention: You need to set an active station location. Go to Callsign->Station Location to select one."); ?>
+<?= __("Attention: You need to set an active station location. Go to Callsign->Station Location to select one."); ?>
 </div>
 <?php } ?>
 
 <?php if (($is_there_qsos_with_no_station_id >= 1) && ($is_admin)) { ?>
 	<div class="alert alert-danger" role="alert">
-		  <span class="badge badge-pill badge-warning"><?php echo __("Warning"); ?></span> <?php echo __("Due to recent changes within Wavelog you need to reassign QSOs to your station profiles."); ?>
+		  <span class="badge badge-pill badge-warning"><?= __("Warning"); ?></span> <?= __("Due to recent changes within Wavelog you need to reassign QSOs to your station profiles."); ?>
 		</br>
-		<?php echo __("Please reassign them at "); ?> <a href="<?php echo site_url('maintenance/'); ?>" class="btn btn-warning"><i class="fas fa-sync"></i><?php echo __("Admin") . "/" . __("Maintenance"); ?></a>
+		<?= __("Please reassign them at "); ?> <a href="<?php echo site_url('maintenance/'); ?>" class="btn btn-warning"><i class="fas fa-sync"></i><?= __("Admin") . "/" . __("Maintenance"); ?></a>
 	</div>
 <?php } ?>
 
@@ -115,22 +115,22 @@
 <table id="station_locations_table" class="table-sm table table-hover table-striped table-condensed">
 	<thead>
 		<tr>
-			<th scope="col"><?php echo __("ID"); ?></th>
-			<th scope="col"><?php echo __("Profile Name"); ?></th>
-			<th scope="col"><?php echo __("Station Callsign"); ?></th>
-			<th scope="col"><?php echo __("Country"); ?></th>
-			<th scope="col"><?php echo __("Gridsquare"); ?></th>
+			<th scope="col"><?= __("ID"); ?></th>
+			<th scope="col"><?= __("Profile Name"); ?></th>
+			<th scope="col"><?= __("Station Callsign"); ?></th>
+			<th scope="col"><?= __("Country"); ?></th>
+			<th scope="col"><?= __("Gridsquare"); ?></th>
 			<th></th>
-			<th scope="col"><?php echo __("Edit"); ?></th>
-			<th scope="col"><?php echo __("Copy"); ?></th>
+			<th scope="col"><?= __("Edit"); ?></th>
+			<th scope="col"><?= __("Copy"); ?></th>
 			<?php
 					$quickswitch_enabled = ($this->user_options_model->get_options('header_menu', array('option_name'=>'locations_quickswitch'))->row()->option_value ?? 'false');
 					if ($quickswitch_enabled == 'true') {
 					?>
 						<th scope="col">Favorite</th>
 					<?php } ?>
-			<th scope="col"><?php echo __("Empty Log"); ?></th>
-			<th scope="col"><?php echo __("Delete"); ?></th>
+			<th scope="col"><?= __("Empty Log"); ?></th>
+			<th scope="col"><?= __("Delete"); ?></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -147,20 +147,20 @@
 			<td><?php echo $row->station_gridsquare;?></td>
 			<td>
 				<?php if($row->station_active != 1) { ?>
-					<a href="<?php echo site_url('station/set_active/').$current_active."/".$row->station_id; ?>" class="btn btn-outline-secondary btn-sm" onclick="return confirm('<?php echo __("Are you sure you want to make the following station the active station: "); ?> <?php echo $row->station_profile_name; ?>');"><?php echo __("Set Active"); ?></a>
+					<a href="<?php echo site_url('station/set_active/').$current_active."/".$row->station_id; ?>" class="btn btn-outline-secondary btn-sm" onclick="return confirm('<?= __("Are you sure you want to make the following station the active station: "); ?> <?php echo $row->station_profile_name; ?>');"><?= __("Set Active"); ?></a>
 				<?php } else { ?>
-					<span class="badge bg-success"><?php echo __("Active Station"); ?></span>
+					<span class="badge bg-success"><?= __("Active Station"); ?></span>
 				<?php } ?>
 
 				<br>
 				<span class="badge bg-info">ID: <?php echo $row->station_id;?></span>
-				<span class="badge bg-light"><?php echo $row->qso_total;?> <?php echo __("QSO"); ?></span>
+				<span class="badge bg-light"><?php echo $row->qso_total;?> <?= __("QSO"); ?></span>
 			</td>
 			<td>
-				<a href="<?php echo site_url('station/edit')."/".$row->station_id; ?>" title=<?php echo __("Edit"); ?> class="btn btn-outline-primary btn-sm"><i class="fas fa-edit"></i></a>
+				<a href="<?php echo site_url('station/edit')."/".$row->station_id; ?>" title=<?= __("Edit"); ?> class="btn btn-outline-primary btn-sm"><i class="fas fa-edit"></i></a>
 			</td>
 				<td>
-				<a href="<?php echo site_url('station/copy')."/".$row->station_id; ?>" title=<?php echo __("Copy"); ?> class="btn btn-outline-primary btn-sm"><i class="fas fa-copy"></i></a>
+				<a href="<?php echo site_url('station/copy')."/".$row->station_id; ?>" title=<?= __("Copy"); ?> class="btn btn-outline-primary btn-sm"><i class="fas fa-copy"></i></a>
 			</td>
 			<?php
 					if ($quickswitch_enabled == 'true') {
@@ -176,11 +176,11 @@
 						</td>
 					<?php } ?>
 			<td>
-				<a href="<?php echo site_url('station/deletelog')."/".$row->station_id; ?>" class="btn btn-danger btn-sm" title=<?php echo __("Empty Log"); ?> onclick="return confirm('<?php echo __("Are you sure you want to delete all QSOs within this station profile?"); ?>');"><i class="fas fa-trash-alt"></i></a></td>
+				<a href="<?php echo site_url('station/deletelog')."/".$row->station_id; ?>" class="btn btn-danger btn-sm" title=<?= __("Empty Log"); ?> onclick="return confirm('<?= __("Are you sure you want to delete all QSOs within this station profile?"); ?>');"><i class="fas fa-trash-alt"></i></a></td>
 			</td>
 			<td>
 				<?php if($row->station_active != 1) { ?>
-					<a href="<?php echo site_url('station/delete')."/".$row->station_id; ?>" class="btn btn-danger btn-sm" title=<?php echo __("Delete"); ?> onclick="return confirm('<?php echo __("Are you sure you want delete station profile  "); ?> <?php echo $row->station_profile_name; ?> <?php echo __("This will delete all QSOs within this station profile?"); ?>');"><i class="fas fa-trash-alt"></i></a>
+					<a href="<?php echo site_url('station/delete')."/".$row->station_id; ?>" class="btn btn-danger btn-sm" title=<?= __("Delete"); ?> onclick="return confirm('<?= __("Are you sure you want delete station profile  "); ?> <?php echo $row->station_profile_name; ?> <?= __("This will delete all QSOs within this station profile?"); ?>');"><i class="fas fa-trash-alt"></i></a>
 				<?php } ?>
 			</td>
 		</tr>

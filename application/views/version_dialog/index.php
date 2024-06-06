@@ -72,11 +72,11 @@
                 <?php
                 if ($versionDialogMode !== 'disabled') {
                 ?>
-                    <button class="btn btn-secondary" onclick="dismissVersionDialog()" data-bs-dismiss="modal"><?php echo __("Don't show again"); ?></button>
+                    <button class="btn btn-secondary" onclick="dismissVersionDialog()" data-bs-dismiss="modal"><?= __("Don't show again"); ?></button>
                 <?php
                 }
                 ?>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><?php echo __("Close"); ?></button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><?= __("Close"); ?></button>
             </div>
         </div>
     </div>

@@ -38,7 +38,7 @@
 		<div class="accordion-item">
 			<h2 class="accordion-header" id="panelsStayOpen-H_user_general">
 				<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-B_user_general" aria-expanded="true" aria-controls="panelsStayOpen-B_user_general">
-				<?php echo __("General Information"); ?></button>
+				<?= __("General Information"); ?></button>
 			</h2>
 			<div id="panelsStayOpen-B_user_general" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-H_user_general">
 				<div class="accordion-body">
@@ -46,22 +46,22 @@
 						<!-- Account Information -->
 						<div class="col-md">
 							<div class="card">
-								<div class="card-header"><?php echo __("Account"); ?></div>
+								<div class="card-header"><?= __("Account"); ?></div>
 								<div class="card-body">
 									<div class="mb-3">
-										<label><?php echo __("Username"); ?></label>
+										<label><?= __("Username"); ?></label>
 										<input class="form-control" type="text" name="user_name" value="<?php if(isset($user_name)) { echo $user_name; } ?>" />
 										<?php if(isset($username_error)) { echo "<small class=\"badge bg-danger\">".$username_error."</small>"; } ?>
 									</div>
 
 									<div class="mb-3">
-										<label><?php echo __("Email Address"); ?></label>
+										<label><?= __("Email Address"); ?></label>
 										<input class="form-control" type="text" name="user_email" value="<?php if(isset($user_email)) { echo $user_email; } ?>" />
 										<?php if(isset($email_error)) { echo "<small class=\"badge bg-danger\">".$email_error."</small>"; } ?>
 									</div>
 
 									<div class="mb-3">
-										<label><?php echo __("Password"); ?></label>
+										<label><?= __("Password"); ?></label>
 										<div class="input-group">
 											<input class="form-control" type="password" name="user_password" value="<?php if(isset($user_password)) { echo $user_password; } ?>" />
 											<span class="input-group-btn"><button class="btn btn-default btn-pwd-showhide" type="button"><i class="fa fa-eye-slash"></i></button></span>
@@ -74,7 +74,7 @@
 
 									<hr/>
 									<div class="mb-3">
-										<label><?php echo __("User Role"); ?></label>
+										<label><?= __("User Role"); ?></label>
 										<?php if($this->session->userdata('user_type') == 99) { ?>
 											<select class="form-select" name="user_type">
 											<?php
@@ -96,17 +96,17 @@
 						<!-- Personal Information -->
 						<div class="col-md">
 							<div class="card">
-								<div class="card-header"><?php echo __("Personal"); ?></div>
+								<div class="card-header"><?= __("Personal"); ?></div>
 								<div class="card-body">
 									<div class="mb-3">
-										<label><?php echo __("First Name"); ?></label>
+										<label><?= __("First Name"); ?></label>
 										<input class="form-control" type="text" name="user_firstname" value="<?php if(isset($user_firstname)) { echo $user_firstname; } ?>" />
 											<?php if(isset($firstname_error)) { echo "<small class=\"badge bg-danger\">".$firstname_error."</small>"; } else { ?>
 											<?php } ?>
 									</div>
 
 									<div class="mb-3">
-										<label><?php echo __("Last Name"); ?></label>
+										<label><?= __("Last Name"); ?></label>
 										<input class="form-control" type="text" name="user_lastname" value="<?php if(isset($user_lastname)) { echo $user_lastname; } ?>" />
 											<?php if(isset($lastname_error)) { echo "<small class=\"badge bg-danger\">".$lastname_error."</small>"; } else { ?>
 											<?php } ?>
@@ -117,17 +117,17 @@
 						<!-- Ham Radio Information -->
 						<div class="col-md">
 							<div class="card">
-								<div class="card-header"><?php echo __("Ham Radio"); ?></div>
+								<div class="card-header"><?= __("Ham Radio"); ?></div>
 								<div class="card-body">
 									<div class="mb-3">
-										<label><?php echo __("Callsign"); ?></label>
+										<label><?= __("Callsign"); ?></label>
 										<input class="form-control" type="text" name="user_callsign" value="<?php if(isset($user_callsign)) { echo $user_callsign; } ?>" />
 											<?php if(isset($callsign_error)) { echo "<small class=\"badge bg-danger\">".$callsign_error."</small>"; } else { ?>
 											<?php } ?>
 									</div>
 
 									<div class="mb-3">
-										<label><?php echo __("Gridsquare"); ?></label>
+										<label><?= __("Gridsquare"); ?></label>
 										<input class="form-control" type="text" name="user_locator" value="<?php if(isset($user_locator)) { echo $user_locator; } ?>" />
 											<?php if(isset($locator_error)) { echo "<small class=\"badge bg-danger\">".$locator_error."</small>"; } else { ?>
 											<?php } ?>
@@ -143,7 +143,7 @@
 		<div class="accordion-item">
 			<h2 class="accordion-header" id="panelsStayOpen-H_wavelog_general">
 				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-B_wavelog_general" aria-expanded="false" aria-controls="panelsStayOpen-B_wavelog_general">
-				<?php echo __("Wavelog Preferences"); ?></button>
+				<?= __("Wavelog Preferences"); ?></button>
 			</h2>
 			<div id="panelsStayOpen-B_wavelog_general" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-H_wavelog_general">
 				<div class="accordion-body">
@@ -151,10 +151,10 @@
 						<!-- Wavelog Preferences -->
 						<div class="col-md">
 							<div class="card">
-								<div class="card-header"><?php echo __("General"); ?></div>
+								<div class="card-header"><?= __("General"); ?></div>
 								<div class="card-body">
 									<div class="mb-3">
-										<label><?php echo __("Theme").' / '.__("Stylesheet"); ?></label>
+										<label><?= __("Theme").' / '.__("Stylesheet"); ?></label>
 										<?php if(!isset($user_stylesheet)) { $user_stylesheet='default'; }?>
 										<select class="form-select" id="user_stylesheet" name="user_stylesheet" required>
 											<?php
@@ -166,17 +166,17 @@
 									</div>
 									<hr/>
 									<div class="mb-3">
-										<label for="user_language"><?php echo __("Wavelog Language"); ?></label>
+										<label for="user_language"><?= __("Wavelog Language"); ?></label>
 										<?php
 										foreach ($existing_languages as $lang) {
 											$options[$lang['folder']] = $lang['name_en'];
 										}
 										echo form_dropdown('user_language', $options, $language['folder']);
 										?>
-										<small id="language_Help" class="form-text text-muted"><?php echo __("Choose Wavelog language."); ?></small>
+										<small id="language_Help" class="form-text text-muted"><?= __("Choose Wavelog language."); ?></small>
 									</div>
 									<div class="mb-3">
-										<label><?php echo __("Timezone"); ?></label>
+										<label><?= __("Timezone"); ?></label>
 										<?php
 										if(!isset($user_timezone)) { $user_timezone='151'; }
 										echo form_dropdown('user_timezone', $timezones, $user_timezone);
@@ -184,7 +184,7 @@
 									</div>
 
 									<div class="mb-3">
-										<label for="SelectDateFormat"><?php echo __("Date Format"); ?></label>
+										<label for="SelectDateFormat"><?= __("Date Format"); ?></label>
 										<?php if(!isset($user_date_format)) { $user_date_format='d/m/y'; }?>
 										<select name="user_date_format" class="form-select" id="SelectDateFormat" aria-describedby="SelectDateFormatHelp">
 											<option value="d/m/y" <?php if($user_date_format == "d/m/y") { echo "selected=\"selected\""; } ?>><?php echo date('d/m/y'); ?></option>
@@ -197,11 +197,11 @@
 											<option value="M d, Y" <?php if($user_date_format == "M d, Y") { echo "selected=\"selected\""; } ?>><?php echo date('M d, Y'); ?></option>
 											<option value="M d, y" <?php if($user_date_format == "M d, y") { echo "selected=\"selected\""; } ?>><?php echo date('M d, y'); ?></option>
 										</select>
-										<small id="SelectDateFormatHelp" class="form-text text-muted"><?php echo __("Select how you would like dates shown when logged into your account."); ?></small>
+										<small id="SelectDateFormatHelp" class="form-text text-muted"><?= __("Select how you would like dates shown when logged into your account."); ?></small>
 									</div>
 
 									<div class="mb-3">
-										<label for="user_measurement_base"><?php echo __("Measurement preference"); ?></label>
+										<label for="user_measurement_base"><?= __("Measurement preference"); ?></label>
 										<?php if(!isset($user_measurement_base)) { $user_measurement_base='M'; }?>
 										<select class="form-select" id="user_measurement_base" name="user_measurement_base" aria-describedby="user_measurement_base_Help" required>
 											<option value ''></option>
@@ -209,7 +209,7 @@
 											<option value='M' <?php if($user_measurement_base == "M") { echo "selected=\"selected\""; } ?>>Miles</option>
 											<option value='N' <?php if($user_measurement_base == "N") { echo "selected=\"selected\""; } ?>>Nautical miles</option>
 										</select>
-										<small id="user_measurement_base_Help" class="form-text text-muted"><?php echo __("Choose which unit distances will be shown in"); ?></small>
+										<small id="user_measurement_base_Help" class="form-text text-muted"><?= __("Choose which unit distances will be shown in"); ?></small>
 									</div>
 								</div>
 							</div>
@@ -218,117 +218,117 @@
 						<!-- Logbook fields Setting -->
 						<div class="col-md">
 							<div class="card">
-								<div class="card-header"><?php echo __("Logbook fields"); ?></div>
+								<div class="card-header"><?= __("Logbook fields"); ?></div>
 								<div class="card-body">
 									<div class="mb-3">
-										<label for="column1"><?php echo __("Choose column 1"); ?></label>
+										<label for="column1"><?= __("Choose column 1"); ?></label>
 										<?php if(!isset($user_column1)) { $user_column1='Mode'; }?>
 										<select class="form-select" id="column1" name="user_column1">
-											<option value="Band" <?php if ($user_column1 == "Band") { echo " selected =\"selected\""; } ?>><?php echo __("Band"); ?></option>
-											<option value="Frequency" <?php if ($user_column1 == "Frequency") { echo " selected =\"selected\""; } ?>><?php echo __("Frequency"); ?></option>
-											<option value="Mode" <?php if ($user_column1 == "Mode") { echo " selected =\"selected\""; } ?>><?php echo __("Mode"); ?></option>
-											<option value="RSTS" <?php if ($user_column1 == "RSTS") { echo " selected =\"selected\""; } ?>><?php echo __("RST (S)"); ?></option>
-											<option value="RSTR" <?php if ($user_column1 == "RSTR") { echo " selected =\"selected\""; } ?>><?php echo __("RST (R)"); ?></option>
-											<option value="Country" <?php if ($user_column1 == "Country") { echo " selected =\"selected\""; } ?>><?php echo __("Country"); ?></option>
-											<option value="IOTA" <?php if ($user_column1 == "IOTA") { echo " selected =\"selected\""; } ?>><?php echo __("IOTA"); ?></option>
-											<option value="SOTA" <?php if ($user_column1 == "SOTA") { echo " selected =\"selected\""; } ?>><?php echo __("SOTA"); ?></option>
-											<option value="WWFF" <?php if ($user_column1 == "WWFF") { echo " selected =\"selected\""; } ?>><?php echo __("WWFF"); ?></option>
-											<option value="POTA" <?php if ($user_column1 == "POTA") { echo " selected =\"selected\""; } ?>><?php echo __("POTA"); ?></option>
-											<option value="State" <?php if ($user_column1 == "State") { echo " selected =\"selected\""; } ?>><?php echo __("State"); ?></option>
-											<option value="Grid" <?php if ($user_column1 == "Grid") { echo " selected =\"selected\""; } ?>><?php echo __("Gridsquare"); ?></option>
-											<option value="Distance" <?php if ($user_column1 == "Distance") { echo " selected =\"selected\""; } ?>><?php echo __("Distance"); ?></option>
-											<option value="Operator" <?php if ($user_column1 == "Operator") { echo " selected =\"selected\""; } ?>><?php echo __("Operator"); ?></option>
-											<option value="Name" <?php if ($user_column1 == "Name") { echo " selected =\"selected\""; } ?>><?php echo __("Name"); ?></option>
+											<option value="Band" <?php if ($user_column1 == "Band") { echo " selected =\"selected\""; } ?>><?= __("Band"); ?></option>
+											<option value="Frequency" <?php if ($user_column1 == "Frequency") { echo " selected =\"selected\""; } ?>><?= __("Frequency"); ?></option>
+											<option value="Mode" <?php if ($user_column1 == "Mode") { echo " selected =\"selected\""; } ?>><?= __("Mode"); ?></option>
+											<option value="RSTS" <?php if ($user_column1 == "RSTS") { echo " selected =\"selected\""; } ?>><?= __("RST (S)"); ?></option>
+											<option value="RSTR" <?php if ($user_column1 == "RSTR") { echo " selected =\"selected\""; } ?>><?= __("RST (R)"); ?></option>
+											<option value="Country" <?php if ($user_column1 == "Country") { echo " selected =\"selected\""; } ?>><?= __("Country"); ?></option>
+											<option value="IOTA" <?php if ($user_column1 == "IOTA") { echo " selected =\"selected\""; } ?>><?= __("IOTA"); ?></option>
+											<option value="SOTA" <?php if ($user_column1 == "SOTA") { echo " selected =\"selected\""; } ?>><?= __("SOTA"); ?></option>
+											<option value="WWFF" <?php if ($user_column1 == "WWFF") { echo " selected =\"selected\""; } ?>><?= __("WWFF"); ?></option>
+											<option value="POTA" <?php if ($user_column1 == "POTA") { echo " selected =\"selected\""; } ?>><?= __("POTA"); ?></option>
+											<option value="State" <?php if ($user_column1 == "State") { echo " selected =\"selected\""; } ?>><?= __("State"); ?></option>
+											<option value="Grid" <?php if ($user_column1 == "Grid") { echo " selected =\"selected\""; } ?>><?= __("Gridsquare"); ?></option>
+											<option value="Distance" <?php if ($user_column1 == "Distance") { echo " selected =\"selected\""; } ?>><?= __("Distance"); ?></option>
+											<option value="Operator" <?php if ($user_column1 == "Operator") { echo " selected =\"selected\""; } ?>><?= __("Operator"); ?></option>
+											<option value="Name" <?php if ($user_column1 == "Name") { echo " selected =\"selected\""; } ?>><?= __("Name"); ?></option>
 										</select>
 									</div>
 
 									<div class="mb-3">
-										<label for="column2"><?php echo __("Choose column 2"); ?></label>
+										<label for="column2"><?= __("Choose column 2"); ?></label>
 										<?php if(!isset($user_column2)) { $user_column2='RSTS'; }?>
 										<select class="form-select" id="column2" name="user_column2">
-											<option value="Band" <?php if ($user_column2 == "Band") { echo " selected =\"selected\""; } ?>><?php echo __("Band"); ?></option>
-											<option value="Frequency" <?php if ($user_column2 == "Frequency") { echo " selected =\"selected\""; } ?>><?php echo __("Frequency"); ?></option>
-											<option value="Mode" <?php if ($user_column2 == "Mode") { echo " selected =\"selected\""; } ?>><?php echo __("Mode"); ?></option>
-											<option value="RSTS" <?php if ($user_column2 == "RSTS") { echo " selected =\"selected\""; } ?>><?php echo __("RST (S)"); ?></option>
-											<option value="RSTR" <?php if ($user_column2 == "RSTR") { echo " selected =\"selected\""; } ?>><?php echo __("RST (R)"); ?></option>
-											<option value="Country" <?php if ($user_column2 == "Country") { echo " selected =\"selected\""; } ?>><?php echo __("Country"); ?></option>
-											<option value="IOTA" <?php if ($user_column2 == "IOTA") { echo " selected =\"selected\""; } ?>><?php echo __("IOTA"); ?></option>
-											<option value="SOTA" <?php if ($user_column2 == "SOTA") { echo " selected =\"selected\""; } ?>><?php echo __("SOTA"); ?></option>
-											<option value="WWFF" <?php if ($user_column2 == "WWFF") { echo " selected =\"selected\""; } ?>><?php echo __("WWFF"); ?></option>
-											<option value="POTA" <?php if ($user_column2 == "POTA") { echo " selected =\"selected\""; } ?>><?php echo __("POTA"); ?></option>
-											<option value="State" <?php if ($user_column2 == "State") { echo " selected =\"selected\""; } ?>><?php echo __("State"); ?></option>
-											<option value="Grid" <?php if ($user_column2 == "Grid") { echo " selected =\"selected\""; } ?>><?php echo __("Gridsquare"); ?></option>
-											<option value="Distance" <?php if ($user_column2 == "Distance") { echo " selected =\"selected\""; } ?>><?php echo __("Distance"); ?></option>
-											<option value="Operator" <?php if ($user_column2 == "Operator") { echo " selected =\"selected\""; } ?>><?php echo __("Operator"); ?></option>
-											<option value="Name" <?php if ($user_column2 == "Name") { echo " selected =\"selected\""; } ?>><?php echo __("Name"); ?></option>
+											<option value="Band" <?php if ($user_column2 == "Band") { echo " selected =\"selected\""; } ?>><?= __("Band"); ?></option>
+											<option value="Frequency" <?php if ($user_column2 == "Frequency") { echo " selected =\"selected\""; } ?>><?= __("Frequency"); ?></option>
+											<option value="Mode" <?php if ($user_column2 == "Mode") { echo " selected =\"selected\""; } ?>><?= __("Mode"); ?></option>
+											<option value="RSTS" <?php if ($user_column2 == "RSTS") { echo " selected =\"selected\""; } ?>><?= __("RST (S)"); ?></option>
+											<option value="RSTR" <?php if ($user_column2 == "RSTR") { echo " selected =\"selected\""; } ?>><?= __("RST (R)"); ?></option>
+											<option value="Country" <?php if ($user_column2 == "Country") { echo " selected =\"selected\""; } ?>><?= __("Country"); ?></option>
+											<option value="IOTA" <?php if ($user_column2 == "IOTA") { echo " selected =\"selected\""; } ?>><?= __("IOTA"); ?></option>
+											<option value="SOTA" <?php if ($user_column2 == "SOTA") { echo " selected =\"selected\""; } ?>><?= __("SOTA"); ?></option>
+											<option value="WWFF" <?php if ($user_column2 == "WWFF") { echo " selected =\"selected\""; } ?>><?= __("WWFF"); ?></option>
+											<option value="POTA" <?php if ($user_column2 == "POTA") { echo " selected =\"selected\""; } ?>><?= __("POTA"); ?></option>
+											<option value="State" <?php if ($user_column2 == "State") { echo " selected =\"selected\""; } ?>><?= __("State"); ?></option>
+											<option value="Grid" <?php if ($user_column2 == "Grid") { echo " selected =\"selected\""; } ?>><?= __("Gridsquare"); ?></option>
+											<option value="Distance" <?php if ($user_column2 == "Distance") { echo " selected =\"selected\""; } ?>><?= __("Distance"); ?></option>
+											<option value="Operator" <?php if ($user_column2 == "Operator") { echo " selected =\"selected\""; } ?>><?= __("Operator"); ?></option>
+											<option value="Name" <?php if ($user_column2 == "Name") { echo " selected =\"selected\""; } ?>><?= __("Name"); ?></option>
 										</select>
 									</div>
 
 									<div class="mb-3">
-										<label for="column3"><?php echo __("Choose column 3"); ?></label>
+										<label for="column3"><?= __("Choose column 3"); ?></label>
 										<?php if(!isset($user_column3)) { $user_column3='RSTR'; }?>
 										<select class="form-select" id="column3" name="user_column3">
-											<option value="Band" <?php if ($user_column3 == "Band") { echo " selected =\"selected\""; } ?>><?php echo __("Band"); ?></option>
-											<option value="Frequency" <?php if ($user_column3 == "Frequency") { echo " selected =\"selected\""; } ?>><?php echo __("Frequency"); ?></option>
-											<option value="Mode" <?php if ($user_column3 == "Mode") { echo " selected =\"selected\""; } ?>><?php echo __("Mode"); ?></option>
-											<option value="RSTS" <?php if ($user_column3 == "RSTS") { echo " selected =\"selected\""; } ?>><?php echo __("RST (S)"); ?></option>
-											<option value="RSTR" <?php if ($user_column3 == "RSTR") { echo " selected =\"selected\""; } ?>><?php echo __("RST (R)"); ?></option>
-											<option value="Country" <?php if ($user_column3 == "Country") { echo " selected =\"selected\""; } ?>><?php echo __("Country"); ?></option>
-											<option value="IOTA" <?php if ($user_column3 == "IOTA") { echo " selected =\"selected\""; } ?>><?php echo __("IOTA"); ?></option>
-											<option value="SOTA" <?php if ($user_column3 == "SOTA") { echo " selected =\"selected\""; } ?>><?php echo __("SOTA"); ?></option>
-											<option value="WWFF" <?php if ($user_column3 == "WWFF") { echo " selected =\"selected\""; } ?>><?php echo __("WWFF"); ?></option>
-											<option value="POTA" <?php if ($user_column3 == "POTA") { echo " selected =\"selected\""; } ?>><?php echo __("POTA"); ?></option>
-											<option value="State" <?php if ($user_column3 == "State") { echo " selected =\"selected\""; } ?>><?php echo __("State"); ?></option>
-											<option value="Grid" <?php if ($user_column3 == "Grid") { echo " selected =\"selected\""; } ?>><?php echo __("Gridsquare"); ?></option>
-											<option value="Distance" <?php if ($user_column3 == "Distance") { echo " selected =\"selected\""; } ?>><?php echo __("Distance"); ?></option>
-											<option value="Operator" <?php if ($user_column3 == "Operator") { echo " selected =\"selected\""; } ?>><?php echo __("Operator"); ?></option>
-											<option value="Name" <?php if ($user_column3 == "Name") { echo " selected =\"selected\""; } ?>><?php echo __("Name"); ?></option>
+											<option value="Band" <?php if ($user_column3 == "Band") { echo " selected =\"selected\""; } ?>><?= __("Band"); ?></option>
+											<option value="Frequency" <?php if ($user_column3 == "Frequency") { echo " selected =\"selected\""; } ?>><?= __("Frequency"); ?></option>
+											<option value="Mode" <?php if ($user_column3 == "Mode") { echo " selected =\"selected\""; } ?>><?= __("Mode"); ?></option>
+											<option value="RSTS" <?php if ($user_column3 == "RSTS") { echo " selected =\"selected\""; } ?>><?= __("RST (S)"); ?></option>
+											<option value="RSTR" <?php if ($user_column3 == "RSTR") { echo " selected =\"selected\""; } ?>><?= __("RST (R)"); ?></option>
+											<option value="Country" <?php if ($user_column3 == "Country") { echo " selected =\"selected\""; } ?>><?= __("Country"); ?></option>
+											<option value="IOTA" <?php if ($user_column3 == "IOTA") { echo " selected =\"selected\""; } ?>><?= __("IOTA"); ?></option>
+											<option value="SOTA" <?php if ($user_column3 == "SOTA") { echo " selected =\"selected\""; } ?>><?= __("SOTA"); ?></option>
+											<option value="WWFF" <?php if ($user_column3 == "WWFF") { echo " selected =\"selected\""; } ?>><?= __("WWFF"); ?></option>
+											<option value="POTA" <?php if ($user_column3 == "POTA") { echo " selected =\"selected\""; } ?>><?= __("POTA"); ?></option>
+											<option value="State" <?php if ($user_column3 == "State") { echo " selected =\"selected\""; } ?>><?= __("State"); ?></option>
+											<option value="Grid" <?php if ($user_column3 == "Grid") { echo " selected =\"selected\""; } ?>><?= __("Gridsquare"); ?></option>
+											<option value="Distance" <?php if ($user_column3 == "Distance") { echo " selected =\"selected\""; } ?>><?= __("Distance"); ?></option>
+											<option value="Operator" <?php if ($user_column3 == "Operator") { echo " selected =\"selected\""; } ?>><?= __("Operator"); ?></option>
+											<option value="Name" <?php if ($user_column3 == "Name") { echo " selected =\"selected\""; } ?>><?= __("Name"); ?></option>
 										</select>
 									</div>
 
 									<div class="mb-3">
-										<label for="column4"><?php echo __("Choose column 4"); ?></label>
+										<label for="column4"><?= __("Choose column 4"); ?></label>
 										<?php if(!isset($user_column4)) { $user_column4='Band'; }?>
 										<select class="form-select" id="column4" name="user_column4">
-											<option value="Band" <?php if ($user_column4 == "Band") { echo " selected =\"selected\""; } ?>><?php echo __("Band"); ?></option>
-											<option value="Frequency" <?php if ($user_column4 == "Frequency") { echo " selected =\"selected\""; } ?>><?php echo __("Frequency"); ?></option>
-											<option value="Mode" <?php if ($user_column4 == "Mode") { echo " selected =\"selected\""; } ?>><?php echo __("Mode"); ?></option>
-											<option value="RSTS" <?php if ($user_column4 == "RSTS") { echo " selected =\"selected\""; } ?>><?php echo __("RST (S)"); ?></option>
-											<option value="RSTR" <?php if ($user_column4 == "RSTR") { echo " selected =\"selected\""; } ?>><?php echo __("RST (R)"); ?></option>
-											<option value="Country" <?php if ($user_column4 == "Country") { echo " selected =\"selected\""; } ?>><?php echo __("Country"); ?></option>
-											<option value="IOTA" <?php if ($user_column4 == "IOTA") { echo " selected =\"selected\""; } ?>><?php echo __("IOTA"); ?></option>
-											<option value="SOTA" <?php if ($user_column4 == "SOTA") { echo " selected =\"selected\""; } ?>><?php echo __("SOTA"); ?></option>
-											<option value="WWFF" <?php if ($user_column4 == "WWFF") { echo " selected =\"selected\""; } ?>><?php echo __("WWFF"); ?></option>
-											<option value="POTA" <?php if ($user_column4 == "POTA") { echo " selected =\"selected\""; } ?>><?php echo __("POTA"); ?></option>
-											<option value="State" <?php if ($user_column4 == "State") { echo " selected =\"selected\""; } ?>><?php echo __("State"); ?></option>
-											<option value="Grid" <?php if ($user_column4 == "Grid") { echo " selected =\"selected\""; } ?>><?php echo __("Gridsquare"); ?></option>
-											<option value="Distance" <?php if ($user_column4 == "Distance") { echo " selected =\"selected\""; } ?>><?php echo __("Distance"); ?></option>
-											<option value="Operator" <?php if ($user_column4 == "Operator") { echo " selected =\"selected\""; } ?>><?php echo __("Operator"); ?></option>
-											<option value="Name" <?php if ($user_column4 == "Name") { echo " selected =\"selected\""; } ?>><?php echo __("Name"); ?></option>
+											<option value="Band" <?php if ($user_column4 == "Band") { echo " selected =\"selected\""; } ?>><?= __("Band"); ?></option>
+											<option value="Frequency" <?php if ($user_column4 == "Frequency") { echo " selected =\"selected\""; } ?>><?= __("Frequency"); ?></option>
+											<option value="Mode" <?php if ($user_column4 == "Mode") { echo " selected =\"selected\""; } ?>><?= __("Mode"); ?></option>
+											<option value="RSTS" <?php if ($user_column4 == "RSTS") { echo " selected =\"selected\""; } ?>><?= __("RST (S)"); ?></option>
+											<option value="RSTR" <?php if ($user_column4 == "RSTR") { echo " selected =\"selected\""; } ?>><?= __("RST (R)"); ?></option>
+											<option value="Country" <?php if ($user_column4 == "Country") { echo " selected =\"selected\""; } ?>><?= __("Country"); ?></option>
+											<option value="IOTA" <?php if ($user_column4 == "IOTA") { echo " selected =\"selected\""; } ?>><?= __("IOTA"); ?></option>
+											<option value="SOTA" <?php if ($user_column4 == "SOTA") { echo " selected =\"selected\""; } ?>><?= __("SOTA"); ?></option>
+											<option value="WWFF" <?php if ($user_column4 == "WWFF") { echo " selected =\"selected\""; } ?>><?= __("WWFF"); ?></option>
+											<option value="POTA" <?php if ($user_column4 == "POTA") { echo " selected =\"selected\""; } ?>><?= __("POTA"); ?></option>
+											<option value="State" <?php if ($user_column4 == "State") { echo " selected =\"selected\""; } ?>><?= __("State"); ?></option>
+											<option value="Grid" <?php if ($user_column4 == "Grid") { echo " selected =\"selected\""; } ?>><?= __("Gridsquare"); ?></option>
+											<option value="Distance" <?php if ($user_column4 == "Distance") { echo " selected =\"selected\""; } ?>><?= __("Distance"); ?></option>
+											<option value="Operator" <?php if ($user_column4 == "Operator") { echo " selected =\"selected\""; } ?>><?= __("Operator"); ?></option>
+											<option value="Name" <?php if ($user_column4 == "Name") { echo " selected =\"selected\""; } ?>><?= __("Name"); ?></option>
 										</select>
 									</div>
 
 									<div class="mb-3">
-										<label for="column5"><?php echo __("Choose column 5 (only for logbook)"); ?></label>
+										<label for="column5"><?= __("Choose column 5 (only for logbook)"); ?></label>
 										<?php if(!isset($user_column5)) { $user_column5='Country'; }?>
 										<select class="form-select" id="column5" name="user_column5">
 											<option value="" <?php if ($user_column5 == "") { echo " selected =\"selected\""; } ?>></option>
-											<option value="Band" <?php if ($user_column5 == "Band") { echo " selected =\"selected\""; } ?>><?php echo __("Band"); ?></option>
-											<option value="Frequency" <?php if ($user_column5 == "Frequency") { echo " selected =\"selected\""; } ?>><?php echo __("Frequency"); ?></option>
-											<option value="Mode" <?php if ($user_column5 == "Mode") { echo " selected =\"selected\""; } ?>><?php echo __("Mode"); ?></option>
-											<option value="RSTS" <?php if ($user_column5 == "RSTS") { echo " selected =\"selected\""; } ?>><?php echo __("RST (S)"); ?></option>
-											<option value="RSTR" <?php if ($user_column5 == "RSTR") { echo " selected =\"selected\""; } ?>><?php echo __("RST (R)"); ?></option>
-											<option value="Country" <?php if ($user_column5 == "Country") { echo " selected =\"selected\""; } ?>><?php echo __("Country"); ?></option>
-											<option value="IOTA" <?php if ($user_column5 == "IOTA") { echo " selected =\"selected\""; } ?>><?php echo __("IOTA"); ?></option>
-											<option value="SOTA" <?php if ($user_column5 == "SOTA") { echo " selected =\"selected\""; } ?>><?php echo __("SOTA"); ?></option>
-											<option value="WWFF" <?php if ($user_column5 == "WWFF") { echo " selected =\"selected\""; } ?>><?php echo __("WWFF"); ?></option>
-											<option value="POTA" <?php if ($user_column5 == "POTA") { echo " selected =\"selected\""; } ?>><?php echo __("POTA"); ?></option>
-											<option value="State" <?php if ($user_column5 == "State") { echo " selected =\"selected\""; } ?>><?php echo __("State"); ?></option>
-											<option value="Grid" <?php if ($user_column5 == "Grid") { echo " selected =\"selected\""; } ?>><?php echo __("Gridsquare"); ?></option>
-											<option value="Distance" <?php if ($user_column5 == "Distance") { echo " selected =\"selected\""; } ?>><?php echo __("Distance"); ?></option>
-											<option value="Operator" <?php if ($user_column5 == "Operator") { echo " selected =\"selected\""; } ?>><?php echo __("Operator"); ?></option>
-											<option value="Name" <?php if ($user_column5 == "Name") { echo " selected =\"selected\""; } ?>><?php echo __("Name"); ?></option>
-											<option value="Location" <?php if ($user_column5 == "Location") { echo " selected =\"selected\""; } ?>><?php echo __("Station Location"); ?></option>
+											<option value="Band" <?php if ($user_column5 == "Band") { echo " selected =\"selected\""; } ?>><?= __("Band"); ?></option>
+											<option value="Frequency" <?php if ($user_column5 == "Frequency") { echo " selected =\"selected\""; } ?>><?= __("Frequency"); ?></option>
+											<option value="Mode" <?php if ($user_column5 == "Mode") { echo " selected =\"selected\""; } ?>><?= __("Mode"); ?></option>
+											<option value="RSTS" <?php if ($user_column5 == "RSTS") { echo " selected =\"selected\""; } ?>><?= __("RST (S)"); ?></option>
+											<option value="RSTR" <?php if ($user_column5 == "RSTR") { echo " selected =\"selected\""; } ?>><?= __("RST (R)"); ?></option>
+											<option value="Country" <?php if ($user_column5 == "Country") { echo " selected =\"selected\""; } ?>><?= __("Country"); ?></option>
+											<option value="IOTA" <?php if ($user_column5 == "IOTA") { echo " selected =\"selected\""; } ?>><?= __("IOTA"); ?></option>
+											<option value="SOTA" <?php if ($user_column5 == "SOTA") { echo " selected =\"selected\""; } ?>><?= __("SOTA"); ?></option>
+											<option value="WWFF" <?php if ($user_column5 == "WWFF") { echo " selected =\"selected\""; } ?>><?= __("WWFF"); ?></option>
+											<option value="POTA" <?php if ($user_column5 == "POTA") { echo " selected =\"selected\""; } ?>><?= __("POTA"); ?></option>
+											<option value="State" <?php if ($user_column5 == "State") { echo " selected =\"selected\""; } ?>><?= __("State"); ?></option>
+											<option value="Grid" <?php if ($user_column5 == "Grid") { echo " selected =\"selected\""; } ?>><?= __("Gridsquare"); ?></option>
+											<option value="Distance" <?php if ($user_column5 == "Distance") { echo " selected =\"selected\""; } ?>><?= __("Distance"); ?></option>
+											<option value="Operator" <?php if ($user_column5 == "Operator") { echo " selected =\"selected\""; } ?>><?= __("Operator"); ?></option>
+											<option value="Name" <?php if ($user_column5 == "Name") { echo " selected =\"selected\""; } ?>><?= __("Name"); ?></option>
+											<option value="Location" <?php if ($user_column5 == "Location") { echo " selected =\"selected\""; } ?>><?= __("Station Location"); ?></option>
 										</select>
 									</div>
 								</div>
@@ -338,68 +338,68 @@
 						<!-- QSO Logging Options -->
 						<div class="col-md">
 							<div class="card">
-								<div class="card-header"><?php echo __("QSO Logging Options"); ?></div>
+								<div class="card-header"><?= __("QSO Logging Options"); ?></div>
 								<div class="card-body">
 									<div class="mb-3">
-										<label for="logendtime"><?php echo __("Log End Times for QSOs Separately"); ?></label>
+										<label for="logendtime"><?= __("Log End Times for QSOs Separately"); ?></label>
 										<?php if(!isset($user_qso_end_times)) { $user_qso_end_times='0'; }?>
 										<select class="form-select" id="logendtimes" name="user_qso_end_times">
-											<option value="1" <?php if ($user_qso_end_times == 1) { echo " selected =\"selected\""; } ?>><?php echo __("Yes"); ?></option>
-											<option value="0" <?php if ($user_qso_end_times == 0) { echo " selected =\"selected\""; } ?>><?php echo __("No"); ?></option>
+											<option value="1" <?php if ($user_qso_end_times == 1) { echo " selected =\"selected\""; } ?>><?= __("Yes"); ?></option>
+											<option value="0" <?php if ($user_qso_end_times == 0) { echo " selected =\"selected\""; } ?>><?= __("No"); ?></option>
 										</select>
-										<small id="SelectDateFormatHelp" class="form-text text-muted"><?php echo __("Choose yes here if you want to log QSO start and end times separately. If set to \'No\' the end time will be the same as start time."); ?></small>
+										<small id="SelectDateFormatHelp" class="form-text text-muted"><?= __("Choose yes here if you want to log QSO start and end times separately. If set to \'No\' the end time will be the same as start time."); ?></small>
 									</div>
 
 									<hr />
 									<div class="mb-3">
-										<label for="profileimages"><?php echo __("Show profile picture of QSO partner from qrz.com/hamqth.com profile in the log QSO section."); ?></label>
+										<label for="profileimages"><?= __("Show profile picture of QSO partner from qrz.com/hamqth.com profile in the log QSO section."); ?></label>
 										<?php if(!isset($user_show_profile_image)) { $user_show_profile_image='0'; }?>
 										<select class="form-select" id="profileimages" name="user_show_profile_image">
-											<option value="1" <?php if ($user_show_profile_image == 1) { echo " selected =\"selected\""; } ?>><?php echo __("Yes"); ?></option>
-											<option value="0" <?php if ($user_show_profile_image == 0) { echo " selected =\"selected\""; } ?>><?php echo __("No"); ?></option>
+											<option value="1" <?php if ($user_show_profile_image == 1) { echo " selected =\"selected\""; } ?>><?= __("Yes"); ?></option>
+											<option value="0" <?php if ($user_show_profile_image == 0) { echo " selected =\"selected\""; } ?>><?= __("No"); ?></option>
 										</select>
-										<small class="form-text text-muted"><?php echo __("Please set your qrz.com/hamqth.com credentials in the general config file."); ?></small>
+										<small class="form-text text-muted"><?= __("Please set your qrz.com/hamqth.com credentials in the general config file."); ?></small>
 									</div>
 
 									<hr />
 									<div class="mb-3">
-										<label for="qthlookup"><?php echo __("Location auto lookup."); ?></label>
+										<label for="qthlookup"><?= __("Location auto lookup."); ?></label>
 										<?php if(!isset($user_qth_lookup)) { $user_qth_lookup='0'; }?>
 										<select class="form-select" id="qthlookup" name="user_qth_lookup">
-											<option value="1" <?php if ($user_qth_lookup == 1) { echo " selected =\"selected\""; } ?>><?php echo __("Yes"); ?></option>
-											<option value="0" <?php if ($user_qth_lookup == 0) { echo " selected =\"selected\""; } ?>><?php echo __("No"); ?></option>
+											<option value="1" <?php if ($user_qth_lookup == 1) { echo " selected =\"selected\""; } ?>><?= __("Yes"); ?></option>
+											<option value="0" <?php if ($user_qth_lookup == 0) { echo " selected =\"selected\""; } ?>><?= __("No"); ?></option>
 										</select>
-										<small class="form-text text-muted"><?php echo __("If set, gridsquare is fetched based on location name."); ?></small>
+										<small class="form-text text-muted"><?= __("If set, gridsquare is fetched based on location name."); ?></small>
 									</div>
 
 									<div class="mb-3">
-										<label for="sotalookup"><?php echo __("SOTA auto lookup gridsquare and name for summit."); ?></label>
+										<label for="sotalookup"><?= __("SOTA auto lookup gridsquare and name for summit."); ?></label>
 										<?php if(!isset($user_sota_lookup)) { $user_sota_lookup='0'; }?>
 										<select class="form-select" id="sotalookup" name="user_sota_lookup">
-											<option value="1" <?php if ($user_sota_lookup == 1) { echo " selected =\"selected\""; } ?>><?php echo __("Yes"); ?></option>
-											<option value="0" <?php if ($user_sota_lookup == 0) { echo " selected =\"selected\""; } ?>><?php echo __("No"); ?></option>
+											<option value="1" <?php if ($user_sota_lookup == 1) { echo " selected =\"selected\""; } ?>><?= __("Yes"); ?></option>
+											<option value="0" <?php if ($user_sota_lookup == 0) { echo " selected =\"selected\""; } ?>><?= __("No"); ?></option>
 										</select>
-										<small class="form-text text-muted"><?php echo __("If set, name and gridsquare is fetched from the API and filled in location and locator."); ?></small>
+										<small class="form-text text-muted"><?= __("If set, name and gridsquare is fetched from the API and filled in location and locator."); ?></small>
 									</div>
 
 									<div class="mb-3">
-										<label for="wwfflookup"><?php echo __("WWFF auto lookup gridsquare and name for reference."); ?></label>
+										<label for="wwfflookup"><?= __("WWFF auto lookup gridsquare and name for reference."); ?></label>
 										<?php if(!isset($user_wwff_lookup)) { $user_wwff_lookup='0'; }?>
 										<select class="form-select" id="wwfflookup" name="user_wwff_lookup">
-											<option value="1" <?php if ($user_wwff_lookup == 1) { echo " selected =\"selected\""; } ?>><?php echo __("Yes"); ?></option>
-											<option value="0" <?php if ($user_wwff_lookup == 0) { echo " selected =\"selected\""; } ?>><?php echo __("No"); ?></option>
+											<option value="1" <?php if ($user_wwff_lookup == 1) { echo " selected =\"selected\""; } ?>><?= __("Yes"); ?></option>
+											<option value="0" <?php if ($user_wwff_lookup == 0) { echo " selected =\"selected\""; } ?>><?= __("No"); ?></option>
 										</select>
-										<small class="form-text text-muted"><?php echo __("If set, name and gridsquare is fetched from the API and filled in location and locator."); ?></small>
+										<small class="form-text text-muted"><?= __("If set, name and gridsquare is fetched from the API and filled in location and locator."); ?></small>
 									</div>
 
 									<div class="mb-3">
-										<label for="potalookup"><?php echo __("POTA auto lookup gridsquare and name for park."); ?></label>
+										<label for="potalookup"><?= __("POTA auto lookup gridsquare and name for park."); ?></label>
 										<?php if(!isset($user_pota_lookup)) { $user_pota_lookup='0'; }?>
 										<select class="form-select" id="potalookup" name="user_pota_lookup">
-											<option value="1" <?php if ($user_pota_lookup == 1) { echo " selected =\"selected\""; } ?>><?php echo __("Yes"); ?></option>
-											<option value="0" <?php if ($user_pota_lookup == 0) { echo " selected =\"selected\""; } ?>><?php echo __("No"); ?></option>
+											<option value="1" <?php if ($user_pota_lookup == 1) { echo " selected =\"selected\""; } ?>><?= __("Yes"); ?></option>
+											<option value="0" <?php if ($user_pota_lookup == 0) { echo " selected =\"selected\""; } ?>><?= __("No"); ?></option>
 										</select>
-										<small class="form-text text-muted"><?php echo __("If set, name and gridsquare is fetched from the API and filled in location and locator."); ?></small>
+										<small class="form-text text-muted"><?= __("If set, name and gridsquare is fetched from the API and filled in location and locator."); ?></small>
 									</div>
 								</div>
 							</div>
@@ -410,37 +410,37 @@
 						<!-- Menu Options -->
 						<div class="col-md">
 							<div class="card">
-								<div class="card-header"><?php echo __("Menu Options"); ?></div>
+								<div class="card-header"><?= __("Menu Options"); ?></div>
 								<div class="card-body">
 									<div class="mb-3">
-										<label for="shownotes"><?php echo __("Show notes in the main menu."); ?></label>
+										<label for="shownotes"><?= __("Show notes in the main menu."); ?></label>
 										<?php if(!isset($user_show_notes)) { $user_show_notes='0'; }?>
 										<select class="form-select" id="shownotes" name="user_show_notes">
-											<option value="1" <?php if ($user_show_notes == 1) { echo " selected =\"selected\""; } ?>><?php echo __("Yes"); ?></option>
-											<option value="0" <?php if ($user_show_notes == 0) { echo " selected =\"selected\""; } ?>><?php echo __("No"); ?></option>
+											<option value="1" <?php if ($user_show_notes == 1) { echo " selected =\"selected\""; } ?>><?= __("Yes"); ?></option>
+											<option value="0" <?php if ($user_show_notes == 0) { echo " selected =\"selected\""; } ?>><?= __("No"); ?></option>
 										</select>
 									</div>
 
 									<hr/>
 
 									<div class="mb-3">
-										<label for="quicklog"><?php echo __("Quicklog Field"); ?></label>
+										<label for="quicklog"><?= __("Quicklog Field"); ?></label>
 										<?php if(!isset($user_quicklog)) { $user_quicklog='0'; }?>
 										<select class="form-select" id="quicklog" name="user_quicklog">
-											<option value="1" <?php if ($user_quicklog == 1) { echo " selected =\"selected\""; } ?>><?php echo __("Yes"); ?></option>
-											<option value="0" <?php if ($user_quicklog == 0) { echo " selected =\"selected\""; } ?>><?php echo __("No"); ?></option>
+											<option value="1" <?php if ($user_quicklog == 1) { echo " selected =\"selected\""; } ?>><?= __("Yes"); ?></option>
+											<option value="0" <?php if ($user_quicklog == 0) { echo " selected =\"selected\""; } ?>><?= __("No"); ?></option>
 										</select>
-										<small id="SelectDateFormatHelp" class="form-text text-muted"><?php echo __("With this feature, you can log callsigns using the search field in the header."); ?></small>
+										<small id="SelectDateFormatHelp" class="form-text text-muted"><?= __("With this feature, you can log callsigns using the search field in the header."); ?></small>
 									</div>
 
 									<div class="mb-3">
-										<label for="quicklog_enter"><?php echo __("Quicklog - Action on press Enter"); ?></label>
+										<label for="quicklog_enter"><?= __("Quicklog - Action on press Enter"); ?></label>
 										<?php if(!isset($user_quicklog_enter)) { $user_quicklog_enter='0'; }?>
 										<select class="form-select" id="quicklog_enter" name="user_quicklog_enter">
-											<option value="0" <?php if ($user_quicklog_enter == 0) { echo " selected =\"selected\""; } ?>><?php echo __("Log Callsign"); ?></option>
-											<option value="1" <?php if ($user_quicklog_enter == 1) { echo " selected =\"selected\""; } ?>><?php echo __("Search Callsign"); ?></option>
+											<option value="0" <?php if ($user_quicklog_enter == 0) { echo " selected =\"selected\""; } ?>><?= __("Log Callsign"); ?></option>
+											<option value="1" <?php if ($user_quicklog_enter == 1) { echo " selected =\"selected\""; } ?>><?= __("Search Callsign"); ?></option>
 										</select>
-										<small id="SelectDateFormatHelp" class="form-text text-muted"><?php echo __("What action should be performed when Enter is pressed in the quicklog field?"); ?></small>
+										<small id="SelectDateFormatHelp" class="form-text text-muted"><?= __("What action should be performed when Enter is pressed in the quicklog field?"); ?></small>
 									</div>
 									<?php if ($this->session->userdata('user_id') == $this->uri->segment(3)) { ?>
 									<hr/>
@@ -514,7 +514,7 @@
 									<div class="row"> <!-- QSO (confirmed) -->
 										<div class="mb-3 col-md-4">
 											<label><?php echo $this->lang->line('account_map_qso_confirm'); ?></label>
-											<small class="form-text text-muted"><?php echo __("(If 'No', displayed as ".$lang['account_map_qso_by_default'].")"); ?></small>
+											<small class="form-text text-muted"><?= __("(If 'No', displayed as ".$lang['account_map_qso_by_default'].")"); ?></small>
 										</div>
 										<div class="mb-3 col-md-3">
 											<div class="icon_selectBox" data-boxcontent="qsoconfirm">
@@ -537,8 +537,8 @@
 										</div>
 										<div class="md-3 col-md-3">
 											<select class="form-select" id="user_map_gridsquare_show" name="user_map_gridsquare_show">
-												<option value="1" <?php if ($user_map_gridsquare_show == 1) { echo " selected =\"selected\""; } ?>><?php echo __("Yes"); ?></option>
-												<option value="0" <?php if ($user_map_gridsquare_show == 0) { echo " selected =\"selected\""; } ?>><?php echo __("No"); ?></option>
+												<option value="1" <?php if ($user_map_gridsquare_show == 1) { echo " selected =\"selected\""; } ?>><?= __("Yes"); ?></option>
+												<option value="0" <?php if ($user_map_gridsquare_show == 0) { echo " selected =\"selected\""; } ?>><?= __("No"); ?></option>
 											</select>
 										</div>
 									</div>
@@ -552,16 +552,16 @@
 						<!-- Previous QSL -->
 						<div class="col-md">
 							<div class="card">
-								<div class="card-header"><?php echo __("Previous QSL Type"); ?></div>
+								<div class="card-header"><?= __("Previous QSL Type"); ?></div>
 								<div class="card-body">
 									<div class="row">
 										<div class="mb-3">
-											<label for="profileimages"><?php echo __("Select the type of QSL to show in the previous QSOs section."); ?></label>
+											<label for="profileimages"><?= __("Select the type of QSL to show in the previous QSOs section."); ?></label>
 											<?php if(!isset($user_previous_qsl_type)) { $user_previous_qsl_type='0'; }?>
 											<select class="form-select" id="previousqsltype" name="user_previous_qsl_type">
-												<option value="0" <?php if ($user_previous_qsl_type == 0) { echo " selected =\"selected\""; } ?>><?php echo __("QSL"); ?></option>
-												<option value="1" <?php if ($user_previous_qsl_type == 1) { echo " selected =\"selected\""; } ?>><?php echo __("LoTW"); ?></option>
-												<option value="2" <?php if ($user_previous_qsl_type == 2) { echo " selected =\"selected\""; } ?>><?php echo __("eQSL"); ?></option>
+												<option value="0" <?php if ($user_previous_qsl_type == 0) { echo " selected =\"selected\""; } ?>><?= __("QSL"); ?></option>
+												<option value="1" <?php if ($user_previous_qsl_type == 1) { echo " selected =\"selected\""; } ?>><?= __("LoTW"); ?></option>
+												<option value="2" <?php if ($user_previous_qsl_type == 2) { echo " selected =\"selected\""; } ?>><?= __("eQSL"); ?></option>
 												<option value="4" <?php if ($user_previous_qsl_type == 4) { echo " selected =\"selected\""; } ?>>QRZ</option>
 												<option value="8" <?php if ($user_previous_qsl_type == 8) { echo " selected =\"selected\""; } ?>>Clublog</option>
 											</select>
@@ -573,34 +573,34 @@
 						</div>
 						<div class="col-md">
 							<div class="card">
-								<div class="card-header"><?php echo __("Show Reference Fields on QSO Tab"); ?></div>
+								<div class="card-header"><?= __("Show Reference Fields on QSO Tab"); ?></div>
 								<div class="card-body">
 									<div class="row">
 										<div class="mb-3">
-											<label for="references_select"><?php echo __("The enabled items will be shown on the QSO tab rather than the General tab."); ?></label>
+											<label for="references_select"><?= __("The enabled items will be shown on the QSO tab rather than the General tab."); ?></label>
 											<div class="form-check form-switch">
 												<input name="user_iota_to_qso_tab" class="form-check-input" type="checkbox" role="switch" id="iotaToQsoTab" <?php if ($user_iota_to_qso_tab ?? false) { echo 'checked'; } ?>>
-												<label class="form-check-label" for="iotaToQsoTab" ><?php echo __("IOTA Reference"); ?></label>
+												<label class="form-check-label" for="iotaToQsoTab" ><?= __("IOTA Reference"); ?></label>
 											</div>
 											<div class="form-check form-switch">
 												<input name="user_sota_to_qso_tab" class="form-check-input" type="checkbox" role="switch" id="sotaToQsoTab" <?php if ($user_sota_to_qso_tab ?? false) { echo 'checked'; } ?>>
-												<label class="form-check-label" for="sotaToQsoTab" ><?php echo __("SOTA Reference"); ?></label>
+												<label class="form-check-label" for="sotaToQsoTab" ><?= __("SOTA Reference"); ?></label>
 											</div>
 											<div class="form-check form-switch">
 												<input name="user_wwff_to_qso_tab" class="form-check-input" type="checkbox" role="switch" id="wwffToQsoTab" <?php if ($user_wwff_to_qso_tab ?? false) { echo 'checked'; } ?>>
-												<label class="form-check-label" for="wwffToQsoTab" ><?php echo __("WWFF Reference"); ?></label>
+												<label class="form-check-label" for="wwffToQsoTab" ><?= __("WWFF Reference"); ?></label>
 											</div>
 											<div class="form-check form-switch">
 												<input name="user_pota_to_qso_tab" class="form-check-input" type="checkbox" role="switch" id="potaToQsoTab" <?php if ($user_pota_to_qso_tab ?? false) { echo 'checked'; } ?>>
-												<label class="form-check-label" for="potaToQsoTab" ><?php echo __("POTA Reference(s)"); ?></label>
+												<label class="form-check-label" for="potaToQsoTab" ><?= __("POTA Reference(s)"); ?></label>
 											</div>
 											<div class="form-check form-switch">
 												<input name="user_sig_to_qso_tab" class="form-check-input" type="checkbox" role="switch" id="sigToQsoTab" <?php if ($user_sig_to_qso_tab ?? false) { echo 'checked'; } ?>>
-												<label class="form-check-label" for="sigToQsoTab" ><?php echo __("Sig"); ?> / <?php echo __("Sig Info"); ?></label>
+												<label class="form-check-label" for="sigToQsoTab" ><?= __("Sig"); ?> / <?= __("Sig Info"); ?></label>
 											</div>
 											<div class="form-check form-switch">
 												<input name="user_dok_to_qso_tab" class="form-check-input" type="checkbox" role="switch" id="dokToQsoTab" <?php if ($user_dok_to_qso_tab ?? false) { echo 'checked'; } ?>>
-												<label class="form-check-label" for="dokToQsoTab" ><?php echo __("DOK"); ?></label>
+												<label class="form-check-label" for="dokToQsoTab" ><?= __("DOK"); ?></label>
 											</div>
 										</div>
 									</div>
@@ -616,7 +616,7 @@
 		<div class="accordion-item">
 			<h2 class="accordion-header" id="panelsStayOpen-H_default_value">
 				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-B_default_value" aria-expanded="false" aria-controls="panelsStayOpen-B_default_value">
-					<?php echo __("Default Values");?></button>
+					<?= __("Default Values");?></button>
 			</h2>
 			<div id="panelsStayOpen-B_default_value" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-H_default_value">
 				<div class="accordion-body">
@@ -624,10 +624,10 @@
 						<!-- Default -->
 						<div class="col-md">
 							<div class="card">
-								<!--<div class="card-header"><?php echo __("Settings for Default Band and Confirmation"); ?></div>-->
+								<!--<div class="card-header"><?= __("Settings for Default Band and Confirmation"); ?></div>-->
 								<div class="card-body">
 									<div class="mb-3">
-										<label for="user_default_band"><?php echo __("Default Band"); ?></label>
+										<label for="user_default_band"><?= __("Default Band"); ?></label>
 										<?php if(!isset($user_default_band)) { $user_default_band='All'; }?>
 										<select id="user_default_band" class="form-select" name="user_default_band">
 											<option value="All">All</option>;
@@ -637,7 +637,7 @@
 										</select>
 									</div>
 									<div class="mb-3">
-										<label class="my-1 me-2"><?php echo __("Default QSL-Methods"); ?></label>
+										<label class="my-1 me-2"><?= __("Default QSL-Methods"); ?></label>
 										<div class="form-check-inline">
 											<?php echo '<input class="form-check-input" type="checkbox" name="user_default_confirmation_qsl" id="user_default_confirmation_qsl"';
 											if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'Q') !== false) {
@@ -646,7 +646,7 @@
 												echo ' checked';
 											}
 											echo '>'; ?>
-											<label class="form-check-label" for="user_default_confirmation_qsl"><?php echo __("QSL"); ?></label>
+											<label class="form-check-label" for="user_default_confirmation_qsl"><?= __("QSL"); ?></label>
 										</div>
 										<div class="form-check-inline">
 											<?php echo '<input class="form-check-input" type="checkbox" name="user_default_confirmation_lotw" id="user_default_confirmation_lotw"';
@@ -656,7 +656,7 @@
 												echo ' checked';
 											}
 											echo '>'; ?>
-											<label class="form-check-label" for="user_default_confirmation_lotw"><?php echo __("LoTW"); ?></label>
+											<label class="form-check-label" for="user_default_confirmation_lotw"><?= __("LoTW"); ?></label>
 										</div>
 										<div class="form-check-inline">
 											<?php echo '<input class="form-check-input" type="checkbox" name="user_default_confirmation_eqsl" id="user_default_confirmation_eqsl"';
@@ -664,7 +664,7 @@
 												echo ' checked';
 											}
 											echo '>'; ?>
-											<label class="form-check-label" for="user_default_confirmation_eqsl"><?php echo __("eQSL"); ?></label>
+											<label class="form-check-label" for="user_default_confirmation_eqsl"><?= __("eQSL"); ?></label>
 										</div>
 										<div class="form-check-inline">
 											<?php echo '<input class="form-check-input" type="checkbox" name="user_default_confirmation_qrz" id="user_default_confirmation_qrz"';
@@ -694,7 +694,7 @@
 		<div class="accordion-item">
 			<h2 class="accordion-header" id="panelsStayOpen-H_confirmation_account">
 				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-B_confirmation_account" aria-expanded="false" aria-controls="panelsStayOpen-B_confirmation_account">
-				<?php echo __("Third Party Services"); ?></button>
+				<?= __("Third Party Services"); ?></button>
 			</h2>
 			<div id="panelsStayOpen-B_confirmation_account" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-H_confirmation_account">
 				<div class="accordion-body">
@@ -702,16 +702,16 @@
 						<!-- Logbook of the World -->
 						<div class="col-md">
 							<div class="card">
-								<div class="card-header"><?php echo __("Logbook of the World"); ?></div>
+								<div class="card-header"><?= __("Logbook of the World"); ?></div>
 								<div class="card-body">
 									<div class="mb-3">
-										<label><?php echo __("Logbook of The World (LoTW) Username"); ?></label>
+										<label><?= __("Logbook of The World (LoTW) Username"); ?></label>
 										<input class="form-control" type="text" name="user_lotw_name" value="<?php if(isset($user_lotw_name)) { echo $user_lotw_name; } ?>" />
 										<?php if(isset($userlotwname_error)) { echo "<small class=\"badge bg-danger\">".$userlotwname_error."</small>"; } ?>
 									</div>
 
 									<div class="mb-3">
-										<label><?php echo __("Logbook of The World (LoTW) Password"); ?></label>
+										<label><?= __("Logbook of The World (LoTW) Password"); ?></label>
 										<div class="input-group">
 											<input class="form-control" type="password" name="user_lotw_password" value="<?php if(isset($user_lotw_password)) { echo $user_lotw_password; } ?>" />
 											<span class="input-group-btn"><button class="btn btn-default btn-pwd-showhide" type="button"><i class="fa fa-eye-slash"></i></button></span>
@@ -728,16 +728,16 @@
 						<!-- eQSL -->
 						<div class="col-md">
 							<div class="card">
-								<div class="card-header"><?php echo __("eQSL"); ?></div>
+								<div class="card-header"><?= __("eQSL"); ?></div>
 								<div class="card-body">
 									<div class="mb-3">
-										<label><?php echo __("eQSL.cc Username"); ?></label>
+										<label><?= __("eQSL.cc Username"); ?></label>
 										<input class="form-control" type="text" name="user_eqsl_name" value="<?php if(isset($user_eqsl_name)) { echo $user_eqsl_name; } ?>" />
 											<?php if(isset($eqslusername_error)) { echo "<small class=\"badge bg-danger\">".$eqslusername_error."</small>"; } ?>
 									</div>
 
 									<div class="mb-3">
-										<label><?php echo __("eQSL.cc Password"); ?></label>
+										<label><?= __("eQSL.cc Password"); ?></label>
 										<div class="input-group">
 											<input class="form-control" type="password" name="user_eqsl_password" value="<?php if(isset($user_eqsl_password)) { echo $user_eqsl_password; } ?>" />
 											<span class="input-group-btn"><button class="btn btn-default btn-pwd-showhide" type="button"><i class="fa fa-eye-slash"></i></button></span>
@@ -754,17 +754,17 @@
 						<!-- Club Log -->
 						<div class="col-md">
 							<div class="card">
-								<div class="card-header"><?php echo __("Club Log"); ?></div>
+								<div class="card-header"><?= __("Club Log"); ?></div>
 								<div class="card-body">
 									<div class="mb-3">
-										<label><?php echo __("Club Log Email/Callsign"); ?></label>
+										<label><?= __("Club Log Email/Callsign"); ?></label>
 										<input class="form-control" type="text" name="user_clublog_name" value="<?php if(isset($user_clublog_name)) { echo $user_clublog_name; } ?>" />
-										<small class="form-text text-muted"><?php echo __("The Email or Callsign you use to login to Club Log"); ?></small>
+										<small class="form-text text-muted"><?= __("The Email or Callsign you use to login to Club Log"); ?></small>
 										<?php if(isset($userclublogname_error)) { echo "<small class=\"badge bg-danger\">".$userclublogname_error."</small>"; } ?>
 									</div>
 
 									<div class="mb-3">
-										<label><?php echo __("Club Log Password"); ?></label>
+										<label><?= __("Club Log Password"); ?></label>
 										<div class="input-group">
 											<input class="form-control" type="password" name="user_clublog_password" value="<?php if(isset($user_clublog_password)) { echo $user_clublog_password; } ?>" />
 											<span class="input-group-btn"><button class="btn btn-default btn-pwd-showhide" type="button"><i class="fa fa-eye-slash"></i></button></span>
@@ -785,7 +785,7 @@
 		<div class="accordion-item">
 			<h2 class="accordion-header" id="panelsStayOpen-H_miscellaneous">
 				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-B_miscellaneous" aria-expanded="false" aria-controls="panelsStayOpen-B_miscellaneous">
-				<?php echo __("Miscellaneous");?></button>
+				<?= __("Miscellaneous");?></button>
 			</h2>
 			<div id="panelsStayOpen-B_miscellaneous" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-H_miscellaneous">
 				<div class="accordion-body">
@@ -793,14 +793,14 @@
 						<!-- AMSAT Upload -->
 						<div class="col-md">
 							<div class="card">
-								<div class="card-header"><?php echo __("AMSAT Status Upload"); ?></div>
+								<div class="card-header"><?= __("AMSAT Status Upload"); ?></div>
 								<div class="card-body">
 									<div class="mb-3">
-										<label for="amsatsatatusupload"><?php echo __("Upload status of SAT QSOs to"); ?> <a href="https://www.amsat.org/status/" target="_blank">https://www.amsat.org/status/</a>.</label>
+										<label for="amsatsatatusupload"><?= __("Upload status of SAT QSOs to"); ?> <a href="https://www.amsat.org/status/" target="_blank">https://www.amsat.org/status/</a>.</label>
 										<?php if(!isset($user_amsat_status_upload)) { $user_amsat_status_upload='0'; }?>
 										<select class="form-select" id="amsatstatusupload" name="user_amsat_status_upload">
-											<option value="1" <?php if ($user_amsat_status_upload == 1) { echo " selected =\"selected\""; } ?>><?php echo __("Yes"); ?></option>
-											<option value="0" <?php if ($user_amsat_status_upload == 0) { echo " selected =\"selected\""; } ?>><?php echo __("No"); ?></option>
+											<option value="1" <?php if ($user_amsat_status_upload == 1) { echo " selected =\"selected\""; } ?>><?= __("Yes"); ?></option>
+											<option value="0" <?php if ($user_amsat_status_upload == 0) { echo " selected =\"selected\""; } ?>><?= __("No"); ?></option>
 										</select>
 									</div>
 								</div>
@@ -810,10 +810,10 @@
 						<!-- Mastodon -->
 						<div class="col-md">
 							<div class="card">
-								<div class="card-header"><?php echo __("Mastodonserver"); ?></div>
+								<div class="card-header"><?= __("Mastodonserver"); ?></div>
 								<div class="card-body">
 									<div class="mb-3">
-									<label><?php echo __("URL of Mastodonserver"); ?></label>
+									<label><?= __("URL of Mastodonserver"); ?></label>
 										<input class="form-control" type="text" name="user_mastodon_url" value="<?php if(isset($user_mastodon_url)) { echo $user_mastodon_url; } ?>" />
 										<small class="form-text text-muted"><?php echo sprintf(__("Main URL of your Mastodon server, e.g. %s"), "<a href='https://radiosocial.de/' target='_blank'>https://radiosocial.de</a>"); ?></small>
 									</div>
@@ -824,14 +824,14 @@
 						<!-- Winkeyer -->
 						<div class="col-md">
 							<div class="card">
-								<div class="card-header"><?php echo __("Winkeyer"); ?> <span class="badge text-bg-danger float-end"><?php echo __("Experimental"); ?></span></div>
+								<div class="card-header"><?= __("Winkeyer"); ?> <span class="badge text-bg-danger float-end"><?= __("Experimental"); ?></span></div>
 								<div class="card-body">
 									<div class="mb-3">
-										<label><?php echo __("Winkeyer Features Enabled"); ?></label>
+										<label><?= __("Winkeyer Features Enabled"); ?></label>
 										<?php if(!isset($user_winkey)) { $user_winkey='0'; }?>
 										<select class="form-select" name="user_winkey" id="user_winkeyer">
-											<option value="0" <?php if ($user_winkey == 0) { echo 'selected="selected"'; } ?>><?php echo __("No"); ?></option>
-											<option value="1" <?php if ($user_winkey == 1) { echo 'selected="selected"'; } ?>><?php echo __("Yes"); ?></option>
+											<option value="0" <?php if ($user_winkey == 0) { echo 'selected="selected"'; } ?>><?= __("No"); ?></option>
+											<option value="1" <?php if ($user_winkey == 1) { echo 'selected="selected"'; } ?>><?= __("Yes"); ?></option>
 										</select>
 										<small class="form-text text-muted"><?php echo sprintf(__("Winkeyer support in Wavelog is very experimental. Read the wiki first at %s before enabling."), "<a href='https://github.com/wavelog/wavelog/wiki/Winkey' target='_blank'>https://github.com/wavelog/wavelog/wiki/Winkey</a>"); ?></small>
 									</div>
@@ -844,21 +844,21 @@
 						<!-- Hams.at Settings -->
 						<div class="col-md">
 							<div class="card">
-								<div class="card-header"><?php echo __("Hams.at"); ?></div>
+								<div class="card-header"><?= __("Hams.at"); ?></div>
 								<div class="card-body">
 									<div class="mb-3">
-									<label><?php echo __("Private Feed Key"); ?></label>
+									<label><?= __("Private Feed Key"); ?></label>
 										<input class="form-control" type="text" name="user_hamsat_key" value="<?php if(isset($user_hamsat_key)) { echo $user_hamsat_key; } ?>" />
 										<small class="form-text text-muted"><?php echo sprintf(_pgettext("Hint for Hamsat API Key; uses Link", "See your profile at %s."), "<a href='https://hams.at/users/settings' target='_blank'>https://hams.at/users/settings</a>"); ?></small>
 									</div>
 									<div class="mb-3">
-										<label><?php echo __("Show Workable Passes Only"); ?></label>
+										<label><?= __("Show Workable Passes Only"); ?></label>
 										<?php if(!isset($user_hamsat_workable_only)) { $user_hamsat_workable_only='0'; }?>
 										<select class="form-select" name="user_hamsat_workable_only" id="user_hamsat_workable_only">
-											<option value="0" <?php if ($user_hamsat_workable_only == 0) { echo 'selected="selected"'; } ?>><?php echo __("No"); ?></option>
-											<option value="1" <?php if ($user_hamsat_workable_only == 1) { echo 'selected="selected"'; } ?>><?php echo __("Yes"); ?></option>
+											<option value="0" <?php if ($user_hamsat_workable_only == 0) { echo 'selected="selected"'; } ?>><?= __("No"); ?></option>
+											<option value="1" <?php if ($user_hamsat_workable_only == 1) { echo 'selected="selected"'; } ?>><?= __("Yes"); ?></option>
 										</select>
-										<small class="form-text text-muted"><?php echo __("If enabled shows only workable passes based on the gridsquare set in your hams.at account. Requires private feed key to be set."); ?></small>
+										<small class="form-text text-muted"><?= __("If enabled shows only workable passes based on the gridsquare set in your hams.at account. Requires private feed key to be set."); ?></small>
 									</div>
 								</div>
 							</div>
@@ -870,6 +870,6 @@
 		</div>
 	</div>
 	<input type="hidden" name="id" value="<?php echo $this->uri->segment(3); ?>" />
-	<button type="submit" class="btn btn-primary mb-5 mt-3"><i class="fas fa-save"></i> <?php echo __("Save Account"); ?></button>
+	<button type="submit" class="btn btn-primary mb-5 mt-3"><i class="fas fa-save"></i> <?= __("Save Account"); ?></button>
 </form>
 </div>
