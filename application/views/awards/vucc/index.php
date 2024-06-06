@@ -6,7 +6,7 @@
       var lang_awards_info_button = "<?php echo __("Award Info"); ?>";
       var lang_award_info_ln1 = "<?php echo __("VUCC - VHF/UHF Century Club Award"); ?>";
       var lang_award_info_ln2 = "<?php echo __("The VHF/UHF Century Club Award is given for a minimum number of worked and confirmed gridsquares on a desired band."); ?>";
-      var lang_award_info_ln3 = "<?php echo lang('awards_vucc_description_ln3'); ?>";
+      var lang_award_info_ln3 = "<?php echo sprintf(__("Official information and the rules can be found in this document: %s."), "<a href='https://www.arrl.org/vucc' target='_blank'>https://www.arrl.org/vucc</a>"); ?>";
       var lang_award_info_ln4 = "<?php echo __("Only VHF/UHF bands are relevant."); ?>";
     </script>
     <h2><?php echo $page_title; ?></h2>
@@ -18,9 +18,9 @@
         <table class="table table-sm table-bordered table-hover table-striped table-condensed text-center">
             <thead>
             <tr>
-                <td>Band</td>
-                <td>Grids Worked</td>
-                <td>Grids Confirmed</td>
+                <td><?php echo __('Band'); ?></td>
+                <td><?php echo __('Grids Worked'); ?></td>
+                <td><?php echo __('Grids Confirmed'); ?></td>
             </tr>
             </thead>
             <tbody>
@@ -36,6 +36,6 @@
         </table>
 
         <?php } else {
-            echo '<div class="alert alert-danger" role="alert">Nothing found!</div>';
+            echo '<div class="alert alert-danger" role="alert">' . __('Nothing found!') . '</div>';
         } ?>
 </div>

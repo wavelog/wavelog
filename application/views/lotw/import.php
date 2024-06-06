@@ -21,7 +21,7 @@
         <input type="radio" id="lotwimport" name="lotwimport" class="form-check-input">
         <label class="form-check-label" for="lotwimport"><?php echo __("Upload a File"); ?></label>
         <br><br>
-        <p><?php echo lang('lotw_upload_exported_adif_file_from_lotw'); ?></p>
+        <p><?php echo sprintf(__("Upload the Exported ADIF file from LoTW from the %s Area, to mark QSOs as confirmed on LoTW."), "<a href='https://p1k.arrl.org/lotwuser/qsos?qsoscmd=adif' target='_blank'>".__("Download Report")."</a>"); ?></p>
         <p><span class="badge text-bg-info"><?php echo __("Important"); ?></span> <?php echo __("Log files must have the file type .adi"); ?></p>
 
         <label class="visually-hidden" for="adiffile"><?php echo __("Choose file"); ?></label>
@@ -44,7 +44,7 @@
           <br />
           <div class="row">
             <div class="col-md-3">
-              <label class="form-check-label" for="callsign"><?php echo __("Select callsign to pull LoTW confirmations for"); ?></label>
+              <label class="form-check-label" for="callsign"><?php echo __("Select callsign to pull LoTW confirmations for."); ?></label>
               <?php
               $options = [];
               foreach ($callsigns->result() as $call) {

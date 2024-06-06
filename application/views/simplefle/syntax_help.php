@@ -25,5 +25,5 @@
     day ++
     df3et
 </pre>
-<p><?php echo lang('qso_simplefle_syntax_help_ln9') ?></p>
+<p><?php echo sprintf(_pgettext("uses 'this article'", "A full summary of all commands and the necessary syntax can be found in %s of our Wiki."), "<a href='https://github.com/wavelog/wavelog/wiki/SimpleFLE' target='_blank'>this article</a>"); ?></p>
 

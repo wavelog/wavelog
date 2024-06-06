@@ -12,7 +12,7 @@
 			var lang_qso_simplefle_info_ln1 = "<?php echo __("Simple Fast Log Entry (FLE)"); ?>";
 			var lang_qso_simplefle_info_ln2 = "<?php echo __("'Fast Log Entry', or simply 'FLE' is a system to log QSOs very quickly and efficiently. Due to its syntax, only a minimum of input is required to log many QSOs with as little effort as possible."); ?>";
 			var lang_qso_simplefle_info_ln3 = "<?php echo __("FLE was originally written by DF3CB. He offers a program for Windows on his website. Simple FLE was written by OK2CQR based on DF3CB's FLE and provides a web interface to log QSOs."); ?>";
-			var lang_qso_simplefle_info_ln4 = "<?php echo lang('qso_simplefle_info_ln4'); ?>";
+			var lang_qso_simplefle_info_ln4 = "<?php echo sprintf(__("A common use-case is if you have to import your paperlogs from an outdoor session and now SimpleFLE is also available in Wavelog. Information about the syntax and how FLE works can be found %s."), "<a href='https://df3cb.com/fle/documentation/' target='_blank'>here</a>"); ?>";
 			var lang_qso_simplefle_syntax_help = "<?php echo __("Syntax Help"); ?>";
 			var lang_qso_simplefle_syntax_help_title = "<?php echo __("Syntax for FLE"); ?>";
 			var lang_qso_simplefle_syntax_help_close_w_sample = "<?php echo __("Close and Load Sample Data"); ?>";

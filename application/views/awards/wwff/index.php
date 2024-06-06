@@ -7,7 +7,7 @@
             var lang_award_info_ln1 = "<?php echo __("WWFF - World Wide Flora and Fauna Award"); ?>";
             var lang_award_info_ln2 = "<?php echo __("WWFF, World Wide Flora and Fauna in Amateur Radio, encourages licensed ham radio operators to leave their shacks and operate portable in Protected Flora & Fauna areas (PFF) worldwide."); ?>";
             var lang_award_info_ln3 = "<?php echo __("More than 26,000 Protected Flora & Fauna (PFF) areas worldwide are already registered in the WWFF Directory. Hunters and Activators can apply for colorful awards, both globally and nationally."); ?>";
-            var lang_award_info_ln4 = "<?php echo lang('awards_wwff_description_ln4'); ?>";
+            var lang_award_info_ln4 = "<?php echo sprintf(__("For more information, please visit: %s."), "<a href='https://wwff.co/awards/' target='_blank'>https://wwff.co/awards/</a>"); ?>";
             </script>
             <h2><?php echo $page_title; ?></h2>
             <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?php echo __("Award Info"); ?></button>
@@ -61,6 +61,6 @@
 	</tbody>
 	</table>
 	<?php } else {
-        echo '<div class="alert alert-danger" role="alert">Nothing found!</div>';
+        echo '<div class="alert alert-danger" role="alert">' . __('Nothing found!') . '</div>';
     }?>
 </div>

@@ -8,7 +8,7 @@
             var lang_award_info_ln1 = "<?php echo __("Fred Fish Memorial Award"); ?>";
             var lang_award_info_ln2 = "<?php echo __("The Fred Fish Memorial Award was created in honor of Fred Fish, W5FF (SK), who was the first amateur to have worked and confirmed all 488 Maidenhead grid squares in the 48 contiguous United States on 6 Meters."); ?>";
             var lang_award_info_ln3 = "<?php echo __("The award will be given to any amateur who can duplicate W5FF's accomplishment."); ?>";
-            var lang_award_info_ln4 = "<?php echo lang('awards_ffma_description_ln4'); ?>";
+            var lang_award_info_ln4 = "<?php echo sprintf(__("For more information, you can visit this link: %s."), "<a href='https://www.arrl.org/ffma' target='_blank'>https://www.arrl.org/ffma</a>"); ?>";
             </script>
             <h2><?php echo $page_title; ?></h2>
             <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?php echo __("Award Info"); ?></button>

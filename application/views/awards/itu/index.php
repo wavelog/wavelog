@@ -17,7 +17,7 @@
       var lang_awards_info_button = "<?php echo __("Award Info"); ?>";
       var lang_award_info_ln1 = "<?php echo __("ITU Zones"); ?>";
       var lang_award_info_ln2 = "<?php echo __("The Classic Worked ITU Zones award may be claimed by producing evidence of having contacted land based amateur radio stations in at least 70 of the 75 broadcasting zones as defined by the International Telecommunications Union (ITU)."); ?>";
-      var lang_award_info_ln3 = "<?php echo lang('awards_itu_description_ln3'); ?>";
+      var lang_award_info_ln3 = "<?php echo sprintf(_pgettext("uses 'RSGB'", "You can find more information on the website of %s."), "<a href='https://rsgb.org/main/files/2019/01/Worked_ITU_Zones_Award_Form_2019.pdf' target='_blank'>RSGB</a>"); ?>";
 	  var lang_award_info_ln4 = "";
     </script>
     <h2><?php echo __("Awards - ITU Zones"); ?></h2>
@@ -63,7 +63,7 @@
                     </div>
                    <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" name="qrz" value="1" id="qrz" <?php if ($this->input->post('qrz')) echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="qrz">QRZ.com</label>
+                        <label class="form-check-label" for="qrz"><?php echo __('QRZ.com'); ?></label>
                     </div>
                 </div>
             </div>
@@ -145,7 +145,7 @@
         <thead>
         <tr>
             <td>#</td>
-            <td>ITU Zone</td>";
+            <td>".__("ITU Zone")."</td>";
         foreach($bands as $band) {
             echo '<td>' . $band . '</td>';
             }
@@ -193,7 +193,7 @@
 
     }
     else {
-        echo '<div class="alert alert-danger" role="alert">Nothing found!</div>';
+        echo '<div class="alert alert-danger" role="alert">'.__("Nothing found!").'</div>';
     }
     ?>
 

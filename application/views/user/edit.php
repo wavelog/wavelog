@@ -815,7 +815,7 @@
 									<div class="mb-3">
 									<label><?php echo __("URL of Mastodonserver"); ?></label>
 										<input class="form-control" type="text" name="user_mastodon_url" value="<?php if(isset($user_mastodon_url)) { echo $user_mastodon_url; } ?>" />
-										<small class="form-text text-muted"><?php echo lang('account_user_mastodon_hint'); ?></a></small>
+										<small class="form-text text-muted"><?php echo sprintf(__("Main URL of your Mastodon server, e.g. %s"), "<a href='https://radiosocial.de/' target='_blank'>https://radiosocial.de</a>"); ?></small>
 									</div>
 								</div>
 							</div>
@@ -833,7 +833,7 @@
 											<option value="0" <?php if ($user_winkey == 0) { echo 'selected="selected"'; } ?>><?php echo __("No"); ?></option>
 											<option value="1" <?php if ($user_winkey == 1) { echo 'selected="selected"'; } ?>><?php echo __("Yes"); ?></option>
 										</select>
-										<small class="form-text text-muted"><?php echo lang('account_winkeyer_hint'); ?></small>
+										<small class="form-text text-muted"><?php echo sprintf(__("Winkeyer support in Wavelog is very experimental. Read the wiki first at %s before enabling."), "<a href='https://github.com/wavelog/wavelog/wiki/Winkey' target='_blank'>https://github.com/wavelog/wavelog/wiki/Winkey</a>"); ?></small>
 									</div>
 								</div>
 							</div>
@@ -849,7 +849,7 @@
 									<div class="mb-3">
 									<label><?php echo __("Private Feed Key"); ?></label>
 										<input class="form-control" type="text" name="user_hamsat_key" value="<?php if(isset($user_hamsat_key)) { echo $user_hamsat_key; } ?>" />
-										<small class="form-text text-muted"><?php echo lang('account_hamsat_hint'); ?></a></small>
+										<small class="form-text text-muted"><?php echo sprintf(_pgettext("Hint for Hamsat API Key; uses Link", "See your profile at %s."), "<a href='https://hams.at/users/settings' target='_blank'>https://hams.at/users/settings</a>"); ?></small>
 									</div>
 									<div class="mb-3">
 										<label><?php echo __("Show Workable Passes Only"); ?></label>

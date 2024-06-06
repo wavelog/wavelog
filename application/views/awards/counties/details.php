@@ -9,8 +9,8 @@
         <thead>
         <tr>
             <td>#</td>
-            <td>State</td>
-            <td>County</td>
+            <td>' . __('State') . '</td>
+            <td>' . __('County') . '</td>
         </tr>
         </thead>
         <tbody>';
@@ -24,6 +24,6 @@
         echo '</tbody></table></div>';
     }
     else {
-        echo '<div class="alert alert-danger" role="alert">Nothing found!</div>';
+        echo '<div class="alert alert-danger" role="alert">' . __('Nothing found!') . '</div>';
     }
     ?>

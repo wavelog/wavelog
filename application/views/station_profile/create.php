@@ -29,9 +29,9 @@
 
 		<form method="post" action="<?php echo site_url('station/create'); ?>" name="create_profile">
 		  <div class="mb-3">
-		    <label for="stationNameInput"><?php echo __("Profile Name"); ?></label>
-		    <input type="text" class="form-control" name="station_profile_name" id="stationNameInput" aria-describedby="stationNameInputHelp" placeholder="Home QTH" required>
-		    <small id="stationNameInputHelp" class="form-text text-muted"><?php echo __("Shortname for the station location. For example: Home (HM54ip)"); ?></small>
+		    <label for="stationNameInput"><?php echo __("Location Name"); ?></label>
+		    <input type="text" class="form-control" name="station_profile_name" id="stationNameInput" aria-describedby="stationNameInputHelp" placeholder="<?php echo _pgettext("Station Location Setup", "Home QTH"); ?>" required>
+		    <small id="stationNameInputHelp" class="form-text text-muted"><?php echo sprintf(__("Shortname for the station location. For example: %s"), _pgettext("Station Location Setup", "Home QTH")); ?></small>
 		  </div>
 
 			<div class="mb-3">
@@ -49,21 +49,21 @@
 		    <label for="stationDXCCInput"><?php echo __("Station DXCC"); ?></label>
 				<?php if ($dxcc_list->num_rows() > 0) { ?>
 				<select class="form-select" id="dxcc_id" name="dxcc" aria-describedby="stationCallsignInputHelp">
-				<option value="0" selected><?php echo "- " . __("None") . " -"; ?></option>
+				<option value="0" selected><?php echo "- " . _pgettext("DXCC selection", "None") . " -"; ?></option>
 				<?php foreach ($dxcc_list->result() as $dxcc) { ?>
 				<option value="<?php echo $dxcc->adif; ?>"><?php echo ucwords(strtolower($dxcc->name)) . ' - ' . $dxcc->prefix; if ($dxcc->end != NULL) echo ' ('.__("Deleted DXCC").')';?>
 				</option>
 				<?php } ?>
 				</select>
 				<?php } ?>
-		    <small id="stationDXCCInputHelp" class="form-text text-muted"><?php echo __("Station DXCC entity. For example: Scotland"); ?></small>
+		    <small id="stationDXCCInputHelp" class="form-text text-muted"><?php echo __("Station DXCC entity. For example: Bolivia"); ?></small>
 			<div class="alert alert-danger" role="alert" id="warningMessageDXCC" style="display: none"> </div>
 		  </div>
 
 		  <div class="mb-3">
 		    <label for="stationCityInput"><?php echo __("Station City"); ?></label>
 		    <input type="text" class="form-control" name="city" id="stationCityInput" aria-describedby="stationCityInputHelp">
-		    <small id="stationCityInputHelp" class="form-text text-muted"><?php echo __("Station city. For example: Inverness"); ?></small>
+		    <small id="stationCityInputHelp" class="form-text text-muted"><?php echo __("Station city. For example: Oslo"); ?></small>
 		  </div>
 
         <!-- State -->
@@ -72,7 +72,7 @@
 			<select class="form-select" name="station_state" id="stateDropdown">
 				<option value=""></option>
 			</select>
-			<small id="StateHelp" class="form-text text-muted"><?php echo __("Station state. Applies to certain countries only. Leave blank if not applicable."); ?></small>
+			<small id="StateHelp" class="form-text text-muted"><?php echo __("Station state. Applies to certain countries only."); ?></small>
 		</div>
 
 		<!-- US County -->
@@ -94,7 +94,7 @@
 					}
 					?>
 				</select>
-				<small id="stationCQInputHelp" class="form-text text-muted"><?php echo __("If you don't know your CQ Zone then")." <a href='https://zone-check.eu/?m=cq' target='_blank'>".__("click here")."</a> ".__("to find it!"); ?></small>
+				<small id="stationCQInputHelp" class="form-text text-muted"><?php echo sprintf(_pgettext("uses 'click here'","If you don't know your CQ Zone then %s to find it!"),"<a href='https://zone-check.eu/?m=cq' target='_blank'>".__("click here")."</a> "); ?></small>
 			</div>
 
 			<div class="mb-3 col-sm-6">
@@ -108,7 +108,7 @@
 					}
 					?>
 				</select>
-				<small id="stationITUInputHelp" class="form-text text-muted"><?php echo __("If you don't know your ITU Zone then")." <a href='https://zone-check.eu/?m=itu' target='_blank'>".__("click here")."</a> ".__("to find it!"); ?></small>
+				<small id="stationITUInputHelp" class="form-text text-muted"><?php echo sprintf(_pgettext("uses 'click here'","If you don't know your ITU Zone then %s to find it!"),"<a href='https://zone-check.eu/?m=itu' target='_blank'>".__("click here")."</a> "); ?></small>
 			</div>
 		</div>
 
@@ -122,7 +122,7 @@
 			</div>
 			</div>
 
-		    <small id="stationGridInputHelp" class="form-text text-muted"><?php echo lang("station_location_gridsquare_hint_ln1"); ?></small>
+		    <small id="stationGridInputHelp" class="form-text text-muted"><?php echo sprintf(_pgettext("uses 'click here'", "Station gridsquare. For example: HM54AP. If you don't know your grid square then %s!"), "<a href='https://zone-check.eu/?m=loc' target='_blank'>".__("click here")."</a>"); ?></small><br>
 		    <small id="stationGridInputHelp" class="form-text text-muted"><?php echo __("If you are located on a grid line, enter multiple grid squares separated with commas. For example: IO77,IO78,IO87,IO88."); ?></small>
 		  </div>
 
@@ -139,29 +139,29 @@
 
                 </select>
                 <small id="stationIOTAInputHelp" class="form-text text-muted"><?php echo __("Station IOTA reference. For example: EU-005"); ?></small>
-                <small id="stationIOTAInputHelp" class="form-text text-muted"><?php echo lang("station_location_iota_hint_ln2"); ?></small>
+                <small id="stationIOTAInputHelp" class="form-text text-muted"><?php echo sprintf(__("You can look up IOTA references at the %s."), "<a target='_blank' href='https://www.iota-world.org/iota-directory/annex-f-short-title-iota-reference-number-list.html'>".__("IOTA World website")."</a>"); ?></small>
             </div>
 
 		  <div class="mb-3">
 		    <label for="stationSOTAInput"><?php echo __("SOTA Reference"); ?></label>
 		    <input type="text" class="form-control" name="sota" id="stationSOTAInput" aria-describedby="stationSOTAInputHelp">
-		    <small id="stationSOTAInputHelp" class="form-text text-muted"><?php echo lang("station_location_sota_hint_ln1"); ?></small>
+		    <small id="stationSOTAInputHelp" class="form-text text-muted"><?php echo sprintf(__("Station SOTA reference. You can look up SOTA references at the %s."), "<a target='_blank' href='https://www.sotamaps.org/'>".__("SOTA Maps website")."</a>"); ?></small>
 		  </div>
 
 		  <div class="mb-3">
 		    <label for="stationWWFFInput"><?php echo __("WWFF Reference"); ?></label>
 		    <input type="text" class="form-control" name="wwff" id="stationWWFFInput" aria-describedby="stationWWFFInputHelp">
-		    <small id="stationWWFFInputHelp" class="form-text text-muted"><?php echo lang("station_location_wwff_hint_ln1"); ?></small>
+		    <small id="stationWWFFInputHelp" class="form-text text-muted"><?php echo sprintf(__("Station WWFF reference. You can look up WWFF references at the %s."), "<a target='_blank' href='https://www.cqgma.org/mvs/'>".__("GMA Map website")."</a>"); ?></small>
 		  </div>
 
 		  <div class="mb-3">
 		    <label for="stationPOTAInput"><?php echo __("POTA Reference(s)"); ?></label>
 		    <input type="text" class="form-control" name="pota" id="stationPOTAInput" aria-describedby="stationPOTAInputHelp">
-		    <small id="stationPOTAInputHelp" class="form-text text-muted"><?php echo lang("station_location_pota_hint_ln1"); ?></small>
+		    <small id="stationPOTAInputHelp" class="form-text text-muted"><?php echo sprintf(__("Station POTA reference(s). Multiple comma separated values allowed. You can look up POTA references at the %s."), "<a target='_blank' href='https://pota.app/#/map/'>".__("POTA Map website")."</a>"); ?></small>
 		  </div>
 
 		  <div class="mb-3">
-		    <label for="stationSigInput"><?php echo __("Signature"); ?></label>
+		    <label for="stationSigInput"><?php echo __("Signature Name"); ?></label>
 		    <input type="text" class="form-control" name="sig" id="stationSigInput" aria-describedby="stationSigInputHelp">
 		    <small id="stationSigInputHelp" class="form-text text-muted"><?php echo __("Station Signature (e.g. GMA).."); ?></small>
 		  </div>
@@ -173,7 +173,7 @@
 		  </div>
 
             <div class="mb-3">
-                <label for="eqslNickname">eQSL QTH Nickname</label> <!-- This does not need Multilanguage Support -->
+                <label for="eqslNickname"><?php echo _pgettext("Probably no translation needed","eQSL QTH Nickname"); ?></label>
                 <input type="text" class="form-control" name="eqslnickname" id="eqslNickname" aria-describedby="eqslhelp">
                 <small id="eqslhelp" class="form-text text-muted"><?php echo __("The QTH Nickname which is configured in your eQSL Profile"); ?></small>
             </div>
@@ -209,7 +209,7 @@
                 <div class="mb-3 col-sm-3">                                                                                                                                                    
 					<label for="hrdlog_code"><?php echo __("HRDLog.net API Key"); ?></label>
                     <input type="text" class="form-control" name="hrdlog_code" id="hrdlog_code" aria-describedby="hrdlog_codeHelp">
-                    <small id="hrdlog_codeHelp" class="form-text text-muted"><?php echo lang("station_location_hrdlog_code_hint"); ?></a></small>
+                    <small id="hrdlog_codeHelp" class="form-text text-muted"><?php echo sprintf(_pgettext("HRDLog.net Userprofile page", "Create your API Code on your %s"), "<a href='http://www.hrdlog.net/EditUser.aspx' target='_blank'>".__("HRDLog.net Userprofile page")."</a>"); ?></a></small>
                 </div>
                 <div class="mb-3 col-sm-3">
                     <label for="hrdlogrealtime"><?php echo __("HRDLog.net Logbook Realtime Upload"); ?></label>                                                                                                                 
@@ -226,13 +226,13 @@
 
             <div class="row">
                 <div class="mb-3 col-sm-6">
-                    <label for="qrzApiKey">QRZ.com Logbook API Key</label>  <!-- This does not need Multilanguage Support -->
+                    <label for="qrzApiKey"><?php echo _pgettext("Probably no translation needed","QRZ.com Logbook API Key"); ?></label>
 					<div class="input-group">
                     	<input type="text" class="form-control" name="qrzapikey" pattern="^([A-F0-9]{4}-){3}[A-F0-9]{4}$" id="qrzApiKey" aria-describedby="qrzApiKeyHelp">
-						<button class="btn btn-secondary" type="button" id="qrz_apitest_btn">Test API-Key</button>
+						<button class="btn btn-secondary" type="button" id="qrz_apitest_btn"><?php echo __("Test API-Key"); ?></button>
 					</div>
 					<div class="alert mt-3" style="display: none;" id="qrz_apitest_msg"></div>
-                    <small id="qrzApiKeyHelp" class="form-text text-muted"><?php echo lang("station_location_qrz_hint"); ?></a></small>
+                    <small id="qrzApiKeyHelp" class="form-text text-muted"><?php echo sprintf(_pgettext("the QRZ.com Logbook settings page", "Find your API key on %s"), "<a href='https://logbook.qrz.com/logbook' target='_blank'>".__("the QRZ.com Logbook settings page")."</a>"); ?></a></small>
                 </div>
                 <div class="mb-3 col-sm-6">
                     <label for="qrzrealtime"><?php echo __("QRZ.com Logbook Upload"); ?></label>
@@ -246,9 +246,9 @@
 
 			<div class="row">
 				<div class="mb-3 col-sm-6">
-					<label for="webadifApiKey"> QO-100 Dx Club API Key </label> <!-- This does not need Multilanguage Support -->
+					<label for="webadifApiKey"><?php echo _pgettext("Probably no translation needed","QO-100 Dx Club API Key"); ?></label>
 					<input type="text" class="form-control" name="webadifapikey" id="webadifApiKey" aria-describedby="webadifApiKeyHelp">
-					<small id="webadifApiKeyHelp" class="form-text text-muted"><?php echo lang("station_location_qo100_hint"); ?></a></small>
+					<small id="webadifApiKeyHelp" class="form-text text-muted"><?php echo sprintf(_pgettext("QO-100 Dx Club's profile page", "Create your API key on your %s"), "<a href='https://qo100dx.club' target='_blank'>".__("QO-100 Dx Club's profile page")."</a>"); ?></a></small>
 				</div>
 				<div class="mb-3 col-sm-6">
 					<label for="webadifrealtime"><?php echo __("QO-100 Dx Club Realtime Upload"); ?></label>

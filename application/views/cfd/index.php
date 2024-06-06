@@ -4,7 +4,7 @@
 
     <div class="card">
         <div class="card-header">
-            <?php echo lang('export_cfd_description'); ?>
+            <?php echo sprintf(__("Export of CFD-File for DARC-Toplist (See %s)"), "<a href='https://toplist.darc.de' target='_blank'>https://toplist.darc.de</a>"); ?>
         </div>
 
         <div class="card-body">

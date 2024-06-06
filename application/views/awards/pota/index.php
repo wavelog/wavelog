@@ -7,7 +7,7 @@
             var lang_award_info_ln1 = "<?php echo __("POTA Awards"); ?>";
             var lang_award_info_ln2 = "<?php echo __("Parks on the Air® (POTA) started in early 2017 when the ARRL's National Parks on the Air special event ended. A group of volunteers wanted to continue the fun beyond the one-year event, and thus, POTA was born."); ?>";
             var lang_award_info_ln3 = "<?php echo __("POTA works similarly to SOTA, with Activators and Hunters. For the awards, there are several categories based on the number of parks, geographic areas, and more."); ?>";
-            var lang_award_info_ln4 = "<?php echo lang('awards_pota_description_ln4'); ?>";
+            var lang_award_info_ln4 = "<?php echo sprintf(_pgettext("uses 'the website'", "For more information about the available awards and categories, please visit the %s."), "<a href='https://parksontheair.com/pota-awards/' target='_blank'>Parks on the Air® website</a>"); ?>";
             </script>
             <h2><?php echo $page_title; ?></h2>
             <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?php echo __("Award Info"); ?></button>
@@ -64,6 +64,6 @@
 	</tbody>
 	</table>
 	<?php } else {
-        echo '<div class="alert alert-danger" role="alert">Nothing found!</div>';
+        echo '<div class="alert alert-danger" role="alert">' . __('Nothing found!') . '</div>';
     }?>
 </div>

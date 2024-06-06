@@ -16,7 +16,7 @@
             var lang_award_info_ln1 = "<?php echo __("JCC - Japan Century Cities Award"); ?>";
             var lang_award_info_ln2 = "<?php echo __("May be claimed for having contacted (heard) and received a QSL card from an amateur station located in each of at least 100 different cities of Japan."); ?>";
             var lang_award_info_ln3 = "<?php echo __("JCC-200, 300, 400, 500, 600, 700 and 800 will be issued as separate awards. A list of QSL cards should be arranged in order of JCC reference number, however names of city may be omitted. An additional sticker will be issued at every 50 contacts like 150, 250, 350, 450, 550, 650, 750 cities."); ?>";
-            var lang_award_info_ln4 = "<?php echo lang('awards_jcc_description_ln4'); ?>";
+            var lang_award_info_ln4 = "<?php echo sprintf(__("For more information, please visit: %s."), "<a href='https://www.jarl.org/English/4_Library/A-4-2_Awards/Award_Main.htm' target='_blank'>https://www.jarl.org/English/4_Library/A-4-2_Awards/Award_Main.htm</a>"); ?>";
             </script>
             <h2><?php echo $page_title; ?></h2>
             <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?php echo __("Award Info"); ?></button>
@@ -27,19 +27,19 @@
         <fieldset>
 
             <div class="mb-3 row">
-                <div class="col-md-2" for="checkboxes">Worked / Confirmed</div>
+                <div class="col-md-2" for="checkboxes"><?php echo __('Worked / Confirmed'); ?></div>
                 <div class="col-md-10">
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" name="worked" id="worked" value="1" <?php if ($this->input->post('worked') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="worked">Show worked</label>
+                        <label class="form-check-label" for="worked"><?php echo __('Show worked'); ?></label>
                     </div>
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" name="confirmed" id="confirmed" value="1" <?php if ($this->input->post('confirmed') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="confirmed">Show confirmed</label>
+                        <label class="form-check-label" for="confirmed"><?php echo __('Show confirmed'); ?></label>
                     </div>
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" name="notworked" id="notworked" value="1" <?php if ($this->input->post('notworked')) echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="notworked">Show not worked</label>
+                        <label class="form-check-label" for="notworked"><?php echo __('Show not worked'); ?></label>
                     </div>
                 </div>
             </div>
@@ -49,28 +49,28 @@
                 <div class="col-md-10">
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" name="qsl" value="1" id="qsl" <?php if ($this->input->post('qsl') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="qsl">QSL</label>
+                        <label class="form-check-label" for="qsl"><?php echo __('QSL'); ?></label>
                     </div>
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" name="lotw" value="1" id="lotw" <?php if ($this->input->post('lotw') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="lotw">LoTW</label>
+                        <label class="form-check-label" for="lotw"><?php echo __('LoTW'); ?></label>
                     </div>
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" name="eqsl" value="1" id="eqsl" <?php if ($this->input->post('eqsl')) echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="eqsl">eQSL</label>
+                        <label class="form-check-label" for="eqsl"><?php echo __('eQSL'); ?></label>
                     </div>
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" name="qrz" value="1" id="qrz" <?php if ($this->input->post('qrz')) echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="qrz">QRZ.com</label>
+                        <label class="form-check-label" for="qrz"><?php echo __('QRZ.com'); ?></label>
                     </div>
                 </div>
             </div>
 
             <div class="mb-3 row">
-                <label class="col-md-2 control-label" for="band">Band</label>
+                <label class="col-md-2 control-label" for="band"><?php echo __('Band'); ?></label>
                 <div class="col-md-2">
                     <select id="band2" name="band" class="form-select form-select-sm">
-                        <option value="All" <?php if ($this->input->post('band') == "All" || $this->input->method() !== 'post') echo ' selected'; ?> >Every band</option>
+                        <option value="All" <?php if ($this->input->post('band') == "All" || $this->input->method() !== 'post') echo ' selected'; ?> ><?php echo __('Every band'); ?></option>
                         <?php foreach($worked_bands as $band) {
                             echo '<option value="' . $band . '"';
                             if ($this->input->post('band') == $band) echo ' selected';
@@ -81,10 +81,10 @@
             </div>
 
             <div class="mb-3 row">
-                <label class="col-md-2 control-label" for="mode">Mode</label>
+                <label class="col-md-2 control-label" for="mode"><?php echo __('Mode'); ?></label>
                 <div class="col-md-2">
                 <select id="mode" name="mode" class="form-select form-select-sm">
-                    <option value="All" <?php if ($this->input->post('mode') == "All" || $this->input->method() !== 'mode') echo ' selected'; ?>>All</option>
+                    <option value="All" <?php if ($this->input->post('mode') == "All" || $this->input->method() !== 'mode') echo ' selected'; ?>><?php echo __('All'); ?></option>
                     <?php
                     foreach($modes->result() as $mode){
                         if ($mode->submode == null) {
@@ -105,11 +105,11 @@
             <div class="mb-3 row">
                 <label class="col-md-2 control-label" for="button1id"></label>
                 <div class="col-md-10">
-                    <button id="button2id" type="reset" name="button2id" class="btn btn-sm btn-warning">Reset</button>
-                    <button id="button1id" type="submit" name="button1id" class="btn btn-sm btn-primary">Show</button>
+                    <button id="button2id" type="reset" name="button2id" class="btn btn-sm btn-warning"><?php echo __('Reset'); ?></button>
+                    <button id="button1id" type="submit" name="button1id" class="btn btn-sm btn-primary"><?php echo __('Show'); ?></button>
                     <?php if ($jcc_array) {?>
                     <button type="button" onclick="load_jcc_map();" class="btn btn-info btn-sm"><i class="fas fa-globe-asia"></i> <?php echo __("Show JCC Map"); ?></button>
-                    <button id="button3id" type="button" onclick="export_qsos();" name="button3id" class="btn btn-sm btn-info">Export</button>
+                    <button id="button3id" type="button" onclick="export_qsos();" name="button3id" class="btn btn-sm btn-info"><?php echo __('Export'); ?></button>
                     <?php } ?>
                 </div>
             </div>
@@ -119,7 +119,7 @@
 
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active" id="table-tab" data-bs-toggle="tab" href="#table" role="tab" aria-controls="table" aria-selected="true">Results</a>
+            <a class="nav-link active" id="table-tab" data-bs-toggle="tab" href="#table" role="tab" aria-controls="table" aria-selected="true"><?php echo __('Results'); ?></a>
         </li>
         <li class="nav-item">
             <a class="nav-link" onclick="load_jcc_map();" id="map-tab" data-bs-toggle="tab" href="#jccmaptab" role="tab" aria-controls="home" aria-selected="false"><?php echo __("Map"); ?></a>
@@ -144,8 +144,8 @@
                 <table id="jccTable" style="width:100%" class="table-sm table table-bordered table-hover table-striped table-condensed text-center">
                     <thead>
                     <tr>
-						<td>Number</td>
-						<td>City</td>';
+						<td>' . __('Number') . '</td>
+						<td>' . __('City') . '</td>';
 
         foreach($bands as $band) {
             echo '<td>' . $band . '</td>';
@@ -161,7 +161,7 @@
             echo '</tr>';
         }
         echo '</table>
-        <h2>Summary</h2>
+        <h2>' . __('Summary') . '</h2>
 
         <table class="table-sm tablesummary table table-bordered table-hover table-striped table-condensed text-center">';
         $sat = 0;
@@ -178,9 +178,9 @@
                    echo '<td>' . $band . '</td>';
                }
            }
-           echo '<td><b>Total</b></td>';
+           echo '<td><b>' . __('Total') . '</b></td>';
            if ($sat == 1) {
-              echo '<td>SAT</td>';
+              echo '<td>' . __('SAT') . '</td>';
            }
         } else {
            echo '<td></td><td><b>'.$bands[0].'</b></td>';
@@ -188,7 +188,7 @@
         echo '</tr></thead>';
         echo '<tbody>
 
-        <tr><td>Total worked</td>';
+        <tr><td>' . __('Total worked') . '</td>';
 
         if (count($bands) > 2) {
            $len_worked = count($jcc_summary['worked']);
@@ -207,7 +207,7 @@
 
         echo '</tr><tr>';
 
-        echo '<td>Total confirmed</td>';
+        echo '<td>' . __('Total confirmed') . '</td>';
         if (count($bands) > 2) {
            $len_confirmed = count($jcc_summary['confirmed']);
            $j = 0;
@@ -229,7 +229,7 @@
 
     }
     else {
-        echo '<div class="alert alert-danger" role="alert">Nothing found!</div>';
+        echo '<div class="alert alert-danger" role="alert">' . __('Nothing found!') . '</div>';
     }
     ?>
                 </div>
