@@ -692,3 +692,6 @@ $config['disable_manual_lotw'] = false;
 $config['disable_manual_eqsl'] = false;
 $config['disable_manual_hrdlog'] = false;
 $config['disable_manual_qrz'] = false;
+
+# Disables QSL-Image-Feature if true. if non-existant or false the QSL-Feature is enabled
+$config['disable_qsl'] = false;

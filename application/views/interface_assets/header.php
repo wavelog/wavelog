@@ -99,8 +99,10 @@
 							<div class="dropdown-divider"></div>
 							<li><a class="dropdown-item" href="<?php echo site_url('logbookadvanced'); ?>"><i class="fas fa-book-open"></i> <?php echo lang('menu_advanced'); ?></a></li>
 							<div class="dropdown-divider"></div>
+							<?php if (!($this->config->item('disable_qsl') ?? false)) { ?>
 							<li><a class="dropdown-item" href="<?php echo site_url('qsl'); ?>" title="QSL"><i class="fa fa-id-card"></i> <?php echo lang('menu_view_qsl'); ?></a></li>
 							<div class="dropdown-divider"></div>
+							<?php } ?>
 							<li><a class="dropdown-item" href="<?php echo site_url('eqsl'); ?>" title="eQSL"><i class="fa fa-id-card"></i> <?php echo lang('menu_view_eqsl'); ?></a></li>
 						</ul>
 					</li>
