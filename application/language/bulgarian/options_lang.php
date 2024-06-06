@@ -3,7 +3,7 @@
 defined('BASEPATH') OR exit('Не е разрешен директен достъп до скрипта');
 
 $lang['options_wavelog_options'] = 'Wavelog Options';
-$lang['options_message1'] = 'Wavelog Options are global settings used for all users of the installation, which are overridden if there\'s a setting on a user level.';
+$lang['options_message1'] = "Wavelog Options are global settings used for all users of the installation, which are overridden if there's a setting on a user level.";
 
 $lang['options_appearance'] = 'Appearance';
 $lang['options_theme'] = 'Theme';

@@ -347,7 +347,7 @@
 											<option value="1" <?php if ($user_qso_end_times == 1) { echo " selected =\"selected\""; } ?>><?= __("Yes"); ?></option>
 											<option value="0" <?php if ($user_qso_end_times == 0) { echo " selected =\"selected\""; } ?>><?= __("No"); ?></option>
 										</select>
-										<small id="SelectDateFormatHelp" class="form-text text-muted"><?= __("Choose yes here if you want to log QSO start and end times separately. If set to \'No\' the end time will be the same as start time."); ?></small>
+										<small id="SelectDateFormatHelp" class="form-text text-muted"><?= __("Choose yes here if you want to log QSO start and end times separately. If set to 'No' the end time will be the same as start time."); ?></small>
 									</div>
 
 									<hr />
