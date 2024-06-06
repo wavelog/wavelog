@@ -5,7 +5,7 @@ on:
   #   paths:
   #     - '**/*.po'
   #   branches:
-  #     - 'gettext_test'
+  #     - 'dev'
   workflow_dispatch:
 
 jobs:
@@ -16,8 +16,8 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
-        repository: HB9HIL/wavelog
-        ref: gettext_test
+        repository: wavelog/wavelog
+        ref: dev
         fetch-depth: 2
 
     - name: Set up gettext

@@ -11,8 +11,8 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
-        repository: HB9HIL/wavelog
-        ref: gettext_test
+        repository: wavelog/wavelog
+        ref: dev
 
     - name: Set up gettext
       run: sudo apt-get install -y gettext
