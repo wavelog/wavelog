@@ -38,10 +38,10 @@ class Sattimers extends CI_Controller {
 
 		$data['gridsquare'] = strtoupper($this->stations->find_gridsquare());
 		if ($data['gridsquare'] == "0") {
-			$this->session->set_flashdata('message', lang('dashboard_locations_warning'));
+			$this->session->set_flashdata('message', sprintf(__("You have no station locations. Go %s to create it!"), '<a href="' . site_url('stationsetup') . '">' . __("here") . '</a>'));
 		}
 
-		$data['page_title'] = "Satellite Timers";
+		$data['page_title'] = __("Satellite Timers");
 
 		$CI =& get_instance();
 		if($CI->session->userdata('user_date_format')) {

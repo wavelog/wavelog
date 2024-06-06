@@ -892,10 +892,10 @@ class Awards extends CI_Controller {
 
       $data['attribution']= $this->optionslib->get_option('option_map_tile_server_copyright');
 
-      $data['gridsquares_gridsquares']= lang('gridsquares_gridsquares');
-      $data['gridsquares_gridsquares_worked']= lang('gridsquares_gridsquares_worked');
-      $data['gridsquares_gridsquares_lotw']= lang('gridsquares_gridsquares_lotw');
-      $data['gridsquares_gridsquares_paper']= lang('gridsquares_gridsquares_paper');
+      $data['gridsquares_gridsquares']= __("Gridsquares");
+      $data['gridsquares_gridsquares_worked']= __("Gridsquares worked");
+      $data['gridsquares_gridsquares_lotw']= __("Gridsquares confirmed on LoTW");
+      $data['gridsquares_gridsquares_paper']= __("Gridsquares confirmed by paper QSL");
 
       $indexData['dxcc'] = $dxcc;
 
@@ -924,10 +924,10 @@ class Awards extends CI_Controller {
 
 		$data['attribution']= $this->optionslib->get_option('option_map_tile_server_copyright');
 
-		$data['gridsquares_gridsquares']= lang('gridsquares_gridsquares');
-		$data['gridsquares_gridsquares_worked']= lang('gridsquares_gridsquares_worked');
-		$data['gridsquares_gridsquares_lotw']= lang('gridsquares_gridsquares_lotw');
-		$data['gridsquares_gridsquares_paper']= lang('gridsquares_gridsquares_paper');
+		$data['gridsquares_gridsquares']= __("Gridsquares");
+		$data['gridsquares_gridsquares_worked']= __("Gridsquares worked");
+		$data['gridsquares_gridsquares_lotw']= __("Gridsquares confirmed on LoTW");
+		$data['gridsquares_gridsquares_paper']= __("Gridsquares confirmed by paper QSL");
 		$data['grid_count'] = $this->ffma_model->get_grid_count();
 		$data['grids'] = $this->ffma_model->get_grids();
 

@@ -2,7 +2,7 @@
 
     <br>
 
-    <h2><?php echo $this->lang->line('general_word_eqslcards'); ?></h2>
+    <h2><?php echo __("eQSL Cards"); ?></h2>
 
     <?php $userdata_dir = $this->config->item('userdata');
     if (isset($userdata_dir)) { ?>
@@ -25,13 +25,13 @@
         echo '<table style="width:100%" class="eqsltable table table-sm table-bordered table-hover table-striped table-condensed">
         <thead>
         <tr>
-        <th style=\'text-align: center\'>'.$this->lang->line('gen_hamradio_callsign').'</th>
-        <th style=\'text-align: center\'>'.$this->lang->line('gen_hamradio_mode').'</th>
-        <th style=\'text-align: center\'>'.$this->lang->line('general_word_date').'</th>
-        <th style=\'text-align: center\'>'.$this->lang->line('general_word_time').'</th>
-        <th style=\'text-align: center\'>'.$this->lang->line('gen_hamradio_band').'</th>
-        <th style=\'text-align: center\'>'.$this->lang->line('gen_hamradio_propagation_mode').'</th>
-        <th style=\'text-align: center\'>'.$this->lang->line('gen_hamradio_qsl').' '.$this->lang->line('general_word_date').'</th>
+        <th style=\'text-align: center\'>'.__("Callsign").'</th>
+        <th style=\'text-align: center\'>'.__("Mode").'</th>
+        <th style=\'text-align: center\'>'.__("Date").'</th>
+        <th style=\'text-align: center\'>'.__("Time").'</th>
+        <th style=\'text-align: center\'>'.__("Band").'</th>
+        <th style=\'text-align: center\'>'.__("Propagation Mode").'</th>
+        <th style=\'text-align: center\'>'.__("QSL").' '.__("Date").'</th>
         <th style=\'text-align: center\'></th>
         </tr>
         </thead><tbody>';

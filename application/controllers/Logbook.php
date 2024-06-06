@@ -34,7 +34,7 @@ class Logbook extends CI_Controller {
 		$data['user_map_custom'] = $this->optionslib->get_map_custom();
 
 		if(!$data['results']) {
-			$this->session->set_flashdata('notice', lang('error_no_logbook_found') . ' <a href="' . site_url('logbooks') . '" title="Station Logbooks">Station Logbooks</a>');
+			$this->session->set_flashdata('notice', __("No logbooks were found. You need to define a logbook under Station Logbooks! Do it here:") . ' <a href="' . site_url('logbooks') . '" title="Station Logbooks">' . __('Station Logbooks') . '</a>');
 		}
 
 		// Calculate Lat/Lng from Locator to use on Maps
@@ -664,13 +664,13 @@ class Logbook extends CI_Controller {
 					$html .= $this->part_table_header_col($this, $this->session->userdata('user_column4')==""?'Band':$this->session->userdata('user_column4'));
 					switch($this->session->userdata('user_previous_qsl_type')) {
 						case 0:
-							$html .= "<th>".lang('gen_hamradio_qsl')."</th>";
+							$html .= "<th>".__("QSL")."</th>";
 							break;
 						case 1:
-							$html .= "<th>".lang('lotw_short')."</th>";
+							$html .= "<th>".__("LoTW")."</th>";
 							break;
 						case 2:
-							$html .= "<th>".lang('eqsl_short')."</th>";
+							$html .= "<th>".__("eQSL")."</th>";
 							break;
 						case 4:
 							$html .= "<th>QRZ</th>";
@@ -679,7 +679,7 @@ class Logbook extends CI_Controller {
 							$html .= "<th>Clublog</th>";
 							break;
 						default:
-							$html .= "<th>".lang('gen_hamradio_qsl')."</th>";
+							$html .= "<th>".__("QSL")."</th>";
 							break;
 					}
 					$html .= "<th></th>";
@@ -1307,7 +1307,7 @@ class Logbook extends CI_Controller {
 		case 'Mode':    $ret.= '<td>'; $ret.= $row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE . '</td>'; break;
 		case 'RSTS':    $ret.= '<td class="d-none d-sm-table-cell">' . $row->COL_RST_SENT; if ($row->COL_STX) { $ret.= ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">'; $ret.=sprintf("%03d", $row->COL_STX); $ret.= '</span>';} if ($row->COL_STX_STRING) { $ret.= ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">' . $row->COL_STX_STRING . '</span>';} $ret.= '</td>'; break;
 		case 'RSTR':    $ret.= '<td class="d-none d-sm-table-cell">' . $row->COL_RST_RCVD; if ($row->COL_SRX) { $ret.= ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">'; $ret.=sprintf("%03d", $row->COL_SRX); $ret.= '</span>';} if ($row->COL_SRX_STRING) { $ret.= ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">' . $row->COL_SRX_STRING . '</span>';} $ret.= '</td>'; break;
-		case 'Country': $ret.= '<td>' . ucwords(strtolower(($row->COL_COUNTRY ?? ''))); if ($row->end ?? '' != '') $ret.= ' <span class="badge text-bg-danger">'.$ci->lang->line('gen_hamradio_deleted_dxcc').'</span>'  . '</td>'; break;
+		case 'Country': $ret.= '<td>' . ucwords(strtolower(($row->COL_COUNTRY ?? ''))); if ($row->end ?? '' != '') $ret.= ' <span class="badge text-bg-danger">'.__("Deleted DXCC").'</span>'  . '</td>'; break;
 		case 'IOTA':    $ret.= '<td>' . ($row->COL_IOTA) . '</td>'; break;
 		case 'SOTA':    $ret.= '<td>' . ($row->COL_SOTA_REF) . '</td>'; break;
 		case 'WWFF':    $ret.= '<td>' . ($row->COL_WWFF_REF) . '</td>'; break;

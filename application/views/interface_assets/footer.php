@@ -86,7 +86,7 @@ if($this->session->userdata('user_id') != null) {
     }
     $versionDialogHeader = $this->optionslib->get_option('version_dialog_header');
     if (empty($versionDialogHeader)) {
-        $this->optionslib->update('version_dialog_header', $this->lang->line('options_version_dialog'), 'yes');
+        $this->optionslib->update('version_dialog_header', __("Version Info"), 'yes');
     }
     if($versionDialog != "disabled") {
         $confirmed = $this->user_options_model->get_options('version_dialog', array('option_name'=>'confirmed'))->result();

@@ -369,10 +369,10 @@ class Visitor extends CI_Controller {
 		$data['layer'] = $this->optionslib->get_option('option_map_tile_server');
 		$data['attribution'] = $this->optionslib->get_option('option_map_tile_server_copyright');
 
-		$data['gridsquares_gridsquares'] = lang('gridsquares_gridsquares');
-		$data['gridsquares_gridsquares_confirmed'] = lang('gridsquares_gridsquares_confirmed');
-		$data['gridsquares_gridsquares_not_confirmed'] = lang('gridsquares_gridsquares_not_confirmed');
-		$data['gridsquares_gridsquares_total_worked'] = lang('gridsquares_gridsquares_total_worked');
+		$data['gridsquares_gridsquares'] = __("Gridsquares");
+		$data['gridsquares_gridsquares_confirmed'] = __("Gridsquares confirmed");
+		$data['gridsquares_gridsquares_not_confirmed'] = __("Gridsquares not confirmed");
+		$data['gridsquares_gridsquares_total_worked'] = __("Total gridsquares worked");
 
 		$data['visitor'] = true;
 

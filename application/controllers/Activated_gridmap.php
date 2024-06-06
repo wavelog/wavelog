@@ -7,7 +7,7 @@ class Activated_gridmap extends CI_Controller {
 	}
 
 	public function index() {
-		$data['page_title'] = "Activated Gridsquare Map";
+		$data['page_title'] = __("Activated Gridsquare Map");
 
 		$this->load->model('bands');
 		$this->load->model('activated_gridmap_model');
@@ -28,10 +28,10 @@ class Activated_gridmap extends CI_Controller {
 
 		$data['attribution'] = $this->optionslib->get_option('option_map_tile_server_copyright');
 
-		$data['gridsquares_gridsquares'] 				= lang('gridsquares_gridsquares');
-		$data['gridsquares_gridsquares_confirmed'] 		= lang('gridsquares_gridsquares_confirmed');
-		$data['gridsquares_gridsquares_not_confirmed'] 	= lang('gridsquares_gridsquares_not_confirmed');
-		$data['gridsquares_gridsquares_total_activated'] 	= lang('gridsquares_gridsquares_total_activated');
+		$data['gridsquares_gridsquares'] 				= __("Gridsquares");
+		$data['gridsquares_gridsquares_confirmed'] 		= __("Gridsquares confirmed");
+		$data['gridsquares_gridsquares_not_confirmed'] 	= __("Gridsquares not confirmed");
+		$data['gridsquares_gridsquares_total_activated'] 	= __("Total gridsquares activated");
 
 		$footerData = [];
 		$footerData['scripts'] = [

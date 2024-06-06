@@ -9,7 +9,7 @@ class User extends CI_Controller {
 
 		$data['results'] = $this->user_model->users();
 
-		$data['page_title'] = $this->lang->line('admin_user_accounts');
+		$data['page_title'] = __("User Accounts");
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('user/main');
@@ -659,10 +659,10 @@ class User extends CI_Controller {
 						}
 						$this->user_options_model->set_option('header_menu', 'locations_quickswitch', array('boolean'=>xss_clean($this->input->post('user_locations_quickswitch', true))));
 						$this->user_options_model->set_option('header_menu', 'utc_headermenu', array('boolean'=>xss_clean($this->input->post('user_utc_headermenu', true))));
-						$this->session->set_flashdata('success', lang('account_user').' '.$this->input->post('user_name', true).' '.lang('account_word_edited'));
+						$this->session->set_flashdata('success', __("User").' '.$this->input->post('user_name', true).' '.__("edited"));
 						redirect('user/edit/'.$this->uri->segment(3));
 					} else {
-						$this->session->set_flashdata('success', lang('account_user').' '.$this->input->post('user_name', true).' '.lang('account_word_edited'));
+						$this->session->set_flashdata('success', __("User").' '.$this->input->post('user_name', true).' '.__("edited"));
 						redirect('user');
 					}
 					return;

@@ -106,18 +106,17 @@
 <?php
 
 function write_dxcc_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $award) {
-    $ci =& get_instance();
     $i = count($timeline_array);
     echo '<table style="width:100%" class="table table-sm timelinetable table-bordered table-hover table-striped table-condensed text-center">
               <thead>
                     <tr>
                         <td>#</td>
-                        <td>'.$ci->lang->line('general_word_date').'</td>
-                        <td>'.$ci->lang->line('gen_hamradio_prefix').'</td>
-                        <td>'.$ci->lang->line('general_word_country').'</td>
-                        <td>'.$ci->lang->line('station_logbooks_status').'</td>
-                        <td>'.$ci->lang->line('general_word_enddate').'</td>
-                        <td>'.$ci->lang->line('gridsquares_show_qsos').'</td>
+                        <td>'.__("Date").'</td>
+                        <td>'.__("Prefix").'</td>
+                        <td>'.__("Country").'</td>
+                        <td>'.__("Status").'</td>
+                        <td>'.__("End Date").'</td>
+                        <td>'.__("Show QSO's").'</td>
                     </tr>
                 </thead>
                 <tbody>';
@@ -130,25 +129,24 @@ function write_dxcc_timeline($timeline_array, $custom_date_format, $bandselect, 
                 <td>' . $line->prefix . '</td>
                 <td>' . $line->col_country . '</td>
                 <td>';
-        if (!empty($line->end)) echo '<span class="badge text-bg-danger">'.$ci->lang->line('gen_hamradio_deleted_dxcc').'</span>';
+        if (!empty($line->end)) echo '<span class="badge text-bg-danger">'.__("Deleted DXCC").'</span>';
         echo '</td>
                 <td>' . $line->end . '</td>
-                <td><a href=javascript:displayTimelineContacts("' . $line->adif . '","'. $bandselect . '","'. $modeselect . '","' . $award .'")>'.$ci->lang->line('filter_options_show').'</a></td>
+                <td><a href=javascript:displayTimelineContacts("' . $line->adif . '","'. $bandselect . '","'. $modeselect . '","' . $award .'")>'.__("Show").'</a></td>
                </tr>';
     }
     echo '</tfoot></table></div>';
 }
 
 function write_was_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $award) {
-    $ci =& get_instance();
     $i = count($timeline_array);
     echo '<table style="width:100%" class="table table-sm timelinetable table-bordered table-hover table-striped table-condensed text-center">
               <thead>
                     <tr>
                         <td>#</td>
-                        <td>'.$ci->lang->line('general_word_date').'</td>
-                        <td>'.$ci->lang->line('gen_hamradio_state').'</td>
-                        <td>'.$ci->lang->line('gridsquares_show_qsos').'</td>
+                        <td>'.__("Date").'</td>
+                        <td>'.__("State").'</td>
+                        <td>'.__("Show QSO's").'</td>
                     </tr>
                 </thead>
                 <tbody>';
@@ -159,24 +157,23 @@ function write_was_timeline($timeline_array, $custom_date_format, $bandselect, $
                 <td>' . $i-- . '</td>
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
                 <td>' . $line->col_state . '</td>
-                <td><a href=javascript:displayTimelineContacts("' . $line->col_state . '","'. $bandselect . '","'. $modeselect . '","' . $award .'")>'.$ci->lang->line('filter_options_show').'</a></td>
+                <td><a href=javascript:displayTimelineContacts("' . $line->col_state . '","'. $bandselect . '","'. $modeselect . '","' . $award .'")>'.__("Show").'</a></td>
                </tr>';
     }
     echo '</tfoot></table></div>';
 }
 
 function write_iota_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $award) {
-    $ci =& get_instance();
     $i = count($timeline_array);
     echo '<table style="width:100%" class="table table-sm timelinetable table-bordered table-hover table-striped table-condensed text-center">
               <thead>
                     <tr>
                         <td>#</td>
-                        <td>'.$ci->lang->line('general_word_date').'</td>
-                        <td>'.$ci->lang->line('gen_hamradio_iota').'</td>
-                        <td>'.$ci->lang->line('general_word_name').'</td>
-                        <td>'.$ci->lang->line('gen_hamradio_prefix').'</td>
-                        <td>'.$ci->lang->line('gridsquares_show_qsos').'</td>
+                        <td>'.__("Date").'</td>
+                        <td>'.__("IOTA").'</td>
+                        <td>'.__("Name").'</td>
+                        <td>'.__("Prefix").'</td>
+                        <td>'.__("Show QSO's").'</td>
                     </tr>
                 </thead>
                 <tbody>';
@@ -189,22 +186,21 @@ function write_iota_timeline($timeline_array, $custom_date_format, $bandselect, 
                 <td>' . $line->col_iota . '</td>
                 <td>' . $line->name . '</td>
                 <td>' . $line->prefix . '</td>
-                <td><a href=javascript:displayTimelineContacts("' . $line->col_iota . '","'. $bandselect . '","'. $modeselect . '","' . $award .'")>'.$ci->lang->line('filter_options_show').'</a></td>
+                <td><a href=javascript:displayTimelineContacts("' . $line->col_iota . '","'. $bandselect . '","'. $modeselect . '","' . $award .'")>'.__("Show").'</a></td>
                </tr>';
     }
     echo '</tfoot></table></div>';
 }
 
 function write_waz_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $award) {
-    $ci =& get_instance();
     $i = count($timeline_array);
     echo '<table style="width:100%" class="table table-sm timelinetable table-bordered table-hover table-striped table-condensed text-center">
               <thead>
                     <tr>
                         <td>#</td>
-                        <td>'.$ci->lang->line('general_word_date').'</td>
-                        <td>'.$ci->lang->line('gen_hamradio_cq_zone').'</td>
-                        <td>'.$ci->lang->line('gridsquares_show_qsos').'</td>
+                        <td>'.__("Date").'</td>
+                        <td>'.__("CQ Zone").'</td>
+                        <td>'.__("Show QSO's").'</td>
                     </tr>
                 </thead>
                 <tbody>';
@@ -215,23 +211,22 @@ function write_waz_timeline($timeline_array, $custom_date_format, $bandselect, $
                 <td>' . $i-- . '</td>
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
                 <td>' . $line->col_cqz . '</td>
-                <td><a href=javascript:displayTimelineContacts("' . $line->col_cqz . '","'. $bandselect . '","'. $modeselect . '","' . $award .'")>'.$ci->lang->line('filter_options_show').'</a></td>
+                <td><a href=javascript:displayTimelineContacts("' . $line->col_cqz . '","'. $bandselect . '","'. $modeselect . '","' . $award .'")>'.__("Show").'</a></td>
                </tr>';
     }
     echo '</tfoot></table></div>';
 }
 
 function write_vucc_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $award) {
-    $ci =& get_instance();
     $i = count($timeline_array);
     echo '<table style="width:100%" class="table table-sm timelinetable table-bordered table-hover table-striped table-condensed text-center">
               <thead>
                     <tr>
                         <td>#</td>
-                        <td>'.$ci->lang->line('general_word_date').'</td>
-                        <td>'.$ci->lang->line('general_word_time').'</td>
-                        <td>'.$ci->lang->line('gen_hamradio_gridsquare').'</td>
-                        <td>'.$ci->lang->line('gridsquares_show_qsos').'</td>
+                        <td>'.__("Date").'</td>
+                        <td>'.__("Time").'</td>
+                        <td>'.__("Gridsquare").'</td>
+                        <td>'.__("Show QSO's").'</td>
                     </tr>
                 </thead>
                 <tbody>';
@@ -243,7 +238,7 @@ function write_vucc_timeline($timeline_array, $custom_date_format, $bandselect, 
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
                 <td>' . date('H:i', $date_as_timestamp) . '</td>
                 <td>' . $line['gridsquare'] . '</td>
-                <td><a href=javascript:displayTimelineContacts("' . $line['gridsquare'] . '","'. $bandselect . '","'. $modeselect . '","' . $award .'")>'.$ci->lang->line('filter_options_show').'</a></td>
+                <td><a href=javascript:displayTimelineContacts("' . $line['gridsquare'] . '","'. $bandselect . '","'. $modeselect . '","' . $award .'")>'.__("Show").'</a></td>
                </tr>';
     }
     echo '</tfoot></table></div>';

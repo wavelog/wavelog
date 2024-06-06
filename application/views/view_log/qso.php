@@ -39,7 +39,7 @@
                 echo 'hidden ';
             }
                 echo 'class="eqslcardtab nav-item">
-                <a class="nav-link" id="eqsltab" data-bs-toggle="tab" href="#eqslcard" role="tab" aria-controls="home" aria-selected="false">'. $this->lang->line('general_word_eqslcard') .'</a>
+                <a class="nav-link" id="eqsltab" data-bs-toggle="tab" href="#eqslcard" role="tab" aria-controls="home" aria-selected="false">'. __("eQSL Card") .'</a>
                 </li>';
         }
 

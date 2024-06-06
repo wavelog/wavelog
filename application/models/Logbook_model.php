@@ -4126,30 +4126,30 @@ function lotw_last_qsl_date($user_id) {
                if ($ignoreAmbiguous == '1') {
                   return array();
                } else {
-                  return array(2, $result['message'] = "<tr><td>".date($custom_date_format, strtotime($record['qso_date']))."</td><td>".date('H:i', strtotime($record['time_on']))."</td><td>".str_replace('0', 'Ø', $call)."</td><td>".$band."</td><td>".$mode."</td><td></td><td>".(preg_match('/^[A-Y]\d{2}$/', $darc_dok) ? '<a href="https://www.darc.de/'.$darc_dok.'" target="_blank">'.$darc_dok.'</a>' : (preg_match('/^Z\d{2}$/', $darc_dok) ? '<a href="https://'.$darc_dok.'.vfdb.org" target="_blank">'.$darc_dok.'</a>' : $darc_dok))."</td><td>".lang('dcl_no_match')."</td></tr>");
+                  return array(2, $result['message'] = "<tr><td>".date($custom_date_format, strtotime($record['qso_date']))."</td><td>".date('H:i', strtotime($record['time_on']))."</td><td>".str_replace('0', 'Ø', $call)."</td><td>".$band."</td><td>".$mode."</td><td></td><td>".(preg_match('/^[A-Y]\d{2}$/', $darc_dok) ? '<a href="https://www.darc.de/'.$darc_dok.'" target="_blank">'.$darc_dok.'</a>' : (preg_match('/^Z\d{2}$/', $darc_dok) ? '<a href="https://'.$darc_dok.'.vfdb.org" target="_blank">'.$darc_dok.'</a>' : $darc_dok))."</td><td>".__("QSO could not be matched")."</td></tr>");
                }
             } else {
                $dcl_qsl_status = '';
                switch($record['app_dcl_status']) {
                case 'c':
-                  $dcl_qsl_status = lang('dcl_qsl_status_c');
+                  $dcl_qsl_status = __("confirmed by LoTW/Clublog/eQSL/Contest");
                   break;
                case 'm':
                case 'n':
                case 'o':
-                  $dcl_qsl_status = lang('dcl_qsl_status_mno');
+                  $dcl_qsl_status = __("confirmed by award manager");
                   break;
                case 'i':
-                  $dcl_qsl_status = lang('dcl_qsl_status_i');
+                  $dcl_qsl_status = __("confirmed by cross-check of DCL data");
                   break;
                case 'w':
-                  $dcl_qsl_status = lang('dcl_qsl_status_w');
+                  $dcl_qsl_status = __("confirmation pending");
                   break;
                case 'x':
-                  $dcl_qsl_status = lang('dcl_qsl_status_x');
+                  $dcl_qsl_status = __("unconfirmed");
                   break;
                default:
-                  $dcl_qsl_status = lang('dcl_qsl_status_unknown');
+                  $dcl_qsl_status = __("unknown");
                }
                if ($check->row()->COL_DARC_DOK != $darc_dok) {
                   $dcl_cnfm = array('c', 'm', 'n', 'o', 'i');
