@@ -190,8 +190,8 @@ class Gettext
 			return $this->languages;
 		}
 
-		include __DIR__.'/vendor/languages.php';
-		$this->languages = $languages;
+		$this->languages = $this->config['languages'];
+
 		return $this->languages;
 	}
 
@@ -210,11 +210,10 @@ class Gettext
 		}
 
 		// Cache them before returning.
-		$this->site_languages = array_intersect_key(
-			$this->_get_languages(), 
-			array_flip($this->config['languages'])
-		);
+		$this->site_languages = $this->config['languages'];
+
 		return $this->site_languages;
+
 	}
 
 	/**
