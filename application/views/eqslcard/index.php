@@ -2,7 +2,7 @@
 
     <br>
 
-    <h2><?php echo __("eQSL Cards"); ?></h2>
+    <h2><?= __("eQSL Cards"); ?></h2>
 
     <?php $userdata_dir = $this->config->item('userdata');
     if (isset($userdata_dir)) { ?>

@@ -471,14 +471,14 @@
 						<?php if ($this->session->userdata('user_id') == $this->uri->segment(3)) { ?>
 						<div class="col-md">
 							<div class="card">
-								<div class="card-header"><?php echo __("Map Settings"); ?></div>
+								<div class="card-header"><?= __("Map Settings"); ?></div>
 								<div class="card-body">
 									<div class="row"> <!-- Station -->
 										<div class="mb-3 col-md-4">
-											<label>&nbsp;</label><br/><label><?php echo __("Station"); ?></label>
+											<label>&nbsp;</label><br/><label><?= __("Station"); ?></label>
 										</div>
 										<div class="mb-3 col-md-3">
-											<label><?php echo __("Icon"); ?></label><br/>
+											<label><?= __("Icon"); ?></label><br/>
 											<div class="icon_selectBox" data-boxcontent="station">
 												<input type="hidden" name="user_map_station_icon" value="<?php echo $user_map_station_icon; ?>">
 												<div class="form-select icon_overSelect"><?php echo (($user_map_station_icon=="0")?substr(__("Not display"),0,10).'.':("<i class='".$user_map_station_icon."'></i>")); ?></div>
@@ -490,11 +490,11 @@
 											</div>
 										</div>
 										<div class="mb-3 col-md-2">
-											<label><?php echo __("Colors"); ?></label><br/><input type="color" class="form-control user_icon_color" name="user_map_station_color" id="user_map_station_color" value="<?php echo $user_map_station_color; ?>" style="padding:initial;<?php echo ($user_map_station_icon=="0")?'display:none;':''; ?>" data-icon="station" /></div>
+											<label><?= __("Colors"); ?></label><br/><input type="color" class="form-control user_icon_color" name="user_map_station_color" id="user_map_station_color" value="<?php echo $user_map_station_color; ?>" style="padding:initial;<?php echo ($user_map_station_icon=="0")?'display:none;':''; ?>" data-icon="station" /></div>
 									</div>
 									<div class="row"> <!-- QSO (default) -->
 										<div class="mb-3 col-md-4">
-											<label><?php echo __("QSO (by default)"); ?></label>
+											<label><?= __("QSO (by default)"); ?></label>
 										</div>
 										<div class="mb-3 col-md-3">
 											<div class="icon_selectBox" data-boxcontent="qso">
@@ -513,7 +513,7 @@
 									</div>
 									<div class="row"> <!-- QSO (confirmed) -->
 										<div class="mb-3 col-md-4">
-											<label><?php echo __("QSO (confirmed)"); ?></label>
+											<label><?= __("QSO (confirmed)"); ?></label>
 											<small class="form-text text-muted"><?= __("(If 'No', displayed as 'QSO (by default))'"); ?></small>
 										</div>
 										<div class="mb-3 col-md-3">
@@ -533,7 +533,7 @@
 									</div>
 									<div class="row">
 										<div class="md-3 col-md-4">
-											<label><?php echo __("Show Locator"); ?></label>
+											<label><?= __("Show Locator"); ?></label>
 										</div>
 										<div class="md-3 col-md-3">
 											<select class="form-select" id="user_map_gridsquare_show" name="user_map_gridsquare_show">
