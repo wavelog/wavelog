@@ -18,7 +18,6 @@ class eqsl extends CI_Controller {
 	// Default view when loading controller.
 	public function index() {
 
-		$this->lang->load('qslcard');
 		$this->load->model('eqsl_images');
 		$this->load->library('Genfunctions');
 		$folder_name = $this->eqsl_images->get_imagePath('p');

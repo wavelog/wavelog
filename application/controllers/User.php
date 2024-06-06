@@ -2,18 +2,6 @@
 
 class User extends CI_Controller {
 
-	function __construct()
-	{
-		parent::__construct();
-
-		 $this->lang->load(array(
-		 	'account',
-		 	'lotw',
-		 	'eqsl',
-		 	'admin',
-		 ));
-	}
-
 	public function index()
 	{
 		$this->load->model('user_model');

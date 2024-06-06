@@ -3,20 +3,6 @@
 
 class Logbook extends CI_Controller {
 
-	function __construct()
-	{
-		parent::__construct();
-
-		// Load language files
-		$this->lang->load(array(
-			'contesting',
-			'qslcard',
-			'lotw',
-			'eqsl',
-			'qso'
-		));
-	}
-
 	function index()
 	{
 
