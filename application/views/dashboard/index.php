@@ -60,26 +60,38 @@ function echo_table_col($row, $name) {
 
 	<?php if ($countryCount == 0) { ?>
 		<div class="alert alert-danger mt-3" role="alert">
-		<?= _pgettext("Dashboard Warning", "You need to update country files! Go here to do it:"); ?> <a href="<?= site_url('update'); ?>"><?= __("Update Country Files"); ?></a>
+		<?= sprintf(
+				_pgettext("Dashboard Warning", "You need to update country files! Click %s to do it."),
+				"<a href='" . site_url('update') . "'>" . __("here") . "</a>"
+			); ?>
 		</div>
 	<?php } ?>
 
 	<?php if ($locationCount == 0) { ?>
 		<div class="alert alert-danger" role="alert">
-		<?= _pgettext("Dashboard Warning", "You have no station locations. Go here to do it:"); ?> <a href="<?= site_url('stationsetup'); ?>"><?= __("Stationsetup"); ?></a>
+		<?= sprintf(
+				_pgettext("Dashboard Warning", "You have no station locations. Click %s to do it:"), 
+				"<a href='".site_url('stationsetup')."'>".__("here")."</a>"
+			); ?>
 		</div>
 	<?php } ?>
 
 	<?php if ($logbookCount == 0) { ?>
 		<div class="alert alert-danger" role="alert">
-		<?= _pgettext("Dashboard Warning", "You have no station logbook. Go here to do it:"); ?> <a href="<?= site_url('stationsetup'); ?>"><?= __("Stationsetup"); ?></a>
+		<?= sprintf(
+				_pgettext("Dashboard Warning", "You have no station logbook. Click %s to do it:"), 
+				"<a href='".site_url('stationsetup')."'>".__("here")."</a>"
+			); ?>
 		</div>
 	<?php } ?>
 
 	<?php if($this->optionslib->get_option('dashboard_banner') != "false") { ?>
 	<?php if($todays_qsos >= 1) { ?>
 		<div class="alert alert-success" role="alert" style="margin-top: 1rem;">
-			<?= sprintf(_ngettext("You have had %d QSO today", "You have had %d QSOs today", intval($todays_qsos)), intval($todays_qsos)); ?>
+			<?= sprintf(
+					_ngettext("You have had %d QSO today", "You have had %d QSOs today", intval($todays_qsos)), 
+					intval($todays_qsos)
+				); ?>
 		</div>
 	<?php } else { ?>
 		<div class="alert alert-warning" role="alert" style="margin-top: 1rem;">
