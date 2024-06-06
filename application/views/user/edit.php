@@ -514,7 +514,7 @@
 									<div class="row"> <!-- QSO (confirmed) -->
 										<div class="mb-3 col-md-4">
 											<label><?php echo __("QSO (confirmed)"); ?></label>
-											<small class="form-text text-muted"><?= __("(If 'No', displayed as ".$lang['account_map_qso_by_default'].")"); ?></small>
+											<small class="form-text text-muted"><?= __("(If 'No', displayed as 'QSO (by default)'"); ?></small>
 										</div>
 										<div class="mb-3 col-md-3">
 											<div class="icon_selectBox" data-boxcontent="qsoconfirm">
