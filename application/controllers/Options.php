@@ -38,10 +38,6 @@ class Options extends CI_Controller {
 	// function used to display the /appearance url
 	function appearance() {
 
-		// Get Language Options
-		$directory = 'application/language';
-		$data['language_options'] = array_diff(scandir($directory), array('..', '.'));
-
 		$data['page_title'] = __("Wavelog Options");
 		$data['sub_heading'] = __("Appearance");
 
@@ -56,10 +52,6 @@ class Options extends CI_Controller {
 
 	// Handles saving the appreance options to the options system.
 	function appearance_save() {
-
-		// Get Language Options
-		$directory = 'application/language';
-		$data['language_options'] = array_diff(scandir($directory), array('..', '.'));
 
 		$data['page_title'] = __("Wavelog Options");
 		$data['sub_heading'] = __("Appearance");
@@ -152,8 +144,6 @@ class Options extends CI_Controller {
 	// Handles saving the DXCluster options to the options system.
 	function dxcluster_save() {
 
-		// Get Language Options
-
 		$data['page_title'] = __("Wavelog Options");
 		$data['sub_heading'] = __("DXCluster");
 
@@ -202,8 +192,6 @@ class Options extends CI_Controller {
 	// Handles saving the radio options to the options system.
 	function radio_save() {
 
-		// Get Language Options
-
 		$data['page_title'] = __("Wavelog Options");
 		$data['sub_heading'] = __("Radio Settings");
 
@@ -248,8 +236,6 @@ class Options extends CI_Controller {
 	// Handles saving the radio options to the options system.
 	function email_save() {
 
-			// Get Language Options
-	
 			$data['page_title'] = __("Wavelog Options");
 			$data['sub_heading'] = __("Email");
 	
@@ -407,8 +393,6 @@ class Options extends CI_Controller {
     }
 
 	function version_dialog_save() {
-
-		// Get Language Options
 
 		$data['page_title'] = __("Wavelog Options");
 		$data['sub_heading'] = __("Version Info Settings");

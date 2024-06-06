@@ -33,15 +33,6 @@
                     <?php } ?>
 
                     <?php echo form_open('options/appearance_save'); ?>
-                        <!-- <div class="mb-3">
-                            <label for="themeSelect">Language</label>
-                            <select class="form-select" id="langSelect" name="language" aria-describedby="langHelp" required>
-                                <?php foreach ($language_options as &$lang_opt) { ?>
-                                    <option value='<?php echo $lang_opt; ?>' <?php if($this->optionslib->get_option('language')== $lang_opt) { echo "selected=\"selected\""; } ?>><?php echo ucfirst($lang_opt); ?></option>
-                                <?php } ?>
-                            </select>
-                            <small id="langHelp" class="form-text text-muted">Select the default language for Wavelog.</small>
-                        </div> -->
 
                         <!-- Form options for selecting global theme choice -->
                         <div class="mb-3">
