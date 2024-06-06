@@ -3,40 +3,40 @@ function echo_table_header_col($ctx, $name)
 {
 	switch ($name) {
 		case 'Mode':
-			echo '<th>' . $ctx->lang->line('gen_hamradio_mode') . '</th>';
+			echo '<th>' . __("Mode") . '</th>';
 			break;
 		case 'RSTS':
-			echo '<th class="d-none d-sm-table-cell">' . $ctx->lang->line('gen_hamradio_rsts') . '</th>';
+			echo '<th class="d-none d-sm-table-cell">' . __("RST (S)") . '</th>';
 			break;
 		case 'RSTR':
-			echo '<th class="d-none d-sm-table-cell">' . $ctx->lang->line('gen_hamradio_rstr') . '</th>';
+			echo '<th class="d-none d-sm-table-cell">' . __("RST (R)") . '</th>';
 			break;
 		case 'Country':
-			echo '<th>' . $ctx->lang->line('general_word_country') . '</th>';
+			echo '<th>' . __("Country") . '</th>';
 			break;
 		case 'IOTA':
-			echo '<th>' . $ctx->lang->line('gen_hamradio_iota') . '</th>';
+			echo '<th>' . __("IOTA") . '</th>';
 			break;
 		case 'SOTA':
-			echo '<th>' . $ctx->lang->line('gen_hamradio_sota') . '</th>';
+			echo '<th>' . __("SOTA") . '</th>';
 			break;
 		case 'State':
-			echo '<th>' . $ctx->lang->line('gen_hamradio_state') . '</th>';
+			echo '<th>' . __("State") . '</th>';
 			break;
 		case 'Grid':
-			echo '<th>' . $ctx->lang->line('gen_hamradio_gridsquare') . '</th>';
+			echo '<th>' . __("Gridsquare") . '</th>';
 			break;
 		case 'Distance':
-			echo '<th>' . $ctx->lang->line('gen_hamradio_distance') . '</th>';
+			echo '<th>' . __("Distance") . '</th>';
 			break;
 		case 'Band':
-			echo '<th>' . $ctx->lang->line('gen_hamradio_band') . '</th>';
+			echo '<th>' . __("Band") . '</th>';
 			break;
 		case 'Frequency':
-			echo '<th>' . $ctx->lang->line('gen_hamradio_frequency') . '</th>';
+			echo '<th>' . __("Frequency") . '</th>';
 			break;
 		case 'Operator':
-			echo '<th>' . $ctx->lang->line('gen_hamradio_operator') . '</th>';
+			echo '<th>' . __("Operator") . '</th>';
 			break;
 	}
 }

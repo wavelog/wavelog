@@ -1,22 +1,22 @@
 <?php
 function echo_table_header_col($ctx, $name) {
 	switch($name) {
-		case 'Mode': echo '<th>'.$ctx->lang->line('gen_hamradio_mode').'</th>'; break;
-		case 'RSTS': echo '<th>'.$ctx->lang->line('gen_hamradio_rsts').'</th>'; break;
-		case 'RSTR': echo '<th>'.$ctx->lang->line('gen_hamradio_rstr').'</th>'; break;
-		case 'Country': echo '<th>'.$ctx->lang->line('general_word_country').'</th>'; break;
-		case 'IOTA': echo '<th>'.$ctx->lang->line('gen_hamradio_iota').'</th>'; break;
-		case 'SOTA': echo '<th>'.$ctx->lang->line('gen_hamradio_sota').'</th>'; break;
-		case 'WWFF': echo '<th>'.$ctx->lang->line('gen_hamradio_wwff').'</th>'; break;
-		case 'POTA': echo '<th>'.$ctx->lang->line('gen_hamradio_pota').'</th>'; break;
-		case 'State': echo '<th>'.$ctx->lang->line('gen_hamradio_state').'</th>'; break;
-		case 'Grid': echo '<th>'.$ctx->lang->line('gen_hamradio_gridsquare').'</th>'; break;
-		case 'Distance': echo '<th>'.$ctx->lang->line('gen_hamradio_distance').'</th>'; break;
-		case 'Band': echo '<th>'.$ctx->lang->line('gen_hamradio_band').'</td>'; break;
-		case 'Frequency': echo '<th>'.$ctx->lang->line('gen_hamradio_frequency').'</th>'; break;
-		case 'Operator': echo '<th>'.$ctx->lang->line('gen_hamradio_operator').'</th>'; break;
-		case 'Location': echo '<th>'.$ctx->lang->line('wavelog_station_profile').'</th>'; break;
-		case 'Name': echo '<th>'.$ctx->lang->line('general_word_name').'</th>'; break;
+		case 'Mode': echo '<th>'.__("Mode").'</th>'; break;
+		case 'RSTS': echo '<th>'.__("RST (S)").'</th>'; break;
+		case 'RSTR': echo '<th>'.__("RST (R)").'</th>'; break;
+		case 'Country': echo '<th>'.__("Country").'</th>'; break;
+		case 'IOTA': echo '<th>'.__("IOTA").'</th>'; break;
+		case 'SOTA': echo '<th>'.__("SOTA").'</th>'; break;
+		case 'WWFF': echo '<th>'.__("WWFF").'</th>'; break;
+		case 'POTA': echo '<th>'.__("POTA").'</th>'; break;
+		case 'State': echo '<th>'.__("State").'</th>'; break;
+		case 'Grid': echo '<th>'.__("Gridsquare").'</th>'; break;
+		case 'Distance': echo '<th>'.__("Distance").'</th>'; break;
+		case 'Band': echo '<th>'.__("Band").'</td>'; break;
+		case 'Frequency': echo '<th>'.__("Frequency").'</th>'; break;
+		case 'Operator': echo '<th>'.__("Operator").'</th>'; break;
+		case 'Location': echo '<th>'.__("Station Location").'</th>'; break;
+		case 'Name': echo '<th>'.__("Name").'</th>'; break;
 	}
 }
 

@@ -1272,20 +1272,20 @@ class Logbook extends CI_Controller {
 	function part_table_header_col($ctx, $name) {
 		$ret='';
 		switch($name) {
-		case 'Mode': $ret.= '<th>'.$ctx->lang->line('gen_hamradio_mode').'</th>'; break;
-		case 'RSTS': $ret.= '<th class="d-none d-sm-table-cell">'.$ctx->lang->line('gen_hamradio_rsts').'</th>'; break;
-		case 'RSTR': $ret.= '<th class="d-none d-sm-table-cell">'.$ctx->lang->line('gen_hamradio_rstr').'</th>'; break;
-		case 'Country': $ret.= '<th>'.$ctx->lang->line('general_word_country').'</th>'; break;
-		case 'IOTA': $ret.= '<th>'.$ctx->lang->line('gen_hamradio_iota').'</th>'; break;
-		case 'SOTA': $ret.= '<th>'.$ctx->lang->line('gen_hamradio_sota').'</th>'; break;
-		case 'WWFF': $ret.= '<th>'.$ctx->lang->line('gen_hamradio_wwff').'</th>'; break;
-		case 'POTA': $ret.= '<th>'.$ctx->lang->line('gen_hamradio_pota').'</th>'; break;
-		case 'State': $ret.= '<th>'.$ctx->lang->line('gen_hamradio_state').'</th>'; break;
-		case 'Grid': $ret.= '<th>'.$ctx->lang->line('gen_hamradio_gridsquare').'</th>'; break;
-		case 'Distance': $ret.= '<th>'.$ctx->lang->line('gen_hamradio_distance').'</th>'; break;
-		case 'Band': $ret.= '<th>'.$ctx->lang->line('gen_hamradio_band').'</th>'; break;
-		case 'Frequency': $ret.= '<th>'.$ctx->lang->line('gen_hamradio_frequency').'</th>'; break;
-		case 'Operator': $ret.= '<th>'.$ctx->lang->line('gen_hamradio_operator').'</th>'; break;
+		case 'Mode': $ret.= '<th>'.__("Mode").'</th>'; break;
+		case 'RSTS': $ret.= '<th class="d-none d-sm-table-cell">'.__("RST (S)").'</th>'; break;
+		case 'RSTR': $ret.= '<th class="d-none d-sm-table-cell">'.__("RST (R)").'</th>'; break;
+		case 'Country': $ret.= '<th>'.__("Country").'</th>'; break;
+		case 'IOTA': $ret.= '<th>'.__("IOTA").'</th>'; break;
+		case 'SOTA': $ret.= '<th>'.__("SOTA").'</th>'; break;
+		case 'WWFF': $ret.= '<th>'.__("WWFF").'</th>'; break;
+		case 'POTA': $ret.= '<th>'.__("POTA").'</th>'; break;
+		case 'State': $ret.= '<th>'.__("State").'</th>'; break;
+		case 'Grid': $ret.= '<th>'.__("Gridsquare").'</th>'; break;
+		case 'Distance': $ret.= '<th>'.__("Distance").'</th>'; break;
+		case 'Band': $ret.= '<th>'.__("Band").'</th>'; break;
+		case 'Frequency': $ret.= '<th>'.__("Frequency").'</th>'; break;
+		case 'Operator': $ret.= '<th>'.__("Operator").'</th>'; break;
 		}
 		return $ret;
 	}

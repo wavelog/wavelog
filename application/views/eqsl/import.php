@@ -55,7 +55,7 @@
                         	<input name="eqsl_force_from_date" id="eqsl_force_from_date" type="date" class="form-control w-auto">
 			          	</div>
 		        	</div>
-		         	<div class="mb-3 col-sm-5" style="vertical-align:middle;"><label class="form-label"><?php echo "(Select a date, only if you want to force an import with an older date)"; //$this->lang->line(''); ?></label></div>
+		         	<div class="mb-3 col-sm-5" style="vertical-align:middle;"><label class="form-label"><?php echo "(Select a date, only if you want to force an import with an older date)"; ?></label></div>
 				</div>
 			</div>
 			<hr class="divider">
