@@ -150,7 +150,7 @@ class User_Model extends CI_Model {
 		$user_pota_lookup, $user_show_notes, $user_column1, $user_column2, $user_column3, $user_column4, $user_column5,
 		$user_show_profile_image, $user_previous_qsl_type, $user_amsat_status_upload, $user_mastodon_url,
 		$user_default_band, $user_default_confirmation, $user_qso_end_times, $user_quicklog, $user_quicklog_enter,
-		$language, $user_hamsat_key, $user_hamsat_workable_only, $user_iota_to_qso_tab, $user_sota_to_qso_tab,
+		$user_language, $user_hamsat_key, $user_hamsat_workable_only, $user_iota_to_qso_tab, $user_sota_to_qso_tab,
 		$user_wwff_to_qso_tab, $user_pota_to_qso_tab, $user_sig_to_qso_tab, $user_dok_to_qso_tab,
 		$user_lotw_name, $user_lotw_password, $user_eqsl_name, $user_eqsl_password, $user_clublog_name, $user_clublog_password,
 		$user_winkey) {
@@ -188,7 +188,7 @@ class User_Model extends CI_Model {
 				'user_qso_end_times' => xss_clean($user_qso_end_times),
 				'user_quicklog' => xss_clean($user_quicklog),
 				'user_quicklog_enter' => xss_clean($user_quicklog_enter),
-				'language' => xss_clean($language),
+				'user_language' => xss_clean($user_language),
 				'user_lotw_name' => xss_clean($user_lotw_name),
 				'user_lotw_password' => xss_clean($user_lotw_password),
 				'user_eqsl_name' => xss_clean($user_eqsl_name),
@@ -273,7 +273,7 @@ class User_Model extends CI_Model {
 					'user_qso_end_times' => xss_clean($fields['user_qso_end_times']),
 					'user_quicklog' => xss_clean($fields['user_quicklog']),
 					'user_quicklog_enter' => xss_clean($fields['user_quicklog_enter']),
-					'language' => xss_clean($fields['language']),
+					'user_language' => xss_clean($fields['user_language']),
 					'winkey' => xss_clean($fields['user_winkey']),
 				);
 
@@ -446,7 +446,7 @@ class User_Model extends CI_Model {
 			'user_quicklog' => isset($u->row()->user_quicklog) ? $u->row()->user_quicklog : 1,
 			'user_quicklog_enter' => isset($u->row()->user_quicklog_enter) ? $u->row()->user_quicklog_enter : 1,
 			'active_station_logbook' => $u->row()->active_station_logbook,
-			'language' => isset($u->row()->language) ? $u->row()->language: 'english',
+			'user_language' => isset($u->row()->user_language) ? $u->row()->user_language: 'english',
 			'isWinkeyEnabled' => $u->row()->winkey,
 			'hasQrzKey' => $this->hasQrzKey($u->row()->user_id)
 		);

@@ -32,7 +32,7 @@ class User extends CI_Controller {
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 
-		$data['existing_languages'] = $this->find();
+		$data['existing_languages'] = $this->config->item('languages');
 
 		$this->load->model('bands');
 		$this->load->library('form_validation');
@@ -57,7 +57,7 @@ class User extends CI_Controller {
 
 		// Get timezones
 		$data['timezones'] = $this->user_model->timezones();
-		$data['language'] = 'english';
+		$data['user_language'] = 'english';
 
 		if ($this->form_validation->run() == FALSE) {
 			$data['page_title'] = "Add User";
@@ -103,7 +103,7 @@ class User extends CI_Controller {
 				$data['user_pota_to_qso_tab'] = $this->input->post('user_pota_to_qso_tab');
 				$data['user_sig_to_qso_tab'] = $this->input->post('user_sig_to_qso_tab');
 				$data['user_dok_to_qso_tab'] = $this->input->post('user_dok_to_qso_tab');
-				$data['language'] = $this->input->post('language');
+				$data['user_language'] = $this->input->post('user_language');
 				$this->load->view('user/edit', $data);
 			} else {
 				$this->load->view('user/edit', $data);
@@ -141,7 +141,7 @@ class User extends CI_Controller {
 				$this->input->post('user_qso_end_times'),
 				$this->input->post('user_quicklog'),
 				$this->input->post('user_quicklog_enter'),
-				$this->input->post('language'),
+				$this->input->post('user_language'),
 				$this->input->post('user_hamsat_key'),
 				$this->input->post('user_hamsat_workable_only'),
 				$this->input->post('user_iota_to_qso_tab'),
@@ -206,26 +206,10 @@ class User extends CI_Controller {
 			$data['user_qso_end_times'] = $this->input->post('user_qso_end_times');
 			$data['user_quicklog'] = $this->input->post('user_quicklog');
 			$data['user_quicklog_enter'] = $this->input->post('user_quicklog_enter');
-			$data['language'] = $this->input->post('language');
+			$data['user_language'] = $this->input->post('user_language');
 			$this->load->view('user/edit', $data);
 			$this->load->view('interface_assets/footer');
 		}
-	}
-
-	function find() {
-		$existing_langs = array();
-		$lang_path = APPPATH.'language';
-
-		$results = scandir($lang_path);
-
-		foreach ($results as $result) {
-			if ($result === '.' or $result === '..') continue;
-
-			if (is_dir(APPPATH.'language' . '/' . $result)) {
-				$dirs[] = $result;
-			}
-		}
-		return $dirs;
 	}
 
 	function edit() {
@@ -233,7 +217,7 @@ class User extends CI_Controller {
 		if ( ($this->session->userdata('user_id') == '') || ((!$this->user_model->authorize(99)) && ($this->session->userdata('user_id') != $this->uri->segment(3))) ) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 		$query = $this->user_model->get_by_id($this->uri->segment(3));
 
-		$data['existing_languages'] = $this->find();
+		$data['existing_languages'] = $this->config->item('languages');
 		$pwd_placeholder = '**********';
 
 		$this->load->model('bands');
@@ -398,10 +382,10 @@ class User extends CI_Controller {
 				$data['user_date_format'] = $q->user_date_format;
 			}
 
-			if($this->input->post('language')) {
-				$data['language'] = $this->input->post('language', true);
+			if($this->input->post('user_language')) {
+				$data['user_language'] = $this->input->post('user_language', true);
 			} else {
-				$data['language'] = $q->language;
+				$data['user_language'] = $q->user_language;
 			}
 
 			
@@ -661,7 +645,7 @@ class User extends CI_Controller {
 						$cookie= array(
 
 							'name'   => 'language',
-							'value'  => $this->input->post('language', true),
+							'value'  => $this->input->post('user_language', true),
 							'expire' => time()+1000,
 							'secure' => FALSE
 
@@ -730,7 +714,7 @@ class User extends CI_Controller {
 			$data['user_quicklog_enter'] = $this->input->post('user_quicklog_enter');
 			$data['user_locations_quickswitch'] = $this->input->post('user_locations_quickswitch', true);
 			$data['user_utc_headermenu'] = $this->input->post('user_utc_headermenu', true);
-			$data['language'] = $this->input->post('language');
+			$data['user_language'] = $this->input->post('user_language');
 			$data['user_winkey'] = $this->input->post('user_winkey');
 			$data['user_hamsat_key'] = $this->input->post('user_hamsat_key');
 			$data['user_hamsat_workable_only'] = $this->input->post('user_hamsat_workable_only');
@@ -819,7 +803,7 @@ class User extends CI_Controller {
 				$cookie= array(
 
 					'name'   => 'language',
-					'value'  => $data['user']->language,
+					'value'  => $data['user']->user_language,
 					'expire' => time()+1000,
 					'secure' => FALSE
 

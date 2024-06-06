@@ -165,19 +165,16 @@
 										</select>
 									</div>
 									<hr/>
-									<?php if ($this->config->item('cl_multilanguage')) { ?>
-										<div class="mb-3">
-											<label for="language"><?php echo lang('account_wavelog_language'); ?></label>
-											<?php
-											foreach($existing_languages as $lang){
-												$options[$lang] = ucfirst($lang);
-											}
-											echo form_dropdown('language', $options, $language);
-											?>
-											<small id="language_Help" class="form-text text-muted"><?php echo lang('account_choose_wavelog_language'); ?></small>
-										</div>
-									<?php } ?>
-
+									<div class="mb-3">
+										<label for="user_language"><?php echo lang('account_wavelog_language'); ?></label>
+										<?php
+										foreach ($existing_languages as $lang) {
+											$options[$lang['folder']] = $lang['name_en'];
+										}
+										echo form_dropdown('user_language', $options, $language['folder']);
+										?>
+										<small id="language_Help" class="form-text text-muted"><?php echo lang('account_choose_wavelog_language'); ?></small>
+									</div>
 									<div class="mb-3">
 										<label><?php echo lang('account_timezone'); ?></label>
 										<?php
