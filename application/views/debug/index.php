@@ -163,24 +163,6 @@
                             <span class="badge rounded-pill text-bg-success">Ok</span> Authentication Mode is set correctly
                         </div>
                     <?php } ?>
-
-                    <?php if (!$this->config->item('cl_multilanguage')) { ?>
-                        <div class="alert alert-primary">
-                            <div class="alert alert-danger" role="alert" style="margin-bottom: 0px !important;">
-                                <span class="badge rounded-pill text-bg-warning">Warning</span> You didn't enabled Multilanguage support in your config.php
-                            </div>
-                            <p>Please edit your ./application/config/config.php File and add some rows to it:</br></br>
-                                Go to your application/config Folder and compare config.sample.php with your config.php</br>
-                                You'll probably find a block with language-settings. Please include this block into your current config.php
-                            </p>
-                        </div>
-
-                    <?php
-                    } else { ?>
-                        <div class="mb-2">
-                            <span class="badge rounded-pill text-bg-success">Ok</span> Multiuser-Language Support is enabled
-                        </div>
-                    <?php } ?>
                 </div>
             </div>
             <?php if (isset($userdata_enabled)) { ?>
