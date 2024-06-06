@@ -19,9 +19,9 @@
 		    	<h5><?= __("Export .p12 File Instructions"); ?></h5>
 
 		    	<ul>
-		    		<li><?= __("Open TQSL &amp; go to the Callsign Certificates Tab"); ?></li>
+		    		<li><?= __("Open TQSL and go to the Callsign Certificates Tab"); ?></li>
 		    		<li><?= __("Right click on desired Callsign"); ?></li>
-		    		<li><?= __("Click "Save Callsign Certificate File" and do not add a password"); ?></li>
+		    		<li><?= __("Click 'Save Callsign Certificate File' and do not add a password"); ?></li>
 		    		<li><?= __("Upload File below."); ?></li>
 		    	</ul>
 	    	</div>
