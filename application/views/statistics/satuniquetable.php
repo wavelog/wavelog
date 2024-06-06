@@ -7,7 +7,7 @@ if ($qsoarray) {
                     foreach($modes as $mode) {
                         echo '<th>' . $mode . '</th>';
                     }
-                    echo '<th>'.lang('statistics_total').'</th>';
+                    echo '<th>'.__("Total").'</th>';
                     echo '</tr>
             </thead>
             <tbody>';
@@ -19,7 +19,7 @@ if ($qsoarray) {
         	echo '<th>' . $satunique[$sat] . '</th>';
 		echo '</tr>';
 	}
-    echo '</tbody><tfoot><tr><th>'.lang('statistics_total').'</th>';
+    echo '</tbody><tfoot><tr><th>'.__("Total").'</th>';
     foreach($modes as $mode) {
         echo '<th>' . $modeunique[$mode] . '</th>';
     }

@@ -22,9 +22,9 @@
 <div class="tab-content" id="myTabContent">
 <div class="messages my-1 me-2"></div>
 <div class="d-flex align-items-center">
-		<label class="my-1 me-2" for="radio"><?php echo lang('gen_hamradio_radio'); ?></label>
+		<label class="my-1 me-2" for="radio"><?php echo __("Radio"); ?></label>
 		<select class="form-select form-select-sm radios my-1 me-sm-2 w-auto" id="radio" name="radio">
-			<option value="0" selected="selected"><?php echo lang('general_word_none'); ?></option>
+			<option value="0" selected="selected"><?php echo __("None"); ?></option>
 			<?php foreach ($radios->result() as $row) { ?>
 			<option value="<?php echo $row->id; ?>" <?php if($this->session->userdata('radio') == $row->id) { echo "selected=\"selected\""; } ?>><?php echo $row->radio; ?></option>
 			<?php } ?>
@@ -42,7 +42,7 @@
 				<option value="SA"<?php if ($this->optionslib->get_option('dxcluster_decont') == 'SA') { echo " selected"; } ?>>South America</option>
                 </select>
 
-		<label class="my-1 me-2" for="band"><?php echo lang('gen_hamradio_band'); ?></label>
+		<label class="my-1 me-2" for="band"><?php echo __("Band"); ?></label>
 		<select id="band" class="form-select form-select-sm my-1 me-sm-2 w-auto" name="band">
 			<?php foreach($bands as $key=>$bandgroup) {
 					echo '<optgroup label="' . strtoupper($key) . '">';

@@ -25,18 +25,18 @@ $wwff = 0;
 		</div>
 	<?php } ?>
 
-<h2><?php echo lang('options_bands'); ?></h2>
+<h2><?php echo __("Bands"); ?></h2>
 
 <div class="card">
 <div class="card-header">
-	<?php echo lang('options_bands'); ?>
+	<?php echo __("Bands"); ?>
   </div>
   <div class="card-body">
     <p class="card-text">
-		<?php echo lang('options_bands_text_ln1'); ?>
+		<?php echo __("Using the band list you can control which bands are shown when creating a new QSO."); ?>
 	</p>
     <p class="card-text">
-		<?php echo lang('options_bands_text_ln2'); ?>
+		<?php echo __("Active bands will be shown in the QSO 'Band' drop-down, while inactive bands will be hidden and cannot be selected."); ?>
 	</p>
     <div class="table-responsive">
 
@@ -44,26 +44,26 @@ $wwff = 0;
 			<thead>
 				<tr>
 					<th></th>
-					<th><?php echo lang('gen_hamradio_band'); ?></th>
-					<th><?php echo lang('gen_hamradio_cq'); ?></th>
-                    <th><?php echo lang('gen_hamradio_dok'); ?></th>
-                    <th><?php echo lang('gen_hamradio_dxcc'); ?></th>
-					<th><?php echo lang('menu_helvetia'); ?></th>
-                    <th><?php echo lang('gen_hamradio_iota'); ?></th>
-                    <th><?php echo lang('menu_jcc'); ?></th>
-					<th><?php echo lang('gen_hamradio_pota'); ?></th>
-					<th><?php echo lang('menu_rac'); ?></th>
-					<th><?php echo lang('gen_hamradio_sig'); ?></th>
-                    <th><?php echo lang('gen_hamradio_sota'); ?></th>
-                    <th><?php echo lang('gen_hamradio_county_reference'); ?></th>
-                    <th><?php echo lang('menu_vucc'); ?></th>
-                    <th><?php echo lang('menu_waja'); ?></th>
-                    <th><?php echo lang('menu_was'); ?></th>
-					<th><?php echo lang('gen_hamradio_wwff'); ?></th>
-					<th><?php echo lang('gen_hamradio_bandgroup'); ?></th>
-					<th><?php echo lang('options_bands_ssb_qrg'); ?></th>
-					<th><?php echo lang('options_bands_data_qrg'); ?></th>
-					<th><?php echo lang('options_bands_cw_qrg'); ?></th>
+					<th><?php echo __("Band"); ?></th>
+					<th><?php echo __("CQ"); ?></th>
+                    <th><?php echo __("DOK"); ?></th>
+                    <th><?php echo __("DXCC"); ?></th>
+					<th><?php echo __("H26"); ?></th>
+                    <th><?php echo __("IOTA"); ?></th>
+                    <th><?php echo __("JCC"); ?></th>
+					<th><?php echo __("POTA"); ?></th>
+					<th><?php echo __("RAC"); ?></th>
+					<th><?php echo __("Sig"); ?></th>
+                    <th><?php echo __("SOTA"); ?></th>
+                    <th><?php echo __("USA County"); ?></th>
+                    <th><?php echo __("VUCC"); ?></th>
+                    <th><?php echo __("WAJA"); ?></th>
+                    <th><?php echo __("WAS"); ?></th>
+					<th><?php echo __("WWFF"); ?></th>
+					<th><?php echo __("Bandgroup"); ?></th>
+					<th><?php echo __("SSB QRG"); ?></th>
+					<th><?php echo __("DATA QRG"); ?></th>
+					<th><?php echo __("CW QRG"); ?></th>
 					<?php if($this->session->userdata('user_type') == '99') { ?>
                     <th></th>
                     <th></th>
@@ -107,7 +107,7 @@ $wwff = 0;
 				<?php } ?>
 			</tbody>
 			<tfoot>
-					<th><?php echo lang('general_word_all'); ?></th>
+					<th><?php echo __("All"); ?></th>
 					<th></th>
 					<th class="master_cq"><input type="checkbox" <?php if ($cq > 0) echo 'checked';?>></th>
 					<th class="master_dok"><input type="checkbox" <?php if ($dok > 0) echo 'checked';?>></th>
@@ -139,16 +139,16 @@ $wwff = 0;
   <p>
 		<?php if($this->session->userdata('user_type') == '99') { ?>
 		<script>
-			var lang_options_bands_edit = '<?php echo lang('options_bands_edit'); ?>';
-			var lang_options_bands_create = '<?php echo lang('options_bands_create'); ?>';
-			var lang_admin_close = '<?php echo lang('admin_close'); ?>';
-			var lang_options_bands_delete_warning = '<?php echo lang('options_bands_delete_warning'); ?>';
-			var lang_options_bands_activateall_warning = '<?php echo lang('options_bands_activateall_warning'); ?>';
-			var lang_options_bands_deactivateall_warning = '<?php echo lang('options_bands_deactivateall_warning'); ?>';
+			var lang_options_bands_edit = '<?php echo __("Edit Band"); ?>';
+			var lang_options_bands_create = '<?php echo __("Create a band"); ?>';
+			var lang_admin_close = '<?php echo __("Close"); ?>';
+			var lang_options_bands_delete_warning = '<?php echo __("Warning! Are you sure you want to delete the following band: "); ?>';
+			var lang_options_bands_activateall_warning = '<?php echo __("Warning! Are you sure you want to activate all bands?"); ?>';
+			var lang_options_bands_deactivateall_warning = '<?php echo __("Warning! Are you sure you want to deactivate all bands?"); ?>';
 		</script>
-	  	<button onclick="createBandDialog();" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> <?php echo lang('options_bands_create'); ?></button>
-  		<button onclick="activateAllBands();" class="btn btn-primary btn-sm"><?php echo lang('options_bands_activate_all'); ?></button>
-		<button onclick="deactivateAllBands();" class="btn btn-primary btn-sm"><?php echo lang('options_bands_deactivate_all'); ?></button>
+	  	<button onclick="createBandDialog();" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> <?php echo __("Create a band"); ?></button>
+  		<button onclick="activateAllBands();" class="btn btn-primary btn-sm"><?php echo __("Activate All"); ?></button>
+		<button onclick="deactivateAllBands();" class="btn btn-primary btn-sm"><?php echo __("Deactivate All"); ?></button>
 		<?php } ?>
 	</p>
 </div>

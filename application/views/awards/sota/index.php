@@ -3,14 +3,14 @@
         <br>
         <div id="awardInfoButton">
             <script>
-            var lang_awards_info_button = "<?php echo lang('awards_info_button'); ?>";
-            var lang_award_info_ln1 = "<?php echo lang('awards_sota_description_ln1'); ?>";
-            var lang_award_info_ln2 = "<?php echo lang('awards_sota_description_ln2'); ?>";
-            var lang_award_info_ln3 = "<?php echo lang('awards_sota_description_ln3'); ?>";
+            var lang_awards_info_button = "<?php echo __("Award Info"); ?>";
+            var lang_award_info_ln1 = "<?php echo __("SOTA Awards"); ?>";
+            var lang_award_info_ln2 = "<?php echo __("SOTA (Summits On The Air) is an award scheme for radio amateurs that encourages portable operation in mountainous areas."); ?>";
+            var lang_award_info_ln3 = "<?php echo __("It is fully operational in nearly a hundred countries worldwide. Each country has its own Association that defines the recognized SOTA summits within that Association. Each summit earns the activators and chasers a score related to the height of the summit. Certificates are available for various scores, leading to the prestigious 'Mountain Goat' and 'Shack Sloth' trophies. An Honor Roll for Activators and Chasers is maintained in the SOTA online database."); ?>";
             var lang_award_info_ln4 = "<?php echo lang('awards_sota_description_ln4'); ?>";
             </script>
             <h2><?php echo $page_title; ?></h2>
-            <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?php echo lang('awards_info_button'); ?></button>
+            <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?php echo __("Award Info"); ?></button>
         </div>
         <!-- End of Award Info Box -->
 	<?php

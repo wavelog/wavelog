@@ -3,14 +3,14 @@
         <br>
         <div id="awardInfoButton">
             <script>
-            var lang_awards_info_button = "<?php echo lang('awards_info_button'); ?>";
-            var lang_award_info_ln1 = "<?php echo lang('awards_dok_description_ln1'); ?>";
-            var lang_award_info_ln2 = "<?php echo lang('awards_dok_description_ln2'); ?>";
-            var lang_award_info_ln3 = "<?php echo lang('awards_dok_description_ln3'); ?>";
+            var lang_awards_info_button = "<?php echo __("Award Info"); ?>";
+            var lang_award_info_ln1 = "<?php echo __("DOK Award"); ?>";
+            var lang_award_info_ln2 = "<?php echo __("Germany extends over 630 km from East to West and nearly 900 km from North to South. Around 70,000 of Germany's 82 million inhabitants are licensed hams, with more than 40,000 of them being members of DARC. DOK is a system that provides individual local chapters with an identifier and means 'Deutscher Ortsverband Kenner' (English: 'German Local Association Identifier')."); ?>";
+            var lang_award_info_ln3 = "<?php echo __("The DOK consists of a letter for the district and a two-digit number for the local chapter, like P03 Friedrichshafen (city of the 'Hamradio exhibition') or F41 Baunatal (location of the DARC headquarters). Note: A zero in a DOK is a common mistake, often being logged as the letter O."); ?>";
             var lang_award_info_ln4 = "<?php echo lang('awards_dok_description_ln4'); ?>";
             </script>
             <h2><?php echo $page_title; ?></h2>
-            <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?php echo lang('awards_info_button'); ?></button>
+            <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?php echo __("Award Info"); ?></button>
         </div>
         <!-- End of Award Info Box -->
             <form class="form" action="<?php echo site_url('awards/dok'); ?>" method="post" enctype="multipart/form-data">
@@ -48,7 +48,7 @@
             </div>
 
             <div class="mb-3 row">
-                <div class="col-md-2"><?php echo lang('awards_qsl_type'); ?></div>
+                <div class="col-md-2"><?php echo __("Show QSO with QSL Type"); ?></div>
                 <div class="col-md-10">
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" name="qsl" value="1" id="qsl" <?php if ($this->input->post('qsl') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >

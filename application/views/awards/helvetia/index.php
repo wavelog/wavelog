@@ -14,14 +14,14 @@
         <br>
         <div id="awardInfoButton">
             <script>
-                var lang_awards_info_button = "<?php echo lang('awards_info_button'); ?>";
-                var lang_award_info_ln1 = "<?php echo lang('awards_helvetia_description_ln1'); ?>";
-                var lang_award_info_ln2 = "<?php echo lang('awards_helvetia_description_ln2'); ?>";
-                var lang_award_info_ln3 = "<?php echo lang('awards_helvetia_description_ln3'); ?>";
+                var lang_awards_info_button = "<?php echo __("Award Info"); ?>";
+                var lang_award_info_ln1 = "<?php echo __("HELVETIA 26 | SWITZERLAND AWARD"); ?>";
+                var lang_award_info_ln2 = "<?php echo __("The USKA (Union of Swiss Shortwave Amateurs) sponsors two awards, the HELVETIA 26 (H26) Award and the SWITZERLAND Award, aimed at promoting activities on the bands by encouraging contacts across as many Swiss cantons as possible on multiple bands."); ?>";
+                var lang_award_info_ln3 = "<?php echo __("These awards come in two versions: one for HF bands and the other for VHF (including SHF and UHF) bands. Valid connections for these awards date back to January 1, 1980"); ?>";
                 var lang_award_info_ln4 = "<?php echo lang('awards_helvetia_description_ln4'); ?>";
             </script>
             <h2><?php echo $page_title; ?></h2>
-            <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?php echo lang('awards_info_button'); ?></button>
+            <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?php echo __("Award Info"); ?></button>
         </div>
         <!-- End of Award Info Box -->
     <form class="form" action="<?php echo site_url('awards/helvetia'); ?>" method="post" enctype="multipart/form-data">
@@ -46,7 +46,7 @@
             </div>
 
             <div class="mb-3 row">
-                <div class="col-md-2"><?php echo lang('awards_qsl_type'); ?></div>
+                <div class="col-md-2"><?php echo __("Show QSO with QSL Type"); ?></div>
                 <div class="col-md-10">
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" name="qsl" value="1" id="qsl" <?php if ($this->input->post('qsl') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >

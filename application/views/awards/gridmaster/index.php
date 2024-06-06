@@ -3,14 +3,14 @@
         <br>
         <div id="awardInfoButton">
             <script>
-            var lang_awards_info_button = "<?php echo lang('awards_info_button'); ?>";
-            var lang_award_info_ln1 = "<?php echo lang('awards_us_gridmaster_description_ln1'); ?>";
-            var lang_award_info_ln2 = "<?php echo lang('awards_us_gridmaster_description_ln2'); ?>";
+            var lang_awards_info_button = "<?php echo __("Award Info"); ?>";
+            var lang_award_info_ln1 = "<?php echo __("US Gridmaster Award"); ?>";
+            var lang_award_info_ln2 = "<?php echo __("The GridMaster Award is the most prestigious AMSAT award, first introduced in 2014 by the Star Comm Group. It is available to all amateur radio operators worldwide who manage to work all 488 grid squares in the USA via satellite and can provide QSL confirmations for each contact."); ?>";
             var lang_award_info_ln3 = "<?php echo lang('awards_us_gridmaster_description_ln3'); ?>";
-            var lang_award_info_ln4 = "<?php echo lang('awards_us_gridmaster_description_ln4'); ?>";
+            var lang_award_info_ln4 = "<?php echo __("This map shows only QSOs worked on SAT."); ?>";
             </script>
             <h2><?php echo $page_title; ?></h2>
-            <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?php echo lang('awards_info_button'); ?></button>
+            <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?php echo __("Award Info"); ?></button>
         </div>
         <!-- End of Award Info Box -->
 		<?php if($this->session->flashdata('message')) { ?>
@@ -26,15 +26,15 @@
 	<div id="gridsquare_map" class="map-leaflet" style="width: 100%;"></div>
 </div>
 <div class="coordinates d-flex">
-        <div class="cohidden"><?php echo lang('gen_hamradio_latitude')?>: </div>
+        <div class="cohidden"><?php echo __("Latitude")?>: </div>
         <div class="cohidden col-auto text-success fw-bold" id="latDeg"></div>
-        <div class="cohidden"><?php echo lang('gen_hamradio_longitude')?>: </div>
+        <div class="cohidden"><?php echo __("Longitude")?>: </div>
         <div class="cohidden col-auto text-success fw-bold" id="lngDeg"></div>
-        <div class="cohidden"><?php echo lang('gen_hamradio_gridsquare')?>: </div>
+        <div class="cohidden"><?php echo __("Gridsquare")?>: </div>
         <div class="cohidden col-auto text-success fw-bold" id="locator"></div>
-        <div class="cohidden"><?php echo lang('gen_hamradio_distance')?>: </div>
+        <div class="cohidden"><?php echo __("Distance")?>: </div>
         <div class="cohidden col-auto text-success fw-bold" id="distance"></div>
-        <div class="cohidden"><?php echo lang('gen_hamradio_bearing')?>: </div>
+        <div class="cohidden"><?php echo __("Bearing")?>: </div>
         <div class="cohidden col-auto text-success fw-bold" id="bearing"></div>
 </div>
 <script>var gridsquaremap = true;

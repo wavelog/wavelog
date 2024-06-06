@@ -3,8 +3,8 @@
 <div class="table-responsive" style="font-size: 0.95rem;">
   <table class="table table-striped">
     <tr class="log_title titles">
-      <th><?php echo lang('general_word_date'); ?>/<?php echo lang('general_word_time'); ?></th>
-	<th><?php echo lang('gen_hamradio_call'); ?></th>
+      <th><?php echo __("Date"); ?>/<?php echo __("Time"); ?></th>
+	<th><?php echo __("Call"); ?></th>
 	<?php
 	echo_table_header_col($this, $this->session->userdata('user_column1')==""?'Mode':$this->session->userdata('user_column1'));
 	echo_table_header_col($this, $this->session->userdata('user_column2')==""?'RSTS':$this->session->userdata('user_column2'));

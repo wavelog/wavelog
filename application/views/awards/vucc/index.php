@@ -3,14 +3,14 @@
   <br>
   <div id="awardInfoButton">
     <script>
-      var lang_awards_info_button = "<?php echo lang('awards_info_button'); ?>";
-      var lang_award_info_ln1 = "<?php echo lang('awards_vucc_description_ln1'); ?>";
-      var lang_award_info_ln2 = "<?php echo lang('awards_vucc_description_ln2'); ?>";
+      var lang_awards_info_button = "<?php echo __("Award Info"); ?>";
+      var lang_award_info_ln1 = "<?php echo __("VUCC - VHF/UHF Century Club Award"); ?>";
+      var lang_award_info_ln2 = "<?php echo __("The VHF/UHF Century Club Award is given for a minimum number of worked and confirmed gridsquares on a desired band."); ?>";
       var lang_award_info_ln3 = "<?php echo lang('awards_vucc_description_ln3'); ?>";
-      var lang_award_info_ln4 = "<?php echo lang('awards_vucc_description_ln4'); ?>";
+      var lang_award_info_ln4 = "<?php echo __("Only VHF/UHF bands are relevant."); ?>";
     </script>
     <h2><?php echo $page_title; ?></h2>
-    <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?php echo lang('awards_info_button'); ?></button>
+    <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?php echo __("Award Info"); ?></button>
   </div>
   <!-- End of Award Info Box -->
 <?php if (!empty($vucc_array)) { ?>

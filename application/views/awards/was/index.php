@@ -14,14 +14,14 @@
         <br>
         <div id="awardInfoButton">
             <script>
-            var lang_awards_info_button = "<?php echo lang('awards_info_button'); ?>";
-            var lang_award_info_ln1 = "<?php echo lang('awards_was_description_ln1'); ?>";
-            var lang_award_info_ln2 = "<?php echo lang('awards_was_description_ln2'); ?>";
-            var lang_award_info_ln3 = "<?php echo lang('awards_was_description_ln3'); ?>";
+            var lang_awards_info_button = "<?php echo __("Award Info"); ?>";
+            var lang_award_info_ln1 = "<?php echo __("WAS Award"); ?>";
+            var lang_award_info_ln2 = "<?php echo __("ARRL's most popular award is the Worked All States Award. Thousands upon thousands of awards have been issued to hams around the world. In ARRL's 101st year, they have redesigned the certificates and the program in hopes of streamlining and improving the award program."); ?>";
+            var lang_award_info_ln3 = "<?php echo __("The WAS (Worked All States) Award is available to all amateurs worldwide who submit proof with written confirmation of contacts with each of the 50 states of the United States of America. Amateurs in the U.S. and its possessions must be members of ARRL to apply for a WAS. Applicants from outside the U.S. are exempt from this requirement."); ?>";
             var lang_award_info_ln4 = "<?php echo lang('awards_was_description_ln4'); ?>";
             </script>
             <h2><?php echo $page_title; ?></h2>
-            <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?php echo lang('awards_info_button'); ?></button>
+            <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?php echo __("Award Info"); ?></button>
         </div>
         <!-- End of Award Info Box -->
     <form class="form" action="<?php echo site_url('awards/was'); ?>" method="post" enctype="multipart/form-data">
@@ -46,7 +46,7 @@
             </div>
 
             <div class="mb-3 row">
-                <div class="col-md-2"><?php echo lang('awards_qsl_type'); ?></div>
+                <div class="col-md-2"><?php echo __("Show QSO with QSL Type"); ?></div>
                 <div class="col-md-10">
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" name="qsl" value="1" id="qsl" <?php if ($this->input->post('qsl') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >

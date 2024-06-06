@@ -1,13 +1,13 @@
 <div class="container">
-    <h1><?php echo lang('gridsquares_gridsquare_activators'); ?></h1>
+    <h1><?php echo __("Gridsquare Activators"); ?></h1>
 
     <form class="form" action="<?php echo site_url('activators'); ?>" method="post" enctype="multipart/form-data">
         <!-- Select Basic -->
         <div class="mb-3 row">
-            <label class="col-md-1 control-label" for="band"><?php echo lang('gen_hamradio_band'); ?></label>
+            <label class="col-md-1 control-label" for="band"><?php echo __("Band"); ?></label>
             <div class="col-md-3">
                 <select id="band" name="band" class="form-select">
-                    <option value="All" <?php if ($bandselect == "All") echo ' selected'; ?>><?php echo lang('general_word_all'); ?></option>
+                    <option value="All" <?php if ($bandselect == "All") echo ' selected'; ?>><?php echo __("All"); ?></option>
                     <?php foreach ($worked_bands as $band) {
                         echo '<option value="' . $band . '"';
                         if ($bandselect == $band) echo ' selected';
@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="mb-3 row">
-            <label class="col-md-1 control-label" for="mincount"><?php echo lang('gridsquares_minimum_count'); ?></label>
+            <label class="col-md-1 control-label" for="mincount"><?php echo __("Minimum Count"); ?></label>
             <div class="col-md-3">
                 <select id="mincount" name="mincount" class="form-select">
                     <?php
@@ -47,7 +47,7 @@
         <div class="mb-3 row">
             <label class="col-md-1 control-label" for="button1id"></label>
             <div class="col-md-10">
-                <button id="button1id" type="submit" name="button1id" class="btn btn-primary"><?php echo lang('filter_options_show'); ?></button>
+                <button id="button1id" type="submit" name="button1id" class="btn btn-primary"><?php echo __("Show"); ?></button>
             </div>
         </div>
 
@@ -96,11 +96,11 @@ function write_activators($activators_array, $vucc_grids, $custom_date_format, $
               <thead>
                     <tr>
                         <td>#</td>
-                        <td>' . lang('gen_hamradio_callsign') . '</td>
-                        <td>' . lang('general_word_count') . '</td>
-                        <td>' . lang('gridsquares_gridsquares') . '</td>
-                        <td>' . lang('gridsquares_show_qsos') . '</td>
-                        <td>' . lang('gridsquares_show_map') . '</td>
+                        <td>' . __("Callsign") . '</td>
+                        <td>' . __("Count") . '</td>
+                        <td>' . __("Gridsquares") . '</td>
+                        <td>' . __("Show QSO's") . '</td>
+                        <td>' . __("Show Map") . '</td>
                     </tr>
                 </thead>
                 <tbody>';

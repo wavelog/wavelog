@@ -10,14 +10,14 @@
         <br>
         <div id="awardInfoButton">
             <script>
-            var lang_awards_info_button = "<?php echo lang('awards_info_button'); ?>";
-            var lang_award_info_ln1 = "<?php echo lang('awards_dxcc_description_ln1'); ?>";
+            var lang_awards_info_button = "<?php echo __("Award Info"); ?>";
+            var lang_award_info_ln1 = "<?php echo __("DXCC Award"); ?>";
             var lang_award_info_ln2 = "<?php echo lang('awards_dxcc_description_ln2'); ?>";
             var lang_award_info_ln3 = "<?php echo lang('awards_dxcc_description_ln3'); ?>";
-            var lang_award_info_ln4 = "<?php echo lang('awards_dxcc_description_ln4'); ?>";
+            var lang_award_info_ln4 = "<?php echo __("Important Note: Over time, the criteria for the DXCC List have changed. The List remains unchanged until an entity no longer satisfies the criteria under which it was added, at which time it is moved to the Deleted List. You will find Deleted DXCC entities also in the lists on Wavelog. Be aware that these DXCC entities are outdated and no longer valid."); ?>";
             </script>
             <h2><?php echo $page_title; ?></h2>
-            <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?php echo lang('awards_info_button'); ?></button>
+            <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?php echo __("Award Info"); ?></button>
         </div>
         <!-- End of Award Info Box -->
 
@@ -54,7 +54,7 @@
             </div>
 
             <div class="mb-3 row">
-                <div class="col-md-2"><?php echo lang('awards_qsl_type'); ?></div>
+                <div class="col-md-2"><?php echo __("Show QSO with QSL Type"); ?></div>
                 <div class="col-md-10">
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" name="qsl" value="1" id="qsl" <?php if ($this->input->post('qsl') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
@@ -124,10 +124,10 @@
             </div>
             <div id="satrow" class="mb-3 row" <?php if ($this->input->post('band') != 'SAT' && $this->input->post('band') != 'All') echo "style=\"display: none\""; ?>>
 			<?php if (count($sats_available) != 0) { ?>
-                <label class="col-md-2 control-label" id="satslabel" for="distplot_sats"><?php echo lang('gridsquares_sat'); ?></label>
+                <label class="col-md-2 control-label" id="satslabel" for="distplot_sats"><?php echo __("Satellite"); ?></label>
 				<div class="col-md-2">
                 <select class="form-select form-select-sm"  id="sats" name="sats">
-                    <option value="All" <?php if ($this->input->post('sats') == "All" || $this->input->method() !== 'post') echo ' selected'; ?>><?php echo lang('general_word_all')?></option>
+                    <option value="All" <?php if ($this->input->post('sats') == "All" || $this->input->method() !== 'post') echo ' selected'; ?>><?php echo __("All")?></option>
                     <?php foreach($sats_available as $sat) {
                         echo '<option value="' . $sat . '"';
 						if ($this->input->post('sats') == $sat) echo ' selected';
@@ -140,10 +140,10 @@
             <?php } ?>
 			</div>
          <div id="orbitrow" class="mb-3 row" <?php if ($this->input->post('band') != 'SAT' && $this->input->post('band') != 'All') echo "style=\"display: none\""; ?>>
-                <label class="col-md-2 control-label" id="orbitslabel" for="orbits"><?php echo lang('gridsquares_orbit'); ?></label>
+                <label class="col-md-2 control-label" id="orbitslabel" for="orbits"><?php echo __("Orbit"); ?></label>
 				<div class="col-md-2">
                 <select class="form-select form-select-sm"  id="orbits" name="orbits">
-                    <option value="All" <?php if ($this->input->post('orbits') == "All" || $this->input->method() !== 'post') echo ' selected'; ?>><?php echo lang('general_word_all')?></option>
+                    <option value="All" <?php if ($this->input->post('orbits') == "All" || $this->input->method() !== 'post') echo ' selected'; ?>><?php echo __("All")?></option>
                     <?php
                     foreach($orbits as $orbit){
                         echo '<option value="' . $orbit . '"';
@@ -231,7 +231,7 @@
                         <td>'. $i++ .'</td>';
             foreach ($value as $name => $key) {
                 if (isset($value['Deleted']) && $value['Deleted'] == 1 && $name == "name") {
-                   echo '<td style="text-align: center">' . $key . ' <span class="badge text-bg-danger">'.lang('gen_hamradio_deleted_dxcc').'</span></td>';
+                   echo '<td style="text-align: center">' . $key . ' <span class="badge text-bg-danger">'.__("Deleted DXCC").'</span></td>';
                 } else if ($name == "Deleted") {
                    continue;
                 } else {

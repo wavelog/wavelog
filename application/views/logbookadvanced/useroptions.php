@@ -13,105 +13,105 @@
 <table style="width:100%" class="table-sm table table-hover table-striped table-condensed text-start" id="useroptions">
 	<thead>
 		<tr>
-			<th class="text-start"><?php echo lang('filter_options_column'); ?></th>
-			<th><?php echo lang('filter_options_show'); ?></th>
+			<th class="text-start"><?php echo __("Column"); ?></th>
+			<th><?php echo __("Show"); ?></th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
-			<td><?php echo lang('general_word_datetime'); ?></td>
+			<td><?php echo __("Date/Time"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="datetime" type="checkbox" <?php if (($options->datetime->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td><?php echo lang('gen_hamradio_de'); ?></td>
+			<td><?php echo __("De"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="de" type="checkbox" <?php if (($options->de->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td><?php echo lang('gen_hamradio_dx'); ?></td>
+			<td><?php echo __("Dx"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="dx" type="checkbox" <?php if (($options->dx->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td><?php echo lang('gen_hamradio_mode'); ?></td>
+			<td><?php echo __("Mode"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="mode" type="checkbox" <?php if (($options->mode->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td><?php echo lang('gen_hamradio_rsts'); ?></td>
+			<td><?php echo __("RST (S)"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="rsts" type="checkbox" <?php if (($options->rsts->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td><?php echo lang('gen_hamradio_rstr'); ?></td>
+			<td><?php echo __("RST (R)"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="rstr" type="checkbox" <?php if (($options->rstr->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td><?php echo lang('gen_hamradio_band'); ?></td>
+			<td><?php echo __("Band"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="band" type="checkbox" <?php if (($options->band->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td><?php echo lang('gen_hamradio_myrefs'); ?></td>
+			<td><?php echo __("My Refs"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="myrefs" type="checkbox" <?php if (($options->myrefs->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td><?php echo lang('general_word_name'); ?></td>
+			<td><?php echo __("Name"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="name" type="checkbox" <?php if (($options->name->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td><?php echo lang('gen_hamradio_qslvia'); ?></td>
+			<td><?php echo __("QSL via"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="qslvia" type="checkbox" <?php if (($options->qslvia->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td><?php echo lang('gen_hamradio_qsl'); ?></td>
+			<td><?php echo __("QSL"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="qsl" type="checkbox" <?php if (($options->qsl->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td><?php echo lang('lotw_short'); ?></td>
+			<td><?php echo __("LoTW"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="lotw" type="checkbox" <?php if (($options->lotw->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td><?php echo lang('eqsl_short'); ?></td>
+			<td><?php echo __("eQSL"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="eqsl" type="checkbox" <?php if (($options->eqsl->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td><?php echo lang('gen_hamradio_qslmsg'); ?></td>
+			<td><?php echo __("QSL Msg"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="qslmsg" type="checkbox" <?php if (($options->qslmsg->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td><?php echo lang('gen_hamradio_dxcc'); ?></td>
+			<td><?php echo __("DXCC"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="dxcc" type="checkbox" <?php if (($options->dxcc->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td><?php echo lang('gen_hamradio_state'); ?></td>
+			<td><?php echo __("State"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="state" type="checkbox" <?php if (($options->state->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td><?php echo lang('gen_hamradio_cq_zone'); ?></td>
+			<td><?php echo __("CQ Zone"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="cqzone" type="checkbox" <?php if (($options->cqzone->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td><?php echo lang('gen_hamradio_itu_zone'); ?></td>
+			<td><?php echo __("ITU Zone"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="ituzone" type="checkbox" <?php if (($options->ituzone->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td><?php echo lang('gen_hamradio_sota'); ?></td>
+			<td><?php echo __("SOTA"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="sota" type="checkbox" <?php if (($options->sota->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td><?php echo lang('gen_hamradio_iota'); ?></td>
+			<td><?php echo __("IOTA"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="iota" type="checkbox" <?php if (($options->iota->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td><?php echo lang('gen_hamradio_pota'); ?></td>
+			<td><?php echo __("POTA"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="pota" type="checkbox" <?php if (($options->pota->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td><?php echo lang('gen_hamradio_operator'); ?></td>
+			<td><?php echo __("Operator"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="operator" type="checkbox" <?php if (($options->operator->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td><?php echo lang('general_word_comment'); ?></td>
+			<td><?php echo __("Comment"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="comment" type="checkbox" <?php if (($options->comment->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td><?php echo lang('filter_general_propagation'); ?></td>
+			<td><?php echo __("Propagation"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="propagation" type="checkbox" <?php if (($options->propagation->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>

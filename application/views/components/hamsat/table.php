@@ -16,7 +16,7 @@
     <?php } else { ?>
     <?php if ($rovedata['data'] == []) { ?>
      <div class="alert alert-warning" role="warning">
-       <?php echo lang('hams_at_no_activations_found');?>
+       <?php echo __("No upcoming activations found. Please check back later.");?>
     </div>
     <?php } else { ?>
        <table class="table table-striped table-hover">

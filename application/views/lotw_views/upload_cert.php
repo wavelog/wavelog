@@ -1,11 +1,11 @@
 <div class="container lotw">
 
-	<h2><?php echo lang('lotw_title'); ?></h2>
+	<h2><?php echo __("Logbook of the World"); ?></h2>
 
 	<!-- Card Starts -->
 	<div class="card">
 		<div class="card-header">
-			<?php echo lang('lotw_title_upload_p12_cert'); ?>
+			<?php echo __("Upload Logbook of the World .p12 Certificate"); ?>
 		</div>
 
 		<div class="card-body">
@@ -16,23 +16,23 @@
 	    	<?php } ?>
 
 	    	<div class="alert alert-info" role="alert">
-		    	<h5><?php echo lang('lotw_title_export_p12_file_instruction'); ?></h5>
+		    	<h5><?php echo __("Export .p12 File Instructions"); ?></h5>
 
 		    	<ul>
-		    		<li><?php echo lang('lotw_p12_export_step_one'); ?></li>
-		    		<li><?php echo lang('lotw_p12_export_step_two'); ?></li>
-		    		<li><?php echo lang('lotw_p12_export_step_three'); ?></li>
-		    		<li><?php echo lang('lotw_p12_export_step_four'); ?></li>
+		    		<li><?php echo __("Open TQSL &amp; go to the Callsign Certificates Tab"); ?></li>
+		    		<li><?php echo __("Right click on desired Callsign"); ?></li>
+		    		<li><?php echo __("Click "Save Callsign Certificate File" and do not add a password"); ?></li>
+		    		<li><?php echo __("Upload File below."); ?></li>
 		    	</ul>
 	    	</div>
 
 			<?php echo form_open_multipart('lotw/do_cert_upload');?>
 				<div class="mb-3">
-				    <label for="exampleFormControlFile1"><?php echo lang('lotw_title_upload_p12_cert'); ?></label>
+				    <label for="exampleFormControlFile1"><?php echo __("Upload Logbook of the World .p12 Certificate"); ?></label>
 				    <input type="file" name="userfile" class="form-control" id="exampleFormControlFile1">
 				 </div>
 
-				<button type="submit" value="upload" class="btn btn-primary"><?php echo lang('lotw_btn_upload_file'); ?></button>
+				<button type="submit" value="upload" class="btn btn-primary"><?php echo __("Upload File"); ?></button>
 			</form>
 
 	    </div>

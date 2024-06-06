@@ -1,14 +1,14 @@
 <div class="container">
 <br>
-    <h2><?php echo lang('export_kml_header'); ?></h2>
+    <h2><?php echo __("KML Export"); ?></h2>
 
     <div class="card">
         <div class="card-header">
-            <?php echo lang('export_kml_description'); ?>
+            <?php echo __("Export your logbook to a KML file for use in Google Earth."); ?>
         </div>
 
         <div class="alert alert-warning" role="alert">
-            <?php echo lang('export_kml_grisquare_warning'); ?>
+            <?php echo __("Only QSOs with a gridsquare defined will be exported!"); ?>
         </div>
 
         <div class="card-body">
@@ -16,9 +16,9 @@
             <form class="form" action="<?php echo site_url('kmlexport/export'); ?>" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="mb-3 col-md-3">
-                        <label for="band"><?php echo lang('gen_hamradio_band'); ?></label>
+                        <label for="band"><?php echo __("Band"); ?></label>
                             <select id="band" name="band" class="form-select">
-                                <option value="All" <?php if ($this->input->post('band') == "All" || $this->input->method() !== 'post') echo ' selected'; ?> ><?php echo lang('general_word_all'); ?></option>
+                                <option value="All" <?php if ($this->input->post('band') == "All" || $this->input->method() !== 'post') echo ' selected'; ?> ><?php echo __("All"); ?></option>
                                 <?php foreach($worked_bands as $band) {
                                     echo '<option value="' . $band . '"';
                                     if ($this->input->post('band') == $band) echo ' selected';
@@ -28,9 +28,9 @@
                     </div>
 
                     <div class="mb-3 col-md-3">
-                    <label for="mode"><?php echo lang('gen_hamradio_mode'); ?></label>
+                    <label for="mode"><?php echo __("Mode"); ?></label>
                         <select id="mode" name="mode" class="form-select">
-                            <option value="All"><?php echo lang('general_word_all'); ?></option>
+                            <option value="All"><?php echo __("All"); ?></option>
                             <?php
                             foreach($modes->result() as $mode){
                                 if ($mode->submode == null) {
@@ -44,14 +44,14 @@
                     </div>
 
                     <div class="mb-3 col-md-4">
-                        <label for="dxcc_id"><?php echo lang('gen_hamradio_dxcc'); ?></label>
+                        <label for="dxcc_id"><?php echo __("DXCC"); ?></label>
                         <select class="form-select" id="dxcc_id" name="dxcc_id">
-                            <option value="All"><?php echo lang('general_word_all'); ?></option>
+                            <option value="All"><?php echo __("All"); ?></option>
                             <?php
                                 foreach($dxcc as $d){
                                     echo '<option value=' . $d->adif . '>' . $d->prefix . ' - ' . ucwords(strtolower($d->name), "- (/");
                                     if ($d->Enddate != null) {
-                                        echo ' ('.lang('gen_hamradio_deleted_dxcc').')';
+                                        echo ' ('.__("Deleted DXCC").')';
                                     }
                                     echo '</option>';
                                 }
@@ -62,9 +62,9 @@
                 </div>
                 <div class="row">                
                     <div class="mb-3 col-md-3">
-                        <label for="cqz"><?php echo lang('gen_hamradio_cq_zone'); ?></label>
+                        <label for="cqz"><?php echo __("CQ Zone"); ?></label>
                         <select class="form-select" id="cqz" name="cqz">
-                            <option value="All"><?php echo lang('general_word_all'); ?></option>
+                            <option value="All"><?php echo __("All"); ?></option>
                             <?php
                             for ($i = 1; $i<=40; $i++) {
                                 echo '<option value="'. $i . '">'. $i .'</option>';
@@ -74,9 +74,9 @@
                     </div>
 
                     <div class="mb-3 col-md-5">
-                        <label for="selectPropagation"><?php echo lang('gen_hamradio_propagation_mode'); ?></label>
+                        <label for="selectPropagation"><?php echo __("Propagation Mode"); ?></label>
                         <select class="form-select" id="selectPropagation" name="prop_mode">
-                            <option value="All"><?php echo lang('general_word_all'); ?></option>
+                            <option value="All"><?php echo __("All"); ?></option>
                             <option value="AS">Aircraft Scatter</option>
                             <option value="AUR">Aurora</option>
                             <option value="AUE">Aurora-E</option>
@@ -100,17 +100,17 @@
                 </div>
                 <div class="row">
                     <div class="mb-3 col-md-3">
-                        <label for="from"><?php echo lang('gen_from_date') . ": " ?></label>
+                        <label for="from"><?php echo __("From date") . ": " ?></label>
                         <input name="from" id="from" type="date" class="form-control w-auto">
                     </div>
 
                     <div class="mb-3 col-md-3">
-                        <label for="to"><?php echo lang('gen_to_date') . ": " ?></label>
+                        <label for="to"><?php echo __("To date") . ": " ?></label>
                         <input name="to" id="to" type="date" class="form-control w-auto">
                     </div>
                 </div>    
                 <br>
-                <button type="submit" class="btn btn-primary mb-2" value="Export"><?php echo lang('general_word_export'); ?></button>
+                <button type="submit" class="btn btn-primary mb-2" value="Export"><?php echo __("Export"); ?></button>
             </form>
         </div>
     </div>

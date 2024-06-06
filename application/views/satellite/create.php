@@ -67,7 +67,7 @@
 			</div>
 		</div>
 
-			<button type="button" onclick="createSatellite(this.form);" class="btn btn-sm btn-primary"><i class="fas fa-plus-square"></i> <?php echo lang('options_save'); ?></button>
+			<button type="button" onclick="createSatellite(this.form);" class="btn btn-sm btn-primary"><i class="fas fa-plus-square"></i> <?php echo __("Save"); ?></button>
 
 		</form>
 </div>

@@ -3,14 +3,14 @@
         <br>
         <div id="awardInfoButton">
             <script>
-            var lang_awards_info_button = "<?php echo lang('awards_info_button'); ?>";
-            var lang_award_info_ln1 = "<?php echo lang('awards_wwff_description_ln1'); ?>";
-            var lang_award_info_ln2 = "<?php echo lang('awards_wwff_description_ln2'); ?>";
-            var lang_award_info_ln3 = "<?php echo lang('awards_wwff_description_ln3'); ?>";
+            var lang_awards_info_button = "<?php echo __("Award Info"); ?>";
+            var lang_award_info_ln1 = "<?php echo __("WWFF - World Wide Flora and Fauna Award"); ?>";
+            var lang_award_info_ln2 = "<?php echo __("WWFF, World Wide Flora and Fauna in Amateur Radio, encourages licensed ham radio operators to leave their shacks and operate portable in Protected Flora & Fauna areas (PFF) worldwide."); ?>";
+            var lang_award_info_ln3 = "<?php echo __("More than 26,000 Protected Flora & Fauna (PFF) areas worldwide are already registered in the WWFF Directory. Hunters and Activators can apply for colorful awards, both globally and nationally."); ?>";
             var lang_award_info_ln4 = "<?php echo lang('awards_wwff_description_ln4'); ?>";
             </script>
             <h2><?php echo $page_title; ?></h2>
-            <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?php echo lang('awards_info_button'); ?></button>
+            <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?php echo __("Award Info"); ?></button>
         </div>
         <!-- End of Award Info Box -->
 	<?php
@@ -28,13 +28,13 @@
 	<thead>
 		
 	<tr>
-		<th style="text-align: center"><?php echo lang('gen_hamradio_wwff_reference') ?></th>
-		<th style="text-align: center"><?php echo lang('general_word_date') ?></th>
-		<th style="text-align: center"><?php echo lang('general_word_time') ?></th>
-		<th style="text-align: center"><?php echo lang('gen_hamradio_callsign') ?></th>
-		<th style="text-align: center"><?php echo lang('gen_hamradio_band') ?></th>
-		<th style="text-align: center"><?php echo lang('gen_hamradio_rsts') ?></th>
-		<th style="text-align: center"><?php echo lang('gen_hamradio_rstr') ?></th>
+		<th style="text-align: center"><?php echo __("WWFF Reference") ?></th>
+		<th style="text-align: center"><?php echo __("Date") ?></th>
+		<th style="text-align: center"><?php echo __("Time") ?></th>
+		<th style="text-align: center"><?php echo __("Callsign") ?></th>
+		<th style="text-align: center"><?php echo __("Band") ?></th>
+		<th style="text-align: center"><?php echo __("RST (S)") ?></th>
+		<th style="text-align: center"><?php echo __("RST (R)") ?></th>
 	</tr>
 	</thead>
 	

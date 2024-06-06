@@ -70,8 +70,8 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="editCron()" ><?php echo lang('admin_save'); ?></button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?php echo lang('general_word_cancel'); ?></button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="editCron()" ><?php echo __("Save"); ?></button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?php echo __("Cancel"); ?></button>
             </div>
         </div>
     </div>

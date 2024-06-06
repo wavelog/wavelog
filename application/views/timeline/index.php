@@ -1,13 +1,13 @@
 <div class="container">
-    <h1><?php echo lang('statistics_timeline'); ?></h1>
+    <h1><?php echo __("Timeline"); ?></h1>
 
     <form class="form" action="<?php echo site_url('timeline'); ?>" method="post" enctype="multipart/form-data">
         <!-- Select Basic -->
                 <div class="mb-3 row">
-                    <label class="col-md-1 control-label" for="band"><?php echo lang('gen_hamradio_band') ?></label>
+                    <label class="col-md-1 control-label" for="band"><?php echo __("Band") ?></label>
                     <div class="col-md-3">
                         <select id="band" name="band" class="form-select">
-                            <option value="All" <?php if ($this->input->post('band') == "All" || $this->input->method() !== 'post') echo ' selected'; ?> ><?php echo lang('general_word_all') ?></option>
+                            <option value="All" <?php if ($this->input->post('band') == "All" || $this->input->method() !== 'post') echo ' selected'; ?> ><?php echo __("All") ?></option>
                             <?php foreach($worked_bands as $band) {
                                 echo '<option value="' . $band . '"';
                                 if ($this->input->post('band') == $band) echo ' selected';
@@ -16,10 +16,10 @@
                         </select>
                     </div>
 
-                    <label class="col-md-1 control-label" for="mode"><?php echo lang('gen_hamradio_mode') ?></label>
+                    <label class="col-md-1 control-label" for="mode"><?php echo __("Mode") ?></label>
                     <div class="col-md-3">
                         <select id="mode" name="mode" class="form-select">
-                            <option value="All" <?php if ($this->input->post('mode') == "All" || $this->input->method() !== 'post') echo ' selected'; ?> ><?php echo lang('general_word_all') ?></option>
+                            <option value="All" <?php if ($this->input->post('mode') == "All" || $this->input->method() !== 'post') echo ' selected'; ?> ><?php echo __("All") ?></option>
                             <?php
                             foreach($modes->result() as $mode){
                                 if ($mode->submode == null) {
@@ -38,7 +38,7 @@
                 </div>
 
         <div class="mb-3 row">
-            <label class="col-md-1 control-label" for="award"><?php echo lang('gen_hamradio_award') ?></label>
+            <label class="col-md-1 control-label" for="award"><?php echo __("Award") ?></label>
                 <div class="col-md-3">
                     <select id="award" name="award" class="form-select">
                         <option value="dxcc" <?php if ($this->input->post('award') == "dxcc") echo ' selected'; ?> >DX Century Club (DXCC)</option>
@@ -48,19 +48,19 @@
                         <option value="vucc" <?php if ($this->input->post('award') == "vucc") echo ' selected'; ?> >VHF / UHF Century Club (VUCC)</option>
                     </select>
                 </div>
-                <div class="col-md-1 control-label"><?php echo lang('general_word_confirmation') ?></div>
+                <div class="col-md-1 control-label"><?php echo __("Confirmation") ?></div>
                 <div class="col-md-3">
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" name="qsl" value="1" id="qsl" <?php if ($this->input->post('qsl'))  echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="qsl"><?php echo lang('gen_hamradio_qsl') ?></label>
+                        <label class="form-check-label" for="qsl"><?php echo __("QSL") ?></label>
                     </div>
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" name="lotw" value="1" id="lotw" <?php if ($this->input->post('lotw')) echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="lotw"><?php echo lang('general_word_lotw_short') ?></label>
+                        <label class="form-check-label" for="lotw"><?php echo __("LoTW") ?></label>
                     </div>
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" name="eqsl" value="1" id="eqsl" <?php if ($this->input->post('eqsl')) echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="eqsl"><?php echo lang('eqsl_short') ?></label>
+                        <label class="form-check-label" for="eqsl"><?php echo __("eQSL") ?></label>
                     </div>
                 </div>
             </div>
@@ -68,7 +68,7 @@
             <div class="mb-3 row">
                 <label class="col-md-1 control-label" for="button1id"></label>
                 <div class="col-md-10">
-                    <button id="button1id" type="submit" name="button1id" class="btn btn-primary"><?php echo lang('filter_options_show') ?></button>
+                    <button id="button1id" type="submit" name="button1id" class="btn btn-primary"><?php echo __("Show") ?></button>
                 </div>
             </div>
 
