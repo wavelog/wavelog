@@ -138,13 +138,19 @@ function _get_reader($domain = null, $category = 5, $enable_cache = true)
 		$locale_names = get_list_of_locales($locale);
 		$input = null;
 		foreach($locale_names as $locale) {
+			$is_en = false;
+			if (strpos($locale, 'en') === 0) {
+				$is_en = true;
+			}
 			$full_path = APPPATH . "locale/" . $locale . "/" . $subpath;   // we need so set a fix path here, to match our folder structure
 			// log_message('error', 'full path: '. $full_path);
 			if (file_exists($full_path)) {
 				$input = new FileReader($full_path);
 				break;
 			} else {
-				log_message('error', "Language Path does not exist. _get_reader() in gettext.php");
+				if(!$is_en) {
+					log_message('error', "Language Path '". $locale ."' does not exist. _get_reader() in gettext.php");
+				}
 			}
 		}
 
