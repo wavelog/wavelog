@@ -1,0 +1,47 @@
+name: Translation Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        repository: HB9HIL/wavelog
+        ref: gettext_test
+
+    - name: Set up gettext
+      run: sudo apt-get install -y gettext
+
+    - name: Create POT file
+      run: xgettext --no-wrap -o assets/lang_src/messages.pot --copyright-holder=Wavelog --from-code=UTF-8 --keyword=__ --keyword=_ngettext:1,2 --keyword=_pgettext:1c,2 -L PHP $(find . -name "*.php")
+
+    - name: Merge POT into PO files
+      run: |
+        for po in $(find . -name "*.po"); do
+          msgmerge --no-wrap -UN --verbose "$po" assets/lang_src/messages.pot;
+        done
+
+    - name: Delete backup .po~ files
+      run: find . -name "*.po~" -delete
+
+    - name: Compile MO files from PO files
+      run: |
+        for po in $(find . -name "*.po"); do
+          mo="${po%.po}.mo";
+          msgfmt --verbose -o "$mo" "$po";
+        done
+
+    - name: Commit changes
+      run: |
+        git config --global user.name "github-actions"
+        git config --global user.email "github-actions@github.com"
+        git add .
+        git commit -m "Update translations"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
