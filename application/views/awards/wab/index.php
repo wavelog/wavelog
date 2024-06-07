@@ -64,7 +64,7 @@
 			<label class="my-1 me-2"><?php echo lang('gridsquares_confirmation'); ?></label>
                 <div>
                     <div class="form-check-inline">
-                    <?php echo '<input class="form-check-input" type="checkbox" name="qsl" id="qsl"';
+                    <?php echo '<input class="form-check-input" value="1" type="checkbox" name="qsl" id="qsl"';
                         if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'Q') !== false) {
                             echo ' checked' ;
                         }
@@ -72,7 +72,7 @@
                         <label class="form-check-label" for="qsl">QSL</label>
                     </div>
                     <div class="form-check-inline">
-                    <?php echo '<input class="form-check-input" type="checkbox" name="lotw" id="lotw"';
+                    <?php echo '<input class="form-check-input" value="1" type="checkbox" name="lotw" id="lotw"';
                         if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'L') !== false) {
                             echo ' checked' ;
                         }
@@ -80,7 +80,7 @@
                         <label class="form-check-label" for="lotw">LoTW</label>
                     </div>
                     <div class="form-check-inline">
-                    <?php echo '<input class="form-check-input" type="checkbox" name="eqsl" id="eqsl"';
+                    <?php echo '<input class="form-check-input" value="1" type="checkbox" name="eqsl" id="eqsl"';
                         if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'E') !== false) {
                             echo ' checked' ;
                         }
@@ -88,12 +88,20 @@
                         <label class="form-check-label" for="eqsl">eQSL</label>
                     </div>
                     <div class="form-check-inline">
-                    <?php echo '<input class="form-check-input" type="checkbox" name="qrz" id="qrz"';
+                    <?php echo '<input class="form-check-input" value="1" type="checkbox" name="qrz" id="qrz"';
                         if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'Z') !== false) {
                             echo ' checked' ;
                         }
                         echo '>'; ?>
                         <label class="form-check-label" for="qrz">QRZ.com</label>
+                    </div>
+		    <div>
+                     <?php echo '<input class="form-check-input" value="1" type="checkbox" name="clublog" id="clublog"';
+                        if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'C') !== false) {
+                            echo ' checked' ;
+                        }
+                        echo '>'; ?>
+                        <label class="form-check-label" for="clublog">Clublog</label>
                     </div>
                 </div>
 

@@ -34,6 +34,7 @@ function export_qsos() {
            lotw: +$('#lotw').prop('checked'),
            qrz: +$('#qrz').prop('checked'),
            eqsl: +$('#eqsl').prop('checked'),
+           clublog: +$('#clublog').prop('checked'),
            includedeleted: +$('#includedeleted').prop('checked'),
            Africa: +$('#Africa').prop('checked'),
            Asia: +$('#Asia').prop('checked'),
