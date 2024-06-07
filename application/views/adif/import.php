@@ -68,7 +68,7 @@
                         </select>
                         <div class="small form-text text-muted"><?= __("Add QSOs to Contest") ?></div>
                         <select name="contest" id="contest" class="form-select mb-2 me-sm-2" style="width: 20%;">
-                        	<option value="" selected>No Contest</option>
+                        	<option value="" selected><?= __("No Contest"); ?></option>
                             <?php
 				foreach ($contests as $contest) {
                                 echo '<option value="'.$contest['adifname'].'">'.$contest['name'].'</option>';
@@ -239,7 +239,7 @@
                         </div>
                     <?php } ?>
 
-                    <p class="card-text"><?= __("Go to") ?> <a href="http://dcl.darc.de/dml/export_adif_form.php" target="_blank"><?= __("DARC DCL") ?></a> <?= __("and export your logbook with confirmed DOKs. To speed up the process you can select only DL QSOs to download (i.e. put \"DL\" into Prefix List). The downloaded ADIF file can be uploaded here in order to update QSOs with DOK info.") ?></p>
+                    <p class="card-text"><?= sprintf(__("Go to %s and export your logbook with confirmed DOKs. To speed up the process you can select only DL QSOs to download (i.e. put 'DL' into Prefix List). The downloaded ADIF file can be uploaded here in order to update QSOs with DOK info."), "<a href='http://dcl.darc.de/dml/export_adif_form.php' target='_blank'>". __("DARC DCL")."</a>")?></p>
                     <form class="form" action="<?php echo site_url('adif/dcl'); ?>" method="post" enctype="multipart/form-data">
 
                         <div class="mb-3 row">
@@ -255,7 +255,7 @@
                             <div class="col-md-10">
                                 <div class="form-check-inline">
                                     <input class="form-check-input" type="checkbox" name="overwriteDok" value="1" id="overwriteDok">
-                                    <label class="form-check-label" for="overwriteDok"><span class="badge text-bg-warning"><?= __("Warning") ?></span> <?= __("Overwrite exisiting DOK in log by DCL (if different).") ?></label>
+                                    <label class="form-check-label" for="overwriteDok"><span class="badge text-bg-warning"><?= __("Warning") ?></span> <?= __("Overwrites exisiting DOK in log by DCL (if different).") ?></label>
                                 </div>
                                 <div class="small form-text text-muted"><?= __("If checked Wavelog will forcibly overwrite existing DOK with DOK from DCL log.") ?></div>
                             </div>
@@ -266,7 +266,7 @@
                                     <input class="form-check-input" type="checkbox" name="ignoreAmbiguous" value="1" id="ignoreAmbiguous" checked>
                                     <label class="form-check-label" for="ignoreAmbiguous"><?= __("Ignore QSOs that cannot be matched.") ?></label>
                                 </div>
-                                <div class="small form-text text-muted"><?= __("If unchecked information about QSO which could not be found in Wavelog will be displayed.") ?></div>
+                                <div class="small form-text text-muted"><?= __("If unchecked, information about QSOs which could not be found in Wavelog will be displayed.") ?></div>
                             </div>
                         </div>
                         <input class="file-input mb-2 me-sm-2" type="file" name="userfile" size="20" />

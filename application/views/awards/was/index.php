@@ -146,7 +146,7 @@
         <thead>
         <tr>
             <td>#</td>
-            <td>State</td>';
+            <td>' . __("State") . '</td>';
         foreach($bands as $band) {
             echo '<td>' . $band . '</td>';
             }

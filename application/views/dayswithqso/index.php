@@ -71,7 +71,7 @@
             echo '</table></div>';
     }
     else {
-        echo '<div class="alert alert-danger" role="alert">No streak found!</div>';
+        echo '<div class="alert alert-danger" role="alert">' . _pgettext("Days with QSOs", "No streak found!") . '</div>';
     }
     ?>
 

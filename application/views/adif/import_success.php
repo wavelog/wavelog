@@ -15,9 +15,9 @@
     <h3 class="card-title"><?= __("Yay, its imported!")?></h3>
     <p class="card-text"><?= __("The ADIF File has been imported.")?>
     <?php if(isset($skip_dupes)) {
-             echo __(" <b>Dupes were inserted!</b>");
+             echo " <b>" . __("Dupes were inserted!") . "</b>";
           } else {
-             echo __(" Dupes were skipped.");
+             echo " ".__("Dupes were skipped.");
           } ?>
     </p>
     <?php if($adif_errors) { ?>

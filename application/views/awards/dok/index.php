@@ -70,10 +70,10 @@
             </div>
 
            <div class="mb-3 row">
-               <label class="col-md-2 control-label" for="band">Band</label>
+               <label class="col-md-2 control-label" for="band"><?= __("Band"); ?></label>
                <div class="col-md-2">
                    <select id="band2" name="band" class="form-select form-select-sm">
-                       <option value="All" <?php if ($this->input->post('band') == "All" || $this->input->method() !== 'post') echo ' selected'; ?> >Every band</option>
+                       <option value="All" <?php if ($this->input->post('band') == "All" || $this->input->method() !== 'post') echo ' selected'; ?> ><?= __("Every band"); ?></option>
                        <?php foreach($worked_bands as $band) {
                            echo '<option value="' . $band . '"';
                            if ($this->input->post('band') == $band) echo ' selected';
@@ -84,10 +84,10 @@
            </div>
 
            <div class="mb-3 row">
-               <label class="col-md-2 control-label" for="mode">Mode</label>
+               <label class="col-md-2 control-label" for="mode"><?= __("Mode"); ?></label>
                <div class="col-md-2">
                   <select id="mode" name="mode" class="form-select form-select-sm">
-                     <option value="All" <?php if ($this->input->post('mode') == "All" || $this->input->method() !== 'mode') echo ' selected'; ?>>All</option>
+                     <option value="All" <?php if ($this->input->post('mode') == "All" || $this->input->method() !== 'mode') echo ' selected'; ?>><?= __("All"); ?></option>
                      <?php
                         foreach($modes->result() as $mode){
                         if ($mode->submode == null) {
@@ -119,9 +119,9 @@
             <div class="mb-3 row">
                 <label class="col-md-2 control-label" for="button1id"></label>
                 <div class="col-md-10">
-                    <button id="button2id" type="reset" name="button2id" class="btn btn-sm btn-warning">Reset</button>
-                    <button id="button1id" type="submit" name="button1id" class="btn btn-sm btn-primary">Show</button>
-                    <button id="button3id" type="button" name="button3id" class="btn btn-sm btn-info" onclick=" window.open('https://dd3ah.de/dokmap/?lat=51.3035&lng=11.1475&zoom=7<?php print implode(',', $doks); ?>','_blank')"><i class="fas fa-globe-americas"></i> Map</button>
+                    <button id="button2id" type="reset" name="button2id" class="btn btn-sm btn-warning"><?= __("Reset"); ?></button>
+                    <button id="button1id" type="submit" name="button1id" class="btn btn-sm btn-primary"><?= __("Show"); ?></button>
+                    <button id="button3id" type="button" name="button3id" class="btn btn-sm btn-info" onclick=" window.open('https://dd3ah.de/dokmap/?lat=51.3035&lng=11.1475&zoom=7<?php print implode(',', $doks); ?>','_blank')"><i class="fas fa-globe-americas"></i> <?= __("Map"); ?></button>
                 </div>
             </div>
         </fieldset>
@@ -142,7 +142,7 @@
     <table style="width:100%" id="doktable" class="table table-sm table-bordered table-hover table-striped table-condensed text-center">
         <thead>
         <tr>
-            <th>DOK</th>';
+            <th>' . __("DOK") . '</th>';
         foreach($bands as $band) {
             echo '<th>' . $band . '</th>';
             }
@@ -158,7 +158,7 @@
             echo '</tr>';
         }
         echo '</table>
-        <h2>Summary</h2>
+        <h2>' . __("Summary") . '</h2>
 
         <table class="table-sm tablesummary table table-bordered table-hover table-striped table-condensed text-center">
         <thead>
@@ -167,18 +167,18 @@
         foreach($bands as $band) {
             echo '<td>' . $band . '</td>';
         }
-        echo '<td>Total</td></tr>
+        echo '<td>' . __("Total") . '</td></tr>
         </thead>
         <tbody>
 
-        <tr><td>Total worked</td>';
+        <tr><td>' . __("Total worked") . '</td>';
 
         foreach ($dok_summary['worked'] as $dxcc) {      // Fills the table with the data
             echo '<td style="text-align: center">' . $dxcc . '</td>';
         }
 
         echo '</tr><tr>
-        <td>Total confirmed</td>';
+        <td>' . __("Total confirmed") . '</td>';
         foreach ($dok_summary['confirmed'] as $dxcc) {      // Fills the table with the data
             echo '<td style="text-align: center">' . $dxcc . '</td>';
         }
@@ -189,7 +189,7 @@
 
     }
     else {
-        echo '<div class="alert alert-danger" role="alert">Nothing found!</div>';
+        echo '<div class="alert alert-danger" role="alert">' . __("Nothing found!") . '</div>';
     }
     ?>
 

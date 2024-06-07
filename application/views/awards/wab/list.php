@@ -2,8 +2,8 @@
 		<table style="width:100%" class="wabtable table-sm table table-bordered table-hover table-striped table-condensed text-center">
 			<thead>
 				<tr>
-					<th class="select-filter" scope="col">WAB Square</th>
-					<th class="select-filter" scope="col">Confirmed</th>
+					<th class="select-filter" scope="col"><?= __("WAB Square"); ?></th>
+					<th class="select-filter" scope="col"><?= __("Confirmed"); ?></th>
 				</tr>
 			</thead>
 			<tbody>

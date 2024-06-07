@@ -52,6 +52,9 @@ $config['gettext_domain'] = NULL;
 | -------------------------------------------------------------------
 | A list of enabled languages. These are the language that will be
 | used on the site.
+|
+|  IMPORTANT: If you add new languages also add this at the end of application/views/debug/index.php
+|
 */
 $config['languages'] = array(
 

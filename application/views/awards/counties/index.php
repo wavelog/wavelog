@@ -36,7 +36,7 @@
             $confirmed += $counties['countycountconfirmed'];
         }
         ?><tfoot><tr>
-            <td>Total</td>
+            <td><?= __("Total"); ?></td>
             <td><a href=counties_details?State="All"&Type="worked"><?php echo $worked ?></a></td>
             <td><a href=counties_details?State="All"&Type="confirmed"><?php echo $confirmed ?></a></td>
         </tr></tfoot>

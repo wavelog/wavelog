@@ -18,9 +18,9 @@
     <table style="width:100%" class="table-sm table table-bordered table-hover table-striped table-condensed text-center">
 
 	<tr>
-		<td>Award Type</td>
-        <td># QSOs</td>
-        <td># Refs</td>
+		<td><?= __("Award Type"); ?></td>
+        <td><?= __("Number of QSOs"); ?></td>
+        <td><?= __("Number of Refs"); ?></td>
     </tr>
 
     <?php
@@ -42,7 +42,7 @@
 	</table>
 <?php }
 else {
-    echo '<div class="alert alert-danger" role="alert">Nothing found!</div>';
+    echo '<div class="alert alert-danger" role="alert">' . __("Nothing found!") . '</div>';
 }
 ?>
 </div>

@@ -26,14 +26,14 @@
       <p><?= __("There is different data for DOK in your log compared to DCL")?></p>
       <table width="100%">
          <tr class="titles">
-            <td>Date</td>
-            <td>Time</td>
-            <td>Call</td>
-            <td>Band</td>
-            <td>Mode</td>
-            <td>DOK in Log</td>
-            <td>DOK in DCL</td>
-            <td>DCL QSL Status</td>
+            <td><?= __("Date"); ?></td>
+            <td><?= __("Time"); ?></td>
+            <td><?= __("Call"); ?></td>
+            <td><?= __("Band"); ?></td>
+            <td><?= __("Mode"); ?></td>
+            <td><?= __("DOK in Log"); ?></td>
+            <td><?= __("DOK in DCL"); ?></td>
+            <td><?= __("DCL QSL Status"); ?></td>
          </tr>
       <?php echo $dcl_errors; ?>
       </table>

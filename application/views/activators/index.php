@@ -20,7 +20,7 @@
             <label class="col-md-1 control-label" for="leogeo">LEO/GEO</label>
             <div class="col-md-3">
                 <select id="leogeo" name="leogeo" class="form-select">
-                    <option value="both" <?php if ($orbit == 'both') echo ' selected'; ?>>Both</option>
+                    <option value="both" <?php if ($orbit == 'both') echo ' selected'; ?>><?= _pgettext("Orbiter LEO or GEO", "Both"); ?></option>
                     <option value="leo" <?php if ($orbit == 'leo') echo ' selected'; ?>>LEO</option>
                     <option value="geo" <?php if ($orbit == 'geo') echo ' selected'; ?>>GEO</option>
                 </select>
@@ -74,7 +74,7 @@
 
         $result = write_activators($activators_array, $vucc_grids, $custom_date_format, $bandselect, $orbit);
     } else {
-        echo '<div class="alert alert-danger" role="alert">Nothing found!</div>';
+        echo '<div class="alert alert-danger" role="alert">' . __("Nothing found!") . '</div>';
     }
     ?>
 
