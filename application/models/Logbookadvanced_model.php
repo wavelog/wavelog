@@ -541,7 +541,6 @@ class Logbookadvanced_model extends CI_Model {
 			", " . $this->config->item('table_name').".COL_FREQ_RX = ?" .
 			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
 
-			$this->load->library('frequency');
 			$frequencyBand = $this->frequency->defaultFrequencies[$value]['CW'];
 			$frequencyBandRx = $bandrx == '' ? null : $this->frequency->defaultFrequencies[$bandrx]['CW'];
 

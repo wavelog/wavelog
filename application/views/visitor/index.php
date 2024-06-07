@@ -105,7 +105,6 @@ function echo_table_col($row, $name)
 			echo '</td>';
 			break;
 		case 'Frequency':
-			$CI->load->library('frequency');
 			echo '<td>';
 			if ($row->COL_FREQ != null) {
 				echo $CI->frequency->hz_to_mhz($row->COL_FREQ);
