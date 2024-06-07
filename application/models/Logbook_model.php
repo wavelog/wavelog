@@ -561,6 +561,9 @@ class Logbook_model extends CI_Model {
 			if (strpos($qsl, "Z") !== false) {
 				$qslfilter[] = 'COL_QRZCOM_QSO_DOWNLOAD_STATUS = "Y"';
 			}
+			if (strpos($qsl, "C") !== false) {
+				$qslfilter[] = 'COL_CLUBLOG_QSO_DOWNLOAD_STATUS = "Y"';
+			}
 			$sql = "(".implode(' OR ', $qslfilter).")";
 			$this->db->where($sql);
 		}
@@ -3440,7 +3443,6 @@ function lotw_last_qsl_date($user_id) {
 		  return($returner);
 	  }
 
-	  $this->load->library('frequency');
 	  $my_error = "";
 
 	  // Join date+time
