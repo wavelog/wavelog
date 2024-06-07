@@ -17,6 +17,8 @@ class Oqrs extends CI_Controller {
 	}
 
     public function index() {
+		if (($this->config->item('disable_oqrs') ?? false)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+
 		$this->load->model('oqrs_model');
 
 		$data['stations'] = $this->oqrs_model->get_oqrs_stations();
