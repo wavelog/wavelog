@@ -676,7 +676,7 @@ class Logbook extends CI_Controller {
 							$html .= "<th>QRZ</th>";
 							break;
 						case 8:
-							$html .= "<th><?= __("Clublog"); ?></th>";
+							$html .= "<th>".__("Clublog") ."</th>";
 							break;
 						default:
 							$html .= "<th>".__("QSL")."</th>";
