@@ -35,7 +35,7 @@
                     <input id="sats" type="hidden" value="All"></input>
                 <?php } ?>
 
-                <label class="col-md-1" for="propagation">Propagation</label>
+                <label class="col-md-1" for="propagation"><?= __("Propagation"); ?></label>
                 <div class="col-sm-4">
                     <select class="form-select form-select-sm w-auto" id="propagation" <?php if ($user_default_band == 'SAT') {echo 'disabled';} ?>>
                         <option value=""><?= __("All"); ?></option>

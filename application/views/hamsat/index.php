@@ -4,8 +4,8 @@
 </script>
 <div class="container">
     <br>
-    <h2>Hamsat - Satellite Rovers</h2>
-    <p>This data is from <a target="_blank" href="https://hams.at/">https://hams.at/</a>.
+    <h2><?= __("Hamsat - Satellite Rovers"); ?></h2>
+    <p><?= __("This data comes from"); ?> <a target="_blank" href="https://hams.at/">https://hams.at/</a>.
     <script type="text/javascript">
        var workable_preset = <?php echo $user_hamsat_workable_only; ?>;
        var feed_key_set = <?php echo strlen($user_hamsat_key); ?>;
@@ -19,20 +19,20 @@
     <p>
     <?php if ($user_hamsat_workable_only && $user_hamsat_key == '') { ?>
     <div class="alert alert-warning" role="warning">
-       Cannot filter workable passes only without private feed key. Please set the feed key in <a href="<?php echo site_url('user/edit/').$this->session->userdata('user_id'); ?>">your profile</a>.
+     <?= sprintf(__("Cannot filter workable passes only without private feed key. Please set the feed key in %s."), '<a href="' . site_url('user/edit/') . $this->session->userdata('user_id') . '">' . __("your profile") . '</a>'); ?>
     </div>
     <?php } ?>
     <table style="width:100%" class="table table-hover table-striped" id="activationsList">
     <thead>
         <tr>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Callsign</th>
-            <th>Comment</th>
-            <th>Satellite</th>
-            <th>Mode</th>
-            <th>Gridsquare(s)</th>
-            <th>Workable</th>
+            <th><?= __("Date"); ?></th>
+            <th><?= __("Time"); ?></th>
+            <th><?= __("Callsign"); ?></th>
+            <th><?= __("Comment"); ?></th>
+            <th><?= __("Satellite"); ?></th>
+            <th><?= __("Mode"); ?></th>
+            <th><?= __("Gridsquare(s)"); ?></th>
+            <th><?= __("Workable"); ?></th>
             <th></th>
             <th></th>
         </tr>

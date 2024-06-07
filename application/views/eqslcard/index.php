@@ -7,7 +7,7 @@
     <?php $userdata_dir = $this->config->item('userdata');
     if (isset($userdata_dir)) { ?>
         <div class="alert alert-info" role="alert">
-            <?= __("You are using"); ?> <?php echo $storage_used; ?> <?= __("of disk space to store QSL Card assets"); ?>
+            <?= sprintf(__("You are using %s of disk space to store QSL Card assets"), $storage_used ); ?>
         </div>
     <?php } ?>
 
@@ -31,7 +31,7 @@
         <th style=\'text-align: center\'>'.__("Time").'</th>
         <th style=\'text-align: center\'>'.__("Band").'</th>
         <th style=\'text-align: center\'>'.__("Propagation Mode").'</th>
-        <th style=\'text-align: center\'>'.__("QSL").' '.__("Date").'</th>
+        <th style=\'text-align: center\'>'.__("QSL Date").'</th>
         <th style=\'text-align: center\'></th>
         </tr>
         </thead><tbody>';
@@ -57,7 +57,7 @@
          echo '<td style=\'text-align: center\'>';
          $timestamp = strtotime($qsl->COL_EQSL_QSLRDATE); echo date($custom_date_format, $timestamp);
          echo '</td>';
-            echo '<td style=\'text-align: center\'><button onclick="viewEqsl(\''.$qsl->image_file.'\', \''. $qsl->COL_CALL . '\')" class="btn btn-sm btn-success">View</button></td>';
+            echo '<td style=\'text-align: center\'><button onclick="viewEqsl(\''.$qsl->image_file.'\', \''. $qsl->COL_CALL . '\')" class="btn btn-sm btn-success">' . __("View") . '</button></td>';
             echo '</tr>';
         }
 

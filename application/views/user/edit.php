@@ -563,7 +563,7 @@
 												<option value="1" <?php if ($user_previous_qsl_type == 1) { echo " selected =\"selected\""; } ?>><?= __("LoTW"); ?></option>
 												<option value="2" <?php if ($user_previous_qsl_type == 2) { echo " selected =\"selected\""; } ?>><?= __("eQSL"); ?></option>
 												<option value="4" <?php if ($user_previous_qsl_type == 4) { echo " selected =\"selected\""; } ?>>QRZ</option>
-												<option value="8" <?php if ($user_previous_qsl_type == 8) { echo " selected =\"selected\""; } ?>>Clublog</option>
+												<option value="8" <?php if ($user_previous_qsl_type == 8) { echo " selected =\"selected\""; } ?>><?= __("Clublog"); ?></option>
 											</select>
 										</div>
 									</div>
@@ -680,7 +680,7 @@
 												echo ' checked';
 											}
 											echo '>'; ?>
-											<label class="form-check-label" for="user_default_confirmation_clublog">Clublog</label>
+											<label class="form-check-label" for="user_default_confirmation_clublog"><?= __("Clublog"); ?></label>
 										</div>
 									</div>
 								</div>

@@ -41,22 +41,22 @@
 				<div class="mb-3 d-flex align-items-center row contestdates">
 				</div>
 				<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
-					<div class="col-md-3 control-label" for="soapbox">Club: </div>
+					<div class="col-md-3 control-label" for="soapbox"><?= __("Club"); ?>: </div>
 					<input class="form-control my-1 me-sm-2 col-md-4 w-auto" id="soapbox" type="soapbox" name="soapbox" aria-label="soapbox">
 				</div>
 				<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
 					<div class="col-md-3 control-label" for="categoryoperator"><?= __("Category Operator") ?>: </div>
 					<select class="form-select my-1 me-sm-2 col-md-4 w-auto" id="categoryoperator" name="categoryoperator">
-						<option value="SINGLE-OP"><?= __("Single Operator") ?></option>
-						<option value="MULTI-OP"><?= __("Multi Operator") ?></option>
-						<option value="CHECKLOG"><?= __("Checklog") ?></option>
+						<option value="SINGLE-OP">SINGLE-OP</option>
+						<option value="MULTI-OP">MULTI-OP</option>
+						<option value="CHECKLOG">CHECKLOG</option>
 					</select>
 				</div>
 				<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
 					<div class="col-md-3 control-label" for="categoryassisted"><?= __("Category Assisted") ?>: </div>
 					<select class="form-select my-1 me-sm-2 col-md-4 w-auto" id="categoryassisted" name="categoryassisted">
-						<option value="NON-ASSISTED"><?= __("Not Assisted") ?></option>
-						<option value="ASSISTED"><?= __("Assisted") ?></option>
+						<option value="NON-ASSISTED">NON-ASSISTED</option>
+						<option value="ASSISTED">ASSISTED></option>
 					</select>
 				</div>
 					<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">

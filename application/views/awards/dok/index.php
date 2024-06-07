@@ -68,7 +68,7 @@
                     </div>
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" name="clublog" value="1" id="clublog" <?php if ($this->input->post('clublog')) echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="clublog">Clublog</label>
+                        <label class="form-check-label" for="clublog"><?= __("Clublog"); ?></label>
                     </div>
                 </div>
             </div>

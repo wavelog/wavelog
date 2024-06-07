@@ -19,7 +19,7 @@
             <label class="my-1 me-2" for="distplot_bands"><?= __("Band selection"); ?></label>
             <select class="form-select my-1 me-sm-2 w-auto"  id="distplot_bands">
                 <?php if (count($sats_available) != 0) { ?>
-                    <option value="sat">SAT</option>
+                    <option value="sat"><?= __("SAT"); ?></option>
                 <?php } ?>
                 <?php foreach($bands_available as $band) {
                     echo '<option value="'.$band.'"';

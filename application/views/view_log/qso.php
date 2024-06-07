@@ -420,7 +420,7 @@
                     <?php } ?>
 
                     <?php if($row->COL_CLUBLOG_QSO_DOWNLOAD_STATUS == "Y" && $row->COL_CLUBLOG_QSO_DOWNLOAD_DATE != null) { ?>
-                    <h3>Clublog</h3>
+                    <h3><?= __("Clublog"); ?></h3>
                         <p><?= __("This QSO was confirmed on"); ?> <?php $timestamp = strtotime($row->COL_CLUBLOG_QSO_DOWNLOAD_DATE); echo date($custom_date_format, $timestamp); ?>.</p>
                     <?php } ?>
             </div>

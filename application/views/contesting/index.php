@@ -208,7 +208,7 @@
 							<th><?= __("Serial (S)"); ?></th>
 							<th><?= __("Serial (R)"); ?></th>
 							<th><?= __("Gridsquare"); ?></th>
-							<th><?php echo 'VUCC ' . __("Gridsquare"); ?></th>
+							<th><?= __("VUCC Gridsquare"); ?></th>
                         </tr>
                     </thead>
 

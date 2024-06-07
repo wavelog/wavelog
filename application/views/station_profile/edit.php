@@ -322,7 +322,7 @@
 	<div class="row">
 		<div class="col-md">
 			<div class="card">
-				<h5 class="card-header">ClubLog</h5> <!-- This does not need Multilanguage Support -->
+				<h5 class="card-header"><?= __("Clublog"); ?></h5> <!-- This does not need Multilanguage Support -->
 				<div class="card-body">
 					<div class="mb-3">
 						<label for="clublogignore"><?= __("Ignore Clublog Upload"); ?></label>

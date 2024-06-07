@@ -121,7 +121,7 @@ $ci =& get_instance();
                     <th>QRZ</th>
                 <?php } ?>
 		<?php if($this->session->userdata('user_clublog_name') != ''){ ?>
-                    <th>Clublog</th>
+                    <th><?= __("Clublog"); ?></th>
                 <?php } ?>
             <?php } ?>
                 <th><?= __("Station"); ?></th>

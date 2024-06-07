@@ -85,7 +85,7 @@
 				<span class="badge text-bg-danger"><?= __("Developer Mode"); ?></span>
 			<?php } ?>
 			<?php if (ENVIRONMENT == "maintenance") { ?>
-				<span class="badge text-bg-info">Maintenance</span>
+				<span class="badge text-bg-info"><?= __("Maintenance Mode"); ?></span>
 			<?php } ?>
 
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -154,7 +154,7 @@
 						<li class="nav-item dropdown"> <!-- AWARDS -->
 							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><?= __("Awards"); ?></a>
 							<ul class="dropdown-menu header-dropdown">
-								<li><a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#"><i class="fas fa-globe"></i> International</a>
+								<li><a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" href="#"><i class="fas fa-globe"></i> <?= __("International"); ?></a>
 									<ul class="submenu dropdown-menu">
 										<li><a class="dropdown-item" href="<?php echo site_url('awards/cq'); ?>"><i class="fas fa-trophy"></i> <?= __("CQ"); ?></a></li>
 										<div class="dropdown-divider"></div>
@@ -272,7 +272,7 @@
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="<?php echo site_url('update'); ?>" title="Update Country Files"><i class="fas fa-sync"></i> <?= __("Update Country Files"); ?></a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="<?php echo site_url('cron'); ?>" title="Cron Manager"><i class="fas fa-clock"></i> Cron Manager</a>
+								<a class="dropdown-item" href="<?php echo site_url('cron'); ?>" title="Cron Manager"><i class="fas fa-clock"></i> <?= __("Cron Manager"); ?></a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="<?php echo site_url('debug'); ?>" title="Debug Information"><i class="fas fa-tools"></i> <?= __("Debug Information"); ?></a>
 							</div>

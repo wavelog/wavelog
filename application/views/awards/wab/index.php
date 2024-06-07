@@ -101,7 +101,7 @@
                             echo ' checked' ;
                         }
                         echo '>'; ?>
-                        <label class="form-check-label" for="clublog">Clublog</label>
+                        <label class="form-check-label" for="clublog"><?= __("Clublog"); ?></label>
                     </div>
                 </div>
 

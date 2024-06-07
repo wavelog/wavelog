@@ -49,25 +49,25 @@
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="awardradio" id="dxcc" value="dxcc" checked>
                         <label class="form-check-label" for="dxcc">
-                            DX Century Club (DXCC)
+                            <?= __("DX Century Club (DXCC)"); ?>
                         </label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="awardradio" id="was" value="was">
                         <label class="form-check-label" for="was">
-                            Worked All States (WAS)
+                            <?= __("Worked All States (WAS)"); ?>
                         </label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="awardradio" id="iota" value="iota">
                         <label class="form-check-label" for="iota">
-                            Islands On The Air (IOTA)
+                            <?= __("Islands On The Air (IOTA)"); ?>
                         </label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="awardradio" id="waz" value="waz">
                         <label class="form-check-label" for="waz">
-                            Worked All Zones (WAZ)
+                            <?= __("Worked All Zones (WAZ)"); ?>
                         </label>
                     </div>
                 </div>

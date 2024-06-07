@@ -17,7 +17,7 @@
 			<div class="tab-content" id="myTabContent">
 				<div class="tab-pane fade show active" id="dxcc" role="tabpanel" aria-labelledby="dxcc-tab">
 					<p class="card-text">Here you can update the DXCC lookup data that is used for displaying callsign information.</p>
-					<p class="card-text">This data is provided by <a href="https://clublog.org/">Clublog</a>.</p>
+					<p class="card-text">This data is provided by <a href="https://clublog.org/"><?= __("Clublog"); ?></a>.</p>
 
 					<?php if(!extension_loaded('xml')) { ?>
 						<div class="alert alert-danger" role="alert">

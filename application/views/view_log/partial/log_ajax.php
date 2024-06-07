@@ -80,7 +80,7 @@ function echo_table_col($row, $name) {
                         <th>QRZ</th>
                     <?php } ?>
     		    <?php if ( strpos($this->session->userdata('user_default_confirmation'),'C') !== false  ) { ?>
-                        <th>Clublog</th>
+                        <th><?= __("Clublog"); ?></th>
                     <?php } ?>
                 <?php } ?>
                     <th><?= __("Station"); ?></th>
