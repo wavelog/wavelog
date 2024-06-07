@@ -7,7 +7,7 @@
     <?php $userdata_dir = $this->config->item('userdata');
     if (isset($userdata_dir)) { ?>
         <div class="alert alert-info" role="alert">
-            <?= sprintf(__("You are using %s of disk space to store QSL Card assets"), $storage_used ); ?>
+            <?= sprintf(__("You are using %s of disk space to store eQSL Card assets"), $storage_used ); ?>
         </div>
     <?php } ?>
 

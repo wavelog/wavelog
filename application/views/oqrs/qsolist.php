@@ -11,10 +11,10 @@ if ($qsos->result() != NULL) {
 	<th style=\'text-align: center\'>' . __("Station") . '</th>
 	<th style=\'text-align: center\'>' . __("QSL") . '</th>';
 	if ($this->session->userdata('user_eqsl_name') != "") {
-		echo '<th style=\'text-align: center\'>eQSL</th>';
+		echo '<th style=\'text-align: center\'>' . __("eQSL") . '</th>';
 	}
 	if($this->session->userdata('user_lotw_name') != "") {
-		echo '<th style=\'text-align: center\'>LoTW</th>';
+		echo '<th style=\'text-align: center\'>' . __("LoTW") . '</th>';
 	}
 	echo '<th style=\'text-align: center\'></th>
 	</tr>
@@ -114,7 +114,7 @@ if ($qsos->result() != NULL) {
 				echo " (".__("Direct").")";
 				break;
 			case "M":
-				echo " (Manager)";
+				echo " (" . __("Manager") . ")";
 				break;
 			case "E":
 				echo " (".__("Electronic").")";
@@ -181,7 +181,7 @@ if ($qsos->result() != NULL) {
 			echo '">&#9660;</span>';
 			echo '</td>';
 		}
-		echo '<td id="'.$qsl->COL_PRIMARY_KEY.'" style=\'text-align: center\'><button onclick="addQsoToPrintQueue(\''.$qsl->COL_PRIMARY_KEY.'\')" class="btn btn-sm btn-success">Add to print queue</button></td>';
+		echo '<td id="'.$qsl->COL_PRIMARY_KEY.'" style=\'text-align: center\'><button onclick="addQsoToPrintQueue(\''.$qsl->COL_PRIMARY_KEY.'\')" class="btn btn-sm btn-success">' . __("Add to print queue") . '</button></td>';
 		echo '</tr>';
 	}
 
@@ -190,6 +190,6 @@ if ($qsos->result() != NULL) {
 
 	<?php
 } else {
-	echo '<div class="alert alert-danger">No QSO\'s were found. It seems you were not active at this time.</div>';
+	echo '<div class="alert alert-danger">' . __("No QSO's were found. It seems you were not active at this time.") . '</div>';
 }
 ?>

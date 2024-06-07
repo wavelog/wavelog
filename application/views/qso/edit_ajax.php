@@ -163,7 +163,7 @@
                                     <div class="mb-3 col-sm-6">
                                         <label for="vucc_grids"><?= __("VUCC Gridsquare"); ?></label>
                                         <input type="text" class="form-control" id="vucc_grids" name="vucc_grids" value="<?php echo $qso->COL_VUCC_GRIDS; ?>">
-                                        <p>Used for VUCC MultiGrids</p>
+                                        <p><?= __("Used for VUCC MultiGrids"); ?></p>
                                     </div>
                                 </div>
 

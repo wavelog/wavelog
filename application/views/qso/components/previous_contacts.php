@@ -3,7 +3,7 @@
 <div class="table-responsive" style="font-size: 0.95rem;">
   <table class="table table-striped">
     <tr class="log_title titles">
-      <th><?= __("Date"); ?>/<?= __("Time"); ?></th>
+      <th><?= __("Date/Time"); ?></th>
 	<th><?= __("Call"); ?></th>
 	<?php
 	echo_table_header_col($this, $this->session->userdata('user_column1')==""?'Mode':$this->session->userdata('user_column1'));

@@ -17,7 +17,7 @@
       <div class="card-header">
         <ul style="font-size: 15px;" class="nav nav-tabs card-header-tabs pull-right"  id="myTab" role="tablist">
           <li class="nav-item">
-            <a class="nav-link active" id="qsp-tab" data-bs-toggle="tab" href="#qso" role="tab" aria-controls="qso" aria-selected="true"><?= __("QSO"); ?><?php if ($_GET['manual'] == 0) { echo " <span class=\"badge text-bg-success\">LIVE</span>"; }; if ($_GET['manual'] == 1) { echo " <span class=\"badge text-bg-danger\">POST</span>"; } ?></a>
+            <a class="nav-link active" id="qsp-tab" data-bs-toggle="tab" href="#qso" role="tab" aria-controls="qso" aria-selected="true"><?= __("QSO"); ?><?php if ($_GET['manual'] == 0) { echo " <span class=\"badge text-bg-success\">" . __("LIVE") . "</span>"; }; if ($_GET['manual'] == 1) { echo " <span class=\"badge text-bg-danger\">" . __("POST") . "</span>"; } ?></a>
           </li>
 
           <li class="nav-item">
@@ -121,7 +121,7 @@
               <!-- Callsign Input -->
               <div class="row">
                 <div class="mb-3 col-md-12">
-                  <label for="callsign"><?= __("Callsign"); ?></label>&nbsp;<i id="check_cluster" data-bs-toggle="tooltip" title="Search DXCluster for latest Spot" class="fas fa-search"></i>
+                  <label for="callsign"><?= __("Callsign"); ?></label>&nbsp;<i id="check_cluster" data-bs-toggle="tooltip" title="<?= __("Search DXCluster for latest Spot"); ?>" class="fas fa-search"></i>
                   <div class="input-group">
                     <input tabindex="1" type="text" class="form-control" id="callsign" name="callsign" required>
                     <span id="qrz_info" class="input-group-text btn-included-on-field d-none py-0"></span>
@@ -605,7 +605,7 @@
             </ul>
         </div>
         <button tabindex="8" type="submit" id="saveQso" name="saveQso" class="btn btn-primary"><i class="fas fa-save"></i> <?= __("Save QSO"); ?></button>
-        <div class="alert alert-danger warningOnSubmit mt-3" style="display:none;"><span><i class="fas fa-times-circle"></i></span> <span class="warningOnSubmit_txt ms-1">Error</span></div>
+        <div class="alert alert-danger warningOnSubmit mt-3" style="display:none;"><span><i class="fas fa-times-circle"></i></span> <span class="warningOnSubmit_txt ms-1"><?= __("Error"); ?></span></div>
       </div>
     </form>
     </div>
@@ -642,16 +642,16 @@
 
     <div id="winkey" class="card winkey-settings" style="margin-bottom: 10px;">
         <div class="card-header">
-          <h4 style="font-size: 16px; font-weight: bold;" class="card-title">Winkey
+          <h4 style="font-size: 16px; font-weight: bold;" class="card-title"><?= __("Winkey"); ?>
 
-          <button id="connectButton" class="btn btn-primary">Connect</button>
+          <button id="connectButton" class="btn btn-primary"><?= __("Connect"); ?></button>
 
           <button type="button" class="btn btn-secondary"
           hx-get="<?php echo base_url(); ?>index.php/qso/winkeysettings"
           hx-target="#modals-here"
           hx-trigger="click"
           class="btn btn-primary"
-          _="on htmx:afterOnLoad wait 10ms then add .show to #modal then add .show to #modal-backdrop"><i class="fas fa-cog"></i> Settings</button>
+          _="on htmx:afterOnLoad wait 10ms then add .show to #modal then add .show to #modal-backdrop"><i class="fas fa-cog"></i> <?= __("Settings"); ?></button>
           </h4>
         </div>
 

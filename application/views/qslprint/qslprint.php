@@ -64,15 +64,15 @@ if ($qsos->result() != NULL) {
 	echo '</tbody></table></div>';
 	?>
 
-	<p><button onclick="markSelectedQsos();" title="Mark selected QSOs as printed" class="btn btn-success markallprinted"><?= __("Mark selected QSOs as printed"); ?></button>
+	<p><button onclick="markSelectedQsos();" title="<?= __("Mark selected QSOs as printed"); ?>" class="btn btn-success markallprinted"><?= __("Mark selected QSOs as printed"); ?></button>
 
-	<button onclick="removeSelectedQsos();" title="Remove seleced QSOS from print queue" class="btn btn-danger removeall"><?= __("Remove selected QSOs from the queue"); ?></button></p>
+	<button onclick="removeSelectedQsos();" title="<?= __("Remove selected QSOs from the queue"); ?>" class="btn btn-danger removeall"><?= __("Remove selected QSOs from the queue"); ?></button></p>
 
-	<p><a href="<?php echo site_url('qslprint/exportcsv/' . $station_id); ?>" title="Export CSV-file" class="btn btn-primary"><?= __("Export requested QSLs to CSV-file"); ?></a>
+	<p><a href="<?php echo site_url('qslprint/exportcsv/' . $station_id); ?>" title="<?= __("Export CSV-file"); ?>" class="btn btn-primary"><?= __("Export requested QSLs to CSV-file"); ?></a>
 
-	<a href="<?php echo site_url('qslprint/exportadif/' . $station_id); ?>" title="Export ADIF" class="btn btn-primary"><?= __("Export requested QSLs to ADIF-file"); ?></a>
+	<a href="<?php echo site_url('qslprint/exportadif/' . $station_id); ?>" title="<?= __("Export ADIF"); ?>" class="btn btn-primary"><?= __("Export requested QSLs to ADIF-file"); ?></a>
 
-	<a href="<?php echo site_url('qslprint/qsl_printed/' . $station_id); ?>" title="Mark QSLs as printed" class="btn btn-primary"><?= __("Mark requested QSLs as sent"); ?></a></p>
+	<a href="<?php echo site_url('qslprint/qsl_printed/' . $station_id); ?>" title="<?= __("Mark QSLs as printed"); ?>" class="btn btn-primary"><?= __("Mark requested QSLs as sent"); ?></a></p>
 
 <?php
 } else {
