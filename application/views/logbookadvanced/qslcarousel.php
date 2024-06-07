@@ -56,7 +56,7 @@
 		?>
 		</tbody>
 </table>
-        <?php echo '<img class="img-fluid w-qsl" src="' . base_url() . '/'. $this->paths->getPathQsl() .'/' . $image->filename .'" alt="QSL picture #'. $i++.'">';
+        <?php echo '<img class="img-fluid w-qsl" src="' . base_url() . '/'. $this->paths->getPathQsl() .'/' . $image->filename .'" alt="' . __("QSL picture #") . $i++.'">';
         echo '</div>';
     }
     ?>

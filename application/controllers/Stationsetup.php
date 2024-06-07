@@ -47,7 +47,7 @@ class Stationsetup extends CI_Controller {
 				$data['success']=1;
 			} else {
 				$data['success']=0;
-				$data['flashdata'] = __('Not allowed');
+				$data['flashdata'] = __("Not allowed");
 			}
 		} else {
 			$data['success']=0;
@@ -65,11 +65,11 @@ class Stationsetup extends CI_Controller {
 				$data['success']=1;
 			} else {
 				$data['success']=0;
-				$data['flashdata'] = __('Not allowed');
+				$data['flashdata'] = __("Not allowed");
 			}
 		} else {
 			$data['success']=0;
-			$data['flashdata'] = __('Error');
+			$data['flashdata'] = __("Error");
 		}
 		echo json_encode($data);
 	}
@@ -83,7 +83,7 @@ class Stationsetup extends CI_Controller {
 			$data['success']=1;
 		} else {
 			$data['success']=0;
-			$data['flashdata'] = __('Error');
+			$data['flashdata'] = __("Error");
 		}
 		echo json_encode($data);
 	}
@@ -102,7 +102,7 @@ class Stationsetup extends CI_Controller {
 			$data['success'] = 1;
 		} else {
 			$data['success'] = 0;
-			$data['flashdata'] = __('Error');
+			$data['flashdata'] = __("Error");
 		}
 		echo json_encode($data);
 	}
@@ -115,7 +115,7 @@ class Stationsetup extends CI_Controller {
 			$data['success']=1;
 		} else {
 			$data['success']=0;
-			$data['flashdata'] = __('Error');
+			$data['flashdata'] = __("Error");
 		}
 		echo json_encode($data);
 	}
@@ -128,7 +128,7 @@ class Stationsetup extends CI_Controller {
 			$data['success']=1;
 		} else {
 			$data['success']=0;
-			$data['flashdata'] = __('Error');
+			$data['flashdata'] = __("Error");
 		}
 		echo json_encode($data);
 	}
@@ -149,7 +149,7 @@ class Stationsetup extends CI_Controller {
 				$data['success']=1;
 			} else {
 				$data['success']=0;
-				$data['flashdata'] = __('Error');
+				$data['flashdata'] = __("Error");
 			}
 			echo json_encode($data);
 		}
@@ -209,7 +209,7 @@ class Stationsetup extends CI_Controller {
 			$data['success'] = 1;
 		} else {
 			$data['success'] = 0;
-			$data['flashdata'] = __('Error. Link is already in use!');
+			$data['flashdata'] = __("Error. Link is already in use!");
 		}
 
 		echo json_encode($data);
@@ -250,7 +250,7 @@ class Stationsetup extends CI_Controller {
 	}
 
 	private function lbpublicsearch2html($publicsearch, $id) {
-		$htmret = ($publicsearch=='1' ? '<span class="badge text-bg-success">Enabled</span>' : '<span class="badge bg-dark">' . __('Disabled') . '</span>');
+		$htmret = ($publicsearch=='1' ? '<span class="badge text-bg-success">Enabled</span>' : '<span class="badge bg-dark">' . __("Disabled") . '</span>');
 		$htmret .= '<div class="form-check" style="margin-top: -1.5em"><input id="'.$id.'" class="form-check-input publicSearchCheckbox" type="checkbox"'. ($publicsearch=='1' ? 'checked' : '') . '/></div>';
 		return $htmret;
 
@@ -278,7 +278,7 @@ class Stationsetup extends CI_Controller {
 		$htmret = '<button class="btn btn-outline-primary btn-sm editVisitorLink" id="' . $id . '"><i class="fas fa-edit"></i></button> ';
 		if($public_slug != '') {
 			$htmret .= '<a target="_blank" href="'.site_url('visitor')."/".$public_slug.'" class="btn btn-outline-primary btn-sm"><i class="fas fa-globe" title="'.__("View Public Page for Logbook: ") . $logbook_name.'"></i></a>';
-			$htmret .= ' <button id="' . $id . '" class="deletePublicSlug btn btn-outline-danger btn-sm" cnftext="' . __('Are you sure you want to delete the public slug?') . '"><i class="fas fa-trash-alt"></i></button>';
+			$htmret .= ' <button id="' . $id . '" class="deletePublicSlug btn btn-outline-danger btn-sm" cnftext="' . __("Are you sure you want to delete the public slug?") . '"><i class="fas fa-trash-alt"></i></button>';
 			$htmret .= ' <button id="' . $id . '" class="editExportmapOptions btn btn-outline-primary btn-sm"><i class="fas fa-globe-europe"></i></button>';
 		}
 		return $htmret;
@@ -368,7 +368,7 @@ class Stationsetup extends CI_Controller {
 	}
 
 	private function stationcountry2html($station_country, $dxcc_end) {
-		$returntext = $station_country == '' ? '- ' . __('NONE') . ' -' : $station_country;
+		$returntext = $station_country == '' ? '- ' . __("NONE") . ' -' : $station_country;
 		if ($dxcc_end != NULL) {
 			$returntext .= ' <span class="badge badge-danger">'.__("Deleted DXCC").'</span>';
 		}
@@ -384,7 +384,7 @@ class Stationsetup extends CI_Controller {
 				$data['success']=1;
 		} else {
 			$data['success']=0;
-			$data['flashdata'] = __('Not allowed');
+			$data['flashdata'] = __("Not allowed");
 		}
 		echo json_encode($data);
 	}
@@ -398,7 +398,7 @@ class Stationsetup extends CI_Controller {
 				$data['success']=1;
 		} else {
 			$data['success']=0;
-			$data['flashdata'] = __('Not allowed');
+			$data['flashdata'] = __("Not allowed");
 		}
 		echo json_encode($data);
 	}
@@ -425,7 +425,7 @@ class Stationsetup extends CI_Controller {
 			$data['locationdata'] = $this->stationsetup_model->locationInfo($locationid)->result();
 		} else {
 			$data['success']=0;
-			$data['flashdata'] = __('Error');
+			$data['flashdata'] = __("Error");
 		}
 		echo json_encode($data);
 	}

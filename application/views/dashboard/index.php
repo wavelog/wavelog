@@ -150,7 +150,7 @@ function echo_table_col($row, $name) {
 					<?php if(($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE || ($this->config->item('show_time'))) { ?>
 					<th><?= __("Time"); ?></th>
 					<?php } ?>
-					<th><?= __('Callsign'); ?></th>
+					<th><?= __("Callsign"); ?></th>
 					<?php
 					echo_table_header_col($this->session->userdata('user_column1')==""?'Mode':$this->session->userdata('user_column1'));
 					echo_table_header_col($this->session->userdata('user_column2')==""?'RSTS':$this->session->userdata('user_column2'));

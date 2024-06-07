@@ -20,12 +20,12 @@
 	<table class="table table-sm table-striped table-hover">
 		
 	<tr>
-		<td><?= __('Reference'); ?></td>
-		<td><?= __('Date/Time'); ?></td>
-		<td><?= __('Callsign'); ?></td>
-		<td><?= __('Band'); ?></td>
-		<td><?= __('RST Sent'); ?></td>
-		<td><?= __('RST Received'); ?></td>
+		<td><?= __("Reference"); ?></td>
+		<td><?= __("Date/Time"); ?></td>
+		<td><?= __("Callsign"); ?></td>
+		<td><?= __("Band"); ?></td>
+		<td><?= __("RST Sent"); ?></td>
+		<td><?= __("RST Received"); ?></td>
 	</tr>
 	
 	<?php
@@ -50,6 +50,6 @@
 	
 	</table>
 	<?php } else {
-        echo '<div class="alert alert-danger" role="alert">' . __('Nothing found!') . '</div>';
+        echo '<div class="alert alert-danger" role="alert">' . __("Nothing found!") . '</div>';
     }?>
 </div>

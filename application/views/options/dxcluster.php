@@ -43,22 +43,22 @@
                         <div class="mb-3">
                             <label for="maxAgeSelect"><?= __("Maximum Age of spots taken care of"); ?></label>
                             <select class="form-select" id="maxAgeSelect" name="dxcluster_maxage" aria-describedby="dxcluster_maxageHelp" required>
-				<option value="120"<?php if ($this->optionslib->get_option('dxcluster_maxage') == '120') { echo " selected"; } ?>><?= __('2 Hours'); ?></option>
-				<option value="60"<?php if ($this->optionslib->get_option('dxcluster_maxage') == '60') { echo " selected"; } ?>><?= __('60 Minutes'); ?></option>
-				<option value="30"<?php if ($this->optionslib->get_option('dxcluster_maxage') == '30') { echo " selected"; } ?>><?= __('30 Minutes'); ?></option>
+				<option value="120"<?php if ($this->optionslib->get_option('dxcluster_maxage') == '120') { echo " selected"; } ?>><?= __("2 Hours"); ?></option>
+				<option value="60"<?php if ($this->optionslib->get_option('dxcluster_maxage') == '60') { echo " selected"; } ?>><?= __("60 Minutes"); ?></option>
+				<option value="30"<?php if ($this->optionslib->get_option('dxcluster_maxage') == '30') { echo " selected"; } ?>><?= __("30 Minutes"); ?></option>
                                 </select>
                             <small id="dxcluster_maxageHelp" class="form-text text-muted"><?= __("The Age in Minutes of spots, that will be taken care at bandplan/lookup"); ?></small>
                         </div>
 			<div class="mb-3">
                             <label for="decontSelect"><?= __("Show spots which are spotted from following continent"); ?></label>
                             <select class="form-select" id="decontSelect" name="dxcluster_decont" aria-describedby="dxcluster_decontHelp" required>
-				<option value="AF"<?php if ($this->optionslib->get_option('dxcluster_decont') == 'AF') { echo " selected"; } ?>><?= __('Africa'); ?></option>
-				<option value="AN"<?php if ($this->optionslib->get_option('dxcluster_decont') == 'AN') { echo " selected"; } ?>><?= __('Antarctica'); ?></option>
-				<option value="AS"<?php if ($this->optionslib->get_option('dxcluster_decont') == 'AS') { echo " selected"; } ?>><?= __('Asia'); ?></option>
-				<option value="EU"<?php if ($this->optionslib->get_option('dxcluster_decont') == 'EU') { echo " selected"; } ?>><?= __('Europe'); ?></option>
-				<option value="NA"<?php if ($this->optionslib->get_option('dxcluster_decont') == 'NA') { echo " selected"; } ?>><?= __('North America'); ?></option>
-				<option value="OC"<?php if ($this->optionslib->get_option('dxcluster_decont') == 'OC') { echo " selected"; } ?>><?= __('Oceania'); ?></option>
-				<option value="SA"<?php if ($this->optionslib->get_option('dxcluster_decont') == 'SA') { echo " selected"; } ?>><?= __('South America'); ?></option>
+				<option value="AF"<?php if ($this->optionslib->get_option('dxcluster_decont') == 'AF') { echo " selected"; } ?>><?= __("Africa"); ?></option>
+				<option value="AN"<?php if ($this->optionslib->get_option('dxcluster_decont') == 'AN') { echo " selected"; } ?>><?= __("Antarctica"); ?></option>
+				<option value="AS"<?php if ($this->optionslib->get_option('dxcluster_decont') == 'AS') { echo " selected"; } ?>><?= __("Asia"); ?></option>
+				<option value="EU"<?php if ($this->optionslib->get_option('dxcluster_decont') == 'EU') { echo " selected"; } ?>><?= __("Europe"); ?></option>
+				<option value="NA"<?php if ($this->optionslib->get_option('dxcluster_decont') == 'NA') { echo " selected"; } ?>><?= __("North America"); ?></option>
+				<option value="OC"<?php if ($this->optionslib->get_option('dxcluster_decont') == 'OC') { echo " selected"; } ?>><?= __("Oceania"); ?></option>
+				<option value="SA"<?php if ($this->optionslib->get_option('dxcluster_decont') == 'SA') { echo " selected"; } ?>><?= __("South America"); ?></option>
                                 </select>
                             <small id="dxcluster_decontHelp" class="form-text text-muted"><?= __("Only spots by spotters from this continent are shown"); ?></small>
                         </div>

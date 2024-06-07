@@ -1,10 +1,10 @@
 <div class="tabs">
 		<ul class="nav nav-tabs" id="myTab" role="tablist">
 			<li class="nav-item">
-				<a class="nav-link active" id="logbook-tab" data-bs-toggle="tab" href="#logbooktab" role="tab" aria-controls="home" aria-selected="true">Logbook</a>
+				<a class="nav-link active" id="logbook-tab" data-bs-toggle="tab" href="#logbooktab" role="tab" aria-controls="home" aria-selected="true"><?= __("Logbook"); ?></a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" id="map-tab" data-bs-toggle="tab" href="#maptab" role="tab" aria-controls="map" aria-selected="false">Map</a>
+				<a class="nav-link" id="map-tab" data-bs-toggle="tab" href="#maptab" role="tab" aria-controls="map" aria-selected="false"><?= __("Map"); ?></a>
 			</li>
 		</ul>
 	</div>
@@ -115,23 +115,23 @@
 			<td><div class="form-check"><input class="form-check-input" name="propagation" type="checkbox" <?php if (($options->propagation->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td>Contest</td>
+			<td><?= __("Contest"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="contest" type="checkbox" <?php if (($options->contest->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td>Gridsquare</td>
+			<td><?= __("Gridsquare"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="gridsquare" type="checkbox" <?php if (($options->gridsquare->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td>DOK</td>
+			<td><?= __("DOK"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="dok" type="checkbox" <?php if (($options->dok->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td>WWFF</td>
+			<td><?= __("WWFF"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="wwff" type="checkbox" <?php if (($options->wwff->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td>SIG</td>
+			<td><?= __("SIG"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="sig" type="checkbox" <?php if (($options->sig->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 	</tbody>
@@ -141,29 +141,29 @@
 	<table style="width:100%" class="table-sm table table-hover table-striped table-condensed text-start" id="mapoptions">
 	<thead>
 		<tr>
-			<th class="text-start">Layer</th>
-			<th>Default on</th>
+			<th class="text-start"><?= _pgettext("Map Options", "Layer"); ?></th>
+			<th><?= __("Default on"); ?></th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
-			<td>Path lines</td>
+			<td><?= _pgettext("Map Options", "Path lines"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="pathlines" type="checkbox" <?php if (($mapoptions['path_lines']->option_value ?? "false") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td>Gridsquares</td>
+			<td><?= _pgettext("Map Options", "Gridsquares"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="gridsquareoverlay" type="checkbox" <?php if (($mapoptions['gridsquare_layer']->option_value ?? "false") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td>CQ Zones</td>
+			<td><?= _pgettext("Map Options", "CQ Zones"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="cqzones" type="checkbox" <?php if (($mapoptions['cqzones_layer']->option_value ?? "false") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td>ITU Zones</td>
+			<td><?= _pgettext("Map Options", "ITU Zones"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="ituzones" type="checkbox" <?php if (($mapoptions['ituzones_layer']->option_value ?? "false") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
-			<td>Night Shadow</td>
+			<td><?= _pgettext("Map Options", "Night Shadow"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="nightshadow" type="checkbox" <?php if (($mapoptions['nightshadow_layer']->option_value ?? "false") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 	</tbody>

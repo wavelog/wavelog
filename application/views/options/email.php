@@ -53,7 +53,7 @@
                         <div class="mb-3">
                             <label for="smtpEncryption"><?= __("SMTP Encryption"); ?></label>
                             <select name="smtpEncryption" class="form-select" id="smtpEncryption">
-                                <option value="" <?php if($this->optionslib->get_option('smtpEncryption') == "") { echo "selected=\"selected\""; } ?>>None</option>
+                                <option value="" <?php if($this->optionslib->get_option('smtpEncryption') == "") { echo "selected=\"selected\""; } ?>><?= __("No Encryption"); ?></option>
                                 <option value="tls" <?php if($this->optionslib->get_option('smtpEncryption') == "tls") { echo "selected=\"selected\""; } ?>>TLS</option>
                                 <option value="ssl" <?php if($this->optionslib->get_option('smtpEncryption') == "ssl") { echo "selected=\"selected\""; } ?>>SSL</option>
                             </select>

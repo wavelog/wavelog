@@ -69,7 +69,7 @@
                             echo ' checked' ;
                         }
                         echo '>'; ?>
-                        <label class="form-check-label" for="qsl"><?= __('QSL'); ?></label>
+                        <label class="form-check-label" for="qsl"><?= __("QSL"); ?></label>
                     </div>
                     <div class="form-check-inline">
                     <?php echo '<input class="form-check-input" value="1" type="checkbox" name="lotw" id="lotw"';
@@ -77,7 +77,7 @@
                             echo ' checked' ;
                         }
                         echo '>'; ?>
-                        <label class="form-check-label" for="lotw"><?= __('LoTW'); ?></label>
+                        <label class="form-check-label" for="lotw"><?= __("LoTW"); ?></label>
                     </div>
                     <div class="form-check-inline">
                     <?php echo '<input class="form-check-input" value="1" type="checkbox" name="eqsl" id="eqsl"';
@@ -85,7 +85,7 @@
                             echo ' checked' ;
                         }
                         echo '>'; ?>
-                        <label class="form-check-label" for="eqsl"><?= __('eQSL'); ?></label>
+                        <label class="form-check-label" for="eqsl"><?= __("eQSL"); ?></label>
                     </div>
                     <div class="form-check-inline">
                     <?php echo '<input class="form-check-input" value="1" type="checkbox" name="qrz" id="qrz"';
@@ -93,7 +93,7 @@
                             echo ' checked' ;
                         }
                         echo '>'; ?>
-                        <label class="form-check-label" for="qrz"><?= __('QRZ.com'); ?></label>
+                        <label class="form-check-label" for="qrz"><?= __("QRZ.com"); ?></label>
                     </div>
 		    <div>
                      <?php echo '<input class="form-check-input" value="1" type="checkbox" name="clublog" id="clublog"';
@@ -105,8 +105,8 @@
                     </div>
                 </div>
 
-            <button id="plot" type="button" name="plot" class="btn btn-primary me-1 ld-ext-right ld-ext-right-plot" onclick="plotmap()"><?= __('Map'); ?><div class="ld ld-ring ld-spin"></div></button>
-			<button id="list" type="button" name="list" class="btn btn-primary me-1 ld-ext-right ld-ext-right-list" onclick="showlist()"><?= __('List'); ?><div class="ld ld-ring ld-spin"></div></button>
+            <button id="plot" type="button" name="plot" class="btn btn-primary me-1 ld-ext-right ld-ext-right-plot" onclick="plotmap()"><?= __("Map"); ?><div class="ld ld-ring ld-spin"></div></button>
+			<button id="list" type="button" name="list" class="btn btn-primary me-1 ld-ext-right ld-ext-right-list" onclick="showlist()"><?= __("List"); ?><div class="ld ld-ring ld-spin"></div></button>
 </form>
 </div>
 <div id="mapcontainer">

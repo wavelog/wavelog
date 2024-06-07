@@ -140,13 +140,13 @@ $options = json_decode($options);
                         <label class="form-label" for="dxcc"><?= __("DXCC"); ?></label>
                         <select class="form-select form-select-sm" id="dxcc" name="dxcc">
                             <option value="">-</option>
-                            <option value="0"><?= __("- NONE - (e.g. /MM, /AM)"); ?></option>
+                            <option value="0"><?= _pgettext("Logbook Advanced DXCC Select", "- NONE - (e.g. /MM, /AM)"); ?></option>
                             <?php
 					foreach($dxccarray as $dxcc){
 						echo '<option value=' . $dxcc->adif;
 						echo '>' . $dxcc->prefix . ' - ' . ucwords(strtolower($dxcc->name), "- (/");
 						if ($dxcc->Enddate != null) {
-							echo ' - (Deleted DXCC)';
+							echo ' - (' . __("Deleted DXCC") . ')';
 						}
 						echo '</option>';
 					}
@@ -217,28 +217,28 @@ $options = json_decode($options);
                         <label class="form-label" for="selectPropagation"><?= __("Propagation"); ?></label>
                         <select id="selectPropagation" class="form-select form-select-sm" name="propmode">
                             <option value=""><?= __("All"); ?></option>
-                            <option value="AS"><?= _pgettext('Propagation Mode','Aircraft Scatter'); ?></option>
-                            <option value="AUR"><?= _pgettext('Propagation Mode','Aurora'); ?></option>
-                            <option value="AUE"><?= _pgettext('Propagation Mode','Aurora-E'); ?></option>
-                            <option value="BS"><?= _pgettext('Propagation Mode','Back scatter'); ?></option>
-                            <option value="ECH"><?= _pgettext('Propagation Mode','EchoLink'); ?></option>
-                            <option value="EME"><?= _pgettext('Propagation Mode','Earth-Moon-Earth'); ?></option>
-                            <option value="ES"><?= _pgettext('Propagation Mode','Sporadic E'); ?></option>
-                            <option value="FAI"><?= _pgettext('Propagation Mode','Field Aligned Irregularities'); ?></option>
-                            <option value="F2"><?= _pgettext('Propagation Mode','F2 Reflection'); ?></option>
-                            <option value="INTERNET"><?= _pgettext('Propagation Mode','Internet-assisted'); ?></option>
-                            <option value="ION"><?= _pgettext('Propagation Mode','Ionoscatter'); ?></option>
-                            <option value="IRL"><?= _pgettext('Propagation Mode','IRLP'); ?></option>
-                            <option value="MS"><?= _pgettext('Propagation Mode','Meteor scatter'); ?></option>
-                            <option value="RPT"><?= _pgettext('Propagation Mode','Terrestrial or atmospheric repeater or transponder'); ?></option>
-                            <option value="RS"><?= _pgettext('Propagation Mode','Rain scatter'); ?></option>
-                            <option value="SAT"><?= _pgettext('Propagation Mode','Satellite'); ?></option>
-                            <option value="TEP"><?= _pgettext('Propagation Mode','Trans-equatorial'); ?></option>
-                            <option value="TR"><?= _pgettext('Propagation Mode','Tropospheric ducting'); ?></option>
+                            <option value="AS"><?= _pgettext("Propagation Mode","Aircraft Scatter"); ?></option>
+                            <option value="AUR"><?= _pgettext("Propagation Mode","Aurora"); ?></option>
+                            <option value="AUE"><?= _pgettext("Propagation Mode","Aurora-E"); ?></option>
+                            <option value="BS"><?= _pgettext("Propagation Mode","Back scatter"); ?></option>
+                            <option value="ECH"><?= _pgettext("Propagation Mode","EchoLink"); ?></option>
+                            <option value="EME"><?= _pgettext("Propagation Mode","Earth-Moon-Earth"); ?></option>
+                            <option value="ES"><?= _pgettext("Propagation Mode","Sporadic E"); ?></option>
+                            <option value="FAI"><?= _pgettext("Propagation Mode","Field Aligned Irregularities"); ?></option>
+                            <option value="F2"><?= _pgettext("Propagation Mode","F2 Reflection"); ?></option>
+                            <option value="INTERNET"><?= _pgettext("Propagation Mode","Internet-assisted"); ?></option>
+                            <option value="ION"><?= _pgettext("Propagation Mode","Ionoscatter"); ?></option>
+                            <option value="IRL"><?= _pgettext("Propagation Mode","IRLP"); ?></option>
+                            <option value="MS"><?= _pgettext("Propagation Mode","Meteor scatter"); ?></option>
+                            <option value="RPT"><?= _pgettext("Propagation Mode","Terrestrial or atmospheric repeater or transponder"); ?></option>
+                            <option value="RS"><?= _pgettext("Propagation Mode","Rain scatter"); ?></option>
+                            <option value="SAT"><?= _pgettext("Propagation Mode","Satellite"); ?></option>
+                            <option value="TEP"><?= _pgettext("Propagation Mode","Trans-equatorial"); ?></option>
+                            <option value="TR"><?= _pgettext("Propagation Mode","Tropospheric ducting"); ?></option>
                         </select>
                     </div>
                     <div class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
-                        <label class="form-label" for="cqzone">CQ Zone</label>
+                        <label class="form-label" for="cqzone"><?= __("CQ Zone"); ?></label>
                         <select id="cqzone" name="cqzone" class="form-select form-select-sm">
                             <option value=""><?= __("All"); ?></option>
                             <?php
@@ -249,7 +249,7 @@ $options = json_decode($options);
                         </select>
                     </div>
 					<div class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
-                        <label class="form-label" for="ituzone">ITU Zone</label>
+                        <label class="form-label" for="ituzone"><?= __("ITU Zone"); ?></label>
                         <select id="ituzone" name="ituzone" class="form-select form-select-sm">
                             <option value=""><?= __("All"); ?></option>
                             <?php
@@ -481,13 +481,13 @@ $options = json_decode($options);
 		</select>
         <button type="submit" class="btn btn-sm btn-primary me-1 ld-ext-right" id="searchButton"><?= __("Search"); ?><div class="ld ld-ring ld-spin"></div></button>
         <button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="dupeButton"><?= __("Dupes"); ?><div class="ld ld-ring ld-spin"></div></button>
-        <button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="editButton">Edit<div class="ld ld-ring ld-spin"></div></button>
+        <button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="editButton"><?= __("Edit"); ?><div class="ld ld-ring ld-spin"></div></button>
 		<button type="button" class="btn btn-sm btn-danger me-1" id="deleteQsos"><?= __("Delete"); ?></button>
 		<div class="btn-group me-1" role="group">
             <button type="button" class="btn btn-sm btn-primary ld-ext-right" id="mapButton" onclick="mapQsos(this.form);"><?= __("Map"); ?><div class="ld ld-ring ld-spin"></div></button>
 			<button id="btnGroupDrop1" type="button" class="btn btn-sm btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></button>
 			<ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                <li><button type="button" class="dropdown-item" onclick="mapGlobeQsos(this.form);" id="mapGlobeButton">Globe map</button></li>
+                <li><button type="button" class="dropdown-item" onclick="mapGlobeQsos(this.form);" id="mapGlobeButton"><?= __("Globe map"); ?></button></li>
             </ul>
         </div>
 		<button type="options" class="btn btn-sm btn-primary me-1" id="optionButton"><?= __("Options"); ?></button>

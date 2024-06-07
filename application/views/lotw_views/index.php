@@ -102,10 +102,10 @@
 										$last_upload_fail_ts = strtotime($row->last_upload_fail ?? '1970-01-01');
 										$last_upload_fail = date($this->config->item('qso_date_format').' H:i:s', $last_upload_fail_ts);
 										if ($last_upload_fail_ts > $last_upload_ts) { ?>
-											<span data-bs-toggle="tooltip" data-bs-original-title="<?php echo $row->last_upload_status;?>. Last success: <?php echo $last_upload; ?>" class="badge text-bg-danger"><?php echo $last_upload_fail; ?></span>
+											<span data-bs-toggle="tooltip" data-bs-original-title="<?php echo $row->last_upload_status;?>. <?= sprintf(__("Last success: %s"), $last_upload); ?>" class="badge text-bg-danger"><?php echo $last_upload_fail; ?></span>
 										<?php } else {
 											if ($last_upload_fail && $row->last_upload_status)  { ?>
-												<span data-bs-toggle="tooltip" data-bs-original-title="<?php echo $row->last_upload_status;?>. Last fail: <?php echo $last_upload_fail; ?>" class="badge text-bg-success"><?php echo $last_upload; ?></span>
+												<span data-bs-toggle="tooltip" data-bs-original-title="<?php echo $row->last_upload_status;?>. <?= sprintf(__("Last fail: %s"), $last_upload_fail); ?>" class="badge text-bg-success"><?php echo $last_upload; ?></span>
 											<?php } else { ?>
 												<span class="badge text-bg-success"><?php echo $last_upload; ?></span>
 											<?php } ?>

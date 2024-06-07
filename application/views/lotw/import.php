@@ -51,7 +51,7 @@
                 $options[$call->callsign] = $call->callsign;
               }
               ksort($options);
-              array_unshift($options, 'All');
+              array_unshift($options, __("All"));
               echo form_dropdown('callsign', $options, 'All');
               ?>
             </div>

@@ -17,9 +17,9 @@
     <table  style="width:100%" class="countiestable table table-sm table-bordered table-hover table-striped table-condensed text-center">
         <thead>
         <tr>
-            <td><?= __('State'); ?></td>
-            <td><?= __('Counties Worked'); ?></td>
-            <td><?= __('Counties Confirmed'); ?></td>
+            <td><?= __("State"); ?></td>
+            <td><?= __("Counties Worked"); ?></td>
+            <td><?= __("Counties Confirmed"); ?></td>
         </tr>
         </thead>
         <tbody>
@@ -43,7 +43,7 @@
         </tbody>
     </table>
     <?php } else {
-        echo '<div class="alert alert-danger" role="alert">' . __('Nothing found!') . '</div>';
+        echo '<div class="alert alert-danger" role="alert">' . __("Nothing found!") . '</div>';
     }
     ?>
 </div>

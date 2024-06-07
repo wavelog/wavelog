@@ -43,8 +43,8 @@
                         <div class="mb-3">
                             <label for="groupedSearch"><?= __("Grouped search"); ?></label>
                             <select name="groupedSearch" class="form-select" id="groupedSearch">
-                                <option value="off" <?php if($this->optionslib->get_option('groupedSearch') == "off") { echo "selected=\"selected\""; } ?>>Off</option>
-                                <option value="on" <?php if($this->optionslib->get_option('groupedSearch') == "on") { echo "selected=\"selected\""; } ?>>On</option>
+                                <option value="off" <?php if($this->optionslib->get_option('groupedSearch') == "off") { echo "selected=\"selected\""; } ?>><?= __("Off"); ?></option>
+                                <option value="on" <?php if($this->optionslib->get_option('groupedSearch') == "on") { echo "selected=\"selected\""; } ?>><?= __("On"); ?></option>
                             </select>
                             <small id="groupedSearchHelp" class="form-text text-muted"><?= __("When this is on, all station locations with OQRS active, will be searched at once."); ?></small>
                         </div>
@@ -52,8 +52,8 @@
                         <div class="mb-3">
                             <label for="groupedSearchShowStationName"><?= __("Show station location name in grouped search results"); ?></label>
                             <select name="groupedSearchShowStationName" class="form-select" id="groupedSearchShowStationName">
-                                <option value="off" <?php if($this->optionslib->get_option('groupedSearchShowStationName') == "off") { echo "selected=\"selected\""; } ?>>Off</option>
-                                <option value="on" <?php if($this->optionslib->get_option('groupedSearchShowStationName') == "on") { echo "selected=\"selected\""; } ?>>On</option>
+                                <option value="off" <?php if($this->optionslib->get_option('groupedSearchShowStationName') == "off") { echo "selected=\"selected\""; } ?>><?= __("Off"); ?></option>
+                                <option value="on" <?php if($this->optionslib->get_option('groupedSearchShowStationName') == "on") { echo "selected=\"selected\""; } ?>><?= __("On"); ?></option>
                             </select>
                             <small id="groupedSearchShowStationNameHelp" class="form-text text-muted"><?= __("If grouped search is ON, you can decide if the name of the station location shall be shown in the results table."); ?></small>
                         </div>

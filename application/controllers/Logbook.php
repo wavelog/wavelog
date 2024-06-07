@@ -34,7 +34,7 @@ class Logbook extends CI_Controller {
 		$data['user_map_custom'] = $this->optionslib->get_map_custom();
 
 		if(!$data['results']) {
-			$this->session->set_flashdata('notice', __("No logbooks were found. You need to define a logbook under Station Logbooks! Do it here:") . ' <a href="' . site_url('logbooks') . '" title="Station Logbooks">' . __('Station Logbooks') . '</a>');
+			$this->session->set_flashdata('notice', __("No logbooks were found. You need to define a logbook under Station Logbooks! Do it here:") . ' <a href="' . site_url('logbooks') . '" title="Station Logbooks">' . __("Station Logbooks") . '</a>');
 		}
 
 		// Calculate Lat/Lng from Locator to use on Maps

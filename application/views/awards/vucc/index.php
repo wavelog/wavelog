@@ -18,9 +18,9 @@
         <table class="table table-sm table-bordered table-hover table-striped table-condensed text-center">
             <thead>
             <tr>
-                <td><?= __('Band'); ?></td>
-                <td><?= __('Grids Worked'); ?></td>
-                <td><?= __('Grids Confirmed'); ?></td>
+                <td><?= __("Band"); ?></td>
+                <td><?= __("Grids Worked"); ?></td>
+                <td><?= __("Grids Confirmed"); ?></td>
             </tr>
             </thead>
             <tbody>
@@ -36,6 +36,6 @@
         </table>
 
         <?php } else {
-            echo '<div class="alert alert-danger" role="alert">' . __('Nothing found!') . '</div>';
+            echo '<div class="alert alert-danger" role="alert">' . __("Nothing found!") . '</div>';
         } ?>
 </div>

@@ -64,6 +64,6 @@
 	</tbody>
 	</table>
 	<?php } else {
-        echo '<div class="alert alert-danger" role="alert">' . __('Nothing found!') . '</div>';
+        echo '<div class="alert alert-danger" role="alert">' . __("Nothing found!") . '</div>';
     }?>
 </div>

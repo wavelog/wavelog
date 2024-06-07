@@ -17,10 +17,10 @@
             <fieldset>
 
             <div class="mb-3 row">
-                <label class="col-md-2 control-label" for="band"><?= __('DOK / SDOK'); ?></label>
+                <label class="col-md-2 control-label" for="band"><?= __("DOK / SDOK"); ?></label>
                 <div class="col-md-2">
                     <select id="doks" name="doks" class="form-select form-select-sm">
-                        <option value="both" <?php if ($this->input->post('doks') == "both" || $this->input->method() !== 'post') echo ' selected'; ?> ><?= __('DOK + SDOK'); ?></option>
+                        <option value="both" <?php if ($this->input->post('doks') == "both" || $this->input->method() !== 'post') echo ' selected'; ?> ><?= __("DOK + SDOK"); ?></option>
                         <?php echo '<option value="dok"';
                             if ($this->input->post('doks') == 'dok') echo ' selected';
                             echo '>DOK</option>'."\n";
@@ -34,15 +34,15 @@
             </div>
 
             <div class="mb-3 row">
-                <div class="col-md-2" for="checkboxes"><?= __('Worked / Confirmed'); ?></div>
+                <div class="col-md-2" for="checkboxes"><?= __("Worked / Confirmed"); ?></div>
                 <div class="col-md-10">
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" name="worked" id="worked" value="1" <?php if ($this->input->post('worked') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="worked"><?= __('Show worked'); ?></label>
+                        <label class="form-check-label" for="worked"><?= __("Show worked"); ?></label>
                     </div>
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" name="confirmed" id="confirmed" value="1" <?php if ($this->input->post('confirmed') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="confirmed"><?= __('Show confirmed'); ?></label>
+                        <label class="form-check-label" for="confirmed"><?= __("Show confirmed"); ?></label>
                     </div>
                 </div>
             </div>
@@ -52,19 +52,19 @@
                 <div class="col-md-10">
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" name="qsl" value="1" id="qsl" <?php if ($this->input->post('qsl') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="qsl"><?= __('QSL'); ?></label>
+                        <label class="form-check-label" for="qsl"><?= __("QSL"); ?></label>
                     </div>
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" name="lotw" value="1" id="lotw" <?php if ($this->input->post('lotw') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="lotw"><?= __('LoTW'); ?></label>
+                        <label class="form-check-label" for="lotw"><?= __("LoTW"); ?></label>
                     </div>
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" name="eqsl" value="1" id="eqsl" <?php if ($this->input->post('eqsl')) echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="eqsl"><?= __('eQSL'); ?></label>
+                        <label class="form-check-label" for="eqsl"><?= __("eQSL"); ?></label>
                     </div>
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" name="qrz" value="1" id="qrz" <?php if ($this->input->post('qrz')) echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="qrz"><?= __('QRZ.com'); ?></label>
+                        <label class="form-check-label" for="qrz"><?= __("QRZ.com"); ?></label>
                     </div>
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" name="clublog" value="1" id="clublog" <?php if ($this->input->post('clublog')) echo ' checked="checked"'; ?> >
