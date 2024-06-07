@@ -9,7 +9,7 @@ if ($qsos->result() != NULL) {
 	<th style=\'text-align: center\'>' . __("Mode") . '</th>
 	<th style=\'text-align: center\'>' . __("Band") . '</th>
 	<th style=\'text-align: center\'>' . __("Station") . '</th>
-	<th style=\'text-align: center\'>QSL</th>';
+	<th style=\'text-align: center\'>' . __("QSL") . '</th>';
 	if ($this->session->userdata('user_eqsl_name') != "") {
 		echo '<th style=\'text-align: center\'>eQSL</th>';
 	}

@@ -96,7 +96,7 @@
                                 echo ' checked';
                             }
                             echo '>'; ?>
-                            <label class="form-check-label" for="qsl">QSL</label>
+                            <label class="form-check-label" for="qsl"><?= __("QSL"); ?></label>
                         </div>
                         <div class="form-check-inline">
                             <?php echo '<input class="form-check-input" type="checkbox" name="lotw" id="lotw"';
@@ -104,7 +104,7 @@
                                 echo ' checked';
                             }
                             echo '>'; ?>
-                            <label class="form-check-label" for="lotw">LoTW</label>
+                            <label class="form-check-label" for="lotw"><?= __("LoTW"); ?></label>
                         </div>
                         <div class="form-check-inline">
                             <?php echo '<input class="form-check-input" type="checkbox" name="eqsl" id="eqsl"';
@@ -112,7 +112,7 @@
                                 echo ' checked';
                             }
                             echo '>'; ?>
-                            <label class="form-check-label" for="eqsl">eQSL</label>
+                            <label class="form-check-label" for="eqsl"><?= __("eQSL"); ?></label>
                         </div>
                         <div class="form-check-inline">
                             <?php echo '<input class="form-check-input" type="checkbox" name="qrz" id="qrz"';
@@ -120,7 +120,7 @@
                                 echo ' checked';
                             }
                             echo '>'; ?>
-                            <label class="form-check-label" for="qrz">QRZ.com</label>
+                            <label class="form-check-label" for="qrz"><?= __("QRZ.com"); ?></label>
                         </div>
                     </div>
                 </div>

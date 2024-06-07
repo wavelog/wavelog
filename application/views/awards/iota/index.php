@@ -54,7 +54,7 @@
             </div>
 
             <div class="mb-3 row">
-                <div class="col-md-2">Continents</div>
+                <div class="col-md-2"><?= __("Continents"); ?></div>
                 <div class="col-md-10">
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" name="Antarctica" id="Antarctica" value="1" <?php if ($this->input->post('Antarctica') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
