@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-07 22:43+0200\n"
+"POT-Creation-Date: 2024-06-07 23:00+0200\n"
 "PO-Revision-Date: 2024-06-05 15:20+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -997,14 +997,14 @@ msgstr "复制"
 #: application/views/satellite/edit.php:40
 #: application/views/stationsetup/stationsetup.php:33
 #: application/views/stationsetup/stationsetup.php:133
-#: application/views/stationsetup/stationsetup.php:183
+#: application/views/stationsetup/stationsetup.php:184
 #: application/views/contesting/add.php:62
 #: application/views/labels/index.php:44 application/views/labels/index.php:80
 #: application/views/logbookadvanced/index.php:485
 #: application/views/mode/index.php:55
 #: application/views/oqrs/showrequests.php:71
 #: application/views/station_profile/index.php:55
-#: application/views/station_profile/index.php:102
+#: application/views/station_profile/index.php:103
 #: application/views/user/main.php:54
 #: application/views/lotw_views/index.php:118
 #: application/views/qslcard/index.php:65
@@ -1014,14 +1014,9 @@ msgstr "删除用户"
 #: application/controllers/Stationsetup.php:364
 #: application/views/stationsetup/stationsetup.php:183
 #: application/views/station_profile/index.php:102
-msgid "Are you sure you want delete station profile  "
-msgstr "确认删除该台站 "
-
-#: application/controllers/Stationsetup.php:364
-#: application/views/stationsetup/stationsetup.php:183
-#: application/views/station_profile/index.php:102
-msgid "This will delete all QSOs within this station profile?"
-msgstr "此操作会删除所有该台站的 QSO"
+#, php-format
+msgid "Are you sure you want delete station profile '%s'? This will delete all QSOs within this station profile."
+msgstr ""
 
 #: application/controllers/Stationsetup.php:371
 #: application/views/qso/edit_ajax.php:220
@@ -8369,6 +8364,12 @@ msgstr "标记 已请求卡片(卡片局)"
 #: application/views/view_log/qso.php:664
 msgid "Mark QSL Card Requested (Direct)"
 msgstr "标记 已请求卡片(直邮)"
+
+#~ msgid "Are you sure you want delete station profile  "
+#~ msgstr "确认删除该台站 "
+
+#~ msgid "This will delete all QSOs within this station profile?"
+#~ msgstr "此操作会删除所有该台站的 QSO"
 
 #~ msgid "Single Operator"
 #~ msgstr "单操作员(Single Operator)"

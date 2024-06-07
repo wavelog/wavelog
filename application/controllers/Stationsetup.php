@@ -361,7 +361,7 @@ class Stationsetup extends CI_Controller {
 
 	private function stationdelete2html($id, $station_profile_name, $station_active) {
 		if($station_active != 1) {
-			return '<button id="'.$id . '" class="DeleteStation btn btn-danger btn-sm" title="' . __("Delete") . '" cnftext="' . __("Are you sure you want delete station profile  ") . $station_profile_name . __("This will delete all QSOs within this station profile?") . '"><i class="fas fa-trash-alt"></i></button>';
+			return '<button id="'.$id . '" class="DeleteStation btn btn-danger btn-sm" title="' . __("Delete") . '" cnftext="' . sprintf(__("Are you sure you want delete station profile '%s'? This will delete all QSOs within this station profile."), $station_profile_name) . '"><i class="fas fa-trash-alt"></i></button>';
 		}
 
 		return '';

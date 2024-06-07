@@ -179,8 +179,9 @@
 				<a href="<?php echo site_url('station/deletelog')."/".$row->station_id; ?>" class="btn btn-danger btn-sm" title=<?= __("Empty Log"); ?> onclick="return confirm('<?= __("Are you sure you want to delete all QSOs within this station profile?"); ?>');"><i class="fas fa-trash-alt"></i></a></td>
 			</td>
 			<td>
-				<?php if($row->station_active != 1) { ?>
-					<a href="<?php echo site_url('station/delete')."/".$row->station_id; ?>" class="btn btn-danger btn-sm" title=<?= __("Delete"); ?> onclick="return confirm('<?= __("Are you sure you want delete station profile  "); ?> <?php echo $row->station_profile_name; ?> <?= __("This will delete all QSOs within this station profile?"); ?>');"><i class="fas fa-trash-alt"></i></a>
+				<?php if($row->station_active != 1) { 
+					$cnfmsg = sprintf(__("Are you sure you want delete station profile '%s'? This will delete all QSOs within this station profile."), $row->station_profile_name); ?>?>
+					<a href="<?php echo site_url('station/delete')."/".$row->station_id; ?>" class="btn btn-danger btn-sm" title=<?= __("Delete"); ?> onclick="return confirm('<?= $cnfmsg ?>');"><i class="fas fa-trash-alt"></i></a>
 				<?php } ?>
 			</td>
 		</tr>

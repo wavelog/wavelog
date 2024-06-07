@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wavelog-test\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-07 22:43+0200\n"
+"POT-Creation-Date: 2024-06-07 23:00+0200\n"
 "PO-Revision-Date: 2024-06-05 12:44\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
@@ -995,14 +995,14 @@ msgstr "Kopieren"
 #: application/views/satellite/edit.php:40
 #: application/views/stationsetup/stationsetup.php:33
 #: application/views/stationsetup/stationsetup.php:133
-#: application/views/stationsetup/stationsetup.php:183
+#: application/views/stationsetup/stationsetup.php:184
 #: application/views/contesting/add.php:62
 #: application/views/labels/index.php:44 application/views/labels/index.php:80
 #: application/views/logbookadvanced/index.php:485
 #: application/views/mode/index.php:55
 #: application/views/oqrs/showrequests.php:71
 #: application/views/station_profile/index.php:55
-#: application/views/station_profile/index.php:102
+#: application/views/station_profile/index.php:103
 #: application/views/user/main.php:54
 #: application/views/lotw_views/index.php:118
 #: application/views/qslcard/index.php:65
@@ -1012,14 +1012,9 @@ msgstr "Löschen"
 #: application/controllers/Stationsetup.php:364
 #: application/views/stationsetup/stationsetup.php:183
 #: application/views/station_profile/index.php:102
-msgid "Are you sure you want delete station profile  "
-msgstr "Bist du sicher, dass du diesen Stationsstandort löschen willst?:"
-
-#: application/controllers/Stationsetup.php:364
-#: application/views/stationsetup/stationsetup.php:183
-#: application/views/station_profile/index.php:102
-msgid "This will delete all QSOs within this station profile?"
-msgstr "Es werden alle QSO an diesem Stationsstandort gelöscht!"
+#, php-format
+msgid "Are you sure you want delete station profile '%s'? This will delete all QSOs within this station profile."
+msgstr ""
 
 #: application/controllers/Stationsetup.php:371
 #: application/views/qso/edit_ajax.php:220
@@ -8372,6 +8367,12 @@ msgstr "Markiere QSL Karte als angefragt (Büro)"
 #: application/views/view_log/qso.php:664
 msgid "Mark QSL Card Requested (Direct)"
 msgstr "Markiere QSL Karte als angefragt (Direkt)"
+
+#~ msgid "Are you sure you want delete station profile  "
+#~ msgstr "Bist du sicher, dass du diesen Stationsstandort löschen willst?:"
+
+#~ msgid "This will delete all QSOs within this station profile?"
+#~ msgstr "Es werden alle QSO an diesem Stationsstandort gelöscht!"
 
 #~ msgid "Single Operator"
 #~ msgstr "Einzel Operator"
