@@ -1,0 +1,41 @@
+name: Compile .mo files from changed .po files
+
+on: 
+  # push:
+  #   paths:
+  #     - '**/*.po'
+  #   branches:
+  #     - 'dev'
+  workflow_dispatch:
+
+jobs:
+  compile_mo:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        repository: wavelog/wavelog
+        ref: dev
+        fetch-depth: 2
+
+    - name: Set up gettext
+      run: sudo apt-get install -y gettext
+
+    - name: Compile .mo files from changed .po files
+      run: |
+        for po in $(git diff --name-only HEAD~1 HEAD | grep '\.po$'); do
+          mo="${po%.po}.mo";
+          msgfmt --verbose -o "$mo" "$po";
+        done
+
+    - name: Commit changes
+      run: |
+        git config --global user.name "github-actions"
+        git config --global user.email "github-actions@github.com"
+        git add .
+        git commit -m "Compiled .mo file"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

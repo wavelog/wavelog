@@ -5,9 +5,6 @@ class Dashboard extends CI_Controller
 
 	public function index()
 	{
-		// Load language files
-		$this->lang->load('lotw');
-
 		// Database connections
 		$this->load->model('logbook_model');
 		$this->load->model('user_model');

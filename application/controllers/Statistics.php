@@ -5,11 +5,6 @@ class Statistics extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
-
-		// Load language files
-		$this->lang->load(array(
-			'statistics',
-		));
 	}
 
 
