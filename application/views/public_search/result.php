@@ -10,10 +10,10 @@ if ($results) { ?>
     <table style="width:100%" id="publicsearchtable" class="publicsearchtable table table-sm table-striped table-hover">
         <thead>
             <tr class="titles">
-                <th><?php echo lang('general_word_date'); ?></th>
-                <th><?php echo lang('gen_hamradio_call'); ?></th>
-                <th><?php echo lang('gen_hamradio_mode'); ?></th>
-                <th><?php echo lang('gen_hamradio_band'); ?></th>
+                <th><?= __("Date"); ?></th>
+                <th><?= __("Call"); ?></th>
+                <th><?= __("Mode"); ?></th>
+                <th><?= __("Band"); ?></th>
                 <th>Station Callsign</th>
             </tr>
         </thead>

@@ -180,33 +180,33 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="comment">Comment</label>
+                                    <label for="comment"><?= __('Comment'); ?></label>
                                     <input type="text" class="form-control" id="comment" name="comment" value="<?php echo htmlspecialchars($qso->COL_COMMENT ? $qso->COL_COMMENT : '', ENT_QUOTES, 'UTF-8'); ?>">
                                 </div>
 
                                 <div class="row">
                                     <div class="mb-3 col-sm-6">
-                                        <label for="prop_mode">Propagation Mode</label>
+                                        <label for="prop_mode"><?= __('Propagation Mode'); ?></label>
                                         <select class="form-select" id="prop_mode" name="prop_mode">
                                             <option value="" <?php if($qso->COL_PROP_MODE == "") { echo "selected=\"selected\""; } ?>></option>
-                                            <option value="AS" <?php if($qso->COL_PROP_MODE == "AS") { echo "selected=\"selected\""; } ?>>Aircraft Scatter</option>
-                                            <option value="AUR" <?php if($qso->COL_PROP_MODE == "AUR") { echo "selected=\"selected\""; } ?>>Aurora</option>
-                                            <option value="AUE" <?php if($qso->COL_PROP_MODE == "AUE") { echo "selected=\"selected\""; } ?>>Aurora-E</option>
-                                            <option value="BS" <?php if($qso->COL_PROP_MODE == "BS") { echo "selected=\"selected\""; } ?>>Back scatter</option>
-                                            <option value="ECH" <?php if($qso->COL_PROP_MODE == "ECH") { echo "selected=\"selected\""; } ?>>EchoLink</option>
-                                            <option value="EME" <?php if($qso->COL_PROP_MODE == "EME") { echo "selected=\"selected\""; } ?>>Earth-Moon-Earth</option>
-                                            <option value="ES" <?php if($qso->COL_PROP_MODE == "ES") { echo "selected=\"selected\""; } ?>>Sporadic E</option>
-                                            <option value="FAI" <?php if($qso->COL_PROP_MODE == "FAI") { echo "selected=\"selected\""; } ?>>Field Aligned Irregularities</option>
-                                            <option value="F2" <?php if($qso->COL_PROP_MODE == "F2") { echo "selected=\"selected\""; } ?>>F2 Reflection</option>
-                                            <option value="INTERNET" <?php if($qso->COL_PROP_MODE == "INTERNET") { echo "selected=\"selected\""; } ?>>Internet-assisted</option>
-                                            <option value="ION" <?php if($qso->COL_PROP_MODE == "ION") { echo "selected=\"selected\""; } ?>>Ionoscatter</option>
-                                            <option value="IRL" <?php if($qso->COL_PROP_MODE == "IRL") { echo "selected=\"selected\""; } ?>>IRLP</option>
-                                            <option value="MS" <?php if($qso->COL_PROP_MODE == "MS") { echo "selected=\"selected\""; } ?>>Meteor scatter</option>
-                                            <option value="RPT" <?php if($qso->COL_PROP_MODE == "RPT") { echo "selected=\"selected\""; } ?>>Terrestrial or atmospheric repeater or transponder</option>
-                                            <option value="RS" <?php if($qso->COL_PROP_MODE == "RS") { echo "selected=\"selected\""; } ?>>Rain scatter</option>
-                                            <option value="SAT" <?php if($qso->COL_PROP_MODE == "SAT") { echo "selected=\"selected\""; } ?>>Satellite</option>
-                                            <option value="TEP" <?php if($qso->COL_PROP_MODE == "TEP") { echo "selected=\"selected\""; } ?>>Trans-equatorial</option>
-                                            <option value="TR" <?php if($qso->COL_PROP_MODE == "TR") { echo "selected=\"selected\""; } ?>>Tropospheric ducting</option>
+                                            <option value="AS" <?php if($qso->COL_PROP_MODE == "AS") { echo "selected=\"selected\""; } ?>><?= _pgettext('Propagation Mode','Aircraft Scatter'); ?></option>
+                                            <option value="AUR" <?php if($qso->COL_PROP_MODE == "AUR") { echo "selected=\"selected\""; } ?>><?= _pgettext('Propagation Mode','Aurora'); ?></option>
+                                            <option value="AUE" <?php if($qso->COL_PROP_MODE == "AUE") { echo "selected=\"selected\""; } ?>><?= _pgettext('Propagation Mode','Aurora-E'); ?></option>
+                                            <option value="BS" <?php if($qso->COL_PROP_MODE == "BS") { echo "selected=\"selected\""; } ?>><?= _pgettext('Propagation Mode','Back scatter'); ?></option>
+                                            <option value="ECH" <?php if($qso->COL_PROP_MODE == "ECH") { echo "selected=\"selected\""; } ?>><?= _pgettext('Propagation Mode','EchoLink'); ?></option>
+                                            <option value="EME" <?php if($qso->COL_PROP_MODE == "EME") { echo "selected=\"selected\""; } ?>><?= _pgettext('Propagation Mode','Earth-Moon-Earth'); ?></option>
+                                            <option value="ES" <?php if($qso->COL_PROP_MODE == "ES") { echo "selected=\"selected\""; } ?>><?= _pgettext('Propagation Mode','Sporadic E'); ?></option>
+                                            <option value="FAI" <?php if($qso->COL_PROP_MODE == "FAI") { echo "selected=\"selected\""; } ?>><?= _pgettext('Propagation Mode','Field Aligned Irregularities'); ?></option>
+                                            <option value="F2" <?php if($qso->COL_PROP_MODE == "F2") { echo "selected=\"selected\""; } ?>><?= _pgettext('Propagation Mode','F2 Reflection'); ?></option>
+                                            <option value="INTERNET" <?php if($qso->COL_PROP_MODE == "INTERNET") { echo "selected=\"selected\""; } ?>><?= _pgettext('Propagation Mode','Internet-assisted'); ?></option>
+                                            <option value="ION" <?php if($qso->COL_PROP_MODE == "ION") { echo "selected=\"selected\""; } ?>><?= _pgettext('Propagation Mode','Ionoscatter'); ?></option>
+                                            <option value="IRL" <?php if($qso->COL_PROP_MODE == "IRL") { echo "selected=\"selected\""; } ?>><?= _pgettext('Propagation Mode','IRLP'); ?></option>
+                                            <option value="MS" <?php if($qso->COL_PROP_MODE == "MS") { echo "selected=\"selected\""; } ?>><?= _pgettext('Propagation Mode','Meteor scatter'); ?></option>
+                                            <option value="RPT" <?php if($qso->COL_PROP_MODE == "RPT") { echo "selected=\"selected\""; } ?>><?= _pgettext('Propagation Mode','Terrestrial or atmospheric repeater or transponder'); ?></option>
+                                            <option value="RS" <?php if($qso->COL_PROP_MODE == "RS") { echo "selected=\"selected\""; } ?>><?= _pgettext('Propagation Mode','Rain scatter'); ?></option>
+                                            <option value="SAT" <?php if($qso->COL_PROP_MODE == "SAT") { echo "selected=\"selected\""; } ?>><?= _pgettext('Propagation Mode','Satellite'); ?></option>
+                                            <option value="TEP" <?php if($qso->COL_PROP_MODE == "TEP") { echo "selected=\"selected\""; } ?>><?= _pgettext('Propagation Mode','Trans-equatorial'); ?></option>
+                                            <option value="TR" <?php if($qso->COL_PROP_MODE == "TR") { echo "selected=\"selected\""; } ?>><?= _pgettext('Propagation Mode','Tropospheric ducting'); ?></option>
                                         </select>
                                     </div>
 
@@ -226,7 +226,7 @@
                                                 }
                                                 echo '>' . $d->prefix . ' - ' . ucwords(strtolower(($d->name)));
                                                 if ($d->Enddate != null) {
-                                                    echo ' ('.lang('gen_hamradio_deleted_dxcc').')';
+                                                    echo ' ('.__("Deleted DXCC").')';
                                                 }
                                                 echo '</option>';
                                             }
@@ -235,16 +235,16 @@
                                         </select>
                                     </div>
                                     <div class="mb-3 col-sm-6">
-                                        <label for="continent"><?php echo lang('gen_hamradio_continent'); ?></label>
+                                        <label for="continent"><?= __("Continent"); ?></label>
                                         <select class="form-select" id="continent" name="continent">
                                             <option value=""></option>
-                                            <option value="AF" <?php if($qso->COL_CONT == "AF") { echo "selected=\"selected\""; } ?>><?php echo lang('africa'); ?></option>
-                                            <option value="AN" <?php if($qso->COL_CONT == "AN") { echo "selected=\"selected\""; } ?>><?php echo lang('antarctica'); ?></option>
-                                            <option value="AS" <?php if($qso->COL_CONT == "AS") { echo "selected=\"selected\""; } ?>><?php echo lang('asia'); ?></option>
-                                            <option value="EU" <?php if($qso->COL_CONT == "EU") { echo "selected=\"selected\""; } ?>><?php echo lang('europe'); ?></option>
-                                            <option value="NA" <?php if($qso->COL_CONT == "NA") { echo "selected=\"selected\""; } ?>><?php echo lang('northamerica'); ?></option>
-                                            <option value="OC" <?php if($qso->COL_CONT == "OC") { echo "selected=\"selected\""; } ?>><?php echo lang('oceania'); ?></option>
-                                            <option value="SA" <?php if($qso->COL_CONT == "SA") { echo "selected=\"selected\""; } ?>><?php echo lang('southamerica'); ?></option>
+                                            <option value="AF" <?php if($qso->COL_CONT == "AF") { echo "selected=\"selected\""; } ?>><?= __("Africa"); ?></option>
+                                            <option value="AN" <?php if($qso->COL_CONT == "AN") { echo "selected=\"selected\""; } ?>><?= __("Antarctica"); ?></option>
+                                            <option value="AS" <?php if($qso->COL_CONT == "AS") { echo "selected=\"selected\""; } ?>><?= __("Asia"); ?></option>
+                                            <option value="EU" <?php if($qso->COL_CONT == "EU") { echo "selected=\"selected\""; } ?>><?= __("Europe"); ?></option>
+                                            <option value="NA" <?php if($qso->COL_CONT == "NA") { echo "selected=\"selected\""; } ?>><?= __("North America"); ?></option>
+                                            <option value="OC" <?php if($qso->COL_CONT == "OC") { echo "selected=\"selected\""; } ?>><?= __("Oceania"); ?></option>
+                                            <option value="SA" <?php if($qso->COL_CONT == "SA") { echo "selected=\"selected\""; } ?>><?= __("South America"); ?></option>
                                         </select>
                                     </div>
                                 </div>
@@ -473,11 +473,11 @@
                                         <div class="mb-3 row">
                                             <div>
                                                 <div class="alert alert-info" role="alert">
-                                                    <span class="badge text-bg-info"><?php echo lang('general_word_info'); ?></span> <?php echo lang('qsl_notes_helptext'); ?>
+                                                    <span class="badge text-bg-info"><?= __("Info"); ?></span> <?= __("This note content is exported to QSL services like eqsl.cc."); ?>
                                                 </div>
                                             </div>
                                             <div>
-                                                <label for="qslmsg"><?php echo lang('general_word_notes'); ?><span class="qso_eqsl_qslmsg_update" title="<?php echo lang('qso_eqsl_qslmsg_helptext'); ?>"><i class="fas fa-redo-alt"></i></span></label>
+                                                <label for="qslmsg"><?= __("Notes"); ?><span class="qso_eqsl_qslmsg_update" title="<?= __("Get the default message for eQSL, for this station."); ?>"><i class="fas fa-redo-alt"></i></span></label>
 						                        <label class="position-absolute end-0 mb-2 me-3" for="qslmsg" id="charsLeft"> </label>
                                                 <textarea  type="text" class="form-control" id="qslmsg" name="qslmsg" rows="5" maxlength="240"><?php echo $qso->COL_QSLMSG; ?></textarea>
                                                 <div id="qslmsg_hide" style="display:none;"><?php echo $qso->COL_QSLMSG; ?></div>

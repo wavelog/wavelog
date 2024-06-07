@@ -14,7 +14,7 @@
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
                 <a class="nav-link active" id="continents-tab" data-bs-toggle="tab" href="#continents" role="tab"
-                    aria-controls="continents" aria-selected="true">No of QSOs</a>
+                    aria-controls="continents" aria-selected="true"><?= __("Number of QSOs"); ?></a>
             </li>
         </ul>
     </div>
@@ -27,18 +27,18 @@
                 <div class="row">
 
                     <div class="mb-3 col-lg-2">
-                        <label class="form-label" for="band">Band</label>
+                        <label class="form-label" for="band"><?= __("Band"); ?></label>
                         <select id="band" name="band" class="form-select form-select-sm">
-                            <option value="">All</option>
+                            <option value=""><?= __("All"); ?></option>
                             <?php foreach($bands as $band){ ?>
 								<option value="<?php echo htmlentities($band);?>"><?php echo htmlspecialchars($band);?>	</option>
 							<?php } ?>
                         </select>
                     </div>
                     <div class="mb-3 col-lg-2">
-                        <label class="form-label" for="mode">Mode</label>
+                        <label class="form-label" for="mode"><?= __("Mode"); ?></label>
                         <select id="mode" name="mode" class="form-select form-select-sm">
-                            <option value="">All</option>
+                            <option value=""><?= __("All"); ?></option>
                             <?php foreach($modes as $modeId => $mode){ ?>
 								<option value="<?php echo htmlspecialchars($mode);?>"><?php echo htmlspecialchars($mode);?></option>
 							<?php } ?>
@@ -46,8 +46,8 @@
                     </div>
                     <div class="mb-3 col-lg-2 col-md-3 col-sm-3 col-xl-21">
                         <label>&nbsp;</label><br>
-                        <button type="submit" class="btn btn-sm btn-primary" id="searchButton">Search</button>
-                        <button type="reset" class="btn btn-sm btn-danger" id="resetButton">Reset</button>
+                        <button type="submit" class="btn btn-sm btn-primary" id="searchButton"><?= __("Search"); ?></button>
+                        <button type="reset" class="btn btn-sm btn-danger" id="resetButton"><?= __("Reset"); ?></button>
                     </div>
                 </div>
 			</form>
@@ -59,8 +59,8 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Continent</th>
-                        <th># of QSO's worked</th>
+                        <th><?= __("Continent"); ?></th>
+                        <th><?= __("# of QSO's worked"); ?></th>
                     </tr>
                 </thead>
                 <tbody></tbody>

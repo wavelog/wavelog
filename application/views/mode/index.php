@@ -65,7 +65,7 @@
 					<th></th>
 					<th></th>
 					<th><---</th>
-					<th><?php echo lang('filter_filters'); ?></th>
+					<th><?= __("Filters"); ?></th>
 					<th></th>
 				</tr>
 			</tfoot>

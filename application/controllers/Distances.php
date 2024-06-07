@@ -79,7 +79,7 @@ class Distances extends CI_Controller {
 
 		// Render Page
 		$data['page_title'] = "Log View - " . $distance;
-		$data['filter'] = lang('statistics_distances_qsos_with') . " " . $distance . " " . lang('statistics_distances_and_band'). " " . $band;
+		$data['filter'] = __("QSOs with") . " " . $distance . " " . __("and band"). " " . $band;
 		$this->load->view('awards/details', $data);
 	}
 }

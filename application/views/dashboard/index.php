@@ -106,28 +106,6 @@ function echo_table_col($row, $name) {
 		</div>
 	<?php } ?>
 
-	<!-- JUST FOR DEBUGGING LANGUAGE -->
-	<?php if (ENVIRONMENT == "development") { ?>
-		<!-- <div class="alert alert-danger" role="alert">
-		  <p> 	Language Info <br>
-		  		Name: <?= $language['name']; ?><br>
-		  		Name_En: <?= $language['name_en']; ?><br>
-		  		Folder: <?= $language['folder']; ?><br>
-		  		Direction: <?= $language['direction']; ?><br>
-		  		Code: <?= $language['code']; ?><br>
-		  		Flag: <?= $language['flag']; ?></p>
-		</div>
-		<div class="alert alert-danger" role="alert">
-			<p> "Apple": 1 <?= _ngettext("Apple", "Apples", 1); ?><br>
-			    "Apples": 20 <?= _ngettext("Apple", "Apples", 20); ?><br>
-				"Callsign" in <?= $language['name']; ?>: <?= __('Callsign'); ?><br>
-				"Text with Link inside": <?= sprintf(__("For more information, %s."), '<a href="https://example.com">' . __("Click here") . '</a>'); ?><br>
-				"Same with Numbers": <?php $bananas = 2; echo sprintf(_ngettext("You have eaten %d Banana today.", "You have eaten %d Bananas today.", intval($bananas)), intval($bananas)); ?></p> <!-- change number of bananas -->
-		</div>
-	<?php } ?>
-	<!-- JUST FOR DEBUGGING LANGUAGE -->
-
-
 	<?php if($themesWithoutMode != 0) { ?>
 		<div class="alert alert-danger" role="alert">
 		  	<?= __("You have themes without defined theme mode. Please ask the admin to edit the themes."); ?>
@@ -265,7 +243,7 @@ function echo_table_col($row, $name) {
 				<td width="50%"><?php echo $total_countries; ?></td>
 			</tr>
 			<tr>
-				<td width="50%"><a href="#" onclick="return false" title="QSL Cards / LoTW / eQSL" data-bs-toggle="tooltip"><?= __("Confirmed"); ?></a></td>
+				<td width="50%"><a href="#" onclick="return false" title="<?= __("QSL Cards") ." / ". __("LoTW") ." / " . __("eQSL"); ?>" data-bs-toggle="tooltip"><?= __("Confirmed"); ?></a></td>
 				<td width="50%">
 					<?php echo $total_countries_confirmed_paper; ?> /
 					<?php echo $total_countries_confirmed_lotw; ?> /
@@ -372,8 +350,8 @@ function echo_table_col($row, $name) {
 		<?php if((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE)) { ?>
     	 <table class="table table-striped border-top">
         <tr class="titles">
-            <td colspan="2"><i class="fas fa-globe-europe"></i> VUCC-Grids</td>
-            <td colspan="1">SAT</td>
+            <td colspan="2"><i class="fas fa-globe-europe"></i> <?= __("VUCC-Grids"); ?></td>
+            <td colspan="1"><?= __("SAT"); ?></td>
         </tr>
 
         <tr>

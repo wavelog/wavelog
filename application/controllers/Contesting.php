@@ -96,7 +96,7 @@ class Contesting extends CI_Controller {
 		$data['contests'] = $this->Contesting_model->getAllContests();
 
 		// Render Page
-		$data['page_title'] = "Contests";
+		$data['page_title'] = __("Contests");
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('contesting/add');
 		$this->load->view('interface_assets/footer');
@@ -110,7 +110,7 @@ class Contesting extends CI_Controller {
 
 		$data['contest'] = $this->Contesting_model->contest($item_id_clean);
 
-		$data['page_title'] = lang('admin_contest_edit_update_contest');
+		$data['page_title'] = __("Update Contest");
 
 		$this->form_validation->set_rules('name', 'Contest Name', 'required');
 		$this->form_validation->set_rules('adifname', 'Adif Contest Name', 'required');

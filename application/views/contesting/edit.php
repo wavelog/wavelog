@@ -28,31 +28,31 @@
 
 			<form method="post" action="<?php echo site_url('contesting/edit/'); ?><?php echo $contest->id; ?>" name="edit_contest">
 				<div class="mb-3">
-					<label for="contestnameInput"><?php echo lang('contesting_contest_name'); ?></label>
+					<label for="contestnameInput"><?= __("Contest Name"); ?></label>
 					<input type="text" class="form-control" name="name" id="nameInput" aria-describedby="contestnameInputHelp" value="<?php if(set_value('name') != "") { echo set_value('name'); } else { echo $contest->name; } ?>" required>
-					<small id="contestnameInputHelp" class="form-text text-muted"><?php echo lang('admin_contest_name_of_contest'); ?></small>
+					<small id="contestnameInputHelp" class="form-text text-muted"><?= __("Name of the Contest"); ?></small>
 				</div>
 
 				<div class="mb-3">
-					<label for="adifnameInput"><?php echo lang('admin_contest_name_adif'); ?></label>
+					<label for="adifnameInput"><?= __("Contest ADIF Name"); ?></label>
 					<input type="text" class="form-control" name="adifname" id="adifnameInput" aria-describedby="adifnameInputHelp" value="<?php if(set_value('adifname') != "") { echo set_value('adifname'); } else { echo $contest->adifname; } ?>">
-					<small id="adifnameInputHelp" class="form-text text-muted"><?php echo lang('admin_contest_name_of_adif'); ?></small>
+					<small id="adifnameInputHelp" class="form-text text-muted"><?= __("Name of Contest in ADIF-specification"); ?></small>
 				</div>
 
 				<div class="mb-3">
-					<label for="activeInput"><?php echo lang('admin_contest_menu_active'); ?></label>
+					<label for="activeInput"><?= __("Active"); ?></label>
 					<select id="activeInput" class="form-select mode form-select-sm" name="active">
         				<option value="1" <?php echo $contest->active == 1 ? "selected=\"selected\"" : ""; ?>>
-            				<?php echo lang('admin_contest_menu_active'); ?>
+            				<?= __("Active"); ?>
         				</option>
         				<option value="0" <?php echo $contest->active == 0 ? "selected=\"selected\"" : ""; ?>>
-            				<?php echo lang('admin_contest_menu_n_active'); ?>
+            				<?= __("Not Active"); ?>
         				</option>
     				</select>
-					<small id="activeInputHelp" class="form-text text-muted"><?php echo lang('admin_contest_edit_active_hint'); ?></small>
+					<small id="activeInputHelp" class="form-text text-muted"><?= __("Set to active if to be listed in Contest-list"); ?></small>
 				</div>
 
-				<button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-plus-square"></i> <?php echo lang('admin_save'); ?></button>
+				<button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-plus-square"></i> <?= __("Save"); ?></button>
 
 			</form>
 		</div>

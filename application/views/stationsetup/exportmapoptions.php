@@ -3,7 +3,7 @@
 	<thead>
 		<tr>
 			<th class="text-start">Options</th>
-			<th><?php echo lang('filter_options_show'); ?></th>
+			<th><?= __("Show"); ?></th>
 		</tr>
 	</thead>
 	<tbody>

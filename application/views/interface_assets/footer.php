@@ -4,7 +4,7 @@
     */
     var option_map_tile_server = '<?php echo $this->optionslib->get_option('option_map_tile_server');?>';
     var option_map_tile_server_copyright = '<?php echo $this->optionslib->get_option('option_map_tile_server_copyright');?>';
-    var lang_datatables_language = '<?php echo lang('datatables_language'); ?>';
+    var lang_datatables_language = '<?= __("en-GB"); ?>';
 
     var base_url = "<?php echo base_url(); ?>"; // Base URL
     var site_url = "<?php echo site_url(); ?>"; // Site URL
@@ -17,20 +17,20 @@
     /*
     General Language
     */
-    var lang_general_word_qso_data = "<?php echo lang('general_word_qso_data'); ?>";
-    var lang_general_edit_qso = "<?php echo lang('general_edit_qso'); ?>";
-    var lang_general_word_danger = "<?php echo lang('general_word_danger'); ?>";
-    var lang_general_word_attention = "<?php echo lang('general_word_attention'); ?>";
-    var lang_general_word_warning = "<?php echo lang('general_word_warning'); ?>";
-    var lang_general_word_cancel = "<?php echo lang('general_word_cancel'); ?>";
-    var lang_general_word_ok = "<?php echo lang('general_word_ok'); ?>";
-    var lang_qso_delete_warning = "<?php echo lang('qso_delete_warning'); ?>";
-    var lang_general_word_colors = "<?php echo lang('general_word_colors'); ?>";
-    var lang_general_word_confirmed = "<?php echo lang('general_word_confirmed'); ?>";
-    var lang_general_word_worked_not_confirmed = "<?php echo lang('general_word_worked_not_confirmed'); ?>";
-    var lang_general_word_not_worked = "<?php echo lang('general_word_not_worked'); ?>";
-    var lang_admin_close = "<?php echo lang('admin_close'); ?>";
-    var lang_admin_clear = "<?php echo lang('admin_clear'); ?>";
+    var lang_general_word_qso_data = "<?= __("QSO Data"); ?>";
+    var lang_general_edit_qso = "<?= __("Edit QSO"); ?>";
+    var lang_general_word_danger = "<?= __("DANGER"); ?>";
+    var lang_general_word_attention = "<?= __("Attention"); ?>";
+    var lang_general_word_warning = "<?= __("Warning"); ?>";
+    var lang_general_word_cancel = "<?= __("Cancel"); ?>";
+    var lang_general_word_ok = "<?= __("OK"); ?>";
+    var lang_qso_delete_warning = "<?= __("Warning! Are you sure you want delete QSO with "); ?>";
+    var lang_general_word_colors = "<?= __("Colors"); ?>";
+    var lang_general_word_confirmed = "<?= __("Confirmed"); ?>";
+    var lang_general_word_worked_not_confirmed = "<?= __("Worked not confirmed"); ?>";
+    var lang_general_word_not_worked = "<?= __("Not worked"); ?>";
+    var lang_admin_close = "<?= __("Close"); ?>";
+    var lang_admin_clear = "<?= __("Clear"); ?>";
 
 </script>
 
@@ -70,7 +70,7 @@
 
 <script>
     function getDataTablesLanguageUrl() {
-        var lang_datatables_language = "<?php echo lang('datatables_language'); ?>";
+        var lang_datatables_language = "<?= __("en-GB"); ?>";
         datatables_language_url = "<?php echo base_url() ;?>assets/json/datatables_languages/" + lang_datatables_language + ".json";
         return datatables_language_url;
     }
@@ -86,7 +86,7 @@ if($this->session->userdata('user_id') != null) {
     }
     $versionDialogHeader = $this->optionslib->get_option('version_dialog_header');
     if (empty($versionDialogHeader)) {
-        $this->optionslib->update('version_dialog_header', $this->lang->line('options_version_dialog'), 'yes');
+        $this->optionslib->update('version_dialog_header', __("Version Info"), 'yes');
     }
     if($versionDialog != "disabled") {
         $confirmed = $this->user_options_model->get_options('version_dialog', array('option_name'=>'confirmed'))->result();
@@ -602,10 +602,10 @@ $(document).ready(function() {
 
 <script>
 function printWarning() {
-    if ($("#dxcc_id option:selected").text().includes("<?php echo lang('gen_hamradio_deleted_dxcc'); ?>")) {
+    if ($("#dxcc_id option:selected").text().includes("<?= __("Deleted DXCC"); ?>")) {
         $('#warningMessageDXCC').show();
         $('#dxcc_id').css('border', '2px solid rgb(217, 83, 79)');
-        $('#warningMessageDXCC').text("<?php echo lang('station_location_dxcc_warning'); ?>");
+        $('#warningMessageDXCC').text("<?= __("Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. Check which DXCC for this particular location is the correct one. If you are sure, ignore this warning."); ?>");
     } else {
         $('#dxcc_id').css('border', '');
         $('#warningMessageDXCC').hide();
@@ -1359,14 +1359,14 @@ $(document).ready(function(){
 
   if (grid_four_confirmed_count > 0) {
      var span = document.getElementById('confirmed_grids');
-     span.innerText = span.textContent = '('+grid_four_confirmed_count+' <?php echo lang('gridsquares_grid_squares'); ?>'+(grid_four_confirmed_count != 1 ? 's' : '')+') ';
+     span.innerText = span.textContent = '('+grid_four_confirmed_count+' <?= __("grid square"); ?>'+(grid_four_confirmed_count != 1 ? 's' : '')+') ';
   }
   if ((grid_four_count-grid_four_confirmed_count) > 0) {
      var span = document.getElementById('worked_grids');
-     span.innerText = span.textContent = '('+(grid_four_count-grid_four_confirmed_count)+' <?php echo lang('gridsquares_grid_squares'); ?>'+(grid_four_count-grid_four_confirmed_count != 1 ? 's' : '')+') ';
+     span.innerText = span.textContent = '('+(grid_four_count-grid_four_confirmed_count)+' <?= __("grid square"); ?>'+(grid_four_count-grid_four_confirmed_count != 1 ? 's' : '')+') ';
   }
   var span = document.getElementById('sum_grids');
-  span.innerText = span.textContent = ' <?php echo lang('gridsquares_total_count'); ?>'+': '+grid_four_count+' <?php echo lang('gridsquares_grid_squares'); ?>'+(grid_four_count != 1 ? 's' : '');
+  span.innerText = span.textContent = ' <?= __("Total count"); ?>'+': '+grid_four_count+' <?= __("grid square"); ?>'+(grid_four_count != 1 ? 's' : '');
 
   var maidenhead = L.maidenhead().addTo(map);
 
@@ -1503,14 +1503,14 @@ $(document).ready(function(){
 
   if (grid_four_confirmed_count > 0) {
      var span = document.getElementById('confirmed_grids');
-     span.innerText = span.textContent = '('+grid_four_confirmed_count+' <?php echo lang('gridsquares_grid_squares'); ?>'+(grid_four_confirmed_count != 1 ? 's' : '')+') ';
+     span.innerText = span.textContent = '('+grid_four_confirmed_count+' <?= __("grid square"); ?>'+(grid_four_confirmed_count != 1 ? 's' : '')+') ';
   }
   if ((grid_four_count-grid_four_confirmed_count) > 0) {
      var span = document.getElementById('activated_grids');
-     span.innerText = span.textContent = '('+(grid_four_count-grid_four_confirmed_count)+' <?php echo lang('gridsquares_grid_squares'); ?>'+(grid_four_count-grid_four_confirmed_count != 1 ? 's' : '')+') ';
+     span.innerText = span.textContent = '('+(grid_four_count-grid_four_confirmed_count)+' <?= __("grid square"); ?>'+(grid_four_count-grid_four_confirmed_count != 1 ? 's' : '')+') ';
   }
   var span = document.getElementById('sum_grids');
-  span.innerText = span.textContent = ' <?php echo lang('gridsquares_total_count'); ?>'+': '+grid_four_count+' <?php echo lang('gridsquares_grid_squares'); ?>'+(grid_four_count != 1 ? 's' : '');
+  span.innerText = span.textContent = ' <?= __("Total count"); ?>'+': '+grid_four_count+' <?= __("grid square"); ?>'+(grid_four_count != 1 ? 's' : '');
 
   var maidenhead = L.maidenhead().addTo(map);
 
