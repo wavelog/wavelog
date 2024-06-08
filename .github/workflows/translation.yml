@@ -12,7 +12,7 @@ jobs:
       uses: actions/checkout@v4
       with:
         repository: wavelog/wavelog
-        ref: dev
+        ref: alpha
 
     - name: Set up gettext
       run: sudo apt-get install -y gettext
