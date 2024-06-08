@@ -244,7 +244,7 @@ class adif extends CI_Controller {
 					return;
 				}
 			} else {
-				$custom_errors=__('Station Profile not valid for User');
+				$custom_errors=__("Station Profile not valid for User");
 			}
 
 			log_message("Error","ADIF End");
