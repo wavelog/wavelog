@@ -4,7 +4,6 @@
     */
     var option_map_tile_server = '<?php echo $this->optionslib->get_option('option_map_tile_server');?>';
     var option_map_tile_server_copyright = '<?php echo $this->optionslib->get_option('option_map_tile_server_copyright');?>';
-    var lang_datatables_language = 'en-GB';
 
     var base_url = "<?php echo base_url(); ?>"; // Base URL
     var site_url = "<?php echo site_url(); ?>"; // Site URL
@@ -71,8 +70,7 @@
 
 <script>
     function getDataTablesLanguageUrl() {
-        var lang_datatables_language = "<?= __("en-GB"); ?>";
-        datatables_language_url = "<?php echo base_url() ;?>assets/json/datatables_languages/" + lang_datatables_language + ".json";
+        datatables_language_url = "<?php echo base_url() ;?>assets/json/datatables_languages/" + "<?php echo $language['locale']; ?>" + ".json";
         return datatables_language_url;
     }
 </script>
