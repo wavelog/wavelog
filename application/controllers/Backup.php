@@ -12,7 +12,7 @@ class Backup extends CI_Controller {
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 
-		$data['page_title'] = "Backup";
+		$data['page_title'] = __("Backup");
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('backup/main');
@@ -45,7 +45,7 @@ class Backup extends CI_Controller {
 			$data['status'] = true;
 		}
 
-		$data['page_title'] = "ADIF - Backup";
+		$data['page_title'] = __("ADIF - Backup");
 		
 
 		$this->load->view('interface_assets/header', $data);
@@ -77,7 +77,7 @@ class Backup extends CI_Controller {
 			$data['status'] = true;
 		}
 
-		$data['page_title'] = "Notes - Backup";
+		$data['page_title'] = __("Notes - Backup");
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('backup/notes_view');

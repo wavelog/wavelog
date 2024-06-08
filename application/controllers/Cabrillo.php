@@ -17,7 +17,7 @@ class Cabrillo extends CI_Controller {
 	}
 
 	public function index() {
-		$data['page_title'] = "Export Cabrillo";
+		$data['page_title'] = __("Export Cabrillo");
 
 		$this->load->model('Contesting_model');
 		$this->load->model('stations');

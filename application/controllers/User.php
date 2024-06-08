@@ -48,7 +48,7 @@ class User extends CI_Controller {
 		$data['user_language'] = 'english';
 
 		if ($this->form_validation->run() == FALSE) {
-			$data['page_title'] = "Add User";
+			$data['page_title'] = __("Add User");
 			$data['measurement_base'] = $this->config->item('measurement_base');
 
 			$this->load->view('interface_assets/header', $data);
@@ -162,7 +162,7 @@ class User extends CI_Controller {
 					redirect('user');
 					return;
 			}
-			$data['page_title'] = "Users";
+			$data['page_title'] = __("Users");
 
 			$this->load->view('interface_assets/header', $data);
 			$data['user_name'] = $this->input->post('user_name');
@@ -234,7 +234,7 @@ class User extends CI_Controller {
 
 		if ($this->form_validation->run() == FALSE)
 		{
-			$data['page_title'] = "Edit User";
+			$data['page_title'] = __("Edit User");
 
 			$q = $query->row();
 
@@ -667,7 +667,7 @@ class User extends CI_Controller {
 					}
 					return;
 			}
-			$data['page_title'] = "Edit User";
+			$data['page_title'] = __("Edit User");
 
 			$this->load->view('interface_assets/header', $data);
 			$data['user_name'] = $this->input->post('user_name', true);
@@ -716,7 +716,7 @@ class User extends CI_Controller {
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 		$query = $this->user_model->get_by_id($this->session->userdata('user_id'));
 		$q = $query->row();
-		$data['page_title'] = "Profile";
+		$data['page_title'] = __("Profile");
 		$data['user_name'] = $q->user_name;
 		$data['user_type'] = $q->user_type;
 		$data['user_email'] = $q->user_email;
@@ -779,7 +779,7 @@ class User extends CI_Controller {
 
 		
 		if ($this->form_validation->run() == FALSE) {
-			$data['page_title'] = "Login";
+			$data['page_title'] = __("Login");
 			$this->load->view('interface_assets/mini_header', $data);
 			$this->load->view('user/login');
 			$this->load->view('interface_assets/footer');
@@ -837,7 +837,7 @@ class User extends CI_Controller {
 
 		if ($this->form_validation->run() == FALSE)
 		{
-			$data['page_title'] = "Forgot Password";
+			$data['page_title'] = __("Forgot Password");
 			$this->load->view('interface_assets/mini_header', $data);
 			$this->load->view('user/forgot_password');
 			$this->load->view('interface_assets/footer');
@@ -997,7 +997,7 @@ class User extends CI_Controller {
 
 			if ($this->form_validation->run() == FALSE)
 			{
-				$data['page_title'] = "Reset Password";
+				$data['page_title'] = __("Reset Password");
 				$this->load->view('interface_assets/mini_header', $data);
 				$this->load->view('user/reset_password');
 				$this->load->view('interface_assets/footer');

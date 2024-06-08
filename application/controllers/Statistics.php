@@ -47,7 +47,7 @@ class Statistics extends CI_Controller {
 	
 	    $this->load->model('logbook_model');
 
-		$data['page_title'] = "Custom Statistics";
+		$data['page_title'] = __("Custom Statistics");
 		$data['modes'] = $this->logbook_model->get_modes();
 	
 		$this->load->helper(array('form', 'url'));

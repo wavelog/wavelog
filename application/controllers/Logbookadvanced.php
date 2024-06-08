@@ -28,7 +28,7 @@ class Logbookadvanced extends CI_Controller {
 		$this->load->model('user_options_model');
 
 		$data = [];
-		$data['page_title'] = "Advanced logbook";
+		$data['page_title'] = __("Advanced logbook");
 		$data['hasDatePicker'] = true;
 
 		$userOptions = $this->user_options_model->get_options('LogbookAdvanced')->result();

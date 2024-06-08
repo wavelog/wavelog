@@ -89,7 +89,7 @@ class Station extends CI_Controller
 		$this->load->model('stations');
 		if ($this->stations->check_station_is_accessible($id)) {
 			$data = $this->load_station_for_editing($id);
-			$data['page_title'] = "Duplicate Station Location: {$data['my_station_profile']->station_profile_name}";
+			$data['page_title'] = __("Duplicate Station Location:"). "{$data['my_station_profile']->station_profile_name}";
 
 			// we NULLify station_id and station_profile_name to make sure we are creating a new station
 			$data['copy_from'] = $data['my_station_profile']->station_id;

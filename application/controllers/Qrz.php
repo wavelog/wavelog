@@ -11,7 +11,7 @@ class Qrz extends CI_Controller {
 		parent::__construct();
 		
 		if (ENVIRONMENT == 'maintenance' && $this->session->userdata('user_id') == '') {
-            echo "Maintenance Mode is active. Try again later.\n";
+            echo __("Maintenance Mode is active. Try again later.")."\n";
 			redirect('user/login');
 		}
 	}
@@ -170,7 +170,7 @@ class Qrz extends CI_Controller {
 	public function export() {
 		$this->load->model('stations');
 
-		$data['page_title'] = "QRZ Logbook";
+		$data['page_title'] = __("QRZ Logbook");
 
 		$data['station_profiles'] = $this->stations->all_of_user();
 		$data['station_profile'] = $this->stations->stations_with_qrz_api_key();
@@ -250,7 +250,7 @@ class Qrz extends CI_Controller {
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 
-		$data['page_title'] = "QRZ QSL Import";
+		$data['page_title'] = __("QRZ QSL Import");
 
 		$this->load->model('logbook_model');
 
@@ -304,7 +304,7 @@ class Qrz extends CI_Controller {
 					$data['table'].='</table>';
 				}
 				if($show_views == TRUE) {
-					$data['page_title'] = "QRZ ADIF Information";
+					$data['page_title'] = __("QRZ ADIF Information");
 					$this->load->view('interface_assets/header', $data);
 					$this->load->view('qrz/analysis');
 					$this->load->view('interface_assets/footer');

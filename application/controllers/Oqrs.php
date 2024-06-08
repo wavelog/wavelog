@@ -11,7 +11,7 @@ class Oqrs extends CI_Controller {
 		$this->load->model('oqrs_model');
 
 		$data['stations'] = $this->oqrs_model->get_oqrs_stations();
-		$data['page_title'] = "Log Search & OQRS";
+		$data['page_title'] = __("Log Search & OQRS");
 		$data['global_oqrs_text'] = $this->optionslib->get_option('global_oqrs_text');
 		$data['groupedSearch'] = $this->optionslib->get_option('groupedSearch');
 
@@ -50,7 +50,7 @@ class Oqrs extends CI_Controller {
 	}
 
 	public function not_in_log() {
-		$data['page_title'] = "Log Search & OQRS";
+		$data['page_title'] = __("Log Search & OQRS");
 
 		$this->load->model('bands');
 		// $data['bands'] = $this->bands->get_worked_bands_oqrs($this->security->xss_clean($this->input->post('station_id')));
@@ -81,7 +81,7 @@ class Oqrs extends CI_Controller {
 	}
 
 	public function requests() {
-		$data['page_title'] = "OQRS Requests";
+		$data['page_title'] = __("OQRS Requests");
 
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));

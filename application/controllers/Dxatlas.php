@@ -16,7 +16,7 @@ class Dxatlas extends CI_Controller {
 		$data['modes'] = $this->modes->active(); 					// Used in the view for mode select
 		$data['dxcc'] = $this->logbook_model->fetchDxcc(); 			// Used in the view for dxcc select
 
-		$data['page_title'] = "DX Atlas Gridsquare Export";
+		$data['page_title'] = __("DX Atlas Gridsquare Export");
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('dxatlas/index');

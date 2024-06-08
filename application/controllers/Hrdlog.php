@@ -16,7 +16,7 @@ class Hrdlog extends CI_Controller {
 		parent::__construct();
 
 		if (ENVIRONMENT == 'maintenance' && $this->session->userdata('user_id') == '') {
-			echo "Maintenance Mode is active. Try again later.\n";
+			echo __("Maintenance Mode is active. Try again later.")."\n";
 			redirect('user/login');
 		}
 	}

@@ -13,7 +13,7 @@ class Update extends CI_Controller {
 		parent::__construct();
 
 		if (ENVIRONMENT == 'maintenance' && $this->session->userdata('user_id') == '') {
-            echo "Maintenance Mode is active. Try again later.\n";
+            echo __("Maintenance Mode is active. Try again later.")."\n";
 			redirect('user/login');
 		}
 	}
@@ -23,7 +23,7 @@ class Update extends CI_Controller {
         $this->load->model('user_model');
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 
-	    $data['page_title'] = "Updates";
+	    $data['page_title'] = __("Updates");
 	    $this->load->view('interface_assets/header', $data);
 	    $this->load->view('update/index');
 	    $this->load->view('interface_assets/footer');

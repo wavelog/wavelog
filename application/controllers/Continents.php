@@ -22,7 +22,7 @@ class Continents extends CI_Controller {
 		// Render User Interface
 
 		// Set Page Title
-		$data['page_title'] = "Continents";
+		$data['page_title'] = __("Continents");
 
 		// Load Views
 		$this->load->view('interface_assets/header', $data);

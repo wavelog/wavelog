@@ -22,7 +22,7 @@ class Qsl extends CI_Controller {
         $data['storage_used'] = $this->genfunctions->sizeFormat($this->genfunctions->folderSize($folder_name));
 
         // Render Page
-        $data['page_title'] = "QSL Cards";
+        $data['page_title'] = __("QSL Cards");
         $data['qslarray'] = $this->qsl_model->getQsoWithQslList();
 
         $this->load->view('interface_assets/header', $data);
@@ -32,7 +32,7 @@ class Qsl extends CI_Controller {
 
     public function upload() {
         // Render Page
-        $data['page_title'] = "Upload QSL Cards";
+        $data['page_title'] = __("Upload QSL Cards");
         $this->load->view('interface_assets/header', $data);
         $this->load->view('qslcard/upload');
         $this->load->view('interface_assets/footer');

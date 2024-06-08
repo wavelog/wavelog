@@ -156,14 +156,14 @@ class Stationsetup extends CI_Controller {
 	}
 
 	public function newLogbook() {
-		$data['page_title'] = "Create Station Logbook";
+		$data['page_title'] = __("Create Station Logbook");
 		$this->load->view('stationsetup/create', $data);
 	}
 
 	public function editContainerName() {
 		$this->load->model('stationsetup_model');
 		$data['container'] = $this->stationsetup_model->getContainer(xss_clean($this->input->post('id', true)))->row();
-		$data['page_title'] = "Edit container name";
+		$data['page_title'] = __("Edit container name");
 		$this->load->view('stationsetup/edit', $data);
 	}
 
@@ -178,7 +178,7 @@ class Stationsetup extends CI_Controller {
 		$station_logbook_details_query = $this->logbooks_model->logbook(xss_clean($this->input->post('id', true)));
 		$data['station_logbook_details'] = $station_logbook_details_query->row();
 		$data['station_locations_linked'] = $this->logbooks_model->list_logbooks_linked($this->input->post('id', true));
-		$data['page_title'] = "Edit lined locations";
+		$data['page_title'] = __("Edit lined locations");
 		$this->load->view('stationsetup/linkedlocations', $data);
 	}
 

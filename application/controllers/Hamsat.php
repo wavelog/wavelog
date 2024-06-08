@@ -56,7 +56,7 @@ class Hamsat extends CI_Controller {
 		}
 
 		// Load public view
-		$data['page_title'] = "Hamsat - Satellite Roving";
+		$data['page_title'] = __("Hamsat - Satellite Roving");
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('/hamsat/index', $pageData);
 		$this->load->view('interface_assets/footer');

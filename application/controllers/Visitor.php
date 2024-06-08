@@ -129,7 +129,7 @@ class Visitor extends CI_Controller {
 
                 $data['results'] = $this->logbook_model->get_qsos($this->qso_per_page,$this->uri->segment(3),$logbooks_locations_array);
 
-                $data['page_title'] = "Dashboard";
+                $data['page_title'] = __("Dashboard");
                 $data['slug'] = $public_slug;
 
                 $this->load->view('visitor/layout/header', $data);
@@ -200,7 +200,7 @@ class Visitor extends CI_Controller {
 
 		$this->load->model('gridmap_model');
 
-		$data['page_title'] = "Satellite Gridsquare Map";
+		$data['page_title'] = __("Satellite Gridsquare Map");
 
 
 		$array_grid_2char = array();
@@ -406,7 +406,7 @@ class Visitor extends CI_Controller {
 		$callsign = trim($this->security->xss_clean($this->input->post('callsign')));
 		$public_slug = $this->security->xss_clean($this->input->post('public_slug'));
 		$this->load->model('publicsearch');
-		$data['page_title'] = "Public Search";
+		$data['page_title'] = __("Public Search");
 		$data['callsign'] = $callsign;
 		$data['slug'] = $public_slug;
 		if ($callsign != '') {
@@ -439,7 +439,7 @@ class Visitor extends CI_Controller {
 
 			$data['slug'] = $slug;
 
-			$data['page_title'] = "Export Map";
+			$data['page_title'] = __("Export Map");
 			$data['user_map_custom'] = $this->optionslib->get_map_custom(true,$slug);
 
 			$this->load->view('visitor/exportmap/header', $data);

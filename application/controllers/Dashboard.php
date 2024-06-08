@@ -100,7 +100,7 @@ class Dashboard extends CI_Controller
 		$data['vucc'] = $this->vucc->fetchVuccSummary();
 		$data['vuccSAT'] = $this->vucc->fetchVuccSummary('SAT');
 
-		$data['page_title'] = "Dashboard";
+		$data['page_title'] = __("Dashboard");
 
 		$this->load->model('dxcc');
 		$dxcc = $this->dxcc->list_current();
