@@ -9,11 +9,11 @@
 
     <div class="card">
         <div class="card-header">
-            QSOs marked
+            <?= __("QSOs marked"); ?>
         </div>
         <div class="card-body">
-            <h3 class="card-title">Yay, it's done!</h3>
-            <p class="card-text">The QSOs are marked as exported to QO-100 Dx Club.</p>
+            <h3 class="card-title"><?= __("Yay, it's done!"); ?></h3>
+            <p class="card-text"><?= __("The QSOs are marked as exported to QO-100 Dx Club."); ?></p>
         </div>
     </div>
 

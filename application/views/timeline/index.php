@@ -41,11 +41,11 @@
             <label class="col-md-1 control-label" for="award"><?= __("Award") ?></label>
                 <div class="col-md-3">
                     <select id="award" name="award" class="form-select">
-                        <option value="dxcc" <?php if ($this->input->post('award') == "dxcc") echo ' selected'; ?> >DX Century Club (DXCC)</option>
-                        <option value="was" <?php if ($this->input->post('award') == "was") echo ' selected'; ?> >Worked All States (WAS)</option>
-                        <option value="iota" <?php if ($this->input->post('award') == "iota") echo ' selected'; ?> >Islands On The Air (IOTA)</option>
-                        <option value="waz" <?php if ($this->input->post('award') == "waz") echo ' selected'; ?> >Worked All Zones (WAZ)</option>
-                        <option value="vucc" <?php if ($this->input->post('award') == "vucc") echo ' selected'; ?> >VHF / UHF Century Club (VUCC)</option>
+                        <option value="dxcc" <?php if ($this->input->post('award') == "dxcc") echo ' selected'; ?> ><?= __("DX Century Club (DXCC)"); ?></option>
+                        <option value="was" <?php if ($this->input->post('award') == "was") echo ' selected'; ?> ><?= __("Worked All States (WAS)"); ?></option>
+                        <option value="iota" <?php if ($this->input->post('award') == "iota") echo ' selected'; ?> ><?= __("Islands On The Air (IOTA)"); ?></option>
+                        <option value="waz" <?php if ($this->input->post('award') == "waz") echo ' selected'; ?> ><?= __("Worked All Zones (WAZ)"); ?></option>
+                        <option value="vucc" <?php if ($this->input->post('award') == "vucc") echo ' selected'; ?> ><?= __("VHF / UHF Century Club (VUCC)"); ?></option>
                     </select>
                 </div>
                 <div class="col-md-1 control-label"><?= __("Confirmation") ?></div>
@@ -97,7 +97,7 @@
         }
     }
     else {
-        echo '<div class="alert alert-danger" role="alert">Nothing found!</div>';
+        echo '<div class="alert alert-danger" role="alert">' . __("Nothing found!") . '</div>';
     }
     ?>
 

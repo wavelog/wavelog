@@ -31,7 +31,7 @@
 		  <div class="mb-3">
 		    <label for="stationNameInput"><?= __("Location Name"); ?></label>
 		    <input type="text" class="form-control" name="station_profile_name" id="stationNameInput" aria-describedby="stationNameInputHelp" placeholder="<?php echo _pgettext("Station Location Setup", "Home QTH"); ?>" required>
-		    <small id="stationNameInputHelp" class="form-text text-muted"><?php echo sprintf(__("Shortname for the station location. For example: %s"), _pgettext("Station Location Setup", "Home QTH")); ?></small>
+		    <small id="stationNameInputHelp" class="form-text text-muted"><?= sprintf(__("Shortname for the station location. For example: %s"), _pgettext("Station Location Setup", "Home QTH")); ?></small>
 		  </div>
 
 			<div class="mb-3">
@@ -94,7 +94,7 @@
 					}
 					?>
 				</select>
-				<small id="stationCQInputHelp" class="form-text text-muted"><?php echo sprintf(_pgettext("uses 'click here'","If you don't know your CQ Zone then %s to find it!"),"<a href='https://zone-check.eu/?m=cq' target='_blank'>".__("click here")."</a> "); ?></small>
+				<small id="stationCQInputHelp" class="form-text text-muted"><?= sprintf(_pgettext("uses 'click here'","If you don't know your CQ Zone then %s to find it!"),"<a href='https://zone-check.eu/?m=cq' target='_blank'>".__("click here")."</a> "); ?></small>
 			</div>
 
 			<div class="mb-3 col-sm-6">
@@ -108,7 +108,7 @@
 					}
 					?>
 				</select>
-				<small id="stationITUInputHelp" class="form-text text-muted"><?php echo sprintf(_pgettext("uses 'click here'","If you don't know your ITU Zone then %s to find it!"),"<a href='https://zone-check.eu/?m=itu' target='_blank'>".__("click here")."</a> "); ?></small>
+				<small id="stationITUInputHelp" class="form-text text-muted"><?= sprintf(_pgettext("uses 'click here'","If you don't know your ITU Zone then %s to find it!"),"<a href='https://zone-check.eu/?m=itu' target='_blank'>".__("click here")."</a> "); ?></small>
 			</div>
 		</div>
 
@@ -122,7 +122,7 @@
 			</div>
 			</div>
 
-		    <small id="stationGridInputHelp" class="form-text text-muted"><?php echo sprintf(_pgettext("uses 'click here'", "Station gridsquare. For example: HM54AP. If you don't know your grid square then %s!"), "<a href='https://zone-check.eu/?m=loc' target='_blank'>".__("click here")."</a>"); ?></small><br>
+		    <small id="stationGridInputHelp" class="form-text text-muted"><?= sprintf(_pgettext("uses 'click here'", "Station gridsquare. For example: HM54AP. If you don't know your grid square then %s!"), "<a href='https://zone-check.eu/?m=loc' target='_blank'>".__("click here")."</a>"); ?></small><br>
 		    <small id="stationGridInputHelp" class="form-text text-muted"><?= __("If you are located on a grid line, enter multiple grid squares separated with commas. For example: IO77,IO78,IO87,IO88."); ?></small>
 		  </div>
 
@@ -139,25 +139,25 @@
 
                 </select>
                 <small id="stationIOTAInputHelp" class="form-text text-muted"><?= __("Station IOTA reference. For example: EU-005"); ?></small>
-                <small id="stationIOTAInputHelp" class="form-text text-muted"><?php echo sprintf(__("You can look up IOTA references at the %s."), "<a target='_blank' href='https://www.iota-world.org/iota-directory/annex-f-short-title-iota-reference-number-list.html'>".__("IOTA World website")."</a>"); ?></small>
+                <small id="stationIOTAInputHelp" class="form-text text-muted"><?= sprintf(__("You can look up IOTA references at the %s."), "<a target='_blank' href='https://www.iota-world.org/iota-directory/annex-f-short-title-iota-reference-number-list.html'>".__("IOTA World website")."</a>"); ?></small>
             </div>
 
 		  <div class="mb-3">
 		    <label for="stationSOTAInput"><?= __("SOTA Reference"); ?></label>
 		    <input type="text" class="form-control" name="sota" id="stationSOTAInput" aria-describedby="stationSOTAInputHelp">
-		    <small id="stationSOTAInputHelp" class="form-text text-muted"><?php echo sprintf(__("Station SOTA reference. You can look up SOTA references at the %s."), "<a target='_blank' href='https://www.sotamaps.org/'>".__("SOTA Maps website")."</a>"); ?></small>
+		    <small id="stationSOTAInputHelp" class="form-text text-muted"><?= sprintf(__("Station SOTA reference. You can look up SOTA references at the %s."), "<a target='_blank' href='https://www.sotamaps.org/'>".__("SOTA Maps website")."</a>"); ?></small>
 		  </div>
 
 		  <div class="mb-3">
 		    <label for="stationWWFFInput"><?= __("WWFF Reference"); ?></label>
 		    <input type="text" class="form-control" name="wwff" id="stationWWFFInput" aria-describedby="stationWWFFInputHelp">
-		    <small id="stationWWFFInputHelp" class="form-text text-muted"><?php echo sprintf(__("Station WWFF reference. You can look up WWFF references at the %s."), "<a target='_blank' href='https://www.cqgma.org/mvs/'>".__("GMA Map website")."</a>"); ?></small>
+		    <small id="stationWWFFInputHelp" class="form-text text-muted"><?= sprintf(__("Station WWFF reference. You can look up WWFF references at the %s."), "<a target='_blank' href='https://www.cqgma.org/mvs/'>".__("GMA Map website")."</a>"); ?></small>
 		  </div>
 
 		  <div class="mb-3">
 		    <label for="stationPOTAInput"><?= __("POTA Reference(s)"); ?></label>
 		    <input type="text" class="form-control" name="pota" id="stationPOTAInput" aria-describedby="stationPOTAInputHelp">
-		    <small id="stationPOTAInputHelp" class="form-text text-muted"><?php echo sprintf(__("Station POTA reference(s). Multiple comma separated values allowed. You can look up POTA references at the %s."), "<a target='_blank' href='https://pota.app/#/map/'>".__("POTA Map website")."</a>"); ?></small>
+		    <small id="stationPOTAInputHelp" class="form-text text-muted"><?= sprintf(__("Station POTA reference(s). Multiple comma separated values allowed. You can look up POTA references at the %s."), "<a target='_blank' href='https://pota.app/#/map/'>".__("POTA Map website")."</a>"); ?></small>
 		  </div>
 
 		  <div class="mb-3">
@@ -209,7 +209,7 @@
                 <div class="mb-3 col-sm-3">                                                                                                                                                    
 					<label for="hrdlog_code"><?= __("HRDLog.net API Key"); ?></label>
                     <input type="text" class="form-control" name="hrdlog_code" id="hrdlog_code" aria-describedby="hrdlog_codeHelp">
-                    <small id="hrdlog_codeHelp" class="form-text text-muted"><?php echo sprintf(_pgettext("HRDLog.net Userprofile page", "Create your API Code on your %s"), "<a href='http://www.hrdlog.net/EditUser.aspx' target='_blank'>".__("HRDLog.net Userprofile page")."</a>"); ?></a></small>
+                    <small id="hrdlog_codeHelp" class="form-text text-muted"><?= sprintf(_pgettext("HRDLog.net Userprofile page", "Create your API Code on your %s"), "<a href='http://www.hrdlog.net/EditUser.aspx' target='_blank'>".__("HRDLog.net Userprofile page")."</a>"); ?></a></small>
                 </div>
                 <div class="mb-3 col-sm-3">
                     <label for="hrdlogrealtime"><?= __("HRDLog.net Logbook Realtime Upload"); ?></label>                                                                                                                 
@@ -232,7 +232,7 @@
 						<button class="btn btn-secondary" type="button" id="qrz_apitest_btn"><?= __("Test API-Key"); ?></button>
 					</div>
 					<div class="alert mt-3" style="display: none;" id="qrz_apitest_msg"></div>
-                    <small id="qrzApiKeyHelp" class="form-text text-muted"><?php echo sprintf(_pgettext("the QRZ.com Logbook settings page", "Find your API key on %s"), "<a href='https://logbook.qrz.com/logbook' target='_blank'>".__("the QRZ.com Logbook settings page")."</a>"); ?></a></small>
+                    <small id="qrzApiKeyHelp" class="form-text text-muted"><?= sprintf(_pgettext("the QRZ.com Logbook settings page", "Find your API key on %s"), "<a href='https://logbook.qrz.com/logbook' target='_blank'>".__("the QRZ.com Logbook settings page")."</a>"); ?></a></small>
                 </div>
                 <div class="mb-3 col-sm-6">
                     <label for="qrzrealtime"><?= __("QRZ.com Logbook Upload"); ?></label>
@@ -248,7 +248,7 @@
 				<div class="mb-3 col-sm-6">
 					<label for="webadifApiKey"><?php echo _pgettext("Probably no translation needed","QO-100 Dx Club API Key"); ?></label>
 					<input type="text" class="form-control" name="webadifapikey" id="webadifApiKey" aria-describedby="webadifApiKeyHelp">
-					<small id="webadifApiKeyHelp" class="form-text text-muted"><?php echo sprintf(_pgettext("QO-100 Dx Club's profile page", "Create your API key on your %s"), "<a href='https://qo100dx.club' target='_blank'>".__("QO-100 Dx Club's profile page")."</a>"); ?></a></small>
+					<small id="webadifApiKeyHelp" class="form-text text-muted"><?= sprintf(_pgettext("QO-100 Dx Club's profile page", "Create your API key on your %s"), "<a href='https://qo100dx.club' target='_blank'>".__("QO-100 Dx Club's profile page")."</a>"); ?></a></small>
 				</div>
 				<div class="mb-3 col-sm-6">
 					<label for="webadifrealtime"><?= __("QO-100 Dx Club Realtime Upload"); ?></label>

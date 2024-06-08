@@ -17,7 +17,7 @@
             var lang_award_info_ln1 = "<?= __("WAJA - Worked All Japan prefectures Award"); ?>";
             var lang_award_info_ln2 = "<?= __("WAJA, Worked All Japan prefectures in Amateur Radio, encourages licensed ham radio operators to work all the prefectures in Japan."); ?>";
             var lang_award_info_ln3 = "<?= __("May be claimed for having contacted (heard) and received a QSL card from an amateur station located in each of the 47 prefectures of Japan. A list of QSL cards should be arranged in order of WAJA (HAJA) reference number, however names of prefectures may be omitted."); ?>";
-            var lang_award_info_ln4 = "<?php echo sprintf(__("For more information, please visit: %s."), "<a href='https://www.jarl.org/English/4_Library/A-4-2_Awards/Award_Main.htm' target='_blank'>https://www.jarl.org/English/4_Library/A-4-2_Awards/Award_Main.htm</a>"); ?>";
+            var lang_award_info_ln4 = "<?= sprintf(__("For more information, please visit: %s."), "<a href='https://www.jarl.org/English/4_Library/A-4-2_Awards/Award_Main.htm' target='_blank'>https://www.jarl.org/English/4_Library/A-4-2_Awards/Award_Main.htm</a>"); ?>";
             </script>
             <h2><?php echo $page_title; ?></h2>
             <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?= __("Award Info"); ?></button>

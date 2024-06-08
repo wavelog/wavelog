@@ -33,7 +33,7 @@ body {
     <img src="<?php echo base_url(); ?>assets/logo/<?php echo $this->optionslib->get_logo('main_logo'); ?>.png" class="mx-auto d-block mainLogo" alt="">
     <?php if (ENVIRONMENT == 'maintenance') { ?>
         <div class="d-flex justify-content-center align-items-center">
-            <span class="badge text-bg-warning mb-4 pt-2 pb-2">MAINTENANCE MODE</span>
+            <span class="badge text-bg-warning mb-4 pt-2 pb-2"><?= __("MAINTENANCE MODE"); ?></span>
         </div>
     <?php } ?>
     <div class="my-2 rounded-0 shadow-sm card mb-2 shadow-sm">

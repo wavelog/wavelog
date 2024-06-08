@@ -95,7 +95,10 @@
 						</td>
 					<?php } ?>
 					<td style="text-align: center; vertical-align: middle;">
-                        <a href="<?php echo site_url('station/deletelog')."/".$row->station_id; ?>" class="btn btn-danger btn-sm" title=<?= __("Empty Log"); ?> onclick="return confirm('<?= __("Are you sure you want to delete all QSOs within this station profile?"); ?>');"><i class="fas fa-trash-alt"></i></a></td>
+						<?php
+						$cnfmsg = __("Are you sure you want to delete all QSOs within this station profile?");
+						?>
+                        <a href="<?php echo site_url('station/deletelog')."/".$row->station_id; ?>" class="btn btn-danger btn-sm" title=<?= __("Empty Log"); ?> onclick="return confirm('<?php echo $cnfmsg; ?>');"><i class="fas fa-trash-alt"></i></a></td>
                     </td>
 					<td style="text-align: center; vertical-align: middle;">
 						<?php if($row->station_active != 1) { 

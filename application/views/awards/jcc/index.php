@@ -16,7 +16,7 @@
             var lang_award_info_ln1 = "<?= __("JCC - Japan Century Cities Award"); ?>";
             var lang_award_info_ln2 = "<?= __("May be claimed for having contacted (heard) and received a QSL card from an amateur station located in each of at least 100 different cities of Japan."); ?>";
             var lang_award_info_ln3 = "<?= __("JCC-200, 300, 400, 500, 600, 700 and 800 will be issued as separate awards. A list of QSL cards should be arranged in order of JCC reference number, however names of city may be omitted. An additional sticker will be issued at every 50 contacts like 150, 250, 350, 450, 550, 650, 750 cities."); ?>";
-            var lang_award_info_ln4 = "<?php echo sprintf(__("For more information, please visit: %s."), "<a href='https://www.jarl.org/English/4_Library/A-4-2_Awards/Award_Main.htm' target='_blank'>https://www.jarl.org/English/4_Library/A-4-2_Awards/Award_Main.htm</a>"); ?>";
+            var lang_award_info_ln4 = "<?= sprintf(__("For more information, please visit: %s."), "<a href='https://www.jarl.org/English/4_Library/A-4-2_Awards/Award_Main.htm' target='_blank'>https://www.jarl.org/English/4_Library/A-4-2_Awards/Award_Main.htm</a>"); ?>";
             </script>
             <h2><?php echo $page_title; ?></h2>
             <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?= __("Award Info"); ?></button>

@@ -205,9 +205,9 @@
 										<?php if(!isset($user_measurement_base)) { $user_measurement_base='M'; }?>
 										<select class="form-select" id="user_measurement_base" name="user_measurement_base" aria-describedby="user_measurement_base_Help" required>
 											<option value ''></option>
-											<option value='K' <?php if($user_measurement_base == "K") { echo "selected=\"selected\""; } ?>>Kilometers</option>
-											<option value='M' <?php if($user_measurement_base == "M") { echo "selected=\"selected\""; } ?>>Miles</option>
-											<option value='N' <?php if($user_measurement_base == "N") { echo "selected=\"selected\""; } ?>>Nautical miles</option>
+											<option value='K' <?php if($user_measurement_base == "K") { echo "selected=\"selected\""; } ?>><?= __("Kilometers"); ?></option>
+											<option value='M' <?php if($user_measurement_base == "M") { echo "selected=\"selected\""; } ?>><?= __("Miles"); ?></option>
+											<option value='N' <?php if($user_measurement_base == "N") { echo "selected=\"selected\""; } ?>><?= __("Nautical miles"); ?></option>
 										</select>
 										<small id="user_measurement_base_Help" class="form-text text-muted"><?= __("Choose which unit distances will be shown in"); ?></small>
 									</div>
@@ -446,21 +446,21 @@
 									<hr/>
 
 									<div class="mb-3">
-										<label for="locations_quickswitch">Station Locations Quickswitch</label>
+										<label for="locations_quickswitch"><?= __("Station Locations Quickswitch"); ?></label>
 										<select class="form-select" id="locations_quickswitch" name="user_locations_quickswitch">
-											<option value="false" <?php if ($user_locations_quickswitch == 'false') { echo " selected =\"selected\""; } ?>>Disabled</option>
-											<option value="true" <?php if ($user_locations_quickswitch == 'true') { echo " selected =\"selected\""; } ?>>Enabled</option>
+											<option value="false" <?php if ($user_locations_quickswitch == 'false') { echo " selected =\"selected\""; } ?>><?= __("Disabled"); ?></option>
+											<option value="true" <?php if ($user_locations_quickswitch == 'true') { echo " selected =\"selected\""; } ?>><?= __("Enabled"); ?></option>
 										</select>
-										<small id="SelectDateFormatHelp" class="form-text text-muted">Show the Station Locations Quickswitch in the main menu</small>
+										<small id="SelectDateFormatHelp" class="form-text text-muted"><?= __("Show the Station Locations Quickswitch in the main menu"); ?></small>
 									</div>
 
 									<div class="mb-3">
-										<label for="utc_headermenu">UTC Time in Menu</label>
+										<label for="utc_headermenu"><?= __("UTC Time in Menu"); ?></label>
 										<select class="form-select" id="utc_headermenu" name="user_utc_headermenu">
-											<option value="false" <?php if ($user_utc_headermenu == 'false') { echo " selected =\"selected\""; } ?>>Disabled</option>
-											<option value="true" <?php if ($user_utc_headermenu == 'true') { echo " selected =\"selected\""; } ?>>Enabled</option>
+											<option value="false" <?php if ($user_utc_headermenu == 'false') { echo " selected =\"selected\""; } ?>><?= __("Disabled"); ?></option>
+											<option value="true" <?php if ($user_utc_headermenu == 'true') { echo " selected =\"selected\""; } ?>><?= __("Enabled"); ?></option>
 										</select>
-										<small id="SelectDateFormatHelp" class="form-text text-muted">Show the current UTC Time in the menu</small>
+										<small id="SelectDateFormatHelp" class="form-text text-muted"><?= __("Show the current UTC Time in the menu"); ?></small>
 									</div>
 									<?php } ?>
 								</div>
@@ -562,7 +562,7 @@
 												<option value="0" <?php if ($user_previous_qsl_type == 0) { echo " selected =\"selected\""; } ?>><?= __("QSL"); ?></option>
 												<option value="1" <?php if ($user_previous_qsl_type == 1) { echo " selected =\"selected\""; } ?>><?= __("LoTW"); ?></option>
 												<option value="2" <?php if ($user_previous_qsl_type == 2) { echo " selected =\"selected\""; } ?>><?= __("eQSL"); ?></option>
-												<option value="4" <?php if ($user_previous_qsl_type == 4) { echo " selected =\"selected\""; } ?>>QRZ</option>
+												<option value="4" <?php if ($user_previous_qsl_type == 4) { echo " selected =\"selected\""; } ?>><?= __("QRZ"); ?></option>
 												<option value="8" <?php if ($user_previous_qsl_type == 8) { echo " selected =\"selected\""; } ?>><?= __("Clublog"); ?></option>
 											</select>
 										</div>
@@ -604,7 +604,7 @@
 											</div>
 										</div>
 									</div>
-									<button type="button" onclick="clearRefSwitches();" class="btn btn-primary"><i class="fas fa-recycle"></i> Reset</button>
+									<button type="button" onclick="clearRefSwitches();" class="btn btn-primary"><i class="fas fa-recycle"></i> <?= __("Reset"); ?></button>
 								</div>
 							</div>
 						</div>
@@ -630,7 +630,7 @@
 										<label for="user_default_band"><?= __("Default Band"); ?></label>
 										<?php if(!isset($user_default_band)) { $user_default_band='All'; }?>
 										<select id="user_default_band" class="form-select" name="user_default_band">
-											<option value="All">All</option>;
+											<option value="All"><?= __("All"); ?></option>;
 											<?php foreach($bands as $band) {
 												echo '<option value="'.$band.'" '.(($user_default_band == $band)?' selected="selected"':'').'>'.$band.'</option>'."\n";
 											} ?>
@@ -672,7 +672,7 @@
 												echo ' checked';
 											}
 											echo '>'; ?>
-											<label class="form-check-label" for="user_default_confirmation_qrz">QRZ.com</label>
+											<label class="form-check-label" for="user_default_confirmation_qrz"><?= __("QRZ.com"); ?></label>
 										</div>
 										<div class="form-check-inline">
 											<?php echo '<input class="form-check-input" type="checkbox" name="user_default_confirmation_clublog" id="user_default_confirmation_clublog"';
@@ -815,7 +815,7 @@
 									<div class="mb-3">
 									<label><?= __("URL of Mastodonserver"); ?></label>
 										<input class="form-control" type="text" name="user_mastodon_url" value="<?php if(isset($user_mastodon_url)) { echo $user_mastodon_url; } ?>" />
-										<small class="form-text text-muted"><?php echo sprintf(__("Main URL of your Mastodon server, e.g. %s"), "<a href='https://radiosocial.de/' target='_blank'>https://radiosocial.de</a>"); ?></small>
+										<small class="form-text text-muted"><?= sprintf(__("Main URL of your Mastodon server, e.g. %s"), "<a href='https://radiosocial.de/' target='_blank'>https://radiosocial.de</a>"); ?></small>
 									</div>
 								</div>
 							</div>
@@ -833,7 +833,7 @@
 											<option value="0" <?php if ($user_winkey == 0) { echo 'selected="selected"'; } ?>><?= __("No"); ?></option>
 											<option value="1" <?php if ($user_winkey == 1) { echo 'selected="selected"'; } ?>><?= __("Yes"); ?></option>
 										</select>
-										<small class="form-text text-muted"><?php echo sprintf(__("Winkeyer support in Wavelog is very experimental. Read the wiki first at %s before enabling."), "<a href='https://github.com/wavelog/wavelog/wiki/Winkey' target='_blank'>https://github.com/wavelog/wavelog/wiki/Winkey</a>"); ?></small>
+										<small class="form-text text-muted"><?= sprintf(__("Winkeyer support in Wavelog is very experimental. Read the wiki first at %s before enabling."), "<a href='https://github.com/wavelog/wavelog/wiki/Winkey' target='_blank'>https://github.com/wavelog/wavelog/wiki/Winkey</a>"); ?></small>
 									</div>
 								</div>
 							</div>
@@ -849,7 +849,7 @@
 									<div class="mb-3">
 									<label><?= __("Private Feed Key"); ?></label>
 										<input class="form-control" type="text" name="user_hamsat_key" value="<?php if(isset($user_hamsat_key)) { echo $user_hamsat_key; } ?>" />
-										<small class="form-text text-muted"><?php echo sprintf(_pgettext("Hint for Hamsat API Key; uses Link", "See your profile at %s."), "<a href='https://hams.at/users/settings' target='_blank'>https://hams.at/users/settings</a>"); ?></small>
+										<small class="form-text text-muted"><?= sprintf(_pgettext("Hint for Hamsat API Key; uses Link", "See your profile at %s."), "<a href='https://hams.at/users/settings' target='_blank'>https://hams.at/users/settings</a>"); ?></small>
 									</div>
 									<div class="mb-3">
 										<label><?= __("Show Workable Passes Only"); ?></label>

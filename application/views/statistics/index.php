@@ -32,11 +32,11 @@
 	<div hidden class="tabs">
 		<ul class="nav nav-tabs" id="myTab" role="tablist">
 			<li class="nav-item">
-				<a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">General</a>
+				<a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><?= __("General"); ?></a>
 			</li>
 			<?php if ($sat_active) { ?>
 			<li class="nav-item">
-				<a class="nav-link" id="satellite-tab" data-bs-toggle="tab" href="#satellite" role="tab" aria-controls="satellite" aria-selected="false">Satellites</a>
+				<a class="nav-link" id="satellite-tab" data-bs-toggle="tab" href="#satellite" role="tab" aria-controls="satellite" aria-selected="false"><?= __("Satellites"); ?></a>
 			</li>
 			<?php } ?>
 		</ul>
@@ -90,7 +90,7 @@
 					<br />
 					<ul class="nav nav-pills" id="myTab3" role="tablist">
 						<li class="nav-item">
-							<a class="nav-link active" id="sat-tab" data-bs-toggle="tab" href="#sattab" role="tab" aria-controls="sattab" aria-selected="true">Satellites</a>
+							<a class="nav-link active" id="sat-tab" data-bs-toggle="tab" href="#sattab" role="tab" aria-controls="sattab" aria-selected="true"><?= __("Satellites"); ?></a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" id="satqsos-tab" data-bs-toggle="tab" href="#satqsostab" role="tab" aria-controls="satqsostab" aria-selected="false"><?= __("QSOs"); ?></a>
@@ -109,8 +109,8 @@
 								<table style="width:100%" class="sattable table table-sm table-bordered table-hover table-striped table-condensed text-center"><thead>
 									<tr>
 									<td>#</td>
-									<td>Satellite</td>
-									<td># of QSO's worked</td>
+									<td><?= __("Satellite"); ?></td>
+									<td><?= __("# of QSO's worked"); ?></td>
 									</tr>
 									</thead>
 									<tbody></tbody>

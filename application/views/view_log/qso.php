@@ -11,7 +11,7 @@
         <?php
         if ($row->COL_NOTES != null) {?>
         <li class="nav-item">
-            <a id="notes-tab" class="nav-link" data-bs-toggle="tab" href="#notesdetails" role="tab" aria-controls="table" aria-selected="true"><?php echo "Notes"; ?></a>
+            <a id="notes-tab" class="nav-link" data-bs-toggle="tab" href="#notesdetails" role="tab" aria-controls="table" aria-selected="true"><?= __("Notes"); ?></a>
         </li>
         <?php }?>
         <?php
@@ -601,7 +601,7 @@
             echo '<table style="width:100%" class="qsltable table table-sm table-bordered table-hover table-striped table-condensed">
                 <thead>
                 <tr>
-                    <th style=\'text-align: center\'>QSL image file</th>
+                    <th style=\'text-align: center\'>' . __("QSL image file") . '</th>
                     <th style=\'text-align: center\'></th>
                     <th style=\'text-align: center\'></th>
                 </tr>
@@ -610,8 +610,8 @@
                 foreach ($qslimages as $qsl) {
                 echo '<tr>';
                     echo '<td style=\'text-align: center\'>' . $qsl->filename . '</td>';
-                    echo '<td id="'.$qsl->id.'" style=\'text-align: center\'><button onclick="deleteQsl('.$qsl->id.')" class="btn btn-sm btn-danger">Delete</button></td>';
-                    echo '<td style=\'text-align: center\'><button onclick="viewQsl(\''.$qsl->filename.'\')" class="btn btn-sm btn-success">View</button></td>';
+                    echo '<td id="'.$qsl->id.'" style=\'text-align: center\'><button onclick="deleteQsl('.$qsl->id.')" class="btn btn-sm btn-danger">' . __("Delete") . '</button></td>';
+                    echo '<td style=\'text-align: center\'><button onclick="viewQsl(\''.$qsl->filename.'\')" class="btn btn-sm btn-success">' . __("View") . '</button></td>';
                     echo '</tr>';
                 }
 
@@ -676,7 +676,7 @@
         <div class="tab-pane fade" id="eqslcard" role="tabpanel" aria-labelledby="table-tab">
         <?php
 	    if ($row->eqsl_image_file != null) {
-		    echo '<img class="d-block" src="' . base_url() . '/'. $this->paths->getPathEqsl() .'/' . $row->eqsl_image_file .'" alt="eQSL picture">';
+		    echo '<img class="d-block" src="' . base_url() . '/'. $this->paths->getPathEqsl() .'/' . $row->eqsl_image_file .'" alt="' . __("eQSL picture") . '">';
 	    }
         ?>
         </div>

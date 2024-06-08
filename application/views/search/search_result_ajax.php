@@ -244,7 +244,7 @@ $ci =& get_instance();
                         echo " (".__("Direct").")";
                         break;
                      case "M":
-                        echo " (Manager)";
+                        echo " (".__("Manager").")";
                         break;
                      case "E":
                         echo " (".__("Electronic").")";

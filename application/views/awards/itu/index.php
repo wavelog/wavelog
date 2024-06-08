@@ -17,7 +17,7 @@
       var lang_awards_info_button = "<?= __("Award Info"); ?>";
       var lang_award_info_ln1 = "<?= __("ITU Zones"); ?>";
       var lang_award_info_ln2 = "<?= __("The Classic Worked ITU Zones award may be claimed by producing evidence of having contacted land based amateur radio stations in at least 70 of the 75 broadcasting zones as defined by the International Telecommunications Union (ITU)."); ?>";
-      var lang_award_info_ln3 = "<?php echo sprintf(_pgettext("uses 'RSGB'", "You can find more information on the website of %s."), "<a href='https://rsgb.org/main/files/2019/01/Worked_ITU_Zones_Award_Form_2019.pdf' target='_blank'>RSGB</a>"); ?>";
+      var lang_award_info_ln3 = "<?= sprintf(_pgettext("uses 'RSGB'", "You can find more information on the website of %s."), "<a href='https://rsgb.org/main/files/2019/01/Worked_ITU_Zones_Award_Form_2019.pdf' target='_blank'>RSGB</a>"); ?>";
 	  var lang_award_info_ln4 = "";
     </script>
     <h2><?= __("Awards - ITU Zones"); ?></h2>

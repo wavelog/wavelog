@@ -21,7 +21,7 @@
         <input type="radio" id="lotwimport" name="lotwimport" class="form-check-input">
         <label class="form-check-label" for="lotwimport"><?= __("Upload a File"); ?></label>
         <br><br>
-        <p><?php echo sprintf(__("Upload the Exported ADIF file from LoTW from the %s Area, to mark QSOs as confirmed on LoTW."), "<a href='https://p1k.arrl.org/lotwuser/qsos?qsoscmd=adif' target='_blank'>".__("Download Report")."</a>"); ?></p>
+        <p><?= sprintf(__("Upload the Exported ADIF file from LoTW from the %s Area, to mark QSOs as confirmed on LoTW."), "<a href='https://p1k.arrl.org/lotwuser/qsos?qsoscmd=adif' target='_blank'>".__("Download Report")."</a>"); ?></p>
         <p><span class="badge text-bg-info"><?= __("Important"); ?></span> <?= __("Log files must have the file type .adi"); ?></p>
 
         <label class="visually-hidden" for="adiffile"><?= __("Choose file"); ?></label>

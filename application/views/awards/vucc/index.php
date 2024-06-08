@@ -6,7 +6,7 @@
       var lang_awards_info_button = "<?= __("Award Info"); ?>";
       var lang_award_info_ln1 = "<?= __("VUCC - VHF/UHF Century Club Award"); ?>";
       var lang_award_info_ln2 = "<?= __("The VHF/UHF Century Club Award is given for a minimum number of worked and confirmed gridsquares on a desired band."); ?>";
-      var lang_award_info_ln3 = "<?php echo sprintf(__("Official information and the rules can be found in this document: %s."), "<a href='https://www.arrl.org/vucc' target='_blank'>https://www.arrl.org/vucc</a>"); ?>";
+      var lang_award_info_ln3 = "<?= sprintf(__("Official information and the rules can be found in this document: %s."), "<a href='https://www.arrl.org/vucc' target='_blank'>https://www.arrl.org/vucc</a>"); ?>";
       var lang_award_info_ln4 = "<?= __("Only VHF/UHF bands are relevant."); ?>";
     </script>
     <h2><?php echo $page_title; ?></h2>

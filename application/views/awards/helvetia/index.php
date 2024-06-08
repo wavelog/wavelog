@@ -18,7 +18,7 @@
                 var lang_award_info_ln1 = "<?= __("HELVETIA 26 | SWITZERLAND AWARD"); ?>";
                 var lang_award_info_ln2 = "<?= __("The USKA (Union of Swiss Shortwave Amateurs) sponsors two awards, the HELVETIA 26 (H26) Award and the SWITZERLAND Award, aimed at promoting activities on the bands by encouraging contacts across as many Swiss cantons as possible on multiple bands."); ?>";
                 var lang_award_info_ln3 = "<?= __("These awards come in two versions: one for HF bands and the other for VHF (including SHF and UHF) bands. Valid connections for these awards date back to January 1, 1980"); ?>";
-                var lang_award_info_ln4 = "<?php echo sprintf(__("For more information, please visit: %s."), "<a href='https://www.uska.ch/contest/uska-diplome/' target='_blank'>https://www.uska.ch/contest/uska-diplome/</a>"); ?>";
+                var lang_award_info_ln4 = "<?= sprintf(__("For more information, please visit: %s."), "<a href='https://www.uska.ch/contest/uska-diplome/' target='_blank'>https://www.uska.ch/contest/uska-diplome/</a>"); ?>";
             </script>
             <h2><?php echo $page_title; ?></h2>
             <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?= __("Award Info"); ?></button>

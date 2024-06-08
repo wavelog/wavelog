@@ -12,7 +12,7 @@
             var lang_award_info_ln1 = "<?= __("WAB - Worked All Britain Award"); ?>";
             var lang_award_info_ln2 = "<?= __("WAB, Worked All Britain squares in Amateur Radio, encourages licensed ham radio operators to work all the squares in Great Britain."); ?>";
             var lang_award_info_ln3 = "<?= __("May be claimed for having contacted an amateur station located in the required amount of squares, described on the page linked below."); ?>";
-            var lang_award_info_ln4 = "<?php echo sprintf(__("For more information, please visit: %s."), "<a href='https://wab.intermip.net/default.php' target='_blank'>https://wab.intermip.net/default.php</a>"); ?>";
+            var lang_award_info_ln4 = "<?= sprintf(__("For more information, please visit: %s."), "<a href='https://wab.intermip.net/default.php' target='_blank'>https://wab.intermip.net/default.php</a>"); ?>";
         </script>
         <h2><?php echo $page_title; ?></h2>
         <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?= __("Award Info"); ?></button>

@@ -203,7 +203,7 @@ function echo_table_col($row, $name) {
                                 echo " (".__("Direct").")";
                                 break;
                              case "M":
-                                echo " (Manager)";
+                                echo " (".__("Manager").")";
                                 break;
                              case "E":
                                 echo " (".__("Electronic").")";

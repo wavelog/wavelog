@@ -12,8 +12,8 @@
             <script>
             var lang_awards_info_button = "<?= __("Award Info"); ?>";
             var lang_award_info_ln1 = "<?= __("DXCC Award"); ?>";
-            var lang_award_info_ln2 = "<?php echo sprintf(__("DXCC stands for 'DX Century Club,' an award based on worked countries. The DXCC List is based on an article created in 1935 by Clinton B. DeSoto, W1CBD, titled %s."), "<a href='http://www.arrl.org/desoto' target='_blank'>" . __("'How to Count Countries Worked, A New DX Scoring System'") . "</a>"); ?>";
-            var lang_award_info_ln3 = "<?php echo sprintf(__("You can find all information about the DXCC Award on the %s."), "<a href='https://www.arrl.org/dxcc-rules' target='_blank'>" . __("ARRL website") . "</a>"); ?>";
+            var lang_award_info_ln2 = "<?= sprintf(__("DXCC stands for 'DX Century Club,' an award based on worked countries. The DXCC List is based on an article created in 1935 by Clinton B. DeSoto, W1CBD, titled %s."), "<a href='http://www.arrl.org/desoto' target='_blank'>" . __("'How to Count Countries Worked, A New DX Scoring System'") . "</a>"); ?>";
+            var lang_award_info_ln3 = "<?= sprintf(__("You can find all information about the DXCC Award on the %s."), "<a href='https://www.arrl.org/dxcc-rules' target='_blank'>" . __("ARRL website") . "</a>"); ?>";
             var lang_award_info_ln4 = "<?= __("Important Note: Over time, the criteria for the DXCC List have changed. The List remains unchanged until an entity no longer satisfies the criteria under which it was added, at which time it is moved to the Deleted List. You will find Deleted DXCC entities also in the lists on Wavelog. Be aware that these DXCC entities are outdated and no longer valid."); ?>";
             </script>
             <h2><?php echo $page_title; ?></h2>

@@ -29,9 +29,9 @@
                                 <tr>
                                     <th scope="col"><?= __("Name")?></th>
                                     <th scope="col"><?= __("Status")?></th>
-                                    <th scope="col">Linked locations</th>
+                                    <th scope="col"><?= __("Linked locations"); ?></th>
                                     <th scope="col"><?= __("Delete")?></th>
-                                    <th scope="col">Visitor site</th>
+                                    <th scope="col"><?= __("Visitor site"); ?></th>
                                     <th scope="col"><?= __("Public Search")?></th>
                                 </tr>
                             </thead>
@@ -88,7 +88,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    Station Locations
+                    <?= __("Station Locations"); ?>
                 </div>
                 <div class="card-body">
 				<p class="card-text"><?= __("Station Locations define operating locations, such as your QTH, a friends QTH, or a portable station."); ?></p>
@@ -127,7 +127,7 @@
 					$quickswitch_enabled = ($this->user_options_model->get_options('header_menu', array('option_name'=>'locations_quickswitch'))->row()->option_value ?? 'false');
 					if ($quickswitch_enabled == 'true') {
 					?>
-						<th scope="col">Favorite</th>
+						<th scope="col"><?= __("Favorite"); ?></th>
 					<?php } ?>
 			<th scope="col"><?= __("Empty Log"); ?></th>
 			<th scope="col"><?= __("Delete"); ?></th>
@@ -172,11 +172,14 @@
 							} else {
 								$favStarClasses = 'class="far fa-star" style="color: #a58118;"';
 							} ?>
-							<a href="<?php echo site_url('station/edit_favorite')."/".$row->station_id; ?>" title="mark/unmark as favorite" <?php echo $favStarClasses; ?>></a>
+							<a href="<?php echo site_url('station/edit_favorite')."/".$row->station_id; ?>" title="<?= __("mark/unmark as favorite"); ?>" <?php echo $favStarClasses; ?>></a>
 						</td>
 					<?php } ?>
 			<td>
-				<a href="<?php echo site_url('station/deletelog')."/".$row->station_id; ?>" class="btn btn-danger btn-sm" title=<?= __("Empty Log"); ?> onclick="return confirm('<?= __("Are you sure you want to delete all QSOs within this station profile?"); ?>');"><i class="fas fa-trash-alt"></i></a></td>
+				<?php
+				$cnfmsg = __("Are you sure you want to delete all QSOs within this station profile?")
+				?>
+				<a href="<?php echo site_url('station/deletelog')."/".$row->station_id; ?>" class="btn btn-danger btn-sm" title=<?= __("Empty Log"); ?> onclick="return confirm('<?php echo $cnfmsg; ?>');"><i class="fas fa-trash-alt"></i></a></td>
 			</td>
 			<td>
 				<?php if($row->station_active != 1) { 

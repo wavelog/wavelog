@@ -36,9 +36,9 @@
 
                         <div class="mb-3">
                             <label for="globalSearch"><?= __("Provider of DXClusterCache"); ?></label>
-                            <p><?php echo sprintf(__("The Provider of the DXCluster-Cache. You can set up your own Cache with %s or use a public one"), "<a href='https://github.com/int2001/DXClusterAPI'>".__("DXClusterAPI")."</a>"); ?></p>
+                            <p><?= sprintf(__("The Provider of the DXCluster-Cache. You can set up your own Cache with %s or use a public one"), "<a href='https://github.com/int2001/DXClusterAPI'>".__("DXClusterAPI")."</a>"); ?></p>
                             <input type="text" name="dxcache_url" class="form-control" id="dxcache_url" aria-describedby="dxcache_urlHelp" value="<?php echo $this->optionslib->get_option('dxcache_url'); ?>">
-                            <small id="dxcache_urlHelp" class="form-text text-muted"><?php echo sprintf(__("URL of the DXCluster-Cache. e.g. %s"), "https://dxc.jo30.de/dxcache" ); ?></small>
+                            <small id="dxcache_urlHelp" class="form-text text-muted"><?= sprintf(__("URL of the DXCluster-Cache. e.g. %s"), "https://dxc.jo30.de/dxcache" ); ?></small>
                         </div>
                         <div class="mb-3">
                             <label for="maxAgeSelect"><?= __("Maximum Age of spots taken care of"); ?></label>
