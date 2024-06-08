@@ -73,7 +73,7 @@ class Update extends CI_Controller {
 			array_push($a_data,$data);
 			$count += 1;
 			if ($count % 10  == 0)
-				$this->update_status("Preparing DXCC-Entries: ".$count);
+				$this->update_status(__("Preparing DXCC-Entries: ").$count);
 		}
 		$this->db->insert_batch('dxcc_entities', $a_data);
 
@@ -115,7 +115,7 @@ class Update extends CI_Controller {
 			array_push($a_data,$data);
 			$count += 1;
 			if ($count % 10  == 0)
-				$this->update_status("Preparing DXCC Exceptions: ".$count);
+				$this->update_status(__("Preparing DXCC Exceptions: ").$count);
 		}
 		$this->db->insert_batch('dxcc_exceptions', $a_data);
 
@@ -157,7 +157,7 @@ class Update extends CI_Controller {
 			array_push($a_data,$data);
 			$count += 1;
 			if ($count % 10  == 0)
-				$this->update_status("Preparing DXCC Prefixes: ".$count);
+				$this->update_status(__("Preparing DXCC Prefixes: ").$count);
 		}
 		$this->db->insert_batch('dxcc_prefixes', $a_data);
 
@@ -219,7 +219,7 @@ class Update extends CI_Controller {
         $this->dxcc_prefixes();
         $this->db->trans_complete();
 
-        $this->update_status("DONE");
+        $this->update_status(__("DONE"));
 	}
 
 	public function update_status($done=""){
