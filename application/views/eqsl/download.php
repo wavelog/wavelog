@@ -3,7 +3,7 @@
 <h2><?php echo $page_title; ?></h2>
 <div class="card">
   <div class="card-header">
-  	<div class="card-title"><?= __("eQSL Card Image Download"); ?></div>
+  	
     <ul class="nav nav-tabs card-header-tabs">
       <li class="nav-item">
         <a class="nav-link" href="<?php echo site_url('eqsl/import');?>"><?= __("Download QSOs"); ?></a>
