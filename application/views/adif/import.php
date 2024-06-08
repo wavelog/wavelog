@@ -269,7 +269,7 @@
                                 <div class="small form-text text-muted"><?= __("If unchecked, information about QSOs which could not be found in Wavelog will be displayed.") ?></div>
                             </div>
                         </div>
-                        <input class="form-control mb-2 me-sm-2 w-auto" type="file" x size="20" />
+                        <input class="form-control w-auto mb-2 me-sm-2" type="file" name="userfile" size="20" />
                         <button type="submit" class="btn btn-sm btn-primary mb-2" value="Upload"><?= __("Upload") ?></button>
                     </form>
                 </div>
