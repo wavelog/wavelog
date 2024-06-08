@@ -1612,7 +1612,7 @@ class Awards extends CI_Controller {
 	    ];
 
 	    // Render page
-	    $data['page_title'] = sprintf(__("Awards - %s", "Worked All Britain"));
+	    $data['page_title'] = sprintf(__("Awards - %s"), "Worked All Britain");
 	    $this->load->view('interface_assets/header', $data);
 	    $this->load->view('awards/wab/index');
 	    $this->load->view('interface_assets/footer', $footerData);
