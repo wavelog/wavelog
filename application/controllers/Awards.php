@@ -89,7 +89,7 @@ class Awards extends CI_Controller {
 		}
 
 		// Render Page
-		$data['page_title'] = sprintf(__("Awards - %s", __("DOK")));
+		$data['page_title'] = sprintf(__("Awards - %s"), __("DOK"));
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('awards/dok/index');
 		$this->load->view('interface_assets/footer');
@@ -169,7 +169,7 @@ class Awards extends CI_Controller {
 		$data['dxcc_summary'] = $this->dxcc->get_dxcc_summary($bands, $postdata);
 
 		// Render Page
-		$data['page_title'] = sprintf(__("Awards - %s", __("DXCC")));
+		$data['page_title'] = sprintf(__("Awards - %s"), __("DXCC"));
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('awards/dxcc/index');
 		$this->load->view('interface_assets/footer');
@@ -324,7 +324,7 @@ class Awards extends CI_Controller {
 		$data['jcc_summary'] = $this->jcc_model->get_jcc_summary($bands, $postdata);
 
 		// Render Page
-		$data['page_title'] = sprintf(__("Awards - %s", __("JCC")));
+		$data['page_title'] = sprintf(__("Awards - %s"), __("JCC"));
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('awards/jcc/index');
 		$this->load->view('interface_assets/footer', $footerData);
@@ -372,7 +372,7 @@ class Awards extends CI_Controller {
 		$data['vucc_array'] = $this->vucc->get_vucc_array($data);
 
 		// Render Page
-		$data['page_title'] = sprintf(__("Awards - %s", __("VUCC")));
+		$data['page_title'] = sprintf(__("Awards - %s"), __("VUCC"));
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('awards/vucc/index');
 		$this->load->view('interface_assets/footer');
@@ -483,7 +483,7 @@ class Awards extends CI_Controller {
 		$data['sota_all'] = $this->sota->get_all();
 
 		// Render page
-		$data['page_title'] = sprintf(__("Awards - %s", __("SOTA")));
+		$data['page_title'] = sprintf(__("Awards - %s"), __("SOTA"));
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('awards/sota/index');
 		$this->load->view('interface_assets/footer');
@@ -500,7 +500,7 @@ class Awards extends CI_Controller {
 		$data['wwff_all'] = $this->wwff->get_all();
 
 		// Render page
-		$data['page_title'] = sprintf(__("Awards - %s", __("WWFF")));
+		$data['page_title'] = sprintf(__("Awards - %s"), __("WWFF"));
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('awards/wwff/index');
 		$this->load->view('interface_assets/footer');
@@ -517,7 +517,7 @@ class Awards extends CI_Controller {
 		$data['pota_all'] = $this->pota->get_all();
 
 		// Render page
-		$data['page_title'] = sprintf(__("Awards - %s", __("POTA")));
+		$data['page_title'] = sprintf(__("Awards - %s"), __("POTA"));
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('awards/pota/index');
 		$this->load->view('interface_assets/footer');
@@ -588,7 +588,7 @@ class Awards extends CI_Controller {
         }
 
         // Render page
-        $data['page_title'] = sprintf(__("Awards - %s", __("CQ Magazine WAZ")));
+        $data['page_title'] = sprintf(__("Awards - %s"), __("CQ Magazine WAZ"));
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('awards/cq/index');
 		$this->load->view('interface_assets/footer', $footerData);
@@ -649,7 +649,7 @@ class Awards extends CI_Controller {
         $data['was_summary'] = $this->was->get_was_summary($bands, $postdata);
 
         // Render Page
-        $data['page_title'] = sprintf(__("Awards - %s", __("Worked All States (WAS)")));;
+        $data['page_title'] = sprintf(__("Awards - %s"), __("Worked All States (WAS)"));;
         $this->load->view('interface_assets/header', $data);
         $this->load->view('awards/was/index');
         $this->load->view('interface_assets/footer', $footerData);
@@ -711,7 +711,7 @@ class Awards extends CI_Controller {
         $data['rac_summary'] = $this->rac->get_rac_summary($bands, $postdata);
 
         // Render Page
-        $data['page_title'] = sprintf(__("Awards - %s", __("RAC")));
+        $data['page_title'] = sprintf(__("Awards - %s"), __("RAC"));
         $this->load->view('interface_assets/header', $data);
         $this->load->view('awards/rac/index');
         $this->load->view('interface_assets/footer', $footerData);
@@ -773,7 +773,7 @@ class Awards extends CI_Controller {
         $data['helvetia_summary'] = $this->helvetia_model->get_helvetia_summary($bands, $postdata);
 
         // Render Page
-        $data['page_title'] =sprintf(__("Awards - %s", __("H26")));
+        $data['page_title'] =sprintf(__("Awards - %s"), __("H26"));
         $this->load->view('interface_assets/header', $data);
         $this->load->view('awards/helvetia/index');
         $this->load->view('interface_assets/footer', $footerData);
@@ -844,7 +844,7 @@ class Awards extends CI_Controller {
 	    $data['iota_summary'] = $this->iota->get_iota_summary($bands, $postdata);
 
 	    // Render Page
-	    $data['page_title'] = sprintf(__("Awards - %s", __("IOTA (Island On The Air")));
+	    $data['page_title'] = sprintf(__("Awards - %s"), __("IOTA (Island On The Air"));
 	    $this->load->view('interface_assets/header', $data);
 	    $this->load->view('awards/iota/index');
 	    $this->load->view('interface_assets/footer');
@@ -855,7 +855,7 @@ class Awards extends CI_Controller {
         $data['counties_array'] = $this->counties->get_counties_array();
 
         // Render Page
-        $data['page_title'] = sprintf(__("Awards - %s", __("US Counties")));
+        $data['page_title'] = sprintf(__("Awards - %s"), __("US Counties"));
         $this->load->view('interface_assets/header', $data);
         $this->load->view('awards/counties/index');
         $this->load->view('interface_assets/footer');
@@ -869,7 +869,7 @@ class Awards extends CI_Controller {
         $data['type'] = $type;
 
         // Render Page
-        $data['page_title'] = __("US Counties";)
+        $data['page_title'] = __("US Counties");
         $data['filter'] = $type . " counties in state ".$state;
         $this->load->view('interface_assets/header', $data);
         $this->load->view('awards/counties/details');
@@ -927,7 +927,7 @@ class Awards extends CI_Controller {
     }
 
 	public function ffma() {
-		$data['page_title'] = sprintf(__("Awards - %s", __("Fred Fish Memorial Award (FFMA)")));
+		$data['page_title'] = sprintf(__("Awards - %s"), __("Fred Fish Memorial Award (FFMA)"));
 
 		$this->load->model('bands');
 		$this->load->model('ffma_model');
@@ -1122,7 +1122,7 @@ class Awards extends CI_Controller {
 		$data['sig_types'] = $this->sig->get_all_sig_types();
 
 		// Render page
-		$data['page_title'] = sprintf(__("Awards - %s", __("SIG")));
+		$data['page_title'] = sprintf(__("Awards - %s"), __("SIG"));
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('awards/sig/index');
 		$this->load->view('interface_assets/footer');
@@ -1752,7 +1752,7 @@ class Awards extends CI_Controller {
         }
 
         // Render page
-        $data['page_title'] = sprintf(__("Awards - %s", __("ITU Zones")));
+        $data['page_title'] = sprintf(__("Awards - %s"), __("ITU Zones"));
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('awards/itu/index');
 		$this->load->view('interface_assets/footer', $footerData);
