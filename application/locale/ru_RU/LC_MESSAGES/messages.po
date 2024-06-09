@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-09 10:27+0200\n"
+"POT-Creation-Date: 2024-06-09 20:39+0200\n"
 "PO-Revision-Date: 2024-06-05 15:17+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1657,8 +1657,33 @@ msgstr ""
 msgid "Login"
 msgstr "Вход"
 
+#: application/controllers/User.php:789
+msgid "User logged in"
+msgstr ""
+
+#: application/controllers/User.php:803
+msgid "Sorry. This instance is currently in maintenance mode. If this message appears unexpectedly or keeps showing up, please contact an administrator. Only administrators are currently allowed to log in."
+msgstr ""
+
+#: application/controllers/User.php:806
+msgid "Incorrect username or password!"
+msgstr ""
+
+#: application/controllers/User.php:820
+#, php-format
+msgid "User %s logged out."
+msgstr ""
+
 #: application/controllers/User.php:840
 msgid "Forgot Password"
+msgstr ""
+
+#: application/controllers/User.php:890 application/views/user/main.php:8
+msgid "Email settings are incorrect."
+msgstr ""
+
+#: application/controllers/User.php:894 application/controllers/User.php:899
+msgid "Password Reset Processed."
 msgstr ""
 
 #: application/controllers/User.php:1000
@@ -7195,10 +7220,6 @@ msgstr ""
 
 #: application/views/user/main.php:6
 msgid "Please Wait ..."
-msgstr ""
-
-#: application/views/user/main.php:8
-msgid "Email settings are incorrect."
 msgstr ""
 
 #: application/views/user/main.php:9

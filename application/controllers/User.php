@@ -786,7 +786,7 @@ class User extends CI_Controller {
 
 		} else {
 			if($this->user_model->login() == 1) {
-				$this->session->set_flashdata('notice', 'User logged in');
+				$this->session->set_flashdata('notice', __("User logged in"));
 				$this->user_model->update_session($data['user']->user_id);
 				$cookie= array(
 
@@ -800,10 +800,10 @@ class User extends CI_Controller {
 				redirect('dashboard');
 			} else {
 				if(ENVIRONMENT == 'maintenance') {
-					$this->session->set_flashdata('notice', 'Sorry. This instance is currently in maintenance mode. If this message appears unexpectedly or keeps showing up, please contact an administrator. Only administrators are currently allowed to log in.');
+					$this->session->set_flashdata('notice', __("Sorry. This instance is currently in maintenance mode. If this message appears unexpectedly or keeps showing up, please contact an administrator. Only administrators are currently allowed to log in."));
 					redirect('user/login');
 				} else {
-					$this->session->set_flashdata('error', 'Incorrect username or password!');
+					$this->session->set_flashdata('error', __("Incorrect username or password!"));
 					redirect('user/login');
 				}
 			}
@@ -817,7 +817,7 @@ class User extends CI_Controller {
 
 		$this->user_model->clear_session();
 
-		$this->session->set_flashdata('notice', 'User '.$user_name.' logged out.');
+		$this->session->set_flashdata('notice', sprintf(__("User %s logged out."), $user_name));
 		redirect('dashboard');
 	}
 
@@ -887,16 +887,16 @@ class User extends CI_Controller {
 				if (! $this->email->send())
 				{
 					// Redirect to login page with message
-					$this->session->set_flashdata('warning', 'Email settings are incorrect.');
+					$this->session->set_flashdata('warning', __("Email settings are incorrect."));
 					redirect('user/login');
 				} else {
 					// Redirect to login page with message
-					$this->session->set_flashdata('notice', 'Password Reset Processed.');
+					$this->session->set_flashdata('notice', __("Password Reset Processed."));
 					redirect('user/login');
 				}
 			} else {
 				// No account found just return to login page
-				$this->session->set_flashdata('notice', 'Password Reset Processed.');
+				$this->session->set_flashdata('notice', __("Password Reset Processed."));
 				redirect('user/login');
 			}
 		}
