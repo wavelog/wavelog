@@ -205,6 +205,13 @@ class AdifHelper {
             $county = '';
         }        
 
+	if ($qso->station_cnty && ( $qso->station_dxcc == '54'  || $qso->station_dxcc == '15') && $county == '') {
+    	    $county = trim($qso->station_cnty);
+	} else {
+	    $county = '';
+	}
+
+
         $line .= $this->getAdifFieldLine("MY_CNTY", $county);
 
 		$stationsSig = $qso->station_sig;
