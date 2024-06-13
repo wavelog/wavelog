@@ -676,7 +676,7 @@ $config['proxy_ips'] = '';
 |
 */
 
-$config['userdata'] = 'userdata';  
+$config['userdata'] = 'userdata';
 
 /*
 |--------------------------------------------------------------------------
