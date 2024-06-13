@@ -209,6 +209,9 @@ class AdifHelper {
 		        break;
 		    case '54':
 		    case '15':
+		    case '61':
+		    case '126':
+		    case '151':
 	    	        $county = trim($qso->station_cnty);
 		        break;
 		    default:
