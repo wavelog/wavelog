@@ -1,3 +1,4 @@
+<?php if (!($this->config->item('disable_oqrs') ?? false)) { ?>
 <div class="container settings">
 
 	<div class="row">
@@ -67,3 +68,4 @@
 	</div>
 
 </div>
+<?php } ?>

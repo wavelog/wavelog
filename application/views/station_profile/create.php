@@ -259,6 +259,7 @@
 				</div>
 			</div>
 
+<?php if (!($this->config->item('disable_oqrs') ?? false)) { ?>
 			<div class="mb-3">
 				<label for="oqrs"><?= __("OQRS Enabled"); ?></label>
 				<select class="form-select" id="oqrs" name="oqrs">
@@ -279,6 +280,7 @@
 				<input type="text" class="form-control" name="oqrstext" id="oqrstext" aria-describedby="oqrstextHelp">
 				<small id="oqrstextHelp" class="form-text text-muted"><?= __("Some info you want to add regarding QSL'ing."); ?></small>
 			</div>
+<?php } ?>
 
 			<button type="submit" class="btn btn-primary"><i class="fas fa-plus-square"></i> <?= __("Create"); ?> <?= __("Station Location"); ?></button>
 

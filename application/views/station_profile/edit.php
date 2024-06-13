@@ -390,6 +390,8 @@
 			</div>
 		</div>
 	</div>
+
+<?php if (!($this->config->item('disable_oqrs') ?? false)) { ?>
 	<div class="row">
 		<div class="col-md">
 			<div class="card">
@@ -420,6 +422,7 @@
 			</div>
 		</div>
 	</div>
+<?php } ?>
 
 	<button type="submit" class="btn btn-primary" style="margin-bottom: 30px;"><i class="fas fa-plus-square"></i> <?php echo $form_action; ?> <?= __("Station Location"); ?></button>
 

@@ -69,7 +69,7 @@
 				</li>
 		<?php }
 			$this->CI =& get_instance();
-			if ($this->CI->oqrs_enabled($slug)) {
+			if ($this->CI->oqrs_enabled($slug) && !$this->CI->config->item('disable_oqrs')) {
 			?>
 			<li class="nav-item">
 				<a class="nav-link" href="<?php echo site_url('oqrs');?>"><?= __("OQRS"); ?></a>
