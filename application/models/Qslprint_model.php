@@ -86,6 +86,7 @@ class Qslprint_model extends CI_Model {
         	$this->db->order_by("COL_BAND_RX", "ASC");
         	$this->db->order_by("COL_TIME_ON", "ASC");
         	$this->db->order_by("COL_MODE", "ASC");
+		$this->db->limit(1000);
 		$query = $this->db->get($this->config->item('table_name'));
 
 		return $query;
