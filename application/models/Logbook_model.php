@@ -462,9 +462,14 @@ class Logbook_model extends CI_Model {
 						$this->db->where("satellite.orbit = '$orbit'");
 					}
 				}
-        if ($propagation != '' && $propagation != null) {
-          $this->db->where("COL_PROP_MODE = '$propagation'");
-        }
+				if (($propagation ?? '') == 'None') {
+					$this->db->group_start();
+					$this->db->where("COL_PROP_MODE = ''");
+					$this->db->or_where("COL_PROP_MODE is null");
+					$this->db->group_end();
+				} elseif ($propagation != '' && $propagation != null) {
+					$this->db->where("COL_PROP_MODE = '$propagation'");
+				}
 			}
 			break;
 		case 'CQZone':

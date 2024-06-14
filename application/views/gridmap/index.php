@@ -39,6 +39,7 @@
                 <div class="col-sm-4">
                     <select class="form-select form-select-sm w-auto" id="propagation" <?php if ($user_default_band == 'SAT') {echo 'disabled';} ?>>
                         <option value=""><?= __("All"); ?></option>
+                        <option value="None"><?= __("None/Empty"); ?></option>
                         <option value="AS"><?= _pgettext("Propagation Mode","Aircraft Scatter"); ?></option>
                         <option value="AUR"><?= _pgettext("Propagation Mode","Aurora"); ?></option>
                         <option value="AUE"><?= _pgettext("Propagation Mode","Aurora-E"); ?></option>
