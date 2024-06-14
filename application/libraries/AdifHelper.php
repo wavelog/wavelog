@@ -203,7 +203,7 @@ class AdifHelper {
 	if ($qso->station_cnty) {
 		switch ($qso->station_dxcc) {
 		    case '291':
-		    case '006':
+		    case '6':
 		    case '110':
 			$county = trim($qso->state) . "," . trim($qso->station_cnty);
 		        break;
