@@ -138,4 +138,65 @@ class OptionsLib {
         }
     }
 
+    function get_map_custom($visitor = false, $slug = null) {
+
+        $CI =& get_instance();
+
+        $jsonout = [];
+        
+        if ($visitor == false) {
+
+            $result = $CI->user_options_model->get_options('map_custom');
+
+            foreach($result->result() as $options) {
+                if ($options->option_name == 'icon') {
+                    $jsonout[$options->option_key] = json_decode($options->option_value,true);
+                } else  {
+                    $jsonout[$options->option_name.'_'.$options->option_key]=$options->option_value;
+                }
+            }
+
+        } else {
+
+            $CI->load->model('stationsetup_model');
+
+            $slug = $CI->security->xss_clean($slug);
+            $userid = $CI->stationsetup_model->public_slug_exists_userid($slug);
+
+            $result = $CI->user_options_model->get_options('map_custom', null, $userid);
+
+            foreach($result->result() as $options) {
+                if ($options->option_name=='icon') {
+                    $jsonout[$options->option_key] = json_decode($options->option_value,true);
+                } else {
+                    $jsonout[$options->option_name.'_'.$options->option_key] = $options->option_value;
+                }
+            }
+
+            if (count($jsonout) == 0) {
+                $jsonout['qso'] = array(
+                    "icon" => "fas fa-dot-circle",
+                    "color" => "#ff0000"
+                );
+                $jsonout['qsoconfirm'] = array(
+                    "icon" => "fas fa-dot-circle",
+                    "color" => "#00aa00"
+                );
+                $jsonout['station'] = array(
+                    "icon" => "fas fa-broadcast-tower",
+                    "color" => "#0000ff"
+                );
+            }
+
+            $jsonout['gridsquare_layer']    = $CI->user_options_model->get_options('ExportMapOptions',array('option_name'=>'gridsquare_layer','option_key'=>$slug), $userid)->row()->option_value ?? true;
+            $jsonout['path_lines']          = $CI->user_options_model->get_options('ExportMapOptions',array('option_name'=>'path_lines','option_key'=>$slug), $userid)->row()->option_value ?? true;
+            $jsonout['cqzone_layer']        = $CI->user_options_model->get_options('ExportMapOptions',array('option_name'=>'cqzone_layer','option_key'=>$slug), $userid)->row()->option_value ?? true;
+            $jsonout['qsocount']            = $CI->user_options_model->get_options('ExportMapOptions',array('option_name'=>'qsocount','option_key'=>$slug), $userid)->row()->option_value ?? 250;
+            $jsonout['nightshadow_layer']   = $CI->user_options_model->get_options('ExportMapOptions',array('option_name'=>'nightshadow_layer','option_key'=>$slug), $userid)->row()->option_value ?? true;
+            $jsonout['band']                = $CI->user_options_model->get_options('ExportMapOptions',array('option_name'=>'band','option_key'=>$slug), $userid)->row()->option_value ?? '';
+        }
+        
+        return json_encode($jsonout);
+    }
+
 }

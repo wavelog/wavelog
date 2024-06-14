@@ -74,6 +74,7 @@ function load_waja_map() {
             lotw: +$('#lotw').prop('checked'),
             eqsl: +$('#eqsl').prop('checked'),
             qrz: +$('#qrz').prop('checked'),
+            clublog: +$('#clublog').prop('checked'),
         },
         success: function(data) {
             prefectures = data;

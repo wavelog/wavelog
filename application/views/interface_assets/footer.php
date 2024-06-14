@@ -37,7 +37,7 @@
 <!-- General JS Files used across Wavelog -->
 <script src="<?php echo base_url(); ?>assets/js/jquery-3.3.1.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery.fancybox.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/bootstrap.bundle.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/leaflet/leaflet.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/leaflet/Control.FullScreen.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/leaflet/L.Maidenhead.qrb.js"></script>
@@ -1147,16 +1147,16 @@ $($('#callsign')).on('keypress',function(e) {
 		    if($('select.radios option:selected').val() != '0') {
 			    radioID = $('select.radios option:selected').val();
 			    $.getJSON( "radio/json/" + radioID, function( data ) {
-	  /* {
-	  "frequency": "2400210000",
-	      "frequency_rx": "10489710000",
-	      "mode": "SSB",
-	      "satmode": "S/X",
-	      "satname": "QO-100"
-	      "power": "20"
-	      "prop_mode": "SAT",
-	      "error": "not_logged_id" // optional, reserved for errors
-	  }  */
+        /* {
+        "frequency": "2400210000",
+            "frequency_rx": "10489710000",
+            "mode": "SSB",
+            "satmode": "S/X",
+            "satname": "QO-100"
+            "power": "20"
+            "prop_mode": "SAT",
+            "error": "not_logged_id" // optional, reserved for errors
+        }  */
 				    if (data.error) {
 					    if (data.error == 'not_logged_in') {
 						    $(".radio_cat_state" ).remove();
@@ -1220,7 +1220,7 @@ $($('#callsign')).on('keypress',function(e) {
 					    }
 				    }
 			    });
-		    }
+            }
 	    };
 
 	    // Update frequency every three second
@@ -1239,6 +1239,7 @@ $($('#callsign')).on('keypress',function(e) {
 			    $("#band_rx").val("");
 			    $("#selectPropagation").val($("#selectPropagation option:first").val());
 			    $(".radio_timeout_error" ).remove();
+                $(".radio_cat_state" ).remove();
 		    }
 	    });
     });
@@ -1981,75 +1982,7 @@ $(document).ready(function(){
             }
         </script>
         <?php } ?>
-    <?php if ($this->uri->segment(1) == "activators") { ?>
-        <script>
-            $('.activatorstable').DataTable({
-                "pageLength": 25,
-                responsive: false,
-                ordering: false,
-                "scrollY":        "500px",
-                "scrollCollapse": true,
-                "paging":         false,
-                "scrollX": true,
-                "language": {
-                    url: getDataTablesLanguageUrl(),
-                },
-                dom: 'Bfrtip',
-                buttons: [
-                    'csv'
-                ]
-            });
-
-            // change color of csv-button if dark mode is chosen
-            if (isDarkModeTheme()) {
-                $(".buttons-csv").css("color", "white");
-            }
-
-      $(document).ready(function(){
-         $('#band').change(function()
-         {
-            if($(this).val() == "SAT")
-            {
-               $('#leogeo').show();
-            } else {
-               $('#leogeo').hide();
-            }
-         });
-         <?php if ($this->input->post('band') != "SAT") { ?>
-         $('#leogeo').hide();
-         <?php } ?>
-      });
-            function displayActivatorsContacts(call, band, leogeo) {
-                var baseURL= "<?php echo base_url();?>";
-                $.ajax({
-                    url: baseURL + 'index.php/activators/details',
-                    type: 'post',
-                    data: {'Callsign': call,
-                        'Band': band,
-                        'LeoGeo': leogeo
-                    },
-                    success: function(html) {
-                        BootstrapDialog.show({
-                            title: lang_general_word_qso_data,
-                            size: BootstrapDialog.SIZE_WIDE,
-                            cssClass: 'qso-was-dialog',
-                            nl2br: false,
-                            message: html,
-                            onshown: function(dialog) {
-                               $('[data-bs-toggle="tooltip"]').tooltip();
-                            },
-                            buttons: [{
-                                label: lang_admin_close,
-                                action: function (dialogItself) {
-                                    dialogItself.close();
-                                }
-                            }]
-                        });
-                    }
-                });
-            }
-        </script>
-        <?php } ?>
+    
 
     <?php if ($this->uri->segment(1) == "mode") { ?>
 		<script src="<?php echo base_url(); ?>assets/js/sections/mode.js"></script>

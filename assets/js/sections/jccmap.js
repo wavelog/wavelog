@@ -14,6 +14,7 @@ function load_jcc_map() {
             qsl: +$('#qsl').prop('checked'),
             lotw: +$('#lotw').prop('checked'),
             qrz: +$('#qrz').prop('checked'),
+            clublog: +$('#clublog').prop('checked'),
             eqsl: +$('#eqsl').prop('checked'),
         },
         success: function(data) {

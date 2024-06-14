@@ -155,11 +155,11 @@ document.onkeyup = function (e) {
 		logQso();
 		// Enter in received exchange logs QSO
 	} else if ((e.which == 13) && (
-			($(document.activeElement).attr("id") == "exch_rcvd")
-			|| ($(document.activeElement).attr("id") == "exch_gridsquare_r")
-			|| ($(document.activeElement).attr("id") == "exch_serial_r")
-		)
-	) {
+		($(document.activeElement).attr("id") == "exch_rcvd")
+		|| ($(document.activeElement).attr("id") == "exch_gridsquare_r")
+		|| ($(document.activeElement).attr("id") == "exch_serial_r")
+		|| (($(document.activeElement).attr("id") == "callsign") && ($("#exchangetype").val() == "None"))
+	)) {
 		logQso();
 	} else if (e.which == 27) {
 		reset_log_fields();

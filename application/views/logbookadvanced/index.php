@@ -1,10 +1,10 @@
 <script type="text/javascript">
     /*
-     *
-     * Define custom date format
-     *
+     * Custom user settings
      */
     var custom_date_format = "<?php echo $custom_date_format ?>";
+    let user_map_custom = JSON.parse('<?php echo $user_map_custom; ?>');
+
     var lang_gen_hamradio_latitude = '<?php echo lang('gen_hamradio_latitude'); ?>';
     var lang_gen_hamradio_longitude = '<?php echo lang('gen_hamradio_longitude'); ?>';
     var lang_gen_hamradio_gridsquare = '<?php echo lang('gen_hamradio_gridsquare'); ?>';
@@ -471,7 +471,7 @@ $options = json_decode($options);
 			<option value="All"><?php echo lang('general_word_all'); ?></option>
 			<?php foreach ($station_profile->result() as $station) { ?>
 				<option value="<?php echo $station->station_id; ?>"
-				<?php if ($station->station_id == $this->stations->find_active()) {
+				<?php if ($station->station_id == $active_station_id) {
 					echo " selected =\"selected\"";
                 } ?>>
 				<?php echo lang('gen_hamradio_callsign') . ": " ?>

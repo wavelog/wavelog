@@ -17,6 +17,10 @@
 </div>
 
 <?php if ($this->optionslib->get_option('logbook_map') != "false") { ?>
+	<script>
+		let user_map_custom = JSON.parse('<?php echo $user_map_custom; ?>');
+	</script>
+
 	<!-- Map -->
 	<div id="map" class="map-leaflet" style="width: 100%; height: 350px"></div>
 <?php } ?>

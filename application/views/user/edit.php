@@ -207,7 +207,7 @@
 										<label for="user_measurement_base"><?php echo lang('account_measurement_preferences'); ?></label>
 										<?php if(!isset($user_measurement_base)) { $user_measurement_base='M'; }?>
 										<select class="form-select" id="user_measurement_base" name="user_measurement_base" aria-describedby="user_measurement_base_Help" required>
-											<option value ''></option>
+											<option value=''></option>
 											<option value='K' <?php if($user_measurement_base == "K") { echo "selected=\"selected\""; } ?>>Kilometers</option>
 											<option value='M' <?php if($user_measurement_base == "M") { echo "selected=\"selected\""; } ?>>Miles</option>
 											<option value='N' <?php if($user_measurement_base == "N") { echo "selected=\"selected\""; } ?>>Nautical miles</option>

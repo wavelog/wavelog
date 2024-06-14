@@ -3,11 +3,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 $lang['account_logbook_fields'] = '日志显示内容';
-$lang['account_column1_text'] = '第1列';
-$lang['account_column2_text'] = '第2列';
-$lang['account_column3_text'] = '第3列';
-$lang['account_column4_text'] = '第4列';
-$lang['account_column5_text'] = '第5列（仅日志页面展示）';
+$lang['account_column1_text'] = '第 1 列';
+$lang['account_column2_text'] = '第 2 列';
+$lang['account_column3_text'] = '第 3 列';
+$lang['account_column4_text'] = '第 4 列';
+$lang['account_column5_text'] = '第 5 列(仅日志页面展示)';
 
 $lang['account_create_user_account'] = '创建账户';
 $lang['account_edit_account'] = '编辑账户';
@@ -30,14 +30,14 @@ $lang['account_personal_information'] = '个人信息';
 $lang['account_first_name'] = '姓';
 $lang['account_last_name'] = '名';
 
-$lang['account_hamradio_information'] = "HAM信息";
+$lang['account_hamradio_information'] = "HAM 信息";
 $lang['account_callsign'] = '呼号';
 $lang['account_gridsquare'] = '网格坐标';
 
 $lang['account_wavelog_preferences'] = '偏好';
 $lang['account_timezone'] = '时区';
 $lang['account_date_format'] = '日期格式';
-$lang['account_log_end_time'] = '单独记录QSO结束时间';
+$lang['account_log_end_time'] = '单独记录 QSO 结束时间';
 $lang['account_log_end_time_hint'] = '如果想分别记录QSO的开始和结束时间，选择\'是\'，若选择\'否\'则QSO开始与结束时间相同';
 $lang['account_quicklog_feature'] = "快速日志";
 $lang['account_quicklog_feature_hint'] = "快速日志功能可以使用标题栏中的搜索字段来记录呼号";
@@ -48,8 +48,8 @@ $lang['account_quicklog_enter_search'] = "查询呼号";
 $lang['account_measurement_preferences'] = '距离单位选择';
 $lang['account_select_how_you_would_like_dates_shown_when_logged_into_your_account'] = '选择您登录账户时显示偏好的日期格式';
 $lang['account_choose_which_unit_distances_will_be_shown_in'] = '选择距离单位';
-$lang['account_wavelog_language'] = 'Wavelog语言';
-$lang['account_choose_wavelog_language'] = '选择Wavelog语言';
+$lang['account_wavelog_language'] = 'Wavelog 语言';
+$lang['account_choose_wavelog_language'] = '选择 Wavelog 语言';
 
 $lang['account_main_menu'] = '主菜单';
 $lang['account_show_notes_in_the_main_menu'] = '在主菜单显示便签';
@@ -60,19 +60,19 @@ $lang['account_if_set_gridsquare_is_fetched_based_on_location_name'] = '如果�
 $lang['account_sota_auto_lookup_gridsquare_and_name_for_summit'] = '根据 SOTA 编号自动查找网格坐标和山峰';
 $lang['account_wwff_auto_lookup_gridsquare_and_name_for_reference'] = '根据 WWFF 编号自动查找网格坐标和保护区';
 $lang['account_pota_auto_lookup_gridsquare_and_name_for_park'] = '根据 POTA 编号自动查找网格坐标和公园';
-$lang['account_if_set_name_and_gridsquare_is_fetched_from_the_api_and_filled_in_location_and_locator'] = '开启此项设置，将会通过API获取名称和网格坐标，并填写位置和网格定位';
+$lang['account_if_set_name_and_gridsquare_is_fetched_from_the_api_and_filled_in_location_and_locator'] = '开启此项设置，将会通过 API 获取名称和网格坐标，并填写位置和网格定位';
 
-$lang['account_previous_qsl_type'] = '上一个QSL方式';
-$lang['account_select_the_type_of_qsl_to_show_in_the_previous_qsos_section'] = '选择要在上一个QSO部分中显示的QSL方式';
+$lang['account_previous_qsl_type'] = '上一个 QSL 方式';
+$lang['account_select_the_type_of_qsl_to_show_in_the_previous_qsos_section'] = '选择要在上一个 QSO 部分中显示的 QSL 方式';
 
 $lang['account_qrzcom_hamqthcom_images'] = 'qrz.com/hamqth.com 图片';
 $lang['account_show_profile_picture_of_qso_partner_from_qrzcom_hamqthcom_profile_in_the_log_qso_section'] = '在日志QSO部分中显示由 qrz.com 中 hamqth.com 配置文件所获得的对方个人资料图片';
 $lang['account_please_set_your_qrzcom_hamqthcom_credentials_in_the_general_config_file'] = '请在 general_config.php 中设置 qrz.com/hamqth.com 的凭据';
 
-$lang['account_amsat_status_upload'] = '上传AMSAT';
+$lang['account_amsat_status_upload'] = '上传 AMSAT';
 $lang['account_upload_status_of_sat_qsos_to'] = '上传卫星状态到';
 
-$lang['account_logbook_of_the_world'] = 'Logbook of the World（LoTW）';
+$lang['account_logbook_of_the_world'] = 'Logbook of the World(LoTW)';
 $lang['account_logbook_of_the_world_lotw_username'] = 'Logbook of The World (LoTW) 用户名';
 $lang['account_logbook_of_the_world_lotw_password'] = 'Logbook of The World (LoTW) 密码';
 
@@ -103,13 +103,13 @@ $lang['account_forgot_your_password'] = '忘记密码？';
 
 $lang['account_login'] = '登录';
 
-$lang['account_mastodon'] = 'Mastodon服务器';
+$lang['account_mastodon'] = 'Mastodon 服务器';
 $lang['account_user_mastodon'] = 'Mastodon 地址';
-$lang['account_user_mastodon_hint'] = "Mastodon服务器的主URL地址，例如 <a href='https://radiosocial.de/' target='_blank'>https://radiosocial.de";
+$lang['account_user_mastodon_hint'] = "Mastodon 服务器的主 URL 地址，例如 <a href='https://radiosocial.de/' target='_blank'>https://radiosocial.de";
 
-$lang['account_default_band_settings'] = '默认波段和QSL确认方式设置';
+$lang['account_default_band_settings'] = '默认波段和 QSL 确认方式设置';
 $lang['account_gridmap_default_band'] = '默认波段';
-$lang['account_qsl_settings'] = '默认QSL方式';
+$lang['account_qsl_settings'] = '默认 QSL 方式';
 
 $lang['account_winkeyer'] = 'Winkeyer';
 $lang['account_winkeyer_hint'] = "Wavelog 中对 Winkeyer 的支持是实验性的，请在使用前先阅读 <a href='https://github.com/wavelog/wavelog/wiki/Winkey' target='_blank'>https://github.com/wavelog/wavelog/wiki/Winkey</a>";
@@ -128,9 +128,9 @@ $lang['account_miscellaneous'] = "其他";
 
 $lang['account_hamsat'] = "Hams.at";
 $lang['account_hamsat_private_feed_key'] = "Private Feed Key";
-$lang['account_hamsat_hint'] = "See your profile at <a href='https://hams.at/users/settings' target='_blank'>https://hams.at/users/settings</a>.";
-$lang['account_hamsat_workable_only'] = "Show Workable Passes Only";
-$lang['account_hamsat_workable_only_hint'] = "If enabled shows only workable passes based on the gridsquare set in your hams.at account. Requires private feed key to be set.";
+$lang['account_hamsat_hint'] = "在 <a href='https://hams.at/users/settings' target='_blank'>https://hams.at/users/settings</a> 查看个人信息。";
+$lang['account_hamsat_workable_only'] = "只显示可通联的过境";
+$lang['account_hamsat_workable_only_hint'] = "如果启用，仅显示基于在 hams.at 设置好的位置信息计算过境，需要设置好 Private Feed Key。";
 
-$lang['account_references_show'] = "Show Reference Fields on QSO Tab";
-$lang['account_show_references_on_1st_tab'] = "The enabled items will be shown on the QSO tab rather than the General tab.";
+$lang['account_references_show'] = "在 QSO 页面显示标识代号栏";
+$lang['account_show_references_on_1st_tab'] = "启用后在 QSO 页面显示（非通用页面）。";

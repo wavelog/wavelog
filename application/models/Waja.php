@@ -2,8 +2,12 @@
 
 class WAJA extends CI_Model {
 
+	private $location_list=null;
 	function __construct() {
 		$this->load->library('Genfunctions');
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$this->location_list = "'".implode("','",$logbooks_locations_array)."'";
 	}
 
 	public $jaPrefectures = array(
@@ -56,15 +60,6 @@ class WAJA extends CI_Model {
 		'47' => 'Okinawa');
 
 	function get_waja_array($bands, $postdata) {
-		$CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-
-		if (!$logbooks_locations_array) {
-			return null;
-		}
-
-		$location_list = "'".implode("','",$logbooks_locations_array)."'";
 
 		$wajaArray = array_keys($this->jaPrefectures);
 
@@ -84,14 +79,14 @@ class WAJA extends CI_Model {
 			}
 
 			if ($postdata['worked'] != NULL) {
-				$wajaBand = $this->getWajaWorked($location_list, $band, $postdata);
+				$wajaBand = $this->getWajaWorked($this->location_list, $band, $postdata);
 				foreach ($wajaBand as $line) {
 					$bandWaja[$line->col_state][$band] = '<div class="bg-danger awardsBgDanger"><a href=\'javascript:displayContacts("' . $line->col_state . '","' . $band . '","All","All","'. $postdata['mode'] . '","WAJA", "")\'>W</a></div>';
 					$prefectures[$line->col_state]['count']++;
 				}
 			}
 			if ($postdata['confirmed'] != NULL) {
-				$wajaBand = $this->getWajaConfirmed($location_list, $band, $postdata);
+				$wajaBand = $this->getWajaConfirmed($this->location_list, $band, $postdata);
 				foreach ($wajaBand as $line) {
 					$bandWaja[$line->col_state][$band] = '<div class="bg-success awardsBgSuccess"><a href=\'javascript:displayContacts("' . $line->col_state . '","' . $band . '","All","All","'. $postdata['mode'] . '","WAJA", "'.$qsl.'")\'>C</a></div>';
 					$prefectures[$line->col_state]['count']++;
@@ -101,7 +96,7 @@ class WAJA extends CI_Model {
 
 		// We want to remove the worked states in the list, since we do not want to display them
 		if ($postdata['worked'] == NULL) {
-			$wajaBand = $this->getWajaWorked($location_list, $postdata['band'], $postdata);
+			$wajaBand = $this->getWajaWorked($this->location_list, $postdata['band'], $postdata);
 			foreach ($wajaBand as $line) {
 				unset($bandWaja[$line->col_state]);
 			}
@@ -109,8 +104,8 @@ class WAJA extends CI_Model {
 
 		// We want to remove the confirmed states in the list, since we do not want to display them
 		if ($postdata['confirmed'] == NULL) {
-			$wasBand = $this->getWajaConfirmed($location_list, $postdata['band'], $postdata);
-			foreach ($wasBand as $line) {
+			$wajaBand = $this->getWajaConfirmed($this->location_list, $postdata['band'], $postdata);
+			foreach ($wajaBand as $line) {
 				unset($bandWaja[$line->col_state]);
 			}
 		}
@@ -125,8 +120,7 @@ class WAJA extends CI_Model {
 
 		if (isset($bandWaja)) {
 			return $bandWaja;
-		}
-		else {
+		} else {
 			return 0;
 		}
 	}
@@ -196,7 +190,6 @@ class WAJA extends CI_Model {
 		}
 
 		$sql .= $this->addStateToQuery();
-
 		$sql .= $this->genfunctions->addBandToQuery($band);
 
 		$sql .= " and not exists (select 1 from ". $this->config->item('table_name') .
@@ -208,13 +201,9 @@ class WAJA extends CI_Model {
 		}
 
 		$sql .= $this->genfunctions->addBandToQuery($band);
-
 		$sql .= $this->genfunctions->addQslToQuery($postdata);
-
 		$sql .= $this->addStateToQuery();
-
 		$sql .= ")";
-
 		$query = $this->db->query($sql);
 
 		return $query->result();
@@ -233,41 +222,26 @@ class WAJA extends CI_Model {
 		}
 
 		$sql .= $this->addStateToQuery();
-
 		$sql .= $this->genfunctions->addBandToQuery($band);
-
 		$sql .= $this->genfunctions->addQslToQuery($postdata);
-
 		$query = $this->db->query($sql);
 
 		return $query->result();
 	}
-
 	
 	/*
 	 * Function gets worked and confirmed summary on each band on the active stationprofile
 	 */
-	function get_waja_summary($bands, $postdata)
-	{
-		$CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-
-		if (!$logbooks_locations_array) {
-			return null;
-		}
-
-		$location_list = "'".implode("','",$logbooks_locations_array)."'";
-
+	function get_waja_summary($bands, $postdata) {
 		foreach ($bands as $band) {
-			$worked = $this->getSummaryByBand($band, $postdata, $location_list);
-			$confirmed = $this->getSummaryByBandConfirmed($band, $postdata, $location_list);
+			$worked = $this->getSummaryByBand($band, $postdata, $this->location_list);
+			$confirmed = $this->getSummaryByBandConfirmed($band, $postdata, $this->location_list);
 			$wajaSummary['worked'][$band] = $worked[0]->count;
 			$wajaSummary['confirmed'][$band] = $confirmed[0]->count;
 		}
 
-		$workedTotal = $this->getSummaryByBand($postdata['band'], $postdata, $location_list);
-		$confirmedTotal = $this->getSummaryByBandConfirmed($postdata['band'], $postdata, $location_list);
+		$workedTotal = $this->getSummaryByBand($postdata['band'], $postdata, $this->location_list);
+		$confirmedTotal = $this->getSummaryByBandConfirmed($postdata['band'], $postdata, $this->location_list);
 
 		$wajaSummary['worked']['Total'] = $workedTotal[0]->count;
 		$wajaSummary['confirmed']['Total'] = $confirmedTotal[0]->count;
@@ -275,10 +249,8 @@ class WAJA extends CI_Model {
 		return $wajaSummary;
 	}
 
-	function getSummaryByBand($band, $postdata, $location_list)
-	{
+	function getSummaryByBand($band, $postdata, $location_list) {
 		$sql = "SELECT count(distinct thcv.col_state) as count FROM " . $this->config->item('table_name') . " thcv";
-
 		$sql .= " where station_id in (" . $location_list . ")";
 
 		if ($band == 'SAT') {
@@ -286,12 +258,12 @@ class WAJA extends CI_Model {
 		} else if ($band == 'All') {
 			$this->load->model('bands');
 
-			$bandslots = $this->bands->get_worked_bands('was');
+			$bandslots = $this->bands->get_worked_bands('waja');
 
 			$bandslots_list = "'".implode("','",$bandslots)."'";
 
-			$sql .= " and thcv.col_band in (" . $bandslots_list . ")" .
-				" and thcv.col_prop_mode !='SAT'";
+			$sql .= " and thcv.col_band in (" . $bandslots_list . ")";
+			$sql .= " and thcv.col_prop_mode !='SAT'";
 		} else {
 			$sql .= " and thcv.col_prop_mode !='SAT'";
 			$sql .= " and thcv.col_band ='" . $band . "'";
@@ -308,23 +280,18 @@ class WAJA extends CI_Model {
 		return $query->result();
 	}
 
-	function getSummaryByBandConfirmed($band, $postdata, $location_list)
-	{
+	function getSummaryByBandConfirmed($band, $postdata, $location_list) {
 		$sql = "SELECT count(distinct thcv.col_state) as count FROM " . $this->config->item('table_name') . " thcv";
-
 		$sql .= " where station_id in (" . $location_list . ")";
 
 		if ($band == 'SAT') {
 			$sql .= " and thcv.col_prop_mode ='" . $band . "'";
 		} else if ($band == 'All') {
 			$this->load->model('bands');
-
-			$bandslots = $this->bands->get_worked_bands('was');
-
+			$bandslots = $this->bands->get_worked_bands('waja');
 			$bandslots_list = "'".implode("','",$bandslots)."'";
-
-			$sql .= " and thcv.col_band in (" . $bandslots_list . ")" .
-				" and thcv.col_prop_mode !='SAT'";
+			$sql .= " and thcv.col_band in (" . $bandslots_list . ")";
+			$sql .= " and thcv.col_prop_mode !='SAT'";
 		} else {
 			$sql .= " and thcv.col_prop_mode !='SAT'";
 			$sql .= " and thcv.col_band ='" . $band . "'";
@@ -335,9 +302,7 @@ class WAJA extends CI_Model {
 		}
 
 		$sql .= $this->genfunctions->addQslToQuery($postdata);
-
 		$sql .= $this->addStateToQuery();
-
 		$query = $this->db->query($sql);
 
 		return $query->result();

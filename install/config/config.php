@@ -676,7 +676,7 @@ $config['proxy_ips'] = '';
 |
 */
 
-$config['userdata'] = 'userdata';  
+$config['userdata'] = 'userdata';
 
 /*
 |--------------------------------------------------------------------------
@@ -692,3 +692,6 @@ $config['disable_manual_lotw'] = false;
 $config['disable_manual_eqsl'] = false;
 $config['disable_manual_hrdlog'] = false;
 $config['disable_manual_qrz'] = false;
+
+# Disables OQRS-Feature if true. if non-existant or false the OQRS-Feature is enabled
+$config['disable_oqrs'] = false;

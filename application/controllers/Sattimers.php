@@ -43,11 +43,10 @@ class Sattimers extends CI_Controller {
 
 		$data['page_title'] = "Satellite Timers";
 
-		$CI =& get_instance();
-		if($CI->session->userdata('user_date_format')) {
-			$data['custom_date_format'] = $CI->session->userdata('user_date_format');
+		if($this->session->userdata('user_date_format')) {
+			$data['custom_date_format'] = $this->session->userdata('user_date_format');
 		} else {
-			$data['custom_date_format'] = $CI->config->item('qso_date_format');
+			$data['custom_date_format'] = $this->config->item('qso_date_format');
 		}
 
 		switch ($data['custom_date_format']) {

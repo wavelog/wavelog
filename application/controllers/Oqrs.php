@@ -14,6 +14,7 @@ class Oqrs extends CI_Controller {
 		// Commented out to get public access
 		// $this->load->model('user_model');
 		// if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+		if (($this->config->item('disable_oqrs') ?? false)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 	}
 
     public function index() {
@@ -92,9 +93,8 @@ class Oqrs extends CI_Controller {
 	public function requests() {
 		$data['page_title'] = "OQRS Requests";
 
-		$CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         if ($logbooks_locations_array) {
 			$location_list = "'".implode("','",$logbooks_locations_array)."'";

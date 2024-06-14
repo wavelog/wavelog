@@ -15,7 +15,7 @@
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/<?php echo $this->optionslib->get_theme();?>/overrides.css">
 	<?php } ?>
 
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/fontawesome/css/all.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/fontawesome/css/all.min.css">
 
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.fancybox.min.css" />
 
@@ -32,7 +32,7 @@
 	<?php if (file_exists(APPPATH.'../assets/css/custom.css')) { echo '<link rel="stylesheet" href="'.base_url().'assets/css/custom.css">'; } ?>
 
 	<script>
-		var userName = 'visitor'
+		var userName = 'visitor';
 	</script>
 
 	<?php if (file_exists(APPPATH . '../assets/js/sections/custom.js')) {
@@ -61,13 +61,15 @@
 
 		<ul class="navbar-nav">
 		<?php
-		if (!empty($slug)) { ?>
-		<li class="nav-item">
-			<a class="nav-link" href="<?php echo site_url('visitor/satellites/'.$slug);?>">Gridsquares</a>
-		</li>
-		<?php
+		if (!empty($slug)) { 
+			$public_maps_option = $this->optionslib->get_option('public_maps') ?? 'true';
+			if ($public_maps_option == 'true') { ?>
+				<li class="nav-item">
+					<a class="nav-link" href="<?php echo site_url('visitor/satellites/'.$slug);?>">Gridsquares</a>
+				</li>
+		<?php }
 			$this->CI =& get_instance();
-			if ($this->CI->oqrs_enabled($slug)) {
+			if ($this->CI->oqrs_enabled($slug) && !$this->CI->config->item('disable_oqrs')) {
 			?>
 			<li class="nav-item">
 				<a class="nav-link" href="<?php echo site_url('oqrs');?>">OQRS</a>

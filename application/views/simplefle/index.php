@@ -16,7 +16,9 @@
 			var lang_qso_simplefle_syntax_help = "<?php echo lang('qso_simplefle_syntax_help_button'); ?>";
 			var lang_qso_simplefle_syntax_help_title = "<?php echo lang('qso_simplefle_syntax_help_title'); ?>";
 			var lang_qso_simplefle_syntax_help_close_w_sample = "<?php echo lang('qso_simplefle_syntax_help_close_w_sample'); ?>";
+			var lang_qso_simplefle_options = "<?php echo lang('qso_simplefle_options'); ?>";
 			var lang_admin_close = "<?php echo lang('admin_close'); ?>";
+			var lang_admin_save = "<?php echo lang('admin_save'); ?>";
 			var lang_qso_simplefle_error_band = "<?php echo lang('qso_simplefle_error_band'); ?>";
 			var lang_qso_simplefle_error_mode = "<?php echo lang('qso_simplefle_error_mode'); ?>";
 			var lang_qso_simplefle_error_time = "<?php echo lang('qso_simplefle_error_time'); ?>";
@@ -56,7 +58,7 @@
 	<div class="row mt-4">
 		<!-- START BASIC QSO DATA -->
 		<div class="card col-xs-12 col-md-4 simplefle" style="border: none">
-			
+
 			<div class="card-header">
 				<?php echo lang('qso_simplefle_qso_data'); ?>
 			</div>
@@ -77,16 +79,15 @@
 				<div class="row">
 					<div class="col-xs-12 col-lg-6">
 						<div class="mb-3">
-							<label for="station-call">
+							<label for="stationProfile">
 								<?php echo lang('qso_simplefle_station_call_location'); ?>
 							</label>
-							<select name="station_profile" class="station_id form-select" id="station-call">
-								<option value="-">-</option>
+							<select name="station_profile" class="station_id form-select" id="stationProfile">
 								<?php foreach ($station_profile->result() as $station) { ?>
 									<option value="<?php echo $station->station_id; ?>" <?php if ($station->station_id == $this->stations->find_active()) {
 																							echo 'selected';
 																						} ?>>
-										<?php echo lang('gen_hamradio_callsign') . ": " . $station->station_callsign . " (" . $station->station_profile_name . ")"; ?>
+										<?php echo $station->station_callsign . " (" . $station->station_profile_name . ")"; ?>
 									</option>
 								<?php } ?>
 							</select>
@@ -109,7 +110,7 @@
 				<div class="row">
 					<div class="col">
 						<p><?php echo lang('qso_simplefle_enter_the_data'); ?></p>
-						<textarea name="qso" class="form-control qso-area" cols="auto" rows="11" id="textarea"></textarea>
+						<textarea name="qso" class="form-control qso-area" cols="auto" rows="11" id="sfle_textarea" style="font-family: 'Courier New', sans-serif;"></textarea>
 					</div>
 				</div>
 			</div>
@@ -120,7 +121,7 @@
 			</div>
 			<div class="card-body">
 				<div class="qsoList">
-					<table class="table contacttable table-striped table-hover sfletable" id="qsoTable">
+					<table class="table table-striped table-hover sfletable" id="qsoTable">
 						<thead>
 							<tr>
 								<th><?php echo lang('general_word_date'); ?></th>
@@ -130,7 +131,7 @@
 								<th><?php echo lang('gen_hamradio_mode'); ?></th>
 								<th><?php echo lang('gen_hamradio_rsts'); ?></th>
 								<th><?php echo lang('gen_hamradio_rstr'); ?></th>
-								<th><?php echo lang('gen_hamradio_operator'); ?></th>
+								<th><?php echo lang('gen_hamradio_gridsquare'); ?></th>
 								<th><?php echo lang('gen_hamradio_refs'); ?>*</th>
 							</tr>
 						</thead>
@@ -142,23 +143,20 @@
 					<div class="col-6 col-sm-6">
 						<span class="js-qso-count"></span>
 					</div>
-					<div class="col-6 col-sm-6 text-end">
+					<div class="col-6 col-sm-6 text-end" id="refs_hint">
 						<?php echo lang('qso_simplefle_refs_hint'); ?>
 					</div>
 				</div>
 			</div>
 			<div class="row mt-2">
-				<div class="col-3 col-sm-3">
+				<div class="btn-group" role="group" aria-label="sfle button group">
+
 					<button class="btn btn-primary js-reload-qso"><?php echo lang('qso_simplefle_reload'); ?></button>
-				</div>
-				<div class="col-3 col-sm-3">
 					<button class="btn btn-warning js-save-to-log"><?php echo lang('qso_simplefle_save'); ?></button>
-				</div>
-				<div class="col-3 col-sm-3">
 					<button class="btn btn-danger js-empty-qso"><?php echo lang('qso_simplefle_clear'); ?></button>
-				</div>
-				<div class="col-3 col-sm-3">
 					<button class="btn btn-success" id="js-syntax"><?php echo lang('qso_simplefle_syntax_help_button'); ?></button>
+					<button class="btn btn-secondary" id="js-options"><?php echo lang('admin_options'); ?></button>
+
 				</div>
 			</div>
 		</div>

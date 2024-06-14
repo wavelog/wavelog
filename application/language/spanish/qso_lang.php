@@ -7,6 +7,7 @@ $lang['qso_title_qso_map'] = 'Mapa de QSO';
 $lang['qso_title_suggestions'] = 'Sugerencias';
 $lang['qso_title_previous_contacts'] = 'Contactos previos';
 $lang['qso_title_times_worked_before'] = "times worked before";
+$lang['qso_title_not_worked_before'] = "Not worked before";
 $lang['qso_title_image'] = 'Imagen de Perfil';
 $lang['qso_previous_max_shown'] = "Se muestra máx. de 5 contactos previos";
 
@@ -96,5 +97,7 @@ $lang['qso_simplefle_syntax_help_ln5'] = "Por ejemplo, un QSO que ha iniciado a 
 $lang['qso_simplefle_syntax_help_ln6'] = "Si no introduce ninguna información RST, la sintaxis usará 59 (o 599 para datos). Nuestro siguiente QSO no era 59 en ambos lados, así que proveemos la información con el RST enviado primero. Fue 2 minutos después del primer QSO.";
 $lang['qso_simplefle_syntax_help_ln7'] = "El primer QSL fue a las 21:34, y el segundo 2 minutos después a las 21:36. Escribimos 6 porque fue el único dato que cambió. La información de banda y modo no cambió, así que estos datos se omiten.";
 $lang['qso_simplefle_syntax_help_ln8'] = "Para nuestro siguiente QSO a las 21:40 el 14 de mayo de 2021, cambiamos la banda a 40m pero seguimos en SSB. Si no se ingresa datos de RST, la sintaxis usará 59 para cada nuevo QSO. Por lo tanto podemos añadir un nuevo QSO que ocurrió a la misma hora dos días después. La fecha debe estar en el formato YYYY-MM-DD.";
-$lang['qso_simplefle_syntax_help_ln9'] = "Para mayor información acerca de la sintaxis, por favor consulte el sitio de DF3CB <a href='https://df3cb.com/fle/documentation/' target='_blank'>aquí.</a>";
+$lang['qso_simplefle_syntax_help_ln9'] = "A full summary of all commands and the necessary syntax can be found in <a href='https://github.com/wavelog/wavelog/wiki/SimpleFLE' target='_blank'>this article</a> of our Wiki.";
     
+$lang['qso_simplefle_options'] = 'Options';
+

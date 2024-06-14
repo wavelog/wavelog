@@ -1,13 +1,64 @@
-var $textarea = $("textarea");
+var textarea = $("#sfle_textarea");
 var qsodate = "";
 var qsotime = "";
 var band = "";
 var mode = "";
 var freq = "";
 var callsign = "";
+var gridsquare = "";
 var errors = [];
 var qsoList = [];
 var modes_regex = modes_regex(Modes);
+
+$(document).ready(function () {
+	setInterval(updateUTCTime, 1000);
+	updateUTCTime();
+	var tabledata = localStorage.getItem(`user_${user_id}_tabledata`);
+	var mycall = localStorage.getItem(`user_${user_id}_my-call`);
+	var operator = localStorage.getItem(`user_${user_id}_operator`);
+	var mysotawwff = localStorage.getItem(`user_${user_id}_my-sota-wwff`);
+	var qsoarea = localStorage.getItem(`user_${user_id}_qso-area`);
+	var qsodate = localStorage.getItem(`user_${user_id}_qsodate`);
+	var myPower = localStorage.getItem(`user_${user_id}_my-power`);
+	var myGrid = localStorage.getItem(`user_${user_id}_my-grid`);
+
+	if (mycall != null) {
+		$("#stationProfile").val(mycall);
+	}
+
+	if (operator != null) {
+		$("#operator").val(operator);
+	}
+
+	if (mysotawwff != null) {
+		$("#my-sota-wwff").val(mysotawwff);
+	}
+
+	if (qsoarea != null) {
+		$(".qso-area").val(qsoarea);
+	}
+
+	if (qsodate != null) {
+		$("#qsodate").val(qsodate);
+	}
+
+	if (myPower != null) {
+		$("#my-power").val(myPower);
+	}
+
+	if (myGrid != null) {
+		$("#my-grid").val(myGrid);
+	}
+
+	if (tabledata != null) {
+		$("#qsoTable").html(tabledata);
+		handleInput();
+	}
+
+	$(window).on('resize', resizeElements);
+	$(document).ready(resizeElements);
+
+});
 
 $("#simpleFleInfoButton").click(function (event) {
 	var awardInfoLines = [
@@ -67,7 +118,7 @@ ssb
 33 ok1xxx  4 3
 									`;
 
-										$textarea.val(logData.trim());
+										textarea.val(logData.trim());
 										handleInput();
 										BootstrapDialog.closeAll();
 									}
@@ -88,6 +139,63 @@ ssb
 	});
 });
 
+$("#js-options").click(function (event) {
+	$("#js-options").prop("disabled", false);
+	$.ajax({
+		url: base_url + "index.php/simplefle/displayOptions",
+		type: "post",
+		success: function (html) {
+			BootstrapDialog.show({
+				title: "<h4>" + lang_qso_simplefle_options + "</h4>",
+				nl2br: false,
+				message: html,
+				buttons: [
+					{
+						label: lang_admin_save,
+						cssClass: 'btn-primary btn-sm',
+						id: 'saveButton',
+						action: function (dialogItself) {
+							$('#optionButton').prop("disabled", false);
+							$('#closeButton').prop("disabled", true);
+							saveOptions();
+							dialogItself.close();
+							location.reload();
+						}
+					},
+					{
+						label: lang_admin_close,
+						cssClass: 'btn-sm',
+						id: 'closeButton',
+						action: function (dialogItself) {
+							$('#optionButton').prop("disabled", false);
+							dialogItself.close();
+						}
+					},
+				],
+			});
+		},
+	});
+});
+
+function saveOptions() {
+	$('#saveButton').prop("disabled", true);
+	$('#closeButton').prop("disabled", true);
+	$.ajax({
+		url: base_url + 'index.php/simplefle/saveOptions',
+		type: 'post',
+		data: {
+			callbook_lookup: $('input[name="callbook_lookup"]').is(':checked') ? true : false,
+		},
+		success: function(data) {
+			$('#saveButton').prop("disabled", false);
+			$('#closeButton').prop("disabled", false);
+		},
+		error: function() {
+			$('#saveButton').prop("disabled", false);
+		},
+	});
+}
+
 function updateUTCTime() {
 	const utcTimeElement = document.getElementById("utc-time");
 	const now = new Date();
@@ -105,7 +213,7 @@ function handleInput() {
 
 	var operator = $("#operator").val();
 	operator = operator.toUpperCase();
-	var ownCallsign = $("#station-call").val().toUpperCase();
+	var ownCallsign = $("#stationProfile").val().toUpperCase();
 	ownCallsign = ownCallsign.toUpperCase();
 
 	var extraQsoDate = qsodate;
@@ -114,17 +222,20 @@ function handleInput() {
 	var mode = "";
 	var freq = "";
 	var callsign = "";
+	var gridsquare = "";
 	var sotaWwff = "";
 	qsoList = [];
 	$("#qsoTable tbody").empty();
 
-	var text = $textarea.val().trim();
+	var text = textarea.val().trim();
 	lines = text.split("\n");
 	lines.forEach((row) => {
 		var rst_s = null;
 		var rst_r = null;
+		var gridsquare = "";
 		items = row.startsWith("day ") ? [row] : row.split(" ");
 		var itemNumber = 0;
+		var call_rec = false;
 
 		items.forEach((item) => {
 			if (item === "") {
@@ -171,16 +282,22 @@ function handleInput() {
 				qsotime = qsotime.slice(0, -2) + item;
 			} else if (
 				item.match(
-					/^[A-Z0-9]{1,3}\/[A-Z]{2}-\d{3}|[AENOS]*[FNSUACA]-\d{3}|(?!.*FF)[A-Z0-9]{1,3}-\d{4,5}|[A-Z0-9]{1,3}[F]{2}-\d{4}$/i
+					//          SOTA               |         IOTA          |                           POTA                                   |           WWFF            //
+					/^[A-Z0-9]{1,3}\/[A-Z]{2}-\d{3}|[AENOS]*[FNSUACA]-\d{3}|(?!.*FF)[A-Z0-9]{1,3}-\d{4,5}(?:,((?!.*FF)[A-Z0-9]{1,3}-\d{4,5}))*|[A-Z0-9]{1,3}[F]{2}-\d{4}$/i
 				)
 			) {
 				sotaWwff = item.toUpperCase();
 			} else if (
 				item.match(
 					/([a-zA-Z0-9]{1,3}[0-9][a-zA-Z0-9]{0,3}[a-zA-Z])|.*\/([a-zA-Z0-9]{1,3}[0-9][a-zA-Z0-9]{0,3}[a-zA-Z])|([a-zA-Z0-9]{1,3}[0-9][a-zA-Z0-9]{0,3}[a-zA-Z])\/.*/
-				)
+				) && call_rec !== true
 			) {
 				callsign = item.toUpperCase();
+				call_rec = true;
+			} else if (
+				item.match(/^[A-R]{2}[0-9]{2}([A-X]{2}([0-9]{2}([A-X]{2})?)?)?$/i)
+			) {
+				gridsquare = item.toUpperCase();
 			} else if (itemNumber > 0 && item.match(/^[-+]\d{1,2}|\d{1,3}$|\d{1,3}[-+]d{1,2}$/)) {
 				if (rst_s === null) {
 					rst_s = item;
@@ -229,6 +346,7 @@ function handleInput() {
 				freq,
 				band,
 				mode,
+				gridsquare,
 				rst_s,
 				rst_r,
 				sotaWwff,
@@ -254,7 +372,7 @@ function handleInput() {
 			<td>${mode}</td>
 			<td>${rst_s}</td>
 			<td>${rst_r}</td>
-			<td>${operator}</td>
+			<td>${gridsquare}</td>
 			<td>${sotaWwffText}</td>
 			</tr>`);
 
@@ -266,7 +384,7 @@ function handleInput() {
 			);
 			localStorage.setItem(
 				`user_${user_id}_my-call`,
-				$("#station-call").val()
+				$("#stationProfile").val()
 			);
 			localStorage.setItem(
 				`user_${user_id}_operator`,
@@ -325,12 +443,12 @@ function handleInput() {
 }
 
 function checkMainFieldsErrors() {
-	if ($("#station-call").val() === "-") {
+	if ($("#stationProfile").val() === "-") {
 		$("#warningStationCall").show();
-		$("#station-call").css("border", "2px solid rgb(217, 83, 79)");
+		$("#stationProfile").css("border", "2px solid rgb(217, 83, 79)");
 		$("#warningStationCall").text(lang_qso_simplefle_error_stationcall);
 	} else {
-		$("#station-call").css("border", "");
+		$("#stationProfile").css("border", "");
 		$("#warningStationCall").hide();
 	}
 
@@ -342,23 +460,23 @@ function checkMainFieldsErrors() {
 		$("#operator").css("border", "");
 		$("#warningOperatorField").hide();
 	}
-	if ($("textarea").val() === "") {
-		$("#textarea").css("border", "2px solid rgb(217, 83, 79)");
+	if (textarea.val() === "") {
+		textarea.css("border", "2px solid rgb(217, 83, 79)");
 		setTimeout(function () {
-			$("#textarea").css("border", "");
+			textarea.css("border", "");
 		}, 2000);
 	} else {
-		$("#textarea").css("border", "");
+		textarea.css("border", "");
 	}
 }
 
-$textarea.keydown(function (event) {
+textarea.keydown(function (event) {
 	if (event.which == 13) {
 		handleInput();
 	}
 });
 
-$textarea.focus(function () {
+textarea.focus(function () {
 	errors = [];
 	checkMainFieldsErrors();
 	showErrors();
@@ -595,11 +713,11 @@ function isTimeEntered() {
 }
 
 function isExampleDataEntered() {
-	let isExampleData = false;
-	if (textarea.value.startsWith("*example-data*")) {
-		isExampleData = true;
-	}
-	return isExampleData;
+    let isExampleData = false;
+    if (textarea.val().startsWith("*example-data*")) {
+        isExampleData = true;
+    }
+    return isExampleData;
 }
 
 function getAdifTag(tagName, value) {
@@ -689,7 +807,7 @@ function isIOTA(value) {
 }
 
 function isPOTA(value) {
-	if (value.match(/^(?!.*FF)[A-Z0-9]{1,3}-\d{4,5}$/)) {
+	if (value.match(/^(?!.*FF)[A-Z0-9]{1,3}-\d{4,5}(?:,((?!.*FF)[A-Z0-9]{1,3}-\d{4,5}))*$/)) {
 		return true;
 	}
 }
@@ -702,57 +820,50 @@ function isWWFF(value) {
 	return false;
 }
 
-$(document).ready(function () {
-	setInterval(updateUTCTime, 1000);
-	updateUTCTime();
-	var tabledata = localStorage.getItem(`user_${user_id}_tabledata`);
-	var mycall = localStorage.getItem(`user_${user_id}_my-call`);
-	var operator = localStorage.getItem(`user_${user_id}_operator`);
-	var mysotawwff = localStorage.getItem(`user_${user_id}_my-sota-wwff`);
-	var qsoarea = localStorage.getItem(`user_${user_id}_qso-area`);
-	var qsodate = localStorage.getItem(`user_${user_id}_qsodate`);
-	var myPower = localStorage.getItem(`user_${user_id}_my-power`);
-	var myGrid = localStorage.getItem(`user_${user_id}_my-grid`);
+function resizeElements() {
+	var textarea = $('#sfle_textarea');
+	var textareaOffset = 40;
 
-	if (mycall != null) {
-		$("#station-call").val(mycall);
-	}
+	var tableFrame = $('.sfletable.table');
+	var tableFrameOffset = 140;
 
-	if (operator != null) {
-		$("#operator").val(operator);
-	}
+	var table = $('#qsoTableBody');
+	var tableoOffset = 160;
 
-	if (mysotawwff != null) {
-		$("#my-sota-wwff").val(mysotawwff);
-	}
+	if ($(window).width() >= 768) {
+		var newHeight = $(window).height() - textarea.offset().top - textareaOffset;
+		textarea.css('height', newHeight + 'px');
 
-	if (qsoarea != null) {
-		$(".qso-area").val(qsoarea);
-	}
+		var newHeight = $(window).height() - tableFrame.offset().top - tableFrameOffset;
+		tableFrame.css('height', newHeight + 'px');
 
-	if (qsodate != null) {
-		$("#qsodate").val(qsodate);
-	}
+		var newHeight = $(window).height() - table.offset().top - tableoOffset;
+		table.css('height', newHeight + 'px');
 
-	if (myPower != null) {
-		$("#my-power").val(myPower);
-	}
+		$('.js-reload-qso').removeClass('btn-sm');
+		$('.js-save-to-log').removeClass('btn-sm');
+		$('.js-empty-qso').removeClass('btn-sm');
+		$('#js-syntax').removeClass('btn-sm');
+		$('#js-options').removeClass('btn-sm');
 
-	if (myGrid != null) {
-		$("#my-grid").val(myGrid);
-	}
+	} else {
+		textarea.css('height', 'auto');
+		tableFrame.css('height', '530px');
+		table.css('height', '400px');
 
-	if (tabledata != null) {
-		$("#qsoTable").html(tabledata);
-		handleInput();
+		$('.js-reload-qso').addClass('btn-sm');
+		$('.js-save-to-log').addClass('btn-sm');
+		$('.js-empty-qso').addClass('btn-sm');
+		$('#js-syntax').addClass('btn-sm');
+		$('#js-options').addClass('btn-sm');
 	}
-});
+}
 
 $(".js-save-to-log").click(function () {
-	if ($("textarea").val() === "") {
-		$("#textarea").css("border", "2px solid rgb(217, 83, 79)");
+	if (textarea.val() === "") {
+		textarea.css("border", "2px solid rgb(217, 83, 79)");
 		setTimeout(function () {
-			$("#textarea").css("border", "");
+			textarea.css("border", "");
 		}, 2000);
 		return false;
 	}
@@ -801,7 +912,7 @@ $(".js-save-to-log").click(function () {
 				if (result) {
 					var operator = $("#operator").val();
 					operator = operator.toUpperCase();
-					var ownCallsign = $("#station-call").val().toUpperCase();
+					var ownCallsign = $("#stationProfile").val().toUpperCase();
 					ownCallsign = ownCallsign.toUpperCase();
 					// var mySotaWwff = $("#my-sota-wwff").val().toUpperCase();
 
@@ -810,8 +921,9 @@ $(".js-save-to-log").click(function () {
 
 					qsoList.forEach((item) => {
 						var callsign = item[2];
+						var gridsquare = item[6];
 						var rst_rcvd = item[7].replace(/dB$/, ''); // we don't want 'dB' in the database
-						var rst_sent = item[6].replace(/dB$/, ''); // *
+						var rst_sent = item[8].replace(/dB$/, ''); // *
 						var start_date = item[0];
 						var start_time =
 							item[1][0] +
@@ -827,14 +939,14 @@ $(".js-save-to-log").click(function () {
 						var iota_ref = "";
 						var pota_ref = "";
 						var wwff_ref = "";
-						if (isSOTA(item[8])) {
-							sota_ref = item[8];
-						} else if (isIOTA(item[8])) {
-							iota_ref = item[8];
-						} else if (isPOTA(item[8])) {
-							pota_ref = item[8];
-						} else if (isWWFF(item[8])) {
-							wwff_ref = item[8];
+						if (isSOTA(item[9])) {
+							sota_ref = item[9];
+						} else if (isIOTA(item[9])) {
+							iota_ref = item[9];
+						} else if (isPOTA(item[9])) {
+							pota_ref = item[9];
+						} else if (isWWFF(item[9])) {
+							wwff_ref = item[9];
 						}
 
 						$.ajax({
@@ -842,6 +954,7 @@ $(".js-save-to-log").click(function () {
 							type: "post",
 							data: {
 								callsign: callsign,
+								locator: gridsquare,
 								rst_rcvd: rst_rcvd,
 								rst_sent: rst_sent,
 								start_date: start_date,

@@ -43,6 +43,7 @@ class Logbookadvanced extends CI_Controller {
 		$mapoptions['nightshadow_layer'] = $this->user_options_model->get_options('LogbookAdvancedMap',array('option_name'=>'nightshadow_layer','option_key'=>'boolean'))->row();
 
 		$data['mapoptions'] = $mapoptions;
+		$data['user_map_custom'] = $this->optionslib->get_map_custom();
 
 		$active_station_id = $this->stations->find_active();
         $station_profile = $this->stations->profile($active_station_id);
@@ -57,6 +58,7 @@ class Logbookadvanced extends CI_Controller {
 		$pageData['station_profile'] = $this->stations->all_of_user();
 		$pageData['active_station_info'] = $station_profile->row();
 		$pageData['homegrid'] = explode(',', $this->stations->find_gridsquare());
+		$pageData['active_station_id'] = $active_station_id;
 
 		$pageData['bands'] = $this->bands->get_worked_bands();
 
@@ -189,6 +191,8 @@ class Logbookadvanced extends CI_Controller {
 	}
 
 	function export_to_adif() {
+		ini_set('memory_limit', '-1');
+		set_time_limit(0);
 		$this->load->model('logbookadvanced_model');
 
 		$ids = xss_clean($this->input->post('id'));
@@ -201,6 +205,8 @@ class Logbookadvanced extends CI_Controller {
 	}
 
 	function export_to_adif_params() {
+		ini_set('memory_limit', '-1');
+		set_time_limit(0);
 		$this->load->model('logbookadvanced_model');
 
 		$postdata = $this->input->post();
@@ -396,7 +402,7 @@ class Logbookadvanced extends CI_Controller {
 				if (!empty($qso['COL_GRIDSQUARE'])  || !empty($qso['COL_VUCC_GRIDS'])) {
 					$mappedcoordinates[] = $this->calculate($qso, ($qso['station_gridsquare'] ?? ''), ($qso['COL_GRIDSQUARE'] ?? '') == '' ? $qso['COL_VUCC_GRIDS'] : $qso['COL_GRIDSQUARE'], $measurement_base, $var_dist, $custom_date_format);
 				} else {
-					if (!empty($qso['lat'])  || !empty($qso['long'])) {
+					if (!empty($qso['lat'])  && !empty($qso['long'])) {
 						$mappedcoordinates[] = $this->calculateCoordinates($qso, $qso['lat'], $qso['long'], ($qso['station_gridsquare'] ?? ''), $measurement_base, $var_dist, $custom_date_format);
 					}
 				}

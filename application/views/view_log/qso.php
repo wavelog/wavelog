@@ -596,6 +596,7 @@
         ?>
         <div class="tab-pane fade" id="qslupload" role="tabpanel" aria-labelledby="table-tab">
             <?php
+	    if (!($this->config->item('disable_qsl') ?? false)) {
             if (count($qslimages) > 0) {
             echo '<table style="width:100%" class="qsltable table table-sm table-bordered table-hover table-striped table-condensed">
                 <thead>
@@ -644,6 +645,7 @@
                     </div>
                 </div>
             </form>
+	    <?php } ?>
             <p>
             <div class="row">
                 <div class="col-md">
