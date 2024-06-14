@@ -3251,17 +3251,14 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 	    }
     }
 
-    function qrz_update($datetime, $callsign, $band, $qsl_date, $qsl_status, $station_callsign) {
+    function qrz_update($primarykey, $qsl_date, $qsl_status) {
 
 	    $data = array(
 		    'COL_QRZCOM_QSO_DOWNLOAD_DATE' => $qsl_date,
 		    'COL_QRZCOM_QSO_DOWNLOAD_STATUS' => $qsl_status,
 	    );
 
-	    $this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i\') = "'.$datetime.'"');
-	    $this->db->where('COL_CALL', $callsign);
-	    $this->db->where('COL_BAND', $band);
-	    $this->db->where('COL_STATION_CALLSIGN', $station_callsign);
+	    $this->db->where('COL_PRIMARY_KEY', $primarykey);
 
 	    if ($this->db->update($this->config->item('table_name'), $data)) {
 		    unset($data);
