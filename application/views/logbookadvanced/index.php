@@ -217,6 +217,7 @@ $options = json_decode($options);
                         <label class="form-label" for="selectPropagation"><?= __("Propagation"); ?></label>
                         <select id="selectPropagation" class="form-select form-select-sm" name="propmode">
                             <option value=""><?= __("All"); ?></option>
+                            <option value="None"><?= _pgettext("Propagation Mode","None/Empty"); ?></option>
                             <option value="AS"><?= _pgettext("Propagation Mode","Aircraft Scatter"); ?></option>
                             <option value="AUR"><?= _pgettext("Propagation Mode","Aurora"); ?></option>
                             <option value="AUE"><?= _pgettext("Propagation Mode","Aurora-E"); ?></option>
