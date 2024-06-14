@@ -7,13 +7,8 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Oqrs extends CI_Controller {
 
-<<<<<<< alpha
-	public function index() {
-=======
 	function __construct() {
 		parent::__construct();
-		$this->lang->load('lotw');
-		$this->lang->load('eqsl');
 		// Commented out to get public access
 		// $this->load->model('user_model');
 		// if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
@@ -21,7 +16,6 @@ class Oqrs extends CI_Controller {
 	}
 
     public function index() {
->>>>>>> dev
 		$this->load->model('oqrs_model');
 
 		$data['stations'] = $this->oqrs_model->get_oqrs_stations();

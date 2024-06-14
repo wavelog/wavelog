@@ -204,17 +204,10 @@
 										<label for="user_measurement_base"><?= __("Measurement preference"); ?></label>
 										<?php if(!isset($user_measurement_base)) { $user_measurement_base='M'; }?>
 										<select class="form-select" id="user_measurement_base" name="user_measurement_base" aria-describedby="user_measurement_base_Help" required>
-<<<<<<< alpha
-											<option value ''></option>
+											<option value=''></option>
 											<option value='K' <?php if($user_measurement_base == "K") { echo "selected=\"selected\""; } ?>><?= __("Kilometers"); ?></option>
 											<option value='M' <?php if($user_measurement_base == "M") { echo "selected=\"selected\""; } ?>><?= __("Miles"); ?></option>
 											<option value='N' <?php if($user_measurement_base == "N") { echo "selected=\"selected\""; } ?>><?= __("Nautical miles"); ?></option>
-=======
-											<option value=''></option>
-											<option value='K' <?php if($user_measurement_base == "K") { echo "selected=\"selected\""; } ?>>Kilometers</option>
-											<option value='M' <?php if($user_measurement_base == "M") { echo "selected=\"selected\""; } ?>>Miles</option>
-											<option value='N' <?php if($user_measurement_base == "N") { echo "selected=\"selected\""; } ?>>Nautical miles</option>
->>>>>>> dev
 										</select>
 										<small id="user_measurement_base_Help" class="form-text text-muted"><?= __("Choose which unit distances will be shown in"); ?></small>
 									</div>
