@@ -399,14 +399,9 @@
 								<li><a class="dropdown-item" href="<?php echo site_url('oqrs/requests'); ?>" title="OQRS Requests"><i class="fa fa-id-card"></i> <?= __("OQRS Requests"); ?> <?php if ($oqrs_requests > 0) {
 																																																				echo "<span class=\"badge text-bg-light\">" . $oqrs_requests . "</span>";
 																																																			} ?></a></li>
-<<<<<<< alpha
 								<li><a class="dropdown-item" href="<?php echo site_url('qslprint'); ?>" title="Print Requested QSLs"><i class="fas fa-print"></i> <?= __("Print Requested QSLs"); ?></a></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('labels'); ?>" title="Label setup"><i class="fas fa-print"></i> <?= __("Labels"); ?></a></li>
-=======
 								<?php } ?>
-								<li><a class="dropdown-item" href="<?php echo site_url('qslprint'); ?>" title="Print Requested QSLs"><i class="fas fa-print"></i> <?php echo lang('menu_print_requested_qsls'); ?></a></li>
-								<li><a class="dropdown-item" href="<?php echo site_url('labels'); ?>" title="Label setup"><i class="fas fa-print"></i> <?php echo lang('menu_labels'); ?></a></li>
->>>>>>> dev
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-sync"></i> <?= __("Third-Party Services"); ?></a>
 									<ul class="submenu submenu-left dropdown-menu">
