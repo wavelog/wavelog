@@ -195,7 +195,9 @@ class Logbookadvanced_model extends CI_Model {
                 $binding[] = '%' . $searchCriteria['gridsquare'] . '%';
         }
 
-        if ($searchCriteria['propmode'] !== '') {
+	if (($searchCriteria['propmode'] ?? '') == 'None') {
+                $conditions[] = "(trim(COL_PROP_MODE) = '' OR COL_PROP_MODE is null)";
+	} elseif ($searchCriteria['propmode'] !== '') {
                 $conditions[] = "COL_PROP_MODE = ?";
                 $binding[] = $searchCriteria['propmode'];
                 if($searchCriteria['propmode'] == "SAT") {
