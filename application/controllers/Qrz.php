@@ -410,8 +410,8 @@ class Qrz extends CI_Controller {
 				$status = $this->logbook_model->import_check($time_on, $record['call'], $record['band'], $record['mode'], $record['station_callsign']);
 
 				if($status[0] == "Found") {
-					$qrz_status = $this->logbook_model->qrz_update($time_on, $record['call'], $record['band'], $qsl_date, $record['qsl_rcvd'],$record['station_callsign']);
-
+					$qrz_status = $this->logbook_model->qrz_update($status[1], $qsl_date, $record['qsl_rcvd']);
+					// log_message('error', $record['call'].": ".$qrz_status);
 					$table .= "<tr>";
 					$table .= "<td>".$record['station_callsign']."</td>";
 					$table .= "<td>".$time_on."</td>";
