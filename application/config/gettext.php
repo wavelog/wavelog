@@ -26,11 +26,10 @@ $config['gettext_enabled'] = TRUE;
 | -------------------------------------------------------------------
 |  Default Language
 | -------------------------------------------------------------------
-| Normally, you should set default language in config.php file but
-| you can override this if you want.
-| Set to NULL to use default one.
+| We set a default language if no cookie or session is available.
+|
 */
-$config['gettext_default'] = NULL;
+$config['gettext_default'] = 'english';
 
 /*
 | -------------------------------------------------------------------
