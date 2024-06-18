@@ -257,7 +257,7 @@ class Gettext
 	{
 		if(isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
 			$code = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
-			$lang = $this->find_by('code', $code);
+			$lang = $this->find_by('code', $code) ?: $this->default;
 		} else {
 			$code = 'en';
 			$lang = $this->find_by('code', $code);
