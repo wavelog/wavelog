@@ -1,16 +1,21 @@
+# WAVELOG PO FILE
+# Copyright (C) 2024 Wavelog by DF2ET, DJ7NT, HB9HIL and LA8AJA.
+# This file is distributed under the MIT licence.
+#
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Wavelog\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-14 15:00+0000\n"
-"PO-Revision-Date: 2024-06-05 12:44\n"
-"Last-Translator: \n"
-"Language-Team: German\n"
+"Report-Msgid-Bugs-To: translations@wavelog.org\n"
+"POT-Creation-Date: 2024-06-19 21:51+0200\n"
+"PO-Revision-Date: 2024-06-15 07:58+0000\n"
+"Last-Translator: HB9HIL <hb9hil@wavelog.org>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/wavelog-translations/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.5.5\n"
 
 #: application/controllers/Accumulated.php:21
 #: application/views/interface_assets/header.php:147
@@ -56,11 +61,11 @@ msgstr "Planquadrat-Aktivierer"
 
 #: application/controllers/Activatorsmap.php:17
 msgid "Activators Map"
-msgstr ""
+msgstr "Aktivierer-Karte"
 
 #: application/controllers/Adif.php:18
 msgid "valid date"
-msgstr ""
+msgstr "gültiges Datum"
 
 #: application/controllers/Adif.php:20
 msgid "date incorrect"
@@ -440,7 +445,7 @@ msgstr ""
 #: application/controllers/Lotw.php:28 application/controllers/Qrz.php:14
 #: application/controllers/Update.php:16
 msgid "Maintenance Mode is active. Try again later."
-msgstr ""
+msgstr "Wartungmodus aktiv. Bitte später erneut versuchen"
 
 #: application/controllers/Clublog.php:44
 #: application/controllers/Clublog.php:66
@@ -450,7 +455,7 @@ msgstr ""
 #: application/controllers/Contestcalendar.php:19
 #: application/views/interface_assets/header.php:244
 msgid "Contest Calendar"
-msgstr ""
+msgstr "Contest Kalender"
 
 #: application/controllers/Contesting.php:36
 #: application/views/contesting/index.php:3
@@ -1360,7 +1365,7 @@ msgstr ""
 
 #: application/controllers/Qslmanagement.php:14
 msgid "QSL Card Management"
-msgstr ""
+msgstr "QSL-Karten Management"
 
 #: application/controllers/Qslprint.php:46
 #: application/views/interface_assets/header.php:402
@@ -1477,7 +1482,7 @@ msgstr "Stations Setup"
 #: application/controllers/Stationsetup.php:387
 #: application/controllers/Stationsetup.php:401
 msgid "Not allowed"
-msgstr ""
+msgstr "Nicht erlaubt"
 
 #: application/controllers/Stationsetup.php:72
 #: application/controllers/Stationsetup.php:86
@@ -1488,7 +1493,7 @@ msgstr ""
 #: application/controllers/Stationsetup.php:428
 #: application/views/qso/index.php:608
 msgid "Error"
-msgstr ""
+msgstr "Fehler"
 
 #: application/controllers/Stationsetup.php:159
 #: application/views/stationsetup/stationsetup.php:22
@@ -1501,15 +1506,15 @@ msgstr ""
 
 #: application/controllers/Stationsetup.php:181
 msgid "Edit linked locations"
-msgstr ""
+msgstr "Verlinkte Stationsstandorte bearbeiten"
 
 #: application/controllers/Stationsetup.php:190
 msgid "Edit visitor site"
-msgstr ""
+msgstr "Besucherseite bearbeiten"
 
 #: application/controllers/Stationsetup.php:212
 msgid "Error. Link is already in use!"
-msgstr ""
+msgstr "Fehler. Link existiert bereits"
 
 #: application/controllers/Stationsetup.php:253
 #: application/views/options/appearance.php:57
@@ -1550,7 +1555,7 @@ msgstr "Zeige die öffentl. Seite für das Logbuch: "
 
 #: application/controllers/Stationsetup.php:281
 msgid "Are you sure you want to delete the public slug?"
-msgstr ""
+msgstr "Bist Du Dir sicher die Kurz-URL zu löschen?"
 
 #: application/controllers/Stationsetup.php:341
 #: application/views/station_profile/index.php:69
@@ -1623,7 +1628,7 @@ msgstr "Kopieren"
 #: application/views/stationsetup/stationsetup.php:186
 #, php-format
 msgid "Are you sure you want delete station profile '%s'? This will delete all QSOs within this station profile."
-msgstr ""
+msgstr "Stationsprofil '%s' wirklich löschen? Alle QSOs in dem Profil werden mitgelöscht!"
 
 #: application/controllers/Stationsetup.php:364
 #: application/views/api/help.php:61 application/views/contesting/add.php:62
@@ -1801,31 +1806,31 @@ msgstr ""
 msgid "QO-100 Dx Club Upload"
 msgstr ""
 
-#: application/models/Logbook_model.php:4136
+#: application/models/Logbook_model.php:4133
 msgid "QSO could not be matched"
 msgstr "QSO konnte nicht gefunden werden"
 
-#: application/models/Logbook_model.php:4142
+#: application/models/Logbook_model.php:4139
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bestätigt durch LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:4147
+#: application/models/Logbook_model.php:4144
 msgid "confirmed by award manager"
 msgstr "bestätigt durch Diplommananger"
 
-#: application/models/Logbook_model.php:4150
+#: application/models/Logbook_model.php:4147
 msgid "confirmed by cross-check of DCL data"
 msgstr "bestätigt durch Cross-Check von DCL-Daten"
 
-#: application/models/Logbook_model.php:4153
+#: application/models/Logbook_model.php:4150
 msgid "confirmation pending"
 msgstr "Bestätigung ausstehend"
 
-#: application/models/Logbook_model.php:4156
+#: application/models/Logbook_model.php:4153
 msgid "unconfirmed"
 msgstr "nicht bestätigt"
 
-#: application/models/Logbook_model.php:4159
+#: application/models/Logbook_model.php:4156
 msgid "unknown"
 msgstr "unbekannt"
 
