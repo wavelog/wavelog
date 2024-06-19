@@ -29,7 +29,7 @@ BUG_MAIL="translations@wavelog.org"
 YEAR="$(date +"%Y")"
 
 POT_TITLE_TEXT="WAVELOG PO FILE"
-POT_COPYRIGHT_TEXT="Copyright (C) $YEAR Wavelog by DF2ET, DJ7NT, HB9HIL and LA8AJA."
+POT_COPYRIGHT_TEXT="Copyright (c) $YEAR Wavelog by DF2ET, DJ7NT, HB9HIL and LA8AJA."
 POT_LICENCE_TEXT="This file is distributed under the MIT licence."
 
 # Find all PHP files and create a list in a temporary file 
@@ -57,13 +57,19 @@ sed -i "3s/.*/# $POT_LICENCE_TEXT/" $POT_FILE
 sed -i '4d' $POT_FILE
 sed -i '8d' $POT_FILE
 
+# Extract the first five lines of the POT file to a temporary file
+head -n 5 "$POT_FILE" > POT_HEADER
+
 # Now we can merge the POT file (PO template) into each found PO file
 for po in $(find . -name "*.po"); do
-    msgmerge --no-wrap -UN -vv "$po" $POT_FILE;
+    msgmerge --no-wrap --update -vv --backup=none --previous "$po" $POT_FILE;
+    # Replace the first five lines of the PO file with the POT file header
+    sed -i '1,5d' "$po"
+    cat POT_HEADER "$po" > temp.po && mv temp.po "$po"
 done
 
-# The msgmerge command creates po~ files as backups. We can delete them
-find . -name "*.po~" -delete
+# Clean up the temporary POT_HEADER file
+rm POT_HEADER
 
 # The last action is to create a MO file for each found PO file
 for po in $(find . -name "*.po"); do
