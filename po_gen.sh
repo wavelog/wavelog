@@ -62,7 +62,7 @@ head -n 5 "$POT_FILE" > POT_HEADER
 
 # Now we can merge the POT file (PO template) into each found PO file
 for po in $(find . -name "*.po"); do
-    msgmerge --no-wrap --update -vv --backup=none --previous "$po" $POT_FILE;
+    msgmerge --no-wrap --update -vv --backup=none --no-fuzzy-matching "$po" $POT_FILE;
     # Replace the first five lines of the PO file with the POT file header
     sed -i '1,5d' "$po"
     cat POT_HEADER "$po" > temp.po && mv temp.po "$po"
