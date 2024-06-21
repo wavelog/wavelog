@@ -15,7 +15,7 @@
 		}
 		session_write_close();
 		// load the view
-		$data['page_title'] = "Hardware Interfaces";
+		$data['page_title'] = __("Hardware Interfaces");
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('radio/index');

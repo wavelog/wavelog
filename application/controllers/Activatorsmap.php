@@ -14,7 +14,7 @@ class Activatorsmap extends CI_Controller {
 	}
 
 	public function index() {
-		$data['page_title'] = "Activators Map";
+		$data['page_title'] = __("Activators Map");
 
 		$this->load->model('stations');
         $data['station_locator'] = $this->stations->find_gridsquare();

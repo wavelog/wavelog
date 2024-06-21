@@ -37,7 +37,7 @@ class Labels extends CI_Controller {
 	|
 	 */
 	public function index() {
-		$data['page_title'] = "QSL Card Labels";
+		$data['page_title'] = __("QSL Card Labels");
 
 		$this->load->model('labels_model');
 
@@ -68,7 +68,7 @@ class Labels extends CI_Controller {
 	 */
 	public function create() {
 
-		$data['page_title'] = "Create Label Type";
+		$data['page_title'] = __("Create Label Type");
 
 		$this->load->library('form_validation');
 		$this->load->model('labels_model');
@@ -112,7 +112,7 @@ class Labels extends CI_Controller {
 	 */
 	public function createpaper() {
 
-		$data['page_title'] = "Create Paper Type";
+		$data['page_title'] = __("Create Paper Type");
 
 		$this->load->library('form_validation');
 
@@ -388,7 +388,7 @@ class Labels extends CI_Controller {
 
 		$data['papertypes'] = $this->labels_model->fetchPapertypes($this->session->userdata('user_id'));
 
-		$data['page_title'] = "Edit Label";
+		$data['page_title'] = __("Edit Label");
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('labels/edit');
@@ -447,7 +447,7 @@ class Labels extends CI_Controller {
 
 		$data['paper'] = $this->labels_model->getPaper($cleanid);
 
-		$data['page_title'] = "Edit Paper";
+		$data['page_title'] = __("Edit Paper");
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('labels/editpaper');

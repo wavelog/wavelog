@@ -34,7 +34,7 @@ class Satellite extends CI_Controller {
 	}
 
 	public function create() {
-		$data['page_title'] = "Create Satellite";
+		$data['page_title'] = __("Create Satellite");
 		$this->load->view('satellite/create', $data);
 	}
 
@@ -57,7 +57,7 @@ class Satellite extends CI_Controller {
 		$data['satellite'] = $satellite_query->row();
 		$data['satmodes'] = $mode_query->result();
 
-		$data['page_title'] = "Edit Satellite";
+		$data['page_title'] = __("Edit Satellite");
 
         $this->load->view('satellite/edit', $data);
 	}

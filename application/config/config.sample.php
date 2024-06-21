@@ -143,7 +143,7 @@ $config['url_suffix'] = '';
 
 /*
 |--------------------------------------------------------------------------
-| Default Language
+| Default Language  DEPRECATED! NOT IN USE ANYMORE!
 |--------------------------------------------------------------------------
 |
 | This determines which set of language files should be used. Make sure
@@ -151,61 +151,61 @@ $config['url_suffix'] = '';
 | than english.
 |
  */
-$lang = 'english'; // this language will be used per default
+// $lang = 'english'; // this language will be used per default
 
-if (isset($_COOKIE["language"])) {
-	$tmp_value = $_COOKIE["language"];
-	if (!empty($tmp_value)) { $lang = $tmp_value; }
-}
-switch ($lang) {	// do this for security-reasons! parse only langs, which are known to us
-case 'dutch':
-	$config['language'] = $lang;
-	break;
-case 'chinese_simplified':
-	$config['language'] = $lang;
-	break;
-case 'spanish':
-	$config['language'] = $lang;
-	break;
-case 'czech':
-	$config['language'] = $lang;
-	break;
-case 'bulgarian':
-	$config['language'] = $lang;
-	break;
-case 'turkish':
-	$config['language'] = $lang;
-	break;
-case 'swedish':
-	$config['language'] = $lang;
-	break;
-case 'polish':
-	$config['language'] = $lang;
-	break;
-case 'italian':
-	$config['language'] = $lang;
-	break;
-case 'greek':
-	$config['language'] = $lang;
-	break;
-case 'french':
-	$config['language'] = $lang;
-	break;
-case 'finnish':
-	$config['language'] = $lang;
-	break;
-case 'russian':
-	$config['language'] = $lang;
-	break;
-case 'english':
-	$config['language'] = $lang;
-	break;
-case 'german':
-	$config['language'] = $lang;
-	break;
-}
+// if (isset($_COOKIE["language"])) {
+// 	$tmp_value = $_COOKIE["language"];
+// 	if (!empty($tmp_value)) { $lang = $tmp_value; }
+// }
+// switch ($lang) {	// do this for security-reasons! parse only langs, which are known to us
+// case 'dutch':
+// 	$config['language'] = $lang;
+// 	break;
+// case 'chinese_simplified':
+// 	$config['language'] = $lang;
+// 	break;
+// case 'spanish':
+// 	$config['language'] = $lang;
+// 	break;
+// case 'czech':
+// 	$config['language'] = $lang;
+// 	break;
+// case 'bulgarian':
+// 	$config['language'] = $lang;
+// 	break;
+// case 'turkish':
+// 	$config['language'] = $lang;
+// 	break;
+// case 'swedish':
+// 	$config['language'] = $lang;
+// 	break;
+// case 'polish':
+// 	$config['language'] = $lang;
+// 	break;
+// case 'italian':
+// 	$config['language'] = $lang;
+// 	break;
+// case 'greek':
+// 	$config['language'] = $lang;
+// 	break;
+// case 'french':
+// 	$config['language'] = $lang;
+// 	break;
+// case 'finnish':
+// 	$config['language'] = $lang;
+// 	break;
+// case 'russian':
+// 	$config['language'] = $lang;
+// 	break;
+// case 'english':
+// 	$config['language'] = $lang;
+// 	break;
+// case 'german':
+// 	$config['language'] = $lang;
+// 	break;
+// }
 
-$config['cl_multilanguage']=true;
+// $config['cl_multilanguage']=true;
 
 /*
 |--------------------------------------------------------------------------

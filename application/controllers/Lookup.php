@@ -19,7 +19,7 @@ class Lookup extends CI_Controller {
 
 	public function index()
 	{
-		$data['page_title'] = "Quick Lookup";
+		$data['page_title'] = __("Quick Lookup");
 		$this->load->model('logbook_model');
 		$data['dxcc'] = $this->logbook_model->fetchDxcc();
 		$data['iota'] = $this->logbook_model->fetchIota();

@@ -21,15 +21,15 @@
 
 		<form>
 		<div class="mb-3">
-		    <label for="modeInput">ADIF Mode</label>
+		    <label for="modeInput"><?= _pgettext("Name of mode in ADIF-specification", "ADIF Mode"); ?></label>
 		    <input type="text" class="form-control" name="mode" id="modeInput" aria-describedby="modeInputHelp" required>
-		    <small id="modeInputHelp" class="form-text text-muted">Name of mode in ADIF-specification</small>
+		    <small id="modeInputHelp" class="form-text text-muted"><?= __("Name of mode in ADIF-specification"); ?></small>
 		  </div>
 		  
 		  <div class="mb-3">
-		    <label for="submodeInput">ADIF Sub-Mode</label>
+		    <label for="submodeInput"><?= _pgettext("Name of sub-mode in ADIF-specification", "ADIF Sub-Mode"); ?></label>
 		    <input type="text" class="form-control" name="submode" id="submodeInput" aria-describedby="submodeInputHelp">
-		    <small id="submodeInputHelp" class="form-text text-muted">Name of sub-mode in ADIF-specification</small>
+		    <small id="submodeInputHelp" class="form-text text-muted"><?= __("Name of sub-mode in ADIF-specification"); ?></small>
 		  </div>
 
 			<div class="mb-3">
@@ -39,19 +39,19 @@
 				<option value="SSB">SSB</option>
 				<option value="DATA">DATA</option>
 			</select>
-		    <small id="qrgmodeInputHelp" class="form-text text-muted">Defines the QRG-segment in bandplan.</small>
+		    <small id="qrgmodeInputHelp" class="form-text text-muted"><?= __("Defines the QRG-segment in bandplan."); ?></small>
 		  </div>
 
 		  <div class="mb-3">
-		    <label for="activeInput">Active</label>
+		    <label for="activeInput"><?= __("Active"); ?></label>
 			<select id="activeInput" class="form-select mode form-select-sm" name="active">
-				<option value="1">active</option>
-				<option value="0">not active</option>
+				<option value="1"><?= __("Active"); ?></option>
+				<option value="0"><?= __("Not active"); ?></option>
 			</select>
-		    <small id="activeInputHelp" class="form-text text-muted">Set to active if to be listed in Modes-list</small>
+		    <small id="activeInputHelp" class="form-text text-muted"><?= __("Set to active if to be listed in Modes-list"); ?></small>
 		  </div>
 
-			<button type="button" onclick="createMode(this.form);" class="btn btn-primary"><i class="fas fa-plus-square"></i> Create mode</button>
+			<button type="button" onclick="createMode(this.form);" class="btn btn-primary"><i class="fas fa-plus-square"></i> <?= __("Create mode"); ?></button>
 
 		</form>
 </div>

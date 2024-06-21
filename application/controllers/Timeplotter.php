@@ -14,7 +14,7 @@ class Timeplotter extends CI_Controller {
     public function index()
     {
         // Render Page
-        $data['page_title'] = "Timeplotter";
+        $data['page_title'] = __("Timeplotter");
 
         $this->load->model('bands');
 

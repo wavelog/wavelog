@@ -1,5 +1,5 @@
 <script>
-    var lang_days_with_qso_short = "<?php echo lang('statistics_days_with_qso_short'); ?>";
+    var lang_days_with_qso_short = "<?= __("Days with QSOs"); ?>";
 </script>
 
 <div class="container">
@@ -13,7 +13,7 @@
     echo '<div id="diffDays" class="table-responsive"><table class="qsotable table table-sm table-bordered table-hover table-striped table-condensed">';
 
             echo '<tr>';
-                echo '<th style=\'text-align: center\'>' . lang('general_word_year') . '</th>';
+                echo '<th style=\'text-align: center\'>' . __("Year") . '</th>';
 
                 foreach ($result as $master) {
                 echo '<td style=\'text-align: center\'>' . $master->Year . '</td>';
@@ -22,7 +22,7 @@
                 echo '</tr>';
 
             echo '<tr>';
-                echo '<th style=\'text-align: center\'>' . lang('general_word_days') . '</th>';
+                echo '<th style=\'text-align: center\'>' . __("Days") . '</th>';
 
                 foreach ($result as $master) {
                 echo '<td style=\'text-align: center\'>' . $master->Days . '</td>';
@@ -34,8 +34,8 @@
     }
     ?>
     <canvas id="myChartDiff" width="400" height="150"></canvas>
-    <h2><?php echo lang('statistics_dwq_longest_streak_in_log'); ?></h2>
-    <p><?php echo lang('statistics_dwq_longest_streak_in_log_hint'); ?></p>
+    <h2><?= __("Longest streak with QSOs in the log"); ?></h2>
+    <p><?= __("A maximum of the 10 longest streaks are shown!"); ?></p>
 
     <?php 
     // Get Date format
@@ -53,9 +53,9 @@
         echo '<div id="streaks" class="table-responsive"><table class="qsotable table table-sm table-bordered table-hover table-striped table-condensed">';
 
             echo '<tr>';
-                echo '<th style=\'text-align: center\'>' . lang('statistics_dwq_streak_continuous_days') . '</th>';
-                echo '<th style=\'text-align: center\'>' . lang('general_word_startdate') . '</th>';
-                echo '<th style=\'text-align: center\'>' . lang('general_word_enddate') . '</th>';
+                echo '<th style=\'text-align: center\'>' . __("Streak (continuous days with QSOs)") . '</th>';
+                echo '<th style=\'text-align: center\'>' . __("Start Date") . '</th>';
+                echo '<th style=\'text-align: center\'>' . __("End Date") . '</th>';
                 echo '</tr>';
 
             foreach ($streaks as $streak) {
@@ -71,19 +71,19 @@
             echo '</table></div>';
     }
     else {
-        echo '<div class="alert alert-danger" role="alert">No streak found!</div>';
+        echo '<div class="alert alert-danger" role="alert">' . _pgettext("Days with QSOs", "No streak found!") . '</div>';
     }
     ?>
 
-    <h2><?php echo lang('statistics_dwq_current_streak_in_log'); ?></h2>
+    <h2><?= __("Current streak with QSOs in the log"); ?></h2>
     <?php
     if (is_array($currentstreak)) {
         echo '<div id="streaks" class="table-responsive"><table class="qsotable table table-sm table-bordered table-hover table-striped table-condensed">';
 
         echo '<tr>';
-        echo '<th style=\'text-align: center\'>' . lang('statistics_dwq_current_streak_continuous_days') . '</th>';
-        echo '<th style=\'text-align: center\'>' . lang('general_word_startdate') . '</th>';
-        echo '<th style=\'text-align: center\'>' . lang('general_word_enddate') . '</th>';
+        echo '<th style=\'text-align: center\'>' . __("Current streak (continuous days with QSOs)") . '</th>';
+        echo '<th style=\'text-align: center\'>' . __("Start Date") . '</th>';
+        echo '<th style=\'text-align: center\'>' . __("End Date") . '</th>';
         echo '</tr>';
 
             echo '<tr>';
@@ -98,14 +98,14 @@
     }
     elseif (is_array($almostcurrentstreak)) {
         ?>
-        <div class="alert alert-warning" role="alert"><?php echo lang('statistics_dwq_make_qso_to_extend_streak'); ?></div>
+        <div class="alert alert-warning" role="alert"><?= __("If you make a QSO today, you can continue to extend your streak... or else your current streak will be broken!"); ?></div>
         <?php
         echo '<div id="streaks" class="table-responsive"><table class="qsotable table table-sm table-bordered table-hover table-striped table-condensed">';
 
         echo '<tr>';
-        echo '<th style=\'text-align: center\'>' . lang('statistics_dwq_current_streak_continuous_days') . '</th>';
-        echo '<th style=\'text-align: center\'>' . lang('general_word_startdate') . '</th>';
-        echo '<th style=\'text-align: center\'>' . lang('general_word_enddate') . '</th>';
+        echo '<th style=\'text-align: center\'>' . __("Current streak (continuous days with QSOs)") . '</th>';
+        echo '<th style=\'text-align: center\'>' . __("Start Date") . '</th>';
+        echo '<th style=\'text-align: center\'>' . __("End Date") . '</th>';
         echo '</tr>';
 
         echo '<tr>';
@@ -119,7 +119,7 @@
         echo '</table></div>';
     }
     else {
-        echo '<div class="alert alert-danger" role="alert">' . lang('statistics_dwq_no_current_streak') . '</div>';
+        echo '<div class="alert alert-danger" role="alert">' . __("No current streak found!") . '</div>';
     }
     ?>
 </div>

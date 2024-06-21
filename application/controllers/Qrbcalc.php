@@ -14,7 +14,7 @@ class Qrbcalc extends CI_Controller {
 	}
 
 	public function index() {
-		$data['page_title'] = "QRB Calculator";
+		$data['page_title'] = __("QRB Calculator");
 
 		$this->load->model('stations');
         $data['station_locator'] = $this->stations->find_gridsquare();

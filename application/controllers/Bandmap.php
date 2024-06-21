@@ -25,7 +25,7 @@ class Bandmap extends CI_Controller {
 			'assets/js/sections/bandmap.js',
 		];
 
-		$data['page_title'] = "DXCluster";
+		$data['page_title'] = __("DXCluster");
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('bandmap/index');
 		$this->load->view('interface_assets/footer', $footerData);
@@ -66,7 +66,7 @@ class Bandmap extends CI_Controller {
 		default: $pageData['custom_date_format'] = 'DD/MM/YYYY';
 		}
 
-		$data['page_title'] = "DXCluster";
+		$data['page_title'] = __("DXCluster");
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('bandmap/list',$pageData);
 		$this->load->view('interface_assets/footer', $footerData);

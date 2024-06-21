@@ -462,9 +462,14 @@ class Logbook_model extends CI_Model {
 						$this->db->where("satellite.orbit = '$orbit'");
 					}
 				}
-        if ($propagation != '' && $propagation != null) {
-          $this->db->where("COL_PROP_MODE = '$propagation'");
-        }
+				if (($propagation ?? '') == 'None') {
+					$this->db->group_start();
+					$this->db->where("COL_PROP_MODE = ''");
+					$this->db->or_where("COL_PROP_MODE is null");
+					$this->db->group_end();
+				} elseif ($propagation != '' && $propagation != null) {
+					$this->db->where("COL_PROP_MODE = '$propagation'");
+				}
 			}
 			break;
 		case 'CQZone':
@@ -3251,17 +3256,14 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 	    }
     }
 
-    function qrz_update($datetime, $callsign, $band, $qsl_date, $qsl_status, $station_callsign) {
+    function qrz_update($primarykey, $qsl_date, $qsl_status) {
 
 	    $data = array(
 		    'COL_QRZCOM_QSO_DOWNLOAD_DATE' => $qsl_date,
 		    'COL_QRZCOM_QSO_DOWNLOAD_STATUS' => $qsl_status,
 	    );
 
-	    $this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i\') = "'.$datetime.'"');
-	    $this->db->where('COL_CALL', $callsign);
-	    $this->db->where('COL_BAND', $band);
-	    $this->db->where('COL_STATION_CALLSIGN', $station_callsign);
+	    $this->db->where('COL_PRIMARY_KEY', $primarykey);
 
 	    if ($this->db->update($this->config->item('table_name'), $data)) {
 		    unset($data);
@@ -4128,30 +4130,30 @@ function lotw_last_qsl_date($user_id) {
                if ($ignoreAmbiguous == '1') {
                   return array();
                } else {
-                  return array(2, $result['message'] = "<tr><td>".date($custom_date_format, strtotime($record['qso_date']))."</td><td>".date('H:i', strtotime($record['time_on']))."</td><td>".str_replace('0', 'Ø', $call)."</td><td>".$band."</td><td>".$mode."</td><td></td><td>".(preg_match('/^[A-Y]\d{2}$/', $darc_dok) ? '<a href="https://www.darc.de/'.$darc_dok.'" target="_blank">'.$darc_dok.'</a>' : (preg_match('/^Z\d{2}$/', $darc_dok) ? '<a href="https://'.$darc_dok.'.vfdb.org" target="_blank">'.$darc_dok.'</a>' : $darc_dok))."</td><td>".lang('dcl_no_match')."</td></tr>");
+                  return array(2, $result['message'] = "<tr><td>".date($custom_date_format, strtotime($record['qso_date']))."</td><td>".date('H:i', strtotime($record['time_on']))."</td><td>".str_replace('0', 'Ø', $call)."</td><td>".$band."</td><td>".$mode."</td><td></td><td>".(preg_match('/^[A-Y]\d{2}$/', $darc_dok) ? '<a href="https://www.darc.de/'.$darc_dok.'" target="_blank">'.$darc_dok.'</a>' : (preg_match('/^Z\d{2}$/', $darc_dok) ? '<a href="https://'.$darc_dok.'.vfdb.org" target="_blank">'.$darc_dok.'</a>' : $darc_dok))."</td><td>".__("QSO could not be matched")."</td></tr>");
                }
             } else {
                $dcl_qsl_status = '';
                switch($record['app_dcl_status']) {
                case 'c':
-                  $dcl_qsl_status = lang('dcl_qsl_status_c');
+                  $dcl_qsl_status = __("confirmed by LoTW/Clublog/eQSL/Contest");
                   break;
                case 'm':
                case 'n':
                case 'o':
-                  $dcl_qsl_status = lang('dcl_qsl_status_mno');
+                  $dcl_qsl_status = __("confirmed by award manager");
                   break;
                case 'i':
-                  $dcl_qsl_status = lang('dcl_qsl_status_i');
+                  $dcl_qsl_status = __("confirmed by cross-check of DCL data");
                   break;
                case 'w':
-                  $dcl_qsl_status = lang('dcl_qsl_status_w');
+                  $dcl_qsl_status = __("confirmation pending");
                   break;
                case 'x':
-                  $dcl_qsl_status = lang('dcl_qsl_status_x');
+                  $dcl_qsl_status = __("unconfirmed");
                   break;
                default:
-                  $dcl_qsl_status = lang('dcl_qsl_status_unknown');
+                  $dcl_qsl_status = __("unknown");
                }
                if ($check->row()->COL_DARC_DOK != $darc_dok) {
                   $dcl_cnfm = array('c', 'm', 'n', 'o', 'i');

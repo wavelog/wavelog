@@ -1,21 +1,21 @@
 <?php
-function echo_table_header_col($ctx, $name) {
+function echo_table_header_col($name) {
 	switch($name) {
-		case 'Mode': echo '<th>'.$ctx->lang->line('gen_hamradio_mode').'</th>'; break;
-		case 'RSTS': echo '<th class="d-none d-sm-table-cell">'.$ctx->lang->line('gen_hamradio_rsts').'</th>'; break;
-		case 'RSTR': echo '<th class="d-none d-sm-table-cell">'.$ctx->lang->line('gen_hamradio_rstr').'</th>'; break;
-		case 'Country': echo '<th>'.$ctx->lang->line('general_word_country').'</th>'; break;
-		case 'IOTA': echo '<th>'.$ctx->lang->line('gen_hamradio_iota').'</th>'; break;
-		case 'SOTA': echo '<th>'.$ctx->lang->line('gen_hamradio_sota').'</th>'; break;
-		case 'WWFF': echo '<th>'.$ctx->lang->line('gen_hamradio_wwff').'</th>'; break;
-		case 'POTA': echo '<th>'.$ctx->lang->line('gen_hamradio_pota').'</th>'; break;
-		case 'State': echo '<th>'.$ctx->lang->line('gen_hamradio_state').'</th>'; break;
-		case 'Grid': echo '<th>'.$ctx->lang->line('gen_hamradio_gridsquare').'</th>'; break;
-		case 'Distance': echo '<th>'.$ctx->lang->line('gen_hamradio_distance').'</th>'; break;
-		case 'Band': echo '<th>'.$ctx->lang->line('gen_hamradio_band').'</th>'; break;
-		case 'Frequency': echo '<th>'.$ctx->lang->line('gen_hamradio_frequency').'</th>'; break;
-		case 'Operator': echo '<th>'.$ctx->lang->line('gen_hamradio_operator').'</th>'; break;
-		case 'Name': echo '<th>'.$ctx->lang->line('general_word_name').'</th>'; break;
+		case 'Mode': echo '<th>'.__("Mode").'</th>'; break;
+		case 'RSTS': echo '<th class="d-none d-sm-table-cell">'.__("RSTS").'</th>'; break;
+		case 'RSTR': echo '<th class="d-none d-sm-table-cell">'.__("RSTR").'</th>'; break;
+		case 'Country': echo '<th>'.__("Country").'</th>'; break;
+		case 'IOTA': echo '<th>'.__("IOTA").'</th>'; break;
+		case 'SOTA': echo '<th>'.__("SOTA").'</th>'; break;
+		case 'WWFF': echo '<th>'.__("WWFF").'</th>'; break;
+		case 'POTA': echo '<th>'.__("POTA").'</th>'; break;
+		case 'State': echo '<th>'.__("State").'</th>'; break;
+		case 'Grid': echo '<th>'.__("Gridsquare").'</th>'; break;
+		case 'Distance': echo '<th>'.__("Distance").'</th>'; break;
+		case 'Band': echo '<th>'.__("Band").'</th>'; break;
+		case 'Frequency': echo '<th>'.__("Frequency").'</th>'; break;
+		case 'Operator': echo '<th>'.__("Operator").'</th>'; break;
+		case 'Name': echo '<th>'.__("Name").'</th>'; break;
 	}
 }
 
@@ -25,7 +25,7 @@ function echo_table_col($row, $name) {
 		case 'Mode':    echo '<td>'; echo $row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE . '</td>'; break;
       	case 'RSTS':    echo '<td class="d-none d-sm-table-cell">' . $row->COL_RST_SENT; if ($row->COL_STX) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">'; printf("%03d", $row->COL_STX); echo '</span>';} if ($row->COL_STX_STRING) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">' . $row->COL_STX_STRING . '</span>';} echo '</td>'; break;
       	case 'RSTR':    echo '<td class="d-none d-sm-table-cell">' . $row->COL_RST_RCVD; if ($row->COL_SRX) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">'; printf("%03d", $row->COL_SRX); echo '</span>';} if ($row->COL_SRX_STRING) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">' . $row->COL_SRX_STRING . '</span>';} echo '</td>'; break;
-		case 'Country': echo '<td>' . ucwords(strtolower(($row->COL_COUNTRY))); if ($row->end != NULL) echo ' <span class="badge text-bg-danger">'.$ci->lang->line('gen_hamradio_deleted_dxcc').'</span>'  . '</td>'; break;
+		case 'Country': echo '<td>' . ucwords(strtolower(($row->COL_COUNTRY))); if ($row->end != NULL) echo ' <span class="badge text-bg-danger">'.__("Deleted DXCC").'</span>'  . '</td>'; break;
 		case 'IOTA':    echo '<td>' . ($row->COL_IOTA) . '</td>'; break;
 		case 'SOTA':    echo '<td>' . ($row->COL_SOTA_REF) . '</td>'; break;
 		case 'WWFF':    echo '<td>' . ($row->COL_WWFF_REF) . '</td>'; break;
@@ -53,49 +53,61 @@ function echo_table_col($row, $name) {
 
 	<?php if (version_compare(PHP_VERSION, '7.4.0') <= 0) { ?>
 		<div class="alert alert-danger" role="alert">
-		<?php echo lang('dashboard_php_version_warning') . ' ' . PHP_VERSION . '.';?>
+		<?= __("You need to upgrade your PHP version. Minimum version is 7.4. Your version is") . ' ' . PHP_VERSION . '.';?>
 		</div>
 	<?php } ?>
 
 	<?php if ($countryCount == 0) { ?>
 		<div class="alert alert-danger mt-3" role="alert">
-		<?php echo lang('dashboard_country_files_warning'); ?>
+		<?= sprintf(
+				_pgettext("Dashboard Warning", "You need to update country files! Click %s to do it."),
+				"<a href='" . site_url('update') . "'>" . __("here") . "</a>"
+			); ?>
 		</div>
 	<?php } ?>
 
 	<?php if ($locationCount == 0) { ?>
 		<div class="alert alert-danger" role="alert">
-		<?php echo lang('dashboard_locations_warning'); ?>
+		<?= sprintf(
+				_pgettext("Dashboard Warning", "You have no station locations. Click %s to do it:"), 
+				"<a href='".site_url('stationsetup')."'>".__("here")."</a>"
+			); ?>
 		</div>
 	<?php } ?>
 
 	<?php if ($logbookCount == 0) { ?>
 		<div class="alert alert-danger" role="alert">
-		<?php echo lang('dashboard_logbooks_warning'); ?>
+		<?= sprintf(
+				_pgettext("Dashboard Warning", "You have no station logbook. Click %s to do it:"), 
+				"<a href='".site_url('stationsetup')."'>".__("here")."</a>"
+			); ?>
 		</div>
 	<?php } ?>
 
 	<?php if($this->optionslib->get_option('dashboard_banner') != "false") { ?>
 	<?php if($todays_qsos >= 1) { ?>
 		<div class="alert alert-success" role="alert" style="margin-top: 1rem;">
-			  <?php echo lang('dashboard_you_have_had'); ?> <strong><?php echo $todays_qsos; ?></strong> <?php echo $todays_qsos != 1 ? lang('dashboard_qsos_today') : str_replace('QSOs', 'QSO', lang('dashboard_qsos_today')); ?>
+			<?= sprintf(
+					_ngettext("You have had %d QSO today", "You have had %d QSOs today", intval($todays_qsos)), 
+					intval($todays_qsos)
+				); ?>
 		</div>
 	<?php } else { ?>
 		<div class="alert alert-warning" role="alert" style="margin-top: 1rem;">
-			  <span class="badge text-bg-info"><?php echo lang('general_word_important'); ?></span> <i class="fas fa-broadcast-tower"></i> <?php echo lang('notice_turn_the_radio_on'); ?>
+			  <span class="badge text-bg-info"><?= __("Important"); ?></span> <i class="fas fa-broadcast-tower"></i> <?= __("You have made no QSOs today; time to turn on the radio!"); ?>
 		</div>
 	<?php } ?>
 	<?php } ?>
 
 	<?php if($current_active == 0) { ?>
 		<div class="alert alert-danger" role="alert">
-		  <?php echo lang('error_no_active_station_profile'); ?>
+		  <?= __("Attention: you need to set an active station location."); ?>
 		</div>
 	<?php } ?>
 
 	<?php if($themesWithoutMode != 0) { ?>
 		<div class="alert alert-danger" role="alert">
-		  	You have themes without defined theme mode. Please ask the admin to edit the themes.
+		  	<?= __("You have themes without defined theme mode. Please ask the admin to edit the themes."); ?>
 		</div>
 	<?php } ?>
 
@@ -104,13 +116,13 @@ function echo_table_col($row, $name) {
 			$current_date = date('Y-m-d H:i:s');
 			if($this->LotwCert->lotw_cert_expired($this->session->userdata('user_id'), $current_date) == true) { ?>
 			<div class="alert alert-danger" role="alert">
-				<span class="badge text-bg-info"><?php echo lang('general_word_important'); ?></span> <i class="fas fa-hourglass-end"></i> <?php echo lang('lotw_cert_expired'); ?>
+				<span class="badge text-bg-info"><?= __("Important"); ?></span> <i class="fas fa-hourglass-end"></i> <?= __("At least one of your LoTW certificates is expired!"); ?>
 			</div>
 		<?php } ?>
 
 		<?php if($this->LotwCert->lotw_cert_expiring($this->session->userdata('user_id'), $current_date) == true) { ?>
 			<div class="alert alert-warning" role="alert">
-				<span class="badge text-bg-info"><?php echo lang('general_word_important'); ?></span> <i class="fas fa-hourglass-half"></i> <?php echo lang('lotw_cert_expiring'); ?>
+				<span class="badge text-bg-info"><?= __("Important"); ?></span> <i class="fas fa-hourglass-half"></i> <?= __("At least one of your LoTW certificates is about to expire!"); ?>
 			</div>
 		<?php } ?>
 	<?php } ?>
@@ -133,17 +145,17 @@ function echo_table_col($row, $name) {
 
     		<thead>
 				<tr class="titles">
-					<th><?php echo lang('general_word_date'); ?></th>
+					<th><?= __("Date"); ?></th>
 
 					<?php if(($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE || ($this->config->item('show_time'))) { ?>
-					<th><?php echo lang('general_word_time'); ?></th>
+					<th><?= __("Time"); ?></th>
 					<?php } ?>
-					<th><?php echo lang('gen_hamradio_call'); ?></th>
+					<th><?= __("Callsign"); ?></th>
 					<?php
-					echo_table_header_col($this, $this->session->userdata('user_column1')==""?'Mode':$this->session->userdata('user_column1'));
-					echo_table_header_col($this, $this->session->userdata('user_column2')==""?'RSTS':$this->session->userdata('user_column2'));
-					echo_table_header_col($this, $this->session->userdata('user_column3')==""?'RSTR':$this->session->userdata('user_column3'));
-					echo_table_header_col($this, $this->session->userdata('user_column4')==""?'Band':$this->session->userdata('user_column4'));
+					echo_table_header_col($this->session->userdata('user_column1')==""?'Mode':$this->session->userdata('user_column1'));
+					echo_table_header_col($this->session->userdata('user_column2')==""?'RSTS':$this->session->userdata('user_column2'));
+					echo_table_header_col($this->session->userdata('user_column3')==""?'RSTR':$this->session->userdata('user_column3'));
+					echo_table_header_col($this->session->userdata('user_column4')==""?'Band':$this->session->userdata('user_column4'));
 				?>
 				</tr>
 			</thead>
@@ -199,21 +211,21 @@ function echo_table_col($row, $name) {
 
     	<table class="table table-striped border-top">
 			<tr class="titles">
-				<td colspan="2"><i class="fas fa-chart-bar"></i> <?php echo lang('dashboard_qso_breakdown'); ?></td>
+				<td colspan="2"><i class="fas fa-chart-bar"></i> <?= __("QSOs Breakdown"); ?></td>
 			</tr>
 
 			<tr>
-				<td width="50%"><?php echo lang('general_word_total'); ?></td>
+				<td width="50%"><?= __("Total"); ?></td>
 				<td width="50%"><?php echo $total_qsos; ?></td>
 			</tr>
 
 			<tr>
-				<td width="50%"><?php echo lang('general_word_year'); ?></td>
+				<td width="50%"><?= __("Year"); ?></td>
 				<td width="50%"><?php echo $year_qsos; ?></td>
 			</tr>
 
 			<tr>
-				<td width="50%"><?php echo lang('general_word_month'); ?></td>
+				<td width="50%"><?= __("Month"); ?></td>
 				<td width="50%"><?php echo $month_qsos; ?></td>
 			</tr>
 		</table>
@@ -222,15 +234,15 @@ function echo_table_col($row, $name) {
 
 		<table class="table table-striped border-top">
 			<tr class="titles">
-				<td colspan="2"><i class="fas fa-globe-europe"></i> <?php echo lang('dashboard_countries_breakdown'); ?></td>
+				<td colspan="2"><i class="fas fa-globe-europe"></i> <?= __("Countries Breakdown"); ?></td>
 			</tr>
 
 			<tr>
-				<td width="50%"><?php echo lang('general_word_worked'); ?></td>
+				<td width="50%"><?= __("Worked"); ?></td>
 				<td width="50%"><?php echo $total_countries; ?></td>
 			</tr>
 			<tr>
-				<td width="50%"><a href="#" onclick="return false" title="QSL Cards / LoTW / eQSL" data-bs-toggle="tooltip"><?php echo lang('general_word_confirmed'); ?></a></td>
+				<td width="50%"><a href="#" onclick="return false" title="<?= __("QSL Cards") ." / ". __("LoTW") ." / " . __("eQSL"); ?>" data-bs-toggle="tooltip"><?= __("Confirmed"); ?></a></td>
 				<td width="50%">
 					<?php echo $total_countries_confirmed_paper; ?> /
 					<?php echo $total_countries_confirmed_lotw; ?> /
@@ -239,7 +251,7 @@ function echo_table_col($row, $name) {
 			</tr>
 
 			<tr>
-				<td width="50%"><?php echo lang('general_word_needed'); ?></td>
+				<td width="50%"><?= __("Needed"); ?></td>
 				<td width="50%"><?php echo $total_countries_needed; ?></td>
 			</tr>
 		</table>
@@ -247,24 +259,24 @@ function echo_table_col($row, $name) {
 		<?php if((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE) && ($total_qsl_sent != 0 || $total_qsl_rcvd != 0 || $total_qsl_requested != 0)) { ?>
 		<table class="table table-striped border-top">
 			<tr class="titles">
-				<td colspan="2"><i class="fas fa-envelope"></i> <?php echo lang('general_word_qslcards'); ?></td>
-				<td colspan="1"><?php echo lang('general_word_today'); ?></td>
+				<td colspan="2"><i class="fas fa-envelope"></i> <?= __("QSL Cards"); ?></td>
+				<td colspan="1"><?= __("Today"); ?></td>
 			</tr>
 
 			<tr>
-				<td width="50%"><?php echo lang('general_word_sent'); ?></td>
+				<td width="50%"><?= __("Sent"); ?></td>
 				<td width="25%"><?php echo $total_qsl_sent; ?></td>
 				<td width="25%"><a href="javascript:displayContacts('','All','All','All','All','QSLSDATE','');"><?php echo $qsl_sent_today; ?></a></td>
 			</tr>
 
 			<tr>
-				<td width="50%"><?php echo lang('general_word_received'); ?></td>
+				<td width="50%"><?= __("Received"); ?></td>
 				<td width="25%"><?php echo $total_qsl_rcvd; ?></td>
 				<td width="25%"><a href="javascript:displayContacts('','All','All','All','All','QSLRDATE','');"><?php echo $qsl_rcvd_today; ?></a></td>
 			</tr>
 
 			<tr>
-				<td width="50%"><?php echo lang('general_word_requested'); ?></td>
+				<td width="50%"><?= __("Requested"); ?></td>
 				<td width="25%"><?php echo $total_qsl_requested; ?></td>
 				<td width="25%"><?php echo $qsl_requested_today; ?></td>
 			</tr>
@@ -274,18 +286,18 @@ function echo_table_col($row, $name) {
 		<?php if((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === false) && ($total_lotw_sent != 0 || $total_lotw_rcvd != 0)) { ?>
 		<table class="table table-striped border-top">
 			<tr class="titles">
-				<td colspan="2"><i class="fas fa-list"></i> <?php echo lang('general_word_lotw'); ?></td>
-				<td colspan="1"><?php echo lang('general_word_today'); ?></td>
+				<td colspan="2"><i class="fas fa-list"></i> <?= _pgettext("Probably no translation needed as this is a name.","Logbook of the World"); ?></td>
+				<td colspan="1"><?= __("Today"); ?></td>
 			</tr>
 
 			<tr>
-				<td width="50%"><?php echo lang('general_word_sent'); ?></td>
+				<td width="50%"><?= __("Sent"); ?></td>
 				<td width="25%"><?php echo $total_lotw_sent; ?></td>
 				<td width="25%"><a href="javascript:displayContacts('','all','all','All','All','LOTWSDATE','');"><?php echo $lotw_sent_today; ?></a></td>
 			</tr>
 
 			<tr>
-				<td width="50%"><?php echo lang('general_word_received'); ?></td>
+				<td width="50%"><?= __("Received"); ?></td>
 				<td width="25%"><?php echo $total_lotw_rcvd; ?></td>
 				<td width="25%"><a href="javascript:displayContacts('','all','all','All','All','LOTWRDATE','');"><?php echo $lotw_rcvd_today; ?></a></td>
 			</tr>
@@ -295,18 +307,18 @@ function echo_table_col($row, $name) {
 		<?php if((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE) && ($total_eqsl_sent != 0 || $total_eqsl_rcvd != 0)) { ?>
 		<table class="table table-striped border-top">
 			<tr class="titles">
-				<td colspan="2"><i class="fas fa-address-card"></i> <?php echo lang('general_word_eqslcards'); ?></td>
-				<td colspan="1"><?php echo lang('general_word_today'); ?></td>
+				<td colspan="2"><i class="fas fa-address-card"></i> <?= __("eQSL Cards"); ?></td>
+				<td colspan="1"><?= __("Today"); ?></td>
 			</tr>
 
 			<tr>
-				<td width="50%"><?php echo lang('general_word_sent'); ?></td>
+				<td width="50%"><?= __("Sent"); ?></td>
 				<td width="25%"><?php echo $total_eqsl_sent; ?></td>
             <td width="25%"><a href="javascript:displayContacts('','All','All','All','All','EQSLSDATE','');"><?php echo $eqsl_sent_today; ?></a></td>
 			</tr>
 
 			<tr>
-				<td width="50%"><?php echo lang('general_word_received'); ?></td>
+				<td width="50%"><?= __("Received"); ?></td>
 				<td width="25%"><?php echo $total_eqsl_rcvd; ?></td>
 				<td width="25%"><a href="javascript:displayContacts('','All','All','All','All','EQSLRDATE','');"><?php echo $eqsl_rcvd_today; ?></a></td>
 			</tr>
@@ -317,17 +329,17 @@ function echo_table_col($row, $name) {
 		<table class="table table-striped border-top">
 			<tr class="titles">
 				<td colspan="2"><i class="fas fa-list"></i> QRZ.com</td>
-				<td colspan="1"><?php echo lang('general_word_today'); ?></td>
+				<td colspan="1"><?= __("Today"); ?></td>
 			</tr>
 
 			<tr>
-				<td width="50%"><?php echo lang('general_word_sent'); ?></td>
+				<td width="50%"><?= __("Sent"); ?></td>
 				<td width="25%"><?php echo $total_qrz_sent; ?></td>
 				<td width="25%"><a href="javascript:displayContacts('','all','all','All','All','QRZSDATE','');"><?php echo $qrz_sent_today; ?></a></td>
 			</tr>
 
 			<tr>
-				<td width="50%"><?php echo lang('general_word_received'); ?></td>
+				<td width="50%"><?= __("Received"); ?></td>
 				<td width="25%"><?php echo $total_qrz_rcvd; ?></td>
 				<td width="25%"><a href="javascript:displayContacts('','all','all','All','All','QRZRDATE','');"><?php echo $qrz_rcvd_today; ?></a></td>
 			</tr>
@@ -337,18 +349,18 @@ function echo_table_col($row, $name) {
 		<?php if((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE)) { ?>
     	 <table class="table table-striped border-top">
         <tr class="titles">
-            <td colspan="2"><i class="fas fa-globe-europe"></i> VUCC-Grids</td>
-            <td colspan="1">SAT</td>
+            <td colspan="2"><i class="fas fa-globe-europe"></i> <?= __("VUCC-Grids"); ?></td>
+            <td colspan="1"><?= __("SAT"); ?></td>
         </tr>
 
         <tr>
-            <td width="50%"><?php echo lang('general_word_worked'); ?></td>
+            <td width="50%"><?= __("Worked"); ?></td>
             <td width="25%"><?php echo $vucc['All']['worked']; ?></td>
             <td width="25%"><?php echo $vuccSAT['SAT']['worked'] ?? '0'; ?></td>
         </tr>
 
         <tr>
-            <td width="50%"><?php echo lang('general_word_confirmed'); ?></td>
+            <td width="50%"><?= __("Confirmed"); ?></td>
             <td width="25%"><?php echo $vucc['All']['confirmed']; ?></td>
             <td width="25%"><?php echo $vuccSAT['SAT']['confirmed'] ?? '0'; ?></td>
         </tr>

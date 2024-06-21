@@ -14,7 +14,7 @@ class Timeline extends CI_Controller {
     public function index()
     {
         // Render Page
-        $data['page_title'] = "Timeline";
+        $data['page_title'] = __("Timeline");
 
         $this->load->model('Timeline_model');
 
@@ -89,19 +89,19 @@ class Timeline extends CI_Controller {
 
         switch($type) {
             case 'dxcc':    $country = $this->logbook_model->get_entity($querystring);
-                            $data['page_title'] = "Log View - DXCC";
+                            $data['page_title'] = __("Log View")." - DXCC";
                             $data['filter'] = "country ". $country['name'];
                             break;
-            case 'was' :    $data['page_title'] = "Log View - WAS";
+            case 'was' :    $data['page_title'] = __("Log View")." - WAS";
                             $data['filter'] = "state ". $querystring;
                             break;
-            case 'iota':    $data['page_title'] = "Log View - IOTA";
+            case 'iota':    $data['page_title'] = __("Log View")." - IOTA";
                             $data['filter'] = "iota ". $querystring;
                             break;
-            case 'waz' :    $data['page_title'] = "Log View - WAZ";
+            case 'waz' :    $data['page_title'] = __("Log View")." - WAZ";
                             $data['filter'] = "CQ zone ". $querystring;
                             break;
-            case 'vucc' :   $data['page_title'] = "Log View - VUCC";
+            case 'vucc' :   $data['page_title'] = __("Log View")." - VUCC";
                             $data['filter'] = "Gridsquare ". $querystring;
                             break;
         }

@@ -1,19 +1,19 @@
 <?php
 if ($qsos->result() != NULL) {
-	Echo 'The following QSOs were found to have an incorrect CQ zone that this DXCC normally has:';
+	echo __("The following QSOs were found to have an incorrect CQ zone that this DXCC normally has:");
 	echo '<table style="width:100%" class="qsolist table table-sm table-bordered table-hover table-striped table-condensed">
 	<thead>
 	<tr>
-	<th style=\'text-align: center\'>Date</th>
-	<th style=\'text-align: center\'>Time</th>
-	<th style=\'text-align: center\'>'.lang('gen_hamradio_callsign').'</th>
-	<th style=\'text-align: center\'>' . lang('gen_hamradio_mode') . '</th>
-	<th style=\'text-align: center\'>' . lang('gen_hamradio_band') . '</th>
-	<th style=\'text-align: center\'>' . lang('gen_hamradio_gridsquare') . '</th>
-	<th style=\'text-align: center\'>CQ Zone</th>
-	<th style=\'text-align: center\'>DXCC CQ Zone</th>
-	<th style=\'text-align: center\'>DXCC</th>
-	<th style=\'text-align: center\'>' . lang('gen_hamradio_station') . '</th>
+	<th style=\'text-align: center\'>' . __("Date") . '</th>
+	<th style=\'text-align: center\'>' . __("Time") . '</th>
+	<th style=\'text-align: center\'>' . __("Callsign") . '</th>
+	<th style=\'text-align: center\'>' . __("Mode") . '</th>
+	<th style=\'text-align: center\'>' . __("Band") . '</th>
+	<th style=\'text-align: center\'>' . __("Gridsquare") . '</th>
+	<th style=\'text-align: center\'>' . __("CQ Zone") . '</th>
+	<th style=\'text-align: center\'>' . __("DXCC CQ Zone") . '</th>
+	<th style=\'text-align: center\'>' . __("DXCC") . '</th>
+	<th style=\'text-align: center\'>' . __("Station") . '</th>
 	</tr>
 	</thead><tbody>';
 
@@ -48,6 +48,6 @@ if ($qsos->result() != NULL) {
 
 	<?php
 } else {
-	echo '<div class="alert alert-success">No incorrect CQ Zones were found.</div>';
+	echo '<div class="alert alert-success">' . __("No incorrect CQ Zones were found.") . '</div>';
 }
 ?>

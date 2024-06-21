@@ -1,0 +1,31 @@
+name: Run the PO generator script
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        repository: wavelog/wavelog
+        ref: dev
+
+    - name: Set up gettext
+      run: sudo apt-get install -y gettext
+
+    - name: Run the PO generator script
+      run: bash po_gen.sh
+
+    - name: Commit changes
+      run: |
+        git config --global user.name "github-actions"
+        git config --global user.email "github-actions@github.com"
+        git add .
+        git commit -m "Run po_gen.sh script to update translations (manually triggered)"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

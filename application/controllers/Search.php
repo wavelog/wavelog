@@ -12,17 +12,11 @@ class Search extends CI_Controller {
             $this->load->model('user_model');
             if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
         }
-
-        // Load language files
-        $this->lang->load(array(
-          'lotw',
-          'eqsl',
-        ));
     }
 
 	public function index()
 	{
-		$data['page_title'] = "Search";
+		$data['page_title'] = __("Search");
 
         $this->load->view('interface_assets/header', $data);
 		$this->load->view('search/main');
@@ -31,7 +25,7 @@ class Search extends CI_Controller {
 
     // Filter is for advanced searching and filtering of the logbook
     public function filter() {
-        $data['page_title'] = "Search & Filter Logbook";
+        $data['page_title'] = __("Search & Filter Logbook");
 
         $this->load->library('form_validation');
 
@@ -61,7 +55,7 @@ class Search extends CI_Controller {
 		$this->load->model('stations');
 
 		$data['station_profile'] = $this->stations->all_of_user();
-		$data['page_title'] = "Incorrectly logged CQ zones";
+		$data['page_title'] = __("Incorrectly logged CQ zones");
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('search/cqzones');
@@ -73,7 +67,7 @@ class Search extends CI_Controller {
 		$this->load->model('stations');
 
 		$data['station_profile'] = $this->stations->all_of_user();
-		$data['page_title'] = "QSOs unconfirmed on LoTW, but the callsign has uploaded to LoTW after QSO date";
+		$data['page_title'] = __("QSOs unconfirmed on LoTW, but the callsign has uploaded to LoTW after QSO date");
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('search/lotw_unconfirmed');

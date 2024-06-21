@@ -133,7 +133,7 @@
 <?php if ($this->uri->segment(1) == "gridsquares" && $this->uri->segment(2) == "band") { ?>
 
   var bands_available = <?php echo $bands_available; ?>;
-  $('#gridsquare_bands').append('<option value="All">All</option>')
+  $('#gridsquare_bands').append('<option value="All">' . __("All") . '</option>')
   $.each(bands_available, function(key, value) {
      $('#gridsquare_bands')
          .append($("<option></option>")
@@ -197,18 +197,18 @@
                 "paging":         true,
                 "scrollX": true,
                 "order": [ 0, 'desc' ],
-                // "language": {
-                //     url: "../assets/json/datatables_languages/en-GB.json" // in visitor view always english
-                // },
+                "language": {
+                  url: getDataTablesLanguageUrl(),
+                },
                 dom: 'Bfrtip',
                 buttons: [
                    {
                       extend: 'csv',
-                      text: 'CSV'
+                      text: '<?= __("CSV"); ?>'
                    },
                    {
                       extend: 'clear',
-                      text: 'Clear'
+                      text: '<?= __("Clear"); ?>'
                    }
                 ]
             });
@@ -234,9 +234,11 @@
             }
         </script>
     <?php } ?>
-    <!-- TODO: We will add Multilanguage Support for the public views later, so wie komment this out for the moment -->
-    <!-- <script>
-        var lang_datatables_language = "<?php echo lang('datatables_language') ?>";
-    </script> -->
+    <script>
+    function getDataTablesLanguageUrl() {
+        datatables_language_url = "<?php echo base_url() ;?>assets/json/datatables_languages/" + "<?php echo $language['locale']; ?>" + ".json";
+        return datatables_language_url;
+    }
+    </script>
   </body>
 </html>

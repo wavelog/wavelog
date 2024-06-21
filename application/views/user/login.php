@@ -33,7 +33,7 @@ body {
     <img src="<?php echo base_url(); ?>assets/logo/<?php echo $this->optionslib->get_logo('main_logo'); ?>.png" class="mx-auto d-block mainLogo" alt="">
     <?php if (ENVIRONMENT == 'maintenance') { ?>
         <div class="d-flex justify-content-center align-items-center">
-            <span class="badge text-bg-warning mb-4 pt-2 pb-2">MAINTENANCE MODE</span>
+            <span class="badge text-bg-warning mb-4 pt-2 pb-2"><?= __("MAINTENANCE MODE"); ?></span>
         </div>
     <?php } ?>
     <div class="my-2 rounded-0 shadow-sm card mb-2 shadow-sm">
@@ -42,21 +42,21 @@ body {
 			<?php $this->form_validation->set_error_delimiters('', ''); ?>
                 <input type="hidden" name="id" value="<?php echo $this->uri->segment(3); ?>" />
                 <div>
-                    <label for="floatingInput"><strong><?php echo lang('account_username'); ?></strong></label>
-                    <input type="text" name="user_name" class="form-control" id="floatingInput" placeholder="<?php echo lang('account_username'); ?>"
+                    <label for="floatingInput"><strong><?= __("Username"); ?></strong></label>
+                    <input type="text" name="user_name" class="form-control" id="floatingInput" placeholder="<?= __("Username"); ?>"
                         value="<?php echo $this->input->post('user_name'); ?>" autofocus>
                 </div>
                 <div>
-                    <label for="floatingPassword"><strong><?php echo lang('account_password'); ?></strong></label>
+                    <label for="floatingPassword"><strong><?= __("Password"); ?></strong></label>
                     <input type="password" name="user_password" class="form-control" id="floatingPassword"
-                        placeholder="<?php echo lang('account_password'); ?>">
+                        placeholder="<?= __("Password"); ?>">
                 </div>
 
                 <div>
-                    <p><small><a class="" href="<?php echo site_url('user/forgot_password'); ?>"><?php echo lang('account_forgot_your_password'); ?></a></small></p>
+                    <p><small><a class="" href="<?php echo site_url('user/forgot_password'); ?>"><?= __("Forgot your password?"); ?></a></small></p>
                 </div>
 					<?php $this->load->view('layout/messages'); ?>
-                <button class="w-100 btn btn-primary" type="submit"><?php echo lang('account_login'); ?> →</button>
+                <button class="w-100 btn btn-primary" type="submit"><?= __("Login"); ?> →</button>
             </form>
         </div>
     </div>

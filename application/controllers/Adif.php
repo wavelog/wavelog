@@ -15,9 +15,9 @@ class adif extends CI_Controller {
 
 	public function test() {
 		if(validateADIFDate('20120228') == true){
-			echo "valid date";
+			echo __("valid date");
 		} else {
-			echo "date incorrect";
+			echo __("date incorrect");
 		}
 
 
@@ -26,7 +26,7 @@ class adif extends CI_Controller {
 	/* Shows Export Views */
 	public function export() {
 
-		$data['page_title'] = "ADIF Export";
+		$data['page_title'] = __("ADIF Export");
 
 
 		$this->load->view('interface_assets/header', $data);
@@ -144,7 +144,7 @@ class adif extends CI_Controller {
 
 		$this->load->model('stations');
 
-		$data['page_title'] = "ADIF Import / Export";
+		$data['page_title'] = __("ADIF Import / Export");
 		$data['max_upload'] = ini_get('upload_max_filesize');
 
 		$data['station_profile'] = $this->stations->all_of_user();
@@ -168,7 +168,7 @@ class adif extends CI_Controller {
 
 		$data['active_station_info'] = $station_profile->row();
 
-		$data['page_title'] = "ADIF Import";
+		$data['page_title'] = __("ADIF Import");
 		$data['tab'] = "adif";
 
 		$config['upload_path'] = './uploads/';
@@ -208,7 +208,7 @@ class adif extends CI_Controller {
 						unlink('./uploads/'.$fdata['upload_data']['file_name']);
 					} else {
 						unlink('./uploads/'.$fdata['upload_data']['file_name']);
-						$data['error'] = "Unsupported Filetype";
+						$data['error'] = __("Unsupported Filetype");
 						$stopnow=true;
 					}
 				} else {
@@ -244,14 +244,14 @@ class adif extends CI_Controller {
 					return;
 				}
 			} else {
-				$custom_errors='Station Profile not valid for User';
+				$custom_errors=__("Station Profile not valid for User");
 			}
 
 			log_message("Error","ADIF End");
 			$data['adif_errors'] = $custom_errors;
 			$data['skip_dupes'] = $this->input->post('skipDuplicate');
 
-			$data['page_title'] = "ADIF Imported";
+			$data['page_title'] = __("ADIF Imported");
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('adif/import_success');
 			$this->load->view('interface_assets/footer');
@@ -262,7 +262,7 @@ class adif extends CI_Controller {
 		$this->load->model('stations');
 		$data['station_profile'] = $this->stations->all_of_user();
 
-		$data['page_title'] = "DCL Import";
+		$data['page_title'] = __("DCL Import");
 		$data['tab'] = "dcl";
 
 		$config['upload_path'] = './uploads/';
@@ -318,7 +318,7 @@ class adif extends CI_Controller {
 			unlink('./uploads/'.$data['upload_data']['file_name']);
 			$data['dcl_error_count'] = $error_count;
 			$data['dcl_errors'] = $custom_errors;
-			$data['page_title'] = "DCL Data Imported";
+			$data['page_title'] = __("DCL Data Imported");
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('adif/dcl_success');
 			$this->load->view('interface_assets/footer');

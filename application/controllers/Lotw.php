@@ -24,11 +24,8 @@ class Lotw extends CI_Controller {
 		parent::__construct();
 		$this->load->helper(array('form', 'url'));
 
-		// Load language files
-		$this->lang->load('lotw');
-
 		if (ENVIRONMENT == 'maintenance' && $this->session->userdata('user_id') == '') {
-            echo "Maintenance Mode is active. Try again later.\n";
+            echo __("Maintenance Mode is active. Try again later.")."\n";
 			redirect('user/login');
 		}
 	}
@@ -59,7 +56,7 @@ class Lotw extends CI_Controller {
 		$data['lotw_cert_results'] = $this->LotwCert->lotw_certs($this->session->userdata('user_id'));
 
 		// Set Page Title
-		$data['page_title'] = "Logbook of the World";
+		$data['page_title'] = __("Logbook of the World");
 
 		// Check folder permissions
 		$uploads_folder = $this->permissions->is_really_writable('uploads');
@@ -88,7 +85,7 @@ class Lotw extends CI_Controller {
 		$data['dxcc_list'] = $this->dxcc->list();
 
 		// Set Page Title
-		$data['page_title'] = "Logbook of the World";
+		$data['page_title'] = __("Logbook of the World");
 
 		// Load Views
 		$this->load->view('interface_assets/header', $data);
@@ -135,7 +132,7 @@ class Lotw extends CI_Controller {
 			$data['dxcc_list'] = $this->dxcc->list();
 
 			// Set Page Title
-			$data['page_title'] = "Logbook of the World";
+			$data['page_title'] = __("Logbook of the World");
 
 			// Load Views
 			$this->load->view('interface_assets/header', $data);
@@ -622,7 +619,7 @@ class Lotw extends CI_Controller {
 		if ($this->user_model->authorize(2)) {	// Only Output results if authorized User
 			if(isset($data['lotw_table_headers'])) {
 				if($display_view == TRUE) {
-					$data['page_title'] = "LoTW ADIF Information";
+					$data['page_title'] = __("LoTW ADIF Information");
 					$this->load->view('interface_assets/header', $data);
 					$this->load->view('lotw/analysis');
 					$this->load->view('interface_assets/footer');
@@ -730,7 +727,7 @@ class Lotw extends CI_Controller {
 		}
 
 		if (!($this->config->item('disable_manual_lotw'))) {
-			$data['page_title'] = "LoTW ADIF Import";
+			$data['page_title'] = __("LoTW ADIF Import");
 
 			$config['upload_path'] = './uploads/';
 			$config['allowed_types'] = 'adi|ADI';
@@ -842,7 +839,7 @@ class Lotw extends CI_Controller {
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 
-		$data['page_title'] = "LoTW .TQ8 Upload";
+		$data['page_title'] = __("LoTW .TQ8 Upload");
 
 		$config['upload_path'] = './uploads/';
 		$config['allowed_types'] = 'tq8|TQ8';
@@ -939,19 +936,19 @@ class Lotw extends CI_Controller {
 			if (stristr($response, "accepted"))
 			{
 			   $this->session->set_flashdata('lotw_status', 'accepted');
-			   $data['page_title'] = "LoTW .TQ8 Sent";
+			   $data['page_title'] = __("LoTW .TQ8 Sent");
 			}
 			elseif (stristr($response, "rejected"))
 			{
 					$this->session->set_flashdata('lotw_status', 'rejected');
-					$data['page_title'] = "LoTW .TQ8 Sent";
+					$data['page_title'] = __("LoTW .TQ8 Sent");
 			}
 			else
 			{
 				// If we're here, we didn't find what we're looking for in the ARRL response
 				// and LoTW is probably down or broken.
 				$this->session->set_flashdata('warning', 'Did not receive proper response from LoTW. Try again later.');
-				$data['page_title'] = "LoTW .TQ8 Not Sent";
+				$data['page_title'] = __("LoTW .TQ8 Not Sent");
 			}
 
 			// Now we need to clean up

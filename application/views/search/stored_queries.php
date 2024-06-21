@@ -5,8 +5,8 @@ $i = 1;
 	<thead>
 		<tr>
 			<th>#</th>
-			<th>Description</th>
-			<th>Query</th>
+			<th><?= __("Description"); ?></th>
+			<th><?= __("Query"); ?></th>
 			<th></th>
 			<th></th>
 		</tr>
@@ -18,8 +18,8 @@ $i = 1;
 			echo '<td>' . $i++ . '</td>';
 			echo '<td contenteditable="false" id="description_' . $q->id . '">' . $q->description . '</td>';
 			echo '<td>' . $q->query . '</td>';
-			echo '<td id="edit_' . $q->id . '"><a class="btn btn-outline-primary btn-sm" href="javascript:edit_stored_query(' . $q->id . ');">Edit</a></>';
-			echo '<td><a class="btn btn-danger btn-sm" href="javascript:delete_stored_query(' . $q->id . ');">Delete</a></td>';
+			echo '<td id="edit_' . $q->id . '"><a class="btn btn-outline-primary btn-sm" href="javascript:edit_stored_query(' . $q->id . ');">' . __("Edit") . '</a></>';
+			echo '<td><a class="btn btn-danger btn-sm" href="javascript:delete_stored_query(' . $q->id . ');">' . __("Delete") . '</a></td>';
 			echo '</tr>';
 		}
 		?>

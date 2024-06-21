@@ -17,7 +17,7 @@
                             $versionDialogTextWithLinks = preg_replace('/(https?:\/\/[^\s<]+)/', '<a href="$1" target="_blank">$1</a>', $versionDialogText);
                             echo nl2br($versionDialogTextWithLinks);
                         } else {
-                            echo 'No Version Dialog text set. Go to the Admin Menu and set one.';
+                            echo __("No Version Dialog text set. Go to the Admin Menu and set one.");
                         }
                         ?>
                     </div>
@@ -57,10 +57,10 @@
                                 echo "<div id='markdownDiv' style='display: none;'>" . $releaseBody . "</div>";
                                 echo "<div id='formattedHTMLDiv'></div>";
                             } else {
-                                echo 'Error at parsing JSON-Data or got empty result from github.';
+                                echo __("Error at parsing JSON-Data or got empty result from github.");
                             }
                         } else {
-                            echo 'Error at getting the data from GitHub.';
+                            echo __("Error at getting the data from GitHub.");
                         }
                         ?>
                     </div>
@@ -72,11 +72,11 @@
                 <?php
                 if ($versionDialogMode !== 'disabled') {
                 ?>
-                    <button class="btn btn-secondary" onclick="dismissVersionDialog()" data-bs-dismiss="modal"><?php echo lang('options_version_dialog_dismiss'); ?></button>
+                    <button class="btn btn-secondary" onclick="dismissVersionDialog()" data-bs-dismiss="modal"><?= __("Don't show again"); ?></button>
                 <?php
                 }
                 ?>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><?php echo lang('options_version_dialog_close'); ?></button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><?= __("Close"); ?></button>
             </div>
         </div>
     </div>

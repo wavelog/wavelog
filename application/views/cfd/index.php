@@ -4,7 +4,7 @@
 
     <div class="card">
         <div class="card-header">
-            <?php echo lang('export_cfd_description'); ?>
+            <?= sprintf(__("Export of CFD-File for DARC-Toplist (See %s)"), "<a href='https://toplist.darc.de' target='_blank'>https://toplist.darc.de</a>"); ?>
         </div>
 
         <div class="card-body">
@@ -12,17 +12,17 @@
             <form class="form" action="<?php echo site_url('cfdexport/export'); ?>" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="mb-3 col-md-3">
-                        <label for="from"><?php echo lang('gen_from_date') . ": " ?></label>
+                        <label for="from"><?= __("From date") . ": " ?></label>
                         <input name="from" id="from" type="date" class="form-control w-auto">
                     </div>
 
                     <div class="mb-3 col-md-3">
-                        <label for="to"><?php echo lang('gen_to_date') . ": " ?></label>
+                        <label for="to"><?= __("To date") . ": " ?></label>
                         <input name="to" id="to" type="date" class="form-control w-auto">
                     </div>
                 </div>    
                 <br>
-                <button type="submit" class="btn btn-primary mb-2" value="Export"><?php echo lang('general_word_export'); ?></button>
+                <button type="submit" class="btn btn-primary mb-2" value="Export"><?= __("Export"); ?></button>
             </form>
         </div>
     </div>

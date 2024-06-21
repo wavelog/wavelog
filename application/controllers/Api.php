@@ -23,7 +23,7 @@ class API extends CI_Controller {
 
 		$data['api_keys'] = $this->api_model->keys();
 
-		$data['page_title'] = "API";
+		$data['page_title'] = __("API");
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('api/help');
@@ -47,14 +47,14 @@ class API extends CI_Controller {
 
         $this->load->library('form_validation');
 
-        $this->form_validation->set_rules('api_desc', 'API Description', 'required');
-        $this->form_validation->set_rules('api_key', 'API Key is required do not change this field', 'required');
+        $this->form_validation->set_rules('api_desc', __("API Description"), 'required');
+        $this->form_validation->set_rules('api_key', __("API Key is required do not change this field"), 'required');
 
         $data['api_info'] = $this->api_model->key_description($key);
 
         if ($this->form_validation->run() == FALSE)
         {
-  	      	$data['page_title'] = "Edit API Description";
+  	      	$data['page_title'] = __("Edit API Description");
 
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('api/description');
@@ -66,7 +66,7 @@ class API extends CI_Controller {
 
 			$this->api_model->update_key_description($this->input->post('api_key'), $this->input->post('api_desc'));
 
-			$this->session->set_flashdata('notice', 'API Key <b>'.$this->input->post('api_key')."</b> description has been updated.");
+			$this->session->set_flashdata('notice', sprintf(__("API Key %s description has been updated."), "<b>".$this->input->post('api_key')."</b>"));
 
 			redirect('api/help');
 		}
@@ -106,7 +106,7 @@ class API extends CI_Controller {
 
 		$this->api_model->delete_key($key);
 
-		$this->session->set_flashdata('notice', 'API Key <b>'.$key."</b> has been deleted");
+		$this->session->set_flashdata('notice', sprintf(__("API Key %s has been deleted"), "<b>".$key."</b>" ));
 
 		redirect('api/help');
 	}
@@ -115,13 +115,13 @@ class API extends CI_Controller {
 	function auth($key) {
 		$this->load->model('api_model');
 			header("Content-type: text/xml");
-		if($this->api_model->access($key) == "No Key Found" || $this->api_model->access($key) == "Key Disabled") {
+		if($this->api_model->access($key) == __("No Key Found") || $this->api_model->access($key) == __("Key Disabled")) {
 			echo "<auth>";
-			echo "<message>Key Invalid - either not found or disabled</message>";
+			echo "<message>" . __("Key Invalid - either not found or disabled") . "</message>";
 			echo "</auth>";
 		} else {
 			echo "<auth>";
-			echo "<status>Valid</status>";
+			echo "<status>" . __("Valid") . "</status>";
 			echo "<rights>".$this->api_model->access($key)."</rights>";
 			echo "</auth>";
 			$this->api_model->update_last_used($key);

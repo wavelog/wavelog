@@ -12,23 +12,23 @@
 
 <div class="card">
   <div class="card-header">
-    Modes
+    <?= __("Modes"); ?>
   </div>
   <div class="card-body">
     <p class="card-text">
-		Using the modes list you can control which modes are shown when creating a new QSO.
+		<?= __("Using the modes list you can control which modes are shown when creating a new QSO."); ?>
 	</p>
     <p class="card-text">
-		Active modes will be shown in the QSO "Mode" drop-down, while inactive modes will be hidden and cannot be selected.
+		<?= __("Active modes will be shown in the QSO 'Mode' drop-down, while inactive modes will be hidden and cannot be selected."); ?>
 	</p>
     <div class="table-responsive">
 		<table style="width:100%" class="modetable table table-striped">
 			<thead>
 				<tr>
-					<th class="select-filter" scope="col">Mode</th>
-					<th class="select-filter" scope="col">Sub-Mode</th>
+					<th class="select-filter" scope="col"><?= __("Mode"); ?></th>
+					<th class="select-filter" scope="col"><?= __("Sub-Mode"); ?></th>
 					<th class="select-filter" scope="col">SSB / DATA / CW</th>
-					<th class="select-filter" scope="col">Status</th>
+					<th class="select-filter" scope="col"><?= __("Status"); ?></th>
                     <th scope="col"></th>
 					<th scope="col"></th>
 					<th scope="col"></th>
@@ -40,19 +40,19 @@
 					<td style="text-align: center; vertical-align: middle;" ><?php echo $row->mode;?></td>
 					<td style="text-align: center; vertical-align: middle;" ><?php echo $row->submode;?></td>
 					<td style="text-align: center; vertical-align: middle;" ><?php echo $row->qrgmode;?></td>
-                    <td style="text-align: center; vertical-align: middle;"  class='mode_<?php echo $row->id ?>'><?php if ($row->active == 1) { echo "active";} else { echo "not active";};?></td>
+                    <td style="text-align: center; vertical-align: middle;"  class='mode_<?php echo $row->id ?>'><?php if ($row->active == 1) { echo __("Active");} else { echo __("Not active");};?></td>
                     <td style="text-align: center; vertical-align: middle;"  style="text-align: center">
                         <?php if ($row->active == 1) {
-                            echo "<button onclick='javascript:deactivateMode(". $row->id . ")' class='btn_" . $row->id . " btn btn-secondary btn-sm'>Deactivate</button>";
+                            echo "<button onclick='javascript:deactivateMode(". $row->id . ")' class='btn_" . $row->id . " btn btn-secondary btn-sm'>" . __("Deactivate") . "</button>";
                         } else {
-                            echo "<button onclick='javascript:activateMode(". $row->id . ")' class='btn_" . $row->id . " btn btn-primary btn-sm'>Activate</button>";
+                            echo "<button onclick='javascript:activateMode(". $row->id . ")' class='btn_" . $row->id . " btn btn-primary btn-sm'>" . __("Activate") . "</button>";
                         };?>
                     </td>
 					<td style="text-align: center; vertical-align: middle;" >
-						<a href="<?php echo site_url('mode/edit')."/".$row->id; ?>" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit"></i> Edit</a>
+						<a href="<?php echo site_url('mode/edit')."/".$row->id; ?>" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit"></i> <?= __("Edit"); ?></a>
 					</td>
 					<td style="text-align: center; vertical-align: middle;" >
-						<a href="javascript:deleteMode('<?php echo $row->id; ?>', '<?php echo $row->mode; ?>');" class="btn btn-danger btn-sm" ><i class="fas fa-trash-alt"></i> Delete</a>
+						<a href="javascript:deleteMode('<?php echo $row->id; ?>', '<?php echo $row->mode; ?>');" class="btn btn-danger btn-sm" ><i class="fas fa-trash-alt"></i> <?= __("Delete"); ?></a>
                     </td>
 				</tr>
 
@@ -65,7 +65,7 @@
 					<th></th>
 					<th></th>
 					<th><---</th>
-					<th><?php echo lang('filter_filters'); ?></th>
+					<th><?= __("Filters"); ?></th>
 					<th></th>
 				</tr>
 			</tfoot>
@@ -73,9 +73,9 @@
 	</div>
   <br/>
   <p>
-	  	<button onclick="createModeDialog();" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Create a Mode</button>
-  		<button onclick="activateAllModes();" class="btn btn-primary btn-sm">Activate All</button>
-		<button onclick="deactivateAllModes();" class="btn btn-primary btn-sm">Deactivate All </button>
+	  	<button onclick="createModeDialog();" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> <?= __("Create a Mode"); ?></button>
+  		<button onclick="activateAllModes();" class="btn btn-primary btn-sm"><?= __("Activate All"); ?></button>
+		<button onclick="deactivateAllModes();" class="btn btn-primary btn-sm"><?= __("Deactivate All"); ?> </button>
 	</p>
 </div>
 </div>

@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-	<title>QSOs</title>
+	<title><?= __("QSOs"); ?></title>
 	<style type="text/css" media="screen">
 		body {
 			font-family: Arial, "MS Trebuchet", sans-serif;
@@ -21,15 +21,15 @@
 <body>
 	   <table width="100%" class="zebra-striped">
 			<tr class="titles">
-				<td>Date</td>
+				<td><?= __("Date"); ?></td>
 				<?php if ($show_time) { ?>
-					<td>Time</td>
+					<td><?= __("Time"); ?></td>
 				<?php } ?>
-				<td>Call</td>
-				<td>Mode</td>
-				<td>Sent</td>
-				<td>Recv</td>
-				<td>Band</td>
+				<td><?= __("Call"); ?></td>
+				<td><?= __("Mode"); ?></td>
+				<td><?= __("Sent"); ?></td>
+				<td><?= __("Rcvd"); ?></td>
+				<td><?= __("Band"); ?></td>
 			</tr>
 
 			<?php

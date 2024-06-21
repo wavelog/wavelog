@@ -1,22 +1,22 @@
 <?php
 function echo_table_header_col($ctx, $name) {
 	switch($name) {
-		case 'Mode': echo '<th>'.$ctx->lang->line('gen_hamradio_mode').'</th>'; break;
-		case 'RSTS': echo '<th>'.$ctx->lang->line('gen_hamradio_rsts').'</th>'; break;
-		case 'RSTR': echo '<th>'.$ctx->lang->line('gen_hamradio_rstr').'</th>'; break;
-		case 'Country': echo '<th>'.$ctx->lang->line('general_word_country').'</th>'; break;
-		case 'IOTA': echo '<th>'.$ctx->lang->line('gen_hamradio_iota').'</th>'; break;
-		case 'SOTA': echo '<th>'.$ctx->lang->line('gen_hamradio_sota').'</th>'; break;
-		case 'WWFF': echo '<th>'.$ctx->lang->line('gen_hamradio_wwff').'</th>'; break;
-		case 'POTA': echo '<th>'.$ctx->lang->line('gen_hamradio_pota').'</th>'; break;
-		case 'State': echo '<th>'.$ctx->lang->line('gen_hamradio_state').'</th>'; break;
-		case 'Grid': echo '<th>'.$ctx->lang->line('gen_hamradio_gridsquare').'</th>'; break;
-		case 'Distance': echo '<th>'.$ctx->lang->line('gen_hamradio_distance').'</th>'; break;
-		case 'Band': echo '<th>'.$ctx->lang->line('gen_hamradio_band').'</td>'; break;
-		case 'Frequency': echo '<th>'.$ctx->lang->line('gen_hamradio_frequency').'</th>'; break;
-		case 'Operator': echo '<th>'.$ctx->lang->line('gen_hamradio_operator').'</th>'; break;
-		case 'Location': echo '<th>'.$ctx->lang->line('wavelog_station_profile').'</th>'; break;
-		case 'Name': echo '<th>'.$ctx->lang->line('general_word_name').'</th>'; break;
+		case 'Mode': echo '<th>'.__("Mode").'</th>'; break;
+		case 'RSTS': echo '<th>'.__("RST (S)").'</th>'; break;
+		case 'RSTR': echo '<th>'.__("RST (R)").'</th>'; break;
+		case 'Country': echo '<th>'.__("Country").'</th>'; break;
+		case 'IOTA': echo '<th>'.__("IOTA").'</th>'; break;
+		case 'SOTA': echo '<th>'.__("SOTA").'</th>'; break;
+		case 'WWFF': echo '<th>'.__("WWFF").'</th>'; break;
+		case 'POTA': echo '<th>'.__("POTA").'</th>'; break;
+		case 'State': echo '<th>'.__("State").'</th>'; break;
+		case 'Grid': echo '<th>'.__("Gridsquare").'</th>'; break;
+		case 'Distance': echo '<th>'.__("Distance").'</th>'; break;
+		case 'Band': echo '<th>'.__("Band").'</td>'; break;
+		case 'Frequency': echo '<th>'.__("Frequency").'</th>'; break;
+		case 'Operator': echo '<th>'.__("Operator").'</th>'; break;
+		case 'Location': echo '<th>'.__("Station Location").'</th>'; break;
+		case 'Name': echo '<th>'.__("Name").'</th>'; break;
 	}
 }
 
@@ -26,7 +26,7 @@ function echo_table_col($row, $name) {
 		case 'Mode':    echo '<td>'; echo $row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE . '</td>'; break;
         case 'RSTS':    echo '<td>' . $row->COL_RST_SENT ?? ''; if ($row->COL_STX) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">'; printf("%03d", $row->COL_STX); echo '</span>';} if ($row->COL_STX_STRING) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">' . $row->COL_STX_STRING . '</span>';} echo '</td>'; break;
         case 'RSTR':    echo '<td>' . $row->COL_RST_RCVD ?? ''; if ($row->COL_SRX) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">'; printf("%03d", $row->COL_SRX); echo '</span>';} if ($row->COL_SRX_STRING) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">' . $row->COL_SRX_STRING . '</span>';} echo '</td>'; break;
-		case 'Country': echo '<td>' . ucwords(strtolower(($row->name==null?"- NONE -":$row->name))); if ($row->end != null) echo ' <span class="badge text-bg-danger">'.$ci->lang->line('gen_hamradio_deleted_dxcc').'</span>' . '</td>'; break;
+		case 'Country': echo '<td>' . ucwords(strtolower(($row->name==null?"- NONE -":$row->name))); if ($row->end != null) echo ' <span class="badge text-bg-danger">'.__("Deleted DXCC").'</span>' . '</td>'; break;
 		case 'IOTA':    echo '<td>' . ($row->COL_IOTA ?? '') . '</td>'; break;
 		case 'SOTA':    echo '<td>' . ($row->COL_SOTA_REF ?? '') . '</td>'; break;
 		case 'WWFF':    echo '<td>' . ($row->COL_WWFF_REF ?? '') . '</td>'; break;
@@ -54,11 +54,11 @@ function echo_table_col($row, $name) {
     <table style="width:100%" class="table contacttable table-striped table-hover">
         <thead>
             <tr class="titles">
-                <th><?php echo lang('general_word_date'); ?></th>
+                <th><?= __("Date"); ?></th>
                 <?php if(($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE || ($this->config->item('show_time'))) { ?>
-                <th><?php echo lang('general_word_time'); ?></th>
+                <th><?= __("Time"); ?></th>
                 <?php } ?>
-                <th><?php echo lang('gen_hamradio_call'); ?></th>
+                <th><?= __("Call"); ?></th>
                 <?php
                 echo_table_header_col($this, $this->session->userdata('user_column1')==""?'Mode':$this->session->userdata('user_column1'));
                 echo_table_header_col($this, $this->session->userdata('user_column2')==""?'RSTS':$this->session->userdata('user_column2'));
@@ -80,10 +80,10 @@ function echo_table_col($row, $name) {
                         <th>QRZ</th>
                     <?php } ?>
     		    <?php if ( strpos($this->session->userdata('user_default_confirmation'),'C') !== false  ) { ?>
-                        <th>Clublog</th>
+                        <th><?= __("Clublog"); ?></th>
                     <?php } ?>
                 <?php } ?>
-                    <th><?php echo lang('gen_hamradio_station'); ?></th>
+                    <th><?= __("Station"); ?></th>
                 <?php if(($this->config->item('use_auth')) && ($this->session->userdata('user_type') >= 2)) { ?>
                     <th></th>
                 <?php } ?>
@@ -137,16 +137,16 @@ function echo_table_col($row, $name) {
                 <span <?php if ($row->COL_QSL_SENT != "N") {
                        switch ($row->COL_QSL_SENT) {
                        case "Y":
-                          echo "class=\"qsl-green\" data-bs-toggle=\"tooltip\" title=\"".lang('general_word_sent');
+                          echo "class=\"qsl-green\" data-bs-toggle=\"tooltip\" title=\"".__("Sent");
                           break;
                        case "Q":
-                          echo "class=\"qsl-yellow\" data-bs-toggle=\"tooltip\" title=\"".lang('general_word_queued');
+                          echo "class=\"qsl-yellow\" data-bs-toggle=\"tooltip\" title=\"".__("Queued");
                           break;
                        case "R":
-                          echo "class=\"qsl-yellow\" data-bs-toggle=\"tooltip\" title=\"".lang('general_word_requested');
+                          echo "class=\"qsl-yellow\" data-bs-toggle=\"tooltip\" title=\"".__("Requested");
                           break;
                        case "I":
-                          echo "class=\"qsl-grey\" data-bs-toggle=\"tooltip\" title=\"".lang('general_word_invalid_ignore');
+                          echo "class=\"qsl-grey\" data-bs-toggle=\"tooltip\" title=\"".__("Invalid (Ignore)");
                           break;
                        default:
                           echo "class=\"qsl-red";
@@ -159,32 +159,32 @@ function echo_table_col($row, $name) {
                        if ($row->COL_QSL_SENT_VIA != "") {
                           switch ($row->COL_QSL_SENT_VIA) {
                              case "B":
-                                echo " (".lang('general_word_qslcard_bureau').")";
+                                echo " (".__("Bureau").")";
                                 break;
                              case "D":
-                                echo " (".lang('general_word_qslcard_direct').")";
+                                echo " (".__("Direct").")";
                                 break;
                              case "M":
-                                echo " (".lang('general_word_qslcard_via').": ".($row->COL_QSL_VIA!="" ? $row->COL_QSL_VIA:"n/a").")";
+                                echo " (".__("Via").": ".($row->COL_QSL_VIA!="" ? $row->COL_QSL_VIA:"n/a").")";
                                 break;
                              case "E":
-                                echo " (".lang('general_word_qslcard_electronic').")";
+                                echo " (".__("Electronic").")";
                                 break;
                          }
                        } ?>">&#9650;</span>
                 <span <?php if ($row->COL_QSL_RCVD != "N") {
                        switch ($row->COL_QSL_RCVD) {
                        case "Y":
-                          echo "class=\"qsl-green\" data-bs-toggle=\"tooltip\" title=\"".lang('general_word_received');
+                          echo "class=\"qsl-green\" data-bs-toggle=\"tooltip\" title=\"".__("Received");
                           break;
                        case "Q":
-                          echo "class=\"qsl-yellow\" data-bs-toggle=\"tooltip\" title=\"".lang('general_word_queued');
+                          echo "class=\"qsl-yellow\" data-bs-toggle=\"tooltip\" title=\"".__("Queued");
                           break;
                        case "R":
-                          echo "class=\"qsl-yellow\" data-bs-toggle=\"tooltip\" title=\"".lang('general_word_requested');
+                          echo "class=\"qsl-yellow\" data-bs-toggle=\"tooltip\" title=\"".__("Requested");
                           break;
                        case "I":
-                          echo "class=\"qsl-grey\" data-bs-toggle=\"tooltip\" title=\"".lang('general_word_invalid_ignore');
+                          echo "class=\"qsl-grey\" data-bs-toggle=\"tooltip\" title=\"".__("Invalid (Ignore)");
                           break;
                        default:
                           echo "class=\"qsl-red";
@@ -197,16 +197,16 @@ function echo_table_col($row, $name) {
                        if ($row->COL_QSL_RCVD_VIA != "") {
                           switch ($row->COL_QSL_RCVD_VIA) {
                              case "B":
-                                echo " (".lang('general_word_qslcard_bureau').")";
+                                echo " (".__("Bureau").")";
                                 break;
                              case "D":
-                                echo " (".lang('general_word_qslcard_direct').")";
+                                echo " (".__("Direct").")";
                                 break;
                              case "M":
-                                echo " (Manager)";
+                                echo " (".__("Manager").")";
                                 break;
                              case "E":
-                                echo " (".lang('general_word_qslcard_electronic').")";
+                                echo " (".__("Electronic").")";
                                 break;
                          }
                        } ?>">&#9660;</span>
@@ -214,8 +214,8 @@ function echo_table_col($row, $name) {
 
                 <?php } if (strpos($this->session->userdata('user_default_confirmation'),'E') !== false && ($this->session->userdata('user_eqsl_name') != "")){ ?>
                     <td class="eqsl">
-                        <span <?php if ($row->COL_EQSL_QSL_SENT == "Y") { echo "title=\"".lang('eqsl_short')." ".lang('general_word_sent'); if ($row->COL_EQSL_QSLSDATE != null) { $timestamp = strtotime($row->COL_EQSL_QSLSDATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="eqsl-<?php echo ($row->COL_EQSL_QSL_SENT=='Y')?'green':'red'?>">&#9650;</span>
-                        <span <?php if ($row->COL_EQSL_QSL_RCVD == "Y") { echo "title=\"".lang('eqsl_short')." ".lang('general_word_received'); if ($row->COL_EQSL_QSLRDATE != null) { $timestamp = strtotime($row->COL_EQSL_QSLRDATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="eqsl-<?php echo ($row->COL_EQSL_QSL_RCVD=='Y')?'green':'red'?>">
+                        <span <?php if ($row->COL_EQSL_QSL_SENT == "Y") { echo "title=\"".__("eQSL")." ".__("Sent"); if ($row->COL_EQSL_QSLSDATE != null) { $timestamp = strtotime($row->COL_EQSL_QSLSDATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="eqsl-<?php echo ($row->COL_EQSL_QSL_SENT=='Y')?'green':'red'?>">&#9650;</span>
+                        <span <?php if ($row->COL_EQSL_QSL_RCVD == "Y") { echo "title=\"".__("eQSL")." ".__("Received"); if ($row->COL_EQSL_QSLRDATE != null) { $timestamp = strtotime($row->COL_EQSL_QSLRDATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="eqsl-<?php echo ($row->COL_EQSL_QSL_RCVD=='Y')?'green':'red'?>">
 			    	<?php if($row->COL_EQSL_QSL_RCVD =='Y') { ?>
                         <a class="eqsl-green" href="<?php echo site_url("eqsl/image/".$row->COL_PRIMARY_KEY); ?>" data-fancybox="images" data-width="528" data-height="336">&#9660;</a>
                     <?php } else { ?>
@@ -227,23 +227,23 @@ function echo_table_col($row, $name) {
 
                 <?php if ( strpos($this->session->userdata('user_default_confirmation'),'L') !== false && ($this->session->userdata('user_lotw_name') != "") ) { ?>
                     <td class="lotw">
-                        <span <?php if ($row->COL_LOTW_QSL_SENT == "Y") { echo "title=\"".lang('lotw_short')." ".lang('general_word_sent'); if ($row->COL_LOTW_QSLSDATE != null) { $timestamp = strtotime($row->COL_LOTW_QSLSDATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="lotw-<?php echo ($row->COL_LOTW_QSL_SENT=='Y')?'green':'red'?>">&#9650;</span>
-                        <span <?php if ($row->COL_LOTW_QSL_RCVD == "Y") { echo "title=\"".lang('lotw_short')." ".lang('general_word_received'); if ($row->COL_LOTW_QSLRDATE != null) { $timestamp = strtotime($row->COL_LOTW_QSLRDATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="lotw-<?php echo ($row->COL_LOTW_QSL_RCVD=='Y')?'green':'red'?>">&#9660;</span>
+                        <span <?php if ($row->COL_LOTW_QSL_SENT == "Y") { echo "title=\"".__("LoTW")." ".__("Sent"); if ($row->COL_LOTW_QSLSDATE != null) { $timestamp = strtotime($row->COL_LOTW_QSLSDATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="lotw-<?php echo ($row->COL_LOTW_QSL_SENT=='Y')?'green':'red'?>">&#9650;</span>
+                        <span <?php if ($row->COL_LOTW_QSL_RCVD == "Y") { echo "title=\"".__("LoTW")." ".__("Received"); if ($row->COL_LOTW_QSLRDATE != null) { $timestamp = strtotime($row->COL_LOTW_QSLRDATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="lotw-<?php echo ($row->COL_LOTW_QSL_RCVD=='Y')?'green':'red'?>">&#9660;</span>
                     </td>
                 <?php } ?>
 
 		<?php if ( strpos($this->session->userdata('user_default_confirmation'),'Z') !== false && ($this->session->userdata('hasQrzKey') != "") ) { ?>
                     <td class="qrz">
-                        <span <?php if ($row->COL_QRZCOM_QSO_UPLOAD_STATUS == "Y") { echo "title=\"QRZ ".lang('general_word_sent'); if ($row->COL_QRZCOM_QSO_UPLOAD_DATE != null) { $timestamp = strtotime($row->COL_QRZCOM_QSO_UPLOAD_DATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="qrz-<?php echo ($row->COL_QRZCOM_QSO_UPLOAD_STATUS=='Y')?'green':'red'?>">&#9650;</span>
-                        <span <?php if ($row->COL_QRZCOM_QSO_DOWNLOAD_STATUS == "Y") { echo "title=\"QRZ ".lang('general_word_received'); if ($row->COL_QRZCOM_QSO_DOWNLOAD_DATE != null) { $timestamp = strtotime($row->COL_QRZCOM_QSO_DOWNLOAD_DATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="qrz-<?php echo ($row->COL_QRZCOM_QSO_DOWNLOAD_STATUS=='Y')?'green':'red'?>">&#9660;</span>
+                        <span <?php if ($row->COL_QRZCOM_QSO_UPLOAD_STATUS == "Y") { echo "title=\"QRZ ".__("Sent"); if ($row->COL_QRZCOM_QSO_UPLOAD_DATE != null) { $timestamp = strtotime($row->COL_QRZCOM_QSO_UPLOAD_DATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="qrz-<?php echo ($row->COL_QRZCOM_QSO_UPLOAD_STATUS=='Y')?'green':'red'?>">&#9650;</span>
+                        <span <?php if ($row->COL_QRZCOM_QSO_DOWNLOAD_STATUS == "Y") { echo "title=\"QRZ ".__("Received"); if ($row->COL_QRZCOM_QSO_DOWNLOAD_DATE != null) { $timestamp = strtotime($row->COL_QRZCOM_QSO_DOWNLOAD_DATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="qrz-<?php echo ($row->COL_QRZCOM_QSO_DOWNLOAD_STATUS=='Y')?'green':'red'?>">&#9660;</span>
                     </td>
                 <?php } ?>
 
 
 		<?php if ( strpos($this->session->userdata('user_default_confirmation'),'C') !== false ) { ?>
                     <td class="clublog">
-                        <span <?php if ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == "Y") { echo "title=\"Clublog ".lang('general_word_sent'); if ($row->COL_CLUBLOG_QSO_UPLOAD_DATE != null) { $timestamp = strtotime($row->COL_CLUBLOG_QSO_UPLOAD_DATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="clublog-<?php echo ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS=='Y')?'green':'red'?>">&#9650;</span>
-                        <span <?php if ($row->COL_CLUBLOG_QSO_DOWNLOAD_STATUS == "Y") { echo "title=\"Clublog ".lang('general_word_received'); if ($row->COL_CLUBLOG_QSO_DOWNLOAD_DATE != null) { $timestamp = strtotime($row->COL_CLUBLOG_QSO_DOWNLOAD_DATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="clublog-<?php echo ($row->COL_CLUBLOG_QSO_DOWNLOAD_STATUS=='Y')?'green':'red'?>">&#9660;</span>
+                        <span <?php if ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS == "Y") { echo "title=\"Clublog ".__("Sent"); if ($row->COL_CLUBLOG_QSO_UPLOAD_DATE != null) { $timestamp = strtotime($row->COL_CLUBLOG_QSO_UPLOAD_DATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="clublog-<?php echo ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS=='Y')?'green':'red'?>">&#9650;</span>
+                        <span <?php if ($row->COL_CLUBLOG_QSO_DOWNLOAD_STATUS == "Y") { echo "title=\"Clublog ".__("Received"); if ($row->COL_CLUBLOG_QSO_DOWNLOAD_DATE != null) { $timestamp = strtotime($row->COL_CLUBLOG_QSO_DOWNLOAD_DATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="clublog-<?php echo ($row->COL_CLUBLOG_QSO_DOWNLOAD_STATUS=='Y')?'green':'red'?>">&#9660;</span>
                     </td>
                 <?php } ?>
 
@@ -263,35 +263,35 @@ function echo_table_col($row, $name) {
                         </div>
 
                         <div class="dropdown-menu menuOnResultTab" data-bs-toggle="popover" data-bs-placement="auto" data-qsoid="qso_<?php echo $row->COL_PRIMARY_KEY; ?>">
-                            <a class="dropdown-item" id="edit_qso" href="javascript:qso_edit(<?php echo $row->COL_PRIMARY_KEY; ?>)"><i class="fas fa-edit"></i> <?php echo lang('general_edit_qso'); ?></a>
+                            <a class="dropdown-item" id="edit_qso" href="javascript:qso_edit(<?php echo $row->COL_PRIMARY_KEY; ?>)"><i class="fas fa-edit"></i> <?= __("Edit QSO"); ?></a>
 
                             <?php if($row->COL_QSL_SENT !='Y') { ?>
                                 <div class="qsl_sent_<?php echo $row->COL_PRIMARY_KEY; ?>">
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="javascript:qsl_sent(<?php echo $row->COL_PRIMARY_KEY; ?>, 'B')" ><i class="fas fa-envelope"></i> <?php echo lang('general_mark_qsl_tx_bureau'); ?></a>
-                                    <a class="dropdown-item" href="javascript:qsl_sent(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D')" ><i class="fas fa-envelope"></i> <?php echo lang('general_mark_qsl_tx_direct'); ?></a>
-                                    <a class="dropdown-item" href="javascript:qsl_requested(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D')" ><i class="fas fa-envelope"></i> <?php echo lang('general_mark_qsl_requested'); ?></a>
-                                    <a class="dropdown-item" href="javascript:qsl_ignore(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D')" ><i class="fas fa-envelope"></i> <?php echo lang('general_mark_qsl_not_required'); ?></a>
+                                    <a class="dropdown-item" href="javascript:qsl_sent(<?php echo $row->COL_PRIMARY_KEY; ?>, 'B')" ><i class="fas fa-envelope"></i> <?= __("Mark QSL Sent (Bureau)"); ?></a>
+                                    <a class="dropdown-item" href="javascript:qsl_sent(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D')" ><i class="fas fa-envelope"></i> <?= __("Mark QSL Sent (Direct)"); ?></a>
+                                    <a class="dropdown-item" href="javascript:qsl_requested(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D')" ><i class="fas fa-envelope"></i> <?= __("Mark QSL Card Requested"); ?></a>
+                                    <a class="dropdown-item" href="javascript:qsl_ignore(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D')" ><i class="fas fa-envelope"></i> <?= __("Mark QSL Card Not Required"); ?></a>
                                 </div>
                             <?php } ?>
 
                             <?php if($row->COL_QSL_RCVD !='Y') { ?>
                                 <div class="qsl_rcvd_<?php echo $row->COL_PRIMARY_KEY; ?>">
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="javascript:qsl_rcvd(<?php echo $row->COL_PRIMARY_KEY; ?>, 'B')" ><i class="fas fa-envelope"></i> <?php echo lang('general_mark_qsl_rx_bureau'); ?></a>
-                                    <a class="dropdown-item" href="javascript:qsl_rcvd(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D')" ><i class="fas fa-envelope"></i> <?php echo lang('general_mark_qsl_rx_direct'); ?></a>
+                                    <a class="dropdown-item" href="javascript:qsl_rcvd(<?php echo $row->COL_PRIMARY_KEY; ?>, 'B')" ><i class="fas fa-envelope"></i> <?= __("Mark QSL Received (Bureau)"); ?></a>
+                                    <a class="dropdown-item" href="javascript:qsl_rcvd(<?php echo $row->COL_PRIMARY_KEY; ?>, 'D')" ><i class="fas fa-envelope"></i> <?= __("Mark QSL Received (Direct)"); ?></a>
                                 </div>
                             <?php } ?>
 
                             <div class="dropdown-divider"></div>
 
-                            <a class="dropdown-item" href="https://www.qrz.com/db/<?php echo $row->COL_CALL; ?>" target="_blank"><i class="fas fa-question"></i> <?php echo lang('general_lookup_qrz'); ?></a>
+                            <a class="dropdown-item" href="https://www.qrz.com/db/<?php echo $row->COL_CALL; ?>" target="_blank"><i class="fas fa-question"></i> <?= __("Lookup on QRZ.com"); ?></a>
 
-                            <a class="dropdown-item" href="https://www.hamqth.com/<?php echo $row->COL_CALL; ?>" target="_blank"><i class="fas fa-question"></i> <?php echo lang('general_lookup_hamqth'); ?></a>
+                            <a class="dropdown-item" href="https://www.hamqth.com/<?php echo $row->COL_CALL; ?>" target="_blank"><i class="fas fa-question"></i> <?= __("Lookup on HamQTH"); ?></a>
 
                             <div class="dropdown-divider"></div>
 
-                            <a class="dropdown-item" href="javascript:qso_delete(<?php echo $row->COL_PRIMARY_KEY; ?>, '<?php echo $row->COL_CALL; ?>')"><i class="fas fa-trash-alt"></i> <?php echo lang('general_delete_qso'); ?></a>
+                            <a class="dropdown-item" href="javascript:qso_delete(<?php echo $row->COL_PRIMARY_KEY; ?>, '<?php echo $row->COL_CALL; ?>')"><i class="fas fa-trash-alt"></i> <?= __("Delete QSO"); ?></a>
                         </div>
                     </div>
                 </td>

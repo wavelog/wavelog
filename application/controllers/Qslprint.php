@@ -43,7 +43,7 @@ class QSLPrint extends CI_Controller {
 			'assets/js/sections/qslprint.js',
 		];
 
-		$data['page_title'] = $this->lang->line('menu_print_requested_qsls');
+		$data['page_title'] = __("Print Requested QSLs");
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('qslprint/index');

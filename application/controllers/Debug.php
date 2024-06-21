@@ -29,6 +29,7 @@ class Debug extends CI_Controller
 		$data['stations'] = $this->Stations->all();
 
 		$data['qso_total'] = $this->Debug_model->count_all_qso();
+		$data['available_languages'] = $this->config->item('languages');
 
 		$data['qsos_with_no_station_id'] = $this->Logbook_model->check_for_station_id();
 		if ($data['qsos_with_no_station_id']) {
@@ -71,7 +72,7 @@ class Debug extends CI_Controller
 		$data['sota_update'] = $this->cron_model->cron('update_update_sota')->row();
 		$data['wwff_update'] = $this->cron_model->cron('update_update_wwff')->row();
 
-		$data['page_title'] = "Debug";
+		$data['page_title'] = __("Debug");
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('debug/index');
