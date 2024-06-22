@@ -57,15 +57,17 @@ sed -i "3s/.*/# $POT_LICENCE_TEXT/" $POT_FILE
 sed -i '4d' $POT_FILE
 sed -i '8d' $POT_FILE
 
-# Extract the first five lines of the POT file to a temporary file
-head -n 5 "$POT_FILE" > POT_HEADER
+# Extract the first three lines of the POT file to a temporary file
+head -n 3 "$POT_FILE" > POT_HEADER
 
 # Now we can merge the POT file (PO template) into each found PO file
 for po in $(find . -name "*.po"); do
     msgmerge --no-wrap --update -vv --backup=none --no-fuzzy-matching "$po" $POT_FILE;
-    # Replace the first five lines of the PO file with the POT file header
-    sed -i '1,5d' "$po"
+    # Replace the first three lines of the PO file with the POT file header
+    sed -i '1,3d' "$po"
     cat POT_HEADER "$po" > temp.po && mv temp.po "$po"
+    # Remove fuzzy markers from PO file
+    sed -i '/^#, fuzzy$/d' "$po"
 done
 
 # Clean up the temporary POT_HEADER file
