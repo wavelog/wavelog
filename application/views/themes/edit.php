@@ -28,7 +28,7 @@
 		</div>
 
 		<div class="mb-3">
-			<label for="mainLogoInput"<?= __(">Main Logo"); ?></label>
+			<label for="mainLogoInput"><?= __("Main Logo"); ?></label>
 			<input type="text" class="form-control" name="main_logo" id="mainLogoInput" aria-describedby="mainLogoInputHelp" value="<?php if(set_value('main_logo') != "") { echo set_value('main_logo'); } else { echo $theme->main_logo; } ?>">
 			<small id="mainLogoInputHelp" class="form-text text-muted"><?= sprintf(__("This is the name of the file which is used as %s big %s Logo in the login screen placed in assets/logo."), "<u>", "</u>"); ?><br><?= __("Only PNG files with a size ratio of 1:1 are allowed."); ?></small>
 		</div>
