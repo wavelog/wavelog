@@ -844,7 +844,7 @@ class Awards extends CI_Controller {
 	    $data['iota_summary'] = $this->iota->get_iota_summary($bands, $postdata);
 
 	    // Render Page
-	    $data['page_title'] = sprintf(__("Awards - %s"), __("IOTA (Island On The Air"));
+	    $data['page_title'] = sprintf(__("Awards - %s"), __("IOTA (Island On The Air)"));
 	    $this->load->view('interface_assets/header', $data);
 	    $this->load->view('awards/iota/index');
 	    $this->load->view('interface_assets/footer');
