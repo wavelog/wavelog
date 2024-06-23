@@ -4,11 +4,12 @@
 #
 # Fabian Berg <hb9hil@wavelog.org>, 2024.
 # Christian Egger <christian@hb9hjq.ch>, 2024.
+# Nikolas Hagelstein <nikolas.hagelstein@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-06-23 23:12+0200\n"
-"PO-Revision-Date: 2024-06-23 19:55+0000\n"
+"PO-Revision-Date: 2024-06-23 22:01+0000\n"
 "Last-Translator: Fabian Berg <hb9hil@wavelog.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-translation/de/>\n"
 "Language: de_DE\n"
@@ -4751,7 +4752,7 @@ msgstr "Ordner Berechtigungen"
 
 #: application/views/debug/index.php:95
 msgid "This verifies that the folders used by Wavelog have read and write permissions by PHP."
-msgstr ""
+msgstr "Dies verifiziert, dass die von Wavelog verwendeten Ordner Schreib und Lese-Rechte durch PHP haben."
 
 #: application/views/debug/index.php:101 application/views/debug/index.php:112
 #: application/views/debug/index.php:123 application/views/debug/index.php:135
@@ -4783,11 +4784,11 @@ msgstr "Gehe in den application/config Ordner und vergleiche die config.sample.p
 #: application/views/debug/index.php:157
 #, php-format
 msgid "Change %s to the value %s (Strongly recommended)"
-msgstr ""
+msgstr "Ändere %s zu dem Wert %s (Stark empfohlen)"
 
 #: application/views/debug/index.php:163
 msgid "Authentication Mode is set correctly"
-msgstr ""
+msgstr "Der Authentifizierungsmodus ist korrekt eingestellt"
 
 #: application/views/debug/index.php:163
 msgid "Ok"
@@ -4799,76 +4800,76 @@ msgstr "Benutzerdaten migrieren"
 
 #: application/views/debug/index.php:172
 msgid "Here you can migrate existing QSL cards and eQSL cards to the new userdata folder."
-msgstr ""
+msgstr "Hier kannst du bestehende QSL-Karten und eQSL-Karten in den neuen Benutzerdaten-Ordner migrieren."
 
 #: application/views/debug/index.php:185
 msgid "Modules"
-msgstr ""
+msgstr "Module"
 
 #: application/views/debug/index.php:191 application/views/debug/index.php:202
 #: application/views/debug/index.php:213 application/views/debug/index.php:224
 #: application/views/debug/index.php:235
 msgid "Installed"
-msgstr ""
+msgstr "Installiert"
 
 #: application/views/debug/index.php:193 application/views/debug/index.php:204
 #: application/views/debug/index.php:215 application/views/debug/index.php:226
 #: application/views/debug/index.php:237
 msgid "Not Installed"
-msgstr ""
+msgstr "Nicht installiert"
 
 #: application/views/debug/index.php:244 application/views/qso/index.php:654
 msgid "Settings"
-msgstr ""
+msgstr "Einstellungen"
 
 #: application/views/debug/index.php:373
 msgid "Git Information"
-msgstr ""
+msgstr "Git Informationen"
 
 #: application/views/debug/index.php:377
 msgid "Branch"
-msgstr ""
+msgstr "Branch"
 
 #: application/views/debug/index.php:388 application/views/debug/index.php:399
 #: application/views/debug/index.php:409
 msgid "n/a"
-msgstr ""
+msgstr "n/a"
 
 #: application/views/debug/index.php:394
 msgid "Commit"
-msgstr ""
+msgstr "Commit"
 
 #: application/views/debug/index.php:404
 msgid "Tag"
-msgstr ""
+msgstr "Tag"
 
 #: application/views/debug/index.php:414
 msgid "Last Fetch"
-msgstr ""
+msgstr "Letzter Abruf"
 
 #: application/views/debug/index.php:426
 msgid "Check for new version"
-msgstr ""
+msgstr "Nach neuer Version suchen"
 
 #: application/views/debug/index.php:427
 msgid "Update now"
-msgstr ""
+msgstr "Jetzt aktualisieren"
 
 #: application/views/debug/index.php:445
 msgid "File download date"
-msgstr ""
+msgstr "Datum des Datei-Downloads"
 
 #: application/views/debug/index.php:449
 msgid "File"
-msgstr ""
+msgstr "Datei"
 
 #: application/views/debug/index.php:450
 msgid "Last update"
-msgstr ""
+msgstr "Letzte Aktualisierung"
 
 #: application/views/debug/index.php:454
 msgid "DXCC update from Club Log"
-msgstr ""
+msgstr "DXCC-Update von Club Log"
 
 #: application/views/debug/index.php:456 application/views/debug/index.php:462
 #: application/views/debug/index.php:467 application/views/debug/index.php:472
@@ -4876,42 +4877,42 @@ msgstr ""
 #: application/views/debug/index.php:487
 #: application/views/station_profile/edit.php:22
 msgid "Update"
-msgstr "Aktualisiere"
+msgstr "Aktualisierung"
 
 #: application/views/debug/index.php:460
 msgid "DOK file download"
-msgstr ""
+msgstr "DOK Datei Download"
 
 #: application/views/debug/index.php:465
 msgid "LoTW users download"
-msgstr ""
+msgstr "LoTW Benutzer Download"
 
 #: application/views/debug/index.php:470
 msgid "POTA file download"
-msgstr ""
+msgstr "POTA Datei Download"
 
 #: application/views/debug/index.php:475
 msgid "SCP file download"
-msgstr ""
+msgstr "SCP Datei Download"
 
 #: application/views/debug/index.php:480
 msgid "SOTA file download"
-msgstr ""
+msgstr "SOTA Datei Download"
 
 #: application/views/debug/index.php:485
 msgid "WWFF file download"
-msgstr ""
+msgstr "WWFF Datei Download"
 
 #: application/views/debug/index.php:494
 msgid "QSO-DB Maintenance"
-msgstr ""
+msgstr "QSO-DB Wartung"
 
 #: application/views/debug/index.php:498
 #, php-format
 msgid "The Database contains %d QSO without a station-profile (location)"
 msgid_plural "The Database contains %d QSOs without a station-profile (location)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Die Datenbank enthält %d QSO ohne Stationsprofil (Standort)"
+msgstr[1] "Die Datenbank enthält %d QSOs ohne Stationsprofil (Standort)"
 
 #: application/views/debug/index.php:511
 #: application/views/public_search/result.php:17
@@ -4921,88 +4922,88 @@ msgstr[1] ""
 #: application/views/stationsetup/linkedlocations.php:32
 #: application/views/stationsetup/stationsetup.php:120
 msgid "Station Callsign"
-msgstr "Station Rufzeichen"
+msgstr "Stations Rufzeichen"
 
 #: application/views/debug/index.php:536
 msgid "Please mark QSOs and reassign them to an existing station location:"
-msgstr ""
+msgstr "Bitte markiere die QSOs und weise sie einem vorhandenen Stationsstandort zu:"
 
 #: application/views/debug/index.php:544
 msgctxt "Stationlocation"
 msgid "Target Location"
-msgstr ""
+msgstr "Ziel Standort"
 
 #: application/views/debug/index.php:545 application/views/debug/index.php:556
 msgid "Reassign"
-msgstr ""
+msgstr "Neu zuweisen"
 
 #: application/views/debug/index.php:565
 msgid "Every QSO in your Database is assigned to a station-profile (location)"
-msgstr ""
+msgstr "Jedes QSO in deiner Datenbank ist einem Stationsprofil (Standort) zugeordnet"
 
 #: application/views/debug/index.php:565
 msgid "Everything ok"
-msgstr ""
+msgstr "Alles in Ordnung"
 
 #: application/views/debug/index.php:586
 msgid "Bulgarian"
-msgstr ""
+msgstr "Bulgarisch"
 
 #: application/views/debug/index.php:587
 msgid "Chinese (Simplified)"
-msgstr ""
+msgstr "Chinesisch (Vereinfacht)"
 
 #: application/views/debug/index.php:588
 msgid "Czech"
-msgstr ""
+msgstr "Tschechisch"
 
 #: application/views/debug/index.php:589
 msgid "Dutch"
-msgstr ""
+msgstr "Niederländisch"
 
 #: application/views/debug/index.php:590
 msgid "English"
-msgstr ""
+msgstr "Englisch"
 
 #: application/views/debug/index.php:591
 msgid "Finnish"
-msgstr ""
+msgstr "Finnisch"
 
 #: application/views/debug/index.php:592
 msgid "French"
-msgstr ""
+msgstr "Französisch"
 
 #: application/views/debug/index.php:593
 msgid "German"
-msgstr ""
+msgstr "Deutsch"
 
 #: application/views/debug/index.php:594
 msgid "Greek"
-msgstr ""
+msgstr "Griechisch"
 
 #: application/views/debug/index.php:595
 msgid "Italian"
-msgstr ""
+msgstr "Italienisch"
 
 #: application/views/debug/index.php:596
 msgid "Polish"
-msgstr ""
+msgstr "Polnisch"
 
 #: application/views/debug/index.php:597
 msgid "Russian"
-msgstr ""
+msgstr "Russisch"
 
 #: application/views/debug/index.php:598
 msgid "Spanish"
-msgstr ""
+msgstr "Spanisch"
 
 #: application/views/debug/index.php:599
 msgid "Swedish"
-msgstr ""
+msgstr "Schwedisch"
 
 #: application/views/debug/index.php:600
 msgid "Turkish"
-msgstr ""
+msgstr "Türkisch"
 
 #: application/views/distances/index.php:7
 #: application/views/interface_assets/footer.php:19
@@ -5032,7 +5033,7 @@ msgstr "Bandauswahl"
 
 #: application/views/dxatlas/index.php:3
 msgid "DX Atlas Export"
-msgstr ""
+msgstr "DX Atlas Export"
 
 #: application/views/dxatlas/index.php:7
 msgid "Export your logbook for use in DX Atlas to display worked / confirmed gridsquares."
@@ -5044,34 +5045,34 @@ msgstr "Nur QSO mit einem definierten Planquadrat werden auch exportiert!"
 
 #: application/views/dxcalendar/index.php:9
 msgid "Date from"
-msgstr ""
+msgstr "Datum von"
 
 #: application/views/dxcalendar/index.php:10
 msgid "Date to"
-msgstr ""
+msgstr "Datum bis"
 
 #: application/views/dxcalendar/index.php:13
 #: application/views/view_log/qso.php:366
 msgid "QSL Info"
-msgstr ""
+msgstr "QSL Info"
 
 #: application/views/dxcalendar/index.php:14
 msgid "Source"
-msgstr ""
+msgstr "Quelle"
 
 #: application/views/eqsl/analysis.php:11 application/views/eqsl/download.php:9
 #: application/views/eqsl/export.php:8 application/views/eqsl/import.php:7
 #: application/views/eqsl/result.php:11 application/views/eqsl/tools.php:7
 #: application/views/qrz/export.php:14
 msgid "Download QSOs"
-msgstr ""
+msgstr "QSOs herunterladen"
 
 #: application/views/eqsl/analysis.php:14
 #: application/views/eqsl/download.php:13 application/views/eqsl/export.php:12
 #: application/views/eqsl/import.php:11 application/views/eqsl/result.php:14
 #: application/views/eqsl/tools.php:11
 msgid "Upload QSOs"
-msgstr ""
+msgstr "QSO hochladen"
 
 #: application/views/eqsl/analysis.php:17
 #: application/views/eqsl/download.php:17 application/views/eqsl/export.php:16
@@ -5079,83 +5080,83 @@ msgstr ""
 #: application/views/eqsl/tools.php:15
 #: application/views/interface_assets/header.php:240
 msgid "Tools"
-msgstr ""
+msgstr "Tools"
 
 #: application/views/eqsl/analysis.php:20
 #: application/views/eqsl/download.php:20 application/views/eqsl/export.php:19
 #: application/views/eqsl/import.php:18 application/views/eqsl/result.php:20
 #: application/views/eqsl/tools.php:19
 msgid "Download eQSL cards"
-msgstr ""
+msgstr "eQSL-Karten herunterladen"
 
 #: application/views/eqsl/analysis.php:40
 #: application/views/eqsl/download.php:40 application/views/eqsl/result.php:37
 msgid "Submode"
-msgstr ""
+msgstr "Submode"
 
 #: application/views/eqsl/analysis.php:41
 msgid "Log Status"
-msgstr ""
+msgstr "Log Status"
 
 #: application/views/eqsl/analysis.php:42 application/views/eqsl/result.php:38
 msgid "eQSL Status"
-msgstr ""
+msgstr "eQSL Status"
 
 #: application/views/eqsl/analysis.php:62
 msgid "There are no QSO confirmations waiting for you at eQSL.cc"
-msgstr ""
+msgstr "Es warten keine QSO Bestätigungen für dich bei eQSL.cc"
 
 #: application/views/eqsl/download.php:31
 msgid "Below is a table of QSOs that have been confirmed on eQSL but QSL images have not been downloaded yet."
-msgstr ""
+msgstr "Unten ist eine Tabelle von QSOs, welche auf eQSL bestätigt worden sind, deren QSL-Bilder jedoch bis jetzt nicht heruntergeladen wurden."
 
 #: application/views/eqsl/download.php:43
 msgid "Action"
-msgstr ""
+msgstr "Aktion"
 
 #: application/views/eqsl/download.php:60
 msgid "View/Download"
-msgstr ""
+msgstr "Ansehen/Herunterladen"
 
 #: application/views/eqsl/download.php:71 application/views/eqsl/import.php:50
 msgid "Wavelog will use the eQSL credentials from your Wavelog user profile to connect to eQSL and download confirmations."
-msgstr ""
+msgstr "Wavelog verwendet die eQSL-Anmeldeinformationen aus deinem Wavelog-Benutzerprofil, um sich mit eQSL zu verbinden und Bestätigungen herunterzuladen."
 
 #: application/views/eqsl/download.php:73
 msgid "Due to a rate limit of approximately 10 seconds per eQSL picture download calling this function will take a long time to complete! Thus you may have to call this function several times depending on the amount of outstanding cards. This may run into a script timeout depending on the PHP configuration."
-msgstr ""
+msgstr "Aufgrund einer Zugriffsbegrenzung von ca. 10 Sekunden pro eQSL-Bild-Download wird diese Funktion lange dauern bis sie abgeschlossen ist! Daher musst du diese Funktion möglicherweise mehrmals in Abhängigkeit der Anzahl offener Karten aufrufen. Dies kann je nach PHP-Konfiguration in ein Skript-Timeout laufen."
 
 #: application/views/eqsl/download.php:81
 msgid "There are no QSOs whose eQSL card images have not yet been downloaded. Go log some more QSOs!"
-msgstr ""
+msgstr "Es gibt keine QSOs, deren eQSL-Kartenbilder noch nicht heruntergeladen wurden. Geh noch ein paar QSOs loggen!"
 
 #: application/views/eqsl/export.php:31
 msgid "Below is a table of QSOs that have not yet been sent to eQSL."
-msgstr ""
+msgstr "Unten ist eine Tabelle von QSOs, die noch nicht an eQSL gesendet wurden."
 
 #: application/views/eqsl/export.php:33
 msgid "Please make sure the 'eQSL QTH Nickname' field is set in your station profile and that the value matches the QTH Nickname you set within eQSL."
-msgstr ""
+msgstr "Bitte stelle sicher, dass das Feld 'eQSL QTH Nickname' in deinem Stationsprofil gesetzt ist und dass der Wert dem QTH Nickname entspricht, welchen du innerhalb von eQSL eingestellt hast."
 
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
-msgstr ""
+msgstr "Wenn du auf 'QSOs hochladen' klickst, sendest du QSO-Informationen an eQSL.cc."
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
-msgstr ""
+msgstr "Die folgenden QSOs wurden an eQSL gesendet."
 
 #: application/views/eqsl/export.php:51
 msgid "There are no QSOs that need to be sent to eQSL at this time. Go log some more QSOs!"
-msgstr ""
+msgstr "Es gibt keine QSOs, die aktuell an eQSL gesendet werden müssen. Geh noch ein paar QSOs loggen!"
 
 #: application/views/eqsl/import.php:30
 msgid "Import from file..."
-msgstr ""
+msgstr "Import aus Datei..."
 
 #: application/views/eqsl/import.php:33
 msgid "Download Inbox"
-msgstr ""
+msgstr "Inbox herunterladen"
 
 #: application/views/eqsl/import.php:33
 #, php-format
@@ -9438,6 +9439,9 @@ msgstr ""
 #: application/views/webadif/mark_webadif.php:16
 msgid "The QSOs are marked as exported to QO-100 Dx Club."
 msgstr ""
+
+#~ msgid "This checks the folders Wavelog uses are read and writeable by PHP."
+#~ msgstr "Prüft, ob die von Wavelog benutzten Verzeichnisse für PHP schreib und lesbar sind."
 
 #~ msgid "en-GB"
 #~ msgstr "de-DE"
