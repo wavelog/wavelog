@@ -2,19 +2,20 @@
 # Copyright (c) 2024 Wavelog by DF2ET, DJ7NT, HB9HIL and LA8AJA.
 # This file is distributed under the MIT licence.
 #
+# Ondřej Koloničný <ondra@ok1cdj.com>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-06-23 01:21+0200\n"
-"PO-Revision-Date: 2024-06-05 15:12+0200\n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2024-06-23 19:55+0000\n"
+"Last-Translator: Ondřej Koloničný <ondra@ok1cdj.com>\n"
+"Language-Team: Czech <https://translate.wavelog.org/projects/wavelog/main-translation/cs/>\n"
 "Language: cs_CZ\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
-"X-Generator: Poedit 3.4.4\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Weblate 5.6\n"
 
 #: application/controllers/Accumulated.php:21
 #: application/views/interface_assets/header.php:147
@@ -24,7 +25,7 @@ msgstr "Kumulativní statistiky"
 #: application/controllers/Activated_gridmap.php:10
 #: application/views/activated_gridmap/index.php:5
 msgid "Activated Gridsquare Map"
-msgstr ""
+msgstr "Mapa aktivovaných lokátorů"
 
 #: application/controllers/Activated_gridmap.php:31
 #: application/controllers/Awards.php:910
@@ -72,7 +73,7 @@ msgstr ""
 
 #: application/controllers/Adif.php:29 application/views/adif/import.php:24
 msgid "ADIF Export"
-msgstr ""
+msgstr "ADIF export"
 
 #: application/controllers/Adif.php:147
 #: application/views/interface_assets/header.php:370
@@ -82,11 +83,11 @@ msgstr "ADIF import / export"
 #: application/controllers/Adif.php:171 application/views/adif/import.php:21
 #: application/views/lotw/import.php:3
 msgid "ADIF Import"
-msgstr ""
+msgstr "ADIF Import"
 
 #: application/controllers/Adif.php:211
 msgid "Unsupported Filetype"
-msgstr ""
+msgstr "Nepodporovaný formát souboru"
 
 #: application/controllers/Adif.php:247
 msgid "Station Profile not valid for User"
@@ -95,23 +96,23 @@ msgstr ""
 #: application/controllers/Adif.php:254
 #: application/views/adif/import_success.php:12
 msgid "ADIF Imported"
-msgstr ""
+msgstr "ADIF importován"
 
 #: application/controllers/Adif.php:265
 msgid "DCL Import"
-msgstr ""
+msgstr "DCL import"
 
 #: application/controllers/Adif.php:321
 msgid "DCL Data Imported"
-msgstr ""
+msgstr "DCL data importována"
 
 #: application/controllers/Api.php:26
 msgid "API"
-msgstr ""
+msgstr "API"
 
 #: application/controllers/Api.php:50 application/views/api/description.php:26
 msgid "API Description"
-msgstr ""
+msgstr "Popis API"
 
 #: application/controllers/Api.php:51
 msgid "API Key is required do not change this field"
@@ -185,7 +186,7 @@ msgstr ""
 #: application/views/qso/index.php:508 application/views/user/edit.php:603
 #: application/views/view_log/qso.php:351
 msgid "DOK"
-msgstr ""
+msgstr "DOK"
 
 #: application/controllers/Awards.php:172 application/views/awards/index.php:7
 #: application/views/bandmap/list.php:112 application/views/bands/index.php:50
@@ -207,7 +208,7 @@ msgstr ""
 #: application/views/stationsetup/linkedlocations.php:33
 #: application/views/timeplotter/index.php:24
 msgid "DXCC"
-msgstr ""
+msgstr "DXCC"
 
 #: application/controllers/Awards.php:251
 msgid "Awards - WAJA"
@@ -221,7 +222,7 @@ msgstr ""
 #: application/controllers/Awards.php:375 application/views/bands/index.php:59
 #: application/views/interface_assets/header.php:167
 msgid "VUCC"
-msgstr ""
+msgstr "VUCC"
 
 #: application/controllers/Awards.php:405
 msgid "Log View - VUCC"
@@ -9283,7 +9284,7 @@ msgstr ""
 
 #: application/views/view_log/qso.php:228
 msgid "Antenna Elevation"
-msgstr ""
+msgstr "Elevace antény"
 
 #: application/views/view_log/qso.php:370
 msgid "QSL Card has been sent via the bureau"
@@ -9327,7 +9328,7 @@ msgstr ""
 
 #: application/views/view_log/qso.php:404
 msgid "This station uses LoTW."
-msgstr ""
+msgstr "Tato stanice používá LOTW."
 
 #: application/views/view_log/qso.php:409
 #: application/views/view_log/qso.php:414
@@ -9338,11 +9339,11 @@ msgstr "Toto QSO bylo potvrzeno"
 
 #: application/views/view_log/qso.php:435
 msgid "More QSOs"
-msgstr ""
+msgstr "Více QSO"
 
 #: application/views/view_log/qso.php:503
 msgid "Details"
-msgstr ""
+msgstr "Detaily"
 
 #: application/views/view_log/qso.php:604
 msgid "QSL image file"
@@ -9370,7 +9371,7 @@ msgstr "Označit QSL kartu požadováno (Bureau)"
 
 #: application/views/view_log/qso.php:664
 msgid "Mark QSL Card Requested (Direct)"
-msgstr "Označit QSL kartu požadováno (Přímá)"
+msgstr "Označit QSL lístek jak odeslaný (Direct)"
 
 #: application/views/view_log/qso.php:679
 msgid "eQSL picture"
@@ -9378,11 +9379,11 @@ msgstr ""
 
 #: application/views/visitor/layout/footer.php:207
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: application/views/visitor/layout/header.php:75
 msgid "OQRS"
-msgstr ""
+msgstr "OQRS"
 
 #: application/views/visitor/layout/header.php:83
 msgid "Visit Wavelog on Github"
@@ -9416,7 +9417,7 @@ msgstr ""
 #: application/views/webadif/export.php:74
 #: application/views/webadif/export.php:114
 msgid "QO-100 Dx Club"
-msgstr ""
+msgstr "QO-100 Dx Club"
 
 #: application/views/webadif/export.php:74
 #: application/views/webadif/export.php:114
