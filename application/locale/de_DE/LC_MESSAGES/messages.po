@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-06-23 01:21+0200\n"
-"PO-Revision-Date: 2024-06-23 11:29+0000\n"
+"PO-Revision-Date: 2024-06-23 13:49+0000\n"
 "Last-Translator: HB9HIL <hb9hil@wavelog.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-translation/de/>\n"
 "Language: de_DE\n"
@@ -2554,7 +2554,7 @@ msgstr "Beschreibung bearbeiten für API Schlüssel"
 
 #: application/views/api/description.php:28
 msgid "Simple name to describe what you use this API for."
-msgstr ""
+msgstr "Einfacher Name, um zu beschreiben, wofür Sie diese API verwenden."
 
 #: application/views/api/description.php:33
 #: application/views/bands/create.php:49 application/views/bands/edit.php:31
@@ -2580,15 +2580,15 @@ msgstr "API-Schlüssel"
 
 #: application/views/api/help.php:17
 msgid "The Wavelog API (Application Programming Interface) lets third party systems access Wavelog in a controlled way. Access to the API is managed via API keys."
-msgstr ""
+msgstr "Mit der Wavelog API (Application Programming Interface) können Systeme von Drittanbietern kontrolliert auf Wavelog zugreifen. Der Zugriff auf die API wird über API-Schlüssel verwaltet."
 
 #: application/views/api/help.php:18
 msgid "You will need to generate an API key for each tool you wish to use (e.g. WLgate). Generate a read-write key if the application needs to send data to Wavelog. Generate a read-only key if the application only needs to obtain data from Wavelog."
-msgstr ""
+msgstr "Du musst für jedes Tool, das du verwenden möchtest, einen API-Schlüssel generieren (z.B. WLgate). Erstelle einen Lesen-Schreiben Schlüssel, wenn die Anwendung Daten an Wavelog senden muss. Generiere einen Nur-Lesen Schlüssel, wenn die Anwendung nur Daten von Wavelog erhalten muss."
 
 #: application/views/api/help.php:19
 msgid "API URL"
-msgstr ""
+msgstr "API URL"
 
 #: application/views/api/help.php:19 application/views/api/help.php:38
 #: application/views/cron/index.php:21 application/views/debug/index.php:36
@@ -2597,7 +2597,7 @@ msgstr "In die Zwischenablage kopieren"
 
 #: application/views/api/help.php:19
 msgid "The API URL for this Wavelog instance is"
-msgstr ""
+msgstr "Die API URL für diese Wavelog-Instanz ist"
 
 #: application/views/api/help.php:20 application/views/dxcalendar/index.php:15
 #: application/views/eqsl/export.php:33 application/views/qso/edit_ajax.php:476
@@ -2610,29 +2610,29 @@ msgstr ""
 #: application/views/sattimers/index.php:75
 #: application/views/search/filter.php:69
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 #: application/views/api/help.php:20
 msgid "It's good practice to delete a key if you are no longer using the associated application."
-msgstr ""
+msgstr "Es ist empfohlen, einen Schlüssel zu löschen, wenn du die zugehörige Anwendung nicht mehr verwendest."
 
 #: application/views/api/help.php:27
 msgid "API Key"
-msgstr ""
+msgstr "API Schlüssel"
 
 #: application/views/api/help.php:28 application/views/cron/edit.php:30
 #: application/views/cron/index.php:51
 #: application/views/search/stored_queries.php:8
 msgid "Description"
-msgstr ""
+msgstr "Beschreibung"
 
 #: application/views/api/help.php:29
 msgid "Last Used"
-msgstr ""
+msgstr "Zuletzt verwendet"
 
 #: application/views/api/help.php:30
 msgid "Permissions"
-msgstr ""
+msgstr "Berechtigungen"
 
 #: application/views/api/help.php:31 application/views/cron/index.php:52
 #: application/views/lotw_views/index.php:45
@@ -2643,7 +2643,7 @@ msgstr ""
 #: application/views/timeline/index.php:117
 #: application/views/update/index.php:30
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: application/views/api/help.php:32 application/views/hrdlog/export.php:39
 #: application/views/logbookadvanced/index.php:462
@@ -2653,31 +2653,31 @@ msgstr "Aktionen"
 
 #: application/views/api/help.php:45
 msgid "Read & Write"
-msgstr ""
+msgstr "Lesen & Schreiben"
 
 #: application/views/api/help.php:47
 msgid "Read-Only"
-msgstr ""
+msgstr "Nur-Lesen"
 
 #: application/views/api/help.php:49
 msgid "Unknown"
-msgstr ""
+msgstr "Unbekannt"
 
 #: application/views/api/help.php:59
 msgid "Test"
-msgstr ""
+msgstr "Test"
 
 #: application/views/api/help.php:71
 msgid "You have no API Keys."
-msgstr ""
+msgstr "Du hast keine API Schlüssel."
 
 #: application/views/api/help.php:75
 msgid "Create a read & write key"
-msgstr ""
+msgstr "Erstelle einen Lese & Schreib Schlüssel"
 
 #: application/views/api/help.php:76
 msgid "Create a read-only key"
-msgstr ""
+msgstr "Erstelle einen Nur-Lesen Schlüssel"
 
 #: application/views/awards/counties/details.php:4
 #: application/views/awards/details.php:1
@@ -2688,7 +2688,7 @@ msgstr "Filtern auf"
 
 #: application/views/awards/counties/details.php:13
 msgid "County"
-msgstr ""
+msgstr "County"
 
 #: application/views/awards/counties/index.php:6
 #: application/views/awards/counties/index.php:13
@@ -2736,7 +2736,7 @@ msgstr "US County Diplom"
 #: application/views/awards/counties/index.php:8
 #, php-format
 msgid "The United States of America Counties Award (USA-CA), sponsored by CQ magazine, is issued for confirmed two-way radio contacts with specified numbers of U.S. counties under rules and conditions you can find %s."
-msgstr ""
+msgstr "Der United States of America Counties Award (USA-CA), gesponsert vom CQ-Magazin, wird für bestätigte Zwei-Wege-Kontakte mit bestimmten US-Counties unter Regeln und Bedingungen, die du %s findest, vergeben."
 
 #: application/views/awards/counties/index.php:9
 msgid "USA-CA is available to all licensed amateurs worldwide and is issued to individuals for all county contacts made, regardless of callsigns used, operating locations, or dates."
@@ -2748,11 +2748,11 @@ msgstr "Spezielle USA-CA-Diplome stehen auch für SWLs auf der Grundlage des Geh
 
 #: application/views/awards/counties/index.php:21
 msgid "Counties Worked"
-msgstr ""
+msgstr "Gearbeitete Counties"
 
 #: application/views/awards/counties/index.php:22
 msgid "Counties Confirmed"
-msgstr ""
+msgstr "Bestätigte Counties"
 
 #: application/views/awards/counties/index.php:39
 #: application/views/awards/cq/index.php:174
@@ -2795,7 +2795,7 @@ msgstr "Der WAZ Award steht für 'Worked All Zones' und erfordert Kontakte zu al
 #, php-format
 msgctxt "uses 'CQ Magazine'"
 msgid "You can find all the information and rules on the Website of the %s."
-msgstr ""
+msgstr "Du findest alle Informationen und Regeln auf der Webseite des %s."
 
 #: application/views/awards/cq/index.php:23
 msgid "Awards - CQ Magazine WAZ"
@@ -2869,7 +2869,7 @@ msgstr "Zeige nicht gearbeitete"
 #: application/views/awards/waja/index.php:49
 #: application/views/awards/was/index.php:49
 msgid "Show QSO with QSL Type"
-msgstr ""
+msgstr "QSO mit QSL-Typ anzeigen"
 
 #: application/views/awards/cq/index.php:54
 #: application/views/awards/itu/index.php:54
@@ -2894,7 +2894,7 @@ msgstr "QSL Karte"
 #: application/views/qrbcalc/index.php:19
 #: application/views/search/filter.php:40 application/views/user/edit.php:607
 msgid "Reset"
-msgstr ""
+msgstr "Zurücksetzen"
 
 #: application/views/awards/cq/index.php:113
 msgid "Show CQ Zone Map"
@@ -2942,7 +2942,7 @@ msgstr "Karte"
 #: application/views/timeline/index.php:202
 #: application/views/timeplotter/index.php:44
 msgid "CQ Zone"
-msgstr ""
+msgstr "CQ Zone"
 
 #: application/views/awards/cq/index.php:165
 #: application/views/awards/dok/index.php:165
@@ -2997,15 +2997,15 @@ msgstr "Der DOK besteht aus einem Buchstaben für den Distrik und einer zweistel
 #, php-format
 msgctxt "uses 'DARC Website' and 'here'"
 msgid "This information is provided by the %s. Information about the DOK Awards and its rules can be found %s."
-msgstr ""
+msgstr "Diese Information findet man auf der %s. Informationen über das DOK Diplom und dessen Regeln können %s gefunden werden."
 
 #: application/views/awards/dok/index.php:20
 msgid "DOK / SDOK"
-msgstr ""
+msgstr "DOK / SDOK"
 
 #: application/views/awards/dok/index.php:23
 msgid "DOK + SDOK"
-msgstr ""
+msgstr "DOK + SDOK"
 
 #: application/views/awards/dok/index.php:37
 #: application/views/awards/dxcc/index.php:39
@@ -3016,7 +3016,7 @@ msgstr ""
 #: application/views/awards/waja/index.php:31
 #: application/views/awards/was/index.php:31
 msgid "Worked / Confirmed"
-msgstr ""
+msgstr "Gearbeitet / Bestätigt"
 
 #: application/views/awards/dok/index.php:80
 #: application/views/awards/dxcc/index.php:120
@@ -3027,7 +3027,7 @@ msgstr ""
 #: application/views/awards/waja/index.php:78
 #: application/views/awards/was/index.php:74
 msgid "Every band"
-msgstr ""
+msgstr "Jedes Band"
 
 #: application/views/awards/dxcc/index.php:14
 msgid "DXCC Award"
