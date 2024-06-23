@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-06-23 01:21+0200\n"
-"PO-Revision-Date: 2024-06-23 15:34+0000\n"
-"Last-Translator: Christian Egger <christian@hb9hjq.ch>\n"
+"PO-Revision-Date: 2024-06-23 17:44+0000\n"
+"Last-Translator: Fabian Berg <hb9hil@wavelog.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
@@ -3402,7 +3402,7 @@ msgstr "Anzahl der QSOs"
 
 #: application/views/awards/sig/index.php:23
 msgid "Number of Refs"
-msgstr ""
+msgstr "Anzahl der Refs"
 
 #: application/views/awards/sig/qso_list.php:9
 #: application/views/awards/sota/index.php:23
@@ -3466,35 +3466,36 @@ msgstr "Nur VHF/UHF-Bänder sind relevant."
 
 #: application/views/awards/vucc/index.php:22
 msgid "Grids Worked"
-msgstr ""
+msgstr "Planquadrate gearbeitet"
 
 #: application/views/awards/vucc/index.php:23
 msgid "Grids Confirmed"
-msgstr ""
+msgstr "Planquadrate bestätigt"
 
 #: application/views/awards/wab/index.php:12
 msgid "WAB - Worked All Britain Award"
-msgstr ""
+msgstr "WAB - Worked All Britain Award"
 
 #: application/views/awards/wab/index.php:13
 msgid "WAB, Worked All Britain squares in Amateur Radio, encourages licensed ham radio operators to work all the squares in Great Britain."
-msgstr ""
+msgstr "WAB, 'Worked All Britain' Planquadrate im Amateurfunk, ermutigt lizenzierte Funkamateure, alle Planquadrate in Grossbritannien zu arbeiten."
 
 #: application/views/awards/wab/index.php:14
+#, fuzzy
 msgid "May be claimed for having contacted an amateur station located in the required amount of squares, described on the page linked below."
-msgstr ""
+msgstr "Es kann behauptet werden, dass eine Amateurfunkstation in der erforderlichen Menge von Quadraten kontaktiert worden ist, die auf der unten verlinkten Seite beschrieben ist."
 
 #: application/views/awards/wab/index.php:109
 msgid "List"
-msgstr ""
+msgstr "Liste"
 
 #: application/views/awards/wab/list.php:5
 msgid "WAB Square"
-msgstr ""
+msgstr "WAB Planquadrat"
 
 #: application/views/awards/waja/index.php:17
 msgid "WAJA - Worked All Japan prefectures Award"
-msgstr ""
+msgstr "WAJA - Worked All Japan Präfekturen Diplom"
 
 #: application/views/awards/waja/index.php:18
 msgid "WAJA, Worked All Japan prefectures in Amateur Radio, encourages licensed ham radio operators to work all the prefectures in Japan."
@@ -3506,11 +3507,11 @@ msgstr "Du kannst diesen Award beanspruchen, indem du (gehört hast) und eine QS
 
 #: application/views/awards/waja/index.php:116
 msgid "Show WAJA Map"
-msgstr ""
+msgstr "Zeige WAJA Karte"
 
 #: application/views/awards/waja/index.php:152
 msgid "Prefecture"
-msgstr ""
+msgstr "Präfektur"
 
 #: application/views/awards/was/index.php:18
 msgid "WAS Award"
@@ -3528,15 +3529,15 @@ msgstr "Das WAS (Worked All States) Diplom steht allen Funkamateuren weltweit zu
 #, php-format
 msgctxt "uses 'here'"
 msgid "All information and rules for the ARRL WAS Award can be found %s."
-msgstr ""
+msgstr "Alle Informationen und Regeln für das ARRL WAS Diplom findest du %s."
 
 #: application/views/awards/was/index.php:112
 msgid "Show WAS Map"
-msgstr ""
+msgstr "Zeige WAS Karte"
 
 #: application/views/awards/wwff/index.php:7
 msgid "WWFF - World Wide Flora and Fauna Award"
-msgstr ""
+msgstr "WWFF - World Wide Flora and Fauna Diplom"
 
 #: application/views/awards/wwff/index.php:8
 msgid "WWFF, World Wide Flora and Fauna in Amateur Radio, encourages licensed ham radio operators to leave their shacks and operate portable in Protected Flora & Fauna areas (PFF) worldwide."
@@ -3557,12 +3558,12 @@ msgstr "WWFF Referenznummer"
 
 #: application/views/backup/adif_view.php:7
 msgid "The backup of your log completed successfully. The output can be found at"
-msgstr ""
+msgstr "Die Datensicherung deines Logs ist erfolgreich abgeschlossen. Das Ergebnis findet sich unter"
 
 #: application/views/backup/adif_view.php:9
 #: application/views/backup/notes_view.php:9
 msgid "You could automate this process by making it a cronjob."
-msgstr ""
+msgstr "Du könntest diesen Prozess mit einem Cronjob automatisieren."
 
 #: application/views/backup/adif_view.php:13
 #: application/views/backup/notes_view.php:13
@@ -3591,11 +3592,11 @@ msgstr ""
 
 #: application/views/bandmap/index.php:15 application/views/bandmap/list.php:49
 msgid "BandMap"
-msgstr ""
+msgstr "BandMap"
 
 #: application/views/bandmap/index.php:18 application/views/bandmap/list.php:52
 msgid "BandList"
-msgstr ""
+msgstr "BandListe"
 
 #: application/views/bandmap/index.php:25 application/views/bandmap/list.php:60
 #: application/views/contesting/index.php:92
@@ -3613,11 +3614,11 @@ msgstr "Nichts"
 
 #: application/views/bandmap/index.php:33 application/views/bandmap/list.php:76
 msgid "Spots de"
-msgstr ""
+msgstr "Spots de"
 
 #: application/views/bandmap/list.php:69
 msgid "DXCC-Status"
-msgstr ""
+msgstr "DXCC-Status"
 
 #: application/views/bandmap/list.php:74
 msgid "Not Confirmed"
@@ -3625,7 +3626,7 @@ msgstr "Nicht Bestätigt"
 
 #: application/views/bandmap/list.php:113
 msgid "Spotter"
-msgstr ""
+msgstr "Spotter"
 
 #: application/views/bandmap/list.php:114
 #: application/views/oqrs/notinlogform.php:28
@@ -3650,7 +3651,7 @@ msgstr "Name der Bandgruppe (z.B. hf, vhf, uhf, shf)"
 #: application/views/bands/create.php:34 application/views/bands/edit.php:16
 #: application/views/bands/index.php:64
 msgid "SSB QRG"
-msgstr ""
+msgstr "SSB QRG"
 
 #: application/views/bands/create.php:36 application/views/bands/edit.php:18
 msgid "Frequency for SSB QRG in band (must be in Hz)"
@@ -3659,7 +3660,7 @@ msgstr "Frequenz für die SSB QRG auf dem Band (Muss in Hz angegeben werden)"
 #: application/views/bands/create.php:39 application/views/bands/edit.php:21
 #: application/views/bands/index.php:65
 msgid "DATA QRG"
-msgstr ""
+msgstr "DATA QRG"
 
 #: application/views/bands/create.php:41 application/views/bands/edit.php:23
 msgid "Frequency for DATA QRG in band (must be in Hz)"
@@ -3668,7 +3669,7 @@ msgstr "Frequenz für die DATA QRG auf dem Band (Muss in Hz angegeben werden"
 #: application/views/bands/create.php:44 application/views/bands/edit.php:26
 #: application/views/bands/index.php:66
 msgid "CW QRG"
-msgstr ""
+msgstr "CW QRG"
 
 #: application/views/bands/create.php:46 application/views/bands/edit.php:28
 msgid "Frequency for CW QRG in band (must be in Hz)"
@@ -3687,7 +3688,7 @@ msgstr "Aktive Bänder werden im QSO Band Auswahlfeld angezeigt, während inakti
 #: application/views/user/edit.php:599 application/views/view_log/qso.php:325
 #: application/views/view_log/qso.php:577
 msgid "Sig"
-msgstr ""
+msgstr "Sig"
 
 #: application/views/bands/index.php:58 application/views/qso/edit_ajax.php:311
 #: application/views/qso/index.php:433
@@ -3697,12 +3698,12 @@ msgstr "US-County"
 #: application/views/bands/index.php:60
 #: application/views/interface_assets/header.php:205
 msgid "WAJA"
-msgstr ""
+msgstr "WAJA"
 
 #: application/views/bands/index.php:61
 #: application/views/interface_assets/header.php:229
 msgid "WAS"
-msgstr ""
+msgstr "WAS"
 
 #: application/views/bands/index.php:143 application/views/bands/index.php:149
 msgid "Create a band"
@@ -3771,7 +3772,7 @@ msgstr "Wähle einen Stationsstandort:"
 
 #: application/views/cabrillo/index.php:44
 msgid "Club"
-msgstr ""
+msgstr "Club"
 
 #: application/views/cabrillo/index.php:48
 msgid "Category Operator"
@@ -3819,7 +3820,7 @@ msgstr "Operatoren"
 
 #: application/views/cabrillo/index.php:155
 msgid "Soapbox"
-msgstr ""
+msgstr "Soapbox"
 
 #: application/views/cabrillo/index.php:159
 msgid "Address"
@@ -3848,27 +3849,27 @@ msgstr "Es wurden keine Contests in deinem Log gefunden."
 #: application/views/cfd/index.php:7
 #, php-format
 msgid "Export of CFD-File for DARC-Toplist (See %s)"
-msgstr ""
+msgstr "Export von CFD-Datei für DARC-Toplist (siehe %s)"
 
 #: application/views/components/hamsat/table.php:3
 #: application/views/hamsat/index.php:7
 msgid "Hamsat - Satellite Rovers"
-msgstr ""
+msgstr "Hamsat - Satellit Rovers"
 
 #: application/views/components/hamsat/table.php:4
 #: application/views/contestcalendar/index.php:4
 #: application/views/dxcalendar/index.php:4
 #: application/views/hamsat/index.php:8
 msgid "This data comes from"
-msgstr ""
+msgstr "Diese Daten stammen von"
 
 #: application/views/components/hamsat/table.php:11
 msgid "Show All Passes"
-msgstr ""
+msgstr "Zeige alle Überflüge"
 
 #: application/views/components/hamsat/table.php:14
 msgid "Private feed key empty. Please set the feed key in your profile."
-msgstr ""
+msgstr "Privater Feed Schlüssel leer. Bitte setze einen Feed Schlüssel in deinem Profil."
 
 #: application/views/components/hamsat/table.php:19
 msgid "No upcoming activations found. Please check back later."
@@ -3888,55 +3889,56 @@ msgstr "Kommentar"
 #: application/views/components/hamsat/table.php:31
 #: application/views/hamsat/index.php:34
 msgid "Gridsquare(s)"
-msgstr ""
+msgstr "Planquadrat(e)"
 
 #: application/views/components/hamsat/table.php:32
 #: application/views/hamsat/index.php:35
+#, fuzzy
 msgid "Workable"
-msgstr ""
+msgstr "Arbeitbar"
 
 #: application/views/components/hamsat/table.php:134
 msgctxt "Hamsat - Track Satellites"
 msgid "Track"
-msgstr ""
+msgstr "Verfolgen"
 
 #: application/views/components/hamsat/table.php:146
 msgid "Sked"
-msgstr ""
+msgstr "Sked"
 
 #: application/views/components/radio_display_table.php:5
 msgid "Radio Status"
-msgstr ""
+msgstr "Funkgeräte-Status"
 
 #: application/views/contestcalendar/index.php:9
 msgid "No Contests"
-msgstr ""
+msgstr "Keine Contests"
 
 #: application/views/contestcalendar/index.php:14
 #: application/views/logbookadvanced/useroptions.php:118
 #: application/views/qso/edit_ajax.php:39
 msgid "Contest"
-msgstr ""
+msgstr "Contest"
 
 #: application/views/contestcalendar/index.php:15
 #: application/views/statistics/custom.php:41
 #: application/views/statistics/custom_result.php:43
 msgid "Start"
-msgstr ""
+msgstr "Start"
 
 #: application/views/contestcalendar/index.php:16
 #: application/views/statistics/custom.php:46
 #: application/views/statistics/custom_result.php:48
 msgid "End"
-msgstr ""
+msgstr "Ende"
 
 #: application/views/contestcalendar/index.php:17
 msgid "Link"
-msgstr ""
+msgstr "Link"
 
 #: application/views/contestcalendar/index.php:26
 msgid "Show Details"
-msgstr ""
+msgstr "Details anzeigen"
 
 #: application/views/contestcalendar/index.php:38
 #: application/views/dashboard/index.php:263
@@ -3948,11 +3950,11 @@ msgstr "Heute"
 
 #: application/views/contestcalendar/index.php:48
 msgid "Weekend"
-msgstr ""
+msgstr "Wochenende"
 
 #: application/views/contestcalendar/index.php:59
 msgid "Next Week"
-msgstr ""
+msgstr "Nächste Woche"
 
 #: application/views/contesting/add.php:16
 msgid "Using the contest list, you can control which Contests are shown when logging QSOs in a contest."
@@ -3965,7 +3967,7 @@ msgstr "Aktivierte Contests können im Contest-Logging Fenster ausgewählt werde
 #: application/views/contesting/add.php:26
 #: application/views/contesting/create.php:30
 msgid "ADIF Name"
-msgstr ""
+msgstr "ADIF Name"
 
 #: application/views/contesting/add.php:27
 #: application/views/contesting/add.php:41
@@ -4037,11 +4039,11 @@ msgstr "Erstelle"
 #: application/views/qso/edit_ajax.php:545
 #: application/views/view_log/qso.php:275
 msgid "Contest Name"
-msgstr ""
+msgstr "Contest Name"
 
 #: application/views/contesting/edit.php:37
 msgid "Contest ADIF Name"
-msgstr ""
+msgstr "Contest ADIF Name"
 
 #: application/views/contesting/edit.php:52
 msgid "Set to active if to be listed in Contest-list"
@@ -4057,7 +4059,7 @@ msgstr "Austauschtyp"
 
 #: application/views/contesting/index.php:16
 msgid "Exchange"
-msgstr ""
+msgstr "Exchange"
 
 #: application/views/contesting/index.php:18
 msgid "Serial"
@@ -4065,7 +4067,7 @@ msgstr "(Lauf)-Nummer"
 
 #: application/views/contesting/index.php:19
 msgid "Serial + Exchange"
-msgstr ""
+msgstr "Seriennummer + Exchange"
 
 #: application/views/contesting/index.php:20
 msgid "Serial + Gridsquare"
@@ -4085,7 +4087,7 @@ msgstr "Nummer (S)"
 #: application/views/contesting/index.php:121
 #: application/views/contesting/index.php:206
 msgid "Exch (S)"
-msgstr ""
+msgstr "Exch (S)"
 
 #: application/views/contesting/index.php:126
 msgid "Gridsquare (S)"
@@ -4100,7 +4102,7 @@ msgstr "Nummer (R)"
 #: application/views/contesting/index.php:141
 #: application/views/contesting/index.php:207
 msgid "Exch (R)"
-msgstr ""
+msgstr "Exch (R)"
 
 #: application/views/contesting/index.php:146
 msgid "Gridsquare (R)"
@@ -4132,8 +4134,9 @@ msgid "RX Power (W)"
 msgstr "Leistung Gegenstation (W)"
 
 #: application/views/contesting/index.php:175
+#, fuzzy
 msgid "Locator"
-msgstr ""
+msgstr "Lokator"
 
 #: application/views/contesting/index.php:187
 msgid "Callsign Suggestions"
@@ -4146,7 +4149,7 @@ msgstr "Contest-Logbuch"
 #: application/views/contesting/index.php:211
 #: application/views/qso/edit_ajax.php:164
 msgid "VUCC Gridsquare"
-msgstr ""
+msgstr "VUCC Planquadrat"
 
 #: application/views/continents/index.php:62
 #: application/views/qso/edit_ajax.php:238 application/views/qso/index.php:377
@@ -4162,7 +4165,7 @@ msgstr "# gearbeitete QSOs"
 
 #: application/views/cron/edit.php:11
 msgid "Identifier"
-msgstr ""
+msgstr "Identifikator"
 
 #: application/views/cron/edit.php:22
 #: application/views/options/appearance.php:56
@@ -4180,51 +4183,51 @@ msgstr "Eingeschaltet"
 
 #: application/views/cron/edit.php:36 application/views/cron/index.php:53
 msgid "Intervall"
-msgstr ""
+msgstr "Intervall"
 
 #: application/views/cron/edit.php:38
 msgid "Choose a preset from the dropdown"
-msgstr ""
+msgstr "Wähle eine Voreinstellung aus dem Dropdown-Menü"
 
 #: application/views/cron/edit.php:43
 msgid "Every 5 Minutes"
-msgstr ""
+msgstr "Alle 5 Minuten"
 
 #: application/views/cron/edit.php:44
 msgid "Every 15 Minutes"
-msgstr ""
+msgstr "Alle 15 Minuten"
 
 #: application/views/cron/edit.php:45
 msgid "Every Hour"
-msgstr ""
+msgstr "Jede Stunde"
 
 #: application/views/cron/edit.php:46
 msgid "Every 2 Hours"
-msgstr ""
+msgstr "Alle 2 Stunden"
 
 #: application/views/cron/edit.php:47
 msgid "Every Day at Midnight"
-msgstr ""
+msgstr "Jeden Tag bei Mitternacht"
 
 #: application/views/cron/edit.php:48
 msgid "Every Monday at 03:00"
-msgstr ""
+msgstr "Jeden Montag um 03:00"
 
 #: application/views/cron/edit.php:49
 msgid "First Day of Every Month at midnight"
-msgstr ""
+msgstr "Erster Tag jedes Monats um Mitternacht"
 
 #: application/views/cron/edit.php:50
 msgid "Every 2 Months at 02:00"
-msgstr ""
+msgstr "Alle 2 Monate um 02:00"
 
 #: application/views/cron/edit.php:62
 msgid "OR"
-msgstr ""
+msgstr "ODER"
 
 #: application/views/cron/edit.php:63
 msgid "Enter your own Cron Expression"
-msgstr ""
+msgstr "Gib dein eigenes Cron Intervall ein"
 
 #: application/views/cron/edit.php:74
 #: application/views/interface_assets/footer.php:24
@@ -4233,79 +4236,79 @@ msgstr "Abbrechen"
 
 #: application/views/cron/index.php:9
 msgid "How it works"
-msgstr ""
+msgstr "Wie es funktioniert"
 
 #: application/views/cron/index.php:15
 msgid "The Cron Manager assists the administrator in managing cron jobs without requiring CLI access."
-msgstr ""
+msgstr "Der Cron Manager unterstützt den Administrator bei der Verwaltung von Cron Jobs ohne dass dieser CLI Zugang benötigt."
 
 #: application/views/cron/index.php:18
 msgid "To execute cron jobs based on the data below, remove all old cron jobs and create a new one:"
-msgstr ""
+msgstr "Um Cron-Jobs basierend auf den untenstehenden Daten auszuführen, entferne alle alten Cron-Jobs und erstelle einen neuen:"
 
 #: application/views/cron/index.php:27 application/views/cron/index.php:31
 msgid "Status Master-Cron"
-msgstr ""
+msgstr "Status Master-Cron"
 
 #: application/views/cron/index.php:31
 msgctxt "PHP Version"
 msgid "Min. Version is"
-msgstr ""
+msgstr "Min. Version ist"
 
 #: application/views/cron/index.php:31
 msgid "PHP Version not supported."
-msgstr ""
+msgstr "PHP Version nicht unterstützt."
 
 #: application/views/cron/index.php:41
 msgid "Cron List"
-msgstr ""
+msgstr "Cron Liste"
 
 #: application/views/cron/index.php:50
 #: application/views/stationsetup/stationsetup.php:118
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: application/views/cron/index.php:54
 msgid "Last Run"
-msgstr ""
+msgstr "Letzte Ausführung"
 
 #: application/views/cron/index.php:55
 msgid "Next Run"
-msgstr ""
+msgstr "Nächste Ausführung"
 
 #: application/views/cron/index.php:68
 msgid "healthy"
-msgstr ""
+msgstr "gesund"
 
 #: application/views/cron/index.php:70
 msgid "failed"
-msgstr ""
+msgstr "fehlgeschlagen"
 
 #: application/views/cron/index.php:75
 msgid "disabled"
-msgstr ""
+msgstr "ausgeschaltet"
 
 #: application/views/cron/index.php:79 application/views/cron/index.php:81
 #: application/views/cron/index.php:83
 msgid "never"
-msgstr ""
+msgstr "nie"
 
 #: application/views/cron/index.php:98
 msgid "Your Mastercron isn't running."
-msgstr ""
+msgstr "Dein Mastercron läuft nicht."
 
 #: application/views/cron/index.php:99
 msgid "Copy the cron above to a external cron service or into your server's cron to use this cron manager."
-msgstr ""
+msgstr "Kopiere den Cron oben in einen externen Cron-Service oder in crontab deines Servers, um diesen Cron-Manager zu verwenden."
 
 #: application/views/cron/index.php:100
 msgid "On a basic linux server with shell access use this command to edit your crons:"
-msgstr ""
+msgstr "Auf einem herkömmlichen Linux System mit Shell-Zugang verwende diesen Befehl, um deine cronjobs zu bearbeiten:"
 
 #: application/views/cron/index.php:107
 #, php-format
 msgid "You need to upgrade your PHP version. Minimum version is %s. Your Version is %s"
-msgstr ""
+msgstr "Du musst deine PHP-Version aktualisieren. Mindestversion ist %s. Deine Version ist %s"
 
 #: application/views/csv/index.php:7
 msgid "Export your logbook for SOTA uploads."
@@ -4328,7 +4331,7 @@ msgstr "Propagation"
 #: application/views/qso/edit_ajax.php:192 application/views/qso/index.php:404
 msgctxt "Propagation Mode"
 msgid "Aircraft Scatter"
-msgstr ""
+msgstr "Flugzeug Scatter"
 
 #: application/views/csv/index.php:96 application/views/dxatlas/index.php:96
 #: application/views/gridmap/index.php:44 application/views/kml/index.php:81
@@ -4336,7 +4339,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:193 application/views/qso/index.php:405
 msgctxt "Propagation Mode"
 msgid "Aurora"
-msgstr ""
+msgstr "Aurora"
 
 #: application/views/csv/index.php:97 application/views/dxatlas/index.php:97
 #: application/views/gridmap/index.php:45 application/views/kml/index.php:82
@@ -4344,7 +4347,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:194 application/views/qso/index.php:406
 msgctxt "Propagation Mode"
 msgid "Aurora-E"
-msgstr ""
+msgstr "Aurora-E"
 
 #: application/views/csv/index.php:98 application/views/dxatlas/index.php:98
 #: application/views/gridmap/index.php:46 application/views/kml/index.php:83
@@ -4352,7 +4355,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:195 application/views/qso/index.php:407
 msgctxt "Propagation Mode"
 msgid "Back scatter"
-msgstr ""
+msgstr "Rückwärts Scatter"
 
 #: application/views/csv/index.php:99 application/views/dxatlas/index.php:99
 #: application/views/gridmap/index.php:47 application/views/kml/index.php:84
@@ -4360,7 +4363,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:196 application/views/qso/index.php:408
 msgctxt "Propagation Mode"
 msgid "EchoLink"
-msgstr ""
+msgstr "EchoLink"
 
 #: application/views/csv/index.php:100 application/views/dxatlas/index.php:100
 #: application/views/gridmap/index.php:48 application/views/kml/index.php:85
@@ -4368,7 +4371,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:197 application/views/qso/index.php:409
 msgctxt "Propagation Mode"
 msgid "Earth-Moon-Earth"
-msgstr ""
+msgstr "Erde-Mond-Erde"
 
 #: application/views/csv/index.php:101 application/views/dxatlas/index.php:101
 #: application/views/gridmap/index.php:49 application/views/kml/index.php:86
@@ -4376,7 +4379,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:198 application/views/qso/index.php:410
 msgctxt "Propagation Mode"
 msgid "Sporadic E"
-msgstr ""
+msgstr "Sporadic E"
 
 #: application/views/csv/index.php:102 application/views/dxatlas/index.php:102
 #: application/views/gridmap/index.php:50 application/views/kml/index.php:87
@@ -4392,7 +4395,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:200 application/views/qso/index.php:412
 msgctxt "Propagation Mode"
 msgid "F2 Reflection"
-msgstr ""
+msgstr "F2 Reflexion"
 
 #: application/views/csv/index.php:104 application/views/dxatlas/index.php:104
 #: application/views/gridmap/index.php:52 application/views/kml/index.php:89
@@ -4400,7 +4403,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:201 application/views/qso/index.php:413
 msgctxt "Propagation Mode"
 msgid "Internet-assisted"
-msgstr ""
+msgstr "Internet-gestützt"
 
 #: application/views/csv/index.php:105 application/views/dxatlas/index.php:105
 #: application/views/gridmap/index.php:53 application/views/kml/index.php:90
@@ -4408,7 +4411,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:202 application/views/qso/index.php:414
 msgctxt "Propagation Mode"
 msgid "Ionoscatter"
-msgstr ""
+msgstr "Ionoscatter"
 
 #: application/views/csv/index.php:106 application/views/dxatlas/index.php:106
 #: application/views/gridmap/index.php:54 application/views/kml/index.php:91
@@ -4416,7 +4419,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:203 application/views/qso/index.php:415
 msgctxt "Propagation Mode"
 msgid "IRLP"
-msgstr ""
+msgstr "IRLP"
 
 #: application/views/csv/index.php:107 application/views/dxatlas/index.php:107
 #: application/views/gridmap/index.php:55 application/views/kml/index.php:92
@@ -4424,7 +4427,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:204 application/views/qso/index.php:416
 msgctxt "Propagation Mode"
 msgid "Meteor scatter"
-msgstr ""
+msgstr "Meteor Scatter"
 
 #: application/views/csv/index.php:108 application/views/dxatlas/index.php:108
 #: application/views/gridmap/index.php:56 application/views/kml/index.php:93
@@ -4432,7 +4435,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:205 application/views/qso/index.php:417
 msgctxt "Propagation Mode"
 msgid "Terrestrial or atmospheric repeater or transponder"
-msgstr ""
+msgstr "Terrestrische oder atmosphärische Repeater oder Transponder"
 
 #: application/views/csv/index.php:109 application/views/dxatlas/index.php:109
 #: application/views/gridmap/index.php:57 application/views/kml/index.php:94
@@ -4440,7 +4443,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:206 application/views/qso/index.php:418
 msgctxt "Propagation Mode"
 msgid "Rain scatter"
-msgstr ""
+msgstr "Regen Scatter"
 
 #: application/views/csv/index.php:110 application/views/dxatlas/index.php:110
 #: application/views/gridmap/index.php:58 application/views/kml/index.php:95
@@ -4456,7 +4459,7 @@ msgstr "Satellit"
 #: application/views/qso/edit_ajax.php:208 application/views/qso/index.php:420
 msgctxt "Propagation Mode"
 msgid "Trans-equatorial"
-msgstr ""
+msgstr "Transequatorial"
 
 #: application/views/csv/index.php:112 application/views/dxatlas/index.php:112
 #: application/views/gridmap/index.php:60 application/views/kml/index.php:97
@@ -4464,7 +4467,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:209 application/views/qso/index.php:421
 msgctxt "Propagation Mode"
 msgid "Tropospheric ducting"
-msgstr ""
+msgstr "troposphärisches Ducting"
 
 #: application/views/dashboard/index.php:5
 msgid "RSTS"
@@ -4482,19 +4485,19 @@ msgstr "Du musst deine PHP-Version aktualisieren. Die minimale Version ist 7.4. 
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You need to update country files! Click %s to do it."
-msgstr ""
+msgstr "Du musst die Länderdaten aktualisieren! Klicke auf %s, um dies zu tun."
 
 #: application/views/dashboard/index.php:72
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station locations. Click %s to do it:"
-msgstr ""
+msgstr "Du hast keine Stationsstandorte. Klicke %s um dies zu tun:"
 
 #: application/views/dashboard/index.php:81
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station logbook. Click %s to do it:"
-msgstr ""
+msgstr "Du hast kein Stations-Logbuch. Klicke %s um dies zu tun:"
 
 #: application/views/dashboard/index.php:91
 #, php-format
@@ -4631,7 +4634,7 @@ msgstr "Logbook of the World"
 
 #: application/views/dashboard/index.php:352
 msgid "VUCC-Grids"
-msgstr ""
+msgstr "VUCC-Planquadrate"
 
 #: application/views/dayswithqso/index.php:2
 #: application/views/interface_assets/header.php:143
@@ -4670,7 +4673,7 @@ msgstr "End Datum"
 #: application/views/dayswithqso/index.php:74
 msgctxt "Days with QSOs"
 msgid "No streak found!"
-msgstr ""
+msgstr "Keinen Streak gefunden!"
 
 #: application/views/dayswithqso/index.php:78
 msgid "Current streak with QSOs in the log"
@@ -4691,23 +4694,23 @@ msgstr "Keine aktuelle Serie gefunden!"
 
 #: application/views/debug/index.php:23
 msgid "Wavelog Information"
-msgstr ""
+msgstr "Wavelog Informationen"
 
 #: application/views/debug/index.php:27
 msgid "Version"
-msgstr ""
+msgstr "Version"
 
 #: application/views/debug/index.php:31
 msgid "Language"
-msgstr ""
+msgstr "Sprache"
 
 #: application/views/debug/index.php:35
 msgid "Base URL"
-msgstr ""
+msgstr "Basis-URL"
 
 #: application/views/debug/index.php:39
 msgid "Migration"
-msgstr ""
+msgstr "Migration"
 
 #: application/views/debug/index.php:40
 msgid "There is something wrong with your Migration in Database!"
