@@ -1,3 +1,8 @@
+![GitHub License](https://img.shields.io/github/license/wavelog/wavelog)
+[![Übersetzungsstatus](https://translate.wavelog.org/widget/wavelog/main-translation/svg-badge.svg)](https://translate.wavelog.org/engage/wavelog/)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/wavelog/wavelog)
+
+
 # Wavelog
 
 > Important: Only accepting PRs on the "dev" branch.
