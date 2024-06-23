@@ -92,7 +92,7 @@
             <div class="card">
                 <div class="card-header"><?= __("Folder Permissions"); ?></div>
                 <div class="card-body">
-                    <p><?= __("This checks the folders Wavelog uses are read and writeable by PHP."); ?></p>
+                    <p><?= __("This verifies that the folders used by Wavelog have read and write permissions by PHP."); ?></p>
                     <table width="100%">
                         <tr>
                             <td>/backup</td>
