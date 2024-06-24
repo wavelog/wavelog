@@ -122,14 +122,18 @@ function loadActivationsTable(rows, show_workable_only) {
 			data.push(activation.callsign.replaceAll('0', 'Ø'));
 		}
 		data.push(activation.comment);
-		freq = parseFloat(activation.mhz).toFixed(3);
-		dir = '';
-		if (activation.mhz_direction == "up") {
-			dir = '&uarr;';
-		} else if (activation.mhz_direction == "down") {
-			dir = '&darr;';
+		if (activation.mhz != null) {
+			freq = parseFloat(activation.mhz).toFixed(3);
+			dir = '';
+			if (activation.mhz_direction == "up") {
+				dir = '&uarr;';
+			} else if (activation.mhz_direction == "down") {
+				dir = '&darr;';
+			}
+			data.push("<span data-bs-toggle=\"tooltip\" data-bs-original-title=\""+freq+" MHz "+dir+"\">"+activation.satellite.name+"</span>");
+		} else {
+			data.push(activation.satellite.name);
 		}
-		data.push("<span data-bs-toggle=\"tooltip\" data-bs-original-title=\""+freq+" MHz "+dir+"\">"+activation.satellite.name+"</span>");
 		data.push("<span title=\""+activation.mode+"\" class=\"badge "+activation.mode_class+"\">"+activation.mode+"</span>");
 		grids = [];
 		for (var j=0; j < activation.grids_wkd.length; j++) {
