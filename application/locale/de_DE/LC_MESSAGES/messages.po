@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-06-23 23:12+0200\n"
-"PO-Revision-Date: 2024-06-24 09:00+0000\n"
-"Last-Translator: Fabian Berg <hb9hil@wavelog.org>\n"
+"PO-Revision-Date: 2024-06-24 11:59+0000\n"
+"Last-Translator: Jörg Dorgeist <wavelog@dj7nt.de>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
@@ -6401,7 +6401,7 @@ msgstr "Lade LoTW-Daten für mich"
 
 #: application/views/lotw/import.php:47
 msgid "Select callsign to pull LoTW confirmations for."
-msgstr ""
+msgstr "Rufzeichen, für das LoTW-QSLs gezogen werden, auswählen."
 
 #: application/views/lotw/import.php:61
 msgid "Wavelog will use the LoTW username and password stored in your user profile to download a report from LoTW for you. The report Wavelog downloads will have all confirmations since chosen date, or since your last LoTW confirmation (fetched from your log), up until now."
@@ -6459,12 +6459,12 @@ msgstr "Läuft ab"
 #: application/views/lotw_views/index.php:105
 #, php-format
 msgid "Last success: %s"
-msgstr ""
+msgstr "Letzter Erfolg: %s"
 
 #: application/views/lotw_views/index.php:108
 #, php-format
 msgid "Last fail: %s"
-msgstr ""
+msgstr "Letzer Fehlversuch: %s"
 
 #: application/views/lotw_views/index.php:114
 msgid "Not Synced"
@@ -6536,7 +6536,7 @@ msgstr ""
 #: application/views/mode/create.php:49 application/views/mode/edit.php:61
 #: application/views/mode/index.php:43
 msgid "Not active"
-msgstr ""
+msgstr "Inaktiv"
 
 #: application/views/mode/create.php:51 application/views/mode/edit.php:64
 msgid "Set to active if to be listed in Modes-list"
@@ -6544,11 +6544,11 @@ msgstr ""
 
 #: application/views/mode/create.php:54
 msgid "Create mode"
-msgstr ""
+msgstr "Mode erstellen"
 
 #: application/views/mode/edit.php:67
 msgid "Update mode"
-msgstr ""
+msgstr "Mode updaten"
 
 #: application/views/mode/index.php:19
 msgid "Using the modes list you can control which modes are shown when creating a new QSO."
@@ -6556,7 +6556,7 @@ msgstr ""
 
 #: application/views/mode/index.php:22
 msgid "Active modes will be shown in the QSO 'Mode' drop-down, while inactive modes will be hidden and cannot be selected."
-msgstr ""
+msgstr "Aktive Modi werden im QSO 'Mode' drop-down angezeigt, inaktive werden nicht angezeigt und sind auch nicht auswählbar."
 
 #: application/views/mode/index.php:29
 msgid "Sub-Mode"
@@ -6564,7 +6564,7 @@ msgstr ""
 
 #: application/views/mode/index.php:76
 msgid "Create a Mode"
-msgstr ""
+msgstr "Erstelle einen Mode"
 
 #: application/views/notes/add.php:6 application/views/notes/add.php:12
 #: application/views/notes/edit.php:13 application/views/notes/main.php:11
@@ -6664,7 +6664,7 @@ msgstr ""
 
 #: application/views/options/appearance.php:103
 msgid "This enables the button to Wavelog's Github page in the public view"
-msgstr ""
+msgstr "Hier kann der Link zu Github auf der öffentlichen Seite aktiviert werden"
 
 #: application/views/options/dxcluster.php:38
 msgid "Provider of DXClusterCache"
@@ -6726,7 +6726,7 @@ msgstr "SMTP Verschlüsselung"
 
 #: application/views/options/email.php:56
 msgid "No Encryption"
-msgstr ""
+msgstr "Keine Verschlüsselung"
 
 #: application/views/options/email.php:60
 msgid "Choose whether emails should be sent with TLS or SSL."
@@ -6807,11 +6807,11 @@ msgstr "Gruppierte Suche"
 
 #: application/views/options/oqrs.php:47 application/views/options/oqrs.php:56
 msgid "Off"
-msgstr ""
+msgstr "Aus"
 
 #: application/views/options/oqrs.php:48 application/views/options/oqrs.php:57
 msgid "On"
-msgstr ""
+msgstr "An"
 
 #: application/views/options/oqrs.php:50
 msgid "When this is on, all station locations with OQRS active, will be searched at once."
@@ -6899,11 +6899,11 @@ msgstr "Dies deaktiviert das automatische Einblenden des Versionsdialogs für al
 
 #: application/views/oqrs/index.php:9
 msgid "Request a QSL card"
-msgstr ""
+msgstr "QSL-Karte anfordern"
 
 #: application/views/oqrs/index.php:21
 msgid "Enter your callsign"
-msgstr ""
+msgstr "Gib Dein Rufzeichen ein"
 
 #: application/views/oqrs/index.php:21
 msgid "This search will search in all station locations where OQRS is active."
@@ -6911,7 +6911,7 @@ msgstr ""
 
 #: application/views/oqrs/index.php:48
 msgid "Select station"
-msgstr ""
+msgstr "Station auswählen"
 
 #: application/views/oqrs/index.php:64
 msgid "No stations found that are using Wavelog OQRS."
