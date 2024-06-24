@@ -2,28 +2,30 @@
 # Copyright (c) 2024 Wavelog by DF2ET, DJ7NT, HB9HIL and LA8AJA.
 # This file is distributed under the MIT licence.
 #
+# Aurélien Barrau <abarrau378@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-06-23 23:12+0200\n"
-"PO-Revision-Date: 2024-06-05 12:34\n"
-"Last-Translator: \n"
-"Language-Team: French\n"
+"PO-Revision-Date: 2024-06-24 11:59+0000\n"
+"Last-Translator: Aurélien Barrau <abarrau378@gmail.com>\n"
+"Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-translation/fr/>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.6\n"
 
 #: application/controllers/Accumulated.php:21
 #: application/views/interface_assets/header.php:147
 msgid "Accumulated Statistics"
-msgstr ""
+msgstr "Statistiques accumulées"
 
 #: application/controllers/Activated_gridmap.php:10
 #: application/views/activated_gridmap/index.php:5
 msgid "Activated Gridsquare Map"
-msgstr "Carte des Locator activatés"
+msgstr "Carte des Locator activés"
 
 #: application/controllers/Activated_gridmap.php:31
 #: application/controllers/Awards.php:910
@@ -49,25 +51,25 @@ msgstr "Locator non confirmés"
 
 #: application/controllers/Activated_gridmap.php:34
 msgid "Total gridsquares activated"
-msgstr "Total des Locator activatés"
+msgstr "Total des Locator activés"
 
 #: application/controllers/Activators.php:20
 #: application/views/activators/index.php:2
 #: application/views/interface_assets/header.php:139
 msgid "Gridsquare Activators"
-msgstr "Activateur de Locator"
+msgstr "Activateurs de Locator"
 
 #: application/controllers/Activatorsmap.php:17
 msgid "Activators Map"
-msgstr ""
+msgstr "Carte des Activateurs"
 
 #: application/controllers/Adif.php:18
 msgid "valid date"
-msgstr ""
+msgstr "date de validité"
 
 #: application/controllers/Adif.php:20
 msgid "date incorrect"
-msgstr ""
+msgstr "date incorrecte"
 
 #: application/controllers/Adif.php:29 application/views/adif/import.php:24
 msgid "ADIF Export"
@@ -76,7 +78,7 @@ msgstr "Exporter ADIF"
 #: application/controllers/Adif.php:147
 #: application/views/interface_assets/header.php:370
 msgid "ADIF Import / Export"
-msgstr ""
+msgstr "Importer / Exporter ADIF"
 
 #: application/controllers/Adif.php:171 application/views/adif/import.php:21
 #: application/views/lotw/import.php:3
@@ -85,11 +87,11 @@ msgstr "Importer ADIF"
 
 #: application/controllers/Adif.php:211
 msgid "Unsupported Filetype"
-msgstr ""
+msgstr "Type de fichier non pris en charge"
 
 #: application/controllers/Adif.php:247
 msgid "Station Profile not valid for User"
-msgstr ""
+msgstr "Profil de station non valide pour l'utilisateur"
 
 #: application/controllers/Adif.php:254
 #: application/views/adif/import_success.php:12
@@ -98,49 +100,49 @@ msgstr "ADIF importé"
 
 #: application/controllers/Adif.php:265
 msgid "DCL Import"
-msgstr ""
+msgstr "Import DCL"
 
 #: application/controllers/Adif.php:321
 msgid "DCL Data Imported"
-msgstr ""
+msgstr "Données DCL importées"
 
 #: application/controllers/Api.php:26
 msgid "API"
-msgstr ""
+msgstr "API"
 
 #: application/controllers/Api.php:50 application/views/api/description.php:26
 msgid "API Description"
-msgstr ""
+msgstr "Description de l'API"
 
 #: application/controllers/Api.php:51
 msgid "API Key is required do not change this field"
-msgstr ""
+msgstr "La clé API est requise, ne modifiez pas ce champ"
 
 #: application/controllers/Api.php:57
 msgid "Edit API Description"
-msgstr ""
+msgstr "Modifier de l'API"
 
 #: application/controllers/Api.php:69
 #, php-format
 msgid "API Key %s description has been updated."
-msgstr ""
+msgstr "Les informations sur la clé API %s a été mise à jour."
 
 #: application/controllers/Api.php:109
 #, php-format
 msgid "API Key %s has been deleted"
-msgstr ""
+msgstr "La clé API %s a été supprimée"
 
 #: application/controllers/Api.php:118
 msgid "Key Disabled"
-msgstr ""
+msgstr "Clé désactivée"
 
 #: application/controllers/Api.php:118
 msgid "No Key Found"
-msgstr ""
+msgstr "Aucune clé trouvée"
 
 #: application/controllers/Api.php:120
 msgid "Key Invalid - either not found or disabled"
-msgstr ""
+msgstr "Clé invalide - soit non trouvée ou désactivée"
 
 #: application/controllers/Api.php:124
 #: application/views/lotw_views/index.php:95
@@ -151,7 +153,7 @@ msgstr "Valide"
 #: application/views/interface_assets/header.php:155
 #: application/views/qso/edit_ajax.php:35
 msgid "Awards"
-msgstr ""
+msgstr "Trophées"
 
 #: application/controllers/Awards.php:92 application/controllers/Awards.php:172
 #: application/controllers/Awards.php:327
@@ -171,7 +173,7 @@ msgstr ""
 #: application/controllers/Awards.php:1755
 #, php-format
 msgid "Awards - %s"
-msgstr ""
+msgstr "Trophées - %s"
 
 #: application/controllers/Awards.php:92
 #: application/views/awards/dok/index.php:149
@@ -184,7 +186,7 @@ msgstr ""
 #: application/views/qso/index.php:508 application/views/user/edit.php:603
 #: application/views/view_log/qso.php:351
 msgid "DOK"
-msgstr ""
+msgstr "DOK"
 
 #: application/controllers/Awards.php:172 application/views/awards/index.php:7
 #: application/views/bandmap/list.php:112 application/views/bands/index.php:50
@@ -206,21 +208,21 @@ msgstr ""
 #: application/views/stationsetup/linkedlocations.php:33
 #: application/views/timeplotter/index.php:24
 msgid "DXCC"
-msgstr ""
+msgstr "DXCC"
 
 #: application/controllers/Awards.php:251
 msgid "Awards - WAJA"
-msgstr ""
+msgstr "Trophées - WAJA"
 
 #: application/controllers/Awards.php:327 application/views/bands/index.php:53
 #: application/views/interface_assets/header.php:207
 msgid "JCC"
-msgstr ""
+msgstr "JCC"
 
 #: application/controllers/Awards.php:375 application/views/bands/index.php:59
 #: application/views/interface_assets/header.php:167
 msgid "VUCC"
-msgstr ""
+msgstr "VUCC"
 
 #: application/controllers/Awards.php:405
 msgid "Log View - VUCC"
@@ -237,23 +239,23 @@ msgstr ""
 
 #: application/controllers/Awards.php:457
 msgid " and sat "
-msgstr ""
+msgstr " et satellite "
 
 #: application/controllers/Awards.php:460
 msgid " and orbit type "
-msgstr ""
+msgstr " et une orbite "
 
 #: application/controllers/Awards.php:464
 msgid " and propagation "
-msgstr ""
+msgstr " et une propagation "
 
 #: application/controllers/Awards.php:467
 msgid " and mode "
-msgstr ""
+msgstr " et le mode "
 
 #: application/controllers/Awards.php:470
 msgid " and "
-msgstr ""
+msgstr " et "
 
 #: application/controllers/Awards.php:486
 #: application/controllers/Logbook.php:1280
@@ -279,7 +281,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:9
 #: application/views/visitor/index.php:21
 msgid "SOTA"
-msgstr ""
+msgstr "SOTA"
 
 #: application/controllers/Awards.php:503
 #: application/controllers/Logbook.php:1281
@@ -299,7 +301,7 @@ msgstr ""
 #: application/views/user/edit.php:324
 #: application/views/view_log/partial/log_ajax.php:10
 msgid "WWFF"
-msgstr ""
+msgstr "WWFF"
 
 #: application/controllers/Awards.php:520
 #: application/controllers/Logbook.php:1282
@@ -319,7 +321,7 @@ msgstr ""
 #: application/views/user/edit.php:325
 #: application/views/view_log/partial/log_ajax.php:11
 msgid "POTA"
-msgstr ""
+msgstr "POTA"
 
 #: application/controllers/Awards.php:591
 msgid "CQ Magazine WAZ"
@@ -334,7 +336,7 @@ msgstr ""
 #: application/controllers/Awards.php:714 application/views/bands/index.php:55
 #: application/views/interface_assets/header.php:185
 msgid "RAC"
-msgstr ""
+msgstr "RAC"
 
 #: application/controllers/Awards.php:776 application/views/bands/index.php:51
 msgid "H26"
@@ -348,7 +350,7 @@ msgstr ""
 #: application/controllers/Awards.php:872
 #: application/views/interface_assets/header.php:227
 msgid "US Counties"
-msgstr ""
+msgstr "Comtés US"
 
 #: application/controllers/Awards.php:887
 msgid "Log View - Counties"
@@ -356,7 +358,7 @@ msgstr ""
 
 #: application/controllers/Awards.php:894
 msgid "Awards - "
-msgstr ""
+msgstr "Trophées - "
 
 #: application/controllers/Awards.php:911
 #: application/controllers/Awards.php:943
@@ -371,39 +373,39 @@ msgstr "Locator confirmés par LoTW"
 #: application/controllers/Awards.php:913
 #: application/controllers/Awards.php:945
 msgid "Gridsquares confirmed by paper QSL"
-msgstr "Locator confirmé par Carte QSL"
+msgstr "Locator confirmés par Carte QSL"
 
 #: application/controllers/Awards.php:930
 msgid "Fred Fish Memorial Award (FFMA)"
-msgstr ""
+msgstr "Fred Fish Memorial Award (FFMA)"
 
 #: application/controllers/Awards.php:1125
 #: application/views/interface_assets/header.php:165
 #: application/views/logbookadvanced/useroptions.php:134
 msgid "SIG"
-msgstr ""
+msgstr "SIG"
 
 #: application/controllers/Awards.php:1143
 msgid "Awards - SIG - "
-msgstr ""
+msgstr "Trophées - SIG - "
 
 #: application/controllers/Awards.php:1755
 #: application/views/awards/itu/index.php:18
 msgid "ITU Zones"
-msgstr ""
+msgstr "Zones ITU"
 
 #: application/controllers/Backup.php:15 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:271
 msgid "Backup"
-msgstr ""
+msgstr "Sauvegarde"
 
 #: application/controllers/Backup.php:48
 msgid "ADIF - Backup"
-msgstr ""
+msgstr "ADIF - Sauvegarde"
 
 #: application/controllers/Backup.php:80
 msgid "Notes - Backup"
-msgstr ""
+msgstr "Notes - Sauvegarde"
 
 #: application/controllers/Band.php:25 application/views/bands/index.php:28
 #: application/views/bands/index.php:32
@@ -411,15 +413,15 @@ msgstr ""
 #: application/views/statistics/index.php:16
 #: application/views/statistics/index.php:56
 msgid "Bands"
-msgstr ""
+msgstr "Bandes"
 
 #: application/controllers/Band.php:40 application/controllers/Mode.php:41
 msgid "Create Mode"
-msgstr ""
+msgstr "Créer un mode"
 
 #: application/controllers/Band.php:59 application/views/bands/index.php:142
 msgid "Edit Band"
-msgstr ""
+msgstr "Modifier la bande"
 
 #: application/controllers/Bandmap.php:28
 #: application/controllers/Bandmap.php:69
@@ -427,11 +429,11 @@ msgstr ""
 #: application/controllers/Options.php:148
 #: application/views/options/sidebar.php:10
 msgid "DXCluster"
-msgstr ""
+msgstr "DXCluster"
 
 #: application/controllers/Cabrillo.php:20
 msgid "Export Cabrillo"
-msgstr ""
+msgstr "Exporter Cabrillo"
 
 #: application/controllers/Cfdexport.php:20
 #: application/views/interface_assets/header.php:382
@@ -2328,7 +2330,7 @@ msgstr "Les fichiers de Log doivent avoir l'extention : *.adi"
 
 #: application/views/adif/import.php:56 application/views/view_log/qso.php:622
 msgid "Maximum file upload size is "
-msgstr "La taille maximum d'un fichier à télécharger est"
+msgstr "La taille maximum d'un fichier à télécharger est "
 
 #: application/views/adif/import.php:56 application/views/adif/import.php:220
 #: application/views/adif/import.php:258 application/views/debug/index.php:153
@@ -2374,7 +2376,7 @@ msgstr "Indiquer que les QSO importés ont été téléchargés sur LoTW"
 #: application/views/adif/import.php:95 application/views/adif/import.php:105
 #: application/views/adif/import.php:115 application/views/adif/import.php:125
 msgid "Select if ADIF being imported does not contain this information."
-msgstr "(A cocher,  si l'ADIF à importer ne contient pas ces informations)"
+msgstr "(A cocher, si l'ADIF à importer ne contient pas ces informations)."
 
 #: application/views/adif/import.php:103
 msgid "Mark imported QSOs as uploaded to HRDLog.net Logbook"
@@ -2394,7 +2396,7 @@ msgstr "Utiliser l'information du DXCC issue du fichier ADIF"
 
 #: application/views/adif/import.php:135
 msgid "If not selected, Wavelog will attempt to determine DXCC information automatically."
-msgstr "(Si cochée, Wavelog tentera de déterminer automatiquement les informations DXCC.)"
+msgstr "(Si cochée, Wavelog tentera de déterminer automatiquement les informations DXCC)."
 
 #: application/views/adif/import.php:143
 msgid "Always use login-callsign as operator-name on import"
@@ -2411,7 +2413,7 @@ msgstr "Ignorer l'indicatif de la station lors de l'import"
 
 #: application/views/adif/import.php:154
 msgid "If selected, Wavelog will try to import <b>all</b> QSO's of the ADIF, regardless if they match to the chosen station-location."
-msgstr "(Si cochée, Wavelog tentera d'importer <b><u>TOUS</u></b> les QSO de l'ADIF, qu'ils correspondent ou non à l'emplacement de la station choisie)"
+msgstr "(Si cochée, Wavelog tentera d'importer <b>TOUS</b> les QSO de l'ADIF, qu'ils correspondent ou non à l'emplacement de la station choisie)."
 
 #: application/views/adif/import.php:158 application/views/adif/import.php:273
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:54
@@ -2434,7 +2436,7 @@ msgstr "L'export de fichier ADIF vous permet d'importer vos QSO dans des applica
 #: application/views/lotw/import.php:38 application/views/qrz/export.php:76
 #: application/views/qrz/export.php:97 application/views/webadif/export.php:97
 msgid "From date"
-msgstr "Date, du "
+msgstr "Date, du"
 
 #: application/views/adif/import.php:179 application/views/adif/import.php:225
 #: application/views/cfd/index.php:20 application/views/csv/index.php:123
@@ -2443,7 +2445,7 @@ msgstr "Date, du "
 #: application/views/qrz/export.php:102
 #: application/views/webadif/export.php:102
 msgid "To date"
-msgstr "au "
+msgstr "au"
 
 #: application/views/adif/import.php:187
 msgid "Mark exported QSOs as uploaded to LoTW"
@@ -2485,11 +2487,11 @@ msgstr ""
 
 #: application/views/adif/import.php:249
 msgid "Only import DOK data from QSOs confirmed on DCL."
-msgstr "Importez uniquement les données DOK des QSO confirmés sur DCL"
+msgstr "Importez uniquement les données DOK des QSO confirmés sur DCL."
 
 #: application/views/adif/import.php:251
 msgid "Uncheck if you also want to update DOK with data from unconfirmed QSOs in DCL."
-msgstr "(Décoché, si vous souhaitez également mettre à jour DOK, avec les données des QSO non confirmés dans DCL)"
+msgstr "(Décoché, si vous souhaitez également mettre à jour DOK, avec les données des QSO non confirmés dans DCL)."
 
 #: application/views/adif/import.php:258
 msgid "Overwrites exisiting DOK in log by DCL (if different)."
@@ -2497,11 +2499,11 @@ msgstr ""
 
 #: application/views/adif/import.php:260
 msgid "If checked Wavelog will forcibly overwrite existing DOK with DOK from DCL log."
-msgstr "(Si cochée, Wavelog écrasera de force le DOK existant par le DOK du journal DCL)"
+msgstr "(Si cochée, Wavelog écrasera de force le DOK existant par le DOK du journal DCL)."
 
 #: application/views/adif/import.php:267
 msgid "Ignore QSOs that cannot be matched."
-msgstr "Ignorer les QSO qui ne correspondent pas"
+msgstr "Ignorer les QSO qui ne correspondent pas."
 
 #: application/views/adif/import.php:269
 msgid "If unchecked, information about QSOs which could not be found in Wavelog will be displayed."
@@ -2525,7 +2527,7 @@ msgstr ""
 
 #: application/views/adif/import_success.php:24
 msgid "ADIF Errors"
-msgstr "Erreurs ADIF "
+msgstr "Erreurs ADIF"
 
 #: application/views/adif/import_success.php:25
 msgid "You have ADIF errors, the QSOs have still been added but these fields have not been populated."
@@ -2940,7 +2942,7 @@ msgstr "Carte"
 #: application/views/timeline/index.php:202
 #: application/views/timeplotter/index.php:44
 msgid "CQ Zone"
-msgstr "Zone CQ "
+msgstr "Zone CQ"
 
 #: application/views/awards/cq/index.php:165
 #: application/views/awards/dok/index.php:165
@@ -3756,7 +3758,7 @@ msgstr "Sélectionner la période (date début/fin)"
 
 #: application/views/cabrillo/index.php:6
 msgid "No contests were found for this station location!"
-msgstr "Aucun concours trouvé pour cet emplacement de station!"
+msgstr "Aucun concours trouvé pour ce lieu de station !"
 
 #: application/views/cabrillo/index.php:16
 msgid "Export a contest to a Cabrillo log"
@@ -3840,7 +3842,7 @@ msgstr "Adresse - Pays"
 
 #: application/views/cabrillo/index.php:186
 msgid "No contests were found in your log."
-msgstr "Aucun concours trouvé dans votre journal de trafic"
+msgstr "Aucun concours trouvé dans votre journal de trafic."
 
 #: application/views/cfd/index.php:7
 #, php-format
@@ -3957,7 +3959,7 @@ msgstr "En utilisant la liste des concours, vous pouvez contrôler quels concour
 
 #: application/views/contesting/add.php:19
 msgid "Active contests will be shown in the Contest Name drop-down, while inactive contests will be hidden and cannot be selected."
-msgstr "Les concours actifs seront affichés dans la liste déroulante 'Nom du concours' sur les pages 'Contest Logging"
+msgstr "Les concours actifs seront affichés dans la liste déroulante 'Nom du concours' sur les pages Contest Logging, tandis que les concours inactifs seront masqués et ne pourront pas être sélectionnés."
 
 #: application/views/contesting/add.php:26
 #: application/views/contesting/create.php:30
@@ -3998,15 +4000,15 @@ msgstr ""
 
 #: application/views/contesting/add.php:55
 msgid "Warning! Are you sure you want to delete the following contest: "
-msgstr "ATTENTION !  Etes vous certain de vouloir <b><u>supprimer</u></b> le concours :  "
+msgstr "ATTENTION ! Etes vous certain de vouloir <b><u>supprimer</u></b> le concours : "
 
 #: application/views/contesting/add.php:56
 msgid "Warning! Are you sure you want to activate all contests?"
-msgstr "ATTENTION !  Etes vous certain de vouloir activer tous les concours ? "
+msgstr "ATTENTION ! Etes vous certain de vouloir activer tous les concours ?"
 
 #: application/views/contesting/add.php:57
 msgid "Warning! Are you sure you want to deactivate all contests?"
-msgstr "ATTENTION !  Etes vous certain de vouloir désactiver tous les concours ? "
+msgstr "ATTENTION ! Etes vous certain de vouloir désactiver tous les concours ?"
 
 #: application/views/contesting/add.php:73
 #: application/views/contesting/add.php:76
@@ -5009,15 +5011,15 @@ msgstr "Données du QSO"
 
 #: application/views/distances/index.php:9
 msgid "contacts were plotted.<br /> Your furthest contact was with"
-msgstr "contacts utilisés pour le graphique.<br> Le dernier contact réalisé est : "
+msgstr "contacts utilisés pour le graphique.<br/> Le dernier contact réalisé est"
 
 #: application/views/distances/index.php:10
 msgid "in gridsquare"
-msgstr ", avec le locator : "
+msgstr ", avec le locator"
 
 #: application/views/distances/index.php:11
 msgid "the distance was"
-msgstr ", pour une distance de : "
+msgstr ", pour une distance de"
 
 #: application/views/distances/index.php:14
 msgid "Callsign(s) worked (max 5 shown)"
@@ -5177,7 +5179,7 @@ msgstr ""
 
 #: application/views/eqsl/tools.php:26
 msgid "Use this if you have lots of QSOs to upload to eQSL it will save the server timing out."
-msgstr ""
+msgstr "Utilisez cette fonction si vous avez beaucoup de QSO à télécharger sur eQSL, cela évitera au serveur de perdre du temps."
 
 #: application/views/eqslcard/index.php:10
 #, php-format
@@ -5314,7 +5316,7 @@ msgstr "Couleurs"
 
 #: application/views/interface_assets/footer.php:29
 msgid "Worked not confirmed"
-msgstr "Réalisés non  confirmés"
+msgstr "Réalisés - non confirmés"
 
 #: application/views/interface_assets/footer.php:30
 msgid "Not worked"
@@ -5813,7 +5815,7 @@ msgstr "Imprimer"
 #: application/views/labels/startatform.php:3
 #: application/views/logbookadvanced/startatform.php:3
 msgid "Include Grid?"
-msgstr "Ajouter Locator"
+msgstr "Ajouter le Locator ?"
 
 #: application/views/labels/startatform.php:9
 #: application/views/logbookadvanced/startatform.php:9
@@ -5827,7 +5829,7 @@ msgstr ""
 #: application/views/labels/startatform.php:21
 #: application/views/logbookadvanced/startatform.php:21
 msgid "Start printing at?"
-msgstr "Commencer à imprimer à"
+msgstr "Commencer à imprimer à ?"
 
 #: application/views/logbookadvanced/edit.php:15
 #: application/views/logbookadvanced/index.php:371
@@ -6096,7 +6098,7 @@ msgstr "ATTENTION ! Etes vous certain de vouloir <b><u>supprimer</u></b> les QSO
 
 #: application/views/logbookadvanced/index.php:390
 msgid "With selected: "
-msgstr "Action pour lignes sélectionnées :"
+msgstr "Action pour lignes sélectionnées : "
 
 #: application/views/logbookadvanced/index.php:391
 msgid "Update from Callbook"
@@ -6487,7 +6489,7 @@ msgstr "Instruction pour l'export des fichiers .p12"
 
 #: application/views/lotw_views/upload_cert.php:22
 msgid "Open TQSL and go to the Callsign Certificates Tab"
-msgstr "Ouvrir  TQSL et aller à l'onglet  Certificats Indicatifs"
+msgstr "Ouvrir TQSL et aller à l'onglet Certificats Indicatifs"
 
 #: application/views/lotw_views/upload_cert.php:23
 msgid "Right click on desired Callsign"
@@ -6499,7 +6501,7 @@ msgstr ""
 
 #: application/views/lotw_views/upload_cert.php:25
 msgid "Upload File below."
-msgstr "Envoyer le fichier ci-dessous"
+msgstr "Envoyer le fichier ci-dessous."
 
 #: application/views/lotw_views/upload_cert.php:35
 msgid "Upload File"
@@ -6589,7 +6591,7 @@ msgstr "Antennes"
 
 #: application/views/notes/add.php:43 application/views/notes/edit.php:44
 msgid "Note Contents"
-msgstr "Contenu de la note "
+msgstr "Contenu de la note"
 
 #: application/views/notes/add.php:48 application/views/notes/edit.php:50
 msgid "Save Note"
@@ -6601,7 +6603,7 @@ msgstr "Vos Notes"
 
 #: application/views/notes/main.php:32
 msgid "You don't currently have any notes, these are a fantastic way of storing data like ATU settings, beacons and general station notes and its better than paper as you can't lose them!"
-msgstr "Vous n'avez actuellement aucune note.<br> C'est une manière fantastique de conserver vos données comme les réglages de boite d'accord, balises, notes sur les stations etc. et c'est bien mieux que des notes papiers que vous finirez par perdre."
+msgstr "Vous n'avez actuellement aucune note.<br> C'est une manière fantastique de conserver vos données comme les réglages de boite d'accord, balises, notes sur les stations etc... et c'est bien mieux que des notes papiers que vous finirez par perdre !"
 
 #: application/views/notes/view.php:21
 msgid "Delete Note"
@@ -7458,27 +7460,27 @@ msgstr "Bande (RX)"
 
 #: application/views/qso/index.php:458
 msgid "For example: GM/NS-001."
-msgstr "Par exemple: GM/NS-001."
+msgstr "Par exemple : GM/NS-001."
 
 #: application/views/qso/index.php:471
 msgid "For example: DLFF-0069."
-msgstr "Par exemple: DLFF-0069."
+msgstr "Par exemple : DLFF-0069."
 
 #: application/views/qso/index.php:484
 msgid "For example: PA-0150. Multiple values allowed."
-msgstr "Par exemple: PA-0150. Multiple values allowed."
+msgstr "Par exemple : PA-0150. (Plusieurs valeurs autorisées)."
 
 #: application/views/qso/index.php:496
 msgid "For example: GMA"
-msgstr "Par exemple: GMA"
+msgstr "Par exemple : GMA"
 
 #: application/views/qso/index.php:502
 msgid "For example: DA/NW-357"
-msgstr "Par exemple: DA/NW-357"
+msgstr "Par exemple : DA/NW-357"
 
 #: application/views/qso/index.php:510
 msgid "For example: Q03"
-msgstr "Par exemple: Q03"
+msgstr "Par exemple : Q03"
 
 #: application/views/qso/index.php:519 application/views/view_log/qso.php:207
 msgid "Satellite Name"
@@ -7490,7 +7492,7 @@ msgstr "Mode du Satellite"
 
 #: application/views/qso/index.php:538
 msgid "Note content is used within Wavelog only and is not exported to other services."
-msgstr "A noter : le contenu est utilisé par Wavelog uniquement et n'est pas exporté vers d'autre services"
+msgstr "A noter : le contenu est utilisé par Wavelog uniquement et n'est pas exporté vers d'autre services."
 
 #: application/views/qso/index.php:604
 msgid "Reset to Default"
@@ -8429,7 +8431,7 @@ msgstr ""
 
 #: application/views/stationsetup/stationsetup.php:21
 msgid "Station Logbooks allow you to group Station Locations, this allows you to see all the locations across one session from the logbook areas to the analytics. Great for when your operating in multiple locations but they are part of the same DXCC or VUCC Circle."
-msgstr "Les \"journaux de trafic\" des stations vous permettent de regrouper les emplacements des stations.<br>Cela vous permet d'avoir tous les emplacements au sein d'une même session ; visible dans le journal de trafic,  jusqu'aux statistiques. <br>Idéal lorsque vous travaillez sur plusieurs sites, mais qu'ils font partie du même cercle DXCC ou VUCC."
+msgstr "Les \"journaux de trafic\" des stations vous permettent de regrouper les emplacements des stations.<br>Cela vous permet d'avoir tous les emplacements au sein d'une même session ; visible dans le journal de trafic, jusqu'aux statistiques. <br>Idéal lorsque vous travaillez sur plusieurs sites, mais qu'ils font partie du même cercle DXCC ou VUCC."
 
 #: application/views/stationsetup/stationsetup.php:32
 msgid "Linked locations"
@@ -8475,7 +8477,7 @@ msgstr ""
 #: application/views/statistics/custom_result.php:12
 #: application/views/statistics/index.php:28
 msgid "Explore the logbook."
-msgstr "Informations sur le journal de trafic"
+msgstr "Informations sur le journal de trafic."
 
 #: application/views/statistics/custom.php:23
 #: application/views/statistics/custom_result.php:24
@@ -8811,7 +8813,7 @@ msgstr "Langue utilisée par Wavelog"
 
 #: application/views/user/edit.php:176
 msgid "Choose Wavelog language."
-msgstr "(Sélectionner la langue à utiliser)"
+msgstr "(Sélectionner la langue à utiliser)."
 
 #: application/views/user/edit.php:179
 msgid "Timezone"
@@ -8823,7 +8825,7 @@ msgstr "Format de la date"
 
 #: application/views/user/edit.php:200
 msgid "Select how you would like dates shown when logged into your account."
-msgstr "(Sélectionnez le format de date à afficher)"
+msgstr "(Sélectionnez le format de date à afficher)."
 
 #: application/views/user/edit.php:204
 msgid "Measurement preference"
@@ -8879,40 +8881,40 @@ msgstr "Enregistrer les heures de fin des QSO séparément"
 
 #: application/views/user/edit.php:350
 msgid "Choose yes here if you want to log QSO start and end times separately. If set to 'No' the end time will be the same as start time."
-msgstr "(Choisissez 'oui', si vous souhaitez enregistrer les heures de début et de fin des QSO séparément. Si la valeur est 'Non', l'heure de fin sera la même que l'heure de début)"
+msgstr "(Choisissez 'oui', si vous souhaitez enregistrer les heures de début et de fin des QSO séparément. Si la valeur est 'Non', l'heure de fin sera la même que l'heure de début)."
 
 #: application/views/user/edit.php:355
 msgid "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the log QSO section."
-msgstr "Affiche l'image de profil du contact (depuis qrz.com/hamqth.com) dans la session QSO"
+msgstr "Affiche l'image de profil du contact (depuis qrz.com/hamqth.com) dans la session QSO."
 
 #: application/views/user/edit.php:361
 msgid "Please set your qrz.com/hamqth.com credentials in the general config file."
-msgstr "(Indiquer les éléments d'authentification pour qrz.com/hamqth.com dans le fichier de configuration (config.php))"
+msgstr "(Indiquer les éléments d'authentification pour qrz.com/hamqth.com dans le fichier de configuration (config.php))."
 
 #: application/views/user/edit.php:366
 msgid "Location auto lookup."
-msgstr "Recherche automatique de lieu"
+msgstr "Recherche automatique de lieu."
 
 #: application/views/user/edit.php:372
 msgid "If set, gridsquare is fetched based on location name."
-msgstr "(Si 'oui', le Locator est récupéré en fonction du nom du lieu)"
+msgstr "(Si 'oui', le Locator est récupéré en fonction du nom du lieu)."
 
 #: application/views/user/edit.php:376
 msgid "SOTA auto lookup gridsquare and name for summit."
-msgstr "SOTA : Renseigner automatiquement le Locator et le nom du sommet"
+msgstr "SOTA : Renseigner automatiquement le Locator et le nom du sommet."
 
 #: application/views/user/edit.php:382 application/views/user/edit.php:392
 #: application/views/user/edit.php:402
 msgid "If set, name and gridsquare is fetched from the API and filled in location and locator."
-msgstr "(Si 'oui', le nom et le Locator seront récupérés depuis l'API et renseignés)"
+msgstr "(Si 'oui', le nom et le Locator seront récupérés depuis l'API et renseignés)."
 
 #: application/views/user/edit.php:386
 msgid "WWFF auto lookup gridsquare and name for reference."
-msgstr "WWFF : Renseigner automatiquement le Locator et le nom de la référence"
+msgstr "WWFF : Renseigner automatiquement le Locator et le nom de la référence."
 
 #: application/views/user/edit.php:396
 msgid "POTA auto lookup gridsquare and name for park."
-msgstr "POTA : Renseigner automatiquement le Locateur et le nom du parc"
+msgstr "POTA : Renseigner automatiquement le Locateur et le nom du parc."
 
 #: application/views/user/edit.php:413
 msgid "Menu Options"
@@ -8920,7 +8922,7 @@ msgstr "Menu principal"
 
 #: application/views/user/edit.php:416
 msgid "Show notes in the main menu."
-msgstr "Voir les notes dans le main principal"
+msgstr "Voir les notes dans le main principal."
 
 #: application/views/user/edit.php:427
 msgid "Quicklog Field"
@@ -8928,7 +8930,7 @@ msgstr "Champ Quicklog"
 
 #: application/views/user/edit.php:433
 msgid "With this feature, you can log callsigns using the search field in the header."
-msgstr "(Si 'oui', vous pouvez enregistrer les indicatifs d'appel en utilisant le champ de recherche dans la barre du haut)"
+msgstr "(Si 'oui', vous pouvez enregistrer les indicatifs d'appel en utilisant le champ de recherche dans la barre du haut)."
 
 #: application/views/user/edit.php:437
 msgid "Quicklog - Action on press Enter"
@@ -8940,7 +8942,7 @@ msgstr "Enregistre l'indicatif"
 
 #: application/views/user/edit.php:443
 msgid "What action should be performed when Enter is pressed in the quicklog field?"
-msgstr "(Action effectuée lorsque vous appuyez sur 'Entrée' dans le champ quicklog ?)"
+msgstr "Action effectuée lorsque vous appuyez sur 'Entrée' dans le champ quicklog ?"
 
 #: application/views/user/edit.php:449
 msgid "Station Locations Quickswitch"
@@ -8992,7 +8994,7 @@ msgstr "Type de QSL pour le statut"
 
 #: application/views/user/edit.php:559
 msgid "Select the type of QSL to show in the previous QSOs section."
-msgstr "Sélectionner le type de QSL pour le statut à afficher dans la session 'Contacts précédents'"
+msgstr "Sélectionner le type de QSL pour le statut à afficher dans la session 'Contacts précédents'."
 
 #: application/views/user/edit.php:565
 msgid "QRZ"
@@ -9133,7 +9135,7 @@ msgstr "Mot de passe oublié ?"
 #: application/views/user/forgot_password.php:34
 #: application/views/user/reset_password.php:9
 msgid "You can reset your password here."
-msgstr "Vous pouvez réinitialiser votre mot de passe ici"
+msgstr "Vous pouvez réinitialiser votre mot de passe ici."
 
 #: application/views/user/login.php:36
 msgid "MAINTENANCE MODE"
@@ -9321,7 +9323,7 @@ msgstr "La carte QSL a été reçue"
 
 #: application/views/view_log/qso.php:404
 msgid "This station uses LoTW."
-msgstr "Cette station utilise LoTW"
+msgstr "Cette station utilise LoTW."
 
 #: application/views/view_log/qso.php:409
 #: application/views/view_log/qso.php:414

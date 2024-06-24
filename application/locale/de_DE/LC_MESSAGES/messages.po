@@ -5,12 +5,14 @@
 # Fabian Berg <hb9hil@wavelog.org>, 2024.
 # Christian Egger <christian@hb9hjq.ch>, 2024.
 # Nikolas Hagelstein <nikolas.hagelstein@gmail.com>, 2024.
+# Jörg Dorgeist <wavelog@dj7nt.de>, 2024.
+# Florian Wolters <wavelog@df2et.de>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-06-23 23:12+0200\n"
-"PO-Revision-Date: 2024-06-23 22:01+0000\n"
-"Last-Translator: Fabian Berg <hb9hil@wavelog.org>\n"
+"PO-Revision-Date: 2024-06-24 11:59+0000\n"
+"Last-Translator: Jörg Dorgeist <wavelog@dj7nt.de>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
@@ -5161,11 +5163,11 @@ msgstr "Inbox herunterladen"
 #: application/views/eqsl/import.php:33
 #, php-format
 msgid "Upload the Exported ADIF file from eQSL from the %s page, to mark QSOs as confirmed on eQSL."
-msgstr ""
+msgstr "eQSL ADIF Datei von der %s page hochladen um QSOs als bestätigt über eQSL zu markieren."
 
 #: application/views/eqsl/import.php:34
 msgid "Choose Station(location) eQSL File belongs to:"
-msgstr ""
+msgstr "Stationsprofil für die eQSL-Datei auswählen:"
 
 #: application/views/eqsl/import.php:42 application/views/lotw/import.php:25
 msgid "Log files must have the file type .adi"
@@ -5173,11 +5175,11 @@ msgstr "Logdateien müssen den Dateityp .adi haben"
 
 #: application/views/eqsl/import.php:49
 msgid "Import directly from eQSL"
-msgstr ""
+msgstr "Direktimport von eQSL"
 
 #: application/views/eqsl/tools.php:26
 msgid "Mark All QSOs as Sent to eQSL"
-msgstr ""
+msgstr "Markiere alle QSOs als gesendet für eQSL"
 
 #: application/views/eqsl/tools.php:26
 msgid "Use this if you have lots of QSOs to upload to eQSL it will save the server timing out."
@@ -5186,18 +5188,18 @@ msgstr ""
 #: application/views/eqslcard/index.php:10
 #, php-format
 msgid "You are using %s of disk space to store eQSL Card assets"
-msgstr ""
+msgstr "Du verwendest %s des Speicherplatzes um eQSL Karten zu speichern"
 
 #: application/views/eqslcard/index.php:34
 #: application/views/qslcard/index.php:33
 msgid "QSL Date"
-msgstr ""
+msgstr "QSL Datum"
 
 #: application/views/eqslcard/index.php:60
 #: application/views/qslcard/index.php:66
 #: application/views/view_log/qso.php:614
 msgid "View"
-msgstr ""
+msgstr "Ansicht"
 
 #: application/views/gridmap/index.php:38
 #: application/views/logbookadvanced/edit.php:14
@@ -5214,82 +5216,82 @@ msgstr "Keine/Leer"
 #: application/views/hamsat/index.php:22
 #, php-format
 msgid "Cannot filter workable passes only without private feed key. Please set the feed key in %s."
-msgstr ""
+msgstr "Ohne eingetragenen Key in %s kann kein Filter auf arbeitsfähige Orbits gesetzt werden."
 
 #: application/views/hamsat/index.php:22
 msgid "your profile"
-msgstr ""
+msgstr "Dein Profil"
 
 #: application/views/hrdlog/export.php:10 application/views/qrz/export.php:10
 #: application/views/webadif/export.php:10
 msgid "Upload Logbook"
-msgstr ""
+msgstr "Logbuch hochladen"
 
 #: application/views/hrdlog/export.php:13 application/views/qrz/export.php:18
 #: application/views/webadif/export.php:13
 msgid "Mark QSOs"
-msgstr ""
+msgstr "Markiere QSOs"
 
 #: application/views/hrdlog/export.php:22
 msgid "Here you can see all QSOs which have not been previously uploaded to a HRDLog logbook."
-msgstr ""
+msgstr "Liste der QSOs welche noch nicht zu HRDLog hochgeladen wurden."
 
 #: application/views/hrdlog/export.php:23
 msgid "You need to set a HRDLog Logbook API Code in your station profile. Only station profiles with an API Key set are displayed."
-msgstr ""
+msgstr "Du musst einen HRDLog API Code in Deinem Stationsprofil hinterlegen. Nur Stationen mit API-Code werden angezeigt."
 
 #: application/views/hrdlog/export.php:24
 #, php-format
 msgid "The Code can be requested at %s"
-msgstr ""
+msgstr "Der Code kann unter %s angefordert werden"
 
 #: application/views/hrdlog/export.php:25
 #: application/views/webadif/export.php:34
 msgid "This might take a while as QSO uploads are processed sequentially."
-msgstr ""
+msgstr "Dies kann etwas länger dauern, da die QSOs einzelnd prozessiert werden."
 
 #: application/views/hrdlog/export.php:34 application/views/qrz/export.php:38
 #: application/views/webadif/export.php:41
 msgid "Profile name"
-msgstr ""
+msgstr "Profilname"
 
 #: application/views/hrdlog/export.php:35
 #: application/views/oqrs/showrequests.php:86
 #: application/views/qrz/export.php:39 application/views/webadif/export.php:42
 msgid "Station callsign"
-msgstr ""
+msgstr "Stationsrufzeichen"
 
 #: application/views/hrdlog/export.php:36 application/views/qrz/export.php:40
 msgid "Edited QSOs not uploaded"
-msgstr ""
+msgstr "Nicht hochgeladene, bearbeitete QSOs"
 
 #: application/views/hrdlog/export.php:37 application/views/qrz/export.php:41
 #: application/views/webadif/export.php:43
 msgid "Total QSOs not uploaded"
-msgstr ""
+msgstr "Total nicht hochgeladener QSOs"
 
 #: application/views/hrdlog/export.php:38 application/views/qrz/export.php:42
 #: application/views/webadif/export.php:44
 msgid "Total QSOs uploaded"
-msgstr ""
+msgstr "Total hochgeladene QSOs"
 
 #: application/views/hrdlog/export.php:60
 msgid "No Station Locations with valid HRDlog-Settings found. Check the HRDlog Credentials in the Station Location Settings!"
-msgstr ""
+msgstr "Es wurde kein Stationsstandort mit gültigen HRDlog-Einstellungen gefunden. Überprüfe die HRDlog Zugangsdaten in den Stations Einstellungen!"
 
 #: application/views/hrdlog/export.php:87
 msgid "Mark QSOs as exported to HRDLog Logbook"
-msgstr ""
+msgstr "Markiere QSOs als zu HRDLog hochgeladen"
 
 #: application/views/hrdlog/mark_hrdlog.php:15
 #: application/views/qrz/mark_qrz.php:15
 #: application/views/webadif/mark_webadif.php:15
 msgid "Yay, it's done!"
-msgstr ""
+msgstr "Erledigt!"
 
 #: application/views/hrdlog/mark_hrdlog.php:16
 msgid "The QSOs are marked as exported to HRDLog Logbook."
-msgstr ""
+msgstr "Die QSOs wurden als zu HRDLog exportiert markiert."
 
 #: application/views/interface_assets/footer.php:20
 #: application/views/search/search_result_ajax.php:400
@@ -5305,7 +5307,7 @@ msgstr "Achtung"
 
 #: application/views/interface_assets/footer.php:25
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: application/views/interface_assets/footer.php:26
 msgid "Warning! Are you sure you want delete QSO with "
@@ -5360,7 +5362,7 @@ msgstr "Entwickler-Modus"
 
 #: application/views/interface_assets/header.php:88
 msgid "Maintenance Mode"
-msgstr ""
+msgstr "Wartungsmodus"
 
 #: application/views/interface_assets/header.php:98
 msgid "Overview"
@@ -5380,7 +5382,7 @@ msgstr "eQSL Ansicht"
 
 #: application/views/interface_assets/header.php:114
 msgid "Live QSO"
-msgstr ""
+msgstr "Live QSO"
 
 #: application/views/interface_assets/header.php:116
 msgid "Post QSO"
@@ -5388,11 +5390,11 @@ msgstr "Zeitversetztes QSO"
 
 #: application/views/interface_assets/header.php:118
 msgid "Simple Fast Log Entry"
-msgstr ""
+msgstr "Simple Fast Log Entry"
 
 #: application/views/interface_assets/header.php:120
 msgid "Live Contest Logging"
-msgstr ""
+msgstr "Live Contest Logging"
 
 #: application/views/interface_assets/header.php:122
 msgid "Post Contest Logging"
@@ -5408,11 +5410,11 @@ msgstr "Aktivierte Planquadrate"
 
 #: application/views/interface_assets/header.php:157
 msgid "International"
-msgstr ""
+msgstr "International"
 
 #: application/views/interface_assets/header.php:163
 msgid "ITU"
-msgstr ""
+msgstr "ITU"
 
 #: application/views/interface_assets/header.php:183
 msgid "Canada"
@@ -5424,7 +5426,7 @@ msgstr "Deutschland"
 
 #: application/views/interface_assets/header.php:193
 msgid "DL Gridmaster"
-msgstr ""
+msgstr "DL Gridmaster"
 
 #: application/views/interface_assets/header.php:197
 msgid "Great Britain"
@@ -5432,23 +5434,23 @@ msgstr "Großbritannien"
 
 #: application/views/interface_assets/header.php:199
 msgid "WAB"
-msgstr ""
+msgstr "WAB"
 
 #: application/views/interface_assets/header.php:203
 msgid "Japan"
-msgstr ""
+msgstr "Japan"
 
 #: application/views/interface_assets/header.php:209
 msgid "JA Gridmaster"
-msgstr ""
+msgstr "JA Gridmaster"
 
 #: application/views/interface_assets/header.php:213
 msgid "Luxemburg"
-msgstr ""
+msgstr "Luxemburg"
 
 #: application/views/interface_assets/header.php:215
 msgid "LX Gridmaster"
-msgstr ""
+msgstr "LX Gridmaster"
 
 #: application/views/interface_assets/header.php:219
 msgid "Switzerland"
@@ -5456,15 +5458,15 @@ msgstr "Schweiz"
 
 #: application/views/interface_assets/header.php:225
 msgid "USA"
-msgstr ""
+msgstr "USA"
 
 #: application/views/interface_assets/header.php:231
 msgid "US Gridmaster"
-msgstr ""
+msgstr "US Gridmaster"
 
 #: application/views/interface_assets/header.php:248
 msgid "Bandmap"
-msgstr ""
+msgstr "Bandmap"
 
 #: application/views/interface_assets/header.php:250
 msgid "SAT Timers"
@@ -5474,7 +5476,7 @@ msgstr "SAT Timer"
 #: application/views/station_profile/index.php:33
 #: application/views/stationsetup/stationsetup.php:110
 msgid "Admin"
-msgstr ""
+msgstr "Admin"
 
 #: application/views/interface_assets/header.php:261
 msgid "Global Options"
@@ -5524,7 +5526,7 @@ msgstr "Andere Export Optionen"
 
 #: application/views/interface_assets/header.php:380
 msgid "Cabrillo Export"
-msgstr ""
+msgstr "Cabrillo Export"
 
 #: application/views/interface_assets/header.php:403
 msgid "Labels"
@@ -5536,7 +5538,7 @@ msgstr "Drittanbieter Dienste"
 
 #: application/views/interface_assets/header.php:409
 msgid "eQSL Import / Export"
-msgstr ""
+msgstr "eQSL Import / Export"
 
 #: application/views/interface_assets/header.php:410
 msgid "HRDLog Logbook"
@@ -5548,11 +5550,11 @@ msgstr "Hilfe"
 
 #: application/views/interface_assets/header.php:421
 msgid "Forum"
-msgstr ""
+msgstr "Forum"
 
 #: application/views/interface_assets/header.php:423
 msgid "Logout"
-msgstr ""
+msgstr "Ausloggen"
 
 #: application/views/interface_assets/header.php:431
 msgid "Select a Location"
@@ -5560,7 +5562,7 @@ msgstr "Wähle einen Stationsstandort"
 
 #: application/views/interface_assets/header.php:510
 msgid "Extras"
-msgstr ""
+msgstr "Extras"
 
 #: application/views/kml/index.php:7
 msgid "Export your logbook to a KML file for use in Google Earth."
@@ -5568,245 +5570,245 @@ msgstr "Exportiere dein Logbuch als KML Datei um diese in Google Earth zu benutz
 
 #: application/views/labels/create.php:22 application/views/labels/edit.php:22
 msgid "Label Name"
-msgstr ""
+msgstr "Etiketten Name"
 
 #: application/views/labels/create.php:24
 msgid "Label name used for display purposes, so pick something meaningful, perhaps the label style."
-msgstr ""
+msgstr "Etiketten Name, welcher angezeigt wird. Verwende also etwas aussagekräftiges, vielleicht der Etiketten-Stil."
 
 #: application/views/labels/create.php:28 application/views/labels/edit.php:28
 #: application/views/labels/index.php:72
 msgid "Paper Type"
-msgstr ""
+msgstr "Papier Typ"
 
 #: application/views/labels/create.php:39
 #: application/views/labels/createpaper.php:41
 #: application/views/labels/edit.php:41
 #: application/views/labels/editpaper.php:41
 msgid "Measurement used"
-msgstr ""
+msgstr "Verwendete Masseinheit"
 
 #: application/views/labels/create.php:42
 #: application/views/labels/createpaper.php:44
 #: application/views/labels/edit.php:44
 #: application/views/labels/editpaper.php:44
 msgid "Millimeters"
-msgstr ""
+msgstr "Millimeter"
 
 #: application/views/labels/create.php:43
 #: application/views/labels/createpaper.php:45
 #: application/views/labels/edit.php:45
 #: application/views/labels/editpaper.php:45
 msgid "Inches"
-msgstr ""
+msgstr "Zoll"
 
 #: application/views/labels/create.php:49 application/views/labels/edit.php:51
 msgid "Margin Top"
-msgstr ""
+msgstr "Rand oben"
 
 #: application/views/labels/create.php:52 application/views/labels/edit.php:54
 msgid "Top margin of labels"
-msgstr ""
+msgstr "Oberer Rand der Etiketten"
 
 #: application/views/labels/create.php:55 application/views/labels/edit.php:57
 msgid "Margin Left"
-msgstr ""
+msgstr "Rand Links"
 
 #: application/views/labels/create.php:58 application/views/labels/edit.php:60
 msgid "Left margin of labels."
-msgstr ""
+msgstr "Linker Rand der Etiketten."
 
 #: application/views/labels/create.php:63 application/views/labels/edit.php:65
 msgid "Labels horizontally"
-msgstr ""
+msgstr "Etiketten horizontal"
 
 #: application/views/labels/create.php:66 application/views/labels/edit.php:68
 msgid "Number of labels horizontally across the page."
-msgstr ""
+msgstr "Anzahl der Etiketten horizontal über der Seite."
 
 #: application/views/labels/create.php:69 application/views/labels/edit.php:71
 msgid "Labels vertically"
-msgstr ""
+msgstr "Etiketten vertikal"
 
 #: application/views/labels/create.php:72 application/views/labels/edit.php:74
 msgid "Number of labels vertically across the page."
-msgstr ""
+msgstr "Anzahl der Etiketten vertikal über der Seite."
 
 #: application/views/labels/create.php:77 application/views/labels/edit.php:79
 msgid "Horizontal space"
-msgstr ""
+msgstr "Horizontaler Abstand"
 
 #: application/views/labels/create.php:80 application/views/labels/edit.php:82
 msgid "Horizontal space between 2 labels."
-msgstr ""
+msgstr "Horizontaler Abstand zwischen 2 Etiketten."
 
 #: application/views/labels/create.php:83 application/views/labels/edit.php:85
 msgid "Vertical space"
-msgstr ""
+msgstr "Vertikaler Abstand"
 
 #: application/views/labels/create.php:86 application/views/labels/edit.php:88
 msgid "Vertical space between 2 labels."
-msgstr ""
+msgstr "Vertikaler Abstand zwischen 2 Etiketten."
 
 #: application/views/labels/create.php:91 application/views/labels/edit.php:93
 msgid "Width of label"
-msgstr ""
+msgstr "Breite des Etiketts"
 
 #: application/views/labels/create.php:94 application/views/labels/edit.php:96
 msgid "Total width of one label."
-msgstr ""
+msgstr "Gesamtbreite eines Etiketts."
 
 #: application/views/labels/create.php:97 application/views/labels/edit.php:99
 msgid "Height of label"
-msgstr ""
+msgstr "Höhe des Etiketts"
 
 #: application/views/labels/create.php:100
 #: application/views/labels/edit.php:102
 msgid "Total height of one label"
-msgstr ""
+msgstr "Gesamthöhe eines Etiketts"
 
 #: application/views/labels/create.php:105
 #: application/views/labels/edit.php:107 application/views/labels/index.php:76
 msgid "Font Size"
-msgstr ""
+msgstr "Schriftgrösse"
 
 #: application/views/labels/create.php:108
 #: application/views/labels/edit.php:110
 msgid "Font size used on the label don't go too big."
-msgstr ""
+msgstr "Schriftgröße auf dem Etikett (Nicht zu gross wählen)."
 
 #: application/views/labels/create.php:111
 #: application/views/labels/edit.php:113
 msgid "QSOs on label"
-msgstr ""
+msgstr "QSOs auf dem Etikett"
 
 #: application/views/labels/create.php:117
 #: application/views/labels/edit.php:118
 msgid "Save Label Type"
-msgstr ""
+msgstr "Etiketten-Typ speichern"
 
 #: application/views/labels/createpaper.php:36
 #: application/views/labels/editpaper.php:36
 msgid "Paper Type Name"
-msgstr ""
+msgstr "Papier-Typ Name"
 
 #: application/views/labels/createpaper.php:39
 #: application/views/labels/editpaper.php:39
 msgid "Paper name used for display purposes, so pick something meaningful."
-msgstr ""
+msgstr "Papier Name, welcher angezeigt wird. Verwende also etwas aussagekräftiges."
 
 #: application/views/labels/createpaper.php:51
 #: application/views/labels/editpaper.php:51
 msgid "Width of paper"
-msgstr ""
+msgstr "Breite des Papiers"
 
 #: application/views/labels/createpaper.php:54
 #: application/views/labels/editpaper.php:54
 #: application/views/labels/editpaper.php:60
 msgid "Total width of paper."
-msgstr ""
+msgstr "Gesamtbreite des Papiers."
 
 #: application/views/labels/createpaper.php:57
 #: application/views/labels/editpaper.php:57
 msgid "Height of paper"
-msgstr ""
+msgstr "Höhe des Papiers"
 
 #: application/views/labels/createpaper.php:60
 msgid "Total height of paper"
-msgstr ""
+msgstr "Gesamthöhe des Papiers"
 
 #: application/views/labels/createpaper.php:65
 #: application/views/labels/createpaper.php:71
 #: application/views/labels/editpaper.php:65
 #: application/views/labels/editpaper.php:71
 msgid "Orientation of paper"
-msgstr ""
+msgstr "Ausrichtung des Papiers"
 
 #: application/views/labels/createpaper.php:68
 #: application/views/labels/editpaper.php:68
 #: application/views/labels/index.php:56
 msgctxt "Orientation"
 msgid "Landscape"
-msgstr ""
+msgstr "Querformat"
 
 #: application/views/labels/createpaper.php:69
 #: application/views/labels/editpaper.php:69
 #: application/views/labels/index.php:56
 msgctxt "Orientation"
 msgid "Portrait"
-msgstr ""
+msgstr "Hochformat"
 
 #: application/views/labels/createpaper.php:75
 #: application/views/labels/editpaper.php:75
 msgid "Save Paper Type"
-msgstr ""
+msgstr "Papier-Typ speichern"
 
 #: application/views/labels/edit.php:24
 msgid "Label name used for display purposes so pick something meaningful perhaps the label style."
-msgstr ""
+msgstr "Etiketten Name, welcher angezeigt wird. Verwende also etwas aussagekräftiges, vielleicht der Etiketten-Stil."
 
 #: application/views/labels/index.php:29
 msgid "Create New Label Type"
-msgstr ""
+msgstr "Neuen Etiketten-Typ erstellen"
 
 #: application/views/labels/index.php:30
 msgid "Create New Paper Type"
-msgstr ""
+msgstr "Neuen Papier-Typ erstellen"
 
 #: application/views/labels/index.php:33
 msgid "Paper types"
-msgstr ""
+msgstr "Papier-Typen"
 
 #: application/views/labels/index.php:38 application/views/labels/index.php:73
 msgid "Measurement"
-msgstr ""
+msgstr "Masseinheit"
 
 #: application/views/labels/index.php:39 application/views/labels/index.php:74
 msgid "Width"
-msgstr ""
+msgstr "Breite"
 
 #: application/views/labels/index.php:40 application/views/labels/index.php:75
 msgid "Height"
-msgstr ""
+msgstr "Höhe"
 
 #: application/views/labels/index.php:41
 msgid "Used by labels"
-msgstr ""
+msgstr "Verwendet bei Etiketten"
 
 #: application/views/labels/index.php:42
 msgid "Orientation"
-msgstr ""
+msgstr "Ausrichtung"
 
 #: application/views/labels/index.php:67
 msgid "Label types"
-msgstr ""
+msgstr "Etiketten-Typen"
 
 #: application/views/labels/index.php:77
 #: application/views/statistics/index.php:59
 #: application/views/statistics/index.php:96
 #: application/views/widgets/qsos.php:3
 msgid "QSOs"
-msgstr ""
+msgstr "QSOs"
 
 #: application/views/labels/index.php:78
 msgid "Use For Print"
-msgstr ""
+msgstr "Für den Druck verwenden"
 
 #: application/views/labels/index.php:88
 msgid "No paper assigned"
-msgstr ""
+msgstr "Kein Papier zugeordnet"
 
 #: application/views/labels/index.php:113
 msgid "QSL Card Labels Pending"
-msgstr ""
+msgstr "Ausstehende QSL Karten Etiketten"
 
 #: application/views/labels/index.php:122
 msgid "QSOs Waiting"
-msgstr ""
+msgstr "Wartende QSOs"
 
 #: application/views/labels/index.php:123
 msgid "View QSOs"
-msgstr ""
+msgstr "QSOs ansehen"
 
 #: application/views/labels/index.php:124
 #: application/views/labels/startatform.php:27
@@ -5822,11 +5824,11 @@ msgstr "Mit Planquadrat?"
 #: application/views/labels/startatform.php:9
 #: application/views/logbookadvanced/startatform.php:9
 msgid "Include reference? (SIG, SOTA, POTA, IOTA, WWFF; If available in location)"
-msgstr ""
+msgstr "Inklusive Referenz? (SIG, SOTA, POTA, IOTA, WWFF; Wenn gesetzt am Stationsstandort)"
 
 #: application/views/labels/startatform.php:15
 msgid "Include Via (if filled)?"
-msgstr ""
+msgstr "Inklusive Via (falls gesetzt)?"
 
 #: application/views/labels/startatform.php:21
 #: application/views/logbookadvanced/startatform.php:21
@@ -5838,15 +5840,15 @@ msgstr "Druck starten bei?"
 #: application/views/logbookadvanced/index.php:534
 #: application/views/logbookadvanced/useroptions.php:58
 msgid "QSL via"
-msgstr ""
+msgstr "QSL via"
 
 #: application/views/logbookadvanced/edit.php:70
 msgid "SAT Mode"
-msgstr ""
+msgstr "SAT Modus"
 
 #: application/views/logbookadvanced/edit.php:84
 msgid "Band RX"
-msgstr ""
+msgstr "Band RX"
 
 #: application/views/logbookadvanced/index.php:128
 msgid "From"
@@ -5860,7 +5862,7 @@ msgstr "bis"
 #: application/views/logbookadvanced/index.php:513
 #: application/views/logbookadvanced/useroptions.php:30
 msgid "Dx"
-msgstr ""
+msgstr "Dx"
 
 #: application/views/logbookadvanced/index.php:143
 msgctxt "Logbook Advanced DXCC Select"
@@ -6068,7 +6070,7 @@ msgstr "Elektronisch"
 #: application/views/search/search_result_ajax.php:247
 #: application/views/view_log/partial/log_ajax.php:206
 msgid "Manager"
-msgstr ""
+msgstr "Manager"
 
 #: application/views/logbookadvanced/index.php:317
 msgid "QSL recv. method"
@@ -6188,7 +6190,7 @@ msgstr "Suche CQ Zone"
 
 #: application/views/logbookadvanced/index.php:428
 msgid "Search ITU Zone"
-msgstr ""
+msgstr "Suche ITU Zone"
 
 #: application/views/logbookadvanced/index.php:431
 msgid "Search Mode"
@@ -6216,7 +6218,7 @@ msgstr "Suche WWFF"
 
 #: application/views/logbookadvanced/index.php:449
 msgid "Search Operator"
-msgstr ""
+msgstr "Suche Operator"
 
 #: application/views/logbookadvanced/index.php:456
 msgid "Quickfilters"
@@ -6243,11 +6245,11 @@ msgstr "Standort"
 
 #: application/views/logbookadvanced/index.php:484
 msgid "Dupes"
-msgstr ""
+msgstr "Duplikate"
 
 #: application/views/logbookadvanced/index.php:491
 msgid "Globe map"
-msgstr ""
+msgstr "Globus Karte"
 
 #: application/views/logbookadvanced/index.php:494
 #: application/views/lotw_views/index.php:47
@@ -6262,12 +6264,12 @@ msgstr "Optionen"
 #: application/views/logbookadvanced/index.php:510
 #: application/views/logbookadvanced/useroptions.php:26
 msgid "De"
-msgstr ""
+msgstr "De"
 
 #: application/views/logbookadvanced/index.php:546
 #: application/views/logbookadvanced/useroptions.php:74
 msgid "QSL Msg"
-msgstr ""
+msgstr "QSL Msg"
 
 #: application/views/logbookadvanced/index.php:591
 #: application/views/logbookadvanced/useroptions.php:50
@@ -6277,7 +6279,7 @@ msgstr "Mein Refs"
 #: application/views/logbookadvanced/qslcarousel.php:59
 #: application/views/qslcard/qslcarousel.php:25
 msgid "QSL picture #"
-msgstr ""
+msgstr "QSL Bild #"
 
 #: application/views/logbookadvanced/qslcarousel.php:67
 #: application/views/qslcard/qslcarousel.php:32
@@ -6291,7 +6293,7 @@ msgstr "Weiter"
 
 #: application/views/logbookadvanced/startatform.php:15
 msgid "Include Via"
-msgstr ""
+msgstr "Inklusive Via"
 
 #: application/views/logbookadvanced/useroptions.php:16
 msgid "Column"
@@ -6300,56 +6302,56 @@ msgstr "Spalte"
 #: application/views/logbookadvanced/useroptions.php:144
 msgctxt "Map Options"
 msgid "Layer"
-msgstr ""
+msgstr "Ebene"
 
 #: application/views/logbookadvanced/useroptions.php:145
 msgid "Default on"
-msgstr ""
+msgstr "Standardmässig an"
 
 #: application/views/logbookadvanced/useroptions.php:150
 #: application/views/stationsetup/exportmapoptions.php:23
 msgctxt "Map Options"
 msgid "Path lines"
-msgstr ""
+msgstr "Pfadlinien"
 
 #: application/views/logbookadvanced/useroptions.php:154
 msgctxt "Map Options"
 msgid "Gridsquares"
-msgstr ""
+msgstr "Planquadrate"
 
 #: application/views/logbookadvanced/useroptions.php:158
 msgctxt "Map Options"
 msgid "CQ Zones"
-msgstr ""
+msgstr "CQ Zonen"
 
 #: application/views/logbookadvanced/useroptions.php:162
 msgctxt "Map Options"
 msgid "ITU Zones"
-msgstr ""
+msgstr "ITU Zonen"
 
 #: application/views/logbookadvanced/useroptions.php:166
 msgctxt "Map Options"
 msgid "Night Shadow"
-msgstr ""
+msgstr "Nachtschatten"
 
 #: application/views/lookup/index.php:8
 msgid "US State"
-msgstr ""
+msgstr "US-Staat"
 
 #: application/views/lookup/index.php:10
 msgid "LoTW user"
-msgstr ""
+msgstr "LoTW Benutzer"
 
 #: application/views/lookup/index.php:46
 msgid "Choose a State"
-msgstr ""
+msgstr "Wählen Sie einen Staat"
 
 #: application/views/lookup/lotwuser.php:2
 #: application/views/lookup/lotwuser.php:12
 #: application/views/search/result.php:46
 #: application/views/search/result.php:58
 msgid "LoTW User"
-msgstr ""
+msgstr "LoTW Benutzer"
 
 #: application/views/lookup/lotwuser.php:12
 #: application/views/search/result.php:58
@@ -6362,15 +6364,15 @@ msgstr[1] "vor %d Tagen"
 #: application/views/lookup/lotwuser.php:12
 #: application/views/search/result.php:58
 msgid "last upload"
-msgstr ""
+msgstr "Letzter Upload"
 
 #: application/views/lookup/lotwuser.php:14
 msgid "No LoTW User"
-msgstr ""
+msgstr "Kein LoTW Benutzer"
 
 #: application/views/lotw/analysis.php:8 application/views/qrz/analysis.php:8
 msgid "No data imported. please check selected date. Must be in the past!"
-msgstr ""
+msgstr "Keine Daten importiert. Bitte überprüfe das ausgewählte Datum. Muss in der Vergangenheit liegen!"
 
 #: application/views/lotw/import.php:12
 msgid "Import Options"
@@ -6399,7 +6401,7 @@ msgstr "Lade LoTW-Daten für mich"
 
 #: application/views/lotw/import.php:47
 msgid "Select callsign to pull LoTW confirmations for."
-msgstr ""
+msgstr "Rufzeichen, für das LoTW-QSLs gezogen werden, auswählen."
 
 #: application/views/lotw/import.php:61
 msgid "Wavelog will use the LoTW username and password stored in your user profile to download a report from LoTW for you. The report Wavelog downloads will have all confirmations since chosen date, or since your last LoTW confirmation (fetched from your log), up until now."
@@ -6457,12 +6459,12 @@ msgstr "Läuft ab"
 #: application/views/lotw_views/index.php:105
 #, php-format
 msgid "Last success: %s"
-msgstr ""
+msgstr "Letzter Erfolg: %s"
 
 #: application/views/lotw_views/index.php:108
 #, php-format
 msgid "Last fail: %s"
-msgstr ""
+msgstr "Letzer Fehlversuch: %s"
 
 #: application/views/lotw_views/index.php:114
 msgid "Not Synced"
@@ -6534,7 +6536,7 @@ msgstr ""
 #: application/views/mode/create.php:49 application/views/mode/edit.php:61
 #: application/views/mode/index.php:43
 msgid "Not active"
-msgstr ""
+msgstr "Inaktiv"
 
 #: application/views/mode/create.php:51 application/views/mode/edit.php:64
 msgid "Set to active if to be listed in Modes-list"
@@ -6542,11 +6544,11 @@ msgstr ""
 
 #: application/views/mode/create.php:54
 msgid "Create mode"
-msgstr ""
+msgstr "Mode erstellen"
 
 #: application/views/mode/edit.php:67
 msgid "Update mode"
-msgstr ""
+msgstr "Mode updaten"
 
 #: application/views/mode/index.php:19
 msgid "Using the modes list you can control which modes are shown when creating a new QSO."
@@ -6554,7 +6556,7 @@ msgstr ""
 
 #: application/views/mode/index.php:22
 msgid "Active modes will be shown in the QSO 'Mode' drop-down, while inactive modes will be hidden and cannot be selected."
-msgstr ""
+msgstr "Aktive Modi werden im QSO 'Mode' drop-down angezeigt, inaktive werden nicht angezeigt und sind auch nicht auswählbar."
 
 #: application/views/mode/index.php:29
 msgid "Sub-Mode"
@@ -6562,7 +6564,7 @@ msgstr ""
 
 #: application/views/mode/index.php:76
 msgid "Create a Mode"
-msgstr ""
+msgstr "Erstelle einen Mode"
 
 #: application/views/notes/add.php:6 application/views/notes/add.php:12
 #: application/views/notes/edit.php:13 application/views/notes/main.php:11
@@ -6614,11 +6616,11 @@ msgstr "Lösche Notiz"
 #: application/views/options/appearance.php:39
 #: application/views/user/edit.php:157
 msgid "Theme"
-msgstr "Thema"
+msgstr "Theme"
 
 #: application/views/options/appearance.php:51
 msgid "Global Theme Choice, this is used when users arent logged in."
-msgstr "Globales Thema. Dies wird verwendet, wenn keine Benutzer angemeldet sind."
+msgstr "Globales Theme. Dies wird verwendet, wenn keine Benutzer angemeldet sind."
 
 #: application/views/options/appearance.php:61
 msgid "Dashboard Notification Banner"
@@ -6662,7 +6664,7 @@ msgstr ""
 
 #: application/views/options/appearance.php:103
 msgid "This enables the button to Wavelog's Github page in the public view"
-msgstr ""
+msgstr "Hier kann der Link zu Github auf der öffentlichen Seite aktiviert werden"
 
 #: application/views/options/dxcluster.php:38
 msgid "Provider of DXClusterCache"
@@ -6724,7 +6726,7 @@ msgstr "SMTP Verschlüsselung"
 
 #: application/views/options/email.php:56
 msgid "No Encryption"
-msgstr ""
+msgstr "Keine Verschlüsselung"
 
 #: application/views/options/email.php:60
 msgid "Choose whether emails should be sent with TLS or SSL."
@@ -6805,11 +6807,11 @@ msgstr "Gruppierte Suche"
 
 #: application/views/options/oqrs.php:47 application/views/options/oqrs.php:56
 msgid "Off"
-msgstr ""
+msgstr "Aus"
 
 #: application/views/options/oqrs.php:48 application/views/options/oqrs.php:57
 msgid "On"
-msgstr ""
+msgstr "An"
 
 #: application/views/options/oqrs.php:50
 msgid "When this is on, all station locations with OQRS active, will be searched at once."
@@ -6897,11 +6899,11 @@ msgstr "Dies deaktiviert das automatische Einblenden des Versionsdialogs für al
 
 #: application/views/oqrs/index.php:9
 msgid "Request a QSL card"
-msgstr ""
+msgstr "QSL-Karte anfordern"
 
 #: application/views/oqrs/index.php:21
 msgid "Enter your callsign"
-msgstr ""
+msgstr "Gib Dein Rufzeichen ein"
 
 #: application/views/oqrs/index.php:21
 msgid "This search will search in all station locations where OQRS is active."
@@ -6909,7 +6911,7 @@ msgstr ""
 
 #: application/views/oqrs/index.php:48
 msgid "Select station"
-msgstr ""
+msgstr "Station auswählen"
 
 #: application/views/oqrs/index.php:64
 msgid "No stations found that are using Wavelog OQRS."
@@ -8643,19 +8645,19 @@ msgstr ""
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
-msgstr ""
+msgstr "Ordnername"
 
 #: application/views/themes/index.php:99
 msgid "Please edit"
-msgstr ""
+msgstr "Bitte bearbeiten"
 
 #: application/views/themes/index.php:116
 msgid "Add a Theme"
-msgstr ""
+msgstr "Ein Theme hinzufügen"
 
 #: application/views/timeline/index.php:48
 msgid "VHF / UHF Century Club (VUCC)"
-msgstr ""
+msgstr "VHF / UHF Century Club (VUCC)"
 
 #: application/views/timeplotter/index.php:2
 msgid "contacts were plotted"
@@ -8675,35 +8677,35 @@ msgstr "Der Zeitplotter wird verwendet, um Ihr Logbuch zu analysieren und heraus
 
 #: application/views/update/index.php:8
 msgid "DXCC Lookup Data"
-msgstr ""
+msgstr "DXCC Suchdaten"
 
 #: application/views/update/index.php:12
 msgid "Distance Data"
-msgstr ""
+msgstr "Entfernungsdaten"
 
 #: application/views/update/index.php:19
 msgid "Here you can update the DXCC lookup data that is used for displaying callsign information."
-msgstr ""
+msgstr "Hier kannst du DXCC Suchdaten aktualisieren, welche zum Anzeigen von Rufzeicheninformationen verwendet werden."
 
 #: application/views/update/index.php:20
 msgid "This data is provided by"
-msgstr ""
+msgstr "Diese Daten werden bereitgestellt von"
 
 #: application/views/update/index.php:24
 msgid "You must install php-xml for this to work."
-msgstr ""
+msgstr "Du musst php-xml installieren, damit dies funktioniert."
 
 #: application/views/update/index.php:27
 msgid "Check for DXCC Data Updates"
-msgstr ""
+msgstr "Überprüft auf neue DXCC Daten"
 
 #: application/views/update/index.php:28
 msgid "Update DXCC Data"
-msgstr ""
+msgstr "DXCC Daten aktualisieren"
 
 #: application/views/update/index.php:34
 msgid "Apply DXCC Data to Logbook"
-msgstr ""
+msgstr "DXCC Daten auf das Logbuch anwenden"
 
 #: application/views/update/index.php:36
 msgid ""
@@ -8711,34 +8713,37 @@ msgid ""
 "\t\t\t\t\t\t\tYou can choose to check just the QSOs in the logbook that are missing DXCC metadata or to re-check the entire logbook\n"
 "\t\t\t\t\t\t\tand update existing metadata as well, in case it has changed."
 msgstr ""
+"Nach der Aktualisierung kann Wavelog fehlende Rufzeicheninformationen im Logbuch mit den neu erhaltenen DXCC-Daten ausfüllen.\n"
+"Du kannst wählen, ob nur die QSOs überprüft werden sollen, bei denen DXCC Daten fehlen oder das gesamte Logbuch erneut überprüft\n"
+"und auch bestehende DXCC aktualisiert werden sollen, falls sich etwas geändert hat."
 
 #: application/views/update/index.php:40
 msgid "Check QSOs missing DXCC data"
-msgstr ""
+msgstr "Überprüft QSOs auf fehlende DXCC Daten"
 
 #: application/views/update/index.php:42
 msgid "Re-check all QSOs in logbook"
-msgstr ""
+msgstr "Alle QSOs in Logbuch nochmal überprüfen"
 
 #: application/views/update/index.php:45
 msgid "Apply Continent Data to Logbook"
-msgstr ""
+msgstr "Kontinent-Daten auf Logbuch anwenden"
 
 #: application/views/update/index.php:47
 msgid "This function can be used to update QSO continent information for all QSOs in Wavelog missing that information."
-msgstr ""
+msgstr "Diese Funktion kann verwendet werden, um QSO-Kontinent-Informationen bei allen QSOs in Wavelog zu aktualisieren, bei denen diese Informationen fehlen."
 
 #: application/views/update/index.php:49
 msgid "Check QSOs missing continent data"
-msgstr ""
+msgstr "Überprüft QSOs auf fehlende Kontinent-Daten"
 
 #: application/views/update/index.php:59
 msgid "Here you can update QSOs with missing distance information."
-msgstr ""
+msgstr "Hier kannst du QSOs mit fehlenden Entfernungsinformationen aktualisieren."
 
 #: application/views/update/index.php:60
 msgid "Update distance data"
-msgstr ""
+msgstr "Entfernungsdaten aktualisieren"
 
 #: application/views/user/delete.php:5
 msgid "Delete User Account"
@@ -8799,7 +8804,7 @@ msgstr "Nachname"
 
 #: application/views/user/edit.php:120
 msgid "Ham Radio"
-msgstr ""
+msgstr "Ham Radio"
 
 #: application/views/user/edit.php:146
 msgid "Wavelog Preferences"
@@ -8807,7 +8812,7 @@ msgstr "Wavelog Einstellungen"
 
 #: application/views/user/edit.php:157
 msgid "Stylesheet"
-msgstr ""
+msgstr "Stylesheet"
 
 #: application/views/user/edit.php:169
 msgid "Wavelog Language"
@@ -8835,15 +8840,15 @@ msgstr "Entfernungsformat"
 
 #: application/views/user/edit.php:208
 msgid "Kilometers"
-msgstr ""
+msgstr "Kilometer"
 
 #: application/views/user/edit.php:209
 msgid "Miles"
-msgstr ""
+msgstr "Meilen"
 
 #: application/views/user/edit.php:210
 msgid "Nautical miles"
-msgstr ""
+msgstr "Seemeilen"
 
 #: application/views/user/edit.php:212
 msgid "Choose which unit distances will be shown in"
@@ -8948,19 +8953,19 @@ msgstr "Welche Aktion soll ausgeführt werden, wenn Enter gedrückt wird?"
 
 #: application/views/user/edit.php:449
 msgid "Station Locations Quickswitch"
-msgstr ""
+msgstr "Stationsstandort -Quickswitch"
 
 #: application/views/user/edit.php:454
 msgid "Show the Station Locations Quickswitch in the main menu"
-msgstr ""
+msgstr "Zeigt den Stationsstandort-Quickswitch im Hauptmenü"
 
 #: application/views/user/edit.php:458
 msgid "UTC Time in Menu"
-msgstr ""
+msgstr "UTC Zeit im Menü"
 
 #: application/views/user/edit.php:463
 msgid "Show the current UTC Time in the menu"
-msgstr ""
+msgstr "Zeigt die aktuelle UTC-Zeit im Menü"
 
 #: application/views/user/edit.php:474
 msgid "Map Settings"
@@ -8968,11 +8973,11 @@ msgstr "Karten Einstellungen"
 
 #: application/views/user/edit.php:481
 msgid "Icon"
-msgstr ""
+msgstr "Symbol"
 
 #: application/views/user/edit.php:484 application/views/user/edit.php:488
 msgid "Not display"
-msgstr ""
+msgstr "Nicht angezeigt"
 
 #: application/views/user/edit.php:497
 msgid "QSO (by default)"
@@ -8984,11 +8989,11 @@ msgstr "QSO (bestätigte)"
 
 #: application/views/user/edit.php:517
 msgid "(If 'No', displayed as 'QSO (by default))'"
-msgstr ""
+msgstr "(Falls 'Nein', wird es angezeigt wie 'QSO (Standardeinstellung))'"
 
 #: application/views/user/edit.php:536
 msgid "Show Locator"
-msgstr ""
+msgstr "Zeige Locator"
 
 #: application/views/user/edit.php:555
 msgid "Previous QSL Type"
@@ -9000,7 +9005,7 @@ msgstr "Wähle den QSL-Typ für die Anzeige der bereits getätigten QSOs."
 
 #: application/views/user/edit.php:565
 msgid "QRZ"
-msgstr ""
+msgstr "QRZ"
 
 #: application/views/user/edit.php:576
 msgid "Show Reference Fields on QSO Tab"
@@ -9048,7 +9053,7 @@ msgstr "eQSL.cc Passwort"
 
 #: application/views/user/edit.php:757
 msgid "Club Log"
-msgstr ""
+msgstr "Club Log"
 
 #: application/views/user/edit.php:760
 msgid "Club Log Email/Callsign"
@@ -9068,7 +9073,7 @@ msgstr "Verschiedenes"
 
 #: application/views/user/edit.php:796
 msgid "AMSAT Status Upload"
-msgstr ""
+msgstr "AMSAT Status Upload"
 
 #: application/views/user/edit.php:799
 msgid "Upload status of SAT QSOs to"
@@ -9076,7 +9081,7 @@ msgstr "Status von SAT QSOs hochladen auf"
 
 #: application/views/user/edit.php:813
 msgid "Mastodonserver"
-msgstr ""
+msgstr "Mastodon Server"
 
 #: application/views/user/edit.php:816
 msgid "URL of Mastodonserver"
@@ -9085,7 +9090,7 @@ msgstr "URL des Mastodonservers"
 #: application/views/user/edit.php:818
 #, php-format
 msgid "Main URL of your Mastodon server, e.g. %s"
-msgstr ""
+msgstr "Haupt-URL deines Mastodon-Servers, z.B. %s"
 
 #: application/views/user/edit.php:827
 msgid "Experimental"
@@ -9093,7 +9098,7 @@ msgstr "Experimentell"
 
 #: application/views/user/edit.php:827
 msgid "Winkeyer"
-msgstr ""
+msgstr "Winkeyer"
 
 #: application/views/user/edit.php:830
 msgid "Winkeyer Features Enabled"
@@ -9102,21 +9107,21 @@ msgstr "Winkeyer Features Eingeschaltet"
 #: application/views/user/edit.php:836
 #, php-format
 msgid "Winkeyer support in Wavelog is very experimental. Read the wiki first at %s before enabling."
-msgstr ""
+msgstr "Die Winkeyer-Unterstützung in Wavelog ist sehr experimentell. Lies zuerst das Wiki auf %s, bevor du es aktivierst."
 
 #: application/views/user/edit.php:847
 msgid "Hams.at"
-msgstr ""
+msgstr "Hams.at"
 
 #: application/views/user/edit.php:850
 msgid "Private Feed Key"
-msgstr ""
+msgstr "Privater Feed Schlüssel"
 
 #: application/views/user/edit.php:852
 #, php-format
 msgctxt "Hint for Hamsat API Key; uses Link"
 msgid "See your profile at %s."
-msgstr ""
+msgstr "Schau in deinem Profil unter %s."
 
 #: application/views/user/edit.php:855
 msgid "Show Workable Passes Only"
@@ -9141,7 +9146,7 @@ msgstr "Du kannst dein Passwort hier zurücksetzen."
 
 #: application/views/user/login.php:36
 msgid "MAINTENANCE MODE"
-msgstr ""
+msgstr "WARTUNGSMODUS"
 
 #: application/views/user/login.php:56
 msgid "Forgot your password?"
@@ -9221,19 +9226,19 @@ msgstr "Keine QSOs im Log"
 
 #: application/views/user/profile.php:19
 msgid "Level"
-msgstr ""
+msgstr "Benutzerrolle"
 
 #: application/views/user/profile.php:39
 msgid "First name"
-msgstr ""
+msgstr "Vorname"
 
 #: application/views/user/profile.php:44
 msgid "Last name"
-msgstr ""
+msgstr "Nachname"
 
 #: application/views/user/profile.php:50
 msgid "Edit profile"
-msgstr ""
+msgstr "Profil bearbeiten"
 
 #: application/views/user/reset_password.php:28
 msgid "Confirm Password"
@@ -9241,15 +9246,15 @@ msgstr "Bestätige Passwort"
 
 #: application/views/version_dialog/index.php:20
 msgid "No Version Dialog text set. Go to the Admin Menu and set one."
-msgstr ""
+msgstr "Kein Versions-Dialog Text gesetzt. Gehe zum Admin Menü und setze einen."
 
 #: application/views/version_dialog/index.php:60
 msgid "Error at parsing JSON-Data or got empty result from github."
-msgstr ""
+msgstr "Fehler beim Parsen der JSON-Daten oder eine leere Antwort von Github erhalten."
 
 #: application/views/version_dialog/index.php:63
 msgid "Error at getting the data from GitHub."
-msgstr ""
+msgstr "Fehler beim Laden der Daten von Github."
 
 #: application/views/version_dialog/index.php:75
 msgid "Don't show again"
@@ -9261,7 +9266,7 @@ msgstr "Es werden alle QSO von Stationsstandorten angezeigt, welche mit diesem L
 
 #: application/views/view_log/qso.php:6
 msgid "QSO Details"
-msgstr ""
+msgstr "QSO Details"
 
 #: application/views/view_log/qso.php:29
 msgid "QSL Management"
@@ -9340,11 +9345,11 @@ msgstr "Mehr QSOs"
 
 #: application/views/view_log/qso.php:503
 msgid "Details"
-msgstr ""
+msgstr "Details"
 
 #: application/views/view_log/qso.php:604
 msgid "QSL image file"
-msgstr ""
+msgstr "QSL-Bilddatei"
 
 #: application/views/view_log/qso.php:630
 msgid "Uploaded QSL Card front image"
@@ -9372,73 +9377,73 @@ msgstr "Markiere QSL Karte als angefragt (Direkt)"
 
 #: application/views/view_log/qso.php:679
 msgid "eQSL picture"
-msgstr ""
+msgstr "eQSL Bild"
 
 #: application/views/visitor/layout/footer.php:207
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: application/views/visitor/layout/header.php:75
 msgid "OQRS"
-msgstr ""
+msgstr "OQRS"
 
 #: application/views/visitor/layout/header.php:83
 msgid "Visit Wavelog on Github"
-msgstr ""
+msgstr "Besuche Wavelog auf Github"
 
 #: application/views/visitor/layout/header.php:97
 msgid "Please enter a callsign!"
-msgstr ""
+msgstr "Bitte gib ein Rufzeichen ein!"
 
 #: application/views/webadif/export.php:22
 msgid "Here you can see and upload all QSOs which have not been previously uploaded to QO-100 Dx Club."
-msgstr ""
+msgstr "Hier kannst du alle QSOs sehen und hochladen, welche bisher nicht zum QO-100 Dx Club hochgeladen wurden."
 
 #: application/views/webadif/export.php:33
 msgid "You need to set a QO-100 Dx Club API key in your station profile. Only station profiles with an API Key are displayed."
-msgstr ""
+msgstr "Du musst einen QO-100 Dx Club API Schlüssel in deinem Stationsprofil konfigurieren. Nur Profile mit einem API Schlüssel werden angezeigt."
 
 #: application/views/webadif/export.php:63
 msgid "There are currently no outstanding QSOs that need to be uploaded to the QO-100 Dx Club's API."
-msgstr ""
+msgstr "Aktuell gibt es keine QSOs, welche zur QO-100 Dx Club API hochgeladen werden müssten."
 
 #: application/views/webadif/export.php:64
 msgid "Go ahead and turn on your QO-100 station!"
-msgstr ""
+msgstr "Mach weiter und schalte deine QO-100 Station ein!"
 
 #: application/views/webadif/export.php:73
 #: application/views/webadif/export.php:113
 msgid "None of your Logbooks are configured to export data to the QO-100 Dx Club's API."
-msgstr ""
+msgstr "Keines deiner Logbücher ist konfiguriert, um Daten mit der QO-100 Dx Club API zu exportieren."
 
 #: application/views/webadif/export.php:74
 #: application/views/webadif/export.php:114
 msgid "QO-100 Dx Club"
-msgstr ""
+msgstr "QO-100 Dx Club"
 
 #: application/views/webadif/export.php:74
 #: application/views/webadif/export.php:114
 #, php-format
 msgid "To configure this feature, go to your profile page at the %s and %s Create %s an API key."
-msgstr ""
+msgstr "Um diese Funktion zu konfigurieren, gehe auf dein Profil beim %s und %s erstelle %s einen API Schlüssel."
 
 #: application/views/webadif/export.php:75
 #: application/views/webadif/export.php:115
 #, php-format
 msgid "Then, navigate to your %s and configure your station with the key you have created at the club."
-msgstr ""
+msgstr "Dann, gehe zu deiner %s und konfiguriere den Stationsstandort mit dem Schlüssel, welchen du beim Club erstellt hast."
 
 #: application/views/webadif/export.php:83
 msgid "Here you can mark as uploaded your QSOs which have not been previously uploaded to QO-100 Dx Club."
-msgstr ""
+msgstr "Hier kannst du deine QSOs als 'hochgeladen' markieren, welche noch nicht zu QO-100 DX Club hochgeladen wurden."
 
 #: application/views/webadif/export.php:107
 msgid "Mark QSOs as exported to QO-100 Dx Club"
-msgstr ""
+msgstr "QSOs als 'Nach QO-100 Dx Club exportiert' markieren"
 
 #: application/views/webadif/mark_webadif.php:16
 msgid "The QSOs are marked as exported to QO-100 Dx Club."
-msgstr ""
+msgstr "Die QSOs wurden als 'zu QO-100 Dx Club exportiert' markiert."
 
 #~ msgid "This checks the folders Wavelog uses are read and writeable by PHP."
 #~ msgstr "Prüft, ob die von Wavelog benutzten Verzeichnisse für PHP schreib und lesbar sind."
