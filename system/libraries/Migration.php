@@ -309,6 +309,7 @@ class CI_Migration {
 
 			// Create the lockfile
 			if (touch($this->_migration_lockfile)) {
+				log_message('debug', 'Created migration lockfile');
 
 				// Now just run the necessary migrations
 				foreach ($pending as $number => $migration)
@@ -329,10 +330,11 @@ class CI_Migration {
 					$this->_update_version($current_version);
 				}
 				
+				log_message('debug', 'Finished migrating to '.$current_version);
+
 				// After the migrations we can remove the lockfile
 				unlink($this->_migration_lockfile);
-
-				log_message('debug', 'Finished migrating to '.$current_version);
+				log_message('debug', 'Deleted migration lockfile');
 
 			} else {
 				log_message('error', 'Failed to create Migration Lockfile. Check directory permissions.');
