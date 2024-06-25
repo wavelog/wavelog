@@ -13,7 +13,7 @@
                             <p><?= __("Your personal Callsign:"); ?> </p>
                             <input type="text" class="form-control w-auto" id="operator_callsign" name="operator_callsign">
                             <div class="invalid-feedback">
-                                <?= __("You have to provide your PERSONAL callsign, not the special/club callsign."); ?>
+                                <?= __("You have to provide your personal callsign."); ?>
                             </div>
                         </div>
                     </div>
