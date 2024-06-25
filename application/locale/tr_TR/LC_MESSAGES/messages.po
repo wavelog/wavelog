@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-06-25 23:52+0200\n"
+"POT-Creation-Date: 2024-06-25 23:57+0200\n"
 "PO-Revision-Date: 2024-06-05 15:20+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1119,7 +1119,7 @@ msgstr "Operatör"
 #: application/views/awards/dxcc/index.php:238
 #: application/views/csv/index.php:65 application/views/dashboard/index.php:28
 #: application/views/dxatlas/index.php:65
-#: application/views/interface_assets/footer.php:604
+#: application/views/interface_assets/footer.php:630
 #: application/views/kml/index.php:54
 #: application/views/logbookadvanced/index.php:149
 #: application/views/lookup/index.php:31
@@ -2559,6 +2559,7 @@ msgstr ""
 #: application/views/bands/create.php:49 application/views/bands/edit.php:31
 #: application/views/contesting/edit.php:55 application/views/cron/edit.php:73
 #: application/views/interface_assets/footer.php:32
+#: application/views/operator/index.php:23
 #: application/views/options/appearance.php:107
 #: application/views/options/dxcluster.php:67
 #: application/views/options/email.php:112
@@ -4070,6 +4071,7 @@ msgid "Serial + Gridsquare"
 msgstr ""
 
 #: application/views/contesting/index.php:34
+#: application/views/operator/index.php:5
 #: application/views/qso/edit_ajax.php:536 application/views/qso/index.php:352
 msgid "Operator Callsign"
 msgstr ""
@@ -5333,21 +5335,21 @@ msgstr ""
 msgid "Version Info"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:607
+#: application/views/interface_assets/footer.php:633
 msgid "Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. Check which DXCC for this particular location is the correct one. If you are sure, ignore this warning."
 msgstr ""
 
-#: application/views/interface_assets/footer.php:1301
-#: application/views/interface_assets/footer.php:1305
-#: application/views/interface_assets/footer.php:1308
-#: application/views/interface_assets/footer.php:1445
-#: application/views/interface_assets/footer.php:1449
-#: application/views/interface_assets/footer.php:1452
+#: application/views/interface_assets/footer.php:1327
+#: application/views/interface_assets/footer.php:1331
+#: application/views/interface_assets/footer.php:1334
+#: application/views/interface_assets/footer.php:1471
+#: application/views/interface_assets/footer.php:1475
+#: application/views/interface_assets/footer.php:1478
 msgid "grid square"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:1308
-#: application/views/interface_assets/footer.php:1452
+#: application/views/interface_assets/footer.php:1334
+#: application/views/interface_assets/footer.php:1478
 msgid "Total count"
 msgstr ""
 
@@ -6607,6 +6609,18 @@ msgstr "Şu anda bir notunuz yok. Bunlar ATU ayarları, işaretçiler ve genel i
 #: application/views/notes/view.php:21
 msgid "Delete Note"
 msgstr "Notu sil"
+
+#: application/views/operator/index.php:9
+msgid "Please provide your personal call sign. This will allow us to evaluate later who made which QSO and causes the QSOs to get written with correct callsign informations."
+msgstr ""
+
+#: application/views/operator/index.php:13
+msgid "Your personal Callsign:"
+msgstr ""
+
+#: application/views/operator/index.php:16
+msgid "You have to provide your PERSONAL callsign, not the special/club callsign."
+msgstr ""
 
 #: application/views/options/appearance.php:39
 #: application/views/user/edit.php:157
