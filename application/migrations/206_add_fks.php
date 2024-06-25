@@ -5,7 +5,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Migration_add_fks extends CI_Migration {
 
 	public function up() {
-		log_message("error","invoking mig 206");
 		try {
 			$this->db->query("delete from api where not exists (select 1 from users where user_id = api.user_id);");
 			$this->db->query("delete from bandxuser where not exists (select 1 from users where user_id = bandxuser.userid);");
@@ -40,7 +39,6 @@ class Migration_add_fks extends CI_Migration {
 	}
 
 	public function down(){
-		log_message("error","invoking downmig 206");
 		try {
 			$this->db->query("alter table station_logbooks drop foreign key station_logbooks_users_FK;");
 			$this->db->query("alter table oqrs drop foreign key oqrs_station_profile_FK;");
