@@ -8,6 +8,7 @@ class Migration_add_fks extends CI_Migration {
 			$this->dbtry("delete from api where not exists (select 1 from users where user_id = api.user_id);");
 			$this->dbtry("delete from bandxuser where not exists (select 1 from users where user_id = bandxuser.userid);");
 			$this->dbtry("delete from station_logbooks_relationship where not exists (select 1 from station_logbooks where station_logbook_id = station_logbooks_relationship.station_logbook_id);");
+			$this->dbtry("delete from station_logbooks_relationship where not exists (select 1 from station_profile where station_id = station_logbooks_relationship.station_location_id);");
 			$this->dbtry("delete from eQSL_images where not exists (select 1 from ".$this->config->item('table_name')." log where log.COL_PRIMARY_KEY=eQSL_images.qso_id);");
 			$this->dbtry("delete from qsl_images where not exists (select 1 from ".$this->config->item('table_name')." log where log.COL_PRIMARY_KEY=qsl_images.qsoid);");
 			$this->dbtry("delete from station_logbooks where not exists (select 1 from users where user_id = station_logbooks.user_id);");
