@@ -324,6 +324,16 @@ class CI_Migration {
 				// After the migrations we can remove the lockfile
 				unlink($this->_migration_lockfile);
 
+				// This is necessary when moving down, since the the last migration applied
+				// will be the down() method for the next migration up from the target
+				if ($current_version <> $target_version)
+				{
+					$current_version = $target_version;
+					$this->_update_version($current_version);
+				}
+				
+				log_message('debug', 'Finished migrating to '.$current_version);
+
 			} else {
 				log_message('error', 'Failed to create Migration Lockfile. Check directory permissions.');
 			}
@@ -332,15 +342,6 @@ class CI_Migration {
 			log_message('debug', 'Migration process is currently locked. Second migration attempt ignored.');
 		}
 
-		// This is necessary when moving down, since the the last migration applied
-		// will be the down() method for the next migration up from the target
-		if ($current_version <> $target_version)
-		{
-			$current_version = $target_version;
-			$this->_update_version($current_version);
-		}
-
-		log_message('debug', 'Finished migrating to '.$current_version);
 		return $current_version;
 	}
 
