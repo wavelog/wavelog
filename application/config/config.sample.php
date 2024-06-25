@@ -728,8 +728,12 @@ $config['disable_oqrs'] = false;
 | Example:      Special Callsign:   DL250CDF 
 |               Operator:           DF2TG
 | 
+| It is recommend to enable also "Disable Syncing to 3rd party-Services at UI" 
 | More Information about this feature and how to use it, you can find here: TODO add link to Wiki
 |
 */
 
 $config['special_callsign'] = false;
+
+// hides the usermenu; takes action only if "special_callsign" is true
+$config['sc_hide_usermenu'] = true;   
