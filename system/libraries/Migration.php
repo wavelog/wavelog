@@ -321,9 +321,6 @@ class CI_Migration {
 					$this->_update_version($current_version);
 				}
 
-				// After the migrations we can remove the lockfile
-				unlink($this->_migration_lockfile);
-
 				// This is necessary when moving down, since the the last migration applied
 				// will be the down() method for the next migration up from the target
 				if ($current_version <> $target_version)
@@ -332,6 +329,9 @@ class CI_Migration {
 					$this->_update_version($current_version);
 				}
 				
+				// After the migrations we can remove the lockfile
+				unlink($this->_migration_lockfile);
+
 				log_message('debug', 'Finished migrating to '.$current_version);
 
 			} else {
