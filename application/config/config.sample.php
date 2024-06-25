@@ -729,8 +729,8 @@ $config['disable_oqrs'] = false;
 |               Operator:           DF2TG
 | 
 | It is recommend to enable also "Disable Syncing to 3rd party-Services at UI" 
-| More Information about this feature and how to use it, you can find here: TODO add link to Wiki
-|
+| More Information about this feature and how to use it, you can find here: 
+| https://github.com/wavelog/wavelog/wiki/Recommended-Setup-for-Special-Callsigns-and-Clubs
 */
 
 $config['special_callsign'] = false;
