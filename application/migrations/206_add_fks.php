@@ -53,7 +53,7 @@ class Migration_add_fks extends CI_Migration {
 		try {
 			$this->db->query($what);
 		} catch (Exception $e) {
-			log_message("error", "Something gone wrong while dropping FKs: ".$e." // Executing: ".$this->db->last_query());
+			log_message("error", "Something gone wrong while altering FKs: ".$e." // Executing: ".$this->db->last_query());
 		}
 	}
 }
