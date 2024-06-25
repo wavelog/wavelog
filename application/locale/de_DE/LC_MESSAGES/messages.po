@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-06-23 23:12+0200\n"
-"PO-Revision-Date: 2024-06-24 11:59+0000\n"
-"Last-Translator: Jörg Dorgeist <wavelog@dj7nt.de>\n"
+"PO-Revision-Date: 2024-06-25 18:16+0000\n"
+"Last-Translator: Fabian Berg <hb9hil@wavelog.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
@@ -5183,7 +5183,7 @@ msgstr "Markiere alle QSOs als gesendet für eQSL"
 
 #: application/views/eqsl/tools.php:26
 msgid "Use this if you have lots of QSOs to upload to eQSL it will save the server timing out."
-msgstr ""
+msgstr "Benutze das, wenn du sehr viele QSOs zu eQSL hochzuladen hast und einen Server TimeOut umgehen willst."
 
 #: application/views/eqslcard/index.php:10
 #, php-format
@@ -6383,13 +6383,14 @@ msgid "Upload a File"
 msgstr "Lade eine Datei hoch"
 
 #: application/views/lotw/import.php:24
+#, fuzzy
 msgid "Download Report"
-msgstr ""
+msgstr "Berichts-Download"
 
 #: application/views/lotw/import.php:24
 #, php-format
 msgid "Upload the Exported ADIF file from LoTW from the %s Area, to mark QSOs as confirmed on LoTW."
-msgstr ""
+msgstr "Lade das exportierte Adif von dem LoTW %s Bereich, um QSOs als bei LoTW bestätigt zu markieren."
 
 #: application/views/lotw/import.php:27
 msgid "Choose file"
@@ -6476,7 +6477,7 @@ msgstr "Du musst mindestens ein LoTW-p12-Zertifikat hochladen, um diesen Bereich
 
 #: application/views/lotw_views/index.php:144
 msgid "Information"
-msgstr ""
+msgstr "Information"
 
 #: application/views/lotw_views/index.php:149
 msgid "Manual Sync"
@@ -6501,7 +6502,7 @@ msgstr "Klicke links auf das gewünschte Rufzeichen"
 
 #: application/views/lotw_views/upload_cert.php:24
 msgid "Click 'Save Callsign Certificate File' and do not add a password"
-msgstr ""
+msgstr "Klicke 'Speichere Rufzeichen Zertifikat Datei' und füge kein Passwort hinzu"
 
 #: application/views/lotw_views/upload_cert.php:25
 msgid "Upload File below."
@@ -6514,24 +6515,24 @@ msgstr "Lade Datei hoch"
 #: application/views/mode/create.php:24 application/views/mode/edit.php:33
 msgctxt "Name of mode in ADIF-specification"
 msgid "ADIF Mode"
-msgstr ""
+msgstr "ADIF Modus"
 
 #: application/views/mode/create.php:26 application/views/mode/edit.php:35
 msgid "Name of mode in ADIF-specification"
-msgstr ""
+msgstr "Name des Modes in der ADIF-Spezifikation"
 
 #: application/views/mode/create.php:30 application/views/mode/edit.php:39
 msgctxt "Name of sub-mode in ADIF-specification"
 msgid "ADIF Sub-Mode"
-msgstr ""
+msgstr "ADIF Sub-Mode"
 
 #: application/views/mode/create.php:32 application/views/mode/edit.php:41
 msgid "Name of sub-mode in ADIF-specification"
-msgstr ""
+msgstr "Name des Sub-Modes in der ADIF-Spezifikation"
 
 #: application/views/mode/create.php:42 application/views/mode/edit.php:53
 msgid "Defines the QRG-segment in bandplan."
-msgstr ""
+msgstr "Definiert das QRG-Segment im Bandplan."
 
 #: application/views/mode/create.php:49 application/views/mode/edit.php:61
 #: application/views/mode/index.php:43
@@ -6540,7 +6541,7 @@ msgstr "Inaktiv"
 
 #: application/views/mode/create.php:51 application/views/mode/edit.php:64
 msgid "Set to active if to be listed in Modes-list"
-msgstr ""
+msgstr "Stelle auf Aktiv damit dieser Mode in der Modes-Liste gezeigt wird"
 
 #: application/views/mode/create.php:54
 msgid "Create mode"
@@ -6552,7 +6553,7 @@ msgstr "Mode updaten"
 
 #: application/views/mode/index.php:19
 msgid "Using the modes list you can control which modes are shown when creating a new QSO."
-msgstr ""
+msgstr "Mit der Modes-Liste kannst du kontrollieren, welche Modes verfügbar sind, wenn ein neues QSO erstellt wird."
 
 #: application/views/mode/index.php:22
 msgid "Active modes will be shown in the QSO 'Mode' drop-down, while inactive modes will be hidden and cannot be selected."
@@ -6560,7 +6561,7 @@ msgstr "Aktive Modi werden im QSO 'Mode' drop-down angezeigt, inaktive werden ni
 
 #: application/views/mode/index.php:29
 msgid "Sub-Mode"
-msgstr ""
+msgstr "Sub-Mode"
 
 #: application/views/mode/index.php:76
 msgid "Create a Mode"
@@ -6636,7 +6637,7 @@ msgstr "Dashboard Karte"
 
 #: application/views/options/appearance.php:74
 msgid "Map at right"
-msgstr ""
+msgstr "Karte rechts"
 
 #: application/views/options/appearance.php:76
 msgid "This allows the map on the dashboard to be disabled or placed on the right."
@@ -6660,7 +6661,7 @@ msgstr "Dies erlaubt die Karten auf der öffentlichen Seite zu deaktivieren. Die
 
 #: application/views/options/appearance.php:98
 msgid "Public Github Button"
-msgstr ""
+msgstr "Öffentliche Github Schaltfläche"
 
 #: application/views/options/appearance.php:103
 msgid "This enables the button to Wavelog's Github page in the public view"
@@ -6672,17 +6673,17 @@ msgstr "Provider des DXClusterCache"
 
 #: application/views/options/dxcluster.php:39
 msgid "DXClusterAPI"
-msgstr ""
+msgstr "DXCluster API"
 
 #: application/views/options/dxcluster.php:39
 #, php-format
 msgid "The Provider of the DXCluster-Cache. You can set up your own Cache with %s or use a public one"
-msgstr ""
+msgstr "Der Anbieter der DXCluster-Cache. Du kannst deine eigene Cache mit %s aufsetzen oder eine öffentliche benutzen"
 
 #: application/views/options/dxcluster.php:41
 #, php-format
 msgid "URL of the DXCluster-Cache. e.g. %s"
-msgstr ""
+msgstr "URL des DXCluster-Cache, z.B. %s"
 
 #: application/views/options/dxcluster.php:44
 msgid "Maximum Age of spots taken care of"
@@ -6751,7 +6752,7 @@ msgstr "Die E-Mail Adresse von der die Mails versendet werden, z.B. 'wavelog@exa
 
 #: application/views/options/email.php:80
 msgid "SMTP Host"
-msgstr ""
+msgstr "SMTP Host"
 
 #: application/views/options/email.php:83
 msgid "The hostname of the mail server, e.g. 'mail.example.com' (without 'ssl://' or 'tls://')"
@@ -6759,7 +6760,7 @@ msgstr "Der Hostname des Mailservers, z.B. 'mail.example.com' (ohne 'ssl://' or 
 
 #: application/views/options/email.php:88
 msgid "SMTP Port"
-msgstr ""
+msgstr "SMTP Port"
 
 #: application/views/options/email.php:91
 msgid "The SMTP port of the mail server, e.g. if TLS is used -> '587', if SSL is used -> '465'"
@@ -6907,7 +6908,7 @@ msgstr "Gib Dein Rufzeichen ein"
 
 #: application/views/oqrs/index.php:21
 msgid "This search will search in all station locations where OQRS is active."
-msgstr ""
+msgstr "Diese Suche wird alle Stationsstandorte durchsuchen, in denen OQRS aktiviert ist."
 
 #: application/views/oqrs/index.php:48
 msgid "Select station"
@@ -6915,27 +6916,27 @@ msgstr "Station auswählen"
 
 #: application/views/oqrs/index.php:64
 msgid "No stations found that are using Wavelog OQRS."
-msgstr ""
+msgstr "Keine Stationen gefunden, welche Wavelog OQRS benutzen."
 
 #: application/views/oqrs/notinlogform.php:2
 msgid "If you can't find your QSO in the log, please fill out the form below. You will be contacted after the log has been checked."
-msgstr ""
+msgstr "Wenn du dein QSO im Log nicht finden kannst, fülle bitte das Formular unten aus. Man wird dich kontaktieren, wenn das Log überprüft wurde."
 
 #: application/views/oqrs/notinlogform.php:9
 #: application/views/oqrs/request.php:16
 #: application/views/oqrs/request_grouped.php:9
 msgid "Time (UTC)"
-msgstr ""
+msgstr "Zeit (UTC)"
 
 #: application/views/oqrs/notinlogform.php:24
 msgid "Add line"
-msgstr ""
+msgstr "Zeile hinzufügen"
 
 #: application/views/oqrs/notinlogform.php:30
 #: application/views/oqrs/request.php:56
 #: application/views/oqrs/request_grouped.php:60
 msgid "Any extra information we need to know about?"
-msgstr ""
+msgstr "Gibt es weitere Informationen, über die wir Bescheid wissen sollten?"
 
 #: application/views/oqrs/notinlogform.php:34
 #: application/views/oqrs/request.php:60
@@ -6949,11 +6950,11 @@ msgstr "E-Mail"
 #: application/views/oqrs/request.php:62
 #: application/views/oqrs/request_grouped.php:66
 msgid "Your e-mail address where we can contact you"
-msgstr ""
+msgstr "Deine E-Mail-Adresse, wo wir dich kontaktieren können"
 
 #: application/views/oqrs/notinlogform.php:40
 msgid "Send not in log request"
-msgstr ""
+msgstr "Sende eine 'Nicht im Log' Anfrage"
 
 #: application/views/oqrs/qsolist.php:11
 #: application/views/qslprint/qslprint.php:29
@@ -6980,7 +6981,7 @@ msgstr ""
 #: application/views/view_log/qso.php:577
 #: application/views/view_log/qso.php:582
 msgid "Station"
-msgstr ""
+msgstr "Station"
 
 #: application/views/oqrs/qsolist.php:75
 #: application/views/qslprint/qslprint.php:28
@@ -6991,7 +6992,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:168
 #: src/QSLManager/QSO.php:298
 msgid "Via"
-msgstr ""
+msgstr "Via"
 
 #: application/views/oqrs/qsolist.php:184
 #: application/views/qslprint/qsolist.php:192
@@ -7010,45 +7011,45 @@ msgstr ""
 #: application/views/oqrs/request.php:40
 #: application/views/oqrs/request_grouped.php:44
 msgid "QSL Route"
-msgstr ""
+msgstr "QSL Route"
 
 #: application/views/oqrs/request.php:50
 #: application/views/oqrs/request_grouped.php:54
 msgid "Direct (write address in message below)"
-msgstr ""
+msgstr "Direkt (Schreibe deine Adresse ins Nachrichten-Feld unten)"
 
 #: application/views/oqrs/request.php:66
 #: application/views/oqrs/request_grouped.php:70
 msgid "Submit request"
-msgstr ""
+msgstr "Anfrage senden"
 
 #: application/views/oqrs/request_grouped.php:16
 msgid "Station Name"
-msgstr ""
+msgstr "Stations Name"
 
 #: application/views/oqrs/request_grouped.php:73
 #: application/views/oqrs/result.php:40
 msgid "No QSOs found in the log."
-msgstr ""
+msgstr "Keine QSOs im Log gefunden."
 
 #: application/views/oqrs/result.php:5
 #, php-format
 msgid "Log search result for %s"
-msgstr ""
+msgstr "Log Suchergebnis für %s"
 
 #: application/views/oqrs/result.php:30
 #, php-format
 msgid "has %d band slot"
 msgid_plural "has %d band slots"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "hat %d Band-Slot"
+msgstr[1] "hat %d Band-Slots"
 
 #: application/views/oqrs/result.php:33
 #, php-format
 msgid "and has %d QSO in the log"
 msgid_plural "and has %d QSOs in the log"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "und hat %d QSO im Log"
+msgstr[1] "und hat %d QSOs im Log"
 
 #: application/views/oqrs/result.php:37
 msgid "Request QSL"
@@ -7061,25 +7062,25 @@ msgstr ""
 #: application/views/oqrs/showrequests.php:5
 #: application/views/oqrs/showrequests.php:50
 msgid "Open request"
-msgstr ""
+msgstr "Offene Anfrage"
 
 #: application/views/oqrs/showrequests.php:6
 #: application/views/oqrs/showrequests.php:51
 msgid "Not in log request"
-msgstr ""
+msgstr "'Nicht im Log' Anfrage"
 
 #: application/views/oqrs/showrequests.php:7
 #: application/views/oqrs/showrequests.php:52
 msgid "Request done"
-msgstr ""
+msgstr "Anfrage erledigt"
 
 #: application/views/oqrs/showrequests.php:47
 msgid "OQRS Status"
-msgstr ""
+msgstr "OQRS Status"
 
 #: application/views/oqrs/showrequests.php:69
 msgid "With selected"
-msgstr ""
+msgstr "Bei Markierten"
 
 #: application/views/oqrs/showrequests.php:70
 msgid "Mark as done"
@@ -7100,32 +7101,32 @@ msgstr ""
 
 #: application/views/oqrs/showrequests.php:85
 msgid "Request callsign"
-msgstr ""
+msgstr "Rufzeichen der Anfrage"
 
 #: application/views/oqrs/showrequests.php:89
 msgid "QSL route"
-msgstr ""
+msgstr "QSL Route"
 
 #: application/views/oqrs/showrequests.php:90
 msgid "Check log"
-msgstr ""
+msgstr "Log Check"
 
 #: application/views/public_search/empty.php:2
 #: application/views/public_search/result.php:2
 msgid "Searching for"
-msgstr ""
+msgstr "Suche nach"
 
 #: application/views/qrbcalc/index.php:3
 msgid "Locator 1"
-msgstr ""
+msgstr "Planquadrat 1"
 
 #: application/views/qrbcalc/index.php:10
 msgid "Locator 2"
-msgstr ""
+msgstr "Planquadrat 2"
 
 #: application/views/qrbcalc/index.php:20
 msgid "Calculate"
-msgstr ""
+msgstr "Berechnen"
 
 #: application/views/qrz/export.php:27
 msgid "Here you can see all QSOs which have not been previously uploaded to a QRZ logbook."
@@ -7137,11 +7138,11 @@ msgstr ""
 
 #: application/views/qrz/export.php:73
 msgid "If no startdate is given then all QSOs after last confirmation will be downloaded/updated!"
-msgstr ""
+msgstr "Falls kein Startdatum angegeben ist, werden alle QSOs nach der letzten Bestätigung heruntergeladen/aktualisiert!"
 
 #: application/views/qrz/export.php:81
 msgid "Download from QRZ Logbook"
-msgstr ""
+msgstr "Vom QRZ Logbuch herunterladen"
 
 #: application/views/qrz/export.php:107
 msgid "Mark QSOs as exported to QRZ Logbook"
@@ -7170,11 +7171,11 @@ msgstr ""
 
 #: application/views/qslmanagement/index.php:25
 msgid "Report"
-msgstr ""
+msgstr "Bericht"
 
 #: application/views/qslmanagement/index.php:26
 msgid "Option"
-msgstr ""
+msgstr "Option"
 
 #: application/views/qslmanagement/index.php:46
 msgid "Outgoing QSL Cards"
@@ -7220,7 +7221,7 @@ msgstr "Entferne markierte QSOs aus der Warteschlange"
 
 #: application/views/qslprint/qslprint.php:71
 msgid "Export CSV-file"
-msgstr ""
+msgstr "CSV-Datei exportieren"
 
 #: application/views/qslprint/qslprint.php:71
 msgid "Export requested QSLs to CSV-file"
@@ -7228,7 +7229,7 @@ msgstr "Exportiere angefragte QSLs als CSV Datei"
 
 #: application/views/qslprint/qslprint.php:73
 msgid "Export ADIF"
-msgstr ""
+msgstr "ADIF Export"
 
 #: application/views/qslprint/qslprint.php:73
 msgid "Export requested QSLs to ADIF-file"
@@ -7253,7 +7254,7 @@ msgstr "Es wurden keine zusätzlichen QSO's gefunden. Das bedeutet, dass diese w
 #: application/views/qso/components/winkeysettings.php:7
 #: application/views/qso/components/winkeysettings_results.php:7
 msgid "Winkey Macros"
-msgstr ""
+msgstr "Winkey Macros"
 
 #: application/views/qso/components/winkeysettings.php:12
 #: application/views/qso/components/winkeysettings.php:28
@@ -7267,7 +7268,7 @@ msgstr ""
 #: application/views/qso/components/winkeysettings_results.php:76
 #, php-format
 msgid "Function %d - Name"
-msgstr ""
+msgstr "Funktion %d - Name"
 
 #: application/views/qso/components/winkeysettings.php:19
 #: application/views/qso/components/winkeysettings.php:35
@@ -7281,27 +7282,27 @@ msgstr ""
 #: application/views/qso/components/winkeysettings_results.php:83
 #, php-format
 msgid "Function %d - Macro"
-msgstr ""
+msgstr "Funktion %d - Makro"
 
 #: application/views/qso/edit_ajax.php:34
 msgid "Sats"
-msgstr ""
+msgstr "Sats"
 
 #: application/views/qso/edit_ajax.php:51
 msgid "Start Date/Time"
-msgstr ""
+msgstr "Start Datum/Zeit"
 
 #: application/views/qso/edit_ajax.php:56
 msgid "End Date/Time"
-msgstr ""
+msgstr "End Datum/Zeit"
 
 #: application/views/qso/edit_ajax.php:76
 msgid "RX Frequency"
-msgstr ""
+msgstr "RX Frequenz"
 
 #: application/views/qso/edit_ajax.php:99
 msgid "RX Band"
-msgstr ""
+msgstr "RX Band"
 
 #: application/views/qso/edit_ajax.php:134 application/views/qso/index.php:346
 #: application/views/view_log/qso.php:542
@@ -7314,34 +7315,34 @@ msgstr "Gib die Ausgangsleistung in Watt an. Erfasse nur Zahlen bei der Eingabe.
 
 #: application/views/qso/edit_ajax.php:166
 msgid "Used for VUCC MultiGrids"
-msgstr ""
+msgstr "Wird für VUCC MultiGrids verwendet"
 
 #: application/views/qso/edit_ajax.php:177
 msgid "QTH"
-msgstr ""
+msgstr "QTH"
 
 #: application/views/qso/edit_ajax.php:257
 msgid "Sat Name"
-msgstr ""
+msgstr "Sat Name"
 
 #: application/views/qso/edit_ajax.php:262
 msgid "Sat Mode"
-msgstr ""
+msgstr "Sat Modus"
 
 #: application/views/qso/edit_ajax.php:355 application/views/qso/index.php:255
 #: application/views/qso/index.php:500 application/views/user/edit.php:599
 #: application/views/view_log/qso.php:332
 #: application/views/view_log/qso.php:582
 msgid "Sig Info"
-msgstr ""
+msgstr "Sig Info"
 
 #: application/views/qso/edit_ajax.php:368
 msgid "Notes (for internal usage only)"
-msgstr ""
+msgstr "Notizen (nur für den internen Gebrauch)"
 
 #: application/views/qso/edit_ajax.php:402
 msgid "Sent Method"
-msgstr ""
+msgstr "Sende Methode"
 
 #: application/views/qso/edit_ajax.php:405
 #: application/views/qso/edit_ajax.php:438 application/views/qso/index.php:563
@@ -7351,17 +7352,17 @@ msgstr "Methode"
 
 #: application/views/qso/edit_ajax.php:415
 msgid "Sent Via"
-msgstr ""
+msgstr "Gesendet Via"
 
 #: application/views/qso/edit_ajax.php:429
 #: application/views/qso/edit_ajax.php:470
 #: application/views/qso/edit_ajax.php:509
 msgid "Verified (Match)"
-msgstr ""
+msgstr "Verifiziert (Match)"
 
 #: application/views/qso/edit_ajax.php:435
 msgid "Received Method"
-msgstr ""
+msgstr "Empfangs Methode"
 
 #: application/views/qso/edit_ajax.php:476 application/views/qso/index.php:583
 msgid "This note content is exported to QSL services like eqsl.cc."
@@ -7373,15 +7374,15 @@ msgstr "Setze die eQSL Nachricht auf den Standardtext zurück."
 
 #: application/views/qso/edit_ajax.php:527
 msgid "Change Station Profile"
-msgstr ""
+msgstr "Stations Profil ändern"
 
 #: application/views/qso/edit_ajax.php:573
 msgid "Exchange (R)"
-msgstr ""
+msgstr "Exchange (R)"
 
 #: application/views/qso/edit_ajax.php:578
 msgid "Exchange (S)"
-msgstr ""
+msgstr "Exchange (S)"
 
 #: application/views/qso/edit_ajax.php:590
 #: application/views/search/search_result_ajax.php:428
@@ -7392,11 +7393,11 @@ msgstr "QSO Löschen"
 
 #: application/views/qso/edit_ajax.php:591
 msgid "Save changes"
-msgstr ""
+msgstr "Änderungen speichern"
 
 #: application/views/qso/index.php:4
 msgid "TimeOff is less than TimeOn"
-msgstr ""
+msgstr "Endzeit ist vor der Startzeit"
 
 #: application/views/qso/index.php:5 application/views/qso/index.php:694
 msgid "Previous Contacts"
@@ -7412,15 +7413,15 @@ msgstr "Noch nicht gearbeitet"
 
 #: application/views/qso/index.php:20
 msgid "LIVE"
-msgstr ""
+msgstr "LIVE"
 
 #: application/views/qso/index.php:20
 msgid "POST"
-msgstr ""
+msgstr "POST"
 
 #: application/views/qso/index.php:33
 msgid "Sat"
-msgstr ""
+msgstr "Sat"
 
 #: application/views/qso/index.php:48
 msgid "Add Band/Mode to Favs"
@@ -7436,7 +7437,7 @@ msgstr "Endzeit"
 
 #: application/views/qso/index.php:124
 msgid "Search DXCluster for latest Spot"
-msgstr ""
+msgstr "Suche im DXCluster nach letztem Spot"
 
 #: application/views/qso/index.php:196 application/views/qso/index.php:439
 #: application/views/station_profile/create.php:130
@@ -7460,7 +7461,7 @@ msgstr "Frequenz (RX)"
 
 #: application/views/qso/index.php:327
 msgid "Band (RX)"
-msgstr ""
+msgstr "Band (RX)"
 
 #: application/views/qso/index.php:458
 msgid "For example: GM/NS-001."
@@ -7504,11 +7505,11 @@ msgstr "Auf Standardwerte zurücksetzen"
 
 #: application/views/qso/index.php:645
 msgid "Winkey"
-msgstr ""
+msgstr "Winkey"
 
 #: application/views/qso/index.php:647
 msgid "Connect"
-msgstr ""
+msgstr "Verbinden"
 
 #: application/views/qso/index.php:677
 msgid "Suggestions"
@@ -7524,202 +7525,202 @@ msgstr "Es werden maximal 5 Kontakte angezeigt"
 
 #: application/views/radio/index.php:16
 msgid "Active Radios"
-msgstr ""
+msgstr "Aktive Funkgeräte"
 
 #: application/views/radio/index.php:19
 msgid "Below is a list of active radios that are connected to Wavelog."
-msgstr ""
+msgstr "Unten findest du eine Liste mit allen aktiven Funkgeräten, welche mit Wavelog verbunden sind."
 
 #: application/views/radio/index.php:20
 msgid "If you haven't connected any radios yet, see the API page to generate API keys."
-msgstr ""
+msgstr "Falls du bis jetzt keine Funkgeräte verbunden hast, geh zur API Seite und generiere API Schlüssel."
 
 #: application/views/radio/index.php:27 application/views/search/filter.php:69
 #, php-format
 msgid "You can find out how to use the %s in the wiki."
-msgstr ""
+msgstr "Wie du die %s verwendest, findest du im Wiki."
 
 #: application/views/radio/index.php:27
 msgid "radio functions"
-msgstr ""
+msgstr "Funkgerät-Funktionen"
 
 #: application/views/satellite/create.php:23
 #: application/views/satellite/edit.php:7
 msgid "Satellite name"
-msgstr ""
+msgstr "Satelliten Name"
 
 #: application/views/satellite/create.php:25
 msgid "The name of the Satellite"
-msgstr ""
+msgstr "Der Name des Satellit"
 
 #: application/views/satellite/create.php:28
 #: application/views/satellite/edit.php:12
 #: application/views/satellite/index.php:22
 msgid "Export Name"
-msgstr ""
+msgstr "Export Name"
 
 #: application/views/satellite/create.php:30
 #: application/views/satellite/edit.php:14
 msgid "If external services uses another name for the satellite, like LoTW"
-msgstr ""
+msgstr "Wenn ein externer Dienst einen anderen Namen für den Satellit verwendet (z.B. LoTW)"
 
 #: application/views/satellite/create.php:37
 #: application/views/satellite/edit.php:21
 msgid "Enter which orbit the satellite has (LEO, MEO, GEO)"
-msgstr ""
+msgstr "Gib an, in welchem Orbit sich der Satellit befindet (LEO, MEO, GEO)"
 
 #: application/views/satellite/create.php:40
 msgid "Satellite mode name"
-msgstr ""
+msgstr "Name des Satellitenmodus"
 
 #: application/views/satellite/create.php:42
 msgid "Enter satellite mode"
-msgstr ""
+msgstr "Gib den Satelliten Modus an"
 
 #: application/views/satellite/create.php:47
 #: application/views/satellite/edit.php:35
 msgid "Uplink mode"
-msgstr ""
+msgstr "Uplink-Modus"
 
 #: application/views/satellite/create.php:49
 msgid "Enter modulation used for uplink"
-msgstr ""
+msgstr "Gib die Modulation an, welche im Uplink verwendet wird"
 
 #: application/views/satellite/create.php:52
 #: application/views/satellite/edit.php:36
 msgid "Uplink frequency"
-msgstr ""
+msgstr "Uplink Frequenz"
 
 #: application/views/satellite/create.php:54
 msgid "Enter frequency (in Hz) used for uplink"
-msgstr ""
+msgstr "Gib die Frequenz in Hertz (Hz) an, welche für den Uplink verwendet wird"
 
 #: application/views/satellite/create.php:59
 #: application/views/satellite/edit.php:37
 msgid "Downlink mode"
-msgstr ""
+msgstr "Downlink-Modus"
 
 #: application/views/satellite/create.php:61
 msgid "Enter modulation used for downlink"
-msgstr ""
+msgstr "Gib die Modulation an, welche für den Downlink verwendet wird"
 
 #: application/views/satellite/create.php:64
 #: application/views/satellite/edit.php:38
 msgid "Downlink frequency"
-msgstr ""
+msgstr "Downlink Frequenz"
 
 #: application/views/satellite/create.php:66
 msgid "Enter frequency (in Hz) used for downlink"
-msgstr ""
+msgstr "Gib die Frequenz in Hertz (Hz) an welche im Downlink verwendet wird"
 
 #: application/views/satellite/edit.php:9
 msgid "Name of the Satellite"
-msgstr ""
+msgstr "Der Name des Satellit"
 
 #: application/views/satellite/edit.php:25
 msgid "Save satellite"
-msgstr ""
+msgstr "Satellit speichern"
 
 #: application/views/satellite/edit.php:59
 msgid "Add satellite mode"
-msgstr ""
+msgstr "Satellitenmodus hinzufügen"
 
 #: application/views/satellite/index.php:15
 msgid "Add a satellite"
-msgstr ""
+msgstr "Satellit hinzufügen"
 
 #: application/views/sattimers/index.php:15
 #, php-format
 msgid "This data comes from %s and is calculated for the current stationlocation grid %s."
-msgstr ""
+msgstr "Diese Daten stammen von %s und werden für den aktuellen Stationsstandort-Locator %s berechnet."
 
 #: application/views/sattimers/index.php:40
 msgid "Time(d)-Out"
-msgstr ""
+msgstr "Zeitüberschreitung"
 
 #: application/views/sattimers/index.php:43
 #: application/views/sattimers/index.php:44
 msgid "Azimuth"
-msgstr ""
+msgstr "Azimuth"
 
 #: application/views/sattimers/index.php:45
 msgid "Max Elevation"
-msgstr ""
+msgstr "Max Elevation"
 
 #: application/views/sattimers/index.php:46
 msgid "Duration"
-msgstr ""
+msgstr "Dauer"
 
 #: application/views/search/cqzones.php:5
 #: application/views/search/lotw_unconfirmed.php:5
 #: application/views/search/main.php:5
 msgid "Ready to find a QSO?"
-msgstr ""
+msgstr "Bereit, ein QSO zu finden?"
 
 #: application/views/search/cqzones.php:15
 #: application/views/search/filter.php:4 application/views/search/filter.php:23
 #: application/views/search/lotw_unconfirmed.php:15
 #: application/views/search/main.php:15
 msgid "Advanced Search"
-msgstr ""
+msgstr "Erweiterte Suche"
 
 #: application/views/search/cqzones.php:18
 #: application/views/search/filter.php:26
 #: application/views/search/lotw_unconfirmed.php:18
 #: application/views/search/main.php:18
 msgid "Incorrect CQ Zones"
-msgstr ""
+msgstr "Falsche CQ-Zonen"
 
 #: application/views/search/cqzones.php:21
 #: application/views/search/filter.php:29
 #: application/views/search/lotw_unconfirmed.php:21
 #: application/views/search/main.php:21
 msgid "QSOs unconfirmed on LoTW"
-msgstr ""
+msgstr "QSOs nicht bestätigt auf LoTW"
 
 #: application/views/search/cqzones.php:28
 msgid "Station location:"
-msgstr ""
+msgstr "Stationsstandort:"
 
 #: application/views/search/cqzones_result.php:3
 msgid "The following QSOs were found to have an incorrect CQ zone that this DXCC normally has:"
-msgstr ""
+msgstr "Die folgenden QSOs wurden gefunden, bei denen die übliche CQ-Zone gegenüber des DXCC abweicht:"
 
 #: application/views/search/cqzones_result.php:14
 msgid "DXCC CQ Zone"
-msgstr ""
+msgstr "DXCC CQ Zone"
 
 #: application/views/search/cqzones_result.php:51
 msgid "No incorrect CQ Zones were found."
-msgstr ""
+msgstr "Es wurden keine falschen CQ-Zonen gefunden."
 
 #: application/views/search/filter.php:43
 msgid "Save query"
-msgstr ""
+msgstr "Suchmuster speichern"
 
 #: application/views/search/filter.php:46
 msgid "Edit queries"
-msgstr ""
+msgstr "Suchmuster bearbeiten"
 
 #: application/views/search/filter.php:50
 msgid "Stored queries"
-msgstr ""
+msgstr "Gespeicherte Suchmuster"
 
 #: application/views/search/filter.php:60
 msgid "Run Query"
-msgstr ""
+msgstr "Suchmuster ausführen"
 
 #: application/views/search/filter.php:69
 msgid "search filter functions"
-msgstr ""
+msgstr "Suchfilter-Funktionen"
 
 #: application/views/search/filter.php:79
 msgid "Export to ADIF"
-msgstr ""
+msgstr "Nach ADIF exportieren"
 
 #: application/views/search/filter.php:79
 msgid "Search Results"
-msgstr ""
+msgstr "Suchergebnisse"
 
 #: application/views/search/lotw_unconfirmed.php:26
 msgid "The search displays QSOs which are unconfirmed on LoTW, but the callsign worked has uploaded to LoTW after your QSO date."
