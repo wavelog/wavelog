@@ -87,6 +87,13 @@ class CI_Migration {
 	protected $_migration_table = 'migrations';
 
 	/**
+	 * Name and Path of the migration lockfile
+	 * 
+	 * @var string
+	 */
+	protected $_migration_lockfile = APPPATH . 'cache/.migration_running';
+
+	/**
 	 * Whether to automatically run migrations
 	 *
 	 * @var	bool
@@ -297,26 +304,46 @@ class CI_Migration {
 			$pending[$number] = array($class, $method);
 		}
 
-		// Now just run the necessary migrations
-		foreach ($pending as $number => $migration)
-		{
-			log_message('debug', 'Migrating '.$method.' from version '.$current_version.' to version '.$number);
+		// Let's check if a migration is currently running
+        if (!file_exists($this->_migration_lockfile)) {
 
-			$migration[0] = new $migration[0];
-			call_user_func($migration);
-			$current_version = $number;
-			$this->_update_version($current_version);
+			// Create the lockfile
+			if (touch($this->_migration_lockfile)) {
+				log_message('debug', 'Created migration lockfile');
+
+				// Now just run the necessary migrations
+				foreach ($pending as $number => $migration)
+				{
+					log_message('debug', 'Migrating '.$method.' from version '.$current_version.' to version '.$number);
+
+					$migration[0] = new $migration[0];
+					call_user_func($migration);
+					$current_version = $number;
+					$this->_update_version($current_version);
+				}
+
+				// This is necessary when moving down, since the the last migration applied
+				// will be the down() method for the next migration up from the target
+				if ($current_version <> $target_version)
+				{
+					$current_version = $target_version;
+					$this->_update_version($current_version);
+				}
+				
+				log_message('debug', 'Finished migrating to '.$current_version);
+
+				// After the migrations we can remove the lockfile
+				unlink($this->_migration_lockfile);
+				log_message('debug', 'Deleted migration lockfile');
+
+			} else {
+				log_message('error', 'Failed to create Migration Lockfile. Check directory permissions.');
+			}
+
+		} else {
+			log_message('debug', 'Migration process is currently locked. Second migration attempt ignored.');
 		}
 
-		// This is necessary when moving down, since the the last migration applied
-		// will be the down() method for the next migration up from the target
-		if ($current_version <> $target_version)
-		{
-			$current_version = $target_version;
-			$this->_update_version($current_version);
-		}
-
-		log_message('debug', 'Finished migrating to '.$current_version);
 		return $current_version;
 	}
 
