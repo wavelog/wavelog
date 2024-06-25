@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-06-23 23:12+0200\n"
-"PO-Revision-Date: 2024-06-25 18:16+0000\n"
+"PO-Revision-Date: 2024-06-25 20:58+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-translation/ru/>\n"
 "Language: ru_RU\n"
@@ -20,7 +20,7 @@ msgstr ""
 #: application/controllers/Accumulated.php:21
 #: application/views/interface_assets/header.php:147
 msgid "Accumulated Statistics"
-msgstr "Объединённая статистика"
+msgstr "Накопленная статистика"
 
 #: application/controllers/Activated_gridmap.php:10
 #: application/views/activated_gridmap/index.php:5
@@ -65,7 +65,7 @@ msgstr "Карта активаторов"
 
 #: application/controllers/Adif.php:18
 msgid "valid date"
-msgstr "верная дата"
+msgstr "действительная дата"
 
 #: application/controllers/Adif.php:20
 msgid "date incorrect"
@@ -78,7 +78,7 @@ msgstr "Экспорт ADIF"
 #: application/controllers/Adif.php:147
 #: application/views/interface_assets/header.php:370
 msgid "ADIF Import / Export"
-msgstr "Импорт / экспорт ADIF"
+msgstr "Импорт / Экспорт ADIF"
 
 #: application/controllers/Adif.php:171 application/views/adif/import.php:21
 #: application/views/lotw/import.php:3
@@ -142,12 +142,12 @@ msgstr "Ключ не найден"
 
 #: application/controllers/Api.php:120
 msgid "Key Invalid - either not found or disabled"
-msgstr "Ключ некорректен (не найден или деактивирован)"
+msgstr "Ключ недействительный — либо не найден, либо отключен"
 
 #: application/controllers/Api.php:124
 #: application/views/lotw_views/index.php:95
 msgid "Valid"
-msgstr "Действует"
+msgstr "Действительный"
 
 #: application/controllers/Awards.php:22
 #: application/views/interface_assets/header.php:155
@@ -212,7 +212,7 @@ msgstr "DXCC"
 
 #: application/controllers/Awards.php:251
 msgid "Awards - WAJA"
-msgstr "Дипломы - WAJA"
+msgstr "Дипломы — WAJA"
 
 #: application/controllers/Awards.php:327 application/views/bands/index.php:53
 #: application/views/interface_assets/header.php:207
@@ -226,7 +226,7 @@ msgstr "VUCC"
 
 #: application/controllers/Awards.php:405
 msgid "Log View - VUCC"
-msgstr "Журнал VUCC"
+msgstr "Журнал — VUCC"
 
 #: application/controllers/Awards.php:453
 #: application/controllers/Timeline.php:92
@@ -235,7 +235,7 @@ msgstr "Журнал VUCC"
 #: application/controllers/Timeline.php:101
 #: application/controllers/Timeline.php:104
 msgid "Log View"
-msgstr ":ehyfk"
+msgstr "Просмотр журнала"
 
 #: application/controllers/Awards.php:457
 msgid " and sat "
@@ -578,7 +578,7 @@ msgstr "Всего сработано квадратов"
 
 #: application/controllers/Hamsat.php:59
 msgid "Hamsat - Satellite Roving"
-msgstr ""
+msgstr "Hamsat — охота на спутники"
 
 #: application/controllers/Kmlexport.php:24
 #: application/views/interface_assets/header.php:374
@@ -1257,7 +1257,7 @@ msgstr "Максимальный возраст спотов изменён на
 
 #: application/controllers/Options.php:175
 msgid "DXCluster Cache URL changed to "
-msgstr "URL кэша DXCluster изменён на  "
+msgstr "URL кэша DXCluster изменён на "
 
 #: application/controllers/Options.php:185
 #: application/controllers/Options.php:196
@@ -1655,7 +1655,7 @@ msgstr "Удалить"
 #: application/controllers/Stationsetup.php:371
 #: application/views/qso/edit_ajax.php:220
 msgid "NONE"
-msgstr "--"
+msgstr "—"
 
 #: application/controllers/Stationsetup.php:454
 msgid "Edit Export Map options"
@@ -1758,7 +1758,7 @@ msgstr "Пользователь вошёл"
 
 #: application/controllers/User.php:803
 msgid "Sorry. This instance is currently in maintenance mode. If this message appears unexpectedly or keeps showing up, please contact an administrator. Only administrators are currently allowed to log in."
-msgstr "Извините. Сервер находится в режиме обслуживания. Если это сообщение появилось неожиданно или продолжает отображаться -- пожалуйста, свяжитесь с администратором. В настоящий моемнт только администраторы могут войти на сервер."
+msgstr "Извините. Сервер находится в режиме обслуживания. Если это сообщение появилось неожиданно или продолжает отображаться — пожалуйста, свяжитесь с администратором. В настоящий момент только администраторы могут войти на сервер."
 
 #: application/controllers/User.php:806
 msgid "Incorrect username or password!"
@@ -2376,7 +2376,7 @@ msgstr "Отметить импортированные QSO, как загруж
 #: application/views/adif/import.php:95 application/views/adif/import.php:105
 #: application/views/adif/import.php:115 application/views/adif/import.php:125
 msgid "Select if ADIF being imported does not contain this information."
-msgstr "Отметьте, если импортируемый ADIF  не сожержит этой информации."
+msgstr "Отметьте, если импортируемый ADIF не содержит этой информации."
 
 #: application/views/adif/import.php:103
 msgid "Mark imported QSOs as uploaded to HRDLog.net Logbook"
@@ -3162,7 +3162,7 @@ msgstr "US Gridmaster Award"
 
 #: application/views/awards/gridmaster/index.php:8
 msgid "The GridMaster Award is the most prestigious AMSAT award, first introduced in 2014 by the Star Comm Group. It is available to all amateur radio operators worldwide who manage to work all 488 grid squares in the USA via satellite and can provide QSL confirmations for each contact."
-msgstr "The GridMaster Award -- самый престижный диплом AMSAT, впервые учрежденный в 2014 году группой Star Comm. Его могут получить все радиолюбители мира, которым удастся сработать со всеми 488 квадратами сетки в США через спутник и предоставить QSL-подтверждения для каждого контакта."
+msgstr "The GridMaster Award — самый престижный диплом AMSAT, впервые учрежденный в 2014 году группой Star Comm. Его могут получить все радиолюбители мира, которым удастся сработать со всеми 488 квадратами в США через спутник и предоставить QSL-подтверждения для каждого контакта."
 
 #: application/views/awards/gridmaster/index.php:9
 #, php-format
@@ -3556,7 +3556,7 @@ msgstr "Справочник WWFF"
 
 #: application/views/backup/adif_view.php:7
 msgid "The backup of your log completed successfully. The output can be found at"
-msgstr "Резервное копирование журнала успешно завершено. Выходные данные можно найти тут:"
+msgstr "Резервное копирование журнала успешно завершено. Выходные данные можно найти здесь"
 
 #: application/views/backup/adif_view.php:9
 #: application/views/backup/notes_view.php:9
@@ -3586,7 +3586,7 @@ msgstr "Резервное копирование заметок"
 
 #: application/views/backup/notes_view.php:7
 msgid "The backup of your notes completed successfully. The output can be found at"
-msgstr "Резервное копирование заметок успешно завершено. Выходные данные можно найти здесь:"
+msgstr "Резервное копирование заметок успешно завершено. Выходные данные можно найти здесь"
 
 #: application/views/bandmap/index.php:15 application/views/bandmap/list.php:49
 msgid "BandMap"
@@ -4304,7 +4304,7 @@ msgstr "На типичном linux-сервере с доступом к шел
 #: application/views/cron/index.php:107
 #, php-format
 msgid "You need to upgrade your PHP version. Minimum version is %s. Your Version is %s"
-msgstr "Вам нужно обновить версию PHP. Минимальная версия -- %s. Установленная версия -- %s"
+msgstr "Вам нужно обновить версию PHP. Минимальная версия — %s. Установленная версия — %s"
 
 #: application/views/csv/index.php:7
 msgid "Export your logbook for SOTA uploads."
@@ -4319,7 +4319,7 @@ msgstr "Только QSO с информацией SOTA будут экспор�
 #: application/views/eqslcard/index.php:33 application/views/kml/index.php:77
 #: application/views/qso/edit_ajax.php:189 application/views/qso/index.php:401
 msgid "Propagation Mode"
-msgstr "Тип прохождения"
+msgstr "Тип распространения радиоволн"
 
 #: application/views/csv/index.php:95 application/views/dxatlas/index.php:95
 #: application/views/gridmap/index.php:43 application/views/kml/index.php:80
@@ -4327,7 +4327,7 @@ msgstr "Тип прохождения"
 #: application/views/qso/edit_ajax.php:192 application/views/qso/index.php:404
 msgctxt "Propagation Mode"
 msgid "Aircraft Scatter"
-msgstr ""
+msgstr "Рассеяние на инверсионном следе самолётов"
 
 #: application/views/csv/index.php:96 application/views/dxatlas/index.php:96
 #: application/views/gridmap/index.php:44 application/views/kml/index.php:81
@@ -4335,7 +4335,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:193 application/views/qso/index.php:405
 msgctxt "Propagation Mode"
 msgid "Aurora"
-msgstr ""
+msgstr "Авроральное"
 
 #: application/views/csv/index.php:97 application/views/dxatlas/index.php:97
 #: application/views/gridmap/index.php:45 application/views/kml/index.php:82
@@ -4343,7 +4343,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:194 application/views/qso/index.php:406
 msgctxt "Propagation Mode"
 msgid "Aurora-E"
-msgstr ""
+msgstr "Авроральное (E)"
 
 #: application/views/csv/index.php:98 application/views/dxatlas/index.php:98
 #: application/views/gridmap/index.php:46 application/views/kml/index.php:83
@@ -4351,7 +4351,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:195 application/views/qso/index.php:407
 msgctxt "Propagation Mode"
 msgid "Back scatter"
-msgstr ""
+msgstr "Пассивные отражатели"
 
 #: application/views/csv/index.php:99 application/views/dxatlas/index.php:99
 #: application/views/gridmap/index.php:47 application/views/kml/index.php:84
@@ -4359,7 +4359,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:196 application/views/qso/index.php:408
 msgctxt "Propagation Mode"
 msgid "EchoLink"
-msgstr ""
+msgstr "Эхолинк"
 
 #: application/views/csv/index.php:100 application/views/dxatlas/index.php:100
 #: application/views/gridmap/index.php:48 application/views/kml/index.php:85
@@ -4367,7 +4367,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:197 application/views/qso/index.php:409
 msgctxt "Propagation Mode"
 msgid "Earth-Moon-Earth"
-msgstr ""
+msgstr "Отражение от Луны"
 
 #: application/views/csv/index.php:101 application/views/dxatlas/index.php:101
 #: application/views/gridmap/index.php:49 application/views/kml/index.php:86
@@ -4375,7 +4375,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:198 application/views/qso/index.php:410
 msgctxt "Propagation Mode"
 msgid "Sporadic E"
-msgstr ""
+msgstr "Спорадическое прохождение (Е)"
 
 #: application/views/csv/index.php:102 application/views/dxatlas/index.php:102
 #: application/views/gridmap/index.php:50 application/views/kml/index.php:87
@@ -4383,7 +4383,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:199 application/views/qso/index.php:411
 msgctxt "Propagation Mode"
 msgid "Field Aligned Irregularities"
-msgstr ""
+msgstr "Анизотропия ионосферы"
 
 #: application/views/csv/index.php:103 application/views/dxatlas/index.php:103
 #: application/views/gridmap/index.php:51 application/views/kml/index.php:88
@@ -4391,7 +4391,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:200 application/views/qso/index.php:412
 msgctxt "Propagation Mode"
 msgid "F2 Reflection"
-msgstr ""
+msgstr "Отражение от слоя F2"
 
 #: application/views/csv/index.php:104 application/views/dxatlas/index.php:104
 #: application/views/gridmap/index.php:52 application/views/kml/index.php:89
@@ -4399,7 +4399,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:201 application/views/qso/index.php:413
 msgctxt "Propagation Mode"
 msgid "Internet-assisted"
-msgstr ""
+msgstr "С помощью Интернет"
 
 #: application/views/csv/index.php:105 application/views/dxatlas/index.php:105
 #: application/views/gridmap/index.php:53 application/views/kml/index.php:90
@@ -4407,7 +4407,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:202 application/views/qso/index.php:414
 msgctxt "Propagation Mode"
 msgid "Ionoscatter"
-msgstr ""
+msgstr "Ионосферное рассеяние"
 
 #: application/views/csv/index.php:106 application/views/dxatlas/index.php:106
 #: application/views/gridmap/index.php:54 application/views/kml/index.php:91
@@ -4415,7 +4415,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:203 application/views/qso/index.php:415
 msgctxt "Propagation Mode"
 msgid "IRLP"
-msgstr ""
+msgstr "IRLP"
 
 #: application/views/csv/index.php:107 application/views/dxatlas/index.php:107
 #: application/views/gridmap/index.php:55 application/views/kml/index.php:92
@@ -4423,7 +4423,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:204 application/views/qso/index.php:416
 msgctxt "Propagation Mode"
 msgid "Meteor scatter"
-msgstr ""
+msgstr "Рассеяние на метеорных следах"
 
 #: application/views/csv/index.php:108 application/views/dxatlas/index.php:108
 #: application/views/gridmap/index.php:56 application/views/kml/index.php:93
@@ -4431,7 +4431,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:205 application/views/qso/index.php:417
 msgctxt "Propagation Mode"
 msgid "Terrestrial or atmospheric repeater or transponder"
-msgstr ""
+msgstr "Наземный или атмосферный репитер или транспондер"
 
 #: application/views/csv/index.php:109 application/views/dxatlas/index.php:109
 #: application/views/gridmap/index.php:57 application/views/kml/index.php:94
@@ -4439,7 +4439,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:206 application/views/qso/index.php:418
 msgctxt "Propagation Mode"
 msgid "Rain scatter"
-msgstr ""
+msgstr "Рассеяние на дожде"
 
 #: application/views/csv/index.php:110 application/views/dxatlas/index.php:110
 #: application/views/gridmap/index.php:58 application/views/kml/index.php:95
@@ -4455,7 +4455,7 @@ msgstr "Спутник"
 #: application/views/qso/edit_ajax.php:208 application/views/qso/index.php:420
 msgctxt "Propagation Mode"
 msgid "Trans-equatorial"
-msgstr ""
+msgstr "Трансэкваториальное"
 
 #: application/views/csv/index.php:112 application/views/dxatlas/index.php:112
 #: application/views/gridmap/index.php:60 application/views/kml/index.php:97
@@ -4463,7 +4463,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:209 application/views/qso/index.php:421
 msgctxt "Propagation Mode"
 msgid "Tropospheric ducting"
-msgstr ""
+msgstr "Тропосферное прохождение"
 
 #: application/views/dashboard/index.php:5
 msgid "RSTS"
@@ -5181,12 +5181,12 @@ msgstr "Отметить все QSO как отправленные в eQSL"
 
 #: application/views/eqsl/tools.php:26
 msgid "Use this if you have lots of QSOs to upload to eQSL it will save the server timing out."
-msgstr "Используйте эту функцию, если у вас много QSO для загрузки в eQSL, это избавит сервер от перебоев в работе."
+msgstr "Включите, если у вас много QSO для загрузки в eQSL, это избавит сервер от перебоев в работе."
 
 #: application/views/eqslcard/index.php:10
 #, php-format
 msgid "You are using %s of disk space to store eQSL Card assets"
-msgstr "Вы используете %s дискового пространства для хранения карточек eQSL."
+msgstr "Вы используете %s дискового пространства для хранения карточек eQSL"
 
 #: application/views/eqslcard/index.php:34
 #: application/views/qslcard/index.php:33
@@ -5388,7 +5388,7 @@ msgstr "Добавить прошедшее QSO"
 
 #: application/views/interface_assets/header.php:118
 msgid "Simple Fast Log Entry"
-msgstr "Упрощённый быстрый ввод лога"
+msgstr "Простой быстрый ввод лога"
 
 #: application/views/interface_assets/header.php:120
 msgid "Live Contest Logging"
@@ -5614,7 +5614,7 @@ msgstr "Отступ слева"
 
 #: application/views/labels/create.php:58 application/views/labels/edit.php:60
 msgid "Left margin of labels."
-msgstr "Отступ слева для наклеек"
+msgstr "Отступ слева для наклеек."
 
 #: application/views/labels/create.php:63 application/views/labels/edit.php:65
 msgid "Labels horizontally"
@@ -5622,7 +5622,7 @@ msgstr "Наклеек по горизонтали"
 
 #: application/views/labels/create.php:66 application/views/labels/edit.php:68
 msgid "Number of labels horizontally across the page."
-msgstr "Количество наклеек по горизонтали на странице"
+msgstr "Количество наклеек по горизонтали на странице."
 
 #: application/views/labels/create.php:69 application/views/labels/edit.php:71
 msgid "Labels vertically"
@@ -5630,7 +5630,7 @@ msgstr "Наклеек по вертикали"
 
 #: application/views/labels/create.php:72 application/views/labels/edit.php:74
 msgid "Number of labels vertically across the page."
-msgstr "Количество наклеек по вертикали на странице"
+msgstr "Количество наклеек по вертикали на странице."
 
 #: application/views/labels/create.php:77 application/views/labels/edit.php:79
 msgid "Horizontal space"
@@ -5638,7 +5638,7 @@ msgstr "Промежуток по горизонтали"
 
 #: application/views/labels/create.php:80 application/views/labels/edit.php:82
 msgid "Horizontal space between 2 labels."
-msgstr "Промежуток по горизонтали между двумя наклейками"
+msgstr "Промежуток по горизонтали между двумя наклейками."
 
 #: application/views/labels/create.php:83 application/views/labels/edit.php:85
 msgid "Vertical space"
@@ -5646,7 +5646,7 @@ msgstr "Промежуток по вертикали"
 
 #: application/views/labels/create.php:86 application/views/labels/edit.php:88
 msgid "Vertical space between 2 labels."
-msgstr "Промежуток по вертикали между двумя наклейками"
+msgstr "Промежуток по вертикали между двумя наклейками."
 
 #: application/views/labels/create.php:91 application/views/labels/edit.php:93
 msgid "Width of label"
@@ -5654,7 +5654,7 @@ msgstr "Ширина наклейки"
 
 #: application/views/labels/create.php:94 application/views/labels/edit.php:96
 msgid "Total width of one label."
-msgstr "Полная ширина одной наклейки"
+msgstr "Полная ширина одной наклейки."
 
 #: application/views/labels/create.php:97 application/views/labels/edit.php:99
 msgid "Height of label"
@@ -5704,7 +5704,7 @@ msgstr "Ширина бумаги"
 #: application/views/labels/editpaper.php:54
 #: application/views/labels/editpaper.php:60
 msgid "Total width of paper."
-msgstr "Общая ширина бумаги"
+msgstr "Общая ширина бумаги."
 
 #: application/views/labels/createpaper.php:57
 #: application/views/labels/editpaper.php:57
@@ -6267,7 +6267,7 @@ msgstr "от"
 #: application/views/logbookadvanced/index.php:546
 #: application/views/logbookadvanced/useroptions.php:74
 msgid "QSL Msg"
-msgstr "сообщение QSL "
+msgstr "сообщение QSL"
 
 #: application/views/logbookadvanced/index.php:591
 #: application/views/logbookadvanced/useroptions.php:50
@@ -6291,7 +6291,7 @@ msgstr "След."
 
 #: application/views/logbookadvanced/startatform.php:15
 msgid "Include Via"
-msgstr "Включить via?"
+msgstr "Включить via"
 
 #: application/views/logbookadvanced/useroptions.php:16
 msgid "Column"
@@ -6383,7 +6383,7 @@ msgstr "Загрузить файл"
 
 #: application/views/lotw/import.php:24
 msgid "Download Report"
-msgstr "Отчёт о скачивании"
+msgstr "скачать отчёт"
 
 #: application/views/lotw/import.php:24
 #, php-format
@@ -6471,7 +6471,7 @@ msgstr "Не синхронизирован"
 
 #: application/views/lotw_views/index.php:129
 msgid "You need to upload some LoTW p12 certificates to use this area."
-msgstr "Вам необходимо загрузить сертификат LoTW в формате  p12 для использования этих функций."
+msgstr "Вам необходимо загрузить сертификат LoTW в формате p12 для использования этих функций."
 
 #: application/views/lotw_views/index.php:144
 msgid "Information"
@@ -6530,7 +6530,7 @@ msgstr "Название подрежима модуляции в специфи
 
 #: application/views/mode/create.php:42 application/views/mode/edit.php:53
 msgid "Defines the QRG-segment in bandplan."
-msgstr "Определяет QRG сегмент на плане диапазона"
+msgstr "Определяет QRG сегмент на плане диапазона."
 
 #: application/views/mode/create.php:49 application/views/mode/edit.php:61
 #: application/views/mode/index.php:43
@@ -6676,7 +6676,7 @@ msgstr "API DX Cluster"
 #: application/views/options/dxcluster.php:39
 #, php-format
 msgid "The Provider of the DXCluster-Cache. You can set up your own Cache with %s or use a public one"
-msgstr "Поставщик DXCluster-Cache. Вы можете установить свой собственный кэш с %s или использовать общедоступный."
+msgstr "Поставщик DXCluster-Cache. Вы можете установить свой собственный кэш с %s или использовать общедоступный"
 
 #: application/views/options/dxcluster.php:41
 #, php-format
@@ -6770,7 +6770,7 @@ msgstr "SMTP логин"
 
 #: application/views/options/email.php:99
 msgid "The username to log in to the mail server, usually this is the email address that is used."
-msgstr "Имя пользователя для входа на почтовый сервер, обычно это -- указанный выше адрес емэйл."
+msgstr "Имя пользователя для входа на почтовый сервер, обычно это — указанный выше адрес емэйл."
 
 #: application/views/options/email.php:104
 msgid "SMTP Password"
@@ -6846,7 +6846,7 @@ msgstr "Заголовок отображения информации о вер
 
 #: application/views/options/version_dialog.php:49
 msgid "You can change the header of the version info dialog."
-msgstr "Вы можете изменить заголовок диалога отображения информации о версии"
+msgstr "Вы можете изменить заголовок диалога отображения информации о версии."
 
 #: application/views/options/version_dialog.php:53
 msgid "Version Info Mode"
@@ -7150,7 +7150,7 @@ msgstr "Отметить QSO экспортированными в QRZ Logbook"
 
 #: application/views/qrz/mark_qrz.php:16
 msgid "The QSOs are marked as exported to QRZ Logbook."
-msgstr "QSO отмечены как экспортированные в QSZ Logbook"
+msgstr "QSO отмечены как экспортированные в QSZ Logbook."
 
 #: application/views/qslcard/index.php:10
 #, php-format
@@ -7370,7 +7370,7 @@ msgstr "Содержимое этой заметки экспортируетс�
 
 #: application/views/qso/edit_ajax.php:480 application/views/qso/index.php:586
 msgid "Get the default message for eQSL, for this station."
-msgstr "Сообщение в eQSL по умолчанию для этого профиля QTH/"
+msgstr "Сообщение в eQSL по умолчанию для этого профиля QTH."
 
 #: application/views/qso/edit_ajax.php:527
 msgid "Change Station Profile"
@@ -7567,7 +7567,7 @@ msgstr "Если внешние службы используют другое �
 #: application/views/satellite/create.php:37
 #: application/views/satellite/edit.php:21
 msgid "Enter which orbit the satellite has (LEO, MEO, GEO)"
-msgstr "Укажите, на какой орбите находится спутник (LEO, MEO, GEO)."
+msgstr "Укажите, на какой орбите находится спутник (LEO, MEO, GEO)"
 
 #: application/views/satellite/create.php:40
 msgid "Satellite mode name"
@@ -7696,7 +7696,7 @@ msgstr "Некорректных зон CQ не найдено."
 
 #: application/views/search/filter.php:43
 msgid "Save query"
-msgstr "Сохранить запрос."
+msgstr "Сохранить запрос"
 
 #: application/views/search/filter.php:46
 msgid "Edit queries"
@@ -8060,7 +8060,7 @@ msgstr "Графство/район"
 #: application/views/station_profile/create.php:82
 #: application/views/station_profile/edit.php:112
 msgid "Station County (Only used for USA/Alaska/Hawaii)."
-msgstr "Графство/район станции.  (Используется только для некоторых стран)."
+msgstr "Графство/район станции. (Используется только для некоторых стран)."
 
 #: application/views/station_profile/create.php:97
 #: application/views/station_profile/edit.php:138
@@ -8206,7 +8206,7 @@ msgstr "Игнорировать загрузку в Clublog"
 #: application/views/station_profile/create.php:193
 #: application/views/station_profile/edit.php:333
 msgid "If enabled, the QSOs made from this location will not be uploaded to Clublog. If this is deactivated on it's own please check if the Call is properly configured at Clublog"
-msgstr "Если эта функция включена, QSO, проведенные из этого профиля QTH, не будут загружаться в Clublog. Если эта функция отключилась самостоятельно, проверьте, правильно ли настроен позыной в Clublog."
+msgstr "Если эта функция включена, QSO, проведенные из этого профиля QTH, не будут загружаться в Clublog. Если эта функция отключилась самостоятельно, проверьте, правильно ли настроен позыной в Clublog"
 
 #: application/views/station_profile/create.php:196
 #: application/views/station_profile/edit.php:336
@@ -8436,7 +8436,7 @@ msgstr "Отвязать профиль QTH"
 
 #: application/views/stationsetup/stationsetup.php:21
 msgid "Station Logbooks allow you to group Station Locations, this allows you to see all the locations across one session from the logbook areas to the analytics. Great for when your operating in multiple locations but they are part of the same DXCC or VUCC Circle."
-msgstr "Журналы позволяют вам группировать профили QTH, что даёт возможность использовать их для аналитики, если все они -- часть одного и того же DXCC или круга VUCC."
+msgstr "Журналы позволяют вам группировать профили QTH, что даёт возможность использовать их для аналитики, если все они — часть одного и того же DXCC или круга VUCC."
 
 #: application/views/stationsetup/stationsetup.php:32
 msgid "Linked locations"
@@ -8634,7 +8634,7 @@ msgstr "Допускаются только файлы PNG, соотношени
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
-msgstr "Поместите два файла логотипа в папку \"assets/logo/\"."
+msgstr "Поместите два файла логотипа в папку \"assets/logo/\""
 
 #: application/views/themes/index.php:70
 msgid "4. Step"
@@ -8740,7 +8740,7 @@ msgstr "Проверить QSO на отсутствие данных о кон�
 
 #: application/views/update/index.php:59
 msgid "Here you can update QSOs with missing distance information."
-msgstr "Здесь вы можете обновить QSO, в которых отсутствует информация о дистанции"
+msgstr "Здесь вы можете обновить QSO, в которых отсутствует информация о дистанции."
 
 #: application/views/update/index.php:60
 msgid "Update distance data"
@@ -9122,7 +9122,7 @@ msgstr "Приватный ключ потока"
 #, php-format
 msgctxt "Hint for Hamsat API Key; uses Link"
 msgid "See your profile at %s."
-msgstr "Смотри свой профиль на %s"
+msgstr "Смотри свой профиль на %s."
 
 #: application/views/user/edit.php:855
 msgid "Show Workable Passes Only"
@@ -9263,7 +9263,7 @@ msgstr "Не показывать снова"
 
 #: application/views/view_log/index.php:4
 msgid "Displaying all QSOs of station locations which are linked to this logbook"
-msgstr "Отображение всех QSO из профилей QTH, которые связаны с этим журналом."
+msgstr "Отображение всех QSO из профилей QTH, которые связаны с этим журналом"
 
 #: application/views/view_log/qso.php:6
 msgid "QSO Details"
@@ -9394,7 +9394,7 @@ msgstr "Посетите Wavelog на Gihub"
 
 #: application/views/visitor/layout/header.php:97
 msgid "Please enter a callsign!"
-msgstr "Пожалуйста, введите позывной"
+msgstr "Пожалуйста, введите позывной!"
 
 #: application/views/webadif/export.php:22
 msgid "Here you can see and upload all QSOs which have not been previously uploaded to QO-100 Dx Club."
