@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-06-23 23:12+0200\n"
-"PO-Revision-Date: 2024-06-25 18:16+0000\n"
-"Last-Translator: Jörg Dorgeist <wavelog@dj7nt.de>\n"
+"PO-Revision-Date: 2024-06-25 18:43+0000\n"
+"Last-Translator: Fabian Berg <hb9hil@wavelog.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
@@ -6383,7 +6383,6 @@ msgid "Upload a File"
 msgstr "Lade eine Datei hoch"
 
 #: application/views/lotw/import.php:24
-#, fuzzy
 msgid "Download Report"
 msgstr "Berichts-Download"
 
@@ -7724,44 +7723,44 @@ msgstr "Suchergebnisse"
 
 #: application/views/search/lotw_unconfirmed.php:26
 msgid "The search displays QSOs which are unconfirmed on LoTW, but the callsign worked has uploaded to LoTW after your QSO date."
-msgstr ""
+msgstr "Die Suche zeigt QSOs, die auf LoTW nicht bestätigt sind, aber das gearbeitete Rufzeichen Daten zu LoTW nach dem QSO Datum hochgeladen hat."
 
 #: application/views/search/lotw_unconfirmed.php:29
 msgid "Station location"
-msgstr ""
+msgstr "Stationsstandort"
 
 #: application/views/search/lotw_unconfirmed_result.php:10
 msgid "Last LoTW upload"
-msgstr ""
+msgstr "Letzter LoTW Upload"
 
 #: application/views/search/lotw_unconfirmed_result.php:41
 msgid "No QSOs with outstanding LoTW upload were found."
-msgstr ""
+msgstr "Keine QSOs wurden gefunden, bei denen der LoTW Upload hängig ist."
 
 #: application/views/search/main.php:28
 msgid "Callsign / Gridsquare"
-msgstr ""
+msgstr "Rufzeichen / Planquadrat"
 
 #: application/views/search/result.php:2
 #, php-format
 msgid "Results for %s"
-msgstr ""
+msgstr "Ergebnisse für %s"
 
 #: application/views/search/result.php:4
 #, php-format
 msgid "Sorry, but we didn't find any past QSOs with %s"
-msgstr ""
+msgstr "Entschuldige, aber es wurden keine vergangenen QSOs mit %s gefunden"
 
 #: application/views/search/result.php:6
 #, php-format
 msgid "Callbook Search for %s"
-msgstr ""
+msgstr "Callbook Suche für %s"
 
 #: application/views/search/result_search.php:9
 #: application/views/statistics/custom_result.php:90
 #: application/views/widgets/qsos.php:31
 msgid "Rcvd"
-msgstr ""
+msgstr "Rcvd"
 
 #: application/views/search/search_result_ajax.php:405
 #: application/views/view_log/partial/log.php:140
@@ -7814,7 +7813,7 @@ msgstr "Nachschlagen auf HamQTH"
 
 #: application/views/search/stored_queries.php:9
 msgid "Query"
-msgstr ""
+msgstr "Suchmuster"
 
 #: application/views/simplefle/index.php:12
 msgid "Simple Fast Log Entry (FLE)"
@@ -7831,7 +7830,7 @@ msgstr "FLE wurde ursprünglich von DF3CB geschrieben. Auf seiner Website bietet
 #: application/views/simplefle/index.php:15
 #, php-format
 msgid "A common use-case is if you have to import your paperlogs from an outdoor session and now SimpleFLE is also available in Wavelog. Information about the syntax and how FLE works can be found %s."
-msgstr ""
+msgstr "Ein üblicher Anwendungsfall ist, falls du handgeschriebene Papier-Logs von einer Outdooraktivität nach Wavelog importieren willst. Informationen über die Syntax und wie FLE funktioniert findest du %s."
 
 #: application/views/simplefle/index.php:16
 #: application/views/simplefle/index.php:157
@@ -7916,7 +7915,7 @@ msgstr "Stationsstandort"
 
 #: application/views/simplefle/index.php:95
 msgid "If you did operate from a new location, first create a new <a href="
-msgstr ""
+msgstr "Falls du von einem neuen Standort aus Betrieb gemacht hast, erstelle erst eine neue <a href="
 
 #: application/views/simplefle/index.php:100
 msgid "e.g. OK2CQR"
@@ -7928,7 +7927,7 @@ msgstr "Gibt hier die Daten ein"
 
 #: application/views/simplefle/index.php:135
 msgid "Refs"
-msgstr ""
+msgstr "Refs"
 
 #: application/views/simplefle/index.php:147
 msgid "The Refs can be either <u>S</u>OTA, <u>I</u>OTA, <u>P</u>OTA or <u>W</u>WFF"
@@ -7948,7 +7947,7 @@ msgstr "Lösche QSO Daten"
 
 #: application/views/simplefle/options.php:20
 msgid "No Options yet"
-msgstr ""
+msgstr "Noch keine Optionen"
 
 #: application/views/simplefle/syntax_help.php:1
 msgid "Before starting to log a QSO, please note the basic rules."
@@ -7986,25 +7985,25 @@ msgstr "Für unser nächstes QSO um 21:40 Uhr am 14.05.2021 haben wir das Band a
 #, php-format
 msgctxt "uses 'this article'"
 msgid "A full summary of all commands and the necessary syntax can be found in %s of our Wiki."
-msgstr ""
+msgstr "Eine vollständige Zusammenfassung aller Kommandos und der notwendigen Syntax findest du in %s unseres Wikis."
 
 #: application/views/station_profile/create.php:32
 #: application/views/station_profile/edit.php:40
 msgid "Location Name"
-msgstr ""
+msgstr "Standort Name"
 
 #: application/views/station_profile/create.php:33
 #: application/views/station_profile/create.php:34
 #: application/views/station_profile/edit.php:42
 msgctxt "Station Location Setup"
 msgid "Home QTH"
-msgstr ""
+msgstr "Heimat QTH"
 
 #: application/views/station_profile/create.php:34
 #: application/views/station_profile/edit.php:42
 #, php-format
 msgid "Shortname for the station location. For example: %s"
-msgstr ""
+msgstr "Kurzbezeichnung für den Stationsstandort. Zum Beispiel: %s"
 
 #: application/views/station_profile/create.php:40
 #: application/views/station_profile/edit.php:48
@@ -8024,7 +8023,7 @@ msgstr "Standardmässig eingestellte Sendeleistung in Watt. Wird von CAT-Daten �
 #: application/views/station_profile/create.php:49
 #: application/views/station_profile/edit.php:69
 msgid "Station DXCC"
-msgstr ""
+msgstr "Stations DXCC"
 
 #: application/views/station_profile/create.php:52
 #: application/views/station_profile/edit.php:72
@@ -8035,7 +8034,7 @@ msgstr "Nichts"
 #: application/views/station_profile/create.php:59
 #: application/views/station_profile/edit.php:85
 msgid "Station DXCC entity. For example: Bolivia"
-msgstr ""
+msgstr "Stations DXCC-Entität. Zum Beispiel: Bolivien"
 
 #: application/views/station_profile/create.php:64
 #: application/views/station_profile/edit.php:91
@@ -8045,17 +8044,17 @@ msgstr "Station Stadt"
 #: application/views/station_profile/create.php:66
 #: application/views/station_profile/edit.php:93
 msgid "Station city. For example: Oslo"
-msgstr ""
+msgstr "Stations Stadt. Zum Beispiel: Oslo"
 
 #: application/views/station_profile/create.php:75
 #: application/views/station_profile/edit.php:105
 msgid "Station state. Applies to certain countries only."
-msgstr ""
+msgstr "Stations Staat. Ist nur für ausgewählte Länder verfügbar."
 
 #: application/views/station_profile/create.php:80
 #: application/views/station_profile/edit.php:110
 msgid "Station County"
-msgstr ""
+msgstr "Stations County"
 
 #: application/views/station_profile/create.php:82
 #: application/views/station_profile/edit.php:112
@@ -8067,7 +8066,7 @@ msgstr "Station County (Nur für USA/Alaska/Hawaii)."
 #, php-format
 msgctxt "uses 'click here'"
 msgid "If you don't know your CQ Zone then %s to find it!"
-msgstr ""
+msgstr "Falls du deine CQ Zone nicht kennst %s um es herauszufinden!"
 
 #: application/views/station_profile/create.php:97
 #: application/views/station_profile/create.php:111
@@ -8083,7 +8082,7 @@ msgstr "klicke hier"
 #, php-format
 msgctxt "uses 'click here'"
 msgid "If you don't know your ITU Zone then %s to find it!"
-msgstr ""
+msgstr "Falls du deine ITU Zone nicht kennst %s um es herauszufinden!"
 
 #: application/views/station_profile/create.php:116
 #: application/views/station_profile/edit.php:167
@@ -8101,7 +8100,7 @@ msgstr "Orte mein Planquadrat"
 #, php-format
 msgctxt "uses 'click here'"
 msgid "Station gridsquare. For example: HM54AP. If you don't know your grid square then %s!"
-msgstr ""
+msgstr "Stations Planquadrat. Zum Beispiel: HM45AP. Falls du deinen Locator nicht kennst %s!"
 
 #: application/views/station_profile/create.php:126
 #: application/views/station_profile/edit.php:180
@@ -8116,46 +8115,46 @@ msgstr "IOTA Referenznummer der Station. Zum Beispiel: EU-005"
 #: application/views/station_profile/create.php:142
 #: application/views/station_profile/edit.php:206
 msgid "IOTA World website"
-msgstr ""
+msgstr "IOTA World Webseite"
 
 #: application/views/station_profile/create.php:142
 #: application/views/station_profile/edit.php:206
 #, php-format
 msgid "You can look up IOTA references at the %s."
-msgstr ""
+msgstr "Du kannst IOTA Refrenzen auf der %s nachschauen."
 
 #: application/views/station_profile/create.php:148
 #: application/views/station_profile/edit.php:221
 msgid "SOTA Maps website"
-msgstr ""
+msgstr "SOTA Karten Webseite"
 
 #: application/views/station_profile/create.php:148
 #: application/views/station_profile/edit.php:221
 #, php-format
 msgid "Station SOTA reference. You can look up SOTA references at the %s."
-msgstr ""
+msgstr "Stations SOTA Referenz. Du kannst SOTA Refrenzen auf der %s nachschauen."
 
 #: application/views/station_profile/create.php:154
 #: application/views/station_profile/edit.php:234
 msgid "GMA Map website"
-msgstr ""
+msgstr "GMA Karten Webseite"
 
 #: application/views/station_profile/create.php:154
 #: application/views/station_profile/edit.php:234
 #, php-format
 msgid "Station WWFF reference. You can look up WWFF references at the %s."
-msgstr ""
+msgstr "Stations WWFF Referenz. Du kannst WWFF Referenzen auf der %s nachschauen."
 
 #: application/views/station_profile/create.php:160
 #: application/views/station_profile/edit.php:247
 msgid "POTA Map website"
-msgstr ""
+msgstr "POTA Karten Webseite"
 
 #: application/views/station_profile/create.php:160
 #: application/views/station_profile/edit.php:247
 #, php-format
 msgid "Station POTA reference(s). Multiple comma separated values allowed. You can look up POTA references at the %s."
-msgstr ""
+msgstr "Stations POTA Referenzen. Es sind mehrere Referenzen durch Komma separiert erlaubt. Du kannst POTA Referenzen auf der %s nachschauen."
 
 #: application/views/station_profile/create.php:164
 #: application/views/station_profile/edit.php:260
@@ -8181,7 +8180,7 @@ msgstr "Signatur/Referenz Information der Station (z.B. DA/NW-357)."
 #: application/views/station_profile/edit.php:281
 msgctxt "Probably no translation needed"
 msgid "eQSL QTH Nickname"
-msgstr ""
+msgstr "eQSL QTH Nickname"
 
 #: application/views/station_profile/create.php:178
 #: application/views/station_profile/edit.php:283
@@ -8211,7 +8210,7 @@ msgstr "Wenn aktiviert, werden die QSOs, die von diesem Standort gemacht wurden,
 #: application/views/station_profile/create.php:196
 #: application/views/station_profile/edit.php:336
 msgid "ClubLog Realtime Upload"
-msgstr ""
+msgstr "Clublog Echtzeit Upload"
 
 #: application/views/station_profile/create.php:205
 #: application/views/station_profile/edit.php:352
@@ -8226,19 +8225,19 @@ msgstr "Der Benutzername mit dem du bei HRDlog.net registriert bist (normalerwei
 #: application/views/station_profile/create.php:210
 #: application/views/station_profile/edit.php:357
 msgid "HRDLog.net API Key"
-msgstr ""
+msgstr "HRDLog.net API Schlüssel"
 
 #: application/views/station_profile/create.php:212
 #: application/views/station_profile/edit.php:359
 #, php-format
 msgctxt "HRDLog.net Userprofile page"
 msgid "Create your API Code on your %s"
-msgstr ""
+msgstr "Erstelle deinen API Code auf deiner %s"
 
 #: application/views/station_profile/create.php:212
 #: application/views/station_profile/edit.php:359
 msgid "HRDLog.net Userprofile page"
-msgstr ""
+msgstr "HRDlog.net Benutzerprofil Seite"
 
 #: application/views/station_profile/create.php:215
 #: application/views/station_profile/edit.php:362
@@ -8253,23 +8252,23 @@ msgstr "Abonnement erforderlich"
 #: application/views/station_profile/create.php:229
 msgctxt "Probably no translation needed"
 msgid "QRZ.com Logbook API Key"
-msgstr ""
+msgstr "QRZ.com Logbuch API Schlüssel"
 
 #: application/views/station_profile/create.php:232
 msgid "Test API-Key"
-msgstr ""
+msgstr "Teste API Schlüssel"
 
 #: application/views/station_profile/create.php:235
 #: application/views/station_profile/edit.php:306
 #, php-format
 msgctxt "the QRZ.com Logbook settings page"
 msgid "Find your API key on %s"
-msgstr ""
+msgstr "Finde deinen API-Schlüssel auf %s"
 
 #: application/views/station_profile/create.php:235
 #: application/views/station_profile/edit.php:306
 msgid "the QRZ.com Logbook settings page"
-msgstr ""
+msgstr "der QRZ.com Logbuch-Einstellungen Seite"
 
 #: application/views/station_profile/create.php:238
 #: application/views/station_profile/edit.php:310
@@ -8279,25 +8278,25 @@ msgstr "QRZ.com Logbuch Upload"
 #: application/views/station_profile/create.php:241
 #: application/views/station_profile/edit.php:313
 msgid "Realtime"
-msgstr ""
+msgstr "Echtzeit"
 
 #: application/views/station_profile/create.php:249
 #: application/views/station_profile/edit.php:378
 msgctxt "Probably no translation needed"
 msgid "QO-100 Dx Club API Key"
-msgstr ""
+msgstr "QO-100 Dx Club API Schlüssel"
 
 #: application/views/station_profile/create.php:251
 #: application/views/station_profile/edit.php:380
 #, php-format
 msgctxt "QO-100 Dx Club's profile page"
 msgid "Create your API key on your %s"
-msgstr ""
+msgstr "Erstelle deinen API Schlüssel auf deiner %s"
 
 #: application/views/station_profile/create.php:251
 #: application/views/station_profile/edit.php:380
 msgid "QO-100 Dx Club's profile page"
-msgstr ""
+msgstr "QO-100 Dx Club Profil-Seite"
 
 #: application/views/station_profile/create.php:254
 #: application/views/station_profile/edit.php:383
@@ -8322,7 +8321,7 @@ msgstr "Stelle sicher, dass du E-Mail unter Admin/Globale Optionen konfiguriert 
 #: application/views/station_profile/create.php:279
 #: application/views/station_profile/edit.php:416
 msgid "OQRS Text"
-msgstr ""
+msgstr "OQRS Text"
 
 #: application/views/station_profile/create.php:281
 #: application/views/station_profile/edit.php:418
@@ -8393,26 +8392,26 @@ msgstr "Du kannst das Stationslogbuch völlig frei benennen."
 
 #: application/views/stationsetup/edit.php:18
 msgid "Container name"
-msgstr ""
+msgstr "Container Name"
 
 #: application/views/stationsetup/edit.php:20
 msgid "You can call a container anything."
-msgstr ""
+msgstr "Du kannst einen Container frei benennen."
 
 #: application/views/stationsetup/exportmapoptions.php:11
 msgctxt "Map Options"
 msgid "CQ Zone overlay"
-msgstr ""
+msgstr "CQ Zone Overlay"
 
 #: application/views/stationsetup/exportmapoptions.php:15
 msgctxt "Map Options"
 msgid "Gridsquare overlay"
-msgstr ""
+msgstr "Planquadrate Overlay"
 
 #: application/views/stationsetup/exportmapoptions.php:19
 msgctxt "Map Options"
 msgid "Night shadow overlay"
-msgstr ""
+msgstr "Nachtschatten Overlay"
 
 #: application/views/stationsetup/exportmapoptions.php:27
 msgid "# QSOs shown"
@@ -8420,7 +8419,7 @@ msgstr "# Angezeigte QSOs"
 
 #: application/views/stationsetup/exportmapoptions.php:46
 msgid "Visit export map"
-msgstr ""
+msgstr "Exportkarte besuchen"
 
 #: application/views/stationsetup/linkedlocations.php:13
 msgid "Select Available Station Locations"
@@ -8440,23 +8439,23 @@ msgstr "Stationslogbücher ermöglichen es dir, Stationsstandorte zu gruppieren.
 
 #: application/views/stationsetup/stationsetup.php:32
 msgid "Linked locations"
-msgstr ""
+msgstr "Verlinkte Standorte"
 
 #: application/views/stationsetup/stationsetup.php:34
 msgid "Visitor site"
-msgstr ""
+msgstr "Besucherseite"
 
 #: application/views/stationsetup/stationsetup.php:91
 msgid "Station Locations"
-msgstr ""
+msgstr "Stationsstandorte"
 
 #: application/views/stationsetup/stationsetup.php:130
 msgid "Favorite"
-msgstr ""
+msgstr "Favorit"
 
 #: application/views/stationsetup/stationsetup.php:175
 msgid "mark/unmark as favorite"
-msgstr ""
+msgstr "markiere/demarkiere als Favorit"
 
 #: application/views/stationsetup/visitor.php:2
 msgid "Setting a public slug allows you to share your logbook with anyone via a custom website address, this slug can contain letters & numbers only."
@@ -8487,21 +8486,21 @@ msgstr "Logbuch untersuchen."
 #: application/views/statistics/custom.php:23
 #: application/views/statistics/custom_result.php:24
 msgid "Custom"
-msgstr ""
+msgstr "Benutzerdefiniert"
 
 #: application/views/statistics/custom.php:27
 #: application/views/statistics/custom_result.php:29
 msgid "This is a work in-progress"
-msgstr ""
+msgstr "Das ist aktuell noch in Arbeit"
 
 #: application/views/statistics/custom.php:74
 #: application/views/statistics/custom_result.php:71
 msgid "Finished your selection? time to search!"
-msgstr ""
+msgstr "Fertig mit der Auswahl? Zeit zu suchen!"
 
 #: application/views/statistics/custom.php:86
 msgid "Results go here"
-msgstr ""
+msgstr "Ergebnisse hier"
 
 #: application/views/statistics/index.php:14
 #: application/views/statistics/index.php:50
@@ -8519,89 +8518,89 @@ msgstr "Eindeutige Rufzeichen"
 
 #: application/views/themes/add.php:4 application/views/themes/edit.php:4
 msgid "Theme Name"
-msgstr ""
+msgstr "Theme Name"
 
 #: application/views/themes/add.php:6 application/views/themes/edit.php:6
 msgid "This is the name that is used to display the theme in the theme list."
-msgstr ""
+msgstr "Das ist der Name, welcher in der Themes Liste angezeigt wird."
 
 #: application/views/themes/add.php:10 application/views/themes/edit.php:10
 msgid "Folder Name"
-msgstr ""
+msgstr "Ordner Name"
 
 #: application/views/themes/add.php:12 application/views/themes/edit.php:12
 msgid "This is the name of the folder where your CSS-files are placed under assets/css."
-msgstr ""
+msgstr "Das ist der Name des Ordners, in welchem die CSS-Dateien unter assets/css abgelegt sind."
 
 #: application/views/themes/add.php:16 application/views/themes/edit.php:16
 #: application/views/themes/index.php:84
 msgid "Theme Mode"
-msgstr ""
+msgstr "Theme Modus"
 
 #: application/views/themes/add.php:18 application/views/themes/edit.php:18
 msgid "Light"
-msgstr ""
+msgstr "Hell"
 
 #: application/views/themes/add.php:19 application/views/themes/edit.php:19
 msgid "Dark"
-msgstr ""
+msgstr "Dunkel"
 
 #: application/views/themes/add.php:21
 msgid "This defines wherever the theme is a light or a dark one."
-msgstr ""
+msgstr "Das definiert, ob das Theme Hell oder Dunkel ist."
 
 #: application/views/themes/add.php:25 application/views/themes/edit.php:25
 #: application/views/themes/index.php:85
 msgid "Header Logo"
-msgstr ""
+msgstr "Kopfzeilen Logo"
 
 #: application/views/themes/add.php:27 application/views/themes/add.php:33
 #: application/views/themes/edit.php:27 application/views/themes/edit.php:33
 msgid "Only PNG files with a size ratio of 1:1 are allowed."
-msgstr ""
+msgstr "Es sind nur PNGs im Format 1:1 erlaubt."
 
 #: application/views/themes/add.php:27 application/views/themes/edit.php:27
 #, php-format
 msgid "This is the name of the file which is used as %s small %s Logo in the header placed in assets/logo."
-msgstr ""
+msgstr "Das ist der Name der Datei, welche als %s kleines %s Logo für den Header unter assets/logo abgespeichert ist."
 
 #: application/views/themes/add.php:31 application/views/themes/edit.php:31
 #: application/views/themes/index.php:86
 msgid "Main Logo"
-msgstr ""
+msgstr "Haupt Logo"
 
 #: application/views/themes/add.php:33 application/views/themes/edit.php:33
 #, php-format
 msgid "This is the name of the file which is used as %s big %s Logo in the login screen placed in assets/logo."
-msgstr ""
+msgstr "Das ist der Name der Datei, welche als %s grosses %s Logo für den Header unter assets/logo abgespeichert ist."
 
 #: application/views/themes/add.php:36
 msgid "Add theme"
-msgstr ""
+msgstr "Theme hinzufügen"
 
 #: application/views/themes/edit.php:21
 msgid "This defines wherever the theme is a light or a dark one. On this basis the Logo is chosen."
-msgstr ""
+msgstr "Das definiert ob das Logo ein helles oder dunkles Design hat. Auf dieser Basis wird das Logo ausgewählt."
 
 #: application/views/themes/edit.php:36
 msgid "Update theme"
-msgstr ""
+msgstr "Theme aktualisieren"
 
 #: application/views/themes/index.php:22
 msgid "Themes list"
-msgstr ""
+msgstr "Themes Liste"
 
 #: application/views/themes/index.php:28
 msgid "In this menu you can add and edit themes to Wavelog. The process of adding a theme is not really straightforward and should only be done by an admin who is aware of their actions."
-msgstr ""
+msgstr "In diesem Menü kannst du Themes bearbeiten oder zu Wavelog hinzufügen. Das Hinzufügen neuer Themes ist nicht ganz einfach und sollte nur von einem Admin gemacht werden, der weiss, was er tut."
 
 #: application/views/themes/index.php:29
 msgid "Also, it has to be said that this feature is still under development."
-msgstr ""
+msgstr "Auch muss gesagt werden, dass dieses Feature noch in der Entwicklung ist."
 
 #: application/views/themes/index.php:35
 msgid "Process of adding a new theme"
-msgstr ""
+msgstr "Prozess des Hinzufügens eines neuen Themes"
 
 #: application/views/themes/index.php:41
 msgid "1. Step"
@@ -8610,7 +8609,7 @@ msgstr "1. Schritt"
 #: application/views/themes/index.php:44
 #, php-format
 msgid "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file which contains basic styling rules. We use the themes from %s"
-msgstr ""
+msgstr "Erstellen Sie einen neuen Ordner in 'assets/css/' und lade eine 'bootstrap.min.css' Datei hoch, welche die grundlegende Styling-Regeln enthält. Wir verwenden die Themes von %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -8618,7 +8617,7 @@ msgstr "2. Schritt"
 
 #: application/views/themes/index.php:53
 msgid "Create a file in this folder called 'overrides.css'. Place your custom CSS code in there."
-msgstr ""
+msgstr "Erstelle eine Datei in diesem Ordner namens 'overrides.css'. Schreibe deinen benutzerdefinierten CSS-Code da hinein."
 
 #: application/views/themes/index.php:59
 msgid "3. Step"
@@ -8626,15 +8625,15 @@ msgstr "3. Schritt"
 
 #: application/views/themes/index.php:62
 msgid "For each new theme, you need two logo files. One for the login screen and one for the header."
-msgstr ""
+msgstr "Für jedes Theme brauchst du zwei Logo Dateien. Eine für die Anmeldeseite und eine für den Header."
 
 #: application/views/themes/index.php:63
 msgid "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., 1000px height and 1000px width)."
-msgstr ""
+msgstr "Es sind nur PNG Dateien erlaubt und diese sollten ein Pixel-Verhältnis von 1:1 haben (z.B. 1000px hoch und 1000px breit)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
-msgstr ""
+msgstr "Platziere die zwei Logo-Dateien in dem Ordner 'assets/logo'"
 
 #: application/views/themes/index.php:70
 msgid "4. Step"
@@ -8642,7 +8641,7 @@ msgstr "4. Schritt"
 
 #: application/views/themes/index.php:73
 msgid "Click here on 'Add a Theme' and type in the necessary data. Type in the filenames for the logos <b>without</b> the file extension '.png'"
-msgstr ""
+msgstr "Klicke hier auf 'Theme hinzufügen' und gib die notwendigen Informationen an. Gib die Dateinamen für die Logos <b> OHNE </b> die Dateiendung '.png' an"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
