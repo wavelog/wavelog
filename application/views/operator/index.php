@@ -6,7 +6,7 @@
             </div>
             <div class="modal-body">
                 <div class="mb-3">
-                    <label for="operator_callsign" class="form-label mb-4"><?= __("Please provide your personal call sign. This will allow us to evaluate later who made which QSO and causes the QSOs to get written with correct callsign informations."); ?></label>
+                    <label for="operator_callsign" class="form-label mb-4"><?= __("Please provide your personal call sign. This makes sure that QSOs are logged and exported with correct operator information."); ?></label>
                     <br>
                     <div class="row p-2">
                         <div class="col">
