@@ -30,6 +30,8 @@ class Gridmap_model extends CI_Model {
 			} else {
 				if ($propagation == 'None') {
 					$sql .= " and (trim(col_prop_mode) ='' or col_prop_mode is null)";
+				} elseif ($propagation == 'NoSAT') {
+					$sql .= " and col_prop_mode !='SAT'";
 				} elseif ($propagation != '') {
 					$sql .= " and col_prop_mode ='" . $propagation . "'";
 				}
@@ -38,6 +40,8 @@ class Gridmap_model extends CI_Model {
 		} else {
 			if ($propagation == 'None') {
 				$sql .= " and (trim(col_prop_mode) ='' or col_prop_mode is null)";
+			} elseif ($propagation == 'NoSAT') {
+				$sql .= " and col_prop_mode !='SAT'";
 			} elseif ($propagation != '') {
 				$sql .= " and col_prop_mode ='" . $propagation . "'";
 			}
@@ -82,6 +86,8 @@ class Gridmap_model extends CI_Model {
 			} else {
 				if ($propagation == 'None') {
 					$sql .= " and (trim(col_prop_mode) ='' or col_prop_mode is null)";
+				} elseif ($propagation == 'NoSAT') {
+					$sql .= " and col_prop_mode !='SAT'";
 				} elseif ($propagation != '') {
 					$sql .= " and col_prop_mode ='" . $propagation . "'";
 				}
@@ -90,6 +96,8 @@ class Gridmap_model extends CI_Model {
 		} else {
 			if ($propagation == 'None') {
 				$sql .= " and (trim(col_prop_mode) ='' or col_prop_mode is null)";
+			} elseif ($propagation == 'NoSAT') {
+				$sql .= " and col_prop_mode !='SAT'";
 			} elseif ($propagation != '') {
 				$sql .= " and col_prop_mode ='" . $propagation . "'";
 			}
@@ -132,6 +140,8 @@ class Gridmap_model extends CI_Model {
 			} else {
 				if ($propagation == 'None') {
 					$sql .= " and (trim(col_prop_mode) ='' or col_prop_mode is null)";
+				} elseif ($propagation == 'NoSAT') {
+					$sql .= " and col_prop_mode !='SAT'";
 				} elseif ($propagation != '') {
 					$sql .= " and col_prop_mode ='" . $propagation . "'";
 				}
@@ -140,6 +150,8 @@ class Gridmap_model extends CI_Model {
 		} else {
 			if ($propagation == 'None') {
 				$sql .= " and (trim(col_prop_mode) ='' or col_prop_mode is null)";
+			} elseif ($propagation == 'NoSAT') {
+				$sql .= " and col_prop_mode !='SAT'";
 			} elseif ($propagation != '') {
 				$sql .= " and col_prop_mode ='" . $propagation . "'";
 			}
@@ -183,6 +195,8 @@ class Gridmap_model extends CI_Model {
 			} else {
 				if ($propagation == 'None') {
 					$sql .= " and (trim(col_prop_mode) ='' or col_prop_mode is null)";
+				} elseif ($propagation == 'NoSAT') {
+					$sql .= " and col_prop_mode !='SAT'";
 				} elseif ($propagation != '') {
 					$sql .= " and col_prop_mode ='" . $propagation . "'";
 				}
@@ -191,6 +205,8 @@ class Gridmap_model extends CI_Model {
 		} else {
 			if ($propagation == 'None') {
 				$sql .= " and (trim(col_prop_mode) ='' or col_prop_mode is null)";
+			} elseif ($propagation == 'NoSAT') {
+				$sql .= " and col_prop_mode !='SAT'";
 			} elseif ($propagation != '') {
 				$sql .= " and col_prop_mode ='" . $propagation . "'";
 			}
