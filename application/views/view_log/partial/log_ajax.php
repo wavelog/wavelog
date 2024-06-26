@@ -83,7 +83,9 @@ function echo_table_col($row, $name) {
                         <th><?= __("Clublog"); ?></th>
                     <?php } ?>
                 <?php } ?>
-                    <th><?= __("Station"); ?></th>
+                    <?php if(isset($row->station_callsign)) { ?>
+                        <th><?= __("Station"); ?></th>
+                    <?php } ?>
                 <?php if(($this->config->item('use_auth')) && ($this->session->userdata('user_type') >= 2)) { ?>
                     <th></th>
                 <?php } ?>
