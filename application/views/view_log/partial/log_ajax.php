@@ -251,7 +251,7 @@ function echo_table_col($row, $name) {
 
                     <?php if(isset($row->station_callsign)) { ?>
                         <td>
-                            <span class="badge text-bg-light"><?php echo $row->station_callsign; ?></span>
+                            <span class="badge text-bg-light"><?php echo str_replace("0","&Oslash;",strtoupper($row->station_callsign)); ?></span>
                         </td>
                     <?php } ?>
 
