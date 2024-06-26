@@ -28,14 +28,16 @@ class Distances_model extends CI_Model
 				$this->db->join('satellite', 'satellite.name = '.$this->config->item('table_name').'.COL_SAT_NAME', 'left outer');
 				$this->db->where('LENGTH(col_gridsquare) >', 0);
 
-				if ($postdata['band'] == 'sat') {
-					$this->db->where('col_prop_mode', $postdata['band']);
-					if ($postdata['sat'] != 'All') {
-						$this->db->where('col_sat_name', $postdata['sat']);
+				if ($postdata['band'] != 'All') {
+					if ($postdata['band'] == 'sat') {
+						$this->db->where('col_prop_mode', $postdata['band']);
+						if ($postdata['sat'] != 'All') {
+							$this->db->where('col_sat_name', $postdata['sat']);
+						}
 					}
-				}
-				else {
-					$this->db->where('col_band', $postdata['band']);
+					else {
+						$this->db->where('col_band', $postdata['band']);
+					}
 				}
 
 				if ($postdata['orbit'] != 'All') {
