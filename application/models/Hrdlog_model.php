@@ -19,16 +19,16 @@ class Hrdlog_model extends CI_Model {
                 $hrdlog_code = $station->hrdlog_code;
                 $u_result = $this->mass_upload_qsos($station->station_id, $hrdlog_username, $hrdlog_code);
                 if ($u_result['count'] > 0) {
-                    $msg = "HRDlog: QSOs have been uploaded to hrdlog.net for the station callsign ".$station->station_callsign." (ID: ".$station->station_id.")";
+                    $msg = __("HRDlog: QSOs have been uploaded to hrdlog.net for the station callsign: ").$station->station_callsign." (ID: ".$station->station_id.")";
                     echo $msg;
                 } else {
-                    $msg = "HRDlog: No QSOs found to upload for the station callsign ".$station->station_callsign." (ID: ".$station->station_id.")";
+                    $msg = __("HRDlog: No QSOs found to upload for the station callsign: ").$station->station_callsign." (ID: ".$station->station_id.")";
                     echo $msg;
                 }
                 log_message('debug', $msg);
             }
         } else {
-            $msg = "HRDlog: No station profiles with HRDlog Credentials found.";
+            $msg = __("HRDlog: No station profiles with HRDlog Credentials found.");
             echo $msg;
             log_message('debug', $msg);
         }
