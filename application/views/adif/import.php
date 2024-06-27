@@ -75,7 +75,9 @@
                             } ?>
 			</select>
  			<label class="visually-hidden" for="inlineFormInputName2"><?= __("ADIF File") ?></label>
-                        <input class="form-control mb-2 me-sm-2 w-auto" type="file" name="userfile" id="userfile" size="20" />
+			<div style="margin-top: 1em; width: 50%">
+                        	<input class="form-control mb-2 me-sm-2" type="file" name="userfile" id="userfile" />
+                        </div>
 
                         <div class="mb-3 row">
                             <div class="col-md-10">
