@@ -467,6 +467,8 @@ class Logbook_model extends CI_Model {
 					$this->db->where("COL_PROP_MODE = ''");
 					$this->db->or_where("COL_PROP_MODE is null");
 					$this->db->group_end();
+				} elseif ($propagation == 'NoSAT') {
+					$this->db->where("COL_PROP_MODE != 'SAT'");
 				} elseif ($propagation != '' && $propagation != null) {
 					$this->db->where("COL_PROP_MODE = '$propagation'");
 				}

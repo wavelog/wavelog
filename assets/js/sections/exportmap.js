@@ -19,14 +19,6 @@ $(document).ready(function () {
 });
 
 function mapQsos() {
-	// const queryString = window.location.search;
-	// const urlParams = new URLSearchParams(queryString);
-	// const slug = urlParams.get('slug');
-	// const qsocount = urlParams.get('qsocount');
-	// const showgrid = urlParams.get('showgrid');
-	// const showcq = urlParams.get('showcq');
-	// const band = urlParams.get('band');
-	// const showlines = urlParams.get('showlines');
 	let iconsList;
 
 	let json_mapinfo = user_map_custom;
@@ -35,8 +27,6 @@ function mapQsos() {
 		iconsList = json_mapinfo;
 	}
 	loadQsos(slug, iconsList);
-
-
 };
 
 function loadQsos(slug, iconsList) {
@@ -107,9 +97,13 @@ function loadMap(data, iconsList) {
 			this.latlng1[1] =  parseFloat(this.latlng1[1])+360;
 		}
 
-		var marker = L.marker([this.latlng1[0], this.latlng1[1]], {icon: stationIcon}, {closeOnClick: false, autoClose: false}).addTo(map);
+		if ((this.latlng1[1] - this.latlng2[1]) < -180) {
+			this.latlng2[1] =  parseFloat(this.latlng2[1]) -360;
+		} else if ((this.latlng1[1] - this.latlng2[1]) > 180) {
+			this.latlng2[1] =  parseFloat(this.latlng2[1]) +360;
+		}
 
-		// var marker2 = L.marker([this.latlng2[0], this.latlng2[1]], {icon: redIcon},{closeOnClick: false, autoClose: false}).addTo(map);
+		var marker = L.marker([this.latlng1[0], this.latlng1[1]], {icon: stationIcon}, {closeOnClick: false, autoClose: false}).addTo(map);
 
 		if (this.confirmed && iconsList.qsoconfirm.icon !== "0") {
 			var marker2 = L.marker([this.latlng2[0], this.latlng2[1]], {icon: qsoconfirmIcon},{closeOnClick: false, autoClose: false}).addTo(map);
@@ -192,46 +186,3 @@ function style(feature) {
 		weight: 1,
 	};
 }
-
-const cqzonenames = [
-	[ "75", "-140" ],
-	[ "70", "-82.5" ],
-	[ "45", "-125" ],
-	[ "45", "-100" ],
-	[ "45", "-65" ],
-	[ "25.5", "-115" ],
-	[ "14.5", "-90" ],
-	[ "22", "-60" ],
-	[ "11.5", "-70" ],
-	[ "-5", "-100" ],
-	[ "-9", "-45" ],
-	[ "-45", "-106" ],
-	[ "-45", "-55" ],
-	[ "52", "-14" ],
-	[ "46", "11" ],
-	[ "60", "35" ],
-	[ "55", "65" ],
-	[ "70", "90" ],
-	[ "70", "150" ],
-	[ "42", "29" ],
-	[ "28", "53" ],
-	[ "6", "75" ],
-	[ "44", "93" ],
-	[ "33", "110" ],
-	[ "38", "134" ],
-	[ "16", "100" ],
-	[ "15", "140" ],
-	[ "0", "125" ],
-	[ "-25", "115" ],
-	[ "-25", "145" ],
-	[ "15", "-165" ],
-	[ "-25", "-165" ],
-	[ "32", "-26" ],
-	[ "25", "25.5" ],
-	[ "15", "-6" ],
-	[ "-5", "-6" ],
-	[ "6", "51" ],
-	[ "-45", "8" ],
-	[ "-25", "55"],
-	[  "78", "-10"],
-];

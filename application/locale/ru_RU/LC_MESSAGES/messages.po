@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-06-25 23:52+0200\n"
-"PO-Revision-Date: 2024-06-25 21:48+0000\n"
+"POT-Creation-Date: 2024-06-27 08:56+0200\n"
+"PO-Revision-Date: 2024-06-26 11:27+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-translation/ru/>\n"
 "Language: ru_RU\n"
@@ -634,7 +634,7 @@ msgstr "Журнал"
 #: application/views/awards/wab/index.php:72
 #: application/views/awards/waja/index.php:53
 #: application/views/awards/was/index.php:53
-#: application/views/gridmap/index.php:100
+#: application/views/gridmap/index.php:101
 #: application/views/logbookadvanced/index.php:537
 #: application/views/logbookadvanced/useroptions.php:62
 #: application/views/oqrs/qsolist.php:12
@@ -662,7 +662,7 @@ msgstr "QSL"
 #: application/views/awards/waja/index.php:57
 #: application/views/awards/was/index.php:57
 #: application/views/dashboard/index.php:245
-#: application/views/gridmap/index.php:108
+#: application/views/gridmap/index.php:109
 #: application/views/logbookadvanced/useroptions.php:66
 #: application/views/oqrs/qsolist.php:17 application/views/oqrs/qsolist.php:159
 #: application/views/oqrs/qsolist.php:172
@@ -680,7 +680,7 @@ msgstr "QSL"
 #: application/views/view_log/qso.php:408 src/QSLManager/QSO.php:365
 #: src/QSLManager/QSO.php:377
 msgid "LoTW"
-msgstr "LotW"
+msgstr "LoTW"
 
 #: application/controllers/Logbook.php:673
 #: application/views/activated_gridmap/index.php:74
@@ -695,7 +695,7 @@ msgstr "LotW"
 #: application/views/awards/waja/index.php:61
 #: application/views/awards/was/index.php:61
 #: application/views/dashboard/index.php:245
-#: application/views/gridmap/index.php:116
+#: application/views/gridmap/index.php:117
 #: application/views/logbookadvanced/useroptions.php:70
 #: application/views/oqrs/qsolist.php:14 application/views/oqrs/qsolist.php:130
 #: application/views/oqrs/qsolist.php:143
@@ -755,7 +755,7 @@ msgstr "Clublog"
 #: application/views/eqsl/analysis.php:39
 #: application/views/eqsl/download.php:39 application/views/eqsl/result.php:36
 #: application/views/eqslcard/index.php:29
-#: application/views/gridmap/index.php:66 application/views/hamsat/index.php:33
+#: application/views/gridmap/index.php:67 application/views/hamsat/index.php:33
 #: application/views/kml/index.php:31
 #: application/views/logbookadvanced/edit.php:11
 #: application/views/logbookadvanced/index.php:177
@@ -942,7 +942,7 @@ msgstr "Область/штат"
 #: application/views/contesting/index.php:17
 #: application/views/contesting/index.php:210
 #: application/views/dashboard/index.php:13
-#: application/views/gridmap/index.php:151
+#: application/views/gridmap/index.php:152
 #: application/views/labels/index.php:121
 #: application/views/logbookadvanced/edit.php:8
 #: application/views/logbookadvanced/index.php:10
@@ -979,7 +979,7 @@ msgstr "QTH локатор"
 #: application/views/awards/gridmaster/index.php:35
 #: application/views/dashboard/index.php:14
 #: application/views/distances/index.php:13
-#: application/views/gridmap/index.php:153
+#: application/views/gridmap/index.php:154
 #: application/views/logbookadvanced/index.php:11
 #: application/views/qslcard/searchresult.php:20
 #: application/views/qslcard/searchresult.php:36
@@ -1161,23 +1161,23 @@ msgstr "Logbook of the World"
 
 #: application/controllers/Lotw.php:622
 msgid "LoTW ADIF Information"
-msgstr "LotW. Информация ADIF"
+msgstr "LoTW. Информация ADIF"
 
 #: application/controllers/Lotw.php:730
 msgid "LoTW ADIF Import"
-msgstr "LotW. Импорт ADIF"
+msgstr "LoTW. Импорт ADIF"
 
 #: application/controllers/Lotw.php:842
 msgid "LoTW .TQ8 Upload"
-msgstr "LotW. TQ8 загрузка"
+msgstr "LoTW. TQ8 загрузка"
 
 #: application/controllers/Lotw.php:939 application/controllers/Lotw.php:944
 msgid "LoTW .TQ8 Sent"
-msgstr "LotW. TQ8 загружен"
+msgstr "LoTW. TQ8 загружен"
 
 #: application/controllers/Lotw.php:951
 msgid "LoTW .TQ8 Not Sent"
-msgstr "LotW. TQ8 не загружен"
+msgstr "LoTW. TQ8 не загружен"
 
 #: application/controllers/Mode.php:25
 #: application/views/interface_assets/header.php:263
@@ -1441,7 +1441,7 @@ msgstr "Некорректно записанные зоны CQ"
 
 #: application/controllers/Search.php:70
 msgid "QSOs unconfirmed on LoTW, but the callsign has uploaded to LoTW after QSO date"
-msgstr "QSO, не подтверждённые на LotW, при том, что корреспондент загружал данные на LotW после даты QSO"
+msgstr "QSO, не подтверждённые на LoTW, при том, что корреспондент загружал данные на LoTW после даты QSO"
 
 #: application/controllers/Station.php:35
 #: application/controllers/Station.php:78 application/views/csv/index.php:19
@@ -1807,31 +1807,31 @@ msgstr "Экспорт карты"
 msgid "QO-100 Dx Club Upload"
 msgstr "Загрузка в QO-100 Dx Club"
 
-#: application/models/Logbook_model.php:4133
+#: application/models/Logbook_model.php:4135
 msgid "QSO could not be matched"
 msgstr "QSO не может быть сопоставлено"
 
-#: application/models/Logbook_model.php:4139
+#: application/models/Logbook_model.php:4141
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "подтверждено LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:4144
+#: application/models/Logbook_model.php:4146
 msgid "confirmed by award manager"
 msgstr "подтверждено менеджером диплома"
 
-#: application/models/Logbook_model.php:4147
+#: application/models/Logbook_model.php:4149
 msgid "confirmed by cross-check of DCL data"
 msgstr "подтверждено кросс-проверкой с данными DCL"
 
-#: application/models/Logbook_model.php:4150
+#: application/models/Logbook_model.php:4152
 msgid "confirmation pending"
 msgstr "подтверждение ожидается"
 
-#: application/models/Logbook_model.php:4153
+#: application/models/Logbook_model.php:4155
 msgid "unconfirmed"
 msgstr "не подтверждено"
 
-#: application/models/Logbook_model.php:4156
+#: application/models/Logbook_model.php:4158
 msgid "unknown"
 msgstr "неизвестно"
 
@@ -1907,8 +1907,9 @@ msgstr "Ежемесячно"
 #: application/views/continents/index.php:41 application/views/csv/index.php:21
 #: application/views/csv/index.php:33 application/views/csv/index.php:44
 #: application/views/csv/index.php:60 application/views/csv/index.php:82
-#: application/views/csv/index.php:94 application/views/distances/index.php:35
-#: application/views/distances/index.php:45
+#: application/views/csv/index.php:94 application/views/distances/index.php:21
+#: application/views/distances/index.php:36
+#: application/views/distances/index.php:46
 #: application/views/dxatlas/index.php:21
 #: application/views/dxatlas/index.php:33
 #: application/views/dxatlas/index.php:44
@@ -1918,8 +1919,8 @@ msgstr "Ежемесячно"
 #: application/views/gridmap/index.php:13
 #: application/views/gridmap/index.php:28
 #: application/views/gridmap/index.php:41
-#: application/views/gridmap/index.php:69
-#: application/views/gridmap/index.php:82 application/views/kml/index.php:21
+#: application/views/gridmap/index.php:70
+#: application/views/gridmap/index.php:83 application/views/kml/index.php:21
 #: application/views/kml/index.php:33 application/views/kml/index.php:49
 #: application/views/kml/index.php:67 application/views/kml/index.php:79
 #: application/views/logbookadvanced/index.php:179
@@ -1991,7 +1992,7 @@ msgstr "Период"
 #: application/views/awards/rac/index.php:102
 #: application/views/awards/waja/index.php:114
 #: application/views/awards/was/index.php:110
-#: application/views/distances/index.php:52
+#: application/views/distances/index.php:53
 #: application/views/logbookadvanced/useroptions.php:17
 #: application/views/lookup/index.php:63
 #: application/views/stationsetup/exportmapoptions.php:6
@@ -2009,7 +2010,7 @@ msgstr "Показать"
 #: application/views/awards/dxcc/index.php:131
 #: application/views/awards/wab/index.php:34
 #: application/views/components/hamsat/table.php:29
-#: application/views/distances/index.php:33
+#: application/views/distances/index.php:34
 #: application/views/gridmap/index.php:25 application/views/hamsat/index.php:32
 #: application/views/logbookadvanced/edit.php:16
 #: application/views/logbookadvanced/index.php:199
@@ -2021,8 +2022,8 @@ msgstr "Спутник"
 #: application/views/activated_gridmap/index.php:30
 #: application/views/awards/dxcc/index.php:147
 #: application/views/awards/wab/index.php:44
-#: application/views/distances/index.php:43
-#: application/views/gridmap/index.php:79
+#: application/views/distances/index.php:44
+#: application/views/gridmap/index.php:80
 #: application/views/logbookadvanced/index.php:208
 #: application/views/satellite/create.php:35
 #: application/views/satellite/edit.php:19
@@ -2032,7 +2033,7 @@ msgstr "Орбита"
 
 #: application/views/activated_gridmap/index.php:50
 #: application/views/awards/wab/index.php:64
-#: application/views/gridmap/index.php:91
+#: application/views/gridmap/index.php:92
 #: application/views/timeline/index.php:51
 msgid "Confirmation"
 msgstr "Подтверждение"
@@ -2048,24 +2049,24 @@ msgstr "Подтверждение"
 #: application/views/awards/wab/index.php:96
 #: application/views/awards/waja/index.php:65
 #: application/views/awards/was/index.php:65
-#: application/views/gridmap/index.php:124 application/views/user/edit.php:675
+#: application/views/gridmap/index.php:125 application/views/user/edit.php:675
 msgid "QRZ.com"
 msgstr "QRZ.con"
 
 #: application/views/activated_gridmap/index.php:86
-#: application/views/gridmap/index.php:129
+#: application/views/gridmap/index.php:130
 msgid "Plot"
 msgstr "Отобразить"
 
 #: application/views/activated_gridmap/index.php:87
-#: application/views/gridmap/index.php:130
+#: application/views/gridmap/index.php:131
 msgid "Clear Markers"
 msgstr "Очистить маркеры"
 
 #: application/views/activated_gridmap/index.php:102
 #: application/views/awards/ffma/index.php:30
 #: application/views/awards/gridmaster/index.php:29
-#: application/views/gridmap/index.php:147
+#: application/views/gridmap/index.php:148
 #: application/views/logbookadvanced/index.php:8
 msgid "Latitude"
 msgstr "Широта"
@@ -2073,7 +2074,7 @@ msgstr "Широта"
 #: application/views/activated_gridmap/index.php:104
 #: application/views/awards/ffma/index.php:32
 #: application/views/awards/gridmaster/index.php:31
-#: application/views/gridmap/index.php:149
+#: application/views/gridmap/index.php:150
 #: application/views/logbookadvanced/index.php:9
 msgid "Longitude"
 msgstr "Долгота"
@@ -2081,7 +2082,7 @@ msgstr "Долгота"
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:37
-#: application/views/gridmap/index.php:155
+#: application/views/gridmap/index.php:156
 #: application/views/logbookadvanced/index.php:12
 msgid "Bearing"
 msgstr "Направление"
@@ -2449,11 +2450,11 @@ msgstr "До даты"
 
 #: application/views/adif/import.php:187
 msgid "Mark exported QSOs as uploaded to LoTW"
-msgstr "Отметить экспортированные QSO как загруженные в LotW"
+msgstr "Отметить экспортированные QSO как загруженные в LoTW"
 
 #: application/views/adif/import.php:195
 msgid "Export QSOs not uploaded to LoTW"
-msgstr "Отметить экспортированные QSO как незагруженные в LotW"
+msgstr "Отметить экспортированные QSO как незагруженные в LoTW"
 
 #: application/views/adif/import.php:200
 msgid "Export QSO's"
@@ -2478,7 +2479,7 @@ msgstr "Если диапазон дат не выбран, то будут от
 
 #: application/views/adif/import.php:228
 msgid "Mark QSOs as exported to LoTW"
-msgstr "Отметить QSO как экспортированные в LotW"
+msgstr "Отметить QSO как экспортированные в LoTW"
 
 #: application/views/adif/import.php:242
 #, php-format
@@ -3337,7 +3338,7 @@ msgstr "Город"
 
 #: application/views/awards/jcc/index.php:187
 #: application/views/dashboard/index.php:353
-#: application/views/distances/index.php:22
+#: application/views/distances/index.php:23
 msgid "SAT"
 msgstr "Спутники"
 
@@ -4322,7 +4323,7 @@ msgid "Propagation Mode"
 msgstr "Тип распространения радиоволн"
 
 #: application/views/csv/index.php:95 application/views/dxatlas/index.php:95
-#: application/views/gridmap/index.php:43 application/views/kml/index.php:80
+#: application/views/gridmap/index.php:44 application/views/kml/index.php:80
 #: application/views/logbookadvanced/index.php:221
 #: application/views/qso/edit_ajax.php:192 application/views/qso/index.php:404
 msgctxt "Propagation Mode"
@@ -4330,7 +4331,7 @@ msgid "Aircraft Scatter"
 msgstr "Рассеяние на инверсионном следе самолётов"
 
 #: application/views/csv/index.php:96 application/views/dxatlas/index.php:96
-#: application/views/gridmap/index.php:44 application/views/kml/index.php:81
+#: application/views/gridmap/index.php:45 application/views/kml/index.php:81
 #: application/views/logbookadvanced/index.php:222
 #: application/views/qso/edit_ajax.php:193 application/views/qso/index.php:405
 msgctxt "Propagation Mode"
@@ -4338,7 +4339,7 @@ msgid "Aurora"
 msgstr "Авроральное"
 
 #: application/views/csv/index.php:97 application/views/dxatlas/index.php:97
-#: application/views/gridmap/index.php:45 application/views/kml/index.php:82
+#: application/views/gridmap/index.php:46 application/views/kml/index.php:82
 #: application/views/logbookadvanced/index.php:223
 #: application/views/qso/edit_ajax.php:194 application/views/qso/index.php:406
 msgctxt "Propagation Mode"
@@ -4346,7 +4347,7 @@ msgid "Aurora-E"
 msgstr "Авроральное (E)"
 
 #: application/views/csv/index.php:98 application/views/dxatlas/index.php:98
-#: application/views/gridmap/index.php:46 application/views/kml/index.php:83
+#: application/views/gridmap/index.php:47 application/views/kml/index.php:83
 #: application/views/logbookadvanced/index.php:224
 #: application/views/qso/edit_ajax.php:195 application/views/qso/index.php:407
 msgctxt "Propagation Mode"
@@ -4354,7 +4355,7 @@ msgid "Back scatter"
 msgstr "Пассивные отражатели"
 
 #: application/views/csv/index.php:99 application/views/dxatlas/index.php:99
-#: application/views/gridmap/index.php:47 application/views/kml/index.php:84
+#: application/views/gridmap/index.php:48 application/views/kml/index.php:84
 #: application/views/logbookadvanced/index.php:225
 #: application/views/qso/edit_ajax.php:196 application/views/qso/index.php:408
 msgctxt "Propagation Mode"
@@ -4362,7 +4363,7 @@ msgid "EchoLink"
 msgstr "Эхолинк"
 
 #: application/views/csv/index.php:100 application/views/dxatlas/index.php:100
-#: application/views/gridmap/index.php:48 application/views/kml/index.php:85
+#: application/views/gridmap/index.php:49 application/views/kml/index.php:85
 #: application/views/logbookadvanced/index.php:226
 #: application/views/qso/edit_ajax.php:197 application/views/qso/index.php:409
 msgctxt "Propagation Mode"
@@ -4370,7 +4371,7 @@ msgid "Earth-Moon-Earth"
 msgstr "Отражение от Луны"
 
 #: application/views/csv/index.php:101 application/views/dxatlas/index.php:101
-#: application/views/gridmap/index.php:49 application/views/kml/index.php:86
+#: application/views/gridmap/index.php:50 application/views/kml/index.php:86
 #: application/views/logbookadvanced/index.php:227
 #: application/views/qso/edit_ajax.php:198 application/views/qso/index.php:410
 msgctxt "Propagation Mode"
@@ -4378,7 +4379,7 @@ msgid "Sporadic E"
 msgstr "Спорадическое прохождение (Е)"
 
 #: application/views/csv/index.php:102 application/views/dxatlas/index.php:102
-#: application/views/gridmap/index.php:50 application/views/kml/index.php:87
+#: application/views/gridmap/index.php:51 application/views/kml/index.php:87
 #: application/views/logbookadvanced/index.php:228
 #: application/views/qso/edit_ajax.php:199 application/views/qso/index.php:411
 msgctxt "Propagation Mode"
@@ -4386,7 +4387,7 @@ msgid "Field Aligned Irregularities"
 msgstr "Анизотропия ионосферы"
 
 #: application/views/csv/index.php:103 application/views/dxatlas/index.php:103
-#: application/views/gridmap/index.php:51 application/views/kml/index.php:88
+#: application/views/gridmap/index.php:52 application/views/kml/index.php:88
 #: application/views/logbookadvanced/index.php:229
 #: application/views/qso/edit_ajax.php:200 application/views/qso/index.php:412
 msgctxt "Propagation Mode"
@@ -4394,7 +4395,7 @@ msgid "F2 Reflection"
 msgstr "Отражение от слоя F2"
 
 #: application/views/csv/index.php:104 application/views/dxatlas/index.php:104
-#: application/views/gridmap/index.php:52 application/views/kml/index.php:89
+#: application/views/gridmap/index.php:53 application/views/kml/index.php:89
 #: application/views/logbookadvanced/index.php:230
 #: application/views/qso/edit_ajax.php:201 application/views/qso/index.php:413
 msgctxt "Propagation Mode"
@@ -4402,7 +4403,7 @@ msgid "Internet-assisted"
 msgstr "С помощью Интернет"
 
 #: application/views/csv/index.php:105 application/views/dxatlas/index.php:105
-#: application/views/gridmap/index.php:53 application/views/kml/index.php:90
+#: application/views/gridmap/index.php:54 application/views/kml/index.php:90
 #: application/views/logbookadvanced/index.php:231
 #: application/views/qso/edit_ajax.php:202 application/views/qso/index.php:414
 msgctxt "Propagation Mode"
@@ -4410,7 +4411,7 @@ msgid "Ionoscatter"
 msgstr "Ионосферное рассеяние"
 
 #: application/views/csv/index.php:106 application/views/dxatlas/index.php:106
-#: application/views/gridmap/index.php:54 application/views/kml/index.php:91
+#: application/views/gridmap/index.php:55 application/views/kml/index.php:91
 #: application/views/logbookadvanced/index.php:232
 #: application/views/qso/edit_ajax.php:203 application/views/qso/index.php:415
 msgctxt "Propagation Mode"
@@ -4418,7 +4419,7 @@ msgid "IRLP"
 msgstr "IRLP"
 
 #: application/views/csv/index.php:107 application/views/dxatlas/index.php:107
-#: application/views/gridmap/index.php:55 application/views/kml/index.php:92
+#: application/views/gridmap/index.php:56 application/views/kml/index.php:92
 #: application/views/logbookadvanced/index.php:233
 #: application/views/qso/edit_ajax.php:204 application/views/qso/index.php:416
 msgctxt "Propagation Mode"
@@ -4426,7 +4427,7 @@ msgid "Meteor scatter"
 msgstr "Рассеяние на метеорных следах"
 
 #: application/views/csv/index.php:108 application/views/dxatlas/index.php:108
-#: application/views/gridmap/index.php:56 application/views/kml/index.php:93
+#: application/views/gridmap/index.php:57 application/views/kml/index.php:93
 #: application/views/logbookadvanced/index.php:234
 #: application/views/qso/edit_ajax.php:205 application/views/qso/index.php:417
 msgctxt "Propagation Mode"
@@ -4434,7 +4435,7 @@ msgid "Terrestrial or atmospheric repeater or transponder"
 msgstr "Наземный или атмосферный репитер или транспондер"
 
 #: application/views/csv/index.php:109 application/views/dxatlas/index.php:109
-#: application/views/gridmap/index.php:57 application/views/kml/index.php:94
+#: application/views/gridmap/index.php:58 application/views/kml/index.php:94
 #: application/views/logbookadvanced/index.php:235
 #: application/views/qso/edit_ajax.php:206 application/views/qso/index.php:418
 msgctxt "Propagation Mode"
@@ -4442,7 +4443,7 @@ msgid "Rain scatter"
 msgstr "Рассеяние на дожде"
 
 #: application/views/csv/index.php:110 application/views/dxatlas/index.php:110
-#: application/views/gridmap/index.php:58 application/views/kml/index.php:95
+#: application/views/gridmap/index.php:59 application/views/kml/index.php:95
 #: application/views/logbookadvanced/index.php:236
 #: application/views/qso/edit_ajax.php:207 application/views/qso/index.php:419
 msgctxt "Propagation Mode"
@@ -4450,7 +4451,7 @@ msgid "Satellite"
 msgstr "Спутник"
 
 #: application/views/csv/index.php:111 application/views/dxatlas/index.php:111
-#: application/views/gridmap/index.php:59 application/views/kml/index.php:96
+#: application/views/gridmap/index.php:60 application/views/kml/index.php:96
 #: application/views/logbookadvanced/index.php:237
 #: application/views/qso/edit_ajax.php:208 application/views/qso/index.php:420
 msgctxt "Propagation Mode"
@@ -4458,7 +4459,7 @@ msgid "Trans-equatorial"
 msgstr "Трансэкваториальное"
 
 #: application/views/csv/index.php:112 application/views/dxatlas/index.php:112
-#: application/views/gridmap/index.php:60 application/views/kml/index.php:97
+#: application/views/gridmap/index.php:61 application/views/kml/index.php:97
 #: application/views/logbookadvanced/index.php:238
 #: application/views/qso/edit_ajax.php:209 application/views/qso/index.php:421
 msgctxt "Propagation Mode"
@@ -4884,7 +4885,7 @@ msgstr "Скачать файл DOK"
 
 #: application/views/debug/index.php:465
 msgid "LoTW users download"
-msgstr "Скачать список пользователей LotW"
+msgstr "Скачать список пользователей LoTW"
 
 #: application/views/debug/index.php:470
 msgid "POTA file download"
@@ -5210,6 +5211,10 @@ msgstr "Распространение"
 #: application/views/gridmap/index.php:42
 msgid "None/Empty"
 msgstr "Нет/Пусто"
+
+#: application/views/gridmap/index.php:43
+msgid "All except SAT"
+msgstr "Все, за исключением спутниковых"
 
 #: application/views/hamsat/index.php:22
 #, php-format
@@ -6338,7 +6343,7 @@ msgstr "Штат США"
 
 #: application/views/lookup/index.php:10
 msgid "LoTW user"
-msgstr "Пользователь LotW"
+msgstr "Пользователь LoTW"
 
 #: application/views/lookup/index.php:46
 msgid "Choose a State"
@@ -6349,7 +6354,7 @@ msgstr "Выберите штат"
 #: application/views/search/result.php:46
 #: application/views/search/result.php:58
 msgid "LoTW User"
-msgstr "Пользователь LotW"
+msgstr "Пользователь LoTW"
 
 #: application/views/lookup/lotwuser.php:12
 #: application/views/search/result.php:58
@@ -6367,7 +6372,7 @@ msgstr "последняя загрузка"
 
 #: application/views/lookup/lotwuser.php:14
 msgid "No LoTW User"
-msgstr "Не использует LotW"
+msgstr "Не использует LoTW"
 
 #: application/views/lotw/analysis.php:8 application/views/qrz/analysis.php:8
 msgid "No data imported. please check selected date. Must be in the past!"
@@ -6388,7 +6393,7 @@ msgstr "скачать отчёт"
 #: application/views/lotw/import.php:24
 #, php-format
 msgid "Upload the Exported ADIF file from LoTW from the %s Area, to mark QSOs as confirmed on LoTW."
-msgstr "Загрузите экспортированный ADIF-файл из LotW из зоны %s, чтобы отметить QSO как подтверждённые на LoTW."
+msgstr "Загрузите экспортированный ADIF-файл из LoTW из зоны %s, чтобы отметить QSO как подтверждённые на LoTW."
 
 #: application/views/lotw/import.php:27
 msgid "Choose file"
@@ -6396,19 +6401,19 @@ msgstr "Выберите файл"
 
 #: application/views/lotw/import.php:36
 msgid "Pull LoTW data for me"
-msgstr "Подтянуть мои данные из LotW"
+msgstr "Подтянуть мои данные из LoTW"
 
 #: application/views/lotw/import.php:47
 msgid "Select callsign to pull LoTW confirmations for."
-msgstr "Выберите позывной, для которого будут получены подтверждения LotW."
+msgstr "Выберите позывной, для которого будут получены подтверждения LoTW."
 
 #: application/views/lotw/import.php:61
 msgid "Wavelog will use the LoTW username and password stored in your user profile to download a report from LoTW for you. The report Wavelog downloads will have all confirmations since chosen date, or since your last LoTW confirmation (fetched from your log), up until now."
-msgstr "Wavelog использует логин и пароль для LotW, сохранённые в вашем профиле, для того чтобы скачивать ваши журналы с LotW. Журнал, скачанный в Wavelog будет содержать все подтверждения, начиная с выбранной даты, или начиная с последнего подтверждения в LotW (загруженного из вашего журнала), до настоящего момента."
+msgstr "Wavelog использует логин и пароль для LoTW, сохранённые в вашем профиле, для того чтобы скачивать ваши журналы с LoTW. Журнал, скачанный в Wavelog будет содержать все подтверждения, начиная с выбранной даты, или начиная с последнего подтверждения в LoTW (загруженного из вашего журнала), до настоящего момента."
 
 #: application/views/lotw/import.php:64
 msgid "Import LoTW Matches"
-msgstr "Импортировать совпадения с LotW"
+msgstr "Импортировать совпадения с LoTW"
 
 #: application/views/lotw_views/index.php:4
 msgid "Upload folder is not writable. Please contact your admin."
@@ -6416,7 +6421,7 @@ msgstr "Папка Upload не доступна для записи. Пожал�
 
 #: application/views/lotw_views/index.php:10
 msgid "LoTW Import"
-msgstr "Импорт LotW"
+msgstr "Импорт LoTW"
 
 #: application/views/lotw_views/index.php:17
 msgid "Available Certificates"
@@ -6484,7 +6489,7 @@ msgstr "Ручная синхронизация"
 #: application/views/lotw_views/upload_cert.php:8
 #: application/views/lotw_views/upload_cert.php:31
 msgid "Upload Logbook of the World .p12 Certificate"
-msgstr "Загрузка LotW .p12 сертификата"
+msgstr "Загрузка LoTW .p12 сертификата"
 
 #: application/views/lotw_views/upload_cert.php:19
 msgid "Export .p12 File Instructions"
@@ -7676,7 +7681,7 @@ msgstr "Некорректные зоны CQ"
 #: application/views/search/lotw_unconfirmed.php:21
 #: application/views/search/main.php:21
 msgid "QSOs unconfirmed on LoTW"
-msgstr "QSO, не подтверждённые на LotW"
+msgstr "QSO, не подтверждённые на LoTW"
 
 #: application/views/search/cqzones.php:28
 msgid "Station location:"
@@ -7732,7 +7737,7 @@ msgstr "Профиль QTH"
 
 #: application/views/search/lotw_unconfirmed_result.php:10
 msgid "Last LoTW upload"
-msgstr "Последняя загрузка в LotW"
+msgstr "Последняя загрузка в LoTW"
 
 #: application/views/search/lotw_unconfirmed_result.php:41
 msgid "No QSOs with outstanding LoTW upload were found."

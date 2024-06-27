@@ -18,6 +18,7 @@
         <form class="d-flex align-items-center">
             <label class="my-1 me-2" for="distplot_bands"><?= __("Band selection"); ?></label>
             <select class="form-select my-1 me-sm-2 w-auto"  id="distplot_bands">
+				<option value="All"><?= __("All"); ?></option>
                 <?php if (count($sats_available) != 0) { ?>
                     <option value="sat"><?= __("SAT"); ?></option>
                 <?php } ?>
