@@ -28,7 +28,7 @@ function echo_qsl_method($method) {
 	<form id="searchForm" name="searchForm" action="<?php echo base_url()."index.php/oqrs/search";?>" method="post">
 		<div class="row">
 			<div class="forn-group w-auto col-lg-2 col-md-2 col-sm-3 col-xl">
-				<label class="form-label" for="de">De</label>
+				<label class="form-label" for="de"><?= __("De"); ?></label>
 				<select id="de" name="de" class="form-select form-select-sm">
 					<option value=""><?= __("All"); ?></option>
 					<?php
@@ -39,7 +39,7 @@ function echo_qsl_method($method) {
 				</select>
 			</div>
 			<div class="forn-group w-auto col-lg-2 col-md-2 col-sm-3 col-xl">
-				<label class="form-label" for="dx">Dx</label>
+				<label class="form-label" for="dx"><?= __("Dx"); ?></label>
 				<input type="text" name="dx" id="dx" class="form-control form-control-sm" value="">
 			</div>
 
@@ -53,7 +53,7 @@ function echo_qsl_method($method) {
 				</select>
 			</div>
 			<div class="forn-group w-auto col-lg-2 col-md-2 col-sm-3 col-xl">
-				<label for="oqrsResults"># Results</label>
+				<label for="oqrsResults"><?= __("# Results"); ?></label>
 				<select id="oqrsResults" name="oqrsResults" class="form-select form-select-sm">
 					<option value="50">50</option>
 					<option value="200">200</option>
