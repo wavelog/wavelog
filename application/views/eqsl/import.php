@@ -32,7 +32,7 @@
  			  <br>
 			  <p><?= sprintf(__("Upload the Exported ADIF file from eQSL from the %s page, to mark QSOs as confirmed on eQSL."), '<a href="https://eqsl.cc/qslcard/DownloadInBox.cfm" target="_blank">' . __("Download Inbox") . '</a>'); ?></p>
 			<p><?= __("Choose Station(location) eQSL File belongs to:"); ?></p>
-                    <select name="station_profile" class="form-select mb-2 me-sm-2" style="width: 50%;">
+                    <select name="station_profile" class="form-select mb-2 me-sm-2" style="width: 50%">
                     <option value="0"><?= __("Select Station Location"); ?></option>
                     <?php foreach ($station_profile->result() as $station) {
                             if($station->eqslqthnickname) { ?>
@@ -40,7 +40,9 @@
                     <?php } } ?>
                     </select>
                     <p><span class="badge bg-info me-1"><?= __("Important"); ?></span><?= __("Log files must have the file type .adi"); ?></p>
-                    <input class="form-control w-auto" type="file" name="userfile" size="20" />
+		    <div style="margin-top: 1em; width: 50%">
+            		<input class="form-control  mb-2 me-sm-2" type="file" name="userfile" size="20" />
+		    </div>
 			</div>
 			<hr class="divider">
 <?php if (!($this->config->item('disable_manual_eqsl'))) { ?>

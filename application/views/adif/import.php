@@ -58,7 +58,7 @@
                     <form class="form" id="upform" action="<?php echo site_url('adif/import'); ?>" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="fhash" id="fhash" value="<?php echo hash('sha256', $this->session->userdata('user_callsign') );?>">
                         <div class="small form-text text-muted"><?= __("Select Station Location") ?></div>
-                        <select name="station_profile" class="form-select mb-2 me-sm-2" style="width: 50%;">
+                        <select name="station_profile" class="form-select mb-2 me-sm-2" style="width: 50%">
                             <option value="0"><?= __("Select Station Location") ?></option>
                             <?php foreach ($station_profile->result() as $station) { ?>
                                 <option value="<?php echo $station->station_id; ?>" <?php if ($station->station_id == $active_station_id) {
@@ -67,7 +67,7 @@
                             <?php } ?>
                         </select>
                         <div class="small form-text text-muted"><?= __("Add QSOs to Contest") ?></div>
-                        <select name="contest" id="contest" class="form-select mb-2 me-sm-2" style="width: 50%;">
+                        <select name="contest" id="contest" class="form-select mb-2 me-sm-2" style="width: 50%">
                         	<option value="" selected><?= __("No Contest"); ?></option>
                             <?php
 				foreach ($contests as $contest) {
@@ -166,7 +166,7 @@
                     <form class="form" action="<?php echo site_url('adif/export_custom'); ?>" method="post" enctype="multipart/form-data">
                         <h5 class="card-title"><?= __("Take your logbook file anywhere!") ?> </h5>
                         <p class="card-text"><?= __("Exporting ADIFs allows you to import contacts into third party applications like LoTW, Awards or just for keeping a backup.") ?> </p>
-                        <select name="station_profile" class="form-select mb-2 me-sm-2" style="width: 50%;">
+                        <select name="station_profile" class="form-select mb-2 me-sm-2 w-auto">
                             <option value="0"><?= __("Select Station Location") ?></option>
                             <?php foreach ($station_profile->result() as $station) { ?>
                                 <option value="<?php echo $station->station_id; ?>" <?php if ($station->station_id == $this->stations->find_active()) {
@@ -213,7 +213,7 @@
 
                 <div class="tab-pane fade" id="lotw" role="tabpanel" aria-labelledby="home-tab">
                     <form class="form" action="<?php echo site_url('adif/mark_lotw'); ?>" method="post" enctype="multipart/form-data">
-                        <select name="station_profile" class="form-select mb-2 me-sm-2" style="width: 50%;">
+                        <select name="station_profile" class="form-select mb-2 me-sm-2 w-auto">
                             <option value="0"><?= __("Select Station Location") ?></option>
                             <?php foreach ($station_profile->result() as $station) { ?>
                                 <option value="<?php echo $station->station_id; ?>"><?= __("Callsign") . ": " ?><?php echo $station->station_callsign; ?> (<?php echo $station->station_profile_name; ?>)</option>
