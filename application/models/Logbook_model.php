@@ -1923,7 +1923,7 @@ class Logbook_model extends CI_Model {
      * Function returns all the station_id's with HRDLOG Code
      */
     function get_station_id_with_hrdlog_code() {
-        $sql = 'SELECT station_id, hrdlog_username, hrdlog_code
+        $sql = 'SELECT station_id, hrdlog_username, hrdlog_code, station_callsign
                 FROM station_profile
                 WHERE coalesce(hrdlog_username, "") <> ""
                 AND coalesce(hrdlog_code, "") <> ""';
