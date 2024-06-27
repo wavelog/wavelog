@@ -67,7 +67,7 @@
                             <?php } ?>
                         </select>
                         <div class="small form-text text-muted"><?= __("Add QSOs to Contest") ?></div>
-                        <select name="contest" id="contest" class="form-select mb-2 me-sm-2" style="width: 20%;">
+                        <select name="contest" id="contest" class="form-select mb-2 me-sm-2" style="width: 100%;">
                         	<option value="" selected><?= __("No Contest"); ?></option>
                             <?php
 				foreach ($contests as $contest) {
