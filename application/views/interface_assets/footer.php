@@ -101,6 +101,32 @@ if($this->session->userdata('user_id') != null) {
 ?>
 
 <!-- Version Dialog END -->
+
+<!-- SPECIAL CALLSIGN OPERATOR FEATURE -->
+<?php if ($this->config->item('special_callsign') == true && $this->uri->segment(1) == "dashboard") { ?>
+<script type="text/javascript" src="<?php echo base_url() ;?>assets/js/sections/operator.js"></script>
+<script>
+	<?php 
+	# Set some variables for better readability
+    $op_call = $this->session->userdata('operator_callsign');
+	$account_call = $this->session->userdata('user_callsign');
+    $user_type = $this->session->userdata('user_type'); ?>
+
+    // JS variable which is used in operator.js
+    let sc_account_call = '<?php echo $account_call; ?>'
+    
+	<?php 
+    # if the operator call and the account call is the same we show the dialog (except for admins!)
+    if ($op_call == $account_call && $user_type != '99') { ?>
+
+        // load the dialog with javascript
+        displayOperatorDialog();
+    
+    <?php } ?>
+</script>
+<?php } ?>
+<!-- SPECIAL CALLSIGN OPERATOR FEATURE END -->
+
 <script>
     var current_active_location = "<?php echo $this->stations->find_active(); ?>";
     quickswitcher_show_activebadge(current_active_location);
