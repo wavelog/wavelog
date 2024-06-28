@@ -42,8 +42,8 @@ class Logbookadvanced_model extends CI_Model {
 			$binding[] = $to;
 		}
 		if ($searchCriteria['de'] !== 'All') {
-			$conditions[] = "qsos.station_id = ?";
-			$binding[] = trim($searchCriteria['de']);
+			$conditions[] = "qsos.station_id in (?)";
+			$binding[] = implode(',', $searchCriteria['de']);
 		}
 		if ($searchCriteria['dx'] !== '') {
 			$conditions[] = "COL_CALL LIKE ?";

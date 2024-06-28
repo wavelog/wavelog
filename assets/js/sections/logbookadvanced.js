@@ -298,6 +298,18 @@ function unselectQsoID(qsoID) {
 }
 
 $(document).ready(function () {
+	// initialize multiselect dropdown for locations
+	// Documentation: https://davidstutz.github.io/bootstrap-multiselect/index.html
+
+	$('#de').multiselect({
+		// template is needed for bs5 support
+		templates: {
+		  button: '<button type="button" class="multiselect dropdown-toggle btn btn-sm btn-secondary me-2 w-auto" data-bs-toggle="dropdown" aria-expanded="false"><span class="multiselect-selected-text"></span></button>',
+		},
+		numberDisplayed: 1,
+		includeSelectAllOption: true
+	});
+
 
 	$('#searchForm').submit(function (e) {
 		var container = L.DomUtil.get('advancedmap');
@@ -319,7 +331,7 @@ $(document).ready(function () {
 			data: {
 				dateFrom: this.dateFrom.value,
 				dateTo: this.dateTo.value,
-				de: this.de.value,
+				de: $('#de').val(),
 				dx: this.dx.value,
 				mode: this.mode.value,
 				band: this.band.value,
@@ -383,6 +395,15 @@ $(document).ready(function () {
 		var elements = $('#qsoList tbody input:checked');
 		var nElements = elements.length;
 		if (nElements == 0) {
+			BootstrapDialog.alert({
+				title: 'INFO',
+				message: 'You need to select a least 1 row to update from callbook!',
+				type: BootstrapDialog.TYPE_INFO,
+				closable: false,
+				draggable: false,
+				callback: function (result) {
+				}
+			});
 			return;
 		}
 		inCallbookProcessing = true;
@@ -408,6 +429,15 @@ $(document).ready(function () {
 		var elements = $('#qsoList tbody input:checked');
 		var nElements = elements.length;
 		if (nElements == 0) {
+			BootstrapDialog.alert({
+				title: 'INFO',
+				message: 'You need to select a least 1 row to delete!',
+				type: BootstrapDialog.TYPE_INFO,
+				closable: false,
+				draggable: false,
+				callback: function (result) {
+				}
+			});
 			return;
 		}
 
@@ -653,6 +683,15 @@ $(document).ready(function () {
 		var elements = $('#qsoList tbody input:checked');
 		var nElements = elements.length;
 		if (nElements == 0) {
+			BootstrapDialog.alert({
+				title: 'INFO',
+				message: 'You need to select a least 1 row to display a QSL card!',
+				type: BootstrapDialog.TYPE_INFO,
+				closable: false,
+				draggable: false,
+				callback: function (result) {
+				}
+			});
 			return;
 		}
 		$('#qslSlideshow').prop("disabled", true);
@@ -714,6 +753,7 @@ $(document).ready(function () {
 				callback: function (result) {
 				}
 			});
+			return;
 		}
 		if (nElements > 1) {
 			BootstrapDialog.alert({
@@ -756,6 +796,15 @@ $(document).ready(function () {
 		var elements = $('#qsoList tbody input:checked');
 		var nElements = elements.length;
 		if (nElements == 0) {
+			BootstrapDialog.alert({
+				title: 'INFO',
+				message: 'You need to select at least 1 row to print a label!',
+				type: BootstrapDialog.TYPE_INFO,
+				closable: false,
+				draggable: false,
+				callback: function (result) {
+				}
+			});
 			return;
 		}
 		$('#printLabel').prop("disabled", true);
@@ -773,6 +822,14 @@ $(document).ready(function () {
 					onshown: function(dialog) {
 					},
 					buttons: [{
+						label: 'Print',
+						cssClass: 'btn-primary btn-sm',
+						action: function (dialogItself) {
+							printlabel();
+							dialogItself.close();
+						}
+					},
+						{
 						label: lang_admin_close,
 						action: function (dialogItself) {
 							$('#printLabel').prop("disabled", false);
@@ -797,6 +854,15 @@ $(document).ready(function () {
 		var elements = $('#qsoList tbody input:checked');
 		var nElements = elements.length;
 		if (nElements == 0) {
+			BootstrapDialog.alert({
+				title: 'INFO',
+				message: 'You need to select a least 1 row!',
+				type: BootstrapDialog.TYPE_INFO,
+				closable: false,
+				draggable: false,
+				callback: function (result) {
+				}
+			});
 			return;
 		}
 		$('#'+tag).prop("disabled", true);
@@ -828,6 +894,15 @@ $(document).ready(function () {
 		var elements = $('#qsoList tbody input:checked');
 		var nElements = elements.length;
 		if (nElements == 0) {
+			BootstrapDialog.alert({
+				title: 'INFO',
+				message: 'You need to select a least 1 row!',
+				type: BootstrapDialog.TYPE_INFO,
+				closable: false,
+				draggable: false,
+				callback: function (result) {
+				}
+			});
 			return;
 		}
 		$('#'+tag).prop("disabled", true);
@@ -868,6 +943,7 @@ $(document).ready(function () {
 	});
 
 	$('#searchForm').submit();
+
 });
 
 function printlabel() {

@@ -18,6 +18,7 @@
 	<?php
 	$theme = $this->optionslib->get_theme();
 	if ($theme) { ?>
+		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap-multiselect.css">
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/<?php echo $theme; ?>/bootstrap.min.css">
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/general.css">
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/selectize.bootstrap4.css" />
@@ -355,9 +356,9 @@
 							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><i class="fas fa-user"></i> <?php echo $this->session->userdata('user_callsign'); ?></a>
 
 							<ul class="dropdown-menu dropdown-menu-right header-dropdown">
-								<?php 
-								if (!$this->config->item('special_callsign') || 
-									$this->session->userdata('user_type') == '99' || 
+								<?php
+								if (!$this->config->item('special_callsign') ||
+									$this->session->userdata('user_type') == '99' ||
 									($this->config->item('special_callsign') && !$this->config->item('sc_hide_usermenu'))) { ?>
 									<li><a class="dropdown-item" href="<?php echo site_url('user/edit') . "/" . $this->session->userdata('user_id'); ?>" title="Account"><i class="fas fa-user"></i> <?= __("Account"); ?></a></li>
 								<?php } ?>
