@@ -526,7 +526,7 @@ $(document).ready(function () {
 			// You should set responseType as blob for binary responses
 
 			xhttp.responseType = 'blob';
-			xhttp.send($('#searchForm').serialize());
+			xhttp.send($('#searchForm').serialize()+"&de=" +$("#de").val());
 		}
 		$('#exportAdif').prop("disabled", false);
 	});

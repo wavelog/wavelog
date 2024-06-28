@@ -213,6 +213,7 @@ class Logbookadvanced extends CI_Controller {
 		$postdata = $this->input->post();
 		$postdata['user_id'] = (int)$this->session->userdata('user_id');
 		$postdata['qsoresults'] = 'All';
+		$postdata['de'] = explode(',', $postdata['de']);
 		$data['qsos'] = $this->logbookadvanced_model->getSearchResult($postdata);
 
 		$this->load->view('adif/data/exportall', $data);
