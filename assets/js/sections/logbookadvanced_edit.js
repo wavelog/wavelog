@@ -168,7 +168,7 @@ function saveBatchEditQsos(id_list) {
 		value = $("#editSatellite").val();
 		value2 = $("#editSatelliteMode").val();
 	}
-	if (column == 'sota' || column == 'pota' || column == 'wwff' || column == 'gridsquare' || column == 'comment' || column == 'operator' || column == 'qslvia') {
+	if (column == 'sota' || column == 'pota' || column == 'wwff' || column == 'gridsquare' || column == 'comment' || column == 'operator' || column == 'qslvia' || column == 'contest') {
 		value = $("#editTextInput").val();
 	}
 
@@ -241,7 +241,7 @@ function changeEditType(type) {
 		$('#editSatellite').show();
 		$('#editSatelliteMode').show();
 		$('#editSatelliteModeLabel').show();
-	} else if (type == "gridsquare" || type == "sota" || type == "wwff" || type == "operator" || type == "pota" || type == "comment" || type == "qslvia") {
+	} else if (type == "gridsquare" || type == "sota" || type == "wwff" || type == "operator" || type == "pota" || type == "comment" || type == "qslvia" || type == "contest") {
 		$('#editTextInput').show();
 	}
 }

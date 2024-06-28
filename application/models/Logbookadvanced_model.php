@@ -206,7 +206,12 @@ class Logbookadvanced_model extends CI_Model {
                                 $binding[] = trim($searchCriteria['sats']);
                         }
                 }
-        }
+		}
+
+		if ($searchCriteria['contest'] !== '') {
+			$conditions[] = "COL_CONTEST_ID like ?";
+			$binding[] = '%'.$searchCriteria['contest'].'%';
+		}
 
 		if (($searchCriteria['ids'] ?? '') !== '') {
 			$conditions[] = "qsos.COL_PRIMARY_KEY in (".implode(",",$searchCriteria['ids']).")";
