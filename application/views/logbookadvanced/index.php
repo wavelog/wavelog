@@ -468,8 +468,7 @@ $options = json_decode($options);
             <option value="5000">5000</option>
         </select>
 		<label class="me-2" for="de"><?= __("Location"); ?></label>
-		<select id="de" name="de" class="form-select form-select-sm me-2 w-auto">
-			<option value="All"><?= __("All"); ?></option>
+		<select id="de" name="de" multiple="multiple">
 			<?php foreach ($station_profile->result() as $station) { ?>
 				<option value="<?php echo $station->station_id; ?>"
 				<?php if ($station->station_id == $active_station_id) {

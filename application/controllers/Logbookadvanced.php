@@ -96,6 +96,7 @@ class Logbookadvanced extends CI_Controller {
 			'assets/js/leaflet/L.Terminator.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/leaflet/L.Terminator.js")),
 			'assets/js/leaflet/geocoding.js',
 			'assets/js/globe/globe.gl.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/globe/globe.gl.js")),
+			'assets/js/bootstrap-multiselect.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/bootstrap-multiselect.js")),
 		];
 
 		$this->load->view('interface_assets/header', $data);
@@ -212,6 +213,7 @@ class Logbookadvanced extends CI_Controller {
 		$postdata = $this->input->post();
 		$postdata['user_id'] = (int)$this->session->userdata('user_id');
 		$postdata['qsoresults'] = 'All';
+		$postdata['de'] = explode(',', $postdata['de']);
 		$data['qsos'] = $this->logbookadvanced_model->getSearchResult($postdata);
 
 		$this->load->view('adif/data/exportall', $data);
