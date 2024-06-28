@@ -152,6 +152,36 @@ function displayQso(id) {
     });
 }
 
+// used in edit_ajax.php
+function callbook_update(callsign) {
+
+    var border_color = '2px solid green';
+
+    $.ajax({
+        url: site_url + '/qso/get_callbook_data',
+        type: 'post',
+        data: {
+            callsign: callsign
+        },
+        dataType: 'json',
+        success: function (data) {
+            console.log(data);
+            $('#qth').val(data.city).css('border', border_color);
+            $('#dxcc_id').val(data.dxcc).css('border', border_color);
+            $('#locator').val(data.gridsquare).css('border', border_color);
+            // $('#image').val(data.image).css('border', border_color);  Not in use yet, but may in future
+            $('#iota_ref').val(data.iota).css('border', border_color);
+            $('#name').val(data.name).css('border', border_color);
+            $('#qsl-via').val(data.qslmgr).css('border', border_color);
+            $('#state').val(data.state).css('border', border_color);
+            $('#stationCntyInputEdit').val(data.us_county).css('border', border_color);
+        },
+        error: function () {
+            console.log("Sorry, something is wrong here");
+        },
+    });
+}
+
 function qso_delete(id, call) {
     BootstrapDialog.confirm({
         title: lang_general_word_danger,
