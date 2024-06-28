@@ -583,7 +583,7 @@ function mapGlobeQsos(form) {
 			type: 'post',
 			data: {
 				ids: id_list,
-				de: form.de.value
+				de: $('#de').val()
 			},
 			success: function(data) {
 				globemap(data);
@@ -599,7 +599,7 @@ function mapGlobeQsos(form) {
 				data: {
 					dateFrom: form.dateFrom.value,
 					dateTo: form.dateTo.value,
-					de: form.de.value,
+					de: $('#de').val(),
 					dx: form.dx.value,
 					mode: form.mode.value,
 					band: form.band.value,
