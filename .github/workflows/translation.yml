@@ -1,7 +1,7 @@
-name: Run the PO generator script
+name: Run the po generator script
 
 on:
-  workflow_dispatch:
+  push:
 
 jobs:
   build:
@@ -17,7 +17,7 @@ jobs:
     - name: Set up gettext
       run: sudo apt-get install -y gettext
 
-    - name: Run the PO generator script
+    - name: Run the po generator script
       run: bash po_gen.sh
 
     - name: Commit changes
@@ -25,7 +25,7 @@ jobs:
         git config --global user.name "github-actions"
         git config --global user.email "github-actions@github.com"
         git add .
-        git commit -m "Run po_gen.sh script to update translations (manually triggered)"
+        git commit -m "Run po_gen.sh script to update translation-files"
         git push
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

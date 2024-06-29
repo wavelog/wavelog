@@ -1,11 +1,11 @@
 name: Compile .mo files from changed .po files
 
 on: 
-  push:
-    paths:
-      - '**/*.po'
-    branches:
-      - 'dev'
+  workflow_dispatch:
+    # paths:
+    #   - '**/*.po'
+    # branches:
+    #   - 'dev'
 
 jobs:
   compile_mo:
@@ -42,7 +42,7 @@ jobs:
         git config --global user.email "github-actions@github.com"
         if [ -n "$(git status --porcelain)" ]; then
           git add $(git ls-files --modified | grep '\.mo$')
-          git commit -m "Compiled .mo files"
+          git commit -m "Compiled .mo files (manually triggered)"
           git push
         else
           echo "No changes to commit"
