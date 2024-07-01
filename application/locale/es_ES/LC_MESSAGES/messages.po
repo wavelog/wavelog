@@ -6,11 +6,10 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-01 05:26+0000\n"
+"POT-Creation-Date: 2024-07-01 05:28+0000\n"
 "PO-Revision-Date: 2024-06-28 20:16+0000\n"
 "Last-Translator: CieNTi <cienti@cienti.com>\n"
-"Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/es/>\n"
+"Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/main-translation/es/>\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -608,12 +607,8 @@ msgid "Edit Paper"
 msgstr ""
 
 #: application/controllers/Logbook.php:37
-msgid ""
-"No logbooks were found. You need to define a logbook under Station Logbooks! "
-"Do it here:"
-msgstr ""
-"No se encontraron libros de guardia. ¡Debe definir un libro de guardia en "
-"Libros de Guardia de Estación! Hágalo aquí:"
+msgid "No logbooks were found. You need to define a logbook under Station Logbooks! Do it here:"
+msgstr "No se encontraron libros de guardia. ¡Debe definir un libro de guardia en Libros de Guardia de Estación! Hágalo aquí:"
 
 #: application/controllers/Logbook.php:37
 #: application/views/stationsetup/stationsetup.php:18
@@ -1304,9 +1299,7 @@ msgstr "El correo de prueba ha fallado. Algo salió mal."
 
 #: application/controllers/Options.php:375
 msgid "Testmail sent. Email settings seem to be correct."
-msgstr ""
-"El correo de prueba fue enviado. La configuración de correo electrónico "
-"parece correcta."
+msgstr "El correo de prueba fue enviado. La configuración de correo electrónico parece correcta."
 
 #: application/controllers/Options.php:388
 #: application/controllers/Options.php:398
@@ -1447,9 +1440,7 @@ msgid "Incorrectly logged CQ zones"
 msgstr ""
 
 #: application/controllers/Search.php:70
-msgid ""
-"QSOs unconfirmed on LoTW, but the callsign has uploaded to LoTW after QSO "
-"date"
+msgid "QSOs unconfirmed on LoTW, but the callsign has uploaded to LoTW after QSO date"
 msgstr ""
 
 #: application/controllers/Station.php:35
@@ -1555,13 +1546,8 @@ msgstr ""
 
 #: application/controllers/Stationsetup.php:270
 #: application/views/stationsetup/stationsetup.php:55
-msgid ""
-"Are you sure you want to delete the following station logbook? You must re-"
-"link any locations linked here to another logbook.: "
-msgstr ""
-"¿Está seguro que desea eliminar el libro de guardia de estación a "
-"continuación? Deberá re-enlazar todas las localizaciones enlazadas aquí a "
-"otro Libro de Guardia: "
+msgid "Are you sure you want to delete the following station logbook? You must re-link any locations linked here to another logbook.: "
+msgstr "¿Está seguro que desea eliminar el libro de guardia de estación a continuación? Deberá re-enlazar todas las localizaciones enlazadas aquí a otro Libro de Guardia: "
 
 #: application/controllers/Stationsetup.php:280
 #: application/views/stationsetup/stationsetup.php:65
@@ -1575,8 +1561,7 @@ msgstr ""
 #: application/controllers/Stationsetup.php:341
 #: application/views/station_profile/index.php:69
 #: application/views/stationsetup/stationsetup.php:150
-msgid ""
-"Are you sure you want to make the following station the active station: "
+msgid "Are you sure you want to make the following station the active station: "
 msgstr "¿Está seguro que desea poner como activa la siguiente estación: "
 
 #: application/controllers/Stationsetup.php:341
@@ -1621,8 +1606,7 @@ msgstr "Editar"
 #: application/views/station_profile/index.php:99
 #: application/views/stationsetup/stationsetup.php:180
 msgid "Are you sure you want to delete all QSOs within this station profile?"
-msgstr ""
-"¿Está seguro que desea eliminar todos los QSOs en este perfil de estación?"
+msgstr "¿Está seguro que desea eliminar todos los QSOs en este perfil de estación?"
 
 #: application/controllers/Stationsetup.php:355
 #: application/views/station_profile/index.php:54
@@ -1644,9 +1628,7 @@ msgstr "Copiar"
 #: application/views/station_profile/index.php:105
 #: application/views/stationsetup/stationsetup.php:186
 #, php-format
-msgid ""
-"Are you sure you want delete station profile '%s'? This will delete all QSOs "
-"within this station profile."
+msgid "Are you sure you want delete station profile '%s'? This will delete all QSOs within this station profile."
 msgstr ""
 
 #: application/controllers/Stationsetup.php:364
@@ -1775,10 +1757,7 @@ msgid "User logged in"
 msgstr ""
 
 #: application/controllers/User.php:804
-msgid ""
-"Sorry. This instance is currently in maintenance mode. If this message "
-"appears unexpectedly or keeps showing up, please contact an administrator. "
-"Only administrators are currently allowed to log in."
+msgid "Sorry. This instance is currently in maintenance mode. If this message appears unexpectedly or keeps showing up, please contact an administrator. Only administrators are currently allowed to log in."
 msgstr ""
 
 #: application/controllers/User.php:807
@@ -1828,37 +1807,30 @@ msgstr ""
 msgid "QO-100 Dx Club Upload"
 msgstr ""
 
-#: application/models/Logbook_model.php:4135
 #: application/models/Logbook_model.php:4139
 msgid "QSO could not be matched"
 msgstr "QSOs que no concuerdan"
 
-#: application/models/Logbook_model.php:4141
 #: application/models/Logbook_model.php:4145
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confirmados por LoTW/Clublog/eQSL/Concurso"
 
-#: application/models/Logbook_model.php:4146
 #: application/models/Logbook_model.php:4150
 msgid "confirmed by award manager"
 msgstr "confirmados por el administrador del premio"
 
-#: application/models/Logbook_model.php:4149
 #: application/models/Logbook_model.php:4153
 msgid "confirmed by cross-check of DCL data"
 msgstr "confirmados al hacer chequeo cruzadoc on datos de DCL"
 
-#: application/models/Logbook_model.php:4152
 #: application/models/Logbook_model.php:4156
 msgid "confirmation pending"
 msgstr "pendiente de confirmación"
 
-#: application/models/Logbook_model.php:4155
 #: application/models/Logbook_model.php:4159
 msgid "unconfirmed"
 msgstr "sin confirmar"
 
-#: application/models/Logbook_model.php:4158
 #: application/models/Logbook_model.php:4162
 msgid "unknown"
 msgstr "desconocido"
@@ -2404,9 +2376,7 @@ msgstr "Marcar QSOs importadas como subidas a LoTW"
 #: application/views/adif/import.php:95 application/views/adif/import.php:105
 #: application/views/adif/import.php:115 application/views/adif/import.php:125
 msgid "Select if ADIF being imported does not contain this information."
-msgstr ""
-"Seleccione si el archivo ADIF que se va a importar no incluye esta "
-"información."
+msgstr "Seleccione si el archivo ADIF que se va a importar no incluye esta información."
 
 #: application/views/adif/import.php:103
 msgid "Mark imported QSOs as uploaded to HRDLog.net Logbook"
@@ -2418,26 +2388,19 @@ msgstr "Marcar QSOs importadas como subidas al libro de guardia de QRZ Logbook"
 
 #: application/views/adif/import.php:123
 msgid "Mark imported QSOs as uploaded to Clublog Logbook"
-msgstr ""
-"Marcar QSOs importadas como subidas al libro de guardia de Clublog Logbook"
+msgstr "Marcar QSOs importadas como subidas al libro de guardia de Clublog Logbook"
 
 #: application/views/adif/import.php:133
 msgid "Use DXCC information from ADIF"
 msgstr "Usar la información DXCC del ADIF"
 
 #: application/views/adif/import.php:135
-msgid ""
-"If not selected, Wavelog will attempt to determine DXCC information "
-"automatically."
-msgstr ""
-"Si no se selecciona, Wavelog intentará determinar la información DXCC "
-"automáticamente."
+msgid "If not selected, Wavelog will attempt to determine DXCC information automatically."
+msgstr "Si no se selecciona, Wavelog intentará determinar la información DXCC automáticamente."
 
 #: application/views/adif/import.php:143
 msgid "Always use login-callsign as operator-name on import"
-msgstr ""
-"Siempre use el indicativo usado para iniciar sesión como el nombre de "
-"operador al importar"
+msgstr "Siempre use el indicativo usado para iniciar sesión como el nombre de operador al importar"
 
 #: application/views/adif/import.php:152
 #: application/views/interface_assets/footer.php:21
@@ -2449,12 +2412,8 @@ msgid "Ignore Stationcallsign on import"
 msgstr "Ignorar el indicativo de la Estación al importar"
 
 #: application/views/adif/import.php:154
-msgid ""
-"If selected, Wavelog will try to import <b>all</b> QSO's of the ADIF, "
-"regardless if they match to the chosen station-location."
-msgstr ""
-"Si se selecciona, Wavelog intentará importar <b>todos</b> los QSOs del ADIF, "
-"sin importar si concuerdan con la estación/localización seleccionada."
+msgid "If selected, Wavelog will try to import <b>all</b> QSO's of the ADIF, regardless if they match to the chosen station-location."
+msgstr "Si se selecciona, Wavelog intentará importar <b>todos</b> los QSOs del ADIF, sin importar si concuerdan con la estación/localización seleccionada."
 
 #: application/views/adif/import.php:158 application/views/adif/import.php:273
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:54
@@ -2467,12 +2426,8 @@ msgid "Take your logbook file anywhere!"
 msgstr "¡Lleve su archivo de libro de guardia a cualquier lugar!"
 
 #: application/views/adif/import.php:166
-msgid ""
-"Exporting ADIFs allows you to import contacts into third party applications "
-"like LoTW, Awards or just for keeping a backup."
-msgstr ""
-"Exportar archivos ADIF le permite importar contactos en aplicaciones de "
-"terceros como LoTW, Diplomas o para simplemente tener una copia de seguridad."
+msgid "Exporting ADIFs allows you to import contacts into third party applications like LoTW, Awards or just for keeping a backup."
+msgstr "Exportar archivos ADIF le permite importar contactos en aplicaciones de terceros como LoTW, Diplomas o para simplemente tener una copia de seguridad."
 
 #: application/views/adif/import.php:176 application/views/adif/import.php:222
 #: application/views/cfd/index.php:15 application/views/csv/index.php:118
@@ -2519,8 +2474,7 @@ msgstr "Exportar todos los QSOs de satélite confirmados en LoTW"
 #: application/views/adif/import.php:220 application/views/hrdlog/export.php:74
 #: application/views/qrz/export.php:94 application/views/webadif/export.php:94
 msgid "If a date range is not selected then all QSOs will be marked!"
-msgstr ""
-"¡Si no selecciona un rango de fechas entonces todos los QSOs serán marcados!"
+msgstr "¡Si no selecciona un rango de fechas entonces todos los QSOs serán marcados!"
 
 #: application/views/adif/import.php:228
 msgid "Mark QSOs as exported to LoTW"
@@ -2528,11 +2482,7 @@ msgstr "Marcar QSOs como exportados a LoTW"
 
 #: application/views/adif/import.php:242
 #, php-format
-msgid ""
-"Go to %s and export your logbook with confirmed DOKs. To speed up the "
-"process you can select only DL QSOs to download (i.e. put 'DL' into Prefix "
-"List). The downloaded ADIF file can be uploaded here in order to update QSOs "
-"with DOK info."
+msgid "Go to %s and export your logbook with confirmed DOKs. To speed up the process you can select only DL QSOs to download (i.e. put 'DL' into Prefix List). The downloaded ADIF file can be uploaded here in order to update QSOs with DOK info."
 msgstr ""
 
 #: application/views/adif/import.php:249
@@ -2540,33 +2490,23 @@ msgid "Only import DOK data from QSOs confirmed on DCL."
 msgstr "Solo importar datos DOK de los QSO confirmados en DCL."
 
 #: application/views/adif/import.php:251
-msgid ""
-"Uncheck if you also want to update DOK with data from unconfirmed QSOs in "
-"DCL."
-msgstr ""
-"Si se deja desactivado, se actualizarán los datos DOK con datos de los QSO "
-"no confirmados en DCL."
+msgid "Uncheck if you also want to update DOK with data from unconfirmed QSOs in DCL."
+msgstr "Si se deja desactivado, se actualizarán los datos DOK con datos de los QSO no confirmados en DCL."
 
 #: application/views/adif/import.php:258
 msgid "Overwrites exisiting DOK in log by DCL (if different)."
 msgstr ""
 
 #: application/views/adif/import.php:260
-msgid ""
-"If checked Wavelog will forcibly overwrite existing DOK with DOK from DCL "
-"log."
-msgstr ""
-"Si está activo, Wavelog forzará la sobreescritura de los DOK existentes con "
-"los DOK desde el libro de DCL."
+msgid "If checked Wavelog will forcibly overwrite existing DOK with DOK from DCL log."
+msgstr "Si está activo, Wavelog forzará la sobreescritura de los DOK existentes con los DOK desde el libro de DCL."
 
 #: application/views/adif/import.php:267
 msgid "Ignore QSOs that cannot be matched."
 msgstr "Ignorar QSOs que no concuerden"
 
 #: application/views/adif/import.php:269
-msgid ""
-"If unchecked, information about QSOs which could not be found in Wavelog "
-"will be displayed."
+msgid "If unchecked, information about QSOs which could not be found in Wavelog will be displayed."
 msgstr ""
 
 #: application/views/adif/import_success.php:15
@@ -2590,12 +2530,8 @@ msgid "ADIF Errors"
 msgstr "Errores ADIF"
 
 #: application/views/adif/import_success.php:25
-msgid ""
-"You have ADIF errors, the QSOs have still been added but these fields have "
-"not been populated."
-msgstr ""
-"Tiene errores en su archivo ADIF. Los QSOs han sido adicionados, pero estos "
-"campos no han sido importados."
+msgid "You have ADIF errors, the QSOs have still been added but these fields have not been populated."
+msgstr "Tiene errores en su archivo ADIF. Los QSOs han sido adicionados, pero estos campos no han sido importados."
 
 #: application/views/adif/mark_lotw.php:12
 #: application/views/hrdlog/mark_hrdlog.php:12
@@ -2644,18 +2580,11 @@ msgid "API Keys"
 msgstr ""
 
 #: application/views/api/help.php:17
-msgid ""
-"The Wavelog API (Application Programming Interface) lets third party systems "
-"access Wavelog in a controlled way. Access to the API is managed via API "
-"keys."
+msgid "The Wavelog API (Application Programming Interface) lets third party systems access Wavelog in a controlled way. Access to the API is managed via API keys."
 msgstr ""
 
 #: application/views/api/help.php:18
-msgid ""
-"You will need to generate an API key for each tool you wish to use (e.g. "
-"WLgate). Generate a read-write key if the application needs to send data to "
-"Wavelog. Generate a read-only key if the application only needs to obtain "
-"data from Wavelog."
+msgid "You will need to generate an API key for each tool you wish to use (e.g. WLgate). Generate a read-write key if the application needs to send data to Wavelog. Generate a read-only key if the application only needs to obtain data from Wavelog."
 msgstr ""
 
 #: application/views/api/help.php:19
@@ -2685,9 +2614,7 @@ msgid "Info"
 msgstr "Información"
 
 #: application/views/api/help.php:20
-msgid ""
-"It's good practice to delete a key if you are no longer using the associated "
-"application."
+msgid "It's good practice to delete a key if you are no longer using the associated application."
 msgstr ""
 
 #: application/views/api/help.php:27
@@ -2809,17 +2736,11 @@ msgstr ""
 
 #: application/views/awards/counties/index.php:8
 #, php-format
-msgid ""
-"The United States of America Counties Award (USA-CA), sponsored by CQ "
-"magazine, is issued for confirmed two-way radio contacts with specified "
-"numbers of U.S. counties under rules and conditions you can find %s."
+msgid "The United States of America Counties Award (USA-CA), sponsored by CQ magazine, is issued for confirmed two-way radio contacts with specified numbers of U.S. counties under rules and conditions you can find %s."
 msgstr ""
 
 #: application/views/awards/counties/index.php:9
-msgid ""
-"USA-CA is available to all licensed amateurs worldwide and is issued to "
-"individuals for all county contacts made, regardless of callsigns used, "
-"operating locations, or dates."
+msgid "USA-CA is available to all licensed amateurs worldwide and is issued to individuals for all county contacts made, regardless of callsigns used, operating locations, or dates."
 msgstr ""
 
 #: application/views/awards/counties/index.php:10
@@ -2864,16 +2785,11 @@ msgid "CQ Magazine WAZ Award"
 msgstr ""
 
 #: application/views/awards/cq/index.php:19
-msgid ""
-"The CQ Magazine is located in the US and one of the most popular amateur "
-"radio magazines in the world. The magazine first appeared in January 1945 "
-"and focuses on awards and the practical aspects of amateur radio."
+msgid "The CQ Magazine is located in the US and one of the most popular amateur radio magazines in the world. The magazine first appeared in January 1945 and focuses on awards and the practical aspects of amateur radio."
 msgstr ""
 
 #: application/views/awards/cq/index.php:20
-msgid ""
-"The WAZ Award stands for 'Worked All Zones' and requires radio contacts to "
-"all 40 CQ Zones along with the corresponding confirmation."
+msgid "The WAZ Award stands for 'Worked All Zones' and requires radio contacts to all 40 CQ Zones along with the corresponding confirmation."
 msgstr ""
 
 #: application/views/awards/cq/index.php:21
@@ -3071,29 +2987,17 @@ msgid "DOK Award"
 msgstr ""
 
 #: application/views/awards/dok/index.php:8
-msgid ""
-"Germany extends over 630 km from East to West and nearly 900 km from North "
-"to South. Around 70,000 of Germany's 82 million inhabitants are licensed "
-"hams, with more than 40,000 of them being members of DARC. DOK is a system "
-"that provides individual local chapters with an identifier and means "
-"'Deutscher Ortsverband Kenner' (English: 'German Local Association "
-"Identifier')."
+msgid "Germany extends over 630 km from East to West and nearly 900 km from North to South. Around 70,000 of Germany's 82 million inhabitants are licensed hams, with more than 40,000 of them being members of DARC. DOK is a system that provides individual local chapters with an identifier and means 'Deutscher Ortsverband Kenner' (English: 'German Local Association Identifier')."
 msgstr ""
 
 #: application/views/awards/dok/index.php:9
-msgid ""
-"The DOK consists of a letter for the district and a two-digit number for the "
-"local chapter, like P03 Friedrichshafen (city of the 'Hamradio exhibition') "
-"or F41 Baunatal (location of the DARC headquarters). Note: A zero in a DOK "
-"is a common mistake, often being logged as the letter O."
+msgid "The DOK consists of a letter for the district and a two-digit number for the local chapter, like P03 Friedrichshafen (city of the 'Hamradio exhibition') or F41 Baunatal (location of the DARC headquarters). Note: A zero in a DOK is a common mistake, often being logged as the letter O."
 msgstr ""
 
 #: application/views/awards/dok/index.php:10
 #, php-format
 msgctxt "uses 'DARC Website' and 'here'"
-msgid ""
-"This information is provided by the %s. Information about the DOK Awards and "
-"its rules can be found %s."
+msgid "This information is provided by the %s. Information about the DOK Awards and its rules can be found %s."
 msgstr ""
 
 #: application/views/awards/dok/index.php:20
@@ -3136,10 +3040,7 @@ msgstr ""
 
 #: application/views/awards/dxcc/index.php:15
 #, php-format
-msgid ""
-"DXCC stands for 'DX Century Club,' an award based on worked countries. The "
-"DXCC List is based on an article created in 1935 by Clinton B. DeSoto, "
-"W1CBD, titled %s."
+msgid "DXCC stands for 'DX Century Club,' an award based on worked countries. The DXCC List is based on an article created in 1935 by Clinton B. DeSoto, W1CBD, titled %s."
 msgstr ""
 
 #: application/views/awards/dxcc/index.php:16
@@ -3152,12 +3053,7 @@ msgid "You can find all information about the DXCC Award on the %s."
 msgstr ""
 
 #: application/views/awards/dxcc/index.php:17
-msgid ""
-"Important Note: Over time, the criteria for the DXCC List have changed. The "
-"List remains unchanged until an entity no longer satisfies the criteria "
-"under which it was added, at which time it is moved to the Deleted List. You "
-"will find Deleted DXCC entities also in the lists on Wavelog. Be aware that "
-"these DXCC entities are outdated and no longer valid."
+msgid "Important Note: Over time, the criteria for the DXCC List have changed. The List remains unchanged until an entity no longer satisfies the criteria under which it was added, at which time it is moved to the Deleted List. You will find Deleted DXCC entities also in the lists on Wavelog. Be aware that these DXCC entities are outdated and no longer valid."
 msgstr ""
 
 #: application/views/awards/dxcc/index.php:32
@@ -3249,16 +3145,11 @@ msgid "Fred Fish Memorial Award"
 msgstr ""
 
 #: application/views/awards/ffma/index.php:9
-msgid ""
-"The Fred Fish Memorial Award was created in honor of Fred Fish, W5FF (SK), "
-"who was the first amateur to have worked and confirmed all 488 Maidenhead "
-"grid squares in the 48 contiguous United States on 6 Meters."
+msgid "The Fred Fish Memorial Award was created in honor of Fred Fish, W5FF (SK), who was the first amateur to have worked and confirmed all 488 Maidenhead grid squares in the 48 contiguous United States on 6 Meters."
 msgstr ""
 
 #: application/views/awards/ffma/index.php:10
-msgid ""
-"The award will be given to any amateur who can duplicate W5FF's "
-"accomplishment."
+msgid "The award will be given to any amateur who can duplicate W5FF's accomplishment."
 msgstr ""
 
 #: application/views/awards/ffma/index.php:11
@@ -3271,24 +3162,12 @@ msgid "US Gridmaster Award"
 msgstr ""
 
 #: application/views/awards/gridmaster/index.php:8
-msgid ""
-"The GridMaster Award is the most prestigious AMSAT award, first introduced "
-"in 2014 by the Star Comm Group. It is available to all amateur radio "
-"operators worldwide who manage to work all 488 grid squares in the USA via "
-"satellite and can provide QSL confirmations for each contact."
+msgid "The GridMaster Award is the most prestigious AMSAT award, first introduced in 2014 by the Star Comm Group. It is available to all amateur radio operators worldwide who manage to work all 488 grid squares in the USA via satellite and can provide QSL confirmations for each contact."
 msgstr ""
 
 #: application/views/awards/gridmaster/index.php:9
 #, php-format
-msgid ""
-"Official information from the %s: Two-way communication must be established "
-"via amateur satellite with each grid. There is no minimum signal report "
-"required. Contacts must be made from the same location or from locations no "
-"two of which are more than 200 kilometers apart. The applicant's attestation "
-"in the award application serves as affirmation of abidance by the distance "
-"rule. Individuals may apply for and be granted multiple GridMaster awards "
-"when achieved from another location, which is in a different 200-kilometer "
-"circle."
+msgid "Official information from the %s: Two-way communication must be established via amateur satellite with each grid. There is no minimum signal report required. Contacts must be made from the same location or from locations no two of which are more than 200 kilometers apart. The applicant's attestation in the award application serves as affirmation of abidance by the distance rule. Individuals may apply for and be granted multiple GridMaster awards when achieved from another location, which is in a different 200-kilometer circle."
 msgstr ""
 
 #: application/views/awards/gridmaster/index.php:9
@@ -3304,18 +3183,11 @@ msgid "HELVETIA 26 | SWITZERLAND AWARD"
 msgstr ""
 
 #: application/views/awards/helvetia/index.php:19
-msgid ""
-"The USKA (Union of Swiss Shortwave Amateurs) sponsors two awards, the "
-"HELVETIA 26 (H26) Award and the SWITZERLAND Award, aimed at promoting "
-"activities on the bands by encouraging contacts across as many Swiss cantons "
-"as possible on multiple bands."
+msgid "The USKA (Union of Swiss Shortwave Amateurs) sponsors two awards, the HELVETIA 26 (H26) Award and the SWITZERLAND Award, aimed at promoting activities on the bands by encouraging contacts across as many Swiss cantons as possible on multiple bands."
 msgstr ""
 
 #: application/views/awards/helvetia/index.php:20
-msgid ""
-"These awards come in two versions: one for HF bands and the other for VHF "
-"(including SHF and UHF) bands. Valid connections for these awards date back "
-"to January 1, 1980"
+msgid "These awards come in two versions: one for HF bands and the other for VHF (including SHF and UHF) bands. Valid connections for these awards date back to January 1, 1980"
 msgstr ""
 
 #: application/views/awards/helvetia/index.php:21
@@ -3346,27 +3218,11 @@ msgid "IOTA Awards"
 msgstr ""
 
 #: application/views/awards/iota/index.php:17
-msgid ""
-"IOTA is an exciting and innovative activity program that has captured the "
-"interest of thousands of radio amateurs worldwide. Established in 1964, it "
-"promotes radio contacts with stations located on islands around the world to "
-"enhance the experience of all those active on the amateur bands. To achieve "
-"this, it draws on the widespread mystique surrounding islands."
+msgid "IOTA is an exciting and innovative activity program that has captured the interest of thousands of radio amateurs worldwide. Established in 1964, it promotes radio contacts with stations located on islands around the world to enhance the experience of all those active on the amateur bands. To achieve this, it draws on the widespread mystique surrounding islands."
 msgstr ""
 
 #: application/views/awards/iota/index.php:18
-msgid ""
-"It is administered by Islands On The Air (IOTA) Ltd (referred to as IOTA "
-"Management) in partnership with the Radio Society of Great Britain (RSGB). "
-"IOTA Management has grouped the world's islands into approximately 1200 "
-"'IOTA groups,' each having varying numbers of 'counters,' which are "
-"qualifying islands. These listings are published in the IOTA Directory and "
-"on the IOTA website. The objective for the IOTA Island Chaser is to make "
-"radio contact with at least one counter in as many of these groups as "
-"possible. The program has a well-defined set of rules and encourages "
-"friendly competition among chasers by publishing participant performance in "
-"an Honor Roll and annual listings, as well as recognizing it with "
-"certificates and prestigious awards."
+msgid "It is administered by Islands On The Air (IOTA) Ltd (referred to as IOTA Management) in partnership with the Radio Society of Great Britain (RSGB). IOTA Management has grouped the world's islands into approximately 1200 'IOTA groups,' each having varying numbers of 'counters,' which are qualifying islands. These listings are published in the IOTA Directory and on the IOTA website. The objective for the IOTA Island Chaser is to make radio contact with at least one counter in as many of these groups as possible. The program has a well-defined set of rules and encourages friendly competition among chasers by publishing participant performance in an Honor Roll and annual listings, as well as recognizing it with certificates and prestigious awards."
 msgstr ""
 
 #: application/views/awards/iota/index.php:19
@@ -3413,11 +3269,7 @@ msgid "Deleted"
 msgstr ""
 
 #: application/views/awards/itu/index.php:19
-msgid ""
-"The Classic Worked ITU Zones award may be claimed by producing evidence of "
-"having contacted land based amateur radio stations in at least 70 of the 75 "
-"broadcasting zones as defined by the International Telecommunications Union "
-"(ITU)."
+msgid "The Classic Worked ITU Zones award may be claimed by producing evidence of having contacted land based amateur radio stations in at least 70 of the 75 broadcasting zones as defined by the International Telecommunications Union (ITU)."
 msgstr ""
 
 #: application/views/awards/itu/index.php:20
@@ -3449,17 +3301,11 @@ msgid "JCC - Japan Century Cities Award"
 msgstr ""
 
 #: application/views/awards/jcc/index.php:17
-msgid ""
-"May be claimed for having contacted (heard) and received a QSL card from an "
-"amateur station located in each of at least 100 different cities of Japan."
+msgid "May be claimed for having contacted (heard) and received a QSL card from an amateur station located in each of at least 100 different cities of Japan."
 msgstr ""
 
 #: application/views/awards/jcc/index.php:18
-msgid ""
-"JCC-200, 300, 400, 500, 600, 700 and 800 will be issued as separate awards. "
-"A list of QSL cards should be arranged in order of JCC reference number, "
-"however names of city may be omitted. An additional sticker will be issued "
-"at every 50 contacts like 150, 250, 350, 450, 550, 650, 750 cities."
+msgid "JCC-200, 300, 400, 500, 600, 700 and 800 will be issued as separate awards. A list of QSL cards should be arranged in order of JCC reference number, however names of city may be omitted. An additional sticker will be issued at every 50 contacts like 150, 250, 350, 450, 550, 650, 750 cities."
 msgstr ""
 
 #: application/views/awards/jcc/index.php:115
@@ -3501,25 +3347,17 @@ msgid "POTA Awards"
 msgstr ""
 
 #: application/views/awards/pota/index.php:8
-msgid ""
-"Parks on the Air® (POTA) started in early 2017 when the ARRL's National "
-"Parks on the Air special event ended. A group of volunteers wanted to "
-"continue the fun beyond the one-year event, and thus, POTA was born."
+msgid "Parks on the Air® (POTA) started in early 2017 when the ARRL's National Parks on the Air special event ended. A group of volunteers wanted to continue the fun beyond the one-year event, and thus, POTA was born."
 msgstr ""
 
 #: application/views/awards/pota/index.php:9
-msgid ""
-"POTA works similarly to SOTA, with Activators and Hunters. For the awards, "
-"there are several categories based on the number of parks, geographic areas, "
-"and more."
+msgid "POTA works similarly to SOTA, with Activators and Hunters. For the awards, there are several categories based on the number of parks, geographic areas, and more."
 msgstr ""
 
 #: application/views/awards/pota/index.php:10
 #, php-format
 msgctxt "uses 'the website'"
-msgid ""
-"For more information about the available awards and categories, please visit "
-"the %s."
+msgid "For more information about the available awards and categories, please visit the %s."
 msgstr ""
 
 #: application/views/awards/pota/index.php:31
@@ -3540,23 +3378,15 @@ msgid "SIG Information"
 msgstr ""
 
 #: application/views/awards/sig/index.php:8
-msgid ""
-"The SIG or Signature Category provides the possibility to use any kind of "
-"'Award Signature' for awards that are not implemented in Wavelog."
+msgid "The SIG or Signature Category provides the possibility to use any kind of 'Award Signature' for awards that are not implemented in Wavelog."
 msgstr ""
 
 #: application/views/awards/sig/index.php:9
-msgid ""
-"The reason for this is that the common ADIF format provides only a few "
-"dedicated fields for certain awards. SIG still makes it possible to use and "
-"evaluate all other types of signature markers."
+msgid "The reason for this is that the common ADIF format provides only a few dedicated fields for certain awards. SIG still makes it possible to use and evaluate all other types of signature markers."
 msgstr ""
 
 #: application/views/awards/sig/index.php:10
-msgid ""
-"In the QSO processing, you will find two fields: 'SIG' contains the actual "
-"marker, which is also visible in the award evaluation, and 'SIG INFO,' which "
-"contains a description of the signature. Both fields are freely customizable."
+msgid "In the QSO processing, you will find two fields: 'SIG' contains the actual marker, which is also visible in the award evaluation, and 'SIG INFO,' which contains a description of the signature. Both fields are freely customizable."
 msgstr ""
 
 #: application/views/awards/sig/index.php:21
@@ -3610,20 +3440,11 @@ msgid "SOTA Awards"
 msgstr ""
 
 #: application/views/awards/sota/index.php:8
-msgid ""
-"SOTA (Summits On The Air) is an award scheme for radio amateurs that "
-"encourages portable operation in mountainous areas."
+msgid "SOTA (Summits On The Air) is an award scheme for radio amateurs that encourages portable operation in mountainous areas."
 msgstr ""
 
 #: application/views/awards/sota/index.php:9
-msgid ""
-"It is fully operational in nearly a hundred countries worldwide. Each "
-"country has its own Association that defines the recognized SOTA summits "
-"within that Association. Each summit earns the activators and chasers a "
-"score related to the height of the summit. Certificates are available for "
-"various scores, leading to the prestigious 'Mountain Goat' and 'Shack Sloth' "
-"trophies. An Honor Roll for Activators and Chasers is maintained in the SOTA "
-"online database."
+msgid "It is fully operational in nearly a hundred countries worldwide. Each country has its own Association that defines the recognized SOTA summits within that Association. Each summit earns the activators and chasers a score related to the height of the summit. Certificates are available for various scores, leading to the prestigious 'Mountain Goat' and 'Shack Sloth' trophies. An Honor Roll for Activators and Chasers is maintained in the SOTA online database."
 msgstr ""
 
 #: application/views/awards/vucc/index.php:7
@@ -3631,9 +3452,7 @@ msgid "VUCC - VHF/UHF Century Club Award"
 msgstr ""
 
 #: application/views/awards/vucc/index.php:8
-msgid ""
-"The VHF/UHF Century Club Award is given for a minimum number of worked and "
-"confirmed gridsquares on a desired band."
+msgid "The VHF/UHF Century Club Award is given for a minimum number of worked and confirmed gridsquares on a desired band."
 msgstr ""
 
 #: application/views/awards/vucc/index.php:9
@@ -3658,15 +3477,11 @@ msgid "WAB - Worked All Britain Award"
 msgstr ""
 
 #: application/views/awards/wab/index.php:13
-msgid ""
-"WAB, Worked All Britain squares in Amateur Radio, encourages licensed ham "
-"radio operators to work all the squares in Great Britain."
+msgid "WAB, Worked All Britain squares in Amateur Radio, encourages licensed ham radio operators to work all the squares in Great Britain."
 msgstr ""
 
 #: application/views/awards/wab/index.php:14
-msgid ""
-"May be claimed for having contacted an amateur station located in the "
-"required amount of squares, described on the page linked below."
+msgid "May be claimed for having contacted an amateur station located in the required amount of squares, described on the page linked below."
 msgstr ""
 
 #: application/views/awards/wab/index.php:109
@@ -3682,17 +3497,11 @@ msgid "WAJA - Worked All Japan prefectures Award"
 msgstr ""
 
 #: application/views/awards/waja/index.php:18
-msgid ""
-"WAJA, Worked All Japan prefectures in Amateur Radio, encourages licensed ham "
-"radio operators to work all the prefectures in Japan."
+msgid "WAJA, Worked All Japan prefectures in Amateur Radio, encourages licensed ham radio operators to work all the prefectures in Japan."
 msgstr ""
 
 #: application/views/awards/waja/index.php:19
-msgid ""
-"May be claimed for having contacted (heard) and received a QSL card from an "
-"amateur station located in each of the 47 prefectures of Japan. A list of "
-"QSL cards should be arranged in order of WAJA (HAJA) reference number, "
-"however names of prefectures may be omitted."
+msgid "May be claimed for having contacted (heard) and received a QSL card from an amateur station located in each of the 47 prefectures of Japan. A list of QSL cards should be arranged in order of WAJA (HAJA) reference number, however names of prefectures may be omitted."
 msgstr ""
 
 #: application/views/awards/waja/index.php:116
@@ -3708,20 +3517,11 @@ msgid "WAS Award"
 msgstr ""
 
 #: application/views/awards/was/index.php:19
-msgid ""
-"ARRL's most popular award is the Worked All States Award. Thousands upon "
-"thousands of awards have been issued to hams around the world. In ARRL's "
-"101st year, they have redesigned the certificates and the program in hopes "
-"of streamlining and improving the award program."
+msgid "ARRL's most popular award is the Worked All States Award. Thousands upon thousands of awards have been issued to hams around the world. In ARRL's 101st year, they have redesigned the certificates and the program in hopes of streamlining and improving the award program."
 msgstr ""
 
 #: application/views/awards/was/index.php:20
-msgid ""
-"The WAS (Worked All States) Award is available to all amateurs worldwide who "
-"submit proof with written confirmation of contacts with each of the 50 "
-"states of the United States of America. Amateurs in the U.S. and its "
-"possessions must be members of ARRL to apply for a WAS. Applicants from "
-"outside the U.S. are exempt from this requirement."
+msgid "The WAS (Worked All States) Award is available to all amateurs worldwide who submit proof with written confirmation of contacts with each of the 50 states of the United States of America. Amateurs in the U.S. and its possessions must be members of ARRL to apply for a WAS. Applicants from outside the U.S. are exempt from this requirement."
 msgstr ""
 
 #: application/views/awards/was/index.php:21
@@ -3739,17 +3539,11 @@ msgid "WWFF - World Wide Flora and Fauna Award"
 msgstr ""
 
 #: application/views/awards/wwff/index.php:8
-msgid ""
-"WWFF, World Wide Flora and Fauna in Amateur Radio, encourages licensed ham "
-"radio operators to leave their shacks and operate portable in Protected "
-"Flora & Fauna areas (PFF) worldwide."
+msgid "WWFF, World Wide Flora and Fauna in Amateur Radio, encourages licensed ham radio operators to leave their shacks and operate portable in Protected Flora & Fauna areas (PFF) worldwide."
 msgstr ""
 
 #: application/views/awards/wwff/index.php:9
-msgid ""
-"More than 26,000 Protected Flora & Fauna (PFF) areas worldwide are already "
-"registered in the WWFF Directory. Hunters and Activators can apply for "
-"colorful awards, both globally and nationally."
+msgid "More than 26,000 Protected Flora & Fauna (PFF) areas worldwide are already registered in the WWFF Directory. Hunters and Activators can apply for colorful awards, both globally and nationally."
 msgstr ""
 
 #: application/views/awards/wwff/index.php:31
@@ -3762,8 +3556,7 @@ msgid "WWFF Reference"
 msgstr "Referencia WWFF"
 
 #: application/views/backup/adif_view.php:7
-msgid ""
-"The backup of your log completed successfully. The output can be found at"
+msgid "The backup of your log completed successfully. The output can be found at"
 msgstr ""
 
 #: application/views/backup/adif_view.php:9
@@ -3773,20 +3566,15 @@ msgstr ""
 
 #: application/views/backup/adif_view.php:13
 #: application/views/backup/notes_view.php:13
-msgid ""
-"Something went wrong during the backup process. Check that the backup folder "
-"exists and is writeable by your web server user / group."
+msgid "Something went wrong during the backup process. Check that the backup folder exists and is writeable by your web server user / group."
 msgstr ""
 
 #: application/views/backup/main.php:17
-msgid ""
-"Some of the data stored in Wavelog can be exported so that you can keep a "
-"backup copy elsewhere."
+msgid "Some of the data stored in Wavelog can be exported so that you can keep a backup copy elsewhere."
 msgstr ""
 
 #: application/views/backup/main.php:18
-msgid ""
-"It's recommended to create backups on a regular basis to protect your data."
+msgid "It's recommended to create backups on a regular basis to protect your data."
 msgstr ""
 
 #: application/views/backup/main.php:19
@@ -3798,8 +3586,7 @@ msgid "Backup Notes"
 msgstr ""
 
 #: application/views/backup/notes_view.php:7
-msgid ""
-"The backup of your notes completed successfully. The output can be found at"
+msgid "The backup of your notes completed successfully. The output can be found at"
 msgstr ""
 
 #: application/views/bandmap/index.php:15 application/views/bandmap/list.php:49
@@ -3888,20 +3675,12 @@ msgid "Frequency for CW QRG in band (must be in Hz)"
 msgstr "Frecuencia para el QRG de CW en la banda (debe ser en Hz)"
 
 #: application/views/bands/index.php:36
-msgid ""
-"Using the band list you can control which bands are shown when creating a "
-"new QSO."
-msgstr ""
-"Usando la lista de bandas puede controlar qué bandas se muestran cuando se "
-"crea un nuevo QSO."
+msgid "Using the band list you can control which bands are shown when creating a new QSO."
+msgstr "Usando la lista de bandas puede controlar qué bandas se muestran cuando se crea un nuevo QSO."
 
 #: application/views/bands/index.php:39
-msgid ""
-"Active bands will be shown in the QSO 'Band' drop-down, while inactive bands "
-"will be hidden and cannot be selected."
-msgstr ""
-"Las bandas activas se mostrarán en la lista desplegable de 'Bandas' en QSO, "
-"mientras que las bandas inactivas se ocultarán y no pueden ser seleccionadas."
+msgid "Active bands will be shown in the QSO 'Band' drop-down, while inactive bands will be hidden and cannot be selected."
+msgstr "Las bandas activas se mostrarán en la lista desplegable de 'Bandas' en QSO, mientras que las bandas inactivas se ocultarán y no pueden ser seleccionadas."
 
 #: application/views/bands/index.php:56 application/views/qso/edit_ajax.php:350
 #: application/views/qso/index.php:248 application/views/qso/index.php:494
@@ -3941,8 +3720,7 @@ msgstr "Cerrar"
 
 #: application/views/bands/index.php:145
 msgid "Warning! Are you sure you want to delete the following band: "
-msgstr ""
-"¡Advertencia! ¿Está seguro que desea eliminar la banda a continuación: "
+msgstr "¡Advertencia! ¿Está seguro que desea eliminar la banda a continuación: "
 
 #: application/views/bands/index.php:146
 msgid "Warning! Are you sure you want to activate all bands?"
@@ -4177,20 +3955,12 @@ msgid "Next Week"
 msgstr ""
 
 #: application/views/contesting/add.php:16
-msgid ""
-"Using the contest list, you can control which Contests are shown when "
-"logging QSOs in a contest."
-msgstr ""
-"Usando la lista de concursos, puede controlar qué Concursos se muestran "
-"cuando se registran QSOs en un concurso."
+msgid "Using the contest list, you can control which Contests are shown when logging QSOs in a contest."
+msgstr "Usando la lista de concursos, puede controlar qué Concursos se muestran cuando se registran QSOs en un concurso."
 
 #: application/views/contesting/add.php:19
-msgid ""
-"Active contests will be shown in the Contest Name drop-down, while inactive "
-"contests will be hidden and cannot be selected."
-msgstr ""
-"Los concursos activos se mostrarán en la lista desplegable de Nombre de "
-"Concurso, sin embargo los inactivos están ocultos y no se pueden seleccionar."
+msgid "Active contests will be shown in the Contest Name drop-down, while inactive contests will be hidden and cannot be selected."
+msgstr "Los concursos activos se mostrarán en la lista desplegable de Nombre de Concurso, sin embargo los inactivos están ocultos y no se pueden seleccionar."
 
 #: application/views/contesting/add.php:26
 #: application/views/contesting/create.php:30
@@ -4467,15 +4237,11 @@ msgid "How it works"
 msgstr ""
 
 #: application/views/cron/index.php:15
-msgid ""
-"The Cron Manager assists the administrator in managing cron jobs without "
-"requiring CLI access."
+msgid "The Cron Manager assists the administrator in managing cron jobs without requiring CLI access."
 msgstr ""
 
 #: application/views/cron/index.php:18
-msgid ""
-"To execute cron jobs based on the data below, remove all old cron jobs and "
-"create a new one:"
+msgid "To execute cron jobs based on the data below, remove all old cron jobs and create a new one:"
 msgstr ""
 
 #: application/views/cron/index.php:27 application/views/cron/index.php:31
@@ -4530,22 +4296,16 @@ msgid "Your Mastercron isn't running."
 msgstr ""
 
 #: application/views/cron/index.php:99
-msgid ""
-"Copy the cron above to a external cron service or into your server's cron to "
-"use this cron manager."
+msgid "Copy the cron above to a external cron service or into your server's cron to use this cron manager."
 msgstr ""
 
 #: application/views/cron/index.php:100
-msgid ""
-"On a basic linux server with shell access use this command to edit your "
-"crons:"
+msgid "On a basic linux server with shell access use this command to edit your crons:"
 msgstr ""
 
 #: application/views/cron/index.php:107
 #, php-format
-msgid ""
-"You need to upgrade your PHP version. Minimum version is %s. Your Version is "
-"%s"
+msgid "You need to upgrade your PHP version. Minimum version is %s. Your Version is %s"
 msgstr ""
 
 #: application/views/csv/index.php:7
@@ -4716,11 +4476,8 @@ msgid "RSTR"
 msgstr ""
 
 #: application/views/dashboard/index.php:56
-msgid ""
-"You need to upgrade your PHP version. Minimum version is 7.4. Your version is"
-msgstr ""
-"Necesita actualizar su versión de PHP. La versión mínima es 7.4. Su versión "
-"es "
+msgid "You need to upgrade your PHP version. Minimum version is 7.4. Your version is"
+msgstr "Necesita actualizar su versión de PHP. La versión mínima es 7.4. Su versión es "
 
 #: application/views/dashboard/index.php:63
 #, php-format
@@ -4756,9 +4513,7 @@ msgid "Attention: you need to set an active station location."
 msgstr "Atención: Debe configurar un perfil de estación activo."
 
 #: application/views/dashboard/index.php:110
-msgid ""
-"You have themes without defined theme mode. Please ask the admin to edit the "
-"themes."
+msgid "You have themes without defined theme mode. Please ask the admin to edit the themes."
 msgstr ""
 
 #: application/views/dashboard/index.php:119
@@ -4928,9 +4683,7 @@ msgid "Current streak (continuous days with QSOs)"
 msgstr ""
 
 #: application/views/dayswithqso/index.php:101
-msgid ""
-"If you make a QSO today, you can continue to extend your streak... or else "
-"your current streak will be broken!"
+msgid "If you make a QSO today, you can continue to extend your streak... or else your current streak will be broken!"
 msgstr ""
 
 #: application/views/dayswithqso/index.php:122
@@ -4998,9 +4751,7 @@ msgid "Folder Permissions"
 msgstr ""
 
 #: application/views/debug/index.php:95
-msgid ""
-"This verifies that the folders used by Wavelog have read and write "
-"permissions by PHP."
+msgid "This verifies that the folders used by Wavelog have read and write permissions by PHP."
 msgstr ""
 
 #: application/views/debug/index.php:101 application/views/debug/index.php:112
@@ -5027,9 +4778,7 @@ msgid "Please edit your %s File:"
 msgstr ""
 
 #: application/views/debug/index.php:156
-msgid ""
-"Go to your application/config Folder and compare config.sample.php with your "
-"config.php"
+msgid "Go to your application/config Folder and compare config.sample.php with your config.php"
 msgstr ""
 
 #: application/views/debug/index.php:157
@@ -5050,9 +4799,7 @@ msgid "Migrate Userdata"
 msgstr ""
 
 #: application/views/debug/index.php:172
-msgid ""
-"Here you can migrate existing QSL cards and eQSL cards to the new userdata "
-"folder."
+msgid "Here you can migrate existing QSL cards and eQSL cards to the new userdata folder."
 msgstr ""
 
 #: application/views/debug/index.php:185
@@ -5163,8 +4910,7 @@ msgstr ""
 #: application/views/debug/index.php:498
 #, php-format
 msgid "The Database contains %d QSO without a station-profile (location)"
-msgid_plural ""
-"The Database contains %d QSOs without a station-profile (location)"
+msgid_plural "The Database contains %d QSOs without a station-profile (location)"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -5290,12 +5036,8 @@ msgid "DX Atlas Export"
 msgstr "Exportación DX Atlas"
 
 #: application/views/dxatlas/index.php:7
-msgid ""
-"Export your logbook for use in DX Atlas to display worked / confirmed "
-"gridsquares."
-msgstr ""
-"Exporte su libro de guardias para su uso en DX Atlas para mostrar "
-"gridsquares trabajados / confirmados."
+msgid "Export your logbook for use in DX Atlas to display worked / confirmed gridsquares."
+msgstr "Exporte su libro de guardias para su uso en DX Atlas para mostrar gridsquares trabajados / confirmados."
 
 #: application/views/dxatlas/index.php:11 application/views/kml/index.php:11
 msgid "Only QSOs with a gridsquare defined will be exported!"
@@ -5365,9 +5107,7 @@ msgid "There are no QSO confirmations waiting for you at eQSL.cc"
 msgstr ""
 
 #: application/views/eqsl/download.php:31
-msgid ""
-"Below is a table of QSOs that have been confirmed on eQSL but QSL images "
-"have not been downloaded yet."
+msgid "Below is a table of QSOs that have been confirmed on eQSL but QSL images have not been downloaded yet."
 msgstr ""
 
 #: application/views/eqsl/download.php:43
@@ -5379,23 +5119,15 @@ msgid "View/Download"
 msgstr ""
 
 #: application/views/eqsl/download.php:71 application/views/eqsl/import.php:50
-msgid ""
-"Wavelog will use the eQSL credentials from your Wavelog user profile to "
-"connect to eQSL and download confirmations."
+msgid "Wavelog will use the eQSL credentials from your Wavelog user profile to connect to eQSL and download confirmations."
 msgstr ""
 
 #: application/views/eqsl/download.php:73
-msgid ""
-"Due to a rate limit of approximately 10 seconds per eQSL picture download "
-"calling this function will take a long time to complete! Thus you may have "
-"to call this function several times depending on the amount of outstanding "
-"cards. This may run into a script timeout depending on the PHP configuration."
+msgid "Due to a rate limit of approximately 10 seconds per eQSL picture download calling this function will take a long time to complete! Thus you may have to call this function several times depending on the amount of outstanding cards. This may run into a script timeout depending on the PHP configuration."
 msgstr ""
 
 #: application/views/eqsl/download.php:81
-msgid ""
-"There are no QSOs whose eQSL card images have not yet been downloaded. Go "
-"log some more QSOs!"
+msgid "There are no QSOs whose eQSL card images have not yet been downloaded. Go log some more QSOs!"
 msgstr ""
 
 #: application/views/eqsl/export.php:31
@@ -5403,9 +5135,7 @@ msgid "Below is a table of QSOs that have not yet been sent to eQSL."
 msgstr ""
 
 #: application/views/eqsl/export.php:33
-msgid ""
-"Please make sure the 'eQSL QTH Nickname' field is set in your station "
-"profile and that the value matches the QTH Nickname you set within eQSL."
+msgid "Please make sure the 'eQSL QTH Nickname' field is set in your station profile and that the value matches the QTH Nickname you set within eQSL."
 msgstr ""
 
 #: application/views/eqsl/export.php:37
@@ -5417,9 +5147,7 @@ msgid "The following QSOs were sent to eQSL."
 msgstr ""
 
 #: application/views/eqsl/export.php:51
-msgid ""
-"There are no QSOs that need to be sent to eQSL at this time. Go log some "
-"more QSOs!"
+msgid "There are no QSOs that need to be sent to eQSL at this time. Go log some more QSOs!"
 msgstr ""
 
 #: application/views/eqsl/import.php:30
@@ -5432,9 +5160,7 @@ msgstr ""
 
 #: application/views/eqsl/import.php:33
 #, php-format
-msgid ""
-"Upload the Exported ADIF file from eQSL from the %s page, to mark QSOs as "
-"confirmed on eQSL."
+msgid "Upload the Exported ADIF file from eQSL from the %s page, to mark QSOs as confirmed on eQSL."
 msgstr ""
 
 #: application/views/eqsl/import.php:34
@@ -5454,9 +5180,7 @@ msgid "Mark All QSOs as Sent to eQSL"
 msgstr ""
 
 #: application/views/eqsl/tools.php:26
-msgid ""
-"Use this if you have lots of QSOs to upload to eQSL it will save the server "
-"timing out."
+msgid "Use this if you have lots of QSOs to upload to eQSL it will save the server timing out."
 msgstr ""
 
 #: application/views/eqslcard/index.php:10
@@ -5493,9 +5217,7 @@ msgstr ""
 
 #: application/views/hamsat/index.php:22
 #, php-format
-msgid ""
-"Cannot filter workable passes only without private feed key. Please set the "
-"feed key in %s."
+msgid "Cannot filter workable passes only without private feed key. Please set the feed key in %s."
 msgstr ""
 
 #: application/views/hamsat/index.php:22
@@ -5513,15 +5235,11 @@ msgid "Mark QSOs"
 msgstr ""
 
 #: application/views/hrdlog/export.php:22
-msgid ""
-"Here you can see all QSOs which have not been previously uploaded to a "
-"HRDLog logbook."
+msgid "Here you can see all QSOs which have not been previously uploaded to a HRDLog logbook."
 msgstr ""
 
 #: application/views/hrdlog/export.php:23
-msgid ""
-"You need to set a HRDLog Logbook API Code in your station profile. Only "
-"station profiles with an API Key set are displayed."
+msgid "You need to set a HRDLog Logbook API Code in your station profile. Only station profiles with an API Key set are displayed."
 msgstr ""
 
 #: application/views/hrdlog/export.php:24
@@ -5560,9 +5278,7 @@ msgid "Total QSOs uploaded"
 msgstr ""
 
 #: application/views/hrdlog/export.php:60
-msgid ""
-"No Station Locations with valid HRDlog-Settings found. Check the HRDlog "
-"Credentials in the Station Location Settings!"
+msgid "No Station Locations with valid HRDlog-Settings found. Check the HRDlog Credentials in the Station Location Settings!"
 msgstr ""
 
 #: application/views/hrdlog/export.php:87
@@ -5625,14 +5341,8 @@ msgid "Version Info"
 msgstr "Información de Versión"
 
 #: application/views/interface_assets/footer.php:633
-msgid ""
-"Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. "
-"Check which DXCC for this particular location is the correct one. If you are "
-"sure, ignore this warning."
-msgstr ""
-"Deténgase un momento. El DXCC escogido está desactualizado y ya no es "
-"válido. Revise cuál DXCC es el correcto para su localización particular. Si "
-"está totalmente seguro, ignore esta advertencia."
+msgid "Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. Check which DXCC for this particular location is the correct one. If you are sure, ignore this warning."
+msgstr "Deténgase un momento. El DXCC escogido está desactualizado y ya no es válido. Revise cuál DXCC es el correcto para su localización particular. Si está totalmente seguro, ignore esta advertencia."
 
 #: application/views/interface_assets/footer.php:1327
 #: application/views/interface_assets/footer.php:1331
@@ -5858,17 +5568,14 @@ msgstr ""
 
 #: application/views/kml/index.php:7
 msgid "Export your logbook to a KML file for use in Google Earth."
-msgstr ""
-"Exporte su libro de guardias a un archivo KML para su uso en Google Earth."
+msgstr "Exporte su libro de guardias a un archivo KML para su uso en Google Earth."
 
 #: application/views/labels/create.php:22 application/views/labels/edit.php:22
 msgid "Label Name"
 msgstr ""
 
 #: application/views/labels/create.php:24
-msgid ""
-"Label name used for display purposes, so pick something meaningful, perhaps "
-"the label style."
+msgid "Label name used for display purposes, so pick something meaningful, perhaps the label style."
 msgstr ""
 
 #: application/views/labels/create.php:28 application/views/labels/edit.php:28
@@ -6039,9 +5746,7 @@ msgid "Save Paper Type"
 msgstr ""
 
 #: application/views/labels/edit.php:24
-msgid ""
-"Label name used for display purposes so pick something meaningful perhaps "
-"the label style."
+msgid "Label name used for display purposes so pick something meaningful perhaps the label style."
 msgstr ""
 
 #: application/views/labels/index.php:29
@@ -6119,8 +5824,7 @@ msgstr ""
 
 #: application/views/labels/startatform.php:9
 #: application/views/logbookadvanced/startatform.php:9
-msgid ""
-"Include reference? (SIG, SOTA, POTA, IOTA, WWFF; If available in location)"
+msgid "Include reference? (SIG, SOTA, POTA, IOTA, WWFF; If available in location)"
 msgstr ""
 
 #: application/views/labels/startatform.php:15
@@ -6688,9 +6392,7 @@ msgstr ""
 
 #: application/views/lotw/import.php:24
 #, php-format
-msgid ""
-"Upload the Exported ADIF file from LoTW from the %s Area, to mark QSOs as "
-"confirmed on LoTW."
+msgid "Upload the Exported ADIF file from LoTW from the %s Area, to mark QSOs as confirmed on LoTW."
 msgstr ""
 
 #: application/views/lotw/import.php:27
@@ -6706,16 +6408,8 @@ msgid "Select callsign to pull LoTW confirmations for."
 msgstr ""
 
 #: application/views/lotw/import.php:61
-msgid ""
-"Wavelog will use the LoTW username and password stored in your user profile "
-"to download a report from LoTW for you. The report Wavelog downloads will "
-"have all confirmations since chosen date, or since your last LoTW "
-"confirmation (fetched from your log), up until now."
-msgstr ""
-"Wavelog usará el usuario y contraseña de LoTW guardado en su perfil para "
-"descargar un informe de LoTW por usted. El informe contendrá todas las "
-"confirmaciones desde la fecha elegida o desde su última confirmación LoTW "
-"hasta ahora."
+msgid "Wavelog will use the LoTW username and password stored in your user profile to download a report from LoTW for you. The report Wavelog downloads will have all confirmations since chosen date, or since your last LoTW confirmation (fetched from your log), up until now."
+msgstr "Wavelog usará el usuario y contraseña de LoTW guardado en su perfil para descargar un informe de LoTW por usted. El informe contendrá todas las confirmaciones desde la fecha elegida o desde su última confirmación LoTW hasta ahora."
 
 #: application/views/lotw/import.php:64
 msgid "Import LoTW Matches"
@@ -6782,8 +6476,7 @@ msgstr "No sincronizado"
 
 #: application/views/lotw_views/index.php:129
 msgid "You need to upload some LoTW p12 certificates to use this area."
-msgstr ""
-"Es necesario subir algunos certificados p12 de LoTW para usar este área."
+msgstr "Es necesario subir algunos certificados p12 de LoTW para usar este área."
 
 #: application/views/lotw_views/index.php:144
 msgid "Information"
@@ -6862,15 +6555,11 @@ msgid "Update mode"
 msgstr ""
 
 #: application/views/mode/index.php:19
-msgid ""
-"Using the modes list you can control which modes are shown when creating a "
-"new QSO."
+msgid "Using the modes list you can control which modes are shown when creating a new QSO."
 msgstr ""
 
 #: application/views/mode/index.php:22
-msgid ""
-"Active modes will be shown in the QSO 'Mode' drop-down, while inactive modes "
-"will be hidden and cannot be selected."
+msgid "Active modes will be shown in the QSO 'Mode' drop-down, while inactive modes will be hidden and cannot be selected."
 msgstr ""
 
 #: application/views/mode/index.php:29
@@ -6921,23 +6610,15 @@ msgid "Your Notes"
 msgstr "Sus notas"
 
 #: application/views/notes/main.php:32
-msgid ""
-"You don't currently have any notes, these are a fantastic way of storing "
-"data like ATU settings, beacons and general station notes and its better "
-"than paper as you can't lose them!"
-msgstr ""
-"Actualmente no tiene notas, las cuales son un buen recurso para guardar "
-"datos e información general. Además, son mejores que el papel ya no las "
-"perderá con facilidad :)"
+msgid "You don't currently have any notes, these are a fantastic way of storing data like ATU settings, beacons and general station notes and its better than paper as you can't lose them!"
+msgstr "Actualmente no tiene notas, las cuales son un buen recurso para guardar datos e información general. Además, son mejores que el papel ya no las perderá con facilidad :)"
 
 #: application/views/notes/view.php:21
 msgid "Delete Note"
 msgstr "Borrar nota"
 
 #: application/views/operator/index.php:9
-msgid ""
-"Please provide your personal call sign. This makes sure that QSOs are logged "
-"and exported with correct operator information."
+msgid "Please provide your personal call sign. This makes sure that QSOs are logged and exported with correct operator information."
 msgstr ""
 
 #: application/views/operator/index.php:13
@@ -6955,8 +6636,7 @@ msgstr "Tema"
 
 #: application/views/options/appearance.php:51
 msgid "Global Theme Choice, this is used when users arent logged in."
-msgstr ""
-"Elección global de Tema, se utiliza cuando ningún usuario ha iniciado sesión."
+msgstr "Elección global de Tema, se utiliza cuando ningún usuario ha iniciado sesión."
 
 #: application/views/options/appearance.php:61
 msgid "Dashboard Notification Banner"
@@ -6964,9 +6644,7 @@ msgstr "Marquesina de Notificación en la Vista General"
 
 #: application/views/options/appearance.php:66
 msgid "This allows to disable the global notification banner on the dashboard."
-msgstr ""
-"Esto permite deshabilitar la marquesina de notificaciones globales que se "
-"muestra en la Vista General."
+msgstr "Esto permite deshabilitar la marquesina de notificaciones globales que se muestra en la Vista General."
 
 #: application/views/options/appearance.php:70
 msgid "Dashboard Map"
@@ -6977,11 +6655,8 @@ msgid "Map at right"
 msgstr ""
 
 #: application/views/options/appearance.php:76
-msgid ""
-"This allows the map on the dashboard to be disabled or placed on the right."
-msgstr ""
-"Esto permite que el mapa de la vsita general no aparezca o se muestre a la "
-"derecha."
+msgid "This allows the map on the dashboard to be disabled or placed on the right."
+msgstr "Esto permite que el mapa de la vsita general no aparezca o se muestre a la derecha."
 
 #: application/views/options/appearance.php:80
 msgid "Logbook Map"
@@ -6996,9 +6671,7 @@ msgid "Public Maps"
 msgstr ""
 
 #: application/views/options/appearance.php:94
-msgid ""
-"This allows to disable all maps in the public view. This affects the main "
-"map and the gridsquares map."
+msgid "This allows to disable all maps in the public view. This affects the main map and the gridsquares map."
 msgstr ""
 
 #: application/views/options/appearance.php:98
@@ -7019,9 +6692,7 @@ msgstr ""
 
 #: application/views/options/dxcluster.php:39
 #, php-format
-msgid ""
-"The Provider of the DXCluster-Cache. You can set up your own Cache with %s "
-"or use a public one"
+msgid "The Provider of the DXCluster-Cache. You can set up your own Cache with %s or use a public one"
 msgstr ""
 
 #: application/views/options/dxcluster.php:41
@@ -7047,9 +6718,7 @@ msgstr ""
 
 #: application/views/options/dxcluster.php:50
 msgid "The Age in Minutes of spots, that will be taken care at bandplan/lookup"
-msgstr ""
-"La edad en minutos de los spots que se tomarán en cuenta en el plan de "
-"bandas/búsqueda"
+msgstr "La edad en minutos de los spots que se tomarán en cuenta en el plan de bandas/búsqueda"
 
 #: application/views/options/dxcluster.php:53
 msgid "Show spots which are spotted from following continent"
@@ -7093,47 +6762,32 @@ msgid "Email Address"
 msgstr "Dirección de Email"
 
 #: application/views/options/email.php:75
-msgid ""
-"The email address from which the emails are sent, e.g. 'wavelog@example.com'"
-msgstr ""
-"La dirección desde la cual se enviarán los correos electrónicos, ej. "
-"'wavelog@example.com'"
+msgid "The email address from which the emails are sent, e.g. 'wavelog@example.com'"
+msgstr "La dirección desde la cual se enviarán los correos electrónicos, ej. 'wavelog@example.com'"
 
 #: application/views/options/email.php:80
 msgid "SMTP Host"
 msgstr "Servidor SMTP"
 
 #: application/views/options/email.php:83
-msgid ""
-"The hostname of the mail server, e.g. 'mail.example.com' (without 'ssl://' "
-"or 'tls://')"
-msgstr ""
-"El nombre de dominio del servidor de correo, ej. 'mail.example.com' (sin "
-"'ssl://' o 'tls://')"
+msgid "The hostname of the mail server, e.g. 'mail.example.com' (without 'ssl://' or 'tls://')"
+msgstr "El nombre de dominio del servidor de correo, ej. 'mail.example.com' (sin 'ssl://' o 'tls://')"
 
 #: application/views/options/email.php:88
 msgid "SMTP Port"
 msgstr "Puerto SMTP"
 
 #: application/views/options/email.php:91
-msgid ""
-"The SMTP port of the mail server, e.g. if TLS is used -> '587', if SSL is "
-"used -> '465'"
-msgstr ""
-"El puerto SMTP del servidor de correo, ej. si está usando TLS -> '587', si "
-"está usando SSL -> '465'"
+msgid "The SMTP port of the mail server, e.g. if TLS is used -> '587', if SSL is used -> '465'"
+msgstr "El puerto SMTP del servidor de correo, ej. si está usando TLS -> '587', si está usando SSL -> '465'"
 
 #: application/views/options/email.php:96
 msgid "SMTP Username"
 msgstr "Nombre de usuario SMTP"
 
 #: application/views/options/email.php:99
-msgid ""
-"The username to log in to the mail server, usually this is the email address "
-"that is used."
-msgstr ""
-"El nombre de usuario para iniciar sesión en el servidor de correo, "
-"usualmente esta es la dirección de correo electrónico a usar."
+msgid "The username to log in to the mail server, usually this is the email address that is used."
+msgstr "El nombre de usuario para iniciar sesión en el servidor de correo, usualmente esta es la dirección de correo electrónico a usar."
 
 #: application/views/options/email.php:104
 msgid "SMTP Password"
@@ -7149,28 +6803,19 @@ msgstr "Enviar correo de prueba"
 
 #: application/views/options/email.php:117
 msgid "The email will be sent to the address defined in your account settings."
-msgstr ""
-"El correo será enviado a la dirección definida en su configuración de cuenta."
+msgstr "El correo será enviado a la dirección definida en su configuración de cuenta."
 
 #: application/views/options/index.php:13
-msgid ""
-"Wavelog Options are global settings used for all users of the installation, "
-"which are overridden if there's a setting on a user level."
-msgstr ""
-"Las Opciones de Wavelog son configuraciones globales, configuradas para "
-"todos los usuarios de la instalación, que se sobreescribirán si alguna "
-"configuración se activa a nivel de usuario."
+msgid "Wavelog Options are global settings used for all users of the installation, which are overridden if there's a setting on a user level."
+msgstr "Las Opciones de Wavelog son configuraciones globales, configuradas para todos los usuarios de la instalación, que se sobreescribirán si alguna configuración se activa a nivel de usuario."
 
 #: application/views/options/oqrs.php:39
 msgid "Global text"
 msgstr "Texto global"
 
 #: application/views/options/oqrs.php:41
-msgid ""
-"This text is an optional text that can be displayed on top of the OQRS page."
-msgstr ""
-"Este texto es un texto opcional que se mostrará en la parte superior de la "
-"página de OQRS."
+msgid "This text is an optional text that can be displayed on top of the OQRS page."
+msgstr "Este texto es un texto opcional que se mostrará en la parte superior de la página de OQRS."
 
 #: application/views/options/oqrs.php:45
 msgid "Grouped search"
@@ -7185,37 +6830,24 @@ msgid "On"
 msgstr ""
 
 #: application/views/options/oqrs.php:50
-msgid ""
-"When this is on, all station locations with OQRS active, will be searched at "
-"once."
-msgstr ""
-"Cuando está activo, se buscarán en simultáneo todas las localizaciones de "
-"estación con OQRS activo"
+msgid "When this is on, all station locations with OQRS active, will be searched at once."
+msgstr "Cuando está activo, se buscarán en simultáneo todas las localizaciones de estación con OQRS activo"
 
 #: application/views/options/oqrs.php:54
 msgid "Show station location name in grouped search results"
-msgstr ""
-"Mostrar localización de la estación en los resultados de búsqueda agrupados"
+msgstr "Mostrar localización de la estación en los resultados de búsqueda agrupados"
 
 #: application/views/options/oqrs.php:59
-msgid ""
-"If grouped search is ON, you can decide if the name of the station location "
-"shall be shown in the results table."
-msgstr ""
-"Si la búsqueda agrupada esta ACTIVA, puede decidir si el nombre de la "
-"localización de la estación se mostrará en la tabla de resultados."
+msgid "If grouped search is ON, you can decide if the name of the station location shall be shown in the results table."
+msgstr "Si la búsqueda agrupada esta ACTIVA, puede decidir si el nombre de la localización de la estación se mostrará en la tabla de resultados."
 
 #: application/views/options/radios.php:38
 msgid "Radio Timeout Warning"
 msgstr "Advertencia de Tiempo de Espera de Radio"
 
 #: application/views/options/radios.php:39
-msgid ""
-"The Radio Timeout Warning is used on the QSO entry panel to alert you to "
-"radio interface disconnects."
-msgstr ""
-"La Advertencia de Tiempo de Espera de Radio se usa en el panel de entrada de "
-"QSO para alertarlo de desconexiones de la interfaz de radio."
+msgid "The Radio Timeout Warning is used on the QSO entry panel to alert you to radio interface disconnects."
+msgstr "La Advertencia de Tiempo de Espera de Radio se usa en el panel de entrada de QSO para alertarlo de desconexiones de la interfaz de radio."
 
 #: application/views/options/radios.php:41
 msgid "This number is in seconds."
@@ -7250,15 +6882,8 @@ msgid "Release Notes and Custom Text"
 msgstr "Notas de la Versión y Texto Personalizado"
 
 #: application/views/options/version_dialog.php:68
-msgid ""
-"The Version Info is shown to every user. The user has the option to dismiss "
-"the dialog after he read it. Select if you want to show only release notes "
-"(fetched from github), only custom text or both."
-msgstr ""
-"La Información de Versión es mostrada a todos los usuarios. El usuario tiene "
-"la opción de cerrar el diálogo después de leerlo. Seleccione si solo quiere "
-"mostrar las notas de la versión (extraídas de GitHub), solo texto "
-"personalizado o ambos."
+msgid "The Version Info is shown to every user. The user has the option to dismiss the dialog after he read it. Select if you want to show only release notes (fetched from github), only custom text or both."
+msgstr "La Información de Versión es mostrada a todos los usuarios. El usuario tiene la opción de cerrar el diálogo después de leerlo. Seleccione si solo quiere mostrar las notas de la versión (extraídas de GitHub), solo texto personalizado o ambos."
 
 #: application/views/options/version_dialog.php:72
 msgid "Version Info Custom Text"
@@ -7270,31 +6895,23 @@ msgstr "Este es el texto personalizado que se muestra en el diálogo."
 
 #: application/views/options/version_dialog.php:84
 msgid "Show/Hide Version Info Dialog for all Users"
-msgstr ""
-"Mostrar/Ocultar el Diálogo de Información de Versión para todos los Usuarios"
+msgstr "Mostrar/Ocultar el Diálogo de Información de Versión para todos los Usuarios"
 
 #: application/views/options/version_dialog.php:97
 msgid "Show for all Users"
 msgstr "Mostrar a todos los Usuarios"
 
 #: application/views/options/version_dialog.php:99
-msgid ""
-"This will show the version dialog automatically to all users on their next "
-"page reload."
-msgstr ""
-"Esto mostrará el diálogo de versión automáticamente a todos los usuarios la "
-"próxima vez que recarguen la página."
+msgid "This will show the version dialog automatically to all users on their next page reload."
+msgstr "Esto mostrará el diálogo de versión automáticamente a todos los usuarios la próxima vez que recarguen la página."
 
 #: application/views/options/version_dialog.php:104
 msgid "Hide for all Users"
 msgstr "Ocultar a todos los Usuarios"
 
 #: application/views/options/version_dialog.php:106
-msgid ""
-"This will deactivate the automatic popup of the version dialog for all users."
-msgstr ""
-"Esto desactivará que se muestre automáticamente el diálogo de versión para "
-"todos los usuarios."
+msgid "This will deactivate the automatic popup of the version dialog for all users."
+msgstr "Esto desactivará que se muestre automáticamente el diálogo de versión para todos los usuarios."
 
 #: application/views/oqrs/index.php:9
 msgid "Request a QSL card"
@@ -7317,9 +6934,7 @@ msgid "No stations found that are using Wavelog OQRS."
 msgstr ""
 
 #: application/views/oqrs/notinlogform.php:2
-msgid ""
-"If you can't find your QSO in the log, please fill out the form below. You "
-"will be contacted after the log has been checked."
+msgid "If you can't find your QSO in the log, please fill out the form below. You will be contacted after the log has been checked."
 msgstr ""
 
 #: application/views/oqrs/notinlogform.php:9
@@ -7405,9 +7020,7 @@ msgstr ""
 
 #: application/views/oqrs/request.php:9
 #: application/views/oqrs/request_grouped.php:3
-msgid ""
-"The following QSO(s) were found. Please fill out the date and time and "
-"submit your request."
+msgid "The following QSO(s) were found. Please fill out the date and time and submit your request."
 msgstr ""
 
 #: application/views/oqrs/request.php:40
@@ -7531,21 +7144,15 @@ msgid "Calculate"
 msgstr ""
 
 #: application/views/qrz/export.php:27
-msgid ""
-"Here you can see all QSOs which have not been previously uploaded to a QRZ "
-"logbook."
+msgid "Here you can see all QSOs which have not been previously uploaded to a QRZ logbook."
 msgstr ""
 
 #: application/views/qrz/export.php:28
-msgid ""
-"You need to set a QRZ Logbook API key in your station profile. Only station "
-"profiles with an API Key set are displayed."
+msgid "You need to set a QRZ Logbook API key in your station profile. Only station profiles with an API Key set are displayed."
 msgstr ""
 
 #: application/views/qrz/export.php:73
-msgid ""
-"If no startdate is given then all QSOs after last confirmation will be "
-"downloaded/updated!"
+msgid "If no startdate is given then all QSOs after last confirmation will be downloaded/updated!"
 msgstr ""
 
 #: application/views/qrz/export.php:81
@@ -7594,20 +7201,12 @@ msgid "Export Requested QSLs for Printing"
 msgstr "Exportar QSL Solicitadas para Imprimirse"
 
 #: application/views/qslprint/index.php:29
-msgid ""
-"Here you can export requested QSLs as CSV or ADIF files for printing and, "
-"optionally, mark them as sent."
-msgstr ""
-"Aquí puede exportar las QSL solicitadas como CSV o archivos ADIF para "
-"imprimir y, opcionalmente, marcarlas como enviadas."
+msgid "Here you can export requested QSLs as CSV or ADIF files for printing and, optionally, mark them as sent."
+msgstr "Aquí puede exportar las QSL solicitadas como CSV o archivos ADIF para imprimir y, opcionalmente, marcarlas como enviadas."
 
 #: application/views/qslprint/index.php:30
-msgid ""
-"Requested QSLs are any QSOs with a value of 'Requested' or 'Queued' in their "
-"'QSL Sent' field."
-msgstr ""
-"Las QSL solicitadas con todas las QSO con un valor de 'Solicitada' o 'En "
-"Cola' en su campo 'QSL Enviada'."
+msgid "Requested QSLs are any QSOs with a value of 'Requested' or 'Queued' in their 'QSL Sent' field."
+msgstr "Las QSL solicitadas con todas las QSO con un valor de 'Solicitada' o 'En Cola' en su campo 'QSL Enviada'."
 
 #: application/views/qslprint/qslprint.php:30
 #: application/views/qslprint/qsolist.php:15
@@ -7664,12 +7263,8 @@ msgid "No QSLs to print were found!"
 msgstr "¡No se encontraron QSLs para imprimir!"
 
 #: application/views/qslprint/qsolist.php:201
-msgid ""
-"No additional QSO's were found. That means they are probably already in the "
-"queue."
-msgstr ""
-"No se encontraron QSOs adicionales. Esto significa que probablemente ya "
-"están en la cola."
+msgid "No additional QSO's were found. That means they are probably already in the queue."
+msgstr "No se encontraron QSOs adicionales. Esto significa que probablemente ya están en la cola."
 
 #: application/views/qso/components/winkeysettings.php:7
 #: application/views/qso/components/winkeysettings_results.php:7
@@ -7916,12 +7511,8 @@ msgid "Satellite Mode"
 msgstr "Modo del Satélite"
 
 #: application/views/qso/index.php:538
-msgid ""
-"Note content is used within Wavelog only and is not exported to other "
-"services."
-msgstr ""
-"El contenido es usado solo dentro de Wavelog y no es exportado a otros "
-"servicios."
+msgid "Note content is used within Wavelog only and is not exported to other services."
+msgstr "El contenido es usado solo dentro de Wavelog y no es exportado a otros servicios."
 
 #: application/views/qso/index.php:604
 msgid "Reset to Default"
@@ -7956,9 +7547,7 @@ msgid "Below is a list of active radios that are connected to Wavelog."
 msgstr ""
 
 #: application/views/radio/index.php:20
-msgid ""
-"If you haven't connected any radios yet, see the API page to generate API "
-"keys."
+msgid "If you haven't connected any radios yet, see the API page to generate API keys."
 msgstr ""
 
 #: application/views/radio/index.php:27 application/views/search/filter.php:69
@@ -8057,9 +7646,7 @@ msgstr ""
 
 #: application/views/sattimers/index.php:15
 #, php-format
-msgid ""
-"This data comes from %s and is calculated for the current stationlocation "
-"grid %s."
+msgid "This data comes from %s and is calculated for the current stationlocation grid %s."
 msgstr ""
 
 #: application/views/sattimers/index.php:40
@@ -8111,9 +7698,7 @@ msgid "Station location:"
 msgstr ""
 
 #: application/views/search/cqzones_result.php:3
-msgid ""
-"The following QSOs were found to have an incorrect CQ zone that this DXCC "
-"normally has:"
+msgid "The following QSOs were found to have an incorrect CQ zone that this DXCC normally has:"
 msgstr ""
 
 #: application/views/search/cqzones_result.php:14
@@ -8153,9 +7738,7 @@ msgid "Search Results"
 msgstr ""
 
 #: application/views/search/lotw_unconfirmed.php:26
-msgid ""
-"The search displays QSOs which are unconfirmed on LoTW, but the callsign "
-"worked has uploaded to LoTW after your QSO date."
+msgid "The search displays QSOs which are unconfirmed on LoTW, but the callsign worked has uploaded to LoTW after your QSO date."
 msgstr ""
 
 #: application/views/search/lotw_unconfirmed.php:29
@@ -8253,31 +7836,16 @@ msgid "Simple Fast Log Entry (FLE)"
 msgstr ""
 
 #: application/views/simplefle/index.php:13
-msgid ""
-"'Fast Log Entry', or simply 'FLE' is a system to log QSOs very quickly and "
-"efficiently. Due to its syntax, only a minimum of input is required to log "
-"many QSOs with as little effort as possible."
-msgstr ""
-"'Fast Log Entry', o simplemente 'FLE' es un sistema para registrar QSO muy "
-"rápida y eficientemente. Debido a su sintaxis, solo se requieren pocos "
-"campos para introducir muchos QSOs con la menor cantidad de esfuerzo posible."
+msgid "'Fast Log Entry', or simply 'FLE' is a system to log QSOs very quickly and efficiently. Due to its syntax, only a minimum of input is required to log many QSOs with as little effort as possible."
+msgstr "'Fast Log Entry', o simplemente 'FLE' es un sistema para registrar QSO muy rápida y eficientemente. Debido a su sintaxis, solo se requieren pocos campos para introducir muchos QSOs con la menor cantidad de esfuerzo posible."
 
 #: application/views/simplefle/index.php:14
-msgid ""
-"FLE was originally written by DF3CB. He offers a program for Windows on his "
-"website. Simple FLE was written by OK2CQR based on DF3CB's FLE and provides "
-"a web interface to log QSOs."
-msgstr ""
-"FLE fue escrito originalmente por DF3CB. Él ofreció un programa para Windows "
-"en su sitio. Simple FLE fue escrito por OK2CQR basado en el FLE de DF3CB y "
-"provee una interfaz web para registrar QSOs."
+msgid "FLE was originally written by DF3CB. He offers a program for Windows on his website. Simple FLE was written by OK2CQR based on DF3CB's FLE and provides a web interface to log QSOs."
+msgstr "FLE fue escrito originalmente por DF3CB. Él ofreció un programa para Windows en su sitio. Simple FLE fue escrito por OK2CQR basado en el FLE de DF3CB y provee una interfaz web para registrar QSOs."
 
 #: application/views/simplefle/index.php:15
 #, php-format
-msgid ""
-"A common use-case is if you have to import your paperlogs from an outdoor "
-"session and now SimpleFLE is also available in Wavelog. Information about "
-"the syntax and how FLE works can be found %s."
+msgid "A common use-case is if you have to import your paperlogs from an outdoor session and now SimpleFLE is also available in Wavelog. Information about the syntax and how FLE works can be found %s."
 msgstr ""
 
 #: application/views/simplefle/index.php:16
@@ -8322,35 +7890,20 @@ msgid "Warning! Do you really want to reset everything?"
 msgstr "¡Advertencia! ¿Está seguro que desea reinicializar todo?"
 
 #: application/views/simplefle/index.php:31
-msgid ""
-"Warning! You can't log the QSO List, because some QSO don't have band and/or "
-"mode defined!"
-msgstr ""
-"¡Advertencia! ¡No puede registrar la lista de QSOs, porque algunos QSO no "
-"tienen banda y/o modo definido!"
+msgid "Warning! You can't log the QSO List, because some QSO don't have band and/or mode defined!"
+msgstr "¡Advertencia! ¡No puede registrar la lista de QSOs, porque algunos QSO no tienen banda y/o modo definido!"
 
 #: application/views/simplefle/index.php:32
-msgid ""
-"Warning! You can't log the QSO List, because some QSO don't have a time "
-"defined!"
-msgstr ""
-"¡Advertencia! ¡No puede registrar la lista de QSOs, porque algunos QSO no "
-"tienen hora definida!"
+msgid "Warning! You can't log the QSO List, because some QSO don't have a time defined!"
+msgstr "¡Advertencia! ¡No puede registrar la lista de QSOs, porque algunos QSO no tienen hora definida!"
 
 #: application/views/simplefle/index.php:33
-msgid ""
-"Attention! The Data Field containes example data. First Clear Logging "
-"Session!"
-msgstr ""
-"¡Atención! ¡El campo Datos contiene datos de muestra. Primero Limpie la "
-"Sesión de Registro!"
+msgid "Attention! The Data Field containes example data. First Clear Logging Session!"
+msgstr "¡Atención! ¡El campo Datos contiene datos de muestra. Primero Limpie la Sesión de Registro!"
 
 #: application/views/simplefle/index.php:34
-msgid ""
-"Are you sure that you want to add these QSO to the Log and clear the session?"
-msgstr ""
-"¿Está seguro que desea añadir estos QSOs al Libro de Guardia y limpiar la "
-"sesión?"
+msgid "Are you sure that you want to add these QSO to the Log and clear the session?"
+msgstr "¿Está seguro que desea añadir estos QSOs al Libro de Guardia y limpiar la sesión?"
 
 #: application/views/simplefle/index.php:35
 msgid "QSO Logged!"
@@ -8393,10 +7946,8 @@ msgid "Refs"
 msgstr ""
 
 #: application/views/simplefle/index.php:147
-msgid ""
-"The Refs can be either <u>S</u>OTA, <u>I</u>OTA, <u>P</u>OTA or <u>W</u>WFF"
-msgstr ""
-"Las Referencias deben ser <u>S</u>OTA, <u>I</u>OTA, <u>P</u>OTA o <u>W</u>WFF"
+msgid "The Refs can be either <u>S</u>OTA, <u>I</u>OTA, <u>P</u>OTA or <u>W</u>WFF"
+msgstr "Las Referencias deben ser <u>S</u>OTA, <u>I</u>OTA, <u>P</u>OTA o <u>W</u>WFF"
 
 #: application/views/simplefle/index.php:154
 msgid "Reload QSO List"
@@ -8423,69 +7974,33 @@ msgid "- Each new QSO should be on a new line."
 msgstr "- Cada QSO nuevo debe estar en una línea nueva."
 
 #: application/views/simplefle/syntax_help.php:3
-msgid ""
-"- On each new line, only write data that has changed from the previous QSO."
-msgstr ""
-"- En cada nueva línea, solo escriba datos que hayan cambiado desde el QSO "
-"anterior."
+msgid "- On each new line, only write data that has changed from the previous QSO."
+msgstr "- En cada nueva línea, solo escriba datos que hayan cambiado desde el QSO anterior."
 
 #: application/views/simplefle/syntax_help.php:4
-msgid ""
-"To begin, ensure you have already filled in the form on the left with the "
-"date, station call, and operator's call. The main data includes the band (or "
-"QRG in MHz, e.g., '7.145'), mode, and time. After the time, you provide the "
-"first QSO, which is essentially the callsign."
-msgstr ""
-"Para comenzar, asegúrese que ya ha rellenado el formulario en la izquierda "
-"con la fecha, el indicativo de la estación y el indicativo del operador. Los "
-"datos principales incluyen la banda (o QRG en MHz, ej., '7.145'), modo, y "
-"hora. Después de la hora, usted debe introducir el primer QSO, que es "
-"esencialmente el indicativo."
+msgid "To begin, ensure you have already filled in the form on the left with the date, station call, and operator's call. The main data includes the band (or QRG in MHz, e.g., '7.145'), mode, and time. After the time, you provide the first QSO, which is essentially the callsign."
+msgstr "Para comenzar, asegúrese que ya ha rellenado el formulario en la izquierda con la fecha, el indicativo de la estación y el indicativo del operador. Los datos principales incluyen la banda (o QRG en MHz, ej., '7.145'), modo, y hora. Después de la hora, usted debe introducir el primer QSO, que es esencialmente el indicativo."
 
 #: application/views/simplefle/syntax_help.php:9
 msgid "For example, a QSO that started at 21:34 (UTC) with 4W7EST on 20m SSB."
-msgstr ""
-"Por ejemplo, un QSO que ha iniciado a las 21:34 (UTC) con 4W7EST en 20m SSB."
+msgstr "Por ejemplo, un QSO que ha iniciado a las 21:34 (UTC) con 4W7EST en 20m SSB."
 
 #: application/views/simplefle/syntax_help.php:10
-msgid ""
-"If you don't provide any RST information, the syntax will use 59 (599 for "
-"data). Our next QSO wasn't 59 on both sides, so we provide the information "
-"with the sent RST first. It was 2 minutes later than the first QSO."
-msgstr ""
-"Si no introduce ninguna información RST, la sintaxis usará 59 (o 599 para "
-"datos). Nuestro siguiente QSO no era 59 en ambos lados, así que proveemos la "
-"información con el RST enviado primero. Fue 2 minutos después del primer QSO."
+msgid "If you don't provide any RST information, the syntax will use 59 (599 for data). Our next QSO wasn't 59 on both sides, so we provide the information with the sent RST first. It was 2 minutes later than the first QSO."
+msgstr "Si no introduce ninguna información RST, la sintaxis usará 59 (o 599 para datos). Nuestro siguiente QSO no era 59 en ambos lados, así que proveemos la información con el RST enviado primero. Fue 2 minutos después del primer QSO."
 
 #: application/views/simplefle/syntax_help.php:16
-msgid ""
-"The first QSO was at 21:34, and the second one 2 minutes later at 21:36. We "
-"write down 6 because this is the only data that changed here. The "
-"information about band and mode didn't change, so this data is omitted."
-msgstr ""
-"El primer QSL fue a las 21:34, y el segundo 2 minutos después a las 21:36. "
-"Escribimos 6 porque fue el único dato que cambió. La información de banda y "
-"modo no cambió, así que estos datos se omiten."
+msgid "The first QSO was at 21:34, and the second one 2 minutes later at 21:36. We write down 6 because this is the only data that changed here. The information about band and mode didn't change, so this data is omitted."
+msgstr "El primer QSL fue a las 21:34, y el segundo 2 minutos después a las 21:36. Escribimos 6 porque fue el único dato que cambió. La información de banda y modo no cambió, así que estos datos se omiten."
 
 #: application/views/simplefle/syntax_help.php:17
-msgid ""
-"For our next QSO at 21:40 on 14th May, 2021, we changed the band to 40m but "
-"still on SSB. If no RST information is given, the syntax will use 59 for "
-"every new QSO. Therefore we can add another QSO which took place at the "
-"exact same time two days later. The date must be in format YYYY-MM-DD."
-msgstr ""
-"Para nuestro siguiente QSO a las 21:40 el 14 de mayo de 2021, cambiamos la "
-"banda a 40m pero seguimos en SSB. Si no se ingresa datos de RST, la sintaxis "
-"usará 59 para cada nuevo QSO. Por lo tanto podemos añadir un nuevo QSO que "
-"ocurrió a la misma hora dos días después. La fecha debe estar en el formato "
-"YYYY-MM-DD."
+msgid "For our next QSO at 21:40 on 14th May, 2021, we changed the band to 40m but still on SSB. If no RST information is given, the syntax will use 59 for every new QSO. Therefore we can add another QSO which took place at the exact same time two days later. The date must be in format YYYY-MM-DD."
+msgstr "Para nuestro siguiente QSO a las 21:40 el 14 de mayo de 2021, cambiamos la banda a 40m pero seguimos en SSB. Si no se ingresa datos de RST, la sintaxis usará 59 para cada nuevo QSO. Por lo tanto podemos añadir un nuevo QSO que ocurrió a la misma hora dos días después. La fecha debe estar en el formato YYYY-MM-DD."
 
 #: application/views/simplefle/syntax_help.php:28
 #, php-format
 msgctxt "uses 'this article'"
-msgid ""
-"A full summary of all commands and the necessary syntax can be found in %s "
-"of our Wiki."
+msgid "A full summary of all commands and the necessary syntax can be found in %s of our Wiki."
 msgstr ""
 
 #: application/views/station_profile/create.php:32
@@ -8519,9 +8034,7 @@ msgstr "Potencia de la Estación (W)"
 #: application/views/station_profile/create.php:46
 #: application/views/station_profile/edit.php:54
 msgid "Default station power in Watt. Overwritten by CAT."
-msgstr ""
-"Potencia de la estación por defecto en Vatios. Puede ser sobreescrito por "
-"CAT."
+msgstr "Potencia de la estación por defecto en Vatios. Puede ser sobreescrito por CAT."
 
 #: application/views/station_profile/create.php:49
 #: application/views/station_profile/edit.php:69
@@ -8602,19 +8115,13 @@ msgstr "Obtener Gridsquare"
 #: application/views/station_profile/edit.php:179
 #, php-format
 msgctxt "uses 'click here'"
-msgid ""
-"Station gridsquare. For example: HM54AP. If you don't know your grid square "
-"then %s!"
+msgid "Station gridsquare. For example: HM54AP. If you don't know your grid square then %s!"
 msgstr ""
 
 #: application/views/station_profile/create.php:126
 #: application/views/station_profile/edit.php:180
-msgid ""
-"If you are located on a grid line, enter multiple grid squares separated "
-"with commas. For example: IO77,IO78,IO87,IO88."
-msgstr ""
-"Si está localizado justo en una línea de la malla, introduzca múltiples "
-"gridsquares separados con comas. por ejemplo: IO77,IO78,IO87,IO88."
+msgid "If you are located on a grid line, enter multiple grid squares separated with commas. For example: IO77,IO78,IO87,IO88."
+msgstr "Si está localizado justo en una línea de la malla, introduzca múltiples gridsquares separados con comas. por ejemplo: IO77,IO78,IO87,IO88."
 
 #: application/views/station_profile/create.php:141
 #: application/views/station_profile/edit.php:205
@@ -8662,9 +8169,7 @@ msgstr ""
 #: application/views/station_profile/create.php:160
 #: application/views/station_profile/edit.php:247
 #, php-format
-msgid ""
-"Station POTA reference(s). Multiple comma separated values allowed. You can "
-"look up POTA references at the %s."
+msgid "Station POTA reference(s). Multiple comma separated values allowed. You can look up POTA references at the %s."
 msgstr ""
 
 #: application/views/station_profile/create.php:164
@@ -8705,12 +8210,8 @@ msgstr "QSLMSG por Defecto"
 
 #: application/views/station_profile/create.php:185
 #: application/views/station_profile/edit.php:289
-msgid ""
-"Define a default message that will be populated and sent for each QSO for "
-"this station location."
-msgstr ""
-"Defina un mensaje por defecto que será añadido y enviado para cada QSO para "
-"esta localización de estación."
+msgid "Define a default message that will be populated and sent for each QSO for this station location."
+msgstr "Defina un mensaje por defecto que será añadido y enviado para cada QSO para esta localización de estación."
 
 #: application/views/station_profile/create.php:188
 #: application/views/station_profile/edit.php:328
@@ -8719,10 +8220,7 @@ msgstr ""
 
 #: application/views/station_profile/create.php:193
 #: application/views/station_profile/edit.php:333
-msgid ""
-"If enabled, the QSOs made from this location will not be uploaded to "
-"Clublog. If this is deactivated on it's own please check if the Call is "
-"properly configured at Clublog"
+msgid "If enabled, the QSOs made from this location will not be uploaded to Clublog. If this is deactivated on it's own please check if the Call is properly configured at Clublog"
 msgstr ""
 
 #: application/views/station_profile/create.php:196
@@ -8737,11 +8235,8 @@ msgstr "Nombre de Usuario de HRDLog.net"
 
 #: application/views/station_profile/create.php:207
 #: application/views/station_profile/edit.php:354
-msgid ""
-"The username you are registered with at HRDlog.net (usually your callsign)."
-msgstr ""
-"El nombre de usuario con el que se registró en HRDlog.net (usualmente su "
-"indicativo)."
+msgid "The username you are registered with at HRDlog.net (usually your callsign)."
+msgstr "El nombre de usuario con el que se registró en HRDlog.net (usualmente su indicativo)."
 
 #: application/views/station_profile/create.php:210
 #: application/views/station_profile/edit.php:357
@@ -8837,9 +8332,7 @@ msgstr "Alerta de Email de OQRS"
 #: application/views/station_profile/create.php:276
 #: application/views/station_profile/edit.php:413
 msgid "Make sure email is set up under admin and global options."
-msgstr ""
-"Asegúrese que su correo está bien configurado en las opciones globales y de "
-"administrador."
+msgstr "Asegúrese que su correo está bien configurado en las opciones globales y de administrador."
 
 #: application/views/station_profile/create.php:279
 #: application/views/station_profile/edit.php:416
@@ -8861,28 +8354,18 @@ msgstr "Firma"
 
 #: application/views/station_profile/index.php:15
 #: application/views/stationsetup/stationsetup.php:94
-msgid ""
-"Station Locations define operating locations, such as your QTH, a friends "
-"QTH, or a portable station."
-msgstr ""
-"Las localizaciones de Estación le permiten definir localizaciones de "
-"operación, como su QTH, el QTH de un amigo o una estación portable."
+msgid "Station Locations define operating locations, such as your QTH, a friends QTH, or a portable station."
+msgstr "Las localizaciones de Estación le permiten definir localizaciones de operación, como su QTH, el QTH de un amigo o una estación portable."
 
 #: application/views/station_profile/index.php:16
 #: application/views/stationsetup/stationsetup.php:95
 msgid "Similar to logbooks, a station profile keeps a set of QSOs together."
-msgstr ""
-"De forma similar a los libros de guardia, un perfil de estación mantiene "
-"asociado un conjunto de QSOs."
+msgstr "De forma similar a los libros de guardia, un perfil de estación mantiene asociado un conjunto de QSOs."
 
 #: application/views/station_profile/index.php:17
 #: application/views/stationsetup/stationsetup.php:96
-msgid ""
-"Only one station may be active at a time. In the table below this is shown "
-"with the -Active Station- badge."
-msgstr ""
-"Solo una estación puede estar activa en cualquier momento. En la tabla de "
-"abajo esta se muestra con la etiqueta de -Estación Activa-."
+msgid "Only one station may be active at a time. In the table below this is shown with the -Active Station- badge."
+msgstr "Solo una estación puede estar activa en cualquier momento. En la tabla de abajo esta se muestra con la etiqueta de -Estación Activa-."
 
 #: application/views/station_profile/index.php:19
 #: application/views/stationsetup/stationsetup.php:98
@@ -8891,21 +8374,13 @@ msgstr "Crear una Localización de Estación"
 
 #: application/views/station_profile/index.php:25
 #: application/views/stationsetup/stationsetup.php:102
-msgid ""
-"Attention: You need to set an active station location. Go to Callsign-"
-">Station Location to select one."
-msgstr ""
-"Atención: Debe configurar una Localización de Estación como activa. vaya a "
-"Indicativo->Localización de Estación para seleccionar una."
+msgid "Attention: You need to set an active station location. Go to Callsign->Station Location to select one."
+msgstr "Atención: Debe configurar una Localización de Estación como activa. vaya a Indicativo->Localización de Estación para seleccionar una."
 
 #: application/views/station_profile/index.php:31
 #: application/views/stationsetup/stationsetup.php:108
-msgid ""
-"Due to recent changes within Wavelog you need to reassign QSOs to your "
-"station profiles."
-msgstr ""
-"Debido a cambios recientes en Wavelog, debe reasignar sus QSO a sus perfiles "
-"de estación."
+msgid "Due to recent changes within Wavelog you need to reassign QSOs to your station profiles."
+msgstr "Debido a cambios recientes en Wavelog, debe reasignar sus QSO a sus perfiles de estación."
 
 #: application/views/station_profile/index.php:33
 #: application/views/stationsetup/stationsetup.php:110
@@ -8975,17 +8450,8 @@ msgid "Unlink Station Location"
 msgstr "Desenlazar la Localización de la Estación"
 
 #: application/views/stationsetup/stationsetup.php:21
-msgid ""
-"Station Logbooks allow you to group Station Locations, this allows you to "
-"see all the locations across one session from the logbook areas to the "
-"analytics. Great for when your operating in multiple locations but they are "
-"part of the same DXCC or VUCC Circle."
-msgstr ""
-"Los Libros de Guardia de Estación le permiten agrupar Localizaciones de "
-"Estación, observando todas las localizaciones en una sola sesión, desde las "
-"áreas del libro de guardia hasta las analíticas. Muy útil cuando está "
-"operando en múltiples localizaciones, pero que son parte del mismo Círculo "
-"DXCC o VUCC."
+msgid "Station Logbooks allow you to group Station Locations, this allows you to see all the locations across one session from the logbook areas to the analytics. Great for when your operating in multiple locations but they are part of the same DXCC or VUCC Circle."
+msgstr "Los Libros de Guardia de Estación le permiten agrupar Localizaciones de Estación, observando todas las localizaciones en una sola sesión, desde las áreas del libro de guardia hasta las analíticas. Muy útil cuando está operando en múltiples localizaciones, pero que son parte del mismo Círculo DXCC o VUCC."
 
 #: application/views/stationsetup/stationsetup.php:32
 msgid "Linked locations"
@@ -9008,13 +8474,8 @@ msgid "mark/unmark as favorite"
 msgstr ""
 
 #: application/views/stationsetup/visitor.php:2
-msgid ""
-"Setting a public slug allows you to share your logbook with anyone via a "
-"custom website address, this slug can contain letters & numbers only."
-msgstr ""
-"El configurar una abreviatura pública le permite compartir su libro de "
-"guardia con cualquier persona usando una dirección personalizada del sitio "
-"web, esta abreviatura debe contener solo letras y números."
+msgid "Setting a public slug allows you to share your logbook with anyone via a custom website address, this slug can contain letters & numbers only."
+msgstr "El configurar una abreviatura pública le permite compartir su libro de guardia con cualquier persona usando una dirección personalizada del sitio web, esta abreviatura debe contener solo letras y números."
 
 #: application/views/stationsetup/visitor.php:3
 msgid "Later it looks like this:"
@@ -9084,9 +8545,7 @@ msgid "Folder Name"
 msgstr ""
 
 #: application/views/themes/add.php:12 application/views/themes/edit.php:12
-msgid ""
-"This is the name of the folder where your CSS-files are placed under assets/"
-"css."
+msgid "This is the name of the folder where your CSS-files are placed under assets/css."
 msgstr ""
 
 #: application/views/themes/add.php:16 application/views/themes/edit.php:16
@@ -9118,9 +8577,7 @@ msgstr ""
 
 #: application/views/themes/add.php:27 application/views/themes/edit.php:27
 #, php-format
-msgid ""
-"This is the name of the file which is used as %s small %s Logo in the header "
-"placed in assets/logo."
+msgid "This is the name of the file which is used as %s small %s Logo in the header placed in assets/logo."
 msgstr ""
 
 #: application/views/themes/add.php:31 application/views/themes/edit.php:31
@@ -9130,9 +8587,7 @@ msgstr ""
 
 #: application/views/themes/add.php:33 application/views/themes/edit.php:33
 #, php-format
-msgid ""
-"This is the name of the file which is used as %s big %s Logo in the login "
-"screen placed in assets/logo."
+msgid "This is the name of the file which is used as %s big %s Logo in the login screen placed in assets/logo."
 msgstr ""
 
 #: application/views/themes/add.php:36
@@ -9140,9 +8595,7 @@ msgid "Add theme"
 msgstr ""
 
 #: application/views/themes/edit.php:21
-msgid ""
-"This defines wherever the theme is a light or a dark one. On this basis the "
-"Logo is chosen."
+msgid "This defines wherever the theme is a light or a dark one. On this basis the Logo is chosen."
 msgstr ""
 
 #: application/views/themes/edit.php:36
@@ -9154,10 +8607,7 @@ msgid "Themes list"
 msgstr ""
 
 #: application/views/themes/index.php:28
-msgid ""
-"In this menu you can add and edit themes to Wavelog. The process of adding a "
-"theme is not really straightforward and should only be done by an admin who "
-"is aware of their actions."
+msgid "In this menu you can add and edit themes to Wavelog. The process of adding a theme is not really straightforward and should only be done by an admin who is aware of their actions."
 msgstr ""
 
 #: application/views/themes/index.php:29
@@ -9174,9 +8624,7 @@ msgstr ""
 
 #: application/views/themes/index.php:44
 #, php-format
-msgid ""
-"Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
-"which contains basic styling rules. We use the themes from %s"
+msgid "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file which contains basic styling rules. We use the themes from %s"
 msgstr ""
 
 #: application/views/themes/index.php:50
@@ -9184,9 +8632,7 @@ msgid "2. Step"
 msgstr ""
 
 #: application/views/themes/index.php:53
-msgid ""
-"Create a file in this folder called 'overrides.css'. Place your custom CSS "
-"code in there."
+msgid "Create a file in this folder called 'overrides.css'. Place your custom CSS code in there."
 msgstr ""
 
 #: application/views/themes/index.php:59
@@ -9194,15 +8640,11 @@ msgid "3. Step"
 msgstr ""
 
 #: application/views/themes/index.php:62
-msgid ""
-"For each new theme, you need two logo files. One for the login screen and "
-"one for the header."
+msgid "For each new theme, you need two logo files. One for the login screen and one for the header."
 msgstr ""
 
 #: application/views/themes/index.php:63
-msgid ""
-"Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
-"1000px height and 1000px width)."
+msgid "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., 1000px height and 1000px width)."
 msgstr ""
 
 #: application/views/themes/index.php:64
@@ -9214,9 +8656,7 @@ msgid "4. Step"
 msgstr ""
 
 #: application/views/themes/index.php:73
-msgid ""
-"Click here on 'Add a Theme' and type in the necessary data. Type in the "
-"filenames for the logos <b>without</b> the file extension '.png'"
+msgid "Click here on 'Add a Theme' and type in the necessary data. Type in the filenames for the logos <b>without</b> the file extension '.png'"
 msgstr ""
 
 #: application/views/themes/index.php:83
@@ -9248,9 +8688,7 @@ msgid "Callsign(s) worked (max 5)"
 msgstr ""
 
 #: application/views/timeplotter/index.php:10
-msgid ""
-"The Timeplotter is used to analyze your logbook and find out at what times "
-"you worked certain CQ zones or DXCC countries on a selected band."
+msgid "The Timeplotter is used to analyze your logbook and find out at what times you worked certain CQ zones or DXCC countries on a selected band."
 msgstr ""
 
 #: application/views/update/index.php:8
@@ -9262,9 +8700,7 @@ msgid "Distance Data"
 msgstr ""
 
 #: application/views/update/index.php:19
-msgid ""
-"Here you can update the DXCC lookup data that is used for displaying "
-"callsign information."
+msgid "Here you can update the DXCC lookup data that is used for displaying callsign information."
 msgstr ""
 
 #: application/views/update/index.php:20
@@ -9289,10 +8725,8 @@ msgstr ""
 
 #: application/views/update/index.php:36
 msgid ""
-"After updating, Wavelog can fill in missing callsign information in the "
-"logbook using the newly-obtained DXCC data.\n"
-"\t\t\t\t\t\t\tYou can choose to check just the QSOs in the logbook that are "
-"missing DXCC metadata or to re-check the entire logbook\n"
+"After updating, Wavelog can fill in missing callsign information in the logbook using the newly-obtained DXCC data.\n"
+"\t\t\t\t\t\t\tYou can choose to check just the QSOs in the logbook that are missing DXCC metadata or to re-check the entire logbook\n"
 "\t\t\t\t\t\t\tand update existing metadata as well, in case it has changed."
 msgstr ""
 
@@ -9309,9 +8743,7 @@ msgid "Apply Continent Data to Logbook"
 msgstr ""
 
 #: application/views/update/index.php:47
-msgid ""
-"This function can be used to update QSO continent information for all QSOs "
-"in Wavelog missing that information."
+msgid "This function can be used to update QSO continent information for all QSOs in Wavelog missing that information."
 msgstr ""
 
 #: application/views/update/index.php:49
@@ -9401,9 +8833,7 @@ msgstr "Lenguaje de Wavelog"
 
 #: application/views/user/edit.php:176
 msgid "Choose Wavelog language."
-msgstr ""
-"Seleccione el lenguaje de Wavelog a mostrar cuando inicie sesión en su "
-"cuenta."
+msgstr "Seleccione el lenguaje de Wavelog a mostrar cuando inicie sesión en su cuenta."
 
 #: application/views/user/edit.php:179
 msgid "Timezone"
@@ -9415,8 +8845,7 @@ msgstr "Formato de Fecha"
 
 #: application/views/user/edit.php:200
 msgid "Select how you would like dates shown when logged into your account."
-msgstr ""
-"Seleccione cómo le gustaría ver las fechas cuando inicie sesión en su cuenta."
+msgstr "Seleccione cómo le gustaría ver las fechas cuando inicie sesión en su cuenta."
 
 #: application/views/user/edit.php:204
 msgid "Measurement preference"
@@ -9436,9 +8865,7 @@ msgstr ""
 
 #: application/views/user/edit.php:212
 msgid "Choose which unit distances will be shown in"
-msgstr ""
-"Seleccione qué unidad de distancia usar y mostrar cuando inicie sesión en su "
-"cuenta."
+msgstr "Seleccione qué unidad de distancia usar y mostrar cuando inicie sesión en su cuenta."
 
 #: application/views/user/edit.php:221
 msgid "Logbook fields"
@@ -9473,27 +8900,16 @@ msgid "Log End Times for QSOs Separately"
 msgstr "Guardar Hora de Finalización para QSOs Separadamente"
 
 #: application/views/user/edit.php:350
-msgid ""
-"Choose yes here if you want to log QSO start and end times separately. If "
-"set to 'No' the end time will be the same as start time."
-msgstr ""
-"Escoja 'Si' aquí si desea guardar la hora de inicio y fin del QSO por "
-"separado. Si se configura como 'No' la hora de fin y de inicio será la misma."
+msgid "Choose yes here if you want to log QSO start and end times separately. If set to 'No' the end time will be the same as start time."
+msgstr "Escoja 'Si' aquí si desea guardar la hora de inicio y fin del QSO por separado. Si se configura como 'No' la hora de fin y de inicio será la misma."
 
 #: application/views/user/edit.php:355
-msgid ""
-"Show profile picture of QSO partner from qrz.com/hamqth.com profile in the "
-"log QSO section."
-msgstr ""
-"Mostrar imágenes de perfil del corresponsal de QSO desde su perfil qrz.com/"
-"hamqth.com en la sección de registro de QSL."
+msgid "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the log QSO section."
+msgstr "Mostrar imágenes de perfil del corresponsal de QSO desde su perfil qrz.com/hamqth.com en la sección de registro de QSL."
 
 #: application/views/user/edit.php:361
-msgid ""
-"Please set your qrz.com/hamqth.com credentials in the general config file."
-msgstr ""
-"Por favor configure sus credenciales de qrz.com/hamqth.com en el archivo de "
-"configuración general."
+msgid "Please set your qrz.com/hamqth.com credentials in the general config file."
+msgstr "Por favor configure sus credenciales de qrz.com/hamqth.com en el archivo de configuración general."
 
 #: application/views/user/edit.php:366
 msgid "Location auto lookup."
@@ -9501,9 +8917,7 @@ msgstr "Obtener automáticamente la Localización."
 
 #: application/views/user/edit.php:372
 msgid "If set, gridsquare is fetched based on location name."
-msgstr ""
-"Si está activo, el gridsquare se obtiene basado en el nombre de la "
-"localización."
+msgstr "Si está activo, el gridsquare se obtiene basado en el nombre de la localización."
 
 #: application/views/user/edit.php:376
 msgid "SOTA auto lookup gridsquare and name for summit."
@@ -9511,12 +8925,8 @@ msgstr "Obtener automáticamente gridsquare y nombre de SOTA para la cumbre."
 
 #: application/views/user/edit.php:382 application/views/user/edit.php:392
 #: application/views/user/edit.php:402
-msgid ""
-"If set, name and gridsquare is fetched from the API and filled in location "
-"and locator."
-msgstr ""
-"Si está activo, el nombre y gridquare se obtienen a través de la API y se "
-"rellenan en localización y locator."
+msgid "If set, name and gridsquare is fetched from the API and filled in location and locator."
+msgstr "Si está activo, el nombre y gridquare se obtienen a través de la API y se rellenan en localización y locator."
 
 #: application/views/user/edit.php:386
 msgid "WWFF auto lookup gridsquare and name for reference."
@@ -9539,12 +8949,8 @@ msgid "Quicklog Field"
 msgstr "Campo Registro Rápido"
 
 #: application/views/user/edit.php:433
-msgid ""
-"With this feature, you can log callsigns using the search field in the "
-"header."
-msgstr ""
-"Con esta característica, puedes registrar indicativos usando el campo de "
-"búsqueda en el encabezado."
+msgid "With this feature, you can log callsigns using the search field in the header."
+msgstr "Con esta característica, puedes registrar indicativos usando el campo de búsqueda en el encabezado."
 
 #: application/views/user/edit.php:437
 msgid "Quicklog - Action on press Enter"
@@ -9555,10 +8961,8 @@ msgid "Log Callsign"
 msgstr "Registrar Indicativo"
 
 #: application/views/user/edit.php:443
-msgid ""
-"What action should be performed when Enter is pressed in the quicklog field?"
-msgstr ""
-"¿Qué acción se debe ejecutar al presionar Intro en el campo Registro Rápido?"
+msgid "What action should be performed when Enter is pressed in the quicklog field?"
+msgstr "¿Qué acción se debe ejecutar al presionar Intro en el campo Registro Rápido?"
 
 #: application/views/user/edit.php:449
 msgid "Station Locations Quickswitch"
@@ -9621,8 +9025,7 @@ msgid "Show Reference Fields on QSO Tab"
 msgstr ""
 
 #: application/views/user/edit.php:580
-msgid ""
-"The enabled items will be shown on the QSO tab rather than the General tab."
+msgid "The enabled items will be shown on the QSO tab rather than the General tab."
 msgstr ""
 
 #: application/views/user/edit.php:619
@@ -9716,9 +9119,7 @@ msgstr "Características de Winkeyer Activadas"
 
 #: application/views/user/edit.php:836
 #, php-format
-msgid ""
-"Winkeyer support in Wavelog is very experimental. Read the wiki first at %s "
-"before enabling."
+msgid "Winkeyer support in Wavelog is very experimental. Read the wiki first at %s before enabling."
 msgstr ""
 
 #: application/views/user/edit.php:847
@@ -9740,9 +9141,7 @@ msgid "Show Workable Passes Only"
 msgstr ""
 
 #: application/views/user/edit.php:861
-msgid ""
-"If enabled shows only workable passes based on the gridsquare set in your "
-"hams.at account. Requires private feed key to be set."
+msgid "If enabled shows only workable passes based on the gridsquare set in your hams.at account. Requires private feed key to be set."
 msgstr ""
 
 #: application/views/user/edit.php:873
@@ -9787,25 +9186,15 @@ msgid "Wavelog needs at least one user configured in order to operate."
 msgstr "Wavelog necesita al menos un usuario configurado para operar."
 
 #: application/views/user/main.php:34
-msgid ""
-"Users can be assigned roles which give them different permissions, such as "
-"adding QSOs to the logbook and accessing Wavelog APIs."
-msgstr ""
-"Los usuarios pueden tener roles que les entregan diferentes permisos, como "
-"añadir QSOs al libro de guardia y acceder a las APIs de Wavelog."
+msgid "Users can be assigned roles which give them different permissions, such as adding QSOs to the logbook and accessing Wavelog APIs."
+msgstr "Los usuarios pueden tener roles que les entregan diferentes permisos, como añadir QSOs al libro de guardia y acceder a las APIs de Wavelog."
 
 #: application/views/user/main.php:35
-msgid ""
-"The currently logged-in user is displayed at the upper-right of each page."
-msgstr ""
-"El usuario actualmente en sesión se muestra en la parte superior derecha de "
-"la página."
+msgid "The currently logged-in user is displayed at the upper-right of each page."
+msgstr "El usuario actualmente en sesión se muestra en la parte superior derecha de la página."
 
 #: application/views/user/main.php:36
-msgid ""
-"With the password reset button, you can send a user an email containing a "
-"link to reset their password. To achieve this, ensure that the email "
-"settings in the global options are configured correctly."
+msgid "With the password reset button, you can send a user an email containing a link to reset their password. To achieve this, ensure that the email settings in the global options are configured correctly."
 msgstr ""
 
 #: application/views/user/main.php:38
@@ -9885,8 +9274,7 @@ msgid "Don't show again"
 msgstr "No mostrar de nuevo"
 
 #: application/views/view_log/index.php:4
-msgid ""
-"Displaying all QSOs of station locations which are linked to this logbook"
+msgid "Displaying all QSOs of station locations which are linked to this logbook"
 msgstr ""
 
 #: application/views/view_log/qso.php:6
@@ -10021,21 +9409,15 @@ msgid "Please enter a callsign!"
 msgstr ""
 
 #: application/views/webadif/export.php:22
-msgid ""
-"Here you can see and upload all QSOs which have not been previously uploaded "
-"to QO-100 Dx Club."
+msgid "Here you can see and upload all QSOs which have not been previously uploaded to QO-100 Dx Club."
 msgstr ""
 
 #: application/views/webadif/export.php:33
-msgid ""
-"You need to set a QO-100 Dx Club API key in your station profile. Only "
-"station profiles with an API Key are displayed."
+msgid "You need to set a QO-100 Dx Club API key in your station profile. Only station profiles with an API Key are displayed."
 msgstr ""
 
 #: application/views/webadif/export.php:63
-msgid ""
-"There are currently no outstanding QSOs that need to be uploaded to the "
-"QO-100 Dx Club's API."
+msgid "There are currently no outstanding QSOs that need to be uploaded to the QO-100 Dx Club's API."
 msgstr ""
 
 #: application/views/webadif/export.php:64
@@ -10044,9 +9426,7 @@ msgstr ""
 
 #: application/views/webadif/export.php:73
 #: application/views/webadif/export.php:113
-msgid ""
-"None of your Logbooks are configured to export data to the QO-100 Dx Club's "
-"API."
+msgid "None of your Logbooks are configured to export data to the QO-100 Dx Club's API."
 msgstr ""
 
 #: application/views/webadif/export.php:74
@@ -10057,23 +9437,17 @@ msgstr ""
 #: application/views/webadif/export.php:74
 #: application/views/webadif/export.php:114
 #, php-format
-msgid ""
-"To configure this feature, go to your profile page at the %s and %s Create "
-"%s an API key."
+msgid "To configure this feature, go to your profile page at the %s and %s Create %s an API key."
 msgstr ""
 
 #: application/views/webadif/export.php:75
 #: application/views/webadif/export.php:115
 #, php-format
-msgid ""
-"Then, navigate to your %s and configure your station with the key you have "
-"created at the club."
+msgid "Then, navigate to your %s and configure your station with the key you have created at the club."
 msgstr ""
 
 #: application/views/webadif/export.php:83
-msgid ""
-"Here you can mark as uploaded your QSOs which have not been previously "
-"uploaded to QO-100 Dx Club."
+msgid "Here you can mark as uploaded your QSOs which have not been previously uploaded to QO-100 Dx Club."
 msgstr ""
 
 #: application/views/webadif/export.php:107
@@ -10115,9 +9489,7 @@ msgstr ""
 #~ msgstr "Está usando"
 
 #~ msgid "of disk space to store QSL Card assets"
-#~ msgstr ""
-#~ "de espacio en disco para almacenar recursos relacionados con las tarjetas "
-#~ "QSL"
+#~ msgstr "de espacio en disco para almacenar recursos relacionados con las tarjetas QSL"
 
 #~ msgid " <b>Dupes were inserted!</b>"
 #~ msgstr " <b>¡Se insertaron registros duplicados!</b>"
@@ -10129,13 +9501,7 @@ msgstr ""
 #~ msgstr "Vaya a"
 
 #~ msgid "Overwrite exisiting DOK in log by DCL (if different)."
-#~ msgstr ""
-#~ "Sobreescribir los DOK existentes en el registro por DCL (si son "
-#~ "diferentes)"
+#~ msgstr "Sobreescribir los DOK existentes en el registro por DCL (si son diferentes)"
 
-#~ msgid ""
-#~ "If unchecked information about QSO which could not be found in Wavelog "
-#~ "will be displayed."
-#~ msgstr ""
-#~ "Si se deja desactivado, se mostrará la información de QSOs que no se "
-#~ "encuentren en Wavelog."
+#~ msgid "If unchecked information about QSO which could not be found in Wavelog will be displayed."
+#~ msgstr "Si se deja desactivado, se mostrará la información de QSOs que no se encuentren en Wavelog."
