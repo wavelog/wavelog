@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-01 10:22+0000\n"
+"POT-Creation-Date: 2024-07-01 15:00+0000\n"
 "PO-Revision-Date: 2024-06-05 15:19+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -604,16 +604,127 @@ msgstr ""
 msgid "Create Label Type"
 msgstr ""
 
+#: application/controllers/Labels.php:78 application/controllers/Labels.php:402
+#: application/views/labels/create.php:22 application/views/labels/edit.php:22
+msgid "Label Name"
+msgstr ""
+
+#: application/controllers/Labels.php:79 application/controllers/Labels.php:403
+#: application/views/labels/create.php:28 application/views/labels/edit.php:28
+#: application/views/labels/index.php:72
+msgid "Paper Type"
+msgstr ""
+
+#: application/controllers/Labels.php:80 application/controllers/Labels.php:404
+#: application/views/labels/index.php:38 application/views/labels/index.php:73
+msgid "Measurement"
+msgstr ""
+
+#: application/controllers/Labels.php:81 application/controllers/Labels.php:405
+msgid "Top Margin"
+msgstr ""
+
+#: application/controllers/Labels.php:82 application/controllers/Labels.php:406
+msgid "Left Margin"
+msgstr ""
+
+#: application/controllers/Labels.php:83 application/controllers/Labels.php:407
+msgid "QSLs Horizontally"
+msgstr ""
+
+#: application/controllers/Labels.php:84 application/controllers/Labels.php:408
+msgid "QSLs Vertically"
+msgstr ""
+
+#: application/controllers/Labels.php:85 application/controllers/Labels.php:409
+msgid "Horizontal Space"
+msgstr ""
+
+#: application/controllers/Labels.php:86 application/controllers/Labels.php:410
+msgid "Vertical Space"
+msgstr ""
+
+#: application/controllers/Labels.php:87 application/controllers/Labels.php:411
+msgid "Label width"
+msgstr ""
+
+#: application/controllers/Labels.php:88 application/controllers/Labels.php:412
+msgid "Label height"
+msgstr ""
+
+#: application/controllers/Labels.php:89 application/controllers/Labels.php:413
+msgid "Size of Font"
+msgstr ""
+
+#: application/controllers/Labels.php:90 application/controllers/Labels.php:414
+msgid "Number of QSOs on label"
+msgstr ""
+
 #: application/controllers/Labels.php:115
 msgid "Create Paper Type"
+msgstr ""
+
+#: application/controllers/Labels.php:119
+#: application/controllers/Labels.php:461
+msgid "Paper Name"
+msgstr ""
+
+#: application/controllers/Labels.php:120
+#: application/controllers/Labels.php:462
+msgid "Paper Width"
+msgstr ""
+
+#: application/controllers/Labels.php:121
+#: application/controllers/Labels.php:463
+msgid "Paper Height"
+msgstr ""
+
+#: application/controllers/Labels.php:132
+#: application/controllers/Labels.php:471
+msgid "Your paper could not be saved. Remember that it can't have the same name as existing paper types."
+msgstr ""
+
+#: application/controllers/Labels.php:205
+#: application/controllers/Labels.php:208
+msgid "You need to assign a paperType to the label before printing"
+msgstr ""
+
+#: application/controllers/Labels.php:215
+#: application/controllers/Labels.php:218
+msgid "You need to create a label and set it to be used for print."
+msgstr ""
+
+#: application/controllers/Labels.php:225
+#: application/controllers/Labels.php:228
+msgid "Something went wrong! The label could not be generated. Check label size and font size."
+msgstr ""
+
+#: application/controllers/Labels.php:251
+msgid "0 QSOs found for print!"
 msgstr ""
 
 #: application/controllers/Labels.php:391
 msgid "Edit Label"
 msgstr ""
 
+#: application/controllers/Labels.php:420
+msgid "Label was saved."
+msgstr ""
+
+#: application/controllers/Labels.php:428
+msgid "Label was deleted."
+msgstr ""
+
 #: application/controllers/Labels.php:450
 msgid "Edit Paper"
+msgstr ""
+
+#: application/controllers/Labels.php:475
+msgid "Paper was saved."
+msgstr ""
+
+#: application/controllers/Labels.php:488
+msgid "Paper was deleted."
 msgstr ""
 
 #: application/controllers/Logbook.php:37
@@ -5592,17 +5703,8 @@ msgstr ""
 msgid "Export your logbook to a KML file for use in Google Earth."
 msgstr ""
 
-#: application/views/labels/create.php:22 application/views/labels/edit.php:22
-msgid "Label Name"
-msgstr ""
-
 #: application/views/labels/create.php:24
 msgid "Label name used for display purposes, so pick something meaningful, perhaps the label style."
-msgstr ""
-
-#: application/views/labels/create.php:28 application/views/labels/edit.php:28
-#: application/views/labels/index.php:72
-msgid "Paper Type"
 msgstr ""
 
 #: application/views/labels/create.php:39
@@ -5781,10 +5883,6 @@ msgstr ""
 
 #: application/views/labels/index.php:33
 msgid "Paper types"
-msgstr ""
-
-#: application/views/labels/index.php:38 application/views/labels/index.php:73
-msgid "Measurement"
 msgstr ""
 
 #: application/views/labels/index.php:39 application/views/labels/index.php:74
