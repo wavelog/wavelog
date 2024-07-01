@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-01 05:31+0000\n"
+"POT-Creation-Date: 2024-07-01 10:22+0000\n"
 "PO-Revision-Date: 2024-07-01 05:27+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
@@ -579,6 +579,16 @@ msgstr "总共工作过的网格"
 #: application/controllers/Hamsat.php:59
 msgid "Hamsat - Satellite Roving"
 msgstr "Hamsat - 卫星追踪"
+
+#: application/controllers/Hrdlog.php:71
+#, php-format
+msgid "%d QSO is now uploaded to HRDlog"
+msgid_plural "%d QSOs are now uploaded to HRDlog"
+msgstr[0] ""
+
+#: application/controllers/Hrdlog.php:76
+msgid "No QSOs found to upload."
+msgstr ""
 
 #: application/controllers/Kmlexport.php:24
 #: application/views/interface_assets/header.php:380
@@ -1806,6 +1816,18 @@ msgstr "导出地图"
 #: application/views/interface_assets/header.php:418
 msgid "QO-100 Dx Club Upload"
 msgstr "QO-100 Dx Club 上传"
+
+#: application/models/Hrdlog_model.php:22
+msgid "HRDlog: QSOs have been uploaded to hrdlog.net for the station callsign: "
+msgstr ""
+
+#: application/models/Hrdlog_model.php:25
+msgid "HRDlog: No QSOs found to upload for the station callsign: "
+msgstr ""
+
+#: application/models/Hrdlog_model.php:31
+msgid "HRDlog: No station profiles with HRDlog Credentials found."
+msgstr ""
 
 #: application/models/Logbook_model.php:4139
 msgid "QSO could not be matched"
