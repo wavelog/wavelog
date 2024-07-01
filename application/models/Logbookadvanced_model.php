@@ -16,7 +16,7 @@ class Logbookadvanced_model extends CI_Model {
 
 		if ((isset($searchCriteria['dupes'])) && ($searchCriteria['dupes'] !== '')) {
 			$id_sql="select GROUP_CONCAT(col_primary_key separator ',') as qsoids, COL_CALL, COL_MODE, COL_SUBMODE, station_callsign, COL_SAT_NAME, COL_BAND,  min(col_time_on) Mintime, max(col_time_on) Maxtime from " . $this->config->item('table_name') . "
-				 join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id where station_profile.user_id=?
+				 join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id where station_profile.user_id = ?
 				group by col_call, col_mode, COL_SUBMODE, STATION_CALLSIGN, col_band, COL_SAT_NAME having count(*) > 1 and timediff(maxtime, mintime) < 1500";
 			$id_query = $this->db->query($id_sql, $searchCriteria['user_id']);
 			$ids2fetch = '';
@@ -42,8 +42,8 @@ class Logbookadvanced_model extends CI_Model {
 			$binding[] = $to;
 		}
 		if ($searchCriteria['de'] !== 'All') {
-			$conditions[] = "qsos.station_id = ?";
-			$binding[] = trim($searchCriteria['de']);
+			$stationids = implode(',', $searchCriteria['de']);
+			$conditions[] = "qsos.station_id in (".$stationids.")";
 		}
 		if ($searchCriteria['dx'] !== '') {
 			$conditions[] = "COL_CALL LIKE ?";

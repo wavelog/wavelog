@@ -1621,11 +1621,15 @@ class Logbook_model extends CI_Model {
 
 		return $name;
 	}
+
   /* Return QSO Info */
 	function qso_info($id) {
-		if ($this->logbook_model->check_qso_is_accessible($id)) {
+		if ($this->check_qso_is_accessible($id)) {
 			$this->db->where('COL_PRIMARY_KEY', $id);
-
+			$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
+			$this->db->join('dxcc_entities', $this->config->item('table_name').'.col_dxcc = dxcc_entities.adif', 'left');
+			$this->db->join('lotw_users', 'lotw_users.callsign = '.$this->config->item('table_name').'.col_call', 'left outer');
+	
 			return $this->db->get($this->config->item('table_name'));
 		} else {
 			return;
