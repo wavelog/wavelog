@@ -83,25 +83,17 @@ class Hrdlog extends CI_Controller {
     }
 
     public function mark_hrdlog() {
-        // Set memory limit to unlimited to allow heavy usage
-        ini_set('memory_limit', '-1');
+	    // As far as i did research, this one is ONLY Called by "Mark-QSO" at the UI
+	    $this->load->model('hrdlog_model');
+	    $this->load->model('stations');
+	    $station_id = $this->security->xss_clean($this->input->post('station_profile'));
 
-        $station_id = $this->security->xss_clean($this->input->post('station_profile'));
-
-        $this->load->model('adif_data');
-        $this->load->model('logbook_model');
-
-        $data['qsos'] = $this->adif_data->export_custom($this->input->post('from'), $this->input->post('to'), $station_id);
-
-		if (isset($data['qsos'])) {
-			foreach ($data['qsos']->result() as $qso)
-			{
-				$this->logbook_model->mark_hrdlog_qsos_sent($qso->COL_PRIMARY_KEY);
-			}
-		}
-
-        $this->load->view('interface_assets/header', $data);
-        $this->load->view('hrdlog/mark_hrdlog', $data);
-        $this->load->view('interface_assets/footer');
+	    $data['qsos']=[];
+	    if ($this->stations->check_station_is_accessible($station_id)) {	// Hard Exit if station_profile not accessible
+		    $data['qsos']=$this->hrdlog_model->mass_mark_hrdlog_sent($station_id,$this->security->xss_clean($this->input->post('from')),$this->security->xss_clean($this->input->post('to')));
+	    }
+	    $this->load->view('interface_assets/header', $data);
+	    $this->load->view('hrdlog/mark_hrdlog', $data);
+	    $this->load->view('interface_assets/footer');
     }
 }

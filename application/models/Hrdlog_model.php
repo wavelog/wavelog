@@ -94,6 +94,26 @@ class Hrdlog_model extends CI_Model {
         return $result;
     }
 
+    function mass_mark_hrdlog_sent($station_id, $from, $till) {
+	    // Set memory limit to unlimited to allow heavy usage
+	    ini_set('memory_limit', '-1');
+
+	    $this->load->model('adif_data');
+	    $this->load->model('logbook_model');
+
+	    $qsos = $this->adif_data->export_custom($from, $till, $station_id);
+
+	    if (isset($qsos)) {
+		    foreach ($qsos->result() as $qso) {
+			    $mark_them[]=$qso->COL_PRIMARY_KEY;
+		    }
+		    $sql="update ".$this->config->item('table_name')." set COL_HRDLOG_QSO_UPLOAD_DATE='".date("Y-m-d H:i:s", strtotime("now"))."', COL_HRDLOG_QSO_UPLOAD_STATUS='Y'  where COL_HRDLOG_QSO_UPLOAD_STATUS != 'Y' and col_primary_key in (".implode(',', array_values($mark_them)).") and station_id=".$station_id;
+		    $query = $this->db->query($sql);
+		    return $this->db->affected_rows();
+	    }
+	    return 0;
+    }
+
     /*
      * Function marks QSO with given primarykey as uploaded to hrdlog
      */
