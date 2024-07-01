@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-07-01 10:22+0000\n"
-"PO-Revision-Date: 2024-06-29 17:54+0000\n"
+"PO-Revision-Date: 2024-07-01 10:37+0000\n"
 "Last-Translator: Fabian Berg <hb9hil@wavelog.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-translation/de/>\n"
 "Language: de_DE\n"
@@ -588,12 +588,12 @@ msgstr "Hamsat - Satellite Roving"
 #, php-format
 msgid "%d QSO is now uploaded to HRDlog"
 msgid_plural "%d QSOs are now uploaded to HRDlog"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d QSO ist jetzt zu HRDlog hochgeladen"
+msgstr[1] "%d QSOs sind jetzt zu HRDlog hochgeladen"
 
 #: application/controllers/Hrdlog.php:76
 msgid "No QSOs found to upload."
-msgstr ""
+msgstr "Keine QSOs zum hochladen gefunden."
 
 #: application/controllers/Kmlexport.php:24
 #: application/views/interface_assets/header.php:380
@@ -1824,15 +1824,15 @@ msgstr "QO-100 Dx Club Upload"
 
 #: application/models/Hrdlog_model.php:22
 msgid "HRDlog: QSOs have been uploaded to hrdlog.net for the station callsign: "
-msgstr ""
+msgstr "HRDlog: QSOs wurden hochgeladen für das Stationsrufzeichen: "
 
 #: application/models/Hrdlog_model.php:25
 msgid "HRDlog: No QSOs found to upload for the station callsign: "
-msgstr ""
+msgstr "HRDlog: Keine QSOs gefunden zum hochladen für Stationsrufzeichen: "
 
 #: application/models/Hrdlog_model.php:31
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
-msgstr ""
+msgstr "HRDlog: Keine Stationsprofile mit HRDlog Zugangsdaten gefunden."
 
 #: application/models/Logbook_model.php:4139
 msgid "QSO could not be matched"
