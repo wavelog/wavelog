@@ -124,9 +124,6 @@ class QSO extends CI_Controller {
 			);
 			// ];
 
-			setcookie("radio", $qso_data['radio'], time()+3600*24*99);
-			setcookie("station_profile_id", $qso_data['station_profile_id'], time()+3600*24*99);
-
 			$this->session->set_userdata($qso_data);
 
 			// If SAT name is set make it session set to sat
