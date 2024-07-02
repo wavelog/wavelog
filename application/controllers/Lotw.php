@@ -50,7 +50,7 @@ class Lotw extends CI_Controller {
 		}
 
 		// Load required models for page generation
-		$this->load->model('LotwCert');
+		$this->load->model('Lotw');
 
 		// Get Array of the logged in users LoTW certs.
 		$data['lotw_cert_results'] = $this->LotwCert->lotw_certs($this->session->userdata('user_id'));
@@ -142,7 +142,7 @@ class Lotw extends CI_Controller {
         else
         {
         	// Load database queries
-        	$this->load->model('LotwCert');
+        	$this->load->model('Lotw');
 
         	//Upload of P12 successful
         	$data = array('upload_data' => $this->upload->data());
@@ -226,7 +226,7 @@ class Lotw extends CI_Controller {
 			foreach ($station_profiles->result() as $station_profile) {
 
 				// Get Certificate Data
-				$this->load->model('LotwCert');
+				$this->load->model('Lotw');
 				$data['station_profile'] = $station_profile;
 				$data['lotw_cert_info'] = $this->LotwCert->lotw_cert_details($station_profile->station_callsign, $station_profile->station_dxcc);
 
@@ -389,7 +389,7 @@ class Lotw extends CI_Controller {
     	$this->load->model('user_model');
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 
-    	$this->load->model('LotwCert');
+    	$this->load->model('Lotw');
 
     	$this->LotwCert->delete_certificate($this->session->userdata('user_id'), $cert_id);
 
