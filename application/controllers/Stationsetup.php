@@ -312,9 +312,17 @@ class Stationsetup extends CI_Controller {
 			$single->station_copylog = $this->stationcopy2html($entry->station_id);
 			$single->station_delete = $this->stationdelete2html($entry->station_id, $entry->station_profile_name, $entry->station_active);
 			$single->station_favorite = $this->stationfavorite2html($entry->station_id, $quickswitch_enabled);
+			$single->station_linked = $this->stationlinked2html($entry->linked);
 			array_push($hres,$single);
 		}
 		echo json_encode($hres);
+	}
+
+	private function stationlinked2html($linked) {
+		if ($linked == 1) {
+			return '<i class="fa fa-check text-success" aria-hidden="true"></i>';
+		}
+		return '<i class="fa fa-times text-danger" aria-hidden="true"></i>';
 	}
 
 	private function stationfavorite2html($id, $quickswitch_enabled) {

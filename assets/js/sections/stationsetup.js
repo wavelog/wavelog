@@ -378,6 +378,7 @@ function reloadLogbooks() {
 		dataType: 'json',
 		success: function (data) {
 			loadLogbookTable(data);
+			reloadStations();
 		},
 		error: function (data) {
 			BootstrapDialog.alert({
@@ -572,6 +573,7 @@ function loadLocationTable(rows) {
 		data.push(locations.station_country);
 		data.push(locations.station_gridsquare);
 		data.push(locations.station_badge);
+		data.push(locations.station_linked);
 		data.push(locations.station_edit);
 		data.push(locations.station_copylog);
 		if (locations.station_favorite != ''){
