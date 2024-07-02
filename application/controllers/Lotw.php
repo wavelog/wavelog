@@ -53,7 +53,7 @@ class Lotw extends CI_Controller {
 		$this->load->model('Lotw');
 
 		// Get Array of the logged in users LoTW certs.
-		$data['lotw_cert_results'] = $this->LotwCert->lotw_certs($this->session->userdata('user_id'));
+		$data['lotw_cert_results'] = $this->Lotw->lotw_certs($this->session->userdata('user_id'));
 
 		// Set Page Title
 		$data['page_title'] = __("Logbook of the World");
@@ -150,20 +150,20 @@ class Lotw extends CI_Controller {
         	$info = $this->decrypt_key($data['upload_data']['full_path']);
 
 			// Check to see if certificate is already in the system
-			$new_certificate = $this->LotwCert->find_cert($info['issued_callsign'], $info['dxcc-id'], $this->session->userdata('user_id'));
+			$new_certificate = $this->Lotw->find_cert($info['issued_callsign'], $info['dxcc-id'], $this->session->userdata('user_id'));
 
         	if($new_certificate == 0) {
         		// New Certificate Store in Database
 
         		// Store Certificate Data into MySQL
-        		$this->LotwCert->store_certificate($this->session->userdata('user_id'), $info['issued_callsign'], $info['dxcc-id'], $info['validFrom'], $info['validTo_Date'], $info['qso-first-date'], $info['qso-end-date'], $info['pem_key'], $info['general_cert']);
+        		$this->Lotw->store_certificate($this->session->userdata('user_id'), $info['issued_callsign'], $info['dxcc-id'], $info['validFrom'], $info['validTo_Date'], $info['qso-first-date'], $info['qso-end-date'], $info['pem_key'], $info['general_cert']);
 
         		// Cert success flash message
         		$this->session->set_flashdata('Success', $info['issued_callsign'].' Certificate Imported.');
         	} else {
         		// Certificate is in the system time to update
 
-				$this->LotwCert->update_certificate($this->session->userdata('user_id'), $info['issued_callsign'], $info['dxcc-id'], $info['validFrom'], $info['validTo_Date'], $info['qso-first-date'], $info['qso-end-date'], $info['pem_key'], $info['general_cert']);
+				$this->Lotw->update_certificate($this->session->userdata('user_id'), $info['issued_callsign'], $info['dxcc-id'], $info['validFrom'], $info['validTo_Date'], $info['qso-first-date'], $info['qso-end-date'], $info['pem_key'], $info['general_cert']);
 
         		// Cert success flash message
         		$this->session->set_flashdata('Success', $info['issued_callsign'].' Certificate Updated.');
@@ -228,7 +228,7 @@ class Lotw extends CI_Controller {
 				// Get Certificate Data
 				$this->load->model('Lotw');
 				$data['station_profile'] = $station_profile;
-				$data['lotw_cert_info'] = $this->LotwCert->lotw_cert_details($station_profile->station_callsign, $station_profile->station_dxcc);
+				$data['lotw_cert_info'] = $this->Lotw->lotw_cert_details($station_profile->station_callsign, $station_profile->station_dxcc);
 
 				// If Station Profile has no LoTW Cert continue on.
 				if(!isset($data['lotw_cert_info']->cert_dxcc_id)) {
@@ -324,7 +324,7 @@ class Lotw extends CI_Controller {
 
 				if(curl_errno($ch)){
 					echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): Upload Failed - ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).")<br>";
-					$this->LotwCert->last_upload($data['lotw_cert_info']->lotw_cert_id, "Upload failed");
+					$this->Lotw->last_upload($data['lotw_cert_info']->lotw_cert_id, "Upload failed");
 					if (curl_errno($ch) == 28) {  // break on timeout
 						echo "Timeout reached. Stopping subsequent uploads.<br>";
 						break;
@@ -338,7 +338,7 @@ class Lotw extends CI_Controller {
 				if ($pos === false) {
 					// Upload of TQ8 Failed for unknown reason
 					echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): Upload Failed - ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).")<br>";
-					$this->LotwCert->last_upload($data['lotw_cert_info']->lotw_cert_id, "Upload failed");
+					$this->Lotw->last_upload($data['lotw_cert_info']->lotw_cert_id, "Upload failed");
 					if (curl_errno($ch) == 28) {  // break on timeout
 						echo "Timeout reached. Stopping subsequent uploads.<br>";
 						break;
@@ -350,7 +350,7 @@ class Lotw extends CI_Controller {
 
 					echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): Upload Successful - ".$filename_for_saving."<br>";
 
-					$this->LotwCert->last_upload($data['lotw_cert_info']->lotw_cert_id, "Success");
+					$this->Lotw->last_upload($data['lotw_cert_info']->lotw_cert_id, "Success");
 
 					// Mark QSOs as Sent
 					foreach ($qso_id_array as $qso_number) {
@@ -391,7 +391,7 @@ class Lotw extends CI_Controller {
 
     	$this->load->model('Lotw');
 
-    	$this->LotwCert->delete_certificate($this->session->userdata('user_id'), $cert_id);
+    	$this->Lotw->delete_certificate($this->session->userdata('user_id'), $cert_id);
 
     	$this->session->set_flashdata('Success', 'Certificate Deleted.');
 
