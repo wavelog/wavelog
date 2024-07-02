@@ -276,6 +276,10 @@ $options = json_decode($options);
                         <label class="form-label" for="operator"><?= __("Operator"); ?></label>
                         <input type="text" name="operator" id="operator" class="form-control form-control-sm" value="">
                     </div>
+                    </div>
+                         <div class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
+                         <label class="form-label" for="contest"><?= __("Contest:"); ?></label>
+                         <input type="text" name="contest" id="contest" class="form-control form-control-sm" value="">
                 </div>
             </div>
     </div>

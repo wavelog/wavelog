@@ -18,6 +18,7 @@
 			<option value="station"><?= __("Station Location"); ?></option>
 			<option value="wwff"><?= __("WWFF"); ?></option>
 			<option value="state"><?= __("State"); ?></option>
+                        <option value="contest"><?= __("Contest"); ?></option>
 		</select>
 		<div>&nbsp;</div>
 

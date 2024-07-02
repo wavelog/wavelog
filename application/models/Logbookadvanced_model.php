@@ -206,7 +206,12 @@ class Logbookadvanced_model extends CI_Model {
                                 $binding[] = trim($searchCriteria['sats']);
                         }
                 }
-        }
+		}
+
+		if ($searchCriteria['contest'] !== '') {
+			$conditions[] = "COL_CONTEST_ID like ?";
+			$binding[] = '%'.$searchCriteria['contest'].'%';
+		}
 
 		if (($searchCriteria['ids'] ?? '') !== '') {
 			$conditions[] = "qsos.COL_PRIMARY_KEY in (".implode(",",$searchCriteria['ids']).")";
@@ -502,6 +507,7 @@ class Logbookadvanced_model extends CI_Model {
 			case "gridsquare": $column = 'COL_GRIDSQUARE'; break;
 			case "qslvia": $column = 'COL_QSL_VIA'; break;
 			case "satellite": $column = 'COL_SAT_NAME'; break;
+			case "contest": $column = 'COL_CONTEST_ID'; break;
 			default: return;
 		}
 
