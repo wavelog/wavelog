@@ -565,9 +565,6 @@ $options = json_decode($options);
                     <?php if (($options->clublog->show ?? "true") == "true") {
                         echo '<th class="clublogconfirmation">Clublog</th>';
                     } ?>
-                    <?php if ($this->session->userdata('user_lotw_name') != "" && ($options->lotw->show ?? "true") == "true") {
-                        echo '<th class="lotwconfirmation">LoTW</th>';
-                    } ?>
                     <?php if ($this->session->userdata('user_eqsl_name') != ""  && ($options->eqsl->show ?? "true") == "true") {
                         echo '<th class="eqslconfirmation">eQSL</th>';
                     } ?>
