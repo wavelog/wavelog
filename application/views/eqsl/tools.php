@@ -2,30 +2,28 @@
 <h2><?php echo $page_title; ?></h2>
 <div class="card">
   <div class="card-header">
-  	<div class="card-title">eQSL Tools</div>
     <ul class="nav nav-tabs card-header-tabs">
       <li class="nav-item">
-        <a class="nav-link" href="<?php echo site_url('eqsl/import');?>">Download QSOs</a>
+        <a class="nav-link" href="<?php echo site_url('eqsl/import');?>"><?= __("Download QSOs"); ?></a>
+      </li>
+<?php if (!($this->config->item('disable_manual_eqsl'))) { ?>
+      <li class="nav-item">
+        <a class="nav-link" href="<?php echo site_url('eqsl/Export');?>"><?= __("Upload QSOs"); ?></a>
+      </li>
+<?php } ?>
+      <li class="nav-item">
+        <a class="nav-link active" href="<?php echo site_url('eqsl/tools');?>"><?= __("Tools"); ?></a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="<?php echo site_url('eqsl/Export');?>">Upload QSOs</a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link active" href="<?php echo site_url('eqsl/tools');?>">Tools</a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="<?php echo site_url('eqsl/download');?>">Download eQSL cards</a>
+        <a class="nav-link" href="<?php echo site_url('eqsl/download');?>"><?= __("Download eQSL cards"); ?></a>
       </li>
     </ul>
   </div>
 
   <div class="card-body">
 		<?php $this->load->view('layout/messages'); ?>
-
-        <p><a class="btn btn-primary" href="<?php echo site_url('eqsl/mark_all_sent'); ?>">Mark All QSOs as Sent to eQSL</a> use this if you have lots of QSOs to upload to eQSL it will save the server timing out.</p>
+        <p><a class="btn btn-primary" href="<?php echo site_url('eqsl/mark_all_sent'); ?>"><?= __("Mark All QSOs as Sent to eQSL"); ?></a> <?= __("Use this if you have lots of QSOs to upload to eQSL it will save the server timing out."); ?></p>
   </div>
 </div>
 

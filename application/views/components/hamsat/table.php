@@ -1,34 +1,35 @@
 <div class="table-responsive">
     <br>
-    <h2>Hamsat - Satellite Rovers</h2>
-    <p>This data is from <a target="_blank" href="https://hams.at/">https://hams.at/</a>.
+    <h2><?= __("Hamsat - Satellite Rovers"); ?></h2>
+    <p><?= __("This data comes from"); ?> <a target="_blank" href="https://hams.at/">https://hams.at/</a>.
     <?php if ($user_hamsat_workable_only) {
     echo " Only workable passes shown.";
     } else {
     echo " All passes shown.";
     }?>
     </p>
+    <button type="button" onclick="loadHamsAt();" class="btn btn-info btn-sm"><?= __("Show All Passes"); ?></button>
     <?php if ($user_hamsat_workable_only && $user_hamsat_key == '') { ?>
     <div class="alert alert-warning" role="warning">
-       Private feed key empty. Please set the feed key in your profile.
+       <?= __("Private feed key empty. Please set the feed key in your profile."); ?>
     </div>
     <?php } else { ?>
     <?php if ($rovedata['data'] == []) { ?>
      <div class="alert alert-warning" role="warning">
-       <?php echo lang('hams_at_no_activations_found');?>
+       <?= __("No upcoming activations found. Please check back later.");?>
     </div>
     <?php } else { ?>
        <table class="table table-striped table-hover">
            <thead>
                <tr>
-                   <th>Date</th>
-                   <th>Time</th>
-                   <th>Callsign</th>
-                   <th>Comment</th>
-                   <th>Satellite</th>
-                   <th>Mode</th>
-                   <th>Gridsquare(s)</th>
-                   <th>Workable</th>
+                   <th><?= __("Date"); ?></th>
+                   <th><?= __("Time"); ?></th>
+                   <th><?= __("Callsign"); ?></th>
+                   <th><?= __("Comment"); ?></th>
+                   <th><?= __("Satellite"); ?></th>
+                   <th><?= __("Mode"); ?></th>
+                   <th><?= __("Gridsquare(s)"); ?></th>
+                   <th><?= __("Workable"); ?></th>
                    <th></th>
                    <th></th>
                </tr>
@@ -43,7 +44,7 @@
                    <tr>
                        <td>
                            <?php
-   
+
                            // Get Date format
                            if ($this->session->userdata('user_date_format')) {
                                // If Logged in and session exists
@@ -52,12 +53,12 @@
                                // Get Default date format from /config/wavelog.php
                                $custom_date_format = $this->config->item('qso_date_format');
                            }
-   
+
                            ?>
-   
+
                            <?php $timestamp = strtotime($rove['aos_at']);
                               echo date($custom_date_format, $timestamp); ?>
-   
+
                        </td>
                        <td>
                            <?php echo date("H:i:s", $timestamp)." - ".date("H:i:s", strtotime($rove['los_at'])); ?>
@@ -96,13 +97,13 @@
                           } else if ($rove['mode'] == 'FM') {
                              $modeclass = 'hamsatBgFm';
                           }
-   
+
                        ?>
                        <td><span data-bs-toggle="tooltip" title="<?php if ($rove['mhz'] != '') { printf("%.3f", $rove['mhz']); echo " ".$direction ?? ''; } ?>"><?= $rove['satellite']['name'] ?></span></td>
                        <td><span title="<?php echo $rove['mode']; ?>" class="badge <?php echo $modeclass; ?>"><?php echo $rove['mode']; ?></span></td>
                        <td>
-   
-   
+
+
                            <?php
                            // Load the logbook model and call check_if_grid_worked_in_logbook
                            foreach ($rove['grids'] as $grid) {
@@ -114,8 +115,8 @@
                               }
                            }
                            ?>
-   
-   
+
+
                        </td>
                        <td>
                        <?php
@@ -130,7 +131,7 @@
                           }
                        ?>
                        </td>
-                       <td><a href="<?php echo $rove['url']; ?>" target="_blank">Track</a></td>
+                       <td><a href="<?php echo $rove['url']; ?>" target="_blank"><?= _pgettext("Hamsat - Track Satellites", "Track"); ?></a></td>
                        <?php
                            $sat = $rove['satellite']['name'];
                            switch (strtoupper($rove['satellite']['name'])) {
@@ -142,7 +143,7 @@
                        <td>
                        <?php
                           if ($rove['is_workable'] || $user_hamsat_key == '') { ?>
-   <a href="https://sat.fg8oj.com/sked.php?s%5B%5D=<?php echo $sat; ?>&l=<?php echo strtoupper($gridsquare); ?>&el1=0&l2=<?php echo $rove['grids'][0]; ?>&el2=0&duration=1&start=0&OK=Search" target="_blank">Sked</a>
+   <a href="https://sat.fg8oj.com/sked.php?s%5B%5D=<?php echo $sat; ?>&l=<?php echo strtoupper($gridsquare); ?>&el1=0&l2=<?php echo $rove['grids'][0]; ?>&el2=0&duration=1&start=0&OK=Search" target="_blank"><?= __("Sked"); ?></a>
                        <?php } ?>
                        </td>
                    </tr>

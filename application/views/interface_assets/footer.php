@@ -4,7 +4,6 @@
     */
     var option_map_tile_server = '<?php echo $this->optionslib->get_option('option_map_tile_server');?>';
     var option_map_tile_server_copyright = '<?php echo $this->optionslib->get_option('option_map_tile_server_copyright');?>';
-    var lang_datatables_language = '<?php echo lang('datatables_language'); ?>';
 
     var base_url = "<?php echo base_url(); ?>"; // Base URL
     var site_url = "<?php echo site_url(); ?>"; // Site URL
@@ -17,27 +16,28 @@
     /*
     General Language
     */
-    var lang_general_word_qso_data = "<?php echo lang('general_word_qso_data'); ?>";
-    var lang_general_edit_qso = "<?php echo lang('general_edit_qso'); ?>";
-    var lang_general_word_danger = "<?php echo lang('general_word_danger'); ?>";
-    var lang_general_word_attention = "<?php echo lang('general_word_attention'); ?>";
-    var lang_general_word_warning = "<?php echo lang('general_word_warning'); ?>";
-    var lang_general_word_cancel = "<?php echo lang('general_word_cancel'); ?>";
-    var lang_general_word_ok = "<?php echo lang('general_word_ok'); ?>";
-    var lang_qso_delete_warning = "<?php echo lang('qso_delete_warning'); ?>";
-    var lang_general_word_colors = "<?php echo lang('general_word_colors'); ?>";
-    var lang_general_word_confirmed = "<?php echo lang('general_word_confirmed'); ?>";
-    var lang_general_word_worked_not_confirmed = "<?php echo lang('general_word_worked_not_confirmed'); ?>";
-    var lang_general_word_not_worked = "<?php echo lang('general_word_not_worked'); ?>";
-    var lang_admin_close = "<?php echo lang('admin_close'); ?>";
-    var lang_admin_clear = "<?php echo lang('admin_clear'); ?>";
+    var lang_general_word_qso_data = "<?= __("QSO Data"); ?>";
+    var lang_general_edit_qso = "<?= __("Edit QSO"); ?>";
+    var lang_general_word_danger = "<?= __("DANGER"); ?>";
+    var lang_general_word_attention = "<?= __("Attention"); ?>";
+    var lang_general_word_warning = "<?= __("Warning"); ?>";
+    var lang_general_word_cancel = "<?= __("Cancel"); ?>";
+    var lang_general_word_ok = "<?= __("OK"); ?>";
+    var lang_qso_delete_warning = "<?= __("Warning! Are you sure you want delete QSO with "); ?>";
+    var lang_general_word_colors = "<?= __("Colors"); ?>";
+    var lang_general_word_confirmed = "<?= __("Confirmed"); ?>";
+    var lang_general_word_worked_not_confirmed = "<?= __("Worked not confirmed"); ?>";
+    var lang_general_word_not_worked = "<?= __("Not worked"); ?>";
+    var lang_admin_close = "<?= __("Close"); ?>";
+    var lang_admin_save = "<?= __("Save"); ?>";
+    var lang_admin_clear = "<?= __("Clear"); ?>";
 
 </script>
 
 <!-- General JS Files used across Wavelog -->
 <script src="<?php echo base_url(); ?>assets/js/jquery-3.3.1.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery.fancybox.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/bootstrap.bundle.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/leaflet/leaflet.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/leaflet/Control.FullScreen.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/leaflet/L.Maidenhead.qrb.js"></script>
@@ -54,6 +54,11 @@
 <script type="text/javascript" src="<?php echo base_url() ;?>assets/js/sections/version_dialog.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ;?>assets/js/showdown.min.js"></script>
 
+<script type="module" defer>
+  		import { polyfillCountryFlagEmojis } from "<?php echo base_url() ;?>assets/js/country-flag-emoji-polyfill.js";
+		polyfillCountryFlagEmojis();
+</script>
+
 <script src="<?php echo base_url(); ?>assets/js/htmx.min.js"></script>
 
 <script>
@@ -65,8 +70,7 @@
 
 <script>
     function getDataTablesLanguageUrl() {
-        var lang_datatables_language = "<?php echo lang('datatables_language'); ?>";
-        datatables_language_url = "<?php echo base_url() ;?>assets/json/datatables_languages/" + lang_datatables_language + ".json";
+        datatables_language_url = "<?php echo base_url() ;?>assets/json/datatables_languages/" + "<?php echo $language['locale']; ?>" + ".json";
         return datatables_language_url;
     }
 </script>
@@ -81,7 +85,7 @@ if($this->session->userdata('user_id') != null) {
     }
     $versionDialogHeader = $this->optionslib->get_option('version_dialog_header');
     if (empty($versionDialogHeader)) {
-        $this->optionslib->update('version_dialog_header', $this->lang->line('options_version_dialog'), 'yes');
+        $this->optionslib->update('version_dialog_header', __("Version Info"), 'yes');
     }
     if($versionDialog != "disabled") {
         $confirmed = $this->user_options_model->get_options('version_dialog', array('option_name'=>'confirmed'))->result();
@@ -97,6 +101,32 @@ if($this->session->userdata('user_id') != null) {
 ?>
 
 <!-- Version Dialog END -->
+
+<!-- SPECIAL CALLSIGN OPERATOR FEATURE -->
+<?php if ($this->config->item('special_callsign') == true && $this->uri->segment(1) == "dashboard") { ?>
+<script type="text/javascript" src="<?php echo base_url() ;?>assets/js/sections/operator.js"></script>
+<script>
+	<?php 
+	# Set some variables for better readability
+    $op_call = $this->session->userdata('operator_callsign');
+	$account_call = $this->session->userdata('user_callsign');
+    $user_type = $this->session->userdata('user_type'); ?>
+
+    // JS variable which is used in operator.js
+    let sc_account_call = '<?php echo $account_call; ?>'
+    
+	<?php 
+    # if the operator call and the account call is the same we show the dialog (except for admins!)
+    if ($op_call == $account_call && $user_type != '99') { ?>
+
+        // load the dialog with javascript
+        displayOperatorDialog();
+    
+    <?php } ?>
+</script>
+<?php } ?>
+<!-- SPECIAL CALLSIGN OPERATOR FEATURE END -->
+
 <script>
     var current_active_location = "<?php echo $this->stations->find_active(); ?>";
     quickswitcher_show_activebadge(current_active_location);
@@ -104,6 +134,11 @@ if($this->session->userdata('user_id') != null) {
 
 <?php if ($this->uri->segment(1) == "oqrs") { ?>
     <script src="<?php echo base_url() ;?>assets/js/sections/oqrs.js"></script>
+<?php } ?>
+
+<!-- JS library to convert cron format to human readable -->
+<?php if ($this->uri->segment(1) == "cron") { ?>
+    <script src="<?php echo base_url() ;?>assets/js/cronstrue.min.js"async></script>
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "options") { ?>
@@ -592,10 +627,10 @@ $(document).ready(function() {
 
 <script>
 function printWarning() {
-    if ($("#dxcc_id option:selected").text().includes("<?php echo lang('gen_hamradio_deleted_dxcc'); ?>")) {
+    if ($("#dxcc_id option:selected").text().includes("<?= __("Deleted DXCC"); ?>")) {
         $('#warningMessageDXCC').show();
         $('#dxcc_id').css('border', '2px solid rgb(217, 83, 79)');
-        $('#warningMessageDXCC').text("<?php echo lang('station_location_dxcc_warning'); ?>");
+        $('#warningMessageDXCC').text("<?= __("Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. Check which DXCC for this particular location is the correct one. If you are sure, ignore this warning."); ?>");
     } else {
         $('#dxcc_id').css('border', '');
         $('#warningMessageDXCC').hide();
@@ -630,67 +665,7 @@ document.onkeyup = function(e) {
 	}
 };
 
-function newpath(latlng1, latlng2, locator1, locator2) {
-    // If map is already initialized
-    var container = L.DomUtil.get('mapqrbcontainer');
 
-    if(container != null){
-        container._leaflet_id = null;
-        container.remove();
-        $("#mapqrb").append('<div id="mapqrbcontainer" style="Height: 500px"></div>');
-    }
-
-    var map = new L.Map('mapqrbcontainer', {
-        fullscreenControl: true,
-        fullscreenControlOptions: {
-          position: 'topleft'
-        },
-      }).setView([30, 0], 1.5);
-
-    // Need to fix so that marker is placed at same place as end of line, but this only needs to be done when longitude is < -170
-    if (latlng2[1] < -170) {
-        latlng2[1] =  parseFloat(latlng2[1])+360;
-    }
-    if (latlng1[1] < -170) {
-        latlng1[1] =  parseFloat(latlng1[1])+360;
-    }
-
-    map.fitBounds([
-        [latlng1[0], latlng1[1]],
-        [latlng2[0], latlng2[1]]
-    ]);
-
-    var maidenhead = L.maidenheadqrb().addTo(map);
-
-    var osmUrl='<?php echo $this->optionslib->get_option('option_map_tile_server');?>';
-    var osmAttrib='Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
-    var osm = new L.TileLayer(osmUrl, {minZoom: 1, maxZoom: 12, attribution: osmAttrib});
-
-    var redIcon = L.icon({
-					iconUrl: icon_dot_url,
-					iconSize:     [10, 10], // size of the icon
-				});
-
-    map.addLayer(osm);
-
-    var marker = L.marker([latlng1[0], latlng1[1]], {closeOnClick: false, autoClose: false}).addTo(map).bindPopup(locator1);
-
-    var marker2 = L.marker([latlng2[0], latlng2[1]], {closeOnClick: false, autoClose: false}).addTo(map).bindPopup(locator2);
-
-    const multiplelines = [];
-		multiplelines.push(
-            new L.LatLng(latlng1[0], latlng1[1]),
-            new L.LatLng(latlng2[0], latlng2[1])
-        )
-
-    const geodesic = L.geodesic(multiplelines, {
-        weight: 3,
-        opacity: 1,
-        color: 'red',
-        wrap: false,
-        steps: 100
-    }).addTo(map);
-}
 
 function showActivatorsMap(call, count, grids) {
 
@@ -1137,16 +1112,16 @@ $($('#callsign')).on('keypress',function(e) {
 		    if($('select.radios option:selected').val() != '0') {
 			    radioID = $('select.radios option:selected').val();
 			    $.getJSON( "radio/json/" + radioID, function( data ) {
-	  /* {
-	  "frequency": "2400210000",
-	      "frequency_rx": "10489710000",
-	      "mode": "SSB",
-	      "satmode": "S/X",
-	      "satname": "QO-100"
-	      "power": "20"
-	      "prop_mode": "SAT",
-	      "error": "not_logged_id" // optional, reserved for errors
-	  }  */
+        /* {
+        "frequency": "2400210000",
+            "frequency_rx": "10489710000",
+            "mode": "SSB",
+            "satmode": "S/X",
+            "satname": "QO-100"
+            "power": "20"
+            "prop_mode": "SAT",
+            "error": "not_logged_id" // optional, reserved for errors
+        }  */
 				    if (data.error) {
 					    if (data.error == 'not_logged_in') {
 						    $(".radio_cat_state" ).remove();
@@ -1210,7 +1185,7 @@ $($('#callsign')).on('keypress',function(e) {
 					    }
 				    }
 			    });
-		    }
+            }
 	    };
 
 	    // Update frequency every three second
@@ -1229,6 +1204,7 @@ $($('#callsign')).on('keypress',function(e) {
 			    $("#band_rx").val("");
 			    $("#selectPropagation").val($("#selectPropagation option:first").val());
 			    $(".radio_timeout_error" ).remove();
+                $(".radio_cat_state" ).remove();
 		    }
 	    });
     });
@@ -1348,14 +1324,14 @@ $(document).ready(function(){
 
   if (grid_four_confirmed_count > 0) {
      var span = document.getElementById('confirmed_grids');
-     span.innerText = span.textContent = '('+grid_four_confirmed_count+' <?php echo lang('gridsquares_grid_squares'); ?>'+(grid_four_confirmed_count != 1 ? 's' : '')+') ';
+     span.innerText = span.textContent = '('+grid_four_confirmed_count+' <?= __("grid square"); ?>'+(grid_four_confirmed_count != 1 ? 's' : '')+') ';
   }
   if ((grid_four_count-grid_four_confirmed_count) > 0) {
      var span = document.getElementById('worked_grids');
-     span.innerText = span.textContent = '('+(grid_four_count-grid_four_confirmed_count)+' <?php echo lang('gridsquares_grid_squares'); ?>'+(grid_four_count-grid_four_confirmed_count != 1 ? 's' : '')+') ';
+     span.innerText = span.textContent = '('+(grid_four_count-grid_four_confirmed_count)+' <?= __("grid square"); ?>'+(grid_four_count-grid_four_confirmed_count != 1 ? 's' : '')+') ';
   }
   var span = document.getElementById('sum_grids');
-  span.innerText = span.textContent = ' <?php echo lang('gridsquares_total_count'); ?>'+': '+grid_four_count+' <?php echo lang('gridsquares_grid_squares'); ?>'+(grid_four_count != 1 ? 's' : '');
+  span.innerText = span.textContent = ' <?= __("Total count"); ?>'+': '+grid_four_count+' <?= __("grid square"); ?>'+(grid_four_count != 1 ? 's' : '');
 
   var maidenhead = L.maidenhead().addTo(map);
 
@@ -1492,14 +1468,14 @@ $(document).ready(function(){
 
   if (grid_four_confirmed_count > 0) {
      var span = document.getElementById('confirmed_grids');
-     span.innerText = span.textContent = '('+grid_four_confirmed_count+' <?php echo lang('gridsquares_grid_squares'); ?>'+(grid_four_confirmed_count != 1 ? 's' : '')+') ';
+     span.innerText = span.textContent = '('+grid_four_confirmed_count+' <?= __("grid square"); ?>'+(grid_four_confirmed_count != 1 ? 's' : '')+') ';
   }
   if ((grid_four_count-grid_four_confirmed_count) > 0) {
      var span = document.getElementById('activated_grids');
-     span.innerText = span.textContent = '('+(grid_four_count-grid_four_confirmed_count)+' <?php echo lang('gridsquares_grid_squares'); ?>'+(grid_four_count-grid_four_confirmed_count != 1 ? 's' : '')+') ';
+     span.innerText = span.textContent = '('+(grid_four_count-grid_four_confirmed_count)+' <?= __("grid square"); ?>'+(grid_four_count-grid_four_confirmed_count != 1 ? 's' : '')+') ';
   }
   var span = document.getElementById('sum_grids');
-  span.innerText = span.textContent = ' <?php echo lang('gridsquares_total_count'); ?>'+': '+grid_four_count+' <?php echo lang('gridsquares_grid_squares'); ?>'+(grid_four_count != 1 ? 's' : '');
+  span.innerText = span.textContent = ' <?= __("Total count"); ?>'+': '+grid_four_count+' <?= __("grid square"); ?>'+(grid_four_count != 1 ? 's' : '');
 
   var maidenhead = L.maidenhead().addTo(map);
 
@@ -1971,75 +1947,7 @@ $(document).ready(function(){
             }
         </script>
         <?php } ?>
-    <?php if ($this->uri->segment(1) == "activators") { ?>
-        <script>
-            $('.activatorstable').DataTable({
-                "pageLength": 25,
-                responsive: false,
-                ordering: false,
-                "scrollY":        "500px",
-                "scrollCollapse": true,
-                "paging":         false,
-                "scrollX": true,
-                "language": {
-                    url: getDataTablesLanguageUrl(),
-                },
-                dom: 'Bfrtip',
-                buttons: [
-                    'csv'
-                ]
-            });
 
-            // change color of csv-button if dark mode is chosen
-            if (isDarkModeTheme()) {
-                $(".buttons-csv").css("color", "white");
-            }
-
-      $(document).ready(function(){
-         $('#band').change(function()
-         {
-            if($(this).val() == "SAT")
-            {
-               $('#leogeo').show();
-            } else {
-               $('#leogeo').hide();
-            }
-         });
-         <?php if ($this->input->post('band') != "SAT") { ?>
-         $('#leogeo').hide();
-         <?php } ?>
-      });
-            function displayActivatorsContacts(call, band, leogeo) {
-                var baseURL= "<?php echo base_url();?>";
-                $.ajax({
-                    url: baseURL + 'index.php/activators/details',
-                    type: 'post',
-                    data: {'Callsign': call,
-                        'Band': band,
-                        'LeoGeo': leogeo
-                    },
-                    success: function(html) {
-                        BootstrapDialog.show({
-                            title: lang_general_word_qso_data,
-                            size: BootstrapDialog.SIZE_WIDE,
-                            cssClass: 'qso-was-dialog',
-                            nl2br: false,
-                            message: html,
-                            onshown: function(dialog) {
-                               $('[data-bs-toggle="tooltip"]').tooltip();
-                            },
-                            buttons: [{
-                                label: lang_admin_close,
-                                action: function (dialogItself) {
-                                    dialogItself.close();
-                                }
-                            }]
-                        });
-                    }
-                });
-            }
-        </script>
-        <?php } ?>
 
     <?php if ($this->uri->segment(1) == "mode") { ?>
 		<script src="<?php echo base_url(); ?>assets/js/sections/mode.js"></script>

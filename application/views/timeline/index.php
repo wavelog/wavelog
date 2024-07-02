@@ -1,13 +1,13 @@
 <div class="container">
-    <h1><?php echo lang('statistics_timeline'); ?></h1>
+    <h1><?= __("Timeline"); ?></h1>
 
     <form class="form" action="<?php echo site_url('timeline'); ?>" method="post" enctype="multipart/form-data">
         <!-- Select Basic -->
                 <div class="mb-3 row">
-                    <label class="col-md-1 control-label" for="band"><?php echo lang('gen_hamradio_band') ?></label>
+                    <label class="col-md-1 control-label" for="band"><?= __("Band") ?></label>
                     <div class="col-md-3">
                         <select id="band" name="band" class="form-select">
-                            <option value="All" <?php if ($this->input->post('band') == "All" || $this->input->method() !== 'post') echo ' selected'; ?> ><?php echo lang('general_word_all') ?></option>
+                            <option value="All" <?php if ($this->input->post('band') == "All" || $this->input->method() !== 'post') echo ' selected'; ?> ><?= __("All") ?></option>
                             <?php foreach($worked_bands as $band) {
                                 echo '<option value="' . $band . '"';
                                 if ($this->input->post('band') == $band) echo ' selected';
@@ -16,10 +16,10 @@
                         </select>
                     </div>
 
-                    <label class="col-md-1 control-label" for="mode"><?php echo lang('gen_hamradio_mode') ?></label>
+                    <label class="col-md-1 control-label" for="mode"><?= __("Mode") ?></label>
                     <div class="col-md-3">
                         <select id="mode" name="mode" class="form-select">
-                            <option value="All" <?php if ($this->input->post('mode') == "All" || $this->input->method() !== 'post') echo ' selected'; ?> ><?php echo lang('general_word_all') ?></option>
+                            <option value="All" <?php if ($this->input->post('mode') == "All" || $this->input->method() !== 'post') echo ' selected'; ?> ><?= __("All") ?></option>
                             <?php
                             foreach($modes->result() as $mode){
                                 if ($mode->submode == null) {
@@ -38,29 +38,29 @@
                 </div>
 
         <div class="mb-3 row">
-            <label class="col-md-1 control-label" for="award"><?php echo lang('gen_hamradio_award') ?></label>
+            <label class="col-md-1 control-label" for="award"><?= __("Award") ?></label>
                 <div class="col-md-3">
                     <select id="award" name="award" class="form-select">
-                        <option value="dxcc" <?php if ($this->input->post('award') == "dxcc") echo ' selected'; ?> >DX Century Club (DXCC)</option>
-                        <option value="was" <?php if ($this->input->post('award') == "was") echo ' selected'; ?> >Worked All States (WAS)</option>
-                        <option value="iota" <?php if ($this->input->post('award') == "iota") echo ' selected'; ?> >Islands On The Air (IOTA)</option>
-                        <option value="waz" <?php if ($this->input->post('award') == "waz") echo ' selected'; ?> >Worked All Zones (WAZ)</option>
-                        <option value="vucc" <?php if ($this->input->post('award') == "vucc") echo ' selected'; ?> >VHF / UHF Century Club (VUCC)</option>
+                        <option value="dxcc" <?php if ($this->input->post('award') == "dxcc") echo ' selected'; ?> ><?= __("DX Century Club (DXCC)"); ?></option>
+                        <option value="was" <?php if ($this->input->post('award') == "was") echo ' selected'; ?> ><?= __("Worked All States (WAS)"); ?></option>
+                        <option value="iota" <?php if ($this->input->post('award') == "iota") echo ' selected'; ?> ><?= __("Islands On The Air (IOTA)"); ?></option>
+                        <option value="waz" <?php if ($this->input->post('award') == "waz") echo ' selected'; ?> ><?= __("Worked All Zones (WAZ)"); ?></option>
+                        <option value="vucc" <?php if ($this->input->post('award') == "vucc") echo ' selected'; ?> ><?= __("VHF / UHF Century Club (VUCC)"); ?></option>
                     </select>
                 </div>
-                <div class="col-md-1 control-label"><?php echo lang('general_word_confirmation') ?></div>
+                <div class="col-md-1 control-label"><?= __("Confirmation") ?></div>
                 <div class="col-md-3">
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" name="qsl" value="1" id="qsl" <?php if ($this->input->post('qsl'))  echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="qsl"><?php echo lang('gen_hamradio_qsl') ?></label>
+                        <label class="form-check-label" for="qsl"><?= __("QSL") ?></label>
                     </div>
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" name="lotw" value="1" id="lotw" <?php if ($this->input->post('lotw')) echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="lotw"><?php echo lang('general_word_lotw_short') ?></label>
+                        <label class="form-check-label" for="lotw"><?= __("LoTW") ?></label>
                     </div>
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" name="eqsl" value="1" id="eqsl" <?php if ($this->input->post('eqsl')) echo ' checked="checked"'; ?> >
-                        <label class="form-check-label" for="eqsl"><?php echo lang('eqsl_short') ?></label>
+                        <label class="form-check-label" for="eqsl"><?= __("eQSL") ?></label>
                     </div>
                 </div>
             </div>
@@ -68,7 +68,7 @@
             <div class="mb-3 row">
                 <label class="col-md-1 control-label" for="button1id"></label>
                 <div class="col-md-10">
-                    <button id="button1id" type="submit" name="button1id" class="btn btn-primary"><?php echo lang('filter_options_show') ?></button>
+                    <button id="button1id" type="submit" name="button1id" class="btn btn-primary"><?= __("Show") ?></button>
                 </div>
             </div>
 
@@ -97,7 +97,7 @@
         }
     }
     else {
-        echo '<div class="alert alert-danger" role="alert">Nothing found!</div>';
+        echo '<div class="alert alert-danger" role="alert">' . __("Nothing found!") . '</div>';
     }
     ?>
 
@@ -106,18 +106,17 @@
 <?php
 
 function write_dxcc_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $award) {
-    $ci =& get_instance();
     $i = count($timeline_array);
     echo '<table style="width:100%" class="table table-sm timelinetable table-bordered table-hover table-striped table-condensed text-center">
               <thead>
                     <tr>
                         <td>#</td>
-                        <td>'.$ci->lang->line('general_word_date').'</td>
-                        <td>'.$ci->lang->line('gen_hamradio_prefix').'</td>
-                        <td>'.$ci->lang->line('general_word_country').'</td>
-                        <td>'.$ci->lang->line('station_logbooks_status').'</td>
-                        <td>'.$ci->lang->line('general_word_enddate').'</td>
-                        <td>'.$ci->lang->line('gridsquares_show_qsos').'</td>
+                        <td>'.__("Date").'</td>
+                        <td>'.__("Prefix").'</td>
+                        <td>'.__("Country").'</td>
+                        <td>'.__("Status").'</td>
+                        <td>'.__("End Date").'</td>
+                        <td>'.__("Show QSO's").'</td>
                     </tr>
                 </thead>
                 <tbody>';
@@ -130,25 +129,24 @@ function write_dxcc_timeline($timeline_array, $custom_date_format, $bandselect, 
                 <td>' . $line->prefix . '</td>
                 <td>' . $line->col_country . '</td>
                 <td>';
-        if (!empty($line->end)) echo '<span class="badge text-bg-danger">'.$ci->lang->line('gen_hamradio_deleted_dxcc').'</span>';
+        if (!empty($line->end)) echo '<span class="badge text-bg-danger">'.__("Deleted DXCC").'</span>';
         echo '</td>
                 <td>' . $line->end . '</td>
-                <td><a href=javascript:displayTimelineContacts("' . $line->adif . '","'. $bandselect . '","'. $modeselect . '","' . $award .'")>'.$ci->lang->line('filter_options_show').'</a></td>
+                <td><a href=javascript:displayTimelineContacts("' . $line->adif . '","'. $bandselect . '","'. $modeselect . '","' . $award .'")>'.__("Show").'</a></td>
                </tr>';
     }
     echo '</tfoot></table></div>';
 }
 
 function write_was_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $award) {
-    $ci =& get_instance();
     $i = count($timeline_array);
     echo '<table style="width:100%" class="table table-sm timelinetable table-bordered table-hover table-striped table-condensed text-center">
               <thead>
                     <tr>
                         <td>#</td>
-                        <td>'.$ci->lang->line('general_word_date').'</td>
-                        <td>'.$ci->lang->line('gen_hamradio_state').'</td>
-                        <td>'.$ci->lang->line('gridsquares_show_qsos').'</td>
+                        <td>'.__("Date").'</td>
+                        <td>'.__("State").'</td>
+                        <td>'.__("Show QSO's").'</td>
                     </tr>
                 </thead>
                 <tbody>';
@@ -159,24 +157,23 @@ function write_was_timeline($timeline_array, $custom_date_format, $bandselect, $
                 <td>' . $i-- . '</td>
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
                 <td>' . $line->col_state . '</td>
-                <td><a href=javascript:displayTimelineContacts("' . $line->col_state . '","'. $bandselect . '","'. $modeselect . '","' . $award .'")>'.$ci->lang->line('filter_options_show').'</a></td>
+                <td><a href=javascript:displayTimelineContacts("' . $line->col_state . '","'. $bandselect . '","'. $modeselect . '","' . $award .'")>'.__("Show").'</a></td>
                </tr>';
     }
     echo '</tfoot></table></div>';
 }
 
 function write_iota_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $award) {
-    $ci =& get_instance();
     $i = count($timeline_array);
     echo '<table style="width:100%" class="table table-sm timelinetable table-bordered table-hover table-striped table-condensed text-center">
               <thead>
                     <tr>
                         <td>#</td>
-                        <td>'.$ci->lang->line('general_word_date').'</td>
-                        <td>'.$ci->lang->line('gen_hamradio_iota').'</td>
-                        <td>'.$ci->lang->line('general_word_name').'</td>
-                        <td>'.$ci->lang->line('gen_hamradio_prefix').'</td>
-                        <td>'.$ci->lang->line('gridsquares_show_qsos').'</td>
+                        <td>'.__("Date").'</td>
+                        <td>'.__("IOTA").'</td>
+                        <td>'.__("Name").'</td>
+                        <td>'.__("Prefix").'</td>
+                        <td>'.__("Show QSO's").'</td>
                     </tr>
                 </thead>
                 <tbody>';
@@ -189,22 +186,21 @@ function write_iota_timeline($timeline_array, $custom_date_format, $bandselect, 
                 <td>' . $line->col_iota . '</td>
                 <td>' . $line->name . '</td>
                 <td>' . $line->prefix . '</td>
-                <td><a href=javascript:displayTimelineContacts("' . $line->col_iota . '","'. $bandselect . '","'. $modeselect . '","' . $award .'")>'.$ci->lang->line('filter_options_show').'</a></td>
+                <td><a href=javascript:displayTimelineContacts("' . $line->col_iota . '","'. $bandselect . '","'. $modeselect . '","' . $award .'")>'.__("Show").'</a></td>
                </tr>';
     }
     echo '</tfoot></table></div>';
 }
 
 function write_waz_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $award) {
-    $ci =& get_instance();
     $i = count($timeline_array);
     echo '<table style="width:100%" class="table table-sm timelinetable table-bordered table-hover table-striped table-condensed text-center">
               <thead>
                     <tr>
                         <td>#</td>
-                        <td>'.$ci->lang->line('general_word_date').'</td>
-                        <td>'.$ci->lang->line('gen_hamradio_cq_zone').'</td>
-                        <td>'.$ci->lang->line('gridsquares_show_qsos').'</td>
+                        <td>'.__("Date").'</td>
+                        <td>'.__("CQ Zone").'</td>
+                        <td>'.__("Show QSO's").'</td>
                     </tr>
                 </thead>
                 <tbody>';
@@ -215,23 +211,22 @@ function write_waz_timeline($timeline_array, $custom_date_format, $bandselect, $
                 <td>' . $i-- . '</td>
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
                 <td>' . $line->col_cqz . '</td>
-                <td><a href=javascript:displayTimelineContacts("' . $line->col_cqz . '","'. $bandselect . '","'. $modeselect . '","' . $award .'")>'.$ci->lang->line('filter_options_show').'</a></td>
+                <td><a href=javascript:displayTimelineContacts("' . $line->col_cqz . '","'. $bandselect . '","'. $modeselect . '","' . $award .'")>'.__("Show").'</a></td>
                </tr>';
     }
     echo '</tfoot></table></div>';
 }
 
 function write_vucc_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $award) {
-    $ci =& get_instance();
     $i = count($timeline_array);
     echo '<table style="width:100%" class="table table-sm timelinetable table-bordered table-hover table-striped table-condensed text-center">
               <thead>
                     <tr>
                         <td>#</td>
-                        <td>'.$ci->lang->line('general_word_date').'</td>
-                        <td>'.$ci->lang->line('general_word_time').'</td>
-                        <td>'.$ci->lang->line('gen_hamradio_gridsquare').'</td>
-                        <td>'.$ci->lang->line('gridsquares_show_qsos').'</td>
+                        <td>'.__("Date").'</td>
+                        <td>'.__("Time").'</td>
+                        <td>'.__("Gridsquare").'</td>
+                        <td>'.__("Show QSO's").'</td>
                     </tr>
                 </thead>
                 <tbody>';
@@ -243,7 +238,7 @@ function write_vucc_timeline($timeline_array, $custom_date_format, $bandselect, 
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
                 <td>' . date('H:i', $date_as_timestamp) . '</td>
                 <td>' . $line['gridsquare'] . '</td>
-                <td><a href=javascript:displayTimelineContacts("' . $line['gridsquare'] . '","'. $bandselect . '","'. $modeselect . '","' . $award .'")>'.$ci->lang->line('filter_options_show').'</a></td>
+                <td><a href=javascript:displayTimelineContacts("' . $line['gridsquare'] . '","'. $bandselect . '","'. $modeselect . '","' . $award .'")>'.__("Show").'</a></td>
                </tr>';
     }
     echo '</tfoot></table></div>';

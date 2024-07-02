@@ -8,9 +8,6 @@ class Notes extends CI_Controller {
 
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
-
-		// Load language files
-		$this->lang->load('notes');
 	}
 
 
@@ -19,7 +16,7 @@ class Notes extends CI_Controller {
 	{
 		$this->load->model('note');
 		$data['notes'] = $this->note->list_all();
-		$data['page_title'] = "Notes";
+		$data['page_title'] = __("Notes");
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('notes/main');
 		$this->load->view('interface_assets/footer');
@@ -38,7 +35,7 @@ class Notes extends CI_Controller {
 
 		if ($this->form_validation->run() == FALSE)
 		{
-			$data['page_title'] = "Add Notes";
+			$data['page_title'] = __("Add Notes");
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('notes/add');
 			$this->load->view('interface_assets/footer');
@@ -58,7 +55,7 @@ class Notes extends CI_Controller {
 		$data['note'] = $this->note->view($id);
 		
 		// Display
-		$data['page_title'] = "Note";
+		$data['page_title'] = __("Note");
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('notes/view');
 		$this->load->view('interface_assets/footer');
@@ -79,7 +76,7 @@ class Notes extends CI_Controller {
 
 		if ($this->form_validation->run() == FALSE)
 		{
-			$data['page_title'] = "Edit Note";
+			$data['page_title'] = __("Edit Note");
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('notes/edit');
 			$this->load->view('interface_assets/footer');

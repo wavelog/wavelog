@@ -41,7 +41,6 @@ class QSO
 	/** @var string[] */
 	private string $deVUCCGridsquares;
 	private string $dxGridsquare;
-	private string $dxIOTA;
 	private string $dxSig;
 	private string $dxSigInfo;
 	private string $dxDARCDOK;
@@ -69,6 +68,7 @@ class QSO
 	private string $lotw_hint;
 	private string $operator;
 	private string $comment;
+	private string $contest;
 	/** Orbit type **/
 	private string $orbit;
 
@@ -126,7 +126,6 @@ class QSO
 			'COL_COMMENT',
 		];
 
-
 		foreach ($requiredKeys as $requiredKey) {
 			if (!array_key_exists($requiredKey, $data)) {
 				throw new DomainException("Required key $requiredKey does not exist");
@@ -157,7 +156,7 @@ class QSO
 		$this->rstS = $data['COL_RST_SENT'];
 		$this->propagationMode = $data['COL_PROP_MODE'] ?? '';
 		$this->satelliteMode = $data['COL_SAT_MODE'] != '' ? (strlen($data['COL_SAT_MODE']) == 2 ? (strtoupper($data['COL_SAT_MODE'][0]).'/'.strtoupper($data['COL_SAT_MODE'][1])) : strtoupper($data['COL_SAT_MODE'])) : '';
-		$this->satelliteName = $data['COL_SAT_NAME'] != '' ? ($data['orbit'] != '' ? $data['COL_SAT_NAME']." (".$data['orbit'].") " : $data['COL_SAT_NAME']) : '';
+		$this->satelliteName = $data['COL_SAT_NAME'] != '' ? (isset($data['orbit']) && $data['orbit'] != '' ? $data['COL_SAT_NAME']." (".$data['orbit'].") " : $data['COL_SAT_NAME']) : '';
 
 		$this->name = $data['COL_NAME'] ?? '';
 		$this->email = $data['COL_EMAIL'] ?? '';
@@ -174,7 +173,6 @@ class QSO
 		$this->deVUCCGridsquares = $data['COL_MY_VUCC_GRIDS'] ?? '';
 
 		$this->dxGridsquare = $data['COL_GRIDSQUARE'] ?? '';
-		$this->dxIOTA = $data['COL_IOTA'] ?? '';
 		$this->dxSig = $data['COL_SIG'] ?? '';
 		$this->dxSigInfo = $data['COL_SIG_INFO'] ?? '';
 		$this->dxDARCDOK = $data['COL_DARC_DOK'] ?? '';
@@ -202,7 +200,7 @@ class QSO
 		$this->cqzone = ($data['COL_CQZ'] === null) ? '' : $this->geCqLink($data['COL_CQZ']);
 		$this->ituzone = $data['COL_ITUZ'] ?? '';
 		$this->state = ($data['COL_STATE'] === null) ? '' :$data['COL_STATE'];
-		$this->dxcc = (($data['name'] ?? null) === null) ? '- NONE -' : '<a href="javascript:spawnLookupModal('.$data['COL_DXCC'].',\'dxcc\');">'.ucwords(strtolower($data['name']), "- (/").'</a>';
+		$this->dxcc = (($data['dxccname'] ?? null) === null) ? '- NONE -' : '<a href="javascript:spawnLookupModal('.$data['COL_DXCC'].',\'dxcc\');">'.ucwords(strtolower($data['dxccname']), "- (/").'</a>';
 		$this->iota = ($data['COL_IOTA'] === null) ? '' : $this->getIotaLink($data['COL_IOTA']);
 		if (array_key_exists('end', $data)) {
 			$this->end = ($data['end'] === null) ? null : DateTime::createFromFormat("Y-m-d", $data['end'], new DateTimeZone('UTC'));
@@ -217,6 +215,8 @@ class QSO
 		$this->comment = $data['COL_COMMENT'] ?? '';
 
 		$this->orbit = $data['orbit'] ?? '';
+
+		$this->contest = $data['contestname'] ?? '';
 	}
 
 	/**
@@ -263,16 +263,16 @@ class QSO
 		if ($data['COL_QSL_SENT'] != "N") {
 			switch ($data['COL_QSL_SENT']) {
 			case "Y":
-				$qslstring .= "class=\"qsl-green\" data-bs-toggle=\"tooltip\" title=\"".$CI->lang->line('general_word_sent');
+				$qslstring .= "class=\"qsl-green\" data-bs-toggle=\"tooltip\" title=\"".__("Sent");
 				break;
 			case "Q":
-				$qslstring .= "class=\"qsl-yellow\" data-bs-toggle=\"tooltip\" title=\"".$CI->lang->line('general_word_queued');
+				$qslstring .= "class=\"qsl-yellow\" data-bs-toggle=\"tooltip\" title=\"".__("Queued");
 				break;
 			case "R":
-				$qslstring .= "class=\"qsl-yellow\" data-bs-toggle=\"tooltip\" title=\"".$CI->lang->line('general_word_requested');
+				$qslstring .= "class=\"qsl-yellow\" data-bs-toggle=\"tooltip\" title=\"".__("Requested");
 				break;
 			case "I":
-				$qslstring .= "class=\"qsl-grey\" data-bs-toggle=\"tooltip\" title=\"".$CI->lang->line('general_word_invalid_ignore');
+				$qslstring .= "class=\"qsl-grey\" data-bs-toggle=\"tooltip\" title=\"".__("Invalid (Ignore)");
 				break;
 			default:
 			$qslstring .= "class=\"qsl-red";
@@ -289,16 +289,16 @@ class QSO
 		if ($data['COL_QSL_SENT_VIA'] != "") {
 			switch ($data['COL_QSL_SENT_VIA']) {
 				case "B":
-					$qslstring .= " (" . $CI->lang->line('general_word_qslcard_bureau') . ")";
+					$qslstring .= " (" . __("Bureau") . ")";
 					break;
 				case "D":
-				$qslstring .= " (".$CI->lang->line('general_word_qslcard_direct').")";
+				$qslstring .= " (".__("Direct").")";
 					break;
 				case "M":
-				$qslstring .= " (".$CI->lang->line('general_word_qslcard_via').": ".($data['COL_QSL_VIA'] !="" ? $data['COL_QSL_VIA']:"n/a").")";
+				$qslstring .= " (".__("Via").": ".($data['COL_QSL_VIA'] !="" ? $data['COL_QSL_VIA']:"n/a").")";
 					break;
 				case "E":
-				$qslstring .= " (".$CI->lang->line('general_word_qslcard_electronic').")";
+				$qslstring .= " (".__("Electronic").")";
 					break;
 			}
 		}
@@ -308,16 +308,16 @@ class QSO
 			if ($data['COL_QSL_RCVD'] != "N") {
 				switch ($data['COL_QSL_RCVD']) {
 					case "Y":
-						$qslstring .= "class=\"qsl-green\" data-bs-toggle=\"tooltip\" title=\"".$CI->lang->line('general_word_received');
+						$qslstring .= "class=\"qsl-green\" data-bs-toggle=\"tooltip\" title=\"".__("Received");
 					break;
 					case "Q":
-						$qslstring .= "class=\"qsl-yellow\" data-bs-toggle=\"tooltip\" title=\"".$CI->lang->line('general_word_queued');
+						$qslstring .= "class=\"qsl-yellow\" data-bs-toggle=\"tooltip\" title=\"".__("Queued");
 					break;
 					case "R":
-						$qslstring .= "class=\"qsl-yellow\" data-bs-toggle=\"tooltip\" title=\"".$CI->lang->line('general_word_requested');
+						$qslstring .= "class=\"qsl-yellow\" data-bs-toggle=\"tooltip\" title=\"".__("Requested");
 					break;
 					case "I":
-						$qslstring .= "class=\"qsl-grey\" data-bs-toggle=\"tooltip\" title=\"".$CI->lang->line('general_word_invalid_ignore');
+						$qslstring .= "class=\"qsl-grey\" data-bs-toggle=\"tooltip\" title=\"".__("Invalid (Ignore)");
 					break;
 					default:
 					$qslstring .= "class=\"qsl-red";
@@ -332,16 +332,16 @@ class QSO
 			if ($data['COL_QSL_RCVD_VIA'] != "") {
 				switch ($data['COL_QSL_RCVD_VIA']) {
 					case "B":
-					$qslstring .= " (".$CI->lang->line('general_word_qslcard_bureau').")";
+					$qslstring .= " (".__("Bureau").")";
 						break;
 					case "D":
-					$qslstring .= " (".$CI->lang->line('general_word_qslcard_direct').")";
+					$qslstring .= " (".__("Direct").")";
 						break;
 					case "M":
 					$qslstring .= " (Manager)";
 						break;
 					case "E":
-					$qslstring .= " (".$CI->lang->line('general_word_qslcard_electronic').")";
+					$qslstring .= " (".__("Electronic").")";
 						break;
 				}
 			}
@@ -362,7 +362,7 @@ class QSO
 		$lotwstring = '<span ';
 
 		if ($data['COL_LOTW_QSL_SENT'] == "Y") {
-			$lotwstring .= "title=\"" . $CI->lang->line('lotw_short')." ".$CI->lang->line('general_word_sent');
+			$lotwstring .= "title=\"" . __("LoTW")." ".__("Sent");
 			if ($data['COL_LOTW_QSLSDATE'] != null) {
 				$timestamp = strtotime($data['COL_LOTW_QSLSDATE']);
 				$lotwstring .= " ". ($timestamp != '' ? date($custom_date_format, $timestamp) : '');
@@ -374,7 +374,7 @@ class QSO
 		$lotwstring .= '<span ';
 
 		if ($data['COL_LOTW_QSL_RCVD'] == "Y") {
-			$lotwstring .= "title=\"". $CI->lang->line('lotw_short') ." ". $CI->lang->line('general_word_received');
+			$lotwstring .= "title=\"". __("LoTW") ." ". __("Received");
 
 			if ($data['COL_LOTW_QSLRDATE'] != null) {
 				$timestamp = strtotime($data['COL_LOTW_QSLRDATE']);
@@ -399,7 +399,7 @@ class QSO
 		$eqslstring = '<span ';
 
 		if ($data['COL_EQSL_QSL_SENT'] == "Y") {
-			$eqslstring .= "title=\"".$CI->lang->line('eqsl_short')." ".$CI->lang->line('general_word_sent');
+			$eqslstring .= "title=\"".__("eQSL")." ".__("Sent");
 
 			if ($data['COL_EQSL_QSLSDATE'] != null) {
 				$timestamp = strtotime($data['COL_EQSL_QSLSDATE']);
@@ -412,7 +412,7 @@ class QSO
 		$eqslstring .= ' class="eqsl-' . (($data['COL_EQSL_QSL_SENT'] =='Y') ? 'green':'red') . '">&#9650;</span><span ';
 
 		if ($data['COL_EQSL_QSL_RCVD'] == "Y") {
-			$eqslstring .= "title=\"".$CI->lang->line('eqsl_short')." ".$CI->lang->line('general_word_received');
+			$eqslstring .= "title=\"".__("eQSL")." ".__("Received");
 
 			if ($data['COL_EQSL_QSLRDATE'] != null) {
 				$timestamp = strtotime($data['COL_EQSL_QSLRDATE']);
@@ -623,15 +623,13 @@ class QSO
 	 */
 	public function getDxGridsquare(): string
 	{
-		return $this->dxGridsquare;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getDxIOTA(): string
-	{
-		return $this->dxIOTA;
+		$returnstring = '';
+		if ($this->dxVUCCGridsquares !== '') {
+			$returnstring = '<span id="dxgrid">' . $this->dxVUCCGridsquares . '</span> ' . $this->getQrbLink($this->deGridsquare, $this->dxVUCCGridsquares, $this->dxGridsquare);
+		} else if ($this->dxGridsquare !== '') {
+			$returnstring = '<span id="dxgrid">' . $this->dxGridsquare . '</span> ' . $this->getQrbLink($this->deGridsquare, $this->dxVUCCGridsquares, $this->dxGridsquare);
+		}
+		return $returnstring;
 	}
 
 	/**
@@ -648,14 +646,6 @@ class QSO
 	public function getDxSigInfo(): string
 	{
 		return $this->dxSigInfo;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getDxDARCDOK(): string
-	{
-		return $this->dxDARCDOK;
 	}
 
 	/**
@@ -820,7 +810,6 @@ class QSO
 			'rstR' => $this->rstR,
 			'band' => $this->getFormattedBand(),
 			'deRefs' => $this->getFormattedDeRefs(),
-			'dxRefs' => $this->getFormattedDxRefs(),
 			'qslVia' => $this->QSLVia,
 			'qsl' => $this->getqsl(),
 			'lotw' => $this->getlotw(),
@@ -829,7 +818,7 @@ class QSO
 			'name' => $this->getName(),
 			'dxcc' => $this->getDXCC(),
 			'state' => $this->getState(),
-			'pota' => $this->dxPOTAReference,
+			'pota' => $this->getFormattedPota(),
 			'operator' => $this->getOperator(),
 			'cqzone' => $this->getCqzone(),
 			'ituzone' => $this->getItuzone(),
@@ -839,8 +828,30 @@ class QSO
 			'lastupload' => $this->lastupload,
 			'lotw_hint' => $this->lotw_hint,
 			'comment' => $this->comment,
-			'orbit' => $this->orbit
+			'orbit' => $this->orbit,
+			'propagation' => $this->getPropagationMode(),
+			'contest' => $this->contest,
+			'gridsquare' => $this->getDxGridsquare(),
+			'sota' => $this->getFormattedSotaLink(),
+			'dok' => $this->getFormattedDok(),
+			'wwff' => $this->getFormattedWwff(),
+			'sig' => $this->getFormattedSig()
 		];
+	}
+
+	private function getFormattedDok(): string
+	{
+		$dokstring = '';
+		if (preg_match('/^[A-Y]\d{2}$/', $this->dxDARCDOK)) {
+			$dokstring = '<a href="https://www.darc.de/' .  $this->dxDARCDOK . '" target="_blank">' . $this->dxDARCDOK . '</a>';
+		} else if (preg_match('/^DV[ABCDEFGHIKLMNOPQRSTUVWXY]$/', $this->dxDARCDOK)) {
+			$dokstring = '<a href="https://www.darc.de/der-club/distrikte/' . strtolower(substr($this->dxDARCDOK, 2, 1)) . '" target="_blank">' . $this->dxDARCDOK . '</a>';
+		} else if (preg_match('/^Z\d{2}$/', $this->dxDARCDOK)) {
+			$dokstring = '<a href="https://' . $this->dxDARCDOK . 'vfdb.org" target="_blank">' . $this->dxDARCDOK . '</a>';
+		} else {
+			$dokstring = $this->dxDARCDOK;
+		}
+		return $dokstring;
 	}
 
 	private function getFormattedMode(): string
@@ -904,34 +915,24 @@ class QSO
 		return trim(implode(" ", $refs));
 	}
 
-	private function getFormattedDxRefs(): string
+	private function getFormattedSotaLink() {
+		return '<span id="dxsota"><a href="https://summits.sota.org.uk/summit/' . $this->dxSOTAReference . '" target="_blank">' . $this->dxSOTAReference . '</a></span>';
+	}
+
+	private function getFormattedSig(): string
 	{
-		$includedInRefs=[];
-		$refs = [];
-		if ($this->dxVUCCGridsquares !== '') {
-			$refs[] = '<span id="dxgrid">' . $this->dxVUCCGridsquares . '</span> ' .$this->getQrbLink($this->deGridsquare, $this->dxVUCCGridsquares, $this->dxGridsquare);
-		} else if ($this->dxGridsquare !== '') {
-			$refs[] = '<span id="dxgrid">' . $this->dxGridsquare . '</span> ' .$this->getQrbLink($this->deGridsquare, $this->dxVUCCGridsquares, $this->dxGridsquare);
-		}
-		if ($this->dxSOTAReference !== '') {
-			$refs[] = "SOTA: " . '<span id="dxsota">' . $this->dxSOTAReference. '</span>';
-		}
-		if ($this->dxPOTAReference !== '') {
-			$refs[] = "POTA: " . '<span id="dxpota">' . $this->dxPOTAReference. '</span>';
-		}
-		if ($this->dxWWFFReference !== '') {
-			$includedInRefs[] = "WWFF";
-			$refs[] = "WWFF: " . '<span id="dxwwff">' . $this->dxWWFFReference. '</span>';
-		}
 		if ($this->dxSig !== '') {
-			if (!in_array($this->dxSig, $includedInRefs)) {
-				$refs[] = $this->dxSig . ":" . $this->dxSigInfo;
-			}
+			return $this->dxSig . ":" . $this->dxSigInfo;
 		}
-		if ($this->dxDARCDOK !== '') {
-			$refs[] = "DOK:" . $this->dxDARCDOK;
-		}
-		return implode(" ", $refs);
+		return '';
+	}
+
+	private function getFormattedWwff() {
+		return '<a href="https://www.cqgma.org/zinfo.php?ref=' . $this->dxWWFFReference . '" target="_blank"><span id="dxwwff">'. $this->dxWWFFReference . '</span></a>';
+	}
+
+	private function getFormattedPota() {
+		return '<a href="https://pota.app/#/park/' . $this->dxPOTAReference . '" target="_blank"><span id="dxpota">'. $this->dxPOTAReference . '</span></a>';
 	}
 
 	private function getFormattedQSLSent(): string

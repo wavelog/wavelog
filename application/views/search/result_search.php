@@ -1,25 +1,25 @@
 <div class="table-responsive">
 	<table class="table table-striped table-hover">
 		<tr class="titles">
-			<td>Date</td>
-			<td>Time</td>
-			<td>Call</td>
-			<td>Mode</td>
-			<td>Sent</td>
-			<td>Recv'd</td>
-			<td>Band</td>
-			<td>Country</td>
+			<td><?= __("Date"); ?></td>
+			<td><?= __("Time"); ?></td>
+			<td><?= __("Call"); ?></td>
+			<td><?= __("Mode"); ?></td>
+			<td><?= __("Sent"); ?></td>
+			<td><?= __("Rcvd"); ?></td>
+			<td><?= __("Band"); ?></td>
+			<td><?= __("Country"); ?></td>
 			<?php if(($this->config->item('use_auth')) && ($this->session->userdata('user_type') >= 2)) { ?>
-			<td>QSL</td>
+			<td><?= __("QSL"); ?></td>
 			
 			<?php if($this->session->userdata('user_eqsl_name') != "") { ?>
-				<td>eQSL</td>
+				<td><?= __("eQSL"); ?></td>
 			<?php } else { ?>
 				<td></td>
 			<?php } ?>
 
 			<?php if($this->session->userdata('user_lotw_name') != "") { ?>
-				<td>LoTW</td>
+				<td><?= __("LoTW"); ?></td>
 			<?php } else { ?>
 				<td></td>
 			<?php } ?>

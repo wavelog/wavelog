@@ -11,7 +11,7 @@ class Qrz extends CI_Controller {
 		parent::__construct();
 		
 		if (ENVIRONMENT == 'maintenance' && $this->session->userdata('user_id') == '') {
-            echo "Maintenance Mode is active. Try again later.\n";
+            echo __("Maintenance Mode is active. Try again later.")."\n";
 			redirect('user/login');
 		}
 	}
@@ -19,6 +19,46 @@ class Qrz extends CI_Controller {
 	// Show frontend if there is one
 	public function index() {
 		$this->config->load('config');
+	}
+
+	/* 
+	 * API Key Status Test
+	 */
+
+	public function qrz_apitest() {
+		$apikey = xss_clean($this->input->post('APIKEY'));
+		$url = 'http://logbook.qrz.com/api'; // TODO: Move this to database
+  
+		$post_data['KEY'] = $apikey;
+		$post_data['ACTION'] = 'STATUS';
+  
+		$ch = curl_init( $url );
+		curl_setopt( $ch, CURLOPT_POST, true);
+		curl_setopt( $ch, CURLOPT_POSTFIELDS, $post_data);
+		curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1);
+		curl_setopt( $ch, CURLOPT_HEADER, 0);
+		curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT, 20);
+		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true);
+		
+		$content = curl_exec($ch);
+		curl_close($ch);
+
+		if ($content){
+			if (stristr($content,'RESULT=OK')) {
+				$result['status'] = 'OK';
+				$result['message'] = $content;
+			}
+			else {
+				$result['status'] = 'Failed';
+				$result['message'] = $content;
+			}
+		}
+		if(curl_errno($ch)){
+			$result['status'] = 'error';
+			$result['message'] = 'Curl error: '. curl_errno($ch);
+		}
+		header('Content-Type: application/json');
+		echo json_encode($result);
 	}
 
 	/*
@@ -29,6 +69,10 @@ class Qrz extends CI_Controller {
 	public function upload() {
 		$this->setOptions();
 
+		// set the last run in cron table for the correct cron id
+		$this->load->model('cron_model');
+		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
+
 		$this->load->model('logbook_model');
 
 		$station_ids = $this->logbook_model->get_station_id_with_qrz_api();
@@ -36,12 +80,14 @@ class Qrz extends CI_Controller {
 		if ($station_ids) {
 			foreach ($station_ids as $station) {
 				$qrz_api_key = $station->qrzapikey;
-				if($this->mass_upload_qsos($station->station_id, $qrz_api_key, true)) {
-					echo "QSOs have been uploaded to QRZ.com.";
-					log_message('info', 'QSOs have been uploaded to QRZ.com.');
-				} else{
-					echo "No QSOs found for upload.";
-					log_message('info', 'No QSOs found for upload.');
+				if ($station->qrzrealtime>=0) {
+					if($this->mass_upload_qsos($station->station_id, $qrz_api_key, true)) {
+						echo "QSOs have been uploaded to QRZ.com. for station_id ".$station->station_id;
+					} else{
+						echo "No QSOs found for upload and station_id ".$station->station_id;
+					}
+				} else {
+					echo "Station ".$station->station_id." disabled for upload to QRZ.com.";
 				}
 			}
 		} else {
@@ -84,11 +130,11 @@ class Qrz extends CI_Controller {
 					$i++;
 					$result['status'] = 'OK';
 				} elseif ( ($result['status']=='error') && (substr($result['message'],0,11)  == 'STATUS=AUTH')) {
-					log_message('error', 'QRZ upload failed for qso: Call: ' . $qso->COL_CALL . ' Band: ' . $qso->COL_BAND . ' Mode: ' . $qso->COL_MODE . ' Time: ' . $qso->COL_TIME_ON);
-					log_message('error', 'QRZ upload failed with the following message: ' .$result['message']);
-					log_message('error', 'QRZ upload stopped for Station_ID: ' .$station_id);
+					log_message('error', 'QRZ upload failed for qso for Station_ID '.$station_id.' //  Call: ' . $qso->COL_CALL . ' Band: ' . $qso->COL_BAND . ' Mode: ' . $qso->COL_MODE . ' Time: ' . $qso->COL_TIME_ON . ' // Message: '.$result['message']);
 					$errormessages[] = $result['message'] . ' Call: ' . $qso->COL_CALL . ' Band: ' . $qso->COL_BAND . ' Mode: ' . $qso->COL_MODE . ' Time: ' . $qso->COL_TIME_ON;
 					$result['status'] = 'Error';
+        				$sql = 'update station_profile set qrzrealtime = -1 where station_id = ?';
+        				$this->db->query($sql,$station_id);
 					break; /* If key is invalid, immediate stop syncing for more QSOs of this station */
 				} else {
 					log_message('error', 'QRZ upload failed for qso: Call: ' . $qso->COL_CALL . ' Band: ' . $qso->COL_BAND . ' Mode: ' . $qso->COL_MODE . ' Time: ' . $qso->COL_TIME_ON);
@@ -124,7 +170,7 @@ class Qrz extends CI_Controller {
 	public function export() {
 		$this->load->model('stations');
 
-		$data['page_title'] = "QRZ Logbook";
+		$data['page_title'] = __("QRZ Logbook");
 
 		$data['station_profiles'] = $this->stations->all_of_user();
 		$data['station_profile'] = $this->stations->stations_with_qrz_api_key();
@@ -140,30 +186,40 @@ class Qrz extends CI_Controller {
 	 * Used for ajax-function when selecting log for upload to qrz
 	 */
 	public function upload_station() {
-		$this->setOptions();
-		$this->load->model('stations');
+		if (!($this->config->item('disable_manual_qrz'))) {
+			$this->setOptions();
+			$this->load->model('stations');
 
-		$postData = $this->input->post();
+			$postData = $this->input->post();
 
-		$this->load->model('logbook_model');
-		$result = $this->logbook_model->exists_qrz_api_key($postData['station_id']);
-		$qrz_api_key = $result->qrzapikey;
-		header('Content-type: application/json');
-		$result = $this->mass_upload_qsos($postData['station_id'], $qrz_api_key);
-		if ($result['status'] == 'OK') {
-			$stationinfo = $this->stations->stations_with_qrz_api_key();
-			$info = $stationinfo->result();
+			$this->load->model('logbook_model');
+			$result = $this->logbook_model->exists_qrz_api_key($postData['station_id']);
+			$qrz_api_key = $result->qrzapikey;
+			$qrz_enabled = $result->qrzrealtime;
+			header('Content-type: application/json');
+			if ($qrz_enabled>=0) {
+				$result = $this->mass_upload_qsos($postData['station_id'], $qrz_api_key);
+				if ($result['status'] == 'OK') {
+					$stationinfo = $this->stations->stations_with_qrz_api_key();
+					$info = $stationinfo->result();
 
-			$data['status'] = 'OK';
-			$data['info'] = $info;
-			$data['infomessage'] = $result['count'] . " QSOs are now uploaded to QRZ.com";
-			$data['errormessages'] = $result['errormessages'];
-			echo json_encode($data);
+					$data['status'] = 'OK';
+					$data['info'] = $info;
+					$data['infomessage'] = $result['count'] . " QSOs are now uploaded to QRZ.com";
+					$data['errormessages'] = $result['errormessages'];
+					echo json_encode($data);
+				} else {
+					$data['status'] = 'Error';
+					$data['info'] = 'Error: No QSOs found to upload.';
+					$data['errormessages'] = $result['errormessages'];
+					echo json_encode($data);
+				}
+			} else {
+				$data['status']='QRZ Disabled for station'.$this->security->xss_clean($postData['station_id']);
+				echo json_encode($data);
+			}
 		} else {
-			$data['status'] = 'Error';
-			$data['info'] = 'Error: No QSOs found to upload.';
-			$data['errormessages'] = $result['errormessages'];
-			echo json_encode($data);
+			redirect('dashboard');
 		}
 	}
 
@@ -194,7 +250,7 @@ class Qrz extends CI_Controller {
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 
-		$data['page_title'] = "QRZ QSL Import";
+		$data['page_title'] = __("QRZ QSL Import");
 
 		$this->load->model('logbook_model');
 
@@ -212,6 +268,8 @@ class Qrz extends CI_Controller {
 		$this->load->model('user_model');
 		$this->load->model('logbook_model');
 
+		$this->load->model('cron_model');
+		$this->cron_model->set_last_run($this->router->class.'_'.$this->router->method);
 
 		$api_keys = $this->logbook_model->get_qrz_apikeys();
 
@@ -246,7 +304,7 @@ class Qrz extends CI_Controller {
 					$data['table'].='</table>';
 				}
 				if($show_views == TRUE) {
-					$data['page_title'] = "QRZ ADIF Information";
+					$data['page_title'] = __("QRZ ADIF Information");
 					$this->load->view('interface_assets/header', $data);
 					$this->load->view('qrz/analysis');
 					$this->load->view('interface_assets/footer');
@@ -352,8 +410,8 @@ class Qrz extends CI_Controller {
 				$status = $this->logbook_model->import_check($time_on, $record['call'], $record['band'], $record['mode'], $record['station_callsign']);
 
 				if($status[0] == "Found") {
-					$qrz_status = $this->logbook_model->qrz_update($time_on, $record['call'], $record['band'], $qsl_date, $record['qsl_rcvd'],$record['station_callsign']);
-
+					$qrz_status = $this->logbook_model->qrz_update($status[1], $qsl_date, $record['qsl_rcvd']);
+					// log_message('error', $record['call'].": ".$qrz_status);
 					$table .= "<tr>";
 					$table .= "<td>".$record['station_callsign']."</td>";
 					$table .= "<td>".$time_on."</td>";

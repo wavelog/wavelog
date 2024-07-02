@@ -10,7 +10,7 @@
 	    <div class="col-sm-8">
 
 	    	<div class="card">
-	    		<div class="card-header"><h3>Incoming QSL Cards</h3></div>
+	    		<div class="card-header"><h3><?= __("Incoming QSL Cards"); ?></h3></div>
 	    		<div class="card-body">
 
 	    			<form>
@@ -20,10 +20,10 @@
   					<table class="table">
   						<thead>
   							<tr>
-  								<th>Date/Time</th>
-  								<th>Band</th>
-  								<th>Report</th>
-  								<th>Option</th>
+  								<th><?= __("Date/Time"); ?></th>
+  								<th><?= __("Band"); ?></th>
+  								<th><?= __("Report"); ?></th>
+  								<th><?= __("Option"); ?></th>
   							</tr>
   						</thead>
 
@@ -43,7 +43,7 @@
 
 	    <div class="col-sm-4">
 	    	<div class="card">
-	    		<div class="card-header"><h3>Outgoing QSL Cards</h3></div>
+	    		<div class="card-header"><h3><?= __("Outgoing QSL Cards"); ?></h3></div>
 	    		<div class="card-body">
 
 	    			<form>

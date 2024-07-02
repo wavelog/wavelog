@@ -3,13 +3,20 @@ use Wavelog\QSLManager\QSO;
 
 class Logbookadvanced_model extends CI_Model {
 
+	private $logbooks_locations_array;
+	public function __construct()
+	{
+		$this->load->model('logbooks_model');
+		$this->logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+	}
+
 	public function searchDb($searchCriteria) {
 		$conditions = [];
 		$binding = [$searchCriteria['user_id']];
 
 		if ((isset($searchCriteria['dupes'])) && ($searchCriteria['dupes'] !== '')) {
 			$id_sql="select GROUP_CONCAT(col_primary_key separator ',') as qsoids, COL_CALL, COL_MODE, COL_SUBMODE, station_callsign, COL_SAT_NAME, COL_BAND,  min(col_time_on) Mintime, max(col_time_on) Maxtime from " . $this->config->item('table_name') . "
-				 join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id where station_profile.user_id=?
+				 join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id where station_profile.user_id = ?
 				group by col_call, col_mode, COL_SUBMODE, STATION_CALLSIGN, col_band, COL_SAT_NAME having count(*) > 1 and timediff(maxtime, mintime) < 1500";
 			$id_query = $this->db->query($id_sql, $searchCriteria['user_id']);
 			$ids2fetch = '';
@@ -35,8 +42,8 @@ class Logbookadvanced_model extends CI_Model {
 			$binding[] = $to;
 		}
 		if ($searchCriteria['de'] !== 'All') {
-			$conditions[] = "qsos.station_id = ?";
-			$binding[] = trim($searchCriteria['de']);
+			$stationids = implode(',', $searchCriteria['de']);
+			$conditions[] = "qsos.station_id in (".$stationids.")";
 		}
 		if ($searchCriteria['dx'] !== '') {
 			$conditions[] = "COL_CALL LIKE ?";
@@ -188,7 +195,9 @@ class Logbookadvanced_model extends CI_Model {
                 $binding[] = '%' . $searchCriteria['gridsquare'] . '%';
         }
 
-        if ($searchCriteria['propmode'] !== '') {
+	if (($searchCriteria['propmode'] ?? '') == 'None') {
+                $conditions[] = "(trim(COL_PROP_MODE) = '' OR COL_PROP_MODE is null)";
+	} elseif ($searchCriteria['propmode'] !== '') {
                 $conditions[] = "COL_PROP_MODE = ?";
                 $binding[] = $searchCriteria['propmode'];
                 if($searchCriteria['propmode'] == "SAT") {
@@ -208,41 +217,49 @@ class Logbookadvanced_model extends CI_Model {
 			$where = "AND $where";
 		}
 
-		$limit = $searchCriteria['qsoresults'];
+		$limit = '';
+
+		if ($searchCriteria['qsoresults'] != 'All') {
+			$limit = 'limit ' . $searchCriteria['qsoresults'];
+		}
 
 		$where2 = '';
 
 		if ($searchCriteria['qslimages'] !== '') {
 			if ($searchCriteria['qslimages'] == 'Y') {
-				$where2 .= ' and x.qslcount > "0"';
+				$where2 .= ' and exists(select 1 from qsl_images where qsoid = qsos.COL_PRIMARY_KEY)';
 			}
 			if ($searchCriteria['qslimages'] == 'N') {
-				$where2 .= ' and x.qslcount is null';
+				$where2 .= ' and not exists(select 1 from qsl_images where qsoid = qsos.COL_PRIMARY_KEY)';
 			}
 		}
 
 		$sql = "
-			SELECT *
+			SELECT qsos.*, dxcc_entities.*, lotw_users.*, station_profile.*, satellite.*, dxcc_entities.name as dxccname, mydxcc.name AS station_country, exists(select 1 from qsl_images where qsoid = qsos.COL_PRIMARY_KEY) as qslcount, contest.name as contestname
 			FROM " . $this->config->item('table_name') . " qsos
 			INNER JOIN station_profile ON qsos.station_id=station_profile.station_id
 			LEFT OUTER JOIN satellite ON qsos.COL_SAT_NAME = satellite.name
-			LEFT OUTER JOIN dxcc_entities ON qsos.col_dxcc=dxcc_entities.adif
-			LEFT OUTER JOIN lotw_users ON qsos.col_call=lotw_users.callsign
-			LEFT OUTER JOIN (
-				select count(*) as qslcount, qsoid
-				from qsl_images
-				group by qsoid
-			) x on qsos.COL_PRIMARY_KEY = x.qsoid
+			LEFT OUTER JOIN dxcc_entities ON qsos.col_dxcc = dxcc_entities.adif
+			left outer join dxcc_entities mydxcc on qsos.col_my_dxcc = mydxcc.adif
+			LEFT OUTER JOIN lotw_users ON qsos.col_call = lotw_users.callsign
+			LEFT OUTER JOIN contest ON qsos.col_contest_id = contest.adifname
 			WHERE station_profile.user_id =  ?
 			$where
 			$where2
 			ORDER BY qsos.COL_TIME_ON desc, qsos.COL_PRIMARY_KEY desc
-			LIMIT $limit
+			$limit
 		";
-		$data = $this->db->query($sql, $binding);
+		return $this->db->query($sql, $binding);
 
-        $results = $data->result('array');
-		return $results;
+	}
+
+	public function getSearchResult($searchCriteria) {
+		return $this->searchDb($searchCriteria);
+	}
+
+	public function getSearchResultArray($searchCriteria) {
+		$result = $this->searchDb($searchCriteria);
+		return $result->result('array');
 	}
 
   /*
@@ -250,7 +267,7 @@ class Logbookadvanced_model extends CI_Model {
    * @return array
    */
   public function searchQsos($searchCriteria) : array {
-		$results = $this->searchDb($searchCriteria);
+		$results = $this->getSearchResultArray($searchCriteria);
 
         $qsos = [];
         foreach ($results as $data) {
@@ -273,17 +290,13 @@ class Logbookadvanced_model extends CI_Model {
 		$order = $this->getSortorder($sortorder);
 
         $sql = "
-            SELECT qsos.*, d2.*, lotw_users.*, station_profile.*, x.qslcount, dxcc_entities.name AS station_country
+            SELECT qsos.*, lotw_users.*, station_profile.*, dxcc_entities.name AS station_country, d2.name as dxccname, exists(select 1 from qsl_images where qsoid = qsos.COL_PRIMARY_KEY) as qslcount, contest.name as contestname
 			FROM " . $this->config->item('table_name') . " qsos
 			INNER JOIN station_profile ON qsos.station_id = station_profile.station_id
 			LEFT OUTER JOIN dxcc_entities ON qsos.COL_MY_DXCC = dxcc_entities.adif
 			LEFT OUTER JOIN dxcc_entities d2 ON qsos.COL_DXCC = d2.adif
 			LEFT OUTER JOIN lotw_users ON qsos.col_call=lotw_users.callsign
-			LEFT OUTER JOIN (
-				select count(*) as qslcount, qsoid
-				from qsl_images
-				group by qsoid
-			) x on qsos.COL_PRIMARY_KEY = x.qsoid
+			LEFT OUTER JOIN contest ON qsos.col_contest_id = contest.adifname
 			WHERE station_profile.user_id =  ?
 			$where
 			$order
@@ -404,10 +417,10 @@ class Logbookadvanced_model extends CI_Model {
 			$updatedData['COL_QTH'] = $callbook['city'];
 		}
 		if (!empty($callbook['lat']) && empty($qso['COL_LAT'])) {
-			$updatedData['COL_LAT'] = $callbook['lat'];
+			$updatedData['COL_LAT'] = substr(($callbook['lat'] ?? ''),0,11);
 		}
 		if (!empty($callbook['long']) && empty($qso['COL_LON'])) {
-			$updatedData['COL_LON'] = $callbook['long'];
+			$updatedData['COL_LON'] = substr(($callbook['long'] ?? ''),0,11);
 		}
 		if (!empty($callbook['iota']) && empty($qso['COL_IOTA'])) {
 			$updatedData['COL_IOTA'] = $callbook['iota'];
@@ -432,18 +445,14 @@ class Logbookadvanced_model extends CI_Model {
     }
 
 	function get_modes() {
-		$CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-
-		if (!$logbooks_locations_array) {
+		if (!$this->logbooks_locations_array) {
 			return null;
 		}
 
 		$modes = array();
 
 		$this->db->select('distinct col_mode, coalesce(col_submode, "") col_submode', FALSE);
-		$this->db->where_in('station_id', $logbooks_locations_array);
+		$this->db->where_in('station_id', $this->logbooks_locations_array);
 		$this->db->order_by('col_mode, col_submode', 'ASC');
 
 		$query = $this->db->get($this->config->item('table_name'));
@@ -463,15 +472,11 @@ class Logbookadvanced_model extends CI_Model {
 	}
 
 	function getQslsForQsoIds($ids) {
-		$CI =& get_instance();
-        $CI->load->model('logbooks_model');
-        $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-
         $this->db->select('*');
 		$this->db->from($this->config->item('table_name'));
         $this->db->join('qsl_images', 'qsl_images.qsoid = ' . $this->config->item('table_name') . '.col_primary_key');
         $this->db->where_in('qsoid', $ids);
-		$this->db->where_in('station_id', $logbooks_locations_array);
+		$this->db->where_in('station_id', $this->logbooks_locations_array);
         $this->db->order_by("id", "desc");
 
         return $this->db->get()->result();
@@ -538,7 +543,6 @@ class Logbookadvanced_model extends CI_Model {
 			", " . $this->config->item('table_name').".COL_FREQ_RX = ?" .
 			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
 
-			$this->load->library('frequency');
 			$frequencyBand = $this->frequency->defaultFrequencies[$value]['CW'];
 			$frequencyBandRx = $bandrx == '' ? null : $this->frequency->defaultFrequencies[$bandrx]['CW'];
 

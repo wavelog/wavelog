@@ -2,6 +2,19 @@
 
 class Logbook_model extends CI_Model {
 
+	private $station_result=[];
+	public function __construct() {
+		$this->oop_populate_modes();
+	}
+
+	private $oop_modes=[];
+	private function oop_populate_modes() {
+		$r = $this->db->get('adif_modes');
+		foreach($r->result_array() as $row){
+			$this->oop_modes[$row['submode']][]=($row['mode'] ?? '');
+		}
+	}
+
   /* Add QSO to Logbook */
   function create_qso() {
 
@@ -389,7 +402,7 @@ class Logbook_model extends CI_Model {
 	/*
 	 * Used to fetch QSOs from the logbook in the awards
 	 */
-	public function qso_details($searchphrase, $band, $mode, $type, $qsl, $sat = null, $orbit = null, $searchmode = null){
+	public function qso_details($searchphrase, $band, $mode, $type, $qsl, $sat = null, $orbit = null, $searchmode = null, $propagation = null){
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -400,6 +413,9 @@ class Logbook_model extends CI_Model {
 			$this->db->join('satellite', 'satellite.name = '.$this->config->item('table_name').'.col_sat_name', 'left outer');
 		}
 		switch ($type) {
+    case 'CALL':
+      $this->db->where('COL_CALL', $searchphrase);
+      break;
 		case 'DXCC':
 			$this->db->where('COL_COUNTRY', $searchphrase);
 			if ($band == 'SAT' && $type == 'DXCC') {
@@ -445,6 +461,16 @@ class Logbook_model extends CI_Model {
 					if ($orbit != 'All' && $orbit != null) {
 						$this->db->where("satellite.orbit = '$orbit'");
 					}
+				}
+				if (($propagation ?? '') == 'None') {
+					$this->db->group_start();
+					$this->db->where("COL_PROP_MODE = ''");
+					$this->db->or_where("COL_PROP_MODE is null");
+					$this->db->group_end();
+				} elseif ($propagation == 'NoSAT') {
+					$this->db->where("COL_PROP_MODE != 'SAT'");
+				} elseif ($propagation != '' && $propagation != null) {
+					$this->db->where("COL_PROP_MODE = '$propagation'");
 				}
 			}
 			break;
@@ -541,6 +567,9 @@ class Logbook_model extends CI_Model {
 			}
 			if (strpos($qsl, "Z") !== false) {
 				$qslfilter[] = 'COL_QRZCOM_QSO_DOWNLOAD_STATUS = "Y"';
+			}
+			if (strpos($qsl, "C") !== false) {
+				$qslfilter[] = 'COL_CLUBLOG_QSO_DOWNLOAD_STATUS = "Y"';
 			}
 			$sql = "(".implode(' OR ', $qslfilter).")";
 			$this->db->where($sql);
@@ -1592,11 +1621,15 @@ class Logbook_model extends CI_Model {
 
 		return $name;
 	}
+
   /* Return QSO Info */
 	function qso_info($id) {
-		if ($this->logbook_model->check_qso_is_accessible($id)) {
+		if ($this->check_qso_is_accessible($id)) {
 			$this->db->where('COL_PRIMARY_KEY', $id);
-
+			$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
+			$this->db->join('dxcc_entities', $this->config->item('table_name').'.col_dxcc = dxcc_entities.adif', 'left');
+			$this->db->join('lotw_users', 'lotw_users.callsign = '.$this->config->item('table_name').'.col_call', 'left outer');
+	
 			return $this->db->get($this->config->item('table_name'));
 		} else {
 			return;
@@ -1875,7 +1908,7 @@ class Logbook_model extends CI_Model {
      * Function returns all the station_id's with QRZ API Key's
      */
   function get_station_id_with_qrz_api() {
-	  $sql = 'select station_id, qrzapikey from station_profile
+	  $sql = 'select station_id, qrzapikey, qrzrealtime from station_profile
 		  where coalesce(qrzapikey, "") <> ""';
 
 	  $query = $this->db->query($sql);
@@ -1894,7 +1927,7 @@ class Logbook_model extends CI_Model {
      * Function returns all the station_id's with HRDLOG Code
      */
     function get_station_id_with_hrdlog_code() {
-        $sql = 'SELECT station_id, hrdlog_username, hrdlog_code
+        $sql = 'SELECT station_id, hrdlog_username, hrdlog_code, station_callsign
                 FROM station_profile
                 WHERE coalesce(hrdlog_username, "") <> ""
                 AND coalesce(hrdlog_code, "") <> ""';
@@ -2085,7 +2118,6 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
     $this->db->limit('2');
 
     $query = $this->db->get($this->config->item('table_name'));
-
     return $query->num_rows();
 
   }
@@ -3207,29 +3239,46 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 	    }
     }
 
-  function qrz_update($datetime, $callsign, $band, $qsl_date, $qsl_status, $station_callsign) {
+    function clublog_update($datetime, $callsign, $band, $qsl_status, $station_callsign, $station_ids) {
 
-	  $data = array(
-		  'COL_QRZCOM_QSO_DOWNLOAD_DATE' => $qsl_date,
-		  'COL_QRZCOM_QSO_DOWNLOAD_STATUS' => $qsl_status,
-	  );
+	    $logbooks_locations_array=explode(",",$station_ids);
+	    $data = array(
+		    'COL_CLUBLOG_QSO_DOWNLOAD_DATE' => date('Y-m-d'),
+		    'COL_CLUBLOG_QSO_DOWNLOAD_STATUS' => $qsl_status,
+	    );
 
+	    $this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i:%s\') = "'.$datetime.'"');
+	    $this->db->where('COL_CALL', $callsign);
+	    $this->db->where("replace(replace(COL_BAND,'cm',''),'m','')", $band); // no way to achieve a real bandmatch, so fallback to match without unit. e.g.: "6" was provided by Clublog. Do they mean 6m or 6cm?
+	    $this->db->where('COL_STATION_CALLSIGN', $station_callsign);
+	    $this->db->where_in('station_id', $logbooks_locations_array);
 
-	  $this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i\') = "'.$datetime.'"');
-	  $this->db->where('COL_CALL', $callsign);
-	  $this->db->where('COL_BAND', $band);
-	  $this->db->where('COL_STATION_CALLSIGN', $station_callsign);
+	    if ($this->db->update($this->config->item('table_name'). ' use index (idx_HRD_COL_CALL_station_id)', $data)) {
+		    unset($data);
+		    return "Updated";
+	    } else {
+		    unset($data);
+		    return "Not updated";
+	    }
+    }
 
-	  if ($this->db->update($this->config->item('table_name'), $data)) {
-		  unset($data);
-		  return "Updated";
-	  } else {
-		  unset($data);
-		  return "Not updated";
-	  }
+    function qrz_update($primarykey, $qsl_date, $qsl_status) {
 
+	    $data = array(
+		    'COL_QRZCOM_QSO_DOWNLOAD_DATE' => $qsl_date,
+		    'COL_QRZCOM_QSO_DOWNLOAD_STATUS' => $qsl_status,
+	    );
 
-  }
+	    $this->db->where('COL_PRIMARY_KEY', $primarykey);
+
+	    if ($this->db->update($this->config->item('table_name'), $data)) {
+		    unset($data);
+		    return "Updated";
+	    } else {
+		    unset($data);
+		    return "Not updated";
+	    }
+    }
 
     function lotw_update($datetime, $callsign, $band, $qsl_date, $qsl_status, $state, $qsl_gridsquare, $qsl_vucc_grids, $iota, $cnty, $cqz, $ituz, $station_callsign, $qsoid) {
 
@@ -3350,8 +3399,14 @@ function lotw_last_qsl_date($user_id) {
     function import_bulk($records, $station_id = "0", $skipDuplicate = false, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markHrd = false,$skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false) {
 	    $custom_errors='';
 	    $a_qsos=[];
+		if (!$this->stations->check_station_is_accessible($station_id) && $apicall == false ) {
+			return 'Station not accessible<br>';
+		}
+		$station_id_ok = true;
+		$station_profile=$this->stations->profile_clean($station_id);
+
 	    foreach ($records as $record) {
-		    $one_error = $this->logbook_model->import($record, $station_id, $skipDuplicate, $markClublog, $markLotw,$dxccAdif, $markQrz, $markHrd, $skipexport, $operatorName, $apicall, $skipStationCheck, true);
+		    $one_error = $this->logbook_model->import($record, $station_id, $skipDuplicate, $markClublog, $markLotw,$dxccAdif, $markQrz, $markHrd, $skipexport, $operatorName, $apicall, $skipStationCheck, true, $station_id_ok, $station_profile);
 		    if ($one_error['error'] ?? '' != '') {
 			    $custom_errors.=$one_error['error']."<br/>";
 		    } else {
@@ -3373,14 +3428,18 @@ function lotw_last_qsl_date($user_id) {
      * $markHrd - used in ADIF import to mark QSOs as exported to HRDLog.net Logbook when importing QSOs
      * $skipexport - used in ADIF import to skip the realtime upload to QRZ Logbook when importing QSOs from ADIF
      */
-  function import($record, $station_id = "0", $skipDuplicate = false, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markHrd = false,$skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false, $batchmode = false) {
+  function import($record, $station_id = "0", $skipDuplicate = false, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markHrd = false,$skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false, $batchmode = false, $station_id_ok = false, $station_profile = null) {
 	  // be sure that station belongs to user
 	  $this->load->model('stations');
-	  if (!$this->stations->check_station_is_accessible($station_id) && $apicall == false ) {
-		  return 'Station not accessible<br>';
+	  if ($station_id_ok == false) {
+		if (!$this->stations->check_station_is_accessible($station_id) && $apicall == false) {
+			return 'Station not accessible<br>';
+		}
 	  }
 
-	  $station_profile=$this->stations->profile_clean($station_id);
+	  if ($station_profile == null) {
+		  $station_profile=$this->stations->profile_clean($station_id);
+	  }
 	  $station_profile_call=$station_profile->station_callsign;
 
 	  if (($station_id !=0 ) && (!(isset($record['station_callsign'])))) {
@@ -3392,7 +3451,6 @@ function lotw_last_qsl_date($user_id) {
 		  return($returner);
 	  }
 
-	  $this->load->library('frequency');
 	  $my_error = "";
 
 	  // Join date+time
@@ -3527,14 +3585,14 @@ function lotw_last_qsl_date($user_id) {
 		  if(isset($record['rst_rcvd'])) {
 			  $rst_rx = $record['rst_rcvd'];
 		  } else {
-			  $rst_rx = "59";
+			  $rst_rx = "";
 		  }
 
 		  // RST Sent
 		  if(isset($record['rst_sent'])) {
 			  $rst_tx = $record['rst_sent'];
 		  } else {
-			  $rst_tx = "59";
+			  $rst_tx = "";
 		  }
 
 		  if(isset($record['cqz'])) {
@@ -3972,15 +4030,17 @@ function lotw_last_qsl_date($user_id) {
 
 		  // Collect field information from the station profile table thats required for the QSO.
 		  if($station_id != "0") {
+	    		if (!(array_key_exists($station_id,$this->station_result))) {
 			  $this->db->select('station_profile.*, dxcc_entities.name as station_country');
 			  $this->db->where('station_id', $station_id);
 			  $this->db->join('dxcc_entities', 'station_profile.station_dxcc = dxcc_entities.adif', 'left outer');
-			  $station_result = $this->db->get('station_profile');
+			  $this->station_result[$station_id] = $this->db->get('station_profile');
+			}
 
-			  if ($station_result->num_rows() > 0){
+			  if ($this->station_result[$station_id]->num_rows() > 0){
 				  $data['station_id'] = $station_id;
 
-				  $row = $station_result->row_array();
+				  $row = $this->station_result[$station_id]->row_array();
 
 				  if (strpos(trim($row['station_gridsquare']), ',') !== false) {
 					  $data['COL_MY_VUCC_GRIDS'] = strtoupper(trim($row['station_gridsquare']));
@@ -4076,30 +4136,30 @@ function lotw_last_qsl_date($user_id) {
                if ($ignoreAmbiguous == '1') {
                   return array();
                } else {
-                  return array(2, $result['message'] = "<tr><td>".date($custom_date_format, strtotime($record['qso_date']))."</td><td>".date('H:i', strtotime($record['time_on']))."</td><td>".str_replace('0', 'Ø', $call)."</td><td>".$band."</td><td>".$mode."</td><td></td><td>".(preg_match('/^[A-Y]\d{2}$/', $darc_dok) ? '<a href="https://www.darc.de/'.$darc_dok.'" target="_blank">'.$darc_dok.'</a>' : (preg_match('/^Z\d{2}$/', $darc_dok) ? '<a href="https://'.$darc_dok.'.vfdb.org" target="_blank">'.$darc_dok.'</a>' : $darc_dok))."</td><td>".lang('dcl_no_match')."</td></tr>");
+                  return array(2, $result['message'] = "<tr><td>".date($custom_date_format, strtotime($record['qso_date']))."</td><td>".date('H:i', strtotime($record['time_on']))."</td><td>".str_replace('0', 'Ø', $call)."</td><td>".$band."</td><td>".$mode."</td><td></td><td>".(preg_match('/^[A-Y]\d{2}$/', $darc_dok) ? '<a href="https://www.darc.de/'.$darc_dok.'" target="_blank">'.$darc_dok.'</a>' : (preg_match('/^Z\d{2}$/', $darc_dok) ? '<a href="https://'.$darc_dok.'.vfdb.org" target="_blank">'.$darc_dok.'</a>' : $darc_dok))."</td><td>".__("QSO could not be matched")."</td></tr>");
                }
             } else {
                $dcl_qsl_status = '';
                switch($record['app_dcl_status']) {
                case 'c':
-                  $dcl_qsl_status = lang('dcl_qsl_status_c');
+                  $dcl_qsl_status = __("confirmed by LoTW/Clublog/eQSL/Contest");
                   break;
                case 'm':
                case 'n':
                case 'o':
-                  $dcl_qsl_status = lang('dcl_qsl_status_mno');
+                  $dcl_qsl_status = __("confirmed by award manager");
                   break;
                case 'i':
-                  $dcl_qsl_status = lang('dcl_qsl_status_i');
+                  $dcl_qsl_status = __("confirmed by cross-check of DCL data");
                   break;
                case 'w':
-                  $dcl_qsl_status = lang('dcl_qsl_status_w');
+                  $dcl_qsl_status = __("confirmation pending");
                   break;
                case 'x':
-                  $dcl_qsl_status = lang('dcl_qsl_status_x');
+                  $dcl_qsl_status = __("unconfirmed");
                   break;
                default:
-                  $dcl_qsl_status = lang('dcl_qsl_status_unknown');
+                  $dcl_qsl_status = __("unknown");
                }
                if ($check->row()->COL_DARC_DOK != $darc_dok) {
                   $dcl_cnfm = array('c', 'm', 'n', 'o', 'i');
@@ -4145,202 +4205,201 @@ function lotw_last_qsl_date($user_id) {
     }
 
     function get_main_mode_if_submode($mode) {
-		$this->db->select('mode');
-        $this->db->where('submode', $mode);
-
-        $query = $this->db->get('adif_modes');
-        if ($query->num_rows() > 0){
-            $row = $query->row_array();
-            return $row['mode'];
-        } else {
-            return null;
-        }
-	}
+	    if (array_key_exists($mode,$this->oop_modes)) {
+		    return($this->oop_modes[$mode][0]);
+	    } else {
+		    return null;
+	    }
+    }
 
     /*
      * Check the dxxc_prefixes table and return (dxcc, country)
      */
     public function check_dxcc_table($call, $date){
 
-    $csadditions = '/^T$|^P$|^R$|^A$|^M$/';
+	    $csadditions = '/^T$|^P$|^R$|^A$|^M$/';
 
-		$dxcc_exceptions = $this->db->select('`entity`, `adif`, `cqz`, `cont`')
-             ->where('call', $call)
-             ->where('(start <= ', $date)
-             ->or_where('start is null)', NULL, false)
-             ->where('(end >= ', $date)
-             ->or_where('end is null)', NULL, false)
-             ->get('dxcc_exceptions');
+	    $dxcc_exceptions = $this->db->select('`entity`, `adif`, `cqz`, `cont`')
+				 ->where('`call`', $call)
+				 ->where('(start <= ', $date)
+				 ->or_where('start is null)', NULL, false)
+				 ->where('(end >= ', $date)
+				 ->or_where('end is null)', NULL, false)
+				 ->get('dxcc_exceptions');
 
-		if ($dxcc_exceptions->num_rows() > 0){
-			$row = $dxcc_exceptions->row_array();
-			return array($row['adif'], $row['entity'], $row['cqz'], $row['cont']);
-		}
-    if (preg_match('/(^KG4)[A-Z09]{3}/', $call)) {      // KG4/ and KG4 5 char calls are Guantanamo Bay. If 4 or 6 char, it is USA
-      $call = "K";
-    } elseif (preg_match('/(^OH\/)|(\/OH[1-9]?$)/', $call)) {   # non-Aland prefix!
-      $call = "OH";                                             # make callsign OH = finland
-    } elseif (preg_match('/(^CX\/)|(\/CX[1-9]?$)/', $call)) {   # non-Antarctica prefix!
-      $call = "CX";                                             # make callsign CX = Uruguay
-    } elseif (preg_match('/(^3D2R)|(^3D2.+\/R)/', $call)) {     # seems to be from Rotuma
-      $call = "3D2/R";                                          # will match with Rotuma
-    } elseif (preg_match('/^3D2C/', $call)) {                   # seems to be from Conway Reef
-      $call = "3D2/C";                                          # will match with Conway
-    } elseif (preg_match('/(^LZ\/)|(\/LZ[1-9]?$)/', $call)) {   # LZ/ is LZ0 by DXCC but this is VP8h
-      $call = "LZ";
-    } elseif (preg_match('/(^KG4)[A-Z09]{2}/', $call)) {
-      $call = "KG4";
-    } elseif (preg_match('/(^KG4)[A-Z09]{1}/', $call)) {
-      $call = "K";
-		} elseif (preg_match('/\w\/\w/', $call)) {
-      if (preg_match_all('/^((\d|[A-Z])+\/)?((\d|[A-Z]){3,})(\/(\d|[A-Z])+)?(\/(\d|[A-Z])+)?$/', $call, $matches)) {
-        $prefix = $matches[1][0];
-        $callsign = $matches[3][0];
-        $suffix = $matches[5][0];
-      if ($prefix) {
-          $prefix = substr($prefix, 0, -1); # Remove the / at the end
-      }
-      if ($suffix) {
-          $suffix = substr($suffix, 1); # Remove the / at the beginning
-      };
-      if (preg_match($csadditions, $suffix)) {
-        if ($prefix) {
-          $call = $prefix;
-        } else {
-          $call = $callsign;
-        }
-      } else {
-        $result = $this->wpx($call, 1);                       # use the wpx prefix instead
-        if ($result == '') {
-          $row['adif'] = 0;
-          $row['entity'] = '- NONE -';
-          $row['cqz'] = 0;
-          $row['cont'] = '';
-          return array($row['adif'], $row['entity'], $row['cqz'], $row['cont']);
-        } else {
-          $call = $result . "AA";
-        }
-      }
+	    if ($dxcc_exceptions->num_rows() > 0){
+		    $row = $dxcc_exceptions->row_array();
+		    return array($row['adif'], $row['entity'], $row['cqz'], $row['cont']);
+	    }
+	    if (preg_match('/(^KG4)[A-Z09]{3}/', $call)) {      // KG4/ and KG4 5 char calls are Guantanamo Bay. If 4 or 6 char, it is USA
+		    $call = "K";
+	    } elseif (preg_match('/(^OH\/)|(\/OH[1-9]?$)/', $call)) {   # non-Aland prefix!
+		    $call = "OH";                                             # make callsign OH = finland
+	    } elseif (preg_match('/(^CX\/)|(\/CX[1-9]?$)/', $call)) {   # non-Antarctica prefix!
+		    $call = "CX";                                             # make callsign CX = Uruguay
+	    } elseif (preg_match('/(^3D2R)|(^3D2.+\/R)/', $call)) {     # seems to be from Rotuma
+		    $call = "3D2/R";                                          # will match with Rotuma
+	    } elseif (preg_match('/^3D2C/', $call)) {                   # seems to be from Conway Reef
+		    $call = "3D2/C";                                          # will match with Conway
+	    } elseif (preg_match('/(^LZ\/)|(\/LZ[1-9]?$)/', $call)) {   # LZ/ is LZ0 by DXCC but this is VP8h
+		    $call = "LZ";
+	    } elseif (preg_match('/(^KG4)[A-Z09]{2}/', $call)) {
+		    $call = "KG4";
+	    } elseif (preg_match('/(^KG4)[A-Z09]{1}/', $call)) {
+		    $call = "K";
+	    } elseif (preg_match('/\w\/\w/', $call)) {
+		    if (preg_match_all('/^((\d|[A-Z])+\/)?((\d|[A-Z]){3,})(\/(\d|[A-Z])+)?(\/(\d|[A-Z])+)?$/', $call, $matches)) {
+			    $prefix = $matches[1][0];
+			    $callsign = $matches[3][0];
+			    $suffix = $matches[5][0];
+			    if ($prefix) {
+				    $prefix = substr($prefix, 0, -1); # Remove the / at the end
+			    }
+			    if ($suffix) {
+				    $suffix = substr($suffix, 1); # Remove the / at the beginning
+			    };
+			    if (preg_match($csadditions, $suffix)) {
+				    if ($prefix) {
+					    $call = $prefix;
+				    } else {
+					    $call = $callsign;
+				    }
+			    } else {
+				    $result = $this->wpx($call, 1);                       # use the wpx prefix instead
+				    if ($result == '') {
+					    $row['adif'] = 0;
+					    $row['entity'] = '- NONE -';
+					    $row['cqz'] = 0;
+					    $row['cont'] = '';
+					    return array($row['adif'], $row['entity'], $row['cqz'], $row['cont']);
+				    } else {
+					    $call = $result . "AA";
+				    }
+			    }
+		    }
+	    }
+
+	    $len = strlen($call);
+	    $dxcc_array=[];
+	    // Fetch all candidates in one shot instead of looping
+	    $dxcc_result=$this->db->query("SELECT `call`, `entity`, `adif`, `cqz`, `cont`
+		    FROM `dxcc_prefixes`
+		    WHERE ? like concat(`call`,'%')
+		    and `call` like ?
+		    AND (`start` <= ?  OR start is null)
+		    AND (`end` >= ?  OR end is null) order by length(`call`) desc limit 1",array($call,substr($call,0,1).'%',$date,$date));
+
+	    foreach($dxcc_result->result_array() as $row){
+		    $dxcc_array[$row['call']]=$row;
+	    }
+
+	    // query the table, removing a character from the right until a match
+	    for ($i = $len; $i > 0; $i--){
+		    //printf("searching for %s\n", substr($call, 0, $i));
+		    if (array_key_exists(substr($call,0,$i),$dxcc_array)) {
+			    $row = $dxcc_array[substr($call,0,$i)];
+			    // $row = $dxcc_result->row_array();
+			    return array($row['adif'], $row['entity'], $row['cqz'], $row['cont']);
+		    }
+	    }
+
+	    return array("Not Found", "Not Found");
+
     }
-  }
 
-		$len = strlen($call);
+    public function dxcc_lookup($call, $date) {
 
-		// query the table, removing a character from the right until a match
-		for ($i = $len; $i > 0; $i--){
-            //printf("searching for %s\n", substr($call, 0, $i));
-            $dxcc_result = $this->db->select('`call`, `entity`, `adif`, `cqz`, `cont`')
-                                    ->where('call', substr($call, 0, $i))
-                                    ->where('(start <= ', $date)
-                                    ->or_where("start is null)", NULL, false)
-                                    ->where('(end >= ', $date)
-                                    ->or_where("end is null)", NULL, false)
-                                    ->get('dxcc_prefixes');
+	    $csadditions = '/^T$|^P$|^R$|^A$|^M$/';
 
-            //$dxcc_result = $this->db->query("select `call`, `entity`, `adif` from dxcc_prefixes where `call` = '".substr($call, 0, $i) ."'");
-            //print $this->db->last_query();
+	    $dxcc_exceptions = $this->db->select('`entity`, `adif`, `cqz`,`cont`')
+				 ->where('`call`', $call)
+				 ->where('(start <= ', $date)
+				 ->or_where('start is null)', NULL, false)
+				 ->where('(end >= ', $date)
+				 ->or_where('end is null)', NULL, false)
+				 ->get('dxcc_exceptions');
+	    if ($dxcc_exceptions->num_rows() > 0){
+		    $row = $dxcc_exceptions->row_array();
+		    return $row;
+	    } else {
 
-            if ($dxcc_result->num_rows() > 0){
-                $row = $dxcc_result->row_array();
-                return array($row['adif'], $row['entity'], $row['cqz'], $row['cont']);
-            }
-        }
+		    if (preg_match('/(^KG4)[A-Z09]{3}/', $call)) {       // KG4/ and KG4 5 char calls are Guantanamo Bay. If 4 or 6 char, it is USA
+			    $call = "K";
+		    } elseif (preg_match('/(^OH\/)|(\/OH[1-9]?$)/', $call)) {   # non-Aland prefix!
+			    $call = "OH";                                             # make callsign OH = finland
+		    } elseif (preg_match('/(^CX\/)|(\/CX[1-9]?$)/', $call)) {   # non-Antarctica prefix!
+			    $call = "CX";                                             # make callsign CX = Uruguay
+		    } elseif (preg_match('/(^3D2R)|(^3D2.+\/R)/', $call)) {     # seems to be from Rotuma
+			    $call = "3D2/R";                                          # will match with Rotuma
+		    } elseif (preg_match('/^3D2C/', $call)) {                   # seems to be from Conway Reef
+			    $call = "3D2/C";                                          # will match with Conway
+		    } elseif (preg_match('/(^LZ\/)|(\/LZ[1-9]?$)/', $call)) {   # LZ/ is LZ0 by DXCC but this is VP8h
+			    $call = "LZ";
+		    } elseif (preg_match('/(^KG4)[A-Z09]{2}/', $call)) {
+			    $call = "KG4";
+		    } elseif (preg_match('/(^KG4)[A-Z09]{1}/', $call)) {
+			    $call = "K";
+		    } elseif (preg_match('/\w\/\w/', $call)) {
+			    if (preg_match_all('/^((\d|[A-Z])+\/)?((\d|[A-Z]){3,})(\/(\d|[A-Z])+)?(\/(\d|[A-Z])+)?$/', $call, $matches)) {
+				    $prefix = $matches[1][0];
+				    $callsign = $matches[3][0];
+				    $suffix = $matches[5][0];
+				    if ($prefix) {
+					    $prefix = substr($prefix, 0, -1); # Remove the / at the end
+				    }
+				    if ($suffix) {
+					    $suffix = substr($suffix, 1); # Remove the / at the beginning
+				    };
+				    if (preg_match($csadditions, $suffix)) {
+					    if ($prefix) {
+						    $call = $prefix;
+					    } else {
+						    $call = $callsign;
+					    }
+				    } else {
+					    $result = $this->wpx($call, 1);                       # use the wpx prefix instead
+					    if ($result == '') {
+						    $row['adif'] = 0;
+						    $row['cont'] = '';
+						    $row['entity'] = '- NONE -';
+						    $row['cqz'] = 0;
+						    $row['long'] = '0';
+						    $row['lat'] = '0';
+						    return $row;
+					    } else {
+						    $call = $result . "AA";
+					    }
+				    }
+			    }
+		    }
 
-        return array("Not Found", "Not Found");
+		    $len = strlen($call);
+		    $dxcc_array=[];
 
-  }
+		    // Fetch all candidates in one shot instead of looping
+		    $dxcc_result=$this->db->query("SELECT *
+			    FROM `dxcc_prefixes`
+			    WHERE ? like concat(`call`,'%')
+			    and `call` like ?
+			    AND (`start` <= ?  OR start is null)
+			    AND (`end` >= ?  OR end is null) order by length(`call`) desc limit 1",array($call,substr($call,0,1).'%',$date,$date));
 
-    public function dxcc_lookup($call, $date){
+		    foreach($dxcc_result->result_array() as $row){
+			    $dxcc_array[$row['call']]=$row;
+		    }
 
-    $csadditions = '/^T$|^P$|^R$|^A$|^M$/';
+		    // query the table, removing a character from the right until a match
+		    for ($i = $len; $i > 0; $i--){
+			    //printf("searching for %s\n", substr($call, 0, $i));
+			    if (array_key_exists(substr($call,0,$i),$dxcc_array)) {
+				    $row = $dxcc_array[substr($call,0,$i)];
+				    // $row = $dxcc_result->row_array();
+				    return $row;
+			    }
+		    }
+	    }
 
-		$dxcc_exceptions = $this->db->select('`entity`, `adif`, `cqz`,`cont`')
-				->where('call', $call)
-				->where('(start <= ', $date)
-				->or_where('start is null)', NULL, false)
-				->where('(end >= ', $date)
-				->or_where('end is null)', NULL, false)
-				->get('dxcc_exceptions');
-
-			if ($dxcc_exceptions->num_rows() > 0){
-				$row = $dxcc_exceptions->row_array();
-				return $row;
-			} else {
-
-        if (preg_match('/(^KG4)[A-Z09]{3}/', $call)) {       // KG4/ and KG4 5 char calls are Guantanamo Bay. If 4 or 6 char, it is USA
-          $call = "K";
-        } elseif (preg_match('/(^OH\/)|(\/OH[1-9]?$)/', $call)) {   # non-Aland prefix!
-          $call = "OH";                                             # make callsign OH = finland
-        } elseif (preg_match('/(^CX\/)|(\/CX[1-9]?$)/', $call)) {   # non-Antarctica prefix!
-          $call = "CX";                                             # make callsign CX = Uruguay
-        } elseif (preg_match('/(^3D2R)|(^3D2.+\/R)/', $call)) {     # seems to be from Rotuma
-          $call = "3D2/R";                                          # will match with Rotuma
-        } elseif (preg_match('/^3D2C/', $call)) {                   # seems to be from Conway Reef
-          $call = "3D2/C";                                          # will match with Conway
-        } elseif (preg_match('/(^LZ\/)|(\/LZ[1-9]?$)/', $call)) {   # LZ/ is LZ0 by DXCC but this is VP8h
-          $call = "LZ";
-        } elseif (preg_match('/(^KG4)[A-Z09]{2}/', $call)) {
-          $call = "KG4";
-        } elseif (preg_match('/(^KG4)[A-Z09]{1}/', $call)) {
-          $call = "K";
-        } elseif (preg_match('/\w\/\w/', $call)) {
-          if (preg_match_all('/^((\d|[A-Z])+\/)?((\d|[A-Z]){3,})(\/(\d|[A-Z])+)?(\/(\d|[A-Z])+)?$/', $call, $matches)) {
-              $prefix = $matches[1][0];
-              $callsign = $matches[3][0];
-              $suffix = $matches[5][0];
-            if ($prefix) {
-                $prefix = substr($prefix, 0, -1); # Remove the / at the end
-            }
-            if ($suffix) {
-                $suffix = substr($suffix, 1); # Remove the / at the beginning
-            };
-            if (preg_match($csadditions, $suffix)) {
-              if ($prefix) {
-                $call = $prefix;
-              } else {
-                $call = $callsign;
-              }
-            } else {
-              $result = $this->wpx($call, 1);                       # use the wpx prefix instead
-              if ($result == '') {
-                $row['adif'] = 0;
-                $row['cont'] = '';
-                $row['entity'] = '- NONE -';
-                $row['cqz'] = 0;
-                $row['long'] = '0';
-                $row['lat'] = '0';
-                return $row;
-              } else {
-                $call = $result . "AA";
-              }
-          }
-    		}
-      }
-
-				$len = strlen($call);
-
-				// query the table, removing a character from the right until a match
-				for ($i = $len; $i > 0; $i--){
-					//printf("searching for %s\n", substr($call, 0, $i));
-					$dxcc_result = $this->db->select('*')
-            ->where('call', substr($call, 0, $i))
-            ->where('(start <= ', $date)
-            ->or_where("start is null)", NULL, false)
-            ->where('(end >= ', $date)
-            ->or_where("end is null)", NULL, false)
-            ->get('dxcc_prefixes');
-
-					//$dxcc_result = $this->db->query("select `call`, `entity`, `adif` from dxcc_prefixes where `call` = '".substr($call, 0, $i) ."'");
-					//print $this->db->last_query();
-
-					if ($dxcc_result->num_rows() > 0){
-					  $row = $dxcc_result->row_array();
-					  return $row;
-					}
-				}
-			}
-
-        return array("Not Found", "Not Found");
+	    return array("Not Found", "Not Found");
     }
 
     function wpx($testcall, $i) {
@@ -4491,41 +4550,33 @@ function lotw_last_qsl_date($user_id) {
     }
 
 
-    public function check_missing_dxcc_id($all){
-        // get all records with no COL_DXCC
-        $this->db->select("COL_PRIMARY_KEY, COL_CALL, COL_TIME_ON, COL_TIME_OFF");
+    public function check_missing_dxcc_id($all) {
+	    ini_set('memory_limit', '-1');	// This consumes a much of Memory!
+	    $this->db->trans_start();	// Transaction has to be started here, because otherwise we're trying to update rows which are locked by the select
+	    $this->db->select("COL_PRIMARY_KEY, COL_CALL, COL_TIME_ON, COL_TIME_OFF"); // get all records with no COL_DXCC
 
-        // check which to update - records with no dxcc or all records
-        if (!$all){
-            $this->db->where("COL_DXCC is NULL");
-        }
+	    if (!$all) { // check which to update - records with no dxcc or all records
+		    $this->db->where("COL_DXCC is NULL");
+	    }
 
-        $r = $this->db->get($this->config->item('table_name'));
+	    $r = $this->db->get($this->config->item('table_name'));
 
-        $count = 0;
-        $this->db->trans_start();
-        //query dxcc_prefixes
-        if ($r->num_rows() > 0){
-            foreach($r->result_array() as $row){
-                $qso_date = $row['COL_TIME_OFF']=='' ? $row['COL_TIME_ON'] : $row['COL_TIME_OFF'];
-                $qso_date = date("Y-m-d", strtotime($qso_date));
-
-                // Manual call
-                $d = $this->check_dxcc_table($row['COL_CALL'], $qso_date);
-
-                if ($d[0] != 'Not Found'){
-                    $sql = sprintf("update %s set COL_COUNTRY = '%s', COL_DXCC='%s' where COL_PRIMARY_KEY=%d",
-                                    $this->config->item('table_name'), addslashes(ucwords(strtolower($d[1]), "- (/")), $d[0], $row['COL_PRIMARY_KEY']);
-                    $this->db->query($sql);
-                    //print($sql."\n");
-                    // printf("Updating %s to %s and %s\n<br/>", $row['COL_PRIMARY_KEY'], ucwords(strtolower($d[1]), "- (/"), $d[0]);
-                    $count++;
-                }
-            }
-        }
-        $this->db->trans_complete();
-
-        print("$count updated\n");
+	    $count = 0;
+	    if ($r->num_rows() > 0){ //query dxcc_prefixes
+		    $sql = "update ".$this->config->item('table_name')." set COL_COUNTRY = ?, COL_DXCC=? where COL_PRIMARY_KEY=?";
+		    $q = $this->db->conn_id->prepare($sql);	// PREPARE this statement. For DB this means: No parsing overhead, parse once use many (see execute query below)
+		    foreach($r->result_array() as $row){
+			    $qso_date = $row['COL_TIME_OFF']=='' ? $row['COL_TIME_ON'] : $row['COL_TIME_OFF'];
+			    $qso_date = date("Y-m-d", strtotime($qso_date));
+			    $d = $this->check_dxcc_table($row['COL_CALL'], $qso_date);
+			    if ($d[0] != 'Not Found'){
+				    $q->execute(array(addslashes(ucwords(strtolower($d[1]), "- (/")), $d[0], $row['COL_PRIMARY_KEY']));
+				    $count++;
+			    }
+		    }
+	    }
+	    $this->db->trans_complete();
+	    print("$count updated\n");
     }
 
     public function check_missing_continent(){
@@ -4840,9 +4891,38 @@ function lotw_last_qsl_date($user_id) {
       foreach ($qsos_result as $row) {
         $plot = array('lat'=>0, 'lng'=>0, 'html'=>'', 'label'=>'', 'confirmed'=>'N');
 
-        $plot['label'] = $row->COL_CALL;
+        $plot['label'] = str_replace('0', '&Oslash;', $row->COL_CALL);
 
-        $plot['html'] = "Callsign: ".$row->COL_CALL."<br />Date/Time: ".$row->COL_TIME_ON."<br />";
+        $plot['html'] = "";
+        if ($row->COL_NAME != null) {
+           $plot['html'] .= "Name: ".$row->COL_NAME."<br />";
+        }
+        $date_cat = "Date";
+
+        // Get Date format
+        if($this->session->userdata('user_date_format')) {
+          // If Logged in and session exists
+          $user_date_format = $this->session->userdata('user_date_format');
+        } else {
+          // Get Default date format from /config/wavelog.php
+          $user_date_format = $this->config->item('qso_date_format');
+        }
+
+        $qso_time_on = new DateTime($row->COL_TIME_ON);
+
+        if ($this->uri->segment(1) == 'visitor') {
+          $visitor_date_format = $this->config->item('qso_date_format');
+          if ($this->config->item('show_time')) {
+            $visitor_date_format .= ' H:i';
+            $date_cat .= "/Time";
+          }
+          $qso_time_on = $qso_time_on->format($visitor_date_format);
+        } else {
+          $qso_time_on = $qso_time_on->format($user_date_format.' H:i');
+          $date_cat .= "/Time";
+        }
+
+        $plot['html'] .= $date_cat.": ".$qso_time_on."<br />";
         $plot['html'] .= ($row->COL_SAT_NAME != null) ? ("SAT: ".$row->COL_SAT_NAME."<br />") : ("Band: ".$row->COL_BAND."<br />");
         $plot['html'] .= "Mode: ".($row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE)."<br />";
 

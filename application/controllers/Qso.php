@@ -5,8 +5,6 @@ class QSO extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
-		$this->lang->load('qso');
-
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 	}
@@ -90,7 +88,7 @@ class QSO extends CI_Controller {
 		$data['qslmsg'] = (isset($options_object[0]->option_value))?$options_object[0]->option_value:'';
 
 		if ($this->form_validation->run() == FALSE) {
-			$data['page_title'] = "Add QSO";
+			$data['page_title'] = __("Add QSO");
 			if (validation_errors() != '') {	// we're coming from a failed ajax-call
 				echo json_encode(array('message' => 'Error','errors' => validation_errors()));
 			} else {	// we're not coming from a POST
@@ -125,9 +123,6 @@ class QSO extends CI_Controller {
 				'transmit_power' => $this->input->post('transmit_power')
 			);
 			// ];
-
-			setcookie("radio", $qso_data['radio'], time()+3600*24*99);
-			setcookie("station_profile_id", $qso_data['station_profile_id'], time()+3600*24*99);
 
 			$this->session->set_userdata($qso_data);
 
@@ -431,9 +426,10 @@ class QSO extends CI_Controller {
 
 	function band_to_freq($band, $mode) {
 
-		$this->load->library('frequency');
+		if ($band != null and $band != 'null') {
+			echo $this->frequency->convert_band($band, $mode);
+		}
 
-		echo $this->frequency->convert_band($band, $mode);
 	}
 
 	/*

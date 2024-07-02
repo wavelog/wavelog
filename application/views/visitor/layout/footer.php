@@ -36,7 +36,7 @@
         <?php } ?>
 
         <?php if(isset($slug)) { ?>
-        var qso_loc = '<?php echo site_url('visitor/map/'.$slug);?>';
+        var qso_loc = '<?php echo site_url('visitor/map/'.$slug.'/'.$this->uri->segment(3));?>';
         <?php } ?>
         var q_zoom = 3;
 
@@ -58,6 +58,32 @@
 
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/leaflet/L.MaidenheadColoured.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/sections/gridmap.js?"></script>
+
+<script>
+  
+  // auto setting of gridmap height
+  function set_map_height() {
+
+      //header menu
+      var headerNavHeight = $('nav').outerHeight();
+      // console.log('nav: ' + headerNavHeight);
+
+      // line with coordinates
+      // var coordinatesHeight = $('.coordinates').outerHeight();
+      // console.log('.coordinates: ' + coordinatesHeight);
+
+      // form for gridsquare map
+      var gridsquareFormHeight = $('.gridsquare_map_form').outerHeight();
+      // console.log('.gridsquare_map_form: ' + gridsquareFormHeight);
+
+      // calculate correct map height
+      var gridsquareMapHeight = window.innerHeight - headerNavHeight - gridsquareFormHeight - 8;
+
+      // and set it
+      $('#gridsquare_map').css('height', gridsquareMapHeight + 'px');
+      // console.log('#gridsquare_map: ' + gridsquareMapHeight);
+  }
+</script>  
 
 <script>
 
@@ -107,7 +133,7 @@
 <?php if ($this->uri->segment(1) == "gridsquares" && $this->uri->segment(2) == "band") { ?>
 
   var bands_available = <?php echo $bands_available; ?>;
-  $('#gridsquare_bands').append('<option value="All">All</option>')
+  $('#gridsquare_bands').append('<option value="All">' . __("All") . '</option>')
   $.each(bands_available, function(key, value) {
      $('#gridsquare_bands')
          .append($("<option></option>")
@@ -171,18 +197,18 @@
                 "paging":         true,
                 "scrollX": true,
                 "order": [ 0, 'desc' ],
-                // "language": {
-                //     url: "../assets/json/datatables_languages/en-GB.json" // in visitor view always english
-                // },
+                "language": {
+                  url: getDataTablesLanguageUrl(),
+                },
                 dom: 'Bfrtip',
                 buttons: [
                    {
                       extend: 'csv',
-                      text: 'CSV'
+                      text: '<?= __("CSV"); ?>'
                    },
                    {
                       extend: 'clear',
-                      text: 'Clear'
+                      text: '<?= __("Clear"); ?>'
                    }
                 ]
             });
@@ -208,9 +234,11 @@
             }
         </script>
     <?php } ?>
-    <!-- TODO: We will add Multilanguage Support for the public views later, so wie komment this out for the moment -->
-    <!-- <script>
-        var lang_datatables_language = "<?php echo lang('datatables_language') ?>";
-    </script> -->
+    <script>
+    function getDataTablesLanguageUrl() {
+        datatables_language_url = "<?php echo base_url() ;?>assets/json/datatables_languages/" + "<?php echo $language['locale']; ?>" + ".json";
+        return datatables_language_url;
+    }
+    </script>
   </body>
 </html>

@@ -3,12 +3,12 @@ if ($qsos->result() != NULL) {
 	echo '<table style="width:100%" class="table qsolist table-sm table-bordered table-hover table-striped table-condensed">
 	<thead>
 	<tr>
-		<th style=\'text-align: center\'>'.lang('gen_hamradio_callsign').'</th>
-		<th style=\'text-align: center\'>Date / time</th>
-		<th style=\'text-align: center\'>' . lang('gen_hamradio_mode') . '</th>
-		<th style=\'text-align: center\'>' . lang('gen_hamradio_band') . '</th>
-		<th style=\'text-align: center\'>Last LoTW upload</th>
-		<th style=\'text-align: center\'>' . lang('gen_hamradio_station') . '</th>
+		<th style=\'text-align: center\'>' . __("Callsign") . '</th>
+		<th style=\'text-align: center\'>' . __("Date/Time") . '</th>
+		<th style=\'text-align: center\'>' . __("Mode") . '</th>
+		<th style=\'text-align: center\'>' . __("Band") . '</th>
+		<th style=\'text-align: center\'>' . __("Last LoTW upload") . '</th>
+		<th style=\'text-align: center\'>' . __("Station") . '</th>
 	</tr>
 	</thead><tbody>';
 
@@ -38,6 +38,6 @@ if ($qsos->result() != NULL) {
 
 	<?php
 } else {
-	echo '<div class="alert alert-success">No QSOs with outstanding LoTW upload were found.</div>';
+	echo '<div class="alert alert-success">' . __("No QSOs with outstanding LoTW upload were found.") . '</div>';
 }
 ?>

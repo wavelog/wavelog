@@ -5,9 +5,7 @@ Wavelog ADIF export
 <EOH>
 
 <?php
-$CI =& get_instance();
-$CI->load->library('AdifHelper');
 
 foreach ($qsos->result() as $qso) {
-    echo $CI->adifhelper->getAdifLine($qso);
+    echo $this->adifhelper->getAdifLine($qso);
 }

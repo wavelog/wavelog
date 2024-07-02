@@ -24,18 +24,29 @@ class Sattimers extends CI_Controller {
 			$this->cache->save('SatTimers'.strtoupper($this->stations->find_gridsquare()), $RawData, (60*1));
 		} 
 
+
 		$json = $RawData;
-
-		$data['activations'] = json_decode($json, true)['data'];
-		$data['gridsquare'] = strtoupper($this->stations->find_gridsquare());
-
-		$data['page_title'] = "Satellite Timers";
-
-		$CI =& get_instance();
-		if($CI->session->userdata('user_date_format')) {
-			$data['custom_date_format'] = $CI->session->userdata('user_date_format');
+		$response = json_decode($json, true);
+		if (array_key_exists('data', $response)) {
+			$data['activations'] = json_decode($json, true)['data'] ?? [];
+		} else if (array_key_exists('error', $response)) {
+			$this->session->set_flashdata('message', 'Error: '.$response['error']);
+			$data['activations'] = [];
 		} else {
-			$data['custom_date_format'] = $CI->config->item('qso_date_format');
+			$data['activations'] = [];
+		}
+
+		$data['gridsquare'] = strtoupper($this->stations->find_gridsquare());
+		if ($data['gridsquare'] == "0") {
+			$this->session->set_flashdata('message', sprintf(__("You have no station locations. Go %s to create it!"), '<a href="' . site_url('stationsetup') . '">' . __("here") . '</a>'));
+		}
+
+		$data['page_title'] = __("Satellite Timers");
+
+		if($this->session->userdata('user_date_format')) {
+			$data['custom_date_format'] = $this->session->userdata('user_date_format');
+		} else {
+			$data['custom_date_format'] = $this->config->item('qso_date_format');
 		}
 
 		switch ($data['custom_date_format']) {

@@ -1,90 +1,90 @@
 <div class="table-responsive">
 	<table class="table table-sm table-striped table-hover">
 		<tr class="titles">
-			<td><?php echo lang('general_word_date'); ?></td>
+			<td><?= __("Date"); ?></td>
 			<?php if(($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE || ($this->config->item('show_time'))) { ?>
-				<td><?php echo lang('general_word_time'); ?></td>
+				<td><?= __("Time"); ?></td>
 			<?php } ?>
-			<td><?php echo lang('gen_hamradio_call'); ?></td>
+			<td><?= __("Call"); ?></td>
 			<?php
 			echo '<td>';
 			switch($this->session->userdata('user_column1')==""?'Mode':$this->session->userdata('user_column1')) {
-				case 'Mode': echo lang('gen_hamradio_mode'); break;
-				case 'RSTS': echo lang('gen_hamradio_rsts'); break;
-				case 'RSTR': echo lang('gen_hamradio_rstr'); break;
-				case 'Country': echo lang('general_word_country'); break;
-				case 'IOTA': echo lang('gen_hamradio_iota'); break;
-				case 'SOTA': echo lang('gen_hamradio_sota'); break;
-				case 'State': echo lang('gen_hamradio_state'); break;
-				case 'Grid': echo lang('gen_hamradio_gridsquare'); break;
-				case 'Distance': echo lang('gen_hamradio_distance'); break;
-				case 'Band': echo lang('gen_hamradio_band'); break;
-				case 'Frequency': echo lang('gen_hamradio_frequency'); break;
-				case 'Operator': echo lang('gen_hamradio_operator'); break;
+				case 'Mode': echo __("Mode"); break;
+				case 'RSTS': echo __("RST (S)"); break;
+				case 'RSTR': echo __("RST (R)"); break;
+				case 'Country': echo __("Country"); break;
+				case 'IOTA': echo __("IOTA"); break;
+				case 'SOTA': echo __("SOTA"); break;
+				case 'State': echo __("State"); break;
+				case 'Grid': echo __("Gridsquare"); break;
+				case 'Distance': echo __("Distance"); break;
+				case 'Band': echo __("Band"); break;
+				case 'Frequency': echo __("Frequency"); break;
+				case 'Operator': echo __("Operator"); break;
 			}
 			echo '</td>';
 			echo '<td>';
 			switch($this->session->userdata('user_column2')==""?'RSTS':$this->session->userdata('user_column2')) {
-				case 'Mode': echo lang('gen_hamradio_mode'); break;
-				case 'RSTS': echo lang('gen_hamradio_rsts'); break;
-				case 'RSTR': echo lang('gen_hamradio_rstr'); break;
-				case 'Country': echo lang('general_word_country'); break;
-				case 'IOTA': echo lang('gen_hamradio_iota'); break;
-				case 'SOTA': echo lang('gen_hamradio_sota'); break;
-				case 'State': echo lang('gen_hamradio_state'); break;
-				case 'Grid': echo lang('gen_hamradio_gridsquare'); break;
-				case 'Distance': echo lang('gen_hamradio_distance'); break;
-				case 'Band': echo lang('gen_hamradio_band'); break;
-				case 'Frequency': echo lang('gen_hamradio_frequency'); break;
-				case 'Operator': echo lang('gen_hamradio_band'); break;
+				case 'Mode': echo __("Mode"); break;
+				case 'RSTS': echo __("RST (S)"); break;
+				case 'RSTR': echo __("RST (R)"); break;
+				case 'Country': echo __("Country"); break;
+				case 'IOTA': echo __("IOTA"); break;
+				case 'SOTA': echo __("SOTA"); break;
+				case 'State': echo __("State"); break;
+				case 'Grid': echo __("Gridsquare"); break;
+				case 'Distance': echo __("Distance"); break;
+				case 'Band': echo __("Band"); break;
+				case 'Frequency': echo __("Frequency"); break;
+				case 'Operator': echo __("Band"); break;
 			}
 			echo '</td>';
 			echo '<td>';
 			switch($this->session->userdata('user_column3')==""?'RSTR':$this->session->userdata('user_column3')) {
-				case 'Mode': echo lang('gen_hamradio_mode'); break;
-				case 'RSTS': echo lang('gen_hamradio_rsts'); break;
-				case 'RSTR': echo lang('gen_hamradio_rstr'); break;
-				case 'Country': echo lang('general_word_country'); break;
-				case 'IOTA': echo lang('gen_hamradio_iota'); break;
-				case 'SOTA': echo lang('gen_hamradio_sota'); break;
-				case 'State': echo lang('gen_hamradio_state'); break;
-				case 'Grid': echo lang('gen_hamradio_gridsquare'); break;
-				case 'Distance': echo lang('gen_hamradio_distance'); break;
-				case 'Band': echo lang('gen_hamradio_band'); break;
-				case 'Frequency': echo lang('gen_hamradio_frequency'); break;
-				case 'Operator': echo lang('gen_hamradio_operator'); break;
+				case 'Mode': echo __("Mode"); break;
+				case 'RSTS': echo __("RST (S)"); break;
+				case 'RSTR': echo __("RST (R)"); break;
+				case 'Country': echo __("Country"); break;
+				case 'IOTA': echo __("IOTA"); break;
+				case 'SOTA': echo __("SOTA"); break;
+				case 'State': echo __("State"); break;
+				case 'Grid': echo __("Gridsquare"); break;
+				case 'Distance': echo __("Distance"); break;
+				case 'Band': echo __("Band"); break;
+				case 'Frequency': echo __("Frequency"); break;
+				case 'Operator': echo __("Operator"); break;
 			}
 			echo '</td>';
 			echo '<td>';
 			switch($this->session->userdata('user_column4')==""?'Band':$this->session->userdata('user_column4')) {
-				case 'Mode': echo lang('gen_hamradio_mode'); break;
-				case 'RSTS': echo lang('gen_hamradio_rsts'); break;
-				case 'RSTR': echo lang('gen_hamradio_rstr'); break;
-				case 'Country': echo lang('general_word_country'); break;
-				case 'IOTA': echo lang('gen_hamradio_iota'); break;
-				case 'SOTA': echo lang('gen_hamradio_sota'); break;
-				case 'State': echo lang('gen_hamradio_state'); break;
-				case 'Grid': echo lang('gen_hamradio_gridsquare'); break;
-				case 'Distance': echo lang('gen_hamradio_distance'); break;
-				case 'Band': echo lang('gen_hamradio_band'); break;
-				case 'Frequency': echo lang('gen_hamradio_frequency'); break;
-				case 'Operator': echo lang('gen_hamradio_operator'); break;
+				case 'Mode': echo __("Mode"); break;
+				case 'RSTS': echo __("RST (S)"); break;
+				case 'RSTR': echo __("RST (R)"); break;
+				case 'Country': echo __("Country"); break;
+				case 'IOTA': echo __("IOTA"); break;
+				case 'SOTA': echo __("SOTA"); break;
+				case 'State': echo __("State"); break;
+				case 'Grid': echo __("Gridsquare"); break;
+				case 'Distance': echo __("Distance"); break;
+				case 'Band': echo __("Band"); break;
+				case 'Frequency': echo __("Frequency"); break;
+				case 'Operator': echo __("Operator"); break;
 			}
 			echo '</td>';
 			echo '<td>';
 			switch($this->session->userdata('user_column5')==""?'Country':$this->session->userdata('user_column5')) {
-				case 'Mode': echo lang('gen_hamradio_mode'); break;
-				case 'RSTS': echo lang('gen_hamradio_rsts'); break;
-				case 'RSTR': echo lang('gen_hamradio_rstr'); break;
-				case 'Country': echo lang('general_word_country'); break;
-				case 'IOTA': echo lang('gen_hamradio_iota'); break;
-				case 'SOTA': echo lang('gen_hamradio_sota'); break;
-				case 'State': echo lang('gen_hamradio_state'); break;
-				case 'Grid': echo lang('gen_hamradio_gridsquare'); break;
-				case 'Distance': echo lang('gen_hamradio_distance'); break;
-				case 'Band': echo lang('gen_hamradio_band'); break;
-				case 'Frequency': echo lang('gen_hamradio_frequency'); break;
-				case 'Operator': echo lang('gen_hamradio_operator'); break;
+				case 'Mode': echo __("Mode"); break;
+				case 'RSTS': echo __("RST (S)"); break;
+				case 'RSTR': echo __("RST (R)"); break;
+				case 'Country': echo __("Country"); break;
+				case 'IOTA': echo __("IOTA"); break;
+				case 'SOTA': echo __("SOTA"); break;
+				case 'State': echo __("State"); break;
+				case 'Grid': echo __("Gridsquare"); break;
+				case 'Distance': echo __("Distance"); break;
+				case 'Band': echo __("Band"); break;
+				case 'Frequency': echo __("Frequency"); break;
+				case 'Operator': echo __("Operator"); break;
 			}
 			echo '</td><td></td></tr>';
 
@@ -118,7 +118,7 @@
 				case 'SOTA':    echo '<td>' . ($row->COL_SOTA_REF); break;
 				case 'WWFF':    echo '<td>' . ($row->COL_WWFF_REF); break;
 				case 'POTA':    echo '<td>' . ($row->COL_POTA_REF); break;
-				case 'Grid':    echo '<td>'; echo strlen($row->COL_GRIDSQUARE)==0?$row->COL_VUCC_GRIDS:$row->COL_GRIDSQUARE; break;
+				case 'Grid':    echo '<td>'; echo strlen($row->COL_GRIDSQUARE ?? '')==0?$row->COL_VUCC_GRIDS ?? '':$row->COL_GRIDSQUARE ?? ''; break;
 				case 'Distance':echo '<td>' . ($row->COL_DISTANCE ? $row->COL_DISTANCE . '&nbsp;km' : ''); break;
 				case 'Band':    echo '<td>'; if($row->COL_SAT_NAME != null) { echo $row->COL_SAT_NAME; } else { echo strtolower($row->COL_BAND); }; break;
 				case 'State':   echo '<td>' . ($row->COL_STATE); break;
@@ -134,7 +134,7 @@
 				case 'SOTA':    echo '<td>' . ($row->COL_SOTA_REF); break;
 				case 'WWFF':    echo '<td>' . ($row->COL_WWFF_REF); break;
 				case 'POTA':    echo '<td>' . ($row->COL_POTA_REF); break;
-				case 'Grid':    echo '<td>'; echo strlen($row->COL_GRIDSQUARE)==0?$row->COL_VUCC_GRIDS:$row->COL_GRIDSQUARE; break;
+				case 'Grid':    echo '<td>'; echo strlen($row->COL_GRIDSQUARE ?? '')==0?$row->COL_VUCC_GRIDS ?? '':$row->COL_GRIDSQUARE ?? ''; break;
 				case 'Distance':echo '<td>' . ($row->COL_DISTANCE ? $row->COL_DISTANCE . '&nbsp;km' : ''); break;
 				case 'Band':    echo '<td>'; if($row->COL_SAT_NAME != null) { echo $row->COL_SAT_NAME; } else { echo strtolower($row->COL_BAND); }; break;
 				case 'State':   echo '<td>' . ($row->COL_STATE); break;
@@ -151,7 +151,7 @@
 				case 'SOTA':    echo '<td>' . ($row->COL_SOTA_REF); break;
 				case 'WWFF':    echo '<td>' . ($row->COL_WWFF_REF); break;
 				case 'POTA':    echo '<td>' . ($row->COL_POTA_REF); break;
-				case 'Grid':    echo '<td>'; echo strlen($row->COL_GRIDSQUARE)==0?$row->COL_VUCC_GRIDS:$row->COL_GRIDSQUARE; break;
+				case 'Grid':    echo '<td>'; echo strlen($row->COL_GRIDSQUARE ?? '')==0?$row->COL_VUCC_GRIDS ?? '':$row->COL_GRIDSQUARE ?? ''; break;
 				case 'Distance':echo '<td>' . ($row->COL_DISTANCE ? $row->COL_DISTANCE . '&nbsp;km' : ''); break;
 				case 'Band':    echo '<td>'; if($row->COL_SAT_NAME != null) { echo $row->COL_SAT_NAME; } else { echo strtolower($row->COL_BAND); }; break;
 				case 'State':   echo '<td>' . ($row->COL_STATE); break;
@@ -167,7 +167,7 @@
 				case 'SOTA':    echo '<td>' . ($row->COL_SOTA_REF); break;
 				case 'WWFF':    echo '<td>' . ($row->COL_WWFF_REF); break;
 				case 'POTA':    echo '<td>' . ($row->COL_POTA_REF); break;
-				case 'Grid':    echo '<td>'; echo strlen($row->COL_GRIDSQUARE)==0?$row->COL_VUCC_GRIDS:$row->COL_GRIDSQUARE; break;
+				case 'Grid':    echo '<td>'; echo strlen($row->COL_GRIDSQUARE ?? '')==0?$row->COL_VUCC_GRIDS ?? '':$row->COL_GRIDSQUARE ?? ''; break;
 				case 'Distance':echo '<td>' . ($row->COL_DISTANCE ? $row->COL_DISTANCE . '&nbsp;km' : ''); break;
 				case 'Band':    echo '<td>'; if($row->COL_SAT_NAME != null) { echo $row->COL_SAT_NAME; } else { echo strtolower($row->COL_BAND); }; break;
 				case 'State':   echo '<td>' . ($row->COL_STATE); break;
@@ -183,14 +183,14 @@
 				case 'SOTA':    echo '<td>' . ($row->COL_SOTA_REF); break;
 				case 'WWFF':    echo '<td>' . ($row->COL_WWFF_REF); break;
 				case 'POTA':    echo '<td>' . ($row->COL_POTA_REF); break;
-				case 'Grid':    echo '<td>'; echo strlen($row->COL_GRIDSQUARE)==0?$row->COL_VUCC_GRIDS:$row->COL_GRIDSQUARE; break;
+				case 'Grid':    echo '<td>'; echo strlen($row->COL_GRIDSQUARE ?? '')==0?$row->COL_VUCC_GRIDS ?? '':$row->COL_GRIDSQUARE ?? ''; break;
 				case 'Distance':echo '<td>' . ($row->COL_DISTANCE ? $row->COL_DISTANCE . '&nbsp;km' : ''); break;
 				case 'Band':    echo '<td>'; if($row->COL_SAT_NAME != null) { echo $row->COL_SAT_NAME; } else { echo strtolower($row->COL_BAND); }; break;
 				case 'State':   echo '<td>' . ($row->COL_STATE); break;
 				case 'Operator':   echo '<td>' . ($row->COL_OPERATOR); break;
 			}
 			echo '</td>
-				<td><button onclick="addQsoToQsl(' . $row->COL_PRIMARY_KEY . ', \'' . $filename . '\')" class="btn btn-sm btn-success" type="button"> Add to QSL</button></td>';
+				<td><button onclick="addQsoToQsl(' . $row->COL_PRIMARY_KEY . ', \'' . $filename . '\')" class="btn btn-sm btn-success" type="button"> ' . __("Add to QSL") . '</button></td>';
 			echo '</tr>';
 			$i++; } ?>
 

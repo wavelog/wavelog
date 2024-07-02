@@ -1,12 +1,13 @@
 	<form method="post" class="d-flex align-items-center">
 		<select id="quicklookuptype" name="type" class="form-select w-auto me-2">
-			<option value="cq">CQ Zone</option>
-			<option value="dxcc">DXCC</option>
-			<option value="vucc">Gridsquare</option>
-			<option value="iota">IOTA</option>
-			<option value="sota">SOTA</option>
-			<option value="was">US State</option>
-			<option value="wwff">WWFF</option>
+			<option value="cq"><?= __("CQ Zone"); ?></option>
+			<option value="dxcc"><?= __("DXCC"); ?></option>
+			<option value="vucc"><?= __("Gridsquare"); ?></option>
+			<option value="iota"><?= __("IOTA"); ?></option>
+			<option value="sota"><?= __("SOTA"); ?></option>
+			<option value="was"><?= __("US State"); ?></option>
+			<option value="wwff"><?= __("WWFF"); ?></option>
+			<option value="lotw"><?= __("LoTW user"); ?></option>
 		</select>
 		<div>&nbsp;</div>
 		<input style="display:none" class="form-control input-group-sm w-auto" id="quicklookuptext" type="text" name="searchfield" placeholder="" aria-label="Search">
@@ -27,7 +28,7 @@
 			foreach ($dxcc as $d) {
 				echo '<option value=' . $d->adif . '>' . $d->prefix . ' - ' . ucwords(strtolower($d->name), "- (/");
 				if ($d->Enddate != null) {
-					echo ' (' . lang('gen_hamradio_deleted_dxcc') . ')';
+					echo ' (' . __("Deleted DXCC") . ')';
 				}
 				echo '</option>';
 			}
@@ -42,7 +43,7 @@
 
 			$state_list = $CI->subdivisions->get_state_list('291');                                 // USA hardcoded
 			?>
-			<option value="">Choose a State</option>
+			<option value=""><?= __("Choose a State"); ?></option>
 			<?php foreach ($state_list->result() as $state) {?>
 				<option value="<?php echo $state->state; ?>">
 					<?php echo $state->subdivision . ' (' . $state->state . ')'; ?>
@@ -59,7 +60,7 @@
 			?>
 
 		</select>
-		<div>&nbsp;</div><button id="button1id" type="button" name="button1id" class="btn btn-primary ld-ext-right ms-5" onclick="getLookupResult(this.form)">Show<div class="ld ld-ring ld-spin"></div></button>
+		<div>&nbsp;</div><button id="button1id" type="button" name="button1id" class="btn btn-primary ld-ext-right ms-5" onclick="getLookupResult(this.form)"><?= __("Show"); ?><div class="ld ld-ring ld-spin"></div></button>
 	</form>
 	<br />
 	<div class="table-responsive" id="lookupresulttable">

@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-	<title>QSOs</title>
+	<title><?= __("QSOs"); ?></title>
 	<style type="text/css" media="screen">
 		body {
 			font-family: Arial, "MS Trebuchet", sans-serif;
@@ -11,16 +11,25 @@
 	</style>
 </head>
 
+<?php if (($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE || ($this->config->item('show_time'))) {
+	$show_time = true;
+} else {
+	$show_time = false;
+} ?>
+
+
 <body>
 	   <table width="100%" class="zebra-striped">
 			<tr class="titles">
-				<td>Date</td>
-				<td>Time</td>
-				<td>Call</td>
-				<td>Mode</td>
-				<td>Sent</td>
-				<td>Recv</td>
-				<td>Band</td>
+				<td><?= __("Date"); ?></td>
+				<?php if ($show_time) { ?>
+					<td><?= __("Time"); ?></td>
+				<?php } ?>
+				<td><?= __("Call"); ?></td>
+				<td><?= __("Mode"); ?></td>
+				<td><?= __("Sent"); ?></td>
+				<td><?= __("Rcvd"); ?></td>
+				<td><?= __("Band"); ?></td>
 			</tr>
 
 			<?php
@@ -38,7 +47,9 @@
 			foreach ($last_five_qsos->result() as $row) { ?>
 				<?php  echo '<tr class="tr'.($i & 1).'">'; ?>
 					<td><?php $timestamp = strtotime($row->COL_TIME_ON); echo date($custom_date_format, $timestamp); ?></td>
-					<td><?php $timestamp = strtotime($row->COL_TIME_ON); echo date('H:i', $timestamp); ?></td>
+					<?php if ($show_time) { ?>
+						<td><?php $timestamp = strtotime($row->COL_TIME_ON); echo date('H:i', $timestamp); ?></td>
+					<?php } ?>
 					<td><?php echo str_replace("0","&Oslash;",strtoupper($row->COL_CALL)); ?></td>
 					<td><?php echo $row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE; ?></td>
 					<td><?php echo $row->COL_RST_SENT; ?> <?php if ($row->COL_STX_STRING) { ?>(<?php echo $row->COL_STX_STRING;?>)<?php } ?></td>

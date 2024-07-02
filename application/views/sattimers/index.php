@@ -2,10 +2,18 @@
 var custom_date_format = "<?php echo $custom_date_format ?>";
 </script>
 <div class="container">
+    <?php if ($this->session->flashdata('message')) { ?>
+        <!-- Display Message -->
+        <div class="alert alert-danger" role="alert">
+            <p><?php echo $this->session->flashdata('message'); ?></p>
+        </div>
+    <?php } ?>
 <div class="table-responsive">
    <br>
-    <h2>Satellite Timers</h2>
-    <p>This data is from <a target="_blank" href="https://www.df2et.de/tevel/">https://www.df2et.de/tevel/</a> calculated for current station location grid <?php echo strtoupper($gridsquare);?>.</p>
+    <h2><?= __("Satellite Timers"); ?></h2>
+    <?php if ($gridsquare != 0) { ?>
+       <p><?= sprintf(__("This data comes from %s and is calculated for the current stationlocation grid %s."), "<a target='_blank' href='https://www.df2et.de/tevel/'>https://www.df2et.de/tevel/</a>", strtoupper($gridsquare)); ?></p>
+    <?php } ?>
     <script type="text/javascript">
         let dateArray = [];
         dateArray.push(0);
@@ -27,15 +35,15 @@ var custom_date_format = "<?php echo $custom_date_format ?>";
     <table class="table table-striped table-hover">
         <thead>
             <tr>
-                <th>Satellite</th>
-                <th colspan="2">Status</th>
-                <th>Time(d)-Out</th>
+                <th><?= __("Satellite"); ?></th>
+                <th colspan="2"><?= __("Status"); ?></th>
+                <th><?= __("Time(d)-Out"); ?></th>
                 <th>AOS</th>
                 <th>LOS</th>
-                <th style="text-align: center !important">AOS Azimuth</th>
-                <th style="text-align: center !important">LOS Azimuth</th>
-                <th style="text-align: center !important">Max Elevation</th>
-                <th style="text-align: center !important">Duration</th>
+                <th style="text-align: center !important">AOS <?= __("Azimuth"); ?></th>
+                <th style="text-align: center !important">LOS <?= __("Azimuth"); ?></th>
+                <th style="text-align: center !important"><?= __("Max Elevation"); ?></th>
+                <th style="text-align: center !important"><?= __("Duration"); ?></th>
                 <th></th>
             </tr>
         </thead>
@@ -56,15 +64,15 @@ var custom_date_format = "<?php echo $custom_date_format ?>";
                 <td>
                 <?php
                    if (strpos($activation['sat'], 'TEVEL') !== false) {
-                      echo "<a href=\"https://mailman.amsat.org/hyperkitty/search?q=TEVEL&page=1&mlist=amsat-bb%40amsat.org&sort=date-desc\" target=\"_blank\">Info</a>";
+                      echo "<a href=\"https://mailman.amsat.org/hyperkitty/search?q=TEVEL&page=1&mlist=amsat-bb%40amsat.org&sort=date-desc\" target=\"_blank\">" . __("Info") . "</a>";
                    } else if (strpos($activation['sat'], 'UVSQ') !== false) {
-                      echo "<a href=\"https://x.com/uvsqsat?s=20\" target=\"_blank\">Info</a>";
+                      echo "<a href=\"https://x.com/uvsqsat?s=20\" target=\"_blank\">" . __("Info") . "</a>";
                    } else if (strpos($activation['sat'], 'PO-101') !== false) {
-                      echo "<a href=\"https://x.com/Diwata2PH?s=20\" target=\"_blank\">Info</a>";
+                      echo "<a href=\"https://x.com/Diwata2PH?s=20\" target=\"_blank\">" . __("Info") . "</a>";
                    } else if (strpos($activation['sat'], 'CAS-3H') !== false) {
-                      echo "<a href=\"https://www.amsat.org/two-way-satellites/lilacsat-2-cas-3h/\" target=\"_blank\">Info</a>";
+                      echo "<a href=\"https://www.amsat.org/two-way-satellites/lilacsat-2-cas-3h/\" target=\"_blank\">" . __("Info") . "</a>";
                    } else if (strpos($activation['sat'], 'LEDSAT') !== false) {
-                      echo "<a href=\"https://www.esa.int/Education/CubeSats_-_Fly_Your_Satellite/Connect_and_communicate_with_a_satellite_via_the_LEDSAT_Digipeater_Challenge\" target=\"_blank\">Info</a>";
+                      echo "<a href=\"https://www.esa.int/Education/CubeSats_-_Fly_Your_Satellite/Connect_and_communicate_with_a_satellite_via_the_LEDSAT_Digipeater_Challenge\" target=\"_blank\">" . __("Info") . "</a>";
                    }
                 ?>
                 </td>

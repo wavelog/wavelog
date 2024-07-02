@@ -14,16 +14,12 @@ class Awards extends CI_Controller {
 
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
-		$this->lang->load(array(
-			'lotw',
-			'eqsl'
-		));
 	}
 
 	public function index()
 	{
 		// Render Page
-		$data['page_title'] = "Awards";
+		$data['page_title'] = __("Awards");
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('awards/index');
 		$this->load->view('interface_assets/footer');
@@ -65,6 +61,7 @@ class Awards extends CI_Controller {
 			$postdata['lotw'] = $this->security->xss_clean($this->input->post('lotw'));
 			$postdata['eqsl'] = $this->security->xss_clean($this->input->post('eqsl'));
 			$postdata['qrz'] = $this->security->xss_clean($this->input->post('qrz'));
+			$postdata['clublog'] = $this->security->xss_clean($this->input->post('clublog'));
 			$postdata['worked'] = $this->security->xss_clean($this->input->post('worked'));
 			$postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed'));
 			$postdata['band'] = $this->security->xss_clean($this->input->post('band'));
@@ -74,6 +71,7 @@ class Awards extends CI_Controller {
 			$postdata['lotw'] = 1;
 			$postdata['eqsl'] = 0;
 			$postdata['qrz'] = 0;
+			$postdata['clublog'] = 0;
 			$postdata['worked'] = 1;
 			$postdata['confirmed'] = 1;
 			$postdata['band'] = 'All';
@@ -91,7 +89,7 @@ class Awards extends CI_Controller {
 		}
 
 		// Render Page
-		$data['page_title'] = "Awards - DOK";
+		$data['page_title'] = sprintf(__("Awards - %s"), __("DOK"));
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('awards/dok/index');
 		$this->load->view('interface_assets/footer');
@@ -113,25 +111,25 @@ class Awards extends CI_Controller {
 		if ($this->input->post('band') != NULL) {   // Band is not set when page first loads.
 			if ($this->input->post('band') == 'All') {         // Did the user specify a band? If not, use all bands
 				$bands = $data['worked_bands'];
-			}
-			else {
+			} else {
 				$bands[] = $this->security->xss_clean($this->input->post('band'));
 			}
-		}
-		else {
+		} else {
 			$bands = $data['worked_bands'];
 		}
 
 		$data['bands'] = $bands; // Used for displaying selected band(s) in the table in the view
 
 		if($this->input->method() === 'post') {
-			$postdata['qsl'] = $this->security->xss_clean($this->input->post('qsl'));
-			$postdata['lotw'] = $this->security->xss_clean($this->input->post('lotw'));
-			$postdata['eqsl'] = $this->security->xss_clean($this->input->post('eqsl'));
-			$postdata['qrz'] = $this->security->xss_clean($this->input->post('qrz'));
-			$postdata['worked'] = $this->security->xss_clean($this->input->post('worked'));
-			$postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed'));
-			$postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked'));
+			$postdata['qsl'] = $this->input->post('qsl') == 0 ? NULL: 1;
+			$postdata['lotw'] = $this->input->post('lotw') == 0 ? NULL: 1;
+			$postdata['eqsl'] = $this->input->post('eqsl') == 0 ? NULL: 1;
+			$postdata['qrz'] = $this->input->post('qrz') == 0 ? NULL: 1;
+			$postdata['clublog'] = $this->input->post('clublog') == 0 ? NULL: 1;
+			$postdata['worked'] = $this->input->post('worked') == 0 ? NULL: 1;
+			$postdata['confirmed'] = $this->input->post('confirmed')  == 0 ? NULL: 1;
+			$postdata['notworked'] = $this->input->post('notworked')  == 0 ? NULL: 1;
+
 			$postdata['includedeleted'] = $this->security->xss_clean($this->input->post('includedeleted'));
 			$postdata['Africa'] = $this->security->xss_clean($this->input->post('Africa'));
 			$postdata['Asia'] = $this->security->xss_clean($this->input->post('Asia'));
@@ -144,8 +142,7 @@ class Awards extends CI_Controller {
 			$postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
 			$postdata['sat'] = $this->security->xss_clean($this->input->post('sats'));
 			$postdata['orbit'] = $this->security->xss_clean($this->input->post('orbits'));
-		}
-		else { // Setting default values at first load of page
+		} else { // Setting default values at first load of page
 			$postdata['qsl'] = 1;
 			$postdata['lotw'] = 1;
 			$postdata['eqsl'] = 0;
@@ -172,7 +169,7 @@ class Awards extends CI_Controller {
 		$data['dxcc_summary'] = $this->dxcc->get_dxcc_summary($bands, $postdata);
 
 		// Render Page
-		$data['page_title'] = "Awards - DXCC";
+		$data['page_title'] = sprintf(__("Awards - %s"), __("DXCC"));
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('awards/dxcc/index');
 		$this->load->view('interface_assets/footer');
@@ -186,70 +183,72 @@ class Awards extends CI_Controller {
 		];
 
 		$this->load->model('waja');
-        $this->load->model('modes');
-        $this->load->model('bands');
+		$this->load->model('modes');
+		$this->load->model('bands');
 
-        $data['worked_bands'] = $this->bands->get_worked_bands('waja');
-        $data['modes'] = $this->modes->active();
+		$data['worked_bands'] = $this->bands->get_worked_bands('waja');
+		$data['modes'] = $this->modes->active();
 
-        if ($this->input->post('band') != NULL) {   			// Band is not set when page first loads.
-            if ($this->input->post('band') == 'All') {         // Did the user specify a band? If not, use all bands
-                $bands = $data['worked_bands'];
-            }
-            else {
-                $bands[] = $this->security->xss_clean($this->input->post('band'));
-            }
-        }
-        else {
-            $bands = $data['worked_bands'];
-        }
+		if ($this->input->post('band') != NULL) {   			// Band is not set when page first loads.
+			if ($this->input->post('band') == 'All') {         // Did the user specify a band? If not, use all bands
+				$bands = $data['worked_bands'];
+			}
+			else {
+				$bands[] = $this->security->xss_clean($this->input->post('band'));
+			}
+		}
+		else {
+			$bands = $data['worked_bands'];
+		}
 
-        $data['bands'] = $bands; // Used for displaying selected band(s) in the table in the view
+		$data['bands'] = $bands; // Used for displaying selected band(s) in the table in the view
 
-        if($this->input->method() === 'post') {
-            $postdata['qsl'] = $this->security->xss_clean($this->input->post('qsl'));
-            $postdata['lotw'] = $this->security->xss_clean($this->input->post('lotw'));
-            $postdata['eqsl'] = $this->security->xss_clean($this->input->post('eqsl'));
-            $postdata['qrz'] = $this->security->xss_clean($this->input->post('qrz'));
-            $postdata['worked'] = $this->security->xss_clean($this->input->post('worked'));
-            $postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed'));
-            $postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked'));
-            $postdata['includedeleted'] = $this->security->xss_clean($this->input->post('includedeleted'));
-            $postdata['Africa'] = $this->security->xss_clean($this->input->post('Africa'));
-            $postdata['Asia'] = $this->security->xss_clean($this->input->post('Asia'));
-            $postdata['Europe'] = $this->security->xss_clean($this->input->post('Europe'));
-            $postdata['NorthAmerica'] = $this->security->xss_clean($this->input->post('NorthAmerica'));
-            $postdata['SouthAmerica'] = $this->security->xss_clean($this->input->post('SouthAmerica'));
-            $postdata['Oceania'] = $this->security->xss_clean($this->input->post('Oceania'));
-            $postdata['Antarctica'] = $this->security->xss_clean($this->input->post('Antarctica'));
-            $postdata['band'] = $this->security->xss_clean($this->input->post('band'));
-            $postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
-        }
-        else { // Setting default values at first load of page
-            $postdata['qsl'] = 1;
-            $postdata['lotw'] = 1;
-            $postdata['eqsl'] = 0;
-            $postdata['qrz'] = 0;
-            $postdata['worked'] = 1;
-            $postdata['confirmed'] = 1;
-            $postdata['notworked'] = 1;
-            $postdata['includedeleted'] = 0;
-            $postdata['Africa'] = 1;
-            $postdata['Asia'] = 1;
-            $postdata['Europe'] = 1;
-            $postdata['NorthAmerica'] = 1;
-            $postdata['SouthAmerica'] = 1;
-            $postdata['Oceania'] = 1;
-            $postdata['Antarctica'] = 1;
-            $postdata['band'] = 'All';
-            $postdata['mode'] = 'All';
-        }
+		if($this->input->method() === 'post') {
+			$postdata['qsl'] = $this->security->xss_clean($this->input->post('qsl'));
+			$postdata['lotw'] = $this->security->xss_clean($this->input->post('lotw'));
+			$postdata['eqsl'] = $this->security->xss_clean($this->input->post('eqsl'));
+			$postdata['qrz'] = $this->security->xss_clean($this->input->post('qrz'));
+			$postdata['clublog'] = $this->security->xss_clean($this->input->post('clublog'));
+			$postdata['worked'] = $this->security->xss_clean($this->input->post('worked'));
+			$postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed'));
+			$postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked'));
+			$postdata['includedeleted'] = $this->security->xss_clean($this->input->post('includedeleted'));
+			$postdata['Africa'] = $this->security->xss_clean($this->input->post('Africa'));
+			$postdata['Asia'] = $this->security->xss_clean($this->input->post('Asia'));
+			$postdata['Europe'] = $this->security->xss_clean($this->input->post('Europe'));
+			$postdata['NorthAmerica'] = $this->security->xss_clean($this->input->post('NorthAmerica'));
+			$postdata['SouthAmerica'] = $this->security->xss_clean($this->input->post('SouthAmerica'));
+			$postdata['Oceania'] = $this->security->xss_clean($this->input->post('Oceania'));
+			$postdata['Antarctica'] = $this->security->xss_clean($this->input->post('Antarctica'));
+			$postdata['band'] = $this->security->xss_clean($this->input->post('band'));
+			$postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
+		}
+		else { // Setting default values at first load of page
+			$postdata['qsl'] = 1;
+			$postdata['lotw'] = 1;
+			$postdata['eqsl'] = 0;
+			$postdata['qrz'] = 0;
+			$postdata['clublog'] = 0;
+			$postdata['worked'] = 1;
+			$postdata['confirmed'] = 1;
+			$postdata['notworked'] = 1;
+			$postdata['includedeleted'] = 0;
+			$postdata['Africa'] = 1;
+			$postdata['Asia'] = 1;
+			$postdata['Europe'] = 1;
+			$postdata['NorthAmerica'] = 1;
+			$postdata['SouthAmerica'] = 1;
+			$postdata['Oceania'] = 1;
+			$postdata['Antarctica'] = 1;
+			$postdata['band'] = 'All';
+			$postdata['mode'] = 'All';
+		}
 
-        $data['waja_array'] = $this->waja->get_waja_array($bands, $postdata);
-        $data['waja_summary'] = $this->waja->get_waja_summary($bands, $postdata);
+		$data['waja_array'] = $this->waja->get_waja_array($bands, $postdata);
+		$data['waja_summary'] = $this->waja->get_waja_summary($bands, $postdata);
 
 		// Render Page
-		$data['page_title'] = "Awards - WAJA";
+		$data['page_title'] =__( "Awards - WAJA");
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('awards/waja/index');
 		$this->load->view('interface_assets/footer', $footerData);
@@ -263,155 +262,155 @@ class Awards extends CI_Controller {
 		];
 
 		$this->load->model('jcc_model');
-        $this->load->model('modes');
-        $this->load->model('bands');
+		$this->load->model('modes');
+		$this->load->model('bands');
 
-        $data['worked_bands'] = $this->bands->get_worked_bands('jcc');
-        $data['modes'] = $this->modes->active();
+		$data['worked_bands'] = $this->bands->get_worked_bands('jcc');
+		$data['modes'] = $this->modes->active();
 
-        if ($this->input->post('band') != NULL) {   			// Band is not set when page first loads.
-            if ($this->input->post('band') == 'All') {         // Did the user specify a band? If not, use all bands
-                $bands = $data['worked_bands'];
-            }
-            else {
-                $bands[] = $this->security->xss_clean($this->input->post('band'));
-            }
-        }
-        else {
-            $bands = $data['worked_bands'];
-        }
+		if ($this->input->post('band') != NULL) {   			// Band is not set when page first loads.
+			if ($this->input->post('band') == 'All') {         // Did the user specify a band? If not, use all bands
+				$bands = $data['worked_bands'];
+			} else {
+				$bands[] = $this->security->xss_clean($this->input->post('band'));
+			}
+		} else {
+			$bands = $data['worked_bands'];
+		}
 
-        $data['bands'] = $bands; // Used for displaying selected band(s) in the table in the view
+		$data['bands'] = $bands; // Used for displaying selected band(s) in the table in the view
 
-        if($this->input->method() === 'post') {
-            $postdata['qsl'] = $this->security->xss_clean($this->input->post('qsl'));
-            $postdata['lotw'] = $this->security->xss_clean($this->input->post('lotw'));
-            $postdata['eqsl'] = $this->security->xss_clean($this->input->post('eqsl'));
-            $postdata['qrz'] = $this->security->xss_clean($this->input->post('qrz'));
-            $postdata['worked'] = $this->security->xss_clean($this->input->post('worked'));
-            $postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed'));
-            $postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked'));
-            $postdata['includedeleted'] = $this->security->xss_clean($this->input->post('includedeleted'));
-            $postdata['Africa'] = $this->security->xss_clean($this->input->post('Africa'));
-            $postdata['Asia'] = $this->security->xss_clean($this->input->post('Asia'));
-            $postdata['Europe'] = $this->security->xss_clean($this->input->post('Europe'));
-            $postdata['NorthAmerica'] = $this->security->xss_clean($this->input->post('NorthAmerica'));
-            $postdata['SouthAmerica'] = $this->security->xss_clean($this->input->post('SouthAmerica'));
-            $postdata['Oceania'] = $this->security->xss_clean($this->input->post('Oceania'));
-            $postdata['Antarctica'] = $this->security->xss_clean($this->input->post('Antarctica'));
-            $postdata['band'] = $this->security->xss_clean($this->input->post('band'));
-            $postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
-        }
-        else { // Setting default values at first load of page
-            $postdata['qsl'] = 1;
-            $postdata['lotw'] = 1;
-            $postdata['eqsl'] = 0;
-            $postdata['qrz'] = 0;
-            $postdata['worked'] = 1;
-            $postdata['confirmed'] = 1;
-            $postdata['notworked'] = 0;
-            $postdata['includedeleted'] = 0;
-            $postdata['Africa'] = 1;
-            $postdata['Asia'] = 1;
-            $postdata['Europe'] = 1;
-            $postdata['NorthAmerica'] = 1;
-            $postdata['SouthAmerica'] = 1;
-            $postdata['Oceania'] = 1;
-            $postdata['Antarctica'] = 1;
-            $postdata['band'] = 'All';
-            $postdata['mode'] = 'All';
-        }
+		if($this->input->method() === 'post') {
+			$postdata['qsl'] = $this->security->xss_clean($this->input->post('qsl'));
+			$postdata['lotw'] = $this->security->xss_clean($this->input->post('lotw'));
+			$postdata['eqsl'] = $this->security->xss_clean($this->input->post('eqsl'));
+			$postdata['qrz'] = $this->security->xss_clean($this->input->post('qrz'));
+			$postdata['clublog'] = $this->security->xss_clean($this->input->post('clublog'));
+			$postdata['worked'] = $this->security->xss_clean($this->input->post('worked'));
+			$postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed'));
+			$postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked'));
+			$postdata['includedeleted'] = $this->security->xss_clean($this->input->post('includedeleted'));
+			$postdata['Africa'] = $this->security->xss_clean($this->input->post('Africa'));
+			$postdata['Asia'] = $this->security->xss_clean($this->input->post('Asia'));
+			$postdata['Europe'] = $this->security->xss_clean($this->input->post('Europe'));
+			$postdata['NorthAmerica'] = $this->security->xss_clean($this->input->post('NorthAmerica'));
+			$postdata['SouthAmerica'] = $this->security->xss_clean($this->input->post('SouthAmerica'));
+			$postdata['Oceania'] = $this->security->xss_clean($this->input->post('Oceania'));
+			$postdata['Antarctica'] = $this->security->xss_clean($this->input->post('Antarctica'));
+			$postdata['band'] = $this->security->xss_clean($this->input->post('band'));
+			$postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
+		} else { // Setting default values at first load of page
+			$postdata['qsl'] = 1;
+			$postdata['lotw'] = 1;
+			$postdata['eqsl'] = 0;
+			$postdata['qrz'] = 0;
+			$postdata['clublog'] = 0;
+			$postdata['worked'] = 1;
+			$postdata['confirmed'] = 1;
+			$postdata['notworked'] = 0;
+			$postdata['includedeleted'] = 0;
+			$postdata['Africa'] = 1;
+			$postdata['Asia'] = 1;
+			$postdata['Europe'] = 1;
+			$postdata['NorthAmerica'] = 1;
+			$postdata['SouthAmerica'] = 1;
+			$postdata['Oceania'] = 1;
+			$postdata['Antarctica'] = 1;
+			$postdata['band'] = 'All';
+			$postdata['mode'] = 'All';
+		}
 
-        $data['jcc_array'] = $this->jcc_model->get_jcc_array($bands, $postdata);
-        $data['jcc_summary'] = $this->jcc_model->get_jcc_summary($bands, $postdata);
+		$data['jcc_array'] = $this->jcc_model->get_jcc_array($bands, $postdata);
+		$data['jcc_summary'] = $this->jcc_model->get_jcc_summary($bands, $postdata);
 
 		// Render Page
-		$data['page_title'] = "Awards - JCC";
+		$data['page_title'] = sprintf(__("Awards - %s"), __("JCC"));
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('awards/jcc/index');
 		$this->load->view('interface_assets/footer', $footerData);
 	}
 
-    public function jcc_export() {
-        $this->load->model('Jcc_model');
-        $postdata['qsl'] = $this->security->xss_clean($this->input->post('qsl'));
-        $postdata['lotw'] = $this->security->xss_clean($this->input->post('lotw'));
-        $postdata['eqsl'] = $this->security->xss_clean($this->input->post('eqsl'));
-        $postdata['qrz'] = $this->security->xss_clean($this->input->post('qrz'));
-        $postdata['worked'] = $this->security->xss_clean($this->input->post('worked'));
-        $postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed'));
-        $postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked'));
-        $postdata['band'] = $this->security->xss_clean($this->input->post('band'));
-        $postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
+	public function jcc_export() {
+		$this->load->model('Jcc_model');
+		$postdata['qsl'] = $this->security->xss_clean($this->input->post('qsl'));
+		$postdata['lotw'] = $this->security->xss_clean($this->input->post('lotw'));
+		$postdata['eqsl'] = $this->security->xss_clean($this->input->post('eqsl'));
+		$postdata['qrz'] = $this->security->xss_clean($this->input->post('qrz'));
+		$postdata['clublog'] = $this->security->xss_clean($this->input->post('clublog'));
+		$postdata['worked'] = $this->security->xss_clean($this->input->post('worked'));
+		$postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed'));
+		$postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked'));
+		$postdata['band'] = $this->security->xss_clean($this->input->post('band'));
+		$postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
 
-        $qsos = $this->Jcc_model->exportJcc($postdata);
+		$qsos = $this->Jcc_model->exportJcc($postdata);
 
-        $fp = fopen( 'php://output', 'w' );
-        $i=1;
-        fputcsv($fp, array('No', 'Callsign', 'Date', 'Band', 'Mode', 'Remarks'), ';');
-        foreach ($qsos as $qso) {
-           fputcsv($fp, array($i, $qso['call'], $qso['date'], ($qso['prop_mode'] != null ? $qso['band'].' / '.$qso['prop_mode'] : $qso['band']), $qso['mode'], $qso['cnty'].' - '.$qso['jcc']), ';');
-           $i++;
-        }
-        fclose($fp);
-        return;
-    }
+		$fp = fopen( 'php://output', 'w' );
+		$i=1;
+		fputcsv($fp, array('No', 'Callsign', 'Date', 'Band', 'Mode', 'Remarks'), ';');
+		foreach ($qsos as $qso) {
+			fputcsv($fp, array($i, $qso['call'], $qso['date'], ($qso['prop_mode'] != null ? $qso['band'].' / '.$qso['prop_mode'] : $qso['band']), $qso['mode'], $qso['cnty'].' - '.$qso['jcc']), ';');
+			$i++;
+		}
+		fclose($fp);
+		return;
+	}
 
-    public function jcc_cities() {
-        $this->load->model('Jcc_model');
-        $data = $this->Jcc_model->jccCities();
-        header('Content-Type: application/json');
-        echo json_encode($data, JSON_PRETTY_PRINT);
-    }
+	public function jcc_cities() {
+		$this->load->model('Jcc_model');
+		$data = $this->Jcc_model->jccCities();
+		header('Content-Type: application/json');
+		echo json_encode($data, JSON_PRETTY_PRINT);
+	}
 
 
-    public function vucc()	{
-        $this->load->model('vucc');
-        $this->load->model('bands');
-        $data['worked_bands'] = $this->bands->get_worked_bands('vucc');
+	public function vucc()	{
+		$this->load->model('vucc');
+		$this->load->model('bands');
+		$data['worked_bands'] = $this->bands->get_worked_bands('vucc');
 
-        $data['vucc_array'] = $this->vucc->get_vucc_array($data);
+		$data['vucc_array'] = $this->vucc->get_vucc_array($data);
 
-        // Render Page
-        $data['page_title'] = "Awards - VUCC";
-        $this->load->view('interface_assets/header', $data);
-        $this->load->view('awards/vucc/index');
-        $this->load->view('interface_assets/footer');
-    }
+		// Render Page
+		$data['page_title'] = sprintf(__("Awards - %s"), __("VUCC"));
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('awards/vucc/index');
+		$this->load->view('interface_assets/footer');
+	}
 
-    public function vucc_band(){
-        $this->load->model('vucc');
-        $band = str_replace('"', "", $this->security->xss_clean($this->input->get("Band")));
-        $type = str_replace('"', "", $this->security->xss_clean($this->input->get("Type")));
-        $data['vucc_array'] = $this->vucc->vucc_details($band, $type);
-        $data['type'] = $type;
+	public function vucc_band(){
+		$this->load->model('vucc');
+		$band = str_replace('"', "", $this->security->xss_clean($this->input->get("Band")));
+		$type = str_replace('"', "", $this->security->xss_clean($this->input->get("Type")));
+		$data['vucc_array'] = $this->vucc->vucc_details($band, $type);
+		$data['type'] = $type;
 
-        // Render Page
-        $data['page_title'] = "VUCC - " .$band . " Band";
-        $data['filter'] = "band ".$band;
-        $data['band'] = $band;
-        $this->load->view('interface_assets/header', $data);
-        $this->load->view('awards/vucc/band');
-        $this->load->view('interface_assets/footer');
-    }
+		// Render Page
+		$data['page_title'] = "VUCC - " .$band . " Band";
+		$data['filter'] = "band ".$band;
+		$data['band'] = $band;
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('awards/vucc/band');
+		$this->load->view('interface_assets/footer');
+	}
 
-    public function vucc_details_ajax(){
-        $this->load->model('logbook_model');
+	public function vucc_details_ajax(){
+		$this->load->model('logbook_model');
 
-        $gridsquare = str_replace('"', "", $this->security->xss_clean($this->input->post("Gridsquare")));
-        $band = str_replace('"', "", $this->security->xss_clean($this->input->post("Band")));
-        $data['results'] = $this->logbook_model->vucc_qso_details($gridsquare, $band);
+		$gridsquare = str_replace('"', "", $this->security->xss_clean($this->input->post("Gridsquare")));
+		$band = str_replace('"', "", $this->security->xss_clean($this->input->post("Band")));
+		$data['results'] = $this->logbook_model->vucc_qso_details($gridsquare, $band);
 
-        // Render Page
-        $data['page_title'] = "Log View - VUCC";
-        $data['filter'] = "vucc " . $gridsquare . " and band ".$band;
-        $this->load->view('awards/details', $data);
-    }
+		// Render Page
+		$data['page_title'] = __("Log View - VUCC");
+		$data['filter'] = "vucc " . $gridsquare . " and band ".$band;
+		$this->load->view('awards/details', $data);
+	}
 
 	/*
 	 * Used to fetch QSOs from the logbook in the awards
 	 */
-	public function qso_details_ajax(){
+	public function qso_details_ajax() {
 		$this->load->model('logbook_model');
 
 		$searchphrase = str_replace('"', "", $this->security->xss_clean($this->input->post("Searchphrase")));
@@ -419,10 +418,11 @@ class Awards extends CI_Controller {
 		$mode = str_replace('"', "", $this->security->xss_clean($this->input->post("Mode")));
 		$sat = str_replace('"', "", $this->security->xss_clean($this->input->post("Sat")));
 		$orbit = str_replace('"', "", $this->security->xss_clean($this->input->post("Orbit")));
+		$propagation = str_replace('"', "", $this->security->xss_clean($this->input->post("Propagation")) ?? '');
 		$type = $this->security->xss_clean($this->input->post('Type'));
 		$qsl = $this->input->post('QSL') == null ? '' : $this->security->xss_clean($this->input->post('QSL'));
 		$searchmode = $this->input->post('searchmode') == null ? '' : $this->security->xss_clean($this->input->post('searchmode'));
-		$data['results'] = $this->logbook_model->qso_details($searchphrase, $band, $mode, $type, $qsl, $sat, $orbit, $searchmode);
+		$data['results'] = $this->logbook_model->qso_details($searchphrase, $band, $mode, $type, $qsl, $sat, $orbit, $searchmode, $propagation);
 
 		// This is done because we have two different ways to get dxcc info in Wavelog. Once is using the name (in awards), and the other one is using the ADIF DXCC.
 		// We replace the values to make it look a bit nicer
@@ -445,23 +445,29 @@ class Awards extends CI_Controller {
 		if (strpos($qsl, "Z") !== false) {
 			$qsltype[] = "QRZ.com";
 		}
+		if (strpos($qsl, "C") !== false) {
+			$qsltype[] = "Clublog";
+		}
 
 		// Render Page
-		$data['page_title'] = "Log View - " . $type;
+		$data['page_title'] = __("Log View")." - " . $type;
 		$data['filter'] = $type." ".$searchphrase." and band ".$band;
 		if ($band == 'SAT') {
 			if ($sat != 'All' && $sat != null) {
-				$data['filter'] .= " and sat ".$sat;
+				$data['filter'] .= __(" and sat ").$sat;
 			}
 			if ($orbit != 'All' && $orbit != null) {
-				$data['filter'] .= " and orbit type ".$orbit;
+				$data['filter'] .= __(" and orbit type ").$orbit;
 			}
 		}
+		if ($propagation != '' && $propagation != null) {
+			$data['filter'] .= __(" and propagation ").$propagation;
+		}
 		if ($mode != null && strtolower($mode) != 'all') {
-			$data['filter'] .= " and mode ".$mode;
+			$data['filter'] .= __(" and mode ").$mode;
 		}
 		if (!empty($qsltype)) {
-			$data['filter'] .= " and ".implode('/', $qsltype);
+			$data['filter'] .= __(" and ").implode('/', $qsltype);
 		}
 		$this->load->view('awards/details', $data);
 	}
@@ -477,7 +483,7 @@ class Awards extends CI_Controller {
 		$data['sota_all'] = $this->sota->get_all();
 
 		// Render page
-		$data['page_title'] = "Awards - SOTA";
+		$data['page_title'] = sprintf(__("Awards - %s"), __("SOTA"));
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('awards/sota/index');
 		$this->load->view('interface_assets/footer');
@@ -494,7 +500,7 @@ class Awards extends CI_Controller {
 		$data['wwff_all'] = $this->wwff->get_all();
 
 		// Render page
-		$data['page_title'] = "Awards - WWFF";
+		$data['page_title'] = sprintf(__("Awards - %s"), __("WWFF"));
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('awards/wwff/index');
 		$this->load->view('interface_assets/footer');
@@ -511,7 +517,7 @@ class Awards extends CI_Controller {
 		$data['pota_all'] = $this->pota->get_all();
 
 		// Render page
-		$data['page_title'] = "Awards - POTA";
+		$data['page_title'] = sprintf(__("Awards - %s"), __("POTA"));
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('awards/pota/index');
 		$this->load->view('interface_assets/footer');
@@ -524,9 +530,8 @@ class Awards extends CI_Controller {
 			'assets/js/sections/cqmap.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/cqmap.js"))
 		];
 
-		$CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         $this->load->model('cq');
 		$this->load->model('modes');
@@ -583,7 +588,7 @@ class Awards extends CI_Controller {
         }
 
         // Render page
-        $data['page_title'] = "Awards - CQ Magazine WAZ";
+        $data['page_title'] = sprintf(__("Awards - %s"), __("CQ Magazine WAZ"));
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('awards/cq/index');
 		$this->load->view('interface_assets/footer', $footerData);
@@ -644,7 +649,7 @@ class Awards extends CI_Controller {
         $data['was_summary'] = $this->was->get_was_summary($bands, $postdata);
 
         // Render Page
-        $data['page_title'] = "Awards - WAS (Worked All States)";
+        $data['page_title'] = sprintf(__("Awards - %s"), __("Worked All States (WAS)"));;
         $this->load->view('interface_assets/header', $data);
         $this->load->view('awards/was/index');
         $this->load->view('interface_assets/footer', $footerData);
@@ -706,7 +711,7 @@ class Awards extends CI_Controller {
         $data['rac_summary'] = $this->rac->get_rac_summary($bands, $postdata);
 
         // Render Page
-        $data['page_title'] = "Awards - RAC";
+        $data['page_title'] = sprintf(__("Awards - %s"), __("RAC"));
         $this->load->view('interface_assets/header', $data);
         $this->load->view('awards/rac/index');
         $this->load->view('interface_assets/footer', $footerData);
@@ -768,13 +773,13 @@ class Awards extends CI_Controller {
         $data['helvetia_summary'] = $this->helvetia_model->get_helvetia_summary($bands, $postdata);
 
         // Render Page
-        $data['page_title'] = "Awards - H26";
+        $data['page_title'] =sprintf(__("Awards - %s"), __("H26"));
         $this->load->view('interface_assets/header', $data);
         $this->load->view('awards/helvetia/index');
         $this->load->view('interface_assets/footer', $footerData);
     }
 
-    public function iota ()	{
+    public function iota () {
 	    $this->load->model('iota');
 	    $this->load->model('modes');
 	    $this->load->model('bands');
@@ -795,6 +800,11 @@ class Awards extends CI_Controller {
 	    $data['modes'] = $this->modes->active(); // Used in the view for mode select
 
 	    if($this->input->method() === 'post') {
+		    $postdata['qsl'] = $this->input->post('qsl') == 0 ? NULL: 1;
+		    $postdata['lotw'] = $this->input->post('lotw') == 0 ? NULL: 1;
+		    $postdata['eqsl'] = $this->input->post('eqsl') == 0 ? NULL: 1;
+		    $postdata['qrz'] = $this->input->post('qrz') == 0 ? NULL: 1;
+		    $postdata['clublog'] = $this->input->post('clublog') == 0 ? NULL: 1;
 		    $postdata['worked'] = $this->security->xss_clean($this->input->post('worked')) ?? NULL;
 		    $postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed')) ?? NULL;
 		    $postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked')) ?? NULL;
@@ -809,6 +819,11 @@ class Awards extends CI_Controller {
 		    $postdata['band'] = $this->security->xss_clean($this->input->post('band')) ?? NULL;
 		    $postdata['mode'] = $this->security->xss_clean($this->input->post('mode')) ?? NULL;
 	    } else { // Setting default values at first load of page
+		    $postdata['qsl'] = 1;
+		    $postdata['lotw'] = 1;
+		    $postdata['eqsl'] = 0;
+		    $postdata['qrz'] = 0;
+		    $postdata['clublog'] = 0;
 		    $postdata['worked'] = 1;
 		    $postdata['confirmed'] = 1;
 		    $postdata['notworked'] = 1;
@@ -829,7 +844,7 @@ class Awards extends CI_Controller {
 	    $data['iota_summary'] = $this->iota->get_iota_summary($bands, $postdata);
 
 	    // Render Page
-	    $data['page_title'] = "Awards - IOTA (Islands On The Air)";
+	    $data['page_title'] = sprintf(__("Awards - %s"), __("IOTA (Island On The Air)"));
 	    $this->load->view('interface_assets/header', $data);
 	    $this->load->view('awards/iota/index');
 	    $this->load->view('interface_assets/footer');
@@ -840,7 +855,7 @@ class Awards extends CI_Controller {
         $data['counties_array'] = $this->counties->get_counties_array();
 
         // Render Page
-        $data['page_title'] = "Awards - US Counties";
+        $data['page_title'] = sprintf(__("Awards - %s"), __("US Counties"));
         $this->load->view('interface_assets/header', $data);
         $this->load->view('awards/counties/index');
         $this->load->view('interface_assets/footer');
@@ -854,7 +869,7 @@ class Awards extends CI_Controller {
         $data['type'] = $type;
 
         // Render Page
-        $data['page_title'] = "US Counties";
+        $data['page_title'] = __("US Counties");
         $data['filter'] = $type . " counties in state ".$state;
         $this->load->view('interface_assets/header', $data);
         $this->load->view('awards/counties/details');
@@ -869,14 +884,14 @@ class Awards extends CI_Controller {
         $data['results'] = $this->logbook_model->county_qso_details($state, $county);
 
         // Render Page
-        $data['page_title'] = "Log View - Counties";
+        $data['page_title'] = __("Log View - Counties");
         $data['filter'] = "county " . $state;
         $this->load->view('awards/details', $data);
     }
 
     public function gridmaster($dxcc) {
       $dxcc = $this->security->xss_clean($dxcc);
-      $data['page_title'] = "Awards - ".strtoupper($dxcc)." Gridmaster";
+      $data['page_title'] = __("Awards - ").strtoupper($dxcc)." Gridmaster";
 
       $this->load->model('bands');
       $this->load->model('gridmap_model');
@@ -892,10 +907,10 @@ class Awards extends CI_Controller {
 
       $data['attribution']= $this->optionslib->get_option('option_map_tile_server_copyright');
 
-      $data['gridsquares_gridsquares']= lang('gridsquares_gridsquares');
-      $data['gridsquares_gridsquares_worked']= lang('gridsquares_gridsquares_worked');
-      $data['gridsquares_gridsquares_lotw']= lang('gridsquares_gridsquares_lotw');
-      $data['gridsquares_gridsquares_paper']= lang('gridsquares_gridsquares_paper');
+      $data['gridsquares_gridsquares']= __("Gridsquares");
+      $data['gridsquares_gridsquares_worked']= __("Gridsquares worked");
+      $data['gridsquares_gridsquares_lotw']= __("Gridsquares confirmed on LoTW");
+      $data['gridsquares_gridsquares_paper']= __("Gridsquares confirmed by paper QSL");
 
       $indexData['dxcc'] = $dxcc;
 
@@ -912,7 +927,7 @@ class Awards extends CI_Controller {
     }
 
 	public function ffma() {
-		$data['page_title'] = "Awards - Fred Fish Memorial Award (FFMA)";
+		$data['page_title'] = sprintf(__("Awards - %s"), __("Fred Fish Memorial Award (FFMA)"));
 
 		$this->load->model('bands');
 		$this->load->model('ffma_model');
@@ -924,10 +939,10 @@ class Awards extends CI_Controller {
 
 		$data['attribution']= $this->optionslib->get_option('option_map_tile_server_copyright');
 
-		$data['gridsquares_gridsquares']= lang('gridsquares_gridsquares');
-		$data['gridsquares_gridsquares_worked']= lang('gridsquares_gridsquares_worked');
-		$data['gridsquares_gridsquares_lotw']= lang('gridsquares_gridsquares_lotw');
-		$data['gridsquares_gridsquares_paper']= lang('gridsquares_gridsquares_paper');
+		$data['gridsquares_gridsquares']= __("Gridsquares");
+		$data['gridsquares_gridsquares_worked']= __("Gridsquares worked");
+		$data['gridsquares_gridsquares_lotw']= __("Gridsquares confirmed on LoTW");
+		$data['gridsquares_gridsquares_paper']= __("Gridsquares confirmed by paper QSL");
 		$data['grid_count'] = $this->ffma_model->get_grid_count();
 		$data['grids'] = $this->ffma_model->get_grids();
 
@@ -1107,7 +1122,7 @@ class Awards extends CI_Controller {
 		$data['sig_types'] = $this->sig->get_all_sig_types();
 
 		// Render page
-		$data['page_title'] = "Awards - SIG";
+		$data['page_title'] = sprintf(__("Awards - %s"), __("SIG"));
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('awards/sig/index');
 		$this->load->view('interface_assets/footer');
@@ -1125,7 +1140,7 @@ class Awards extends CI_Controller {
 		$data['type'] = $type;
 
 		// Render page
-		$data['page_title'] = "Awards - SIG - " . $type;
+		$data['page_title'] = __("Awards - SIG - ") . $type;
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('awards/sig/qso_list');
 		$this->load->view('interface_assets/footer');
@@ -1316,9 +1331,8 @@ class Awards extends CI_Controller {
         This displays the CQ Zone map and requires the $band_type and $mode_type
     */
     public function cq_map() {
-        $CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         $this->load->model('cq');
 
@@ -1328,6 +1342,7 @@ class Awards extends CI_Controller {
         $postdata['lotw'] = $this->input->post('lotw') == 0 ? NULL: 1;
         $postdata['eqsl'] = $this->input->post('eqsl') == 0 ? NULL: 1;
         $postdata['qrz'] = $this->input->post('qrz') == 0 ? NULL: 1;
+        $postdata['clublog'] = $this->input->post('clublog') == 0 ? NULL: 1;
         $postdata['worked'] = $this->input->post('worked') == 0 ? NULL: 1;
         $postdata['confirmed'] = $this->input->post('confirmed')  == 0 ? NULL: 1;
         $postdata['notworked'] = $this->input->post('notworked')  == 0 ? NULL: 1;
@@ -1384,6 +1399,7 @@ class Awards extends CI_Controller {
         $postdata['eqsl'] = $this->input->post('eqsl') == 0 ? NULL: 1;
         $postdata['qrz'] = $this->input->post('qrz') == 0 ? NULL: 1;
         $postdata['worked'] = $this->input->post('worked') == 0 ? NULL: 1;
+        $postdata['clublog'] = $this->input->post('clublog') == 0 ? NULL: 1;
         $postdata['confirmed'] = $this->input->post('confirmed')  == 0 ? NULL: 1;
         $postdata['notworked'] = $this->input->post('notworked')  == 0 ? NULL: 1;
         $postdata['band'] = $this->security->xss_clean($this->input->post('band'));
@@ -1436,6 +1452,7 @@ class Awards extends CI_Controller {
         $postdata['lotw'] = $this->input->post('lotw') == 0 ? NULL: 1;
         $postdata['eqsl'] = $this->input->post('eqsl') == 0 ? NULL: 1;
         $postdata['qrz'] = $this->input->post('qrz') == 0 ? NULL: 1;
+        $postdata['clublog'] = $this->input->post('clublog') == 0 ? NULL: 1;
         $postdata['worked'] = $this->input->post('worked') == 0 ? NULL: 1;
         $postdata['confirmed'] = $this->input->post('confirmed')  == 0 ? NULL: 1;
         $postdata['notworked'] = $this->input->post('notworked')  == 0 ? NULL: 1;
@@ -1479,34 +1496,35 @@ class Awards extends CI_Controller {
         This displays the DXCC map
     */
     public function jcc_map() {
-        $this->load->model('jcc_model');
-        $this->load->model('bands');
+	    $this->load->model('jcc_model');
+	    $this->load->model('bands');
 
-        $bands[] = $this->security->xss_clean($this->input->post('band'));
+	    $bands[] = $this->security->xss_clean($this->input->post('band'));
 
-        $postdata['qsl'] = $this->input->post('qsl') == 0 ? NULL: 1;
-        $postdata['lotw'] = $this->input->post('lotw') == 0 ? NULL: 1;
-        $postdata['eqsl'] = $this->input->post('eqsl') == 0 ? NULL: 1;
-        $postdata['qrz'] = $this->input->post('qrz') == 0 ? NULL: 1;
-        $postdata['worked'] = $this->input->post('worked') == 0 ? NULL: 1;
-        $postdata['confirmed'] = $this->input->post('confirmed')  == 0 ? NULL: 1;
-        $postdata['notworked'] = $this->input->post('notworked')  == 0 ? NULL: 1;
-        $postdata['band'] = $this->security->xss_clean($this->input->post('band'));
-        $postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
+	    $postdata['qsl'] = $this->input->post('qsl') == 0 ? NULL: 1;
+	    $postdata['lotw'] = $this->input->post('lotw') == 0 ? NULL: 1;
+	    $postdata['eqsl'] = $this->input->post('eqsl') == 0 ? NULL: 1;
+	    $postdata['qrz'] = $this->input->post('qrz') == 0 ? NULL: 1;
+	    $postdata['clublog'] = $this->input->post('clublog') == 0 ? NULL: 1;
+	    $postdata['worked'] = $this->input->post('worked') == 0 ? NULL: 1;
+	    $postdata['confirmed'] = $this->input->post('confirmed')  == 0 ? NULL: 1;
+	    $postdata['notworked'] = $this->input->post('notworked')  == 0 ? NULL: 1;
+	    $postdata['band'] = $this->security->xss_clean($this->input->post('band'));
+	    $postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
 
-        $jcc_wkd = $this->jcc_model->fetch_jcc_wkd($postdata);
-        $jcc_cnfm = $this->jcc_model->fetch_jcc_cnfm($postdata);
+	    $jcc_wkd = $this->jcc_model->fetch_jcc_wkd($postdata);
+	    $jcc_cnfm = $this->jcc_model->fetch_jcc_cnfm($postdata);
 
-        $jccs = [];
-        foreach ($jcc_wkd as $jcc) {
-           $jccs[$jcc->COL_CNTY] = array(1, 0);
-        }
-        foreach ($jcc_cnfm as $jcc) {
-           $jccs[$jcc->COL_CNTY][1] = 1;
-        }
+	    $jccs = [];
+	    foreach ($jcc_wkd as $jcc) {
+		    $jccs[$jcc->COL_CNTY] = array(1, 0);
+	    }
+	    foreach ($jcc_cnfm as $jcc) {
+		    $jccs[$jcc->COL_CNTY][1] = 1;
+	    }
 
-        header('Content-Type: application/json');
-        echo json_encode($jccs);
+	    header('Content-Type: application/json');
+	    echo json_encode($jccs);
     }
 
     /*
@@ -1525,7 +1543,7 @@ class Awards extends CI_Controller {
         $postdata['confirmed'] = $this->input->post('confirmed')  == 0 ? NULL: 1;
         $postdata['notworked'] = $this->input->post('notworked')  == 0 ? NULL: 1;
         $postdata['band'] = $this->input->post('band');
-		    $postdata['mode'] = $this->input->post('mode');
+	$postdata['mode'] = $this->input->post('mode');
         $postdata['includedeleted'] = $this->input->post('includedeleted') == 0 ? NULL: 1;
         $postdata['Africa'] = $this->input->post('Africa') == 0 ? NULL: 1;
         $postdata['Asia'] = $this->input->post('Asia') == 0 ? NULL: 1;
@@ -1575,89 +1593,97 @@ class Awards extends CI_Controller {
         }
     }
 
-	public function wab() {
-		$this->load->model('bands');
-        $this->load->model('gridmap_model');
-		$this->load->model('stations');
+    public function wab() {
+	    $this->load->model('bands');
+	    $this->load->model('gridmap_model');
+	    $this->load->model('stations');
 
-		$data['modes'] = $this->gridmap_model->get_worked_modes();
-		$data['bands'] = $this->bands->get_worked_bands();
-		$data['orbits'] = $this->bands->get_worked_orbits();
-		$data['sats_available'] = $this->bands->get_worked_sats();
+	    $data['modes'] = $this->gridmap_model->get_worked_modes();
+	    $data['bands'] = $this->bands->get_worked_bands();
+	    $data['orbits'] = $this->bands->get_worked_orbits();
+	    $data['sats_available'] = $this->bands->get_worked_sats();
 
-		$data['user_default_band'] = $this->session->userdata('user_default_band');
-		$data['user_default_confirmation'] = $this->session->userdata('user_default_confirmation');
+	    $data['user_default_band'] = $this->session->userdata('user_default_band');
+	    $data['user_default_confirmation'] = $this->session->userdata('user_default_confirmation');
 
-		$footerData = [];
-		$footerData['scripts'] = [
-			'assets/js/sections/wab.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/wab.js"))
-		];
+	    $footerData = [];
+	    $footerData['scripts'] = [
+		    'assets/js/sections/wab.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/wab.js"))
+	    ];
 
-		// Render page
-		$data['page_title'] = "Awards - Worked All Britain";
-		$this->load->view('interface_assets/header', $data);
-		$this->load->view('awards/wab/index');
-		$this->load->view('interface_assets/footer', $footerData);
-      }
+	    // Render page
+	    $data['page_title'] = sprintf(__("Awards - %s"), "Worked All Britain");
+	    $this->load->view('interface_assets/header', $data);
+	    $this->load->view('awards/wab/index');
+	    $this->load->view('interface_assets/footer', $footerData);
+    }
 
-	  public function wab_map() {
-		$band = $this->security->xss_clean($this->input->post('band'));
-		$mode = $this->security->xss_clean($this->input->post('mode'));
-		$qsl = $this->security->xss_clean($this->input->post('qsl'));
-		$lotw = $this->security->xss_clean($this->input->post('lotw'));
-		$eqsl = $this->security->xss_clean($this->input->post('eqsl'));
-		$qrz = $this->security->xss_clean($this->input->post('qrz'));
-		$sat = $this->security->xss_clean($this->input->post('sat'));
-		$orbit = $this->security->xss_clean($this->input->post('orbit'));
+    public function wab_map() {
+	    $postdata['qsl'] = $this->security->xss_clean($this->input->post('qsl'));
+	    $postdata['lotw'] = $this->security->xss_clean($this->input->post('lotw'));
+	    $postdata['eqsl'] = $this->security->xss_clean($this->input->post('eqsl'));
+	    $postdata['qrz'] = $this->security->xss_clean($this->input->post('qrz'));
+	    $postdata['clublog'] = $this->security->xss_clean($this->input->post('clublog'));
+	    $postdata['worked'] = $this->security->xss_clean($this->input->post('worked'));
+	    $postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed'));
+	    $postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked'));
+	    $postdata['band'] = $this->security->xss_clean($this->input->post('band'));
+	    $postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
+	    $postdata['sat'] = $this->security->xss_clean($this->input->post('sat'));
+	    $postdata['orbit'] = $this->security->xss_clean($this->input->post('orbit'));
 
-		$this->load->model('logbooks_model');
-		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+	    $this->load->model('logbooks_model');
+	    $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
-        $this->load->model('wab');
+	    $this->load->model('wab');
 
-        if ($logbooks_locations_array) {
-			$location_list = "'".implode("','",$logbooks_locations_array)."'";
-            $wab_array = $this->wab->get_wab_array($band, $location_list, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit);
-		} else {
-            $location_list = null;
-            $wab_array = null;
-        }
+	    if ($logbooks_locations_array) {
+		    $location_list = "'".implode("','",$logbooks_locations_array)."'";
+		    $wab_array = $this->wab->get_wab_array($location_list, $postdata);
+	    } else {
+		    $location_list = null;
+		    $wab_array = null;
+	    }
 
-        header('Content-Type: application/json');
-        echo json_encode($wab_array);
-      }
+	    header('Content-Type: application/json');
+	    echo json_encode($wab_array);
+    }
 
-	  public function wab_list() {
-		$band = $this->security->xss_clean($this->input->post('band'));
-		$mode = $this->security->xss_clean($this->input->post('mode'));
-		$qsl = $this->security->xss_clean($this->input->post('qsl'));
-		$lotw = $this->security->xss_clean($this->input->post('lotw'));
-		$eqsl = $this->security->xss_clean($this->input->post('eqsl'));
-		$qrz = $this->security->xss_clean($this->input->post('qrz'));
-		$sat = $this->security->xss_clean($this->input->post('sat'));
-		$orbit = $this->security->xss_clean($this->input->post('orbit'));
+    public function wab_list() {
+	    $postdata['qsl'] = $this->security->xss_clean($this->input->post('qsl'));
+	    $postdata['lotw'] = $this->security->xss_clean($this->input->post('lotw'));
+	    $postdata['eqsl'] = $this->security->xss_clean($this->input->post('eqsl'));
+	    $postdata['qrz'] = $this->security->xss_clean($this->input->post('qrz'));
+	    $postdata['clublog'] = $this->security->xss_clean($this->input->post('clublog'));
+	    $postdata['worked'] = $this->security->xss_clean($this->input->post('worked'));
+	    $postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed'));
+	    $postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked'));
+	    $postdata['band'] = $this->security->xss_clean($this->input->post('band'));
+	    $postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
+	    $postdata['sat'] = $this->security->xss_clean($this->input->post('sat'));
+	    $postdata['orbit'] = $this->security->xss_clean($this->input->post('orbit'));
 
-		$this->load->model('logbooks_model');
-		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+	    $this->load->model('logbooks_model');
+	    $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
-        $this->load->model('wab');
+	    $this->load->model('wab');
 
-        if ($logbooks_locations_array) {
-			$location_list = "'".implode("','",$logbooks_locations_array)."'";
-            $wab_array = $this->wab->get_wab_list($band, $location_list, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit);
-		} else {
-            $location_list = null;
-            $wab_array = null;
-        }
+	    if ($logbooks_locations_array) {
+		    $location_list = "'".implode("','",$logbooks_locations_array)."'";
+		    $wab_array = $this->wab->get_wab_list($location_list, $postdata);
+	    } else {
+		    $location_list = null;
+		    $wab_array = null;
+	    }
 
-		$data['wab_array'] = $wab_array;
-		$data['postdata']['band'] = $band;
-		$data['postdata']['mode'] = $mode;
-		$data['postdata']['sat'] = $sat;
-		$data['postdata']['orbit'] = $orbit;
+	    $data['wab_array'] = $wab_array;
+	    $data['postdata']['band'] = $postdata['band'];
+	    $data['postdata']['mode'] = $postdata['mode'];
+	    $data['postdata']['sat'] = $postdata['sat'];
+	    $data['postdata']['orbit'] = $postdata['orbit'];
 
-		$this->load->view('awards/wab/list', $data);
-      }
+	    $this->load->view('awards/wab/list', $data);
+    }
 
 	public function itu() {
 		$footerData = [];
@@ -1690,22 +1716,24 @@ class Awards extends CI_Controller {
 
         $data['bands'] = $bands; // Used for displaying selected band(s) in the table in the view
 
-        if($this->input->method() === 'post') {
-            $postdata['qsl'] = $this->security->xss_clean($this->input->post('qsl'));
-            $postdata['lotw'] = $this->security->xss_clean($this->input->post('lotw'));
-            $postdata['eqsl'] = $this->security->xss_clean($this->input->post('eqsl'));
-            $postdata['qrz'] = $this->security->xss_clean($this->input->post('qrz'));
-            $postdata['worked'] = $this->security->xss_clean($this->input->post('worked'));
-            $postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed'));
-            $postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked'));
-            $postdata['band'] = $this->security->xss_clean($this->input->post('band'));
-			$postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
-        }
+	if($this->input->method() === 'post') {
+		$postdata['qsl'] = $this->security->xss_clean($this->input->post('qsl'));
+		$postdata['lotw'] = $this->security->xss_clean($this->input->post('lotw'));
+		$postdata['eqsl'] = $this->security->xss_clean($this->input->post('eqsl'));
+		$postdata['qrz'] = $this->security->xss_clean($this->input->post('qrz'));
+		$postdata['clublog'] = $this->security->xss_clean($this->input->post('clublog'));
+		$postdata['worked'] = $this->security->xss_clean($this->input->post('worked'));
+		$postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed'));
+		$postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked'));
+		$postdata['band'] = $this->security->xss_clean($this->input->post('band'));
+		$postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
+	}
         else { // Setting default values at first load of page
             $postdata['qsl'] = 1;
             $postdata['lotw'] = 1;
             $postdata['eqsl'] = 0;
             $postdata['qrz'] = 0;
+            $postdata['clublog'] = 0;
             $postdata['worked'] = 1;
             $postdata['confirmed'] = 1;
             $postdata['notworked'] = 1;
@@ -1724,7 +1752,7 @@ class Awards extends CI_Controller {
         }
 
         // Render page
-        $data['page_title'] = "Awards - ITU Zones";
+        $data['page_title'] = sprintf(__("Awards - %s"), __("ITU Zones"));
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('awards/itu/index');
 		$this->load->view('interface_assets/footer', $footerData);
@@ -1746,6 +1774,7 @@ class Awards extends CI_Controller {
         $postdata['lotw'] = $this->input->post('lotw') == 0 ? NULL: 1;
         $postdata['eqsl'] = $this->input->post('eqsl') == 0 ? NULL: 1;
         $postdata['qrz'] = $this->input->post('qrz') == 0 ? NULL: 1;
+        $postdata['clublog'] = $this->input->post('clublog') == 0 ? NULL: 1;
         $postdata['worked'] = $this->input->post('worked') == 0 ? NULL: 1;
         $postdata['confirmed'] = $this->input->post('confirmed')  == 0 ? NULL: 1;
         $postdata['notworked'] = $this->input->post('notworked')  == 0 ? NULL: 1;

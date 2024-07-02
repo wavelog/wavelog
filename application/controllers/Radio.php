@@ -15,7 +15,7 @@
 		}
 		session_write_close();
 		// load the view
-		$data['page_title'] = "Hardware Interfaces";
+		$data['page_title'] = __("Hardware Interfaces");
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('radio/index');
@@ -39,13 +39,13 @@
 		$query = $this->cat->status();
 		if ($query->num_rows() > 0)
 		{
-			echo "<tr class=\"titles\">";
-				echo "<td>Radio</td>";
-				echo "<td>Frequency</td>";
-				echo "<td>Mode</td>";
-				echo "<td>Timestamp</td>" ;
-				echo "<td>Options</td>";
-			echo "</tr>";
+			echo "<thead><tr>";
+				echo "<th>Radio</th>";
+				echo "<th>Frequency</th>";
+				echo "<th>Mode</th>";
+				echo "<th>Timestamp</th>" ;
+				echo "<th>Options</th>";
+			echo "</tr></thead><tbody>";
 			foreach ($query->result() as $row)
 			{
 				echo "<tr>";
@@ -69,13 +69,14 @@
 
 				$phpdate = strtotime($row->timestamp);
 				echo "<td>".date('H:i:s d-m-y', $phpdate)."</td>" ;
-				echo "<td><a href=\"".site_url('radio/delete')."/".$row->id."\" class=\"btn btn-danger\"> <i class=\"fas fa-trash-alt\"></i> Delete</a></td>" ;
+				echo "<td><a href=\"".site_url('radio/delete')."/".$row->id."\" class=\"btn btn-sm btn-danger\"> <i class=\"fas fa-trash-alt\"></i> Delete</a></td>" ;
 				echo "</tr>";
 			}
+			echo "</tbody>";
 		} else {
-			echo "<tr>";
+			echo "<thead><tr>";
 				echo "<td colspan=\"4\">No CAT Interfaced radios found.</td>";
-			echo "</tr>";
+			echo "</tr></thead>";
 		}
 
 	}

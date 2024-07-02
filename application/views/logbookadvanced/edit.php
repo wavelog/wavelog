@@ -1,23 +1,23 @@
 <form method="post" class="d-flex align-items-center">
 		<select id="editColumn" name="type" class="form-select form-select-sm w-auto me-2">
-			<option value="band">Band</option>
-			<option value="date">Date</option>
-			<option value="comment">Comment</option>
-			<option value="cqz">CQ Zone</option>
-			<option value="dxcc">DXCC</option>
-			<option value="gridsquare">Gridsquare</option>
-			<option value="iota">IOTA</option>
-			<option value="ituz">ITU Zone</option>
-			<option value="mode">Mode</option>
-			<option value="operator">Operator</option>
-			<option value="pota">POTA</option>
-			<option value="propagation">Propagation</option>
-			<option value="qslvia">QSL via</option>
-			<option value="satellite">Satellite</option>
-			<option value="sota">SOTA</option>
-			<option value="station">Station Location</option>
-			<option value="wwff">WWFF</option>
-			<option value="state">State</option>
+			<option value="band"><?= __("Band"); ?></option>
+			<option value="date"><?= __("Date"); ?></option>
+			<option value="comment"><?= __("Comment"); ?></option>
+			<option value="cqz"><?= __("CQ Zone"); ?></option>
+			<option value="dxcc"><?= __("DXCC"); ?></option>
+			<option value="gridsquare"><?= __("Gridsquare"); ?></option>
+			<option value="iota"><?= __("IOTA"); ?></option>
+			<option value="ituz"><?= __("ITU Zone"); ?></option>
+			<option value="mode"><?= __("Mode"); ?></option>
+			<option value="operator"><?= __("Operator"); ?></option>
+			<option value="pota"><?= __("POTA"); ?></option>
+			<option value="propagation"><?= __("Propagation"); ?></option>
+			<option value="qslvia"><?= __("QSL via"); ?></option>
+			<option value="satellite"><?= __("Satellite"); ?></option>
+			<option value="sota"><?= __("SOTA"); ?></option>
+			<option value="station"><?= __("Station Location"); ?></option>
+			<option value="wwff"><?= __("WWFF"); ?></option>
+			<option value="state"><?= __("State"); ?></option>
 		</select>
 		<div>&nbsp;</div>
 
@@ -58,7 +58,7 @@
 		?>
 		</select>
 
-		<label style="display:none" id="editDxccStateListLabel" class="mx-2 w-auto" for="statelabel">State</label>
+		<label style="display:none" id="editDxccStateListLabel" class="mx-2 w-auto" for="statelabel"><?= __("State"); ?></label>
 
 		<select style="display:none" class="form-select form-select-sm w-auto" id="editDxccStateList" name="dxccstatelist" required>
 
@@ -67,7 +67,7 @@
 		<select style="display:none" class="form-select form-select-sm w-auto" id="editSatellite" name="satellite" required>
 
 		</select>
-		<label style="display:none" id="editSatelliteModeLabel" class="mx-2 w-auto" for="editSatelliteMode">SAT Mode</label>
+		<label style="display:none" id="editSatelliteModeLabel" class="mx-2 w-auto" for="editSatelliteMode"><?= __("SAT Mode"); ?></label>
 		<input style="display:none" class="form-control form-control-sm w-auto" id="editSatelliteMode" type="text" name="editSatelliteMode" placeholder="" aria-label="editSatelliteMode">
 
 		<select id="editBand" class="form-select w-auto form-select-sm" name="editBand">
@@ -81,7 +81,7 @@
 			?>
 		</select>
 
-		<label id="editBandRxLabel" class="mx-2 w-auto" for="gridlabel">Band RX</label>
+		<label id="editBandRxLabel" class="mx-2 w-auto" for="gridlabel"><?= __("Band RX"); ?></label>
 		<select id="editBandRx" class="form-select w-auto form-select-sm" name="editBandRx">
 			<option value="">-</option>
 			<?php foreach($bands as $key=>$bandgroup) {

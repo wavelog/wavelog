@@ -2,6 +2,10 @@
 
 class Stations extends CI_Model {
 
+	public function __construct() {
+	}
+
+
     function all_with_count() {
 
 		$this->db->select('station_profile.*, dxcc_entities.name as station_country, dxcc_entities.end as dxcc_end, count('.$this->config->item('table_name').'.station_id) as qso_total');
@@ -126,8 +130,8 @@ class Stations extends CI_Model {
 			'clublogrealtime' => xss_clean($this->input->post('clublogrealtime', true)),
 			'qrzapikey' => xss_clean($this->input->post('qrzapikey', true)),
 			'qrzrealtime' => xss_clean($this->input->post('qrzrealtime', true)),
-			'oqrs' => xss_clean($this->input->post('oqrs', true)),
-			'oqrs_email' => xss_clean($this->input->post('oqrsemail', true)),
+			'oqrs' => xss_clean($this->input->post('oqrs', true) ?? '0'),
+			'oqrs_email' => xss_clean($this->input->post('oqrsemail', true) ?? '0'),
 			'oqrs_text' => xss_clean($this->input->post('oqrstext', true)),
 			'webadifapikey' => xss_clean($this->input->post('webadifapikey', true)),
 			'webadifapiurl' => 'https://qo100dx.club/api',
@@ -188,8 +192,8 @@ class Stations extends CI_Model {
 			'clublogrealtime' => xss_clean($this->input->post('clublogrealtime', true)),
 			'qrzapikey' => xss_clean($this->input->post('qrzapikey', true)),
 			'qrzrealtime' => xss_clean($this->input->post('qrzrealtime', true)),
-			'oqrs' => xss_clean($this->input->post('oqrs', true)),
-			'oqrs_email' => xss_clean($this->input->post('oqrsemail', true)),
+			'oqrs' => xss_clean($this->input->post('oqrs', true) ?? '0'),
+			'oqrs_email' => xss_clean($this->input->post('oqrsemail', true) ?? '0'),
 			'oqrs_text' => xss_clean($this->input->post('oqrstext', true)),
 			'webadifapikey' => xss_clean($this->input->post('webadifapikey', true)),
 			'webadifapiurl' => 'https://qo100dx.club/api',

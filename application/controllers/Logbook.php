@@ -3,20 +3,6 @@
 
 class Logbook extends CI_Controller {
 
-	function __construct()
-	{
-		parent::__construct();
-
-		// Load language files
-		$this->lang->load(array(
-			'contesting',
-			'qslcard',
-			'lotw',
-			'eqsl',
-			'qso'
-		));
-	}
-
 	function index()
 	{
 
@@ -41,12 +27,14 @@ class Logbook extends CI_Controller {
 		$config['cur_tag_close'] = '</a></strong>';
 
 		$this->pagination->initialize($config);
-
+		
 		//load the model and get results
 		$data['results'] = $this->logbook_model->get_qsos($config['per_page'],$this->uri->segment(3));
+		
+		$data['user_map_custom'] = $this->optionslib->get_map_custom();
 
 		if(!$data['results']) {
-			$this->session->set_flashdata('notice', lang('error_no_logbook_found') . ' <a href="' . site_url('logbooks') . '" title="Station Logbooks">Station Logbooks</a>');
+			$this->session->set_flashdata('notice', __("No logbooks were found. You need to define a logbook under Station Logbooks! Do it here:") . ' <a href="' . site_url('logbooks') . '" title="Station Logbooks">' . __("Station Logbooks") . '</a>');
 		}
 
 		// Calculate Lat/Lng from Locator to use on Maps
@@ -67,7 +55,7 @@ class Logbook extends CI_Controller {
 
 
 		// load the view
-		$data['page_title'] = "Logbook";
+		$data['page_title'] = __("Logbook");
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('view_log/index');
@@ -84,13 +72,17 @@ class Logbook extends CI_Controller {
         echo json_encode($return, JSON_PRETTY_PRINT);
     }
 
-	function json($tempcallsign, $tempband, $tempmode, $tempstation_id = null) {
+	function json($tempcallsign, $tempband, $tempmode, $tempstation_id = null, $date = "") {
 		session_write_close();
+		if (($date ?? '') != '') {
+			$date=date("Y-m-d",strtotime($date));
+		}
 		// Cleaning for security purposes
 		$callsign = $this->security->xss_clean($tempcallsign);
 		$band = $this->security->xss_clean($tempband);
 		$mode = $this->security->xss_clean($tempmode);
 		$station_id = $this->security->xss_clean($tempstation_id);
+		$date = $this->security->xss_clean($date);
 
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize($this->config->item('auth_mode'))) { return; }
@@ -129,7 +121,7 @@ class Logbook extends CI_Controller {
 			"image" => "",
 		];
 
-		$return['dxcc'] = $this->dxcheck($callsign);
+		$return['dxcc'] = $this->dxcheck($callsign,$date);
 
 		$lookupcall=$this->get_plaincall($callsign);
 
@@ -231,6 +223,13 @@ class Logbook extends CI_Controller {
 					$extrawhere.=" OR";
 				}
 				$extrawhere.=" COL_QRZCOM_QSO_DOWNLOAD_STATUS='Y'";
+			}
+
+			if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'C') !== false) {
+				if ($extrawhere!='') {
+					$extrawhere.=" OR";
+				}
+				$extrawhere.=" COL_CLUBLOG_QSO_DOWNLOAD_STATUS='Y'";
 			}
 
 
@@ -634,7 +633,7 @@ class Logbook extends CI_Controller {
 		$html = "";
 
 		if(!empty($logbooks_locations_array)) {
-			$this->db->select(''.$this->config->item('table_name').'.COL_CALL, '.$this->config->item('table_name').'.COL_BAND, '.$this->config->item('table_name').'.COL_FREQ, '.$this->config->item('table_name').'.COL_TIME_ON, '.$this->config->item('table_name').'.COL_RST_RCVD, '.$this->config->item('table_name').'.COL_RST_SENT, '.$this->config->item('table_name').'.COL_MODE, '.$this->config->item('table_name').'.COL_SUBMODE, '.$this->config->item('table_name').'.COL_PRIMARY_KEY, '.$this->config->item('table_name').'.COL_SAT_NAME, '.$this->config->item('table_name').'.COL_GRIDSQUARE, '.$this->config->item('table_name').'.COL_QSL_RCVD, '.$this->config->item('table_name').'.COL_EQSL_QSL_RCVD, '.$this->config->item('table_name').'.COL_EQSL_QSL_SENT, '.$this->config->item('table_name').'.COL_QSL_SENT, '.$this->config->item('table_name').'.COL_STX, '.$this->config->item('table_name').'.COL_STX_STRING, '.$this->config->item('table_name').'.COL_SRX, '.$this->config->item('table_name').'.COL_SRX_STRING, '.$this->config->item('table_name').'.COL_LOTW_QSL_SENT, '.$this->config->item('table_name').'.COL_LOTW_QSL_RCVD, '.$this->config->item('table_name').'.COL_VUCC_GRIDS, '.$this->config->item('table_name').'.COL_MY_GRIDSQUARE, '.$this->config->item('table_name').'.COL_CONTEST_ID, '.$this->config->item('table_name').'.COL_STATE, '.$this->config->item('table_name').'.COL_QRZCOM_QSO_UPLOAD_STATUS, '.$this->config->item('table_name').'.COL_QRZCOM_QSO_DOWNLOAD_STATUS, '.$this->config->item('table_name').'.COL_POTA_REF, '.$this->config->item('table_name').'.COL_IOTA, '.$this->config->item('table_name').'.COL_SOTA_REF, '.$this->config->item('table_name').'.COL_WWFF_REF, '.$this->config->item('table_name').'.COL_OPERATOR, '.$this->config->item('table_name').'.COL_COUNTRY, station_profile.*');
+			$this->db->select(''.$this->config->item('table_name').'.COL_CALL, '.$this->config->item('table_name').'.COL_BAND, '.$this->config->item('table_name').'.COL_FREQ, '.$this->config->item('table_name').'.COL_TIME_ON, '.$this->config->item('table_name').'.COL_RST_RCVD, '.$this->config->item('table_name').'.COL_RST_SENT, '.$this->config->item('table_name').'.COL_MODE, '.$this->config->item('table_name').'.COL_SUBMODE, '.$this->config->item('table_name').'.COL_PRIMARY_KEY, '.$this->config->item('table_name').'.COL_SAT_NAME, '.$this->config->item('table_name').'.COL_GRIDSQUARE, '.$this->config->item('table_name').'.COL_QSL_RCVD, '.$this->config->item('table_name').'.COL_EQSL_QSL_RCVD, '.$this->config->item('table_name').'.COL_EQSL_QSL_SENT, '.$this->config->item('table_name').'.COL_QSL_SENT, '.$this->config->item('table_name').'.COL_STX, '.$this->config->item('table_name').'.COL_STX_STRING, '.$this->config->item('table_name').'.COL_SRX, '.$this->config->item('table_name').'.COL_SRX_STRING, '.$this->config->item('table_name').'.COL_LOTW_QSL_SENT, '.$this->config->item('table_name').'.COL_LOTW_QSL_RCVD, '.$this->config->item('table_name').'.COL_VUCC_GRIDS, '.$this->config->item('table_name').'.COL_MY_GRIDSQUARE, '.$this->config->item('table_name').'.COL_CONTEST_ID, '.$this->config->item('table_name').'.COL_STATE, '.$this->config->item('table_name').'.COL_QRZCOM_QSO_UPLOAD_STATUS, '.$this->config->item('table_name').'.COL_QRZCOM_QSO_DOWNLOAD_STATUS, '.$this->config->item('table_name').'.COL_CLUBLOG_QSO_UPLOAD_STATUS, '.$this->config->item('table_name').'.COL_CLUBLOG_QSO_DOWNLOAD_STATUS, '.$this->config->item('table_name').'.COL_POTA_REF, '.$this->config->item('table_name').'.COL_IOTA, '.$this->config->item('table_name').'.COL_SOTA_REF, '.$this->config->item('table_name').'.COL_WWFF_REF, '.$this->config->item('table_name').'.COL_OPERATOR, '.$this->config->item('table_name').'.COL_COUNTRY, station_profile.*');
 			$this->db->from($this->config->item('table_name'));
 
 			$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
@@ -653,10 +652,9 @@ class Logbook extends CI_Controller {
 			$query = $this->db->get();
 		}
 
-		if (!empty($logbooks_locations_array) && $query->num_rows() > 0)
-		{
+		if (!empty($logbooks_locations_array) && $query->num_rows() > 0) {
 			$html .= "<div class=\"table-responsive\">";
-			$html .= "<table class=\"table\">";
+			$html .= "<table class=\"table table-striped\">";
 				$html .= "<tr>";
 					$html .= "<th>Date</th>";
 					$html .= "<th>Callsign</th>";
@@ -666,19 +664,22 @@ class Logbook extends CI_Controller {
 					$html .= $this->part_table_header_col($this, $this->session->userdata('user_column4')==""?'Band':$this->session->userdata('user_column4'));
 					switch($this->session->userdata('user_previous_qsl_type')) {
 						case 0:
-							$html .= "<th>".lang('gen_hamradio_qsl')."</th>";
+							$html .= "<th>".__("QSL")."</th>";
 							break;
 						case 1:
-							$html .= "<th>".lang('lotw_short')."</th>";
+							$html .= "<th>".__("LoTW")."</th>";
 							break;
 						case 2:
-							$html .= "<th>".lang('eqsl_short')."</th>";
+							$html .= "<th>".__("eQSL")."</th>";
 							break;
 						case 4:
 							$html .= "<th>QRZ</th>";
 							break;
+						case 8:
+							$html .= "<th>".__("Clublog") ."</th>";
+							break;
 						default:
-							$html .= "<th>".lang('gen_hamradio_qsl')."</th>";
+							$html .= "<th>".__("QSL")."</th>";
 							break;
 					}
 					$html .= "<th></th>";
@@ -693,11 +694,8 @@ class Logbook extends CI_Controller {
 				$custom_date_format = $this->config->item('qso_date_format');
 			}
 
-			foreach ($query->result() as $row)
-			{
-
+			foreach ($query->result() as $row) {
 				$timestamp = strtotime($row->COL_TIME_ON);
-
 				$html .= "<tr>";
 					$html .= "<td>".date($custom_date_format, $timestamp). date(' H:i',strtotime($row->COL_TIME_ON)) . "</td>";
 					$html .= "<td><a id='edit_qso' href='javascript:displayQso(" . $row->COL_PRIMARY_KEY . ");'>" . str_replace('0','&Oslash;',strtoupper($row->COL_CALL)) . "</a></td>";
@@ -760,6 +758,27 @@ class Logbook extends CI_Controller {
 						$html .= "\">&#9650;</span>";
 						$html .= "<span class=\"qsl-";
 						switch ($row->COL_QRZCOM_QSO_DOWNLOAD_STATUS) {
+							case "Y":
+								$html .= "green";
+								break;
+							default:
+								$html .= "red";
+						}
+						$html .= "\">&#9660;</span>";
+						$html .= "</td>";
+					} else if ($this->session->userdata('user_previous_qsl_type') == 8) {
+						$html .= "<td class=\"clublog\">";
+						$html .= "<span class=\"qsl-";
+						switch ($row->COL_CLUBLOG_QSO_UPLOAD_STATUS) {
+							case "Y":
+								$html .= "green";
+								break;
+							default:
+								$html .= "red";
+						}
+						$html .= "\">&#9650;</span>";
+						$html .= "<span class=\"qsl-";
+						switch ($row->COL_CLUBLOG_QSO_DOWNLOAD_STATUS) {
 							case "Y":
 								$html .= "green";
 								break;
@@ -1253,20 +1272,20 @@ class Logbook extends CI_Controller {
 	function part_table_header_col($ctx, $name) {
 		$ret='';
 		switch($name) {
-		case 'Mode': $ret.= '<th>'.$ctx->lang->line('gen_hamradio_mode').'</th>'; break;
-		case 'RSTS': $ret.= '<th class="d-none d-sm-table-cell">'.$ctx->lang->line('gen_hamradio_rsts').'</th>'; break;
-		case 'RSTR': $ret.= '<th class="d-none d-sm-table-cell">'.$ctx->lang->line('gen_hamradio_rstr').'</th>'; break;
-		case 'Country': $ret.= '<th>'.$ctx->lang->line('general_word_country').'</th>'; break;
-		case 'IOTA': $ret.= '<th>'.$ctx->lang->line('gen_hamradio_iota').'</th>'; break;
-		case 'SOTA': $ret.= '<th>'.$ctx->lang->line('gen_hamradio_sota').'</th>'; break;
-		case 'WWFF': $ret.= '<th>'.$ctx->lang->line('gen_hamradio_wwff').'</th>'; break;
-		case 'POTA': $ret.= '<th>'.$ctx->lang->line('gen_hamradio_pota').'</th>'; break;
-		case 'State': $ret.= '<th>'.$ctx->lang->line('gen_hamradio_state').'</th>'; break;
-		case 'Grid': $ret.= '<th>'.$ctx->lang->line('gen_hamradio_gridsquare').'</th>'; break;
-		case 'Distance': $ret.= '<th>'.$ctx->lang->line('gen_hamradio_distance').'</th>'; break;
-		case 'Band': $ret.= '<th>'.$ctx->lang->line('gen_hamradio_band').'</th>'; break;
-		case 'Frequency': $ret.= '<th>'.$ctx->lang->line('gen_hamradio_frequency').'</th>'; break;
-		case 'Operator': $ret.= '<th>'.$ctx->lang->line('gen_hamradio_operator').'</th>'; break;
+		case 'Mode': $ret.= '<th>'.__("Mode").'</th>'; break;
+		case 'RSTS': $ret.= '<th class="d-none d-sm-table-cell">'.__("RST (S)").'</th>'; break;
+		case 'RSTR': $ret.= '<th class="d-none d-sm-table-cell">'.__("RST (R)").'</th>'; break;
+		case 'Country': $ret.= '<th>'.__("Country").'</th>'; break;
+		case 'IOTA': $ret.= '<th>'.__("IOTA").'</th>'; break;
+		case 'SOTA': $ret.= '<th>'.__("SOTA").'</th>'; break;
+		case 'WWFF': $ret.= '<th>'.__("WWFF").'</th>'; break;
+		case 'POTA': $ret.= '<th>'.__("POTA").'</th>'; break;
+		case 'State': $ret.= '<th>'.__("State").'</th>'; break;
+		case 'Grid': $ret.= '<th>'.__("Gridsquare").'</th>'; break;
+		case 'Distance': $ret.= '<th>'.__("Distance").'</th>'; break;
+		case 'Band': $ret.= '<th>'.__("Band").'</th>'; break;
+		case 'Frequency': $ret.= '<th>'.__("Frequency").'</th>'; break;
+		case 'Operator': $ret.= '<th>'.__("Operator").'</th>'; break;
 		}
 		return $ret;
 	}
@@ -1283,12 +1302,11 @@ class Logbook extends CI_Controller {
 
 	function part_table_col($row, $name) {
 		$ret='';
-		$ci =& get_instance();
 		switch($name) {
 		case 'Mode':    $ret.= '<td>'; $ret.= $row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE . '</td>'; break;
 		case 'RSTS':    $ret.= '<td class="d-none d-sm-table-cell">' . $row->COL_RST_SENT; if ($row->COL_STX) { $ret.= ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">'; $ret.=sprintf("%03d", $row->COL_STX); $ret.= '</span>';} if ($row->COL_STX_STRING) { $ret.= ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">' . $row->COL_STX_STRING . '</span>';} $ret.= '</td>'; break;
 		case 'RSTR':    $ret.= '<td class="d-none d-sm-table-cell">' . $row->COL_RST_RCVD; if ($row->COL_SRX) { $ret.= ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">'; $ret.=sprintf("%03d", $row->COL_SRX); $ret.= '</span>';} if ($row->COL_SRX_STRING) { $ret.= ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">' . $row->COL_SRX_STRING . '</span>';} $ret.= '</td>'; break;
-		case 'Country': $ret.= '<td>' . ucwords(strtolower(($row->COL_COUNTRY ?? ''))); if ($row->end ?? '' != '') $ret.= ' <span class="badge text-bg-danger">'.$ci->lang->line('gen_hamradio_deleted_dxcc').'</span>'  . '</td>'; break;
+		case 'Country': $ret.= '<td>' . ucwords(strtolower(($row->COL_COUNTRY ?? ''))); if ($row->end ?? '' != '') $ret.= ' <span class="badge text-bg-danger">'.__("Deleted DXCC").'</span>'  . '</td>'; break;
 		case 'IOTA':    $ret.= '<td>' . ($row->COL_IOTA) . '</td>'; break;
 		case 'SOTA':    $ret.= '<td>' . ($row->COL_SOTA_REF) . '</td>'; break;
 		case 'WWFF':    $ret.= '<td>' . ($row->COL_WWFF_REF) . '</td>'; break;
@@ -1296,7 +1314,7 @@ class Logbook extends CI_Controller {
 		case 'Grid':    $ret.= '<td>' . $this->part_QrbCalcLink($row->COL_MY_GRIDSQUARE, $row->COL_VUCC_GRIDS, $row->COL_GRIDSQUARE) . '</td>'; break;
 		case 'Distance':    $ret.= '<td>' . (($row->COL_DISTANCE ?? '' != '') ? $row->COL_DISTANCE . '&nbsp;km' : '') . '</td>'; break;
 		case 'Band':    $ret.= '<td>'; if($row->COL_SAT_NAME != null) { $ret.= '<a href="https://db.satnogs.org/search/?q='.$row->COL_SAT_NAME.'" target="_blank">'.$row->COL_SAT_NAME.'</a></td>'; } else { $ret.= strtolower($row->COL_BAND); } $ret.= '</td>'; break;
-		case 'Frequency':    $ret.= '<td>'; if($row->COL_SAT_NAME != null) { $ret.= '<a href="https://db.satnogs.org/search/?q='.$row->COL_SAT_NAME.'" target="_blank">'.$row->COL_SAT_NAME.'</a></td>'; } else { if($row->COL_FREQ != null) { $ret.= $ci->frequency->hz_to_mhz($row->COL_FREQ); } else { $ret.= strtolower($row->COL_BAND); } } $ret.= '</td>'; break;
+		case 'Frequency':    $ret.= '<td>'; if($row->COL_SAT_NAME != null) { $ret.= '<a href="https://db.satnogs.org/search/?q='.$row->COL_SAT_NAME.'" target="_blank">'.$row->COL_SAT_NAME.'</a></td>'; } else { if($row->COL_FREQ != null) { $ret.= $this->frequency->hz_to_mhz($row->COL_FREQ); } else { $ret.= strtolower($row->COL_BAND); } } $ret.= '</td>'; break;
 		case 'State':   $ret.= '<td>' . ($row->COL_STATE) . '</td>'; break;
 		case 'Operator': $ret.= '<td>' . ($row->COL_OPERATOR) . '</td>'; break;
 		}

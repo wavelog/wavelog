@@ -2,9 +2,14 @@
 
 class Visitor extends CI_Controller {
 
+	// Define number of QSO per page
+	private $qso_per_page;
+
 	function __construct()
 	{
 		parent::__construct();
+
+		$this->qso_per_page = 25;
 	}
 
     function _remap($method) {
@@ -26,9 +31,6 @@ class Visitor extends CI_Controller {
 		elseif($method == "mapqsos") {
             $this->mapqsos();
         }
-		elseif($method == "get_map_custom") {
-            $this->get_map_custom();
-        }
         else {
             $this->index($method);
         }
@@ -40,49 +42,66 @@ class Visitor extends CI_Controller {
 	public function index($public_slug = NULL)
 	{
 
-        $this->load->model('user_model');
-
         // Check slug passed and is valid
-        if ($this->security->xss_clean($public_slug, TRUE) === FALSE)
-        {
+        if ($this->security->xss_clean($public_slug, TRUE) === FALSE) {
+
             // Public Slug failed the XSS test
             log_message('error', '[Visitor] XSS Attack detected on public_slug '. $public_slug);
             show_404('Unknown Public Page.');
+
         } else {
+
             // Checked slug passed and clean
             log_message('info', '[Visitor] public_slug '. $public_slug .' loaded');
 
-            // Check if the slug is contained in the station_logbooks table
-            $this->load->model('logbooks_model');
+            // Load necessary models
+            $this->load->model('dxcc');
+			$this->load->model('cat');
+            $this->load->model('logbook_model');
+			$this->load->model('logbooks_model');
+			
             if($this->logbooks_model->public_slug_exists($public_slug)) {
-                // Load the public view
 
+                // Load the public view
 				$logbook_id = $this->logbooks_model->public_slug_exists_logbook_id($public_slug);
-                if($logbook_id != false)
-                {
+				
+                if($logbook_id != false) {
+					
                     // Get associated station locations for mysql queries
                     $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($logbook_id);
 
 					if (!$logbooks_locations_array) {
 						show_404('Empty Logbook');
 					}
+
                 } else {
                     log_message('error', $public_slug.' has no associated station locations');
                     show_404('Unknown Public Page.');
                 }
 
-                $this->load->model('logbook_model');
-
                 // Public visitor so no QRA to setup
                 $data['qra'] = "none";
 
-                $this->load->model('cat');
+				// Pagination Configuration
+				$this->load->library('pagination');
+				$config['base_url'] = base_url().'index.php/visitor/'.$public_slug;
+				$config['total_rows'] = $this->logbook_model->total_qsos($logbooks_locations_array);
+				$config['per_page'] = $this->qso_per_page;
+				$config['num_links'] = 6;
+				$config['full_tag_open'] = '';
+				$config['full_tag_close'] = '';
+				$config['cur_tag_open'] = '<strong class="active"><a href="">';
+				$config['cur_tag_close'] = '</a></strong>';
+
+				$this->pagination->initialize($config);
 
                 // Store info
                 $data['todays_qsos'] = $this->logbook_model->todays_qsos($logbooks_locations_array);
                 $data['total_qsos'] = $this->logbook_model->total_qsos($logbooks_locations_array);
                 $data['month_qsos'] = $this->logbook_model->month_qsos($logbooks_locations_array);
                 $data['year_qsos'] = $this->logbook_model->year_qsos($logbooks_locations_array);
+
+				$data['user_map_custom'] = $this->optionslib->get_map_custom(true,$public_slug);
 
                 // Load  Countries Breakdown data into array
                 $CountriesBreakdown = $this->logbook_model->total_countries_confirmed($logbooks_locations_array);
@@ -91,6 +110,10 @@ class Visitor extends CI_Controller {
                 $data['total_countries_confirmed_paper'] = $CountriesBreakdown['Countries_Worked_QSL'];
                 $data['total_countries_confirmed_eqsl'] = $CountriesBreakdown['Countries_Worked_EQSL'];
                 $data['total_countries_confirmed_lotw'] = $CountriesBreakdown['Countries_Worked_LOTW'];
+
+				$dxcc = $this->dxcc->list_current();
+                $current = $this->logbook_model->total_countries_current($logbooks_locations_array);
+                $data['total_countries_needed'] = count($dxcc->result()) - $current;
 
                 $QSLStatsBreakdownArray =$this->logbook_model->get_QSLStats($logbooks_locations_array);
 
@@ -104,21 +127,15 @@ class Visitor extends CI_Controller {
                 $data['total_lotw_sent'] = $QSLStatsBreakdownArray['LoTW_Sent'];
                 $data['total_lotw_rcvd'] = $QSLStatsBreakdownArray['LoTW_Received'];
 
-                $data['last_five_qsos'] = $this->logbook_model->get_last_qsos('18', $logbooks_locations_array);
+                $data['results'] = $this->logbook_model->get_qsos($this->qso_per_page,$this->uri->segment(3),$logbooks_locations_array);
 
-                $data['page_title'] = "Dashboard";
+                $data['page_title'] = __("Dashboard");
                 $data['slug'] = $public_slug;
-
-                $this->load->model('dxcc');
-                $dxcc = $this->dxcc->list_current();
-
-                $current = $this->logbook_model->total_countries_current($logbooks_locations_array);
-
-                $data['total_countries_needed'] = count($dxcc->result()) - $current;
 
                 $this->load->view('visitor/layout/header', $data);
                 $this->load->view('visitor/index');
                 $this->load->view('visitor/layout/footer');
+
             } else {
                 // Show 404
                 log_message('error', '[Visitor] XSS Attack detected on public_slug '. $public_slug);
@@ -150,7 +167,7 @@ class Visitor extends CI_Controller {
             show_404('Unknown Public Page.');
         }
 
-		$qsos = $this->logbook_model->get_qsos('18', null, $logbooks_locations_array);
+		$qsos = $this->logbook_model->get_qsos($this->qso_per_page, $this->uri->segment(4), $logbooks_locations_array);
 		// [PLOT] ADD plot //
 		$plot_array = $this->logbook_model->get_plot_array_for_map($qsos->result());
 
@@ -183,7 +200,7 @@ class Visitor extends CI_Controller {
 
 		$this->load->model('gridmap_model');
 
-		$data['page_title'] = "Satellite Gridsquare Map";
+		$data['page_title'] = __("Satellite Gridsquare Map");
 
 
 		$array_grid_2char = array();
@@ -352,10 +369,10 @@ class Visitor extends CI_Controller {
 		$data['layer'] = $this->optionslib->get_option('option_map_tile_server');
 		$data['attribution'] = $this->optionslib->get_option('option_map_tile_server_copyright');
 
-		$data['gridsquares_gridsquares'] = lang('gridsquares_gridsquares');
-		$data['gridsquares_gridsquares_confirmed'] = lang('gridsquares_gridsquares_confirmed');
-		$data['gridsquares_gridsquares_not_confirmed'] = lang('gridsquares_gridsquares_not_confirmed');
-		$data['gridsquares_gridsquares_total_worked'] = lang('gridsquares_gridsquares_total_worked');
+		$data['gridsquares_gridsquares'] = __("Gridsquares");
+		$data['gridsquares_gridsquares_confirmed'] = __("Gridsquares confirmed");
+		$data['gridsquares_gridsquares_not_confirmed'] = __("Gridsquares not confirmed");
+		$data['gridsquares_gridsquares_total_worked'] = __("Total gridsquares worked");
 
 		$data['visitor'] = true;
 
@@ -389,7 +406,7 @@ class Visitor extends CI_Controller {
 		$callsign = trim($this->security->xss_clean($this->input->post('callsign')));
 		$public_slug = $this->security->xss_clean($this->input->post('public_slug'));
 		$this->load->model('publicsearch');
-		$data['page_title'] = "Public Search";
+		$data['page_title'] = __("Public Search");
 		$data['callsign'] = $callsign;
 		$data['slug'] = $public_slug;
 		if ($callsign != '') {
@@ -411,20 +428,26 @@ class Visitor extends CI_Controller {
 		$slug = $this->security->xss_clean($this->uri->segment(3));
 		$lastqso = $this->security->xss_clean($this->uri->segment(4));
 
-		if ($lastqso === "lastqso") {
-			$this->load->model('visitor_model');
-			$result = $this->visitor_model->getlastqsodate($slug)->row();
-			header('Content-Type: application/json');
-			echo json_encode($result);
-			return;
+		if (!empty($slug)) {
+			if ($lastqso === "lastqso") {
+				$this->load->model('visitor_model');
+				$result = $this->visitor_model->getlastqsodate($slug)->row();
+				header('Content-Type: application/json');
+				echo json_encode($result);
+				return;
+			}
+
+			$data['slug'] = $slug;
+
+			$data['page_title'] = __("Export Map");
+			$data['user_map_custom'] = $this->optionslib->get_map_custom(true,$slug);
+
+			$this->load->view('visitor/exportmap/header', $data);
+			$this->load->view('visitor/exportmap/exportmap', $data);
+			$this->load->view('visitor/exportmap/footer');
+		} else {
+			redirect('user/login');
 		}
-
-        $data['slug'] = $slug;
-
-		$data['page_title'] = "Export Map";
-		$this->load->view('visitor/exportmap/header', $data);
-		$this->load->view('visitor/exportmap/exportmap', $data);
-		$this->load->view('visitor/exportmap/footer');
 	}
 
 	public function mapqsos() {
@@ -507,47 +530,6 @@ class Visitor extends CI_Controller {
 		$data['confirmed'] = ($this->qso_is_confirmed($qso, $user_default_confirmation)==true) ? true : false;
 
 		return $data;
-	}
-
-	// [MAP Custom] //
-	public function get_map_custom() {
-		$this->load->model('stationsetup_model');
-		$slug = $this->security->xss_clean($this->input->post('slug'));
-		$userid = $this->stationsetup_model->public_slug_exists_userid($slug);
-
-		$this->load->model('user_options_model');
-
-		$result = $this->user_options_model->get_options('map_custom', null, $userid);
-		$jsonout = [];
-		foreach($result->result() as $options) {
-			if ($options->option_name=='icon') $jsonout[$options->option_key]=json_decode($options->option_value,true);
-				else $jsonout[$options->option_name.'_'.$options->option_key]=$options->option_value;
-		}
-
-		if (count($jsonout) == 0) {
-			$jsonout['qso'] = array(
-				"icon" => "fas fa-dot-circle",
-				"color" => "#ff0000"
-			);
-			$jsonout['qsoconfirm'] = array(
-				"icon" => "fas fa-dot-circle",
-				"color" => "#00aa00"
-			);
-			$jsonout['station'] = array(
-				"icon" => "fas fa-broadcast-tower",
-				"color" => "#0000ff"
-			);
-		}
-
-		$jsonout['gridsquare_layer'] = $this->user_options_model->get_options('ExportMapOptions',array('option_name'=>'gridsquare_layer','option_key'=>$slug), $userid)->row()->option_value ?? true;
-		$jsonout['path_lines'] = $this->user_options_model->get_options('ExportMapOptions',array('option_name'=>'path_lines','option_key'=>$slug), $userid)->row()->option_value ?? true;
-		$jsonout['cqzone_layer'] = $this->user_options_model->get_options('ExportMapOptions',array('option_name'=>'cqzone_layer','option_key'=>$slug), $userid)->row()->option_value ?? true;
-		$jsonout['qsocount'] = $this->user_options_model->get_options('ExportMapOptions',array('option_name'=>'qsocount','option_key'=>$slug), $userid)->row()->option_value ?? 250;
-		$jsonout['nightshadow_layer'] = $this->user_options_model->get_options('ExportMapOptions',array('option_name'=>'nightshadow_layer','option_key'=>$slug), $userid)->row()->option_value ?? true;
-		$jsonout['band'] = $this->user_options_model->get_options('ExportMapOptions',array('option_name'=>'band','option_key'=>$slug), $userid)->row()->option_value ?? '';
-
-		header('Content-Type: application/json');
-		echo json_encode($jsonout);
 	}
 
 	function qso_is_confirmed($qso, $user_default_confirmation) {

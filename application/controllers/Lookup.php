@@ -19,7 +19,7 @@ class Lookup extends CI_Controller {
 
 	public function index()
 	{
-		$data['page_title'] = "Quick Lookup";
+		$data['page_title'] = __("Quick Lookup");
 		$this->load->model('logbook_model');
 		$data['dxcc'] = $this->logbook_model->fetchDxcc();
 		$data['iota'] = $this->logbook_model->fetchIota();
@@ -27,30 +27,40 @@ class Lookup extends CI_Controller {
 	}
 
 	public function search() {
-		$CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
 		$location_list = "'".implode("','",$logbooks_locations_array)."'";
 
 		$this->load->model('lookup_model');
-		$this->load->model('bands');
-
-		$data['bands'] = $this->bands->get_worked_bands(xss_clean($this->input->post('type')));
 
 		$data['type'] = xss_clean($this->input->post('type'));
-		$data['dxcc'] = xss_clean($this->input->post('dxcc'));
-		$data['was']  = xss_clean($this->input->post('was'));
-		$data['sota'] = xss_clean($this->input->post('sota'));
-		$data['grid'] = xss_clean($this->input->post('grid'));
-		$data['iota'] = xss_clean($this->input->post('iota'));
-		$data['cqz']  = xss_clean($this->input->post('cqz'));
-		$data['wwff'] = xss_clean($this->input->post('wwff'));
-		$data['location_list'] = $location_list;
 
-		$data['result'] = $this->lookup_model->getSearchResult($data);
+		if ($data['type'] == "lotw") {
+			$this->load->model('logbook_model');
+			$data['callsign'] = xss_clean($this->input->post('lotw'));
+			$data['lotw_lastupload'] = $this->logbook_model->check_last_lotw($data['callsign']);
 
-		$this->load->view('lookup/result', $data);
+			$this->load->view('lookup/lotwuser', $data);
+		} else {
+			$this->load->model('bands');
+
+			$data['bands'] = $this->bands->get_worked_bands(xss_clean($this->input->post('type')));
+
+
+			$data['dxcc'] = xss_clean($this->input->post('dxcc'));
+			$data['was']  = xss_clean($this->input->post('was'));
+			$data['sota'] = xss_clean($this->input->post('sota'));
+			$data['grid'] = xss_clean($this->input->post('grid'));
+			$data['iota'] = xss_clean($this->input->post('iota'));
+			$data['cqz']  = xss_clean($this->input->post('cqz'));
+			$data['wwff'] = xss_clean($this->input->post('wwff'));
+			$data['location_list'] = $location_list;
+
+			$data['result'] = $this->lookup_model->getSearchResult($data);
+			$this->load->view('lookup/result', $data);
+		}
+
 	}
 
 	public function scp() {
@@ -131,11 +141,11 @@ class Lookup extends CI_Controller {
 
 	public function get_state_list() {
 		$this->load->library('subdivisions');
-	
+
 		$dxcc = xss_clean($this->input->post('dxcc'));
 		$states_result = $this->subdivisions->get_state_list($dxcc);
 		$subdivision_name = $this->subdivisions->get_primary_subdivision_name($dxcc);
-	
+
 		if ($states_result->num_rows() > 0) {
 			$states_array = $states_result->result_array();
 				$result = array(
@@ -150,7 +160,7 @@ class Lookup extends CI_Controller {
 			echo json_encode(array('status' => 'No States for this DXCC in Database'));
 		}
 	}
-	
+
 
     public function get_county() {
         $json = [];

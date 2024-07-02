@@ -9,7 +9,6 @@ class Contesting extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
-		$this->lang->load('contesting');
 
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
@@ -34,7 +33,7 @@ class Contesting extends CI_Controller {
 		$this->form_validation->set_rules('start_time', 'Time', 'required');
 		$this->form_validation->set_rules('callsign', 'Callsign', 'required');
 
-		$data['page_title'] = "Contest Logging";
+		$data['page_title'] = __("Contest Logging");
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('contesting/index');
@@ -97,7 +96,7 @@ class Contesting extends CI_Controller {
 		$data['contests'] = $this->Contesting_model->getAllContests();
 
 		// Render Page
-		$data['page_title'] = "Contests";
+		$data['page_title'] = __("Contests");
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('contesting/add');
 		$this->load->view('interface_assets/footer');
@@ -111,7 +110,7 @@ class Contesting extends CI_Controller {
 
 		$data['contest'] = $this->Contesting_model->contest($item_id_clean);
 
-		$data['page_title'] = lang('admin_contest_edit_update_contest');
+		$data['page_title'] = __("Update Contest");
 
 		$this->form_validation->set_rules('name', 'Contest Name', 'required');
 		$this->form_validation->set_rules('adifname', 'Adif Contest Name', 'required');

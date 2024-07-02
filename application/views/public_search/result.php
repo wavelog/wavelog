@@ -1,5 +1,5 @@
 <div class="container publicsearch">
-<h1>Results <small class="text-muted">Searching for <?php echo str_replace("0","&Oslash;",strtoupper($callsign)); ?></small></h1>
+<h1><?= __("Results"); ?> <small class="text-muted"><?= __("Searching for"); ?> <?php echo str_replace("0","&Oslash;",strtoupper($callsign)); ?></small></h1>
 <div class="card text-center">
 <div class="card-body">
 <?php
@@ -10,11 +10,11 @@ if ($results) { ?>
     <table style="width:100%" id="publicsearchtable" class="publicsearchtable table table-sm table-striped table-hover">
         <thead>
             <tr class="titles">
-                <th><?php echo lang('general_word_date'); ?></th>
-                <th><?php echo lang('gen_hamradio_call'); ?></th>
-                <th><?php echo lang('gen_hamradio_mode'); ?></th>
-                <th><?php echo lang('gen_hamradio_band'); ?></th>
-                <th>Station Callsign</th>
+                <th><?= __("Date"); ?></th>
+                <th><?= __("Call"); ?></th>
+                <th><?= __("Mode"); ?></th>
+                <th><?= __("Band"); ?></th>
+                <th><?= __("Station Callsign"); ?></th>
             </tr>
         </thead>
         <tbody>

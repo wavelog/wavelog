@@ -22,7 +22,7 @@ class Band extends CI_Controller {
 		$data['bands'] = $this->bands->get_all_bands_for_user();
 
 		// Render Page
-		$data['page_title'] = "Bands";
+		$data['page_title'] = __("Bands");
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('bands/index');
 		$this->load->view('interface_assets/footer');
@@ -37,7 +37,7 @@ class Band extends CI_Controller {
 
 		if ($this->form_validation->run() == FALSE)
 		{
-			$data['page_title'] = "Create Mode";
+			$data['page_title'] = __("Create Mode");
 			$this->load->view('bands/create', $data);
 		}
 		else
@@ -56,7 +56,7 @@ class Band extends CI_Controller {
 
 		$data['my_band'] = $band_query->row();
 
-		$data['page_title'] = "Edit Band";
+		$data['page_title'] = __("Edit Band");
 
         $this->load->view('bands/edit', $data);
 	}

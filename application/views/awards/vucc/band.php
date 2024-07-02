@@ -1,7 +1,7 @@
 <div class="container">
     <h2><?php echo $page_title; ?></h2>
 
-    <h3><?php echo lang('general_word_filtering_on'); ?> <?php echo $filter ?></h3>
+    <h3><?= __("Filtering on"); ?> <?php echo $filter ?></h3>
     <?php
     $i = 1;
     if ($vucc_array) {
@@ -9,13 +9,13 @@
         <thead>
         <tr>
             <td>#</td>
-            <td>Gridsquare</td>';
+            <td>' . __("Gridsquare") . '</td>';
 
         if ($type != 'worked') {
-            echo '<td>QSL</td>
-                <td>LoTW</td>';
+            echo '<td>' . __("QSL") . '</td>
+                <td>' . __("LoTW") . '</td>';
         } else {
-            echo '<td>Call</td>';
+            echo '<td>' . __("Call") . '</td>';
         }
         echo '</tr>
         </thead>
@@ -38,6 +38,6 @@
 
     }
     else {
-        echo '<div class="alert alert-danger" role="alert">Nothing found!</div>';
+        echo '<div class="alert alert-danger" role="alert">' . __("Nothing found!") . '</div>';
     }
     ?>

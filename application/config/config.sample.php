@@ -143,7 +143,7 @@ $config['url_suffix'] = '';
 
 /*
 |--------------------------------------------------------------------------
-| Default Language
+| Default Language  DEPRECATED! NOT IN USE ANYMORE!
 |--------------------------------------------------------------------------
 |
 | This determines which set of language files should be used. Make sure
@@ -151,61 +151,61 @@ $config['url_suffix'] = '';
 | than english.
 |
  */
-$lang = 'english'; // this language will be used per default
+// $lang = 'english'; // this language will be used per default
 
-if (isset($_COOKIE["language"])) {
-	$tmp_value = $_COOKIE["language"];
-	if (!empty($tmp_value)) { $lang = $tmp_value; }
-}
-switch ($lang) {	// do this for security-reasons! parse only langs, which are known to us
-case 'dutch':
-	$config['language'] = $lang;
-	break;
-case 'chinese_simplified':
-	$config['language'] = $lang;
-	break;
-case 'spanish':
-	$config['language'] = $lang;
-	break;
-case 'czech':
-	$config['language'] = $lang;
-	break;
-case 'bulgarian':
-	$config['language'] = $lang;
-	break;
-case 'turkish':
-	$config['language'] = $lang;
-	break;
-case 'swedish':
-	$config['language'] = $lang;
-	break;
-case 'polish':
-	$config['language'] = $lang;
-	break;
-case 'italian':
-	$config['language'] = $lang;
-	break;
-case 'greek':
-	$config['language'] = $lang;
-	break;
-case 'french':
-	$config['language'] = $lang;
-	break;
-case 'finnish':
-	$config['language'] = $lang;
-	break;
-case 'russian':
-	$config['language'] = $lang;
-	break;
-case 'english':
-	$config['language'] = $lang;
-	break;
-case 'german':
-	$config['language'] = $lang;
-	break;
-}
+// if (isset($_COOKIE["language"])) {
+// 	$tmp_value = $_COOKIE["language"];
+// 	if (!empty($tmp_value)) { $lang = $tmp_value; }
+// }
+// switch ($lang) {	// do this for security-reasons! parse only langs, which are known to us
+// case 'dutch':
+// 	$config['language'] = $lang;
+// 	break;
+// case 'chinese_simplified':
+// 	$config['language'] = $lang;
+// 	break;
+// case 'spanish':
+// 	$config['language'] = $lang;
+// 	break;
+// case 'czech':
+// 	$config['language'] = $lang;
+// 	break;
+// case 'bulgarian':
+// 	$config['language'] = $lang;
+// 	break;
+// case 'turkish':
+// 	$config['language'] = $lang;
+// 	break;
+// case 'swedish':
+// 	$config['language'] = $lang;
+// 	break;
+// case 'polish':
+// 	$config['language'] = $lang;
+// 	break;
+// case 'italian':
+// 	$config['language'] = $lang;
+// 	break;
+// case 'greek':
+// 	$config['language'] = $lang;
+// 	break;
+// case 'french':
+// 	$config['language'] = $lang;
+// 	break;
+// case 'finnish':
+// 	$config['language'] = $lang;
+// 	break;
+// case 'russian':
+// 	$config['language'] = $lang;
+// 	break;
+// case 'english':
+// 	$config['language'] = $lang;
+// 	break;
+// case 'german':
+// 	$config['language'] = $lang;
+// 	break;
+// }
 
-$config['cl_multilanguage']=true;
+// $config['cl_multilanguage']=true;
 
 /*
 |--------------------------------------------------------------------------
@@ -676,4 +676,64 @@ $config['proxy_ips'] = '';
 |
 */
 
-$config['userdata'] = 'userdata';  
+$config['userdata'] = 'userdata';
+
+/*
+|--------------------------------------------------------------------------
+| Disable Syncing to 3rd party-Services at UI
+|--------------------------------------------------------------------------
+|
+| Here you can disable triggering the syncing-logics by Users.
+| Helpful if u have a huge instance or active-users, because of preventing race-conditions between UI and Cron
+|
+*/
+
+$config['disable_manual_lotw'] = false;
+$config['disable_manual_eqsl'] = false;
+$config['disable_manual_hrdlog'] = false;
+$config['disable_manual_qrz'] = false;
+
+/*
+|--------------------------------------------------------------------------
+| Disables QSL-Image-Feature
+|--------------------------------------------------------------------------
+|
+| This disabled the whole QSL image feature if you don't need it and want to hide it. 
+| Set to true will hide all QSL image related stuff in Wavelog
+|
+*/
+
+$config['disable_qsl'] = false;
+
+/*
+|--------------------------------------------------------------------------
+| Disables OQRS-Feature
+|--------------------------------------------------------------------------
+|
+| This disabled the whole OQRS feature if you don't need it and want to hide it. 
+| Set to true will hide all OQRS related stuff in Wavelog
+|
+*/
+
+$config['disable_oqrs'] = false;
+
+/*
+|--------------------------------------------------------------------------
+| Special Callsign Feature
+|--------------------------------------------------------------------------
+|
+| This config switch is meant to use for Special Callsign operations in a dedicated Wavelog Installation
+| If this switch is set to true it will enable a dialog which pops up for each operator after login
+| to ask for his personal callsign. This causes the QSOs to get saved with the correct operator data.
+| Example:      Special Callsign:   DL250CDF 
+|               Operator:           DF2TG
+| 
+| It is recommend to enable also "Disable Syncing to 3rd party-Services at UI" 
+| More Information about this feature and how to use it, you can find here: 
+| https://github.com/wavelog/wavelog/wiki/Recommended-Setup-for-Special-Callsigns-and-Clubs
+*/
+
+$config['special_callsign'] = false;
+
+// hides the usermenu; takes action only if "special_callsign" is true
+$config['sc_hide_usermenu'] = true;   

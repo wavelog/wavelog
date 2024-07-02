@@ -46,10 +46,10 @@
 	<div id="dxtabs" class="tabs">
 		<ul class="nav nav-tabs" id="myTab" role="tablist">
 			<li class="nav-item">
-				<a class="nav-link" href="index">BandMap</a>
+				<a class="nav-link" href="index"><?= __("BandMap"); ?></a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link active" href="list">BandList</a>
+				<a class="nav-link active" href="list"><?= __("BandList"); ?></a>
 			</li>
 		</ul>
 	</div>
@@ -57,30 +57,37 @@
 	<div class="tab-content" id="myTabContent">
 		<div class="messages my-1 me-2"></div>
 		<div class="d-flex align-items-center">
-			<label class="my-1 me-2" for="radio"><?php echo lang('gen_hamradio_radio'); ?></label>
+			<label class="my-1 me-2" for="radio"><?= __("Radio"); ?></label>
 			<select class="form-select form-select-sm radios my-1 me-sm-2 w-auto" id="radio" name="radio">
-				<option value="0" selected="selected"><?php echo lang('general_word_none'); ?></option>
+				<option value="0" selected="selected"><?= __("None"); ?></option>
 				<?php foreach ($radios->result() as $row) { ?>
 					<option value="<?php echo $row->id; ?>" <?php if ($this->session->userdata('radio') == $row->id) {
 																echo "selected=\"selected\"";
 															} ?>><?php echo $row->radio; ?></option>
 				<?php } ?>
 			</select>
-			<label class="my-1 me-2" for="decontSelect">Spots de</label>
+			<label class="my-1 me-2" for="cwnSelect"><?= __("DXCC-Status"); ?></label>
+			<select class="form-select form-select-sm my-1 me-sm-2 w-auto" id="cwnSelect" name="dxcluster_cwn" aria-describedby="dxcluster_cwnHelp" required>
+				<option value="All"><?= __("All"); ?></option>
+				<option value="wkd"><?= __("Worked"); ?></option>
+				<option value="cnf"><?= __("Confirmed"); ?></option>
+				<option value="ucnf"><?= __("Not Confirmed"); ?></option>
+			</select>
+			<label class="my-1 me-2" for="decontSelect"><?= __("Spots de"); ?></label>
 			<select class="form-select form-select-sm my-1 me-sm-2 w-auto" id="decontSelect" name="dxcluster_decont" aria-describedby="dxcluster_decontHelp" required>
-				<option value="Any">*</option>
-				<option value="AF" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'AF') {echo " selected";} ?>>Africa</option>
-				<option value="AN" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'AN') {echo " selected";} ?>>Antarctica</option>
-				<option value="AS" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'AS') {echo " selected";} ?>>Asia</option>
-				<option value="EU" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'EU') {echo " selected";} ?>>Europe</option>
-				<option value="NA" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'NA') {echo " selected";} ?>>North America</option>
-				<option value="OC" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'OC') {echo " selected";} ?>>Oceania</option>
-				<option value="SA" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'SA') {echo " selected";} ?>>South America</option>
+				<option value="Any"><?= __("All"); ?></option>
+				<option value="AF" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'AF') {echo " selected";} ?>><?= __("Africa"); ?></option>
+				<option value="AN" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'AN') {echo " selected";} ?>><?= __("Antarctica"); ?></option>
+				<option value="AS" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'AS') {echo " selected";} ?>><?= __("Asia"); ?></option>
+				<option value="EU" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'EU') {echo " selected";} ?>><?= __("Europe"); ?></option>
+				<option value="NA" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'NA') {echo " selected";} ?>><?= __("North America"); ?></option>
+				<option value="OC" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'OC') {echo " selected";} ?>><?= __("Oceania"); ?></option>
+				<option value="SA" <?php if ($this->optionslib->get_option('dxcluster_decont') == 'SA') {echo " selected";} ?>><?= __("South America"); ?></option>
 			</select>
 
-			<label class="my-1 me-2" for="band"><?php echo lang('gen_hamradio_band'); ?></label>
+			<label class="my-1 me-2" for="band"><?= __("Band"); ?></label>
 			<select id="band" class="form-select form-select-sm my-1 me-sm-2 w-auto" name="band">
-				<option value="All">All</option>
+				<option value="All"><?= __("All"); ?></option>
 				<?php foreach ($bands as $key => $bandgroup) {
 					echo '<optgroup label="' . strtoupper($key) . '">';
 					foreach ($bandgroup as $band) {
@@ -99,12 +106,12 @@
 		<table style="width:100%" class="table-sm table spottable table-bordered table-hover table-striped table-condensed">
 			<thead>
 				<tr class="log_title titles">
-					<th style="width:200px;"><?php echo lang('general_word_date'); ?>/<?php echo lang('general_word_time'); ?></th>
-					<th style="width:150px;"><?php echo lang('gen_hamradio_frequency'); ?></th>
-					<th><?php echo lang('gen_hamradio_call'); ?></th>
-					<th>DXCC</th>
-					<th style="width:150px;">Spotter</th>
-					<th><?php echo lang('general_word_message'); ?></th>
+					<th style="width:200px;"><?= __("Date"); ?>/<?= __("Time"); ?></th>
+					<th style="width:150px;"><?= __("Frequency"); ?></th>
+					<th><?= __("Call"); ?></th>
+					<th><?= __("DXCC"); ?></th>
+					<th style="width:150px;"><?= __("Spotter"); ?></th>
+					<th><?= __("Message"); ?></th>
 				</tr>
 			</thead>
 

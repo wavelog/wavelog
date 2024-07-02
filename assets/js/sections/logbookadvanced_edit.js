@@ -26,7 +26,7 @@ function editQsos() {
 					prepareEditDialog();
 				},
 				buttons: [{
-					label: 'Save',
+					label: lang_admin_save,
 					cssClass: 'btn-primary btn-sm',
 					id: 'saveButton',
 					action: function (dialogItself) {

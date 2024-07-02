@@ -2,6 +2,14 @@
 
 class Bands extends CI_Model {
 
+	private $logbooks_locations_array;
+	public function __construct()
+	{
+		$this->load->model('logbooks_model');
+		$this->logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+	}
+
+
 	public $bandslots = array(
 		"160m"=>0,
 		"80m"=>0,
@@ -57,7 +65,7 @@ class Bands extends CI_Model {
 		$results = array();
 
 		foreach($result as $band) {
-			$results['b'.strtoupper($band->band)] = array('CW' => $band->cw, 'SSB' => $band->ssb, 'DIGI' => $band->data);
+			$results['b'.strtoupper($band->band)] = array('CW' => $band->cw, 'SSB' => $band->ssb, 'DATA' => $band->data);
 		}
 
 		return $results;
@@ -96,16 +104,11 @@ class Bands extends CI_Model {
 	}
 
 	function get_worked_bands($award = 'None') {
-
-		$CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-
-		if (!$logbooks_locations_array) {
+		if (!$this->logbooks_locations_array) {
 			return array();
 		}
 
-		$location_list = "'".implode("','",$logbooks_locations_array)."'";
+		$location_list = "'".implode("','",$this->logbooks_locations_array)."'";
 
 		// get all worked slots from database
 		$data = $this->db->query(
@@ -138,14 +141,10 @@ class Bands extends CI_Model {
 	}
 
 	function get_worked_bands_distances() {
-		$CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-
-		if (!$logbooks_locations_array) {
+		if (!$this->logbooks_locations_array) {
 			return array();
 		}
-		$location_list = "'".implode("','",$logbooks_locations_array)."'";
+		$location_list = "'".implode("','",$this->logbooks_locations_array)."'";
 
         // get all worked slots from database
         $sql = "SELECT distinct LOWER(COL_BAND) as COL_BAND FROM ".$this->config->item('table_name')." WHERE station_id in (" . $location_list . ")";
@@ -169,15 +168,11 @@ class Bands extends CI_Model {
     }
 
 	function get_worked_sats() {
-		$CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-
-		if (!$logbooks_locations_array) {
+		if (!$this->logbooks_locations_array) {
 			return array();
 		}
 
-		$location_list = "'".implode("','",$logbooks_locations_array)."'";
+		$location_list = "'".implode("','",$this->logbooks_locations_array)."'";
 
 		// get all worked sats from database
 		$sql = "SELECT distinct col_sat_name FROM ".$this->config->item('table_name')." WHERE station_id in (" . $location_list . ") and coalesce(col_sat_name, '') <> '' ORDER BY col_sat_name";
@@ -193,15 +188,11 @@ class Bands extends CI_Model {
 	}
 
 	function get_worked_orbits() {
-		$CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-
-		if (!$logbooks_locations_array) {
+		if (!$this->logbooks_locations_array) {
 			return array();
 		}
 
-		$location_list = "'".implode("','",$logbooks_locations_array)."'";
+		$location_list = "'".implode("','",$this->logbooks_locations_array)."'";
 
 		// get all worked orbit types from database
 		$sql = "SELECT DISTINCT satellite.orbit AS orbit FROM ".$this->config->item('table_name')." LEFT JOIN satellite ON COL_SAT_NAME = satellite.name WHERE station_id in (" . $location_list . ") AND COL_PROP_MODE = 'SAT' AND satellite.orbit IS NOT NULL ORDER BY orbit ASC";
@@ -217,15 +208,11 @@ class Bands extends CI_Model {
 	}
 
 	function get_worked_bands_dok() {
-		$CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-
-		if (!$logbooks_locations_array) {
+		if (!$this->logbooks_locations_array) {
 			return array();
 		}
 
-		$location_list = "'".implode("','",$logbooks_locations_array)."'";
+		$location_list = "'".implode("','",$this->logbooks_locations_array)."'";
 
 		// get all worked slots from database
 		$data = $this->db->query(

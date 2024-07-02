@@ -12,107 +12,20 @@ class Hrdlog extends CI_Controller {
      * All QSOs not previously uploaded, will then be uploaded, one at a time
      */
 
-    function __construct()
-	{
+	function __construct() {
 		parent::__construct();
-		
+
 		if (ENVIRONMENT == 'maintenance' && $this->session->userdata('user_id') == '') {
-            echo "Maintenance Mode is active. Try again later.\n";
+			echo __("Maintenance Mode is active. Try again later.")."\n";
 			redirect('user/login');
 		}
 	}
 
     public function upload() {
-        $this->setOptions();
 
-        $this->load->model('logbook_model');
-
-        $station_ids = $this->logbook_model->get_station_id_with_hrdlog_code();
-
-        if ($station_ids) {
-            foreach ($station_ids as $station) {
-                $hrdlog_username = $station->hrdlog_username;
-                $hrdlog_code = $station->hrdlog_code;
-                if ($this->mass_upload_qsos($station->station_id, $hrdlog_username, $hrdlog_code)) {
-                    echo "QSOs have been uploaded to hrdlog.net.";
-                    log_message('info', 'QSOs have been uploaded to hrdlog.net.');
-                } else {
-                    echo "No QSOs found for upload.";
-                    log_message('info', 'No QSOs found for upload.');
-                }
-            }
-        } else {
-            echo "No station profiles with a hrdlog Code found.";
-            log_message('error', "No station profiles with a hrdlog Code found.");
-        }
-    }
-
-    function setOptions() {
-        $this->config->load('config');
-        ini_set('memory_limit', '-1');
-        ini_set('display_errors', 1);
-        ini_set('display_startup_errors', 1);
-        error_reporting(E_ALL);
-    }
-
-    /*
-     * Function gets all QSOs from given station_id, that are not previously uploaded to hrdlog.
-     * Adif is build for each qso, and then uploaded, one at a time
-     */
-    function mass_upload_qsos($station_id, $hrdlog_username, $hrdlog_code) {
-	    $i = 0;
-	    $data['qsos'] = $this->logbook_model->get_hrdlog_qsos($station_id);
-	    $errormessages = array();
-
-	    $this->load->library('AdifHelper');
-
-	    if ($data['qsos']) {
-		    foreach ($data['qsos']->result() as $qso) {
-			    $adif = $this->adifhelper->getAdifLine($qso);
-
-			    if ($qso->COL_HRDLOG_QSO_UPLOAD_STATUS == 'M') {
-				    $result = $this->logbook_model->push_qso_to_hrdlog($hrdlog_username, $hrdlog_code, $adif, true);
-			    } else {
-				    $result = $this->logbook_model->push_qso_to_hrdlog($hrdlog_username, $hrdlog_code, $adif);
-			    }
-
-			    if (($result['status'] == 'OK') || (($result['status'] == 'error') || ($result['status'] == 'duplicate'))) {
-				    $this->markqso($qso->COL_PRIMARY_KEY);
-				    $i++;
-				    $result['status'] = 'OK';
-			    } elseif ((substr($result['status'], 0, 11)  == 'auth_error')) {
-				    log_message('error', 'hrdlog upload failed for qso: Call: ' . $qso->COL_CALL . ' Band: ' . $qso->COL_BAND . ' Mode: ' . $qso->COL_MODE . ' Time: ' . $qso->COL_TIME_ON);
-				    log_message('error', 'hrdlog upload failed with the following message: ' . $result['message']);
-				    log_message('error', 'hrdlog upload stopped for Station_ID: ' . $station_id);
-				    $errormessages[] = $result['message'] . 'Invalid HRDLog-Code, stopped at Call: ' . $qso->COL_CALL . ' Band: ' . $qso->COL_BAND . ' Mode: ' . $qso->COL_MODE . ' Time: ' . $qso->COL_TIME_ON;
-				    $result['status'] = 'Error';
-				    break; /* If key is invalid, immediate stop syncing for more QSOs of this station */
-			    } else {
-				    log_message('error', 'hrdlog upload failed for qso: Call: ' . $qso->COL_CALL . ' Band: ' . $qso->COL_BAND . ' Mode: ' . $qso->COL_MODE . ' Time: ' . $qso->COL_TIME_ON);
-				    log_message('error', 'hrdlog upload failed with the following message: ' . $result['message']);
-				    $result['status'] = 'Error';
-				    $errormessages[] = $result['message'] . ' Call: ' . $qso->COL_CALL . ' Band: ' . $qso->COL_BAND . ' Mode: ' . $qso->COL_MODE . ' Time: ' . $qso->COL_TIME_ON;
-			    }
-		    }
-		    if ($i == 0) {
-			    $result['status']='Error';
-		    }
-		    $result['count'] = $i;
-		    $result['errormessages'] = $errormessages;
-		    return $result;
-	    } else {
-		    $result['status'] = 'Error';
-		    $result['count'] = $i;
-		    $result['errormessages'] = $errormessages;
-		    return $result;
-	    }
-    }
-
-    /*
-     * Function marks QSO with given primarykey as uploaded to hrdlog
-     */
-    function markqso($primarykey) {
-        $this->logbook_model->mark_hrdlog_qsos_sent($primarykey);
+		$this->load->model('Hrdlog_model');
+		$this->Hrdlog_model->upload();
+        
     }
 
     /*
@@ -135,55 +48,52 @@ class Hrdlog extends CI_Controller {
      * Used for ajax-function when selecting log for upload to hrdlog
      */
     public function upload_station() {
-        $this->setOptions();
-        $this->load->model('stations');
+	    if (!($this->config->item('disable_manual_hrdlog'))) {
+			$this->load->model('stations');
+			$this->load->model('Hrdlog_model');
+			
+		    $this->Hrdlog_model->setOptions();
 
-        $postData = $this->input->post();
+		    $postData = $this->input->post();
 
-        $this->load->model('logbook_model');
-        $result = $this->logbook_model->exists_hrdlog_credentials($postData['station_id']);
-        $hrdlog_username = $result->hrdlog_username;
-        $hrdlog_code = $result->hrdlog_code;
-        header('Content-type: application/json');
-        $result = $this->mass_upload_qsos($postData['station_id'], $hrdlog_username, $hrdlog_code);
-        if ($result['status'] == 'OK') {
-            $stationinfo = $this->stations->stations_with_hrdlog_code();
-            $info = $stationinfo->result();
+		    $this->load->model('logbook_model');
+		    $result = $this->logbook_model->exists_hrdlog_credentials($postData['station_id']);
+		    $hrdlog_username = $result->hrdlog_username;
+		    $hrdlog_code = $result->hrdlog_code;
+		    header('Content-type: application/json');
+		    $result = $this->Hrdlog_model->mass_upload_qsos($postData['station_id'], $hrdlog_username, $hrdlog_code);
+		    if ($result['status'] == 'OK') {
+			    $stationinfo = $this->stations->stations_with_hrdlog_code();
+			    $info = $stationinfo->result();
 
-            $data['status'] = 'OK';
-            $data['info'] = $info;
-            $data['infomessage'] = $result['count'] . " QSOs are now uploaded to hrdlog";
-            $data['errormessages'] = $result['errormessages'];
-            echo json_encode($data);
-        } else {
-            $data['status'] = 'Error';
-            $data['info'] = 'No QSOs found to upload.';
-            $data['errormessages'] = $result['errormessages'];
-            echo json_encode($data);
-        }
+			    $data['status'] = 'OK';
+			    $data['info'] = $info;
+			    $data['infomessage'] =  sprintf(_ngettext("%d QSO is now uploaded to HRDlog", "%d QSOs are now uploaded to HRDlog", $result['count']), $result['count']);
+			    $data['errormessages'] = $result['errormessages'];
+			    echo json_encode($data);
+		    } else {
+			    $data['status'] = 'Error';
+			    $data['info'] = __("No QSOs found to upload.");
+			    $data['errormessages'] = $result['errormessages'];
+			    echo json_encode($data);
+		    }
+	    } else {
+		    redirect('dashboard');
+	    }
     }
 
     public function mark_hrdlog() {
-        // Set memory limit to unlimited to allow heavy usage
-        ini_set('memory_limit', '-1');
+	    // As far as i did research, this one is ONLY Called by "Mark-QSO" at the UI
+	    $this->load->model('hrdlog_model');
+	    $this->load->model('stations');
+	    $station_id = $this->security->xss_clean($this->input->post('station_profile'));
 
-        $station_id = $this->security->xss_clean($this->input->post('station_profile'));
-
-        $this->load->model('adif_data');
-
-        $data['qsos'] = $this->adif_data->export_custom($this->input->post('from'), $this->input->post('to'), $station_id);
-
-        $this->load->model('logbook_model');
-
-	if (isset($data['qsos'])) {
-		foreach ($data['qsos']->result() as $qso)
-		{
-			$this->logbook_model->mark_hrdlog_qsos_sent($qso->COL_PRIMARY_KEY);
-		}
-	}
-
-        $this->load->view('interface_assets/header', $data);
-        $this->load->view('hrdlog/mark_hrdlog', $data);
-        $this->load->view('interface_assets/footer');
+	    $data['qsos']=[];
+	    if ($this->stations->check_station_is_accessible($station_id)) {	// Hard Exit if station_profile not accessible
+		    $data['qsos']=$this->hrdlog_model->mass_mark_hrdlog_sent($station_id,$this->security->xss_clean($this->input->post('from')),$this->security->xss_clean($this->input->post('to')));
+	    }
+	    $this->load->view('interface_assets/header', $data);
+	    $this->load->view('hrdlog/mark_hrdlog', $data);
+	    $this->load->view('interface_assets/footer');
     }
 }

@@ -15,7 +15,7 @@
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/<?php echo $this->optionslib->get_theme();?>/overrides.css">
 	<?php } ?>
 
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/fontawesome/css/all.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/fontawesome/css/all.min.css">
 
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.fancybox.min.css" />
 
@@ -32,7 +32,7 @@
 	<?php if (file_exists(APPPATH.'../assets/css/custom.css')) { echo '<link rel="stylesheet" href="'.base_url().'assets/css/custom.css">'; } ?>
 
 	<script>
-		var userName = 'visitor'
+		var userName = 'visitor';
 	</script>
 
 	<?php if (file_exists(APPPATH . '../assets/js/sections/custom.js')) {
@@ -61,16 +61,18 @@
 
 		<ul class="navbar-nav">
 		<?php
-		if (!empty($slug)) { ?>
-		<li class="nav-item">
-			<a class="nav-link" href="<?php echo site_url('visitor/satellites/'.$slug);?>">Gridsquares</a>
-		</li>
-		<?php
+		if (!empty($slug)) { 
+			$public_maps_option = $this->optionslib->get_option('public_maps') ?? 'true';
+			if ($public_maps_option == 'true') { ?>
+				<li class="nav-item">
+					<a class="nav-link" href="<?php echo site_url('visitor/satellites/'.$slug);?>"><?= __("Gridsquares"); ?></a>
+				</li>
+		<?php }
 			$this->CI =& get_instance();
-			if ($this->CI->oqrs_enabled($slug)) {
+			if ($this->CI->oqrs_enabled($slug) && !$this->CI->config->item('disable_oqrs')) {
 			?>
 			<li class="nav-item">
-				<a class="nav-link" href="<?php echo site_url('oqrs');?>">OQRS</a>
+				<a class="nav-link" href="<?php echo site_url('oqrs');?>"><?= __("OQRS"); ?></a>
 			</li>
 			<?php } 
 		} ?>
@@ -78,12 +80,12 @@
 		<ul class="navbar-nav ms-auto">
 			<?php if($this->optionslib->get_option('public_github_button') != "false") { ?>  <!--  != false  causes to set it on per default -->
 				<li class="nav-item">
-					<a class="btn btn-secondary" href="https://github.com/wavelog/wavelog" target="_blank">Visit Wavelog on Github</a>
+					<a class="btn btn-secondary" href="https://github.com/wavelog/wavelog" target="_blank"><?= __("Visit Wavelog on Github"); ?></a>
 				</li>
 			<?php } ?>
 			<?php if ($this->uri->segment(1) != "oqrs") { ?>
 				<li class="nav-item">
-					<a class="btn btn-primary ms-2" href="<?php echo site_url('user/login');?>">Login</a>
+					<a class="btn btn-primary ms-2" href="<?php echo site_url('user/login');?>"><?= __("Login"); ?></a>
 				</li>
 			<?php } ?>
 		</ul>
@@ -92,10 +94,10 @@
 				$this->CI =& get_instance();
 				if ($this->CI->public_search_enabled($slug)) { ?>
 					<form method="post" name="searchForm" action="<?php echo site_url('visitor/search'); ?>" onsubmit="return validateForm()" class="d-flex align-items-center">
-						<input class="form-control me-sm-2" id="searchcall" type="search" name="callsign" placeholder="<?php echo lang('menu_search_text'); ?>" <?php if (isset($callsign) && $callsign != '') { echo 'value="'.strtoupper($callsign).'"'; } ?> aria-label="Search" data-toogle="tooltip" data-bs-placement="bottom" title="Please enter a callsign!">
+						<input class="form-control me-sm-2" id="searchcall" type="search" name="callsign" placeholder="<?= __("Search Callsign"); ?>" <?php if (isset($callsign) && $callsign != '') { echo 'value="'.strtoupper($callsign).'"'; } ?> aria-label="Search" data-toogle="tooltip" data-bs-placement="bottom" title="<?= __("Please enter a callsign!"); ?>">
 						<input type="hidden" name="public_slug" value="<?php echo $slug; ?>">
-						<button title="<?php echo lang('menu_search_button'); ?>" class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i>
-							<div class="d-inline d-lg-none" style="padding-left: 10px"><?php echo lang('menu_search_button'); ?></div>
+						<button title="<?= __("Search"); ?>" class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i>
+							<div class="d-inline d-lg-none" style="padding-left: 10px"><?= __("Search"); ?></div>
 						</button>
 					</form>
 				<?php }

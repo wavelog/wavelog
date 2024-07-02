@@ -12,7 +12,7 @@
     <?php echo $page_title; ?>
   </div>
   <div class="card-body">
-    <h5 class="card-title">Editing Description for API Key: <?php echo $api_info['key']; ?></h5>
+    <h5 class="card-title"><?= __("Editing Description for API Key"); ?>: <?php echo $api_info['key']; ?></h5>
 
 <?php if(validation_errors()) { ?>
 <div class="alert alert-warning" role="alert">
@@ -23,14 +23,14 @@
 
 	<form method="post" action="<?php echo site_url('api/edit'); ?>/<?php echo $api_info['key']; ?>" name="APIDescription">
 	  <div class="mb-3">
-	    <label for="APIDescription">API Description</label>
+	    <label for="APIDescription"><?= __("API Description"); ?></label>
 	    <input type="text" class="form-control" name="api_desc" id="APIDescription" aria-describedby="APIDescriptionHelp" value="<?php echo $api_info['description']; ?>">
-	    <small id="APIDescriptionHelp" class="form-text text-muted">Simple name to describe what you use this API for.</small>
+	    <small id="APIDescriptionHelp" class="form-text text-muted"><?= __("Simple name to describe what you use this API for."); ?></small>
 	  </div>
 
 	  <input type="hidden" name="api_key" value="<?php echo $api_info['key']; ?>">
 
-	  <button type="submit" class="btn btn-primary">Submit</button>
+	  <button type="submit" class="btn btn-primary"><?= __("Save"); ?></button>
 	</form>
 
   </div>

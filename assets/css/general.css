@@ -1,3 +1,7 @@
+body {
+	font-family: "Twemoji Country Flags", "Helvetica", "Comic Sans", serif;
+}
+
 @media (min-width: 992px) {
 	.modal-lg,
 	.modal-xl {
@@ -83,6 +87,10 @@
 
 }
 /* ============ small devices .end// ============ */
+
+.modal-header {
+	display: initial;
+}
 
 .dropdown-menu {
 	z-index: 2000 !important;
@@ -270,6 +278,7 @@ thead > tr > td {
 
 TD.eqsl {
 	width: 33px;
+	white-space: nowrap;
 }
 
 .eqsl-green {
@@ -280,6 +289,11 @@ TD.eqsl {
 .eqsl-red {
 	color: #f00 !important;
 	font-size: 1.1em;
+}
+
+TD.qsl {
+	width: 33px;
+	white-space: nowrap;
 }
 
 .qsl-green {
@@ -302,8 +316,24 @@ TD.eqsl {
 	font-size: 1.1em;
 }
 
+TD.clublog {
+	width: 33px;
+	white-space: nowrap;
+}
+
+.clublog-green {
+	color: #00a000 !important;
+	font-size: 1.1em;
+}
+
+.clublog-red {
+	color: #f00 !important;
+	font-size: 1.1em;
+}
+
 TD.qrz {
 	width: 33px;
+	white-space: nowrap;
 }
 
 .qrz-green {
@@ -318,6 +348,7 @@ TD.qrz {
 
 TD.lotw {
 	width: 33px;
+	white-space: nowrap;
 }
 
 .lotw-green {
@@ -654,11 +685,6 @@ div#station_logbooks_linked_table_paginate {
 	margin-bottom: 0px;
 }
 
-#advancedmap {
-	height: calc(100vh - 280px) !important;
-	max-height: 1000px !important;
-}
-
 .lotw-cert-list table {
 	margin-bottom: 0px;
 }
@@ -694,31 +720,46 @@ div#station_logbooks_linked_table_paginate {
 	margin-right: 30px;
 }
 
-.sfletable {
-	height: 470px;
+@media (min-width: 768px) {
+
+	.sfletable.table {
+		width: 100%;
+	}
+
+	.sfletable.table thead,
+	.sfletable.table tbody tr {
+		display: block;
+		width: 100%;
+		table-layout: fixed;
+		display: inline-table;
+	}
+
+	.sfletable.table tbody {
+		width: 95%;
+		overflow-y: scroll;
+		position: absolute;
+	}
+
+	.simplefle {
+		--bs-card-bg: none;
+	}
+
+	#sfle_textarea {
+		width: 100%;
+		box-sizing: border-box;
+	}
 }
 
-.sfletable.table {
-	width: 100%;
-}
+@media (max-width: 767px) {
 
-.sfletable.table thead,
-.sfletable.table tbody tr {
-	display: block;
-	width: 100%;
-	table-layout: fixed;
-	display: inline-table;
-}
+	.sfletable.table {
+		overflow-x: auto;
+		font-size: 0.8em;
+	}
 
-.sfletable.table tbody {
-	width: 95%;
-	overflow-y: scroll;
-	max-height: 440px;
-	position: absolute;
-}
-
-.simplefle {
-	--bs-card-bg: none;
+	#refs_hint {
+		font-size: 0.8em;
+	}
 }
 
 .red {
@@ -828,9 +869,14 @@ label {
 }
 
 .coordinates {
-    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+	justify-content: center;
     align-items: stretch;
 }
+
 .cohidden {
     display:none;
 }

@@ -150,8 +150,10 @@ class User_Model extends CI_Model {
 		$user_pota_lookup, $user_show_notes, $user_column1, $user_column2, $user_column3, $user_column4, $user_column5,
 		$user_show_profile_image, $user_previous_qsl_type, $user_amsat_status_upload, $user_mastodon_url,
 		$user_default_band, $user_default_confirmation, $user_qso_end_times, $user_quicklog, $user_quicklog_enter,
-		$language, $user_hamsat_key, $user_hamsat_workable_only, $user_iota_to_qso_tab, $user_sota_to_qso_tab,
-		$user_wwff_to_qso_tab, $user_pota_to_qso_tab, $user_sig_to_qso_tab, $user_dok_to_qso_tab) {
+		$user_language, $user_hamsat_key, $user_hamsat_workable_only, $user_iota_to_qso_tab, $user_sota_to_qso_tab,
+		$user_wwff_to_qso_tab, $user_pota_to_qso_tab, $user_sig_to_qso_tab, $user_dok_to_qso_tab,
+		$user_lotw_name, $user_lotw_password, $user_eqsl_name, $user_eqsl_password, $user_clublog_name, $user_clublog_password,
+		$user_winkey) {
 		// Check that the user isn't already used
 		if(!$this->exists($username)) {
 			$data = array(
@@ -186,7 +188,14 @@ class User_Model extends CI_Model {
 				'user_qso_end_times' => xss_clean($user_qso_end_times),
 				'user_quicklog' => xss_clean($user_quicklog),
 				'user_quicklog_enter' => xss_clean($user_quicklog_enter),
-				'language' => xss_clean($language)
+				'user_language' => xss_clean($user_language),
+				'user_lotw_name' => xss_clean($user_lotw_name),
+				'user_lotw_password' => xss_clean($user_lotw_password),
+				'user_eqsl_name' => xss_clean($user_eqsl_name),
+				'user_eqsl_password' => xss_clean($user_eqsl_password),
+				'user_clublog_name' => xss_clean($user_clublog_name),
+				'user_clublog_password' => xss_clean($user_clublog_password),
+				'winkey' => xss_clean($user_winkey)
 			);
 
 			// Check the password is valid
@@ -260,11 +269,11 @@ class User_Model extends CI_Model {
 					'user_amsat_status_upload' => xss_clean($fields['user_amsat_status_upload']),
 					'user_mastodon_url' => xss_clean($fields['user_mastodon_url']),
 					'user_default_band' => xss_clean($fields['user_default_band']),
-					'user_default_confirmation' => (isset($fields['user_default_confirmation_qsl']) ? 'Q' : '').(isset($fields['user_default_confirmation_lotw']) ? 'L' : '').(isset($fields['user_default_confirmation_eqsl']) ? 'E' : '').(isset($fields['user_default_confirmation_qrz']) ? 'Z' : ''),
+					'user_default_confirmation' => (isset($fields['user_default_confirmation_qsl']) ? 'Q' : '').(isset($fields['user_default_confirmation_lotw']) ? 'L' : '').(isset($fields['user_default_confirmation_eqsl']) ? 'E' : '').(isset($fields['user_default_confirmation_qrz']) ? 'Z' : '').(isset($fields['user_default_confirmation_clublog']) ? 'C' : ''),
 					'user_qso_end_times' => xss_clean($fields['user_qso_end_times']),
 					'user_quicklog' => xss_clean($fields['user_quicklog']),
 					'user_quicklog_enter' => xss_clean($fields['user_quicklog_enter']),
-					'language' => xss_clean($fields['language']),
+					'user_language' => xss_clean($fields['user_language']),
 					'winkey' => xss_clean($fields['user_winkey']),
 				);
 
@@ -291,28 +300,44 @@ class User_Model extends CI_Model {
 					return EEMAILEXISTS;
 				}
 
+				$pwd_placeholder = '**********';
+
 				// Hash password
 				if($fields['user_password'] != NULL)
 				{
-					$data['user_password'] = $this->_hash($fields['user_password']);
-					if($data['user_password'] == EPASSWORDINVALID) {
-						return EPASSWORDINVALID;
+					if ($fields['user_password'] !== $pwd_placeholder) {
+						$data['user_password'] = $this->_hash($fields['user_password']);
+						if($data['user_password'] == EPASSWORDINVALID) {
+							return EPASSWORDINVALID;
+						}
 					}
 				}
 
-				if($fields['user_lotw_password'] != NULL)
+				if($fields['user_lotw_password'] != '')
 				{
-					$data['user_lotw_password'] = $fields['user_lotw_password'];
+					if ($fields['user_lotw_password'] !== $pwd_placeholder) {
+						$data['user_lotw_password'] = $fields['user_lotw_password'];
+					}
+				} else {
+					$data['user_lotw_password'] = NULL;
 				}
 
-				if($fields['user_clublog_password'] != NULL)
+				if($fields['user_clublog_password'] != '')
 				{
-					$data['user_clublog_password'] = $fields['user_clublog_password'];
+					if ($fields['user_clublog_password'] !== $pwd_placeholder) {
+						$data['user_clublog_password'] = $fields['user_clublog_password'];
+					}
+				} else {
+					$data['user_clublog_password'] = NULL;
 				}
 
-				if($fields['user_eqsl_password'] != NULL)
+				if($fields['user_eqsl_password'] != '')
 				{
-					$data['user_eqsl_password'] = $fields['user_eqsl_password'];
+					if ($fields['user_eqsl_password'] !== $pwd_placeholder) {
+						$data['user_eqsl_password'] = $fields['user_eqsl_password'];
+					}
+				} else {
+					$data['user_eqsl_password'] = NULL;
 				}
 
 				// Update the user
@@ -378,9 +403,11 @@ class User_Model extends CI_Model {
 	// FUNCTION: void update_session()
 	// Updates a user's login session after they've logged in
 	// TODO: This should return bool TRUE/FALSE or 0/1
-	function update_session($id) {
+	function update_session($id, $u = null) {
 
-		$u = $this->get_by_id($id);
+		if ($u == null) {
+			$u = $this->get_by_id($id);
+		}
 
 		$userdata = array(
 			'user_id'		 => $u->row()->user_id,
@@ -390,11 +417,12 @@ class User_Model extends CI_Model {
 			'operator_callsign'	 => ((($this->session->userdata('operator_callsign') ?? '') == '') ? $u->row()->user_callsign : $this->session->userdata('operator_callsign')),
 			'user_locator'		 => $u->row()->user_locator,
 			'user_lotw_name'	 => $u->row()->user_lotw_name,
+			'user_clublog_name'	 => $u->row()->user_clublog_name ?? '',
 			'user_eqsl_name'	 => $u->row()->user_eqsl_name,
 			'user_eqsl_qth_nickname' => $u->row()->user_eqsl_qth_nickname,
 			'user_hash'		 => $this->_hash($u->row()->user_id."-".$u->row()->user_type),
-			'radio' => isset($_COOKIE["radio"])?$_COOKIE["radio"]:"",
-			'station_profile_id' => isset($_COOKIE["station_profile_id"])?$_COOKIE["station_profile_id"]:"",
+			'radio' => $this->session->userdata('radio') ?? '',
+			'station_profile_id' => $this->session->userdata('station_profile_id') ?? '',
 			'user_measurement_base' => $u->row()->user_measurement_base,
 			'user_date_format' => $u->row()->user_date_format,
 			'user_stylesheet' => $u->row()->user_stylesheet,
@@ -418,7 +446,7 @@ class User_Model extends CI_Model {
 			'user_quicklog' => isset($u->row()->user_quicklog) ? $u->row()->user_quicklog : 1,
 			'user_quicklog_enter' => isset($u->row()->user_quicklog_enter) ? $u->row()->user_quicklog_enter : 1,
 			'active_station_logbook' => $u->row()->active_station_logbook,
-			'language' => isset($u->row()->language) ? $u->row()->language: 'english',
+			'user_language' => isset($u->row()->user_language) ? $u->row()->user_language: 'english',
 			'isWinkeyEnabled' => $u->row()->winkey,
 			'hasQrzKey' => $this->hasQrzKey($u->row()->user_id)
 		);
@@ -429,7 +457,7 @@ class User_Model extends CI_Model {
 	// FUNCTION: bool validate_session()
 	// Validate a user's login session
 	// If the user's session is corrupted in any way, it will clear the session
-	function validate_session() {
+	function validate_session($u = null) {
 
 		if($this->session->userdata('user_id'))
 		{
@@ -440,7 +468,7 @@ class User_Model extends CI_Model {
 			if(ENVIRONMENT != 'maintenance') {
 				if($this->_auth($user_id."-".$user_type, $user_hash)) {
 					// Freshen the session
-					$this->update_session($user_id);
+					$this->update_session($user_id, $u);
 					return 1;
 				} else {
 					$this->clear_session();
@@ -450,7 +478,7 @@ class User_Model extends CI_Model {
 				if($user_type == '99') {
 					if($this->_auth($user_id."-".$user_type, $user_hash)) {
 						// Freshen the session
-						$this->update_session($user_id);
+						$this->update_session($user_id, $u);
 						return 1;
 					} else {
 						$this->clear_session();
@@ -507,8 +535,13 @@ class User_Model extends CI_Model {
 		if($this->config->item('auth_mode') > $level) {
 			$level = $this->config->item('auth_mode');
 		}
-		if(($this->validate_session()) && ($u->row()->user_type >= $level) || $this->config->item('use_auth') == FALSE || $level == 0) {
-			$this->set_last_seen($u->row()->user_id);
+		if(($this->validate_session($u)) && ($u->row()->user_type >= $level) || $this->config->item('use_auth') == FALSE || $level == 0) {
+			$ls = strtotime($u->row()->last_seen ?? '1970-01-01');
+			$n = time();
+			if (($n - $ls) > 60) {	// Reduce load. 'set_last_seen()' Shouldn't be called at anytime. 60 seconds diff is enough.
+
+				$this->set_last_seen($u->row()->user_id);
+			}
 			return 1;
 		} else {
 			return 0;

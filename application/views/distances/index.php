@@ -2,24 +2,25 @@
 
     <br>
 
-    <h2><?php echo lang('statistics_distances_worked'); ?></h2>
+    <h2><?= __("Distances Worked"); ?></h2>
     <script>
-        var lang_general_word_qso_data = '<?php echo lang('general_word_qso_data'); ?>';
-        var lang_statistics_distances_worked = '<?php echo lang('statistics_distances_worked'); ?>';
-        var lang_statistics_distances_part1_contacts_were_plotted_furthest = '<?php echo lang('statistics_distances_part1_contacts_were_plotted_furthest'); ?>';
-        var lang_statistics_distances_part2_contacts_were_plotted_furthest = '<?php echo lang('statistics_distances_part2_contacts_were_plotted_furthest'); ?>';
-        var lang_statistics_distances_part3_contacts_were_plotted_furthest = '<?php echo lang('statistics_distances_part3_contacts_were_plotted_furthest'); ?>';
-        var lang_statistics_distances_number_of_qsos = '<?php echo lang('statistics_distances_number_of_qsos'); ?>';
-        var lang_gen_hamradio_distance = '<?php echo lang('gen_hamradio_distance'); ?>';
-        var lang_statistics_distances_callsigns_worked = '<?php echo lang('statistics_distances_callsigns_worked'); ?>';
-        var lang_statistics_distances_qsos_with = '<?php echo lang('statistics_distances_qsos_with'); ?>';
+        var lang_general_word_qso_data = '<?= __("QSO Data"); ?>';
+        var lang_statistics_distances_worked = '<?= __("Distances Worked"); ?>';
+        var lang_statistics_distances_part1_contacts_were_plotted_furthest = '<?= __("contacts were plotted.<br /> Your furthest contact was with"); ?>';
+        var lang_statistics_distances_part2_contacts_were_plotted_furthest = '<?= __("in gridsquare"); ?>';
+        var lang_statistics_distances_part3_contacts_were_plotted_furthest = '<?= __("the distance was"); ?>';
+        var lang_statistics_distances_number_of_qsos = '<?= __("Number of QSOs"); ?>';
+        var lang_gen_hamradio_distance = '<?= __("Distance"); ?>';
+        var lang_statistics_distances_callsigns_worked = '<?= __("Callsign(s) worked (max 5 shown)"); ?>';
+        var lang_statistics_distances_qsos_with = '<?= __("QSOs with"); ?>';
     </script>
     <div id="distances_div">
         <form class="d-flex align-items-center">
-            <label class="my-1 me-2" for="distplot_bands"><?php echo lang('gen_band_selection'); ?></label>
+            <label class="my-1 me-2" for="distplot_bands"><?= __("Band selection"); ?></label>
             <select class="form-select my-1 me-sm-2 w-auto"  id="distplot_bands">
+				<option value="All"><?= __("All"); ?></option>
                 <?php if (count($sats_available) != 0) { ?>
-                    <option value="sat">SAT</option>
+                    <option value="sat"><?= __("SAT"); ?></option>
                 <?php } ?>
                 <?php foreach($bands_available as $band) {
                     echo '<option value="'.$band.'"';
@@ -30,9 +31,9 @@
                 } ?>
             </select>
             <?php if (count($sats_available) != 0) { ?>
-                <label class="my-1 me-2" id="satslabel" for="distplot_sats" <?php if ($user_default_band != "SAT") { ?>style="display: none;"<?php } ?>><?php echo lang('general_word_satellite')?></label>
+                <label class="my-1 me-2" id="satslabel" for="distplot_sats" <?php if ($user_default_band != "SAT") { ?>style="display: none;"<?php } ?>><?= __("Satellite")?></label>
                 <select class="form-select my-1 me-sm-2 w-auto"  id="distplot_sats" <?php if ($user_default_band != "SAT") { ?>style="display: none;"<?php } ?>>
-                    <option value="All"><?php echo lang('general_word_all')?></option>
+                    <option value="All"><?= __("All")?></option>
                     <?php foreach($sats_available as $sat) {
                         echo '<option value="' . $sat . '"' . '>' . $sat . '</option>'."\n";
                     } ?>
@@ -40,16 +41,16 @@
             <?php } else { ?>
                 <input id="distplot_sats" type="hidden" value="All"></input>
             <?php } ?>
-			<label class="my-1 me-2" id="orbitslabel" for="orbits" <?php if ($user_default_band != "SAT") { ?>style="display: none;"<?php } ?>><?php echo lang('gridsquares_orbit'); ?></label>
+			<label class="my-1 me-2" id="orbitslabel" for="orbits" <?php if ($user_default_band != "SAT") { ?>style="display: none;"<?php } ?>><?= __("Orbit"); ?></label>
                 <select class="form-select my-1 me-sm-2 w-auto"  id="orbits" <?php if ($user_default_band != "SAT") { ?>style="display: none;"<?php } ?>>
-                    <option value="All"><?php echo lang('general_word_all')?></option>
+                    <option value="All"><?= __("All")?></option>
                     <?php
                     foreach($orbits as $orbit){
                         echo '<option value="' . $orbit . '">' . strtoupper($orbit) . '</option>'."\n";
                     }
                     ?>
             </select>
-            <button id="plot" type="button" name="plot" class="btn btn-primary ld-ext-right ld-ext-right-plot" onclick="distPlot(this.form)"><?php echo lang('filter_options_show')?><div class="ld ld-ring ld-spin"></div></button>
+            <button id="plot" type="button" name="plot" class="btn btn-primary ld-ext-right ld-ext-right-plot" onclick="distPlot(this.form)"><?= __("Show")?><div class="ld ld-ring ld-spin"></div></button>
         </form>
     </div>
 

@@ -58,11 +58,19 @@ L.Maidenhead = L.LayerGroup.extend({
 		for (var lon = left; lon < right; lon += (unit*2)) {
 			if (lon > -180 || lon < 180) {
 				for (var lat = bottom; lat < top; lat += unit) {
-					var bounds = [[lat,lon],[lat+unit,lon+(unit*2)]];
+					if (zoom == 10) {
+						var bounds = [[lat,lon],[lat-unit,lon+(unit*2)]];
+					} else if (zoom == 11) { // TODO: needs fixing, 6 char grid is placed wrong
+						var bounds = [[lat,lon],[lat+unit,lon+(unit*2)]];
+					} else if (zoom == 12) { // TODO: needs fixing, 6 char grid is placed wrong
+						var bounds = [[lat,lon],[lat+unit,lon+(unit*2)]];
+					} else {
+						var bounds = [[lat,lon],[lat+unit,lon+(unit*2)]];
+					}
 					var locator = this._getLocator(lon,lat);
-	
+
 					if(grid_two.includes(locator) || grid_four.includes(locator) || grid_six.includes(locator)) {
-	
+
 						if(grid_two_confirmed.includes(locator) || grid_four_confirmed.includes(locator) || grid_six_confirmed.includes(locator)) {
 							var rectConfirmed = L.rectangle(bounds, {className: 'grid-rectangle grid-confirmed', color: 'rgba(144,238,144, 0.6)', weight: 1, fillOpacity: 1, fill:true, interactive: false});
 							this.addLayer(rectConfirmed);

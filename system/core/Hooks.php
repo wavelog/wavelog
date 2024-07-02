@@ -92,10 +92,11 @@ class CI_Hooks {
 
 		// If hooks are not enabled in the config file
 		// there is nothing else to do
-		if ($config->item('enable_hooks') === FALSE)
-		{
-			return;
-		}
+		
+		// if ($config->item('enable_hooks') === FALSE)  // we force-enabeled hooks for the gettext translations
+		// {
+		// 	return;
+		// }
 
 		// Grab the "hooks" definition file.
 		if (file_exists(APPPATH.'config/hooks.php'))

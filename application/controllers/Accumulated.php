@@ -18,7 +18,7 @@ class Accumulated extends CI_Controller
     public function index()
     {
         // Render Page
-        $data['page_title'] = $this->lang->line('menu_accumulated_statistics');
+        $data['page_title'] = __("Accumulated Statistics");
 
         $this->load->model('bands');
 
