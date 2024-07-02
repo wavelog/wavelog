@@ -39,7 +39,7 @@
 			</select>
 
 
-		<button id="plot" type="button" name="plot" class="btn btn-primary me-1 ld-ext-right ld-ext-right-plot" onclick="plot_sat()"><?php echo lang('gridsquares_button_plot'); ?><div class="ld ld-ring ld-spin"></div></button>
+		<button id="plot" type="button" name="plot" class="btn btn-primary me-1 ld-ext-right ld-ext-right-plot" onclick="plot_sat()"><?= __("Plot"); ?><div class="ld ld-ring ld-spin"></div></button>
 	</form>
 
 </div>
