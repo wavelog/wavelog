@@ -24,11 +24,11 @@ class Dashboard extends CI_Controller
 		
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-		
+
 		// Calculate Lat/Lng from Locator to use on Maps
 		if ($this->session->userdata('user_locator')) {
 			$this->load->library('qra');
-			
+
 			$qra_position = $this->qra->qra2latlong($this->session->userdata('user_locator'));
 			if ($qra_position) {
 				$data['qra'] = "set";
@@ -40,26 +40,26 @@ class Dashboard extends CI_Controller
 		} else {
 			$data['qra'] = "none";
 		}
-		
+
 		$this->load->model('stations');
 		$this->load->model('setup_model');
-		
+
 		$data['countryCount'] = $this->setup_model->getCountryCount();
 		$data['logbookCount'] = $this->setup_model->getLogbookCount();
 		$data['locationCount'] = $this->setup_model->getLocationCount();
-		
+
 		$data['current_active'] = $this->stations->find_active();
-		
+
 		$data['themesWithoutMode'] = $this->setup_model->checkThemesWithoutMode();
 		$data['dashboard_map'] = $this->optionslib->get_option('dashboard_map');
-		
+
 		$data['user_map_custom'] = $this->optionslib->get_map_custom();
-		
+
 		$this->load->model('cat');
 		$this->load->model('vucc');
-		
+
 		$data['radio_status'] = $this->cat->recent_status();
-		
+
 		// Store info
 		$data['todays_qsos'] = $this->logbook_model->todays_qsos($logbooks_locations_array);
 		$data['total_qsos'] = $this->logbook_model->total_qsos($logbooks_locations_array);
