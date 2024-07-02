@@ -505,7 +505,7 @@
             <table width="100%">
                     <tr>
                         <td><?= __("Station") . ' ' . __("Callsign"); ?></td>
-                        <td><?php echo $row->station_callsign; ?></td>
+                        <td><?php echo str_replace("0","&Oslash;",strtoupper($row->station_callsign)); ?></td>
                     </tr>
                     <tr>
                         <td><?= __("Station") . ' ' . __("Name"); ?></td>

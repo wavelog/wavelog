@@ -353,7 +353,7 @@
 
 						<!-- Logged in As -->
 						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><i class="fas fa-user"></i> <?php echo $this->session->userdata('user_callsign'); ?></a>
+							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><i class="fas fa-user"></i> <?php echo str_replace("0","&Oslash;", strtoupper($this->session->userdata('user_callsign'))); ?></a>
 
 							<ul class="dropdown-menu dropdown-menu-right header-dropdown">
 								<?php
