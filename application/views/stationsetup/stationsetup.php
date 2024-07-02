@@ -91,9 +91,12 @@
                     <?= __("Station Locations"); ?>
                 </div>
                 <div class="card-body">
-				<p class="card-text"><?= __("Station Locations define operating locations, such as your QTH, a friends QTH, or a portable station."); ?></p>
-				<p class="card-text"><?= __("Similar to logbooks, a station profile keeps a set of QSOs together."); ?></p>
-				<p class="card-text"><?= __("Only one station may be active at a time. In the table below this is shown with the -Active Station- badge."); ?></p>
+				<p class="card-text">
+					<?= __("Station Locations define operating locations, such as your QTH, a friends QTH, or a portable station."); ?><br>
+					<?= __("Similar to logbooks, a station profile keeps a set of QSOs together."); ?><br>
+					<?= __("Only one station may be active at a time. In the table below this is shown with the -Active Station- badge."); ?><br>
+					<?= __("The 'Linked' column shows if the station location is linked with the Active Logbook selected above."); ?>
+				</p>
 
 						<p><a href="<?php echo site_url('station/create'); ?>" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> <?= __("Create a Station Location"); ?></a></p>
 
