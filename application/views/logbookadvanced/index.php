@@ -27,6 +27,7 @@
             \"qsl\":{\"show\":\"true\"},
             \"lotw\":{\"show\":\"true\"},
             \"eqsl\":{\"show\":\"true\"},
+            \"clublog\":{\"show\":\"true\"},
             \"qslmsg\":{\"show\":\"true\"},
             \"dxcc\":{\"show\":\"true\"},
             \"state\":{\"show\":\"true\"},
@@ -85,6 +86,10 @@
     }
 	if (!isset($current_opts->wwff)) {
         echo "\nvar o_template = { wwff: {show: 'true'}};";
+        echo "\nuser_options={...user_options, ...o_template};";
+    }
+	if (!isset($current_opts->clublog)) {
+        echo "\nvar o_template = { clublog: {show: 'true'}};";
         echo "\nuser_options={...user_options, ...o_template};";
     }
 	if (!isset($current_opts->sig)) {
@@ -346,6 +351,28 @@ $options = json_decode($options);
                 </select>
             </div>
             <div class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
+                <label for="clublogSent"><?= __("Clublog sent"); ?></label>
+                <select id="clublogSent" name="clublogSent" class="form-select form-select-sm">
+                    <option value=""><?= __("All"); ?></option>
+                    <option value="Y"><?= __("Yes"); ?></option>
+                    <option value="N"><?= __("No"); ?></option>
+                    <option value="R"><?= __("Requested"); ?></option>
+                    <option value="Q"><?= __("Queued"); ?></option>
+                    <option value="I"><?= __("Invalid (Ignore)"); ?></option>
+                </select>
+            </div>
+            <div class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
+                <label for="clublogReceived"><?= __("Clublog received"); ?></label>
+                <select id="clublogReceived" name="clublogReceived" class="form-select form-select-sm">
+                    <option value=""><?= __("All"); ?></option>
+                    <option value="Y"><?= __("Yes"); ?></option>
+                    <option value="N"><?= __("No"); ?></option>
+                    <option value="R"><?= __("Requested"); ?></option>
+                    <option value="I"><?= __("Invalid (Ignore)"); ?></option>
+                    <option value="V"><?= __("Verified"); ?></option>
+                </select>
+            </div>
+            <div class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                 <label for="eqslSent"><?= __("eQSL sent"); ?></label>
                 <select id="eqslSent" name="eqslSent" class="form-select form-select-sm">
                     <option value=""><?= __("All"); ?></option>
@@ -534,6 +561,12 @@ $options = json_decode($options);
                     } ?>
                     <?php if (($options->qsl->show ?? "true") == "true") {
                         echo '<th>' . __("QSL") . '</th>';
+                    } ?>
+                    <?php if (($options->clublog->show ?? "true") == "true") {
+                        echo '<th class="clublogconfirmation">Clublog</th>';
+                    } ?>
+                    <?php if ($this->session->userdata('user_lotw_name') != "" && ($options->lotw->show ?? "true") == "true") {
+                        echo '<th class="lotwconfirmation">LoTW</th>';
                     } ?>
                     <?php if ($this->session->userdata('user_eqsl_name') != ""  && ($options->eqsl->show ?? "true") == "true") {
                         echo '<th class="eqslconfirmation">eQSL</th>';
