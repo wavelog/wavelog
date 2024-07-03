@@ -559,11 +559,11 @@ $options = json_decode($options);
                     <?php if (($options->qslvia->show ?? "true") == "true") {
                         echo '<th>' . __("QSL via") . '</th>';
                     } ?>
-                    <?php if (($options->qsl->show ?? "true") == "true") {
-                        echo '<th>' . __("QSL") . '</th>';
-                    } ?>
                     <?php if (($options->clublog->show ?? "true") == "true") {
                         echo '<th class="clublogconfirmation">Clublog</th>';
+                    } ?>
+                    <?php if (($options->qsl->show ?? "true") == "true") {
+                        echo '<th>' . __("QSL") . '</th>';
                     } ?>
                     <?php if ($this->session->userdata('user_eqsl_name') != ""  && ($options->eqsl->show ?? "true") == "true") {
                         echo '<th class="eqslconfirmation">eQSL</th>';
