@@ -277,6 +277,9 @@ $(document).ready(function () {
 					id: "NewStationLogbookModal",
 					nl2br: false,
 					message: data,
+					closable: false,
+					closeByBackdrop: false,
+					closeByKeyboard: false,
 					onshown: function(dialog) {
 					},
 					buttons: [{
@@ -285,6 +288,7 @@ $(document).ready(function () {
 						id: 'closeButton',
 						action: function (dialogItself) {
 							dialogItself.close();
+							reloadStations();
 						}
 					}],
 				});
