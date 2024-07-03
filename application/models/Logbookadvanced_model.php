@@ -120,6 +120,24 @@ class Logbookadvanced_model extends CI_Model {
 			$binding[] = $searchCriteria['lotwReceived'];
 		}
 
+		if ($searchCriteria['clublogSent'] !== '') {
+			$condition = "COL_CLUBLOG_QSO_UPLOAD_STATUS = ?";
+			if ($searchCriteria['clublogSent'] == 'N') {
+				$condition = '('.$condition;
+				$condition .= " OR COL_CLUBLOG_QSL_UPLOAD_STATUS IS NULL OR COL_CLUBLOG_QSO_UPLOAD_STATUS = '')";
+			}
+			$conditions[] = $condition;
+			$binding[] = $searchCriteria['clublogSent'];
+		}
+		if ($searchCriteria['clublogReceived'] !== '') {
+			$condition = "COL_CLUBLOG_QSO_DOWNLOAD_STATUS = ?";
+			if ($searchCriteria['clublogReceived'] == 'N') {
+				$condition = '('.$condition;
+				$condition .= " OR COL_CLUBLOG_QSO_DOWNLOAD_STATUS IS NULL OR COL_CLUBLOG_QSO_DOWNLOAD_STATUS = '')";
+			}
+			$conditions[] = $condition;
+			$binding[] = $searchCriteria['clublogReceived'];
+		}
 		if ($searchCriteria['eqslSent'] !== '') {
 			$condition = "COL_EQSL_QSL_SENT = ?";
 			if ($searchCriteria['eqslSent'] == 'N') {
