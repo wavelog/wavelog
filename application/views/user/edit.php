@@ -171,7 +171,7 @@
 										foreach ($existing_languages as $lang) {
 											$options[$lang['folder']] = $lang['name_en'];
 										}
-										echo form_dropdown('user_language', $options, $language['folder']);
+										echo form_dropdown('user_language', $options, $user_language);
 										?>
 										<small id="language_Help" class="form-text text-muted"><?= __("Choose Wavelog language."); ?></small>
 									</div>
