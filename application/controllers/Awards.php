@@ -800,11 +800,11 @@ class Awards extends CI_Controller {
 	    $data['modes'] = $this->modes->active(); // Used in the view for mode select
 
 	    if($this->input->method() === 'post') {
-		    $postdata['qsl'] = $this->input->post('qsl') == 0 ? NULL: 1;
-		    $postdata['lotw'] = $this->input->post('lotw') == 0 ? NULL: 1;
-		    $postdata['eqsl'] = $this->input->post('eqsl') == 0 ? NULL: 1;
-		    $postdata['qrz'] = $this->input->post('qrz') == 0 ? NULL: 1;
-		    $postdata['clublog'] = $this->input->post('clublog') == 0 ? NULL: 1;
+		    $postdata['qsl'] = 1;
+		    $postdata['lotw'] = 1;
+		    $postdata['eqsl'] = 0;
+		    $postdata['qrz'] = 0;
+		    $postdata['clublog'] = 0;
 		    $postdata['worked'] = $this->security->xss_clean($this->input->post('worked')) ?? NULL;
 		    $postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed')) ?? NULL;
 		    $postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked')) ?? NULL;
