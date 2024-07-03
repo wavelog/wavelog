@@ -8,8 +8,6 @@ class Migration_add_pk_iota extends CI_Migration {
 		$this->add_ix('iota','idx_iota_Tag','`tag`');
 	}
 
-	// CREATE UNIQUE INDEX `idx_iota_Tag` ON `iota` (Tag) COMMENT '' ALGORITHM DEFAULT LOCK DEFAULT;
-
 	public function down() {
 		$this->rm_ix('iota','idx_iota_Tag');
 	}
