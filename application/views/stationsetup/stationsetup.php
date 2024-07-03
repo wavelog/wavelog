@@ -91,9 +91,12 @@
                     <?= __("Station Locations"); ?>
                 </div>
                 <div class="card-body">
-				<p class="card-text"><?= __("Station Locations define operating locations, such as your QTH, a friends QTH, or a portable station."); ?></p>
-				<p class="card-text"><?= __("Similar to logbooks, a station profile keeps a set of QSOs together."); ?></p>
-				<p class="card-text"><?= __("Only one station may be active at a time. In the table below this is shown with the -Active Station- badge."); ?></p>
+				<p class="card-text">
+					<?= __("Station Locations define operating locations, such as your QTH, a friends QTH, or a portable station."); ?><br>
+					<?= __("Similar to logbooks, a station profile keeps a set of QSOs together."); ?><br>
+					<?= __("Only one station may be active at a time. In the table below this is shown with the -Active Station- badge."); ?><br>
+					<?= __("The 'Linked' column shows if the station location is linked with the Active Logbook selected above."); ?>
+				</p>
 
 						<p><a href="<?php echo site_url('station/create'); ?>" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> <?= __("Create a Station Location"); ?></a></p>
 
@@ -121,6 +124,7 @@
 			<th scope="col"><?= __("Country"); ?></th>
 			<th scope="col"><?= __("Gridsquare"); ?></th>
 			<th></th>
+			<th scope="col"><?= __("Linked"); ?></th>
 			<th scope="col"><?= __("Edit"); ?></th>
 			<th scope="col"><?= __("Copy"); ?></th>
 			<?php
@@ -156,6 +160,7 @@
 				<span class="badge bg-info">ID: <?php echo $row->station_id;?></span>
 				<span class="badge bg-light"><?php echo $row->qso_total;?> <?= __("QSO"); ?></span>
 			</td>
+			<td></td>
 			<td>
 				<a href="<?php echo site_url('station/edit')."/".$row->station_id; ?>" title=<?= __("Edit"); ?> class="btn btn-outline-primary btn-sm"><i class="fas fa-edit"></i></a>
 			</td>
@@ -182,7 +187,7 @@
 				<a href="<?php echo site_url('station/deletelog')."/".$row->station_id; ?>" class="btn btn-danger btn-sm" title=<?= __("Empty Log"); ?> onclick="return confirm('<?php echo $cnfmsg; ?>');"><i class="fas fa-trash-alt"></i></a></td>
 			</td>
 			<td>
-				<?php if($row->station_active != 1) { 
+				<?php if($row->station_active != 1) {
 					$cnfmsg = sprintf(__("Are you sure you want delete station profile '%s'? This will delete all QSOs within this station profile."), $row->station_profile_name); ?>?>
 					<a href="<?php echo site_url('station/delete')."/".$row->station_id; ?>" class="btn btn-danger btn-sm" title=<?= __("Delete"); ?> onclick="return confirm('<?= $cnfmsg ?>');"><i class="fas fa-trash-alt"></i></a>
 				<?php } ?>
