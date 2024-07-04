@@ -16,10 +16,10 @@ class Dashboard extends CI_Controller
 		$this->load->model('logbook_model');
 		
 		// LoTW infos
-		$this->load->model('Lotw');
+		$this->load->model('Lotw_model');
 		$current_date = date('Y-m-d H:i:s');
-		$data['lotw_cert_expired'] = $this->Lotw->lotw_cert_expired($this->session->userdata('user_id'), $current_date);
-		$data['lotw_cert_expiring'] = $this->Lotw->lotw_cert_expiring($this->session->userdata('user_id'), $current_date);
+		$data['lotw_cert_expired'] = $this->Lotw_model->lotw_cert_expired($this->session->userdata('user_id'), $current_date);
+		$data['lotw_cert_expiring'] = $this->Lotw_model->lotw_cert_expiring($this->session->userdata('user_id'), $current_date);
 		
 		
 		$this->load->model('logbooks_model');
