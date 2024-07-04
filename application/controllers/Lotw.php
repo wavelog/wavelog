@@ -44,11 +44,6 @@ class Lotw extends CI_Controller {
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 
-		// Fire OpenSSL missing error if not found
-		if (!extension_loaded('openssl')) {
-			echo "You must install php OpenSSL for LoTW functions to work";
-		}
-
 		// Load required models for page generation
 		$this->load->model('Lotw_model');
 
@@ -108,12 +103,7 @@ class Lotw extends CI_Controller {
 		$this->load->model('dxcc');
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 
-		// Fire OpenSSL missing error if not found
-		if (!extension_loaded('openssl')) {
-			echo "You must install php OpenSSL for LoTW functions to work";
-		}
-
-    	// create folder to store certs while processing
+		// create folder to store certs while processing
     	if (!file_exists('./uploads/lotw/certs')) {
 		    mkdir('./uploads/lotw/certs', 0755, true);
 		}
@@ -189,11 +179,6 @@ class Lotw extends CI_Controller {
 
 		$this->load->model('user_model');
 		$this->user_model->authorize(2);
-
-		// Fire OpenSSL missing error if not found
-		if (!extension_loaded('openssl')) {
-			echo "You must install php OpenSSL for LoTW functions to work";
-		}
 
 		// set the last run in cron table for the correct cron id
 		$this->load->model('cron_model');
