@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-03 13:13+0000\n"
+"POT-Creation-Date: 2024-07-03 17:31+0000\n"
 "PO-Revision-Date: 2024-06-26 11:15+0000\n"
 "Last-Translator: Aurélien Barrau <abarrau378@gmail.com>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-translation/fr/>\n"
@@ -1244,7 +1244,7 @@ msgstr "Opérateur"
 #: application/views/awards/dxcc/index.php:238
 #: application/views/csv/index.php:65 application/views/dashboard/index.php:28
 #: application/views/dxatlas/index.php:65
-#: application/views/interface_assets/footer.php:630
+#: application/views/interface_assets/footer.php:657
 #: application/views/kml/index.php:54
 #: application/views/logbookadvanced/index.php:154
 #: application/views/lookup/index.php:31
@@ -2616,7 +2616,7 @@ msgstr "Si aucune date n'est renseignées, tous les QSO seront marqués !"
 
 #: application/views/adif/import.php:228
 msgid "Mark QSOs as exported to LoTW"
-msgstr "Marquer les QSO comme étant \"téléchargé sur LoTW\""
+msgstr "Marquer les QSO comme étant 'téléchargé sur LoTW'"
 
 #: application/views/adif/import.php:242
 #, php-format
@@ -2971,7 +2971,7 @@ msgstr "Réalisés"
 #: application/views/awards/waja/index.php:35
 #: application/views/awards/was/index.php:35
 msgid "Show worked"
-msgstr "Voir les \"réalisés\""
+msgstr "Voir les 'réalisés'"
 
 #: application/views/awards/cq/index.php:40
 #: application/views/awards/dok/index.php:45
@@ -2984,7 +2984,7 @@ msgstr "Voir les \"réalisés\""
 #: application/views/awards/waja/index.php:39
 #: application/views/awards/was/index.php:39
 msgid "Show confirmed"
-msgstr "Voir les \"confirmés\""
+msgstr "Voir les 'confirmés'"
 
 #: application/views/awards/cq/index.php:44
 #: application/views/awards/dxcc/index.php:51
@@ -2996,7 +2996,7 @@ msgstr "Voir les \"confirmés\""
 #: application/views/awards/waja/index.php:43
 #: application/views/awards/was/index.php:43
 msgid "Show not worked"
-msgstr "Voir les \"non réalisés\""
+msgstr "Voir les 'non réalisés'"
 
 #: application/views/awards/cq/index.php:50
 #: application/views/awards/dok/index.php:51
@@ -3107,7 +3107,7 @@ msgstr "Résumé"
 #: application/views/awards/waja/index.php:182
 #: application/views/awards/was/index.php:181
 msgid "Total worked"
-msgstr "Total \"réalisés\""
+msgstr "Total 'réalisés'"
 
 #: application/views/awards/cq/index.php:185
 #: application/views/awards/dok/index.php:185
@@ -3118,7 +3118,7 @@ msgstr "Total \"réalisés\""
 #: application/views/awards/waja/index.php:189
 #: application/views/awards/was/index.php:188
 msgid "Total confirmed"
-msgstr "Total \"confirmés\""
+msgstr "Total 'confirmés'"
 
 #: application/views/awards/dok/index.php:7
 msgid "DOK Award"
@@ -3901,7 +3901,7 @@ msgstr "Aucun concours trouvé pour ce lieu de station !"
 
 #: application/views/cabrillo/index.php:16
 msgid "Export a contest to a Cabrillo log"
-msgstr "Exporter un concours au format de fichier \"Cabrillo\""
+msgstr "Exporter un concours au format de fichier 'Cabrillo'"
 
 #: application/views/cabrillo/index.php:28
 msgid "Select Station Location:"
@@ -5472,31 +5472,31 @@ msgstr "Non réalisés"
 
 #: application/views/interface_assets/footer.php:33
 #: application/views/qso/index.php:601
-#: application/views/visitor/layout/footer.php:211
+#: application/views/visitor/layout/footer.php:244
 msgid "Clear"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:88
+#: application/views/interface_assets/footer.php:115
 #: application/views/interface_assets/header.php:425
 #: application/views/options/sidebar.php:11
 msgid "Version Info"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:633
+#: application/views/interface_assets/footer.php:660
 msgid "Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. Check which DXCC for this particular location is the correct one. If you are sure, ignore this warning."
 msgstr ""
 
-#: application/views/interface_assets/footer.php:1327
-#: application/views/interface_assets/footer.php:1331
-#: application/views/interface_assets/footer.php:1334
-#: application/views/interface_assets/footer.php:1471
-#: application/views/interface_assets/footer.php:1475
-#: application/views/interface_assets/footer.php:1478
+#: application/views/interface_assets/footer.php:1354
+#: application/views/interface_assets/footer.php:1358
+#: application/views/interface_assets/footer.php:1361
+#: application/views/interface_assets/footer.php:1498
+#: application/views/interface_assets/footer.php:1502
+#: application/views/interface_assets/footer.php:1505
 msgid "grid square"
 msgstr "Grilles des Locators"
 
-#: application/views/interface_assets/footer.php:1334
-#: application/views/interface_assets/footer.php:1478
+#: application/views/interface_assets/footer.php:1361
+#: application/views/interface_assets/footer.php:1505
 msgid "Total count"
 msgstr "Total"
 
@@ -8596,7 +8596,7 @@ msgstr ""
 
 #: application/views/stationsetup/stationsetup.php:21
 msgid "Station Logbooks allow you to group Station Locations, this allows you to see all the locations across one session from the logbook areas to the analytics. Great for when your operating in multiple locations but they are part of the same DXCC or VUCC Circle."
-msgstr "Les \"journaux de trafic\" des stations vous permettent de regrouper les emplacements des stations.<br>Cela vous permet d'avoir tous les emplacements au sein d'une même session ; visible dans le journal de trafic, jusqu'aux statistiques. <br>Idéal lorsque vous travaillez sur plusieurs sites, mais qu'ils font partie du même cercle DXCC ou VUCC."
+msgstr "Les 'journaux de trafic' des stations vous permettent de regrouper les emplacements des stations.<br>Cela vous permet d'avoir tous les emplacements au sein d'une même session ; visible dans le journal de trafic, jusqu'aux statistiques. <br>Idéal lorsque vous travaillez sur plusieurs sites, mais qu'ils font partie du même cercle DXCC ou VUCC."
 
 #: application/views/stationsetup/stationsetup.php:32
 msgid "Linked locations"
@@ -9519,7 +9519,7 @@ msgstr ""
 
 #: application/views/view_log/qso.php:630
 msgid "Uploaded QSL Card front image"
-msgstr "Sélectionner l'image \"recto\" de la QSL"
+msgstr "Sélectionner l'image 'recto' de la QSL"
 
 #: application/views/view_log/qso.php:635
 msgid "Upload QSL Card image"
@@ -9527,7 +9527,7 @@ msgstr "Télécharger le(s) image(s) de la QSL"
 
 #: application/views/view_log/qso.php:640
 msgid "Uploaded QSL Card back image"
-msgstr "Sélectionner l'image \"verso\" de la QSL"
+msgstr "Sélectionner l'image 'verso' de la QSL"
 
 #: application/views/view_log/qso.php:656
 msgid "Mark QSL Received (Electronic)"
@@ -9545,7 +9545,7 @@ msgstr "Marquer Carte QSL comme demandé (Direct)"
 msgid "eQSL picture"
 msgstr ""
 
-#: application/views/visitor/layout/footer.php:207
+#: application/views/visitor/layout/footer.php:240
 msgid "CSV"
 msgstr ""
 

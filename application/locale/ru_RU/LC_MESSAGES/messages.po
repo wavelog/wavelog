@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-03 06:10+0000\n"
+"POT-Creation-Date: 2024-07-03 17:31+0000\n"
 "PO-Revision-Date: 2024-07-01 06:37+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-translation/ru/>\n"
@@ -731,7 +731,7 @@ msgstr ""
 
 #: application/controllers/Logbook.php:37
 msgid "No logbooks were found. You need to define a logbook under Station Logbooks! Do it here:"
-msgstr "Журнал не найден. Вам необходимо указать журнал в разделе \"Журналы\"! Тут:"
+msgstr "Журнал не найден. Вам необходимо указать журнал в разделе 'Журналы'! Тут:"
 
 #: application/controllers/Logbook.php:37
 #: application/views/stationsetup/stationsetup.php:18
@@ -1245,7 +1245,7 @@ msgstr "Оператор"
 #: application/views/awards/dxcc/index.php:238
 #: application/views/csv/index.php:65 application/views/dashboard/index.php:28
 #: application/views/dxatlas/index.php:65
-#: application/views/interface_assets/footer.php:630
+#: application/views/interface_assets/footer.php:657
 #: application/views/kml/index.php:54
 #: application/views/logbookadvanced/index.php:154
 #: application/views/lookup/index.php:31
@@ -2724,7 +2724,7 @@ msgstr "API (Application Programming Interface) Wavelog позволяет ст�
 
 #: application/views/api/help.php:18
 msgid "You will need to generate an API key for each tool you wish to use (e.g. WLgate). Generate a read-write key if the application needs to send data to Wavelog. Generate a read-only key if the application only needs to obtain data from Wavelog."
-msgstr "Вам нужно сгенерировать ключ API для каждого инструмента, который вы используете (к примеру, WLgate). Сгенерируйте ключ с правами \"Чтение и Запись\" для приложений, которым нужно отправлять данные в Wavelog. Сгенерируйте ключ с правами \"Только Чтение\" для приложений, которым нужно только получать данные от Wavelog."
+msgstr "Вам нужно сгенерировать ключ API для каждого инструмента, который вы используете (к примеру, WLgate). Сгенерируйте ключ с правами 'Чтение и Запись' для приложений, которым нужно отправлять данные в Wavelog. Сгенерируйте ключ с правами 'Только Чтение' для приложений, которым нужно только получать данные от Wavelog."
 
 #: application/views/api/help.php:19
 msgid "API URL"
@@ -2813,11 +2813,11 @@ msgstr "У вас нет ключей API."
 
 #: application/views/api/help.php:75
 msgid "Create a read & write key"
-msgstr "Создать ключ с правами \"Чтение и Запись\""
+msgstr "Создать ключ с правами 'Чтение и Запись'"
 
 #: application/views/api/help.php:76
 msgid "Create a read-only key"
-msgstr "Создать ключ с правами \"Только Чтение\""
+msgstr "Создать ключ с правами 'Только Чтение'"
 
 #: application/views/awards/counties/details.php:4
 #: application/views/awards/details.php:1
@@ -2929,7 +2929,7 @@ msgstr "CQ Magazine находится в США и является одним 
 
 #: application/views/awards/cq/index.php:20
 msgid "The WAZ Award stands for 'Worked All Zones' and requires radio contacts to all 40 CQ Zones along with the corresponding confirmation."
-msgstr "Диплом WAZ расшифровывается как \"Работал со всеми зонами\" и требует проведения радиосвязи со всеми 40 зонами CQ, а также соответствующего подтверждения."
+msgstr "Диплом WAZ расшифровывается как 'Работал со всеми зонами' и требует проведения радиосвязи со всеми 40 зонами CQ, а также соответствующего подтверждения."
 
 #: application/views/awards/cq/index.php:21
 #, php-format
@@ -3127,7 +3127,7 @@ msgstr "Диплом DOK"
 
 #: application/views/awards/dok/index.php:8
 msgid "Germany extends over 630 km from East to West and nearly 900 km from North to South. Around 70,000 of Germany's 82 million inhabitants are licensed hams, with more than 40,000 of them being members of DARC. DOK is a system that provides individual local chapters with an identifier and means 'Deutscher Ortsverband Kenner' (English: 'German Local Association Identifier')."
-msgstr "Германия простирается на 630 км с востока на запад и почти на 900 км с севера на юг. Около 70 000 из 82 миллионов жителей Германии являются лицензированными радиолюбителями, и более 40 000 из них - члены DARC. DOK - это система, которая предоставляет отдельным местным отделениям идентификатор и означает \"Deutscher Ortsverband Kenner\" (\"Немецкий идентификатор местной ассоциации\")."
+msgstr "Германия простирается на 630 км с востока на запад и почти на 900 км с севера на юг. Около 70 000 из 82 миллионов жителей Германии являются лицензированными радиолюбителями, и более 40 000 из них - члены DARC. DOK - это система, которая предоставляет отдельным местным отделениям идентификатор и означает 'Deutscher Ortsverband Kenner' ('Немецкий идентификатор местной ассоциации')."
 
 #: application/views/awards/dok/index.php:9
 msgid "The DOK consists of a letter for the district and a two-digit number for the local chapter, like P03 Friedrichshafen (city of the 'Hamradio exhibition') or F41 Baunatal (location of the DARC headquarters). Note: A zero in a DOK is a common mistake, often being logged as the letter O."
@@ -3180,7 +3180,7 @@ msgstr "'Как считать страны, новая система подс�
 #: application/views/awards/dxcc/index.php:15
 #, php-format
 msgid "DXCC stands for 'DX Century Club,' an award based on worked countries. The DXCC List is based on an article created in 1935 by Clinton B. DeSoto, W1CBD, titled %s."
-msgstr "DXCC означает \"DX Century Club\", диплом, основанный на сработанных странах. Список DXCC основан на статье, созданной в 1935 году Клинтоном Б. ДеСото, W1CBD, под названием %s."
+msgstr "DXCC означает 'DX Century Club', диплом, основанный на сработанных странах. Список DXCC основан на статье, созданной в 1935 году Клинтоном Б. ДеСото, W1CBD, под названием %s."
 
 #: application/views/awards/dxcc/index.php:16
 msgid "ARRL website"
@@ -3362,7 +3362,7 @@ msgstr "IOTA - это захватывающая и инновационная �
 
 #: application/views/awards/iota/index.php:18
 msgid "It is administered by Islands On The Air (IOTA) Ltd (referred to as IOTA Management) in partnership with the Radio Society of Great Britain (RSGB). IOTA Management has grouped the world's islands into approximately 1200 'IOTA groups,' each having varying numbers of 'counters,' which are qualifying islands. These listings are published in the IOTA Directory and on the IOTA website. The objective for the IOTA Island Chaser is to make radio contact with at least one counter in as many of these groups as possible. The program has a well-defined set of rules and encourages friendly competition among chasers by publishing participant performance in an Honor Roll and annual listings, as well as recognizing it with certificates and prestigious awards."
-msgstr "Она управляется компанией Islands On The Air (IOTA) Ltd (именуемой IOTA Management) в партнерстве с Radio Society of Great Britain (RSGB). Руководство IOTA сгруппировало острова мира примерно в 1200 \"групп IOTA\", каждая из которых имеет различное количество \" жетонов\", являющихся квалификационными островами. Эти списки публикуются в Справочнике IOTA и на сайте IOTA. Цель программы IOTA Island Chaser - установить радиосвязь хотя бы с одним \"жетоном\"в как можно большем количестве этих групп. Программа имеет четко определенные правила и поощряет дружескую конкуренцию между охотниками, публикуя результаты участников в Почетном списке и ежегодных списках, а также отмечая их сертификатами и престижными наградами."
+msgstr "Она управляется компанией Islands On The Air (IOTA) Ltd (именуемой IOTA Management) в партнерстве с Radio Society of Great Britain (RSGB). Руководство IOTA сгруппировало острова мира примерно в 1200 'групп IOTA', каждая из которых имеет различное количество ' жетонов', являющихся квалификационными островами. Эти списки публикуются в Справочнике IOTA и на сайте IOTA. Цель программы IOTA Island Chaser - установить радиосвязь хотя бы с одним 'жетоном'в как можно большем количестве этих групп. Программа имеет четко определенные правила и поощряет дружескую конкуренцию между охотниками, публикуя результаты участников в Почетном списке и ежегодных списках, а также отмечая их сертификатами и престижными наградами."
 
 #: application/views/awards/iota/index.php:19
 #, php-format
@@ -3487,7 +3487,7 @@ msgstr "Дипломы POTA"
 
 #: application/views/awards/pota/index.php:8
 msgid "Parks on the Air® (POTA) started in early 2017 when the ARRL's National Parks on the Air special event ended. A group of volunteers wanted to continue the fun beyond the one-year event, and thus, POTA was born."
-msgstr "Дипломная программа Parks on the Air® (POTA) была создана в начале 2017 года, когда закончилось специальное мероприятие ARRL \"Национальные парки в эфире\". Группа волонтеров захотела продолжить веселье после окончания мероприятия, которое длилось один год, и так родилась POTA."
+msgstr "Дипломная программа Parks on the Air® (POTA) была создана в начале 2017 года, когда закончилось специальное мероприятие ARRL 'Национальные парки в эфире'. Группа волонтеров захотела продолжить веселье после окончания мероприятия, которое длилось один год, и так родилась POTA."
 
 #: application/views/awards/pota/index.php:9
 msgid "POTA works similarly to SOTA, with Activators and Hunters. For the awards, there are several categories based on the number of parks, geographic areas, and more."
@@ -3518,7 +3518,7 @@ msgstr "Информация SIG"
 
 #: application/views/awards/sig/index.php:8
 msgid "The SIG or Signature Category provides the possibility to use any kind of 'Award Signature' for awards that are not implemented in Wavelog."
-msgstr "SIG или Signature Category предоставляет возможность использовать любой вид \"Award Signature\" для дипломов, которые не реализованы в Wavelog."
+msgstr "SIG или Signature Category предоставляет возможность использовать любой вид 'Award Signature' для дипломов, которые не реализованы в Wavelog."
 
 #: application/views/awards/sig/index.php:9
 msgid "The reason for this is that the common ADIF format provides only a few dedicated fields for certain awards. SIG still makes it possible to use and evaluate all other types of signature markers."
@@ -3526,7 +3526,7 @@ msgstr "Причина в том, что обычный формат ADIF пре
 
 #: application/views/awards/sig/index.php:10
 msgid "In the QSO processing, you will find two fields: 'SIG' contains the actual marker, which is also visible in the award evaluation, and 'SIG INFO,' which contains a description of the signature. Both fields are freely customizable."
-msgstr "При обработке QSO вы увидите два поля: \"SIG\" содержит фактическую метку, которая также видна при выполнении условий диплома, и \"SIG INFO\", содержащее описание подписи. Оба поля можно свободно настраивать."
+msgstr "При обработке QSO вы увидите два поля: 'SIG' содержит фактическую метку, которая также видна при выполнении условий диплома, и 'SIG INFO', содержащее описание подписи. Оба поля можно свободно настраивать."
 
 #: application/views/awards/sig/index.php:21
 msgid "Award Type"
@@ -3584,7 +3584,7 @@ msgstr "SOTA (Summits On The Air) - это дипломная программа
 
 #: application/views/awards/sota/index.php:9
 msgid "It is fully operational in nearly a hundred countries worldwide. Each country has its own Association that defines the recognized SOTA summits within that Association. Each summit earns the activators and chasers a score related to the height of the summit. Certificates are available for various scores, leading to the prestigious 'Mountain Goat' and 'Shack Sloth' trophies. An Honor Roll for Activators and Chasers is maintained in the SOTA online database."
-msgstr "Она полностью функционирует почти в ста странах мира. В каждой стране есть своя Ассоциация, которая определяет признанные вершины SOTA в рамках этой Ассоциации. Каждая вершина приносит активаторам и охотникам баллы, зависящие от высоты вершины. За определённое количество баллов можно получить сертификаты, в том числе престижные трофеи \"Горный козел\" и \"Хижина ленивца\". Почетный список активаторов и преследователей ведется в онлайн-базе данных SOTA."
+msgstr "Она полностью функционирует почти в ста странах мира. В каждой стране есть своя Ассоциация, которая определяет признанные вершины SOTA в рамках этой Ассоциации. Каждая вершина приносит активаторам и охотникам баллы, зависящие от высоты вершины. За определённое количество баллов можно получить сертификаты, в том числе престижные трофеи 'Горный козел' и 'Хижина ленивца'. Почетный список активаторов и преследователей ведется в онлайн-базе данных SOTA."
 
 #: application/views/awards/vucc/index.php:7
 msgid "VUCC - VHF/UHF Century Club Award"
@@ -3657,7 +3657,7 @@ msgstr "Диплом WAS"
 
 #: application/views/awards/was/index.php:19
 msgid "ARRL's most popular award is the Worked All States Award. Thousands upon thousands of awards have been issued to hams around the world. In ARRL's 101st year, they have redesigned the certificates and the program in hopes of streamlining and improving the award program."
-msgstr "Самый популярный диплом ARRL - это \"Worked All States Award\". Тысячи и тысячи дипломов были выданы радиолюбителям всего мира. В 101-й год существования ARRL изменила дизайн сертификатов и программы в надежде упростить и улучшить дипломную программу."
+msgstr "Самый популярный диплом ARRL - это 'Worked All States Award'. Тысячи и тысячи дипломов были выданы радиолюбителям всего мира. В 101-й год существования ARRL изменила дизайн сертификатов и программы в надежде упростить и улучшить дипломную программу."
 
 #: application/views/awards/was/index.php:20
 msgid "The WAS (Worked All States) Award is available to all amateurs worldwide who submit proof with written confirmation of contacts with each of the 50 states of the United States of America. Amateurs in the U.S. and its possessions must be members of ARRL to apply for a WAS. Applicants from outside the U.S. are exempt from this requirement."
@@ -5285,7 +5285,7 @@ msgstr "Убедитесь, что поле 'eQSL QTH Nickname' установл
 
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
-msgstr "Нажав кнопку \"Upload QSOs\", вы отправите информацию о QSO на сайт eQSL.cc."
+msgstr "Нажав кнопку 'Upload QSOs', вы отправите информацию о QSO на сайт eQSL.cc."
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
@@ -5475,31 +5475,31 @@ msgstr "Не сработано"
 
 #: application/views/interface_assets/footer.php:33
 #: application/views/qso/index.php:601
-#: application/views/visitor/layout/footer.php:211
+#: application/views/visitor/layout/footer.php:244
 msgid "Clear"
 msgstr "Очистить"
 
-#: application/views/interface_assets/footer.php:88
+#: application/views/interface_assets/footer.php:115
 #: application/views/interface_assets/header.php:425
 #: application/views/options/sidebar.php:11
 msgid "Version Info"
 msgstr "Информация о версии"
 
-#: application/views/interface_assets/footer.php:633
+#: application/views/interface_assets/footer.php:660
 msgid "Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. Check which DXCC for this particular location is the correct one. If you are sure, ignore this warning."
 msgstr "Остановитесь на мгновение. Выбранный вами DXCC устарел и больше не действителен. Проверьте, какой DXCC для данного конкретного места является правильным. Если вы уверены, проигнорируйте это предупреждение."
 
-#: application/views/interface_assets/footer.php:1327
-#: application/views/interface_assets/footer.php:1331
-#: application/views/interface_assets/footer.php:1334
-#: application/views/interface_assets/footer.php:1471
-#: application/views/interface_assets/footer.php:1475
-#: application/views/interface_assets/footer.php:1478
+#: application/views/interface_assets/footer.php:1354
+#: application/views/interface_assets/footer.php:1358
+#: application/views/interface_assets/footer.php:1361
+#: application/views/interface_assets/footer.php:1498
+#: application/views/interface_assets/footer.php:1502
+#: application/views/interface_assets/footer.php:1505
 msgid "grid square"
 msgstr "квадрат(/-а/-ов)"
 
-#: application/views/interface_assets/footer.php:1334
-#: application/views/interface_assets/footer.php:1478
+#: application/views/interface_assets/footer.php:1361
+#: application/views/interface_assets/footer.php:1505
 msgid "Total count"
 msgstr "Всего"
 
@@ -6654,7 +6654,7 @@ msgstr "Кликните правой кнопкой по выбранному �
 
 #: application/views/lotw_views/upload_cert.php:24
 msgid "Click 'Save Callsign Certificate File' and do not add a password"
-msgstr "Нажмите \"Сохранить файл сертификата позывного\" и не добавляйте пароль"
+msgstr "Нажмите 'Сохранить файл сертификата позывного' и не добавляйте пароль"
 
 #: application/views/lotw_views/upload_cert.php:25
 msgid "Upload File below."
@@ -7118,7 +7118,7 @@ msgstr "Ваш адрес электронной почты, по котором
 
 #: application/views/oqrs/notinlogform.php:40
 msgid "Send not in log request"
-msgstr "Отправить запрос \"не в журнале\""
+msgstr "Отправить запрос 'не в журнале'"
 
 #: application/views/oqrs/qsolist.php:11
 #: application/views/qslprint/qslprint.php:29
@@ -7233,7 +7233,7 @@ msgstr "Открыть запрос"
 #: application/views/oqrs/showrequests.php:6
 #: application/views/oqrs/showrequests.php:51
 msgid "Not in log request"
-msgstr "Запрос \"не в журнале\""
+msgstr "Запрос 'не в журнале'"
 
 #: application/views/oqrs/showrequests.php:7
 #: application/views/oqrs/showrequests.php:52
@@ -8808,7 +8808,7 @@ msgstr "Допускаются только файлы PNG, соотношени
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
-msgstr "Поместите два файла логотипа в папку \"assets/logo/\""
+msgstr "Поместите два файла логотипа в папку 'assets/logo/'"
 
 #: application/views/themes/index.php:70
 msgid "4. Step"
@@ -8816,7 +8816,7 @@ msgstr "4. Шаг"
 
 #: application/views/themes/index.php:73
 msgid "Click here on 'Add a Theme' and type in the necessary data. Type in the filenames for the logos <b>without</b> the file extension '.png'"
-msgstr "Кликните по \"Добавить тему\" и укажите необходимые данные. Укажите имена файлов для логотипов <b>без</b> расширения файла '.png'"
+msgstr "Кликните по 'Добавить тему' и укажите необходимые данные. Укажите имена файлов для логотипов <b>без</b> расширения файла '.png'"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
@@ -8848,7 +8848,7 @@ msgstr "Позывных сработано (максимум 5)"
 
 #: application/views/timeplotter/index.php:10
 msgid "The Timeplotter is used to analyze your logbook and find out at what times you worked certain CQ zones or DXCC countries on a selected band."
-msgstr "\"Распределение времени\" используется для анализа вашего журнала и выяснения того, в какое время вы работали в определённых CQ-зонах или DXCC-странах на выбранном диапазоне."
+msgstr "'Распределение времени' используется для анализа вашего журнала и выяснения того, в какое время вы работали в определённых CQ-зонах или DXCC-странах на выбранном диапазоне."
 
 #: application/views/update/index.php:8
 msgid "DXCC Lookup Data"
@@ -9554,7 +9554,7 @@ msgstr "Отметить запрос QSL-карточки (напрямую)"
 msgid "eQSL picture"
 msgstr "изображение eQSL-карточки"
 
-#: application/views/visitor/layout/footer.php:207
+#: application/views/visitor/layout/footer.php:240
 msgid "CSV"
 msgstr "CSV"
 
