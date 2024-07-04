@@ -133,6 +133,8 @@ class Logbookadvanced extends CI_Controller {
 			'lotwReceived' => xss_clean($this->input->post('lotwReceived')),
 			'eqslSent' => xss_clean($this->input->post('eqslSent')),
 			'eqslReceived' => xss_clean($this->input->post('eqslReceived')),
+			'clublogSent' => xss_clean($this->input->post('clublogSent')),
+			'clublogReceived' => xss_clean($this->input->post('clublogReceived')),
 			'qslvia' => xss_clean($this->input->post('qslvia')),
 			'sota' => xss_clean($this->input->post('sota')),
 			'pota' => xss_clean($this->input->post('pota')),
@@ -156,7 +158,7 @@ class Logbookadvanced extends CI_Controller {
 		$this->load->model('logbookadvanced_model');
 
 		$qsoID = xss_clean($this->input->post('qsoID'));
-		$qso = $this->qso_info($qsoID)->row_array();
+		$qso = $this->logbook_model->qso_info($qsoID)->row_array();
 		if ($qso === null) {
 			header("Content-Type: application/json");
 			echo json_encode([]);
@@ -167,28 +169,13 @@ class Logbookadvanced extends CI_Controller {
 
 		if ($callbook['callsign'] ?? "" !== "") {
 			$this->logbookadvanced_model->updateQsoWithCallbookInfo($qsoID, $qso, $callbook);
-			$qso = $this->qso_info($qsoID)->row_array();
+			$qso = $this->logbook_model->qso_info($qsoID)->row_array();
 		}
 
 		$qsoObj = new QSO($qso);
 
 		header("Content-Type: application/json");
 		echo json_encode($qsoObj->toArray());
-	}
-
-	  /* Return QSO Info */
-	  function qso_info($id) {
-		$this->load->model('logbook_model');
-		if ($this->logbook_model->check_qso_is_accessible($id)) {
-			$this->db->where('COL_PRIMARY_KEY', $id);
-			$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
-    		$this->db->join('dxcc_entities', $this->config->item('table_name').'.col_dxcc = dxcc_entities.adif', 'left');
-    		$this->db->join('lotw_users', 'lotw_users.callsign = '.$this->config->item('table_name').'.col_call', 'left outer');
-
-			return $this->db->get($this->config->item('table_name'));
-		} else {
-			return;
-		}
 	}
 
 	function export_to_adif() {
@@ -315,6 +302,8 @@ class Logbookadvanced extends CI_Controller {
 			'lotwReceived' => '',
 			'eqslSent' => '',
 			'eqslReceived' => '',
+			'clublogSent' => '',
+			'clublogReceived' => '',
 			'qslvia' => '',
 			'sota' => '',
 			'pota' => '',
@@ -357,6 +346,8 @@ class Logbookadvanced extends CI_Controller {
 			'lotwReceived' => xss_clean($this->input->post('lotwReceived')),
 			'eqslSent' => xss_clean($this->input->post('eqslSent')),
 			'eqslReceived' => xss_clean($this->input->post('eqslReceived')),
+			'clublogSent' => xss_clean($this->input->post('clublogSent')),
+			'clublogReceived' => xss_clean($this->input->post('clublogReceived')),
 			'qslvia' => xss_clean($this->input->post('qslvia')),
 			'sota' => xss_clean($this->input->post('sota')),
 			'pota' => xss_clean($this->input->post('pota')),
@@ -506,6 +497,7 @@ class Logbookadvanced extends CI_Controller {
 		$json_string['qsl']['show'] = $this->input->post('qsl');
 		$json_string['lotw']['show'] = $this->input->post('lotw');
 		$json_string['eqsl']['show'] = $this->input->post('eqsl');
+		$json_string['clublog']['show'] = $this->input->post('clublog');
 		$json_string['qslmsg']['show'] = $this->input->post('qslmsg');
 		$json_string['dxcc']['show'] = $this->input->post('dxcc');
 		$json_string['state']['show'] = $this->input->post('state');

@@ -63,6 +63,14 @@ $( document ).ready(function() {
 		}
 	});
 
+	// Sanitize some input data
+	$('#callsign').on('input', function() {
+		$(this).val($(this).val().replace(/\s/g, ''));
+	});
+	$('#locator').on('input', function() {
+		$(this).val($(this).val().replace(/\s/g, ''));
+	});
+
 	$('.callsign-suggest').hide();
 
 	setRst($(".mode").val());

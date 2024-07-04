@@ -62,6 +62,7 @@ class QSO
 	private string $qsl;
 	private string $lotw;
 	private string $eqsl;
+	private string $clublog;
 	/** Lotw callsign info **/
 	private string $callsign;
 	private string $lastupload;
@@ -196,6 +197,7 @@ class QSO
 		$this->qsl = $this->getQslString($data, $custom_date_format);
 		$this->lotw = $this->getLotwString($data, $custom_date_format);
 		$this->eqsl = $this->getEqslString($data, $custom_date_format);
+		$this->clublog = $this->getClublogString($data, $custom_date_format);
 
 		$this->cqzone = ($data['COL_CQZ'] === null) ? '' : $this->geCqLink($data['COL_CQZ']);
 		$this->ituzone = $data['COL_ITUZ'] ?? '';
@@ -392,6 +394,41 @@ class QSO
 	/**
 	 * @return string
 	 */
+	function getClublogString($data, $custom_date_format): string {
+		$CI =& get_instance();
+
+		$clublogstring = '<span ';
+
+		if ($data['COL_CLUBLOG_QSO_UPLOAD_STATUS'] == "Y") {
+			$clublogstring .= "title=\"".__("Clublog")." ".__("Sent");
+
+			if ($data['COL_CLUBLOG_QSO_UPLOAD_DATE'] != null) {
+				$timestamp = strtotime($data['COL_CLUBLOG_QSO_UPLOAD_DATE']);
+				$clublogstring .=  " ".($timestamp!=''?date($custom_date_format, $timestamp):'');
+			}
+
+			$clublogstring .= "\" data-bs-toggle=\"tooltip\"";
+		}
+
+		$clublogstring .= ' class="clublog-' . (($data['COL_CLUBLOG_QSO_UPLOAD_STATUS'] =='Y') ? 'green':'red') . '">&#9650;</span><span ';
+
+		if ($data['COL_CLUBLOG_QSO_DOWNLOAD_STATUS'] == "Y") {
+			$clublogstring .= "title=\"".__("Clublog")." ".__("Received");
+
+			if ($data['COL_CLUBLOG_QSO_DOWNLOAD_DATE'] != null) {
+				$timestamp = strtotime($data['COL_CLUBLOG_QSO_DOWNLOAD_DATE']);
+				$clublogstring .= " ".($timestamp!=''?date($custom_date_format, $timestamp):'');
+			}
+			$clublogstring .= "\" data-bs-toggle=\"tooltip\"";
+		}
+
+		$clublogstring .= ' class="clublog-' . (($data['COL_CLUBLOG_QSO_DOWNLOAD_STATUS']=='Y') ? 'green':'red') . '">&#9660;</span>';
+
+		$clublogstring .= '</span>';
+
+		return $clublogstring;
+	}
+
 	function getEqslString($data, $custom_date_format): string
 	{
 		$CI =& get_instance();
@@ -755,6 +792,14 @@ class QSO
 	/**
 	 * @return string
 	 */
+	public function getclublog(): string
+	{
+		return $this->clublog;
+	}
+
+	/**
+	 * @return string
+	 */
 	public function geteqsl(): string
 	{
 		return $this->eqsl;
@@ -814,6 +859,7 @@ class QSO
 			'qsl' => $this->getqsl(),
 			'lotw' => $this->getlotw(),
 			'eqsl' => $this->geteqsl(),
+			'clublog' => $this->getclublog(),
 			'qslMessage' => $this->getQSLMsg(),
 			'name' => $this->getName(),
 			'dxcc' => $this->getDXCC(),

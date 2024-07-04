@@ -71,6 +71,10 @@
 			<td><div class="form-check"><input class="form-check-input" name="eqsl" type="checkbox" <?php if (($options->eqsl->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
 		<tr>
+			<td><?= __("Clublog"); ?></td>
+			<td><div class="form-check"><input class="form-check-input" name="clublog" type="checkbox" <?php if (($options->clublog->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
+		</tr>
+		<tr>
 			<td><?= __("QSL Msg"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="qslmsg" type="checkbox" <?php if (($options->qslmsg->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>

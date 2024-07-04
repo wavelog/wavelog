@@ -48,7 +48,7 @@ class API extends CI_Controller {
         $this->load->library('form_validation');
 
         $this->form_validation->set_rules('api_desc', __("API Description"), 'required');
-        $this->form_validation->set_rules('api_key', __("API Key is required do not change this field"), 'required');
+        $this->form_validation->set_rules('api_key', __("API Key is required. Do not change this field"), 'required');
 
         $data['api_info'] = $this->api_model->key_description($key);
 
