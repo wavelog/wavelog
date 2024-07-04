@@ -1,6 +1,6 @@
 <?php
 
-class Lotw extends CI_Model {
+class Lotw_model extends CI_Model {
 
 	/*
 	|--------------------------------------------------------------------------
