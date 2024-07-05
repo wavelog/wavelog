@@ -59,6 +59,7 @@ class Qrz {
 
 
 	public function search($callsign, $key, $use_fullname = false) {
+		$callsign = str_replace("/", "&#47", $callsign);
 		$data = null;
 		try {
 			// URL to the XML Source
