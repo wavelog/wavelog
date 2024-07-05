@@ -58,9 +58,7 @@ class Hamqth {
 	}
 
 
-	public function search($callsign, $key)
-	{
-		$callsign = str_replace("/", "&#47", $callsign);
+	public function search($callsign, $key, $reduced = false) {
 	    $data = null;
         try {
             // URL to the XML Source
@@ -80,12 +78,13 @@ class Hamqth {
             $xml = simplexml_load_string($xml);
             if (!empty($xml->session->error)) return $data['error'] = $xml->session->error;
 
+			// we always want to return name and callsign
+			$data['callsign'] 	= (string)$xml->search->callsign;
+			$data['name'] 		= (string)$xml->search->nick;
+
 			// only return certain data of a callsign which does not contain a pre- or suffix (see https://github.com/wavelog/wavelog/issues/452)
-			if (strpos($callsign, '&#47') == false) {
+			if ($reduced == false) {
 				
-				// Return Required Fields
-				$data['callsign'] 	= (string)$xml->search->callsign;
-				$data['name'] 		= (string)$xml->search->nick;
 				$data['gridsquare'] = (string)$xml->search->grid;
 				$data['city'] 		= (string)$xml->search->adr_city;
 				$data['lat'] 		= (string)$xml->search->latitude;
@@ -104,8 +103,6 @@ class Hamqth {
 
 			} else {
 
-				$data['callsign'] 	= (string)$xml->search->callsign;
-				$data['name'] 		= (string)$xml->search->nick;
 				$data['gridsquare'] = '';
 				$data['city'] 		= '';
 				$data['lat'] 		= '';

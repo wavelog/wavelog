@@ -4759,7 +4759,13 @@ function lotw_last_qsl_date($user_id) {
                     $this->session->set_userdata('hamqth_session_key', $hamqth_session_key);
                 }
 
-                $callbook = $this->hamqth->search($callsign, $this->session->userdata('hamqth_session_key'));
+				// if the callsign contains a pre- or suffix we only give back reduced data to avoid wrong data (location and other things are not valid then)
+				if (strpos($callsign, "/") !== false) {
+					$reduced = true;
+				} else {
+					$reduced = false;
+				}
+                $callbook = $this->hamqth->search($callsign, $this->session->userdata('hamqth_session_key'), $reduced);
 
                 // If HamQTH session has expired, start a new session and retry the search.
                 if ($callbook['error'] == "Session does not exist or expired") {
