@@ -60,6 +60,7 @@ class Hamqth {
 
 	public function search($callsign, $key)
 	{
+		$callsign = str_replace("/", "&#47", $callsign);
 	    $data = null;
         try {
             // URL to the XML Source
