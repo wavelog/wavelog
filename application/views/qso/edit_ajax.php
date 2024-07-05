@@ -589,7 +589,7 @@
                         <div class="actions">
                             <a class="btn btn-danger" href="javascript:qso_delete(<?php echo $qso->COL_PRIMARY_KEY; ?>, '<?php echo $qso->COL_CALL; ?>')"><i class="fas fa-trash-alt"></i> <?= __("Delete QSO"); ?></a>
                             <div class="float-end">
-                                <button id="update_from_callbook" type="button" class="btn btn-warning" onclick="single_callbook_update('<?php echo $qso->COL_CALL; ?>');"><i class="fas fa-book"></i> <?= __("Update from Callbook"); ?></button>
+                                <button id="update_from_callbook" type="button" class="btn btn-warning" onclick="single_callbook_update('<?php echo $qso->COL_CALL; ?>', '<?php echo $qso->COL_BAND; ?>', '<?php echo $qso->COL_MODE; ?>');"><i class="fas fa-book"></i> <?= __("Update from Callbook"); ?></button>
                                 <button id="show" type="button" name="download" class="btn btn-primary" onclick="qso_save();"><i class="fas fa-save"></i> <?= __("Save changes"); ?></button>
                             </div>
                         </div>

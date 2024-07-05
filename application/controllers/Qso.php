@@ -281,16 +281,6 @@ class QSO extends CI_Controller {
         $this->load->view('qso/edit_ajax', $data);
     }
 
-    // is used in edit_ajax view. We don't want directly update the database and can't use the LBA update function.
-    public function get_callbook_data() {
-        $callsign = xss_clean($this->input->post('callsign'));
-
-        $this->load->model('logbook_model');
-        $callbook = $this->logbook_model->loadCallBook($callsign, $this->config->item('use_fullname'));
-
-        echo json_encode($callbook);
-    }
-
     function qso_save_ajax() {
         $this->load->model('logbook_model');
         $this->load->model('user_model');
