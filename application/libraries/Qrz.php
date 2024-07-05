@@ -58,8 +58,7 @@ class Qrz {
 	}
 
 
-	public function search($callsign, $key, $use_fullname = false) {
-		$callsign = str_replace("/", "&#47", $callsign);
+	public function search($callsign, $key, $use_fullname = false, $reduced = false) {
 		$data = null;
 		try {
 			// URL to the XML Source
@@ -76,10 +75,13 @@ class Qrz {
 			$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 			curl_close($ch);
 			if ($httpcode != 200) return $data['error'] = 'Problems with qrz.com communication'; // Exit function if no 200. If request fails, 0 is returned
+			
 			// Create XML object
 			$xml = simplexml_load_string($xml);
-			if (!empty($xml->Session->Error)) return $data['error'] = $xml->Session->Error;
-
+			if (!empty($xml->Session->Error)) {
+				return $data['error'] = $xml->Session->Error;
+			}
+			
 			// Return Required Fields
 			$data['callsign'] = (string)$xml->Callsign->call;
 
@@ -88,14 +90,15 @@ class Qrz {
 			} else {
 				$data['name'] = (string)$xml->Callsign->fname;
 			}
+
+			// we always give back the name, no matter if reduced data or not
 			$data['name'] = trim($data['name']);
 
-			// Sanitise gridsquare to only allow up to 8 characters
+			// Sanitize gridsquare to allow only up to 8 characters
 			$unclean_gridsquare = (string)$xml->Callsign->grid; // Get the gridsquare from QRZ convert to string
 			$clean_gridsquare = strlen($unclean_gridsquare) > 8 ? substr($unclean_gridsquare,0,8) : $unclean_gridsquare; // Trim gridsquare to 8 characters max
 
-			// only return certain data of a callsign which does not contain a pre- or suffix (see https://github.com/wavelog/wavelog/issues/452)
-			if (strpos($callsign, '&#47') == false) {
+			if ($reduced == false) {
 
 				$data['gridsquare'] = $clean_gridsquare;
 				$data['city'] 	= (string)$xml->Callsign->addr2;
