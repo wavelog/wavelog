@@ -152,10 +152,10 @@ function displayQso(id) {
     });
 }
 
-// used in edit_ajax.php
-function callbook_update(callsign) {
+// used in edit_ajax.php to update the currently editing QSO
+function single_callbook_update(callsign) {
 
-    var border_color = '2px solid green';
+   
 
     $.ajax({
         url: site_url + '/qso/get_callbook_data',
@@ -165,21 +165,29 @@ function callbook_update(callsign) {
         },
         dataType: 'json',
         success: function (data) {
-            console.log(data);
-            $('#qth').val(data.city).css('border', border_color);
-            $('#dxcc_id').val(data.dxcc).css('border', border_color);
-            $('#locator').val(data.gridsquare).css('border', border_color);
-            // $('#image').val(data.image).css('border', border_color);  Not in use yet, but may in future
-            $('#iota_ref').val(data.iota).css('border', border_color);
-            $('#name').val(data.name).css('border', border_color);
-            $('#qsl-via').val(data.qslmgr).css('border', border_color);
-            $('#state').val(data.state).css('border', border_color);
-            $('#stationCntyInputEdit').val(data.us_county).css('border', border_color);
+            // console.log(data);
+            fill_if_empty('#qth', data.city);
+            fill_if_empty('#dxcc_id', data.dxcc);
+            fill_if_empty('#locator', data.gridsquare);
+            // fill_if_empty('#image', data.image);  Not in use yet, but may in future
+            fill_if_empty('#iota_ref', data.iota);
+            fill_if_empty('#name', data.name);
+            fill_if_empty('#qsl-via', data.qslmgr);
+            fill_if_empty('#state', data.state);
+            fill_if_empty('#stationCntyInputEdit', data.us_county);
         },
         error: function () {
-            console.log("Sorry, something is wrong here");
+            console.error("Sorry, something went wrong to get the callbook data.");
         },
     });
+}
+// used with single_callbook_update() to only fill fields which are empty
+function fill_if_empty(field, data) {
+    var border_color = '2px solid green';
+
+    if ($(field).val() == '' && data != '') {
+        $(field).val(data).css('border', border_color);
+    }
 }
 
 function qso_delete(id, call) {
