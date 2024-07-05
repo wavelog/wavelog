@@ -94,9 +94,9 @@ $wwff = 0;
 								<td style="text-align: center; vertical-align: middle;" ><?php echo $band->data;?></td>
 								<td style="text-align: center; vertical-align: middle;" ><?php echo $band->cw;?></td>
 								<td style="text-align: center; vertical-align: middle;" class='band_<?php echo $band->id ?>'>
-									<select class="form-select" name="unit_<?php echo $band->id; ?>">
+									<select class="form-select unitselect" name="unit_<?php echo $band->id; ?>">
 										<?php foreach($units as $unit): ?>
-											<option value="<?php echo $unit; ?>" <?php if ($this->frequency->get_qrg_unit($band->band) == $unit) { echo 'selected';} ?>><?php echo $unit; ?></option>
+											<option value="<?php echo $unit; ?>" <?php if ($this->frequency->qrg_unit($band->band) == $unit) { echo 'selected';} ?>><?php echo $unit; ?></option>
 										<?php endforeach; ?>
 									</select>
 								</td>

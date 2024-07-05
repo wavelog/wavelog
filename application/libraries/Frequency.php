@@ -259,11 +259,18 @@ class Frequency {
 		return number_format(($frequency / 1000 / 1000), 3) . " MHz";
 	}
 
-	function get_qrg_unit($band) {
-		if (isset($this->defaultFrequencies[$band]['UNIT'])) {
-			$unit = $this->defaultFrequencies[$band]['UNIT'];
+	function qrg_unit($band) {
+
+		$CI = &get_instance();
+
+		if ($CI->session->userdata('qrgunit_'.$band)) {
+			$unit = $CI->session->userdata('qrgunit_'.$band);
 		} else {
-			$unit = 'kHz'; // we use kHz as fallback unit
+			if (isset($this->defaultFrequencies[$band]['UNIT'])) {
+				$unit = $this->defaultFrequencies[$band]['UNIT'];
+			} else {
+				$unit = 'kHz'; // we use kHz as fallback unit
+			}
 		}
 		return $unit;
 	}
