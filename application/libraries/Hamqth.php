@@ -79,24 +79,45 @@ class Hamqth {
             $xml = simplexml_load_string($xml);
             if (!empty($xml->session->error)) return $data['error'] = $xml->session->error;
 
-            // Return Required Fields
-            $data['callsign'] = (string)$xml->search->callsign;
-            $data['name'] = (string)$xml->search->nick;
-            $data['gridsquare'] = (string)$xml->search->grid;
-            $data['city'] = (string)$xml->search->adr_city;
-            $data['lat'] = (string)$xml->search->latitude;
-            $data['long'] = (string)$xml->search->longitude;
-			$data['dxcc'] = (string)$xml->search->adif; 
-            $data['iota'] = (string)$xml->search->iota;
-            $data['image'] = (string)$xml->search->picture;
-			$data['state'] = (string)$xml->search->us_state;
-            $data['error'] = (string)$xml->session->error;
+			// only return certain data of a callsign which does not contain a pre- or suffix (see https://github.com/wavelog/wavelog/issues/452)
+			if (strpos($callsign, '&#47') == false) {
+				
+				// Return Required Fields
+				$data['callsign'] 	= (string)$xml->search->callsign;
+				$data['name'] 		= (string)$xml->search->nick;
+				$data['gridsquare'] = (string)$xml->search->grid;
+				$data['city'] 		= (string)$xml->search->adr_city;
+				$data['lat'] 		= (string)$xml->search->latitude;
+				$data['long'] 		= (string)$xml->search->longitude;
+				$data['dxcc'] 		= (string)$xml->search->adif; 
+				$data['iota'] 		= (string)$xml->search->iota;
+				$data['image'] 		= (string)$xml->search->picture;
+				$data['state'] 		= (string)$xml->search->us_state;
+				$data['error'] 		= (string)$xml->session->error;
 
-            if ($xml->search->country == "United States") {
-                $data['us_county'] = (string)$xml->search->us_county;
-            } else {
-                $data['us_county'] = null;
-            }
+				if ($xml->search->country == "United States") {
+					$data['us_county'] = (string)$xml->search->us_county;
+				} else {
+					$data['us_county'] = null;
+				}
+
+			} else {
+
+				$data['callsign'] 	= (string)$xml->search->callsign;
+				$data['name'] 		= (string)$xml->search->nick;
+				$data['gridsquare'] = '';
+				$data['city'] 		= '';
+				$data['lat'] 		= '';
+				$data['long'] 		= '';
+				$data['dxcc'] 		= '';
+				$data['iota'] 		= '';
+				$data['image'] 		= (string)$xml->search->picture;
+				$data['state'] 		= '';
+				$data['error'] 		= (string)$xml->session->error;
+
+				$data['us_county'] 	= '';
+
+			}
         } finally {
             return $data;
         }

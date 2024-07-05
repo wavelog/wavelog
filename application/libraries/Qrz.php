@@ -93,21 +93,39 @@ class Qrz {
 			// Sanitise gridsquare to only allow up to 8 characters
 			$unclean_gridsquare = (string)$xml->Callsign->grid; // Get the gridsquare from QRZ convert to string
 			$clean_gridsquare = strlen($unclean_gridsquare) > 8 ? substr($unclean_gridsquare,0,8) : $unclean_gridsquare; // Trim gridsquare to 8 characters max
-			$data['gridsquare'] = $clean_gridsquare;
 
-			$data['city'] = (string)$xml->Callsign->addr2;
-			$data['lat'] = (string)$xml->Callsign->lat;
-			$data['long'] = (string)$xml->Callsign->lon;
-			$data['dxcc'] = (string)$xml->Callsign->dxcc;
-			$data['state'] = (string)$xml->Callsign->state;
-			$data['iota'] = (string)$xml->Callsign->iota;
-			$data['qslmgr'] = (string)$xml->Callsign->qslmgr;
-			$data['image'] = (string)$xml->Callsign->image;
+			// only return certain data of a callsign which does not contain a pre- or suffix (see https://github.com/wavelog/wavelog/issues/452)
+			if (strpos($callsign, '&#47') == false) {
 
-			if ($xml->Callsign->country == "United States") {
-				$data['us_county'] = (string)$xml->Callsign->county;
+				$data['gridsquare'] = $clean_gridsquare;
+				$data['city'] 	= (string)$xml->Callsign->addr2;
+				$data['lat'] 	= (string)$xml->Callsign->lat;
+				$data['long'] 	= (string)$xml->Callsign->lon;
+				$data['dxcc'] 	= (string)$xml->Callsign->dxcc;
+				$data['state'] 	= (string)$xml->Callsign->state;
+				$data['iota'] 	= (string)$xml->Callsign->iota;
+				$data['qslmgr'] = (string)$xml->Callsign->qslmgr;
+				$data['image'] 	= (string)$xml->Callsign->image;
+
+				if ($xml->Callsign->country == "United States") {
+					$data['us_county'] = (string)$xml->Callsign->county;
+				} else {
+					$data['us_county'] = null;
+				}
+
 			} else {
-				$data['us_county'] = null;
+
+				$data['gridsquare'] = '';
+				$data['city'] 	= '';
+				$data['lat'] 	= '';
+				$data['long'] 	= '';
+				$data['dxcc'] 	= '';
+				$data['state'] 	= '';
+				$data['iota'] 	= '';
+				$data['qslmgr'] = (string)$xml->Callsign->qslmgr;
+				$data['image'] 	= (string)$xml->Callsign->image;
+				$data['us_county'] = '';
+
 			}
 		} finally {
 
