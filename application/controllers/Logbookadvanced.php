@@ -540,11 +540,13 @@ class Logbookadvanced extends CI_Controller {
 		$this->load->model('bands');
 		$this->load->model('modes');
 		$this->load->model('logbookadvanced_model');
+		$this->load->model('contesting_model');
 
 		$data['stateDxcc'] = $this->logbookadvanced_model->getPrimarySubdivisonsDxccs();
 
 		$data['modes'] = $this->modes->active();
 		$data['bands'] = $this->bands->get_user_bands_for_qso_entry();
+		$data['contests'] = $this->contesting_model->getActivecontests();
 		$this->load->view('logbookadvanced/edit', $data);
 	}
 
