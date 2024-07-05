@@ -1,13 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 class Frequency {
 
-	public $QRG_UNITS = [
-		'Hz',
-		'kHz',
-		'MHz',
-		'GHz'
-	];
-
 	public $defaultFrequencies = array(
 		'160m' => array(
 			'SSB' => "1900000",

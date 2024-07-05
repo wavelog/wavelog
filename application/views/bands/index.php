@@ -95,9 +95,10 @@ $wwff = 0;
 								<td style="text-align: center; vertical-align: middle;" ><?php echo $band->cw;?></td>
 								<td style="text-align: center; vertical-align: middle;" class='band_<?php echo $band->id ?>'>
 									<select class="form-select unitselect" name="unit_<?php echo $band->id; ?>">
-										<?php foreach($units as $unit): ?>
-											<option value="<?php echo $unit; ?>" <?php if ($this->frequency->qrg_unit($band->band) == $unit) { echo 'selected';} ?>><?php echo $unit; ?></option>
-										<?php endforeach; ?>
+										<option value="Hz" <?php if ($this->frequency->qrg_unit($band->band) == 'Hz') { echo 'selected';} ?>><?= __("Hz"); ?></option>
+										<option value="kHz" <?php if ($this->frequency->qrg_unit($band->band) == 'kHz') { echo 'selected';} ?>><?= __("kHz"); ?></option>
+										<option value="MHz" <?php if ($this->frequency->qrg_unit($band->band) == 'MHz') { echo 'selected';} ?>><?= __("MHz"); ?></option>
+										<option value="GHz" <?php if ($this->frequency->qrg_unit($band->band) == 'GHz') { echo 'selected';} ?>><?= __("GHz"); ?></option>
 									</select>
 								</td>
 								<?php if($this->session->userdata('user_type') == '99') { ?>

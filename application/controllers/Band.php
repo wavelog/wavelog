@@ -20,7 +20,6 @@ class Band extends CI_Controller {
 		$this->load->model('bands');
 
 		$data['bands'] = $this->bands->get_all_bands_for_user();
-		$data['units'] = $this->frequency->QRG_UNITS;
 
 		// Render Page
 		$data['page_title'] = __("Bands");
