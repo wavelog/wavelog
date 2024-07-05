@@ -68,12 +68,39 @@
     });
 </script>
 
-<script>
+
+<!-- DATATABLES LANGUAGE -->
+<?php
+$local_code = $language['locale'];
+$lang_code = $language['code'];
+$file_path = base_url() . "assets/json/datatables_languages/" . $local_code . ".json";
+
+// Check if the file exists
+if ($lang_code != 'en' && !file_exists(FCPATH . "assets/json/datatables_languages/" . $local_code . ".json")) {
+    $datatables_language_url = '';
+} else {
+    $datatables_language_url = $file_path;
+}
+?>
+
+<script type="text/javascript">
     function getDataTablesLanguageUrl() {
-        datatables_language_url = "<?php echo base_url() ;?>assets/json/datatables_languages/" + "<?php echo $language['locale']; ?>" + ".json";
-        return datatables_language_url;
+        locale = "<?php echo $local_code ?>";
+        lang_code = "<?php echo $lang_code; ?>";
+        datatables_language_url = "<?php echo $datatables_language_url; ?>";
+
+        // if language is set to english we don't need to load any language files
+        if (lang_code != 'en') {
+            if (datatables_language_url !== '') {
+                return datatables_language_url;
+            } else {
+                console.error("Datatables language file does not exist for locale: " + locale);
+                return null;
+            }
+        }
     }
 </script>
+<!-- DATATABLES LANGUAGE END -->
 
 <!-- Version Dialog START -->
 

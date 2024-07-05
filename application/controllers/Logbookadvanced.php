@@ -133,6 +133,8 @@ class Logbookadvanced extends CI_Controller {
 			'lotwReceived' => xss_clean($this->input->post('lotwReceived')),
 			'eqslSent' => xss_clean($this->input->post('eqslSent')),
 			'eqslReceived' => xss_clean($this->input->post('eqslReceived')),
+			'clublogSent' => xss_clean($this->input->post('clublogSent')),
+			'clublogReceived' => xss_clean($this->input->post('clublogReceived')),
 			'qslvia' => xss_clean($this->input->post('qslvia')),
 			'sota' => xss_clean($this->input->post('sota')),
 			'pota' => xss_clean($this->input->post('pota')),
@@ -300,6 +302,8 @@ class Logbookadvanced extends CI_Controller {
 			'lotwReceived' => '',
 			'eqslSent' => '',
 			'eqslReceived' => '',
+			'clublogSent' => '',
+			'clublogReceived' => '',
 			'qslvia' => '',
 			'sota' => '',
 			'pota' => '',
@@ -342,6 +346,8 @@ class Logbookadvanced extends CI_Controller {
 			'lotwReceived' => xss_clean($this->input->post('lotwReceived')),
 			'eqslSent' => xss_clean($this->input->post('eqslSent')),
 			'eqslReceived' => xss_clean($this->input->post('eqslReceived')),
+			'clublogSent' => xss_clean($this->input->post('clublogSent')),
+			'clublogReceived' => xss_clean($this->input->post('clublogReceived')),
 			'qslvia' => xss_clean($this->input->post('qslvia')),
 			'sota' => xss_clean($this->input->post('sota')),
 			'pota' => xss_clean($this->input->post('pota')),
@@ -491,6 +497,7 @@ class Logbookadvanced extends CI_Controller {
 		$json_string['qsl']['show'] = $this->input->post('qsl');
 		$json_string['lotw']['show'] = $this->input->post('lotw');
 		$json_string['eqsl']['show'] = $this->input->post('eqsl');
+		$json_string['clublog']['show'] = $this->input->post('clublog');
 		$json_string['qslmsg']['show'] = $this->input->post('qslmsg');
 		$json_string['dxcc']['show'] = $this->input->post('dxcc');
 		$json_string['state']['show'] = $this->input->post('state');

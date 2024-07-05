@@ -61,6 +61,9 @@ function updateRow(qso) {
 	if (user_options.qsl.show == "true"){
 		cells.eq(c++).html(qso.qsl);
 	}
+	if (user_options.clublog.show == "true"){
+		cells.eq(c++).html(qso.clublog);
+	}
 	if ($(".eqslconfirmation")[0] && user_options.eqsl.show == "true"){
 		cells.eq(c++).html(qso.eqsl);
 	}
@@ -183,6 +186,9 @@ function loadQSOTable(rows) {
 		}
 		if (user_options.qslvia.show == "true"){
 			data.push(qso.qslVia);
+		}
+		if (user_options.clublog.show == "true"){
+			data.push(qso.clublog);
 		}
 		if (user_options.qsl.show == "true"){
 			data.push(qso.qsl);
@@ -352,6 +358,8 @@ $(document).ready(function () {
 				ituzone: this.ituzone.value,
 				lotwSent: this.lotwSent.value,
 				lotwReceived: this.lotwReceived.value,
+				clublogSent: this.clublogSent.value,
+				clublogReceived: this.clublogReceived.value,
 				eqslSent: this.eqslSent.value,
 				eqslReceived: this.eqslReceived.value,
 				qslvia: $('[name="qslvia"]').val(),
@@ -1019,6 +1027,7 @@ function saveOptions() {
 			name: $('input[name="name"]').is(':checked') ? true : false,
 			qslvia: $('input[name="qslvia"]').is(':checked') ? true : false,
 			qsl: $('input[name="qsl"]').is(':checked') ? true : false,
+			clublog: $('input[name="clublog"]').is(':checked') ? true : false,
 			lotw: $('input[name="lotw"]').is(':checked') ? true : false,
 			eqsl: $('input[name="eqsl"]').is(':checked') ? true : false,
 			qslmsg: $('input[name="qslmsg"]').is(':checked') ? true : false,
