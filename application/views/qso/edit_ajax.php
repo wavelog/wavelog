@@ -60,7 +60,7 @@
                                 <div class="row">
                                     <div class="mb-3 col-sm-6">
                                         <label for="callsign"><?= __("Callsign"); ?></label>
-                                        <input type="text" class="form-control" id="callsign" name="callsign" value="<?php echo $qso->COL_CALL; ?>">
+                                        <input type="text" class="form-control" id="call" name="callsign" value="<?php echo $qso->COL_CALL; ?>">
                                     </div>
 
                                     <div class="mb-3 col-sm-6">
@@ -589,7 +589,7 @@
                         <div class="actions">
                             <a class="btn btn-danger" href="javascript:qso_delete(<?php echo $qso->COL_PRIMARY_KEY; ?>, '<?php echo $qso->COL_CALL; ?>')"><i class="fas fa-trash-alt"></i> <?= __("Delete QSO"); ?></a>
                             <div class="float-end">
-                                <button id="update_from_callbook" type="button" class="btn btn-warning ld-ext-right" onclick="single_callbook_update('<?php echo $qso->COL_CALL; ?>', '<?php echo $qso->COL_BAND; ?>', '<?php echo $qso->COL_MODE; ?>');"><i class="fas fa-book"></i> <?= __("Update from Callbook"); ?><div class="ld ld-ring ld-spin"></div></button>
+                                <button id="update_from_callbook" type="button" class="btn btn-warning ld-ext-right" onclick="single_callbook_update();"><i class="fas fa-book"></i> <?= __("Update from Callbook"); ?><div class="ld ld-ring ld-spin"></div></button>
                                 <button id="show" type="button" name="download" class="btn btn-primary" onclick="qso_save();"><i class="fas fa-save"></i> <?= __("Save changes"); ?></button>
                             </div>
                         </div>
