@@ -4703,6 +4703,24 @@ function lotw_last_qsl_date($user_id) {
       }
     }
 
+	function get_plaincall($callsign) {
+		$split_callsign=explode('/',$callsign);
+		if (count($split_callsign)==1) {				// case F0ABC --> return cel 0 //
+			$lookupcall = $split_callsign[0];
+		} else if (count($split_callsign)==3) {			// case EA/F0ABC/P --> return cel 1 //
+			$lookupcall = $split_callsign[1];
+		} else {										// case F0ABC/P --> return cel 0 OR  case EA/FOABC --> retunr 1  (normaly not exist) //
+			if (in_array(strtoupper($split_callsign[1]), array('P','M','MM','QRP','0','1','2','3','4','5','6','7','8','9'))) {
+				$lookupcall = $split_callsign[0];
+			} else if (strlen($split_callsign[1])>3) {	// Last Element longer than 3 chars? Take that as call
+				$lookupcall = $split_callsign[1];
+			} else {									// Last Element up to 3 Chars? Take first element as Call
+				$lookupcall = $split_callsign[0];
+			}
+		}
+		return $lookupcall;
+	}
+
 	public function loadCallBook($callsign, $use_fullname=false)
     {
         $callbook = null;
@@ -4718,13 +4736,18 @@ function lotw_last_qsl_date($user_id) {
 
                 $callbook = $this->qrz->search($callsign, $this->session->userdata('qrz_session_key'), $use_fullname);
 
-                // if we got nothing, it's probably because our session key is invalid, try again
-                if (($callbook['callsign'] ?? '') == '')
-                {
-                    $qrz_session_key = $this->qrz->session($this->config->item('qrz_username'), $this->config->item('qrz_password'));
-                    $this->session->set_userdata('qrz_session_key', $qrz_session_key);
+                // We need to handle, if the sessionkey is invalid
+                if ($callbook['error'] ?? '' == 'Invalid session key') {
+                    $this->qrz->set_session($this->config->item('qrz_username'), $this->config->item('qrz_password'));
                     $callbook = $this->qrz->search($callsign, $this->session->userdata('qrz_session_key'), $use_fullname);
                 }
+
+				// If the callsign contains a slash we have a pre- or suffix. If then the result is "Not found" we can try again with the plain call
+				if (strpos($callbook['error'] ?? '', 'Not found') !== false && strpos($callsign, "/") !== false) {
+					$plaincall = $this->get_plaincall($callsign);
+					// Now try again but give back reduced data, as we can't validate location and stuff (true at the end)
+					$callbook = $this->qrz->search($plaincall, $this->session->userdata('qrz_session_key'), $use_fullname, true);
+				}
             }
 
             if ($this->config->item('callbook') == "hamqth" && $this->config->item('hamqth_username') != null && $this->config->item('hamqth_password') != null) {
@@ -4736,7 +4759,13 @@ function lotw_last_qsl_date($user_id) {
                     $this->session->set_userdata('hamqth_session_key', $hamqth_session_key);
                 }
 
-                $callbook = $this->hamqth->search($callsign, $this->session->userdata('hamqth_session_key'));
+				// if the callsign contains a pre- or suffix we only give back reduced data to avoid wrong data (location and other things are not valid then)
+				if (strpos($callsign, "/") !== false) {
+					$reduced = true;
+				} else {
+					$reduced = false;
+				}
+                $callbook = $this->hamqth->search($callsign, $this->session->userdata('hamqth_session_key'), $reduced);
 
                 // If HamQTH session has expired, start a new session and retry the search.
                 if ($callbook['error'] == "Session does not exist or expired") {
