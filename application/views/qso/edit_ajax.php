@@ -60,7 +60,7 @@
                                 <div class="row">
                                     <div class="mb-3 col-sm-6">
                                         <label for="callsign"><?= __("Callsign"); ?></label>
-                                        <input type="text" class="form-control" id="call" name="callsign" value="<?php echo $qso->COL_CALL; ?>">
+                                        <input type="text" class="form-control" id="edit_callsign" name="callsign" value="<?php echo $qso->COL_CALL; ?>">
                                     </div>
 
                                     <div class="mb-3 col-sm-6">
@@ -81,7 +81,7 @@
                                 <div class="row">
                                     <div class="mb-3 col-sm-6">
                                         <label for="freq"><?= __("Band"); ?></label>
-                                        <select id="band" class="form-select form-select-sm" name="band">
+                                        <select id="edit_band" class="form-select form-select-sm" name="band">
                                         <?php foreach($bands as $key=>$bandgroup) {
                                             echo '<optgroup label="' . strtoupper($key) . '">';
                                             foreach($bandgroup as $band) {
@@ -117,7 +117,7 @@
                                 <div class="row">
                                     <div class="mb-3 col-sm-6">
                                         <label for="freq"><?= __("Mode"); ?></label>
-                                        <select id="mode" class="form-select mode form-select-sm" name="mode">
+                                        <select id="edit_mode" class="form-select mode form-select-sm" name="mode">
                                             <?php
                                             foreach($modes->result() as $mode){
                                                 var_dump($mode);

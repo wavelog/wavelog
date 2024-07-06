@@ -155,9 +155,9 @@ function displayQso(id) {
 // used in edit_ajax.php to update the currently editing QSO
 function single_callbook_update() {
 
-    var callsign = $('#call').val();
-    var band = $('#band').val();
-    var mode = $('#mode').val();
+    var callsign = $('#edit_callsign').val();
+    var band = $('#edit_band').val();
+    var mode = $('#edit_mode').val();
 
     $('#update_from_callbook').prop("disabled", true).addClass("running");
 
