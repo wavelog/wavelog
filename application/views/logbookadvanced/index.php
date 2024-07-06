@@ -502,7 +502,7 @@ $options = json_decode($options);
 					echo " selected =\"selected\"";
                 } ?>>
 				<?= __("Callsign") . ": " ?>
-				<?php echo $station->station_callsign; ?> (<?php echo $station->station_profile_name; ?>)
+				<?php echo str_replace("0","&Oslash;",strtoupper($station->station_callsign)); ?> (<?php echo $station->station_profile_name; ?>)
 			</option>
 			<?php } ?>
 		</select>
