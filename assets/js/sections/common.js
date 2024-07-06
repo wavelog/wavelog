@@ -155,7 +155,7 @@ function displayQso(id) {
 // used in edit_ajax.php to update the currently editing QSO
 function single_callbook_update(callsign, band, mode) {
 
-   
+    $('#update_from_callbook').prop("disabled", true).addClass("running");
 
     $.ajax({
         url: site_url + '/logbook/json/' + callsign + '/' + band + '/' + mode,
@@ -174,9 +174,13 @@ function single_callbook_update(callsign, band, mode) {
             fill_if_empty('#qsl-via', data.qsl_manager);
             fill_if_empty('#stateDropdown', data.callsign_state);
             fill_if_empty('#stationCntyInputEdit', data.callsign_us_county);
+
+            $('#update_from_callbook').prop("disabled", false).removeClass("running");
         },
         error: function () {
             console.error("Sorry, something went wrong to get the callbook data.");
+
+            $('#update_from_callbook').prop("disabled", false).removeClass("running");
         },
     });
 }
