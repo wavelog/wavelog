@@ -58,7 +58,6 @@ $EMULATEGETTEXT = 0;
 $CURRENTLOCALE = '';
 /* Class to hold a single domain included in $text_domains. */
 class domain
-
 {
 	var $l10n;
 	var $path;
@@ -144,7 +143,7 @@ function _get_reader($domain = null, $category = 5, $enable_cache = true)
 			}
       $base_path = __DIR__ . '/locale/' . $locale . '/' . $subpath;
 			$full_path = realpath($base_path);
-			error_log("Fullpath: ".$full_path);
+			// error_log("Fullpath: ".$full_path);
 			if (file_exists($full_path)) {
 				$input = new FileReader($full_path);
 				break;

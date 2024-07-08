@@ -8,11 +8,13 @@
  * 
  */
 
-$config['gt_install_domain'] = 'installer';
 
-$config['gt_install_cookie'] = 'installer_language';
 
-$config['gt_install_languages'] = array(
+$gt_conf['gt_install_domain'] = 'installer';
+
+$gt_conf['gt_install_cookie'] = 'installer_language';
+
+$gt_conf['gt_install_languages'] = array(
 
     'bulgarian' => array(
         'name'      => 'Български',
