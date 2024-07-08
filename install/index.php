@@ -27,7 +27,7 @@ require_once('includes/gettext/gettext.php');
 require_once('includes/gettext/gettext.conf');
 
 // define('LOCALE_DIR', 'includes/gettext/locale');
-define('DEFAULT_LOCALE', 'es_ES');
+define('DEFAULT_LOCALE', 'de_DE');
 
 $language = (isset($_GET['lang'])) ? $_GET['lang'] : DEFAULT_LOCALE;
 
@@ -190,7 +190,7 @@ global $wavelog_url;
 
 	<link rel="stylesheet" href="../assets/css/darkly/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/overrides.css">
-	<link rel="stylesheet" href="../assets/fontawesome/css/all.css">
+	<link rel="stylesheet" href="../assets/fontawesome/css/all.min.css">
 
 	<script type="text/javascript" src="../assets/js/bootstrap.bundle.min.js"></script>
 	<script type="text/javascript" src="../assets/js/jquery-3.3.1.min.js"></script>
