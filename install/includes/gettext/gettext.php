@@ -39,12 +39,15 @@ defined('LC_MESSAGES') or define('LC_MESSAGES', 5);
 
 require('inc/streams.php');
 require('inc/gettext_reader.php');
+require_once('gettext_conf.php');
 
 // Variables
 
-global $text_domains, $default_domain, $LC_CATEGORIES, $EMULATEGETTEXT, $CURRENTLOCALE;
+global $text_domains, $default_domain, $default_lang, $available_languages, $gt_conf, $LC_CATEGORIES, $EMULATEGETTEXT, $CURRENTLOCALE;
 $text_domains = array();
-$default_domain = 'installer';
+$default_domain = $gt_conf['default_domain'];
+$default_lang = $gt_conf['default_lang'];
+$available_languages = $gt_conf['languages'];
 $LC_CATEGORIES = array(
 	'LC_CTYPE',
 	'LC_NUMERIC',
@@ -64,6 +67,36 @@ class domain {
 }
 
 // Utility functions
+
+/**
+ *  Get the clients language from the browser
+ */
+
+function _get_client_language() {
+	global $default_lang;
+	if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+		$code = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+		$lang = find_by('code', $code) ?: $default_lang;
+	} else {
+		$code = 'en';
+		$lang = find_by('code', $code);
+	}
+	return $lang;
+}
+
+/** 
+ * Find the correct language by different parameters
+ */
+
+function find_by($field = 'folder', $match = 'english') {
+	global $available_languages;
+	foreach ($available_languages as $lang) {
+		if (isset($lang[$field]) && $lang[$field] === $match) {
+			return $lang;
+		}
+	}
+	return NULL;
+}
 
 /**
  * Return a list of locales to try for any POSIX-style locale specification.

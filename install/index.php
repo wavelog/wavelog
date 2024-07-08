@@ -25,14 +25,8 @@ if (file_exists('config_unattended.php')) {
 require_once('includes/gettext/gettext.php');
 require_once('includes/gettext/gettext_conf.php');
 
-
-
-// define('LOCALE_DIR', 'includes/gettext/locale');
-define('DEFAULT_LOCALE', 'de_DE');
-
-$language = (isset($_GET['lang'])) ? $_GET['lang'] : DEFAULT_LOCALE;
-
-T_setlocale(LC_MESSAGES, $language);
+$language = _get_client_language();
+T_setlocale(LC_MESSAGES, $language['gettext']);
 
 // #########################################################
 // PRECONFIGURATION
@@ -181,7 +175,7 @@ global $wavelog_url;
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="<?= $language; ?>">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="<?= $language['gettext']; ?>">
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -1497,5 +1491,26 @@ global $wavelog_url;
 	</body>
 
 <?php endif; ?>
+
+<!-- Hidden field to be able to translate the language names
+Add english Language Name here if you add new languages to application/config/gettext.php
+This helps the po scanner -->
+<div style="display: none">
+	<?= __("Bulgarian"); ?>
+    <?= __("Chinese (Simplified)"); ?>
+    <?= __("Czech"); ?>
+    <?= __("Dutch"); ?>
+    <?= __("English"); ?>
+    <?= __("Finnish"); ?>
+    <?= __("French"); ?>
+    <?= __("German"); ?>
+    <?= __("Greek"); ?>
+    <?= __("Italian"); ?>
+    <?= __("Polish"); ?>
+    <?= __("Russian"); ?>
+    <?= __("Spanish"); ?>
+    <?= __("Swedish"); ?>
+    <?= __("Turkish"); ?>
+</div>
 
 </html>
