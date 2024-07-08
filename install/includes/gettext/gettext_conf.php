@@ -14,8 +14,6 @@ $gt_conf['default_domain'] = 'installer';
 
 $gt_conf['default_lang'] = 'english';
 
-$gt_conf['lang_cookie'] = 'install_lang';
-
 $gt_conf['languages'] = array(
 
     'bulgarian' => array(
