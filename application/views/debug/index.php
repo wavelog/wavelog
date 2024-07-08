@@ -579,7 +579,7 @@
     <?php } ?>
 </script>
 
-<!-- Hidden field to bring languages to the po files.$
+<!-- Hidden field to be able to translate the language names
      Add english Language Name here if you add new languages to application/config/gettext.php
      This helps the po scanner -->
 <div style="display: none">
