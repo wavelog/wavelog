@@ -24,7 +24,7 @@ if (file_exists('config_unattended.php')) {
 // #########################################################
 
 require_once('includes/gettext/gettext.php');
-require_once('includes/gettext/gettext.conf');
+require_once('includes/gettext/gettext_conf.php');
 
 // define('LOCALE_DIR', 'includes/gettext/locale');
 define('DEFAULT_LOCALE', 'de_DE');
