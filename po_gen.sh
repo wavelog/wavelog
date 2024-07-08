@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # Wavelog PO-File Generator
+# COMPONENT: Main
+#
 # HB9HIL <mail@hb9hil.org>, 2024
 
 # This script is designed to help create consistent POT, PO, and MO files during Wavelog development.
@@ -31,9 +33,10 @@ YEAR="$(date +"%Y")"
 POT_TITLE_TEXT="WAVELOG PO FILE"
 POT_COPYRIGHT_TEXT="Copyright (c) $YEAR Wavelog by DF2ET, DJ7NT, HB9HIL and LA8AJA."
 POT_LICENCE_TEXT="This file is distributed under the MIT licence."
+FOLDERS="application assets src system"
 
 # Find all PHP files and create a list in a temporary file 
-find . -name "*.php" > PHPFILESLIST
+find $FOLDERS -name "*.php" > PHPFILESLIST
 
 # Run the xgettext command with various options. Do not change these options to keep the POT/PO files consistent in Wavelog
 xgettext    --no-wrap \
@@ -61,7 +64,7 @@ sed -i '8d' $POT_FILE
 head -n 3 "$POT_FILE" > POT_HEADER
 
 # Now we can merge the POT file (PO template) into each found PO file
-for po in $(find . -name "*.po"); do
+for po in $(find $FOLDERS -name "*.po"); do
     msgmerge --no-wrap --update -vv --backup=none --no-fuzzy-matching "$po" $POT_FILE;
     # Replace the first three lines of the PO file with the POT file header
     sed -i '1,3d' "$po"
@@ -74,7 +77,7 @@ done
 rm POT_HEADER
 
 # The last action is to create a MO file for each found PO file
-for po in $(find . -name "*.po"); do
+for po in $(find $FOLDERS -name "*.po"); do
     mo="${po%.po}.mo";
     msgfmt -vv -o "$mo" "$po";
 done
