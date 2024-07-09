@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-09 12:32+0000\n"
+"POT-Creation-Date: 2024-07-09 12:56+0000\n"
 "PO-Revision-Date: 2024-06-05 15:15+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -384,7 +384,8 @@ msgid "The E-Mail Address is not valid"
 msgstr ""
 
 #: install/index.php:1442
-msgid "The grid locator is not valid. Use a 6-character locator, e.g. HA44AA. If you don't know your grid square then <a href='&s' target='_blank'>click here</a>!"
+#, php-format
+msgid "The grid locator is not valid. Use a 6-character locator, e.g. HA44AA. If you don't know your grid square then <a href='%s' target='_blank'>click here</a>!"
 msgstr ""
 
 #: install/index.php:1549
