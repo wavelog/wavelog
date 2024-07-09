@@ -169,7 +169,7 @@
 										<label for="user_language"><?= __("Wavelog Language"); ?></label>
 										<?php
 										foreach ($existing_languages as $lang) {
-											$options[$lang['folder']] = $lang['name_en'];
+											$options[$lang['folder']] = __($lang['name_en']);
 										}
 										echo form_dropdown('user_language', $options, $user_language);
 										?>
