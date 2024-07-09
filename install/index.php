@@ -19,18 +19,30 @@ if (file_exists('config_unattended.php')) {
 }
 
 // #########################################################
-// Gettext Implementation
-// #########################################################
-
-require_once('includes/gettext/gettext.php');
-require_once('includes/gettext/gettext_conf.php');
-
-$language = _get_client_language();
-T_setlocale(LC_MESSAGES, $language['gettext']);
-
-// #########################################################
 // PRECONFIGURATION
 // #########################################################
+
+function is_https() {
+	if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
+		return true;
+	}
+	if (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
+		return true;
+	}
+	if (!empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] === 'on') {
+		return true;
+	}
+	return false;
+}
+
+if (is_https()) {
+	$html_scheme = "https";
+} else {
+	$html_scheme = "http";
+}
+
+global $installer_url;
+$installer_url = $html_scheme . '://' . $_SERVER['HTTP_HOST'] . '/' . substr(str_replace(["index.php", "/install/"], "", $_SERVER['REQUEST_URI']), 1) . '/install';
 
 // Config Paths
 $db_config_path = '../application/config/';
@@ -64,6 +76,38 @@ $required_php_modules = [
 $mariadb_version = 10.1;
 $mysql_version = 5.7;
 
+// #########################################################
+// Gettext Implementation
+// #########################################################
+
+// include the lib and the conf file
+require_once('includes/gettext/gettext.php');
+require_once('includes/gettext/gettext_conf.php');
+
+// if we come with a get call we can switch the language cookie
+if (isset($_GET['lang'])) {
+	switch_lang($_GET['lang']);
+}
+
+// get the browsers language if no cookie exists and set one
+if (!isset($_COOKIE[$gt_conf['lang_cookie']])) {
+	$browser_language = _get_client_language();
+	setcookie($gt_conf['lang_cookie'], $browser_language['gettext']);
+}
+// get the language from the cookie
+$language = $_COOKIE[$gt_conf['lang_cookie']];
+
+// and set the locale for gettext
+T_setlocale(LC_MESSAGES, $language);
+
+// function to switch the language based on the user selection
+function switch_lang($new_language) {
+	global $gt_conf, $installer_url;
+	setcookie($gt_conf['lang_cookie'], $new_language);
+	header("Location: " . $installer_url);
+	exit();
+}
+
 // ######################################################### END OF PRECONFIGURATION
 
 // Function to check if a PHP extension is installed
@@ -84,25 +128,6 @@ function delDir($dir) {
 			}
 		}
 	}
-}
-
-function is_https() {
-	if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
-		return true;
-	}
-	if (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
-		return true;
-	}
-	if (!empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] === 'on') {
-		return true;
-	}
-	return false;
-}
-
-if (is_https()) {
-	$html_scheme = "https";
-} else {
-	$html_scheme = "http";
 }
 
 if (file_exists($db_file_path)) {
@@ -175,7 +200,7 @@ global $wavelog_url;
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="<?= $language['gettext']; ?>">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="<?= $language; ?>">
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -240,6 +265,12 @@ global $wavelog_url;
 										<p style="margin-top: 50px;"><?= __("This installer will guide you through the necessary steps for the installation of Wavelog. <br>Wavelog is a powerful web-based amateur radio logging software. Follow the steps in each tab to configure and install Wavelog on your server."); ?></p>
 										<p><?= sprintf(__("If you encounter any issues or have questions, refer to the documentation (%s) or community forum (%s) on Github for assistance."), "<a href='https://www.github.com/wavelog/wavelog/wiki' target='_blank'>" . __("Wiki") . "</a>", "<a href='https://www.github.com/wavelog/wavelog/discussions' target='_blank'>" . __("Discussions") . "</a>"); ?></p>
 										<p><?= __("Thank you for installing Wavelog!"); ?></p>
+										<?php if (__("Language") == "Language") {
+												$lang_html = "Language";
+											} else {
+												$lang_html = __("Language")." / Language";
+											} ?>
+										<a class="btn btn-sm btn-secondary" id="languageButton"><?= $lang_html; ?></a>
 									</div>
 								</div>
 							</div>
@@ -1497,20 +1528,20 @@ Add english Language Name here if you add new languages to application/config/ge
 This helps the po scanner -->
 <div style="display: none">
 	<?= __("Bulgarian"); ?>
-    <?= __("Chinese (Simplified)"); ?>
-    <?= __("Czech"); ?>
-    <?= __("Dutch"); ?>
-    <?= __("English"); ?>
-    <?= __("Finnish"); ?>
-    <?= __("French"); ?>
-    <?= __("German"); ?>
-    <?= __("Greek"); ?>
-    <?= __("Italian"); ?>
-    <?= __("Polish"); ?>
-    <?= __("Russian"); ?>
-    <?= __("Spanish"); ?>
-    <?= __("Swedish"); ?>
-    <?= __("Turkish"); ?>
+	<?= __("Chinese (Simplified)"); ?>
+	<?= __("Czech"); ?>
+	<?= __("Dutch"); ?>
+	<?= __("English"); ?>
+	<?= __("Finnish"); ?>
+	<?= __("French"); ?>
+	<?= __("German"); ?>
+	<?= __("Greek"); ?>
+	<?= __("Italian"); ?>
+	<?= __("Polish"); ?>
+	<?= __("Russian"); ?>
+	<?= __("Spanish"); ?>
+	<?= __("Swedish"); ?>
+	<?= __("Turkish"); ?>
 </div>
 
 </html>
