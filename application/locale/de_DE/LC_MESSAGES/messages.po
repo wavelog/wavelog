@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-09 12:32+0000\n"
+"POT-Creation-Date: 2024-07-09 17:10+0200\n"
 "PO-Revision-Date: 2024-07-09 13:25+0000\n"
 "Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-translation/de/>\n"
@@ -1523,7 +1523,10 @@ msgid "You have no station locations. Go %s to create it!"
 msgstr "Du hast keine Stations-Standorte. Klicke %s um eine zu erstellen!"
 
 #: application/controllers/Sattimers.php:41
+#: application/views/awards/counties/index.php:8
+#: application/views/awards/dok/index.php:10
 #: application/views/awards/iota/index.php:19
+#: application/views/awards/was/index.php:21
 #: application/views/dashboard/index.php:64
 #: application/views/dashboard/index.php:73
 #: application/views/dashboard/index.php:82
@@ -3137,6 +3140,10 @@ msgstr "Deutschland erstreckt sich über 630 km von Ost nach West und fast 900 k
 #: application/views/awards/dok/index.php:9
 msgid "The DOK consists of a letter for the district and a two-digit number for the local chapter, like P03 Friedrichshafen (city of the 'Hamradio exhibition') or F41 Baunatal (location of the DARC headquarters). Note: A zero in a DOK is a common mistake, often being logged as the letter O."
 msgstr "Der DOK besteht aus einem Buchstaben für den Distrik und einer zweistelligen Zahl für Ortsverband, wie P03 Friedrichshafen (Stadt der 'Hamradio-Messe') oder F41 Baunatal (Sitz der DARC-Zentrale). Hinweis: Eine Null in einem DOK ist ein häufiger Fehler, der oft als der Buchstabe O erfasst wird."
+
+#: application/views/awards/dok/index.php:10
+msgid "DARC website"
+msgstr "DARC Webseite"
 
 #: application/views/awards/dok/index.php:10
 #, php-format

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-09 12:32+0000\n"
+"POT-Creation-Date: 2024-07-09 17:10+0200\n"
 "PO-Revision-Date: 2024-07-09 13:26+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-translation/ru/>\n"
@@ -1520,7 +1520,10 @@ msgid "You have no station locations. Go %s to create it!"
 msgstr "У вас нет профиля QTH. Перейдите по ссылке %s , чтобы создать!"
 
 #: application/controllers/Sattimers.php:41
+#: application/views/awards/counties/index.php:8
+#: application/views/awards/dok/index.php:10
 #: application/views/awards/iota/index.php:19
+#: application/views/awards/was/index.php:21
 #: application/views/dashboard/index.php:64
 #: application/views/dashboard/index.php:73
 #: application/views/dashboard/index.php:82
@@ -3134,6 +3137,10 @@ msgstr "Германия простирается на 630 км с восток�
 #: application/views/awards/dok/index.php:9
 msgid "The DOK consists of a letter for the district and a two-digit number for the local chapter, like P03 Friedrichshafen (city of the 'Hamradio exhibition') or F41 Baunatal (location of the DARC headquarters). Note: A zero in a DOK is a common mistake, often being logged as the letter O."
 msgstr "DOK состоит из буквы, обозначающей район, и двузначного номера местного отделения, например P03 Friedrichshafen (город, где проходит выставка Hamradio) или F41 Baunatal (местонахождение штаб-квартиры DARC). Примечание: ноль в DOK - распространенная ошибка, часто его записывают как букву O."
+
+#: application/views/awards/dok/index.php:10
+msgid "DARC website"
+msgstr ""
 
 #: application/views/awards/dok/index.php:10
 #, php-format
