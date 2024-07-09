@@ -99,6 +99,8 @@ if (isset($_GET['lang'])) {
 if (!isset($_COOKIE[$gt_conf['lang_cookie']])) {
 	$browser_language = _get_client_language();
 	setcookie($gt_conf['lang_cookie'], $browser_language['gettext']);
+	header("Location: " . $installer_url);
+	exit();
 }
 // get the language from the cookie
 $language = $_COOKIE[$gt_conf['lang_cookie']];
