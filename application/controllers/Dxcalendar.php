@@ -7,7 +7,7 @@ class Dxcalendar extends CI_Controller {
 		$this->load->model('logbook_model');
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 
-		$data['page_title'] = "DX Calendar";
+		$data['page_title'] = __("DX Calendar");
 
 		$this->load->driver('cache', array('adapter' => 'file', 'backup' => 'file'));
 		$rssUrl = 'http://www.ng3k.com/adxo.xml';

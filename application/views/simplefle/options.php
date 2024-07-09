@@ -17,4 +17,4 @@
     </tbody>
 </table> -->
 
-<p> No Options yet </p>
+<p> <?= __("No Options yet"); ?> </p>

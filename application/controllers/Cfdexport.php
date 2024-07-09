@@ -17,7 +17,7 @@ class Cfdexport extends CI_Controller {
 
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 
-		$data['page_title'] = "CFD Export";
+		$data['page_title'] = __("CFD Export");
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('cfd/index');

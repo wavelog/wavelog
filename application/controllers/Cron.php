@@ -9,7 +9,7 @@ class cron extends CI_Controller {
 		parent::__construct();
 
 		if (ENVIRONMENT == 'maintenance' && $this->session->userdata('user_id') == '') {
-			echo "Maintenance Mode is active. Try again later.\n";
+			echo __("Maintenance Mode is active. Try again later.")."\n";
 			redirect('user/login');
 		}
 
@@ -35,7 +35,7 @@ class cron extends CI_Controller {
 			'assets/js/sections/cron.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/cron.js"))
 		];
 
-		$data['page_title'] = "Cron Manager";
+		$data['page_title'] = __("Cron Manager");
 		$data['crons'] = $this->cron_model->get_crons();
 
 		$mastercron = array();
@@ -134,7 +134,7 @@ class cron extends CI_Controller {
 		$cron_query = $this->cron_model->cron(xss_clean($this->input->post('id', true)));
 
 		$data['cron'] = $cron_query->row();
-		$data['page_title'] = "Edit Cronjob";
+		$data['page_title'] = __("Edit Cronjob");
 
 		$this->load->view('cron/edit', $data);
 	}

@@ -87,7 +87,7 @@ class Webadif extends CI_Controller {
 	public function export() {
 		$this->load->model('stations');
 
-		$data['page_title'] = "QO-100 Dx Club Upload";
+		$data['page_title'] = __("QO-100 Dx Club Upload");
 
 		$data['station_profiles'] = $this->stations->stations_with_webadif_api_key();
 		$data['station_profile'] = $this->stations->stations_with_webadif_api_key();
@@ -134,7 +134,7 @@ class Webadif extends CI_Controller {
 	public function mark_webadif() {
 		// Set memory limit to unlimited to allow heavy usage
 		ini_set('memory_limit', '-1');
-		$data['page_title'] = "QO-100 Dx Club Upload";
+		$data['page_title'] = __("QO-100 Dx Club Upload");
 
 		$station_id = $this->security->xss_clean($this->input->post('station_profile'));
 		$from = $this->security->xss_clean($this->input->post('from'));

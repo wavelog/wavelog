@@ -62,6 +62,7 @@ class QSO
 	private string $qsl;
 	private string $lotw;
 	private string $eqsl;
+	private string $clublog;
 	/** Lotw callsign info **/
 	private string $callsign;
 	private string $lastupload;
@@ -196,6 +197,7 @@ class QSO
 		$this->qsl = $this->getQslString($data, $custom_date_format);
 		$this->lotw = $this->getLotwString($data, $custom_date_format);
 		$this->eqsl = $this->getEqslString($data, $custom_date_format);
+		$this->clublog = $this->getClublogString($data, $custom_date_format);
 
 		$this->cqzone = ($data['COL_CQZ'] === null) ? '' : $this->geCqLink($data['COL_CQZ']);
 		$this->ituzone = $data['COL_ITUZ'] ?? '';
@@ -263,16 +265,16 @@ class QSO
 		if ($data['COL_QSL_SENT'] != "N") {
 			switch ($data['COL_QSL_SENT']) {
 			case "Y":
-				$qslstring .= "class=\"qsl-green\" data-bs-toggle=\"tooltip\" title=\"".$CI->lang->line('general_word_sent');
+				$qslstring .= "class=\"qsl-green\" data-bs-toggle=\"tooltip\" title=\"".__("Sent");
 				break;
 			case "Q":
-				$qslstring .= "class=\"qsl-yellow\" data-bs-toggle=\"tooltip\" title=\"".$CI->lang->line('general_word_queued');
+				$qslstring .= "class=\"qsl-yellow\" data-bs-toggle=\"tooltip\" title=\"".__("Queued");
 				break;
 			case "R":
-				$qslstring .= "class=\"qsl-yellow\" data-bs-toggle=\"tooltip\" title=\"".$CI->lang->line('general_word_requested');
+				$qslstring .= "class=\"qsl-yellow\" data-bs-toggle=\"tooltip\" title=\"".__("Requested");
 				break;
 			case "I":
-				$qslstring .= "class=\"qsl-grey\" data-bs-toggle=\"tooltip\" title=\"".$CI->lang->line('general_word_invalid_ignore');
+				$qslstring .= "class=\"qsl-grey\" data-bs-toggle=\"tooltip\" title=\"".__("Invalid (Ignore)");
 				break;
 			default:
 			$qslstring .= "class=\"qsl-red";
@@ -289,16 +291,16 @@ class QSO
 		if ($data['COL_QSL_SENT_VIA'] != "") {
 			switch ($data['COL_QSL_SENT_VIA']) {
 				case "B":
-					$qslstring .= " (" . $CI->lang->line('general_word_qslcard_bureau') . ")";
+					$qslstring .= " (" . __("Bureau") . ")";
 					break;
 				case "D":
-				$qslstring .= " (".$CI->lang->line('general_word_qslcard_direct').")";
+				$qslstring .= " (".__("Direct").")";
 					break;
 				case "M":
-				$qslstring .= " (".$CI->lang->line('general_word_qslcard_via').": ".($data['COL_QSL_VIA'] !="" ? $data['COL_QSL_VIA']:"n/a").")";
+				$qslstring .= " (".__("Via").": ".($data['COL_QSL_VIA'] !="" ? $data['COL_QSL_VIA']:"n/a").")";
 					break;
 				case "E":
-				$qslstring .= " (".$CI->lang->line('general_word_qslcard_electronic').")";
+				$qslstring .= " (".__("Electronic").")";
 					break;
 			}
 		}
@@ -308,16 +310,16 @@ class QSO
 			if ($data['COL_QSL_RCVD'] != "N") {
 				switch ($data['COL_QSL_RCVD']) {
 					case "Y":
-						$qslstring .= "class=\"qsl-green\" data-bs-toggle=\"tooltip\" title=\"".$CI->lang->line('general_word_received');
+						$qslstring .= "class=\"qsl-green\" data-bs-toggle=\"tooltip\" title=\"".__("Received");
 					break;
 					case "Q":
-						$qslstring .= "class=\"qsl-yellow\" data-bs-toggle=\"tooltip\" title=\"".$CI->lang->line('general_word_queued');
+						$qslstring .= "class=\"qsl-yellow\" data-bs-toggle=\"tooltip\" title=\"".__("Queued");
 					break;
 					case "R":
-						$qslstring .= "class=\"qsl-yellow\" data-bs-toggle=\"tooltip\" title=\"".$CI->lang->line('general_word_requested');
+						$qslstring .= "class=\"qsl-yellow\" data-bs-toggle=\"tooltip\" title=\"".__("Requested");
 					break;
 					case "I":
-						$qslstring .= "class=\"qsl-grey\" data-bs-toggle=\"tooltip\" title=\"".$CI->lang->line('general_word_invalid_ignore');
+						$qslstring .= "class=\"qsl-grey\" data-bs-toggle=\"tooltip\" title=\"".__("Invalid (Ignore)");
 					break;
 					default:
 					$qslstring .= "class=\"qsl-red";
@@ -332,16 +334,16 @@ class QSO
 			if ($data['COL_QSL_RCVD_VIA'] != "") {
 				switch ($data['COL_QSL_RCVD_VIA']) {
 					case "B":
-					$qslstring .= " (".$CI->lang->line('general_word_qslcard_bureau').")";
+					$qslstring .= " (".__("Bureau").")";
 						break;
 					case "D":
-					$qslstring .= " (".$CI->lang->line('general_word_qslcard_direct').")";
+					$qslstring .= " (".__("Direct").")";
 						break;
 					case "M":
 					$qslstring .= " (Manager)";
 						break;
 					case "E":
-					$qslstring .= " (".$CI->lang->line('general_word_qslcard_electronic').")";
+					$qslstring .= " (".__("Electronic").")";
 						break;
 				}
 			}
@@ -362,7 +364,7 @@ class QSO
 		$lotwstring = '<span ';
 
 		if ($data['COL_LOTW_QSL_SENT'] == "Y") {
-			$lotwstring .= "title=\"" . $CI->lang->line('lotw_short')." ".$CI->lang->line('general_word_sent');
+			$lotwstring .= "title=\"" . __("LoTW")." ".__("Sent");
 			if ($data['COL_LOTW_QSLSDATE'] != null) {
 				$timestamp = strtotime($data['COL_LOTW_QSLSDATE']);
 				$lotwstring .= " ". ($timestamp != '' ? date($custom_date_format, $timestamp) : '');
@@ -374,7 +376,7 @@ class QSO
 		$lotwstring .= '<span ';
 
 		if ($data['COL_LOTW_QSL_RCVD'] == "Y") {
-			$lotwstring .= "title=\"". $CI->lang->line('lotw_short') ." ". $CI->lang->line('general_word_received');
+			$lotwstring .= "title=\"". __("LoTW") ." ". __("Received");
 
 			if ($data['COL_LOTW_QSLRDATE'] != null) {
 				$timestamp = strtotime($data['COL_LOTW_QSLRDATE']);
@@ -392,6 +394,41 @@ class QSO
 	/**
 	 * @return string
 	 */
+	function getClublogString($data, $custom_date_format): string {
+		$CI =& get_instance();
+
+		$clublogstring = '<span ';
+
+		if ($data['COL_CLUBLOG_QSO_UPLOAD_STATUS'] == "Y") {
+			$clublogstring .= "title=\"".__("Clublog")." ".__("Sent");
+
+			if ($data['COL_CLUBLOG_QSO_UPLOAD_DATE'] != null) {
+				$timestamp = strtotime($data['COL_CLUBLOG_QSO_UPLOAD_DATE']);
+				$clublogstring .=  " ".($timestamp!=''?date($custom_date_format, $timestamp):'');
+			}
+
+			$clublogstring .= "\" data-bs-toggle=\"tooltip\"";
+		}
+
+		$clublogstring .= ' class="clublog-' . (($data['COL_CLUBLOG_QSO_UPLOAD_STATUS'] =='Y') ? 'green':'red') . '">&#9650;</span><span ';
+
+		if ($data['COL_CLUBLOG_QSO_DOWNLOAD_STATUS'] == "Y") {
+			$clublogstring .= "title=\"".__("Clublog")." ".__("Received");
+
+			if ($data['COL_CLUBLOG_QSO_DOWNLOAD_DATE'] != null) {
+				$timestamp = strtotime($data['COL_CLUBLOG_QSO_DOWNLOAD_DATE']);
+				$clublogstring .= " ".($timestamp!=''?date($custom_date_format, $timestamp):'');
+			}
+			$clublogstring .= "\" data-bs-toggle=\"tooltip\"";
+		}
+
+		$clublogstring .= ' class="clublog-' . (($data['COL_CLUBLOG_QSO_DOWNLOAD_STATUS']=='Y') ? 'green':'red') . '">&#9660;</span>';
+
+		$clublogstring .= '</span>';
+
+		return $clublogstring;
+	}
+
 	function getEqslString($data, $custom_date_format): string
 	{
 		$CI =& get_instance();
@@ -399,7 +436,7 @@ class QSO
 		$eqslstring = '<span ';
 
 		if ($data['COL_EQSL_QSL_SENT'] == "Y") {
-			$eqslstring .= "title=\"".$CI->lang->line('eqsl_short')." ".$CI->lang->line('general_word_sent');
+			$eqslstring .= "title=\"".__("eQSL")." ".__("Sent");
 
 			if ($data['COL_EQSL_QSLSDATE'] != null) {
 				$timestamp = strtotime($data['COL_EQSL_QSLSDATE']);
@@ -412,7 +449,7 @@ class QSO
 		$eqslstring .= ' class="eqsl-' . (($data['COL_EQSL_QSL_SENT'] =='Y') ? 'green':'red') . '">&#9650;</span><span ';
 
 		if ($data['COL_EQSL_QSL_RCVD'] == "Y") {
-			$eqslstring .= "title=\"".$CI->lang->line('eqsl_short')." ".$CI->lang->line('general_word_received');
+			$eqslstring .= "title=\"".__("eQSL")." ".__("Received");
 
 			if ($data['COL_EQSL_QSLRDATE'] != null) {
 				$timestamp = strtotime($data['COL_EQSL_QSLRDATE']);
@@ -755,6 +792,14 @@ class QSO
 	/**
 	 * @return string
 	 */
+	public function getclublog(): string
+	{
+		return $this->clublog;
+	}
+
+	/**
+	 * @return string
+	 */
 	public function geteqsl(): string
 	{
 		return $this->eqsl;
@@ -814,6 +859,7 @@ class QSO
 			'qsl' => $this->getqsl(),
 			'lotw' => $this->getlotw(),
 			'eqsl' => $this->geteqsl(),
+			'clublog' => $this->getclublog(),
 			'qslMessage' => $this->getQSLMsg(),
 			'name' => $this->getName(),
 			'dxcc' => $this->getDXCC(),

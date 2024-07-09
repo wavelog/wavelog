@@ -10,7 +10,7 @@ class eqsl extends CI_Controller {
 		$this->load->helper(array('form', 'url'));
 
 		if (ENVIRONMENT == 'maintenance' && $this->session->userdata('user_id') == '') {
-			echo "Maintenance Mode is active. Try again later.\n";
+			echo __("Maintenance Mode is active. Try again later.")."\n";
 			redirect('user/login');
 		}
 	}
@@ -18,7 +18,6 @@ class eqsl extends CI_Controller {
 	// Default view when loading controller.
 	public function index() {
 
-		$this->lang->load('qslcard');
 		$this->load->model('eqsl_images');
 		$this->load->library('Genfunctions');
 		$folder_name = $this->eqsl_images->get_imagePath('p');
@@ -26,7 +25,7 @@ class eqsl extends CI_Controller {
 
 
 		// Render Page
-		$data['page_title'] = "eQSL Cards";
+		$data['page_title'] = __("eQSL Cards");
 
 
 		$data['qslarray'] = $this->eqsl_images->eqsl_qso_list();
@@ -116,7 +115,7 @@ class eqsl extends CI_Controller {
 				log_message('error', $station_id4upload . " is not valid for user!");
 			}
 		} else {
-			$data['page_title'] = "eQSL Import";
+			$data['page_title'] = __("eQSL Import");
 
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('eqsl/import');
@@ -126,7 +125,7 @@ class eqsl extends CI_Controller {
 		}
 
 		$data['eqsl_results'] = $eqsl_results;
-		$data['page_title'] = "eQSL Import Information";
+		$data['page_title'] = __("eQSL Import Information");
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('eqsl/analysis');
@@ -150,7 +149,7 @@ class eqsl extends CI_Controller {
 		set_time_limit(0);
 		$this->load->model('eqslmethods_model');
 
-		$data['page_title'] = "eQSL QSO Upload";
+		$data['page_title'] = __("eQSL QSO Upload");
 		$custom_date_format = $this->session->userdata('user_date_format');
 
 		if ((!($this->config->item('disable_manual_eqsl'))) && ($this->input->post('eqslexport') == "export")) {
@@ -382,7 +381,7 @@ class eqsl extends CI_Controller {
 			redirect('dashboard');
 		}
 
-		$data['page_title'] = "eQSL Tools";
+		$data['page_title'] = __("eQSL Tools");
 
 		// Load frontend
 		$this->load->view('interface_assets/header', $data);
@@ -429,7 +428,7 @@ class eqsl extends CI_Controller {
 				}
 			}
 			$data['eqsl_results'] = $eqsl_results;
-			$data['eqsl_stats'] = "Successfully downloaded: " . $i . " / Errors: " . count($eqsl_results);
+			$data['eqsl_stats'] = __("Successfully downloaded: ") . $i . __(" / Errors: ") . count($eqsl_results);
 			$data['page_title'] = "eQSL Download Information";
 
 			$this->load->view('interface_assets/header', $data);
@@ -438,7 +437,7 @@ class eqsl extends CI_Controller {
 			
 		} else {
 
-			$data['page_title'] = "eQSL Card Image Download";
+			$data['page_title'] = __("eQSL Card Image Download");
 			$this->load->model('eqslmethods_model');
 
 			$data['custom_date_format'] = $this->session->userdata('user_date_format');

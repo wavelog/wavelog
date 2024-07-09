@@ -2,13 +2,13 @@
 
 	<div class="card">
 	  <div class="card-header">
-	  	<h2 class="card-title"><?php echo lang('notes_menu_notes'); ?></h2>
+	  	<h2 class="card-title"><?= __("Notes"); ?></h2>
 	    <ul class="nav nav-tabs card-header-tabs">
 	      <li class="nav-item">
-	        <a class="nav-link active" href="<?php echo site_url('notes'); ?>"><?php echo lang('notes_menu_notes'); ?></a>
+	        <a class="nav-link active" href="<?php echo site_url('notes'); ?>"><?= __("Notes"); ?></a>
 	      </li>
 	      <li class="nav-item">
-	        <a class="nav-link" href="<?php echo site_url('notes/add'); ?>"><?php echo lang('notes_create_note'); ?></a>
+	        <a class="nav-link" href="<?php echo site_url('notes/add'); ?>"><?= __("Create Note"); ?></a>
 	      </li>
 	    </ul>
 	  </div>
@@ -19,7 +19,7 @@
 
 				if ($notes->num_rows() > 0)
 				{
-					echo "<h3>".lang('notes_your_notes')."</h3>";
+					echo "<h3>".__("Your Notes")."</h3>";
 					echo "<ul class=\"list-group\">";
 					foreach ($notes->result() as $row)
 					{
@@ -29,7 +29,7 @@
 					}
 					echo "</ul>";
 				} else {
-					echo "<p>".lang('notes_welcome')."</p>";
+					echo "<p>".__("You don't currently have any notes, these are a fantastic way of storing data like ATU settings, beacons and general station notes and its better than paper as you can't lose them!")."</p>";
 				}
 
 			?>

@@ -1,12 +1,12 @@
 <script>
-	var lang_admin_confirm_pwd_reset = "<?php echo lang('admin_confirm_pwd_reset'); ?>";
-	var lang_admin_user = "<?php echo lang('admin_user'); ?>";
-	var lang_gen_hamradio_callsign = "<?php echo lang('gen_hamradio_callsign'); ?>";
+	var lang_admin_confirm_pwd_reset = "<?= __("Do you really want to send this user a password-reset link?"); ?>";
+	var lang_admin_user = "<?= __("User"); ?>";
+	var lang_gen_hamradio_callsign = "<?= __("Callsign"); ?>";
 
-	var lang_general_word_please_wait = "<?php echo lang ('general_word_please_wait'); ?>"
+	var lang_general_word_please_wait = "<?= __("Please Wait ..."); ?>"
 
-	var lang_admin_email_settings_incorrect = "<?php echo lang('admin_email_settings_incorrect'); ?>";
-	var lang_admin_password_reset_processed = "<?php echo lang('admin_password_reset_processed'); ?>";
+	var lang_admin_email_settings_incorrect = "<?= __("Email settings are incorrect."); ?>";
+	var lang_admin_password_reset_processed = "<?= __("Password-reset e-mail sent to user:"); ?>";
 </script>
 <div class="container">
 
@@ -27,31 +27,31 @@
 
 	<div class="card">
 		<div class="card-header">
-			<?php echo lang('admin_user_list'); ?>
+			<?= __("User List"); ?>
 		</div>
 		<div class="card-body">
-			<p class="card-text"><?php echo lang('admin_user_line1'); ?></p>
-			<p class="card-text"><?php echo lang('admin_user_line2'); ?></p>
-			<p class="card-text"><?php echo lang('admin_user_line3'); ?></p>
-			<p class="card-text"><?php echo lang('admin_user_line4'); ?></p>
+			<p class="card-text"><?= __("Wavelog needs at least one user configured in order to operate."); ?></p>
+			<p class="card-text"><?= __("Users can be assigned roles which give them different permissions, such as adding QSOs to the logbook and accessing Wavelog APIs."); ?></p>
+			<p class="card-text"><?= __("The currently logged-in user is displayed at the upper-right of each page."); ?></p>
+			<p class="card-text"><?= __("With the password reset button, you can send a user an email containing a link to reset their password. To achieve this, ensure that the email settings in the global options are configured correctly."); ?></p>
 			<p>
-				<a class="btn btn-primary" href="<?php echo site_url('user/add'); ?>"><i class="fas fa-user-plus"></i> <?php echo lang('admin_create_user'); ?></a>
-				<a class="btn btn-secondary" style="float: right;" href="<?php echo site_url('user'); ?>"><i class="fas fa-sync"></i> <?php echo lang('admin_refresh_list'); ?></a>
+				<a class="btn btn-primary" href="<?php echo site_url('user/add'); ?>"><i class="fas fa-user-plus"></i> <?= __("Create user"); ?></a>
+				<a class="btn btn-secondary" style="float: right;" href="<?php echo site_url('user'); ?>"><i class="fas fa-sync"></i> <?= __("Refresh List"); ?></a>
 			</p>
 
 			<div class="table-responsive">
 				<table class="table table-striped" id="adminusertable">
 					<thead>
 						<tr>
-							<th style="text-align: center; vertical-align: middle;" scope="col"><?php echo lang('admin_user'); ?></th>
-							<th style="text-align: center; vertical-align: middle;" scope="col"><?php echo lang('gen_hamradio_callsign'); ?></th>
-							<th style="text-align: center; vertical-align: middle;" scope="col"><?php echo lang('admin_email'); ?></th>
-							<th style="text-align: center; vertical-align: middle;" scope="col"><?php echo lang('admin_type'); ?></th>
-							<th style="text-align: center; vertical-align: middle;" scope="col"><?php echo lang('admin_last_seen'); ?></th>
+							<th style="text-align: center; vertical-align: middle;" scope="col"><?= __("User"); ?></th>
+							<th style="text-align: center; vertical-align: middle;" scope="col"><?= __("Callsign"); ?></th>
+							<th style="text-align: center; vertical-align: middle;" scope="col"><?= __("E-mail"); ?></th>
+							<th style="text-align: center; vertical-align: middle;" scope="col"><?= __("Type"); ?></th>
+							<th style="text-align: center; vertical-align: middle;" scope="col"><?= __("Last seen"); ?></th>
 							<th></th>
-							<th style="text-align: center; vertical-align: middle;" scope="col"><?php echo lang('admin_edit'); ?></th>
-							<th style="text-align: center; vertical-align: middle;" scope="col"><?php echo lang('admin_password_reset'); ?></th>
-							<th style="text-align: center; vertical-align: middle;" scope="col"><?php echo lang('admin_delete'); ?></th>
+							<th style="text-align: center; vertical-align: middle;" scope="col"><?= __("Edit"); ?></th>
+							<th style="text-align: center; vertical-align: middle;" scope="col"><?= __("Password Reset"); ?></th>
+							<th style="text-align: center; vertical-align: middle;" scope="col"><?= __("Delete"); ?></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -76,17 +76,17 @@
 										echo "<a><i style=\"color: red;\" class=\"fas fa-circle\"></i> " . $row->last_seen . "</a>";
 									}
 								} else {
-									echo lang('general_word_never');
+									echo __("Never");
 								}?>
 							</td>
 							<td style="text-align: left; vertical-align: middle;">
-								<span class="badge text-bg-success"><?php echo lang('admin_station_locations'); ?>: <?php echo $row->stationcount; ?></span>
+								<span class="badge text-bg-success"><?= __("Locations"); ?>: <?php echo $row->stationcount; ?></span>
 								<br>
-								<span class="badge text-bg-info"><?php echo lang('admin_station_logbooks'); ?>: <?php echo $row->logbookcount; ?></span>
+								<span class="badge text-bg-info"><?= __("Logbooks"); ?>: <?php echo $row->logbookcount; ?></span>
 								<?php if ($row->qsocount > 0) { ?>
-									<span class="badge text-bg-light" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?php echo lang('admin_last_qso'); ?><br><?php echo $row->lastqso; ?>"><?php echo $row->qsocount; ?> <?php echo lang('gen_hamradio_qso'); ?></span>
+									<span class="badge text-bg-light" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("Last QSO:"); ?><br><?php echo $row->lastqso; ?>"><?php echo $row->qsocount; ?> <?= __("QSO"); ?></span>
 								<?php } else { ?>
-									<span class="badge text-bg-light" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?php echo lang('admin_no_qso_in_log'); ?>"><?php echo $row->qsocount; ?> <?php echo lang('gen_hamradio_qso'); ?></span>
+									<span class="badge text-bg-light" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("No QSOs in Log"); ?>"><?php echo $row->qsocount; ?> <?= __("QSO"); ?></span>
 								<?php } ?>
 							</td>
 							<td style="text-align: center; vertical-align: middle;"><a href="<?php echo site_url('user/edit') . "/" . $row->user_id; ?>" class="btn btn-outline-primary btn-sm"><i class="fas fa-user-edit"></i></a>

@@ -16,7 +16,7 @@ class Logbookadvanced_model extends CI_Model {
 
 		if ((isset($searchCriteria['dupes'])) && ($searchCriteria['dupes'] !== '')) {
 			$id_sql="select GROUP_CONCAT(col_primary_key separator ',') as qsoids, COL_CALL, COL_MODE, COL_SUBMODE, station_callsign, COL_SAT_NAME, COL_BAND,  min(col_time_on) Mintime, max(col_time_on) Maxtime from " . $this->config->item('table_name') . "
-				 join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id where station_profile.user_id=?
+				 join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id where station_profile.user_id = ?
 				group by col_call, col_mode, COL_SUBMODE, STATION_CALLSIGN, col_band, COL_SAT_NAME having count(*) > 1 and timediff(maxtime, mintime) < 1500";
 			$id_query = $this->db->query($id_sql, $searchCriteria['user_id']);
 			$ids2fetch = '';
@@ -42,8 +42,8 @@ class Logbookadvanced_model extends CI_Model {
 			$binding[] = $to;
 		}
 		if ($searchCriteria['de'] !== 'All') {
-			$conditions[] = "qsos.station_id = ?";
-			$binding[] = trim($searchCriteria['de']);
+			$stationids = implode(',', $searchCriteria['de']);
+			$conditions[] = "qsos.station_id in (".$stationids.")";
 		}
 		if ($searchCriteria['dx'] !== '') {
 			$conditions[] = "COL_CALL LIKE ?";
@@ -120,6 +120,24 @@ class Logbookadvanced_model extends CI_Model {
 			$binding[] = $searchCriteria['lotwReceived'];
 		}
 
+		if ($searchCriteria['clublogSent'] !== '') {
+			$condition = "COL_CLUBLOG_QSO_UPLOAD_STATUS = ?";
+			if ($searchCriteria['clublogSent'] == 'N') {
+				$condition = '('.$condition;
+				$condition .= " OR COL_CLUBLOG_QSL_UPLOAD_STATUS IS NULL OR COL_CLUBLOG_QSO_UPLOAD_STATUS = '')";
+			}
+			$conditions[] = $condition;
+			$binding[] = $searchCriteria['clublogSent'];
+		}
+		if ($searchCriteria['clublogReceived'] !== '') {
+			$condition = "COL_CLUBLOG_QSO_DOWNLOAD_STATUS = ?";
+			if ($searchCriteria['clublogReceived'] == 'N') {
+				$condition = '('.$condition;
+				$condition .= " OR COL_CLUBLOG_QSO_DOWNLOAD_STATUS IS NULL OR COL_CLUBLOG_QSO_DOWNLOAD_STATUS = '')";
+			}
+			$conditions[] = $condition;
+			$binding[] = $searchCriteria['clublogReceived'];
+		}
 		if ($searchCriteria['eqslSent'] !== '') {
 			$condition = "COL_EQSL_QSL_SENT = ?";
 			if ($searchCriteria['eqslSent'] == 'N') {
@@ -195,7 +213,9 @@ class Logbookadvanced_model extends CI_Model {
                 $binding[] = '%' . $searchCriteria['gridsquare'] . '%';
         }
 
-        if ($searchCriteria['propmode'] !== '') {
+	if (($searchCriteria['propmode'] ?? '') == 'None') {
+                $conditions[] = "(trim(COL_PROP_MODE) = '' OR COL_PROP_MODE is null)";
+	} elseif ($searchCriteria['propmode'] !== '') {
                 $conditions[] = "COL_PROP_MODE = ?";
                 $binding[] = $searchCriteria['propmode'];
                 if($searchCriteria['propmode'] == "SAT") {
@@ -233,7 +253,7 @@ class Logbookadvanced_model extends CI_Model {
 		}
 
 		$sql = "
-			SELECT qsos.*, dxcc_entities.*, station_profile.*, satellite.*, dxcc_entities.name as dxccname, mydxcc.name AS station_country, exists(select 1 from qsl_images where qsoid = qsos.COL_PRIMARY_KEY) as qslcount, contest.name as contestname
+			SELECT qsos.*, dxcc_entities.*, lotw_users.*, station_profile.*, satellite.*, dxcc_entities.name as dxccname, mydxcc.name AS station_country, exists(select 1 from qsl_images where qsoid = qsos.COL_PRIMARY_KEY) as qslcount, contest.name as contestname
 			FROM " . $this->config->item('table_name') . " qsos
 			INNER JOIN station_profile ON qsos.station_id=station_profile.station_id
 			LEFT OUTER JOIN satellite ON qsos.COL_SAT_NAME = satellite.name

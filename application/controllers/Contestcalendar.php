@@ -16,7 +16,7 @@ class Contestcalendar extends CI_Controller {
 			redirect('dashboard');
 		}
 
-		$data['page_title'] = "Contest Calendar";
+		$data['page_title'] = __("Contest Calendar");
 
 		// get the raw data and parse it
 		$rssRawData = $this->getRssData();

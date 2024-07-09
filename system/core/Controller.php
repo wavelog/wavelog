@@ -87,6 +87,37 @@ class CI_Controller {
 		$this->load->initialize();
 
 		log_message('info', 'Controller Class Initialized');
+
+		/*
+		*  GETTEXT HOOK 
+		*/
+
+		// Prepare current language
+        $data['language'] = $this->config->item('current_language');
+
+        // Prepare available languages
+        $languages = $this->config->item('languages');
+
+        // Remove current language from available languages
+        unset($languages[$data['language']['folder']]);
+        $data['languages'] = $languages;
+
+		/* 
+         * Language URL's not in use at the moment. We would need the Process Controller here (https://github.com/bkader/ci-gettext-hook/blob/master/application/controllers/Process.php)
+		 * This would allow to create links which temporary change the site language without changing language in users table
+        */
+
+		// function_exists('anchor') OR $this->load->helper('url');
+        // $lang_urls = array();
+        // foreach ($languages as $lang)
+        // {
+        //     $lang_urls[] = anchor('process/lang/'.$lang['code'], __($lang['name_en']));
+        // }
+        // $data['lang_urls'] = implode(' - ', $lang_urls);
+		
+
+        // Make $data available in all views
+        $this->load->vars($data);
 	}
 
 	// --------------------------------------------------------------------

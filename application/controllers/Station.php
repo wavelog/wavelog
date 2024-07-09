@@ -32,7 +32,7 @@ class Station extends CI_Controller
 		$data['is_there_qsos_with_no_station_id'] = $this->Logbook_model->check_for_station_id();
 
 		// Render Page
-		$data['page_title'] = lang('station_location');
+		$data['page_title'] = __("Station Location");
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('station_profile/index');
 		$this->load->view('interface_assets/footer');
@@ -52,7 +52,7 @@ class Station extends CI_Controller
 		$this->form_validation->set_rules('station_profile_name', 'Station Profile Name', 'required');
 
 		if ($this->form_validation->run() == FALSE) {
-			$data['page_title'] = lang('station_location_create_header');
+			$data['page_title'] = __("Create Station Location");
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('station_profile/create');
 			$this->load->view('interface_assets/footer');
@@ -67,7 +67,7 @@ class Station extends CI_Controller
 		$this->load->model('stations');
 		if ($this->stations->check_station_is_accessible($id)) {
 			$data = $this->load_station_for_editing($id);
-			$data['page_title'] = lang('station_location_edit') . $data['my_station_profile']->station_profile_name;
+			$data['page_title'] = __("Edit Station Location: ") . $data['my_station_profile']->station_profile_name;
 
 			if ($this->form_validation->run() == FALSE) {
 				$this->load->view('interface_assets/header', $data);
@@ -75,7 +75,7 @@ class Station extends CI_Controller
 				$this->load->view('interface_assets/footer');
 			} else {
 				if ($this->stations->edit()) {
-					$data['notice'] = lang('station_location') . $this->security->xss_clean($this->input->post('station_profile_name', true)) . " Updated";
+					$data['notice'] = __("Station Location") . $this->security->xss_clean($this->input->post('station_profile_name', true)) . " Updated";
 				}
 				redirect('stationsetup');
 			}
@@ -89,7 +89,7 @@ class Station extends CI_Controller
 		$this->load->model('stations');
 		if ($this->stations->check_station_is_accessible($id)) {
 			$data = $this->load_station_for_editing($id);
-			$data['page_title'] = "Duplicate Station Location: {$data['my_station_profile']->station_profile_name}";
+			$data['page_title'] = __("Duplicate Station Location:"). "{$data['my_station_profile']->station_profile_name}";
 
 			// we NULLify station_id and station_profile_name to make sure we are creating a new station
 			$data['copy_from'] = $data['my_station_profile']->station_id;

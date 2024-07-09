@@ -20,6 +20,39 @@
   var icon_dot_url = "<?php echo base_url();?>assets/images/dot.png";
 </script>
 
+<!-- DATATABLES LANGUAGE -->
+<?php
+$local_code = $language['locale'];
+$lang_code = $language['code'];
+$file_path = base_url() . "assets/json/datatables_languages/" . $local_code . ".json";
+
+// Check if the file exists
+if ($lang_code != 'en' && !file_exists(FCPATH . "assets/json/datatables_languages/" . $local_code . ".json")) {
+    $datatables_language_url = '';
+} else {
+    $datatables_language_url = $file_path;
+}
+?>
+
+<script type="text/javascript">
+    function getDataTablesLanguageUrl() {
+        locale = "<?php echo $local_code ?>";
+        lang_code = "<?php echo $lang_code; ?>";
+        datatables_language_url = "<?php echo $datatables_language_url; ?>";
+
+        // if language is set to english we don't need to load any language files
+        if (lang_code != 'en') {
+            if (datatables_language_url !== '') {
+                return datatables_language_url;
+            } else {
+                console.error("Datatables language file does not exist for locale: " + locale);
+                return null;
+            }
+        }
+    }
+</script>
+<!-- DATATABLES LANGUAGE END -->
+
     <script type="text/javascript" src="<?php echo base_url();?>assets/js/leaflet/L.Maidenhead.js"></script>
     <script id="leafembed" type="text/javascript" src="<?php echo base_url();?>assets/js/leaflet/leafembed.js" tileUrl="<?php echo $this->optionslib->get_option('map_tile_server');?>"></script>
     <script type="text/javascript">
@@ -133,7 +166,7 @@
 <?php if ($this->uri->segment(1) == "gridsquares" && $this->uri->segment(2) == "band") { ?>
 
   var bands_available = <?php echo $bands_available; ?>;
-  $('#gridsquare_bands').append('<option value="All">All</option>')
+  $('#gridsquare_bands').append('<option value="All">' . __("All") . '</option>')
   $.each(bands_available, function(key, value) {
      $('#gridsquare_bands')
          .append($("<option></option>")
@@ -197,18 +230,18 @@
                 "paging":         true,
                 "scrollX": true,
                 "order": [ 0, 'desc' ],
-                // "language": {
-                //     url: "../assets/json/datatables_languages/en-GB.json" // in visitor view always english
-                // },
+                "language": {
+                  url: getDataTablesLanguageUrl(),
+                },
                 dom: 'Bfrtip',
                 buttons: [
                    {
                       extend: 'csv',
-                      text: 'CSV'
+                      text: '<?= __("CSV"); ?>'
                    },
                    {
                       extend: 'clear',
-                      text: 'Clear'
+                      text: '<?= __("Clear"); ?>'
                    }
                 ]
             });
@@ -234,9 +267,5 @@
             }
         </script>
     <?php } ?>
-    <!-- TODO: We will add Multilanguage Support for the public views later, so wie komment this out for the moment -->
-    <!-- <script>
-        var lang_datatables_language = "<?php echo lang('datatables_language') ?>";
-    </script> -->
   </body>
 </html>

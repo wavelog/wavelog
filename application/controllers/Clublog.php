@@ -12,7 +12,7 @@ class Clublog extends CI_Controller
 		parent::__construct();
 
 		if (ENVIRONMENT == 'maintenance' && $this->session->userdata('user_id') == '') {
-			echo "Maintenance Mode is active. Try again later.\n";
+			echo __("Maintenance Mode is active. Try again later.")."\n";
 			redirect('dashboard');
 		}
 	}
@@ -41,7 +41,7 @@ class Clublog extends CI_Controller
 				$r = $this->clublog_model->uploadUser($user->user_id, $user->user_clublog_name, $user->user_clublog_password);
 			}
 		} else {
-			$r = "No user has configured Clublog.";
+			$r = __("No user has configured Clublog.");
 		}
 
 		echo $r;
@@ -63,7 +63,7 @@ class Clublog extends CI_Controller
 				$r = $this->clublog_model->downloadUser($user->user_id, $user->user_clublog_name, $user->user_clublog_password);
 			}
 		} else {
-			$r = "No user has configured Clublog.";
+			$r = __("No user has configured Clublog.");
 		}
 
 		echo $r;

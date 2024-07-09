@@ -13,7 +13,7 @@ class Update extends CI_Controller {
 		parent::__construct();
 
 		if (ENVIRONMENT == 'maintenance' && $this->session->userdata('user_id') == '') {
-            echo "Maintenance Mode is active. Try again later.\n";
+            echo __("Maintenance Mode is active. Try again later.")."\n";
 			redirect('user/login');
 		}
 	}
@@ -23,7 +23,7 @@ class Update extends CI_Controller {
         $this->load->model('user_model');
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 
-	    $data['page_title'] = "Updates";
+	    $data['page_title'] = __("Updates");
 	    $this->load->view('interface_assets/header', $data);
 	    $this->load->view('update/index');
 	    $this->load->view('interface_assets/footer');
@@ -73,7 +73,7 @@ class Update extends CI_Controller {
 			array_push($a_data,$data);
 			$count += 1;
 			if ($count % 10  == 0)
-				$this->update_status("Preparing DXCC-Entries: ".$count);
+				$this->update_status(__("Preparing DXCC-Entries: ").$count);
 		}
 		$this->db->insert_batch('dxcc_entities', $a_data);
 
@@ -115,7 +115,7 @@ class Update extends CI_Controller {
 			array_push($a_data,$data);
 			$count += 1;
 			if ($count % 10  == 0)
-				$this->update_status("Preparing DXCC Exceptions: ".$count);
+				$this->update_status(__("Preparing DXCC Exceptions: ").$count);
 		}
 		$this->db->insert_batch('dxcc_exceptions', $a_data);
 
@@ -157,7 +157,7 @@ class Update extends CI_Controller {
 			array_push($a_data,$data);
 			$count += 1;
 			if ($count % 10  == 0)
-				$this->update_status("Preparing DXCC Prefixes: ".$count);
+				$this->update_status(__("Preparing DXCC Prefixes: ").$count);
 		}
 		$this->db->insert_batch('dxcc_prefixes', $a_data);
 
@@ -219,7 +219,7 @@ class Update extends CI_Controller {
         $this->dxcc_prefixes();
         $this->db->trans_complete();
 
-        $this->update_status("DONE");
+        $this->update_status(__("DONE"));
 	}
 
 	public function update_status($done=""){

@@ -2,7 +2,7 @@
 
 if ($qsocount > 0) {
 $count = 0;
-echo '<br />Log search result for ' . strtoupper($callsign) . ':<br />';
+echo '<br />' . sprintf(__("Log search result for %s"), strtoupper($callsign)) . ':<br />';
 echo '
     <table style="width:100%" class="result-table table-sm table table-bordered table-hover table-striped table-condensed text-center">
 	    <thead>
@@ -26,13 +26,19 @@ foreach ($result as $mode => $value) {
 	echo '</tr>';
 }
 echo '</tbody></table>';
-echo strtoupper($callsign) . ' has ' . $count . ' band slot(s) and has ' . $qsocount . ' QSO(s) in the log.<br /><br />';
+echo strtoupper($callsign) . ' ' . sprintf(
+    ngettext('has %d band slot', 'has %d band slots', intval($count)),
+    intval($count)
+) . ' ' . sprintf(
+    ngettext('and has %d QSO in the log', 'and has %d QSOs in the log', intval($qsocount)),
+    intval($qsocount)
+) . '.<br /><br />';
 ?>
-<button onclick="requestOqrs();" class="btn btn-primary btn-sm" type="button"> Request QSL</button>
+<button onclick="requestOqrs();" class="btn btn-primary btn-sm" type="button"> <?= __("Request QSL"); ?></button>
 <br>
 <?php } else {
-	echo '<br />No QSOs found in the log.<br />';
+	echo '<br />' . __("No QSOs found in the log.") . '<br />';
 }
 	?>
 <br>
-<button onclick="notInLog();" class="btn btn-primary btn-sm" type="button"> Not in log?</button>
+<button onclick="notInLog();" class="btn btn-primary btn-sm" type="button"> <?= __("Not in log?"); ?></button>

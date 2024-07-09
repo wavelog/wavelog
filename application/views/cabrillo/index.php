@@ -1,9 +1,9 @@
 <script>
-	var lang_export_cabrillo_proceed = '<?php echo lang('export_cabrillo_proceed') ?>';
-	var lang_export_cabrillo_select_year = "<?php echo lang('export_cabrillo_select_year') ?>";
-	var lang_export_cabrillo_select_contest = '<?php echo lang ('export_cabrillo_select_contest') ?>';
-	var lang_export_cabrillo_select_date_range = '<?php echo lang ('export_cabrillo_select_date_range') ?>'; 
-	var lang_export_cabrillo_no_contests_for_stationlocation = '<?php echo lang('export_cabrillo_no_contests_for_stationlocation') ?>';
+	var lang_export_cabrillo_proceed = '<?= __("Proceed") ?>';
+	var lang_export_cabrillo_select_year = "<?= __("Select Year") ?>";
+	var lang_export_cabrillo_select_contest = '<?= __("Select Contest") ?>';
+	var lang_export_cabrillo_select_date_range = '<?= __("Select Date Range") ?>'; 
+	var lang_export_cabrillo_no_contests_for_stationlocation = '<?= __("No contests were found for this station location!") ?>';
 </script>
 <div class="container">
 
@@ -13,7 +13,7 @@
 
     <div class="card">
         <div class="card-header">
-			<?php echo lang('export_cabrillo_description'); ?>
+			<?= __("Export a contest to a Cabrillo log"); ?>
         </div>
         <div class="card-body">
 
@@ -25,13 +25,13 @@
 
 			<form class="form" action="<?php echo site_url('cabrillo/export'); ?>" method="post" enctype="multipart/form-data">
 				<div class="mb-3 d-flex align-items-center row">
-					<div class="col-md-3 control-label" for="station_id"><?php echo lang('export_cabrillo_select_station'); ?> </div>
+					<div class="col-md-3 control-label" for="station_id"><?= __("Select Station Location:"); ?> </div>
 					<select id="station_id" name="station_id" class="form-select my-1 me-sm-2 col-md-4 w-auto">
 					<?php foreach ($station_profile->result() as $station) { ?>
-						<option value="<?php echo $station->station_id; ?>" <?php if ($station->station_id == $this->stations->find_active()) { echo " selected =\"selected\""; } ?>><?php echo lang('gen_hamradio_callsign') ?>: <?php echo $station->station_callsign; ?> (<?php echo $station->station_profile_name; ?>)</option>
+						<option value="<?php echo $station->station_id; ?>" <?php if ($station->station_id == $this->stations->find_active()) { echo " selected =\"selected\""; } ?>><?= __("Callsign") ?>: <?php echo $station->station_callsign; ?> (<?php echo $station->station_profile_name; ?>)</option>
 					<?php } ?>
 					</select>
-					<button id="button1id" type="button" onclick="loadYears();" name="button1id" class="btn btn-sm btn-primary w-auto"> <?php echo lang('export_cabrillo_proceed') ?></button>
+					<button id="button1id" type="button" onclick="loadYears();" name="button1id" class="btn btn-sm btn-primary w-auto"> <?= __("Proceed") ?></button>
 				</div>
 
 				<div class="mb-3 d-flex align-items-center row contestyear">
@@ -41,28 +41,28 @@
 				<div class="mb-3 d-flex align-items-center row contestdates">
 				</div>
 				<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
-					<div class="col-md-3 control-label" for="soapbox">Club: </div>
+					<div class="col-md-3 control-label" for="soapbox"><?= __("Club"); ?>: </div>
 					<input class="form-control my-1 me-sm-2 col-md-4 w-auto" id="soapbox" type="soapbox" name="soapbox" aria-label="soapbox">
 				</div>
 				<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
-					<div class="col-md-3 control-label" for="categoryoperator"><?php echo lang('export_cabrillo_cat_operator') ?>: </div>
+					<div class="col-md-3 control-label" for="categoryoperator"><?= __("Category Operator") ?>: </div>
 					<select class="form-select my-1 me-sm-2 col-md-4 w-auto" id="categoryoperator" name="categoryoperator">
-						<option value="SINGLE-OP"><?php echo lang('export_cabrillo_cat_operator_single_op') ?></option>
-						<option value="MULTI-OP"><?php echo lang('export_cabrillo_cat_operator_multi_op') ?></option>
-						<option value="CHECKLOG"><?php echo lang('export_cabrillo_cat_operator_checklog') ?></option>
+						<option value="SINGLE-OP">SINGLE-OP</option>
+						<option value="MULTI-OP">MULTI-OP</option>
+						<option value="CHECKLOG">CHECKLOG</option>
 					</select>
 				</div>
 				<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
-					<div class="col-md-3 control-label" for="categoryassisted"><?php echo lang('export_cabrillo_cat_assisted') ?>: </div>
+					<div class="col-md-3 control-label" for="categoryassisted"><?= __("Category Assisted") ?>: </div>
 					<select class="form-select my-1 me-sm-2 col-md-4 w-auto" id="categoryassisted" name="categoryassisted">
-						<option value="NON-ASSISTED"><?php echo lang('export_cabrillo_cat_assisted_not_ass') ?></option>
-						<option value="ASSISTED"><?php echo lang('export_cabrillo_cat_assisted_ass') ?></option>
+						<option value="NON-ASSISTED">NON-ASSISTED</option>
+						<option value="ASSISTED">ASSISTED></option>
 					</select>
 				</div>
 					<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
-					<div class="col-md-3 control-label" for="categoryband"><?php echo lang('export_cabrillo_cat_band') ?>: </div>
+					<div class="col-md-3 control-label" for="categoryband"><?= __("Category Band") ?>: </div>
 					<select class="form-select my-1 me-sm-2 col-md-4 w-auto" id="categoryband" name="categoryband">
-						<option value="ALL"><?php echo lang('general_word_all') ?></option>
+						<option value="ALL"><?= __("All") ?></option>
 						<option value="160M">160 M</option>
 						<option value="80M">80 M</option>
 						<option value="40M">40 M</option>
@@ -86,12 +86,12 @@
 						<option value="122G">122 GHz</option>
 						<option value="134G">134 GHz</option>
 						<option value="241G">241 GHz</option>
-						<option value="Light"><?php echo lang('general_word_light') ?></option>
-						<option value="VHF-3-BAND and VHF-FM-ONLY (ARRL VHF Contests only)"><?php echo lang('export_cabrillo_cat_band_arrl_vhf') ?></option>
+						<option value="Light"><?= __("Light/Laser") ?></option>
+						<option value="VHF-3-BAND and VHF-FM-ONLY (ARRL VHF Contests only)"><?= __("VHF-3-BAND and VHF-FM-ONLY (ARRL VHF Contests only)") ?></option>
 					</select>
 				</div>
 				<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
-					<div class="col-md-3 control-label" for="categorymode"><?php echo lang('export_cabrillo_cat_mode') ?>: </div>
+					<div class="col-md-3 control-label" for="categorymode"><?= __("Category Mode") ?>: </div>
 					<select class="form-select my-1 me-sm-2 col-md-4 w-auto" id="categorymode" name="categorymode">
 						<option value="MIXED">MIXED</option>
 						<option value="CW">CW</option>
@@ -102,7 +102,7 @@
 					</select>
 				</div>
 				<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
-					<div class="col-md-3 control-label" for="categorypower"><?php echo lang('export_cabrillo_cat_power') ?>: </div>
+					<div class="col-md-3 control-label" for="categorypower"><?= __("Category Power") ?>: </div>
 					<select class="form-select my-1 me-sm-2 col-md-4 w-auto" id="categorypower" name="categorypower">
 						<option value="LOW">LOW</option>
 						<option value="HIGH">HIGH</option>
@@ -110,7 +110,7 @@
 					</select>
 				</div>
 				<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
-					<div class="col-md-3 control-label" for="categorystation"><?php echo lang('export_cabrillo_cat_station') ?>: </div>
+					<div class="col-md-3 control-label" for="categorystation"><?= __("Category Station") ?>: </div>
 					<select class="form-select my-1 me-sm-2 col-md-4 w-auto" id="categorystation" name="categorystation">
 						<option value="FIXED">FIXED</option>
 						<option value="DISTRIBUTED">DISTRIBUTED</option>
@@ -126,7 +126,7 @@
 					</select>
 				</div>
 				<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
-					<div class="col-md-3 control-label" for="categorytransmitter"><?php echo lang('export_cabrillo_cat_transmitter') ?>: </div>
+					<div class="col-md-3 control-label" for="categorytransmitter"><?= __("Category Transmitter") ?>: </div>
 					<select class="form-select my-1 me-sm-2 col-md-4 w-auto" id="categorytransmitter" name="categorytransmitter">
 						<option value="ONE">ONE</option>
 						<option value="TWO">TWO</option>
@@ -136,7 +136,7 @@
 					</select>
 				</div>
 				<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
-					<div class="col-md-3 control-label" for="categoryoverlay"><?php echo lang('export_cabrillo_cat_overlay') ?>: </div>
+					<div class="col-md-3 control-label" for="categoryoverlay"><?= __("Category Overlay") ?>: </div>
 					<select class="form-select my-1 me-sm-2 col-md-4 w-auto" id="categoryoverlay" name="categoryoverlay">
 						<option value="CLASSIC">CLASSIC</option>
 						<option value="ROOKIE">ROOKIE</option>
@@ -147,43 +147,43 @@
 					</select>
 				</div>
 				<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
-					<div class="col-md-3 control-label" for="operators"><?php echo lang('export_cabrillo_operators') ?>: </div>
+					<div class="col-md-3 control-label" for="operators"><?= __("Operators") ?>: </div>
 					<input class="form-control my-1 me-sm-2 col-md-4 w-auto" id="operators" type="operators" name="operators" aria-label="operators">
 					</select>
 				</div>
 				<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
-					<div class="col-md-3 control-label" for="soapbox"><?php echo lang('export_cabrillo_soapbox') ?>: </div>
+					<div class="col-md-3 control-label" for="soapbox"><?= __("Soapbox") ?>: </div>
 					<input class="form-control my-1 me-sm-2 col-md-4 w-auto" id="soapbox" type="text" name="soapbox" aria-label="soapbox">
 				</div>
 				<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
-					<div class="col-md-3 control-label" for="address"><?php echo lang('export_cabrillo_address') ?>: </div>
+					<div class="col-md-3 control-label" for="address"><?= __("Address") ?>: </div>
 					<input class="form-control my-1 me-sm-2 col-md-4 w-auto" id="address" type="text" name="address" aria-label="address">
 				</div>
 				<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
-					<div class="col-md-3 control-label" for="addresscity"><?php echo lang('export_cabrillo_address_city') ?>: </div>
+					<div class="col-md-3 control-label" for="addresscity"><?= __("Address City") ?>: </div>
 					<input class="form-control my-1 me-sm-2 col-md-4 w-auto" id="addresscity" type="text" name="addresscity" aria-label="addresscity">
 				</div>
 				<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
-					<div class="col-md-3 control-label" for="addressstateprovince"><?php echo lang('export_cabrillo_address_state_province') ?>: </div>
+					<div class="col-md-3 control-label" for="addressstateprovince"><?= __("Address State/Province") ?>: </div>
 					<input class="form-control my-1 me-sm-2 col-md-4 w-auto" id="addressstateprovince" type="text" name="addressstateprovince" aria-label="addressstateprovince">
 				</div>
 				<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
-					<div class="col-md-3 control-label" for="addresspostalcode"><?php echo lang('export_cabrillo_address_postalcode') ?>: </div>
+					<div class="col-md-3 control-label" for="addresspostalcode"><?= __("Address Postalcode") ?>: </div>
 					<input class="form-control my-1 me-sm-2 col-md-4 w-auto" id="addresspostalcode" type="text" name="addresspostalcode" aria-label="addresspostalcode">
 				</div>
 				<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
-					<div class="col-md-3 control-label" for="addresscountry"><?php echo lang('export_cabrillo_address_country') ?>: </div>
+					<div class="col-md-3 control-label" for="addresscountry"><?= __("Address Country") ?>: </div>
 					<input class="form-control my-1 me-sm-2 col-md-4 w-auto" id="addresscountry" type="text" name="addresscountry" aria-label="addresscountry">
 				</div>
 				<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
 					<div class="col-md-3 control-label" for="button1id"></div>
-					<button id="button1id" type="submit" name="button1id" class="btn btn-sm btn-primary w-auto"> <?php echo lang('general_word_export') ?></button>
+					<button id="button1id" type="submit" name="button1id" class="btn btn-sm btn-primary w-auto"> <?= __("Export") ?></button>
 				</div>
 			</form>
 
 			<?php }
 			else {
-				echo lang('export_cabrillo_no_contests_in_log');
+				echo __("No contests were found in your log.");
 			}
 			?>
 

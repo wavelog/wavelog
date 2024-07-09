@@ -1,11 +1,11 @@
 		<form method="post" onsubmit="return false;" action="" id="search_box" name="test">
 			<div class="mb-3 row col-sm-12">
-				<label for="callsign" class="col-sm-2 col-form-label">Callsign</label>
+				<label for="callsign" class="col-sm-2 col-form-label"><?= __("Callsign"); ?></label>
 				<div class="col-sm-8">
 					<input type="text" class="form-control" id="callsign" value="">
 				</div>
 				<div class="col-sm-2">
-					<button onclick="searchAdditionalQsos('<?php echo $filename; ?>')" class="btn btn-sm btn-success" type="button"><i class="fas fa-search"></i> Search</button>
+					<button onclick="searchAdditionalQsos('<?php echo $filename; ?>')" class="btn btn-sm btn-success" type="button"><i class="fas fa-search"></i> <?= __("Search"); ?></button>
 				</div>
 			</div>
 		</form>

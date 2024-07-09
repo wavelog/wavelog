@@ -319,7 +319,7 @@ class IOTA extends CI_Model {
 		}
 		$sql .= $this->addContinentsToQuery($postdata);
 		$sql .= $this->genfunctions->addQslToQuery($postdata);
-		log_message("Error",$sql);
+		// log_message("Error",$sql);
 		$query = $this->db->query($sql);
 
 		return $query->result();

@@ -5,7 +5,7 @@
 if (isset ($tableheaders)) {
         echo $tableheaders;
 } else {
-        echo 'No data imported. please check selected date. Must be in the past!';
+        echo __("No data imported. please check selected date. Must be in the past!");
 }
 ?>
 <?php if (isset ($table)) {echo $table;} ?>

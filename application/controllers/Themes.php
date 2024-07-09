@@ -12,7 +12,6 @@ class Themes extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
-		$this->lang->load('contesting');
 
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
@@ -25,7 +24,7 @@ class Themes extends CI_Controller {
 		$data['themes'] = $this->Themes_model->getThemes();
 
 		// Render Page
-		$data['page_title'] = "Themes";
+		$data['page_title'] = __("Themes");
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('themes/index.php');
 		$this->load->view('interface_assets/footer');
@@ -44,7 +43,7 @@ class Themes extends CI_Controller {
 
 		if ($this->form_validation->run() == FALSE)
 		{
-			$data['page_title'] = "Create Theme";
+			$data['page_title'] = __("Create Theme");
 			$this->load->view('themes/add', $data);
 		}
 		else
@@ -63,7 +62,7 @@ class Themes extends CI_Controller {
 
 		$data['theme'] = $this->Themes_model->theme($item_id_clean);
 
-		$data['page_title'] = "Edit Theme";
+		$data['page_title'] = __("Edit Theme");
 
 		$this->form_validation->set_rules('name', 'Theme Name', 'required|callback_character_check');
 		$this->form_validation->set_rules('foldername', 'Folder Name', 'required|callback_character_check');

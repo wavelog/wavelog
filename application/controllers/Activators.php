@@ -17,7 +17,7 @@ class Activators extends CI_Controller
 
     public function index()
     {
-        $data['page_title'] = "Gridsquare Activators";
+        $data['page_title'] = __("Gridsquare Activators");
 
         $this->load->model('Activators_model');
 

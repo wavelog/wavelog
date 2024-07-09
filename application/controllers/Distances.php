@@ -14,7 +14,7 @@ class Distances extends CI_Controller {
     public function index()
     {
         // Render Page
-        $data['page_title'] = "Distances Worked";
+        $data['page_title'] = __("Distances Worked");
 
         $this->load->model('bands');
         $data['bands_available'] = $this->bands->get_worked_bands_distances();
@@ -79,7 +79,7 @@ class Distances extends CI_Controller {
 
 		// Render Page
 		$data['page_title'] = "Log View - " . $distance;
-		$data['filter'] = lang('statistics_distances_qsos_with') . " " . $distance . " " . lang('statistics_distances_and_band'). " " . $band;
+		$data['filter'] = __("QSOs with") . " " . $distance . " " . __("and band"). " " . $band;
 		$this->load->view('awards/details', $data);
 	}
 }

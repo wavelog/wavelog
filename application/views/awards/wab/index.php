@@ -8,20 +8,20 @@
     <br>
     <div id="awardInfoButton">
         <script>
-            var lang_awards_info_button = "<?php echo lang('awards_info_button'); ?>";
-            var lang_award_info_ln1 = "<?php echo lang('awards_wab_description_ln1'); ?>";
-            var lang_award_info_ln2 = "<?php echo lang('awards_wab_description_ln2'); ?>";
-            var lang_award_info_ln3 = "<?php echo lang('awards_wab_description_ln3'); ?>";
-            var lang_award_info_ln4 = "<?php echo lang('awards_wab_description_ln4'); ?>";
+            var lang_awards_info_button = "<?= __("Award Info"); ?>";
+            var lang_award_info_ln1 = "<?= __("WAB - Worked All Britain Award"); ?>";
+            var lang_award_info_ln2 = "<?= __("WAB, Worked All Britain squares in Amateur Radio, encourages licensed ham radio operators to work all the squares in Great Britain."); ?>";
+            var lang_award_info_ln3 = "<?= __("May be claimed for having contacted an amateur station located in the required amount of squares, described on the page linked below."); ?>";
+            var lang_award_info_ln4 = "<?= sprintf(__("For more information, please visit: %s."), "<a href='https://wab.intermip.net/default.php' target='_blank'>https://wab.intermip.net/default.php</a>"); ?>";
         </script>
         <h2><?php echo $page_title; ?></h2>
-        <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?php echo lang('awards_info_button'); ?></button>
+        <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?= __("Award Info"); ?></button>
     </div>
 
 <form class="d-flex align-items-center">
-            <label class="my-1 me-2" for="band"><?php echo lang('gridsquares_band'); ?></label>
+            <label class="my-1 me-2" for="band"><?= __("Band"); ?></label>
             <select class="form-select my-1 me-sm-2 w-auto"  id="band">
-                <option value="All"><?php echo lang('general_word_all')?></option>
+                <option value="All"><?= __("All")?></option>
                 <?php foreach($bands as $band) {
                     echo '<option value="'.$band.'"';
                     if ($user_default_band == $band) {
@@ -31,9 +31,9 @@
                 } ?>
             </select>
             <?php if (count($sats_available) != 0) { ?>
-                <label class="my-1 me-2" id="satslabel" for="distplot_sats" <?php if ($user_default_band != "SAT") { ?>style="display: none;"<?php } ?>><?php echo lang('gridsquares_sat'); ?></label>
+                <label class="my-1 me-2" id="satslabel" for="distplot_sats" <?php if ($user_default_band != "SAT") { ?>style="display: none;"<?php } ?>><?= __("Satellite"); ?></label>
                 <select class="form-select my-1 me-sm-2 w-auto"  id="sats" <?php if ($user_default_band != "SAT") { ?>style="display: none;"<?php } ?>>
-                    <option value="All"><?php echo lang('general_word_all')?></option>
+                    <option value="All"><?= __("All")?></option>
                     <?php foreach($sats_available as $sat) {
                         echo '<option value="' . $sat . '"' . '>' . $sat . '</option>'."\n";
                     } ?>
@@ -41,18 +41,18 @@
             <?php } else { ?>
                 <input id="sats" type="hidden" value="All"></input>
             <?php } ?>
-                <label class="my-1 me-2" id="orbitslabel" for="orbits" <?php if ($user_default_band != "SAT") { ?>style="display: none;"<?php } ?>><?php echo lang('gridsquares_orbit'); ?></label>
+                <label class="my-1 me-2" id="orbitslabel" for="orbits" <?php if ($user_default_band != "SAT") { ?>style="display: none;"<?php } ?>><?= __("Orbit"); ?></label>
                 <select class="form-select my-1 me-sm-2 w-auto"  id="orbits" <?php if ($user_default_band != "SAT") { ?>style="display: none;"<?php } ?>>
-                    <option value="All"><?php echo lang('general_word_all')?></option>
+                    <option value="All"><?= __("All")?></option>
                     <?php
                     foreach($orbits as $orbit){
                         echo '<option value="' . $orbit . '">' . strtoupper($orbit) . '</option>'."\n";
                     }
                     ?>
             </select>
-			<label class="my-1 me-2" for="mode"><?php echo lang('gridsquares_mode'); ?></label>
+			<label class="my-1 me-2" for="mode"><?= __("Mode"); ?></label>
             <select class="form-select my-1 me-sm-2 w-auto"  id="mode">
-			<option value="All"><?php echo lang('general_word_all')?></option>
+			<option value="All"><?= __("All")?></option>
                     <?php
                     foreach($modes as $mode){
                         if ($mode->submode ?? '' == '') {
@@ -61,7 +61,7 @@
                     }
                     ?>
             </select>
-			<label class="my-1 me-2"><?php echo lang('gridsquares_confirmation'); ?></label>
+			<label class="my-1 me-2"><?= __("Confirmation"); ?></label>
                 <div>
                     <div class="form-check-inline">
                     <?php echo '<input class="form-check-input" value="1" type="checkbox" name="qsl" id="qsl"';
@@ -69,7 +69,7 @@
                             echo ' checked' ;
                         }
                         echo '>'; ?>
-                        <label class="form-check-label" for="qsl">QSL</label>
+                        <label class="form-check-label" for="qsl"><?= __("QSL"); ?></label>
                     </div>
                     <div class="form-check-inline">
                     <?php echo '<input class="form-check-input" value="1" type="checkbox" name="lotw" id="lotw"';
@@ -77,7 +77,7 @@
                             echo ' checked' ;
                         }
                         echo '>'; ?>
-                        <label class="form-check-label" for="lotw">LoTW</label>
+                        <label class="form-check-label" for="lotw"><?= __("LoTW"); ?></label>
                     </div>
                     <div class="form-check-inline">
                     <?php echo '<input class="form-check-input" value="1" type="checkbox" name="eqsl" id="eqsl"';
@@ -85,7 +85,7 @@
                             echo ' checked' ;
                         }
                         echo '>'; ?>
-                        <label class="form-check-label" for="eqsl">eQSL</label>
+                        <label class="form-check-label" for="eqsl"><?= __("eQSL"); ?></label>
                     </div>
                     <div class="form-check-inline">
                     <?php echo '<input class="form-check-input" value="1" type="checkbox" name="qrz" id="qrz"';
@@ -93,7 +93,7 @@
                             echo ' checked' ;
                         }
                         echo '>'; ?>
-                        <label class="form-check-label" for="qrz">QRZ.com</label>
+                        <label class="form-check-label" for="qrz"><?= __("QRZ.com"); ?></label>
                     </div>
 		    <div>
                      <?php echo '<input class="form-check-input" value="1" type="checkbox" name="clublog" id="clublog"';
@@ -101,12 +101,12 @@
                             echo ' checked' ;
                         }
                         echo '>'; ?>
-                        <label class="form-check-label" for="clublog">Clublog</label>
+                        <label class="form-check-label" for="clublog"><?= __("Clublog"); ?></label>
                     </div>
                 </div>
 
-            <button id="plot" type="button" name="plot" class="btn btn-primary me-1 ld-ext-right ld-ext-right-plot" onclick="plotmap()">Map<div class="ld ld-ring ld-spin"></div></button>
-			<button id="list" type="button" name="list" class="btn btn-primary me-1 ld-ext-right ld-ext-right-list" onclick="showlist()">List<div class="ld ld-ring ld-spin"></div></button>
+            <button id="plot" type="button" name="plot" class="btn btn-primary me-1 ld-ext-right ld-ext-right-plot" onclick="plotmap()"><?= __("Map"); ?><div class="ld ld-ring ld-spin"></div></button>
+			<button id="list" type="button" name="list" class="btn btn-primary me-1 ld-ext-right ld-ext-right-list" onclick="showlist()"><?= __("List"); ?><div class="ld ld-ring ld-spin"></div></button>
 </form>
 </div>
 <div id="mapcontainer">

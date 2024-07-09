@@ -21,18 +21,18 @@
 
 		<form>
 		<div class="mb-3">
-		    <label for="contestInput"><?php echo lang('admin_contest_menu_name'); ?></label>
+		    <label for="contestInput"><?= __("Name"); ?></label>
 		    <input type="text" class="form-control" name="contestname" id="contestInput" aria-describedby="contestInputHelp" required>
-		    <small id="contestInputHelp" class="form-text text-muted"><?php echo lang('admin_contest_name_of_contest'); ?></small>
+		    <small id="contestInputHelp" class="form-text text-muted"><?= __("Name of the Contest"); ?></small>
 		  </div>
 
 		  <div class="mb-3">
-		    <label for="adifcontestInput"><?php echo lang('admin_contest_menu_adif'); ?></label>
+		    <label for="adifcontestInput"><?= __("ADIF Name"); ?></label>
 		    <input type="text" class="form-control" name="adifcontestname" id="adifcontestInput" aria-describedby="adifcontestInputHelp">
-		    <small id="adifcontestInputHelp" class="form-text text-muted"><?php echo lang('admin_contest_name_of_adif'); ?></small>
+		    <small id="adifcontestInputHelp" class="form-text text-muted"><?= __("Name of Contest in ADIF-specification"); ?></small>
 		  </div>
 
-			<button type="button" onclick="createContest(this.form);" class="btn btn-primary btn-sm"><i class="fas fa-plus-square"></i> <?php echo lang('admin_contest_create'); ?></button>
+			<button type="button" onclick="createContest(this.form);" class="btn btn-primary btn-sm"><i class="fas fa-plus-square"></i> <?= __("Create"); ?></button>
 
 		</form>
 </div>

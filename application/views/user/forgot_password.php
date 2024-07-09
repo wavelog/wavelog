@@ -30,8 +30,8 @@ input[type="email"] {
     <div class="my-2 rounded-0 shadow-sm card mb-2 shadow-sm">
         <div class="card-body">
             <div class="text-center">
-                        <h3 class="text-center"><?php echo lang('account_forgot_password'); ?> <i class="fa fa-lock"></i></h3>
-                        <p><?php echo lang('account_you_can_reset_your_password_here'); ?></p>
+                        <h3 class="text-center"><?= __("Forgot Password?"); ?> <i class="fa fa-lock"></i></h3>
+                        <p><?= __("You can reset your password here."); ?></p>
                 <div class="panel-body">
 
                     <?php if(validation_errors() != ''): ?>
@@ -44,11 +44,11 @@ input[type="email"] {
                         <div class="mb-3">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
-                                <input id="email" name="email" placeholder="<?php echo lang('account_email_address'); ?>" class="form-control" type="email" autofocus>
+                                <input id="email" name="email" placeholder="<?= __("Email Address"); ?>" class="form-control" type="email" autofocus>
                             </div>
                         </div>
                         <div class="mb-3">
-                            <input name="recover-submit" class="w-100 btn btn-primary btn-block" value="<?php echo lang('account_reset_password'); ?>" type="submit">
+                            <input name="recover-submit" class="w-100 btn btn-primary btn-block" value="<?= __("Reset Password"); ?>" type="submit">
                         </div>
                         <input type="hidden" class="hide" name="token" id="token" value="">
                     </form>

@@ -3,40 +3,40 @@ function echo_table_header_col($ctx, $name)
 {
 	switch ($name) {
 		case 'Mode':
-			echo '<th>' . $ctx->lang->line('gen_hamradio_mode') . '</th>';
+			echo '<th>' . __("Mode") . '</th>';
 			break;
 		case 'RSTS':
-			echo '<th class="d-none d-sm-table-cell">' . $ctx->lang->line('gen_hamradio_rsts') . '</th>';
+			echo '<th class="d-none d-sm-table-cell">' . __("RST (S)") . '</th>';
 			break;
 		case 'RSTR':
-			echo '<th class="d-none d-sm-table-cell">' . $ctx->lang->line('gen_hamradio_rstr') . '</th>';
+			echo '<th class="d-none d-sm-table-cell">' . __("RST (R)") . '</th>';
 			break;
 		case 'Country':
-			echo '<th>' . $ctx->lang->line('general_word_country') . '</th>';
+			echo '<th>' . __("Country") . '</th>';
 			break;
 		case 'IOTA':
-			echo '<th>' . $ctx->lang->line('gen_hamradio_iota') . '</th>';
+			echo '<th>' . __("IOTA") . '</th>';
 			break;
 		case 'SOTA':
-			echo '<th>' . $ctx->lang->line('gen_hamradio_sota') . '</th>';
+			echo '<th>' . __("SOTA") . '</th>';
 			break;
 		case 'State':
-			echo '<th>' . $ctx->lang->line('gen_hamradio_state') . '</th>';
+			echo '<th>' . __("State") . '</th>';
 			break;
 		case 'Grid':
-			echo '<th>' . $ctx->lang->line('gen_hamradio_gridsquare') . '</th>';
+			echo '<th>' . __("Gridsquare") . '</th>';
 			break;
 		case 'Distance':
-			echo '<th>' . $ctx->lang->line('gen_hamradio_distance') . '</th>';
+			echo '<th>' . __("Distance") . '</th>';
 			break;
 		case 'Band':
-			echo '<th>' . $ctx->lang->line('gen_hamradio_band') . '</th>';
+			echo '<th>' . __("Band") . '</th>';
 			break;
 		case 'Frequency':
-			echo '<th>' . $ctx->lang->line('gen_hamradio_frequency') . '</th>';
+			echo '<th>' . __("Frequency") . '</th>';
 			break;
 		case 'Operator':
-			echo '<th>' . $ctx->lang->line('gen_hamradio_operator') . '</th>';
+			echo '<th>' . __("Operator") . '</th>';
 			break;
 	}
 }
@@ -144,12 +144,12 @@ if ($public_maps_option == 'true') { ?>
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr class="titles">
-							<th><?php echo lang('general_word_date'); ?></th>
+							<th><?= __("Date"); ?></th>
 
 							<?php if (($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE || ($this->config->item('show_time'))) { ?>
-								<th><?php echo lang('general_word_time'); ?></th>
+								<th><?= __("Time"); ?></th>
 							<?php } ?>
-							<th><?php echo lang('gen_hamradio_call'); ?></th>
+							<th><?= __("Call"); ?></th>
 							<?php
 							echo_table_header_col($this, $this->session->userdata('user_column1') == "" ? 'Mode' : $this->session->userdata('user_column1'));
 							echo_table_header_col($this, $this->session->userdata('user_column2') == "" ? 'RSTS' : $this->session->userdata('user_column2'));
@@ -234,36 +234,36 @@ if ($public_maps_option == 'true') { ?>
 			<div class="table-responsive">
 				<table class="table table-striped">
 					<tr class="titles">
-						<td colspan="2"><i class="fas fa-chart-bar"></i> <?php echo lang('dashboard_qso_breakdown'); ?></td>
+						<td colspan="2"><i class="fas fa-chart-bar"></i> <?= __("QSOs Breakdown"); ?></td>
 					</tr>
 
 					<tr>
-						<td width="50%"><?php echo lang('general_word_total'); ?></td>
+						<td width="50%"><?= __("Total"); ?></td>
 						<td width="50%"><?php echo $total_qsos; ?></td>
 					</tr>
 
 					<tr>
-						<td width="50%"><?php echo lang('general_word_year'); ?></td>
+						<td width="50%"><?= __("Year"); ?></td>
 						<td width="50%"><?php echo $year_qsos; ?></td>
 					</tr>
 
 					<tr>
-						<td width="50%"><?php echo lang('general_word_month'); ?></td>
+						<td width="50%"><?= __("Month"); ?></td>
 						<td width="50%"><?php echo $month_qsos; ?></td>
 					</tr>
 				</table>
 
 				<table class="table table-striped">
 					<tr class="titles">
-						<td colspan="2"><i class="fas fa-globe-europe"></i> <?php echo lang('dashboard_countries_breakdown'); ?></td>
+						<td colspan="2"><i class="fas fa-globe-europe"></i> <?= __("Countries Breakdown"); ?></td>
 					</tr>
 
 					<tr>
-						<td width="50%"><?php echo lang('general_word_worked'); ?></td>
+						<td width="50%"><?= __("Worked"); ?></td>
 						<td width="50%"><?php echo $total_countries; ?></td>
 					</tr>
 					<tr>
-						<td width="50%"><a href="#" onclick="return false" title="QSL Cards / eQSL / LoTW" data-bs-toggle="tooltip"><?php echo lang('general_word_confirmed'); ?></a></td>
+						<td width="50%"><a href="#" onclick="return false" title="QSL Cards / eQSL / LoTW" data-bs-toggle="tooltip"><?= __("Confirmed"); ?></a></td>
 						<td width="50%">
 							<?php echo $total_countries_confirmed_paper; ?> /
 							<?php echo $total_countries_confirmed_eqsl; ?> /
@@ -272,7 +272,7 @@ if ($public_maps_option == 'true') { ?>
 					</tr>
 
 					<tr>
-						<td width="50%"><?php echo lang('general_word_needed'); ?></td>
+						<td width="50%"><?= __("Needed"); ?></td>
 						<td width="50%"><?php echo $total_countries_needed; ?></td>
 					</tr>
 				</table>
@@ -280,21 +280,21 @@ if ($public_maps_option == 'true') { ?>
 				<?php if ((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE) && ($total_qsl_sent != 0 || $total_qsl_rcvd != 0 || $total_qsl_requested != 0)) { ?>
 					<table class="table table-striped">
 						<tr class="titles">
-							<td colspan="2"><i class="fas fa-envelope"></i> <?php echo lang('general_word_qslcards'); ?></td>
+							<td colspan="2"><i class="fas fa-envelope"></i> <?= __("QSL Cards"); ?></td>
 						</tr>
 
 						<tr>
-							<td width="50%"><?php echo lang('general_word_sent'); ?></td>
+							<td width="50%"><?= __("Sent"); ?></td>
 							<td width="50%"><?php echo $total_qsl_sent; ?></td>
 						</tr>
 
 						<tr>
-							<td width="50%"><?php echo lang('general_word_received'); ?></td>
+							<td width="50%"><?= __("Received"); ?></td>
 							<td width="50%"><?php echo $total_qsl_rcvd; ?></td>
 						</tr>
 
 						<tr>
-							<td width="50%"><?php echo lang('general_word_requested'); ?></td>
+							<td width="50%"><?= __("Requested"); ?></td>
 							<td width="50%"><?php echo $total_qsl_requested; ?></td>
 						</tr>
 					</table>
@@ -303,16 +303,16 @@ if ($public_maps_option == 'true') { ?>
 				<?php if ((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE) && ($total_eqsl_sent != 0 || $total_eqsl_rcvd != 0)) { ?>
 					<table class="table table-striped">
 						<tr class="titles">
-							<td colspan="2"><i class="fas fa-address-card"></i> <?php echo lang('general_word_eqslcards'); ?></td>
+							<td colspan="2"><i class="fas fa-address-card"></i> <?= __("eQSL Cards"); ?></td>
 						</tr>
 
 						<tr>
-							<td width="50%"><?php echo lang('general_word_sent'); ?></td>
+							<td width="50%"><?= __("Sent"); ?></td>
 							<td width="50%"><?php echo $total_eqsl_sent; ?></td>
 						</tr>
 
 						<tr>
-							<td width="50%"><?php echo lang('general_word_received'); ?></td>
+							<td width="50%"><?= __("Received"); ?></td>
 							<td width="50%"><?php echo $total_eqsl_rcvd; ?></td>
 						</tr>
 					</table>
@@ -321,16 +321,16 @@ if ($public_maps_option == 'true') { ?>
 				<?php if ((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE) && ($total_lotw_sent != 0 || $total_lotw_rcvd != 0)) { ?>
 					<table class="table table-striped">
 						<tr class="titles">
-							<td colspan="2"><i class="fas fa-list"></i> <?php echo lang('general_word_lotw'); ?></td>
+							<td colspan="2"><i class="fas fa-list"></i> <?= __("Logbook of the World"); ?></td>
 						</tr>
 
 						<tr>
-							<td width="50%"><?php echo lang('general_word_sent'); ?></td>
+							<td width="50%"><?= __("Sent"); ?></td>
 							<td width="50%"><?php echo $total_lotw_sent; ?></td>
 						</tr>
 
 						<tr>
-							<td width="50%"><?php echo lang('general_word_received'); ?></td>
+							<td width="50%"><?= __("Received"); ?></td>
 							<td width="50%"><?php echo $total_lotw_rcvd; ?></td>
 						</tr>
 					</table>

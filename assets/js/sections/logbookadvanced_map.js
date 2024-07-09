@@ -124,49 +124,6 @@ function toggleGridsquares(bool) {
 	}
 };
 
-const cqzonenames = [
-	[ "75", "-140" ],
-	[ "70", "-82.5" ],
-	[ "45", "-125" ],
-	[ "45", "-100" ],
-	[ "45", "-65" ],
-	[ "25.5", "-115" ],
-	[ "14.5", "-90" ],
-	[ "22", "-60" ],
-	[ "11.5", "-70" ],
-	[ "-5", "-100" ],
-	[ "-9", "-45" ],
-	[ "-45", "-106" ],
-	[ "-45", "-55" ],
-	[ "52", "-14" ],
-	[ "46", "11" ],
-	[ "60", "35" ],
-	[ "55", "65" ],
-	[ "70", "90" ],
-	[ "70", "150" ],
-	[ "42", "29" ],
-	[ "28", "53" ],
-	[ "6", "75" ],
-	[ "44", "93" ],
-	[ "33", "110" ],
-	[ "38", "134" ],
-	[ "16", "100" ],
-	[ "15", "140" ],
-	[ "0", "125" ],
-	[ "-25", "115" ],
-	[ "-25", "145" ],
-	[ "15", "-165" ],
-	[ "-25", "-165" ],
-	[ "32", "-26" ],
-	[ "25", "25.5" ],
-	[ "15", "-6" ],
-	[ "-5", "-6" ],
-	[ "6", "51" ],
-	[ "-45", "8" ],
-	[ "-25", "55"],
-	[  "78", "-10"],
-];
-
 const ituzonenames = [
 	["60","-160"],
 	["55","-125"],
@@ -539,7 +496,7 @@ function mapQsos(form) {
 				type: 'post',
 				data: {
 					ids: id_list,
-					de: form.de.value
+					de: $('#de').val()
 				},
 				success: function(data) {
 					loadMapOptions(data);
@@ -555,7 +512,7 @@ function mapQsos(form) {
 				data: {
 					dateFrom: form.dateFrom.value,
 					dateTo: form.dateTo.value,
-					de: form.de.value,
+					de: $('#de').val(),
 					dx: form.dx.value,
 					mode: form.mode.value,
 					band: form.band.value,
@@ -626,7 +583,7 @@ function mapGlobeQsos(form) {
 			type: 'post',
 			data: {
 				ids: id_list,
-				de: form.de.value
+				de: $('#de').val()
 			},
 			success: function(data) {
 				globemap(data);
@@ -642,7 +599,7 @@ function mapGlobeQsos(form) {
 				data: {
 					dateFrom: form.dateFrom.value,
 					dateTo: form.dateTo.value,
-					de: form.de.value,
+					de: $('#de').val(),
 					dx: form.dx.value,
 					mode: form.mode.value,
 					band: form.band.value,

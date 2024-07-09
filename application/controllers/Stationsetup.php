@@ -32,7 +32,7 @@ class Stationsetup extends CI_Controller {
 		];
 
 		// Render Page
-		$data['page_title'] = "Station Setup";
+		$data['page_title'] = __("Station Setup");
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('stationsetup/stationsetup');
 		$this->load->view('interface_assets/footer', $footerData);
@@ -47,7 +47,7 @@ class Stationsetup extends CI_Controller {
 				$data['success']=1;
 			} else {
 				$data['success']=0;
-				$data['flashdata']='Not allowed';
+				$data['flashdata'] = __("Not allowed");
 			}
 		} else {
 			$data['success']=0;
@@ -65,11 +65,11 @@ class Stationsetup extends CI_Controller {
 				$data['success']=1;
 			} else {
 				$data['success']=0;
-				$data['flashdata']='Not allowed';
+				$data['flashdata'] = __("Not allowed");
 			}
 		} else {
 			$data['success']=0;
-			$data['flashdata']='Error';
+			$data['flashdata'] = __("Error");
 		}
 		echo json_encode($data);
 	}
@@ -83,7 +83,7 @@ class Stationsetup extends CI_Controller {
 			$data['success']=1;
 		} else {
 			$data['success']=0;
-			$data['flashdata']='Error';
+			$data['flashdata'] = __("Error");
 		}
 		echo json_encode($data);
 	}
@@ -102,7 +102,7 @@ class Stationsetup extends CI_Controller {
 			$data['success'] = 1;
 		} else {
 			$data['success'] = 0;
-			$data['flashdata'] ='Error';
+			$data['flashdata'] = __("Error");
 		}
 		echo json_encode($data);
 	}
@@ -115,7 +115,7 @@ class Stationsetup extends CI_Controller {
 			$data['success']=1;
 		} else {
 			$data['success']=0;
-			$data['flashdata']='Error';
+			$data['flashdata'] = __("Error");
 		}
 		echo json_encode($data);
 	}
@@ -128,7 +128,7 @@ class Stationsetup extends CI_Controller {
 			$data['success']=1;
 		} else {
 			$data['success']=0;
-			$data['flashdata']='Error';
+			$data['flashdata'] = __("Error");
 		}
 		echo json_encode($data);
 	}
@@ -149,21 +149,21 @@ class Stationsetup extends CI_Controller {
 				$data['success']=1;
 			} else {
 				$data['success']=0;
-				$data['flashdata']='Error';
+				$data['flashdata'] = __("Error");
 			}
 			echo json_encode($data);
 		}
 	}
 
 	public function newLogbook() {
-		$data['page_title'] = "Create Station Logbook";
+		$data['page_title'] = __("Create Station Logbook");
 		$this->load->view('stationsetup/create', $data);
 	}
 
 	public function editContainerName() {
 		$this->load->model('stationsetup_model');
 		$data['container'] = $this->stationsetup_model->getContainer(xss_clean($this->input->post('id', true)))->row();
-		$data['page_title'] = "Edit container name";
+		$data['page_title'] = __("Edit container name");
 		$this->load->view('stationsetup/edit', $data);
 	}
 
@@ -178,7 +178,7 @@ class Stationsetup extends CI_Controller {
 		$station_logbook_details_query = $this->logbooks_model->logbook(xss_clean($this->input->post('id', true)));
 		$data['station_logbook_details'] = $station_logbook_details_query->row();
 		$data['station_locations_linked'] = $this->logbooks_model->list_logbooks_linked($this->input->post('id', true));
-		$data['page_title'] = "Edit lined locations";
+		$data['page_title'] = __("Edit linked locations");
 		$this->load->view('stationsetup/linkedlocations', $data);
 	}
 
@@ -187,7 +187,7 @@ class Stationsetup extends CI_Controller {
 		$station_logbook_details_query = $this->logbooks_model->logbook(xss_clean($this->input->post('id', true)));
 		$data['station_logbook_details'] = $station_logbook_details_query->row();
 		$data['station_locations_list'] = $this->stations->all_of_user();
-		$data['page_title'] = "Edit visitor site";
+		$data['page_title'] = __("Edit visitor site");
 		$this->load->view('stationsetup/visitor', $data);
 	}
 
@@ -209,7 +209,7 @@ class Stationsetup extends CI_Controller {
 			$data['success'] = 1;
 		} else {
 			$data['success'] = 0;
-			$data['flashdata'] = 'Error. Link is already in use!';
+			$data['flashdata'] = __("Error. Link is already in use!");
 		}
 
 		echo json_encode($data);
@@ -223,7 +223,7 @@ class Stationsetup extends CI_Controller {
 		$this->load->model('logbook_model');
 		$data['iota_list'] = $this->logbook_model->fetchIota();
 
-		$data['page_title'] = lang('station_location_create_header');
+		$data['page_title'] = __("Create Station Location");
 		$this->load->view('station_profile/create', $data);
 	}
 
@@ -250,7 +250,7 @@ class Stationsetup extends CI_Controller {
 	}
 
 	private function lbpublicsearch2html($publicsearch, $id) {
-		$htmret = ($publicsearch=='1' ? '<span class="badge text-bg-success">Enabled</span>' : '<span class="badge bg-dark">Disabled</span>');
+		$htmret = ($publicsearch=='1' ? '<span class="badge text-bg-success">Enabled</span>' : '<span class="badge bg-dark">' . __("Disabled") . '</span>');
 		$htmret .= '<div class="form-check" style="margin-top: -1.5em"><input id="'.$id.'" class="form-check-input publicSearchCheckbox" type="checkbox"'. ($publicsearch=='1' ? 'checked' : '') . '/></div>';
 		return $htmret;
 
@@ -258,16 +258,16 @@ class Stationsetup extends CI_Controller {
 
 	private function lbstate2html($id) {
 		if($this->session->userdata('active_station_logbook') != $id) {
-			$htmret='<button id="'.$id.'" class="setActiveLogbook btn btn-outline-primary btn-sm">'.lang('station_logbooks_set_active').'</button>';
+			$htmret='<button id="'.$id.'" class="setActiveLogbook btn btn-outline-primary btn-sm">'.__("Set as Active Logbook").'</button>';
 		} else {
-			$htmret="<span class='badge text-bg-success'>" . lang('station_logbooks_active_logbook') . "</span>";
+			$htmret="<span class='badge text-bg-success'>" . __("Active Logbook") . "</span>";
 		}
 		return $htmret;
 	}
 
 	private function lbdel2html($id, $logbook_name) {
 		if($this->session->userdata('active_station_logbook') != $id) {
-			$htmret='<button id="'.$id.'" class="deleteLogbook btn btn-outline-danger btn-sm" cnftext="'.lang('station_logbooks_confirm_delete').$logbook_name.'"><i class="fas fa-trash-alt"></i></button>';
+			$htmret='<button id="'.$id.'" class="deleteLogbook btn btn-outline-danger btn-sm" cnftext="'.__("Are you sure you want to delete the following station logbook? You must re-link any locations linked here to another logbook.: ").$logbook_name.'"><i class="fas fa-trash-alt"></i></button>';
 		} else {
 			$htmret='';
 		}
@@ -277,8 +277,8 @@ class Stationsetup extends CI_Controller {
 	private function lblnk2html($public_slug, $logbook_name, $id) {
 		$htmret = '<button class="btn btn-outline-primary btn-sm editVisitorLink" id="' . $id . '"><i class="fas fa-edit"></i></button> ';
 		if($public_slug != '') {
-			$htmret .= '<a target="_blank" href="'.site_url('visitor')."/".$public_slug.'" class="btn btn-outline-primary btn-sm"><i class="fas fa-globe" title="'.lang('station_logbooks_view_public') . $logbook_name.'"></i></a>';
-			$htmret .= ' <button id="' . $id . '" class="deletePublicSlug btn btn-outline-danger btn-sm" cnftext="Are you sure you want to delete the public slug?"><i class="fas fa-trash-alt"></i></button>';
+			$htmret .= '<a target="_blank" href="'.site_url('visitor')."/".$public_slug.'" class="btn btn-outline-primary btn-sm"><i class="fas fa-globe" title="'.__("View Public Page for Logbook: ") . $logbook_name.'"></i></a>';
+			$htmret .= ' <button id="' . $id . '" class="deletePublicSlug btn btn-outline-danger btn-sm" cnftext="' . __("Are you sure you want to delete the public slug?") . '"><i class="fas fa-trash-alt"></i></button>';
 			$htmret .= ' <button id="' . $id . '" class="editExportmapOptions btn btn-outline-primary btn-sm"><i class="fas fa-globe-europe"></i></button>';
 		}
 		return $htmret;
@@ -312,9 +312,17 @@ class Stationsetup extends CI_Controller {
 			$single->station_copylog = $this->stationcopy2html($entry->station_id);
 			$single->station_delete = $this->stationdelete2html($entry->station_id, $entry->station_profile_name, $entry->station_active);
 			$single->station_favorite = $this->stationfavorite2html($entry->station_id, $quickswitch_enabled);
+			$single->station_linked = $this->stationlinked2html($entry->linked);
 			array_push($hres,$single);
 		}
 		echo json_encode($hres);
+	}
+
+	private function stationlinked2html($linked) {
+		if ($linked == 1) {
+			return '<i class="fa fa-check text-success" aria-hidden="true"></i>';
+		}
+		return '<i class="fa fa-times text-danger" aria-hidden="true"></i>';
 	}
 
 	private function stationfavorite2html($id, $quickswitch_enabled) {
@@ -338,39 +346,39 @@ class Stationsetup extends CI_Controller {
 	private function stationbadge2html($station_active, $qso_total, $current_active, $station_profile_name, $id) {
 		$returntext = '';
 		if($station_active != 1) {
-			$returntext .= '<button id="'.$id.'" class="setActiveStation btn btn-outline-secondary btn-sm" cnftext="'. lang('station_location_confirm_active') . $station_profile_name .'">' . lang('station_location_set_active') . '</button><br/>';
+			$returntext .= '<button id="'.$id.'" class="setActiveStation btn btn-outline-secondary btn-sm" cnftext="'. __("Are you sure you want to make the following station the active station: ") . $station_profile_name .'">' . __("Set Active") . '</button><br/>';
 		} else {
-			$returntext .= '<span class="badge bg-success text-bg-success">' . lang('station_location_active') . '</span><br/>';
+			$returntext .= '<span class="badge bg-success text-bg-success">' . __("Active Station") . '</span><br/>';
 		}
 
-		$returntext .='<span class="badge bg-dark">' . $qso_total .' '. lang('gen_hamradio_qso') . '</span>';
+		$returntext .='<span class="badge bg-dark">' . $qso_total .' '. __("QSO") . '</span>';
 		return $returntext;
 	}
 
 	private function stationedit2html($id) {
-		return '<a href="' . site_url('station/edit')."/" . $id . '" title="' . lang('admin_edit') . '" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit"></i></a>';
+		return '<a href="' . site_url('station/edit')."/" . $id . '" title="' . __("Edit") . '" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit"></i></a>';
 	}
 
 	private function stationemptylog2html($id) {
-		return '<button id="'. $id . '" class="EmptyStation btn btn-danger btn-sm" title="' . lang('station_location_emptylog') . '" cnftext="' . lang('station_location_confirm_del_qso') . '"><i class="fas fa-trash-alt"></i></button>';
+		return '<button id="'. $id . '" class="EmptyStation btn btn-danger btn-sm" title="' . __("Empty Log") . '" cnftext="' . __("Are you sure you want to delete all QSOs within this station profile?") . '"><i class="fas fa-trash-alt"></i></button>';
 	}
 
 	private function stationcopy2html($id) {
-		return '<a href="' . site_url('station/copy') . "/" . $id . '" title="' . lang('admin_copy') . '" class="btn btn-outline-primary btn-sm"><i class="fas fa-copy"></i></a>';
+		return '<a href="' . site_url('station/copy') . "/" . $id . '" title="' . __("Copy") . '" class="btn btn-outline-primary btn-sm"><i class="fas fa-copy"></i></a>';
 	}
 
 	private function stationdelete2html($id, $station_profile_name, $station_active) {
 		if($station_active != 1) {
-			return '<button id="'.$id . '" class="DeleteStation btn btn-danger btn-sm" title="' . lang('admin_delete') . '" cnftext="' . lang('station_location_confirm_del_stationlocation') . $station_profile_name . lang('station_location_confirm_del_stationlocation_qso') . '"><i class="fas fa-trash-alt"></i></button>';
+			return '<button id="'.$id . '" class="DeleteStation btn btn-danger btn-sm" title="' . __("Delete") . '" cnftext="' . sprintf(__("Are you sure you want delete station profile '%s'? This will delete all QSOs within this station profile."), $station_profile_name) . '"><i class="fas fa-trash-alt"></i></button>';
 		}
 
 		return '';
 	}
 
 	private function stationcountry2html($station_country, $dxcc_end) {
-		$returntext = $station_country == '' ? '- NONE -' : $station_country;
+		$returntext = $station_country == '' ? '- ' . __("NONE") . ' -' : $station_country;
 		if ($dxcc_end != NULL) {
-			$returntext .= ' <span class="badge badge-danger">'.lang('gen_hamradio_deleted_dxcc').'</span>';
+			$returntext .= ' <span class="badge badge-danger">'.__("Deleted DXCC").'</span>';
 		}
 
 		return $returntext;
@@ -384,7 +392,7 @@ class Stationsetup extends CI_Controller {
 				$data['success']=1;
 		} else {
 			$data['success']=0;
-			$data['flashdata']='Not allowed';
+			$data['flashdata'] = __("Not allowed");
 		}
 		echo json_encode($data);
 	}
@@ -398,7 +406,7 @@ class Stationsetup extends CI_Controller {
 				$data['success']=1;
 		} else {
 			$data['success']=0;
-			$data['flashdata']='Not allowed';
+			$data['flashdata'] = __("Not allowed");
 		}
 		echo json_encode($data);
 	}
@@ -425,7 +433,7 @@ class Stationsetup extends CI_Controller {
 			$data['locationdata'] = $this->stationsetup_model->locationInfo($locationid)->result();
 		} else {
 			$data['success']=0;
-			$data['flashdata']='Error';
+			$data['flashdata'] = __("Error");
 		}
 		echo json_encode($data);
 	}
@@ -451,7 +459,7 @@ class Stationsetup extends CI_Controller {
 
 		$data['exportmapoptions'] = $exportmapoptions;
 
-		$data['page_title'] = "Edit Export Map options";
+		$data['page_title'] = __("Edit Export Map options");
 		$this->load->view('stationsetup/exportmapoptions', $data);
 	}
 

@@ -21,7 +21,7 @@ class Kmlexport extends CI_Controller {
         $data['modes'] = $this->modes->active(); // Used in the view for mode select
         $data['dxcc'] = $this->logbook_model->fetchDxcc(); // Used in the view for dxcc select
 
-        $data['page_title'] = "KML Export";
+        $data['page_title'] = __("KML Export");
 
         $this->load->view('interface_assets/header', $data);
         $this->load->view('kml/index');

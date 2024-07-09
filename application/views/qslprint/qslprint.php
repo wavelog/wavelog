@@ -2,9 +2,9 @@
 
 function echo_qsl_sent_via($method) {
 	switch($method) {
-		case 'B': echo lang('general_word_qslcard_bureau'); break;
-		case 'D': echo lang('general_word_qslcard_direct'); break;
-		case 'E': echo lang('general_word_qslcard_electronic'); break;
+		case 'B': echo __("Bureau"); break;
+		case 'D': echo __("Direct"); break;
+		case 'E': echo __("Electronic"); break;
 	}
 }
 
@@ -18,19 +18,19 @@ if ($qsos->result() != NULL) {
 <thead>
 <tr>
 <th style=\'text-align: center\'><div class="form-check" style="margin-top: -1.5em"><input class="form-check-input" type="checkbox" id="checkBoxAll" /></div></th>
-<th style=\'text-align: center\'>'.lang('gen_hamradio_callsign').'</th>
-<th style=\'text-align: center\'>' . lang('general_word_date') . '</th>
-<th style=\'text-align: center\'>'. lang('general_word_time') .'</th>
-<th style=\'text-align: center\'>' . lang('gen_hamradio_mode') . '</th>
-<th style=\'text-align: center\'>' . lang('gen_hamradio_band') . '</th>
-<th style=\'text-align: center\'>' . lang('gen_hamradio_rsts') . '</th>
-<th style=\'text-align: center\'>' . lang('gen_hamradio_rstr') . '</th>
-<th style=\'text-align: center\'>' . lang('gen_hamradio_qsl') . ' ' . lang('general_word_qslcard_via') . '</th>
-<th style=\'text-align: center\'>' . lang('gen_hamradio_station') . '</th>
-<th style=\'text-align: center\'>' . lang('qslcard_qslprint_send_method') . '</th>
-<th style=\'text-align: center\'>' . lang('qslcard_qslprint_mark_as_sent') . '</th>
-<th style=\'text-align: center\'>' . lang('admin_remove') . '</th>
-<th style=\'text-align: center\'>' . lang('qso_simplefle_qso_list') . '</th>
+<th style=\'text-align: center\'>'.__("Callsign").'</th>
+<th style=\'text-align: center\'>' . __("Date") . '</th>
+<th style=\'text-align: center\'>'. __("Time") .'</th>
+<th style=\'text-align: center\'>' . __("Mode") . '</th>
+<th style=\'text-align: center\'>' . __("Band") . '</th>
+<th style=\'text-align: center\'>' . __("RST (S)") . '</th>
+<th style=\'text-align: center\'>' . __("RST (R)") . '</th>
+<th style=\'text-align: center\'>' . __("QSL") . ' ' . __("Via") . '</th>
+<th style=\'text-align: center\'>' . __("Station") . '</th>
+<th style=\'text-align: center\'>' . __("Send Method") . '</th>
+<th style=\'text-align: center\'>' . __("Mark as sent") . '</th>
+<th style=\'text-align: center\'>' . __("Remove") . '</th>
+<th style=\'text-align: center\'>' . __("QSO List") . '</th>
 </tr>
 </thead><tbody>';
 
@@ -64,18 +64,18 @@ if ($qsos->result() != NULL) {
 	echo '</tbody></table></div>';
 	?>
 
-	<p><button onclick="markSelectedQsos();" title="Mark selected QSOs as printed" class="btn btn-success markallprinted"><?php echo lang('qslcard_qslprint_mark_selected_as_printed'); ?></button>
+	<p><button onclick="markSelectedQsos();" title="<?= __("Mark selected QSOs as printed"); ?>" class="btn btn-success markallprinted"><?= __("Mark selected QSOs as printed"); ?></button>
 
-	<button onclick="removeSelectedQsos();" title="Remove seleced QSOS from print queue" class="btn btn-danger removeall"><?php echo lang('qslcard_qslprint_remove_selected_from_queue'); ?></button></p>
+	<button onclick="removeSelectedQsos();" title="<?= __("Remove selected QSOs from the queue"); ?>" class="btn btn-danger removeall"><?= __("Remove selected QSOs from the queue"); ?></button></p>
 
-	<p><a href="<?php echo site_url('qslprint/exportcsv/' . $station_id); ?>" title="Export CSV-file" class="btn btn-primary"><?php echo lang('qslcard_qslprint_export_csv'); ?></a>
+	<p><a href="<?php echo site_url('qslprint/exportcsv/' . $station_id); ?>" title="<?= __("Export CSV-file"); ?>" class="btn btn-primary"><?= __("Export requested QSLs to CSV-file"); ?></a>
 
-	<a href="<?php echo site_url('qslprint/exportadif/' . $station_id); ?>" title="Export ADIF" class="btn btn-primary"><?php echo lang('qslcard_qslprint_export_adif'); ?></a>
+	<a href="<?php echo site_url('qslprint/exportadif/' . $station_id); ?>" title="<?= __("Export ADIF"); ?>" class="btn btn-primary"><?= __("Export requested QSLs to ADIF-file"); ?></a>
 
-	<a href="<?php echo site_url('qslprint/qsl_printed/' . $station_id); ?>" title="Mark QSLs as printed" class="btn btn-primary"><?php echo lang('qslcard_qslprint_mark_requested_as_sent'); ?></a></p>
+	<a href="<?php echo site_url('qslprint/qsl_printed/' . $station_id); ?>" title="<?= __("Mark QSLs as printed"); ?>" class="btn btn-primary"><?= __("Mark requested QSLs as sent"); ?></a></p>
 
 <?php
 } else {
-	echo '<div class="alert alert-danger">' . lang('qslcard_qslprint_no_qsls_found') . '</div>';
+	echo '<div class="alert alert-danger">' . __("No QSLs to print were found!") . '</div>';
 }
 ?>

@@ -8,22 +8,22 @@
 		</div>
 	<?php } ?>
 
-<h2>Satellites</h2>
+<h2><?= __("Satellites"); ?></h2>
 
 <div class="card">
   <div class="card-body">
-  <button onclick="createSatelliteDialog();" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Add a satellite</button>
+  <button onclick="createSatelliteDialog();" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> <?= __("Add a satellite"); ?></button>
     <div class="table-responsive">
 
     <table style="width:100%" class="sattable table table-sm table-striped">
 			<thead>
 				<tr>
-					<th>Name</th>
-					<th>Export Name</th>
-					<th>Orbit</th>
-					<th>Mode</th>
-					<th>Edit</th>
-					<th>Delete</th>
+					<th><?= __("Name"); ?></th>
+					<th><?= __("Export Name"); ?></th>
+					<th><?= __("Orbit"); ?></th>
+					<th><?= __("Mode"); ?></th>
+					<th><?= __("Edit"); ?></th>
+					<th><?= __("Delete"); ?></th>
 				</tr>
 			</thead>
 			<tbody>

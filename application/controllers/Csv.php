@@ -17,7 +17,7 @@ class Csv extends CI_Controller {
 		$data['modes'] = $this->modes->active(); 					// Used in the view for mode select
 		$data['dxcc'] = $this->logbook_model->fetchDxcc(); 			// Used in the view for dxcc select
 
-		$data['page_title'] = "SOTA CSV Export";
+		$data['page_title'] = __("SOTA CSV Export");
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('csv/index');

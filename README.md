@@ -1,3 +1,8 @@
+![GitHub License](https://img.shields.io/github/license/wavelog/wavelog)
+[![Übersetzungsstatus](https://translate.wavelog.org/widget/wavelog/main-translation/svg-badge.svg)](https://translate.wavelog.org/engage/wavelog/)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/wavelog/wavelog)
+
+
 # Wavelog
 
 > Important: Only accepting PRs on the "dev" branch.
@@ -49,7 +54,9 @@ Wavelog-support can be reached by creating an issue here at github. If you've an
 Special thanks to our contributors, who are part of Wavelog by improving code!  
 [F4ANS](https://github.com/abarrau), [DG0TM](https://github.com/dg0tm), [DG9VH](https://github.com/dg9vh), [DJ3CE](https://github.com/dj3ce)
 
-If you would like to contribute in any way to Wavelog, it is most appreciated. This has been developed in free time, help coding new features or writing documentation is always useful.
+If you would like to contribute in any way to Wavelog, it is most appreciated. This has been developed in free time, help coding new features or writing documentation is always useful.  
+
+**For translations and language stuff you can refer to our [Wiki about Translations](https://github.com/wavelog/wavelog/wiki/Translations).**
 
 Please note that Wavelog was built using [Codeigniter](https://www.codeigniter.com/docs) version 3 and uses Bootstrap 5 for the user CSS framework documentation is available for this when building components.
 
