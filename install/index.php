@@ -556,7 +556,7 @@ global $wavelog_url;
 							<div class="tab-pane fade" id="firstuser" role="tabpanel" aria-labelledby="firstuser-tab">
 								<div class="row">
 									<div class="col-md-8 mb-2">
-										<p style="margin-top: 10px;" <?= __(">Now you can create your first user in Wavelog. Fill out all fields and click continue.<br>Make sure you use a proper password."); ?></p>
+										<p style="margin-top: 10px;"><?= __("Now you can create your first user in Wavelog. Fill out all fields and click continue.<br>Make sure you use a safe password."); ?></p>
 									</div>
 									<div class="col-md-4 mb-2">
 										<div class="alert alert-danger" id="userform_warnings" style="display: none; margin-top: 10px;"></div>
@@ -1153,7 +1153,7 @@ global $wavelog_url;
 											<h4 style="margin-top: 50px;"><?= __("Nearly done!"); ?></h4>
 											<p style="margin-top: 50px;"><?= __("You prepared all neccessary steps."); ?></p>
 											<p><?= __("We now can install Wavelog. This process can take a few minutes."); ?></p>
-											<input class="btn btn-primary" type="submit" value="Install" id="submit" />
+											<button class="btn btn-primary" type="submit" id="submit"><?= __("Install Now"); ?></button>
 										</div>
 									</div>
 								</div>
