@@ -42,7 +42,7 @@ if (is_https()) {
 }
 
 global $installer_url;
-$installer_url = $http_scheme . '://' . $_SERVER['HTTP_HOST'] . '/' . substr(str_replace(["index.php", "/install/"], "", $_SERVER['REQUEST_URI']), 1) . '/install';
+$installer_url = $http_scheme . '://' . $_SERVER['HTTP_HOST'] . '/' . substr(str_replace(["index.php", "/install/"], "/", $_SERVER['REQUEST_URI']), 1) . 'install';
 
 // Config Paths
 $db_config_path = '../application/config/';
