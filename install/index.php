@@ -36,13 +36,13 @@ function is_https() {
 }
 
 if (is_https()) {
-	$html_scheme = "https";
+	$http_scheme = "https";
 } else {
-	$html_scheme = "http";
+	$http_scheme = "http";
 }
 
 global $installer_url;
-$installer_url = $html_scheme . '://' . $_SERVER['HTTP_HOST'] . '/' . substr(str_replace(["index.php", "/install/"], "", $_SERVER['REQUEST_URI']), 1) . '/install';
+$installer_url = $http_scheme . '://' . $_SERVER['HTTP_HOST'] . '/' . substr(str_replace(["index.php", "/install/"], "", $_SERVER['REQUEST_URI']), 1) . '/install';
 
 // Config Paths
 $db_config_path = '../application/config/';
@@ -184,9 +184,8 @@ if ($_POST) {
 			if (!isset($message)) {
 				sleep(1);
 				$ch = curl_init();
-				$protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https" : "http";
 				list($realHost,) = explode(':', $_SERVER['HTTP_HOST']);
-				$wavelog_url = $protocol . "://" . $realHost . ":" . $_SERVER['SERVER_PORT'];
+				$wavelog_url = $http_scheme . "://" . $realHost . ":" . $_SERVER['SERVER_PORT'];
 				curl_setopt($ch, CURLOPT_URL, $wavelog_url);
 				curl_setopt($ch, CURLOPT_VERBOSE, 0);
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -194,7 +193,7 @@ if ($_POST) {
 				curl_setopt($ch, CURLOPT_URL, $wavelog_url . "/index.php/update/dxcc");
 				$result = curl_exec($ch);
 				delDir(getcwd());
-				header('Location: ' . $protocol . "://" . $_SERVER['HTTP_HOST'] . '/' . $_POST['directory']);
+				header('Location: ' . $http_scheme . "://" . $_SERVER['HTTP_HOST'] . '/' . $_POST['directory']);
 				exit;
 			}
 		} else {
@@ -467,13 +466,13 @@ global $wavelog_url;
 										<div class="mb-3">
 											<label for="directory" class="form-label"><?= __("Directory"); ?><i id="directory_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("The 'Directory' is basically your subfolder of the webroot In normal conditions the prefilled value is doing it's job. It also can be empty."); ?>"></i></label>
 											<div class="input-group">
-												<span class="input-group-text" id="main-url"><?php echo $html_scheme . '://' . $_SERVER['HTTP_HOST'] . "/"; ?></span>
+												<span class="input-group-text" id="main-url"><?php echo $http_scheme . '://' . $_SERVER['HTTP_HOST'] . "/"; ?></span>
 												<input type="text" id="directory" value="<?php echo substr(str_replace("index.php", "", str_replace("/install/", "", $_SERVER['REQUEST_URI'])), 1); ?>" class="form-control" name="directory" aria-describedby="main-url" />
 											</div>
 										</div>
 										<div class="mb-3 position-relative">
 											<label for="websiteurl" class="form-label"><?= __("Website URL"); ?><i id="websiteurl_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= sprintf(__("This is the complete URL where your Wavelog Instance will be available. If you run this installer locally but want to place Wavelog behind a Reverse Proxy with SSL you should type in the new URL here (e.g. %s instead of %s). Don't forget to include the directory from above."), "https://mywavelog.example.org/", "http://192.168.1.100/"); ?>"></i></label>
-											<input type="text" id="websiteurl" value="<?php echo $html_scheme; ?>://<?php echo str_replace("index.php", "", $_SERVER['HTTP_HOST'] . str_replace("/install/", "", $_SERVER['REQUEST_URI'])); ?>" class="form-control" name="websiteurl" />
+											<input type="text" id="websiteurl" value="<?php echo $http_scheme; ?>://<?php echo str_replace("index.php", "", $_SERVER['HTTP_HOST'] . str_replace("/install/", "", $_SERVER['REQUEST_URI'])); ?>" class="form-control" name="websiteurl" />
 											<div class="invalid-tooltip">
 												<?= __("This field can't be empty!"); ?>
 											</div>
