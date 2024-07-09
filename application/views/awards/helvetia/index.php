@@ -185,7 +185,7 @@
         }
 
         echo '</tr><tr>
-        <td>Total confirmed</td>';
+        <td>' . __("Total confirmed") . '</td>';
         foreach ($helvetia_summary['confirmed'] as $helvetia) {      // Fills the table with the data
             echo '<td style="text-align: center">' . $helvetia . '</td>';
         }

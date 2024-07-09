@@ -56,9 +56,9 @@
                     <p><span class="badge text-bg-warning"><?= __("Warning") ?></span> <?= __("Maximum file upload size is ") ?><?php echo $max_upload; ?>B.</p>
 
                     <form class="form" id="upform" action="<?php echo site_url('adif/import'); ?>" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="fhash" id="fhash" value="<?php echo hash('sha256', $this->session->userdata('user_callsign') );?>">
+                        <input type="hidden" name="fhash" id="fhash" value="<?php echo hash('sha256', $this->session->userdata('user_callsign')); ?>">
                         <div class="small form-text text-muted"><?= __("Select Station Location") ?></div>
-                        <select name="station_profile" class="form-select mb-2 me-sm-2" style="width: 20%;">
+                        <select name="station_profile" class="form-select mb-2 me-sm-2 w-50 w-lg-100">
                             <option value="0"><?= __("Select Station Location") ?></option>
                             <?php foreach ($station_profile->result() as $station) { ?>
                                 <option value="<?php echo $station->station_id; ?>" <?php if ($station->station_id == $active_station_id) {
@@ -67,15 +67,15 @@
                             <?php } ?>
                         </select>
                         <div class="small form-text text-muted"><?= __("Add QSOs to Contest") ?></div>
-                        <select name="contest" id="contest" class="form-select mb-2 me-sm-2" style="width: 20%;">
-                        	<option value="" selected><?= __("No Contest"); ?></option>
+                        <select name="contest" id="contest" class="form-select mb-2 me-sm-2 w-50 w-lg-100">
+                            <option value="" selected><?= __("No Contest"); ?></option>
                             <?php
-				foreach ($contests as $contest) {
-                                echo '<option value="'.$contest['adifname'].'">'.$contest['name'].'</option>';
+                            foreach ($contests as $contest) {
+                                echo '<option value="' . $contest['adifname'] . '">' . $contest['name'] . '</option>';
                             } ?>
-			</select>
- 			<label class="visually-hidden" for="inlineFormInputName2"><?= __("ADIF File") ?></label>
-                        <input class="form-control mb-2 me-sm-2 w-auto" type="file" name="userfile" id="userfile" size="20" />
+                        </select>
+                        <label class="visually-hidden" for="inlineFormInputName2"><?= __("ADIF File") ?></label>
+                        <input class="form-control mb-2 me-sm-2 mt-1 w-50 w-lg-100" type="file" name="userfile" id="userfile" />
 
                         <div class="mb-3 row">
                             <div class="col-md-10">
@@ -164,7 +164,7 @@
                     <form class="form" action="<?php echo site_url('adif/export_custom'); ?>" method="post" enctype="multipart/form-data">
                         <h5 class="card-title"><?= __("Take your logbook file anywhere!") ?> </h5>
                         <p class="card-text"><?= __("Exporting ADIFs allows you to import contacts into third party applications like LoTW, Awards or just for keeping a backup.") ?> </p>
-                        <select name="station_profile" class="form-select mb-2 me-sm-2" style="width: 20%;">
+                        <select name="station_profile" class="form-select mb-2 me-sm-2 w-50 w-lg-100">
                             <option value="0"><?= __("Select Station Location") ?></option>
                             <?php foreach ($station_profile->result() as $station) { ?>
                                 <option value="<?php echo $station->station_id; ?>" <?php if ($station->station_id == $this->stations->find_active()) {
@@ -211,7 +211,7 @@
 
                 <div class="tab-pane fade" id="lotw" role="tabpanel" aria-labelledby="home-tab">
                     <form class="form" action="<?php echo site_url('adif/mark_lotw'); ?>" method="post" enctype="multipart/form-data">
-                        <select name="station_profile" class="form-select mb-2 me-sm-2" style="width: 20%;">
+                        <select name="station_profile" class="form-select mb-2 me-sm-2 w-50 w-lg-100">
                             <option value="0"><?= __("Select Station Location") ?></option>
                             <?php foreach ($station_profile->result() as $station) { ?>
                                 <option value="<?php echo $station->station_id; ?>"><?= __("Callsign") . ": " ?><?php echo $station->station_callsign; ?> (<?php echo $station->station_profile_name; ?>)</option>
@@ -239,7 +239,7 @@
                         </div>
                     <?php } ?>
 
-                    <p class="card-text"><?= sprintf(__("Go to %s and export your logbook with confirmed DOKs. To speed up the process you can select only DL QSOs to download (i.e. put 'DL' into Prefix List). The downloaded ADIF file can be uploaded here in order to update QSOs with DOK info."), "<a href='http://dcl.darc.de/dml/export_adif_form.php' target='_blank'>". __("DARC DCL")."</a>")?></p>
+                    <p class="card-text"><?= sprintf(__("Go to %s and export your logbook with confirmed DOKs. To speed up the process you can select only DL QSOs to download (i.e. put 'DL' into Prefix List). The downloaded ADIF file can be uploaded here in order to update QSOs with DOK info."), "<a href='http://dcl.darc.de/dml/export_adif_form.php' target='_blank'>" . __("DARC DCL") . "</a>") ?></p>
                     <form class="form" action="<?php echo site_url('adif/dcl'); ?>" method="post" enctype="multipart/form-data">
 
                         <div class="mb-3 row">
@@ -276,3 +276,4 @@
             </div>
         </div>
     </div>
+</div>
