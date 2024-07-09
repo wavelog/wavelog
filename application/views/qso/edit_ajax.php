@@ -60,7 +60,7 @@
                                 <div class="row">
                                     <div class="mb-3 col-sm-6">
                                         <label for="callsign"><?= __("Callsign"); ?></label>
-                                        <input type="text" class="form-control" id="callsign" name="callsign" value="<?php echo $qso->COL_CALL; ?>">
+                                        <input type="text" class="form-control" id="edit_callsign" name="callsign" value="<?php echo $qso->COL_CALL; ?>">
                                     </div>
 
                                     <div class="mb-3 col-sm-6">
@@ -81,7 +81,7 @@
                                 <div class="row">
                                     <div class="mb-3 col-sm-6">
                                         <label for="freq"><?= __("Band"); ?></label>
-                                        <select id="band" class="form-select form-select-sm" name="band">
+                                        <select id="edit_band" class="form-select form-select-sm" name="band">
                                         <?php foreach($bands as $key=>$bandgroup) {
                                             echo '<optgroup label="' . strtoupper($key) . '">';
                                             foreach($bandgroup as $band) {
@@ -117,7 +117,7 @@
                                 <div class="row">
                                     <div class="mb-3 col-sm-6">
                                         <label for="freq"><?= __("Mode"); ?></label>
-                                        <select id="mode" class="form-select mode form-select-sm" name="mode">
+                                        <select id="edit_mode" class="form-select mode form-select-sm" name="mode">
                                             <?php
                                             foreach($modes->result() as $mode){
                                                 var_dump($mode);
@@ -588,7 +588,10 @@
 
                         <div class="actions">
                             <a class="btn btn-danger" href="javascript:qso_delete(<?php echo $qso->COL_PRIMARY_KEY; ?>, '<?php echo $qso->COL_CALL; ?>')"><i class="fas fa-trash-alt"></i> <?= __("Delete QSO"); ?></a>
-                            <button id="show" type="button" name="download" class="btn btn-primary float-end" onclick="qso_save();"><i class="fas fa-save"></i> <?= __("Save changes"); ?></button>
+                            <div class="float-end">
+                                <button id="update_from_callbook" type="button" class="btn btn-warning ld-ext-right" onclick="single_callbook_update();"><i class="fas fa-book"></i> <?= __("Update from Callbook"); ?><div class="ld ld-ring ld-spin"></div></button>
+                                <button id="show" type="button" name="download" class="btn btn-primary" onclick="qso_save();"><i class="fas fa-save"></i> <?= __("Save changes"); ?></button>
+                            </div>
                         </div>
                     </div>
                 </div>
