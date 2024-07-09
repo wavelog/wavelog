@@ -1439,7 +1439,7 @@ global $wavelog_url;
 					userLocatorField.addClass('is-invalid');
 					userLocatorField.removeClass('is-valid');
 					$('#userform_warnings').css('display', 'block');
-					$('#userform_warnings').html("<?= sprintf(__("The grid locator is not valid. Use a 6-character locator, e.g. HA44AA. If you don't know your grid square then <a href='&s' target='_blank'>click here</a>!"), "https://zone-check.eu/?m=loc"); ?>");
+					$('#userform_warnings').html("<?= sprintf(__("The grid locator is not valid. Use a 6-character locator, e.g. HA44AA. If you don't know your grid square then <a href='%s' target='_blank'>click here</a>!"), "https://zone-check.eu/?m=loc"); ?>");
 					// if (root_mode == false) {
 					// 	$('#ContinueButton').prop('disabled', true);
 					// }
