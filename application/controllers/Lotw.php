@@ -44,16 +44,11 @@ class Lotw extends CI_Controller {
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 
-		// Fire OpenSSL missing error if not found
-		if (!extension_loaded('openssl')) {
-			echo "You must install php OpenSSL for LoTW functions to work";
-		}
-
 		// Load required models for page generation
-		$this->load->model('LotwCert');
+		$this->load->model('Lotw_model');
 
 		// Get Array of the logged in users LoTW certs.
-		$data['lotw_cert_results'] = $this->LotwCert->lotw_certs($this->session->userdata('user_id'));
+		$data['lotw_cert_results'] = $this->Lotw_model->lotw_certs($this->session->userdata('user_id'));
 
 		// Set Page Title
 		$data['page_title'] = __("Logbook of the World");
@@ -108,12 +103,7 @@ class Lotw extends CI_Controller {
 		$this->load->model('dxcc');
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 
-		// Fire OpenSSL missing error if not found
-		if (!extension_loaded('openssl')) {
-			echo "You must install php OpenSSL for LoTW functions to work";
-		}
-
-    	// create folder to store certs while processing
+		// create folder to store certs while processing
     	if (!file_exists('./uploads/lotw/certs')) {
 		    mkdir('./uploads/lotw/certs', 0755, true);
 		}
@@ -142,7 +132,7 @@ class Lotw extends CI_Controller {
         else
         {
         	// Load database queries
-        	$this->load->model('LotwCert');
+        	$this->load->model('Lotw_model');
 
         	//Upload of P12 successful
         	$data = array('upload_data' => $this->upload->data());
@@ -150,20 +140,20 @@ class Lotw extends CI_Controller {
         	$info = $this->decrypt_key($data['upload_data']['full_path']);
 
 			// Check to see if certificate is already in the system
-			$new_certificate = $this->LotwCert->find_cert($info['issued_callsign'], $info['dxcc-id'], $this->session->userdata('user_id'));
+			$new_certificate = $this->Lotw_model->find_cert($info['issued_callsign'], $info['dxcc-id'], $this->session->userdata('user_id'));
 
         	if($new_certificate == 0) {
         		// New Certificate Store in Database
 
         		// Store Certificate Data into MySQL
-        		$this->LotwCert->store_certificate($this->session->userdata('user_id'), $info['issued_callsign'], $info['dxcc-id'], $info['validFrom'], $info['validTo_Date'], $info['qso-first-date'], $info['qso-end-date'], $info['pem_key'], $info['general_cert']);
+        		$this->Lotw_model->store_certificate($this->session->userdata('user_id'), $info['issued_callsign'], $info['dxcc-id'], $info['validFrom'], $info['validTo_Date'], $info['qso-first-date'], $info['qso-end-date'], $info['pem_key'], $info['general_cert']);
 
         		// Cert success flash message
         		$this->session->set_flashdata('Success', $info['issued_callsign'].' Certificate Imported.');
         	} else {
         		// Certificate is in the system time to update
 
-				$this->LotwCert->update_certificate($this->session->userdata('user_id'), $info['issued_callsign'], $info['dxcc-id'], $info['validFrom'], $info['validTo_Date'], $info['qso-first-date'], $info['qso-end-date'], $info['pem_key'], $info['general_cert']);
+				$this->Lotw_model->update_certificate($this->session->userdata('user_id'), $info['issued_callsign'], $info['dxcc-id'], $info['validFrom'], $info['validTo_Date'], $info['qso-first-date'], $info['qso-end-date'], $info['pem_key'], $info['general_cert']);
 
         		// Cert success flash message
         		$this->session->set_flashdata('Success', $info['issued_callsign'].' Certificate Updated.');
@@ -189,11 +179,6 @@ class Lotw extends CI_Controller {
 
 		$this->load->model('user_model');
 		$this->user_model->authorize(2);
-
-		// Fire OpenSSL missing error if not found
-		if (!extension_loaded('openssl')) {
-			echo "You must install php OpenSSL for LoTW functions to work";
-		}
 
 		// set the last run in cron table for the correct cron id
 		$this->load->model('cron_model');
@@ -226,9 +211,9 @@ class Lotw extends CI_Controller {
 			foreach ($station_profiles->result() as $station_profile) {
 
 				// Get Certificate Data
-				$this->load->model('LotwCert');
+				$this->load->model('Lotw_model');
 				$data['station_profile'] = $station_profile;
-				$data['lotw_cert_info'] = $this->LotwCert->lotw_cert_details($station_profile->station_callsign, $station_profile->station_dxcc);
+				$data['lotw_cert_info'] = $this->Lotw_model->lotw_cert_details($station_profile->station_callsign, $station_profile->station_dxcc);
 
 				// If Station Profile has no LoTW Cert continue on.
 				if(!isset($data['lotw_cert_info']->cert_dxcc_id)) {
@@ -324,7 +309,7 @@ class Lotw extends CI_Controller {
 
 				if(curl_errno($ch)){
 					echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): Upload Failed - ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).")<br>";
-					$this->LotwCert->last_upload($data['lotw_cert_info']->lotw_cert_id, "Upload failed");
+					$this->Lotw_model->last_upload($data['lotw_cert_info']->lotw_cert_id, "Upload failed");
 					if (curl_errno($ch) == 28) {  // break on timeout
 						echo "Timeout reached. Stopping subsequent uploads.<br>";
 						break;
@@ -338,7 +323,7 @@ class Lotw extends CI_Controller {
 				if ($pos === false) {
 					// Upload of TQ8 Failed for unknown reason
 					echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): Upload Failed - ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).")<br>";
-					$this->LotwCert->last_upload($data['lotw_cert_info']->lotw_cert_id, "Upload failed");
+					$this->Lotw_model->last_upload($data['lotw_cert_info']->lotw_cert_id, "Upload failed");
 					if (curl_errno($ch) == 28) {  // break on timeout
 						echo "Timeout reached. Stopping subsequent uploads.<br>";
 						break;
@@ -350,7 +335,7 @@ class Lotw extends CI_Controller {
 
 					echo $station_profile->station_callsign." (".$station_profile->station_profile_name."): Upload Successful - ".$filename_for_saving."<br>";
 
-					$this->LotwCert->last_upload($data['lotw_cert_info']->lotw_cert_id, "Success");
+					$this->Lotw_model->last_upload($data['lotw_cert_info']->lotw_cert_id, "Success");
 
 					// Mark QSOs as Sent
 					foreach ($qso_id_array as $qso_number) {
@@ -389,9 +374,9 @@ class Lotw extends CI_Controller {
     	$this->load->model('user_model');
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 
-    	$this->load->model('LotwCert');
+    	$this->load->model('Lotw_model');
 
-    	$this->LotwCert->delete_certificate($this->session->userdata('user_id'), $cert_id);
+    	$this->Lotw_model->delete_certificate($this->session->userdata('user_id'), $cert_id);
 
     	$this->session->set_flashdata('Success', 'Certificate Deleted.');
 
