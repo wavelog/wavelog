@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-08 12:02+0000\n"
+"POT-Creation-Date: 2024-07-09 09:39+0000\n"
 "PO-Revision-Date: 2024-07-01 06:37+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-translation/ru/>\n"
@@ -584,13 +584,13 @@ msgstr "Hamsat — охота на спутники"
 #, php-format
 msgid "%d QSO is now uploaded to HRDlog"
 msgid_plural "%d QSOs are now uploaded to HRDlog"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d QSO загружено в HRDlog"
+msgstr[1] "%d QSO загружено в HRDlog"
+msgstr[2] "%d QSO загружено в HRDlog"
 
 #: application/controllers/Hrdlog.php:76
 msgid "No QSOs found to upload."
-msgstr ""
+msgstr "Не найдены QSO для загрузки."
 
 #: application/controllers/Kmlexport.php:24
 #: application/views/interface_assets/header.php:380
@@ -624,43 +624,43 @@ msgstr "Единицы измерения"
 
 #: application/controllers/Labels.php:81 application/controllers/Labels.php:405
 msgid "Top Margin"
-msgstr ""
+msgstr "Отступ сверху"
 
 #: application/controllers/Labels.php:82 application/controllers/Labels.php:406
 msgid "Left Margin"
-msgstr ""
+msgstr "Отступ слева"
 
 #: application/controllers/Labels.php:83 application/controllers/Labels.php:407
 msgid "QSLs Horizontally"
-msgstr ""
+msgstr "QSL в строку"
 
 #: application/controllers/Labels.php:84 application/controllers/Labels.php:408
 msgid "QSLs Vertically"
-msgstr ""
+msgstr "QSL в столбец"
 
 #: application/controllers/Labels.php:85 application/controllers/Labels.php:409
 msgid "Horizontal Space"
-msgstr ""
+msgstr "Интервал по горизонтали"
 
 #: application/controllers/Labels.php:86 application/controllers/Labels.php:410
 msgid "Vertical Space"
-msgstr ""
+msgstr "Интервал по вертикали"
 
 #: application/controllers/Labels.php:87 application/controllers/Labels.php:411
 msgid "Label width"
-msgstr ""
+msgstr "Ширина наклейки"
 
 #: application/controllers/Labels.php:88 application/controllers/Labels.php:412
 msgid "Label height"
-msgstr ""
+msgstr "Высота наклейки"
 
 #: application/controllers/Labels.php:89 application/controllers/Labels.php:413
 msgid "Size of Font"
-msgstr ""
+msgstr "Размер шрифта"
 
 #: application/controllers/Labels.php:90 application/controllers/Labels.php:414
 msgid "Number of QSOs on label"
-msgstr ""
+msgstr "Количество QSO на наклейке"
 
 #: application/controllers/Labels.php:115
 msgid "Create Paper Type"
@@ -669,41 +669,41 @@ msgstr "Новый тип бумаги"
 #: application/controllers/Labels.php:119
 #: application/controllers/Labels.php:461
 msgid "Paper Name"
-msgstr ""
+msgstr "Название типа бумаги"
 
 #: application/controllers/Labels.php:120
 #: application/controllers/Labels.php:462
 msgid "Paper Width"
-msgstr ""
+msgstr "Ширина бумаги"
 
 #: application/controllers/Labels.php:121
 #: application/controllers/Labels.php:463
 msgid "Paper Height"
-msgstr ""
+msgstr "Высота бумаги"
 
 #: application/controllers/Labels.php:132
 #: application/controllers/Labels.php:471
 msgid "Your paper could not be saved. Remember that it can't have the same name as existing paper types."
-msgstr ""
+msgstr "Ваш тип бумаги не может быть сохранён. Помните, что вы не можете задать уже существующее в списке типов бумаги название."
 
 #: application/controllers/Labels.php:205
 #: application/controllers/Labels.php:208
 msgid "You need to assign a paperType to the label before printing"
-msgstr ""
+msgstr "Вам необходимо указать тип бумаги для наклеек перед печатью"
 
 #: application/controllers/Labels.php:215
 #: application/controllers/Labels.php:218
 msgid "You need to create a label and set it to be used for print."
-msgstr ""
+msgstr "Вам нужно создать шаблон наклейки и назначить его используемым при печати."
 
 #: application/controllers/Labels.php:225
 #: application/controllers/Labels.php:228
 msgid "Something went wrong! The label could not be generated. Check label size and font size."
-msgstr ""
+msgstr "Что-то пошло не так! Наклейки не могут быть сгенерированы. Проверьте размер наклеек и размер шрифта."
 
 #: application/controllers/Labels.php:251
 msgid "0 QSOs found for print!"
-msgstr ""
+msgstr "QSO для печати не найдены!"
 
 #: application/controllers/Labels.php:391
 msgid "Edit Label"
@@ -711,11 +711,11 @@ msgstr "Редактировать тип наклеек"
 
 #: application/controllers/Labels.php:420
 msgid "Label was saved."
-msgstr ""
+msgstr "Шаблон наклейки сохранён."
 
 #: application/controllers/Labels.php:428
 msgid "Label was deleted."
-msgstr ""
+msgstr "Шаблон наклейки удалён."
 
 #: application/controllers/Labels.php:450
 msgid "Edit Paper"
@@ -723,11 +723,11 @@ msgstr "Редактировать тип бумаги"
 
 #: application/controllers/Labels.php:475
 msgid "Paper was saved."
-msgstr ""
+msgstr "Тип бумаги сохранён."
 
 #: application/controllers/Labels.php:488
 msgid "Paper was deleted."
-msgstr ""
+msgstr "Тип бумаги удалён."
 
 #: application/controllers/Logbook.php:37
 msgid "No logbooks were found. You need to define a logbook under Station Logbooks! Do it here:"
@@ -1632,7 +1632,7 @@ msgstr "Редактировать название контейнера"
 
 #: application/controllers/Stationsetup.php:181
 msgid "Edit linked locations"
-msgstr "Редактировать связанные профили QTH"
+msgstr "Редактировать привязанные профили QTH"
 
 #: application/controllers/Stationsetup.php:190
 msgid "Edit visitor site"
@@ -1672,7 +1672,7 @@ msgstr "Активный"
 #: application/controllers/Stationsetup.php:270
 #: application/views/stationsetup/stationsetup.php:55
 msgid "Are you sure you want to delete the following station logbook? You must re-link any locations linked here to another logbook.: "
-msgstr "Вы уверены, что хотите удалить следующий журнал? Вы должны связать все привязанные к нему профили QTH к другим журналам.: "
+msgstr "Вы уверены, что хотите удалить следующий журнал? Вы должны привязать все привязанные к нему профили QTH к другим журналам.: "
 
 #: application/controllers/Stationsetup.php:280
 #: application/views/stationsetup/stationsetup.php:65
@@ -1934,15 +1934,15 @@ msgstr "Загрузка в QO-100 Dx Club"
 
 #: application/models/Hrdlog_model.php:22
 msgid "HRDlog: QSOs have been uploaded to hrdlog.net for the station callsign: "
-msgstr ""
+msgstr "HRDlog: QSO, загруженные на hrdlog.net для позывного: "
 
 #: application/models/Hrdlog_model.php:25
 msgid "HRDlog: No QSOs found to upload for the station callsign: "
-msgstr ""
+msgstr "HRDlog: на найдены QSO для загруки для позывного: "
 
 #: application/models/Hrdlog_model.php:31
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
-msgstr ""
+msgstr "HRDlog: не найдены профили QTH с данными входя на HRDlog."
 
 #: application/models/Logbook_model.php:4139
 msgid "QSO could not be matched"
@@ -5023,7 +5023,7 @@ msgstr "Обновление DXCC из Clublog"
 #: application/views/debug/index.php:487
 #: application/views/station_profile/edit.php:22
 msgid "Update"
-msgstr "Обновление"
+msgstr "Обновить"
 
 #: application/views/debug/index.php:460
 msgid "DOK file download"
@@ -6230,11 +6230,11 @@ msgstr "LoTW получен"
 
 #: application/views/logbookadvanced/index.php:354
 msgid "Clublog sent"
-msgstr ""
+msgstr "Отправлено в Clublog"
 
 #: application/views/logbookadvanced/index.php:365
 msgid "Clublog received"
-msgstr ""
+msgstr "Получено из Clublog"
 
 #: application/views/logbookadvanced/index.php:376
 msgid "eQSL sent"
@@ -6257,6 +6257,7 @@ msgid "With selected: "
 msgstr "С выбранными: "
 
 #: application/views/logbookadvanced/index.php:418
+#: application/views/qso/edit_ajax.php:592
 msgid "Update from Callbook"
 msgstr "Обновить из колбука"
 
@@ -7559,7 +7560,7 @@ msgstr "Контрольный номер (TX)"
 msgid "Delete QSO"
 msgstr "Удалить QSO"
 
-#: application/views/qso/edit_ajax.php:591
+#: application/views/qso/edit_ajax.php:593
 msgid "Save changes"
 msgstr "Сохранить изменения"
 
@@ -8620,11 +8621,11 @@ msgstr "Профили QTH"
 
 #: application/views/stationsetup/stationsetup.php:98
 msgid "The 'Linked' column shows if the station location is linked with the Active Logbook selected above."
-msgstr ""
+msgstr "Столбец \"Привязка\" показывает привязан ли профиль QTH к активному журналу, выбранному выше."
 
 #: application/views/stationsetup/stationsetup.php:127
 msgid "Linked"
-msgstr ""
+msgstr "Привязка"
 
 #: application/views/stationsetup/stationsetup.php:134
 msgid "Favorite"
@@ -9439,7 +9440,7 @@ msgstr "Не показывать снова"
 
 #: application/views/view_log/index.php:4
 msgid "Displaying all QSOs of station locations which are linked to this logbook"
-msgstr "Отображение всех QSO из профилей QTH, которые связаны с этим журналом"
+msgstr "Отображение всех QSO из профилей QTH, которые привязаны к этому журналу"
 
 #: application/views/view_log/qso.php:6
 msgid "QSO Details"
