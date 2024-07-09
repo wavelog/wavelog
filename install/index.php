@@ -84,6 +84,12 @@ $mysql_version = 5.7;
 require_once('includes/gettext/gettext.php');
 require_once('includes/gettext/gettext_conf.php');
 
+/**
+ * save all available languages
+ * @var array $languages
+ */
+$languages = $gt_conf['languages'];
+
 // if we come with a get call we can switch the language cookie
 if (isset($_GET['lang'])) {
 	switch_lang($_GET['lang']);
@@ -266,11 +272,33 @@ global $wavelog_url;
 										<p><?= sprintf(__("If you encounter any issues or have questions, refer to the documentation (%s) or community forum (%s) on Github for assistance."), "<a href='https://www.github.com/wavelog/wavelog/wiki' target='_blank'>" . __("Wiki") . "</a>", "<a href='https://www.github.com/wavelog/wavelog/discussions' target='_blank'>" . __("Discussions") . "</a>"); ?></p>
 										<p><?= __("Thank you for installing Wavelog!"); ?></p>
 										<?php if (__("Language") == "Language") {
-												$lang_html = "Language";
-											} else {
-												$lang_html = __("Language")." / Language";
-											} ?>
+											$lang_html = "Language";
+										} else {
+											$lang_html = __("Language") . " / Language";
+										} ?>
 										<a class="btn btn-sm btn-secondary" id="languageButton"><?= $lang_html; ?></a>
+									</div>
+								</div>
+							</div>
+							<div class="modal fade" id="languageModal" tabindex="-1" aria-labelledby="languageModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="languageModalLabel"><?= __("Select a language"); ?></h5>
+										</div>
+										<div class="modal-body">
+											<ul style="list-style-type: none;">
+												<?php foreach ($languages as $lang) { ?>
+													<li>
+														<img src="https://flagcdn.com/w20/<?php echo ($lang['code'] == 'en') ? 'gb' : $lang['flag']; ?>.png">
+														<a href="?lang=<?php echo $lang['gettext']; ?>"><?php echo $lang['name_en']; ?></a>
+													</li>
+												<?php } ?>
+											</ul>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?= __("Close"); ?></button>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -460,8 +488,8 @@ global $wavelog_url;
 										<div class="mb-3">
 											<label for="global_call_lookup" class="form-label"><?= __("Optional: Global Callbook Lookup"); ?><i id="callbook_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("This configuration is optional. The callsign lookup will be available for all users of this installation. You can choose between QRZ.com and HamQTH. While HamQTH also works without username and password, you will need credentials for QRZ.com. To also get the Call Locator in QRZ.com you'll need an XML subscription. HamQTH does not always provide the locator information."); ?>"></i></label>
 											<select id="global_call_lookup" class="form-select" name="global_call_lookup">
-												<option value="qrz">QRZ.com</option>
 												<option value="hamqth" selected>HamQTH</option>
+												<option value="qrz">QRZ.com</option>
 											</select>
 										</div>
 										<div class="row">
@@ -1507,6 +1535,10 @@ global $wavelog_url;
 					prevTab();
 				});
 
+				$('#languageButton').click(function() {
+					$('#languageModal').modal('show');
+				});
+
 			});
 		</script>
 	</body>
@@ -1522,26 +1554,4 @@ global $wavelog_url;
 	</body>
 
 <?php endif; ?>
-
-<!-- Hidden field to be able to translate the language names
-Add english Language Name here if you add new languages to application/config/gettext.php
-This helps the po scanner -->
-<div style="display: none">
-	<?= __("Bulgarian"); ?>
-	<?= __("Chinese (Simplified)"); ?>
-	<?= __("Czech"); ?>
-	<?= __("Dutch"); ?>
-	<?= __("English"); ?>
-	<?= __("Finnish"); ?>
-	<?= __("French"); ?>
-	<?= __("German"); ?>
-	<?= __("Greek"); ?>
-	<?= __("Italian"); ?>
-	<?= __("Polish"); ?>
-	<?= __("Russian"); ?>
-	<?= __("Spanish"); ?>
-	<?= __("Swedish"); ?>
-	<?= __("Turkish"); ?>
-</div>
-
 </html>
