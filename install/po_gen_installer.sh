@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Wavelog PO-File Generator
-# COMPONENT: Main
+# Wavelog PO-File Generator 
+# COMPONENT: Installer
 #
 # HB9HIL <mail@hb9hil.org>, 2024
 
@@ -25,7 +25,7 @@
 
 # Some variables. Usually you don't need to change them.
 
-POT_FILE="assets/lang_src/messages.pot"
+POT_FILE="install/includes/gettext/lang_src/installer.pot"
 BUG_MAIL="translations@wavelog.org"
 
 YEAR="$(date +"%Y")"
@@ -33,7 +33,7 @@ YEAR="$(date +"%Y")"
 POT_TITLE_TEXT="WAVELOG PO FILE"
 POT_COPYRIGHT_TEXT="Copyright (c) $YEAR Wavelog by DF2ET, DJ7NT, HB9HIL and LA8AJA."
 POT_LICENCE_TEXT="This file is distributed under the MIT licence."
-FOLDERS="application assets src system"
+FOLDERS="install"
 
 # Find all PHP files and create a list in a temporary file 
 find $FOLDERS -name "*.php" > PHPFILESLIST
