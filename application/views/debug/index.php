@@ -579,9 +579,13 @@
     <?php } ?>
 </script>
 
-<!-- Hidden field to bring languages to the po files.$
-     Add english Language Name here if you add new languages to application/config/gettext.php
-     This helps the po scanner -->
+<?php
+/**
+ * Hidden field to be able to translate the language names
+ * Add english Language Name here if you add new languages to application/config/gettext.php
+ * This helps the po scanner to make them translatable
+ */
+?>
 <div style="display: none">
     <?= __("Bulgarian"); ?>
     <?= __("Chinese (Simplified)"); ?>

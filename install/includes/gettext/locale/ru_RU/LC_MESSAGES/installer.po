@@ -1,0 +1,455 @@
+# WAVELOG PO FILE
+# Copyright (c) 2024 Wavelog by DF2ET, DJ7NT, HB9HIL and LA8AJA.
+# This file is distributed under the MIT licence.
+#
+# Michael Skolsky <r1blh@yandex.ru>, 2024.
+msgid ""
+msgstr ""
+"Report-Msgid-Bugs-To: translations@wavelog.org\n"
+"POT-Creation-Date: 2024-07-09 12:56+0000\n"
+"PO-Revision-Date: 2024-07-09 20:46+0000\n"
+"Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/installer/ru/>\n"
+"Language: ru_RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Weblate 5.6\n"
+
+#: install/index.php:215
+msgid "Install | Wavelog"
+msgstr "Установка | Wavelog"
+
+#: install/index.php:239
+msgid "1. Welcome"
+msgstr "1. Добро пожаловать"
+
+#: install/index.php:242
+msgid "2. Pre Checks"
+msgstr "2. Предварительные проверки"
+
+#: install/index.php:245
+msgid "3. Configuration"
+msgstr "3. Конфигурация"
+
+#: install/index.php:248
+msgid "4. Database"
+msgstr "4. База данных"
+
+#: install/index.php:251
+msgid "5. First User"
+msgstr "5. Первый пользователь"
+
+#: install/index.php:254
+msgid "6. Finish"
+msgstr "6. Завершить"
+
+#: install/index.php:271
+msgid "Welcome to the Wavelog Installer"
+msgstr "Добро пожаловать в установщик Wavelog"
+
+#: install/index.php:272
+msgid "This installer will guide you through the necessary steps for the installation of Wavelog. <br>Wavelog is a powerful web-based amateur radio logging software. Follow the steps in each tab to configure and install Wavelog on your server."
+msgstr "Этот установщик проведет вас через необходимые шаги для установки Wavelog. <br>Wavelog — это мощное веб-ориентированное программное обеспечение для ведения журнала любительской радиостанции. Следуйте шагам на каждой вкладке, чтобы настроить и установить Wavelog на вашем сервере."
+
+#: install/index.php:273
+msgid "Discussions"
+msgstr "Обсуждения"
+
+#: install/index.php:273
+#, php-format
+msgid "If you encounter any issues or have questions, refer to the documentation (%s) or community forum (%s) on Github for assistance."
+msgstr "Если у вас возникнут проблемы или вопросы, обратитесь к документации (%s) или форуму сообщества (%s) на Github за помощью."
+
+#: install/index.php:273
+msgid "Wiki"
+msgstr "Вики"
+
+#: install/index.php:274
+msgid "Thank you for installing Wavelog!"
+msgstr "Спасибо за установку Wavelog!"
+
+#: install/index.php:275 install/index.php:278 install/index.php:1125
+msgid "Language"
+msgstr "Язык"
+
+#: install/index.php:288
+msgid "Select a language"
+msgstr "Выберите язык"
+
+#: install/index.php:301
+msgid "Close"
+msgstr "Закрыть"
+
+#: install/index.php:311
+msgid "PHP Modules"
+msgstr "Модули PHP"
+
+#: install/index.php:318
+msgid "Version"
+msgstr "Версия"
+
+#: install/index.php:340
+msgid "Installed"
+msgstr "Установленные"
+
+#: install/index.php:340
+msgid "Not Installed"
+msgstr "Не установленные"
+
+#: install/index.php:348
+msgid "PHP Settings"
+msgstr "Настройки PHP"
+
+#: install/index.php:412
+msgid "On"
+msgstr "Включено"
+
+#: install/index.php:415
+msgid "Off"
+msgstr "Выключено"
+
+#: install/index.php:423
+msgid "MySQL / MariaDB"
+msgstr "MySQL / MariaDB"
+
+#: install/index.php:426
+msgid "Min. MySQL Version:"
+msgstr "Мин. версия MySQL:"
+
+#: install/index.php:430
+msgid "or"
+msgstr "или"
+
+#: install/index.php:434
+msgid "Min. MariaDB Version:"
+msgstr "Мин. версия MariaDB:"
+
+#: install/index.php:438
+msgid "You can test your MySQL/MariaDB Version in Step 4"
+msgstr "Вы можете проверить свою версию MySQL/MariaDB на шаге 4"
+
+#: install/index.php:442
+msgid "Some Checks have failed!"
+msgstr "Некоторые проверки не прошли!"
+
+#: install/index.php:443
+msgid "Check your PHP settings and install missing modules if necessary."
+msgstr "Проверьте настройки PHP и установите недостающие модули, если необходимо."
+
+#: install/index.php:444
+msgid "After that, you have to restart your webserver and start the installer again."
+msgstr "После этого вам нужно перезапустить веб-сервер и снова запустить установщик."
+
+#: install/index.php:448
+msgid "You have some warnings!"
+msgstr "У тебя есть несколько предупреждений!"
+
+#: install/index.php:449
+msgid "Some of the settings are not optimal. You can proceed with the installer but be aware that you could run into problems while using Wavelog."
+msgstr "Некоторые настройки не оптимальны. Вы можете продолжить установку, но имейте в виду, что при использовании Wavelog могут возникнуть проблемы."
+
+#: install/index.php:453
+msgid "All Checks are OK. You can continue."
+msgstr "Все проверки в порядке. Можешь продолжать."
+
+#: install/index.php:467
+msgid "Configure some basic parameters for your wavelog instance. You can change them later in 'application/config/config.php'"
+msgstr "Настройте некоторые основные параметры для вашего экземпляра wavelog. Вы можете изменить их позже в 'application/config/config.php'"
+
+#: install/index.php:469
+msgid "Directory"
+msgstr "Каталог"
+
+#: install/index.php:469
+msgid "The 'Directory' is basically your subfolder of the webroot In normal conditions the prefilled value is doing it's job. It also can be empty."
+msgstr "'Каталог' по сути является вашей подпапкой корневого каталога веб-сайта. В обычной ситуации предустановленное значение подходит. Оно также может быть пустым."
+
+#: install/index.php:476
+#, php-format
+msgid "This is the complete URL where your Wavelog Instance will be available. If you run this installer locally but want to place Wavelog behind a Reverse Proxy with SSL you should type in the new URL here (e.g. %s instead of %s). Don't forget to include the directory from above."
+msgstr "Это полный URL, по которому будет доступен ваш экземпляр Wavelog. Если вы запускаете этот установщик локально, но хотите разместить Wavelog за обратным прокси-сервером с SSL, введите здесь новый URL (например, %s вместо %s). Не забудьте включить каталог, указанный выше."
+
+#: install/index.php:476
+msgid "Website URL"
+msgstr "URL веб-сайта"
+
+#: install/index.php:479
+msgid "This field can't be empty!"
+msgstr "Это поле не может быть пустым!"
+
+#: install/index.php:483
+msgid "Default Gridsquare/Locator"
+msgstr "Квадрат/локатор по умолчанию"
+
+#: install/index.php:483
+msgid "This is the default maidenhead locator which is used as falback. You can use the locator of your Home QTH."
+msgstr "Это локатор Maidenhead по умолчанию, который используется в качестве резервного. Вы можете использовать локатор вашего домашнего QTH."
+
+#: install/index.php:486
+msgid "Type in a valid locator"
+msgstr "Введите корректный локатор"
+
+#: install/index.php:490
+msgid "Optional: Global Callbook Lookup"
+msgstr "Опционально: Поиск в глобальном колбуке"
+
+#: install/index.php:490
+msgid "This configuration is optional. The callsign lookup will be available for all users of this installation. You can choose between QRZ.com and HamQTH. While HamQTH also works without username and password, you will need credentials for QRZ.com. To also get the Call Locator in QRZ.com you'll need an XML subscription. HamQTH does not always provide the locator information."
+msgstr "Эта настройка является необязательной. Поиск позывных будет доступен всем пользователям этого экземпляра. Вы можете выбрать между QRZ.com и HamQTH. Хотя HamQTH также работает без имени пользователя и пароля, для QRZ.com вам понадобятся учетные данные. Чтобы также получить локатор корреспондента на QRZ.com, вам потребуется подписка на XML. HamQTH не всегда предоставляет информацию о локаторе."
+
+#: install/index.php:499 install/index.php:542 install/index.php:574
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: install/index.php:502 install/index.php:546 install/index.php:584
+msgid "Password"
+msgstr "Пароль"
+
+#: install/index.php:507
+msgid "Callbook Username"
+msgstr "Имя пользователя для колбука"
+
+#: install/index.php:510
+msgid "Callbook Password"
+msgstr "Пароль для колбука"
+
+#: install/index.php:526
+msgid "To properly install Wavelog you already should have setup a mariadb/mysql database. Provide the parameters here."
+msgstr "Для правильной установки Wavelog вам нужно настроить базу данных mariadb/mysql. Укажите параметры здесь."
+
+#: install/index.php:530
+msgid "Hostname or IP"
+msgstr "Имя хоста или IP-адрес"
+
+#: install/index.php:530
+msgid "Usually 'localhost'. Optional with '...:[port]'. Default Port: 3306"
+msgstr "Обычно 'localhost'. Опционально с '...:[порт]'. Порт по умолчанию: 3306"
+
+#: install/index.php:536
+msgid "Database Name"
+msgstr "Название базы данных"
+
+#: install/index.php:536
+msgid "Name of the Database"
+msgstr "Название базы данных"
+
+#: install/index.php:542
+msgid "Username of the Database User which has full access to the database."
+msgstr "Имя пользователя базы данных, который имеет полный доступ к базе данных."
+
+#: install/index.php:546
+msgid "Password of the Database User"
+msgstr "Пароль пользователя базы данных"
+
+#: install/index.php:550
+msgid "Connection Test"
+msgstr "Проверка соединения"
+
+#: install/index.php:561
+msgid "Now you can create your first user in Wavelog. Fill out all fields and click continue.<br>Make sure you use a safe password."
+msgstr "Теперь вы можете создать своего первого пользователя в Wavelog. Заполните все поля и нажмите продолжить.<br>Убедитесь, что вы используете безопасный пароль."
+
+#: install/index.php:570
+msgid "First Name"
+msgstr "Имя"
+
+#: install/index.php:580
+msgid "Last Name"
+msgstr "Фамилия"
+
+#: install/index.php:590
+msgid "Callsign"
+msgstr "Позывной"
+
+#: install/index.php:594
+msgid "Confirm Password"
+msgstr "Подтвердите пароль"
+
+#: install/index.php:600
+msgid "City"
+msgstr "Город"
+
+#: install/index.php:604
+msgid "E-Mail Address"
+msgstr "Адрес электронной почты"
+
+#: install/index.php:610
+msgid "Gridsquare/Locator"
+msgstr "Квадрат/Локатор"
+
+#: install/index.php:614
+msgid "Timezone"
+msgstr "Часовой пояс"
+
+#: install/index.php:717
+msgid "DXCC"
+msgstr "DXCC"
+
+#: install/index.php:719
+msgctxt "No DXCC"
+msgid "- None -"
+msgstr "- Нет -"
+
+#: install/index.php:720 install/index.php:726 install/index.php:750
+#: install/index.php:762 install/index.php:765 install/index.php:770
+#: install/index.php:771 install/index.php:780 install/index.php:784
+#: install/index.php:799 install/index.php:812 install/index.php:813
+#: install/index.php:817 install/index.php:838 install/index.php:845
+#: install/index.php:847 install/index.php:848 install/index.php:850
+#: install/index.php:854 install/index.php:855 install/index.php:856
+#: install/index.php:860 install/index.php:861 install/index.php:880
+#: install/index.php:888 install/index.php:894 install/index.php:901
+#: install/index.php:902 install/index.php:908 install/index.php:910
+#: install/index.php:912 install/index.php:930 install/index.php:935
+#: install/index.php:936 install/index.php:950 install/index.php:965
+#: install/index.php:966 install/index.php:970 install/index.php:981
+#: install/index.php:982 install/index.php:987 install/index.php:991
+#: install/index.php:993 install/index.php:994 install/index.php:1001
+#: install/index.php:1016 install/index.php:1018 install/index.php:1035
+#: install/index.php:1038 install/index.php:1043 install/index.php:1046
+#: install/index.php:1049 install/index.php:1059 install/index.php:1065
+#: install/index.php:1069 install/index.php:1075 install/index.php:1078
+#: install/index.php:1081 install/index.php:1086 install/index.php:1112
+#: install/index.php:1118 install/index.php:1120
+msgid "Deleted DXCC"
+msgstr "Удалённые DXCC"
+
+#: install/index.php:1143
+msgid "Checklist"
+msgstr "Контрольный список"
+
+#: install/index.php:1144
+msgid "Configuration"
+msgstr "Конфигурация"
+
+#: install/index.php:1146
+msgid "Database"
+msgstr "База данных"
+
+#: install/index.php:1148
+msgid "First User"
+msgstr "Первый пользователь"
+
+#: install/index.php:1155
+msgid "Nearly done!"
+msgstr "Почти готово!"
+
+#: install/index.php:1156
+msgid "You prepared all neccessary steps."
+msgstr "Вы подготовили всё необходимое."
+
+#: install/index.php:1157
+msgid "We now can install Wavelog. This process can take a few minutes."
+msgstr "Теперь мы можем установить Wavelog. Этот процесс может занять несколько минут."
+
+#: install/index.php:1158
+msgid "Install Now"
+msgstr "Установить сейчас"
+
+#: install/index.php:1167
+msgid "Back"
+msgstr "Назад"
+
+#: install/index.php:1168
+msgid "Continue"
+msgstr "Продолжить"
+
+#: install/index.php:1193
+msgid "Error: All fields are required."
+msgstr "Ошибка: Все поля обязательны для заполнения."
+
+#: install/index.php:1199
+msgid "Connecting..."
+msgstr "Подключение..."
+
+#: install/index.php:1224
+msgid "Connection was successful and your database should be compatible"
+msgstr "Соединение было успешным, и ваша база данных должна быть совместимой"
+
+#: install/index.php:1230
+msgid "Connection was successful but your database seems too old for Wavelog. You can try to continue but you could run into issues."
+msgstr "Соединение было успешным, но ваша база данных кажется слишком старой для Wavelog. Вы можете попробовать продолжить, но могут возникнуть проблемы."
+
+#: install/index.php:1384
+msgid "Password should be at least 8 characters long"
+msgstr "Длина пароля должна быть не менее 8 символов"
+
+#: install/index.php:1400
+msgid "Passwords do not match"
+msgstr "Пароли не совпадают"
+
+#: install/index.php:1418
+msgid "The E-Mail Address is not valid"
+msgstr "Адрес электронной почты недействителен"
+
+#: install/index.php:1442
+#, php-format
+msgid "The grid locator is not valid. Use a 6-character locator, e.g. HA44AA. If you don't know your grid square then <a href='%s' target='_blank'>click here</a>!"
+msgstr "Локатор недействителен. Используйте 6-символьный локатор, например HA44AA. Если вы не знаете свой квадрат, то <a href='%s' target='_blank'>нажмите здесь</a>!"
+
+#: install/index.php:1549
+#, php-format
+msgid "Please make the %s folder writable. <strong>Example</strong>:<br /><br /><code>chmod -R 777 %s</code><br /><br /><i>Don't forget to restore the permissions afterwards.</i>"
+msgstr "Пожалуйста, сделайте каталог %s доступным для записи. <strong>Пример</strong>:<br /><br /><code>chmod -R 777 %s</code><br /><br /><i> Не забудьте восстановить права доступа после этого.</i>"
+
+#: install/index.php:1564
+msgid "Bulgarian"
+msgstr "Болгарский"
+
+#: install/index.php:1565
+msgid "Chinese (Simplified)"
+msgstr "Китайский (упрощённый)"
+
+#: install/index.php:1566
+msgid "Czech"
+msgstr "Чешский"
+
+#: install/index.php:1567
+msgid "Dutch"
+msgstr "Голландский"
+
+#: install/index.php:1568
+msgid "English"
+msgstr "Английский"
+
+#: install/index.php:1569
+msgid "Finnish"
+msgstr "Финский"
+
+#: install/index.php:1570
+msgid "French"
+msgstr "Французский"
+
+#: install/index.php:1571
+msgid "German"
+msgstr "Немецкий"
+
+#: install/index.php:1572
+msgid "Greek"
+msgstr "Греческий"
+
+#: install/index.php:1573
+msgid "Italian"
+msgstr "Итальянский"
+
+#: install/index.php:1574
+msgid "Polish"
+msgstr "Польский"
+
+#: install/index.php:1575
+msgid "Russian"
+msgstr "Русский"
+
+#: install/index.php:1576
+msgid "Spanish"
+msgstr "Испанский"
+
+#: install/index.php:1577
+msgid "Swedish"
+msgstr "Шведский"
+
+#: install/index.php:1578
+msgid "Turkish"
+msgstr "Турецкий"

@@ -83,9 +83,7 @@ function echo_table_col($row, $name) {
                         <th><?= __("Clublog"); ?></th>
                     <?php } ?>
                 <?php } ?>
-                    <?php if(isset($row->station_callsign)) { ?>
                         <th><?= __("Station"); ?></th>
-                    <?php } ?>
                 <?php if(($this->config->item('use_auth')) && ($this->session->userdata('user_type') >= 2)) { ?>
                     <th></th>
                 <?php } ?>
@@ -255,7 +253,9 @@ function echo_table_col($row, $name) {
                         <td>
                             <span class="badge text-bg-light"><?php echo str_replace("0","&Oslash;",strtoupper($row->station_callsign)); ?></span>
                         </td>
-                    <?php } ?>
+                    <?php } else { ?>
+			<td></td>
+		    <?php } ?>
 
             <?php if(($this->config->item('use_auth')) && ($this->session->userdata('user_type') >= 2)) { ?>
                 <td>

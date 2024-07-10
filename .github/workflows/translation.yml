@@ -23,6 +23,9 @@ jobs:
       - name: Run the po generator script
         run: bash po_gen.sh
 
+      - name: Run the po generator script for the installer component aswell
+        run: bash install/po_gen_installer.sh
+
       - name: Commit changes
         run: |
           git config --global user.name "github-actions"
