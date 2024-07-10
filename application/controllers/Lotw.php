@@ -1003,7 +1003,7 @@ class Lotw extends CI_Controller {
 				return $signature_b64."\n";
 			} else {
 				// in case of deprecation of SHA-1 in some distro
-				log_message('error', openssl_error_string());
+				log_message('error', 'Error signing LoTW log: '.openssl_error_string());
 			}
 		} else {
 			log_message('error', 'Error signing LoTW log.');
