@@ -18,6 +18,12 @@ class eqsl extends CI_Controller {
 	// Default view when loading controller.
 	public function index() {
 
+		$this->load->model('user_model');
+		if (!$this->user_model->authorize(2)) {
+			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!');
+			redirect('dashboard');
+		}
+
 		$this->load->model('eqsl_images');
 		$this->load->library('Genfunctions');
 		$folder_name = $this->eqsl_images->get_imagePath('p');
@@ -208,6 +214,12 @@ class eqsl extends CI_Controller {
 	}
 
 	function generateResultTable($custom_date_format, $rows) {
+		$this->load->model('user_model');
+		if (!$this->user_model->authorize(2)) {
+			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!');
+			redirect('dashboard');
+		}
+
 		$table = '<table = style="width:100%" class="table-sm table table-bordered table-hover table-striped table-condensed text-center">';
 		$table .= "<thead><tr class=\"titles\">";
 		$table .= "<th>Date</th>";
@@ -226,6 +238,11 @@ class eqsl extends CI_Controller {
 	}
 
 	function writeEqslNotSent($qslsnotsent, $custom_date_format) {
+		$this->load->model('user_model');
+		if (!$this->user_model->authorize(2)) {
+			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!');
+			redirect('dashboard');
+		}
 		$table = '<table = style="width:100%" class="table-sm table qsotable table-bordered table-hover table-striped table-condensed text-center">';
 		$table .= "<thead><tr class=\"titles\">";
 		$table .= "<th>Date</th>";
@@ -260,6 +277,11 @@ class eqsl extends CI_Controller {
 	}
 
 	function image($id) {
+		$this->load->model('user_model');
+		if (!$this->user_model->authorize(2)) {
+			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!');
+			redirect('dashboard');
+		}
 		$this->load->library('electronicqsl');
 		$this->load->model('Eqsl_images');
 
@@ -317,6 +339,11 @@ class eqsl extends CI_Controller {
 	}
 
 	function bulk_download_image($id) {
+		$this->load->model('user_model');
+		if (!$this->user_model->authorize(2)) {
+			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!');
+			redirect('dashboard');
+		}
 		$this->load->library('electronicqsl');
 		$this->load->model('Eqsl_images');
 
