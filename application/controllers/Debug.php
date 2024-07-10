@@ -42,6 +42,10 @@ class Debug extends CI_Controller
 		$backup_folder = $this->permissions->is_really_writable('backup');
 		$data['backup_folder'] = $backup_folder;
 
+		// Test writing to cache folder
+		$cache_folder = $this->permissions->is_really_writable('application/cache');
+		$data['cache_folder'] = $cache_folder;
+
 		// Test writing to updates folder
 		$updates_folder = $this->permissions->is_really_writable('updates');
 		$data['updates_folder'] = $updates_folder;
