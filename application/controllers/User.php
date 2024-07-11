@@ -881,7 +881,8 @@ class User extends CI_Controller {
 						'name'   => 'keep_login',
 						'value'  => $encrypted_string,
 						'expire' => '2592000',  // 30 days
-						'secure' => TRUE
+						'secure' => TRUE,
+						'httponly' => TRUE
 					);
 					$this->input->set_cookie($cookie);
 				}
