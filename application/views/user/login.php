@@ -55,9 +55,10 @@
                             <small><a class="" href="<?php echo site_url('user/forgot_password'); ?>"><?= __("Forgot your password?"); ?></a></small>
                         </div>
                         <div class="col text-end">
-                            <?php if ($https_check == true && $this->config->item('encryption_key') != 'flossie1234555541') { ?> <!-- we only want to create these cookies if the site is reached by https -->
-                                <input type="checkbox" value="1" name="keep_login" id="keep_login" />
-                                <label for="keep_login"><small><?= __("Keep me logged in"); ?></small></label>
+                            <?php  // we only want to create these cookies if the site is reached by https
+                                if ($https_check == true && $this->config->item('encryption_key') != 'flossie1234555541') { ?>
+                                    <input type="checkbox" value="1" name="keep_login" id="keep_login" />
+                                    <label for="keep_login"><small><?= __("Keep me logged in"); ?></small></label>
                             <?php } ?>
                         </div>
                     </div>
