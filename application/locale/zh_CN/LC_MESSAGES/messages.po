@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-07-11 12:26+0000\n"
-"PO-Revision-Date: 2024-07-11 14:51+0000\n"
+"PO-Revision-Date: 2024-07-11 15:53+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -1376,7 +1376,7 @@ msgstr "大洲已被更新为 "
 
 #: application/controllers/Options.php:170
 msgid "Maximum age of spots changed to "
-msgstr "最多关心的报告数量已被更新为  "
+msgstr "报告的最长寿命为 "
 
 #: application/controllers/Options.php:175
 msgid "DXCluster Cache URL changed to "
@@ -2876,23 +2876,23 @@ msgstr "US County 奖状"
 #: application/views/awards/counties/index.php:8
 #, php-format
 msgid "The United States of America Counties Award (USA-CA), sponsored by CQ magazine, is issued for confirmed two-way radio contacts with specified numbers of U.S. counties under rules and conditions you can find %s."
-msgstr ""
+msgstr "美国县奖（USA-CA）由《CQ》杂志赞助，旨在颁发给与指定数量的美国县进行确认的通联，可在 %s 查看奖项的规则和条件。"
 
 #: application/views/awards/counties/index.php:9
 msgid "USA-CA is available to all licensed amateurs worldwide and is issued to individuals for all county contacts made, regardless of callsigns used, operating locations, or dates."
-msgstr "USA-CA 可供全世界所有获得许可的业余爱好者使用，并颁发给所有县联络人的个人，无论使用的呼号、操作地点或日期如何"
+msgstr "USA-CA 可供全世界所有获得许可的业余爱好者使用，并颁发给所有县联络人的个人，不限使用呼号、台站地点和日期等。"
 
 #: application/views/awards/counties/index.php:10
 msgid "Special USA-CA awards are also available to SWLs on a heard basis."
-msgstr "美国-加拿大还可以获得 SWL 奖项"
+msgstr "USA-CA 还可以通过 SWL 获得奖项。"
 
 #: application/views/awards/counties/index.php:21
 msgid "Counties Worked"
-msgstr ""
+msgstr "已通联的县"
 
 #: application/views/awards/counties/index.php:22
 msgid "Counties Confirmed"
-msgstr ""
+msgstr "已确认的县"
 
 #: application/views/awards/counties/index.php:39
 #: application/views/awards/cq/index.php:174
@@ -2935,7 +2935,7 @@ msgstr "WAZ 奖代表“Worked All Zones”，需要与所有 40 个 CQ 分区�
 #, php-format
 msgctxt "uses 'CQ Magazine'"
 msgid "You can find all the information and rules on the Website of the %s."
-msgstr ""
+msgstr "您可在 %s 查看规则信息。"
 
 #: application/views/awards/cq/index.php:23
 msgid "Awards - CQ Magazine WAZ"
@@ -3049,7 +3049,7 @@ msgstr "查看CQ分区地图"
 #: application/views/awards/waja/index.php:126
 #: application/views/awards/was/index.php:122
 msgid "Table"
-msgstr ""
+msgstr "表格"
 
 #: application/views/awards/cq/index.php:125
 #: application/views/awards/dok/index.php:128
@@ -3623,7 +3623,7 @@ msgstr "WAB - 通联大不列颠奖"
 
 #: application/views/awards/wab/index.php:13
 msgid "WAB, Worked All Britain squares in Amateur Radio, encourages licensed ham radio operators to work all the squares in Great Britain."
-msgstr "WAB（Worked All Britain squares in Amateur Ra​​dio）鼓励业余无线电操作员通联英国所有网格"
+msgstr "WAB（Worked All Britain squares in Amateur Radio）鼓励业余无线电操作员通联英国所有网格。"
 
 #: application/views/awards/wab/index.php:14
 msgid "May be claimed for having contacted an amateur station located in the required amount of squares, described on the page linked below."
@@ -5994,7 +5994,7 @@ msgstr ""
 #: application/views/labels/startatform.php:21
 #: application/views/logbookadvanced/startatform.php:21
 msgid "Start printing at?"
-msgstr "开始打印编号"
+msgstr "开始打印编号？"
 
 #: application/views/logbookadvanced/edit.php:15
 #: application/views/logbookadvanced/index.php:398
@@ -8077,7 +8077,7 @@ msgstr "警告！您不能记录 QSO 列表，因为您正在使用示例数据�
 
 #: application/views/simplefle/index.php:34
 msgid "Are you sure that you want to add these QSO to the Log and clear the session?"
-msgstr "确认保存 QSO 到日志"
+msgstr "确认保存 QSO 到日志并清空会话？"
 
 #: application/views/simplefle/index.php:35
 msgid "QSO Logged!"
