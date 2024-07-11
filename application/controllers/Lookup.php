@@ -97,6 +97,13 @@ class Lookup extends CI_Controller {
 					$arCalls[] = str_replace('0', 'Ø', $value);
 				}
 			}
+		} else {
+			$src = 'assets/ressources/clublog_scp.txt';
+			if (copy($src, $file)) {
+				$this->scp();
+			} else {
+				log_message('error', 'Failed to copy source file ('.$src.') to new location. Check if this path has the right permission: '.$file);
+			}
 		}
 
 		sort($arCalls);

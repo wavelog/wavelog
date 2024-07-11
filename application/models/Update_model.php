@@ -47,7 +47,7 @@ class Update_model extends CI_Model {
         if ($contents === FALSE) {
             return  "Something went wrong with fetching the DOK file.";
         } else {
-            $file = './assets/json/dok.txt';
+            $file = './updates/dok.txt';
 
             if (file_put_contents($file, $contents) !== FALSE) {     // Save our content to the file.
                 $nCount = count(file($file));
@@ -69,7 +69,7 @@ class Update_model extends CI_Model {
 
         $csvfile = 'https://www.sotadata.org.uk/summitslist.csv';
 
-        $sotafile = './assets/json/sota.txt';
+        $sotafile = './updates/sota.txt';
 
         $csvhandle = fopen($csvfile, "r");
         if ($csvhandle === FALSE) {
@@ -110,7 +110,7 @@ class Update_model extends CI_Model {
 
         $csvfile = 'https://wwff.co/wwff-data/wwff_directory.csv';
 
-        $wwfffile = './assets/json/wwff.txt';
+        $wwfffile = './updates/wwff.txt';
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $csvfile);
@@ -155,7 +155,7 @@ class Update_model extends CI_Model {
 
         $csvfile = 'https://pota.app/all_parks.csv';
 
-        $potafile = './assets/json/pota.txt';
+        $potafile = './updates/pota.txt';
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $csvfile);
