@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-07-11 12:26+0000\n"
-"PO-Revision-Date: 2024-07-09 13:26+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2024-07-11 15:53+0000\n"
+"Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -116,7 +116,7 @@ msgstr "API 说明"
 
 #: application/controllers/Api.php:51
 msgid "API Key is required. Do not change this field"
-msgstr ""
+msgstr "API Key 为必须，请勿修改此字段"
 
 #: application/controllers/Api.php:57
 msgid "Edit API Description"
@@ -239,23 +239,23 @@ msgstr "日志视图"
 
 #: application/controllers/Awards.php:457
 msgid " and sat "
-msgstr ""
+msgstr " 并且卫星 "
 
 #: application/controllers/Awards.php:460
 msgid " and orbit type "
-msgstr ""
+msgstr " 并且环绕类型 "
 
 #: application/controllers/Awards.php:464
 msgid " and propagation "
-msgstr ""
+msgstr " 并且传播方式 "
 
 #: application/controllers/Awards.php:467
 msgid " and mode "
-msgstr ""
+msgstr " 并且模式 "
 
 #: application/controllers/Awards.php:470
 msgid " and "
-msgstr ""
+msgstr " 并且 "
 
 #: application/controllers/Awards.php:486
 #: application/controllers/Logbook.php:1262
@@ -584,11 +584,11 @@ msgstr "Hamsat - 卫星追踪"
 #, php-format
 msgid "%d QSO is now uploaded to HRDlog"
 msgid_plural "%d QSOs are now uploaded to HRDlog"
-msgstr[0] ""
+msgstr[0] "%d 个 QSO 已上传至 HRDlog"
 
 #: application/controllers/Hrdlog.php:76
 msgid "No QSOs found to upload."
-msgstr ""
+msgstr "无 QSO 可供上传。"
 
 #: application/controllers/Kmlexport.php:24
 #: application/views/interface_assets/header.php:380
@@ -607,58 +607,58 @@ msgstr "创建标签类型"
 #: application/controllers/Labels.php:78 application/controllers/Labels.php:402
 #: application/views/labels/create.php:22 application/views/labels/edit.php:22
 msgid "Label Name"
-msgstr ""
+msgstr "标签名称"
 
 #: application/controllers/Labels.php:79 application/controllers/Labels.php:403
 #: application/views/labels/create.php:28 application/views/labels/edit.php:28
 #: application/views/labels/index.php:72
 msgid "Paper Type"
-msgstr ""
+msgstr "纸张类型"
 
 #: application/controllers/Labels.php:80 application/controllers/Labels.php:404
 #: application/views/labels/index.php:38 application/views/labels/index.php:73
 msgid "Measurement"
-msgstr ""
+msgstr "测量单位"
 
 #: application/controllers/Labels.php:81 application/controllers/Labels.php:405
 msgid "Top Margin"
-msgstr ""
+msgstr "顶边距"
 
 #: application/controllers/Labels.php:82 application/controllers/Labels.php:406
 msgid "Left Margin"
-msgstr ""
+msgstr "左边距"
 
 #: application/controllers/Labels.php:83 application/controllers/Labels.php:407
 msgid "QSLs Horizontally"
-msgstr ""
+msgstr "QSL 水平数量"
 
 #: application/controllers/Labels.php:84 application/controllers/Labels.php:408
 msgid "QSLs Vertically"
-msgstr ""
+msgstr "QSL 垂直数量"
 
 #: application/controllers/Labels.php:85 application/controllers/Labels.php:409
 msgid "Horizontal Space"
-msgstr ""
+msgstr "水平空白间隔"
 
 #: application/controllers/Labels.php:86 application/controllers/Labels.php:410
 msgid "Vertical Space"
-msgstr ""
+msgstr "垂直空白间隔"
 
 #: application/controllers/Labels.php:87 application/controllers/Labels.php:411
 msgid "Label width"
-msgstr ""
+msgstr "标签宽度"
 
 #: application/controllers/Labels.php:88 application/controllers/Labels.php:412
 msgid "Label height"
-msgstr ""
+msgstr "标签高度"
 
 #: application/controllers/Labels.php:89 application/controllers/Labels.php:413
 msgid "Size of Font"
-msgstr ""
+msgstr "字体大小"
 
 #: application/controllers/Labels.php:90 application/controllers/Labels.php:414
 msgid "Number of QSOs on label"
-msgstr ""
+msgstr "标签上的 QSO 数量"
 
 #: application/controllers/Labels.php:115
 msgid "Create Paper Type"
@@ -667,41 +667,41 @@ msgstr "创建纸张类型"
 #: application/controllers/Labels.php:119
 #: application/controllers/Labels.php:461
 msgid "Paper Name"
-msgstr ""
+msgstr "纸张名称"
 
 #: application/controllers/Labels.php:120
 #: application/controllers/Labels.php:462
 msgid "Paper Width"
-msgstr ""
+msgstr "纸张宽度"
 
 #: application/controllers/Labels.php:121
 #: application/controllers/Labels.php:463
 msgid "Paper Height"
-msgstr ""
+msgstr "纸张高度"
 
 #: application/controllers/Labels.php:132
 #: application/controllers/Labels.php:471
 msgid "Your paper could not be saved. Remember that it can't have the same name as existing paper types."
-msgstr ""
+msgstr "此纸张未被保存，请检查是否与已有名称重复。"
 
 #: application/controllers/Labels.php:205
 #: application/controllers/Labels.php:208
 msgid "You need to assign a paperType to the label before printing"
-msgstr ""
+msgstr "在打印前，需要给标签指定一种纸张类型"
 
 #: application/controllers/Labels.php:215
 #: application/controllers/Labels.php:218
 msgid "You need to create a label and set it to be used for print."
-msgstr ""
+msgstr "您需要创建并启用一个用于打印信息的标签。"
 
 #: application/controllers/Labels.php:225
 #: application/controllers/Labels.php:228
 msgid "Something went wrong! The label could not be generated. Check label size and font size."
-msgstr ""
+msgstr "出现了错误，标签未生成，请检查标签和字体大小。"
 
 #: application/controllers/Labels.php:251
 msgid "0 QSOs found for print!"
-msgstr ""
+msgstr "无 QSO 可供打印！"
 
 #: application/controllers/Labels.php:391
 msgid "Edit Label"
@@ -709,11 +709,11 @@ msgstr "编辑标签"
 
 #: application/controllers/Labels.php:420
 msgid "Label was saved."
-msgstr ""
+msgstr "标签已保存。"
 
 #: application/controllers/Labels.php:428
 msgid "Label was deleted."
-msgstr ""
+msgstr "标签已删除。"
 
 #: application/controllers/Labels.php:450
 msgid "Edit Paper"
@@ -721,11 +721,11 @@ msgstr "编辑纸张"
 
 #: application/controllers/Labels.php:475
 msgid "Paper was saved."
-msgstr ""
+msgstr "纸张已保存。"
 
 #: application/controllers/Labels.php:488
 msgid "Paper was deleted."
-msgstr ""
+msgstr "纸张已删除。"
 
 #: application/controllers/Logbook.php:37
 msgid "No logbooks were found. You need to define a logbook under Station Logbooks! Do it here:"
@@ -1376,7 +1376,7 @@ msgstr "大洲已被更新为 "
 
 #: application/controllers/Options.php:170
 msgid "Maximum age of spots changed to "
-msgstr "最多关心的报告数量已被更新为  "
+msgstr "报告的最长寿命为 "
 
 #: application/controllers/Options.php:175
 msgid "DXCluster Cache URL changed to "
@@ -1514,7 +1514,7 @@ msgstr "编辑卫星"
 #: application/controllers/Sattimers.php:41
 #, php-format
 msgid "You have no station locations. Go %s to create it!"
-msgstr ""
+msgstr "您尚未创建台站地址，请前往 %s 创建！"
 
 #: application/controllers/Sattimers.php:41
 #: application/views/awards/counties/index.php:8
@@ -1526,7 +1526,7 @@ msgstr ""
 #: application/views/dashboard/index.php:82
 #: application/views/simplefle/index.php:15
 msgid "here"
-msgstr ""
+msgstr "这里"
 
 #: application/controllers/Sattimers.php:44
 #: application/views/sattimers/index.php:13
@@ -1558,7 +1558,7 @@ msgstr "搜索"
 
 #: application/controllers/Search.php:28
 msgid "Search & Filter Logbook"
-msgstr ""
+msgstr "搜索 & 过滤日志"
 
 #: application/controllers/Search.php:58
 msgid "Incorrectly logged CQ zones"
@@ -1591,7 +1591,7 @@ msgstr "创建台站地址"
 
 #: application/controllers/Station.php:70
 msgid "Edit Station Location: "
-msgstr "修改台站地址："
+msgstr "修改台站地址： "
 
 #: application/controllers/Station.php:92
 msgid "Duplicate Station Location:"
@@ -1628,11 +1628,11 @@ msgstr "新建台站日志"
 
 #: application/controllers/Stationsetup.php:166
 msgid "Edit container name"
-msgstr ""
+msgstr "编辑容器名"
 
 #: application/controllers/Stationsetup.php:181
 msgid "Edit linked locations"
-msgstr "编辑链接的地址"
+msgstr "编辑绑定的地址"
 
 #: application/controllers/Stationsetup.php:190
 msgid "Edit visitor site"
@@ -1672,7 +1672,7 @@ msgstr "启用的日志簿"
 #: application/controllers/Stationsetup.php:270
 #: application/views/stationsetup/stationsetup.php:55
 msgid "Are you sure you want to delete the following station logbook? You must re-link any locations linked here to another logbook.: "
-msgstr "确定删除此台站日志？你可能需要重新将台站位置链接到其他台站日志中: "
+msgstr "确定删除此台站日志？你可能需要重新将台站位置绑定到其他台站日志中: "
 
 #: application/controllers/Stationsetup.php:280
 #: application/views/stationsetup/stationsetup.php:65
@@ -1826,15 +1826,15 @@ msgstr "更新"
 
 #: application/controllers/Update.php:76
 msgid "Preparing DXCC-Entries: "
-msgstr ""
+msgstr "正在准备 DXCC 名单： "
 
 #: application/controllers/Update.php:118
 msgid "Preparing DXCC Exceptions: "
-msgstr ""
+msgstr "正在准备 DXCC 例外名单： "
 
 #: application/controllers/Update.php:160
 msgid "Preparing DXCC Prefixes: "
-msgstr ""
+msgstr "正在准备 DXCC 前缀： "
 
 #: application/controllers/Update.php:222
 msgid "DONE"
@@ -1879,7 +1879,7 @@ msgstr "登录"
 
 #: application/controllers/User.php:790
 msgid "User logged in"
-msgstr ""
+msgstr "已登录用户"
 
 #: application/controllers/User.php:804
 msgid "Sorry. This instance is currently in maintenance mode. If this message appears unexpectedly or keeps showing up, please contact an administrator. Only administrators are currently allowed to log in."
@@ -1900,7 +1900,7 @@ msgstr "忘记密码"
 
 #: application/controllers/User.php:891 application/views/user/main.php:8
 msgid "Email settings are incorrect."
-msgstr "邮件设定出现错误"
+msgstr "邮件配置有误。"
 
 #: application/controllers/User.php:895 application/controllers/User.php:900
 msgid "Password Reset Processed."
@@ -1934,15 +1934,15 @@ msgstr "QO-100 Dx Club 上传"
 
 #: application/models/Hrdlog_model.php:22
 msgid "HRDlog: QSOs have been uploaded to hrdlog.net for the station callsign: "
-msgstr ""
+msgstr "HRDlog：QSO 已上传至 hrdlog.net，关联的台站呼号为： "
 
 #: application/models/Hrdlog_model.php:25
 msgid "HRDlog: No QSOs found to upload for the station callsign: "
-msgstr ""
+msgstr "HRDlog：无 QSO 可供上传，台站呼号为： "
 
 #: application/models/Hrdlog_model.php:31
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
-msgstr ""
+msgstr "HRDlog：无台站配置信息。"
 
 #: application/models/Logbook_model.php:4139
 msgid "QSO could not be matched"
@@ -2584,7 +2584,7 @@ msgstr "起始日期"
 #: application/views/qrz/export.php:102
 #: application/views/webadif/export.php:102
 msgid "To date"
-msgstr ""
+msgstr "终止日期"
 
 #: application/views/adif/import.php:187
 msgid "Mark exported QSOs as uploaded to LoTW"
@@ -2646,7 +2646,7 @@ msgstr "忽略无法匹配的 QSO"
 
 #: application/views/adif/import.php:269
 msgid "If unchecked, information about QSOs which could not be found in Wavelog will be displayed."
-msgstr ""
+msgstr "如未选择，Wavelog 中未找到的 QSO 会被显示。"
 
 #: application/views/adif/import_success.php:15
 msgid "Yay, its imported!"
@@ -2876,23 +2876,23 @@ msgstr "US County 奖状"
 #: application/views/awards/counties/index.php:8
 #, php-format
 msgid "The United States of America Counties Award (USA-CA), sponsored by CQ magazine, is issued for confirmed two-way radio contacts with specified numbers of U.S. counties under rules and conditions you can find %s."
-msgstr ""
+msgstr "美国县奖（USA-CA）由《CQ》杂志赞助，旨在颁发给与指定数量的美国县进行确认的通联，可在 %s 查看奖项的规则和条件。"
 
 #: application/views/awards/counties/index.php:9
 msgid "USA-CA is available to all licensed amateurs worldwide and is issued to individuals for all county contacts made, regardless of callsigns used, operating locations, or dates."
-msgstr "USA-CA 可供全世界所有获得许可的业余爱好者使用，并颁发给所有县联络人的个人，无论使用的呼号、操作地点或日期如何"
+msgstr "USA-CA 可供全世界所有获得许可的业余爱好者使用，并颁发给所有县联络人的个人，不限使用呼号、台站地点和日期等。"
 
 #: application/views/awards/counties/index.php:10
 msgid "Special USA-CA awards are also available to SWLs on a heard basis."
-msgstr "美国-加拿大还可以获得 SWL 奖项"
+msgstr "USA-CA 还可以通过 SWL 获得奖项。"
 
 #: application/views/awards/counties/index.php:21
 msgid "Counties Worked"
-msgstr ""
+msgstr "已通联的县"
 
 #: application/views/awards/counties/index.php:22
 msgid "Counties Confirmed"
-msgstr ""
+msgstr "已确认的县"
 
 #: application/views/awards/counties/index.php:39
 #: application/views/awards/cq/index.php:174
@@ -2935,7 +2935,7 @@ msgstr "WAZ 奖代表“Worked All Zones”，需要与所有 40 个 CQ 分区�
 #, php-format
 msgctxt "uses 'CQ Magazine'"
 msgid "You can find all the information and rules on the Website of the %s."
-msgstr ""
+msgstr "您可在 %s 查看规则信息。"
 
 #: application/views/awards/cq/index.php:23
 msgid "Awards - CQ Magazine WAZ"
@@ -3049,7 +3049,7 @@ msgstr "查看CQ分区地图"
 #: application/views/awards/waja/index.php:126
 #: application/views/awards/was/index.php:122
 msgid "Table"
-msgstr ""
+msgstr "表格"
 
 #: application/views/awards/cq/index.php:125
 #: application/views/awards/dok/index.php:128
@@ -3623,7 +3623,7 @@ msgstr "WAB - 通联大不列颠奖"
 
 #: application/views/awards/wab/index.php:13
 msgid "WAB, Worked All Britain squares in Amateur Radio, encourages licensed ham radio operators to work all the squares in Great Britain."
-msgstr "WAB（Worked All Britain squares in Amateur Ra​​dio）鼓励业余无线电操作员通联英国所有网格"
+msgstr "WAB（Worked All Britain squares in Amateur Radio）鼓励业余无线电操作员通联英国所有网格。"
 
 #: application/views/awards/wab/index.php:14
 msgid "May be claimed for having contacted an amateur station located in the required amount of squares, described on the page linked below."
@@ -5994,7 +5994,7 @@ msgstr ""
 #: application/views/labels/startatform.php:21
 #: application/views/logbookadvanced/startatform.php:21
 msgid "Start printing at?"
-msgstr "开始打印编号"
+msgstr "开始打印编号？"
 
 #: application/views/logbookadvanced/edit.php:15
 #: application/views/logbookadvanced/index.php:398
@@ -8077,7 +8077,7 @@ msgstr "警告！您不能记录 QSO 列表，因为您正在使用示例数据�
 
 #: application/views/simplefle/index.php:34
 msgid "Are you sure that you want to add these QSO to the Log and clear the session?"
-msgstr "确认保存 QSO 到日志"
+msgstr "确认保存 QSO 到日志并清空会话？"
 
 #: application/views/simplefle/index.php:35
 msgid "QSO Logged!"
@@ -8629,7 +8629,7 @@ msgstr "台站日志可以让您对自己的台站位置进行分组，这对在
 
 #: application/views/stationsetup/stationsetup.php:32
 msgid "Linked locations"
-msgstr ""
+msgstr "绑定的台站地址"
 
 #: application/views/stationsetup/stationsetup.php:34
 msgid "Visitor site"
@@ -8641,11 +8641,11 @@ msgstr ""
 
 #: application/views/stationsetup/stationsetup.php:98
 msgid "The 'Linked' column shows if the station location is linked with the Active Logbook selected above."
-msgstr ""
+msgstr "上方的已启用日志，会显示在关联的台站地址的 '已绑定' 栏中。"
 
 #: application/views/stationsetup/stationsetup.php:127
 msgid "Linked"
-msgstr ""
+msgstr "已绑定"
 
 #: application/views/stationsetup/stationsetup.php:134
 msgid "Favorite"
@@ -9457,7 +9457,7 @@ msgstr "不再显示"
 
 #: application/views/view_log/index.php:4
 msgid "Displaying all QSOs of station locations which are linked to this logbook"
-msgstr "显示该日志本下全部 QSO"
+msgstr "显示该日志簿下全部 QSO"
 
 #: application/views/view_log/qso.php:6
 msgid "QSO Details"
