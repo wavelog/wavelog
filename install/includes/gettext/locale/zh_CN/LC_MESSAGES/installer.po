@@ -6,10 +6,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-09 12:56+0000\n"
+"POT-Creation-Date: 2024-07-11 18:33+0000\n"
 "PO-Revision-Date: 2024-07-11 14:51+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
-"Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/wavelog/installer/zh_Hans/>\n"
+"Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/"
+"wavelog/installer/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -50,8 +51,15 @@ msgid "Welcome to the Wavelog Installer"
 msgstr "欢迎使用 Wavelog 安装程序"
 
 #: install/index.php:272
-msgid "This installer will guide you through the necessary steps for the installation of Wavelog. <br>Wavelog is a powerful web-based amateur radio logging software. Follow the steps in each tab to configure and install Wavelog on your server."
-msgstr "此安装程序将指导您完成安装 Wavelog 的必要步骤。<br>Wavelog 是一款功能强大的基于网络的业余无线电日志记录软件，请按照每个选项卡中的步骤在服务器上安装和配置 Wavelog。"
+msgid ""
+"This installer will guide you through the necessary steps for the "
+"installation of Wavelog. <br>Wavelog is a powerful web-based amateur radio "
+"logging software. Follow the steps in each tab to configure and install "
+"Wavelog on your server."
+msgstr ""
+"此安装程序将指导您完成安装 Wavelog 的必要步骤。<br>Wavelog 是一款功能强大的基"
+"于网络的业余无线电日志记录软件，请按照每个选项卡中的步骤在服务器上安装和配置 "
+"Wavelog。"
 
 #: install/index.php:273
 msgid "Discussions"
@@ -59,8 +67,12 @@ msgstr "交流"
 
 #: install/index.php:273
 #, php-format
-msgid "If you encounter any issues or have questions, refer to the documentation (%s) or community forum (%s) on Github for assistance."
-msgstr "如果您遇到问题或有疑问，请查看文档（%s）或 Github 上的社区门户（%s）以获得帮助。"
+msgid ""
+"If you encounter any issues or have questions, refer to the documentation "
+"(%s) or community forum (%s) on Github for assistance."
+msgstr ""
+"如果您遇到问题或有疑问，请查看文档（%s）或 Github 上的社区门户（%s）以获得帮"
+"助。"
 
 #: install/index.php:273
 msgid "Wiki"
@@ -139,7 +151,8 @@ msgid "Check your PHP settings and install missing modules if necessary."
 msgstr "请检查 PHP 配置，或安装缺失的必要模块。"
 
 #: install/index.php:444
-msgid "After that, you have to restart your webserver and start the installer again."
+msgid ""
+"After that, you have to restart your webserver and start the installer again."
 msgstr "在这之后，您需要重启服务器，重新启动安装程序。"
 
 #: install/index.php:448
@@ -147,29 +160,45 @@ msgid "You have some warnings!"
 msgstr "有一些警告内容！"
 
 #: install/index.php:449
-msgid "Some of the settings are not optimal. You can proceed with the installer but be aware that you could run into problems while using Wavelog."
-msgstr "这些设置项不是最完美的，虽然可以跑起来，但 Wavelog 在运行中可能会出现问题。"
+msgid ""
+"Some of the settings are not optimal. You can proceed with the installer but "
+"be aware that you could run into problems while using Wavelog."
+msgstr ""
+"这些设置项不是最完美的，虽然可以跑起来，但 Wavelog 在运行中可能会出现问题。"
 
 #: install/index.php:453
 msgid "All Checks are OK. You can continue."
 msgstr "所有检查都通过了，您可以继续。"
 
 #: install/index.php:467
-msgid "Configure some basic parameters for your wavelog instance. You can change them later in 'application/config/config.php'"
-msgstr "为 Wavelog 实例配置一些基本参数。您可以稍后在 \"application/config/config.php \"中修改它们"
+msgid ""
+"Configure some basic parameters for your wavelog instance. You can change "
+"them later in 'application/config/config.php'"
+msgstr ""
+"为 Wavelog 实例配置一些基本参数。您可以稍后在 \"application/config/config."
+"php \"中修改它们"
 
 #: install/index.php:469
 msgid "Directory"
 msgstr "目录"
 
 #: install/index.php:469
-msgid "The 'Directory' is basically your subfolder of the webroot In normal conditions the prefilled value is doing it's job. It also can be empty."
+msgid ""
+"The 'Directory' is basically your subfolder of the webroot In normal "
+"conditions the prefilled value is doing it's job. It also can be empty."
 msgstr "通常是 Web 根目录下的某个子目录，通常为空。"
 
 #: install/index.php:476
 #, php-format
-msgid "This is the complete URL where your Wavelog Instance will be available. If you run this installer locally but want to place Wavelog behind a Reverse Proxy with SSL you should type in the new URL here (e.g. %s instead of %s). Don't forget to include the directory from above."
-msgstr "这是您的 Wavelog 实例可用的完整 URL。如果您希望将 Wavelog 放在带 SSL 的反向代理后面，则应在此处键入新 URL（例如，用 %s 代替 %s），不要忘记包含上面的目录（如有）。"
+msgid ""
+"This is the complete URL where your Wavelog Instance will be available. If "
+"you run this installer locally but want to place Wavelog behind a Reverse "
+"Proxy with SSL you should type in the new URL here (e.g. %s instead of %s). "
+"Don't forget to include the directory from above."
+msgstr ""
+"这是您的 Wavelog 实例可用的完整 URL。如果您希望将 Wavelog 放在带 SSL 的反向代"
+"理后面，则应在此处键入新 URL（例如，用 %s 代替 %s），不要忘记包含上面的目录"
+"（如有）。"
 
 #: install/index.php:476
 msgid "Website URL"
@@ -184,7 +213,9 @@ msgid "Default Gridsquare/Locator"
 msgstr "默认网格地址"
 
 #: install/index.php:483
-msgid "This is the default maidenhead locator which is used as falback. You can use the locator of your Home QTH."
+msgid ""
+"This is the default maidenhead locator which is used as falback. You can use "
+"the locator of your Home QTH."
 msgstr "默认的梅登黑德网格，可以使用基地台的 QTH。"
 
 #: install/index.php:486
@@ -196,8 +227,16 @@ msgid "Optional: Global Callbook Lookup"
 msgstr "可选：全局日志查询"
 
 #: install/index.php:490
-msgid "This configuration is optional. The callsign lookup will be available for all users of this installation. You can choose between QRZ.com and HamQTH. While HamQTH also works without username and password, you will need credentials for QRZ.com. To also get the Call Locator in QRZ.com you'll need an XML subscription. HamQTH does not always provide the locator information."
-msgstr "此选项为可选，对全部用户生效。启用后，Wavelog 会通过 QTZ.com 和 HamQTH 搜索通联对象的信息，HamQTH 不需要额外配置信息即可使用，QRZ.com 为其需要配置登录信息（如需要获取网格地址，请购买 QRZ.com 的 XML 订阅）。"
+msgid ""
+"This configuration is optional. The callsign lookup will be available for "
+"all users of this installation. You can choose between QRZ.com and HamQTH. "
+"While HamQTH also works without username and password, you will need "
+"credentials for QRZ.com. To also get the Call Locator in QRZ.com you'll need "
+"an XML subscription. HamQTH does not always provide the locator information."
+msgstr ""
+"此选项为可选，对全部用户生效。启用后，Wavelog 会通过 QTZ.com 和 HamQTH 搜索通"
+"联对象的信息，HamQTH 不需要额外配置信息即可使用，QRZ.com 为其需要配置登录信息"
+"（如需要获取网格地址，请购买 QRZ.com 的 XML 订阅）。"
 
 #: install/index.php:499 install/index.php:542 install/index.php:574
 msgid "Username"
@@ -216,7 +255,9 @@ msgid "Callbook Password"
 msgstr "日志簿密码"
 
 #: install/index.php:526
-msgid "To properly install Wavelog you already should have setup a mariadb/mysql database. Provide the parameters here."
+msgid ""
+"To properly install Wavelog you already should have setup a mariadb/mysql "
+"database. Provide the parameters here."
 msgstr "要正确安装 Wavelog，请准备好 mariadb/mysql 数据库，在此输入连接信息。"
 
 #: install/index.php:530
@@ -248,8 +289,12 @@ msgid "Connection Test"
 msgstr "测试连接"
 
 #: install/index.php:561
-msgid "Now you can create your first user in Wavelog. Fill out all fields and click continue.<br>Make sure you use a safe password."
-msgstr "现在您可以创建第一个 Wavelog 上的用户了，请填写全部字段并点击继续。<br>请使用安全密码。"
+msgid ""
+"Now you can create your first user in Wavelog. Fill out all fields and click "
+"continue.<br>Make sure you use a safe password."
+msgstr ""
+"现在您可以创建第一个 Wavelog 上的用户了，请填写全部字段并点击继续。<br>请使用"
+"安全密码。"
 
 #: install/index.php:570
 msgid "First Name"
@@ -369,7 +414,9 @@ msgid "Connection was successful and your database should be compatible"
 msgstr "连接成功，数据库满足要求"
 
 #: install/index.php:1230
-msgid "Connection was successful but your database seems too old for Wavelog. You can try to continue but you could run into issues."
+msgid ""
+"Connection was successful but your database seems too old for Wavelog. You "
+"can try to continue but you could run into issues."
 msgstr "连接成功，但数据库版本有一些老，您可以继续安装但是可能会出现使用问题。"
 
 #: install/index.php:1384
@@ -386,13 +433,23 @@ msgstr "Email 地址无效"
 
 #: install/index.php:1442
 #, php-format
-msgid "The grid locator is not valid. Use a 6-character locator, e.g. HA44AA. If you don't know your grid square then <a href='%s' target='_blank'>click here</a>!"
-msgstr "网格地址无效，请使用 6 位地址如 HA44AA，如果不清楚请在 <a href='%s' target='_blank'>这里</a> 查看！"
+msgid ""
+"The grid locator is not valid. Use a 6-character locator, e.g. HA44AA. If "
+"you don't know your grid square then <a href='%s' target='_blank'>click "
+"here</a>!"
+msgstr ""
+"网格地址无效，请使用 6 位地址如 HA44AA，如果不清楚请在 <a href='%s' "
+"target='_blank'>这里</a> 查看！"
 
 #: install/index.php:1549
 #, php-format
-msgid "Please make the %s folder writable. <strong>Example</strong>:<br /><br /><code>chmod -R 777 %s</code><br /><br /><i>Don't forget to restore the permissions afterwards.</i>"
-msgstr "请确认 %s 文件夹可写。 <strong>举例</strong>:<br /><br /><code>chmod -R 777 %s</code><br /><br /><i>⬅️请测试后及时回滚权限。</i>"
+msgid ""
+"Please make the %s folder writable. <strong>Example</strong>:<br /><br /"
+"><code>chmod -R 777 %s</code><br /><br /><i>Don't forget to restore the "
+"permissions afterwards.</i>"
+msgstr ""
+"请确认 %s 文件夹可写。 <strong>举例</strong>:<br /><br /><code>chmod -R 777 "
+"%s</code><br /><br /><i>⬅️请测试后及时回滚权限。</i>"
 
 #: install/index.php:1564
 msgid "Bulgarian"
