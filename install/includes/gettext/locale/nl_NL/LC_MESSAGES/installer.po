@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-09 12:56+0000\n"
+"POT-Creation-Date: 2024-07-11 18:33+0000\n"
 "PO-Revision-Date: 2024-06-05 15:15+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -49,7 +49,11 @@ msgid "Welcome to the Wavelog Installer"
 msgstr ""
 
 #: install/index.php:272
-msgid "This installer will guide you through the necessary steps for the installation of Wavelog. <br>Wavelog is a powerful web-based amateur radio logging software. Follow the steps in each tab to configure and install Wavelog on your server."
+msgid ""
+"This installer will guide you through the necessary steps for the "
+"installation of Wavelog. <br>Wavelog is a powerful web-based amateur radio "
+"logging software. Follow the steps in each tab to configure and install "
+"Wavelog on your server."
 msgstr ""
 
 #: install/index.php:273
@@ -58,7 +62,9 @@ msgstr ""
 
 #: install/index.php:273
 #, php-format
-msgid "If you encounter any issues or have questions, refer to the documentation (%s) or community forum (%s) on Github for assistance."
+msgid ""
+"If you encounter any issues or have questions, refer to the documentation "
+"(%s) or community forum (%s) on Github for assistance."
 msgstr ""
 
 #: install/index.php:273
@@ -138,7 +144,8 @@ msgid "Check your PHP settings and install missing modules if necessary."
 msgstr ""
 
 #: install/index.php:444
-msgid "After that, you have to restart your webserver and start the installer again."
+msgid ""
+"After that, you have to restart your webserver and start the installer again."
 msgstr ""
 
 #: install/index.php:448
@@ -146,7 +153,9 @@ msgid "You have some warnings!"
 msgstr ""
 
 #: install/index.php:449
-msgid "Some of the settings are not optimal. You can proceed with the installer but be aware that you could run into problems while using Wavelog."
+msgid ""
+"Some of the settings are not optimal. You can proceed with the installer but "
+"be aware that you could run into problems while using Wavelog."
 msgstr ""
 
 #: install/index.php:453
@@ -154,7 +163,9 @@ msgid "All Checks are OK. You can continue."
 msgstr ""
 
 #: install/index.php:467
-msgid "Configure some basic parameters for your wavelog instance. You can change them later in 'application/config/config.php'"
+msgid ""
+"Configure some basic parameters for your wavelog instance. You can change "
+"them later in 'application/config/config.php'"
 msgstr ""
 
 #: install/index.php:469
@@ -162,12 +173,18 @@ msgid "Directory"
 msgstr ""
 
 #: install/index.php:469
-msgid "The 'Directory' is basically your subfolder of the webroot In normal conditions the prefilled value is doing it's job. It also can be empty."
+msgid ""
+"The 'Directory' is basically your subfolder of the webroot In normal "
+"conditions the prefilled value is doing it's job. It also can be empty."
 msgstr ""
 
 #: install/index.php:476
 #, php-format
-msgid "This is the complete URL where your Wavelog Instance will be available. If you run this installer locally but want to place Wavelog behind a Reverse Proxy with SSL you should type in the new URL here (e.g. %s instead of %s). Don't forget to include the directory from above."
+msgid ""
+"This is the complete URL where your Wavelog Instance will be available. If "
+"you run this installer locally but want to place Wavelog behind a Reverse "
+"Proxy with SSL you should type in the new URL here (e.g. %s instead of %s). "
+"Don't forget to include the directory from above."
 msgstr ""
 
 #: install/index.php:476
@@ -183,7 +200,9 @@ msgid "Default Gridsquare/Locator"
 msgstr ""
 
 #: install/index.php:483
-msgid "This is the default maidenhead locator which is used as falback. You can use the locator of your Home QTH."
+msgid ""
+"This is the default maidenhead locator which is used as falback. You can use "
+"the locator of your Home QTH."
 msgstr ""
 
 #: install/index.php:486
@@ -195,7 +214,12 @@ msgid "Optional: Global Callbook Lookup"
 msgstr ""
 
 #: install/index.php:490
-msgid "This configuration is optional. The callsign lookup will be available for all users of this installation. You can choose between QRZ.com and HamQTH. While HamQTH also works without username and password, you will need credentials for QRZ.com. To also get the Call Locator in QRZ.com you'll need an XML subscription. HamQTH does not always provide the locator information."
+msgid ""
+"This configuration is optional. The callsign lookup will be available for "
+"all users of this installation. You can choose between QRZ.com and HamQTH. "
+"While HamQTH also works without username and password, you will need "
+"credentials for QRZ.com. To also get the Call Locator in QRZ.com you'll need "
+"an XML subscription. HamQTH does not always provide the locator information."
 msgstr ""
 
 #: install/index.php:499 install/index.php:542 install/index.php:574
@@ -215,7 +239,9 @@ msgid "Callbook Password"
 msgstr ""
 
 #: install/index.php:526
-msgid "To properly install Wavelog you already should have setup a mariadb/mysql database. Provide the parameters here."
+msgid ""
+"To properly install Wavelog you already should have setup a mariadb/mysql "
+"database. Provide the parameters here."
 msgstr ""
 
 #: install/index.php:530
@@ -247,7 +273,9 @@ msgid "Connection Test"
 msgstr ""
 
 #: install/index.php:561
-msgid "Now you can create your first user in Wavelog. Fill out all fields and click continue.<br>Make sure you use a safe password."
+msgid ""
+"Now you can create your first user in Wavelog. Fill out all fields and click "
+"continue.<br>Make sure you use a safe password."
 msgstr ""
 
 #: install/index.php:570
@@ -368,7 +396,9 @@ msgid "Connection was successful and your database should be compatible"
 msgstr ""
 
 #: install/index.php:1230
-msgid "Connection was successful but your database seems too old for Wavelog. You can try to continue but you could run into issues."
+msgid ""
+"Connection was successful but your database seems too old for Wavelog. You "
+"can try to continue but you could run into issues."
 msgstr ""
 
 #: install/index.php:1384
@@ -385,12 +415,18 @@ msgstr ""
 
 #: install/index.php:1442
 #, php-format
-msgid "The grid locator is not valid. Use a 6-character locator, e.g. HA44AA. If you don't know your grid square then <a href='%s' target='_blank'>click here</a>!"
+msgid ""
+"The grid locator is not valid. Use a 6-character locator, e.g. HA44AA. If "
+"you don't know your grid square then <a href='%s' target='_blank'>click "
+"here</a>!"
 msgstr ""
 
 #: install/index.php:1549
 #, php-format
-msgid "Please make the %s folder writable. <strong>Example</strong>:<br /><br /><code>chmod -R 777 %s</code><br /><br /><i>Don't forget to restore the permissions afterwards.</i>"
+msgid ""
+"Please make the %s folder writable. <strong>Example</strong>:<br /><br /"
+"><code>chmod -R 777 %s</code><br /><br /><i>Don't forget to restore the "
+"permissions afterwards.</i>"
 msgstr ""
 
 #: install/index.php:1564
