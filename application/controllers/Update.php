@@ -332,19 +332,6 @@ class Update extends CI_Controller {
 
     }
 
-    public function lotw_check() {
-        $f = fopen('./updates/lotw_users.csv', "r");
-        $result = false;
-        while ($row = fgetcsv($f)) {
-            if ($row[0] == '4W7EST/MM') {
-                $result = $row[0];
-                echo "found";
-                break;
-            }
-        }
-        fclose($f);
-    }
-
     /*
      * Used for autoupdating the DOK file which is used in the QSO entry dialog for autocompletion.
      */
