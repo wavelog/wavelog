@@ -150,9 +150,9 @@
                     <?php if ($this->config->item('auth_mode') != '3') { ?>
                         <div class="alert alert-primary">
                             <div class="alert alert-danger" role="alert">
-                                <span class="badge rounded-pill text-bg-warning"><?= __("Warning"); ?></span> <?= __("Your authentication mode is outdated and possibly unsafe"); ?>
+                                <span class="badge rounded-pill text-bg-warning">auth_mode: <?= __("Warning"); ?></span> <?= __("Your authentication mode is outdated and possibly unsafe"); ?>
                             </div>
-                            <p><?= sprintf(__("Please edit your %s File:"),"./application/config/config.php"); ?></br>
+                            <p><?= sprintf(__("Please edit your %s File:"),"<code>application/config/config.php</code>"); ?></br>
                                 <?= __("Go to your application/config Folder and compare config.sample.php with your config.php"); ?></br></br>
                                 <?= sprintf(__("Change %s to the value %s (Strongly recommended)"),"<span class=\"badge rounded-pill text-bg-secondary\">\$config['auth_mode']</span>","<span class=\"badge rounded-pill text-bg-secondary\">3</span>"); ?>
                             </p>
@@ -160,7 +160,23 @@
                     <?php
                     } else { ?>
                         <div class="mb-2">
-                            <span class="badge rounded-pill text-bg-success"><?= __("Ok"); ?></span> <?= __("Authentication Mode is set correctly"); ?>
+                            <span class="badge rounded-pill text-bg-success">auth_mode: <?= __("Ok"); ?></span> <?= __("Authentication Mode is set correctly"); ?>
+                        </div>
+                    <?php } ?>
+
+                    <?php if ($this->config->item('encryption_key') == 'flossie1234555541') { ?>
+                        <div class="alert alert-primary">
+                            <div class="alert alert-danger" role="alert">
+                                <span class="badge rounded-pill text-bg-warning">encryption_key: <?= __("Warning"); ?></span> <?= __("You use the default encryption key. You should change it!"); ?>
+                            </div>
+                            <p><?= sprintf(__("Please edit your %s File:"),"<code>application/config/config.php</code>"); ?></br>
+                                <?= sprintf(__("Change the value of %s to a new encryption key other then 'flossie1234555541'. Choose a save and long password. (Strongly recommended)"),"<span class=\"badge rounded-pill text-bg-secondary\">\$config['encryption_key']</span>"); ?>
+                            </p>
+                        </div>
+                    <?php
+                    } else { ?>
+                        <div class="mb-2">
+                            <span class="badge rounded-pill text-bg-success">encryption_key: <?= __("Ok"); ?></span> <?= __("You do not use the default encryption key"); ?>
                         </div>
                     <?php } ?>
                 </div>
