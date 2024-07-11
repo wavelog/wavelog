@@ -99,20 +99,6 @@ class Lookup extends CI_Controller {
 			}
 		}
 
-		$file = 'updates/masterscp.txt';
-
-		if (is_readable($file)) {
-			$lines = file($file, FILE_IGNORE_NEW_LINES);
-			$input = preg_quote($uppercase_callsign, '~');
-			$result = preg_grep('~' . $input . '~', $lines, 0);
-			foreach ($result as &$value) {
-				if (in_array($value, $arCalls) == false)
-				{
-					$arCalls[] = str_replace('0', 'Ø', $value);
-				}
-			}
-		}
-
 		sort($arCalls);
 
 		foreach ($arCalls as $strCall)
