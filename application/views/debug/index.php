@@ -106,6 +106,17 @@
                         </tr>
 
                         <tr>
+                            <td>/cache</td>
+                            <td>
+                                <?php if ($cache_folder == true) { ?>
+                                    <span class="badge text-bg-success"><?= __("Success"); ?></span>
+                                <?php } else { ?>
+                                    <span class="badge text-bg-danger"><?= __("Failed"); ?></span>
+                                <?php } ?>
+                            </td>
+                        </tr>
+
+                        <tr>
                             <td>/updates</td>
                             <td>
                                 <?php if ($updates_folder == true) { ?>
