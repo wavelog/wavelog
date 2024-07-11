@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-11 18:33+0000\n"
+"POT-Creation-Date: 2024-07-11 20:28+0000\n"
 "PO-Revision-Date: 2024-07-09 13:26+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
@@ -505,6 +505,33 @@ msgstr ""
 msgid "Debug"
 msgstr ""
 
+#: application/controllers/Debug.php:118
+msgid "Migrate data now"
+msgstr ""
+
+#: application/controllers/Debug.php:121
+msgid "Migration already done. Run again?"
+msgstr ""
+
+#: application/controllers/Debug.php:125
+msgid "No data to migrate"
+msgstr ""
+
+#: application/controllers/Debug.php:129 application/controllers/Debug.php:134
+msgid "No migration possible"
+msgstr ""
+
+#: application/controllers/Debug.php:216
+msgid ""
+"File Migration was successfull, but please check also manually. If "
+"everything seems right you can delete the folders 'assets/qslcard' and "
+"'images/eqsl_card_images'."
+msgstr ""
+
+#: application/controllers/Debug.php:219
+msgid "File Migration failed. Please check the Error Log."
+msgstr ""
+
 #: application/controllers/Distances.php:17
 #: application/views/distances/index.php:5
 #: application/views/distances/index.php:8
@@ -881,7 +908,7 @@ msgstr ""
 #: application/views/contesting/index.php:203
 #: application/views/continents/index.php:39 application/views/csv/index.php:42
 #: application/views/dashboard/index.php:4
-#: application/views/debug/index.php:520 application/views/dxatlas/index.php:42
+#: application/views/debug/index.php:537 application/views/dxatlas/index.php:42
 #: application/views/eqsl/analysis.php:39
 #: application/views/eqsl/download.php:39 application/views/eqsl/result.php:36
 #: application/views/eqslcard/index.php:29
@@ -1154,7 +1181,7 @@ msgstr ""
 #: application/views/contesting/index.php:202
 #: application/views/continents/index.php:30 application/views/csv/index.php:31
 #: application/views/dashboard/index.php:15
-#: application/views/debug/index.php:521 application/views/dxatlas/index.php:31
+#: application/views/debug/index.php:538 application/views/dxatlas/index.php:31
 #: application/views/eqsl/download.php:41
 #: application/views/eqslcard/index.php:32
 #: application/views/gridmap/index.php:10 application/views/kml/index.php:19
@@ -1884,46 +1911,50 @@ msgstr ""
 msgid "Profile"
 msgstr ""
 
-#: application/controllers/User.php:783
+#: application/controllers/User.php:838 application/controllers/User.php:848
+msgid "Login failed. Try again."
+msgstr ""
+
+#: application/controllers/User.php:855
 #: application/views/interface_assets/header.php:348
-#: application/views/user/login.php:59
+#: application/views/user/login.php:67
 #: application/views/visitor/layout/header.php:88
 msgid "Login"
 msgstr ""
 
-#: application/controllers/User.php:790
+#: application/controllers/User.php:863
 msgid "User logged in"
 msgstr ""
 
-#: application/controllers/User.php:804
+#: application/controllers/User.php:894
 msgid ""
 "Sorry. This instance is currently in maintenance mode. If this message "
 "appears unexpectedly or keeps showing up, please contact an administrator. "
 "Only administrators are currently allowed to log in."
 msgstr ""
 
-#: application/controllers/User.php:807
+#: application/controllers/User.php:897
 msgid "Incorrect username or password!"
 msgstr ""
 
-#: application/controllers/User.php:821
+#: application/controllers/User.php:914
 #, php-format
 msgid "User %s logged out."
 msgstr ""
 
-#: application/controllers/User.php:841
+#: application/controllers/User.php:934
 msgid "Forgot Password"
 msgstr ""
 
-#: application/controllers/User.php:891 application/views/user/main.php:8
+#: application/controllers/User.php:984 application/views/user/main.php:8
 msgid "Email settings are incorrect."
 msgstr ""
 
-#: application/controllers/User.php:895 application/controllers/User.php:900
+#: application/controllers/User.php:988 application/controllers/User.php:993
 msgid "Password Reset Processed."
 msgstr ""
 
-#: application/controllers/User.php:1001
+#: application/controllers/User.php:1094
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
@@ -2372,7 +2403,7 @@ msgstr ""
 #: application/views/contesting/index.php:42
 #: application/views/contesting/index.php:200
 #: application/views/dashboard/index.php:147
-#: application/views/debug/index.php:517 application/views/eqsl/analysis.php:36
+#: application/views/debug/index.php:534 application/views/eqsl/analysis.php:36
 #: application/views/eqsl/download.php:36 application/views/eqsl/result.php:33
 #: application/views/eqslcard/index.php:30
 #: application/views/hamsat/index.php:28
@@ -2413,7 +2444,7 @@ msgstr "Datum"
 #: application/views/contesting/index.php:47
 #: application/views/contesting/index.php:200
 #: application/views/dashboard/index.php:150
-#: application/views/debug/index.php:518 application/views/eqsl/analysis.php:37
+#: application/views/debug/index.php:535 application/views/eqsl/analysis.php:37
 #: application/views/eqsl/download.php:37 application/views/eqsl/result.php:34
 #: application/views/eqslcard/index.php:31
 #: application/views/hamsat/index.php:29 application/views/oqrs/qsolist.php:8
@@ -2439,7 +2470,7 @@ msgstr "Tijd"
 #: application/views/awards/vucc/band.php:18
 #: application/views/bandmap/list.php:111
 #: application/views/contesting/index.php:201
-#: application/views/debug/index.php:519 application/views/debug/index.php:554
+#: application/views/debug/index.php:536 application/views/debug/index.php:571
 #: application/views/dxcalendar/index.php:12
 #: application/views/eqsl/analysis.php:38
 #: application/views/eqsl/download.php:38 application/views/eqsl/result.php:35
@@ -2491,7 +2522,8 @@ msgstr ""
 
 #: application/views/adif/import.php:56 application/views/adif/import.php:220
 #: application/views/adif/import.php:258 application/views/debug/index.php:164
-#: application/views/debug/index.php:509 application/views/hrdlog/export.php:25
+#: application/views/debug/index.php:181 application/views/debug/index.php:526
+#: application/views/hrdlog/export.php:25
 #: application/views/hrdlog/export.php:74
 #: application/views/interface_assets/footer.php:23
 #: application/views/qrz/export.php:73 application/views/qrz/export.php:94
@@ -4649,7 +4681,10 @@ msgid "disabled"
 msgstr ""
 
 #: application/views/cron/index.php:79 application/views/cron/index.php:81
-#: application/views/cron/index.php:83
+#: application/views/cron/index.php:83 application/views/debug/index.php:483
+#: application/views/debug/index.php:489 application/views/debug/index.php:494
+#: application/views/debug/index.php:499 application/views/debug/index.php:504
+#: application/views/debug/index.php:509 application/views/debug/index.php:514
 msgid "never"
 msgstr ""
 
@@ -5153,7 +5188,7 @@ msgstr ""
 msgid "Your authentication mode is outdated and possibly unsafe"
 msgstr ""
 
-#: application/views/debug/index.php:166
+#: application/views/debug/index.php:166 application/views/debug/index.php:183
 #, php-format
 msgid "Please edit your %s File:"
 msgstr ""
@@ -5173,126 +5208,145 @@ msgstr ""
 msgid "Authentication Mode is set correctly"
 msgstr ""
 
-#: application/views/debug/index.php:174
+#: application/views/debug/index.php:174 application/views/debug/index.php:191
 msgid "Ok"
 msgstr ""
 
 #: application/views/debug/index.php:181
+msgid "You use the default encryption key. You should change it!"
+msgstr ""
+
+#: application/views/debug/index.php:184
+msgid "This will also enable the 'Keep me logged in' feature."
+msgstr ""
+
+#: application/views/debug/index.php:185
+#, php-format
+msgid ""
+"Change the value of %s to a new encryption key other then "
+"'flossie1234555541'. Choose a safe and long password. (Strongly recommended)"
+msgstr ""
+
+#: application/views/debug/index.php:191
+msgid "You do not use the default encryption key"
+msgstr ""
+
+#: application/views/debug/index.php:198
 msgid "Migrate Userdata"
 msgstr ""
 
-#: application/views/debug/index.php:183
+#: application/views/debug/index.php:200
 msgid ""
 "Here you can migrate existing QSL cards and eQSL cards to the new userdata "
 "folder."
 msgstr ""
 
-#: application/views/debug/index.php:196
+#: application/views/debug/index.php:213
 msgid "Modules"
 msgstr ""
 
-#: application/views/debug/index.php:202 application/views/debug/index.php:213
-#: application/views/debug/index.php:224 application/views/debug/index.php:235
-#: application/views/debug/index.php:246
+#: application/views/debug/index.php:219 application/views/debug/index.php:230
+#: application/views/debug/index.php:241 application/views/debug/index.php:252
+#: application/views/debug/index.php:263
 msgid "Installed"
 msgstr ""
 
-#: application/views/debug/index.php:204 application/views/debug/index.php:215
-#: application/views/debug/index.php:226 application/views/debug/index.php:237
-#: application/views/debug/index.php:248
+#: application/views/debug/index.php:221 application/views/debug/index.php:232
+#: application/views/debug/index.php:243 application/views/debug/index.php:254
+#: application/views/debug/index.php:265
 msgid "Not Installed"
 msgstr ""
 
-#: application/views/debug/index.php:255 application/views/qso/index.php:654
+#: application/views/debug/index.php:272 application/views/qso/index.php:654
 msgid "Settings"
 msgstr ""
 
-#: application/views/debug/index.php:384
+#: application/views/debug/index.php:401
 msgid "Git Information"
 msgstr ""
 
-#: application/views/debug/index.php:388
+#: application/views/debug/index.php:405
 msgid "Branch"
 msgstr ""
 
-#: application/views/debug/index.php:399 application/views/debug/index.php:410
-#: application/views/debug/index.php:420
+#: application/views/debug/index.php:416 application/views/debug/index.php:427
+#: application/views/debug/index.php:437
 msgid "n/a"
 msgstr ""
 
-#: application/views/debug/index.php:405
+#: application/views/debug/index.php:422
 msgid "Commit"
 msgstr ""
 
-#: application/views/debug/index.php:415
+#: application/views/debug/index.php:432
 msgid "Tag"
 msgstr ""
 
-#: application/views/debug/index.php:425
+#: application/views/debug/index.php:442
 msgid "Last Fetch"
 msgstr ""
 
-#: application/views/debug/index.php:437
+#: application/views/debug/index.php:454
 msgid "Check for new version"
 msgstr ""
 
-#: application/views/debug/index.php:438
+#: application/views/debug/index.php:455
 msgid "Update now"
 msgstr ""
 
-#: application/views/debug/index.php:456
+#: application/views/debug/index.php:473
 msgid "File download date"
 msgstr ""
 
-#: application/views/debug/index.php:460
+#: application/views/debug/index.php:477
 msgid "File"
 msgstr ""
 
-#: application/views/debug/index.php:461
+#: application/views/debug/index.php:478
 msgid "Last update"
 msgstr ""
 
-#: application/views/debug/index.php:465
+#: application/views/debug/index.php:482
 msgid "DXCC update from Club Log"
 msgstr ""
 
-#: application/views/debug/index.php:467 application/views/debug/index.php:473
-#: application/views/debug/index.php:478 application/views/debug/index.php:483
-#: application/views/debug/index.php:488 application/views/debug/index.php:493
-#: application/views/debug/index.php:498
+#: application/views/debug/index.php:484 application/views/debug/index.php:490
+#: application/views/debug/index.php:495 application/views/debug/index.php:500
+#: application/views/debug/index.php:505 application/views/debug/index.php:510
+#: application/views/debug/index.php:515
 #: application/views/station_profile/edit.php:22
 msgid "Update"
 msgstr ""
 
-#: application/views/debug/index.php:471
+#: application/views/debug/index.php:488
 msgid "DOK file download"
 msgstr ""
 
-#: application/views/debug/index.php:476
+#: application/views/debug/index.php:493
 msgid "LoTW users download"
 msgstr ""
 
-#: application/views/debug/index.php:481
+#: application/views/debug/index.php:498
 msgid "POTA file download"
 msgstr ""
 
-#: application/views/debug/index.php:486
+#: application/views/debug/index.php:503
 msgid "SCP file download"
 msgstr ""
 
-#: application/views/debug/index.php:491
+#: application/views/debug/index.php:508
 msgid "SOTA file download"
 msgstr ""
 
-#: application/views/debug/index.php:496
+#: application/views/debug/index.php:513
 msgid "WWFF file download"
 msgstr ""
 
-#: application/views/debug/index.php:505
+#: application/views/debug/index.php:522
 msgid "QSO-DB Maintenance"
 msgstr ""
 
-#: application/views/debug/index.php:509
+#: application/views/debug/index.php:526
 #, php-format
 msgid "The Database contains %d QSO without a station-profile (location)"
 msgid_plural ""
@@ -5300,7 +5354,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: application/views/debug/index.php:522
+#: application/views/debug/index.php:539
 #: application/views/public_search/result.php:17
 #: application/views/station_profile/create.php:38
 #: application/views/station_profile/edit.php:46
@@ -5310,84 +5364,84 @@ msgstr[1] ""
 msgid "Station Callsign"
 msgstr ""
 
-#: application/views/debug/index.php:547
+#: application/views/debug/index.php:564
 msgid "Please mark QSOs and reassign them to an existing station location:"
 msgstr ""
 
-#: application/views/debug/index.php:555
+#: application/views/debug/index.php:572
 msgctxt "Stationlocation"
 msgid "Target Location"
 msgstr ""
 
-#: application/views/debug/index.php:556 application/views/debug/index.php:567
+#: application/views/debug/index.php:573 application/views/debug/index.php:584
 msgid "Reassign"
 msgstr ""
 
-#: application/views/debug/index.php:576
+#: application/views/debug/index.php:593
 msgid "Every QSO in your Database is assigned to a station-profile (location)"
 msgstr ""
 
-#: application/views/debug/index.php:576
+#: application/views/debug/index.php:593
 msgid "Everything ok"
 msgstr ""
 
-#: application/views/debug/index.php:601
+#: application/views/debug/index.php:618
 msgid "Bulgarian"
 msgstr ""
 
-#: application/views/debug/index.php:602
+#: application/views/debug/index.php:619
 msgid "Chinese (Simplified)"
 msgstr ""
 
-#: application/views/debug/index.php:603
+#: application/views/debug/index.php:620
 msgid "Czech"
 msgstr ""
 
-#: application/views/debug/index.php:604
+#: application/views/debug/index.php:621
 msgid "Dutch"
 msgstr ""
 
-#: application/views/debug/index.php:605
+#: application/views/debug/index.php:622
 msgid "English"
 msgstr ""
 
-#: application/views/debug/index.php:606
+#: application/views/debug/index.php:623
 msgid "Finnish"
 msgstr ""
 
-#: application/views/debug/index.php:607
+#: application/views/debug/index.php:624
 msgid "French"
 msgstr ""
 
-#: application/views/debug/index.php:608
+#: application/views/debug/index.php:625
 msgid "German"
 msgstr ""
 
-#: application/views/debug/index.php:609
+#: application/views/debug/index.php:626
 msgid "Greek"
 msgstr ""
 
-#: application/views/debug/index.php:610
+#: application/views/debug/index.php:627
 msgid "Italian"
 msgstr ""
 
-#: application/views/debug/index.php:611
+#: application/views/debug/index.php:628
 msgid "Polish"
 msgstr ""
 
-#: application/views/debug/index.php:612
+#: application/views/debug/index.php:629
 msgid "Russian"
 msgstr ""
 
-#: application/views/debug/index.php:613
+#: application/views/debug/index.php:630
 msgid "Spanish"
 msgstr ""
 
-#: application/views/debug/index.php:614
+#: application/views/debug/index.php:631
 msgid "Swedish"
 msgstr ""
 
-#: application/views/debug/index.php:615
+#: application/views/debug/index.php:632
 msgid "Turkish"
 msgstr ""
 
@@ -9390,8 +9444,8 @@ msgstr ""
 msgid "Username"
 msgstr ""
 
-#: application/views/user/edit.php:64 application/views/user/login.php:50
-#: application/views/user/login.php:52
+#: application/views/user/edit.php:64 application/views/user/login.php:49
+#: application/views/user/login.php:50
 #: application/views/user/reset_password.php:21
 #: application/views/user/reset_password.php:23
 #: application/views/user/reset_password.php:30
@@ -9775,8 +9829,12 @@ msgstr ""
 msgid "MAINTENANCE MODE"
 msgstr ""
 
-#: application/views/user/login.php:56
+#: application/views/user/login.php:55
 msgid "Forgot your password?"
+msgstr ""
+
+#: application/views/user/login.php:61
+msgid "Keep me logged in"
 msgstr ""
 
 #: application/views/user/main.php:2
