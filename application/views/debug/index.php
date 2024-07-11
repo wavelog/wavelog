@@ -181,6 +181,7 @@
                                 <span class="badge rounded-pill text-bg-warning">encryption_key: <?= __("Warning"); ?></span> <?= __("You use the default encryption key. You should change it!"); ?>
                             </div>
                             <p><?= sprintf(__("Please edit your %s File:"),"<code>application/config/config.php</code>"); ?></br>
+                                <?= __("This will also enable the 'Keep me logged in' feature.");?></br>
                                 <?= sprintf(__("Change the value of %s to a new encryption key other then 'flossie1234555541'. Choose a safe and long password. (Strongly recommended)"),"<span class=\"badge rounded-pill text-bg-secondary\">\$config['encryption_key']</span>"); ?>
                             </p>
                         </div>
@@ -479,38 +480,38 @@
                         </thead>
                         <tr>
                             <td><?= __("DXCC update from Club Log"); ?></td>
-                            <td><?php echo $dxcc_update->last_run ?? 'never'; ?></td>
+                            <td><?php echo $dxcc_update->last_run ?? __("never"); ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update'); ?>"><?= __("Update"); ?></a></td>
 
                         </tr>
                         <tr>
                             <td><?= __("DOK file download"); ?></td>
-                            <td><?php echo $dok_update->last_run ?? 'never'; ?></td>
+                            <td><?php echo $dok_update->last_run ?? __("never"); ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_dok'); ?>"><?= __("Update"); ?></a></td>
                         </tr>
                         <tr>
                             <td><?= __("LoTW users download"); ?></td>
-                            <td><?php echo $lotw_user_update->last_run ?? 'never'; ?></td>
+                            <td><?php echo $lotw_user_update->last_run ?? __("never"); ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/lotw_users'); ?>"><?= __("Update"); ?></a></td>
                         </tr>
                         <tr>
                             <td><?= __("POTA file download"); ?></td>
-                            <td><?php echo $pota_update->last_run ?? 'never'; ?></td>
+                            <td><?php echo $pota_update->last_run ?? __("never"); ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_pota'); ?>"><?= __("Update"); ?></a></td>
                         </tr>
                         <tr>
                             <td><?= __("SCP file download"); ?></td>
-                            <td><?php echo $scp_update->last_run ?? 'never'; ?></td>
+                            <td><?php echo $scp_update->last_run ?? __("never"); ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_clublog_scp'); ?>"><?= __("Update"); ?></a></td>
                         </tr>
                         <tr>
                             <td><?= __("SOTA file download"); ?></td>
-                            <td><?php echo $sota_update->last_run ?? 'never'; ?></td>
+                            <td><?php echo $sota_update->last_run ?? __("never"); ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_sota'); ?>"><?= __("Update"); ?></a></td>
                         </tr>
                         <tr>
                             <td><?= __("WWFF file download"); ?></td>
-                            <td><?php echo $wwff_update->last_run ?? 'never'; ?></td>
+                            <td><?php echo $wwff_update->last_run ?? __("never"); ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_wwff'); ?>"><?= __("Update"); ?></a></td>
                         </tr>
                     </table>

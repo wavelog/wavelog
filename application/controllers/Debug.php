@@ -115,23 +115,23 @@ class Debug extends CI_Controller
 				if (!empty($qsl_files_filtered) || !empty($eqsl_files_filtered)) {
 					if (!$flag_file) {
 						$status['btn_class'] = '';
-						$status['btn_text'] = 'Migrate data now';
+						$status['btn_text'] = __("Migrate data now");
 					} else {
 						$status['btn_class'] = '';
-						$status['btn_text'] = 'Migration already done. Run again?';
+						$status['btn_text'] = __("Migration already done. Run again?");
 					}
 				} else {
 					$status['btn_class'] = 'disabled';
-					$status['btn_text'] = 'No data to migrate';
+					$status['btn_text'] = __("No data to migrate");
 				}
 			} else {
 				$status['btn_class'] = 'disabled';
-				$status['btn_text'] = 'No migration possible';
+				$status['btn_text'] = __("No migration possible");
 			}
 		} else {
 			// If the folder is not writable, we don't need to continue
 			$status['btn_class'] = 'disabled';
-			$status['btn_text'] = 'No migration possible';
+			$status['btn_text'] = __("No migration possible");
 		}
 
 		return $status;
@@ -213,10 +213,10 @@ class Debug extends CI_Controller
 			$migrate = $this->debug_model->migrate_userdata();
 
 			if ($migrate == true) {
-				$this->session->set_flashdata('success', 'File Migration was successfull, but please check also manually. If everything seems right you can delete the folders "assets/qslcard" and "images/eqsl_card_images".');
+				$this->session->set_flashdata('success', __("File Migration was successfull, but please check also manually. If everything seems right you can delete the folders 'assets/qslcard' and 'images/eqsl_card_images'."));
 				redirect('debug');
 			} else {
-				$this->session->set_flashdata('error', 'File Migration failed. Please check the Error Log.');
+				$this->session->set_flashdata('error', __("File Migration failed. Please check the Error Log."));
 				redirect('debug');
 			}
 		}
