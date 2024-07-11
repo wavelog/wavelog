@@ -181,7 +181,7 @@
                                 <span class="badge rounded-pill text-bg-warning">encryption_key: <?= __("Warning"); ?></span> <?= __("You use the default encryption key. You should change it!"); ?>
                             </div>
                             <p><?= sprintf(__("Please edit your %s File:"),"<code>application/config/config.php</code>"); ?></br>
-                                <?= sprintf(__("Change the value of %s to a new encryption key other then 'flossie1234555541'. Choose a save and long password. (Strongly recommended)"),"<span class=\"badge rounded-pill text-bg-secondary\">\$config['encryption_key']</span>"); ?>
+                                <?= sprintf(__("Change the value of %s to a new encryption key other then 'flossie1234555541'. Choose a safe and long password. (Strongly recommended)"),"<span class=\"badge rounded-pill text-bg-secondary\">\$config['encryption_key']</span>"); ?>
                             </p>
                         </div>
                     <?php
