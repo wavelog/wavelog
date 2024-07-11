@@ -1,33 +1,33 @@
 <style>
-html,
-body {
-    height: 100%;
-}
+    html,
+    body {
+        height: 100%;
+    }
 
-body {
-    display: flex;
-    align-items: center;
-    padding-top: 40px;
-    padding-bottom: 40px;
-}
+    body {
+        display: flex;
+        align-items: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
 
-.form-signin {
-    width: 100%;
-    max-width: 430px;
-    padding: 15px;
-    margin: auto;
-}
+    .form-signin {
+        width: 100%;
+        max-width: 430px;
+        padding: 15px;
+        margin: auto;
+    }
 
-.form-signin input[type="email"] {
-    margin-bottom: -1px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-}
+    .form-signin input[type="email"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
 
-.form-signin input[type="password"] {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-}
+    .form-signin input[type="password"] {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
 </style>
 <main class="form-signin">
     <img src="<?php echo base_url(); ?>assets/logo/<?php echo $this->optionslib->get_logo('main_logo'); ?>.png" class="mx-auto d-block mainLogo" alt="">
@@ -39,23 +39,31 @@ body {
     <div class="my-2 rounded-0 shadow-sm card mb-2 shadow-sm">
         <div class="card-body">
             <form method="post" action="<?php echo site_url('user/login'); ?>" name="users">
-			<?php $this->form_validation->set_error_delimiters('', ''); ?>
+                <?php $this->form_validation->set_error_delimiters('', ''); ?>
                 <input type="hidden" name="id" value="<?php echo $this->uri->segment(3); ?>" />
-                <div>
+                <div class="mb-2">
                     <label for="floatingInput"><strong><?= __("Username"); ?></strong></label>
-                    <input type="text" name="user_name" class="form-control" id="floatingInput" placeholder="<?= __("Username"); ?>"
-                        value="<?php echo $this->input->post('user_name'); ?>" autofocus>
+                    <input type="text" name="user_name" class="form-control" id="floatingInput" placeholder="<?= __("Username"); ?>" value="<?php echo $this->input->post('user_name'); ?>" autofocus>
                 </div>
-                <div>
+                <div class="mb-2">
                     <label for="floatingPassword"><strong><?= __("Password"); ?></strong></label>
-                    <input type="password" name="user_password" class="form-control" id="floatingPassword"
-                        placeholder="<?= __("Password"); ?>">
+                    <input type="password" name="user_password" class="form-control" id="floatingPassword" placeholder="<?= __("Password"); ?>">
                 </div>
-
-                <div>
-                    <p><small><a class="" href="<?php echo site_url('user/forgot_password'); ?>"><?= __("Forgot your password?"); ?></a></small></p>
+                <div class="mb-2">
+                    <div class="row">
+                        <div class="col text-start">
+                            <small><a class="" href="<?php echo site_url('user/forgot_password'); ?>"><?= __("Forgot your password?"); ?></a></small>
+                        </div>
+                        <div class="col text-end">
+                            <?php  // we only want to create these cookies if the site is reached by https
+                                if ($https_check == true && $this->config->item('encryption_key') != 'flossie1234555541') { ?>
+                                    <input type="checkbox" value="1" name="keep_login" id="keep_login" />
+                                    <label for="keep_login"><small><?= __("Keep me logged in"); ?></small></label>
+                            <?php } ?>
+                        </div>
+                    </div>
                 </div>
-					<?php $this->load->view('layout/messages'); ?>
+                <?php $this->load->view('layout/messages'); ?>
                 <button class="w-100 btn btn-primary" type="submit"><?= __("Login"); ?> →</button>
             </form>
         </div>

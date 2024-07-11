@@ -765,7 +765,12 @@ class User extends CI_Controller {
 
 	function login() {
 		// Check our version and run any migrations
-		$this->load->library('Migration');
+		if (!$this->load->is_loaded('Migration')) {
+			$this->load->library('Migration');
+		}
+		if (!$this->load->is_loaded('Encryption')) {
+			$this->load->library('Encryption');
+		}
 		$this->migration->current();
 
 		$this->load->model('user_model');
@@ -778,9 +783,77 @@ class User extends CI_Controller {
 
 		$data['user'] = $query->row();
 
-		
+		// Read the cookie keep_login and allow the login
+		if ($this->input->cookie(config_item('cookie_prefix') . 'keep_login')) {
+
+			try {
+
+				if ($this->config->item('encryption_key') == 'flossie1234555541') {
+					throw new Exception("Encryption Key is still default. Change config['encryption_key'] to another value then flossie...");
+				}
+
+				// process the incoming string
+				$incoming_string = $this->input->cookie(config_item('cookie_prefix') . 'keep_login');
+				$i_str_parts_a = explode(base64_encode($this->config->item('base_url')), $incoming_string);
+				$uid = base64_decode($i_str_parts_a[1]);
+				$a = $i_str_parts_a[0];
+
+				// process the string to compare with
+				$compare_string = $this->user_model->keep_cookie_hash($uid);
+				$i_str_parts_b = explode(base64_encode($this->config->item('base_url')), $compare_string);
+				$b = $i_str_parts_b[0];
+
+				$user = $this->user_model->get_by_id($uid)->row();
+				$user_type = $user->user_type;
+
+				// compare both strings the hard way and log in if they match
+				if ($this->user_model->check_keep_hash($a, $b)) {
+
+					// check if maintenance mode is active or the user is an admin
+					log_message('error', 'user_type: '.$user_type);
+					if (ENVIRONMENT != 'maintenance' || $user_type == 99) {
+
+						// if everything is fine we can log in the user
+						$this->user_model->update_session($uid);
+						$this->user_model->set_last_seen($uid);
+						log_message('debug', "User ID: [$uid] logged in successfully with 'Keep Login'.");
+						redirect('dashboard');
+
+					} else {
+
+						// user not allowed to log in
+						log_message('debug', "User ID: [$uid] Login rejected because of an active maintenance mode (and he is no admin).");
+
+						// Delete keep_login cookie
+						setcookie('keep_login', '', time() - 3600, '/');
+
+						redirect('user/login');
+					}
+				} else {
+					// user not allowed to log in
+					log_message('debug', "User ID: [$uid] Login rejected because of non matching hash key ('Keep Login').");
+
+					// Delete keep_login cookie
+					setcookie('keep_login', '', time() - 3600, '/');
+					$this->session->set_flashdata('error', __("Login failed. Try again."));
+					redirect('user/login');
+				}
+			} catch (Exception $e) {
+				// Something went wrong with the cookie
+				log_message('error', "User ID: [".$uid."]; 'Keep Login' failed. Cookie deleted. Message: ".$e);
+
+				// Delete keep_login cookie
+				setcookie('keep_login', '', time() - 3600, '/');
+
+				$this->session->set_flashdata('error', __("Login failed. Try again."));
+				redirect('user/login');
+			}
+			
+		}
+
 		if ($this->form_validation->run() == FALSE) {
 			$data['page_title'] = __("Login");
+			$data['https_check'] = $this->https_check();
 			$this->load->view('interface_assets/mini_header', $data);
 			$this->load->view('user/login');
 			$this->load->view('interface_assets/footer');
@@ -798,7 +871,24 @@ class User extends CI_Controller {
 
 				);
 				$this->input->set_cookie($cookie);
+
+				// Create a keep_login cookie
+				if ($this->input->post('keep_login') == '1') {
+
+					$encrypted_string = $this->user_model->keep_cookie_hash($data['user']->user_id);
+
+					$cookie = array(
+						'name'   => 'keep_login',
+						'value'  => $encrypted_string,
+						'expire' => '2592000',  // 30 days
+						'secure' => TRUE,
+						'httponly' => TRUE
+					);
+					$this->input->set_cookie($cookie);
+				}
+				$this->user_model->set_last_seen($data['user']->user_id);
 				redirect('dashboard');
+
 			} else {
 				if(ENVIRONMENT == 'maintenance') {
 					$this->session->set_flashdata('notice', __("Sorry. This instance is currently in maintenance mode. If this message appears unexpectedly or keeps showing up, please contact an administrator. Only administrators are currently allowed to log in."));
@@ -816,10 +906,13 @@ class User extends CI_Controller {
 
 		$user_name = $this->session->userdata('user_name');
 
+		// Delete keep_login cookie
+		setcookie('keep_login', '', time() - 3600, '/');
+
 		$this->user_model->clear_session();
 
 		$this->session->set_flashdata('notice', sprintf(__("User %s logged out."), $user_name));
-		redirect('dashboard');
+		redirect('user/login');
 	}
 
 	/**
@@ -1038,4 +1131,17 @@ class User extends CI_Controller {
          return false;
       }
    }
+
+   function https_check() {
+	if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
+		return true;
+	}
+	if (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
+		return true;
+	}
+	if (!empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] === 'on') {
+		return true;
+	}
+	return false;
+}
 }
