@@ -677,23 +677,13 @@ class User_Model extends CI_Model {
 		// Client Browser and OS
 		$client_browser = base64_encode($_SERVER['HTTP_USER_AGENT']);
 
-		// Client IP
-		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-			$cip = $_SERVER['HTTP_CLIENT_IP'];
-		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-			$cip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-		} else {
-			$cip = $_SERVER['REMOTE_ADDR'];
-		}
-		$client_ip = base64_encode($cip);
-
 		// Client language
 		$client_lang = base64_encode($_SERVER['HTTP_ACCEPT_LANGUAGE']);
 
 		$uid = base64_encode($user_id);
 
 		// Create a long string out of the client data
-		$client_string = $client_browser . $client_ip . $client_lang . $uid;
+		$client_string = $client_browser . $client_lang . $uid;
 
 		// Now we load the Encryption Lib
 		if (!$this->load->is_loaded('encryption')) {
