@@ -280,7 +280,7 @@ class Logbookadvanced extends CI_Controller {
 			'user_id' => (int)$this->session->userdata('user_id'),
 			'dateFrom' => '',
 			'dateTo' => '',
-			'de' => (int)$this->input->post('de'),
+			'de' => $this->input->post('de'),
 			'dx' => '',
 			'mode' => '',
 			'band' => '',
