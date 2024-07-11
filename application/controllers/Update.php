@@ -308,20 +308,7 @@ class Update extends CI_Controller {
     }
 
     public function download_lotw_users() {
-        $contents = file_get_contents('https://lotw.arrl.org/lotw-user-activity.csv', true);
-
-        if($contents === FALSE) {
-            echo "Something went wrong with fetching the LoTW users file.";
-        } else {
-            $file = './updates/lotw_users.csv';
-
-            if (file_put_contents($file, $contents) !== FALSE) {     // Save our content to the file.
-                echo "LoTW User Data Saved.";
-            } else {
-                echo "FAILED: Could not write to LoTW users file";
-            }
-        }
-
+        $this->lotw_users();
     }
 
     public function lotw_users() {
