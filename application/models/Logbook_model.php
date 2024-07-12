@@ -1230,13 +1230,16 @@ class Logbook_model extends CI_Model {
 		  $eqsl_rcvd = 'N';
 	  }
 
-	  if ($this->input->post('lotw_sent')) {
+		// Missing in tqsl 2.7.3 config.xml
+		$lotw_unsupported_modes = array('INTERNET', 'RPT');
+
+	  if ($this->input->post('lotw_sent') && !in_array($this->input->post('prop_mode'), $lotw_unsupported_modes)) {
 		  $lotw_sent = $this->input->post('lotw_sent');
 	  } else {
 		  $lotw_sent = 'N';
 	  }
 
-	  if ($this->input->post('lotw_rcvd')) {
+	  if ($this->input->post('lotw_rcvd') && !in_array($this->input->post('prop_mode'), $lotw_unsupported_modes)) {
 		  $lotw_rcvd = $this->input->post('lotw_rcvd');
 	  } else {
 		  $lotw_rcvd = 'N';
@@ -1332,8 +1335,8 @@ class Logbook_model extends CI_Model {
 		  'COL_QSLMSG' => $this->input->post('qslmsg'),
 		  'COL_LOTW_QSLSDATE' => $lotwsdate,
 		  'COL_LOTW_QSLRDATE' => $lotwrdate,
-		  'COL_LOTW_QSL_SENT' => $this->input->post('lotw_sent'),
-		  'COL_LOTW_QSL_RCVD' => $this->input->post('lotw_rcvd'),
+		  'COL_LOTW_QSL_SENT' => $lotw_sent,
+		  'COL_LOTW_QSL_RCVD' => $lotw_rcvd,
 		  'COL_IOTA' => $this->input->post('iota_ref'),
 		  'COL_SOTA_REF' => $this->input->post('sota_ref'),
 		  'COL_WWFF_REF' => $this->input->post('wwff_ref'),
