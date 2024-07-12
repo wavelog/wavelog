@@ -35,13 +35,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Command Weblate to perform a pull
-        env:
-          WEBLATE_TOKEN: ${{ secrets.WEBLATE_TOKEN }}
-          WEBLATE_URL: ${{ secrets.WEBLATE_URL }}
-        run: |
-          sleep 2
-          curl --silent \
-          -d operation=pull \
-          -H "Authorization: Token $WEBLATE_TOKEN" \
-          $WEBLATE_URL
+      - name: Invoke Weblate Update
+        uses: distributhor/workflow-webhook@v3
+        with:
+          webhook_type: 'json-extended'
+          webhook_url: ${{ secrets.WEBLATE_HOOKURL }}
