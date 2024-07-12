@@ -5,6 +5,23 @@ $('.labeltable').on('click', 'input[type="checkbox"]', function() {
     $('input:checkbox').not(this).prop('checked', false);
 });
 
+$(document).on('click','#button_markprint', function (e) {
+	e.preventDefault();
+	$('#button_markprint').attr("disabled", true).addClass("running");
+	murl=base_url + 'index.php/qslprint/qsl_printed/' + $('#sid2print').val();
+	$.ajax({
+		url: murl,
+		type: 'get',
+		success: function (html) {
+			$('#button_markprint').removeClass("running");
+			$('#button1id').attr("disabled", true);		// Disable printing as well, since every QSO for this station has been marked
+		},
+		error: function (html) {
+			$('#button_markprint').prop("disabled", false).removeClass("running");
+		}
+	});
+});
+
 function saveDefault(id) {
 	$.ajax({
 		url: base_url + 'index.php/labels/saveDefaultLabel',
@@ -33,6 +50,7 @@ function printat(stationid) {
 					label: lang_admin_close,
 					action: function (dialogItself) {
 						dialogItself.close();
+						location.reload(); 	// Refresh Mainpage, because labels could have been marked as sent
 					}
 				}]
 			});
