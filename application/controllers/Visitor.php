@@ -47,7 +47,7 @@ class Visitor extends CI_Controller {
 
             // Public Slug failed the XSS test
             log_message('error', '[Visitor] XSS Attack detected on public_slug '. $public_slug);
-            show_404('Unknown Public Page.');
+            show_404(__("Unknown Public Page."));
 
         } else {
 
@@ -71,12 +71,12 @@ class Visitor extends CI_Controller {
                     $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($logbook_id);
 
 					if (!$logbooks_locations_array) {
-						show_404('Empty Logbook');
+						show_404(__("Empty Logbook"));
 					}
 
                 } else {
                     log_message('error', $public_slug.' has no associated station locations');
-                    show_404('Unknown Public Page.');
+                    show_404(__("Unknown Public Page."));
                 }
 
                 // Public visitor so no QRA to setup
@@ -139,7 +139,7 @@ class Visitor extends CI_Controller {
             } else {
                 // Show 404
                 log_message('error', '[Visitor] XSS Attack detected on public_slug '. $public_slug);
-                show_404('Unknown Public Page.');
+                show_404(__("Unknown Public Page."));
             }
 
         }
@@ -160,11 +160,11 @@ class Visitor extends CI_Controller {
             $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($logbook_id);
 
 			if (!$logbooks_locations_array) {
-				show_404('Empty Logbook');
+				show_404(__("Empty Logbook"));
 			}
         } else {
             log_message('error', $slug.' has no associated station locations');
-            show_404('Unknown Public Page.');
+            show_404(__("Unknown Public Page."));
         }
 
 		$qsos = $this->logbook_model->get_qsos($this->qso_per_page, $this->uri->segment(4), $logbooks_locations_array);
@@ -190,11 +190,11 @@ class Visitor extends CI_Controller {
 				$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($logbook_id);
 
 				if (!$logbooks_locations_array) {
-					show_404('Empty Logbook');
+					show_404(__("Empty Logbook"));
 				}
 			} else {
 				log_message('error', $slug.' has no associated station locations');
-				show_404('Unknown Public Page.');
+				show_404(__("Unknown Public Page."));
 			}
         }
 
@@ -467,11 +467,11 @@ class Visitor extends CI_Controller {
             $logbooks_locations_array = $this->stationsetup_model->get_container_relations($logbook_id);
 
 			if (!$logbooks_locations_array) {
-				show_404('Empty Logbook');
+				show_404(__("Empty Logbook"));
 			}
         } else {
             log_message('error', $slug.' has no associated station locations');
-            show_404('Unknown Public Page.');
+            show_404(__("Unknown Public Page."));
         }
 
 		$qsos = $this->visitor_model->get_qsos($qsocount, $logbooks_locations_array, $band);
