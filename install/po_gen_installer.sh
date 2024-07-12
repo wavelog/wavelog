@@ -35,6 +35,11 @@ POT_COPYRIGHT_TEXT="Copyright (c) $YEAR Wavelog by DF2ET, DJ7NT, HB9HIL and LA8A
 POT_LICENCE_TEXT="This file is distributed under the MIT licence."
 FOLDERS="install"
 
+echo "####################################################"
+echo " "
+echo "Performing the PO Generator Script for the Installer"
+echo " "
+
 # Find all PHP files and create a list in a temporary file 
 find $FOLDERS -name "*.php" > PHPFILESLIST
 
