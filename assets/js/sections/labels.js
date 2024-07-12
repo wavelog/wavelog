@@ -46,7 +46,19 @@ function printat(stationid) {
 				message: html,
 				onshown: function(dialog) {
 				},
-				buttons: [{
+				buttons: [
+				{
+					label: lang_print_queue,
+					id: "button1id",
+					cssClass: "btn btn-primary",
+					action: function() { $("#pform").submit(); }
+				},
+				{
+					label: lang_mark_qsl_as_printed+'<div class="ld ld-ring ld-spin"></div>',
+					cssClass: "btn btn-secondary me-3 ld-ext-right",
+					id: "button_markprint"
+				},
+				{
 					label: lang_admin_close,
 					action: function (dialogItself) {
 						dialogItself.close();
