@@ -6,11 +6,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-11 22:38+0000\n"
+"POT-Creation-Date: 2024-07-12 21:15+0000\n"
 "PO-Revision-Date: 2024-07-12 05:15+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/ru/>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1983,6 +1983,22 @@ msgstr "Осуществлён сброс пароля."
 #: application/views/user/reset_password.php:35
 msgid "Reset Password"
 msgstr "Сбросить пароль"
+
+#: application/controllers/Visitor.php:50
+#: application/controllers/Visitor.php:79
+#: application/controllers/Visitor.php:142
+#: application/controllers/Visitor.php:167
+#: application/controllers/Visitor.php:197
+#: application/controllers/Visitor.php:474
+msgid "Unknown Public Page."
+msgstr ""
+
+#: application/controllers/Visitor.php:74
+#: application/controllers/Visitor.php:163
+#: application/controllers/Visitor.php:193
+#: application/controllers/Visitor.php:470
+msgid "Empty Logbook"
+msgstr ""
 
 #: application/controllers/Visitor.php:203
 msgid "Satellite Gridsquare Map"
@@ -8957,8 +8973,8 @@ msgid ""
 "first QSO, which is essentially the callsign."
 msgstr ""
 "Для начала убедитесь, что вы уже заполнили форму слева, указав дату, "
-"позывной станции и позывной оператора. Основные данные включают диапазон ("
-"или QRG в МГц, например, '7.145'), вид модуляции и время. После времени "
+"позывной станции и позывной оператора. Основные данные включают диапазон "
+"(или QRG в МГц, например, '7.145'), вид модуляции и время. После времени "
 "указывается первое QSO, которое, по сути, является позывным."
 
 #: application/views/simplefle/syntax_help.php:9
