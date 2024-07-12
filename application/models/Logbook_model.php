@@ -4886,6 +4886,16 @@ function lotw_last_qsl_date($user_id) {
     return "Updated";
   }
 
+  function mark_lotw_ignore($station_id) {
+      $data = array(
+           'COL_LOTW_QSLSDATE' => null,
+           'COL_LOTW_QSL_SENT' => 'I',
+      );
+    $this->db->where("station_id", $station_id);
+    $this->db->where_in('COL_PROP_MODE', $this->config->item('lotw_unsupported_prop_modes'));
+    $this->db->update($this->config->item('table_name'), $data);
+  }
+
     function county_qso_details($state, $county) {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
