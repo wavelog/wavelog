@@ -490,7 +490,7 @@
                                         <div class="mb-3 row">
                                             <label for="sent" class="col-sm-3 col-form-label"><?= __("Sent"); ?></label>
                                             <div class="col-sm-9">
-                                                <select class="form-select" id="lotw_sent" name="lotw_sent">
+                                                <select class="form-select" id="lotw_sent" name="lotw_sent" <?php if (in_array($qso->COL_PROP_MODE, $this->config->item('lotw_unsupported_prop_modes'))) { echo "disabled=\"disabled\""; } ?>>
                                                     <option value="N" <?php if($qso->COL_LOTW_QSL_SENT == "N") { echo "selected=\"selected\""; } ?>><?= __("No"); ?></option>
                                                     <option value="Y" <?php if($qso->COL_LOTW_QSL_SENT == "Y") { echo "selected=\"selected\""; } ?>><?= __("Yes"); ?></option>
                                                     <option value="R" <?php if($qso->COL_LOTW_QSL_SENT == "R") { echo "selected=\"selected\""; } ?>><?= __("Requested"); ?></option>
