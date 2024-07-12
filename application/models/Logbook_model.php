@@ -1230,16 +1230,13 @@ class Logbook_model extends CI_Model {
 		  $eqsl_rcvd = 'N';
 	  }
 
-		// Missing in tqsl 2.7.3 config.xml
-		$lotw_unsupported_modes = array('INTERNET', 'RPT');
-
-	  if ($this->input->post('lotw_sent') && !in_array($this->input->post('prop_mode'), $lotw_unsupported_modes)) {
+	  if ($this->input->post('lotw_sent') && !in_array($this->input->post('prop_mode'), $this->config->item('lotw_unsupported_prop_modes'))) {
 		  $lotw_sent = $this->input->post('lotw_sent');
 	  } else {
 		  $lotw_sent = 'N';
 	  }
 
-	  if ($this->input->post('lotw_rcvd') && !in_array($this->input->post('prop_mode'), $lotw_unsupported_modes)) {
+	  if ($this->input->post('lotw_rcvd') && !in_array($this->input->post('prop_mode'), $this->config->item('lotw_unsupported_prop_modes'))) {
 		  $lotw_rcvd = $this->input->post('lotw_rcvd');
 	  } else {
 		  $lotw_rcvd = 'N';
@@ -4855,9 +4852,6 @@ function lotw_last_qsl_date($user_id) {
 
   function get_lotw_qsos_to_upload($station_id, $start_date, $end_date) {
 
-    // Missing in tqsl 2.7.3 config.xml
-    $lotw_unsupported_modes = array('INTERNET', 'RPT');
-
     $this->db->select('COL_PRIMARY_KEY,COL_CALL, COL_BAND, COL_BAND_RX, COL_TIME_ON, COL_RST_RCVD, COL_RST_SENT, COL_MODE, COL_SUBMODE, COL_FREQ, COL_FREQ_RX, COL_GRIDSQUARE, COL_SAT_NAME, COL_PROP_MODE, COL_LOTW_QSL_SENT, station_id');
 
     $this->db->where("station_id", $station_id);
@@ -4865,7 +4859,7 @@ function lotw_last_qsl_date($user_id) {
     $this->db->where('COL_LOTW_QSL_SENT', NULL);
     $this->db->or_where('COL_LOTW_QSL_SENT !=', "Y");
     $this->db->group_end();
-    $this->db->where_not_in('COL_PROP_MODE', $lotw_unsupported_modes);
+    $this->db->where_not_in('COL_PROP_MODE', $this->config->item('lotw_unsupported_prop_modes'));
     $this->db->where('COL_TIME_ON >=', $start_date);
     $this->db->where('COL_TIME_ON <=', $end_date);
     $this->db->order_by("COL_TIME_ON", "desc");

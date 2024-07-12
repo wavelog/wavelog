@@ -5,10 +5,7 @@ class Migration_unmark_unsupported_lotw_uploads extends CI_Migration
 {
    public function up() {
 
-      // Missing in tqsl 2.7.3 config.xml
-      $lotw_unsupported_modes = array('INTERNET', 'RPT');
-
-      $this->db->where_in('COL_PROP_MODE', $lotw_unsupported_modes);
+      $this->db->where_in('COL_PROP_MODE', $this->config->item('lotw_unsupported_propmodes'));
       $this->db->update($this->config->item('table_name'), array('COL_LOTW_QSLSDATE' => null, 'COL_LOTW_QSL_SENT' => 'N'));
    }
 
