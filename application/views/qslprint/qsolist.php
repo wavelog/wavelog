@@ -169,11 +169,13 @@ if ($qsos->result() != NULL) {
 					$timestamp = strtotime($qsl->COL_LOTW_QSLSDATE);
 					echo " ".($timestamp != '' ? date($custom_date_format, $timestamp) : '');
 				}
-				echo "\" data-bs-toggle=\"tooltip\"";
+				echo "\" data-bs-toggle=\"tooltip\" class=\"lotw-green\"";
+			} elseif ($qsl->COL_LOTW_QSL_SENT == "I") {
+				echo "class=\"lotw-grey\" data-bs-toggle=\"tooltip\" title=\"".__("Invalid (Ignore)")."\"";
+			} else {
+				echo " class=\"lotw-red\"";
 			}
-			echo ' class="lotw-';
-			echo ($qsl->COL_LOTW_QSL_SENT=='Y')?'green':'red';
-			echo '">&#9650;</span>';
+			echo '>&#9650;</span>';
 
 			echo '<span ';
 			if ($qsl->COL_LOTW_QSL_RCVD == "Y") {

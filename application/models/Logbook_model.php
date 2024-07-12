@@ -1230,7 +1230,9 @@ class Logbook_model extends CI_Model {
 		  $eqsl_rcvd = 'N';
 	  }
 
-	  if ($this->input->post('lotw_sent') && !in_array($this->input->post('prop_mode'), $this->config->item('lotw_unsupported_prop_modes'))) {
+	  if (in_array($this->input->post('prop_mode'), $this->config->item('lotw_unsupported_prop_modes'))) {
+		  $lotw_sent = 'I';
+	  } elseif ($this->input->post('lotw_sent')) {
 		  $lotw_sent = $this->input->post('lotw_sent');
 	  } else {
 		  $lotw_sent = 'N';
