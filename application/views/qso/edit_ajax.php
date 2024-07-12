@@ -185,7 +185,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="mb-3 col-sm-6">
+                                    <div class="mb-3">
                                         <label for="prop_mode"><?= __("Propagation Mode"); ?></label>
                                         <select class="form-select" id="prop_mode" name="prop_mode">
                                             <option value="" <?php if($qso->COL_PROP_MODE == "") { echo "selected=\"selected\""; } ?>></option>
@@ -208,6 +208,7 @@
                                             <option value="TEP" <?php if($qso->COL_PROP_MODE == "TEP") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Trans-equatorial"); ?></option>
                                             <option value="TR" <?php if($qso->COL_PROP_MODE == "TR") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Tropospheric ducting"); ?></option>
                                         </select>
+                                        <small id="lotw_sent_hint" class="form-text text-muted"><?php if (in_array($qso->COL_PROP_MODE, $this->config->item('lotw_unsupported_prop_modes'))) { echo __("This propagation mode is not supported by LoTW. LoTW sent/received fields disabled."); } else { echo "&nbsp;"; } ?></small>
                                     </div>
 
                                     <input type="hidden" class="form-control" id="country" name="country" value="<?php echo $qso->COL_COUNTRY; ?>">
@@ -489,7 +490,7 @@
                                         <div class="mb-3 row">
                                             <label for="sent" class="col-sm-3 col-form-label"><?= __("Sent"); ?></label>
                                             <div class="col-sm-9">
-                                                <select class="form-select" name="lotw_sent">
+                                                <select class="form-select" id="lotw_sent" name="lotw_sent">
                                                     <option value="N" <?php if($qso->COL_LOTW_QSL_SENT == "N") { echo "selected=\"selected\""; } ?>><?= __("No"); ?></option>
                                                     <option value="Y" <?php if($qso->COL_LOTW_QSL_SENT == "Y") { echo "selected=\"selected\""; } ?>><?= __("Yes"); ?></option>
                                                     <option value="R" <?php if($qso->COL_LOTW_QSL_SENT == "R") { echo "selected=\"selected\""; } ?>><?= __("Requested"); ?></option>
