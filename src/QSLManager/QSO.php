@@ -386,11 +386,14 @@ class QSO
 				$timestamp = strtotime($data['COL_LOTW_QSLRDATE']);
 				$lotwstring .=  " ". ($timestamp != '' ? date($custom_date_format, $timestamp) : '');
 			}
-
-			$lotwstring .= "\" data-bs-toggle=\"tooltip\"";
+			$lotwstring .= "\" data-bs-toggle=\"tooltip\" class=\"lotw-green\"";
+		} elseif ($data['COL_LOTW_QSL_RCVD'] == "I") {
+			$lotwstring .= "class=\"lotw-grey\" data-bs-toggle=\"tooltip\" title=\"".__("Invalid (Ignore)")."\"";
+		} else {
+			$lotwstring .= "class=\"lotw-red\"";
 		}
 
-		$lotwstring .= ' class="lotw-' . (($data['COL_LOTW_QSL_RCVD']=='Y') ? 'green':'red') . '">&#9660;</span>';
+		$lotwstring .= '>&#9660;</span>';
 
 		return $lotwstring;
 	}

@@ -1238,7 +1238,9 @@ class Logbook_model extends CI_Model {
 		  $lotw_sent = 'N';
 	  }
 
-	  if ($this->input->post('lotw_rcvd') && !in_array($this->input->post('prop_mode'), $this->config->item('lotw_unsupported_prop_modes'))) {
+	  if (in_array($this->input->post('prop_mode'), $this->config->item('lotw_unsupported_prop_modes'))) {
+		  $lotw_rcvd = 'I';
+	  } elseif ($this->input->post('lotw_rcvd')) {
 		  $lotw_rcvd = $this->input->post('lotw_rcvd');
 	  } else {
 		  $lotw_rcvd = 'N';
@@ -4890,6 +4892,8 @@ function lotw_last_qsl_date($user_id) {
       $data = array(
            'COL_LOTW_QSLSDATE' => null,
            'COL_LOTW_QSL_SENT' => 'I',
+           'COL_LOTW_QSLRDATE' => null,
+           'COL_LOTW_QSL_RCVD' => 'I',
       );
     $this->db->where("station_id", $station_id);
     $this->db->where_in('COL_PROP_MODE', $this->config->item('lotw_unsupported_prop_modes'));

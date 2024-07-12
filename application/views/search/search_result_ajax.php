@@ -315,11 +315,13 @@ $ci =& get_instance();
                       $timestamp = strtotime($row->COL_LOTW_QSLRDATE);
                       echo " ".($timestamp != '' ? date($custom_date_format, $timestamp) : '');
                    }
-                   echo "\" data-bs-toggle=\"tooltip\"";
+                   echo "\" data-bs-toggle=\"tooltip\" class=\"lotw-green\"";
+                } elseif ($row->COL_LOTW_QSL_RCVD == "I") {
+                   echo "class=\"lotw-grey\" data-bs-toggle=\"tooltip\" title=\"".__("Invalid (Ignore)")."\"";
+                } else {
+                   echo "class=\"lotw-red\"";
                 }
-                echo ' class="lotw-';
-                echo ($row->COL_LOTW_QSL_RCVD=='Y')?'green':'red';
-                echo '">&#9660;</span>';
+                echo '>&#9660;</span>';
                 echo '</td>';
                 } ?>
 

@@ -278,10 +278,12 @@ function qso_edit(id) {
                     $('#prop_mode').change(function(){
                        if (unsupported_lotw_prop_modes.includes($('#prop_mode').val())) {
                           $('#lotw_sent').prop('disabled', true);
-                          $('#lotw_sent_hint').html("This propagation mode is not supported by LoTW. LoTW sent/received fields disabled.").fadeIn("slow");
+                          $('#lotw_rcvd').prop('disabled', true);
+                          $('#lotw_propmode_hint').html("This propagation mode is not supported by LoTW. LoTW sent/received fields disabled.").fadeIn("slow");
                        } else {
                           $('#lotw_sent').prop('disabled', false);
-                          $('#lotw_sent_hint').html("&nbsp;").fadeIn("fast");
+                          $('#lotw_rcvd').prop('disabled', false);
+                          $('#lotw_propmode_hint').html("&nbsp;").fadeIn("fast");
                        }
                     });
 
