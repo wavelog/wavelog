@@ -45,13 +45,18 @@ function printat(stationid) {
 				nl2br: false,
 				message: html,
 				onshown: function(dialog) {
+					dialog.getButton('button_markprint').disable()
 				},
 				buttons: [
 				{
 					label: lang_print_queue,
 					id: "button1id",
 					cssClass: "btn btn-primary",
-					action: function() { $("#pform").submit(); }
+					action: function() { 
+						$('#button_markprint').removeClass("disabled");
+						$('#button_markprint').attr("disabled", false);
+						$("#pform").submit(); 
+					}
 				},
 				{
 					label: lang_mark_qsl_as_printed+'<div class="ld ld-ring ld-spin"></div>',
