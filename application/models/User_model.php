@@ -408,7 +408,7 @@ class User_Model extends CI_Model {
 		if ($u == null) {
 			$u = $this->get_by_id($id);
 		}
-
+	
 		$userdata = array(
 			'user_id'		 => $u->row()->user_id,
 			'user_name'		 => $u->row()->user_name,
@@ -421,8 +421,8 @@ class User_Model extends CI_Model {
 			'user_eqsl_name'	 => $u->row()->user_eqsl_name,
 			'user_eqsl_qth_nickname' => $u->row()->user_eqsl_qth_nickname,
 			'user_hash'		 => $this->_hash($u->row()->user_id."-".$u->row()->user_type),
-			'radio' => isset($_COOKIE["radio"])?$_COOKIE["radio"]:"",
-			'station_profile_id' => isset($_COOKIE["station_profile_id"])?$_COOKIE["station_profile_id"]:"",
+			'radio' => $this->session->userdata('radio') ?? '',
+			'station_profile_id' => $this->session->userdata('station_profile_id') ?? '',
 			'user_measurement_base' => $u->row()->user_measurement_base,
 			'user_date_format' => $u->row()->user_date_format,
 			'user_stylesheet' => $u->row()->user_stylesheet,
@@ -450,7 +450,14 @@ class User_Model extends CI_Model {
 			'isWinkeyEnabled' => $u->row()->winkey,
 			'hasQrzKey' => $this->hasQrzKey($u->row()->user_id)
 		);
-
+	
+		foreach (array_keys($this->frequency->defaultFrequencies) as $band) {
+			$qrg_unit = $this->session->userdata("qrgunit_$band") ?? ($this->user_options_model->get_options('frequency', array('option_name' => 'unit', 'option_key' => $band))->row()->option_value ?? '');
+			if ($qrg_unit !== '') {
+				$userdata['qrgunit_'.$band] = $qrg_unit;
+			}
+		}
+	
 		$this->session->set_userdata($userdata);
 	}
 
@@ -654,6 +661,60 @@ class User_Model extends CI_Model {
 			return EPASSWORDINVALID;
 		} else {
 			return $hash;
+		}
+	}
+
+	/**
+	 * Function to create a safe hash, which can be securely stored in the browser
+	 * to keep a user logged in for a defined time range.
+	 */
+	function keep_cookie_hash($user_id) {
+
+		/**
+		 * get some client information, to include in the hash we want to make a has unique for a certain browser
+		 */
+
+		// Client Browser and OS
+		$client_browser = base64_encode($_SERVER['HTTP_USER_AGENT']);
+
+		// Client language
+		$client_lang = base64_encode($_SERVER['HTTP_ACCEPT_LANGUAGE']);
+
+		$uid = base64_encode($user_id);
+
+		// Create a long string out of the client data
+		$client_string = $client_browser . $client_lang . $uid;
+
+		// Now we load the Encryption Lib
+		if (!$this->load->is_loaded('encryption')) {
+			$this->load->library('encryption');
+		}
+
+		// And creating a secure hash of the client data
+		$encrypted_string = $this->encryption->encrypt($client_string);
+		$hash = $encrypted_string . base64_encode($this->config->item('base_url')) . base64_encode($user_id);
+
+		return $hash;
+
+	}
+
+	function check_keep_hash($a, $b) {
+
+		// Load the Encryption Lib
+		if (!$this->load->is_loaded('encryption')) {
+			$this->load->library('encryption');
+		}
+
+		// Decrypt string a
+		$dec_a = $this->encryption->decrypt($a);
+
+		// Decrypt string b
+		$dec_b = $this->encryption->decrypt($b);
+
+		if ($dec_a === $dec_b) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 

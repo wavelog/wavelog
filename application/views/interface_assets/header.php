@@ -18,6 +18,7 @@
 	<?php
 	$theme = $this->optionslib->get_theme();
 	if ($theme) { ?>
+		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap-multiselect.css">
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/<?php echo $theme; ?>/bootstrap.min.css">
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/general.css">
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/selectize.bootstrap4.css" />
@@ -352,12 +353,12 @@
 
 						<!-- Logged in As -->
 						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><i class="fas fa-user"></i> <?php echo $this->session->userdata('user_callsign'); ?></a>
+							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><i class="fas fa-user"></i> <?php echo str_replace("0","&Oslash;", strtoupper($this->session->userdata('user_callsign'))); ?></a>
 
 							<ul class="dropdown-menu dropdown-menu-right header-dropdown">
-								<?php 
-								if (!$this->config->item('special_callsign') || 
-									$this->session->userdata('user_type') == '99' || 
+								<?php
+								if (!$this->config->item('special_callsign') ||
+									$this->session->userdata('user_type') == '99' ||
 									($this->config->item('special_callsign') && !$this->config->item('sc_hide_usermenu'))) { ?>
 									<li><a class="dropdown-item" href="<?php echo site_url('user/edit') . "/" . $this->session->userdata('user_id'); ?>" title="Account"><i class="fas fa-user"></i> <?= __("Account"); ?></a></li>
 								<?php } ?>
@@ -399,14 +400,15 @@
 								}
 
 								if (!($this->config->item('disable_oqrs') ?? false)) {
-								$oqrs_requests = $this->oqrs_model->oqrs_requests($location_list);
-								?>
-								<li><a class="dropdown-item" href="<?php echo site_url('oqrs/requests'); ?>" title="OQRS Requests"><i class="fa fa-id-card"></i> <?= __("OQRS Requests"); ?> <?php if ($oqrs_requests > 0) {
-																																																				echo "<span class=\"badge text-bg-light\">" . $oqrs_requests . "</span>";
-																																																			} ?></a></li>
-								<li><a class="dropdown-item" href="<?php echo site_url('qslprint'); ?>" title="Print Requested QSLs"><i class="fas fa-print"></i> <?= __("Print Requested QSLs"); ?></a></li>
-								<li><a class="dropdown-item" href="<?php echo site_url('labels'); ?>" title="Label setup"><i class="fas fa-print"></i> <?= __("Labels"); ?></a></li>
+									$oqrs_requests = $this->oqrs_model->oqrs_requests($location_list);
+									?>
+								<li><a class="dropdown-item" href="<?php echo site_url('oqrs/requests'); ?>" title="OQRS Requests"><i class="fa fa-id-card"></i> <?= __("OQRS Requests"); ?> 
+									<?php if ($oqrs_requests > 0) {
+									echo "<span class=\"badge text-bg-light\">" . $oqrs_requests . "</span>";
+									} ?></a></li>
 								<?php } ?>
+								<li><a class="dropdown-item" href="<?php echo site_url('qslprint'); ?>" title="<?= __("QSL Queue"); ?>"><i class="fas fa-print"></i> <?= __("QSL Queue"); ?></a></li>
+								<li><a class="dropdown-item" href="<?php echo site_url('labels'); ?>" title="Label setup"><i class="fas fa-print"></i> <?= __("Labels"); ?></a></li>
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-sync"></i> <?= __("Third-Party Services"); ?></a>
 									<ul class="submenu submenu-left dropdown-menu">

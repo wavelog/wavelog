@@ -23,7 +23,4 @@
             <input class="form-control input-group-sm" type="number" id="startat" name="startat" value="1">
         </div>
     </div>
-    <div class="text-start">
-        <button type="button" id="button1id" name="button1id" class="btn btn-primary ld-ext-right" onclick="printlabel();"><?= __("Print"); ?></button>
-    </div>
 </form>

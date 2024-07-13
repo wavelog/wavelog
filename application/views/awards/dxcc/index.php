@@ -266,7 +266,7 @@
         }
 
         echo '</tr><tr>
-        <td>Total confirmed</td>';
+        <td>' . __("Total confirmed") . '</td>';
         foreach ($dxcc_summary['confirmed'] as $dxcc) {      // Fills the table with the data
             echo '<td style="text-align: center">' . $dxcc . '</td>';
         }

@@ -1621,11 +1621,15 @@ class Logbook_model extends CI_Model {
 
 		return $name;
 	}
+
   /* Return QSO Info */
 	function qso_info($id) {
-		if ($this->logbook_model->check_qso_is_accessible($id)) {
+		if ($this->check_qso_is_accessible($id)) {
 			$this->db->where('COL_PRIMARY_KEY', $id);
-
+			$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
+			$this->db->join('dxcc_entities', $this->config->item('table_name').'.col_dxcc = dxcc_entities.adif', 'left');
+			$this->db->join('lotw_users', 'lotw_users.callsign = '.$this->config->item('table_name').'.col_call', 'left outer');
+	
 			return $this->db->get($this->config->item('table_name'));
 		} else {
 			return;
@@ -1923,7 +1927,7 @@ class Logbook_model extends CI_Model {
      * Function returns all the station_id's with HRDLOG Code
      */
     function get_station_id_with_hrdlog_code() {
-        $sql = 'SELECT station_id, hrdlog_username, hrdlog_code
+        $sql = 'SELECT station_id, hrdlog_username, hrdlog_code, station_callsign
                 FROM station_profile
                 WHERE coalesce(hrdlog_username, "") <> ""
                 AND coalesce(hrdlog_code, "") <> ""';
@@ -4699,6 +4703,24 @@ function lotw_last_qsl_date($user_id) {
       }
     }
 
+	function get_plaincall($callsign) {
+		$split_callsign=explode('/',$callsign);
+		if (count($split_callsign)==1) {				// case F0ABC --> return cel 0 //
+			$lookupcall = $split_callsign[0];
+		} else if (count($split_callsign)==3) {			// case EA/F0ABC/P --> return cel 1 //
+			$lookupcall = $split_callsign[1];
+		} else {										// case F0ABC/P --> return cel 0 OR  case EA/FOABC --> retunr 1  (normaly not exist) //
+			if (in_array(strtoupper($split_callsign[1]), array('P','M','MM','QRP','0','1','2','3','4','5','6','7','8','9'))) {
+				$lookupcall = $split_callsign[0];
+			} else if (strlen($split_callsign[1])>3) {	// Last Element longer than 3 chars? Take that as call
+				$lookupcall = $split_callsign[1];
+			} else {									// Last Element up to 3 Chars? Take first element as Call
+				$lookupcall = $split_callsign[0];
+			}
+		}
+		return $lookupcall;
+	}
+
 	public function loadCallBook($callsign, $use_fullname=false)
     {
         $callbook = null;
@@ -4714,13 +4736,18 @@ function lotw_last_qsl_date($user_id) {
 
                 $callbook = $this->qrz->search($callsign, $this->session->userdata('qrz_session_key'), $use_fullname);
 
-                // if we got nothing, it's probably because our session key is invalid, try again
-                if (($callbook['callsign'] ?? '') == '')
-                {
-                    $qrz_session_key = $this->qrz->session($this->config->item('qrz_username'), $this->config->item('qrz_password'));
-                    $this->session->set_userdata('qrz_session_key', $qrz_session_key);
+                // We need to handle, if the sessionkey is invalid
+                if ($callbook['error'] ?? '' == 'Invalid session key') {
+                    $this->qrz->set_session($this->config->item('qrz_username'), $this->config->item('qrz_password'));
                     $callbook = $this->qrz->search($callsign, $this->session->userdata('qrz_session_key'), $use_fullname);
                 }
+
+				// If the callsign contains a slash we have a pre- or suffix. If then the result is "Not found" we can try again with the plain call
+				if (strpos($callbook['error'] ?? '', 'Not found') !== false && strpos($callsign, "/") !== false) {
+					$plaincall = $this->get_plaincall($callsign);
+					// Now try again but give back reduced data, as we can't validate location and stuff (true at the end)
+					$callbook = $this->qrz->search($plaincall, $this->session->userdata('qrz_session_key'), $use_fullname, true);
+				}
             }
 
             if ($this->config->item('callbook') == "hamqth" && $this->config->item('hamqth_username') != null && $this->config->item('hamqth_password') != null) {
@@ -4732,7 +4759,13 @@ function lotw_last_qsl_date($user_id) {
                     $this->session->set_userdata('hamqth_session_key', $hamqth_session_key);
                 }
 
-                $callbook = $this->hamqth->search($callsign, $this->session->userdata('hamqth_session_key'));
+				// if the callsign contains a pre- or suffix we only give back reduced data to avoid wrong data (location and other things are not valid then)
+				if (strpos($callsign, "/") !== false) {
+					$reduced = true;
+				} else {
+					$reduced = false;
+				}
+                $callbook = $this->hamqth->search($callsign, $this->session->userdata('hamqth_session_key'), $reduced);
 
                 // If HamQTH session has expired, start a new session and retry the search.
                 if ($callbook['error'] == "Session does not exist or expired") {
@@ -4819,6 +4852,9 @@ function lotw_last_qsl_date($user_id) {
 
   function get_lotw_qsos_to_upload($station_id, $start_date, $end_date) {
 
+    // Missing in tqsl 2.7.3 config.xml
+    $lotw_unsupported_modes = array('INTERNET', 'RPT');
+
     $this->db->select('COL_PRIMARY_KEY,COL_CALL, COL_BAND, COL_BAND_RX, COL_TIME_ON, COL_RST_RCVD, COL_RST_SENT, COL_MODE, COL_SUBMODE, COL_FREQ, COL_FREQ_RX, COL_GRIDSQUARE, COL_SAT_NAME, COL_PROP_MODE, COL_LOTW_QSL_SENT, station_id');
 
     $this->db->where("station_id", $station_id);
@@ -4826,7 +4862,7 @@ function lotw_last_qsl_date($user_id) {
     $this->db->where('COL_LOTW_QSL_SENT', NULL);
     $this->db->or_where('COL_LOTW_QSL_SENT !=', "Y");
     $this->db->group_end();
-    $this->db->where('COL_PROP_MODE !=', "INTERNET");
+    $this->db->where_not_in('COL_PROP_MODE', $lotw_unsupported_modes);
     $this->db->where('COL_TIME_ON >=', $start_date);
     $this->db->where('COL_TIME_ON <=', $end_date);
     $this->db->order_by("COL_TIME_ON", "desc");

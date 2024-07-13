@@ -61,6 +61,9 @@ function updateRow(qso) {
 	if (user_options.qsl.show == "true"){
 		cells.eq(c++).html(qso.qsl);
 	}
+	if (user_options.clublog.show == "true"){
+		cells.eq(c++).html(qso.clublog);
+	}
 	if ($(".eqslconfirmation")[0] && user_options.eqsl.show == "true"){
 		cells.eq(c++).html(qso.eqsl);
 	}
@@ -158,7 +161,7 @@ function loadQSOTable(rows) {
 			data.push(qso.qsoDateTime);
 		}
 		if (user_options.de.show == "true"){
-			data.push(qso.de);
+			data.push(qso.de.replaceAll('0', 'Ø'));
 		}
 		if (user_options.dx.show == "true"){
 			data.push('<span class="qso_call"><a id="edit_qso" href="javascript:displayQso('+qso.qsoID+')"><span id="dx">'+qso.dx.replaceAll('0', 'Ø')+'</span></a><span class="qso_icons">' + (qso.callsign == '' ? '' : ' <a href="https://lotw.arrl.org/lotwuser/act?act='+qso.callsign+'" target="_blank"><small id="lotw_info" class="badge bg-success'+qso.lotw_hint+'" data-bs-toggle="tooltip" title="LoTW User. Last upload was ' + qso.lastupload + ' ">L</small></a>') + ' <a target="_blank" href="https://www.qrz.com/db/'+qso.dx+'"><img width="16" height="16" src="'+base_url+ 'images/icons/qrz.png" alt="Lookup ' + qso.dx.replaceAll('0', 'Ø') + ' on QRZ.com"></a> <a target="_blank" href="https://www.hamqth.com/'+qso.dx+'"><img width="16" height="16" src="'+base_url+ 'images/icons/hamqth.png" alt="Lookup ' + qso.dx.replaceAll('0', 'Ø') + ' on HamQTH"></a> <a target="_blank" href="https://clublog.org/logsearch.php?log='+qso.dx+'&call='+qso.de+'"><img width="16" height="16" src="'+base_url+'images/icons/clublog.png" alt="Clublog Log Search"></a></span></span>');
@@ -183,6 +186,9 @@ function loadQSOTable(rows) {
 		}
 		if (user_options.qslvia.show == "true"){
 			data.push(qso.qslVia);
+		}
+		if (user_options.clublog.show == "true"){
+			data.push(qso.clublog);
 		}
 		if (user_options.qsl.show == "true"){
 			data.push(qso.qsl);
@@ -298,6 +304,18 @@ function unselectQsoID(qsoID) {
 }
 
 $(document).ready(function () {
+	// initialize multiselect dropdown for locations
+	// Documentation: https://davidstutz.github.io/bootstrap-multiselect/index.html
+
+	$('#de').multiselect({
+		// template is needed for bs5 support
+		templates: {
+		  button: '<button type="button" class="multiselect dropdown-toggle btn btn-sm btn-secondary me-2 w-auto" data-bs-toggle="dropdown" aria-expanded="false"><span class="multiselect-selected-text"></span></button>',
+		},
+		numberDisplayed: 1,
+		includeSelectAllOption: true
+	});
+
 
 	$('#searchForm').submit(function (e) {
 		var container = L.DomUtil.get('advancedmap');
@@ -319,7 +337,7 @@ $(document).ready(function () {
 			data: {
 				dateFrom: this.dateFrom.value,
 				dateTo: this.dateTo.value,
-				de: this.de.value,
+				de: $('#de').val(),
 				dx: this.dx.value,
 				mode: this.mode.value,
 				band: this.band.value,
@@ -340,6 +358,8 @@ $(document).ready(function () {
 				ituzone: this.ituzone.value,
 				lotwSent: this.lotwSent.value,
 				lotwReceived: this.lotwReceived.value,
+				clublogSent: this.clublogSent.value,
+				clublogReceived: this.clublogReceived.value,
 				eqslSent: this.eqslSent.value,
 				eqslReceived: this.eqslReceived.value,
 				qslvia: $('[name="qslvia"]').val(),
@@ -384,6 +404,15 @@ $(document).ready(function () {
 		var elements = $('#qsoList tbody input:checked');
 		var nElements = elements.length;
 		if (nElements == 0) {
+			BootstrapDialog.alert({
+				title: 'INFO',
+				message: 'You need to select a least 1 row to update from callbook!',
+				type: BootstrapDialog.TYPE_INFO,
+				closable: false,
+				draggable: false,
+				callback: function (result) {
+				}
+			});
 			return;
 		}
 		inCallbookProcessing = true;
@@ -409,6 +438,15 @@ $(document).ready(function () {
 		var elements = $('#qsoList tbody input:checked');
 		var nElements = elements.length;
 		if (nElements == 0) {
+			BootstrapDialog.alert({
+				title: 'INFO',
+				message: 'You need to select a least 1 row to delete!',
+				type: BootstrapDialog.TYPE_INFO,
+				closable: false,
+				draggable: false,
+				callback: function (result) {
+				}
+			});
 			return;
 		}
 
@@ -497,7 +535,7 @@ $(document).ready(function () {
 			// You should set responseType as blob for binary responses
 
 			xhttp.responseType = 'blob';
-			xhttp.send($('#searchForm').serialize());
+			xhttp.send($('#searchForm').serialize()+"&de=" +$("#de").val());
 		}
 		$('#exportAdif').prop("disabled", false);
 	});
@@ -654,6 +692,15 @@ $(document).ready(function () {
 		var elements = $('#qsoList tbody input:checked');
 		var nElements = elements.length;
 		if (nElements == 0) {
+			BootstrapDialog.alert({
+				title: 'INFO',
+				message: 'You need to select a least 1 row to display a QSL card!',
+				type: BootstrapDialog.TYPE_INFO,
+				closable: false,
+				draggable: false,
+				callback: function (result) {
+				}
+			});
 			return;
 		}
 		$('#qslSlideshow').prop("disabled", true);
@@ -715,6 +762,7 @@ $(document).ready(function () {
 				callback: function (result) {
 				}
 			});
+			return;
 		}
 		if (nElements > 1) {
 			BootstrapDialog.alert({
@@ -757,6 +805,15 @@ $(document).ready(function () {
 		var elements = $('#qsoList tbody input:checked');
 		var nElements = elements.length;
 		if (nElements == 0) {
+			BootstrapDialog.alert({
+				title: 'INFO',
+				message: 'You need to select at least 1 row to print a label!',
+				type: BootstrapDialog.TYPE_INFO,
+				closable: false,
+				draggable: false,
+				callback: function (result) {
+				}
+			});
 			return;
 		}
 		$('#printLabel').prop("disabled", true);
@@ -774,6 +831,14 @@ $(document).ready(function () {
 					onshown: function(dialog) {
 					},
 					buttons: [{
+						label: 'Print',
+						cssClass: 'btn-primary btn-sm',
+						action: function (dialogItself) {
+							printlabel();
+							dialogItself.close();
+						}
+					},
+						{
 						label: lang_admin_close,
 						action: function (dialogItself) {
 							$('#printLabel').prop("disabled", false);
@@ -798,6 +863,15 @@ $(document).ready(function () {
 		var elements = $('#qsoList tbody input:checked');
 		var nElements = elements.length;
 		if (nElements == 0) {
+			BootstrapDialog.alert({
+				title: 'INFO',
+				message: 'You need to select a least 1 row!',
+				type: BootstrapDialog.TYPE_INFO,
+				closable: false,
+				draggable: false,
+				callback: function (result) {
+				}
+			});
 			return;
 		}
 		$('#'+tag).prop("disabled", true);
@@ -829,6 +903,15 @@ $(document).ready(function () {
 		var elements = $('#qsoList tbody input:checked');
 		var nElements = elements.length;
 		if (nElements == 0) {
+			BootstrapDialog.alert({
+				title: 'INFO',
+				message: 'You need to select a least 1 row!',
+				type: BootstrapDialog.TYPE_INFO,
+				closable: false,
+				draggable: false,
+				callback: function (result) {
+				}
+			});
 			return;
 		}
 		$('#'+tag).prop("disabled", true);
@@ -869,6 +952,7 @@ $(document).ready(function () {
 	});
 
 	$('#searchForm').submit();
+
 });
 
 function printlabel() {
@@ -944,6 +1028,7 @@ function saveOptions() {
 			name: $('input[name="name"]').is(':checked') ? true : false,
 			qslvia: $('input[name="qslvia"]').is(':checked') ? true : false,
 			qsl: $('input[name="qsl"]').is(':checked') ? true : false,
+			clublog: $('input[name="clublog"]').is(':checked') ? true : false,
 			lotw: $('input[name="lotw"]').is(':checked') ? true : false,
 			eqsl: $('input[name="eqsl"]').is(':checked') ? true : false,
 			qslmsg: $('input[name="qslmsg"]').is(':checked') ? true : false,

@@ -152,6 +152,68 @@ function displayQso(id) {
     });
 }
 
+// used in edit_ajax.php to update the currently editing QSO
+function single_callbook_update() {
+
+    var callsign = $('#edit_callsign').val();
+    var band = $('#edit_band').val();
+    var mode = $('#edit_mode').val();
+
+    $('#update_from_callbook').prop("disabled", true).addClass("running");
+
+    $.ajax({
+        url: site_url + '/logbook/json/' + callsign + '/' + band + '/' + mode,
+        dataType: 'json',
+        success: function (data) {
+            // console.log(data);
+            fill_if_empty('#qth', data.callsign_qth);
+            fill_if_empty('#dxcc_id', data.dxcc.adif);
+            fill_if_empty('#continent', data.dxcc.cont);
+            fill_if_empty('#cqz', data.dxcc.cqz);
+            fill_if_empty('#distance', data.callsign_distance);
+            fill_if_empty('#locator', data.callsign_qra);
+            // fill_if_empty('#image', data.image);  Not in use yet, but may in future
+            fill_if_empty('#iota_ref', data.callsign_iota);
+            fill_if_empty('#name', data.callsign_name);
+            fill_if_empty('#qsl-via', data.qsl_manager);
+            fill_if_empty('#stateDropdown', data.callsign_state);
+            fill_if_empty('#stationCntyInputEdit', data.callsign_us_county);
+
+            $('#update_from_callbook').prop("disabled", false).removeClass("running");
+        },
+        error: function () {
+            console.error("Sorry, something went wrong to get the callbook data.");
+
+            $('#update_from_callbook').prop("disabled", false).removeClass("running");
+        },
+    });
+}
+// used with single_callbook_update() to only fill fields which are empty
+async function fill_if_empty(field, data) {
+    var border_color = '2px solid green';
+
+    // catch special case for dxcc
+    if (field == "#dxcc_id" && $(field).val() == 0) {
+        $(field).val(data).css('border', border_color);
+    }
+
+    // catch special case for state
+    if (field == '#stateDropdown') {
+        await updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputEdit');
+        $(field).val(data).css('border', border_color);
+    }
+
+    // catch special case for distance
+    if (field == "#distance" && $(field).val() == 0) {
+        $(field).val(data).css('border', border_color);
+        // $('#locator_info').html(data);
+    }
+
+    if ($(field).val() == '' && data != '') {
+        $(field).val(data).css('border', border_color);
+    }
+}
+
 function qso_delete(id, call) {
     BootstrapDialog.confirm({
         title: lang_general_word_danger,

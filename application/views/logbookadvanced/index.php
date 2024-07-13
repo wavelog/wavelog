@@ -27,6 +27,7 @@
             \"qsl\":{\"show\":\"true\"},
             \"lotw\":{\"show\":\"true\"},
             \"eqsl\":{\"show\":\"true\"},
+            \"clublog\":{\"show\":\"true\"},
             \"qslmsg\":{\"show\":\"true\"},
             \"dxcc\":{\"show\":\"true\"},
             \"state\":{\"show\":\"true\"},
@@ -85,6 +86,10 @@
     }
 	if (!isset($current_opts->wwff)) {
         echo "\nvar o_template = { wwff: {show: 'true'}};";
+        echo "\nuser_options={...user_options, ...o_template};";
+    }
+	if (!isset($current_opts->clublog)) {
+        echo "\nvar o_template = { clublog: {show: 'true'}};";
         echo "\nuser_options={...user_options, ...o_template};";
     }
 	if (!isset($current_opts->sig)) {
@@ -350,6 +355,28 @@ $options = json_decode($options);
                 </select>
             </div>
             <div class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
+                <label for="clublogSent"><?= __("Clublog sent"); ?></label>
+                <select id="clublogSent" name="clublogSent" class="form-select form-select-sm">
+                    <option value=""><?= __("All"); ?></option>
+                    <option value="Y"><?= __("Yes"); ?></option>
+                    <option value="N"><?= __("No"); ?></option>
+                    <option value="R"><?= __("Requested"); ?></option>
+                    <option value="Q"><?= __("Queued"); ?></option>
+                    <option value="I"><?= __("Invalid (Ignore)"); ?></option>
+                </select>
+            </div>
+            <div class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
+                <label for="clublogReceived"><?= __("Clublog received"); ?></label>
+                <select id="clublogReceived" name="clublogReceived" class="form-select form-select-sm">
+                    <option value=""><?= __("All"); ?></option>
+                    <option value="Y"><?= __("Yes"); ?></option>
+                    <option value="N"><?= __("No"); ?></option>
+                    <option value="R"><?= __("Requested"); ?></option>
+                    <option value="I"><?= __("Invalid (Ignore)"); ?></option>
+                    <option value="V"><?= __("Verified"); ?></option>
+                </select>
+            </div>
+            <div class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                 <label for="eqslSent"><?= __("eQSL sent"); ?></label>
                 <select id="eqslSent" name="eqslSent" class="form-select form-select-sm">
                     <option value=""><?= __("All"); ?></option>
@@ -472,15 +499,14 @@ $options = json_decode($options);
             <option value="5000">5000</option>
         </select>
 		<label class="me-2" for="de"><?= __("Location"); ?></label>
-		<select id="de" name="de" class="form-select form-select-sm me-2 w-auto">
-			<option value="All"><?= __("All"); ?></option>
+		<select id="de" name="de" multiple="multiple">
 			<?php foreach ($station_profile->result() as $station) { ?>
 				<option value="<?php echo $station->station_id; ?>"
 				<?php if ($station->station_id == $active_station_id) {
 					echo " selected =\"selected\"";
                 } ?>>
 				<?= __("Callsign") . ": " ?>
-				<?php echo $station->station_callsign; ?> (<?php echo $station->station_profile_name; ?>)
+				<?php echo str_replace("0","&Oslash;",strtoupper($station->station_callsign)); ?> (<?php echo $station->station_profile_name; ?>)
 			</option>
 			<?php } ?>
 		</select>
@@ -536,6 +562,9 @@ $options = json_decode($options);
                     } ?>
                     <?php if (($options->qslvia->show ?? "true") == "true") {
                         echo '<th>' . __("QSL via") . '</th>';
+                    } ?>
+                    <?php if (($options->clublog->show ?? "true") == "true") {
+                        echo '<th class="clublogconfirmation">Clublog</th>';
                     } ?>
                     <?php if (($options->qsl->show ?? "true") == "true") {
                         echo '<th>' . __("QSL") . '</th>';

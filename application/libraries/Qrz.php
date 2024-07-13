@@ -10,7 +10,7 @@ class Qrz {
 	// Return session key
 	public function session($username, $password) {
 		// URL to the XML Source
-		$xml_feed_url = 'http://xmldata.qrz.com/xml/current/?username='.$username.';password='.urlencode($password).';agent=wavelog';
+		$xml_feed_url = 'https://xmldata.qrz.com/xml/current/?username='.$username.';password='.urlencode($password).';agent=wavelog';
 		
 		// CURL Functions
 		$ch = curl_init();
@@ -35,7 +35,7 @@ class Qrz {
 		$ci = & get_instance();
 		
 		// URL to the XML Source
-		$xml_feed_url = 'http://xmldata.qrz.com/xml/current/?username='.$username.';password='.urlencode($password).';agent=wavelog';
+		$xml_feed_url = 'https://xmldata.qrz.com/xml/current/?username='.$username.';password='.urlencode($password).';agent=wavelog';
 		
 		// CURL Functions
 		$ch = curl_init();
@@ -58,11 +58,11 @@ class Qrz {
 	}
 
 
-	public function search($callsign, $key, $use_fullname = false) {
+	public function search($callsign, $key, $use_fullname = false, $reduced = false) {
 		$data = null;
 		try {
 			// URL to the XML Source
-			$xml_feed_url = 'http://xmldata.qrz.com/xml/current/?s=' . $key . ';callsign=' . $callsign . '';
+			$xml_feed_url = 'https://xmldata.qrz.com/xml/current/?s=' . $key . ';callsign=' . $callsign . '';
 
 			// CURL Functions
 			$ch = curl_init();
@@ -75,10 +75,13 @@ class Qrz {
 			$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 			curl_close($ch);
 			if ($httpcode != 200) return $data['error'] = 'Problems with qrz.com communication'; // Exit function if no 200. If request fails, 0 is returned
+			
 			// Create XML object
 			$xml = simplexml_load_string($xml);
-			if (!empty($xml->Session->Error)) return $data['error'] = $xml->Session->Error;
-
+			if (!empty($xml->Session->Error)) {
+				return $data['error'] = $xml->Session->Error;
+			}
+			
 			// Return Required Fields
 			$data['callsign'] = (string)$xml->Callsign->call;
 
@@ -87,26 +90,45 @@ class Qrz {
 			} else {
 				$data['name'] = (string)$xml->Callsign->fname;
 			}
+
+			// we always give back the name, no matter if reduced data or not
 			$data['name'] = trim($data['name']);
 
-			// Sanitise gridsquare to only allow up to 8 characters
+			// Sanitize gridsquare to allow only up to 8 characters
 			$unclean_gridsquare = (string)$xml->Callsign->grid; // Get the gridsquare from QRZ convert to string
 			$clean_gridsquare = strlen($unclean_gridsquare) > 8 ? substr($unclean_gridsquare,0,8) : $unclean_gridsquare; // Trim gridsquare to 8 characters max
-			$data['gridsquare'] = $clean_gridsquare;
 
-			$data['city'] = (string)$xml->Callsign->addr2;
-			$data['lat'] = (string)$xml->Callsign->lat;
-			$data['long'] = (string)$xml->Callsign->lon;
-			$data['dxcc'] = (string)$xml->Callsign->dxcc;
-			$data['state'] = (string)$xml->Callsign->state;
-			$data['iota'] = (string)$xml->Callsign->iota;
-			$data['qslmgr'] = (string)$xml->Callsign->qslmgr;
-			$data['image'] = (string)$xml->Callsign->image;
+			if ($reduced == false) {
 
-			if ($xml->Callsign->country == "United States") {
-				$data['us_county'] = (string)$xml->Callsign->county;
+				$data['gridsquare'] = $clean_gridsquare;
+				$data['city'] 	= (string)$xml->Callsign->addr2;
+				$data['lat'] 	= (string)$xml->Callsign->lat;
+				$data['long'] 	= (string)$xml->Callsign->lon;
+				$data['dxcc'] 	= (string)$xml->Callsign->dxcc;
+				$data['state'] 	= (string)$xml->Callsign->state;
+				$data['iota'] 	= (string)$xml->Callsign->iota;
+				$data['qslmgr'] = (string)$xml->Callsign->qslmgr;
+				$data['image'] 	= (string)$xml->Callsign->image;
+
+				if ($xml->Callsign->country == "United States") {
+					$data['us_county'] = (string)$xml->Callsign->county;
+				} else {
+					$data['us_county'] = null;
+				}
+
 			} else {
-				$data['us_county'] = null;
+
+				$data['gridsquare'] = '';
+				$data['city'] 	= '';
+				$data['lat'] 	= '';
+				$data['long'] 	= '';
+				$data['dxcc'] 	= '';
+				$data['state'] 	= '';
+				$data['iota'] 	= '';
+				$data['qslmgr'] = (string)$xml->Callsign->qslmgr;
+				$data['image'] 	= (string)$xml->Callsign->image;
+				$data['us_county'] = '';
+
 			}
 		} finally {
 
