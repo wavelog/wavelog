@@ -77,7 +77,7 @@
 						</div>
 					</div>
 					<div class="col-xs-12 col-lg-12 col-xl-6">
-						<label for="contest"><?= __("Add QSOs to Contest") ?></label>
+						<label for="contest"><?= __("Contest") ?></label>
 						<select name="contest" id="contest" class="form-select">
 							<option value="" selected><?= __("No Contest"); ?></option>
 							<?php
