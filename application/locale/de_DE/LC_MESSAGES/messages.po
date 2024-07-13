@@ -11,11 +11,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-12 21:15+0000\n"
+"POT-Creation-Date: 2024-07-13 09:43+0000\n"
 "PO-Revision-Date: 2024-07-13 09:39+0000\n"
 "Last-Translator: Fabian Berg <hb9hil@wavelog.org>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/de/>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1942,9 +1942,8 @@ msgstr "Login fehlgeschlagen. Bitte erneut versuchen."
 
 #: application/controllers/User.php:855
 #: application/views/interface_assets/header.php:348
-#: application/views/user/login.php:67
-#: application/views/visitor/layout/header.php:88
 #: application/views/user/login.php:89
+#: application/views/visitor/layout/header.php:88
 msgid "Login"
 msgstr "Anmeldung"
 
@@ -1972,25 +1971,26 @@ msgstr "Falscher Benutzername oder Passwort!"
 msgid "User %s logged out."
 msgstr "Benutzer %s ausgeloggt."
 
-#: application/controllers/User.php:934 application/controllers/User.php:941
+#: application/controllers/User.php:928
+msgid "Password Reset is disabled on the Demo!"
+msgstr "Passwort Reset ist in der Demo nicht verfügbar!"
+
+#: application/controllers/User.php:941
 msgid "Forgot Password"
 msgstr "Passwort vergessen"
 
-#: application/controllers/User.php:984 application/views/user/main.php:8
-#: application/controllers/User.php:991
+#: application/controllers/User.php:991 application/views/user/main.php:8
 msgid "Email settings are incorrect."
 msgstr "E-Mail Einstellungen sind nicht korrekt."
 
-#: application/controllers/User.php:988 application/controllers/User.php:993
 #: application/controllers/User.php:995 application/controllers/User.php:1000
 msgid "Password Reset Processed."
 msgstr "Passwort Zurücksetzen angefordert."
 
-#: application/controllers/User.php:1094
+#: application/controllers/User.php:1102
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
-#: application/controllers/User.php:1102
 msgid "Reset Password"
 msgstr "Passwort zurücksetzen"
 
@@ -9987,20 +9987,17 @@ msgstr "Benutzerkonto editieren"
 msgid "General Information"
 msgstr "Generelle Informationen"
 
-#: application/views/user/edit.php:52 application/views/user/login.php:45
-#: application/views/user/login.php:46 application/views/user/profile.php:14
-#: application/views/user/login.php:58 application/views/user/login.php:67
-#: application/views/user/login.php:68
+#: application/views/user/edit.php:52 application/views/user/login.php:58
+#: application/views/user/login.php:67 application/views/user/login.php:68
+#: application/views/user/profile.php:14
 msgid "Username"
 msgstr "Benutzername"
 
-#: application/views/user/edit.php:64 application/views/user/login.php:49
-#: application/views/user/login.php:50
+#: application/views/user/edit.php:64 application/views/user/login.php:59
+#: application/views/user/login.php:71 application/views/user/login.php:72
 #: application/views/user/reset_password.php:21
 #: application/views/user/reset_password.php:23
 #: application/views/user/reset_password.php:30
-#: application/views/user/login.php:59 application/views/user/login.php:71
-#: application/views/user/login.php:72
 msgid "Password"
 msgstr "Passwort"
 
@@ -10403,11 +10400,26 @@ msgstr "Du kannst dein Passwort hier zurücksetzen."
 msgid "MAINTENANCE MODE"
 msgstr "WARTUNGSMODUS"
 
-#: application/views/user/login.php:55 application/views/user/login.php:77
+#: application/views/user/login.php:56
+msgid "Welcome to the Demo of Wavelog"
+msgstr "Willkommen zur Demo von Wavelog"
+
+#: application/views/user/login.php:57
+msgid "This demo will be reset every night at 0200z."
+msgstr "Diese Demo wird jede Nacht um 0200z zurückgesetzt."
+
+#: application/views/user/login.php:60
+#, php-format
+msgid ""
+"More Information about Wavelog on <a href='%s' target='_blank'>Github</a>."
+msgstr ""
+"Mehr Informationen über Wavelog auf <a href='%s' target='_blank'>Github</a>."
+
+#: application/views/user/login.php:77
 msgid "Forgot your password?"
 msgstr "Passwort vergessen?"
 
-#: application/views/user/login.php:61 application/views/user/login.php:83
+#: application/views/user/login.php:83
 msgid "Keep me logged in"
 msgstr "Angemeldet bleiben"
 
@@ -10752,25 +10764,6 @@ msgstr "QSOs als 'Nach QO-100 Dx Club exportiert' markieren"
 #: application/views/webadif/mark_webadif.php:16
 msgid "The QSOs are marked as exported to QO-100 Dx Club."
 msgstr "Die QSOs wurden als 'zu QO-100 Dx Club exportiert' markiert."
-
-#: application/controllers/User.php:928
-msgid "Password Reset is disabled on the Demo!"
-msgstr "Passwort Reset ist in der Demo nicht verfügbar!"
-
-#: application/views/user/login.php:56
-msgid "Welcome to the Demo of Wavelog"
-msgstr "Willkommen zur Demo von Wavelog"
-
-#: application/views/user/login.php:57
-msgid "This demo will be reset every night at 0200z."
-msgstr "Diese Demo wird jede Nacht um 0200z zurückgesetzt."
-
-#: application/views/user/login.php:60
-#, php-format
-msgid ""
-"More Information about Wavelog on <a href='%s' target='_blank'>Github</a>."
-msgstr ""
-"Mehr Informationen über Wavelog auf <a href='%s' target='_blank'>Github</a>."
 
 #~ msgid "API Key is required do not change this field"
 #~ msgstr "API Schlüssel ist erforderlich, verändere dieses Feld nicht"
