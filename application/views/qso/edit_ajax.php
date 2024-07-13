@@ -208,7 +208,7 @@
                                             <option value="TEP" <?php if($qso->COL_PROP_MODE == "TEP") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Trans-equatorial"); ?></option>
                                             <option value="TR" <?php if($qso->COL_PROP_MODE == "TR") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Tropospheric ducting"); ?></option>
                                         </select>
-                                        <small id="lotw_propmode_hint" class="form-text text-muted"><?php if (in_array($qso->COL_PROP_MODE, $this->config->item('lotw_unsupported_prop_modes'))) { echo __("This propagation mode is not supported by LoTW. LoTW sent/received fields disabled."); } else { echo "&nbsp;"; } ?></small>
+                                        <small id="lotw_propmode_hint" class="form-text text-muted"><?php if (in_array($qso->COL_PROP_MODE, $this->config->item('lotw_unsupported_prop_modes'))) { echo __("This propagation mode is not supported by LoTW. LoTW QSL fields disabled."); } else { echo "&nbsp;"; } ?></small>
                                     </div>
 
                                     <input type="hidden" class="form-control" id="country" name="country" value="<?php echo $qso->COL_COUNTRY; ?>">
