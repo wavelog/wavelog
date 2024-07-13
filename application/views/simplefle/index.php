@@ -104,7 +104,7 @@
 								<?php } ?>
 							</select>
 							<div class="alert alert-danger" role="alert" id="warningStationCall" style="display: none"> </div>
-							<small class="form-text text-muted"><?= __("If you did operate from a new location, first create a new <a href=" . site_url('station') . ">Station Location</a>"); ?></small>
+							<small class="form-text text-muted"><?= sprintf(__("If you did operate from a new location, first create a new <a href='%s'>Station Location</a>"), site_url('station')); ?></small>
 						</div>
 					</div>
 					<div class="col-xs-12 col-lg-6">
