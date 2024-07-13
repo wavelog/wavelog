@@ -84,7 +84,7 @@ class Lookup extends CI_Controller {
 			}
 	    }
 
-		// SCP results from master scp db
+		// SCP results from Club Log master scp db
 		$file = 'updates/clublog_scp.txt';
 
 		if (is_readable($file)) {
@@ -99,6 +99,28 @@ class Lookup extends CI_Controller {
 			}
 		} else {
 			$src = 'assets/resources/clublog_scp.txt';
+			if (copy($src, $file)) {
+				$this->scp();
+			} else {
+				log_message('error', 'Failed to copy source file ('.$src.') to new location. Check if this path has the right permission: '.$file);
+			}
+		}
+
+		// SCP results from master scp https://www.supercheckpartial.com
+		$file = 'updates/MASTER.SCP';
+
+		if (is_readable($file)) {
+			$lines = file($file, FILE_IGNORE_NEW_LINES);
+			$input = preg_quote($uppercase_callsign, '~');
+			$result = preg_grep('~' . $input . '~', $lines, 0);
+			foreach ($result as &$value) {
+				if (in_array($value, $arCalls) == false)
+				{
+					$arCalls[] = str_replace('0', 'Ø', $value);
+				}
+			}
+		} else {
+			$src = 'assets/resources/MASTER.SCP';
 			if (copy($src, $file)) {
 				$this->scp();
 			} else {
