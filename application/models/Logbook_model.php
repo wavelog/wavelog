@@ -95,7 +95,7 @@ class Logbook_model extends CI_Model {
     }
 
     if($this->input->post('contestname')) {
-        $contestid = $this->input->post('contestname');
+        $contestid = $this->input->post('contestname') == "" ? NULL : $this->input->post('contestname');
     } else {
         $contestid = null;
     }
