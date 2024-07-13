@@ -923,75 +923,83 @@ class User extends CI_Controller {
 	 */
 	function forgot_password() {
 
-		$this->load->helper(array('form', 'url'));
+		if (file_exists('.demo')) {
 
-		$this->load->library('form_validation');
+			$this->session->set_flashdata('error', __("Password Reset is disabled on the Demo!"));
+			redirect('user/login');
 
-		$this->form_validation->set_rules('email', 'Email', 'required');
+		} else {
+			
+			$this->load->helper(array('form', 'url'));
 
-		if ($this->form_validation->run() == FALSE)
-		{
-			$data['page_title'] = __("Forgot Password");
-			$this->load->view('interface_assets/mini_header', $data);
-			$this->load->view('user/forgot_password');
-			$this->load->view('interface_assets/footer');
-		}
-		else
-		{
-			// Check email address exists
-			$this->load->model('user_model');
+			$this->load->library('form_validation');
 
-			$check_email = $this->user_model->check_email_address($this->input->post('email', true));
+			$this->form_validation->set_rules('email', 'Email', 'required');
 
-			if($check_email == TRUE) {
-				// Generate password reset code 50 characters long
-				$this->load->helper('string');
-				$reset_code = random_string('alnum', 50);
+			if ($this->form_validation->run() == FALSE)
+			{
+				$data['page_title'] = __("Forgot Password");
+				$this->load->view('interface_assets/mini_header', $data);
+				$this->load->view('user/forgot_password');
+				$this->load->view('interface_assets/footer');
+			}
+			else
+			{
+				// Check email address exists
+				$this->load->model('user_model');
 
-				$this->user_model->set_password_reset_code($this->input->post('email', true), $reset_code);
+				$check_email = $this->user_model->check_email_address($this->input->post('email', true));
 
-				// Send email with reset code
+				if($check_email == TRUE) {
+					// Generate password reset code 50 characters long
+					$this->load->helper('string');
+					$reset_code = random_string('alnum', 50);
 
-				$this->data['reset_code'] = $reset_code;
-				$this->load->library('email');
+					$this->user_model->set_password_reset_code($this->input->post('email', true), $reset_code);
 
-				if($this->optionslib->get_option('emailProtocol') == "smtp") {
-					$config = Array(
-						'protocol' => $this->optionslib->get_option('emailProtocol'),
-						'smtp_crypto' => $this->optionslib->get_option('smtpEncryption'),
-						'smtp_host' => $this->optionslib->get_option('smtpHost'),
-						'smtp_port' => $this->optionslib->get_option('smtpPort'),
-						'smtp_user' => $this->optionslib->get_option('smtpUsername'),
-						'smtp_pass' => $this->optionslib->get_option('smtpPassword'),
-						'crlf' => "\r\n",
-						'newline' => "\r\n"
-					  );
+					// Send email with reset code
 
-					  $this->email->initialize($config);
-				}
+					$this->data['reset_code'] = $reset_code;
+					$this->load->library('email');
 
-				$message = $this->load->view('email/forgot_password', $this->data,  TRUE);
+					if($this->optionslib->get_option('emailProtocol') == "smtp") {
+						$config = Array(
+							'protocol' => $this->optionslib->get_option('emailProtocol'),
+							'smtp_crypto' => $this->optionslib->get_option('smtpEncryption'),
+							'smtp_host' => $this->optionslib->get_option('smtpHost'),
+							'smtp_port' => $this->optionslib->get_option('smtpPort'),
+							'smtp_user' => $this->optionslib->get_option('smtpUsername'),
+							'smtp_pass' => $this->optionslib->get_option('smtpPassword'),
+							'crlf' => "\r\n",
+							'newline' => "\r\n"
+						);
 
-				$this->email->from($this->optionslib->get_option('emailAddress'), $this->optionslib->get_option('emailSenderName'));
-				$this->email->to($this->input->post('email', true));
+						$this->email->initialize($config);
+					}
 
-				$this->email->subject('Wavelog Account Password Reset');
-				$this->email->message($message);
+					$message = $this->load->view('email/forgot_password', $this->data,  TRUE);
 
-				if (! $this->email->send())
-				{
-					// Redirect to login page with message
-					$this->session->set_flashdata('warning', __("Email settings are incorrect."));
-					redirect('user/login');
+					$this->email->from($this->optionslib->get_option('emailAddress'), $this->optionslib->get_option('emailSenderName'));
+					$this->email->to($this->input->post('email', true));
+
+					$this->email->subject('Wavelog Account Password Reset');
+					$this->email->message($message);
+
+					if (! $this->email->send())
+					{
+						// Redirect to login page with message
+						$this->session->set_flashdata('warning', __("Email settings are incorrect."));
+						redirect('user/login');
+					} else {
+						// Redirect to login page with message
+						$this->session->set_flashdata('notice', __("Password Reset Processed."));
+						redirect('user/login');
+					}
 				} else {
-					// Redirect to login page with message
+					// No account found just return to login page
 					$this->session->set_flashdata('notice', __("Password Reset Processed."));
 					redirect('user/login');
 				}
-			} else {
-				// No account found just return to login page
-				$this->session->set_flashdata('notice', __("Password Reset Processed."));
-				redirect('user/login');
 			}
 		}
 	}
