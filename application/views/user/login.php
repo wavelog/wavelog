@@ -38,16 +38,38 @@
     <?php } ?>
     <div class="my-2 rounded-0 shadow-sm card mb-2 shadow-sm">
         <div class="card-body">
+            <?php 
+            /**
+             * Wavelog Demo
+             * 
+             * This enables the Wavelog Demo as used in https://demo.wavelog.org.
+             * 
+             * If you want to use this, place a file called `.demo` in the root folder 
+             * and create a non-admin user `demo` with password `demo` by hand. 
+             * 
+             * It's recommend to create a cronjob which resets this installation every day at 0200 UTC from a backup.
+             * We do not provide any functionality for this, so you have to build this on your own.
+             * 
+             */
+            if (file_exists('.demo')) { ?>
+                <div class="border-bottom mb-3">
+                    <h5><?= __("Welcome to the Demo of Wavelog"); ?></h5>
+                    <p><?= __("This demo will be reset every night at 0200z."); ?><br><br>
+                    <?= __("Username"); ?>: demo<br>
+                    <?= __("Password"); ?>: demo<br><br>
+                    <?= sprintf(__("More Information about Wavelog on <a href='%s' target='_blank'>Github</a>."), "https://www.github.com/wavelog/wavelog"); ?></p>
+                </div>
+            <?php } ?>
             <form method="post" action="<?php echo site_url('user/login'); ?>" name="users">
                 <?php $this->form_validation->set_error_delimiters('', ''); ?>
                 <input type="hidden" name="id" value="<?php echo $this->uri->segment(3); ?>" />
                 <div class="mb-2">
                     <label for="floatingInput"><strong><?= __("Username"); ?></strong></label>
-                    <input type="text" name="user_name" class="form-control" id="floatingInput" placeholder="<?= __("Username"); ?>" value="<?php echo $this->input->post('user_name'); ?>" autofocus>
+                    <input type="text" name="user_name" class="form-control" id="floatingInput" placeholder="<?php if (file_exists('.demo')) { echo "demo"; } else { echo __("Username"); } ?>" value="<?php echo $this->input->post('user_name'); ?>" autofocus>
                 </div>
                 <div class="mb-2">
                     <label for="floatingPassword"><strong><?= __("Password"); ?></strong></label>
-                    <input type="password" name="user_password" class="form-control" id="floatingPassword" placeholder="<?= __("Password"); ?>">
+                    <input type="password" name="user_password" class="form-control" id="floatingPassword" placeholder="<?php if (file_exists('.demo')) { echo "demo"; } else { echo __("Password"); } ?>">
                 </div>
                 <div class="mb-2">
                     <div class="row">
