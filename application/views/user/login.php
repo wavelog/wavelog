@@ -38,7 +38,19 @@
     <?php } ?>
     <div class="my-2 rounded-0 shadow-sm card mb-2 shadow-sm">
         <div class="card-body">
-            <?php // only used for Wavelog Demo
+            <?php 
+            /**
+             * Wavelog Demo
+             * 
+             * This enables the Wavelog Demo as used in https://demo.wavelog.org.
+             * 
+             * If you want to use this, place a file called `.demo` in the root folder 
+             * and create a non-admin user `demo` with password `demo` by hand. 
+             * 
+             * It's recommend to create a cronjob which resets this installation every day at 0200 UTC from a backup.
+             * We do not provide any functionality for this, so you have to build this on your own.
+             * 
+             */
             if (file_exists('.demo')) { ?>
                 <div class="border-bottom mb-3">
                     <h5><?= __("Welcome to the Demo of Wavelog"); ?></h5>
