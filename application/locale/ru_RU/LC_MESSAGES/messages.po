@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-11 22:38+0000\n"
-"PO-Revision-Date: 2024-07-11 12:26+0000\n"
+"POT-Creation-Date: 2024-07-13 09:35+0000\n"
+"PO-Revision-Date: 2024-07-12 05:15+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ru/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.6\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #: application/controllers/Accumulated.php:21
 #: application/views/interface_assets/header.php:148
@@ -253,7 +253,7 @@ msgstr " и тип прохождения "
 
 #: application/controllers/Awards.php:467
 msgid " and mode "
-msgstr " и режим модуляции "
+msgstr " и вид модуляции "
 
 #: application/controllers/Awards.php:470
 msgid " and "
@@ -419,7 +419,7 @@ msgstr "Диапазоны"
 
 #: application/controllers/Band.php:40 application/controllers/Mode.php:41
 msgid "Create Mode"
-msgstr "Новый режим модуляции"
+msgstr "Новый вид модуляции"
 
 #: application/controllers/Band.php:59 application/views/bands/index.php:150
 msgid "Edit Band"
@@ -509,19 +509,19 @@ msgstr "Отладка"
 
 #: application/controllers/Debug.php:118
 msgid "Migrate data now"
-msgstr ""
+msgstr "Переносите данные сейчас"
 
 #: application/controllers/Debug.php:121
 msgid "Migration already done. Run again?"
-msgstr ""
+msgstr "Миграция уже выполнена. Запустить снова?"
 
 #: application/controllers/Debug.php:125
 msgid "No data to migrate"
-msgstr ""
+msgstr "Нет данных для миграции"
 
 #: application/controllers/Debug.php:129 application/controllers/Debug.php:134
 msgid "No migration possible"
-msgstr ""
+msgstr "Миграция невозможна"
 
 #: application/controllers/Debug.php:216
 msgid ""
@@ -529,10 +529,14 @@ msgid ""
 "everything seems right you can delete the folders 'assets/qslcard' and "
 "'images/eqsl_card_images'."
 msgstr ""
+"Миграция файлов прошла успешно, но, пожалуйста, проверьте также вручную. "
+"Если все в порядке, можете удалить папки 'assets/qslcard' и 'images/"
+"eqsl_card_images'."
 
 #: application/controllers/Debug.php:219
 msgid "File Migration failed. Please check the Error Log."
 msgstr ""
+"Не удалось выполнить миграцию файлов. Пожалуйста, проверьте журнал ошибок."
 
 #: application/controllers/Distances.php:17
 #: application/views/distances/index.php:5
@@ -964,7 +968,7 @@ msgstr "Clublog"
 #: application/views/view_log/qso.php:104 application/views/visitor/index.php:6
 #: application/views/widgets/qsos.php:29
 msgid "Mode"
-msgstr "Режим модуляции"
+msgstr "Вид модуляции"
 
 #: application/controllers/Logbook.php:1258
 #: application/views/awards/pota/index.php:36
@@ -1349,7 +1353,7 @@ msgstr "LoTW. TQ8 не загружен"
 #: application/views/interface_assets/header.php:264
 #: application/views/mode/index.php:15
 msgid "Modes"
-msgstr "Режимы модуляции"
+msgstr "Виды модуляции"
 
 #: application/controllers/Mode.php:62
 msgid "Edit Mode"
@@ -1928,11 +1932,11 @@ msgstr "Профиль"
 
 #: application/controllers/User.php:838 application/controllers/User.php:848
 msgid "Login failed. Try again."
-msgstr ""
+msgstr "Вход не выполнен. Попробуйте снова."
 
 #: application/controllers/User.php:855
 #: application/views/interface_assets/header.php:348
-#: application/views/user/login.php:67
+#: application/views/user/login.php:89
 #: application/views/visitor/layout/header.php:88
 msgid "Login"
 msgstr "Вход"
@@ -1961,24 +1965,44 @@ msgstr "Неверные логин или пароль!"
 msgid "User %s logged out."
 msgstr "Пользователь %s вышел."
 
-#: application/controllers/User.php:934
+#: application/controllers/User.php:928
+msgid "Password Reset is disabled on the Demo!"
+msgstr ""
+
+#: application/controllers/User.php:941
 msgid "Forgot Password"
 msgstr "Восстановить пароль"
 
-#: application/controllers/User.php:984 application/views/user/main.php:8
+#: application/controllers/User.php:991 application/views/user/main.php:8
 msgid "Email settings are incorrect."
 msgstr "Настройки емэйл некорректны."
 
-#: application/controllers/User.php:988 application/controllers/User.php:993
+#: application/controllers/User.php:995 application/controllers/User.php:1000
 msgid "Password Reset Processed."
 msgstr "Осуществлён сброс пароля."
 
-#: application/controllers/User.php:1094
+#: application/controllers/User.php:1102
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
 msgid "Reset Password"
 msgstr "Сбросить пароль"
+
+#: application/controllers/Visitor.php:50
+#: application/controllers/Visitor.php:79
+#: application/controllers/Visitor.php:142
+#: application/controllers/Visitor.php:167
+#: application/controllers/Visitor.php:197
+#: application/controllers/Visitor.php:474
+msgid "Unknown Public Page."
+msgstr ""
+
+#: application/controllers/Visitor.php:74
+#: application/controllers/Visitor.php:163
+#: application/controllers/Visitor.php:193
+#: application/controllers/Visitor.php:470
+msgid "Empty Logbook"
+msgstr ""
 
 #: application/controllers/Visitor.php:203
 msgid "Satellite Gridsquare Map"
@@ -4388,7 +4412,7 @@ msgstr "VHF-3-BAND и VHF-FM-ONLY (только для контестов ARRL V
 
 #: application/views/cabrillo/index.php:94
 msgid "Category Mode"
-msgstr "Категория режим модуляции"
+msgstr "Категория вид модуляции"
 
 #: application/views/cabrillo/index.php:105
 msgid "Category Power"
@@ -5451,11 +5475,11 @@ msgstr "ОК"
 
 #: application/views/debug/index.php:181
 msgid "You use the default encryption key. You should change it!"
-msgstr ""
+msgstr "Вы используете ключ шифрования по умолчанию. Вам следует его изменить!"
 
 #: application/views/debug/index.php:184
 msgid "This will also enable the 'Keep me logged in' feature."
-msgstr ""
+msgstr "Это также включит функцию «Оставаться в системе»."
 
 #: application/views/debug/index.php:185
 #, php-format
@@ -5463,10 +5487,13 @@ msgid ""
 "Change the value of %s to a new encryption key other then "
 "'flossie1234555541'. Choose a safe and long password. (Strongly recommended)"
 msgstr ""
+"Измените значение %s на новый ключ шифрования, отличный от "
+"'flossie1234555541'. Выберите безопасный и длинный пароль. (Настоятельно "
+"рекомендуется)"
 
 #: application/views/debug/index.php:191
 msgid "You do not use the default encryption key"
-msgstr ""
+msgstr "Вы не используете ключ шифрования по умолчанию"
 
 #: application/views/debug/index.php:198
 msgid "Migrate Userdata"
@@ -5777,7 +5804,7 @@ msgstr "Скачать eQSL карточки"
 #: application/views/eqsl/analysis.php:40
 #: application/views/eqsl/download.php:40 application/views/eqsl/result.php:37
 msgid "Submode"
-msgstr "Подрежим"
+msgstr "Подвид"
 
 #: application/views/eqsl/analysis.php:41
 msgid "Log Status"
@@ -6280,7 +6307,7 @@ msgstr "Экспорт Cabrillo"
 
 #: application/views/interface_assets/header.php:410
 msgid "QSL Queue"
-msgstr ""
+msgstr "Очередь QSL"
 
 #: application/views/interface_assets/header.php:411
 msgid "Labels"
@@ -6964,7 +6991,7 @@ msgstr "Поиск зоны ITU"
 
 #: application/views/logbookadvanced/index.php:458
 msgid "Search Mode"
-msgstr "Поиск режима модуляции"
+msgstr "Поиск вида модуляции"
 
 #: application/views/logbookadvanced/index.php:461
 msgid "Search Band"
@@ -7305,20 +7332,20 @@ msgstr "Загрузить файл"
 #: application/views/mode/create.php:24 application/views/mode/edit.php:33
 msgctxt "Name of mode in ADIF-specification"
 msgid "ADIF Mode"
-msgstr "Режим модуляции ADIF"
+msgstr "Вид модуляции ADIF"
 
 #: application/views/mode/create.php:26 application/views/mode/edit.php:35
 msgid "Name of mode in ADIF-specification"
-msgstr "Название режима модуляции в спецификации ADIF"
+msgstr "Название вида модуляции в спецификации ADIF"
 
 #: application/views/mode/create.php:30 application/views/mode/edit.php:39
 msgctxt "Name of sub-mode in ADIF-specification"
 msgid "ADIF Sub-Mode"
-msgstr "Подрежим модуляции ADIF"
+msgstr "Подвид модуляции ADIF"
 
 #: application/views/mode/create.php:32 application/views/mode/edit.php:41
 msgid "Name of sub-mode in ADIF-specification"
-msgstr "Название подрежима модуляции в спецификации ADIF"
+msgstr "Название подвида модуляции в спецификации ADIF"
 
 #: application/views/mode/create.php:42 application/views/mode/edit.php:53
 msgid "Defines the QRG-segment in bandplan."
@@ -7331,22 +7358,22 @@ msgstr "Не активно"
 
 #: application/views/mode/create.php:51 application/views/mode/edit.php:64
 msgid "Set to active if to be listed in Modes-list"
-msgstr "Установить активным для того чтобы режим отображался в списке"
+msgstr "Установить активным для того, чтобы вид модуляции отображался в списке"
 
 #: application/views/mode/create.php:54
 msgid "Create mode"
-msgstr "Добавить режим"
+msgstr "Добавить вид модуляции"
 
 #: application/views/mode/edit.php:67
 msgid "Update mode"
-msgstr "Обновить режим"
+msgstr "Обновить вид модуляции"
 
 #: application/views/mode/index.php:19
 msgid ""
 "Using the modes list you can control which modes are shown when creating a "
 "new QSO."
 msgstr ""
-"С помощью списка режимов вы можете управлять тем, какие режимы будут "
+"С помощью списка видов модуляции вы можете управлять тем, какие виды будут "
 "показаны при создании нового QSO."
 
 #: application/views/mode/index.php:22
@@ -7354,16 +7381,17 @@ msgid ""
 "Active modes will be shown in the QSO 'Mode' drop-down, while inactive modes "
 "will be hidden and cannot be selected."
 msgstr ""
-"Активные режимы будут отображаться в выпадающем списке QSO 'Режим "
-"модуляции', а неактивные режимы будут скрыты и не могут быть выбраны."
+"Активные виды модуляции будут отображаться в выпадающем списке 'Вид "
+"модуляции' в форме ввода QSO, а неактивные — будут скрыты и не смогут быть "
+"выбраны."
 
 #: application/views/mode/index.php:29
 msgid "Sub-Mode"
-msgstr "Подрежим"
+msgstr "Подвид"
 
 #: application/views/mode/index.php:76
 msgid "Create a Mode"
-msgstr "Добавить режим модуляции"
+msgstr "Добавить вид модуляции"
 
 #: application/views/notes/add.php:6 application/views/notes/add.php:12
 #: application/views/notes/edit.php:13 application/views/notes/main.php:11
@@ -8248,7 +8276,7 @@ msgstr "Название спутника"
 
 #: application/views/qso/edit_ajax.php:262
 msgid "Sat Mode"
-msgstr "Режим модуляции спутника"
+msgstr "Вид модуляции (для спутника)"
 
 #: application/views/qso/edit_ajax.php:355 application/views/qso/index.php:255
 #: application/views/qso/index.php:500 application/views/user/edit.php:599
@@ -8348,7 +8376,7 @@ msgstr "Спутн."
 
 #: application/views/qso/index.php:48
 msgid "Add Band/Mode to Favs"
-msgstr "Добавить диапазон/режим модуляции в избранное"
+msgstr "Добавить диапазон/вид модуляции в избранное"
 
 #: application/views/qso/index.php:69
 msgid "Time on"
@@ -8416,7 +8444,7 @@ msgstr "Название спутника"
 
 #: application/views/qso/index.php:527 application/views/view_log/qso.php:214
 msgid "Satellite Mode"
-msgstr "Режим модуляции спутника"
+msgstr "Вид модуляции (для спутника)"
 
 #: application/views/qso/index.php:538
 msgid ""
@@ -8502,20 +8530,20 @@ msgstr "Укажите, на какой орбите находится спут
 
 #: application/views/satellite/create.php:40
 msgid "Satellite mode name"
-msgstr "Режим модуляции спутника"
+msgstr "Название вида модуляции (для спутника)"
 
 #: application/views/satellite/create.php:42
 msgid "Enter satellite mode"
-msgstr "Введите режим модуляции спутника"
+msgstr "Введите вид модуляции (для спутника)"
 
 #: application/views/satellite/create.php:47
 #: application/views/satellite/edit.php:35
 msgid "Uplink mode"
-msgstr "Режим модуляции аплинка"
+msgstr "Вид модуляции (для аплинка)"
 
 #: application/views/satellite/create.php:49
 msgid "Enter modulation used for uplink"
-msgstr "Введите режим модуляции для аплинка"
+msgstr "Введите вид модуляции (для аплинка)"
 
 #: application/views/satellite/create.php:52
 #: application/views/satellite/edit.php:36
@@ -8529,11 +8557,11 @@ msgstr "Введите частоту (в Гц), используемую для
 #: application/views/satellite/create.php:59
 #: application/views/satellite/edit.php:37
 msgid "Downlink mode"
-msgstr "Режим модуляции даунлинка"
+msgstr "Вид модуляции (для даунлинка)"
 
 #: application/views/satellite/create.php:61
 msgid "Enter modulation used for downlink"
-msgstr "Введите режим модуляции даунлинка"
+msgstr "Введите вид модуляции (для даунлинка)"
 
 #: application/views/satellite/create.php:64
 #: application/views/satellite/edit.php:38
@@ -8554,7 +8582,7 @@ msgstr "Сохранить спутник"
 
 #: application/views/satellite/edit.php:59
 msgid "Add satellite mode"
-msgstr "Добавить режим модуляции спутника"
+msgstr "Добавить вид модуляции (для спутника)"
 
 #: application/views/satellite/index.php:15
 msgid "Add a satellite"
@@ -8814,7 +8842,7 @@ msgstr "Отсутствует диапазон!"
 
 #: application/views/simplefle/index.php:23
 msgid "Mode is missing!"
-msgstr "Отсутствует режим модуляции!"
+msgstr "Отсутствует вид модуляции!"
 
 #: application/views/simplefle/index.php:24
 msgid "Time is not set!"
@@ -8842,7 +8870,7 @@ msgid ""
 "mode defined!"
 msgstr ""
 "Предупреждение! Вы не можете записать в журнал список QSO потому, что для "
-"некоторых QSO не указаны диапазон и/или режим модуляции!"
+"некоторых QSO не указаны диапазон и/или вид модуляции!"
 
 #: application/views/simplefle/index.php:32
 msgid ""
@@ -8950,8 +8978,8 @@ msgid ""
 msgstr ""
 "Для начала убедитесь, что вы уже заполнили форму слева, указав дату, "
 "позывной станции и позывной оператора. Основные данные включают диапазон "
-"(или QRG в МГц, например, '7.145'), режим и время. После времени указывается "
-"первое QSO, которое, по сути, является позывным."
+"(или QRG в МГц, например, '7.145'), вид модуляции и время. После времени "
+"указывается первое QSO, которое, по сути, является позывным."
 
 #: application/views/simplefle/syntax_help.php:9
 msgid "For example, a QSO that started at 21:34 (UTC) with 4W7EST on 20m SSB."
@@ -8976,7 +9004,8 @@ msgid ""
 msgstr ""
 "Первое QSO состоялось в 21:34, а второе - на 2 минуты позже, в 21:36. Мы "
 "записываем 6, потому что это единственные данные, которые здесь изменились. "
-"Информация о диапазоне и режиме не изменилась, поэтому эти данные опущены."
+"Информация о диапазоне и виде модуляции не изменилась, поэтому эти данные "
+"опущены."
 
 #: application/views/simplefle/syntax_help.php:17
 msgid ""
@@ -9909,13 +9938,14 @@ msgstr "Редактировать аккаунт"
 msgid "General Information"
 msgstr "Общая информация"
 
-#: application/views/user/edit.php:52 application/views/user/login.php:45
-#: application/views/user/login.php:46 application/views/user/profile.php:14
+#: application/views/user/edit.php:52 application/views/user/login.php:58
+#: application/views/user/login.php:67 application/views/user/login.php:68
+#: application/views/user/profile.php:14
 msgid "Username"
 msgstr "Имя пользователя"
 
-#: application/views/user/edit.php:64 application/views/user/login.php:49
-#: application/views/user/login.php:50
+#: application/views/user/edit.php:64 application/views/user/login.php:59
+#: application/views/user/login.php:71 application/views/user/login.php:72
 #: application/views/user/reset_password.php:21
 #: application/views/user/reset_password.php:23
 #: application/views/user/reset_password.php:30
@@ -10318,13 +10348,27 @@ msgstr "Вы можете сбросить свой пароль здесь."
 msgid "MAINTENANCE MODE"
 msgstr "РЕЖИМ ОБСЛУЖИВАНИЯ"
 
-#: application/views/user/login.php:55
+#: application/views/user/login.php:56
+msgid "Welcome to the Demo of Wavelog"
+msgstr ""
+
+#: application/views/user/login.php:57
+msgid "This demo will be reset every night at 0200z."
+msgstr ""
+
+#: application/views/user/login.php:60
+#, php-format
+msgid ""
+"More Information about Wavelog on <a href='%s' target='_blank'>Github</a>."
+msgstr ""
+
+#: application/views/user/login.php:77
 msgid "Forgot your password?"
 msgstr "Забыли пароль?"
 
-#: application/views/user/login.php:61
+#: application/views/user/login.php:83
 msgid "Keep me logged in"
-msgstr ""
+msgstr "Оставаться в системе"
 
 #: application/views/user/main.php:2
 msgid "Do you really want to send this user a password-reset link?"

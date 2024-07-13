@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-11 22:38+0000\n"
+"POT-Creation-Date: 2024-07-13 09:35+0000\n"
 "PO-Revision-Date: 2024-07-10 20:23+0000\n"
 "Last-Translator: Ondřej Koloničný <ondra@ok1cdj.com>\n"
 "Language-Team: Czech <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1920,7 +1920,7 @@ msgstr ""
 
 #: application/controllers/User.php:855
 #: application/views/interface_assets/header.php:348
-#: application/views/user/login.php:67
+#: application/views/user/login.php:89
 #: application/views/visitor/layout/header.php:88
 msgid "Login"
 msgstr "Přihlásit se"
@@ -1945,24 +1945,44 @@ msgstr ""
 msgid "User %s logged out."
 msgstr ""
 
-#: application/controllers/User.php:934
+#: application/controllers/User.php:928
+msgid "Password Reset is disabled on the Demo!"
+msgstr ""
+
+#: application/controllers/User.php:941
 msgid "Forgot Password"
 msgstr ""
 
-#: application/controllers/User.php:984 application/views/user/main.php:8
+#: application/controllers/User.php:991 application/views/user/main.php:8
 msgid "Email settings are incorrect."
 msgstr ""
 
-#: application/controllers/User.php:988 application/controllers/User.php:993
+#: application/controllers/User.php:995 application/controllers/User.php:1000
 msgid "Password Reset Processed."
 msgstr ""
 
-#: application/controllers/User.php:1094
+#: application/controllers/User.php:1102
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
 msgid "Reset Password"
 msgstr "Obnovit heslo"
+
+#: application/controllers/Visitor.php:50
+#: application/controllers/Visitor.php:79
+#: application/controllers/Visitor.php:142
+#: application/controllers/Visitor.php:167
+#: application/controllers/Visitor.php:197
+#: application/controllers/Visitor.php:474
+msgid "Unknown Public Page."
+msgstr ""
+
+#: application/controllers/Visitor.php:74
+#: application/controllers/Visitor.php:163
+#: application/controllers/Visitor.php:193
+#: application/controllers/Visitor.php:470
+msgid "Empty Logbook"
+msgstr ""
 
 #: application/controllers/Visitor.php:203
 msgid "Satellite Gridsquare Map"
@@ -9461,13 +9481,14 @@ msgstr "Upravit účet"
 msgid "General Information"
 msgstr ""
 
-#: application/views/user/edit.php:52 application/views/user/login.php:45
-#: application/views/user/login.php:46 application/views/user/profile.php:14
+#: application/views/user/edit.php:52 application/views/user/login.php:58
+#: application/views/user/login.php:67 application/views/user/login.php:68
+#: application/views/user/profile.php:14
 msgid "Username"
 msgstr "Uživatelské jméno"
 
-#: application/views/user/edit.php:64 application/views/user/login.php:49
-#: application/views/user/login.php:50
+#: application/views/user/edit.php:64 application/views/user/login.php:59
+#: application/views/user/login.php:71 application/views/user/login.php:72
 #: application/views/user/reset_password.php:21
 #: application/views/user/reset_password.php:23
 #: application/views/user/reset_password.php:30
@@ -9860,11 +9881,25 @@ msgstr "Zde si můžete obnovit heslo."
 msgid "MAINTENANCE MODE"
 msgstr ""
 
-#: application/views/user/login.php:55
+#: application/views/user/login.php:56
+msgid "Welcome to the Demo of Wavelog"
+msgstr ""
+
+#: application/views/user/login.php:57
+msgid "This demo will be reset every night at 0200z."
+msgstr ""
+
+#: application/views/user/login.php:60
+#, php-format
+msgid ""
+"More Information about Wavelog on <a href='%s' target='_blank'>Github</a>."
+msgstr ""
+
+#: application/views/user/login.php:77
 msgid "Forgot your password?"
 msgstr "Zapomněli jste heslo?"
 
-#: application/views/user/login.php:61
+#: application/views/user/login.php:83
 msgid "Keep me logged in"
 msgstr ""
 
