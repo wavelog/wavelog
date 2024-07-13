@@ -960,6 +960,7 @@ $(".js-save-to-log").click(function () {
 								start_date: start_date,
 								band: band,
 								mode: mode,
+								operator_callsign: operator,
 								freq_display: freq_display,
 								start_time: start_time,
 								station_profile: station_profile,
