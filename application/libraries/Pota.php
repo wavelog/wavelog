@@ -30,7 +30,7 @@ class Pota
 				}
 			}
 		} else {
-			$src = 'assets/ressources/pota.txt';
+			$src = 'assets/resources/pota.txt';
 			if (copy($src, $file)) {
 				$this->get($query);
 			} else {

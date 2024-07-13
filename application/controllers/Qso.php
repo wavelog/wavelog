@@ -471,7 +471,7 @@ class QSO extends CI_Controller {
                     }
                 }
             } else {
-                $src = 'assets/ressources/wwff.txt';
+                $src = 'assets/resources/wwff.txt';
                 if (copy($src, $file)) {
                     $this->get_wwff();
                 } else {
@@ -507,7 +507,7 @@ class QSO extends CI_Controller {
                     }
                 }
             } else {
-                $src = 'assets/ressources/pota.txt';
+                $src = 'assets/resources/pota.txt';
                 if (copy($src, $file)) {
                     $this->get_pota();
                 } else {
@@ -546,7 +546,7 @@ class QSO extends CI_Controller {
                     }
                 }
             } else {
-                $src = 'assets/ressources/dok.txt';
+                $src = 'assets/resources/dok.txt';
                 if (copy($src, $file)) {
                     $this->get_dok();
                 } else {

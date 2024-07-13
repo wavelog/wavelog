@@ -30,7 +30,7 @@ class Wwff
 				}
 			}
 		} else {
-			$src = 'assets/ressources/wwff.txt';
+			$src = 'assets/resources/wwff.txt';
 			if (copy($src, $file)) {
 				$this->get($query);
 			} else {

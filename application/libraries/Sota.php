@@ -30,7 +30,7 @@ class Sota
 				}
 			}
 		} else {
-			$src = 'assets/ressources/sota.txt';
+			$src = 'assets/resources/sota.txt';
 			if (copy($src, $file)) {
 				$this->get($query);
 			} else {

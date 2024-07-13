@@ -98,7 +98,7 @@ class Lookup extends CI_Controller {
 				}
 			}
 		} else {
-			$src = 'assets/ressources/clublog_scp.txt';
+			$src = 'assets/resources/clublog_scp.txt';
 			if (copy($src, $file)) {
 				$this->scp();
 			} else {
