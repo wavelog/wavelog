@@ -279,7 +279,7 @@ function qso_edit(id) {
                        if (unsupported_lotw_prop_modes.includes($('#prop_mode').val())) {
                           $('#lotw_sent').prop('disabled', true);
                           $('#lotw_rcvd').prop('disabled', true);
-                          $('#lotw_propmode_hint').html("This propagation mode is not supported by LoTW. LoTW sent/received fields disabled.").fadeIn("slow");
+                          $('#lotw_propmode_hint').html(lang_lotw_propmode_hint).fadeIn("slow");
                        } else {
                           $('#lotw_sent').prop('disabled', false);
                           $('#lotw_rcvd').prop('disabled', false);
