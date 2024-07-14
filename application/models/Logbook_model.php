@@ -299,7 +299,7 @@ class Logbook_model extends CI_Model {
             'COL_SIG' => $this->input->post('sig') == null ? '' : trim($this->input->post('sig')),
             'COL_SIG_INFO' => $this->input->post('sig_info') == null ? '' : trim($this->input->post('sig_info')),
             'COL_DARC_DOK' => $darc_dok  == null ? '' : strtoupper(trim($darc_dok)),
-			      'COL_NOTES' => $this->input->post('notes'),
+            'COL_NOTES' => $this->input->post('notes'),
     );
 
     $station_id = $this->input->post('station_profile');
@@ -370,8 +370,13 @@ class Logbook_model extends CI_Model {
 
     // if LoTW username set, default SENT & RCVD to 'N' else leave as null
     if ($this->session->userdata('user_lotw_name')){
-        $data['COL_LOTW_QSL_SENT'] = 'N';
-        $data['COL_LOTW_QSL_RCVD'] = 'N';
+        if (in_array($prop_mode, $this->config->item('lotw_unsupported_prop_modes'))) {
+            $data['COL_LOTW_QSL_SENT'] = 'I';
+            $data['COL_LOTW_QSL_RCVD'] = 'I';
+        } else {
+            $data['COL_LOTW_QSL_SENT'] = 'N';
+            $data['COL_LOTW_QSL_RCVD'] = 'N';
+        }
     }
 
     $this->add_qso($data, $skipexport = false);
