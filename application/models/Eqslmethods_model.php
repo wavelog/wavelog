@@ -264,7 +264,6 @@ class Eqslmethods_model extends CI_Model {
 		*/
 
         if ($chi['http_code'] == "200") {
-            log_message('error', $result);
             if (stristr($result, "Result: 1 out of 1 records added")) {
                 $status = "Sent";
                 $this->eqsl_mark_sent($qsl['COL_PRIMARY_KEY']);
