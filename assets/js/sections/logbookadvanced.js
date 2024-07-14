@@ -368,6 +368,7 @@ $(document).ready(function () {
 				wwff: this.wwff.value,
 				qslimages: this.qslimages.value,
 				dupes: this.dupes.value,
+				contest: this.contest.value,
 			},
 			dataType: 'json',
 			success: function (data) {
@@ -858,85 +859,6 @@ $(document).ready(function () {
 		});
 	});
 
-	function handleQsl(sent, method, tag) {
-		var elements = $('#qsoList tbody input:checked');
-		var nElements = elements.length;
-		if (nElements == 0) {
-			BootstrapDialog.alert({
-				title: 'INFO',
-				message: 'You need to select a least 1 row!',
-				type: BootstrapDialog.TYPE_INFO,
-				closable: false,
-				draggable: false,
-				callback: function (result) {
-				}
-			});
-			return;
-		}
-		$('#'+tag).prop("disabled", true);
-		var id_list=[];
-		elements.each(function() {
-			let id = $(this).first().closest('tr').data('qsoID')
-			id_list.push(id);
-		});
-		$.ajax({
-			url: base_url + 'index.php/logbookadvanced/update_qsl',
-			type: 'post',
-			data: {'id': JSON.stringify(id_list, null, 2),
-				'sent' : sent,
-				'method' : method
-			},
-			success: function(data) {
-				if (data != []) {
-					$.each(data, function(k, v) {
-						updateRow(this);
-						unselectQsoID(this.qsoID);
-					});
-				}
-				$('#'+tag).prop("disabled", false);
-			}
-		});
-	}
-
-	function handleQslReceived(sent, method, tag) {
-		var elements = $('#qsoList tbody input:checked');
-		var nElements = elements.length;
-		if (nElements == 0) {
-			BootstrapDialog.alert({
-				title: 'INFO',
-				message: 'You need to select a least 1 row!',
-				type: BootstrapDialog.TYPE_INFO,
-				closable: false,
-				draggable: false,
-				callback: function (result) {
-				}
-			});
-			return;
-		}
-		$('#'+tag).prop("disabled", true);
-		var id_list=[];
-		elements.each(function() {
-			let id = $(this).first().closest('tr').data('qsoID')
-			id_list.push(id);
-		});
-		$.ajax({
-			url: base_url + 'index.php/logbookadvanced/update_qsl_received',
-			type: 'post',
-			data: {'id': JSON.stringify(id_list, null, 2),
-				'sent' : sent,
-				'method' : method
-			},
-			success: function(data) {
-				if (data != []) {
-					$.each(data, function(k, v) {
-						updateRow(this);
-						unselectQsoID(this.qsoID);
-					});
-				}
-				$('#'+tag).prop("disabled", false);
-			}
-		});
-	}
 
 	$('#checkBoxAll').change(function (event) {
 		if (this.checked) {
@@ -954,10 +876,92 @@ $(document).ready(function () {
 
 });
 
-function printlabel() {
-	var id_list=[];
+function handleQsl(sent, method, tag) {
 	var elements = $('#qsoList tbody input:checked');
 	var nElements = elements.length;
+	if (nElements == 0) {
+		BootstrapDialog.alert({
+			title: 'INFO',
+			message: 'You need to select a least 1 row!',
+			type: BootstrapDialog.TYPE_INFO,
+			closable: false,
+			draggable: false,
+			callback: function (result) {
+			}
+		});
+		return;
+	}
+	$('#'+tag).prop("disabled", true);
+	var id_list=[];
+	elements.each(function() {
+		let id = $(this).first().closest('tr').data('qsoID')
+		id_list.push(id);
+	});
+	$.ajax({
+		url: base_url + 'index.php/logbookadvanced/update_qsl',
+		type: 'post',
+		data: {'id': JSON.stringify(id_list, null, 2),
+			'sent' : sent,
+			'method' : method
+		},
+		success: function(data) {
+			if (data != []) {
+				$.each(data, function(k, v) {
+					updateRow(this);
+					unselectQsoID(this.qsoID);
+				});
+			}
+			$('#'+tag).prop("disabled", false);
+		}
+	});
+}
+
+function handleQslReceived(sent, method, tag) {
+	var elements = $('#qsoList tbody input:checked');
+	var nElements = elements.length;
+	if (nElements == 0) {
+		BootstrapDialog.alert({
+			title: 'INFO',
+			message: 'You need to select a least 1 row!',
+			type: BootstrapDialog.TYPE_INFO,
+			closable: false,
+			draggable: false,
+			callback: function (result) {
+			}
+		});
+		return;
+	}
+	$('#'+tag).prop("disabled", true);
+	var id_list=[];
+	elements.each(function() {
+		let id = $(this).first().closest('tr').data('qsoID')
+		id_list.push(id);
+	});
+	$.ajax({
+		url: base_url + 'index.php/logbookadvanced/update_qsl_received',
+		type: 'post',
+		data: {'id': JSON.stringify(id_list, null, 2),
+			'sent' : sent,
+			'method' : method
+		},
+		success: function(data) {
+			if (data != []) {
+				$.each(data, function(k, v) {
+					updateRow(this);
+					unselectQsoID(this.qsoID);
+				});
+			}
+			$('#'+tag).prop("disabled", false);
+		}
+	});
+}
+
+
+function printlabel() {
+	let id_list=[];
+	let elements = $('#qsoList tbody input:checked');
+	let nElements = elements.length;
+	let markchecked = $('#markprinted')[0].checked;
 
 	elements.each(function() {
 		let id = $(this).first().closest('tr').data('qsoID')
@@ -978,6 +982,13 @@ function printlabel() {
 			return xhr;
 		},
 		success: function(data) {
+			if (markchecked) {
+				handleQsl('Y','B', 'sentBureau');
+			} else {
+				$.each(id_list, function(k, v) {
+					unselectQsoID(this);
+				});
+			}
 			$.each(BootstrapDialog.dialogs, function(id, dialog){
 				dialog.close();
 			});
@@ -986,9 +997,6 @@ function printlabel() {
 				var fileURL = URL.createObjectURL(file);
 				window.open(fileURL);
 			}
-			$.each(id_list, function(k, v) {
-				unselectQsoID(this);
-			});
 			$('#printLabel').prop("disabled", false);
 		},
 		error: function (data) {

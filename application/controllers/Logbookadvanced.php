@@ -142,6 +142,7 @@ class Logbookadvanced extends CI_Controller {
 			'qslimages' => xss_clean($this->input->post('qslimages')),
 			'dupes' => xss_clean($this->input->post('dupes')),
 			'operator' => xss_clean($this->input->post('operator')),
+			'contest' => xss_clean($this->input->post('contest')),
 		);
 
 		$qsos = [];
@@ -310,6 +311,7 @@ class Logbookadvanced extends CI_Controller {
 			'wwff' => '',
 			'qslimages' => '',
 			'operator' => '',
+			'contest' => '',
 			'ids' => xss_clean($this->input->post('ids'))
 		);
 
@@ -353,6 +355,7 @@ class Logbookadvanced extends CI_Controller {
 			'pota' => xss_clean($this->input->post('pota')),
 			'wwff' => xss_clean($this->input->post('wwff')),
 			'operator' => xss_clean($this->input->post('operator')),
+			'contest' => xss_clean($this->input->post('contest')),
 			'qslimages' => xss_clean($this->input->post('qslimages')),
 		);
 
@@ -531,11 +534,13 @@ class Logbookadvanced extends CI_Controller {
 		$this->load->model('bands');
 		$this->load->model('modes');
 		$this->load->model('logbookadvanced_model');
+		$this->load->model('contesting_model');
 
 		$data['stateDxcc'] = $this->logbookadvanced_model->getPrimarySubdivisonsDxccs();
 
 		$data['modes'] = $this->modes->active();
 		$data['bands'] = $this->bands->get_user_bands_for_qso_entry();
+		$data['contests'] = $this->contesting_model->getActivecontests();
 		$this->load->view('logbookadvanced/edit', $data);
 	}
 
