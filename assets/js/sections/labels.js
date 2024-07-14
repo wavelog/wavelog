@@ -5,6 +5,23 @@ $('.labeltable').on('click', 'input[type="checkbox"]', function() {
     $('input:checkbox').not(this).prop('checked', false);
 });
 
+$(document).on('click','#button_markprint', function (e) {
+	e.preventDefault();
+	$('#button_markprint').attr("disabled", true).addClass("running");
+	murl=base_url + 'index.php/qslprint/qsl_printed/' + $('#sid2print').val();
+	$.ajax({
+		url: murl,
+		type: 'get',
+		success: function (html) {
+			$('#button_markprint').removeClass("running");
+			$('#button1id').attr("disabled", true);		// Disable printing as well, since every QSO for this station has been marked
+		},
+		error: function (html) {
+			$('#button_markprint').prop("disabled", false).removeClass("running");
+		}
+	});
+});
+
 function saveDefault(id) {
 	$.ajax({
 		url: base_url + 'index.php/labels/saveDefaultLabel',
@@ -28,11 +45,29 @@ function printat(stationid) {
 				nl2br: false,
 				message: html,
 				onshown: function(dialog) {
+					dialog.getButton('button_markprint').disable()
 				},
-				buttons: [{
+				buttons: [
+				{
+					label: lang_print_queue,
+					id: "button1id",
+					cssClass: "btn btn-primary",
+					action: function() { 
+						$('#button_markprint').removeClass("disabled");
+						$('#button_markprint').attr("disabled", false);
+						$("#pform").submit(); 
+					}
+				},
+				{
+					label: lang_mark_qsl_as_printed+'<div class="ld ld-ring ld-spin"></div>',
+					cssClass: "btn btn-secondary me-3 ld-ext-right",
+					id: "button_markprint"
+				},
+				{
 					label: lang_admin_close,
 					action: function (dialogItself) {
 						dialogItself.close();
+						location.reload(); 	// Refresh Mainpage, because labels could have been marked as sent
 					}
 				}]
 			});
