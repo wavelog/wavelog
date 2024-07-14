@@ -279,11 +279,15 @@ function qso_edit(id) {
                        if (unsupported_lotw_prop_modes.includes($('#prop_mode').val())) {
                           $('#lotw_sent').prop('disabled', true);
                           $('#lotw_rcvd').prop('disabled', true);
-                          $('#lotw_propmode_hint').html(lang_lotw_propmode_hint).fadeIn("slow");
+                          $('*[id=lotw_propmode_hint]').each(function() {
+                             $(this).html(lang_lotw_propmode_hint).fadeIn("slow");
+                          });
                        } else {
                           $('#lotw_sent').prop('disabled', false);
                           $('#lotw_rcvd').prop('disabled', false);
-                          $('#lotw_propmode_hint').html("&nbsp;").fadeIn("fast");
+                          $('*[id=lotw_propmode_hint]').each(function() {
+                             $(this).html("&nbsp;").fadeIn("fast");
+                          });
                        }
                     });
 

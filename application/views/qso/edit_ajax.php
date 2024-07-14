@@ -208,7 +208,7 @@
                                             <option value="TEP" <?php if($qso->COL_PROP_MODE == "TEP") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Trans-equatorial"); ?></option>
                                             <option value="TR" <?php if($qso->COL_PROP_MODE == "TR") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Tropospheric ducting"); ?></option>
                                         </select>
-                                        <small id="lotw_propmode_hint" class="form-text text-muted"><?php if (in_array($qso->COL_PROP_MODE, $this->config->item('lotw_unsupported_prop_modes'))) { echo __("This propagation mode is not supported by LoTW. LoTW QSL fields disabled."); } else { echo "&nbsp;"; } ?></small>
+                                        <small id="lotw_propmode_hint" class="form-text text-muted"><?php if (in_array($qso->COL_PROP_MODE, $this->config->item('lotw_unsupported_prop_modes'))) { echo __("Propagation mode is not supported by LoTW. LoTW QSL fields disabled."); } else { echo "&nbsp;"; } ?></small>
                                     </div>
 
                                     <input type="hidden" class="form-control" id="country" name="country" value="<?php echo $qso->COL_COUNTRY; ?>">
@@ -479,7 +479,7 @@
                                             </div>
                                             <div>
                                                 <label for="qslmsg"><?= __("Notes"); ?><span class="qso_eqsl_qslmsg_update" title="<?= __("Get the default message for eQSL, for this station."); ?>"><i class="fas fa-redo-alt"></i></span></label>
-						                        <label class="position-absolute end-0 mb-2 me-3" for="qslmsg" id="charsLeft"> </label>
+                                                <label class="position-absolute end-0 mb-2 me-3" for="qslmsg" id="charsLeft"> </label>
                                                 <textarea  type="text" class="form-control" id="qslmsg" name="qslmsg" rows="5" maxlength="240"><?php echo $qso->COL_QSLMSG; ?></textarea>
                                                 <div id="qslmsg_hide" style="display:none;"><?php echo $qso->COL_QSLMSG; ?></div>
                                             </div>
@@ -508,7 +508,9 @@
                                                     <option value="R" <?php if($qso->COL_LOTW_QSL_RCVD == "R") { echo "selected=\"selected\""; } ?>><?= __("Requested"); ?></option>
                                                     <option value="I" <?php if($qso->COL_LOTW_QSL_RCVD == "I") { echo "selected=\"selected\""; } ?>><?= __("Invalid (Ignore)"); ?></option>
                                                     <option value="V" <?php if($qso->COL_LOTW_QSL_RCVD == "V") { echo "selected=\"selected\""; } ?>><?= __("Verified (Match)"); ?></option>
-                                                </select></div>
+                                                </select>
+                                                <small id="lotw_propmode_hint" class="form-text text-muted"><?php if (in_array($qso->COL_PROP_MODE, $this->config->item('lotw_unsupported_prop_modes'))) { echo __("Propagation mode is not supported by LoTW. LoTW QSL fields disabled."); } else { echo "&nbsp;"; } ?></small>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
