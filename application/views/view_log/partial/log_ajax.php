@@ -227,8 +227,40 @@ function echo_table_col($row, $name) {
 
                 <?php if ( strpos($this->session->userdata('user_default_confirmation'),'L') !== false && ($this->session->userdata('user_lotw_name') != "") ) { ?>
                     <td class="lotw">
-                        <span <?php if ($row->COL_LOTW_QSL_SENT == "Y") { echo "title=\"".__("LoTW")." ".__("Sent"); if ($row->COL_LOTW_QSLSDATE != null) { $timestamp = strtotime($row->COL_LOTW_QSLSDATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="lotw-<?php echo ($row->COL_LOTW_QSL_SENT=='Y')?'green':'red'?>">&#9650;</span>
-                        <span <?php if ($row->COL_LOTW_QSL_RCVD == "Y") { echo "title=\"".__("LoTW")." ".__("Received"); if ($row->COL_LOTW_QSLRDATE != null) { $timestamp = strtotime($row->COL_LOTW_QSLRDATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="lotw-<?php echo ($row->COL_LOTW_QSL_RCVD=='Y')?'green':'red'?>">&#9660;</span>
+                        <span <?php switch ($row->COL_LOTW_QSL_SENT) {
+                           case "Y":
+                              echo "title=\"".__("LoTW")." ".__("Sent");
+                              if ($row->COL_LOTW_QSLSDATE != null) {
+                                 $timestamp = strtotime($row->COL_LOTW_QSLSDATE);
+                                 echo " ".($timestamp!=''?date($custom_date_format, $timestamp):'');
+                              }
+                              echo "\" data-bs-toggle=\"tooltip\" class=\"lotw-green\"";
+                              break;
+                           case "I":
+                              echo " class=\"lotw-grey\" data-bs-toggle=\"tooltip\" title=\"".__("Invalid (Ignore)")."\"";
+                              break;
+                           default:
+                              echo " class=\"lotw-red\"";
+                              break;
+                        }
+                        ?>>&#9650;</span>
+                        <span <?php switch ($row->COL_LOTW_QSL_RCVD) {
+                           case "Y":
+                              echo "title=\"".__("LoTW")." ".__("Received");
+                              if ($row->COL_LOTW_QSLRDATE != null) {
+                                 $timestamp = strtotime($row->COL_LOTW_QSLRDATE);
+                                 echo " ".($timestamp!=''?date($custom_date_format, $timestamp):'');
+                              }
+                              echo "\" data-bs-toggle=\"tooltip\" class=\"lotw-green\"";
+                              break;
+                           case "I":
+                              echo " class=\"lotw-grey\" data-bs-toggle=\"tooltip\" title=\"".__("Invalid (Ignore)")."\"";
+                              break;
+                           default:
+                              echo " class=\"lotw-red\"";
+                              break;
+                        }
+                        ?>>&#9660;</span>
                     </td>
                 <?php } ?>
 

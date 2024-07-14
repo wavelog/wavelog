@@ -299,7 +299,7 @@ class Logbook_model extends CI_Model {
             'COL_SIG' => $this->input->post('sig') == null ? '' : trim($this->input->post('sig')),
             'COL_SIG_INFO' => $this->input->post('sig_info') == null ? '' : trim($this->input->post('sig_info')),
             'COL_DARC_DOK' => $darc_dok  == null ? '' : strtoupper(trim($darc_dok)),
-			      'COL_NOTES' => $this->input->post('notes'),
+            'COL_NOTES' => $this->input->post('notes'),
     );
 
     $station_id = $this->input->post('station_profile');
@@ -370,8 +370,13 @@ class Logbook_model extends CI_Model {
 
     // if LoTW username set, default SENT & RCVD to 'N' else leave as null
     if ($this->session->userdata('user_lotw_name')){
-        $data['COL_LOTW_QSL_SENT'] = 'N';
-        $data['COL_LOTW_QSL_RCVD'] = 'N';
+        if (in_array($prop_mode, $this->config->item('lotw_unsupported_prop_modes'))) {
+            $data['COL_LOTW_QSL_SENT'] = 'I';
+            $data['COL_LOTW_QSL_RCVD'] = 'I';
+        } else {
+            $data['COL_LOTW_QSL_SENT'] = 'N';
+            $data['COL_LOTW_QSL_RCVD'] = 'N';
+        }
     }
 
     $this->add_qso($data, $skipexport = false);
@@ -1230,13 +1235,17 @@ class Logbook_model extends CI_Model {
 		  $eqsl_rcvd = 'N';
 	  }
 
-	  if ($this->input->post('lotw_sent')) {
+	  if (in_array($this->input->post('prop_mode'), $this->config->item('lotw_unsupported_prop_modes'))) {
+		  $lotw_sent = 'I';
+	  } elseif ($this->input->post('lotw_sent')) {
 		  $lotw_sent = $this->input->post('lotw_sent');
 	  } else {
 		  $lotw_sent = 'N';
 	  }
 
-	  if ($this->input->post('lotw_rcvd')) {
+	  if (in_array($this->input->post('prop_mode'), $this->config->item('lotw_unsupported_prop_modes'))) {
+		  $lotw_rcvd = 'I';
+	  } elseif ($this->input->post('lotw_rcvd')) {
 		  $lotw_rcvd = $this->input->post('lotw_rcvd');
 	  } else {
 		  $lotw_rcvd = 'N';
@@ -1332,8 +1341,8 @@ class Logbook_model extends CI_Model {
 		  'COL_QSLMSG' => $this->input->post('qslmsg'),
 		  'COL_LOTW_QSLSDATE' => $lotwsdate,
 		  'COL_LOTW_QSLRDATE' => $lotwrdate,
-		  'COL_LOTW_QSL_SENT' => $this->input->post('lotw_sent'),
-		  'COL_LOTW_QSL_RCVD' => $this->input->post('lotw_rcvd'),
+		  'COL_LOTW_QSL_SENT' => $lotw_sent,
+		  'COL_LOTW_QSL_RCVD' => $lotw_rcvd,
 		  'COL_IOTA' => $this->input->post('iota_ref'),
 		  'COL_SOTA_REF' => $this->input->post('sota_ref'),
 		  'COL_WWFF_REF' => $this->input->post('wwff_ref'),
@@ -4852,9 +4861,6 @@ function lotw_last_qsl_date($user_id) {
 
   function get_lotw_qsos_to_upload($station_id, $start_date, $end_date) {
 
-    // Missing in tqsl 2.7.3 config.xml
-    $lotw_unsupported_modes = array('INTERNET', 'RPT');
-
     $this->db->select('COL_PRIMARY_KEY,COL_CALL, COL_BAND, COL_BAND_RX, COL_TIME_ON, COL_RST_RCVD, COL_RST_SENT, COL_MODE, COL_SUBMODE, COL_FREQ, COL_FREQ_RX, COL_GRIDSQUARE, COL_SAT_NAME, COL_PROP_MODE, COL_LOTW_QSL_SENT, station_id');
 
     $this->db->where("station_id", $station_id);
@@ -4862,7 +4868,7 @@ function lotw_last_qsl_date($user_id) {
     $this->db->where('COL_LOTW_QSL_SENT', NULL);
     $this->db->or_where('COL_LOTW_QSL_SENT !=', "Y");
     $this->db->group_end();
-    $this->db->where_not_in('COL_PROP_MODE', $lotw_unsupported_modes);
+    $this->db->where_not_in('COL_PROP_MODE', $this->config->item('lotw_unsupported_prop_modes'));
     $this->db->where('COL_TIME_ON >=', $start_date);
     $this->db->where('COL_TIME_ON <=', $end_date);
     $this->db->order_by("COL_TIME_ON", "desc");
@@ -4885,6 +4891,18 @@ function lotw_last_qsl_date($user_id) {
     $this->db->update($this->config->item('table_name'), $data);
 
     return "Updated";
+  }
+
+  function mark_lotw_ignore($station_id) {
+      $data = array(
+           'COL_LOTW_QSLSDATE' => null,
+           'COL_LOTW_QSL_SENT' => 'I',
+           'COL_LOTW_QSLRDATE' => null,
+           'COL_LOTW_QSL_RCVD' => 'I',
+      );
+    $this->db->where("station_id", $station_id);
+    $this->db->where_in('COL_PROP_MODE', $this->config->item('lotw_unsupported_prop_modes'));
+    $this->db->update($this->config->item('table_name'), $data);
   }
 
     function county_qso_details($state, $county) {
