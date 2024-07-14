@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-14 09:36+0000\n"
+"POT-Creation-Date: 2024-07-14 10:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -623,7 +623,7 @@ msgstr ""
 msgid "KML Export"
 msgstr ""
 
-#: application/controllers/Labels.php:40 application/views/labels/index.php:26
+#: application/controllers/Labels.php:40 application/views/labels/index.php:30
 msgid "QSL Card Labels"
 msgstr ""
 
@@ -638,12 +638,12 @@ msgstr ""
 
 #: application/controllers/Labels.php:79 application/controllers/Labels.php:403
 #: application/views/labels/create.php:28 application/views/labels/edit.php:28
-#: application/views/labels/index.php:72
+#: application/views/labels/index.php:76
 msgid "Paper Type"
 msgstr ""
 
 #: application/controllers/Labels.php:80 application/controllers/Labels.php:404
-#: application/views/labels/index.php:38 application/views/labels/index.php:73
+#: application/views/labels/index.php:42 application/views/labels/index.php:77
 msgid "Measurement"
 msgstr ""
 
@@ -1099,7 +1099,7 @@ msgstr ""
 #: application/views/contesting/index.php:210
 #: application/views/dashboard/index.php:13
 #: application/views/gridmap/index.php:152
-#: application/views/labels/index.php:121
+#: application/views/labels/index.php:125
 #: application/views/logbookadvanced/edit.php:8
 #: application/views/logbookadvanced/index.php:10
 #: application/views/logbookadvanced/index.php:178
@@ -1606,7 +1606,7 @@ msgstr ""
 #: application/controllers/Station.php:35
 #: application/controllers/Station.php:78 application/views/csv/index.php:19
 #: application/views/dxatlas/index.php:19
-#: application/views/labels/index.php:120
+#: application/views/labels/index.php:124
 #: application/views/logbookadvanced/edit.php:18
 #: application/views/qslprint/index.php:20 application/views/qso/index.php:300
 #: application/views/search/search_result_ajax.php:18
@@ -1751,8 +1751,8 @@ msgstr ""
 
 #: application/controllers/Stationsetup.php:359
 #: application/views/api/help.php:57 application/views/contesting/add.php:59
-#: application/views/cron/index.php:56 application/views/labels/index.php:43
-#: application/views/labels/index.php:79
+#: application/views/cron/index.php:56 application/views/labels/index.php:47
+#: application/views/labels/index.php:83
 #: application/views/logbookadvanced/index.php:511
 #: application/views/mode/index.php:52 application/views/satellite/edit.php:39
 #: application/views/satellite/index.php:25
@@ -1798,7 +1798,7 @@ msgstr ""
 
 #: application/controllers/Stationsetup.php:372
 #: application/views/api/help.php:61 application/views/contesting/add.php:62
-#: application/views/labels/index.php:44 application/views/labels/index.php:80
+#: application/views/labels/index.php:48 application/views/labels/index.php:84
 #: application/views/logbookadvanced/index.php:512
 #: application/views/lotw_views/index.php:118
 #: application/views/mode/index.php:55
@@ -2340,7 +2340,7 @@ msgstr ""
 #: application/views/csv/index.php:23 application/views/dashboard/index.php:152
 #: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:41
 #: application/views/eqslcard/index.php:28
-#: application/views/hamsat/index.php:30 application/views/labels/index.php:119
+#: application/views/hamsat/index.php:30 application/views/labels/index.php:123
 #: application/views/logbookadvanced/index.php:504
 #: application/views/logbookadvanced/qslcarousel.php:30
 #: application/views/lotw_views/index.php:39
@@ -3557,7 +3557,7 @@ msgstr ""
 #: application/views/contesting/index.php:153
 #: application/views/contesting/index.php:171
 #: application/views/dashboard/index.php:18
-#: application/views/labels/index.php:37 application/views/labels/index.php:71
+#: application/views/labels/index.php:41 application/views/labels/index.php:75
 #: application/views/logbookadvanced/index.php:557
 #: application/views/logbookadvanced/qslcarousel.php:34
 #: application/views/logbookadvanced/useroptions.php:54
@@ -6164,7 +6164,7 @@ msgid "Total height of one label"
 msgstr ""
 
 #: application/views/labels/create.php:105
-#: application/views/labels/edit.php:107 application/views/labels/index.php:76
+#: application/views/labels/edit.php:107 application/views/labels/index.php:80
 msgid "Font Size"
 msgstr ""
 
@@ -6222,14 +6222,14 @@ msgstr ""
 
 #: application/views/labels/createpaper.php:68
 #: application/views/labels/editpaper.php:68
-#: application/views/labels/index.php:56
+#: application/views/labels/index.php:60
 msgctxt "Orientation"
 msgid "Landscape"
 msgstr ""
 
 #: application/views/labels/createpaper.php:69
 #: application/views/labels/editpaper.php:69
-#: application/views/labels/index.php:56
+#: application/views/labels/index.php:60
 msgctxt "Orientation"
 msgid "Portrait"
 msgstr ""
@@ -6245,86 +6245,90 @@ msgid ""
 "the label style."
 msgstr ""
 
-#: application/views/labels/index.php:29
-msgid "Create New Label Type"
+#: application/views/labels/index.php:2
+#: application/views/logbookadvanced/startatform.php:27
+msgid "Mark QSL as printed"
 msgstr ""
 
-#: application/views/labels/index.php:30
-msgid "Create New Paper Type"
+#: application/views/labels/index.php:3 application/views/labels/index.php:128
+msgid "Print"
 msgstr ""
 
 #: application/views/labels/index.php:33
+msgid "Create New Label Type"
+msgstr ""
+
+#: application/views/labels/index.php:34
+msgid "Create New Paper Type"
+msgstr ""
+
+#: application/views/labels/index.php:37
 msgid "Paper types"
 msgstr ""
 
-#: application/views/labels/index.php:39 application/views/labels/index.php:74
+#: application/views/labels/index.php:43 application/views/labels/index.php:78
 msgid "Width"
 msgstr ""
 
-#: application/views/labels/index.php:40 application/views/labels/index.php:75
+#: application/views/labels/index.php:44 application/views/labels/index.php:79
 msgid "Height"
 msgstr ""
 
-#: application/views/labels/index.php:41
+#: application/views/labels/index.php:45
 msgid "Used by labels"
 msgstr ""
 
-#: application/views/labels/index.php:42
+#: application/views/labels/index.php:46
 msgid "Orientation"
 msgstr ""
 
-#: application/views/labels/index.php:67
+#: application/views/labels/index.php:71
 msgid "Label types"
 msgstr ""
 
-#: application/views/labels/index.php:77
+#: application/views/labels/index.php:81
 #: application/views/statistics/index.php:59
 #: application/views/statistics/index.php:96
 #: application/views/widgets/qsos.php:3
 msgid "QSOs"
 msgstr ""
 
-#: application/views/labels/index.php:78
+#: application/views/labels/index.php:82
 msgid "Use For Print"
 msgstr ""
 
-#: application/views/labels/index.php:88
+#: application/views/labels/index.php:92
 msgid "No paper assigned"
 msgstr ""
 
-#: application/views/labels/index.php:113
+#: application/views/labels/index.php:117
 msgid "QSL Card Labels Pending"
 msgstr ""
 
-#: application/views/labels/index.php:122
+#: application/views/labels/index.php:126
 msgid "QSOs Waiting"
 msgstr ""
 
-#: application/views/labels/index.php:123
+#: application/views/labels/index.php:127
 msgid "View QSOs"
 msgstr ""
 
-#: application/views/labels/index.php:124
-#: application/views/labels/startatform.php:27
-msgid "Print"
-msgstr ""
-
-#: application/views/labels/startatform.php:3
+#: application/views/labels/startatform.php:4
 #: application/views/logbookadvanced/startatform.php:3
 msgid "Include Grid?"
 msgstr ""
 
-#: application/views/labels/startatform.php:9
+#: application/views/labels/startatform.php:10
 #: application/views/logbookadvanced/startatform.php:9
 msgid ""
 "Include reference? (SIG, SOTA, POTA, IOTA, WWFF; If available in location)"
 msgstr ""
 
-#: application/views/labels/startatform.php:15
+#: application/views/labels/startatform.php:16
 msgid "Include Via (if filled)?"
 msgstr ""
 
-#: application/views/labels/startatform.php:21
+#: application/views/labels/startatform.php:22
 #: application/views/logbookadvanced/startatform.php:21
 msgid "Start printing at?"
 msgstr ""
