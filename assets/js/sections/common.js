@@ -265,6 +265,32 @@ function qso_edit(id) {
                         selectize_usa_county('#stateDropdown', '#stationCntyInputEdit');
                     }
 
+                    var unsupported_lotw_prop_modes = [];
+                    $.ajax({
+                       url: base_url + 'index.php/qso/unsupported_lotw_prop_modes',
+                       type: 'get',
+                       async: false,
+                       success: function(data) {
+                          unsupported_lotw_prop_modes = $.parseJSON(data);
+                       },
+                    });
+
+                    $('#prop_mode').change(function(){
+                       if (unsupported_lotw_prop_modes.includes($('#prop_mode').val())) {
+                          $('#lotw_sent').prop('disabled', true);
+                          $('#lotw_rcvd').prop('disabled', true);
+                          $('*[id=lotw_propmode_hint]').each(function() {
+                             $(this).html(lang_lotw_propmode_hint).fadeIn("slow");
+                          });
+                       } else {
+                          $('#lotw_sent').prop('disabled', false);
+                          $('#lotw_rcvd').prop('disabled', false);
+                          $('*[id=lotw_propmode_hint]').each(function() {
+                             $(this).html("&nbsp;").fadeIn("fast");
+                          });
+                       }
+                    });
+
                     $('#stateDropdown').change(function(){
                         var state = $("#stateDropdown option:selected").text();
                         if (state != "") {

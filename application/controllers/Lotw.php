@@ -236,6 +236,9 @@ class Lotw extends CI_Controller {
 
 				$this->load->model('Logbook_model');
 
+				// First mark QSOs with unsupported propagation modes as ignore
+				$this->Logbook_model->mark_lotw_ignore($data['station_profile']->station_id);
+
 				$data['qsos'] = $this->Logbook_model->get_lotw_qsos_to_upload($data['station_profile']->station_id, $data['lotw_cert_info']->qso_start_date, $data['lotw_cert_info']->qso_end_date);
 
 				// Nothing to upload
