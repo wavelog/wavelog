@@ -168,7 +168,10 @@ function saveBatchEditQsos(id_list) {
 		value = $("#editSatellite").val();
 		value2 = $("#editSatelliteMode").val();
 	}
-	if (column == 'sota' || column == 'pota' || column == 'wwff' || column == 'gridsquare' || column == 'comment' || column == 'operator' || column == 'qslvia') {
+	if (column == 'contest') {
+		value = $("#editContest").val();
+	}
+	if (column == 'sota' || column == 'pota' || column == 'wwff' || column == 'gridsquare' || column == 'comment' || column == 'operator' || column == 'qslvia' || column == 'contest') {
 		value = $("#editTextInput").val();
 	}
 
@@ -212,6 +215,7 @@ function changeEditType(type) {
 	$('#editDxccState').hide();
 	$('#editDxccStateList').hide();
 	$('#editDxccStateListLabel').hide();
+	$('#editContest').hide();
 	editDxccStateListLabel
 	if (type == "dxcc") {
 		$('#editDxcc').show();
@@ -241,7 +245,9 @@ function changeEditType(type) {
 		$('#editSatellite').show();
 		$('#editSatelliteMode').show();
 		$('#editSatelliteModeLabel').show();
-	} else if (type == "gridsquare" || type == "sota" || type == "wwff" || type == "operator" || type == "pota" || type == "comment" || type == "qslvia") {
+	} else if (type == "contest") {
+		$('#editContest').show();
+	} else if (type == "gridsquare" || type == "sota" || type == "wwff" || type == "operator" || type == "pota" || type == "comment" || type == "qslvia" || type == "contest") {
 		$('#editTextInput').show();
 	}
 }

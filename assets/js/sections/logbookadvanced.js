@@ -368,6 +368,7 @@ $(document).ready(function () {
 				wwff: this.wwff.value,
 				qslimages: this.qslimages.value,
 				dupes: this.dupes.value,
+				contest: this.contest.value,
 			},
 			dataType: 'json',
 			success: function (data) {
