@@ -3,11 +3,12 @@
 # This file is distributed under the MIT licence.
 #
 # Karuru <karuru@aerodefense.co.uk>, 2024.
+# BG6HJE <1753409828@qq.com>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-15 10:04+0000\n"
-"PO-Revision-Date: 2024-07-11 15:53+0000\n"
+"POT-Creation-Date: 2024-07-15 06:36+0000\n"
+"PO-Revision-Date: 2024-07-15 22:49+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/zh_Hans/>\n"
@@ -16,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.6\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #: application/controllers/Accumulated.php:21
 #: application/views/interface_assets/header.php:148
@@ -508,19 +509,19 @@ msgstr "Debug"
 
 #: application/controllers/Debug.php:118
 msgid "Migrate data now"
-msgstr ""
+msgstr "立即迁移数据"
 
 #: application/controllers/Debug.php:121
 msgid "Migration already done. Run again?"
-msgstr ""
+msgstr "迁移已完成，是否重新迁移？"
 
 #: application/controllers/Debug.php:125
 msgid "No data to migrate"
-msgstr ""
+msgstr "没有可迁移的数据"
 
 #: application/controllers/Debug.php:129 application/controllers/Debug.php:134
 msgid "No migration possible"
-msgstr ""
+msgstr "无法迁移"
 
 #: application/controllers/Debug.php:216
 msgid ""
@@ -528,10 +529,12 @@ msgid ""
 "everything seems right you can delete the folders 'assets/qslcard' and "
 "'images/eqsl_card_images'."
 msgstr ""
+"文件迁移成功，请手动检查是否完整。如果一切正常，您可以删除文件夹“assets/"
+"qslcard”和“images/eqsl_card_images”。"
 
 #: application/controllers/Debug.php:219
 msgid "File Migration failed. Please check the Error Log."
-msgstr ""
+msgstr "文件迁移失败。请检查错误日志。"
 
 #: application/controllers/Distances.php:17
 #: application/views/distances/index.php:5
@@ -1104,7 +1107,6 @@ msgstr "州"
 #: application/views/logbookadvanced/edit.php:8
 #: application/views/logbookadvanced/index.php:10
 #: application/views/logbookadvanced/index.php:166
-#: application/views/logbookadvanced/index.php:556
 #: application/views/logbookadvanced/qslcarousel.php:39
 #: application/views/logbookadvanced/useroptions.php:126
 #: application/views/lookup/index.php:5
@@ -1128,6 +1130,7 @@ msgstr "州"
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/view_log/qso.php:515
 #: application/views/visitor/index.php:27
+#: application/views/logbookadvanced/index.php:556
 msgid "Gridsquare"
 msgstr "网格坐标"
 
@@ -1914,7 +1917,7 @@ msgstr "个人资料"
 
 #: application/controllers/User.php:838 application/controllers/User.php:848
 msgid "Login failed. Try again."
-msgstr ""
+msgstr "登录失败，请重试。"
 
 #: application/controllers/User.php:855
 #: application/views/interface_assets/header.php:348
@@ -1947,7 +1950,7 @@ msgstr "用户 '%s' 已登出。"
 
 #: application/controllers/User.php:928
 msgid "Password Reset is disabled on the Demo!"
-msgstr ""
+msgstr "在测试实例上，密码重置已禁用！"
 
 #: application/controllers/User.php:941
 msgid "Forgot Password"
@@ -1975,14 +1978,14 @@ msgstr "重置密码"
 #: application/controllers/Visitor.php:199
 #: application/controllers/Visitor.php:478
 msgid "Unknown Public Page."
-msgstr ""
+msgstr "公开页面未知。"
 
 #: application/controllers/Visitor.php:74
 #: application/controllers/Visitor.php:165
 #: application/controllers/Visitor.php:195
 #: application/controllers/Visitor.php:474
 msgid "Empty Logbook"
-msgstr ""
+msgstr "日志为空"
 
 #: application/controllers/Visitor.php:205
 msgid "Satellite Gridsquare Map"
@@ -2046,23 +2049,23 @@ msgstr "未知"
 
 #: application/views/accumulate/index.php:2
 msgid "Accumulated number of DXCCs worked"
-msgstr ""
+msgstr "累计已通联的 DXCC 数量"
 
 #: application/views/accumulate/index.php:3
 msgid "Accumulated number of States worked"
-msgstr ""
+msgstr "累计已通联的州数量"
 
 #: application/views/accumulate/index.php:4
 msgid "Accumulated number of IOTAs worked"
-msgstr ""
+msgstr "累计已通联的 IOTA 数量"
 
 #: application/views/accumulate/index.php:5
 msgid "Accumulated number of CQ Zones worked"
-msgstr ""
+msgstr "累计已通联的 CQ 分区数量"
 
 #: application/views/accumulate/index.php:6
 msgid "Accumulated number of VUCC Grids worked"
-msgstr ""
+msgstr "累计已通联的 VUCC 网格数量"
 
 #: application/views/accumulate/index.php:7
 #: application/views/dashboard/index.php:222
@@ -2193,7 +2196,7 @@ msgstr "通联所有区域（WAZ）"
 
 #: application/views/accumulate/index.php:77
 msgid "VHF/UHF Century Club (VUCC)"
-msgstr ""
+msgstr "VHF/UHF Century Club (VUCC)"
 
 #: application/views/accumulate/index.php:82
 msgid "Period"
@@ -3290,7 +3293,7 @@ msgstr ""
 
 #: application/views/awards/dok/index.php:10
 msgid "DARC website"
-msgstr ""
+msgstr "DARC 网站"
 
 #: application/views/awards/dok/index.php:10
 #, php-format
@@ -3298,15 +3301,15 @@ msgctxt "uses 'DARC Website' and 'here'"
 msgid ""
 "This information is provided by the %s. Information about the DOK Awards and "
 "its rules can be found %s."
-msgstr ""
+msgstr "此信息由 %s 提供，DOK 奖项规则请在 %s 查看。"
 
 #: application/views/awards/dok/index.php:20
 msgid "DOK / SDOK"
-msgstr ""
+msgstr "DOK / SDOK"
 
 #: application/views/awards/dok/index.php:23
 msgid "DOK + SDOK"
-msgstr ""
+msgstr "DOK + SDOK"
 
 #: application/views/awards/dok/index.php:37
 #: application/views/awards/dxcc/index.php:39
@@ -3317,7 +3320,7 @@ msgstr ""
 #: application/views/awards/waja/index.php:31
 #: application/views/awards/was/index.php:31
 msgid "Worked / Confirmed"
-msgstr ""
+msgstr "通联过 / 已确认"
 
 #: application/views/awards/dok/index.php:80
 #: application/views/awards/dxcc/index.php:120
@@ -3328,7 +3331,7 @@ msgstr ""
 #: application/views/awards/waja/index.php:78
 #: application/views/awards/was/index.php:74
 msgid "Every band"
-msgstr ""
+msgstr "各个波段"
 
 #: application/views/awards/dxcc/index.php:14
 msgid "DXCC Award"
@@ -3348,12 +3351,12 @@ msgstr ""
 
 #: application/views/awards/dxcc/index.php:16
 msgid "ARRL website"
-msgstr ""
+msgstr "ARRL 网站"
 
 #: application/views/awards/dxcc/index.php:16
 #, php-format
 msgid "You can find all information about the DXCC Award on the %s."
-msgstr ""
+msgstr "您可以在 %s 查看 DXCC 奖项介绍信息。"
 
 #: application/views/awards/dxcc/index.php:17
 msgid ""
@@ -3364,9 +3367,9 @@ msgid ""
 "these DXCC entities are outdated and no longer valid."
 msgstr ""
 "重要提示：随着时间的推移，DXCC 列表的标准已经发生变化 该列表将保持不变，直到"
-"实体不再满足添加该实体时所依据的标准，此时该实体将被移至“已删除列表” 您还会"
-"在 Wavelog 的列表中找到已删除的 DXCC 实体 请注意，这些 DXCC 实体已过时且不再"
-"有效（如 伪满洲国曾经也是一个合法的DXCC实体）"
+"实体不再满足添加该实体时所依据的标准，此时该实体将被移至“已删除列表” "
+"您还会在 Wavelog 的列表中找到已删除的 DXCC 实体 请注意，这些 DXCC "
+"实体已过时且不再有效（如 伪满洲国曾经也是一个合法的 DXCC 实体）"
 
 #: application/views/awards/dxcc/index.php:32
 #: application/views/awards/iota/index.php:33
@@ -4414,10 +4417,10 @@ msgstr ""
 #: application/views/contestcalendar/index.php:14
 #: application/views/logbookadvanced/edit.php:21
 #: application/views/logbookadvanced/index.php:288
-#: application/views/logbookadvanced/index.php:607
 #: application/views/logbookadvanced/useroptions.php:122
 #: application/views/qso/edit_ajax.php:39
 #: application/views/simplefle/index.php:80
+#: application/views/logbookadvanced/index.php:607
 msgid "Contest"
 msgstr ""
 
