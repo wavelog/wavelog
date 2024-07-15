@@ -6,11 +6,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-15 10:04+0000\n"
+"POT-Creation-Date: 2024-07-15 22:51+0000\n"
 "PO-Revision-Date: 2024-07-15 22:49+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/ru/>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,21 +36,18 @@ msgstr "Карта активированных квадратов"
 #: application/controllers/Visitor.php:374
 #: application/views/activators/index.php:101
 #: application/views/visitor/layout/header.php:68
-#: application/controllers/Visitor.php:372
 msgid "Gridsquares"
 msgstr "Квадраты"
 
 #: application/controllers/Activated_gridmap.php:32
 #: application/controllers/Gridmap.php:32
 #: application/controllers/Visitor.php:375
-#: application/controllers/Visitor.php:373
 msgid "Gridsquares confirmed"
 msgstr "Подтверждёно квадратов"
 
 #: application/controllers/Activated_gridmap.php:33
 #: application/controllers/Gridmap.php:33
 #: application/controllers/Visitor.php:376
-#: application/controllers/Visitor.php:374
 msgid "Gridsquares not confirmed"
 msgstr "Не подтверждено квадратов"
 
@@ -285,7 +282,6 @@ msgstr " и "
 #: application/views/user/edit.php:323
 #: application/views/view_log/partial/log_ajax.php:9
 #: application/views/visitor/index.php:21
-#: application/controllers/Logbook.php:1262
 msgid "SOTA"
 msgstr "SOTA"
 
@@ -306,7 +302,6 @@ msgstr "SOTA"
 #: application/views/user/edit.php:279 application/views/user/edit.php:301
 #: application/views/user/edit.php:324
 #: application/views/view_log/partial/log_ajax.php:10
-#: application/controllers/Logbook.php:1263
 msgid "WWFF"
 msgstr "WWFF"
 
@@ -327,7 +322,6 @@ msgstr "WWFF"
 #: application/views/user/edit.php:280 application/views/user/edit.php:302
 #: application/views/user/edit.php:325
 #: application/views/view_log/partial/log_ajax.php:11
-#: application/controllers/Logbook.php:1264
 msgid "POTA"
 msgstr "POTA"
 
@@ -338,7 +332,6 @@ msgstr "CQ Magazine WAZ"
 #: application/controllers/Awards.php:652
 #: application/views/accumulate/index.php:59
 #: application/views/timeline/index.php:45
-#: application/views/accumulate/index.php:58
 msgid "Worked All States (WAS)"
 msgstr "Worked All States (WAS)"
 
@@ -503,7 +496,6 @@ msgstr "Экспорт SOTA CSV"
 
 #: application/controllers/Dashboard.php:108
 #: application/controllers/Visitor.php:132
-#: application/controllers/Dashboard.php:106
 msgid "Dashboard"
 msgstr "Панель управления"
 
@@ -614,7 +606,6 @@ msgstr "Карта квадратов"
 
 #: application/controllers/Gridmap.php:34
 #: application/controllers/Visitor.php:377
-#: application/controllers/Visitor.php:375
 msgid "Total gridsquares worked"
 msgstr "Всего сработано квадратов"
 
@@ -796,7 +787,6 @@ msgstr "Журналы"
 #: application/views/interface_assets/header.php:97
 #: application/views/logbookadvanced/useroptions.php:4
 #: application/views/view_log/index.php:11
-#: application/controllers/Logbook.php:58
 msgid "Logbook"
 msgstr "Журнал"
 
@@ -822,8 +812,7 @@ msgstr "Журнал"
 #: application/views/qso/edit_ajax.php:37 application/views/qso/index.php:42
 #: application/views/search/result_search.php:13
 #: application/views/timeline/index.php:55 application/views/user/edit.php:562
-#: application/views/user/edit.php:649 application/controllers/Logbook.php:649
-#: application/controllers/Logbook.php:664
+#: application/views/user/edit.php:649
 msgid "QSL"
 msgstr "QSL"
 
@@ -857,7 +846,7 @@ msgstr "QSL"
 #: application/views/view_log/partial/log_ajax.php:232
 #: application/views/view_log/partial/log_ajax.php:249
 #: application/views/view_log/qso.php:408 src/QSLManager/QSO.php:367
-#: src/QSLManager/QSO.php:383 application/controllers/Logbook.php:652
+#: src/QSLManager/QSO.php:383
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -891,7 +880,6 @@ msgstr "LoTW"
 #: application/views/view_log/partial/log_ajax.php:217
 #: application/views/view_log/partial/log_ajax.php:218
 #: src/QSLManager/QSO.php:446 src/QSLManager/QSO.php:459
-#: application/controllers/Logbook.php:655
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -908,7 +896,7 @@ msgstr "eQSL"
 #: application/views/user/edit.php:683
 #: application/views/view_log/partial/log_ajax.php:83
 #: application/views/view_log/qso.php:423 src/QSLManager/QSO.php:410
-#: src/QSLManager/QSO.php:423 application/controllers/Logbook.php:661
+#: src/QSLManager/QSO.php:423
 msgid "Clublog"
 msgstr "Clublog"
 
@@ -979,8 +967,6 @@ msgstr "Clublog"
 #: application/views/view_log/partial/log_ajax.php:4
 #: application/views/view_log/qso.php:104 application/views/visitor/index.php:6
 #: application/views/widgets/qsos.php:29
-#: application/controllers/Logbook.php:1257
-#: application/views/accumulate/index.php:28
 msgid "Mode"
 msgstr "Вид модуляции"
 
@@ -1008,7 +994,6 @@ msgstr "Вид модуляции"
 #: application/views/view_log/partial/log.php:10
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:109 application/views/visitor/index.php:9
-#: application/controllers/Logbook.php:1258
 msgid "RST (S)"
 msgstr "RST (TX)"
 
@@ -1037,7 +1022,6 @@ msgstr "RST (TX)"
 #: application/views/view_log/partial/log_ajax.php:6
 #: application/views/view_log/qso.php:114
 #: application/views/visitor/index.php:12
-#: application/controllers/Logbook.php:1259
 msgid "RST (R)"
 msgstr "RST (RX)"
 
@@ -1062,7 +1046,6 @@ msgstr "RST (RX)"
 #: application/views/view_log/qso.php:235
 #: application/views/view_log/qso.php:528
 #: application/views/visitor/index.php:15
-#: application/controllers/Logbook.php:1260
 msgid "Country"
 msgstr "Страна"
 
@@ -1090,7 +1073,6 @@ msgstr "Страна"
 #: application/views/user/edit.php:299 application/views/user/edit.php:322
 #: application/views/view_log/partial/log_ajax.php:8
 #: application/views/visitor/index.php:18
-#: application/controllers/Logbook.php:1261
 msgid "IOTA"
 msgstr "IOTA"
 
@@ -1119,7 +1101,6 @@ msgstr "IOTA"
 #: application/views/user/edit.php:303 application/views/user/edit.php:326
 #: application/views/view_log/partial/log_ajax.php:12
 #: application/views/visitor/index.php:24
-#: application/controllers/Logbook.php:1265
 msgid "State"
 msgstr "Область/штат"
 
@@ -1160,7 +1141,6 @@ msgstr "Область/штат"
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/view_log/qso.php:515
 #: application/views/visitor/index.php:27
-#: application/controllers/Logbook.php:1266
 msgid "Gridsquare"
 msgstr "QTH локатор"
 
@@ -1184,7 +1164,6 @@ msgstr "QTH локатор"
 #: application/views/user/edit.php:328
 #: application/views/view_log/partial/log_ajax.php:14
 #: application/views/visitor/index.php:30
-#: application/controllers/Logbook.php:1267
 msgid "Distance"
 msgstr "Дистанция"
 
@@ -1261,8 +1240,6 @@ msgstr "Дистанция"
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/view_log/qso.php:87 application/views/visitor/index.php:33
 #: application/views/widgets/qsos.php:32
-#: application/controllers/Logbook.php:1268
-#: application/views/accumulate/index.php:18
 msgid "Band"
 msgstr "Диапазон"
 
@@ -1283,7 +1260,6 @@ msgstr "Диапазон"
 #: application/views/user/edit.php:317
 #: application/views/view_log/partial/log_ajax.php:16
 #: application/views/view_log/qso.php:93 application/views/visitor/index.php:36
-#: application/controllers/Logbook.php:1269
 msgid "Frequency"
 msgstr "Частота"
 
@@ -1306,7 +1282,6 @@ msgstr "Частота"
 #: application/views/view_log/partial/log_ajax.php:17
 #: application/views/view_log/qso.php:535
 #: application/views/visitor/index.php:39
-#: application/controllers/Logbook.php:1270
 msgid "Operator"
 msgstr "Оператор"
 
@@ -1334,7 +1309,6 @@ msgstr "Оператор"
 #: application/views/view_log/partial/log_ajax.php:29
 #: application/views/view_log/qso.php:236
 #: application/views/view_log/qso.php:529
-#: application/controllers/Logbook.php:1291
 msgid "Deleted DXCC"
 msgstr "Удалённые DXCC"
 
@@ -2018,32 +1992,29 @@ msgstr "Сбросить пароль"
 #: application/controllers/Visitor.php:50
 #: application/controllers/Visitor.php:79
 #: application/controllers/Visitor.php:142
-#: application/controllers/Visitor.php:167
-#: application/controllers/Visitor.php:197
-#: application/controllers/Visitor.php:474
+#: application/controllers/Visitor.php:169
+#: application/controllers/Visitor.php:199
+#: application/controllers/Visitor.php:478
 msgid "Unknown Public Page."
 msgstr "Неизвестная публичная страница."
 
 #: application/controllers/Visitor.php:74
-#: application/controllers/Visitor.php:163
-#: application/controllers/Visitor.php:193
-#: application/controllers/Visitor.php:470
+#: application/controllers/Visitor.php:165
+#: application/controllers/Visitor.php:195
+#: application/controllers/Visitor.php:474
 msgid "Empty Logbook"
 msgstr "Пустой журнал"
 
 #: application/controllers/Visitor.php:205
-#: application/controllers/Visitor.php:203
 msgid "Satellite Gridsquare Map"
 msgstr "Карта квадратов (спутники)"
 
 #: application/controllers/Visitor.php:411
 #: application/views/stationsetup/stationsetup.php:35
-#: application/controllers/Visitor.php:409
 msgid "Public Search"
 msgstr "Публичный поиск"
 
 #: application/controllers/Visitor.php:444
-#: application/controllers/Visitor.php:442
 msgid "Export Map"
 msgstr "Экспорт карты"
 
@@ -2119,28 +2090,22 @@ msgstr "Всего сработано квадратов VUCC"
 #: application/views/dayswithqso/index.php:16
 #: application/views/statistics/index.php:18
 #: application/views/visitor/index.php:246
-#: application/views/accumulate/index.php:6
 msgid "Year"
 msgstr "Год"
 
 #: application/views/accumulate/index.php:8
 #: application/views/accumulate/index.php:87
-#: application/views/accumulate/index.php:7
-#: application/views/accumulate/index.php:80
 msgid "Yearly"
 msgstr "Ежегодно"
 
 #: application/views/accumulate/index.php:9
 #: application/views/dashboard/index.php:227
 #: application/views/visitor/index.php:251
-#: application/views/accumulate/index.php:8
 msgid "Month"
 msgstr "Месяц"
 
 #: application/views/accumulate/index.php:10
 #: application/views/accumulate/index.php:93
-#: application/views/accumulate/index.php:9
-#: application/views/accumulate/index.php:86
 msgid "Monthly"
 msgstr "Ежемесячно"
 
@@ -2224,32 +2189,26 @@ msgstr "Ежемесячно"
 #: application/views/timeplotter/index.php:47
 #: application/views/user/edit.php:633
 #: application/views/visitor/layout/footer.php:169
-#: application/views/accumulate/index.php:21
-#: application/views/accumulate/index.php:31
 msgid "All"
 msgstr "Все"
 
 #: application/views/accumulate/index.php:48
 #: application/views/timeline/index.php:41
-#: application/views/accumulate/index.php:47
 msgid "Award"
 msgstr "Диплом"
 
 #: application/views/accumulate/index.php:53
 #: application/views/timeline/index.php:44
-#: application/views/accumulate/index.php:52
 msgid "DX Century Club (DXCC)"
 msgstr "DX Century Club (DXCC)"
 
 #: application/views/accumulate/index.php:65
 #: application/views/timeline/index.php:46
-#: application/views/accumulate/index.php:64
 msgid "Islands On The Air (IOTA)"
 msgstr "Islands On The Air (IOTA)"
 
 #: application/views/accumulate/index.php:71
 #: application/views/timeline/index.php:47
-#: application/views/accumulate/index.php:70
 msgid "Worked All Zones (WAZ)"
 msgstr "Worked All Zones (WAZ)"
 
@@ -2258,7 +2217,6 @@ msgid "VHF/UHF Century Club (VUCC)"
 msgstr "VHF / UHF Century Club (VUCC)"
 
 #: application/views/accumulate/index.php:82
-#: application/views/accumulate/index.php:75
 msgid "Period"
 msgstr "Период"
 
@@ -2285,7 +2243,6 @@ msgstr "Период"
 #: application/views/timeline/index.php:214
 #: application/views/timeline/index.php:241
 #: application/views/timeplotter/index.php:59
-#: application/views/accumulate/index.php:96
 msgid "Show"
 msgstr "Показать"
 
@@ -10800,21 +10757,17 @@ msgstr "Пометить QSO как экспортированные в QO-100 D
 msgid "The QSOs are marked as exported to QO-100 Dx Club."
 msgstr "QSO отмечены как экспортированные в QO-100 Dx Club."
 
-#: application/views/accumulate/index.php:2
-msgid "Accumulated Number of DXCCs worked"
-msgstr "Всего сработано DXCC"
+#~ msgid "Accumulated Number of DXCCs worked"
+#~ msgstr "Всего сработано DXCC"
 
-#: application/views/accumulate/index.php:3
-msgid "Accumulated Number of States worked"
-msgstr "Всего сработано штатов"
+#~ msgid "Accumulated Number of States worked"
+#~ msgstr "Всего сработано штатов"
 
-#: application/views/accumulate/index.php:4
-msgid "Accumulated Number of IOTAs worked"
-msgstr "Всего сработано IOTA"
+#~ msgid "Accumulated Number of IOTAs worked"
+#~ msgstr "Всего сработано IOTA"
 
-#: application/views/accumulate/index.php:5
-msgid "Accumulated Number of CQ Zones worked"
-msgstr "Всего сработано зон CQ"
+#~ msgid "Accumulated Number of CQ Zones worked"
+#~ msgstr "Всего сработано зон CQ"
 
 #~ msgid "If you did operate from a new location, first create a new <a href="
 #~ msgstr "Если вы работаете на новом месте, сначала создайте новый <a href="
