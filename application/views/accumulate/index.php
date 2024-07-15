@@ -74,7 +74,7 @@
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="awardradio" id="vucc" value="vucc">
                         <label class="form-check-label" for="vucc">
-                            <?= __("Worked All Grids (VUCC)"); ?>
+                            <?= __("VHF/UHF Century Club (VUCC)"); ?>
                         </label>
                     </div>
                 </div>
