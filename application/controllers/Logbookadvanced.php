@@ -410,7 +410,9 @@ class Logbookadvanced extends CI_Controller {
 	}
 
 	public function calculate($qso, $locator1, $locator2, $measurement_base, $var_dist, $custom_date_format) {
-		$this->load->library('Qra');
+		if(!$this->load->is_loaded('Qra')) {
+			$this->load->library('Qra');
+		}
 		$this->load->model('logbook_model');
 
 		$data['distance'] = $this->qra->distance($locator1, $locator2, $measurement_base) . $var_dist;
@@ -440,7 +442,9 @@ class Logbookadvanced extends CI_Controller {
 	}
 
 	public function calculateCoordinates($qso, $lat, $long, $mygrid, $measurement_base, $var_dist, $custom_date_format) {
-		$this->load->library('Qra');
+		if(!$this->load->is_loaded('Qra')) {
+			$this->load->library('Qra');
+		}
 		$this->load->model('logbook_model');
 
 		$latlng1 = $this->qra->qra2latlong($mygrid);

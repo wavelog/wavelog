@@ -572,7 +572,9 @@ class Logbookadvanced_model extends CI_Model {
 
 			$query = $this->db->query($sql, array($value, $value2, $frequencyBand, $frequencyBandRx, json_decode($ids, true), $this->session->userdata('user_id')));
 		} else if ($column == 'COL_GRIDSQUARE') {
-			$this->load->library('Qra');
+			if(!$this->load->is_loaded('Qra')) {
+			    $this->load->library('Qra');
+		    }
 			$latlng=$this->qra->qra2latlong(trim(xss_clean($value) ?? ''));
 			if ($latlng[1] ?? '--' != '--') {
 				if (strpos(trim(xss_clean($value) ?? ''), ',') !== false) {

@@ -639,7 +639,9 @@ class API extends CI_Controller {
 	}
 
 	function qralatlng($qra) {
-		$this->load->library('Qra');
+		if(!$this->load->is_loaded('Qra')) {
+			$this->load->library('Qra');
+		}
 		$latlng = $this->qra->qra2latlong($qra);
 		return $latlng;
 	}
