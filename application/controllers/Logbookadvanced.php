@@ -520,6 +520,7 @@ class Logbookadvanced extends CI_Controller {
 		$json_string['sota']['show'] = $this->input->post('sota');
 		$json_string['dok']['show'] = $this->input->post('dok');
 		$json_string['sig']['show'] = $this->input->post('sig');
+		$json_string['wwff']['show'] = $this->input->post('wwff');
 
 		$obj['column_settings']= json_encode($json_string);
 
