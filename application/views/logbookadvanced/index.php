@@ -283,7 +283,7 @@ $options = json_decode($options);
                             <label class="form-label" for="operator"><?= __("Operator"); ?></label>
                             <input type="text" name="operator" id="operator" class="form-control form-control-sm" value="">
                         </div>
-                    
+
                         <div class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                             <label class="form-label" for="contest"><?= __("Contest"); ?></label>
                             <input type="text" name="contest" id="contest" class="form-control form-control-sm" value="">
@@ -553,7 +553,7 @@ $options = json_decode($options);
                         echo '<th>' . __("Band") . '</th>';
                     } ?>
                     <?php if (($options->gridsquare->show ?? "true") == "true") {
-                        echo '<th>Gridsquare</th>';
+                        echo '<th>' . __("Gridsquare") . '</th>';
                     } ?>
                     <?php if (($options->name->show ?? "true") == "true") {
                         echo '<th>' . __("Name") . '</th>';
@@ -604,7 +604,7 @@ $options = json_decode($options);
                         echo '<th>' . __("Propagation") . '</th>';
                     } ?>
                     <?php if (($options->contest->show ?? "true") == "true") {
-                        echo '<th>Contest</th>';
+                        echo '<th>' . __("Contest") . '</th>';
                     } ?>
                     <?php if (($options->sota->show ?? "true") == "true") {
                         echo '<th>SOTA</th>';
