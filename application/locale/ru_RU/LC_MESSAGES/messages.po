@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-14 11:25+0000\n"
+"POT-Creation-Date: 2024-07-15 06:23+0000\n"
 "PO-Revision-Date: 2024-07-12 05:15+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -33,7 +33,7 @@ msgstr "Карта активированных квадратов"
 #: application/controllers/Awards.php:910
 #: application/controllers/Awards.php:942
 #: application/controllers/Gridmap.php:31
-#: application/controllers/Visitor.php:372
+#: application/controllers/Visitor.php:374
 #: application/views/activators/index.php:101
 #: application/views/visitor/layout/header.php:68
 msgid "Gridsquares"
@@ -41,13 +41,13 @@ msgstr "Квадраты"
 
 #: application/controllers/Activated_gridmap.php:32
 #: application/controllers/Gridmap.php:32
-#: application/controllers/Visitor.php:373
+#: application/controllers/Visitor.php:375
 msgid "Gridsquares confirmed"
 msgstr "Подтверждёно квадратов"
 
 #: application/controllers/Activated_gridmap.php:33
 #: application/controllers/Gridmap.php:33
-#: application/controllers/Visitor.php:374
+#: application/controllers/Visitor.php:376
 msgid "Gridsquares not confirmed"
 msgstr "Не подтверждено квадратов"
 
@@ -260,7 +260,7 @@ msgid " and "
 msgstr " и "
 
 #: application/controllers/Awards.php:486
-#: application/controllers/Logbook.php:1262
+#: application/controllers/Logbook.php:1278
 #: application/views/awards/index.php:8 application/views/bands/index.php:55
 #: application/views/dashboard/index.php:9
 #: application/views/interface_assets/header.php:176
@@ -286,7 +286,7 @@ msgid "SOTA"
 msgstr "SOTA"
 
 #: application/controllers/Awards.php:503
-#: application/controllers/Logbook.php:1263
+#: application/controllers/Logbook.php:1279
 #: application/views/bands/index.php:60
 #: application/views/dashboard/index.php:10
 #: application/views/interface_assets/header.php:170
@@ -306,7 +306,7 @@ msgid "WWFF"
 msgstr "WWFF"
 
 #: application/controllers/Awards.php:520
-#: application/controllers/Logbook.php:1264
+#: application/controllers/Logbook.php:1280
 #: application/views/bands/index.php:52
 #: application/views/dashboard/index.php:11
 #: application/views/interface_assets/header.php:180
@@ -494,7 +494,7 @@ msgstr "Редактирование задачи"
 msgid "SOTA CSV Export"
 msgstr "Экспорт SOTA CSV"
 
-#: application/controllers/Dashboard.php:106
+#: application/controllers/Dashboard.php:108
 #: application/controllers/Visitor.php:132
 msgid "Dashboard"
 msgstr "Панель управления"
@@ -605,7 +605,7 @@ msgid "Gridsquare Map"
 msgstr "Карта квадратов"
 
 #: application/controllers/Gridmap.php:34
-#: application/controllers/Visitor.php:375
+#: application/controllers/Visitor.php:377
 msgid "Total gridsquares worked"
 msgstr "Всего сработано квадратов"
 
@@ -783,15 +783,15 @@ msgstr ""
 msgid "Station Logbooks"
 msgstr "Журналы"
 
-#: application/controllers/Logbook.php:58
+#: application/controllers/Logbook.php:60
 #: application/views/interface_assets/header.php:97
 #: application/views/logbookadvanced/useroptions.php:4
 #: application/views/view_log/index.php:11
 msgid "Logbook"
 msgstr "Журнал"
 
-#: application/controllers/Logbook.php:649
-#: application/controllers/Logbook.php:664
+#: application/controllers/Logbook.php:653
+#: application/controllers/Logbook.php:668
 #: application/views/activated_gridmap/index.php:58
 #: application/views/awards/dok/index.php:55
 #: application/views/awards/dxcc/index.php:61
@@ -816,7 +816,7 @@ msgstr "Журнал"
 msgid "QSL"
 msgstr "QSL"
 
-#: application/controllers/Logbook.php:652
+#: application/controllers/Logbook.php:656
 #: application/views/activated_gridmap/index.php:66
 #: application/views/awards/cq/index.php:58
 #: application/views/awards/dok/index.php:59
@@ -850,7 +850,7 @@ msgstr "QSL"
 msgid "LoTW"
 msgstr "LoTW"
 
-#: application/controllers/Logbook.php:655
+#: application/controllers/Logbook.php:659
 #: application/views/activated_gridmap/index.php:74
 #: application/views/awards/cq/index.php:62
 #: application/views/awards/dok/index.php:63
@@ -883,7 +883,7 @@ msgstr "LoTW"
 msgid "eQSL"
 msgstr "eQSL"
 
-#: application/controllers/Logbook.php:661
+#: application/controllers/Logbook.php:665
 #: application/views/awards/dok/index.php:71
 #: application/views/awards/dxcc/index.php:77
 #: application/views/awards/jcc/index.php:68
@@ -900,7 +900,7 @@ msgstr "eQSL"
 msgid "Clublog"
 msgstr "Clublog"
 
-#: application/controllers/Logbook.php:1257
+#: application/controllers/Logbook.php:1273
 #: application/views/accumulate/index.php:28
 #: application/views/activated_gridmap/index.php:39
 #: application/views/adif/dcl_success.php:33
@@ -970,7 +970,7 @@ msgstr "Clublog"
 msgid "Mode"
 msgstr "Вид модуляции"
 
-#: application/controllers/Logbook.php:1258
+#: application/controllers/Logbook.php:1274
 #: application/views/awards/pota/index.php:36
 #: application/views/awards/wwff/index.php:36
 #: application/views/contesting/index.php:111
@@ -997,7 +997,7 @@ msgstr "Вид модуляции"
 msgid "RST (S)"
 msgstr "RST (TX)"
 
-#: application/controllers/Logbook.php:1259
+#: application/controllers/Logbook.php:1275
 #: application/views/awards/pota/index.php:37
 #: application/views/awards/wwff/index.php:37
 #: application/views/contesting/index.php:131
@@ -1025,7 +1025,7 @@ msgstr "RST (TX)"
 msgid "RST (R)"
 msgstr "RST (RX)"
 
-#: application/controllers/Logbook.php:1260
+#: application/controllers/Logbook.php:1276
 #: application/views/dashboard/index.php:7
 #: application/views/qslcard/searchresult.php:15
 #: application/views/qslcard/searchresult.php:31
@@ -1049,7 +1049,7 @@ msgstr "RST (RX)"
 msgid "Country"
 msgstr "Страна"
 
-#: application/controllers/Logbook.php:1261
+#: application/controllers/Logbook.php:1277
 #: application/views/awards/iota/index.php:169
 #: application/views/bands/index.php:50 application/views/dashboard/index.php:8
 #: application/views/interface_assets/header.php:178
@@ -1076,7 +1076,7 @@ msgstr "Страна"
 msgid "IOTA"
 msgstr "IOTA"
 
-#: application/controllers/Logbook.php:1265
+#: application/controllers/Logbook.php:1281
 #: application/views/awards/counties/details.php:12
 #: application/views/awards/counties/index.php:20
 #: application/views/awards/rac/index.php:141
@@ -1104,7 +1104,7 @@ msgstr "IOTA"
 msgid "State"
 msgstr "Область/штат"
 
-#: application/controllers/Logbook.php:1266
+#: application/controllers/Logbook.php:1282
 #: application/views/activated_gridmap/index.php:106
 #: application/views/awards/ffma/index.php:34
 #: application/views/awards/gridmaster/index.php:33
@@ -1143,7 +1143,7 @@ msgstr "Область/штат"
 msgid "Gridsquare"
 msgstr "QTH локатор"
 
-#: application/controllers/Logbook.php:1267
+#: application/controllers/Logbook.php:1283
 #: application/views/activated_gridmap/index.php:108
 #: application/views/awards/ffma/index.php:36
 #: application/views/awards/gridmaster/index.php:35
@@ -1166,7 +1166,7 @@ msgstr "QTH локатор"
 msgid "Distance"
 msgstr "Дистанция"
 
-#: application/controllers/Logbook.php:1268
+#: application/controllers/Logbook.php:1284
 #: application/views/accumulate/index.php:18
 #: application/views/activated_gridmap/index.php:8
 #: application/views/activators/index.php:7
@@ -1242,7 +1242,7 @@ msgstr "Дистанция"
 msgid "Band"
 msgstr "Диапазон"
 
-#: application/controllers/Logbook.php:1269
+#: application/controllers/Logbook.php:1285
 #: application/views/bandmap/list.php:110
 #: application/views/contesting/index.php:87
 #: application/views/dashboard/index.php:16
@@ -1262,7 +1262,7 @@ msgstr "Диапазон"
 msgid "Frequency"
 msgstr "Частота"
 
-#: application/controllers/Logbook.php:1270
+#: application/controllers/Logbook.php:1286
 #: application/views/dashboard/index.php:17
 #: application/views/logbookadvanced/edit.php:12
 #: application/views/logbookadvanced/index.php:283
@@ -1284,7 +1284,7 @@ msgstr "Частота"
 msgid "Operator"
 msgstr "Оператор"
 
-#: application/controllers/Logbook.php:1291
+#: application/controllers/Logbook.php:1307
 #: application/controllers/Stationsetup.php:381
 #: application/views/awards/dxcc/index.php:28
 #: application/views/awards/dxcc/index.php:238
@@ -1991,29 +1991,29 @@ msgstr "Сбросить пароль"
 #: application/controllers/Visitor.php:50
 #: application/controllers/Visitor.php:79
 #: application/controllers/Visitor.php:142
-#: application/controllers/Visitor.php:167
-#: application/controllers/Visitor.php:197
-#: application/controllers/Visitor.php:474
+#: application/controllers/Visitor.php:169
+#: application/controllers/Visitor.php:199
+#: application/controllers/Visitor.php:478
 msgid "Unknown Public Page."
 msgstr ""
 
 #: application/controllers/Visitor.php:74
-#: application/controllers/Visitor.php:163
-#: application/controllers/Visitor.php:193
-#: application/controllers/Visitor.php:470
+#: application/controllers/Visitor.php:165
+#: application/controllers/Visitor.php:195
+#: application/controllers/Visitor.php:474
 msgid "Empty Logbook"
 msgstr ""
 
-#: application/controllers/Visitor.php:203
+#: application/controllers/Visitor.php:205
 msgid "Satellite Gridsquare Map"
 msgstr "Карта квадратов (спутники)"
 
-#: application/controllers/Visitor.php:409
+#: application/controllers/Visitor.php:411
 #: application/views/stationsetup/stationsetup.php:35
 msgid "Public Search"
 msgstr "Публичный поиск"
 
-#: application/controllers/Visitor.php:442
+#: application/controllers/Visitor.php:444
 msgid "Export Map"
 msgstr "Экспорт карты"
 
