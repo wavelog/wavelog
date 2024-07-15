@@ -1,9 +1,9 @@
 <script>
-    var lang_statistics_accumulated_worked_dxcc = '<?= __("Accumulated Number of DXCCs worked"); ?>';
-    var lang_statistics_accumulated_worked_states = '<?= __("Accumulated Number of States worked"); ?>';
-    var lang_statistics_accumulated_worked_iota = '<?= __("Accumulated Number of IOTAs worked"); ?>';
-    var lang_statistics_accumulated_worked_cqzone = '<?= __("Accumulated Number of CQ Zones worked"); ?>';
-    var lang_statistics_accumulated_worked_vucc = '<?= __("Accumulated Number of VUCC Grids worked"); ?>';
+    var lang_statistics_accumulated_worked_dxcc = '<?= __("Accumulated number of DXCCs worked"); ?>';
+    var lang_statistics_accumulated_worked_states = '<?= __("Accumulated number of States worked"); ?>';
+    var lang_statistics_accumulated_worked_iota = '<?= __("Accumulated number of IOTAs worked"); ?>';
+    var lang_statistics_accumulated_worked_cqzone = '<?= __("Accumulated number of CQ Zones worked"); ?>';
+    var lang_statistics_accumulated_worked_vucc = '<?= __("Accumulated number of VUCC Grids worked"); ?>';
     var lang_general_word_year = '<?= __("Year"); ?>';
     var lang_general_word_yearly = '<?= __("Yearly"); ?>';
     var lang_general_word_month = '<?= __("Month"); ?>';
