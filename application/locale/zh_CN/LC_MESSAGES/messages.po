@@ -3,12 +3,13 @@
 # This file is distributed under the MIT licence.
 #
 # Karuru <karuru@aerodefense.co.uk>, 2024.
+# BG6HJE <1753409828@qq.com>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-07-15 06:36+0000\n"
-"PO-Revision-Date: 2024-07-11 15:53+0000\n"
-"Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
+"PO-Revision-Date: 2024-07-15 09:29+0000\n"
+"Last-Translator: BG6HJE <1753409828@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -16,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.6\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #: application/controllers/Accumulated.php:21
 #: application/views/interface_assets/header.php:148
@@ -508,19 +509,19 @@ msgstr "Debug"
 
 #: application/controllers/Debug.php:118
 msgid "Migrate data now"
-msgstr ""
+msgstr "立即迁移数据"
 
 #: application/controllers/Debug.php:121
 msgid "Migration already done. Run again?"
-msgstr ""
+msgstr "迁移已完成，是否重新迁移？"
 
 #: application/controllers/Debug.php:125
 msgid "No data to migrate"
-msgstr ""
+msgstr "没有可迁移的数据"
 
 #: application/controllers/Debug.php:129 application/controllers/Debug.php:134
 msgid "No migration possible"
-msgstr ""
+msgstr "无法迁移"
 
 #: application/controllers/Debug.php:216
 msgid ""
@@ -528,6 +529,8 @@ msgid ""
 "everything seems right you can delete the folders 'assets/qslcard' and "
 "'images/eqsl_card_images'."
 msgstr ""
+"文件迁移成功，请手动检查是否完整。如果一切正常，您可以删除文件夹“assets/"
+"qslcard”和“images/eqsl_card_images”。"
 
 #: application/controllers/Debug.php:219
 msgid "File Migration failed. Please check the Error Log."
