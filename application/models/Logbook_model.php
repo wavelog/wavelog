@@ -4682,7 +4682,9 @@ function lotw_last_qsl_date($user_id) {
         $count = 0;
         if ($query->num_rows() > 0){
            print("Affected QSOs: ".$this->db->affected_rows()." <br />");
-           $this->load->library('Qra');
+           if(!$this->load->is_loaded('Qra')) {
+				$this->load->library('Qra');
+			}
            foreach ($query->result() as $row) {
               $distance = $this->qra->distance($row->station_gridsquare, $row->COL_GRIDSQUARE, 'K');
               $data = array(
@@ -4934,7 +4936,9 @@ function lotw_last_qsl_date($user_id) {
 
     // [JSON PLOT] return array for plot qso for map //
     public function get_plot_array_for_map($qsos_result, $isVisitor=false) {
-      $this->load->library('qra');
+		if(!$this->load->is_loaded('Qra')) {
+			$this->load->library('Qra');
+		}
 
       $json["markers"] = array();
 

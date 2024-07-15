@@ -39,7 +39,9 @@ class Logbook extends CI_Controller {
 
 		// Calculate Lat/Lng from Locator to use on Maps
 		if($this->session->userdata('user_locator')) {
-				$this->load->library('qra');
+				if(!$this->load->is_loaded('Qra')) {
+					$this->load->library('Qra');
+				}
 				$qra_position = $this->qra->qra2latlong($this->session->userdata('user_locator'));
 				if (isset($qra_position[0]) and isset($qra_position[1])) {
 					$data['qra'] = "set";
@@ -581,7 +583,9 @@ class Logbook extends CI_Controller {
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize($this->config->item('auth_mode'))) { return; }
 
-		$this->load->library('qra');
+		if(!$this->load->is_loaded('Qra')) {
+			$this->load->library('Qra');
+		}
 		$this->load->library('subdivisions');
 
 		$this->load->model('logbook_model');
@@ -1098,7 +1102,9 @@ class Logbook extends CI_Controller {
 	function searchbearing() {
 			$locator = xss_clean($this->input->post('grid'));
 			$station_id = xss_clean($this->input->post('stationProfile'));
-			$this->load->library('Qra');
+			if(!$this->load->is_loaded('Qra')) {
+			    $this->load->library('Qra');
+		    }
 
 			if($locator != null) {
 				if (isset($station_id)) {
@@ -1137,7 +1143,9 @@ class Logbook extends CI_Controller {
 	function searchdistance() {
 			$locator = xss_clean($this->input->post('grid'));
 			$station_id = xss_clean($this->input->post('stationProfile'));
-			$this->load->library('Qra');
+			if(!$this->load->is_loaded('Qra')) {
+			    $this->load->library('Qra');
+		    }
 
 			if($locator != null) {
 				if (isset($station_id)) {
@@ -1167,38 +1175,42 @@ class Logbook extends CI_Controller {
 
 	/* return station bearing */
 	function bearing($locator, $unit = 'M', $station_id = null) {
+		if(!$this->load->is_loaded('Qra')) {
 			$this->load->library('Qra');
+		}
 
-			if($locator != null) {
-				if (isset($station_id)) {
-					// be sure that station belongs to user
-					$this->load->model('Stations');
-					if (!$this->Stations->check_station_is_accessible($station_id)) {
-						return "";
-					}
-
-					// get station profile
-					$station_profile = $this->Stations->profile_clean($station_id);
-
-					// get locator
-					$mylocator = $station_profile->station_gridsquare;
-				} else if($this->session->userdata('user_locator') != null){
-					$mylocator = $this->session->userdata('user_locator');
-				} else {
-					$mylocator = $this->config->item('locator');
+		if($locator != null) {
+			if (isset($station_id)) {
+				// be sure that station belongs to user
+				$this->load->model('Stations');
+				if (!$this->Stations->check_station_is_accessible($station_id)) {
+					return "";
 				}
 
-				$bearing = $this->qra->bearing($mylocator, $locator, $unit);
+				// get station profile
+				$station_profile = $this->Stations->profile_clean($station_id);
 
-				return $bearing;
+				// get locator
+				$mylocator = $station_profile->station_gridsquare;
+			} else if($this->session->userdata('user_locator') != null){
+				$mylocator = $this->session->userdata('user_locator');
+			} else {
+				$mylocator = $this->config->item('locator');
 			}
-			return "";
+
+			$bearing = $this->qra->bearing($mylocator, $locator, $unit);
+
+			return $bearing;
+		}
+		return "";
 	}
 
 	/* return distance */
 	function distance($locator, $station_id = null) {
 			$distance = 0;
-			$this->load->library('Qra');
+			if(!$this->load->is_loaded('Qra')) {
+			    $this->load->library('Qra');
+		    }
 
 			if($locator != null) {
 				if (isset($station_id)) {
@@ -1226,14 +1238,18 @@ class Logbook extends CI_Controller {
 	}
 
 	function qralatlng($qra) {
-		$this->load->library('Qra');
+		if(!$this->load->is_loaded('Qra')) {
+			    $this->load->library('Qra');
+		    }
 		$latlng = $this->qra->qra2latlong($qra);
 		return $latlng;
 	}
 
 	function qralatlngjson() {
 		$qra = xss_clean($this->input->post('qra'));
-		$this->load->library('Qra');
+		if(!$this->load->is_loaded('Qra')) {
+			    $this->load->library('Qra');
+		    }
 		$latlng = $this->qra->qra2latlong($qra);
 		print json_encode($latlng);
 	}
