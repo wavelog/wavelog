@@ -476,7 +476,7 @@ class Accumulate_model extends CI_Model
 		if ($period == "year") {
             $sql .= "MIN(year(col_time_on)) year";
         } else if ($period == "month") {
-			$sql .= "MIN(year(date_format(col_time_on, '%Y-%m'))) year";
+			$sql .= "MIN(date_format(col_time_on, '%Y-%m')) year";
         }
 
         $sql .= " from " . $this->config->item('table_name') . " thcv
