@@ -40,7 +40,7 @@ class Eqslmethods_model extends CI_Model {
         $data['user_eqsl_password'] = $this->security->xss_clean($password);
         $clean_userid = $this->security->xss_clean($userid);
 
-        $qslsnotsent = $this->eqslmethods_model->eqsl_not_yet_sent($clean_userid);
+        $qslsnotsent = $this->eqsl_not_yet_sent($clean_userid);
 
         foreach ($qslsnotsent->result_array() as $qsl) {
             $data['user_eqsl_name'] = $qsl['station_callsign'];
@@ -238,7 +238,6 @@ class Eqslmethods_model extends CI_Model {
     }
 
     function uploadQso($adif, $qsl) {
-        $this->load->model('eqslmethods_model');
         $status = "";
 
         // begin script
@@ -267,7 +266,7 @@ class Eqslmethods_model extends CI_Model {
         if ($chi['http_code'] == "200") {
             if (stristr($result, "Result: 1 out of 1 records added")) {
                 $status = "Sent";
-                $this->eqslmethods_model->eqsl_mark_sent($qsl['COL_PRIMARY_KEY']);
+                $this->eqsl_mark_sent($qsl['COL_PRIMARY_KEY']);
             } else {
                 if (stristr($result, "Error: No match on eQSL_User/eQSL_Pswd")) {
                     $this->session->set_flashdata('warning', 'Your eQSL username and/or password is incorrect.');
@@ -281,7 +280,7 @@ class Eqslmethods_model extends CI_Model {
                             $status = "Duplicate";
 
                             # Mark the QSL as sent if this is a dupe.
-                            $this->eqslmethods_model->eqsl_mark_sent($qsl['COL_PRIMARY_KEY']);
+                            $this->eqsl_mark_sent($qsl['COL_PRIMARY_KEY']);
                         }
                     }
                 }

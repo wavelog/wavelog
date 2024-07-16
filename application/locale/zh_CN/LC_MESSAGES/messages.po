@@ -3,11 +3,12 @@
 # This file is distributed under the MIT licence.
 #
 # Karuru <karuru@aerodefense.co.uk>, 2024.
+# BG6HJE <1753409828@qq.com>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-14 11:25+0000\n"
-"PO-Revision-Date: 2024-07-11 15:53+0000\n"
+"POT-Creation-Date: 2024-07-15 22:51+0000\n"
+"PO-Revision-Date: 2024-07-15 22:49+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/zh_Hans/>\n"
@@ -16,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.6\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #: application/controllers/Accumulated.php:21
 #: application/views/interface_assets/header.php:148
@@ -32,7 +33,7 @@ msgstr "激活的网格"
 #: application/controllers/Awards.php:910
 #: application/controllers/Awards.php:942
 #: application/controllers/Gridmap.php:31
-#: application/controllers/Visitor.php:372
+#: application/controllers/Visitor.php:374
 #: application/views/activators/index.php:101
 #: application/views/visitor/layout/header.php:68
 msgid "Gridsquares"
@@ -40,13 +41,13 @@ msgstr "网格"
 
 #: application/controllers/Activated_gridmap.php:32
 #: application/controllers/Gridmap.php:32
-#: application/controllers/Visitor.php:373
+#: application/controllers/Visitor.php:375
 msgid "Gridsquares confirmed"
 msgstr "已确认的网格"
 
 #: application/controllers/Activated_gridmap.php:33
 #: application/controllers/Gridmap.php:33
-#: application/controllers/Visitor.php:374
+#: application/controllers/Visitor.php:376
 msgid "Gridsquares not confirmed"
 msgstr "未确认的网格"
 
@@ -259,7 +260,7 @@ msgid " and "
 msgstr " 并且 "
 
 #: application/controllers/Awards.php:486
-#: application/controllers/Logbook.php:1262
+#: application/controllers/Logbook.php:1278
 #: application/views/awards/index.php:8 application/views/bands/index.php:55
 #: application/views/dashboard/index.php:9
 #: application/views/interface_assets/header.php:176
@@ -285,7 +286,7 @@ msgid "SOTA"
 msgstr "SOTA"
 
 #: application/controllers/Awards.php:503
-#: application/controllers/Logbook.php:1263
+#: application/controllers/Logbook.php:1279
 #: application/views/bands/index.php:60
 #: application/views/dashboard/index.php:10
 #: application/views/interface_assets/header.php:170
@@ -305,7 +306,7 @@ msgid "WWFF"
 msgstr "WWFF"
 
 #: application/controllers/Awards.php:520
-#: application/controllers/Logbook.php:1264
+#: application/controllers/Logbook.php:1280
 #: application/views/bands/index.php:52
 #: application/views/dashboard/index.php:11
 #: application/views/interface_assets/header.php:180
@@ -329,7 +330,7 @@ msgid "CQ Magazine WAZ"
 msgstr "CQ 杂志 WAZ"
 
 #: application/controllers/Awards.php:652
-#: application/views/accumulate/index.php:58
+#: application/views/accumulate/index.php:59
 #: application/views/timeline/index.php:45
 msgid "Worked All States (WAS)"
 msgstr "通联全部州奖（WAS）"
@@ -493,7 +494,7 @@ msgstr "编辑 Cron"
 msgid "SOTA CSV Export"
 msgstr "SOTA CSV 导出"
 
-#: application/controllers/Dashboard.php:106
+#: application/controllers/Dashboard.php:108
 #: application/controllers/Visitor.php:132
 msgid "Dashboard"
 msgstr "仪表板"
@@ -508,19 +509,19 @@ msgstr "Debug"
 
 #: application/controllers/Debug.php:118
 msgid "Migrate data now"
-msgstr ""
+msgstr "立即迁移数据"
 
 #: application/controllers/Debug.php:121
 msgid "Migration already done. Run again?"
-msgstr ""
+msgstr "迁移已完成，是否重新迁移？"
 
 #: application/controllers/Debug.php:125
 msgid "No data to migrate"
-msgstr ""
+msgstr "没有可迁移的数据"
 
 #: application/controllers/Debug.php:129 application/controllers/Debug.php:134
 msgid "No migration possible"
-msgstr ""
+msgstr "无法迁移"
 
 #: application/controllers/Debug.php:216
 msgid ""
@@ -528,10 +529,12 @@ msgid ""
 "everything seems right you can delete the folders 'assets/qslcard' and "
 "'images/eqsl_card_images'."
 msgstr ""
+"文件迁移成功，请手动检查是否完整。如果一切正常，您可以删除文件夹“assets/"
+"qslcard”和“images/eqsl_card_images”。"
 
 #: application/controllers/Debug.php:219
 msgid "File Migration failed. Please check the Error Log."
-msgstr ""
+msgstr "文件迁移失败。请检查错误日志。"
 
 #: application/controllers/Distances.php:17
 #: application/views/distances/index.php:5
@@ -600,7 +603,7 @@ msgid "Gridsquare Map"
 msgstr "网格地图"
 
 #: application/controllers/Gridmap.php:34
-#: application/controllers/Visitor.php:375
+#: application/controllers/Visitor.php:377
 msgid "Total gridsquares worked"
 msgstr "总共工作过的网格"
 
@@ -770,15 +773,15 @@ msgstr "没有找到日志本。您需要在电台站日志下添加一个日志
 msgid "Station Logbooks"
 msgstr "电台站日志簿"
 
-#: application/controllers/Logbook.php:58
+#: application/controllers/Logbook.php:60
 #: application/views/interface_assets/header.php:97
 #: application/views/logbookadvanced/useroptions.php:4
 #: application/views/view_log/index.php:11
 msgid "Logbook"
 msgstr "日志簿"
 
-#: application/controllers/Logbook.php:649
-#: application/controllers/Logbook.php:664
+#: application/controllers/Logbook.php:653
+#: application/controllers/Logbook.php:668
 #: application/views/activated_gridmap/index.php:58
 #: application/views/awards/dok/index.php:55
 #: application/views/awards/dxcc/index.php:61
@@ -803,7 +806,7 @@ msgstr "日志簿"
 msgid "QSL"
 msgstr "QSL"
 
-#: application/controllers/Logbook.php:652
+#: application/controllers/Logbook.php:656
 #: application/views/activated_gridmap/index.php:66
 #: application/views/awards/cq/index.php:58
 #: application/views/awards/dok/index.php:59
@@ -837,7 +840,7 @@ msgstr "QSL"
 msgid "LoTW"
 msgstr "LoTW"
 
-#: application/controllers/Logbook.php:655
+#: application/controllers/Logbook.php:659
 #: application/views/activated_gridmap/index.php:74
 #: application/views/awards/cq/index.php:62
 #: application/views/awards/dok/index.php:63
@@ -870,7 +873,7 @@ msgstr "LoTW"
 msgid "eQSL"
 msgstr "eQSL"
 
-#: application/controllers/Logbook.php:661
+#: application/controllers/Logbook.php:665
 #: application/views/awards/dok/index.php:71
 #: application/views/awards/dxcc/index.php:77
 #: application/views/awards/jcc/index.php:68
@@ -887,8 +890,8 @@ msgstr "eQSL"
 msgid "Clublog"
 msgstr "Clublog"
 
-#: application/controllers/Logbook.php:1257
-#: application/views/accumulate/index.php:28
+#: application/controllers/Logbook.php:1273
+#: application/views/accumulate/index.php:29
 #: application/views/activated_gridmap/index.php:39
 #: application/views/adif/dcl_success.php:33
 #: application/views/awards/cq/index.php:86
@@ -957,7 +960,7 @@ msgstr "Clublog"
 msgid "Mode"
 msgstr "模式"
 
-#: application/controllers/Logbook.php:1258
+#: application/controllers/Logbook.php:1274
 #: application/views/awards/pota/index.php:36
 #: application/views/awards/wwff/index.php:36
 #: application/views/contesting/index.php:111
@@ -984,7 +987,7 @@ msgstr "模式"
 msgid "RST (S)"
 msgstr "信号报告(发)"
 
-#: application/controllers/Logbook.php:1259
+#: application/controllers/Logbook.php:1275
 #: application/views/awards/pota/index.php:37
 #: application/views/awards/wwff/index.php:37
 #: application/views/contesting/index.php:131
@@ -1012,7 +1015,7 @@ msgstr "信号报告(发)"
 msgid "RST (R)"
 msgstr "信号报告(收)"
 
-#: application/controllers/Logbook.php:1260
+#: application/controllers/Logbook.php:1276
 #: application/views/dashboard/index.php:7
 #: application/views/qslcard/searchresult.php:15
 #: application/views/qslcard/searchresult.php:31
@@ -1036,7 +1039,7 @@ msgstr "信号报告(收)"
 msgid "Country"
 msgstr "DXCC 实体"
 
-#: application/controllers/Logbook.php:1261
+#: application/controllers/Logbook.php:1277
 #: application/views/awards/iota/index.php:169
 #: application/views/bands/index.php:50 application/views/dashboard/index.php:8
 #: application/views/interface_assets/header.php:178
@@ -1063,7 +1066,7 @@ msgstr "DXCC 实体"
 msgid "IOTA"
 msgstr "IOTA"
 
-#: application/controllers/Logbook.php:1265
+#: application/controllers/Logbook.php:1281
 #: application/views/awards/counties/details.php:12
 #: application/views/awards/counties/index.php:20
 #: application/views/awards/rac/index.php:141
@@ -1091,7 +1094,7 @@ msgstr "IOTA"
 msgid "State"
 msgstr "州"
 
-#: application/controllers/Logbook.php:1266
+#: application/controllers/Logbook.php:1282
 #: application/views/activated_gridmap/index.php:106
 #: application/views/awards/ffma/index.php:34
 #: application/views/awards/gridmaster/index.php:33
@@ -1104,6 +1107,7 @@ msgstr "州"
 #: application/views/logbookadvanced/edit.php:8
 #: application/views/logbookadvanced/index.php:10
 #: application/views/logbookadvanced/index.php:166
+#: application/views/logbookadvanced/index.php:556
 #: application/views/logbookadvanced/qslcarousel.php:39
 #: application/views/logbookadvanced/useroptions.php:126
 #: application/views/lookup/index.php:5
@@ -1130,7 +1134,7 @@ msgstr "州"
 msgid "Gridsquare"
 msgstr "网格坐标"
 
-#: application/controllers/Logbook.php:1267
+#: application/controllers/Logbook.php:1283
 #: application/views/activated_gridmap/index.php:108
 #: application/views/awards/ffma/index.php:36
 #: application/views/awards/gridmaster/index.php:35
@@ -1153,8 +1157,8 @@ msgstr "网格坐标"
 msgid "Distance"
 msgstr "距离"
 
-#: application/controllers/Logbook.php:1268
-#: application/views/accumulate/index.php:18
+#: application/controllers/Logbook.php:1284
+#: application/views/accumulate/index.php:19
 #: application/views/activated_gridmap/index.php:8
 #: application/views/activators/index.php:7
 #: application/views/adif/dcl_success.php:32
@@ -1229,7 +1233,7 @@ msgstr "距离"
 msgid "Band"
 msgstr "频段"
 
-#: application/controllers/Logbook.php:1269
+#: application/controllers/Logbook.php:1285
 #: application/views/bandmap/list.php:110
 #: application/views/contesting/index.php:87
 #: application/views/dashboard/index.php:16
@@ -1249,7 +1253,7 @@ msgstr "频段"
 msgid "Frequency"
 msgstr "频率"
 
-#: application/controllers/Logbook.php:1270
+#: application/controllers/Logbook.php:1286
 #: application/views/dashboard/index.php:17
 #: application/views/logbookadvanced/edit.php:12
 #: application/views/logbookadvanced/index.php:283
@@ -1271,7 +1275,7 @@ msgstr "频率"
 msgid "Operator"
 msgstr "操作员"
 
-#: application/controllers/Logbook.php:1291
+#: application/controllers/Logbook.php:1307
 #: application/controllers/Stationsetup.php:381
 #: application/views/awards/dxcc/index.php:28
 #: application/views/awards/dxcc/index.php:238
@@ -1913,7 +1917,7 @@ msgstr "个人资料"
 
 #: application/controllers/User.php:838 application/controllers/User.php:848
 msgid "Login failed. Try again."
-msgstr ""
+msgstr "登录失败，请重试。"
 
 #: application/controllers/User.php:855
 #: application/views/interface_assets/header.php:348
@@ -1946,7 +1950,7 @@ msgstr "用户 '%s' 已登出。"
 
 #: application/controllers/User.php:928
 msgid "Password Reset is disabled on the Demo!"
-msgstr ""
+msgstr "在测试实例上，密码重置已禁用！"
 
 #: application/controllers/User.php:941
 msgid "Forgot Password"
@@ -1970,29 +1974,29 @@ msgstr "重置密码"
 #: application/controllers/Visitor.php:50
 #: application/controllers/Visitor.php:79
 #: application/controllers/Visitor.php:142
-#: application/controllers/Visitor.php:167
-#: application/controllers/Visitor.php:197
-#: application/controllers/Visitor.php:474
+#: application/controllers/Visitor.php:169
+#: application/controllers/Visitor.php:199
+#: application/controllers/Visitor.php:478
 msgid "Unknown Public Page."
-msgstr ""
+msgstr "公开页面未知。"
 
 #: application/controllers/Visitor.php:74
-#: application/controllers/Visitor.php:163
-#: application/controllers/Visitor.php:193
-#: application/controllers/Visitor.php:470
+#: application/controllers/Visitor.php:165
+#: application/controllers/Visitor.php:195
+#: application/controllers/Visitor.php:474
 msgid "Empty Logbook"
-msgstr ""
+msgstr "日志为空"
 
-#: application/controllers/Visitor.php:203
+#: application/controllers/Visitor.php:205
 msgid "Satellite Gridsquare Map"
 msgstr "卫星网格地图"
 
-#: application/controllers/Visitor.php:409
+#: application/controllers/Visitor.php:411
 #: application/views/stationsetup/stationsetup.php:35
 msgid "Public Search"
 msgstr "公开搜索"
 
-#: application/controllers/Visitor.php:442
+#: application/controllers/Visitor.php:444
 msgid "Export Map"
 msgstr "导出地图"
 
@@ -2044,22 +2048,26 @@ msgid "unknown"
 msgstr "未知"
 
 #: application/views/accumulate/index.php:2
-msgid "Accumulated Number of DXCCs worked"
-msgstr "已累计通联的 DXCC 数量"
+msgid "Accumulated number of DXCCs worked"
+msgstr "累计已通联的 DXCC 数量"
 
 #: application/views/accumulate/index.php:3
-msgid "Accumulated Number of States worked"
-msgstr "已累计通联的美国州数量"
+msgid "Accumulated number of States worked"
+msgstr "累计已通联的州数量"
 
 #: application/views/accumulate/index.php:4
-msgid "Accumulated Number of IOTAs worked"
-msgstr "已累计通联的 IOTA 数量"
+msgid "Accumulated number of IOTAs worked"
+msgstr "累计已通联的 IOTA 数量"
 
 #: application/views/accumulate/index.php:5
-msgid "Accumulated Number of CQ Zones worked"
-msgstr "已累计通联的 CQ 分区数量"
+msgid "Accumulated number of CQ Zones worked"
+msgstr "累计已通联的 CQ 分区数量"
 
 #: application/views/accumulate/index.php:6
+msgid "Accumulated number of VUCC Grids worked"
+msgstr "累计已通联的 VUCC 网格数量"
+
+#: application/views/accumulate/index.php:7
 #: application/views/dashboard/index.php:222
 #: application/views/dayswithqso/index.php:16
 #: application/views/statistics/index.php:18
@@ -2067,24 +2075,24 @@ msgstr "已累计通联的 CQ 分区数量"
 msgid "Year"
 msgstr "年"
 
-#: application/views/accumulate/index.php:7
-#: application/views/accumulate/index.php:80
+#: application/views/accumulate/index.php:8
+#: application/views/accumulate/index.php:87
 msgid "Yearly"
 msgstr "每年"
 
-#: application/views/accumulate/index.php:8
+#: application/views/accumulate/index.php:9
 #: application/views/dashboard/index.php:227
 #: application/views/visitor/index.php:251
 msgid "Month"
 msgstr "月"
 
-#: application/views/accumulate/index.php:9
-#: application/views/accumulate/index.php:86
+#: application/views/accumulate/index.php:10
+#: application/views/accumulate/index.php:93
 msgid "Monthly"
 msgstr "每月"
 
-#: application/views/accumulate/index.php:21
-#: application/views/accumulate/index.php:31
+#: application/views/accumulate/index.php:22
+#: application/views/accumulate/index.php:32
 #: application/views/activated_gridmap/index.php:10
 #: application/views/activated_gridmap/index.php:22
 #: application/views/activated_gridmap/index.php:32
@@ -2166,31 +2174,35 @@ msgstr "每月"
 msgid "All"
 msgstr "所有"
 
-#: application/views/accumulate/index.php:47
+#: application/views/accumulate/index.php:48
 #: application/views/timeline/index.php:41
 msgid "Award"
 msgstr "奖项"
 
-#: application/views/accumulate/index.php:52
+#: application/views/accumulate/index.php:53
 #: application/views/timeline/index.php:44
 msgid "DX Century Club (DXCC)"
 msgstr "DX Century Club (DXCC)"
 
-#: application/views/accumulate/index.php:64
+#: application/views/accumulate/index.php:65
 #: application/views/timeline/index.php:46
 msgid "Islands On The Air (IOTA)"
 msgstr "空中岛屿（IOTA）"
 
-#: application/views/accumulate/index.php:70
+#: application/views/accumulate/index.php:71
 #: application/views/timeline/index.php:47
 msgid "Worked All Zones (WAZ)"
 msgstr "通联所有区域（WAZ）"
 
-#: application/views/accumulate/index.php:75
+#: application/views/accumulate/index.php:77
+msgid "VHF/UHF Century Club (VUCC)"
+msgstr "VHF/UHF Century Club (VUCC)"
+
+#: application/views/accumulate/index.php:82
 msgid "Period"
 msgstr "周期"
 
-#: application/views/accumulate/index.php:96
+#: application/views/accumulate/index.php:103
 #: application/views/activators/index.php:50
 #: application/views/awards/cq/index.php:111
 #: application/views/awards/dok/index.php:127
@@ -3281,7 +3293,7 @@ msgstr ""
 
 #: application/views/awards/dok/index.php:10
 msgid "DARC website"
-msgstr ""
+msgstr "DARC 网站"
 
 #: application/views/awards/dok/index.php:10
 #, php-format
@@ -3289,15 +3301,15 @@ msgctxt "uses 'DARC Website' and 'here'"
 msgid ""
 "This information is provided by the %s. Information about the DOK Awards and "
 "its rules can be found %s."
-msgstr ""
+msgstr "此信息由 %s 提供，DOK 奖项规则请在 %s 查看。"
 
 #: application/views/awards/dok/index.php:20
 msgid "DOK / SDOK"
-msgstr ""
+msgstr "DOK / SDOK"
 
 #: application/views/awards/dok/index.php:23
 msgid "DOK + SDOK"
-msgstr ""
+msgstr "DOK + SDOK"
 
 #: application/views/awards/dok/index.php:37
 #: application/views/awards/dxcc/index.php:39
@@ -3308,7 +3320,7 @@ msgstr ""
 #: application/views/awards/waja/index.php:31
 #: application/views/awards/was/index.php:31
 msgid "Worked / Confirmed"
-msgstr ""
+msgstr "通联过 / 已确认"
 
 #: application/views/awards/dok/index.php:80
 #: application/views/awards/dxcc/index.php:120
@@ -3319,7 +3331,7 @@ msgstr ""
 #: application/views/awards/waja/index.php:78
 #: application/views/awards/was/index.php:74
 msgid "Every band"
-msgstr ""
+msgstr "各个波段"
 
 #: application/views/awards/dxcc/index.php:14
 msgid "DXCC Award"
@@ -3339,12 +3351,12 @@ msgstr ""
 
 #: application/views/awards/dxcc/index.php:16
 msgid "ARRL website"
-msgstr ""
+msgstr "ARRL 网站"
 
 #: application/views/awards/dxcc/index.php:16
 #, php-format
 msgid "You can find all information about the DXCC Award on the %s."
-msgstr ""
+msgstr "您可以在 %s 查看 DXCC 奖项介绍信息。"
 
 #: application/views/awards/dxcc/index.php:17
 msgid ""
@@ -3357,7 +3369,7 @@ msgstr ""
 "重要提示：随着时间的推移，DXCC 列表的标准已经发生变化 该列表将保持不变，直到"
 "实体不再满足添加该实体时所依据的标准，此时该实体将被移至“已删除列表” 您还会"
 "在 Wavelog 的列表中找到已删除的 DXCC 实体 请注意，这些 DXCC 实体已过时且不再"
-"有效（如 伪满洲国曾经也是一个合法的DXCC实体）"
+"有效（如 伪满洲国曾经也是一个合法的 DXCC 实体）"
 
 #: application/views/awards/dxcc/index.php:32
 #: application/views/awards/iota/index.php:33
@@ -4405,6 +4417,7 @@ msgstr ""
 #: application/views/contestcalendar/index.php:14
 #: application/views/logbookadvanced/edit.php:21
 #: application/views/logbookadvanced/index.php:288
+#: application/views/logbookadvanced/index.php:607
 #: application/views/logbookadvanced/useroptions.php:122
 #: application/views/qso/edit_ajax.php:39
 #: application/views/simplefle/index.php:80
@@ -10332,6 +10345,18 @@ msgstr ""
 #: application/views/webadif/mark_webadif.php:16
 msgid "The QSOs are marked as exported to QO-100 Dx Club."
 msgstr ""
+
+#~ msgid "Accumulated Number of DXCCs worked"
+#~ msgstr "已累计通联的 DXCC 数量"
+
+#~ msgid "Accumulated Number of States worked"
+#~ msgstr "已累计通联的美国州数量"
+
+#~ msgid "Accumulated Number of IOTAs worked"
+#~ msgstr "已累计通联的 IOTA 数量"
+
+#~ msgid "Accumulated Number of CQ Zones worked"
+#~ msgstr "已累计通联的 CQ 分区数量"
 
 #~ msgid "Are you sure you want delete station profile  "
 #~ msgstr "确认删除该台站 "

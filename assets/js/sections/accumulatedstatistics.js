@@ -42,6 +42,10 @@ function accumulatePlot(form) {
 						var awardtext =
 							lang_statistics_accumulated_worked_cqzone;
 						break;
+					case "vucc":
+						var awardtext =
+							lang_statistics_accumulated_worked_vucc;
+						break;
 				}
 
 				var periodtext = lang_general_word_year;

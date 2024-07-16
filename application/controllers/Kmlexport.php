@@ -32,7 +32,9 @@ class Kmlexport extends CI_Controller {
         $this->load->model('user_model');
         if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 		// Load Libraries
-		$this->load->library('qra');
+		if(!$this->load->is_loaded('Qra')) {
+			$this->load->library('Qra');
+		}
 		$this->load->helper('file');
 
 		// Load Database connections
