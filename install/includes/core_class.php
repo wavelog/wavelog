@@ -159,6 +159,9 @@ class Core
 		// Open the file
 		$database_file = file_get_contents($template_path);
 
+		// creating a unique encryption key
+		$encryptionkey = uniqid(bin2hex(random_bytes(8)), false);
+
 		$new  = str_replace("%baselocator%", $data['locator'], $database_file);
 		$new  = str_replace("%websiteurl%", $data['websiteurl'], $new);
 		$new  = str_replace("%directory%", $data['directory'], $new);
@@ -174,6 +177,7 @@ class Core
 			$new  = str_replace("%hamqth_username%", $data['callbook_username'], $new);
 			$new  = str_replace("%hamqth_password%", $data['callbook_password'], $new);
 		}
+		$new = str_replace("%encryptionkey%", $encryptionkey, $new);
 
 		// Write the new config.php file
 		$handle = fopen($output_path, 'w+');
