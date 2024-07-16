@@ -218,6 +218,8 @@ global $wavelog_url;
 	<link rel="stylesheet" href="../assets/css/darkly/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/overrides.css">
 	<link rel="stylesheet" href="../assets/fontawesome/css/all.min.css">
+	<link rel="stylesheet" href="../assets/css/loading.min.css">
+	<link rel="stylesheet" href="../assets/css/ldbtn.min.css">
 
 	<script type="text/javascript" src="../assets/js/bootstrap.bundle.min.js"></script>
 	<script type="text/javascript" src="../assets/js/jquery-3.3.1.min.js"></script>
@@ -1155,7 +1157,7 @@ global $wavelog_url;
 											<h4 style="margin-top: 50px;"><?= __("Nearly done!"); ?></h4>
 											<p style="margin-top: 50px;"><?= __("You prepared all neccessary steps."); ?></p>
 											<p><?= __("We now can install Wavelog. This process can take a few minutes."); ?></p>
-											<button class="btn btn-primary" type="submit" id="submit"><?= __("Install Now"); ?></button>
+											<button class="btn btn-primary ld-ext-right" type="submit" id="submit"><?= __("Install Now"); ?><div class="ld ld-ring ld-spin"></div></button>
 										</div>
 									</div>
 								</div>
@@ -1536,6 +1538,11 @@ global $wavelog_url;
 				$('#languageButton').click(function() {
 					$('#languageModal').modal('show');
 				});
+
+				$('#submit').click(function() {
+					$('#BackButton').prop("disabled", true)
+					$('#submit').prop("disabled", true).addClass("running");
+				})
 
 			});
 		</script>
