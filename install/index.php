@@ -1173,9 +1173,6 @@ global $wavelog_url;
 		</div>
 
 		<script>
-			// let continue_allowed = true;
-			// console.log('initial continue_allowed');
-
 			// We don't want to allow press Enter to trigger Events in the Installer
 			// Too dangerous for an average $user
 			document.addEventListener('keydown', function(event) {
@@ -1193,7 +1190,6 @@ global $wavelog_url;
 				if (db_hostname === '' || db_username === '' || db_password === '' || db_name === '') {
 					$('#db_connection_testresult').addClass('alert-danger');
 					$('#db_connection_testresult').html('<?= __("Error: All fields are required."); ?>');
-					// continue_allowed = false;
 					return;
 				}
 
@@ -1222,15 +1218,11 @@ global $wavelog_url;
 							if (sql_version_checker(response) == true) {
 								$('#db_connection_testresult').addClass('alert-success');
 								$('#db_connection_test_button').html(originalButtonText).prop('disabled', false);
-								// $('#ContinueButton').prop('disabled', false);
 								$('#db_connection_testresult').html('<?= __("Connection was successful and your database should be compatible"); ?> <i class="fas fa-check-circle"></i>');
-								continue_allowed = true;
 							} else {
 								$('#db_connection_testresult').addClass('alert-warning');
 								$('#db_connection_test_button').html(originalButtonText).prop('disabled', false);
-								// $('#ContinueButton').prop('disabled', false);
 								$('#db_connection_testresult').html('<?= __("Connection was successful but your database seems too old for Wavelog. You can try to continue but you could run into issues."); ?> <i class="fas fa-circle-exclamation"></i>');
-								continue_allowed = true;
 							}
 						}
 					},
@@ -1280,81 +1272,6 @@ global $wavelog_url;
 				return emailRegex.test(email);
 			}
 
-			// Check various user input in tab 3
-			// websiteURL
-			// const websiteUrlField = $('#websiteurl');
-			// const LocatorField = $('#locator');
-
-			// websiteUrlField.on('change', function() {
-			// 	if (config_check()) {
-			// 		continue_allowed = true;
-			// 		console.log('continue allowed ln 758');
-			// 	}
-			// });
-
-			// LocatorField.on('change', function() {
-			// 	if (config_check()) {
-			// 		continue_allowed = true;
-			// 		console.log('continue allowed ln 765');
-			// 	}
-			// });
-
-			// function config_check() {
-			// 	var check1_ok = true;
-			// 	var check2_ok = true;
-
-			// 	if (websiteUrlField.val() == '') {
-			// 		console.log('Websiteurl: ' + websiteUrlField.val());
-			// 		websiteUrlField.addClass('is-invalid');
-			// 		websiteUrlField.removeClass('is-valid');
-			// 		if (root_mode == false) {
-			// 			$('#ContinueButton').prop('disabled', true);
-			// 			check1_ok = false;
-			// 		} else {
-			// 			// $('#ContinueButton').prop('disabled', false);
-			// 			check1_ok = true;
-			// 		}
-			// 	} else {
-
-			// 		websiteUrlField.addClass('is-valid');
-			// 		websiteUrlField.removeClass('is-invalid');
-			// 		// $('#ContinueButton').prop('disabled', false);
-			// 		check1_ok = true;
-
-			// 	}
-
-			// 	if (!isValidMaidenheadLocator(LocatorField.val()) && LocatorField != '') {
-			// 		console.log('Locator: ' + LocatorField.val());
-			// 		LocatorField.addClass('is-invalid');
-			// 		LocatorField.removeClass('is-valid');
-			// 		if (root_mode == false) {
-			// 			$('#ContinueButton').prop('disabled', true);
-			// 			check2_ok = false;
-			// 		} else {
-			// 			// $('#ContinueButton').prop('disabled', false);
-			// 			check2_ok = true;
-			// 		}
-
-			// 	} else {
-
-			// 		LocatorField.removeClass('is-invalid');
-			// 		LocatorField.addClass('is-valid');
-			// 		// $('#ContinueButton').prop('disabled', false);
-			// 		check2_ok = true;
-			// 	}
-
-			// 	if (check1_ok == true) {
-			// 		if (check2_ok == true) {
-			// 			continue_allowed = true;
-			// 			console.log('continue allowed in 812');
-			// 			return true;
-			// 		}
-			// 	} else {
-			// 		return false;
-			// 	}
-			// }
-
-
 			// Check various user input in tab 4
 			// user password
 			var passwordField = $('#password');
@@ -1373,7 +1290,6 @@ global $wavelog_url;
 						cnfmPasswordField.addClass('is-valid');
 
 						$('#userform_warnings').css('display', 'none');
-						// // $('#ContinueButton').prop('disabled', false);
 
 					} else {
 						passwordField.addClass('is-invalid');
@@ -1384,10 +1300,6 @@ global $wavelog_url;
 
 						$('#userform_warnings').css('display', 'block');
 						$('#userform_warnings').html('<?= __("Password should be at least 8 characters long"); ?>')
-
-						// if (root_mode == false) {
-						// 	$('#ContinueButton').prop('disabled', true);
-						// }
 					}
 
 				} else {
@@ -1400,10 +1312,6 @@ global $wavelog_url;
 
 					$('#userform_warnings').css('display', 'block');
 					$('#userform_warnings').html('<?= __("Passwords do not match"); ?>');
-
-					// if (root_mode == false) {
-					// 	$('#ContinueButton').prop('disabled', true);
-					// }
 
 				}
 			});
@@ -1418,16 +1326,12 @@ global $wavelog_url;
 					emailField.removeClass('is-valid');
 					$('#userform_warnings').css('display', 'block');
 					$('#userform_warnings').html('<?= __("The E-Mail Address is not valid"); ?>');
-					// if (root_mode == false) {
-					// 	$('#ContinueButton').prop('disabled', true);
-					// }
 
 				} else {
 
 					emailField.removeClass('is-invalid');
 					emailField.addClass('is-valid');
 					$('#userform_warnings').css('display', 'none');
-					// // $('#ContinueButton').prop('disabled', false);
 
 				}
 			});
@@ -1442,22 +1346,15 @@ global $wavelog_url;
 					userLocatorField.removeClass('is-valid');
 					$('#userform_warnings').css('display', 'block');
 					$('#userform_warnings').html("<?= sprintf(__("The grid locator is not valid. Use a 6-character locator, e.g. HA44AA. If you don't know your grid square then <a href='%s' target='_blank'>click here</a>!"), "https://zone-check.eu/?m=loc"); ?>");
-					// if (root_mode == false) {
-					// 	$('#ContinueButton').prop('disabled', true);
-					// }
 
 				} else {
 
 					userLocatorField.removeClass('is-invalid');
 					userLocatorField.addClass('is-valid');
 					$('#userform_warnings').css('display', 'none');
-					// // $('#ContinueButton').prop('disabled', false);
 
 				}
 			});
-
-			// root mode initializer for js
-			// var root_mode = <?php echo json_encode($root_mode); ?>;
 
 			$(document).ready(function() {
 				const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
@@ -1490,15 +1387,6 @@ global $wavelog_url;
 						tab.show();
 					}
 
-					if (nextTab.attr('id') == secondTabId) { // prevent continue if a vital precheck failed (a php module or allow_url_fopen)
-						if (allChecksPassed == 'failed') {
-							continue_allowed = false;
-						} else {
-							// $('#ContinueButton').prop('disabled', false);
-							continue_allowed = true;
-						}
-					}
-
 					if (nextTab.attr('id') !== lastTabId) {
 						$('#ContinueButton').css('display', 'block');
 						$('#BackButton').css('display', 'block');
@@ -1524,7 +1412,6 @@ global $wavelog_url;
 						$('#BackButton').css('display', 'none');
 					}
 					clear_db_testresult();
-					// $('#ContinueButton').prop('disabled', false);
 				}
 
 
