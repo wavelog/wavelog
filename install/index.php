@@ -195,7 +195,7 @@ if ($_POST) {
 				curl_setopt($ch, CURLOPT_URL, $wavelog_url . "/index.php/update/dxcc");
 				$result = curl_exec($ch);
 				delDir(getcwd());
-				header('Location: ' . $http_scheme . "://" . $_SERVER['HTTP_HOST'] . '/' . $_POST['directory']);
+				header('Location: ' . $http_scheme . "://" . $_SERVER['HTTP_HOST'] . '/' . $_POST['directory'] . "/index.php/user/login/1");
 				exit;
 			}
 		} else {
