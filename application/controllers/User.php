@@ -775,7 +775,7 @@ class User extends CI_Controller {
 
 		if($firstlogin == true) {
 			while (file_exists('application/cache/.migration_running')) {
-				log_message('error', 'user/login: Migration is running. Page load is delayed.');
+				log_message('debug', 'user/login: Migration is running. Page load is delayed.');
 				sleep(1);
 			}
 			$this->session->set_flashdata('success', __("Congrats! Wavelog was successfully installed. You can now login for the first time."));
