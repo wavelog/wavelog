@@ -405,7 +405,7 @@ global $wavelog_url;
 											</tr>
 											<tr>
 												<td>allow_url_fopen</td>
-												<td>On</td>
+												<td><?= __("On"); ?></td>
 												<td>
 													<?php
 													$get_allow_url_fopen = ini_get('allow_url_fopen');
