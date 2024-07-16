@@ -186,8 +186,8 @@ if ($_POST) {
 			if (!isset($message)) {
 				sleep(1);
 				$ch = curl_init();
-				list($realHost,) = explode(':', $_SERVER['HTTP_HOST']);
-				$wavelog_url = $http_scheme . "://" . $realHost . ":" . $_SERVER['SERVER_PORT'];
+				$directory = ($_POST['directory'] != '') ? '/' . $_POST['directory'] : '';
+				$wavelog_url = $http_scheme . "://" . $_SERVER['HTTP_HOST'] . $directory;
 				curl_setopt($ch, CURLOPT_URL, $wavelog_url);
 				curl_setopt($ch, CURLOPT_VERBOSE, 0);
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -195,7 +195,7 @@ if ($_POST) {
 				curl_setopt($ch, CURLOPT_URL, $wavelog_url . "/index.php/update/dxcc");
 				$result = curl_exec($ch);
 				delDir(getcwd());
-				header('Location: ' . $http_scheme . "://" . $_SERVER['HTTP_HOST'] . '/' . $_POST['directory'] . "/index.php/user/login/1");
+				header('Location: ' . $wavelog_url . "/index.php/user/login/1");
 				exit;
 			}
 		} else {
