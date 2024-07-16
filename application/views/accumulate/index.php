@@ -1,4 +1,3 @@
-<?php echo $this->db->version(); ?>
 <script>
     var lang_statistics_accumulated_worked_dxcc = '<?= __("Accumulated number of DXCCs worked"); ?>';
     var lang_statistics_accumulated_worked_states = '<?= __("Accumulated number of States worked"); ?>';
