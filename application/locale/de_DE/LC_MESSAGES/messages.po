@@ -11,9 +11,9 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-14 11:25+0000\n"
-"PO-Revision-Date: 2024-07-11 14:51+0000\n"
-"Last-Translator: Fabian Berg <hb9hil@wavelog.org>\n"
+"POT-Creation-Date: 2024-07-15 22:51+0000\n"
+"PO-Revision-Date: 2024-07-15 09:29+0000\n"
+"Last-Translator: Jörg Dorgeist <wavelog@dj7nt.de>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
 "Language: de_DE\n"
@@ -37,7 +37,7 @@ msgstr "Aktivierte Planquadrate Karte"
 #: application/controllers/Awards.php:910
 #: application/controllers/Awards.php:942
 #: application/controllers/Gridmap.php:31
-#: application/controllers/Visitor.php:372
+#: application/controllers/Visitor.php:374
 #: application/views/activators/index.php:101
 #: application/views/visitor/layout/header.php:68
 msgid "Gridsquares"
@@ -45,13 +45,13 @@ msgstr "Planquadrate"
 
 #: application/controllers/Activated_gridmap.php:32
 #: application/controllers/Gridmap.php:32
-#: application/controllers/Visitor.php:373
+#: application/controllers/Visitor.php:375
 msgid "Gridsquares confirmed"
 msgstr "Planquadrate bestätigt"
 
 #: application/controllers/Activated_gridmap.php:33
 #: application/controllers/Gridmap.php:33
-#: application/controllers/Visitor.php:374
+#: application/controllers/Visitor.php:376
 msgid "Gridsquares not confirmed"
 msgstr "Unbestätigte Planquadrate"
 
@@ -264,7 +264,7 @@ msgid " and "
 msgstr " und "
 
 #: application/controllers/Awards.php:486
-#: application/controllers/Logbook.php:1262
+#: application/controllers/Logbook.php:1278
 #: application/views/awards/index.php:8 application/views/bands/index.php:55
 #: application/views/dashboard/index.php:9
 #: application/views/interface_assets/header.php:176
@@ -290,7 +290,7 @@ msgid "SOTA"
 msgstr "SOTA"
 
 #: application/controllers/Awards.php:503
-#: application/controllers/Logbook.php:1263
+#: application/controllers/Logbook.php:1279
 #: application/views/bands/index.php:60
 #: application/views/dashboard/index.php:10
 #: application/views/interface_assets/header.php:170
@@ -310,7 +310,7 @@ msgid "WWFF"
 msgstr "WWFF"
 
 #: application/controllers/Awards.php:520
-#: application/controllers/Logbook.php:1264
+#: application/controllers/Logbook.php:1280
 #: application/views/bands/index.php:52
 #: application/views/dashboard/index.php:11
 #: application/views/interface_assets/header.php:180
@@ -334,7 +334,7 @@ msgid "CQ Magazine WAZ"
 msgstr "CQ Magazin WAZ"
 
 #: application/controllers/Awards.php:652
-#: application/views/accumulate/index.php:58
+#: application/views/accumulate/index.php:59
 #: application/views/timeline/index.php:45
 msgid "Worked All States (WAS)"
 msgstr "Worked All States (WAS)"
@@ -498,7 +498,7 @@ msgstr "Bearbeite Cronjob"
 msgid "SOTA CSV Export"
 msgstr "SOTA CSV Export"
 
-#: application/controllers/Dashboard.php:106
+#: application/controllers/Dashboard.php:108
 #: application/controllers/Visitor.php:132
 msgid "Dashboard"
 msgstr "Dashboard"
@@ -608,7 +608,7 @@ msgid "Gridsquare Map"
 msgstr "Planquadratkarte"
 
 #: application/controllers/Gridmap.php:34
-#: application/controllers/Visitor.php:375
+#: application/controllers/Visitor.php:377
 msgid "Total gridsquares worked"
 msgstr "Summe gearbeiteter Planquadrate"
 
@@ -785,15 +785,15 @@ msgstr ""
 msgid "Station Logbooks"
 msgstr "Stationslogbücher"
 
-#: application/controllers/Logbook.php:58
+#: application/controllers/Logbook.php:60
 #: application/views/interface_assets/header.php:97
 #: application/views/logbookadvanced/useroptions.php:4
 #: application/views/view_log/index.php:11
 msgid "Logbook"
 msgstr "Logbuch"
 
-#: application/controllers/Logbook.php:649
-#: application/controllers/Logbook.php:664
+#: application/controllers/Logbook.php:653
+#: application/controllers/Logbook.php:668
 #: application/views/activated_gridmap/index.php:58
 #: application/views/awards/dok/index.php:55
 #: application/views/awards/dxcc/index.php:61
@@ -818,7 +818,7 @@ msgstr "Logbuch"
 msgid "QSL"
 msgstr "QSL"
 
-#: application/controllers/Logbook.php:652
+#: application/controllers/Logbook.php:656
 #: application/views/activated_gridmap/index.php:66
 #: application/views/awards/cq/index.php:58
 #: application/views/awards/dok/index.php:59
@@ -852,7 +852,7 @@ msgstr "QSL"
 msgid "LoTW"
 msgstr "LoTW"
 
-#: application/controllers/Logbook.php:655
+#: application/controllers/Logbook.php:659
 #: application/views/activated_gridmap/index.php:74
 #: application/views/awards/cq/index.php:62
 #: application/views/awards/dok/index.php:63
@@ -885,7 +885,7 @@ msgstr "LoTW"
 msgid "eQSL"
 msgstr "eQSL"
 
-#: application/controllers/Logbook.php:661
+#: application/controllers/Logbook.php:665
 #: application/views/awards/dok/index.php:71
 #: application/views/awards/dxcc/index.php:77
 #: application/views/awards/jcc/index.php:68
@@ -902,8 +902,8 @@ msgstr "eQSL"
 msgid "Clublog"
 msgstr "Clublog"
 
-#: application/controllers/Logbook.php:1257
-#: application/views/accumulate/index.php:28
+#: application/controllers/Logbook.php:1273
+#: application/views/accumulate/index.php:29
 #: application/views/activated_gridmap/index.php:39
 #: application/views/adif/dcl_success.php:33
 #: application/views/awards/cq/index.php:86
@@ -972,7 +972,7 @@ msgstr "Clublog"
 msgid "Mode"
 msgstr "Mode"
 
-#: application/controllers/Logbook.php:1258
+#: application/controllers/Logbook.php:1274
 #: application/views/awards/pota/index.php:36
 #: application/views/awards/wwff/index.php:36
 #: application/views/contesting/index.php:111
@@ -999,7 +999,7 @@ msgstr "Mode"
 msgid "RST (S)"
 msgstr "RST (S)"
 
-#: application/controllers/Logbook.php:1259
+#: application/controllers/Logbook.php:1275
 #: application/views/awards/pota/index.php:37
 #: application/views/awards/wwff/index.php:37
 #: application/views/contesting/index.php:131
@@ -1027,7 +1027,7 @@ msgstr "RST (S)"
 msgid "RST (R)"
 msgstr "RST (R)"
 
-#: application/controllers/Logbook.php:1260
+#: application/controllers/Logbook.php:1276
 #: application/views/dashboard/index.php:7
 #: application/views/qslcard/searchresult.php:15
 #: application/views/qslcard/searchresult.php:31
@@ -1051,7 +1051,7 @@ msgstr "RST (R)"
 msgid "Country"
 msgstr "Land"
 
-#: application/controllers/Logbook.php:1261
+#: application/controllers/Logbook.php:1277
 #: application/views/awards/iota/index.php:169
 #: application/views/bands/index.php:50 application/views/dashboard/index.php:8
 #: application/views/interface_assets/header.php:178
@@ -1078,7 +1078,7 @@ msgstr "Land"
 msgid "IOTA"
 msgstr "IOTA"
 
-#: application/controllers/Logbook.php:1265
+#: application/controllers/Logbook.php:1281
 #: application/views/awards/counties/details.php:12
 #: application/views/awards/counties/index.php:20
 #: application/views/awards/rac/index.php:141
@@ -1106,7 +1106,7 @@ msgstr "IOTA"
 msgid "State"
 msgstr "Staat"
 
-#: application/controllers/Logbook.php:1266
+#: application/controllers/Logbook.php:1282
 #: application/views/activated_gridmap/index.php:106
 #: application/views/awards/ffma/index.php:34
 #: application/views/awards/gridmaster/index.php:33
@@ -1119,6 +1119,7 @@ msgstr "Staat"
 #: application/views/logbookadvanced/edit.php:8
 #: application/views/logbookadvanced/index.php:10
 #: application/views/logbookadvanced/index.php:166
+#: application/views/logbookadvanced/index.php:556
 #: application/views/logbookadvanced/qslcarousel.php:39
 #: application/views/logbookadvanced/useroptions.php:126
 #: application/views/lookup/index.php:5
@@ -1145,7 +1146,7 @@ msgstr "Staat"
 msgid "Gridsquare"
 msgstr "Planquadrat"
 
-#: application/controllers/Logbook.php:1267
+#: application/controllers/Logbook.php:1283
 #: application/views/activated_gridmap/index.php:108
 #: application/views/awards/ffma/index.php:36
 #: application/views/awards/gridmaster/index.php:35
@@ -1168,8 +1169,8 @@ msgstr "Planquadrat"
 msgid "Distance"
 msgstr "Distanz"
 
-#: application/controllers/Logbook.php:1268
-#: application/views/accumulate/index.php:18
+#: application/controllers/Logbook.php:1284
+#: application/views/accumulate/index.php:19
 #: application/views/activated_gridmap/index.php:8
 #: application/views/activators/index.php:7
 #: application/views/adif/dcl_success.php:32
@@ -1244,7 +1245,7 @@ msgstr "Distanz"
 msgid "Band"
 msgstr "Band"
 
-#: application/controllers/Logbook.php:1269
+#: application/controllers/Logbook.php:1285
 #: application/views/bandmap/list.php:110
 #: application/views/contesting/index.php:87
 #: application/views/dashboard/index.php:16
@@ -1264,7 +1265,7 @@ msgstr "Band"
 msgid "Frequency"
 msgstr "Frequenz"
 
-#: application/controllers/Logbook.php:1270
+#: application/controllers/Logbook.php:1286
 #: application/views/dashboard/index.php:17
 #: application/views/logbookadvanced/edit.php:12
 #: application/views/logbookadvanced/index.php:283
@@ -1286,7 +1287,7 @@ msgstr "Frequenz"
 msgid "Operator"
 msgstr "Operator"
 
-#: application/controllers/Logbook.php:1291
+#: application/controllers/Logbook.php:1307
 #: application/controllers/Stationsetup.php:381
 #: application/views/awards/dxcc/index.php:28
 #: application/views/awards/dxcc/index.php:238
@@ -1997,29 +1998,29 @@ msgstr "Passwort zurücksetzen"
 #: application/controllers/Visitor.php:50
 #: application/controllers/Visitor.php:79
 #: application/controllers/Visitor.php:142
-#: application/controllers/Visitor.php:167
-#: application/controllers/Visitor.php:197
-#: application/controllers/Visitor.php:474
+#: application/controllers/Visitor.php:169
+#: application/controllers/Visitor.php:199
+#: application/controllers/Visitor.php:478
 msgid "Unknown Public Page."
 msgstr "Unbekannte Öffentliche Seite."
 
 #: application/controllers/Visitor.php:74
-#: application/controllers/Visitor.php:163
-#: application/controllers/Visitor.php:193
-#: application/controllers/Visitor.php:470
+#: application/controllers/Visitor.php:165
+#: application/controllers/Visitor.php:195
+#: application/controllers/Visitor.php:474
 msgid "Empty Logbook"
 msgstr "Leeres Logbuch"
 
-#: application/controllers/Visitor.php:203
+#: application/controllers/Visitor.php:205
 msgid "Satellite Gridsquare Map"
 msgstr "Satelliten Planquadrat-Karte"
 
-#: application/controllers/Visitor.php:409
+#: application/controllers/Visitor.php:411
 #: application/views/stationsetup/stationsetup.php:35
 msgid "Public Search"
 msgstr "Öffentl. Suche"
 
-#: application/controllers/Visitor.php:442
+#: application/controllers/Visitor.php:444
 msgid "Export Map"
 msgstr "Export Karte"
 
@@ -2071,22 +2072,26 @@ msgid "unknown"
 msgstr "unbekannt"
 
 #: application/views/accumulate/index.php:2
-msgid "Accumulated Number of DXCCs worked"
-msgstr "Kumulierte Statistik gearbeiteter DXCC"
+msgid "Accumulated number of DXCCs worked"
+msgstr "Kumulierte Anzahl gearbeiteter DXCC"
 
 #: application/views/accumulate/index.php:3
-msgid "Accumulated Number of States worked"
-msgstr "Kumulierte Statistik gearbeiteter US Staaten"
+msgid "Accumulated number of States worked"
+msgstr "Kumulierte Anzahl gearbeiteter Staaten"
 
 #: application/views/accumulate/index.php:4
-msgid "Accumulated Number of IOTAs worked"
-msgstr "Kumulierte Statistik gearbeiteter IOTA"
+msgid "Accumulated number of IOTAs worked"
+msgstr "Kumulierte Anzahl gearbeiteter IOTAs"
 
 #: application/views/accumulate/index.php:5
-msgid "Accumulated Number of CQ Zones worked"
-msgstr "Kumulierte Statistik gearbeiteter CQ Zonen"
+msgid "Accumulated number of CQ Zones worked"
+msgstr "Kumulierte Anzahl gearbeiteter CQ-Zonen"
 
 #: application/views/accumulate/index.php:6
+msgid "Accumulated number of VUCC Grids worked"
+msgstr "Kumulierte Anzahl gearbeiteter VUCC-Planquadrate"
+
+#: application/views/accumulate/index.php:7
 #: application/views/dashboard/index.php:222
 #: application/views/dayswithqso/index.php:16
 #: application/views/statistics/index.php:18
@@ -2094,24 +2099,24 @@ msgstr "Kumulierte Statistik gearbeiteter CQ Zonen"
 msgid "Year"
 msgstr "Jahr"
 
-#: application/views/accumulate/index.php:7
-#: application/views/accumulate/index.php:80
+#: application/views/accumulate/index.php:8
+#: application/views/accumulate/index.php:87
 msgid "Yearly"
 msgstr "jährlich"
 
-#: application/views/accumulate/index.php:8
+#: application/views/accumulate/index.php:9
 #: application/views/dashboard/index.php:227
 #: application/views/visitor/index.php:251
 msgid "Month"
 msgstr "Monat"
 
-#: application/views/accumulate/index.php:9
-#: application/views/accumulate/index.php:86
+#: application/views/accumulate/index.php:10
+#: application/views/accumulate/index.php:93
 msgid "Monthly"
 msgstr "monatlich"
 
-#: application/views/accumulate/index.php:21
-#: application/views/accumulate/index.php:31
+#: application/views/accumulate/index.php:22
+#: application/views/accumulate/index.php:32
 #: application/views/activated_gridmap/index.php:10
 #: application/views/activated_gridmap/index.php:22
 #: application/views/activated_gridmap/index.php:32
@@ -2193,31 +2198,35 @@ msgstr "monatlich"
 msgid "All"
 msgstr "Alle"
 
-#: application/views/accumulate/index.php:47
+#: application/views/accumulate/index.php:48
 #: application/views/timeline/index.php:41
 msgid "Award"
 msgstr "Diplom"
 
-#: application/views/accumulate/index.php:52
+#: application/views/accumulate/index.php:53
 #: application/views/timeline/index.php:44
 msgid "DX Century Club (DXCC)"
 msgstr "DX Century Club (DXCC)"
 
-#: application/views/accumulate/index.php:64
+#: application/views/accumulate/index.php:65
 #: application/views/timeline/index.php:46
 msgid "Islands On The Air (IOTA)"
 msgstr "Islands On The Air (IOTA)"
 
-#: application/views/accumulate/index.php:70
+#: application/views/accumulate/index.php:71
 #: application/views/timeline/index.php:47
 msgid "Worked All Zones (WAZ)"
 msgstr "Worked All Zones (WAZ)"
 
-#: application/views/accumulate/index.php:75
+#: application/views/accumulate/index.php:77
+msgid "VHF/UHF Century Club (VUCC)"
+msgstr "VHF/UHF Century Club (VUCC)"
+
+#: application/views/accumulate/index.php:82
 msgid "Period"
 msgstr "Zeitraum"
 
-#: application/views/accumulate/index.php:96
+#: application/views/accumulate/index.php:103
 #: application/views/activators/index.php:50
 #: application/views/awards/cq/index.php:111
 #: application/views/awards/dok/index.php:127
@@ -4553,6 +4562,7 @@ msgstr "Keine Contests"
 #: application/views/contestcalendar/index.php:14
 #: application/views/logbookadvanced/edit.php:21
 #: application/views/logbookadvanced/index.php:288
+#: application/views/logbookadvanced/index.php:607
 #: application/views/logbookadvanced/useroptions.php:122
 #: application/views/qso/edit_ajax.php:39
 #: application/views/simplefle/index.php:80
@@ -6564,7 +6574,7 @@ msgstr ""
 #: application/views/labels/index.php:2
 #: application/views/logbookadvanced/startatform.php:27
 msgid "Mark QSL as printed"
-msgstr ""
+msgstr "Markiere QSL als gedruckt"
 
 #: application/views/labels/index.php:3 application/views/labels/index.php:128
 msgid "Print"
@@ -8967,7 +8977,7 @@ msgstr "Wenn du kein Datum auswählst, wird das heutige Datum verwendet."
 
 #: application/views/simplefle/index.php:88
 msgid "You can add the entered QSOs to a contest."
-msgstr ""
+msgstr "Füge die eingegebenen QSO zu seinem Contest hinzu."
 
 #: application/views/simplefle/index.php:95
 msgid "Station Call/Location"
@@ -8979,6 +8989,8 @@ msgid ""
 "If you did operate from a new location, first create a new <a "
 "href='%s'>Station Location</a>"
 msgstr ""
+"Falls du von einem neuen Standort gefunkt hast, erstelle erst einen neuen <a "
+"href='%s'>Stationsstandort</a>"
 
 #: application/views/simplefle/index.php:112
 msgid "e.g. OK2CQR"
@@ -8987,6 +8999,7 @@ msgstr "z.B. OK2CQR"
 #: application/views/simplefle/index.php:115
 msgid "This is callsign of the operator. Without any pre- or suffixes."
 msgstr ""
+"Dies ist das Rufzeichen des Operators. Ohne irgendwelche Pre- oder Suffixe."
 
 #: application/views/simplefle/index.php:125
 msgid "Enter the Data"
@@ -10797,6 +10810,18 @@ msgstr "QSOs als 'Nach QO-100 Dx Club exportiert' markieren"
 #: application/views/webadif/mark_webadif.php:16
 msgid "The QSOs are marked as exported to QO-100 Dx Club."
 msgstr "Die QSOs wurden als 'zu QO-100 Dx Club exportiert' markiert."
+
+#~ msgid "Accumulated Number of DXCCs worked"
+#~ msgstr "Kumulierte Statistik gearbeiteter DXCC"
+
+#~ msgid "Accumulated Number of States worked"
+#~ msgstr "Kumulierte Statistik gearbeiteter US Staaten"
+
+#~ msgid "Accumulated Number of IOTAs worked"
+#~ msgstr "Kumulierte Statistik gearbeiteter IOTA"
+
+#~ msgid "Accumulated Number of CQ Zones worked"
+#~ msgstr "Kumulierte Statistik gearbeiteter CQ Zonen"
 
 #~ msgid "If you did operate from a new location, first create a new <a href="
 #~ msgstr ""

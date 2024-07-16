@@ -148,7 +148,9 @@ class Visitor extends CI_Controller {
     public function map() {
 		$this->load->model('logbook_model');
 
-		$this->load->library('qra');
+		if(!$this->load->is_loaded('Qra')) {
+			$this->load->library('Qra');
+		}
 
         $slug = $this->security->xss_clean($this->uri->segment(3));
 
@@ -453,7 +455,9 @@ class Visitor extends CI_Controller {
 	public function mapqsos() {
 		$this->load->model('visitor_model');
 
-		$this->load->library('qra');
+		if(!$this->load->is_loaded('Qra')) {
+			$this->load->library('Qra');
+		}
 
         $slug = $this->security->xss_clean($this->input->post('slug'));
 		$qsocount = $this->security->xss_clean($this->input->post('qsocount')) == '' ? '100' : $this->security->xss_clean($this->input->post('qsocount'));
@@ -496,7 +500,9 @@ class Visitor extends CI_Controller {
 	}
 
 	public function calculate($qso, $locator1, $locator2, $user_default_confirmation) {
-		$this->load->library('Qra');
+		if(!$this->load->is_loaded('Qra')) {
+			$this->load->library('Qra');
+		}
 		$this->load->model('logbook_model');
 
 		$latlng1 = $this->qra->qra2latlong($locator1);
@@ -514,7 +520,9 @@ class Visitor extends CI_Controller {
 	}
 
 	public function calculateCoordinates($qso, $lat, $long, $mygrid, $user_default_confirmation) {
-		$this->load->library('Qra');
+		if(!$this->load->is_loaded('Qra')) {
+			$this->load->library('Qra');
+		}
 		$this->load->model('logbook_model');
 
 		$latlng1 = $this->qra->qra2latlong($mygrid);
