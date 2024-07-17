@@ -98,7 +98,7 @@ if (isset($_GET['lang'])) {
 // get the browsers language if no cookie exists and set one
 if (!isset($_COOKIE[$gt_conf['lang_cookie']])) {
 	$browser_language = _get_client_language();
-	setcookie($gt_conf['lang_cookie'], ($browser_language['gettext'] ?? 'en-US'));
+	setcookie($gt_conf['lang_cookie'], ($browser_language['gettext'] ?? 'en_US'));
 	header("Location: " . $installer_url);
 	exit();
 }
