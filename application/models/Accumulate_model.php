@@ -536,9 +536,10 @@ class Accumulate_model extends CI_Model
 
 		$sql .= " GROUP BY 1) as z
 		)
-		SELECT DISTINCT COUNT(grid) OVER (ORDER BY year) as total, year
-		FROM firstseen
-		ORDER BY 1
+		, z as (
+			SELECT grid, row_number() OVER (partition by grid ORDER BY grid asc, year asc) as rn, year
+			FROM firstseen
+		) select DISTINCT COUNT(grid) OVER (ORDER BY year) as total, year from z where rn = 1
 		";
 
 		return $sql;
