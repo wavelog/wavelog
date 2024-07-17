@@ -72,6 +72,9 @@ function accumulatePlot(form) {
 						"<td>" +
 						awardtext +
 						"</td>" +
+						"<td>" +
+						lang_general_word_diff +
+						"</td>" +
 						"</tr>" +
 						"</thead>" +
 						"<tbody></tbody></table>"
@@ -81,6 +84,7 @@ function accumulatePlot(form) {
 
 				var $myTable = $(".accutable");
 				var i = 1;
+				var last_total = 0;
 
 				// building the rows in the table
 				var rowElements = data.map(function (row) {
@@ -89,8 +93,11 @@ function accumulatePlot(form) {
 					var $iterator = $("<td></td>").html(i++);
 					var $type = $("<td></td>").html(row.year);
 					var $content = $("<td></td>").html(row.total);
+					diff = row.total - last_total;
+					var $diff = $("<td></td>").html((last_total == 0 || diff == 0) ? '' : "+"+diff);
+					last_total = row.total;
 
-					$row.append($iterator, $type, $content);
+					$row.append($iterator, $type, $content, $diff);
 
 					return $row;
 				});
