@@ -65,16 +65,16 @@ function accumulatePlot(form) {
 				$("#accumulateTable").append(
 					'<table style="width:100%" class="accutable table table-sm table-bordered table-hover table-striped table-condensed text-center"><thead>' +
 						"<tr>" +
-						"<td>#</td>" +
-						"<td>" +
+						"<th>#</th>" +
+						"<th>" +
 						periodtext +
-						"</td>" +
-						"<td>" +
+						"</th>" +
+						"<th>" +
 						awardtext +
-						"</td>" +
-						"<td>" +
+						"</th>" +
+						"<th>" +
 						lang_general_word_diff +
-						"</td>" +
+						"</th>" +
 						"</tr>" +
 						"</thead>" +
 						"<tbody></tbody></table>"
@@ -163,11 +163,11 @@ function accumulatePlot(form) {
 				$(".ld-ext-right").prop("disabled", false);
 				$(".accutable").DataTable({
 					responsive: false,
-					ordering: false,
 					scrollY: "400px",
 					scrollCollapse: true,
 					paging: false,
 					scrollX: true,
+					sortable: true,
 					language: {
 						url: getDataTablesLanguageUrl(),
 					},
