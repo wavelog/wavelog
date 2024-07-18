@@ -496,10 +496,50 @@ class Accumulate_model extends CI_Model
             $sql .= " and (col_mode ='" . $mode . "' or col_submode ='" . $mode . "')";
         }
 
-        $sql .= " GROUP BY 1)
-		SELECT DISTINCT COUNT(grid) OVER (ORDER BY year) as total, year
-		FROM firstseen
-		ORDER BY 1
+        $sql .= " GROUP BY 1
+		union all
+		select substr(grid, 1,4) as grid, year
+		from (
+		select TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(COL_VUCC_GRIDS, ',', x.x), ',',-1)) as grid, ";
+		if ($period == "year") {
+            $sql .= "MIN(year(col_time_on)) year";
+        } else if ($period == "month") {
+			$sql .= "MIN(date_format(col_time_on, '%Y-%m')) year";
+        }
+
+		$sql .= " from " . $this->config->item('table_name') . " thcv
+		cross join (
+			select 1 as x
+		union all
+			select 2
+		union all
+			select 3
+		union all
+			select 4) x
+		where
+			x.x <= length(COL_VUCC_GRIDS)-length(replace(COL_VUCC_GRIDS, ',', ''))+ 1
+			and coalesce(COL_VUCC_GRIDS, '') <> ''
+			and station_id in (" . $location_list . ")";
+
+		if ($band != 'All') {
+			if ($band == 'SAT') {
+				$sql .= " and col_prop_mode ='" . $band . "'";
+			} else {
+				$sql .= " and col_prop_mode !='SAT'";
+				$sql .= " and col_band ='" . $band . "'";
+			}
+		}
+
+		if ($mode != 'All') {
+			$sql .= " and (col_mode ='" . $mode . "' or col_submode ='" . $mode . "')";
+		}
+
+		$sql .= " GROUP BY 1) as z
+		)
+		, z as (
+			SELECT grid, row_number() OVER (partition by grid ORDER BY grid asc, year asc) as rn, year
+			FROM firstseen
+		) select DISTINCT COUNT(grid) OVER (ORDER BY year) as total, year from z where rn = 1
 		";
 
 		return $sql;
