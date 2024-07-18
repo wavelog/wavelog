@@ -148,7 +148,6 @@ class Satellite extends CI_Controller {
 		$footerData['scripts'] = [
 			'assets/js/sections/satellite.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/satellite.js")),
 			'assets/js/sections/three-orbit-controls.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/three-orbit-controls.js")),
-			'assets/js/leaflet/Leaflet.Antimeridian.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/leaflet/Leaflet.Antimeridian.js")),
 			'assets/js/sections/satellite_functions.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/satellite_functions.js")),
 			'assets/js/sections/flightpath.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/flightpath.js")),
 		];
