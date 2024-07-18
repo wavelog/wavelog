@@ -164,7 +164,9 @@ function accumulatePlot(form) {
 				$.fn.dataTable.ext.buttons.clear = {
 					className: 'buttons-clear',
 					action: function ( e, dt, node, config ) {
-						dt.search('').draw();
+						dt.search('');
+						dt.order([[1, 'desc']]);
+						dt.draw();
 					}
 				};
 				$(".accutable").DataTable({
