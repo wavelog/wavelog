@@ -1,3 +1,7 @@
+<script language="javascript">
+	var lang_mark_qsl_as_printed="<?= __("Mark QSL as printed"); ?>";
+	var lang_print_queue="<?= __("Print"); ?>";
+</script>
 <div class="container">
 
 <br>

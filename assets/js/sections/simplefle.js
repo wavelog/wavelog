@@ -526,6 +526,7 @@ function clearSession() {
 	$("#my-sota-wwff").val("");
 	$(".qso-area").val("");
 	$("#my-grid").val("");
+	$("#contest").val("");
 	qsoList = [];
 	$(".js-qso-count").html("");
 }
@@ -910,14 +911,6 @@ $(".js-save-to-log").click(function () {
 			btnOKClass: "btn-info",
 			callback: function (result) {
 				if (result) {
-					var operator = $("#operator").val();
-					operator = operator.toUpperCase();
-					var ownCallsign = $("#stationProfile").val().toUpperCase();
-					ownCallsign = ownCallsign.toUpperCase();
-					// var mySotaWwff = $("#my-sota-wwff").val().toUpperCase();
-
-					// var myPower = $("#my-power").val();
-					// var myGrid = $("#my-grid").val().toUpperCase();
 
 					qsoList.forEach((item) => {
 						var callsign = item[2];
@@ -935,6 +928,8 @@ $(".js-save-to-log").click(function () {
 						var mode = item[5];
 						var freq_display = item[3] * 1000000;
 						var station_profile = $(".station_id").val();
+						var operator = $("#operator").val().toUpperCase();
+						var contest = $("#contest").val();
 						var sota_ref = "";
 						var iota_ref = "";
 						var pota_ref = "";
@@ -960,9 +955,11 @@ $(".js-save-to-log").click(function () {
 								start_date: start_date,
 								band: band,
 								mode: mode,
+								operator_callsign: operator,
 								freq_display: freq_display,
 								start_time: start_time,
 								station_profile: station_profile,
+								contestname: contest,
 								sota_ref: sota_ref,
 								iota_ref: iota_ref,
 								pota_ref: pota_ref,

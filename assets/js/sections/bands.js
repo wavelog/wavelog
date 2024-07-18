@@ -14,6 +14,12 @@ $('.bandtable tfoot').on('click', 'input[type="checkbox"]', function() {
 	saveBandAward(clickedaward, status);
 });
 
+$('.unitselect').change(function() {
+	var selectedValue = $(this).val();
+	var bandId = $(this).closest('td').attr('class').split('_')[1];
+	saveBandUnit(selectedValue, bandId);
+});
+
 function saveBandAward(award, status) {
 	$.ajax({
 		url: base_url + 'index.php/band/saveBandAward',
@@ -229,4 +235,17 @@ function saveBand(id) {
 		success: function (html) {
 		}
 	});
+}
+
+function saveBandUnit(unit, band_id) {
+	$.ajax({
+		url: base_url + 'index.php/band/saveBandUnit',
+		type: 'post',
+		data: {
+			'band_id': band_id,
+			'unit': unit
+		},
+		success: function(html) {
+		}
+	})
 }

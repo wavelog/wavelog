@@ -5,26 +5,31 @@ class Dashboard extends CI_Controller
 
 	public function index()
 	{
-		// Database connections
-		$this->load->model('logbook_model');
-		$this->load->model('user_model');
-
-		// LoTW infos
-		$this->load->model('LotwCert');
-
 		// Check if users logged in
-
+		$this->load->model('user_model');
 		if ($this->user_model->validate_session() == 0) {
 			// user is not logged in
 			redirect('user/login');
 		}
 
+		// Database connections
+		$this->load->model('logbook_model');
+		
+		// LoTW infos
+		$this->load->model('Lotw_model');
+		$current_date = date('Y-m-d H:i:s');
+		$data['lotw_cert_expired'] = $this->Lotw_model->lotw_cert_expired($this->session->userdata('user_id'), $current_date);
+		$data['lotw_cert_expiring'] = $this->Lotw_model->lotw_cert_expiring($this->session->userdata('user_id'), $current_date);
+		
+		
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
 		// Calculate Lat/Lng from Locator to use on Maps
 		if ($this->session->userdata('user_locator')) {
-			$this->load->library('qra');
+			if(!$this->load->is_loaded('Qra')) {
+			    $this->load->library('Qra');
+		    }
 
 			$qra_position = $this->qra->qra2latlong($this->session->userdata('user_locator'));
 			if ($qra_position) {

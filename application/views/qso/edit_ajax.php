@@ -60,7 +60,7 @@
                                 <div class="row">
                                     <div class="mb-3 col-sm-6">
                                         <label for="callsign"><?= __("Callsign"); ?></label>
-                                        <input type="text" class="form-control" id="callsign" name="callsign" value="<?php echo $qso->COL_CALL; ?>">
+                                        <input type="text" class="form-control" id="edit_callsign" name="callsign" value="<?php echo $qso->COL_CALL; ?>">
                                     </div>
 
                                     <div class="mb-3 col-sm-6">
@@ -81,7 +81,7 @@
                                 <div class="row">
                                     <div class="mb-3 col-sm-6">
                                         <label for="freq"><?= __("Band"); ?></label>
-                                        <select id="band" class="form-select form-select-sm" name="band">
+                                        <select id="edit_band" class="form-select form-select-sm" name="band">
                                         <?php foreach($bands as $key=>$bandgroup) {
                                             echo '<optgroup label="' . strtoupper($key) . '">';
                                             foreach($bandgroup as $band) {
@@ -117,7 +117,7 @@
                                 <div class="row">
                                     <div class="mb-3 col-sm-6">
                                         <label for="freq"><?= __("Mode"); ?></label>
-                                        <select id="mode" class="form-select mode form-select-sm" name="mode">
+                                        <select id="edit_mode" class="form-select mode form-select-sm" name="mode">
                                             <?php
                                             foreach($modes->result() as $mode){
                                                 var_dump($mode);
@@ -185,7 +185,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="mb-3 col-sm-6">
+                                    <div class="mb-3">
                                         <label for="prop_mode"><?= __("Propagation Mode"); ?></label>
                                         <select class="form-select" id="prop_mode" name="prop_mode">
                                             <option value="" <?php if($qso->COL_PROP_MODE == "") { echo "selected=\"selected\""; } ?>></option>
@@ -208,6 +208,7 @@
                                             <option value="TEP" <?php if($qso->COL_PROP_MODE == "TEP") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Trans-equatorial"); ?></option>
                                             <option value="TR" <?php if($qso->COL_PROP_MODE == "TR") { echo "selected=\"selected\""; } ?>><?= _pgettext("Propagation Mode","Tropospheric ducting"); ?></option>
                                         </select>
+                                        <small id="lotw_propmode_hint" class="form-text text-muted"><?php if (in_array($qso->COL_PROP_MODE, $this->config->item('lotw_unsupported_prop_modes'))) { echo __("Propagation mode is not supported by LoTW. LoTW QSL fields disabled."); } else { echo "&nbsp;"; } ?></small>
                                     </div>
 
                                     <input type="hidden" class="form-control" id="country" name="country" value="<?php echo $qso->COL_COUNTRY; ?>">
@@ -478,7 +479,7 @@
                                             </div>
                                             <div>
                                                 <label for="qslmsg"><?= __("Notes"); ?><span class="qso_eqsl_qslmsg_update" title="<?= __("Get the default message for eQSL, for this station."); ?>"><i class="fas fa-redo-alt"></i></span></label>
-						                        <label class="position-absolute end-0 mb-2 me-3" for="qslmsg" id="charsLeft"> </label>
+                                                <label class="position-absolute end-0 mb-2 me-3" for="qslmsg" id="charsLeft"> </label>
                                                 <textarea  type="text" class="form-control" id="qslmsg" name="qslmsg" rows="5" maxlength="240"><?php echo $qso->COL_QSLMSG; ?></textarea>
                                                 <div id="qslmsg_hide" style="display:none;"><?php echo $qso->COL_QSLMSG; ?></div>
                                             </div>
@@ -489,7 +490,7 @@
                                         <div class="mb-3 row">
                                             <label for="sent" class="col-sm-3 col-form-label"><?= __("Sent"); ?></label>
                                             <div class="col-sm-9">
-                                                <select class="form-select" name="lotw_sent">
+                                                <select class="form-select" id="lotw_sent" name="lotw_sent" <?php if (in_array($qso->COL_PROP_MODE, $this->config->item('lotw_unsupported_prop_modes'))) { echo "disabled=\"disabled\""; } ?>>
                                                     <option value="N" <?php if($qso->COL_LOTW_QSL_SENT == "N") { echo "selected=\"selected\""; } ?>><?= __("No"); ?></option>
                                                     <option value="Y" <?php if($qso->COL_LOTW_QSL_SENT == "Y") { echo "selected=\"selected\""; } ?>><?= __("Yes"); ?></option>
                                                     <option value="R" <?php if($qso->COL_LOTW_QSL_SENT == "R") { echo "selected=\"selected\""; } ?>><?= __("Requested"); ?></option>
@@ -501,13 +502,15 @@
                                         <div class="mb-3 row">
                                             <label for="sent" class="col-sm-3 col-form-label"><?= __("Received"); ?></label>
                                             <div class="col-sm-9">
-                                                <select class="form-select" name="lotw_rcvd">
+                                                <select class="form-select" id="lotw_rcvd" name="lotw_rcvd" <?php if (in_array($qso->COL_PROP_MODE, $this->config->item('lotw_unsupported_prop_modes'))) { echo "disabled=\"disabled\""; } ?>>
                                                     <option value="N" <?php if($qso->COL_LOTW_QSL_RCVD == "N") { echo "selected=\"selected\""; } ?>><?= __("No"); ?></option>
                                                     <option value="Y" <?php if($qso->COL_LOTW_QSL_RCVD == "Y") { echo "selected=\"selected\""; } ?>><?= __("Yes"); ?></option>
                                                     <option value="R" <?php if($qso->COL_LOTW_QSL_RCVD == "R") { echo "selected=\"selected\""; } ?>><?= __("Requested"); ?></option>
                                                     <option value="I" <?php if($qso->COL_LOTW_QSL_RCVD == "I") { echo "selected=\"selected\""; } ?>><?= __("Invalid (Ignore)"); ?></option>
                                                     <option value="V" <?php if($qso->COL_LOTW_QSL_RCVD == "V") { echo "selected=\"selected\""; } ?>><?= __("Verified (Match)"); ?></option>
-                                                </select></div>
+                                                </select>
+                                                <small id="lotw_propmode_hint" class="form-text text-muted"><?php if (in_array($qso->COL_PROP_MODE, $this->config->item('lotw_unsupported_prop_modes'))) { echo __("Propagation mode is not supported by LoTW. LoTW QSL fields disabled."); } else { echo "&nbsp;"; } ?></small>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -588,7 +591,10 @@
 
                         <div class="actions">
                             <a class="btn btn-danger" href="javascript:qso_delete(<?php echo $qso->COL_PRIMARY_KEY; ?>, '<?php echo $qso->COL_CALL; ?>')"><i class="fas fa-trash-alt"></i> <?= __("Delete QSO"); ?></a>
-                            <button id="show" type="button" name="download" class="btn btn-primary float-end" onclick="qso_save();"><i class="fas fa-save"></i> <?= __("Save changes"); ?></button>
+                            <div class="float-end">
+                                <button id="update_from_callbook" type="button" class="btn btn-warning ld-ext-right" onclick="single_callbook_update();"><i class="fas fa-book"></i> <?= __("Update from Callbook"); ?><div class="ld ld-ring ld-spin"></div></button>
+                                <button id="show" type="button" name="download" class="btn btn-primary" onclick="qso_save();"><i class="fas fa-save"></i> <?= __("Save changes"); ?></button>
+                            </div>
                         </div>
                     </div>
                 </div>

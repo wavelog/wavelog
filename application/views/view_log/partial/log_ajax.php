@@ -83,7 +83,7 @@ function echo_table_col($row, $name) {
                         <th><?= __("Clublog"); ?></th>
                     <?php } ?>
                 <?php } ?>
-                    <th><?= __("Station"); ?></th>
+                        <th><?= __("Station"); ?></th>
                 <?php if(($this->config->item('use_auth')) && ($this->session->userdata('user_type') >= 2)) { ?>
                     <th></th>
                 <?php } ?>
@@ -227,8 +227,40 @@ function echo_table_col($row, $name) {
 
                 <?php if ( strpos($this->session->userdata('user_default_confirmation'),'L') !== false && ($this->session->userdata('user_lotw_name') != "") ) { ?>
                     <td class="lotw">
-                        <span <?php if ($row->COL_LOTW_QSL_SENT == "Y") { echo "title=\"".__("LoTW")." ".__("Sent"); if ($row->COL_LOTW_QSLSDATE != null) { $timestamp = strtotime($row->COL_LOTW_QSLSDATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="lotw-<?php echo ($row->COL_LOTW_QSL_SENT=='Y')?'green':'red'?>">&#9650;</span>
-                        <span <?php if ($row->COL_LOTW_QSL_RCVD == "Y") { echo "title=\"".__("LoTW")." ".__("Received"); if ($row->COL_LOTW_QSLRDATE != null) { $timestamp = strtotime($row->COL_LOTW_QSLRDATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="lotw-<?php echo ($row->COL_LOTW_QSL_RCVD=='Y')?'green':'red'?>">&#9660;</span>
+                        <span <?php switch ($row->COL_LOTW_QSL_SENT) {
+                           case "Y":
+                              echo "title=\"".__("LoTW")." ".__("Sent");
+                              if ($row->COL_LOTW_QSLSDATE != null) {
+                                 $timestamp = strtotime($row->COL_LOTW_QSLSDATE);
+                                 echo " ".($timestamp!=''?date($custom_date_format, $timestamp):'');
+                              }
+                              echo "\" data-bs-toggle=\"tooltip\" class=\"lotw-green\"";
+                              break;
+                           case "I":
+                              echo " class=\"lotw-grey\" data-bs-toggle=\"tooltip\" title=\"".__("Invalid (Ignore)")."\"";
+                              break;
+                           default:
+                              echo " class=\"lotw-red\"";
+                              break;
+                        }
+                        ?>>&#9650;</span>
+                        <span <?php switch ($row->COL_LOTW_QSL_RCVD) {
+                           case "Y":
+                              echo "title=\"".__("LoTW")." ".__("Received");
+                              if ($row->COL_LOTW_QSLRDATE != null) {
+                                 $timestamp = strtotime($row->COL_LOTW_QSLRDATE);
+                                 echo " ".($timestamp!=''?date($custom_date_format, $timestamp):'');
+                              }
+                              echo "\" data-bs-toggle=\"tooltip\" class=\"lotw-green\"";
+                              break;
+                           case "I":
+                              echo " class=\"lotw-grey\" data-bs-toggle=\"tooltip\" title=\"".__("Invalid (Ignore)")."\"";
+                              break;
+                           default:
+                              echo " class=\"lotw-red\"";
+                              break;
+                        }
+                        ?>>&#9660;</span>
                     </td>
                 <?php } ?>
 
@@ -251,9 +283,11 @@ function echo_table_col($row, $name) {
 
                     <?php if(isset($row->station_callsign)) { ?>
                         <td>
-                            <span class="badge text-bg-light"><?php echo $row->station_callsign; ?></span>
+                            <span class="badge text-bg-light"><?php echo str_replace("0","&Oslash;",strtoupper($row->station_callsign)); ?></span>
                         </td>
-                    <?php } ?>
+                    <?php } else { ?>
+			<td></td>
+		    <?php } ?>
 
             <?php if(($this->config->item('use_auth')) && ($this->session->userdata('user_type') >= 2)) { ?>
                 <td>

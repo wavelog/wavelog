@@ -95,7 +95,7 @@ class Logbook_model extends CI_Model {
     }
 
     if($this->input->post('contestname')) {
-        $contestid = $this->input->post('contestname');
+        $contestid = $this->input->post('contestname') == "" ? NULL : $this->input->post('contestname');
     } else {
         $contestid = null;
     }
@@ -299,7 +299,7 @@ class Logbook_model extends CI_Model {
             'COL_SIG' => $this->input->post('sig') == null ? '' : trim($this->input->post('sig')),
             'COL_SIG_INFO' => $this->input->post('sig_info') == null ? '' : trim($this->input->post('sig_info')),
             'COL_DARC_DOK' => $darc_dok  == null ? '' : strtoupper(trim($darc_dok)),
-			      'COL_NOTES' => $this->input->post('notes'),
+            'COL_NOTES' => $this->input->post('notes'),
     );
 
     $station_id = $this->input->post('station_profile');
@@ -370,8 +370,13 @@ class Logbook_model extends CI_Model {
 
     // if LoTW username set, default SENT & RCVD to 'N' else leave as null
     if ($this->session->userdata('user_lotw_name')){
-        $data['COL_LOTW_QSL_SENT'] = 'N';
-        $data['COL_LOTW_QSL_RCVD'] = 'N';
+        if (in_array($prop_mode, $this->config->item('lotw_unsupported_prop_modes'))) {
+            $data['COL_LOTW_QSL_SENT'] = 'I';
+            $data['COL_LOTW_QSL_RCVD'] = 'I';
+        } else {
+            $data['COL_LOTW_QSL_SENT'] = 'N';
+            $data['COL_LOTW_QSL_RCVD'] = 'N';
+        }
     }
 
     $this->add_qso($data, $skipexport = false);
@@ -1230,13 +1235,17 @@ class Logbook_model extends CI_Model {
 		  $eqsl_rcvd = 'N';
 	  }
 
-	  if ($this->input->post('lotw_sent')) {
+	  if (in_array($this->input->post('prop_mode'), $this->config->item('lotw_unsupported_prop_modes'))) {
+		  $lotw_sent = 'I';
+	  } elseif ($this->input->post('lotw_sent')) {
 		  $lotw_sent = $this->input->post('lotw_sent');
 	  } else {
 		  $lotw_sent = 'N';
 	  }
 
-	  if ($this->input->post('lotw_rcvd')) {
+	  if (in_array($this->input->post('prop_mode'), $this->config->item('lotw_unsupported_prop_modes'))) {
+		  $lotw_rcvd = 'I';
+	  } elseif ($this->input->post('lotw_rcvd')) {
 		  $lotw_rcvd = $this->input->post('lotw_rcvd');
 	  } else {
 		  $lotw_rcvd = 'N';
@@ -1332,8 +1341,8 @@ class Logbook_model extends CI_Model {
 		  'COL_QSLMSG' => $this->input->post('qslmsg'),
 		  'COL_LOTW_QSLSDATE' => $lotwsdate,
 		  'COL_LOTW_QSLRDATE' => $lotwrdate,
-		  'COL_LOTW_QSL_SENT' => $this->input->post('lotw_sent'),
-		  'COL_LOTW_QSL_RCVD' => $this->input->post('lotw_rcvd'),
+		  'COL_LOTW_QSL_SENT' => $lotw_sent,
+		  'COL_LOTW_QSL_RCVD' => $lotw_rcvd,
 		  'COL_IOTA' => $this->input->post('iota_ref'),
 		  'COL_SOTA_REF' => $this->input->post('sota_ref'),
 		  'COL_WWFF_REF' => $this->input->post('wwff_ref'),
@@ -4673,7 +4682,9 @@ function lotw_last_qsl_date($user_id) {
         $count = 0;
         if ($query->num_rows() > 0){
            print("Affected QSOs: ".$this->db->affected_rows()." <br />");
-           $this->load->library('Qra');
+           if(!$this->load->is_loaded('Qra')) {
+				$this->load->library('Qra');
+			}
            foreach ($query->result() as $row) {
               $distance = $this->qra->distance($row->station_gridsquare, $row->COL_GRIDSQUARE, 'K');
               $data = array(
@@ -4703,6 +4714,24 @@ function lotw_last_qsl_date($user_id) {
       }
     }
 
+	function get_plaincall($callsign) {
+		$split_callsign=explode('/',$callsign);
+		if (count($split_callsign)==1) {				// case F0ABC --> return cel 0 //
+			$lookupcall = $split_callsign[0];
+		} else if (count($split_callsign)==3) {			// case EA/F0ABC/P --> return cel 1 //
+			$lookupcall = $split_callsign[1];
+		} else {										// case F0ABC/P --> return cel 0 OR  case EA/FOABC --> retunr 1  (normaly not exist) //
+			if (in_array(strtoupper($split_callsign[1]), array('P','M','MM','QRP','0','1','2','3','4','5','6','7','8','9'))) {
+				$lookupcall = $split_callsign[0];
+			} else if (strlen($split_callsign[1])>3) {	// Last Element longer than 3 chars? Take that as call
+				$lookupcall = $split_callsign[1];
+			} else {									// Last Element up to 3 Chars? Take first element as Call
+				$lookupcall = $split_callsign[0];
+			}
+		}
+		return $lookupcall;
+	}
+
 	public function loadCallBook($callsign, $use_fullname=false)
     {
         $callbook = null;
@@ -4718,13 +4747,18 @@ function lotw_last_qsl_date($user_id) {
 
                 $callbook = $this->qrz->search($callsign, $this->session->userdata('qrz_session_key'), $use_fullname);
 
-                // if we got nothing, it's probably because our session key is invalid, try again
-                if (($callbook['callsign'] ?? '') == '')
-                {
-                    $qrz_session_key = $this->qrz->session($this->config->item('qrz_username'), $this->config->item('qrz_password'));
-                    $this->session->set_userdata('qrz_session_key', $qrz_session_key);
+                // We need to handle, if the sessionkey is invalid
+                if ($callbook['error'] ?? '' == 'Invalid session key') {
+                    $this->qrz->set_session($this->config->item('qrz_username'), $this->config->item('qrz_password'));
                     $callbook = $this->qrz->search($callsign, $this->session->userdata('qrz_session_key'), $use_fullname);
                 }
+
+				// If the callsign contains a slash we have a pre- or suffix. If then the result is "Not found" we can try again with the plain call
+				if (strpos($callbook['error'] ?? '', 'Not found') !== false && strpos($callsign, "/") !== false) {
+					$plaincall = $this->get_plaincall($callsign);
+					// Now try again but give back reduced data, as we can't validate location and stuff (true at the end)
+					$callbook = $this->qrz->search($plaincall, $this->session->userdata('qrz_session_key'), $use_fullname, true);
+				}
             }
 
             if ($this->config->item('callbook') == "hamqth" && $this->config->item('hamqth_username') != null && $this->config->item('hamqth_password') != null) {
@@ -4736,7 +4770,13 @@ function lotw_last_qsl_date($user_id) {
                     $this->session->set_userdata('hamqth_session_key', $hamqth_session_key);
                 }
 
-                $callbook = $this->hamqth->search($callsign, $this->session->userdata('hamqth_session_key'));
+				// if the callsign contains a pre- or suffix we only give back reduced data to avoid wrong data (location and other things are not valid then)
+				if (strpos($callsign, "/") !== false) {
+					$reduced = true;
+				} else {
+					$reduced = false;
+				}
+                $callbook = $this->hamqth->search($callsign, $this->session->userdata('hamqth_session_key'), $reduced);
 
                 // If HamQTH session has expired, start a new session and retry the search.
                 if ($callbook['error'] == "Session does not exist or expired") {
@@ -4830,7 +4870,7 @@ function lotw_last_qsl_date($user_id) {
     $this->db->where('COL_LOTW_QSL_SENT', NULL);
     $this->db->or_where('COL_LOTW_QSL_SENT !=', "Y");
     $this->db->group_end();
-    $this->db->where('COL_PROP_MODE !=', "INTERNET");
+    $this->db->where_not_in('COL_PROP_MODE', $this->config->item('lotw_unsupported_prop_modes'));
     $this->db->where('COL_TIME_ON >=', $start_date);
     $this->db->where('COL_TIME_ON <=', $end_date);
     $this->db->order_by("COL_TIME_ON", "desc");
@@ -4853,6 +4893,18 @@ function lotw_last_qsl_date($user_id) {
     $this->db->update($this->config->item('table_name'), $data);
 
     return "Updated";
+  }
+
+  function mark_lotw_ignore($station_id) {
+      $data = array(
+           'COL_LOTW_QSLSDATE' => null,
+           'COL_LOTW_QSL_SENT' => 'I',
+           'COL_LOTW_QSLRDATE' => null,
+           'COL_LOTW_QSL_RCVD' => 'I',
+      );
+    $this->db->where("station_id", $station_id);
+    $this->db->where_in('COL_PROP_MODE', $this->config->item('lotw_unsupported_prop_modes'));
+    $this->db->update($this->config->item('table_name'), $data);
   }
 
     function county_qso_details($state, $county) {
@@ -4884,7 +4936,9 @@ function lotw_last_qsl_date($user_id) {
 
     // [JSON PLOT] return array for plot qso for map //
     public function get_plot_array_for_map($qsos_result, $isVisitor=false) {
-      $this->load->library('qra');
+		if(!$this->load->is_loaded('Qra')) {
+			$this->load->library('Qra');
+		}
 
       $json["markers"] = array();
 

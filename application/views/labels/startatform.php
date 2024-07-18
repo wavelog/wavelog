@@ -1,4 +1,5 @@
-<form method="post" class="col-md" action="<?php echo site_url('labels/print/' . $stationid) ?>" target="_blank">
+<form method="post" id="pform" class="col-md" action="<?php echo site_url('labels/print/' . $stationid) ?>" target="_blank">
+    <input type="hidden" name="sid2print" id="sid2print" value="<?php echo $stationid; ?>">
     <div class="mb-3 row">
         <label for="grid"><?= __("Include Grid?"); ?></label>
         <div class="form-check-inline">
@@ -22,8 +23,5 @@
         <div class="d-flex align-items-center">
             <input class="form-control input-group-sm" type="number" id="startat" name="startat" value="1">
         </div>
-    </div>
-    <div class="text-start">
-        <button type="submit" id="button1id" name="button1id" class="btn btn-primary ld-ext-right"><?= __("Print"); ?></button>
     </div>
 </form>

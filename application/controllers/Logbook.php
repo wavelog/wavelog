@@ -39,7 +39,9 @@ class Logbook extends CI_Controller {
 
 		// Calculate Lat/Lng from Locator to use on Maps
 		if($this->session->userdata('user_locator')) {
-				$this->load->library('qra');
+				if(!$this->load->is_loaded('Qra')) {
+					$this->load->library('Qra');
+				}
 				$qra_position = $this->qra->qra2latlong($this->session->userdata('user_locator'));
 				if (isset($qra_position[0]) and isset($qra_position[1])) {
 					$data['qra'] = "set";
@@ -123,7 +125,7 @@ class Logbook extends CI_Controller {
 
 		$return['dxcc'] = $this->dxcheck($callsign,$date);
 
-		$lookupcall=$this->get_plaincall($callsign);
+		$lookupcall=$this->logbook_model->get_plaincall($callsign);
 
 		$return['partial'] = $this->partial($lookupcall, $band);
 
@@ -167,24 +169,6 @@ class Logbook extends CI_Controller {
 		echo json_encode($return, JSON_PRETTY_PRINT);
 
 		return;
-	}
-
-	function get_plaincall($callsign) {
-		$split_callsign=explode('/',$callsign);
-		if (count($split_callsign)==1) {				// case F0ABC --> return cel 0 //
-			$lookupcall = $split_callsign[0];
-		} else if (count($split_callsign)==3) {			// case EA/F0ABC/P --> return cel 1 //
-			$lookupcall = $split_callsign[1];
-		} else {										// case F0ABC/P --> return cel 0 OR  case EA/FOABC --> retunr 1  (normaly not exist) //
-			if (in_array(strtoupper($split_callsign[1]), array('P','M','MM','QRP','0','1','2','3','4','5','6','7','8','9'))) {
-				$lookupcall = $split_callsign[0];
-			} else if (strlen($split_callsign[1])>3) {	// Last Element longer than 3 chars? Take that as call
-				$lookupcall = $split_callsign[1];
-			} else {									// Last Element up to 3 Chars? Take first element as Call
-				$lookupcall = $split_callsign[0];
-			}
-		}
-		return $lookupcall;
 	}
 
 	// Returns $val2 first if it has value, even if it is null or empty string, if not return $val1.
@@ -599,7 +583,9 @@ class Logbook extends CI_Controller {
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize($this->config->item('auth_mode'))) { return; }
 
-		$this->load->library('qra');
+		if(!$this->load->is_loaded('Qra')) {
+			$this->load->library('Qra');
+		}
 		$this->load->library('subdivisions');
 
 		$this->load->model('logbook_model');
@@ -1116,7 +1102,9 @@ class Logbook extends CI_Controller {
 	function searchbearing() {
 			$locator = xss_clean($this->input->post('grid'));
 			$station_id = xss_clean($this->input->post('stationProfile'));
-			$this->load->library('Qra');
+			if(!$this->load->is_loaded('Qra')) {
+			    $this->load->library('Qra');
+		    }
 
 			if($locator != null) {
 				if (isset($station_id)) {
@@ -1155,7 +1143,9 @@ class Logbook extends CI_Controller {
 	function searchdistance() {
 			$locator = xss_clean($this->input->post('grid'));
 			$station_id = xss_clean($this->input->post('stationProfile'));
-			$this->load->library('Qra');
+			if(!$this->load->is_loaded('Qra')) {
+			    $this->load->library('Qra');
+		    }
 
 			if($locator != null) {
 				if (isset($station_id)) {
@@ -1185,38 +1175,42 @@ class Logbook extends CI_Controller {
 
 	/* return station bearing */
 	function bearing($locator, $unit = 'M', $station_id = null) {
+		if(!$this->load->is_loaded('Qra')) {
 			$this->load->library('Qra');
+		}
 
-			if($locator != null) {
-				if (isset($station_id)) {
-					// be sure that station belongs to user
-					$this->load->model('Stations');
-					if (!$this->Stations->check_station_is_accessible($station_id)) {
-						return "";
-					}
-
-					// get station profile
-					$station_profile = $this->Stations->profile_clean($station_id);
-
-					// get locator
-					$mylocator = $station_profile->station_gridsquare;
-				} else if($this->session->userdata('user_locator') != null){
-					$mylocator = $this->session->userdata('user_locator');
-				} else {
-					$mylocator = $this->config->item('locator');
+		if($locator != null) {
+			if (isset($station_id)) {
+				// be sure that station belongs to user
+				$this->load->model('Stations');
+				if (!$this->Stations->check_station_is_accessible($station_id)) {
+					return "";
 				}
 
-				$bearing = $this->qra->bearing($mylocator, $locator, $unit);
+				// get station profile
+				$station_profile = $this->Stations->profile_clean($station_id);
 
-				return $bearing;
+				// get locator
+				$mylocator = $station_profile->station_gridsquare;
+			} else if($this->session->userdata('user_locator') != null){
+				$mylocator = $this->session->userdata('user_locator');
+			} else {
+				$mylocator = $this->config->item('locator');
 			}
-			return "";
+
+			$bearing = $this->qra->bearing($mylocator, $locator, $unit);
+
+			return $bearing;
+		}
+		return "";
 	}
 
 	/* return distance */
 	function distance($locator, $station_id = null) {
 			$distance = 0;
-			$this->load->library('Qra');
+			if(!$this->load->is_loaded('Qra')) {
+			    $this->load->library('Qra');
+		    }
 
 			if($locator != null) {
 				if (isset($station_id)) {
@@ -1244,14 +1238,18 @@ class Logbook extends CI_Controller {
 	}
 
 	function qralatlng($qra) {
-		$this->load->library('Qra');
+		if(!$this->load->is_loaded('Qra')) {
+			    $this->load->library('Qra');
+		    }
 		$latlng = $this->qra->qra2latlong($qra);
 		return $latlng;
 	}
 
 	function qralatlngjson() {
 		$qra = xss_clean($this->input->post('qra'));
-		$this->load->library('Qra');
+		if(!$this->load->is_loaded('Qra')) {
+			    $this->load->library('Qra');
+		    }
 		$latlng = $this->qra->qra2latlong($qra);
 		print json_encode($latlng);
 	}

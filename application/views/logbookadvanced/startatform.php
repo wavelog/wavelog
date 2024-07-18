@@ -23,4 +23,10 @@
             <input class="form-control input-group-sm" type="number" id="startat" name="startat" value="1">
         </div>
     </div>
+	<div class="mb-3 row">
+        <label for="markprinted"><?= __("Mark QSL as printed"); ?></label>
+        <div class="form-check-inline">
+            <input class="form-check-input" type="checkbox" name="markprinted" id="markprinted">
+        </div>
+    </div>
 </form>

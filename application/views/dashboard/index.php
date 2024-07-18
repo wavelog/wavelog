@@ -113,14 +113,13 @@ function echo_table_col($row, $name) {
 
 	<?php if ($this->session->userdata('user_id')) { ?>
 		<?php
-			$current_date = date('Y-m-d H:i:s');
-			if($this->LotwCert->lotw_cert_expired($this->session->userdata('user_id'), $current_date) == true) { ?>
+			if($lotw_cert_expired == true) { ?>
 			<div class="alert alert-danger" role="alert">
 				<span class="badge text-bg-info"><?= __("Important"); ?></span> <i class="fas fa-hourglass-end"></i> <?= __("At least one of your LoTW certificates is expired!"); ?>
 			</div>
 		<?php } ?>
 
-		<?php if($this->LotwCert->lotw_cert_expiring($this->session->userdata('user_id'), $current_date) == true) { ?>
+		<?php if($lotw_cert_expiring == true) { ?>
 			<div class="alert alert-warning" role="alert">
 				<span class="badge text-bg-info"><?= __("Important"); ?></span> <i class="fas fa-hourglass-half"></i> <?= __("At least one of your LoTW certificates is about to expire!"); ?>
 			</div>

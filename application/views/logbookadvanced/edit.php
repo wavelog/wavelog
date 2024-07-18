@@ -18,6 +18,7 @@
 			<option value="station"><?= __("Station Location"); ?></option>
 			<option value="wwff"><?= __("WWFF"); ?></option>
 			<option value="state"><?= __("State"); ?></option>
+			<option value="contest"><?= __("Contest"); ?></option>
 		</select>
 		<div>&nbsp;</div>
 
@@ -116,5 +117,12 @@
 
 		<select style="display:none" class="form-select w-auto form-select-sm w-auto" id="editStationLocation" name="station_location">
 
+		</select>
+		<select style="display:none" class="form-select w-auto form-select-sm w-auto" id="editContest"  name="contest">
+			<?php
+				foreach($contests as $contest){
+					echo '<option value="' . $contest['adifname'] . '">' . $contest["name"] . '</option>'."\n";
+				}
+			?>
 		</select>
 	</form>

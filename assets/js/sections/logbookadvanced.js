@@ -61,6 +61,9 @@ function updateRow(qso) {
 	if (user_options.qsl.show == "true"){
 		cells.eq(c++).html(qso.qsl);
 	}
+	if (user_options.clublog.show == "true"){
+		cells.eq(c++).html(qso.clublog);
+	}
 	if ($(".eqslconfirmation")[0] && user_options.eqsl.show == "true"){
 		cells.eq(c++).html(qso.eqsl);
 	}
@@ -158,7 +161,7 @@ function loadQSOTable(rows) {
 			data.push(qso.qsoDateTime);
 		}
 		if (user_options.de.show == "true"){
-			data.push(qso.de);
+			data.push(qso.de.replaceAll('0', 'Ø'));
 		}
 		if (user_options.dx.show == "true"){
 			data.push('<span class="qso_call"><a id="edit_qso" href="javascript:displayQso('+qso.qsoID+')"><span id="dx">'+qso.dx.replaceAll('0', 'Ø')+'</span></a><span class="qso_icons">' + (qso.callsign == '' ? '' : ' <a href="https://lotw.arrl.org/lotwuser/act?act='+qso.callsign+'" target="_blank"><small id="lotw_info" class="badge bg-success'+qso.lotw_hint+'" data-bs-toggle="tooltip" title="LoTW User. Last upload was ' + qso.lastupload + ' ">L</small></a>') + ' <a target="_blank" href="https://www.qrz.com/db/'+qso.dx+'"><img width="16" height="16" src="'+base_url+ 'images/icons/qrz.png" alt="Lookup ' + qso.dx.replaceAll('0', 'Ø') + ' on QRZ.com"></a> <a target="_blank" href="https://www.hamqth.com/'+qso.dx+'"><img width="16" height="16" src="'+base_url+ 'images/icons/hamqth.png" alt="Lookup ' + qso.dx.replaceAll('0', 'Ø') + ' on HamQTH"></a> <a target="_blank" href="https://clublog.org/logsearch.php?log='+qso.dx+'&call='+qso.de+'"><img width="16" height="16" src="'+base_url+'images/icons/clublog.png" alt="Clublog Log Search"></a></span></span>');
@@ -183,6 +186,9 @@ function loadQSOTable(rows) {
 		}
 		if (user_options.qslvia.show == "true"){
 			data.push(qso.qslVia);
+		}
+		if (user_options.clublog.show == "true"){
+			data.push(qso.clublog);
 		}
 		if (user_options.qsl.show == "true"){
 			data.push(qso.qsl);
@@ -352,6 +358,8 @@ $(document).ready(function () {
 				ituzone: this.ituzone.value,
 				lotwSent: this.lotwSent.value,
 				lotwReceived: this.lotwReceived.value,
+				clublogSent: this.clublogSent.value,
+				clublogReceived: this.clublogReceived.value,
 				eqslSent: this.eqslSent.value,
 				eqslReceived: this.eqslReceived.value,
 				qslvia: $('[name="qslvia"]').val(),
@@ -360,6 +368,7 @@ $(document).ready(function () {
 				wwff: this.wwff.value,
 				qslimages: this.qslimages.value,
 				dupes: this.dupes.value,
+				contest: this.contest.value,
 			},
 			dataType: 'json',
 			success: function (data) {
@@ -850,85 +859,6 @@ $(document).ready(function () {
 		});
 	});
 
-	function handleQsl(sent, method, tag) {
-		var elements = $('#qsoList tbody input:checked');
-		var nElements = elements.length;
-		if (nElements == 0) {
-			BootstrapDialog.alert({
-				title: 'INFO',
-				message: 'You need to select a least 1 row!',
-				type: BootstrapDialog.TYPE_INFO,
-				closable: false,
-				draggable: false,
-				callback: function (result) {
-				}
-			});
-			return;
-		}
-		$('#'+tag).prop("disabled", true);
-		var id_list=[];
-		elements.each(function() {
-			let id = $(this).first().closest('tr').data('qsoID')
-			id_list.push(id);
-		});
-		$.ajax({
-			url: base_url + 'index.php/logbookadvanced/update_qsl',
-			type: 'post',
-			data: {'id': JSON.stringify(id_list, null, 2),
-				'sent' : sent,
-				'method' : method
-			},
-			success: function(data) {
-				if (data != []) {
-					$.each(data, function(k, v) {
-						updateRow(this);
-						unselectQsoID(this.qsoID);
-					});
-				}
-				$('#'+tag).prop("disabled", false);
-			}
-		});
-	}
-
-	function handleQslReceived(sent, method, tag) {
-		var elements = $('#qsoList tbody input:checked');
-		var nElements = elements.length;
-		if (nElements == 0) {
-			BootstrapDialog.alert({
-				title: 'INFO',
-				message: 'You need to select a least 1 row!',
-				type: BootstrapDialog.TYPE_INFO,
-				closable: false,
-				draggable: false,
-				callback: function (result) {
-				}
-			});
-			return;
-		}
-		$('#'+tag).prop("disabled", true);
-		var id_list=[];
-		elements.each(function() {
-			let id = $(this).first().closest('tr').data('qsoID')
-			id_list.push(id);
-		});
-		$.ajax({
-			url: base_url + 'index.php/logbookadvanced/update_qsl_received',
-			type: 'post',
-			data: {'id': JSON.stringify(id_list, null, 2),
-				'sent' : sent,
-				'method' : method
-			},
-			success: function(data) {
-				if (data != []) {
-					$.each(data, function(k, v) {
-						updateRow(this);
-						unselectQsoID(this.qsoID);
-					});
-				}
-				$('#'+tag).prop("disabled", false);
-			}
-		});
-	}
 
 	$('#checkBoxAll').change(function (event) {
 		if (this.checked) {
@@ -946,10 +876,92 @@ $(document).ready(function () {
 
 });
 
-function printlabel() {
-	var id_list=[];
+function handleQsl(sent, method, tag) {
 	var elements = $('#qsoList tbody input:checked');
 	var nElements = elements.length;
+	if (nElements == 0) {
+		BootstrapDialog.alert({
+			title: 'INFO',
+			message: 'You need to select a least 1 row!',
+			type: BootstrapDialog.TYPE_INFO,
+			closable: false,
+			draggable: false,
+			callback: function (result) {
+			}
+		});
+		return;
+	}
+	$('#'+tag).prop("disabled", true);
+	var id_list=[];
+	elements.each(function() {
+		let id = $(this).first().closest('tr').data('qsoID')
+		id_list.push(id);
+	});
+	$.ajax({
+		url: base_url + 'index.php/logbookadvanced/update_qsl',
+		type: 'post',
+		data: {'id': JSON.stringify(id_list, null, 2),
+			'sent' : sent,
+			'method' : method
+		},
+		success: function(data) {
+			if (data != []) {
+				$.each(data, function(k, v) {
+					updateRow(this);
+					unselectQsoID(this.qsoID);
+				});
+			}
+			$('#'+tag).prop("disabled", false);
+		}
+	});
+}
+
+function handleQslReceived(sent, method, tag) {
+	var elements = $('#qsoList tbody input:checked');
+	var nElements = elements.length;
+	if (nElements == 0) {
+		BootstrapDialog.alert({
+			title: 'INFO',
+			message: 'You need to select a least 1 row!',
+			type: BootstrapDialog.TYPE_INFO,
+			closable: false,
+			draggable: false,
+			callback: function (result) {
+			}
+		});
+		return;
+	}
+	$('#'+tag).prop("disabled", true);
+	var id_list=[];
+	elements.each(function() {
+		let id = $(this).first().closest('tr').data('qsoID')
+		id_list.push(id);
+	});
+	$.ajax({
+		url: base_url + 'index.php/logbookadvanced/update_qsl_received',
+		type: 'post',
+		data: {'id': JSON.stringify(id_list, null, 2),
+			'sent' : sent,
+			'method' : method
+		},
+		success: function(data) {
+			if (data != []) {
+				$.each(data, function(k, v) {
+					updateRow(this);
+					unselectQsoID(this.qsoID);
+				});
+			}
+			$('#'+tag).prop("disabled", false);
+		}
+	});
+}
+
+
+function printlabel() {
+	let id_list=[];
+	let elements = $('#qsoList tbody input:checked');
+	let nElements = elements.length;
+	let markchecked = $('#markprinted')[0].checked;
 
 	elements.each(function() {
 		let id = $(this).first().closest('tr').data('qsoID')
@@ -970,6 +982,13 @@ function printlabel() {
 			return xhr;
 		},
 		success: function(data) {
+			if (markchecked) {
+				handleQsl('Y','B', 'sentBureau');
+			} else {
+				$.each(id_list, function(k, v) {
+					unselectQsoID(this);
+				});
+			}
 			$.each(BootstrapDialog.dialogs, function(id, dialog){
 				dialog.close();
 			});
@@ -978,9 +997,6 @@ function printlabel() {
 				var fileURL = URL.createObjectURL(file);
 				window.open(fileURL);
 			}
-			$.each(id_list, function(k, v) {
-				unselectQsoID(this);
-			});
 			$('#printLabel').prop("disabled", false);
 		},
 		error: function (data) {
@@ -1019,6 +1035,7 @@ function saveOptions() {
 			name: $('input[name="name"]').is(':checked') ? true : false,
 			qslvia: $('input[name="qslvia"]').is(':checked') ? true : false,
 			qsl: $('input[name="qsl"]').is(':checked') ? true : false,
+			clublog: $('input[name="clublog"]').is(':checked') ? true : false,
 			lotw: $('input[name="lotw"]').is(':checked') ? true : false,
 			eqsl: $('input[name="eqsl"]').is(':checked') ? true : false,
 			qslmsg: $('input[name="qslmsg"]').is(':checked') ? true : false,

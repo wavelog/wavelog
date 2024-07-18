@@ -120,6 +120,24 @@ class Logbookadvanced_model extends CI_Model {
 			$binding[] = $searchCriteria['lotwReceived'];
 		}
 
+		if ($searchCriteria['clublogSent'] !== '') {
+			$condition = "COL_CLUBLOG_QSO_UPLOAD_STATUS = ?";
+			if ($searchCriteria['clublogSent'] == 'N') {
+				$condition = '('.$condition;
+				$condition .= " OR COL_CLUBLOG_QSL_UPLOAD_STATUS IS NULL OR COL_CLUBLOG_QSO_UPLOAD_STATUS = '')";
+			}
+			$conditions[] = $condition;
+			$binding[] = $searchCriteria['clublogSent'];
+		}
+		if ($searchCriteria['clublogReceived'] !== '') {
+			$condition = "COL_CLUBLOG_QSO_DOWNLOAD_STATUS = ?";
+			if ($searchCriteria['clublogReceived'] == 'N') {
+				$condition = '('.$condition;
+				$condition .= " OR COL_CLUBLOG_QSO_DOWNLOAD_STATUS IS NULL OR COL_CLUBLOG_QSO_DOWNLOAD_STATUS = '')";
+			}
+			$conditions[] = $condition;
+			$binding[] = $searchCriteria['clublogReceived'];
+		}
 		if ($searchCriteria['eqslSent'] !== '') {
 			$condition = "COL_EQSL_QSL_SENT = ?";
 			if ($searchCriteria['eqslSent'] == 'N') {
@@ -206,7 +224,12 @@ class Logbookadvanced_model extends CI_Model {
                                 $binding[] = trim($searchCriteria['sats']);
                         }
                 }
-        }
+		}
+
+		if ($searchCriteria['contest'] !== '') {
+			$conditions[] = "COL_CONTEST_ID like ?";
+			$binding[] = '%'.$searchCriteria['contest'].'%';
+		}
 
 		if (($searchCriteria['ids'] ?? '') !== '') {
 			$conditions[] = "qsos.COL_PRIMARY_KEY in (".implode(",",$searchCriteria['ids']).")";
@@ -235,7 +258,7 @@ class Logbookadvanced_model extends CI_Model {
 		}
 
 		$sql = "
-			SELECT qsos.*, dxcc_entities.*, lotw_users.*, station_profile.*, satellite.*, dxcc_entities.name as dxccname, mydxcc.name AS station_country, exists(select 1 from qsl_images where qsoid = qsos.COL_PRIMARY_KEY) as qslcount, contest.name as contestname
+			SELECT qsos.*, dxcc_entities.*, lotw_users.*, station_profile.*, satellite.*, dxcc_entities.name as dxccname, mydxcc.name AS station_country, exists(select 1 from qsl_images where qsoid = qsos.COL_PRIMARY_KEY) as qslcount, coalesce(contest.name, qsos.col_contest_id) as contestname
 			FROM " . $this->config->item('table_name') . " qsos
 			INNER JOIN station_profile ON qsos.station_id=station_profile.station_id
 			LEFT OUTER JOIN satellite ON qsos.COL_SAT_NAME = satellite.name
@@ -290,7 +313,7 @@ class Logbookadvanced_model extends CI_Model {
 		$order = $this->getSortorder($sortorder);
 
         $sql = "
-            SELECT qsos.*, lotw_users.*, station_profile.*, dxcc_entities.name AS station_country, d2.name as dxccname, exists(select 1 from qsl_images where qsoid = qsos.COL_PRIMARY_KEY) as qslcount, contest.name as contestname
+            SELECT qsos.*, lotw_users.*, station_profile.*, dxcc_entities.name AS station_country, d2.name as dxccname, exists(select 1 from qsl_images where qsoid = qsos.COL_PRIMARY_KEY) as qslcount, coalesce(contest.name, qsos.col_contest_id) as contestname
 			FROM " . $this->config->item('table_name') . " qsos
 			INNER JOIN station_profile ON qsos.station_id = station_profile.station_id
 			LEFT OUTER JOIN dxcc_entities ON qsos.COL_MY_DXCC = dxcc_entities.adif
@@ -502,6 +525,7 @@ class Logbookadvanced_model extends CI_Model {
 			case "gridsquare": $column = 'COL_GRIDSQUARE'; break;
 			case "qslvia": $column = 'COL_QSL_VIA'; break;
 			case "satellite": $column = 'COL_SAT_NAME'; break;
+			case "contest": $column = 'COL_CONTEST_ID'; break;
 			default: return;
 		}
 
@@ -548,7 +572,9 @@ class Logbookadvanced_model extends CI_Model {
 
 			$query = $this->db->query($sql, array($value, $value2, $frequencyBand, $frequencyBandRx, json_decode($ids, true), $this->session->userdata('user_id')));
 		} else if ($column == 'COL_GRIDSQUARE') {
-			$this->load->library('Qra');
+			if(!$this->load->is_loaded('Qra')) {
+			    $this->load->library('Qra');
+		    }
 			$latlng=$this->qra->qra2latlong(trim(xss_clean($value) ?? ''));
 			if ($latlng[1] ?? '--' != '--') {
 				if (strpos(trim(xss_clean($value) ?? ''), ',') !== false) {

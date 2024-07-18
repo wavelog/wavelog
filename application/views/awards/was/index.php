@@ -18,7 +18,7 @@
             var lang_award_info_ln1 = "<?= __("WAS Award"); ?>";
             var lang_award_info_ln2 = "<?= __("ARRL's most popular award is the Worked All States Award. Thousands upon thousands of awards have been issued to hams around the world. In ARRL's 101st year, they have redesigned the certificates and the program in hopes of streamlining and improving the award program."); ?>";
             var lang_award_info_ln3 = "<?= __("The WAS (Worked All States) Award is available to all amateurs worldwide who submit proof with written confirmation of contacts with each of the 50 states of the United States of America. Amateurs in the U.S. and its possessions must be members of ARRL to apply for a WAS. Applicants from outside the U.S. are exempt from this requirement."); ?>";
-            var lang_award_info_ln4 = "<?= sprintf(_pgettext("uses 'here'", "All information and rules for the ARRL WAS Award can be found %s."), "<a href='https://www.arrl.org/was' target='_blank'>here</a>"); ?>";
+            var lang_award_info_ln4 = "<?= sprintf(_pgettext("uses 'here'", "All information and rules for the ARRL WAS Award can be found %s."), "<a href='https://www.arrl.org/was' target='_blank'>" . __("here") . "</a>"); ?>";
             </script>
             <h2><?php echo $page_title; ?></h2>
             <button type="button" class="btn btn-sm btn-primary me-1" id="displayAwardInfo"><?= __("Award Info"); ?></button>

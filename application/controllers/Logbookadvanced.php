@@ -133,6 +133,8 @@ class Logbookadvanced extends CI_Controller {
 			'lotwReceived' => xss_clean($this->input->post('lotwReceived')),
 			'eqslSent' => xss_clean($this->input->post('eqslSent')),
 			'eqslReceived' => xss_clean($this->input->post('eqslReceived')),
+			'clublogSent' => xss_clean($this->input->post('clublogSent')),
+			'clublogReceived' => xss_clean($this->input->post('clublogReceived')),
 			'qslvia' => xss_clean($this->input->post('qslvia')),
 			'sota' => xss_clean($this->input->post('sota')),
 			'pota' => xss_clean($this->input->post('pota')),
@@ -140,6 +142,7 @@ class Logbookadvanced extends CI_Controller {
 			'qslimages' => xss_clean($this->input->post('qslimages')),
 			'dupes' => xss_clean($this->input->post('dupes')),
 			'operator' => xss_clean($this->input->post('operator')),
+			'contest' => xss_clean($this->input->post('contest')),
 		);
 
 		$qsos = [];
@@ -278,7 +281,7 @@ class Logbookadvanced extends CI_Controller {
 			'user_id' => (int)$this->session->userdata('user_id'),
 			'dateFrom' => '',
 			'dateTo' => '',
-			'de' => (int)$this->input->post('de'),
+			'de' => $this->input->post('de'),
 			'dx' => '',
 			'mode' => '',
 			'band' => '',
@@ -300,12 +303,15 @@ class Logbookadvanced extends CI_Controller {
 			'lotwReceived' => '',
 			'eqslSent' => '',
 			'eqslReceived' => '',
+			'clublogSent' => '',
+			'clublogReceived' => '',
 			'qslvia' => '',
 			'sota' => '',
 			'pota' => '',
 			'wwff' => '',
 			'qslimages' => '',
 			'operator' => '',
+			'contest' => '',
 			'ids' => xss_clean($this->input->post('ids'))
 		);
 
@@ -342,11 +348,14 @@ class Logbookadvanced extends CI_Controller {
 			'lotwReceived' => xss_clean($this->input->post('lotwReceived')),
 			'eqslSent' => xss_clean($this->input->post('eqslSent')),
 			'eqslReceived' => xss_clean($this->input->post('eqslReceived')),
+			'clublogSent' => xss_clean($this->input->post('clublogSent')),
+			'clublogReceived' => xss_clean($this->input->post('clublogReceived')),
 			'qslvia' => xss_clean($this->input->post('qslvia')),
 			'sota' => xss_clean($this->input->post('sota')),
 			'pota' => xss_clean($this->input->post('pota')),
 			'wwff' => xss_clean($this->input->post('wwff')),
 			'operator' => xss_clean($this->input->post('operator')),
+			'contest' => xss_clean($this->input->post('contest')),
 			'qslimages' => xss_clean($this->input->post('qslimages')),
 		);
 
@@ -401,7 +410,9 @@ class Logbookadvanced extends CI_Controller {
 	}
 
 	public function calculate($qso, $locator1, $locator2, $measurement_base, $var_dist, $custom_date_format) {
-		$this->load->library('Qra');
+		if(!$this->load->is_loaded('Qra')) {
+			$this->load->library('Qra');
+		}
 		$this->load->model('logbook_model');
 
 		$data['distance'] = $this->qra->distance($locator1, $locator2, $measurement_base) . $var_dist;
@@ -431,7 +442,9 @@ class Logbookadvanced extends CI_Controller {
 	}
 
 	public function calculateCoordinates($qso, $lat, $long, $mygrid, $measurement_base, $var_dist, $custom_date_format) {
-		$this->load->library('Qra');
+		if(!$this->load->is_loaded('Qra')) {
+			$this->load->library('Qra');
+		}
 		$this->load->model('logbook_model');
 
 		$latlng1 = $this->qra->qra2latlong($mygrid);
@@ -491,6 +504,7 @@ class Logbookadvanced extends CI_Controller {
 		$json_string['qsl']['show'] = $this->input->post('qsl');
 		$json_string['lotw']['show'] = $this->input->post('lotw');
 		$json_string['eqsl']['show'] = $this->input->post('eqsl');
+		$json_string['clublog']['show'] = $this->input->post('clublog');
 		$json_string['qslmsg']['show'] = $this->input->post('qslmsg');
 		$json_string['dxcc']['show'] = $this->input->post('dxcc');
 		$json_string['state']['show'] = $this->input->post('state');
@@ -506,6 +520,7 @@ class Logbookadvanced extends CI_Controller {
 		$json_string['sota']['show'] = $this->input->post('sota');
 		$json_string['dok']['show'] = $this->input->post('dok');
 		$json_string['sig']['show'] = $this->input->post('sig');
+		$json_string['wwff']['show'] = $this->input->post('wwff');
 
 		$obj['column_settings']= json_encode($json_string);
 
@@ -524,11 +539,13 @@ class Logbookadvanced extends CI_Controller {
 		$this->load->model('bands');
 		$this->load->model('modes');
 		$this->load->model('logbookadvanced_model');
+		$this->load->model('contesting_model');
 
 		$data['stateDxcc'] = $this->logbookadvanced_model->getPrimarySubdivisonsDxccs();
 
 		$data['modes'] = $this->modes->active();
 		$data['bands'] = $this->bands->get_user_bands_for_qso_entry();
+		$data['contests'] = $this->contesting_model->getActivecontests();
 		$this->load->view('logbookadvanced/edit', $data);
 	}
 

@@ -597,6 +597,10 @@ class QSO extends CI_Controller {
 	   echo json_encode($return_json);
    }
 
+	public function unsupported_lotw_prop_modes() {
+		echo json_encode($this->config->item('lotw_unsupported_prop_modes'));
+	}
+
    function check_locator($grid) {
       $grid = $this->input->post('locator');
       // Allow empty locator

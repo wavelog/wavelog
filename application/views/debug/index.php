@@ -106,6 +106,17 @@
                         </tr>
 
                         <tr>
+                            <td>/cache</td>
+                            <td>
+                                <?php if ($cache_folder == true) { ?>
+                                    <span class="badge text-bg-success"><?= __("Success"); ?></span>
+                                <?php } else { ?>
+                                    <span class="badge text-bg-danger"><?= __("Failed"); ?></span>
+                                <?php } ?>
+                            </td>
+                        </tr>
+
+                        <tr>
                             <td>/updates</td>
                             <td>
                                 <?php if ($updates_folder == true) { ?>
@@ -150,9 +161,9 @@
                     <?php if ($this->config->item('auth_mode') != '3') { ?>
                         <div class="alert alert-primary">
                             <div class="alert alert-danger" role="alert">
-                                <span class="badge rounded-pill text-bg-warning"><?= __("Warning"); ?></span> <?= __("Your authentication mode is outdated and possibly unsafe"); ?>
+                                <span class="badge rounded-pill text-bg-warning">auth_mode: <?= __("Warning"); ?></span> <?= __("Your authentication mode is outdated and possibly unsafe"); ?>
                             </div>
-                            <p><?= sprintf(__("Please edit your %s File:"),"./application/config/config.php"); ?></br>
+                            <p><?= sprintf(__("Please edit your %s File:"),"<code>application/config/config.php</code>"); ?></br>
                                 <?= __("Go to your application/config Folder and compare config.sample.php with your config.php"); ?></br></br>
                                 <?= sprintf(__("Change %s to the value %s (Strongly recommended)"),"<span class=\"badge rounded-pill text-bg-secondary\">\$config['auth_mode']</span>","<span class=\"badge rounded-pill text-bg-secondary\">3</span>"); ?>
                             </p>
@@ -160,7 +171,24 @@
                     <?php
                     } else { ?>
                         <div class="mb-2">
-                            <span class="badge rounded-pill text-bg-success"><?= __("Ok"); ?></span> <?= __("Authentication Mode is set correctly"); ?>
+                            <span class="badge rounded-pill text-bg-success">auth_mode: <?= __("Ok"); ?></span> <?= __("Authentication Mode is set correctly"); ?>
+                        </div>
+                    <?php } ?>
+
+                    <?php if ($this->config->item('encryption_key') == 'flossie1234555541') { ?>
+                        <div class="alert alert-primary">
+                            <div class="alert alert-danger" role="alert">
+                                <span class="badge rounded-pill text-bg-warning">encryption_key: <?= __("Warning"); ?></span> <?= __("You use the default encryption key. You should change it!"); ?>
+                            </div>
+                            <p><?= sprintf(__("Please edit your %s File:"),"<code>application/config/config.php</code>"); ?></br>
+                                <?= __("This will also enable the 'Keep me logged in' feature.");?></br>
+                                <?= sprintf(__("Change the value of %s to a new encryption key other then 'flossie1234555541'. Choose a safe and long password. (Strongly recommended)"),"<span class=\"badge rounded-pill text-bg-secondary\">\$config['encryption_key']</span>"); ?>
+                            </p>
+                        </div>
+                    <?php
+                    } else { ?>
+                        <div class="mb-2">
+                            <span class="badge rounded-pill text-bg-success">encryption_key: <?= __("Ok"); ?></span> <?= __("You do not use the default encryption key"); ?>
                         </div>
                     <?php } ?>
                 </div>
@@ -452,38 +480,38 @@
                         </thead>
                         <tr>
                             <td><?= __("DXCC update from Club Log"); ?></td>
-                            <td><?php echo $dxcc_update->last_run ?? 'never'; ?></td>
+                            <td><?php echo $dxcc_update->last_run ?? __("never"); ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update'); ?>"><?= __("Update"); ?></a></td>
 
                         </tr>
                         <tr>
                             <td><?= __("DOK file download"); ?></td>
-                            <td><?php echo $dok_update->last_run ?? 'never'; ?></td>
+                            <td><?php echo $dok_update->last_run ?? __("never"); ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_dok'); ?>"><?= __("Update"); ?></a></td>
                         </tr>
                         <tr>
                             <td><?= __("LoTW users download"); ?></td>
-                            <td><?php echo $lotw_user_update->last_run ?? 'never'; ?></td>
+                            <td><?php echo $lotw_user_update->last_run ?? __("never"); ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/lotw_users'); ?>"><?= __("Update"); ?></a></td>
                         </tr>
                         <tr>
                             <td><?= __("POTA file download"); ?></td>
-                            <td><?php echo $pota_update->last_run ?? 'never'; ?></td>
+                            <td><?php echo $pota_update->last_run ?? __("never"); ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_pota'); ?>"><?= __("Update"); ?></a></td>
                         </tr>
                         <tr>
                             <td><?= __("SCP file download"); ?></td>
-                            <td><?php echo $scp_update->last_run ?? 'never'; ?></td>
+                            <td><?php echo $scp_update->last_run ?? __("never"); ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_clublog_scp'); ?>"><?= __("Update"); ?></a></td>
                         </tr>
                         <tr>
                             <td><?= __("SOTA file download"); ?></td>
-                            <td><?php echo $sota_update->last_run ?? 'never'; ?></td>
+                            <td><?php echo $sota_update->last_run ?? __("never"); ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_sota'); ?>"><?= __("Update"); ?></a></td>
                         </tr>
                         <tr>
                             <td><?= __("WWFF file download"); ?></td>
-                            <td><?php echo $wwff_update->last_run ?? 'never'; ?></td>
+                            <td><?php echo $wwff_update->last_run ?? __("never"); ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_wwff'); ?>"><?= __("Update"); ?></a></td>
                         </tr>
                     </table>
@@ -579,9 +607,13 @@
     <?php } ?>
 </script>
 
-<!-- Hidden field to bring languages to the po files.$
-     Add english Language Name here if you add new languages to application/config/gettext.php
-     This helps the po scanner -->
+<?php
+/**
+ * Hidden field to be able to translate the language names
+ * Add english Language Name here if you add new languages to application/config/gettext.php
+ * This helps the po scanner to make them translatable
+ */
+?>
 <div style="display: none">
     <?= __("Bulgarian"); ?>
     <?= __("Chinese (Simplified)"); ?>
