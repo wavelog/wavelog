@@ -568,7 +568,6 @@ global $wavelog_url;
 									<div class="col-md-8 mb-2">
 										<p style="margin-top: 10px;"><?= __("Now you can create your first user in Wavelog. Fill out all fields and click continue.<br>Make sure you use a safe password."); ?></p>
 										<p class="required-prefix"><?= __("All fields are required!"); ?></p>
-
 									</div>
 									<div class="col-md-4 mb-2">
 										<div class="alert alert-danger" id="userform_warnings" style="display: none; margin-top: 10px;"></div>
@@ -1463,7 +1462,14 @@ global $wavelog_url;
 				$('#websiteurl, #locator').on('change', function() {
 					checklist_configuration();
 				});
+				
 				checklist_database();
+
+				$('#firstname, #username, #lastname, #password, #callsign, #cnfm_password, #city, #user_email, #userlocator').on('change', function() {
+					checklist_firstuser();
+				});
+
+				checklist_firstuser();
 
 			});
 
@@ -1520,6 +1526,47 @@ global $wavelog_url;
 				} else {
 					checklist_icon.addClass('fa-times-circle').css('color', 'red');
 				}
+			}
+
+			function checklist_firstuser() {
+				var checklist_firstuser = true;
+
+				if ($('#firstname').val() === '') {
+					checklist_firstuser = false;
+				}
+				if ($('#username').val() === '') {
+					checklist_firstuser = false;
+				}
+				if ($('#lastname').val() === '') {
+					checklist_firstuser = false;
+				}
+				if ($('#password').val() === '' || $('#password').hasClass('is-invalid')) {
+					checklist_firstuser = false;
+				}
+				if ($('#callsign').val() === '') {
+					checklist_firstuser = false;
+				}
+				if ($('#cnfm_password').val() === '' || $('#cnfm_password').hasClass('is-invalid')) {
+					checklist_firstuser = false;
+				}
+				if ($('#city').val() === '') {
+					checklist_firstuser = false;
+				}
+				if ($('#user_email').val() === '' || $('#user_email').hasClass('is-invalid')) {
+					checklist_firstuser = false;
+				}
+				if ($('#userlocator').val() === '' || $('#userlocator').hasClass('is-invalid')) {
+					checklist_firstuser = false;
+				}
+
+				if (checklist_firstuser) {
+					$('#checklist_firstuser').removeClass('fa-times-circle');
+					$('#checklist_firstuser').addClass('fa-check-circle').css('color', '#04a004');
+				} else {
+					$('#checklist_firstuser').removeClass('fa-check-circle');
+					$('#checklist_firstuser').addClass('fa-times-circle').css('color', 'red');
+				}
+
 			}
 		</script>
 	</body>
