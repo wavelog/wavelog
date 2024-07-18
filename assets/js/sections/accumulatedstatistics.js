@@ -161,6 +161,14 @@ function accumulatePlot(form) {
 				});
 				$(".ld-ext-right").removeClass("running");
 				$(".ld-ext-right").prop("disabled", false);
+				$.fn.dataTable.ext.buttons.clear = {
+					className: 'buttons-clear',
+					action: function ( e, dt, node, config ) {
+						dt.search('');
+						dt.order([[1, 'desc']]);
+						dt.draw();
+					}
+				};
 				$(".accutable").DataTable({
 					responsive: false,
 					scrollY: "400px",
@@ -172,7 +180,16 @@ function accumulatePlot(form) {
 						url: getDataTablesLanguageUrl(),
 					},
 					dom: "Bfrtip",
-					buttons: ["csv"],
+					order: [1, 'desc'],
+					buttons: [
+						{
+							extend: 'csv'
+						},
+						{
+							extend: 'clear',
+							text: lang_admin_clear
+						}
+					]
 				});
 
 				// using this to change color of csv-button if dark mode is chosen
