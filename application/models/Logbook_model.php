@@ -4315,8 +4315,8 @@ function lotw_last_qsl_date($user_id) {
 	    return array(
 			'adif' => 0,
 			'cqz' => 0,
-			'long' => 0,
-			'lat' => 0,
+			'long' => '',
+			'lat' => '',
 			'entity' => 'None',
 		);
 
@@ -4417,8 +4417,8 @@ function lotw_last_qsl_date($user_id) {
 	    return array(
 			'adif' => 0,
 			'cqz' => 0,
-			'long' => 0,
-			'lat' => 0,
+			'long' => '',
+			'lat' => '',
 			'entity' => 'None',
 		);
 
