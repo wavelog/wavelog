@@ -210,3 +210,13 @@ div.alert-danger {
 	bottom: 70px;
 	right: 20px;
 }
+
+.required:after {
+	content: " *";
+	color: red;
+}
+
+.required-prefix:before {
+	content: "* ";
+	color: red;
+}
