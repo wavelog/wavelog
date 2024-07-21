@@ -447,11 +447,11 @@ if (!file_exists('.lock')) {
 							<!-- Tab 5: First User -->
 							<div class="tab-pane fade" id="firstuser" role="tabpanel" aria-labelledby="firstuser-tab">
 								<div class="row">
-									<div class="col-md-8 mb-2">
-										<p style="margin-top: 10px;"><?= __("Now you can create your first user in Wavelog. Fill out all fields and click continue.<br>Make sure you use a safe password."); ?></p>
+									<div class="col-md-6 mb-2">
+										<p style="margin-top: 10px;"><?= __("Now you can create your first user in Wavelog. Fill out all fields and click continue. Make sure you use a safe password."); ?></p>
 										<p class="required-prefix"><?= __("All fields are required!"); ?></p>
 									</div>
-									<div class="col-md-4 mb-2">
+									<div class="col-md-6 mb-2">
 										<div class="alert alert-danger" id="userform_warnings" style="display: none; margin-top: 10px;"></div>
 									</div>
 								</div>
@@ -1278,28 +1278,36 @@ if (!file_exists('.lock')) {
 			});
 
 			// grid verification
-			const userLocatorField = $('#userlocator');
-
-			userLocatorField.on('change', function() {
-				if (!isValidMaidenheadLocator(userLocatorField.val()) && userLocatorField != '') {
-
-					userLocatorField.addClass('is-invalid');
-					userLocatorField.removeClass('is-valid');
-					$('#userform_warnings').css('display', 'block');
-					$('#userform_warnings').html("<?= sprintf(__("The grid locator is not valid. Use a 6-character locator, e.g. HA44AA. If you don't know your grid square then <a href='%s' target='_blank'>click here</a>!"), "https://zone-check.eu/?m=loc"); ?>");
-
-				} else {
-
-					userLocatorField.removeClass('is-invalid');
-					userLocatorField.addClass('is-valid');
-					$('#userform_warnings').css('display', 'none');
-
-				}
+			const userLocatorField = '#userlocator';
+			$(userLocatorField).on('change', function() {
+				maidenhead_checks(userLocatorField);
 			});
 
+			const locatorField = '#locator';
+			$(locatorField).on('change', function() {
+				maidenhead_checks(locatorField);
+			});
+
+			function maidenhead_checks(field) {
+				if (!isValidMaidenheadLocator($(field).val())) {
+					$(field).addClass('is-invalid');
+					$(field).removeClass('is-valid');
+					if (field == '#userlocator') {
+						$('#userform_warnings').css('display', 'block');
+						$('#userform_warnings').html("<?= sprintf(__("The grid locator is not valid. Use a 6-character locator, e.g. HA44AA. If you don't know your grid square then <a href='%s' target='_blank'>click here</a>!"), "https://zone-check.eu/?m=loc"); ?>");
+					}
+				} else {
+					$(field).removeClass('is-invalid');
+					$(field).addClass('is-valid');
+					if (field == '#userlocator') {
+						$('#userform_warnings').css('display', 'none');
+					}
+				}
+			}
+
 			$(document).ready(function() {
-				const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-				const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+				const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+				const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 
 				$("#logo-container img").hide().fadeIn(2000);
 
@@ -1389,7 +1397,7 @@ if (!file_exists('.lock')) {
 				checklist_firstuser();
 
 				// We can either check on change of everything or just testing in an interval
-				setInterval(enable_installbutton, 500);
+				setInterval(enable_installbutton, 800);
 
 			});
 
@@ -1416,6 +1424,10 @@ if (!file_exists('.lock')) {
 						$('#ContinueButton').css('display', 'block');
 					}
 				}
+
+				// in addition we can run some checks here
+				maidenhead_checks(locatorField);
+				maidenhead_checks(userLocatorField);
 			}
 
 			// Install Button
@@ -1451,7 +1463,7 @@ if (!file_exists('.lock')) {
 				if ($('#websiteurl').val() == '') {
 					checklist_configuration = false;
 				}
-				if ($('#locator').val() == '') {
+				if ($('#locator').val() == '' || $('#locator').hasClass('is-invalid')) {
 					checklist_configuration = false;
 				}
 
