@@ -38,6 +38,7 @@
                 <div class="mb-3" id="success_message" style="display: none;">
                     <p><?= sprintf(__("All install steps went through. Redirect to user login in %s seconds..."), "<span id='countdown'>4</span>"); ?></p>
                 </div>
+                <div id="error_message"></div>
             </div>
         </div>
     </div>
@@ -45,27 +46,30 @@
 
 <script>
     $(document).ready(async function() {
+        try {
+            await config_file();
+            await database_file();
+            await database_tables();
+            await database_migrations();
+            await update_dxcc();
+            await installer_lock();
 
-        await config_file();
-        await database_file();
-        await database_tables();
-        await database_migrations();
-        await update_dxcc();
-        await installer_lock();
+            // after all install steps went through we can show a success message and redirect to the user/login
+            $("#success_message").show();
 
-        // after all install steps went through we can show a success message and redirect to the user/login
-        $("#success_message").show();
-
-        // Initialize the countdown
-        var countdown = 4;
-        var countdownInterval = setInterval(function() {
-            countdown--;
-            $("#countdown").text(countdown);
-            if (countdown <= 0) {
-                clearInterval(countdownInterval);
-                window.location.href = "/index.php/user/login/1";
-            }
-        }, 1000);
+            // Initialize the countdown
+            var countdown = 4;
+            var countdownInterval = setInterval(function() {
+                countdown--;
+                $("#countdown").text(countdown);
+                if (countdown <= 0) {
+                    clearInterval(countdownInterval);
+                    window.location.href = "/index.php/user/login/1";
+                }
+            }, 1000);
+        } catch (error) {
+            $("#error_message").text("Installation failed: " + error).show();
+        }
     });
 
     let _POST = '<?php echo json_encode($_POST); ?>';
@@ -76,23 +80,28 @@
 
         running(field, true);
 
-        await $.ajax({
-            type: 'POST',
-            url: 'index.php',
-            data: {
-                data: _POST,
-                run_config_file: 1
-            },
-            success: function(response) {
-                if (response == 'success') {
-                    running(field, false);
-                } else {
-                    running(field, true, true);
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                type: 'POST',
+                url: 'index.php',
+                data: {
+                    data: _POST,
+                    run_config_file: 1
+                },
+                success: function(response) {
+                    if (response == 'success') {
+                        running(field, false);
+                        resolve();
+                    } else {
+                        running(field, false, true);
+                        reject("<?= __("Could not create application/config/config.php"); ?>");
+                    }
+                },
+                error: function(error) {
+                    running(field, false, true);
+                    reject(error);
                 }
-            },
-            error: function(error) {
-                running(field, true, true);
-            }
+            });
         });
     }
 
@@ -102,23 +111,28 @@
 
         running(field, true);
 
-        await $.ajax({
-            type: 'POST',
-            url: 'index.php',
-            data: {
-                data: _POST,
-                run_database_file: 1
-            },
-            success: function(response) {
-                if (response == 'success') {
-                    running(field, false);
-                } else {
-                    running(field, true, true);
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                type: 'POST',
+                url: 'index.php',
+                data: {
+                    data: _POST,
+                    run_database_file: 1
+                },
+                success: function(response) {
+                    if (response == 'success') {
+                        running(field, false);
+                        resolve();
+                    } else {
+                        running(field, false, true);
+                        reject("<?= __("Could not create application/config/database.php"); ?>");
+                    }
+                },
+                error: function(error) {
+                    running(field, false, true);
+                    reject(error);
                 }
-            },
-            error: function(error) {
-                running(field, true, true);
-            }
+            });
         });
     }
 
@@ -127,23 +141,28 @@
 
         running(field, true);
 
-        await $.ajax({
-            type: 'POST',
-            url: 'index.php',
-            data: {
-                data: _POST,
-                run_database_tables: 1
-            },
-            success: function(response) {
-                if (response == 'success') {
-                    running(field, false);
-                } else {
-                    running(field, true, true);
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                type: 'POST',
+                url: 'index.php',
+                data: {
+                    data: _POST,
+                    run_database_tables: 1
+                },
+                success: function(response) {
+                    if (response == 'success') {
+                        running(field, false);
+                        resolve();
+                    } else {
+                        running(field, false, true);
+                        reject("<?= __("Could not create database tables"); ?>");
+                    }
+                },
+                error: function(error) {
+                    running(field, false, true);
+                    reject(error);
                 }
-            },
-            error: function(error) {
-                running(field, true, true);
-            }
+            });
         });
     }
 
@@ -152,18 +171,23 @@
 
         running(field, true);
 
-        await $.ajax({
-            url: "<?php echo $_POST['websiteurl']; ?>" + "index.php/migrate",
-            success: function(response) {
-                if (response == 'success') {
-                    running(field, false);
-                } else {
-                    running(field, true, true);
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url: "<?php echo $_POST['websiteurl']; ?>" + "index.php/migrate",
+                success: function(response) {
+                    if (response == 'success') {
+                        running(field, false);
+                        resolve();
+                    } else {
+                        running(field, false, true);
+                        reject("<?= __("Could not run database migrations"); ?>");
+                    }
+                },
+                error: function(error) {
+                    running(field, false, true);
+                    reject(error);
                 }
-            },
-            error: function(error) {
-                running(field, true, true);
-            }
+            });
         });
     }
 
@@ -172,18 +196,23 @@
 
         running(field, true);
 
-        await $.ajax({
-            url: "<?php echo $_POST['websiteurl']; ?>" + "index.php/update/dxcc",
-            success: function(response) {
-                if (response == 'success') {
-                    running(field, false);
-                } else {
-                    running(field, true, true);
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url: "<?php echo $_POST['websiteurl']; ?>" + "index.php/update/dxcc",
+                success: function(response) {
+                    if (response == 'success') {
+                        running(field, false);
+                        resolve();
+                    } else {
+                        running(field, false, true);
+                        reject("<?= __("Could not update DXCC data"); ?>");
+                    }
+                },
+                error: function(error) {
+                    running(field, false, true);
+                    reject(error);
                 }
-            },
-            error: function(error) {
-                running(field, true, true);
-            }
+            });
         });
     }
 
@@ -191,23 +220,27 @@
         var field = '#installer_lock';
 
         running(field, true);
-
-        await $.ajax({
-            type: 'POST',
-            url: 'index.php',
-            data: {
-                run_installer_lock: 1
-            },
-            success: function(response) {
-                if (response == 'success') {
-                    running(field, false);
-                } else {
-                    running(field, true, true);
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                type: 'POST',
+                url: 'index.php',
+                data: {
+                    run_installer_lock: 1
+                },
+                success: function(response) {
+                    if (response == 'success') {
+                        running(field, false);
+                        resolve();
+                    } else {
+                        running(field, false, true);
+                        reject("<?= __("Could not create install/.lock file"); ?>");
+                    }
+                },
+                error: function(error) {
+                    running(field, false, true);
+                    reject(error);
                 }
-            },
-            error: function(error) {
-                running(field, true, true);
-            }
+            });
         });
     }
 
