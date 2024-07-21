@@ -1,13 +1,14 @@
 <?php class Migrate extends CI_Controller {
 
-  public function index()
-  {
+  public function index() {
     $this->load->library('Migration');
 
     if (!$this->migration->latest()) {
       show_error($this->migration->error_string());
+      echo 'error';
+    } else {
+      echo 'success';
     }
 
   }
-
-} ?>
+}
