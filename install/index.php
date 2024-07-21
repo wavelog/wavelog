@@ -10,7 +10,7 @@ DJ7NT - Docker Readiness - April 2024
 HB9HIL - Big UX and backend upgrade - July 2024
 */
 
-if(!file_exists('.lock')) {
+if (!file_exists('.lock')) {
 
 	include 'includes/interface_assets/header.php'; ?>
 
@@ -1034,22 +1034,38 @@ if(!file_exists('.lock')) {
 												<h4><?= __("Checklist"); ?></h4>
 												<div class="row">
 													<div class="col">
-														<p class="ms-2"><i id="checklist_prechecks" class="me-2 fas <?php echo $prechecks_icon; ?>" style="color: <?php echo $prechecks_color; ?>"></i><?= __("Pre-Checks"); ?></p>
+														<p class="ms-2">
+															<a href="javascript:void(0);" class="text-decoration-none" onclick="openTab('precheck-tab')" style="color: inherit;">
+																<i id="checklist_prechecks" class="me-2 fas <?php echo $prechecks_icon; ?>" style="color: <?php echo $prechecks_color; ?>"></i><?= __("Pre-Checks"); ?>
+															</a>
+														</p>
 													</div>
 												</div>
 												<div class="row">
 													<div class="col">
-														<p class="ms-2"><i id="checklist_configuration" class="me-2 fas"></i><?= __("Configuration"); ?></p>
+														<p class="ms-2">
+															<a href="javascript:void(0);" class="text-decoration-none" onclick="openTab('configuration-tab')" style="color: inherit;">
+																<i id="checklist_configuration" class="me-2 fas"></i><?= __("Configuration"); ?>
+															</a>
+														</p>
 													</div>
 												</div>
 												<div class="row">
 													<div class="col">
-														<p class="ms-2"><i id="checklist_database" class="me-2 fas"></i><?= __("Database"); ?></p>
+														<p class="ms-2">
+															<a href="javascript:void(0);" class="text-decoration-none" onclick="openTab('database-tab')" style="color: inherit;">
+																<i id="checklist_database" class="me-2 fas"></i><?= __("Database"); ?>
+															</a>
+														</p>
 													</div>
 												</div>
 												<div class="row">
 													<div class="col">
-														<p class="ms-2"><i id="checklist_firstuser" class="me-2 fas"></i><?= __("First User"); ?></p>
+														<p class="ms-2">
+															<a href="javascript:void(0);" class="text-decoration-none" onclick="openTab('firstuser-tab')" style="color: inherit;">
+																<i id="checklist_firstuser" class="me-2 fas"></i><?= __("First User"); ?>
+															</a>
+														</p>
 													</div>
 												</div>
 											</div>
@@ -1293,12 +1309,6 @@ if(!file_exists('.lock')) {
 				const tabs = new bootstrap.Tab($('#welcome-tab')[0]);
 				tabs.show();
 
-				let firstTabId = 'welcome-tab';
-				let secondTabId = 'precheck-tab';
-				let thirdTabId = 'configuration-tab';
-				let fourthTabId = 'database-tab';
-				let lastTabId = 'finish-tab';
-
 				const activeTab = $('.nav-link.active');
 
 				function nextTab() {
@@ -1380,6 +1390,31 @@ if(!file_exists('.lock')) {
 				setInterval(enable_installbutton, 500);
 
 			});
+
+			let firstTabId = 'welcome-tab';
+			let secondTabId = 'precheck-tab';
+			let thirdTabId = 'configuration-tab';
+			let fourthTabId = 'database-tab';
+			let lastTabId = 'finish-tab';
+
+			function openTab(tabId) {
+				const tab = $('#' + tabId);
+				if (tab.length > 0) {
+					const tabInstance = new bootstrap.Tab(tab[0]);
+					tabInstance.show();
+
+					if (tabId === firstTabId) {
+						$('#BackButton').css('display', 'none');
+						$('#ContinueButton').css('display', 'block');
+					} else if (tabId === lastTabId) {
+						$('#ContinueButton').css('display', 'none');
+						$('#BackButton').css('display', 'block');
+					} else {
+						$('#BackButton').css('display', 'block');
+						$('#ContinueButton').css('display', 'block');
+					}
+				}
+			}
 
 			// Install Button
 			// Only enable this button, if all checklist icons are green
@@ -1504,7 +1539,6 @@ if(!file_exists('.lock')) {
 <?php } else {
 
 	header("Location: " . strtok($_SERVER['REQUEST_URI'], 'install'));
-
 } ?>
 
 </html>
