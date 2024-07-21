@@ -286,7 +286,7 @@ $config['allow_get_array'] = TRUE;
 | your log files will fill up very fast.
 |
 */
-$config['log_threshold'] = 0;
+$config['log_threshold'] = '%log_threshold%';
 
 /*
 |--------------------------------------------------------------------------
@@ -400,7 +400,7 @@ $config['cache_query_string'] = FALSE;
 | https://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
-$config['encryption_key'] = 'flossie1234555541';
+$config['encryption_key'] = '%encryptionkey%';
 
 /*
 |--------------------------------------------------------------------------

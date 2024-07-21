@@ -8,8 +8,6 @@
  * 
  */
 
-
-
 $gt_conf['default_domain'] = 'installer';
 
 $gt_conf['default_lang'] = 'english';

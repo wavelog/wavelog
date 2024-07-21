@@ -1,30 +1,9 @@
 <?php
 
-class Database
-{
-
-	// Function to the database and tables and fill them with the default data
-	function create_database($data)
-	{
-		// Connect to the database
-		$mysqli = new mysqli($data['db_hostname'], $data['db_username'], $data['db_password'], '');
-
-		// Check for errors
-		if (mysqli_connect_errno())
-			return false;
-
-		// Create the prepared statement
-		$mysqli->query("CREATE DATABASE IF NOT EXISTS " . $data['db_name']);
-
-		// Close the connection
-		$mysqli->close();
-
-		return true;
-	}
+class Database {
 
 	// Function to create the tables and fill them with the default data
-	function create_tables($data)
-	{
+	function create_tables($data) {
 		// Connect to the database
 		$mysqli = new mysqli($data['db_hostname'], $data['db_username'], $data['db_password'], $data['db_name']);
 
@@ -67,8 +46,7 @@ class Database
 		return true;
 	}
 
-	function database_check($data)
-	{
+	function database_check($data) {
 		try {
 			$timeout = 5;  /* five seconds for timeout */
 			$link = mysqli_init();

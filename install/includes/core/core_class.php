@@ -26,7 +26,7 @@ class Core
 			$counter++;
 		}
 
-		if ($data['directory'] != "") {
+		if ($data['directory'] ?? '' != "") {
 			if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/' . $data['directory'])) {
 				//pass folders real
 				$counter++;
@@ -151,13 +151,16 @@ class Core
 	function write_configfile($data) {
 
 		$template_path 	= 'config/config.php';
-		$output_path 	= $_SERVER['DOCUMENT_ROOT'] . '/' . $data['directory'] . '/application/config/config.php';
+		$output_path 	= '../application/config/config.php';
 		if (isset($_ENV['CI_ENV'])) {
-			$output_path 	= $_SERVER['DOCUMENT_ROOT'] . '/' . $data['directory'] . '/application/config/'.$_ENV['CI_ENV'].'/config.php';
+			$output_path 	= '../application/config/'.$_ENV['CI_ENV'].'/config.php';
 		}
 
 		// Open the file
 		$database_file = file_get_contents($template_path);
+
+		// creating a unique encryption key
+		$encryptionkey = uniqid(bin2hex(random_bytes(8)), false);
 
 		$new  = str_replace("%baselocator%", $data['locator'], $database_file);
 		$new  = str_replace("%websiteurl%", $data['websiteurl'], $new);
@@ -174,12 +177,11 @@ class Core
 			$new  = str_replace("%hamqth_username%", $data['callbook_username'], $new);
 			$new  = str_replace("%hamqth_password%", $data['callbook_password'], $new);
 		}
+		$new = str_replace("%encryptionkey%", $encryptionkey, $new);
+		$new = str_replace("'%log_threshold%'", $data['log_threshold'], $new);
 
 		// Write the new config.php file
 		$handle = fopen($output_path, 'w+');
-
-		// Chmod the file, in case the user forgot
-		@chmod($output_path, 0777);
 
 		// Verify file permissions
 		if (is_writable($output_path)) {

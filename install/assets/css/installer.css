@@ -205,8 +205,18 @@ div.alert-danger {
 	--bs-tooltip-opacity: 1;
 }
 
-#languageButton {
+#languageButton, #advancedSettingsButton, #resetButton {
 	position: absolute;
 	bottom: 70px;
 	right: 20px;
+}
+
+.required:after {
+	content: " *";
+	color: red;
+}
+
+.required-prefix:before {
+	content: "* ";
+	color: red;
 }
