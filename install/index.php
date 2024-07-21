@@ -1369,7 +1369,7 @@ include 'includes/interface_assets/header.php'; ?>
 		function enable_installbutton() {
 			var install_possible = false;
 
-			if ($('#checklist_prechecks').hasClass('fa-check-circle') &&
+			if (($('#checklist_prechecks').hasClass('fa-check-circle') || $('#checklist_prechecks').hasClass('fa-exclamation-triangle')) &&
 				$('#checklist_configuration').hasClass('fa-check-circle') &&
 				$('#checklist_database').hasClass('fa-check-circle') &&
 				$('#checklist_firstuser').hasClass('fa-check-circle')) {
