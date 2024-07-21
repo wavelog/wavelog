@@ -5,10 +5,9 @@ Wavelog Installer
 This installer guides an user through the install process and all
 necessary parameters for the new Wavelog Installation.
 
-HB9HIL - Installer Version 1.0 - January 2024
+HB9HIL - First refactoring - January 2024
 DJ7NT - Docker Readiness - April 2024
-
-HB9HIL - Installer Version 2.0 - July 2024
+HB9HIL - Big UX and backend upgrade - July 2024
 */
 
 if(!file_exists('.lock')) {
