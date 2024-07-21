@@ -24,7 +24,7 @@
                     <i id="database_migrations_spinner" class="ld-ext-right"><?= __("Running database migrations") ?><div class="ld ld-ring ld-spin"></div></i><i id="database_migrations_check" class="ms-2 fas fa-check-circle" style="display: none;"></i>
                 </div>
                 <div class="mb-3" id="update_dxcc" style="opacity: 50%;">
-                    <i id="update_dxcc_spinner" class="ld-ext-right"><?= __("Updating DXCC data") ?><div class="ld ld-ring ld-spin"></div></i><i id="update_dxcc_check" class="ms-2 fas fa-check-circle" style="display: none;"></i>
+                    <i id="update_dxcc_spinner" class="ld-ext-right"><?= __("Updating DXCC data") ?><i id="skip_dxcc_update_message"></i><div class="ld ld-ring ld-spin"></div></i><i id="update_dxcc_check" class="ms-2 fas fa-check-circle" style="display: none;"></i>
                 </div>
 
                 <?php
@@ -45,6 +45,9 @@
 </body>
 
 <script>
+
+    let _POST = <?php echo json_encode($_POST); ?>;
+
     $(document).ready(async function() {
         try {
             await config_file();
@@ -71,8 +74,6 @@
             $("#error_message").text("Installation failed: " + error).show();
         }
     });
-
-    let _POST = '<?php echo json_encode($_POST); ?>';
 
     async function config_file() {
 
@@ -193,26 +194,32 @@
 
     async function update_dxcc() {
         var field = '#update_dxcc';
-
-        running(field, true);
-
+        
         return new Promise((resolve, reject) => {
-            $.ajax({
-                url: "<?php echo $_POST['websiteurl']; ?>" + "index.php/update/dxcc",
-                success: function(response) {
-                    if (response == 'success') {
-                        running(field, false);
-                        resolve();
-                    } else {
+            if(_POST.skip_dxcc_update == 0) {
+
+                running(field, true);
+
+                $.ajax({
+                    url: "<?php echo $_POST['websiteurl']; ?>" + "index.php/update/dxcc",
+                    success: function(response) {
+                        if (response == 'success') {
+                            running(field, false);
+                            resolve();
+                        } else {
+                            running(field, false, true);
+                            reject("<?= __("Could not update DXCC data"); ?>");
+                        }
+                    },
+                    error: function(error) {
                         running(field, false, true);
-                        reject("<?= __("Could not update DXCC data"); ?>");
+                        reject(error);
                     }
-                },
-                error: function(error) {
-                    running(field, false, true);
-                    reject(error);
-                }
-            });
+                });
+            } else {
+                $('#skip_dxcc_update_message').text(" "+"<?= __("(skipped)"); ?>");
+                resolve();
+            }
         });
     }
 

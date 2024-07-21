@@ -10,6 +10,7 @@ if ($_POST['database_check'] ?? false == true) {
 	$result = $database->database_check($_POST);
 	echo $result;
 	exit;
+	
 }
 
 /**
@@ -22,7 +23,7 @@ if ($_POST['database_check'] ?? false == true) {
 
 if ($_POST['run_config_file'] ?? false == true) {
 	sleep(1);
-	$data = json_decode($_POST['data'], true);
+	$data = $_POST['data'];
 	if ($core->validate_post($data)) {
 		if($core->write_configfile($data)) {
 			$result = 'success';
@@ -38,7 +39,7 @@ if ($_POST['run_config_file'] ?? false == true) {
 
 if ($_POST['run_database_file'] ?? false == true) {
 	sleep(1);
-	$data = json_decode($_POST['data'], true);
+	$data = $_POST['data'];
 	if ($core->validate_post($data)) {
 		if($core->write_config($data)) {
 			$result = 'success';
@@ -53,7 +54,7 @@ if ($_POST['run_database_file'] ?? false == true) {
 }
 
 if ($_POST['run_database_tables'] ?? false == true) {
-	$data = json_decode($_POST['data'], true);
+	$data = $_POST['data'];
 	if ($core->validate_post($data)) {
 		$result = $database->create_tables($data);
 	} else {
