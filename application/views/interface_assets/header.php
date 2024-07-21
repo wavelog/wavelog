@@ -271,6 +271,8 @@
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="<?php echo site_url('satellite/flightpath'); ?>" title="Manage Satellites"><i class="fas fa-satellite"></i> <?= __("Satellite Flightpath"); ?></a>
 								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="<?php echo site_url('satellite/pass'); ?>" title="Search for satellite passes"><i class="fas fa-satellite"></i> <?= __("Satellite Pass"); ?></a>
+								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="<?php echo site_url('backup'); ?>" title="Backup Wavelog content"><i class="fas fa-save"></i> <?= __("Backup"); ?></a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="<?php echo site_url('update'); ?>" title="Update Country Files"><i class="fas fa-sync"></i> <?= __("Update Country Files"); ?></a>
@@ -404,7 +406,7 @@
 								if (!($this->config->item('disable_oqrs') ?? false)) {
 									$oqrs_requests = $this->oqrs_model->oqrs_requests($location_list);
 									?>
-								<li><a class="dropdown-item" href="<?php echo site_url('oqrs/requests'); ?>" title="OQRS Requests"><i class="fa fa-id-card"></i> <?= __("OQRS Requests"); ?> 
+								<li><a class="dropdown-item" href="<?php echo site_url('oqrs/requests'); ?>" title="OQRS Requests"><i class="fa fa-id-card"></i> <?= __("OQRS Requests"); ?>
 									<?php if ($oqrs_requests > 0) {
 									echo "<span class=\"badge text-bg-light\">" . $oqrs_requests . "</span>";
 									} ?></a></li>
