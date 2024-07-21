@@ -209,7 +209,7 @@ include 'includes/interface_assets/header.php'; ?>
 										<tr>
 											<td>/application</td>
 											<td>
-												<?php if (is_really_writable('../application') == true) { ?>
+												<?php if (is_really_writable('../application/cache') == true && is_really_writable('../application/config') == true && is_really_writable('../application/logs') == true) { ?>
 													<span class="badge text-bg-success"><?= __("Success"); ?></span>
 												<?php } else { ?>
 													<span class="badge text-bg-danger"><?= __("Failed"); ?></span>
