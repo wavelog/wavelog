@@ -1074,8 +1074,10 @@ if (!file_exists('.lock')) {
 									<div class="col">
 										<div class="text-center">
 											<h4 style="margin-top: 50px;"><?= __("Nearly done!"); ?></h4>
-											<p style="margin-top: 50px;"><?= __("You prepared all neccessary steps."); ?></p>
-											<p><?= __("We now can install Wavelog. This process can take a few minutes."); ?></p>
+											<div id="install_is_ready_msg">
+												<p style="margin-top: 50px;"><?= __("You prepared all neccessary steps."); ?></p>
+												<p><?= __("We now can install Wavelog. This process can take a few minutes."); ?></p>
+											</div>
 											<button class="btn btn-primary" type="submit" id="submit"></button>
 										</div>
 									</div>
@@ -1430,8 +1432,12 @@ if (!file_exists('.lock')) {
 
 				if (install_possible) {
 					$('#submit').prop('disabled', false).html('<?= __("Install Now"); ?>');
+					$('#install_is_ready_msg').show();
+					$('#submit').css('margin-top', '50px');
 				} else {
 					$('#submit').prop('disabled', true).html('<?= __("Install not possible. Checklist incomplete."); ?>');
+					$('#install_is_ready_msg').hide();
+					$('#submit').css('margin-top', '150px');
 				}
 
 			}
