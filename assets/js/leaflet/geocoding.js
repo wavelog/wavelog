@@ -69,8 +69,29 @@ function onMapMove(event) {
 	$('#locator').html(locator);
 	var distance = bearingDistance(homegrid, locator);
 
+	let unit;
+
+	switch (measurement_base) {
+		case 'M':
+			distance.distance = distance.distance * 3959;
+			unit = 'mi';
+			break;
+		case 'K':
+			distance.distance = distance.distance * 6371;
+			unit = 'km';
+			break;
+		case 'N':
+			distance.distance = distance.distance * 3440;
+			unit = 'nmi';
+			break;
+		default:
+			distance.distance = distance.distance * 6371;
+			unit = 'km';
+			break;
+	}
+
 	$('#bearing').html(distance.deg + ' deg');
-	$('#distance').html(Math.round(distance.km * 10) / 10 + ' km');
+	$('#distance').html(Math.round(distance.distance * 10) / 10 + ' ' +unit);
 };
 
 function onMapClick(event) {
@@ -140,7 +161,7 @@ const bearingDistance = (from, to) => {
 	}
 
 	return {
-		km: b * 6371,
+		distance: b,
 		deg: calcAngle(fromCoords, toCoords)
 	};
 };
