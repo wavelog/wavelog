@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-17 15:11+0000\n"
+"POT-Creation-Date: 2024-07-22 07:07+0000\n"
 "PO-Revision-Date: 2024-07-13 09:35+0000\n"
 "Last-Translator: Byt3 <falko@205er.de>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
@@ -464,12 +464,12 @@ msgstr "Calendrier des concours"
 msgid "Contest Logging"
 msgstr "Concours - enregistrement des QSO"
 
-#: application/controllers/Contesting.php:99
+#: application/controllers/Contesting.php:101
 #: application/views/interface_assets/header.php:266
 msgid "Contests"
 msgstr "Concours"
 
-#: application/controllers/Contesting.php:113
+#: application/controllers/Contesting.php:115
 msgid "Update Contest"
 msgstr "Mettre à jour"
 
@@ -579,19 +579,19 @@ msgstr "eQSL : résultat de l'import"
 msgid "eQSL QSO Upload"
 msgstr "eQSL : envoi des QSO"
 
-#: application/controllers/Eqsl.php:411
+#: application/controllers/Eqsl.php:415
 msgid "eQSL Tools"
 msgstr "eQSL : Outils"
 
-#: application/controllers/Eqsl.php:458
+#: application/controllers/Eqsl.php:462
 msgid " / Errors: "
 msgstr " / Erreurs : "
 
-#: application/controllers/Eqsl.php:458
+#: application/controllers/Eqsl.php:462
 msgid "Successfully downloaded: "
 msgstr "Téléchargé avec succès : "
 
-#: application/controllers/Eqsl.php:467
+#: application/controllers/Eqsl.php:471
 msgid "eQSL Card Image Download"
 msgstr "eQSL : Téléchargement des cartes/images"
 
@@ -2007,6 +2007,29 @@ msgstr ""
 #: application/controllers/Webadif.php:137
 #: application/views/interface_assets/header.php:419
 msgid "QO-100 Dx Club Upload"
+msgstr ""
+
+#: application/models/Eqslmethods_model.php:281
+msgid "Your eQSL username and/or password is incorrect."
+msgstr ""
+
+#: application/models/Eqslmethods_model.php:287
+msgid "Something went wrong with eQSL.cc!"
+msgstr ""
+
+#: application/models/Eqslmethods_model.php:303
+msgid "eQSL.cc is experiencing issues. Please try exporting QSOs later."
+msgstr ""
+
+#: application/models/Eqslmethods_model.php:309
+msgid ""
+"There was an error in one of the QSOs. You might want to manually upload "
+"them."
+msgstr ""
+
+#: application/models/Eqslmethods_model.php:315
+msgid ""
+"It seems that the eQSL site has changed. Please open up an issue on GitHub."
 msgstr ""
 
 #: application/models/Hrdlog_model.php:22
@@ -5712,11 +5735,17 @@ msgstr "Les fichiers de log doivent être au format .adi"
 msgid "Import directly from eQSL"
 msgstr ""
 
-#: application/views/eqsl/tools.php:26
+#: application/views/eqsl/tools.php:27
+msgid ""
+"This does NOT upload any QSOs. It only marks QSOs as sent. If you use this "
+"button you need to upload them manually on the eQSL.cc website."
+msgstr ""
+
+#: application/views/eqsl/tools.php:29
 msgid "Mark All QSOs as Sent to eQSL"
 msgstr ""
 
-#: application/views/eqsl/tools.php:26
+#: application/views/eqsl/tools.php:29
 msgid ""
 "Use this if you have lots of QSOs to upload to eQSL it will save the server "
 "timing out."
