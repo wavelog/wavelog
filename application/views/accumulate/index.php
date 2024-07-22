@@ -8,6 +8,7 @@
     var lang_general_word_yearly = '<?= __("Yearly"); ?>';
     var lang_general_word_month = '<?= __("Month"); ?>';
     var lang_general_word_monthly = '<?= __("Monthly"); ?>';
+    var lang_general_word_diff = '<?= __("Difference"); ?>';
 </script>
 <div class="container">
     <h2><?php echo $page_title; ?></h1>

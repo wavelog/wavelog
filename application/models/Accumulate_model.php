@@ -43,7 +43,7 @@ class Accumulate_model extends CI_Model
             $sql = "select date_format(col_time_on, '%Y-%m') year";
         }
 
-        $sql .= ", coalesce(y.tot, 0) tot 
+        $sql .= ", coalesce(y.tot, 0) tot
             from " . $this->config->item('table_name') . " thcv
             left outer join (
                 select count(col_dxcc) as tot, year
@@ -73,7 +73,7 @@ class Accumulate_model extends CI_Model
         }
 
         $sql .= " order by year
-        ) x 
+        ) x
         where not exists (select 1 from " . $this->config->item('table_name') . " where";
 
         if ($period == "year") {
@@ -155,7 +155,7 @@ class Accumulate_model extends CI_Model
             $sql = "select date_format(col_time_on, '%Y-%m') year";
         }
 
-        $sql .= ", coalesce(y.tot, 0) tot 
+        $sql .= ", coalesce(y.tot, 0) tot
             from " . $this->config->item('table_name') . " thcv
             left outer join (
                 select count(col_state) as tot, year
@@ -188,7 +188,7 @@ class Accumulate_model extends CI_Model
         $sql .= " and COL_STATE in ('AK','AL','AR','AZ','CA','CO','CT','DE','FL','GA','HI','IA','ID','IL','IN','KS','KY','LA','MA','MD','ME','MI','MN','MO','MS','MT','NC','ND','NE','NH','NJ','NM','NV','NY','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VA','VT','WA','WI','WV','WY')";
 
         $sql .= " order by year
-        ) x 
+        ) x
         where not exists (select 1 from " . $this->config->item('table_name') . " where";
 
         if ($period == "year") {
@@ -261,7 +261,7 @@ class Accumulate_model extends CI_Model
             $sql = "select date_format(col_time_on, '%Y-%m') year";
         }
 
-        $sql .= ", coalesce(y.tot, 0) tot 
+        $sql .= ", coalesce(y.tot, 0) tot
             from " . $this->config->item('table_name') . " thcv
             left outer join (
                 select count(col_iota) as tot, year
@@ -291,7 +291,7 @@ class Accumulate_model extends CI_Model
         }
 
         $sql .= " order by year
-        ) x 
+        ) x
         where not exists (select 1 from " . $this->config->item('table_name') . " where";
 
         if ($period == "year") {
@@ -361,7 +361,7 @@ class Accumulate_model extends CI_Model
             $sql = "select date_format(col_time_on, '%Y-%m') year";
         }
 
-        $sql .= ", coalesce(y.tot, 0) tot 
+        $sql .= ", coalesce(y.tot, 0) tot
             from " . $this->config->item('table_name') . " thcv
             left outer join (
                 select count(col_cqz) as tot, year
@@ -391,7 +391,7 @@ class Accumulate_model extends CI_Model
         }
 
         $sql .= " order by year
-        ) x 
+        ) x
         where not exists (select 1 from " . $this->config->item('table_name') . " where";
 
         if ($period == "year") {
@@ -454,13 +454,106 @@ class Accumulate_model extends CI_Model
     }
 
     function get_accumulated_vucc($band, $mode, $period, $location_list) {
-        if ($period == "year") {
+		$dbversion = $this->db->version();
+		$dbversion = explode('.', $dbversion);
+
+		$sql = "";
+		if ($dbversion[0] >= "8") {
+			$sql = $this->fastquery($band, $mode, $period, $location_list);
+			$query = $this->db->query($sql);
+			return $query->result();
+		} else {
+			$sql = $this->slowquery($band, $mode, $period, $location_list);
+			$query = $this->db->query($sql);
+			return $this->count_and_add_accumulated_total($query->result());
+		}
+    }
+
+	function fastquery($band, $mode, $period, $location_list) {
+		$sql = "WITH firstseen AS (
+		SELECT substr(col_gridsquare,1,4) as grid, ";
+
+		if ($period == "year") {
+            $sql .= "MIN(year(col_time_on)) year";
+        } else if ($period == "month") {
+			$sql .= "MIN(date_format(col_time_on, '%Y-%m')) year";
+        }
+
+        $sql .= " from " . $this->config->item('table_name') . " thcv
+            where coalesce(col_gridsquare, '') <> ''
+            and station_id in (" . $location_list . ")";
+
+        if ($band != 'All') {
+            if ($band == 'SAT') {
+                $sql .= " and col_prop_mode ='" . $band . "'";
+            } else {
+                $sql .= " and col_prop_mode !='SAT'";
+                $sql .= " and col_band ='" . $band . "'";
+            }
+        }
+
+        if ($mode != 'All') {
+            $sql .= " and (col_mode ='" . $mode . "' or col_submode ='" . $mode . "')";
+        }
+
+        $sql .= " GROUP BY 1
+		union all
+		select substr(grid, 1,4) as grid, year
+		from (
+		select TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(COL_VUCC_GRIDS, ',', x.x), ',',-1)) as grid, ";
+		if ($period == "year") {
+            $sql .= "MIN(year(col_time_on)) year";
+        } else if ($period == "month") {
+			$sql .= "MIN(date_format(col_time_on, '%Y-%m')) year";
+        }
+
+		$sql .= " from " . $this->config->item('table_name') . " thcv
+		cross join (
+			select 1 as x
+		union all
+			select 2
+		union all
+			select 3
+		union all
+			select 4) x
+		where
+			x.x <= length(COL_VUCC_GRIDS)-length(replace(COL_VUCC_GRIDS, ',', ''))+ 1
+			and coalesce(COL_VUCC_GRIDS, '') <> ''
+			and station_id in (" . $location_list . ")";
+
+		if ($band != 'All') {
+			if ($band == 'SAT') {
+				$sql .= " and col_prop_mode ='" . $band . "'";
+			} else {
+				$sql .= " and col_prop_mode !='SAT'";
+				$sql .= " and col_band ='" . $band . "'";
+			}
+		}
+
+		if ($mode != 'All') {
+			$sql .= " and (col_mode ='" . $mode . "' or col_submode ='" . $mode . "')";
+		}
+
+		$sql .= " GROUP BY 1) as z
+		)
+		, z as (
+			SELECT grid, row_number() OVER (partition by grid ORDER BY grid asc, year asc) as rn, year
+			FROM firstseen
+		) select DISTINCT COUNT(grid) OVER (ORDER BY year) as total, year from z where rn = 1
+		";
+
+		return $sql;
+	}
+
+	function slowquery($band, $mode, $period, $location_list) {
+		$sql = "";
+		if ($period == "year") {
             $sql = "select year(thcv.col_time_on) year";
         } else if ($period == "month") {
             $sql = "select date_format(col_time_on, '%Y-%m') year";
         }
 
-        $sql .= ", coalesce(y.tot, 0) tot 
+        $sql .= ", coalesce(y.tot, 0) tot
             from " . $this->config->item('table_name') . " thcv
             left outer join (
                 select count(substr(col_gridsquare,1,4)) as tot, year
@@ -490,7 +583,7 @@ class Accumulate_model extends CI_Model
         }
 
         $sql .= " order by year
-        ) x 
+        ) x
         where not exists (select 1 from " . $this->config->item('table_name') . " where";
 
         if ($period == "year") {
@@ -547,9 +640,7 @@ class Accumulate_model extends CI_Model
             order by date_format(col_time_on, '%Y-%m')";
         }
 
-        $query = $this->db->query($sql);
-
-        return $this->count_and_add_accumulated_total($query->result());
-    }
+		return $sql;
+	}
 
 }

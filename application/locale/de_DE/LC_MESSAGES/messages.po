@@ -11,9 +11,9 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-15 22:51+0000\n"
-"PO-Revision-Date: 2024-07-15 09:29+0000\n"
-"Last-Translator: Jörg Dorgeist <wavelog@dj7nt.de>\n"
+"POT-Creation-Date: 2024-07-22 14:29+0000\n"
+"PO-Revision-Date: 2024-07-17 15:14+0000\n"
+"Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
 "Language: de_DE\n"
@@ -334,7 +334,7 @@ msgid "CQ Magazine WAZ"
 msgstr "CQ Magazin WAZ"
 
 #: application/controllers/Awards.php:652
-#: application/views/accumulate/index.php:59
+#: application/views/accumulate/index.php:60
 #: application/views/timeline/index.php:45
 msgid "Worked All States (WAS)"
 msgstr "Worked All States (WAS)"
@@ -468,12 +468,12 @@ msgstr "Contest Kalender"
 msgid "Contest Logging"
 msgstr "Contest-Logging"
 
-#: application/controllers/Contesting.php:99
+#: application/controllers/Contesting.php:101
 #: application/views/interface_assets/header.php:266
 msgid "Contests"
 msgstr "Conteste"
 
-#: application/controllers/Contesting.php:113
+#: application/controllers/Contesting.php:115
 msgid "Update Contest"
 msgstr "Aktualisiere Contest"
 
@@ -586,19 +586,19 @@ msgstr "eQSL Import Information"
 msgid "eQSL QSO Upload"
 msgstr "eQSL QSO Upload"
 
-#: application/controllers/Eqsl.php:411
+#: application/controllers/Eqsl.php:415
 msgid "eQSL Tools"
 msgstr "eQSL Tools"
 
-#: application/controllers/Eqsl.php:458
+#: application/controllers/Eqsl.php:462
 msgid " / Errors: "
 msgstr " / Fehler: "
 
-#: application/controllers/Eqsl.php:458
+#: application/controllers/Eqsl.php:462
 msgid "Successfully downloaded: "
 msgstr "Erfolgreich heruntergeladen: "
 
-#: application/controllers/Eqsl.php:467
+#: application/controllers/Eqsl.php:471
 msgid "eQSL Card Image Download"
 msgstr "eQSL Karten Bilder Download"
 
@@ -903,7 +903,7 @@ msgid "Clublog"
 msgstr "Clublog"
 
 #: application/controllers/Logbook.php:1273
-#: application/views/accumulate/index.php:29
+#: application/views/accumulate/index.php:30
 #: application/views/activated_gridmap/index.php:39
 #: application/views/adif/dcl_success.php:33
 #: application/views/awards/cq/index.php:86
@@ -1170,7 +1170,7 @@ msgid "Distance"
 msgstr "Distanz"
 
 #: application/controllers/Logbook.php:1284
-#: application/views/accumulate/index.php:19
+#: application/views/accumulate/index.php:20
 #: application/views/activated_gridmap/index.php:8
 #: application/views/activators/index.php:7
 #: application/views/adif/dcl_success.php:32
@@ -1293,7 +1293,7 @@ msgstr "Operator"
 #: application/views/awards/dxcc/index.php:238
 #: application/views/csv/index.php:65 application/views/dashboard/index.php:28
 #: application/views/dxatlas/index.php:65
-#: application/views/interface_assets/footer.php:658
+#: application/views/interface_assets/footer.php:669
 #: application/views/kml/index.php:54
 #: application/views/logbookadvanced/index.php:154
 #: application/views/lookup/index.php:31
@@ -1912,47 +1912,47 @@ msgstr "FERTIG"
 msgid "User Accounts"
 msgstr "Benutzerkonten"
 
-#: application/controllers/User.php:51
+#: application/controllers/User.php:52
 msgid "Add User"
 msgstr "Füge Benutzer hinzu"
 
-#: application/controllers/User.php:165
+#: application/controllers/User.php:166
 msgid "Users"
 msgstr "Benutzer"
 
-#: application/controllers/User.php:238 application/controllers/User.php:671
+#: application/controllers/User.php:240 application/controllers/User.php:673
 msgid "Edit User"
 msgstr "Bearbeite Benutzer"
 
-#: application/controllers/User.php:663 application/controllers/User.php:666
+#: application/controllers/User.php:665 application/controllers/User.php:668
 #: application/views/user/main.php:3 application/views/user/main.php:46
 msgid "User"
 msgstr "Benutzer"
 
-#: application/controllers/User.php:663 application/controllers/User.php:666
+#: application/controllers/User.php:665 application/controllers/User.php:668
 msgid "edited"
 msgstr "bearbeitet"
 
-#: application/controllers/User.php:720
+#: application/controllers/User.php:722
 msgid "Profile"
 msgstr "Profil"
 
-#: application/controllers/User.php:838 application/controllers/User.php:848
+#: application/controllers/User.php:840 application/controllers/User.php:850
 msgid "Login failed. Try again."
 msgstr "Login fehlgeschlagen. Bitte erneut versuchen."
 
-#: application/controllers/User.php:855
+#: application/controllers/User.php:857
 #: application/views/interface_assets/header.php:348
 #: application/views/user/login.php:89
 #: application/views/visitor/layout/header.php:88
 msgid "Login"
 msgstr "Anmeldung"
 
-#: application/controllers/User.php:863
+#: application/controllers/User.php:865
 msgid "User logged in"
 msgstr "Benutzer eingeloggt"
 
-#: application/controllers/User.php:894
+#: application/controllers/User.php:896
 msgid ""
 "Sorry. This instance is currently in maintenance mode. If this message "
 "appears unexpectedly or keeps showing up, please contact an administrator. "
@@ -1963,32 +1963,32 @@ msgstr ""
 "kontaktiere bitte den Administrator. Nur Administratoren können sich derzeit "
 "einloggen."
 
-#: application/controllers/User.php:897
+#: application/controllers/User.php:899
 msgid "Incorrect username or password!"
 msgstr "Falscher Benutzername oder Passwort!"
 
-#: application/controllers/User.php:914
+#: application/controllers/User.php:916
 #, php-format
 msgid "User %s logged out."
 msgstr "Benutzer %s ausgeloggt."
 
-#: application/controllers/User.php:928
+#: application/controllers/User.php:930
 msgid "Password Reset is disabled on the Demo!"
 msgstr "Passwort Reset ist in der Demo nicht verfügbar!"
 
-#: application/controllers/User.php:941
+#: application/controllers/User.php:943
 msgid "Forgot Password"
 msgstr "Passwort vergessen"
 
-#: application/controllers/User.php:991 application/views/user/main.php:8
+#: application/controllers/User.php:993 application/views/user/main.php:8
 msgid "Email settings are incorrect."
 msgstr "E-Mail Einstellungen sind nicht korrekt."
 
-#: application/controllers/User.php:995 application/controllers/User.php:1000
+#: application/controllers/User.php:997 application/controllers/User.php:1002
 msgid "Password Reset Processed."
 msgstr "Passwort Zurücksetzen angefordert."
 
-#: application/controllers/User.php:1102
+#: application/controllers/User.php:1104
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
@@ -2029,6 +2029,29 @@ msgstr "Export Karte"
 #: application/views/interface_assets/header.php:419
 msgid "QO-100 Dx Club Upload"
 msgstr "QO-100 Dx Club Upload"
+
+#: application/models/Eqslmethods_model.php:281
+msgid "Your eQSL username and/or password is incorrect."
+msgstr ""
+
+#: application/models/Eqslmethods_model.php:287
+msgid "Something went wrong with eQSL.cc!"
+msgstr ""
+
+#: application/models/Eqslmethods_model.php:303
+msgid "eQSL.cc is experiencing issues. Please try exporting QSOs later."
+msgstr ""
+
+#: application/models/Eqslmethods_model.php:309
+msgid ""
+"There was an error in one of the QSOs. You might want to manually upload "
+"them."
+msgstr ""
+
+#: application/models/Eqslmethods_model.php:315
+msgid ""
+"It seems that the eQSL site has changed. Please open up an issue on GitHub."
+msgstr ""
 
 #: application/models/Hrdlog_model.php:22
 msgid ""
@@ -2100,7 +2123,7 @@ msgid "Year"
 msgstr "Jahr"
 
 #: application/views/accumulate/index.php:8
-#: application/views/accumulate/index.php:87
+#: application/views/accumulate/index.php:88
 msgid "Yearly"
 msgstr "jährlich"
 
@@ -2111,12 +2134,16 @@ msgid "Month"
 msgstr "Monat"
 
 #: application/views/accumulate/index.php:10
-#: application/views/accumulate/index.php:93
+#: application/views/accumulate/index.php:94
 msgid "Monthly"
 msgstr "monatlich"
 
-#: application/views/accumulate/index.php:22
-#: application/views/accumulate/index.php:32
+#: application/views/accumulate/index.php:11
+msgid "Difference"
+msgstr "Differenz"
+
+#: application/views/accumulate/index.php:23
+#: application/views/accumulate/index.php:33
 #: application/views/activated_gridmap/index.php:10
 #: application/views/activated_gridmap/index.php:22
 #: application/views/activated_gridmap/index.php:32
@@ -2198,35 +2225,35 @@ msgstr "monatlich"
 msgid "All"
 msgstr "Alle"
 
-#: application/views/accumulate/index.php:48
+#: application/views/accumulate/index.php:49
 #: application/views/timeline/index.php:41
 msgid "Award"
 msgstr "Diplom"
 
-#: application/views/accumulate/index.php:53
+#: application/views/accumulate/index.php:54
 #: application/views/timeline/index.php:44
 msgid "DX Century Club (DXCC)"
 msgstr "DX Century Club (DXCC)"
 
-#: application/views/accumulate/index.php:65
+#: application/views/accumulate/index.php:66
 #: application/views/timeline/index.php:46
 msgid "Islands On The Air (IOTA)"
 msgstr "Islands On The Air (IOTA)"
 
-#: application/views/accumulate/index.php:71
+#: application/views/accumulate/index.php:72
 #: application/views/timeline/index.php:47
 msgid "Worked All Zones (WAZ)"
 msgstr "Worked All Zones (WAZ)"
 
-#: application/views/accumulate/index.php:77
+#: application/views/accumulate/index.php:78
 msgid "VHF/UHF Century Club (VUCC)"
 msgstr "VHF/UHF Century Club (VUCC)"
 
-#: application/views/accumulate/index.php:82
+#: application/views/accumulate/index.php:83
 msgid "Period"
 msgstr "Zeitraum"
 
-#: application/views/accumulate/index.php:103
+#: application/views/accumulate/index.php:104
 #: application/views/activators/index.php:50
 #: application/views/awards/cq/index.php:111
 #: application/views/awards/dok/index.php:127
@@ -2584,7 +2611,7 @@ msgstr "Die max. Dateigrösse für Uploads beträgt "
 #: application/views/debug/index.php:181 application/views/debug/index.php:526
 #: application/views/hrdlog/export.php:25
 #: application/views/hrdlog/export.php:74
-#: application/views/interface_assets/footer.php:23
+#: application/views/interface_assets/footer.php:34
 #: application/views/qrz/export.php:73 application/views/qrz/export.php:94
 #: application/views/station_profile/index.php:31
 #: application/views/stationsetup/stationsetup.php:111
@@ -2659,7 +2686,7 @@ msgstr ""
 "Nutze während des Import immer das eingeloggte Rufzeichen als Operator-Name"
 
 #: application/views/adif/import.php:152
-#: application/views/interface_assets/footer.php:21
+#: application/views/interface_assets/footer.php:32
 msgid "DANGER"
 msgstr "GEFAHR"
 
@@ -2849,7 +2876,7 @@ msgstr "Einfacher Name, um zu beschreiben, wofür Sie diese API verwenden."
 #: application/views/api/description.php:33
 #: application/views/bands/create.php:49 application/views/bands/edit.php:31
 #: application/views/contesting/edit.php:55 application/views/cron/edit.php:73
-#: application/views/interface_assets/footer.php:32
+#: application/views/interface_assets/footer.php:43
 #: application/views/operator/index.php:23
 #: application/views/options/appearance.php:107
 #: application/views/options/dxcluster.php:67
@@ -3141,7 +3168,7 @@ msgstr "Diplome - CQ Magazin WAZ"
 #: application/views/bandmap/list.php:73
 #: application/views/dashboard/index.php:244
 #: application/views/dashboard/index.php:362
-#: application/views/interface_assets/footer.php:28
+#: application/views/interface_assets/footer.php:39
 #: application/views/visitor/index.php:266
 msgid "Confirmed"
 msgstr "Bestätigt"
@@ -4351,7 +4378,7 @@ msgstr "Erstelle ein neues Band"
 
 #: application/views/bands/index.php:152
 #: application/views/contesting/add.php:74
-#: application/views/interface_assets/footer.php:31
+#: application/views/interface_assets/footer.php:42
 #: application/views/qso/components/winkeysettings.php:91
 #: application/views/qso/components/winkeysettings_results.php:91
 #: application/views/simplefle/index.php:21
@@ -4889,7 +4916,7 @@ msgid "Enter your own Cron Expression"
 msgstr "Gib dein eigenes Cron Intervall ein"
 
 #: application/views/cron/edit.php:74
-#: application/views/interface_assets/footer.php:24
+#: application/views/interface_assets/footer.php:35
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -5747,7 +5774,7 @@ msgid "Turkish"
 msgstr "Türkisch"
 
 #: application/views/distances/index.php:7
-#: application/views/interface_assets/footer.php:19
+#: application/views/interface_assets/footer.php:30
 #: application/views/simplefle/index.php:68
 msgid "QSO Data"
 msgstr "QSO Daten"
@@ -5958,11 +5985,17 @@ msgstr "Logdateien müssen den Dateityp .adi haben"
 msgid "Import directly from eQSL"
 msgstr "Direktimport von eQSL"
 
-#: application/views/eqsl/tools.php:26
+#: application/views/eqsl/tools.php:27
+msgid ""
+"This does NOT upload any QSOs. It only marks QSOs as sent. If you use this "
+"button you need to upload them manually on the eQSL.cc website."
+msgstr ""
+
+#: application/views/eqsl/tools.php:29
 msgid "Mark All QSOs as Sent to eQSL"
 msgstr "Markiere alle QSOs als gesendet für eQSL"
 
-#: application/views/eqsl/tools.php:26
+#: application/views/eqsl/tools.php:29
 msgid ""
 "Use this if you have lots of QSOs to upload to eQSL it will save the server "
 "timing out."
@@ -6097,7 +6130,7 @@ msgstr "Erledigt!"
 msgid "The QSOs are marked as exported to HRDLog Logbook."
 msgstr "Die QSOs wurden als zu HRDLog exportiert markiert."
 
-#: application/views/interface_assets/footer.php:20
+#: application/views/interface_assets/footer.php:31
 #: application/views/search/search_result_ajax.php:404
 #: application/views/view_log/partial/log.php:135
 #: application/views/view_log/partial/log_ajax.php:300
@@ -6105,51 +6138,51 @@ msgstr "Die QSOs wurden als zu HRDLog exportiert markiert."
 msgid "Edit QSO"
 msgstr "QSO bearbeiten"
 
-#: application/views/interface_assets/footer.php:22
+#: application/views/interface_assets/footer.php:33
 msgid "Attention"
 msgstr "Achtung"
 
-#: application/views/interface_assets/footer.php:25
+#: application/views/interface_assets/footer.php:36
 msgid "OK"
 msgstr "OK"
 
-#: application/views/interface_assets/footer.php:26
+#: application/views/interface_assets/footer.php:37
 msgid "Warning! Are you sure you want delete QSO with "
 msgstr "Warnung! Bist du sicher, dass du dieses QSO löschen willst mit "
 
-#: application/views/interface_assets/footer.php:27
+#: application/views/interface_assets/footer.php:38
 #: application/views/user/edit.php:493
 msgid "Colors"
 msgstr "Farben"
 
-#: application/views/interface_assets/footer.php:29
+#: application/views/interface_assets/footer.php:40
 msgid "Worked not confirmed"
 msgstr "Gearbeitet, nicht bestätigt"
 
-#: application/views/interface_assets/footer.php:30
+#: application/views/interface_assets/footer.php:41
 msgid "Not worked"
 msgstr "Nicht gearbeitet"
 
-#: application/views/interface_assets/footer.php:33
+#: application/views/interface_assets/footer.php:44
 #: application/views/qso/index.php:601
 #: application/views/visitor/layout/footer.php:244
 msgid "Clear"
 msgstr "Zurücksetzen"
 
-#: application/views/interface_assets/footer.php:34
+#: application/views/interface_assets/footer.php:45
 #: application/views/qso/edit_ajax.php:211
 #: application/views/qso/edit_ajax.php:512
 msgid "Propagation mode is not supported by LoTW. LoTW QSL fields disabled."
 msgstr ""
 "Ausbreitungsart wird von LotW nicht unterstützt. LoTW QSL Felder deaktiviert."
 
-#: application/views/interface_assets/footer.php:116
+#: application/views/interface_assets/footer.php:127
 #: application/views/interface_assets/header.php:426
 #: application/views/options/sidebar.php:11
 msgid "Version Info"
 msgstr "Versionsinfo"
 
-#: application/views/interface_assets/footer.php:661
+#: application/views/interface_assets/footer.php:672
 msgid ""
 "Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. "
 "Check which DXCC for this particular location is the correct one. If you are "
@@ -6161,17 +6194,17 @@ msgstr ""
 "'Federal Republic of Germany'. Wenn du dir sicher bist, ignoriere diese "
 "Warnung."
 
-#: application/views/interface_assets/footer.php:1355
-#: application/views/interface_assets/footer.php:1359
-#: application/views/interface_assets/footer.php:1362
-#: application/views/interface_assets/footer.php:1499
-#: application/views/interface_assets/footer.php:1503
-#: application/views/interface_assets/footer.php:1506
+#: application/views/interface_assets/footer.php:1366
+#: application/views/interface_assets/footer.php:1370
+#: application/views/interface_assets/footer.php:1373
+#: application/views/interface_assets/footer.php:1510
+#: application/views/interface_assets/footer.php:1514
+#: application/views/interface_assets/footer.php:1517
 msgid "grid square"
 msgstr "Planquadrate"
 
-#: application/views/interface_assets/footer.php:1362
-#: application/views/interface_assets/footer.php:1506
+#: application/views/interface_assets/footer.php:1373
+#: application/views/interface_assets/footer.php:1517
 msgid "Total count"
 msgstr "Summe"
 

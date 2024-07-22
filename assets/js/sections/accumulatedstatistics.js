@@ -65,13 +65,16 @@ function accumulatePlot(form) {
 				$("#accumulateTable").append(
 					'<table style="width:100%" class="accutable table table-sm table-bordered table-hover table-striped table-condensed text-center"><thead>' +
 						"<tr>" +
-						"<td>#</td>" +
-						"<td>" +
+						"<th>#</th>" +
+						"<th>" +
 						periodtext +
-						"</td>" +
-						"<td>" +
+						"</th>" +
+						"<th>" +
 						awardtext +
-						"</td>" +
+						"</th>" +
+						"<th>" +
+						lang_general_word_diff +
+						"</th>" +
 						"</tr>" +
 						"</thead>" +
 						"<tbody></tbody></table>"
@@ -81,6 +84,7 @@ function accumulatePlot(form) {
 
 				var $myTable = $(".accutable");
 				var i = 1;
+				var last_total = 0;
 
 				// building the rows in the table
 				var rowElements = data.map(function (row) {
@@ -89,8 +93,11 @@ function accumulatePlot(form) {
 					var $iterator = $("<td></td>").html(i++);
 					var $type = $("<td></td>").html(row.year);
 					var $content = $("<td></td>").html(row.total);
+					diff = row.total - last_total;
+					var $diff = $("<td></td>").html((last_total == 0 || diff == 0) ? '' : "+"+diff);
+					last_total = row.total;
 
-					$row.append($iterator, $type, $content);
+					$row.append($iterator, $type, $content, $diff);
 
 					return $row;
 				});
@@ -154,18 +161,35 @@ function accumulatePlot(form) {
 				});
 				$(".ld-ext-right").removeClass("running");
 				$(".ld-ext-right").prop("disabled", false);
+				$.fn.dataTable.ext.buttons.clear = {
+					className: 'buttons-clear',
+					action: function ( e, dt, node, config ) {
+						dt.search('');
+						dt.order([[1, 'desc']]);
+						dt.draw();
+					}
+				};
 				$(".accutable").DataTable({
 					responsive: false,
-					ordering: false,
 					scrollY: "400px",
 					scrollCollapse: true,
 					paging: false,
 					scrollX: true,
+					sortable: true,
 					language: {
 						url: getDataTablesLanguageUrl(),
 					},
 					dom: "Bfrtip",
-					buttons: ["csv"],
+					order: [1, 'desc'],
+					buttons: [
+						{
+							extend: 'csv'
+						},
+						{
+							extend: 'clear',
+							text: lang_admin_clear
+						}
+					]
 				});
 
 				// using this to change color of csv-button if dark mode is chosen
