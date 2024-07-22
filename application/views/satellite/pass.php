@@ -5,7 +5,7 @@
 		<form class="d-flex align-items-center">
 			<div class="mb-3 w-auto">
 				<label class="my-1 me-sm-2 w-auto" id="satslabel" for="satslist">Min Satellite Elevation</label>
-				<input class="my-1 me-sm-2 w-auto form-control form-control-sm" id="minelevation" type="text" name="e" value="0" style="width:30px;" />
+				<input class="my-1 me-sm-2 w-auto form-control form-control-sm" id="minelevation" type="number" name="e" value="0" style="width:30px;" />
 			</div>
 			<div class="mb-3 w-auto">
 				<label class="my-1 me-sm-2 w-auto" for="minazimuth">Min Azimut</label>
