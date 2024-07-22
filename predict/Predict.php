@@ -389,7 +389,7 @@ class Predict
         if ($sat_sun_status) {
             $sun_el = Predict_Math::Degrees($solar_set->el);
 
-            if ($sun_el <= $this->threshold && $sat->el >= 0.0) {
+            if ($sat->el >= 0.0) {
                 $vis = self::SAT_VIS_VISIBLE;
             } else {
                 $vis = self::SAT_VIS_DAYLIGHT;

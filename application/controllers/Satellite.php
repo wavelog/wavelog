@@ -217,9 +217,6 @@ class Satellite extends CI_Controller {
 		require_once realpath(__DIR__ . "/../../predict/Predict/Time.php");
 		require_once realpath(__DIR__ . "/../../predict/Predict/TLE.php");
 
-		// Track execution time of this script
-		$start = microtime(true);
-
 		// The observer or groundstation is called QTH in ham radio terms
 		$predict  = new Predict();
 		$qth      = new Predict_QTH();
@@ -256,12 +253,12 @@ class Satellite extends CI_Controller {
 		// You can modify some preferences in Predict(), the defaults are below
 		//
 		$predict->minEle     = $this->security->xss_clean($this->input->post('minelevation')); // Minimum elevation for a pass
-		// $predict->timeRes    = 10; // Pass details: time resolution in seconds
-		// $predict->numEntries = 20; // Pass details: number of entries per pass
+		$predict->timeRes    = 1; // Pass details: time resolution in seconds
+		$predict->numEntries = 100; // Pass details: number of entries per pass
 		// $predict->threshold  = -6; // Twilight threshold (sun must be at this lat or lower)
 
 		// Get the passes and filter visible only, takes about 4 seconds for 10 days
-		$results  = $predict->get_passes($sat, $qth, $now, 10);
+		$results  = $predict->get_passes($sat, $qth, $now, 1);
 		$filtered = $predict->filterVisiblePasses($results);
 
 		$zone   = $this->security->xss_clean($this->input->post('timezone'));
