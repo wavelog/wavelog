@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-07-22 07:07+0000\n"
-"PO-Revision-Date: 2024-07-18 10:17+0000\n"
-"Last-Translator: BG6HJE <1753409828@qq.com>\n"
+"PO-Revision-Date: 2024-07-22 13:58+0000\n"
+"Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -2008,26 +2008,26 @@ msgstr "QO-100 Dx Club 上传"
 
 #: application/models/Eqslmethods_model.php:281
 msgid "Your eQSL username and/or password is incorrect."
-msgstr ""
+msgstr "您的 eQSL 用户名或密码错误。"
 
 #: application/models/Eqslmethods_model.php:287
 msgid "Something went wrong with eQSL.cc!"
-msgstr ""
+msgstr "eQSL 服务异常！"
 
 #: application/models/Eqslmethods_model.php:303
 msgid "eQSL.cc is experiencing issues. Please try exporting QSOs later."
-msgstr ""
+msgstr "eQSL 网站出了一些问题，请稍后重试。"
 
 #: application/models/Eqslmethods_model.php:309
 msgid ""
 "There was an error in one of the QSOs. You might want to manually upload "
 "them."
-msgstr ""
+msgstr "上传的 QSO 有问题，您可能需要手动录入。"
 
 #: application/models/Eqslmethods_model.php:315
 msgid ""
 "It seems that the eQSL site has changed. Please open up an issue on GitHub."
-msgstr ""
+msgstr "eQSL 网站似乎更改了地址，请在 GitHub 上创建一个 issue。"
 
 #: application/models/Hrdlog_model.php:22
 msgid ""
@@ -2116,7 +2116,7 @@ msgstr "每月"
 
 #: application/views/accumulate/index.php:11
 msgid "Difference"
-msgstr ""
+msgstr "差异"
 
 #: application/views/accumulate/index.php:23
 #: application/views/accumulate/index.php:33
@@ -2681,7 +2681,7 @@ msgstr "上传"
 
 #: application/views/adif/import.php:165
 msgid "Take your logbook file anywhere!"
-msgstr ""
+msgstr "在其他地方保管、上传日志！"
 
 #: application/views/adif/import.php:166
 msgid ""
@@ -3549,8 +3549,9 @@ msgid "This map shows only QSOs worked on SAT."
 msgstr "该地图仅显示了 SAT 上有效的 QSO"
 
 #: application/views/awards/helvetia/index.php:18
+#, fuzzy
 msgid "HELVETIA 26 | SWITZERLAND AWARD"
-msgstr ""
+msgstr "HELVETIA 26 | SWITZERLAND AWARD"
 
 #: application/views/awards/helvetia/index.php:19
 msgid ""
@@ -3583,11 +3584,11 @@ msgstr "欲了解更多信息，您可以访问此链接：%s。"
 
 #: application/views/awards/helvetia/index.php:112
 msgid "Show Helvetia Map"
-msgstr ""
+msgstr "显示 Helvetia 地图"
 
 #: application/views/awards/helvetia/index.php:149
 msgid "Canton"
-msgstr ""
+msgstr "Canton"
 
 #: application/views/awards/index.php:9 application/views/bands/index.php:46
 #: application/views/interface_assets/header.php:160
@@ -3634,7 +3635,7 @@ msgstr ""
 #: application/views/awards/iota/index.php:19
 #, php-format
 msgid "You can also find this information on %s."
-msgstr ""
+msgstr "您也可以在 %s 查看更多信息。"
 
 #: application/views/awards/iota/index.php:29
 msgid "Deleted IOTA"
@@ -3686,11 +3687,11 @@ msgstr "通联全球 75 个 ITU 分区中的 70 个可申请该奖"
 #, php-format
 msgctxt "uses 'RSGB'"
 msgid "You can find more information on the website of %s."
-msgstr ""
+msgstr "您可在 %s 查看更多信息。"
 
 #: application/views/awards/itu/index.php:23
 msgid "Awards - ITU Zones"
-msgstr ""
+msgstr "奖项 - ITU 分区"
 
 #: application/views/awards/itu/index.php:113
 msgid "Show ITU Zone Map"
@@ -3742,7 +3743,7 @@ msgstr "导出"
 #: application/views/public_search/empty.php:2
 #: application/views/public_search/result.php:2
 msgid "Results"
-msgstr ""
+msgstr "结果"
 
 #: application/views/awards/jcc/index.php:151
 #: application/views/awards/waja/index.php:151
@@ -3847,12 +3848,12 @@ msgstr "QSO 数量"
 
 #: application/views/awards/sig/index.php:23
 msgid "Number of Refs"
-msgstr ""
+msgstr "标识符数量"
 
 #: application/views/awards/sig/qso_list.php:9
 #: application/views/awards/sota/index.php:23
 msgid "Reference"
-msgstr ""
+msgstr "标识符"
 
 #: application/views/awards/sig/qso_list.php:10
 #: application/views/awards/sota/index.php:24
@@ -3988,7 +3989,7 @@ msgstr "显示WAJA地图"
 
 #: application/views/awards/waja/index.php:152
 msgid "Prefecture"
-msgstr ""
+msgstr "县"
 
 #: application/views/awards/was/index.php:18
 msgid "WAS Award"
@@ -4125,7 +4126,7 @@ msgstr "无"
 
 #: application/views/bandmap/index.php:33 application/views/bandmap/list.php:76
 msgid "Spots de"
-msgstr ""
+msgstr "Spots de"
 
 #: application/views/bandmap/list.php:69
 msgid "DXCC-Status"
@@ -4137,7 +4138,7 @@ msgstr "未确认"
 
 #: application/views/bandmap/list.php:113
 msgid "Spotter"
-msgstr ""
+msgstr "Spotter"
 
 #: application/views/bandmap/list.php:114
 #: application/views/oqrs/notinlogform.php:28
@@ -4223,7 +4224,7 @@ msgstr "WAS"
 
 #: application/views/bands/index.php:65
 msgid "QRG Unit"
-msgstr ""
+msgstr "QRG 单元"
 
 #: application/views/bands/index.php:98
 msgid "Hz"
@@ -4385,12 +4386,12 @@ msgstr "在日志中未发现任何竞赛"
 #: application/views/cfd/index.php:7
 #, php-format
 msgid "Export of CFD-File for DARC-Toplist (See %s)"
-msgstr ""
+msgstr "导出 CFD 日志文件（用于 DARC-Toplist，请查看 %s）"
 
 #: application/views/components/hamsat/table.php:3
 #: application/views/hamsat/index.php:7
 msgid "Hamsat - Satellite Rovers"
-msgstr ""
+msgstr "Hamsat - 卫星漫游"
 
 #: application/views/components/hamsat/table.php:4
 #: application/views/contestcalendar/index.php:4
@@ -4401,7 +4402,7 @@ msgstr "该数据来自"
 
 #: application/views/components/hamsat/table.php:11
 msgid "Show All Passes"
-msgstr ""
+msgstr "查看所有过境"
 
 #: application/views/components/hamsat/table.php:14
 msgid "Private feed key empty. Please set the feed key in your profile."
@@ -4425,21 +4426,21 @@ msgstr "备注"
 #: application/views/components/hamsat/table.php:31
 #: application/views/hamsat/index.php:34
 msgid "Gridsquare(s)"
-msgstr ""
+msgstr "网格"
 
 #: application/views/components/hamsat/table.php:32
 #: application/views/hamsat/index.php:35
 msgid "Workable"
-msgstr ""
+msgstr "可通联的"
 
 #: application/views/components/hamsat/table.php:134
 msgctxt "Hamsat - Track Satellites"
 msgid "Track"
-msgstr ""
+msgstr "追踪"
 
 #: application/views/components/hamsat/table.php:146
 msgid "Sked"
-msgstr ""
+msgstr "计划表"
 
 #: application/views/components/radio_display_table.php:5
 msgid "Radio Status"
