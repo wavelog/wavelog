@@ -125,8 +125,6 @@
     // if a user goes back to the installer we need to redirect him
     async function check_lockfile() {
         
-        log_message('error', "Attention! Installer was called again. Let's check for a lockfile.");
-
         return new Promise((resolve, reject) => {
             $.ajax({
                 type: 'POST',
@@ -136,16 +134,15 @@
                 },
                 success: function(response) {
                     if (response != 'installer_locked') {
-                        log_message('debug', "Seems like there is no .lock file. Let's try to run the installer again.");
                         resolve();
                     } else {
-                        log_message('error', 'Installer is locked. Redirect to user/login.');
+                        log_message('error', 'Attention: Installer is locked. Redirect to user/login.');
                         reject(response);
                         window.location.href = "<?php echo str_replace('run.php', '', $websiteurl); ?>" + "index.php/user/login";
                     }
                 },
                 error: function(error) {
-                    log_message('error', "Install Lock Check wen't wrong...");
+                    log_message('error', "Install Lock Check went wrong...");
                     reject(error);
                     window.location.href = "<?php echo str_replace('run.php', '', $websiteurl); ?>" + "index.php/user/login";
                 }
