@@ -1,11 +1,12 @@
-<div class="container">
+<div class="container container-fluid">
 <h2><?= __("Satellite passes"); ?></h2>
 <div class="card">
 	<div class="card-body">
 		<form class="d-flex align-items-center">
+		<div class="row">
 			<div class="mb-3 w-auto">
 				<label class="my-1 me-sm-2 w-auto" id="satslabel" for="satslist">Min Satellite Elevation</label>
-				<input class="my-1 me-sm-2 w-auto form-control form-control-sm" id="minelevation" type="number" name="e" value="0" style="width:30px;" />
+				<input class="my-1 me-sm-2 w-auto form-control form-control-sm" id="minelevation" type="number" name="e" value="0" />
 			</div>
 			<div class="mb-3 w-auto">
 				<label class="my-1 me-sm-2 w-auto" for="minazimuth">Min Azimut</label>
@@ -49,7 +50,7 @@
                     </select>
 			</div>
 			<div class="mb-3 w-auto">
-				<label class="my-1 me-sm-2 w-auto" for="minazimuth">Max Azimut</label>
+				<label class="my-1 me-sm-2 w-auto" for="maxazimuth">Max Azimut</label>
                     <select class="my-1 me-sm-2 w-auto form-select" id="maxazimuth" name="aa">
                         <option value="10">10 &deg;</option>
                         <option value="20">20 &deg;</option>
@@ -90,12 +91,12 @@
                     </select>
 			</div>
 			<div class="mb-3 w-auto">
-					<label class="my-1 me-sm-2 w-auto" for="minazimuth">Gridsquare</label>
+					<label class="my-1 me-sm-2 w-auto" for="yourgrid">Gridsquare</label>
                     <input class="my-1 me-sm-2 w-auto form-control form-control-sm"  id="yourgrid" type="text" style="width:80px;" name="l" value="<?php echo $activegrid; ?>"/>
 			</div>
 			<div class="mb-3 w-auto">
-					<label class="my-1 me-sm-2 w-auto" for="minazimuth">Altitude (Meters above sea level)</label>
-                    <input class="my-1 me-sm-2 w-auto form-control form-control-sm"  id="altitude" type="text" name="a" value="0" style="width:50px;" />
+					<label class="my-1 me-sm-2 w-auto" for="altitude">Altitude</label>
+                    <input class="my-1 me-sm-2 w-auto form-control form-control-sm"  id="altitude" type="text" name="a" value="0" />
 			</div>
 			<div class="mb-3 w-auto">
 					<label class="my-1 me-sm-2 w-auto" for="timezone">Timezone</label>
@@ -639,6 +640,7 @@
 					</select>
 				</div>
         </form>
+				</div>
 		<button id="plot" type="button" name="searchpass" class="btn-sm btn btn-primary me-1 ld-ext-right ld-ext-right-plot" onclick="searchpasses()"><?= __("Load predictions"); ?><div class="ld ld-ring ld-spin"></div></button>
 	</div>
     <div id="resultpasses">
