@@ -24,6 +24,7 @@ class User extends CI_Controller {
 
 		$this->load->model('bands');
 		$this->load->library('form_validation');
+		$this->load->library('Genfunctions');
 
 		$this->form_validation->set_rules('user_name', 'Username', 'required');
 		$this->form_validation->set_rules('user_email', 'E-mail', 'required');
@@ -211,6 +212,7 @@ class User extends CI_Controller {
 
 		$this->load->model('bands');
 		$this->load->library('form_validation');
+		$this->load->library('Genfunctions');
 
 		$this->form_validation->set_rules('user_name', 'Username', 'required|xss_clean');
 		$this->form_validation->set_rules('user_email', 'E-mail', 'required|xss_clean');
