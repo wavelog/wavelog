@@ -186,6 +186,10 @@ class eqsl extends CI_Controller {
 
 				$status = $this->eqslmethods_model->uploadQso($adif, $qsl);
 
+				if($status == 'Error') {
+					redirect('eqsl/export');
+				}
+
 				$timestamp = strtotime($qsl['COL_TIME_ON']);
 				$rows .= "<td>" . date($custom_date_format, $timestamp) . "</td>";
 				$rows .= "<td>" . date('H:i', $timestamp) . "</td>";

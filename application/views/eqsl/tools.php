@@ -23,7 +23,10 @@
 
   <div class="card-body">
 		<?php $this->load->view('layout/messages'); ?>
-        <p><a class="btn btn-primary" href="<?php echo site_url('eqsl/mark_all_sent'); ?>"><?= __("Mark All QSOs as Sent to eQSL"); ?></a> <?= __("Use this if you have lots of QSOs to upload to eQSL it will save the server timing out."); ?></p>
+    <div class="alert alert-warning">
+      <p><?= __("This does NOT upload any QSOs. It only marks QSOs as sent. If you use this button you need to upload them manually on the eQSL.cc website."); ?></p>
+    </div>
+    <p><a class="btn btn-primary" href="<?php echo site_url('eqsl/mark_all_sent'); ?>"><?= __("Mark All QSOs as Sent to eQSL"); ?></a> <?= __("Use this if you have lots of QSOs to upload to eQSL it will save the server timing out."); ?></p>
   </div>
 </div>
 
