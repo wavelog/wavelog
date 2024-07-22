@@ -39,7 +39,7 @@
                     <p><?= sprintf(__("All install steps went through. Redirect to user login in %s seconds..."), "<span id='countdown'>4</span>"); ?></p>
                 </div>
                 <div class="mb-3" id="success_button" style="display: none;">
-                    <a class="btn btn-primary" href="<?php echo $_POST['websiteurl'] ?? $websiteurl."index.php/user/login/1"; ?>"><?= __("Done. Go to the user login ->"); ?></a>
+                    <a class="btn btn-primary" href="<?php echo $_POST['websiteurl'] ?? $websiteurl; ?>index.php/user/login/1"><?= __("Done. Go to the user login ->"); ?></a>
                 </div>
                 <div id="error_message"></div>
                 <div class="container mt-5">
