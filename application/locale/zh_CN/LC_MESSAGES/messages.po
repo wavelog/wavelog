@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-07-22 07:07+0000\n"
-"PO-Revision-Date: 2024-07-22 14:19+0000\n"
+"PO-Revision-Date: 2024-07-22 14:29+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/zh_Hans/>\n"
@@ -4715,7 +4715,7 @@ msgstr "通联的 QSO 数量"
 
 #: application/views/cron/edit.php:11
 msgid "Identifier"
-msgstr ""
+msgstr "标识符"
 
 #: application/views/cron/edit.php:22
 #: application/views/options/appearance.php:56
@@ -4733,7 +4733,7 @@ msgstr "已启用"
 
 #: application/views/cron/edit.php:36 application/views/cron/index.php:53
 msgid "Intervall"
-msgstr ""
+msgstr "间隔"
 
 #: application/views/cron/edit.php:38
 msgid "Choose a preset from the dropdown"
@@ -4773,11 +4773,11 @@ msgstr "每两个月的02:00"
 
 #: application/views/cron/edit.php:62
 msgid "OR"
-msgstr ""
+msgstr "或"
 
 #: application/views/cron/edit.php:63
 msgid "Enter your own Cron Expression"
-msgstr ""
+msgstr "输入自定义的 Cron 语句"
 
 #: application/views/cron/edit.php:74
 #: application/views/interface_assets/footer.php:24
@@ -4787,28 +4787,28 @@ msgstr "取消"
 
 #: application/views/cron/index.php:9
 msgid "How it works"
-msgstr ""
+msgstr "实现原理"
 
 #: application/views/cron/index.php:15
 msgid ""
 "The Cron Manager assists the administrator in managing cron jobs without "
 "requiring CLI access."
-msgstr ""
+msgstr "Cron 管理器帮助管理员在浏览器内管理 Cron，摆脱 CLI 命令。"
 
 #: application/views/cron/index.php:18
 msgid ""
 "To execute cron jobs based on the data below, remove all old cron jobs and "
 "create a new one:"
-msgstr ""
+msgstr "要依据以下数据执行 Cron，请删除所有旧 Cron 任务并创建一个新的："
 
 #: application/views/cron/index.php:27 application/views/cron/index.php:31
 msgid "Status Master-Cron"
-msgstr ""
+msgstr "主 Cron 状态"
 
 #: application/views/cron/index.php:31
 msgctxt "PHP Version"
 msgid "Min. Version is"
-msgstr ""
+msgstr "最低版本是"
 
 #: application/views/cron/index.php:31
 msgid "PHP Version not supported."
@@ -4816,7 +4816,7 @@ msgstr "不支持PHP版本。"
 
 #: application/views/cron/index.php:41
 msgid "Cron List"
-msgstr ""
+msgstr "Cron 列表"
 
 #: application/views/cron/index.php:50
 #: application/views/stationsetup/stationsetup.php:121
@@ -4825,11 +4825,11 @@ msgstr "ID"
 
 #: application/views/cron/index.php:54
 msgid "Last Run"
-msgstr ""
+msgstr "上次执行"
 
 #: application/views/cron/index.php:55
 msgid "Next Run"
-msgstr ""
+msgstr "下次执行"
 
 #: application/views/cron/index.php:68
 msgid "healthy"
@@ -4853,7 +4853,7 @@ msgstr "从不"
 
 #: application/views/cron/index.php:98
 msgid "Your Mastercron isn't running."
-msgstr ""
+msgstr "Cron 主任务未运行。"
 
 #: application/views/cron/index.php:99
 msgid ""
@@ -4895,7 +4895,7 @@ msgstr "传播模式"
 #: application/views/qso/edit_ajax.php:192 application/views/qso/index.php:404
 msgctxt "Propagation Mode"
 msgid "Aircraft Scatter"
-msgstr ""
+msgstr "Aircraft Scatter"
 
 #: application/views/csv/index.php:96 application/views/dxatlas/index.php:96
 #: application/views/gridmap/index.php:45 application/views/kml/index.php:81
@@ -4903,7 +4903,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:193 application/views/qso/index.php:405
 msgctxt "Propagation Mode"
 msgid "Aurora"
-msgstr ""
+msgstr "Aurora"
 
 #: application/views/csv/index.php:97 application/views/dxatlas/index.php:97
 #: application/views/gridmap/index.php:46 application/views/kml/index.php:82
@@ -4911,7 +4911,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:194 application/views/qso/index.php:406
 msgctxt "Propagation Mode"
 msgid "Aurora-E"
-msgstr ""
+msgstr "Aurora-E"
 
 #: application/views/csv/index.php:98 application/views/dxatlas/index.php:98
 #: application/views/gridmap/index.php:47 application/views/kml/index.php:83
@@ -4919,7 +4919,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:195 application/views/qso/index.php:407
 msgctxt "Propagation Mode"
 msgid "Back scatter"
-msgstr ""
+msgstr "Back scatter"
 
 #: application/views/csv/index.php:99 application/views/dxatlas/index.php:99
 #: application/views/gridmap/index.php:48 application/views/kml/index.php:84
@@ -4943,7 +4943,7 @@ msgstr "EME"
 #: application/views/qso/edit_ajax.php:198 application/views/qso/index.php:410
 msgctxt "Propagation Mode"
 msgid "Sporadic E"
-msgstr ""
+msgstr "Sporadic E"
 
 #: application/views/csv/index.php:102 application/views/dxatlas/index.php:102
 #: application/views/gridmap/index.php:51 application/views/kml/index.php:87
@@ -4951,7 +4951,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:199 application/views/qso/index.php:411
 msgctxt "Propagation Mode"
 msgid "Field Aligned Irregularities"
-msgstr ""
+msgstr "Field Aligned Irregularities"
 
 #: application/views/csv/index.php:103 application/views/dxatlas/index.php:103
 #: application/views/gridmap/index.php:52 application/views/kml/index.php:88
@@ -4959,7 +4959,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:200 application/views/qso/index.php:412
 msgctxt "Propagation Mode"
 msgid "F2 Reflection"
-msgstr ""
+msgstr "F2 Reflection"
 
 #: application/views/csv/index.php:104 application/views/dxatlas/index.php:104
 #: application/views/gridmap/index.php:53 application/views/kml/index.php:89
@@ -4967,7 +4967,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:201 application/views/qso/index.php:413
 msgctxt "Propagation Mode"
 msgid "Internet-assisted"
-msgstr ""
+msgstr "Internet-assisted"
 
 #: application/views/csv/index.php:105 application/views/dxatlas/index.php:105
 #: application/views/gridmap/index.php:54 application/views/kml/index.php:90
@@ -4975,7 +4975,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:202 application/views/qso/index.php:414
 msgctxt "Propagation Mode"
 msgid "Ionoscatter"
-msgstr ""
+msgstr "Ionoscatter"
 
 #: application/views/csv/index.php:106 application/views/dxatlas/index.php:106
 #: application/views/gridmap/index.php:55 application/views/kml/index.php:91
@@ -4983,7 +4983,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:203 application/views/qso/index.php:415
 msgctxt "Propagation Mode"
 msgid "IRLP"
-msgstr ""
+msgstr "IRLP"
 
 #: application/views/csv/index.php:107 application/views/dxatlas/index.php:107
 #: application/views/gridmap/index.php:56 application/views/kml/index.php:92
@@ -4991,7 +4991,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:204 application/views/qso/index.php:416
 msgctxt "Propagation Mode"
 msgid "Meteor scatter"
-msgstr ""
+msgstr "Meteor scatter"
 
 #: application/views/csv/index.php:108 application/views/dxatlas/index.php:108
 #: application/views/gridmap/index.php:57 application/views/kml/index.php:93
@@ -4999,7 +4999,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:205 application/views/qso/index.php:417
 msgctxt "Propagation Mode"
 msgid "Terrestrial or atmospheric repeater or transponder"
-msgstr ""
+msgstr "Terrestrial or atmospheric repeater or transponder"
 
 #: application/views/csv/index.php:109 application/views/dxatlas/index.php:109
 #: application/views/gridmap/index.php:58 application/views/kml/index.php:94
@@ -5007,7 +5007,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:206 application/views/qso/index.php:418
 msgctxt "Propagation Mode"
 msgid "Rain scatter"
-msgstr ""
+msgstr "Rain scatter"
 
 #: application/views/csv/index.php:110 application/views/dxatlas/index.php:110
 #: application/views/gridmap/index.php:59 application/views/kml/index.php:95
@@ -5023,7 +5023,7 @@ msgstr "卫星"
 #: application/views/qso/edit_ajax.php:208 application/views/qso/index.php:420
 msgctxt "Propagation Mode"
 msgid "Trans-equatorial"
-msgstr ""
+msgstr "Trans-equatorial"
 
 #: application/views/csv/index.php:112 application/views/dxatlas/index.php:112
 #: application/views/gridmap/index.php:61 application/views/kml/index.php:97
@@ -5031,15 +5031,15 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:209 application/views/qso/index.php:421
 msgctxt "Propagation Mode"
 msgid "Tropospheric ducting"
-msgstr ""
+msgstr "Tropospheric ducting"
 
 #: application/views/dashboard/index.php:5
 msgid "RSTS"
-msgstr ""
+msgstr "RSTS"
 
 #: application/views/dashboard/index.php:6
 msgid "RSTR"
-msgstr ""
+msgstr "RSTR"
 
 #: application/views/dashboard/index.php:56
 msgid ""
@@ -5204,7 +5204,7 @@ msgstr "Logbook of the World(LoTW)"
 
 #: application/views/dashboard/index.php:351
 msgid "VUCC-Grids"
-msgstr ""
+msgstr "VUCC 网格"
 
 #: application/views/dayswithqso/index.php:2
 #: application/views/interface_assets/header.php:144
@@ -5243,7 +5243,7 @@ msgstr "结束时间"
 #: application/views/dayswithqso/index.php:74
 msgctxt "Days with QSOs"
 msgid "No streak found!"
-msgstr ""
+msgstr "未找到连续记录！"
 
 #: application/views/dayswithqso/index.php:78
 msgid "Current streak with QSOs in the log"
@@ -5278,7 +5278,7 @@ msgstr "语言"
 
 #: application/views/debug/index.php:35
 msgid "Base URL"
-msgstr ""
+msgstr "根地址（Base URL）"
 
 #: application/views/debug/index.php:39
 msgid "Migration"
