@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-17 15:11+0000\n"
+"POT-Creation-Date: 2024-07-22 07:07+0000\n"
 "PO-Revision-Date: 2024-07-15 22:49+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -583,19 +583,19 @@ msgstr "информация для импорта eQSL"
 msgid "eQSL QSO Upload"
 msgstr "загрузка QSO в eQSL"
 
-#: application/controllers/Eqsl.php:411
+#: application/controllers/Eqsl.php:415
 msgid "eQSL Tools"
 msgstr "инструменты eQSL"
 
-#: application/controllers/Eqsl.php:458
+#: application/controllers/Eqsl.php:462
 msgid " / Errors: "
 msgstr " / Ошибки: "
 
-#: application/controllers/Eqsl.php:458
+#: application/controllers/Eqsl.php:462
 msgid "Successfully downloaded: "
 msgstr "Успешно скачано: "
 
-#: application/controllers/Eqsl.php:467
+#: application/controllers/Eqsl.php:471
 msgid "eQSL Card Image Download"
 msgstr "скачать изображения eQSL"
 
@@ -2023,6 +2023,29 @@ msgstr "Экспорт карты"
 #: application/views/interface_assets/header.php:419
 msgid "QO-100 Dx Club Upload"
 msgstr "Загрузка в QO-100 Dx Club"
+
+#: application/models/Eqslmethods_model.php:281
+msgid "Your eQSL username and/or password is incorrect."
+msgstr ""
+
+#: application/models/Eqslmethods_model.php:287
+msgid "Something went wrong with eQSL.cc!"
+msgstr ""
+
+#: application/models/Eqslmethods_model.php:303
+msgid "eQSL.cc is experiencing issues. Please try exporting QSOs later."
+msgstr ""
+
+#: application/models/Eqslmethods_model.php:309
+msgid ""
+"There was an error in one of the QSOs. You might want to manually upload "
+"them."
+msgstr ""
+
+#: application/models/Eqslmethods_model.php:315
+msgid ""
+"It seems that the eQSL site has changed. Please open up an issue on GitHub."
+msgstr ""
 
 #: application/models/Hrdlog_model.php:22
 msgid ""
@@ -5940,11 +5963,17 @@ msgstr "Файлы журнала должны быть с расширение�
 msgid "Import directly from eQSL"
 msgstr "Импортировать напрямую из eQSL"
 
-#: application/views/eqsl/tools.php:26
+#: application/views/eqsl/tools.php:27
+msgid ""
+"This does NOT upload any QSOs. It only marks QSOs as sent. If you use this "
+"button you need to upload them manually on the eQSL.cc website."
+msgstr ""
+
+#: application/views/eqsl/tools.php:29
 msgid "Mark All QSOs as Sent to eQSL"
 msgstr "Отметить все QSO как отправленные в eQSL"
 
-#: application/views/eqsl/tools.php:26
+#: application/views/eqsl/tools.php:29
 msgid ""
 "Use this if you have lots of QSOs to upload to eQSL it will save the server "
 "timing out."
