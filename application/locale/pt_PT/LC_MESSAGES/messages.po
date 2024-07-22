@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-07-22 18:23+0000\n"
-"PO-Revision-Date: 2024-07-22 20:52+0000\n"
+"PO-Revision-Date: 2024-07-23 04:32+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/pt_PT/>\n"
@@ -9915,7 +9915,7 @@ msgstr ""
 #, php-format
 msgctxt "Hint for Hamsat API Key; uses Link"
 msgid "See your profile at %s."
-msgstr ""
+msgstr "Ver o seu perfil em %s."
 
 #: application/views/user/edit.php:855
 msgid "Show Workable Passes Only"
@@ -9926,76 +9926,89 @@ msgid ""
 "If enabled shows only workable passes based on the gridsquare set in your "
 "hams.at account. Requires private feed key to be set."
 msgstr ""
+"Se ativado, mostra apenas as passagens viáveis com base no gridsquare "
+"definido na sua conta hams.at. Requer a definição de uma chave de feed "
+"privada."
 
 #: application/views/user/edit.php:873
 msgid "Save Account"
-msgstr ""
+msgstr "Guardar conta"
 
 #: application/views/user/forgot_password.php:33
 msgid "Forgot Password?"
-msgstr ""
+msgstr "Esqueceu-se da palavra-passe?"
 
 #: application/views/user/forgot_password.php:34
 #: application/views/user/reset_password.php:9
 msgid "You can reset your password here."
-msgstr ""
+msgstr "Pode redefinir a sua palavra-passe aqui."
 
 #: application/views/user/login.php:36
 msgid "MAINTENANCE MODE"
-msgstr ""
+msgstr "MODO DE MANUTENÇÃO"
 
 #: application/views/user/login.php:56
 msgid "Welcome to the Demo of Wavelog"
-msgstr ""
+msgstr "Bem-vindo à demonstração do Wavelog"
 
 #: application/views/user/login.php:57
 msgid "This demo will be reset every night at 0200z."
-msgstr ""
+msgstr "Esta demonstração será reiniciada todas as noites às 0200z."
 
 #: application/views/user/login.php:60
 #, php-format
 msgid ""
 "More Information about Wavelog on <a href='%s' target='_blank'>Github</a>."
 msgstr ""
+"Mais informações acerca do Wavelog no <a href='%s' "
+"target='_blank'>Github</a>."
 
 #: application/views/user/login.php:77
 msgid "Forgot your password?"
-msgstr ""
+msgstr "Esqueceu-se da sua palavra-passe?"
 
 #: application/views/user/login.php:83
 msgid "Keep me logged in"
-msgstr ""
+msgstr "Manter a minha sessão iniciada"
 
 #: application/views/user/main.php:2
 msgid "Do you really want to send this user a password-reset link?"
 msgstr ""
+"Quer mesmo enviar a este utilizador uma ligação de reposição da palavra-"
+"passe?"
 
 #: application/views/user/main.php:6
 msgid "Please Wait ..."
-msgstr ""
+msgstr "Aguarde ..."
 
 #: application/views/user/main.php:9
 msgid "Password-reset e-mail sent to user:"
-msgstr ""
+msgstr "E-mail de reposição de palavra-passe enviado ao utilizador:"
 
 #: application/views/user/main.php:30
 msgid "User List"
-msgstr ""
+msgstr "Lista de utilizadores"
 
 #: application/views/user/main.php:33
 msgid "Wavelog needs at least one user configured in order to operate."
 msgstr ""
+"O Wavelog necessita de pelo menos um utilizador configurado para poder "
+"funcionar."
 
 #: application/views/user/main.php:34
 msgid ""
 "Users can be assigned roles which give them different permissions, such as "
 "adding QSOs to the logbook and accessing Wavelog APIs."
 msgstr ""
+"Podem ser atribuídas funções aos utilizadores que lhes dão diferentes "
+"permissões, tais como adicionar QSOs ao logbook e aceder às APIs do Wavelog."
 
 #: application/views/user/main.php:35
 msgid ""
 "The currently logged-in user is displayed at the upper-right of each page."
 msgstr ""
+"O utilizador atualmente com sessão iniciada é apresentado no canto superior "
+"direito de cada página."
 
 #: application/views/user/main.php:36
 msgid ""
@@ -10003,42 +10016,46 @@ msgid ""
 "link to reset their password. To achieve this, ensure that the email "
 "settings in the global options are configured correctly."
 msgstr ""
+"Com o botão de reposição da palavra-passe, pode enviar a um utilizador um e-"
+"mail com uma ligação para repor a sua palavra-passe. Para tal, certifique-se "
+"de que as definições de correio eletrónico nas opções globais estão "
+"corretamente configuradas."
 
 #: application/views/user/main.php:38
 msgid "Create user"
-msgstr ""
+msgstr "Criar utilizador"
 
 #: application/views/user/main.php:39
 msgid "Refresh List"
-msgstr ""
+msgstr "Atualizar lista"
 
 #: application/views/user/main.php:49
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #: application/views/user/main.php:50
 msgid "Last seen"
-msgstr ""
+msgstr "Visto pela última vez"
 
 #: application/views/user/main.php:53
 msgid "Password Reset"
-msgstr ""
+msgstr "Redefinição da palavra-passe"
 
 #: application/views/user/main.php:79
 msgid "Never"
-msgstr ""
+msgstr "Nunca"
 
 #: application/views/user/main.php:83
 msgid "Locations"
-msgstr ""
+msgstr "Localizações"
 
 #: application/views/user/main.php:85
 msgid "Logbooks"
-msgstr ""
+msgstr "Logbooks"
 
 #: application/views/user/main.php:87
 msgid "Last QSO:"
-msgstr ""
+msgstr "Último contacto:"
 
 #: application/views/user/main.php:89
 msgid "No QSOs in Log"
@@ -10046,19 +10063,19 @@ msgstr ""
 
 #: application/views/user/profile.php:19
 msgid "Level"
-msgstr ""
+msgstr "Nível"
 
 #: application/views/user/profile.php:39
 msgid "First name"
-msgstr ""
+msgstr "Nome próprio"
 
 #: application/views/user/profile.php:44
 msgid "Last name"
-msgstr ""
+msgstr "Apelido"
 
 #: application/views/user/profile.php:50
 msgid "Edit profile"
-msgstr ""
+msgstr "Editar perfil"
 
 #: application/views/user/reset_password.php:28
 msgid "Confirm Password"
@@ -10067,39 +10084,42 @@ msgstr "Confirmar a palavra-passe"
 #: application/views/version_dialog/index.php:20
 msgid "No Version Dialog text set. Go to the Admin Menu and set one."
 msgstr ""
+"Não há texto de diálogo de versão definido. Vá ao menu administrador e "
+"defina um."
 
 #: application/views/version_dialog/index.php:60
 msgid "Error at parsing JSON-Data or got empty result from github."
-msgstr ""
+msgstr "Erro ao analisar os dados JSON ou obteve um resultado vazio do github."
 
 #: application/views/version_dialog/index.php:63
 msgid "Error at getting the data from GitHub."
-msgstr ""
+msgstr "Erro ao obter os dados do GitHub."
 
 #: application/views/version_dialog/index.php:75
 msgid "Don't show again"
-msgstr ""
+msgstr "Não voltar a mostrar"
 
 #: application/views/view_log/index.php:4
 msgid ""
 "Displaying all QSOs of station locations which are linked to this logbook"
 msgstr ""
+"Mostrar todos os contactos das estações que estão ligadas a este logbook"
 
 #: application/views/view_log/qso.php:6
 msgid "QSO Details"
-msgstr ""
+msgstr "Detalhes do contacto"
 
 #: application/views/view_log/qso.php:29
 msgid "QSL Management"
-msgstr ""
+msgstr "Gestão de QSLs"
 
 #: application/views/view_log/qso.php:42
 msgid "eQSL Card"
-msgstr ""
+msgstr "Cartão eQSL"
 
 #: application/views/view_log/qso.php:128
 msgid "Total Distance"
-msgstr ""
+msgstr "Distância total"
 
 #: application/views/view_log/qso.php:221
 msgid "Antenna Azimuth"
@@ -10151,22 +10171,22 @@ msgstr ""
 
 #: application/views/view_log/qso.php:404
 msgid "This station uses LoTW."
-msgstr ""
+msgstr "Esta estação usa LoTW."
 
 #: application/views/view_log/qso.php:409
 #: application/views/view_log/qso.php:414
 #: application/views/view_log/qso.php:419
 #: application/views/view_log/qso.php:424
 msgid "This QSO was confirmed on"
-msgstr ""
+msgstr "Este contacto foi confirmado no"
 
 #: application/views/view_log/qso.php:435
 msgid "More QSOs"
-msgstr ""
+msgstr "Mais contactos"
 
 #: application/views/view_log/qso.php:503
 msgid "Details"
-msgstr ""
+msgstr "Detalhes"
 
 #: application/views/view_log/qso.php:604
 msgid "QSL image file"
@@ -10202,7 +10222,7 @@ msgstr ""
 
 #: application/views/visitor/layout/footer.php:240
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: application/views/visitor/layout/header.php:75
 msgid "OQRS"
