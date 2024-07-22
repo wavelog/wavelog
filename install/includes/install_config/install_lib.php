@@ -57,20 +57,48 @@ function is_really_writable($path) {
 	return false;
 }
 
+function verify_log() {
+    global $logfile;
+
+    if (!file_exists($logfile)) {
+        if (touch($logfile)) {
+            if(is_writable($logfile)) {
+				$log_header = "Wavelog Installer Debug Log\n-------\n\n";
+				file_put_contents($logfile, $log_header, FILE_APPEND);
+				return true;
+			} else {
+				return false;
+			}
+        } else {
+            return false;
+        }
+    } else {
+        return is_writable($logfile);
+    }
+}
+
 // Function to read the debug logfile
 function read_logfile() {
-	global $logfile;
-	$file_content = file_get_contents($logfile);
-	echo $file_content;
+	if (verify_log()) {
+		global $logfile;
+		$file_content = file_get_contents($logfile);
+		echo $file_content;
+	} else {
+        echo "Log file is not available.";
+    }
 }
 
 // Function to log messages in the installer logfile
 function log_message($level, $message) {
-	global $logfile;
-    $level = strtoupper($level);
-    $timestamp = date("Y-m-d H:i:s");
-    $logMessage = $level . " - " . $timestamp . " --> " . $message . PHP_EOL;
-    file_put_contents($logfile, $logMessage, FILE_APPEND);
+	if (verify_log()) {
+		global $logfile;
+		$level = strtoupper($level);
+		$timestamp = date("Y-m-d H:i:s");
+		$logMessage = $level . " - " . $timestamp . " --> " . $message . PHP_EOL;
+		file_put_contents($logfile, $logMessage, FILE_APPEND);
+	} else {
+        echo "Log file is not available or not writable.";
+    }
 }
 
 // Custom error handler
