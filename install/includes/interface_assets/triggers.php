@@ -13,6 +13,29 @@ if ($_POST['database_check'] ?? false == true) {
 	
 }
 
+if ($_POST['read_logfile'] ?? false == true) {
+
+	$result = read_logfile();
+	echo $result;
+	exit;
+	
+}
+
+if ($_POST['write_to_logfile'] ?? false == true) {
+
+	$level = $_POST['log_level'];
+	$message = $_POST['log_message'];
+
+	if(log_message($level, $message)) {
+		$result = 'success';
+	} else {
+		$result = 'error';
+	}
+	echo $result;
+	exit;
+	
+}
+
 /**
  * 
  * Install Triggers

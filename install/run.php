@@ -39,6 +39,16 @@
                     <p><?= sprintf(__("All install steps went through. Redirect to user login in %s seconds..."), "<span id='countdown'>4</span>"); ?></p>
                 </div>
                 <div id="error_message"></div>
+                <div class="container mt-5">
+                    <button id="toggleLogButton" class="btn btn-sm btn-secondary mb-3"><?= __("Show detailled debug log"); ?></button>
+                    <div id="logContainer">
+                        <pre>
+                            <code id="debuglog">
+                                <!-- Log Content -->
+                            </code>
+                        </pre>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -49,6 +59,7 @@
     let _POST = <?php echo json_encode($_POST); ?>;
 
     $(document).ready(async function() {
+        init_read_log();
         try {
             await config_file();
             await database_file();
@@ -72,6 +83,32 @@
             }, 1000);
         } catch (error) {
             $("#error_message").text("Installation failed: " + error).show();
+        }
+    });
+
+    function init_read_log() {
+        setInterval(function() {
+            $.ajax({
+                type: 'POST',
+                    url: 'index.php',
+                    data: {
+                        read_logfile: 1
+                    },
+                success: function(response) {
+                    $("#debuglog").text(response);
+                }
+            });
+        }, 500);
+    }
+
+    $('#toggleLogButton').on('click', function() {
+        var logContainer = $('#logContainer');
+        logContainer.toggle();
+        console.log(logContainer.css('display'));
+        if(logContainer.css('display') == 'none') {
+            $('#toggleLogButton').text("<?= __("Show detailled debug log"); ?>");
+        } else {
+            $('#toggleLogButton').text("<?= __("Hide detailled debug log"); ?>");
         }
     });
 
@@ -194,7 +231,7 @@
 
     async function update_dxcc() {
         var field = '#update_dxcc';
-        
+
         return new Promise((resolve, reject) => {
             if(_POST.skip_dxcc_update == 0) {
 

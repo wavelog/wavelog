@@ -30,6 +30,7 @@ function is_really_writable($path) {
 
 	// Check if the folder exists
 	if (!file_exists($path)) {
+		log_message('error', 'is_really_writable(): File "'.$path.'" does not exist.');
 		return false;
 	}
 
@@ -49,8 +50,31 @@ function is_really_writable($path) {
 			return true;
 		}
 	} catch (Exception $e) {
+		log_message('error', 'is_really_writable(): Something went wrong while testing write permissions.');
 		return false;
 	}
 
 	return false;
+}
+
+// Function to read the debug logfile
+function read_logfile() {
+	global $logfile;
+	$file_content = file_get_contents($logfile);
+	echo $file_content;
+}
+
+// Function to log messages in the installer logfile
+function log_message($level, $message) {
+	global $logfile;
+    $level = strtoupper($level);
+    $timestamp = date("Y-m-d H:i:s");
+    $logMessage = $level . " - " . $timestamp . " --> " . $message . PHP_EOL;
+    file_put_contents($logfile, $logMessage, FILE_APPEND);
+}
+
+// Custom error handler
+function customError($errno, $errstr, $errfile, $errline) {
+    $message = "[$errno] $errstr in $errfile on line $errline";
+    log_message('error', $message);
 }

@@ -18,6 +18,10 @@ $database = new Database();
 
 include('includes/interface_assets/triggers.php');
 
+// Configure PHP to log errors
+set_error_handler("customError");
+ini_set('error_reporting', E_ALL);
+
 /**
  * Gettext Implementation
  */
@@ -31,14 +35,21 @@ $languages = $gt_conf['languages'];
 // if we come with a get call we can switch the language cookie
 if (isset($_GET['lang'])) {
 	switch_lang($_GET['lang']);
+	log_message('info', 'Manually switched language to "'.find_by('gettext',$_GET['lang'])['name_en'].'"');
 	header("Location: " . strtok($_SERVER['REQUEST_URI'], '?'));
 	exit();
 }
 
 // get the browsers language if no cookie exists and set one
 if (!isset($_COOKIE[$gt_conf['lang_cookie']])) {
+
+	log_message('info', 'Called Installer index.php');
+	log_message('info', 'With URL: '.$http_scheme.'://'. $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '/');
+	log_message('info', 'From IP: '. $_SERVER['REMOTE_ADDR']);
+
 	$browser_language = _get_client_language();
 	setcookie($gt_conf['lang_cookie'], $browser_language['gettext']);
+	log_message('info', 'Set language cookie to "'.$browser_language['name_en'].'"');
 	header("Location: " . $_SERVER['REQUEST_URI']);
 	exit();
 }
@@ -51,6 +62,25 @@ T_setlocale(LC_MESSAGES, $language);
 ?>
 <!DOCTYPE html>
 <html lang="<?= $language; ?>">
+
+<script>
+	function log_message(level, message) {
+		$.ajax({
+			type: 'POST',
+			url: 'index.php',
+			data: {
+				write_to_logfile: 1,
+				log_level: level,
+				log_message: message
+			},
+			success: function(response) {
+			},
+			error: function(error) {
+				console.error("log_message (js) failed: ".error);
+			}
+		});
+	}
+</script>
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
