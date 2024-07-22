@@ -67,7 +67,7 @@
                 $("#countdown").text(countdown);
                 if (countdown <= 0) {
                     clearInterval(countdownInterval);
-                    window.location.href = "/index.php/user/login/1";
+                    window.location.href = _POST.websiteurl + "index.php/user/login/1";
                 }
             }, 1000);
         } catch (error) {
