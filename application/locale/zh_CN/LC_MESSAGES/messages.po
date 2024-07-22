@@ -1299,6 +1299,7 @@ msgstr "操作员"
 #: application/views/view_log/partial/log_ajax.php:29
 #: application/views/view_log/qso.php:236
 #: application/views/view_log/qso.php:529
+#: application/views/interface_assets/footer.php:669
 msgid "Deleted DXCC"
 msgstr "删除 DXCC 实体"
 
@@ -2594,6 +2595,7 @@ msgstr "最大上传文件大小是 "
 #: application/views/view_log/qso.php:622
 #: application/views/webadif/export.php:34
 #: application/views/webadif/export.php:94
+#: application/views/interface_assets/footer.php:34
 msgid "Warning"
 msgstr "注意"
 
@@ -2658,6 +2660,7 @@ msgstr "总是在导入时使用登录的呼号作为操作者名称"
 
 #: application/views/adif/import.php:152
 #: application/views/interface_assets/footer.php:21
+#: application/views/interface_assets/footer.php:32
 msgid "DANGER"
 msgstr "警告"
 
@@ -2845,6 +2848,7 @@ msgstr "如用于描述用途的名字。"
 #: application/views/qso/components/winkeysettings_results.php:90
 #: application/views/satellite/create.php:70
 #: application/views/simplefle/index.php:22
+#: application/views/interface_assets/footer.php:43
 msgid "Save"
 msgstr "保存"
 
@@ -3115,6 +3119,7 @@ msgstr "CQ 杂志 WAZ 奖状"
 #: application/views/dashboard/index.php:362
 #: application/views/interface_assets/footer.php:28
 #: application/views/visitor/index.php:266
+#: application/views/interface_assets/footer.php:39
 msgid "Confirmed"
 msgstr "已确认"
 
@@ -4253,6 +4258,7 @@ msgstr "创建波段"
 #: application/views/qso/components/winkeysettings_results.php:91
 #: application/views/simplefle/index.php:21
 #: application/views/version_dialog/index.php:79
+#: application/views/interface_assets/footer.php:42
 msgid "Close"
 msgstr "关闭"
 
@@ -4775,6 +4781,7 @@ msgstr ""
 
 #: application/views/cron/edit.php:74
 #: application/views/interface_assets/footer.php:24
+#: application/views/interface_assets/footer.php:35
 msgid "Cancel"
 msgstr "取消"
 
@@ -5602,6 +5609,7 @@ msgstr "土耳其语"
 #: application/views/distances/index.php:7
 #: application/views/interface_assets/footer.php:19
 #: application/views/simplefle/index.php:68
+#: application/views/interface_assets/footer.php:30
 msgid "QSO Data"
 msgstr "QSO 数据"
 
@@ -5934,53 +5942,64 @@ msgstr ""
 #: application/views/view_log/partial/log.php:135
 #: application/views/view_log/partial/log_ajax.php:300
 #: application/views/view_log/qso.php:434
+#: application/views/interface_assets/footer.php:31
 msgid "Edit QSO"
 msgstr "编辑 QSO"
 
 #: application/views/interface_assets/footer.php:22
+#: application/views/interface_assets/footer.php:33
 msgid "Attention"
 msgstr "注意"
 
 #: application/views/interface_assets/footer.php:25
+#: application/views/interface_assets/footer.php:36
 msgid "OK"
 msgstr "确认"
 
 #: application/views/interface_assets/footer.php:26
+#: application/views/interface_assets/footer.php:37
 msgid "Warning! Are you sure you want delete QSO with "
 msgstr "警告！您确定要删除 QSO 和 "
 
 #: application/views/interface_assets/footer.php:27
 #: application/views/user/edit.php:493
+#: application/views/interface_assets/footer.php:38
 msgid "Colors"
 msgstr "颜色"
 
 #: application/views/interface_assets/footer.php:29
+#: application/views/interface_assets/footer.php:40
 msgid "Worked not confirmed"
 msgstr "已通联未确认"
 
 #: application/views/interface_assets/footer.php:30
+#: application/views/interface_assets/footer.php:41
 msgid "Not worked"
 msgstr "未通联"
 
 #: application/views/interface_assets/footer.php:33
 #: application/views/qso/index.php:601
 #: application/views/visitor/layout/footer.php:244
+#: application/views/interface_assets/footer.php:44
 msgid "Clear"
 msgstr "清除"
 
 #: application/views/interface_assets/footer.php:34
 #: application/views/qso/edit_ajax.php:211
 #: application/views/qso/edit_ajax.php:512
+#: application/views/interface_assets/footer.php:45
 msgid "Propagation mode is not supported by LoTW. LoTW QSL fields disabled."
 msgstr ""
 
 #: application/views/interface_assets/footer.php:116
 #: application/views/interface_assets/header.php:426
 #: application/views/options/sidebar.php:11
+#: application/views/interface_assets/footer.php:127
 msgid "Version Info"
 msgstr "版本信息"
 
 #: application/views/interface_assets/footer.php:661
+#: application/views/interface_assets/footer.php:672
 msgid ""
 "Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. "
 "Check which DXCC for this particular location is the correct one. If you are "
@@ -5995,11 +6014,19 @@ msgstr ""
 #: application/views/interface_assets/footer.php:1499
 #: application/views/interface_assets/footer.php:1503
 #: application/views/interface_assets/footer.php:1506
+#: application/views/interface_assets/footer.php:1366
+#: application/views/interface_assets/footer.php:1370
+#: application/views/interface_assets/footer.php:1373
+#: application/views/interface_assets/footer.php:1510
+#: application/views/interface_assets/footer.php:1514
+#: application/views/interface_assets/footer.php:1517
 msgid "grid square"
 msgstr "网格"
 
 #: application/views/interface_assets/footer.php:1362
 #: application/views/interface_assets/footer.php:1506
+#: application/views/interface_assets/footer.php:1373
+#: application/views/interface_assets/footer.php:1517
 msgid "Total count"
 msgstr "总数"
 

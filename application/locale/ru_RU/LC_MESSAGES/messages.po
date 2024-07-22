@@ -9,8 +9,8 @@ msgstr ""
 "POT-Creation-Date: 2024-07-22 07:07+0000\n"
 "PO-Revision-Date: 2024-07-22 13:58+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/ru/>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1309,6 +1309,7 @@ msgstr "Оператор"
 #: application/views/view_log/partial/log_ajax.php:29
 #: application/views/view_log/qso.php:236
 #: application/views/view_log/qso.php:529
+#: application/views/interface_assets/footer.php:669
 msgid "Deleted DXCC"
 msgstr "Удалённые DXCC"
 
@@ -2617,6 +2618,7 @@ msgstr "Максимальный размер загружаемого файл�
 #: application/views/view_log/qso.php:622
 #: application/views/webadif/export.php:34
 #: application/views/webadif/export.php:94
+#: application/views/interface_assets/footer.php:34
 msgid "Warning"
 msgstr "Предупреждение"
 
@@ -2683,6 +2685,7 @@ msgstr "Всегда использовать позывной (логин) ка
 
 #: application/views/adif/import.php:152
 #: application/views/interface_assets/footer.php:21
+#: application/views/interface_assets/footer.php:32
 msgid "DANGER"
 msgstr "ОПАСНО"
 
@@ -2882,6 +2885,7 @@ msgstr "Простое название, описывающее назначен
 #: application/views/qso/components/winkeysettings_results.php:90
 #: application/views/satellite/create.php:70
 #: application/views/simplefle/index.php:22
+#: application/views/interface_assets/footer.php:43
 msgid "Save"
 msgstr "Сохранить"
 
@@ -3163,6 +3167,7 @@ msgstr "Дипломы - CQ Magazine WAZ"
 #: application/views/dashboard/index.php:362
 #: application/views/interface_assets/footer.php:28
 #: application/views/visitor/index.php:266
+#: application/views/interface_assets/footer.php:39
 msgid "Confirmed"
 msgstr "Подтверждено"
 
@@ -4371,6 +4376,7 @@ msgstr "Лобавить диапазон"
 #: application/views/qso/components/winkeysettings_results.php:91
 #: application/views/simplefle/index.php:21
 #: application/views/version_dialog/index.php:79
+#: application/views/interface_assets/footer.php:42
 msgid "Close"
 msgstr "Закрыть"
 
@@ -4906,6 +4912,7 @@ msgstr "Введите собственные настройки Cron"
 
 #: application/views/cron/edit.php:74
 #: application/views/interface_assets/footer.php:24
+#: application/views/interface_assets/footer.php:35
 msgid "Cancel"
 msgstr "Отмена"
 
@@ -5762,6 +5769,7 @@ msgstr "Турецкий"
 #: application/views/distances/index.php:7
 #: application/views/interface_assets/footer.php:19
 #: application/views/simplefle/index.php:68
+#: application/views/interface_assets/footer.php:30
 msgid "QSO Data"
 msgstr "Данные QSO"
 
@@ -6124,53 +6132,64 @@ msgstr "QSO отмечены, как экспортированные в жур�
 #: application/views/view_log/partial/log.php:135
 #: application/views/view_log/partial/log_ajax.php:300
 #: application/views/view_log/qso.php:434
+#: application/views/interface_assets/footer.php:31
 msgid "Edit QSO"
 msgstr "Редактировать QSO"
 
 #: application/views/interface_assets/footer.php:22
+#: application/views/interface_assets/footer.php:33
 msgid "Attention"
 msgstr "Внимание"
 
 #: application/views/interface_assets/footer.php:25
+#: application/views/interface_assets/footer.php:36
 msgid "OK"
 msgstr "ОК"
 
 #: application/views/interface_assets/footer.php:26
+#: application/views/interface_assets/footer.php:37
 msgid "Warning! Are you sure you want delete QSO with "
 msgstr "Предупреждение! Вы уверены в том, что хотите удалить QSO c "
 
 #: application/views/interface_assets/footer.php:27
 #: application/views/user/edit.php:493
+#: application/views/interface_assets/footer.php:38
 msgid "Colors"
 msgstr "Цвета"
 
 #: application/views/interface_assets/footer.php:29
+#: application/views/interface_assets/footer.php:40
 msgid "Worked not confirmed"
 msgstr "Сработано, не подтверждено"
 
 #: application/views/interface_assets/footer.php:30
+#: application/views/interface_assets/footer.php:41
 msgid "Not worked"
 msgstr "Не сработано"
 
 #: application/views/interface_assets/footer.php:33
 #: application/views/qso/index.php:601
 #: application/views/visitor/layout/footer.php:244
+#: application/views/interface_assets/footer.php:44
 msgid "Clear"
 msgstr "Очистить"
 
 #: application/views/interface_assets/footer.php:34
 #: application/views/qso/edit_ajax.php:211
 #: application/views/qso/edit_ajax.php:512
+#: application/views/interface_assets/footer.php:45
 msgid "Propagation mode is not supported by LoTW. LoTW QSL fields disabled."
 msgstr "Режим распространения не поддерживается LoTW. Поля QSL LoTW отключены."
 
 #: application/views/interface_assets/footer.php:116
 #: application/views/interface_assets/header.php:426
 #: application/views/options/sidebar.php:11
+#: application/views/interface_assets/footer.php:127
 msgid "Version Info"
 msgstr "Информация о версии"
 
 #: application/views/interface_assets/footer.php:661
+#: application/views/interface_assets/footer.php:672
 msgid ""
 "Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. "
 "Check which DXCC for this particular location is the correct one. If you are "
@@ -6186,11 +6205,19 @@ msgstr ""
 #: application/views/interface_assets/footer.php:1499
 #: application/views/interface_assets/footer.php:1503
 #: application/views/interface_assets/footer.php:1506
+#: application/views/interface_assets/footer.php:1366
+#: application/views/interface_assets/footer.php:1370
+#: application/views/interface_assets/footer.php:1373
+#: application/views/interface_assets/footer.php:1510
+#: application/views/interface_assets/footer.php:1514
+#: application/views/interface_assets/footer.php:1517
 msgid "grid square"
 msgstr "квадрат(/-а/-ов)"
 
 #: application/views/interface_assets/footer.php:1362
 #: application/views/interface_assets/footer.php:1506
+#: application/views/interface_assets/footer.php:1373
+#: application/views/interface_assets/footer.php:1517
 msgid "Total count"
 msgstr "Всего"
 
