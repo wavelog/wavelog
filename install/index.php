@@ -316,13 +316,16 @@ if (!file_exists('.lock')) {
 											<div class="input-group">
 												<span class="input-group-text" id="main-url"><?php echo $http_scheme . '://' . $_SERVER['HTTP_HOST'] . "/"; ?></span>
 												<input type="text" id="directory" value="<?php echo substr(str_replace("index.php", "", str_replace("/install/", "", $_SERVER['REQUEST_URI'])), 1); ?>" class="form-control" name="directory" aria-describedby="main-url" />
+												<div class="invalid-tooltip">
+													<?= __("No slash before or after the directory. Just the name of the folder."); ?>
+												</div>
 											</div>
 										</div>
 										<div class="mb-3 position-relative">
 											<label for="websiteurl" class="form-label required"><?= __("Website URL"); ?></label><i id="websiteurl_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= sprintf(__("This is the complete URL where your Wavelog Instance will be available. If you run this installer locally but want to place Wavelog behind a Reverse Proxy with SSL you should type in the new URL here (e.g. %s instead of %s). Don't forget to include the directory from above."), "https://mywavelog.example.org/", "http://192.168.1.100/"); ?>"></i>
 											<input type="text" id="websiteurl" value="<?php echo $http_scheme; ?>://<?php echo str_replace("index.php", "", $_SERVER['HTTP_HOST'] . str_replace("/install/", "", $_SERVER['REQUEST_URI'])) . '/'; ?>" class="form-control" name="websiteurl" />
 											<div class="invalid-tooltip">
-												<?= __("This field can't be empty!"); ?>
+												<?= __("This field can't be empty and have to end with a slash 'example/'!"); ?>
 											</div>
 										</div>
 										<div class="mb-3 position-relative">
@@ -1119,6 +1122,46 @@ if (!file_exists('.lock')) {
 				}
 			});
 
+			function directory_check() {
+				var field = $('#directory');
+
+				var check = true;
+
+				if (field.val().startsWith('/') || field.val().endsWith('/')) {
+					check = false;
+				}
+
+				if (check) {
+					field.removeClass('is-invalid');
+					field.addClass('is-valid');
+				} else {
+					field.removeClass('is-valid');
+					field.addClass('is-invalid');
+				}
+			}
+
+			function websiteurl_check() {
+				var field = $('#websiteurl');
+
+				var check = true;
+
+				if (field.val() == '') {
+					check = false;
+				} else if (!field.val().endsWith('/')) {
+					check = false;
+				} else if (!field.val().startsWith('http')) {
+					check = false;
+				}
+
+				if (check) {
+					field.removeClass('is-invalid');
+					field.addClass('is-valid');
+				} else {
+					field.removeClass('is-valid');
+					field.addClass('is-invalid');
+				}
+			}
+
 			function db_connection_test() {
 				var db_hostname = $('#db_hostname').val();
 				var db_username = $('#db_username').val();
@@ -1385,7 +1428,9 @@ if (!file_exists('.lock')) {
 
 				// Checklist Stuff
 				checklist_configuration();
-				$('#websiteurl, #locator').on('change', function() {
+				$('#directory, #websiteurl, #locator').on('change', function() {
+					directory_check();
+					websiteurl_check();
 					checklist_configuration();
 				});
 
@@ -1460,7 +1505,11 @@ if (!file_exists('.lock')) {
 			function checklist_configuration() {
 				var checklist_configuration = true;
 
-				if ($('#websiteurl').val() == '') {
+				if ($('#directory').hasClass('is-invalid')) {
+					checklist_configuration = false;
+				}
+
+				if ($('#websiteurl').val() == '' || $('#websiteurl').hasClass('is-invalid')) {
 					checklist_configuration = false;
 				}
 				if ($('#locator').val() == '' || $('#locator').hasClass('is-invalid')) {
