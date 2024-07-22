@@ -73,6 +73,8 @@
             await update_dxcc();
             await installer_lock();
 
+            log_message('info', 'Finish. Installer went through successfully.');
+
             if($('#logContainer').css('display') == 'none') {
                 // after all install steps went through we can show a success message and redirect to the user/login
                 $("#success_message").show();
