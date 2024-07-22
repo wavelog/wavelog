@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-07-22 07:07+0000\n"
-"PO-Revision-Date: 2024-07-22 14:29+0000\n"
+"PO-Revision-Date: 2024-07-22 18:23+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/zh_Hans/>\n"
@@ -5270,7 +5270,7 @@ msgstr "如果你今天进行了QSO，那么就能延长你的连续天数，否
 
 #: application/views/dayswithqso/index.php:122
 msgid "No current streak found!"
-msgstr "没有找到连续的天数"
+msgstr "没有找到连续的天数！"
 
 #: application/views/debug/index.php:23
 msgid "Wavelog Information"
@@ -5294,7 +5294,7 @@ msgstr "迁移"
 
 #: application/views/debug/index.php:40
 msgid "There is something wrong with your Migration in Database!"
-msgstr ""
+msgstr "数据库迁移出错！"
 
 #: application/views/debug/index.php:43
 msgid "Environment"
@@ -5302,7 +5302,7 @@ msgstr "环境"
 
 #: application/views/debug/index.php:51
 msgid "Total QSO on this instance"
-msgstr ""
+msgstr "本站 QSO 总数量"
 
 #: application/views/debug/index.php:59
 msgid "Server Information"
@@ -5318,7 +5318,7 @@ msgstr "PHP版本"
 
 #: application/views/debug/index.php:74
 msgid "Deprecated"
-msgstr ""
+msgstr "已废弃"
 
 #: application/views/debug/index.php:81
 msgid "MySQL Version"
@@ -5326,11 +5326,11 @@ msgstr "MySQL版本"
 
 #: application/views/debug/index.php:85
 msgid "Codeigniter Version"
-msgstr ""
+msgstr "Codeigniter 版本"
 
 #: application/views/debug/index.php:93
 msgid "Folder Permissions"
-msgstr ""
+msgstr "文件夹权限"
 
 #: application/views/debug/index.php:95
 msgid ""
@@ -5352,11 +5352,11 @@ msgstr "失败"
 
 #: application/views/debug/index.php:158
 msgid "Config Maintenance"
-msgstr ""
+msgstr "维护配置"
 
 #: application/views/debug/index.php:164
 msgid "Your authentication mode is outdated and possibly unsafe"
-msgstr ""
+msgstr "您的认证方式已过时，可能存在风险隐患"
 
 #: application/views/debug/index.php:166 application/views/debug/index.php:183
 #, php-format
@@ -5367,7 +5367,7 @@ msgstr "请编辑您的%s文件："
 msgid ""
 "Go to your application/config Folder and compare config.sample.php with your "
 "config.php"
-msgstr ""
+msgstr "请前往 application/config 文件夹，根据 config.sample.php 修改成 config.php"
 
 #: application/views/debug/index.php:168
 #, php-format
@@ -5376,7 +5376,7 @@ msgstr "将%s改为%s（强烈建议）"
 
 #: application/views/debug/index.php:174
 msgid "Authentication Mode is set correctly"
-msgstr ""
+msgstr "认证方式设置正确"
 
 #: application/views/debug/index.php:174 application/views/debug/index.php:191
 msgid "Ok"
@@ -5395,7 +5395,8 @@ msgstr "这也将启用“保持登录状态”功能。"
 msgid ""
 "Change the value of %s to a new encryption key other then "
 "'flossie1234555541'. Choose a safe and long password. (Strongly recommended)"
-msgstr ""
+msgstr "将 %s 的值改为新的加密密钥，而非 "
+"“flossie1234555541”，选择一个安全的长密码。(强烈建议）"
 
 #: application/views/debug/index.php:191
 msgid "You do not use the default encryption key"
@@ -5413,7 +5414,7 @@ msgstr "您可以在此将现有的QSL卡和eQSL卡迁移到新的用户数据�
 
 #: application/views/debug/index.php:213
 msgid "Modules"
-msgstr ""
+msgstr "模块"
 
 #: application/views/debug/index.php:219 application/views/debug/index.php:230
 #: application/views/debug/index.php:241 application/views/debug/index.php:252
@@ -5442,11 +5443,11 @@ msgstr "分支"
 #: application/views/debug/index.php:416 application/views/debug/index.php:427
 #: application/views/debug/index.php:437
 msgid "n/a"
-msgstr ""
+msgstr "n/a"
 
 #: application/views/debug/index.php:422
 msgid "Commit"
-msgstr ""
+msgstr "Commit"
 
 #: application/views/debug/index.php:432
 msgid "Tag"
@@ -5454,7 +5455,7 @@ msgstr "标签"
 
 #: application/views/debug/index.php:442
 msgid "Last Fetch"
-msgstr ""
+msgstr "上次抓取"
 
 #: application/views/debug/index.php:454
 msgid "Check for new version"
@@ -5466,7 +5467,7 @@ msgstr "现在升级"
 
 #: application/views/debug/index.php:473
 msgid "File download date"
-msgstr ""
+msgstr "文件下载日期"
 
 #: application/views/debug/index.php:477
 msgid "File"
@@ -5478,7 +5479,7 @@ msgstr "上次更新"
 
 #: application/views/debug/index.php:482
 msgid "DXCC update from Club Log"
-msgstr ""
+msgstr "DXCC 更新（ClubLog）"
 
 #: application/views/debug/index.php:484 application/views/debug/index.php:490
 #: application/views/debug/index.php:495 application/views/debug/index.php:500
@@ -5514,7 +5515,7 @@ msgstr "下载WWFF文件"
 
 #: application/views/debug/index.php:522
 msgid "QSO-DB Maintenance"
-msgstr ""
+msgstr "QSO-DB 维护"
 
 #: application/views/debug/index.php:526
 #, php-format
@@ -5535,7 +5536,7 @@ msgstr "电台呼号"
 
 #: application/views/debug/index.php:564
 msgid "Please mark QSOs and reassign them to an existing station location:"
-msgstr ""
+msgstr "请标记 QSO 并将其重新分配到现有的电台位置："
 
 #: application/views/debug/index.php:572
 msgctxt "Stationlocation"
@@ -5544,11 +5545,11 @@ msgstr "目标位置"
 
 #: application/views/debug/index.php:573 application/views/debug/index.php:584
 msgid "Reassign"
-msgstr ""
+msgstr "重新分配"
 
 #: application/views/debug/index.php:593
 msgid "Every QSO in your Database is assigned to a station-profile (location)"
-msgstr ""
+msgstr "数据库中的每个 QSO 都分配给一个台站"
 
 #: application/views/debug/index.php:593
 msgid "Everything ok"
@@ -5657,11 +5658,11 @@ msgstr "只有有网格座标的 QSO 才会被导出"
 
 #: application/views/dxcalendar/index.php:9
 msgid "Date from"
-msgstr ""
+msgstr "日期从"
 
 #: application/views/dxcalendar/index.php:10
 msgid "Date to"
-msgstr ""
+msgstr "日期到"
 
 #: application/views/dxcalendar/index.php:13
 #: application/views/view_log/qso.php:366
@@ -5670,7 +5671,7 @@ msgstr "QSL 信息"
 
 #: application/views/dxcalendar/index.php:14
 msgid "Source"
-msgstr ""
+msgstr "来源"
 
 #: application/views/eqsl/analysis.php:11 application/views/eqsl/download.php:9
 #: application/views/eqsl/export.php:8 application/views/eqsl/import.php:7
@@ -5704,7 +5705,7 @@ msgstr "下载eQSL卡片"
 #: application/views/eqsl/analysis.php:40
 #: application/views/eqsl/download.php:40 application/views/eqsl/result.php:37
 msgid "Submode"
-msgstr ""
+msgstr "子模式"
 
 #: application/views/eqsl/analysis.php:41
 msgid "Log Status"
@@ -5758,7 +5759,7 @@ msgstr "没有尚未下载eQSL卡片图像的QSO。 请继续获得更多QSO！"
 
 #: application/views/eqsl/export.php:31
 msgid "Below is a table of QSOs that have not yet been sent to eQSL."
-msgstr ""
+msgstr "以下是尚未上传 eQSL 的 QSO 列表。"
 
 #: application/views/eqsl/export.php:33
 msgid ""
@@ -5774,13 +5775,13 @@ msgstr "点击 \"上传QSO\"将会上传QSO信息至eQSL.cc。"
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
-msgstr ""
+msgstr "以下 QSO 已上传至 eQSL。"
 
 #: application/views/eqsl/export.php:51
 msgid ""
 "There are no QSOs that need to be sent to eQSL at this time. Go log some "
 "more QSOs!"
-msgstr ""
+msgstr "所有日志都上传到了 eQSL，继续通联吧！"
 
 #: application/views/eqsl/import.php:30
 msgid "Import from file..."
@@ -5788,18 +5789,19 @@ msgstr "从文件导入……"
 
 #: application/views/eqsl/import.php:33
 msgid "Download Inbox"
-msgstr ""
+msgstr "下载收件箱"
 
 #: application/views/eqsl/import.php:33
 #, php-format
 msgid ""
 "Upload the Exported ADIF file from eQSL from the %s page, to mark QSOs as "
 "confirmed on eQSL."
-msgstr ""
+msgstr "从 %s 页面上传从 eQSL 导出的 ADIF 文件，以便在 Wavelog 上标记这些 QSO 已在 "
+"eQSL 确认。"
 
 #: application/views/eqsl/import.php:34
 msgid "Choose Station(location) eQSL File belongs to:"
-msgstr ""
+msgstr "选择台站的 eQSL 文件属于："
 
 #: application/views/eqsl/import.php:45 application/views/lotw/import.php:25
 msgid "Log files must have the file type .adi"
@@ -5813,11 +5815,12 @@ msgstr "直接从eQSL导入"
 msgid ""
 "This does NOT upload any QSOs. It only marks QSOs as sent. If you use this "
 "button you need to upload them manually on the eQSL.cc website."
-msgstr ""
+msgstr "这实际不会上传任何 QSO，只会将 QSO 标记为已发送，如果您使用此按钮，"
+"则需要之后在 eQSL.cc 网站上手动上传。"
 
 #: application/views/eqsl/tools.php:29
 msgid "Mark All QSOs as Sent to eQSL"
-msgstr ""
+msgstr "标记所有 QSO 已上传到 eQSL"
 
 #: application/views/eqsl/tools.php:29
 msgid ""
