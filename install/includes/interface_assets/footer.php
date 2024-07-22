@@ -50,6 +50,7 @@
 		<?= __("German"); ?>
 		<?= __("Greek"); ?>
 		<?= __("Italian"); ?>
+		<?= __("Portuguese"); ?>
 		<?= __("Polish"); ?>
 		<?= __("Russian"); ?>
 		<?= __("Spanish"); ?>
