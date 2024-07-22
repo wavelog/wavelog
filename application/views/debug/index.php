@@ -626,6 +626,7 @@
     <?= __("Greek"); ?>
     <?= __("Italian"); ?>
     <?= __("Polish"); ?>
+    <?= __("Portuguese"); ?>
     <?= __("Russian"); ?>
     <?= __("Spanish"); ?>
     <?= __("Swedish"); ?>

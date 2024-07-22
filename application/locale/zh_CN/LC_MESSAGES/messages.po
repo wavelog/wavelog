@@ -5367,7 +5367,8 @@ msgstr "请编辑您的%s文件："
 msgid ""
 "Go to your application/config Folder and compare config.sample.php with your "
 "config.php"
-msgstr "请前往 application/config 文件夹，根据 config.sample.php 修改成 config.php"
+msgstr ""
+"请前往 application/config 文件夹，根据 config.sample.php 修改成 config.php"
 
 #: application/views/debug/index.php:168
 #, php-format
@@ -5395,8 +5396,9 @@ msgstr "这也将启用“保持登录状态”功能。"
 msgid ""
 "Change the value of %s to a new encryption key other then "
 "'flossie1234555541'. Choose a safe and long password. (Strongly recommended)"
-msgstr "将 %s 的值改为新的加密密钥，而非 "
-"“flossie1234555541”，选择一个安全的长密码。(强烈建议）"
+msgstr ""
+"将 %s 的值改为新的加密密钥，而非 “flossie1234555541”，选择一个安全的长密码。"
+"(强烈建议）"
 
 #: application/views/debug/index.php:191
 msgid "You do not use the default encryption key"
@@ -5599,19 +5601,19 @@ msgstr "意大利语"
 msgid "Polish"
 msgstr "波兰语"
 
-#: application/views/debug/index.php:629
+#: application/views/debug/index.php:629 application/views/debug/index.php:630
 msgid "Russian"
 msgstr "俄语"
 
-#: application/views/debug/index.php:630
+#: application/views/debug/index.php:630 application/views/debug/index.php:631
 msgid "Spanish"
 msgstr "西班牙语"
 
-#: application/views/debug/index.php:631
+#: application/views/debug/index.php:631 application/views/debug/index.php:632
 msgid "Swedish"
 msgstr "瑞典语"
 
-#: application/views/debug/index.php:632
+#: application/views/debug/index.php:632 application/views/debug/index.php:633
 msgid "Turkish"
 msgstr "土耳其语"
 
@@ -5796,7 +5798,8 @@ msgstr "下载收件箱"
 msgid ""
 "Upload the Exported ADIF file from eQSL from the %s page, to mark QSOs as "
 "confirmed on eQSL."
-msgstr "从 %s 页面上传从 eQSL 导出的 ADIF 文件，以便在 Wavelog 上标记这些 QSO 已在 "
+msgstr ""
+"从 %s 页面上传从 eQSL 导出的 ADIF 文件，以便在 Wavelog 上标记这些 QSO 已在 "
 "eQSL 确认。"
 
 #: application/views/eqsl/import.php:34
@@ -5815,8 +5818,9 @@ msgstr "直接从eQSL导入"
 msgid ""
 "This does NOT upload any QSOs. It only marks QSOs as sent. If you use this "
 "button you need to upload them manually on the eQSL.cc website."
-msgstr "这实际不会上传任何 QSO，只会将 QSO 标记为已发送，如果您使用此按钮，"
-"则需要之后在 eQSL.cc 网站上手动上传。"
+msgstr ""
+"这实际不会上传任何 QSO，只会将 QSO 标记为已发送，如果您使用此按钮，则需要之后"
+"在 eQSL.cc 网站上手动上传。"
 
 #: application/views/eqsl/tools.php:29
 msgid "Mark All QSOs as Sent to eQSL"
@@ -10430,6 +10434,10 @@ msgstr ""
 
 #: application/views/webadif/mark_webadif.php:16
 msgid "The QSOs are marked as exported to QO-100 Dx Club."
+msgstr ""
+
+#: application/views/debug/index.php:629
+msgid "Portuguese"
 msgstr ""
 
 #~ msgid "Accumulated Number of DXCCs worked"
