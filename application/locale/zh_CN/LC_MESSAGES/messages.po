@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-22 07:07+0000\n"
+"POT-Creation-Date: 2024-07-22 20:55+0000\n"
 "PO-Revision-Date: 2024-07-22 18:23+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/"
@@ -1281,7 +1281,7 @@ msgstr "操作员"
 #: application/views/awards/dxcc/index.php:238
 #: application/views/csv/index.php:65 application/views/dashboard/index.php:28
 #: application/views/dxatlas/index.php:65
-#: application/views/interface_assets/footer.php:658
+#: application/views/interface_assets/footer.php:669
 #: application/views/kml/index.php:54
 #: application/views/logbookadvanced/index.php:154
 #: application/views/lookup/index.php:31
@@ -1299,7 +1299,6 @@ msgstr "操作员"
 #: application/views/view_log/partial/log_ajax.php:29
 #: application/views/view_log/qso.php:236
 #: application/views/view_log/qso.php:529
-#: application/views/interface_assets/footer.php:669
 msgid "Deleted DXCC"
 msgstr "删除 DXCC 实体"
 
@@ -1891,52 +1890,47 @@ msgstr "完成"
 msgid "User Accounts"
 msgstr "用户账户"
 
-#: application/controllers/User.php:51 application/controllers/User.php:52
+#: application/controllers/User.php:52
 msgid "Add User"
 msgstr "添加用户"
 
-#: application/controllers/User.php:165 application/controllers/User.php:166
+#: application/controllers/User.php:166
 msgid "Users"
 msgstr "用户"
 
-#: application/controllers/User.php:238 application/controllers/User.php:671
 #: application/controllers/User.php:240 application/controllers/User.php:673
 msgid "Edit User"
 msgstr "编辑用户"
 
-#: application/controllers/User.php:663 application/controllers/User.php:666
-#: application/views/user/main.php:3 application/views/user/main.php:46
 #: application/controllers/User.php:665 application/controllers/User.php:668
+#: application/views/user/main.php:3 application/views/user/main.php:46
 msgid "User"
 msgstr "用户"
 
-#: application/controllers/User.php:663 application/controllers/User.php:666
 #: application/controllers/User.php:665 application/controllers/User.php:668
 msgid "edited"
 msgstr "已编辑"
 
-#: application/controllers/User.php:720 application/controllers/User.php:722
+#: application/controllers/User.php:722
 msgid "Profile"
 msgstr "个人资料"
 
-#: application/controllers/User.php:838 application/controllers/User.php:848
 #: application/controllers/User.php:840 application/controllers/User.php:850
 msgid "Login failed. Try again."
 msgstr "登录失败，请重试。"
 
-#: application/controllers/User.php:855
+#: application/controllers/User.php:857
 #: application/views/interface_assets/header.php:348
 #: application/views/user/login.php:89
 #: application/views/visitor/layout/header.php:88
-#: application/controllers/User.php:857
 msgid "Login"
 msgstr "登录"
 
-#: application/controllers/User.php:863 application/controllers/User.php:865
+#: application/controllers/User.php:865
 msgid "User logged in"
 msgstr "已登录用户"
 
-#: application/controllers/User.php:894 application/controllers/User.php:896
+#: application/controllers/User.php:896
 msgid ""
 "Sorry. This instance is currently in maintenance mode. If this message "
 "appears unexpectedly or keeps showing up, please contact an administrator. "
@@ -1945,38 +1939,35 @@ msgstr ""
 "抱歉，本站正处于维护模式。如果本消息持续显示，请联系本站管理员。当前只允许管"
 "理员登入。"
 
-#: application/controllers/User.php:897 application/controllers/User.php:899
+#: application/controllers/User.php:899
 msgid "Incorrect username or password!"
 msgstr "用户名或密码错误！"
 
-#: application/controllers/User.php:914 application/controllers/User.php:916
+#: application/controllers/User.php:916
 #, php-format
 msgid "User %s logged out."
 msgstr "用户 '%s' 已登出。"
 
-#: application/controllers/User.php:928 application/controllers/User.php:930
+#: application/controllers/User.php:930
 msgid "Password Reset is disabled on the Demo!"
 msgstr "在测试实例上，密码重置已禁用！"
 
-#: application/controllers/User.php:941 application/controllers/User.php:943
+#: application/controllers/User.php:943
 msgid "Forgot Password"
 msgstr "忘记密码"
 
-#: application/controllers/User.php:991 application/views/user/main.php:8
-#: application/controllers/User.php:993
+#: application/controllers/User.php:993 application/views/user/main.php:8
 msgid "Email settings are incorrect."
 msgstr "邮件配置有误。"
 
-#: application/controllers/User.php:995 application/controllers/User.php:1000
 #: application/controllers/User.php:997 application/controllers/User.php:1002
 msgid "Password Reset Processed."
 msgstr "密码重置已处理。"
 
-#: application/controllers/User.php:1102
+#: application/controllers/User.php:1104
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
-#: application/controllers/User.php:1104
 msgid "Reset Password"
 msgstr "重置密码"
 
@@ -2596,14 +2587,13 @@ msgstr "最大上传文件大小是 "
 #: application/views/debug/index.php:181 application/views/debug/index.php:526
 #: application/views/hrdlog/export.php:25
 #: application/views/hrdlog/export.php:74
-#: application/views/interface_assets/footer.php:23
+#: application/views/interface_assets/footer.php:34
 #: application/views/qrz/export.php:73 application/views/qrz/export.php:94
 #: application/views/station_profile/index.php:31
 #: application/views/stationsetup/stationsetup.php:111
 #: application/views/view_log/qso.php:622
 #: application/views/webadif/export.php:34
 #: application/views/webadif/export.php:94
-#: application/views/interface_assets/footer.php:34
 msgid "Warning"
 msgstr "注意"
 
@@ -2667,7 +2657,6 @@ msgid "Always use login-callsign as operator-name on import"
 msgstr "总是在导入时使用登录的呼号作为操作者名称"
 
 #: application/views/adif/import.php:152
-#: application/views/interface_assets/footer.php:21
 #: application/views/interface_assets/footer.php:32
 msgid "DANGER"
 msgstr "警告"
@@ -2844,7 +2833,7 @@ msgstr "如用于描述用途的名字。"
 #: application/views/api/description.php:33
 #: application/views/bands/create.php:49 application/views/bands/edit.php:31
 #: application/views/contesting/edit.php:55 application/views/cron/edit.php:73
-#: application/views/interface_assets/footer.php:32
+#: application/views/interface_assets/footer.php:43
 #: application/views/operator/index.php:23
 #: application/views/options/appearance.php:107
 #: application/views/options/dxcluster.php:67
@@ -2856,7 +2845,6 @@ msgstr "如用于描述用途的名字。"
 #: application/views/qso/components/winkeysettings_results.php:90
 #: application/views/satellite/create.php:70
 #: application/views/simplefle/index.php:22
-#: application/views/interface_assets/footer.php:43
 msgid "Save"
 msgstr "保存"
 
@@ -3125,9 +3113,8 @@ msgstr "CQ 杂志 WAZ 奖状"
 #: application/views/bandmap/list.php:73
 #: application/views/dashboard/index.php:244
 #: application/views/dashboard/index.php:362
-#: application/views/interface_assets/footer.php:28
-#: application/views/visitor/index.php:266
 #: application/views/interface_assets/footer.php:39
+#: application/views/visitor/index.php:266
 msgid "Confirmed"
 msgstr "已确认"
 
@@ -3562,7 +3549,6 @@ msgid "This map shows only QSOs worked on SAT."
 msgstr "该地图仅显示了 SAT 上有效的 QSO"
 
 #: application/views/awards/helvetia/index.php:18
-#, fuzzy
 msgid "HELVETIA 26 | SWITZERLAND AWARD"
 msgstr "HELVETIA 26 | SWITZERLAND AWARD"
 
@@ -4261,12 +4247,11 @@ msgstr "创建波段"
 
 #: application/views/bands/index.php:152
 #: application/views/contesting/add.php:74
-#: application/views/interface_assets/footer.php:31
+#: application/views/interface_assets/footer.php:42
 #: application/views/qso/components/winkeysettings.php:91
 #: application/views/qso/components/winkeysettings_results.php:91
 #: application/views/simplefle/index.php:21
 #: application/views/version_dialog/index.php:79
-#: application/views/interface_assets/footer.php:42
 msgid "Close"
 msgstr "关闭"
 
@@ -4788,7 +4773,6 @@ msgid "Enter your own Cron Expression"
 msgstr "输入自定义的 Cron 语句"
 
 #: application/views/cron/edit.php:74
-#: application/views/interface_assets/footer.php:24
 #: application/views/interface_assets/footer.php:35
 msgid "Cancel"
 msgstr "取消"
@@ -5601,26 +5585,29 @@ msgstr "意大利语"
 msgid "Polish"
 msgstr "波兰语"
 
-#: application/views/debug/index.php:629 application/views/debug/index.php:630
+#: application/views/debug/index.php:629
+msgid "Portuguese"
+msgstr ""
+
+#: application/views/debug/index.php:630
 msgid "Russian"
 msgstr "俄语"
 
-#: application/views/debug/index.php:630 application/views/debug/index.php:631
+#: application/views/debug/index.php:631
 msgid "Spanish"
 msgstr "西班牙语"
 
-#: application/views/debug/index.php:631 application/views/debug/index.php:632
+#: application/views/debug/index.php:632
 msgid "Swedish"
 msgstr "瑞典语"
 
-#: application/views/debug/index.php:632 application/views/debug/index.php:633
+#: application/views/debug/index.php:633
 msgid "Turkish"
 msgstr "土耳其语"
 
 #: application/views/distances/index.php:7
-#: application/views/interface_assets/footer.php:19
-#: application/views/simplefle/index.php:68
 #: application/views/interface_assets/footer.php:30
+#: application/views/simplefle/index.php:68
 msgid "QSO Data"
 msgstr "QSO 数据"
 
@@ -5952,68 +5939,57 @@ msgstr ""
 msgid "The QSOs are marked as exported to HRDLog Logbook."
 msgstr ""
 
-#: application/views/interface_assets/footer.php:20
+#: application/views/interface_assets/footer.php:31
 #: application/views/search/search_result_ajax.php:404
 #: application/views/view_log/partial/log.php:135
 #: application/views/view_log/partial/log_ajax.php:300
 #: application/views/view_log/qso.php:434
-#: application/views/interface_assets/footer.php:31
 msgid "Edit QSO"
 msgstr "编辑 QSO"
 
-#: application/views/interface_assets/footer.php:22
 #: application/views/interface_assets/footer.php:33
 msgid "Attention"
 msgstr "注意"
 
-#: application/views/interface_assets/footer.php:25
 #: application/views/interface_assets/footer.php:36
 msgid "OK"
 msgstr "确认"
 
-#: application/views/interface_assets/footer.php:26
 #: application/views/interface_assets/footer.php:37
 msgid "Warning! Are you sure you want delete QSO with "
 msgstr "警告！您确定要删除 QSO 和 "
 
-#: application/views/interface_assets/footer.php:27
-#: application/views/user/edit.php:493
 #: application/views/interface_assets/footer.php:38
+#: application/views/user/edit.php:493
 msgid "Colors"
 msgstr "颜色"
 
-#: application/views/interface_assets/footer.php:29
 #: application/views/interface_assets/footer.php:40
 msgid "Worked not confirmed"
 msgstr "已通联未确认"
 
-#: application/views/interface_assets/footer.php:30
 #: application/views/interface_assets/footer.php:41
 msgid "Not worked"
 msgstr "未通联"
 
-#: application/views/interface_assets/footer.php:33
+#: application/views/interface_assets/footer.php:44
 #: application/views/qso/index.php:601
 #: application/views/visitor/layout/footer.php:244
-#: application/views/interface_assets/footer.php:44
 msgid "Clear"
 msgstr "清除"
 
-#: application/views/interface_assets/footer.php:34
+#: application/views/interface_assets/footer.php:45
 #: application/views/qso/edit_ajax.php:211
 #: application/views/qso/edit_ajax.php:512
-#: application/views/interface_assets/footer.php:45
 msgid "Propagation mode is not supported by LoTW. LoTW QSL fields disabled."
 msgstr ""
 
-#: application/views/interface_assets/footer.php:116
+#: application/views/interface_assets/footer.php:127
 #: application/views/interface_assets/header.php:426
 #: application/views/options/sidebar.php:11
-#: application/views/interface_assets/footer.php:127
 msgid "Version Info"
 msgstr "版本信息"
 
-#: application/views/interface_assets/footer.php:661
 #: application/views/interface_assets/footer.php:672
 msgid ""
 "Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. "
@@ -6023,12 +5999,6 @@ msgstr ""
 "请稍等，您选择的 DXCC 已经失效，请确认最新的 DXCC 实体，如果您十分确认，请忽"
 "略该警告。"
 
-#: application/views/interface_assets/footer.php:1355
-#: application/views/interface_assets/footer.php:1359
-#: application/views/interface_assets/footer.php:1362
-#: application/views/interface_assets/footer.php:1499
-#: application/views/interface_assets/footer.php:1503
-#: application/views/interface_assets/footer.php:1506
 #: application/views/interface_assets/footer.php:1366
 #: application/views/interface_assets/footer.php:1370
 #: application/views/interface_assets/footer.php:1373
@@ -6038,8 +6008,6 @@ msgstr ""
 msgid "grid square"
 msgstr "网格"
 
-#: application/views/interface_assets/footer.php:1362
-#: application/views/interface_assets/footer.php:1506
 #: application/views/interface_assets/footer.php:1373
 #: application/views/interface_assets/footer.php:1517
 msgid "Total count"
@@ -10434,10 +10402,6 @@ msgstr ""
 
 #: application/views/webadif/mark_webadif.php:16
 msgid "The QSOs are marked as exported to QO-100 Dx Club."
-msgstr ""
-
-#: application/views/debug/index.php:629
-msgid "Portuguese"
 msgstr ""
 
 #~ msgid "Accumulated Number of DXCCs worked"
