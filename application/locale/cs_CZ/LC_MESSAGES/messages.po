@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-17 15:11+0000\n"
-"PO-Revision-Date: 2024-07-10 20:23+0000\n"
+"POT-Creation-Date: 2024-07-22 14:29+0000\n"
+"PO-Revision-Date: 2024-07-22 07:07+0000\n"
 "Last-Translator: Ondřej Koloničný <ondra@ok1cdj.com>\n"
 "Language-Team: Czech <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/cs/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 5.6\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #: application/controllers/Accumulated.php:21
 #: application/views/interface_assets/header.php:148
@@ -92,7 +92,7 @@ msgstr "Nepodporovaný formát souboru"
 
 #: application/controllers/Adif.php:247
 msgid "Station Profile not valid for User"
-msgstr ""
+msgstr "Profil stanice není platný pro uživatele"
 
 #: application/controllers/Adif.php:254
 #: application/views/adif/import_success.php:12
@@ -117,7 +117,7 @@ msgstr "Popis API"
 
 #: application/controllers/Api.php:51
 msgid "API Key is required. Do not change this field"
-msgstr ""
+msgstr "Je vyžadován klíč API. Toto pole neměňte"
 
 #: application/controllers/Api.php:57
 msgid "Edit API Description"
@@ -135,7 +135,7 @@ msgstr "API klíč %s byl smazán"
 
 #: application/controllers/Api.php:118
 msgid "Key Disabled"
-msgstr ""
+msgstr "Klíč je zakázaný"
 
 #: application/controllers/Api.php:118
 msgid "No Key Found"
@@ -240,11 +240,11 @@ msgstr ""
 
 #: application/controllers/Awards.php:457
 msgid " and sat "
-msgstr ""
+msgstr " a sat "
 
 #: application/controllers/Awards.php:460
 msgid " and orbit type "
-msgstr ""
+msgstr " a typ oběhu "
 
 #: application/controllers/Awards.php:464
 msgid " and propagation "
@@ -256,7 +256,7 @@ msgstr ""
 
 #: application/controllers/Awards.php:470
 msgid " and "
-msgstr ""
+msgstr " a "
 
 #: application/controllers/Awards.php:486
 #: application/controllers/Logbook.php:1278
@@ -463,12 +463,12 @@ msgstr ""
 msgid "Contest Logging"
 msgstr "Závodní deník"
 
-#: application/controllers/Contesting.php:99
+#: application/controllers/Contesting.php:101
 #: application/views/interface_assets/header.php:266
 msgid "Contests"
 msgstr "Závody"
 
-#: application/controllers/Contesting.php:113
+#: application/controllers/Contesting.php:115
 msgid "Update Contest"
 msgstr ""
 
@@ -578,19 +578,19 @@ msgstr ""
 msgid "eQSL QSO Upload"
 msgstr ""
 
-#: application/controllers/Eqsl.php:411
+#: application/controllers/Eqsl.php:415
 msgid "eQSL Tools"
 msgstr ""
 
-#: application/controllers/Eqsl.php:458
+#: application/controllers/Eqsl.php:462
 msgid " / Errors: "
 msgstr ""
 
-#: application/controllers/Eqsl.php:458
+#: application/controllers/Eqsl.php:462
 msgid "Successfully downloaded: "
 msgstr ""
 
-#: application/controllers/Eqsl.php:467
+#: application/controllers/Eqsl.php:471
 msgid "eQSL Card Image Download"
 msgstr ""
 
@@ -602,7 +602,7 @@ msgstr "Mapa lokátorů"
 #: application/controllers/Gridmap.php:34
 #: application/controllers/Visitor.php:377
 msgid "Total gridsquares worked"
-msgstr "Celkový počet odpracovaných lokátorů"
+msgstr "Celkový počet lokátorů"
 
 #: application/controllers/Hamsat.php:59
 msgid "Hamsat - Satellite Roving"
@@ -1281,7 +1281,7 @@ msgstr "Operátor"
 #: application/views/awards/dxcc/index.php:238
 #: application/views/csv/index.php:65 application/views/dashboard/index.php:28
 #: application/views/dxatlas/index.php:65
-#: application/views/interface_assets/footer.php:658
+#: application/views/interface_assets/footer.php:669
 #: application/views/kml/index.php:54
 #: application/views/logbookadvanced/index.php:154
 #: application/views/lookup/index.php:31
@@ -1890,79 +1890,79 @@ msgstr ""
 msgid "User Accounts"
 msgstr ""
 
-#: application/controllers/User.php:51
+#: application/controllers/User.php:52
 msgid "Add User"
 msgstr ""
 
-#: application/controllers/User.php:165
+#: application/controllers/User.php:166
 msgid "Users"
 msgstr ""
 
-#: application/controllers/User.php:238 application/controllers/User.php:671
+#: application/controllers/User.php:240 application/controllers/User.php:673
 msgid "Edit User"
 msgstr ""
 
-#: application/controllers/User.php:663 application/controllers/User.php:666
+#: application/controllers/User.php:665 application/controllers/User.php:668
 #: application/views/user/main.php:3 application/views/user/main.php:46
 msgid "User"
 msgstr ""
 
-#: application/controllers/User.php:663 application/controllers/User.php:666
+#: application/controllers/User.php:665 application/controllers/User.php:668
 msgid "edited"
 msgstr ""
 
-#: application/controllers/User.php:720
+#: application/controllers/User.php:722
 msgid "Profile"
 msgstr ""
 
-#: application/controllers/User.php:838 application/controllers/User.php:848
+#: application/controllers/User.php:840 application/controllers/User.php:850
 msgid "Login failed. Try again."
 msgstr ""
 
-#: application/controllers/User.php:855
+#: application/controllers/User.php:857
 #: application/views/interface_assets/header.php:348
 #: application/views/user/login.php:89
 #: application/views/visitor/layout/header.php:88
 msgid "Login"
 msgstr "Přihlásit se"
 
-#: application/controllers/User.php:863
+#: application/controllers/User.php:865
 msgid "User logged in"
 msgstr ""
 
-#: application/controllers/User.php:894
+#: application/controllers/User.php:896
 msgid ""
 "Sorry. This instance is currently in maintenance mode. If this message "
 "appears unexpectedly or keeps showing up, please contact an administrator. "
 "Only administrators are currently allowed to log in."
 msgstr ""
 
-#: application/controllers/User.php:897
+#: application/controllers/User.php:899
 msgid "Incorrect username or password!"
 msgstr ""
 
-#: application/controllers/User.php:914
+#: application/controllers/User.php:916
 #, php-format
 msgid "User %s logged out."
 msgstr ""
 
-#: application/controllers/User.php:928
+#: application/controllers/User.php:930
 msgid "Password Reset is disabled on the Demo!"
 msgstr ""
 
-#: application/controllers/User.php:941
+#: application/controllers/User.php:943
 msgid "Forgot Password"
 msgstr ""
 
-#: application/controllers/User.php:991 application/views/user/main.php:8
+#: application/controllers/User.php:993 application/views/user/main.php:8
 msgid "Email settings are incorrect."
 msgstr ""
 
-#: application/controllers/User.php:995 application/controllers/User.php:1000
+#: application/controllers/User.php:997 application/controllers/User.php:1002
 msgid "Password Reset Processed."
 msgstr ""
 
-#: application/controllers/User.php:1102
+#: application/controllers/User.php:1104
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
@@ -2002,6 +2002,29 @@ msgstr ""
 #: application/controllers/Webadif.php:137
 #: application/views/interface_assets/header.php:419
 msgid "QO-100 Dx Club Upload"
+msgstr ""
+
+#: application/models/Eqslmethods_model.php:281
+msgid "Your eQSL username and/or password is incorrect."
+msgstr ""
+
+#: application/models/Eqslmethods_model.php:287
+msgid "Something went wrong with eQSL.cc!"
+msgstr ""
+
+#: application/models/Eqslmethods_model.php:303
+msgid "eQSL.cc is experiencing issues. Please try exporting QSOs later."
+msgstr ""
+
+#: application/models/Eqslmethods_model.php:309
+msgid ""
+"There was an error in one of the QSOs. You might want to manually upload "
+"them."
+msgstr ""
+
+#: application/models/Eqslmethods_model.php:315
+msgid ""
+"It seems that the eQSL site has changed. Please open up an issue on GitHub."
 msgstr ""
 
 #: application/models/Hrdlog_model.php:22
@@ -2562,7 +2585,7 @@ msgstr ""
 #: application/views/debug/index.php:181 application/views/debug/index.php:526
 #: application/views/hrdlog/export.php:25
 #: application/views/hrdlog/export.php:74
-#: application/views/interface_assets/footer.php:23
+#: application/views/interface_assets/footer.php:34
 #: application/views/qrz/export.php:73 application/views/qrz/export.php:94
 #: application/views/station_profile/index.php:31
 #: application/views/stationsetup/stationsetup.php:111
@@ -2632,7 +2655,7 @@ msgid "Always use login-callsign as operator-name on import"
 msgstr ""
 
 #: application/views/adif/import.php:152
-#: application/views/interface_assets/footer.php:21
+#: application/views/interface_assets/footer.php:32
 msgid "DANGER"
 msgstr ""
 
@@ -2744,7 +2767,7 @@ msgstr ""
 
 #: application/views/adif/import.php:267
 msgid "Ignore QSOs that cannot be matched."
-msgstr "Ignore QSOs that cannot be matched"
+msgstr "Ignorovat QSO, které nelze porovnat."
 
 #: application/views/adif/import.php:269
 msgid ""
@@ -2804,7 +2827,7 @@ msgstr ""
 #: application/views/api/description.php:33
 #: application/views/bands/create.php:49 application/views/bands/edit.php:31
 #: application/views/contesting/edit.php:55 application/views/cron/edit.php:73
-#: application/views/interface_assets/footer.php:32
+#: application/views/interface_assets/footer.php:43
 #: application/views/operator/index.php:23
 #: application/views/options/appearance.php:107
 #: application/views/options/dxcluster.php:67
@@ -3073,7 +3096,7 @@ msgstr ""
 #: application/views/bandmap/list.php:73
 #: application/views/dashboard/index.php:244
 #: application/views/dashboard/index.php:362
-#: application/views/interface_assets/footer.php:28
+#: application/views/interface_assets/footer.php:39
 #: application/views/visitor/index.php:266
 msgid "Confirmed"
 msgstr "Potvrzeno"
@@ -3085,7 +3108,7 @@ msgstr "Potvrzeno"
 #: application/views/dashboard/index.php:356
 #: application/views/visitor/index.php:262
 msgid "Worked"
-msgstr "Spojeno"
+msgstr "Navázáno"
 
 #: application/views/awards/cq/index.php:36
 #: application/views/awards/dok/index.php:41
@@ -4134,7 +4157,7 @@ msgstr ""
 
 #: application/views/bands/index.php:152
 #: application/views/contesting/add.php:74
-#: application/views/interface_assets/footer.php:31
+#: application/views/interface_assets/footer.php:42
 #: application/views/qso/components/winkeysettings.php:91
 #: application/views/qso/components/winkeysettings_results.php:91
 #: application/views/simplefle/index.php:21
@@ -4660,7 +4683,7 @@ msgid "Enter your own Cron Expression"
 msgstr ""
 
 #: application/views/cron/edit.php:74
-#: application/views/interface_assets/footer.php:24
+#: application/views/interface_assets/footer.php:35
 msgid "Cancel"
 msgstr ""
 
@@ -4986,7 +5009,7 @@ msgstr "Počet zemí"
 #: application/views/dashboard/index.php:253
 #: application/views/visitor/index.php:275
 msgid "Needed"
-msgstr "Potřebuje se"
+msgstr "Zbývá"
 
 #: application/views/dashboard/index.php:266
 #: application/views/dashboard/index.php:293
@@ -5490,7 +5513,7 @@ msgid "Turkish"
 msgstr ""
 
 #: application/views/distances/index.php:7
-#: application/views/interface_assets/footer.php:19
+#: application/views/interface_assets/footer.php:30
 #: application/views/simplefle/index.php:68
 msgid "QSO Data"
 msgstr ""
@@ -5677,11 +5700,17 @@ msgstr "Deník musí být ve formátu .adi"
 msgid "Import directly from eQSL"
 msgstr ""
 
-#: application/views/eqsl/tools.php:26
+#: application/views/eqsl/tools.php:27
+msgid ""
+"This does NOT upload any QSOs. It only marks QSOs as sent. If you use this "
+"button you need to upload them manually on the eQSL.cc website."
+msgstr ""
+
+#: application/views/eqsl/tools.php:29
 msgid "Mark All QSOs as Sent to eQSL"
 msgstr ""
 
-#: application/views/eqsl/tools.php:26
+#: application/views/eqsl/tools.php:29
 msgid ""
 "Use this if you have lots of QSOs to upload to eQSL it will save the server "
 "timing out."
@@ -5807,7 +5836,7 @@ msgstr ""
 msgid "The QSOs are marked as exported to HRDLog Logbook."
 msgstr ""
 
-#: application/views/interface_assets/footer.php:20
+#: application/views/interface_assets/footer.php:31
 #: application/views/search/search_result_ajax.php:404
 #: application/views/view_log/partial/log.php:135
 #: application/views/view_log/partial/log_ajax.php:300
@@ -5815,67 +5844,67 @@ msgstr ""
 msgid "Edit QSO"
 msgstr "Upravit QSO"
 
-#: application/views/interface_assets/footer.php:22
+#: application/views/interface_assets/footer.php:33
 msgid "Attention"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:25
+#: application/views/interface_assets/footer.php:36
 msgid "OK"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:26
+#: application/views/interface_assets/footer.php:37
 msgid "Warning! Are you sure you want delete QSO with "
 msgstr ""
 
-#: application/views/interface_assets/footer.php:27
+#: application/views/interface_assets/footer.php:38
 #: application/views/user/edit.php:493
 msgid "Colors"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:29
+#: application/views/interface_assets/footer.php:40
 msgid "Worked not confirmed"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:30
+#: application/views/interface_assets/footer.php:41
 msgid "Not worked"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:33
+#: application/views/interface_assets/footer.php:44
 #: application/views/qso/index.php:601
 #: application/views/visitor/layout/footer.php:244
 msgid "Clear"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:34
+#: application/views/interface_assets/footer.php:45
 #: application/views/qso/edit_ajax.php:211
 #: application/views/qso/edit_ajax.php:512
 msgid "Propagation mode is not supported by LoTW. LoTW QSL fields disabled."
 msgstr ""
 
-#: application/views/interface_assets/footer.php:116
+#: application/views/interface_assets/footer.php:127
 #: application/views/interface_assets/header.php:426
 #: application/views/options/sidebar.php:11
 msgid "Version Info"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:661
+#: application/views/interface_assets/footer.php:672
 msgid ""
 "Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. "
 "Check which DXCC for this particular location is the correct one. If you are "
 "sure, ignore this warning."
 msgstr ""
 
-#: application/views/interface_assets/footer.php:1355
-#: application/views/interface_assets/footer.php:1359
-#: application/views/interface_assets/footer.php:1362
-#: application/views/interface_assets/footer.php:1499
-#: application/views/interface_assets/footer.php:1503
-#: application/views/interface_assets/footer.php:1506
+#: application/views/interface_assets/footer.php:1366
+#: application/views/interface_assets/footer.php:1370
+#: application/views/interface_assets/footer.php:1373
+#: application/views/interface_assets/footer.php:1510
+#: application/views/interface_assets/footer.php:1514
+#: application/views/interface_assets/footer.php:1517
 msgid "grid square"
 msgstr "lokátor"
 
-#: application/views/interface_assets/footer.php:1362
-#: application/views/interface_assets/footer.php:1506
+#: application/views/interface_assets/footer.php:1373
+#: application/views/interface_assets/footer.php:1517
 msgid "Total count"
 msgstr "Celkový počet"
 

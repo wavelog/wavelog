@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-17 15:11+0000\n"
+"POT-Creation-Date: 2024-07-22 14:29+0000\n"
 "PO-Revision-Date: 2024-07-18 10:17+0000\n"
 "Last-Translator: BG6HJE <1753409828@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/"
@@ -464,12 +464,12 @@ msgstr "竞赛日志"
 msgid "Contest Logging"
 msgstr "竞赛日志"
 
-#: application/controllers/Contesting.php:99
+#: application/controllers/Contesting.php:101
 #: application/views/interface_assets/header.php:266
 msgid "Contests"
 msgstr "比赛"
 
-#: application/controllers/Contesting.php:113
+#: application/controllers/Contesting.php:115
 msgid "Update Contest"
 msgstr "更新竞赛"
 
@@ -581,19 +581,19 @@ msgstr "eQSL 导入信息"
 msgid "eQSL QSO Upload"
 msgstr "eQSL QSO 上传"
 
-#: application/controllers/Eqsl.php:411
+#: application/controllers/Eqsl.php:415
 msgid "eQSL Tools"
 msgstr "eQSL 工具"
 
-#: application/controllers/Eqsl.php:458
+#: application/controllers/Eqsl.php:462
 msgid " / Errors: "
 msgstr " / 错误： "
 
-#: application/controllers/Eqsl.php:458
+#: application/controllers/Eqsl.php:462
 msgid "Successfully downloaded: "
 msgstr "下载成功： "
 
-#: application/controllers/Eqsl.php:467
+#: application/controllers/Eqsl.php:471
 msgid "eQSL Card Image Download"
 msgstr "eQSL 卡片图像下载"
 
@@ -1281,7 +1281,7 @@ msgstr "操作员"
 #: application/views/awards/dxcc/index.php:238
 #: application/views/csv/index.php:65 application/views/dashboard/index.php:28
 #: application/views/dxatlas/index.php:65
-#: application/views/interface_assets/footer.php:658
+#: application/views/interface_assets/footer.php:669
 #: application/views/kml/index.php:54
 #: application/views/logbookadvanced/index.php:154
 #: application/views/lookup/index.php:31
@@ -1890,47 +1890,47 @@ msgstr "完成"
 msgid "User Accounts"
 msgstr "用户账户"
 
-#: application/controllers/User.php:51
+#: application/controllers/User.php:52
 msgid "Add User"
 msgstr "添加用户"
 
-#: application/controllers/User.php:165
+#: application/controllers/User.php:166
 msgid "Users"
 msgstr "用户"
 
-#: application/controllers/User.php:238 application/controllers/User.php:671
+#: application/controllers/User.php:240 application/controllers/User.php:673
 msgid "Edit User"
 msgstr "编辑用户"
 
-#: application/controllers/User.php:663 application/controllers/User.php:666
+#: application/controllers/User.php:665 application/controllers/User.php:668
 #: application/views/user/main.php:3 application/views/user/main.php:46
 msgid "User"
 msgstr "用户"
 
-#: application/controllers/User.php:663 application/controllers/User.php:666
+#: application/controllers/User.php:665 application/controllers/User.php:668
 msgid "edited"
 msgstr "已编辑"
 
-#: application/controllers/User.php:720
+#: application/controllers/User.php:722
 msgid "Profile"
 msgstr "个人资料"
 
-#: application/controllers/User.php:838 application/controllers/User.php:848
+#: application/controllers/User.php:840 application/controllers/User.php:850
 msgid "Login failed. Try again."
 msgstr "登录失败，请重试。"
 
-#: application/controllers/User.php:855
+#: application/controllers/User.php:857
 #: application/views/interface_assets/header.php:348
 #: application/views/user/login.php:89
 #: application/views/visitor/layout/header.php:88
 msgid "Login"
 msgstr "登录"
 
-#: application/controllers/User.php:863
+#: application/controllers/User.php:865
 msgid "User logged in"
 msgstr "已登录用户"
 
-#: application/controllers/User.php:894
+#: application/controllers/User.php:896
 msgid ""
 "Sorry. This instance is currently in maintenance mode. If this message "
 "appears unexpectedly or keeps showing up, please contact an administrator. "
@@ -1939,32 +1939,32 @@ msgstr ""
 "抱歉，本站正处于维护模式。如果本消息持续显示，请联系本站管理员。当前只允许管"
 "理员登入。"
 
-#: application/controllers/User.php:897
+#: application/controllers/User.php:899
 msgid "Incorrect username or password!"
 msgstr "用户名或密码错误！"
 
-#: application/controllers/User.php:914
+#: application/controllers/User.php:916
 #, php-format
 msgid "User %s logged out."
 msgstr "用户 '%s' 已登出。"
 
-#: application/controllers/User.php:928
+#: application/controllers/User.php:930
 msgid "Password Reset is disabled on the Demo!"
 msgstr "在测试实例上，密码重置已禁用！"
 
-#: application/controllers/User.php:941
+#: application/controllers/User.php:943
 msgid "Forgot Password"
 msgstr "忘记密码"
 
-#: application/controllers/User.php:991 application/views/user/main.php:8
+#: application/controllers/User.php:993 application/views/user/main.php:8
 msgid "Email settings are incorrect."
 msgstr "邮件配置有误。"
 
-#: application/controllers/User.php:995 application/controllers/User.php:1000
+#: application/controllers/User.php:997 application/controllers/User.php:1002
 msgid "Password Reset Processed."
 msgstr "密码重置已处理。"
 
-#: application/controllers/User.php:1102
+#: application/controllers/User.php:1104
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
@@ -2005,6 +2005,29 @@ msgstr "导出地图"
 #: application/views/interface_assets/header.php:419
 msgid "QO-100 Dx Club Upload"
 msgstr "QO-100 Dx Club 上传"
+
+#: application/models/Eqslmethods_model.php:281
+msgid "Your eQSL username and/or password is incorrect."
+msgstr ""
+
+#: application/models/Eqslmethods_model.php:287
+msgid "Something went wrong with eQSL.cc!"
+msgstr ""
+
+#: application/models/Eqslmethods_model.php:303
+msgid "eQSL.cc is experiencing issues. Please try exporting QSOs later."
+msgstr ""
+
+#: application/models/Eqslmethods_model.php:309
+msgid ""
+"There was an error in one of the QSOs. You might want to manually upload "
+"them."
+msgstr ""
+
+#: application/models/Eqslmethods_model.php:315
+msgid ""
+"It seems that the eQSL site has changed. Please open up an issue on GitHub."
+msgstr ""
 
 #: application/models/Hrdlog_model.php:22
 msgid ""
@@ -2564,7 +2587,7 @@ msgstr "最大上传文件大小是 "
 #: application/views/debug/index.php:181 application/views/debug/index.php:526
 #: application/views/hrdlog/export.php:25
 #: application/views/hrdlog/export.php:74
-#: application/views/interface_assets/footer.php:23
+#: application/views/interface_assets/footer.php:34
 #: application/views/qrz/export.php:73 application/views/qrz/export.php:94
 #: application/views/station_profile/index.php:31
 #: application/views/stationsetup/stationsetup.php:111
@@ -2634,7 +2657,7 @@ msgid "Always use login-callsign as operator-name on import"
 msgstr "总是在导入时使用登录的呼号作为操作者名称"
 
 #: application/views/adif/import.php:152
-#: application/views/interface_assets/footer.php:21
+#: application/views/interface_assets/footer.php:32
 msgid "DANGER"
 msgstr "警告"
 
@@ -2646,8 +2669,9 @@ msgstr "导入时忽略台站的呼号"
 msgid ""
 "If selected, Wavelog will try to import <b>all</b> QSO's of the ADIF, "
 "regardless if they match to the chosen station-location."
-msgstr "如果选择，Wavelog 会尝试导入 ADIF 文件中的 <b>所有</b> "
-"QSO，而不判断是否与所选台站位置匹配。"
+msgstr ""
+"如果选择，Wavelog 会尝试导入 ADIF 文件中的 <b>所有</b> QSO，而不判断是否与所"
+"选台站位置匹配。"
 
 #: application/views/adif/import.php:158 application/views/adif/import.php:273
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:54
@@ -2809,7 +2833,7 @@ msgstr "如用于描述用途的名字。"
 #: application/views/api/description.php:33
 #: application/views/bands/create.php:49 application/views/bands/edit.php:31
 #: application/views/contesting/edit.php:55 application/views/cron/edit.php:73
-#: application/views/interface_assets/footer.php:32
+#: application/views/interface_assets/footer.php:43
 #: application/views/operator/index.php:23
 #: application/views/options/appearance.php:107
 #: application/views/options/dxcluster.php:67
@@ -3062,14 +3086,16 @@ msgid ""
 "The CQ Magazine is located in the US and one of the most popular amateur "
 "radio magazines in the world. The magazine first appeared in January 1945 "
 "and focuses on awards and the practical aspects of amateur radio."
-msgstr "CQ 杂志来自美国，是世界上最受欢迎的业余无线电杂志之一。该杂志于 1945 年 1 "
-"月首次出版，重点关注业余无线电的奖项和实用方面。"
+msgstr ""
+"CQ 杂志来自美国，是世界上最受欢迎的业余无线电杂志之一。该杂志于 1945 年 1 月"
+"首次出版，重点关注业余无线电的奖项和实用方面。"
 
 #: application/views/awards/cq/index.php:20
 msgid ""
 "The WAZ Award stands for 'Worked All Zones' and requires radio contacts to "
 "all 40 CQ Zones along with the corresponding confirmation."
-msgstr "WAZ 奖代表“Worked All Zones”，需要与所有40个CQ分区进行QSO并提供相应的确认。"
+msgstr ""
+"WAZ 奖代表“Worked All Zones”，需要与所有40个CQ分区进行QSO并提供相应的确认。"
 
 #: application/views/awards/cq/index.php:21
 #, php-format
@@ -3087,7 +3113,7 @@ msgstr "CQ 杂志 WAZ 奖状"
 #: application/views/bandmap/list.php:73
 #: application/views/dashboard/index.php:244
 #: application/views/dashboard/index.php:362
-#: application/views/interface_assets/footer.php:28
+#: application/views/interface_assets/footer.php:39
 #: application/views/visitor/index.php:266
 msgid "Confirmed"
 msgstr "已确认"
@@ -4047,7 +4073,8 @@ msgstr "您可以通过将其设置为cronjob来自动化此过程。"
 msgid ""
 "Something went wrong during the backup process. Check that the backup folder "
 "exists and is writeable by your web server user / group."
-msgstr "备份过程中出现错误。请检查备份文件夹是否存在并且您的Web服务器用户/组有写入权"
+msgstr ""
+"备份过程中出现错误。请检查备份文件夹是否存在并且您的Web服务器用户/组有写入权"
 "限。"
 
 #: application/views/backup/main.php:17
@@ -4220,7 +4247,7 @@ msgstr "创建波段"
 
 #: application/views/bands/index.php:152
 #: application/views/contesting/add.php:74
-#: application/views/interface_assets/footer.php:31
+#: application/views/interface_assets/footer.php:42
 #: application/views/qso/components/winkeysettings.php:91
 #: application/views/qso/components/winkeysettings_results.php:91
 #: application/views/simplefle/index.php:21
@@ -4746,7 +4773,7 @@ msgid "Enter your own Cron Expression"
 msgstr ""
 
 #: application/views/cron/edit.php:74
-#: application/views/interface_assets/footer.php:24
+#: application/views/interface_assets/footer.php:35
 msgid "Cancel"
 msgstr "取消"
 
@@ -5572,7 +5599,7 @@ msgid "Turkish"
 msgstr "土耳其语"
 
 #: application/views/distances/index.php:7
-#: application/views/interface_assets/footer.php:19
+#: application/views/interface_assets/footer.php:30
 #: application/views/simplefle/index.php:68
 msgid "QSO Data"
 msgstr "QSO 数据"
@@ -5692,7 +5719,8 @@ msgstr "查看/下载"
 msgid ""
 "Wavelog will use the eQSL credentials from your Wavelog user profile to "
 "connect to eQSL and download confirmations."
-msgstr "Wavelog将使用您的Wavelog用户配置文件中的eQSL凭据连接并下载eQSL确认信息。"
+msgstr ""
+"Wavelog将使用您的Wavelog用户配置文件中的eQSL凭据连接并下载eQSL确认信息。"
 
 #: application/views/eqsl/download.php:73
 msgid ""
@@ -5701,9 +5729,9 @@ msgid ""
 "to call this function several times depending on the amount of outstanding "
 "cards. This may run into a script timeout depending on the PHP configuration."
 msgstr ""
-"由于每个eQSL图片下载的速度限制约为10秒，调用此功能需要很长时间才能完成！ "
-"因此，您可能需要多次调用此函数，具体取决于尚未下载的卡片数量。 "
-"这可能会导致脚本超时，具体取决于PHP配置。"
+"由于每个eQSL图片下载的速度限制约为10秒，调用此功能需要很长时间才能完成！ 因"
+"此，您可能需要多次调用此函数，具体取决于尚未下载的卡片数量。 这可能会导致脚本"
+"超时，具体取决于PHP配置。"
 
 #: application/views/eqsl/download.php:81
 msgid ""
@@ -5719,8 +5747,9 @@ msgstr ""
 msgid ""
 "Please make sure the 'eQSL QTH Nickname' field is set in your station "
 "profile and that the value matches the QTH Nickname you set within eQSL."
-msgstr "请确保 \"eQSL QTH昵称 \"字段已在您的电台配置文件中设置，且该值与您在eQSL "
-"中设置的QTH昵称一致。"
+msgstr ""
+"请确保 \"eQSL QTH昵称 \"字段已在您的电台配置文件中设置，且该值与您在eQSL 中设"
+"置的QTH昵称一致。"
 
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
@@ -5763,11 +5792,17 @@ msgstr "日志文件的类型必须为 .adi"
 msgid "Import directly from eQSL"
 msgstr "直接从eQSL导入"
 
-#: application/views/eqsl/tools.php:26
+#: application/views/eqsl/tools.php:27
+msgid ""
+"This does NOT upload any QSOs. It only marks QSOs as sent. If you use this "
+"button you need to upload them manually on the eQSL.cc website."
+msgstr ""
+
+#: application/views/eqsl/tools.php:29
 msgid "Mark All QSOs as Sent to eQSL"
 msgstr ""
 
-#: application/views/eqsl/tools.php:26
+#: application/views/eqsl/tools.php:29
 msgid ""
 "Use this if you have lots of QSOs to upload to eQSL it will save the server "
 "timing out."
@@ -5893,7 +5928,7 @@ msgstr ""
 msgid "The QSOs are marked as exported to HRDLog Logbook."
 msgstr ""
 
-#: application/views/interface_assets/footer.php:20
+#: application/views/interface_assets/footer.php:31
 #: application/views/search/search_result_ajax.php:404
 #: application/views/view_log/partial/log.php:135
 #: application/views/view_log/partial/log_ajax.php:300
@@ -5901,50 +5936,50 @@ msgstr ""
 msgid "Edit QSO"
 msgstr "编辑 QSO"
 
-#: application/views/interface_assets/footer.php:22
+#: application/views/interface_assets/footer.php:33
 msgid "Attention"
 msgstr "注意"
 
-#: application/views/interface_assets/footer.php:25
+#: application/views/interface_assets/footer.php:36
 msgid "OK"
 msgstr "确认"
 
-#: application/views/interface_assets/footer.php:26
+#: application/views/interface_assets/footer.php:37
 msgid "Warning! Are you sure you want delete QSO with "
 msgstr "警告！您确定要删除 QSO 和 "
 
-#: application/views/interface_assets/footer.php:27
+#: application/views/interface_assets/footer.php:38
 #: application/views/user/edit.php:493
 msgid "Colors"
 msgstr "颜色"
 
-#: application/views/interface_assets/footer.php:29
+#: application/views/interface_assets/footer.php:40
 msgid "Worked not confirmed"
 msgstr "已通联未确认"
 
-#: application/views/interface_assets/footer.php:30
+#: application/views/interface_assets/footer.php:41
 msgid "Not worked"
 msgstr "未通联"
 
-#: application/views/interface_assets/footer.php:33
+#: application/views/interface_assets/footer.php:44
 #: application/views/qso/index.php:601
 #: application/views/visitor/layout/footer.php:244
 msgid "Clear"
 msgstr "清除"
 
-#: application/views/interface_assets/footer.php:34
+#: application/views/interface_assets/footer.php:45
 #: application/views/qso/edit_ajax.php:211
 #: application/views/qso/edit_ajax.php:512
 msgid "Propagation mode is not supported by LoTW. LoTW QSL fields disabled."
 msgstr ""
 
-#: application/views/interface_assets/footer.php:116
+#: application/views/interface_assets/footer.php:127
 #: application/views/interface_assets/header.php:426
 #: application/views/options/sidebar.php:11
 msgid "Version Info"
 msgstr "版本信息"
 
-#: application/views/interface_assets/footer.php:661
+#: application/views/interface_assets/footer.php:672
 msgid ""
 "Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. "
 "Check which DXCC for this particular location is the correct one. If you are "
@@ -5953,17 +5988,17 @@ msgstr ""
 "请稍等，您选择的 DXCC 已经失效，请确认最新的 DXCC 实体，如果您十分确认，请忽"
 "略该警告。"
 
-#: application/views/interface_assets/footer.php:1355
-#: application/views/interface_assets/footer.php:1359
-#: application/views/interface_assets/footer.php:1362
-#: application/views/interface_assets/footer.php:1499
-#: application/views/interface_assets/footer.php:1503
-#: application/views/interface_assets/footer.php:1506
+#: application/views/interface_assets/footer.php:1366
+#: application/views/interface_assets/footer.php:1370
+#: application/views/interface_assets/footer.php:1373
+#: application/views/interface_assets/footer.php:1510
+#: application/views/interface_assets/footer.php:1514
+#: application/views/interface_assets/footer.php:1517
 msgid "grid square"
 msgstr "网格"
 
-#: application/views/interface_assets/footer.php:1362
-#: application/views/interface_assets/footer.php:1506
+#: application/views/interface_assets/footer.php:1373
+#: application/views/interface_assets/footer.php:1517
 msgid "Total count"
 msgstr "总数"
 
