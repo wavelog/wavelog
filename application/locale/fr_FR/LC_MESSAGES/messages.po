@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-07-22 14:29+0000\n"
-"PO-Revision-Date: 2024-07-22 18:28+0000\n"
+"PO-Revision-Date: 2024-07-22 19:23+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@gmail.com>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/fr/>\n"
@@ -1540,11 +1540,11 @@ msgstr "Télécharger cartes QSL"
 
 #: application/controllers/Qslmanagement.php:14
 msgid "QSL Card Management"
-msgstr ""
+msgstr "Gestion des cartes QSL"
 
 #: application/controllers/Qslprint.php:46
 msgid "Print Requested QSLs"
-msgstr ""
+msgstr "Imprimer les QSL demandées"
 
 #: application/controllers/Qso.php:91
 msgid "Add QSO"
@@ -1614,13 +1614,15 @@ msgstr ""
 
 #: application/controllers/Search.php:58
 msgid "Incorrectly logged CQ zones"
-msgstr ""
+msgstr "Zones CQ mal enregistrées"
 
 #: application/controllers/Search.php:70
 msgid ""
 "QSOs unconfirmed on LoTW, but the callsign has uploaded to LoTW after QSO "
 "date"
 msgstr ""
+"QSOs non confirmés sur LoTW, mais l'indicatif a été téléchargé sur LoTW "
+"après la date du QSO"
 
 #: application/controllers/Station.php:35
 #: application/controllers/Station.php:78 application/views/csv/index.php:19
@@ -1641,7 +1643,7 @@ msgstr "Profil de la Station"
 #: application/controllers/Station.php:55
 #: application/controllers/Stationsetup.php:226
 msgid "Create Station Location"
-msgstr ""
+msgstr "Créer un emplacement de station"
 
 #: application/controllers/Station.php:70
 msgid "Edit Station Location: "
@@ -1655,14 +1657,14 @@ msgstr ""
 #: application/views/interface_assets/header.php:369
 #: application/views/interface_assets/header.php:480
 msgid "Station Setup"
-msgstr ""
+msgstr "Configuration de la station"
 
 #: application/controllers/Stationsetup.php:50
 #: application/controllers/Stationsetup.php:68
 #: application/controllers/Stationsetup.php:395
 #: application/controllers/Stationsetup.php:409
 msgid "Not allowed"
-msgstr ""
+msgstr "Interdit"
 
 #: application/controllers/Stationsetup.php:72
 #: application/controllers/Stationsetup.php:86
@@ -1673,7 +1675,7 @@ msgstr ""
 #: application/controllers/Stationsetup.php:436
 #: application/views/qso/index.php:608
 msgid "Error"
-msgstr ""
+msgstr "Erreur"
 
 #: application/controllers/Stationsetup.php:159
 #: application/views/stationsetup/stationsetup.php:22
@@ -1682,19 +1684,19 @@ msgstr "Ajouter un nouveau"
 
 #: application/controllers/Stationsetup.php:166
 msgid "Edit container name"
-msgstr ""
+msgstr "Modifier le nom du conteneur"
 
 #: application/controllers/Stationsetup.php:181
 msgid "Edit linked locations"
-msgstr ""
+msgstr "Modifier les emplacements liés"
 
 #: application/controllers/Stationsetup.php:190
 msgid "Edit visitor site"
-msgstr ""
+msgstr "Modifier le site du visiteur"
 
 #: application/controllers/Stationsetup.php:212
 msgid "Error. Link is already in use!"
-msgstr ""
+msgstr "Erreur. Le lien est déjà utilisé !"
 
 #: application/controllers/Stationsetup.php:253
 #: application/views/options/appearance.php:57
@@ -1721,7 +1723,7 @@ msgstr "Activer ce journal"
 #: application/views/stationsetup/stationsetup.php:46
 #: application/views/view_log/index.php:4
 msgid "Active Logbook"
-msgstr ""
+msgstr "Journal actif"
 
 #: application/controllers/Stationsetup.php:270
 #: application/views/stationsetup/stationsetup.php:55
@@ -1737,7 +1739,7 @@ msgstr ""
 
 #: application/controllers/Stationsetup.php:281
 msgid "Are you sure you want to delete the public slug?"
-msgstr ""
+msgstr "Êtes-vous sûr de vouloir supprimer le slug public ?"
 
 #: application/controllers/Stationsetup.php:349
 #: application/views/station_profile/index.php:69
@@ -1750,13 +1752,13 @@ msgstr ""
 #: application/views/station_profile/index.php:69
 #: application/views/stationsetup/stationsetup.php:154
 msgid "Set Active"
-msgstr ""
+msgstr "Définir actif"
 
 #: application/controllers/Stationsetup.php:351
 #: application/views/station_profile/index.php:71
 #: application/views/stationsetup/stationsetup.php:156
 msgid "Active Station"
-msgstr ""
+msgstr "Station active"
 
 #: application/controllers/Stationsetup.php:354
 #: application/views/interface_assets/header.php:113
@@ -1766,7 +1768,7 @@ msgstr ""
 #: application/views/stationsetup/stationsetup.php:161
 #: application/views/user/main.php:87 application/views/user/main.php:89
 msgid "QSO"
-msgstr ""
+msgstr "QSO"
 
 #: application/controllers/Stationsetup.php:359
 #: application/views/api/help.php:57 application/views/contesting/add.php:59
@@ -1845,35 +1847,35 @@ msgstr "AUCUNE"
 
 #: application/controllers/Stationsetup.php:462
 msgid "Edit Export Map options"
-msgstr ""
+msgstr "Modifier les options d'exportation de la carte"
 
 #: application/controllers/Statistics.php:27
 #: application/views/interface_assets/header.php:134
 msgid "Statistics"
-msgstr ""
+msgstr "Statistiques"
 
 #: application/controllers/Statistics.php:50
 msgid "Custom Statistics"
-msgstr ""
+msgstr "Statistiques personnalisées"
 
 #: application/controllers/Themes.php:27
 #: application/views/interface_assets/header.php:270
 msgid "Themes"
-msgstr ""
+msgstr "Thèmes"
 
 #: application/controllers/Themes.php:46
 msgid "Create Theme"
-msgstr ""
+msgstr "Créer un thème"
 
 #: application/controllers/Themes.php:65
 msgid "Edit Theme"
-msgstr ""
+msgstr "Modifier le thème"
 
 #: application/controllers/Timeline.php:17
 #: application/views/interface_assets/header.php:146
 #: application/views/timeline/index.php:2
 msgid "Timeline"
-msgstr ""
+msgstr "Chronologie"
 
 #: application/controllers/Timeplotter.php:17
 #: application/views/interface_assets/header.php:150
@@ -1883,7 +1885,7 @@ msgstr ""
 
 #: application/controllers/Update.php:26
 msgid "Updates"
-msgstr ""
+msgstr "Mises à jour"
 
 #: application/controllers/Update.php:76
 msgid "Preparing DXCC-Entries: "
@@ -1899,7 +1901,7 @@ msgstr ""
 
 #: application/controllers/Update.php:222
 msgid "DONE"
-msgstr ""
+msgstr "FAIT"
 
 #: application/controllers/User.php:12
 #: application/views/interface_assets/header.php:260
@@ -1908,15 +1910,15 @@ msgstr "Compte des utilisateurs"
 
 #: application/controllers/User.php:52
 msgid "Add User"
-msgstr ""
+msgstr "Ajouter un utilisateur"
 
 #: application/controllers/User.php:166
 msgid "Users"
-msgstr ""
+msgstr "Utilisateurs"
 
 #: application/controllers/User.php:240 application/controllers/User.php:673
 msgid "Edit User"
-msgstr ""
+msgstr "Modifier l'utilisateur"
 
 #: application/controllers/User.php:665 application/controllers/User.php:668
 #: application/views/user/main.php:3 application/views/user/main.php:46
@@ -1929,22 +1931,22 @@ msgstr "mis à jour"
 
 #: application/controllers/User.php:722
 msgid "Profile"
-msgstr ""
+msgstr "Profile"
 
 #: application/controllers/User.php:840 application/controllers/User.php:850
 msgid "Login failed. Try again."
-msgstr ""
+msgstr "La connexion a échoué. Essayer à nouveau."
 
 #: application/controllers/User.php:857
 #: application/views/interface_assets/header.php:348
 #: application/views/user/login.php:89
 #: application/views/visitor/layout/header.php:88
 msgid "Login"
-msgstr ""
+msgstr "Se connecter"
 
 #: application/controllers/User.php:865
 msgid "User logged in"
-msgstr ""
+msgstr "Utilisateur connecté"
 
 #: application/controllers/User.php:896
 msgid ""
@@ -1952,31 +1954,35 @@ msgid ""
 "appears unexpectedly or keeps showing up, please contact an administrator. "
 "Only administrators are currently allowed to log in."
 msgstr ""
+"Désolé. Cette instance est actuellement en mode maintenance. Si ce message "
+"apparaît de manière inattendue ou continue de s'afficher, veuillez contacter "
+"un administrateur. Seuls les administrateurs sont actuellement autorisés à "
+"se connecter."
 
 #: application/controllers/User.php:899
 msgid "Incorrect username or password!"
-msgstr ""
+msgstr "Identifiant ou mot de passe incorrect!"
 
 #: application/controllers/User.php:916
 #, php-format
 msgid "User %s logged out."
-msgstr ""
+msgstr "L'utilisateur %s s'est déconnecté."
 
 #: application/controllers/User.php:930
 msgid "Password Reset is disabled on the Demo!"
-msgstr ""
+msgstr "La réinitialisation du mot de passe est désactivée sur la démo !"
 
 #: application/controllers/User.php:943
 msgid "Forgot Password"
-msgstr ""
+msgstr "Mot de passe oublié"
 
 #: application/controllers/User.php:993 application/views/user/main.php:8
 msgid "Email settings are incorrect."
-msgstr ""
+msgstr "Les paramètres de messagerie sont incorrects."
 
 #: application/controllers/User.php:997 application/controllers/User.php:1002
 msgid "Password Reset Processed."
-msgstr ""
+msgstr "Réinitialisation du mot de passe traitée."
 
 #: application/controllers/User.php:1104
 #: application/views/user/forgot_password.php:51
@@ -1992,14 +1998,14 @@ msgstr "Mot de passe réinitialisé"
 #: application/controllers/Visitor.php:199
 #: application/controllers/Visitor.php:478
 msgid "Unknown Public Page."
-msgstr ""
+msgstr "Page publique inconnue."
 
 #: application/controllers/Visitor.php:74
 #: application/controllers/Visitor.php:165
 #: application/controllers/Visitor.php:195
 #: application/controllers/Visitor.php:474
 msgid "Empty Logbook"
-msgstr ""
+msgstr "Carnet vide"
 
 #: application/controllers/Visitor.php:205
 msgid "Satellite Gridsquare Map"
@@ -2012,36 +2018,42 @@ msgstr "Recherche publique"
 
 #: application/controllers/Visitor.php:444
 msgid "Export Map"
-msgstr ""
+msgstr "Exporter la carte"
 
 #: application/controllers/Webadif.php:90
 #: application/controllers/Webadif.php:137
 #: application/views/interface_assets/header.php:419
 msgid "QO-100 Dx Club Upload"
-msgstr ""
+msgstr "Télécharger QO-100 Dx Club"
 
 #: application/models/Eqslmethods_model.php:281
 msgid "Your eQSL username and/or password is incorrect."
-msgstr ""
+msgstr "Votre nom d'utilisateur et/ou mot de passe eQSL est incorrect."
 
 #: application/models/Eqslmethods_model.php:287
 msgid "Something went wrong with eQSL.cc!"
-msgstr ""
+msgstr "Quelque chose s'est mal passé avec eQSL.cc !"
 
 #: application/models/Eqslmethods_model.php:303
 msgid "eQSL.cc is experiencing issues. Please try exporting QSOs later."
 msgstr ""
+"eQSL.cc rencontre des problèmes. Veuillez essayer d'exporter les QSOs plus "
+"tard."
 
 #: application/models/Eqslmethods_model.php:309
 msgid ""
 "There was an error in one of the QSOs. You might want to manually upload "
 "them."
 msgstr ""
+"Il y a eu une erreur dans l'un des QSOs. Il serait peut-être préférable de "
+"les télécharger manuellement."
 
 #: application/models/Eqslmethods_model.php:315
 msgid ""
 "It seems that the eQSL site has changed. Please open up an issue on GitHub."
 msgstr ""
+"Il semblerait que le site eQSL ait changé. Veuillez ouvrir un problème sur "
+"GitHub."
 
 #: application/models/Hrdlog_model.php:22
 msgid ""
