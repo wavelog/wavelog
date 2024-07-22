@@ -14,7 +14,7 @@ $db_file_path = $db_config_path . "database.php";
 
 // Logfile Path
 global $logfile;
-$logfile = '../install/log/debug.log';
+$logfile = '../application/logs/installer_debug.log';
 
 // Wanted Pre-Check Parameters
 // PHP

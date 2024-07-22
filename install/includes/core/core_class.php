@@ -96,6 +96,7 @@ class Core
 		if ($counter == '13') {
 			return true;
 		} else {
+			log_message('error', 'Failed to validate POST data');
 			return false;
 		}
 	}

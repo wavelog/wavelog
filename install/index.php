@@ -323,7 +323,7 @@ if (!file_exists('.lock')) {
 										</div>
 										<div class="mb-3 position-relative">
 											<label for="websiteurl" class="form-label required"><?= __("Website URL"); ?></label><i id="websiteurl_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= sprintf(__("This is the complete URL where your Wavelog Instance will be available. If you run this installer locally but want to place Wavelog behind a Reverse Proxy with SSL you should type in the new URL here (e.g. %s instead of %s). Don't forget to include the directory from above."), "https://mywavelog.example.org/", "http://192.168.1.100/"); ?>"></i>
-											<input type="text" id="websiteurl" value="<?php echo $http_scheme; ?>://<?php echo str_replace("index.php", "", $_SERVER['HTTP_HOST'] . str_replace("/install/", "", $_SERVER['REQUEST_URI'])) . '/'; ?>" class="form-control" name="websiteurl" />
+											<input type="text" id="websiteurl" value="<?php echo $websiteurl; ?>" class="form-control" name="websiteurl" />
 											<div class="invalid-tooltip">
 												<?= __("This field can't be empty and have to end with a slash 'example/'!"); ?>
 											</div>
@@ -1605,7 +1605,8 @@ if (!file_exists('.lock')) {
 
 <?php } else {
 
-	header("Location: " . strtok($_SERVER['REQUEST_URI'], 'install'));
+	header("Location: $websiteurl");
+	
 } ?>
 
 </html>

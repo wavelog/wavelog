@@ -59,6 +59,8 @@ $language = $_COOKIE[$gt_conf['lang_cookie']];
 // and set the locale for gettext
 T_setlocale(LC_MESSAGES, $language);
 
+$websiteurl = $http_scheme . '://' . str_replace("index.php", "", $_SERVER['HTTP_HOST'] . str_replace("/install/", "", $_SERVER['REQUEST_URI'])) . '/';
+
 ?>
 <!DOCTYPE html>
 <html lang="<?= $language; ?>">
@@ -67,7 +69,7 @@ T_setlocale(LC_MESSAGES, $language);
 	function log_message(level, message) {
 		$.ajax({
 			type: 'POST',
-			url: 'index.php',
+			url: 'ajax.php',
 			data: {
 				write_to_logfile: 1,
 				log_level: level,

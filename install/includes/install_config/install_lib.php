@@ -63,7 +63,7 @@ function verify_log() {
     if (!file_exists($logfile)) {
         if (touch($logfile)) {
             if(is_writable($logfile)) {
-				$log_header = "Wavelog Installer Debug Log\n-------\n\n";
+				$log_header = "Wavelog Installer Debug Log\n-------\nLog Location: $logfile\n\n";
 				file_put_contents($logfile, $log_header, FILE_APPEND);
 				return true;
 			} else {
