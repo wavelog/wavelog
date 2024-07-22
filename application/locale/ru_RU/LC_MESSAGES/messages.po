@@ -1907,32 +1907,36 @@ msgstr "Готово"
 msgid "User Accounts"
 msgstr "Аккаунты пользователей"
 
-#: application/controllers/User.php:51
+#: application/controllers/User.php:51 application/controllers/User.php:52
 msgid "Add User"
 msgstr "Добавить пользователя"
 
-#: application/controllers/User.php:165
+#: application/controllers/User.php:165 application/controllers/User.php:166
 msgid "Users"
 msgstr "Пользователи"
 
 #: application/controllers/User.php:238 application/controllers/User.php:671
+#: application/controllers/User.php:240 application/controllers/User.php:673
 msgid "Edit User"
 msgstr "Редактировать пользователя"
 
 #: application/controllers/User.php:663 application/controllers/User.php:666
 #: application/views/user/main.php:3 application/views/user/main.php:46
+#: application/controllers/User.php:665 application/controllers/User.php:668
 msgid "User"
 msgstr "Пользователь"
 
 #: application/controllers/User.php:663 application/controllers/User.php:666
+#: application/controllers/User.php:665 application/controllers/User.php:668
 msgid "edited"
 msgstr "отредактирован"
 
-#: application/controllers/User.php:720
+#: application/controllers/User.php:720 application/controllers/User.php:722
 msgid "Profile"
 msgstr "Профиль"
 
 #: application/controllers/User.php:838 application/controllers/User.php:848
+#: application/controllers/User.php:840 application/controllers/User.php:850
 msgid "Login failed. Try again."
 msgstr "Вход не выполнен. Попробуйте снова."
 
@@ -1940,14 +1944,15 @@ msgstr "Вход не выполнен. Попробуйте снова."
 #: application/views/interface_assets/header.php:348
 #: application/views/user/login.php:89
 #: application/views/visitor/layout/header.php:88
+#: application/controllers/User.php:857
 msgid "Login"
 msgstr "Вход"
 
-#: application/controllers/User.php:863
+#: application/controllers/User.php:863 application/controllers/User.php:865
 msgid "User logged in"
 msgstr "Пользователь вошёл"
 
-#: application/controllers/User.php:894
+#: application/controllers/User.php:894 application/controllers/User.php:896
 msgid ""
 "Sorry. This instance is currently in maintenance mode. If this message "
 "appears unexpectedly or keeps showing up, please contact an administrator. "
@@ -1958,28 +1963,30 @@ msgstr ""
 "администратором. В настоящий момент только администраторы могут войти на "
 "сервер."
 
-#: application/controllers/User.php:897
+#: application/controllers/User.php:897 application/controllers/User.php:899
 msgid "Incorrect username or password!"
 msgstr "Неверные логин или пароль!"
 
-#: application/controllers/User.php:914
+#: application/controllers/User.php:914 application/controllers/User.php:916
 #, php-format
 msgid "User %s logged out."
 msgstr "Пользователь %s вышел."
 
-#: application/controllers/User.php:928
+#: application/controllers/User.php:928 application/controllers/User.php:930
 msgid "Password Reset is disabled on the Demo!"
 msgstr "Сброс пароля отключен в демо-версии!"
 
-#: application/controllers/User.php:941
+#: application/controllers/User.php:941 application/controllers/User.php:943
 msgid "Forgot Password"
 msgstr "Восстановить пароль"
 
 #: application/controllers/User.php:991 application/views/user/main.php:8
+#: application/controllers/User.php:993
 msgid "Email settings are incorrect."
 msgstr "Настройки емэйл некорректны."
 
 #: application/controllers/User.php:995 application/controllers/User.php:1000
+#: application/controllers/User.php:997 application/controllers/User.php:1002
 msgid "Password Reset Processed."
 msgstr "Осуществлён сброс пароля."
 
@@ -1987,6 +1994,7 @@ msgstr "Осуществлён сброс пароля."
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
+#: application/controllers/User.php:1104
 msgid "Reset Password"
 msgstr "Сбросить пароль"
 
