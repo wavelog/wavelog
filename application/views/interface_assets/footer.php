@@ -7,6 +7,17 @@
 
     var base_url = "<?php echo base_url(); ?>"; // Base URL
     var site_url = "<?php echo site_url(); ?>"; // Site URL
+	let measurement_base = 'K';
+
+	<?php
+	if ($this->session->userdata('user_measurement_base') == NULL) {
+		?>
+		measurement_base = '<?php echo $this->config->item('measurement_base'); ?>';
+	<?php }
+	else { ?>
+		measurement_base = '<?php echo $this->session->userdata('user_measurement_base'); ?>';
+	<?php }
+	?>
 
     var icon_dot_url = "<?php echo base_url();?>assets/images/dot.png";
 
@@ -134,7 +145,7 @@ if($this->session->userdata('user_id') != null) {
 <?php if ($this->config->item('special_callsign') == true && $this->uri->segment(1) == "dashboard") { ?>
 <script type="text/javascript" src="<?php echo base_url() ;?>assets/js/sections/operator.js"></script>
 <script>
-	<?php 
+	<?php
 	# Set some variables for better readability
     $op_call = $this->session->userdata('operator_callsign');
 	$account_call = $this->session->userdata('user_callsign');
@@ -142,14 +153,14 @@ if($this->session->userdata('user_id') != null) {
 
     // JS variable which is used in operator.js
     let sc_account_call = '<?php echo $account_call; ?>'
-    
-	<?php 
+
+	<?php
     # if the operator call and the account call is the same we show the dialog (except for admins!)
     if ($op_call == $account_call && $user_type != '99') { ?>
 
         // load the dialog with javascript
         displayOperatorDialog();
-    
+
     <?php } ?>
 </script>
 <?php } ?>
