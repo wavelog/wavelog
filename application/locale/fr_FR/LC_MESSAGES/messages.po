@@ -4,14 +4,15 @@
 #
 # Aurélien Barrau <abarrau378@gmail.com>, 2024.
 # Byt3 <falko@205er.de>, 2024.
+# "Francisco (F4VSE)" <kikosgc@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-07-22 14:29+0000\n"
-"PO-Revision-Date: 2024-07-13 09:35+0000\n"
-"Last-Translator: Byt3 <falko@205er.de>\n"
-"Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/fr/>\n"
+"PO-Revision-Date: 2024-07-22 18:23+0000\n"
+"Last-Translator: \"Francisco (F4VSE)\" <kikosgc@gmail.com>\n"
+"Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/fr/>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -333,7 +334,7 @@ msgstr "CQ Magazine WAZ"
 #: application/views/accumulate/index.php:60
 #: application/views/timeline/index.php:45
 msgid "Worked All States (WAS)"
-msgstr ""
+msgstr "Worked All States (WAS)"
 
 #: application/controllers/Awards.php:714 application/views/bands/index.php:53
 #: application/views/interface_assets/header.php:186
@@ -356,7 +357,7 @@ msgstr "Comtés US"
 
 #: application/controllers/Awards.php:887
 msgid "Log View - Counties"
-msgstr ""
+msgstr "Vue du journal - Comtés"
 
 #: application/controllers/Awards.php:894
 msgid "Awards - "
@@ -509,19 +510,19 @@ msgstr "Debug"
 
 #: application/controllers/Debug.php:118
 msgid "Migrate data now"
-msgstr ""
+msgstr "Migrer les données maintenant"
 
 #: application/controllers/Debug.php:121
 msgid "Migration already done. Run again?"
-msgstr ""
+msgstr "Migration déjà effectuée. Recommencer ?"
 
 #: application/controllers/Debug.php:125
 msgid "No data to migrate"
-msgstr ""
+msgstr "Aucune donnée à migrer"
 
 #: application/controllers/Debug.php:129 application/controllers/Debug.php:134
 msgid "No migration possible"
-msgstr ""
+msgstr "Aucune migration possible"
 
 #: application/controllers/Debug.php:216
 msgid ""
@@ -529,10 +530,14 @@ msgid ""
 "everything seems right you can delete the folders 'assets/qslcard' and "
 "'images/eqsl_card_images'."
 msgstr ""
+"La migration des fichiers a réussi, mais veuillez également vérifier "
+"manuellement. Si tout vous semble correct, vous pouvez supprimer les "
+"dossiers 'assets/qslcard' et 'images/eqsl_card_images'."
 
 #: application/controllers/Debug.php:219
 msgid "File Migration failed. Please check the Error Log."
 msgstr ""
+"La migration des fichiers a échoué. Veuillez vérifier le journal des erreurs."
 
 #: application/controllers/Distances.php:17
 #: application/views/distances/index.php:5
@@ -613,12 +618,12 @@ msgstr "Hamsat - Chasseur itinérant de satellite"
 #, php-format
 msgid "%d QSO is now uploaded to HRDlog"
 msgid_plural "%d QSOs are now uploaded to HRDlog"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d QSO est maintenant téléchargé sur HRDlog"
+msgstr[1] "%d QSO sont maintenant téléchargés sur HRDlog"
 
 #: application/controllers/Hrdlog.php:76
 msgid "No QSOs found to upload."
-msgstr ""
+msgstr "Aucun QSO trouvé à télécharger."
 
 #: application/controllers/Kmlexport.php:24
 #: application/views/interface_assets/header.php:380
@@ -637,58 +642,58 @@ msgstr "Créer un type d'étiquette"
 #: application/controllers/Labels.php:78 application/controllers/Labels.php:402
 #: application/views/labels/create.php:22 application/views/labels/edit.php:22
 msgid "Label Name"
-msgstr ""
+msgstr "Nom de l'étiquette"
 
 #: application/controllers/Labels.php:79 application/controllers/Labels.php:403
 #: application/views/labels/create.php:28 application/views/labels/edit.php:28
 #: application/views/labels/index.php:76
 msgid "Paper Type"
-msgstr ""
+msgstr "Type de papier"
 
 #: application/controllers/Labels.php:80 application/controllers/Labels.php:404
 #: application/views/labels/index.php:42 application/views/labels/index.php:77
 msgid "Measurement"
-msgstr ""
+msgstr "Mesure"
 
 #: application/controllers/Labels.php:81 application/controllers/Labels.php:405
 msgid "Top Margin"
-msgstr ""
+msgstr "Marge supérieure"
 
 #: application/controllers/Labels.php:82 application/controllers/Labels.php:406
 msgid "Left Margin"
-msgstr ""
+msgstr "Marge de gauche"
 
 #: application/controllers/Labels.php:83 application/controllers/Labels.php:407
 msgid "QSLs Horizontally"
-msgstr ""
+msgstr "QSLs horizontalement"
 
 #: application/controllers/Labels.php:84 application/controllers/Labels.php:408
 msgid "QSLs Vertically"
-msgstr ""
+msgstr "QSLs verticalement"
 
 #: application/controllers/Labels.php:85 application/controllers/Labels.php:409
 msgid "Horizontal Space"
-msgstr ""
+msgstr "Espace horizontal"
 
 #: application/controllers/Labels.php:86 application/controllers/Labels.php:410
 msgid "Vertical Space"
-msgstr ""
+msgstr "Espace vertical"
 
 #: application/controllers/Labels.php:87 application/controllers/Labels.php:411
 msgid "Label width"
-msgstr ""
+msgstr "Largeur de l'étiquette"
 
 #: application/controllers/Labels.php:88 application/controllers/Labels.php:412
 msgid "Label height"
-msgstr ""
+msgstr "Hauteur de l'étiquette"
 
 #: application/controllers/Labels.php:89 application/controllers/Labels.php:413
 msgid "Size of Font"
-msgstr ""
+msgstr "Taille de la police"
 
 #: application/controllers/Labels.php:90 application/controllers/Labels.php:414
 msgid "Number of QSOs on label"
-msgstr ""
+msgstr "Nombre de QSO sur l'étiquette"
 
 #: application/controllers/Labels.php:115
 msgid "Create Paper Type"
@@ -697,17 +702,17 @@ msgstr "Créer un type de papier"
 #: application/controllers/Labels.php:119
 #: application/controllers/Labels.php:461
 msgid "Paper Name"
-msgstr ""
+msgstr "Nom du papier"
 
 #: application/controllers/Labels.php:120
 #: application/controllers/Labels.php:462
 msgid "Paper Width"
-msgstr ""
+msgstr "Largeur du papier"
 
 #: application/controllers/Labels.php:121
 #: application/controllers/Labels.php:463
 msgid "Paper Height"
-msgstr ""
+msgstr "Hauteur du papier"
 
 #: application/controllers/Labels.php:132
 #: application/controllers/Labels.php:471
@@ -715,16 +720,20 @@ msgid ""
 "Your paper could not be saved. Remember that it can't have the same name as "
 "existing paper types."
 msgstr ""
+"Votre papier n'a pas pu être enregistré. N'oubliez pas qu'il ne peut pas "
+"porter le même nom que les types de papier déjà existants."
 
 #: application/controllers/Labels.php:205
 #: application/controllers/Labels.php:208
 msgid "You need to assign a paperType to the label before printing"
-msgstr ""
+msgstr "Vous devez attribuer un paperType à l'étiquette avant d'imprimer"
 
 #: application/controllers/Labels.php:215
 #: application/controllers/Labels.php:218
 msgid "You need to create a label and set it to be used for print."
 msgstr ""
+"Vous devez créer une étiquette et la configurer pour qu'elle soit utilisée "
+"pour l'impression."
 
 #: application/controllers/Labels.php:225
 #: application/controllers/Labels.php:228
@@ -732,10 +741,12 @@ msgid ""
 "Something went wrong! The label could not be generated. Check label size and "
 "font size."
 msgstr ""
+"Quelque chose s'est mal passé ! L'étiquette n'a pas pu être générée. "
+"Vérifiez la taille de l’étiquette et la taille de la police."
 
 #: application/controllers/Labels.php:251
 msgid "0 QSOs found for print!"
-msgstr ""
+msgstr "0 QSO trouvés à imprimer !"
 
 #: application/controllers/Labels.php:391
 msgid "Edit Label"
@@ -743,11 +754,11 @@ msgstr "Modifier l'étiquette"
 
 #: application/controllers/Labels.php:420
 msgid "Label was saved."
-msgstr ""
+msgstr "L'étiquette a été enregistrée."
 
 #: application/controllers/Labels.php:428
 msgid "Label was deleted."
-msgstr ""
+msgstr "L'étiquette a été supprimée."
 
 #: application/controllers/Labels.php:450
 msgid "Edit Paper"
@@ -755,11 +766,11 @@ msgstr "Modifier le papier"
 
 #: application/controllers/Labels.php:475
 msgid "Paper was saved."
-msgstr ""
+msgstr "Le papier a été enregistrée."
 
 #: application/controllers/Labels.php:488
 msgid "Paper was deleted."
-msgstr ""
+msgstr "Le papier a été supprimée."
 
 #: application/controllers/Logbook.php:37
 msgid ""
@@ -1323,29 +1334,29 @@ msgstr "Logbook of the World"
 
 #: application/controllers/Lotw.php:610
 msgid "LoTW ADIF Information"
-msgstr ""
+msgstr "Information ADIF LoTW"
 
 #: application/controllers/Lotw.php:718
 msgid "LoTW ADIF Import"
-msgstr ""
+msgstr "Importation ADIF LoTW"
 
 #: application/controllers/Lotw.php:830
 msgid "LoTW .TQ8 Upload"
-msgstr ""
+msgstr "Télécharger .TQ8 LoTW"
 
 #: application/controllers/Lotw.php:927 application/controllers/Lotw.php:932
 msgid "LoTW .TQ8 Sent"
-msgstr ""
+msgstr ".TQ8 LoTW Envoyé"
 
 #: application/controllers/Lotw.php:939
 msgid "LoTW .TQ8 Not Sent"
-msgstr ""
+msgstr ".TQ8 LoTW Pas Envoyé"
 
 #: application/controllers/Mode.php:25
 #: application/views/interface_assets/header.php:264
 #: application/views/mode/index.php:15
 msgid "Modes"
-msgstr ""
+msgstr "Modes"
 
 #: application/controllers/Mode.php:62
 msgid "Edit Mode"
@@ -1365,12 +1376,12 @@ msgstr "Notes"
 
 #: application/controllers/Notes.php:38
 msgid "Add Notes"
-msgstr ""
+msgstr "Ajouter des notes"
 
 #: application/controllers/Notes.php:58
 #: application/views/oqrs/showrequests.php:88
 msgid "Note"
-msgstr ""
+msgstr "Note"
 
 #: application/controllers/Notes.php:79 application/views/notes/edit.php:7
 #: application/views/notes/view.php:19
@@ -1391,13 +1402,13 @@ msgstr "Edition d'une Note"
 #: application/controllers/Options.php:387
 #: application/controllers/Options.php:397
 msgid "Wavelog Options"
-msgstr ""
+msgstr "Paramètres Wavelog"
 
 #: application/controllers/Options.php:42
 #: application/controllers/Options.php:57
 #: application/views/options/sidebar.php:4
 msgid "Appearance"
-msgstr ""
+msgstr "Apparence"
 
 #: application/controllers/Options.php:78
 #: application/controllers/Options.php:86
@@ -1407,7 +1418,7 @@ msgstr ""
 #: application/controllers/Options.php:118
 #: application/controllers/Options.php:126
 msgid "Options saved"
-msgstr ""
+msgstr "Paramètres enregistrées"
 
 #: application/controllers/Options.php:165
 msgid "de continent changed to "
