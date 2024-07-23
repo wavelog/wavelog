@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-23 08:43+0000\n"
+"POT-Creation-Date: 2024-07-23 10:31+0000\n"
 "PO-Revision-Date: 2024-07-09 13:26+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
@@ -329,7 +329,7 @@ msgid "CQ Magazine WAZ"
 msgstr ""
 
 #: application/controllers/Awards.php:652
-#: application/views/accumulate/index.php:60
+#: application/views/accumulate/index.php:61
 #: application/views/timeline/index.php:45
 msgid "Worked All States (WAS)"
 msgstr ""
@@ -889,7 +889,7 @@ msgid "Clublog"
 msgstr ""
 
 #: application/controllers/Logbook.php:1273
-#: application/views/accumulate/index.php:30
+#: application/views/accumulate/index.php:31
 #: application/views/activated_gridmap/index.php:39
 #: application/views/adif/dcl_success.php:33
 #: application/views/awards/cq/index.php:86
@@ -1156,7 +1156,7 @@ msgid "Distance"
 msgstr ""
 
 #: application/controllers/Logbook.php:1284
-#: application/views/accumulate/index.php:20
+#: application/views/accumulate/index.php:21
 #: application/views/activated_gridmap/index.php:8
 #: application/views/activators/index.php:7
 #: application/views/adif/dcl_success.php:32
@@ -2087,6 +2087,10 @@ msgid "Accumulated number of VUCC Grids worked"
 msgstr ""
 
 #: application/views/accumulate/index.php:7
+msgid "Accumulated number of WAJA worked"
+msgstr ""
+
+#: application/views/accumulate/index.php:8
 #: application/views/dashboard/index.php:222
 #: application/views/dayswithqso/index.php:16
 #: application/views/statistics/index.php:18
@@ -2094,28 +2098,28 @@ msgstr ""
 msgid "Year"
 msgstr "Jaar"
 
-#: application/views/accumulate/index.php:8
-#: application/views/accumulate/index.php:88
+#: application/views/accumulate/index.php:9
+#: application/views/accumulate/index.php:95
 msgid "Yearly"
 msgstr ""
 
-#: application/views/accumulate/index.php:9
+#: application/views/accumulate/index.php:10
 #: application/views/dashboard/index.php:227
 #: application/views/visitor/index.php:251
 msgid "Month"
 msgstr "Maand"
 
-#: application/views/accumulate/index.php:10
-#: application/views/accumulate/index.php:94
+#: application/views/accumulate/index.php:11
+#: application/views/accumulate/index.php:101
 msgid "Monthly"
 msgstr ""
 
-#: application/views/accumulate/index.php:11
+#: application/views/accumulate/index.php:12
 msgid "Difference"
 msgstr ""
 
-#: application/views/accumulate/index.php:23
-#: application/views/accumulate/index.php:33
+#: application/views/accumulate/index.php:24
+#: application/views/accumulate/index.php:34
 #: application/views/activated_gridmap/index.php:10
 #: application/views/activated_gridmap/index.php:22
 #: application/views/activated_gridmap/index.php:32
@@ -2197,35 +2201,40 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: application/views/accumulate/index.php:49
+#: application/views/accumulate/index.php:50
 #: application/views/timeline/index.php:41
 msgid "Award"
 msgstr ""
 
-#: application/views/accumulate/index.php:54
+#: application/views/accumulate/index.php:55
 #: application/views/timeline/index.php:44
 msgid "DX Century Club (DXCC)"
 msgstr ""
 
-#: application/views/accumulate/index.php:66
+#: application/views/accumulate/index.php:67
 #: application/views/timeline/index.php:46
 msgid "Islands On The Air (IOTA)"
 msgstr ""
 
-#: application/views/accumulate/index.php:72
+#: application/views/accumulate/index.php:73
 #: application/views/timeline/index.php:47
 msgid "Worked All Zones (WAZ)"
 msgstr ""
 
-#: application/views/accumulate/index.php:78
+#: application/views/accumulate/index.php:79
 msgid "VHF/UHF Century Club (VUCC)"
 msgstr ""
 
-#: application/views/accumulate/index.php:83
+#: application/views/accumulate/index.php:85
+#: application/views/timeline/index.php:49
+msgid "Worked All Japan (WAJA)"
+msgstr ""
+
+#: application/views/accumulate/index.php:90
 msgid "Period"
 msgstr ""
 
-#: application/views/accumulate/index.php:104
+#: application/views/accumulate/index.php:111
 #: application/views/activators/index.php:50
 #: application/views/awards/cq/index.php:111
 #: application/views/awards/dok/index.php:127
@@ -9425,10 +9434,6 @@ msgstr ""
 
 #: application/views/timeline/index.php:48
 msgid "VHF / UHF Century Club (VUCC)"
-msgstr ""
-
-#: application/views/timeline/index.php:49
-msgid "Worked All Japan (WAJA)"
 msgstr ""
 
 #: application/views/timeplotter/index.php:2
