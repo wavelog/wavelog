@@ -82,7 +82,7 @@ To use this widget insert this Element:
             </div>
             <div class="bottom-right mt-3">
                 <p><?= sprintf(__("Request a QSL card for your QSO with %s."), $user_callsign); ?></p>
-                <form action="<?php echo site_url() . '/oqrs/get_qsos_grouped'; ?>" method="POST" target="_blank">
+                <form action="<?php echo base_url() . 'index.php/oqrs/get_qsos_grouped'; ?>" method="POST" target="_blank">
                     <div class="row g-3 align-items-center mt-3 d-flex">
                         <div class="col-auto">
                             <label for="oqrs_callsign" class="col-form-label"><?= __("Your Callsign:"); ?></label>
