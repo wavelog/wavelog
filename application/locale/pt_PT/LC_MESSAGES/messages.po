@@ -236,6 +236,7 @@ msgstr "Visualização do log - VUCC"
 #: application/controllers/Timeline.php:98
 #: application/controllers/Timeline.php:101
 #: application/controllers/Timeline.php:104
+#: application/controllers/Timeline.php:107
 msgid "Log View"
 msgstr "Ver log"
 
@@ -811,7 +812,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:37 application/views/qso/index.php:42
 #: application/views/search/result_search.php:13
 #: application/views/timeline/index.php:55 application/views/user/edit.php:562
-#: application/views/user/edit.php:649
+#: application/views/user/edit.php:649 application/views/timeline/index.php:56
 msgid "QSL"
 msgstr "QSL"
 
@@ -845,7 +846,7 @@ msgstr "QSL"
 #: application/views/view_log/partial/log_ajax.php:232
 #: application/views/view_log/partial/log_ajax.php:249
 #: application/views/view_log/qso.php:408 src/QSLManager/QSO.php:367
-#: src/QSLManager/QSO.php:383
+#: src/QSLManager/QSO.php:383 application/views/timeline/index.php:60
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -879,6 +880,7 @@ msgstr "LoTW"
 #: application/views/view_log/partial/log_ajax.php:217
 #: application/views/view_log/partial/log_ajax.php:218
 #: src/QSLManager/QSO.php:446 src/QSLManager/QSO.php:459
+#: application/views/timeline/index.php:64
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -1045,6 +1047,7 @@ msgstr "RST (R)"
 #: application/views/view_log/qso.php:235
 #: application/views/view_log/qso.php:528
 #: application/views/visitor/index.php:15
+#: application/views/timeline/index.php:118
 msgid "Country"
 msgstr "País"
 
@@ -1072,6 +1075,7 @@ msgstr "País"
 #: application/views/user/edit.php:299 application/views/user/edit.php:322
 #: application/views/view_log/partial/log_ajax.php:8
 #: application/views/visitor/index.php:18
+#: application/views/timeline/index.php:202
 msgid "IOTA"
 msgstr "IOTA"
 
@@ -1100,6 +1104,7 @@ msgstr "IOTA"
 #: application/views/user/edit.php:303 application/views/user/edit.php:326
 #: application/views/view_log/partial/log_ajax.php:12
 #: application/views/visitor/index.php:24
+#: application/views/timeline/index.php:177
 msgid "State"
 msgstr "Estado"
 
@@ -1140,6 +1145,7 @@ msgstr "Estado"
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/view_log/qso.php:515
 #: application/views/visitor/index.php:27
+#: application/views/timeline/index.php:257
 msgid "Gridsquare"
 msgstr "Gridsquare"
 
@@ -1308,6 +1314,7 @@ msgstr "Operador"
 #: application/views/view_log/partial/log_ajax.php:29
 #: application/views/view_log/qso.php:236
 #: application/views/view_log/qso.php:529
+#: application/views/timeline/index.php:134
 msgid "Deleted DXCC"
 msgstr "DXCC cancelada"
 
@@ -2261,6 +2268,12 @@ msgstr ""
 #: application/views/timeline/index.php:214
 #: application/views/timeline/index.php:241
 #: application/views/timeplotter/index.php:59
+#: application/views/timeline/index.php:72
+#: application/views/timeline/index.php:137
+#: application/views/timeline/index.php:164
+#: application/views/timeline/index.php:218
+#: application/views/timeline/index.php:243
+#: application/views/timeline/index.php:270
 msgid "Show"
 msgstr ""
 
@@ -2293,6 +2306,7 @@ msgstr ""
 #: application/views/awards/wab/index.php:64
 #: application/views/gridmap/index.php:92
 #: application/views/timeline/index.php:51
+#: application/views/timeline/index.php:52
 msgid "Confirmation"
 msgstr ""
 
@@ -2375,6 +2389,7 @@ msgstr ""
 #: application/views/awards/wwff/index.php:64
 #: application/views/public_search/empty.php:3
 #: application/views/qrz/export.php:64 application/views/timeline/index.php:100
+#: application/views/timeline/index.php:102
 msgid "Nothing found!"
 msgstr ""
 
@@ -2427,6 +2442,12 @@ msgstr ""
 #: application/views/timeline/index.php:176
 #: application/views/timeline/index.php:203
 #: application/views/timeline/index.php:229
+#: application/views/timeline/index.php:121
+#: application/views/timeline/index.php:153
+#: application/views/timeline/index.php:178
+#: application/views/timeline/index.php:205
+#: application/views/timeline/index.php:232
+#: application/views/timeline/index.php:258
 msgid "Show QSO's"
 msgstr ""
 
@@ -2504,6 +2525,11 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:57
 #: application/views/visitor/index.php:147
 #: application/views/widgets/qsos.php:24
+#: application/views/timeline/index.php:116
+#: application/views/timeline/index.php:151
+#: application/views/timeline/index.php:176
+#: application/views/timeline/index.php:230
+#: application/views/timeline/index.php:255
 msgid "Date"
 msgstr ""
 
@@ -2534,6 +2560,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:59
 #: application/views/visitor/index.php:150
 #: application/views/widgets/qsos.php:26
+#: application/views/timeline/index.php:256
 msgid "Time"
 msgstr ""
 
@@ -2931,6 +2958,7 @@ msgstr ""
 #: application/views/stationsetup/stationsetup.php:31
 #: application/views/timeline/index.php:117
 #: application/views/update/index.php:30
+#: application/views/timeline/index.php:119
 msgid "Status"
 msgstr ""
 
@@ -3241,6 +3269,7 @@ msgstr ""
 #: application/views/station_profile/edit.php:126
 #: application/views/timeline/index.php:202
 #: application/views/timeplotter/index.php:44
+#: application/views/timeline/index.php:231
 msgid "CQ Zone"
 msgstr ""
 
@@ -3461,6 +3490,8 @@ msgstr ""
 #: application/views/awards/iota/index.php:170
 #: application/views/timeline/index.php:115
 #: application/views/timeline/index.php:175
+#: application/views/timeline/index.php:117
+#: application/views/timeline/index.php:204
 msgid "Prefix"
 msgstr ""
 
@@ -3626,6 +3657,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:19
 #: application/views/view_log/qso.php:191
 #: application/views/view_log/qso.php:511
+#: application/views/timeline/index.php:203
 msgid "Name"
 msgstr ""
 
@@ -3921,6 +3953,7 @@ msgid "Show WAJA Map"
 msgstr ""
 
 #: application/views/awards/waja/index.php:152
+#: application/views/timeline/index.php:152
 msgid "Prefecture"
 msgstr ""
 
@@ -5151,6 +5184,7 @@ msgstr ""
 #: application/views/dayswithqso/index.php:86
 #: application/views/dayswithqso/index.php:108
 #: application/views/timeline/index.php:118
+#: application/views/timeline/index.php:120
 msgid "End Date"
 msgstr ""
 
@@ -9960,8 +9994,8 @@ msgstr "Esta demonstração será reiniciada todas as noites às 0200z."
 msgid ""
 "More Information about Wavelog on <a href='%s' target='_blank'>Github</a>."
 msgstr ""
-"Mais informações acerca do Wavelog no <a href='%s' "
-"target='_blank'>Github</a>."
+"Mais informações acerca do Wavelog no <a href='%s' target='_blank'>Github</"
+"a>."
 
 #: application/views/user/login.php:77
 msgid "Forgot your password?"
@@ -10298,4 +10332,8 @@ msgstr ""
 
 #: application/views/webadif/mark_webadif.php:16
 msgid "The QSOs are marked as exported to QO-100 Dx Club."
+msgstr ""
+
+#: application/views/timeline/index.php:49
+msgid "Worked All Japan (WAJA)"
 msgstr ""
