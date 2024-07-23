@@ -1492,11 +1492,13 @@ msgid "Version Info will not be shown to any user"
 msgstr "版本信息不再会向用户显示"
 
 #: application/controllers/Oqrs.php:22 application/controllers/Oqrs.php:61
+#: application/controllers/Oqrs.php:73
 msgid "Log Search & OQRS"
 msgstr "查找日志 & OQRS"
 
 #: application/controllers/Oqrs.php:92
 #: application/views/interface_assets/header.php:405
+#: application/controllers/Oqrs.php:104
 msgid "OQRS Requests"
 msgstr "OQRS"
 
@@ -1595,6 +1597,7 @@ msgstr "卫星时钟"
 #: application/views/search/main.php:33
 #: application/views/visitor/layout/header.php:99
 #: application/views/visitor/layout/header.php:100
+#: application/views/oqrs/index.php:28
 msgid "Search"
 msgstr "搜索"
 
@@ -1981,6 +1984,7 @@ msgstr "重置密码"
 #: application/controllers/Visitor.php:169
 #: application/controllers/Visitor.php:199
 #: application/controllers/Visitor.php:478
+#: application/controllers/Widgets.php:40
 msgid "Unknown Public Page."
 msgstr "公开页面未知。"
 
@@ -1988,6 +1992,7 @@ msgstr "公开页面未知。"
 #: application/controllers/Visitor.php:165
 #: application/controllers/Visitor.php:195
 #: application/controllers/Visitor.php:474
+#: application/controllers/Widgets.php:36
 msgid "Empty Logbook"
 msgstr "日志为空"
 
@@ -4303,6 +4308,7 @@ msgstr "停用所有"
 
 #: application/views/cabrillo/index.php:2
 #: application/views/cabrillo/index.php:34 application/views/oqrs/index.php:54
+#: application/views/oqrs/index.php:59
 msgid "Proceed"
 msgstr "继续"
 
@@ -6195,6 +6201,7 @@ msgstr "日志"
 #: application/views/logbookadvanced/index.php:447
 #: application/views/oqrs/index.php:22 application/views/user/edit.php:441
 #: application/views/visitor/layout/header.php:97
+#: application/views/oqrs/index.php:27
 msgid "Search Callsign"
 msgstr "查询呼号"
 
@@ -7122,10 +7129,9 @@ msgid ""
 "have all confirmations since chosen date, or since your last LoTW "
 "confirmation (fetched from your log), up until now."
 msgstr ""
-"Wavelog 将会使用储存在您用户信息当中的 LoTW 用户名和密码从 LoTW "
-"上为您下载报告。Wavelog 下载的这份报告将会包括自你所选之日以来的或者你最后的 "
-"LoTW QSL 确认信息（目前日志当中）以来的所有确认。注：LoTW 的下载功能仅能导出 "
-"QSL 记录。"
+"Wavelog 将会使用储存在您用户信息当中的 LoTW 用户名和密码从 LoTW 上为您下载报"
+"告。Wavelog 下载的这份报告将会包括自你所选之日以来的或者你最后的 LoTW QSL 确"
+"认信息（目前日志当中）以来的所有确认。注：LoTW 的下载功能仅能导出 QSL 记录。"
 
 #: application/views/lotw/import.php:64
 msgid "Import LoTW Matches"
@@ -7280,7 +7286,8 @@ msgstr "您可以指定哪些模式显示在创建 QSO 时出现的列表中。"
 msgid ""
 "Active modes will be shown in the QSO 'Mode' drop-down, while inactive modes "
 "will be hidden and cannot be selected."
-msgstr "启用的模式将显示在 QSO 模式的下拉菜单中，而非启用的模式将被隐藏，无法选择。"
+msgstr ""
+"启用的模式将显示在 QSO 模式的下拉菜单中，而非启用的模式将被隐藏，无法选择。"
 
 #: application/views/mode/index.php:29
 msgid "Sub-Mode"
@@ -9317,8 +9324,9 @@ msgid ""
 "see all the locations across one session from the logbook areas to the "
 "analytics. Great for when your operating in multiple locations but they are "
 "part of the same DXCC or VUCC Circle."
-msgstr "台站日志可以让您对日志进行分组，如您的电台想在多个 DXCC 或 VUCC "
-"下通联，您可让一个日志关联到多个不同的台站地址。"
+msgstr ""
+"台站日志可以让您对日志进行分组，如您的电台想在多个 DXCC 或 VUCC 下通联，您可"
+"让一个日志关联到多个不同的台站地址。"
 
 #: application/views/stationsetup/stationsetup.php:32
 msgid "Linked locations"
@@ -10437,6 +10445,31 @@ msgstr ""
 
 #: application/views/accumulate/index.php:7
 msgid "Accumulated number of WAJA worked"
+msgstr ""
+
+#: application/controllers/Widgets.php:21
+msgid "Unknown Public Page, please make sure the public slug is correct."
+msgstr ""
+
+#: application/views/widgets/oqrs.php:21
+msgid "Wavelog OQRS"
+msgstr ""
+
+#: application/views/widgets/oqrs.php:81
+msgid "Wavelog OQRS Request"
+msgstr ""
+
+#: application/views/widgets/oqrs.php:84
+#, php-format
+msgid "Request a QSL card for your QSO with %s."
+msgstr ""
+
+#: application/views/widgets/oqrs.php:88
+msgid "Your Callsign:"
+msgstr ""
+
+#: application/views/widgets/oqrs.php:95
+msgid "Submit Request"
 msgstr ""
 
 #~ msgid "Accumulated Number of DXCCs worked"

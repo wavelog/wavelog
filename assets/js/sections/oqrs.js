@@ -592,6 +592,10 @@ $(document).ready(function () {
         });
     });
 
+    if($('#oqrssearch').val() != '') {
+        searchOqrsGrouped();
+    }
+
 });
 
 function selectQsoID(qsoID) {
