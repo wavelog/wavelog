@@ -119,12 +119,14 @@ class OptionsLib {
 
     }
         
-    function get_logo($logo_location) {
+    function get_logo($logo_location, $theme = null) {
 
         $CI =& get_instance();
 
         // get the theme with the get_theme() function above
-        $theme = $this->get_theme();
+        if ($theme == null) {
+            $theme = $this->get_theme();
+        }
         
         // load the themes model and fetch the logo name from it
         $CI->load->model('Themes_model');

@@ -46,26 +46,7 @@ class Widgets extends CI_Controller {
 		}
 	}
 
-	public function oqrs($logbook_slug = null) {
-		if ($logbook_slug == null || !$this->logbooks_model->public_slug_exists($logbook_slug)) {
-			show_404(__("Unknown Public Page, please make sure the public slug is correct."));
-			return;
-		}
-	
-		$logbook_id = $this->logbooks_model->public_slug_exists_logbook_id($logbook_slug);
-		if ($logbook_id == false) {
-			show_404(__("Unknown Public Page, please make sure the public slug is correct."));
-			return;
-		}
-		$this->load->model('user_model');
-		$this->load->model('stationsetup_model');
-		$user_callsign = $this->user_model->get_by_id($this->stationsetup_model->public_slug_exists_userid($logbook_slug))->row()->user_callsign;
-		if ($user_callsign == false) {
-			log_message('error', 'No user_id or user_callsign for public slug: '. $logbook_slug);
-			show_404(__("Can't find any users for this public slug."));
-			return;
-		}
-
+	public function oqrs($user_callsign) {
 		$this->load->model('oqrs_model');
 		$stations = $this->oqrs_model->get_oqrs_stations();
 	
@@ -73,11 +54,22 @@ class Widgets extends CI_Controller {
 			show_404(__("No stations found that are using Wavelog OQRS."));
 			return;
 		}
+
+		$slug = $this->security->xss_clean($this->input->get('slug'));
+		if ($slug != null) {
+			$data['logo_url'] = site_url() . '/visitor/' . $slug;
+		} else {
+			$data['logo_url'] = 'https://github.com/wavelog/wavelog';
+		}
+
+		$theme = $this->security->xss_clean($this->input->get('theme'));
+		if ($theme != null) {
+			$data['theme'] = $theme;
+		} else {
+			$data['theme'] = $this->config->item('option_theme');
+		}
 	
-		$data['slug'] = $logbook_slug;
 		$data['user_callsign'] = $user_callsign;
-		$data['groupedSearch'] = $this->optionslib->get_option('groupedSearch');
-	
-		$this->load->view('oqrs/oqrs_widget', $data);
+		$this->load->view('widgets/oqrs', $data);
 	}
 }

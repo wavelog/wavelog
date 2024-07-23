@@ -14,20 +14,14 @@ To use this widget insert this Element:
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/darkly/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/darkly/overrides.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/<?php echo $theme; ?>/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/<?php echo $theme; ?>/overrides.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/general.css">
 
     <title><?= __("Wavelog OQRS"); ?></title>
     <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        .widget {
-            background-color: #222222;
-            color: white;
-            display: flex;
+        .widget.container {
+            max-width: none;
         }
 
         .left-column {
@@ -65,7 +59,7 @@ To use this widget insert this Element:
             border-bottom: none;
         }
 
-        .headerLogo {
+        .widgetLogo {
             width: 150px;
             height: 150px;
         }
@@ -78,9 +72,9 @@ To use this widget insert this Element:
 </head>
 
 <body>
-    <div class="widget">
+    <div class="widget container d-flex">
         <div class="left-column">
-            <a href="<?php echo (site_url() . '/visitor/' . $slug); ?>" target="_blank"><img class="headerLogo" src="<?php echo base_url(); ?>assets/logo/<?php echo $this->optionslib->get_logo('header_logo'); ?>.png" alt="Logo" /></a>
+            <a href="<?php echo $logo_url; ?>" target="_blank"><img class="widgetLogo" src="<?php echo base_url(); ?>assets/logo/<?php echo $this->optionslib->get_logo('header_logo', $theme); ?>.png" alt="Logo" /></a>
         </div>
         <div class="right-column">
             <div class="top-right">
