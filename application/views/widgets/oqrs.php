@@ -1,6 +1,6 @@
 <!-- 
  
-This is a OQRS widget to place in your QRZ.com Bio or somewhere else. 
+This is an OQRS widget to place in your QRZ.com Bio or somewhere else. 
 
 To use this widget insert this Element:
 
