@@ -46,7 +46,7 @@ class Widgets extends CI_Controller {
 		}
 	}
 
-	public function oqrs($user_callsign) {
+	public function oqrs($user_callsign = 'CALL MISSING') {
 		$this->load->model('oqrs_model');
 		$stations = $this->oqrs_model->get_oqrs_stations();
 	
