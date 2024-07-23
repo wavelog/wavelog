@@ -1572,6 +1572,7 @@ global $wavelog_url;
 		<?= __("Greek"); ?>
 		<?= __("Italian"); ?>
 		<?= __("Polish"); ?>
+		<?= __("Portuguese"); ?>
 		<?= __("Russian"); ?>
 		<?= __("Spanish"); ?>
 		<?= __("Swedish"); ?>
