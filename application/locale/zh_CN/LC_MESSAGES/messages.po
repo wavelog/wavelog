@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-07-23 08:43+0000\n"
-"PO-Revision-Date: 2024-07-22 18:23+0000\n"
+"PO-Revision-Date: 2024-07-23 10:31+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/zh_Hans/>\n"
@@ -5592,7 +5592,7 @@ msgstr "波兰语"
 
 #: application/views/debug/index.php:629
 msgid "Portuguese"
-msgstr ""
+msgstr "葡萄牙语"
 
 #: application/views/debug/index.php:630
 msgid "Russian"
@@ -5822,17 +5822,17 @@ msgstr "标记所有 QSO 已上传到 eQSL"
 msgid ""
 "Use this if you have lots of QSOs to upload to eQSL it will save the server "
 "timing out."
-msgstr ""
+msgstr "如果你有很多 QSO 需要上传到 eQSL 请使用它，以防服务器超时。"
 
 #: application/views/eqslcard/index.php:10
 #, php-format
 msgid "You are using %s of disk space to store eQSL Card assets"
-msgstr ""
+msgstr "您已使用 %s 的硬盘空间来存储 eQSL 卡片图片"
 
 #: application/views/eqslcard/index.php:34
 #: application/views/qslcard/index.php:33
 msgid "QSL Date"
-msgstr ""
+msgstr "QSL 日期"
 
 #: application/views/eqslcard/index.php:60
 #: application/views/qslcard/index.php:66
@@ -5850,22 +5850,22 @@ msgstr "传播方式"
 
 #: application/views/gridmap/index.php:42
 msgid "None/Empty"
-msgstr ""
+msgstr "无/空"
 
 #: application/views/gridmap/index.php:43
 msgid "All except SAT"
-msgstr ""
+msgstr "除卫星以外"
 
 #: application/views/hamsat/index.php:22
 #, php-format
 msgid ""
 "Cannot filter workable passes only without private feed key. Please set the "
 "feed key in %s."
-msgstr ""
+msgstr "过滤可通联的过境必须提供 Private Feed Key，请在 %s 设置它。"
 
 #: application/views/hamsat/index.php:22
 msgid "your profile"
-msgstr ""
+msgstr "您的个人资料"
 
 #: application/views/hrdlog/export.php:10 application/views/qrz/export.php:10
 #: application/views/webadif/export.php:10
@@ -5887,62 +5887,63 @@ msgstr "您可以在此看到所有尚未上传到HRDLog日志的QSO。"
 msgid ""
 "You need to set a HRDLog Logbook API Code in your station profile. Only "
 "station profiles with an API Key set are displayed."
-msgstr ""
+msgstr "请您在台站设置中配置 HRDLog Logbook API Code，此处仅显示有 API Key "
+"的台站资料。"
 
 #: application/views/hrdlog/export.php:24
 #, php-format
 msgid "The Code can be requested at %s"
-msgstr ""
+msgstr "Code 可以在这里 %s 申请"
 
 #: application/views/hrdlog/export.php:25
 #: application/views/webadif/export.php:34
 msgid "This might take a while as QSO uploads are processed sequentially."
-msgstr ""
+msgstr "由于 QSO 正在按顺序处理，您需要等待一段时间。"
 
 #: application/views/hrdlog/export.php:34 application/views/qrz/export.php:38
 #: application/views/webadif/export.php:41
 msgid "Profile name"
-msgstr ""
+msgstr "资料名称"
 
 #: application/views/hrdlog/export.php:35
 #: application/views/oqrs/showrequests.php:86
 #: application/views/qrz/export.php:39 application/views/webadif/export.php:42
 msgid "Station callsign"
-msgstr ""
+msgstr "台站呼号"
 
 #: application/views/hrdlog/export.php:36 application/views/qrz/export.php:40
 msgid "Edited QSOs not uploaded"
-msgstr ""
+msgstr "编辑的 QSO 未上传"
 
 #: application/views/hrdlog/export.php:37 application/views/qrz/export.php:41
 #: application/views/webadif/export.php:43
 msgid "Total QSOs not uploaded"
-msgstr ""
+msgstr "未上传的 QSO 数量"
 
 #: application/views/hrdlog/export.php:38 application/views/qrz/export.php:42
 #: application/views/webadif/export.php:44
 msgid "Total QSOs uploaded"
-msgstr ""
+msgstr "上传的 QSO 数量"
 
 #: application/views/hrdlog/export.php:60
 msgid ""
 "No Station Locations with valid HRDlog-Settings found. Check the HRDlog "
 "Credentials in the Station Location Settings!"
-msgstr ""
+msgstr "无有效的 HRDLog 台站信息，请在台站配置页面设置 HRDLog 的凭据！"
 
 #: application/views/hrdlog/export.php:87
 msgid "Mark QSOs as exported to HRDLog Logbook"
-msgstr ""
+msgstr "标记 QSO 已导出至 HRDLog Logbook"
 
 #: application/views/hrdlog/mark_hrdlog.php:15
 #: application/views/qrz/mark_qrz.php:15
 #: application/views/webadif/mark_webadif.php:15
 msgid "Yay, it's done!"
-msgstr ""
+msgstr "已完成！"
 
 #: application/views/hrdlog/mark_hrdlog.php:16
 msgid "The QSOs are marked as exported to HRDLog Logbook."
-msgstr ""
+msgstr "QSO 已标记为导出至 HRDLog Logbook。"
 
 #: application/views/interface_assets/footer.php:31
 #: application/views/search/search_result_ajax.php:404
@@ -5987,7 +5988,7 @@ msgstr "清除"
 #: application/views/qso/edit_ajax.php:211
 #: application/views/qso/edit_ajax.php:512
 msgid "Propagation mode is not supported by LoTW. LoTW QSL fields disabled."
-msgstr ""
+msgstr "传播方式不被 LoTW 支持，LoTW 字段已禁用。"
 
 #: application/views/interface_assets/footer.php:127
 #: application/views/interface_assets/header.php:426
@@ -6024,7 +6025,7 @@ msgstr "开发者模式"
 
 #: application/views/interface_assets/header.php:89
 msgid "Maintenance Mode"
-msgstr ""
+msgstr "维护模式"
 
 #: application/views/interface_assets/header.php:99
 msgid "Overview"
@@ -6072,11 +6073,11 @@ msgstr "激活的网格"
 
 #: application/views/interface_assets/header.php:158
 msgid "International"
-msgstr ""
+msgstr "国际"
 
 #: application/views/interface_assets/header.php:164
 msgid "ITU"
-msgstr ""
+msgstr "ITU"
 
 #: application/views/interface_assets/header.php:184
 msgid "Canada"
@@ -6088,7 +6089,7 @@ msgstr "德国"
 
 #: application/views/interface_assets/header.php:194
 msgid "DL Gridmaster"
-msgstr ""
+msgstr "DL Gridmaster"
 
 #: application/views/interface_assets/header.php:198
 msgid "Great Britain"
@@ -6096,7 +6097,7 @@ msgstr "英国"
 
 #: application/views/interface_assets/header.php:200
 msgid "WAB"
-msgstr ""
+msgstr "WAB"
 
 #: application/views/interface_assets/header.php:204
 msgid "Japan"
@@ -6104,7 +6105,7 @@ msgstr "日本"
 
 #: application/views/interface_assets/header.php:210
 msgid "JA Gridmaster"
-msgstr ""
+msgstr "JA Gridmaster"
 
 #: application/views/interface_assets/header.php:214
 msgid "Luxemburg"
@@ -6112,7 +6113,7 @@ msgstr "卢森堡"
 
 #: application/views/interface_assets/header.php:216
 msgid "LX Gridmaster"
-msgstr ""
+msgstr "LX Gridmaster"
 
 #: application/views/interface_assets/header.php:220
 msgid "Switzerland"
@@ -6124,7 +6125,7 @@ msgstr "美国"
 
 #: application/views/interface_assets/header.php:232
 msgid "US Gridmaster"
-msgstr ""
+msgstr "US Gridmaster"
 
 #: application/views/interface_assets/header.php:249
 msgid "Bandmap"
@@ -6192,7 +6193,7 @@ msgstr "Cabrillo 导出"
 
 #: application/views/interface_assets/header.php:410
 msgid "QSL Queue"
-msgstr ""
+msgstr "QSL 队列"
 
 #: application/views/interface_assets/header.php:411
 msgid "Labels"
@@ -6228,7 +6229,7 @@ msgstr "选择电台站位置"
 
 #: application/views/interface_assets/header.php:517
 msgid "Extras"
-msgstr ""
+msgstr "额外"
 
 #: application/views/kml/index.php:7
 msgid "Export your logbook to a KML file for use in Google Earth."
