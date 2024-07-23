@@ -17,7 +17,7 @@
 			echo $global_oqrs_text;
 			echo '<br /><br />';
 		}
-        if ($widget_call == true) {
+        if (($widget_call ?? false) == true) {
             $callsign_value = 'value="'.$callsign.'"';
         } else {
             $callsign_value = '';
