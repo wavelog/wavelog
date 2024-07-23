@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-07-23 08:43+0000\n"
-"PO-Revision-Date: 2024-07-23 12:30+0000\n"
+"PO-Revision-Date: 2024-07-23 13:21+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/zh_Hans/>\n"
@@ -7122,9 +7122,10 @@ msgid ""
 "have all confirmations since chosen date, or since your last LoTW "
 "confirmation (fetched from your log), up until now."
 msgstr ""
-"Wavelog 将会使用储存在你个人用户信息当中的 LoTW 用户名和密码从 LoTW 上为你下"
-"载报告Wavelog 下载的这份报告将会包括自你所选之日以来的或者你最后的 LoTW 确认"
-"信息（目前日志当中）以来的所有确认"
+"Wavelog 将会使用储存在您用户信息当中的 LoTW 用户名和密码从 LoTW "
+"上为您下载报告。Wavelog 下载的这份报告将会包括自你所选之日以来的或者你最后的 "
+"LoTW QSL 确认信息（目前日志当中）以来的所有确认。注：LoTW 的下载功能仅能导出 "
+"QSL 记录。"
 
 #: application/views/lotw/import.php:64
 msgid "Import LoTW Matches"
@@ -7424,12 +7425,12 @@ msgstr "DXClusterAPI"
 msgid ""
 "The Provider of the DXCluster-Cache. You can set up your own Cache with %s "
 "or use a public one"
-msgstr ""
+msgstr "DXCluster-Cache 提供者，您可自行搭建 %s 或使用公开的 Cache"
 
 #: application/views/options/dxcluster.php:41
 #, php-format
 msgid "URL of the DXCluster-Cache. e.g. %s"
-msgstr ""
+msgstr "DXCluster-Cache URL，如 %s"
 
 #: application/views/options/dxcluster.php:44
 msgid "Maximum Age of spots taken care of"
@@ -7679,7 +7680,7 @@ msgstr "输入您的呼号"
 
 #: application/views/oqrs/index.php:21
 msgid "This search will search in all station locations where OQRS is active."
-msgstr ""
+msgstr "此搜索功能将在全部启用 OQRS 的台站地址中搜寻。"
 
 #: application/views/oqrs/index.php:48
 msgid "Select station"
@@ -7687,7 +7688,7 @@ msgstr "选择台站"
 
 #: application/views/oqrs/index.php:64
 msgid "No stations found that are using Wavelog OQRS."
-msgstr ""
+msgstr "未找到启用 OQRS 的台站。"
 
 #: application/views/oqrs/notinlogform.php:2
 msgid ""
@@ -9316,9 +9317,8 @@ msgid ""
 "see all the locations across one session from the logbook areas to the "
 "analytics. Great for when your operating in multiple locations but they are "
 "part of the same DXCC or VUCC Circle."
-msgstr ""
-"台站日志可以让您对自己的台站位置进行分组，这对在同一 DXCC 或 VUCC 下的不同站"
-"点位置非常方便"
+msgstr "台站日志可以让您对日志进行分组，如您的电台想在多个 DXCC 或 VUCC "
+"下通联，您可让一个日志关联到多个不同的台站地址。"
 
 #: application/views/stationsetup/stationsetup.php:32
 msgid "Linked locations"
