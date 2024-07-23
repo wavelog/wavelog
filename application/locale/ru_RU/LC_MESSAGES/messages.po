@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-23 10:31+0000\n"
+"POT-Creation-Date: 2024-07-23 19:40+0000\n"
 "PO-Revision-Date: 2024-07-22 13:58+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1499,10 +1499,11 @@ msgid "Version Info will not be shown to any user"
 msgstr "Информация о версии не будет показана пользователям"
 
 #: application/controllers/Oqrs.php:22 application/controllers/Oqrs.php:61
+#: application/controllers/Oqrs.php:73
 msgid "Log Search & OQRS"
 msgstr "Поиск в журнале и OQRS"
 
-#: application/controllers/Oqrs.php:92
+#: application/controllers/Oqrs.php:104
 #: application/views/interface_assets/header.php:405
 msgid "OQRS Requests"
 msgstr "Запросы OQRS"
@@ -1587,7 +1588,7 @@ msgstr "Спутниковые таймеры"
 #: application/views/interface_assets/header.php:328
 #: application/views/interface_assets/header.php:335
 #: application/views/logbookadvanced/index.php:511
-#: application/views/oqrs/index.php:23
+#: application/views/oqrs/index.php:28
 #: application/views/oqrs/showrequests.php:67
 #: application/views/qslcard/searchform.php:8
 #: application/views/search/cqzones.php:4
@@ -1996,6 +1997,7 @@ msgstr "Сбросить пароль"
 #: application/controllers/Visitor.php:169
 #: application/controllers/Visitor.php:199
 #: application/controllers/Visitor.php:478
+#: application/controllers/Widgets.php:40
 msgid "Unknown Public Page."
 msgstr "Неизвестная публичная страница."
 
@@ -2003,6 +2005,7 @@ msgstr "Неизвестная публичная страница."
 #: application/controllers/Visitor.php:165
 #: application/controllers/Visitor.php:195
 #: application/controllers/Visitor.php:474
+#: application/controllers/Widgets.php:36
 msgid "Empty Logbook"
 msgstr "Пустой журнал"
 
@@ -2024,6 +2027,14 @@ msgstr "Экспорт карты"
 #: application/views/interface_assets/header.php:419
 msgid "QO-100 Dx Club Upload"
 msgstr "Загрузка в QO-100 Dx Club"
+
+#: application/controllers/Widgets.php:21
+msgid "Unknown Public Page, please make sure the public slug is correct."
+msgstr ""
+
+#: application/controllers/Widgets.php:54 application/views/oqrs/index.php:69
+msgid "No stations found that are using Wavelog OQRS."
+msgstr "Не найдено профилей QTH, использующих OQRS."
 
 #: application/models/Eqslmethods_model.php:281
 msgid "Your eQSL username and/or password is incorrect."
@@ -4414,7 +4425,7 @@ msgid "Deactivate All"
 msgstr "Деактивировать все"
 
 #: application/views/cabrillo/index.php:2
-#: application/views/cabrillo/index.php:34 application/views/oqrs/index.php:54
+#: application/views/cabrillo/index.php:34 application/views/oqrs/index.php:59
 msgid "Proceed"
 msgstr "Продолжить"
 
@@ -6366,7 +6377,7 @@ msgstr "Журнал"
 
 #: application/views/interface_assets/header.php:334
 #: application/views/logbookadvanced/index.php:447
-#: application/views/oqrs/index.php:22 application/views/user/edit.php:441
+#: application/views/oqrs/index.php:27 application/views/user/edit.php:441
 #: application/views/visitor/layout/header.php:97
 msgid "Search Callsign"
 msgstr "Поиск позывного"
@@ -7908,21 +7919,17 @@ msgstr ""
 msgid "Request a QSL card"
 msgstr "Запросить QSL-карточку"
 
-#: application/views/oqrs/index.php:21
+#: application/views/oqrs/index.php:26
 msgid "Enter your callsign"
 msgstr "Введите свой позывной"
 
-#: application/views/oqrs/index.php:21
+#: application/views/oqrs/index.php:26
 msgid "This search will search in all station locations where OQRS is active."
 msgstr "Поиск будет осуществляться во всех профилях QTH, где действует OQRS."
 
-#: application/views/oqrs/index.php:48
+#: application/views/oqrs/index.php:53
 msgid "Select station"
 msgstr "Выберите профиль QTH"
-
-#: application/views/oqrs/index.php:64
-msgid "No stations found that are using Wavelog OQRS."
-msgstr "Не найдено профилей QTH, использующих OQRS."
 
 #: application/views/oqrs/notinlogform.php:2
 msgid ""
@@ -10815,6 +10822,27 @@ msgstr "Пометить QSO как экспортированные в QO-100 D
 #: application/views/webadif/mark_webadif.php:16
 msgid "The QSOs are marked as exported to QO-100 Dx Club."
 msgstr "QSO отмечены как экспортированные в QO-100 Dx Club."
+
+#: application/views/widgets/oqrs.php:21
+msgid "Wavelog OQRS"
+msgstr ""
+
+#: application/views/widgets/oqrs.php:81
+msgid "Wavelog OQRS Request"
+msgstr ""
+
+#: application/views/widgets/oqrs.php:84
+#, php-format
+msgid "Request a QSL card for your QSO with %s."
+msgstr ""
+
+#: application/views/widgets/oqrs.php:88
+msgid "Your Callsign:"
+msgstr ""
+
+#: application/views/widgets/oqrs.php:95
+msgid "Submit Request"
+msgstr ""
 
 #~ msgid "Accumulated Number of DXCCs worked"
 #~ msgstr "Всего сработано DXCC"
