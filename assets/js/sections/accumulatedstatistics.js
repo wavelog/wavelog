@@ -46,6 +46,10 @@ function accumulatePlot(form) {
 						var awardtext =
 							lang_statistics_accumulated_worked_vucc;
 						break;
+					case "waja":
+						var awardtext =
+							lang_statistics_accumulated_worked_waja;
+						break;
 				}
 
 				var periodtext = lang_general_word_year;

@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-22 14:29+0000\n"
-"PO-Revision-Date: 2024-07-15 22:49+0000\n"
+"POT-Creation-Date: 2024-07-23 10:31+0000\n"
+"PO-Revision-Date: 2024-07-22 13:58+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ru/>\n"
@@ -236,6 +236,7 @@ msgstr "Журнал — VUCC"
 #: application/controllers/Timeline.php:98
 #: application/controllers/Timeline.php:101
 #: application/controllers/Timeline.php:104
+#: application/controllers/Timeline.php:107
 msgid "Log View"
 msgstr "Просмотр журнала"
 
@@ -330,7 +331,7 @@ msgid "CQ Magazine WAZ"
 msgstr "CQ Magazine WAZ"
 
 #: application/controllers/Awards.php:652
-#: application/views/accumulate/index.php:60
+#: application/views/accumulate/index.php:61
 #: application/views/timeline/index.php:45
 msgid "Worked All States (WAS)"
 msgstr "Worked All States (WAS)"
@@ -811,7 +812,7 @@ msgstr "Журнал"
 #: application/views/qslprint/qsolist.php:16
 #: application/views/qso/edit_ajax.php:37 application/views/qso/index.php:42
 #: application/views/search/result_search.php:13
-#: application/views/timeline/index.php:55 application/views/user/edit.php:562
+#: application/views/timeline/index.php:56 application/views/user/edit.php:562
 #: application/views/user/edit.php:649
 msgid "QSL"
 msgstr "QSL"
@@ -841,7 +842,7 @@ msgstr "QSL"
 #: application/views/search/result_search.php:22
 #: application/views/search/search_result_ajax.php:298
 #: application/views/search/search_result_ajax.php:313
-#: application/views/timeline/index.php:59 application/views/user/edit.php:563
+#: application/views/timeline/index.php:60 application/views/user/edit.php:563
 #: application/views/user/edit.php:659
 #: application/views/view_log/partial/log_ajax.php:232
 #: application/views/view_log/partial/log_ajax.php:249
@@ -875,7 +876,7 @@ msgstr "LoTW"
 #: application/views/search/search_result_ajax.php:260
 #: application/views/search/search_result_ajax.php:273
 #: application/views/station_profile/edit.php:278
-#: application/views/timeline/index.php:63 application/views/user/edit.php:564
+#: application/views/timeline/index.php:64 application/views/user/edit.php:564
 #: application/views/user/edit.php:667 application/views/user/edit.php:731
 #: application/views/view_log/partial/log_ajax.php:217
 #: application/views/view_log/partial/log_ajax.php:218
@@ -901,7 +902,7 @@ msgid "Clublog"
 msgstr "Clublog"
 
 #: application/controllers/Logbook.php:1273
-#: application/views/accumulate/index.php:30
+#: application/views/accumulate/index.php:31
 #: application/views/activated_gridmap/index.php:39
 #: application/views/adif/dcl_success.php:33
 #: application/views/awards/cq/index.php:86
@@ -1038,7 +1039,7 @@ msgstr "RST (RX)"
 #: application/views/station_profile/index.php:43
 #: application/views/stationsetup/stationsetup.php:124
 #: application/views/statistics/custom_result.php:92
-#: application/views/timeline/index.php:116 application/views/user/edit.php:232
+#: application/views/timeline/index.php:118 application/views/user/edit.php:232
 #: application/views/user/edit.php:254 application/views/user/edit.php:276
 #: application/views/user/edit.php:298 application/views/user/edit.php:321
 #: application/views/view_log/partial/log.php:13
@@ -1068,7 +1069,7 @@ msgstr "Страна"
 #: application/views/qso/edit_ajax.php:318
 #: application/views/search/search_result_ajax.php:8
 #: application/views/station_profile/edit.php:188
-#: application/views/timeline/index.php:173 application/views/user/edit.php:233
+#: application/views/timeline/index.php:202 application/views/user/edit.php:233
 #: application/views/user/edit.php:255 application/views/user/edit.php:277
 #: application/views/user/edit.php:299 application/views/user/edit.php:322
 #: application/views/view_log/partial/log_ajax.php:8
@@ -1096,7 +1097,7 @@ msgstr "IOTA"
 #: application/views/qslcard/searchresult.php:82
 #: application/views/qso/components/previous_contacts.php:86
 #: application/views/search/search_result_ajax.php:12
-#: application/views/timeline/index.php:148 application/views/user/edit.php:237
+#: application/views/timeline/index.php:177 application/views/user/edit.php:237
 #: application/views/user/edit.php:259 application/views/user/edit.php:281
 #: application/views/user/edit.php:303 application/views/user/edit.php:326
 #: application/views/view_log/partial/log_ajax.php:12
@@ -1134,7 +1135,7 @@ msgstr "Область/штат"
 #: application/views/simplefle/index.php:147
 #: application/views/station_profile/index.php:44
 #: application/views/stationsetup/stationsetup.php:125
-#: application/views/timeline/index.php:228 application/views/user/edit.php:130
+#: application/views/timeline/index.php:257 application/views/user/edit.php:130
 #: application/views/user/edit.php:238 application/views/user/edit.php:260
 #: application/views/user/edit.php:282 application/views/user/edit.php:304
 #: application/views/user/edit.php:327 application/views/user/profile.php:34
@@ -1168,7 +1169,7 @@ msgid "Distance"
 msgstr "Дистанция"
 
 #: application/controllers/Logbook.php:1284
-#: application/views/accumulate/index.php:20
+#: application/views/accumulate/index.php:21
 #: application/views/activated_gridmap/index.php:8
 #: application/views/activators/index.php:7
 #: application/views/adif/dcl_success.php:32
@@ -1304,7 +1305,7 @@ msgstr "Оператор"
 #: application/views/stationsetup/linkedlocations.php:17
 #: application/views/stationsetup/linkedlocations.php:45
 #: application/views/stationsetup/stationsetup.php:150
-#: application/views/timeline/index.php:132
+#: application/views/timeline/index.php:134
 #: application/views/timeplotter/index.php:33
 #: application/views/view_log/partial/log_ajax.php:29
 #: application/views/view_log/qso.php:236
@@ -2026,26 +2027,31 @@ msgstr "Загрузка в QO-100 Dx Club"
 
 #: application/models/Eqslmethods_model.php:281
 msgid "Your eQSL username and/or password is incorrect."
-msgstr ""
+msgstr "Ваше имя пользователя и/или пароль для eQSL неверны."
 
 #: application/models/Eqslmethods_model.php:287
 msgid "Something went wrong with eQSL.cc!"
-msgstr ""
+msgstr "С eQSL.cc что-то пошло не так!"
 
 #: application/models/Eqslmethods_model.php:303
 msgid "eQSL.cc is experiencing issues. Please try exporting QSOs later."
 msgstr ""
+"eQSL.cc испытывает проблемы. Пожалуйста, попробуйте экспортировать QSO позже."
 
 #: application/models/Eqslmethods_model.php:309
 msgid ""
 "There was an error in one of the QSOs. You might want to manually upload "
 "them."
 msgstr ""
+"При загрузке одного из QSO произошла ошибка. Возможно, вам стоит произвести "
+"загрузку вручную."
 
 #: application/models/Eqslmethods_model.php:315
 msgid ""
 "It seems that the eQSL site has changed. Please open up an issue on GitHub."
 msgstr ""
+"Похоже, что сайт eQSL изменился. Пожалуйста, создайте сообщение о проблеме "
+"на GitHub."
 
 #: application/models/Hrdlog_model.php:22
 msgid ""
@@ -2109,6 +2115,10 @@ msgid "Accumulated number of VUCC Grids worked"
 msgstr "Всего сработано квадратов VUCC"
 
 #: application/views/accumulate/index.php:7
+msgid "Accumulated number of WAJA worked"
+msgstr ""
+
+#: application/views/accumulate/index.php:8
 #: application/views/dashboard/index.php:222
 #: application/views/dayswithqso/index.php:16
 #: application/views/statistics/index.php:18
@@ -2116,28 +2126,28 @@ msgstr "Всего сработано квадратов VUCC"
 msgid "Year"
 msgstr "Год"
 
-#: application/views/accumulate/index.php:8
-#: application/views/accumulate/index.php:88
+#: application/views/accumulate/index.php:9
+#: application/views/accumulate/index.php:95
 msgid "Yearly"
 msgstr "Ежегодно"
 
-#: application/views/accumulate/index.php:9
+#: application/views/accumulate/index.php:10
 #: application/views/dashboard/index.php:227
 #: application/views/visitor/index.php:251
 msgid "Month"
 msgstr "Месяц"
 
-#: application/views/accumulate/index.php:10
-#: application/views/accumulate/index.php:94
+#: application/views/accumulate/index.php:11
+#: application/views/accumulate/index.php:101
 msgid "Monthly"
 msgstr "Ежемесячно"
 
-#: application/views/accumulate/index.php:11
+#: application/views/accumulate/index.php:12
 msgid "Difference"
-msgstr ""
+msgstr "Разница"
 
-#: application/views/accumulate/index.php:23
-#: application/views/accumulate/index.php:33
+#: application/views/accumulate/index.php:24
+#: application/views/accumulate/index.php:34
 #: application/views/activated_gridmap/index.php:10
 #: application/views/activated_gridmap/index.php:22
 #: application/views/activated_gridmap/index.php:32
@@ -2219,35 +2229,40 @@ msgstr ""
 msgid "All"
 msgstr "Все"
 
-#: application/views/accumulate/index.php:49
+#: application/views/accumulate/index.php:50
 #: application/views/timeline/index.php:41
 msgid "Award"
 msgstr "Диплом"
 
-#: application/views/accumulate/index.php:54
+#: application/views/accumulate/index.php:55
 #: application/views/timeline/index.php:44
 msgid "DX Century Club (DXCC)"
 msgstr "DX Century Club (DXCC)"
 
-#: application/views/accumulate/index.php:66
+#: application/views/accumulate/index.php:67
 #: application/views/timeline/index.php:46
 msgid "Islands On The Air (IOTA)"
 msgstr "Islands On The Air (IOTA)"
 
-#: application/views/accumulate/index.php:72
+#: application/views/accumulate/index.php:73
 #: application/views/timeline/index.php:47
 msgid "Worked All Zones (WAZ)"
 msgstr "Worked All Zones (WAZ)"
 
-#: application/views/accumulate/index.php:78
+#: application/views/accumulate/index.php:79
 msgid "VHF/UHF Century Club (VUCC)"
 msgstr "VHF / UHF Century Club (VUCC)"
 
-#: application/views/accumulate/index.php:83
+#: application/views/accumulate/index.php:85
+#: application/views/timeline/index.php:49
+msgid "Worked All Japan (WAJA)"
+msgstr ""
+
+#: application/views/accumulate/index.php:90
 msgid "Period"
 msgstr "Период"
 
-#: application/views/accumulate/index.php:104
+#: application/views/accumulate/index.php:111
 #: application/views/activators/index.php:50
 #: application/views/awards/cq/index.php:111
 #: application/views/awards/dok/index.php:127
@@ -2263,12 +2278,13 @@ msgstr "Период"
 #: application/views/logbookadvanced/useroptions.php:17
 #: application/views/lookup/index.php:63
 #: application/views/stationsetup/exportmapoptions.php:6
-#: application/views/timeline/index.php:71
-#: application/views/timeline/index.php:135
-#: application/views/timeline/index.php:160
+#: application/views/timeline/index.php:72
+#: application/views/timeline/index.php:137
+#: application/views/timeline/index.php:164
 #: application/views/timeline/index.php:189
-#: application/views/timeline/index.php:214
-#: application/views/timeline/index.php:241
+#: application/views/timeline/index.php:218
+#: application/views/timeline/index.php:243
+#: application/views/timeline/index.php:270
 #: application/views/timeplotter/index.php:59
 msgid "Show"
 msgstr "Показать"
@@ -2301,7 +2317,7 @@ msgstr "Орбита"
 #: application/views/activated_gridmap/index.php:50
 #: application/views/awards/wab/index.php:64
 #: application/views/gridmap/index.php:92
-#: application/views/timeline/index.php:51
+#: application/views/timeline/index.php:52
 msgid "Confirmation"
 msgstr "Подтверждение"
 
@@ -2383,7 +2399,7 @@ msgstr "Минимальное количество"
 #: application/views/awards/was/index.php:198
 #: application/views/awards/wwff/index.php:64
 #: application/views/public_search/empty.php:3
-#: application/views/qrz/export.php:64 application/views/timeline/index.php:100
+#: application/views/qrz/export.php:64 application/views/timeline/index.php:102
 msgid "Nothing found!"
 msgstr "Не найдено!"
 
@@ -2431,11 +2447,12 @@ msgid "Count"
 msgstr "Счётчик"
 
 #: application/views/activators/index.php:102
-#: application/views/timeline/index.php:119
-#: application/views/timeline/index.php:149
-#: application/views/timeline/index.php:176
-#: application/views/timeline/index.php:203
-#: application/views/timeline/index.php:229
+#: application/views/timeline/index.php:121
+#: application/views/timeline/index.php:153
+#: application/views/timeline/index.php:178
+#: application/views/timeline/index.php:205
+#: application/views/timeline/index.php:232
+#: application/views/timeline/index.php:258
 msgid "Show QSO's"
 msgstr "Показать QSO"
 
@@ -2504,11 +2521,12 @@ msgstr "Данные DOK в вашем логе отличаются от DCL"
 #: application/views/statistics/custom.php:38
 #: application/views/statistics/custom_result.php:40
 #: application/views/statistics/custom_result.php:85
-#: application/views/timeline/index.php:114
-#: application/views/timeline/index.php:147
-#: application/views/timeline/index.php:172
+#: application/views/timeline/index.php:116
+#: application/views/timeline/index.php:151
+#: application/views/timeline/index.php:176
 #: application/views/timeline/index.php:201
-#: application/views/timeline/index.php:226
+#: application/views/timeline/index.php:230
+#: application/views/timeline/index.php:255
 #: application/views/view_log/partial/log.php:4
 #: application/views/view_log/partial/log_ajax.php:57
 #: application/views/visitor/index.php:147
@@ -2537,7 +2555,7 @@ msgstr "Дата"
 #: application/views/search/search_result_ajax.php:91
 #: application/views/simplefle/index.php:141
 #: application/views/statistics/custom_result.php:86
-#: application/views/timeline/index.php:227
+#: application/views/timeline/index.php:256
 #: application/views/timeplotter/index.php:5
 #: application/views/view_log/partial/log.php:6
 #: application/views/view_log/partial/log_ajax.php:59
@@ -2964,7 +2982,7 @@ msgstr "Разрешения"
 #: application/views/oqrs/showrequests.php:91
 #: application/views/sattimers/index.php:39
 #: application/views/stationsetup/stationsetup.php:31
-#: application/views/timeline/index.php:117
+#: application/views/timeline/index.php:119
 #: application/views/update/index.php:30
 msgid "Status"
 msgstr "Статус"
@@ -3288,7 +3306,7 @@ msgstr "Карта"
 #: application/views/search/cqzones_result.php:13
 #: application/views/station_profile/create.php:87
 #: application/views/station_profile/edit.php:126
-#: application/views/timeline/index.php:202
+#: application/views/timeline/index.php:231
 #: application/views/timeplotter/index.php:44
 msgid "CQ Zone"
 msgstr "Зона CQ"
@@ -3528,8 +3546,8 @@ msgstr "Название DXCC"
 
 #: application/views/awards/dxcc/index.php:226
 #: application/views/awards/iota/index.php:170
-#: application/views/timeline/index.php:115
-#: application/views/timeline/index.php:175
+#: application/views/timeline/index.php:117
+#: application/views/timeline/index.php:204
 msgid "Prefix"
 msgstr "Префикс"
 
@@ -3733,7 +3751,7 @@ msgstr "Показать карту IOTA"
 #: application/views/search/search_result_ajax.php:19
 #: application/views/stationsetup/stationsetup.php:30
 #: application/views/themes/index.php:82
-#: application/views/timeline/index.php:174 application/views/user/edit.php:241
+#: application/views/timeline/index.php:203 application/views/user/edit.php:241
 #: application/views/user/edit.php:263 application/views/user/edit.php:285
 #: application/views/user/edit.php:307 application/views/user/edit.php:330
 #: application/views/view_log/partial/log_ajax.php:19
@@ -4084,6 +4102,7 @@ msgid "Show WAJA Map"
 msgstr "Показать карту WAJA"
 
 #: application/views/awards/waja/index.php:152
+#: application/views/timeline/index.php:152
 msgid "Prefecture"
 msgstr "Префектура"
 
@@ -5370,7 +5389,7 @@ msgstr "Дата начала"
 #: application/views/dayswithqso/index.php:58
 #: application/views/dayswithqso/index.php:86
 #: application/views/dayswithqso/index.php:108
-#: application/views/timeline/index.php:118
+#: application/views/timeline/index.php:120
 msgid "End Date"
 msgstr "Дата окончания"
 
@@ -5739,18 +5758,22 @@ msgid "Polish"
 msgstr "Польский"
 
 #: application/views/debug/index.php:629
+msgid "Portuguese"
+msgstr ""
+
+#: application/views/debug/index.php:630
 msgid "Russian"
 msgstr "Русский"
 
-#: application/views/debug/index.php:630
+#: application/views/debug/index.php:631
 msgid "Spanish"
 msgstr "Испанский"
 
-#: application/views/debug/index.php:631
+#: application/views/debug/index.php:632
 msgid "Swedish"
 msgstr "Шведский"
 
-#: application/views/debug/index.php:632
+#: application/views/debug/index.php:633
 msgid "Turkish"
 msgstr "Турецкий"
 
@@ -5968,6 +5991,9 @@ msgid ""
 "This does NOT upload any QSOs. It only marks QSOs as sent. If you use this "
 "button you need to upload them manually on the eQSL.cc website."
 msgstr ""
+"Если вы нажмёте на эту кнопку, то это НЕ загрузит никаких QSO, а только "
+"отметит их, как отправленные. Вам нужно будет загрузить их вручную на сайте "
+"eQSL.cc."
 
 #: application/views/eqsl/tools.php:29
 msgid "Mark All QSOs as Sent to eQSL"
