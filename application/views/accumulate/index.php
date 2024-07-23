@@ -4,6 +4,7 @@
     var lang_statistics_accumulated_worked_iota = '<?= __("Accumulated number of IOTAs worked"); ?>';
     var lang_statistics_accumulated_worked_cqzone = '<?= __("Accumulated number of CQ Zones worked"); ?>';
     var lang_statistics_accumulated_worked_vucc = '<?= __("Accumulated number of VUCC Grids worked"); ?>';
+    var lang_statistics_accumulated_worked_waja = '<?= __("Accumulated number of WAJA worked"); ?>';
     var lang_general_word_year = '<?= __("Year"); ?>';
     var lang_general_word_yearly = '<?= __("Yearly"); ?>';
     var lang_general_word_month = '<?= __("Month"); ?>';
@@ -76,6 +77,12 @@
                         <input class="form-check-input" type="radio" name="awardradio" id="vucc" value="vucc">
                         <label class="form-check-label" for="vucc">
                             <?= __("VHF/UHF Century Club (VUCC)"); ?>
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="awardradio" id="waja" value="waja">
+                        <label class="form-check-label" for="waja">
+                            <?= __("Worked All Japan (WAJA)"); ?>
                         </label>
                     </div>
                 </div>
