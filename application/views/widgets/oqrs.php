@@ -88,7 +88,7 @@ To use this widget insert this Element:
                             <label for="oqrs_callsign" class="col-form-label"><?= __("Your Callsign:"); ?></label>
                         </div>
                         <div class="col-auto">
-                            <input type="text" name="callsign" id="oqrs_callsign" class="form-control form-control-sm border">
+                            <input type="text" name="callsign" id="oqrs_callsign" class="form-control form-control-sm border uppercase">
                         </div>
                         <div class="col-auto">
                             <input type="hidden" name="widget" value="true">
