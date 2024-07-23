@@ -11,84 +11,18 @@
 			<div class="mb-3 w-auto">
 				<label class="my-1 me-sm-2 w-auto" for="minazimuth">Min Azimut</label>
                 <select class="my-1 me-sm-2 w-auto form-select" id="minazimuth" name="minazimuth">
-                        <option selected value="0">0 &deg;</option>
-                        <option value="10">10 &deg;</option>
-                        <option value="20">20 &deg;</option>
-                        <option value="30">30 &deg;</option>
-                        <option value="40">40 &deg;</option>
-                        <option value="50">50 &deg;</option>
-                        <option value="60">60 &deg;</option>
-                        <option value="70">70 &deg;</option>
-                        <option value="80">80 &deg;</option>
-                        <option value="90">90 &deg;</option>
-                        <option value="100">100 &deg;</option>
-                        <option value="110">110 &deg;</option>
-                        <option value="120">120 &deg;</option>
-                        <option value="130">130 &deg;</option>
-                        <option value="140">140 &deg;</option>
-                        <option value="150">150 &deg;</option>
-                        <option value="160">160 &deg;</option>
-                        <option value="170">170 &deg;</option>
-                        <option value="180">180 &deg;</option>
-                        <option value="190">190 &deg;</option>
-                        <option value="200">200 &deg;</option>
-                        <option value="210">210 &deg;</option>
-                        <option value="220">220 &deg;</option>
-                        <option value="230">230 &deg;</option>
-                        <option value="240">240 &deg;</option>
-                        <option value="250">250 &deg;</option>
-                        <option value="260">260 &deg;</option>
-                        <option value="270">270 &deg;</option>
-                        <option value="280">280 &deg;</option>
-                        <option value="290">290 &deg;</option>
-                        <option value="300">300 &deg;</option>
-                        <option value="310">310 &deg;</option>
-                        <option value="320">320 &deg;</option>
-                        <option value="330">330 &deg;</option>
-                        <option value="340">340 &deg;</option>
-                        <option value="350">350 &deg;</option>
-                    </select>
+				<?php for ($i = 0; $i <= 350; $i += 10): ?>
+					<option value="<?= $i ?>" <?= $i === 0 ? 'selected' : '' ?>><?= $i ?> &deg;</option>
+				<?php endfor; ?>
+			</select>
 			</div>
 			<div class="mb-3 w-auto">
 				<label class="my-1 me-sm-2 w-auto" for="maxazimuth">Max Azimut</label>
-                    <select class="my-1 me-sm-2 w-auto form-select" id="maxazimuth" name="aa">
-                        <option value="10">10 &deg;</option>
-                        <option value="20">20 &deg;</option>
-                        <option value="30">30 &deg;</option>
-                        <option value="40">40 &deg;</option>
-                        <option value="50">50 &deg;</option>
-                        <option value="60">60 &deg;</option>
-                        <option value="70">70 &deg;</option>
-                        <option value="80">80 &deg;</option>
-                        <option value="90">90 &deg;</option>
-                        <option value="100">100 &deg;</option>
-                        <option value="110">110 &deg;</option>
-                        <option value="120">120 &deg;</option>
-                        <option value="130">130 &deg;</option>
-                        <option value="140">140 &deg;</option>
-                        <option value="150">150 &deg;</option>
-                        <option value="160">160 &deg;</option>
-                        <option value="170">170 &deg;</option>
-                        <option value="180">180 &deg;</option>
-                        <option value="190">190 &deg;</option>
-                        <option value="200">200 &deg;</option>
-                        <option value="210">210 &deg;</option>
-                        <option value="220">220 &deg;</option>
-                        <option value="230">230 &deg;</option>
-                        <option value="240">240 &deg;</option>
-                        <option value="250">250 &deg;</option>
-                        <option value="260">260 &deg;</option>
-                        <option value="270">270 &deg;</option>
-                        <option value="280">280 &deg;</option>
-                        <option value="290">290 &deg;</option>
-                        <option value="300">300 &deg;</option>
-                        <option value="310">310 &deg;</option>
-                        <option value="320">320 &deg;</option>
-                        <option value="330">330 &deg;</option>
-                        <option value="340">340 &deg;</option>
-                        <option value="350">350 &deg;</option>
-                        <option selected value="360">360 &deg;</option>
-                    </select>
+				<select class="my-1 me-sm-2 w-auto form-select" id="maxazimuth" name="maxazimuth">
+					<?php for ($i = 10; $i <= 360; $i += 10): ?>
+						<option value="<?= $i ?>" <?= $i === 360 ? 'selected' : '' ?>><?= $i ?> &deg;</option>
+					<?php endfor; ?>
+				</select>
 			</div>
 			<div class="mb-3 w-auto">
 					<label class="my-1 me-sm-2 w-auto" for="yourgrid">Gridsquare</label>
