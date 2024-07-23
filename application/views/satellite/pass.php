@@ -6,7 +6,7 @@
 		<div class="row">
 			<div class="mb-3 w-auto">
 				<label class="my-1 me-sm-2 w-auto" id="satslabel" for="satslist">Min Satellite Elevation</label>
-				<input class="my-1 me-sm-2 w-auto form-control form-control-sm" id="minelevation" type="number" name="e" value="0" />
+				<input class="my-1 me-sm-2 w-auto form-control form-control-sm" id="minelevation" type="number" name="minelevation" value="0" />
 			</div>
 			<div class="mb-3 w-auto">
 				<label class="my-1 me-sm-2 w-auto" for="minazimuth">Min Azimut</label>
@@ -26,11 +26,11 @@
 			</div>
 			<div class="mb-3 w-auto">
 					<label class="my-1 me-sm-2 w-auto" for="yourgrid">Gridsquare</label>
-                    <input class="my-1 me-sm-2 w-auto form-control form-control-sm"  id="yourgrid" type="text" style="width:80px;" name="l" value="<?php echo $activegrid; ?>"/>
+                    <input class="my-1 me-sm-2 w-auto form-control form-control-sm"  id="yourgrid" type="text" name="gridsquare" value="<?php echo $activegrid; ?>"/>
 			</div>
 			<div class="mb-3 w-auto">
-					<label class="my-1 me-sm-2 w-auto" for="altitude">Altitude</label>
-                    <input class="my-1 me-sm-2 w-auto form-control form-control-sm"  id="altitude" type="text" name="a" value="0" />
+					<label class="my-1 me-sm-2 w-auto" for="altitude">Altitude (meters)</label>
+                    <input class="my-1 me-sm-2 w-auto form-control form-control-sm"  id="altitude" type="number" name="altitude" value="0" />
 			</div>
 			<div class="mb-3 w-auto">
 					<label class="my-1 me-sm-2 w-auto" for="timezone">Timezone</label>
@@ -470,39 +470,9 @@
 					</select>
 					</div>
 					<div class="mb-3 w-auto">
-							<label class="my-1 me-sm-2 w-auto" for="date">Date</label>
-							<select class="my-1 me-sm-2 w-auto form-select" id="date" name="start">
-                                        <option selected value="0">Today</option>
-                                        <option value="1">Tomorrow</option>
-                                        <option value="2">22/07/2024</option>
-                                        <option value="3">23/07/2024</option>
-                                        <option value="4">24/07/2024</option>
-                                        <option value="5">25/07/2024</option>
-                                        <option value="6">26/07/2024</option>
-                                        <option value="7">27/07/2024</option>
-                                        <option value="8">28/07/2024</option>
-                                        <option value="9">29/07/2024</option>
-                                        <option value="10">30/07/2024</option>
-                                        <option value="11">31/07/2024</option>
-                                        <option value="12">01/08/2024</option>
-                                        <option value="13">02/08/2024</option>
-                                        <option value="14">03/08/2024</option>
-                                        <option value="15">04/08/2024</option>
-                                        <option value="16">05/08/2024</option>
-                                        <option value="17">06/08/2024</option>
-                                        <option value="18">07/08/2024</option>
-                                        <option value="19">08/08/2024</option>
-                                        <option value="20">09/08/2024</option>
-                                        <option value="21">10/08/2024</option>
-                                        <option value="22">11/08/2024</option>
-                                        <option value="23">12/08/2024</option>
-                                        <option value="24">13/08/2024</option>
-                                        <option value="25">14/08/2024</option>
-                                        <option value="26">15/08/2024</option>
-                                        <option value="27">16/08/2024</option>
-                                        <option value="28">17/08/2024</option>
-                                        <option value="29">18/08/2024</option>
-                                        <option value="30">19/08/2024</option>
+						<label class="my-1 me-sm-2 w-auto" for="date">Date</label>
+						<select class="my-1 me-sm-2 w-auto form-select" id="date" name="start">
+							<option selected value="0">Today</option>
 						</select>
 					</div>
 					<div class="mb-3 w-auto">
@@ -568,9 +538,9 @@
                 <div class="mb-3 w-auto">
 					<label class="my-1 me-sm-2 w-auto" id="satslabel" for="satlist">Satellites</label>
 					<select class="my-1 me-sm-2 w-auto form-select"  id="satlist">
-					<?php foreach($satellites as $sat) {
-						echo '<option value="' . $sat->satname . '"' . '>' . $sat->satname . '</option>'."\n";
-					} ?>
+						<?php foreach($satellites as $sat) {
+							echo '<option value="' . $sat->satname . '"' . '>' . $sat->satname . '</option>'."\n";
+						} ?>
 					</select>
 				</div>
         </form>
