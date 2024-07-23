@@ -57,7 +57,7 @@ class Widgets extends CI_Controller {
 
 		$slug = $this->security->xss_clean($this->input->get('slug'));
 		if ($slug != null) {
-			$data['logo_url'] = site_url() . '/visitor/' . $slug;
+			$data['logo_url'] = base_url() . 'index.php/visitor/' . $slug;
 		} else {
 			$data['logo_url'] = 'https://github.com/wavelog/wavelog';
 		}
