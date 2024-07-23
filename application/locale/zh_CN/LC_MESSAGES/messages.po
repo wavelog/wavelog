@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-22 20:55+0000\n"
+"POT-Creation-Date: 2024-07-23 08:43+0000\n"
 "PO-Revision-Date: 2024-07-22 18:23+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/"
@@ -236,6 +236,7 @@ msgstr "日志视图 - VUCC"
 #: application/controllers/Timeline.php:98
 #: application/controllers/Timeline.php:101
 #: application/controllers/Timeline.php:104
+#: application/controllers/Timeline.php:107
 msgid "Log View"
 msgstr "日志视图"
 
@@ -801,7 +802,7 @@ msgstr "日志簿"
 #: application/views/qslprint/qsolist.php:16
 #: application/views/qso/edit_ajax.php:37 application/views/qso/index.php:42
 #: application/views/search/result_search.php:13
-#: application/views/timeline/index.php:55 application/views/user/edit.php:562
+#: application/views/timeline/index.php:56 application/views/user/edit.php:562
 #: application/views/user/edit.php:649
 msgid "QSL"
 msgstr "QSL"
@@ -831,7 +832,7 @@ msgstr "QSL"
 #: application/views/search/result_search.php:22
 #: application/views/search/search_result_ajax.php:298
 #: application/views/search/search_result_ajax.php:313
-#: application/views/timeline/index.php:59 application/views/user/edit.php:563
+#: application/views/timeline/index.php:60 application/views/user/edit.php:563
 #: application/views/user/edit.php:659
 #: application/views/view_log/partial/log_ajax.php:232
 #: application/views/view_log/partial/log_ajax.php:249
@@ -865,7 +866,7 @@ msgstr "LoTW"
 #: application/views/search/search_result_ajax.php:260
 #: application/views/search/search_result_ajax.php:273
 #: application/views/station_profile/edit.php:278
-#: application/views/timeline/index.php:63 application/views/user/edit.php:564
+#: application/views/timeline/index.php:64 application/views/user/edit.php:564
 #: application/views/user/edit.php:667 application/views/user/edit.php:731
 #: application/views/view_log/partial/log_ajax.php:217
 #: application/views/view_log/partial/log_ajax.php:218
@@ -1028,7 +1029,7 @@ msgstr "信号报告(收)"
 #: application/views/station_profile/index.php:43
 #: application/views/stationsetup/stationsetup.php:124
 #: application/views/statistics/custom_result.php:92
-#: application/views/timeline/index.php:116 application/views/user/edit.php:232
+#: application/views/timeline/index.php:118 application/views/user/edit.php:232
 #: application/views/user/edit.php:254 application/views/user/edit.php:276
 #: application/views/user/edit.php:298 application/views/user/edit.php:321
 #: application/views/view_log/partial/log.php:13
@@ -1058,7 +1059,7 @@ msgstr "DXCC 实体"
 #: application/views/qso/edit_ajax.php:318
 #: application/views/search/search_result_ajax.php:8
 #: application/views/station_profile/edit.php:188
-#: application/views/timeline/index.php:173 application/views/user/edit.php:233
+#: application/views/timeline/index.php:202 application/views/user/edit.php:233
 #: application/views/user/edit.php:255 application/views/user/edit.php:277
 #: application/views/user/edit.php:299 application/views/user/edit.php:322
 #: application/views/view_log/partial/log_ajax.php:8
@@ -1086,7 +1087,7 @@ msgstr "IOTA"
 #: application/views/qslcard/searchresult.php:82
 #: application/views/qso/components/previous_contacts.php:86
 #: application/views/search/search_result_ajax.php:12
-#: application/views/timeline/index.php:148 application/views/user/edit.php:237
+#: application/views/timeline/index.php:177 application/views/user/edit.php:237
 #: application/views/user/edit.php:259 application/views/user/edit.php:281
 #: application/views/user/edit.php:303 application/views/user/edit.php:326
 #: application/views/view_log/partial/log_ajax.php:12
@@ -1124,7 +1125,7 @@ msgstr "州"
 #: application/views/simplefle/index.php:147
 #: application/views/station_profile/index.php:44
 #: application/views/stationsetup/stationsetup.php:125
-#: application/views/timeline/index.php:228 application/views/user/edit.php:130
+#: application/views/timeline/index.php:257 application/views/user/edit.php:130
 #: application/views/user/edit.php:238 application/views/user/edit.php:260
 #: application/views/user/edit.php:282 application/views/user/edit.php:304
 #: application/views/user/edit.php:327 application/views/user/profile.php:34
@@ -1294,7 +1295,7 @@ msgstr "操作员"
 #: application/views/stationsetup/linkedlocations.php:17
 #: application/views/stationsetup/linkedlocations.php:45
 #: application/views/stationsetup/stationsetup.php:150
-#: application/views/timeline/index.php:132
+#: application/views/timeline/index.php:134
 #: application/views/timeplotter/index.php:33
 #: application/views/view_log/partial/log_ajax.php:29
 #: application/views/view_log/qso.php:236
@@ -2245,12 +2246,13 @@ msgstr "周期"
 #: application/views/logbookadvanced/useroptions.php:17
 #: application/views/lookup/index.php:63
 #: application/views/stationsetup/exportmapoptions.php:6
-#: application/views/timeline/index.php:71
-#: application/views/timeline/index.php:135
-#: application/views/timeline/index.php:160
+#: application/views/timeline/index.php:72
+#: application/views/timeline/index.php:137
+#: application/views/timeline/index.php:164
 #: application/views/timeline/index.php:189
-#: application/views/timeline/index.php:214
-#: application/views/timeline/index.php:241
+#: application/views/timeline/index.php:218
+#: application/views/timeline/index.php:243
+#: application/views/timeline/index.php:270
 #: application/views/timeplotter/index.php:59
 msgid "Show"
 msgstr "显示"
@@ -2283,7 +2285,7 @@ msgstr "环绕"
 #: application/views/activated_gridmap/index.php:50
 #: application/views/awards/wab/index.php:64
 #: application/views/gridmap/index.php:92
-#: application/views/timeline/index.php:51
+#: application/views/timeline/index.php:52
 msgid "Confirmation"
 msgstr "确认"
 
@@ -2365,7 +2367,7 @@ msgstr "最低数量"
 #: application/views/awards/was/index.php:198
 #: application/views/awards/wwff/index.php:64
 #: application/views/public_search/empty.php:3
-#: application/views/qrz/export.php:64 application/views/timeline/index.php:100
+#: application/views/qrz/export.php:64 application/views/timeline/index.php:102
 msgid "Nothing found!"
 msgstr "未找到！"
 
@@ -2413,11 +2415,12 @@ msgid "Count"
 msgstr "数量"
 
 #: application/views/activators/index.php:102
-#: application/views/timeline/index.php:119
-#: application/views/timeline/index.php:149
-#: application/views/timeline/index.php:176
-#: application/views/timeline/index.php:203
-#: application/views/timeline/index.php:229
+#: application/views/timeline/index.php:121
+#: application/views/timeline/index.php:153
+#: application/views/timeline/index.php:178
+#: application/views/timeline/index.php:205
+#: application/views/timeline/index.php:232
+#: application/views/timeline/index.php:258
 msgid "Show QSO's"
 msgstr "显示 QSO"
 
@@ -2486,11 +2489,12 @@ msgstr "与 DCL 相比，日志中 DOK 的数据不同"
 #: application/views/statistics/custom.php:38
 #: application/views/statistics/custom_result.php:40
 #: application/views/statistics/custom_result.php:85
-#: application/views/timeline/index.php:114
-#: application/views/timeline/index.php:147
-#: application/views/timeline/index.php:172
+#: application/views/timeline/index.php:116
+#: application/views/timeline/index.php:151
+#: application/views/timeline/index.php:176
 #: application/views/timeline/index.php:201
-#: application/views/timeline/index.php:226
+#: application/views/timeline/index.php:230
+#: application/views/timeline/index.php:255
 #: application/views/view_log/partial/log.php:4
 #: application/views/view_log/partial/log_ajax.php:57
 #: application/views/visitor/index.php:147
@@ -2519,7 +2523,7 @@ msgstr "日期"
 #: application/views/search/search_result_ajax.php:91
 #: application/views/simplefle/index.php:141
 #: application/views/statistics/custom_result.php:86
-#: application/views/timeline/index.php:227
+#: application/views/timeline/index.php:256
 #: application/views/timeplotter/index.php:5
 #: application/views/view_log/partial/log.php:6
 #: application/views/view_log/partial/log_ajax.php:59
@@ -2928,7 +2932,7 @@ msgstr "权限"
 #: application/views/oqrs/showrequests.php:91
 #: application/views/sattimers/index.php:39
 #: application/views/stationsetup/stationsetup.php:31
-#: application/views/timeline/index.php:117
+#: application/views/timeline/index.php:119
 #: application/views/update/index.php:30
 msgid "Status"
 msgstr "状态"
@@ -3245,7 +3249,7 @@ msgstr "地图"
 #: application/views/search/cqzones_result.php:13
 #: application/views/station_profile/create.php:87
 #: application/views/station_profile/edit.php:126
-#: application/views/timeline/index.php:202
+#: application/views/timeline/index.php:231
 #: application/views/timeplotter/index.php:44
 msgid "CQ Zone"
 msgstr "CQ 分区"
@@ -3478,8 +3482,8 @@ msgstr "DXCC名称"
 
 #: application/views/awards/dxcc/index.php:226
 #: application/views/awards/iota/index.php:170
-#: application/views/timeline/index.php:115
-#: application/views/timeline/index.php:175
+#: application/views/timeline/index.php:117
+#: application/views/timeline/index.php:204
 msgid "Prefix"
 msgstr "前缀"
 
@@ -3661,7 +3665,7 @@ msgstr "显示IOTA地图"
 #: application/views/search/search_result_ajax.php:19
 #: application/views/stationsetup/stationsetup.php:30
 #: application/views/themes/index.php:82
-#: application/views/timeline/index.php:174 application/views/user/edit.php:241
+#: application/views/timeline/index.php:203 application/views/user/edit.php:241
 #: application/views/user/edit.php:263 application/views/user/edit.php:285
 #: application/views/user/edit.php:307 application/views/user/edit.php:330
 #: application/views/view_log/partial/log_ajax.php:19
@@ -3987,6 +3991,7 @@ msgid "Show WAJA Map"
 msgstr "显示WAJA地图"
 
 #: application/views/awards/waja/index.php:152
+#: application/views/timeline/index.php:152
 msgid "Prefecture"
 msgstr "县"
 
@@ -5228,7 +5233,7 @@ msgstr "开始时间"
 #: application/views/dayswithqso/index.php:58
 #: application/views/dayswithqso/index.php:86
 #: application/views/dayswithqso/index.php:108
-#: application/views/timeline/index.php:118
+#: application/views/timeline/index.php:120
 msgid "End Date"
 msgstr "结束时间"
 
@@ -9547,6 +9552,10 @@ msgstr ""
 
 #: application/views/timeline/index.php:48
 msgid "VHF / UHF Century Club (VUCC)"
+msgstr ""
+
+#: application/views/timeline/index.php:49
+msgid "Worked All Japan (WAJA)"
 msgstr ""
 
 #: application/views/timeplotter/index.php:2
