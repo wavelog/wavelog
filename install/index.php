@@ -1296,7 +1296,9 @@ if (!file_exists('.lock')) {
 						$('#userform_warnings').removeClass('alert-warning alert-danger');
 						$('#userform_warnings').addClass('alert-warning');
 						$('#userform_warnings').html('<?= __("Password should be at least 8 characters long"); ?>')
+
 					}
+					return true;
 
 				} else {
 
@@ -1313,30 +1315,37 @@ if (!file_exists('.lock')) {
 					$('#userform_warnings').addClass('alert-danger');
 					$('#userform_warnings').html('<?= __("Passwords do not match"); ?>');
 
+					return false;
+
 				}
 			}
 
 			// email verification
 			const emailField = $('#user_email');
 
-			emailField.on('change', function() {
+			function email_verification() {
 				if (!isValidEmail(emailField.val()) && emailField != '') {
 
 					emailField.addClass('is-invalid');
 					emailField.removeClass('is-valid');
-					$('#userform_warnings').css('display', 'block');
+					$('#userform_warnings').show();
 					$('#userform_warnings').removeClass('alert-warning alert-danger');
 					$('#userform_warnings').addClass('alert-danger');
 					$('#userform_warnings').html('<?= __("The E-Mail Address is not valid"); ?>');
+					return false;
 
 				} else {
 
 					emailField.removeClass('is-invalid');
 					emailField.addClass('is-valid');
 					$('#userform_warnings').removeClass('alert-danger alert-warning');
-					$('#userform_warnings').css('display', 'none');
+					$('#userform_warnings').hide();
+					return true;
 
 				}
+			}
+			emailField.on('change', function() {
+				email_verification();
 			});
 
 			// grid verification
@@ -1349,19 +1358,17 @@ if (!file_exists('.lock')) {
 				if (!isValidMaidenheadLocator($(field).val())) {
 					$(field).addClass('is-invalid');
 					$(field).removeClass('is-valid');
-					if (field == '#userlocator') {
-						$('#userform_warnings').css('display', 'block');
-						$('#userform_warnings').removeClass('alert-warning alert-danger');
-						$('#userform_warnings').addClass('alert-danger');
-						$('#userform_warnings').html("<?= sprintf(__("The grid locator is not valid. Use a 6-character locator, e.g. HA44AA. If you don't know your grid square then <a href='%s' target='_blank'>click here</a>!"), "https://zone-check.eu/?m=loc"); ?>");
-					}
+					$('#userform_warnings').css('display', 'block');
+					$('#userform_warnings').removeClass('alert-warning alert-danger');
+					$('#userform_warnings').addClass('alert-danger');
+					$('#userform_warnings').html("<?= sprintf(__("The grid locator is not valid. Use a 6-character locator, e.g. HA44AA. If you don't know your grid square then <a href='%s' target='_blank'>click here</a>!"), "https://zone-check.eu/?m=loc"); ?>");
+					return false;
 				} else {
 					$(field).removeClass('is-invalid');
 					$(field).addClass('is-valid');
-					if (field == '#userlocator') {
-						$('#userform_warnings').removeClass('alert-danger alert-warning');
-						$('#userform_warnings').css('display', 'none');
-					}
+					$('#userform_warnings').removeClass('alert-danger alert-warning');
+					$('#userform_warnings').css('display', 'none');
+					return true;
 				}
 			}
 
@@ -1399,6 +1406,15 @@ if (!file_exists('.lock')) {
 					}
 
 					if (nextTab.attr('id') == lastTabId) {
+						if (!email_verification()) {
+							return;
+						}
+						if (!maidenhead_checks('#userlocator')) {
+							return;
+						}
+						if (!user_pwd_check()) {
+							return;
+						}
 						if (!checklist_firstuser()) {
 							return;
 						}
@@ -1468,6 +1484,16 @@ if (!file_exists('.lock')) {
 				if ($('#cnfm_password').val() != '') {
 					user_pwd_check();
 				}
+				$('#firstname, #username, #lastname, #password, #callsign, #cnfm_password, #city, #user_email, #userlocator').on('change', function() {
+					checklist_firstuser();
+				});
+				if ($('#userlocator').val() != '') {
+					maidenhead_checks('#userlocator');
+				}
+				if ($('#user_email').val() != '') {
+					email_verification();
+				}
+				checklist_firstuser();
 
 				// Checklist Stuff
 				checklist_configuration();
@@ -1478,11 +1504,6 @@ if (!file_exists('.lock')) {
 				});
 
 				checklist_database();
-
-				$('#firstname, #username, #lastname, #password, #callsign, #cnfm_password, #city, #user_email, #userlocator').on('change', function() {
-					checklist_firstuser();
-				});
-				checklist_firstuser();
 
 				// We can either check on change of everything or just testing in an interval
 				setInterval(enable_installbutton, 800);
