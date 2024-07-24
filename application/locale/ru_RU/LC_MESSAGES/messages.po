@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-23 19:48+0000\n"
+"POT-Creation-Date: 2024-07-24 06:51+0000\n"
 "PO-Revision-Date: 2024-07-23 14:40+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@gmail.com>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -332,7 +332,7 @@ msgid "CQ Magazine WAZ"
 msgstr "CQ Magazine WAZ"
 
 #: application/controllers/Awards.php:652
-#: application/views/accumulate/index.php:61
+#: application/views/accumulate/index.php:54
 #: application/views/timeline/index.php:45
 msgid "Worked All States (WAS)"
 msgstr "Worked All States (WAS)"
@@ -2139,7 +2139,7 @@ msgid "Year"
 msgstr "Год"
 
 #: application/views/accumulate/index.php:9
-#: application/views/accumulate/index.php:95
+#: application/views/accumulate/index.php:67
 msgid "Yearly"
 msgstr "Ежегодно"
 
@@ -2150,7 +2150,7 @@ msgid "Month"
 msgstr "Месяц"
 
 #: application/views/accumulate/index.php:11
-#: application/views/accumulate/index.php:101
+#: application/views/accumulate/index.php:73
 msgid "Monthly"
 msgstr "Ежемесячно"
 
@@ -2246,35 +2246,36 @@ msgstr "Все"
 msgid "Award"
 msgstr "Диплом"
 
-#: application/views/accumulate/index.php:55
+#: application/views/accumulate/index.php:53
 #: application/views/timeline/index.php:44
 msgid "DX Century Club (DXCC)"
 msgstr "DX Century Club (DXCC)"
 
-#: application/views/accumulate/index.php:67
+#: application/views/accumulate/index.php:55
 #: application/views/timeline/index.php:46
 msgid "Islands On The Air (IOTA)"
 msgstr "Islands On The Air (IOTA)"
 
-#: application/views/accumulate/index.php:73
+#: application/views/accumulate/index.php:56
 #: application/views/timeline/index.php:47
 msgid "Worked All Zones (WAZ)"
 msgstr "Worked All Zones (WAZ)"
 
-#: application/views/accumulate/index.php:79
-msgid "VHF/UHF Century Club (VUCC)"
+#: application/views/accumulate/index.php:57
+#: application/views/timeline/index.php:48
+msgid "VHF / UHF Century Club (VUCC)"
 msgstr "VHF / UHF Century Club (VUCC)"
 
-#: application/views/accumulate/index.php:85
+#: application/views/accumulate/index.php:58
 #: application/views/timeline/index.php:49
 msgid "Worked All Japan (WAJA)"
 msgstr "Worked All Japan (WAJA)"
 
-#: application/views/accumulate/index.php:90
+#: application/views/accumulate/index.php:62
 msgid "Period"
 msgstr "Период"
 
-#: application/views/accumulate/index.php:111
+#: application/views/accumulate/index.php:83
 #: application/views/activators/index.php:50
 #: application/views/awards/cq/index.php:111
 #: application/views/awards/dok/index.php:127
@@ -9915,10 +9916,6 @@ msgstr "Пожалуйста, отредактируйте"
 msgid "Add a Theme"
 msgstr "Добавить тему"
 
-#: application/views/timeline/index.php:48
-msgid "VHF / UHF Century Club (VUCC)"
-msgstr "VHF / UHF Century Club (VUCC)"
-
 #: application/views/timeplotter/index.php:2
 msgid "contacts were plotted"
 msgstr "QSO отображены"
@@ -10844,6 +10841,9 @@ msgstr ""
 #: application/views/widgets/oqrs.php:95
 msgid "Submit Request"
 msgstr ""
+
+#~ msgid "VHF/UHF Century Club (VUCC)"
+#~ msgstr "VHF / UHF Century Club (VUCC)"
 
 #~ msgid "Accumulated Number of DXCCs worked"
 #~ msgstr "Всего сработано DXCC"
