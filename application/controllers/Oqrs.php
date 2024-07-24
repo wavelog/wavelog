@@ -53,8 +53,20 @@ class Oqrs extends CI_Controller {
 		$this->load->model('oqrs_model');
 		$data['result'] = $this->oqrs_model->getQueryDataGrouped($this->input->post('callsign'));
 		$data['callsign'] = $this->security->xss_clean($this->input->post('callsign'));
+		
+		if($this->input->post('widget') != 'true') {
+			$this->load->view('oqrs/request_grouped', $data);
+		} else {
+			$data['stations'] = $this->oqrs_model->get_oqrs_stations();
+			$data['page_title'] = __("Log Search & OQRS");
+			$data['global_oqrs_text'] = $this->optionslib->get_option('global_oqrs_text');
+			$data['groupedSearch'] = 'on';
+			$data['widget_call'] = true;
 
-		$this->load->view('oqrs/request_grouped', $data);
+			$this->load->view('visitor/layout/header', $data);
+			$this->load->view('oqrs/index');
+			$this->load->view('interface_assets/footer');
+		}
 	}
 
 	public function not_in_log() {
