@@ -328,13 +328,6 @@ if (!file_exists('.lock')) {
 												<?= __("This field can't be empty and have to end with a slash 'example/'!"); ?>
 											</div>
 										</div>
-										<div class="mb-3 position-relative">
-											<label for="locator" class="form-label required"><?= __("Default Gridsquare/Locator"); ?></label><i id="gridsquare_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("This is the default maidenhead locator which is used as falback. You can use the locator of your Home QTH."); ?>"></i>
-											<input type="text" id="locator" placeholder="HA44AA" class="form-control" name="locator" />
-											<div class="invalid-tooltip">
-												<?= __("Type in a valid locator"); ?>
-											</div>
-										</div>
 										<div class="mb-3">
 											<label for="global_call_lookup" class="form-label"><?= __("Optional: Global Callbook Lookup"); ?><i id="callbook_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("This configuration is optional. The callsign lookup will be available for all users of this installation. You can choose between QRZ.com and HamQTH. While HamQTH also works without username and password, you will need credentials for QRZ.com. To also get the Call Locator in QRZ.com you'll need an XML subscription. HamQTH does not always provide the locator information."); ?>"></i></label>
 											<select id="global_call_lookup" class="form-select" name="global_call_lookup">
@@ -1326,11 +1319,6 @@ if (!file_exists('.lock')) {
 				maidenhead_checks(userLocatorField);
 			});
 
-			const locatorField = '#locator';
-			$(locatorField).on('change', function() {
-				maidenhead_checks(locatorField);
-			});
-
 			function maidenhead_checks(field) {
 				if (!isValidMaidenheadLocator($(field).val())) {
 					$(field).addClass('is-invalid');
@@ -1428,7 +1416,7 @@ if (!file_exists('.lock')) {
 
 				// Checklist Stuff
 				checklist_configuration();
-				$('#directory, #websiteurl, #locator').on('change', function() {
+				$('#directory, #websiteurl').on('change', function() {
 					directory_check();
 					websiteurl_check();
 					checklist_configuration();
@@ -1510,9 +1498,6 @@ if (!file_exists('.lock')) {
 				}
 
 				if ($('#websiteurl').val() == '' || $('#websiteurl').hasClass('is-invalid')) {
-					checklist_configuration = false;
-				}
-				if ($('#locator').val() == '' || $('#locator').hasClass('is-invalid')) {
 					checklist_configuration = false;
 				}
 
