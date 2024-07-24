@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-07-24 06:51+0000\n"
-"PO-Revision-Date: 2024-07-23 19:26+0000\n"
+"PO-Revision-Date: 2024-07-24 12:02+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/zh_Hans/>\n"
@@ -2012,7 +2012,7 @@ msgstr "QO-100 Dx Club 上传"
 
 #: application/controllers/Widgets.php:21
 msgid "Unknown Public Page, please make sure the public slug is correct."
-msgstr ""
+msgstr "公开页面有误，请确认公开标识符正确。"
 
 #: application/controllers/Widgets.php:54 application/views/oqrs/index.php:69
 msgid "No stations found that are using Wavelog OQRS."
@@ -2104,7 +2104,7 @@ msgstr "累计已通联的 VUCC 网格数量"
 
 #: application/views/accumulate/index.php:7
 msgid "Accumulated number of WAJA worked"
-msgstr ""
+msgstr "累计通联的 WAJA 数量"
 
 #: application/views/accumulate/index.php:8
 #: application/views/dashboard/index.php:222
@@ -2240,12 +2240,12 @@ msgstr "通联所有区域（WAZ）"
 #: application/views/accumulate/index.php:57
 #: application/views/timeline/index.php:48
 msgid "VHF / UHF Century Club (VUCC)"
-msgstr ""
+msgstr "VHF / UHF Century Club (VUCC)"
 
 #: application/views/accumulate/index.php:58
 #: application/views/timeline/index.php:49
 msgid "Worked All Japan (WAJA)"
-msgstr ""
+msgstr "Worked All Japan (WAJA)"
 
 #: application/views/accumulate/index.php:62
 msgid "Period"
@@ -7708,7 +7708,7 @@ msgstr "添加信息"
 #: application/views/oqrs/request.php:56
 #: application/views/oqrs/request_grouped.php:60
 msgid "Any extra information we need to know about?"
-msgstr ""
+msgstr "有额外的信息需要记录吗？"
 
 #: application/views/oqrs/notinlogform.php:34
 #: application/views/oqrs/request.php:60
@@ -7773,14 +7773,14 @@ msgstr "添加到打印队列中"
 
 #: application/views/oqrs/qsolist.php:197
 msgid "No QSO's were found. It seems you were not active at this time."
-msgstr ""
+msgstr "无 QSO，似乎您最近不太活跃。"
 
 #: application/views/oqrs/request.php:9
 #: application/views/oqrs/request_grouped.php:3
 msgid ""
 "The following QSO(s) were found. Please fill out the date and time and "
 "submit your request."
-msgstr ""
+msgstr "为您找到如下 QSO，请填写日期与时间然后提交请求。"
 
 #: application/views/oqrs/request.php:40
 #: application/views/oqrs/request_grouped.php:44
@@ -7790,7 +7790,7 @@ msgstr "QSL 路径"
 #: application/views/oqrs/request.php:50
 #: application/views/oqrs/request_grouped.php:54
 msgid "Direct (write address in message below)"
-msgstr ""
+msgstr "直邮（在下方写好地址）"
 
 #: application/views/oqrs/request.php:66
 #: application/views/oqrs/request_grouped.php:70
@@ -7815,13 +7815,13 @@ msgstr "搜索结果：%s"
 #, php-format
 msgid "has %d band slot"
 msgid_plural "has %d band slots"
-msgstr[0] ""
+msgstr[0] "有 %d 个波段区间"
 
 #: application/views/oqrs/result.php:33
 #, php-format
 msgid "and has %d QSO in the log"
 msgid_plural "and has %d QSOs in the log"
-msgstr[0] ""
+msgstr[0] "并且日志中有 %d 个 QSO"
 
 #: application/views/oqrs/result.php:37
 msgid "Request QSL"
@@ -7834,17 +7834,17 @@ msgstr "不在日志中？"
 #: application/views/oqrs/showrequests.php:5
 #: application/views/oqrs/showrequests.php:50
 msgid "Open request"
-msgstr ""
+msgstr "提交请求"
 
 #: application/views/oqrs/showrequests.php:6
 #: application/views/oqrs/showrequests.php:51
 msgid "Not in log request"
-msgstr ""
+msgstr "不在日志中的请求"
 
 #: application/views/oqrs/showrequests.php:7
 #: application/views/oqrs/showrequests.php:52
 msgid "Request done"
-msgstr ""
+msgstr "请求完成"
 
 #: application/views/oqrs/showrequests.php:47
 msgid "OQRS Status"
@@ -7852,7 +7852,7 @@ msgstr "OQRS 状态"
 
 #: application/views/oqrs/showrequests.php:69
 msgid "With selected"
-msgstr ""
+msgstr "选中"
 
 #: application/views/oqrs/showrequests.php:70
 msgid "Mark as done"
@@ -7860,7 +7860,7 @@ msgstr "标记为完成"
 
 #: application/views/oqrs/showrequests.php:80
 msgid "Time of request"
-msgstr ""
+msgstr "请求时间"
 
 #: application/views/oqrs/showrequests.php:81
 #: application/views/simplefle/index.php:74
@@ -7873,7 +7873,7 @@ msgstr "QSO 时间"
 
 #: application/views/oqrs/showrequests.php:85
 msgid "Request callsign"
-msgstr ""
+msgstr "请求呼号"
 
 #: application/views/oqrs/showrequests.php:89
 msgid "QSL route"
@@ -7881,24 +7881,24 @@ msgstr "QSL 路径"
 
 #: application/views/oqrs/showrequests.php:90
 msgid "Check log"
-msgstr ""
+msgstr "检查日志"
 
 #: application/views/public_search/empty.php:2
 #: application/views/public_search/result.php:2
 msgid "Searching for"
-msgstr ""
+msgstr "搜索"
 
 #: application/views/qrbcalc/index.php:3
 msgid "Locator 1"
-msgstr ""
+msgstr "Locator 1"
 
 #: application/views/qrbcalc/index.php:10
 msgid "Locator 2"
-msgstr ""
+msgstr "Locator 2"
 
 #: application/views/qrbcalc/index.php:20
 msgid "Calculate"
-msgstr ""
+msgstr "计算"
 
 #: application/views/qrz/export.php:27
 msgid ""
@@ -7920,15 +7920,15 @@ msgstr ""
 
 #: application/views/qrz/export.php:81
 msgid "Download from QRZ Logbook"
-msgstr ""
+msgstr "从 QRZ Logbook 下载"
 
 #: application/views/qrz/export.php:107
 msgid "Mark QSOs as exported to QRZ Logbook"
-msgstr ""
+msgstr "标记 QSO 已导出至 QRZ Logbook"
 
 #: application/views/qrz/mark_qrz.php:16
 msgid "The QSOs are marked as exported to QRZ Logbook."
-msgstr ""
+msgstr "QSO 已标记为导出至 QRZ Logbook。"
 
 #: application/views/qslcard/index.php:10
 #, php-format
@@ -7937,27 +7937,27 @@ msgstr ""
 
 #: application/views/qslcard/index.php:67
 msgid "Add Qsos"
-msgstr ""
+msgstr "添加 QSO"
 
 #: application/views/qslcard/searchresult.php:193
 msgid "Add to QSL"
-msgstr ""
+msgstr "添加到 QSL"
 
 #: application/views/qslmanagement/index.php:13
 msgid "Incoming QSL Cards"
-msgstr ""
+msgstr "接收中的 QSL 卡片"
 
 #: application/views/qslmanagement/index.php:25
 msgid "Report"
-msgstr ""
+msgstr "报告"
 
 #: application/views/qslmanagement/index.php:26
 msgid "Option"
-msgstr ""
+msgstr "选项"
 
 #: application/views/qslmanagement/index.php:46
 msgid "Outgoing QSL Cards"
-msgstr ""
+msgstr "外发中的 QSL 卡片"
 
 #: application/views/qslprint/index.php:16
 msgid "Export Requested QSLs for Printing"
@@ -8003,7 +8003,7 @@ msgstr "从队列中删除选中的 QSL 信息"
 
 #: application/views/qslprint/qslprint.php:71
 msgid "Export CSV-file"
-msgstr ""
+msgstr "导出 CSV 文件"
 
 #: application/views/qslprint/qslprint.php:71
 msgid "Export requested QSLs to CSV-file"
@@ -8038,7 +8038,7 @@ msgstr "没有找到附加的 QSL 信息，可能它们已经被添加到打印�
 #: application/views/qso/components/winkeysettings.php:7
 #: application/views/qso/components/winkeysettings_results.php:7
 msgid "Winkey Macros"
-msgstr ""
+msgstr "Winkey 宏"
 
 #: application/views/qso/components/winkeysettings.php:12
 #: application/views/qso/components/winkeysettings.php:28
@@ -8052,7 +8052,7 @@ msgstr ""
 #: application/views/qso/components/winkeysettings_results.php:76
 #, php-format
 msgid "Function %d - Name"
-msgstr ""
+msgstr "Function %d - Name"
 
 #: application/views/qso/components/winkeysettings.php:19
 #: application/views/qso/components/winkeysettings.php:35
@@ -8066,19 +8066,19 @@ msgstr ""
 #: application/views/qso/components/winkeysettings_results.php:83
 #, php-format
 msgid "Function %d - Macro"
-msgstr ""
+msgstr "Function %d - Macro"
 
 #: application/views/qso/edit_ajax.php:34
 msgid "Sats"
-msgstr ""
+msgstr "卫星"
 
 #: application/views/qso/edit_ajax.php:51
 msgid "Start Date/Time"
-msgstr ""
+msgstr "开始日期/时间"
 
 #: application/views/qso/edit_ajax.php:56
 msgid "End Date/Time"
-msgstr ""
+msgstr "结束日期/时间"
 
 #: application/views/qso/edit_ajax.php:76
 msgid "RX Frequency"
@@ -8099,7 +8099,7 @@ msgstr "以W为单位设置功率值。在输入中仅填写数值"
 
 #: application/views/qso/edit_ajax.php:166
 msgid "Used for VUCC MultiGrids"
-msgstr ""
+msgstr "被 VUCC 网格计算使用"
 
 #: application/views/qso/edit_ajax.php:177
 msgid "QTH"
@@ -8122,7 +8122,7 @@ msgstr "Sig 属性"
 
 #: application/views/qso/edit_ajax.php:369
 msgid "Notes (for internal usage only)"
-msgstr ""
+msgstr "备注（仅限内部使用）"
 
 #: application/views/qso/edit_ajax.php:403
 msgid "Sent Method"
@@ -8158,7 +8158,7 @@ msgstr "获取该站的 eQSL 默认消息。"
 
 #: application/views/qso/edit_ajax.php:530
 msgid "Change Station Profile"
-msgstr ""
+msgstr "修改台站信息"
 
 #: application/views/qso/edit_ajax.php:576
 msgid "Exchange (R)"
@@ -8197,7 +8197,7 @@ msgstr "未通联过"
 
 #: application/views/qso/index.php:20
 msgid "LIVE"
-msgstr ""
+msgstr "LIVE"
 
 #: application/views/qso/index.php:20
 msgid "POST"
