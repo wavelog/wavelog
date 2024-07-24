@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-07-24 06:51+0000\n"
-"PO-Revision-Date: 2024-07-23 19:40+0000\n"
+"PO-Revision-Date: 2024-07-25 06:11+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/pt_PT/>\n"
@@ -2036,10 +2036,12 @@ msgstr "Transferência QO-100 Dx Club"
 #: application/controllers/Widgets.php:21
 msgid "Unknown Public Page, please make sure the public slug is correct."
 msgstr ""
+"Página pública desconhecida, certifique-se de que o slug público está "
+"correto."
 
 #: application/controllers/Widgets.php:54 application/views/oqrs/index.php:69
 msgid "No stations found that are using Wavelog OQRS."
-msgstr ""
+msgstr "Não foram encontradas estações que estejam a utilizar o OQRS Wavelog."
 
 #: application/models/Eqslmethods_model.php:281
 msgid "Your eQSL username and/or password is incorrect."
@@ -2271,7 +2273,7 @@ msgstr "Worked All Zones (WAZ)"
 #: application/views/accumulate/index.php:57
 #: application/views/timeline/index.php:48
 msgid "VHF / UHF Century Club (VUCC)"
-msgstr ""
+msgstr "VHF / UHF Century Club (VUCC)"
 
 #: application/views/accumulate/index.php:58
 #: application/views/timeline/index.php:49
@@ -5545,23 +5547,23 @@ msgstr ""
 #: application/views/debug/index.php:168
 #, php-format
 msgid "Change %s to the value %s (Strongly recommended)"
-msgstr ""
+msgstr "Alterar %s para o valor %s (fortemente recomendado)"
 
 #: application/views/debug/index.php:174
 msgid "Authentication Mode is set correctly"
-msgstr ""
+msgstr "O modo de autenticação está definido corretamente"
 
 #: application/views/debug/index.php:174 application/views/debug/index.php:191
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: application/views/debug/index.php:181
 msgid "You use the default encryption key. You should change it!"
-msgstr ""
+msgstr "Está a utilizar a chave de encriptação predefinida. Deveria alterá-la!"
 
 #: application/views/debug/index.php:184
 msgid "This will also enable the 'Keep me logged in' feature."
-msgstr ""
+msgstr "Isto também activará a funcionalidade “Manter-me conectado”."
 
 #: application/views/debug/index.php:185
 #, php-format
@@ -5569,24 +5571,29 @@ msgid ""
 "Change the value of %s to a new encryption key other then "
 "'flossie1234555541'. Choose a safe and long password. (Strongly recommended)"
 msgstr ""
+"Altere o valor de %s para uma nova chave de encriptação que não seja "
+"'flossie1234555541'. Escolha uma palavra-passe segura e longa. (Fortemente "
+"recomendado)"
 
 #: application/views/debug/index.php:191
 msgid "You do not use the default encryption key"
-msgstr ""
+msgstr "Você não utiliza a chave de encriptação predefinida"
 
 #: application/views/debug/index.php:198
 msgid "Migrate Userdata"
-msgstr ""
+msgstr "Migrar dados dos utilizadores"
 
 #: application/views/debug/index.php:200
 msgid ""
 "Here you can migrate existing QSL cards and eQSL cards to the new userdata "
 "folder."
 msgstr ""
+"Aqui pode migrar os cartões QSL e os cartões eQSL existentes para a nova "
+"pasta userdata."
 
 #: application/views/debug/index.php:213
 msgid "Modules"
-msgstr ""
+msgstr "Módulos"
 
 #: application/views/debug/index.php:219 application/views/debug/index.php:230
 #: application/views/debug/index.php:241 application/views/debug/index.php:252
@@ -5602,56 +5609,56 @@ msgstr "Não instalado"
 
 #: application/views/debug/index.php:272 application/views/qso/index.php:654
 msgid "Settings"
-msgstr ""
+msgstr "Configurações"
 
 #: application/views/debug/index.php:401
 msgid "Git Information"
-msgstr ""
+msgstr "Informação do Git"
 
 #: application/views/debug/index.php:405
 msgid "Branch"
-msgstr ""
+msgstr "Ramo"
 
 #: application/views/debug/index.php:416 application/views/debug/index.php:427
 #: application/views/debug/index.php:437
 msgid "n/a"
-msgstr ""
+msgstr "n/d"
 
 #: application/views/debug/index.php:422
 msgid "Commit"
-msgstr ""
+msgstr "Commit"
 
 #: application/views/debug/index.php:432
 msgid "Tag"
-msgstr ""
+msgstr "Tag"
 
 #: application/views/debug/index.php:442
 msgid "Last Fetch"
-msgstr ""
+msgstr "Último Fetch"
 
 #: application/views/debug/index.php:454
 msgid "Check for new version"
-msgstr ""
+msgstr "Verifica se há uma nova versão"
 
 #: application/views/debug/index.php:455
 msgid "Update now"
-msgstr ""
+msgstr "Atualizar agora"
 
 #: application/views/debug/index.php:473
 msgid "File download date"
-msgstr ""
+msgstr "Data de transferência do ficheiro"
 
 #: application/views/debug/index.php:477
 msgid "File"
-msgstr ""
+msgstr "Ficheiro"
 
 #: application/views/debug/index.php:478
 msgid "Last update"
-msgstr ""
+msgstr "Última atualização"
 
 #: application/views/debug/index.php:482
 msgid "DXCC update from Club Log"
-msgstr ""
+msgstr "Atualização do DXCC via Club Log"
 
 #: application/views/debug/index.php:484 application/views/debug/index.php:490
 #: application/views/debug/index.php:495 application/views/debug/index.php:500
@@ -5659,35 +5666,35 @@ msgstr ""
 #: application/views/debug/index.php:515
 #: application/views/station_profile/edit.php:22
 msgid "Update"
-msgstr ""
+msgstr "Atualização"
 
 #: application/views/debug/index.php:488
 msgid "DOK file download"
-msgstr ""
+msgstr "Descarregar ficheiro DOK"
 
 #: application/views/debug/index.php:493
 msgid "LoTW users download"
-msgstr ""
+msgstr "Descarregamento dos utilizadores de LoTW"
 
 #: application/views/debug/index.php:498
 msgid "POTA file download"
-msgstr ""
+msgstr "Descarregamento do ficheiro POTA"
 
 #: application/views/debug/index.php:503
 msgid "SCP file download"
-msgstr ""
+msgstr "Descarregamento de ficheiros SCP"
 
 #: application/views/debug/index.php:508
 msgid "SOTA file download"
-msgstr ""
+msgstr "Descarregamento do ficheiro SOTA"
 
 #: application/views/debug/index.php:513
 msgid "WWFF file download"
-msgstr ""
+msgstr "Descarregamento do ficheiro WWFF"
 
 #: application/views/debug/index.php:522
 msgid "QSO-DB Maintenance"
-msgstr ""
+msgstr "Manutenção da QSO-DB"
 
 #: application/views/debug/index.php:526
 #, php-format
@@ -5695,7 +5702,9 @@ msgid "The Database contains %d QSO without a station-profile (location)"
 msgid_plural ""
 "The Database contains %d QSOs without a station-profile (location)"
 msgstr[0] ""
+"A base de dados contém %d contacto sem um perfil de estação (localização)"
 msgstr[1] ""
+"A base de dados contém %d contactos sem um perfil de estação (localização)"
 
 #: application/views/debug/index.php:539
 #: application/views/public_search/result.php:17
@@ -5705,28 +5714,32 @@ msgstr[1] ""
 #: application/views/stationsetup/linkedlocations.php:32
 #: application/views/stationsetup/stationsetup.php:123
 msgid "Station Callsign"
-msgstr ""
+msgstr "Indicativo da Estação"
 
 #: application/views/debug/index.php:564
 msgid "Please mark QSOs and reassign them to an existing station location:"
 msgstr ""
+"Por favor marque os contactos e reatribua-os a uma localização de estação "
+"existente:"
 
 #: application/views/debug/index.php:572
 msgctxt "Stationlocation"
 msgid "Target Location"
-msgstr ""
+msgstr "Localização do objetivo"
 
 #: application/views/debug/index.php:573 application/views/debug/index.php:584
 msgid "Reassign"
-msgstr ""
+msgstr "Reatribuir"
 
 #: application/views/debug/index.php:593
 msgid "Every QSO in your Database is assigned to a station-profile (location)"
 msgstr ""
+"Cada contacto na sua base de dados é atribuído a um perfil de estação "
+"(localização)"
 
 #: application/views/debug/index.php:593
 msgid "Everything ok"
-msgstr ""
+msgstr "Tudo ok"
 
 #: application/views/debug/index.php:618
 msgid "Bulgarian"
@@ -5796,72 +5809,75 @@ msgstr "Turco"
 #: application/views/interface_assets/footer.php:30
 #: application/views/simplefle/index.php:68
 msgid "QSO Data"
-msgstr ""
+msgstr "Dados do contacto"
 
 #: application/views/distances/index.php:9
 msgid "contacts were plotted.<br /> Your furthest contact was with"
-msgstr ""
+msgstr "contactos foram traçados. <br /> O seu contacto mais distante foi com"
 
 #: application/views/distances/index.php:10
 msgid "in gridsquare"
-msgstr ""
+msgstr "na quadrícula"
 
 #: application/views/distances/index.php:11
 msgid "the distance was"
-msgstr ""
+msgstr "a distância foi"
 
 #: application/views/distances/index.php:14
 msgid "Callsign(s) worked (max 5 shown)"
-msgstr ""
+msgstr "Indicativo(s) contactado(s) (mostrados máx. 5)"
 
 #: application/views/distances/index.php:19
 msgid "Band selection"
-msgstr ""
+msgstr "Selecção de banda"
 
 #: application/views/dxatlas/index.php:3
 msgid "DX Atlas Export"
-msgstr ""
+msgstr "Exportação DX Atlas"
 
 #: application/views/dxatlas/index.php:7
 msgid ""
 "Export your logbook for use in DX Atlas to display worked / confirmed "
 "gridsquares."
 msgstr ""
+"Exportação do seu logbook para utilização no DX Atlas para mostrar os "
+"gridsquares contactados / confirmados."
 
 #: application/views/dxatlas/index.php:11 application/views/kml/index.php:11
 msgid "Only QSOs with a gridsquare defined will be exported!"
 msgstr ""
+"Apenas os contactos com um quadrado de grelha definido serão exportados!"
 
 #: application/views/dxcalendar/index.php:9
 msgid "Date from"
-msgstr ""
+msgstr "Data de"
 
 #: application/views/dxcalendar/index.php:10
 msgid "Date to"
-msgstr ""
+msgstr "Data para"
 
 #: application/views/dxcalendar/index.php:13
 #: application/views/view_log/qso.php:366
 msgid "QSL Info"
-msgstr ""
+msgstr "Informação QSL"
 
 #: application/views/dxcalendar/index.php:14
 msgid "Source"
-msgstr ""
+msgstr "Fonte"
 
 #: application/views/eqsl/analysis.php:11 application/views/eqsl/download.php:9
 #: application/views/eqsl/export.php:8 application/views/eqsl/import.php:7
 #: application/views/eqsl/result.php:11 application/views/eqsl/tools.php:7
 #: application/views/qrz/export.php:14
 msgid "Download QSOs"
-msgstr ""
+msgstr "Descarregar contactos"
 
 #: application/views/eqsl/analysis.php:14
 #: application/views/eqsl/download.php:13 application/views/eqsl/export.php:12
 #: application/views/eqsl/import.php:11 application/views/eqsl/result.php:14
 #: application/views/eqsl/tools.php:11
 msgid "Upload QSOs"
-msgstr ""
+msgstr "Enviar contactos"
 
 #: application/views/eqsl/analysis.php:17
 #: application/views/eqsl/download.php:17 application/views/eqsl/export.php:16
@@ -5869,51 +5885,55 @@ msgstr ""
 #: application/views/eqsl/tools.php:15
 #: application/views/interface_assets/header.php:241
 msgid "Tools"
-msgstr ""
+msgstr "Ferramentas"
 
 #: application/views/eqsl/analysis.php:20
 #: application/views/eqsl/download.php:20 application/views/eqsl/export.php:19
 #: application/views/eqsl/import.php:18 application/views/eqsl/result.php:20
 #: application/views/eqsl/tools.php:19
 msgid "Download eQSL cards"
-msgstr ""
+msgstr "Descarregar cartões eQSL"
 
 #: application/views/eqsl/analysis.php:40
 #: application/views/eqsl/download.php:40 application/views/eqsl/result.php:37
 msgid "Submode"
-msgstr ""
+msgstr "Submodo"
 
 #: application/views/eqsl/analysis.php:41
 msgid "Log Status"
-msgstr ""
+msgstr "Status do log"
 
 #: application/views/eqsl/analysis.php:42 application/views/eqsl/result.php:38
 msgid "eQSL Status"
-msgstr ""
+msgstr "Status do eQSL"
 
 #: application/views/eqsl/analysis.php:62
 msgid "There are no QSO confirmations waiting for you at eQSL.cc"
-msgstr ""
+msgstr "Não há confirmações de contactos à sua espera no eQSL.cc"
 
 #: application/views/eqsl/download.php:31
 msgid ""
 "Below is a table of QSOs that have been confirmed on eQSL but QSL images "
 "have not been downloaded yet."
 msgstr ""
+"Abaixo está uma tabela de contactos que foram confirmados no eQSL mas as "
+"imagens QSL ainda não foram descarregadas."
 
 #: application/views/eqsl/download.php:43
 msgid "Action"
-msgstr ""
+msgstr "Ação"
 
 #: application/views/eqsl/download.php:60
 msgid "View/Download"
-msgstr ""
+msgstr "Ver/Descarregar"
 
 #: application/views/eqsl/download.php:71 application/views/eqsl/import.php:53
 msgid ""
 "Wavelog will use the eQSL credentials from your Wavelog user profile to "
 "connect to eQSL and download confirmations."
 msgstr ""
+"O Wavelog utilizará as credenciais eQSL do seu perfil de utilizador Wavelog "
+"para se ligar ao eQSL e descarregar as confirmações."
 
 #: application/views/eqsl/download.php:73
 msgid ""
@@ -5922,44 +5942,57 @@ msgid ""
 "to call this function several times depending on the amount of outstanding "
 "cards. This may run into a script timeout depending on the PHP configuration."
 msgstr ""
+"Devido a um limite de taxa de aproximadamente 10 segundos por download de "
+"imagem eQSL, chamar esta função levará muito tempo para ser concluída! "
+"Assim, você pode ter que chamar esta função várias vezes, dependendo da "
+"quantidade de cartões pendentes. Isso pode levar a um timeout do script, "
+"dependendo da configuração do PHP."
 
 #: application/views/eqsl/download.php:81
 msgid ""
 "There are no QSOs whose eQSL card images have not yet been downloaded. Go "
 "log some more QSOs!"
 msgstr ""
+"Não há contactos cujas imagens do cartão eQSL ainda não tenham sido "
+"descarregadas. Registe mais contactos!"
 
 #: application/views/eqsl/export.php:31
 msgid "Below is a table of QSOs that have not yet been sent to eQSL."
 msgstr ""
+"Abaixo está uma tabela de contactos que ainda não foram enviados para o eQSL."
 
 #: application/views/eqsl/export.php:33
 msgid ""
 "Please make sure the 'eQSL QTH Nickname' field is set in your station "
 "profile and that the value matches the QTH Nickname you set within eQSL."
 msgstr ""
+"Certifique-se de que o campo 'eQSL QTH Nickname' está definido no perfil da "
+"sua estação e que o valor corresponde ao QTH Nickname que definiu no eQSL."
 
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
 msgstr ""
+"Clicar em 'Upload QSOs' enviará as informações dos contactos para o eQSL.cc."
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
-msgstr ""
+msgstr "Os seguintes contactos foram enviados para o eQSL."
 
 #: application/views/eqsl/export.php:51
 msgid ""
 "There are no QSOs that need to be sent to eQSL at this time. Go log some "
 "more QSOs!"
 msgstr ""
+"De momento, não há contactos que precisem de ser enviados para o eQSL. "
+"Registe mais contactos!"
 
 #: application/views/eqsl/import.php:30
 msgid "Import from file..."
-msgstr ""
+msgstr "Importar de um ficheiro..."
 
 #: application/views/eqsl/import.php:33
 msgid "Download Inbox"
-msgstr ""
+msgstr "Descarregar a caixa de entrada"
 
 #: application/views/eqsl/import.php:33
 #, php-format
@@ -5967,50 +6000,57 @@ msgid ""
 "Upload the Exported ADIF file from eQSL from the %s page, to mark QSOs as "
 "confirmed on eQSL."
 msgstr ""
+"Carregar o ficheiro ADIF exportado do eQSL a partir da página %s, para "
+"marcar os contactos como confirmados no eQSL."
 
 #: application/views/eqsl/import.php:34
 msgid "Choose Station(location) eQSL File belongs to:"
-msgstr ""
+msgstr "Escolha a estação (localização) a que pertence o ficheiro eQSL:"
 
 #: application/views/eqsl/import.php:45 application/views/lotw/import.php:25
 msgid "Log files must have the file type .adi"
-msgstr ""
+msgstr "Os ficheiros de log devem ter o tipo de ficheiro .adi"
 
 #: application/views/eqsl/import.php:52
 msgid "Import directly from eQSL"
-msgstr ""
+msgstr "Importar diretamente do eQSL"
 
 #: application/views/eqsl/tools.php:27
 msgid ""
 "This does NOT upload any QSOs. It only marks QSOs as sent. If you use this "
 "button you need to upload them manually on the eQSL.cc website."
 msgstr ""
+"Isto NÃO envia quaisquer contacto. Apenas marca os contactos como enviados. "
+"Se usar este botão, terá de os enviar manualmente no site eQSL.cc."
 
 #: application/views/eqsl/tools.php:29
 msgid "Mark All QSOs as Sent to eQSL"
-msgstr ""
+msgstr "Marcar todos os contactos como enviados para o eQSL"
 
 #: application/views/eqsl/tools.php:29
 msgid ""
 "Use this if you have lots of QSOs to upload to eQSL it will save the server "
 "timing out."
 msgstr ""
+"Utilize esta opção se tiver muitos contactos para enviar para o eQSL, assim "
+"evitará que o servidor faça timing out."
 
 #: application/views/eqslcard/index.php:10
 #, php-format
 msgid "You are using %s of disk space to store eQSL Card assets"
 msgstr ""
+"Está a utilizar %s de espaço em disco para armazenar os dados do cartão eQSL"
 
 #: application/views/eqslcard/index.php:34
 #: application/views/qslcard/index.php:33
 msgid "QSL Date"
-msgstr ""
+msgstr "Data QSL"
 
 #: application/views/eqslcard/index.php:60
 #: application/views/qslcard/index.php:66
 #: application/views/view_log/qso.php:614
 msgid "View"
-msgstr ""
+msgstr "Vista"
 
 #: application/views/gridmap/index.php:38
 #: application/views/logbookadvanced/edit.php:14
@@ -6018,15 +6058,15 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:604
 #: application/views/logbookadvanced/useroptions.php:118
 msgid "Propagation"
-msgstr ""
+msgstr "Propagação"
 
 #: application/views/gridmap/index.php:42
 msgid "None/Empty"
-msgstr ""
+msgstr "Nenhum/Vazio"
 
 #: application/views/gridmap/index.php:43
 msgid "All except SAT"
-msgstr ""
+msgstr "Todos exceto satélite"
 
 #: application/views/hamsat/index.php:22
 #, php-format
@@ -6034,87 +6074,97 @@ msgid ""
 "Cannot filter workable passes only without private feed key. Please set the "
 "feed key in %s."
 msgstr ""
+"Não é possível filtrar apenas os passes viáveis sem a chave privada. Por "
+"favor, defina a chave em %s."
 
 #: application/views/hamsat/index.php:22
 msgid "your profile"
-msgstr ""
+msgstr "o seu perfil"
 
 #: application/views/hrdlog/export.php:10 application/views/qrz/export.php:10
 #: application/views/webadif/export.php:10
 msgid "Upload Logbook"
-msgstr ""
+msgstr "Enviar Logbook"
 
 #: application/views/hrdlog/export.php:13 application/views/qrz/export.php:18
 #: application/views/webadif/export.php:13
 msgid "Mark QSOs"
-msgstr ""
+msgstr "Marcar contactos"
 
 #: application/views/hrdlog/export.php:22
 msgid ""
 "Here you can see all QSOs which have not been previously uploaded to a "
 "HRDLog logbook."
 msgstr ""
+"Aqui pode ver todos os contactos que não foram previamente enviados para um "
+"logbook do HRDLog."
 
 #: application/views/hrdlog/export.php:23
 msgid ""
 "You need to set a HRDLog Logbook API Code in your station profile. Only "
 "station profiles with an API Key set are displayed."
 msgstr ""
+"É necessário definir um código API do Logbook de HRDLog no perfil da "
+"estação. Só são apresentados os perfis de estação com uma chave API definida."
 
 #: application/views/hrdlog/export.php:24
 #, php-format
 msgid "The Code can be requested at %s"
-msgstr ""
+msgstr "O código pode ser solicitado em %s"
 
 #: application/views/hrdlog/export.php:25
 #: application/views/webadif/export.php:34
 msgid "This might take a while as QSO uploads are processed sequentially."
 msgstr ""
+"Isto pode demorar algum tempo, visto que os envio de contacto são "
+"processados sequencialmente."
 
 #: application/views/hrdlog/export.php:34 application/views/qrz/export.php:38
 #: application/views/webadif/export.php:41
 msgid "Profile name"
-msgstr ""
+msgstr "Nome do perfil"
 
 #: application/views/hrdlog/export.php:35
 #: application/views/oqrs/showrequests.php:86
 #: application/views/qrz/export.php:39 application/views/webadif/export.php:42
 msgid "Station callsign"
-msgstr ""
+msgstr "Indicativo da estação"
 
 #: application/views/hrdlog/export.php:36 application/views/qrz/export.php:40
 msgid "Edited QSOs not uploaded"
-msgstr ""
+msgstr "Editar contactos não enviados"
 
 #: application/views/hrdlog/export.php:37 application/views/qrz/export.php:41
 #: application/views/webadif/export.php:43
 msgid "Total QSOs not uploaded"
-msgstr ""
+msgstr "Total de contactos não enviados"
 
 #: application/views/hrdlog/export.php:38 application/views/qrz/export.php:42
 #: application/views/webadif/export.php:44
 msgid "Total QSOs uploaded"
-msgstr ""
+msgstr "Total de contactos enviados"
 
 #: application/views/hrdlog/export.php:60
 msgid ""
 "No Station Locations with valid HRDlog-Settings found. Check the HRDlog "
 "Credentials in the Station Location Settings!"
 msgstr ""
+"Não foram encontrados locais de estação válidos com configurações do HRDlog "
+". Verifique as credenciais do HRDlog nas configurações do local da estação!"
 
 #: application/views/hrdlog/export.php:87
 msgid "Mark QSOs as exported to HRDLog Logbook"
-msgstr ""
+msgstr "Marcar contactos como exportados para o logbook do HRDLog"
 
 #: application/views/hrdlog/mark_hrdlog.php:15
 #: application/views/qrz/mark_qrz.php:15
 #: application/views/webadif/mark_webadif.php:15
 msgid "Yay, it's done!"
-msgstr ""
+msgstr "Yay, está feito!"
 
 #: application/views/hrdlog/mark_hrdlog.php:16
 msgid "The QSOs are marked as exported to HRDLog Logbook."
-msgstr ""
+msgstr "Os contactos são marcados como exportados para o logbook do HRDLog ."
 
 #: application/views/interface_assets/footer.php:31
 #: application/views/search/search_result_ajax.php:404
@@ -6122,44 +6172,46 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:300
 #: application/views/view_log/qso.php:434
 msgid "Edit QSO"
-msgstr ""
+msgstr "Editar contacto"
 
 #: application/views/interface_assets/footer.php:33
 msgid "Attention"
-msgstr ""
+msgstr "Atenção"
 
 #: application/views/interface_assets/footer.php:36
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: application/views/interface_assets/footer.php:37
 msgid "Warning! Are you sure you want delete QSO with "
-msgstr ""
+msgstr "Atenção! Tem a certeza que quer apagar o contacto com "
 
 #: application/views/interface_assets/footer.php:38
 #: application/views/user/edit.php:493
 msgid "Colors"
-msgstr ""
+msgstr "Cores"
 
 #: application/views/interface_assets/footer.php:40
 msgid "Worked not confirmed"
-msgstr ""
+msgstr "Contactado mas não confirmado"
 
 #: application/views/interface_assets/footer.php:41
 msgid "Not worked"
-msgstr ""
+msgstr "Não contactado"
 
 #: application/views/interface_assets/footer.php:44
 #: application/views/qso/index.php:601
 #: application/views/visitor/layout/footer.php:244
 msgid "Clear"
-msgstr ""
+msgstr "Limpar"
 
 #: application/views/interface_assets/footer.php:45
 #: application/views/qso/edit_ajax.php:211
 #: application/views/qso/edit_ajax.php:512
 msgid "Propagation mode is not supported by LoTW. LoTW QSL fields disabled."
 msgstr ""
+"O modo de propagação não é suportado pelo LoTW. Campos QSL do LoTW "
+"desactivados."
 
 #: application/views/interface_assets/footer.php:127
 #: application/views/interface_assets/header.php:426
