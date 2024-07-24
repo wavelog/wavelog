@@ -1163,7 +1163,7 @@ if (!file_exists('.lock')) {
 
 				if (db_hostname === '' || db_username === '' || db_name === '') {
 					$('#db_connection_testresult').addClass('alert-danger');
-					$('#db_connection_testresult').html('<?= __("Error: All fields are required."); ?>');
+					$('#db_connection_testresult').html('<?= __("Error: At least Hostname/IP, Database Name and Username are required."); ?>');
 					return;
 				}
 
@@ -1251,11 +1251,11 @@ if (!file_exists('.lock')) {
 
 			// Check various user input in tab 4
 			// user password
-			var passwordField = $('#password');
-			var cnfmPasswordField = $('#cnfm_password');
-			var minPasswordLenght = 8;
+			let passwordField = $('#password');
+			let cnfmPasswordField = $('#cnfm_password');
+			let minPasswordLenght = 8;
 
-			$('#password, #cnfm_password').on('change', function() {
+			function user_pwd_check() {
 				if (cnfmPasswordField.val() == passwordField.val() && cnfmPasswordField.val() != '') {
 
 					if (cnfmPasswordField.val().length >= minPasswordLenght) {
@@ -1302,7 +1302,7 @@ if (!file_exists('.lock')) {
 					$('#userform_warnings').html('<?= __("Passwords do not match"); ?>');
 
 				}
-			});
+			}
 
 			// email verification
 			const emailField = $('#user_email');
@@ -1423,13 +1423,21 @@ if (!file_exists('.lock')) {
 				$('#resetButton').click(function() {
 					$('#resetModal').modal('show');
 				});
-
-				db_connection_test()
+				if ($('#db_hostname').val() != '') {
+					db_connection_test()
+				}
 
 				// Clear DB Test results on change
 				$('#db_hostname, #db_name, #db_username, #db_password').on('keyup', function() {
 					clear_db_testresult();
 				});
+
+				$('#cnfm_password').on('change focusout', function() {
+					user_pwd_check();
+				});
+				if ($('#cnfm_password').val() != '') {
+					user_pwd_check();
+				}
 
 				// Checklist Stuff
 				checklist_configuration();
@@ -1508,6 +1516,7 @@ if (!file_exists('.lock')) {
 			// comment: Checklist for Pre-Checks is handled in PHP. See '$prechecks_passed'
 
 			function checklist_configuration() {
+				console.log('run checklist_configuration');
 				var checklist_configuration = true;
 
 				if ($('#directory').hasClass('is-invalid')) {
