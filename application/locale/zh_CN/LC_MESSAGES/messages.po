@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-23 10:31+0000\n"
-"PO-Revision-Date: 2024-07-22 18:23+0000\n"
+"POT-Creation-Date: 2024-07-24 06:51+0000\n"
+"PO-Revision-Date: 2024-07-23 19:26+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/zh_Hans/>\n"
@@ -331,7 +331,7 @@ msgid "CQ Magazine WAZ"
 msgstr "CQ 杂志 WAZ"
 
 #: application/controllers/Awards.php:652
-#: application/views/accumulate/index.php:61
+#: application/views/accumulate/index.php:54
 #: application/views/timeline/index.php:45
 msgid "Worked All States (WAS)"
 msgstr "通联全部州奖（WAS）"
@@ -606,7 +606,7 @@ msgstr "网格地图"
 #: application/controllers/Gridmap.php:34
 #: application/controllers/Visitor.php:377
 msgid "Total gridsquares worked"
-msgstr "总共工作过的网格"
+msgstr "通联网格总数"
 
 #: application/controllers/Hamsat.php:59
 msgid "Hamsat - Satellite Roving"
@@ -1489,10 +1489,11 @@ msgid "Version Info will not be shown to any user"
 msgstr "版本信息不再会向用户显示"
 
 #: application/controllers/Oqrs.php:22 application/controllers/Oqrs.php:61
+#: application/controllers/Oqrs.php:73
 msgid "Log Search & OQRS"
 msgstr "查找日志 & OQRS"
 
-#: application/controllers/Oqrs.php:92
+#: application/controllers/Oqrs.php:104
 #: application/views/interface_assets/header.php:405
 msgid "OQRS Requests"
 msgstr "OQRS"
@@ -1577,7 +1578,7 @@ msgstr "卫星时钟"
 #: application/views/interface_assets/header.php:328
 #: application/views/interface_assets/header.php:335
 #: application/views/logbookadvanced/index.php:511
-#: application/views/oqrs/index.php:23
+#: application/views/oqrs/index.php:28
 #: application/views/oqrs/showrequests.php:67
 #: application/views/qslcard/searchform.php:8
 #: application/views/search/cqzones.php:4
@@ -1978,6 +1979,7 @@ msgstr "重置密码"
 #: application/controllers/Visitor.php:169
 #: application/controllers/Visitor.php:199
 #: application/controllers/Visitor.php:478
+#: application/controllers/Widgets.php:40
 msgid "Unknown Public Page."
 msgstr "公开页面未知。"
 
@@ -1985,6 +1987,7 @@ msgstr "公开页面未知。"
 #: application/controllers/Visitor.php:165
 #: application/controllers/Visitor.php:195
 #: application/controllers/Visitor.php:474
+#: application/controllers/Widgets.php:36
 msgid "Empty Logbook"
 msgstr "日志为空"
 
@@ -2006,6 +2009,14 @@ msgstr "导出地图"
 #: application/views/interface_assets/header.php:419
 msgid "QO-100 Dx Club Upload"
 msgstr "QO-100 Dx Club 上传"
+
+#: application/controllers/Widgets.php:21
+msgid "Unknown Public Page, please make sure the public slug is correct."
+msgstr ""
+
+#: application/controllers/Widgets.php:54 application/views/oqrs/index.php:69
+msgid "No stations found that are using Wavelog OQRS."
+msgstr "未找到启用 OQRS 的台站。"
 
 #: application/models/Eqslmethods_model.php:281
 msgid "Your eQSL username and/or password is incorrect."
@@ -2104,7 +2115,7 @@ msgid "Year"
 msgstr "年"
 
 #: application/views/accumulate/index.php:9
-#: application/views/accumulate/index.php:95
+#: application/views/accumulate/index.php:67
 msgid "Yearly"
 msgstr "每年"
 
@@ -2115,7 +2126,7 @@ msgid "Month"
 msgstr "月"
 
 #: application/views/accumulate/index.php:11
-#: application/views/accumulate/index.php:101
+#: application/views/accumulate/index.php:73
 msgid "Monthly"
 msgstr "每月"
 
@@ -2211,35 +2222,36 @@ msgstr "所有"
 msgid "Award"
 msgstr "奖项"
 
-#: application/views/accumulate/index.php:55
+#: application/views/accumulate/index.php:53
 #: application/views/timeline/index.php:44
 msgid "DX Century Club (DXCC)"
 msgstr "DX Century Club (DXCC)"
 
-#: application/views/accumulate/index.php:67
+#: application/views/accumulate/index.php:55
 #: application/views/timeline/index.php:46
 msgid "Islands On The Air (IOTA)"
 msgstr "空中岛屿（IOTA）"
 
-#: application/views/accumulate/index.php:73
+#: application/views/accumulate/index.php:56
 #: application/views/timeline/index.php:47
 msgid "Worked All Zones (WAZ)"
 msgstr "通联所有区域（WAZ）"
 
-#: application/views/accumulate/index.php:79
-msgid "VHF/UHF Century Club (VUCC)"
-msgstr "VHF/UHF Century Club (VUCC)"
+#: application/views/accumulate/index.php:57
+#: application/views/timeline/index.php:48
+msgid "VHF / UHF Century Club (VUCC)"
+msgstr ""
 
-#: application/views/accumulate/index.php:85
+#: application/views/accumulate/index.php:58
 #: application/views/timeline/index.php:49
 msgid "Worked All Japan (WAJA)"
 msgstr ""
 
-#: application/views/accumulate/index.php:90
+#: application/views/accumulate/index.php:62
 msgid "Period"
 msgstr "周期"
 
-#: application/views/accumulate/index.php:111
+#: application/views/accumulate/index.php:83
 #: application/views/activators/index.php:50
 #: application/views/awards/cq/index.php:111
 #: application/views/awards/dok/index.php:127
@@ -4292,7 +4304,7 @@ msgid "Deactivate All"
 msgstr "停用所有"
 
 #: application/views/cabrillo/index.php:2
-#: application/views/cabrillo/index.php:34 application/views/oqrs/index.php:54
+#: application/views/cabrillo/index.php:34 application/views/oqrs/index.php:59
 msgid "Proceed"
 msgstr "继续"
 
@@ -5601,7 +5613,7 @@ msgstr "波兰语"
 
 #: application/views/debug/index.php:629
 msgid "Portuguese"
-msgstr ""
+msgstr "葡萄牙语"
 
 #: application/views/debug/index.php:630
 msgid "Russian"
@@ -5653,7 +5665,7 @@ msgstr "DX Atlas 导出"
 msgid ""
 "Export your logbook for use in DX Atlas to display worked / confirmed "
 "gridsquares."
-msgstr "导出您的日志以在 DX Atlas 中使用以显示已工作/已确认的网格座标"
+msgstr "导出您的日志以在 DX Atlas 中使用以显示已通联/已确认的网格座标"
 
 #: application/views/dxatlas/index.php:11 application/views/kml/index.php:11
 msgid "Only QSOs with a gridsquare defined will be exported!"
@@ -5831,17 +5843,17 @@ msgstr "标记所有 QSO 已上传到 eQSL"
 msgid ""
 "Use this if you have lots of QSOs to upload to eQSL it will save the server "
 "timing out."
-msgstr ""
+msgstr "如果你有很多 QSO 需要上传到 eQSL 请使用它，以防服务器超时。"
 
 #: application/views/eqslcard/index.php:10
 #, php-format
 msgid "You are using %s of disk space to store eQSL Card assets"
-msgstr ""
+msgstr "您已使用 %s 的硬盘空间来存储 eQSL 卡片图片"
 
 #: application/views/eqslcard/index.php:34
 #: application/views/qslcard/index.php:33
 msgid "QSL Date"
-msgstr ""
+msgstr "QSL 日期"
 
 #: application/views/eqslcard/index.php:60
 #: application/views/qslcard/index.php:66
@@ -5859,22 +5871,22 @@ msgstr "传播方式"
 
 #: application/views/gridmap/index.php:42
 msgid "None/Empty"
-msgstr ""
+msgstr "无/空"
 
 #: application/views/gridmap/index.php:43
 msgid "All except SAT"
-msgstr ""
+msgstr "除卫星以外"
 
 #: application/views/hamsat/index.php:22
 #, php-format
 msgid ""
 "Cannot filter workable passes only without private feed key. Please set the "
 "feed key in %s."
-msgstr ""
+msgstr "过滤可通联的过境必须提供 Private Feed Key，请在 %s 设置它。"
 
 #: application/views/hamsat/index.php:22
 msgid "your profile"
-msgstr ""
+msgstr "您的个人资料"
 
 #: application/views/hrdlog/export.php:10 application/views/qrz/export.php:10
 #: application/views/webadif/export.php:10
@@ -5897,61 +5909,63 @@ msgid ""
 "You need to set a HRDLog Logbook API Code in your station profile. Only "
 "station profiles with an API Key set are displayed."
 msgstr ""
+"请您在台站设置中配置 HRDLog Logbook API Code，此处仅显示有 API Key 的台站资"
+"料。"
 
 #: application/views/hrdlog/export.php:24
 #, php-format
 msgid "The Code can be requested at %s"
-msgstr ""
+msgstr "Code 可以在这里 %s 申请"
 
 #: application/views/hrdlog/export.php:25
 #: application/views/webadif/export.php:34
 msgid "This might take a while as QSO uploads are processed sequentially."
-msgstr ""
+msgstr "由于 QSO 正在按顺序处理，您需要等待一段时间。"
 
 #: application/views/hrdlog/export.php:34 application/views/qrz/export.php:38
 #: application/views/webadif/export.php:41
 msgid "Profile name"
-msgstr ""
+msgstr "资料名称"
 
 #: application/views/hrdlog/export.php:35
 #: application/views/oqrs/showrequests.php:86
 #: application/views/qrz/export.php:39 application/views/webadif/export.php:42
 msgid "Station callsign"
-msgstr ""
+msgstr "台站呼号"
 
 #: application/views/hrdlog/export.php:36 application/views/qrz/export.php:40
 msgid "Edited QSOs not uploaded"
-msgstr ""
+msgstr "编辑的 QSO 未上传"
 
 #: application/views/hrdlog/export.php:37 application/views/qrz/export.php:41
 #: application/views/webadif/export.php:43
 msgid "Total QSOs not uploaded"
-msgstr ""
+msgstr "未上传的 QSO 数量"
 
 #: application/views/hrdlog/export.php:38 application/views/qrz/export.php:42
 #: application/views/webadif/export.php:44
 msgid "Total QSOs uploaded"
-msgstr ""
+msgstr "上传的 QSO 数量"
 
 #: application/views/hrdlog/export.php:60
 msgid ""
 "No Station Locations with valid HRDlog-Settings found. Check the HRDlog "
 "Credentials in the Station Location Settings!"
-msgstr ""
+msgstr "无有效的 HRDLog 台站信息，请在台站配置页面设置 HRDLog 的凭据！"
 
 #: application/views/hrdlog/export.php:87
 msgid "Mark QSOs as exported to HRDLog Logbook"
-msgstr ""
+msgstr "标记 QSO 已导出至 HRDLog Logbook"
 
 #: application/views/hrdlog/mark_hrdlog.php:15
 #: application/views/qrz/mark_qrz.php:15
 #: application/views/webadif/mark_webadif.php:15
 msgid "Yay, it's done!"
-msgstr ""
+msgstr "已完成！"
 
 #: application/views/hrdlog/mark_hrdlog.php:16
 msgid "The QSOs are marked as exported to HRDLog Logbook."
-msgstr ""
+msgstr "QSO 已标记为导出至 HRDLog Logbook。"
 
 #: application/views/interface_assets/footer.php:31
 #: application/views/search/search_result_ajax.php:404
@@ -5996,7 +6010,7 @@ msgstr "清除"
 #: application/views/qso/edit_ajax.php:211
 #: application/views/qso/edit_ajax.php:512
 msgid "Propagation mode is not supported by LoTW. LoTW QSL fields disabled."
-msgstr ""
+msgstr "传播方式不被 LoTW 支持，LoTW 字段已禁用。"
 
 #: application/views/interface_assets/footer.php:127
 #: application/views/interface_assets/header.php:426
@@ -6033,7 +6047,7 @@ msgstr "开发者模式"
 
 #: application/views/interface_assets/header.php:89
 msgid "Maintenance Mode"
-msgstr ""
+msgstr "维护模式"
 
 #: application/views/interface_assets/header.php:99
 msgid "Overview"
@@ -6081,11 +6095,11 @@ msgstr "激活的网格"
 
 #: application/views/interface_assets/header.php:158
 msgid "International"
-msgstr ""
+msgstr "国际"
 
 #: application/views/interface_assets/header.php:164
 msgid "ITU"
-msgstr ""
+msgstr "ITU"
 
 #: application/views/interface_assets/header.php:184
 msgid "Canada"
@@ -6097,7 +6111,7 @@ msgstr "德国"
 
 #: application/views/interface_assets/header.php:194
 msgid "DL Gridmaster"
-msgstr ""
+msgstr "DL Gridmaster"
 
 #: application/views/interface_assets/header.php:198
 msgid "Great Britain"
@@ -6105,7 +6119,7 @@ msgstr "英国"
 
 #: application/views/interface_assets/header.php:200
 msgid "WAB"
-msgstr ""
+msgstr "WAB"
 
 #: application/views/interface_assets/header.php:204
 msgid "Japan"
@@ -6113,7 +6127,7 @@ msgstr "日本"
 
 #: application/views/interface_assets/header.php:210
 msgid "JA Gridmaster"
-msgstr ""
+msgstr "JA Gridmaster"
 
 #: application/views/interface_assets/header.php:214
 msgid "Luxemburg"
@@ -6121,7 +6135,7 @@ msgstr "卢森堡"
 
 #: application/views/interface_assets/header.php:216
 msgid "LX Gridmaster"
-msgstr ""
+msgstr "LX Gridmaster"
 
 #: application/views/interface_assets/header.php:220
 msgid "Switzerland"
@@ -6133,7 +6147,7 @@ msgstr "美国"
 
 #: application/views/interface_assets/header.php:232
 msgid "US Gridmaster"
-msgstr ""
+msgstr "US Gridmaster"
 
 #: application/views/interface_assets/header.php:249
 msgid "Bandmap"
@@ -6181,7 +6195,7 @@ msgstr "日志"
 
 #: application/views/interface_assets/header.php:334
 #: application/views/logbookadvanced/index.php:447
-#: application/views/oqrs/index.php:22 application/views/user/edit.php:441
+#: application/views/oqrs/index.php:27 application/views/user/edit.php:441
 #: application/views/visitor/layout/header.php:97
 msgid "Search Callsign"
 msgstr "查询呼号"
@@ -6201,7 +6215,7 @@ msgstr "Cabrillo 导出"
 
 #: application/views/interface_assets/header.php:410
 msgid "QSL Queue"
-msgstr ""
+msgstr "QSL 队列"
 
 #: application/views/interface_assets/header.php:411
 msgid "Labels"
@@ -6237,7 +6251,7 @@ msgstr "选择电台站位置"
 
 #: application/views/interface_assets/header.php:517
 msgid "Extras"
-msgstr ""
+msgstr "额外"
 
 #: application/views/kml/index.php:7
 msgid "Export your logbook to a KML file for use in Google Earth."
@@ -6247,180 +6261,180 @@ msgstr "将日志导出为 KML 文件以在 Google 地球中使用"
 msgid ""
 "Label name used for display purposes, so pick something meaningful, perhaps "
 "the label style."
-msgstr ""
+msgstr "用于展示用途的标签名称，建议选择一个有明确含义的名称。"
 
 #: application/views/labels/create.php:39
 #: application/views/labels/createpaper.php:41
 #: application/views/labels/edit.php:41
 #: application/views/labels/editpaper.php:41
 msgid "Measurement used"
-msgstr ""
+msgstr "使用的度量标准"
 
 #: application/views/labels/create.php:42
 #: application/views/labels/createpaper.php:44
 #: application/views/labels/edit.php:44
 #: application/views/labels/editpaper.php:44
 msgid "Millimeters"
-msgstr ""
+msgstr "毫米"
 
 #: application/views/labels/create.php:43
 #: application/views/labels/createpaper.php:45
 #: application/views/labels/edit.php:45
 #: application/views/labels/editpaper.php:45
 msgid "Inches"
-msgstr ""
+msgstr "英寸"
 
 #: application/views/labels/create.php:49 application/views/labels/edit.php:51
 msgid "Margin Top"
-msgstr ""
+msgstr "顶边距"
 
 #: application/views/labels/create.php:52 application/views/labels/edit.php:54
 msgid "Top margin of labels"
-msgstr ""
+msgstr "距离页面顶部的距离"
 
 #: application/views/labels/create.php:55 application/views/labels/edit.php:57
 msgid "Margin Left"
-msgstr ""
+msgstr "左边距"
 
 #: application/views/labels/create.php:58 application/views/labels/edit.php:60
 msgid "Left margin of labels."
-msgstr ""
+msgstr "距离页面左端的距离。"
 
 #: application/views/labels/create.php:63 application/views/labels/edit.php:65
 msgid "Labels horizontally"
-msgstr ""
+msgstr "水平标签数量"
 
 #: application/views/labels/create.php:66 application/views/labels/edit.php:68
 msgid "Number of labels horizontally across the page."
-msgstr ""
+msgstr "页面水平从左到右的标签数量。"
 
 #: application/views/labels/create.php:69 application/views/labels/edit.php:71
 msgid "Labels vertically"
-msgstr ""
+msgstr "垂直标签数量"
 
 #: application/views/labels/create.php:72 application/views/labels/edit.php:74
 msgid "Number of labels vertically across the page."
-msgstr ""
+msgstr "页面垂直从上到下的标签数量。"
 
 #: application/views/labels/create.php:77 application/views/labels/edit.php:79
 msgid "Horizontal space"
-msgstr ""
+msgstr "水平间距"
 
 #: application/views/labels/create.php:80 application/views/labels/edit.php:82
 msgid "Horizontal space between 2 labels."
-msgstr ""
+msgstr "两个标签之间的水平间隔。"
 
 #: application/views/labels/create.php:83 application/views/labels/edit.php:85
 msgid "Vertical space"
-msgstr ""
+msgstr "垂直间距"
 
 #: application/views/labels/create.php:86 application/views/labels/edit.php:88
 msgid "Vertical space between 2 labels."
-msgstr ""
+msgstr "两个标签之间的垂直间隔。"
 
 #: application/views/labels/create.php:91 application/views/labels/edit.php:93
 msgid "Width of label"
-msgstr ""
+msgstr "标签宽度"
 
 #: application/views/labels/create.php:94 application/views/labels/edit.php:96
 msgid "Total width of one label."
-msgstr ""
+msgstr "单个标签的总宽度。"
 
 #: application/views/labels/create.php:97 application/views/labels/edit.php:99
 msgid "Height of label"
-msgstr ""
+msgstr "标签高度"
 
 #: application/views/labels/create.php:100
 #: application/views/labels/edit.php:102
 msgid "Total height of one label"
-msgstr ""
+msgstr "单个标签的垂直高度"
 
 #: application/views/labels/create.php:105
 #: application/views/labels/edit.php:107 application/views/labels/index.php:80
 msgid "Font Size"
-msgstr ""
+msgstr "字体大小"
 
 #: application/views/labels/create.php:108
 #: application/views/labels/edit.php:110
 msgid "Font size used on the label don't go too big."
-msgstr ""
+msgstr "标签使用的字体大小，建议不要设置过大。"
 
 #: application/views/labels/create.php:111
 #: application/views/labels/edit.php:113
 msgid "QSOs on label"
-msgstr ""
+msgstr "标签的 QSO 数量"
 
 #: application/views/labels/create.php:117
 #: application/views/labels/edit.php:118
 msgid "Save Label Type"
-msgstr ""
+msgstr "保存标签"
 
 #: application/views/labels/createpaper.php:36
 #: application/views/labels/editpaper.php:36
 msgid "Paper Type Name"
-msgstr ""
+msgstr "纸张名称"
 
 #: application/views/labels/createpaper.php:39
 #: application/views/labels/editpaper.php:39
 msgid "Paper name used for display purposes, so pick something meaningful."
-msgstr ""
+msgstr "用于展示用途的纸张名称，建议选择一个有明确含义的名称。"
 
 #: application/views/labels/createpaper.php:51
 #: application/views/labels/editpaper.php:51
 msgid "Width of paper"
-msgstr ""
+msgstr "纸张宽度"
 
 #: application/views/labels/createpaper.php:54
 #: application/views/labels/editpaper.php:54
 #: application/views/labels/editpaper.php:60
 msgid "Total width of paper."
-msgstr ""
+msgstr "纸张的总宽度。"
 
 #: application/views/labels/createpaper.php:57
 #: application/views/labels/editpaper.php:57
 msgid "Height of paper"
-msgstr ""
+msgstr "纸张长度"
 
 #: application/views/labels/createpaper.php:60
 msgid "Total height of paper"
-msgstr ""
+msgstr "纸张的总长度"
 
 #: application/views/labels/createpaper.php:65
 #: application/views/labels/createpaper.php:71
 #: application/views/labels/editpaper.php:65
 #: application/views/labels/editpaper.php:71
 msgid "Orientation of paper"
-msgstr ""
+msgstr "纸张方向"
 
 #: application/views/labels/createpaper.php:68
 #: application/views/labels/editpaper.php:68
 #: application/views/labels/index.php:60
 msgctxt "Orientation"
 msgid "Landscape"
-msgstr ""
+msgstr "水平"
 
 #: application/views/labels/createpaper.php:69
 #: application/views/labels/editpaper.php:69
 #: application/views/labels/index.php:60
 msgctxt "Orientation"
 msgid "Portrait"
-msgstr ""
+msgstr "垂直"
 
 #: application/views/labels/createpaper.php:75
 #: application/views/labels/editpaper.php:75
 msgid "Save Paper Type"
-msgstr ""
+msgstr "保存纸张"
 
 #: application/views/labels/edit.php:24
 msgid ""
 "Label name used for display purposes so pick something meaningful perhaps "
 "the label style."
-msgstr ""
+msgstr "用于展示用途的标签名称，建议选择一个有明确含义的名称。"
 
 #: application/views/labels/index.php:2
 #: application/views/logbookadvanced/startatform.php:27
 msgid "Mark QSL as printed"
-msgstr ""
+msgstr "标记 QSL 已打印"
 
 #: application/views/labels/index.php:3 application/views/labels/index.php:128
 msgid "Print"
@@ -6428,62 +6442,62 @@ msgstr "打印"
 
 #: application/views/labels/index.php:33
 msgid "Create New Label Type"
-msgstr ""
+msgstr "创建新标签"
 
 #: application/views/labels/index.php:34
 msgid "Create New Paper Type"
-msgstr ""
+msgstr "创建新纸张"
 
 #: application/views/labels/index.php:37
 msgid "Paper types"
-msgstr ""
+msgstr "纸张"
 
 #: application/views/labels/index.php:43 application/views/labels/index.php:78
 msgid "Width"
-msgstr ""
+msgstr "宽度"
 
 #: application/views/labels/index.php:44 application/views/labels/index.php:79
 msgid "Height"
-msgstr ""
+msgstr "长度"
 
 #: application/views/labels/index.php:45
 msgid "Used by labels"
-msgstr ""
+msgstr "已被标签使用"
 
 #: application/views/labels/index.php:46
 msgid "Orientation"
-msgstr ""
+msgstr "方向"
 
 #: application/views/labels/index.php:71
 msgid "Label types"
-msgstr ""
+msgstr "标签类型"
 
 #: application/views/labels/index.php:81
 #: application/views/statistics/index.php:59
 #: application/views/statistics/index.php:96
 #: application/views/widgets/qsos.php:3
 msgid "QSOs"
-msgstr ""
+msgstr "QSO"
 
 #: application/views/labels/index.php:82
 msgid "Use For Print"
-msgstr ""
+msgstr "使用它来打印"
 
 #: application/views/labels/index.php:92
 msgid "No paper assigned"
-msgstr ""
+msgstr "未选定纸张"
 
 #: application/views/labels/index.php:117
 msgid "QSL Card Labels Pending"
-msgstr ""
+msgstr "QSL 卡片标签等待打印"
 
 #: application/views/labels/index.php:126
 msgid "QSOs Waiting"
-msgstr ""
+msgstr "QSO 等待中"
 
 #: application/views/labels/index.php:127
 msgid "View QSOs"
-msgstr ""
+msgstr "查看 QSO"
 
 #: application/views/labels/startatform.php:4
 #: application/views/logbookadvanced/startatform.php:3
@@ -6498,7 +6512,7 @@ msgstr "包含标识代码？(SIG, SOTA, POTA, IOTA, WWFF; 如存在则显示)"
 
 #: application/views/labels/startatform.php:16
 msgid "Include Via (if filled)?"
-msgstr ""
+msgstr "包含 Via（如提供）？"
 
 #: application/views/labels/startatform.php:22
 #: application/views/logbookadvanced/startatform.php:21
@@ -6514,11 +6528,11 @@ msgstr "QSL 通过"
 
 #: application/views/logbookadvanced/edit.php:71
 msgid "SAT Mode"
-msgstr ""
+msgstr "卫星模式"
 
 #: application/views/logbookadvanced/edit.php:85
 msgid "Band RX"
-msgstr ""
+msgstr "接收频段"
 
 #: application/views/logbookadvanced/index.php:133
 msgid "From"
@@ -6538,12 +6552,12 @@ msgstr "对方呼号(Dx)"
 #: application/views/logbookadvanced/index.php:148
 msgctxt "Logbook Advanced DXCC Select"
 msgid "- NONE - (e.g. /MM, /AM)"
-msgstr ""
+msgstr "- 无 - （如 /MM, /AM）"
 
 #: application/views/logbookadvanced/index.php:213
 msgctxt "Propagation Mode"
 msgid "None/Empty"
-msgstr ""
+msgstr "无/空"
 
 #: application/views/logbookadvanced/index.php:297
 msgid "QSL sent"
@@ -6774,11 +6788,11 @@ msgstr "LoTW 接收"
 
 #: application/views/logbookadvanced/index.php:361
 msgid "Clublog sent"
-msgstr ""
+msgstr "Clublog 已发送"
 
 #: application/views/logbookadvanced/index.php:372
 msgid "Clublog received"
-msgstr ""
+msgstr "Clublog 已收到"
 
 #: application/views/logbookadvanced/index.php:383
 msgid "eQSL sent"
@@ -6915,7 +6929,7 @@ msgstr "搜索 WWFF"
 
 #: application/views/logbookadvanced/index.php:483
 msgid "Search Operator"
-msgstr ""
+msgstr "搜索操作符"
 
 #: application/views/logbookadvanced/index.php:489
 msgid "Quickfilters"
@@ -6947,7 +6961,7 @@ msgstr "重复 QSO"
 
 #: application/views/logbookadvanced/index.php:519
 msgid "Globe map"
-msgstr ""
+msgstr "全球地图"
 
 #: application/views/logbookadvanced/index.php:522
 #: application/views/lotw_views/index.php:47
@@ -6978,7 +6992,7 @@ msgstr "电台网格"
 #: application/views/logbookadvanced/qslcarousel.php:59
 #: application/views/qslcard/qslcarousel.php:25
 msgid "QSL picture #"
-msgstr ""
+msgstr "QSL 图片 #"
 
 #: application/views/logbookadvanced/qslcarousel.php:67
 #: application/views/qslcard/qslcarousel.php:32
@@ -7001,76 +7015,76 @@ msgstr "列"
 #: application/views/logbookadvanced/useroptions.php:148
 msgctxt "Map Options"
 msgid "Layer"
-msgstr ""
+msgstr "层"
 
 #: application/views/logbookadvanced/useroptions.php:149
 msgid "Default on"
-msgstr ""
+msgstr "默认开启"
 
 #: application/views/logbookadvanced/useroptions.php:154
 #: application/views/stationsetup/exportmapoptions.php:23
 msgctxt "Map Options"
 msgid "Path lines"
-msgstr ""
+msgstr "路径"
 
 #: application/views/logbookadvanced/useroptions.php:158
 msgctxt "Map Options"
 msgid "Gridsquares"
-msgstr ""
+msgstr "网格"
 
 #: application/views/logbookadvanced/useroptions.php:162
 msgctxt "Map Options"
 msgid "CQ Zones"
-msgstr ""
+msgstr "CQ 分区"
 
 #: application/views/logbookadvanced/useroptions.php:166
 msgctxt "Map Options"
 msgid "ITU Zones"
-msgstr ""
+msgstr "ITU 分区"
 
 #: application/views/logbookadvanced/useroptions.php:170
 msgctxt "Map Options"
 msgid "Night Shadow"
-msgstr ""
+msgstr "夜晚阴影"
 
 #: application/views/lookup/index.php:8
 msgid "US State"
-msgstr ""
+msgstr "美国州"
 
 #: application/views/lookup/index.php:10
 msgid "LoTW user"
-msgstr ""
+msgstr "LoTW 用户"
 
 #: application/views/lookup/index.php:46
 msgid "Choose a State"
-msgstr ""
+msgstr "选择州"
 
 #: application/views/lookup/lotwuser.php:2
 #: application/views/lookup/lotwuser.php:12
 #: application/views/search/result.php:46
 #: application/views/search/result.php:58
 msgid "LoTW User"
-msgstr ""
+msgstr "LoTW 用户"
 
 #: application/views/lookup/lotwuser.php:12
 #: application/views/search/result.php:58
 #, php-format
 msgid "%d day ago"
 msgid_plural "%d days ago"
-msgstr[0] ""
+msgstr[0] "%d 天前"
 
 #: application/views/lookup/lotwuser.php:12
 #: application/views/search/result.php:58
 msgid "last upload"
-msgstr ""
+msgstr "上次上传"
 
 #: application/views/lookup/lotwuser.php:14
 msgid "No LoTW User"
-msgstr ""
+msgstr "非 LoTW 用户"
 
 #: application/views/lotw/analysis.php:8 application/views/qrz/analysis.php:8
 msgid "No data imported. please check selected date. Must be in the past!"
-msgstr ""
+msgstr "未导入数据，请检查选择的日期！"
 
 #: application/views/lotw/import.php:12
 msgid "Import Options"
@@ -7082,14 +7096,14 @@ msgstr "上传文件"
 
 #: application/views/lotw/import.php:24
 msgid "Download Report"
-msgstr ""
+msgstr "下载报告"
 
 #: application/views/lotw/import.php:24
 #, php-format
 msgid ""
 "Upload the Exported ADIF file from LoTW from the %s Area, to mark QSOs as "
 "confirmed on LoTW."
-msgstr ""
+msgstr "上传自 LoTW 下载（%s）的报告，以标记这些 QSO 已在 LoTW 得到确认。"
 
 #: application/views/lotw/import.php:27
 msgid "Choose file"
@@ -7101,7 +7115,7 @@ msgstr "为我拉取 LoTW 数据"
 
 #: application/views/lotw/import.php:47
 msgid "Select callsign to pull LoTW confirmations for."
-msgstr ""
+msgstr "选择要同步 LoTW 确认信息的呼号。"
 
 #: application/views/lotw/import.php:61
 msgid ""
@@ -7110,9 +7124,9 @@ msgid ""
 "have all confirmations since chosen date, or since your last LoTW "
 "confirmation (fetched from your log), up until now."
 msgstr ""
-"Wavelog 将会使用储存在你个人用户信息当中的 LoTW 用户名和密码从 LoTW 上为你下"
-"载报告Wavelog 下载的这份报告将会包括自你所选之日以来的或者你最后的 LoTW 确认"
-"信息（目前日志当中）以来的所有确认"
+"Wavelog 将会使用储存在您用户信息当中的 LoTW 用户名和密码从 LoTW 上为您下载报"
+"告。Wavelog 下载的这份报告将会包括自你所选之日以来的或者你最后的 LoTW QSL 确"
+"认信息（目前日志当中）以来的所有确认。注：LoTW 的下载功能仅能导出 QSL 记录。"
 
 #: application/views/lotw/import.php:64
 msgid "Import LoTW Matches"
@@ -7166,12 +7180,12 @@ msgstr "即将到期"
 #: application/views/lotw_views/index.php:105
 #, php-format
 msgid "Last success: %s"
-msgstr ""
+msgstr "上次成功：%s"
 
 #: application/views/lotw_views/index.php:108
 #, php-format
 msgid "Last fail: %s"
-msgstr ""
+msgstr "上次失败：%s"
 
 #: application/views/lotw_views/index.php:114
 msgid "Not Synced"
@@ -7208,7 +7222,7 @@ msgstr "右键选择目标呼号"
 
 #: application/views/lotw_views/upload_cert.php:24
 msgid "Click 'Save Callsign Certificate File' and do not add a password"
-msgstr ""
+msgstr "单击 \"保存呼号证书文件\" 并不要指定密码"
 
 #: application/views/lotw_views/upload_cert.php:25
 msgid "Upload File below."
@@ -7221,61 +7235,62 @@ msgstr "上传文件"
 #: application/views/mode/create.php:24 application/views/mode/edit.php:33
 msgctxt "Name of mode in ADIF-specification"
 msgid "ADIF Mode"
-msgstr ""
+msgstr "ADIF 模式"
 
 #: application/views/mode/create.php:26 application/views/mode/edit.php:35
 msgid "Name of mode in ADIF-specification"
-msgstr ""
+msgstr "ADIF 标准中的模式（Mode）名称"
 
 #: application/views/mode/create.php:30 application/views/mode/edit.php:39
 msgctxt "Name of sub-mode in ADIF-specification"
 msgid "ADIF Sub-Mode"
-msgstr ""
+msgstr "ADIF 子模式"
 
 #: application/views/mode/create.php:32 application/views/mode/edit.php:41
 msgid "Name of sub-mode in ADIF-specification"
-msgstr ""
+msgstr "ADIF 标准中的子模式（Sub-mode）名称"
 
 #: application/views/mode/create.php:42 application/views/mode/edit.php:53
 msgid "Defines the QRG-segment in bandplan."
-msgstr ""
+msgstr "定义波段中的 QRG 信息。"
 
 #: application/views/mode/create.php:49 application/views/mode/edit.php:61
 #: application/views/mode/index.php:43
 msgid "Not active"
-msgstr ""
+msgstr "未启用"
 
 #: application/views/mode/create.php:51 application/views/mode/edit.php:64
 msgid "Set to active if to be listed in Modes-list"
-msgstr ""
+msgstr "如启用，将在模式列表中显示"
 
 #: application/views/mode/create.php:54
 msgid "Create mode"
-msgstr ""
+msgstr "创建模式"
 
 #: application/views/mode/edit.php:67
 msgid "Update mode"
-msgstr ""
+msgstr "更新模式"
 
 #: application/views/mode/index.php:19
 msgid ""
 "Using the modes list you can control which modes are shown when creating a "
 "new QSO."
-msgstr ""
+msgstr "您可以指定哪些模式显示在创建 QSO 时出现的列表中。"
 
 #: application/views/mode/index.php:22
 msgid ""
 "Active modes will be shown in the QSO 'Mode' drop-down, while inactive modes "
 "will be hidden and cannot be selected."
 msgstr ""
+"启用的模式将显示在 QSO 模式的下拉菜单中，而非启用的模式将被隐藏，无法选择。"
 
 #: application/views/mode/index.php:29
 msgid "Sub-Mode"
-msgstr ""
+msgstr "子模式"
 
 #: application/views/mode/index.php:76
 msgid "Create a Mode"
-msgstr ""
+msgstr "创建模式"
 
 #: application/views/notes/add.php:6 application/views/notes/add.php:12
 #: application/views/notes/edit.php:13 application/views/notes/main.php:11
@@ -7333,15 +7348,15 @@ msgstr "删除笔记"
 msgid ""
 "Please provide your personal call sign. This makes sure that QSOs are logged "
 "and exported with correct operator information."
-msgstr ""
+msgstr "请提供您的个人呼号，记录 QSO 或导出记录时将使用这个信息。"
 
 #: application/views/operator/index.php:13
 msgid "Your personal Callsign:"
-msgstr ""
+msgstr "您的个人呼号："
 
 #: application/views/operator/index.php:16
 msgid "You have to provide your personal callsign."
-msgstr ""
+msgstr "请您提供呼号。"
 
 #: application/views/options/appearance.php:39
 #: application/views/user/edit.php:157
@@ -7366,7 +7381,7 @@ msgstr "仪表盘的地图"
 
 #: application/views/options/appearance.php:74
 msgid "Map at right"
-msgstr ""
+msgstr "地图右侧"
 
 #: application/views/options/appearance.php:76
 msgid ""
@@ -7383,7 +7398,7 @@ msgstr "允许禁用日志中的地图。"
 
 #: application/views/options/appearance.php:89
 msgid "Public Maps"
-msgstr ""
+msgstr "公开地图"
 
 #: application/views/options/appearance.php:94
 msgid ""
@@ -7393,11 +7408,11 @@ msgstr "选中以在公共视图中禁用地图，包括主地图和网格地图
 
 #: application/views/options/appearance.php:98
 msgid "Public Github Button"
-msgstr ""
+msgstr "公开 Github 按钮"
 
 #: application/views/options/appearance.php:103
 msgid "This enables the button to Wavelog's Github page in the public view"
-msgstr ""
+msgstr "此功能可使 Wavelog Github 地址显示在公开页面中"
 
 #: application/views/options/dxcluster.php:38
 msgid "Provider of DXClusterCache"
@@ -7405,19 +7420,19 @@ msgstr "DXClusterCache 的信息来源"
 
 #: application/views/options/dxcluster.php:39
 msgid "DXClusterAPI"
-msgstr ""
+msgstr "DXClusterAPI"
 
 #: application/views/options/dxcluster.php:39
 #, php-format
 msgid ""
 "The Provider of the DXCluster-Cache. You can set up your own Cache with %s "
 "or use a public one"
-msgstr ""
+msgstr "DXCluster-Cache 提供者，您可自行搭建 %s 或使用公开的 Cache"
 
 #: application/views/options/dxcluster.php:41
 #, php-format
 msgid "URL of the DXCluster-Cache. e.g. %s"
-msgstr ""
+msgstr "DXCluster-Cache URL，如 %s"
 
 #: application/views/options/dxcluster.php:44
 msgid "Maximum Age of spots taken care of"
@@ -7425,15 +7440,15 @@ msgstr "最多关心的报告数量"
 
 #: application/views/options/dxcluster.php:46
 msgid "2 Hours"
-msgstr ""
+msgstr "2 小时"
 
 #: application/views/options/dxcluster.php:47
 msgid "60 Minutes"
-msgstr ""
+msgstr "60 分钟"
 
 #: application/views/options/dxcluster.php:48
 msgid "30 Minutes"
-msgstr ""
+msgstr "30 分钟"
 
 #: application/views/options/dxcluster.php:50
 msgid "The Age in Minutes of spots, that will be taken care at bandplan/lookup"
@@ -7461,7 +7476,7 @@ msgstr "SMTP 加密"
 
 #: application/views/options/email.php:56
 msgid "No Encryption"
-msgstr ""
+msgstr "无加密"
 
 #: application/views/options/email.php:60
 msgid "Choose whether emails should be sent with TLS or SSL."
@@ -7553,11 +7568,11 @@ msgstr "分组搜索"
 
 #: application/views/options/oqrs.php:47 application/views/options/oqrs.php:56
 msgid "Off"
-msgstr ""
+msgstr "关闭"
 
 #: application/views/options/oqrs.php:48 application/views/options/oqrs.php:57
 msgid "On"
-msgstr ""
+msgstr "开启"
 
 #: application/views/options/oqrs.php:50
 msgid ""
@@ -7659,39 +7674,35 @@ msgstr "这将会关闭对用户显示版本信息对话框"
 
 #: application/views/oqrs/index.php:9
 msgid "Request a QSL card"
-msgstr ""
+msgstr "请求 QSL 卡片"
 
-#: application/views/oqrs/index.php:21
+#: application/views/oqrs/index.php:26
 msgid "Enter your callsign"
-msgstr ""
+msgstr "输入您的呼号"
 
-#: application/views/oqrs/index.php:21
+#: application/views/oqrs/index.php:26
 msgid "This search will search in all station locations where OQRS is active."
-msgstr ""
+msgstr "此搜索功能将在全部启用 OQRS 的台站地址中搜寻。"
 
-#: application/views/oqrs/index.php:48
+#: application/views/oqrs/index.php:53
 msgid "Select station"
-msgstr ""
-
-#: application/views/oqrs/index.php:64
-msgid "No stations found that are using Wavelog OQRS."
-msgstr ""
+msgstr "选择台站"
 
 #: application/views/oqrs/notinlogform.php:2
 msgid ""
 "If you can't find your QSO in the log, please fill out the form below. You "
 "will be contacted after the log has been checked."
-msgstr ""
+msgstr "如您在日志中找不到 QSO，请填写如下表单，您会在日志得到确认后收到通知。"
 
 #: application/views/oqrs/notinlogform.php:9
 #: application/views/oqrs/request.php:16
 #: application/views/oqrs/request_grouped.php:9
 msgid "Time (UTC)"
-msgstr ""
+msgstr "时间（UTC）"
 
 #: application/views/oqrs/notinlogform.php:24
 msgid "Add line"
-msgstr ""
+msgstr "添加信息"
 
 #: application/views/oqrs/notinlogform.php:30
 #: application/views/oqrs/request.php:56
@@ -7711,11 +7722,11 @@ msgstr "电子邮件"
 #: application/views/oqrs/request.php:62
 #: application/views/oqrs/request_grouped.php:66
 msgid "Your e-mail address where we can contact you"
-msgstr ""
+msgstr "其他人可通过 e-mail 地址联系您"
 
 #: application/views/oqrs/notinlogform.php:40
 msgid "Send not in log request"
-msgstr ""
+msgstr "发送“未记录日志”请求"
 
 #: application/views/oqrs/qsolist.php:11
 #: application/views/qslprint/qslprint.php:29
@@ -7774,7 +7785,7 @@ msgstr ""
 #: application/views/oqrs/request.php:40
 #: application/views/oqrs/request_grouped.php:44
 msgid "QSL Route"
-msgstr ""
+msgstr "QSL 路径"
 
 #: application/views/oqrs/request.php:50
 #: application/views/oqrs/request_grouped.php:54
@@ -7784,21 +7795,21 @@ msgstr ""
 #: application/views/oqrs/request.php:66
 #: application/views/oqrs/request_grouped.php:70
 msgid "Submit request"
-msgstr ""
+msgstr "提交请求"
 
 #: application/views/oqrs/request_grouped.php:16
 msgid "Station Name"
-msgstr ""
+msgstr "台站名称"
 
 #: application/views/oqrs/request_grouped.php:73
 #: application/views/oqrs/result.php:40
 msgid "No QSOs found in the log."
-msgstr ""
+msgstr "日志中未找到 QSO。"
 
 #: application/views/oqrs/result.php:5
 #, php-format
 msgid "Log search result for %s"
-msgstr ""
+msgstr "搜索结果：%s"
 
 #: application/views/oqrs/result.php:30
 #, php-format
@@ -7814,11 +7825,11 @@ msgstr[0] ""
 
 #: application/views/oqrs/result.php:37
 msgid "Request QSL"
-msgstr ""
+msgstr "请求 QSL"
 
 #: application/views/oqrs/result.php:44
 msgid "Not in log?"
-msgstr ""
+msgstr "不在日志中？"
 
 #: application/views/oqrs/showrequests.php:5
 #: application/views/oqrs/showrequests.php:50
@@ -7837,7 +7848,7 @@ msgstr ""
 
 #: application/views/oqrs/showrequests.php:47
 msgid "OQRS Status"
-msgstr ""
+msgstr "OQRS 状态"
 
 #: application/views/oqrs/showrequests.php:69
 msgid "With selected"
@@ -7845,7 +7856,7 @@ msgstr ""
 
 #: application/views/oqrs/showrequests.php:70
 msgid "Mark as done"
-msgstr ""
+msgstr "标记为完成"
 
 #: application/views/oqrs/showrequests.php:80
 msgid "Time of request"
@@ -7858,7 +7869,7 @@ msgstr "QSO 日期"
 
 #: application/views/oqrs/showrequests.php:82
 msgid "QSO Time"
-msgstr ""
+msgstr "QSO 时间"
 
 #: application/views/oqrs/showrequests.php:85
 msgid "Request callsign"
@@ -7866,7 +7877,7 @@ msgstr ""
 
 #: application/views/oqrs/showrequests.php:89
 msgid "QSL route"
-msgstr ""
+msgstr "QSL 路径"
 
 #: application/views/oqrs/showrequests.php:90
 msgid "Check log"
@@ -8000,7 +8011,7 @@ msgstr "导出QSL请求为 CSV 文件"
 
 #: application/views/qslprint/qslprint.php:73
 msgid "Export ADIF"
-msgstr ""
+msgstr "导出 ADIF"
 
 #: application/views/qslprint/qslprint.php:73
 msgid "Export requested QSLs to ADIF-file"
@@ -8008,7 +8019,7 @@ msgstr "导出QSL请求为 ADIF 文件"
 
 #: application/views/qslprint/qslprint.php:75
 msgid "Mark QSLs as printed"
-msgstr ""
+msgstr "标记 QSL 已打印"
 
 #: application/views/qslprint/qslprint.php:75
 msgid "Mark requested QSLs as sent"
@@ -8071,11 +8082,11 @@ msgstr ""
 
 #: application/views/qso/edit_ajax.php:76
 msgid "RX Frequency"
-msgstr ""
+msgstr "接收频率"
 
 #: application/views/qso/edit_ajax.php:99
 msgid "RX Band"
-msgstr ""
+msgstr "接收频段"
 
 #: application/views/qso/edit_ajax.php:134 application/views/qso/index.php:346
 #: application/views/view_log/qso.php:542
@@ -8092,15 +8103,15 @@ msgstr ""
 
 #: application/views/qso/edit_ajax.php:177
 msgid "QTH"
-msgstr ""
+msgstr "QTH"
 
 #: application/views/qso/edit_ajax.php:258
 msgid "Sat Name"
-msgstr ""
+msgstr "卫星名称"
 
 #: application/views/qso/edit_ajax.php:263
 msgid "Sat Mode"
-msgstr ""
+msgstr "卫星模式"
 
 #: application/views/qso/edit_ajax.php:356 application/views/qso/index.php:255
 #: application/views/qso/index.php:500 application/views/user/edit.php:599
@@ -8115,7 +8126,7 @@ msgstr ""
 
 #: application/views/qso/edit_ajax.php:403
 msgid "Sent Method"
-msgstr ""
+msgstr "选择方式"
 
 #: application/views/qso/edit_ajax.php:406
 #: application/views/qso/edit_ajax.php:439 application/views/qso/index.php:563
@@ -8125,17 +8136,17 @@ msgstr "方法"
 
 #: application/views/qso/edit_ajax.php:416
 msgid "Sent Via"
-msgstr ""
+msgstr "发送 Via"
 
 #: application/views/qso/edit_ajax.php:430
 #: application/views/qso/edit_ajax.php:471
 #: application/views/qso/edit_ajax.php:510
 msgid "Verified (Match)"
-msgstr ""
+msgstr "已确认"
 
 #: application/views/qso/edit_ajax.php:436
 msgid "Received Method"
-msgstr ""
+msgstr "接收方式"
 
 #: application/views/qso/edit_ajax.php:477 application/views/qso/index.php:583
 msgid "This note content is exported to QSL services like eqsl.cc."
@@ -8151,11 +8162,11 @@ msgstr ""
 
 #: application/views/qso/edit_ajax.php:576
 msgid "Exchange (R)"
-msgstr ""
+msgstr "交换报告（R）"
 
 #: application/views/qso/edit_ajax.php:581
 msgid "Exchange (S)"
-msgstr ""
+msgstr "交换报告（S）"
 
 #: application/views/qso/edit_ajax.php:593
 #: application/views/search/search_result_ajax.php:432
@@ -8166,7 +8177,7 @@ msgstr "删除 QSO"
 
 #: application/views/qso/edit_ajax.php:596
 msgid "Save changes"
-msgstr ""
+msgstr "保存"
 
 #: application/views/qso/index.php:4
 msgid "TimeOff is less than TimeOn"
@@ -8182,7 +8193,7 @@ msgstr "先前通联的次数"
 
 #: application/views/qso/index.php:7
 msgid "Not worked before"
-msgstr ""
+msgstr "未通联过"
 
 #: application/views/qso/index.php:20
 msgid "LIVE"
@@ -8280,11 +8291,11 @@ msgstr "重置为默认"
 
 #: application/views/qso/index.php:645
 msgid "Winkey"
-msgstr ""
+msgstr "Winkey"
 
 #: application/views/qso/index.php:647
 msgid "Connect"
-msgstr ""
+msgstr "连接"
 
 #: application/views/qso/index.php:677
 msgid "Suggestions"
@@ -8324,11 +8335,11 @@ msgstr ""
 #: application/views/satellite/create.php:23
 #: application/views/satellite/edit.php:7
 msgid "Satellite name"
-msgstr ""
+msgstr "卫星名称"
 
 #: application/views/satellite/create.php:25
 msgid "The name of the Satellite"
-msgstr ""
+msgstr "卫星的名字"
 
 #: application/views/satellite/create.php:28
 #: application/views/satellite/edit.php:12
@@ -8357,54 +8368,54 @@ msgstr ""
 #: application/views/satellite/create.php:47
 #: application/views/satellite/edit.php:35
 msgid "Uplink mode"
-msgstr ""
+msgstr "上行模式"
 
 #: application/views/satellite/create.php:49
 msgid "Enter modulation used for uplink"
-msgstr ""
+msgstr "输入上行的调制方式"
 
 #: application/views/satellite/create.php:52
 #: application/views/satellite/edit.php:36
 msgid "Uplink frequency"
-msgstr ""
+msgstr "上行频率"
 
 #: application/views/satellite/create.php:54
 msgid "Enter frequency (in Hz) used for uplink"
-msgstr ""
+msgstr "输入上行的信号频率（单位 Hz）"
 
 #: application/views/satellite/create.php:59
 #: application/views/satellite/edit.php:37
 msgid "Downlink mode"
-msgstr ""
+msgstr "下行模式"
 
 #: application/views/satellite/create.php:61
 msgid "Enter modulation used for downlink"
-msgstr ""
+msgstr "输入下行的调制方式"
 
 #: application/views/satellite/create.php:64
 #: application/views/satellite/edit.php:38
 msgid "Downlink frequency"
-msgstr ""
+msgstr "下行频率"
 
 #: application/views/satellite/create.php:66
 msgid "Enter frequency (in Hz) used for downlink"
-msgstr ""
+msgstr "输入下行的信号频率（单位 Hz）"
 
 #: application/views/satellite/edit.php:9
 msgid "Name of the Satellite"
-msgstr ""
+msgstr "卫星名称"
 
 #: application/views/satellite/edit.php:25
 msgid "Save satellite"
-msgstr ""
+msgstr "保存卫星"
 
 #: application/views/satellite/edit.php:59
 msgid "Add satellite mode"
-msgstr ""
+msgstr "添加卫星模式"
 
 #: application/views/satellite/index.php:15
 msgid "Add a satellite"
-msgstr ""
+msgstr "添加卫星"
 
 #: application/views/sattimers/index.php:15
 #, php-format
@@ -8420,15 +8431,15 @@ msgstr ""
 #: application/views/sattimers/index.php:43
 #: application/views/sattimers/index.php:44
 msgid "Azimuth"
-msgstr ""
+msgstr "方位角"
 
 #: application/views/sattimers/index.php:45
 msgid "Max Elevation"
-msgstr ""
+msgstr "最大仰角"
 
 #: application/views/sattimers/index.php:46
 msgid "Duration"
-msgstr ""
+msgstr "持续时间"
 
 #: application/views/search/cqzones.php:5
 #: application/views/search/lotw_unconfirmed.php:5
@@ -8448,18 +8459,18 @@ msgstr ""
 #: application/views/search/lotw_unconfirmed.php:18
 #: application/views/search/main.php:18
 msgid "Incorrect CQ Zones"
-msgstr ""
+msgstr "CQ 分区错误"
 
 #: application/views/search/cqzones.php:21
 #: application/views/search/filter.php:29
 #: application/views/search/lotw_unconfirmed.php:21
 #: application/views/search/main.php:21
 msgid "QSOs unconfirmed on LoTW"
-msgstr ""
+msgstr "QSO 未在 LoTW 确认"
 
 #: application/views/search/cqzones.php:28
 msgid "Station location:"
-msgstr ""
+msgstr "台站地址："
 
 #: application/views/search/cqzones_result.php:3
 msgid ""
@@ -8469,7 +8480,7 @@ msgstr ""
 
 #: application/views/search/cqzones_result.php:14
 msgid "DXCC CQ Zone"
-msgstr ""
+msgstr "DXCC CQ 分区"
 
 #: application/views/search/cqzones_result.php:51
 msgid "No incorrect CQ Zones were found."
@@ -8497,11 +8508,11 @@ msgstr ""
 
 #: application/views/search/filter.php:79
 msgid "Export to ADIF"
-msgstr ""
+msgstr "导出 ADIF"
 
 #: application/views/search/filter.php:79
 msgid "Search Results"
-msgstr ""
+msgstr "搜索结果"
 
 #: application/views/search/lotw_unconfirmed.php:26
 msgid ""
@@ -8511,7 +8522,7 @@ msgstr ""
 
 #: application/views/search/lotw_unconfirmed.php:29
 msgid "Station location"
-msgstr ""
+msgstr "台站地址"
 
 #: application/views/search/lotw_unconfirmed_result.php:10
 msgid "Last LoTW upload"
@@ -8528,7 +8539,7 @@ msgstr ""
 #: application/views/search/result.php:2
 #, php-format
 msgid "Results for %s"
-msgstr ""
+msgstr "结果：%s"
 
 #: application/views/search/result.php:4
 #, php-format
@@ -8841,7 +8852,7 @@ msgstr ""
 #: application/views/station_profile/edit.php:42
 msgctxt "Station Location Setup"
 msgid "Home QTH"
-msgstr ""
+msgstr "基地台 QTH"
 
 #: application/views/station_profile/create.php:34
 #: application/views/station_profile/edit.php:42
@@ -8963,7 +8974,7 @@ msgstr "台站 IOTA 标识代码，例如 EU-005"
 #: application/views/station_profile/create.php:142
 #: application/views/station_profile/edit.php:206
 msgid "IOTA World website"
-msgstr ""
+msgstr "IOTA World 网站"
 
 #: application/views/station_profile/create.php:142
 #: application/views/station_profile/edit.php:206
@@ -8974,7 +8985,7 @@ msgstr ""
 #: application/views/station_profile/create.php:148
 #: application/views/station_profile/edit.php:221
 msgid "SOTA Maps website"
-msgstr ""
+msgstr "SOTA Maps 网站"
 
 #: application/views/station_profile/create.php:148
 #: application/views/station_profile/edit.php:221
@@ -8985,7 +8996,7 @@ msgstr ""
 #: application/views/station_profile/create.php:154
 #: application/views/station_profile/edit.php:234
 msgid "GMA Map website"
-msgstr ""
+msgstr "GMA Map 网站"
 
 #: application/views/station_profile/create.php:154
 #: application/views/station_profile/edit.php:234
@@ -8996,7 +9007,7 @@ msgstr ""
 #: application/views/station_profile/create.php:160
 #: application/views/station_profile/edit.php:247
 msgid "POTA Map website"
-msgstr ""
+msgstr "POTA Map 网站"
 
 #: application/views/station_profile/create.php:160
 #: application/views/station_profile/edit.php:247
@@ -9030,7 +9041,7 @@ msgstr "签名信息 (例如 DA/NW-357)."
 #: application/views/station_profile/edit.php:281
 msgctxt "Probably no translation needed"
 msgid "eQSL QTH Nickname"
-msgstr ""
+msgstr "eQSL QTH Nickname"
 
 #: application/views/station_profile/create.php:178
 #: application/views/station_profile/edit.php:283
@@ -9081,7 +9092,7 @@ msgstr "HRDlog.net 注册用户名，通常为呼号"
 #: application/views/station_profile/create.php:210
 #: application/views/station_profile/edit.php:357
 msgid "HRDLog.net API Key"
-msgstr ""
+msgstr "HRDLog.net API Key"
 
 #: application/views/station_profile/create.php:212
 #: application/views/station_profile/edit.php:359
@@ -9108,11 +9119,11 @@ msgstr "需要付费订阅"
 #: application/views/station_profile/create.php:229
 msgctxt "Probably no translation needed"
 msgid "QRZ.com Logbook API Key"
-msgstr ""
+msgstr "QRZ.com Logbook API Key"
 
 #: application/views/station_profile/create.php:232
 msgid "Test API-Key"
-msgstr ""
+msgstr "Test API-Key"
 
 #: application/views/station_profile/create.php:235
 #: application/views/station_profile/edit.php:306
@@ -9140,7 +9151,7 @@ msgstr "实时"
 #: application/views/station_profile/edit.php:378
 msgctxt "Probably no translation needed"
 msgid "QO-100 Dx Club API Key"
-msgstr ""
+msgstr "QO-100 Dx Club API Key"
 
 #: application/views/station_profile/create.php:251
 #: application/views/station_profile/edit.php:380
@@ -9305,8 +9316,8 @@ msgid ""
 "analytics. Great for when your operating in multiple locations but they are "
 "part of the same DXCC or VUCC Circle."
 msgstr ""
-"台站日志可以让您对自己的台站位置进行分组，这对在同一 DXCC 或 VUCC 下的不同站"
-"点位置非常方便"
+"台站日志可以让您对日志进行分组，如您的电台想在多个 DXCC 或 VUCC 下通联，您可"
+"让一个日志关联到多个不同的台站地址。"
 
 #: application/views/stationsetup/stationsetup.php:32
 msgid "Linked locations"
@@ -9557,10 +9568,6 @@ msgstr ""
 
 #: application/views/themes/index.php:116
 msgid "Add a Theme"
-msgstr ""
-
-#: application/views/timeline/index.php:48
-msgid "VHF / UHF Century Club (VUCC)"
 msgstr ""
 
 #: application/views/timeplotter/index.php:2
@@ -10417,6 +10424,30 @@ msgstr ""
 #: application/views/webadif/mark_webadif.php:16
 msgid "The QSOs are marked as exported to QO-100 Dx Club."
 msgstr ""
+
+#: application/views/widgets/oqrs.php:21
+msgid "Wavelog OQRS"
+msgstr ""
+
+#: application/views/widgets/oqrs.php:81
+msgid "Wavelog OQRS Request"
+msgstr ""
+
+#: application/views/widgets/oqrs.php:84
+#, php-format
+msgid "Request a QSL card for your QSO with %s."
+msgstr ""
+
+#: application/views/widgets/oqrs.php:88
+msgid "Your Callsign:"
+msgstr ""
+
+#: application/views/widgets/oqrs.php:95
+msgid "Submit Request"
+msgstr ""
+
+#~ msgid "VHF/UHF Century Club (VUCC)"
+#~ msgstr "VHF/UHF Century Club (VUCC)"
 
 #~ msgid "Accumulated Number of DXCCs worked"
 #~ msgstr "已累计通联的 DXCC 数量"

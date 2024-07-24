@@ -3,12 +3,13 @@
 # This file is distributed under the MIT licence.
 #
 # Michael Skolsky <r1blh@yandex.ru>, 2024.
+# "Francisco (F4VSE)" <kikosgc@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-23 10:31+0000\n"
-"PO-Revision-Date: 2024-07-22 13:58+0000\n"
-"Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
+"POT-Creation-Date: 2024-07-24 06:51+0000\n"
+"PO-Revision-Date: 2024-07-23 14:40+0000\n"
+"Last-Translator: \"Francisco (F4VSE)\" <kikosgc@gmail.com>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ru/>\n"
 "Language: ru_RU\n"
@@ -331,7 +332,7 @@ msgid "CQ Magazine WAZ"
 msgstr "CQ Magazine WAZ"
 
 #: application/controllers/Awards.php:652
-#: application/views/accumulate/index.php:61
+#: application/views/accumulate/index.php:54
 #: application/views/timeline/index.php:45
 msgid "Worked All States (WAS)"
 msgstr "Worked All States (WAS)"
@@ -1499,10 +1500,11 @@ msgid "Version Info will not be shown to any user"
 msgstr "Информация о версии не будет показана пользователям"
 
 #: application/controllers/Oqrs.php:22 application/controllers/Oqrs.php:61
+#: application/controllers/Oqrs.php:73
 msgid "Log Search & OQRS"
 msgstr "Поиск в журнале и OQRS"
 
-#: application/controllers/Oqrs.php:92
+#: application/controllers/Oqrs.php:104
 #: application/views/interface_assets/header.php:405
 msgid "OQRS Requests"
 msgstr "Запросы OQRS"
@@ -1587,7 +1589,7 @@ msgstr "Спутниковые таймеры"
 #: application/views/interface_assets/header.php:328
 #: application/views/interface_assets/header.php:335
 #: application/views/logbookadvanced/index.php:511
-#: application/views/oqrs/index.php:23
+#: application/views/oqrs/index.php:28
 #: application/views/oqrs/showrequests.php:67
 #: application/views/qslcard/searchform.php:8
 #: application/views/search/cqzones.php:4
@@ -1996,6 +1998,7 @@ msgstr "Сбросить пароль"
 #: application/controllers/Visitor.php:169
 #: application/controllers/Visitor.php:199
 #: application/controllers/Visitor.php:478
+#: application/controllers/Widgets.php:40
 msgid "Unknown Public Page."
 msgstr "Неизвестная публичная страница."
 
@@ -2003,6 +2006,7 @@ msgstr "Неизвестная публичная страница."
 #: application/controllers/Visitor.php:165
 #: application/controllers/Visitor.php:195
 #: application/controllers/Visitor.php:474
+#: application/controllers/Widgets.php:36
 msgid "Empty Logbook"
 msgstr "Пустой журнал"
 
@@ -2024,6 +2028,14 @@ msgstr "Экспорт карты"
 #: application/views/interface_assets/header.php:419
 msgid "QO-100 Dx Club Upload"
 msgstr "Загрузка в QO-100 Dx Club"
+
+#: application/controllers/Widgets.php:21
+msgid "Unknown Public Page, please make sure the public slug is correct."
+msgstr ""
+
+#: application/controllers/Widgets.php:54 application/views/oqrs/index.php:69
+msgid "No stations found that are using Wavelog OQRS."
+msgstr "Не найдено профилей QTH, использующих OQRS."
 
 #: application/models/Eqslmethods_model.php:281
 msgid "Your eQSL username and/or password is incorrect."
@@ -2127,7 +2139,7 @@ msgid "Year"
 msgstr "Год"
 
 #: application/views/accumulate/index.php:9
-#: application/views/accumulate/index.php:95
+#: application/views/accumulate/index.php:67
 msgid "Yearly"
 msgstr "Ежегодно"
 
@@ -2138,7 +2150,7 @@ msgid "Month"
 msgstr "Месяц"
 
 #: application/views/accumulate/index.php:11
-#: application/views/accumulate/index.php:101
+#: application/views/accumulate/index.php:73
 msgid "Monthly"
 msgstr "Ежемесячно"
 
@@ -2234,35 +2246,36 @@ msgstr "Все"
 msgid "Award"
 msgstr "Диплом"
 
-#: application/views/accumulate/index.php:55
+#: application/views/accumulate/index.php:53
 #: application/views/timeline/index.php:44
 msgid "DX Century Club (DXCC)"
 msgstr "DX Century Club (DXCC)"
 
-#: application/views/accumulate/index.php:67
+#: application/views/accumulate/index.php:55
 #: application/views/timeline/index.php:46
 msgid "Islands On The Air (IOTA)"
 msgstr "Islands On The Air (IOTA)"
 
-#: application/views/accumulate/index.php:73
+#: application/views/accumulate/index.php:56
 #: application/views/timeline/index.php:47
 msgid "Worked All Zones (WAZ)"
 msgstr "Worked All Zones (WAZ)"
 
-#: application/views/accumulate/index.php:79
-msgid "VHF/UHF Century Club (VUCC)"
+#: application/views/accumulate/index.php:57
+#: application/views/timeline/index.php:48
+msgid "VHF / UHF Century Club (VUCC)"
 msgstr "VHF / UHF Century Club (VUCC)"
 
-#: application/views/accumulate/index.php:85
+#: application/views/accumulate/index.php:58
 #: application/views/timeline/index.php:49
 msgid "Worked All Japan (WAJA)"
-msgstr ""
+msgstr "Worked All Japan (WAJA)"
 
-#: application/views/accumulate/index.php:90
+#: application/views/accumulate/index.php:62
 msgid "Period"
 msgstr "Период"
 
-#: application/views/accumulate/index.php:111
+#: application/views/accumulate/index.php:83
 #: application/views/activators/index.php:50
 #: application/views/awards/cq/index.php:111
 #: application/views/awards/dok/index.php:127
@@ -4414,7 +4427,7 @@ msgid "Deactivate All"
 msgstr "Деактивировать все"
 
 #: application/views/cabrillo/index.php:2
-#: application/views/cabrillo/index.php:34 application/views/oqrs/index.php:54
+#: application/views/cabrillo/index.php:34 application/views/oqrs/index.php:59
 msgid "Proceed"
 msgstr "Продолжить"
 
@@ -5759,7 +5772,7 @@ msgstr "Польский"
 
 #: application/views/debug/index.php:629
 msgid "Portuguese"
-msgstr ""
+msgstr "Португальский"
 
 #: application/views/debug/index.php:630
 msgid "Russian"
@@ -6366,7 +6379,7 @@ msgstr "Журнал"
 
 #: application/views/interface_assets/header.php:334
 #: application/views/logbookadvanced/index.php:447
-#: application/views/oqrs/index.php:22 application/views/user/edit.php:441
+#: application/views/oqrs/index.php:27 application/views/user/edit.php:441
 #: application/views/visitor/layout/header.php:97
 msgid "Search Callsign"
 msgstr "Поиск позывного"
@@ -7908,21 +7921,17 @@ msgstr ""
 msgid "Request a QSL card"
 msgstr "Запросить QSL-карточку"
 
-#: application/views/oqrs/index.php:21
+#: application/views/oqrs/index.php:26
 msgid "Enter your callsign"
 msgstr "Введите свой позывной"
 
-#: application/views/oqrs/index.php:21
+#: application/views/oqrs/index.php:26
 msgid "This search will search in all station locations where OQRS is active."
 msgstr "Поиск будет осуществляться во всех профилях QTH, где действует OQRS."
 
-#: application/views/oqrs/index.php:48
+#: application/views/oqrs/index.php:53
 msgid "Select station"
 msgstr "Выберите профиль QTH"
-
-#: application/views/oqrs/index.php:64
-msgid "No stations found that are using Wavelog OQRS."
-msgstr "Не найдено профилей QTH, использующих OQRS."
 
 #: application/views/oqrs/notinlogform.php:2
 msgid ""
@@ -9907,10 +9916,6 @@ msgstr "Пожалуйста, отредактируйте"
 msgid "Add a Theme"
 msgstr "Добавить тему"
 
-#: application/views/timeline/index.php:48
-msgid "VHF / UHF Century Club (VUCC)"
-msgstr "VHF / UHF Century Club (VUCC)"
-
 #: application/views/timeplotter/index.php:2
 msgid "contacts were plotted"
 msgstr "QSO отображены"
@@ -10815,6 +10820,30 @@ msgstr "Пометить QSO как экспортированные в QO-100 D
 #: application/views/webadif/mark_webadif.php:16
 msgid "The QSOs are marked as exported to QO-100 Dx Club."
 msgstr "QSO отмечены как экспортированные в QO-100 Dx Club."
+
+#: application/views/widgets/oqrs.php:21
+msgid "Wavelog OQRS"
+msgstr ""
+
+#: application/views/widgets/oqrs.php:81
+msgid "Wavelog OQRS Request"
+msgstr ""
+
+#: application/views/widgets/oqrs.php:84
+#, php-format
+msgid "Request a QSL card for your QSO with %s."
+msgstr ""
+
+#: application/views/widgets/oqrs.php:88
+msgid "Your Callsign:"
+msgstr ""
+
+#: application/views/widgets/oqrs.php:95
+msgid "Submit Request"
+msgstr ""
+
+#~ msgid "VHF/UHF Century Club (VUCC)"
+#~ msgstr "VHF / UHF Century Club (VUCC)"
 
 #~ msgid "Accumulated Number of DXCCs worked"
 #~ msgstr "Всего сработано DXCC"
