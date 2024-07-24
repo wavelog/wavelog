@@ -325,7 +325,10 @@ if (!file_exists('.lock')) {
 											<label for="websiteurl" class="form-label required"><?= __("Website URL"); ?></label><i id="websiteurl_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= sprintf(__("This is the complete URL where your Wavelog Instance will be available. If you run this installer locally but want to place Wavelog behind a Reverse Proxy with SSL you should type in the new URL here (e.g. %s instead of %s). Don't forget to include the directory from above."), "https://mywavelog.example.org/", "http://192.168.1.100/"); ?>"></i>
 											<input type="text" id="websiteurl" value="<?php echo $websiteurl; ?>" class="form-control" name="websiteurl" />
 											<div class="invalid-tooltip">
-												<?= __("This field can't be empty and have to end with a slash 'example/'!"); ?>
+												<?= __("This field<br>
+												- can't be empty<br>
+												- have to end with a slash 'example/'<br>
+												- have to start with 'http'"); ?>
 											</div>
 										</div>
 										<div class="mb-3">
@@ -1131,6 +1134,8 @@ if (!file_exists('.lock')) {
 					field.removeClass('is-valid');
 					field.addClass('is-invalid');
 				}
+
+				return check;
 			}
 
 			function websiteurl_check() {
@@ -1153,61 +1158,68 @@ if (!file_exists('.lock')) {
 					field.removeClass('is-valid');
 					field.addClass('is-invalid');
 				}
+
+				return check;
 			}
 
 			function db_connection_test() {
-				var db_hostname = $('#db_hostname').val();
-				var db_username = $('#db_username').val();
-				var db_password = $('#db_password').val();
-				var db_name = $('#db_name').val();
+				return new Promise((resolve, reject) => {
+					var db_hostname = $('#db_hostname').val();
+					var db_username = $('#db_username').val();
+					var db_password = $('#db_password').val();
+					var db_name = $('#db_name').val();
 
-				if (db_hostname === '' || db_username === '' || db_name === '') {
-					$('#db_connection_testresult').addClass('alert-danger');
-					$('#db_connection_testresult').html('<?= __("Error: At least Hostname/IP, Database Name and Username are required."); ?>');
-					return;
-				}
-
-				var originalButtonText = $('#db_connection_test_button').html();
-				$('#db_connection_test_button').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> <?= __("Connecting..."); ?>').prop('disabled', true);
-
-				clear_db_testresult();
-
-				$.ajax({
-					type: 'POST',
-					url: 'index.php',
-					data: {
-						db_hostname: db_hostname,
-						db_username: db_username,
-						db_password: db_password,
-						db_name: db_name,
-						database_check: 1
-					},
-					success: function(response) {
-						$('#db_connection_testresult').html(response);
-						if (response.indexOf('Error') !== -1) {
-							$('#db_connection_testresult').addClass('alert-danger');
-							$('#db_connection_test_button').html(originalButtonText).prop('disabled', false);
-						} else {
-
-							if (sql_version_checker(response) == true) {
-								$('#db_connection_testresult').addClass('alert-success');
-								$('#db_connection_test_button').html(originalButtonText).prop('disabled', false);
-								$('#db_connection_testresult').html('<?= __("Connection was successful and your database should be compatible"); ?> <i class="fas fa-check-circle"></i>');
-							} else {
-								$('#db_connection_testresult').addClass('alert-warning');
-								$('#db_connection_test_button').html(originalButtonText).prop('disabled', false);
-								$('#db_connection_testresult').html('<?= __("Connection was successful but your database seems too old for Wavelog. You can try to continue but you could run into issues."); ?> <i class="fas fa-circle-exclamation"></i>');
-							}
-						}
-						checklist_database();
-					},
-					error: function(error) {
-						$('#db_connection_testresult').html('Error: ' + error.statusText);
-						if ($('#db_connection_testresult').text().indexOf('Error') !== -1) {
-							$('#db_connection_testresult').addClass('alert-danger');
-						}
-						checklist_database();
+					if (db_hostname === '' || db_username === '' || db_name === '') {
+						$('#db_connection_testresult').addClass('alert-danger');
+						$('#db_connection_testresult').html('<?= __("Error: At least Hostname/IP, Database Name and Username are required."); ?>');
+						resolve(false);
+						return;
 					}
+
+					var originalButtonText = $('#db_connection_test_button').html();
+					$('#db_connection_test_button').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> <?= __("Connecting..."); ?>').prop('disabled', true);
+
+					clear_db_testresult();
+
+					$.ajax({
+						type: 'POST',
+						url: 'index.php',
+						data: {
+							db_hostname: db_hostname,
+							db_username: db_username,
+							db_password: db_password,
+							db_name: db_name,
+							database_check: 1
+						},
+						success: function(response) {
+							$('#db_connection_testresult').html(response);
+							if (response.indexOf('Error') !== -1) {
+								$('#db_connection_testresult').addClass('alert-danger');
+								$('#db_connection_test_button').html(originalButtonText).prop('disabled', false);
+								resolve(false);
+							} else {
+								if (sql_version_checker(response) == true) {
+									$('#db_connection_testresult').addClass('alert-success');
+									$('#db_connection_test_button').html(originalButtonText).prop('disabled', false);
+									$('#db_connection_testresult').html('<?= __("Connection was successful and your database should be compatible"); ?> <i class="fas fa-check-circle"></i>');
+								} else {
+									$('#db_connection_testresult').addClass('alert-warning');
+									$('#db_connection_test_button').html(originalButtonText).prop('disabled', false);
+									$('#db_connection_testresult').html('<?= __("Connection was successful but your database seems too old for Wavelog. You can try to continue but you could run into issues."); ?> <i class="fas fa-circle-exclamation"></i>');
+								}
+								resolve(true);
+							}
+							checklist_database();
+						},
+						error: function(error) {
+							$('#db_connection_testresult').html('Error: ' + error.statusText);
+							if ($('#db_connection_testresult').text().indexOf('Error') !== -1) {
+								$('#db_connection_testresult').addClass('alert-danger');
+							}
+							checklist_database();
+							resolve(false);
+						}
+					});
 				});
 			}
 
@@ -1369,9 +1381,28 @@ if (!file_exists('.lock')) {
 
 				const activeTab = $('.nav-link.active');
 
-				function nextTab() {
+				async function nextTab() {
 					const activeTab = $('.nav-link.active');
 					const nextTab = activeTab.parent().next().find('.nav-link');
+
+					if (nextTab.attr('id') == fourthTabId) {
+						if (!directory_check() || !websiteurl_check()) {
+							return;
+						}
+					}
+
+					if (nextTab.attr('id') == fifthTabId) {
+						await db_connection_test();
+						if ($('#db_connection_testresult').hasClass('alert-danger')) {
+							return;
+						}
+					}
+
+					if (nextTab.attr('id') == lastTabId) {
+						if (!checklist_firstuser()) {
+							return;
+						}
+					}
 
 					if (nextTab.length > 0) {
 						const tab = new bootstrap.Tab(nextTab[0]);
@@ -1384,7 +1415,6 @@ if (!file_exists('.lock')) {
 					} else {
 						$('#ContinueButton').css('display', 'none');
 					}
-
 				}
 
 				function prevTab() {
@@ -1463,6 +1493,7 @@ if (!file_exists('.lock')) {
 			let secondTabId = 'precheck-tab';
 			let thirdTabId = 'configuration-tab';
 			let fourthTabId = 'database-tab';
+			let fifthTabId = 'firstuser-tab';
 			let lastTabId = 'finish-tab';
 
 			function openTab(tabId) {
@@ -1516,7 +1547,6 @@ if (!file_exists('.lock')) {
 			// comment: Checklist for Pre-Checks is handled in PHP. See '$prechecks_passed'
 
 			function checklist_configuration() {
-				console.log('run checklist_configuration');
 				var checklist_configuration = true;
 
 				if ($('#directory').hasClass('is-invalid')) {
@@ -1597,7 +1627,7 @@ if (!file_exists('.lock')) {
 				}
 
 				if (checklist_firstuser) {
-					if($('#password').hasClass('has-warning')) {
+					if ($('#password').hasClass('has-warning')) {
 						$('#checklist_firstuser').removeClass('fa-times-circle');
 						$('#checklist_firstuser').removeClass('fa-check-circle');
 						$('#checklist_firstuser').addClass('fa-exclamation-triangle').css('color', '#ffc107');
@@ -1612,6 +1642,7 @@ if (!file_exists('.lock')) {
 					$('#checklist_firstuser').addClass('fa-times-circle').css('color', 'red');
 				}
 
+				return checklist_firstuser;
 			}
 		</script>
 	</body>
@@ -1622,7 +1653,6 @@ if (!file_exists('.lock')) {
 <?php } else {
 
 	header("Location: $websiteurl");
-	
 } ?>
 
 </html>
