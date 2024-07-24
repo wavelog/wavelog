@@ -71,7 +71,7 @@ class Database {
 		
 			return $mysql_version;
 		} catch (Exception $e) {
-			return __("Error: ") . $e->getMessage();
+			return 'Error: ' . $e->getMessage();
 		}
 	}
 }
