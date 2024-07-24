@@ -5,7 +5,7 @@ function accumulatePlot(form) {
 	// using this to change color of legend and label according to background color
 	var color = ifDarkModeThemeReturn("white", "grey");
 
-	var award = form.awardradio.value;
+	var award = form.award.value;
 	var mode = form.mode.value;
 	var period = form.periodradio.value;
 	$.ajax({
@@ -45,6 +45,10 @@ function accumulatePlot(form) {
 					case "vucc":
 						var awardtext =
 							lang_statistics_accumulated_worked_vucc;
+						break;
+					case "waja":
+						var awardtext =
+							lang_statistics_accumulated_worked_waja;
 						break;
 				}
 
