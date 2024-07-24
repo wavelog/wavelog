@@ -49,42 +49,14 @@
 
                 <label class="col-md-1 control-label" for="radio"><?= __("Award"); ?></label>
                 <div class="col-md-3">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="awardradio" id="dxcc" value="dxcc" checked>
-                        <label class="form-check-label" for="dxcc">
-                            <?= __("DX Century Club (DXCC)"); ?>
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="awardradio" id="was" value="was">
-                        <label class="form-check-label" for="was">
-                            <?= __("Worked All States (WAS)"); ?>
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="awardradio" id="iota" value="iota">
-                        <label class="form-check-label" for="iota">
-                            <?= __("Islands On The Air (IOTA)"); ?>
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="awardradio" id="waz" value="waz">
-                        <label class="form-check-label" for="waz">
-                            <?= __("Worked All Zones (WAZ)"); ?>
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="awardradio" id="vucc" value="vucc">
-                        <label class="form-check-label" for="vucc">
-                            <?= __("VHF/UHF Century Club (VUCC)"); ?>
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="awardradio" id="waja" value="waja">
-                        <label class="form-check-label" for="waja">
-                            <?= __("Worked All Japan (WAJA)"); ?>
-                        </label>
-                    </div>
+				<select id="award" name="award" class="form-select">
+                        <option value="dxcc"><?= __("DX Century Club (DXCC)"); ?></option>
+                        <option value="was"><?= __("Worked All States (WAS)"); ?></option>
+                        <option value="iota"><?= __("Islands On The Air (IOTA)"); ?></option>
+                        <option value="waz"><?= __("Worked All Zones (WAZ)"); ?></option>
+                        <option value="vucc"><?= __("VHF / UHF Century Club (VUCC)"); ?></option>
+                        <option value="waja"><?= __("Worked All Japan (WAJA)"); ?></option>
+                    </select>
                 </div>
 
                 <label class="col-md-1 control-label" for="radio"><?= __("Period"); ?></label>

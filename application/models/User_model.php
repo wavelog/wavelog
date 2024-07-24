@@ -306,7 +306,8 @@ class User_Model extends CI_Model {
 				if($fields['user_password'] != NULL)
 				{
 					if ($fields['user_password'] !== $pwd_placeholder) {
-						$data['user_password'] = $this->_hash($fields['user_password']);
+						$decoded_password = htmlspecialchars_decode($fields['user_password']);
+						$data['user_password'] = $this->_hash($decoded_password);
 						if($data['user_password'] == EPASSWORDINVALID) {
 							return EPASSWORDINVALID;
 						}
@@ -386,7 +387,7 @@ class User_Model extends CI_Model {
 	function login() {
 
 		$username = $this->input->post('user_name', true);
-		$password = $this->input->post('user_password', true);
+		$password = htmlspecialchars_decode($this->input->post('user_password', true));
 
 		return $this->authenticate($username, $password);
 	}
