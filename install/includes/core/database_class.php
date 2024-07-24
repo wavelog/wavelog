@@ -50,22 +50,28 @@ class Database {
 		try {
 			$timeout = 5;  /* five seconds for timeout */
 			$link = mysqli_init();
-
+		
 			$link->options(MYSQLI_OPT_CONNECT_TIMEOUT, $timeout);
-
+		
 			$link->real_connect($data['db_hostname'], $data['db_username'], $data['db_password'], $data['db_name']);
-
+		
 			if ($link->connect_error) {
-				throw new Exception('Connection Error: ' . $link->connect_error);
+				throw new Exception(__("Connection Error: ") . $link->connect_error);
 			}
-
+		
+			$result = $link->query("SHOW TABLES");
+		
+			if ($result->num_rows > 0) {
+				throw new Exception(__("Database is not empty."));
+			}
+		
 			$mysql_version = $link->server_info;
-
+		
 			$link->close();
-
+		
 			return $mysql_version;
 		} catch (Exception $e) {
-			return 'Error: ' . $e->getMessage();
+			return __("Error: ") . $e->getMessage();
 		}
 	}
 }
