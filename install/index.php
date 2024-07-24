@@ -286,7 +286,7 @@ if (!file_exists('.lock')) {
 											</div>
 										<?php } else if ($prechecks_passed == 'warning') {
 											$prechecks_icon = "fa-exclamation-triangle";
-											$prechecks_color = "yellow"; ?>
+											$prechecks_color = "#ffc107"; ?>
 											<div class="alert alert-warning d-flex flex-column align-items-center" role="alert">
 												<p class="mb-2 border-bottom"><?= __("You have some warnings!"); ?></p>
 												<p class="mb-2"><?= __("Some of the settings are not optimal. You can proceed with the installer but be aware that you could run into problems while using Wavelog."); ?></p>
@@ -448,7 +448,7 @@ if (!file_exists('.lock')) {
 										<p class="required-prefix"><?= __("All fields are required!"); ?></p>
 									</div>
 									<div class="col-md-6 mb-2">
-										<div class="alert alert-danger" id="userform_warnings" style="display: none; margin-top: 10px;"></div>
+										<div class="alert" id="userform_warnings" style="display: none; margin-top: 10px;"></div>
 									</div>
 								</div>
 
@@ -1255,27 +1255,34 @@ if (!file_exists('.lock')) {
 			var cnfmPasswordField = $('#cnfm_password');
 			var minPasswordLenght = 8;
 
-			cnfmPasswordField.on('change', function() {
+			$('#password, #cnfm_password').on('change', function() {
 				if (cnfmPasswordField.val() == passwordField.val() && cnfmPasswordField.val() != '') {
 
 					if (cnfmPasswordField.val().length >= minPasswordLenght) {
 
 						passwordField.removeClass('is-invalid');
 						cnfmPasswordField.removeClass('is-invalid');
+						passwordField.removeClass('has-warning');
+						cnfmPasswordField.removeClass('has-warning');
 
 						passwordField.addClass('is-valid');
 						cnfmPasswordField.addClass('is-valid');
 
 						$('#userform_warnings').css('display', 'none');
+						$('#userform_warnings').removeClass('alert-warning alert-danger');
 
 					} else {
-						passwordField.addClass('is-invalid');
-						cnfmPasswordField.addClass('is-invalid');
+						passwordField.addClass('has-warning');
+						cnfmPasswordField.addClass('has-warning');
 
 						passwordField.removeClass('is-valid');
 						cnfmPasswordField.removeClass('is-valid');
+						passwordField.removeClass('is-invalid');
+						cnfmPasswordField.removeClass('is-invalid');
 
 						$('#userform_warnings').css('display', 'block');
+						$('#userform_warnings').removeClass('alert-warning alert-danger');
+						$('#userform_warnings').addClass('alert-warning');
 						$('#userform_warnings').html('<?= __("Password should be at least 8 characters long"); ?>')
 					}
 
@@ -1283,11 +1290,15 @@ if (!file_exists('.lock')) {
 
 					passwordField.addClass('is-invalid');
 					cnfmPasswordField.addClass('is-invalid');
+					passwordField.removeClass('has-warning');
+					cnfmPasswordField.removeClass('has-warning');
 
 					passwordField.removeClass('is-valid');
 					cnfmPasswordField.removeClass('is-valid');
 
 					$('#userform_warnings').css('display', 'block');
+					$('#userform_warnings').removeClass('alert-warning alert-danger');
+					$('#userform_warnings').addClass('alert-danger');
 					$('#userform_warnings').html('<?= __("Passwords do not match"); ?>');
 
 				}
@@ -1302,12 +1313,15 @@ if (!file_exists('.lock')) {
 					emailField.addClass('is-invalid');
 					emailField.removeClass('is-valid');
 					$('#userform_warnings').css('display', 'block');
+					$('#userform_warnings').removeClass('alert-warning alert-danger');
+					$('#userform_warnings').addClass('alert-danger');
 					$('#userform_warnings').html('<?= __("The E-Mail Address is not valid"); ?>');
 
 				} else {
 
 					emailField.removeClass('is-invalid');
 					emailField.addClass('is-valid');
+					$('#userform_warnings').removeClass('alert-danger alert-warning');
 					$('#userform_warnings').css('display', 'none');
 
 				}
@@ -1325,12 +1339,15 @@ if (!file_exists('.lock')) {
 					$(field).removeClass('is-valid');
 					if (field == '#userlocator') {
 						$('#userform_warnings').css('display', 'block');
+						$('#userform_warnings').removeClass('alert-warning alert-danger');
+						$('#userform_warnings').addClass('alert-danger');
 						$('#userform_warnings').html("<?= sprintf(__("The grid locator is not valid. Use a 6-character locator, e.g. HA44AA. If you don't know your grid square then <a href='%s' target='_blank'>click here</a>!"), "https://zone-check.eu/?m=loc"); ?>");
 					}
 				} else {
 					$(field).removeClass('is-invalid');
 					$(field).addClass('is-valid');
 					if (field == '#userlocator') {
+						$('#userform_warnings').removeClass('alert-danger alert-warning');
 						$('#userform_warnings').css('display', 'none');
 					}
 				}
@@ -1471,7 +1488,7 @@ if (!file_exists('.lock')) {
 				if (($('#checklist_prechecks').hasClass('fa-check-circle') || $('#checklist_prechecks').hasClass('fa-exclamation-triangle')) &&
 					$('#checklist_configuration').hasClass('fa-check-circle') &&
 					$('#checklist_database').hasClass('fa-check-circle') &&
-					$('#checklist_firstuser').hasClass('fa-check-circle')) {
+					($('#checklist_firstuser').hasClass('fa-check-circle') || $('#checklist_firstuser').hasClass('fa-exclamation-triangle'))) {
 					install_possible = true;
 				}
 
@@ -1531,7 +1548,7 @@ if (!file_exists('.lock')) {
 
 				if (checklist_database) {
 					if ($('#db_connection_testresult').hasClass('alert-warning')) {
-						checklist_icon.addClass('fa-exclamation-triangle').css('color', 'yellow');
+						checklist_icon.addClass('fa-exclamation-triangle').css('color', '#ffc107');
 					} else if ($('#db_connection_testresult').hasClass('alert-success')) {
 						checklist_icon.addClass('fa-check-circle').css('color', '#04a004');
 					} else {
@@ -1574,10 +1591,18 @@ if (!file_exists('.lock')) {
 				}
 
 				if (checklist_firstuser) {
-					$('#checklist_firstuser').removeClass('fa-times-circle');
-					$('#checklist_firstuser').addClass('fa-check-circle').css('color', '#04a004');
+					if($('#password').hasClass('has-warning')) {
+						$('#checklist_firstuser').removeClass('fa-times-circle');
+						$('#checklist_firstuser').removeClass('fa-check-circle');
+						$('#checklist_firstuser').addClass('fa-exclamation-triangle').css('color', '#ffc107');
+					} else {
+						$('#checklist_firstuser').removeClass('fa-times-circle');
+						$('#checklist_firstuser').removeClass('fa-exclamation-triangle');
+						$('#checklist_firstuser').addClass('fa-check-circle').css('color', '#04a004');
+					}
 				} else {
 					$('#checklist_firstuser').removeClass('fa-check-circle');
+					$('#checklist_firstuser').removeClass('fa-exclamation-triangle');
 					$('#checklist_firstuser').addClass('fa-times-circle').css('color', 'red');
 				}
 
