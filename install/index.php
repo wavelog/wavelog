@@ -429,7 +429,7 @@ if (!file_exists('.lock')) {
 											<input type="text" id="db_username" placeholder="waveloguser" class="form-control" name="db_username" />
 										</div>
 										<div class="mb-3">
-											<label for="db_password" class="form-label required"><?= __("Password"); ?></label><i id="callbook_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("Password of the Database User"); ?>"></i>
+											<label for="db_password" class="form-label"><?= __("Password"); ?></label><i id="callbook_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("Password of the Database User"); ?>"></i>
 											<input type="password" id="db_password" placeholder="supersecretpassword" class="form-control" name="db_password" />
 										</div>
 										<div class="col">
@@ -1161,7 +1161,7 @@ if (!file_exists('.lock')) {
 				var db_password = $('#db_password').val();
 				var db_name = $('#db_name').val();
 
-				if (db_hostname === '' || db_username === '' || db_password === '' || db_name === '') {
+				if (db_hostname === '' || db_username === '' || db_name === '') {
 					$('#db_connection_testresult').addClass('alert-danger');
 					$('#db_connection_testresult').html('<?= __("Error: All fields are required."); ?>');
 					return;
@@ -1537,9 +1537,6 @@ if (!file_exists('.lock')) {
 					checklist_database = false;
 				}
 				if ($('#db_username').val() === '') {
-					checklist_database = false;
-				}
-				if ($('#db_password').val() === '') {
 					checklist_database = false;
 				}
 
