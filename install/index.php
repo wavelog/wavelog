@@ -475,7 +475,7 @@ if (!file_exists('.lock')) {
 								<div class="row">
 									<div class="col-md-6 mb-2">
 										<label for="callsign" class="form-label"><?= __("Callsign"); ?></label>
-										<input type="text" id="callsign" tabindex="3" placeholder="4W7EST" class="form-control" name="callsign" />
+										<input type="text" id="callsign" tabindex="3" placeholder="4W7EST" class="form-control uppercase" name="callsign" />
 									</div>
 									<div class="col-md-6 mb-2">
 										<label for="cnfm_password" class="form-label"><?= __("Confirm Password"); ?></label>
@@ -495,7 +495,7 @@ if (!file_exists('.lock')) {
 								<div class="row">
 									<div class="col-md-6 mb-2">
 										<label for="userlocator" class="form-label"><?= __("Gridsquare/Locator"); ?></label>
-										<input type="text" id="userlocator" tabindex="5" placeholder="HA44AA" class="form-control" name="userlocator" />
+										<input type="text" id="userlocator" tabindex="5" placeholder="HA44AA" class="form-control uppercase" name="userlocator" />
 									</div>
 									<div class="col-md-6 mb-2">
 										<label for="timezone" class="form-label"><?= __("Timezone"); ?></label>
