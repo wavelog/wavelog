@@ -2,30 +2,31 @@
 # Copyright (c) 2024 Wavelog by DF2ET, DJ7NT, HB9HIL and LA8AJA.
 # This file is distributed under the MIT licence.
 #
+# Halil AYYILDIZ <ta2lghalil@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-07-24 06:51+0000\n"
-"PO-Revision-Date: 2024-07-09 13:26+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
-"Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/tr/>\n"
+"PO-Revision-Date: 2024-07-26 09:13+0000\n"
+"Last-Translator: Halil AYYILDIZ <ta2lghalil@gmail.com>\n"
+"Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/tr/>\n"
 "Language: tr_TR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #: application/controllers/Accumulated.php:21
 #: application/views/interface_assets/header.php:148
 msgid "Accumulated Statistics"
-msgstr ""
+msgstr "Toplu İstatistikler"
 
 #: application/controllers/Activated_gridmap.php:10
 #: application/views/activated_gridmap/index.php:5
 msgid "Activated Gridsquare Map"
-msgstr ""
+msgstr "Etkinleştirilmiş Konum Belirteci Haritası"
 
 #: application/controllers/Activated_gridmap.php:31
 #: application/controllers/Awards.php:910
@@ -35,114 +36,114 @@ msgstr ""
 #: application/views/activators/index.php:101
 #: application/views/visitor/layout/header.php:68
 msgid "Gridsquares"
-msgstr ""
+msgstr "Konum Belirteci"
 
 #: application/controllers/Activated_gridmap.php:32
 #: application/controllers/Gridmap.php:32
 #: application/controllers/Visitor.php:375
 msgid "Gridsquares confirmed"
-msgstr ""
+msgstr "Konum Belirteci onaylandı"
 
 #: application/controllers/Activated_gridmap.php:33
 #: application/controllers/Gridmap.php:33
 #: application/controllers/Visitor.php:376
 msgid "Gridsquares not confirmed"
-msgstr ""
+msgstr "Konum Belirteci onaylanmadı"
 
 #: application/controllers/Activated_gridmap.php:34
 msgid "Total gridsquares activated"
-msgstr ""
+msgstr "Toplam Konum Belirteci etkinleştirildi"
 
 #: application/controllers/Activators.php:20
 #: application/views/activators/index.php:2
 #: application/views/interface_assets/header.php:140
 msgid "Gridsquare Activators"
-msgstr ""
+msgstr "Konum Belirteci Aktivatörleri"
 
 #: application/controllers/Activatorsmap.php:17
 msgid "Activators Map"
-msgstr ""
+msgstr "Aktivatörler Haritası"
 
 #: application/controllers/Adif.php:18
 msgid "valid date"
-msgstr ""
+msgstr "geçerli tarih"
 
 #: application/controllers/Adif.php:20
 msgid "date incorrect"
-msgstr ""
+msgstr "tarih yanlış"
 
 #: application/controllers/Adif.php:29 application/views/adif/import.php:24
 msgid "ADIF Export"
-msgstr ""
+msgstr "ADIF Dışa Aktarma"
 
 #: application/controllers/Adif.php:147
 #: application/views/interface_assets/header.php:376
 msgid "ADIF Import / Export"
-msgstr ""
+msgstr "ADIF İçe / Dışa Aktarma"
 
 #: application/controllers/Adif.php:171 application/views/adif/import.php:21
 #: application/views/lotw/import.php:3
 msgid "ADIF Import"
-msgstr ""
+msgstr "ADIF İçe Aktarma"
 
 #: application/controllers/Adif.php:211
 msgid "Unsupported Filetype"
-msgstr ""
+msgstr "Desteklenmeyen Dosya Tipi"
 
 #: application/controllers/Adif.php:247
 msgid "Station Profile not valid for User"
-msgstr ""
+msgstr "Kullanıcı için İstasyon Profili geçerli değil"
 
 #: application/controllers/Adif.php:254
 #: application/views/adif/import_success.php:12
 msgid "ADIF Imported"
-msgstr ""
+msgstr "ADIF İçe Aktarıldı"
 
 #: application/controllers/Adif.php:265
 msgid "DCL Import"
-msgstr ""
+msgstr "DCL İçe Aktarma"
 
 #: application/controllers/Adif.php:321
 msgid "DCL Data Imported"
-msgstr ""
+msgstr "DCL Verileri İçe Aktarıldı"
 
 #: application/controllers/Api.php:26
 msgid "API"
-msgstr ""
+msgstr "API"
 
 #: application/controllers/Api.php:50 application/views/api/description.php:26
 msgid "API Description"
-msgstr ""
+msgstr "API Açıklaması"
 
 #: application/controllers/Api.php:51
 msgid "API Key is required. Do not change this field"
-msgstr ""
+msgstr "API Anahtarı gereklidir. Bu alanı değiştirmeyin"
 
 #: application/controllers/Api.php:57
 msgid "Edit API Description"
-msgstr ""
+msgstr "API Açıklamasını Düzenle"
 
 #: application/controllers/Api.php:69
 #, php-format
 msgid "API Key %s description has been updated."
-msgstr ""
+msgstr "API Anahtarı %s açıklaması güncellendi."
 
 #: application/controllers/Api.php:109
 #, php-format
 msgid "API Key %s has been deleted"
-msgstr ""
+msgstr "API Anahtarı %s silindi"
 
 #: application/controllers/Api.php:118
 msgid "Key Disabled"
-msgstr ""
+msgstr "Anahtar Devre Dışı"
 
 #: application/controllers/Api.php:118
 msgid "No Key Found"
-msgstr ""
+msgstr "Anahtar Bulunamadı"
 
 #: application/controllers/Api.php:120
 msgid "Key Invalid - either not found or disabled"
-msgstr ""
+msgstr "Anahtar Geçersiz - bulunamadı veya devre dışı bırakıldı"
 
 #: application/controllers/Api.php:124
 #: application/views/lotw_views/index.php:95
@@ -153,7 +154,7 @@ msgstr "Geçerli"
 #: application/views/interface_assets/header.php:156
 #: application/views/qso/edit_ajax.php:35
 msgid "Awards"
-msgstr ""
+msgstr "Ödüller"
 
 #: application/controllers/Awards.php:92 application/controllers/Awards.php:172
 #: application/controllers/Awards.php:327
@@ -173,7 +174,7 @@ msgstr ""
 #: application/controllers/Awards.php:1755
 #, php-format
 msgid "Awards - %s"
-msgstr ""
+msgstr "Ödüller - %s"
 
 #: application/controllers/Awards.php:92
 #: application/views/awards/dok/index.php:149
@@ -186,7 +187,7 @@ msgstr ""
 #: application/views/qso/index.php:508 application/views/user/edit.php:603
 #: application/views/view_log/qso.php:351
 msgid "DOK"
-msgstr ""
+msgstr "DOK"
 
 #: application/controllers/Awards.php:172 application/views/awards/index.php:7
 #: application/views/bandmap/list.php:112 application/views/bands/index.php:48
@@ -208,11 +209,11 @@ msgstr ""
 #: application/views/stationsetup/linkedlocations.php:33
 #: application/views/timeplotter/index.php:24
 msgid "DXCC"
-msgstr ""
+msgstr "DXCC"
 
 #: application/controllers/Awards.php:251
 msgid "Awards - WAJA"
-msgstr ""
+msgstr "Ödüller - WAJA"
 
 #: application/controllers/Awards.php:327 application/views/bands/index.php:51
 #: application/views/interface_assets/header.php:208
@@ -1300,7 +1301,7 @@ msgstr "Operatör"
 #: application/views/view_log/qso.php:236
 #: application/views/view_log/qso.php:529
 msgid "Deleted DXCC"
-msgstr ""
+msgstr "Silinmiş DXCC"
 
 #: application/controllers/Logbookadvanced.php:31
 msgid "Advanced logbook"
@@ -2426,7 +2427,7 @@ msgstr ""
 #: application/views/user/main.php:47 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:82 application/views/view_log/qso.php:507
 msgid "Callsign"
-msgstr ""
+msgstr "Çağrı işareti"
 
 #: application/views/activators/index.php:100
 msgid "Count"
@@ -3722,7 +3723,7 @@ msgstr ""
 #: application/views/search/result.php:21
 #: application/views/view_log/qso.php:521
 msgid "City"
-msgstr ""
+msgstr "Şehir"
 
 #: application/views/awards/jcc/index.php:187
 #: application/views/dashboard/index.php:352
@@ -4188,7 +4189,7 @@ msgstr ""
 #: application/views/simplefle/index.php:21
 #: application/views/version_dialog/index.php:79
 msgid "Close"
-msgstr ""
+msgstr "Kapalı"
 
 #: application/views/bands/index.php:153
 msgid "Warning! Are you sure you want to delete the following band: "
@@ -5198,11 +5199,11 @@ msgstr ""
 
 #: application/views/debug/index.php:27
 msgid "Version"
-msgstr ""
+msgstr "Sürüm"
 
 #: application/views/debug/index.php:31
 msgid "Language"
-msgstr ""
+msgstr "Dil"
 
 #: application/views/debug/index.php:35
 msgid "Base URL"
@@ -5339,13 +5340,13 @@ msgstr ""
 #: application/views/debug/index.php:241 application/views/debug/index.php:252
 #: application/views/debug/index.php:263
 msgid "Installed"
-msgstr ""
+msgstr "Kurulmuş"
 
 #: application/views/debug/index.php:221 application/views/debug/index.php:232
 #: application/views/debug/index.php:243 application/views/debug/index.php:254
 #: application/views/debug/index.php:265
 msgid "Not Installed"
-msgstr ""
+msgstr "Kurulu Değil"
 
 #: application/views/debug/index.php:272 application/views/qso/index.php:654
 msgid "Settings"
@@ -5477,67 +5478,67 @@ msgstr ""
 
 #: application/views/debug/index.php:618
 msgid "Bulgarian"
-msgstr ""
+msgstr "Bulgarca"
 
 #: application/views/debug/index.php:619
 msgid "Chinese (Simplified)"
-msgstr ""
+msgstr "Çince (Basitleştirilmiş)"
 
 #: application/views/debug/index.php:620
 msgid "Czech"
-msgstr ""
+msgstr "Çek"
 
 #: application/views/debug/index.php:621
 msgid "Dutch"
-msgstr ""
+msgstr "Flemenkçe"
 
 #: application/views/debug/index.php:622
 msgid "English"
-msgstr ""
+msgstr "İngilizce"
 
 #: application/views/debug/index.php:623
 msgid "Finnish"
-msgstr ""
+msgstr "Fince"
 
 #: application/views/debug/index.php:624
 msgid "French"
-msgstr ""
+msgstr "Fransızca"
 
 #: application/views/debug/index.php:625
 msgid "German"
-msgstr ""
+msgstr "Almanca"
 
 #: application/views/debug/index.php:626
 msgid "Greek"
-msgstr ""
+msgstr "Yunanca"
 
 #: application/views/debug/index.php:627
 msgid "Italian"
-msgstr ""
+msgstr "İtalyanca"
 
 #: application/views/debug/index.php:628
 msgid "Polish"
-msgstr ""
+msgstr "Polonyaca"
 
 #: application/views/debug/index.php:629
 msgid "Portuguese"
-msgstr ""
+msgstr "Portekizce"
 
 #: application/views/debug/index.php:630
 msgid "Russian"
-msgstr ""
+msgstr "Rusça"
 
 #: application/views/debug/index.php:631
 msgid "Spanish"
-msgstr ""
+msgstr "İspanyolca"
 
 #: application/views/debug/index.php:632
 msgid "Swedish"
-msgstr ""
+msgstr "İsveççe"
 
 #: application/views/debug/index.php:633
 msgid "Turkish"
-msgstr ""
+msgstr "Türkçe"
 
 #: application/views/distances/index.php:7
 #: application/views/interface_assets/footer.php:30
@@ -7464,11 +7465,11 @@ msgstr ""
 
 #: application/views/options/oqrs.php:47 application/views/options/oqrs.php:56
 msgid "Off"
-msgstr ""
+msgstr "Kapalı"
 
 #: application/views/options/oqrs.php:48 application/views/options/oqrs.php:57
 msgid "On"
-msgstr ""
+msgstr "Açık"
 
 #: application/views/options/oqrs.php:50
 msgid ""
@@ -9572,7 +9573,7 @@ msgstr ""
 #: application/views/user/login.php:67 application/views/user/login.php:68
 #: application/views/user/profile.php:14
 msgid "Username"
-msgstr ""
+msgstr "Kullanıcı adı"
 
 #: application/views/user/edit.php:64 application/views/user/login.php:59
 #: application/views/user/login.php:71 application/views/user/login.php:72
@@ -9580,7 +9581,7 @@ msgstr ""
 #: application/views/user/reset_password.php:23
 #: application/views/user/reset_password.php:30
 msgid "Password"
-msgstr ""
+msgstr "Şifre"
 
 #: application/views/user/edit.php:77
 msgid "User Role"
@@ -9592,11 +9593,11 @@ msgstr ""
 
 #: application/views/user/edit.php:102
 msgid "First Name"
-msgstr ""
+msgstr "Adı"
 
 #: application/views/user/edit.php:109
 msgid "Last Name"
-msgstr ""
+msgstr "Soyadı"
 
 #: application/views/user/edit.php:120
 msgid "Ham Radio"
@@ -9620,7 +9621,7 @@ msgstr ""
 
 #: application/views/user/edit.php:179
 msgid "Timezone"
-msgstr ""
+msgstr "Saat dilimi"
 
 #: application/views/user/edit.php:187
 msgid "Date Format"
@@ -10077,7 +10078,7 @@ msgstr ""
 
 #: application/views/user/reset_password.php:28
 msgid "Confirm Password"
-msgstr ""
+msgstr "Şifreyi Onayla"
 
 #: application/views/version_dialog/index.php:20
 msgid "No Version Dialog text set. Go to the Admin Menu and set one."
