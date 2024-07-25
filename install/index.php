@@ -274,8 +274,28 @@ if (!file_exists('.lock')) {
 												<td><span class="badge text-bg-info"><?php echo $mariadb_version; ?></span></td>
 											</tr>
 										</table>
-										<p style="margin-top: 10px; margin-bottom: 100px;"><?= __("You can test your MySQL/MariaDB Version in Step 4"); ?></p>
+										<p style="margin-top: 10px;"><?= __("You can test your MySQL/MariaDB Version in Step 4"); ?></p>
+										<p class="border-bottom mb-2" style="margin-top: 2rem;"><b><?= __("Web Server"); ?></b></p>
+										<table width="100%" style="margin-bottom: 25px;">
+											<tr>
+												<td><?= __("Version:"); ?> </td>
+												<td><span class="badge text-bg-info"><?php echo detect_webserver(); ?></span></td>
+											</tr>
+										</table>
+										<?php if (strpos(strtolower($webserver_version), 'nginx') !== false) {
+											if (detect_nginx_php_setting() != 200) { ?>
+												<div class="alert alert-warning d-flex flex-column align-items-center" role="alert">
+													<p class="mb-2 border-bottom"><?= __("Important note for nginx users!"); ?></p>
+													<p class="mb-0"><?= __("Since you are using nginx as web server please make sure that you have made the changes described in the Wiki before continuing."); ?></p>
+													<p class="mb-0"><a target="_blank" href="https://github.com/wavelog/Wavelog/wiki/Installation#nginx-configuration">https://github.com/wavelog/Wavelog/wiki/Installation#nginx-configuration</a></p>
+												</div>
+											<?php } ?>
+										<?php } ?>
+									</div>
+								</div>
 
+								<div class="row justify-content-center" style="margin-top: 3rem;">
+									<div class="col-md-9 mb-4 mx-auto"> <!-- MySQL / MariaDB -->
 										<?php if ($prechecks_passed == 'failed') {
 											$prechecks_icon = "fa-times-circle";
 											$prechecks_color = "red"; ?>

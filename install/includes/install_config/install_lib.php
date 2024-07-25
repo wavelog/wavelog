@@ -106,3 +106,19 @@ function customError($errno, $errstr, $errfile, $errline) {
     $message = "[$errno] $errstr in $errfile on line $errline";
     log_message('error', $message);
 }
+
+// Detect webserver and version
+function detect_webserver() {
+   return $_SERVER['SERVER_SOFTWARE'] ?? __("not detected");
+}
+
+// Detect nginx setting for PHP file processing
+function detect_nginx_php_setting() {
+   $ch = curl_init($http_scheme.'://'.$_SERVER['HTTP_HOST'].'/install/nginx.php/test');
+   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+   curl_setopt($ch, CURLOPT_HEADER, 0);
+   $data = curl_exec($ch);
+   $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+   curl_close($ch);
+   return $code;
+}
