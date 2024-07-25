@@ -122,7 +122,6 @@
     $('#toggleLogButton').on('click', function() {
         var logContainer = $('#logContainer');
         logContainer.toggle();
-        console.log(logContainer.css('display'));
         if(logContainer.css('display') == 'none') {
             $('#toggleLogButton').text("<?= __("Show detailled debug log"); ?>");
         } else {
