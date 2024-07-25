@@ -58,7 +58,7 @@ $root_mode_file = '.root_mode';
 // PHP
 $min_php_version = '7.4.0';
 $max_execution_time = 600;		// Seconds
-$max_upload_file_size = 8;  	// Megabyte
+$upload_max_filesize = 8;  	// Megabyte
 $post_max_size = 8;				// Megabyte
 $req_allow_url_fopen = '1';		// 1 = on
 
@@ -365,13 +365,13 @@ global $wavelog_url;
 											</tr>
 
 											<tr>
-												<td>max_upload_file_size</td>
-												<td><?php echo '> ' . $max_upload_file_size . 'M'; ?></td>
+												<td>upload_max_filesize</td>
+												<td><?php echo '> ' . $upload_max_filesize . 'M'; ?></td>
 												<td>
 													<?php
 													$maxUploadFileSize = ini_get('upload_max_filesize');
 													$maxUploadFileSizeBytes = (int)($maxUploadFileSize) * (1024 * 1024); // convert to bytes
-													if ($maxUploadFileSizeBytes >= ($max_upload_file_size * 1024 * 1024)) { // compare with given value in bytes
+													if ($maxUploadFileSizeBytes >= ($upload_max_filesize * 1024 * 1024)) { // compare with given value in bytes
 													?>
 														<span class="badge text-bg-success"><?php echo $maxUploadFileSize; ?></span>
 													<?php } else {
