@@ -94,7 +94,13 @@
                 $("#success_button").show();
             }
         } catch (error) {
-            $("#error_message").text("Installation failed: " + error).show();
+            var errormsg = '';
+            if (typeof error === 'object') {
+                errormsg = error.statusText;
+            } else {
+                errormsg = error;
+            }
+            $("#error_message").text("Installation failed: " + errormsg).show();
         }
     });
 
