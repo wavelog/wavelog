@@ -348,8 +348,11 @@ if (!file_exists('.lock')) {
 												<div class="mb-3">
 													<input type="text" id="callbook_username" placeholder="<?= __("Callbook Username"); ?>" class="form-control" name="callbook_username" />
 												</div>
-												<div>
+												<div class="position-relative">
 													<input type="password" id="callbook_password" placeholder="<?= __("Callbook Password"); ?>" class="form-control" name="callbook_password" />
+													<div class="invalid-tooltip">
+														<?= sprintf(__("Password can't contain %s"), "' \" / \ < >"); ?>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -467,9 +470,12 @@ if (!file_exists('.lock')) {
 										<label for="lastname" class="form-label"><?= __("Last Name"); ?></label>
 										<input type="text" id="lastname" tabindex="2" placeholder="Radio" class="form-control" name="lastname" />
 									</div>
-									<div class="col-md-6 mb-2">
+									<div class="col-md-6 mb-2 position-relative">
 										<label for="password" class="form-label"><?= __("Password"); ?></label>
 										<input type="password" id="password" tabindex="8" placeholder="**********" class="form-control" name="password" />
+										<div class="invalid-tooltip">
+														<?= sprintf(__("Password can't contain %s"), "' \" / \ < >"); ?>
+													</div>
 									</div>
 								</div>
 								<div class="row">
@@ -1173,6 +1179,10 @@ if (!file_exists('.lock')) {
 					if (!directory_check() || !websiteurl_check()) {
 						return;
 					}
+					pwdForbiddenChars($('#callbook_password'));
+					if ($('#callbook_password').hasClass('is-invalid') && $('#callbook_password').val() != '') {
+						return;
+					}
 					if (passwordField.val() != '') {
 						user_pwd_check();
 					}
@@ -1262,6 +1272,17 @@ if (!file_exists('.lock')) {
 				}
 			}
 
+			function pwdForbiddenChars(field) {
+				let pwd = field.val();
+				let specialChars = /['"\/\\<>]/;
+
+				if (pwd != '') {
+					if (specialChars.test(pwd)) {
+						input_is_valid(field, false);
+					}
+				}
+			}
+
 			/*
 			 *
 			 *	General Requirement Levels
@@ -1286,7 +1307,10 @@ if (!file_exists('.lock')) {
 			 * Tab 3 - Configuration
 			 * 
 			 * 		Rules:
-			 * 		Website-URL and Directory have to be green. No checks needed for 'Callbook' and 'Advanced Settings'.
+			 * 		Website-URL and Directory have to be green. No checks needed 'Advanced Settings'.
+			 * 
+			 * 		Callbook Password:
+			 * 			- do not allow specialchars defined in pwdForbiddenChars() (hard)
 			 * 
 			 * 		Directory:
 			 * 			- no slash allowed (hard)
@@ -1314,6 +1338,10 @@ if (!file_exists('.lock')) {
 					directory_check();
 					websiteurl_check();
 					checklist_configuration();
+				});
+
+				$('#callbook_password').on('change', function() {
+					pwdForbiddenChars($('#callbook_password'));
 				});
 			});
 
@@ -1475,6 +1503,7 @@ if (!file_exists('.lock')) {
 			 * Tab 5 - First User
 			 * 
 			 * 		Rules:
+			 * 			- do not allow specialchars in userpassword defined in pwdForbiddenChars() (hard)
 			 * 			- No input can be empty (hard)
 			 * 			- Locator have to match regex (hard)
 			 * 			- E-Mail have to match regex (hard)
@@ -1513,6 +1542,9 @@ if (!file_exists('.lock')) {
 
 				emailField.on('change', function() {
 					email_verification();
+				});
+				passwordField.on('change', function() {
+					pwdForbiddenChars(passwordField);
 				});
 				cnfmPasswordField.on('change focusout', function() {
 					user_pwd_check();
@@ -1684,6 +1716,10 @@ if (!file_exists('.lock')) {
 
 			function checklist_configuration() {
 				var checklist_configuration = true;
+
+				if ($('#callbook_password').hasClass('is-invalid')) {
+					checklist_configuration = false;
+				}
 
 				if ($('#directory').hasClass('is-invalid')) {
 					checklist_configuration = false;
