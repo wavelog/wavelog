@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-07-24 06:51+0000\n"
-"PO-Revision-Date: 2024-07-25 19:38+0000\n"
+"PO-Revision-Date: 2024-07-25 20:16+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/pt_PT/>\n"
@@ -9851,21 +9851,22 @@ msgstr ""
 
 #: application/views/themes/add.php:36
 msgid "Add theme"
-msgstr ""
+msgstr "Adicionar tema"
 
 #: application/views/themes/edit.php:21
 msgid ""
 "This defines wherever the theme is a light or a dark one. On this basis the "
 "Logo is chosen."
 msgstr ""
+"Isto define se o tema é claro ou escuro. Nesta base, o logótipo é escolhido."
 
 #: application/views/themes/edit.php:36
 msgid "Update theme"
-msgstr ""
+msgstr "Atualizar tema"
 
 #: application/views/themes/index.php:22
 msgid "Themes list"
-msgstr ""
+msgstr "Lista de temas"
 
 #: application/views/themes/index.php:28
 msgid ""
@@ -9873,18 +9874,23 @@ msgid ""
 "theme is not really straightforward and should only be done by an admin who "
 "is aware of their actions."
 msgstr ""
+"Neste menu, pode adicionar e editar temas no Wavelog. O processo de "
+"adicionar um tema não é muito simples e só deve ser feito por um "
+"administrador que esteja ciente das suas acções."
 
 #: application/views/themes/index.php:29
 msgid "Also, it has to be said that this feature is still under development."
 msgstr ""
+"Além disso, é preciso dizer que esta funcionalidade ainda está a ser "
+"desenvolvida."
 
 #: application/views/themes/index.php:35
 msgid "Process of adding a new theme"
-msgstr ""
+msgstr "Processo para adicionar um novo tema"
 
 #: application/views/themes/index.php:41
 msgid "1. Step"
-msgstr ""
+msgstr "1. Passo"
 
 #: application/views/themes/index.php:44
 #, php-format
@@ -9892,110 +9898,125 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
+"Crie uma nova pasta em 'assets/css/' e carregue um ficheiro "
+"'bootstrap.min.css' que contém regras de estilo básicas. Utilizamos os temas "
+"de %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
-msgstr ""
+msgstr "2. Passo"
 
 #: application/views/themes/index.php:53
 msgid ""
 "Create a file in this folder called 'overrides.css'. Place your custom CSS "
 "code in there."
 msgstr ""
+"Crie um ficheiro nesta pasta chamado “overrides.css”. Coloque aí o seu "
+"código CSS personalizado."
 
 #: application/views/themes/index.php:59
 msgid "3. Step"
-msgstr ""
+msgstr "3. Passo"
 
 #: application/views/themes/index.php:62
 msgid ""
 "For each new theme, you need two logo files. One for the login screen and "
 "one for the header."
 msgstr ""
+"Para cada novo tema, são necessários dois ficheiros de logótipo. Um para o "
+"ecrã de início de sessão e outro para o cabeçalho."
 
 #: application/views/themes/index.php:63
 msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
+"Só são permitidos ficheiros PNG, que devem ter uma relação de pixels de 1:1 ("
+"por exemplo, 1000px de altura e 1000px de largura)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
-msgstr ""
+msgstr "Coloque os dois ficheiros de logótipo na pasta 'assets/logo/'"
 
 #: application/views/themes/index.php:70
 msgid "4. Step"
-msgstr ""
+msgstr "4. Passo"
 
 #: application/views/themes/index.php:73
 msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 "filenames for the logos <b>without</b> the file extension '.png'"
 msgstr ""
+"Click here on 'Add a Theme' and type in the necessary data. Type in the "
+"filenames for the logos <b>sem</b> the file extension '.png'"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
-msgstr ""
+msgstr "Nome da pasta"
 
 #: application/views/themes/index.php:99
 msgid "Please edit"
-msgstr ""
+msgstr "Por favor, edite"
 
 #: application/views/themes/index.php:116
 msgid "Add a Theme"
-msgstr ""
+msgstr "Adicionar um tema"
 
 #: application/views/timeplotter/index.php:2
 msgid "contacts were plotted"
-msgstr ""
+msgstr "os contactos foram traçados"
 
 #: application/views/timeplotter/index.php:3
 msgid "Time Distribution"
-msgstr ""
+msgstr "Distribuição de Tempo"
 
 #: application/views/timeplotter/index.php:6
 msgid "Callsign(s) worked (max 5)"
-msgstr ""
+msgstr "Indicativo(s) contactado(s) (máx. 5)"
 
 #: application/views/timeplotter/index.php:10
 msgid ""
 "The Timeplotter is used to analyze your logbook and find out at what times "
 "you worked certain CQ zones or DXCC countries on a selected band."
 msgstr ""
+"O Timeplotter é usado para analisar o seu logbook e descobrir a que horas "
+"contactou certas zonas CQ ou países DXCC numa banda selecionada."
 
 #: application/views/update/index.php:8
 msgid "DXCC Lookup Data"
-msgstr ""
+msgstr "Pesquisa de dados DXCC"
 
 #: application/views/update/index.php:12
 msgid "Distance Data"
-msgstr ""
+msgstr "Dados de Distância"
 
 #: application/views/update/index.php:19
 msgid ""
 "Here you can update the DXCC lookup data that is used for displaying "
 "callsign information."
 msgstr ""
+"Aqui pode atualizar os dados de pesquisa DXCC que são utilizados para "
+"apresentar a informação do indicativo."
 
 #: application/views/update/index.php:20
 msgid "This data is provided by"
-msgstr ""
+msgstr "Estes dados são fornecidos por"
 
 #: application/views/update/index.php:24
 msgid "You must install php-xml for this to work."
-msgstr ""
+msgstr "É necessário instalar o php-xml para que isto funcione."
 
 #: application/views/update/index.php:27
 msgid "Check for DXCC Data Updates"
-msgstr ""
+msgstr "Verificar atualizações de dados DXCC"
 
 #: application/views/update/index.php:28
 msgid "Update DXCC Data"
-msgstr ""
+msgstr "Atualizar dados DXCC"
 
 #: application/views/update/index.php:34
 msgid "Apply DXCC Data to Logbook"
-msgstr ""
+msgstr "Aplicar dados DXCC ao Logbook"
 
 #: application/views/update/index.php:36
 msgid ""
@@ -10005,64 +10026,71 @@ msgid ""
 "missing DXCC metadata or to re-check the entire logbook\n"
 "\t\t\t\t\t\t\tand update existing metadata as well, in case it has changed."
 msgstr ""
+"Após a atualização, o Wavelog pode preencher a informação de indicativo em "
+"falta no logbook utilizando os dados DXCC recém-obtidos.\n"
+"\t\t\t\t\t\t\tPode optar por verificar apenas os contactos no logbook que "
+"estão em falta com os metadados DXCC ou verificar novamente todo o logbook\n"
+"\t\t\t\t\t\t\te atualizar também os metadados existentes, caso tenham mudado."
 
 #: application/views/update/index.php:40
 msgid "Check QSOs missing DXCC data"
-msgstr ""
+msgstr "Verificar contactos sem dados DXCC"
 
 #: application/views/update/index.php:42
 msgid "Re-check all QSOs in logbook"
-msgstr ""
+msgstr "Verificar novamente todos os contactos no logbook"
 
 #: application/views/update/index.php:45
 msgid "Apply Continent Data to Logbook"
-msgstr ""
+msgstr "Aplicar dados do continente ao logbook"
 
 #: application/views/update/index.php:47
 msgid ""
 "This function can be used to update QSO continent information for all QSOs "
 "in Wavelog missing that information."
 msgstr ""
+"Esta função pode ser utilizada para atualizar a informação do continente do "
+"contacto para todos os contactos no Wavelog que não tenham essa informação."
 
 #: application/views/update/index.php:49
 msgid "Check QSOs missing continent data"
-msgstr ""
+msgstr "Verificar contactos sem dados do continente"
 
 #: application/views/update/index.php:59
 msgid "Here you can update QSOs with missing distance information."
-msgstr ""
+msgstr "Aqui pode atualizar contactos com informação de distância em falta."
 
 #: application/views/update/index.php:60
 msgid "Update distance data"
-msgstr ""
+msgstr "Atualizar dados de distância"
 
 #: application/views/user/delete.php:5
 msgid "Delete User Account"
-msgstr ""
+msgstr "Apagar conta de utilizador"
 
 #: application/views/user/delete.php:10
 msgid "Are you sure you want to delete the user account"
-msgstr ""
+msgstr "Tem a certeza de que pretende apagar a conta de utilizador"
 
 #: application/views/user/delete.php:14
 msgid "No, do not delete this user"
-msgstr ""
+msgstr "Não, não apagar este utilizador"
 
 #: application/views/user/delete.php:14
 msgid "Yes, delete this user"
-msgstr ""
+msgstr "Sim, apagar este utilizador"
 
 #: application/views/user/edit.php:4
 msgid "Create User Account"
-msgstr ""
+msgstr "Criar conta de utilizador"
 
 #: application/views/user/edit.php:6
 msgid "Edit Account"
-msgstr ""
+msgstr "Editar conta"
 
 #: application/views/user/edit.php:41
 msgid "General Information"
-msgstr ""
+msgstr "Informação Geral"
 
 #: application/views/user/edit.php:52 application/views/user/login.php:58
 #: application/views/user/login.php:67 application/views/user/login.php:68
@@ -10080,11 +10108,11 @@ msgstr "Palavra-passe"
 
 #: application/views/user/edit.php:77
 msgid "User Role"
-msgstr ""
+msgstr "Função do utilizador"
 
 #: application/views/user/edit.php:99
 msgid "Personal"
-msgstr ""
+msgstr "Pessoal"
 
 #: application/views/user/edit.php:102
 msgid "First Name"
@@ -10096,23 +10124,23 @@ msgstr "Apelido"
 
 #: application/views/user/edit.php:120
 msgid "Ham Radio"
-msgstr ""
+msgstr "Rádio Amador"
 
 #: application/views/user/edit.php:146
 msgid "Wavelog Preferences"
-msgstr ""
+msgstr "Preferências do Wavelog"
 
 #: application/views/user/edit.php:157
 msgid "Stylesheet"
-msgstr ""
+msgstr "Folha de estilos"
 
 #: application/views/user/edit.php:169
 msgid "Wavelog Language"
-msgstr ""
+msgstr "Língua do Wavelog"
 
 #: application/views/user/edit.php:176
 msgid "Choose Wavelog language."
-msgstr ""
+msgstr "Escolha a língua do Wavelog."
 
 #: application/views/user/edit.php:179
 msgid "Timezone"
@@ -10120,92 +10148,101 @@ msgstr "Fuso horário"
 
 #: application/views/user/edit.php:187
 msgid "Date Format"
-msgstr ""
+msgstr "Formato de Data"
 
 #: application/views/user/edit.php:200
 msgid "Select how you would like dates shown when logged into your account."
 msgstr ""
+"Seleccione como pretende que as datas sejam apresentadas quando inicia "
+"sessão na sua conta."
 
 #: application/views/user/edit.php:204
 msgid "Measurement preference"
-msgstr ""
+msgstr "Preferência das medidas"
 
 #: application/views/user/edit.php:208
 msgid "Kilometers"
-msgstr ""
+msgstr "Quilómetros"
 
 #: application/views/user/edit.php:209
 msgid "Miles"
-msgstr ""
+msgstr "Milhas"
 
 #: application/views/user/edit.php:210
 msgid "Nautical miles"
-msgstr ""
+msgstr "Milhas náuticas"
 
 #: application/views/user/edit.php:212
 msgid "Choose which unit distances will be shown in"
-msgstr ""
+msgstr "Escolha as distâncias unitárias que serão mostradas em"
 
 #: application/views/user/edit.php:221
 msgid "Logbook fields"
-msgstr ""
+msgstr "Campos do logbook"
 
 #: application/views/user/edit.php:224
 msgid "Choose column 1"
-msgstr ""
+msgstr "Escolha a coluna 1"
 
 #: application/views/user/edit.php:246
 msgid "Choose column 2"
-msgstr ""
+msgstr "Escolha a coluna 2"
 
 #: application/views/user/edit.php:268
 msgid "Choose column 3"
-msgstr ""
+msgstr "Escolha a coluna 3"
 
 #: application/views/user/edit.php:290
 msgid "Choose column 4"
-msgstr ""
+msgstr "Escolha a coluna 4"
 
 #: application/views/user/edit.php:312
 msgid "Choose column 5 (only for logbook)"
-msgstr ""
+msgstr "Escolha a coluna 5 (apenas para o logbook)"
 
 #: application/views/user/edit.php:341
 msgid "QSO Logging Options"
-msgstr ""
+msgstr "Opções do logbook"
 
 #: application/views/user/edit.php:344
 msgid "Log End Times for QSOs Separately"
-msgstr ""
+msgstr "Registar separadamente as horas de fim dos contactos"
 
 #: application/views/user/edit.php:350
 msgid ""
 "Choose yes here if you want to log QSO start and end times separately. If "
 "set to 'No' the end time will be the same as start time."
 msgstr ""
+"Escolha “Sim” aqui se quiser registar as horas de início e fim dos contactos "
+"separadamente. Se estiver definido para “Não”, a hora de fim será a mesma "
+"que a hora de início."
 
 #: application/views/user/edit.php:355
 msgid ""
 "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the "
 "log QSO section."
 msgstr ""
+"Mostrar a imagem de perfil do parceiro de contacto do perfil QRZ.com/"
+"HamQTH.com na secção de registo de contacto."
 
 #: application/views/user/edit.php:361
 msgid ""
 "Please set your qrz.com/hamqth.com credentials in the general config file."
 msgstr ""
+"Defina as suas credenciais QRZ.com/HamQTH.com no ficheiro de configuração "
+"geral."
 
 #: application/views/user/edit.php:366
 msgid "Location auto lookup."
-msgstr ""
+msgstr "Pesquisa automática de localização."
 
 #: application/views/user/edit.php:372
 msgid "If set, gridsquare is fetched based on location name."
-msgstr ""
+msgstr "Se definido, o gridsquare é obtido com base no nome da localização."
 
 #: application/views/user/edit.php:376
 msgid "SOTA auto lookup gridsquare and name for summit."
-msgstr ""
+msgstr "Pesquisa automática de quadrícula e nome para o cume SOTA."
 
 #: application/views/user/edit.php:382 application/views/user/edit.php:392
 #: application/views/user/edit.php:402
@@ -10213,199 +10250,207 @@ msgid ""
 "If set, name and gridsquare is fetched from the API and filled in location "
 "and locator."
 msgstr ""
+"Se estiver definido, o nome e o gridsquare são obtidos a partir da API e "
+"preenchidos com a localização e o locator."
 
 #: application/views/user/edit.php:386
 msgid "WWFF auto lookup gridsquare and name for reference."
-msgstr ""
+msgstr "Pesquisa automática de quadrícula e nome para referência WWFF."
 
 #: application/views/user/edit.php:396
 msgid "POTA auto lookup gridsquare and name for park."
-msgstr ""
+msgstr "Procura automaticamente a quadrícula e o nome do parque POTA."
 
 #: application/views/user/edit.php:413
 msgid "Menu Options"
-msgstr ""
+msgstr "Opções do Menu"
 
 #: application/views/user/edit.php:416
 msgid "Show notes in the main menu."
-msgstr ""
+msgstr "Mostrar notas no menu principal."
 
 #: application/views/user/edit.php:427
 msgid "Quicklog Field"
-msgstr ""
+msgstr "Campo de log rápido"
 
 #: application/views/user/edit.php:433
 msgid ""
 "With this feature, you can log callsigns using the search field in the "
 "header."
 msgstr ""
+"Com esta funcionalidade, pode registar indicativos utilizando o campo de "
+"pesquisa no cabeçalho."
 
 #: application/views/user/edit.php:437
 msgid "Quicklog - Action on press Enter"
-msgstr ""
+msgstr "Quicklog - Ação ao premir Enter"
 
 #: application/views/user/edit.php:440
 msgid "Log Callsign"
-msgstr ""
+msgstr "Registar Indicativo"
 
 #: application/views/user/edit.php:443
 msgid ""
 "What action should be performed when Enter is pressed in the quicklog field?"
 msgstr ""
+"Que ação deve ser executada quando a tecla “Enter” é premido no campo de log "
+"rápido?"
 
 #: application/views/user/edit.php:449
 msgid "Station Locations Quickswitch"
-msgstr ""
+msgstr "Mudança rápida de localizações de estações"
 
 #: application/views/user/edit.php:454
 msgid "Show the Station Locations Quickswitch in the main menu"
-msgstr ""
+msgstr "Mostrar a troca rápida de localizações de estações no menu principal"
 
 #: application/views/user/edit.php:458
 msgid "UTC Time in Menu"
-msgstr ""
+msgstr "Hora UTC no menu"
 
 #: application/views/user/edit.php:463
 msgid "Show the current UTC Time in the menu"
-msgstr ""
+msgstr "Mostrar a hora UTC atual no menu"
 
 #: application/views/user/edit.php:474
 msgid "Map Settings"
-msgstr ""
+msgstr "Configurações do mapa"
 
 #: application/views/user/edit.php:481
 msgid "Icon"
-msgstr ""
+msgstr "Ícone"
 
 #: application/views/user/edit.php:484 application/views/user/edit.php:488
 msgid "Not display"
-msgstr ""
+msgstr "Não exibir"
 
 #: application/views/user/edit.php:497
 msgid "QSO (by default)"
-msgstr ""
+msgstr "Contacto (por defeito)"
 
 #: application/views/user/edit.php:516
 msgid "QSO (confirmed)"
-msgstr ""
+msgstr "Contacto (confirmado)"
 
 #: application/views/user/edit.php:517
 msgid "(If 'No', displayed as 'QSO (by default))'"
-msgstr ""
+msgstr "(Se 'Não', exibido como 'contacto (por padrão))'"
 
 #: application/views/user/edit.php:536
 msgid "Show Locator"
-msgstr ""
+msgstr "Mostrar locator"
 
 #: application/views/user/edit.php:555
 msgid "Previous QSL Type"
-msgstr ""
+msgstr "Tipo de QSL anterior"
 
 #: application/views/user/edit.php:559
 msgid "Select the type of QSL to show in the previous QSOs section."
-msgstr ""
+msgstr "Seleccione o tipo de QSL a mostrar na secção de contacto anteriores."
 
 #: application/views/user/edit.php:565
 msgid "QRZ"
-msgstr ""
+msgstr "QRZ"
 
 #: application/views/user/edit.php:576
 msgid "Show Reference Fields on QSO Tab"
-msgstr ""
+msgstr "Mostrar campos de referência no separador de contacto"
 
 #: application/views/user/edit.php:580
 msgid ""
 "The enabled items will be shown on the QSO tab rather than the General tab."
 msgstr ""
+"Os itens activados serão mostrados no separador de contacto em vez de no "
+"separador Geral."
 
 #: application/views/user/edit.php:619
 msgid "Default Values"
-msgstr ""
+msgstr "Valores por defeito"
 
 #: application/views/user/edit.php:627
 msgid "Settings for Default Band and Confirmation"
-msgstr ""
+msgstr "Definições para banda predefinida e confirmação"
 
 #: application/views/user/edit.php:630
 msgid "Default Band"
-msgstr ""
+msgstr "Banda predefinida"
 
 #: application/views/user/edit.php:640
 msgid "Default QSL-Methods"
-msgstr ""
+msgstr "Métodos QSL predefinidos"
 
 #: application/views/user/edit.php:697
 msgid "Third Party Services"
-msgstr ""
+msgstr "Serviços de terceiros"
 
 #: application/views/user/edit.php:708
 msgid "Logbook of The World (LoTW) Username"
-msgstr ""
+msgstr "Nome de utilizador do Logbook of The World (LoTW)"
 
 #: application/views/user/edit.php:714
 msgid "Logbook of The World (LoTW) Password"
-msgstr ""
+msgstr "Palavra-passe do Logbook of The World (LoTW)"
 
 #: application/views/user/edit.php:734
 msgid "eQSL.cc Username"
-msgstr ""
+msgstr "Nome de utilizador eQSL.cc"
 
 #: application/views/user/edit.php:740
 msgid "eQSL.cc Password"
-msgstr ""
+msgstr "Palavra-passe do eQSL.cc"
 
 #: application/views/user/edit.php:757
 msgid "Club Log"
-msgstr ""
+msgstr "ClubLog"
 
 #: application/views/user/edit.php:760
 msgid "Club Log Email/Callsign"
-msgstr ""
+msgstr "Email/Indicativo do ClubLog"
 
 #: application/views/user/edit.php:762
 msgid "The Email or Callsign you use to login to Club Log"
-msgstr ""
+msgstr "O Email ou Indicativo que usa para fazer login no ClubLog"
 
 #: application/views/user/edit.php:767
 msgid "Club Log Password"
-msgstr ""
+msgstr "Palavra-passe do ClubLog"
 
 #: application/views/user/edit.php:788
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Diversos"
 
 #: application/views/user/edit.php:796
 msgid "AMSAT Status Upload"
-msgstr ""
+msgstr "Estado do envio para AMSAT"
 
 #: application/views/user/edit.php:799
 msgid "Upload status of SAT QSOs to"
-msgstr ""
+msgstr "Estado do envio dos contactos satélite para"
 
 #: application/views/user/edit.php:813
 msgid "Mastodonserver"
-msgstr ""
+msgstr "Mastodonserver"
 
 #: application/views/user/edit.php:816
 msgid "URL of Mastodonserver"
-msgstr ""
+msgstr "URL do Mastodonserver"
 
 #: application/views/user/edit.php:818
 #, php-format
 msgid "Main URL of your Mastodon server, e.g. %s"
-msgstr ""
+msgstr "URL principal do seu servidor Mastodon, por exemplo, %s"
 
 #: application/views/user/edit.php:827
 msgid "Experimental"
-msgstr ""
+msgstr "Experimental"
 
 #: application/views/user/edit.php:827
 msgid "Winkeyer"
-msgstr ""
+msgstr "Winkeyer"
 
 #: application/views/user/edit.php:830
 msgid "Winkeyer Features Enabled"
-msgstr ""
+msgstr "Funcionalidades do Winkeyer ativadas"
 
 #: application/views/user/edit.php:836
 #, php-format
@@ -10413,14 +10458,16 @@ msgid ""
 "Winkeyer support in Wavelog is very experimental. Read the wiki first at %s "
 "before enabling."
 msgstr ""
+"O suporte ao Winkeyer no Wavelog é muito experimental. Leia primeiro o wiki "
+"em %s antes de o ativar."
 
 #: application/views/user/edit.php:847
 msgid "Hams.at"
-msgstr ""
+msgstr "Hams.at"
 
 #: application/views/user/edit.php:850
 msgid "Private Feed Key"
-msgstr ""
+msgstr "Chave privada de envio"
 
 #: application/views/user/edit.php:852
 #, php-format
@@ -10430,7 +10477,7 @@ msgstr "Ver o seu perfil em %s."
 
 #: application/views/user/edit.php:855
 msgid "Show Workable Passes Only"
-msgstr ""
+msgstr "Mostrar apenas passagens válidas"
 
 #: application/views/user/edit.php:861
 msgid ""
@@ -10570,7 +10617,7 @@ msgstr "Último contacto:"
 
 #: application/views/user/main.php:89
 msgid "No QSOs in Log"
-msgstr ""
+msgstr "Sem contactos no log"
 
 #: application/views/user/profile.php:19
 msgid "Level"
@@ -10697,7 +10744,7 @@ msgstr "Mais contactos"
 
 #: application/views/view_log/qso.php:503
 msgid "Details"
-msgstr "Detalhes"
+msgstr "Detailes"
 
 #: application/views/view_log/qso.php:604
 msgid "QSL image file"
@@ -10827,24 +10874,24 @@ msgstr "Os contactos estão marcados como exportados para o QO-100 Dx Club."
 
 #: application/views/widgets/oqrs.php:21
 msgid "Wavelog OQRS"
-msgstr ""
+msgstr "OQRS Wavelog"
 
 #: application/views/widgets/oqrs.php:81
 msgid "Wavelog OQRS Request"
-msgstr ""
+msgstr "Pedido de OQRS Wavelog"
 
 #: application/views/widgets/oqrs.php:84
 #, php-format
 msgid "Request a QSL card for your QSO with %s."
-msgstr ""
+msgstr "Solicite um cartão QSL para o seu contacto com %s."
 
 #: application/views/widgets/oqrs.php:88
 msgid "Your Callsign:"
-msgstr ""
+msgstr "O seu indicativo:"
 
 #: application/views/widgets/oqrs.php:95
 msgid "Submit Request"
-msgstr ""
+msgstr "Submeter pedido"
 
 #~ msgid "VHF/UHF Century Club (VUCC)"
 #~ msgstr "VHF/UHF Century Club (VUCC)"
