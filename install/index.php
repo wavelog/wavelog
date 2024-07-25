@@ -265,7 +265,7 @@ if (!file_exists('.lock')) {
 												<td><span class="badge text-bg-info"><?php echo detect_webserver(); ?></span></td>
 											</tr>
 										</table>
-										<?php if (strpos(strtolower($webserver_version), 'nginx') == false) {
+										<?php if (strpos(strtolower($webserver_version), 'nginx') !== false) {
 											if (detect_nginx_php_setting() != 200) { ?>
 												<div class="alert alert-warning d-flex flex-column align-items-center" role="alert">
 													<p class="mb-2 border-bottom"><?= __("Important note for nginx users!"); ?></p>
