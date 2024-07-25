@@ -1740,6 +1740,7 @@ if (!file_exists('.lock')) {
 				firstUserTabIDs.forEach(function(firstUserTabID) {
 					if($(firstUserTabID).val() == '') {
 						input_is_valid($(firstUserTabID), false);
+						checklist_firstuser = false;
 					} else {
 						input_is_valid($(firstUserTabID), true);
 						user_pwd_check();
