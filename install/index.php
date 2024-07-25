@@ -1118,60 +1118,283 @@ if (!file_exists('.lock')) {
 				}
 			});
 
-			function directory_check() {
-				var field = $('#directory');
+			// General stuff on page load
+			$(document).ready(function() {
 
-				var check = true;
+				// tooltip trigger
+				const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+				const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 
-				if (field.val().startsWith('/') || field.val().endsWith('/')) {
-					check = false;
+				//fancy stuff
+				$("#logo-container img").hide().fadeIn(2000);
+
+				$('#languageButton').click(function() {
+					$('#languageModal').modal('show');
+				});
+
+				continueButton.css('display', 'block');
+				console.log("Ready to unleash your coding prowess and join the fun?\n\n" +
+					"Check out our GitHub Repository and dive into the coding adventure:\n\n" +
+					"🚀 https://www.github.com/wavelog/wavelog");
+
+			});
+
+			/*
+			 *
+			 * Tabs Structure and Footer Buttons
+			 * 
+			 */
+			const firstTabId = 'welcome-tab';
+			const secondTabId = 'precheck-tab';
+			const thirdTabId = 'configuration-tab';
+			const fourthTabId = 'database-tab';
+			const fifthTabId = 'firstuser-tab';
+			const lastTabId = 'finish-tab';
+
+			const continueButton = $('#ContinueButton');
+			const backButton = $('#BackButton');
+
+			const tabs = new bootstrap.Tab($('#welcome-tab')[0]);
+
+			// On Page Load
+			$(document).ready(function() {
+				tabs.show();
+
+				continueButton.on('click', function() {
+					openNextTab();
+				});
+				backButton.on('click', function() {
+					openPrevTab();
+				});
+			});
+
+			async function openNextTab() {
+				const activeTab = $('.nav-link.active');
+				const nextTab = activeTab.parent().next().find('.nav-link');
+
+				if (nextTab.attr('id') == fourthTabId) {
+					if (!directory_check() || !websiteurl_check()) {
+						return;
+					}
+					if (passwordField.val() != '') {
+						user_pwd_check();
+					}
 				}
 
-				if (check) {
+				if (nextTab.attr('id') == fifthTabId) {
+					await db_connection_test();
+					if (db_connection_results.hasClass('alert-danger')) {
+						return;
+					}
+				}
+
+				if (nextTab.attr('id') == lastTabId) {
+					if (!checklist_firstuser()) {
+						return;
+					}
+					if (!user_pwd_check()) {
+						return;
+					}
+					if (!maidenhead_checks(userLocatorField)) {
+						return;
+					}
+					if (!email_verification()) {
+						return;
+					}
+				}
+
+				if (nextTab.length > 0) {
+					let tab = new bootstrap.Tab(nextTab[0]);
+					tab.show();
+				}
+
+				if (nextTab.attr('id') !== lastTabId) {
+					continueButton.css('display', 'block');
+					backButton.css('display', 'block');
+				} else {
+					continueButton.css('display', 'none');
+				}
+			}
+
+			function openPrevTab() {
+				const activeTab = $('.nav-link.active');
+				const prevTab = activeTab.parent().prev().find('.nav-link');
+
+				if (prevTab.length > 0) {
+					let tab = new bootstrap.Tab(prevTab[0]);
+					tab.show();
+				}
+
+				if (prevTab.attr('id') !== firstTabId) {
+					continueButton.css('display', 'block');
+					backButton.css('display', 'block');
+				} else {
+					backButton.css('display', 'none');
+				}
+			}
+
+			function openTab(tabId) {
+				let tab = $('#' + tabId);
+				if (tab.length > 0) {
+					const tabInstance = new bootstrap.Tab(tab[0]);
+					tabInstance.show();
+
+					if (tabId === firstTabId) {
+						backButton.css('display', 'none');
+						continueButton.css('display', 'block');
+					} else if (tabId === lastTabId) {
+						continueButton.css('display', 'none');
+						backButton.css('display', 'block');
+					} else {
+						backButton.css('display', 'block');
+						continueButton.css('display', 'block');
+					}
+				}
+
+				// in addition we can run some checks here
+				maidenhead_checks(userLocatorField);
+			}
+
+			function input_is_valid(field, is_valid) {
+				if (is_valid == true) {
 					field.removeClass('is-invalid');
 					field.addClass('is-valid');
 				} else {
 					field.removeClass('is-valid');
 					field.addClass('is-invalid');
+				}
+			}
+
+			/*
+			 *
+			 *	General Requirement Levels
+			 * 		hard = No continue allowed, no install possible.
+			 * 		soft = Shows yellow warning, but install and continue allowed.
+			 * 
+			 */
+
+
+			/*
+			 * Tab 2 - Prechecks
+			 * 
+			 * 		Pre-Check Verification is handled in PHP, see $prechecks_passed.
+			 * 		So nothing to see here, just a placeholder for structure.
+			 * 
+			 */
+
+			// empty
+
+
+			/*
+			 * Tab 3 - Configuration
+			 * 
+			 * 		Rules:
+			 * 		Website-URL and Directory have to be green. No checks needed for 'Callbook' and 'Advanced Settings'.
+			 * 
+			 * 		Directory:
+			 * 			- no slash allowed (hard)
+			 * 
+			 * 		Website-URL:
+			 *			- can't be empty (hard)
+			 *			- has to have a trailing slash (hard)
+			 *			- have to start with http (hard)
+			 * 
+			 */
+
+			let directory = $('#directory');
+			let websiteurl = $('#websiteurl');
+
+			// On Page Load
+			$(document).ready(function() {
+
+				checklist_configuration();
+
+				$('#advancedSettingsButton').click(function() {
+					$('#advancedSettingsModal').modal('show');
+				});
+
+				$('#directory, #websiteurl').on('change', function() {
+					directory_check();
+					websiteurl_check();
+					checklist_configuration();
+				});
+			});
+
+			function directory_check() {
+
+				var check = true;
+
+				if (directory.val().startsWith('/') || directory.val().endsWith('/')) {
+					check = false;
+				}
+
+				if (check) {
+					input_is_valid(directory, true);
+				} else {
+					input_is_valid(directory, false);
 				}
 
 				return check;
 			}
 
 			function websiteurl_check() {
-				var field = $('#websiteurl');
-
 				var check = true;
 
-				if (field.val() == '') {
+				if (websiteurl.val() == '') {
 					check = false;
-				} else if (!field.val().endsWith('/')) {
+				} else if (!websiteurl.val().endsWith('/')) {
 					check = false;
-				} else if (!field.val().startsWith('http')) {
+				} else if (!websiteurl.val().startsWith('http')) {
 					check = false;
 				}
 
 				if (check) {
-					field.removeClass('is-invalid');
-					field.addClass('is-valid');
+					input_is_valid(websiteurl, true);
 				} else {
-					field.removeClass('is-valid');
-					field.addClass('is-invalid');
+					input_is_valid(websiteurl, false);
 				}
 
 				return check;
 			}
 
+			/*
+			 * Tab 4 - Database
+			 * 
+			 * 		Rules:
+			 * 			- Password can be empty
+			 * 			- All other inputs can't be empty (hard)
+			 * 			- Connection have to be successful (hard) 
+			 * 			- Database itself have to be empty (hard)
+			 * 			- MySQL/MariaDB Version below Minimum (soft) -> defined in install/includes/install_config/install_config.php
+			 * 
+			 */
+			let db_connection_results = $('#db_connection_testresult');
+
+			let db_hostname = $('#db_hostname');
+			let db_username = $('#db_username');
+			let db_password = $('#db_password');
+			let db_name = $('#db_name');
+
+			// On Page Load
+			$(document).ready(function() {
+
+				checklist_database();
+
+				if ($('#db_hostname').val() != '') {
+					db_connection_test()
+				}
+				$('#db_hostname, #db_name, #db_username, #db_password').on('keyup', function() {
+					clear_db_testresult();
+				});
+			});
+
 			function db_connection_test() {
 				return new Promise((resolve, reject) => {
-					var db_hostname = $('#db_hostname').val();
-					var db_username = $('#db_username').val();
-					var db_password = $('#db_password').val();
-					var db_name = $('#db_name').val();
 
-					if (db_hostname === '' || db_username === '' || db_name === '') {
-						$('#db_connection_testresult').addClass('alert-danger');
-						$('#db_connection_testresult').html('<?= __("Error: At least Hostname/IP, Database Name and Username are required."); ?>');
+
+					if (db_hostname.val() === '' || db_username.val() === '' || db_name.val() === '') {
+						db_connection_results.addClass('alert-danger');
+						db_connection_results.html('<?= __("Error: At least Hostname/IP, Database Name and Username are required."); ?>');
 						resolve(false);
 						return;
 					}
@@ -1185,36 +1408,36 @@ if (!file_exists('.lock')) {
 						type: 'POST',
 						url: 'index.php',
 						data: {
-							db_hostname: db_hostname,
-							db_username: db_username,
-							db_password: db_password,
-							db_name: db_name,
+							db_hostname: db_hostname.val(),
+							db_username: db_username.val(),
+							db_password: db_password.val(),
+							db_name: db_name.val(),
 							database_check: 1
 						},
 						success: function(response) {
-							$('#db_connection_testresult').html(response);
+							db_connection_results.html(response);
 							if (response.indexOf('Error') !== -1) {
-								$('#db_connection_testresult').addClass('alert-danger');
+								db_connection_results.addClass('alert-danger');
 								$('#db_connection_test_button').html(originalButtonText).prop('disabled', false);
 								resolve(false);
 							} else {
 								if (sql_version_checker(response) == true) {
-									$('#db_connection_testresult').addClass('alert-success');
+									db_connection_results.addClass('alert-success');
 									$('#db_connection_test_button').html(originalButtonText).prop('disabled', false);
-									$('#db_connection_testresult').html('<?= __("Connection was successful and your database should be compatible"); ?> <i class="fas fa-check-circle"></i>');
+									db_connection_results.html('<?= __("Connection was successful and your database should be compatible"); ?> <i class="fas fa-check-circle"></i>');
 								} else {
-									$('#db_connection_testresult').addClass('alert-warning');
+									db_connection_results.addClass('alert-warning');
 									$('#db_connection_test_button').html(originalButtonText).prop('disabled', false);
-									$('#db_connection_testresult').html('<?= __("Connection was successful but your database seems too old for Wavelog. You can try to continue but you could run into issues."); ?> <i class="fas fa-circle-exclamation"></i>');
+									db_connection_results.html('<?= __("Connection was successful but your database seems too old for Wavelog. You can try to continue but you could run into issues."); ?> <i class="fas fa-circle-exclamation"></i>');
 								}
 								resolve(true);
 							}
 							checklist_database();
 						},
 						error: function(error) {
-							$('#db_connection_testresult').html('Error: ' + error.statusText);
-							if ($('#db_connection_testresult').text().indexOf('Error') !== -1) {
-								$('#db_connection_testresult').addClass('alert-danger');
+							db_connection_results.html('Error: ' + error.statusText);
+							if (db_connection_results.text().indexOf('Error') !== -1) {
+								db_connection_results.addClass('alert-danger');
 							}
 							checklist_database();
 							resolve(false);
@@ -1224,10 +1447,10 @@ if (!file_exists('.lock')) {
 			}
 
 			function clear_db_testresult() {
-				$('#db_connection_testresult').html('');
-				$('#db_connection_testresult').removeClass('alert-danger');
-				$('#db_connection_testresult').removeClass('alert-success');
-				$('#db_connection_testresult').removeClass('alert-warning');
+				db_connection_results.html('');
+				db_connection_results.removeClass('alert-danger');
+				db_connection_results.removeClass('alert-success');
+				db_connection_results.removeClass('alert-warning');
 				checklist_database();
 			}
 
@@ -1251,6 +1474,68 @@ if (!file_exists('.lock')) {
 
 			}
 
+			/*
+			 * Tab 5 - First User
+			 * 
+			 * 		Rules:
+			 * 			- No input can be empty (hard)
+			 * 			- Locator have to match regex (hard)
+			 * 			- E-Mail have to match regex (hard)
+			 * 			- Password should have at least 8 charachters (soft)
+			 * 			- Password and Password-Confirmation have to match (hard)
+			 * 
+			 */
+
+			let passwordField = $('#password');
+			let cnfmPasswordField = $('#cnfm_password');
+			let minPasswordLenght = 8;
+
+			const firstUserTabIDs = [
+				'#firstname', 
+				'#username', 
+				'#lastname', 
+				'#password', 
+				'#callsign', 
+				'#cnfm_password', 
+				'#city', 
+				'#user_email', 
+				'#userlocator'
+			];
+
+			let emailField = $('#user_email');
+			let userLocatorField = $('#userlocator');
+
+			let userFormWarnings = $('#userform_warnings');
+
+			// On Page Load
+			$(document).ready(function() {
+
+				userLocatorField.on('change', function() {
+					maidenhead_checks(userLocatorField);
+				});
+
+				emailField.on('change', function() {
+					email_verification();
+				});
+				cnfmPasswordField.on('change focusout', function() {
+					user_pwd_check();
+				});
+				if (cnfmPasswordField.val() != '') {
+					user_pwd_check();
+				}
+				firstUserTabIDs.forEach(function(firstUserTabID) {
+					$(firstUserTabID).on('change', function() {
+						checklist_firstuser();
+					});
+				});
+				if (userLocatorField.val() != '') {
+					maidenhead_checks(userLocatorField);
+				}
+				if ($('#user_email').val() != '') {
+					email_verification();
+				}
+			});
+
 			function isValidMaidenheadLocator(locator) {
 				const maidenheadRegex = /^[A-R]{2}[0-9]{2}[A-X]{2}$/i;
 				return maidenheadRegex.test(locator);
@@ -1260,12 +1545,6 @@ if (!file_exists('.lock')) {
 				const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 				return emailRegex.test(email);
 			}
-
-			// Check various user input in tab 4
-			// user password
-			let passwordField = $('#password');
-			let cnfmPasswordField = $('#cnfm_password');
-			let minPasswordLenght = 8;
 
 			function user_pwd_check() {
 				if (cnfmPasswordField.val() == passwordField.val() && cnfmPasswordField.val() != '') {
@@ -1280,8 +1559,8 @@ if (!file_exists('.lock')) {
 						passwordField.addClass('is-valid');
 						cnfmPasswordField.addClass('is-valid');
 
-						$('#userform_warnings').css('display', 'none');
-						$('#userform_warnings').removeClass('alert-warning alert-danger');
+						userFormWarnings.css('display', 'none');
+						userFormWarnings.removeClass('alert-warning alert-danger');
 
 					} else {
 						passwordField.addClass('has-warning');
@@ -1292,10 +1571,10 @@ if (!file_exists('.lock')) {
 						passwordField.removeClass('is-invalid');
 						cnfmPasswordField.removeClass('is-invalid');
 
-						$('#userform_warnings').css('display', 'block');
-						$('#userform_warnings').removeClass('alert-warning alert-danger');
-						$('#userform_warnings').addClass('alert-warning');
-						$('#userform_warnings').html('<?= __("Password should be at least 8 characters long"); ?>')
+						userFormWarnings.css('display', 'block');
+						userFormWarnings.removeClass('alert-warning alert-danger');
+						userFormWarnings.addClass('alert-warning');
+						userFormWarnings.html('<?= __("Password should be at least 8 characters long"); ?>')
 
 					}
 					return true;
@@ -1310,245 +1589,87 @@ if (!file_exists('.lock')) {
 					passwordField.removeClass('is-valid');
 					cnfmPasswordField.removeClass('is-valid');
 
-					$('#userform_warnings').css('display', 'block');
-					$('#userform_warnings').removeClass('alert-warning alert-danger');
-					$('#userform_warnings').addClass('alert-danger');
-					$('#userform_warnings').html('<?= __("Passwords do not match"); ?>');
+					userFormWarnings.css('display', 'block');
+					userFormWarnings.removeClass('alert-warning alert-danger');
+					userFormWarnings.addClass('alert-danger');
+					userFormWarnings.html('<?= __("Passwords do not match"); ?>');
 
 					return false;
 
 				}
 			}
-
-			// email verification
-			const emailField = $('#user_email');
 
 			function email_verification() {
 				if (!isValidEmail(emailField.val()) && emailField != '') {
 
-					emailField.addClass('is-invalid');
-					emailField.removeClass('is-valid');
-					$('#userform_warnings').show();
-					$('#userform_warnings').removeClass('alert-warning alert-danger');
-					$('#userform_warnings').addClass('alert-danger');
-					$('#userform_warnings').html('<?= __("The E-Mail Address is not valid"); ?>');
+					input_is_valid(emailField, false);
+					userFormWarnings.show();
+					userFormWarnings.removeClass('alert-warning alert-danger');
+					userFormWarnings.addClass('alert-danger');
+					userFormWarnings.html('<?= __("The E-Mail Address is not valid"); ?>');
 					return false;
 
 				} else {
 
-					emailField.removeClass('is-invalid');
-					emailField.addClass('is-valid');
-					$('#userform_warnings').removeClass('alert-danger alert-warning');
-					$('#userform_warnings').hide();
+					input_is_valid(emailField, true);
+					userFormWarnings.removeClass('alert-danger alert-warning');
+					userFormWarnings.hide();
 					return true;
 
 				}
 			}
-			emailField.on('change', function() {
-				email_verification();
-			});
-
-			// grid verification
-			const userLocatorField = '#userlocator';
-			$(userLocatorField).on('change', function() {
-				maidenhead_checks(userLocatorField);
-			});
 
 			function maidenhead_checks(field) {
-				if (!isValidMaidenheadLocator($(field).val())) {
-					$(field).addClass('is-invalid');
-					$(field).removeClass('is-valid');
-					$('#userform_warnings').css('display', 'block');
-					$('#userform_warnings').removeClass('alert-warning alert-danger');
-					$('#userform_warnings').addClass('alert-danger');
-					$('#userform_warnings').html("<?= sprintf(__("The grid locator is not valid. Use a 6-character locator, e.g. HA44AA. If you don't know your grid square then <a href='%s' target='_blank'>click here</a>!"), "https://zone-check.eu/?m=loc"); ?>");
+				if (!isValidMaidenheadLocator(field.val())) {
+					input_is_valid(field, false);
+					userFormWarnings.css('display', 'block');
+					userFormWarnings.removeClass('alert-warning alert-danger');
+					userFormWarnings.addClass('alert-danger');
+					userFormWarnings.html("<?= sprintf(__("The grid locator is not valid. Use a 6-character locator, e.g. HA44AA. If you don't know your grid square then <a href='%s' target='_blank'>click here</a>!"), "https://zone-check.eu/?m=loc"); ?>");
 					return false;
 				} else {
-					$(field).removeClass('is-invalid');
-					$(field).addClass('is-valid');
-					$('#userform_warnings').removeClass('alert-danger alert-warning');
-					$('#userform_warnings').css('display', 'none');
+					input_is_valid(field, true);
+					userFormWarnings.removeClass('alert-danger alert-warning');
+					userFormWarnings.css('display', 'none');
 					return true;
 				}
 			}
 
+			/*
+			 * Tab 6 - Install
+			 * 
+			 * 	Rules:
+			 * 		The checklist have te fully green, but can contain yellow warnings.
+			 * 		If one of the items has an error warning, the install button is disabled and 
+			 * 		an install is not possible. 
+			 * 
+			 */
+
+			let resetButton = $('#resetButton');
+			let resetModal = $('#resetModal');
+
+			let checklistPrechecks = $('#checklist_prechecks');
+			let checklistConfiguration = $('#checklist_configuration');
+			let checklistDatabase = $('#checklist_database');
+			let checklistFirstUser = $('#checklist_firstuser');
+
+			// On Page Load
 			$(document).ready(function() {
-				const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-				const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 
-				$("#logo-container img").hide().fadeIn(2000);
-
-				$('#ContinueButton').css('display', 'block');
-				console.log("Ready to unleash your coding prowess and join the fun?\n\n" +
-					"Check out our GitHub Repository and dive into the coding adventure:\n\n" +
-					"🚀 https://www.github.com/wavelog/wavelog");
-
-				const tabs = new bootstrap.Tab($('#welcome-tab')[0]);
-				tabs.show();
-
-				const activeTab = $('.nav-link.active');
-
-				async function nextTab() {
-					const activeTab = $('.nav-link.active');
-					const nextTab = activeTab.parent().next().find('.nav-link');
-
-					if (nextTab.attr('id') == fourthTabId) {
-						if (!directory_check() || !websiteurl_check()) {
-							return;
-						}
-					}
-
-					if (nextTab.attr('id') == fifthTabId) {
-						await db_connection_test();
-						if ($('#db_connection_testresult').hasClass('alert-danger')) {
-							return;
-						}
-					}
-
-					if (nextTab.attr('id') == lastTabId) {
-						if (!email_verification()) {
-							return;
-						}
-						if (!maidenhead_checks('#userlocator')) {
-							return;
-						}
-						if (!user_pwd_check()) {
-							return;
-						}
-						if (!checklist_firstuser()) {
-							return;
-						}
-					}
-
-					if (nextTab.length > 0) {
-						const tab = new bootstrap.Tab(nextTab[0]);
-						tab.show();
-					}
-
-					if (nextTab.attr('id') !== lastTabId) {
-						$('#ContinueButton').css('display', 'block');
-						$('#BackButton').css('display', 'block');
-					} else {
-						$('#ContinueButton').css('display', 'none');
-					}
-				}
-
-				function prevTab() {
-					const activeTab = $('.nav-link.active');
-					const prevTab = activeTab.parent().prev().find('.nav-link');
-
-					if (prevTab.length > 0) {
-						const tab = new bootstrap.Tab(prevTab[0]);
-						tab.show();
-					}
-
-					if (prevTab.attr('id') !== firstTabId) {
-						$('#ContinueButton').css('display', 'block');
-						$('#BackButton').css('display', 'block');
-					} else {
-						$('#BackButton').css('display', 'none');
-					}
-				}
-
-
-				$('#ContinueButton').on('click', function() {
-					nextTab();
-				});
-				$('#BackButton').on('click', function() {
-					prevTab();
-				});
-
-				$('#languageButton').click(function() {
-					$('#languageModal').modal('show');
-				});
-
-				$('#advancedSettingsButton').click(function() {
-					$('#advancedSettingsModal').modal('show');
-				});
-
-				$('#resetButton').click(function() {
-					$('#resetModal').modal('show');
-				});
-				if ($('#db_hostname').val() != '') {
-					db_connection_test()
-				}
-
-				// Clear DB Test results on change
-				$('#db_hostname, #db_name, #db_username, #db_password').on('keyup', function() {
-					clear_db_testresult();
-				});
-
-				$('#cnfm_password').on('change focusout', function() {
-					user_pwd_check();
-				});
-				if ($('#cnfm_password').val() != '') {
-					user_pwd_check();
-				}
-				$('#firstname, #username, #lastname, #password, #callsign, #cnfm_password, #city, #user_email, #userlocator').on('change', function() {
-					checklist_firstuser();
-				});
-				if ($('#userlocator').val() != '') {
-					maidenhead_checks('#userlocator');
-				}
-				if ($('#user_email').val() != '') {
-					email_verification();
-				}
-				checklist_firstuser();
-
-				// Checklist Stuff
-				checklist_configuration();
-				$('#directory, #websiteurl').on('change', function() {
-					directory_check();
-					websiteurl_check();
-					checklist_configuration();
-				});
-
-				checklist_database();
-
-				// We can either check on change of everything or just testing in an interval
 				setInterval(enable_installbutton, 800);
 
+				resetButton.click(function() {
+					resetModal.modal('show');
+				});
 			});
 
-			let firstTabId = 'welcome-tab';
-			let secondTabId = 'precheck-tab';
-			let thirdTabId = 'configuration-tab';
-			let fourthTabId = 'database-tab';
-			let fifthTabId = 'firstuser-tab';
-			let lastTabId = 'finish-tab';
-
-			function openTab(tabId) {
-				const tab = $('#' + tabId);
-				if (tab.length > 0) {
-					const tabInstance = new bootstrap.Tab(tab[0]);
-					tabInstance.show();
-
-					if (tabId === firstTabId) {
-						$('#BackButton').css('display', 'none');
-						$('#ContinueButton').css('display', 'block');
-					} else if (tabId === lastTabId) {
-						$('#ContinueButton').css('display', 'none');
-						$('#BackButton').css('display', 'block');
-					} else {
-						$('#BackButton').css('display', 'block');
-						$('#ContinueButton').css('display', 'block');
-					}
-				}
-
-				// in addition we can run some checks here
-				maidenhead_checks(locatorField);
-				maidenhead_checks(userLocatorField);
-			}
-
-			// Install Button
-			// Only enable this button, if all checklist icons are green
 			function enable_installbutton() {
 				var install_possible = false;
 
-				if (($('#checklist_prechecks').hasClass('fa-check-circle') || $('#checklist_prechecks').hasClass('fa-exclamation-triangle')) &&
-					$('#checklist_configuration').hasClass('fa-check-circle') &&
-					$('#checklist_database').hasClass('fa-check-circle') &&
-					($('#checklist_firstuser').hasClass('fa-check-circle') || $('#checklist_firstuser').hasClass('fa-exclamation-triangle'))) {
+				if ((checklistPrechecks.hasClass('fa-check-circle') || checklistPrechecks.hasClass('fa-exclamation-triangle')) &&
+					checklistConfiguration.hasClass('fa-check-circle') &&
+					checklistDatabase.hasClass('fa-check-circle') &&
+					(checklistFirstUser.hasClass('fa-check-circle') || checklistFirstUser.hasClass('fa-exclamation-triangle'))) {
 					install_possible = true;
 				}
 
@@ -1564,9 +1685,6 @@ if (!file_exists('.lock')) {
 
 			}
 
-			// Checklist Stuff
-			// comment: Checklist for Pre-Checks is handled in PHP. See '$prechecks_passed'
-
 			function checklist_configuration() {
 				var checklist_configuration = true;
 
@@ -1579,11 +1697,11 @@ if (!file_exists('.lock')) {
 				}
 
 				if (checklist_configuration) {
-					$('#checklist_configuration').removeClass('fa-times-circle');
-					$('#checklist_configuration').addClass('fa-check-circle').css('color', '#04a004');
+					checklistConfiguration.removeClass('fa-times-circle');
+					checklistConfiguration.addClass('fa-check-circle').css('color', '#04a004');
 				} else {
-					$('#checklist_configuration').removeClass('fa-check-circle');
-					$('#checklist_configuration').addClass('fa-times-circle').css('color', 'red');
+					checklistConfiguration.removeClass('fa-check-circle');
+					checklistConfiguration.addClass('fa-times-circle').css('color', 'red');
 				}
 			}
 
@@ -1600,13 +1718,13 @@ if (!file_exists('.lock')) {
 					checklist_database = false;
 				}
 
-				var checklist_icon = $('#checklist_database');
+				var checklist_icon = checklistDatabase;
 				checklist_icon.removeClass('fa-check-circle fa-times-circle fa-exclamation-triangle');
 
 				if (checklist_database) {
-					if ($('#db_connection_testresult').hasClass('alert-warning')) {
+					if (db_connection_results.hasClass('alert-warning')) {
 						checklist_icon.addClass('fa-exclamation-triangle').css('color', '#ffc107');
-					} else if ($('#db_connection_testresult').hasClass('alert-success')) {
+					} else if (db_connection_results.hasClass('alert-success')) {
 						checklist_icon.addClass('fa-check-circle').css('color', '#04a004');
 					} else {
 						checklist_icon.addClass('fa-times-circle').css('color', 'red');
@@ -1619,48 +1737,43 @@ if (!file_exists('.lock')) {
 			function checklist_firstuser() {
 				var checklist_firstuser = true;
 
-				if ($('#firstname').val() === '') {
+				firstUserTabIDs.forEach(function(firstUserTabID) {
+					if($(firstUserTabID).val() == '') {
+						input_is_valid($(firstUserTabID), false);
+					} else {
+						input_is_valid($(firstUserTabID), true);
+						user_pwd_check();
+					}
+				});
+
+				if (passwordField.hasClass('is-invalid')) {
 					checklist_firstuser = false;
 				}
-				if ($('#username').val() === '') {
+
+				if (cnfmPasswordField.hasClass('is-invalid')) {
 					checklist_firstuser = false;
 				}
-				if ($('#lastname').val() === '') {
+				if ($(emailField).hasClass('is-invalid')) {
 					checklist_firstuser = false;
 				}
-				if ($('#password').val() === '' || $('#password').hasClass('is-invalid')) {
-					checklist_firstuser = false;
-				}
-				if ($('#callsign').val() === '') {
-					checklist_firstuser = false;
-				}
-				if ($('#cnfm_password').val() === '' || $('#cnfm_password').hasClass('is-invalid')) {
-					checklist_firstuser = false;
-				}
-				if ($('#city').val() === '') {
-					checklist_firstuser = false;
-				}
-				if ($('#user_email').val() === '' || $('#user_email').hasClass('is-invalid')) {
-					checklist_firstuser = false;
-				}
-				if ($('#userlocator').val() === '' || $('#userlocator').hasClass('is-invalid')) {
+				if (userLocatorField.hasClass('is-invalid')) {
 					checklist_firstuser = false;
 				}
 
 				if (checklist_firstuser) {
-					if ($('#password').hasClass('has-warning')) {
-						$('#checklist_firstuser').removeClass('fa-times-circle');
-						$('#checklist_firstuser').removeClass('fa-check-circle');
-						$('#checklist_firstuser').addClass('fa-exclamation-triangle').css('color', '#ffc107');
+					if (passwordField.hasClass('has-warning')) {
+						checklistFirstUser.removeClass('fa-times-circle');
+						checklistFirstUser.removeClass('fa-check-circle');
+						checklistFirstUser.addClass('fa-exclamation-triangle').css('color', '#ffc107');
 					} else {
-						$('#checklist_firstuser').removeClass('fa-times-circle');
-						$('#checklist_firstuser').removeClass('fa-exclamation-triangle');
-						$('#checklist_firstuser').addClass('fa-check-circle').css('color', '#04a004');
+						checklistFirstUser.removeClass('fa-times-circle');
+						checklistFirstUser.removeClass('fa-exclamation-triangle');
+						checklistFirstUser.addClass('fa-check-circle').css('color', '#04a004');
 					}
 				} else {
-					$('#checklist_firstuser').removeClass('fa-check-circle');
-					$('#checklist_firstuser').removeClass('fa-exclamation-triangle');
-					$('#checklist_firstuser').addClass('fa-times-circle').css('color', 'red');
+					checklistFirstUser.removeClass('fa-check-circle');
+					checklistFirstUser.removeClass('fa-exclamation-triangle');
+					checklistFirstUser.addClass('fa-times-circle').css('color', 'red');
 				}
 
 				return checklist_firstuser;
