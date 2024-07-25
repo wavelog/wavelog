@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-08-16 10:41+0000\n"
-"PO-Revision-Date: 2024-08-16 20:08+0000\n"
+"PO-Revision-Date: 2024-08-17 10:48+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/pt_PT/>\n"
@@ -1881,8 +1881,8 @@ msgstr "Tem a certeza de que pretende eliminar o slug público?"
 msgid ""
 "Are you sure you want to make the following station the active station: "
 msgstr ""
-"Tem a certeza de que pretende tornar a seguinte estação como a estação "
-"ativa: "
+"Tem a certeza de que pretende tornar a seguinte estação como a estação ativa:"
+" "
 
 #: application/controllers/Stationsetup.php:349
 #: application/views/stationsetup/stationsetup.php:154
@@ -2273,8 +2273,7 @@ msgstr "Houve um erro num dos contactos. Queira carregá-los manualmente."
 #: application/models/Eqslmethods_model.php:315
 msgid ""
 "It seems that the eQSL site has changed. Please open up an issue on GitHub."
-msgstr ""
-"Parece que o site da eQSL mudou. Por favor, abra um problema no GitHub."
+msgstr "Parece que o site da eQSL mudou. Por favor, abra um problema no GitHub."
 
 #: application/models/Hrdlog_model.php:22
 msgid ""
@@ -3611,8 +3610,8 @@ msgstr ""
 "Sul. Cerca de 70.000 dos 82 milhões de habitantes da Alemanha são "
 "radioamadores licenciados, sendo que mais de 40.000 deles são membros do "
 "DARC. DOK é o sistema que fornece aos capítulos locais individuais um "
-"identificador e significa “Deutscher Ortsverband Kenner” (em português: "
-"“Identificador da associação local alemã”)."
+"identificador e significa “Deutscher Ortsverband Kenner” (em português: “"
+"Identificador da associação local alemã”)."
 
 #: application/views/awards/dok/index.php:9
 msgid ""
@@ -4256,8 +4255,8 @@ msgstr ""
 "Cada país tem a sua própria Associação que define as cimeiras SOTA "
 "reconhecidas dentro dessa Associação. Cada cume confere aos activadores e "
 "caçadores uma pontuação relacionada com a altura do cume. Os certificados "
-"estão disponíveis para várias pontuações, levando aos prestigiados troféus "
-"“Mountain Goat” e “Shack Sloth”. Uma Lista de Honra para Activadores e "
+"estão disponíveis para várias pontuações, levando aos prestigiados troféus “"
+"Mountain Goat” e “Shack Sloth”. Uma Lista de Honra para Activadores e "
 "Caçadores é mantida na base de dados online do SOTA."
 
 #: application/views/awards/vucc/index.php:7
@@ -5049,8 +5048,7 @@ msgstr "Copiar o intercâmbio recebido para"
 
 #: application/views/contesting/index.php:168
 msgid "Exchange is only copied if it is matching rules for the selected field!"
-msgstr ""
-"O Exchange só é copiado se corresponder às regras do campo selecionado!"
+msgstr "O Exchange só é copiado se corresponder às regras do campo selecionado!"
 
 #: application/views/contesting/index.php:172
 msgid "Age"
@@ -6421,9 +6419,8 @@ msgid ""
 "No Station Locations with valid HRDlog-Settings found. Check the HRDlog "
 "Credentials in the Station Location Settings!"
 msgstr ""
-"Não foram encontrados locais de estação válidos com configurações do "
-"HRDlog . Verifique as credenciais do HRDlog nas configurações do local da "
-"estação!"
+"Não foram encontrados locais de estação válidos com configurações do HRDlog "
+". Verifique as credenciais do HRDlog nas configurações do local da estação!"
 
 #: application/views/hrdlog/export.php:87
 msgid "Mark QSOs as exported to HRDLog Logbook"
@@ -6951,8 +6948,7 @@ msgstr "Tamanho da letra"
 #: application/views/labels/create.php:108
 #: application/views/labels/edit.php:110
 msgid "Font size used on the label don't go too big."
-msgstr ""
-"O tamanho da letra utilizada na etiqueta não deve ser demasiado grande."
+msgstr "O tamanho da letra utilizada na etiqueta não deve ser demasiado grande."
 
 #: application/views/labels/create.php:111
 #: application/views/labels/edit.php:113
@@ -8147,8 +8143,8 @@ msgid ""
 "The hostname of the mail server, e.g. 'mail.example.com' (without 'ssl://' "
 "or 'tls://')"
 msgstr ""
-"O nome do anfitrião do servidor de correio, por exemplo, “mail.example."
-"com” (sem 'ssl://' ou 'tls://')"
+"O nome do anfitrião do servidor de correio, por exemplo, “mail.example.com” ("
+"sem 'ssl://' ou 'tls://')"
 
 #: application/views/options/email.php:88
 msgid "SMTP Port"
@@ -8783,8 +8779,7 @@ msgstr "Potência de Transmissão (W)"
 
 #: application/views/qso/edit_ajax.php:136 application/views/qso/index.php:348
 msgid "Give power value in Watts. Include only numbers in the input."
-msgstr ""
-"Forneça o valor da potência em Watts. Inclua apenas números na entrada."
+msgstr "Forneça o valor da potência em Watts. Inclua apenas números na entrada."
 
 #: application/views/qso/edit_ajax.php:166
 msgid "Used for VUCC MultiGrids"
@@ -10225,8 +10220,7 @@ msgstr "Nome do Tema"
 
 #: application/views/themes/add.php:6 application/views/themes/edit.php:6
 msgid "This is the name that is used to display the theme in the theme list."
-msgstr ""
-"Este é o nome que é utilizado para apresentar o tema na lista de temas."
+msgstr "Este é o nome que é utilizado para apresentar o tema na lista de temas."
 
 #: application/views/themes/add.php:10 application/views/themes/edit.php:10
 msgid "Folder Name"
@@ -10339,8 +10333,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Crie uma nova pasta em 'assets/css/' e carregue um ficheiro 'bootstrap.min."
-"css' que contém regras de estilo básicas. Utilizamos os temas de %s"
+"Crie uma nova pasta em 'assets/css/' e carregue um ficheiro "
+"'bootstrap.min.css' que contém regras de estilo básicas. Utilizamos os temas "
+"de %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -10371,8 +10366,8 @@ msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
-"Só são permitidos ficheiros PNG, que devem ter uma relação de pixels de 1:1 "
-"(por exemplo, 1000px de altura e 1000px de largura)."
+"Só são permitidos ficheiros PNG, que devem ter uma relação de pixels de 1:1 ("
+"por exemplo, 1000px de altura e 1000px de largura)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
@@ -10659,8 +10654,8 @@ msgid ""
 "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the "
 "log QSO section."
 msgstr ""
-"Mostrar a imagem de perfil do parceiro de contacto do perfil QRZ.com/HamQTH."
-"com na secção de registo de contacto."
+"Mostrar a imagem de perfil do parceiro de contacto do perfil QRZ.com/"
+"HamQTH.com na secção de registo de contacto."
 
 #: application/views/user/edit.php:361
 msgid ""
