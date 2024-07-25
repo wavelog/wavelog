@@ -32,6 +32,12 @@
 			location.reload();
 		});
 	</script>
+	<script type="module" defer>
+		import {
+			polyfillCountryFlagEmojis
+		} from "<?php echo base_url(); ?>../assets/js/country-flag-emoji-polyfill.js";
+		polyfillCountryFlagEmojis();
+	</script>
 	<?php
 	/**
 	 * Hidden field to be able to translate the language names

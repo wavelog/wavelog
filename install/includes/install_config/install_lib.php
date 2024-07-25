@@ -77,6 +77,17 @@ function verify_log() {
     }
 }
 
+function country2flag($code) {
+	$code = strtoupper($code);
+
+	$offset = 0x1F1E6;
+	$code_p1 = $offset + ord($code[0]) - ord('A');
+	$code_p2 = $offset + ord($code[1]) - ord('A');
+
+	$flag = mb_chr($code_p1, 'UTF-8') . mb_chr($code_p2, 'UTF-8');
+	return $flag;
+}
+
 // Function to read the debug logfile
 function read_logfile() {
 	if (verify_log()) {

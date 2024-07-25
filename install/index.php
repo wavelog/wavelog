@@ -77,8 +77,7 @@ if (!file_exists('.lock')) {
 											<ul style="list-style-type: none;">
 												<?php foreach ($languages as $lang) { ?>
 													<li>
-														<img src="https://flagcdn.com/w20/<?php echo ($lang['code'] == 'en') ? 'gb' : $lang['flag']; ?>.png">
-														<a href="?lang=<?php echo $lang['gettext']; ?>"><?php echo $lang['name_en']; ?></a>
+														<?php echo country2flag($lang['flag']); ?> <a href="?lang=<?php echo $lang['gettext']; ?>"><?php echo $lang['name_en']; ?></a>
 													</li>
 												<?php } ?>
 											</ul>
