@@ -257,45 +257,23 @@ if (!file_exists('.lock')) {
 											</tr>
 										</table>
 									</div>
-
-									<div class="col-md-5 mb-4 mx-auto"> <!-- MySQL / MariaDB -->
-										<p class="border-bottom mb-2"><b><?= __("MySQL / MariaDB"); ?></b></p>
-										<table width="100%">
-											<tr>
-												<td><?= __("Min. MySQL Version:"); ?> </td>
-												<td><span class="badge text-bg-info"><?php echo $mysql_version; ?></span></td>
-											</tr>
-											<tr>
-												<td><?= __("or"); ?></td>
-												<td></td>
-											</tr>
-											<tr>
-												<td><?= __("Min. MariaDB Version:"); ?> </td>
-												<td><span class="badge text-bg-info"><?php echo $mariadb_version; ?></span></td>
-											</tr>
-										</table>
-										<p style="margin-top: 10px;"><?= __("You can test your MySQL/MariaDB Version in Step 4"); ?></p>
-										<p class="border-bottom mb-2" style="margin-top: 2rem;"><b><?= __("Web Server"); ?></b></p>
+									<div class="col-md-5 mb-4 mx-auto">
+										<p class="border-bottom mb-2"><b><?= __("Web Server"); ?></b></p>
 										<table width="100%" style="margin-bottom: 25px;">
 											<tr>
 												<td><?= __("Version:"); ?> </td>
 												<td><span class="badge text-bg-info"><?php echo detect_webserver(); ?></span></td>
 											</tr>
 										</table>
-										<?php if (strpos(strtolower($webserver_version), 'nginx') !== false) {
+										<?php if (strpos(strtolower($webserver_version), 'nginx') == false) {
 											if (detect_nginx_php_setting() != 200) { ?>
 												<div class="alert alert-warning d-flex flex-column align-items-center" role="alert">
 													<p class="mb-2 border-bottom"><?= __("Important note for nginx users!"); ?></p>
-													<p class="mb-0"><?= __("Since you are using nginx as web server please make sure that you have made the changes described in the Wiki before continuing."); ?></p>
+													<p class="mb-0"><?= __("Since you are using nginx as web server please make sure that you have made the changes described in the Wiki before continuing."); ?></p><br>
 													<p class="mb-0"><a target="_blank" href="https://github.com/wavelog/Wavelog/wiki/Installation#nginx-configuration">https://github.com/wavelog/Wavelog/wiki/Installation#nginx-configuration</a></p>
 												</div>
 											<?php } ?>
 										<?php } ?>
-									</div>
-								</div>
-
-								<div class="row justify-content-center" style="margin-top: 3rem;">
-									<div class="col-md-9 mb-4 mx-auto"> <!-- MySQL / MariaDB -->
 										<?php if ($prechecks_passed == 'failed') {
 											$prechecks_icon = "fa-times-circle";
 											$prechecks_color = "red"; ?>
@@ -1448,7 +1426,7 @@ if (!file_exists('.lock')) {
 								} else {
 									db_connection_results.addClass('alert-warning');
 									$('#db_connection_test_button').html(originalButtonText).prop('disabled', false);
-									db_connection_results.html('<?= __("Connection was successful but your database seems too old for Wavelog. You can try to continue but you could run into issues."); ?> <i class="fas fa-circle-exclamation"></i>');
+									db_connection_results.html("<?= __('Connection was successful but your database seems too old for Wavelog. You can try to continue but you could run into issues.'); ?> <i class=\"fas fa-circle-exclamation\"></i> " + "</br></br><?= sprintf(__('The min. Version for MySQL is %s, for it\'s MariaDB %s.'), '<b>' . $mysql_version . '</b>', '<b>' . $mariadb_version . '</b>'); ?>");
 								}
 								resolve(true);
 							}
@@ -1511,14 +1489,14 @@ if (!file_exists('.lock')) {
 			let minPasswordLenght = 8;
 
 			const firstUserTabIDs = [
-				'#firstname', 
-				'#username', 
-				'#lastname', 
-				'#password', 
-				'#callsign', 
-				'#cnfm_password', 
-				'#city', 
-				'#user_email', 
+				'#firstname',
+				'#username',
+				'#lastname',
+				'#password',
+				'#callsign',
+				'#cnfm_password',
+				'#city',
+				'#user_email',
 				'#userlocator'
 			];
 
@@ -1758,7 +1736,7 @@ if (!file_exists('.lock')) {
 				var checklist_firstuser = true;
 
 				firstUserTabIDs.forEach(function(firstUserTabID) {
-					if($(firstUserTabID).val() == '') {
+					if ($(firstUserTabID).val() == '') {
 						input_is_valid($(firstUserTabID), false);
 						checklist_firstuser = false;
 					} else {
