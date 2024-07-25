@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-07-24 06:51+0000\n"
-"PO-Revision-Date: 2024-07-23 19:26+0000\n"
+"PO-Revision-Date: 2024-07-24 17:09+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/zh_Hans/>\n"
@@ -772,7 +772,7 @@ msgstr "没有找到日志本。您需要在电台站日志下添加一个日志
 #: application/controllers/Logbook.php:37
 #: application/views/stationsetup/stationsetup.php:18
 msgid "Station Logbooks"
-msgstr "电台站日志簿"
+msgstr "日志簿"
 
 #: application/controllers/Logbook.php:60
 #: application/views/interface_assets/header.php:97
@@ -1709,7 +1709,7 @@ msgstr "设置为正在使用的日志"
 #: application/views/stationsetup/stationsetup.php:46
 #: application/views/view_log/index.php:4
 msgid "Active Logbook"
-msgstr "启用的日志簿"
+msgstr "启用"
 
 #: application/controllers/Stationsetup.php:270
 #: application/views/stationsetup/stationsetup.php:55
@@ -1744,7 +1744,7 @@ msgstr "设置启用"
 #: application/views/station_profile/index.php:71
 #: application/views/stationsetup/stationsetup.php:156
 msgid "Active Station"
-msgstr "启用的台站"
+msgstr "启用"
 
 #: application/controllers/Stationsetup.php:354
 #: application/views/interface_assets/header.php:113
@@ -1770,7 +1770,7 @@ msgstr "QSO"
 #: application/views/stationsetup/stationsetup.php:165
 #: application/views/themes/index.php:104 application/views/user/main.php:52
 msgid "Edit"
-msgstr "编辑用户"
+msgstr "编辑"
 
 #: application/controllers/Stationsetup.php:363
 #: application/views/station_profile/index.php:99
@@ -1784,7 +1784,7 @@ msgstr "确认删除台站下的所有 QSO？"
 #: application/views/stationsetup/stationsetup.php:136
 #: application/views/stationsetup/stationsetup.php:187
 msgid "Empty Log"
-msgstr "日志为空"
+msgstr "清空日志"
 
 #: application/controllers/Stationsetup.php:367
 #: application/views/station_profile/index.php:47
@@ -1822,7 +1822,7 @@ msgstr "确定要删除台站 '%s' 吗？这会删除此台站下的所有 QSO�
 #: application/views/themes/index.php:107 application/views/user/main.php:54
 #: application/views/view_log/qso.php:613
 msgid "Delete"
-msgstr "删除用户"
+msgstr "删除"
 
 #: application/controllers/Stationsetup.php:379
 #: application/views/qso/edit_ajax.php:221
@@ -2012,7 +2012,7 @@ msgstr "QO-100 Dx Club 上传"
 
 #: application/controllers/Widgets.php:21
 msgid "Unknown Public Page, please make sure the public slug is correct."
-msgstr ""
+msgstr "公开页面有误，请确认公开标识符正确。"
 
 #: application/controllers/Widgets.php:54 application/views/oqrs/index.php:69
 msgid "No stations found that are using Wavelog OQRS."
@@ -2104,7 +2104,7 @@ msgstr "累计已通联的 VUCC 网格数量"
 
 #: application/views/accumulate/index.php:7
 msgid "Accumulated number of WAJA worked"
-msgstr ""
+msgstr "累计通联的 WAJA 数量"
 
 #: application/views/accumulate/index.php:8
 #: application/views/dashboard/index.php:222
@@ -2240,12 +2240,12 @@ msgstr "通联所有区域（WAZ）"
 #: application/views/accumulate/index.php:57
 #: application/views/timeline/index.php:48
 msgid "VHF / UHF Century Club (VUCC)"
-msgstr ""
+msgstr "VHF / UHF Century Club (VUCC)"
 
 #: application/views/accumulate/index.php:58
 #: application/views/timeline/index.php:49
 msgid "Worked All Japan (WAJA)"
-msgstr ""
+msgstr "Worked All Japan (WAJA)"
 
 #: application/views/accumulate/index.php:62
 msgid "Period"
@@ -6524,7 +6524,7 @@ msgstr "开始打印编号？"
 #: application/views/logbookadvanced/index.php:562
 #: application/views/logbookadvanced/useroptions.php:58
 msgid "QSL via"
-msgstr "QSL 通过"
+msgstr "QSL Via"
 
 #: application/views/logbookadvanced/edit.php:71
 msgid "SAT Mode"
@@ -7708,7 +7708,7 @@ msgstr "添加信息"
 #: application/views/oqrs/request.php:56
 #: application/views/oqrs/request_grouped.php:60
 msgid "Any extra information we need to know about?"
-msgstr ""
+msgstr "有额外的信息需要记录吗？"
 
 #: application/views/oqrs/notinlogform.php:34
 #: application/views/oqrs/request.php:60
@@ -7773,14 +7773,14 @@ msgstr "添加到打印队列中"
 
 #: application/views/oqrs/qsolist.php:197
 msgid "No QSO's were found. It seems you were not active at this time."
-msgstr ""
+msgstr "无 QSO，似乎您最近不太活跃。"
 
 #: application/views/oqrs/request.php:9
 #: application/views/oqrs/request_grouped.php:3
 msgid ""
 "The following QSO(s) were found. Please fill out the date and time and "
 "submit your request."
-msgstr ""
+msgstr "为您找到如下 QSO，请填写日期与时间然后提交请求。"
 
 #: application/views/oqrs/request.php:40
 #: application/views/oqrs/request_grouped.php:44
@@ -7790,7 +7790,7 @@ msgstr "QSL 路径"
 #: application/views/oqrs/request.php:50
 #: application/views/oqrs/request_grouped.php:54
 msgid "Direct (write address in message below)"
-msgstr ""
+msgstr "直邮（在下方写好地址）"
 
 #: application/views/oqrs/request.php:66
 #: application/views/oqrs/request_grouped.php:70
@@ -7815,13 +7815,13 @@ msgstr "搜索结果：%s"
 #, php-format
 msgid "has %d band slot"
 msgid_plural "has %d band slots"
-msgstr[0] ""
+msgstr[0] "有 %d 个波段区间"
 
 #: application/views/oqrs/result.php:33
 #, php-format
 msgid "and has %d QSO in the log"
 msgid_plural "and has %d QSOs in the log"
-msgstr[0] ""
+msgstr[0] "并且日志中有 %d 个 QSO"
 
 #: application/views/oqrs/result.php:37
 msgid "Request QSL"
@@ -7834,17 +7834,17 @@ msgstr "不在日志中？"
 #: application/views/oqrs/showrequests.php:5
 #: application/views/oqrs/showrequests.php:50
 msgid "Open request"
-msgstr ""
+msgstr "提交请求"
 
 #: application/views/oqrs/showrequests.php:6
 #: application/views/oqrs/showrequests.php:51
 msgid "Not in log request"
-msgstr ""
+msgstr "不在日志中的请求"
 
 #: application/views/oqrs/showrequests.php:7
 #: application/views/oqrs/showrequests.php:52
 msgid "Request done"
-msgstr ""
+msgstr "请求完成"
 
 #: application/views/oqrs/showrequests.php:47
 msgid "OQRS Status"
@@ -7852,7 +7852,7 @@ msgstr "OQRS 状态"
 
 #: application/views/oqrs/showrequests.php:69
 msgid "With selected"
-msgstr ""
+msgstr "选中"
 
 #: application/views/oqrs/showrequests.php:70
 msgid "Mark as done"
@@ -7860,7 +7860,7 @@ msgstr "标记为完成"
 
 #: application/views/oqrs/showrequests.php:80
 msgid "Time of request"
-msgstr ""
+msgstr "请求时间"
 
 #: application/views/oqrs/showrequests.php:81
 #: application/views/simplefle/index.php:74
@@ -7873,7 +7873,7 @@ msgstr "QSO 时间"
 
 #: application/views/oqrs/showrequests.php:85
 msgid "Request callsign"
-msgstr ""
+msgstr "请求呼号"
 
 #: application/views/oqrs/showrequests.php:89
 msgid "QSL route"
@@ -7881,83 +7881,84 @@ msgstr "QSL 路径"
 
 #: application/views/oqrs/showrequests.php:90
 msgid "Check log"
-msgstr ""
+msgstr "检查日志"
 
 #: application/views/public_search/empty.php:2
 #: application/views/public_search/result.php:2
 msgid "Searching for"
-msgstr ""
+msgstr "搜索"
 
 #: application/views/qrbcalc/index.php:3
 msgid "Locator 1"
-msgstr ""
+msgstr "Locator 1"
 
 #: application/views/qrbcalc/index.php:10
 msgid "Locator 2"
-msgstr ""
+msgstr "Locator 2"
 
 #: application/views/qrbcalc/index.php:20
 msgid "Calculate"
-msgstr ""
+msgstr "计算"
 
 #: application/views/qrz/export.php:27
 msgid ""
 "Here you can see all QSOs which have not been previously uploaded to a QRZ "
 "logbook."
-msgstr ""
+msgstr "过去未上传到 QRZ Logbook 的 QSO 在此显示。"
 
 #: application/views/qrz/export.php:28
 msgid ""
 "You need to set a QRZ Logbook API key in your station profile. Only station "
 "profiles with an API Key set are displayed."
-msgstr ""
+msgstr "您需要在台站设置页面中配置 QRZ Logbook 的 API Key，此处仅显示配置 API Key "
+"的台站。"
 
 #: application/views/qrz/export.php:73
 msgid ""
 "If no startdate is given then all QSOs after last confirmation will be "
 "downloaded/updated!"
-msgstr ""
+msgstr "如未提供起始日期，则上一个确认之后的所有 QSO 都会被下载/更新！"
 
 #: application/views/qrz/export.php:81
 msgid "Download from QRZ Logbook"
-msgstr ""
+msgstr "从 QRZ Logbook 下载"
 
 #: application/views/qrz/export.php:107
 msgid "Mark QSOs as exported to QRZ Logbook"
-msgstr ""
+msgstr "标记 QSO 已导出至 QRZ Logbook"
 
 #: application/views/qrz/mark_qrz.php:16
 msgid "The QSOs are marked as exported to QRZ Logbook."
-msgstr ""
+msgstr "QSO 已标记为导出至 QRZ Logbook。"
 
 #: application/views/qslcard/index.php:10
 #, php-format
 msgid "You are using %s of disk space to store QSL Card assets"
-msgstr ""
+msgstr "您已使用了 %s 的硬盘空间来存储 QSL 卡片"
 
 #: application/views/qslcard/index.php:67
 msgid "Add Qsos"
-msgstr ""
+msgstr "添加 QSO"
 
 #: application/views/qslcard/searchresult.php:193
 msgid "Add to QSL"
-msgstr ""
+msgstr "添加到 QSL"
 
 #: application/views/qslmanagement/index.php:13
 msgid "Incoming QSL Cards"
-msgstr ""
+msgstr "接收中的 QSL 卡片"
 
 #: application/views/qslmanagement/index.php:25
 msgid "Report"
-msgstr ""
+msgstr "报告"
 
 #: application/views/qslmanagement/index.php:26
 msgid "Option"
-msgstr ""
+msgstr "选项"
 
 #: application/views/qslmanagement/index.php:46
 msgid "Outgoing QSL Cards"
-msgstr ""
+msgstr "外发中的 QSL 卡片"
 
 #: application/views/qslprint/index.php:16
 msgid "Export Requested QSLs for Printing"
@@ -8003,7 +8004,7 @@ msgstr "从队列中删除选中的 QSL 信息"
 
 #: application/views/qslprint/qslprint.php:71
 msgid "Export CSV-file"
-msgstr ""
+msgstr "导出 CSV 文件"
 
 #: application/views/qslprint/qslprint.php:71
 msgid "Export requested QSLs to CSV-file"
@@ -8038,7 +8039,7 @@ msgstr "没有找到附加的 QSL 信息，可能它们已经被添加到打印�
 #: application/views/qso/components/winkeysettings.php:7
 #: application/views/qso/components/winkeysettings_results.php:7
 msgid "Winkey Macros"
-msgstr ""
+msgstr "Winkey 宏"
 
 #: application/views/qso/components/winkeysettings.php:12
 #: application/views/qso/components/winkeysettings.php:28
@@ -8052,7 +8053,7 @@ msgstr ""
 #: application/views/qso/components/winkeysettings_results.php:76
 #, php-format
 msgid "Function %d - Name"
-msgstr ""
+msgstr "Function %d - Name"
 
 #: application/views/qso/components/winkeysettings.php:19
 #: application/views/qso/components/winkeysettings.php:35
@@ -8066,19 +8067,19 @@ msgstr ""
 #: application/views/qso/components/winkeysettings_results.php:83
 #, php-format
 msgid "Function %d - Macro"
-msgstr ""
+msgstr "Function %d - Macro"
 
 #: application/views/qso/edit_ajax.php:34
 msgid "Sats"
-msgstr ""
+msgstr "卫星"
 
 #: application/views/qso/edit_ajax.php:51
 msgid "Start Date/Time"
-msgstr ""
+msgstr "开始日期/时间"
 
 #: application/views/qso/edit_ajax.php:56
 msgid "End Date/Time"
-msgstr ""
+msgstr "结束日期/时间"
 
 #: application/views/qso/edit_ajax.php:76
 msgid "RX Frequency"
@@ -8099,7 +8100,7 @@ msgstr "以W为单位设置功率值。在输入中仅填写数值"
 
 #: application/views/qso/edit_ajax.php:166
 msgid "Used for VUCC MultiGrids"
-msgstr ""
+msgstr "被 VUCC 网格计算使用"
 
 #: application/views/qso/edit_ajax.php:177
 msgid "QTH"
@@ -8122,7 +8123,7 @@ msgstr "Sig 属性"
 
 #: application/views/qso/edit_ajax.php:369
 msgid "Notes (for internal usage only)"
-msgstr ""
+msgstr "备注（仅限内部使用）"
 
 #: application/views/qso/edit_ajax.php:403
 msgid "Sent Method"
@@ -8158,7 +8159,7 @@ msgstr "获取该站的 eQSL 默认消息。"
 
 #: application/views/qso/edit_ajax.php:530
 msgid "Change Station Profile"
-msgstr ""
+msgstr "修改台站信息"
 
 #: application/views/qso/edit_ajax.php:576
 msgid "Exchange (R)"
@@ -8197,11 +8198,11 @@ msgstr "未通联过"
 
 #: application/views/qso/index.php:20
 msgid "LIVE"
-msgstr ""
+msgstr "LIVE"
 
 #: application/views/qso/index.php:20
 msgid "POST"
-msgstr ""
+msgstr "提交"
 
 #: application/views/qso/index.php:33
 msgid "Sat"
@@ -8221,7 +8222,7 @@ msgstr "关闭时间"
 
 #: application/views/qso/index.php:124
 msgid "Search DXCluster for latest Spot"
-msgstr ""
+msgstr "在 DXCluster 搜索最新 Spot"
 
 #: application/views/qso/index.php:196 application/views/qso/index.php:439
 #: application/views/station_profile/create.php:130
@@ -8311,26 +8312,26 @@ msgstr "最多五次先前通联将会被显示"
 
 #: application/views/radio/index.php:16
 msgid "Active Radios"
-msgstr ""
+msgstr "可用的电台"
 
 #: application/views/radio/index.php:19
 msgid "Below is a list of active radios that are connected to Wavelog."
-msgstr ""
+msgstr "下方展示已连接到 Wavelog 的可用电台。"
 
 #: application/views/radio/index.php:20
 msgid ""
 "If you haven't connected any radios yet, see the API page to generate API "
 "keys."
-msgstr ""
+msgstr "如果您尚未配置电台，请查看 API 页面来生成 API Key。"
 
 #: application/views/radio/index.php:27 application/views/search/filter.php:69
 #, php-format
 msgid "You can find out how to use the %s in the wiki."
-msgstr ""
+msgstr "您可以在 Wiki 上查看使用说明 %s。"
 
 #: application/views/radio/index.php:27
 msgid "radio functions"
-msgstr ""
+msgstr "电台功能"
 
 #: application/views/satellite/create.php:23
 #: application/views/satellite/edit.php:7
@@ -8345,25 +8346,25 @@ msgstr "卫星的名字"
 #: application/views/satellite/edit.php:12
 #: application/views/satellite/index.php:22
 msgid "Export Name"
-msgstr ""
+msgstr "导出名称"
 
 #: application/views/satellite/create.php:30
 #: application/views/satellite/edit.php:14
 msgid "If external services uses another name for the satellite, like LoTW"
-msgstr ""
+msgstr "如外部服务使用不同的卫星名称（如 LoTW）"
 
 #: application/views/satellite/create.php:37
 #: application/views/satellite/edit.php:21
 msgid "Enter which orbit the satellite has (LEO, MEO, GEO)"
-msgstr ""
+msgstr "输入卫星轨道名称（LEO, MEO, GEO）"
 
 #: application/views/satellite/create.php:40
 msgid "Satellite mode name"
-msgstr ""
+msgstr "卫星模式名称"
 
 #: application/views/satellite/create.php:42
 msgid "Enter satellite mode"
-msgstr ""
+msgstr "输入卫星的模式"
 
 #: application/views/satellite/create.php:47
 #: application/views/satellite/edit.php:35
@@ -8422,11 +8423,11 @@ msgstr "添加卫星"
 msgid ""
 "This data comes from %s and is calculated for the current stationlocation "
 "grid %s."
-msgstr ""
+msgstr "信息来自于 %s，基于当前台站网格地址 %s 计算。"
 
 #: application/views/sattimers/index.php:40
 msgid "Time(d)-Out"
-msgstr ""
+msgstr "超时"
 
 #: application/views/sattimers/index.php:43
 #: application/views/sattimers/index.php:44
@@ -8445,14 +8446,14 @@ msgstr "持续时间"
 #: application/views/search/lotw_unconfirmed.php:5
 #: application/views/search/main.php:5
 msgid "Ready to find a QSO?"
-msgstr ""
+msgstr "准备好搜索 QSO 了吗？"
 
 #: application/views/search/cqzones.php:15
 #: application/views/search/filter.php:4 application/views/search/filter.php:23
 #: application/views/search/lotw_unconfirmed.php:15
 #: application/views/search/main.php:15
 msgid "Advanced Search"
-msgstr ""
+msgstr "高级搜索"
 
 #: application/views/search/cqzones.php:18
 #: application/views/search/filter.php:26
@@ -8476,7 +8477,7 @@ msgstr "台站地址："
 msgid ""
 "The following QSOs were found to have an incorrect CQ zone that this DXCC "
 "normally has:"
-msgstr ""
+msgstr "下列 QSO 的 CQ 分区可能有误，通常该 DXCC 的 CQ 分区是："
 
 #: application/views/search/cqzones_result.php:14
 msgid "DXCC CQ Zone"
@@ -8484,27 +8485,27 @@ msgstr "DXCC CQ 分区"
 
 #: application/views/search/cqzones_result.php:51
 msgid "No incorrect CQ Zones were found."
-msgstr ""
+msgstr "全部 CQ 分区填写正确。"
 
 #: application/views/search/filter.php:43
 msgid "Save query"
-msgstr ""
+msgstr "保存查询"
 
 #: application/views/search/filter.php:46
 msgid "Edit queries"
-msgstr ""
+msgstr "编辑查询"
 
 #: application/views/search/filter.php:50
 msgid "Stored queries"
-msgstr ""
+msgstr "存储的查询"
 
 #: application/views/search/filter.php:60
 msgid "Run Query"
-msgstr ""
+msgstr "执行查询"
 
 #: application/views/search/filter.php:69
 msgid "search filter functions"
-msgstr ""
+msgstr "搜索过滤器功能"
 
 #: application/views/search/filter.php:79
 msgid "Export to ADIF"
@@ -8526,7 +8527,7 @@ msgstr "台站地址"
 
 #: application/views/search/lotw_unconfirmed_result.php:10
 msgid "Last LoTW upload"
-msgstr ""
+msgstr "LoTW 上次更新"
 
 #: application/views/search/lotw_unconfirmed_result.php:41
 msgid "No QSOs with outstanding LoTW upload were found."
@@ -8534,7 +8535,7 @@ msgstr ""
 
 #: application/views/search/main.php:28
 msgid "Callsign / Gridsquare"
-msgstr ""
+msgstr "呼号 / 网格"
 
 #: application/views/search/result.php:2
 #, php-format
@@ -8544,18 +8545,18 @@ msgstr "结果：%s"
 #: application/views/search/result.php:4
 #, php-format
 msgid "Sorry, but we didn't find any past QSOs with %s"
-msgstr ""
+msgstr "抱歉，未根据 %s 找到以前的 QSO"
 
 #: application/views/search/result.php:6
 #, php-format
 msgid "Callbook Search for %s"
-msgstr ""
+msgstr "日志搜索结果 %s"
 
 #: application/views/search/result_search.php:9
 #: application/views/statistics/custom_result.php:90
 #: application/views/widgets/qsos.php:31
 msgid "Rcvd"
-msgstr ""
+msgstr "收"
 
 #: application/views/search/search_result_ajax.php:409
 #: application/views/view_log/partial/log.php:140
@@ -8608,7 +8609,7 @@ msgstr "在 HamQTH 上查询"
 
 #: application/views/search/stored_queries.php:9
 msgid "Query"
-msgstr ""
+msgstr "查询"
 
 #: application/views/simplefle/index.php:13
 msgid "Simple Fast Log Entry (FLE)"
@@ -8727,7 +8728,7 @@ msgstr "如果您不选择日期，则将使用今天的日期。"
 
 #: application/views/simplefle/index.php:88
 msgid "You can add the entered QSOs to a contest."
-msgstr ""
+msgstr "您可向比赛添加 QSO。"
 
 #: application/views/simplefle/index.php:95
 msgid "Station Call/Location"
@@ -8746,7 +8747,7 @@ msgstr "例如 BA1AA"
 
 #: application/views/simplefle/index.php:115
 msgid "This is callsign of the operator. Without any pre- or suffixes."
-msgstr ""
+msgstr "操作员的呼号，不带有前缀及后缀。"
 
 #: application/views/simplefle/index.php:125
 msgid "Enter the Data"
@@ -8775,7 +8776,7 @@ msgstr "清除记录会话"
 
 #: application/views/simplefle/options.php:20
 msgid "No Options yet"
-msgstr ""
+msgstr "尚无选项"
 
 #: application/views/simplefle/syntax_help.php:1
 msgid "Before starting to log a QSO, please note the basic rules."
@@ -8824,7 +8825,8 @@ msgid ""
 "The first QSO was at 21:34, and the second one 2 minutes later at 21:36. We "
 "write down 6 because this is the only data that changed here. The "
 "information about band and mode didn't change, so this data is omitted."
-msgstr ""
+msgstr "上个 QSO 是 21:34，下一个是 2 分钟后的 21:36，我们只输入 "
+"6，因为只有这一个字符有变化。波段信息未改变，该部分被忽略。"
 
 #: application/views/simplefle/syntax_help.php:17
 msgid ""
@@ -8845,7 +8847,7 @@ msgstr ""
 #: application/views/station_profile/create.php:32
 #: application/views/station_profile/edit.php:40
 msgid "Location Name"
-msgstr ""
+msgstr "地址名称"
 
 #: application/views/station_profile/create.php:33
 #: application/views/station_profile/create.php:34
@@ -8858,7 +8860,7 @@ msgstr "基地台 QTH"
 #: application/views/station_profile/edit.php:42
 #, php-format
 msgid "Shortname for the station location. For example: %s"
-msgstr ""
+msgstr "台站的地址简写，例如 %s"
 
 #: application/views/station_profile/create.php:40
 #: application/views/station_profile/edit.php:48
@@ -8889,7 +8891,7 @@ msgstr "无"
 #: application/views/station_profile/create.php:59
 #: application/views/station_profile/edit.php:85
 msgid "Station DXCC entity. For example: Bolivia"
-msgstr ""
+msgstr "台站的 DXCC 实体名称，如 China"
 
 #: application/views/station_profile/create.php:64
 #: application/views/station_profile/edit.php:91
@@ -8899,12 +8901,12 @@ msgstr "台站城市"
 #: application/views/station_profile/create.php:66
 #: application/views/station_profile/edit.php:93
 msgid "Station city. For example: Oslo"
-msgstr ""
+msgstr "台站坐落城市，如 Beijing"
 
 #: application/views/station_profile/create.php:75
 #: application/views/station_profile/edit.php:105
 msgid "Station state. Applies to certain countries only."
-msgstr ""
+msgstr "台站州（特定国家可用）。"
 
 #: application/views/station_profile/create.php:80
 #: application/views/station_profile/edit.php:110
@@ -8921,7 +8923,7 @@ msgstr "台站的县 (仅用于 美国本土/阿拉斯加/夏威夷)"
 #, php-format
 msgctxt "uses 'click here'"
 msgid "If you don't know your CQ Zone then %s to find it!"
-msgstr ""
+msgstr "如果您不清楚自己的 CQ 分区，在这里查看 %s！"
 
 #: application/views/station_profile/create.php:97
 #: application/views/station_profile/create.php:111
@@ -8937,7 +8939,7 @@ msgstr "点击此处"
 #, php-format
 msgctxt "uses 'click here'"
 msgid "If you don't know your ITU Zone then %s to find it!"
-msgstr ""
+msgstr "如果您不清楚自己的 ITU 分区，在这里查看 %s！"
 
 #: application/views/station_profile/create.php:116
 #: application/views/station_profile/edit.php:167
@@ -8957,7 +8959,7 @@ msgctxt "uses 'click here'"
 msgid ""
 "Station gridsquare. For example: HM54AP. If you don't know your grid square "
 "then %s!"
-msgstr ""
+msgstr "台站的网格，如 HM54AP，如果不知道自己的网格，在这里查询 %s！"
 
 #: application/views/station_profile/create.php:126
 #: application/views/station_profile/edit.php:180
@@ -8980,7 +8982,7 @@ msgstr "IOTA World 网站"
 #: application/views/station_profile/edit.php:206
 #, php-format
 msgid "You can look up IOTA references at the %s."
-msgstr ""
+msgstr "您可以在 %s 查看 IOTA 目录。"
 
 #: application/views/station_profile/create.php:148
 #: application/views/station_profile/edit.php:221
@@ -8991,7 +8993,7 @@ msgstr "SOTA Maps 网站"
 #: application/views/station_profile/edit.php:221
 #, php-format
 msgid "Station SOTA reference. You can look up SOTA references at the %s."
-msgstr ""
+msgstr "台站的 SOTA 标识符，您可在这里 %s 查看 SOTA 标识符。"
 
 #: application/views/station_profile/create.php:154
 #: application/views/station_profile/edit.php:234
@@ -9002,7 +9004,7 @@ msgstr "GMA Map 网站"
 #: application/views/station_profile/edit.php:234
 #, php-format
 msgid "Station WWFF reference. You can look up WWFF references at the %s."
-msgstr ""
+msgstr "台站的 WWFF 标识符，您可在这里 %s 查看 WWFF 标识符。"
 
 #: application/views/station_profile/create.php:160
 #: application/views/station_profile/edit.php:247
@@ -9015,7 +9017,7 @@ msgstr "POTA Map 网站"
 msgid ""
 "Station POTA reference(s). Multiple comma separated values allowed. You can "
 "look up POTA references at the %s."
-msgstr ""
+msgstr "台站的 POTA 标识符，可以使用多个值（逗号分隔），可在 %s 查看 POTA 目录。"
 
 #: application/views/station_profile/create.php:164
 #: application/views/station_profile/edit.php:260
@@ -9071,7 +9073,8 @@ msgid ""
 "If enabled, the QSOs made from this location will not be uploaded to "
 "Clublog. If this is deactivated on it's own please check if the Call is "
 "properly configured at Clublog"
-msgstr ""
+msgstr "如启用，台站下的 QSO 不会上传至 Clublog。如这个选项自动关闭了，请查看 "
+"Clublog 上的呼号是否配置正确"
 
 #: application/views/station_profile/create.php:196
 #: application/views/station_profile/edit.php:336
@@ -9099,12 +9102,12 @@ msgstr "HRDLog.net API Key"
 #, php-format
 msgctxt "HRDLog.net Userprofile page"
 msgid "Create your API Code on your %s"
-msgstr ""
+msgstr "为 %s 创建 API Code"
 
 #: application/views/station_profile/create.php:212
 #: application/views/station_profile/edit.php:359
 msgid "HRDLog.net Userprofile page"
-msgstr ""
+msgstr "HRDLog.net 个人页面"
 
 #: application/views/station_profile/create.php:215
 #: application/views/station_profile/edit.php:362
@@ -9130,12 +9133,12 @@ msgstr "Test API-Key"
 #, php-format
 msgctxt "the QRZ.com Logbook settings page"
 msgid "Find your API key on %s"
-msgstr ""
+msgstr "在 %s 这里查看 API Key"
 
 #: application/views/station_profile/create.php:235
 #: application/views/station_profile/edit.php:306
 msgid "the QRZ.com Logbook settings page"
-msgstr ""
+msgstr "QRZ.com Logbook 设置页面"
 
 #: application/views/station_profile/create.php:238
 #: application/views/station_profile/edit.php:310
@@ -9158,12 +9161,12 @@ msgstr "QO-100 Dx Club API Key"
 #, php-format
 msgctxt "QO-100 Dx Club's profile page"
 msgid "Create your API key on your %s"
-msgstr ""
+msgstr "为 %s 创建 API Key"
 
 #: application/views/station_profile/create.php:251
 #: application/views/station_profile/edit.php:380
 msgid "QO-100 Dx Club's profile page"
-msgstr ""
+msgstr "QO-100 Dx Club 个人页面"
 
 #: application/views/station_profile/create.php:254
 #: application/views/station_profile/edit.php:383
@@ -9213,7 +9216,7 @@ msgstr "台站地址为电台使用地址，如您或朋友的 QTH，或移动�
 #: application/views/station_profile/index.php:16
 #: application/views/stationsetup/stationsetup.php:96
 msgid "Similar to logbooks, a station profile keeps a set of QSOs together."
-msgstr "和日志簿类似，一个台站地址为 QSO 集合的承载主体"
+msgstr "和日志簿类似，台站地址是产生并关联 QSO 的集合体。"
 
 #: application/views/station_profile/index.php:17
 #: application/views/stationsetup/stationsetup.php:97
@@ -10000,7 +10003,7 @@ msgstr "Clublog 密码"
 
 #: application/views/user/edit.php:788
 msgid "Miscellaneous"
-msgstr "其他"
+msgstr "其它"
 
 #: application/views/user/edit.php:796
 msgid "AMSAT Status Upload"

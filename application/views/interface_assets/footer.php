@@ -1937,6 +1937,13 @@ $(document).ready(function(){
 
     <?php if ($this->uri->segment(1) == "timeline") { ?>
         <script>
+         $.fn.dataTable.ext.buttons.clear = {
+               className: 'buttons-clear',
+               action: function ( e, dt, node, config ) {
+                  dt.search('');
+                  dt.draw();
+               }
+            };
             $('.timelinetable').DataTable({
                 "pageLength": 25,
                 responsive: false,
@@ -1950,7 +1957,13 @@ $(document).ready(function(){
                 },
                 dom: 'Bfrtip',
                 buttons: [
-                    'csv'
+                    {
+                        extend: 'csv'
+                    },
+                    {
+                        extend: 'clear',
+                        text: lang_admin_clear
+                    }
                 ]
             });
 
