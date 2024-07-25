@@ -124,7 +124,7 @@ function detect_webserver() {
 }
 
 // Detect nginx setting for PHP file processing
-function detect_nginx_php_setting() {
+function detect_nginx_php_setting($http_scheme) {
    $ch = curl_init($http_scheme.'://'.$_SERVER['HTTP_HOST'].'/install/nginx.php/test');
    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
    curl_setopt($ch, CURLOPT_HEADER, 0);

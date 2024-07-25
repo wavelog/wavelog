@@ -264,8 +264,8 @@ if (!file_exists('.lock')) {
 												<td><span class="badge text-bg-info"><?php echo detect_webserver(); ?></span></td>
 											</tr>
 										</table>
-										<?php if (strpos(strtolower($webserver_version), 'nginx') !== false) {
-											if (detect_nginx_php_setting() != 200) { ?>
+										<?php if (strpos(strtolower(detect_webserver()), 'nginx') !== false) {
+											if (detect_nginx_php_setting($http_scheme) != 200) { ?>
 												<div class="alert alert-warning d-flex flex-column align-items-center" role="alert">
 													<p class="mb-2 border-bottom"><?= __("Important note for nginx users!"); ?></p>
 													<p class="mb-0"><?= __("Since you are using nginx as web server please make sure that you have made the changes described in the Wiki before continuing."); ?></p><br>
