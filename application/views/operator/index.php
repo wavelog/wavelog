@@ -11,7 +11,7 @@
                     <div class="row p-2">
                         <div class="col">
                             <p><?= __("Your personal Callsign:"); ?> </p>
-                            <input type="text" class="form-control w-auto" id="operator_callsign" name="operator_callsign">
+                            <input type="text" class="form-control w-auto uppercase" id="operator_callsign" name="operator_callsign">
                             <div class="invalid-feedback">
                                 <?= __("You have to provide your personal callsign."); ?>
                             </div>
