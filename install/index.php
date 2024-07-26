@@ -188,16 +188,16 @@ if (!file_exists('.lock')) {
 											</tr>
 											<tr>
 												<td>allow_url_fopen</td>
-												<td><?= __("On"); ?></td>
+												<td>On</td>
 												<td>
 													<?php
 													$get_allow_url_fopen = ini_get('allow_url_fopen');
 													if ($get_allow_url_fopen == $req_allow_url_fopen) {
 													?>
-														<span class="badge text-bg-success"><?= __("On"); ?></span>
+														<span class="badge text-bg-success">On</span>
 													<?php } else {
 														$prechecks_passed = 'failed'; ?>
-														<span class="badge text-bg-danger"><?= __("Off"); ?></span>
+														<span class="badge text-bg-danger">Off</span>
 													<?php } ?>
 												</td>
 											</tr>
