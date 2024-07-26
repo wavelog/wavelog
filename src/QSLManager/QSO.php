@@ -363,15 +363,22 @@ class QSO
 
 		$lotwstring = '<span ';
 
+		$timestamp = '';
+		if ($data['COL_LOTW_QSLSDATE'] != null) {
+			$timestamp = date($custom_date_format, strtotime($data['COL_LOTW_QSLSDATE']));
+		}
 		if ($data['COL_LOTW_QSL_SENT'] == "Y") {
-			$lotwstring .= "title=\"" . __("LoTW")." ".__("Sent");
-			if ($data['COL_LOTW_QSLSDATE'] != null) {
-				$timestamp = strtotime($data['COL_LOTW_QSLSDATE']);
-				$lotwstring .= " ". ($timestamp != '' ? date($custom_date_format, $timestamp) : '');
-			}
+			$lotwstring .= "title=\"" . __("Sent");
+			$lotwstring .= $timestamp != '' ? " ".$timestamp : '';
 			$lotwstring .= "\" data-bs-toggle=\"tooltip\" class=\"lotw-green\"";
 		} elseif ($data['COL_LOTW_QSL_SENT'] == "I") {
-			$lotwstring .= "class=\"lotw-grey\" data-bs-toggle=\"tooltip\" title=\"".__("Invalid (Ignore)")."\"";
+			$lotwstring .= "title=\"" . __("Invalid (Ignore)");
+			$lotwstring .= $timestamp != '' ? " ".$timestamp : '';
+			$lotwstring .= "\" data-bs-toggle=\"tooltip\" class=\"lotw-grey\"";
+		} elseif ($data['COL_LOTW_QSL_SENT'] == "R") {
+			$lotwstring .= "title=\"" . __("Requested");
+			$lotwstring .= $timestamp != '' ? " ".$timestamp : '';
+			$lotwstring .= "\" data-bs-toggle=\"tooltip\" class=\"lotw-yellow\"";
 		} else {
 			$lotwstring .= "class=\"lotw-red\"";
 		}
@@ -379,16 +386,22 @@ class QSO
 		$lotwstring .= '>&#9650;</span>';
 		$lotwstring .= '<span ';
 
+		$timestamp = '';
+		if ($data['COL_LOTW_QSLRDATE'] != null) {
+			$timestamp = date($custom_date_format, strtotime($data['COL_LOTW_QSLRDATE']));
+		}
 		if ($data['COL_LOTW_QSL_RCVD'] == "Y") {
-			$lotwstring .= "title=\"". __("LoTW") ." ". __("Received");
-
-			if ($data['COL_LOTW_QSLRDATE'] != null) {
-				$timestamp = strtotime($data['COL_LOTW_QSLRDATE']);
-				$lotwstring .=  " ". ($timestamp != '' ? date($custom_date_format, $timestamp) : '');
-			}
+			$lotwstring .= "title=\"". __("Received");
+			$lotwstring .= $timestamp != '' ? " ".$timestamp : '';
 			$lotwstring .= "\" data-bs-toggle=\"tooltip\" class=\"lotw-green\"";
 		} elseif ($data['COL_LOTW_QSL_RCVD'] == "I") {
-			$lotwstring .= "class=\"lotw-grey\" data-bs-toggle=\"tooltip\" title=\"".__("Invalid (Ignore)")."\"";
+			$lotwstring .= "title=\"" . __("Invalid (Ignore)");
+			$lotwstring .= $timestamp != '' ? " ".$timestamp : '';
+			$lotwstring .= "\" data-bs-toggle=\"tooltip\" class=\"lotw-grey\"";
+		} elseif ($data['COL_LOTW_QSL_RCVD'] == "R") {
+			$lotwstring .= "title=\"" . __("Requested");
+			$lotwstring .= $timestamp != '' ? " ".$timestamp : '';
+			$lotwstring .= "\" data-bs-toggle=\"tooltip\" class=\"lotw-yellow\"";
 		} else {
 			$lotwstring .= "class=\"lotw-red\"";
 		}
@@ -407,7 +420,7 @@ class QSO
 		$clublogstring = '<span ';
 
 		if ($data['COL_CLUBLOG_QSO_UPLOAD_STATUS'] == "Y") {
-			$clublogstring .= "title=\"".__("Clublog")." ".__("Sent");
+			$clublogstring .= "title=\"".__("Sent");
 
 			if ($data['COL_CLUBLOG_QSO_UPLOAD_DATE'] != null) {
 				$timestamp = strtotime($data['COL_CLUBLOG_QSO_UPLOAD_DATE']);
@@ -420,7 +433,7 @@ class QSO
 		$clublogstring .= ' class="clublog-' . (($data['COL_CLUBLOG_QSO_UPLOAD_STATUS'] =='Y') ? 'green':'red') . '">&#9650;</span><span ';
 
 		if ($data['COL_CLUBLOG_QSO_DOWNLOAD_STATUS'] == "Y") {
-			$clublogstring .= "title=\"".__("Clublog")." ".__("Received");
+			$clublogstring .= "title=\"".__("Received");
 
 			if ($data['COL_CLUBLOG_QSO_DOWNLOAD_DATE'] != null) {
 				$timestamp = strtotime($data['COL_CLUBLOG_QSO_DOWNLOAD_DATE']);
@@ -443,7 +456,7 @@ class QSO
 		$eqslstring = '<span ';
 
 		if ($data['COL_EQSL_QSL_SENT'] == "Y") {
-			$eqslstring .= "title=\"".__("eQSL")." ".__("Sent");
+			$eqslstring .= "title=\"".__("Sent");
 
 			if ($data['COL_EQSL_QSLSDATE'] != null) {
 				$timestamp = strtotime($data['COL_EQSL_QSLSDATE']);
@@ -456,7 +469,7 @@ class QSO
 		$eqslstring .= ' class="eqsl-' . (($data['COL_EQSL_QSL_SENT'] =='Y') ? 'green':'red') . '">&#9650;</span><span ';
 
 		if ($data['COL_EQSL_QSL_RCVD'] == "Y") {
-			$eqslstring .= "title=\"".__("eQSL")." ".__("Received");
+			$eqslstring .= "title=\"".__("Received");
 
 			if ($data['COL_EQSL_QSLRDATE'] != null) {
 				$timestamp = strtotime($data['COL_EQSL_QSLRDATE']);
