@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-24 06:51+0000\n"
+"POT-Creation-Date: 2024-07-26 09:13+0000\n"
 "PO-Revision-Date: 2024-07-25 20:16+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
@@ -1938,22 +1938,22 @@ msgstr "editado"
 msgid "Profile"
 msgstr "Perfil"
 
-#: application/controllers/User.php:840 application/controllers/User.php:850
+#: application/controllers/User.php:839 application/controllers/User.php:849
 msgid "Login failed. Try again."
 msgstr "O login falhou. Tente novamente."
 
-#: application/controllers/User.php:857
+#: application/controllers/User.php:856
 #: application/views/interface_assets/header.php:348
 #: application/views/user/login.php:89
 #: application/views/visitor/layout/header.php:88
 msgid "Login"
 msgstr "Iniciar sessão"
 
-#: application/controllers/User.php:865
+#: application/controllers/User.php:864
 msgid "User logged in"
 msgstr "Utilizador com sessão iniciada"
 
-#: application/controllers/User.php:896
+#: application/controllers/User.php:895
 msgid ""
 "Sorry. This instance is currently in maintenance mode. If this message "
 "appears unexpectedly or keeps showing up, please contact an administrator. "
@@ -1964,32 +1964,32 @@ msgstr ""
 "administrador. Atualmente, apenas os administradores têm permissão para "
 "iniciar sessão."
 
-#: application/controllers/User.php:899
+#: application/controllers/User.php:898
 msgid "Incorrect username or password!"
 msgstr "Nome de utilizador ou palavra-passe incorrectos!"
 
-#: application/controllers/User.php:916
+#: application/controllers/User.php:915
 #, php-format
 msgid "User %s logged out."
 msgstr "O utilizador %s terminou a sessão."
 
-#: application/controllers/User.php:930
+#: application/controllers/User.php:929
 msgid "Password Reset is disabled on the Demo!"
 msgstr "A reposição da palavra-passe está desactivada na Demo!"
 
-#: application/controllers/User.php:943
+#: application/controllers/User.php:942
 msgid "Forgot Password"
 msgstr "Esqueci-me da palavra-passe"
 
-#: application/controllers/User.php:993 application/views/user/main.php:8
+#: application/controllers/User.php:992 application/views/user/main.php:8
 msgid "Email settings are incorrect."
 msgstr "As definições de e-mail estão incorrectas."
 
-#: application/controllers/User.php:997 application/controllers/User.php:1002
+#: application/controllers/User.php:996 application/controllers/User.php:1001
 msgid "Password Reset Processed."
 msgstr "A redefinição da palavra-passe foi processada."
 
-#: application/controllers/User.php:1104
+#: application/controllers/User.php:1103
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
@@ -6149,8 +6149,9 @@ msgid ""
 "No Station Locations with valid HRDlog-Settings found. Check the HRDlog "
 "Credentials in the Station Location Settings!"
 msgstr ""
-"Não foram encontrados locais de estação válidos com configurações do HRDlog "
-". Verifique as credenciais do HRDlog nas configurações do local da estação!"
+"Não foram encontrados locais de estação válidos com configurações do "
+"HRDlog . Verifique as credenciais do HRDlog nas configurações do local da "
+"estação!"
 
 #: application/views/hrdlog/export.php:87
 msgid "Mark QSOs as exported to HRDLog Logbook"
@@ -6561,7 +6562,8 @@ msgstr "Tamanho da letra"
 #: application/views/labels/create.php:108
 #: application/views/labels/edit.php:110
 msgid "Font size used on the label don't go too big."
-msgstr "O tamanho da letra utilizada na etiqueta não deve ser demasiado grande."
+msgstr ""
+"O tamanho da letra utilizada na etiqueta não deve ser demasiado grande."
 
 #: application/views/labels/create.php:111
 #: application/views/labels/edit.php:113
@@ -7754,8 +7756,8 @@ msgid ""
 "The hostname of the mail server, e.g. 'mail.example.com' (without 'ssl://' "
 "or 'tls://')"
 msgstr ""
-"O nome do anfitrião do servidor de correio, por exemplo, “mail.example.com” ("
-"sem 'ssl://' ou 'tls://')"
+"O nome do anfitrião do servidor de correio, por exemplo, “mail.example."
+"com” (sem 'ssl://' ou 'tls://')"
 
 #: application/views/options/email.php:88
 msgid "SMTP Port"
@@ -8390,7 +8392,8 @@ msgstr "Potência de Transmissão (W)"
 
 #: application/views/qso/edit_ajax.php:136 application/views/qso/index.php:348
 msgid "Give power value in Watts. Include only numbers in the input."
-msgstr "Forneça o valor da potência em Watts. Inclua apenas números na entrada."
+msgstr ""
+"Forneça o valor da potência em Watts. Inclua apenas números na entrada."
 
 #: application/views/qso/edit_ajax.php:166
 msgid "Used for VUCC MultiGrids"
@@ -9785,7 +9788,8 @@ msgstr "Nome do Tema"
 
 #: application/views/themes/add.php:6 application/views/themes/edit.php:6
 msgid "This is the name that is used to display the theme in the theme list."
-msgstr "Este é o nome que é utilizado para apresentar o tema na lista de temas."
+msgstr ""
+"Este é o nome que é utilizado para apresentar o tema na lista de temas."
 
 #: application/views/themes/add.php:10 application/views/themes/edit.php:10
 msgid "Folder Name"
@@ -9898,9 +9902,8 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Crie uma nova pasta em 'assets/css/' e carregue um ficheiro "
-"'bootstrap.min.css' que contém regras de estilo básicas. Utilizamos os temas "
-"de %s"
+"Crie uma nova pasta em 'assets/css/' e carregue um ficheiro 'bootstrap.min."
+"css' que contém regras de estilo básicas. Utilizamos os temas de %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -9931,8 +9934,8 @@ msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
-"Só são permitidos ficheiros PNG, que devem ter uma relação de pixels de 1:1 ("
-"por exemplo, 1000px de altura e 1000px de largura)."
+"Só são permitidos ficheiros PNG, que devem ter uma relação de pixels de 1:1 "
+"(por exemplo, 1000px de altura e 1000px de largura)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
@@ -10222,8 +10225,8 @@ msgid ""
 "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the "
 "log QSO section."
 msgstr ""
-"Mostrar a imagem de perfil do parceiro de contacto do perfil QRZ.com/"
-"HamQTH.com na secção de registo de contacto."
+"Mostrar a imagem de perfil do parceiro de contacto do perfil QRZ.com/HamQTH."
+"com na secção de registo de contacto."
 
 #: application/views/user/edit.php:361
 msgid ""
