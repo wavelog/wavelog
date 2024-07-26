@@ -2,6 +2,15 @@ function editQsos() {
 	var elements = $('#qsoList tbody input:checked');
 	var nElements = elements.length;
 	if (nElements == 0) {
+		BootstrapDialog.alert({
+			title: 'INFO',
+			message: 'You need to select at least 1 row to use batch edit!',
+			type: BootstrapDialog.TYPE_INFO,
+			closable: false,
+			draggable: false,
+			callback: function (result) {
+			}
+		});
 		return;
 	}
 	var id_list=[];
