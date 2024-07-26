@@ -35,7 +35,7 @@
 	<script type="module" defer>
 		import {
 			polyfillCountryFlagEmojis
-		} from "<?php echo base_url(); ?>../assets/js/country-flag-emoji-polyfill.js";
+		} from "../assets/js/country-flag-emoji-polyfill.js";
 		polyfillCountryFlagEmojis();
 	</script>
 	<?php
