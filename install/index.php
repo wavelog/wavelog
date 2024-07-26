@@ -101,13 +101,19 @@ if (!file_exists('.lock')) {
 										<table width="100%">
 											<tr>
 												<td><?= __("Version"); ?></td>
-												<td><?php echo 'min. ' . $min_php_version; ?></td>
+												<td><?= sprintf(_pgettext("PHP Version", "min. %s (recommended %s+)"), $min_php_version, $min_php_version_warning); ?></td>
 												<td>
-													<?php if (version_compare(PHP_VERSION, $min_php_version) <= 0) { ?>
+													<?php if (version_compare(PHP_VERSION, $min_php_version) <= 0) {
+														$prechecks_passed = 'failed'; ?>
 														<span class="badge text-bg-danger"><?php echo PHP_VERSION; ?></span>
-													<?php } else { ?>
-														<span class="badge text-bg-success"><?php echo PHP_VERSION; ?></span>
-													<?php } ?>
+														<?php } else {
+														if (version_compare(PHP_VERSION, $min_php_version_warning) <= 0) {
+															$prechecks_passed = 'warning'; ?>
+															<span class="badge text-bg-warning"><?php echo PHP_VERSION; ?></span>
+														<?php } else { ?>
+															<span class="badge text-bg-success"><?php echo PHP_VERSION; ?></span>
+													<?php }
+													} ?>
 												</td>
 											</tr>
 											<?php
@@ -209,7 +215,8 @@ if (!file_exists('.lock')) {
 												<td>
 													<?php if (is_really_writable('../application/cache') == true && is_really_writable('../application/config') == true && is_really_writable('../application/logs') == true) { ?>
 														<span class="badge text-bg-success"><?= __("Success"); ?></span>
-													<?php } else { ?>
+													<?php } else {
+														$prechecks_passed = 'failed'; ?>
 														<span class="badge text-bg-danger"><?= __("Failed"); ?></span>
 													<?php } ?>
 												</td>
@@ -219,7 +226,8 @@ if (!file_exists('.lock')) {
 												<td>
 													<?php if (is_really_writable('../backup') == true) { ?>
 														<span class="badge text-bg-success"><?= __("Success"); ?></span>
-													<?php } else { ?>
+													<?php } else {
+														$prechecks_passed = 'failed'; ?>
 														<span class="badge text-bg-danger"><?= __("Failed"); ?></span>
 													<?php } ?>
 												</td>
@@ -229,7 +237,8 @@ if (!file_exists('.lock')) {
 												<td>
 													<?php if (is_really_writable('../updates') == true) { ?>
 														<span class="badge text-bg-success"><?= __("Success"); ?></span>
-													<?php } else { ?>
+													<?php } else {
+														$prechecks_passed = 'failed'; ?>
 														<span class="badge text-bg-danger"><?= __("Failed"); ?></span>
 													<?php } ?>
 												</td>
@@ -239,7 +248,8 @@ if (!file_exists('.lock')) {
 												<td>
 													<?php if (is_really_writable('../uploads') == true) { ?>
 														<span class="badge text-bg-success"><?= __("Success"); ?></span>
-													<?php } else { ?>
+													<?php } else {
+														$prechecks_passed = 'failed'; ?>
 														<span class="badge text-bg-danger"><?= __("Failed"); ?></span>
 													<?php } ?>
 												</td>
@@ -249,7 +259,8 @@ if (!file_exists('.lock')) {
 												<td>
 													<?php if (is_really_writable('../userdata') == true) { ?>
 														<span class="badge text-bg-success"><?= __("Success"); ?></span>
-													<?php } else { ?>
+													<?php } else {
+														$prechecks_passed = 'failed'; ?>
 														<span class="badge text-bg-danger"><?= __("Failed"); ?></span>
 													<?php } ?>
 												</td>
@@ -276,7 +287,7 @@ if (!file_exists('.lock')) {
 										<?php if ($prechecks_passed == 'failed') {
 											$prechecks_icon = "fa-times-circle";
 											$prechecks_color = "red"; ?>
-											<div class="alert alert-danger d-flex flex-column align-items-center" role="alert">
+											<div id="precheck_testresults" class="alert alert-danger d-flex flex-column align-items-center" role="alert">
 												<p class="mb-2 border-bottom"><?= __("Some Checks have failed!"); ?></p>
 												<p class="mb-2"><?= __("Check your PHP settings and install missing modules if necessary."); ?></p>
 												<p class="mb-0"><?= __("After that, you have to restart your webserver and start the installer again."); ?></p>
@@ -284,14 +295,14 @@ if (!file_exists('.lock')) {
 										<?php } else if ($prechecks_passed == 'warning') {
 											$prechecks_icon = "fa-exclamation-triangle";
 											$prechecks_color = "#ffc107"; ?>
-											<div class="alert alert-warning d-flex flex-column align-items-center" role="alert">
+											<div id="precheck_testresults" class="alert alert-warning d-flex flex-column align-items-center" role="alert">
 												<p class="mb-2 border-bottom"><?= __("You have some warnings!"); ?></p>
 												<p class="mb-2"><?= __("Some of the settings are not optimal. You can proceed with the installer but be aware that you could run into problems while using Wavelog."); ?></p>
 											</div>
 										<?php } else if ($prechecks_passed == 'ok') {
 											$prechecks_icon = "fa-check-circle";
 											$prechecks_color = "#04a004"; ?>
-											<div class="alert alert-success d-flex align-items-center" role="alert">
+											<div id="precheck_testresults" class="alert alert-success d-flex align-items-center" role="alert">
 												<i class="me-2 fas fa-check-circle"></i>
 												<p class="mb-0"><?= __("All Checks are OK. You can continue."); ?></p>
 											</div>
@@ -351,7 +362,7 @@ if (!file_exists('.lock')) {
 												<div class="position-relative">
 													<input type="password" id="callbook_password" placeholder="<?= __("Callbook Password"); ?>" class="form-control" name="callbook_password" />
 													<div class="invalid-tooltip">
-														<?= sprintf(__("Password can't contain %s"), "' \" / \ < >"); ?>
+														<?= sprintf(__("Password can't contain %s or be empty"), "' \" / \ < >"); ?>
 													</div>
 												</div>
 											</div>
@@ -460,9 +471,6 @@ if (!file_exists('.lock')) {
 									<div class="col-md-6 mb-2 position-relative">
 										<label for="password" class="form-label"><?= __("Password"); ?></label>
 										<input type="password" id="password" tabindex="8" placeholder="**********" class="form-control" name="password" />
-										<div class="invalid-tooltip">
-											<?= sprintf(__("Password can't contain %s"), "' \" / \ < >"); ?>
-										</div>
 									</div>
 								</div>
 								<div class="row">
@@ -1162,19 +1170,40 @@ if (!file_exists('.lock')) {
 				const activeTab = $('.nav-link.active');
 				const nextTab = activeTab.parent().next().find('.nav-link');
 
+				// Open Tab 2 - Prechecks
+				if (nextTab.attr('id') == secondTabId) {
+					if ($('#precheck_testresults').hasClass('alert-danger')) {
+						if (nextTab.length > 0) {
+							let tab = new bootstrap.Tab(nextTab[0]);
+							tab.show();
+						}
+						continueButton.prop('disabled', true);
+						continueButton.removeClass('btn-info');
+						continueButton.addClass('btn-secondary');
+						continueButton.html("<?= __("You can't continue. Solve the red marked issues, restart the webserver and reload this page."); ?>");
+						backButton.css('display', 'block');
+						return;
+						// This is a dead end. The user have to solve the issues, restart the webserver and reload the page. 
+						// There is no reason to continue if PHP modules are missing or the webserver has not write access to some folders within Wavelog.
+						// The checks for PHP Settings are triggering just warnings (except 'allow_url_fopen', this one triggers a failure as it's needed for a lot of different functions (unfortunately)).
+					}
+				}
+
+				// Exit Tab 3 - Configuration
 				if (nextTab.attr('id') == fourthTabId) {
 					if (!directory_check() || !websiteurl_check()) {
+						return;
+					}
+					if (!callbook_combination()) {
 						return;
 					}
 					pwdForbiddenChars($('#callbook_password'));
 					if ($('#callbook_password').hasClass('is-invalid') && $('#callbook_password').val() != '') {
 						return;
 					}
-					if (passwordField.val() != '') {
-						user_pwd_check();
-					}
 				}
 
+				// Exit Tab 4 - Database
 				if (nextTab.attr('id') == fifthTabId) {
 					await db_connection_test();
 					if (db_connection_results.hasClass('alert-danger')) {
@@ -1182,19 +1211,24 @@ if (!file_exists('.lock')) {
 					}
 				}
 
+				// Exit Tab 5 - User Form
 				if (nextTab.attr('id') == lastTabId) {
-					if (!checklist_firstuser()) {
+					if (!check_for_empty_fields()) {
+						return;
+					}
+					if (!isValidMaidenheadLocator(userLocatorField)) {
+						return;
+					}
+					if (!isValidEmail(emailField)) {
 						return;
 					}
 					if (!user_pwd_check()) {
 						return;
 					}
-					if (!maidenhead_checks(userLocatorField)) {
-						return;
-					}
-					if (!email_verification()) {
-						return;
-					}
+					checklist_configuration();
+					checklist_database();
+					checklist_firstuser();
+					enable_installbutton();
 				}
 
 				if (nextTab.length > 0) {
@@ -1244,19 +1278,25 @@ if (!file_exists('.lock')) {
 						continueButton.css('display', 'block');
 					}
 				}
-
-				// in addition we can run some checks here
-				maidenhead_checks(userLocatorField);
 			}
 
-			function input_is_valid(field, is_valid) {
-				if (is_valid == true) {
-					field.removeClass('is-invalid');
-					field.addClass('is-valid');
-				} else {
-					field.removeClass('is-valid');
+			function input_is_valid(field, status) {
+				if (status == 'is-invalid') {
+					field.removeClass('is-valid has-warning');
 					field.addClass('is-invalid');
+					return;
 				}
+				if (status == 'has-warning') {
+					field.removeClass('is-valid is-invalid');
+					field.addClass('has-warning');
+					return;
+				}
+				if (status == 'is-valid') {
+					field.removeClass('is-invalid has-warning');
+					field.addClass('is-valid');
+					return;
+				}
+				console.error('input_is_valid(): Unknown status: ' + status);
 			}
 
 			function pwdForbiddenChars(field) {
@@ -1265,8 +1305,17 @@ if (!file_exists('.lock')) {
 
 				if (pwd != '') {
 					if (specialChars.test(pwd)) {
-						input_is_valid(field, false);
+						input_is_valid(field, 'is-invalid');
+						if (field = passwordField) {
+							show_userformwarnings('danger', "<?= __("Password can't contain ' / \ < >"); ?>");
+						}
+					} else {
+						input_is_valid(field, 'is-valid');
+						hide_userformwarnings();
 					}
+				} else {
+					field.removeClass('is-invalid');
+					field.removeClass('is-valid');
 				}
 			}
 
@@ -1311,40 +1360,52 @@ if (!file_exists('.lock')) {
 
 			let directory = $('#directory');
 			let websiteurl = $('#websiteurl');
+			let callbook_username = $('#callbook_username');
+			let callbook_password = $('#callbook_password');
 
 			// On Page Load
 			$(document).ready(function() {
-
-				checklist_configuration();
 
 				$('#advancedSettingsButton').click(function() {
 					$('#advancedSettingsModal').modal('show');
 				});
 
-				$('#directory, #websiteurl').on('change', function() {
+				directory.on('change', function() {
 					directory_check();
-					websiteurl_check();
-					checklist_configuration();
 				});
 
-				$('#callbook_password').on('change', function() {
-					pwdForbiddenChars($('#callbook_password'));
+				websiteurl.on('change', function() {
+					websiteurl_check();
+				});
+
+				callbook_username.on('change', function() {
+					if (callbook_username.val() == '') {
+						callbook_username.removeClass('is-valid is-invalid');
+					}
+					if (callbook_password.val() == '') {
+						callbook_password.removeClass('is-valid is-invalid');
+					}
+				});
+
+				callbook_password.on('change', function() {
+					if (callbook_password.val() == '') {
+						callbook_password.removeClass('is-valid is-invalid');
+					}
+					if (callbook_username.val() == '') {
+						callbook_username.removeClass('is-valid is-invalid');
+					}
+					pwdForbiddenChars(callbook_password);
 				});
 			});
 
 			function directory_check() {
-
 				var check = true;
 
 				if (directory.val().startsWith('/') || directory.val().endsWith('/')) {
 					check = false;
 				}
 
-				if (check) {
-					input_is_valid(directory, true);
-				} else {
-					input_is_valid(directory, false);
-				}
+				input_is_valid(directory, check ? 'is-valid' : 'is-invalid');
 
 				return check;
 			}
@@ -1361,9 +1422,29 @@ if (!file_exists('.lock')) {
 				}
 
 				if (check) {
-					input_is_valid(websiteurl, true);
+					input_is_valid(websiteurl, 'is-valid');
 				} else {
-					input_is_valid(websiteurl, false);
+					input_is_valid(websiteurl, 'is-invalid');
+				}
+
+				return check;
+			}
+
+			function callbook_combination() {
+				let check = true;
+				let a = callbook_username.val();
+				let b = callbook_password.val();
+				if ((a == '' && b !== '') || (a !== '' && b == '')) {
+					check = false;
+					if (a == '') {
+						input_is_valid(callbook_username, 'is-invalid');
+					} else {
+						input_is_valid(callbook_password, 'is-invalid');
+					}
+
+				} else if (a !== '' && b !== '') {
+					input_is_valid(callbook_username, 'is-valid');
+					pwdForbiddenChars(callbook_password);
 				}
 
 				return check;
@@ -1387,26 +1468,13 @@ if (!file_exists('.lock')) {
 			let db_password = $('#db_password');
 			let db_name = $('#db_name');
 
-			// On Page Load
-			$(document).ready(function() {
-
-				checklist_database();
-
-				if ($('#db_hostname').val() != '') {
-					db_connection_test()
-				}
-				$('#db_hostname, #db_name, #db_username, #db_password').on('keyup', function() {
-					clear_db_testresult();
-				});
-			});
-
 			function db_connection_test() {
 				return new Promise((resolve, reject) => {
 
 
 					if (db_hostname.val() === '' || db_username.val() === '' || db_name.val() === '') {
 						db_connection_results.addClass('alert-danger');
-						db_connection_results.html('<?= __("Error: At least Hostname/IP, Database Name and Username are required."); ?>');
+						db_connection_results.html("<?= __("Error: At least Hostname/IP, Database Name and Username are required."); ?>");
 						resolve(false);
 						return;
 					}
@@ -1436,7 +1504,7 @@ if (!file_exists('.lock')) {
 								if (sql_version_checker(response) == true) {
 									db_connection_results.addClass('alert-success');
 									$('#db_connection_test_button').html(originalButtonText).prop('disabled', false);
-									db_connection_results.html('<?= __("Connection was successful and your database should be compatible"); ?> <i class="fas fa-check-circle"></i>');
+									db_connection_results.html("<?= __("Connection was successful and your database should be compatible."); ?> <i class=\"fas fa-check-circle\"></i>");
 								} else {
 									db_connection_results.addClass('alert-warning');
 									$('#db_connection_test_button').html(originalButtonText).prop('disabled', false);
@@ -1503,13 +1571,13 @@ if (!file_exists('.lock')) {
 			let cnfmPasswordField = $('#cnfm_password');
 			let minPasswordLenght = 8;
 
-			const firstUserTabIDs = [
+			const firstUserInputIDs = [
 				'#firstname',
-				'#username',
 				'#lastname',
+				'#username',
 				'#password',
-				'#callsign',
 				'#cnfm_password',
+				'#callsign',
 				'#city',
 				'#user_email',
 				'#userlocator'
@@ -1522,132 +1590,120 @@ if (!file_exists('.lock')) {
 
 			// On Page Load
 			$(document).ready(function() {
-
-				userLocatorField.on('change', function() {
-					maidenhead_checks(userLocatorField);
+				firstUserInputIDs.forEach(function(inputID) {
+					$(inputID).on('change', function() {
+						if ($(inputID).hasClass('is-invalid')) {
+							input_is_valid($(inputID), 'is-valid');
+							hide_userformwarnings();
+						}
+					});
 				});
-
+				userLocatorField.on('change', function() {
+					isValidMaidenheadLocator(userLocatorField);
+				});
 				emailField.on('change', function() {
-					email_verification();
+					isValidEmail(emailField);
 				});
 				passwordField.on('change', function() {
 					pwdForbiddenChars(passwordField);
 				});
-				cnfmPasswordField.on('change focusout', function() {
+				if(passwordField !== '') {
+					pwdForbiddenChars(passwordField);
+				}
+				cnfmPasswordField.on('change', function() {
 					user_pwd_check();
 				});
-				if (cnfmPasswordField.val() != '') {
-					user_pwd_check();
-				}
-				firstUserTabIDs.forEach(function(firstUserTabID) {
-					$(firstUserTabID).on('change', function() {
-						checklist_firstuser();
-					});
-				});
-				if (userLocatorField.val() != '') {
-					maidenhead_checks(userLocatorField);
-				}
-				if ($('#user_email').val() != '') {
-					email_verification();
-				}
 			});
 
-			function isValidMaidenheadLocator(locator) {
-				const maidenheadRegex = /^[A-R]{2}[0-9]{2}[A-X]{2}$/i;
-				return maidenheadRegex.test(locator);
+			function check_for_empty_fields() {
+				let check = true;
+				firstUserInputIDs.forEach(function(inputID) {
+					if ($(inputID).val() == '') {
+						input_is_valid($(inputID), 'is-invalid');
+						show_userformwarnings('danger', "<?= __("At least one field is empty."); ?>");
+						return check = false;
+					} else {
+						if ($(inputID).hasClass('is-invalid')) {
+							hide_userformwarnings();
+							input_is_valid($(inputID), 'is-valid');
+						}
+					}
+				});
+				return check;
+
 			}
 
-			function isValidEmail(email) {
+			function show_userformwarnings(status, message) {
+				userFormWarnings.css('display', 'block');
+				userFormWarnings.removeClass('alert-warning alert-danger');
+				userFormWarnings.addClass('alert-' + status);
+				userFormWarnings.html(message);
+			}
+
+			function hide_userformwarnings() {
+				userFormWarnings.css('display', 'none');
+				userFormWarnings.removeClass('alert-warning alert-danger');
+			}
+
+			function isValidMaidenheadLocator(field) {
+				let locator = field.val();
+				const maidenheadRegex = /^[A-R]{2}[0-9]{2}[A-X]{2}$/i;
+				let check = maidenheadRegex.test(locator);
+				if (!check) {
+					show_userformwarnings('danger', "<?= __("The locator seems to be not in the correct format. Should look like AA11AA (6-char grid locator).") ?>")
+					input_is_valid(field, 'is-invalid');
+				} else {
+					hide_userformwarnings();
+					input_is_valid(field, 'is-valid');
+				}
+				return check;
+			}
+
+			function isValidEmail(field) {
+				let email = field.val();
 				const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-				return emailRegex.test(email);
+				let check = emailRegex.test(email);
+				if (!check) {
+					show_userformwarnings('danger', "<?= __("The e-mail adress does not look correct. Make sure it's a valid e-mail address") ?>")
+					input_is_valid(field, 'is-invalid');
+				} else {
+					hide_userformwarnings();
+					input_is_valid(field, 'is-valid');
+				}
+				return check;
 			}
 
 			function user_pwd_check() {
+				pwdForbiddenChars(passwordField);
+				if (passwordField.hasClass('is-invalid')) {
+					return false;
+				}
 				if (cnfmPasswordField.val() == passwordField.val() && cnfmPasswordField.val() != '') {
 
 					if (cnfmPasswordField.val().length >= minPasswordLenght) {
 
-						passwordField.removeClass('is-invalid');
-						cnfmPasswordField.removeClass('is-invalid');
-						passwordField.removeClass('has-warning');
-						cnfmPasswordField.removeClass('has-warning');
+						input_is_valid(passwordField, 'is-valid');
+						input_is_valid(cnfmPasswordField, 'is-valid');
 
-						passwordField.addClass('is-valid');
-						cnfmPasswordField.addClass('is-valid');
-
-						userFormWarnings.css('display', 'none');
-						userFormWarnings.removeClass('alert-warning alert-danger');
+						hide_userformwarnings();
 
 					} else {
-						passwordField.addClass('has-warning');
-						cnfmPasswordField.addClass('has-warning');
+						input_is_valid(passwordField, 'has-warning');
+						input_is_valid(cnfmPasswordField, 'has-warning');
 
-						passwordField.removeClass('is-valid');
-						cnfmPasswordField.removeClass('is-valid');
-						passwordField.removeClass('is-invalid');
-						cnfmPasswordField.removeClass('is-invalid');
-
-						userFormWarnings.css('display', 'block');
-						userFormWarnings.removeClass('alert-warning alert-danger');
-						userFormWarnings.addClass('alert-warning');
-						userFormWarnings.html('<?= __("Password should be at least 8 characters long"); ?>')
-
+						show_userformwarnings('warning', "<?= __("Password should be at least 8 characters long"); ?>");
 					}
 					return true;
 
 				} else {
 
-					passwordField.addClass('is-invalid');
-					cnfmPasswordField.addClass('is-invalid');
-					passwordField.removeClass('has-warning');
-					cnfmPasswordField.removeClass('has-warning');
+					input_is_valid(passwordField, 'is-invalid');
+					input_is_valid(cnfmPasswordField, 'is-invalid');
 
-					passwordField.removeClass('is-valid');
-					cnfmPasswordField.removeClass('is-valid');
-
-					userFormWarnings.css('display', 'block');
-					userFormWarnings.removeClass('alert-warning alert-danger');
-					userFormWarnings.addClass('alert-danger');
-					userFormWarnings.html('<?= __("Passwords do not match"); ?>');
+					show_userformwarnings('danger', "<?= __("Passwords do not match"); ?>");
 
 					return false;
 
-				}
-			}
-
-			function email_verification() {
-				if (!isValidEmail(emailField.val()) && emailField != '') {
-
-					input_is_valid(emailField, false);
-					userFormWarnings.show();
-					userFormWarnings.removeClass('alert-warning alert-danger');
-					userFormWarnings.addClass('alert-danger');
-					userFormWarnings.html('<?= __("The E-Mail Address is not valid"); ?>');
-					return false;
-
-				} else {
-
-					input_is_valid(emailField, true);
-					userFormWarnings.removeClass('alert-danger alert-warning');
-					userFormWarnings.hide();
-					return true;
-
-				}
-			}
-
-			function maidenhead_checks(field) {
-				if (!isValidMaidenheadLocator(field.val())) {
-					input_is_valid(field, false);
-					userFormWarnings.css('display', 'block');
-					userFormWarnings.removeClass('alert-warning alert-danger');
-					userFormWarnings.addClass('alert-danger');
-					userFormWarnings.html("<?= sprintf(__("The grid locator is not valid. Use a 6-character locator, e.g. HA44AA. If you don't know your grid square then <a href='%s' target='_blank'>click here</a>!"), "https://zone-check.eu/?m=loc"); ?>");
-					return false;
-				} else {
-					input_is_valid(field, true);
-					userFormWarnings.removeClass('alert-danger alert-warning');
-					userFormWarnings.css('display', 'none');
-					return true;
 				}
 			}
 
@@ -1669,15 +1725,16 @@ if (!file_exists('.lock')) {
 			let checklistDatabase = $('#checklist_database');
 			let checklistFirstUser = $('#checklist_firstuser');
 
+
 			// On Page Load
 			$(document).ready(function() {
-
-				setInterval(enable_installbutton, 800);
 
 				resetButton.click(function() {
 					resetModal.modal('show');
 				});
+
 			});
+
 
 			function enable_installbutton() {
 				var install_possible = false;
@@ -1690,11 +1747,11 @@ if (!file_exists('.lock')) {
 				}
 
 				if (install_possible) {
-					$('#submit').prop('disabled', false).html('<?= __("Install Now"); ?>');
+					$('#submit').prop('disabled', false).html("<?= __("Install Now"); ?>");
 					$('#install_is_ready_msg').show();
 					$('#submit').css('margin-top', '50px');
 				} else {
-					$('#submit').prop('disabled', true).html('<?= __("Install not possible. Checklist incomplete."); ?>');
+					$('#submit').prop('disabled', true).html("<?= __("Install not possible. Checklist incomplete."); ?>");
 					$('#install_is_ready_msg').hide();
 					$('#submit').css('margin-top', '150px');
 				}
@@ -1757,12 +1814,12 @@ if (!file_exists('.lock')) {
 			function checklist_firstuser() {
 				var checklist_firstuser = true;
 
-				firstUserTabIDs.forEach(function(firstUserTabID) {
-					if ($(firstUserTabID).val() == '') {
-						input_is_valid($(firstUserTabID), false);
+				firstUserInputIDs.forEach(function(inputID) {
+					if ($(inputID).val() == '') {
+						input_is_valid($(inputID), 'is-invalid');
 						checklist_firstuser = false;
 					} else {
-						input_is_valid($(firstUserTabID), true);
+						input_is_valid($(inputID), 'is-valid');
 						user_pwd_check();
 					}
 				});
