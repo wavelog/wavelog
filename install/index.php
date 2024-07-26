@@ -414,7 +414,7 @@ if (!file_exists('.lock')) {
 										<div class="row">
 											<div class="col">
 												<div class="mb-3">
-													<label for="db_hostname" class="form-label required"><?= __("Hostname or IP"); ?></label><i id="callbook_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("Usually 'localhost'. Optional with '...:[port]'. Default Port: 3306. In a docker compose install type 'wavelog-db'"); ?>"></i>
+													<label for="db_hostname" class="form-label required"><?= __("Hostname or IP"); ?></label><i id="callbook_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("Usually 'localhost'. Optional with '...:[port]'. Default Port: 3306. In a docker compose install type 'wavelog-db'."); ?>"></i>
 													<input type="text" id="db_hostname" placeholder="localhost" class="form-control" name="db_hostname" />
 												</div>
 											</div>
