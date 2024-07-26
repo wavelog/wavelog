@@ -24,7 +24,7 @@
                     <i id="database_migrations_spinner" class="ld-ext-right"><?= __("Running database migrations") ?><div class="ld ld-ring ld-spin"></div></i><i id="database_migrations_check" class="ms-2 fas fa-check-circle" style="display: none;"></i>
                 </div>
                 <div class="mb-3" id="update_dxcc" style="opacity: 50%;">
-                    <i id="update_dxcc_spinner" class="ld-ext-right"><?= __("Updating DXCC data") ?><i id="skip_dxcc_update_message"></i><div class="ld ld-ring ld-spin"></div></i><i id="update_dxcc_check" class="ms-2 fas fa-check-circle" style="display: none;"></i>
+                    <i id="update_dxcc_spinner" class="ld-ext-right"><?= __("Updating DXCC data") ?><div class="ld ld-ring ld-spin"></div></i><i id="update_dxcc_check" class="ms-2 fas fa-check-circle" style="display: none;"></i>
                 </div>
 
                 <?php
@@ -58,7 +58,6 @@
 </body>
 
 <script>
-
     let _POST = <?php echo json_encode($_POST); ?>;
 
     $(document).ready(async function() {
@@ -75,7 +74,7 @@
 
             log_message('info', 'Finish. Installer went through successfully.');
 
-            if($('#logContainer').css('display') == 'none') {
+            if ($('#logContainer').css('display') == 'none') {
                 // after all install steps went through we can show a success message and redirect to the user/login
                 $("#success_message").show();
 
@@ -108,10 +107,10 @@
         setInterval(function() {
             $.ajax({
                 type: 'POST',
-                    url: 'ajax.php',
-                    data: {
-                        read_logfile: 1
-                    },
+                url: 'ajax.php',
+                data: {
+                    read_logfile: 1
+                },
                 success: function(response) {
                     $("#debuglog").text(response);
                 }
@@ -122,7 +121,7 @@
     $('#toggleLogButton').on('click', function() {
         var logContainer = $('#logContainer');
         logContainer.toggle();
-        if(logContainer.css('display') == 'none') {
+        if (logContainer.css('display') == 'none') {
             $('#toggleLogButton').text("<?= __("Show detailled debug log"); ?>");
         } else {
             $('#toggleLogButton').text("<?= __("Hide detailled debug log"); ?>");
@@ -131,7 +130,7 @@
 
     // if a user goes back to the installer we need to redirect him
     async function check_lockfile() {
-        
+
         return new Promise((resolve, reject) => {
             $.ajax({
                 type: 'POST',
@@ -294,34 +293,28 @@
         var field = '#update_dxcc';
 
         return new Promise((resolve, reject) => {
-            if(_POST.skip_dxcc_update == 0) {
+            running(field, true);
+            log_message('debug', 'Start updating DXCC database. This can take a moment or two... Please wait');
 
-                running(field, true);
-                log_message('debug', 'Start updating DXCC database. This can take a moment or two... Please wait');
-
-                $.ajax({
-                    url: "<?php echo $_POST['websiteurl'] ?? $websiteurl; ?>" + "index.php/update/dxcc",
-                    success: function(response) {
-                        if (response == 'success') {
-                            running(field, false);
-                            log_message('debug', 'Successfully update DXCC database');
-                            resolve();
-                        } else {
-                            running(field, false, true);
-                            log_message('error', 'Could not update DXCC data.');
-                            reject("<?= __("Could not update DXCC data"); ?>");
-                        }
-                    },
-                    error: function(error) {
+            $.ajax({
+                url: "<?php echo $_POST['websiteurl'] ?? $websiteurl; ?>" + "index.php/update/dxcc",
+                success: function(response) {
+                    if (response == 'success') {
+                        running(field, false);
+                        log_message('debug', 'Successfully update DXCC database');
+                        resolve();
+                    } else {
                         running(field, false, true);
-                        log_message('error', 'Could not update DXCC data. Ajax crashed.');
-                        reject(error);
+                        log_message('error', 'Could not update DXCC data.');
+                        reject("<?= __("Could not update DXCC data"); ?>");
                     }
-                });
-            } else {
-                $('#skip_dxcc_update_message').text(" "+"<?= __("(skipped)"); ?>");
-                resolve();
-            }
+                },
+                error: function(error) {
+                    running(field, false, true);
+                    log_message('error', 'Could not update DXCC data. Ajax crashed.');
+                    reject(error);
+                }
+            });
         });
     }
 

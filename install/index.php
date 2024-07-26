@@ -381,19 +381,6 @@ if (!file_exists('.lock')) {
 																</select>
 															</div>
 														</div>
-														<div class="row mb-3">
-															<div class="col-6">
-																<label for="skip_dxcc_update" class="form-label"><?= __("Skip DXCC Update"); ?>
-																	<i id="logging_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("Optional: The DXCC Update during the installation can take quite a while, expecially on slow machines. Therefore you can skip the Update to save some time. You will still have working DXCC data, but may invalid entries (Later updating within Wavelog is still possible)."); ?>"></i>
-																</label>
-															</div>
-															<div class="col-6">
-																<select id="skip_dxcc_update" class="form-select" name="skip_dxcc_update">
-																	<option value="0" selected><?= __("Update DXCC data"); ?></option>
-																	<option value="1"><?= __("Skip the Update"); ?></option>
-																</select>
-															</div>
-														</div>
 													</div>
 													<div class="modal-footer">
 														<button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?= __("Close"); ?></button>
@@ -474,8 +461,8 @@ if (!file_exists('.lock')) {
 										<label for="password" class="form-label"><?= __("Password"); ?></label>
 										<input type="password" id="password" tabindex="8" placeholder="**********" class="form-control" name="password" />
 										<div class="invalid-tooltip">
-														<?= sprintf(__("Password can't contain %s"), "' \" / \ < >"); ?>
-													</div>
+											<?= sprintf(__("Password can't contain %s"), "' \" / \ < >"); ?>
+										</div>
 									</div>
 								</div>
 								<div class="row">
