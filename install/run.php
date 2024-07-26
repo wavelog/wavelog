@@ -72,7 +72,7 @@
             await update_dxcc();
             await installer_lock();
 
-            log_message('info', 'Finish. Installer went through successfully.');
+            await log_message('info', 'Finish. Installer went through successfully.');
 
             if ($('#logContainer').css('display') == 'none') {
                 // after all install steps went through we can show a success message and redirect to the user/login
@@ -138,17 +138,17 @@
                 data: {
                     check_lockfile: 1
                 },
-                success: function(response) {
+                success: async function(response) {
                     if (response != 'installer_locked') {
                         resolve();
                     } else {
-                        log_message('error', 'Attention: Installer is locked. Redirect to user/login.');
+                        await log_message('error', 'Attention: Installer is locked. Redirect to user/login.');
                         reject(response);
                         window.location.href = "<?php echo str_replace('run.php', '', $websiteurl); ?>" + "index.php/user/login";
                     }
                 },
-                error: function(error) {
-                    log_message('error', "Install Lock Check went wrong...");
+                error: async function(error) {
+                    await log_message('error', "Install Lock Check went wrong...");
                     reject(error);
                     window.location.href = "<?php echo str_replace('run.php', '', $websiteurl); ?>" + "index.php/user/login";
                 }
@@ -161,7 +161,7 @@
         var field = '#config_file';
 
         running(field, true);
-        log_message('debug', 'Start writing config.php');
+        await log_message('debug', 'Start writing config.php');
 
         return new Promise((resolve, reject) => {
             $.ajax({
@@ -171,19 +171,19 @@
                     data: _POST,
                     run_config_file: 1
                 },
-                success: function(response) {
+                success: async function(response) {
                     if (response == 'success') {
                         running(field, false);
-                        log_message('debug', 'File: config.php successfully written');
+                        await log_message('debug', 'File: config.php successfully written');
                         resolve();
                     } else {
                         running(field, false, true);
-                        log_message('error', 'File: Could not write file. Check Permissions.');
+                        await log_message('error', 'File: Could not write file. Check Permissions.');
                         reject("<?= __("Could not create application/config/config.php"); ?>");
                     }
                 },
-                error: function(error) {
-                    log_message('error', 'File: Could not write file. Ajax failed.');
+                error: async function(error) {
+                    await log_message('error', 'File: Could not write file. Ajax failed.');
                     running(field, false, true);
                     reject(error);
                 }
@@ -196,7 +196,7 @@
         var field = '#database_file';
 
         running(field, true);
-        log_message('debug', 'Start writing database.php');
+        await log_message('debug', 'Start writing database.php');
 
         return new Promise((resolve, reject) => {
             $.ajax({
@@ -206,19 +206,19 @@
                     data: _POST,
                     run_database_file: 1
                 },
-                success: function(response) {
+                success: async function(response) {
                     if (response == 'success') {
                         running(field, false);
-                        log_message('debug', 'File: database.php successfully written');
+                        await log_message('debug', 'File: database.php successfully written');
                         resolve();
                     } else {
                         running(field, false, true);
-                        log_message('error', 'File: Could not write file. Check Permissions.');
+                        await log_message('error', 'File: Could not write file. Check Permissions.');
                         reject("<?= __("Could not create application/config/database.php"); ?>");
                     }
                 },
-                error: function(error) {
-                    log_message('error', 'File: Could not write file. Ajax failed.');
+                error: async function(error) {
+                    await log_message('error', 'File: Could not write file. Ajax failed.');
                     running(field, false, true);
                     reject(error);
                 }
@@ -230,7 +230,7 @@
         var field = '#database_tables';
 
         running(field, true);
-        log_message('debug', 'Start creating database structure with assets/install.sql');
+        await log_message('debug', 'Start creating database structure with assets/install.sql');
 
         return new Promise((resolve, reject) => {
             $.ajax({
@@ -240,20 +240,20 @@
                     data: _POST,
                     run_database_tables: 1
                 },
-                success: function(response) {
+                success: async function(response) {
                     if (response == 'success') {
-                        log_message('debug', 'Tables successfully created');
+                        await log_message('debug', 'Tables successfully created');
                         running(field, false);
                         resolve();
                     } else {
                         running(field, false, true);
-                        log_message('error', 'Creating database tables from assets/install.sql failed. Response: ');
+                        await log_message('error', 'Creating database tables from assets/install.sql failed. Response: ' + response);
                         reject("<?= __("Could not create database tables"); ?>");
                     }
                 },
-                error: function(error) {
+                error: async function(error) {
                     running(field, false, true);
-                    log_message('error', 'Creating database tables failed. Ajax crashed.');
+                    await log_message('error', 'Creating database tables failed. Ajax crashed.');
                     reject(error);
                 }
             });
@@ -264,25 +264,26 @@
         var field = '#database_migrations';
 
         running(field, true);
-        log_message('debug', 'Start migrating database to the newest version.');
+        await log_message('debug', 'Start migrating database to the newest version.');
 
         return new Promise((resolve, reject) => {
             $.ajax({
                 url: "<?php echo $_POST['websiteurl'] ?? $websiteurl; ?>" + "index.php/migrate",
-                success: function(response) {
-                    if (response == 'success') {
+                dataType: 'json',
+                success: async function(response) {
+                    if (response.status == 'success') {
                         running(field, false);
-                        log_message('debug', 'Database successfully created.');
+                        await log_message('debug', 'Database successfully migrated. Latest Version: ' + response.version);
                         resolve();
                     } else {
                         running(field, false, true);
-                        log_message('error', 'Could not migrate database.');
+                        await log_message('error', 'Could not migrate database. Response: ' + response.status);
                         reject("<?= __("Could not run database migrations"); ?>");
                     }
                 },
-                error: function(error) {
+                error: async function(error) {
                     running(field, false, true);
-                    log_message('error', 'Could not migrate database. Ajax crashed.');
+                    await log_message('error', 'Could not migrate database. Ajax crashed.');
                     reject(error);
                 }
             });
@@ -291,27 +292,26 @@
 
     async function update_dxcc() {
         var field = '#update_dxcc';
+        await log_message('debug', 'Start updating DXCC database. This can take a moment or two... Please wait');
+        running(field, true);
 
         return new Promise((resolve, reject) => {
-            running(field, true);
-            log_message('debug', 'Start updating DXCC database. This can take a moment or two... Please wait');
-
             $.ajax({
                 url: "<?php echo $_POST['websiteurl'] ?? $websiteurl; ?>" + "index.php/update/dxcc",
-                success: function(response) {
+                success: async function(response) {
                     if (response == 'success') {
                         running(field, false);
-                        log_message('debug', 'Successfully update DXCC database');
+                        await log_message('debug', 'Successfully update DXCC database');
                         resolve();
                     } else {
                         running(field, false, true);
-                        log_message('error', 'Could not update DXCC data.');
+                        await log_message('error', 'Could not update DXCC data.');
                         reject("<?= __("Could not update DXCC data"); ?>");
                     }
                 },
-                error: function(error) {
+                error: async function(error) {
                     running(field, false, true);
-                    log_message('error', 'Could not update DXCC data. Ajax crashed.');
+                    await log_message('error', 'Could not update DXCC data. Ajax crashed.');
                     reject(error);
                 }
             });
@@ -320,7 +320,7 @@
 
     async function installer_lock() {
         var field = '#installer_lock';
-        log_message('debug', 'Try to create .lock file for the installer');
+        await log_message('debug', 'Try to create .lock file for the installer');
 
         running(field, true);
         return new Promise((resolve, reject) => {
@@ -330,20 +330,20 @@
                 data: {
                     run_installer_lock: 1
                 },
-                success: function(response) {
+                success: async function(response) {
                     if (response == 'success') {
                         running(field, false);
-                        log_message('debug', 'Successfully created .lock file in folder /install');
+                        await log_message('debug', 'Successfully created .lock file in folder /install');
                         resolve();
                     } else {
                         running(field, false, true);
-                        log_message('error', 'Could not create .lock file.');
+                        await log_message('error', 'Could not create .lock file.');
                         reject("<?= __("Could not create install/.lock file"); ?>");
                     }
                 },
-                error: function(error) {
+                error: async function(error) {
                     running(field, false, true);
-                    log_message('error', 'Could not create .lock file. Ajax crashed');
+                    await log_message('error', 'Could not create .lock file. Ajax crashed');
                     reject(error);
                 }
             });
