@@ -248,7 +248,7 @@
                         resolve();
                     } else {
                         running(field, false, true);
-                        log_message('error', 'Creating database tables from assets/install.sql failed.');
+                        log_message('error', 'Creating database tables from assets/install.sql failed. Response: ');
                         reject("<?= __("Could not create database tables"); ?>");
                     }
                 },
