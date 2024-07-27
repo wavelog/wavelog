@@ -22,6 +22,7 @@ $min_php_version = '7.4.0';  		// below this version is no install possible
 $min_php_version_warning = '8.0.0'; // below this version some features may not available (e.g. Cronmanager)
 $max_execution_time = 600;		// Seconds
 $upload_max_filesize = 8;  		// Megabyte
+$memory_limit = 256;			// Megabyte
 $post_max_size = 8;				// Megabyte
 $req_allow_url_fopen = '1';		// 1 = on
 

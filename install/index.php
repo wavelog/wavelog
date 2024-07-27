@@ -193,6 +193,24 @@ if (!file_exists('.lock')) {
 												</td>
 											</tr>
 											<tr>
+												<td>memory_limit</td>
+												<td><?php echo '> ' . $memory_limit . 'M'; ?></td>
+												<td>
+													<?php
+													$memoryLimit = ini_get('memory_limit');
+													$memoryLimitBytes = (int)($memoryLimit) * (1024 * 1024); // convert to bytes
+													if ($memoryLimitBytes >= ($memory_limit * 1024 * 1024)) { // compare with given value in bytes
+													?>
+														<span class="badge text-bg-success"><?php echo $memoryLimit; ?></span>
+													<?php } else {
+														if ($prechecks_passed != 'failed') {  // Check current value before changing to 'warning'
+															$prechecks_passed = 'warning';
+														} ?>
+														<span class="badge text-bg-warning"><?php echo $memoryLimit; ?></span>
+													<?php } ?>
+												</td>
+											</tr>
+											<tr>
 												<td>allow_url_fopen</td>
 												<td>On</td>
 												<td>
