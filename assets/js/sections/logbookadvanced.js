@@ -323,6 +323,7 @@ $(document).ready(function () {
 		},
 		enableFiltering: true,
 		enableFullValueFiltering: false,
+		enableCaseInsensitiveFiltering: true,
 		numberDisplayed: 1,
 		inheritClass: true,
 		buttonWidth: '100%',
