@@ -1056,3 +1056,13 @@ label {
 #dxcc + .btn-group .multiselect-container .multiselect-option input[type="radio"] {
     display: none;
 }
+
+.multiselect {
+	--bs-btn-color: inherit !important;
+	--bs-btn-bg: inherit !important;
+	--bs-btn-border-color: var(--bs-border-color) !important;
+	--bs-btn-hover-bg: inherit !important;
+	--bs-btn-hover-color: inherit !important;
+	--bs-btn-active-bg: inherit !important;
+	--bs-btn-active-color: inherit !important;
+}
