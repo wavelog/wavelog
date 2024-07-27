@@ -325,7 +325,8 @@ $(document).ready(function () {
 		enableFullValueFiltering: false,
 		numberDisplayed: 1,
 		inheritClass: true,
-		buttonWidth: '100%'
+		buttonWidth: '100%',
+		maxHeight: 600
 	});
 
 
