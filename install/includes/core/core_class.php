@@ -161,7 +161,7 @@ class Core
 		// creating a unique encryption key
 		$encryptionkey = uniqid(bin2hex(random_bytes(8)), false);
 
-		$new  = str_replace("%baselocator%", $data['userlocator'], $database_file);
+		$new  = str_replace("%baselocator%", strtoupper($data['userlocator']), $database_file);
 		$new  = str_replace("%websiteurl%", $data['websiteurl'], $new);
 		$new  = str_replace("%directory%", $data['directory'], $new);
 		$new  = str_replace("%callbook%", $data['global_call_lookup'], $new);

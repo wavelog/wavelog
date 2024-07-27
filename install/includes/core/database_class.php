@@ -18,8 +18,8 @@ class Database {
 		$newquery  = str_replace("%%FIRSTUSER_NAME%%", $data['username'], $query);
 		$newquery  = str_replace("%%FIRSTUSER_PASS%%", $newpw, $newquery);
 		$newquery  = str_replace("%%FIRSTUSER_MAIL%%", $data['user_email'], $newquery);
-		$newquery  = str_replace("%%FIRSTUSER_CALL%%", $data['callsign'], $newquery);
-		$newquery  = str_replace("%%FIRSTUSER_LOCATOR%%", $data['userlocator'], $newquery);
+		$newquery  = str_replace("%%FIRSTUSER_CALL%%", strtoupper($data['callsign']), $newquery);
+		$newquery  = str_replace("%%FIRSTUSER_LOCATOR%%", strtoupper($data['userlocator']), $newquery);
 		$newquery  = str_replace("%%FIRSTUSER_FIRSTNAME%%", $data['firstname'], $newquery);
 		$newquery  = str_replace("%%FIRSTUSER_LASTNAME%%", $data['lastname'], $newquery);
 		$newquery  = str_replace("%%FIRSTUSER_TIMEZONE%%", $data['timezone'], $newquery);
