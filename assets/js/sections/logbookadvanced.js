@@ -316,6 +316,18 @@ $(document).ready(function () {
 		includeSelectAllOption: true
 	});
 
+	$('#dxcc').multiselect({
+		// template is needed for bs5 support
+		templates: {
+		  button: '<button type="button" class="multiselect dropdown-toggle btn btn-sm btn-secondary me-2 w-auto" data-bs-toggle="dropdown" aria-expanded="false"><span class="multiselect-selected-text"></span></button>',
+		},
+		enableFiltering: true,
+		enableFullValueFiltering: false,
+		numberDisplayed: 1,
+		inheritClass: true,
+		buttonWidth: '100%'
+	});
+
 
 	$('#searchForm').submit(function (e) {
 		var container = L.DomUtil.get('advancedmap');
