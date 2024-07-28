@@ -3,13 +3,14 @@
 # This file is distributed under the MIT licence.
 #
 # Fabian Berg <hb9hil@wavelog.org>, 2024.
+# Florian Wolters <wavelog@df2et.de>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-07-28 11:10+0000\n"
 "PO-Revision-Date: 2024-07-28 17:38+0000\n"
-"Last-Translator: Fabian Berg <hb9hil@wavelog.org>\n"
+"Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
 "installer/de/>\n"
 "Language: de_DE\n"
@@ -368,45 +369,49 @@ msgstr "Callbook-Passwort"
 #: install/index.php:383
 #, php-format
 msgid "Password can't contain %s or be empty"
-msgstr ""
+msgstr "Das Passwort darf %s nicht enthalten oder leer sein"
 
 #: install/index.php:388 install/index.php:393
 msgid "Advanced Settings"
-msgstr ""
+msgstr "Erweiterte Einstellungen"
 
 #: install/index.php:396
 msgid "These settings should only be set if you know what you're doing."
 msgstr ""
+"Diese Einstellungen sollten nur vorgenommen werden, wenn du weißt, was du "
+"tust."
 
 #: install/index.php:399
 msgid "Error Logs"
-msgstr ""
+msgstr "Fehlerprotokoll"
 
 #: install/index.php:400
 msgid ""
 "Optional: Enable Error Logging by setting the log threshold bigger then 0. "
 "Only enable this if you really need it."
 msgstr ""
+"Optional: Fehlerlogging kann mit einem Schwellwert größer 0 aktiviert "
+"werden. Nur aktivieren, wenn du das wirklich benötigst."
 
 #: install/index.php:405
 msgid "0 - No logs"
-msgstr ""
+msgstr "0 - Kein Protokoll"
 
 #: install/index.php:406
 msgid "1 - Error messages"
-msgstr ""
+msgstr "1 - Fehlermeldungen"
 
 #: install/index.php:407
 msgid "2 - Debug messages"
-msgstr ""
+msgstr "2 - Debugmeldungen"
 
 #: install/index.php:408
 msgid "3 - Info messages"
-msgstr ""
+msgstr "3 - Informationen"
 
 #: install/index.php:409
 msgid "4 - All messages"
-msgstr ""
+msgstr "4 - Alle Nachrichten"
 
 #: install/index.php:431
 msgid ""
@@ -425,6 +430,8 @@ msgid ""
 "Usually 'localhost'.<br>Optional with '[host]:[port]'. Default port: 3306."
 "<br>In a docker compose install type 'wavelog-db'."
 msgstr ""
+"Normalerweise 'localhost'.<br>Optional mit '[host]:[port]'. Standardport: "
+"3306.<br>In einer docker compose Installation bitte 'wavelog-db' eintragen."
 
 #: install/index.php:441
 msgid "Database Name"
@@ -453,10 +460,13 @@ msgid ""
 "Now you can create your first user in Wavelog. Fill out all fields and click "
 "continue. Make sure you use a safe password."
 msgstr ""
+"Jetzt kannst du den ersten Benutzer in Wavelog anlegen. Fülle alle Felder "
+"aus und klicke auf fortsetzen. Vergewissere dich, dass du ein sicheres "
+"Passwort verwendest."
 
 #: install/index.php:467
 msgid "All fields are required!"
-msgstr ""
+msgstr "Alle Felder werden benötigt!"
 
 #: install/index.php:476
 msgid "First Name"
@@ -529,7 +539,7 @@ msgstr "Checkliste"
 
 #: install/index.php:1054
 msgid "Pre-Checks"
-msgstr ""
+msgstr "Vorabprüfungen"
 
 #: install/index.php:1063
 msgid "Configuration"
@@ -559,23 +569,23 @@ msgstr ""
 
 #: install/index.php:1100
 msgid "Reset"
-msgstr ""
+msgstr "Zurücksetzen"
 
 #: install/index.php:1105
 msgid "Installer Reset"
-msgstr ""
+msgstr "Installer zurücksetzen"
 
 #: install/index.php:1108
 msgid "Do you really want to reset all data and start from scratch?"
-msgstr ""
+msgstr "Willst du wirklich alle Eingaben zurücksetzen und von vorne beginnen?"
 
 #: install/index.php:1111
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: install/index.php:1112
 msgid "No"
-msgstr ""
+msgstr "Nein"
 
 #: install/index.php:1122
 msgid "Back"
