@@ -225,7 +225,7 @@ $( document ).ready(function() {
 		$('#frequency_rx').val(favs[this.innerText].frequency_rx);
 		$('#frequency').val(favs[this.innerText].frequency);
 		$('#selectPropagation').val(favs[this.innerText].prop_mode);
-		$('#mode').val(favs[this.innerText].mode);
+		$('#mode').val(favs[this.innerText].mode).change();
 	});
 
 
@@ -1183,7 +1183,7 @@ $( document ).ready(function() {
 
 	// Change report based on mode
 	$('.mode').change(function(){
-		setRst($('.mode') .val());
+		setRst($('.mode').val());
 	});
 
 	function convert_case(str) {
