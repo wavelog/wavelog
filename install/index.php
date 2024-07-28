@@ -1530,7 +1530,7 @@ if (!file_exists('.lock')) {
 								} else {
 									db_connection_results.addClass('alert-warning');
 									$('#db_connection_test_button').html(originalButtonText).prop('disabled', false);
-									db_connection_results.html("<?= __('Connection was successful but your database seems too old for Wavelog. You can try to continue but you could run into issues.'); ?> <i class=\"fas fa-circle-exclamation\"></i> " + "</br></br><?= sprintf(__('The min. Version for MySQL is %s, for it\'s MariaDB %s.'), '<b>' . $mysql_version . '</b>', '<b>' . $mariadb_version . '</b>'); ?>");
+									db_connection_results.html("<?= __('Connection was successful but your database seems too old for Wavelog. You can try to continue but you could run into issues.'); ?> <i class=\"fas fa-circle-exclamation\"></i> " + "</br></br><?= sprintf(__("The min. version for MySQL is %s, for MariaDB it's %s."), '<b>' . $mysql_version . '</b>', '<b>' . $mariadb_version . '</b>'); ?>");
 								}
 								resolve(true);
 							}
