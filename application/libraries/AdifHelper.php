@@ -198,6 +198,7 @@ class AdifHelper {
 
         $line .= $this->getAdifFieldLine("MY_STATE", $qso->state);
 
+        // See: https://adif.org/314/ADIF_314.htm#Sponsor_Defined_Code_Format
 	if ($qso->station_cnty) {
 		switch ($qso->station_dxcc) {
 			case '6':
