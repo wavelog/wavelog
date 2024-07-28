@@ -1,6 +1,11 @@
 /*!
  * No overrides for the default theme as it aligns with general.css
 */
+
+body {
+	font-family: "Twemoji Country Flags", "Helvetica", "Comic Sans", serif;
+}
+
 :root {
 	--cl-border-btn-pwd: var(--bs-body-bg);
 }
@@ -205,8 +210,39 @@ div.alert-danger {
 	--bs-tooltip-opacity: 1;
 }
 
-#languageButton {
+#languageButton, #advancedSettingsButton, #resetButton {
 	position: absolute;
 	bottom: 70px;
 	right: 20px;
+}
+
+.required:after {
+	content: " *";
+	color: red;
+}
+
+.required-prefix:before {
+	content: "* ";
+	color: red;
+}
+
+#logContainer {
+	display: none;
+	padding: 10px;
+	font-family: "Courier New", Courier, monospace;
+	font-size: 14px;
+	color: #a4a4a4;
+	white-space: pre-wrap;
+	text-align: left;
+	font-style: italic;
+	background-color: #1a1a1a;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.has-warning {
+	border-color: #ffc107;
+}
+
+.uppercase {
+	text-transform: uppercase;
 }

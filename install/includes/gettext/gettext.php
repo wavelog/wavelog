@@ -76,10 +76,9 @@ function _get_client_language() {
 	global $default_lang;
 	if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
 		$code = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
-		$lang = find_by('code', $code) ?: $default_lang;
+		$lang = find_by('code', $code) ?? find_by('folder', $default_lang);
 	} else {
-		$code = 'en';
-		$lang = find_by('code', $code);
+		$lang = find_by('folder', $default_lang);
 	}
 	return $lang;
 }

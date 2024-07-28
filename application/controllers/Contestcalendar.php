@@ -84,7 +84,7 @@ class Contestcalendar extends CI_Controller {
 			$start = trim($parts[0]);
 			$end = trim($parts[1]);
 
-			// create proper dateTime 
+			// create proper dateTime
 			$timeData['start'] = DateTime::createFromFormat('Hi\Z, M d', $start);
 			$timeData['end'] = DateTime::createFromFormat('Hi\Z, M d', $end);
 		} else {
@@ -97,7 +97,7 @@ class Contestcalendar extends CI_Controller {
 			// extract the date. we need to add this to the start time
 			$date = substr($parts[1], strpos($parts[1], ',') + 2);
 
-			// create proper dateTime 
+			// create proper dateTime
 			$timeData['start'] = DateTime::createFromFormat('Hi\Z, M d', $start . ', ' . $date);
 			$timeData['end'] = DateTime::createFromFormat('Hi\Z, M d', $end);
 		}
@@ -190,12 +190,10 @@ class Contestcalendar extends CI_Controller {
 					}
 				}
 				if (!$contestExists) {
-				$contestsNextWeekend[] = $contest;
-				$contestsNextWeekend[] = $contest;
 					$contestsNextWeekend[] = $contest;
 				}
 			}
-			
+
 		}
 
 		return $contestsNextWeekend;
