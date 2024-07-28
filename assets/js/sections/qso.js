@@ -225,8 +225,7 @@ $( document ).ready(function() {
 		$('#frequency_rx').val(favs[this.innerText].frequency_rx);
 		$('#frequency').val(favs[this.innerText].frequency);
 		$('#selectPropagation').val(favs[this.innerText].prop_mode);
-		$('#mode').val(favs[this.innerText].mode);
-		setRst($('.mode').val());
+		$('#mode').val(favs[this.innerText].mode).change();
 	});
 
 
