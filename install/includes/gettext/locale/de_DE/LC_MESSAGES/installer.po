@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-07-28 11:10+0000\n"
-"PO-Revision-Date: 2024-07-28 17:38+0000\n"
+"PO-Revision-Date: 2024-07-28 17:42+0000\n"
 "Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
 "installer/de/>\n"
@@ -600,14 +600,18 @@ msgid ""
 "You can't continue. Solve the red marked issues, restart the webserver and "
 "reload this page."
 msgstr ""
+"Du kannst nicht weitermachen. Beseitige die rot markierten Probleme, starte "
+"den Web-Server neu und aktualisiere diese Seite."
 
 #: install/index.php:1328
 msgid "Password can't contain ' / \\ < >"
-msgstr ""
+msgstr "Passworte dürfen ' / \\ < > nicht enthalten"
 
 #: install/index.php:1495
 msgid "Error: At least Hostname/IP, Database Name and Username are required."
 msgstr ""
+"Fehler_ Mindestens Hostname/IP, Datenbankname und Benutzername werden "
+"benötigt."
 
 #: install/index.php:1505
 msgid "Connecting..."
@@ -615,7 +619,7 @@ msgstr "Verbinden..."
 
 #: install/index.php:1529
 msgid "Connection was successful and your database should be compatible."
-msgstr ""
+msgstr "Verbindung war erfolgreich und die Datenbank sollte kompatibel sein."
 
 #: install/index.php:1533
 msgid ""
@@ -628,7 +632,7 @@ msgstr ""
 #: install/index.php:1533
 #, php-format
 msgid "The min. Version for MySQL is %s, for it's MariaDB %s."
-msgstr ""
+msgstr "Die minimale Version für MySQL is %s, für MariaDB ist es %s."
 
 #: install/index.php:1645
 msgid "At least one field is empty."
@@ -739,7 +743,7 @@ msgstr "Konnte DXCC-Daten nicht aktualisieren"
 
 #: install/run.php:341
 msgid "Could not create install/.lock file"
-msgstr ""
+msgstr "Konnte die install/.lock Datei nicht anlegen"
 
 #: install/index.php:1533
 #, php-format
