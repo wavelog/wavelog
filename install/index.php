@@ -1502,7 +1502,7 @@ if (!file_exists('.lock')) {
 					}
 
 					var originalButtonText = $('#db_connection_test_button').html();
-					$('#db_connection_test_button').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> <?= __("Connecting..."); ?>').prop('disabled', true);
+					$('#db_connection_test_button').html("<span class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span> <?= __("Connecting..."); ?>").prop('disabled', true);
 
 					clear_db_testresult();
 
