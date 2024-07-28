@@ -1,232 +1,18 @@
 <?php
 /*
-New Wavelog Installer
+Wavelog Installer
 
 This installer guides an user through the install process and all
 necessary parameters for the new Wavelog Installation.
 
-HB9HIL - January 2024
+HB9HIL - First refactoring - January 2024
 DJ7NT - Docker Readiness - April 2024
+HB9HIL - Big UX and backend upgrade - July 2024
 */
 
-// #########################################################
-// Unattended install
-// #########################################################
-if (file_exists('config_unattended.php')) {
-	require_once('install_unattended.php');
-	// run_unattended_install();
-	return;
-}
+if (!file_exists('.lock')) {
 
-// #########################################################
-// PRECONFIGURATION
-// #########################################################
-
-function is_https() {
-	if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
-		return true;
-	}
-	if (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
-		return true;
-	}
-	if (!empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] === 'on') {
-		return true;
-	}
-	return false;
-}
-
-if (is_https()) {
-	$http_scheme = "https";
-} else {
-	$http_scheme = "http";
-}
-
-global $installer_url;
-$installer_url = $http_scheme . '://' . $_SERVER['HTTP_HOST'] . '/' . substr(str_replace(["index.php", "/install/"], "/", $_SERVER['REQUEST_URI']), 1) . 'install';
-
-// Config Paths
-$db_config_path = '../application/config/';
-if (isset($_ENV['CI_ENV'])) {
-	$db_config_path = '../application/config/' . $_ENV['CI_ENV'] . '/';
-}
-$db_file_path = $db_config_path . "database.php";
-
-// if you need to disabled all button locks you can create a root_mode file in the /install directory
-$root_mode_file = '.root_mode';
-
-// Wanted Pre-Check Parameters
-// PHP
-$min_php_version = '7.4.0';
-$max_execution_time = 600;		// Seconds
-$max_upload_file_size = 8;  	// Megabyte
-$post_max_size = 8;				// Megabyte
-$req_allow_url_fopen = '1';		// 1 = on
-
-// Array of PHP modules to check
-global $required_php_modules;
-$required_php_modules = [
-	'php-curl' => ['condition' => isExtensionInstalled('curl')],
-	'php-mysql' => ['condition' => isExtensionInstalled('mysqli')],
-	'php-mbstring' => ['condition' => isExtensionInstalled('mbstring')],
-	'php-xml' => ['condition' => isExtensionInstalled('xml')],
-	'php-zip' => ['condition' => isExtensionInstalled('zip')],
-];
-
-// MariaDB / MySQL
-$mariadb_version = 10.1;
-$mysql_version = 5.7;
-
-// #########################################################
-// Gettext Implementation
-// #########################################################
-
-// include the lib and the conf file
-require_once('includes/gettext/gettext.php');
-require_once('includes/gettext/gettext_conf.php');
-
-/**
- * save all available languages
- * @var array $languages
- */
-$languages = $gt_conf['languages'];
-
-// if we come with a get call we can switch the language cookie
-if (isset($_GET['lang'])) {
-	switch_lang($_GET['lang']);
-}
-
-// get the browsers language if no cookie exists and set one
-if (!isset($_COOKIE[$gt_conf['lang_cookie']])) {
-	$browser_language = _get_client_language();
-	setcookie($gt_conf['lang_cookie'], $browser_language['gettext']);
-	header("Location: " . $installer_url);
-	exit();
-}
-// get the language from the cookie
-$language = $_COOKIE[$gt_conf['lang_cookie']];
-
-// and set the locale for gettext
-T_setlocale(LC_MESSAGES, $language);
-
-// function to switch the language based on the user selection
-function switch_lang($new_language) {
-	global $gt_conf, $installer_url;
-	setcookie($gt_conf['lang_cookie'], $new_language);
-	header("Location: " . $installer_url);
-	exit();
-}
-
-// ######################################################### END OF PRECONFIGURATION
-
-// Function to check if a PHP extension is installed
-function isExtensionInstalled($extensionName) {
-	return in_array($extensionName, get_loaded_extensions());
-}
-
-function delDir($dir) {
-	$files = glob($dir . '*', GLOB_MARK);
-	foreach ($files as $file) {
-		if (substr($file, -1) == '/') {
-			if (file_exists($file)) {
-				delDir($file);
-			}
-		} else {
-			if (file_exists($file)) {
-				unlink($file);
-			}
-		}
-	}
-}
-
-if (file_exists($db_file_path)) {
-	delDir(getcwd());
-	header("../");
-	exit;
-}
-
-if (file_exists($root_mode_file)) {
-	$root_mode = true;
-} else {
-	$root_mode = false;
-}
-
-// Only load the classes in case the user submitted the form
-if ($_POST) {
-
-	// Load the classes and create the new objects
-	require_once('includes/core_class.php');
-	require_once('includes/database_class.php');
-
-	$core = new Core();
-	$database = new Database();
-
-	if ($_POST['database_check'] ?? false == true) {
-
-		$result = $database->database_check($_POST);
-		echo $result;
-		exit;
-	} else {
-		// Validate the post data
-		if ($core->validate_post($_POST) == true) {
-
-			// First create the database, then create tables, then write config file
-			if ($database->create_database($_POST) == false) {
-				$message = $core->show_message('error', "The database could not be created, please verify your settings.");
-			} elseif ($database->create_tables($_POST) == false) {
-				$message = $core->show_message('error', "The database tables could not be created, please verify your settings.");
-			} elseif ($core->write_config($_POST) == false) {
-				$message = $core->show_message('error', "The database configuration file could not be written, please chmod " . $db_config_path . "/database.php file to 777");
-			}
-
-			if ($core->write_configfile($_POST) == false) {
-				$message = $core->show_message('error', "The config configuration file could not be written, please chmod " . $db_config_path . "/config.php file to 777");
-			}
-
-			// If no errors, redirect to registration page
-			if (!isset($message)) {
-				sleep(1);
-				$ch = curl_init();
-				list($realHost,) = explode(':', $_SERVER['HTTP_HOST']);
-				$wavelog_url = $http_scheme . "://" . $realHost . ":" . $_SERVER['SERVER_PORT'];
-				curl_setopt($ch, CURLOPT_URL, $wavelog_url);
-				curl_setopt($ch, CURLOPT_VERBOSE, 0);
-				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-				$result = curl_exec($ch);
-				curl_setopt($ch, CURLOPT_URL, $wavelog_url . "/index.php/update/dxcc");
-				$result = curl_exec($ch);
-				delDir(getcwd());
-				header('Location: ' . $http_scheme . "://" . $_SERVER['HTTP_HOST'] . '/' . $_POST['directory']);
-				exit;
-			}
-		} else {
-			$message = $core->show_message('error', 'Not all fields have been filled in correctly. The host, username, password, and database name are required.');
-		}
-	}
-}
-global $wavelog_url;
-
-?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="<?= $language; ?>">
-
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-	<title><?= __("Install | Wavelog"); ?></title>
-	<link rel="icon" type="image/x-icon" href="../favicon.ico">
-
-	<link rel="stylesheet" href="../assets/css/darkly/bootstrap.min.css">
-	<link rel="stylesheet" href="assets/css/overrides.css">
-	<link rel="stylesheet" href="../assets/fontawesome/css/all.min.css">
-
-	<script type="text/javascript" src="../assets/js/bootstrap.bundle.min.js"></script>
-	<script type="text/javascript" src="../assets/js/jquery-3.3.1.min.js"></script>
-</head>
-
-<?php if (is_writable($db_config_path)) : ?>
-	<?php if (isset($message)) {
-		echo '<p class="error">' . $message . '</p>'; // TODO Integrate Message into the design, Dialog???
-	} ?>
+	include 'includes/interface_assets/header.php'; ?>
 
 	<body>
 		<div class="container" style="max-width: 1200px; margin-top: 8rem; ">
@@ -257,13 +43,13 @@ global $wavelog_url;
 				</div>
 
 				<div class="card-body">
-					<form id="install_form" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+					<form id="install_form" method="post" action="run.php">
 						<div class="tab-content" id="myTabContent">
 
 							<!-- Tab 1: Welcome -->
 							<div class="tab-pane fade show active p-3" id="welcome" role="tabpanel" aria-labelledby="welcome-tab">
 								<div class="row" style="margin-top: 20px;">
-									<div class="col-md-6">
+									<div class="col-md-6" id="logo-container">
 										<img src="../assets/logo/wavelog_logo_darkly.png" alt="" style="max-width: 100%; height: auto;">
 									</div>
 
@@ -291,8 +77,7 @@ global $wavelog_url;
 											<ul style="list-style-type: none;">
 												<?php foreach ($languages as $lang) { ?>
 													<li>
-														<img src="https://flagcdn.com/w20/<?php echo ($lang['code'] == 'en') ? 'gb' : $lang['flag']; ?>.png">
-														<a href="?lang=<?php echo $lang['gettext']; ?>"><?php echo $lang['name_en']; ?></a>
+														<?php echo country2flag($lang['flag']); ?> <a href="?lang=<?php echo $lang['gettext']; ?>"><?php echo $lang['name_en']; ?></a>
 													</li>
 												<?php } ?>
 											</ul>
@@ -306,30 +91,36 @@ global $wavelog_url;
 
 							<!-- Tab 2: Pre-Checks -->
 							<div class="tab-pane fade" id="precheck" role="tabpanel" aria-labelledby="precheck-tab">
-								<div class="row justify-content-center" style="margin-top: 3rem;">
+								<div class="row justify-content-center" style="margin-top: 1rem;">
 									<div class="col-md-5 mx-auto">
 										<p class="border-bottom mb-2"><b><?= __("PHP Modules"); ?></b></p>
 										<?php
 										// Initialize the tracker
-										$allChecksPassed = 'ok';
+										$prechecks_passed = 'ok';
 										?>
 										<table width="100%">
 											<tr>
 												<td><?= __("Version"); ?></td>
-												<td><?php echo 'min. ' . $min_php_version; ?></td>
+												<td><?= sprintf(_pgettext("PHP Version", "min. %s (recommended %s+)"), $min_php_version, $min_php_version_warning); ?></td>
 												<td>
-													<?php if (version_compare(PHP_VERSION, $min_php_version) <= 0) { ?>
+													<?php if (version_compare(PHP_VERSION, $min_php_version) <= 0) {
+														$prechecks_passed = 'failed'; ?>
 														<span class="badge text-bg-danger"><?php echo PHP_VERSION; ?></span>
-													<?php } else { ?>
-														<span class="badge text-bg-success"><?php echo PHP_VERSION; ?></span>
-													<?php } ?>
+														<?php } else {
+														if (version_compare(PHP_VERSION, $min_php_version_warning) <= 0) {
+															$prechecks_passed = 'warning'; ?>
+															<span class="badge text-bg-warning"><?php echo PHP_VERSION; ?></span>
+														<?php } else { ?>
+															<span class="badge text-bg-success"><?php echo PHP_VERSION; ?></span>
+													<?php }
+													} ?>
 												</td>
 											</tr>
 											<?php
 											foreach ($required_php_modules as $moduleName => $moduleData) {
 												$condition = $moduleData['condition'];
 												if (!$condition) {
-													$allChecksPassed = 'failed';
+													$prechecks_passed = 'failed';
 												}
 											?>
 												<tr>
@@ -356,8 +147,8 @@ global $wavelog_url;
 													if ($maxExecutionTime >= $max_execution_time) { ?>
 														<span class="badge text-bg-success"><?php echo $maxExecutionTime . ' s'; ?></span>
 													<?php } else {
-														if ($allChecksPassed != 'failed') {  // Check current value before changing to 'warning'
-															$allChecksPassed = 'warning';
+														if ($prechecks_passed != 'failed') {  // Check current value before changing to 'warning'
+															$prechecks_passed = 'warning';
 														} ?>
 														<span class="badge text-bg-warning"><?php echo $maxExecutionTime; ?></span>
 													<?php } ?>
@@ -365,18 +156,18 @@ global $wavelog_url;
 											</tr>
 
 											<tr>
-												<td>max_upload_file_size</td>
-												<td><?php echo '> ' . $max_upload_file_size . 'M'; ?></td>
+												<td>upload_max_filesize</td>
+												<td><?php echo '> ' . $upload_max_filesize . 'M'; ?></td>
 												<td>
 													<?php
 													$maxUploadFileSize = ini_get('upload_max_filesize');
 													$maxUploadFileSizeBytes = (int)($maxUploadFileSize) * (1024 * 1024); // convert to bytes
-													if ($maxUploadFileSizeBytes >= ($max_upload_file_size * 1024 * 1024)) { // compare with given value in bytes
+													if ($maxUploadFileSizeBytes >= ($upload_max_filesize * 1024 * 1024)) { // compare with given value in bytes
 													?>
 														<span class="badge text-bg-success"><?php echo $maxUploadFileSize; ?></span>
 													<?php } else {
-														if ($allChecksPassed != 'failed') {  // Check current value before changing to 'warning'
-															$allChecksPassed = 'warning';
+														if ($prechecks_passed != 'failed') {  // Check current value before changing to 'warning'
+															$prechecks_passed = 'warning';
 														} ?>
 														<span class="badge text-bg-warning"><?php echo $maxUploadFileSize; ?></span>
 													<?php } ?>
@@ -394,10 +185,28 @@ global $wavelog_url;
 													?>
 														<span class="badge text-bg-success"><?php echo $maxUploadFileSize; ?></span>
 													<?php } else {
-														if ($allChecksPassed != 'failed') {  // Check current value before changing to 'warning'
-															$allChecksPassed = 'warning';
+														if ($prechecks_passed != 'failed') {  // Check current value before changing to 'warning'
+															$prechecks_passed = 'warning';
 														} ?>
 														<span class="badge text-bg-warning"><?php echo $maxUploadFileSize; ?></span>
+													<?php } ?>
+												</td>
+											</tr>
+											<tr>
+												<td>memory_limit</td>
+												<td><?php echo '> ' . $memory_limit . 'M'; ?></td>
+												<td>
+													<?php
+													$memoryLimit = ini_get('memory_limit');
+													$memoryLimitBytes = (int)($memoryLimit) * (1024 * 1024); // convert to bytes
+													if ($memoryLimitBytes >= ($memory_limit * 1024 * 1024)) { // compare with given value in bytes
+													?>
+														<span class="badge text-bg-success"><?php echo $memoryLimit; ?></span>
+													<?php } else {
+														if ($prechecks_passed != 'failed') {  // Check current value before changing to 'warning'
+															$prechecks_passed = 'warning';
+														} ?>
+														<span class="badge text-bg-warning"><?php echo $memoryLimit; ?></span>
 													<?php } ?>
 												</td>
 											</tr>
@@ -409,47 +218,110 @@ global $wavelog_url;
 													$get_allow_url_fopen = ini_get('allow_url_fopen');
 													if ($get_allow_url_fopen == $req_allow_url_fopen) {
 													?>
-														<span class="badge text-bg-success"><?= __("On"); ?></span>
+														<span class="badge text-bg-success">On</span>
 													<?php } else {
-														$allChecksPassed = 'failed'; ?>
-														<span class="badge text-bg-danger"><?= __("Off"); ?></span>
+														$prechecks_passed = 'failed'; ?>
+														<span class="badge text-bg-danger">Off</span>
+													<?php } ?>
+												</td>
+											</tr>
+										</table>
+										<p class="border-bottom mb-2" style="margin-top: 2rem;"><b><?= __("Folder Write Permissions"); ?></b></p>
+										<table width="100%">
+											<tr>
+												<td>/application</td>
+												<td>
+													<?php if (is_really_writable('../application/cache') == true && is_really_writable('../application/config') == true && is_really_writable('../application/logs') == true) { ?>
+														<span class="badge text-bg-success"><?= __("Success"); ?></span>
+													<?php } else {
+														$prechecks_passed = 'failed'; ?>
+														<span class="badge text-bg-danger"><?= __("Failed"); ?></span>
+													<?php } ?>
+												</td>
+											</tr>
+											<tr>
+												<td>/backup</td>
+												<td>
+													<?php if (is_really_writable('../backup') == true) { ?>
+														<span class="badge text-bg-success"><?= __("Success"); ?></span>
+													<?php } else {
+														$prechecks_passed = 'failed'; ?>
+														<span class="badge text-bg-danger"><?= __("Failed"); ?></span>
+													<?php } ?>
+												</td>
+											</tr>
+											<tr>
+												<td>/updates</td>
+												<td>
+													<?php if (is_really_writable('../updates') == true) { ?>
+														<span class="badge text-bg-success"><?= __("Success"); ?></span>
+													<?php } else {
+														$prechecks_passed = 'failed'; ?>
+														<span class="badge text-bg-danger"><?= __("Failed"); ?></span>
+													<?php } ?>
+												</td>
+											</tr>
+											<tr>
+												<td>/uploads</td>
+												<td>
+													<?php if (is_really_writable('../uploads') == true) { ?>
+														<span class="badge text-bg-success"><?= __("Success"); ?></span>
+													<?php } else {
+														$prechecks_passed = 'failed'; ?>
+														<span class="badge text-bg-danger"><?= __("Failed"); ?></span>
+													<?php } ?>
+												</td>
+											</tr>
+											<tr>
+												<td>/userdata</td>
+												<td>
+													<?php if (is_really_writable('../userdata') == true) { ?>
+														<span class="badge text-bg-success"><?= __("Success"); ?></span>
+													<?php } else {
+														$prechecks_passed = 'failed'; ?>
+														<span class="badge text-bg-danger"><?= __("Failed"); ?></span>
 													<?php } ?>
 												</td>
 											</tr>
 										</table>
 									</div>
-
-									<div class="col-md-5 mb-4 mx-auto"> <!-- MySQL / MariaDB -->
-										<p class="border-bottom mb-2"><b><?= __("MySQL / MariaDB"); ?></b></p>
-										<table width="100%">
+									<div class="col-md-5 mb-4 mx-auto">
+										<p class="border-bottom mb-2"><b><?= __("Web Server"); ?></b></p>
+										<table width="100%" style="margin-bottom: 25px;">
 											<tr>
-												<td><?= __("Min. MySQL Version:"); ?> </td>
-												<td><span class="badge text-bg-info"><?php echo $mysql_version; ?></span></td>
-											</tr>
-											<tr>
-												<td><?= __("or"); ?></td>
-												<td></td>
-											</tr>
-											<tr>
-												<td><?= __("Min. MariaDB Version:"); ?> </td>
-												<td><span class="badge text-bg-info"><?php echo $mariadb_version; ?></span></td>
+												<td><?= __("Version:"); ?> </td>
+												<td><span class="badge text-bg-info"><?php echo detect_webserver(); ?></span></td>
 											</tr>
 										</table>
-										<p style="margin-top: 10px; margin-bottom: 100px;"><?= __("You can test your MySQL/MariaDB Version in Step 4"); ?></p>
-
-										<?php if ($allChecksPassed == 'failed') { ?>
-											<div class="alert alert-danger d-flex flex-column align-items-center" role="alert">
+										<?php if (strpos(strtolower(detect_webserver()), 'nginx') !== false) {
+											if (detect_nginx_php_setting($http_scheme) != 200) { ?>
+												<div class="alert alert-warning d-flex flex-column align-items-center" role="alert">
+													<p class="mb-2 border-bottom"><?= __("Important note for nginx users!"); ?></p>
+													<p class="mb-0"><?= __("Since you are using nginx as web server please make sure that you have made the changes described in the Wiki before continuing."); ?></p><br>
+													<p class="mb-0"><a target="_blank" href="https://github.com/wavelog/Wavelog/wiki/Installation#nginx-configuration">https://github.com/wavelog/Wavelog/wiki/Installation#nginx-configuration</a></p>
+												</div>
+											<?php } ?>
+										<?php } ?>
+										<?php if ($prechecks_passed == 'failed') {
+											$prechecks_icon = "fa-times-circle";
+											$prechecks_color = "red"; ?>
+											<div id="precheck_testresults" class="alert alert-danger d-flex flex-column align-items-center" role="alert">
 												<p class="mb-2 border-bottom"><?= __("Some Checks have failed!"); ?></p>
 												<p class="mb-2"><?= __("Check your PHP settings and install missing modules if necessary."); ?></p>
 												<p class="mb-0"><?= __("After that, you have to restart your webserver and start the installer again."); ?></p>
 											</div>
-										<?php } else if ($allChecksPassed == 'warning') { ?>
-											<div class="alert alert-warning d-flex flex-column align-items-center" role="alert">
+										<?php } else if ($prechecks_passed == 'warning') {
+											$prechecks_icon = "fa-exclamation-triangle";
+											$prechecks_color = "#ffc107"; ?>
+											<div id="precheck_testresults" class="alert alert-warning d-flex flex-column align-items-center" role="alert">
 												<p class="mb-2 border-bottom"><?= __("You have some warnings!"); ?></p>
 												<p class="mb-2"><?= __("Some of the settings are not optimal. You can proceed with the installer but be aware that you could run into problems while using Wavelog."); ?></p>
 											</div>
-										<?php } else if ($allChecksPassed == 'ok') { ?>
-											<div class="alert alert-success d-flex align-items-center" role="alert">
+										<?php } else if ($prechecks_passed == 'ok') {
+											$prechecks_icon = "fa-check-circle";
+											$prechecks_color = "#04a004"; ?>
+											<div id="precheck_testresults" class="alert alert-success d-flex align-items-center" role="alert">
+												<i class="me-2 fas fa-check-circle"></i>
 												<p class="mb-0"><?= __("All Checks are OK. You can continue."); ?></p>
 											</div>
 										<?php } ?>
@@ -470,20 +342,19 @@ global $wavelog_url;
 											<div class="input-group">
 												<span class="input-group-text" id="main-url"><?php echo $http_scheme . '://' . $_SERVER['HTTP_HOST'] . "/"; ?></span>
 												<input type="text" id="directory" value="<?php echo substr(str_replace("index.php", "", str_replace("/install/", "", $_SERVER['REQUEST_URI'])), 1); ?>" class="form-control" name="directory" aria-describedby="main-url" />
+												<div class="invalid-tooltip">
+													<?= __("No slash before or after the directory. Just the name of the folder."); ?>
+												</div>
 											</div>
 										</div>
 										<div class="mb-3 position-relative">
-											<label for="websiteurl" class="form-label"><?= __("Website URL"); ?><i id="websiteurl_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= sprintf(__("This is the complete URL where your Wavelog Instance will be available. If you run this installer locally but want to place Wavelog behind a Reverse Proxy with SSL you should type in the new URL here (e.g. %s instead of %s). Don't forget to include the directory from above."), "https://mywavelog.example.org/", "http://192.168.1.100/"); ?>"></i></label>
-											<input type="text" id="websiteurl" value="<?php echo $http_scheme; ?>://<?php echo str_replace("index.php", "", $_SERVER['HTTP_HOST'] . str_replace("/install/", "", $_SERVER['REQUEST_URI'])); ?>" class="form-control" name="websiteurl" />
+											<label for="websiteurl" class="form-label required"><?= __("Website URL"); ?></label><i id="websiteurl_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= sprintf(__("This is the complete URL where your Wavelog Instance will be available. If you run this installer locally but want to place Wavelog behind a Reverse Proxy with SSL you should type in the new URL here (e.g. %s instead of %s). Don't forget to include the directory from above."), "https://mywavelog.example.org/", "http://192.168.1.100/"); ?>"></i>
+											<input type="text" id="websiteurl" value="<?php echo $websiteurl; ?>" class="form-control" name="websiteurl" />
 											<div class="invalid-tooltip">
-												<?= __("This field can't be empty!"); ?>
-											</div>
-										</div>
-										<div class="mb-3 position-relative">
-											<label for="locator" class="form-label"><?= __("Default Gridsquare/Locator"); ?><i id="gridsquare_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("This is the default maidenhead locator which is used as falback. You can use the locator of your Home QTH."); ?>"></i></label>
-											<input type="text" id="locator" placeholder="HA44AA" class="form-control" name="locator" />
-											<div class="invalid-tooltip">
-												<?= __("Type in a valid locator"); ?>
+												<?= __("This field<br>
+												- can't be empty<br>
+												- have to end with a slash 'example/'<br>
+												- have to start with 'http'"); ?>
 											</div>
 										</div>
 										<div class="mb-3">
@@ -506,12 +377,46 @@ global $wavelog_url;
 												<div class="mb-3">
 													<input type="text" id="callbook_username" placeholder="<?= __("Callbook Username"); ?>" class="form-control" name="callbook_username" />
 												</div>
-												<div>
+												<div class="position-relative">
 													<input type="password" id="callbook_password" placeholder="<?= __("Callbook Password"); ?>" class="form-control" name="callbook_password" />
+													<div class="invalid-tooltip">
+														<?= sprintf(__("Password can't contain %s or be empty"), "' \" / \ < >"); ?>
+													</div>
 												</div>
 											</div>
 										</div>
-
+										<a class="btn btn-sm btn-secondary" id="advancedSettingsButton"><?= __("Advanced Settings"); ?></a>
+										<div class="modal fade" id="advancedSettingsModal" tabindex="-1" aria-labelledby="advancedSettingsModalLabel" aria-hidden="true">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title" id="advancedSettingsModalLabel"><?= __("Advanced Settings"); ?></h5>
+													</div>
+													<div class="modal-body">
+														<p><?= __("These settings should only be set if you know what you're doing.") ?></p>
+														<div class="row mb-3">
+															<div class="col-6">
+																<label for="log_threshold" class="form-label"><?= __("Error Logs"); ?>
+																	<i id="logging_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("Optional: Enable Error Logging by setting the log threshold bigger then 0. Only enable this if you really need it."); ?>"></i>
+																</label>
+															</div>
+															<div class="col-6">
+																<select id="log_threshold" class="form-select" name="log_threshold">
+																	<option value="0" selected><?= __("0 - No logs"); ?></option>
+																	<option value="1"><?= __("1 - Error messages"); ?></option>
+																	<option value="2"><?= __("2 - Debug messages"); ?></option>
+																	<option value="3"><?= __("3 - Info messages"); ?></option>
+																	<option value="4"><?= __("4 - All messages"); ?></option>
+																</select>
+															</div>
+														</div>
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?= __("Close"); ?></button>
+													</div>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -527,23 +432,23 @@ global $wavelog_url;
 										<div class="row">
 											<div class="col">
 												<div class="mb-3">
-													<label for="db_hostname" class="form-label"><?= __("Hostname or IP"); ?><i id="callbook_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("Usually 'localhost'. Optional with '...:[port]'. Default Port: 3306"); ?>"></i></label>
+													<label for="db_hostname" class="form-label required"><?= __("Hostname or IP"); ?></label><i id="callbook_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("Usually 'localhost'.<br>Optional with '[host]:[port]'. Default port: 3306.<br>In a docker compose install type 'wavelog-db'."); ?>"></i>
 													<input type="text" id="db_hostname" placeholder="localhost" class="form-control" name="db_hostname" />
 												</div>
 											</div>
 											<div class="col">
 												<div class="mb-3">
-													<label for="db_name" class="form-label"><?= __("Database Name"); ?><i id="callbook_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("Name of the Database"); ?>"></i></label>
+													<label for="db_name" class="form-label required"><?= __("Database Name"); ?></label><i id="callbook_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("Name of the Database"); ?>"></i>
 													<input type="text" id="db_name" placeholder="wavelog" class="form-control" name="db_name" />
 												</div>
 											</div>
 										</div>
 										<div class="mb-3">
-											<label for="db_username" class="form-label"><?= __("Username"); ?><i id="callbook_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("Username of the Database User which has full access to the database."); ?>"></i></label>
+											<label for="db_username" class="form-label required"><?= __("Username"); ?></label><i id="callbook_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("Username of the Database User which has full access to the database."); ?>"></i>
 											<input type="text" id="db_username" placeholder="waveloguser" class="form-control" name="db_username" />
 										</div>
 										<div class="mb-3">
-											<label for="db_password" class="form-label"><?= __("Password"); ?><i id="callbook_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("Password of the Database User"); ?>"></i></label>
+											<label for="db_password" class="form-label"><?= __("Password"); ?></label><i id="callbook_tooltip" data-bs-toggle="tooltip" data-bs-placement="top" title="Directory Hint" class="fas fa-question-circle text-muted ms-2" data-bs-custom-class="custom-tooltip" data-bs-html="true" data-bs-title="<?= __("Password of the Database User"); ?>"></i>
 											<input type="password" id="db_password" placeholder="supersecretpassword" class="form-control" name="db_password" />
 										</div>
 										<div class="col">
@@ -557,11 +462,12 @@ global $wavelog_url;
 							<!-- Tab 5: First User -->
 							<div class="tab-pane fade" id="firstuser" role="tabpanel" aria-labelledby="firstuser-tab">
 								<div class="row">
-									<div class="col-md-8 mb-2">
-										<p style="margin-top: 10px;"><?= __("Now you can create your first user in Wavelog. Fill out all fields and click continue.<br>Make sure you use a safe password."); ?></p>
+									<div class="col-md-6 mb-2">
+										<p style="margin-top: 10px;"><?= __("Now you can create your first user in Wavelog. Fill out all fields and click continue. Make sure you use a safe password."); ?></p>
+										<p class="required-prefix"><?= __("All fields are required!"); ?></p>
 									</div>
-									<div class="col-md-4 mb-2">
-										<div class="alert alert-danger" id="userform_warnings" style="display: none; margin-top: 10px;"></div>
+									<div class="col-md-6 mb-2">
+										<div class="alert" id="userform_warnings" style="display: none; margin-top: 10px;"></div>
 									</div>
 								</div>
 
@@ -580,7 +486,7 @@ global $wavelog_url;
 										<label for="lastname" class="form-label"><?= __("Last Name"); ?></label>
 										<input type="text" id="lastname" tabindex="2" placeholder="Radio" class="form-control" name="lastname" />
 									</div>
-									<div class="col-md-6 mb-2">
+									<div class="col-md-6 mb-2 position-relative">
 										<label for="password" class="form-label"><?= __("Password"); ?></label>
 										<input type="password" id="password" tabindex="8" placeholder="**********" class="form-control" name="password" />
 									</div>
@@ -588,7 +494,7 @@ global $wavelog_url;
 								<div class="row">
 									<div class="col-md-6 mb-2">
 										<label for="callsign" class="form-label"><?= __("Callsign"); ?></label>
-										<input type="text" id="callsign" tabindex="3" placeholder="4W7EST" class="form-control" name="callsign" />
+										<input type="text" id="callsign" tabindex="3" placeholder="4W7EST" class="form-control uppercase" name="callsign" />
 									</div>
 									<div class="col-md-6 mb-2">
 										<label for="cnfm_password" class="form-label"><?= __("Confirm Password"); ?></label>
@@ -608,7 +514,7 @@ global $wavelog_url;
 								<div class="row">
 									<div class="col-md-6 mb-2">
 										<label for="userlocator" class="form-label"><?= __("Gridsquare/Locator"); ?></label>
-										<input type="text" id="userlocator" tabindex="5" placeholder="HA44AA" class="form-control" name="userlocator" />
+										<input type="text" id="userlocator" tabindex="5" placeholder="HA44AA" class="form-control uppercase" name="userlocator" />
 									</div>
 									<div class="col-md-6 mb-2">
 										<label for="timezone" class="form-label"><?= __("Timezone"); ?></label>
@@ -1126,8 +1032,8 @@ global $wavelog_url;
 										<select class="form-select" id="userlanguage" name="userlanguage" tabindex="12">
 											<?php foreach ($languages as $lang) { ?>
 												<option value="<?php echo $lang['folder']; ?>" <?php if ($lang['gettext'] == $language) {
-																								echo 'selected';
-																							} ?>><?= __($lang['name_en']); ?></option>
+																									echo 'selected';
+																								} ?>><?= __($lang['name_en']); ?></option>
 											<?php } ?>
 										</select>
 									</div>
@@ -1141,21 +1047,70 @@ global $wavelog_url;
 										<div class="d-flex justify-content-center">
 											<div>
 												<h4><?= __("Checklist"); ?></h4>
-												<p class="ms-2"><i class="me-2 fas"></i><?= __("Configuration"); ?></p>
-												<div class="ms-2 alert" id="configuration-warning" style="display: none;"></div>
-												<p class="ms-2"><i class="me-2 fas"></i><?= __("Database"); ?></p>
-												<div class="ms-2 alert" id="database-warning" style="display: none;"></div>
-												<p class="ms-2"><i class="me-2 fas"></i><?= __("First User"); ?></p>
-												<div class="ms-2 alert" id="firstuser-warning" style="display: none;"></div>
+												<div class="row">
+													<div class="col">
+														<p class="ms-2">
+															<a href="javascript:void(0);" class="text-decoration-none" onclick="openTab('precheck-tab')" style="color: inherit;">
+																<i id="checklist_prechecks" class="me-2 fas <?php echo $prechecks_icon; ?>" style="color: <?php echo $prechecks_color; ?>"></i><?= __("Pre-Checks"); ?>
+															</a>
+														</p>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col">
+														<p class="ms-2">
+															<a href="javascript:void(0);" class="text-decoration-none" onclick="openTab('configuration-tab')" style="color: inherit;">
+																<i id="checklist_configuration" class="me-2 fas"></i><?= __("Configuration"); ?>
+															</a>
+														</p>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col">
+														<p class="ms-2">
+															<a href="javascript:void(0);" class="text-decoration-none" onclick="openTab('database-tab')" style="color: inherit;">
+																<i id="checklist_database" class="me-2 fas"></i><?= __("Database"); ?>
+															</a>
+														</p>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col">
+														<p class="ms-2">
+															<a href="javascript:void(0);" class="text-decoration-none" onclick="openTab('firstuser-tab')" style="color: inherit;">
+																<i id="checklist_firstuser" class="me-2 fas"></i><?= __("First User"); ?>
+															</a>
+														</p>
+													</div>
+												</div>
 											</div>
 										</div>
 									</div>
 									<div class="col">
 										<div class="text-center">
 											<h4 style="margin-top: 50px;"><?= __("Nearly done!"); ?></h4>
-											<p style="margin-top: 50px;"><?= __("You prepared all neccessary steps."); ?></p>
-											<p><?= __("We now can install Wavelog. This process can take a few minutes."); ?></p>
-											<button class="btn btn-primary" type="submit" id="submit"><?= __("Install Now"); ?></button>
+											<div id="install_is_ready_msg">
+												<p style="margin-top: 50px;"><?= __("You prepared all neccessary steps."); ?></p>
+												<p><?= __("We now can install Wavelog. This process can take a few minutes."); ?></p>
+											</div>
+											<button class="btn btn-primary" type="submit" id="submit"></button>
+										</div>
+									</div>
+								</div>
+								<a class="btn btn-sm btn-secondary" id="resetButton"><?= __("Reset"); ?></a>
+								<div class="modal fade" id="resetModal" tabindex="-1" aria-labelledby="resetModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="resetModalLabel"><?= __("Installer Reset"); ?></h5>
+											</div>
+											<div class="modal-body">
+												<p><?= __("Do you really want to reset all data and start from scratch?"); ?></p>
+											</div>
+											<div class="modal-footer">
+												<button type="button" id="resetInstaller" class="btn btn-success"><?= __("Yes"); ?></button>
+												<button type="button" class="btn btn-danger" data-bs-dismiss="modal"><?= __("No"); ?></button>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -1171,9 +1126,6 @@ global $wavelog_url;
 		</div>
 
 		<script>
-			// let continue_allowed = true;
-			// console.log('initial continue_allowed');
-
 			// We don't want to allow press Enter to trigger Events in the Installer
 			// Too dangerous for an average $user
 			document.addEventListener('keydown', function(event) {
@@ -1182,70 +1134,426 @@ global $wavelog_url;
 				}
 			});
 
-			function db_connection_test() {
-				var db_hostname = $('#db_hostname').val();
-				var db_username = $('#db_username').val();
-				var db_password = $('#db_password').val();
-				var db_name = $('#db_name').val();
+			// General stuff on page load
+			$(document).ready(function() {
 
-				if (db_hostname === '' || db_username === '' || db_password === '' || db_name === '') {
-					$('#db_connection_testresult').addClass('alert-danger');
-					$('#db_connection_testresult').html('<?= __("Error: All fields are required."); ?>');
-					// continue_allowed = false;
-					return;
+				// tooltip trigger
+				const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+				const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+
+				//fancy stuff
+				$("#logo-container img").hide().fadeIn(2000);
+
+				$('#languageButton').click(function() {
+					$('#languageModal').modal('show');
+				});
+
+				continueButton.css('display', 'block');
+				console.log("Ready to unleash your coding prowess and join the fun?\n\n" +
+					"Check out our GitHub Repository and dive into the coding adventure:\n\n" +
+					"🚀 https://www.github.com/wavelog/wavelog");
+
+			});
+
+			/*
+			 *
+			 * Tabs Structure and Footer Buttons
+			 * 
+			 */
+			const firstTabId = 'welcome-tab';
+			const secondTabId = 'precheck-tab';
+			const thirdTabId = 'configuration-tab';
+			const fourthTabId = 'database-tab';
+			const fifthTabId = 'firstuser-tab';
+			const lastTabId = 'finish-tab';
+
+			const continueButton = $('#ContinueButton');
+			const backButton = $('#BackButton');
+
+			const tabs = new bootstrap.Tab($('#welcome-tab')[0]);
+
+			// On Page Load
+			$(document).ready(function() {
+				tabs.show();
+
+				continueButton.on('click', function() {
+					openNextTab();
+				});
+				backButton.on('click', function() {
+					openPrevTab();
+				});
+			});
+
+			async function openNextTab() {
+				const activeTab = $('.nav-link.active');
+				const nextTab = activeTab.parent().next().find('.nav-link');
+
+				// Open Tab 2 - Prechecks
+				if (nextTab.attr('id') == secondTabId) {
+					if ($('#precheck_testresults').hasClass('alert-danger')) {
+						if (nextTab.length > 0) {
+							let tab = new bootstrap.Tab(nextTab[0]);
+							tab.show();
+						}
+						continueButton.prop('disabled', true);
+						continueButton.removeClass('btn-info');
+						continueButton.addClass('btn-secondary');
+						continueButton.html("<?= __("You can't continue. Solve the red marked issues, restart the webserver and reload this page."); ?>");
+						backButton.css('display', 'block');
+						return;
+						// This is a dead end. The user have to solve the issues, restart the webserver and reload the page. 
+						// There is no reason to continue if PHP modules are missing or the webserver has not write access to some folders within Wavelog.
+						// The checks for PHP Settings are triggering just warnings (except 'allow_url_fopen', this one triggers a failure as it's needed for a lot of different functions (unfortunately)).
+					}
 				}
 
-				var originalButtonText = $('#db_connection_test_button').html();
-				$('#db_connection_test_button').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> <?= __("Connecting..."); ?>').prop('disabled', true);
-
-				clear_db_testresult();
-
-				$.ajax({
-					type: 'POST',
-					url: 'index.php',
-					data: {
-						db_hostname: db_hostname,
-						db_username: db_username,
-						db_password: db_password,
-						db_name: db_name,
-						database_check: true
-					},
-					success: function(response) {
-						$('#db_connection_testresult').html(response);
-						if (response.indexOf('Error') !== -1) {
-							$('#db_connection_testresult').addClass('alert-danger');
-							$('#db_connection_test_button').html(originalButtonText).prop('disabled', false);
-						} else {
-
-							if (sql_version_checker(response) == true) {
-								$('#db_connection_testresult').addClass('alert-success');
-								$('#db_connection_test_button').html(originalButtonText).prop('disabled', false);
-								// $('#ContinueButton').prop('disabled', false);
-								$('#db_connection_testresult').html('<?= __("Connection was successful and your database should be compatible"); ?> <i class="fas fa-check-circle"></i>');
-								continue_allowed = true;
-							} else {
-								$('#db_connection_testresult').addClass('alert-warning');
-								$('#db_connection_test_button').html(originalButtonText).prop('disabled', false);
-								// $('#ContinueButton').prop('disabled', false);
-								$('#db_connection_testresult').html('<?= __("Connection was successful but your database seems too old for Wavelog. You can try to continue but you could run into issues."); ?> <i class="fas fa-circle-exclamation"></i>');
-								continue_allowed = true;
-							}
-						}
-					},
-					error: function(error) {
-						$('#db_connection_testresult').html('Error: ' + error.statusText);
-						if ($('#db_connection_testresult').text().indexOf('Error') !== -1) {
-							$('#db_connection_testresult').addClass('alert-danger');
-						}
+				// Exit Tab 3 - Configuration
+				if (nextTab.attr('id') == fourthTabId) {
+					if (!directory_check() || !websiteurl_check()) {
+						return;
 					}
+					if (!callbook_combination()) {
+						return;
+					}
+					pwdForbiddenChars($('#callbook_password'));
+					if ($('#callbook_password').hasClass('is-invalid') && $('#callbook_password').val() != '') {
+						return;
+					}
+				}
+
+				// Exit Tab 4 - Database
+				if (nextTab.attr('id') == fifthTabId) {
+					await db_connection_test();
+					if (db_connection_results.hasClass('alert-danger')) {
+						return;
+					}
+				}
+
+				// Exit Tab 5 - User Form
+				if (nextTab.attr('id') == lastTabId) {
+					if (!check_for_empty_fields()) {
+						return;
+					}
+					if (!isValidMaidenheadLocator(userLocatorField)) {
+						return;
+					}
+					if (!isValidEmail(emailField)) {
+						return;
+					}
+					if (!user_pwd_check()) {
+						return;
+					}
+					checklist_configuration();
+					checklist_database();
+					checklist_firstuser();
+					enable_installbutton();
+				}
+
+				if (nextTab.length > 0) {
+					let tab = new bootstrap.Tab(nextTab[0]);
+					tab.show();
+				}
+
+				if (nextTab.attr('id') !== lastTabId) {
+					continueButton.css('display', 'block');
+					backButton.css('display', 'block');
+				} else {
+					continueButton.css('display', 'none');
+				}
+			}
+
+			function openPrevTab() {
+				const activeTab = $('.nav-link.active');
+				const prevTab = activeTab.parent().prev().find('.nav-link');
+
+				if (prevTab.length > 0) {
+					let tab = new bootstrap.Tab(prevTab[0]);
+					tab.show();
+				}
+
+				if (prevTab.attr('id') !== firstTabId) {
+					continueButton.css('display', 'block');
+					backButton.css('display', 'block');
+				} else {
+					backButton.css('display', 'none');
+				}
+			}
+
+			function openTab(tabId) {
+				let tab = $('#' + tabId);
+				if (tab.length > 0) {
+					const tabInstance = new bootstrap.Tab(tab[0]);
+					tabInstance.show();
+
+					if (tabId === firstTabId) {
+						backButton.css('display', 'none');
+						continueButton.css('display', 'block');
+					} else if (tabId === lastTabId) {
+						continueButton.css('display', 'none');
+						backButton.css('display', 'block');
+					} else {
+						backButton.css('display', 'block');
+						continueButton.css('display', 'block');
+					}
+				}
+			}
+
+			function input_is_valid(field, status) {
+				if (status == 'is-invalid') {
+					field.removeClass('is-valid has-warning');
+					field.addClass('is-invalid');
+					return;
+				}
+				if (status == 'has-warning') {
+					field.removeClass('is-valid is-invalid');
+					field.addClass('has-warning');
+					return;
+				}
+				if (status == 'is-valid') {
+					field.removeClass('is-invalid has-warning');
+					field.addClass('is-valid');
+					return;
+				}
+				console.error('input_is_valid(): Unknown status: ' + status);
+			}
+
+			function pwdForbiddenChars(field) {
+				let pwd = field.val();
+				let specialChars = /['"\/\\<>]/;
+
+				if (pwd != '') {
+					if (specialChars.test(pwd)) {
+						input_is_valid(field, 'is-invalid');
+						if (field = passwordField) {
+							show_userformwarnings('danger', "<?= __("Password can't contain ' / \ < >"); ?>");
+						}
+					} else {
+						input_is_valid(field, 'is-valid');
+						hide_userformwarnings();
+					}
+				} else {
+					field.removeClass('is-invalid');
+					field.removeClass('is-valid');
+				}
+			}
+
+			/*
+			 *
+			 *	General Requirement Levels
+			 * 		hard = No continue allowed, no install possible.
+			 * 		soft = Shows yellow warning, but install and continue allowed.
+			 * 
+			 */
+
+
+			/*
+			 * Tab 2 - Prechecks
+			 * 
+			 * 		Pre-Check Verification is handled in PHP, see $prechecks_passed.
+			 * 		So nothing to see here, just a placeholder for structure.
+			 * 
+			 */
+
+			// empty
+
+
+			/*
+			 * Tab 3 - Configuration
+			 * 
+			 * 		Rules:
+			 * 		Website-URL and Directory have to be green. No checks needed 'Advanced Settings'.
+			 * 
+			 * 		Callbook Password:
+			 * 			- do not allow specialchars defined in pwdForbiddenChars() (hard)
+			 * 
+			 * 		Directory:
+			 * 			- no slash allowed (hard)
+			 * 
+			 * 		Website-URL:
+			 *			- can't be empty (hard)
+			 *			- has to have a trailing slash (hard)
+			 *			- have to start with http (hard)
+			 * 
+			 */
+
+			let directory = $('#directory');
+			let websiteurl = $('#websiteurl');
+			let callbook_username = $('#callbook_username');
+			let callbook_password = $('#callbook_password');
+
+			// On Page Load
+			$(document).ready(function() {
+
+				$('#advancedSettingsButton').click(function() {
+					$('#advancedSettingsModal').modal('show');
+				});
+
+				directory.on('change', function() {
+					directory_check();
+				});
+
+				websiteurl.on('change', function() {
+					websiteurl_check();
+				});
+
+				callbook_username.on('change', function() {
+					if (callbook_username.val() == '') {
+						callbook_username.removeClass('is-valid is-invalid');
+					}
+					if (callbook_password.val() == '') {
+						callbook_password.removeClass('is-valid is-invalid');
+					}
+				});
+
+				callbook_password.on('change', function() {
+					if (callbook_password.val() == '') {
+						callbook_password.removeClass('is-valid is-invalid');
+					}
+					if (callbook_username.val() == '') {
+						callbook_username.removeClass('is-valid is-invalid');
+					}
+					pwdForbiddenChars(callbook_password);
+				});
+			});
+
+			function directory_check() {
+				var check = true;
+
+				if (directory.val().startsWith('/') || directory.val().endsWith('/')) {
+					check = false;
+				}
+
+				input_is_valid(directory, check ? 'is-valid' : 'is-invalid');
+
+				return check;
+			}
+
+			function websiteurl_check() {
+				var check = true;
+
+				if (websiteurl.val() == '') {
+					check = false;
+				} else if (!websiteurl.val().endsWith('/')) {
+					check = false;
+				} else if (!websiteurl.val().startsWith('http')) {
+					check = false;
+				}
+
+				if (check) {
+					input_is_valid(websiteurl, 'is-valid');
+				} else {
+					input_is_valid(websiteurl, 'is-invalid');
+				}
+
+				return check;
+			}
+
+			function callbook_combination() {
+				let check = true;
+				let a = callbook_username.val();
+				let b = callbook_password.val();
+				if ((a == '' && b !== '') || (a !== '' && b == '')) {
+					check = false;
+					if (a == '') {
+						input_is_valid(callbook_username, 'is-invalid');
+					} else {
+						input_is_valid(callbook_password, 'is-invalid');
+					}
+
+				} else if (a !== '' && b !== '') {
+					input_is_valid(callbook_username, 'is-valid');
+					pwdForbiddenChars(callbook_password);
+				}
+
+				return check;
+			}
+
+			/*
+			 * Tab 4 - Database
+			 * 
+			 * 		Rules:
+			 * 			- Password can be empty
+			 * 			- All other inputs can't be empty (hard)
+			 * 			- Connection have to be successful (hard) 
+			 * 			- Database itself have to be empty (hard)
+			 * 			- MySQL/MariaDB Version below Minimum (soft) -> defined in install/includes/install_config/install_config.php
+			 * 
+			 */
+			let db_connection_results = $('#db_connection_testresult');
+
+			let db_hostname = $('#db_hostname');
+			let db_username = $('#db_username');
+			let db_password = $('#db_password');
+			let db_name = $('#db_name');
+
+			function db_connection_test() {
+				return new Promise((resolve, reject) => {
+
+
+					if (db_hostname.val() === '' || db_username.val() === '' || db_name.val() === '') {
+						db_connection_results.addClass('alert-danger');
+						db_connection_results.html("<?= __("Error: At least Hostname/IP, Database Name and Username are required."); ?>");
+						resolve(false);
+						return;
+					}
+
+					if (db_hostname.val() === '%') {
+						db_hostname.val('localhost');
+					}
+
+					var originalButtonText = $('#db_connection_test_button').html();
+					$('#db_connection_test_button').html("<span class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span> <?= __("Connecting..."); ?>").prop('disabled', true);
+
+					clear_db_testresult();
+
+					$.ajax({
+						type: 'POST',
+						url: 'index.php',
+						data: {
+							db_hostname: db_hostname.val(),
+							db_username: db_username.val(),
+							db_password: db_password.val(),
+							db_name: db_name.val(),
+							database_check: 1
+						},
+						success: function(response) {
+							db_connection_results.html(response);
+							if (response.indexOf('Error') !== -1) {
+								db_connection_results.addClass('alert-danger');
+								$('#db_connection_test_button').html(originalButtonText).prop('disabled', false);
+								resolve(false);
+							} else {
+								if (sql_version_checker(response) == true) {
+									db_connection_results.addClass('alert-success');
+									$('#db_connection_test_button').html(originalButtonText).prop('disabled', false);
+									db_connection_results.html("<?= __("Connection was successful and your database should be compatible."); ?> <i class=\"fas fa-check-circle\"></i>");
+								} else {
+									db_connection_results.addClass('alert-warning');
+									$('#db_connection_test_button').html(originalButtonText).prop('disabled', false);
+									db_connection_results.html("<?= __('Connection was successful but your database seems too old for Wavelog. You can try to continue but you could run into issues.'); ?> <i class=\"fas fa-circle-exclamation\"></i> " + "</br></br><?= sprintf(__('The min. Version for MySQL is %s, for it\'s MariaDB %s.'), '<b>' . $mysql_version . '</b>', '<b>' . $mariadb_version . '</b>'); ?>");
+								}
+								resolve(true);
+							}
+							checklist_database();
+						},
+						error: function(error) {
+							db_connection_results.html('Error: ' + error.statusText);
+							if (db_connection_results.text().indexOf('Error') !== -1) {
+								db_connection_results.addClass('alert-danger');
+							}
+							checklist_database();
+							resolve(false);
+						}
+					});
 				});
 			}
 
 			function clear_db_testresult() {
-				$('#db_connection_testresult').html('');
-				$('#db_connection_testresult').removeClass('alert-danger');
-				$('#db_connection_testresult').removeClass('alert-success');
-				$('#db_connection_testresult').removeClass('alert-warning');
+				db_connection_results.html('');
+				db_connection_results.removeClass('alert-danger');
+				db_connection_results.removeClass('alert-success');
+				db_connection_results.removeClass('alert-warning');
+				checklist_database();
 			}
 
 			function sql_version_checker(version_string) {
@@ -1268,316 +1576,317 @@ global $wavelog_url;
 
 			}
 
-			function isValidMaidenheadLocator(locator) {
+			/*
+			 * Tab 5 - First User
+			 * 
+			 * 		Rules:
+			 * 			- do not allow specialchars in userpassword defined in pwdForbiddenChars() (hard)
+			 * 			- No input can be empty (hard)
+			 * 			- Locator have to match regex (hard)
+			 * 			- E-Mail have to match regex (hard)
+			 * 			- Password should have at least 8 charachters (soft)
+			 * 			- Password and Password-Confirmation have to match (hard)
+			 * 
+			 */
+
+			let passwordField = $('#password');
+			let cnfmPasswordField = $('#cnfm_password');
+			let minPasswordLenght = 8;
+
+			const firstUserInputIDs = [
+				'#firstname',
+				'#lastname',
+				'#username',
+				'#password',
+				'#cnfm_password',
+				'#callsign',
+				'#city',
+				'#user_email',
+				'#userlocator'
+			];
+
+			let emailField = $('#user_email');
+			let userLocatorField = $('#userlocator');
+
+			let userFormWarnings = $('#userform_warnings');
+
+			// On Page Load
+			$(document).ready(function() {
+				firstUserInputIDs.forEach(function(inputID) {
+					$(inputID).on('change', function() {
+						if ($(inputID).hasClass('is-invalid')) {
+							input_is_valid($(inputID), 'is-valid');
+							hide_userformwarnings();
+						}
+					});
+				});
+				userLocatorField.on('change', function() {
+					isValidMaidenheadLocator(userLocatorField);
+				});
+				emailField.on('change', function() {
+					isValidEmail(emailField);
+				});
+				passwordField.on('change', function() {
+					pwdForbiddenChars(passwordField);
+				});
+				if(passwordField !== '') {
+					pwdForbiddenChars(passwordField);
+				}
+				cnfmPasswordField.on('change', function() {
+					user_pwd_check();
+				});
+			});
+
+			function check_for_empty_fields() {
+				let check = true;
+				firstUserInputIDs.forEach(function(inputID) {
+					if ($(inputID).val() == '') {
+						input_is_valid($(inputID), 'is-invalid');
+						show_userformwarnings('danger', "<?= __("At least one field is empty."); ?>");
+						return check = false;
+					} else {
+						if ($(inputID).hasClass('is-invalid')) {
+							hide_userformwarnings();
+							input_is_valid($(inputID), 'is-valid');
+						}
+					}
+				});
+				return check;
+
+			}
+
+			function show_userformwarnings(status, message) {
+				userFormWarnings.css('display', 'block');
+				userFormWarnings.removeClass('alert-warning alert-danger');
+				userFormWarnings.addClass('alert-' + status);
+				userFormWarnings.html(message);
+			}
+
+			function hide_userformwarnings() {
+				userFormWarnings.css('display', 'none');
+				userFormWarnings.removeClass('alert-warning alert-danger');
+			}
+
+			function isValidMaidenheadLocator(field) {
+				let locator = field.val();
 				const maidenheadRegex = /^[A-R]{2}[0-9]{2}[A-X]{2}$/i;
-				return maidenheadRegex.test(locator);
+				let check = maidenheadRegex.test(locator);
+				if (!check) {
+					show_userformwarnings('danger', "<?= __("The locator seems to be not in the correct format. Should look like AA11AA (6-char grid locator).") ?>")
+					input_is_valid(field, 'is-invalid');
+				} else {
+					hide_userformwarnings();
+					input_is_valid(field, 'is-valid');
+				}
+				return check;
 			}
 
-			function isValidEmail(email) {
+			function isValidEmail(field) {
+				let email = field.val();
 				const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-				return emailRegex.test(email);
+				let check = emailRegex.test(email);
+				if (!check) {
+					show_userformwarnings('danger', "<?= __("The e-mail adress does not look correct. Make sure it's a valid e-mail address") ?>")
+					input_is_valid(field, 'is-invalid');
+				} else {
+					hide_userformwarnings();
+					input_is_valid(field, 'is-valid');
+				}
+				return check;
 			}
 
-			// Check various user input in tab 3
-			// websiteURL
-			// const websiteUrlField = $('#websiteurl');
-			// const LocatorField = $('#locator');
-
-			// websiteUrlField.on('change', function() {
-			// 	if (config_check()) {
-			// 		continue_allowed = true;
-			// 		console.log('continue allowed ln 758');
-			// 	}
-			// });
-
-			// LocatorField.on('change', function() {
-			// 	if (config_check()) {
-			// 		continue_allowed = true;
-			// 		console.log('continue allowed ln 765');
-			// 	}
-			// });
-
-			// function config_check() {
-			// 	var check1_ok = true;
-			// 	var check2_ok = true;
-
-			// 	if (websiteUrlField.val() == '') {
-			// 		console.log('Websiteurl: ' + websiteUrlField.val());
-			// 		websiteUrlField.addClass('is-invalid');
-			// 		websiteUrlField.removeClass('is-valid');
-			// 		if (root_mode == false) {
-			// 			$('#ContinueButton').prop('disabled', true);
-			// 			check1_ok = false;
-			// 		} else {
-			// 			// $('#ContinueButton').prop('disabled', false);
-			// 			check1_ok = true;
-			// 		}
-			// 	} else {
-
-			// 		websiteUrlField.addClass('is-valid');
-			// 		websiteUrlField.removeClass('is-invalid');
-			// 		// $('#ContinueButton').prop('disabled', false);
-			// 		check1_ok = true;
-
-			// 	}
-
-			// 	if (!isValidMaidenheadLocator(LocatorField.val()) && LocatorField != '') {
-			// 		console.log('Locator: ' + LocatorField.val());
-			// 		LocatorField.addClass('is-invalid');
-			// 		LocatorField.removeClass('is-valid');
-			// 		if (root_mode == false) {
-			// 			$('#ContinueButton').prop('disabled', true);
-			// 			check2_ok = false;
-			// 		} else {
-			// 			// $('#ContinueButton').prop('disabled', false);
-			// 			check2_ok = true;
-			// 		}
-
-			// 	} else {
-
-			// 		LocatorField.removeClass('is-invalid');
-			// 		LocatorField.addClass('is-valid');
-			// 		// $('#ContinueButton').prop('disabled', false);
-			// 		check2_ok = true;
-			// 	}
-
-			// 	if (check1_ok == true) {
-			// 		if (check2_ok == true) {
-			// 			continue_allowed = true;
-			// 			console.log('continue allowed in 812');
-			// 			return true;
-			// 		}
-			// 	} else {
-			// 		return false;
-			// 	}
-			// }
-
-
-			// Check various user input in tab 4
-			// user password
-			var passwordField = $('#password');
-			var cnfmPasswordField = $('#cnfm_password');
-			var minPasswordLenght = 8;
-
-			cnfmPasswordField.on('change', function() {
+			function user_pwd_check() {
+				pwdForbiddenChars(passwordField);
+				if (passwordField.hasClass('is-invalid')) {
+					return false;
+				}
 				if (cnfmPasswordField.val() == passwordField.val() && cnfmPasswordField.val() != '') {
 
 					if (cnfmPasswordField.val().length >= minPasswordLenght) {
 
-						passwordField.removeClass('is-invalid');
-						cnfmPasswordField.removeClass('is-invalid');
+						input_is_valid(passwordField, 'is-valid');
+						input_is_valid(cnfmPasswordField, 'is-valid');
 
-						passwordField.addClass('is-valid');
-						cnfmPasswordField.addClass('is-valid');
-
-						$('#userform_warnings').css('display', 'none');
-						// // $('#ContinueButton').prop('disabled', false);
+						hide_userformwarnings();
 
 					} else {
-						passwordField.addClass('is-invalid');
-						cnfmPasswordField.addClass('is-invalid');
+						input_is_valid(passwordField, 'has-warning');
+						input_is_valid(cnfmPasswordField, 'has-warning');
 
-						passwordField.removeClass('is-valid');
-						cnfmPasswordField.removeClass('is-valid');
-
-						$('#userform_warnings').css('display', 'block');
-						$('#userform_warnings').html('<?= __("Password should be at least 8 characters long"); ?>')
-
-						// if (root_mode == false) {
-						// 	$('#ContinueButton').prop('disabled', true);
-						// }
+						show_userformwarnings('warning', "<?= __("Password should be at least 8 characters long"); ?>");
 					}
+					return true;
 
 				} else {
 
-					passwordField.addClass('is-invalid');
-					cnfmPasswordField.addClass('is-invalid');
+					input_is_valid(passwordField, 'is-invalid');
+					input_is_valid(cnfmPasswordField, 'is-invalid');
 
-					passwordField.removeClass('is-valid');
-					cnfmPasswordField.removeClass('is-valid');
+					show_userformwarnings('danger', "<?= __("Passwords do not match"); ?>");
 
-					$('#userform_warnings').css('display', 'block');
-					$('#userform_warnings').html('<?= __("Passwords do not match"); ?>');
-
-					// if (root_mode == false) {
-					// 	$('#ContinueButton').prop('disabled', true);
-					// }
+					return false;
 
 				}
-			});
+			}
 
-			// email verification
-			const emailField = $('#user_email');
+			/*
+			 * Tab 6 - Install
+			 * 
+			 * 	Rules:
+			 * 		The checklist have te fully green, but can contain yellow warnings.
+			 * 		If one of the items has an error warning, the install button is disabled and 
+			 * 		an install is not possible. 
+			 * 
+			 */
 
-			emailField.on('change', function() {
-				if (!isValidEmail(emailField.val()) && emailField != '') {
+			let resetButton = $('#resetButton');
+			let resetModal = $('#resetModal');
 
-					emailField.addClass('is-invalid');
-					emailField.removeClass('is-valid');
-					$('#userform_warnings').css('display', 'block');
-					$('#userform_warnings').html('<?= __("The E-Mail Address is not valid"); ?>');
-					// if (root_mode == false) {
-					// 	$('#ContinueButton').prop('disabled', true);
-					// }
+			let checklistPrechecks = $('#checklist_prechecks');
+			let checklistConfiguration = $('#checklist_configuration');
+			let checklistDatabase = $('#checklist_database');
+			let checklistFirstUser = $('#checklist_firstuser');
 
-				} else {
 
-					emailField.removeClass('is-invalid');
-					emailField.addClass('is-valid');
-					$('#userform_warnings').css('display', 'none');
-					// // $('#ContinueButton').prop('disabled', false);
-
-				}
-			});
-
-			// grid verification
-			const userLocatorField = $('#userlocator');
-
-			userLocatorField.on('change', function() {
-				if (!isValidMaidenheadLocator(userLocatorField.val()) && userLocatorField != '') {
-
-					userLocatorField.addClass('is-invalid');
-					userLocatorField.removeClass('is-valid');
-					$('#userform_warnings').css('display', 'block');
-					$('#userform_warnings').html("<?= sprintf(__("The grid locator is not valid. Use a 6-character locator, e.g. HA44AA. If you don't know your grid square then <a href='%s' target='_blank'>click here</a>!"), "https://zone-check.eu/?m=loc"); ?>");
-					// if (root_mode == false) {
-					// 	$('#ContinueButton').prop('disabled', true);
-					// }
-
-				} else {
-
-					userLocatorField.removeClass('is-invalid');
-					userLocatorField.addClass('is-valid');
-					$('#userform_warnings').css('display', 'none');
-					// // $('#ContinueButton').prop('disabled', false);
-
-				}
-			});
-
-			// root mode initializer for js
-			// var root_mode = <?php echo json_encode($root_mode); ?>;
-
+			// On Page Load
 			$(document).ready(function() {
-				const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-				const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
-				$('#ContinueButton').css('display', 'block');
-				console.log("Ready to unleash your coding prowess and join the fun?\n\n" +
-					"Check out our GitHub Repository and dive into the coding adventure:\n\n" +
-					"🚀 https://www.github.com/wavelog/wavelog");
-
-				const tabs = new bootstrap.Tab($('#welcome-tab')[0]);
-				tabs.show();
-
-				let firstTabId = 'welcome-tab';
-				let secondTabId = 'precheck-tab';
-				let thirdTabId = 'configuration-tab';
-				let fourthTabId = 'database-tab';
-				let lastTabId = 'finish-tab';
-
-				const activeTab = $('.nav-link.active');
-
-				var allChecksPassed = '<?php echo $allChecksPassed; ?>';
-
-				function nextTab() {
-					const activeTab = $('.nav-link.active');
-					const nextTab = activeTab.parent().next().find('.nav-link');
-
-					if (nextTab.length > 0) {
-						const tab = new bootstrap.Tab(nextTab[0]);
-						tab.show();
-					}
-
-					if (nextTab.attr('id') == secondTabId) { // prevent continue if a vital precheck failed (a php module or allow_url_fopen)
-						if (allChecksPassed == 'failed') {
-							continue_allowed = false;
-						} else {
-							// $('#ContinueButton').prop('disabled', false);
-							continue_allowed = true;
-						}
-					}
-
-					if (nextTab.attr('id') !== lastTabId) {
-						$('#ContinueButton').css('display', 'block');
-						$('#BackButton').css('display', 'block');
-					} else {
-						$('#ContinueButton').css('display', 'none');
-					}
-
-				}
-
-				function prevTab() {
-					const activeTab = $('.nav-link.active');
-					const prevTab = activeTab.parent().prev().find('.nav-link');
-
-					if (prevTab.length > 0) {
-						const tab = new bootstrap.Tab(prevTab[0]);
-						tab.show();
-					}
-
-					if (prevTab.attr('id') !== firstTabId) {
-						$('#ContinueButton').css('display', 'block');
-						$('#BackButton').css('display', 'block');
-					} else {
-						$('#BackButton').css('display', 'none');
-					}
-					clear_db_testresult();
-					// $('#ContinueButton').prop('disabled', false);
-				}
-
-
-				$('#ContinueButton').on('click', function() {
-					nextTab();
-				});
-				$('#BackButton').on('click', function() {
-					prevTab();
-				});
-
-				$('#languageButton').click(function() {
-					$('#languageModal').modal('show');
+				resetButton.click(function() {
+					resetModal.modal('show');
 				});
 
 			});
+
+
+			function enable_installbutton() {
+				var install_possible = false;
+
+				if ((checklistPrechecks.hasClass('fa-check-circle') || checklistPrechecks.hasClass('fa-exclamation-triangle')) &&
+					checklistConfiguration.hasClass('fa-check-circle') &&
+					checklistDatabase.hasClass('fa-check-circle') &&
+					(checklistFirstUser.hasClass('fa-check-circle') || checklistFirstUser.hasClass('fa-exclamation-triangle'))) {
+					install_possible = true;
+				}
+
+				if (install_possible) {
+					$('#submit').prop('disabled', false).html("<?= __("Install Now"); ?>");
+					$('#install_is_ready_msg').show();
+					$('#submit').css('margin-top', '50px');
+				} else {
+					$('#submit').prop('disabled', true).html("<?= __("Install not possible. Checklist incomplete."); ?>");
+					$('#install_is_ready_msg').hide();
+					$('#submit').css('margin-top', '150px');
+				}
+
+			}
+
+			function checklist_configuration() {
+				var checklist_configuration = true;
+
+				if ($('#callbook_password').hasClass('is-invalid')) {
+					checklist_configuration = false;
+				}
+
+				if ($('#directory').hasClass('is-invalid')) {
+					checklist_configuration = false;
+				}
+
+				if ($('#websiteurl').val() == '' || $('#websiteurl').hasClass('is-invalid')) {
+					checklist_configuration = false;
+				}
+
+				if (checklist_configuration) {
+					checklistConfiguration.removeClass('fa-times-circle');
+					checklistConfiguration.addClass('fa-check-circle').css('color', '#04a004');
+				} else {
+					checklistConfiguration.removeClass('fa-check-circle');
+					checklistConfiguration.addClass('fa-times-circle').css('color', 'red');
+				}
+			}
+
+			function checklist_database() {
+				var checklist_database = true;
+
+				if ($('#db_hostname').val() === '') {
+					checklist_database = false;
+				}
+				if ($('#db_name').val() === '') {
+					checklist_database = false;
+				}
+				if ($('#db_username').val() === '') {
+					checklist_database = false;
+				}
+
+				var checklist_icon = checklistDatabase;
+				checklist_icon.removeClass('fa-check-circle fa-times-circle fa-exclamation-triangle');
+
+				if (checklist_database) {
+					if (db_connection_results.hasClass('alert-warning')) {
+						checklist_icon.addClass('fa-exclamation-triangle').css('color', '#ffc107');
+					} else if (db_connection_results.hasClass('alert-success')) {
+						checklist_icon.addClass('fa-check-circle').css('color', '#04a004');
+					} else {
+						checklist_icon.addClass('fa-times-circle').css('color', 'red');
+					}
+				} else {
+					checklist_icon.addClass('fa-times-circle').css('color', 'red');
+				}
+			}
+
+			function checklist_firstuser() {
+				var checklist_firstuser = true;
+
+				firstUserInputIDs.forEach(function(inputID) {
+					if ($(inputID).val() == '') {
+						input_is_valid($(inputID), 'is-invalid');
+						checklist_firstuser = false;
+					} else {
+						input_is_valid($(inputID), 'is-valid');
+						user_pwd_check();
+					}
+				});
+
+				if (passwordField.hasClass('is-invalid')) {
+					checklist_firstuser = false;
+				}
+
+				if (cnfmPasswordField.hasClass('is-invalid')) {
+					checklist_firstuser = false;
+				}
+				if ($(emailField).hasClass('is-invalid')) {
+					checklist_firstuser = false;
+				}
+				if (userLocatorField.hasClass('is-invalid')) {
+					checklist_firstuser = false;
+				}
+
+				if (checklist_firstuser) {
+					if (passwordField.hasClass('has-warning')) {
+						checklistFirstUser.removeClass('fa-times-circle');
+						checklistFirstUser.removeClass('fa-check-circle');
+						checklistFirstUser.addClass('fa-exclamation-triangle').css('color', '#ffc107');
+					} else {
+						checklistFirstUser.removeClass('fa-times-circle');
+						checklistFirstUser.removeClass('fa-exclamation-triangle');
+						checklistFirstUser.addClass('fa-check-circle').css('color', '#04a004');
+					}
+				} else {
+					checklistFirstUser.removeClass('fa-check-circle');
+					checklistFirstUser.removeClass('fa-exclamation-triangle');
+					checklistFirstUser.addClass('fa-times-circle').css('color', 'red');
+				}
+
+				return checklist_firstuser;
+			}
 		</script>
 	</body>
 
-<?php else : ?>
 
-	<body>
-		<div class="container mt-4 p-2" style="max-width: 600px; ">
-			<div class="card p-2 justify-content-center" style="min-height: 200px; margin-top: 200px;">
-				<p class="error text-center"><?= sprintf(__("Please make the %s folder writable. <strong>Example</strong>:<br /><br /><code>chmod -R 777 %s</code><br /><br /><i>Don't forget to restore the permissions afterwards.</i>"), $db_config_path, $db_config_path); ?></p>
-			</div>
-		</div>
-	</body>
+	<?php include 'includes/interface_assets/footer.php'; ?>
 
-<?php endif; ?>
-<?php
-/**
- * Hidden field to be able to translate the language names
- * Add english Language Name here if you add new languages to application/config/gettext.php
- * This helps the po scanner to make them translatable
- */
-?>
-<footer>
-	<div style="display: none">
-		<?= __("Bulgarian"); ?>
-		<?= __("Chinese (Simplified)"); ?>
-		<?= __("Czech"); ?>
-		<?= __("Dutch"); ?>
-		<?= __("English"); ?>
-		<?= __("Finnish"); ?>
-		<?= __("French"); ?>
-		<?= __("German"); ?>
-		<?= __("Greek"); ?>
-		<?= __("Italian"); ?>
-		<?= __("Polish"); ?>
-		<?= __("Portuguese"); ?>
-		<?= __("Russian"); ?>
-		<?= __("Spanish"); ?>
-		<?= __("Swedish"); ?>
-		<?= __("Turkish"); ?>
-	</div>
-</footer>
+<?php } else {
+
+	header("Location: $websiteurl");
+} ?>
 
 </html>

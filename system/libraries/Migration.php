@@ -235,7 +235,7 @@ class CI_Migration {
 		else
 		{
 			// Well, there's nothing to migrate then ...
-			return TRUE;
+			return $current_version;
 		}
 
 		// Validate all available migrations within our target range.
