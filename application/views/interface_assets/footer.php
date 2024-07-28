@@ -1292,7 +1292,15 @@ $(document).ready(function(){
 		$(".ld-ext-right").addClass("running");
 		$(".ld-ext-right").prop("disabled", true);
         $('#dxcc_update_status').show();
-        $.ajax({url:"update/dxcc"});
+        $.ajax({
+            url:"update/dxcc",
+            success: function(response) {
+                if (response == 'success') {
+                    $(".ld-ext-right").removeClass("running");
+                    $(".ld-ext-right").prop("disabled", false);
+                }
+            }
+        });
         setTimeout(update_stats,5000);
     });
     function update_stats(){

@@ -26,7 +26,7 @@ class Core
 			$counter++;
 		}
 
-		if ($data['directory'] != "") {
+		if ($data['directory'] ?? '' != "") {
 			if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/' . $data['directory'])) {
 				//pass folders real
 				$counter++;
@@ -39,33 +39,33 @@ class Core
 		}
 
 		// Validate First Name
-		if (isset($_POST['firstname']) && !empty($_POST['firstname'])) {
+		if (isset($data['firstname']) && !empty($data['firstname'])) {
 			$counter++;
 		}
 
 		// Validate Last Name
-		if (isset($_POST['lastname']) && !empty($_POST['lastname'])) {
+		if (isset($data['lastname']) && !empty($data['lastname'])) {
 			$counter++;
 		}
 
 		// Validate Username
-		if (isset($_POST['username']) && !empty($_POST['username'])) {
+		if (isset($data['username']) && !empty($data['username'])) {
 			$counter++;
 		}
 
 		// Validate Callsign
-		if (isset($_POST['callsign']) && !empty($_POST['callsign'])) {
+		if (isset($data['callsign']) && !empty($data['callsign'])) {
 			$counter++;
 		}
 
 		// Validate Password
-		if (isset($_POST['password']) && !empty($_POST['password'])) {
+		if (isset($data['password']) && !empty($data['password'])) {
 			$counter++;
 		}
 
 		// Validate Locator
-		if (isset($_POST['userlocator']) && !empty($_POST['userlocator'])) {
-			$locator = $_POST['userlocator'];
+		if (isset($data['userlocator']) && !empty($data['userlocator'])) {
+			$locator = $data['userlocator'];
 			if (preg_match('/^[A-R]{2}[0-9]{2}[A-X]{2}$/i', $locator)) {
 				$counter++;
 			} else {
@@ -76,19 +76,19 @@ class Core
 		}
 
 		// Validate Confirm Password
-		if (isset($_POST['cnfm_password']) && !empty($_POST['cnfm_password'])) {
+		if (isset($data['cnfm_password']) && !empty($data['cnfm_password'])) {
 			$counter++;
 		}
 
 		// Validate Email Address
-		if (isset($_POST['user_email']) && filter_var($_POST['user_email'], FILTER_VALIDATE_EMAIL)) {
+		if (isset($data['user_email']) && filter_var($data['user_email'], FILTER_VALIDATE_EMAIL)) {
 			$counter++;
 		} else {
 			$errors[] = "Invalid Email Address.";
 		}
 
 		// Validate Timezone
-		if (isset($_POST['timezone']) && is_numeric($_POST['timezone'])) {
+		if (isset($data['timezone']) && is_numeric($data['timezone'])) {
 			$counter++;
 		}
 
@@ -96,14 +96,9 @@ class Core
 		if ($counter == '13') {
 			return true;
 		} else {
+			log_message('error', 'Failed to validate POST data');
 			return false;
 		}
-	}
-
-	// Function to show an error
-	function show_message($type, $message)
-	{
-		return $message;
 	}
 
 	// Function to write the config file
@@ -138,7 +133,11 @@ class Core
 
 			// Write the file
 			if (fwrite($handle, $new)) {
-				return true;
+				if(file_exists($output_path)) {
+					return true;
+				} else {
+					return false;
+				}
 			} else {
 				return false;
 			}
@@ -151,15 +150,18 @@ class Core
 	function write_configfile($data) {
 
 		$template_path 	= 'config/config.php';
-		$output_path 	= $_SERVER['DOCUMENT_ROOT'] . '/' . $data['directory'] . '/application/config/config.php';
+		$output_path 	= '../application/config/config.php';
 		if (isset($_ENV['CI_ENV'])) {
-			$output_path 	= $_SERVER['DOCUMENT_ROOT'] . '/' . $data['directory'] . '/application/config/'.$_ENV['CI_ENV'].'/config.php';
+			$output_path 	= '../application/config/'.$_ENV['CI_ENV'].'/config.php';
 		}
 
 		// Open the file
 		$database_file = file_get_contents($template_path);
 
-		$new  = str_replace("%baselocator%", $data['locator'], $database_file);
+		// creating a unique encryption key
+		$encryptionkey = uniqid(bin2hex(random_bytes(8)), false);
+
+		$new  = str_replace("%baselocator%", strtoupper($data['userlocator']), $database_file);
 		$new  = str_replace("%websiteurl%", $data['websiteurl'], $new);
 		$new  = str_replace("%directory%", $data['directory'], $new);
 		$new  = str_replace("%callbook%", $data['global_call_lookup'], $new);
@@ -174,19 +176,22 @@ class Core
 			$new  = str_replace("%hamqth_username%", $data['callbook_username'], $new);
 			$new  = str_replace("%hamqth_password%", $data['callbook_password'], $new);
 		}
+		$new = str_replace("%encryptionkey%", $encryptionkey, $new);
+		$new = str_replace("'%log_threshold%'", $data['log_threshold'], $new);
 
 		// Write the new config.php file
 		$handle = fopen($output_path, 'w+');
-
-		// Chmod the file, in case the user forgot
-		@chmod($output_path, 0777);
 
 		// Verify file permissions
 		if (is_writable($output_path)) {
 
 			// Write the file
 			if (fwrite($handle, $new)) {
-				return true;
+				if(file_exists($output_path)) {
+					return true;
+				} else {
+					return false;
+				}
 			} else {
 				return false;
 			}
