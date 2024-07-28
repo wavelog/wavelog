@@ -198,7 +198,7 @@ class AdifHelper {
 
         $line .= $this->getAdifFieldLine("MY_STATE", $qso->state);
 
-        // We fill county only if it has a value and it's USA, Alaska, Hawaii or Russia (European or Asiaric). Other countrys are not supported at the moment due complex adif specs
+        // We fill county only if it has a value and it's USA, Alaska, Hawaii or Russia (European or Asiatic). Other countries are not supported at the moment due to complex ADIF specs
 
 	if ($qso->station_cnty) {
 		switch ($qso->station_dxcc) {
