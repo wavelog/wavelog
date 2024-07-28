@@ -12,11 +12,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-26 14:02+0000\n"
+"POT-Creation-Date: 2024-07-28 11:10+0000\n"
 "PO-Revision-Date: 2024-07-27 03:56+0000\n"
 "Last-Translator: Fabian Berg <hb9hil@wavelog.org>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/de/>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1886,21 +1886,37 @@ msgstr "Zeitplotter"
 msgid "Updates"
 msgstr "Aktualisierungen"
 
-#: application/controllers/Update.php:76
+#: application/controllers/Update.php:78
 msgid "Preparing DXCC-Entries: "
 msgstr "Bereite DXCC-Einträge vor: "
 
-#: application/controllers/Update.php:118
+#: application/controllers/Update.php:122
 msgid "Preparing DXCC Exceptions: "
 msgstr "Bereite DXCC Ausnahmen vor: "
 
-#: application/controllers/Update.php:160
+#: application/controllers/Update.php:166
 msgid "Preparing DXCC Prefixes: "
 msgstr "Bereite DXCC Präfixe vor: "
 
-#: application/controllers/Update.php:222
+#: application/controllers/Update.php:230
 msgid "DONE"
 msgstr "FERTIG"
+
+#: application/controllers/Update.php:244
+msgid "Updating..."
+msgstr ""
+
+#: application/controllers/Update.php:247
+msgid "Dxcc Entities:"
+msgstr ""
+
+#: application/controllers/Update.php:248
+msgid "Dxcc Exceptions:"
+msgstr ""
+
+#: application/controllers/Update.php:249
+msgid "Dxcc Prefixes:"
+msgstr ""
 
 #: application/controllers/User.php:12
 #: application/views/interface_assets/header.php:260
@@ -1932,22 +1948,28 @@ msgstr "bearbeitet"
 msgid "Profile"
 msgstr "Profil"
 
-#: application/controllers/User.php:839 application/controllers/User.php:849
+#: application/controllers/User.php:779
+msgid ""
+"Congrats! Wavelog was successfully installed. You can now login for the "
+"first time."
+msgstr ""
+
+#: application/controllers/User.php:843 application/controllers/User.php:853
 msgid "Login failed. Try again."
 msgstr "Login fehlgeschlagen. Bitte erneut versuchen."
 
-#: application/controllers/User.php:856
+#: application/controllers/User.php:860
 #: application/views/interface_assets/header.php:348
 #: application/views/user/login.php:89
 #: application/views/visitor/layout/header.php:88
 msgid "Login"
 msgstr "Anmeldung"
 
-#: application/controllers/User.php:864
+#: application/controllers/User.php:868
 msgid "User logged in"
 msgstr "Benutzer eingeloggt"
 
-#: application/controllers/User.php:895
+#: application/controllers/User.php:899
 msgid ""
 "Sorry. This instance is currently in maintenance mode. If this message "
 "appears unexpectedly or keeps showing up, please contact an administrator. "
@@ -1958,32 +1980,32 @@ msgstr ""
 "kontaktiere bitte den Administrator. Nur Administratoren können sich derzeit "
 "einloggen."
 
-#: application/controllers/User.php:898
+#: application/controllers/User.php:902
 msgid "Incorrect username or password!"
 msgstr "Falscher Benutzername oder Passwort!"
 
-#: application/controllers/User.php:915
+#: application/controllers/User.php:919
 #, php-format
 msgid "User %s logged out."
 msgstr "Benutzer %s ausgeloggt."
 
-#: application/controllers/User.php:929
+#: application/controllers/User.php:933
 msgid "Password Reset is disabled on the Demo!"
 msgstr "Passwort Reset ist in der Demo nicht verfügbar!"
 
-#: application/controllers/User.php:942
+#: application/controllers/User.php:946
 msgid "Forgot Password"
 msgstr "Passwort vergessen"
 
-#: application/controllers/User.php:992 application/views/user/main.php:8
+#: application/controllers/User.php:996 application/views/user/main.php:8
 msgid "Email settings are incorrect."
 msgstr "E-Mail Einstellungen sind nicht korrekt."
 
-#: application/controllers/User.php:996 application/controllers/User.php:1001
+#: application/controllers/User.php:1000 application/controllers/User.php:1005
 msgid "Password Reset Processed."
 msgstr "Passwort Zurücksetzen angefordert."
 
-#: application/controllers/User.php:1103
+#: application/controllers/User.php:1107
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
@@ -6231,17 +6253,17 @@ msgstr ""
 "'Federal Republic of Germany'. Wenn du dir sicher bist, ignoriere diese "
 "Warnung."
 
-#: application/views/interface_assets/footer.php:1366
-#: application/views/interface_assets/footer.php:1370
-#: application/views/interface_assets/footer.php:1373
-#: application/views/interface_assets/footer.php:1510
-#: application/views/interface_assets/footer.php:1514
-#: application/views/interface_assets/footer.php:1517
+#: application/views/interface_assets/footer.php:1374
+#: application/views/interface_assets/footer.php:1378
+#: application/views/interface_assets/footer.php:1381
+#: application/views/interface_assets/footer.php:1518
+#: application/views/interface_assets/footer.php:1522
+#: application/views/interface_assets/footer.php:1525
 msgid "grid square"
 msgstr "Planquadrate"
 
-#: application/views/interface_assets/footer.php:1373
-#: application/views/interface_assets/footer.php:1517
+#: application/views/interface_assets/footer.php:1381
+#: application/views/interface_assets/footer.php:1525
 msgid "Total count"
 msgstr "Summe"
 

@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-26 14:02+0000\n"
+"POT-Creation-Date: 2024-07-28 11:10+0000\n"
 "PO-Revision-Date: 2024-07-26 20:41+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
@@ -1885,21 +1885,37 @@ msgstr "Plotador de tempo"
 msgid "Updates"
 msgstr "Actualizações"
 
-#: application/controllers/Update.php:76
+#: application/controllers/Update.php:78
 msgid "Preparing DXCC-Entries: "
 msgstr "Preparação de registos DXCC: "
 
-#: application/controllers/Update.php:118
+#: application/controllers/Update.php:122
 msgid "Preparing DXCC Exceptions: "
 msgstr "Preparação de Excepções DXCC: "
 
-#: application/controllers/Update.php:160
+#: application/controllers/Update.php:166
 msgid "Preparing DXCC Prefixes: "
 msgstr "Preparação de Prefixos DXCC: "
 
-#: application/controllers/Update.php:222
+#: application/controllers/Update.php:230
 msgid "DONE"
 msgstr "TERMINADO"
+
+#: application/controllers/Update.php:244
+msgid "Updating..."
+msgstr ""
+
+#: application/controllers/Update.php:247
+msgid "Dxcc Entities:"
+msgstr ""
+
+#: application/controllers/Update.php:248
+msgid "Dxcc Exceptions:"
+msgstr ""
+
+#: application/controllers/Update.php:249
+msgid "Dxcc Prefixes:"
+msgstr ""
 
 #: application/controllers/User.php:12
 #: application/views/interface_assets/header.php:260
@@ -1931,22 +1947,28 @@ msgstr "editado"
 msgid "Profile"
 msgstr "Perfil"
 
-#: application/controllers/User.php:839 application/controllers/User.php:849
+#: application/controllers/User.php:779
+msgid ""
+"Congrats! Wavelog was successfully installed. You can now login for the "
+"first time."
+msgstr ""
+
+#: application/controllers/User.php:843 application/controllers/User.php:853
 msgid "Login failed. Try again."
 msgstr "O login falhou. Tente novamente."
 
-#: application/controllers/User.php:856
+#: application/controllers/User.php:860
 #: application/views/interface_assets/header.php:348
 #: application/views/user/login.php:89
 #: application/views/visitor/layout/header.php:88
 msgid "Login"
 msgstr "Iniciar sessão"
 
-#: application/controllers/User.php:864
+#: application/controllers/User.php:868
 msgid "User logged in"
 msgstr "Utilizador com sessão iniciada"
 
-#: application/controllers/User.php:895
+#: application/controllers/User.php:899
 msgid ""
 "Sorry. This instance is currently in maintenance mode. If this message "
 "appears unexpectedly or keeps showing up, please contact an administrator. "
@@ -1957,32 +1979,32 @@ msgstr ""
 "administrador. Atualmente, apenas os administradores têm permissão para "
 "iniciar sessão."
 
-#: application/controllers/User.php:898
+#: application/controllers/User.php:902
 msgid "Incorrect username or password!"
 msgstr "Nome de utilizador ou palavra-passe incorrectos!"
 
-#: application/controllers/User.php:915
+#: application/controllers/User.php:919
 #, php-format
 msgid "User %s logged out."
 msgstr "O utilizador %s terminou a sessão."
 
-#: application/controllers/User.php:929
+#: application/controllers/User.php:933
 msgid "Password Reset is disabled on the Demo!"
 msgstr "A reposição da palavra-passe está desactivada na Demo!"
 
-#: application/controllers/User.php:942
+#: application/controllers/User.php:946
 msgid "Forgot Password"
 msgstr "Esqueci-me da palavra-passe"
 
-#: application/controllers/User.php:992 application/views/user/main.php:8
+#: application/controllers/User.php:996 application/views/user/main.php:8
 msgid "Email settings are incorrect."
 msgstr "As definições de e-mail estão incorrectas."
 
-#: application/controllers/User.php:996 application/controllers/User.php:1001
+#: application/controllers/User.php:1000 application/controllers/User.php:1005
 msgid "Password Reset Processed."
 msgstr "A redefinição da palavra-passe foi processada."
 
-#: application/controllers/User.php:1103
+#: application/controllers/User.php:1107
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
@@ -6226,17 +6248,17 @@ msgstr ""
 "qual é o DXCC correto para o local em questão. Se tiver a certeza, ignore "
 "este aviso."
 
-#: application/views/interface_assets/footer.php:1366
-#: application/views/interface_assets/footer.php:1370
-#: application/views/interface_assets/footer.php:1373
-#: application/views/interface_assets/footer.php:1510
-#: application/views/interface_assets/footer.php:1514
-#: application/views/interface_assets/footer.php:1517
+#: application/views/interface_assets/footer.php:1374
+#: application/views/interface_assets/footer.php:1378
+#: application/views/interface_assets/footer.php:1381
+#: application/views/interface_assets/footer.php:1518
+#: application/views/interface_assets/footer.php:1522
+#: application/views/interface_assets/footer.php:1525
 msgid "grid square"
 msgstr "quadrícula"
 
-#: application/views/interface_assets/footer.php:1373
-#: application/views/interface_assets/footer.php:1517
+#: application/views/interface_assets/footer.php:1381
+#: application/views/interface_assets/footer.php:1525
 msgid "Total count"
 msgstr "Número total"
 

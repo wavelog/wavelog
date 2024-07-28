@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-26 14:02+0000\n"
+"POT-Creation-Date: 2024-07-28 11:10+0000\n"
 "PO-Revision-Date: 2024-07-09 13:25+0000\n"
 "Last-Translator: Fabian Berg <hb9hil@wavelog.org>\n"
 "Language-Team: Greek <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1863,20 +1863,36 @@ msgstr ""
 msgid "Updates"
 msgstr ""
 
-#: application/controllers/Update.php:76
+#: application/controllers/Update.php:78
 msgid "Preparing DXCC-Entries: "
 msgstr ""
 
-#: application/controllers/Update.php:118
+#: application/controllers/Update.php:122
 msgid "Preparing DXCC Exceptions: "
 msgstr ""
 
-#: application/controllers/Update.php:160
+#: application/controllers/Update.php:166
 msgid "Preparing DXCC Prefixes: "
 msgstr ""
 
-#: application/controllers/Update.php:222
+#: application/controllers/Update.php:230
 msgid "DONE"
+msgstr ""
+
+#: application/controllers/Update.php:244
+msgid "Updating..."
+msgstr ""
+
+#: application/controllers/Update.php:247
+msgid "Dxcc Entities:"
+msgstr ""
+
+#: application/controllers/Update.php:248
+msgid "Dxcc Exceptions:"
+msgstr ""
+
+#: application/controllers/Update.php:249
+msgid "Dxcc Prefixes:"
 msgstr ""
 
 #: application/controllers/User.php:12
@@ -1909,54 +1925,60 @@ msgstr ""
 msgid "Profile"
 msgstr ""
 
-#: application/controllers/User.php:839 application/controllers/User.php:849
+#: application/controllers/User.php:779
+msgid ""
+"Congrats! Wavelog was successfully installed. You can now login for the "
+"first time."
+msgstr ""
+
+#: application/controllers/User.php:843 application/controllers/User.php:853
 msgid "Login failed. Try again."
 msgstr ""
 
-#: application/controllers/User.php:856
+#: application/controllers/User.php:860
 #: application/views/interface_assets/header.php:348
 #: application/views/user/login.php:89
 #: application/views/visitor/layout/header.php:88
 msgid "Login"
 msgstr ""
 
-#: application/controllers/User.php:864
+#: application/controllers/User.php:868
 msgid "User logged in"
 msgstr ""
 
-#: application/controllers/User.php:895
+#: application/controllers/User.php:899
 msgid ""
 "Sorry. This instance is currently in maintenance mode. If this message "
 "appears unexpectedly or keeps showing up, please contact an administrator. "
 "Only administrators are currently allowed to log in."
 msgstr ""
 
-#: application/controllers/User.php:898
+#: application/controllers/User.php:902
 msgid "Incorrect username or password!"
 msgstr ""
 
-#: application/controllers/User.php:915
+#: application/controllers/User.php:919
 #, php-format
 msgid "User %s logged out."
 msgstr ""
 
-#: application/controllers/User.php:929
+#: application/controllers/User.php:933
 msgid "Password Reset is disabled on the Demo!"
 msgstr ""
 
-#: application/controllers/User.php:942
+#: application/controllers/User.php:946
 msgid "Forgot Password"
 msgstr ""
 
-#: application/controllers/User.php:992 application/views/user/main.php:8
+#: application/controllers/User.php:996 application/views/user/main.php:8
 msgid "Email settings are incorrect."
 msgstr ""
 
-#: application/controllers/User.php:996 application/controllers/User.php:1001
+#: application/controllers/User.php:1000 application/controllers/User.php:1005
 msgid "Password Reset Processed."
 msgstr ""
 
-#: application/controllers/User.php:1103
+#: application/controllers/User.php:1107
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
@@ -5917,17 +5939,17 @@ msgid ""
 "sure, ignore this warning."
 msgstr ""
 
-#: application/views/interface_assets/footer.php:1366
-#: application/views/interface_assets/footer.php:1370
-#: application/views/interface_assets/footer.php:1373
-#: application/views/interface_assets/footer.php:1510
-#: application/views/interface_assets/footer.php:1514
-#: application/views/interface_assets/footer.php:1517
+#: application/views/interface_assets/footer.php:1374
+#: application/views/interface_assets/footer.php:1378
+#: application/views/interface_assets/footer.php:1381
+#: application/views/interface_assets/footer.php:1518
+#: application/views/interface_assets/footer.php:1522
+#: application/views/interface_assets/footer.php:1525
 msgid "grid square"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:1373
-#: application/views/interface_assets/footer.php:1517
+#: application/views/interface_assets/footer.php:1381
+#: application/views/interface_assets/footer.php:1525
 msgid "Total count"
 msgstr ""
 
