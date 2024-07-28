@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-07-28 11:10+0000\n"
-"PO-Revision-Date: 2024-07-22 18:28+0000\n"
+"PO-Revision-Date: 2024-07-28 17:31+0000\n"
 "Last-Translator: Fabian Berg <hb9hil@wavelog.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
 "installer/de/>\n"
@@ -21,23 +21,23 @@ msgstr ""
 
 #: install/includes/core/database_class.php:59
 msgid "Connection Error: "
-msgstr ""
+msgstr "Verbindungsfehler: "
 
 #: install/includes/core/database_class.php:63
 msgid "Unable to create database: "
-msgstr ""
+msgstr "Datenbank konnte nicht erstellt werden: "
 
 #: install/includes/core/database_class.php:68
 msgid "Unable to select database: "
-msgstr ""
+msgstr "Datenbank kann nicht ausgewählt werden: "
 
 #: install/includes/core/database_class.php:74
 msgid "Database is not empty."
-msgstr ""
+msgstr "Datenbank ist nicht leer."
 
 #: install/includes/install_config/install_lib.php:123
 msgid "not detected"
-msgstr ""
+msgstr "nicht erkannt"
 
 #: install/includes/interface_assets/footer.php:49
 msgid "Bulgarian"
@@ -192,7 +192,7 @@ msgstr "Version"
 #, php-format
 msgctxt "PHP Version"
 msgid "min. %s (recommended %s+)"
-msgstr ""
+msgstr "min. %s (empfohlen %s+)"
 
 #: install/index.php:131
 msgid "Installed"
@@ -208,35 +208,37 @@ msgstr "PHP-Einstellungen"
 
 #: install/index.php:229
 msgid "Folder Write Permissions"
-msgstr ""
+msgstr "Ordner-Schreibberechtigungen"
 
 #: install/index.php:235 install/index.php:246 install/index.php:257
 #: install/index.php:268 install/index.php:279
 msgid "Success"
-msgstr ""
+msgstr "Erfolgreich"
 
 #: install/index.php:238 install/index.php:249 install/index.php:260
 #: install/index.php:271 install/index.php:282
 msgid "Failed"
-msgstr ""
+msgstr "Fehlgeschlagen"
 
 #: install/index.php:289
 msgid "Web Server"
-msgstr ""
+msgstr "Webserver"
 
 #: install/index.php:292
 msgid "Version:"
-msgstr ""
+msgstr "Version:"
 
 #: install/index.php:299
 msgid "Important note for nginx users!"
-msgstr ""
+msgstr "Wichtiger Hinweis für nginx-Nutzer!"
 
 #: install/index.php:300
 msgid ""
 "Since you are using nginx as web server please make sure that you have made "
 "the changes described in the Wiki before continuing."
 msgstr ""
+"Da du nginx als Webserver verwendest, stelle bitte sicher, dass du die im "
+"Wiki beschriebenen Änderungen vorgenommen hast, bevor du fortfährst."
 
 #: install/index.php:309
 msgid "Some Checks have failed!"
@@ -296,6 +298,7 @@ msgstr ""
 #: install/index.php:346
 msgid "No slash before or after the directory. Just the name of the folder."
 msgstr ""
+"Kein Schrägstrich vor oder nach dem Verzeichnis. Nur der Name des Ordners."
 
 #: install/index.php:351
 #, php-format
