@@ -198,14 +198,23 @@ class AdifHelper {
 
         $line .= $this->getAdifFieldLine("MY_STATE", $qso->state);
 
-        // We fill county only if it has a value and it's USA, Alaska or Hawaii. Other countrys are not supported at the moment due complex adif specs
-		if ($qso->station_cnty && ($qso->station_dxcc == '291' || $qso->station_dxcc == '006' || $qso->station_dxcc == '110')) {
-            $county = trim($qso->state) . "," . trim($qso->station_cnty);
-        } else {
-            $county = '';
-        }        
+        // See: https://adif.org/314/ADIF_314.htm#Sponsor_Defined_Code_Format
+	if ($qso->station_cnty) {
+		switch ($qso->station_dxcc) {
+			case '6':
+			case '110':
+			case '291':
+				$county = trim($qso->state) . "," . trim($qso->station_cnty);
+				break;
+			default:
+				$county = trim($qso->station_cnty);
+				break;
+		}
+	} else {
+		$county = '';
+	}
 
-        $line .= $this->getAdifFieldLine("MY_CNTY", $county);
+		$line .= $this->getAdifFieldLine("MY_CNTY", $county);
 
 		$stationsSig = $qso->station_sig;
 		// If MY_SIG is WWFF or "" and there's a station_wwff set, use data from station_wwff
