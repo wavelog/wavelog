@@ -160,7 +160,7 @@ function write_waja_timeline($timeline_array, $custom_date_format, $bandselect, 
         echo '<tr>
                 <td>' . $i-- . '</td>
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
-                <td>' . $CI->Waja->jaPrefectures[$line->col_state] . '</td>
+                <td>' . $CI->Waja->jaPrefectures[$line->col_state] . ' ('.$line->col_state.')</td>
                 <td><a href=javascript:displayTimelineContacts("' . $line->col_state . '","'. $bandselect . '","'. $modeselect . '","' . $award .'")>'.__("Show").'</a></td>
                </tr>';
     }

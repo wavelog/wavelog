@@ -58,11 +58,11 @@ function updateRow(qso) {
 	if (user_options.qslvia.show == "true"){
 		cells.eq(c++).text(qso.qslVia);
 	}
-	if (user_options.qsl.show == "true"){
-		cells.eq(c++).html(qso.qsl);
-	}
 	if (user_options.clublog.show == "true"){
 		cells.eq(c++).html(qso.clublog);
+	}
+	if (user_options.qsl.show == "true"){
+		cells.eq(c++).html(qso.qsl);
 	}
 	if ($(".eqslconfirmation")[0] && user_options.eqsl.show == "true"){
 		cells.eq(c++).html(qso.eqsl);
