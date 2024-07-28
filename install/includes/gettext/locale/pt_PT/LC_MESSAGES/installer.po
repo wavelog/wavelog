@@ -4,12 +4,13 @@
 #
 # Fabian Berg <hb9hil@wavelog.org>, 2024.
 # "Francisco (F4VSE)" <kikosgc@gmail.com>, 2024.
+# "Francisco (F4VSE)" <kikosgc@users.noreply.github.com>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-28 17:38+0000\n"
-"PO-Revision-Date: 2024-07-22 19:23+0000\n"
-"Last-Translator: \"Francisco (F4VSE)\" <kikosgc@gmail.com>\n"
+"POT-Creation-Date: 2024-07-28 11:10+0000\n"
+"PO-Revision-Date: 2024-07-28 17:42+0000\n"
+"Last-Translator: Fabian Berg <hb9hil@wavelog.org>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
 "wavelog/installer/pt_PT/>\n"
 "Language: pt_PT\n"
@@ -21,23 +22,23 @@ msgstr ""
 
 #: install/includes/core/database_class.php:59
 msgid "Connection Error: "
-msgstr ""
+msgstr "Erro de Conexão: "
 
 #: install/includes/core/database_class.php:63
 msgid "Unable to create database: "
-msgstr ""
+msgstr "Impossivel de criar a base de dados: "
 
 #: install/includes/core/database_class.php:68
 msgid "Unable to select database: "
-msgstr ""
+msgstr "Não é possível selecionar a base de dados: "
 
 #: install/includes/core/database_class.php:74
 msgid "Database is not empty."
-msgstr ""
+msgstr "A base de dados não está vazia."
 
 #: install/includes/install_config/install_lib.php:123
 msgid "not detected"
-msgstr ""
+msgstr "não detectado"
 
 #: install/includes/interface_assets/footer.php:49
 msgid "Bulgarian"
@@ -192,7 +193,7 @@ msgstr "Versão"
 #, php-format
 msgctxt "PHP Version"
 msgid "min. %s (recommended %s+)"
-msgstr ""
+msgstr "min. %s (recomendado %s+)"
 
 #: install/index.php:131
 msgid "Installed"
@@ -208,35 +209,37 @@ msgstr "Configurações PHP"
 
 #: install/index.php:229
 msgid "Folder Write Permissions"
-msgstr ""
+msgstr "Permissões de escrita na Pasta"
 
 #: install/index.php:235 install/index.php:246 install/index.php:257
 #: install/index.php:268 install/index.php:279
 msgid "Success"
-msgstr ""
+msgstr "Sucesso"
 
 #: install/index.php:238 install/index.php:249 install/index.php:260
 #: install/index.php:271 install/index.php:282
 msgid "Failed"
-msgstr ""
+msgstr "Falhou"
 
 #: install/index.php:289
 msgid "Web Server"
-msgstr ""
+msgstr "Servidor Web"
 
 #: install/index.php:292
 msgid "Version:"
-msgstr ""
+msgstr "Versão:"
 
 #: install/index.php:299
 msgid "Important note for nginx users!"
-msgstr ""
+msgstr "Nota importante para utilizadores do nginx!"
 
 #: install/index.php:300
 msgid ""
 "Since you are using nginx as web server please make sure that you have made "
 "the changes described in the Wiki before continuing."
 msgstr ""
+"Como está a usar o nginx como servidor web, por favor, certifique-se de que "
+"fez as alterações descritas na Wiki antes de continuar."
 
 #: install/index.php:309
 msgid "Some Checks have failed!"
@@ -294,7 +297,7 @@ msgstr ""
 
 #: install/index.php:346
 msgid "No slash before or after the directory. Just the name of the folder."
-msgstr ""
+msgstr "Sem barra antes ou depois do diretório. Apenas o nome da pasta."
 
 #: install/index.php:351
 #, php-format
@@ -320,6 +323,10 @@ msgid ""
 "\t\t\t\t\t\t\t\t\t\t\t\t- have to end with a slash 'example/'<br>\n"
 "\t\t\t\t\t\t\t\t\t\t\t\t- have to start with 'http'"
 msgstr ""
+"Este campo<br>\n"
+"- não pode estar vazio<br>\n"
+"- tem de terminar com uma barra 'exemplo/'<br>\n"
+"- tem de começar com 'http'"
 
 #: install/index.php:361
 msgid "Optional: Global Callbook Lookup"
@@ -359,45 +366,48 @@ msgstr "Palavra-passe do caderno"
 #: install/index.php:383
 #, php-format
 msgid "Password can't contain %s or be empty"
-msgstr ""
+msgstr "A palavra-passe não pode conter %s nem pode estar vazia"
 
 #: install/index.php:388 install/index.php:393
 msgid "Advanced Settings"
-msgstr ""
+msgstr "Configurações Avançadas"
 
 #: install/index.php:396
 msgid "These settings should only be set if you know what you're doing."
 msgstr ""
+"Estas definições só devem ser configuradas se souber o que está a fazer."
 
 #: install/index.php:399
 msgid "Error Logs"
-msgstr ""
+msgstr "Registos de Erros"
 
 #: install/index.php:400
 msgid ""
 "Optional: Enable Error Logging by setting the log threshold bigger then 0. "
 "Only enable this if you really need it."
 msgstr ""
+"Opcional: Ativar o registo de erros definindo o limiar de registo maior que "
+"0. Só ative isto se realmente precisar."
 
 #: install/index.php:405
 msgid "0 - No logs"
-msgstr ""
+msgstr "0 - Sem registos"
 
 #: install/index.php:406
 msgid "1 - Error messages"
-msgstr ""
+msgstr "1 - Mensagens de erro"
 
 #: install/index.php:407
 msgid "2 - Debug messages"
-msgstr ""
+msgstr "2 - Mensagens de debug"
 
 #: install/index.php:408
 msgid "3 - Info messages"
-msgstr ""
+msgstr "3 - Mensagens de informação"
 
 #: install/index.php:409
 msgid "4 - All messages"
-msgstr ""
+msgstr "4 - Todas as mensagens"
 
 #: install/index.php:431
 msgid ""
@@ -416,6 +426,8 @@ msgid ""
 "Usually 'localhost'.<br>Optional with '[host]:[port]'. Default port: 3306."
 "<br>In a docker compose install type 'wavelog-db'."
 msgstr ""
+"Normalmente 'localhost'.<br>Opcional com '[host]:[port]'. Porta padrão: 3306."
+"<br>Num tipo de instalação docker compose 'wavelog-db'."
 
 #: install/index.php:441
 msgid "Database Name"
@@ -444,10 +456,13 @@ msgid ""
 "Now you can create your first user in Wavelog. Fill out all fields and click "
 "continue. Make sure you use a safe password."
 msgstr ""
+"Agora pode criar o seu primeiro utilizador no Wavelog. Preencha todos os "
+"campos e clique em continuar.<br>Certifique-se de que utiliza uma palavra-"
+"passe segura."
 
 #: install/index.php:467
 msgid "All fields are required!"
-msgstr ""
+msgstr "Todos os campos são obrigatórios!"
 
 #: install/index.php:476
 msgid "First Name"
@@ -520,7 +535,7 @@ msgstr "Lista de verificação"
 
 #: install/index.php:1054
 msgid "Pre-Checks"
-msgstr ""
+msgstr "Pré-verificações"
 
 #: install/index.php:1063
 msgid "Configuration"
@@ -549,23 +564,23 @@ msgstr ""
 
 #: install/index.php:1100
 msgid "Reset"
-msgstr ""
+msgstr "Reiniciar"
 
 #: install/index.php:1105
 msgid "Installer Reset"
-msgstr ""
+msgstr "Reiniciar Instalador"
 
 #: install/index.php:1108
 msgid "Do you really want to reset all data and start from scratch?"
-msgstr ""
+msgstr "Querer mesmo reiniciar todos os dados e começar do zero?"
 
 #: install/index.php:1111
 msgid "Yes"
-msgstr ""
+msgstr "Sim"
 
 #: install/index.php:1112
 msgid "No"
-msgstr ""
+msgstr "Não"
 
 #: install/index.php:1122
 msgid "Back"
@@ -580,14 +595,18 @@ msgid ""
 "You can't continue. Solve the red marked issues, restart the webserver and "
 "reload this page."
 msgstr ""
+"Não pode continuar. Resolva os problemas marcados a vermelho, reinicie o "
+"servidor web e recarrega esta página."
 
 #: install/index.php:1328
 msgid "Password can't contain ' / \\ < >"
-msgstr ""
+msgstr "A palavra-passe não pode conter ' / \\ < >"
 
 #: install/index.php:1495
 msgid "Error: At least Hostname/IP, Database Name and Username are required."
 msgstr ""
+"Erro: Pelo menos o Nome do Host/IP, Nome da Base de Dados e Nome de "
+"Utilizador são necessários."
 
 #: install/index.php:1505
 msgid "Connecting..."
@@ -596,6 +615,7 @@ msgstr "Ligação..."
 #: install/index.php:1529
 msgid "Connection was successful and your database should be compatible."
 msgstr ""
+"A ligação foi bem sucedida e a sua base de dados apararenta ser compatível."
 
 #: install/index.php:1533
 msgid ""
@@ -607,24 +627,28 @@ msgstr ""
 
 #: install/index.php:1533
 #, php-format
-msgid "The min. version for MySQL is %s, for MariaDB it's %s."
-msgstr ""
+msgid "The min. Version for MySQL is %s, for it's MariaDB %s."
+msgstr "A versão mínima para MySQL é %s, para MariaDB é %s."
 
 #: install/index.php:1645
 msgid "At least one field is empty."
-msgstr ""
+msgstr "Pelo menos um campo está vazio."
 
 #: install/index.php:1675
 msgid ""
 "The locator seems to be not in the correct format. Should look like AA11AA "
 "(6-char grid locator)."
 msgstr ""
+"O locator parece não estar no formato correto. Deve ser algo tipo AA11AA "
+"(locator de 6 caracteres)."
 
 #: install/index.php:1689
 msgid ""
 "The e-mail adress does not look correct. Make sure it's a valid e-mail "
 "address"
 msgstr ""
+"O endereço de e-mail não parece correto. Certifique-se de que é um endereço "
+"de e-mail válido"
 
 #: install/index.php:1716
 msgid "Password should be at least 8 characters long"
@@ -640,80 +664,87 @@ msgstr "Instalar agora"
 
 #: install/index.php:1776
 msgid "Install not possible. Checklist incomplete."
-msgstr ""
+msgstr "Instalação não possível. Lista de verificação incompleta."
 
 #: install/run.php:10
 msgid "Installation"
-msgstr ""
+msgstr "Instalação"
 
 #: install/run.php:12
 msgid "Please wait..."
-msgstr ""
+msgstr "Aguarde ..."
 
 #: install/run.php:15
 msgid "Copy config.php to application/config/"
-msgstr ""
+msgstr "Copiar config.php para application/config/"
 
 #: install/run.php:18
 msgid "Copy database.php to application/config/"
-msgstr ""
+msgstr "Copiar database.php para application/config/"
 
 #: install/run.php:21
 msgid "Creating database tables"
-msgstr ""
+msgstr "Criar tabelas de base de dados"
 
 #: install/run.php:24
 msgid "Running database migrations"
-msgstr ""
+msgstr "Executando migrações de banco de dados"
 
 #: install/run.php:27
 msgid "Updating DXCC data"
-msgstr ""
+msgstr "A atualizar dados DXCC"
 
 #: install/run.php:35
 msgid "Lock the installer"
-msgstr ""
+msgstr "Bloqueiar o instalador"
 
 #: install/run.php:39
 #, php-format
 msgid "All install steps went through. Redirect to user login in %s seconds..."
 msgstr ""
+"Todos os passos de instalação foram concluídos. Redirecionar para o login do "
+"utilizador em %s segundos..."
 
 #: install/run.php:42
 msgid "Done. Go to the user login ->"
-msgstr ""
+msgstr "Feito. Ir para o início de sessão do utilizador"
 
 #: install/run.php:46 install/run.php:125
 msgid "Show detailled debug log"
-msgstr ""
+msgstr "Mostrar registo detalhado de debug"
 
 #: install/run.php:127
 msgid "Hide detailled debug log"
-msgstr ""
+msgstr "Esconder registo detalhado de debug"
 
 #: install/run.php:182
 msgid "Could not create application/config/config.php"
-msgstr ""
+msgstr "Não foi possível criar application/config/config.php"
 
 #: install/run.php:217
 msgid "Could not create application/config/database.php"
-msgstr ""
+msgstr "Não foi possível criar application/config/database.php"
 
 #: install/run.php:251
 msgid "Could not create database tables"
-msgstr ""
+msgstr "Não foi possível criar as tabelas de base de dados"
 
 #: install/run.php:281
 msgid "Could not run database migrations"
-msgstr ""
+msgstr "Não foi possível executar as migrações da base de dados"
 
 #: install/run.php:309
 msgid "Could not update DXCC data"
-msgstr ""
+msgstr "Não foi possível atualizar os dados DXCC"
 
 #: install/run.php:341
 msgid "Could not create install/.lock file"
-msgstr ""
+msgstr "Não foi possível criar o ficheiro install/.lock"
+
+#: install/index.php:1533
+#, php-format
+msgid "The min. version for MySQL is %s, for MariaDB it's %s."
+msgstr "A versão mínima para MySQL é %s, para MariaDB é %s."
 
 #~ msgid "On"
 #~ msgstr "Ligado"
