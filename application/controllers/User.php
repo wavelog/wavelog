@@ -812,7 +812,6 @@ class User extends CI_Controller {
 				if ($this->user_model->check_keep_hash($a, $b)) {
 
 					// check if maintenance mode is active or the user is an admin
-					log_message('error', 'user_type: '.$user_type);
 					if (ENVIRONMENT != 'maintenance' || $user_type == 99) {
 
 						// if everything is fine we can log in the user
