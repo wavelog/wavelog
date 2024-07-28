@@ -426,8 +426,8 @@ msgid ""
 "Usually 'localhost'.<br>Optional with '[host]:[port]'. Default port: 3306."
 "<br>In a docker compose install type 'wavelog-db'."
 msgstr ""
-"Normalmente 'localhost'.<br>Opcional com '[host]:[port]'. Porta padrão: "
-"3306.<br>Num tipo de instalação docker compose 'wavelog-db'."
+"Normalmente 'localhost'.<br>Opcional com '[host]:[port]'. Porta padrão: 3306."
+"<br>Num tipo de instalação docker compose 'wavelog-db'."
 
 #: install/index.php:441
 msgid "Database Name"
@@ -639,8 +639,8 @@ msgid ""
 "The locator seems to be not in the correct format. Should look like AA11AA "
 "(6-char grid locator)."
 msgstr ""
-"O locator parece não estar no formato correto. Deve ser algo tipo AA11AA ("
-"locator de 6 caracteres)."
+"O locator parece não estar no formato correto. Deve ser algo tipo AA11AA "
+"(locator de 6 caracteres)."
 
 #: install/index.php:1689
 msgid ""
@@ -740,6 +740,11 @@ msgstr "Não foi possível atualizar os dados DXCC"
 #: install/run.php:341
 msgid "Could not create install/.lock file"
 msgstr "Não foi possível criar o ficheiro install/.lock"
+
+#: install/index.php:1533
+#, php-format
+msgid "The min. version for MySQL is %s, for MariaDB it's %s."
+msgstr ""
 
 #~ msgid "On"
 #~ msgstr "Ligado"
