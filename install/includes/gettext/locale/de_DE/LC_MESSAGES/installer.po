@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-07-28 11:10+0000\n"
-"PO-Revision-Date: 2024-07-28 17:31+0000\n"
+"PO-Revision-Date: 2024-07-28 17:38+0000\n"
 "Last-Translator: Fabian Berg <hb9hil@wavelog.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
 "installer/de/>\n"
@@ -325,6 +325,10 @@ msgid ""
 "\t\t\t\t\t\t\t\t\t\t\t\t- have to end with a slash 'example/'<br>\n"
 "\t\t\t\t\t\t\t\t\t\t\t\t- have to start with 'http'"
 msgstr ""
+"Dieses Feld<br>\n"
+"- darf nicht leer sein<br>\n"
+"- muss mit einem Schrägstrich enden 'example/'<br>\n"
+"- muss mit 'http' beginnen"
 
 #: install/index.php:361
 msgid "Optional: Global Callbook Lookup"
@@ -618,19 +622,23 @@ msgstr ""
 
 #: install/index.php:1645
 msgid "At least one field is empty."
-msgstr ""
+msgstr "Mindestens ein Feld ist leer."
 
 #: install/index.php:1675
 msgid ""
 "The locator seems to be not in the correct format. Should look like AA11AA "
 "(6-char grid locator)."
 msgstr ""
+"Der Locator scheint nicht im richtigen Format zu sein. Sollte wie AA11AA "
+"aussehen (6-stelliger Grid-Locator)."
 
 #: install/index.php:1689
 msgid ""
 "The e-mail adress does not look correct. Make sure it's a valid e-mail "
 "address"
 msgstr ""
+"Die E-Mail-Adresse sieht nicht korrekt aus. Stelle sicher, dass es eine "
+"gültige E-Mail-Adresse ist"
 
 #: install/index.php:1716
 msgid "Password should be at least 8 characters long"
@@ -646,76 +654,78 @@ msgstr "Jetzt installieren"
 
 #: install/index.php:1776
 msgid "Install not possible. Checklist incomplete."
-msgstr ""
+msgstr "Installation nicht möglich. Checkliste unvollständig."
 
 #: install/run.php:10
 msgid "Installation"
-msgstr ""
+msgstr "Installation"
 
 #: install/run.php:12
 msgid "Please wait..."
-msgstr ""
+msgstr "Bitte warten..."
 
 #: install/run.php:15
 msgid "Copy config.php to application/config/"
-msgstr ""
+msgstr "Kopiere config.php nach application/config/"
 
 #: install/run.php:18
 msgid "Copy database.php to application/config/"
-msgstr ""
+msgstr "Kopiere database.php nach application/config/"
 
 #: install/run.php:21
 msgid "Creating database tables"
-msgstr ""
+msgstr "Erstellen von Datenbanktabellen"
 
 #: install/run.php:24
 msgid "Running database migrations"
-msgstr ""
+msgstr "Datenbankmigrationen ausführen"
 
 #: install/run.php:27
 msgid "Updating DXCC data"
-msgstr ""
+msgstr "Aktualisierung der DXCC-Daten"
 
 #: install/run.php:35
 msgid "Lock the installer"
-msgstr ""
+msgstr "Sperre den Installer"
 
 #: install/run.php:39
 #, php-format
 msgid "All install steps went through. Redirect to user login in %s seconds..."
 msgstr ""
+"Alle Installationsschritte wurden abgeschlossen. Weiterleitung zum Benutzer-"
+"Login in %s Sekunden..."
 
 #: install/run.php:42
 msgid "Done. Go to the user login ->"
-msgstr ""
+msgstr "Fertig. Gehe zum Benutzer-Login ->"
 
 #: install/run.php:46 install/run.php:125
 msgid "Show detailled debug log"
-msgstr ""
+msgstr "Detailliertes Debug-Log anzeigen"
 
 #: install/run.php:127
 msgid "Hide detailled debug log"
-msgstr ""
+msgstr "Detailliertes Debug-Log ausblenden"
 
 #: install/run.php:182
 msgid "Could not create application/config/config.php"
-msgstr ""
+msgstr "Konnte application/config/config.php nicht erstellen"
 
 #: install/run.php:217
 msgid "Could not create application/config/database.php"
-msgstr ""
+msgstr "Konnte application/config/database.php nicht erstellen"
 
 #: install/run.php:251
 msgid "Could not create database tables"
-msgstr ""
+msgstr "Konnte Datenbanktabellen nicht erstellen"
 
 #: install/run.php:281
 msgid "Could not run database migrations"
-msgstr ""
+msgstr "Konnte Datenbankmigrationen nicht ausführen"
 
 #: install/run.php:309
 msgid "Could not update DXCC data"
-msgstr ""
+msgstr "Konnte DXCC-Daten nicht aktualisieren"
 
 #: install/run.php:341
 msgid "Could not create install/.lock file"
