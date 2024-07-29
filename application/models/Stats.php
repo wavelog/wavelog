@@ -503,7 +503,7 @@
 				count(case when COL_LOTW_QSL_RCVD='Y' then 1 end) lotw,
 				count(case when COL_QRZCOM_QSO_DOWNLOAD_STATUS='Y' then 1 end) qrz,
 				count(case when COL_CLUBLOG_QSO_DOWNLOAD_STATUS='Y' then 1 end) clublog
-		from logbook
+		from " . $this->config->item('table_name') . "
 		where station_id in (". implode(',', $logbooks_locations_array) .")
 		and col_prop_mode <> 'SAT'
 		group by lower(col_band), col_mode, coalesce(col_submode, '')";
@@ -527,7 +527,7 @@
 				count(case when COL_LOTW_QSL_RCVD='Y' then 1 end) lotw,
 				count(case when COL_QRZCOM_QSO_DOWNLOAD_STATUS='Y' then 1 end) qrz,
 				count(case when COL_CLUBLOG_QSO_DOWNLOAD_STATUS='Y' then 1 end) clublog
-		from logbook
+		from " . $this->config->item('table_name') . "
 		where station_id in (". implode(',', $logbooks_locations_array) .")
 		and col_prop_mode = 'SAT'
 		group by upper(col_band), col_mode, coalesce(col_submode, '')";
