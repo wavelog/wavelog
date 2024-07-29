@@ -4,7 +4,7 @@
 
     <div class="card">
         <div class="card-header">
-            <?= sprintf(__("Export of CFD-File for DARC-Toplist (See %s)"), "<a href='https://toplist.darc.de' target='_blank'>https://toplist.darc.de</a>"); ?>
+            <?= sprintf(__("Export of CFD-File for DARC-Toplist (See %s)"), "<a href='https://dcl.darc.de/toplist' target='_blank'>https://dcl.darc.de/toplist</a>"); ?>
         </div>
 
         <div class="card-body">
