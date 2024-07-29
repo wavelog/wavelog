@@ -160,6 +160,8 @@ class Statistics extends CI_Controller {
 	public function get_unique_sat_callsigns() {
 		$this->load->model('stats');
 
+		$total_qsos = array();
+
 		$result = $this->stats->unique_sat_callsigns();
 		$total_qsos['qsoarray'] = $result['qsoView'];
 		$total_qsos['satunique'] = $result['satunique'];
@@ -174,6 +176,8 @@ class Statistics extends CI_Controller {
 	public function get_unique_callsigns() {
 		$this->load->model('stats');
 
+		$total_qsos = array();
+
 		$result = $this->stats->unique_callsigns();
 		$total_qsos['qsoarray'] = $result['qsoView'];
 		$total_qsos['bandunique'] = $result['bandunique'];
@@ -187,7 +191,7 @@ class Statistics extends CI_Controller {
 	public function get_total_sat_qsos() {
 		$this->load->model('stats');
 
-		$totalqsos = array();
+		$total_qsos = array();
 
 		$result = $this->stats->total_sat_qsos();
 		$total_qsos['qsoarray'] = $result['qsoView'];
@@ -202,7 +206,7 @@ class Statistics extends CI_Controller {
 	public function get_total_qsos() {
 		$this->load->model('stats');
 
-		$totalqsos = array();
+		$total_qsos = array();
 
 		$result = $this->stats->total_qsos();
 		$total_qsos['qsoarray'] = $result['qsoView'];
@@ -216,7 +220,7 @@ class Statistics extends CI_Controller {
 	public function qslstats() {
 		$this->load->model('stats');
 
-		$totalqsos = array();
+		$total_qsos = array();
 
 		$result = $this->stats->total_qsls();
 		$total_qsos['qsoarray'] = $result['qsoView'];
