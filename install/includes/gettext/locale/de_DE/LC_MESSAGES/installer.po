@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-28 17:44+0000\n"
+"POT-Creation-Date: 2024-07-29 12:05+0000\n"
 "PO-Revision-Date: 2024-07-28 17:42+0000\n"
 "Last-Translator: Fabian Berg <hb9hil@wavelog.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
@@ -108,35 +108,35 @@ msgstr "Türkisch"
 msgid "Install | Wavelog"
 msgstr "Installer | Wavelog"
 
-#: install/index.php:25
+#: install/index.php:30
 msgid "1. Welcome"
 msgstr "1. Willkommen"
 
-#: install/index.php:28
+#: install/index.php:33
 msgid "2. Pre Checks"
 msgstr "2. Pre-Checks"
 
-#: install/index.php:31
+#: install/index.php:36
 msgid "3. Configuration"
 msgstr "3. Konfiguration"
 
-#: install/index.php:34
+#: install/index.php:39
 msgid "4. Database"
 msgstr "4. Datenbank"
 
-#: install/index.php:37
+#: install/index.php:42
 msgid "5. First User"
 msgstr "5. Erster Benutzer"
 
-#: install/index.php:40
+#: install/index.php:45
 msgid "6. Finish"
 msgstr "6. Fertig"
 
-#: install/index.php:57
+#: install/index.php:62
 msgid "Welcome to the Wavelog Installer"
 msgstr "Willkommen beim Wavelog Installer"
 
-#: install/index.php:58
+#: install/index.php:63
 msgid ""
 "This installer will guide you through the necessary steps for the "
 "installation of Wavelog. <br>Wavelog is a powerful web-based amateur radio "
@@ -148,11 +148,11 @@ msgstr ""
 "Logging-Software. Folge den Schritten in jedem Tab, um Wavelog auf deinem "
 "Server zu konfigurieren und zu installieren."
 
-#: install/index.php:59
+#: install/index.php:64
 msgid "Discussions"
 msgstr "Diskussionen"
 
-#: install/index.php:59
+#: install/index.php:64
 #, php-format
 msgid ""
 "If you encounter any issues or have questions, refer to the documentation "
@@ -161,79 +161,79 @@ msgstr ""
 "Falls du auf Probleme stösst oder Fragen hast, schau in die Dokumentation "
 "(%s) oder das Community-Forum (%s) auf Github für Hilfe."
 
-#: install/index.php:59
+#: install/index.php:64
 msgid "Wiki"
 msgstr "Wiki"
 
-#: install/index.php:60
+#: install/index.php:65
 msgid "Thank you for installing Wavelog!"
 msgstr "Danke, dass du Wavelog installierst!"
 
-#: install/index.php:61 install/index.php:64 install/index.php:1031
+#: install/index.php:66 install/index.php:69 install/index.php:1037
 msgid "Language"
 msgstr "Sprache"
 
-#: install/index.php:74
+#: install/index.php:79
 msgid "Select a language"
 msgstr "Wähle eine Sprache"
 
-#: install/index.php:86 install/index.php:415
+#: install/index.php:91 install/index.php:421
 msgid "Close"
 msgstr "Schliessen"
 
-#: install/index.php:96
+#: install/index.php:101
 msgid "PHP Modules"
 msgstr "PHP-Module"
 
-#: install/index.php:103
+#: install/index.php:108
 msgid "Version"
 msgstr "Version"
 
-#: install/index.php:104
+#: install/index.php:109
 #, php-format
 msgctxt "PHP Version"
 msgid "min. %s (recommended %s+)"
 msgstr "min. %s (empfohlen %s+)"
 
-#: install/index.php:131
+#: install/index.php:136
 msgid "Installed"
 msgstr "Installiert"
 
-#: install/index.php:131
+#: install/index.php:136
 msgid "Not Installed"
 msgstr "Nicht installiert"
 
-#: install/index.php:139
+#: install/index.php:144
 msgid "PHP Settings"
 msgstr "PHP-Einstellungen"
 
-#: install/index.php:229
+#: install/index.php:234
 msgid "Folder Write Permissions"
 msgstr "Ordner-Schreibberechtigungen"
 
-#: install/index.php:235 install/index.php:246 install/index.php:257
-#: install/index.php:268 install/index.php:279
+#: install/index.php:240 install/index.php:251 install/index.php:262
+#: install/index.php:273 install/index.php:284
 msgid "Success"
 msgstr "Erfolgreich"
 
-#: install/index.php:238 install/index.php:249 install/index.php:260
-#: install/index.php:271 install/index.php:282
+#: install/index.php:243 install/index.php:254 install/index.php:265
+#: install/index.php:276 install/index.php:287
 msgid "Failed"
 msgstr "Fehlgeschlagen"
 
-#: install/index.php:289
+#: install/index.php:294
 msgid "Web Server"
 msgstr "Webserver"
 
-#: install/index.php:292
+#: install/index.php:297
 msgid "Version:"
 msgstr "Version:"
 
-#: install/index.php:299
+#: install/index.php:304
 msgid "Important note for nginx users!"
 msgstr "Wichtiger Hinweis für nginx-Nutzer!"
 
-#: install/index.php:300
+#: install/index.php:305
 msgid ""
 "Since you are using nginx as web server please make sure that you have made "
 "the changes described in the Wiki before continuing."
@@ -241,17 +241,17 @@ msgstr ""
 "Da du nginx als Webserver verwendest, stelle bitte sicher, dass du die im "
 "Wiki beschriebenen Änderungen vorgenommen hast, bevor du fortfährst."
 
-#: install/index.php:309
+#: install/index.php:314
 msgid "Some Checks have failed!"
 msgstr "Einige Prüfungen sind fehlgeschlagen!"
 
-#: install/index.php:310
+#: install/index.php:315
 msgid "Check your PHP settings and install missing modules if necessary."
 msgstr ""
 "Überprüfe deine PHP-Einstellungen und installiere fehlende Module, falls "
 "notwendig."
 
-#: install/index.php:311
+#: install/index.php:316
 msgid ""
 "After that, you have to restart your webserver and start the installer again."
 msgstr ""
@@ -259,10 +259,17 @@ msgstr ""
 "starten."
 
 #: install/index.php:317
+#, php-format
+msgid ""
+"In case of failed 'Folder Write Permissions' check out our Wiki <a href='%s' "
+"target='_blank'>here</a>."
+msgstr ""
+
+#: install/index.php:323
 msgid "You have some warnings!"
 msgstr "Du hast ein paar Warnungen!"
 
-#: install/index.php:318
+#: install/index.php:324
 msgid ""
 "Some of the settings are not optimal. You can proceed with the installer but "
 "be aware that you could run into problems while using Wavelog."
@@ -271,11 +278,11 @@ msgstr ""
 "fortfahren, aber sei dir bewusst, dass du auf Probleme stossen könntest, "
 "während du Wavelog benutzt."
 
-#: install/index.php:325
+#: install/index.php:331
 msgid "All Checks are OK. You can continue."
 msgstr "Alle Checks sind OK. Du kannst weitermachen."
 
-#: install/index.php:339
+#: install/index.php:345
 msgid ""
 "Configure some basic parameters for your wavelog instance. You can change "
 "them later in 'application/config/config.php'"
@@ -283,11 +290,11 @@ msgstr ""
 "Konfiguriere einige grundlegende Parameter für deine Wavelog-Instanz. Du "
 "kannst sie später in 'application/config/config.php' ändern"
 
-#: install/index.php:341
+#: install/index.php:347
 msgid "Directory"
 msgstr "Verzeichnis"
 
-#: install/index.php:341
+#: install/index.php:347
 msgid ""
 "The 'Directory' is basically your subfolder of the webroot In normal "
 "conditions the prefilled value is doing it's job. It also can be empty."
@@ -296,12 +303,12 @@ msgstr ""
 "normalen Bedingungen funktioniert der hier vorausgefüllte Wert. Er kann aber "
 "auch leer sein."
 
-#: install/index.php:346
+#: install/index.php:352
 msgid "No slash before or after the directory. Just the name of the folder."
 msgstr ""
 "Kein Schrägstrich vor oder nach dem Verzeichnis. Nur der Name des Ordners."
 
-#: install/index.php:351
+#: install/index.php:357
 #, php-format
 msgid ""
 "This is the complete URL where your Wavelog Instance will be available. If "
@@ -315,27 +322,23 @@ msgstr ""
 "die neue URL eingeben (z.B. %s statt %s). Vergiss nicht, das oben genannte "
 "Verzeichnis mit anzugeben."
 
-#: install/index.php:351
+#: install/index.php:357
 msgid "Website URL"
 msgstr "Webseiten-URL"
 
-#: install/index.php:354
+#: install/index.php:360
 msgid ""
 "This field<br>\n"
-"\t\t\t\t\t\t\t\t\t\t\t\t- can't be empty<br>\n"
-"\t\t\t\t\t\t\t\t\t\t\t\t- have to end with a slash 'example/'<br>\n"
-"\t\t\t\t\t\t\t\t\t\t\t\t- have to start with 'http'"
+"\t\t\t\t\t\t\t\t\t\t\t\t\t- can't be empty<br>\n"
+"\t\t\t\t\t\t\t\t\t\t\t\t\t- have to end with a slash 'example/'<br>\n"
+"\t\t\t\t\t\t\t\t\t\t\t\t\t- have to start with 'http'"
 msgstr ""
-"Dieses Feld<br>\n"
-"- darf nicht leer sein<br>\n"
-"- muss mit einem Schrägstrich enden 'example/'<br>\n"
-"- muss mit 'http' beginnen"
 
-#: install/index.php:361
+#: install/index.php:367
 msgid "Optional: Global Callbook Lookup"
 msgstr "Optional: Globaler Callbook Lookup"
 
-#: install/index.php:361
+#: install/index.php:367
 msgid ""
 "This configuration is optional. The callsign lookup will be available for "
 "all users of this installation. You can choose between QRZ.com and HamQTH. "
@@ -350,42 +353,42 @@ msgstr ""
 "com zu erhalten, brauchst du ein XML-Abonnement. HamQTH liefert nicht immer "
 "die Locator-Informationen."
 
-#: install/index.php:370 install/index.php:447 install/index.php:480
+#: install/index.php:376 install/index.php:453 install/index.php:486
 msgid "Username"
 msgstr "Benutzername"
 
-#: install/index.php:373 install/index.php:451 install/index.php:490
+#: install/index.php:379 install/index.php:457 install/index.php:496
 msgid "Password"
 msgstr "Passwort"
 
-#: install/index.php:378
+#: install/index.php:384
 msgid "Callbook Username"
 msgstr "Callbook-Benutzername"
 
-#: install/index.php:381
+#: install/index.php:387
 msgid "Callbook Password"
 msgstr "Callbook-Passwort"
 
-#: install/index.php:383
+#: install/index.php:389
 #, php-format
 msgid "Password can't contain %s or be empty"
 msgstr "Das Passwort darf %s nicht enthalten oder leer sein"
 
-#: install/index.php:388 install/index.php:393
+#: install/index.php:394 install/index.php:399
 msgid "Advanced Settings"
 msgstr "Erweiterte Einstellungen"
 
-#: install/index.php:396
+#: install/index.php:402
 msgid "These settings should only be set if you know what you're doing."
 msgstr ""
 "Diese Einstellungen sollten nur vorgenommen werden, wenn du weißt, was du "
 "tust."
 
-#: install/index.php:399
+#: install/index.php:405
 msgid "Error Logs"
 msgstr "Fehlerprotokoll"
 
-#: install/index.php:400
+#: install/index.php:406
 msgid ""
 "Optional: Enable Error Logging by setting the log threshold bigger then 0. "
 "Only enable this if you really need it."
@@ -393,27 +396,27 @@ msgstr ""
 "Optional: Fehlerlogging kann mit einem Schwellwert größer 0 aktiviert "
 "werden. Nur aktivieren, wenn du das wirklich benötigst."
 
-#: install/index.php:405
+#: install/index.php:411
 msgid "0 - No logs"
 msgstr "0 - Kein Protokoll"
 
-#: install/index.php:406
+#: install/index.php:412
 msgid "1 - Error messages"
 msgstr "1 - Fehlermeldungen"
 
-#: install/index.php:407
+#: install/index.php:413
 msgid "2 - Debug messages"
 msgstr "2 - Debugmeldungen"
 
-#: install/index.php:408
+#: install/index.php:414
 msgid "3 - Info messages"
 msgstr "3 - Informationen"
 
-#: install/index.php:409
+#: install/index.php:415
 msgid "4 - All messages"
 msgstr "4 - Alle Nachrichten"
 
-#: install/index.php:431
+#: install/index.php:437
 msgid ""
 "To properly install Wavelog you already should have setup a mariadb/mysql "
 "database. Provide the parameters here."
@@ -421,11 +424,11 @@ msgstr ""
 "Um Wavelog richtig zu installieren, solltest du bereits eine mariadb/mysql-"
 "Datenbank eingerichtet haben. Gib hier die Parameter an."
 
-#: install/index.php:435
+#: install/index.php:441
 msgid "Hostname or IP"
 msgstr "Hostname oder IP"
 
-#: install/index.php:435
+#: install/index.php:441
 msgid ""
 "Usually 'localhost'.<br>Optional with '[host]:[port]'. Default port: 3306."
 "<br>In a docker compose install type 'wavelog-db'."
@@ -433,29 +436,29 @@ msgstr ""
 "Normalerweise 'localhost'.<br>Optional mit '[host]:[port]'. Standardport: "
 "3306.<br>In einer docker compose Installation bitte 'wavelog-db' eintragen."
 
-#: install/index.php:441
+#: install/index.php:447
 msgid "Database Name"
 msgstr "Datenbankname"
 
-#: install/index.php:441
+#: install/index.php:447
 msgid "Name of the Database"
 msgstr "Name der Datenbank"
 
-#: install/index.php:447
+#: install/index.php:453
 msgid "Username of the Database User which has full access to the database."
 msgstr ""
 "Benutzername des Datenbankbenutzers, der vollen Zugriff auf die Datenbank "
 "hat."
 
-#: install/index.php:451
+#: install/index.php:457
 msgid "Password of the Database User"
 msgstr "Passwort des Datenbankbenutzers"
 
-#: install/index.php:455
+#: install/index.php:461
 msgid "Connection Test"
 msgstr "Verbindungstest"
 
-#: install/index.php:466
+#: install/index.php:472
 msgid ""
 "Now you can create your first user in Wavelog. Fill out all fields and click "
 "continue. Make sure you use a safe password."
@@ -464,138 +467,138 @@ msgstr ""
 "aus und klicke auf fortsetzen. Vergewissere dich, dass du ein sicheres "
 "Passwort verwendest."
 
-#: install/index.php:467
+#: install/index.php:473
 msgid "All fields are required!"
 msgstr "Alle Felder werden benötigt!"
 
-#: install/index.php:476
+#: install/index.php:482
 msgid "First Name"
 msgstr "Vorname"
 
-#: install/index.php:486
+#: install/index.php:492
 msgid "Last Name"
 msgstr "Nachname"
 
-#: install/index.php:496
+#: install/index.php:502
 msgid "Callsign"
 msgstr "Rufzeichen"
 
-#: install/index.php:500
+#: install/index.php:506
 msgid "Confirm Password"
 msgstr "Passwort bestätigen"
 
-#: install/index.php:506
+#: install/index.php:512
 msgid "City"
 msgstr "Stadt"
 
-#: install/index.php:510
+#: install/index.php:516
 msgid "E-Mail Address"
 msgstr "E-Mail-Adresse"
 
-#: install/index.php:516
+#: install/index.php:522
 msgid "Gridsquare/Locator"
 msgstr "Planquadrat/Locator"
 
-#: install/index.php:520
+#: install/index.php:526
 msgid "Timezone"
 msgstr "Zeitzone"
 
-#: install/index.php:623
+#: install/index.php:629
 msgid "DXCC"
 msgstr "DXCC"
 
-#: install/index.php:625
+#: install/index.php:631
 msgctxt "No DXCC"
 msgid "- None -"
 msgstr "- Keines -"
 
-#: install/index.php:626 install/index.php:632 install/index.php:656
-#: install/index.php:668 install/index.php:671 install/index.php:676
-#: install/index.php:677 install/index.php:686 install/index.php:690
-#: install/index.php:705 install/index.php:718 install/index.php:719
-#: install/index.php:723 install/index.php:744 install/index.php:751
-#: install/index.php:753 install/index.php:754 install/index.php:756
-#: install/index.php:760 install/index.php:761 install/index.php:762
-#: install/index.php:766 install/index.php:767 install/index.php:786
-#: install/index.php:794 install/index.php:800 install/index.php:807
-#: install/index.php:808 install/index.php:814 install/index.php:816
-#: install/index.php:818 install/index.php:836 install/index.php:841
-#: install/index.php:842 install/index.php:856 install/index.php:871
-#: install/index.php:872 install/index.php:876 install/index.php:887
-#: install/index.php:888 install/index.php:893 install/index.php:897
-#: install/index.php:899 install/index.php:900 install/index.php:907
-#: install/index.php:922 install/index.php:924 install/index.php:941
-#: install/index.php:944 install/index.php:949 install/index.php:952
-#: install/index.php:955 install/index.php:965 install/index.php:971
-#: install/index.php:975 install/index.php:981 install/index.php:984
-#: install/index.php:987 install/index.php:992 install/index.php:1018
-#: install/index.php:1024 install/index.php:1026
+#: install/index.php:632 install/index.php:638 install/index.php:662
+#: install/index.php:674 install/index.php:677 install/index.php:682
+#: install/index.php:683 install/index.php:692 install/index.php:696
+#: install/index.php:711 install/index.php:724 install/index.php:725
+#: install/index.php:729 install/index.php:750 install/index.php:757
+#: install/index.php:759 install/index.php:760 install/index.php:762
+#: install/index.php:766 install/index.php:767 install/index.php:768
+#: install/index.php:772 install/index.php:773 install/index.php:792
+#: install/index.php:800 install/index.php:806 install/index.php:813
+#: install/index.php:814 install/index.php:820 install/index.php:822
+#: install/index.php:824 install/index.php:842 install/index.php:847
+#: install/index.php:848 install/index.php:862 install/index.php:877
+#: install/index.php:878 install/index.php:882 install/index.php:893
+#: install/index.php:894 install/index.php:899 install/index.php:903
+#: install/index.php:905 install/index.php:906 install/index.php:913
+#: install/index.php:928 install/index.php:930 install/index.php:947
+#: install/index.php:950 install/index.php:955 install/index.php:958
+#: install/index.php:961 install/index.php:971 install/index.php:977
+#: install/index.php:981 install/index.php:987 install/index.php:990
+#: install/index.php:993 install/index.php:998 install/index.php:1024
+#: install/index.php:1030 install/index.php:1032
 msgid "Deleted DXCC"
 msgstr "Gelöschtes DXCC"
 
-#: install/index.php:1049
+#: install/index.php:1055
 msgid "Checklist"
 msgstr "Checkliste"
 
-#: install/index.php:1054
+#: install/index.php:1060
 msgid "Pre-Checks"
 msgstr "Vorabprüfungen"
 
-#: install/index.php:1063
+#: install/index.php:1069
 msgid "Configuration"
 msgstr "Konfiguration"
 
-#: install/index.php:1072
+#: install/index.php:1078
 msgid "Database"
 msgstr "Datenbank"
 
-#: install/index.php:1081
+#: install/index.php:1087
 msgid "First User"
 msgstr "Erster Benutzer"
 
-#: install/index.php:1091
+#: install/index.php:1097
 msgid "Nearly done!"
 msgstr "Fast fertig!"
 
-#: install/index.php:1093
+#: install/index.php:1099
 msgid "You prepared all neccessary steps."
 msgstr "Du hast alle notwendigen Schritte vorbereitet."
 
-#: install/index.php:1094
+#: install/index.php:1100
 msgid "We now can install Wavelog. This process can take a few minutes."
 msgstr ""
 "Wir können jetzt Wavelog installieren. Dieser Vorgang kann ein paar Minuten "
 "dauern."
 
-#: install/index.php:1100
+#: install/index.php:1106
 msgid "Reset"
 msgstr "Zurücksetzen"
 
-#: install/index.php:1105
+#: install/index.php:1111
 msgid "Installer Reset"
 msgstr "Installer zurücksetzen"
 
-#: install/index.php:1108
+#: install/index.php:1114
 msgid "Do you really want to reset all data and start from scratch?"
 msgstr "Willst du wirklich alle Eingaben zurücksetzen und von vorne beginnen?"
 
-#: install/index.php:1111
+#: install/index.php:1117
 msgid "Yes"
 msgstr "Ja"
 
-#: install/index.php:1112
+#: install/index.php:1118
 msgid "No"
 msgstr "Nein"
 
-#: install/index.php:1122
+#: install/index.php:1128
 msgid "Back"
 msgstr "Zurück"
 
-#: install/index.php:1123
+#: install/index.php:1129
 msgid "Continue"
 msgstr "Weiter"
 
-#: install/index.php:1201
+#: install/index.php:1207
 msgid ""
 "You can't continue. Solve the red marked issues, restart the webserver and "
 "reload this page."
@@ -603,25 +606,25 @@ msgstr ""
 "Du kannst nicht weitermachen. Beseitige die rot markierten Probleme, starte "
 "den Web-Server neu und aktualisiere diese Seite."
 
-#: install/index.php:1328
+#: install/index.php:1334
 msgid "Password can't contain ' / \\ < >"
 msgstr "Passworte dürfen ' / \\ < > nicht enthalten"
 
-#: install/index.php:1495
+#: install/index.php:1501
 msgid "Error: At least Hostname/IP, Database Name and Username are required."
 msgstr ""
 "Fehler_ Mindestens Hostname/IP, Datenbankname und Benutzername werden "
 "benötigt."
 
-#: install/index.php:1505
+#: install/index.php:1511
 msgid "Connecting..."
 msgstr "Verbinden..."
 
-#: install/index.php:1529
+#: install/index.php:1535
 msgid "Connection was successful and your database should be compatible."
 msgstr "Verbindung war erfolgreich und die Datenbank sollte kompatibel sein."
 
-#: install/index.php:1533
+#: install/index.php:1539
 msgid ""
 "Connection was successful but your database seems too old for Wavelog. You "
 "can try to continue but you could run into issues."
@@ -629,16 +632,16 @@ msgstr ""
 "Verbindung war erfolgreich, aber deine Datenbank scheint zu alt für Wavelog "
 "zu sein. Du kannst es weiter versuchen, es könnten jedoch Probleme auftreten."
 
-#: install/index.php:1533
+#: install/index.php:1539
 #, php-format
 msgid "The min. version for MySQL is %s, for MariaDB it's %s."
 msgstr "Die min. Version für MySQL ist %s, für MariaDB ist es %s."
 
-#: install/index.php:1645
+#: install/index.php:1651
 msgid "At least one field is empty."
 msgstr "Mindestens ein Feld ist leer."
 
-#: install/index.php:1675
+#: install/index.php:1681
 msgid ""
 "The locator seems to be not in the correct format. Should look like AA11AA "
 "(6-char grid locator)."
@@ -646,7 +649,7 @@ msgstr ""
 "Der Locator scheint nicht im richtigen Format zu sein. Sollte wie AA11AA "
 "aussehen (6-stelliger Grid-Locator)."
 
-#: install/index.php:1689
+#: install/index.php:1695
 msgid ""
 "The e-mail adress does not look correct. Make sure it's a valid e-mail "
 "address"
@@ -654,21 +657,39 @@ msgstr ""
 "Die E-Mail-Adresse sieht nicht korrekt aus. Stelle sicher, dass es eine "
 "gültige E-Mail-Adresse ist"
 
-#: install/index.php:1716
+#: install/index.php:1722
 msgid "Password should be at least 8 characters long"
 msgstr "Das Passwort sollte mindestens 8 Zeichen lang sein"
 
-#: install/index.php:1725
+#: install/index.php:1731
 msgid "Passwords do not match"
 msgstr "Passwörter stimmen nicht überein"
 
-#: install/index.php:1772
+#: install/index.php:1778
 msgid "Install Now"
 msgstr "Jetzt installieren"
 
-#: install/index.php:1776
+#: install/index.php:1782
 msgid "Install not possible. Checklist incomplete."
 msgstr "Installation nicht möglich. Checkliste unvollständig."
+
+#: install/index.php:1898
+msgid "PHP Module missing"
+msgstr ""
+
+#: install/index.php:1900
+#, php-format
+msgid "The PHP module %s is missing."
+msgstr ""
+
+#: install/index.php:1901
+msgid "Without this module the Wavelog Installer does not work!"
+msgstr ""
+
+#: install/index.php:1902
+#, php-format
+msgid "Install %s and restart the webserver."
+msgstr ""
 
 #: install/run.php:10
 msgid "Installation"
@@ -744,6 +765,17 @@ msgstr "Konnte DXCC-Daten nicht aktualisieren"
 #: install/run.php:341
 msgid "Could not create install/.lock file"
 msgstr "Konnte die install/.lock Datei nicht anlegen"
+
+#~ msgid ""
+#~ "This field<br>\n"
+#~ "\t\t\t\t\t\t\t\t\t\t\t\t- can't be empty<br>\n"
+#~ "\t\t\t\t\t\t\t\t\t\t\t\t- have to end with a slash 'example/'<br>\n"
+#~ "\t\t\t\t\t\t\t\t\t\t\t\t- have to start with 'http'"
+#~ msgstr ""
+#~ "Dieses Feld<br>\n"
+#~ "- darf nicht leer sein<br>\n"
+#~ "- muss mit einem Schrägstrich enden 'example/'<br>\n"
+#~ "- muss mit 'http' beginnen"
 
 #, php-format
 #~ msgid "The min. Version for MySQL is %s, for it's MariaDB %s."
