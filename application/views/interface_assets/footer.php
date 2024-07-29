@@ -855,7 +855,7 @@ function findincorrectcqzones() {
 function searchButtonPress() {
     if (event) { event.preventDefault(); }
     if ($('#callsign').val()) {
-        let fixedcall = $('#callsign').val();
+        let fixedcall = $('#callsign').val().trim();
         $('#partial_view').load("logbook/search_result/" + fixedcall.replace('Ø', '0'), function() {
             $('[data-bs-toggle="tooltip"]').tooltip();
             $('.table-responsive .dropdown-toggle').off('mouseenter').on('mouseenter', function() {
@@ -1292,7 +1292,15 @@ $(document).ready(function(){
 		$(".ld-ext-right").addClass("running");
 		$(".ld-ext-right").prop("disabled", true);
         $('#dxcc_update_status').show();
-        $.ajax({url:"update/dxcc"});
+        $.ajax({
+            url:"update/dxcc",
+            success: function(response) {
+                if (response == 'success') {
+                    $(".ld-ext-right").removeClass("running");
+                    $(".ld-ext-right").prop("disabled", false);
+                }
+            }
+        });
         setTimeout(update_stats,5000);
     });
     function update_stats(){

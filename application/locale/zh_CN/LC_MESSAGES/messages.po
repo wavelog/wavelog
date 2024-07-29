@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-26 14:02+0000\n"
+"POT-Creation-Date: 2024-07-28 11:10+0000\n"
 "PO-Revision-Date: 2024-07-27 20:04+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/"
@@ -1863,21 +1863,37 @@ msgstr "时间图"
 msgid "Updates"
 msgstr "更新"
 
-#: application/controllers/Update.php:76
+#: application/controllers/Update.php:78
 msgid "Preparing DXCC-Entries: "
 msgstr "正在准备 DXCC 名单： "
 
-#: application/controllers/Update.php:118
+#: application/controllers/Update.php:122
 msgid "Preparing DXCC Exceptions: "
 msgstr "正在准备 DXCC 例外名单： "
 
-#: application/controllers/Update.php:160
+#: application/controllers/Update.php:166
 msgid "Preparing DXCC Prefixes: "
 msgstr "正在准备 DXCC 前缀： "
 
-#: application/controllers/Update.php:222
+#: application/controllers/Update.php:230
 msgid "DONE"
 msgstr "完成"
+
+#: application/controllers/Update.php:244
+msgid "Updating..."
+msgstr ""
+
+#: application/controllers/Update.php:247
+msgid "Dxcc Entities:"
+msgstr ""
+
+#: application/controllers/Update.php:248
+msgid "Dxcc Exceptions:"
+msgstr ""
+
+#: application/controllers/Update.php:249
+msgid "Dxcc Prefixes:"
+msgstr ""
 
 #: application/controllers/User.php:12
 #: application/views/interface_assets/header.php:260
@@ -1909,22 +1925,28 @@ msgstr "已编辑"
 msgid "Profile"
 msgstr "个人资料"
 
-#: application/controllers/User.php:839 application/controllers/User.php:849
+#: application/controllers/User.php:779
+msgid ""
+"Congrats! Wavelog was successfully installed. You can now login for the "
+"first time."
+msgstr ""
+
+#: application/controllers/User.php:843 application/controllers/User.php:853
 msgid "Login failed. Try again."
 msgstr "登录失败，请重试。"
 
-#: application/controllers/User.php:856
+#: application/controllers/User.php:860
 #: application/views/interface_assets/header.php:348
 #: application/views/user/login.php:89
 #: application/views/visitor/layout/header.php:88
 msgid "Login"
 msgstr "登录"
 
-#: application/controllers/User.php:864
+#: application/controllers/User.php:868
 msgid "User logged in"
 msgstr "已登录用户"
 
-#: application/controllers/User.php:895
+#: application/controllers/User.php:899
 msgid ""
 "Sorry. This instance is currently in maintenance mode. If this message "
 "appears unexpectedly or keeps showing up, please contact an administrator. "
@@ -1933,32 +1955,32 @@ msgstr ""
 "抱歉，本站正处于维护模式。如果本消息持续显示，请联系本站管理员。当前只允许管"
 "理员登入。"
 
-#: application/controllers/User.php:898
+#: application/controllers/User.php:902
 msgid "Incorrect username or password!"
 msgstr "用户名或密码错误！"
 
-#: application/controllers/User.php:915
+#: application/controllers/User.php:919
 #, php-format
 msgid "User %s logged out."
 msgstr "用户 '%s' 已登出。"
 
-#: application/controllers/User.php:929
+#: application/controllers/User.php:933
 msgid "Password Reset is disabled on the Demo!"
 msgstr "在测试实例上，密码重置已禁用！"
 
-#: application/controllers/User.php:942
+#: application/controllers/User.php:946
 msgid "Forgot Password"
 msgstr "忘记密码"
 
-#: application/controllers/User.php:992 application/views/user/main.php:8
+#: application/controllers/User.php:996 application/views/user/main.php:8
 msgid "Email settings are incorrect."
 msgstr "邮件配置有误。"
 
-#: application/controllers/User.php:996 application/controllers/User.php:1001
+#: application/controllers/User.php:1000 application/controllers/User.php:1005
 msgid "Password Reset Processed."
 msgstr "密码重置已处理。"
 
-#: application/controllers/User.php:1103
+#: application/controllers/User.php:1107
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
@@ -6022,17 +6044,17 @@ msgstr ""
 "请稍等，您选择的 DXCC 已经失效，请确认最新的 DXCC 实体，如果您十分确认，请忽"
 "略该警告。"
 
-#: application/views/interface_assets/footer.php:1366
-#: application/views/interface_assets/footer.php:1370
-#: application/views/interface_assets/footer.php:1373
-#: application/views/interface_assets/footer.php:1510
-#: application/views/interface_assets/footer.php:1514
-#: application/views/interface_assets/footer.php:1517
+#: application/views/interface_assets/footer.php:1374
+#: application/views/interface_assets/footer.php:1378
+#: application/views/interface_assets/footer.php:1381
+#: application/views/interface_assets/footer.php:1518
+#: application/views/interface_assets/footer.php:1522
+#: application/views/interface_assets/footer.php:1525
 msgid "grid square"
 msgstr "网格"
 
-#: application/views/interface_assets/footer.php:1373
-#: application/views/interface_assets/footer.php:1517
+#: application/views/interface_assets/footer.php:1381
+#: application/views/interface_assets/footer.php:1525
 msgid "Total count"
 msgstr "总数"
 
@@ -7972,8 +7994,9 @@ msgstr "导出用于打印的 QSL 请求"
 msgid ""
 "Here you can export requested QSLs as CSV or ADIF files for printing and, "
 "optionally, mark them as sent."
-msgstr "在这里，您可以把 QSL 请求导出为 CSV 或 ADIF "
-"文件用于打印，或者直接标记为已寄出。"
+msgstr ""
+"在这里，您可以把 QSL 请求导出为 CSV 或 ADIF 文件用于打印，或者直接标记为已寄"
+"出。"
 
 #: application/views/qslprint/index.php:30
 msgid ""

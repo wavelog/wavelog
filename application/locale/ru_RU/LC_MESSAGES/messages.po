@@ -7,11 +7,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-26 14:02+0000\n"
-"PO-Revision-Date: 2024-07-23 14:40+0000\n"
-"Last-Translator: \"Francisco (F4VSE)\" <kikosgc@gmail.com>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ru/>\n"
+"POT-Creation-Date: 2024-07-28 11:10+0000\n"
+"PO-Revision-Date: 2024-07-29 04:21+0000\n"
+"Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1880,21 +1880,37 @@ msgstr "Графики"
 msgid "Updates"
 msgstr "Обновления"
 
-#: application/controllers/Update.php:76
+#: application/controllers/Update.php:78
 msgid "Preparing DXCC-Entries: "
 msgstr "Подготовка списка DXCC: "
 
-#: application/controllers/Update.php:118
+#: application/controllers/Update.php:122
 msgid "Preparing DXCC Exceptions: "
 msgstr "Подготовка исключений DXCC: "
 
-#: application/controllers/Update.php:160
+#: application/controllers/Update.php:166
 msgid "Preparing DXCC Prefixes: "
 msgstr "Подготовка префиксов DXCC: "
 
-#: application/controllers/Update.php:222
+#: application/controllers/Update.php:230
 msgid "DONE"
 msgstr "Готово"
+
+#: application/controllers/Update.php:244
+msgid "Updating..."
+msgstr "Обновляется..."
+
+#: application/controllers/Update.php:247
+msgid "Dxcc Entities:"
+msgstr "DXCC:"
+
+#: application/controllers/Update.php:248
+msgid "Dxcc Exceptions:"
+msgstr "Исключения DXCC:"
+
+#: application/controllers/Update.php:249
+msgid "Dxcc Prefixes:"
+msgstr "Префиксы DXCC:"
 
 #: application/controllers/User.php:12
 #: application/views/interface_assets/header.php:260
@@ -1926,22 +1942,30 @@ msgstr "отредактирован"
 msgid "Profile"
 msgstr "Профиль"
 
-#: application/controllers/User.php:839 application/controllers/User.php:849
+#: application/controllers/User.php:779
+msgid ""
+"Congrats! Wavelog was successfully installed. You can now login for the "
+"first time."
+msgstr ""
+"Поздравляем! Wavelog был успешно установлен. Теперь вы можете войти в "
+"систему в первый раз."
+
+#: application/controllers/User.php:843 application/controllers/User.php:853
 msgid "Login failed. Try again."
 msgstr "Вход не выполнен. Попробуйте снова."
 
-#: application/controllers/User.php:856
+#: application/controllers/User.php:860
 #: application/views/interface_assets/header.php:348
 #: application/views/user/login.php:89
 #: application/views/visitor/layout/header.php:88
 msgid "Login"
 msgstr "Вход"
 
-#: application/controllers/User.php:864
+#: application/controllers/User.php:868
 msgid "User logged in"
 msgstr "Пользователь вошёл"
 
-#: application/controllers/User.php:895
+#: application/controllers/User.php:899
 msgid ""
 "Sorry. This instance is currently in maintenance mode. If this message "
 "appears unexpectedly or keeps showing up, please contact an administrator. "
@@ -1952,32 +1976,32 @@ msgstr ""
 "администратором. В настоящий момент только администраторы могут войти на "
 "сервер."
 
-#: application/controllers/User.php:898
+#: application/controllers/User.php:902
 msgid "Incorrect username or password!"
 msgstr "Неверные логин или пароль!"
 
-#: application/controllers/User.php:915
+#: application/controllers/User.php:919
 #, php-format
 msgid "User %s logged out."
 msgstr "Пользователь %s вышел."
 
-#: application/controllers/User.php:929
+#: application/controllers/User.php:933
 msgid "Password Reset is disabled on the Demo!"
 msgstr "Сброс пароля отключен в демо-версии!"
 
-#: application/controllers/User.php:942
+#: application/controllers/User.php:946
 msgid "Forgot Password"
 msgstr "Восстановить пароль"
 
-#: application/controllers/User.php:992 application/views/user/main.php:8
+#: application/controllers/User.php:996 application/views/user/main.php:8
 msgid "Email settings are incorrect."
 msgstr "Настройки емэйл некорректны."
 
-#: application/controllers/User.php:996 application/controllers/User.php:1001
+#: application/controllers/User.php:1000 application/controllers/User.php:1005
 msgid "Password Reset Processed."
 msgstr "Осуществлён сброс пароля."
 
-#: application/controllers/User.php:1103
+#: application/controllers/User.php:1107
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
@@ -2024,6 +2048,8 @@ msgstr "Загрузка в QO-100 Dx Club"
 #: application/controllers/Widgets.php:21
 msgid "Unknown Public Page, please make sure the public slug is correct."
 msgstr ""
+"Неизвестная публичная страница, пожалуйста, убедитесь, что публичный адрес "
+"правильный."
 
 #: application/controllers/Widgets.php:54 application/views/oqrs/index.php:69
 msgid "No stations found that are using Wavelog OQRS."
@@ -2120,7 +2146,7 @@ msgstr "Всего сработано квадратов VUCC"
 
 #: application/views/accumulate/index.php:7
 msgid "Accumulated number of WAJA worked"
-msgstr ""
+msgstr "Накопленное количество сработанных WAJA"
 
 #: application/views/accumulate/index.php:8
 #: application/views/dashboard/index.php:222
@@ -6206,17 +6232,17 @@ msgstr ""
 "действителен. Проверьте, какой DXCC для данного конкретного места является "
 "правильным. Если вы уверены, проигнорируйте это предупреждение."
 
-#: application/views/interface_assets/footer.php:1366
-#: application/views/interface_assets/footer.php:1370
-#: application/views/interface_assets/footer.php:1373
-#: application/views/interface_assets/footer.php:1510
-#: application/views/interface_assets/footer.php:1514
-#: application/views/interface_assets/footer.php:1517
+#: application/views/interface_assets/footer.php:1374
+#: application/views/interface_assets/footer.php:1378
+#: application/views/interface_assets/footer.php:1381
+#: application/views/interface_assets/footer.php:1518
+#: application/views/interface_assets/footer.php:1522
+#: application/views/interface_assets/footer.php:1525
 msgid "grid square"
 msgstr "квадрат(/-а/-ов)"
 
-#: application/views/interface_assets/footer.php:1373
-#: application/views/interface_assets/footer.php:1517
+#: application/views/interface_assets/footer.php:1381
+#: application/views/interface_assets/footer.php:1525
 msgid "Total count"
 msgstr "Всего"
 
@@ -6714,11 +6740,11 @@ msgstr "QSL через"
 
 #: application/views/logbookadvanced/edit.php:22
 msgid "LoTW Sent"
-msgstr ""
+msgstr "LoTW отправлено"
 
 #: application/views/logbookadvanced/edit.php:23
 msgid "LoTW Received"
-msgstr ""
+msgstr "LoTW получено"
 
 #: application/views/logbookadvanced/edit.php:73
 msgid "SAT Mode"
@@ -10826,24 +10852,24 @@ msgstr "QSO отмечены как экспортированные в QO-100 D
 
 #: application/views/widgets/oqrs.php:21
 msgid "Wavelog OQRS"
-msgstr ""
+msgstr "Wavelog OQRS"
 
 #: application/views/widgets/oqrs.php:81
 msgid "Wavelog OQRS Request"
-msgstr ""
+msgstr "Запрос Wavelog OQRS"
 
 #: application/views/widgets/oqrs.php:84
 #, php-format
 msgid "Request a QSL card for your QSO with %s."
-msgstr ""
+msgstr "Запросите QSL-карточку за ваше QSO с %s."
 
 #: application/views/widgets/oqrs.php:88
 msgid "Your Callsign:"
-msgstr ""
+msgstr "Ваш позывной:"
 
 #: application/views/widgets/oqrs.php:95
 msgid "Submit Request"
-msgstr ""
+msgstr "Отправить запрос"
 
 #~ msgid "VHF/UHF Century Club (VUCC)"
 #~ msgstr "VHF / UHF Century Club (VUCC)"

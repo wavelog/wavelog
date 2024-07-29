@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-22 18:23+0000\n"
+"POT-Creation-Date: 2024-07-29 12:05+0000\n"
 "PO-Revision-Date: 2024-07-23 10:31+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/"
@@ -18,39 +18,123 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Weblate 5.6.2\n"
 
-#: install/index.php:215
+#: install/includes/core/database_class.php:59
+msgid "Connection Error: "
+msgstr ""
+
+#: install/includes/core/database_class.php:63
+msgid "Unable to create database: "
+msgstr ""
+
+#: install/includes/core/database_class.php:68
+msgid "Unable to select database: "
+msgstr ""
+
+#: install/includes/core/database_class.php:74
+msgid "Database is not empty."
+msgstr ""
+
+#: install/includes/install_config/install_lib.php:123
+msgid "not detected"
+msgstr ""
+
+#: install/includes/interface_assets/footer.php:49
+msgid "Bulgarian"
+msgstr "保加利亚语"
+
+#: install/includes/interface_assets/footer.php:50
+msgid "Chinese (Simplified)"
+msgstr "中文（简体）"
+
+#: install/includes/interface_assets/footer.php:51
+msgid "Czech"
+msgstr "捷克语"
+
+#: install/includes/interface_assets/footer.php:52
+msgid "Dutch"
+msgstr "荷兰语"
+
+#: install/includes/interface_assets/footer.php:53
+msgid "English"
+msgstr "英语"
+
+#: install/includes/interface_assets/footer.php:54
+msgid "Finnish"
+msgstr "芬兰语"
+
+#: install/includes/interface_assets/footer.php:55
+msgid "French"
+msgstr "法语"
+
+#: install/includes/interface_assets/footer.php:56
+msgid "German"
+msgstr "德语"
+
+#: install/includes/interface_assets/footer.php:57
+msgid "Greek"
+msgstr "希腊语"
+
+#: install/includes/interface_assets/footer.php:58
+msgid "Italian"
+msgstr "意大利语"
+
+#: install/includes/interface_assets/footer.php:59
+msgid "Portuguese"
+msgstr "葡萄牙语"
+
+#: install/includes/interface_assets/footer.php:60
+msgid "Polish"
+msgstr "波兰语"
+
+#: install/includes/interface_assets/footer.php:61
+msgid "Russian"
+msgstr "俄语"
+
+#: install/includes/interface_assets/footer.php:62
+msgid "Spanish"
+msgstr "西班牙语"
+
+#: install/includes/interface_assets/footer.php:63
+msgid "Swedish"
+msgstr "瑞典语"
+
+#: install/includes/interface_assets/footer.php:64
+msgid "Turkish"
+msgstr "土耳其语"
+
+#: install/includes/interface_assets/header.php:94
 msgid "Install | Wavelog"
 msgstr "安装 | Wavelog"
 
-#: install/index.php:239
+#: install/index.php:30
 msgid "1. Welcome"
 msgstr "1. 欢迎"
 
-#: install/index.php:242
+#: install/index.php:33
 msgid "2. Pre Checks"
 msgstr "2. 安装前检查"
 
-#: install/index.php:245
+#: install/index.php:36
 msgid "3. Configuration"
 msgstr "3. 配置信息"
 
-#: install/index.php:248
+#: install/index.php:39
 msgid "4. Database"
 msgstr "4. 数据库"
 
-#: install/index.php:251
+#: install/index.php:42
 msgid "5. First User"
 msgstr "5. 初始用户"
 
-#: install/index.php:254
+#: install/index.php:45
 msgid "6. Finish"
 msgstr "6. 完成"
 
-#: install/index.php:271
+#: install/index.php:62
 msgid "Welcome to the Wavelog Installer"
 msgstr "欢迎使用 Wavelog 安装程序"
 
-#: install/index.php:272
+#: install/index.php:63
 msgid ""
 "This installer will guide you through the necessary steps for the "
 "installation of Wavelog. <br>Wavelog is a powerful web-based amateur radio "
@@ -61,11 +145,11 @@ msgstr ""
 "于网络的业余无线电日志记录软件，请按照每个选项卡中的步骤在服务器上安装和配置 "
 "Wavelog。"
 
-#: install/index.php:273
+#: install/index.php:64
 msgid "Discussions"
 msgstr "交流"
 
-#: install/index.php:273
+#: install/index.php:64
 #, php-format
 msgid ""
 "If you encounter any issues or have questions, refer to the documentation "
@@ -74,103 +158,120 @@ msgstr ""
 "如果您遇到问题或有疑问，请查看文档（%s）或 Github 上的社区门户（%s）以获得帮"
 "助。"
 
-#: install/index.php:273
+#: install/index.php:64
 msgid "Wiki"
 msgstr "Wiki"
 
-#: install/index.php:274
+#: install/index.php:65
 msgid "Thank you for installing Wavelog!"
 msgstr "感谢安装 Wavelog！"
 
-#: install/index.php:275 install/index.php:278 install/index.php:1125
+#: install/index.php:66 install/index.php:69 install/index.php:1037
 msgid "Language"
 msgstr "语言"
 
-#: install/index.php:288
+#: install/index.php:79
 msgid "Select a language"
 msgstr "选择语言"
 
-#: install/index.php:301
+#: install/index.php:91 install/index.php:421
 msgid "Close"
 msgstr "关闭"
 
-#: install/index.php:311
+#: install/index.php:101
 msgid "PHP Modules"
 msgstr "PHP 模块"
 
-#: install/index.php:318
+#: install/index.php:108
 msgid "Version"
 msgstr "版本"
 
-#: install/index.php:340
+#: install/index.php:109
+#, php-format
+msgctxt "PHP Version"
+msgid "min. %s (recommended %s+)"
+msgstr ""
+
+#: install/index.php:136
 msgid "Installed"
 msgstr "已安装"
 
-#: install/index.php:340
+#: install/index.php:136
 msgid "Not Installed"
 msgstr "未安装"
 
-#: install/index.php:348
+#: install/index.php:144
 msgid "PHP Settings"
 msgstr "PHP 设置"
 
-#: install/index.php:412
-msgid "On"
-msgstr "开启"
+#: install/index.php:234
+msgid "Folder Write Permissions"
+msgstr ""
 
-#: install/index.php:415
-msgid "Off"
-msgstr "关闭"
+#: install/index.php:240 install/index.php:251 install/index.php:262
+#: install/index.php:273 install/index.php:284
+msgid "Success"
+msgstr ""
 
-#: install/index.php:423
-msgid "MySQL / MariaDB"
-msgstr "MySQL / MariaDB"
+#: install/index.php:243 install/index.php:254 install/index.php:265
+#: install/index.php:276 install/index.php:287
+msgid "Failed"
+msgstr ""
 
-#: install/index.php:426
-msgid "Min. MySQL Version:"
-msgstr "MySQL 最低版本："
+#: install/index.php:294
+msgid "Web Server"
+msgstr ""
 
-#: install/index.php:430
-msgid "or"
-msgstr "或者"
+#: install/index.php:297
+msgid "Version:"
+msgstr ""
 
-#: install/index.php:434
-msgid "Min. MariaDB Version:"
-msgstr "MariaDB 最低版本："
+#: install/index.php:304
+msgid "Important note for nginx users!"
+msgstr ""
 
-#: install/index.php:438
-msgid "You can test your MySQL/MariaDB Version in Step 4"
-msgstr "您可在第 4 步中测试 MySQL/MariaDB 的版本"
+#: install/index.php:305
+msgid ""
+"Since you are using nginx as web server please make sure that you have made "
+"the changes described in the Wiki before continuing."
+msgstr ""
 
-#: install/index.php:442
+#: install/index.php:314
 msgid "Some Checks have failed!"
 msgstr "部分检查出现了问题！"
 
-#: install/index.php:443
+#: install/index.php:315
 msgid "Check your PHP settings and install missing modules if necessary."
 msgstr "请检查 PHP 配置，或安装缺失的必要模块。"
 
-#: install/index.php:444
+#: install/index.php:316
 msgid ""
 "After that, you have to restart your webserver and start the installer again."
 msgstr "在这之后，您需要重启服务器，重新启动安装程序。"
 
-#: install/index.php:448
+#: install/index.php:317
+#, php-format
+msgid ""
+"In case of failed 'Folder Write Permissions' check out our Wiki <a href='%s' "
+"target='_blank'>here</a>."
+msgstr ""
+
+#: install/index.php:323
 msgid "You have some warnings!"
 msgstr "有一些警告内容！"
 
-#: install/index.php:449
+#: install/index.php:324
 msgid ""
 "Some of the settings are not optimal. You can proceed with the installer but "
 "be aware that you could run into problems while using Wavelog."
 msgstr ""
 "这些设置项不是最完美的，虽然可以跑起来，但 Wavelog 在运行中可能会出现问题。"
 
-#: install/index.php:453
+#: install/index.php:331
 msgid "All Checks are OK. You can continue."
 msgstr "所有检查都通过了，您可以继续。"
 
-#: install/index.php:467
+#: install/index.php:345
 msgid ""
 "Configure some basic parameters for your wavelog instance. You can change "
 "them later in 'application/config/config.php'"
@@ -178,17 +279,21 @@ msgstr ""
 "为 Wavelog 实例配置一些基本参数。您可以稍后在 \"application/config/config."
 "php \"中修改它们"
 
-#: install/index.php:469
+#: install/index.php:347
 msgid "Directory"
 msgstr "目录"
 
-#: install/index.php:469
+#: install/index.php:347
 msgid ""
 "The 'Directory' is basically your subfolder of the webroot In normal "
 "conditions the prefilled value is doing it's job. It also can be empty."
 msgstr "通常是 Web 根目录下的某个子目录，通常为空。"
 
-#: install/index.php:476
+#: install/index.php:352
+msgid "No slash before or after the directory. Just the name of the folder."
+msgstr ""
+
+#: install/index.php:357
 #, php-format
 msgid ""
 "This is the complete URL where your Wavelog Instance will be available. If "
@@ -200,33 +305,23 @@ msgstr ""
 "理后面，则应在此处键入新 URL（例如，用 %s 代替 %s），不要忘记包含上面的目录"
 "（如有）。"
 
-#: install/index.php:476
+#: install/index.php:357
 msgid "Website URL"
 msgstr "网站 URL"
 
-#: install/index.php:479
-msgid "This field can't be empty!"
-msgstr "该字段不能为空！"
-
-#: install/index.php:483
-msgid "Default Gridsquare/Locator"
-msgstr "默认网格地址"
-
-#: install/index.php:483
+#: install/index.php:360
 msgid ""
-"This is the default maidenhead locator which is used as falback. You can use "
-"the locator of your Home QTH."
-msgstr "默认的梅登黑德网格，可以使用基地台的 QTH。"
+"This field<br>\n"
+"\t\t\t\t\t\t\t\t\t\t\t\t\t- can't be empty<br>\n"
+"\t\t\t\t\t\t\t\t\t\t\t\t\t- have to end with a slash 'example/'<br>\n"
+"\t\t\t\t\t\t\t\t\t\t\t\t\t- have to start with 'http'"
+msgstr ""
 
-#: install/index.php:486
-msgid "Type in a valid locator"
-msgstr "输入有效的网格"
-
-#: install/index.php:490
+#: install/index.php:367
 msgid "Optional: Global Callbook Lookup"
 msgstr "可选：全局日志查询"
 
-#: install/index.php:490
+#: install/index.php:367
 msgid ""
 "This configuration is optional. The callsign lookup will be available for "
 "all users of this installation. You can choose between QRZ.com and HamQTH. "
@@ -238,279 +333,460 @@ msgstr ""
 "联对象的信息，HamQTH 不需要额外配置信息即可使用，QRZ.com 为其需要配置登录信息"
 "（如需要获取网格地址，请购买 QRZ.com 的 XML 订阅）。"
 
-#: install/index.php:499 install/index.php:542 install/index.php:574
+#: install/index.php:376 install/index.php:453 install/index.php:486
 msgid "Username"
 msgstr "用户名"
 
-#: install/index.php:502 install/index.php:546 install/index.php:584
+#: install/index.php:379 install/index.php:457 install/index.php:496
 msgid "Password"
 msgstr "密码"
 
-#: install/index.php:507
+#: install/index.php:384
 msgid "Callbook Username"
 msgstr "日志簿用户名"
 
-#: install/index.php:510
+#: install/index.php:387
 msgid "Callbook Password"
 msgstr "日志簿密码"
 
-#: install/index.php:526
+#: install/index.php:389
+#, php-format
+msgid "Password can't contain %s or be empty"
+msgstr ""
+
+#: install/index.php:394 install/index.php:399
+msgid "Advanced Settings"
+msgstr ""
+
+#: install/index.php:402
+msgid "These settings should only be set if you know what you're doing."
+msgstr ""
+
+#: install/index.php:405
+msgid "Error Logs"
+msgstr ""
+
+#: install/index.php:406
+msgid ""
+"Optional: Enable Error Logging by setting the log threshold bigger then 0. "
+"Only enable this if you really need it."
+msgstr ""
+
+#: install/index.php:411
+msgid "0 - No logs"
+msgstr ""
+
+#: install/index.php:412
+msgid "1 - Error messages"
+msgstr ""
+
+#: install/index.php:413
+msgid "2 - Debug messages"
+msgstr ""
+
+#: install/index.php:414
+msgid "3 - Info messages"
+msgstr ""
+
+#: install/index.php:415
+msgid "4 - All messages"
+msgstr ""
+
+#: install/index.php:437
 msgid ""
 "To properly install Wavelog you already should have setup a mariadb/mysql "
 "database. Provide the parameters here."
 msgstr "要正确安装 Wavelog，请准备好 mariadb/mysql 数据库，在此输入连接信息。"
 
-#: install/index.php:530
+#: install/index.php:441
 msgid "Hostname or IP"
 msgstr "主机名或 IP"
 
-#: install/index.php:530
-msgid "Usually 'localhost'. Optional with '...:[port]'. Default Port: 3306"
-msgstr "通常是 'localhost'，或加上端口 '....:[3306]'，默认端口：3306"
+#: install/index.php:441
+msgid ""
+"Usually 'localhost'.<br>Optional with '[host]:[port]'. Default port: 3306."
+"<br>In a docker compose install type 'wavelog-db'."
+msgstr ""
 
-#: install/index.php:536
+#: install/index.php:447
 msgid "Database Name"
 msgstr "数据库名称"
 
-#: install/index.php:536
+#: install/index.php:447
 msgid "Name of the Database"
 msgstr "数据库名"
 
-#: install/index.php:542
+#: install/index.php:453
 msgid "Username of the Database User which has full access to the database."
 msgstr "对该数据库有完整权限的用户名。"
 
-#: install/index.php:546
+#: install/index.php:457
 msgid "Password of the Database User"
 msgstr "用户密码"
 
-#: install/index.php:550
+#: install/index.php:461
 msgid "Connection Test"
 msgstr "测试连接"
 
-#: install/index.php:561
+#: install/index.php:472
 msgid ""
 "Now you can create your first user in Wavelog. Fill out all fields and click "
-"continue.<br>Make sure you use a safe password."
+"continue. Make sure you use a safe password."
 msgstr ""
-"现在您可以创建第一个 Wavelog 上的用户了，请填写全部字段并点击继续。<br>请使用"
-"安全密码。"
 
-#: install/index.php:570
+#: install/index.php:473
+msgid "All fields are required!"
+msgstr ""
+
+#: install/index.php:482
 msgid "First Name"
 msgstr "名"
 
-#: install/index.php:580
+#: install/index.php:492
 msgid "Last Name"
 msgstr "姓"
 
-#: install/index.php:590
+#: install/index.php:502
 msgid "Callsign"
 msgstr "呼号"
 
-#: install/index.php:594
+#: install/index.php:506
 msgid "Confirm Password"
 msgstr "确认密码"
 
-#: install/index.php:600
+#: install/index.php:512
 msgid "City"
 msgstr "城市"
 
-#: install/index.php:604
+#: install/index.php:516
 msgid "E-Mail Address"
 msgstr "Email 地址"
 
-#: install/index.php:610
+#: install/index.php:522
 msgid "Gridsquare/Locator"
 msgstr "网格地址"
 
-#: install/index.php:614
+#: install/index.php:526
 msgid "Timezone"
 msgstr "时区"
 
-#: install/index.php:717
+#: install/index.php:629
 msgid "DXCC"
 msgstr "DXCC"
 
-#: install/index.php:719
+#: install/index.php:631
 msgctxt "No DXCC"
 msgid "- None -"
 msgstr "- 无 -"
 
-#: install/index.php:720 install/index.php:726 install/index.php:750
-#: install/index.php:762 install/index.php:765 install/index.php:770
-#: install/index.php:771 install/index.php:780 install/index.php:784
-#: install/index.php:799 install/index.php:812 install/index.php:813
-#: install/index.php:817 install/index.php:838 install/index.php:845
-#: install/index.php:847 install/index.php:848 install/index.php:850
-#: install/index.php:854 install/index.php:855 install/index.php:856
-#: install/index.php:860 install/index.php:861 install/index.php:880
-#: install/index.php:888 install/index.php:894 install/index.php:901
-#: install/index.php:902 install/index.php:908 install/index.php:910
-#: install/index.php:912 install/index.php:930 install/index.php:935
-#: install/index.php:936 install/index.php:950 install/index.php:965
-#: install/index.php:966 install/index.php:970 install/index.php:981
-#: install/index.php:982 install/index.php:987 install/index.php:991
-#: install/index.php:993 install/index.php:994 install/index.php:1001
-#: install/index.php:1016 install/index.php:1018 install/index.php:1035
-#: install/index.php:1038 install/index.php:1043 install/index.php:1046
-#: install/index.php:1049 install/index.php:1059 install/index.php:1065
-#: install/index.php:1069 install/index.php:1075 install/index.php:1078
-#: install/index.php:1081 install/index.php:1086 install/index.php:1112
-#: install/index.php:1118 install/index.php:1120
+#: install/index.php:632 install/index.php:638 install/index.php:662
+#: install/index.php:674 install/index.php:677 install/index.php:682
+#: install/index.php:683 install/index.php:692 install/index.php:696
+#: install/index.php:711 install/index.php:724 install/index.php:725
+#: install/index.php:729 install/index.php:750 install/index.php:757
+#: install/index.php:759 install/index.php:760 install/index.php:762
+#: install/index.php:766 install/index.php:767 install/index.php:768
+#: install/index.php:772 install/index.php:773 install/index.php:792
+#: install/index.php:800 install/index.php:806 install/index.php:813
+#: install/index.php:814 install/index.php:820 install/index.php:822
+#: install/index.php:824 install/index.php:842 install/index.php:847
+#: install/index.php:848 install/index.php:862 install/index.php:877
+#: install/index.php:878 install/index.php:882 install/index.php:893
+#: install/index.php:894 install/index.php:899 install/index.php:903
+#: install/index.php:905 install/index.php:906 install/index.php:913
+#: install/index.php:928 install/index.php:930 install/index.php:947
+#: install/index.php:950 install/index.php:955 install/index.php:958
+#: install/index.php:961 install/index.php:971 install/index.php:977
+#: install/index.php:981 install/index.php:987 install/index.php:990
+#: install/index.php:993 install/index.php:998 install/index.php:1024
+#: install/index.php:1030 install/index.php:1032
 msgid "Deleted DXCC"
 msgstr "已选择的 DXCC"
 
-#: install/index.php:1143
+#: install/index.php:1055
 msgid "Checklist"
 msgstr "检查单"
 
-#: install/index.php:1144
+#: install/index.php:1060
+msgid "Pre-Checks"
+msgstr ""
+
+#: install/index.php:1069
 msgid "Configuration"
 msgstr "配置"
 
-#: install/index.php:1146
+#: install/index.php:1078
 msgid "Database"
 msgstr "数据库"
 
-#: install/index.php:1148
+#: install/index.php:1087
 msgid "First User"
 msgstr "初始用户"
 
-#: install/index.php:1155
+#: install/index.php:1097
 msgid "Nearly done!"
 msgstr "马上完成！"
 
-#: install/index.php:1156
+#: install/index.php:1099
 msgid "You prepared all neccessary steps."
 msgstr "您已准备好全部步骤。"
 
-#: install/index.php:1157
+#: install/index.php:1100
 msgid "We now can install Wavelog. This process can take a few minutes."
 msgstr "现在可以安装 Wavelog 了，需要几分钟的时间。"
 
-#: install/index.php:1158
-msgid "Install Now"
-msgstr "现在安装"
+#: install/index.php:1106
+msgid "Reset"
+msgstr ""
 
-#: install/index.php:1167
+#: install/index.php:1111
+msgid "Installer Reset"
+msgstr ""
+
+#: install/index.php:1114
+msgid "Do you really want to reset all data and start from scratch?"
+msgstr ""
+
+#: install/index.php:1117
+msgid "Yes"
+msgstr ""
+
+#: install/index.php:1118
+msgid "No"
+msgstr ""
+
+#: install/index.php:1128
 msgid "Back"
 msgstr "后退"
 
-#: install/index.php:1168
+#: install/index.php:1129
 msgid "Continue"
 msgstr "继续"
 
-#: install/index.php:1193
-msgid "Error: All fields are required."
-msgstr "错误：请填写全部表单。"
+#: install/index.php:1207
+msgid ""
+"You can't continue. Solve the red marked issues, restart the webserver and "
+"reload this page."
+msgstr ""
 
-#: install/index.php:1199
+#: install/index.php:1334
+msgid "Password can't contain ' / \\ < >"
+msgstr ""
+
+#: install/index.php:1501
+msgid "Error: At least Hostname/IP, Database Name and Username are required."
+msgstr ""
+
+#: install/index.php:1511
 msgid "Connecting..."
 msgstr "连接中…"
 
-#: install/index.php:1224
-msgid "Connection was successful and your database should be compatible"
-msgstr "连接成功，数据库满足要求"
+#: install/index.php:1535
+msgid "Connection was successful and your database should be compatible."
+msgstr ""
 
-#: install/index.php:1230
+#: install/index.php:1539
 msgid ""
 "Connection was successful but your database seems too old for Wavelog. You "
 "can try to continue but you could run into issues."
 msgstr "连接成功，但数据库版本有一些老，您可以继续安装但是可能会出现使用问题。"
 
-#: install/index.php:1384
+#: install/index.php:1539
+#, php-format
+msgid "The min. version for MySQL is %s, for MariaDB it's %s."
+msgstr ""
+
+#: install/index.php:1651
+msgid "At least one field is empty."
+msgstr ""
+
+#: install/index.php:1681
+msgid ""
+"The locator seems to be not in the correct format. Should look like AA11AA "
+"(6-char grid locator)."
+msgstr ""
+
+#: install/index.php:1695
+msgid ""
+"The e-mail adress does not look correct. Make sure it's a valid e-mail "
+"address"
+msgstr ""
+
+#: install/index.php:1722
 msgid "Password should be at least 8 characters long"
 msgstr "密码需要至少 8 位长"
 
-#: install/index.php:1400
+#: install/index.php:1731
 msgid "Passwords do not match"
 msgstr "密码不匹配"
 
-#: install/index.php:1418
-msgid "The E-Mail Address is not valid"
-msgstr "Email 地址无效"
+#: install/index.php:1778
+msgid "Install Now"
+msgstr "现在安装"
 
-#: install/index.php:1442
-#, php-format
-msgid ""
-"The grid locator is not valid. Use a 6-character locator, e.g. HA44AA. If "
-"you don't know your grid square then <a href='%s' target='_blank'>click "
-"here</a>!"
+#: install/index.php:1782
+msgid "Install not possible. Checklist incomplete."
 msgstr ""
-"网格地址无效，请使用 6 位地址如 HA44AA，如果不清楚请在 <a href='%s' "
-"target='_blank'>这里</a> 查看！"
 
-#: install/index.php:1549
-#, php-format
-msgid ""
-"Please make the %s folder writable. <strong>Example</strong>:<br /><br /"
-"><code>chmod -R 777 %s</code><br /><br /><i>Don't forget to restore the "
-"permissions afterwards.</i>"
+#: install/index.php:1898
+msgid "PHP Module missing"
 msgstr ""
-"请确认 %s 文件夹可写。 <strong>举例</strong>:<br /><br /><code>chmod -R 777 "
-"%s</code><br /><br /><i>⬅️请测试后及时回滚权限。</i>"
 
-#: install/index.php:1564
-msgid "Bulgarian"
-msgstr "保加利亚语"
+#: install/index.php:1900
+#, php-format
+msgid "The PHP module %s is missing."
+msgstr ""
 
-#: install/index.php:1565
-msgid "Chinese (Simplified)"
-msgstr "中文（简体）"
+#: install/index.php:1901
+msgid "Without this module the Wavelog Installer does not work!"
+msgstr ""
 
-#: install/index.php:1566
-msgid "Czech"
-msgstr "捷克语"
+#: install/index.php:1902
+#, php-format
+msgid "Install %s and restart the webserver."
+msgstr ""
 
-#: install/index.php:1567
-msgid "Dutch"
-msgstr "荷兰语"
+#: install/run.php:10
+msgid "Installation"
+msgstr ""
 
-#: install/index.php:1568
-msgid "English"
-msgstr "英语"
+#: install/run.php:12
+msgid "Please wait..."
+msgstr ""
 
-#: install/index.php:1569
-msgid "Finnish"
-msgstr "芬兰语"
+#: install/run.php:15
+msgid "Copy config.php to application/config/"
+msgstr ""
 
-#: install/index.php:1570
-msgid "French"
-msgstr "法语"
+#: install/run.php:18
+msgid "Copy database.php to application/config/"
+msgstr ""
 
-#: install/index.php:1571
-msgid "German"
-msgstr "德语"
+#: install/run.php:21
+msgid "Creating database tables"
+msgstr ""
 
-#: install/index.php:1572
-msgid "Greek"
-msgstr "希腊语"
+#: install/run.php:24
+msgid "Running database migrations"
+msgstr ""
 
-#: install/index.php:1573
-msgid "Italian"
-msgstr "意大利语"
+#: install/run.php:27
+msgid "Updating DXCC data"
+msgstr ""
 
-#: install/index.php:1574
-msgid "Polish"
-msgstr "波兰语"
+#: install/run.php:35
+msgid "Lock the installer"
+msgstr ""
 
-#: install/index.php:1575
-msgid "Portuguese"
-msgstr "葡萄牙语"
+#: install/run.php:39
+#, php-format
+msgid "All install steps went through. Redirect to user login in %s seconds..."
+msgstr ""
 
-#: install/index.php:1576
-msgid "Russian"
-msgstr "俄语"
+#: install/run.php:42
+msgid "Done. Go to the user login ->"
+msgstr ""
 
-#: install/index.php:1577
-msgid "Spanish"
-msgstr "西班牙语"
+#: install/run.php:46 install/run.php:125
+msgid "Show detailled debug log"
+msgstr ""
 
-#: install/index.php:1578
-msgid "Swedish"
-msgstr "瑞典语"
+#: install/run.php:127
+msgid "Hide detailled debug log"
+msgstr ""
 
-#: install/index.php:1579
-msgid "Turkish"
-msgstr "土耳其语"
+#: install/run.php:182
+msgid "Could not create application/config/config.php"
+msgstr ""
+
+#: install/run.php:217
+msgid "Could not create application/config/database.php"
+msgstr ""
+
+#: install/run.php:251
+msgid "Could not create database tables"
+msgstr ""
+
+#: install/run.php:281
+msgid "Could not run database migrations"
+msgstr ""
+
+#: install/run.php:309
+msgid "Could not update DXCC data"
+msgstr ""
+
+#: install/run.php:341
+msgid "Could not create install/.lock file"
+msgstr ""
+
+#~ msgid "On"
+#~ msgstr "开启"
+
+#~ msgid "Off"
+#~ msgstr "关闭"
+
+#~ msgid "MySQL / MariaDB"
+#~ msgstr "MySQL / MariaDB"
+
+#~ msgid "Min. MySQL Version:"
+#~ msgstr "MySQL 最低版本："
+
+#~ msgid "or"
+#~ msgstr "或者"
+
+#~ msgid "Min. MariaDB Version:"
+#~ msgstr "MariaDB 最低版本："
+
+#~ msgid "You can test your MySQL/MariaDB Version in Step 4"
+#~ msgstr "您可在第 4 步中测试 MySQL/MariaDB 的版本"
+
+#~ msgid "This field can't be empty!"
+#~ msgstr "该字段不能为空！"
+
+#~ msgid "Default Gridsquare/Locator"
+#~ msgstr "默认网格地址"
+
+#~ msgid ""
+#~ "This is the default maidenhead locator which is used as falback. You can "
+#~ "use the locator of your Home QTH."
+#~ msgstr "默认的梅登黑德网格，可以使用基地台的 QTH。"
+
+#~ msgid "Type in a valid locator"
+#~ msgstr "输入有效的网格"
+
+#~ msgid "Usually 'localhost'. Optional with '...:[port]'. Default Port: 3306"
+#~ msgstr "通常是 'localhost'，或加上端口 '....:[3306]'，默认端口：3306"
+
+#~ msgid ""
+#~ "Now you can create your first user in Wavelog. Fill out all fields and "
+#~ "click continue.<br>Make sure you use a safe password."
+#~ msgstr ""
+#~ "现在您可以创建第一个 Wavelog 上的用户了，请填写全部字段并点击继续。<br>请"
+#~ "使用安全密码。"
+
+#~ msgid "Error: All fields are required."
+#~ msgstr "错误：请填写全部表单。"
+
+#~ msgid "Connection was successful and your database should be compatible"
+#~ msgstr "连接成功，数据库满足要求"
+
+#~ msgid "The E-Mail Address is not valid"
+#~ msgstr "Email 地址无效"
+
+#, php-format
+#~ msgid ""
+#~ "The grid locator is not valid. Use a 6-character locator, e.g. HA44AA. If "
+#~ "you don't know your grid square then <a href='%s' target='_blank'>click "
+#~ "here</a>!"
+#~ msgstr ""
+#~ "网格地址无效，请使用 6 位地址如 HA44AA，如果不清楚请在 <a href='%s' "
+#~ "target='_blank'>这里</a> 查看！"
+
+#, php-format
+#~ msgid ""
+#~ "Please make the %s folder writable. <strong>Example</strong>:<br /><br /"
+#~ "><code>chmod -R 777 %s</code><br /><br /><i>Don't forget to restore the "
+#~ "permissions afterwards.</i>"
+#~ msgstr ""
+#~ "请确认 %s 文件夹可写。 <strong>举例</strong>:<br /><br /><code>chmod -R "
+#~ "777 %s</code><br /><br /><i>⬅️请测试后及时回滚权限。</i>"
