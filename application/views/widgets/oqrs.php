@@ -63,11 +63,6 @@ To use this widget insert this Element:
             width: 150px;
             height: 150px;
         }
-
-        #oqrs_callsign {
-            background-color: #343434;
-            border-color: #757575 !important;
-        }
     </style>
 </head>
 
