@@ -3,12 +3,13 @@
 # This file is distributed under the MIT licence.
 #
 # Michael Skolsky <r1blh@yandex.ru>, 2024.
+# Florian Wolters <wavelog@df2et.de>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-07-28 17:38+0000\n"
-"PO-Revision-Date: 2024-07-09 20:46+0000\n"
-"Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
+"PO-Revision-Date: 2024-07-29 05:55+0000\n"
+"Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
 "installer/ru/>\n"
 "Language: ru_RU\n"
@@ -16,27 +17,27 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 5.6\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #: install/includes/core/database_class.php:59
 msgid "Connection Error: "
-msgstr ""
+msgstr "Ошибка подключения: "
 
 #: install/includes/core/database_class.php:63
 msgid "Unable to create database: "
-msgstr ""
+msgstr "Не удаётся создать базу данных: "
 
 #: install/includes/core/database_class.php:68
 msgid "Unable to select database: "
-msgstr ""
+msgstr "Не удаётся выбрать базу данных: "
 
 #: install/includes/core/database_class.php:74
 msgid "Database is not empty."
-msgstr ""
+msgstr "База данных не пуста."
 
 #: install/includes/install_config/install_lib.php:123
 msgid "not detected"
-msgstr ""
+msgstr "не обнаружено"
 
 #: install/includes/interface_assets/footer.php:49
 msgid "Bulgarian"
@@ -80,7 +81,7 @@ msgstr "Итальянский"
 
 #: install/includes/interface_assets/footer.php:59
 msgid "Portuguese"
-msgstr ""
+msgstr "Португальский"
 
 #: install/includes/interface_assets/footer.php:60
 msgid "Polish"
@@ -191,7 +192,7 @@ msgstr "Версия"
 #, php-format
 msgctxt "PHP Version"
 msgid "min. %s (recommended %s+)"
-msgstr ""
+msgstr "мин. %s (рекомендуется %s+)"
 
 #: install/index.php:131
 msgid "Installed"
@@ -207,35 +208,37 @@ msgstr "Настройки PHP"
 
 #: install/index.php:229
 msgid "Folder Write Permissions"
-msgstr ""
+msgstr "Разрешения на запись в каталог"
 
 #: install/index.php:235 install/index.php:246 install/index.php:257
 #: install/index.php:268 install/index.php:279
 msgid "Success"
-msgstr ""
+msgstr "Успешно"
 
 #: install/index.php:238 install/index.php:249 install/index.php:260
 #: install/index.php:271 install/index.php:282
 msgid "Failed"
-msgstr ""
+msgstr "Не удалось"
 
 #: install/index.php:289
 msgid "Web Server"
-msgstr ""
+msgstr "Веб-сервер"
 
 #: install/index.php:292
 msgid "Version:"
-msgstr ""
+msgstr "Версия:"
 
 #: install/index.php:299
 msgid "Important note for nginx users!"
-msgstr ""
+msgstr "Важное замечание для пользователей nginx!"
 
 #: install/index.php:300
 msgid ""
 "Since you are using nginx as web server please make sure that you have made "
 "the changes described in the Wiki before continuing."
 msgstr ""
+"Поскольку вы используете nginx в качестве веб-сервера, пожалуйста, "
+"убедитесь, что вы внесли изменения, описанные в Wiki, перед продолжением."
 
 #: install/index.php:309
 msgid "Some Checks have failed!"
@@ -291,7 +294,7 @@ msgstr ""
 
 #: install/index.php:346
 msgid "No slash before or after the directory. Just the name of the folder."
-msgstr ""
+msgstr "Без слэша до или после директории. Только имя каталога."
 
 #: install/index.php:351
 #, php-format
@@ -317,6 +320,10 @@ msgid ""
 "\t\t\t\t\t\t\t\t\t\t\t\t- have to end with a slash 'example/'<br>\n"
 "\t\t\t\t\t\t\t\t\t\t\t\t- have to start with 'http'"
 msgstr ""
+"Это поле<br>\n"
+"\t\t\t\t\t\t\t\t\t\t\t\t- не может быть пустым<br>\n"
+"\t\t\t\t\t\t\t\t\t\t\t\t- должно заканчиваться слешем 'example/'<br>\n"
+"\t\t\t\t\t\t\t\t\t\t\t\t- должно начинаться с 'http'"
 
 #: install/index.php:361
 msgid "Optional: Global Callbook Lookup"
@@ -356,45 +363,49 @@ msgstr "Пароль для колбука"
 #: install/index.php:383
 #, php-format
 msgid "Password can't contain %s or be empty"
-msgstr ""
+msgstr "Пароль не может содержать %s или быть пустым"
 
 #: install/index.php:388 install/index.php:393
 msgid "Advanced Settings"
-msgstr ""
+msgstr "Расширенные настройки"
 
 #: install/index.php:396
 msgid "These settings should only be set if you know what you're doing."
 msgstr ""
+"Эти настройки следует устанавливать только в том случае, если вы знаете, что "
+"делаете."
 
 #: install/index.php:399
 msgid "Error Logs"
-msgstr ""
+msgstr "Журналы ошибок"
 
 #: install/index.php:400
 msgid ""
 "Optional: Enable Error Logging by setting the log threshold bigger then 0. "
 "Only enable this if you really need it."
 msgstr ""
+"Необязательно: Включите ведение журнала ошибок, установив порог журнала "
+"больше 0. Включайте это только в случае крайней необходимости."
 
 #: install/index.php:405
 msgid "0 - No logs"
-msgstr ""
+msgstr "0 - Нет журналов"
 
 #: install/index.php:406
 msgid "1 - Error messages"
-msgstr ""
+msgstr "1 - Сообщения об ошибках"
 
 #: install/index.php:407
 msgid "2 - Debug messages"
-msgstr ""
+msgstr "2 - Отладочные сообщения"
 
 #: install/index.php:408
 msgid "3 - Info messages"
-msgstr ""
+msgstr "3 - Информационные сообщения"
 
 #: install/index.php:409
 msgid "4 - All messages"
-msgstr ""
+msgstr "4 - Все сообщения"
 
 #: install/index.php:431
 msgid ""
@@ -413,6 +424,8 @@ msgid ""
 "Usually 'localhost'.<br>Optional with '[host]:[port]'. Default port: 3306."
 "<br>In a docker compose install type 'wavelog-db'."
 msgstr ""
+"Обычно 'localhost'.<br>Опционально с '[host]:[port]'. Порт по умолчанию: "
+"3306.<br>В установке docker compose укажите 'wavelog-db'."
 
 #: install/index.php:441
 msgid "Database Name"
@@ -440,10 +453,12 @@ msgid ""
 "Now you can create your first user in Wavelog. Fill out all fields and click "
 "continue. Make sure you use a safe password."
 msgstr ""
+"Теперь вы можете создать своего первого пользователя в Wavelog. Заполните "
+"все поля и нажмите продолжить. Убедитесь, что используете безопасный пароль."
 
 #: install/index.php:467
 msgid "All fields are required!"
-msgstr ""
+msgstr "Все поля обязательны!"
 
 #: install/index.php:476
 msgid "First Name"
@@ -516,7 +531,7 @@ msgstr "Контрольный список"
 
 #: install/index.php:1054
 msgid "Pre-Checks"
-msgstr ""
+msgstr "Предварительные проверки"
 
 #: install/index.php:1063
 msgid "Configuration"
@@ -546,23 +561,23 @@ msgstr ""
 
 #: install/index.php:1100
 msgid "Reset"
-msgstr ""
+msgstr "Сброс"
 
 #: install/index.php:1105
 msgid "Installer Reset"
-msgstr ""
+msgstr "Сброс установщика"
 
 #: install/index.php:1108
 msgid "Do you really want to reset all data and start from scratch?"
-msgstr ""
+msgstr "Вы действительно хотите сбросить все данные и начать с нуля?"
 
 #: install/index.php:1111
 msgid "Yes"
-msgstr ""
+msgstr "Да"
 
 #: install/index.php:1112
 msgid "No"
-msgstr ""
+msgstr "Нет"
 
 #: install/index.php:1122
 msgid "Back"
@@ -577,14 +592,18 @@ msgid ""
 "You can't continue. Solve the red marked issues, restart the webserver and "
 "reload this page."
 msgstr ""
+"Вы не можете продолжить. Решите отмеченные красным проблемы, перезапустите "
+"веб-сервер и перезагрузите эту страницу."
 
 #: install/index.php:1328
 msgid "Password can't contain ' / \\ < >"
-msgstr ""
+msgstr "Пароль не может содержать ' / \\ < >"
 
 #: install/index.php:1495
 msgid "Error: At least Hostname/IP, Database Name and Username are required."
 msgstr ""
+"Ошибка: Требуются как минимум имя хоста/IP, имя базы данных и имя "
+"пользователя."
 
 #: install/index.php:1505
 msgid "Connecting..."
@@ -592,7 +611,7 @@ msgstr "Подключение..."
 
 #: install/index.php:1529
 msgid "Connection was successful and your database should be compatible."
-msgstr ""
+msgstr "Соединение было успешным, и ваша база данных должна быть совместимой."
 
 #: install/index.php:1533
 msgid ""
@@ -605,23 +624,27 @@ msgstr ""
 #: install/index.php:1533
 #, php-format
 msgid "The min. version for MySQL is %s, for MariaDB it's %s."
-msgstr ""
+msgstr "Минимальная версия для MySQL - %s, для MariaDB - %s."
 
 #: install/index.php:1645
 msgid "At least one field is empty."
-msgstr ""
+msgstr "По крайней мере одно поле пустое."
 
 #: install/index.php:1675
 msgid ""
 "The locator seems to be not in the correct format. Should look like AA11AA "
 "(6-char grid locator)."
 msgstr ""
+"Похоже, что локатор не в правильном формате. Должен выглядеть как AA11AA (6-"
+"символьный QTH-локатор)."
 
 #: install/index.php:1689
 msgid ""
 "The e-mail adress does not look correct. Make sure it's a valid e-mail "
 "address"
 msgstr ""
+"Адрес электронной почты выглядит некорректным. Убедитесь, что это "
+"действительный адрес электронной почты"
 
 #: install/index.php:1716
 msgid "Password should be at least 8 characters long"
@@ -637,80 +660,82 @@ msgstr "Установить сейчас"
 
 #: install/index.php:1776
 msgid "Install not possible. Checklist incomplete."
-msgstr ""
+msgstr "Установка невозможна. Контрольный список не завершен."
 
 #: install/run.php:10
 msgid "Installation"
-msgstr ""
+msgstr "Установка"
 
 #: install/run.php:12
 msgid "Please wait..."
-msgstr ""
+msgstr "Пожалуйста, подождите..."
 
 #: install/run.php:15
 msgid "Copy config.php to application/config/"
-msgstr ""
+msgstr "Скопируйте config.php в application/config/"
 
 #: install/run.php:18
 msgid "Copy database.php to application/config/"
-msgstr ""
+msgstr "Скопируйте database.php в application/config/"
 
 #: install/run.php:21
 msgid "Creating database tables"
-msgstr ""
+msgstr "Создание таблиц базы данных"
 
 #: install/run.php:24
 msgid "Running database migrations"
-msgstr ""
+msgstr "Запуск миграций базы данных"
 
 #: install/run.php:27
 msgid "Updating DXCC data"
-msgstr ""
+msgstr "Обновление данных DXCC"
 
 #: install/run.php:35
 msgid "Lock the installer"
-msgstr ""
+msgstr "Заблокировать установщик"
 
 #: install/run.php:39
 #, php-format
 msgid "All install steps went through. Redirect to user login in %s seconds..."
 msgstr ""
+"Все шаги установки выполнены. Перенаправление на вход пользователя через %s "
+"секунд..."
 
 #: install/run.php:42
 msgid "Done. Go to the user login ->"
-msgstr ""
+msgstr "Готово. Перейдите к входу пользователя ->"
 
 #: install/run.php:46 install/run.php:125
 msgid "Show detailled debug log"
-msgstr ""
+msgstr "Показать подробный журнал отладки"
 
 #: install/run.php:127
 msgid "Hide detailled debug log"
-msgstr ""
+msgstr "Скрыть подробный журнал отладки"
 
 #: install/run.php:182
 msgid "Could not create application/config/config.php"
-msgstr ""
+msgstr "Не удалось создать application/config/config.php"
 
 #: install/run.php:217
 msgid "Could not create application/config/database.php"
-msgstr ""
+msgstr "Не удалось создать application/config/database.php"
 
 #: install/run.php:251
 msgid "Could not create database tables"
-msgstr ""
+msgstr "Не удалось создать таблицы базы данных"
 
 #: install/run.php:281
 msgid "Could not run database migrations"
-msgstr ""
+msgstr "Не удалось выполнить миграции базы данных"
 
 #: install/run.php:309
 msgid "Could not update DXCC data"
-msgstr ""
+msgstr "Не удалось обновить данные DXCC"
 
 #: install/run.php:341
 msgid "Could not create install/.lock file"
-msgstr ""
+msgstr "Не удалось создать файл install/.lock"
 
 #~ msgid "On"
 #~ msgstr "Включено"
