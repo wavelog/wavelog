@@ -142,7 +142,7 @@ class adif_data extends CI_Model {
         $this->db->select(''.$this->config->item('table_name').'.*, station_profile.*, dxcc_entities.name as station_country');
         $this->db->from($this->config->item('table_name'));
         $this->db->where($this->config->item('table_name').'.station_id', $station_id);
-        $this->db->where($this->config->item('table_name').".COL_PRIMARY_KEY > " . $goalpost); //only get values past the goalpost
+        $this->db->where($this->config->item('table_name').".COL_PRIMARY_KEY > " , $goalpost); //only get values past the goalpost
         $this->db->order_by($this->config->item('table_name').".COL_TIME_ON", "ASC");
         $this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
         $this->db->join('dxcc_entities', 'station_profile.station_dxcc = dxcc_entities.adif', 'left outer');

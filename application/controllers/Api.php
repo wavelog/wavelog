@@ -273,6 +273,17 @@ class API extends CI_Controller {
 		$station_id = $obj['station_id'];
 		$goalpost = $obj['goalpost'];
 
+		//check if goalpost is numeric as an additional layer of SQL injection prevention
+		if(!is_numeric($goalpost))
+		{
+			http_response_code(400);
+			echo json_encode(['status' => 'failed', 'reason' => "Invalid goalpost."]);
+			return;
+		}
+
+		//make sure the goalpost is an integer
+		$goalpost = (int)$goalpost;
+
 		//load stations API
 		$this->load->model('stations');
 
