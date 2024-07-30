@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-28 11:10+0000\n"
+"POT-Creation-Date: 2024-07-30 12:21+0000\n"
 "PO-Revision-Date: 2024-07-09 13:25+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -523,14 +523,18 @@ msgstr ""
 msgid "No migration possible"
 msgstr ""
 
-#: application/controllers/Debug.php:216
+#: application/controllers/Debug.php:204
+msgid "Wavelog was updated successfully!"
+msgstr ""
+
+#: application/controllers/Debug.php:270
 msgid ""
 "File Migration was successfull, but please check also manually. If "
 "everything seems right you can delete the folders 'assets/qslcard' and "
 "'images/eqsl_card_images'."
 msgstr ""
 
-#: application/controllers/Debug.php:219
+#: application/controllers/Debug.php:273
 msgid "File Migration failed. Please check the Error Log."
 msgstr ""
 
@@ -2424,7 +2428,6 @@ msgstr ""
 #: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:41
 #: application/views/eqslcard/index.php:28
 #: application/views/hamsat/index.php:30 application/views/labels/index.php:123
-#: application/views/logbookadvanced/index.php:506
 #: application/views/logbookadvanced/qslcarousel.php:30
 #: application/views/lotw_views/index.php:39
 #: application/views/oqrs/qsolist.php:6
@@ -6916,6 +6919,10 @@ msgstr "No. Resultados"
 msgid "Location"
 msgstr "Localización"
 
+#: application/views/logbookadvanced/index.php:506
+msgid "Callsign: "
+msgstr ""
+
 #: application/views/logbookadvanced/index.php:512
 msgid "Dupes"
 msgstr "Duplicados"
@@ -10494,20 +10501,20 @@ msgstr ""
 msgid "Wavelog OQRS"
 msgstr ""
 
-#: application/views/widgets/oqrs.php:81
+#: application/views/widgets/oqrs.php:76
 msgid "Wavelog OQRS Request"
 msgstr ""
 
-#: application/views/widgets/oqrs.php:84
+#: application/views/widgets/oqrs.php:79
 #, php-format
 msgid "Request a QSL card for your QSO with %s."
 msgstr ""
 
-#: application/views/widgets/oqrs.php:88
+#: application/views/widgets/oqrs.php:83
 msgid "Your Callsign:"
 msgstr ""
 
-#: application/views/widgets/oqrs.php:95
+#: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr ""
 

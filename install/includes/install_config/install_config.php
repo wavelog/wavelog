@@ -39,3 +39,7 @@ $required_php_modules = [
 // MariaDB / MySQL
 $mariadb_version = 10.1;
 $mysql_version = 5.7;
+
+// PHP modules that are directly required for the installer
+global $installer_required_modules;
+$installer_required_modules = array("mbstring", "curl");

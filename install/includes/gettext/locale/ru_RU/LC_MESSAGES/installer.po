@@ -4,12 +4,13 @@
 #
 # Michael Skolsky <r1blh@yandex.ru>, 2024.
 # Florian Wolters <wavelog@df2et.de>, 2024.
+# Fabian Berg <hb9hil@wavelog.org>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-29 12:05+0000\n"
-"PO-Revision-Date: 2024-07-29 05:55+0000\n"
-"Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
+"POT-Creation-Date: 2024-07-30 10:38+0000\n"
+"PO-Revision-Date: 2024-07-29 12:08+0000\n"
+"Last-Translator: Fabian Berg <hb9hil@wavelog.org>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
 "installer/ru/>\n"
 "Language: ru_RU\n"
@@ -327,6 +328,10 @@ msgid ""
 "\t\t\t\t\t\t\t\t\t\t\t\t\t- have to end with a slash 'example/'<br>\n"
 "\t\t\t\t\t\t\t\t\t\t\t\t\t- have to start with 'http'"
 msgstr ""
+"Это поле<br>\n"
+"\t\t\t\t\t\t\t\t\t\t\t\t- не может быть пустым<br>\n"
+"\t\t\t\t\t\t\t\t\t\t\t\t- должно заканчиваться слешем 'example/'<br>\n"
+"\t\t\t\t\t\t\t\t\t\t\t\t- должно начинаться с 'http'"
 
 #: install/index.php:367
 msgid "Optional: Global Callbook Lookup"
@@ -670,8 +675,7 @@ msgid "PHP Module missing"
 msgstr ""
 
 #: install/index.php:1900
-#, php-format
-msgid "The PHP module %s is missing."
+msgid "The following PHP modules are missing:"
 msgstr ""
 
 #: install/index.php:1901
@@ -679,8 +683,7 @@ msgid "Without this module the Wavelog Installer does not work!"
 msgstr ""
 
 #: install/index.php:1902
-#, php-format
-msgid "Install %s and restart the webserver."
+msgid "Please install the required modules and restart the webserver."
 msgstr ""
 
 #: install/run.php:10

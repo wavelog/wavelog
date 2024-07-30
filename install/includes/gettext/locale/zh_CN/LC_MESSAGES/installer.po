@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-29 12:05+0000\n"
-"PO-Revision-Date: 2024-07-23 10:31+0000\n"
+"POT-Creation-Date: 2024-07-30 10:38+0000\n"
+"PO-Revision-Date: 2024-07-29 13:32+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/"
 "wavelog/installer/zh_Hans/>\n"
@@ -20,23 +20,23 @@ msgstr ""
 
 #: install/includes/core/database_class.php:59
 msgid "Connection Error: "
-msgstr ""
+msgstr "连接错误： "
 
 #: install/includes/core/database_class.php:63
 msgid "Unable to create database: "
-msgstr ""
+msgstr "无法创建数据库： "
 
 #: install/includes/core/database_class.php:68
 msgid "Unable to select database: "
-msgstr ""
+msgstr "无法选择数据库： "
 
 #: install/includes/core/database_class.php:74
 msgid "Database is not empty."
-msgstr ""
+msgstr "数据库不是空白的。"
 
 #: install/includes/install_config/install_lib.php:123
 msgid "not detected"
-msgstr ""
+msgstr "未选择"
 
 #: install/includes/interface_assets/footer.php:49
 msgid "Bulgarian"
@@ -190,7 +190,7 @@ msgstr "版本"
 #, php-format
 msgctxt "PHP Version"
 msgid "min. %s (recommended %s+)"
-msgstr ""
+msgstr "最低 %s （建议 %s+）"
 
 #: install/index.php:136
 msgid "Installed"
@@ -206,35 +206,36 @@ msgstr "PHP 设置"
 
 #: install/index.php:234
 msgid "Folder Write Permissions"
-msgstr ""
+msgstr "文件夹可写权限"
 
 #: install/index.php:240 install/index.php:251 install/index.php:262
 #: install/index.php:273 install/index.php:284
 msgid "Success"
-msgstr ""
+msgstr "成功"
 
 #: install/index.php:243 install/index.php:254 install/index.php:265
 #: install/index.php:276 install/index.php:287
 msgid "Failed"
-msgstr ""
+msgstr "失败"
 
 #: install/index.php:294
 msgid "Web Server"
-msgstr ""
+msgstr "服务器"
 
 #: install/index.php:297
 msgid "Version:"
-msgstr ""
+msgstr "版本："
 
 #: install/index.php:304
 msgid "Important note for nginx users!"
-msgstr ""
+msgstr "Nginx 用户看过来！"
 
 #: install/index.php:305
 msgid ""
 "Since you are using nginx as web server please make sure that you have made "
 "the changes described in the Wiki before continuing."
 msgstr ""
+"由于您使用 Nginx 作为前端程序，请您先阅读 Wiki 中的说明，并进行适当改动。"
 
 #: install/index.php:314
 msgid "Some Checks have failed!"
@@ -255,6 +256,7 @@ msgid ""
 "In case of failed 'Folder Write Permissions' check out our Wiki <a href='%s' "
 "target='_blank'>here</a>."
 msgstr ""
+"如遇到“文件夹可写权限”错误，请查看 <a href='%s' target='_blank'>Wiki</a>。"
 
 #: install/index.php:323
 msgid "You have some warnings!"
@@ -291,7 +293,7 @@ msgstr "通常是 Web 根目录下的某个子目录，通常为空。"
 
 #: install/index.php:352
 msgid "No slash before or after the directory. Just the name of the folder."
-msgstr ""
+msgstr "文件夹名字前后不需要带有斜杠。"
 
 #: install/index.php:357
 #, php-format
@@ -316,6 +318,10 @@ msgid ""
 "\t\t\t\t\t\t\t\t\t\t\t\t\t- have to end with a slash 'example/'<br>\n"
 "\t\t\t\t\t\t\t\t\t\t\t\t\t- have to start with 'http'"
 msgstr ""
+"此表单<br>\n"
+"\t\t\t\t\t\t\t\t\t\t\t\t\t- 不能为空<br>\n"
+"\t\t\t\t\t\t\t\t\t\t\t\t\t- 需要结尾带有斜杠 如 'example/'<br>\n"
+"\t\t\t\t\t\t\t\t\t\t\t\t\t- 以 'http' 开头"
 
 #: install/index.php:367
 msgid "Optional: Global Callbook Lookup"
@@ -352,45 +358,45 @@ msgstr "日志簿密码"
 #: install/index.php:389
 #, php-format
 msgid "Password can't contain %s or be empty"
-msgstr ""
+msgstr "密码不能包含 %s，或为空"
 
 #: install/index.php:394 install/index.php:399
 msgid "Advanced Settings"
-msgstr ""
+msgstr "高级设置"
 
 #: install/index.php:402
 msgid "These settings should only be set if you know what you're doing."
-msgstr ""
+msgstr "这些设置可能对系统运行造成影响，请三思而后行。"
 
 #: install/index.php:405
 msgid "Error Logs"
-msgstr ""
+msgstr "错误日志"
 
 #: install/index.php:406
 msgid ""
 "Optional: Enable Error Logging by setting the log threshold bigger then 0. "
 "Only enable this if you really need it."
-msgstr ""
+msgstr "可选：将日志级别设置为 0 以上，可启用错误记录，仅建议 Debug 时打开。"
 
 #: install/index.php:411
 msgid "0 - No logs"
-msgstr ""
+msgstr "0 - 无任何日志"
 
 #: install/index.php:412
 msgid "1 - Error messages"
-msgstr ""
+msgstr "1 - 仅错误信息"
 
 #: install/index.php:413
 msgid "2 - Debug messages"
-msgstr ""
+msgstr "2 - 调试信息"
 
 #: install/index.php:414
 msgid "3 - Info messages"
-msgstr ""
+msgstr "3 - 通常信息"
 
 #: install/index.php:415
 msgid "4 - All messages"
-msgstr ""
+msgstr "4 - 所有信息"
 
 #: install/index.php:437
 msgid ""
@@ -407,6 +413,8 @@ msgid ""
 "Usually 'localhost'.<br>Optional with '[host]:[port]'. Default port: 3306."
 "<br>In a docker compose install type 'wavelog-db'."
 msgstr ""
+"通常为“localhost”。<br>可能为 “[host]:[port]”。默认端口：3306。<br>如在 "
+"Docker compose 下，输入 “wavelog-db”。"
 
 #: install/index.php:447
 msgid "Database Name"
@@ -433,10 +441,12 @@ msgid ""
 "Now you can create your first user in Wavelog. Fill out all fields and click "
 "continue. Make sure you use a safe password."
 msgstr ""
+"您现在可以为 Wavelog 创建第一个用户了，填写所有信息点击下一步，确保创建一个高"
+"强度的密码。"
 
 #: install/index.php:473
 msgid "All fields are required!"
-msgstr ""
+msgstr "所有字段都需填写！"
 
 #: install/index.php:482
 msgid "First Name"
@@ -509,7 +519,7 @@ msgstr "检查单"
 
 #: install/index.php:1060
 msgid "Pre-Checks"
-msgstr ""
+msgstr "事前检查"
 
 #: install/index.php:1069
 msgid "Configuration"
@@ -537,23 +547,23 @@ msgstr "现在可以安装 Wavelog 了，需要几分钟的时间。"
 
 #: install/index.php:1106
 msgid "Reset"
-msgstr ""
+msgstr "重置"
 
 #: install/index.php:1111
 msgid "Installer Reset"
-msgstr ""
+msgstr "安装程序重置"
 
 #: install/index.php:1114
 msgid "Do you really want to reset all data and start from scratch?"
-msgstr ""
+msgstr "请您确认清空所有数据，推倒重来？"
 
 #: install/index.php:1117
 msgid "Yes"
-msgstr ""
+msgstr "是"
 
 #: install/index.php:1118
 msgid "No"
-msgstr ""
+msgstr "否"
 
 #: install/index.php:1128
 msgid "Back"
@@ -567,15 +577,15 @@ msgstr "继续"
 msgid ""
 "You can't continue. Solve the red marked issues, restart the webserver and "
 "reload this page."
-msgstr ""
+msgstr "您需要解决标红的错误才能继续，请重启服务器并刷新网页。"
 
 #: install/index.php:1334
 msgid "Password can't contain ' / \\ < >"
-msgstr ""
+msgstr "密码不能包含 '/?<>"
 
 #: install/index.php:1501
 msgid "Error: At least Hostname/IP, Database Name and Username are required."
-msgstr ""
+msgstr "错误：至少提供 主机名/IP、数据库名称和用户名。"
 
 #: install/index.php:1511
 msgid "Connecting..."
@@ -583,7 +593,7 @@ msgstr "连接中…"
 
 #: install/index.php:1535
 msgid "Connection was successful and your database should be compatible."
-msgstr ""
+msgstr "连接成功，您的数据库兼容 Wavelog。"
 
 #: install/index.php:1539
 msgid ""
@@ -594,23 +604,23 @@ msgstr "连接成功，但数据库版本有一些老，您可以继续安装但
 #: install/index.php:1539
 #, php-format
 msgid "The min. version for MySQL is %s, for MariaDB it's %s."
-msgstr ""
+msgstr "MySQL 最低版本 %s，或 MariaDB 最低版本 %s。"
 
 #: install/index.php:1651
 msgid "At least one field is empty."
-msgstr ""
+msgstr "有字段未填写。"
 
 #: install/index.php:1681
 msgid ""
 "The locator seems to be not in the correct format. Should look like AA11AA "
 "(6-char grid locator)."
-msgstr ""
+msgstr "网格格式有误，例如 AA11AA（6位）。"
 
 #: install/index.php:1695
 msgid ""
 "The e-mail adress does not look correct. Make sure it's a valid e-mail "
 "address"
-msgstr ""
+msgstr "E-mail 地址有误，请重新检查"
 
 #: install/index.php:1722
 msgid "Password should be at least 8 characters long"
@@ -626,98 +636,104 @@ msgstr "现在安装"
 
 #: install/index.php:1782
 msgid "Install not possible. Checklist incomplete."
-msgstr ""
+msgstr "无法安装，检查单无法通过。"
 
 #: install/index.php:1898
 msgid "PHP Module missing"
-msgstr ""
+msgstr "PHP 模块未安装"
 
 #: install/index.php:1900
-#, php-format
-msgid "The PHP module %s is missing."
+msgid "The following PHP modules are missing:"
 msgstr ""
 
 #: install/index.php:1901
 msgid "Without this module the Wavelog Installer does not work!"
-msgstr ""
+msgstr "Wavelog 需要这个模块来运行！"
 
 #: install/index.php:1902
-#, php-format
-msgid "Install %s and restart the webserver."
+msgid "Please install the required modules and restart the webserver."
 msgstr ""
 
 #: install/run.php:10
 msgid "Installation"
-msgstr ""
+msgstr "安装"
 
 #: install/run.php:12
 msgid "Please wait..."
-msgstr ""
+msgstr "请稍等…"
 
 #: install/run.php:15
 msgid "Copy config.php to application/config/"
-msgstr ""
+msgstr "复制 config.php 到 application/config/"
 
 #: install/run.php:18
 msgid "Copy database.php to application/config/"
-msgstr ""
+msgstr "复制 database.php 到 application/config/"
 
 #: install/run.php:21
 msgid "Creating database tables"
-msgstr ""
+msgstr "创建数据表"
 
 #: install/run.php:24
 msgid "Running database migrations"
-msgstr ""
+msgstr "运行数据库迁移"
 
 #: install/run.php:27
 msgid "Updating DXCC data"
-msgstr ""
+msgstr "更新 DXCC 数据"
 
 #: install/run.php:35
 msgid "Lock the installer"
-msgstr ""
+msgstr "锁定安装程序"
 
 #: install/run.php:39
 #, php-format
 msgid "All install steps went through. Redirect to user login in %s seconds..."
-msgstr ""
+msgstr "所有安装步骤已完成，正重定向至登录页，剩余 %s 秒…"
 
 #: install/run.php:42
 msgid "Done. Go to the user login ->"
-msgstr ""
+msgstr "完成，前往登录页 ->"
 
 #: install/run.php:46 install/run.php:125
 msgid "Show detailled debug log"
-msgstr ""
+msgstr "显示详细调试日志"
 
 #: install/run.php:127
 msgid "Hide detailled debug log"
-msgstr ""
+msgstr "隐藏详细调试日志"
 
 #: install/run.php:182
 msgid "Could not create application/config/config.php"
-msgstr ""
+msgstr "无法创建 application/config/config.php"
 
 #: install/run.php:217
 msgid "Could not create application/config/database.php"
-msgstr ""
+msgstr "无法创建 application/config/database.php"
 
 #: install/run.php:251
 msgid "Could not create database tables"
-msgstr ""
+msgstr "无法创建数据表"
 
 #: install/run.php:281
 msgid "Could not run database migrations"
-msgstr ""
+msgstr "无法运行数据库迁移"
 
 #: install/run.php:309
 msgid "Could not update DXCC data"
-msgstr ""
+msgstr "无法更新 DXCC 数据"
 
 #: install/run.php:341
 msgid "Could not create install/.lock file"
-msgstr ""
+msgstr "无法创建 install/.lock 文件"
+
+#, php-format
+#~ msgid "The PHP module %s is missing."
+#~ msgstr "PHP 模块 %s 未安装。"
+
+#, php-format
+#~ msgid "Install %s and restart the webserver."
+#~ msgstr "安装 %s 并重启服务器。"
 
 #~ msgid "On"
 #~ msgstr "开启"

@@ -1063,3 +1063,11 @@ label {
     flex: 1 1 400px; /* Adjust the base width of tables */
     box-sizing: border-box;
 }
+
+.multiselect-container.dropdown-menu {
+    --bs-dropdown-padding-y: 0;
+}
+
+#dxcc + .btn-group .multiselect-container .multiselect-option input[type="radio"] {
+    display: none;
+}

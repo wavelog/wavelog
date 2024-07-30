@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-29 12:05+0000\n"
+"POT-Creation-Date: 2024-07-30 10:38+0000\n"
 "PO-Revision-Date: 2024-06-05 15:15+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -617,8 +617,7 @@ msgid "PHP Module missing"
 msgstr ""
 
 #: install/index.php:1900
-#, php-format
-msgid "The PHP module %s is missing."
+msgid "The following PHP modules are missing:"
 msgstr ""
 
 #: install/index.php:1901
@@ -626,8 +625,7 @@ msgid "Without this module the Wavelog Installer does not work!"
 msgstr ""
 
 #: install/index.php:1902
-#, php-format
-msgid "Install %s and restart the webserver."
+msgid "Please install the required modules and restart the webserver."
 msgstr ""
 
 #: install/run.php:10

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-29 12:05+0000\n"
-"PO-Revision-Date: 2024-07-28 17:42+0000\n"
+"POT-Creation-Date: 2024-07-30 10:38+0000\n"
+"PO-Revision-Date: 2024-07-29 12:08+0000\n"
 "Last-Translator: Fabian Berg <hb9hil@wavelog.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
 "installer/de/>\n"
@@ -264,6 +264,8 @@ msgid ""
 "In case of failed 'Folder Write Permissions' check out our Wiki <a href='%s' "
 "target='_blank'>here</a>."
 msgstr ""
+"Im Falle fehlgeschlagener 'Ordner-Schreibberechtigungen' schau dir unser "
+"Wiki <a href='%s' target='_blank'>hier</a> an."
 
 #: install/index.php:323
 msgid "You have some warnings!"
@@ -333,6 +335,10 @@ msgid ""
 "\t\t\t\t\t\t\t\t\t\t\t\t\t- have to end with a slash 'example/'<br>\n"
 "\t\t\t\t\t\t\t\t\t\t\t\t\t- have to start with 'http'"
 msgstr ""
+"Dieses Feld<br>\n"
+"- darf nicht leer sein<br>\n"
+"- muss mit einem Schrägstrich enden 'example/'<br>\n"
+"- muss mit 'http' beginnen"
 
 #: install/index.php:367
 msgid "Optional: Global Callbook Lookup"
@@ -675,20 +681,18 @@ msgstr "Installation nicht möglich. Checkliste unvollständig."
 
 #: install/index.php:1898
 msgid "PHP Module missing"
-msgstr ""
+msgstr "PHP-Modul fehlt"
 
 #: install/index.php:1900
-#, php-format
-msgid "The PHP module %s is missing."
+msgid "The following PHP modules are missing:"
 msgstr ""
 
 #: install/index.php:1901
 msgid "Without this module the Wavelog Installer does not work!"
-msgstr ""
+msgstr "Ohne dieses Modul funktioniert der Wavelog-Installer nicht!"
 
 #: install/index.php:1902
-#, php-format
-msgid "Install %s and restart the webserver."
+msgid "Please install the required modules and restart the webserver."
 msgstr ""
 
 #: install/run.php:10
@@ -765,6 +769,14 @@ msgstr "Konnte DXCC-Daten nicht aktualisieren"
 #: install/run.php:341
 msgid "Could not create install/.lock file"
 msgstr "Konnte die install/.lock Datei nicht anlegen"
+
+#, php-format
+#~ msgid "The PHP module %s is missing."
+#~ msgstr "Das PHP-Modul %s fehlt."
+
+#, php-format
+#~ msgid "Install %s and restart the webserver."
+#~ msgstr "Installiere %s und starte den Webserver neu."
 
 #~ msgid ""
 #~ "This field<br>\n"

@@ -4,14 +4,15 @@
 #
 # Michael Skolsky <r1blh@yandex.ru>, 2024.
 # "Francisco (F4VSE)" <kikosgc@gmail.com>, 2024.
+# "Francisco (F4VSE)" <kikosgc@users.noreply.github.com>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-28 11:10+0000\n"
-"PO-Revision-Date: 2024-07-29 04:21+0000\n"
-"Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/ru/>\n"
+"POT-Creation-Date: 2024-07-30 12:21+0000\n"
+"PO-Revision-Date: 2024-07-29 12:05+0000\n"
+"Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -525,7 +526,11 @@ msgstr "Нет данных для миграции"
 msgid "No migration possible"
 msgstr "Миграция невозможна"
 
-#: application/controllers/Debug.php:216
+#: application/controllers/Debug.php:204
+msgid "Wavelog was updated successfully!"
+msgstr ""
+
+#: application/controllers/Debug.php:270
 msgid ""
 "File Migration was successfull, but please check also manually. If "
 "everything seems right you can delete the folders 'assets/qslcard' and "
@@ -535,7 +540,7 @@ msgstr ""
 "Если все в порядке, можете удалить папки 'assets/qslcard' и 'images/"
 "eqsl_card_images'."
 
-#: application/controllers/Debug.php:219
+#: application/controllers/Debug.php:273
 msgid "File Migration failed. Please check the Error Log."
 msgstr ""
 "Не удалось выполнить миграцию файлов. Пожалуйста, проверьте журнал ошибок."
@@ -2146,7 +2151,7 @@ msgstr "Всего сработано квадратов VUCC"
 
 #: application/views/accumulate/index.php:7
 msgid "Accumulated number of WAJA worked"
-msgstr "Накопленное количество сработанных WAJA"
+msgstr "Накопленное количество отработанных WAJA"
 
 #: application/views/accumulate/index.php:8
 #: application/views/dashboard/index.php:222
@@ -2448,7 +2453,6 @@ msgstr "Не найдено!"
 #: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:41
 #: application/views/eqslcard/index.php:28
 #: application/views/hamsat/index.php:30 application/views/labels/index.php:123
-#: application/views/logbookadvanced/index.php:506
 #: application/views/logbookadvanced/qslcarousel.php:30
 #: application/views/lotw_views/index.php:39
 #: application/views/oqrs/qsolist.php:6
@@ -7175,6 +7179,10 @@ msgstr "# Результаты"
 msgid "Location"
 msgstr "QTH"
 
+#: application/views/logbookadvanced/index.php:506
+msgid "Callsign: "
+msgstr ""
+
 #: application/views/logbookadvanced/index.php:512
 msgid "Dupes"
 msgstr "Дубликаты"
@@ -10854,20 +10862,20 @@ msgstr "QSO отмечены как экспортированные в QO-100 D
 msgid "Wavelog OQRS"
 msgstr "Wavelog OQRS"
 
-#: application/views/widgets/oqrs.php:81
+#: application/views/widgets/oqrs.php:76
 msgid "Wavelog OQRS Request"
 msgstr "Запрос Wavelog OQRS"
 
-#: application/views/widgets/oqrs.php:84
+#: application/views/widgets/oqrs.php:79
 #, php-format
 msgid "Request a QSL card for your QSO with %s."
 msgstr "Запросите QSL-карточку за ваше QSO с %s."
 
-#: application/views/widgets/oqrs.php:88
+#: application/views/widgets/oqrs.php:83
 msgid "Your Callsign:"
 msgstr "Ваш позывной:"
 
-#: application/views/widgets/oqrs.php:95
+#: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Отправить запрос"
 
