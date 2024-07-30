@@ -595,7 +595,6 @@
 		foreach($query->result() as $sat){
 			array_push($sats, $sat->sat);
 		}
-
 		return $sats;
 	}
 
@@ -618,6 +617,18 @@
 		foreach($query->result() as $band){
 			array_push($bands, $band->band);
 		}
+
+		usort(
+			$bands,
+			function($b, $a) {
+				sscanf($a, '%f%s', $ac, $ar);
+				sscanf($b, '%f%s', $bc, $br);
+				if ($ar == $br) {
+					return ($ac < $bc) ? -1 : 1;
+				}
+				return ($ar < $br) ? -1 : 1;
+			}
+		);
 
 		return $bands;
 	}
