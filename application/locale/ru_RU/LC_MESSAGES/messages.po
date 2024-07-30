@@ -526,7 +526,7 @@ msgstr "Нет данных для миграции"
 msgid "No migration possible"
 msgstr "Миграция невозможна"
 
-#: application/controllers/Debug.php:216
+#: application/controllers/Debug.php:216 application/controllers/Debug.php:270
 msgid ""
 "File Migration was successfull, but please check also manually. If "
 "everything seems right you can delete the folders 'assets/qslcard' and "
@@ -536,7 +536,7 @@ msgstr ""
 "Если все в порядке, можете удалить папки 'assets/qslcard' и 'images/"
 "eqsl_card_images'."
 
-#: application/controllers/Debug.php:219
+#: application/controllers/Debug.php:219 application/controllers/Debug.php:273
 msgid "File Migration failed. Please check the Error Log."
 msgstr ""
 "Не удалось выполнить миграцию файлов. Пожалуйста, проверьте журнал ошибок."
@@ -10871,6 +10871,10 @@ msgstr "Ваш позывной:"
 #: application/views/widgets/oqrs.php:95 application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Отправить запрос"
+
+#: application/controllers/Debug.php:204
+msgid "Wavelog was updated successfully!"
+msgstr ""
 
 #~ msgid "VHF/UHF Century Club (VUCC)"
 #~ msgstr "VHF / UHF Century Club (VUCC)"
