@@ -297,7 +297,7 @@ class API extends CI_Controller {
 		//load adif data module
 		$this->load->model('adif_data');
 		$data['qsos'] = $this->adif_data->export_past_goalpost($station_id, $goalpost);
-		$qso_count = count($data['qsos']->result());
+		$qso_count = count($data['qsos']->result()); 
 		
 		//if no new QSOs are ready, return that
 		if($qso_count <= 0)
