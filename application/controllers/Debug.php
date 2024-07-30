@@ -177,12 +177,6 @@ class Debug extends CI_Controller
 				exec('touch '.$maintenancefile);
 				log_message('debug', 'Updater: Entered Maintenance mode by creating .maintenance file');
 
-				/**
-				 * to stay compatible with old installations and don't break them during updated to the lastest version 
-				 * we have to take care of some old files, we stash everything else
-				 */
-				$this->discard_deprecated();
-
 				// we need atleast one file which gets stashed. this file should NOT be in .gitignore
 				exec('touch '.$stashfile);
 				log_message('debug', 'Updater: Created stashfile');
@@ -196,7 +190,7 @@ class Debug extends CI_Controller
 				exec('git pull');
 				log_message('debug', 'Updater: git fetch and git pull');
 
-				// due the fact we discarded the other files we can now pop all other changes
+				// we can now pop all other changes
 				exec('git stash pop');
 				log_message('debug', 'Updater: Pop stashed changes');
 
@@ -218,22 +212,6 @@ class Debug extends CI_Controller
 			log_message('debug', 'Updater: Delete .maintenance file to exit Maintenance Mode');
 		}
 		redirect('debug');
-	}
-
-	private function discard_deprecated() {
-		$files = array('assets/json/dok.txt', 'assets/json/pota.txt', 'assets/json/sota.txt', 'assets/json/wwff.txt', 'updates/clublog_scp.txt');
-
-		// unstage all files
-		exec('git restore --staged .');
-		log_message('debug', 'Updater: Unstage changes to stash them');
-
-		// and restore the deprecated files (discard changes)
-		foreach($files as $file) {
-			if (file_exists($file)) {
-				exec('git restore ' . $file);
-				log_message('debug', 'Updater: Discard changes in: '.$file. ' because this file is deprecated');
-			}
-		}
 	}
 
 	public function wavelog_fetch() {
