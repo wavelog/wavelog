@@ -237,6 +237,90 @@ class API extends CI_Controller {
 
 	}
 
+	function get_contacts_adif() {
+
+		//set header
+		header('Content-type: application/json');
+
+		//load API model
+		$this->load->model('api_model');
+
+		// Decode JSON and store
+		$obj = json_decode(file_get_contents("php://input"), true);
+		if ($obj === NULL) {
+		    http_response_code(400);
+			echo json_encode(['status' => 'failed', 'reason' => "wrong JSON"]);
+			return;
+		}
+
+		//do authorization
+		if(!isset($obj['key']) || $this->api_model->authorize($obj['key']) == 0) {
+		   http_response_code(401);
+		   echo json_encode(['status' => 'failed', 'reason' => "missing api key"]);
+			return;
+		}
+
+		//check for relevant fields in JSON input
+		if(!isset($obj['station_id']) or !isset($obj['goalpost']))
+		{
+			http_response_code(400);
+			echo json_encode(['status' => 'failed', 'reason' => "Not all required fields were present in input JSON"]);
+			return;
+		}
+
+		//extract relevant data to variables
+		$key = $obj['key'];
+		$station_id = $obj['station_id'];
+		$goalpost = $obj['goalpost'];
+
+		//load stations API
+		$this->load->model('stations');
+
+		//get all stations of user to check if station_id should be readable
+		$userid = $this->api_model->key_userid($key);
+		$station_ids = array();
+		$stations=$this->stations->all_of_user($userid);
+
+		//extract to array
+		foreach ($stations->result() as $row) {
+			array_push($station_ids, $row->station_id);
+		}
+
+		//return error if station not accessible for the API key
+		if(!in_array($station_id, $station_ids))
+		{
+			http_response_code(401);
+	 	   	echo json_encode(['status' => 'failed', 'reason' => "Station ID not accessible for this API key"]);
+			return;
+		}
+
+		//load adif data module
+		$this->load->model('adif_data');
+		$data['qsos'] = $this->adif_data->export_past_goalpost($station_id, $goalpost);
+		$qso_count = count($data['qsos']->result());
+		
+		//if no new QSOs are ready, return that
+		if($qso_count <= 0)
+		{
+			http_response_code(200);
+			echo json_encode(['status' => 'successfull', 'message' => 'No new QSOs available.', 'newgoalpost' => $goalpost, 'exported_qsos' => 0, 'adif' => null]);
+		}
+
+		//convert data to ADIF
+		$adif_content = $this->load->view('adif/data/exportapi', $data, TRUE);
+
+		//get new goalpost
+		$newgoalpost = 0;
+		foreach ($data['qsos']->result() as $row) {
+			$newgoalpost = max($newgoalpost, $row->COL_PRIMARY_KEY);
+		}		
+
+		//return API result
+		http_response_code(200);
+		echo json_encode(['status' => 'successfull', 'message' => 'Export successfull', 'newgoalpost' => $newgoalpost, 'exported_qsos' => $qso_count, 'adif' => $adif_content]);
+	}
+
+
 	// API function to check if a callsign is in the logbook already
 	function logbook_check_callsign() {
 		header('Content-type: application/json');
