@@ -135,11 +135,10 @@ function detect_nginx_php_setting($http_scheme) {
 }
 
 function installer_required_modules() {
-   $installer_required_modules = array("mbstring", "curl");
+   global $installer_required_modules;
    $not_found_modules = array();
    foreach ($installer_required_modules as $module) {
       if (!extension_loaded($module)) {
-         //unset($installer_required_modules[$module]);
          array_push($not_found_modules, 'php-'.$module);
       }
    }
