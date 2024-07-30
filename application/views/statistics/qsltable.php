@@ -34,15 +34,17 @@
 				$qrztotal += $value[$band]['qrz'];
 				$clublogtotal += $value[$band]['clublog'];
 				$total = $value[$band]['qso'] + $value[$band]['qsl'] + $value[$band]['lotw'] + $value[$band]['eqsl'] + $value[$band]['qrz'] + $value[$band]['clublog'];
-				echo '<tr>
-						<th>'. $mode .'</th>';
-					echo '<td>' . $value[$band]['qso'] . '</td>';
-					echo '<td>' . $value[$band]['qsl'] . '</td>';
-					echo '<td>' . $value[$band]['lotw'] . '</td>';
-					echo '<td>' . $value[$band]['eqsl'] . '</td>';
-					echo '<td>' . $value[$band]['qrz'] . '</td>';
-					echo '<td>' . $value[$band]['clublog'] . '</td>';
-				echo '</tr>';
+				if ($total > 0) {
+					echo '<tr>
+							<th>'. $mode .'</th>';
+						echo '<td>' . $value[$band]['qso'] . '</td>';
+						echo '<td>' . $value[$band]['qsl'] . '</td>';
+						echo '<td>' . $value[$band]['lotw'] . '</td>';
+						echo '<td>' . $value[$band]['eqsl'] . '</td>';
+						echo '<td>' . $value[$band]['qrz'] . '</td>';
+						echo '<td>' . $value[$band]['clublog'] . '</td>';
+					echo '</tr>';
+				}
 			}
 			echo '</tbody><tfoot><tr><th>'.__("Total").'</th>';
 			echo '<th>' . $qsototal . '</th>';
@@ -87,6 +89,7 @@
 				$qrztotal += $value[$sat]['qrz'];
 				$clublogtotal += $value[$sat]['clublog'];
 				$total = $value[$sat]['qso'] + $value[$sat]['qsl'] + $value[$sat]['lotw'] + $value[$sat]['eqsl'] + $value[$sat]['qrz'] + $value[$sat]['clublog'];
+				if ($total > 0) {
 				echo '<tr>
 						<th>'. $mode .'</th>';
 					echo '<td>' . $value[$sat]['qso'] . '</td>';
@@ -96,6 +99,7 @@
 					echo '<td>' . $value[$sat]['qrz'] . '</td>';
 					echo '<td>' . $value[$sat]['clublog'] . '</td>';
 				echo '</tr>';
+				}
 			}
 			echo '</tbody><tfoot><tr><th>'.__("Total").'</th>';
 			echo '<th>' . $qsototal . '</th>';
