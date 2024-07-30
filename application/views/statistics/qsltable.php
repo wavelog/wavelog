@@ -1,11 +1,16 @@
 <div class="container">
-	<div class="tables-container">
+<br />
+<div class="card">
+	<div class="card-header">
+		<?= __("QSL Statistics"); ?>
+	</div>
+	<div class="tables-container mx-2">
 	<?php
 	if ($qsoarray) {
 		foreach($bands as $band) {
 			echo '
 			<div class="table-wrapper">
-				<table style="width: 100%" class="mx-2 flex-wrap table-sm table table-bordered table-hover table-striped table-condensed text-center">
+				<table style="width: 100%" class="flex-wrap table-sm table table-bordered table-hover table-striped table-condensed text-center">
 					<thead>';
 						echo '<tr>';
 						echo '<th colspan = 7>' . $band . '</th>';
@@ -113,4 +118,5 @@
 	}
 	?>
 	</div>
+</div>
 </div>
