@@ -36,7 +36,7 @@
 		import {
 			polyfillCountryFlagEmojis
 		} from "../assets/js/country-flag-emoji-polyfill.js";
-		polyfillCountryFlagEmojis();
+		polyfillCountryFlagEmojis("Twemoji Country Flags", "<?php echo $websiteurl; ?>assets/fonts/TwemojiCountryFlags/TwemojiCountryFlags.woff2");
 	</script>
 	<?php
 	/**
