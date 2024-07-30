@@ -16,7 +16,7 @@ if (!file_exists('.lock')) {
 
 	// php-mbstring has to be installed for the installer to work properly!!
 	// The other prechecks can be run within the installer.
-	if ($required_php_modules['php-mbstring']['condition']) { ?>
+	if ($required_php_modules['php-mbstring']['condition'] && $required_php_modules['php-curl']['condition']) { ?>
 
 
 		<body>
@@ -1897,9 +1897,9 @@ if (!file_exists('.lock')) {
 					<div class="card-body text-center p-4">
 						<h3 style="margin-top: 50px;"><?= __("PHP Module missing"); ?></h3>
 						<img src="assets/images/danger_triangle.png" alt="danger_triangle" style="max-width: 400px; height: auto; margin-bottom: 50px;">
-						<p><?= sprintf(__("The PHP module %s is missing."), "<code>php-mbstring</code>"); ?></p>
+						<p><?= __("The following PHP modules are missing:")." <code>".implode(',', installer_required_modules())."</code>"; ?></p>
 						<p><?= __("Without this module the Wavelog Installer does not work!"); ?></p>
-						<p><?= sprintf(__("Install %s and restart the webserver."), "<code>php-mbstring</code>"); ?></p>
+						<p><?= __("Please install the required modules and restart the webserver."); ?></p>
 					</div>
 				</div>
 			</div>
