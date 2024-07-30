@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-30 14:55+0000\n"
+"POT-Creation-Date: 2024-07-30 19:48+0000\n"
 "PO-Revision-Date: 2024-07-29 12:05+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
@@ -526,11 +526,15 @@ msgstr "Aucune donnée à migrer"
 msgid "No migration possible"
 msgstr "Aucune migration possible"
 
-#: application/controllers/Debug.php:198
+#: application/controllers/Debug.php:199
 msgid "Wavelog was updated successfully!"
 msgstr ""
 
-#: application/controllers/Debug.php:248
+#: application/controllers/Debug.php:217
+msgid "Selfupdate() not available. Check the Error Log."
+msgstr ""
+
+#: application/controllers/Debug.php:261
 msgid ""
 "File Migration was successfull, but please check also manually. If "
 "everything seems right you can delete the folders 'assets/qslcard' and "
@@ -540,7 +544,7 @@ msgstr ""
 "manuellement. Si tout vous semble correct, vous pouvez supprimer les "
 "dossiers 'assets/qslcard' et 'images/eqsl_card_images'."
 
-#: application/controllers/Debug.php:251
+#: application/controllers/Debug.php:264
 msgid "File Migration failed. Please check the Error Log."
 msgstr ""
 "La migration des fichiers a échoué. Veuillez vérifier le journal des erreurs."
