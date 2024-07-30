@@ -950,41 +950,13 @@ class Lotw extends CI_Controller {
 	}
 
 	/*
-		Load the ARRL LoTW User Activity CSV and saves into uploads/lotw_users.csv
+		Deprecated. To be back compatible we do the same as update/lotw_users 
+		HB9HIL, July 2024
 	*/
 	public function load_users() {
-		$contents = file_get_contents('https://lotw.arrl.org/lotw-user-activity.csv', true);
-
-        if($contents === FALSE) {
-            echo "Something went wrong with fetching the LoTW users file.";
-        } else {
-            $file = './updates/lotw_users.csv';
-
-            if (file_put_contents($file, $contents) !== FALSE) {     // Save our content to the file.
-                echo "LoTW User Data Saved.";
-            } else {
-                echo "FAILED: Could not write to LoTW users file";
-            }
-        }
-	}
-
-	/*
-		Check if callsign is an active LoTW user and return whether its true or not
-	*/
-	function lotw_usercheck($callsign) {
-		$f = fopen('./updates/lotw_users.csv', "r");
-		$result = false;
-		while ($row = fgetcsv($f)) {
-		    if ($row[0] == strtoupper($callsign)) {
-			$result = $row[0];
-			echo "Found";
-			break;
-		    } else {
-			echo "Not Found";
-			break;
-		    }
-		}
-		fclose($f);
+		$this->load->model('Update_model');
+        $result = $this->Update_model->lotw_users();
+        echo $result;
 	}
 
 	function signlog($sign_key, $string) {

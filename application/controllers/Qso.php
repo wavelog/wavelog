@@ -455,7 +455,7 @@ class QSO extends CI_Controller {
             $query = isset($_GET['query']) ? $_GET['query'] : FALSE;
             $wwff = strtoupper($query);
 
-            $file = 'assets/json/wwff.txt';
+            $file = 'updates/wwff.txt';
 
             if (is_readable($file)) {
                 $lines = file($file, FILE_IGNORE_NEW_LINES);
@@ -469,6 +469,13 @@ class QSO extends CI_Controller {
                     if (count($json) <= 100) {
                         $json[] = ["name"=>$value];
                     }
+                }
+            } else {
+                $src = 'assets/resources/wwff.txt';
+                if (copy($src, $file)) {
+                    $this->get_wwff();
+                } else {
+                    log_message('error', 'Failed to copy source file ('.$src.') to new location. Check if this path has the right permission: '.$file);
                 }
             }
         }
@@ -484,7 +491,7 @@ class QSO extends CI_Controller {
             $query = isset($_GET['query']) ? $_GET['query'] : FALSE;
             $pota = strtoupper($query);
 
-            $file = 'assets/json/pota.txt';
+            $file = 'updates/pota.txt';
 
             if (is_readable($file)) {
                 $lines = file($file, FILE_IGNORE_NEW_LINES);
@@ -498,6 +505,13 @@ class QSO extends CI_Controller {
                     if (count($json) <= 100) {
                         $json[] = ["name"=>$value];
                     }
+                }
+            } else {
+                $src = 'assets/resources/pota.txt';
+                if (copy($src, $file)) {
+                    $this->get_pota();
+                } else {
+                    log_message('error', 'Failed to copy source file ('.$src.') to new location. Check if this path has the right permission: '.$file);
                 }
             }
         }
@@ -516,7 +530,7 @@ class QSO extends CI_Controller {
             $query = isset($_GET['query']) ? $_GET['query'] : FALSE;
             $dok = strtoupper($query);
 
-            $file = 'assets/json/dok.txt';
+            $file = 'updates/dok.txt';
 
             if (is_readable($file)) {
                 $lines = file($file, FILE_IGNORE_NEW_LINES);
@@ -530,6 +544,13 @@ class QSO extends CI_Controller {
                     if (count($json) <= 100) {
                         $json[] = ["name"=>$value];
                     }
+                }
+            } else {
+                $src = 'assets/resources/dok.txt';
+                if (copy($src, $file)) {
+                    $this->get_dok();
+                } else {
+                    log_message('error', 'Failed to copy source file ('.$src.') to new location. Check if this path has the right permission: '.$file);
                 }
             }
         }
