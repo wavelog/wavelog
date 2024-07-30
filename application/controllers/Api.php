@@ -237,6 +237,11 @@ class API extends CI_Controller {
 
 	}
 
+	/*
+	*
+	*	Function: get_contacts_adif
+	*	Task: allows third party software to pull ADIF QSO data from wavelog after a baseline of the last fetched QSO id
+	*/
 	function get_contacts_adif() {
 
 		//set header
@@ -261,7 +266,7 @@ class API extends CI_Controller {
 		}
 
 		//check for relevant fields in JSON input
-		if(!isset($obj['station_id']) or !isset($obj['goalpost']))
+		if(!isset($obj['station_id']) or !isset($obj['fetchfromid']))
 		{
 			http_response_code(400);
 			echo json_encode(['status' => 'failed', 'reason' => "Not all required fields were present in input JSON"]);
@@ -271,18 +276,18 @@ class API extends CI_Controller {
 		//extract relevant data to variables
 		$key = $obj['key'];
 		$station_id = $obj['station_id'];
-		$goalpost = $obj['goalpost'];
+		$fetchfromid = $obj['fetchfromid'];
 
 		//check if goalpost is numeric as an additional layer of SQL injection prevention
-		if(!is_numeric($goalpost))
+		if(!is_numeric($fetchfromid))
 		{
 			http_response_code(400);
-			echo json_encode(['status' => 'failed', 'reason' => "Invalid goalpost."]);
+			echo json_encode(['status' => 'failed', 'reason' => "Invalid fetchfromid."]);
 			return;
 		}
 
 		//make sure the goalpost is an integer
-		$goalpost = (int)$goalpost;
+		$fetchfromid = (int)$fetchfromid;
 
 		//load stations API
 		$this->load->model('stations');
@@ -307,28 +312,28 @@ class API extends CI_Controller {
 
 		//load adif data module
 		$this->load->model('adif_data');
-		$data['qsos'] = $this->adif_data->export_past_goalpost($station_id, $goalpost);
+		$data['qsos'] = $this->adif_data->export_past_id($station_id, $fetchfromid);
 		$qso_count = count($data['qsos']->result()); 
 		
 		//if no new QSOs are ready, return that
 		if($qso_count <= 0)
 		{
 			http_response_code(200);
-			echo json_encode(['status' => 'successfull', 'message' => 'No new QSOs available.', 'newgoalpost' => $goalpost, 'exported_qsos' => 0, 'adif' => null]);
+			echo json_encode(['status' => 'successfull', 'message' => 'No new QSOs available.', 'lastfetchedid' => $fetchfromid, 'exported_qsos' => 0, 'adif' => null]);
 		}
 
 		//convert data to ADIF
 		$adif_content = $this->load->view('adif/data/exportapi', $data, TRUE);
 
 		//get new goalpost
-		$newgoalpost = 0;
+		$lastfetchedid = 0;
 		foreach ($data['qsos']->result() as $row) {
-			$newgoalpost = max($newgoalpost, $row->COL_PRIMARY_KEY);
+			$lastfetchedid = max($lastfetchedid, $row->COL_PRIMARY_KEY);
 		}		
 
 		//return API result
 		http_response_code(200);
-		echo json_encode(['status' => 'successfull', 'message' => 'Export successfull', 'newgoalpost' => $newgoalpost, 'exported_qsos' => $qso_count, 'adif' => $adif_content]);
+		echo json_encode(['status' => 'successfull', 'message' => 'Export successfull', 'lastfetchedid' => $lastfetchedid, 'exported_qsos' => $qso_count, 'adif' => $adif_content]);
 	}
 
 
