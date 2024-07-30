@@ -8,9 +8,9 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-30 10:38+0000\n"
-"PO-Revision-Date: 2024-07-29 12:08+0000\n"
-"Last-Translator: Fabian Berg <hb9hil@wavelog.org>\n"
+"POT-Creation-Date: 2024-07-29 12:05+0000\n"
+"PO-Revision-Date: 2024-07-30 12:21+0000\n"
+"Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
 "installer/ru/>\n"
 "Language: ru_RU\n"
@@ -262,6 +262,8 @@ msgid ""
 "In case of failed 'Folder Write Permissions' check out our Wiki <a href='%s' "
 "target='_blank'>here</a>."
 msgstr ""
+"В случае неудачной проверки 'Разрешения на запись в каталог' ознакомьтесь с "
+"нашей вики <a href='%s' target='_blank'>здесь</a>."
 
 #: install/index.php:323
 msgid "You have some warnings!"
@@ -672,19 +674,21 @@ msgstr "Установка невозможна. Контрольный спис
 
 #: install/index.php:1898
 msgid "PHP Module missing"
-msgstr ""
+msgstr "Отсутствует модуль PHP"
 
 #: install/index.php:1900
-msgid "The following PHP modules are missing:"
-msgstr ""
+#, php-format
+msgid "The PHP module %s is missing."
+msgstr "Модуль PHP %s отсутствует."
 
 #: install/index.php:1901
 msgid "Without this module the Wavelog Installer does not work!"
-msgstr ""
+msgstr "Без этого модуля установщик Wavelog не работает!"
 
 #: install/index.php:1902
-msgid "Please install the required modules and restart the webserver."
-msgstr ""
+#, php-format
+msgid "Install %s and restart the webserver."
+msgstr "Установите %s и перезапустите веб-сервер."
 
 #: install/run.php:10
 msgid "Installation"
@@ -760,6 +764,14 @@ msgstr "Не удалось обновить данные DXCC"
 #: install/run.php:341
 msgid "Could not create install/.lock file"
 msgstr "Не удалось создать файл install/.lock"
+
+#: install/index.php:1900
+msgid "The following PHP modules are missing:"
+msgstr "Отсутствуют следующие модули PHP:"
+
+#: install/index.php:1902
+msgid "Please install the required modules and restart the webserver."
+msgstr "Пожалуйста, установите необходимые модули и перезапустите веб-сервер."
 
 #~ msgid ""
 #~ "This field<br>\n"

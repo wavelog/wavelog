@@ -12,9 +12,9 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-30 14:55+0000\n"
-"PO-Revision-Date: 2024-07-28 17:31+0000\n"
-"Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
+"POT-Creation-Date: 2024-07-30 12:45+0000\n"
+"PO-Revision-Date: 2024-07-30 14:55+0000\n"
+"Last-Translator: Fabian Berg <hb9hil@wavelog.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
 "Language: de_DE\n"
@@ -529,11 +529,11 @@ msgstr "Keine Daten die migriert werden müssen"
 msgid "No migration possible"
 msgstr "Migration nicht möglich"
 
-#: application/controllers/Debug.php:198
+#: application/controllers/Debug.php:204
 msgid "Wavelog was updated successfully!"
-msgstr ""
+msgstr "Wavelog wurde erfolgreich aktualisiert!"
 
-#: application/controllers/Debug.php:248
+#: application/controllers/Debug.php:270 application/controllers/Debug.php:248
 msgid ""
 "File Migration was successfull, but please check also manually. If "
 "everything seems right you can delete the folders 'assets/qslcard' and "
@@ -543,7 +543,7 @@ msgstr ""
 "Sofern keine Probleme ersichtlich sind, kannst du die beiden Ordner 'assets/"
 "qslcard' und 'images/eqsl_card_images' löschen."
 
-#: application/controllers/Debug.php:251
+#: application/controllers/Debug.php:273 application/controllers/Debug.php:251
 msgid "File Migration failed. Please check the Error Log."
 msgstr "Datenmigration fehlgeschlagen! Bitte das Fehlerprotokoll prüfen."
 
@@ -1865,7 +1865,7 @@ msgstr "Benutzerdefinierte Statistiken"
 #: application/views/interface_assets/header.php:136
 #: application/views/statistics/qsltable.php:5
 msgid "QSL Statistics"
-msgstr ""
+msgstr "QSL-Statistiken"
 
 #: application/controllers/Themes.php:27
 #: application/views/interface_assets/header.php:272
@@ -7212,7 +7212,7 @@ msgstr "Standort"
 
 #: application/views/logbookadvanced/index.php:506
 msgid "Callsign: "
-msgstr ""
+msgstr "Rufzeichen: "
 
 #: application/views/logbookadvanced/index.php:512
 msgid "Dupes"
