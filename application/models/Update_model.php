@@ -10,7 +10,12 @@ class Update_model extends CI_Model {
 
         $this->cron_model->set_last_run($this->router->class . '_' . $this->router->method);
 
-        $strFile = $this->paths->make_update_path("clublog_scp.txt");
+		$this->fetch_clublog_scp();
+		$this->fetch_supercheckpartial_master();
+    }
+
+	function fetch_clublog_scp() {
+		$strFile = $this->paths->make_update_path("clublog_scp.txt");
 
         $url = "https://cdn.clublog.org/clublog.scp.gz";
         set_time_limit(300);
@@ -25,17 +30,38 @@ class Update_model extends CI_Model {
             if (file_put_contents($strFile, $data) !== FALSE) {
                 $nCount = count(file($strFile));
                 if ($nCount > 0) {
-                    return "DONE: " . number_format($nCount) . " callsigns loaded";
+                    echo "DONE: " . number_format($nCount) . " callsigns loaded";
                 } else {
-                    return "FAILED: Empty file";
+                    echo "FAILED: Empty file";
                 }
             } else {
-                return "FAILED: Could not write to Club Log SCP file";
+                echo "FAILED: Could not write to Club Log SCP file";
             }
         } else {
-            return "FAILED: Could not connect to Club Log";
+            echo "FAILED: Could not connect to Club Log";
         }
-    }
+	}
+
+	function fetch_supercheckpartial_master() {
+		$contents = file_get_contents('https://www.supercheckpartial.com/MASTER.SCP', true);
+
+        if ($contents === FALSE) {
+            echo  "Something went wrong with fetching the MASTER.SCP file.";
+        } else {
+            $file = './updates/MASTER.SCP';
+
+            if (file_put_contents($file, $contents) !== FALSE) {     // Save our content to the file.
+                $nCount = count(file($file));
+                if ($nCount > 0) {
+                    echo  "DONE: " . number_format($nCount) . " callsigns loaded";
+                } else {
+                    echo "FAILED: Empty file";
+                }
+            } else {
+                echo "FAILED: Could not write to Supercheckpartial MASTER.SCP file";
+            }
+        }
+	}
 
     function dok() {
         // set the last run in cron table for the correct cron id
@@ -47,7 +73,7 @@ class Update_model extends CI_Model {
         if ($contents === FALSE) {
             return  "Something went wrong with fetching the DOK file.";
         } else {
-            $file = './assets/json/dok.txt';
+            $file = './updates/dok.txt';
 
             if (file_put_contents($file, $contents) !== FALSE) {     // Save our content to the file.
                 $nCount = count(file($file));
@@ -69,7 +95,7 @@ class Update_model extends CI_Model {
 
         $csvfile = 'https://www.sotadata.org.uk/summitslist.csv';
 
-        $sotafile = './assets/json/sota.txt';
+        $sotafile = './updates/sota.txt';
 
         $csvhandle = fopen($csvfile, "r");
         if ($csvhandle === FALSE) {
@@ -110,7 +136,7 @@ class Update_model extends CI_Model {
 
         $csvfile = 'https://wwff.co/wwff-data/wwff_directory.csv';
 
-        $wwfffile = './assets/json/wwff.txt';
+        $wwfffile = './updates/wwff.txt';
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $csvfile);
@@ -155,7 +181,7 @@ class Update_model extends CI_Model {
 
         $csvfile = 'https://pota.app/all_parks.csv';
 
-        $potafile = './assets/json/pota.txt';
+        $potafile = './updates/pota.txt';
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $csvfile);
