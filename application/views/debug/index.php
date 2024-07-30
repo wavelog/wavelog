@@ -359,7 +359,7 @@
                     </div>
                 </div>
             </div>
-            <?php if (file_exists(realpath(APPPATH . '../') . '/.git')) { ?>
+            <?php if (file_exists(realpath(APPPATH . '../') . '/.git') && function_usable('exec')) { ?>
                 <?php
                 //Below is a failsafe where git commands fail
                 try {
