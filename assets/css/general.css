@@ -1048,6 +1048,22 @@ label {
 	text-transform: uppercase;
 }
 
+.tables-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Optional: add some space between tables */
+    justify-content: center;
+    overflow-x: auto; /* Enable horizontal scrolling if needed */
+	max-width: 100%; /* Ensure the container doesn't exceed the viewport width */
+    padding: 10px; /* Optional: add some padding */
+    box-sizing: border-box;
+}
+
+.table-wrapper {
+    flex: 1 1 400px; /* Adjust the base width of tables */
+    box-sizing: border-box;
+}
+
 .multiselect-container.dropdown-menu {
     --bs-dropdown-padding-y: 0;
 }
