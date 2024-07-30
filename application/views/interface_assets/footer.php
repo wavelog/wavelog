@@ -200,7 +200,7 @@ if($this->session->userdata('user_id') != null) {
     <script id="dxccmapjs" type="text/javascript" src="<?php echo base_url(); ?>assets/js/sections/dxccmap.js" tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"></script>
 <?php } ?>
 
-<?php if ($this->uri->segment(1) == "statistics") { ?>
+<?php if ($this->uri->segment(1) == "statistics" && $this->uri->segment(2) == "") { ?>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/chart.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/chartjs-plugin-piechart-outlabels.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/sections/statistics.js"></script>
