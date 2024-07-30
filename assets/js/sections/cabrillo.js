@@ -12,7 +12,7 @@ function loadYears() {
                 $(".contestyear").append('<div class="col-md-3 control-label" for="year">' + lang_export_cabrillo_select_year + '</div>' +
                 '<select id="year" class="form-select my-1 me-sm-2 col-md-2 w-auto" name="year">' +
                 '</select>' +
-                '  <button onclick="loadContests();" class="btn btn-sm btn-primary w-auto" type="button">' + lang_export_cabrillo_proceed + '</button>'); 
+                '  <button onclick="loadContests();" class="btn btn-sm btn-primary w-auto" type="button">' + lang_export_cabrillo_proceed + '</button>');
 
                 $.each(data, function(key, value) {
                     $('#year')
@@ -40,13 +40,13 @@ function loadContests() {
                 $(".contestname").append('<div class="col-md-3 control-label" for="contestid">' + lang_export_cabrillo_select_contest + '</div>' +
                 '<select class="form-select my-1 me-sm-2 col-md-4 w-auto" id="contestid" name="contestid">' +
                 '</select>' +
-                '  <button onclick="loadContestDates();" class="btn btn-sm btn-primary w-auto" type="button">' + lang_export_cabrillo_proceed + '</button>'); 
+                '  <button onclick="loadContestDates();" class="btn btn-sm btn-primary w-auto" type="button">' + lang_export_cabrillo_proceed + '</button>');
 
                 $.each(data, function(key, value) {
                     $('#contestid')
                         .append($("<option></option>")
                         .attr("value",value.col_contest_id)
-                        .text(value.col_contest_id));
+                        .text(value.contestname));
                 });
         }
     });
@@ -66,7 +66,7 @@ function loadContestDates() {
                 '</select>' +
                 '<select class="form-select my-1 me-sm-2 col-md-2 w-auto" id="contestdatesto" name="contestdatesto">' +
                 '</select>' +
-                '  <button class="btn btn-sm btn-primary w-auto" onclick="addAdditionalInfo();" type="button">' + lang_export_cabrillo_proceed + '</button>'); 
+                '  <button class="btn btn-sm btn-primary w-auto" onclick="addAdditionalInfo();" type="button">' + lang_export_cabrillo_proceed + '</button>');
 
                 $.each(data, function(key, value) {
                     $('#contestdatesfrom')
@@ -75,7 +75,7 @@ function loadContestDates() {
                         .text(value.date));
                 });
 
-                
+
                 $.each(data, function(key, value) {
                     $('#contestdatesto')
                         .append($("<option></option>")
