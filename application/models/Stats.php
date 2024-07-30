@@ -530,7 +530,7 @@
 		from " . $this->config->item('table_name') . "
 		where station_id in (". implode(',', $logbooks_locations_array) .")
 		and col_prop_mode = 'SAT'
-		group by upper(col_band), col_mode, coalesce(col_submode, '')";
+		group by upper(col_sat_name), col_mode, coalesce(col_submode, '')";
 
 		$result = $this->db->query($sql);
 		return $result->result();
