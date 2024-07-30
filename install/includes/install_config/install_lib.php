@@ -133,3 +133,14 @@ function detect_nginx_php_setting($http_scheme) {
    curl_close($ch);
    return $code;
 }
+
+function installer_required_modules() {
+   global $installer_required_modules;
+   $not_found_modules = array();
+   foreach ($installer_required_modules as $module) {
+      if (!extension_loaded($module)) {
+         array_push($not_found_modules, 'php-'.$module);
+      }
+   }
+   return $not_found_modules;
+}
