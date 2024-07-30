@@ -1048,9 +1048,8 @@ label {
 	text-transform: uppercase;
 }
 
-.multiselect-filter {
-	margin-left: 5px !important;
-	margin-right: 5px !important;
+.multiselect-container.dropdown-menu {
+    --bs-dropdown-padding-y: 0;
 }
 
 #dxcc + .btn-group .multiselect-container .multiselect-option input[type="radio"] {

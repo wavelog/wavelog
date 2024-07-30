@@ -330,6 +330,9 @@ $(document).ready(function () {
 		buttonWidth: '100%',
 		maxHeight: 600
 	});
+	$('.multiselect-container .multiselect-filter', $('#dxcc').parent()).css({
+		'position': 'sticky', 'top': '0px', 'z-index': 1, 'background-color':'inherit', 'width':'100%', 'height':'37px'
+	})
 
 
 	$('#searchForm').submit(function (e) {
