@@ -100,8 +100,7 @@ if ($_POST['run_database_tables'] ?? false == true) {
 }
 
 if ($_POST['run_installer_lock'] ?? false == true) {
-	exec('touch .lock', $output, $return_var);
-	if ($return_var === 0 && file_exists('.lock')) {
+	if (touch('.lock')) {
 		echo 'success';
 	} else {
 		echo 'error';
