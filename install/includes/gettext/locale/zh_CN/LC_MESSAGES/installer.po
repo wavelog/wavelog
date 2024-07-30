@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-29 12:05+0000\n"
+"POT-Creation-Date: 2024-07-30 10:38+0000\n"
 "PO-Revision-Date: 2024-07-29 13:32+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/"
@@ -234,7 +234,8 @@ msgstr "Nginx 用户看过来！"
 msgid ""
 "Since you are using nginx as web server please make sure that you have made "
 "the changes described in the Wiki before continuing."
-msgstr "由于您使用 Nginx 作为前端程序，请您先阅读 Wiki 中的说明，并进行适当改动。"
+msgstr ""
+"由于您使用 Nginx 作为前端程序，请您先阅读 Wiki 中的说明，并进行适当改动。"
 
 #: install/index.php:314
 msgid "Some Checks have failed!"
@@ -254,7 +255,8 @@ msgstr "在这之后，您需要重启服务器，重新启动安装程序。"
 msgid ""
 "In case of failed 'Folder Write Permissions' check out our Wiki <a href='%s' "
 "target='_blank'>here</a>."
-msgstr "如遇到“文件夹可写权限”错误，请查看 <a href='%s' target='_blank'>Wiki</a>。"
+msgstr ""
+"如遇到“文件夹可写权限”错误，请查看 <a href='%s' target='_blank'>Wiki</a>。"
 
 #: install/index.php:323
 msgid "You have some warnings!"
@@ -438,8 +440,9 @@ msgstr "测试连接"
 msgid ""
 "Now you can create your first user in Wavelog. Fill out all fields and click "
 "continue. Make sure you use a safe password."
-msgstr "您现在可以为 Wavelog "
-"创建第一个用户了，填写所有信息点击下一步，确保创建一个高强度的密码。"
+msgstr ""
+"您现在可以为 Wavelog 创建第一个用户了，填写所有信息点击下一步，确保创建一个高"
+"强度的密码。"
 
 #: install/index.php:473
 msgid "All fields are required!"
@@ -640,18 +643,16 @@ msgid "PHP Module missing"
 msgstr "PHP 模块未安装"
 
 #: install/index.php:1900
-#, php-format
-msgid "The PHP module %s is missing."
-msgstr "PHP 模块 %s 未安装。"
+msgid "The following PHP modules are missing:"
+msgstr ""
 
 #: install/index.php:1901
 msgid "Without this module the Wavelog Installer does not work!"
 msgstr "Wavelog 需要这个模块来运行！"
 
 #: install/index.php:1902
-#, php-format
-msgid "Install %s and restart the webserver."
-msgstr "安装 %s 并重启服务器。"
+msgid "Please install the required modules and restart the webserver."
+msgstr ""
 
 #: install/run.php:10
 msgid "Installation"
@@ -725,6 +726,14 @@ msgstr "无法更新 DXCC 数据"
 #: install/run.php:341
 msgid "Could not create install/.lock file"
 msgstr "无法创建 install/.lock 文件"
+
+#, php-format
+#~ msgid "The PHP module %s is missing."
+#~ msgstr "PHP 模块 %s 未安装。"
+
+#, php-format
+#~ msgid "Install %s and restart the webserver."
+#~ msgstr "安装 %s 并重启服务器。"
 
 #~ msgid "On"
 #~ msgstr "开启"
