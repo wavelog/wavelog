@@ -137,6 +137,20 @@ class adif_data extends CI_Model {
         return $this->db->get();
     }
 
+    function export_past_id($station_id, $fetchfromid) {
+        //create query
+        $this->db->select(''.$this->config->item('table_name').'.*, station_profile.*, dxcc_entities.name as station_country');
+        $this->db->from($this->config->item('table_name'));
+        $this->db->where($this->config->item('table_name').'.station_id', $station_id);
+        $this->db->where($this->config->item('table_name').".COL_PRIMARY_KEY > " , $fetchfromid); //only get values past the fetchfromid value
+        $this->db->order_by($this->config->item('table_name').".COL_TIME_ON", "ASC");
+        $this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
+        $this->db->join('dxcc_entities', 'station_profile.station_dxcc = dxcc_entities.adif', 'left outer');
+
+        //return result
+        return $this->db->get();
+    }
+
     function export_lotw() {
         $this->load->model('stations');
         $active_station_id = $this->stations->find_active();
