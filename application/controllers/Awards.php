@@ -1157,6 +1157,7 @@ class Awards extends CI_Controller {
 
 		$type = $this->security->xss_clean($this->uri->segment(3));
 		$data['qsos'] = $this->adif_data->sig_all($type);
+		$data['internalrender'] = false;
 
 		$this->load->view('adif/data/exportall', $data);
 	}

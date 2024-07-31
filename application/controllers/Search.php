@@ -97,6 +97,7 @@ class Search extends CI_Controller {
 	function export_to_adif() {
 		if(isset($_POST['search'])) {
 			$data['qsos'] = $this->fetchQueryResult($_POST['search'], false);
+			$data['internalrender'] = false;
 			$this->load->view('adif/data/exportall', $data);
 		}
 	}
@@ -106,6 +107,7 @@ class Search extends CI_Controller {
 		$sql = $this->db->get('queries')->result();
 
 		$data['qsos'] = $this->db->query($sql[0]->query);
+		$data['internalrender'] = false;
 		$this->load->view('adif/data/exportall', $data);
 	}
 

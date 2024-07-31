@@ -189,6 +189,7 @@ class Logbookadvanced extends CI_Controller {
 		$user_id = (int)$this->session->userdata('user_id');
 
 		$data['qsos'] = $this->logbookadvanced_model->getQsosForAdif($ids, $user_id, $sortorder);
+		$data['internalrender'] = false;
 
 		$this->load->view('adif/data/exportall', $data);
 	}
@@ -203,6 +204,7 @@ class Logbookadvanced extends CI_Controller {
 		$postdata['qsoresults'] = 'All';
 		$postdata['de'] = explode(',', $postdata['de']);
 		$data['qsos'] = $this->logbookadvanced_model->getSearchResult($postdata);
+		$data['internalrender'] = false;
 
 		$this->load->view('adif/data/exportall', $data);
 	}

@@ -65,6 +65,7 @@ class QSLPrint extends CI_Controller {
 		$this->load->model('adif_data');
 
 		$data['qsos'] = $this->adif_data->export_printrequested($station_id);
+		$data['internalrender'] = false;
 
 		$this->load->view('adif/data/exportall', $data);
 	}
