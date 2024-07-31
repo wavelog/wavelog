@@ -90,7 +90,7 @@ function onMapMove(event) {
 			break;
 	}
 
-	$('#bearing').html(distance.deg + ' deg');
+	$('#bearing').html(distance.deg + '°');
 	$('#distance').html(Math.round(distance.distance * 10) / 10 + ' ' +unit);
 };
 
@@ -130,7 +130,7 @@ function onMapClick(event) {
 
 
 	var distance = Math.round(result.distance * 10) / 10 + ' ' +unit;
-	var bearing = Math.round(result.deg * 10) / 10 + ' deg';
+	var bearing = Math.round(result.deg * 10) / 10 + '°';
 	var popupmessage = '<div class="popup">' +
 	'From gridsquare: ' + homegrid + '<br />To gridsquare: ' + locator +'<br />Distance: ' + distance+ '<br />Bearing: ' + bearing +
 	'</div>';
