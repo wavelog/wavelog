@@ -312,10 +312,15 @@ class API extends CI_Controller {
 
 		//load adif data module
 		$this->load->model('adif_data');
+
+		//get qso data
 		$data['qsos'] = $this->adif_data->export_past_id($station_id, $fetchfromid);
-		$qso_count = count($data['qsos']->result()); 
+		
+		//set internalonly attribute for adif creation
+		$data['internalrender'] = true;
 		
 		//if no new QSOs are ready, return that
+		$qso_count = count($data['qsos']->result()); 
 		if($qso_count <= 0)
 		{
 			http_response_code(200);
@@ -323,7 +328,7 @@ class API extends CI_Controller {
 		}
 
 		//convert data to ADIF
-		$adif_content = $this->load->view('adif/data/exportapi', $data, TRUE);
+		$adif_content = $this->load->view('adif/data/exportall', $data, TRUE);
 
 		//get new goalpost
 		$lastfetchedid = 0;

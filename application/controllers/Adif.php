@@ -44,7 +44,6 @@ class adif extends CI_Controller {
 
 		$data['qsos'] = $this->adif_data->export_all();
 
-
 		$this->load->view('adif/data/exportall', $data);
 	}
 
@@ -91,7 +90,6 @@ class adif extends CI_Controller {
 		}
 
 		$data['qsos'] = $this->adif_data->export_custom($this->input->post('from'), $this->input->post('to'), $station_id, $exportLotw);
-
 
 		$this->load->view('adif/data/exportall', $data);
 
