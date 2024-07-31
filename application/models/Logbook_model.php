@@ -4312,14 +4312,7 @@ function lotw_last_qsl_date($user_id) {
 		    }
 	    }
 
-	    return array(
-			'adif' => 0,
-			'cqz' => 0,
-			'long' => '',
-			'lat' => '',
-			'entity' => 'None',
-		);
-
+	    return array("Not Found", "Not Found");
     }
 
     public function dxcc_lookup($call, $date) {
