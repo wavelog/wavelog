@@ -1,7 +1,6 @@
 <?php
-	//only set these values if internalrender is not present or false
-	if(!isset($internalrender) || !$internalrender)
-	{
+	//only set these values if internalrender is not present (null) or false
+	if(!$internalrender) {
 		header('Content-Type: text/plain; charset=utf-8');
 		header('Content-Disposition: attachment; filename="'.$this->session->userdata('user_callsign').'-'.date('Ymd-Hi').'.adi"');
 	}
