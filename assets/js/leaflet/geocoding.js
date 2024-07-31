@@ -107,7 +107,29 @@ function onMapClick(event) {
 
 	var result = bearingDistance(homegrid, locator);
 
-	var distance = Math.round(result.km * 10) / 10 + ' km';
+	let unit;
+
+	switch (measurement_base) {
+		case 'M':
+			result.distance = result.distance * 3959;
+			unit = 'mi';
+			break;
+		case 'K':
+			result.distance = result.distance * 6371;
+			unit = 'km';
+			break;
+		case 'N':
+			result.distance = result.distance * 3440;
+			unit = 'nmi';
+			break;
+		default:
+			result.distance = result.distance * 6371;
+			unit = 'km';
+			break;
+	}
+
+
+	var distance = Math.round(result.distance * 10) / 10 + ' ' +unit;
 	var bearing = Math.round(result.deg * 10) / 10 + ' deg';
 	var popupmessage = '<div class="popup">' +
 	'From gridsquare: ' + homegrid + '<br />To gridsquare: ' + locator +'<br />Distance: ' + distance+ '<br />Bearing: ' + bearing +
