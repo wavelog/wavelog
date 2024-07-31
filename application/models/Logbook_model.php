@@ -4312,7 +4312,7 @@ function lotw_last_qsl_date($user_id) {
 		    }
 	    }
 
-	    return array(0,'Not found','','');
+	    return array("Not Found", "Not Found");
     }
 
     public function dxcc_lookup($call, $date) {
@@ -4584,7 +4584,7 @@ function lotw_last_qsl_date($user_id) {
 			    $qso_date = $row['COL_TIME_OFF']=='' ? $row['COL_TIME_ON'] : $row['COL_TIME_OFF'];
 			    $qso_date = date("Y-m-d", strtotime($qso_date));
 			    $d = $this->check_dxcc_table($row['COL_CALL'], $qso_date);
-			    if ($d[1] != 'Not found'){
+			    if ($d[0] != 'Not Found'){
 				    $q->execute(array(addslashes(ucwords(strtolower($d[1]), "- (/")), $d[0], $row['COL_PRIMARY_KEY']));
 				    $count++;
 			    }
