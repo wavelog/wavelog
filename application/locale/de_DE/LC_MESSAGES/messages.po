@@ -9,14 +9,15 @@
 # Florian Wolters <wavelog@df2et.de>, 2024.
 # Byt3 <falko@205er.de>, 2024.
 # Kim - DG9VH <kim.huebel@gmail.com>, 2024.
+# Fabian Berg <80885850+HB9HIL@users.noreply.github.com>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-08-01 15:48+0000\n"
-"PO-Revision-Date: 2024-07-30 21:59+0000\n"
-"Last-Translator: Fabian Berg <hb9hil@wavelog.org>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/de/>\n"
+"PO-Revision-Date: 2024-08-01 15:51+0000\n"
+"Last-Translator: Fabian Berg <80885850+HB9HIL@users.noreply.github.com>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -5512,7 +5513,7 @@ msgstr "Da ist was mit der Migration in der Datenbank schief gelaufen!"
 
 #: application/views/debug/index.php:45
 msgid "Migration is outdated and locked!"
-msgstr ""
+msgstr "Migration ist veraltet und gesperrt!"
 
 #: application/views/debug/index.php:46
 #, php-format
@@ -5522,16 +5523,21 @@ msgid ""
 "past failed process. Check the folder %s for a file called %s and remove "
 "this file to force the migration to run again."
 msgstr ""
+"Die aktuelle Migration ist nicht die Version, die sie sein sollte. Lade "
+"diese Seite neu. Wenn diese Warnung weiterhin besteht, ist deine Migration "
+"wahrscheinlich aufgrund eines früheren fehlgeschlagenen Prozesses gesperrt. "
+"Überprüfe den Ordner %s auf eine Datei namens %s und entferne diese Datei, "
+"um die Migration erneut zu erzwingen."
 
 #: application/views/debug/index.php:47
 #, php-format
 msgid "Current migration is %s"
-msgstr ""
+msgstr "Aktuelle Migration ist %s"
 
 #: application/views/debug/index.php:48
 #, php-format
 msgid "Migration should be %s"
-msgstr ""
+msgstr "Migration sollte sein %s"
 
 #: application/views/debug/index.php:53
 msgid "Environment"
