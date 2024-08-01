@@ -27,7 +27,9 @@ class Dashboard extends CI_Controller
 
 		// Calculate Lat/Lng from Locator to use on Maps
 		if ($this->session->userdata('user_locator')) {
-			$this->load->library('qra');
+			if(!$this->load->is_loaded('Qra')) {
+			    $this->load->library('Qra');
+		    }
 
 			$qra_position = $this->qra->qra2latlong($this->session->userdata('user_locator'));
 			if ($qra_position) {

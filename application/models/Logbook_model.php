@@ -95,7 +95,7 @@ class Logbook_model extends CI_Model {
     }
 
     if($this->input->post('contestname')) {
-        $contestid = $this->input->post('contestname');
+        $contestid = $this->input->post('contestname') == "" ? NULL : $this->input->post('contestname');
     } else {
         $contestid = null;
     }
@@ -299,7 +299,7 @@ class Logbook_model extends CI_Model {
             'COL_SIG' => $this->input->post('sig') == null ? '' : trim($this->input->post('sig')),
             'COL_SIG_INFO' => $this->input->post('sig_info') == null ? '' : trim($this->input->post('sig_info')),
             'COL_DARC_DOK' => $darc_dok  == null ? '' : strtoupper(trim($darc_dok)),
-			      'COL_NOTES' => $this->input->post('notes'),
+            'COL_NOTES' => $this->input->post('notes'),
     );
 
     $station_id = $this->input->post('station_profile');
@@ -370,8 +370,13 @@ class Logbook_model extends CI_Model {
 
     // if LoTW username set, default SENT & RCVD to 'N' else leave as null
     if ($this->session->userdata('user_lotw_name')){
-        $data['COL_LOTW_QSL_SENT'] = 'N';
-        $data['COL_LOTW_QSL_RCVD'] = 'N';
+        if (in_array($prop_mode, $this->config->item('lotw_unsupported_prop_modes'))) {
+            $data['COL_LOTW_QSL_SENT'] = 'I';
+            $data['COL_LOTW_QSL_RCVD'] = 'I';
+        } else {
+            $data['COL_LOTW_QSL_SENT'] = 'N';
+            $data['COL_LOTW_QSL_RCVD'] = 'N';
+        }
     }
 
     $this->add_qso($data, $skipexport = false);
@@ -1230,13 +1235,17 @@ class Logbook_model extends CI_Model {
 		  $eqsl_rcvd = 'N';
 	  }
 
-	  if ($this->input->post('lotw_sent')) {
+	  if (in_array($this->input->post('prop_mode'), $this->config->item('lotw_unsupported_prop_modes'))) {
+		  $lotw_sent = 'I';
+	  } elseif ($this->input->post('lotw_sent')) {
 		  $lotw_sent = $this->input->post('lotw_sent');
 	  } else {
 		  $lotw_sent = 'N';
 	  }
 
-	  if ($this->input->post('lotw_rcvd')) {
+	  if (in_array($this->input->post('prop_mode'), $this->config->item('lotw_unsupported_prop_modes'))) {
+		  $lotw_rcvd = 'I';
+	  } elseif ($this->input->post('lotw_rcvd')) {
 		  $lotw_rcvd = $this->input->post('lotw_rcvd');
 	  } else {
 		  $lotw_rcvd = 'N';
@@ -1332,8 +1341,8 @@ class Logbook_model extends CI_Model {
 		  'COL_QSLMSG' => $this->input->post('qslmsg'),
 		  'COL_LOTW_QSLSDATE' => $lotwsdate,
 		  'COL_LOTW_QSLRDATE' => $lotwrdate,
-		  'COL_LOTW_QSL_SENT' => $this->input->post('lotw_sent'),
-		  'COL_LOTW_QSL_RCVD' => $this->input->post('lotw_rcvd'),
+		  'COL_LOTW_QSL_SENT' => $lotw_sent,
+		  'COL_LOTW_QSL_RCVD' => $lotw_rcvd,
 		  'COL_IOTA' => $this->input->post('iota_ref'),
 		  'COL_SOTA_REF' => $this->input->post('sota_ref'),
 		  'COL_WWFF_REF' => $this->input->post('wwff_ref'),
@@ -1629,7 +1638,7 @@ class Logbook_model extends CI_Model {
 			$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
 			$this->db->join('dxcc_entities', $this->config->item('table_name').'.col_dxcc = dxcc_entities.adif', 'left');
 			$this->db->join('lotw_users', 'lotw_users.callsign = '.$this->config->item('table_name').'.col_call', 'left outer');
-	
+
 			return $this->db->get($this->config->item('table_name'));
 		} else {
 			return;
@@ -4217,7 +4226,7 @@ function lotw_last_qsl_date($user_id) {
      */
     public function check_dxcc_table($call, $date){
 
-	    $csadditions = '/^T$|^P$|^R$|^A$|^M$/';
+	    $csadditions = '/^X$|^D$|^T$|^P$|^R$|^A$|^M$/';
 
 	    $dxcc_exceptions = $this->db->select('`entity`, `adif`, `cqz`, `cont`')
 				 ->where('`call`', $call)
@@ -4304,12 +4313,11 @@ function lotw_last_qsl_date($user_id) {
 	    }
 
 	    return array("Not Found", "Not Found");
-
     }
 
     public function dxcc_lookup($call, $date) {
 
-	    $csadditions = '/^T$|^P$|^R$|^A$|^M$/';
+		$csadditions = '/^X$|^D$|^T$|^P$|^R$|^A$|^M$|^LH$/';
 
 	    $dxcc_exceptions = $this->db->select('`entity`, `adif`, `cqz`,`cont`')
 				 ->where('`call`', $call)
@@ -4399,7 +4407,14 @@ function lotw_last_qsl_date($user_id) {
 		    }
 	    }
 
-	    return array("Not Found", "Not Found");
+	    return array(
+			'adif' => 0,
+			'cqz' => 0,
+			'long' => '',
+			'lat' => '',
+			'entity' => 'None',
+		);
+
     }
 
     function wpx($testcall, $i) {
@@ -4409,7 +4424,7 @@ function lotw_last_qsl_date($user_id) {
       $c = '';
 
       $lidadditions = '/^QRP$|^LGT$/';
-      $csadditions = '/^T$|^P$|^R$|^A$|^M$|^LH$/';
+      $csadditions = '/^X$|^D$|^T$|^P$|^R$|^A$|^M$|^LH$/';
       $noneadditions = '/^MM$|^AM$/';
 
       # First check if the call is in the proper format, A/B/C where A and C
@@ -4673,7 +4688,9 @@ function lotw_last_qsl_date($user_id) {
         $count = 0;
         if ($query->num_rows() > 0){
            print("Affected QSOs: ".$this->db->affected_rows()." <br />");
-           $this->load->library('Qra');
+           if(!$this->load->is_loaded('Qra')) {
+				$this->load->library('Qra');
+			}
            foreach ($query->result() as $row) {
               $distance = $this->qra->distance($row->station_gridsquare, $row->COL_GRIDSQUARE, 'K');
               $data = array(
@@ -4859,7 +4876,7 @@ function lotw_last_qsl_date($user_id) {
     $this->db->where('COL_LOTW_QSL_SENT', NULL);
     $this->db->or_where('COL_LOTW_QSL_SENT !=', "Y");
     $this->db->group_end();
-    $this->db->where('COL_PROP_MODE !=', "INTERNET");
+    $this->db->where_not_in('COL_PROP_MODE', $this->config->item('lotw_unsupported_prop_modes'));
     $this->db->where('COL_TIME_ON >=', $start_date);
     $this->db->where('COL_TIME_ON <=', $end_date);
     $this->db->order_by("COL_TIME_ON", "desc");
@@ -4882,6 +4899,18 @@ function lotw_last_qsl_date($user_id) {
     $this->db->update($this->config->item('table_name'), $data);
 
     return "Updated";
+  }
+
+  function mark_lotw_ignore($station_id) {
+      $data = array(
+           'COL_LOTW_QSLSDATE' => null,
+           'COL_LOTW_QSL_SENT' => 'I',
+           'COL_LOTW_QSLRDATE' => null,
+           'COL_LOTW_QSL_RCVD' => 'I',
+      );
+    $this->db->where("station_id", $station_id);
+    $this->db->where_in('COL_PROP_MODE', $this->config->item('lotw_unsupported_prop_modes'));
+    $this->db->update($this->config->item('table_name'), $data);
   }
 
     function county_qso_details($state, $county) {
@@ -4913,7 +4942,9 @@ function lotw_last_qsl_date($user_id) {
 
     // [JSON PLOT] return array for plot qso for map //
     public function get_plot_array_for_map($qsos_result, $isVisitor=false) {
-      $this->load->library('qra');
+		if(!$this->load->is_loaded('Qra')) {
+			$this->load->library('Qra');
+		}
 
       $json["markers"] = array();
 
@@ -4964,6 +4995,7 @@ function lotw_last_qsl_date($user_id) {
           $stn_loc = $this->qra->qra2latlong($row->COL_GRIDSQUARE);
 
         } elseif ($row->COL_VUCC_GRIDS != null) {
+          $coords = array();
           $grids = explode(",", $row->COL_VUCC_GRIDS);
           if (count($grids) == 2) {
             $grid1 = $this->qra->qra2latlong(trim($grids[0]));

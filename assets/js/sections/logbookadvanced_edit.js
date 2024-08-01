@@ -2,6 +2,15 @@ function editQsos() {
 	var elements = $('#qsoList tbody input:checked');
 	var nElements = elements.length;
 	if (nElements == 0) {
+		BootstrapDialog.alert({
+			title: 'INFO',
+			message: 'You need to select at least 1 row to use batch edit!',
+			type: BootstrapDialog.TYPE_INFO,
+			closable: false,
+			draggable: false,
+			callback: function (result) {
+			}
+		});
 		return;
 	}
 	var id_list=[];
@@ -168,7 +177,13 @@ function saveBatchEditQsos(id_list) {
 		value = $("#editSatellite").val();
 		value2 = $("#editSatelliteMode").val();
 	}
-	if (column == 'sota' || column == 'pota' || column == 'wwff' || column == 'gridsquare' || column == 'comment' || column == 'operator' || column == 'qslvia') {
+	if (column == 'contest') {
+		value = $("#editContest").val();
+	}
+	if (column == 'lotwsent' || column == 'lotwreceived') {
+		value = $("#editLoTW").val();
+	}
+	if (column == 'sota' || column == 'pota' || column == 'wwff' || column == 'gridsquare' || column == 'comment' || column == 'operator' || column == 'qslvia' || column == 'contest') {
 		value = $("#editTextInput").val();
 	}
 
@@ -212,6 +227,8 @@ function changeEditType(type) {
 	$('#editDxccState').hide();
 	$('#editDxccStateList').hide();
 	$('#editDxccStateListLabel').hide();
+	$('#editContest').hide();
+	$('#editLoTW').hide();
 	editDxccStateListLabel
 	if (type == "dxcc") {
 		$('#editDxcc').show();
@@ -241,7 +258,11 @@ function changeEditType(type) {
 		$('#editSatellite').show();
 		$('#editSatelliteMode').show();
 		$('#editSatelliteModeLabel').show();
-	} else if (type == "gridsquare" || type == "sota" || type == "wwff" || type == "operator" || type == "pota" || type == "comment" || type == "qslvia") {
+	} else if (type == "contest") {
+		$('#editContest').show();
+	} else if (type == "lotwsent" || type == "lotwreceived") {
+		$('#editLoTW').show();
+	} else if (type == "gridsquare" || type == "sota" || type == "wwff" || type == "operator" || type == "pota" || type == "comment" || type == "qslvia" || type == "contest") {
 		$('#editTextInput').show();
 	}
 }

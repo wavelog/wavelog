@@ -15,7 +15,7 @@ class Pota
 		$json = [];
 		$ref = strtoupper($query);
 
-		$file = 'assets/json/pota.txt';
+		$file = 'updates/pota.txt';
 
 		if (is_readable($file)) {
 			$lines = file($file, FILE_IGNORE_NEW_LINES);
@@ -28,6 +28,13 @@ class Pota
 				if (count($json) <= 100) {
 					$json[] = ["name" => $value];
 				}
+			}
+		} else {
+			$src = 'assets/resources/pota.txt';
+			if (copy($src, $file)) {
+				$this->get($query);
+			} else {
+				log_message('error', 'Failed to copy source file ('.$src.') to new location. Check if this path has the right permission: '.$file);
 			}
 		}
 

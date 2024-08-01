@@ -58,11 +58,11 @@ function updateRow(qso) {
 	if (user_options.qslvia.show == "true"){
 		cells.eq(c++).text(qso.qslVia);
 	}
-	if (user_options.qsl.show == "true"){
-		cells.eq(c++).html(qso.qsl);
-	}
 	if (user_options.clublog.show == "true"){
 		cells.eq(c++).html(qso.clublog);
+	}
+	if (user_options.qsl.show == "true"){
+		cells.eq(c++).html(qso.qsl);
 	}
 	if ($(".eqslconfirmation")[0] && user_options.eqsl.show == "true"){
 		cells.eq(c++).html(qso.eqsl);
@@ -313,8 +313,26 @@ $(document).ready(function () {
 		  button: '<button type="button" class="multiselect dropdown-toggle btn btn-sm btn-secondary me-2 w-auto" data-bs-toggle="dropdown" aria-expanded="false"><span class="multiselect-selected-text"></span></button>',
 		},
 		numberDisplayed: 1,
+		inheritClass: true,
 		includeSelectAllOption: true
 	});
+
+	$('#dxcc').multiselect({
+		// template is needed for bs5 support
+		templates: {
+		  button: '<button type="button" class="multiselect dropdown-toggle btn btn-sm btn-secondary me-2 w-auto" data-bs-toggle="dropdown" aria-expanded="false"><span class="multiselect-selected-text"></span></button>',
+		},
+		enableFiltering: true,
+		enableFullValueFiltering: false,
+		enableCaseInsensitiveFiltering: true,
+		numberDisplayed: 1,
+		inheritClass: true,
+		buttonWidth: '100%',
+		maxHeight: 600
+	});
+	$('.multiselect-container .multiselect-filter', $('#dxcc').parent()).css({
+		'position': 'sticky', 'top': '0px', 'z-index': 1, 'background-color':'inherit', 'width':'100%', 'height':'37px'
+	})
 
 
 	$('#searchForm').submit(function (e) {
@@ -368,6 +386,7 @@ $(document).ready(function () {
 				wwff: this.wwff.value,
 				qslimages: this.qslimages.value,
 				dupes: this.dupes.value,
+				contest: this.contest.value,
 			},
 			dataType: 'json',
 			success: function (data) {
@@ -858,85 +877,6 @@ $(document).ready(function () {
 		});
 	});
 
-	function handleQsl(sent, method, tag) {
-		var elements = $('#qsoList tbody input:checked');
-		var nElements = elements.length;
-		if (nElements == 0) {
-			BootstrapDialog.alert({
-				title: 'INFO',
-				message: 'You need to select a least 1 row!',
-				type: BootstrapDialog.TYPE_INFO,
-				closable: false,
-				draggable: false,
-				callback: function (result) {
-				}
-			});
-			return;
-		}
-		$('#'+tag).prop("disabled", true);
-		var id_list=[];
-		elements.each(function() {
-			let id = $(this).first().closest('tr').data('qsoID')
-			id_list.push(id);
-		});
-		$.ajax({
-			url: base_url + 'index.php/logbookadvanced/update_qsl',
-			type: 'post',
-			data: {'id': JSON.stringify(id_list, null, 2),
-				'sent' : sent,
-				'method' : method
-			},
-			success: function(data) {
-				if (data != []) {
-					$.each(data, function(k, v) {
-						updateRow(this);
-						unselectQsoID(this.qsoID);
-					});
-				}
-				$('#'+tag).prop("disabled", false);
-			}
-		});
-	}
-
-	function handleQslReceived(sent, method, tag) {
-		var elements = $('#qsoList tbody input:checked');
-		var nElements = elements.length;
-		if (nElements == 0) {
-			BootstrapDialog.alert({
-				title: 'INFO',
-				message: 'You need to select a least 1 row!',
-				type: BootstrapDialog.TYPE_INFO,
-				closable: false,
-				draggable: false,
-				callback: function (result) {
-				}
-			});
-			return;
-		}
-		$('#'+tag).prop("disabled", true);
-		var id_list=[];
-		elements.each(function() {
-			let id = $(this).first().closest('tr').data('qsoID')
-			id_list.push(id);
-		});
-		$.ajax({
-			url: base_url + 'index.php/logbookadvanced/update_qsl_received',
-			type: 'post',
-			data: {'id': JSON.stringify(id_list, null, 2),
-				'sent' : sent,
-				'method' : method
-			},
-			success: function(data) {
-				if (data != []) {
-					$.each(data, function(k, v) {
-						updateRow(this);
-						unselectQsoID(this.qsoID);
-					});
-				}
-				$('#'+tag).prop("disabled", false);
-			}
-		});
-	}
 
 	$('#checkBoxAll').change(function (event) {
 		if (this.checked) {
@@ -954,10 +894,92 @@ $(document).ready(function () {
 
 });
 
-function printlabel() {
-	var id_list=[];
+function handleQsl(sent, method, tag) {
 	var elements = $('#qsoList tbody input:checked');
 	var nElements = elements.length;
+	if (nElements == 0) {
+		BootstrapDialog.alert({
+			title: 'INFO',
+			message: 'You need to select a least 1 row!',
+			type: BootstrapDialog.TYPE_INFO,
+			closable: false,
+			draggable: false,
+			callback: function (result) {
+			}
+		});
+		return;
+	}
+	$('#'+tag).prop("disabled", true);
+	var id_list=[];
+	elements.each(function() {
+		let id = $(this).first().closest('tr').data('qsoID')
+		id_list.push(id);
+	});
+	$.ajax({
+		url: base_url + 'index.php/logbookadvanced/update_qsl',
+		type: 'post',
+		data: {'id': JSON.stringify(id_list, null, 2),
+			'sent' : sent,
+			'method' : method
+		},
+		success: function(data) {
+			if (data != []) {
+				$.each(data, function(k, v) {
+					updateRow(this);
+					unselectQsoID(this.qsoID);
+				});
+			}
+			$('#'+tag).prop("disabled", false);
+		}
+	});
+}
+
+function handleQslReceived(sent, method, tag) {
+	var elements = $('#qsoList tbody input:checked');
+	var nElements = elements.length;
+	if (nElements == 0) {
+		BootstrapDialog.alert({
+			title: 'INFO',
+			message: 'You need to select a least 1 row!',
+			type: BootstrapDialog.TYPE_INFO,
+			closable: false,
+			draggable: false,
+			callback: function (result) {
+			}
+		});
+		return;
+	}
+	$('#'+tag).prop("disabled", true);
+	var id_list=[];
+	elements.each(function() {
+		let id = $(this).first().closest('tr').data('qsoID')
+		id_list.push(id);
+	});
+	$.ajax({
+		url: base_url + 'index.php/logbookadvanced/update_qsl_received',
+		type: 'post',
+		data: {'id': JSON.stringify(id_list, null, 2),
+			'sent' : sent,
+			'method' : method
+		},
+		success: function(data) {
+			if (data != []) {
+				$.each(data, function(k, v) {
+					updateRow(this);
+					unselectQsoID(this.qsoID);
+				});
+			}
+			$('#'+tag).prop("disabled", false);
+		}
+	});
+}
+
+
+function printlabel() {
+	let id_list=[];
+	let elements = $('#qsoList tbody input:checked');
+	let nElements = elements.length;
+	let markchecked = $('#markprinted')[0].checked;
 
 	elements.each(function() {
 		let id = $(this).first().closest('tr').data('qsoID')
@@ -978,6 +1000,13 @@ function printlabel() {
 			return xhr;
 		},
 		success: function(data) {
+			if (markchecked) {
+				handleQsl('Y','B', 'sentBureau');
+			} else {
+				$.each(id_list, function(k, v) {
+					unselectQsoID(this);
+				});
+			}
 			$.each(BootstrapDialog.dialogs, function(id, dialog){
 				dialog.close();
 			});
@@ -986,9 +1015,6 @@ function printlabel() {
 				var fileURL = URL.createObjectURL(file);
 				window.open(fileURL);
 			}
-			$.each(id_list, function(k, v) {
-				unselectQsoID(this);
-			});
 			$('#printLabel').prop("disabled", false);
 		},
 		error: function (data) {

@@ -36,7 +36,7 @@ function l(o) {
   const t = a(), e = i(t, o, "#fff"), n = i(t, o, "#000");
   return n === e && !n.startsWith("0,0,0,");
 }
-function f(o = "Twemoji Country Flags", t = base_url + 'assets/fonts/TwemojiCountryFlags/TwemojiCountryFlags.woff2') {
+function f(o = "Twemoji Country Flags", t = base_url +'assets/fonts/TwemojiCountryFlags/TwemojiCountryFlags.woff2') {
   if (typeof window < "u" && l("\u{1F60A}") && !l("\u{1F1E8}\u{1F1ED}")) {
     const e = document.createElement("style");
     return e.textContent = `@font-face {

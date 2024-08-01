@@ -11,7 +11,9 @@ class SimpleFLE extends CI_Controller {
 		$this->load->model('logbook_model');
 		$this->load->model('modes');
 		$this->load->model('bands');
-
+		$this->load->model('contesting_model');
+	
+		$data['contests']=$this->contesting_model->getActivecontests();
 		$data['station_profile'] = $this->stations->all_of_user();			// Used in the view for station location select
 		$data['bands'] = $this->bands->get_all_bands();						// Fetching Bands for SFLE
 		$data['modes'] = $this->modes_array();								// Fetching Modes for SFLE

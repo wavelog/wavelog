@@ -39,6 +39,16 @@
                             <td><?= __("Migration"); ?></td>
                             <td><?php echo (isset($migration_version) ? $migration_version : "<span class='badge text-bg-danger'>". __("There is something wrong with your Migration in Database!") . "</span>"); ?></td>
                         </tr>
+                        <?php if (!$migration_is_uptodate) { ?>
+                    </table>
+                        <div class="alert alert-danger mt-3 mb-3">
+                            <h5><?= __("Migration is outdated and locked!"); ?></h5>
+                            <p><?= sprintf(__("The current migration is not the version it is supposed to be. Reload this page. If this warning persists, your migration is probably locked due to a past failed process. Check the folder %s for a file called %s and remove this file to force the migration to run again."), "'application/cache/'", "'.migration_running'"); ?></p>
+                            <p><?= sprintf(__("Current migration is %s"), $migration_version); ?><br>
+                                <?= sprintf(__("Migration should be %s"), $migration_config); ?></p>
+                        </div>
+                    <table>
+                        <?php } ?>
                         <tr>
                             <td><?= __("Environment"); ?></td>
                             <td><?php echo ENVIRONMENT; ?></td>
@@ -106,6 +116,17 @@
                         </tr>
 
                         <tr>
+                            <td>/cache</td>
+                            <td>
+                                <?php if ($cache_folder == true) { ?>
+                                    <span class="badge text-bg-success"><?= __("Success"); ?></span>
+                                <?php } else { ?>
+                                    <span class="badge text-bg-danger"><?= __("Failed"); ?></span>
+                                <?php } ?>
+                            </td>
+                        </tr>
+
+                        <tr>
                             <td>/updates</td>
                             <td>
                                 <?php if ($updates_folder == true) { ?>
@@ -150,9 +171,9 @@
                     <?php if ($this->config->item('auth_mode') != '3') { ?>
                         <div class="alert alert-primary">
                             <div class="alert alert-danger" role="alert">
-                                <span class="badge rounded-pill text-bg-warning"><?= __("Warning"); ?></span> <?= __("Your authentication mode is outdated and possibly unsafe"); ?>
+                                <span class="badge rounded-pill text-bg-warning">auth_mode: <?= __("Warning"); ?></span> <?= __("Your authentication mode is outdated and possibly unsafe"); ?>
                             </div>
-                            <p><?= sprintf(__("Please edit your %s File:"),"./application/config/config.php"); ?></br>
+                            <p><?= sprintf(__("Please edit your %s File:"),"<code>application/config/config.php</code>"); ?></br>
                                 <?= __("Go to your application/config Folder and compare config.sample.php with your config.php"); ?></br></br>
                                 <?= sprintf(__("Change %s to the value %s (Strongly recommended)"),"<span class=\"badge rounded-pill text-bg-secondary\">\$config['auth_mode']</span>","<span class=\"badge rounded-pill text-bg-secondary\">3</span>"); ?>
                             </p>
@@ -160,7 +181,24 @@
                     <?php
                     } else { ?>
                         <div class="mb-2">
-                            <span class="badge rounded-pill text-bg-success"><?= __("Ok"); ?></span> <?= __("Authentication Mode is set correctly"); ?>
+                            <span class="badge rounded-pill text-bg-success">auth_mode: <?= __("Ok"); ?></span> <?= __("Authentication Mode is set correctly"); ?>
+                        </div>
+                    <?php } ?>
+
+                    <?php if ($this->config->item('encryption_key') == 'flossie1234555541') { ?>
+                        <div class="alert alert-primary">
+                            <div class="alert alert-danger" role="alert">
+                                <span class="badge rounded-pill text-bg-warning">encryption_key: <?= __("Warning"); ?></span> <?= __("You use the default encryption key. You should change it!"); ?>
+                            </div>
+                            <p><?= sprintf(__("Please edit your %s File:"),"<code>application/config/config.php</code>"); ?></br>
+                                <?= __("This will also enable the 'Keep me logged in' feature.");?></br>
+                                <?= sprintf(__("Change the value of %s to a new encryption key other then 'flossie1234555541'. Choose a safe and long password. (Strongly recommended)"),"<span class=\"badge rounded-pill text-bg-secondary\">\$config['encryption_key']</span>"); ?>
+                            </p>
+                        </div>
+                    <?php
+                    } else { ?>
+                        <div class="mb-2">
+                            <span class="badge rounded-pill text-bg-success">encryption_key: <?= __("Ok"); ?></span> <?= __("You do not use the default encryption key"); ?>
                         </div>
                     <?php } ?>
                 </div>
@@ -244,7 +282,7 @@
                             <p><u><?= __("Settings"); ?></u></p>
                             <?php
                             $max_execution_time = 600;        // Seconds
-                            $max_upload_file_size = 8;      // Megabyte
+                            $upload_max_filesize = 8;      // Megabyte
                             $post_max_size = 8;                // Megabyte
                             $memory_limit = 256;            // Megabyte
                             $req_allow_url_fopen = '1';        // 1 = on
@@ -265,13 +303,13 @@
                                 </tr>
 
                                 <tr>
-                                    <td>max_upload_file_size</td>
-                                    <td><?php echo '> ' . $max_upload_file_size . 'M'; ?></td>
+                                    <td>upload_max_filesize</td>
+                                    <td><?php echo '> ' . $upload_max_filesize . 'M'; ?></td>
                                     <td>
                                         <?php
                                         $maxUploadFileSize = ini_get('upload_max_filesize');
                                         $maxUploadFileSizeBytes = (int)($maxUploadFileSize) * (1024 * 1024); // convert to bytes
-                                        if ($maxUploadFileSizeBytes >= ($max_upload_file_size * 1024 * 1024)) { // compare with given value in bytes
+                                        if ($maxUploadFileSizeBytes >= ($upload_max_filesize * 1024 * 1024)) { // compare with given value in bytes
                                         ?>
                                             <span class="badge text-bg-success"><?php echo $maxUploadFileSize; ?></span>
                                         <?php } else { ?>
@@ -331,7 +369,7 @@
                     </div>
                 </div>
             </div>
-            <?php if (file_exists(realpath(APPPATH . '../') . '/.git')) { ?>
+            <?php if (file_exists(realpath(APPPATH . '../') . '/.git') && function_usable('exec')) { ?>
                 <?php
                 //Below is a failsafe where git commands fail
                 try {
@@ -452,38 +490,38 @@
                         </thead>
                         <tr>
                             <td><?= __("DXCC update from Club Log"); ?></td>
-                            <td><?php echo $dxcc_update->last_run ?? 'never'; ?></td>
+                            <td><?php echo $dxcc_update->last_run ?? __("never"); ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update'); ?>"><?= __("Update"); ?></a></td>
 
                         </tr>
                         <tr>
                             <td><?= __("DOK file download"); ?></td>
-                            <td><?php echo $dok_update->last_run ?? 'never'; ?></td>
+                            <td><?php echo $dok_update->last_run ?? __("never"); ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_dok'); ?>"><?= __("Update"); ?></a></td>
                         </tr>
                         <tr>
                             <td><?= __("LoTW users download"); ?></td>
-                            <td><?php echo $lotw_user_update->last_run ?? 'never'; ?></td>
+                            <td><?php echo $lotw_user_update->last_run ?? __("never"); ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/lotw_users'); ?>"><?= __("Update"); ?></a></td>
                         </tr>
                         <tr>
                             <td><?= __("POTA file download"); ?></td>
-                            <td><?php echo $pota_update->last_run ?? 'never'; ?></td>
+                            <td><?php echo $pota_update->last_run ?? __("never"); ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_pota'); ?>"><?= __("Update"); ?></a></td>
                         </tr>
                         <tr>
                             <td><?= __("SCP file download"); ?></td>
-                            <td><?php echo $scp_update->last_run ?? 'never'; ?></td>
+                            <td><?php echo $scp_update->last_run ?? __("never"); ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_clublog_scp'); ?>"><?= __("Update"); ?></a></td>
                         </tr>
                         <tr>
                             <td><?= __("SOTA file download"); ?></td>
-                            <td><?php echo $sota_update->last_run ?? 'never'; ?></td>
+                            <td><?php echo $sota_update->last_run ?? __("never"); ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_sota'); ?>"><?= __("Update"); ?></a></td>
                         </tr>
                         <tr>
                             <td><?= __("WWFF file download"); ?></td>
-                            <td><?php echo $wwff_update->last_run ?? 'never'; ?></td>
+                            <td><?php echo $wwff_update->last_run ?? __("never"); ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_wwff'); ?>"><?= __("Update"); ?></a></td>
                         </tr>
                     </table>
@@ -598,6 +636,7 @@
     <?= __("Greek"); ?>
     <?= __("Italian"); ?>
     <?= __("Polish"); ?>
+    <?= __("Portuguese"); ?>
     <?= __("Russian"); ?>
     <?= __("Spanish"); ?>
     <?= __("Swedish"); ?>

@@ -128,7 +128,9 @@ class Distances_model extends CI_Model
     // It builds an array, which has 50km intervals, then inputs each length into the correct spot
     // The function returns a json-encoded array.
 	function plot($qsoArray, $gridsquare, $measurement_base) {
-		$this->load->library('Qra');
+		if(!$this->load->is_loaded('Qra')) {
+			$this->load->library('Qra');
+		}
 		$stationgrid = strtoupper($gridsquare[0]);              // We use only the first entered gridsquare from the active profile
 		if (strlen($stationgrid) == 4) $stationgrid .= 'MM';    // adding center of grid if only 4 digits are specified
 

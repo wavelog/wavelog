@@ -169,11 +169,13 @@ if ($qsos->result() != NULL) {
 					$timestamp = strtotime($qsl->COL_LOTW_QSLSDATE);
 					echo " ".($timestamp != '' ? date($custom_date_format, $timestamp) : '');
 				}
-				echo "\" data-bs-toggle=\"tooltip\"";
+				echo "\" data-bs-toggle=\"tooltip\" class=\"lotw-green\"";
+			} elseif ($qsl->COL_LOTW_QSL_SENT == "I") {
+				echo "class=\"lotw-grey\" data-bs-toggle=\"tooltip\" title=\"".__("Invalid (Ignore)")."\"";
+			} else {
+				echo " class=\"lotw-red\"";
 			}
-			echo ' class="lotw-';
-			echo ($qsl->COL_LOTW_QSL_SENT=='Y')?'green':'red';
-			echo '">&#9650;</span>';
+			echo '>&#9650;</span>';
 
 			echo '<span ';
 			if ($qsl->COL_LOTW_QSL_RCVD == "Y") {
@@ -182,11 +184,13 @@ if ($qsos->result() != NULL) {
 					$timestamp = strtotime($qsl->COL_LOTW_QSLRDATE);
 					echo " ".($timestamp != '' ? date($custom_date_format, $timestamp) : '');
 				}
-				echo "\" data-bs-toggle=\"tooltip\"";
+				echo "\" data-bs-toggle=\"tooltip\" class=\"lotw-green\"";
+			} elseif ($qsl->COL_LOTW_QSL_RCVD == "I") {
+				echo "class=\"lotw-grey\" data-bs-toggle=\"tooltip\" title=\"".__("Invalid (Ignore)")."\"";
+			} else {
+				echo " class=\"lotw-red\"";
 			}
-			echo ' class="lotw-';
-			echo ($qsl->COL_LOTW_QSL_RCVD=='Y')?'green':'red';
-			echo '">&#9660;</span>';
+			echo '>&#9660;</span>';
 			echo '</td>';
 		}
 		echo '<td id="'.$qsl->COL_PRIMARY_KEY.'" style=\'text-align: center\'><button onclick="addQsoToPrintQueue(\''.$qsl->COL_PRIMARY_KEY.'\')" class="btn btn-sm btn-success">' . __("Add to print queue") . '</button></td>';

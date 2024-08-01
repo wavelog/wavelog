@@ -20,18 +20,23 @@ jobs:
       - name: Set up gettext
         run: sudo apt-get install -y gettext
 
-      - name: Run the po generator script
-        run: bash po_gen.sh
-
-      - name: Run the po generator script for the installer component aswell
-        run: bash install/po_gen_installer.sh
+      - name: Run all po_gen scripts
+        run: |
+          bash po_gen.sh
+          bash install/po_gen_installer.sh
 
       - name: Commit changes
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
           git add .
-          git commit -m "Run po_gen.sh script to update translation files"
+          git commit -m "po/mo updates"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Invoke Weblate Update
+        uses: distributhor/workflow-webhook@v3
+        with:
+          webhook_type: 'json-extended'
+          webhook_url: ${{ secrets.WEBLATE_HOOKURL }}

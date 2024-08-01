@@ -7,38 +7,43 @@
 <div class="container">
 
 	<br>
-	<div id="simpleFleInfo">
-		<script>
-			var lang_qso_simplefle_info_ln1 = "<?= __("Simple Fast Log Entry (FLE)"); ?>";
-			var lang_qso_simplefle_info_ln2 = "<?= __("'Fast Log Entry', or simply 'FLE' is a system to log QSOs very quickly and efficiently. Due to its syntax, only a minimum of input is required to log many QSOs with as little effort as possible."); ?>";
-			var lang_qso_simplefle_info_ln3 = "<?= __("FLE was originally written by DF3CB. He offers a program for Windows on his website. Simple FLE was written by OK2CQR based on DF3CB's FLE and provides a web interface to log QSOs."); ?>";
-			var lang_qso_simplefle_info_ln4 = "<?= sprintf(__("A common use-case is if you have to import your paperlogs from an outdoor session and now SimpleFLE is also available in Wavelog. Information about the syntax and how FLE works can be found %s."), "<a href='https://df3cb.com/fle/documentation/' target='_blank'>".__("here")."</a>"); ?>";
-			var lang_qso_simplefle_syntax_help = "<?= __("Syntax Help"); ?>";
-			var lang_qso_simplefle_syntax_help_title = "<?= __("Syntax for FLE"); ?>";
-			var lang_qso_simplefle_syntax_help_close_w_sample = "<?= __("Close and Load Sample Data"); ?>";
-			var lang_qso_simplefle_options = "<?= __("Options"); ?>";
-			var lang_admin_close = "<?= __("Close"); ?>";
-			var lang_admin_save = "<?= __("Save"); ?>";
-			var lang_qso_simplefle_error_band = "<?= __("Band is missing!"); ?>";
-			var lang_qso_simplefle_error_mode = "<?= __("Mode is missing!"); ?>";
-			var lang_qso_simplefle_error_time = "<?= __("Time is not set!"); ?>";
-			var lang_qso_simplefle_error_date = "<?= __("Invalid date"); ?>";
-			var lang_qso_simplefle_qso_list_total = "<?= __("Total"); ?>";
-			var lang_gen_hamradio_qso = "<?= __("QSO"); ?>";
-			var lang_qso_simplefle_error_stationcall = "<?= __("Station Call is not selected"); ?>";
-			var lang_qso_simplefle_error_operator = "<?= __("'Operator' Field is empty"); ?>";
-			var lang_qso_simplefle_warning_reset = "<?= __("Warning! Do you really want to reset everything?"); ?>";
-			var lang_qso_simplefle_warning_missing_band_mode = "<?= __("Warning! You can't log the QSO List, because some QSO don't have band and/or mode defined!"); ?>";
-			var lang_qso_simplefle_warning_missing_time = "<?= __("Warning! You can't log the QSO List, because some QSO don't have a time defined!"); ?>";
-			var lang_qso_simplefle_warning_example_data = "<?= __("Attention! The Data Field containes example data. First Clear Logging Session!"); ?>";
-			var lang_qso_simplefle_confirm_save_to_log = "<?= __("Are you sure that you want to add these QSO to the Log and clear the session?"); ?>";
-			var lang_qso_simplefle_success_save_to_log_header = "<?= __("QSO Logged!"); ?>";
-			var lang_qso_simplefle_success_save_to_log = "<?= __("The QSO were successfully logged in the logbook!"); ?>";
-		</script>
-		<h2><?php echo $page_title; ?></h2>
-		<button type="button" class="btn btn-sm btn-primary me-1" id="simpleFleInfoButton"><?= __("What is that?"); ?></button>
+	<div class="row">
+		<div class="col" id="simpleFleInfo">
+			<script>
+				var lang_qso_simplefle_info_ln1 = "<?= __("Simple Fast Log Entry (FLE)"); ?>";
+				var lang_qso_simplefle_info_ln2 = "<?= __("'Fast Log Entry', or simply 'FLE' is a system to log QSOs very quickly and efficiently. Due to its syntax, only a minimum of input is required to log many QSOs with as little effort as possible."); ?>";
+				var lang_qso_simplefle_info_ln3 = "<?= __("FLE was originally written by DF3CB. He offers a program for Windows on his website. Simple FLE was written by OK2CQR based on DF3CB's FLE and provides a web interface to log QSOs."); ?>";
+				var lang_qso_simplefle_info_ln4 = "<?= sprintf(__("A common use-case is if you have to import your paperlogs from an outdoor session and now SimpleFLE is also available in Wavelog. Information about the syntax and how FLE works can be found %s."), "<a href='https://df3cb.com/fle/documentation/' target='_blank'>" . __("here") . "</a>"); ?>";
+				var lang_qso_simplefle_syntax_help = "<?= __("Syntax Help"); ?>";
+				var lang_qso_simplefle_syntax_help_title = "<?= __("Syntax for FLE"); ?>";
+				var lang_qso_simplefle_syntax_help_close_w_sample = "<?= __("Close and Load Sample Data"); ?>";
+				var lang_qso_simplefle_options = "<?= __("Options"); ?>";
+				var lang_admin_close = "<?= __("Close"); ?>";
+				var lang_admin_save = "<?= __("Save"); ?>";
+				var lang_qso_simplefle_error_band = "<?= __("Band is missing!"); ?>";
+				var lang_qso_simplefle_error_mode = "<?= __("Mode is missing!"); ?>";
+				var lang_qso_simplefle_error_time = "<?= __("Time is not set!"); ?>";
+				var lang_qso_simplefle_error_date = "<?= __("Invalid date"); ?>";
+				var lang_qso_simplefle_qso_list_total = "<?= __("Total"); ?>";
+				var lang_gen_hamradio_qso = "<?= __("QSO"); ?>";
+				var lang_qso_simplefle_error_stationcall = "<?= __("Station Call is not selected"); ?>";
+				var lang_qso_simplefle_error_operator = "<?= __("'Operator' Field is empty"); ?>";
+				var lang_qso_simplefle_warning_reset = "<?= __("Warning! Do you really want to reset everything?"); ?>";
+				var lang_qso_simplefle_warning_missing_band_mode = "<?= __("Warning! You can't log the QSO List, because some QSO don't have band and/or mode defined!"); ?>";
+				var lang_qso_simplefle_warning_missing_time = "<?= __("Warning! You can't log the QSO List, because some QSO don't have a time defined!"); ?>";
+				var lang_qso_simplefle_warning_example_data = "<?= __("Attention! The Data Field containes example data. First Clear Logging Session!"); ?>";
+				var lang_qso_simplefle_confirm_save_to_log = "<?= __("Are you sure that you want to add these QSO to the Log and clear the session?"); ?>";
+				var lang_qso_simplefle_success_save_to_log_header = "<?= __("QSO Logged!"); ?>";
+				var lang_qso_simplefle_success_save_to_log = "<?= __("The QSO were successfully logged in the logbook!"); ?>";
+			</script>
+			<h2><?php echo $page_title; ?></h2>
+			<button type="button" class="btn btn-sm btn-primary me-1" id="simpleFleInfoButton"><?= __("What is that?"); ?></button>
+		</div>
+		<div class="col-xs-12 col-lg-12 col-xl-6 text-end">
+			<p><?= __("Current UTC Time"); ?></p>
+			<h4 class="fw-bold" id="utc-time"></h4>
+		</div>
 	</div>
-
 	<?php if ($this->session->flashdata('message')) { ?>
 		<!-- Display Message -->
 		<div class="alert alert-danger">
@@ -72,8 +77,15 @@
 						</div>
 					</div>
 					<div class="col-xs-12 col-lg-12 col-xl-6">
-						<p><?= __("Current UTC Time"); ?></p>
-						<h4 class="fw-bold" id="utc-time"></h4>
+						<label for="contest"><?= __("Contest") ?></label>
+						<select name="contest" id="contest" class="form-select">
+							<option value="" selected><?= __("No Contest"); ?></option>
+							<?php
+							foreach ($contests as $contest) {
+								echo '<option value="' . $contest['adifname'] . '">' . $contest['name'] . '</option>';
+							} ?>
+						</select>
+						<small class="form-text text-muted"><?= __("You can add the entered QSOs to a contest."); ?></small>
 					</div>
 				</div>
 				<div class="row">
@@ -92,7 +104,7 @@
 								<?php } ?>
 							</select>
 							<div class="alert alert-danger" role="alert" id="warningStationCall" style="display: none"> </div>
-							<small class="form-text text-muted"><?= __("If you did operate from a new location, first create a new <a href=". site_url('station') . ">Station Location</a>"); ?></small>
+							<small class="form-text text-muted"><?= sprintf(__("If you did operate from a new location, first create a new <a href='%s'>Station Location</a>"), site_url('station')); ?></small>
 						</div>
 					</div>
 					<div class="col-xs-12 col-lg-6">
@@ -100,6 +112,7 @@
 							<label for="operator"><?= __("Operator"); ?> <span class="text-muted input-example"><?= __("e.g. OK2CQR"); ?></span></label>
 							<input type="text" class="form-control text-uppercase" id="operator" value="<?php echo $this->session->userdata('operator_callsign'); ?>">
 							<div class="alert alert-danger" role="alert" id="warningOperatorField" style="display: none"> </div>
+							<small class="form-text text-muted"><?= __("This is callsign of the operator. Without any pre- or suffixes."); ?></small>
 						</div>
 					</div>
 				</div>

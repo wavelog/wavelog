@@ -1,12 +1,15 @@
 <script>
-    var lang_statistics_accumulated_worked_dxcc = '<?= __("Accumulated Number of DXCCs worked"); ?>';
-    var lang_statistics_accumulated_worked_states = '<?= __("Accumulated Number of States worked"); ?>';
-    var lang_statistics_accumulated_worked_iota = '<?= __("Accumulated Number of IOTAs worked"); ?>';
-    var lang_statistics_accumulated_worked_cqzone = '<?= __("Accumulated Number of CQ Zones worked"); ?>';
+    var lang_statistics_accumulated_worked_dxcc = '<?= __("Accumulated number of DXCCs worked"); ?>';
+    var lang_statistics_accumulated_worked_states = '<?= __("Accumulated number of States worked"); ?>';
+    var lang_statistics_accumulated_worked_iota = '<?= __("Accumulated number of IOTAs worked"); ?>';
+    var lang_statistics_accumulated_worked_cqzone = '<?= __("Accumulated number of CQ Zones worked"); ?>';
+    var lang_statistics_accumulated_worked_vucc = '<?= __("Accumulated number of VUCC Grids worked"); ?>';
+    var lang_statistics_accumulated_worked_waja = '<?= __("Accumulated number of WAJA worked"); ?>';
     var lang_general_word_year = '<?= __("Year"); ?>';
     var lang_general_word_yearly = '<?= __("Yearly"); ?>';
     var lang_general_word_month = '<?= __("Month"); ?>';
     var lang_general_word_monthly = '<?= __("Monthly"); ?>';
+    var lang_general_word_diff = '<?= __("Difference"); ?>';
 </script>
 <div class="container">
     <h2><?php echo $page_title; ?></h1>
@@ -46,30 +49,14 @@
 
                 <label class="col-md-1 control-label" for="radio"><?= __("Award"); ?></label>
                 <div class="col-md-3">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="awardradio" id="dxcc" value="dxcc" checked>
-                        <label class="form-check-label" for="dxcc">
-                            <?= __("DX Century Club (DXCC)"); ?>
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="awardradio" id="was" value="was">
-                        <label class="form-check-label" for="was">
-                            <?= __("Worked All States (WAS)"); ?>
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="awardradio" id="iota" value="iota">
-                        <label class="form-check-label" for="iota">
-                            <?= __("Islands On The Air (IOTA)"); ?>
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="awardradio" id="waz" value="waz">
-                        <label class="form-check-label" for="waz">
-                            <?= __("Worked All Zones (WAZ)"); ?>
-                        </label>
-                    </div>
+				<select id="award" name="award" class="form-select">
+                        <option value="dxcc"><?= __("DX Century Club (DXCC)"); ?></option>
+                        <option value="was"><?= __("Worked All States (WAS)"); ?></option>
+                        <option value="iota"><?= __("Islands On The Air (IOTA)"); ?></option>
+                        <option value="waz"><?= __("Worked All Zones (WAZ)"); ?></option>
+                        <option value="vucc"><?= __("VHF / UHF Century Club (VUCC)"); ?></option>
+                        <option value="waja"><?= __("Worked All Japan (WAJA)"); ?></option>
+                    </select>
                 </div>
 
                 <label class="col-md-1 control-label" for="radio"><?= __("Period"); ?></label>

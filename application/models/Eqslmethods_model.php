@@ -10,13 +10,17 @@ class Eqslmethods_model extends CI_Model {
         $users = $this->get_eqsl_users();
 
         foreach ($users as $user) {
+            log_message('debug', 'eQSL Upload for: '.$user->user_eqsl_name);
             $this->uploadUser($user->user_id, $user->user_eqsl_name, $user->user_eqsl_password);
+            log_message('debug', 'eQSL Download for: '.$user->user_eqsl_name);
             $this->downloadUser($user->user_id, $user->user_eqsl_name, $user->user_eqsl_password);
         }
     }
 
     function downloadUser($userid, $username, $password) {
-        $this->load->library('EqslImporter');
+        if(!$this->load->is_loaded('EqslImporter')) {
+            $this->load->library('EqslImporter');
+        }
 
         $config['upload_path'] = './uploads/';
         $eqsl_locations = $this->all_of_user_with_eqsl_nick_defined($userid);
@@ -40,13 +44,18 @@ class Eqslmethods_model extends CI_Model {
         $data['user_eqsl_password'] = $this->security->xss_clean($password);
         $clean_userid = $this->security->xss_clean($userid);
 
-        $qslsnotsent = $this->eqslmethods_model->eqsl_not_yet_sent($clean_userid);
+        $qslsnotsent = $this->eqsl_not_yet_sent($clean_userid);
 
         foreach ($qslsnotsent->result_array() as $qsl) {
             $data['user_eqsl_name'] = $qsl['station_callsign'];
             $adif = $this->generateAdif($qsl, $data);
 
             $status = $this->uploadQso($adif, $qsl);
+
+            if ($status == 'Error') {
+                log_message('error', 'eQSL Error for '.$data['user_eqsl_name']);
+                break;
+            }
         }
     }
 
@@ -238,7 +247,6 @@ class Eqslmethods_model extends CI_Model {
     }
 
     function uploadQso($adif, $qsl) {
-        $this->load->model('eqslmethods_model');
         $status = "";
 
         // begin script
@@ -267,38 +275,47 @@ class Eqslmethods_model extends CI_Model {
         if ($chi['http_code'] == "200") {
             if (stristr($result, "Result: 1 out of 1 records added")) {
                 $status = "Sent";
-                $this->eqslmethods_model->eqsl_mark_sent($qsl['COL_PRIMARY_KEY']);
+                $this->eqsl_mark_sent($qsl['COL_PRIMARY_KEY']);
             } else {
                 if (stristr($result, "Error: No match on eQSL_User/eQSL_Pswd")) {
-                    $this->session->set_flashdata('warning', 'Your eQSL username and/or password is incorrect.');
-                    redirect('eqsl/export');
+                    $msg = __("Your eQSL username and/or password is incorrect.");
+                    log_message('error', 'eQSL: '.$msg);
+                    $this->session->set_flashdata('warning', $msg);
+                    $status = "Error";
                 } else {
                     if (stristr($result, "Result: 0 out of 0 records added")) {
-                        $this->session->set_flashdata('warning', 'Something went wrong with eQSL.cc!');
-                        redirect('eqsl/export');
+                        $msg = __("Something went wrong with eQSL.cc!");
+                        log_message('error', 'eQSL: '.$msg);
+                        $this->session->set_flashdata('warning', $msg);
+                        $status = "Error";
                     } else {
                         if (stristr($result, "Bad record: Duplicate")) {
                             $status = "Duplicate";
 
                             # Mark the QSL as sent if this is a dupe.
-                            $this->eqslmethods_model->eqsl_mark_sent($qsl['COL_PRIMARY_KEY']);
+                            $this->eqsl_mark_sent($qsl['COL_PRIMARY_KEY']);
                         }
                     }
                 }
             }
         } else {
             if ($chi['http_code'] == "500") {
-                $this->session->set_flashdata('warning', 'eQSL.cc is experiencing issues. Please try exporting QSOs later.');
-                redirect('eqsl/export');
+                $msg = __("eQSL.cc is experiencing issues. Please try exporting QSOs later.");
+                log_message('error', 'eQSL: '.$msg);
+                $this->session->set_flashdata('warning', $msg);
+                $status = "Error";
             } else {
                 if ($chi['http_code'] == "400") {
-                    $this->session->set_flashdata('warning', 'There was an error in one of the QSOs. You might want to manually upload them.');
-                    redirect('eqsl/export');
+                    $msg = __("There was an error in one of the QSOs. You might want to manually upload them.");
+                    log_message('error', 'eQSL: '.$msg);
+                    $this->session->set_flashdata('warning', $msg);
                     $status = "Error";
                 } else {
                     if ($chi['http_code'] == "404") {
-                        $this->session->set_flashdata('warning', 'It seems that the eQSL site has changed. Please open up an issue on GitHub.');
-                        redirect('eqsl/export');
+                        $msg = __("It seems that the eQSL site has changed. Please open up an issue on GitHub.");
+                        log_message('error', 'eQSL: '.$msg);
+                        $this->session->set_flashdata('warning', $msg);
+                        $status = "Error";
                     }
                 }
             }

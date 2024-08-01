@@ -207,7 +207,7 @@ class CI_Encryption {
 				? 'openssl'
 				: 'mcrypt';
 
-			log_message('debug', "Encryption: Auto-configured driver '".$this->_driver."'.");
+			log_message('info', "Encryption: Auto-configured driver '".$this->_driver."'.");
 		}
 
 		empty($params['cipher']) && $params['cipher'] = $this->_cipher;
@@ -909,6 +909,10 @@ class CI_Encryption {
 	 */
 	protected static function strlen($str)
 	{
+		if ($str === null) {
+			return 0;
+		}
+
 		return (self::$func_overload)
 			? mb_strlen($str, '8bit')
 			: strlen($str);

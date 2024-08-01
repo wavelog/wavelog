@@ -15,7 +15,7 @@ foreach ($result as $mode => $value) {
 			<td>'. strtoupper($mode) .'</td>';
 	foreach ($value as $key => $val) {
 		switch($type) {
-			case 'dxcc': $linkinfo = '<a href=\'javascript:displayContacts("'.str_replace("&", "%26", $dxcc).'","' . $key . '","' . $mode . '","All","All","DXCC2")\'>'  . $val . '</a>'; break;
+			case 'dxcc': $linkinfo = '<a href=\'javascript:displayContacts("'.str_replace("&", "%26", $dxcc).'","' . $key . '","All","All","' . $mode . '","DXCC2")\'>'  . $val . '</a>'; break;
 			case 'iota': $linkinfo = '<a href=\'javascript:displayContacts("'.str_replace("&", "%26", $iota).'","' . $key . '","' . $mode . '","All","All","IOTA")\'>'   . $val . '</a>'; break;
 			case 'vucc': $linkinfo = '<a href=\'javascript:displayContacts("'.str_replace("&", "%26", $grid).'","' . $key . '","' . $mode . '","All","All","VUCC")\'>'   . $val . '</a>'; break;
 			case 'cq':  $linkinfo = '<a href=\'javascript:displayContacts("'.str_replace("&", "%26", $cqz).'","'  . $key . '","' . $mode . '","All","All","CQZone")\'>' . $val . '</a>'; break;

@@ -35,12 +35,16 @@ POT_COPYRIGHT_TEXT="Copyright (c) $YEAR Wavelog by DF2ET, DJ7NT, HB9HIL and LA8A
 POT_LICENCE_TEXT="This file is distributed under the MIT licence."
 FOLDERS="application assets src system"
 
+echo "####################################################"
+echo " "
+echo "Performing the PO Generator Script for the Main Code"
+echo " "
+
 # Find all PHP files and create a list in a temporary file 
 find $FOLDERS -name "*.php" > PHPFILESLIST
 
 # Run the xgettext command with various options. Do not change these options to keep the POT/PO files consistent in Wavelog
-xgettext    --no-wrap \
-            -F \
+xgettext    -F \
             -o $POT_FILE \
             --from-code=UTF-8 \
             --keyword=__ \
@@ -65,7 +69,7 @@ head -n 3 "$POT_FILE" > POT_HEADER
 
 # Now we can merge the POT file (PO template) into each found PO file
 for po in $(find $FOLDERS -name "*.po"); do
-    msgmerge --no-wrap --update -vv --backup=none --no-fuzzy-matching "$po" $POT_FILE;
+    msgmerge --update -vv --backup=none --no-fuzzy-matching "$po" $POT_FILE;
     # Replace the first three lines of the PO file with the POT file header
     sed -i '1,3d' "$po"
     cat POT_HEADER "$po" > temp.po && mv temp.po "$po"

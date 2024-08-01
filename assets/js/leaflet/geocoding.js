@@ -69,8 +69,29 @@ function onMapMove(event) {
 	$('#locator').html(locator);
 	var distance = bearingDistance(homegrid, locator);
 
-	$('#bearing').html(distance.deg + ' deg');
-	$('#distance').html(Math.round(distance.km * 10) / 10 + ' km');
+	let unit;
+
+	switch (measurement_base) {
+		case 'M':
+			distance.distance = distance.distance * 3959;
+			unit = 'mi';
+			break;
+		case 'K':
+			distance.distance = distance.distance * 6371;
+			unit = 'km';
+			break;
+		case 'N':
+			distance.distance = distance.distance * 3440;
+			unit = 'nmi';
+			break;
+		default:
+			distance.distance = distance.distance * 6371;
+			unit = 'km';
+			break;
+	}
+
+	$('#bearing').html(distance.deg + '°');
+	$('#distance').html(Math.round(distance.distance * 10) / 10 + ' ' +unit);
 };
 
 function onMapClick(event) {
@@ -86,8 +107,30 @@ function onMapClick(event) {
 
 	var result = bearingDistance(homegrid, locator);
 
-	var distance = Math.round(result.km * 10) / 10 + ' km';
-	var bearing = Math.round(result.deg * 10) / 10 + ' deg';
+	let unit;
+
+	switch (measurement_base) {
+		case 'M':
+			result.distance = result.distance * 3959;
+			unit = 'mi';
+			break;
+		case 'K':
+			result.distance = result.distance * 6371;
+			unit = 'km';
+			break;
+		case 'N':
+			result.distance = result.distance * 3440;
+			unit = 'nmi';
+			break;
+		default:
+			result.distance = result.distance * 6371;
+			unit = 'km';
+			break;
+	}
+
+
+	var distance = Math.round(result.distance * 10) / 10 + ' ' +unit;
+	var bearing = Math.round(result.deg * 10) / 10 + '°';
 	var popupmessage = '<div class="popup">' +
 	'From gridsquare: ' + homegrid + '<br />To gridsquare: ' + locator +'<br />Distance: ' + distance+ '<br />Bearing: ' + bearing +
 	'</div>';
@@ -140,7 +183,7 @@ const bearingDistance = (from, to) => {
 	}
 
 	return {
-		km: b * 6371,
+		distance: b,
 		deg: calcAngle(fromCoords, toCoords)
 	};
 };

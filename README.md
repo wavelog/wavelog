@@ -33,7 +33,7 @@ https://demo.wavelog.org
 * PHP Version 7.4 up to PHP 8.2 (PHP 8.3. in friendly Usertest)
 * MySQL or MariaDB (MySQL 5.7 or higher // MariaDB 10.1 or higher)
 
-### Experimental:
+### Alternative - Easy start with prebuilt Docker-image:
 * [Docker Support](https://github.com/wavelog/wavelog/wiki/Installation-via-Docker)
 
 Notes
@@ -52,7 +52,7 @@ Wavelog-support can be reached by creating an issue here at github. If you've an
 ## Contributing
 
 Special thanks to our contributors, who are part of Wavelog by improving code!  
-[F4ANS](https://github.com/abarrau), [DG0TM](https://github.com/dg0tm), [DG9VH](https://github.com/dg9vh), [DJ3CE](https://github.com/dj3ce)
+[F4ANS](https://github.com/abarrau), [DG0TM](https://github.com/dg0tm), [DG9VH](https://github.com/dg9vh), [DJ3CE](https://github.com/dj3ce), [R1BLH](https://github.com/r1blh), [BG2ELG](https://github.com/violarulan), [DF1ASH](https://github.com/derFogel), [DB4SCW](https://github.com/DB4SCW)
 
 If you would like to contribute in any way to Wavelog, it is most appreciated. This has been developed in free time, help coding new features or writing documentation is always useful.  
 

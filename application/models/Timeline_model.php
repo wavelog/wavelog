@@ -20,6 +20,7 @@ class Timeline_model extends CI_Model
             case 'iota': $result = $this->get_timeline_iota($band, $mode, $location_list, $qsl, $lotw, $eqsl); break;
             case 'waz':  $result = $this->get_timeline_waz($band, $mode, $location_list, $qsl, $lotw, $eqsl);  break;
             case 'vucc':  $result = $this->get_timeline_vucc($band, $mode, $location_list, $qsl, $lotw, $eqsl);  break;
+            case 'waja':  $result = $this->get_timeline_waja($band, $mode, $location_list, $qsl, $lotw, $eqsl);  break;
         }
 
         return $result;
@@ -48,6 +49,37 @@ class Timeline_model extends CI_Model
         $sql .= $this->addQslToQuery($qsl, $lotw, $eqsl);
 
         $sql .= " group by col_dxcc, col_country
+                order by date desc";
+
+        $query = $this->db->query($sql);
+
+        return $query->result();
+    }
+
+    public function get_timeline_waja($band, $mode, $location_list, $qsl, $lotw, $eqsl) {
+        $sql = "select min(date(COL_TIME_ON)) date, col_state from "
+            .$this->config->item('table_name'). " thcv
+            where station_id in (" . $location_list . ")";
+
+        if ($band != 'All') {
+            if ($band == 'SAT') {
+                $sql .= " and col_prop_mode ='" . $band . "'";
+            }
+            else {
+                $sql .= " and col_prop_mode !='SAT'";
+                $sql .= " and col_band ='" . $band . "'";
+            }
+        }
+
+        if ($mode != 'All') {
+            $sql .= " and col_mode ='" . $mode . "'";
+        }
+
+        $sql .= " and COL_DXCC = '339' and trim(coalesce(COL_STATE,'')) != '' ";
+
+        $sql .= $this->addQslToQuery($qsl, $lotw, $eqsl);
+
+        $sql .= " group by col_state
                 order by date desc";
 
         $query = $this->db->query($sql);
@@ -241,6 +273,7 @@ class Timeline_model extends CI_Model
             case 'iota': $this->db->where('COL_IOTA', $querystring); break;
             case 'waz':  $this->db->where('COL_CQZ', $querystring); break;
             case 'vucc':  $this->db->group_start(); $this->db->like('COL_GRIDSQUARE', $querystring);  $this->db->or_like('COL_VUCC_GRIDS',$querystring); $this->db->group_end();break;
+            case 'waja':  $this->db->where('COL_STATE', $querystring); break;
         }
         $this->db->order_by('COL_TIME_ON', 'DESC');
 

@@ -71,6 +71,8 @@ class Contesting extends CI_Controller {
 	public function setSession() {
 		$this->load->model('Contesting_model');
 		$this->Contesting_model->setSession();
+
+		$this->session->set_userdata('radio', $this->input->post('radio'));
 		header('Content-Type: application/json');
 		echo json_encode($this->Contesting_model->getSession());
 	}

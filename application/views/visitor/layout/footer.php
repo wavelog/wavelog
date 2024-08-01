@@ -166,7 +166,7 @@ if ($lang_code != 'en' && !file_exists(FCPATH . "assets/json/datatables_language
 <?php if ($this->uri->segment(1) == "gridsquares" && $this->uri->segment(2) == "band") { ?>
 
   var bands_available = <?php echo $bands_available; ?>;
-  $('#gridsquare_bands').append('<option value="All">' . __("All") . '</option>')
+  $('#gridsquare_bands').append('<option value="All"><?= __("All"); ?></option>');
   $.each(bands_available, function(key, value) {
      $('#gridsquare_bands')
          .append($("<option></option>")

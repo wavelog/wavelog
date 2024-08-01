@@ -1,132 +1,159 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 class Frequency {
 
-  public $defaultFrequencies = array(
-	'160m'=>array(
-	  	'SSB'=>"1900000",
-  		'DATA'=>"1838000",
-  		'CW'=>"1830000",
-  		'NOMINAL'=>"1.8"),
-	'80m'=>array(
-  		'SSB'=>"3700000",
-  		'DATA'=>"3583000",
-  		"CW"=>"3550000",
-  		"NOMINAL"=>"3.5"),
-	'60m'=>array(
-  		'SSB'=>"5330000",
-  		'DATA'=>"5330000",
-  		"CW"=>"5260000",
-  		"NOMINAL"=>"5"),
-	'40m'=>array(
-  		'SSB'=>"7100000",
-  		'DATA'=>"7040000",
-  		'CW'=>"7020000",
-  		'NOMINAL'=>"7"),
-	'30m'=>array(
-  		'SSB'=>"10120000",
-  		'DATA'=>"10145000",
-  		'CW'=>"10120000",
-  		'NOMINAL'=>"10"),
-	'20m'=>array(
-  		'SSB'=>"14200000",
-  		'DATA'=>"14080000",
-  		'CW'=>"14020000",
-  		'NOMINAL'=>"14"),
-	'17m'=>array(
-  		'SSB'=>"18130000",
-  		'DATA'=>"18105000",
-  		'CW'=>"18080000",
-  		'NOMINAL'=>"18"),
-	'15m'=>array(
-  		'SSB'=>"21300000",
-  		'DATA'=>"21080000",
-  		'CW'=>"21020000",
-  		'NOMINAL'=>"21"),
-	'12m'=>array(
-  		'SSB'=>"24950000",
-  		'DATA'=>"24925000",
-  		'CW'=>"24900000",
-  		'NOMINAL'=>"24"),
-	'10m'=>array(
-  		'SSB'=>"28300000",
-  		'DATA'=>"28120000",
-  		'CW'=>"28050000",
-  		'NOMINAL'=>"28"),
-	'6m'=>array(
-  		'SSB'=>"50150000",
-  		'DATA'=>"50230000",
-  		'CW'=>"50090000",
-  		'NOMINAL'=>"50"),
-	'4m'=>array(
-  		'SSB'=>"70200000",
-  		'DATA'=>"70200000",
-  		'CW'=>"70200000",
-  		'NOMINAL'=>"70"),
-	'2m'=>array(
-  		'SSB'=>"144300000",
-  		'DATA'=>"144370000",
-  		'CW'=>"144050000",
-  		'NOMINAL'=>"144"),
-	'1.25m'=>array(
-		'SSB'=>"222100000",
-		'DATA'=>"222100000",
-		'CW'=>"222100000",
-		'NOMINAL'=>"222"),
-	'70cm'=>array(
-  		'SSB'=>"432200000",
-  		'DATA'=>"432088000",
-  		'CW'=>"432050000",
-  		'NOMINAL'=>"433"),
-	'33cm'=>array(
-		'SSB'=>"902100000",
-		'DATA'=>"902100000",
-		'CW'=>"902100000",
-		'NOMINAL'=>"902"),
-	'23cm'=>array(
-  		'SSB'=>"1296000000",
-  		'DATA'=>"1296138000",
-  		'CW'=>"129600000",
-  		'NOMINAL'=>"1296"),
-	'13cm'=>array(
-  		'SSB'=>"2320800000",
-  		'DATA'=>"2320800000",
-  		'CW'=>"2320800000",
-  		'NOMINAL'=>"2400"),
-	'9cm'=>array(
-  		'SSB'=>"3410000000",
-  		'DATA'=>"3410000000",
-  		'CW'=>"3400000000",
-  		'NOMINAL'=>"3400"),
-	'6cm'=>array(
-  		'SSB'=>"5670000000",
-  		'DATA'=>"5670000000",
-  		'CW'=>"5670000000",
-  		'NOMINAL'=>"5670"),
-	'3cm'=>array(
-  		'SSB'=>"10225000000",
-  		'DATA'=>"10225000000",
-  		'CW'=>"10225000000",
-  		'NOMINAL'=>"10225")
-  );
+	public $defaultFrequencies = array(
+		'160m' => array(
+			'SSB' => "1900000",
+			'DATA' => "1838000",
+			'CW' => "1830000",
+			'NOMINAL' => "1.8",
+			'UNIT' => 'kHz'),
+		'80m' => array(
+			'SSB' => "3700000",
+			'DATA' => "3583000",
+			"CW" => "3550000",
+			"NOMINAL" => "3.5",
+			'UNIT' => 'kHz'),
+		'60m' => array(
+			'SSB' => "5330000",
+			'DATA' => "5330000",
+			"CW" => "5260000",
+			"NOMINAL" => "5",
+			'UNIT' => 'kHz'),
+		'40m' => array(
+			'SSB' => "7100000",
+			'DATA' => "7040000",
+			'CW' => "7020000",
+			'NOMINAL' => "7",
+			'UNIT' => 'kHz'),
+		'30m' => array(
+			'SSB' => "10120000",
+			'DATA' => "10145000",
+			'CW' => "10120000",
+			'NOMINAL' => "10",
+			'UNIT' => 'kHz'),
+		'20m' => array(
+			'SSB' => "14200000",
+			'DATA' => "14080000",
+			'CW' => "14020000",
+			'NOMINAL' => "14",
+			'UNIT' => 'kHz'),
+		'17m' => array(
+			'SSB' => "18130000",
+			'DATA' => "18105000",
+			'CW' => "18080000",
+			'NOMINAL' => "18",
+			'UNIT' => 'kHz'),
+		'15m' => array(
+			'SSB' => "21300000",
+			'DATA' => "21080000",
+			'CW' => "21020000",
+			'NOMINAL' => "21",
+			'UNIT' => 'kHz'),
+		'12m' => array(
+			'SSB' => "24950000",
+			'DATA' => "24925000",
+			'CW' => "24900000",
+			'NOMINAL' => "24",
+			'UNIT' => 'kHz'),
+		'10m' => array(
+			'SSB' => "28300000",
+			'DATA' => "28120000",
+			'CW' => "28050000",
+			'NOMINAL' => "28",
+			'UNIT' => 'kHz'),
+		'6m' => array(
+			'SSB' => "50150000",
+			'DATA' => "50230000",
+			'CW' => "50090000",
+			'NOMINAL' => "50",
+			'UNIT' => 'MHz'),
+		'4m' => array(
+			'SSB' => "70200000",
+			'DATA' => "70200000",
+			'CW' => "70200000",
+			'NOMINAL' => "70",
+			'UNIT' => 'MHz'),
+		'2m' => array(
+			'SSB' => "144300000",
+			'DATA' => "144370000",
+			'CW' => "144050000",
+			'NOMINAL' => "144",
+			'UNIT' => 'MHz'),
+		'1.25m' => array(
+			'SSB' => "222100000",
+			'DATA' => "222100000",
+			'CW' => "222100000",
+			'NOMINAL' => "222",
+			'UNIT' => 'MHz'),
+		'70cm' => array(
+			'SSB' => "432200000",
+			'DATA' => "432088000",
+			'CW' => "432050000",
+			'NOMINAL' => "433",
+			'UNIT' => 'MHz'),
+		'33cm' => array(
+			'SSB' => "902100000",
+			'DATA' => "902100000",
+			'CW' => "902100000",
+			'NOMINAL' => "902",
+			'UNIT' => 'MHz'),
+		'23cm' => array(
+			'SSB' => "1296000000",
+			'DATA' => "1296138000",
+			'CW' => "129600000",
+			'NOMINAL' => "1296",
+			'UNIT' => 'GHz'),
+		'13cm' => array(
+			'SSB' => "2320800000",
+			'DATA' => "2320800000",
+			'CW' => "2320800000",
+			'NOMINAL' => "2400",
+			'UNIT' => 'GHz'),
+		'9cm' => array(
+			'SSB' => "3410000000",
+			'DATA' => "3410000000",
+			'CW' => "3400000000",
+			'NOMINAL' => "3400",
+			'UNIT' => 'GHz'),
+		'6cm' => array(
+			'SSB' => "5670000000",
+			'DATA' => "5670000000",
+			'CW' => "5670000000",
+			'NOMINAL' => "5670",
+			'UNIT' => 'GHz'),
+		'3cm' => array(
+			'SSB' => "10225000000",
+			'DATA' => "10225000000",
+			'CW' => "10225000000",
+			'NOMINAL' => "10225",
+			'UNIT' => 'GHz'),
+		'1.25cm' => array(
+			'SSB' => "24000000000",
+			'DATA' => "24000000000",
+			'CW' => "24000000000",
+			'NOMINAL' => "24000",
+			'UNIT' => 'GHz'),
+	);
 
 	/* Class to convert band and mode into a frequency in a format based on the specifications of the database table */
-	public function convert_band($band, $mode='SSB') {
+	public function convert_band($band, $mode = 'SSB') {
 		// Converting LSB and USB to SSB
-		if($mode =='LSB' or $mode =='USB'){
-		  $mode= "SSB";
+		if ($mode == 'LSB' or $mode == 'USB') {
+			$mode = "SSB";
 		}
 
 		// Use 'DATA' for any of the data modes
-		if($mode !='CW' and $mode !='SSB'){
-		  $mode= "DATA";
+		if ($mode != 'CW' and $mode != 'SSB') {
+			$mode = "DATA";
 		}
 
 		return $this->getDefaultFrequency($band, $mode);
 	}
 
 	function getDefaultFrequency($band, $mode) {
-		$CI =& get_instance();
-		$db =& $CI->db;
+		$CI = &get_instance();
+		$db = &$CI->db;
 
 		$db->from('bands');
 		$db->where('bands.band', $band);
@@ -198,10 +225,25 @@ class Frequency {
 		return $Band;
 	}
 
-	 // converts a frequency in Hz to MHz output
-	 function hz_to_mhz($frequency)
-	 {
-		 return number_format (($frequency / 1000 / 1000), 3) . " MHz";
-	 }
+	// converts a frequency in Hz to MHz output
+	function hz_to_mhz($frequency) {
+		return number_format(($frequency / 1000 / 1000), 3) . " MHz";
+	}
+
+	function qrg_unit($band) {
+
+		$CI = &get_instance();
+
+		if ($CI->session->userdata('qrgunit_'.$band)) {
+			$unit = $CI->session->userdata('qrgunit_'.$band);
+		} else {
+			if (isset($this->defaultFrequencies[$band]['UNIT'])) {
+				$unit = $this->defaultFrequencies[$band]['UNIT'];
+			} else {
+				$unit = 'kHz'; // we use kHz as fallback unit
+			}
+		}
+		return $unit;
+	}
 }
 /* End of file Frequency.php */
