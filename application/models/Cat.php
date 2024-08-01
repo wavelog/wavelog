@@ -26,10 +26,14 @@
 				'sat_name' => $result['sat_name'] ?? NULL,
 				'timestamp' => $timestamp,
 			);
-			if (isset($result['frequency']) && $result['frequency'] != "NULL") {
+			if ( (isset($result['frequency'])) && ($result['frequency'] != "NULL") && ($result['frequency'] != '') ) {
 				$data['frequency'] = $result['frequency'];
 			} else {
-				$data['frequency'] = $result['uplink_freq'];
+				if ( (isset($result['uplink_freq'])) && ($result['uplink_freq'] != "NULL") && ($result['uplink_freq'] != '') ) {
+					$data['frequency'] = $result['uplink_freq'];
+				} else {
+					unset($data['frequency']);	// Do not update Frequency since it wasn't provided
+				}
 			}
 			if (isset($result['mode']) && $result['mode'] != "NULL") {
 				$data['mode'] = $result['mode'];
