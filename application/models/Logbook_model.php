@@ -4693,8 +4693,10 @@ function lotw_last_qsl_date($user_id) {
 			}
            foreach ($query->result() as $row) {
               $distance = $this->qra->distance($row->station_gridsquare, $row->COL_GRIDSQUARE, 'K');
+              $bearing = $this->qra->get_bearing($row->station_gridsquare, $row->COL_GRIDSQUARE);
               $data = array(
                  'COL_DISTANCE' => $distance,
+                 'COL_ANT_AZ' => $bearing,
               );
 
               $this->db->where(array('COL_PRIMARY_KEY' => $row->COL_PRIMARY_KEY));
