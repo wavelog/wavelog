@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-08-01 15:48+0000\n"
-"PO-Revision-Date: 2024-07-30 21:59+0000\n"
+"PO-Revision-Date: 2024-08-02 07:38+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/pt_PT/>\n"
@@ -5503,7 +5503,7 @@ msgstr "Há algo de errado com a sua migração na base de dados!"
 
 #: application/views/debug/index.php:45
 msgid "Migration is outdated and locked!"
-msgstr ""
+msgstr "A migração está desatualizada e bloqueada!"
 
 #: application/views/debug/index.php:46
 #, php-format
@@ -5513,16 +5513,20 @@ msgid ""
 "past failed process. Check the folder %s for a file called %s and remove "
 "this file to force the migration to run again."
 msgstr ""
+"A migração atual não é a versão que deveria ser. Recarrege esta página. Se "
+"este aviso persistir, a sua migração provavelmente está bloqueada devido a "
+"um processo anteriormente falhado. Verifique a pasta %s para um ficheiro "
+"chamado %s e remova este ficheiro para forçar a migração a correr novamente."
 
 #: application/views/debug/index.php:47
 #, php-format
 msgid "Current migration is %s"
-msgstr ""
+msgstr "A migração atual é %s"
 
 #: application/views/debug/index.php:48
 #, php-format
 msgid "Migration should be %s"
-msgstr ""
+msgstr "A migração deveria ser %s"
 
 #: application/views/debug/index.php:53
 msgid "Environment"
