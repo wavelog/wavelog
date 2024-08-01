@@ -36,7 +36,19 @@ class Debug extends CI_Controller
 			$data['calls_wo_sid'] = $this->Debug_model->calls_without_station_id();
 		}
 
+		// get mig version from database
 		$data['migration_version'] = $this->Debug_model->getMigrationVersion();
+
+		// get mig version from config file
+		$this->load->config('migration');
+		$data['migration_config'] = $this->config->item('migration_version');
+
+		// compare mig versions
+		if ($data['migration_version'] !== $data['migration_config'] && file_exists('application/cache/.migration_running')) {
+			$data['migration_is_uptodate'] = false;
+		} else {
+			$data['migration_is_uptodate'] = true;
+		}
 
 		// Test writing to backup folder
 		$backup_folder = $this->permissions->is_really_writable('backup');
