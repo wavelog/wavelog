@@ -39,6 +39,16 @@
                             <td><?= __("Migration"); ?></td>
                             <td><?php echo (isset($migration_version) ? $migration_version : "<span class='badge text-bg-danger'>". __("There is something wrong with your Migration in Database!") . "</span>"); ?></td>
                         </tr>
+                        <?php if (!$migration_is_uptodate) { ?>
+                    </table>
+                        <div class="alert alert-danger mt-3 mb-3">
+                            <h5><?= __("Migration is outdated and locked!"); ?></h5>
+                            <p><?= sprintf(__("The current migration is not the version it is supposed to be. Reload this page. If this warning persists, your migration is probably locked due to a past failed process. Check the folder %s for a file called %s and remove this file to force the migration to run again."), "'application/cache/'", "'.migration_running'"); ?></p>
+                            <p><?= sprintf(__("Current migration is %s"), $migration_version); ?><br>
+                                <?= sprintf(__("Migration should be %s"), $migration_config); ?></p>
+                        </div>
+                    <table>
+                        <?php } ?>
                         <tr>
                             <td><?= __("Environment"); ?></td>
                             <td><?php echo ENVIRONMENT; ?></td>
