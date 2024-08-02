@@ -159,8 +159,8 @@ class CI_Migration {
 		// If not set, set it
 		$this->_migration_lockfile !== '' OR $this->_migration_lockfile = '/tmp/.migration_running';
 
-		// selockfile maxage if not set in config file. Fallback is 60 seconds. 
-		$this->_migration_lf_maxage !== '' OR $this->_migration_lf_maxage = 60;
+		// selockfile maxage if not set in config file. Fallback is 480 seconds. 
+		$this->_migration_lf_maxage !== '' OR $this->_migration_lf_maxage = 480;
 
 		// Load migration language
 		$this->lang->load('migration');
