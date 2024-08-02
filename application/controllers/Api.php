@@ -325,6 +325,7 @@ class API extends CI_Controller {
 		{
 			http_response_code(200);
 			echo json_encode(['status' => 'successfull', 'message' => 'No new QSOs available.', 'lastfetchedid' => $fetchfromid, 'exported_qsos' => 0, 'adif' => null]);
+			return;
 		}
 
 		//convert data to ADIF
