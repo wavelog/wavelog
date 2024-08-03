@@ -5,7 +5,7 @@ function setRst(mode) {
 	} else if (mode == 'FSK441' || mode == 'JT6M') {
 		$('#rst_sent').val('26');
 		$('#rst_rcvd').val('26');
-	} else if (mode == 'CW' || mode.startsWith('CW-') || mode == 'RTTY' || mode == 'PSK31' || mode == 'PSK63') {
+	} else if (mode == 'CW' || mode == 'RTTY' || mode == 'PSK31' || mode == 'PSK63') {
 		$('#rst_sent').val('599');
 		$('#rst_rcvd').val('599');
 	} else {
