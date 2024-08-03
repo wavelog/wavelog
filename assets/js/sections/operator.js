@@ -4,6 +4,16 @@ $(document).ready(function () {
 			saveOperator();
 		}
 	});
+
+	setTimeout(function () {
+        if (localStorage.getItem('operator_callsign')) {
+            $('#operator_callsign').val(localStorage.getItem('operator_callsign'));
+        }
+
+        if (localStorage.getItem('operator_firstname')) {
+            $('#operator_firstname').val(localStorage.getItem('operator_firstname'));
+        }
+    }, 200);
 });
 
 function displayOperatorDialog() {
@@ -52,4 +62,7 @@ function saveOperator() {
 	} else {
 		operatorInput.addClass("is-invalid");
 	}
+
+	localStorage.setItem('operator_callsign', operatorCallsign);
+	localStorage.setItem('operator_firstname', operatorFirstname);
 }
