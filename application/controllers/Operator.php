@@ -14,7 +14,9 @@ class Operator extends CI_Controller {
     public function saveOperator() {
 
         $operator = ['operator_callsign' => $this->security->xss_clean(strtoupper($this->input->post('operator_callsign')))];
+        $op_firstname = ['operator_firstname' => $this->security->xss_clean($this->input->post('operator_firstname'))];
 
         $this->session->set_userdata($operator);
+        $this->session->set_userdata($op_firstname);
     }
 }

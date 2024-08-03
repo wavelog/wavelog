@@ -15,6 +15,9 @@
                             <div class="invalid-feedback">
                                 <?= __("You have to provide your personal callsign."); ?>
                             </div>
+                            <br>
+                            <p>Dein Vorname: </p>
+                            <input type="text" class="form-control w-auto" id="operator_firstname" name="operator_firstname">
                         </div>
                     </div>
                 </div>
