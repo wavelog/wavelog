@@ -555,7 +555,6 @@ class API extends CI_Controller {
 		// Special Case: Yaesu Radio's use CW-U and CW-L which aren't official ADIF Modes. We override this here to CW
 		if (isset($obj['mode']) && (strtoupper($obj['mode']) == 'CW-U' || strtoupper($obj['mode']) == 'CW-L')) {
 			$obj['mode'] = 'CW';
-			log_message('info', 'CW-U and CW-L are not official adif modes. Therefore the mode is overwritten to CW');
 		}
 
 		// Store Result to Database
