@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-08-01 15:48+0000\n"
-"PO-Revision-Date: 2024-07-31 11:18+0000\n"
+"PO-Revision-Date: 2024-08-04 07:08+0000\n"
 "Last-Translator: BG6HJE <1753409828@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/zh_Hans/>\n"
@@ -5340,7 +5340,7 @@ msgstr "数据库迁移出错！"
 
 #: application/views/debug/index.php:45
 msgid "Migration is outdated and locked!"
-msgstr ""
+msgstr "迁移已过时且已锁定！"
 
 #: application/views/debug/index.php:46
 #, php-format
@@ -5350,16 +5350,19 @@ msgid ""
 "past failed process. Check the folder %s for a file called %s and remove "
 "this file to force the migration to run again."
 msgstr ""
+"当前的迁移版本不正确。请重新加载此页面。如果警告仍然存在，可能是由于之前的失"
+"败进程导致迁移被锁定。请检查文件夹%s中的%s文件并删除该文件以强制迁移重新运行"
+"。"
 
 #: application/views/debug/index.php:47
 #, php-format
 msgid "Current migration is %s"
-msgstr ""
+msgstr "当前迁移为 %s"
 
 #: application/views/debug/index.php:48
 #, php-format
 msgid "Migration should be %s"
-msgstr ""
+msgstr "迁移应该是%s"
 
 #: application/views/debug/index.php:53
 msgid "Environment"
