@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-08-01 15:48+0000\n"
-"PO-Revision-Date: 2024-07-31 11:18+0000\n"
-"Last-Translator: BG6HJE <1753409828@qq.com>\n"
+"PO-Revision-Date: 2024-08-04 19:40+0000\n"
+"Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -4846,7 +4846,7 @@ msgstr "Cron 管理器帮助管理员在浏览器内管理 Cron，摆脱 CLI 命
 msgid ""
 "To execute cron jobs based on the data below, remove all old cron jobs and "
 "create a new one:"
-msgstr "要依据以下数据执行 Cron，请删除所有旧 Cron 任务并创建一个新的："
+msgstr "请删除所有旧的 Cron 任务，使用如下的唯一 Cron 指令："
 
 #: application/views/cron/index.php:27 application/views/cron/index.php:31
 msgid "Status Master-Cron"
@@ -5062,7 +5062,7 @@ msgstr "Rain scatter"
 #: application/views/qso/edit_ajax.php:207 application/views/qso/index.php:419
 msgctxt "Propagation Mode"
 msgid "Satellite"
-msgstr "卫星"
+msgstr "Satellite"
 
 #: application/views/csv/index.php:111 application/views/dxatlas/index.php:111
 #: application/views/gridmap/index.php:60 application/views/kml/index.php:96
@@ -5340,7 +5340,7 @@ msgstr "数据库迁移出错！"
 
 #: application/views/debug/index.php:45
 msgid "Migration is outdated and locked!"
-msgstr ""
+msgstr "迁移已过时且已锁定！"
 
 #: application/views/debug/index.php:46
 #, php-format
@@ -5350,16 +5350,19 @@ msgid ""
 "past failed process. Check the folder %s for a file called %s and remove "
 "this file to force the migration to run again."
 msgstr ""
+"当前的迁移版本不正确。请重新加载此页面。如果警告仍然存在，可能是由于之前的失"
+"败进程导致迁移被锁定。请检查文件夹%s中的%s文件并删除该文件以强制迁移重新运行"
+"。"
 
 #: application/views/debug/index.php:47
 #, php-format
 msgid "Current migration is %s"
-msgstr ""
+msgstr "当前迁移为 %s"
 
 #: application/views/debug/index.php:48
 #, php-format
 msgid "Migration should be %s"
-msgstr ""
+msgstr "迁移应该是 %s"
 
 #: application/views/debug/index.php:53
 msgid "Environment"
@@ -5454,7 +5457,7 @@ msgstr "你使用了默认加密密钥。请修改它！"
 
 #: application/views/debug/index.php:194
 msgid "This will also enable the 'Keep me logged in' feature."
-msgstr "这也将启用“保持登录状态”功能。"
+msgstr "修改之后，“保持登录状态” 的功能将变为可用。"
 
 #: application/views/debug/index.php:195
 #, php-format
@@ -5558,27 +5561,27 @@ msgstr "更新"
 
 #: application/views/debug/index.php:498
 msgid "DOK file download"
-msgstr "下载DOK文件"
+msgstr "下载 DOK 文件"
 
 #: application/views/debug/index.php:503
 msgid "LoTW users download"
-msgstr "下载LoTW用户"
+msgstr "下载 LoTW 用户状态"
 
 #: application/views/debug/index.php:508
 msgid "POTA file download"
-msgstr "下载POTA文件"
+msgstr "下载 POTA 文件"
 
 #: application/views/debug/index.php:513
 msgid "SCP file download"
-msgstr "下载SCP文件"
+msgstr "下载 SCP 文件"
 
 #: application/views/debug/index.php:518
 msgid "SOTA file download"
-msgstr "下载SOTA文件"
+msgstr "下载 SOTA 文件"
 
 #: application/views/debug/index.php:523
 msgid "WWFF file download"
-msgstr "下载WWFF文件"
+msgstr "下载 WWFF 文件"
 
 #: application/views/debug/index.php:532
 msgid "QSO-DB Maintenance"
@@ -5616,7 +5619,7 @@ msgstr "重新分配"
 
 #: application/views/debug/index.php:603
 msgid "Every QSO in your Database is assigned to a station-profile (location)"
-msgstr "数据库中的每个 QSO 都分配给一个台站"
+msgstr "数据库中的所有 QSO 都有台站相关联"
 
 #: application/views/debug/index.php:603
 msgid "Everything ok"
@@ -7024,7 +7027,7 @@ msgstr "呼号： "
 
 #: application/views/logbookadvanced/index.php:512
 msgid "Dupes"
-msgstr "重复 QSO"
+msgstr "重复的 QSO"
 
 #: application/views/logbookadvanced/index.php:519
 msgid "Globe map"
@@ -9298,14 +9301,14 @@ msgstr "台站地址为电台使用地址，如您或朋友的 QTH，或移动�
 #: application/views/station_profile/index.php:16
 #: application/views/stationsetup/stationsetup.php:96
 msgid "Similar to logbooks, a station profile keeps a set of QSOs together."
-msgstr "和日志簿类似，台站地址是产生并关联 QSO 的集合体。"
+msgstr "和日志簿类似，一个台站地址会和其产生的 QSO 关联起来。"
 
 #: application/views/station_profile/index.php:17
 #: application/views/stationsetup/stationsetup.php:97
 msgid ""
 "Only one station may be active at a time. In the table below this is shown "
 "with the -Active Station- badge."
-msgstr "同一时间只允许启用一个台站地址，详见如下表格中的 -启用- 标志。"
+msgstr "同一时间只允许启用一个台站地址，详见如下表格中的 “启用” 标志。"
 
 #: application/views/station_profile/index.php:19
 #: application/views/stationsetup/stationsetup.php:101
@@ -9317,8 +9320,8 @@ msgstr "创建一个台站地址"
 msgid ""
 "Attention: You need to set an active station location. Go to Callsign-"
 ">Station Location to select one."
-msgstr ""
-"警告：应事先设置一个'启用'的台站地址，请在 '呼号'->'台站地址'中选择一个。"
+msgstr "警告：应事先设置一个 “启用” 中的台站地址，请在右上角 “您的呼号” -> “台站地址”"
+" 中选择一个。"
 
 #: application/views/station_profile/index.php:31
 #: application/views/stationsetup/stationsetup.php:111
@@ -9400,9 +9403,8 @@ msgid ""
 "see all the locations across one session from the logbook areas to the "
 "analytics. Great for when your operating in multiple locations but they are "
 "part of the same DXCC or VUCC Circle."
-msgstr ""
-"台站日志可以让您对日志进行分组，如您的电台想在多个 DXCC 或 VUCC 下通联，您可"
-"让一个日志关联到多个不同的台站地址。"
+msgstr "使用多个日志簿可以对日志进行分组管理，例如您的电台想在多个 DXCC 或 VUCC "
+"下通联。您可让一个日志簿关联到多个不同的台站地址。"
 
 #: application/views/stationsetup/stationsetup.php:32
 msgid "Linked locations"
@@ -9420,7 +9422,7 @@ msgstr "台站地址"
 msgid ""
 "The 'Linked' column shows if the station location is linked with the Active "
 "Logbook selected above."
-msgstr "上方的已启用日志，会显示在关联的台站地址的 '已绑定' 栏中。"
+msgstr "上方的已启用日志，会显示在关联的台站地址的 “已绑定” 栏中。"
 
 #: application/views/stationsetup/stationsetup.php:127
 msgid "Linked"

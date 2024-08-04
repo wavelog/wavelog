@@ -9,10 +9,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-08-01 15:48+0000\n"
-"PO-Revision-Date: 2024-07-30 12:45+0000\n"
+"PO-Revision-Date: 2024-08-02 19:03+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ru/>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -532,7 +532,7 @@ msgstr "Wavelog был успешно обновлен!"
 
 #: application/controllers/Debug.php:229
 msgid "Selfupdate() not available. Check the Error Log."
-msgstr ""
+msgstr "Selfupdate() недоступен. Проверьте журнал ошибок."
 
 #: application/controllers/Debug.php:273
 msgid ""
@@ -1864,7 +1864,7 @@ msgstr "Пользовательская статистика"
 #: application/views/interface_assets/header.php:136
 #: application/views/statistics/qsltable.php:5
 msgid "QSL Statistics"
-msgstr ""
+msgstr "Статистика QSL"
 
 #: application/controllers/Themes.php:27
 #: application/views/interface_assets/header.php:272
@@ -5495,7 +5495,7 @@ msgstr "Что-то не так с вашей миграцией в базе д�
 
 #: application/views/debug/index.php:45
 msgid "Migration is outdated and locked!"
-msgstr ""
+msgstr "Миграция устарела и заблокирована!"
 
 #: application/views/debug/index.php:46
 #, php-format
@@ -5505,16 +5505,21 @@ msgid ""
 "past failed process. Check the folder %s for a file called %s and remove "
 "this file to force the migration to run again."
 msgstr ""
+"Текущая версия миграции не является той, которой она должна быть. "
+"Перезагрузите эту страницу. Если это предупреждение сохраняется, ваша "
+"миграция, вероятно, заблокирована из-за предыдущего неудачного процесса. "
+"Проверьте папку %s на наличие файла с именем %s и удалите этот файл, чтобы "
+"принудительно запустить миграцию снова."
 
 #: application/views/debug/index.php:47
 #, php-format
 msgid "Current migration is %s"
-msgstr ""
+msgstr "Текущая миграция - %s"
 
 #: application/views/debug/index.php:48
 #, php-format
 msgid "Migration should be %s"
-msgstr ""
+msgstr "Миграция должна быть %s"
 
 #: application/views/debug/index.php:53
 msgid "Environment"
@@ -7216,7 +7221,7 @@ msgstr "QTH"
 
 #: application/views/logbookadvanced/index.php:506
 msgid "Callsign: "
-msgstr ""
+msgstr "Позывной: "
 
 #: application/views/logbookadvanced/index.php:512
 msgid "Dupes"

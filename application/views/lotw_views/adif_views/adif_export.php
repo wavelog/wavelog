@@ -66,9 +66,9 @@ $cert2 = str_replace("-----END CERTIFICATE-----", "", $cert1);
 
 $sign_string = "";
 
-// Adds CA Prov
+// Adds CA Province
 if($station_profile->state != "" && $station_profile->station_country == "CANADA") {
-	$sign_string .= strtoupper($station_profile->state);
+	$sign_string .= strtoupper($CI->lotw_ca_province_map($station_profile->state));
 }
 
 // Add CQ Zone
