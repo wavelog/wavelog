@@ -109,6 +109,11 @@
 			return $this->db->query($sql);
 		}
 
+		function last_updated() {
+			$sql = 'SELECT * FROM cat WHERE user_id =' . $this->session->userdata('user_id') . ' ORDER BY timestamp DESC LIMIT 1';
+			return $this->db->query($sql);
+		}
+
 		function delete($id) {
 			$this->db->where('id', $id);
 			$this->db->where('user_id', $this->session->userdata('user_id'));
