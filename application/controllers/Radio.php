@@ -41,14 +41,16 @@ class Radio extends CI_Controller {
 
 		$this->load->model('cat');
 		$query = $this->cat->status();
-		
+
 		if ($query->num_rows() > 0) {
 			echo "<thead><tr>";
 			echo "<th>" . __("Radio") . "</th>";
 			echo "<th>" . __("Frequency") . "</th>";
 			echo "<th>" . __("Mode") . "</th>";
 			echo "<th>" . __("Timestamp") . "</th>";
+			echo "<th></th>";
 			echo "<th>" . __("Options") . "</th>";
+			echo "<th></th>";
 			echo "</tr></thead><tbody>";
 			foreach ($query->result() as $row) {
 				echo "<tr>";
@@ -81,20 +83,37 @@ class Radio extends CI_Controller {
 
 				$phpdate = strtotime($row->timestamp);
 				echo "<td>" . date($custom_date_format . ' H:i:s', $phpdate) . "</td>";
-				echo "<td>
-							<a href=\"" . site_url('radio/set_default_radio') . "/" . $row->id . "\" class=\"btn btn-sm btn-info\"> <i class=\"fas fa-radio\"></i> " . __("Set as default radio") . "</a>
-							<a href=\"" . site_url('radio/delete') . "/" . $row->id . "\" class=\"btn btn-sm btn-danger\"> <i class=\"fas fa-trash-alt\"></i> " . __("Delete") . "</a></td>";
+
+				if ($this->session->userdata('radio') !== '' && $this->session->userdata('radio') == $row->id) {
+					echo '<td><i>' . __("(last used)") . '</i></td>';
+				} else {
+					echo '<td></td>';
+				}
+
+				$defaul_user_radio = $this->user_options_model->get_options('cat', array('option_name' => 'default_radio'))->row()->option_value ?? NULL;
+				if (!$defaul_user_radio) {
+					echo '<td><button id="default_radio_btn_' . $row->id . '" class="btn btn-sm btn-primary ld-ext-right" onclick="set_default_radio(' . $row->id . ')">' . __("Set as default radio") . '<div class="ld ld-ring ld-spin"></div></button</td>';
+				} else {
+					if ($defaul_user_radio !== $row->id) {
+						echo '<td><button id="default_radio_btn_' . $row->id . '" class="btn btn-sm btn-primary ld-ext-right" onclick="set_default_radio(' . $row->id . ')">' . __("Set as default radio") . '<div class="ld ld-ring ld-spin"></div></button</td>';
+					} else {
+						echo '<td><button id="default_radio_btn_' . $row->id . '" class="btn btn-sm btn-secondary ld-ext-right" onclick="release_default_radio(' . $row->id . ')">' . __("Release as default radio") . '<div class="ld ld-ring ld-spin"></div></button</td>';
+					}
+				}
+				echo "<td><a href=\"" . site_url('radio/delete') . "/" . $row->id . "\" class=\"btn btn-sm btn-danger\"> <i class=\"fas fa-trash-alt\"></i> " . __("Delete") . "</a></td>";
 				echo "</tr>";
 			}
 			echo "</tbody>";
 		} else {
 			echo "<thead><tr>";
-			echo "<td colspan=\"4\"><div class=\"alert alert-info text-center\">" . __("No CAT interfaced radios found.") . "</div></td>";
+			echo "<td colspan=\"6\"><div class=\"alert alert-info text-center\">" . __("No CAT interfaced radios found.") . "</div></td>";
 			echo "</tr></thead>";
 		}
 	}
 
 	function json($id) {
+
+		$clean_id = $this->security->xss_clean($id);
 
 		$this->load->model('user_model');
 
@@ -114,7 +133,7 @@ class Radio extends CI_Controller {
 
 			$this->load->model('cat');
 
-			$query = $this->cat->radio_status($id);
+			$query = $this->cat->radio_status($clean_id);
 
 			if ($query->num_rows() > 0) {
 				foreach ($query->result() as $row) {
@@ -229,6 +248,9 @@ class Radio extends CI_Controller {
 	}
 
 	function delete($id) {
+
+		$clean_id = $this->security->xss_clean($id);
+
 		// Check Auth
 		$this->load->model('user_model');
 		if (!$this->user_model->authorize(3)) {
@@ -238,11 +260,48 @@ class Radio extends CI_Controller {
 
 		$this->load->model('cat');
 
-		$this->cat->delete($id);
+		$this->cat->delete($clean_id);
+
+		if ($clean_id == $this->user_options_model->get_options('cat', array('option_name' => 'default_radio'))->row()->option_value ?? '') {
+			$this->release_default_radio();
+		}
 
 		$this->session->set_flashdata('message', 'Radio Profile Deleted');
 
 		session_write_close();
 		redirect('radio');
+	}
+
+	function set_default_radio() {
+
+		// we unset the current default radio
+		$this->release_default_radio();
+
+		// get the radio_id from POST
+		$clean_radio_id = $this->security->xss_clean($this->input->post('radio_id'));
+
+		// Check Auth
+		$this->load->model('user_model');
+		if (!$this->user_model->authorize(3)) {
+			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!');
+			redirect('dashboard');
+		}
+
+		// Set the user_option and session data
+		$this->user_options_model->set_option('cat', 'default_radio', array('radio_id' => $clean_radio_id));
+		$this->session->set_userdata('radio', $clean_radio_id);
+	}
+
+	function release_default_radio() {
+		// Check Auth
+		$this->load->model('user_model');
+		if (!$this->user_model->authorize(3)) {
+			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!');
+			redirect('dashboard');
+		}
+
+		// Unset the user_option and session data
+		$this->user_options_model->del_option('cat', 'default_radio');
+		$this->session->unset_userdata('radio');
 	}
 }
