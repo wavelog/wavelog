@@ -1,6 +1,7 @@
 name: Run the po generator script
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - dev
