@@ -276,9 +276,6 @@ class Radio extends CI_Controller {
 
 	function set_default_radio() {
 
-		// we unset the current default radio
-		$this->release_default_radio();
-
 		// get the radio_id from POST
 		$clean_radio_id = $this->security->xss_clean($this->input->post('radio_id'));
 
@@ -288,6 +285,9 @@ class Radio extends CI_Controller {
 			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!');
 			redirect('dashboard');
 		}
+
+		// we unset the current default radio
+		$this->release_default_radio();
 
 		// Set the user_option and session data
 		$this->user_options_model->set_option('cat', 'default_radio', array('radio_id' => $clean_radio_id));
