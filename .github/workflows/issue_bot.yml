@@ -1,0 +1,24 @@
+name: Issue Bot
+on:
+  workflow_dispatch:
+  push:
+    branches: dev
+  schedule:
+    - cron: "30 1 * * *"
+
+jobs:
+  close-issues:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/stale@v9.0.0
+        with:
+          any-of-labels: "wait4close"
+          exempt-all-milestones: true
+          days-before-issue-close: 14
+          close-issue-message: "This issue was closed because it has been inactive for 14 days since being marked as 'wait4close'."
+          days-before-pr-stale: -1
+          days-before-pr-close: -1
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          debug-only: true
