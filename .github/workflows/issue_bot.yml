@@ -18,8 +18,10 @@ jobs:
           exempt-all-milestones: true
           exempt-issue-labels: "hold"
           days-before-issue-stale: 5
-          days-before-issue-close: 0
-          close-issue-message: "This issue was closed because it has been inactive for 5 days since being marked as 'wait 4 close'."
+          days-before-issue-close: 3
+          stale-issue-label: "stale"
+          stale-issue-message: 'This issue is being automatically closed after 3 days.'
+          close-issue-message: "This issue was closed because it has been inactive for 3 days since being marked as 'stale'."
           days-before-pr-stale: -1
           days-before-pr-close: -1
           repo-token: ${{ secrets.GITHUB_TOKEN }}
