@@ -40,11 +40,11 @@
 		if ($query->num_rows() > 0)
 		{
 			echo "<thead><tr>";
-				echo "<th>Radio</th>";
-				echo "<th>Frequency</th>";
-				echo "<th>Mode</th>";
-				echo "<th>Timestamp</th>" ;
-				echo "<th>Options</th>";
+				echo "<th>" . __("Radio") . "</th>";
+				echo "<th>" . __("Frequency") . "</th>";
+				echo "<th>" . __("Mode") . "</th>";
+				echo "<th>" . __("Timestamp") . "</th>" ;
+				echo "<th>" . __("Options") . "</th>";
 			echo "</tr></thead><tbody>";
 			foreach ($query->result() as $row)
 			{
@@ -69,13 +69,13 @@
 
 				$phpdate = strtotime($row->timestamp);
 				echo "<td>".date('H:i:s d-m-y', $phpdate)."</td>" ;
-				echo "<td><a href=\"".site_url('radio/delete')."/".$row->id."\" class=\"btn btn-sm btn-danger\"> <i class=\"fas fa-trash-alt\"></i> Delete</a></td>" ;
+				echo "<td><a href=\"".site_url('radio/delete')."/".$row->id."\" class=\"btn btn-sm btn-danger\"> <i class=\"fas fa-trash-alt\"></i> " . __("Delete") . "</a></td>" ;
 				echo "</tr>";
 			}
 			echo "</tbody>";
 		} else {
 			echo "<thead><tr>";
-				echo "<td colspan=\"4\">No CAT Interfaced radios found.</td>";
+				echo "<td colspan=\"4\">" . __("No CAT Interfaced radios found") . ".</td>";
 			echo "</tr></thead>";
 		}
 
