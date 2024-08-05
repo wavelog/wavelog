@@ -5,6 +5,7 @@ $(document).ready(function () {
         $.get(base_url + 'index.php/radio/status/', function (result) {
             $('.status').html(result);
         });
+        $('#radioResultsLoading').hide();
     }, 2000);
 
 });
