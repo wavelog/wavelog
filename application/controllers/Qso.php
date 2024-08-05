@@ -18,6 +18,11 @@ class QSO extends CI_Controller {
 		$this->load->model('bands');
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 
+        // Getting the live/post mode from GET command
+        // 0 = live
+        // 1 = post (manual)
+        $data['manual_mode'] = $this->security->xss_clean($this->input->get('manual'));
+
 		$data['active_station_profile'] = $this->stations->find_active();
 
 		$data['notice'] = false;
