@@ -24,7 +24,7 @@
 	    <div class="table-responsive">
 		    <!-- Display Radio Statuses -->
 			<table class="table table-sm table-condensated table-striped status"></table>
-			<h3 id="radioResultsLoading" class="text-center"><?= __("Please wait..."); ?></h3>
+			<h3 id="radioResultsLoading" class="text-center"><div class="me-3 ld ld-ring ld-spin"></div><?= __("Please wait..."); ?></h3>
 		</div>
 	  </div>
 	</div>

@@ -87,7 +87,7 @@ class Radio extends CI_Controller {
 			echo "</tbody>";
 		} else {
 			echo "<thead><tr>";
-			echo "<td colspan=\"4\">" . __("No CAT Interfaced radios found") . ".</td>";
+			echo "<td colspan=\"4\"><div class=\"alert alert-info text-center\">" . __("No CAT interfaced radios found.") . "</div></td>";
 			echo "</tr></thead>";
 		}
 	}
