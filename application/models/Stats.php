@@ -688,6 +688,20 @@
 
 		return $modes;
 	}
+
+	function azeldata() {
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+		if (!$logbooks_locations_array) {
+			return null;
+		}
+
+		$sql = "SELECT count(*) qsos, round(COL_ANT_EL) elevation FROM logbook where station_id in (" . implode(',',$logbooks_locations_array) . ") and col_ant_el > 0 group by round(col_ant_el)";
+
+		$result = $this->db->query($sql);
+		return $result->result();
+	}
 }
 
 ?>
