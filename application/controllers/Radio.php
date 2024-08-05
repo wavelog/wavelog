@@ -17,9 +17,14 @@
 		// load the view
 		$data['page_title'] = __("Hardware Interfaces");
 
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/sections/radio.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/radio.js")),
+		];
+
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('radio/index');
-		$this->load->view('interface_assets/footer');
+		$this->load->view('interface_assets/footer', $footerData);
 	}
 
 	function status() {

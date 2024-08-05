@@ -778,24 +778,6 @@ function showActivatorsMap(call, count, grids) {
 <?php } ?>
 
 
-
-<?php if ($this->uri->segment(1) == "radio") { ?>
-<!-- If this is the admin/radio page run the JS -->
-<script type="text/javascript">
-    $(document).ready(function(){
-        setInterval(function() {
-            // Get Mode
-            $.get('radio/status/', function(result) {
-                    //$('.status').append(result);
-                    $('.status').html(result);
-            });
-        }, 2000);
- });
-</script>
-<?php } ?>
-
-
-
 <script type="text/javascript">
   $(function () {
      $('[data-bs-toggle="tooltip"]').tooltip()
