@@ -1,8 +1,6 @@
 name: Issue Bot
 on:
   workflow_dispatch:
-  push:
-    branches: dev
   schedule:
     - cron: "20 */12 * * *"
 
