@@ -100,7 +100,7 @@ class Eqslmethods_model extends CI_Model {
         $adif .= "%3A";
         $adif .= strlen($data['user_eqsl_password']);
         $adif .= "%3E";
-        $adif .= urlencode($data['user_eqsl_password']);
+        $adif .= urlencode(htmlspecialchars($data['user_eqsl_password']));
         $adif .= "%20";
 
         $adif .= "%3C";
