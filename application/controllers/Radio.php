@@ -81,7 +81,9 @@ class Radio extends CI_Controller {
 
 				$phpdate = strtotime($row->timestamp);
 				echo "<td>" . date($custom_date_format . ' H:i:s', $phpdate) . "</td>";
-				echo "<td><a href=\"" . site_url('radio/delete') . "/" . $row->id . "\" class=\"btn btn-sm btn-danger\"> <i class=\"fas fa-trash-alt\"></i> " . __("Delete") . "</a></td>";
+				echo "<td>
+							<a href=\"" . site_url('radio/set_default_radio') . "/" . $row->id . "\" class=\"btn btn-sm btn-info\"> <i class=\"fas fa-radio\"></i> " . __("Set as default radio") . "</a>
+							<a href=\"" . site_url('radio/delete') . "/" . $row->id . "\" class=\"btn btn-sm btn-danger\"> <i class=\"fas fa-trash-alt\"></i> " . __("Delete") . "</a></td>";
 				echo "</tr>";
 			}
 			echo "</tbody>";
