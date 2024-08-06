@@ -1,8 +1,8 @@
 name: Issue Bot
 on:
-  workflow_dispatch:
   schedule:
     - cron: "20 */12 * * *"
+  workflow_dispatch:
 
 jobs:
   close-issues:
