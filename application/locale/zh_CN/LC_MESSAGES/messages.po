@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-08-06 11:48+0000\n"
-"PO-Revision-Date: 2024-08-04 19:40+0000\n"
+"PO-Revision-Date: 2024-08-06 18:03+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/zh_Hans/>\n"
@@ -5349,14 +5349,16 @@ msgid ""
 "page after %s seconds. If this warning persists, your migration is likely "
 "locked due to a previously failed process. Delete the file %s to force the "
 "migration to run again."
-msgstr ""
+msgstr "迁移文件版本不匹配，%s "
+"秒后刷新页面。如此提示持续出现，可能由于上次更新之中出现了错误，请删除 %s "
+"文件，强制重新迁移。"
 
 #: application/views/debug/index.php:47
 #, php-format
 msgid ""
 "Check this wiki article <u><a href='%s' target='_blank'>here</a></u> for "
 "more information."
-msgstr ""
+msgstr "请查看 <u><a href='%s' target='_blank'>Wiki</a></u>。"
 
 #: application/views/debug/index.php:48
 #, php-format
