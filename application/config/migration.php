@@ -37,5 +37,20 @@ $config['migration_version'] = 211;
 $config['migration_path'] = APPPATH . 'migrations/';
 
 
+/*
+|--------------------------------------------------------------------------
+| Migration Lockfile
+|--------------------------------------------------------------------------
+|
+| Path to the migration lockfile.
+| This lockfile prevents migrations from running twice
+|
+*/
+$config['migration_lockfile'] = sys_get_temp_dir() . '/.migration_running';
+
+// the maximum age of the lockfile in seconds
+$config['migration_lf_maxage'] = 300;
+
+
 /* End of file migration.php */
 /* Location: ./application/config/migration.php */
