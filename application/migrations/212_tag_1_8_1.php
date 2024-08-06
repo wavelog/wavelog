@@ -36,9 +36,5 @@ class Migration_tag_1_8_1 extends CI_Migration {
     {
         $this->db->where('option_name', 'version');
         $this->db->update('options', array('option_value' => '1.8'));
-
-        // Revert the DB adjustment
-        $this->db->query("ALTER TABLE ".$this->config->item('table_name')." MODIFY COLUMN `COL_POTA_REF` VARCHAR(30) DEFAULT NULL;");
-        $this->db->query("ALTER TABLE ".$this->config->item('table_name')." MODIFY COLUMN `COL_MY_POTA_REF` VARCHAR(50) DEFAULT NULL;");
     }
 }
