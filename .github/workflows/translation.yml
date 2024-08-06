@@ -7,7 +7,7 @@ on:
       - dev
 
 jobs:
-  build:
+  run_scripts:
     if: github.repository == 'wavelog/wavelog'
     runs-on: ubuntu-latest
 

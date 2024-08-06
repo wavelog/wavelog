@@ -70,9 +70,11 @@ sed -i '8d' "$TEMP_POT_FILE"
 # Compare the new POT file with the existing one (excluding the POT Creation Date)
 if ! diff -I 'POT-Creation-Date' "$TEMP_POT_FILE" "$POT_FILE" >/dev/null; then
     echo "Updating POT file with new translations."
+    echo " "
     mv "$TEMP_POT_FILE" "$POT_FILE"
 else
     echo "No changes detected in translations. POT file remains unchanged."
+    echo " "
     rm "$TEMP_POT_FILE"
 fi
 
