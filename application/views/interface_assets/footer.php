@@ -963,7 +963,7 @@ $($('#callsign')).on('keypress',function(e) {
 
   <script type="text/javascript">
 
-    var manual = <?php echo $_GET['manual']; ?>;
+    var manual = <?php echo $manual_mode; ?>;
 
 <?php if ($this->session->userdata('user_qso_end_times')  == 1) { ?>
     $('#callsign').focusout(function() {
@@ -2456,7 +2456,7 @@ function viewEqsl(picture, callsign) {
 </script>
 <?php if ($this->uri->segment(1) == "contesting" && ($this->uri->segment(2) != "add" && $this->uri->segment(2) != "edit")) { ?>
     <script>
-        var manual = <?php echo $_GET['manual']; ?>;
+        var manual = <?php echo $manual_mode; ?>;
     </script>
     <script src="<?php echo base_url() ;?>assets/js/sections/contesting.js?v2"></script>
 <?php } ?>

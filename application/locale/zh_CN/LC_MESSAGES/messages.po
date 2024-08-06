@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-05 13:04+0000\n"
+"POT-Creation-Date: 2024-08-06 11:48+0000\n"
 "PO-Revision-Date: 2024-08-04 19:40+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/"
@@ -460,17 +460,17 @@ msgstr "Clublog 未配置用户账户。"
 msgid "Contest Calendar"
 msgstr "竞赛日志"
 
-#: application/controllers/Contesting.php:36
+#: application/controllers/Contesting.php:46
 #: application/views/contesting/index.php:3
 msgid "Contest Logging"
 msgstr "竞赛日志"
 
-#: application/controllers/Contesting.php:101
+#: application/controllers/Contesting.php:111
 #: application/views/interface_assets/header.php:268
 msgid "Contests"
 msgstr "比赛"
 
-#: application/controllers/Contesting.php:115
+#: application/controllers/Contesting.php:125
 msgid "Update Contest"
 msgstr "更新竞赛"
 
@@ -504,35 +504,35 @@ msgstr "仪表板"
 msgid "Number of days with QSOs each year"
 msgstr "本年QSO总数"
 
-#: application/controllers/Debug.php:91
+#: application/controllers/Debug.php:93
 msgid "Debug"
 msgstr "Debug"
 
-#: application/controllers/Debug.php:130
+#: application/controllers/Debug.php:132
 msgid "Migrate data now"
 msgstr "立即迁移数据"
 
-#: application/controllers/Debug.php:133
+#: application/controllers/Debug.php:135
 msgid "Migration already done. Run again?"
 msgstr "迁移已完成，是否重新迁移？"
 
-#: application/controllers/Debug.php:137
+#: application/controllers/Debug.php:139
 msgid "No data to migrate"
 msgstr "没有可迁移的数据"
 
-#: application/controllers/Debug.php:141 application/controllers/Debug.php:146
+#: application/controllers/Debug.php:143 application/controllers/Debug.php:148
 msgid "No migration possible"
 msgstr "无法迁移"
 
-#: application/controllers/Debug.php:211
+#: application/controllers/Debug.php:213
 msgid "Wavelog was updated successfully!"
 msgstr "Wavelog已更新成功！"
 
-#: application/controllers/Debug.php:229
+#: application/controllers/Debug.php:231
 msgid "Selfupdate() not available. Check the Error Log."
 msgstr "Selfupdate()不可用。请检查错误日志。"
 
-#: application/controllers/Debug.php:273
+#: application/controllers/Debug.php:275
 msgid ""
 "File Migration was successfull, but please check also manually. If "
 "everything seems right you can delete the folders 'assets/qslcard' and "
@@ -541,7 +541,7 @@ msgstr ""
 "文件迁移成功，请手动检查是否完整。如果一切正常，您可以删除文件夹“assets/"
 "qslcard”和“images/eqsl_card_images”。"
 
-#: application/controllers/Debug.php:276
+#: application/controllers/Debug.php:278
 msgid "File Migration failed. Please check the Error Log."
 msgstr "文件迁移失败。请检查错误日志。"
 
@@ -912,7 +912,7 @@ msgstr "Clublog"
 #: application/views/contesting/index.php:203
 #: application/views/continents/index.php:39 application/views/csv/index.php:42
 #: application/views/dashboard/index.php:4
-#: application/views/debug/index.php:547 application/views/dxatlas/index.php:42
+#: application/views/debug/index.php:548 application/views/dxatlas/index.php:42
 #: application/views/eqsl/analysis.php:39
 #: application/views/eqsl/download.php:39 application/views/eqsl/result.php:36
 #: application/views/eqslcard/index.php:29
@@ -1186,7 +1186,7 @@ msgstr "距离"
 #: application/views/contesting/index.php:202
 #: application/views/continents/index.php:30 application/views/csv/index.php:31
 #: application/views/dashboard/index.php:15
-#: application/views/debug/index.php:548 application/views/dxatlas/index.php:31
+#: application/views/debug/index.php:549 application/views/dxatlas/index.php:31
 #: application/views/eqsl/download.php:41
 #: application/views/eqslcard/index.php:32
 #: application/views/gridmap/index.php:10 application/views/kml/index.php:19
@@ -1534,7 +1534,7 @@ msgstr "QSL 卡片管理"
 msgid "Print Requested QSLs"
 msgstr "打印请求的QSL卡片"
 
-#: application/controllers/Qso.php:91
+#: application/controllers/Qso.php:101
 msgid "Add QSO"
 msgstr "添加 QSO"
 
@@ -2516,7 +2516,7 @@ msgstr "与 DCL 相比，日志中 DOK 的数据不同"
 #: application/views/contesting/index.php:42
 #: application/views/contesting/index.php:200
 #: application/views/dashboard/index.php:147
-#: application/views/debug/index.php:544 application/views/eqsl/analysis.php:36
+#: application/views/debug/index.php:545 application/views/eqsl/analysis.php:36
 #: application/views/eqsl/download.php:36 application/views/eqsl/result.php:33
 #: application/views/eqslcard/index.php:30
 #: application/views/hamsat/index.php:28
@@ -2558,7 +2558,7 @@ msgstr "日期"
 #: application/views/contesting/index.php:47
 #: application/views/contesting/index.php:200
 #: application/views/dashboard/index.php:150
-#: application/views/debug/index.php:545 application/views/eqsl/analysis.php:37
+#: application/views/debug/index.php:546 application/views/eqsl/analysis.php:37
 #: application/views/eqsl/download.php:37 application/views/eqsl/result.php:34
 #: application/views/eqslcard/index.php:31
 #: application/views/hamsat/index.php:29 application/views/oqrs/qsolist.php:8
@@ -2584,7 +2584,7 @@ msgstr "时间"
 #: application/views/awards/vucc/band.php:18
 #: application/views/bandmap/list.php:111
 #: application/views/contesting/index.php:201
-#: application/views/debug/index.php:546 application/views/debug/index.php:581
+#: application/views/debug/index.php:547 application/views/debug/index.php:582
 #: application/views/dxcalendar/index.php:12
 #: application/views/eqsl/analysis.php:38
 #: application/views/eqsl/download.php:38 application/views/eqsl/result.php:35
@@ -2635,8 +2635,8 @@ msgid "Maximum file upload size is "
 msgstr "最大上传文件大小是 "
 
 #: application/views/adif/import.php:56 application/views/adif/import.php:220
-#: application/views/adif/import.php:258 application/views/debug/index.php:174
-#: application/views/debug/index.php:191 application/views/debug/index.php:536
+#: application/views/adif/import.php:258 application/views/debug/index.php:175
+#: application/views/debug/index.php:192 application/views/debug/index.php:537
 #: application/views/hrdlog/export.php:25
 #: application/views/hrdlog/export.php:74
 #: application/views/interface_assets/footer.php:34
@@ -4891,10 +4891,10 @@ msgid "disabled"
 msgstr "禁用的"
 
 #: application/views/cron/index.php:79 application/views/cron/index.php:81
-#: application/views/cron/index.php:83 application/views/debug/index.php:493
-#: application/views/debug/index.php:499 application/views/debug/index.php:504
-#: application/views/debug/index.php:509 application/views/debug/index.php:514
-#: application/views/debug/index.php:519 application/views/debug/index.php:524
+#: application/views/cron/index.php:83 application/views/debug/index.php:494
+#: application/views/debug/index.php:500 application/views/debug/index.php:505
+#: application/views/debug/index.php:510 application/views/debug/index.php:515
+#: application/views/debug/index.php:520 application/views/debug/index.php:525
 msgid "never"
 msgstr "从不"
 
@@ -5346,120 +5346,124 @@ msgstr "迁移已过时且已锁定！"
 #, php-format
 msgid ""
 "The current migration is not the version it is supposed to be. Reload this "
-"page. If this warning persists, your migration is probably locked due to a "
-"past failed process. Check the folder %s for a file called %s and remove "
-"this file to force the migration to run again."
+"page after %s seconds. If this warning persists, your migration is likely "
+"locked due to a previously failed process. Delete the file %s to force the "
+"migration to run again."
 msgstr ""
-"当前的迁移版本不正确。请重新加载此页面。如果警告仍然存在，可能是由于之前的失"
-"败进程导致迁移被锁定。请检查文件夹%s中的%s文件并删除该文件以强制迁移重新运"
-"行。"
 
 #: application/views/debug/index.php:47
+#, php-format
+msgid ""
+"Check this wiki article <u><a href='%s' target='_blank'>here</a></u> for "
+"more information."
+msgstr ""
+
+#: application/views/debug/index.php:48
 #, php-format
 msgid "Current migration is %s"
 msgstr "当前迁移为 %s"
 
-#: application/views/debug/index.php:48
+#: application/views/debug/index.php:49
 #, php-format
 msgid "Migration should be %s"
 msgstr "迁移应该是 %s"
 
-#: application/views/debug/index.php:53
+#: application/views/debug/index.php:54
 msgid "Environment"
 msgstr "环境"
 
-#: application/views/debug/index.php:61
+#: application/views/debug/index.php:62
 msgid "Total QSO on this instance"
 msgstr "本站 QSO 总数量"
 
-#: application/views/debug/index.php:69
+#: application/views/debug/index.php:70
 msgid "Server Information"
 msgstr "服务器信息"
 
-#: application/views/debug/index.php:73
+#: application/views/debug/index.php:74
 msgid "Server Software"
 msgstr "服务器软件"
 
-#: application/views/debug/index.php:78
+#: application/views/debug/index.php:79
 msgid "PHP Version"
 msgstr "PHP版本"
 
-#: application/views/debug/index.php:84
+#: application/views/debug/index.php:85
 msgid "Deprecated"
 msgstr "已废弃"
 
-#: application/views/debug/index.php:91
+#: application/views/debug/index.php:92
 msgid "MySQL Version"
 msgstr "MySQL版本"
 
-#: application/views/debug/index.php:95
+#: application/views/debug/index.php:96
 msgid "Codeigniter Version"
 msgstr "Codeigniter 版本"
 
-#: application/views/debug/index.php:103
+#: application/views/debug/index.php:104
 msgid "Folder Permissions"
 msgstr "文件夹权限"
 
-#: application/views/debug/index.php:105
+#: application/views/debug/index.php:106
 msgid ""
 "This verifies that the folders used by Wavelog have read and write "
 "permissions by PHP."
 msgstr "这验证了Wavelog使用的文件夹是否具有PHP的读写权限。"
 
-#: application/views/debug/index.php:111 application/views/debug/index.php:122
-#: application/views/debug/index.php:133 application/views/debug/index.php:144
-#: application/views/debug/index.php:156
+#: application/views/debug/index.php:112 application/views/debug/index.php:123
+#: application/views/debug/index.php:134 application/views/debug/index.php:145
+#: application/views/debug/index.php:157
 msgid "Success"
 msgstr "成功"
 
-#: application/views/debug/index.php:113 application/views/debug/index.php:124
-#: application/views/debug/index.php:135 application/views/debug/index.php:146
-#: application/views/debug/index.php:158
+#: application/views/debug/index.php:114 application/views/debug/index.php:125
+#: application/views/debug/index.php:136 application/views/debug/index.php:147
+#: application/views/debug/index.php:159
 msgid "Failed"
 msgstr "失败"
 
-#: application/views/debug/index.php:168
+#: application/views/debug/index.php:169
 msgid "Config Maintenance"
 msgstr "维护配置"
 
-#: application/views/debug/index.php:174
+#: application/views/debug/index.php:175
 msgid "Your authentication mode is outdated and possibly unsafe"
 msgstr "您的认证方式已过时，可能存在风险隐患"
 
-#: application/views/debug/index.php:176 application/views/debug/index.php:193
+#: application/views/debug/index.php:177 application/views/debug/index.php:194
 #, php-format
 msgid "Please edit your %s File:"
 msgstr "请编辑您的%s文件："
 
-#: application/views/debug/index.php:177
+#: application/views/debug/index.php:178
 msgid ""
 "Go to your application/config Folder and compare config.sample.php with your "
 "config.php"
 msgstr ""
 "请前往 application/config 文件夹，根据 config.sample.php 修改成 config.php"
 
-#: application/views/debug/index.php:178
+#: application/views/debug/index.php:179
 #, php-format
 msgid "Change %s to the value %s (Strongly recommended)"
 msgstr "将%s改为%s（强烈建议）"
 
-#: application/views/debug/index.php:184
+#: application/views/debug/index.php:185
 msgid "Authentication Mode is set correctly"
 msgstr "认证方式设置正确"
 
-#: application/views/debug/index.php:184 application/views/debug/index.php:201
+#: application/views/debug/index.php:185 application/views/debug/index.php:202
 msgid "Ok"
 msgstr "好的"
 
-#: application/views/debug/index.php:191
+#: application/views/debug/index.php:192
 msgid "You use the default encryption key. You should change it!"
 msgstr "你使用了默认加密密钥。请修改它！"
 
-#: application/views/debug/index.php:194
+#: application/views/debug/index.php:195
 msgid "This will also enable the 'Keep me logged in' feature."
 msgstr "修改之后，“保持登录状态” 的功能将变为可用。"
 
-#: application/views/debug/index.php:195
+#: application/views/debug/index.php:196
 #, php-format
 msgid ""
 "Change the value of %s to a new encryption key other then "
@@ -5468,133 +5472,133 @@ msgstr ""
 "将 %s 的值改为新的加密密钥，而非 “flossie1234555541”，选择一个安全的长密码。"
 "(强烈建议）"
 
-#: application/views/debug/index.php:201
+#: application/views/debug/index.php:202
 msgid "You do not use the default encryption key"
 msgstr "你没有使用默认加密密钥"
 
-#: application/views/debug/index.php:208
+#: application/views/debug/index.php:209
 msgid "Migrate Userdata"
 msgstr "迁移用户数据"
 
-#: application/views/debug/index.php:210
+#: application/views/debug/index.php:211
 msgid ""
 "Here you can migrate existing QSL cards and eQSL cards to the new userdata "
 "folder."
 msgstr "您可以在此将现有的QSL卡和eQSL卡迁移到新的用户数据文件夹。"
 
-#: application/views/debug/index.php:223
+#: application/views/debug/index.php:224
 msgid "Modules"
 msgstr "模块"
 
-#: application/views/debug/index.php:229 application/views/debug/index.php:240
-#: application/views/debug/index.php:251 application/views/debug/index.php:262
-#: application/views/debug/index.php:273
+#: application/views/debug/index.php:230 application/views/debug/index.php:241
+#: application/views/debug/index.php:252 application/views/debug/index.php:263
+#: application/views/debug/index.php:274
 msgid "Installed"
 msgstr "已安装"
 
-#: application/views/debug/index.php:231 application/views/debug/index.php:242
-#: application/views/debug/index.php:253 application/views/debug/index.php:264
-#: application/views/debug/index.php:275
+#: application/views/debug/index.php:232 application/views/debug/index.php:243
+#: application/views/debug/index.php:254 application/views/debug/index.php:265
+#: application/views/debug/index.php:276
 msgid "Not Installed"
 msgstr "未安装"
 
-#: application/views/debug/index.php:282 application/views/qso/index.php:654
+#: application/views/debug/index.php:283 application/views/qso/index.php:654
 msgid "Settings"
 msgstr "设置"
 
-#: application/views/debug/index.php:411
+#: application/views/debug/index.php:412
 msgid "Git Information"
 msgstr "Git信息"
 
-#: application/views/debug/index.php:415
+#: application/views/debug/index.php:416
 msgid "Branch"
 msgstr "分支"
 
-#: application/views/debug/index.php:426 application/views/debug/index.php:437
-#: application/views/debug/index.php:447
+#: application/views/debug/index.php:427 application/views/debug/index.php:438
+#: application/views/debug/index.php:448
 msgid "n/a"
 msgstr "n/a"
 
-#: application/views/debug/index.php:432
+#: application/views/debug/index.php:433
 msgid "Commit"
 msgstr "Commit"
 
-#: application/views/debug/index.php:442
+#: application/views/debug/index.php:443
 msgid "Tag"
 msgstr "标签"
 
-#: application/views/debug/index.php:452
+#: application/views/debug/index.php:453
 msgid "Last Fetch"
 msgstr "上次抓取"
 
-#: application/views/debug/index.php:464
+#: application/views/debug/index.php:465
 msgid "Check for new version"
 msgstr "检查新版本"
 
-#: application/views/debug/index.php:465
+#: application/views/debug/index.php:466
 msgid "Update now"
 msgstr "现在升级"
 
-#: application/views/debug/index.php:483
+#: application/views/debug/index.php:484
 msgid "File download date"
 msgstr "文件下载日期"
 
-#: application/views/debug/index.php:487
+#: application/views/debug/index.php:488
 msgid "File"
 msgstr "文件"
 
-#: application/views/debug/index.php:488
+#: application/views/debug/index.php:489
 msgid "Last update"
 msgstr "上次更新"
 
-#: application/views/debug/index.php:492
+#: application/views/debug/index.php:493
 msgid "DXCC update from Club Log"
 msgstr "DXCC 更新（ClubLog）"
 
-#: application/views/debug/index.php:494 application/views/debug/index.php:500
-#: application/views/debug/index.php:505 application/views/debug/index.php:510
-#: application/views/debug/index.php:515 application/views/debug/index.php:520
-#: application/views/debug/index.php:525
+#: application/views/debug/index.php:495 application/views/debug/index.php:501
+#: application/views/debug/index.php:506 application/views/debug/index.php:511
+#: application/views/debug/index.php:516 application/views/debug/index.php:521
+#: application/views/debug/index.php:526
 #: application/views/station_profile/edit.php:22
 msgid "Update"
 msgstr "更新"
 
-#: application/views/debug/index.php:498
+#: application/views/debug/index.php:499
 msgid "DOK file download"
 msgstr "下载 DOK 文件"
 
-#: application/views/debug/index.php:503
+#: application/views/debug/index.php:504
 msgid "LoTW users download"
 msgstr "下载 LoTW 用户状态"
 
-#: application/views/debug/index.php:508
+#: application/views/debug/index.php:509
 msgid "POTA file download"
 msgstr "下载 POTA 文件"
 
-#: application/views/debug/index.php:513
+#: application/views/debug/index.php:514
 msgid "SCP file download"
 msgstr "下载 SCP 文件"
 
-#: application/views/debug/index.php:518
+#: application/views/debug/index.php:519
 msgid "SOTA file download"
 msgstr "下载 SOTA 文件"
 
-#: application/views/debug/index.php:523
+#: application/views/debug/index.php:524
 msgid "WWFF file download"
 msgstr "下载 WWFF 文件"
 
-#: application/views/debug/index.php:532
+#: application/views/debug/index.php:533
 msgid "QSO-DB Maintenance"
 msgstr "QSO-DB 维护"
 
-#: application/views/debug/index.php:536
+#: application/views/debug/index.php:537
 #, php-format
 msgid "The Database contains %d QSO without a station-profile (location)"
 msgid_plural ""
 "The Database contains %d QSOs without a station-profile (location)"
 msgstr[0] "数据库中共有%d个没有台站信息（位置）的QSO"
 
-#: application/views/debug/index.php:549
+#: application/views/debug/index.php:550
 #: application/views/public_search/result.php:17
 #: application/views/station_profile/create.php:57
 #: application/views/station_profile/edit.php:46
@@ -5604,88 +5608,88 @@ msgstr[0] "数据库中共有%d个没有台站信息（位置）的QSO"
 msgid "Station Callsign"
 msgstr "电台呼号"
 
-#: application/views/debug/index.php:574
+#: application/views/debug/index.php:575
 msgid "Please mark QSOs and reassign them to an existing station location:"
 msgstr "请标记 QSO 并将其重新分配到现有的电台位置："
 
-#: application/views/debug/index.php:582
+#: application/views/debug/index.php:583
 msgctxt "Stationlocation"
 msgid "Target Location"
 msgstr "目标位置"
 
-#: application/views/debug/index.php:583 application/views/debug/index.php:594
+#: application/views/debug/index.php:584 application/views/debug/index.php:595
 msgid "Reassign"
 msgstr "重新分配"
 
-#: application/views/debug/index.php:603
+#: application/views/debug/index.php:604
 msgid "Every QSO in your Database is assigned to a station-profile (location)"
 msgstr "数据库中的所有 QSO 都有台站相关联"
 
-#: application/views/debug/index.php:603
+#: application/views/debug/index.php:604
 msgid "Everything ok"
 msgstr "一切正常"
 
-#: application/views/debug/index.php:628
+#: application/views/debug/index.php:629
 msgid "Bulgarian"
 msgstr "保加利亚语"
 
-#: application/views/debug/index.php:629
+#: application/views/debug/index.php:630
 msgid "Chinese (Simplified)"
 msgstr "简体中文"
 
-#: application/views/debug/index.php:630
+#: application/views/debug/index.php:631
 msgid "Czech"
 msgstr "捷克语"
 
-#: application/views/debug/index.php:631
+#: application/views/debug/index.php:632
 msgid "Dutch"
 msgstr "荷兰语"
 
-#: application/views/debug/index.php:632
+#: application/views/debug/index.php:633
 msgid "English"
 msgstr "英语"
 
-#: application/views/debug/index.php:633
+#: application/views/debug/index.php:634
 msgid "Finnish"
 msgstr "芬兰语"
 
-#: application/views/debug/index.php:634
+#: application/views/debug/index.php:635
 msgid "French"
 msgstr "法语"
 
-#: application/views/debug/index.php:635
+#: application/views/debug/index.php:636
 msgid "German"
 msgstr "德语"
 
-#: application/views/debug/index.php:636
+#: application/views/debug/index.php:637
 msgid "Greek"
 msgstr "希腊语"
 
-#: application/views/debug/index.php:637
+#: application/views/debug/index.php:638
 msgid "Italian"
 msgstr "意大利语"
 
-#: application/views/debug/index.php:638
+#: application/views/debug/index.php:639
 msgid "Polish"
 msgstr "波兰语"
 
-#: application/views/debug/index.php:639
+#: application/views/debug/index.php:640
 msgid "Portuguese"
 msgstr "葡萄牙语"
 
-#: application/views/debug/index.php:640
+#: application/views/debug/index.php:641
 msgid "Russian"
 msgstr "俄语"
 
-#: application/views/debug/index.php:641
+#: application/views/debug/index.php:642
 msgid "Spanish"
 msgstr "西班牙语"
 
-#: application/views/debug/index.php:642
+#: application/views/debug/index.php:643
 msgid "Swedish"
 msgstr "瑞典语"
 
-#: application/views/debug/index.php:643
+#: application/views/debug/index.php:644
 msgid "Turkish"
 msgstr "土耳其语"
 
@@ -10549,6 +10553,17 @@ msgstr "您的呼号："
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "提交请求"
+
+#, php-format
+#~ msgid ""
+#~ "The current migration is not the version it is supposed to be. Reload "
+#~ "this page. If this warning persists, your migration is probably locked "
+#~ "due to a past failed process. Check the folder %s for a file called %s "
+#~ "and remove this file to force the migration to run again."
+#~ msgstr ""
+#~ "当前的迁移版本不正确。请重新加载此页面。如果警告仍然存在，可能是由于之前的"
+#~ "失败进程导致迁移被锁定。请检查文件夹%s中的%s文件并删除该文件以强制迁移重新"
+#~ "运行。"
 
 #~ msgid "VHF/UHF Century Club (VUCC)"
 #~ msgstr "VHF/UHF Century Club (VUCC)"
