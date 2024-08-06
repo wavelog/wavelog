@@ -236,4 +236,24 @@ class Statistics extends CI_Controller {
 		$this->load->view('statistics/qsltable', $total_qsos);
 		$this->load->view('interface_assets/footer');
 	}
+
+	public function antennaanalytics() {
+		$this->load->model('stats');
+
+		$total_qsos = array();
+
+		$total_qsos['azelarray'] = $this->stats->azeldata();
+
+
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/chart.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/chart.js")),
+			'assets/js/sections/antennastats.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/antennestats.js")),
+		];
+
+		// Load Views
+		$this->load->view('interface_assets/header');
+		$this->load->view('statistics/antennaanalytics', $total_qsos);
+		$this->load->view('interface_assets/footer', $footerData);
+	}
 }
