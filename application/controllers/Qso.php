@@ -449,7 +449,7 @@ class QSO extends CI_Controller {
 		$this->load->library('sota');
 		$json = [];
 
-		if (!empty($this->input->get("query"))) {
+		if (!empty($this->security->xss_clean($this->input->get("query")))) {
 			$query = $_GET['query'] ?? FALSE;
 			$json = $this->sota->get($query);
 		}
@@ -461,7 +461,7 @@ class QSO extends CI_Controller {
 	public function get_wwff() {
         $json = [];
 
-        if(!empty($this->input->get("query"))) {
+        if (!empty($this->security->xss_clean($this->input->get("query")))) {
             $query = isset($_GET['query']) ? $_GET['query'] : FALSE;
             $wwff = strtoupper($query);
 
@@ -497,7 +497,7 @@ class QSO extends CI_Controller {
 	public function get_pota() {
         $json = [];
 
-        if(!empty($this->input->get("query"))) {
+        if (!empty($this->security->xss_clean($this->input->get("query")))) {
             $query = isset($_GET['query']) ? $_GET['query'] : FALSE;
             $pota = strtoupper($query);
 
@@ -536,7 +536,7 @@ class QSO extends CI_Controller {
     public function get_dok() {
         $json = [];
 
-        if(!empty($this->input->get("query"))) {
+        if (!empty($this->security->xss_clean($this->input->get("query")))) {
             $query = isset($_GET['query']) ? $_GET['query'] : FALSE;
             $dok = strtoupper($query);
 
