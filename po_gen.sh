@@ -43,9 +43,12 @@ echo " "
 # Find all PHP files and create a list in a temporary file 
 find $FOLDERS -name "*.php" > PHPFILESLIST
 
+# Generate a new POT file to a temporary file
+TEMP_POT_FILE=$(mktemp)
+
 # Run the xgettext command with various options. Do not change these options to keep the POT/PO files consistent in Wavelog
 xgettext    -F \
-            -o $POT_FILE \
+            -o $TEMP_POT_FILE \
             --from-code=UTF-8 \
             --keyword=__ \
             --keyword=_ngettext:1,2 \
@@ -57,19 +60,30 @@ xgettext    -F \
 # After the xgettext command, we don't need the temporary file anymore
 rm PHPFILESLIST
 
-# Let's edit the header of the POT file
-sed -i "1s/.*/# $POT_TITLE_TEXT/" "$POT_FILE"
-sed -i "2s/.*/# $POT_COPYRIGHT_TEXT/" $POT_FILE
-sed -i "3s/.*/# $POT_LICENCE_TEXT/" $POT_FILE
-sed -i '4d' $POT_FILE
-sed -i '8d' $POT_FILE
+# Let's edit the header of the TEMP_POT_FILE file
+sed -i "1s/.*/# $POT_TITLE_TEXT/" "$TEMP_POT_FILE"
+sed -i "2s/.*/# $POT_COPYRIGHT_TEXT/" "$TEMP_POT_FILE"
+sed -i "3s/.*/# $POT_LICENCE_TEXT/" "$TEMP_POT_FILE"
+sed -i '4d' "$TEMP_POT_FILE"
+sed -i '8d' "$TEMP_POT_FILE"
+
+# Compare the new POT file with the existing one (excluding the POT Creation Date)
+if ! diff -I 'POT-Creation-Date' "$TEMP_POT_FILE" "$POT_FILE" >/dev/null; then
+    echo "Updating POT file with new translations."
+    echo " "
+    mv "$TEMP_POT_FILE" "$POT_FILE"
+else
+    echo "No changes detected in translations. POT file remains unchanged."
+    echo " "
+    rm "$TEMP_POT_FILE"
+fi
 
 # Extract the first three lines of the POT file to a temporary file
 head -n 3 "$POT_FILE" > POT_HEADER
 
 # Now we can merge the POT file (PO template) into each found PO file
 for po in $(find $FOLDERS -name "*.po"); do
-    msgmerge --update -vv --backup=none --no-fuzzy-matching "$po" $POT_FILE;
+    msgmerge --update -vv --backup=none --no-fuzzy-matching "$po" "$POT_FILE";
     # Replace the first three lines of the PO file with the POT file header
     sed -i '1,3d' "$po"
     cat POT_HEADER "$po" > temp.po && mv temp.po "$po"
