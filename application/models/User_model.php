@@ -305,11 +305,14 @@ class User_Model extends CI_Model {
 				// Hash password
 				if($fields['user_password'] != NULL)
 				{
-					if ($fields['user_password'] !== $pwd_placeholder) {
-						$decoded_password = htmlspecialchars_decode($fields['user_password']);
-						$data['user_password'] = $this->_hash($decoded_password);
-						if($data['user_password'] == EPASSWORDINVALID) {
-							return EPASSWORDINVALID;
+					if (!file_exists('.demo') || (file_exists('.demo') && $this->session->userdata('user_type') == 99)) {
+
+						if ($fields['user_password'] !== $pwd_placeholder) {
+							$decoded_password = htmlspecialchars_decode($fields['user_password']);
+							$data['user_password'] = $this->_hash($decoded_password);
+							if($data['user_password'] == EPASSWORDINVALID) {
+								return EPASSWORDINVALID;
+							}
 						}
 					}
 				}

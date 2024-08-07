@@ -1,3 +1,22 @@
+<script>
+var dxccarray = [];
+
+<?php
+if ($dxcc_list->result() > 0) {
+	foreach ($dxcc_list->result() as $dxcc) {
+	?>
+		var dxcc = {
+			adif: <?php echo $dxcc->adif; ?>,
+			name: "<?php echo $dxcc->name; ?>",
+			cq: <?php echo $dxcc->cqz; ?>,
+			itu: <?php echo $dxcc->ituz; ?>,
+		};
+		dxccarray.push(dxcc);
+	<?php
+	}
+}
+?>
+</script>
 
 <div class="container" id="create_station_profile">
 
@@ -201,18 +220,18 @@
 			</div>
 
             <div class="row">
-				<div class="mb-3 col-sm-3">                                                                                                                                                    
-					<label for="hrdlog_username"><?= __("HRDLog.net Username"); ?></label> 
+				<div class="mb-3 col-sm-3">
+					<label for="hrdlog_username"><?= __("HRDLog.net Username"); ?></label>
                     <input type="text" class="form-control" name="hrdlog_username" id="hrdlog_username" aria-describedby="hrdlog_usernameHelp">
                     <small id="hrdlog_usernameHelp" class="form-text text-muted"><?= __("The username you are registered with at HRDlog.net (usually your callsign)."); ?></a></small>
                 </div>
-                <div class="mb-3 col-sm-3">                                                                                                                                                    
+                <div class="mb-3 col-sm-3">
 					<label for="hrdlog_code"><?= __("HRDLog.net API Key"); ?></label>
                     <input type="text" class="form-control" name="hrdlog_code" id="hrdlog_code" aria-describedby="hrdlog_codeHelp">
                     <small id="hrdlog_codeHelp" class="form-text text-muted"><?= sprintf(_pgettext("HRDLog.net Userprofile page", "Create your API Code on your %s"), "<a href='http://www.hrdlog.net/EditUser.aspx' target='_blank'>".__("HRDLog.net Userprofile page")."</a>"); ?></a></small>
                 </div>
                 <div class="mb-3 col-sm-3">
-                    <label for="hrdlogrealtime"><?= __("HRDLog.net Logbook Realtime Upload"); ?></label>                                                                                                                 
+                    <label for="hrdlogrealtime"><?= __("HRDLog.net Logbook Realtime Upload"); ?></label>
 					<select class="form-select" id="hrdlogrealtime" name="hrdlogrealtime">
                         <option value="1"><?= __("Yes"); ?></option>
                         <option value="0" selected><?= __("No"); ?></option>
