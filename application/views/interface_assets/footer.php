@@ -389,10 +389,10 @@ $(function () {
     $('#btn-save').on('click', function() {
         var resultquery = $('#builder').queryBuilder('getRules');
         if (!$.isEmptyObject(resultquery)) {
-            let message = '<?= __("Description:"); ?> <input class="form-control input-group-sm getqueryname">'
+            let message = "<?= __("Description:"); ?>" + '<input class="form-control input-group-sm getqueryname">'
 
             BootstrapDialog.confirm({
-                title: '<?= __("Query description"); ?>',
+                title: "<?= __("Query description"); ?>",
                 size: BootstrapDialog.SIZE_NORMAL,
                 cssClass: 'description-dialog',
                 closable: true,
@@ -408,16 +408,16 @@ $(function () {
                             })
                             .done(function(data) {
                                 $(".alert").remove();
-                                $(".card-body.main").append('<div class="alert alert-success"><?= __("Your query has been saved!"); ?></div>');
+                                $(".card-body.main").append('<div class="alert alert-success">'+"<?= __("Your query has been saved!"); ?>"+'</div>');
                                 if ($("#querydropdown option").length == 0) {
-                                    var dropdowninfo = ' <button class="btn btn-sm btn-primary" onclick="edit_stored_query_dialog()" id="btn-edit"><?= __("Edit queries"); ?></button></p>' +
+                                    var dropdowninfo = ' <button class="btn btn-sm btn-primary" onclick="edit_stored_query_dialog()" id="btn-edit">'+"<?= __("Edit queries"); ?>"+'</button></p>' +
                                     '<div class="mb-3 row querydropdownform">' +
-                                        '<label class="col-md-2 control-label" for="querydropdown">  <?= __("Stored queries:"); ?></label>' +
+                                        '<label class="col-md-2 control-label" for="querydropdown">  '+"<?= __("Stored queries:"); ?>"+'</label>' +
                                         '<div class="col-md-3">' +
                                             '<select id="querydropdown" name="querydropdown" class="form-select form-select-sm">' +
                                             '</select>' +
                                         '</div>' +
-                                        '<button class="btn btn-sm btn-primary ld-ext-right runbutton" onclick="run_query()"><?= __("Run Query"); ?><div class="ld ld-ring ld-spin"></div></button>' +
+                                        '<button class="btn btn-sm btn-primary ld-ext-right runbutton" onclick="run_query()">'+"<?= __("Run Query"); ?>"+'<div class="ld ld-ring ld-spin"></div></button>' +
                                     '</div>';
                                     $("#btn-save").after(dropdowninfo);
                                 }
@@ -429,12 +429,12 @@ $(function () {
 
         } else {
             BootstrapDialog.show({
-                title: '<?= __("Stored Queries"); ?>',
+                title: "<?= __("Stored Queries"); ?>",
                 type: BootstrapDialog.TYPE_WARNING,
                 size: BootstrapDialog.SIZE_NORMAL,
                 cssClass: 'queries-dialog',
                 nl2br: false,
-                message: '<?= __("You need to make a query before you search!"); ?>',
+                message: "<?= __("You need to make a query before you search!"); ?>",
                 buttons: [{
                     label: lang_admin_close,
                     action: function(dialogItself) {
@@ -455,7 +455,7 @@ $(function () {
             })
             .done(function(data) {
 
-                $('.exportbutton').html('<button class="btn btn-sm btn-primary" onclick="export_stored_query(' + id + ')"><?= __("Export to ADIF"); ?></button>');
+                $('.exportbutton').html('<button class="btn btn-sm btn-primary" onclick="export_stored_query(' + id + ')">'+"<?= __("Export to ADIF"); ?>"+'</button>');
                 $('.card-body.result').empty();
                 $(".search-results-box").show();
 
@@ -492,8 +492,8 @@ $(function () {
 
     function delete_stored_query(id) {
         BootstrapDialog.confirm({
-            title: '<?= __("DANGER"); ?>',
-            message: '<?= __("Warning! Are you sure you want delete this stored query?"); ?>',
+            title: "<?= __("DANGER"); ?>",
+            message: "<?= __("Warning! Are you sure you want delete this stored query?"); ?>",
             type: BootstrapDialog.TYPE_DANGER,
             closable: true,
             draggable: true,
@@ -507,7 +507,7 @@ $(function () {
                             'id': id
                         },
                         success: function(data) {
-                            $(".bootstrap-dialog-message").prepend('<div class="alert alert-danger"><?= __("The stored query has been deleted!"); ?></div>');
+                            $(".bootstrap-dialog-message").prepend('<div class="alert alert-danger">'+"<?= __("The stored query has been deleted!"); ?>"+'</div>');
                             $("#query_" + id).remove(); // removes query from table in dialog
                             $("#querydropdown option[value='" + id + "']").remove(); // removes query from dropdown
                             if ($("#querydropdown option").length == 0) {
@@ -516,7 +516,7 @@ $(function () {
                             };
                         },
                         error: function() {
-                            $(".bootstrap-dialog-message").prepend('<div class="alert alert-danger"><?= __("The stored query could not be deleted. Please try again!"); ?></div>');
+                            $(".bootstrap-dialog-message").prepend('<div class="alert alert-danger">'+"<?= __("The stored query could not be deleted. Please try again!"); ?>"+'</div>');
                         },
                     });
                 }
@@ -527,12 +527,12 @@ $(function () {
     function edit_stored_query(id) {
         $('#description_' + id).attr('contenteditable', 'true');
         $('#description_' + id).focus();
-        $('#edit_' + id).html('<a class="btn btn-primary btn-sm" href="javascript:save_edited_query(' + id + ');"><?= __("Save"); ?></a>'); // Change to save button
+        $('#edit_' + id).html('<a class="btn btn-primary btn-sm" href="javascript:save_edited_query(' + id + ');">'+"<?= __("Save"); ?>"+'</a>'); // Change to save button
     }
 
     function save_edited_query(id) {
         $('#description_' + id).attr('contenteditable', 'false');
-        $('#edit_' + id).html('<a class="btn btn-outline-primary btn-sm" href="javascript:edit_stored_query(' + id + ');"><?= __("Edit"); ?></a>');
+        $('#edit_' + id).html('<a class="btn btn-outline-primary btn-sm" href="javascript:edit_stored_query(' + id + ');">'+"<?= __("Edit"); ?>"+'</a>');
         $.ajax({
             url: base_url + 'index.php/search/save_edited_query',
             type: 'post',
@@ -541,12 +541,12 @@ $(function () {
                 description: $('#description_' + id).html(),
             },
             success: function(html) {
-                $('#edit_' + id).html('<a class="btn btn-outline-primary btn-sm" href="javascript:edit_stored_query(' + id + ');"><?= __("Edit"); ?></a>'); // Change to edit button
-                $(".bootstrap-dialog-message").prepend('<div class="alert alert-success"><?= __("The query description has been updated!"); ?></div>');
+                $('#edit_' + id).html('<a class="btn btn-outline-primary btn-sm" href="javascript:edit_stored_query(' + id + ');">'+"<?= __("Edit"); ?>"+'</a>'); // Change to edit button
+                $(".bootstrap-dialog-message").prepend('<div class="alert alert-success">'+"<?= __("The query description has been updated!"); ?>"+'</div>');
                 $("#querydropdown option[value='" + id + "']").text($('#description_' + id).html()); // Change text in dropdown
             },
             error: function() {
-                $(".bootstrap-dialog-message").prepend('<div class="alert alert-danger"><?= __("Something went wrong with the save. Please try again!"); ?></div>');
+                $(".bootstrap-dialog-message").prepend('<div class="alert alert-danger">'+"<?= __("Something went wrong with the save. Please try again!"); ?>"+'</div>');
             },
         });
     }
@@ -558,7 +558,7 @@ $(function () {
             type: 'post',
             success: function(html) {
                 BootstrapDialog.show({
-                    title: '<?= __("Stored Queries"); ?>',
+                    title: "<?= __("Stored Queries"); ?>",
                     size: BootstrapDialog.SIZE_WIDE,
                     cssClass: 'queries-dialog',
                     nl2br: false,
@@ -586,7 +586,7 @@ $(function () {
                     temp: "testvar"
                 })
                 .done(function(data) {
-                    $('.exportbutton').html('<button class="btn btn-sm btn-primary" onclick="export_search_result();"><?= __("Export to ADIF"); ?></button>');
+                    $('.exportbutton').html('<button class="btn btn-sm btn-primary" onclick="export_search_result();">'+"<?= __("Export to ADIF"); ?>"+'</button>');
 
                     $('.card-body.result').empty();
                     $(".search-results-box").show();
@@ -622,12 +622,12 @@ $(function () {
                 });
         } else {
             BootstrapDialog.show({
-                title: '<?= __("Stored Queries"); ?>',
+                title: "<?= __("Stored Queries"); ?>",
                 type: BootstrapDialog.TYPE_WARNING,
                 size: BootstrapDialog.SIZE_NORMAL,
                 cssClass: 'queries-dialog',
                 nl2br: false,
-                message: '<?= __("You need to make a query before you search!"); ?>',
+                message: "<?= __("You need to make a query before you search!"); ?>",
                 buttons: [{
                     label: lang_admin_close,
                     action: function(dialogItself) {
@@ -1171,7 +1171,7 @@ $($('#callsign')).on('keypress',function(e) {
 					    if (data.error == 'not_logged_in') {
 						    $(".radio_cat_state" ).remove();
 						    if($('.radio_login_error').length == 0) {
-							    $('.qso_panel').prepend("<div class=\"alert alert-danger radio_login_error\" role=\"alert\"><i class=\"fas fa-broadcast-tower\"></i> <?= sprintf(__("You're not logged it. Please <a href='%s'>login</a>"), base_url()); ?></div>");
+							    $('.qso_panel').prepend('<div class="alert alert-danger radio_login_error" role="alert"><i class="fas fa-broadcast-tower"></i> '+"<?= sprintf(__("You're not logged it. Please <a href='%s'>login</a>"), base_url()); ?>"+'</div>');
 						    }
 					    }
 					    // Put future Errorhandling here
@@ -1377,14 +1377,14 @@ $(document).ready(function(){
 
   if (grid_four_confirmed_count > 0) {
      var span = document.getElementById('confirmed_grids');
-     span.innerText = span.textContent = '('+grid_four_confirmed_count+' <?= __("grid square"); ?>'+(grid_four_confirmed_count != 1 ? 's' : '')+') ';
+     span.innerText = span.textContent = '('+grid_four_confirmed_count+" <?= __("grid square"); ?>"+(grid_four_confirmed_count != 1 ? 's' : '')+') ';
   }
   if ((grid_four_count-grid_four_confirmed_count) > 0) {
      var span = document.getElementById('worked_grids');
-     span.innerText = span.textContent = '('+(grid_four_count-grid_four_confirmed_count)+' <?= __("grid square"); ?>'+(grid_four_count-grid_four_confirmed_count != 1 ? 's' : '')+') ';
+     span.innerText = span.textContent = '('+(grid_four_count-grid_four_confirmed_count)+" <?= __("grid square"); ?>"+(grid_four_count-grid_four_confirmed_count != 1 ? 's' : '')+') ';
   }
   var span = document.getElementById('sum_grids');
-  span.innerText = span.textContent = ' <?= __("Total count"); ?>'+': '+grid_four_count+' <?= __("grid square"); ?>'+(grid_four_count != 1 ? 's' : '');
+  span.innerText = span.textContent = " <?= __("Total count"); ?>"+': '+grid_four_count+" <?= __("grid square"); ?>"+(grid_four_count != 1 ? 's' : '');
 
   var maidenhead = L.maidenhead().addTo(map);
 
@@ -1450,7 +1450,7 @@ $(document).ready(function(){
 <?php if ($this->uri->segment(1) == "gridsquares" && $this->uri->segment(2) == "band") { ?>
 
   var bands_available = <?php echo $bands_available; ?>;
-  $('#gridsquare_bands').append('<option value="All"><?= __("All"); ?></option>')
+  $('#gridsquare_bands').append('<option value="All">'+"<?= __("All"); ?>"+'</option>')
   $.each(bands_available, function(key, value) {
      $('#gridsquare_bands')
          .append($("<option></option>")
@@ -1521,14 +1521,14 @@ $(document).ready(function(){
 
   if (grid_four_confirmed_count > 0) {
      var span = document.getElementById('confirmed_grids');
-     span.innerText = span.textContent = '('+grid_four_confirmed_count+' <?= __("grid square"); ?>'+(grid_four_confirmed_count != 1 ? 's' : '')+') ';
+     span.innerText = span.textContent = '('+grid_four_confirmed_count+" <?= __("grid square"); ?>"+(grid_four_confirmed_count != 1 ? 's' : '')+') ';
   }
   if ((grid_four_count-grid_four_confirmed_count) > 0) {
      var span = document.getElementById('activated_grids');
-     span.innerText = span.textContent = '('+(grid_four_count-grid_four_confirmed_count)+' <?= __("grid square"); ?>'+(grid_four_count-grid_four_confirmed_count != 1 ? 's' : '')+') ';
+     span.innerText = span.textContent = '('+(grid_four_count-grid_four_confirmed_count)+" <?= __("grid square"); ?>"+(grid_four_count-grid_four_confirmed_count != 1 ? 's' : '')+') ';
   }
   var span = document.getElementById('sum_grids');
-  span.innerText = span.textContent = ' <?= __("Total count"); ?>'+': '+grid_four_count+' <?= __("grid square"); ?>'+(grid_four_count != 1 ? 's' : '');
+  span.innerText = span.textContent = " <?= __("Total count"); ?>"+': '+grid_four_count+" <?= __("grid square"); ?>"+(grid_four_count != 1 ? 's' : '');
 
   var maidenhead = L.maidenhead().addTo(map);
 
@@ -1589,7 +1589,7 @@ $(document).ready(function(){
 <?php if ($this->uri->segment(1) == "activated_grids" && $this->uri->segment(2) == "band") { ?>
 
   var bands_available = <?php echo $bands_available; ?>;
-  $('#gridsquare_bands').append('<option value="All"><?= __("All"); ?></option>')
+  $('#gridsquare_bands').append('<option value="All">'+"<?= __("All"); ?>"+'</option>')
   $.each(bands_available, function(key, value) {
      $('#gridsquare_bands')
          .append($("<option></option>")
@@ -2113,9 +2113,9 @@ function viewQsl(picture, callsign) {
                 textAndPic.append('<img class="img-fluid w-qsl" style="height:auto;width:auto;"src="'+base_url+webpath_qsl+'/'+picture+'" />');
             var title = '';
             if (callsign == null) {
-                title = '<?= __("QSL Card"); ?>';
+                title = "<?= __("QSL Card"); ?>";
             } else {
-                title = '<?= __("QSL Card for "); ?>' + callsign.replace('0', '&Oslash;');
+                title = "<?= __("QSL Card for "); ?>" + callsign.replace('0', '&Oslash;');
             }
 
             BootstrapDialog.show({
@@ -2134,8 +2134,8 @@ function viewQsl(picture, callsign) {
 <script>
 function deleteQsl(id) {
             BootstrapDialog.confirm({
-                title: '<?= __("DANGER"); ?>',
-                message: '<?= __("Warning! Are you sure you want to delete this QSL card?"); ?>'  ,
+                title: "<?= __("DANGER"); ?>",
+                message: "<?= __("Warning! Are you sure you want to delete this QSL card?"); ?>"  ,
                 type: BootstrapDialog.TYPE_DANGER,
                 closable: true,
                 draggable: true,
@@ -2175,9 +2175,9 @@ function viewEqsl(picture, callsign) {
                 $textAndPic.append('<img class="img-fluid" style="height:auto;width:auto;"src="'+baseURL+webpath_eqsl+'/'+picture+'" />');
             var title = '';
             if (callsign == null) {
-                title = '<?= __("eQSL Card"); ?>';
+                title = "<?= __("eQSL Card"); ?>";
             } else {
-                title = '<?= __("eQSL Card for "); ?>' + callsign.replace('0', '&Oslash;');
+                title = "<?= __("eQSL Card for "); ?>" + callsign.replace('0', '&Oslash;');
             }
 
             BootstrapDialog.show({
@@ -2338,8 +2338,8 @@ function viewEqsl(picture, callsign) {
                 if (data.status.front.status == 'Success') {
                     if ($('.qsltable').length > 0) {
                         $('.qsltable tr:last').after('<tr><td style="text-align: center">'+data.status.front.filename+'</td>' +
-                            '<td id="'+data.status.front.insertid+'"style="text-align: center"><button onclick="deleteQsl('+data.status.front.insertid+');" class="btn btn-sm btn-danger"><?= __("Delete"); ?></button></td>' +
-                            '<td style="text-align: center"><button onclick="viewQsl(\'' + data.status.front.filename + '\')" class="btn btn-sm btn-success"><?= __("View"); ?></button></td>'+
+                            '<td id="'+data.status.front.insertid+'"style="text-align: center"><button onclick="deleteQsl('+data.status.front.insertid+');" class="btn btn-sm btn-danger">'+"<?= __("Delete"); ?>"+'</button></td>' +
+                            '<td style="text-align: center"><button onclick="viewQsl(\'' + data.status.front.filename + '\')" class="btn btn-sm btn-success">'+"<?= __("View"); ?>"+'</button></td>'+
                             '</tr>');
                         var quantity = $(".carousel-indicators li").length;
                         $(".carousel-indicators").append('<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="'+quantity+'"></li>');
@@ -2350,14 +2350,14 @@ function viewEqsl(picture, callsign) {
                         $("#qslupload").prepend('<table style="width:100%" class="qsltable table table-sm table-bordered table-hover table-striped table-condensed">'+
                             '<thead>'+
                                '<tr>'+
-                            '<th style="text-align: center"><?= __("QSL image file"); ?></th>'+
+                            '<th style="text-align: center">'+"<?= __("QSL image file"); ?>"+'</th>'+
                             '<th style="text-align: center"></th>'+
                             '<th style="text-align: center"></th>'+
                             '</tr>'+
                             '</thead><tbody>'+
                                 '<tr><td style="text-align: center">'+data.status.front.filename+'</td>' +
-                            '<td id="'+data.status.front.insertid+'"style="text-align: center"><button onclick="deleteQsl('+data.status.front.insertid+');" class="btn btn-sm btn-danger"><?= __("Delete"); ?></button></td>' +
-                            '<td style="text-align: center"><button onclick="viewQsl(\'' + data.status.front.filename + '\')" class="btn btn-sm btn-success"><?= __("View"); ?></button></td>'+
+                            '<td id="'+data.status.front.insertid+'"style="text-align: center"><button onclick="deleteQsl('+data.status.front.insertid+');" class="btn btn-sm btn-danger">'+"<?= __("Delete"); ?>"+'</button></td>' +
+                            '<td style="text-align: center"><button onclick="viewQsl(\'' + data.status.front.filename + '\')" class="btn btn-sm btn-success">'+"<?= __("View"); ?>"+'</button></td>'+
                             '</tr>'+
                         '</tbody></table>');
                         $('.qslcardtab').removeAttr('hidden');
@@ -2369,7 +2369,7 @@ function viewEqsl(picture, callsign) {
                     }
 
                 } else if (data.status.front.status != '') {
-                    $("#qslupload").append('<div class="alert alert-danger"><?= __("Front QSL Card:"); ?> ' +
+                    $("#qslupload").append('<div class="alert alert-danger">'+"<?= __("Front QSL Card:"); ?>  " +
                     data.status.front.error +
                         '</div>');
                 }
@@ -2377,8 +2377,8 @@ function viewEqsl(picture, callsign) {
                     var qsoid = $("#qsoid").text();
                     if ($('.qsltable').length > 0) {
                         $('.qsltable tr:last').after('<tr><td style="text-align: center">'+data.status.back.filename+'</td>' +
-                            '<td id="'+data.status.back.insertid+'"style="text-align: center"><button onclick="deleteQsl('+data.status.back.insertid+');" class="btn btn-sm btn-danger"><?= __("Delete"); ?></button></td>' +
-                            '<td style="text-align: center"><button onclick="viewQsl(\'' + data.status.back.filename + '\')" class="btn btn-sm btn-success"><?= __("View"); ?></button></td>'+
+                            '<td id="'+data.status.back.insertid+'"style="text-align: center"><button onclick="deleteQsl('+data.status.back.insertid+');" class="btn btn-sm btn-danger">'+"<?= __("Delete"); ?>"+'</button></td>' +
+                            '<td style="text-align: center"><button onclick="viewQsl(\'' + data.status.back.filename + '\')" class="btn btn-sm btn-success">'+"<?= __("View"); ?>"+'</button></td>'+
                             '</tr>');
                         var quantity = $(".carousel-indicators li").length;
                         $(".carousel-indicators").append('<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="'+quantity+'"></li>');
@@ -2389,14 +2389,14 @@ function viewEqsl(picture, callsign) {
                         $("#qslupload").prepend('<table style="width:100%" class="qsltable table table-sm table-bordered table-hover table-striped table-condensed">'+
                             '<thead>'+
                             '<tr>'+
-                            '<th style="text-align: center"><?= __("QSL image file"); ?></th>'+
+                            '<th style="text-align: center">'+"<?= __("QSL image file"); ?>"+'</th>'+
                             '<th style="text-align: center"></th>'+
                             '<th style="text-align: center"></th>'+
                             '</tr>'+
                             '</thead><tbody>'+
                             '<tr><td style="text-align: center">'+data.status.back.filename+'</td>' +
-                            '<td id="'+data.status.back.insertid+'"style="text-align: center"><button onclick="deleteQsl('+data.status.back.insertid+');" class="btn btn-sm btn-danger"><?= __("Delete"); ?></button></td>' +
-                            '<td><button onclick="viewQsl(\'' + data.status.back.filename + '\')" class="btn btn-sm btn-success"><?= __("View"); ?></button></td>'+
+                            '<td id="'+data.status.back.insertid+'"style="text-align: center"><button onclick="deleteQsl('+data.status.back.insertid+');" class="btn btn-sm btn-danger">'+"<?= __("Delete"); ?>"+'</button></td>' +
+                            '<td><button onclick="viewQsl(\'' + data.status.back.filename + '\')" class="btn btn-sm btn-success">'+"<?= __("View"); ?>"+'</button></td>'+
                             '</tr>'+
                             '</tbody></table>');
                         $('.qslcardtab').removeAttr('hidden');
@@ -2407,7 +2407,7 @@ function viewEqsl(picture, callsign) {
                         $("#qslcardback").val(null);
                     }
                 } else if (data.status.back.status != '') {
-                    $("#qslupload").append('<div class="alert alert-danger">\n<?= __("Back QSL Card:"); ?> ' +
+                    $("#qslupload").append('<div class="alert alert-danger">\n'+"<?= __("Back QSL Card:"); ?>  " +
                     data.status.back.error +
                         '</div>');
                 }
@@ -2418,7 +2418,7 @@ function viewEqsl(picture, callsign) {
 <script>
 
 	function addQsosToQsl(filename) {
-		var title = '<?= __("Add additional QSOs to a QSL Card"); ?>';
+		var title = "<?= __("Add additional QSOs to a QSL Card"); ?>";
 
 		$.ajax({
 			url: base_url + 'index.php/qsl/loadSearchForm',
@@ -2443,7 +2443,7 @@ function viewEqsl(picture, callsign) {
 	}
 
 	function addQsoToQsl(qsoid, filename, id) {
-		var title = '<?= __("Add additional QSOs to a QSL Card"); ?>';
+		var title = "<?= __("Add additional QSOs to a QSL Card"); ?>";
 
 		$.ajax({
 			url: base_url + 'index.php/qsl/addQsoToQsl',
@@ -2454,7 +2454,7 @@ function viewEqsl(picture, callsign) {
 					location.reload();
 				} else {
 					$(".alert").remove();
-					$('#searchresult').prepend('<div class="alert alert-danger"><?= __("Something went wrong. Please try again!"); ?></div>');
+					$('#searchresult').prepend('<div class="alert alert-danger">'+"<?= __("Something went wrong. Please try again!"); ?>"+'</div>');
 				}
 			}
 		});
