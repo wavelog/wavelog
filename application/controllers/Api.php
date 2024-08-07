@@ -325,6 +325,7 @@ class API extends CI_Controller {
 		{
 			http_response_code(200);
 			echo json_encode(['status' => 'successfull', 'message' => 'No new QSOs available.', 'lastfetchedid' => $fetchfromid, 'exported_qsos' => 0, 'adif' => null]);
+			return;
 		}
 
 		//convert data to ADIF
@@ -550,6 +551,11 @@ class API extends CI_Controller {
 		$this->api_model->update_last_used($obj['key']);
 
 		$user_id = $this->api_model->key_userid($obj['key']);
+
+		// Special Case: Yaesu Radio's use CW-U and CW-L which aren't official ADIF Modes. We override this here to CW
+		if (isset($obj['mode']) && (strtoupper($obj['mode']) == 'CW-U' || strtoupper($obj['mode']) == 'CW-L')) {
+			$obj['mode'] = 'CW';
+		}
 
 		// Store Result to Database
 		$this->cat->update($obj, $user_id);
