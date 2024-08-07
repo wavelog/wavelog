@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-06 11:48+0000\n"
+"POT-Creation-Date: 2024-08-06 18:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1754,8 +1754,10 @@ msgstr ""
 
 #: application/controllers/Stationsetup.php:359
 #: application/views/api/help.php:57 application/views/contesting/add.php:59
-#: application/views/cron/index.php:56 application/views/labels/index.php:47
-#: application/views/labels/index.php:83
+#: application/views/cron/index.php:56
+#: application/views/interface_assets/footer.php:535
+#: application/views/interface_assets/footer.php:544
+#: application/views/labels/index.php:47 application/views/labels/index.php:83
 #: application/views/logbookadvanced/index.php:513
 #: application/views/mode/index.php:52 application/views/satellite/edit.php:39
 #: application/views/satellite/index.php:25
@@ -1801,6 +1803,10 @@ msgstr ""
 
 #: application/controllers/Stationsetup.php:372
 #: application/views/api/help.php:61 application/views/contesting/add.php:62
+#: application/views/interface_assets/footer.php:2341
+#: application/views/interface_assets/footer.php:2359
+#: application/views/interface_assets/footer.php:2380
+#: application/views/interface_assets/footer.php:2398
 #: application/views/labels/index.php:48 application/views/labels/index.php:84
 #: application/views/logbookadvanced/index.php:514
 #: application/views/lotw_views/index.php:118
@@ -2201,9 +2207,12 @@ msgstr ""
 #: application/views/gridmap/index.php:28
 #: application/views/gridmap/index.php:41
 #: application/views/gridmap/index.php:70
-#: application/views/gridmap/index.php:83 application/views/kml/index.php:21
-#: application/views/kml/index.php:33 application/views/kml/index.php:49
-#: application/views/kml/index.php:67 application/views/kml/index.php:79
+#: application/views/gridmap/index.php:83
+#: application/views/interface_assets/footer.php:1453
+#: application/views/interface_assets/footer.php:1592
+#: application/views/kml/index.php:21 application/views/kml/index.php:33
+#: application/views/kml/index.php:49 application/views/kml/index.php:67
+#: application/views/kml/index.php:79
 #: application/views/logbookadvanced/index.php:172
 #: application/views/logbookadvanced/index.php:183
 #: application/views/logbookadvanced/index.php:194
@@ -2704,6 +2713,8 @@ msgstr ""
 
 #: application/views/adif/import.php:152
 #: application/views/interface_assets/footer.php:32
+#: application/views/interface_assets/footer.php:495
+#: application/views/interface_assets/footer.php:2137
 msgid "DANGER"
 msgstr ""
 
@@ -2876,6 +2887,7 @@ msgstr ""
 #: application/views/bands/create.php:49 application/views/bands/edit.php:31
 #: application/views/contesting/edit.php:55 application/views/cron/edit.php:73
 #: application/views/interface_assets/footer.php:43
+#: application/views/interface_assets/footer.php:530
 #: application/views/operator/index.php:23
 #: application/views/options/appearance.php:107
 #: application/views/options/dxcluster.php:67
@@ -3212,6 +3224,7 @@ msgstr ""
 
 #: application/views/awards/cq/index.php:54
 #: application/views/awards/itu/index.php:54
+#: application/views/interface_assets/footer.php:2116
 #: application/views/qso/edit_ajax.php:378
 #: application/views/view_log/qso.php:25
 msgid "QSL Card"
@@ -5813,6 +5826,10 @@ msgid "QSL Date"
 msgstr ""
 
 #: application/views/eqslcard/index.php:60
+#: application/views/interface_assets/footer.php:2342
+#: application/views/interface_assets/footer.php:2360
+#: application/views/interface_assets/footer.php:2381
+#: application/views/interface_assets/footer.php:2399
 #: application/views/qslcard/index.php:66
 #: application/views/view_log/qso.php:614
 msgid "View"
@@ -5973,11 +5990,79 @@ msgstr ""
 msgid "Version Info"
 msgstr ""
 
+#: application/views/interface_assets/footer.php:392
+msgid "Description:"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:395
+msgid "Query description"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:411
+msgid "Your query has been saved!"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:413
+#: application/views/search/filter.php:46
+msgid "Edit queries"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:415
+msgid "Stored queries:"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:420
+#: application/views/search/filter.php:60
+msgid "Run Query"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:432
+#: application/views/interface_assets/footer.php:561
+#: application/views/interface_assets/footer.php:625
+msgid "Stored Queries"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:437
+#: application/views/interface_assets/footer.php:630
+msgid "You need to make a query before you search!"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:458
+#: application/views/interface_assets/footer.php:589
+#: application/views/search/filter.php:79
+msgid "Export to ADIF"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:496
+msgid "Warning! Are you sure you want delete this stored query?"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:510
+msgid "The stored query has been deleted!"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:519
+msgid "The stored query could not be deleted. Please try again!"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:545
+msgid "The query description has been updated!"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:549
+msgid "Something went wrong with the save. Please try again!"
+msgstr ""
+
 #: application/views/interface_assets/footer.php:672
 msgid ""
 "Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. "
 "Check which DXCC for this particular location is the correct one. If you are "
 "sure, ignore this warning."
+msgstr ""
+
+#: application/views/interface_assets/footer.php:1174
+#, php-format
+msgid "You're not logged it. Please <a href='%s'>login</a>"
 msgstr ""
 
 #: application/views/interface_assets/footer.php:1380
@@ -5992,6 +6077,46 @@ msgstr ""
 #: application/views/interface_assets/footer.php:1387
 #: application/views/interface_assets/footer.php:1531
 msgid "Total count"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:2118
+msgid "QSL Card for "
+msgstr ""
+
+#: application/views/interface_assets/footer.php:2138
+msgid "Warning! Are you sure you want to delete this QSL card?"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:2178
+#: application/views/view_log/qso.php:42
+msgid "eQSL Card"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:2180
+msgid "eQSL Card for "
+msgstr ""
+
+#: application/views/interface_assets/footer.php:2353
+#: application/views/interface_assets/footer.php:2392
+#: application/views/view_log/qso.php:604
+msgid "QSL image file"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:2372
+msgid "Front QSL Card:"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:2410
+msgid "Back QSL Card:"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:2421
+#: application/views/interface_assets/footer.php:2446
+msgid "Add additional QSOs to a QSL Card"
+msgstr ""
+
+#: application/views/interface_assets/footer.php:2457
+msgid "Something went wrong. Please try again!"
 msgstr ""
 
 #: application/views/interface_assets/header.php:86
@@ -8449,24 +8574,12 @@ msgstr ""
 msgid "Save query"
 msgstr ""
 
-#: application/views/search/filter.php:46
-msgid "Edit queries"
-msgstr ""
-
 #: application/views/search/filter.php:50
 msgid "Stored queries"
 msgstr ""
 
-#: application/views/search/filter.php:60
-msgid "Run Query"
-msgstr ""
-
 #: application/views/search/filter.php:69
 msgid "search filter functions"
-msgstr ""
-
-#: application/views/search/filter.php:79
-msgid "Export to ADIF"
 msgstr ""
 
 #: application/views/search/filter.php:79
@@ -10170,10 +10283,6 @@ msgstr ""
 msgid "QSL Management"
 msgstr ""
 
-#: application/views/view_log/qso.php:42
-msgid "eQSL Card"
-msgstr ""
-
 #: application/views/view_log/qso.php:128
 msgid "Total Distance"
 msgstr ""
@@ -10243,10 +10352,6 @@ msgstr ""
 
 #: application/views/view_log/qso.php:503
 msgid "Details"
-msgstr ""
-
-#: application/views/view_log/qso.php:604
-msgid "QSL image file"
 msgstr ""
 
 #: application/views/view_log/qso.php:630
