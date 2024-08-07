@@ -14,7 +14,7 @@ function makeChart() {
 	var myChart = new Chart(ctx, {
 		type: 'bar',
 		data: {
-			labels: dataQso,
+			labels: labels,
 			datasets: [{
 				label: '# QSOs for elevation',
 				data: dataQso,
@@ -29,7 +29,7 @@ function makeChart() {
 				y: {
 					title: {
 						display: true,
-						text: 'Elevation',
+						text: '# QSOs',
 						font: {
 							size: 15
 						},
@@ -37,13 +37,14 @@ function makeChart() {
 					},
 					ticks: {
 						beginAtZero: true,
-						color: color
+						color: color,
+						stepSize: 1
 					}
 				},
 				x: {
 					title: {
 						display: true,
-						text: '# QSOs',
+						text: 'Elevation',
 						font: {
 							size: 15
 						},
