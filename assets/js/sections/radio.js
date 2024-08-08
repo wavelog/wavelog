@@ -16,6 +16,7 @@ $(document).ready(function () {
 
 function set_default_radio(radio_id) {
     $('#default_radio_btn_' + radio_id).addClass('running').prop('disable', true);
+    $('#default_radio_btn_' + radio_id).removeClass('btn-outline-primary').addClass('btn-primary');
     $.ajax({
         type: 'POST',
         url: base_url + 'index.php/radio/set_default_radio',

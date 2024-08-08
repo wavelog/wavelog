@@ -97,9 +97,9 @@ class Radio extends CI_Controller {
 					echo '<td><button id="default_radio_btn_' . $row->id . '" class="btn btn-sm btn-primary ld-ext-right" onclick="set_default_radio(' . $row->id . ')">' . __("Set as default radio") . '<div class="ld ld-ring ld-spin"></div></button</td>';
 				} else {
 					if ($defaul_user_radio !== $row->id) {
-						echo '<td><button id="default_radio_btn_' . $row->id . '" class="btn btn-sm btn-primary ld-ext-right" onclick="set_default_radio(' . $row->id . ')">' . __("Set as default radio") . '<div class="ld ld-ring ld-spin"></div></button</td>';
+						echo '<td><button id="default_radio_btn_' . $row->id . '" class="btn btn-sm btn-outline-primary ld-ext-right" onclick="set_default_radio(' . $row->id . ')">' . __("Set as default radio") . '<div class="ld ld-ring ld-spin"></div></button</td>';
 					} else {
-						echo '<td><button id="default_radio_btn_' . $row->id . '" class="btn btn-sm btn-secondary ld-ext-right" onclick="release_default_radio(' . $row->id . ')">' . __("Default (click to release)") . '<div class="ld ld-ring ld-spin"></div></button</td>';
+						echo '<td><button id="default_radio_btn_' . $row->id . '" class="btn btn-sm btn-primary ld-ext-right" onclick="release_default_radio(' . $row->id . ')">' . __("Default (click to release)") . '<div class="ld ld-ring ld-spin"></div></button</td>';
 					}
 				}
 				echo "<td><a href=\"" . site_url('radio/delete') . "/" . $row->id . "\" class=\"btn btn-sm btn-danger\"> <i class=\"fas fa-trash-alt\"></i> " . __("Delete") . "</a></td>";
