@@ -56,7 +56,7 @@
                         <option value="MS"><?= _pgettext("Propagation Mode","Meteor scatter"); ?></option>
                         <option value="RPT"><?= _pgettext("Propagation Mode","Terrestrial or atmospheric repeater or transponder"); ?></option>
                         <option value="RS"><?= _pgettext("Propagation Mode","Rain scatter"); ?></option>
-                        <option value="SAT" <?php if ($user_default_band == $band) {echo 'selected="selected"';} ?>><?= _pgettext("Propagation Mode","Satellite"); ?></option>
+                        <option value="SAT" <?php if ($user_default_band == 'SAT') {echo 'selected="selected"';} ?>><?= _pgettext("Propagation Mode","Satellite"); ?></option>
                         <option value="TEP"><?= _pgettext("Propagation Mode","Trans-equatorial"); ?></option>
                         <option value="TR"><?= _pgettext("Propagation Mode","Tropospheric ducting"); ?></option>
                     </select>

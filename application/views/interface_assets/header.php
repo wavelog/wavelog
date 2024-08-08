@@ -61,7 +61,7 @@
                 	$actstation=$this->stations->find_active() ?? '';
                 	echo "var activeStationId = '".$actstation."';\n";
                 	$profile_info = $this->stations->profile($actstation)->row();
-                	echo "var activeStationTXPower = '".xss_clean($profile_info->station_power)."';\n";
+                	echo "var activeStationTXPower = '".xss_clean($profile_info->station_power ?? 0)."';\n";
                 	echo "var activeStationOP = '".xss_clean($this->session->userdata('operator_callsign'))."';\n";
 		}
                 ?>
@@ -251,6 +251,12 @@
 								<li><a class="dropdown-item" href="<?php echo site_url('bandmap/list'); ?>" title="Bandmap"><i class="fa fa-id-card"></i> <?= __("Bandmap"); ?></a></li>
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item" href="<?php echo site_url('sattimers'); ?>" title="SAT Timers"><i class="fas fa-satellite"></i> <?= __("SAT Timers"); ?></a></li>
+								<?php if (ENVIRONMENT == "development") { ?>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="<?php echo site_url('satellite/flightpath'); ?>" title="Manage Satellites"><i class="fas fa-satellite"></i> <?= __("Satellite Flightpath"); ?> <span class="badge text-bg-danger">Beta</span></a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="<?php echo site_url('satellite/pass'); ?>" title="Search for satellite passes"><i class="fas fa-satellite"></i> <?= __("Satellite Pass"); ?> <span class="badge text-bg-danger">Beta</span></a>
+								<?php } ?>
 							</ul>
 						</li>
 					<?php } ?>
