@@ -1646,7 +1646,7 @@ if (!file_exists('.lock')) {
 						// Documentation: https://davidstutz.github.io/bootstrap-multiselect/index.html
 						// template is needed for bs5 support
 						templates: {
-							button: '<button type="button" style="text-align: left !important;" class="multiselect dropdown-toggle btn btn-secondary" data-bs-toggle="dropdown" aria-expanded="false"><span class="multiselect-selected-text"></span></button>',
+							button: '<button id="dxcc_button" type="button" style="text-align: left !important;" class="multiselect dropdown-toggle btn btn-secondary" data-bs-toggle="dropdown" aria-expanded="false"><span class="multiselect-selected-text"></span></button>',
 							filter: '<div class="multiselect-filter d-flex align-items-center pb-1 border-bottom"><i class="fas fa-search text-muted ps-2 me-2"></i><input type="search" class="multiselect-search form-control" /></div>',
 						},
 						enableFiltering: true,
@@ -1670,7 +1670,12 @@ if (!file_exists('.lock')) {
 						'width': '100%',
 						'height': '39px',
 						'padding-left': '1px'
-					})
+					});
+
+					$('#dxcc_id').on('change', function() {
+						DXCC_Warning();
+					});
+					DXCC_Warning();
 				});
 
 				function check_for_empty_fields() {
@@ -1691,15 +1696,25 @@ if (!file_exists('.lock')) {
 
 				}
 
+				function DXCC_Warning() {
+					if ($("#dxcc_id option:selected").text().includes("<?= __("Deleted DXCC"); ?>")) {
+						$('#dxcc_button').addClass('has-warning');
+						show_userformwarnings("warning", "<?= __("Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. Check which DXCC for this particular location is the correct one. If you are sure, ignore this warning."); ?>");
+					} else {
+						$('#dxcc_button').removeClass('has-warning');
+						hide_userformwarnings();
+					}
+				}
+
 				function show_userformwarnings(status, message) {
-					userFormWarnings.css('display', 'block');
+					userFormWarnings.show();
 					userFormWarnings.removeClass('alert-warning alert-danger');
 					userFormWarnings.addClass('alert-' + status);
 					userFormWarnings.html(message);
 				}
 
 				function hide_userformwarnings() {
-					userFormWarnings.css('display', 'none');
+					userFormWarnings.hide();
 					userFormWarnings.removeClass('alert-warning alert-danger');
 				}
 
@@ -1897,7 +1912,7 @@ if (!file_exists('.lock')) {
 					}
 
 					if (checklist_firstuser) {
-						if (passwordField.hasClass('has-warning')) {
+						if (passwordField.hasClass('has-warning') || $('#dxcc_button').hasClass('has-warning')) {
 							checklistFirstUser.removeClass('fa-times-circle');
 							checklistFirstUser.removeClass('fa-check-circle');
 							checklistFirstUser.addClass('fa-exclamation-triangle').css('color', '#ffc107');
