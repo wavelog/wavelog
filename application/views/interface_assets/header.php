@@ -61,7 +61,7 @@
                 	$actstation=$this->stations->find_active() ?? '';
                 	echo "var activeStationId = '".$actstation."';\n";
                 	$profile_info = $this->stations->profile($actstation)->row();
-                	echo "var activeStationTXPower = '".xss_clean($profile_info->station_power)."';\n";
+                	echo "var activeStationTXPower = '".xss_clean($profile_info->station_power ?? 0)."';\n";
                 	echo "var activeStationOP = '".xss_clean($this->session->userdata('operator_callsign'))."';\n";
 		}
                 ?>
