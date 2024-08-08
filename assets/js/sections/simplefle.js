@@ -915,8 +915,8 @@ $(".js-save-to-log").click(function () {
 					qsoList.forEach((item) => {
 						var callsign = item[2];
 						var gridsquare = item[6];
-						var rst_rcvd = item[7].replace(/dB$/, ''); // we don't want 'dB' in the database
-						var rst_sent = item[8].replace(/dB$/, ''); // *
+						var rst_sent = item[7].replace(/dB$/, ''); // we don't want 'dB' in the database
+						var rst_rcvd = item[8].replace(/dB$/, ''); // *
 						var start_date = item[0];
 						var start_time =
 							item[1][0] +
