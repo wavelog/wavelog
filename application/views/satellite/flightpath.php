@@ -31,7 +31,7 @@
 	<h2><?php echo $page_title; ?></h2>
 
 	<form class="d-flex align-items-center">
-			<label class="my-1 me-2" id="satslabel" for="distplot_sats"><?php echo lang('gridsquares_sat'); ?></label>
+			<label class="my-1 me-2" id="satslabel" for="distplot_sats"><?= __("Satellite"); ?></label>
 			<select class="form-select my-1 me-sm-2 w-auto"  id="sats">
 				<?php foreach($satellites as $sat) {
 					echo '<option value="' . $sat->satname . '"' . '>' . $sat->satname . '</option>'."\n";
