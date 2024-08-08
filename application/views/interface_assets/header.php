@@ -271,10 +271,12 @@
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="<?php echo site_url('themes'); ?>" title="Manage Themes"><i class="fas fa-cog"></i> <?= __("Themes"); ?></a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="<?php echo site_url('satellite/flightpath'); ?>" title="Manage Satellites"><i class="fas fa-satellite"></i> <?= __("Satellite Flightpath"); ?></a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="<?php echo site_url('satellite/pass'); ?>" title="Search for satellite passes"><i class="fas fa-satellite"></i> <?= __("Satellite Pass"); ?></a>
-								<div class="dropdown-divider"></div>
+								<?php if (ENVIRONMENT == "development") { ?>
+									<a class="dropdown-item" href="<?php echo site_url('satellite/flightpath'); ?>" title="Manage Satellites"><i class="fas fa-satellite"></i> <?= __("Satellite Flightpath"); ?> <span class="badge text-bg-danger">Beta</span></a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="<?php echo site_url('satellite/pass'); ?>" title="Search for satellite passes"><i class="fas fa-satellite"></i> <?= __("Satellite Pass"); ?> <span class="badge text-bg-danger">Beta</span></a>
+									<div class="dropdown-divider"></div>
+								<?php } ?>
 								<a class="dropdown-item" href="<?php echo site_url('backup'); ?>" title="Backup Wavelog content"><i class="fas fa-save"></i> <?= __("Backup"); ?></a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="<?php echo site_url('update'); ?>" title="Update Country Files"><i class="fas fa-sync"></i> <?= __("Update Country Files"); ?></a>
