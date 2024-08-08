@@ -243,6 +243,30 @@ div.alert-danger {
 	border-color: #ffc107;
 }
 
+#dxcc_button.has-warning {
+	border: 1px solid;
+	border-color: #ffc107;
+}
+
 .uppercase {
 	text-transform: uppercase;
+}
+
+.multiselect-container.dropdown-menu {
+    --bs-dropdown-padding-y: 0;
+}
+
+#dxcc_id + .btn-group .multiselect-container .multiselect-option input[type="radio"] {
+    display: none;
+}
+
+.multiselect {
+	--bs-btn-color: inherit !important;
+	--bs-btn-bg: inherit !important;
+	--bs-btn-border-color: inherit !important;
+	--bs-btn-hover-border-color: inherit !important;
+	--bs-btn-hover-bg: #1b1b1b;
+	--bs-btn-hover-color: inherit !important;
+	--bs-btn-active-bg: #1b1b1b;
+	--bs-btn-active-color: inherit !important;
 }

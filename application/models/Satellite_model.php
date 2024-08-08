@@ -11,6 +11,16 @@ class Satellite_model extends CI_Model {
 		return $this->db->query($sql)->result();
 	}
 
+	function get_all_satellites_with_tle() {
+		$sql = "select satellite.id, satellite.name as satname, tle.tle
+		from satellite
+		join tle on satellite.id = tle.satelliteid
+		order by satellite.name
+		";
+
+		return $this->db->query($sql)->result();
+	}
+
 	function delete($id) {
 		// Clean ID
 		$clean_id = $this->security->xss_clean($id);
@@ -102,19 +112,27 @@ class Satellite_model extends CI_Model {
 		return $query->result();
 	}
 
-     function array_group_by($flds, $arr) {
-            $groups = array();
-                foreach ($arr as $rec) {
-                         $keys = array_map(function($f) use($rec) { return $rec[$f]; }, $flds);
-                               $k = implode('@', $keys);
-                               if (isset($groups[$k])) {
-                                          $groups[$k][] = $rec;
-                                                } else {
-                                                           $groups[$k] = array($rec);
-                                                                 }
-                                   }
-                return $groups;
-              }
+    function array_group_by($flds, $arr) {
+		$groups = array();
+		foreach ($arr as $rec) {
+			$keys = array_map(function($f) use($rec) { return $rec[$f]; }, $flds);
+			$k = implode('@', $keys);
+			if (isset($groups[$k])) {
+				$groups[$k][] = $rec;
+			} else {
+				$groups[$k] = array($rec);
+			}
+		}
+		return $groups;
+	}
+
+	function get_tle($sat) {
+		$this->db->select('satellite.name AS satellite, tle.tle');
+		$this->db->join('tle', 'satellite.id = tle.satelliteid');
+		$this->db->where('name', $sat);
+		$query = $this->db->get('satellite');
+		return $query->row();
+	}
 
 }
 
