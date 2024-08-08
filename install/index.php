@@ -627,7 +627,7 @@ if (!file_exists('.lock')) {
 									<div class="row">
 										<div class="col-md-6 mb-2">
 											<label for="dxcc" class="form-label"><?= __("DXCC"); ?></label>
-											<select class="form-select" id="dxcc_id" name="dxcc" tabindex="6" aria-describedby="stationCallsignInputHelp">
+											<select class="form-control" id="dxcc_id" name="dxcc" tabindex="6" aria-describedby="stationCallsignInputHelp">
 												<option value="0" selected=""><?= _pgettext("No DXCC", "- None -"); ?></option>
 												<option value="2">Abu Ail Is - A1 (<?= __("Deleted DXCC"); ?>)</option>
 												<option value="3">Afghanistan - YA</option>
@@ -1641,6 +1641,37 @@ if (!file_exists('.lock')) {
 					cnfmPasswordField.on('change', function() {
 						user_pwd_check();
 					});
+
+					$('#dxcc_id').multiselect({
+						// initialize multiselect dropdown for locations
+						// Documentation: https://davidstutz.github.io/bootstrap-multiselect/index.html
+						// template is needed for bs5 support
+						templates: {
+							button: '<button type="button" style="text-align: left !important;" class="multiselect dropdown-toggle btn btn-secondary" data-bs-toggle="dropdown" aria-expanded="false"><span class="multiselect-selected-text"></span></button>',
+							filter: '<div class="multiselect-filter d-flex align-items-center pb-1 border-bottom"><i class="fas fa-search text-muted ps-2 me-2"></i><input type="search" class="multiselect-search form-control" /></div>',
+						},
+						enableFiltering: true,
+						filterPlaceholder: "<?= __("Search"); ?>",
+						enableFullValueFiltering: false,
+						enableCaseInsensitiveFiltering: true,
+						widthSynchronizationMode: 'always',
+						numberDisplayed: 1,
+						inheritClass: true,
+						buttonWidth: '100%',
+						maxHeight: 300,
+						dropUp: false
+					});
+					$('#dxcc_id').hide();
+					$('.multiselect-container .multiselect-filter', $('#dxcc_id').parent()).css({
+						'position': 'sticky',
+						'margin-top': '3px',
+						'top': '0px',
+						'z-index': 1,
+						'background-color': 'inherit',
+						'width': '100%',
+						'height': '39px',
+						'padding-left': '1px'
+					})
 				});
 
 				function check_for_empty_fields() {
