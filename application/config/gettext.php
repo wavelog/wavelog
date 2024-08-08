@@ -171,6 +171,16 @@ $config['languages'] = array(
 		'code'      => 'pl',
 		'flag'      => 'pl',
 	),
+	'portuguese' => array(
+		'name'      => 'Português',
+		'name_en'   => 'Portuguese',
+		'folder'    => 'portuguese',
+		'locale'    => 'pt-PT',
+		'gettext'   => 'pt_PT',
+		'direction' => 'ltr',
+		'code'      => 'pt',
+		'flag'      => 'pt',
+	),
 	'russian' => array(
 		'name'      => 'Русский',
 		'name_en'   => 'Russian',

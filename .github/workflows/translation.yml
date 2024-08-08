@@ -1,12 +1,13 @@
 name: Run the po generator script
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - dev
 
 jobs:
-  build:
+  run_scripts:
     if: github.repository == 'wavelog/wavelog'
     runs-on: ubuntu-latest
 
@@ -29,9 +30,13 @@ jobs:
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          git add .
-          git commit -m "po/mo updates"
-          git push
+          if [[ -n $(git status --porcelain) ]]; then
+            git add .
+            git commit -m "po/mo updates"
+            git push
+          else
+            echo "No changes to commit."
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

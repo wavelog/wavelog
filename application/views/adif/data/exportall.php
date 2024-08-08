@@ -1,6 +1,10 @@
 <?php
-	header('Content-Type: text/plain; charset=utf-8');
-	header('Content-Disposition: attachment; filename="'.$this->session->userdata('user_callsign').'-'.date('Ymd-Hi').'.adi"')
+	//only set these values if internalrender is not present or false
+	$internalrender = isset($internalrender) ? $internalrender : false;
+	if(!$internalrender) {
+		header('Content-Type: text/plain; charset=utf-8');
+		header('Content-Disposition: attachment; filename="'.$this->session->userdata('user_callsign').'-'.date('Ymd-Hi').'.adi"');
+	}
 ?>
 Wavelog ADIF export
 <ADIF_VER:5>3.1.4

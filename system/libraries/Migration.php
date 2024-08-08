@@ -91,7 +91,16 @@ class CI_Migration {
 	 * 
 	 * @var string
 	 */
-	protected $_migration_lockfile = APPPATH . 'cache/.migration_running';
+	protected $_migration_lockfile = NULL;
+
+	/**
+	 * Max Age of the migration lockfile
+	 * 
+	 * @var int
+	 */
+
+	protected $_migration_lf_maxage = NULL;
+
 
 	/**
 	 * Whether to automatically run migrations
@@ -146,6 +155,12 @@ class CI_Migration {
 
 		// Add trailing slash if not set
 		$this->_migration_path = rtrim($this->_migration_path, '/').'/';
+
+		// If not set, set it
+		$this->_migration_lockfile !== '' OR $this->_migration_lockfile = '/tmp/.migration_running';
+
+		// selockfile maxage if not set in config file. Fallback is 480 seconds. 
+		$this->_migration_lf_maxage !== '' OR $this->_migration_lf_maxage = 480;
 
 		// Load migration language
 		$this->lang->load('migration');
@@ -235,7 +250,7 @@ class CI_Migration {
 		else
 		{
 			// Well, there's nothing to migrate then ...
-			return TRUE;
+			return $current_version;
 		}
 
 		// Validate all available migrations within our target range.
@@ -341,7 +356,27 @@ class CI_Migration {
 			}
 
 		} else {
-			log_message('debug', 'Migration process is currently locked. Second migration attempt ignored.');
+
+			log_message('debug', 'There is a lockfile for migrations. Checking the age...');
+
+			// Get the file creation date
+			$lockfile_ctime = filemtime($this->_migration_lockfile);
+
+			//compare to the current time
+			$tdiff = time() - $lockfile_ctime;
+			log_message('debug', 'Migration lockfile lifetime in seconds: '.$tdiff.'/'.$this->_migration_lf_maxage);
+
+			// if the file is older then the configured limit, delete it
+			if ($tdiff > $this->_migration_lf_maxage) {
+
+				unlink($this->_migration_lockfile);
+				log_message('debug', 'Deleted migration lockfile because it was older then maxage.');
+
+			} else {
+
+				log_message('debug', 'Migration process is currently locked. Second migration attempt ignored.');
+
+			}
 		}
 
 		return $current_version;

@@ -46,6 +46,7 @@
                         <option value="iota" <?php if ($this->input->post('award') == "iota") echo ' selected'; ?> ><?= __("Islands On The Air (IOTA)"); ?></option>
                         <option value="waz" <?php if ($this->input->post('award') == "waz") echo ' selected'; ?> ><?= __("Worked All Zones (WAZ)"); ?></option>
                         <option value="vucc" <?php if ($this->input->post('award') == "vucc") echo ' selected'; ?> ><?= __("VHF / UHF Century Club (VUCC)"); ?></option>
+                        <option value="waja" <?php if ($this->input->post('award') == "waja") echo ' selected'; ?> ><?= __("Worked All Japan (WAJA)"); ?></option>
                     </select>
                 </div>
                 <div class="col-md-1 control-label"><?= __("Confirmation") ?></div>
@@ -94,6 +95,7 @@
             case 'iota': $result = write_iota_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $this->input->post('award')); break;
             case 'waz':  $result = write_waz_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $this->input->post('award')); break;
             case 'vucc':  $result = write_vucc_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $this->input->post('award')); break;
+            case 'waja':  $result = write_waja_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $this->input->post('award')); break;
         }
     }
     else {
@@ -133,6 +135,33 @@ function write_dxcc_timeline($timeline_array, $custom_date_format, $bandselect, 
         echo '</td>
                 <td>' . $line->end . '</td>
                 <td><a href=javascript:displayTimelineContacts("' . $line->adif . '","'. $bandselect . '","'. $modeselect . '","' . $award .'")>'.__("Show").'</a></td>
+               </tr>';
+    }
+    echo '</tfoot></table></div>';
+}
+
+function write_waja_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $award) {
+    $CI = &get_instance();
+    $CI->load->model("Waja");
+    $i = count($timeline_array);
+    echo '<table style="width:100%" class="table table-sm timelinetable table-bordered table-hover table-striped table-condensed text-center">
+              <thead>
+                    <tr>
+                        <td>#</td>
+                        <td>'.__("Date").'</td>
+                        <td>'.__("Prefecture").'</td>
+                        <td>'.__("Show QSO's").'</td>
+                    </tr>
+                </thead>
+                <tbody>';
+
+    foreach ($timeline_array as $line) {
+        $date_as_timestamp = strtotime($line->date);
+        echo '<tr>
+                <td>' . $i-- . '</td>
+                <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
+                <td>' . $CI->Waja->jaPrefectures[$line->col_state] . ' ('.$line->col_state.')</td>
+                <td><a href=javascript:displayTimelineContacts("' . $line->col_state . '","'. $bandselect . '","'. $modeselect . '","' . $award .'")>'.__("Show").'</a></td>
                </tr>';
     }
     echo '</tfoot></table></div>';

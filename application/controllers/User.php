@@ -765,7 +765,7 @@ class User extends CI_Controller {
 		}
 	}
 
-	function login() {
+	function login($firstlogin = false) {
 		// Check our version and run any migrations
 		if (!$this->load->is_loaded('Migration')) {
 			$this->load->library('Migration');
@@ -774,6 +774,10 @@ class User extends CI_Controller {
 			$this->load->library('Encryption');
 		}
 		$this->migration->current();
+
+		if($firstlogin == true) {
+			$this->session->set_flashdata('success', __("Congrats! Wavelog was successfully installed. You can now login for the first time."));
+		}
 
 		$this->load->model('user_model');
 		$query = $this->user_model->get($this->input->post('user_name', true));
@@ -812,7 +816,6 @@ class User extends CI_Controller {
 				if ($this->user_model->check_keep_hash($a, $b)) {
 
 					// check if maintenance mode is active or the user is an admin
-					log_message('error', 'user_type: '.$user_type);
 					if (ENVIRONMENT != 'maintenance' || $user_type == 99) {
 
 						// if everything is fine we can log in the user

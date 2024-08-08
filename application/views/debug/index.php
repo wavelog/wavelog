@@ -39,6 +39,17 @@
                             <td><?= __("Migration"); ?></td>
                             <td><?php echo (isset($migration_version) ? $migration_version : "<span class='badge text-bg-danger'>". __("There is something wrong with your Migration in Database!") . "</span>"); ?></td>
                         </tr>
+                        <?php if (!$migration_is_uptodate) { ?>
+                        </table>
+                            <div class="alert alert-danger mt-3 mb-3">
+                                <h5><?= __("Migration is outdated and locked!"); ?></h5>
+                                <p><?= sprintf(__("The current migration is not the version it is supposed to be. Reload this page after %s seconds. If this warning persists, your migration is likely locked due to a previously failed process. Delete the file %s to force the migration to run again."), $miglock_lifetime, $migration_lockfile); ?></p>
+                                <p><?= sprintf(__("Check this wiki article <u><a href='%s' target='_blank'>here</a></u> for more information."), "https://github.com/wavelog/wavelog/wiki/Migration-is-locked"); ?></p>
+                                <p><?= sprintf(__("Current migration is %s"), $migration_version); ?><br>
+                                    <?= sprintf(__("Migration should be %s"), $migration_config); ?></p>
+                            </div>
+                        <table>
+                        <?php } ?>
                         <tr>
                             <td><?= __("Environment"); ?></td>
                             <td><?php echo ENVIRONMENT; ?></td>
@@ -272,7 +283,7 @@
                             <p><u><?= __("Settings"); ?></u></p>
                             <?php
                             $max_execution_time = 600;        // Seconds
-                            $max_upload_file_size = 8;      // Megabyte
+                            $upload_max_filesize = 8;      // Megabyte
                             $post_max_size = 8;                // Megabyte
                             $memory_limit = 256;            // Megabyte
                             $req_allow_url_fopen = '1';        // 1 = on
@@ -293,13 +304,13 @@
                                 </tr>
 
                                 <tr>
-                                    <td>max_upload_file_size</td>
-                                    <td><?php echo '> ' . $max_upload_file_size . 'M'; ?></td>
+                                    <td>upload_max_filesize</td>
+                                    <td><?php echo '> ' . $upload_max_filesize . 'M'; ?></td>
                                     <td>
                                         <?php
                                         $maxUploadFileSize = ini_get('upload_max_filesize');
                                         $maxUploadFileSizeBytes = (int)($maxUploadFileSize) * (1024 * 1024); // convert to bytes
-                                        if ($maxUploadFileSizeBytes >= ($max_upload_file_size * 1024 * 1024)) { // compare with given value in bytes
+                                        if ($maxUploadFileSizeBytes >= ($upload_max_filesize * 1024 * 1024)) { // compare with given value in bytes
                                         ?>
                                             <span class="badge text-bg-success"><?php echo $maxUploadFileSize; ?></span>
                                         <?php } else { ?>
@@ -359,7 +370,7 @@
                     </div>
                 </div>
             </div>
-            <?php if (file_exists(realpath(APPPATH . '../') . '/.git')) { ?>
+            <?php if (file_exists(realpath(APPPATH . '../') . '/.git') && function_usable('exec')) { ?>
                 <?php
                 //Below is a failsafe where git commands fail
                 try {
@@ -626,6 +637,7 @@
     <?= __("Greek"); ?>
     <?= __("Italian"); ?>
     <?= __("Polish"); ?>
+    <?= __("Portuguese"); ?>
     <?= __("Russian"); ?>
     <?= __("Spanish"); ?>
     <?= __("Swedish"); ?>

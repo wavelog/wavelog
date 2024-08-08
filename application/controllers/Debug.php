@@ -36,7 +36,21 @@ class Debug extends CI_Controller
 			$data['calls_wo_sid'] = $this->Debug_model->calls_without_station_id();
 		}
 
+		// get mig version from database
 		$data['migration_version'] = $this->Debug_model->getMigrationVersion();
+
+		// get mig version from config file
+		$this->load->config('migration');
+		$data['migration_config'] = $this->config->item('migration_version');
+		$data['migration_lockfile'] = $this->config->item('migration_lockfile');
+		$data['miglock_lifetime'] = $this->config->item('migration_lf_maxage');
+
+		// compare mig versions
+		if ($data['migration_version'] != $data['migration_config'] && file_exists($data['migration_lockfile'])) {
+			$data['migration_is_uptodate'] = false;
+		} else {
+			$data['migration_is_uptodate'] = true;
+		}
 
 		// Test writing to backup folder
 		$backup_folder = $this->permissions->is_really_writable('backup');
@@ -167,37 +181,82 @@ class Debug extends CI_Controller
 	}
 
 	public function selfupdate() {
-		if (file_exists('.git')) {
-			try {
-				$st=exec('touch '.realpath(APPPATH.'../').'/.maintenance');
-				$st=exec('git stash push --include-untracked');
-				$st=exec('git fetch');
-				$st=exec('git pull');
-				$st=exec('git stash pop');
-				$st=exec('rm '.realpath(APPPATH.'../').'/.maintenance');
-               		} catch (\Throwable $th) {
-				log_message("Error","Error at selfupdating");
+
+		$stashfile = realpath(APPPATH.'../').'/.updater';
+		$maintenancefile = realpath(APPPATH.'../').'/.maintenance';
+
+		if (function_usable('exec')) {
+			if (file_exists('.git')) {
+				try {
+					// enter maintenance mode
+					exec('touch '.$maintenancefile);
+					log_message('debug', 'Updater: Entered Maintenance mode by creating .maintenance file');
+
+					// we need atleast one file which gets stashed. this file should NOT be in .gitignore
+					exec('touch '.$stashfile);
+					log_message('debug', 'Updater: Created stashfile');
+
+					// stash everything else
+					exec('git stash push --include-untracked');
+					log_message('debug', 'Updater: Stash everything');
+
+					// perform the pull
+					exec('git fetch');
+					exec('git pull');
+					log_message('debug', 'Updater: git fetch and git pull');
+
+					// we can now pop all other changes
+					exec('git stash pop');
+					log_message('debug', 'Updater: Pop stashed changes');
+
+					// Show success message
+					$this->session->set_flashdata('success', __("Wavelog was updated successfully!"));
+					
+					} catch (\Throwable $th) {
+					log_message("Error","Error at selfupdating");
+				}
 			}
+			// delete the stash file
+			if(file_exists($stashfile)) {
+				exec('rm '.$stashfile);
+				log_message('debug', 'Updater: Delete stashfile');
+			}
+			// exit maintenance mode
+			if(file_exists($maintenancefile)) {
+				exec('rm '.$maintenancefile);
+				log_message('debug', 'Updater: Delete .maintenance file to exit Maintenance Mode');
+			}
+		} else {
+			log_message('error', 'function exec() not available. Debug Controller selfupdate()');
+			$this->session->set_flashdata('error', __("Selfupdate() not available. Check the Error Log."));
 		}
 		redirect('debug');
 	}
 
 	public function wavelog_fetch() {
 		$a_versions=[];
-		try {
-			$st=exec('git fetch');	// Fetch latest things from Repo. ONLY Fetch. Doesn't hurt since it isn't a pull!
-                        $versions['branch'] = trim(exec('git rev-parse --abbrev-ref HEAD')); // Get ONLY Name of the Branch we're on
-			$versions['latest_commit_hash']=substr(trim(exec('git log --pretty="%H" -n1 origin'.'/'.$versions['branch'])),0,8);	// fetch latest commit-hash from repo
-		}  catch (Exception $e) {
-			$versions['latest_commit_hash']='';
-			$versions['branch']='';
+		if (function_usable('exec')) {
+			try {
+				$st=exec('git fetch');	// Fetch latest things from Repo. ONLY Fetch. Doesn't hurt since it isn't a pull!
+							$versions['branch'] = trim(exec('git rev-parse --abbrev-ref HEAD')); // Get ONLY Name of the Branch we're on
+				$versions['latest_commit_hash']=substr(trim(exec('git log --pretty="%H" -n1 origin'.'/'.$versions['branch'])),0,8);	// fetch latest commit-hash from repo
+			}  catch (Exception $e) {
+				$versions['latest_commit_hash']='';
+				$versions['branch']='';
+			}
+		} else {
+			log_message('error', 'wavelog_fetch() not available. Function exec() not usable.');
 		}
 		header('Content-Type: application/json');
 		echo json_encode($versions);
 	}
 
 	public function wavelog_version() {
-		$commit_hash=substr(trim(exec('git log --pretty="%H" -n1 HEAD')),0,8);	// Get latest LOCAL Hash
+		if (function_usable('exec')) {
+			$commit_hash=substr(trim(exec('git log --pretty="%H" -n1 HEAD')),0,8);	// Get latest LOCAL Hash
+		} else {
+			log_message('error', 'wavelog_version() not available. Function exec() not usable.');
+		}
 		header('Content-Type: application/json');
 		echo json_encode($commit_hash);
 	}

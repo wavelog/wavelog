@@ -104,6 +104,9 @@ class Timeline extends CI_Controller {
             case 'vucc' :   $data['page_title'] = __("Log View")." - VUCC";
                             $data['filter'] = "Gridsquare ". $querystring;
                             break;
+            case 'waja' :   $data['page_title'] = __("Log View")." - WAJA";
+                            $data['filter'] = "WAJA ". $querystring;
+                            break;
         }
 
         if ($band != "All") {

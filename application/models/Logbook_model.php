@@ -4312,14 +4312,7 @@ function lotw_last_qsl_date($user_id) {
 		    }
 	    }
 
-	    return array(
-			'adif' => 0,
-			'cqz' => 0,
-			'long' => '',
-			'lat' => '',
-			'entity' => 'None',
-		);
-
+	    return array("Not Found", "Not Found");
     }
 
     public function dxcc_lookup($call, $date) {
@@ -5002,6 +4995,7 @@ function lotw_last_qsl_date($user_id) {
           $stn_loc = $this->qra->qra2latlong($row->COL_GRIDSQUARE);
 
         } elseif ($row->COL_VUCC_GRIDS != null) {
+          $coords = array();
           $grids = explode(",", $row->COL_VUCC_GRIDS);
           if (count($grids) == 2) {
             $grid1 = $this->qra->qra2latlong(trim($grids[0]));

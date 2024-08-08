@@ -265,8 +265,8 @@ class Contesting_model extends CI_Model {
 		$station_id = $this->Stations->find_active();
 
 		$sql = "select col_contest_id, min(date(col_time_on)) mindate, max(date(col_time_on)) maxdate, year(col_time_on) year, month(col_time_on) month
-			from " . $this->config->item('table_name') . " 
-			where coalesce(COL_CONTEST_ID, '') <> '' 
+			from " . $this->config->item('table_name') . "
+			where coalesce(COL_CONTEST_ID, '') <> ''
 			and station_id =" . $station_id;
 
 		$sql .= " group by COL_CONTEST_ID , year(col_time_on), month(col_time_on) order by year(col_time_on) desc";
@@ -279,8 +279,8 @@ class Contesting_model extends CI_Model {
 	function get_logged_years($station_id) {
 
 		$sql = "select distinct year(col_time_on) year
-			from " . $this->config->item('table_name') . " 
-			where coalesce(COL_CONTEST_ID, '') <> '' 
+			from " . $this->config->item('table_name') . "
+			where coalesce(COL_CONTEST_ID, '') <> ''
 			and station_id =" . $station_id;
 
 		$sql .= " order by year(col_time_on) desc";
@@ -291,9 +291,10 @@ class Contesting_model extends CI_Model {
 	}
 
 	function get_logged_contests($station_id, $year) {
-		$sql = "select distinct col_contest_id
-			from " . $this->config->item('table_name') . " 
-			where coalesce(COL_CONTEST_ID, '') <> '' 
+		$sql = "select distinct col_contest_id, coalesce(contest.name, col_contest_id) contestname
+			from " . $this->config->item('table_name') . " thcv
+			left outer join contest on thcv.col_contest_id = contest.adifname
+			where coalesce(COL_CONTEST_ID, '') <> ''
 			and station_id =" . $station_id .
 			" and year(col_time_on) ='" . $year . "'";
 
@@ -306,8 +307,8 @@ class Contesting_model extends CI_Model {
 
 	function get_contest_dates($station_id, $year, $contestid) {
 		$sql = "select distinct (date(col_time_on)) date
-			from " . $this->config->item('table_name') . " 
-			where coalesce(COL_CONTEST_ID, '') <> '' 
+			from " . $this->config->item('table_name') . "
+			where coalesce(COL_CONTEST_ID, '') <> ''
 			and station_id =" . $station_id .
 			" and year(col_time_on) ='" . $year . "' and col_contest_id ='" . $contestid . "'";
 

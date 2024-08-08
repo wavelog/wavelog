@@ -286,7 +286,7 @@ $config['allow_get_array'] = TRUE;
 | your log files will fill up very fast.
 |
 */
-$config['log_threshold'] = 0;
+$config['log_threshold'] = '%log_threshold%';
 
 /*
 |--------------------------------------------------------------------------
@@ -394,13 +394,12 @@ $config['cache_query_string'] = FALSE;
 | Encryption Key
 |--------------------------------------------------------------------------
 |
-| If you use the Encryption class, you must set an encryption key.
-| See the user guide for more info.
+| Encryption Key is used to encrypt sensitive data. Choose a strong and secure key.
+| Example: 'cnawuihp87f4g3ofb837rf93brlcve378rgf93be9837dgvzcl39rlzfbrzvc834lvvf83frgv83zrbzv'
 |
-| https://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
-$config['encryption_key'] = 'flossie1234555541';
+$config['encryption_key'] = '%encryptionkey%';
 
 /*
 |--------------------------------------------------------------------------

@@ -84,7 +84,7 @@ class Lookup extends CI_Controller {
 			}
 	    }
 
-		// SCP results from master scp db
+		// SCP results from Club Log master scp db
 		$file = 'updates/clublog_scp.txt';
 
 		if (is_readable($file)) {
@@ -97,9 +97,17 @@ class Lookup extends CI_Controller {
 					$arCalls[] = str_replace('0', 'Ø', $value);
 				}
 			}
+		} else {
+			$src = 'assets/resources/clublog_scp.txt';
+			if (copy($src, $file)) {
+				$this->scp();
+			} else {
+				log_message('error', 'Failed to copy source file ('.$src.') to new location. Check if this path has the right permission: '.$file);
+			}
 		}
 
-		$file = 'updates/masterscp.txt';
+		// SCP results from master scp https://www.supercheckpartial.com
+		$file = 'updates/MASTER.SCP';
 
 		if (is_readable($file)) {
 			$lines = file($file, FILE_IGNORE_NEW_LINES);
@@ -110,6 +118,13 @@ class Lookup extends CI_Controller {
 				{
 					$arCalls[] = str_replace('0', 'Ø', $value);
 				}
+			}
+		} else {
+			$src = 'assets/resources/MASTER.SCP';
+			if (copy($src, $file)) {
+				$this->scp();
+			} else {
+				log_message('error', 'Failed to copy source file ('.$src.') to new location. Check if this path has the right permission: '.$file);
 			}
 		}
 
@@ -165,8 +180,8 @@ class Lookup extends CI_Controller {
     public function get_county() {
         $json = [];
 
-        if(!empty($this->input->get("query"))) {
-            $county = $this->input->get("state");
+        if(!empty($this->security->xss_clean($this->input->get("query")))) {
+            $county = $this->security->xss_clean($this->input->get("state"));
             $cleanedcounty = explode('(', $county);
             $cleanedcounty = trim($cleanedcounty[0]);
 

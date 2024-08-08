@@ -237,6 +237,112 @@ class API extends CI_Controller {
 
 	}
 
+	/*
+	*
+	*	Function: get_contacts_adif
+	*	Task: allows third party software to pull ADIF QSO data from wavelog after a baseline of the last fetched QSO id
+	*/
+	function get_contacts_adif() {
+
+		//set header
+		header('Content-type: application/json');
+
+		//load API model
+		$this->load->model('api_model');
+
+		// Decode JSON and store
+		$obj = json_decode(file_get_contents("php://input"), true);
+		if ($obj === NULL) {
+		    http_response_code(400);
+			echo json_encode(['status' => 'failed', 'reason' => "wrong JSON"]);
+			return;
+		}
+
+		//do authorization
+		if(!isset($obj['key']) || $this->api_model->authorize($obj['key']) == 0) {
+		   http_response_code(401);
+		   echo json_encode(['status' => 'failed', 'reason' => "missing api key"]);
+			return;
+		}
+
+		//check for relevant fields in JSON input
+		if(!isset($obj['station_id']) or !isset($obj['fetchfromid']))
+		{
+			http_response_code(400);
+			echo json_encode(['status' => 'failed', 'reason' => "Not all required fields were present in input JSON"]);
+			return;
+		}
+
+		//extract relevant data to variables
+		$key = $obj['key'];
+		$station_id = $obj['station_id'];
+		$fetchfromid = $obj['fetchfromid'];
+
+		//check if goalpost is numeric as an additional layer of SQL injection prevention
+		if(!is_numeric($fetchfromid))
+		{
+			http_response_code(400);
+			echo json_encode(['status' => 'failed', 'reason' => "Invalid fetchfromid."]);
+			return;
+		}
+
+		//make sure the goalpost is an integer
+		$fetchfromid = (int)$fetchfromid;
+
+		//load stations API
+		$this->load->model('stations');
+
+		//get all stations of user to check if station_id should be readable
+		$userid = $this->api_model->key_userid($key);
+		$station_ids = array();
+		$stations=$this->stations->all_of_user($userid);
+
+		//extract to array
+		foreach ($stations->result() as $row) {
+			array_push($station_ids, $row->station_id);
+		}
+
+		//return error if station not accessible for the API key
+		if(!in_array($station_id, $station_ids))
+		{
+			http_response_code(401);
+	 	   	echo json_encode(['status' => 'failed', 'reason' => "Station ID not accessible for this API key"]);
+			return;
+		}
+
+		//load adif data module
+		$this->load->model('adif_data');
+
+		//get qso data
+		$data['qsos'] = $this->adif_data->export_past_id($station_id, $fetchfromid);
+		
+		//set internalonly attribute for adif creation
+		$data['internalrender'] = true;
+		
+		//if no new QSOs are ready, return that
+		$qso_count = count($data['qsos']->result()); 
+		if($qso_count <= 0)
+		{
+			http_response_code(200);
+			echo json_encode(['status' => 'successfull', 'message' => 'No new QSOs available.', 'lastfetchedid' => $fetchfromid, 'exported_qsos' => 0, 'adif' => null]);
+			return;
+		}
+
+		//convert data to ADIF
+		$adif_content = $this->load->view('adif/data/exportall', $data, TRUE);
+
+		//get new goalpost
+		$lastfetchedid = 0;
+		foreach ($data['qsos']->result() as $row) {
+			$lastfetchedid = max($lastfetchedid, $row->COL_PRIMARY_KEY);
+		}		
+
+		//return API result
+		http_response_code(200);
+		echo json_encode(['status' => 'successfull', 'message' => 'Export successfull', 'lastfetchedid' => $lastfetchedid, 'exported_qsos' => $qso_count, 'adif' => $adif_content]);
+	}
+
+
 	// API function to check if a callsign is in the logbook already
 	function logbook_check_callsign() {
 		header('Content-type: application/json');
@@ -445,6 +551,11 @@ class API extends CI_Controller {
 		$this->api_model->update_last_used($obj['key']);
 
 		$user_id = $this->api_model->key_userid($obj['key']);
+
+		// Special Case: Yaesu Radio's use CW-U and CW-L which aren't official ADIF Modes. We override this here to CW
+		if (isset($obj['mode']) && (strtoupper($obj['mode']) == 'CW-U' || strtoupper($obj['mode']) == 'CW-L')) {
+			$obj['mode'] = 'CW';
+		}
 
 		// Store Result to Database
 		$this->cat->update($obj, $user_id);

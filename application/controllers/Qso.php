@@ -18,6 +18,16 @@ class QSO extends CI_Controller {
 		$this->load->model('bands');
 		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 
+        // Getting the live/post mode from GET command
+        // 0 = live
+        // 1 = post (manual)
+        $get_manual_mode = $this->security->xss_clean($this->input->get('manual'));
+        if ($get_manual_mode == '0' || $get_manual_mode == '1') {
+            $data['manual_mode'] = $get_manual_mode;
+        } else {
+            show_404();
+        }
+
 		$data['active_station_profile'] = $this->stations->find_active();
 
 		$data['notice'] = false;
@@ -439,7 +449,7 @@ class QSO extends CI_Controller {
 		$this->load->library('sota');
 		$json = [];
 
-		if (!empty($this->input->get("query"))) {
+		if (!empty($this->security->xss_clean($this->input->get("query")))) {
 			$query = $_GET['query'] ?? FALSE;
 			$json = $this->sota->get($query);
 		}
@@ -451,11 +461,11 @@ class QSO extends CI_Controller {
 	public function get_wwff() {
         $json = [];
 
-        if(!empty($this->input->get("query"))) {
+        if (!empty($this->security->xss_clean($this->input->get("query")))) {
             $query = isset($_GET['query']) ? $_GET['query'] : FALSE;
             $wwff = strtoupper($query);
 
-            $file = 'assets/json/wwff.txt';
+            $file = 'updates/wwff.txt';
 
             if (is_readable($file)) {
                 $lines = file($file, FILE_IGNORE_NEW_LINES);
@@ -470,6 +480,13 @@ class QSO extends CI_Controller {
                         $json[] = ["name"=>$value];
                     }
                 }
+            } else {
+                $src = 'assets/resources/wwff.txt';
+                if (copy($src, $file)) {
+                    $this->get_wwff();
+                } else {
+                    log_message('error', 'Failed to copy source file ('.$src.') to new location. Check if this path has the right permission: '.$file);
+                }
             }
         }
 
@@ -480,11 +497,11 @@ class QSO extends CI_Controller {
 	public function get_pota() {
         $json = [];
 
-        if(!empty($this->input->get("query"))) {
+        if (!empty($this->security->xss_clean($this->input->get("query")))) {
             $query = isset($_GET['query']) ? $_GET['query'] : FALSE;
             $pota = strtoupper($query);
 
-            $file = 'assets/json/pota.txt';
+            $file = 'updates/pota.txt';
 
             if (is_readable($file)) {
                 $lines = file($file, FILE_IGNORE_NEW_LINES);
@@ -499,6 +516,13 @@ class QSO extends CI_Controller {
                         $json[] = ["name"=>$value];
                     }
                 }
+            } else {
+                $src = 'assets/resources/pota.txt';
+                if (copy($src, $file)) {
+                    $this->get_pota();
+                } else {
+                    log_message('error', 'Failed to copy source file ('.$src.') to new location. Check if this path has the right permission: '.$file);
+                }
             }
         }
 
@@ -512,11 +536,11 @@ class QSO extends CI_Controller {
     public function get_dok() {
         $json = [];
 
-        if(!empty($this->input->get("query"))) {
+        if (!empty($this->security->xss_clean($this->input->get("query")))) {
             $query = isset($_GET['query']) ? $_GET['query'] : FALSE;
             $dok = strtoupper($query);
 
-            $file = 'assets/json/dok.txt';
+            $file = 'updates/dok.txt';
 
             if (is_readable($file)) {
                 $lines = file($file, FILE_IGNORE_NEW_LINES);
@@ -530,6 +554,13 @@ class QSO extends CI_Controller {
                     if (count($json) <= 100) {
                         $json[] = ["name"=>$value];
                     }
+                }
+            } else {
+                $src = 'assets/resources/dok.txt';
+                if (copy($src, $file)) {
+                    $this->get_dok();
+                } else {
+                    log_message('error', 'Failed to copy source file ('.$src.') to new location. Check if this path has the right permission: '.$file);
                 }
             }
         }

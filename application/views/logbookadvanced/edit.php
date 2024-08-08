@@ -19,6 +19,8 @@
 			<option value="wwff"><?= __("WWFF"); ?></option>
 			<option value="state"><?= __("State"); ?></option>
 			<option value="contest"><?= __("Contest"); ?></option>
+			<option value="lotwsent"><?= __("LoTW Sent"); ?></option>
+			<option value="lotwreceived"><?= __("LoTW Received"); ?></option>
 		</select>
 		<div>&nbsp;</div>
 
@@ -124,5 +126,13 @@
 					echo '<option value="' . $contest['adifname'] . '">' . $contest["name"] . '</option>'."\n";
 				}
 			?>
+		</select>
+
+		<select style="display:none" class="form-select w-auto form-select-sm w-auto" id="editLoTW"  name="lotw">
+			<option value="Y">Yes</option>
+			<option value="N">No</option>
+			<option value="R">Requested</option>
+			<option value="I">Invalid</option>
+			<option value="V">Verified</option>
 		</select>
 	</form>

@@ -58,11 +58,11 @@ function updateRow(qso) {
 	if (user_options.qslvia.show == "true"){
 		cells.eq(c++).text(qso.qslVia);
 	}
-	if (user_options.qsl.show == "true"){
-		cells.eq(c++).html(qso.qsl);
-	}
 	if (user_options.clublog.show == "true"){
 		cells.eq(c++).html(qso.clublog);
+	}
+	if (user_options.qsl.show == "true"){
+		cells.eq(c++).html(qso.qsl);
 	}
 	if ($(".eqslconfirmation")[0] && user_options.eqsl.show == "true"){
 		cells.eq(c++).html(qso.eqsl);
@@ -313,8 +313,26 @@ $(document).ready(function () {
 		  button: '<button type="button" class="multiselect dropdown-toggle btn btn-sm btn-secondary me-2 w-auto" data-bs-toggle="dropdown" aria-expanded="false"><span class="multiselect-selected-text"></span></button>',
 		},
 		numberDisplayed: 1,
+		inheritClass: true,
 		includeSelectAllOption: true
 	});
+
+	$('#dxcc').multiselect({
+		// template is needed for bs5 support
+		templates: {
+		  button: '<button type="button" class="multiselect dropdown-toggle btn btn-sm btn-secondary me-2 w-auto" data-bs-toggle="dropdown" aria-expanded="false"><span class="multiselect-selected-text"></span></button>',
+		},
+		enableFiltering: true,
+		enableFullValueFiltering: false,
+		enableCaseInsensitiveFiltering: true,
+		numberDisplayed: 1,
+		inheritClass: true,
+		buttonWidth: '100%',
+		maxHeight: 600
+	});
+	$('.multiselect-container .multiselect-filter', $('#dxcc').parent()).css({
+		'position': 'sticky', 'top': '0px', 'z-index': 1, 'background-color':'inherit', 'width':'100%', 'height':'37px'
+	})
 
 
 	$('#searchForm').submit(function (e) {
