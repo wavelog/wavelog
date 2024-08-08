@@ -38,6 +38,7 @@
 		} from "../assets/js/country-flag-emoji-polyfill.js";
 		polyfillCountryFlagEmojis("Twemoji Country Flags", "<?php echo $websiteurl; ?>assets/fonts/TwemojiCountryFlags/TwemojiCountryFlags.woff2");
 	</script>
+	<script type="text/javascript" src="../assets/js/bootstrap-multiselect.js"></script>
 	<?php
 	/**
 	 * Hidden field to be able to translate the language names
