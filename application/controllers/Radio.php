@@ -1,15 +1,14 @@
 <?php
 
-	class Radio extends CI_Controller {
+class Radio extends CI_Controller {
 
-	public function index()
-	{
+	public function index() {
 		// Check Auth
 		$this->load->model('user_model');
 
 		// Check if users logged in
 
-		if($this->user_model->validate_session() == 0) {
+		if ($this->user_model->validate_session() == 0) {
 			// user is not logged in
 			redirect('user/login');
 		}
@@ -17,9 +16,14 @@
 		// load the view
 		$data['page_title'] = __("Hardware Interfaces");
 
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/sections/radio.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/radio.js")),
+		];
+
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('radio/index');
-		$this->load->view('interface_assets/footer');
+		$this->load->view('interface_assets/footer', $footerData);
 	}
 
 	function status() {
@@ -29,7 +33,7 @@
 
 		// Check if users logged in
 
-		if($this->user_model->validate_session() == 0) {
+		if ($this->user_model->validate_session() == 0) {
 			// user is not logged in
 			redirect('user/login');
 		}
@@ -37,57 +41,87 @@
 
 		$this->load->model('cat');
 		$query = $this->cat->status();
-		if ($query->num_rows() > 0)
-		{
+
+		if ($query->num_rows() > 0) {
 			echo "<thead><tr>";
-				echo "<th>Radio</th>";
-				echo "<th>Frequency</th>";
-				echo "<th>Mode</th>";
-				echo "<th>Timestamp</th>" ;
-				echo "<th>Options</th>";
+			echo "<th>" . __("Radio") . "</th>";
+			echo "<th>" . __("Frequency") . "</th>";
+			echo "<th>" . __("Mode") . "</th>";
+			echo "<th>" . __("Timestamp") . "</th>";
+			echo "<th></th>";
+			echo "<th>" . __("Options") . "</th>";
+			echo "<th></th>";
 			echo "</tr></thead><tbody>";
-			foreach ($query->result() as $row)
-			{
+			foreach ($query->result() as $row) {
 				echo "<tr>";
-				echo "<td>".$row->radio."</td>";
+				echo "<td>" . $row->radio . "</td>";
 
 				if (empty($row->frequency) || $row->frequency == "0") {
 					echo "<td>- / -</td>";
 				} elseif (empty($row->frequency_rx) || $row->frequency_rx == "0") {
-					echo "<td>".$this->frequency->hz_to_mhz($row->frequency)."</td>";
+					echo "<td>" . $this->frequency->hz_to_mhz($row->frequency) . "</td>";
 				} else {
-					echo "<td>".$this->frequency->hz_to_mhz($row->frequency_rx)." / ".$this->frequency->hz_to_mhz($row->frequency)."</td>";
+					echo "<td>" . $this->frequency->hz_to_mhz($row->frequency_rx) . " / " . $this->frequency->hz_to_mhz($row->frequency) . "</td>";
 				}
 
 				if (empty($row->mode) || $row->mode == "non") {
 					echo "<td>N/A</td>";
 				} elseif (empty($row->mode_rx) || $row->mode_rx == "non") {
-					echo "<td>".$row->mode."</td>";
+					echo "<td>" . $row->mode . "</td>";
 				} else {
-					echo "<td>".$row->mode_rx." / ".$row->mode."</td>";
+					echo "<td>" . $row->mode_rx . " / " . $row->mode . "</td>";
+				}
+
+				// Get Date format
+				if ($this->session->userdata('user_date_format')) {
+					// If Logged in and session exists
+					$custom_date_format = $this->session->userdata('user_date_format');
+				} else {
+					// Get Default date format from /config/wavelog.php
+					$custom_date_format = $this->config->item('qso_date_format');
 				}
 
 				$phpdate = strtotime($row->timestamp);
-				echo "<td>".date('H:i:s d-m-y', $phpdate)."</td>" ;
-				echo "<td><a href=\"".site_url('radio/delete')."/".$row->id."\" class=\"btn btn-sm btn-danger\"> <i class=\"fas fa-trash-alt\"></i> Delete</a></td>" ;
+				echo "<td>" . date($custom_date_format . ' H:i:s', $phpdate) . "</td>";
+
+				$last_updated = $this->cat->last_updated()->row()->id;
+
+				if ($last_updated == $row->id) {
+					echo '<td><i>' . __("last updated") . '</i></td>';
+				} else {
+					echo '<td></td>';
+				}
+
+				$defaul_user_radio = $this->user_options_model->get_options('cat', array('option_name' => 'default_radio'))->row()->option_value ?? NULL;
+				if (!$defaul_user_radio) {
+					echo '<td><button id="default_radio_btn_' . $row->id . '" class="btn btn-sm btn-outline-primary ld-ext-right" onclick="set_default_radio(' . $row->id . ')">' . __("Set as default radio") . '<div class="ld ld-ring ld-spin"></div></button</td>';
+				} else {
+					if ($defaul_user_radio !== $row->id) {
+						echo '<td><button id="default_radio_btn_' . $row->id . '" class="btn btn-sm btn-outline-primary ld-ext-right" onclick="set_default_radio(' . $row->id . ')">' . __("Set as default radio") . '<div class="ld ld-ring ld-spin"></div></button</td>';
+					} else {
+						echo '<td><button id="default_radio_btn_' . $row->id . '" class="btn btn-sm btn-primary ld-ext-right" onclick="release_default_radio(' . $row->id . ')">' . __("Default (click to release)") . '<div class="ld ld-ring ld-spin"></div></button</td>';
+					}
+				}
+				echo "<td><a href=\"" . site_url('radio/delete') . "/" . $row->id . "\" class=\"btn btn-sm btn-danger\"> <i class=\"fas fa-trash-alt\"></i> " . __("Delete") . "</a></td>";
 				echo "</tr>";
 			}
 			echo "</tbody>";
 		} else {
 			echo "<thead><tr>";
-				echo "<td colspan=\"4\">No CAT Interfaced radios found.</td>";
+			echo "<td colspan=\"6\"><div class=\"alert alert-info text-center\">" . __("No CAT interfaced radios found.") . "</div></td>";
 			echo "</tr></thead>";
 		}
-
 	}
 
 	function json($id) {
+
+		$clean_id = $this->security->xss_clean($id);
 
 		$this->load->model('user_model');
 
 		// Check if users logged in
 
-		if($this->user_model->validate_session() == 0) {
+		if ($this->user_model->validate_session() == 0) {
 			// user is not logged in
 			// Return Json data
 			header('Content-Type: application/json');
@@ -95,18 +129,16 @@
 				"error" => "not_logged_in"
 			), JSON_PRETTY_PRINT);
 		} else {
-		session_write_close();
+			session_write_close();
 
 			header('Content-Type: application/json');
 
 			$this->load->model('cat');
 
-			$query = $this->cat->radio_status($id);
+			$query = $this->cat->radio_status($clean_id);
 
-			if ($query->num_rows() > 0)
-			{
-				foreach ($query->result() as $row)
-				{
+			if ($query->num_rows() > 0) {
+				foreach ($query->result() as $row) {
 
 					$frequency = $row->frequency;
 
@@ -123,7 +155,7 @@
 							$mode = "FM";
 						}
 					} else {
-						$mode=null;
+						$mode = null;
 					}
 
 					if ($row->prop_mode == "SAT") {
@@ -143,7 +175,7 @@
 						if (empty($sat_mode_uplink)) {
 							$sat_mode = "";
 						} elseif ($sat_mode_uplink !== $sat_mode_downlink) {
-							$sat_mode = $sat_mode_uplink."/".$sat_mode_downlink;
+							$sat_mode = $sat_mode_uplink . "/" . $sat_mode_downlink;
 						} else {
 							$sat_mode = $sat_mode_uplink;
 						}
@@ -164,22 +196,33 @@
 					$updated_at = $minutes;
 
 					// Return Json data
-					$a_ret['frequency']=$frequency;
-					if (isset($frequency_rx) && ($frequency_rx != null)) { $a_ret['frequency_rx']=$frequency_rx; }
- 					if (isset($mode) && ($mode != null)) { $a_ret['mode']=$mode; }
-					if (isset($sat_mode) && ($sat_mode != null)) { $a_ret['satmode']=$sat_mode; }
-					if (isset($sat_name) && ($sat_name != null)) { $a_ret['satname']=$sat_name; }
-					if (isset($power) && ($power != null)) { $a_ret['power']=$power; }
-					if (isset($prop_mode) && ($prop_mode != null)) { $a_ret['prop_mode']=$prop_mode; }
-					$a_ret['update_minutes_ago']=$updated_at;
+					$a_ret['frequency'] = $frequency;
+					if (isset($frequency_rx) && ($frequency_rx != null)) {
+						$a_ret['frequency_rx'] = $frequency_rx;
+					}
+					if (isset($mode) && ($mode != null)) {
+						$a_ret['mode'] = $mode;
+					}
+					if (isset($sat_mode) && ($sat_mode != null)) {
+						$a_ret['satmode'] = $sat_mode;
+					}
+					if (isset($sat_name) && ($sat_name != null)) {
+						$a_ret['satname'] = $sat_name;
+					}
+					if (isset($power) && ($power != null)) {
+						$a_ret['power'] = $power;
+					}
+					if (isset($prop_mode) && ($prop_mode != null)) {
+						$a_ret['prop_mode'] = $prop_mode;
+					}
+					$a_ret['update_minutes_ago'] = $updated_at;
 					echo json_encode($a_ret, JSON_PRETTY_PRINT);
 				}
 			}
 		}
 	}
 
-	function get_mode_designator($frequency)
-	{
+	function get_mode_designator($frequency) {
 		if ($frequency > 21000000 && $frequency < 22000000)
 			return "H";
 		if ($frequency > 28000000 && $frequency < 30000000)
@@ -207,21 +250,60 @@
 	}
 
 	function delete($id) {
+
+		$clean_id = $this->security->xss_clean($id);
+
 		// Check Auth
 		$this->load->model('user_model');
-		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+		if (!$this->user_model->authorize(3)) {
+			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!');
+			redirect('dashboard');
+		}
 
 		$this->load->model('cat');
 
-		$this->cat->delete($id);
+		$this->cat->delete($clean_id);
+
+		if ($clean_id == $this->user_options_model->get_options('cat', array('option_name' => 'default_radio'))->row()->option_value ?? '') {
+			$this->release_default_radio();
+		}
 
 		$this->session->set_flashdata('message', 'Radio Profile Deleted');
 
 		session_write_close();
 		redirect('radio');
+	}
 
+	function set_default_radio() {
+
+		// get the radio_id from POST
+		$clean_radio_id = $this->security->xss_clean($this->input->post('radio_id'));
+
+		// Check Auth
+		$this->load->model('user_model');
+		if (!$this->user_model->authorize(3)) {
+			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!');
+			redirect('dashboard');
+		}
+
+		// we unset the current default radio
+		$this->release_default_radio();
+
+		// Set the user_option and session data
+		$this->user_options_model->set_option('cat', 'default_radio', array('radio_id' => $clean_radio_id));
+		$this->session->set_userdata('radio', $clean_radio_id);
+	}
+
+	function release_default_radio() {
+		// Check Auth
+		$this->load->model('user_model');
+		if (!$this->user_model->authorize(3)) {
+			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!');
+			redirect('dashboard');
+		}
+
+		// Unset the user_option and session data
+		$this->user_options_model->del_option('cat', 'default_radio');
+		$this->session->unset_userdata('radio');
 	}
 }
-
-
-?>
