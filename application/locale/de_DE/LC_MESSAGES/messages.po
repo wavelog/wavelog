@@ -17,8 +17,8 @@ msgstr ""
 "POT-Creation-Date: 2024-08-08 14:50+0000\n"
 "PO-Revision-Date: 2024-08-09 07:24+0000\n"
 "Last-Translator: Rasmus <DL4BS@users.noreply.translate.wavelog.org>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/de/>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -469,15 +469,18 @@ msgstr "Contest-Kalender"
 
 #: application/controllers/Contesting.php:46
 #: application/views/contesting/index.php:3
+#: application/controllers/Contesting.php:47
 msgid "Contest Logging"
 msgstr "Contest-Logging"
 
 #: application/controllers/Contesting.php:111
 #: application/views/interface_assets/header.php:274
+#: application/controllers/Contesting.php:112
 msgid "Contests"
 msgstr "Conteste"
 
 #: application/controllers/Contesting.php:125
+#: application/controllers/Contesting.php:126
 msgid "Update Contest"
 msgstr "Aktualisiere Contest"
 
@@ -972,7 +975,7 @@ msgstr "Clublog"
 #: application/views/view_log/partial/log.php:9
 #: application/views/view_log/partial/log_ajax.php:4
 #: application/views/view_log/qso.php:104 application/views/visitor/index.php:6
-#: application/views/widgets/qsos.php:29
+#: application/views/widgets/qsos.php:29 application/controllers/Radio.php:49
 msgid "Mode"
 msgstr "Mode"
 
@@ -1266,6 +1269,7 @@ msgstr "Band"
 #: application/views/user/edit.php:317
 #: application/views/view_log/partial/log_ajax.php:16
 #: application/views/view_log/qso.php:93 application/views/visitor/index.php:36
+#: application/controllers/Radio.php:48
 msgid "Frequency"
 msgstr "Frequenz"
 
@@ -1549,12 +1553,13 @@ msgstr "QSL-Karten Management"
 msgid "Print Requested QSLs"
 msgstr "Druck angeforderter QSLs"
 
-#: application/controllers/Qso.php:101
+#: application/controllers/Qso.php:101 application/controllers/Qso.php:102
 msgid "Add QSO"
 msgstr "Logge QSO"
 
 #: application/controllers/Radio.php:18
 #: application/views/interface_assets/header.php:432
+#: application/controllers/Radio.php:17
 msgid "Hardware Interfaces"
 msgstr "Hardware-Schnittstellen"
 
@@ -1852,7 +1857,9 @@ msgstr ""
 #: application/views/stationsetup/stationsetup.php:137
 #: application/views/stationsetup/stationsetup.php:192
 #: application/views/themes/index.php:107 application/views/user/main.php:54
-#: application/views/view_log/qso.php:613
+#: application/views/view_log/qso.php:613 application/controllers/Radio.php:105
+#: application/views/interface_assets/footer.php:2323
+#: application/views/interface_assets/footer.php:2362
 msgid "Delete"
 msgstr "Löschen"
 
@@ -2289,6 +2296,8 @@ msgstr "Differenz"
 #: application/views/timeplotter/index.php:47
 #: application/views/user/edit.php:633
 #: application/views/visitor/layout/footer.php:169
+#: application/views/interface_assets/footer.php:1435
+#: application/views/interface_assets/footer.php:1574
 msgid "All"
 msgstr "Alle"
 
@@ -2766,6 +2775,7 @@ msgstr ""
 #: application/views/interface_assets/footer.php:32
 #: application/views/interface_assets/footer.php:495
 #: application/views/interface_assets/footer.php:2137
+#: application/views/interface_assets/footer.php:2119
 msgid "DANGER"
 msgstr "GEFAHR"
 
@@ -3023,7 +3033,7 @@ msgstr "Die API-URL für diese Wavelog-Instanz ist"
 #: application/views/sattimers/index.php:71
 #: application/views/sattimers/index.php:73
 #: application/views/sattimers/index.php:75
-#: application/views/search/filter.php:69
+#: application/views/search/filter.php:69 application/views/radio/index.php:22
 msgid "Info"
 msgstr "Info"
 
@@ -3322,6 +3332,7 @@ msgstr "QSO mit QSL-Typ anzeigen"
 #: application/views/interface_assets/footer.php:2116
 #: application/views/qso/edit_ajax.php:378
 #: application/views/view_log/qso.php:25
+#: application/views/interface_assets/footer.php:2098
 msgid "QSL Card"
 msgstr "QSL-Karte"
 
@@ -4326,7 +4337,7 @@ msgstr "BandListe"
 
 #: application/views/bandmap/index.php:25 application/views/bandmap/list.php:60
 #: application/views/contesting/index.php:92
-#: application/views/qso/index.php:312
+#: application/views/qso/index.php:312 application/controllers/Radio.php:47
 msgid "Radio"
 msgstr "Funkgerät"
 
@@ -6153,6 +6164,8 @@ msgstr "QSL-Datum"
 #: application/views/interface_assets/footer.php:2399
 #: application/views/qslcard/index.php:66
 #: application/views/view_log/qso.php:614
+#: application/views/interface_assets/footer.php:2324
+#: application/views/interface_assets/footer.php:2363
 msgid "View"
 msgstr "Ansicht"
 
@@ -6398,6 +6411,7 @@ msgstr ""
 "Warnung."
 
 #: application/views/interface_assets/footer.php:1174
+#: application/views/interface_assets/footer.php:1156
 #, php-format
 msgid "You're not logged it. Please <a href='%s'>login</a>"
 msgstr "Du bist nicht eingeloggt. Bitte <a href='%s'>logge dich ein</a>"
@@ -6408,51 +6422,70 @@ msgstr "Du bist nicht eingeloggt. Bitte <a href='%s'>logge dich ein</a>"
 #: application/views/interface_assets/footer.php:1524
 #: application/views/interface_assets/footer.php:1528
 #: application/views/interface_assets/footer.php:1531
+#: application/views/interface_assets/footer.php:1362
+#: application/views/interface_assets/footer.php:1366
+#: application/views/interface_assets/footer.php:1369
+#: application/views/interface_assets/footer.php:1506
+#: application/views/interface_assets/footer.php:1510
+#: application/views/interface_assets/footer.php:1513
 msgid "grid square"
 msgstr "Planquadrate"
 
 #: application/views/interface_assets/footer.php:1387
 #: application/views/interface_assets/footer.php:1531
+#: application/views/interface_assets/footer.php:1369
+#: application/views/interface_assets/footer.php:1513
 msgid "Total count"
 msgstr "Summe"
 
 #: application/views/interface_assets/footer.php:2118
+#: application/views/interface_assets/footer.php:2100
 msgid "QSL Card for "
 msgstr "QSL-Karte für "
 
 #: application/views/interface_assets/footer.php:2138
+#: application/views/interface_assets/footer.php:2120
 msgid "Warning! Are you sure you want to delete this QSL card?"
 msgstr "Warnung! Bist du sicher, dass du diese QSL-Karte löschen möchtest?"
 
 #: application/views/interface_assets/footer.php:2178
 #: application/views/view_log/qso.php:42
+#: application/views/interface_assets/footer.php:2160
 msgid "eQSL Card"
 msgstr "eQSL-Karte"
 
 #: application/views/interface_assets/footer.php:2180
+#: application/views/interface_assets/footer.php:2162
 msgid "eQSL Card for "
 msgstr "eQSL-Karte für "
 
 #: application/views/interface_assets/footer.php:2353
 #: application/views/interface_assets/footer.php:2392
 #: application/views/view_log/qso.php:604
+#: application/views/interface_assets/footer.php:2335
+#: application/views/interface_assets/footer.php:2374
 msgid "QSL image file"
 msgstr "QSL-Bilddatei"
 
 #: application/views/interface_assets/footer.php:2372
+#: application/views/interface_assets/footer.php:2354
 msgid "Front QSL Card:"
 msgstr "Vorderseite QSL-Karte:"
 
 #: application/views/interface_assets/footer.php:2410
+#: application/views/interface_assets/footer.php:2392
 msgid "Back QSL Card:"
 msgstr "Rückseite QSL-Karte:"
 
 #: application/views/interface_assets/footer.php:2421
 #: application/views/interface_assets/footer.php:2446
+#: application/views/interface_assets/footer.php:2403
+#: application/views/interface_assets/footer.php:2428
 msgid "Add additional QSOs to a QSL Card"
 msgstr "Weitere QSOs zu einer QSL-Karte hinzufügen"
 
 #: application/views/interface_assets/footer.php:2457
+#: application/views/interface_assets/footer.php:2439
 msgid "Something went wrong. Please try again!"
 msgstr "Etwas ist schiefgelaufen. Bitte versuche es erneut!"
 
@@ -7412,6 +7445,7 @@ msgstr "Globus-Karte"
 #: application/views/stationsetup/exportmapoptions.php:5
 #: application/views/statistics/custom.php:31
 #: application/views/statistics/custom_result.php:33
+#: application/controllers/Radio.php:52
 msgid "Options"
 msgstr "Optionen"
 
@@ -8850,11 +8884,12 @@ msgstr ""
 "generiere API Schlüssel."
 
 #: application/views/radio/index.php:27 application/views/search/filter.php:69
+#: application/views/radio/index.php:22
 #, php-format
 msgid "You can find out how to use the %s in the wiki."
 msgstr "Wie du die %s verwendest, findest du im Wiki."
 
-#: application/views/radio/index.php:27
+#: application/views/radio/index.php:27 application/views/radio/index.php:22
 msgid "radio functions"
 msgstr "Funkgerät-Funktionen"
 
@@ -11112,6 +11147,32 @@ msgstr "Dein Rufzeichen:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Anfrage senden"
+
+#: application/controllers/Radio.php:50
+msgid "Timestamp"
+msgstr ""
+
+#: application/controllers/Radio.php:90
+#: application/views/contesting/index.php:96
+#: application/views/qso/index.php:316
+msgid "last updated"
+msgstr ""
+
+#: application/controllers/Radio.php:97 application/controllers/Radio.php:100
+msgid "Set as default radio"
+msgstr ""
+
+#: application/controllers/Radio.php:102
+msgid "Default (click to release)"
+msgstr ""
+
+#: application/controllers/Radio.php:111
+msgid "No CAT interfaced radios found."
+msgstr ""
+
+#: application/views/radio/index.php:27
+msgid "Please wait..."
+msgstr ""
 
 #, php-format
 #~ msgid ""

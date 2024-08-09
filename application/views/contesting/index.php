@@ -93,7 +93,7 @@
                                 <select class="form-select form-select-sm radios" id="radio" name="radio">
                                     <option value="0" selected="selected"><?= __("None"); ?></option>
                                         <?php foreach ($radios->result() as $row) { ?>
-                                        <option value="<?php echo $row->id; ?>" <?php if($this->session->userdata('radio') == $row->id) { echo "selected=\"selected\""; } ?>><?php echo $row->radio; ?></option>
+                                        <option value="<?php echo $row->id; ?>" <?php if($this->session->userdata('radio') == $row->id) { echo "selected=\"selected\""; } ?>><?php echo $row->radio; ?> <?php if ($radio_last_updated->id == $row->id) { echo "<i>(".__("last updated").")</i>"; } else { echo ''; } ?></option>
                                         <?php } ?>
                                 </select>
                             </div>

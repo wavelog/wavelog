@@ -33,6 +33,7 @@ class Contesting extends CI_Controller {
 
 		$data['my_gridsquare'] = $this->stations->find_gridsquare();
 		$data['radios'] = $this->cat->radios();
+		$data['radio_last_updated'] = $this->cat->last_updated()->row();
 		$data['modes'] = $this->modes->active();
 		$data['contestnames'] = $this->contesting_model->getActivecontests();
 		$data['bands'] = $this->bands->get_user_bands_for_qso_entry();

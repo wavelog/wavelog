@@ -105,8 +105,13 @@
 		}
 
 		function radio_status($id) {
-			$sql = 'SELECT * FROM `cat` WHERE id = ' . $id . ' and user_id =' . $this->session->userdata('user_id');
-			return $this->db->query($sql);
+			$sql = 'SELECT * FROM `cat` WHERE id = ? AND user_id = ?';
+			return $this->db->query($sql, array($id, $this->session->userdata('user_id')));
+		}
+
+		function last_updated() {
+			$sql = 'SELECT * FROM cat WHERE user_id = ? ORDER BY timestamp DESC LIMIT 1';
+			return $this->db->query($sql, $this->session->userdata('user_id'));
 		}
 
 		function delete($id) {
