@@ -94,7 +94,7 @@ class Radio extends CI_Controller {
 
 				$defaul_user_radio = $this->user_options_model->get_options('cat', array('option_name' => 'default_radio'))->row()->option_value ?? NULL;
 				if (!$defaul_user_radio) {
-					echo '<td><button id="default_radio_btn_' . $row->id . '" class="btn btn-sm btn-primary ld-ext-right" onclick="set_default_radio(' . $row->id . ')">' . __("Set as default radio") . '<div class="ld ld-ring ld-spin"></div></button</td>';
+					echo '<td><button id="default_radio_btn_' . $row->id . '" class="btn btn-sm btn-outline-primary ld-ext-right" onclick="set_default_radio(' . $row->id . ')">' . __("Set as default radio") . '<div class="ld ld-ring ld-spin"></div></button</td>';
 				} else {
 					if ($defaul_user_radio !== $row->id) {
 						echo '<td><button id="default_radio_btn_' . $row->id . '" class="btn btn-sm btn-outline-primary ld-ext-right" onclick="set_default_radio(' . $row->id . ')">' . __("Set as default radio") . '<div class="ld ld-ring ld-spin"></div></button</td>';
