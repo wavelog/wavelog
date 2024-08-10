@@ -240,9 +240,11 @@ class Statistics extends CI_Controller {
 	public function antennaanalytics() {
 		$this->load->model('stats');
 
-		$total_qsos = array();
+		$data = array();
 
-		$total_qsos['azelarray'] = $this->stats->azeldata();
+		$data['azelarray'] = $this->stats->azeldata();
+
+		$data['satellites'] = $this->stats->get_sats();
 
 
 		$footerData = [];
@@ -253,7 +255,7 @@ class Statistics extends CI_Controller {
 
 		// Load Views
 		$this->load->view('interface_assets/header');
-		$this->load->view('statistics/antennaanalytics', $total_qsos);
+		$this->load->view('statistics/antennaanalytics', $data);
 		$this->load->view('interface_assets/footer', $footerData);
 	}
 }
