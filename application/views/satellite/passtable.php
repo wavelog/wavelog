@@ -16,7 +16,7 @@ if ($filtered) {
 				echo '<tr>';
 				echo '<td>' . $pass->satname . '</td>';
 				echo '<td>' . Predict_Time::daynum2readable($pass->visible_aos, $zone, $format) . '</td>';
-				echo '<td>' . returntimediff(Predict_Time::daynum2readable($pass->visible_aos, $zone, $format), Predict_Time::daynum2readable($pass->visible_los, $zone, $format)) . '</td>';
+				echo '<td>' . returntimediff(Predict_Time::daynum2readable($pass->visible_aos, $zone, $format), Predict_Time::daynum2readable($pass->visible_los, $zone, $format), $format) . '</td>';
 				echo '<td>' . round($pass->visible_aos_az) . ' (' . azDegreesToDirection($pass->visible_aos_az) . ')</td>';
 				echo '<td>' . round($pass->visible_aos_el) . '</td>';
 				echo '<td>' . round($pass->max_el) . '</td>';
@@ -28,9 +28,9 @@ if ($filtered) {
 			echo '</table>';
 }
 
-function returntimediff($start, $end) {
-	$datetime1 = DateTime::createFromFormat('m-d-Y H:i:s', $end);
-	$datetime2 = DateTime::createFromFormat('m-d-Y H:i:s', $start);
+function returntimediff($start, $end, $format) {
+	$datetime1 = DateTime::createFromFormat($format, $end);
+	$datetime2 = DateTime::createFromFormat($format, $start);
 	$interval = $datetime1->diff($datetime2);
 
 	$minutesDifference = ($interval->days * 24 * 60) + ($interval->h * 60) + $interval->i + ($interval->s / 60);
