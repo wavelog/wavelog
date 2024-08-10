@@ -9,7 +9,7 @@
 				<input class="my-1 me-sm-2 w-auto form-control" id="minelevation" type="number" name="minelevation" value="0" />
 			</div>
 			<div class="mb-3 w-auto">
-				<label class="my-1 me-sm-2 w-auto" for="minazimuth"><?= __("Min. Azimut"); ?></label>
+				<label class="my-1 me-sm-2 w-auto" for="minazimuth"><?= __("Min. Azimuth"); ?></label>
                 <select class="my-1 me-sm-2 w-auto form-select" id="minazimuth" name="minazimuth">
 				<?php for ($i = 0; $i <= 350; $i += 10): ?>
 					<option value="<?= $i ?>" <?= $i === 0 ? 'selected' : '' ?>><?= $i ?> &deg;</option>
@@ -17,7 +17,7 @@
 			</select>
 			</div>
 			<div class="mb-3 w-auto">
-				<label class="my-1 me-sm-2 w-auto" for="maxazimuth"><?= __("Max. Azimut"); ?></label>
+				<label class="my-1 me-sm-2 w-auto" for="maxazimuth"><?= __("Max. Azimuth"); ?></label>
 				<select class="my-1 me-sm-2 w-auto form-select" id="maxazimuth" name="maxazimuth">
 					<?php for ($i = 10; $i <= 360; $i += 10): ?>
 						<option value="<?= $i ?>" <?= $i === 360 ? 'selected' : '' ?>><?= $i ?> &deg;</option>
