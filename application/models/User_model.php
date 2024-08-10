@@ -590,8 +590,12 @@ class User_Model extends CI_Model {
 	// FUNCTION: array timezones()
 	// Returns a list of timezones
 	function timezones() {
-		$r = $this->db->query('SELECT * FROM timezones ORDER BY `offset`');
-		return $r->result();
+		$r = $this->db->query('SELECT id, name FROM timezones ORDER BY `offset`');
+		$ts = array();
+		foreach ($r->result_array() as $t) {
+			$ts[$t['id']] = $t['name'];
+		}
+		return $ts;
 	}
 
 	// FUNCTION: array getThemes()
