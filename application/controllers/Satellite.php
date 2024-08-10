@@ -262,7 +262,17 @@ class Satellite extends CI_Controller {
 		$filtered = $predict->filterVisiblePasses($results);
 
 		$zone   = $this->security->xss_clean($this->input->post('timezone'));
-		$format = 'm-d-Y H:i:s';         // Time format from PHP's date() function
+
+		// Get Date format
+		if ($this->session->userdata('user_date_format')) {
+			// If Logged in and session exists
+			$custom_date_format = $this->session->userdata('user_date_format');
+		} else {
+			// Get Default date format from /config/wavelog.php
+			$custom_date_format = $this->config->item('qso_date_format');
+		}
+
+		$format = $custom_date_format . ' H:i:s';
 
 		$data['filtered'] = $filtered;
 		$data['zone'] = $zone;

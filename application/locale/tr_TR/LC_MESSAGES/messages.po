@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-09 07:24+0000\n"
+"POT-Creation-Date: 2024-08-10 10:26+0000\n"
 "PO-Revision-Date: 2024-07-26 14:02+0000\n"
 "Last-Translator: Halil AYYILDIZ <ta2lghalil@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1124,6 +1124,7 @@ msgstr "Eyalet"
 #: application/views/qslcard/searchresult.php:83
 #: application/views/qso/components/previous_contacts.php:87
 #: application/views/qso/edit_ajax.php:156 application/views/qso/index.php:279
+#: application/views/satellite/pass.php:28
 #: application/views/search/cqzones_result.php:12
 #: application/views/search/result.php:33
 #: application/views/search/search_result_ajax.php:13
@@ -2368,6 +2369,7 @@ msgstr ""
 #: application/views/logbookadvanced/edit.php:16
 #: application/views/logbookadvanced/index.php:192
 #: application/views/satellite/flightpath.php:34
+#: application/views/satellite/passtable.php:5
 #: application/views/sattimers/index.php:38
 #: application/views/statistics/index.php:112
 msgid "Satellite"
@@ -2584,7 +2586,7 @@ msgstr ""
 #: application/views/qslcard/searchresult.php:4
 #: application/views/qslprint/qslprint.php:22
 #: application/views/qslprint/qsolist.php:7 application/views/qso/index.php:64
-#: application/views/qso/index.php:100
+#: application/views/qso/index.php:100 application/views/satellite/pass.php:473
 #: application/views/search/cqzones_result.php:7
 #: application/views/search/result_search.php:4
 #: application/views/search/search_result_ajax.php:89
@@ -4504,6 +4506,7 @@ msgstr ""
 #: application/views/dashboard/index.php:289
 #: application/views/dashboard/index.php:310
 #: application/views/dashboard/index.php:331
+#: application/views/satellite/pass.php:475
 msgid "Today"
 msgstr ""
 
@@ -6302,6 +6305,7 @@ msgstr ""
 #: application/views/interface_assets/header.php:276
 #: application/views/notes/add.php:38 application/views/notes/edit.php:39
 #: application/views/satellite/index.php:11
+#: application/views/satellite/pass.php:495
 #: application/views/statistics/custom.php:20
 #: application/views/statistics/custom_result.php:21
 #: application/views/statistics/index.php:39
@@ -8562,8 +8566,69 @@ msgstr ""
 msgid "Satellite passes"
 msgstr ""
 
-#: application/views/satellite/pass.php:548
+#: application/views/satellite/pass.php:8
+msgid "Min. Satellite Elevation"
+msgstr ""
+
+#: application/views/satellite/pass.php:12
+msgid "Min. Azimuth"
+msgstr ""
+
+#: application/views/satellite/pass.php:20
+msgid "Max. Azimuth"
+msgstr ""
+
+#: application/views/satellite/pass.php:32
+msgid "Altitude (meters)"
+msgstr ""
+
+#: application/views/satellite/pass.php:36 application/views/user/edit.php:179
+msgid "Timezone"
+msgstr "Saat dilimi"
+
+#: application/views/satellite/pass.php:479
+msgid "Min. time"
+msgstr ""
+
+#: application/views/satellite/pass.php:487
+msgid "Max. time"
+msgstr ""
+
+#: application/views/satellite/pass.php:504
 msgid "Load predictions"
+msgstr ""
+
+#: application/views/satellite/passtable.php:6
+msgid "AOS Time"
+msgstr ""
+
+#: application/views/satellite/passtable.php:7
+#: application/views/sattimers/index.php:46
+msgid "Duration"
+msgstr ""
+
+#: application/views/satellite/passtable.php:8
+msgid "AOS Az"
+msgstr ""
+
+#: application/views/satellite/passtable.php:9
+msgid "AOS El"
+msgstr ""
+
+#: application/views/satellite/passtable.php:10
+msgid "Max El"
+msgstr ""
+
+#: application/views/satellite/passtable.php:11
+msgid "LOS Time"
+msgstr ""
+
+#: application/views/satellite/passtable.php:12
+msgid "LOS Az"
+msgstr ""
+
+#: application/views/satellite/passtable.php:13
+msgid "LOS El"
 msgstr ""
 
 #: application/views/sattimers/index.php:15
@@ -8584,10 +8649,6 @@ msgstr ""
 
 #: application/views/sattimers/index.php:45
 msgid "Max Elevation"
-msgstr ""
-
-#: application/views/sattimers/index.php:46
-msgid "Duration"
 msgstr ""
 
 #: application/views/search/cqzones.php:5
@@ -9857,10 +9918,6 @@ msgstr ""
 #: application/views/user/edit.php:176
 msgid "Choose Wavelog language."
 msgstr ""
-
-#: application/views/user/edit.php:179
-msgid "Timezone"
-msgstr "Saat dilimi"
 
 #: application/views/user/edit.php:187
 msgid "Date Format"
