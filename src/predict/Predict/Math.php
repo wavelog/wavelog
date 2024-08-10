@@ -5,7 +5,7 @@
  * Ported to PHP by Bill Shupp.  Original comments below
  */
 
-require_once realpath(__DIR__ . "/../../predict/Predict.php");
+require_once realpath(__DIR__ . "/../Predict.php");
 
 /*
  * Unit SGP_Math
