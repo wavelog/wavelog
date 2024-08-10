@@ -2,15 +2,15 @@
 if ($filtered) {
 	echo '<table style="width:100%" class="table-sm table table-bordered table-hover table-striped table-condensed text-center">
 				<tr id="toptable">
-					<th>Satellite</th>
-					<th>AOS Time</th>
-					<th>Duration</th>
-					<th>AOS az</th>
-					<th>AOS el</th>
-					<th>Max El</th>
-					<th>LOS Time</th>
-					<th>LOS Az</th>
-					<th>LOS El</th>
+					<th>' . __("Satellite") . '</th>
+					<th>' . __("AOS Time") . '</th>
+					<th>' . __("Duration") . '</th>
+					<th>' . __("AOS Az") . '</th>
+					<th>' . __("AOS El") . '</th>
+					<th>' . __("Max El") . '</th>
+					<th>' . __("LOS Time") . '</th>
+					<th>' . __("LOS Az") . '</th>
+					<th>' . __("LOS El") . '</th>
 				</tr>';
 			foreach ($filtered as $pass) {
 				echo '<tr>';
