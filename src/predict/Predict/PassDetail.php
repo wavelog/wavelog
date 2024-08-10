@@ -1,6 +1,6 @@
 <?php
 
-require_once realpath(__DIR__ . "/../../predict/Predict/Vector.php");
+require_once realpath(__DIR__ . "/../Predict/Vector.php");
 
 
 /** Pass detail entry.

@@ -4,13 +4,13 @@
  * Ported from gpredict to PHP by Bill Shupp
  */
 
-require_once realpath(__DIR__ . "/../../predict/Predict.php");
-require_once realpath(__DIR__ . "/../../predict/Predict/Math.php");
-require_once realpath(__DIR__ . "/../../predict/Predict/Time.php");
-require_once realpath(__DIR__ . "/../../predict/Predict/Vector.php");
-require_once realpath(__DIR__ . "/../../predict/Predict/Geodetic.php");
-require_once realpath(__DIR__ . "/../../predict/Predict/ObsSet.php");
-require_once realpath(__DIR__ . "/../../predict/Predict/SGPObs.php");
+require_once realpath(__DIR__ . "/../Predict.php");
+require_once realpath(__DIR__ . "/../Predict/Math.php");
+require_once realpath(__DIR__ . "/../Predict/Time.php");
+require_once realpath(__DIR__ . "/../Predict/Vector.php");
+require_once realpath(__DIR__ . "/../Predict/Geodetic.php");
+require_once realpath(__DIR__ . "/../Predict/ObsSet.php");
+require_once realpath(__DIR__ . "/../Predict/SGPObs.php");
 
 
 /*
