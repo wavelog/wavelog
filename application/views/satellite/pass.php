@@ -6,7 +6,7 @@
 		<div class="row">
 			<div class="mb-3 w-auto">
 				<label class="my-1 me-sm-2 w-auto" id="satslabel" for="satslist"><?= __("Min. Satellite Elevation"); ?></label>
-				<input class="my-1 me-sm-2 w-auto form-control form-control-sm" id="minelevation" type="number" name="minelevation" value="0" />
+				<input class="my-1 me-sm-2 w-auto form-control" id="minelevation" type="number" name="minelevation" value="0" />
 			</div>
 			<div class="mb-3 w-auto">
 				<label class="my-1 me-sm-2 w-auto" for="minazimuth"><?= __("Min. Azimut"); ?></label>
@@ -26,11 +26,11 @@
 			</div>
 			<div class="mb-3 w-auto">
 					<label class="my-1 me-sm-2 w-auto" for="yourgrid"><?= __("Gridsquare"); ?></label>
-                    <input class="my-1 me-sm-2 w-auto form-control form-control-sm"  id="yourgrid" type="text" name="gridsquare" value="<?php echo $activegrid; ?>"/>
+                    <input class="my-1 me-sm-2 w-auto form-control"  id="yourgrid" type="text" name="gridsquare" value="<?php echo $activegrid; ?>"/>
 			</div>
 			<div class="mb-3 w-auto">
 					<label class="my-1 me-sm-2 w-auto" for="altitude"><?= __("Altitude (meters)"); ?></label>
-                    <input class="my-1 me-sm-2 w-auto form-control form-control-sm"  id="altitude" type="number" name="altitude" value="0" />
+                    <input class="my-1 me-sm-2 w-auto form-control"  id="altitude" type="number" name="altitude" value="0" />
 			</div>
 			<div class="mb-3 w-auto">
 					<label class="my-1 me-sm-2 w-auto" for="timezone"><?= __("Timezone"); ?></label>
@@ -478,61 +478,17 @@
 					<div class="mb-3 w-auto">
 						<label class="my-1 me-sm-2 w-auto" for="mintime"><?= __("Min. time"); ?></label>
 						<select class="my-1 me-sm-2 w-auto form-select" id="mintime" name="mintime">
-							<option value="0">0:00</option>
-							<option value="1">1:00</option>
-							<option value="2">2:00</option>
-							<option value="3">3:00</option>
-							<option value="4">4:00</option>
-							<option value="5">5:00</option>
-							<option value="6">6:00</option>
-							<option value="7">7:00</option>
-							<option selected value="8">8:00</option>
-							<option value="9">9:00</option>
-							<option value="10">10:00</option>
-							<option value="11">11:00</option>
-							<option value="12">12:00</option>
-							<option value="13">13:00</option>
-							<option value="14">14:00</option>
-							<option value="15">15:00</option>
-							<option value="16">16:00</option>
-							<option value="17">17:00</option>
-							<option value="18">18:00</option>
-							<option value="19">19:00</option>
-							<option value="20">20:00</option>
-							<option value="21">21:00</option>
-							<option value="22">22:00</option>
-							<option value="23">23:00</option>
-							<option value="24">24:00</option>
+                        <?php for ($i = 0; $i <= 24; $i += 1): ?>
+                            <option value="<?= $i ?>" <?= $i === 8 ? 'selected' : '' ?>><?= $i ?>:00</option>
+                        <?php endfor; ?>
 						</select>
 				</div>
 				<div class="mb-3 w-auto">
 						<label class="my-1 me-sm-2 w-auto" for="maxtime"><?= __("Max. time"); ?></label>
 						<select class="my-1 me-sm-2 w-auto form-select" id="maxtime" name="maxtime">
-							<option value="0">0:00</option>
-							<option value="1">1:00</option>
-							<option value="2">2:00</option>
-							<option value="3">3:00</option>
-							<option value="4">4:00</option>
-							<option value="5">5:00</option>
-							<option value="6">6:00</option>
-							<option value="7">7:00</option>
-							<option value="8">8:00</option>
-							<option value="9">9:00</option>
-							<option value="10">10:00</option>
-							<option value="11">11:00</option>
-							<option value="12">12:00</option>
-							<option value="13">13:00</option>
-							<option value="14">14:00</option>
-							<option value="15">15:00</option>
-							<option value="16">16:00</option>
-							<option value="17">17:00</option>
-							<option value="18">18:00</option>
-							<option value="19">19:00</option>
-							<option value="20">20:00</option>
-							<option value="21">21:00</option>
-							<option selected value="22">22:00</option>
-							<option value="23">23:00</option>
-							<option value="24">24:00</option>
+                        <?php for ($i = 0; $i <= 24; $i += 1): ?>
+                            <option value="<?= $i ?>" <?= $i === 22 ? 'selected' : '' ?>><?= $i ?>:00</option>
+                        <?php endfor; ?>
 						</select>
                 </div>
                 <div class="mb-3 w-auto">
