@@ -3,6 +3,7 @@ class Migrate extends CI_Controller {
 
     public function index() {
         $this->load->library('Migration');
+        $this->load->config('migration');
 
         $result = array();
         $latest = $this->migration->latest();
@@ -12,7 +13,7 @@ class Migrate extends CI_Controller {
             log_message('error', 'Migration failed');
             $result['status'] = 'error';
         } else {
-            while (file_exists(APPPATH . 'cache/.migration_running')) {
+            while (file_exists($this->config->item('migration_lockfile'))) {
                 sleep(1);
             }
             $result['status'] = 'success';

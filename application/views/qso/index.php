@@ -1,6 +1,6 @@
 <div class="container qso_panel">
 <script language="javascript">
-  var qso_manual  = "<?php echo $_GET['manual']; ?>";
+  var qso_manual  = "<?php echo $manual_mode; ?>";
   var text_error_timeoff_less_timeon = "<?= __("TimeOff is less than TimeOn"); ?>";
   var lang_qso_title_previous_contacts = "<?= __("Previous Contacts"); ?>";
   var lang_qso_title_times_worked_before = "<?= __("times worked before"); ?>";
@@ -12,12 +12,12 @@
   <div class="col-sm-5">
     <div class="card">
 
-    <form id="qso_input" method="post" action="<?php echo site_url('qso') . "?manual=" . $_GET['manual']; ?>" name="qsos" autocomplete="off" onReset="resetTimers(<?php echo $_GET['manual']; ?>);">
+    <form id="qso_input" method="post" action="<?php echo site_url('qso') . "?manual=" . $manual_mode; ?>" name="qsos" autocomplete="off" onReset="resetTimers(<?php echo $manual_mode; ?>);">
 
       <div class="card-header">
         <ul style="font-size: 15px;" class="nav nav-tabs card-header-tabs pull-right"  id="myTab" role="tablist">
           <li class="nav-item">
-            <a class="nav-link active" id="qsp-tab" data-bs-toggle="tab" href="#qso" role="tab" aria-controls="qso" aria-selected="true"><?= __("QSO"); ?><?php if ($_GET['manual'] == 0) { echo " <span class=\"badge text-bg-success\">" . __("LIVE") . "</span>"; }; if ($_GET['manual'] == 1) { echo " <span class=\"badge text-bg-danger\">" . __("POST") . "</span>"; } ?></a>
+            <a class="nav-link active" id="qsp-tab" data-bs-toggle="tab" href="#qso" role="tab" aria-controls="qso" aria-selected="true"><?= __("QSO"); ?><?php if ($manual_mode == 0) { echo " <span class=\"badge text-bg-success\">" . __("LIVE") . "</span>"; }; if ($manual_mode == 1) { echo " <span class=\"badge text-bg-danger\">" . __("POST") . "</span>"; } ?></a>
           </li>
 
           <li class="nav-item">
@@ -62,14 +62,14 @@
               <div class="row">
                 <div class="mb-3 col-md-3">
                   <label for="start_date"><?= __("Date"); ?></label>
-                  <input type="text" class="form-control form-control-sm input_date" name="start_date" id="start_date" value="<?php if (($this->session->userdata('start_date') != NULL && ((time() - $this->session->userdata('time_stamp')) < 24 * 60 * 60))) { echo $this->session->userdata('start_date'); } else { echo date('d-m-Y');}?>" <?php echo ($_GET['manual'] == 0 ? "disabled" : "");  ?> required pattern="[0-3][0-9]-[0-1][0-9]-[0-9]{4}">
+                  <input type="text" class="form-control form-control-sm input_date" name="start_date" id="start_date" value="<?php if (($this->session->userdata('start_date') != NULL && ((time() - $this->session->userdata('time_stamp')) < 24 * 60 * 60))) { echo $this->session->userdata('start_date'); } else { echo date('d-m-Y');}?>" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> required pattern="[0-3][0-9]-[0-1][0-9]-[0-9]{4}">
                 </div>
 
                 <div class="mb-3 col-md-4">
                 <label for="start_time"><?= __("Time on"); ?></label>
                   <div class="input-group">
-                    <input type="text" class="form-control form-control-sm input_start_time" name="start_time" id="start_time" value="<?php if (($this->session->userdata('start_time') != NULL && ((time() - $this->session->userdata('time_stamp')) < 24 * 60 * 60))) { echo substr($this->session->userdata('start_time'),0,5); } else { echo $_GET['manual'] == 0 ? date('H:i:s') : date('H:i'); } ?>" size="7" <?php echo ($_GET['manual'] == 0 ? "disabled" : "");  ?> required pattern="[0-2][0-9]:[0-5][0-9]">
-                    <?php if ($_GET['manual'] != 1) { ?>
+                    <input type="text" class="form-control form-control-sm input_start_time" name="start_time" id="start_time" value="<?php if (($this->session->userdata('start_time') != NULL && ((time() - $this->session->userdata('time_stamp')) < 24 * 60 * 60))) { echo substr($this->session->userdata('start_time'),0,5); } else { echo $manual_mode == 0 ? date('H:i:s') : date('H:i'); } ?>" size="7" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> required pattern="[0-2][0-9]:[0-5][0-9]">
+                    <?php if ($manual_mode != 1) { ?>
                       <span class="input-group-text btn-included-on-field"><i id="reset_time" data-bs-toggle="tooltip" title="Reset start time" class="fas fa-stopwatch"></i></span>
                     <?php } else { ?>
                       <span class="input-group-text btn-included-on-field"><i id="reset_start_time" data-bs-toggle="tooltip" title="Reset start time" class="fas fa-stopwatch"></i></span>
@@ -80,14 +80,14 @@
                 <div class="mb-3 col-md-4">
                   <label for="end_time"><?= __("Time off"); ?></label>
                   <div class="input-group">
-                    <input type="text" class="form-control form-control-sm input_end_time" name="end_time" id="end_time" value="<?php if (($this->session->userdata('end_time') != NULL && ((time() - $this->session->userdata('time_stamp')) < 24 * 60 * 60))) { echo substr($this->session->userdata('end_time'),0,5); } else { echo $_GET['manual'] == 0 ? date('H:i:s') : date('H:i'); } ?>" size="7" <?php echo ($_GET['manual'] == 0 ? "disabled" : "");  ?> required pattern="[0-2][0-9]:[0-5][0-9]">
-                    <?php if ($_GET['manual'] == 1) { ?>
+                    <input type="text" class="form-control form-control-sm input_end_time" name="end_time" id="end_time" value="<?php if (($this->session->userdata('end_time') != NULL && ((time() - $this->session->userdata('time_stamp')) < 24 * 60 * 60))) { echo substr($this->session->userdata('end_time'),0,5); } else { echo $manual_mode == 0 ? date('H:i:s') : date('H:i'); } ?>" size="7" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> required pattern="[0-2][0-9]:[0-5][0-9]">
+                    <?php if ($manual_mode == 1) { ?>
                       <span class="input-group-text btn-included-on-field"><i id="reset_end_time" data-bs-toggle="tooltip" title="Reset end time" class="fas fa-stopwatch"></i></span>
                     <?php } ?>
                   </div>
                 </div>
 
-                <?php if ( $_GET['manual'] == 0 ) { ?>
+                <?php if ( $manual_mode == 0 ) { ?>
                   <input class="input_start_time" type="hidden" id="start_time"  name="start_time"value="<?php echo date('H:i:s'); ?>" />
                   <input class="input_end_time" type="hidden" id="end_time"  name="end_time"value="<?php echo date('H:i:s'); ?>" />
                   <input class="input_date" type="hidden" id="start_date" name="start_date" value="<?php echo date('d-m-Y'); ?>" />
@@ -98,20 +98,20 @@
               <div class="row">
                 <div class="mb-3 col-md-6">
                   <label for="start_date"><?= __("Date"); ?></label>
-                  <input type="text" class="form-control form-control-sm input_date" name="start_date" id="start_date" value="<?php if (($this->session->userdata('start_date') != NULL && ((time() - $this->session->userdata('time_stamp')) < 24 * 60 * 60))) { echo $this->session->userdata('start_date'); } else { echo date('d-m-Y');}?>" <?php echo ($_GET['manual'] == 0 ? "disabled" : "");  ?> required pattern="[0-3][0-9]-[0-1][0-9]-[0-9]{4}">
+                  <input type="text" class="form-control form-control-sm input_date" name="start_date" id="start_date" value="<?php if (($this->session->userdata('start_date') != NULL && ((time() - $this->session->userdata('time_stamp')) < 24 * 60 * 60))) { echo $this->session->userdata('start_date'); } else { echo date('d-m-Y');}?>" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> required pattern="[0-3][0-9]-[0-1][0-9]-[0-9]{4}">
                 </div>
 
                 <div class="mb-3 col-md-6">
                   <label for="start_time"><?= __("Time"); ?></label>
                   <div class="input-group">
-                    <input type="text" class="form-control form-control-sm input_start_time" name="start_time" id="start_time" value="<?php if (($this->session->userdata('start_time') != NULL && ((time() - $this->session->userdata('time_stamp')) < 24 * 60 * 60))) { echo substr($this->session->userdata('start_time'),0,5); } else { echo $_GET['manual'] == 0 ? date('H:i:s') : date('H:i'); } ?>" size="7" <?php echo ($_GET['manual'] == 0 ? "disabled" : "");  ?> required pattern="[0-2][0-9]:[0-5][0-9]">
-                    <?php if ($_GET['manual'] == 1) { ?>
+                    <input type="text" class="form-control form-control-sm input_start_time" name="start_time" id="start_time" value="<?php if (($this->session->userdata('start_time') != NULL && ((time() - $this->session->userdata('time_stamp')) < 24 * 60 * 60))) { echo substr($this->session->userdata('start_time'),0,5); } else { echo $manual_mode == 0 ? date('H:i:s') : date('H:i'); } ?>" size="7" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> required pattern="[0-2][0-9]:[0-5][0-9]">
+                    <?php if ($manual_mode == 1) { ?>
                       <span class="input-group-text btn-included-on-field"><i id="reset_start_time" data-bs-toggle="tooltip" title="Reset start time" class="fas fa-stopwatch"></i></span>
                     <?php } ?>
                   </div>
                 </div>
 
-                <?php if ( $_GET['manual'] == 0 ) { ?>
+                <?php if ( $manual_mode == 0 ) { ?>
                   <input class="input_start_time" type="hidden" id="start_time"  name="start_time"value="<?php echo date('H:i:s'); ?>" />
                   <input class="input_date" type="hidden" id="start_date" name="start_date" value="<?php echo date('d-m-Y'); ?>" />
                 <?php } ?>
@@ -313,7 +313,7 @@
               <select class="form-select radios" id="radio" name="radio">
                 <option value="0" selected="selected"><?= __("None"); ?></option>
                 <?php foreach ($radios->result() as $row) { ?>
-                <option value="<?php echo $row->id; ?>" <?php if($this->session->userdata('radio') == $row->id) { echo "selected=\"selected\""; } ?>><?php echo $row->radio; ?></option>
+                  <option value="<?php echo $row->id; ?>" <?php if($this->session->userdata('radio') == $row->id) { echo "selected=\"selected\""; } ?>><?php echo $row->radio; ?> <?php if ($radio_last_updated->id == $row->id) { echo "<i>(".__("last updated").")</i>"; } else { echo ''; } ?></option>
                 <?php } ?>
                 </select>
             </div>

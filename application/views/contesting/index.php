@@ -1,6 +1,6 @@
 <div class="container qso_panel contesting">
     <button type="button" class="btn btn-sm btn-warning float-end" onclick="reset_contest_session()"><i class="fas fa-sync-alt"></i> <?= __("Start new Contest Session"); ?></button>
-    <h2 style="display:inline"><?= __("Contest Logging"); ?> </h2> <?php echo ($_GET['manual'] == 0 ? " <span style='display:inline' class='align-text-top badge text-bg-success'>LIVE</span>" : " <span style='display:inline' class='align-text-top badge text-bg-danger'>POST</span>");  ?>
+    <h2 style="display:inline"><?= __("Contest Logging"); ?> </h2> <?php echo ($manual_mode == 0 ? " <span style='display:inline' class='align-text-top badge text-bg-success'>LIVE</span>" : " <span style='display:inline' class='align-text-top badge text-bg-danger'>POST</span>");  ?>
     <div class="row">
 
         <div class="col-sm-12 col-md-12">
@@ -40,15 +40,15 @@
                         <div class="row">
                             <div class="mb-3 col-md-2">
                                 <label for="start_date"><?= __("Date"); ?></label>
-                                <input type="text" class="form-control form-control-sm input_date" name="start_date" id="start_date" value="<?php if (($this->session->userdata('start_date') != NULL && ((time() - $this->session->userdata('time_stamp')) < 24 * 60 * 60))) { echo $this->session->userdata('start_date'); } else { echo date('d-m-Y');}?>" <?php echo ($_GET['manual'] == 0 ? "disabled" : "");  ?> >
+                                <input type="text" class="form-control form-control-sm input_date" name="start_date" id="start_date" value="<?php if (($this->session->userdata('start_date') != NULL && ((time() - $this->session->userdata('time_stamp')) < 24 * 60 * 60))) { echo $this->session->userdata('start_date'); } else { echo date('d-m-Y');}?>" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> >
                             </div>
 
                             <div class="mb-3 col-md-1">
                                 <label for="start_time"><?= __("Time"); ?></label>
-                                <input type="text" class="form-control form-control-sm input_time" name="start_time" id="start_time" value="<?php if (($this->session->userdata('start_time') != NULL && ((time() - $this->session->userdata('time_stamp')) < 24 * 60 * 60))) { echo substr($this->session->userdata('start_time'),0,5); } else { echo $_GET['manual'] == 0 ? date('H:i:s') : date('H:i'); } ?>" size="7" <?php echo ($_GET['manual'] == 0 ? "disabled" : "");  ?> >
+                                <input type="text" class="form-control form-control-sm input_time" name="start_time" id="start_time" value="<?php if (($this->session->userdata('start_time') != NULL && ((time() - $this->session->userdata('time_stamp')) < 24 * 60 * 60))) { echo substr($this->session->userdata('start_time'),0,5); } else { echo $manual_mode == 0 ? date('H:i:s') : date('H:i'); } ?>" size="7" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> >
                             </div>
 
-                            <?php if ( $_GET['manual'] == 0 ) { ?>
+                            <?php if ( $manual_mode == 0 ) { ?>
                               <input class="input_time" type="hidden" id="start_time"  name="start_time"value="<?php echo date('H:i'); ?>" />
                               <input class="input_date" type="hidden" id="start_date" name="start_date" value="<?php echo date('d-m-Y'); ?>" />
                             <?php } ?>
@@ -93,7 +93,7 @@
                                 <select class="form-select form-select-sm radios" id="radio" name="radio">
                                     <option value="0" selected="selected"><?= __("None"); ?></option>
                                         <?php foreach ($radios->result() as $row) { ?>
-                                        <option value="<?php echo $row->id; ?>" <?php if($this->session->userdata('radio') == $row->id) { echo "selected=\"selected\""; } ?>><?php echo $row->radio; ?></option>
+                                        <option value="<?php echo $row->id; ?>" <?php if($this->session->userdata('radio') == $row->id) { echo "selected=\"selected\""; } ?>><?php echo $row->radio; ?> <?php if ($radio_last_updated->id == $row->id) { echo "<i>(".__("last updated").")</i>"; } else { echo ''; } ?></option>
                                         <?php } ?>
                                 </select>
                             </div>

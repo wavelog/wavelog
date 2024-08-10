@@ -21,8 +21,19 @@ class Contesting extends CI_Controller {
 		$this->load->model('contesting_model');
 		$this->load->model('bands');
 
+		// Getting the live/post mode from GET command
+        // 0 = live
+        // 1 = post (manual)
+        $get_manual_mode = $this->security->xss_clean($this->input->get('manual'));
+        if ($get_manual_mode == '0' || $get_manual_mode == '1') {
+            $data['manual_mode'] = $get_manual_mode;
+        } else {
+            show_404();
+        }
+
 		$data['my_gridsquare'] = $this->stations->find_gridsquare();
 		$data['radios'] = $this->cat->radios();
+		$data['radio_last_updated'] = $this->cat->last_updated()->row();
 		$data['modes'] = $this->modes->active();
 		$data['contestnames'] = $this->contesting_model->getActivecontests();
 		$data['bands'] = $this->bands->get_user_bands_for_qso_entry();
