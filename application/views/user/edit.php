@@ -177,10 +177,14 @@
 									</div>
 									<div class="mb-3">
 										<label><?= __("Timezone"); ?></label>
-										<?php
-										if(!isset($user_timezone)) { $user_timezone='151'; }
-										echo form_dropdown('user_timezone', $timezones, $user_timezone);
-										?>
+										<select class="form-select" name="user_timezone">
+											<?php
+											if(!isset($user_timezone)) { $user_timezone='151'; }
+											foreach($timezones as $timezone) {
+												echo '<option value="' . $timezone->id . '"' . ($timezone->id === $user_timezone ? ' selected' : '') . '>' . $timezone->name . '</option>'."\n";
+											}
+											?>
+										</select>
 									</div>
 
 									<div class="mb-3">

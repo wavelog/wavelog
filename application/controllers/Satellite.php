@@ -176,10 +176,13 @@ class Satellite extends CI_Controller {
 	public function pass() {
 		$this->load->model('satellite_model');
 		$this->load->model('stations');
+		$this->load->model('user_model');
+
         $active_station_id = $this->stations->find_active();
 		$pageData['activegrid'] = $this->stations->gridsquare_from_station($active_station_id);
 
 		$pageData['satellites'] = $this->satellite_model->get_all_satellites_with_tle();
+		$pageData['timezones'] = $this->user_model->timezones();
 
 		$footerData = [];
 		$footerData['scripts'] = [
@@ -261,7 +264,7 @@ class Satellite extends CI_Controller {
 		$results  = $predict->get_passes($sat, $qth, $now, 1);
 		$filtered = $predict->filterVisiblePasses($results);
 
-		$zone   = $this->security->xss_clean($this->input->post('timezone'));
+		$offset   = $this->security->xss_clean($this->input->post('timezone'));
 
 		// Get Date format
 		if ($this->session->userdata('user_date_format')) {
@@ -275,7 +278,7 @@ class Satellite extends CI_Controller {
 		$format = $custom_date_format . ' H:i:s';
 
 		$data['filtered'] = $filtered;
-		$data['zone'] = $zone;
+		$data['offset'] = $offset;
 		$data['format'] = $format;
 		$this->load->view('satellite/passtable', $data);
 	}

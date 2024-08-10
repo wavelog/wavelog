@@ -184,17 +184,24 @@ class Predict_Time
      * Converts a daynum to a readable time format.
      *
      * @param float $dn The julian date
-     * @param string $zone The zone string, defaults to America/Los_Angeles
+     * @param float $offset Offset in hours compared to UTC
      * @param string $format The date() function's format string.  Defaults to m-d-Y H:i:s
      *
      * @return string
      */
-    public static function daynum2readable($dn, $zone = 'America/Los_Angeles', $format = 'm-d-Y H:i:s')
+    public static function daynum2readable($dn, $offset = 0.0, $format = 'm-d-Y H:i:s')
     {
+        // Calc the unix timestamp
         $unix = self::daynum2unix($dn);
+        
+        // Create a DateTime object based on the unix timestamp
         $date = new DateTime("@" . round($unix));
-        $dateTimezone = new DateTimezone($zone);
-        $date->setTimezone($dateTimezone);
+        
+        // Use the offset to adjust the time
+        $secondsOffset = $offset * 3600;
+        $date->modify("$secondsOffset seconds");
+
+        // Format and return the date
         return $date->format($format);
     }
 
@@ -211,7 +218,7 @@ class Predict_Time
         $day  = $tle->epoch_day;
         $sec  = round(86400 * $tle->epoch_fod);
 
-        $zone = new DateTimeZone('GMT');
+        $zone = new DateTimeZone('UTC');
         $date = new DateTime();
         $date->setTimezone($zone);
         $date->setDate($year, 1, 1);
