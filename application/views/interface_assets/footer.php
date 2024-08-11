@@ -737,7 +737,7 @@ function showActivatorsMap(call, count, grids) {
     var maidenhead = new L.maidenheadactivators(grid_four).addTo(map);
 
     var osmUrl='<?php echo $this->optionslib->get_option('option_map_tile_server');?>';
-    var osmAttrib='Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
+    var osmAttrib='<?php echo $this->optionslib->get_option('option_map_tile_server_copyright');?>';
     var osm = new L.TileLayer(osmUrl, {minZoom: 1, maxZoom: 12, attribution: osmAttrib});
 
     map.addLayer(osm);

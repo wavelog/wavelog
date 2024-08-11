@@ -157,7 +157,7 @@ const mapcoordinates = { "type": "FeatureCollection", "features": [
   L.tileLayer(
 	  osmUrl,
 	  {
-		  attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+      attribution: option_map_tile_server_copyright,
 		  maxZoom: 18
 	  }
   ).addTo(map);
