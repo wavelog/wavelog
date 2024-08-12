@@ -1726,46 +1726,49 @@ class Logbook_model extends CI_Model {
   }
 
   function get_qsos_for_printing($station_id2 = null) {
+	  $binding=[];
+	  $this->load->model('stations');
+	  $station_id = $this->stations->find_active();
 
-    $this->load->model('stations');
-    $station_id = $this->stations->find_active();
+	  $sql = 'SELECT
+		  STATION_CALLSIGN,
+		  COL_PRIMARY_KEY,
+		  COL_CALL,
+		  COL_QSL_VIA,
+		  COL_TIME_ON,
+		  COL_MODE,
+		  COL_SUBMODE,
+		  COL_FREQ,
+		  UPPER(COL_BAND) as COL_BAND,
+		  COL_RST_SENT,
+		  COL_SAT_NAME,
+		  COL_SAT_MODE,
+		  COL_QSL_RCVD,
+		  COL_COMMENT,
+		  (select adif from dxcc_prefixes where  (CASE WHEN COL_QSL_VIA != \'\' THEN COL_QSL_VIA ELSE COL_CALL END) like concat(dxcc_prefixes.`call`,\'%\') order by end limit 1) as ADIF,
+		  (select entity from dxcc_prefixes where  (CASE WHEN COL_QSL_VIA != \'\' THEN COL_QSL_VIA ELSE COL_CALL END) like concat(dxcc_prefixes.`call`,\'%\') order by end limit 1) as ENTITY,
+		  (CASE WHEN COL_QSL_VIA != \'\' THEN COL_QSL_VIA ELSE COL_CALL END) AS COL_ROUTING
+		  FROM '.$this->config->item('table_name').' thcv
+		  join station_profile on thcv.station_id = station_profile.station_id
+		  WHERE
+		  COL_QSL_SENT in (\'R\', \'Q\')';
 
-    $sql = 'SELECT
-				STATION_CALLSIGN,
-				COL_PRIMARY_KEY,
-				COL_CALL,
-				COL_QSL_VIA,
-				COL_TIME_ON,
-				COL_MODE,
-				COL_SUBMODE,
-				COL_FREQ,
-				UPPER(COL_BAND) as COL_BAND,
-				COL_RST_SENT,
-				COL_SAT_NAME,
-				COL_SAT_MODE,
-				COL_QSL_RCVD,
-				COL_COMMENT,
-				(select adif from dxcc_prefixes where  (CASE WHEN COL_QSL_VIA != \'\' THEN COL_QSL_VIA ELSE COL_CALL END) like concat(dxcc_prefixes.`call`,\'%\') order by end limit 1) as ADIF,
-				(select entity from dxcc_prefixes where  (CASE WHEN COL_QSL_VIA != \'\' THEN COL_QSL_VIA ELSE COL_CALL END) like concat(dxcc_prefixes.`call`,\'%\') order by end limit 1) as ENTITY,
-       			(CASE WHEN COL_QSL_VIA != \'\' THEN COL_QSL_VIA ELSE COL_CALL END) AS COL_ROUTING
-			FROM '.$this->config->item('table_name').' thcv
-				join station_profile on thcv.station_id = station_profile.station_id
-			WHERE
-				COL_QSL_SENT in (\'R\', \'Q\')';
+	  if ($station_id2 == NULL) {
+		  $sql .= ' and thcv.station_id = ?';
+		  $binding[] = $station_id;
+	  } else if ($station_id2 != 'All') {
+		  $sql .= ' and thcv.station_id = ?';
+		  $binding[] = $station_id2;
+	  }
 
-    if ($station_id2 == NULL) {
-    	$sql .= ' and thcv.station_id = ' . $station_id;
-	} else if ($station_id2 != 'All') {
-		$sql .= ' and thcv.station_id = ' . $station_id2;
-	}
+	  // always filter user. this ensures that even if the station_id is from another user no inaccesible QSOs will be returned
+	  $sql .= ' and station_profile.user_id = ?';
+	  $binding[] = $this->session->userdata('user_id');
 
-	// always filter user. this ensures that even if the station_id is from another user no inaccesible QSOs will be returned
-	$sql .= ' and station_profile.user_id = ' . $this->session->userdata('user_id');
+	  $sql .= ' ORDER BY ADIF, COL_ROUTING';
 
-	$sql .= ' ORDER BY ADIF, COL_ROUTING';
-
-    $query = $this->db->query($sql);
-    return $query;
+	  $query = $this->db->query($sql, $binding);
+	  return $query;
   }
 
   function get_qsos($num, $offset, $StationLocationsArray = null, $band = '') {
@@ -1831,24 +1834,27 @@ class Logbook_model extends CI_Model {
     /*
      * Function returns the QSOs from the logbook, which have not been either marked as uploaded to hrdlog, or has been modified with an edit
      */
-    function get_hrdlog_qsos($station_id){
-        $sql = 'select *, dxcc_entities.name as station_country from ' . $this->config->item('table_name') . ' thcv ' .
-            ' left join station_profile on thcv.station_id = station_profile.station_id' .
-            ' left outer join dxcc_entities on thcv.col_my_dxcc = dxcc_entities.adif' .
-            ' where thcv.station_id = ' . $station_id .
-            ' and (COL_HRDLOG_QSO_UPLOAD_STATUS is NULL
-            or COL_HRDLOG_QSO_UPLOAD_STATUS = ""
-            or COL_HRDLOG_QSO_UPLOAD_STATUS = "M"
-            or COL_HRDLOG_QSO_UPLOAD_STATUS = "N")';
+  function get_hrdlog_qsos($station_id){
+	  $binding=[];
+	  $sql = 'select *, dxcc_entities.name as station_country from ' . $this->config->item('table_name') . ' thcv ' .
+		  ' left join station_profile on thcv.station_id = station_profile.station_id' .
+		  ' left outer join dxcc_entities on thcv.col_my_dxcc = dxcc_entities.adif' .
+		  ' where thcv.station_id = ?'.
+		  ' and (COL_HRDLOG_QSO_UPLOAD_STATUS is NULL
+		  or COL_HRDLOG_QSO_UPLOAD_STATUS = ""
+		  or COL_HRDLOG_QSO_UPLOAD_STATUS = "M"
+		  or COL_HRDLOG_QSO_UPLOAD_STATUS = "N")';
+	  $binding[]=$station_id;
 
-        $query = $this->db->query($sql);
-        return $query;
-    }
+	  $query = $this->db->query($sql, $binding);
+	  return $query;
+  }
 
     /*
      * Function returns the QSOs from the logbook, which have not been either marked as uploaded to qrz, or has been modified with an edit
      */
   function get_qrz_qsos($station_id, $trusted = false){
+	  $binding=[];
 	  $this->load->model('stations');
 	  if ((!$trusted) && (!$this->stations->check_station_is_accessible($station_id))) {
 		  return;
@@ -1856,62 +1862,55 @@ class Logbook_model extends CI_Model {
 	  $sql = 'select *, dxcc_entities.name as station_country from ' . $this->config->item('table_name') . ' thcv ' .
 		  ' left join station_profile on thcv.station_id = station_profile.station_id' .
 		  ' left outer join dxcc_entities on thcv.col_my_dxcc = dxcc_entities.adif' .
-		  ' where thcv.station_id = ' . $station_id .
+		  ' where thcv.station_id = ?'.
 		  ' and (COL_QRZCOM_QSO_UPLOAD_STATUS is NULL
 		  or COL_QRZCOM_QSO_UPLOAD_STATUS = ""
 		  or COL_QRZCOM_QSO_UPLOAD_STATUS = "M"
 		  or COL_QRZCOM_QSO_UPLOAD_STATUS = "N")';
+	  $binding[]=$station_id;
 
-	  $query = $this->db->query($sql);
+	  $query = $this->db->query($sql, $binding);
 	  return $query;
   }
 
 	/*
      * Function returns the QSOs from the logbook, which have not been either marked as uploaded to webADIF
      */
-    function get_webadif_qsos($station_id,$from = null, $to = null,$trusted = false){
-	    $this->load->model('stations');
-	    if ((!$trusted) && (!$this->stations->check_station_is_accessible($station_id))) {
-		    return;
-	    }
-	    $sql = "
+  function get_webadif_qsos($station_id,$from = null, $to = null,$trusted = false) {
+	  $binding=[];
+	  $this->load->model('stations');
+	  if ((!$trusted) && (!$this->stations->check_station_is_accessible($station_id))) {
+		  return;
+	  }
+	  $sql = "
 			SELECT qsos.*, station_profile.*, dxcc_entities.name as station_country
-			FROM %s qsos
+			FROM ".$this->config->item('table_name')." qsos
 			INNER JOIN station_profile ON qsos.station_id = station_profile.station_id
 			LEFT JOIN dxcc_entities on qsos.col_my_dxcc = dxcc_entities.adif
 			LEFT OUTER JOIN webadif ON qsos.COL_PRIMARY_KEY = webadif.qso_id
-			WHERE qsos.station_id = %d
-	AND qsos.COL_SAT_NAME = 'QO-100'
-			  AND webadif.upload_date IS NULL
+			WHERE qsos.station_id = ?
+			AND qsos.COL_SAT_NAME = 'QO-100'
+			AND webadif.upload_date IS NULL
 		";
-	    $sql = sprintf(
-		    $sql,
-		    $this->config->item('table_name'),
-		    $station_id
-	    );
-	    if ($from) {
-		    $from = DateTime::createFromFormat('d/m/Y', $from);
-		    $from = $from->format('Y-m-d');
+	  $binding[] = $station_id;
 
-		    $sql.="  AND qsos.COL_TIME_ON >= %s";
-		    $sql=sprintf(
-			    $sql,
-			    $this->db->escape($from)
-		    );
-	    }
-	    if ($to) {
-		    $to = DateTime::createFromFormat('d/m/Y', $to);
-		    $to = $to->format('Y-m-d');
+	  if ($from) {
+		  $from = DateTime::createFromFormat('d/m/Y', $from);
+		  $from = $from->format('Y-m-d');
 
-		    $sql.="  AND qsos.COL_TIME_ON <= %s";
-		    $sql=sprintf(
-			    $sql,
-			    $this->db->escape($to)
-		    );
-	    }
+		  $sql.="  AND qsos.COL_TIME_ON >= ?";
+		  $binding[]=$from;
+	  }
+	  if ($to) {
+		  $to = DateTime::createFromFormat('d/m/Y', $to);
+		  $to = $to->format('Y-m-d');
 
-	    return $this->db->query($sql);
-    }
+		  $sql.="  AND qsos.COL_TIME_ON <= ?";
+		  $binding[]=$to;
+	  }
+
+	  return $this->db->query($sql, $binding);
+  }
 
     /*
      * Function returns all the station_id's with QRZ API Key's
@@ -1992,35 +1991,34 @@ class Logbook_model extends CI_Model {
 		}
 	}
 
-  function get_last_qsos($num, $StationLocationsArray = null) {
+    function get_last_qsos($num, $StationLocationsArray = null) {
+	    $binding=[];
+	    if($StationLocationsArray == null) {
+		    $this->load->model('logbooks_model');
+		    $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+	    } else {
+		    $logbooks_locations_array = $StationLocationsArray;
+	    }
 
-    if($StationLocationsArray == null) {
-      $this->load->model('logbooks_model');
-      $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-    } else {
-      $logbooks_locations_array = $StationLocationsArray;
+	    if ($logbooks_locations_array) {
+		    $location_list = "'".implode("','",$logbooks_locations_array)."'";
+
+		    $sql = "SELECT * FROM ( select * from " . $this->config->item('table_name'). "
+			    WHERE station_id IN(". $location_list .")
+			    order by col_time_on desc
+			    limit ?) hrd
+			    JOIN station_profile ON station_profile.station_id = hrd.station_id
+			    LEFT JOIN dxcc_entities ON hrd.col_dxcc = dxcc_entities.adif
+			    order by col_time_on desc";
+		    $binding[]=$num;
+		    $query = $this->db->query($sql,$binding);
+
+		    return $query;
+	    } else {
+		    return null;
+	    }
+
     }
-
-    if ($logbooks_locations_array) {
-      $location_list = "'".implode("','",$logbooks_locations_array)."'";
-
-      $sql = "SELECT * FROM ( select * from " . $this->config->item('table_name'). "
-        WHERE station_id IN(". $location_list .")
-        order by col_time_on desc
-        limit " . $num .
-        ") hrd
-        JOIN station_profile ON station_profile.station_id = hrd.station_id
-        LEFT JOIN dxcc_entities ON hrd.col_dxcc = dxcc_entities.adif
-        order by col_time_on desc";
-
-      $query = $this->db->query($sql);
-
-      return $query;
-    } else {
-      return null;
-    }
-
-  }
 
     function check_if_callsign_cnfmd_in_logbook($callsign, $StationLocationsArray = null, $band = null) {
 
