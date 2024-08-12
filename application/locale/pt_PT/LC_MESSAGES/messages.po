@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-12 09:45+0000\n"
+"POT-Creation-Date: 2024-08-12 10:06+0000\n"
 "PO-Revision-Date: 2024-08-11 00:30+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
@@ -9499,13 +9499,10 @@ msgstr ""
 
 #: application/views/simplefle/syntax_help.php:28
 #, php-format
-msgctxt "uses 'this article'"
 msgid ""
-"A full summary of all commands and the necessary syntax can be found in %s "
-"of our Wiki."
+"A full summary of all commands and the necessary syntax can be found in <a "
+"href='%s' target='_blank'>this article</a> of our Wiki."
 msgstr ""
-"Um resumo completo de todos os comandos e da sintaxe necessária pode ser "
-"encontrado em %s da nossa Wiki."
 
 #: application/views/station_profile/create.php:51
 #: application/views/station_profile/edit.php:40
@@ -11209,6 +11206,15 @@ msgstr "O seu indicativo:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Submeter pedido"
+
+#, php-format
+#~ msgctxt "uses 'this article'"
+#~ msgid ""
+#~ "A full summary of all commands and the necessary syntax can be found in "
+#~ "%s of our Wiki."
+#~ msgstr ""
+#~ "Um resumo completo de todos os comandos e da sintaxe necessária pode ser "
+#~ "encontrado em %s da nossa Wiki."
 
 #, php-format
 #~ msgid ""
