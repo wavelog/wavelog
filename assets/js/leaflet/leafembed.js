@@ -14,7 +14,7 @@ function initmap(ShowGrid='No', MapTag='map', options={}) {
     // set up the map
     map = new L.Map(MapTag);
     // create the tile layer with correct attribution
-    var osmAttrib='Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
+	var osmAttrib = option_map_tile_server_copyright;
     var osm = new L.TileLayer(osmUrl, {minZoom: 1, maxZoom: 12, attribution: osmAttrib});
 
 	var printer = L.easyPrint({
