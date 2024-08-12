@@ -621,28 +621,33 @@ class Logbook_model extends CI_Model {
 		return $this->db->query($sql);
 	}
 
-    public function vucc_qso_details($gridsquare, $band) {
+	public function vucc_qso_details($gridsquare, $band) {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
 		$location_list = "'".implode("','",$logbooks_locations_array)."'";
 
-        $sql = "select * from " . $this->config->item('table_name') .
-                " where station_id in (" . $location_list . ")" .
-                " and (col_gridsquare like '" . $gridsquare. "%'
-                    or col_vucc_grids like '%" . $gridsquare. "%')";
+		$binding=[];
+		$sql = "select * from " . $this->config->item('table_name') .
+			" where station_id in (" . $location_list . ")" .
+			" and (col_gridsquare like concat(?,'%')
+			or col_vucc_grids like concat('%',?,'%')";
+		$binding[] = $gridsquare;
+		$binding[] = $gridsquare;
 
-        if ($band != 'All') {
-            if ($band == 'SAT') {
-                $sql .= " and col_prop_mode ='" . $band . "'";
-            } else {
-                $sql .= " and col_prop_mode !='SAT'";
-                $sql .= " and col_band ='" . $band . "'";
-            }
-        }
+		if ($band != 'All') {
+			if ($band == 'SAT') {
+				$sql .= " and col_prop_mode = ?";
+				$binding[] = $band;
+			} else {
+				$sql .= " and col_prop_mode !='SAT'";
+				$sql .= " and col_band = ?";
+				$binding[] = $band;
+			}
+		}
 
-        return $this->db->query($sql);
-    }
+		return $this->db->query($sql, $binding);
+	}
 
     public function activator_details($call, $band, $leogeo){
 		$this->load->model('logbooks_model');
