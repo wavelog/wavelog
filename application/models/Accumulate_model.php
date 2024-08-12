@@ -627,8 +627,7 @@ class Accumulate_model extends CI_Model
 			$query = $this->fastquery($band, $mode, $period, $location_list);
 			return $query->result();
 		} else {
-			$sql = $this->slowquery($band, $mode, $period, $location_list);
-			$query = $this->db->query($sql);
+			$query = $this->slowquery($band, $mode, $period, $location_list);
 			return $this->count_and_add_accumulated_total($query->result());
 		}
     }
