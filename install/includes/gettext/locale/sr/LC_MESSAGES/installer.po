@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-08-08 14:17+0000\n"
-"PO-Revision-Date: 2024-08-12 09:06+0000\n"
+"PO-Revision-Date: 2024-08-12 13:55+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
 "Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/"
 "installer/sr/>\n"
@@ -262,40 +262,48 @@ msgid ""
 "In case of failed 'Folder Write Permissions' check out our Wiki <a href='%s' "
 "target='_blank'>here</a>."
 msgstr ""
+"U slučaju greške \"Greška u dozvoli pisanja u folder\" pogledajte <a "
+"href='%s' target='_blank'>ovde</a> našu Wiki."
 
 #: install/index.php:323
 msgid "You have some warnings!"
-msgstr ""
+msgstr "Imate neka upozorenja!"
 
 #: install/index.php:324
 msgid ""
 "Some of the settings are not optimal. You can proceed with the installer but "
 "be aware that you could run into problems while using Wavelog."
 msgstr ""
+"Neka od podešavanja nisu optimalna. Možete nastaviti sa instalacijom ali "
+"imajte na umu da može doći do problema tokom korišćenja Waveloga."
 
 #: install/index.php:331
 msgid "All Checks are OK. You can continue."
-msgstr ""
+msgstr "Sve provere su OK. Možete nastaviti."
 
 #: install/index.php:345
 msgid ""
 "Configure some basic parameters for your wavelog instance. You can change "
 "them later in 'application/config/config.php'"
 msgstr ""
+"Konfigurišite neke osnovne paramtere za vašu verziju Waveloga. Možete ih "
+"promeniti kasnije u 'application/config/config.php'"
 
 #: install/index.php:347
 msgid "Directory"
-msgstr ""
+msgstr "Direktorijum"
 
 #: install/index.php:347
 msgid ""
 "The 'Directory' is basically your subfolder of the webroot In normal "
 "conditions the prefilled value is doing it's job. It also can be empty."
 msgstr ""
+"'Direktorijum' je u osnovi subfolder webroota. U normalnim okolnostima "
+"unapred popunjena vrednost će završiti posao. Takođe može biti i prazan."
 
 #: install/index.php:352
 msgid "No slash before or after the directory. Just the name of the folder."
-msgstr ""
+msgstr "Bez kose crte prije ili nakon direktorijuma. Samo naziv foldera."
 
 #: install/index.php:357
 #, php-format
@@ -305,10 +313,14 @@ msgid ""
 "Proxy with SSL you should type in the new URL here (e.g. %s instead of %s). "
 "Don't forget to include the directory from above."
 msgstr ""
+"Ovo je potpuni URL na kojem će biti dostupna instanca Waveloga. Ako ste "
+"pokrenuli ovaj instaler loakalno, ali želite da postavite Wavelog iza "
+"Reverse Proxy-ja sa SSL-om trebalo bi da ovde unesete novi URL (npr. %s "
+"umesto %s). Ne zaboravite da uključite i gornji direktorijum."
 
 #: install/index.php:357
 msgid "Website URL"
-msgstr ""
+msgstr "URL web mesta"
 
 #: install/index.php:360
 msgid ""
@@ -317,10 +329,14 @@ msgid ""
 "\t\t\t\t\t\t\t\t\t\t\t\t\t- have to end with a slash 'example/'<br>\n"
 "\t\t\t\t\t\t\t\t\t\t\t\t\t- have to start with 'http'"
 msgstr ""
+"Ovo polje<br>\n"
+"\t\t\t\t\t\t\t\t\t\t\t\t\t- ne može biti prazno<br>\n"
+"\t\t\t\t\t\t\t\t\t\t\t\t\t- mora da se završi sa oznakom kroz 'primer/'<br>\n"
+"\t\t\t\t\t\t\t\t\t\t\t\t\t- mora da počne sa 'http'"
 
 #: install/index.php:367
 msgid "Optional: Global Callbook Lookup"
-msgstr ""
+msgstr "Opcija: Globalna pretraga Callbooka"
 
 #: install/index.php:367
 msgid ""
@@ -330,31 +346,37 @@ msgid ""
 "credentials for QRZ.com. To also get the Call Locator in QRZ.com you'll need "
 "an XML subscription. HamQTH does not always provide the locator information."
 msgstr ""
+"Ovo podešavanje je opciono. Pretraga pozivnog znaka će biti dostupna svim "
+"korisnicima ove instalacije. Može izabrati između QRZ.com i HamQTH. Dok "
+"HamQTH radi i bez unošenja korisničkog imena i lozinke, iste će vam trebati "
+"za QRZ.com. Da biste dobili i lokator pozivnog znaka koji je naveden na "
+"QRZ.com trebaće vam i XML pretplata na QRZ.com servise. HamQTH ne obezbeđuje "
+"uvek informaciju o lokatoru."
 
 #: install/index.php:376 install/index.php:453 install/index.php:905
 msgid "Username"
-msgstr ""
+msgstr "Korisničko ime"
 
 #: install/index.php:379 install/index.php:457 install/index.php:915
 msgid "Password"
-msgstr ""
+msgstr "Lozinka"
 
 #: install/index.php:384
 msgid "Callbook Username"
-msgstr ""
+msgstr "Korisničko ime Callbook-a"
 
 #: install/index.php:387
 msgid "Callbook Password"
-msgstr ""
+msgstr "Lozinka za Callbook"
 
 #: install/index.php:389
 #, php-format
 msgid "Password can't contain %s or be empty"
-msgstr ""
+msgstr "Lozinka ne može da sadrži %s ili da bude prazna"
 
 #: install/index.php:394 install/index.php:399
 msgid "Advanced Settings"
-msgstr ""
+msgstr "Napredna podešavanja"
 
 #: install/index.php:402
 msgid "These settings should only be set if you know what you're doing."
