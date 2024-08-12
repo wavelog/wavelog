@@ -626,6 +626,7 @@
  */
 ?>
 <div style="display: none">
+    <?= __("Albanian"); ?>
     <?= __("Bosnian"); ?>
     <?= __("Bulgarian"); ?>
     <?= __("Chinese (Simplified)"); ?>
