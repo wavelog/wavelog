@@ -2236,69 +2236,72 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
   }
 
     /* Get all QSOs with a valid grid for use in the KML export */
-    function kml_get_all_qsos($band, $mode, $dxcc, $cqz, $propagation, $fromdate, $todate) {
-        $this->load->model('logbooks_model');
-        $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+  function kml_get_all_qsos($band, $mode, $dxcc, $cqz, $propagation, $fromdate, $todate) {
+	  $this->load->model('logbooks_model');
+	  $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
-        $this->db->select('COL_CALL, COL_BAND, COL_TIME_ON, COL_RST_RCVD, COL_RST_SENT, COL_MODE, COL_SUBMODE, COL_NAME, COL_COUNTRY, COL_PRIMARY_KEY, COL_SAT_NAME, COL_GRIDSQUARE');
-        $this->db->where_in('station_id', $logbooks_locations_array);
-        $this->db->where("coalesce(COL_GRIDSQUARE, '') <> ''");
+	  $this->db->select('COL_CALL, COL_BAND, COL_TIME_ON, COL_RST_RCVD, COL_RST_SENT, COL_MODE, COL_SUBMODE, COL_NAME, COL_COUNTRY, COL_PRIMARY_KEY, COL_SAT_NAME, COL_GRIDSQUARE');
+	  $this->db->where_in('station_id', $logbooks_locations_array);
+	  $this->db->where("coalesce(COL_GRIDSQUARE, '') <> ''");
 
-        if ($band != 'All') {
-            if ($band == 'SAT') {
-                $this->db->where('COL_PROP_MODE = \'' . $band . '\'');
-            }
-            else {
-                $this->db->where('COL_PROP_MODE != \'SAT\'');
-                $this->db->where('COL_BAND = \'' . $band .'\'');
-            }
-        }
+	  if ($band != 'All') {
+		  if ($band == 'SAT') {
+			  $this->db->where('COL_PROP_MODE', $band);
+		  }
+		  else {
+			  $this->db->where('COL_PROP_MODE != \'SAT\'');
+			  $this->db->where('COL_BAND', $band);
+		  }
+	  }
 
-        if ($mode != 'All') {
-            $this->db->where('COL_MODE = \'' . $mode . '\'');
-        }
+	  if ($mode != 'All') {
+		  $this->db->where('COL_MODE', $mode);
+	  }
 
-        if ($dxcc != 'All') {
-            $this->db->where('COL_DXCC = ' . $dxcc);
-        }
+	  if ($dxcc != 'All') {
+		  $this->db->where('COL_DXCC',$dxcc);
+	  }
 
-        if ($cqz != 'All') {
-            $this->db->where('COL_CQZ = ' . $cqz);
-        }
+	  if ($cqz != 'All') {
+		  $this->db->where('COL_CQZ', $cqz);
+	  }
 
-        if ($propagation != 'All') {
-            $this->db->where('COL_PROP_MODE = ' . $propagation);
-        }
+	  if ($propagation != 'All') {
+		  $this->db->where('COL_PROP_MODE', $propagation);
+	  }
 
-        // If date is set, we add it to the where-statement
-        if ($fromdate != "") {
-            $this->db->where("date(".$this->config->item('table_name').".COL_TIME_ON) >= '".$fromdate."'");
-        }
-        if ($todate != "") {
-            $this->db->where("date(".$this->config->item('table_name').".COL_TIME_ON) <= '".$todate."'");
-        }
+	  // If date is set, we add it to the where-statement
+	  if ($fromdate != "") {
+		  $this->db->where("date(".$this->config->item('table_name').".COL_TIME_ON) >=", $fromdate);
+	  }
+	  if ($todate != "") {
+		  $this->db->where("date(".$this->config->item('table_name').".COL_TIME_ON) <=", $todate);
+	  }
 
-        $query = $this->db->get($this->config->item('table_name'));
-        return $query;
-    }
+	  $query = $this->db->get($this->config->item('table_name'));
+	  return $query;
+  }
 
   function cfd_get_all_qsos($fromdate, $todate) {
+	  $binding=[];
 	  $this->load->model('logbooks_model');
 	  $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
 	  // If date is set, we add it to the where-statement
 	  if ($fromdate ?? ''!= "") {
-		  $from=" AND date(q.COL_TIME_ON) >= '".$fromdate."'";
+		  $from=" AND date(q.COL_TIME_ON) >= ?";
+		  $binding[]=$fromdate;
 	  } else {
 		  $from="";
 	  }
 	  if ($todate ?? '' != "") {
-		  $till=" AND date(q.COL_TIME_ON) <= '".$todate."'";
+		  $till=" AND date(q.COL_TIME_ON) <= ?";
+		  $binding[]=$todate;
 	  } else {
 		  $till='';
 	  }
 
-      	  $location_list = "'".implode("','",$logbooks_locations_array)."'";
+	  $location_list = "'".implode("','",$logbooks_locations_array)."'";
 
 	  $sql="SELECT
 		  dx.prefix,dx.name,
@@ -2309,27 +2312,27 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 		  ELSE mo.qrgmode
 		  END AS mode,q.col_band as band,
 		  COUNT(1) as cnfmd
-			FROM ".$this->config->item('table_name')." q
-		INNER JOIN
-		dxcc_entities dx ON (dx.adif = q.COL_DXCC)
-		INNER JOIN
-		adif_modes mo ON (mo.mode = q.COL_MODE)
-		inner join bands b on (b.band=q.COL_BAND)
-		WHERE
-		(q.COL_QSL_RCVD = 'Y'
-		OR q.COL_LOTW_QSL_RCVD = 'Y'
-		OR q.COL_EQSL_QSL_RCVD = 'Y')
-		AND q.station_id in (".$location_list.")
-		AND (b.bandgroup='hf' or b.band = '6m') ".($from ?? '')." ".($till ?? '')."
-		GROUP BY dx.prefix,dx.name , CASE
-		WHEN q.col_mode = 'CW' THEN 'C'
-		WHEN mo.qrgmode = 'DATA' THEN 'R'
-		WHEN mo.qrgmode = 'SSB' THEN 'F'
-		ELSE mo.qrgmode
-		END,q.COL_BAND order by dx.prefix asc, q.col_band desc";
+		  FROM ".$this->config->item('table_name')." q
+		  INNER JOIN
+		  dxcc_entities dx ON (dx.adif = q.COL_DXCC)
+		  INNER JOIN
+		  adif_modes mo ON (mo.mode = q.COL_MODE)
+		  inner join bands b on (b.band=q.COL_BAND)
+		  WHERE
+		  (q.COL_QSL_RCVD = 'Y'
+		  OR q.COL_LOTW_QSL_RCVD = 'Y'
+		  OR q.COL_EQSL_QSL_RCVD = 'Y')
+		  AND q.station_id in (".$location_list.")
+		  AND (b.bandgroup='hf' or b.band = '6m') ".($from ?? '')." ".($till ?? '')."
+		  GROUP BY dx.prefix,dx.name , CASE
+		  WHEN q.col_mode = 'CW' THEN 'C'
+		  WHEN mo.qrgmode = 'DATA' THEN 'R'
+		  WHEN mo.qrgmode = 'SSB' THEN 'F'
+		  ELSE mo.qrgmode
+		  END,q.COL_BAND order by dx.prefix asc, q.col_band desc";
 
-	 $query = $this->db->query($sql);
-	 return $query;
+	  $query = $this->db->query($sql,$binding);
+	  return $query;
 
   }
 
@@ -2436,15 +2439,16 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 
     /* Return QSOs over a period of days */
     function map_week_qsos($start, $end) {
-        $this->load->model('logbooks_model');
-        $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+	    $this->load->model('logbooks_model');
+	    $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
-        $this->db->where("COL_TIME_ON BETWEEN '".$start."' AND '".$end."'");
-        $this->db->where_in('station_id', $logbooks_locations_array);
-        $this->db->order_by("COL_TIME_ON", "ASC");
-        $query = $this->db->get($this->config->item('table_name'));
+	    $this->db->where("COL_TIME_ON >= ",$start);
+	    $this->db->where("COL_TIME_ON <= ",$end);
+	    $this->db->where_in('station_id', $logbooks_locations_array);
+	    $this->db->order_by("COL_TIME_ON", "ASC");
+	    $query = $this->db->get($this->config->item('table_name'));
 
-        return $query;
+	    return $query;
     }
 
     /* used to return custom qsos requires start, end date plus a band */
@@ -2493,7 +2497,8 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
         $start = $date." 00:00:00";
         $end = $date." 23:59:59";
 
-        $this->db->where("COL_TIME_ON BETWEEN '".$start."' AND '".$end."'");
+        $this->db->where("COL_TIME_ON >= ", $start);
+        $this->db->where("COL_TIME_ON <= ", $end);
         $this->db->where_in('station_id', $logbooks_locations_array);
         $this->db->order_by("COL_TIME_ON", "ASC");
         $query = $this->db->get($this->config->item('table_name'));
@@ -3221,24 +3226,33 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 
   /* Used to check if the qso is already in the database */
     function import_check($datetime, $callsign, $band, $mode, $station_callsign, $station_id = null) {
+	    $binding=[];
 	    $mode=$this->get_main_mode_from_mode($mode);
 
-	    $this->db->select('COL_PRIMARY_KEY, COL_TIME_ON, COL_CALL, COL_BAND, COL_GRIDSQUARE');
-	    $this->db->where('COL_TIME_ON >= DATE_ADD(DATE_FORMAT("'.$datetime.'", \'%Y-%m-%d %H:%i\' ), INTERVAL -15 MINUTE )');
-	    $this->db->where('COL_TIME_ON <= DATE_ADD(DATE_FORMAT("'.$datetime.'", \'%Y-%m-%d %H:%i\' ), INTERVAL 15 MINUTE )');
-	    $this->db->where('COL_CALL', $callsign);
-	    $this->db->where('COL_STATION_CALLSIGN', $station_callsign);
-	    $this->db->where('COL_BAND', $band);
-	    $this->db->where('COL_MODE', $mode);
+	    $sql='SELECT  COL_PRIMARY_KEY, COL_TIME_ON, COL_CALL, COL_BAND, COL_GRIDSQUARE from '.$this->config->item('table_name').'
+		    WHERE COL_TIME_ON >= DATE_ADD(DATE_FORMAT(?, \'%Y-%m-%d %H:%i\' ), INTERVAL -15 MINUTE )
+		    AND COL_TIME_ON <= DATE_ADD(DATE_FORMAT(?, \'%Y-%m-%d %H:%i\' ), INTERVAL 15 MINUTE )
+		    AND COL_CALL=?
+		    AND COL_STATION_CALLSIGN=?
+		    AND COL_BAND=?
+		    AND COL_MODE=?';
+
+	    $binding[]=$datetime;
+	    $binding[]=$datetime;
+	    $binding[]=$callsign;
+	    $binding[]=$station_callsign;
+	    $binding[]=$band;
+	    $binding[]=$mode;
+
 
 	    if(isset($station_id) && $station_id > 0) {
-		    $this->db->where('station_id', $station_id);
+		    $sql.=' AND station_id=?';
+		    $binding[]=$station_id;
 	    }
 
-	    $query = $this->db->get($this->config->item('table_name'));
+	    $query = $this->db->query($sql, $binding);
 
-	    if ($query->num_rows() > 0)
-	    {
+	    if ($query->num_rows() > 0) {
 		    $ret = $query->row();
 		    return ["Found", $ret->COL_PRIMARY_KEY, $ret->COL_GRIDSQUARE];
 	    } else {
@@ -3254,7 +3268,7 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 		    'COL_CLUBLOG_QSO_DOWNLOAD_STATUS' => $qsl_status,
 	    );
 
-	    $this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i:%s\') = "'.$datetime.'"');
+	    $this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i:%s\')',$datetime);
 	    $this->db->where('COL_CALL', $callsign);
 	    $this->db->where("replace(replace(COL_BAND,'cm',''),'m','')", $band); // no way to achieve a real bandmatch, so fallback to match without unit. e.g.: "6" was provided by Clublog. Do they mean 6m or 6cm?
 	    $this->db->where('COL_STATION_CALLSIGN', $station_callsign);
@@ -3325,10 +3339,10 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 	    }
 
 	    $this->db->group_start();
-	    $this->db->where('date_format(COL_LOTW_QSLRDATE, \'%Y-%m-%d %H:%i\') != "'.$qsl_date.'"');
+	    $this->db->where('date_format(COL_LOTW_QSLRDATE, \'%Y-%m-%d %H:%i\') != ',$qsl_date);
 	    $this->db->or_where('COL_LOTW_QSLRDATE is null');
 	    $this->db->group_end();
-	    $this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i\') = "'.$datetime.'"');
+	    $this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i\')',$datetime);
 	    $this->db->where('COL_CALL', $callsign);
 	    $this->db->where('COL_BAND', $band);
 	    $this->db->where('COL_STATION_CALLSIGN', $station_callsign);
@@ -3342,7 +3356,7 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 			    'COL_DISTANCE' => 0
 		    );
 		    $this->db->select('station_profile.station_gridsquare as station_gridsquare');
-		    $this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i\') = "'.$datetime.'"');
+		    $this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i\') = ',$datetime);
 		    $this->db->where('COL_CALL', $callsign);
 		    $this->db->where('COL_BAND', $band);
 		    $this->db->where('COL_PRIMARY_KEY', $qsoid);
@@ -3365,7 +3379,7 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 			    $data['COL_DISTANCE'] = $this->qra->distance($station_gridsquare, $qsl_vucc_grids, 'K');
 		    }
 
-		    $this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i\') = "'.$datetime.'"');
+		    $this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i\') = ',$datetime);
 		    $this->db->where('COL_CALL', $callsign);
 		    $this->db->where('COL_BAND', $band);
 		    $this->db->where('COL_PRIMARY_KEY', $qsoid);
