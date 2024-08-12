@@ -9,10 +9,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-08-10 10:26+0000\n"
-"PO-Revision-Date: 2024-08-02 19:03+0000\n"
+"PO-Revision-Date: 2024-08-12 08:32+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ru/>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1566,7 +1566,7 @@ msgstr "Радио"
 
 #: application/controllers/Radio.php:50
 msgid "Timestamp"
-msgstr ""
+msgstr "Метка времени"
 
 #: application/controllers/Radio.php:52
 #: application/views/logbookadvanced/index.php:522
@@ -1583,15 +1583,15 @@ msgstr "Опции"
 #: application/views/contesting/index.php:96
 #: application/views/qso/index.php:316
 msgid "last updated"
-msgstr ""
+msgstr "последнее обновление"
 
 #: application/controllers/Radio.php:97 application/controllers/Radio.php:100
 msgid "Set as default radio"
-msgstr ""
+msgstr "Установить как радиостанцию по умолчанию"
 
 #: application/controllers/Radio.php:102
 msgid "Default (click to release)"
-msgstr ""
+msgstr "По умолчанию (нажмите, чтобы освободить)"
 
 #: application/controllers/Radio.php:105
 #: application/controllers/Stationsetup.php:372
@@ -1621,7 +1621,7 @@ msgstr "Удалить"
 
 #: application/controllers/Radio.php:111
 msgid "No CAT interfaced radios found."
-msgstr ""
+msgstr "CAT-интерфейсные радиостанции не найдены."
 
 #: application/controllers/Satellite.php:37
 msgid "Create Satellite"
@@ -5559,6 +5559,10 @@ msgid ""
 "locked due to a previously failed process. Delete the file %s to force the "
 "migration to run again."
 msgstr ""
+"Текущая миграция не является той версией, которой она должна быть. "
+"Перезагрузите эту страницу через %s секунд. Если это предупреждение "
+"сохраняется, ваша миграция, вероятно, заблокирована из-за ранее неудавшегося "
+"процесса. Удалите файл %s, чтобы принудительно запустить миграцию снова."
 
 #: application/views/debug/index.php:47
 #, php-format
@@ -5566,6 +5570,8 @@ msgid ""
 "Check this wiki article <u><a href='%s' target='_blank'>here</a></u> for "
 "more information."
 msgstr ""
+"Обратитесь к этой статье в вики <u><a href='%s' target='_blank'>здесь</a></"
+"u> для получения дополнительной информации."
 
 #: application/views/debug/index.php:48
 #, php-format
@@ -6328,15 +6334,15 @@ msgstr "Информация о версии"
 
 #: application/views/interface_assets/footer.php:392
 msgid "Description:"
-msgstr ""
+msgstr "Описание:"
 
 #: application/views/interface_assets/footer.php:395
 msgid "Query description"
-msgstr ""
+msgstr "Описание запроса"
 
 #: application/views/interface_assets/footer.php:411
 msgid "Your query has been saved!"
-msgstr ""
+msgstr "Ваш запрос сохранён!"
 
 #: application/views/interface_assets/footer.php:413
 #: application/views/search/filter.php:46
@@ -6345,7 +6351,7 @@ msgstr "Редактировать запросы"
 
 #: application/views/interface_assets/footer.php:415
 msgid "Stored queries:"
-msgstr ""
+msgstr "Сохранённые запросы:"
 
 #: application/views/interface_assets/footer.php:420
 #: application/views/search/filter.php:60
@@ -6355,8 +6361,9 @@ msgstr "Выполнить запрос"
 #: application/views/interface_assets/footer.php:432
 #: application/views/interface_assets/footer.php:561
 #: application/views/interface_assets/footer.php:625
+#, fuzzy
 msgid "Stored Queries"
-msgstr ""
+msgstr "Сохранённые запросы"
 
 #: application/views/interface_assets/footer.php:437
 #: application/views/interface_assets/footer.php:630
