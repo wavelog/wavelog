@@ -8,11 +8,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-10 10:26+0000\n"
+"POT-Creation-Date: 2024-08-12 10:06+0000\n"
 "PO-Revision-Date: 2024-08-12 13:55+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/ru/>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -5853,82 +5853,86 @@ msgstr ""
 msgid "Everything ok"
 msgstr "Всё ОК"
 
-#: application/views/debug/index.php:629 application/views/debug/index.php:630
+#: application/views/debug/index.php:629
+msgid "Albanian"
+msgstr "Албанский"
+
+#: application/views/debug/index.php:630
+msgid "Bosnian"
+msgstr "Боснийский"
+
 #: application/views/debug/index.php:631
 msgid "Bulgarian"
 msgstr "Болгарский"
 
-#: application/views/debug/index.php:630 application/views/debug/index.php:631
 #: application/views/debug/index.php:632
 msgid "Chinese (Simplified)"
 msgstr "Китайский (упрощённый)"
 
-#: application/views/debug/index.php:631 application/views/debug/index.php:633
+#: application/views/debug/index.php:633
+msgid "Croatian"
+msgstr "Хорватский"
+
 #: application/views/debug/index.php:634
 msgid "Czech"
 msgstr "Чешский"
 
-#: application/views/debug/index.php:632 application/views/debug/index.php:634
 #: application/views/debug/index.php:635
 msgid "Dutch"
 msgstr "Голландский"
 
-#: application/views/debug/index.php:633 application/views/debug/index.php:635
 #: application/views/debug/index.php:636
 msgid "English"
 msgstr "Английский"
 
-#: application/views/debug/index.php:634 application/views/debug/index.php:636
 #: application/views/debug/index.php:637
 msgid "Finnish"
 msgstr "Финский"
 
-#: application/views/debug/index.php:635 application/views/debug/index.php:637
 #: application/views/debug/index.php:638
 msgid "French"
 msgstr "Французский"
 
-#: application/views/debug/index.php:636 application/views/debug/index.php:638
 #: application/views/debug/index.php:639
 msgid "German"
 msgstr "Немецкий"
 
-#: application/views/debug/index.php:637 application/views/debug/index.php:639
 #: application/views/debug/index.php:640
 msgid "Greek"
 msgstr "Греческий"
 
-#: application/views/debug/index.php:638 application/views/debug/index.php:640
 #: application/views/debug/index.php:641
 msgid "Italian"
 msgstr "Итальянский"
 
-#: application/views/debug/index.php:639 application/views/debug/index.php:642
+#: application/views/debug/index.php:642
+msgid "Montenegrin"
+msgstr "Черногорский"
+
 #: application/views/debug/index.php:643
 msgid "Polish"
 msgstr "Польский"
 
-#: application/views/debug/index.php:640 application/views/debug/index.php:643
 #: application/views/debug/index.php:644
 msgid "Portuguese"
 msgstr "Португальский"
 
-#: application/views/debug/index.php:641 application/views/debug/index.php:644
 #: application/views/debug/index.php:645
 msgid "Russian"
 msgstr "Русский"
 
-#: application/views/debug/index.php:642 application/views/debug/index.php:646
+#: application/views/debug/index.php:646
+msgid "Serbian"
+msgstr "Сербский"
+
 #: application/views/debug/index.php:647
 msgid "Spanish"
 msgstr "Испанский"
 
-#: application/views/debug/index.php:643 application/views/debug/index.php:647
 #: application/views/debug/index.php:648
 msgid "Swedish"
 msgstr "Шведский"
 
-#: application/views/debug/index.php:644 application/views/debug/index.php:648
 #: application/views/debug/index.php:649
 msgid "Turkish"
 msgstr "Турецкий"
@@ -9459,13 +9463,12 @@ msgstr ""
 
 #: application/views/simplefle/syntax_help.php:28
 #, php-format
-msgctxt "uses 'this article'"
 msgid ""
-"A full summary of all commands and the necessary syntax can be found in %s "
-"of our Wiki."
+"A full summary of all commands and the necessary syntax can be found in <a "
+"href='%s' target='_blank'>this article</a> of our Wiki."
 msgstr ""
-"Полное описание всех команд и необходимый синтаксис можно найти в %s нашей "
-"Вики."
+"Полное описание всех команд и необходимого синтаксиса можно найти в <a "
+"href='%s' target='_blank'>этой статье</a> нашего Вики."
 
 #: application/views/station_profile/create.php:51
 #: application/views/station_profile/edit.php:40
@@ -11153,34 +11156,14 @@ msgstr "Ваш позывной:"
 msgid "Submit Request"
 msgstr "Отправить запрос"
 
-#: application/views/debug/index.php:629 application/views/debug/index.php:630
-msgid "Bosnian"
-msgstr "Боснийский"
-
-#: application/views/debug/index.php:632 application/views/debug/index.php:633
-msgid "Croatian"
-msgstr "Хорватский"
-
-#: application/views/debug/index.php:641 application/views/debug/index.php:642
-msgid "Montenegrin"
-msgstr "Черногорский"
-
-#: application/views/debug/index.php:645 application/views/debug/index.php:646
-msgid "Serbian"
-msgstr "Сербский"
-
-#: application/views/debug/index.php:629
-msgid "Albanian"
-msgstr "Албанский"
-
-#: application/views/simplefle/syntax_help.php:28
 #, php-format
-msgid ""
-"A full summary of all commands and the necessary syntax can be found in <a "
-"href='%s' target='_blank'>this article</a> of our Wiki."
-msgstr ""
-"Полное описание всех команд и необходимого синтаксиса можно найти в <a "
-"href='%s' target='_blank'>этой статье</a> нашего Вики."
+#~ msgctxt "uses 'this article'"
+#~ msgid ""
+#~ "A full summary of all commands and the necessary syntax can be found in "
+#~ "%s of our Wiki."
+#~ msgstr ""
+#~ "Полное описание всех команд и необходимый синтаксис можно найти в %s "
+#~ "нашей Вики."
 
 #, php-format
 #~ msgid ""
