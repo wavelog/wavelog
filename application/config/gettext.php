@@ -61,6 +61,16 @@ $config['gettext_domain'] = NULL;
 */
 $config['languages'] = array(
 
+	'albanian' => array(
+		'name'      => 'Shqip',
+		'name_en'   => 'Albanian',
+		'folder'    => 'albanian',
+		'locale'    => 'sq',
+		'gettext'   => 'sq',
+		'direction' => 'ltr',
+		'code'      => 'sq',
+		'flag'      => 'al',
+	),
 	'bosnian' => array(
 		'name'      => 'Bosanski',
 		'name_en'   => 'Bosnian',
