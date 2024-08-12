@@ -590,37 +590,7 @@ class Logbook_model extends CI_Model {
 		return $this->db->get($this->config->item('table_name'));
 	}
 
-	public function activated_grids_qso_details($searchphrase, $band, $mode){
-		$this->load->model('logbooks_model');
-		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-
-		$sql =  'SELECT COL_FREQ, COL_SOTA_REF, COL_OPERATOR, COL_IOTA, COL_VUCC_GRIDS, COL_STATE, COL_GRIDSQUARE, COL_PRIMARY_KEY, COL_CALL, COL_TIME_ON, COL_BAND, COL_SAT_NAME, COL_MODE, COL_SUBMODE, COL_RST_SENT, ';
-		$sql .= 'COL_RST_RCVD, COL_STX, COL_SRX, COL_STX_STRING, COL_SRX_STRING, COL_COUNTRY, COL_QSL_SENT, COL_QSL_SENT_VIA, ';
-		$sql .= 'COL_QSLSDATE, COL_QSL_RCVD, COL_QSL_RCVD_VIA, COL_QSLRDATE, COL_EQSL_QSL_SENT, COL_EQSL_QSLSDATE, COL_EQSL_QSLRDATE, ';
-		$sql .= 'COL_EQSL_QSL_RCVD, COL_LOTW_QSL_SENT, COL_LOTW_QSLSDATE, COL_LOTW_QSL_RCVD, COL_LOTW_QSLRDATE, COL_CONTEST_ID, station_gridsquare, dxcc_entities.name as name, dxcc_entities.end as end, callsign, lastupload ';
-		$sql .= 'FROM '.$this->config->item('table_name').' JOIN `station_profile` ON station_profile.station_id = '.$this->config->item('table_name').'.station_id ';
-      $sql .= 'LEFT OUTER JOIN `dxcc_entities` ON dxcc_entities.adif = '.$this->config->item('table_name').'.COL_DXCC ';
-      $sql .= 'LEFT OUTER JOIN `lotw_users` ON lotw_users.callsign = '.$this->config->item('table_name').'.COL_CALL ';
-		$sql .= 'WHERE '.$this->config->item('table_name').'.station_id IN (SELECT station_id from station_profile ';
-		$sql .= 'WHERE station_gridsquare LIKE "%'.$searchphrase.'%") ';
-
-		if ($band != 'All') {
-			if($band != "SAT") {
-				$sql .= 'AND COL_PROP_MODE != "SAT" AND ';
-				$sql .= 'COL_BAND = "'.$band.'" ';
-			} else {
-				$sql .= 'AND COL_PROP_MODE = "SAT"';
-			}
-		}
-
-		if ($mode != 'All') {
-			$sql .= ' AND COL_MODE = "'.$mode.'" OR COL_SUBMODE="'.$mode.'"';
-		}
-		$sql .= ' ORDER BY COL_TIME_ON DESC LIMIT 500';
-
-		return $this->db->query($sql);
-	}
-
+	
 	public function vucc_qso_details($gridsquare, $band) {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
