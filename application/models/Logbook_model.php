@@ -2010,7 +2010,7 @@ class Logbook_model extends CI_Model {
 			    JOIN station_profile ON station_profile.station_id = hrd.station_id
 			    LEFT JOIN dxcc_entities ON hrd.col_dxcc = dxcc_entities.adif
 			    order by col_time_on desc";
-		    $binding[]=$num;
+		    $binding[]=$num*1;
 		    $query = $this->db->query($sql,$binding);
 
 		    return $query;
