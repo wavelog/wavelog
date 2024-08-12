@@ -3,133 +3,138 @@
 # This file is distributed under the MIT licence.
 #
 # Fabian Berg <80885850+HB9HIL@users.noreply.github.com>, 2024.
+# Dragan Đorđević <4o4a.dragan@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-08-08 14:17+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2024-08-12 08:57+0000\n"
+"Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
+"Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/"
+"installer/sr/>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #: install/includes/core/database_class.php:59
 msgid "Connection Error: "
-msgstr ""
+msgstr "Greška u spajanju: "
 
 #: install/includes/core/database_class.php:63
 msgid "Unable to create database: "
-msgstr ""
+msgstr "Nemoguće je napraviti bazu podataka: "
 
 #: install/includes/core/database_class.php:68
 msgid "Unable to select database: "
-msgstr ""
+msgstr "Nemoguće je izabrati bazu podataka: "
 
 #: install/includes/core/database_class.php:74
 msgid "Database is not empty."
-msgstr ""
+msgstr "Baza podataka nije prazna."
 
 #: install/includes/install_config/install_lib.php:123
 msgid "not detected"
-msgstr ""
+msgstr "nije otkriveno"
 
 #: install/includes/interface_assets/footer.php:50
 msgid "Bulgarian"
-msgstr ""
+msgstr "Bugarski"
 
 #: install/includes/interface_assets/footer.php:51
 msgid "Chinese (Simplified)"
-msgstr ""
+msgstr "Kineski (Pojednostavljeni)"
 
 #: install/includes/interface_assets/footer.php:52
 msgid "Czech"
-msgstr ""
+msgstr "Češki"
 
 #: install/includes/interface_assets/footer.php:53
 msgid "Dutch"
-msgstr ""
+msgstr "Holandski"
 
 #: install/includes/interface_assets/footer.php:54
 msgid "English"
-msgstr ""
+msgstr "Engleski"
 
 #: install/includes/interface_assets/footer.php:55
 msgid "Finnish"
-msgstr ""
+msgstr "Finski"
 
 #: install/includes/interface_assets/footer.php:56
 msgid "French"
-msgstr ""
+msgstr "Francuski"
 
 #: install/includes/interface_assets/footer.php:57
 msgid "German"
-msgstr ""
+msgstr "Nemački"
 
 #: install/includes/interface_assets/footer.php:58
 msgid "Greek"
-msgstr ""
+msgstr "Grčki"
 
 #: install/includes/interface_assets/footer.php:59
 msgid "Italian"
-msgstr ""
+msgstr "Italijanski"
 
 #: install/includes/interface_assets/footer.php:60
 msgid "Portuguese"
-msgstr ""
+msgstr "Portugalski"
 
 #: install/includes/interface_assets/footer.php:61
 msgid "Polish"
-msgstr ""
+msgstr "Poljski"
 
 #: install/includes/interface_assets/footer.php:62
 msgid "Russian"
-msgstr ""
+msgstr "Ruski"
 
 #: install/includes/interface_assets/footer.php:63
 msgid "Spanish"
-msgstr ""
+msgstr "Španski"
 
 #: install/includes/interface_assets/footer.php:64
 msgid "Swedish"
-msgstr ""
+msgstr "Švedski"
 
 #: install/includes/interface_assets/footer.php:65
 msgid "Turkish"
-msgstr ""
+msgstr "Turski"
 
 #: install/includes/interface_assets/header.php:94
 msgid "Install | Wavelog"
-msgstr ""
+msgstr "Instalacija | WaveLog"
 
 #: install/index.php:30
 msgid "1. Welcome"
-msgstr ""
+msgstr "1. Dobrodošli"
 
 #: install/index.php:33
 msgid "2. Pre Checks"
-msgstr ""
+msgstr "2. Prethodna provera"
 
 #: install/index.php:36
 msgid "3. Configuration"
-msgstr ""
+msgstr "3. Konfiguracija"
 
 #: install/index.php:39
 msgid "4. Database"
-msgstr ""
+msgstr "4. Baza podataka"
 
 #: install/index.php:42
 msgid "5. First User"
-msgstr ""
+msgstr "5. Prvi korisnik"
 
 #: install/index.php:45
 msgid "6. Finish"
-msgstr ""
+msgstr "6. Kraj"
 
 #: install/index.php:62
 msgid "Welcome to the Wavelog Installer"
-msgstr ""
+msgstr "Dobrodošli u Wavelog instaler"
 
 #: install/index.php:63
 msgid ""
@@ -138,10 +143,14 @@ msgid ""
 "logging software. Follow the steps in each tab to configure and install "
 "Wavelog on your server."
 msgstr ""
+"Ovaj instaler će vas voditi kroz korake neophodne za instalaciju Waveloga. "
+"<br>Wavelog je moćni loging softver baziran na webu. Pratite korake na "
+"svakoj od kartica kako biste konfigurisali i instalirali Wavelog na vašem "
+"serveru."
 
 #: install/index.php:64
 msgid "Discussions"
-msgstr ""
+msgstr "Diskusije"
 
 #: install/index.php:64
 #, php-format
@@ -149,48 +158,50 @@ msgid ""
 "If you encounter any issues or have questions, refer to the documentation "
 "(%s) or community forum (%s) on Github for assistance."
 msgstr ""
+"Ako naiđete na bilo kakav problem ili imate pitanja, za dalju pomoć obratite "
+"se dokumentaciji (%s) ili forumu zajednice (%s) na Githabu."
 
 #: install/index.php:64
 msgid "Wiki"
-msgstr ""
+msgstr "Wiki"
 
 #: install/index.php:65
 msgid "Thank you for installing Wavelog!"
-msgstr ""
+msgstr "Hvala na instalaciji Waveloga!"
 
 #: install/index.php:66 install/index.php:69 install/index.php:1036
 msgid "Language"
-msgstr ""
+msgstr "Jezik"
 
 #: install/index.php:79
 msgid "Select a language"
-msgstr ""
+msgstr "Izaberite jezik"
 
 #: install/index.php:91 install/index.php:421
 msgid "Close"
-msgstr ""
+msgstr "Zatvori"
 
 #: install/index.php:101
 msgid "PHP Modules"
-msgstr ""
+msgstr "PHP moduli"
 
 #: install/index.php:108
 msgid "Version"
-msgstr ""
+msgstr "Verzija"
 
 #: install/index.php:109
 #, php-format
 msgctxt "PHP Version"
 msgid "min. %s (recommended %s+)"
-msgstr ""
+msgstr "min. %s (preporučeno %s+)"
 
 #: install/index.php:136
 msgid "Installed"
-msgstr ""
+msgstr "Instalirano"
 
 #: install/index.php:136
 msgid "Not Installed"
-msgstr ""
+msgstr "Nije instalirano"
 
 #: install/index.php:144
 msgid "PHP Settings"
