@@ -8,11 +8,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-12 10:06+0000\n"
-"PO-Revision-Date: 2024-08-02 19:03+0000\n"
+"POT-Creation-Date: 2024-08-10 10:26+0000\n"
+"PO-Revision-Date: 2024-08-12 13:55+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ru/>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1566,7 +1566,7 @@ msgstr "Радио"
 
 #: application/controllers/Radio.php:50
 msgid "Timestamp"
-msgstr ""
+msgstr "Метка времени"
 
 #: application/controllers/Radio.php:52
 #: application/views/logbookadvanced/index.php:522
@@ -1583,15 +1583,15 @@ msgstr "Опции"
 #: application/views/contesting/index.php:96
 #: application/views/qso/index.php:316
 msgid "last updated"
-msgstr ""
+msgstr "последнее обновление"
 
 #: application/controllers/Radio.php:97 application/controllers/Radio.php:100
 msgid "Set as default radio"
-msgstr ""
+msgstr "Установить как радиостанцию по умолчанию"
 
 #: application/controllers/Radio.php:102
 msgid "Default (click to release)"
-msgstr ""
+msgstr "По умолчанию (нажмите, чтобы освободить)"
 
 #: application/controllers/Radio.php:105
 #: application/controllers/Stationsetup.php:372
@@ -1621,7 +1621,7 @@ msgstr "Удалить"
 
 #: application/controllers/Radio.php:111
 msgid "No CAT interfaced radios found."
-msgstr ""
+msgstr "CAT-интерфейсные радиостанции не найдены."
 
 #: application/controllers/Satellite.php:37
 msgid "Create Satellite"
@@ -5559,6 +5559,10 @@ msgid ""
 "locked due to a previously failed process. Delete the file %s to force the "
 "migration to run again."
 msgstr ""
+"Текущая миграция не является той версией, которой она должна быть. "
+"Перезагрузите эту страницу через %s секунд. Если это предупреждение "
+"сохраняется, ваша миграция, вероятно, заблокирована из-за ранее неудавшегося "
+"процесса. Удалите файл %s, чтобы принудительно запустить миграцию снова."
 
 #: application/views/debug/index.php:47
 #, php-format
@@ -5566,6 +5570,8 @@ msgid ""
 "Check this wiki article <u><a href='%s' target='_blank'>here</a></u> for "
 "more information."
 msgstr ""
+"Обратитесь к этой статье в вики <u><a href='%s' target='_blank'>здесь</a></"
+"u> для получения дополнительной информации."
 
 #: application/views/debug/index.php:48
 #, php-format
@@ -5847,86 +5853,82 @@ msgstr ""
 msgid "Everything ok"
 msgstr "Всё ОК"
 
-#: application/views/debug/index.php:629
-msgid "Albanian"
-msgstr ""
-
-#: application/views/debug/index.php:630
-msgid "Bosnian"
-msgstr ""
-
+#: application/views/debug/index.php:629 application/views/debug/index.php:630
 #: application/views/debug/index.php:631
 msgid "Bulgarian"
 msgstr "Болгарский"
 
+#: application/views/debug/index.php:630 application/views/debug/index.php:631
 #: application/views/debug/index.php:632
 msgid "Chinese (Simplified)"
 msgstr "Китайский (упрощённый)"
 
-#: application/views/debug/index.php:633
-msgid "Croatian"
-msgstr ""
-
+#: application/views/debug/index.php:631 application/views/debug/index.php:633
 #: application/views/debug/index.php:634
 msgid "Czech"
 msgstr "Чешский"
 
+#: application/views/debug/index.php:632 application/views/debug/index.php:634
 #: application/views/debug/index.php:635
 msgid "Dutch"
 msgstr "Голландский"
 
+#: application/views/debug/index.php:633 application/views/debug/index.php:635
 #: application/views/debug/index.php:636
 msgid "English"
 msgstr "Английский"
 
+#: application/views/debug/index.php:634 application/views/debug/index.php:636
 #: application/views/debug/index.php:637
 msgid "Finnish"
 msgstr "Финский"
 
+#: application/views/debug/index.php:635 application/views/debug/index.php:637
 #: application/views/debug/index.php:638
 msgid "French"
 msgstr "Французский"
 
+#: application/views/debug/index.php:636 application/views/debug/index.php:638
 #: application/views/debug/index.php:639
 msgid "German"
 msgstr "Немецкий"
 
+#: application/views/debug/index.php:637 application/views/debug/index.php:639
 #: application/views/debug/index.php:640
 msgid "Greek"
 msgstr "Греческий"
 
+#: application/views/debug/index.php:638 application/views/debug/index.php:640
 #: application/views/debug/index.php:641
 msgid "Italian"
 msgstr "Итальянский"
 
-#: application/views/debug/index.php:642
-msgid "Montenegrin"
-msgstr ""
-
+#: application/views/debug/index.php:639 application/views/debug/index.php:642
 #: application/views/debug/index.php:643
 msgid "Polish"
 msgstr "Польский"
 
+#: application/views/debug/index.php:640 application/views/debug/index.php:643
 #: application/views/debug/index.php:644
 msgid "Portuguese"
 msgstr "Португальский"
 
+#: application/views/debug/index.php:641 application/views/debug/index.php:644
 #: application/views/debug/index.php:645
 msgid "Russian"
 msgstr "Русский"
 
-#: application/views/debug/index.php:646
-msgid "Serbian"
-msgstr ""
-
+#: application/views/debug/index.php:642 application/views/debug/index.php:646
 #: application/views/debug/index.php:647
 msgid "Spanish"
 msgstr "Испанский"
 
+#: application/views/debug/index.php:643 application/views/debug/index.php:647
 #: application/views/debug/index.php:648
 msgid "Swedish"
 msgstr "Шведский"
 
+#: application/views/debug/index.php:644 application/views/debug/index.php:648
 #: application/views/debug/index.php:649
 msgid "Turkish"
 msgstr "Турецкий"
@@ -6348,15 +6350,15 @@ msgstr "Информация о версии"
 
 #: application/views/interface_assets/footer.php:392
 msgid "Description:"
-msgstr ""
+msgstr "Описание:"
 
 #: application/views/interface_assets/footer.php:395
 msgid "Query description"
-msgstr ""
+msgstr "Описание запроса"
 
 #: application/views/interface_assets/footer.php:411
 msgid "Your query has been saved!"
-msgstr ""
+msgstr "Ваш запрос сохранён!"
 
 #: application/views/interface_assets/footer.php:413
 #: application/views/search/filter.php:46
@@ -6365,7 +6367,7 @@ msgstr "Редактировать запросы"
 
 #: application/views/interface_assets/footer.php:415
 msgid "Stored queries:"
-msgstr ""
+msgstr "Сохранённые запросы:"
 
 #: application/views/interface_assets/footer.php:420
 #: application/views/search/filter.php:60
@@ -6376,12 +6378,12 @@ msgstr "Выполнить запрос"
 #: application/views/interface_assets/footer.php:561
 #: application/views/interface_assets/footer.php:625
 msgid "Stored Queries"
-msgstr ""
+msgstr "Сохранённые запросы"
 
 #: application/views/interface_assets/footer.php:437
 #: application/views/interface_assets/footer.php:630
 msgid "You need to make a query before you search!"
-msgstr ""
+msgstr "Сначала нужно сформировать запрос, прежде чем искать!"
 
 #: application/views/interface_assets/footer.php:458
 #: application/views/interface_assets/footer.php:589
@@ -6391,23 +6393,23 @@ msgstr "Экспортировать в ADIF"
 
 #: application/views/interface_assets/footer.php:496
 msgid "Warning! Are you sure you want delete this stored query?"
-msgstr ""
+msgstr "Внимание! Вы уверены, что хотите удалить этот сохранённый запрос?"
 
 #: application/views/interface_assets/footer.php:510
 msgid "The stored query has been deleted!"
-msgstr ""
+msgstr "Сохранённый запрос был удален!"
 
 #: application/views/interface_assets/footer.php:519
 msgid "The stored query could not be deleted. Please try again!"
-msgstr ""
+msgstr "Не удалось удалить сохранённый запрос. Пожалуйста, попробуйте еще раз!"
 
 #: application/views/interface_assets/footer.php:545
 msgid "The query description has been updated!"
-msgstr ""
+msgstr "Описание запроса было обновлено!"
 
 #: application/views/interface_assets/footer.php:549
 msgid "Something went wrong with the save. Please try again!"
-msgstr ""
+msgstr "Что-то пошло не так с сохранением. Пожалуйста, попробуйте еще раз!"
 
 #: application/views/interface_assets/footer.php:672
 msgid ""
@@ -6422,7 +6424,7 @@ msgstr ""
 #: application/views/interface_assets/footer.php:1156
 #, php-format
 msgid "You're not logged it. Please <a href='%s'>login</a>"
-msgstr ""
+msgstr "Вы не вошли в систему. Пожалуйста, <a href='%s'>войдите в систему</a>"
 
 #: application/views/interface_assets/footer.php:1362
 #: application/views/interface_assets/footer.php:1366
@@ -6440,11 +6442,11 @@ msgstr "Всего"
 
 #: application/views/interface_assets/footer.php:2100
 msgid "QSL Card for "
-msgstr ""
+msgstr "QSL-карточка для "
 
 #: application/views/interface_assets/footer.php:2120
 msgid "Warning! Are you sure you want to delete this QSL card?"
-msgstr ""
+msgstr "Внимание! Вы уверены, что хотите удалить эту QSL-карточку?"
 
 #: application/views/interface_assets/footer.php:2160
 #: application/views/view_log/qso.php:42
@@ -6453,7 +6455,7 @@ msgstr "eQSL-карточка"
 
 #: application/views/interface_assets/footer.php:2162
 msgid "eQSL Card for "
-msgstr ""
+msgstr "eQSL-карточка для "
 
 #: application/views/interface_assets/footer.php:2335
 #: application/views/interface_assets/footer.php:2374
@@ -6463,20 +6465,20 @@ msgstr "Изображение QSL-карточки"
 
 #: application/views/interface_assets/footer.php:2354
 msgid "Front QSL Card:"
-msgstr ""
+msgstr "Лицевая сторона QSL-карточки:"
 
 #: application/views/interface_assets/footer.php:2392
 msgid "Back QSL Card:"
-msgstr ""
+msgstr "Обратная сторона QSL-карточки:"
 
 #: application/views/interface_assets/footer.php:2403
 #: application/views/interface_assets/footer.php:2428
 msgid "Add additional QSOs to a QSL Card"
-msgstr ""
+msgstr "Добавить дополнительные QSO на QSL-карточку"
 
 #: application/views/interface_assets/footer.php:2439
 msgid "Something went wrong. Please try again!"
-msgstr ""
+msgstr "Что-то пошло не так. Пожалуйста, попробуйте еще раз!"
 
 #: application/views/interface_assets/header.php:86
 msgid "Developer Mode"
@@ -6596,11 +6598,11 @@ msgstr "Спутниковые таймеры"
 
 #: application/views/interface_assets/header.php:256
 msgid "Satellite Flightpath"
-msgstr ""
+msgstr "Траектория полета спутника"
 
 #: application/views/interface_assets/header.php:258
 msgid "Satellite Pass"
-msgstr ""
+msgstr "Прохождение спутника"
 
 #: application/views/interface_assets/header.php:265
 #: application/views/station_profile/index.php:33
@@ -8866,11 +8868,11 @@ msgstr "О том, как использовать %s, вы можете узн�
 
 #: application/views/radio/index.php:22
 msgid "radio functions"
-msgstr "функции радиостанции"
+msgstr "интерфейс радиостанции"
 
 #: application/views/radio/index.php:27
 msgid "Please wait..."
-msgstr ""
+msgstr "Пожалуйста, подождите..."
 
 #: application/views/satellite/create.php:23
 #: application/views/satellite/edit.php:7
@@ -8959,23 +8961,23 @@ msgstr "Добавить спутник"
 
 #: application/views/satellite/pass.php:2
 msgid "Satellite passes"
-msgstr ""
+msgstr "Прохождения спутника"
 
 #: application/views/satellite/pass.php:8
 msgid "Min. Satellite Elevation"
-msgstr ""
+msgstr "Мин. возвышение спутника"
 
 #: application/views/satellite/pass.php:12
 msgid "Min. Azimuth"
-msgstr ""
+msgstr "Мин. азимут"
 
 #: application/views/satellite/pass.php:20
 msgid "Max. Azimuth"
-msgstr ""
+msgstr "Макс. азимут"
 
 #: application/views/satellite/pass.php:32
 msgid "Altitude (meters)"
-msgstr ""
+msgstr "Высота (метры)"
 
 #: application/views/satellite/pass.php:36 application/views/user/edit.php:179
 msgid "Timezone"
@@ -8983,19 +8985,19 @@ msgstr "Часовой пояс"
 
 #: application/views/satellite/pass.php:479
 msgid "Min. time"
-msgstr ""
+msgstr "Мин. время"
 
 #: application/views/satellite/pass.php:487
 msgid "Max. time"
-msgstr ""
+msgstr "Макс. время"
 
 #: application/views/satellite/pass.php:504
 msgid "Load predictions"
-msgstr ""
+msgstr "Загрузить прогнозы"
 
 #: application/views/satellite/passtable.php:6
 msgid "AOS Time"
-msgstr ""
+msgstr "Время AOS"
 
 #: application/views/satellite/passtable.php:7
 #: application/views/sattimers/index.php:46
@@ -9004,27 +9006,27 @@ msgstr "Продолжительность"
 
 #: application/views/satellite/passtable.php:8
 msgid "AOS Az"
-msgstr ""
+msgstr "AOS Аз"
 
 #: application/views/satellite/passtable.php:9
 msgid "AOS El"
-msgstr ""
+msgstr "AOS Возв"
 
 #: application/views/satellite/passtable.php:10
 msgid "Max El"
-msgstr ""
+msgstr "Макс Возв"
 
 #: application/views/satellite/passtable.php:11
 msgid "LOS Time"
-msgstr ""
+msgstr "Время LOS"
 
 #: application/views/satellite/passtable.php:12
 msgid "LOS Az"
-msgstr ""
+msgstr "LOS Аз"
 
 #: application/views/satellite/passtable.php:13
 msgid "LOS El"
-msgstr ""
+msgstr "LOS Возв"
 
 #: application/views/sattimers/index.php:15
 #, php-format
@@ -9457,10 +9459,13 @@ msgstr ""
 
 #: application/views/simplefle/syntax_help.php:28
 #, php-format
+msgctxt "uses 'this article'"
 msgid ""
-"A full summary of all commands and the necessary syntax can be found in <a "
-"href='%s' target='_blank'>this article</a> of our Wiki."
+"A full summary of all commands and the necessary syntax can be found in %s "
+"of our Wiki."
 msgstr ""
+"Полное описание всех команд и необходимый синтаксис можно найти в %s нашей "
+"Вики."
 
 #: application/views/station_profile/create.php:51
 #: application/views/station_profile/edit.php:40
@@ -11148,14 +11153,34 @@ msgstr "Ваш позывной:"
 msgid "Submit Request"
 msgstr "Отправить запрос"
 
+#: application/views/debug/index.php:629 application/views/debug/index.php:630
+msgid "Bosnian"
+msgstr "Боснийский"
+
+#: application/views/debug/index.php:632 application/views/debug/index.php:633
+msgid "Croatian"
+msgstr "Хорватский"
+
+#: application/views/debug/index.php:641 application/views/debug/index.php:642
+msgid "Montenegrin"
+msgstr "Черногорский"
+
+#: application/views/debug/index.php:645 application/views/debug/index.php:646
+msgid "Serbian"
+msgstr "Сербский"
+
+#: application/views/debug/index.php:629
+msgid "Albanian"
+msgstr "Албанский"
+
+#: application/views/simplefle/syntax_help.php:28
 #, php-format
-#~ msgctxt "uses 'this article'"
-#~ msgid ""
-#~ "A full summary of all commands and the necessary syntax can be found in "
-#~ "%s of our Wiki."
-#~ msgstr ""
-#~ "Полное описание всех команд и необходимый синтаксис можно найти в %s "
-#~ "нашей Вики."
+msgid ""
+"A full summary of all commands and the necessary syntax can be found in <a "
+"href='%s' target='_blank'>this article</a> of our Wiki."
+msgstr ""
+"Полное описание всех команд и необходимого синтаксиса можно найти в <a "
+"href='%s' target='_blank'>этой статье</a> нашего Вики."
 
 #, php-format
 #~ msgid ""
