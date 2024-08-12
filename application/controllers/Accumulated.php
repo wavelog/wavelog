@@ -40,10 +40,10 @@ class Accumulated extends CI_Controller
     {
         //load model
         $this->load->model('accumulate_model');
-        $band = $this->input->post('Band');
-        $award = $this->input->post('Award');
-        $mode = $this->input->post('Mode');
-        $period = $this->input->post('Period');
+        $band = xss_clean($this->input->post('Band'));
+        $award = xss_clean($this->input->post('Award'));
+        $mode = xss_clean($this->input->post('Mode'));
+        $period = xss_clean($this->input->post('Period'));
 
         // get data
         $data = $this->accumulate_model->get_accumulated_data($band, $award, $mode, $period);
