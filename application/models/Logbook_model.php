@@ -407,188 +407,194 @@ class Logbook_model extends CI_Model {
 	/*
 	 * Used to fetch QSOs from the logbook in the awards
 	 */
-	public function qso_details($searchphrase, $band, $mode, $type, $qsl, $sat = null, $orbit = null, $searchmode = null, $propagation = null){
-		$this->load->model('logbooks_model');
-		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+  public function qso_details($searchphrase, $band, $mode, $type, $qsl, $sat = null, $orbit = null, $searchmode = null, $propagation = null){
+	  $this->load->model('logbooks_model');
+	  $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
-		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
-		$this->db->join('dxcc_entities', 'dxcc_entities.adif = '.$this->config->item('table_name').'.COL_DXCC', 'left outer');
-		$this->db->join('lotw_users', 'lotw_users.callsign = '.$this->config->item('table_name').'.col_call', 'left outer');
-		if ($band == 'SAT' && ($type == 'VUCC' || $type == 'DXCC' || $type == 'DXCC2')) {
-			$this->db->join('satellite', 'satellite.name = '.$this->config->item('table_name').'.col_sat_name', 'left outer');
-		}
-		switch ($type) {
-    case 'CALL':
-      $this->db->where('COL_CALL', $searchphrase);
-      break;
-		case 'DXCC':
-			$this->db->where('COL_COUNTRY', $searchphrase);
-			if ($band == 'SAT' && $type == 'DXCC') {
-				if ($sat != 'All' && $sat != null) {
-					$this->db->where("COL_SAT_NAME = '$sat'");
-				}
-				if ($orbit != 'All' && $orbit != null) {
-					$this->db->where("satellite.orbit = '$orbit'");
-				}
-			}
-			break;
-		case 'DXCC2':
-			$this->db->where('COL_DXCC', $searchphrase);
-			if ($band == 'SAT' && $type == 'DXCC2') {
-				if ($sat != 'All' && $sat != null) {
-					$this->db->where("COL_SAT_NAME = '$sat'");
-				}
-				if ($orbit != 'All' && $orbit != null) {
-					$this->db->where("satellite.orbit = '$orbit'");
-				}
-			}
-			break;
-		case 'IOTA':
-			$this->db->where('COL_IOTA', $searchphrase);
-			break;
-		case 'VUCC':
-			if ($searchmode == 'activated') {
-				$this->db->where("station_gridsquare like '%" . $searchphrase . "%'");
-				if ($band == 'SAT' && $type == 'VUCC') {
-					if ($sat != 'All' && $sat != null) {
-						$this->db->where("COL_SAT_NAME = '$sat'");
-					}
-					if ($orbit != 'All' && $orbit != null) {
-						$this->db->where("satellite.orbit = '$orbit'");
-					}
-				}
-			} else {
-				$this->db->where("(COL_GRIDSQUARE like '" . $searchphrase . "%' OR COL_VUCC_GRIDS like '%" . $searchphrase ."%')");
-				if ($band == 'SAT' && $type == 'VUCC') {
-					if ($sat != 'All' && $sat != null) {
-						$this->db->where("COL_SAT_NAME = '$sat'");
-					}
-					if ($orbit != 'All' && $orbit != null) {
-						$this->db->where("satellite.orbit = '$orbit'");
-					}
-				}
-				if (($propagation ?? '') == 'None') {
-					$this->db->group_start();
-					$this->db->where("COL_PROP_MODE = ''");
-					$this->db->or_where("COL_PROP_MODE is null");
-					$this->db->group_end();
-				} elseif ($propagation == 'NoSAT') {
-					$this->db->where("COL_PROP_MODE != 'SAT'");
-				} elseif ($propagation != '' && $propagation != null) {
-					$this->db->where("COL_PROP_MODE = '$propagation'");
-				}
-			}
-			break;
-		case 'CQZone':
-			$this->db->where('COL_CQZ', $searchphrase);
-			break;
-		case 'ITU':
-			$this->db->where('COL_ITUZ', $searchphrase);
-			break;
-		case 'WAS':
-			$this->db->where('COL_STATE', $searchphrase);
-			$this->db->where_in('COL_DXCC', ['291', '6', '110']);
-			break;
-		case 'RAC':
-			$this->db->where('COL_STATE', $searchphrase);
-			$this->db->where_in('COL_DXCC', ['1']);
-			break;
-		case 'helvetia':
-			$this->db->where('COL_STATE', $searchphrase);
-			$this->db->where_in('COL_DXCC', ['287']);
-			break;
-		case 'JCC':
-			$this->db->where('COL_CNTY', $searchphrase);
-			$this->db->where('COL_DXCC', '339');
-			break;
-		case 'SOTA':
-			$this->db->where('COL_SOTA_REF', $searchphrase);
-			break;
-		case 'WWFF':
-			$this->db->where('COL_WWFF_REF', $searchphrase);
-			break;
-		case 'POTA':
-			$this->db->where('COL_POTA_REF', $searchphrase);
-			break;
-		case 'DOK':
-			$this->db->where('COL_DARC_DOK', $searchphrase);
-			break;
-		case 'WAB':
-			$this->db->where('COL_SIG', 'WAB');
-			$this->db->where('COL_SIG_INFO', $searchphrase);
-		break;
-		case 'WAJA':
-			$state = str_pad($searchphrase, 2, '0', STR_PAD_LEFT);
-			$this->db->where('COL_STATE', $state);
-			$this->db->where('COL_DXCC', '339');
-			break;
-		case 'QSLRDATE':
-			$this->db->where('date(COL_QSLRDATE)=date(SYSDATE())');
-			break;
-		case 'QSLSDATE':
-			$this->db->where('date(COL_QSLSDATE)=date(SYSDATE())');
-			break;
-		case 'EQSLRDATE':
-			$this->db->where('date(COL_EQSL_QSLRDATE)=date(SYSDATE())');
-			break;
-		case 'EQSLSDATE':
-			$this->db->where('date(COL_EQSL_QSLSDATE)=date(SYSDATE())');
-			break;
-		case 'LOTWRDATE':
-			$this->db->where('date(COL_LOTW_QSLRDATE)=date(SYSDATE())');
-			break;
-		case 'LOTWSDATE':
-			$this->db->where('date(COL_LOTW_QSLSDATE)=date(SYSDATE())');
-			break;
-		case 'QRZRDATE':
-			$this->db->where('date(COL_QRZCOM_QSO_DOWNLOAD_DATE)=date(SYSDATE())');
-			break;
-		case 'QRZSDATE':
-			$this->db->where('date(COL_QRZCOM_QSO_UPLOAD_DATE)=date(SYSDATE())');
-			break;
-		}
+	  $this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
+	  $this->db->join('dxcc_entities', 'dxcc_entities.adif = '.$this->config->item('table_name').'.COL_DXCC', 'left outer');
+	  $this->db->join('lotw_users', 'lotw_users.callsign = '.$this->config->item('table_name').'.col_call', 'left outer');
+	  if ($band == 'SAT' && ($type == 'VUCC' || $type == 'DXCC' || $type == 'DXCC2')) {
+		  $this->db->join('satellite', 'satellite.name = '.$this->config->item('table_name').'.col_sat_name', 'left outer');
+	  }
+	  switch ($type) {
+	  case 'CALL':
+		  $this->db->where('COL_CALL', $searchphrase);
+		  break;
+	  case 'DXCC':
+		  $this->db->where('COL_COUNTRY', $searchphrase);
+		  if ($band == 'SAT' && $type == 'DXCC') {
+			  if ($sat != 'All' && $sat != null) {
+				  $this->db->where("COL_SAT_NAME" , $sat);
+			  }
+			  if ($orbit != 'All' && $orbit != null) {
+				  $this->db->where("satellite.orbit", $orbit);
+			  }
+		  }
+		  break;
+	  case 'DXCC2':
+		  $this->db->where('COL_DXCC', $searchphrase);
+		  if ($band == 'SAT' && $type == 'DXCC2') {
+			  if ($sat != 'All' && $sat != null) {
+				  $this->db->where("COL_SAT_NAME", $sat);
+			  }
+			  if ($orbit != 'All' && $orbit != null) {
+				  $this->db->where("satellite.orbit", $orbit);
+			  }
+		  }
+		  break;
+	  case 'IOTA':
+		  $this->db->where('COL_IOTA', $searchphrase);
+		  break;
+	  case 'VUCC':
+		  if ($searchmode == 'activated') {
+			  $this->db->like("station_gridsquare", $searchphrase);
+			  if ($band == 'SAT' && $type == 'VUCC') {
+				  if ($sat != 'All' && $sat != null) {
+					  $this->db->where("COL_SAT_NAME", $sat);
+				  }
+				  if ($orbit != 'All' && $orbit != null) {
+					  $this->db->where("satellite.orbit", $orbit);
+				  }
+			  }
+		  } else {
+			  $this->db->group_start();
+			  $this->db->like("COL_GRIDSQUARE", $searchphrase);
+			  $this->db->or_like("COL_VUCC_GRIDS", $searchphrase);
+			  $this->db->group_end();
+			  if ($band == 'SAT' && $type == 'VUCC') {
+				  if ($sat != 'All' && $sat != null) {
+					  $this->db->where("COL_SAT_NAME",$sat);
+				  }
+				  if ($orbit != 'All' && $orbit != null) {
+					  $this->db->where("satellite.orbit", $orbit);
+				  }
+			  }
+			  if (($propagation ?? '') == 'None') {
+				  $this->db->group_start();
+				  $this->db->where("COL_PROP_MODE = ''");
+				  $this->db->or_where("COL_PROP_MODE is null");
+				  $this->db->group_end();
+			  } elseif ($propagation == 'NoSAT') {
+				  $this->db->where("COL_PROP_MODE != 'SAT'");
+			  } elseif ($propagation != '' && $propagation != null) {
+				  $this->db->where("COL_PROP_MODE", $propagation);
+			  }
+		  }
+		  break;
+	  case 'CQZone':
+		  $this->db->where('COL_CQZ', $searchphrase);
+		  break;
+	  case 'ITU':
+		  $this->db->where('COL_ITUZ', $searchphrase);
+		  break;
+	  case 'WAS':
+		  $this->db->where('COL_STATE', $searchphrase);
+		  $this->db->where_in('COL_DXCC', ['291', '6', '110']);
+		  break;
+	  case 'RAC':
+		  $this->db->where('COL_STATE', $searchphrase);
+		  $this->db->where_in('COL_DXCC', ['1']);
+		  break;
+	  case 'helvetia':
+		  $this->db->where('COL_STATE', $searchphrase);
+		  $this->db->where_in('COL_DXCC', ['287']);
+		  break;
+	  case 'JCC':
+		  $this->db->where('COL_CNTY', $searchphrase);
+		  $this->db->where('COL_DXCC', '339');
+		  break;
+	  case 'SOTA':
+		  $this->db->where('COL_SOTA_REF', $searchphrase);
+		  break;
+	  case 'WWFF':
+		  $this->db->where('COL_WWFF_REF', $searchphrase);
+		  break;
+	  case 'POTA':
+		  $this->db->where('COL_POTA_REF', $searchphrase);
+		  break;
+	  case 'DOK':
+		  $this->db->where('COL_DARC_DOK', $searchphrase);
+		  break;
+	  case 'WAB':
+		  $this->db->where('COL_SIG', 'WAB');
+		  $this->db->where('COL_SIG_INFO', $searchphrase);
+		  break;
+	  case 'WAJA':
+		  $state = str_pad($searchphrase, 2, '0', STR_PAD_LEFT);
+		  $this->db->where('COL_STATE', $state);
+		  $this->db->where('COL_DXCC', '339');
+		  break;
+	  case 'QSLRDATE':
+		  $this->db->where('date(COL_QSLRDATE)=date(SYSDATE())');
+		  break;
+	  case 'QSLSDATE':
+		  $this->db->where('date(COL_QSLSDATE)=date(SYSDATE())');
+		  break;
+	  case 'EQSLRDATE':
+		  $this->db->where('date(COL_EQSL_QSLRDATE)=date(SYSDATE())');
+		  break;
+	  case 'EQSLSDATE':
+		  $this->db->where('date(COL_EQSL_QSLSDATE)=date(SYSDATE())');
+		  break;
+	  case 'LOTWRDATE':
+		  $this->db->where('date(COL_LOTW_QSLRDATE)=date(SYSDATE())');
+		  break;
+	  case 'LOTWSDATE':
+		  $this->db->where('date(COL_LOTW_QSLSDATE)=date(SYSDATE())');
+		  break;
+	  case 'QRZRDATE':
+		  $this->db->where('date(COL_QRZCOM_QSO_DOWNLOAD_DATE)=date(SYSDATE())');
+		  break;
+	  case 'QRZSDATE':
+		  $this->db->where('date(COL_QRZCOM_QSO_UPLOAD_DATE)=date(SYSDATE())');
+		  break;
+	  }
 
-    $this->db->where_in($this->config->item('table_name').'.station_id', $logbooks_locations_array);
+	  $this->db->where_in($this->config->item('table_name').'.station_id', $logbooks_locations_array);
 
-		if (strtolower($band) != 'all') {
-			if($band != "SAT") {
-				$this->db->where('COL_PROP_MODE !=', 'SAT');
-				$this->db->where('COL_BAND', $band);
-			} else {
-				$this->db->where('COL_PROP_MODE', "SAT");
-			}
-		}
+	  if (strtolower($band) != 'all') {
+		  if($band != "SAT") {
+			  $this->db->where('COL_PROP_MODE !=', 'SAT');
+			  $this->db->where('COL_BAND', $band);
+		  } else {
+			  $this->db->where('COL_PROP_MODE', "SAT");
+		  }
+	  }
 
-		if (!empty($qsl)) {
-			$qslfilter = array();
-			if (strpos($qsl, "Q") !== false) {
-				$qslfilter[] = 'COL_QSL_RCVD = "Y"';
-			}
-			if (strpos($qsl, "L") !== false) {
-				$qslfilter[] = 'COL_LOTW_QSL_RCVD = "Y"';
-			}
-			if (strpos($qsl, "E") !== false) {
-				$qslfilter[] = 'COL_EQSL_QSL_RCVD = "Y"';
-			}
-			if (strpos($qsl, "Z") !== false) {
-				$qslfilter[] = 'COL_QRZCOM_QSO_DOWNLOAD_STATUS = "Y"';
-			}
-			if (strpos($qsl, "C") !== false) {
-				$qslfilter[] = 'COL_CLUBLOG_QSO_DOWNLOAD_STATUS = "Y"';
-			}
-			$sql = "(".implode(' OR ', $qslfilter).")";
-			$this->db->where($sql);
-		}
+	  if (!empty($qsl)) {
+		  $qslfilter = array();
+		  if (strpos($qsl, "Q") !== false) {
+			  $qslfilter[] = 'COL_QSL_RCVD = "Y"';
+		  }
+		  if (strpos($qsl, "L") !== false) {
+			  $qslfilter[] = 'COL_LOTW_QSL_RCVD = "Y"';
+		  }
+		  if (strpos($qsl, "E") !== false) {
+			  $qslfilter[] = 'COL_EQSL_QSL_RCVD = "Y"';
+		  }
+		  if (strpos($qsl, "Z") !== false) {
+			  $qslfilter[] = 'COL_QRZCOM_QSO_DOWNLOAD_STATUS = "Y"';
+		  }
+		  if (strpos($qsl, "C") !== false) {
+			  $qslfilter[] = 'COL_CLUBLOG_QSO_DOWNLOAD_STATUS = "Y"';
+		  }
+		  $sql = "(".implode(' OR ', $qslfilter).")";	// harmless, because value is checked b4
+		  $this->db->where($sql);
+	  }
 
-		if (strtolower($mode) != 'all' && $mode != '') {
-			$this->db->where("(COL_MODE='" . $mode . "' OR COL_SUBMODE='" . $mode ."')");
-		}
-		$this->db->order_by("COL_TIME_ON", "desc");
+	  if (strtolower($mode) != 'all' && $mode != '') {
+		  $this->db->group_start();
+		  $this->db->where("COL_MODE", $mode);
+		  $this->db->or_where("COL_SUBMODE", $mode);
+		  $this->db->group_end();
+	  }
+	  $this->db->order_by("COL_TIME_ON", "desc");
 
-		$this->db->limit(500);
+	  $this->db->limit(500);
 
-		return $this->db->get($this->config->item('table_name'));
-	}
+	  return $this->db->get($this->config->item('table_name'));
+  }
 
 	
 	public function vucc_qso_details($gridsquare, $band) {
