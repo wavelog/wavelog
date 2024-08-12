@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-12 09:45+0000\n"
+"POT-Creation-Date: 2024-08-12 10:06+0000\n"
 "PO-Revision-Date: 2024-08-11 20:09+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/"
@@ -9168,11 +9168,10 @@ msgstr ""
 
 #: application/views/simplefle/syntax_help.php:28
 #, php-format
-msgctxt "uses 'this article'"
 msgid ""
-"A full summary of all commands and the necessary syntax can be found in %s "
-"of our Wiki."
-msgstr "全部的指令可在 %s Wiki 查看。"
+"A full summary of all commands and the necessary syntax can be found in <a "
+"href='%s' target='_blank'>this article</a> of our Wiki."
+msgstr ""
 
 #: application/views/station_profile/create.php:51
 #: application/views/station_profile/edit.php:40
@@ -10785,6 +10784,13 @@ msgstr "您的呼号："
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "提交请求"
+
+#, php-format
+#~ msgctxt "uses 'this article'"
+#~ msgid ""
+#~ "A full summary of all commands and the necessary syntax can be found in "
+#~ "%s of our Wiki."
+#~ msgstr "全部的指令可在 %s Wiki 查看。"
 
 #, php-format
 #~ msgid ""
