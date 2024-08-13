@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-08-12 09:45+0000\n"
-"PO-Revision-Date: 2024-08-12 15:29+0000\n"
+"PO-Revision-Date: 2024-08-13 04:18+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
 "Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/"
 "installer/sr/>\n"
@@ -42,11 +42,11 @@ msgstr "nije otkriveno"
 
 #: install/includes/interface_assets/footer.php:50
 msgid "Albanian"
-msgstr ""
+msgstr "Albanski"
 
 #: install/includes/interface_assets/footer.php:51
 msgid "Bosnian"
-msgstr ""
+msgstr "Bosanski"
 
 #: install/includes/interface_assets/footer.php:52
 msgid "Bulgarian"
@@ -58,7 +58,7 @@ msgstr "Kineski (Pojednostavljeni)"
 
 #: install/includes/interface_assets/footer.php:54
 msgid "Croatian"
-msgstr ""
+msgstr "Hrvatski"
 
 #: install/includes/interface_assets/footer.php:55
 msgid "Czech"
@@ -94,7 +94,7 @@ msgstr "Italijanski"
 
 #: install/includes/interface_assets/footer.php:63
 msgid "Montenegrin"
-msgstr ""
+msgstr "Crnogorski"
 
 #: install/includes/interface_assets/footer.php:64
 msgid "Polish"
@@ -110,7 +110,7 @@ msgstr "Ruski"
 
 #: install/includes/interface_assets/footer.php:67
 msgid "Serbian"
-msgstr ""
+msgstr "Srpski"
 
 #: install/includes/interface_assets/footer.php:68
 msgid "Spanish"
@@ -439,59 +439,67 @@ msgid ""
 "To properly install Wavelog you already should have setup a mariadb/mysql "
 "database. Provide the parameters here."
 msgstr ""
+"Za ispravnu instalaciju Waveloga već ste trebali da podesite mariadb/mysql "
+"bazu podataka. Ovde unesite potrebne parametre."
 
 #: install/index.php:441
 msgid "Hostname or IP"
-msgstr ""
+msgstr "Naziv hosta ili IP"
 
 #: install/index.php:441
 msgid ""
 "Usually 'localhost'.<br>Optional with '[host]:[port]'. Default port: 3306."
 "<br>In a docker compose install type 'wavelog-db'."
 msgstr ""
+"Obično 'localhost'.<br>Opciono '[host]:[port]'. Podrazumevani port: "
+"3306.<br>In a docker compose install type 'wavelog-db'."
 
 #: install/index.php:447
 msgid "Database Name"
-msgstr ""
+msgstr "Naziv baze podataka"
 
 #: install/index.php:447
 msgid "Name of the Database"
-msgstr ""
+msgstr "Naziv baze podataka"
 
 #: install/index.php:453
 msgid "Username of the Database User which has full access to the database."
 msgstr ""
+"Korisničko ime korisnika baze podataka koji će imati pun pristup bazi "
+"podataka."
 
 #: install/index.php:457
 msgid "Password of the Database User"
-msgstr ""
+msgstr "Lozinka korisnika baze podataka"
 
 #: install/index.php:461
 msgid "Connection Test"
-msgstr ""
+msgstr "Testiraj vezu"
 
 #: install/index.php:472
 msgid ""
 "Now you can create your first user in Wavelog. Fill out all fields and click "
 "continue. Make sure you use a safe password."
 msgstr ""
+"Sada možete kreirati vašeg prvog korisnika Waveloga. Popunite sva polja i "
+"kliknite na nastavak. Uverite se da koristite sigurnu lozinku."
 
 #: install/index.php:473
 msgid "All fields are required!"
-msgstr ""
+msgstr "Sva polja su zahtevana!"
 
 #: install/index.php:481
 msgid "First Name"
-msgstr ""
+msgstr "Ime"
 
 #: install/index.php:485
 msgid "DXCC"
-msgstr ""
+msgstr "DXCC"
 
 #: install/index.php:487
 msgctxt "No DXCC"
 msgid "- None -"
-msgstr ""
+msgstr "- ništa -"
 
 #: install/index.php:488 install/index.php:494 install/index.php:518
 #: install/index.php:530 install/index.php:533 install/index.php:538
@@ -515,136 +523,145 @@ msgstr ""
 #: install/index.php:849 install/index.php:854 install/index.php:880
 #: install/index.php:886 install/index.php:888 install/index.php:1700
 msgid "Deleted DXCC"
-msgstr ""
+msgstr "Izbrisana DXCC"
 
 #: install/index.php:895
 msgid "Last Name"
-msgstr ""
+msgstr "Prezime"
 
 #: install/index.php:899
 msgid "Callsign"
-msgstr ""
+msgstr "Pozivni znak"
 
 #: install/index.php:909
 msgid "Gridsquare/Locator"
-msgstr ""
+msgstr "Polje/Lokator"
 
 #: install/index.php:919
 msgid "City"
-msgstr ""
+msgstr "Grad"
 
 #: install/index.php:925
 msgid "Confirm Password"
-msgstr ""
+msgstr "Potvrdi lozinku"
 
 #: install/index.php:929
 msgid "Timezone"
-msgstr ""
+msgstr "Vremenska zona"
 
 #: install/index.php:1032
 msgid "E-Mail Address"
-msgstr ""
+msgstr "E-mail adresa"
 
 #: install/index.php:1054
 msgid "Checklist"
-msgstr ""
+msgstr "Lista provere"
 
 #: install/index.php:1059
 msgid "Pre-Checks"
-msgstr ""
+msgstr "Pred-provera"
 
 #: install/index.php:1068
 msgid "Configuration"
-msgstr ""
+msgstr "Konfiguracija"
 
 #: install/index.php:1077
 msgid "Database"
-msgstr ""
+msgstr "Baza podataka"
 
 #: install/index.php:1086
 msgid "First User"
-msgstr ""
+msgstr "Prvi korisnik"
 
 #: install/index.php:1096
 msgid "Nearly done!"
-msgstr ""
+msgstr "Skoro da je završeno!"
 
 #: install/index.php:1098
 msgid "You prepared all neccessary steps."
-msgstr ""
+msgstr "Pripremili ste sve potrebne korake."
 
 #: install/index.php:1099
 msgid "We now can install Wavelog. This process can take a few minutes."
 msgstr ""
+"Sada možemo instalirati Wavelog. Ovaj proces će potrajati nekoliko minuta."
 
 #: install/index.php:1105
 msgid "Reset"
-msgstr ""
+msgstr "Reset"
 
 #: install/index.php:1110
 msgid "Installer Reset"
-msgstr ""
+msgstr "Reset instalacije"
 
 #: install/index.php:1113
 msgid "Do you really want to reset all data and start from scratch?"
-msgstr ""
+msgstr "Da li zaista želite da resetujete sve podatke i krenete iz početka?"
 
 #: install/index.php:1116
 msgid "Yes"
-msgstr ""
+msgstr "Da"
 
 #: install/index.php:1117
 msgid "No"
-msgstr ""
+msgstr "Ne"
 
 #: install/index.php:1127
 msgid "Back"
-msgstr ""
+msgstr "Nazad"
 
 #: install/index.php:1128
 msgid "Continue"
-msgstr ""
+msgstr "Nastavi"
 
 #: install/index.php:1206
 msgid ""
 "You can't continue. Solve the red marked issues, restart the webserver and "
 "reload this page."
 msgstr ""
+"Ne možete nastaviti. Rešite probleme označene crvenim, restartujte web "
+"server i ponovo učitajte ovu stranicu."
 
 #: install/index.php:1333
 msgid "Password can't contain ' / \\ < >"
-msgstr ""
+msgstr "Lozinka ne može sadržati znakove ' / \\ < >"
 
 #: install/index.php:1500
 msgid "Error: At least Hostname/IP, Database Name and Username are required."
 msgstr ""
+"Greška: Najmanje što vam je potrebno je naziv hosta/IP, naziv baze podataka "
+"i korisničko ime."
 
 #: install/index.php:1510
 msgid "Connecting..."
-msgstr ""
+msgstr "Povezivanje..."
 
 #: install/index.php:1534
 msgid "Connection was successful and your database should be compatible."
 msgstr ""
+"Povezivanje je bilo uspešno i trebalo bi da je vaša baza podataka "
+"kompatibilna."
 
 #: install/index.php:1538
 msgid ""
 "Connection was successful but your database seems too old for Wavelog. You "
 "can try to continue but you could run into issues."
 msgstr ""
+"Povezivanje je bilo uspešno, ali izgleda da je vaša baza podataka isuviše "
+"stara za Wavelog. Možete nastaviti ali biste mogli naići na probleme."
 
 #: install/index.php:1538
 #, php-format
 msgid "The min. version for MySQL is %s, for MariaDB it's %s."
-msgstr ""
+msgstr "Minimalna verzija za MySQL je %s, za MariaDB je %s."
 
 #: install/index.php:1653
 msgid "Search"
-msgstr ""
+msgstr "Pretraga"
 
 #: install/index.php:1686
 msgid "At least one field is empty."
-msgstr ""
+msgstr "Najmanje jedno polje je prazno."
 
 #: install/index.php:1702
 msgid ""
@@ -652,120 +669,128 @@ msgid ""
 "Check which DXCC for this particular location is the correct one. If you are "
 "sure, ignore this warning."
 msgstr ""
+"Zaustavite se ovde na trenutak. DXCC koju ste izabrali je zastarela i više "
+"nije validna. Proverite koja DXCC je ispravna za ovu lokaciju. Ako ste "
+"sigurni da ste upisali tačne podatke, ignorišite ovo upozrenje."
 
 #: install/index.php:1726
 msgid ""
 "The locator seems to be not in the correct format. Should look like AA11AA "
 "(6-char grid locator)."
 msgstr ""
+"Izgleda da lokator nema ispravan format. Trebalo bi da liči na AA11AA ("
+"lokator polja sa 6 karaktera)."
 
 #: install/index.php:1740
 msgid ""
 "The e-mail adress does not look correct. Make sure it's a valid e-mail "
 "address"
 msgstr ""
+"E-mail adresa ne izgleda tačno. Uverite se da je to ispravna e-mail adresa"
 
 #: install/index.php:1767
 msgid "Password should be at least 8 characters long"
-msgstr ""
+msgstr "Lozinka bi trebalo da je dugačka barem 8 znakova"
 
 #: install/index.php:1776
 msgid "Passwords do not match"
-msgstr ""
+msgstr "Lozinke se ne poklapaju"
 
 #: install/index.php:1823
 msgid "Install Now"
-msgstr ""
+msgstr "Instalirajte sada"
 
 #: install/index.php:1827
 msgid "Install not possible. Checklist incomplete."
-msgstr ""
+msgstr "Instalacija nije moguća. Lista za proveru je nekompletna."
 
 #: install/index.php:1943
 msgid "PHP Module missing"
-msgstr ""
+msgstr "Nedostaje PHP modul"
 
 #: install/index.php:1945
 msgid "The following PHP modules are missing:"
-msgstr ""
+msgstr "Sledeći PHP moduli nedostaju:"
 
 #: install/index.php:1946
 msgid "Without this module the Wavelog Installer does not work!"
-msgstr ""
+msgstr "Bez ovih modula Wavelog instaler ne radi!"
 
 #: install/index.php:1947
 msgid "Please install the required modules and restart the webserver."
-msgstr ""
+msgstr "Molimo instalirajte zahtevane module i restartujte web server."
 
 #: install/run.php:10
 msgid "Installation"
-msgstr ""
+msgstr "Instalacija"
 
 #: install/run.php:12
 msgid "Please wait..."
-msgstr ""
+msgstr "Molimo sačekajte..."
 
 #: install/run.php:15
 msgid "Copy config.php to application/config/"
-msgstr ""
+msgstr "Kopirajte config.php u application/config/"
 
 #: install/run.php:18
 msgid "Copy database.php to application/config/"
-msgstr ""
+msgstr "Kopirajte database.php u application/config/"
 
 #: install/run.php:21
 msgid "Creating database tables"
-msgstr ""
+msgstr "Kreiranje tabela baze podataka"
 
 #: install/run.php:24
 msgid "Running database migrations"
-msgstr ""
+msgstr "Izvršavam migraciju baze podataka"
 
 #: install/run.php:27
 msgid "Updating DXCC data"
-msgstr ""
+msgstr "Ažuriram DXCC podatke"
 
 #: install/run.php:35
 msgid "Lock the installer"
-msgstr ""
+msgstr "Zaključaj instaler"
 
 #: install/run.php:39
 #, php-format
 msgid "All install steps went through. Redirect to user login in %s seconds..."
 msgstr ""
+"Prošli smo sve korake instalacije. Redirekcija za prijavu korisnika za %s "
+"sekundi..."
 
 #: install/run.php:42
 msgid "Done. Go to the user login ->"
-msgstr ""
+msgstr "Gotovo. Idite na prijavu korisnika ->"
 
 #: install/run.php:46 install/run.php:125
 msgid "Show detailled debug log"
-msgstr ""
+msgstr "Prikaži detaljni debug log"
 
 #: install/run.php:127
 msgid "Hide detailled debug log"
-msgstr ""
+msgstr "Sakrij detaljni debug log"
 
 #: install/run.php:182
 msgid "Could not create application/config/config.php"
-msgstr ""
+msgstr "Ne mogu kreirati application/config/config.php"
 
 #: install/run.php:217
 msgid "Could not create application/config/database.php"
-msgstr ""
+msgstr "Ne mogu kreirati application/config/database.php"
 
 #: install/run.php:251
 msgid "Could not create database tables"
-msgstr ""
+msgstr "Ne mogu kreirati tabele baze podataka"
 
 #: install/run.php:281
 msgid "Could not run database migrations"
-msgstr ""
+msgstr "Ne mogu izvršiti migraciju baze podataka"
 
 #: install/run.php:309
 msgid "Could not update DXCC data"
-msgstr ""
+msgstr "Ne mogu ažurirati DXCC podatke"
 
 #: install/run.php:341
 msgid "Could not create install/.lock file"
-msgstr ""
+msgstr "Ne mogu kreirati install/.lock datoteku"
