@@ -99,7 +99,7 @@ class Activators_model extends CI_Model
 			}
 		}
 
-		$sql .= " GROUP BY 1
+		$sql .= " GROUP BY 1, COL_CALL
 					) as z
 			) as x
 			group by `call`
@@ -147,7 +147,7 @@ class Activators_model extends CI_Model
 						where x.x <= length(COL_VUCC_GRIDS)-length(replace(COL_VUCC_GRIDS, ',', ''))+ 1
 						and coalesce(COL_VUCC_GRIDS, '') <> ''
 						and station_id in (" . $location_list . ")
-						GROUP BY 1
+						GROUP BY 1, COL_CALL
 					) as z
 		) as x
 		group by col_call
