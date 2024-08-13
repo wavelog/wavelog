@@ -216,20 +216,20 @@ class QSO extends CI_Controller {
 
     function cwmacrosave(){
         // Get the data from the form
-        $function1_name = xss_clean($this->input->post('function1_name', TRUE));
-        $function1_macro = xss_clean($this->input->post('function1_macro', TRUE));
+        $function1_name = $this->input->post('function1_name', TRUE);
+        $function1_macro = $this->input->post('function1_macro', TRUE);
 
-        $function2_name = xss_clean($this->input->post('function2_name', TRUE));
-        $function2_macro = xss_clean($this->input->post('function2_macro', TRUE));
+        $function2_name = $this->input->post('function2_name', TRUE);
+        $function2_macro = $this->input->post('function2_macro', TRUE);
 
-        $function3_name = xss_clean($this->input->post('function3_name', TRUE));
-        $function3_macro = xss_clean($this->input->post('function3_macro', TRUE));
+        $function3_name = $this->input->post('function3_name', TRUE);
+        $function3_macro = $this->input->post('function3_macro', TRUE);
 
-        $function4_name = xss_clean($this->input->post('function4_name', TRUE));
-        $function4_macro = xss_clean($this->input->post('function4_macro', TRUE));
+        $function4_name = $this->input->post('function4_name', TRUE);
+        $function4_macro = $this->input->post('function4_macro', TRUE);
 
-        $function5_name = xss_clean($this->input->post('function5_name', TRUE));
-        $function5_macro = xss_clean($this->input->post('function5_macro', TRUE));
+        $function5_name = $this->input->post('function5_name', TRUE);
+        $function5_macro = $this->input->post('function5_macro', TRUE);
 
         $data = [
             'user_id' => $this->session->userdata('user_id'),
