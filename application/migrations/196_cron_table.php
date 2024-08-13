@@ -11,7 +11,7 @@ class Migration_cron_table extends CI_Migration {
 			$this->dbforge->add_field(array(
 				'id' => array(
 					'type' => 'VARCHAR',
-					'constraint' => '255',
+					'constraint' => '191',
 					'null' => FALSE,
 				),
 				'enabled' => array(
