@@ -236,6 +236,7 @@ if($this->session->userdata('user_id') != null) {
 <?php if ($this->uri->segment(1) == "station") { ?>
     <script language="javascript" src="<?php echo base_url() ;?>assets/js/HamGridSquare.js"></script>
     <script src="<?php echo base_url() ;?>assets/js/sections/station_locations.js"></script>
+    <script src="<?php echo base_url() ;?>assets/js/bootstrap-multiselect.js"></script>
     <script>
         var position;
         function getLocation() {
