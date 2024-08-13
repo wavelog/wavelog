@@ -626,8 +626,11 @@
  */
 ?>
 <div style="display: none">
+    <?= __("Albanian"); ?>
+    <?= __("Bosnian"); ?>
     <?= __("Bulgarian"); ?>
     <?= __("Chinese (Simplified)"); ?>
+    <?= __("Croatian"); ?>
     <?= __("Czech"); ?>
     <?= __("Dutch"); ?>
     <?= __("English"); ?>
@@ -636,9 +639,11 @@
     <?= __("German"); ?>
     <?= __("Greek"); ?>
     <?= __("Italian"); ?>
+    <?= __("Montenegrin"); ?>
     <?= __("Polish"); ?>
     <?= __("Portuguese"); ?>
     <?= __("Russian"); ?>
+    <?= __("Serbian"); ?>
     <?= __("Spanish"); ?>
     <?= __("Swedish"); ?>
     <?= __("Turkish"); ?>

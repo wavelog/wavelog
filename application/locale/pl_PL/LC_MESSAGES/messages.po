@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-10 10:26+0000\n"
+"POT-Creation-Date: 2024-08-12 16:02+0000\n"
 "PO-Revision-Date: 2024-07-09 13:26+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -260,7 +260,7 @@ msgid " and "
 msgstr ""
 
 #: application/controllers/Awards.php:486
-#: application/controllers/Logbook.php:1278
+#: application/controllers/Logbook.php:1285
 #: application/views/awards/index.php:8 application/views/bands/index.php:55
 #: application/views/dashboard/index.php:9
 #: application/views/interface_assets/header.php:178
@@ -286,7 +286,7 @@ msgid "SOTA"
 msgstr ""
 
 #: application/controllers/Awards.php:503
-#: application/controllers/Logbook.php:1279
+#: application/controllers/Logbook.php:1286
 #: application/views/bands/index.php:60
 #: application/views/dashboard/index.php:10
 #: application/views/interface_assets/header.php:172
@@ -306,7 +306,7 @@ msgid "WWFF"
 msgstr ""
 
 #: application/controllers/Awards.php:520
-#: application/controllers/Logbook.php:1280
+#: application/controllers/Logbook.php:1287
 #: application/views/bands/index.php:52
 #: application/views/dashboard/index.php:11
 #: application/views/interface_assets/header.php:182
@@ -890,7 +890,7 @@ msgstr ""
 msgid "Clublog"
 msgstr ""
 
-#: application/controllers/Logbook.php:1273
+#: application/controllers/Logbook.php:1280
 #: application/controllers/Radio.php:49
 #: application/views/accumulate/index.php:31
 #: application/views/activated_gridmap/index.php:39
@@ -961,7 +961,7 @@ msgstr ""
 msgid "Mode"
 msgstr "Modulacja"
 
-#: application/controllers/Logbook.php:1274
+#: application/controllers/Logbook.php:1281
 #: application/views/awards/pota/index.php:36
 #: application/views/awards/wwff/index.php:36
 #: application/views/contesting/index.php:111
@@ -988,7 +988,7 @@ msgstr "Modulacja"
 msgid "RST (S)"
 msgstr ""
 
-#: application/controllers/Logbook.php:1275
+#: application/controllers/Logbook.php:1282
 #: application/views/awards/pota/index.php:37
 #: application/views/awards/wwff/index.php:37
 #: application/views/contesting/index.php:131
@@ -1016,7 +1016,7 @@ msgstr ""
 msgid "RST (R)"
 msgstr ""
 
-#: application/controllers/Logbook.php:1276
+#: application/controllers/Logbook.php:1283
 #: application/views/dashboard/index.php:7
 #: application/views/qslcard/searchresult.php:15
 #: application/views/qslcard/searchresult.php:31
@@ -1040,7 +1040,7 @@ msgstr ""
 msgid "Country"
 msgstr "Kraj"
 
-#: application/controllers/Logbook.php:1277
+#: application/controllers/Logbook.php:1284
 #: application/views/awards/iota/index.php:169
 #: application/views/bands/index.php:50 application/views/dashboard/index.php:8
 #: application/views/interface_assets/header.php:180
@@ -1067,7 +1067,7 @@ msgstr "Kraj"
 msgid "IOTA"
 msgstr ""
 
-#: application/controllers/Logbook.php:1281
+#: application/controllers/Logbook.php:1288
 #: application/views/awards/counties/details.php:12
 #: application/views/awards/counties/index.php:20
 #: application/views/awards/rac/index.php:141
@@ -1095,7 +1095,7 @@ msgstr ""
 msgid "State"
 msgstr "Stan"
 
-#: application/controllers/Logbook.php:1282
+#: application/controllers/Logbook.php:1289
 #: application/views/activated_gridmap/index.php:106
 #: application/views/awards/ffma/index.php:34
 #: application/views/awards/gridmaster/index.php:33
@@ -1136,7 +1136,7 @@ msgstr "Stan"
 msgid "Gridsquare"
 msgstr ""
 
-#: application/controllers/Logbook.php:1283
+#: application/controllers/Logbook.php:1290
 #: application/views/activated_gridmap/index.php:108
 #: application/views/awards/ffma/index.php:36
 #: application/views/awards/gridmaster/index.php:35
@@ -1159,7 +1159,7 @@ msgstr ""
 msgid "Distance"
 msgstr ""
 
-#: application/controllers/Logbook.php:1284
+#: application/controllers/Logbook.php:1291
 #: application/views/accumulate/index.php:21
 #: application/views/activated_gridmap/index.php:8
 #: application/views/activators/index.php:7
@@ -1235,7 +1235,7 @@ msgstr ""
 msgid "Band"
 msgstr "Pasmo"
 
-#: application/controllers/Logbook.php:1285
+#: application/controllers/Logbook.php:1292
 #: application/controllers/Radio.php:48 application/views/bandmap/list.php:110
 #: application/views/contesting/index.php:87
 #: application/views/dashboard/index.php:16
@@ -1255,7 +1255,7 @@ msgstr "Pasmo"
 msgid "Frequency"
 msgstr "Częstotliwość"
 
-#: application/controllers/Logbook.php:1286
+#: application/controllers/Logbook.php:1293
 #: application/views/dashboard/index.php:17
 #: application/views/logbookadvanced/edit.php:12
 #: application/views/logbookadvanced/index.php:283
@@ -1277,7 +1277,7 @@ msgstr "Częstotliwość"
 msgid "Operator"
 msgstr ""
 
-#: application/controllers/Logbook.php:1307
+#: application/controllers/Logbook.php:1314
 #: application/controllers/Stationsetup.php:381
 #: application/views/awards/dxcc/index.php:28
 #: application/views/awards/dxcc/index.php:238
@@ -5594,66 +5594,86 @@ msgid "Everything ok"
 msgstr ""
 
 #: application/views/debug/index.php:629
-msgid "Bulgarian"
+msgid "Albanian"
 msgstr ""
 
 #: application/views/debug/index.php:630
-msgid "Chinese (Simplified)"
+msgid "Bosnian"
 msgstr ""
 
 #: application/views/debug/index.php:631
-msgid "Czech"
+msgid "Bulgarian"
 msgstr ""
 
 #: application/views/debug/index.php:632
-msgid "Dutch"
+msgid "Chinese (Simplified)"
 msgstr ""
 
 #: application/views/debug/index.php:633
-msgid "English"
+msgid "Croatian"
 msgstr ""
 
 #: application/views/debug/index.php:634
-msgid "Finnish"
+msgid "Czech"
 msgstr ""
 
 #: application/views/debug/index.php:635
-msgid "French"
+msgid "Dutch"
 msgstr ""
 
 #: application/views/debug/index.php:636
-msgid "German"
+msgid "English"
 msgstr ""
 
 #: application/views/debug/index.php:637
-msgid "Greek"
+msgid "Finnish"
 msgstr ""
 
 #: application/views/debug/index.php:638
-msgid "Italian"
+msgid "French"
 msgstr ""
 
 #: application/views/debug/index.php:639
-msgid "Polish"
+msgid "German"
 msgstr ""
 
 #: application/views/debug/index.php:640
-msgid "Portuguese"
+msgid "Greek"
 msgstr ""
 
 #: application/views/debug/index.php:641
-msgid "Russian"
+msgid "Italian"
 msgstr ""
 
 #: application/views/debug/index.php:642
-msgid "Spanish"
+msgid "Montenegrin"
 msgstr ""
 
 #: application/views/debug/index.php:643
-msgid "Swedish"
+msgid "Polish"
 msgstr ""
 
 #: application/views/debug/index.php:644
+msgid "Portuguese"
+msgstr ""
+
+#: application/views/debug/index.php:645
+msgid "Russian"
+msgstr ""
+
+#: application/views/debug/index.php:646
+msgid "Serbian"
+msgstr ""
+
+#: application/views/debug/index.php:647
+msgid "Spanish"
+msgstr ""
+
+#: application/views/debug/index.php:648
+msgid "Swedish"
+msgstr ""
+
+#: application/views/debug/index.php:649
 msgid "Turkish"
 msgstr ""
 
@@ -9018,10 +9038,9 @@ msgstr ""
 
 #: application/views/simplefle/syntax_help.php:28
 #, php-format
-msgctxt "uses 'this article'"
 msgid ""
-"A full summary of all commands and the necessary syntax can be found in %s "
-"of our Wiki."
+"A full summary of all commands and the necessary syntax can be found in <a "
+"href='%s' target='_blank'>this article</a> of our Wiki."
 msgstr ""
 
 #: application/views/station_profile/create.php:51
