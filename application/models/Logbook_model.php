@@ -2453,41 +2453,42 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 
     /* used to return custom qsos requires start, end date plus a band */
     function map_custom_qsos($start, $end, $band, $mode, $propagation) {
-		$this->load->model('logbooks_model');
-		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+	    $this->load->model('logbooks_model');
+	    $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
-    if (!$logbooks_locations_array) {
-      return null;
+	    if (!$logbooks_locations_array) {
+		    return null;
+	    }
+
+	    $this->db->join('dxcc_entities', $this->config->item('table_name').'.col_dxcc = dxcc_entities.adif', 'left');
+	    $this->db->where("COL_TIME_ON >=",$start." 00:00:00");
+	    $this->db->where("COL_TIME_ON <=",$end." 23:59:59'");
+	    $this->db->where_in("station_id", $logbooks_locations_array);
+
+	    if($band != "All" && $band != "SAT") {
+		    $this->db->where("COL_BAND", $band);
+	    }
+
+	    if ($band == "SAT") {
+		    $this->db->where("COL_PROP_MODE", "SAT");
+	    }
+
+	    if ($mode != 'All') {
+		    $this->db->group_start();
+		    $this->db->where("COL_MODE", $mode);
+		    $this->db->or_where("COL_SUBMODE", $mode);
+		    $this->db->group_end();
+	    }
+
+	    if ($propagation != 'All') {
+		    $this->db->where("COL_PROP_MODE", $propagation);
+	    }
+
+	    $this->db->order_by("COL_TIME_ON", "ASC");
+	    $query = $this->db->get($this->config->item('table_name'));
+
+	    return $query;
     }
-
-      $this->db->join('dxcc_entities', $this->config->item('table_name').'.col_dxcc = dxcc_entities.adif', 'left');
-      $this->db->where("COL_TIME_ON BETWEEN '".$start." 00:00:00' AND '".$end." 23:59:59'");
-      $this->db->where_in("station_id", $logbooks_locations_array);
-
-      if($band != "All" && $band != "SAT") {
-        $this->db->where("COL_BAND", $band);
-      }
-
-      if ($band == "SAT") {
-        $this->db->where("COL_PROP_MODE", "SAT");
-      }
-
-      if ($mode != 'All') {
-        $this->db->group_start();
-        $this->db->where("COL_MODE", $mode);
-        $this->db->or_where("COL_SUBMODE", $mode);
-				$this->db->group_end();
-      }
-
-      if ($propagation != 'All') {
-        $this->db->where("COL_PROP_MODE", $propagation);
-      }
-
-      $this->db->order_by("COL_TIME_ON", "ASC");
-      $query = $this->db->get($this->config->item('table_name'));
-
-      return $query;
-  }
 
     /* Returns QSOs for the date sent eg 2011-09-30 */
     function map_day($date) {
@@ -3342,12 +3343,13 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 	    $this->db->where('date_format(COL_LOTW_QSLRDATE, \'%Y-%m-%d %H:%i\') != ',$qsl_date);
 	    $this->db->or_where('COL_LOTW_QSLRDATE is null');
 	    $this->db->group_end();
-	    $this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i\')',$datetime);
 	    $this->db->where('COL_CALL', $callsign);
 	    $this->db->where('COL_BAND', $band);
+	    $this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i\') = ',$datetime);
 	    $this->db->where('COL_STATION_CALLSIGN', $station_callsign);
 	    $this->db->where('COL_PRIMARY_KEY', $qsoid);
 
+		
 	    $this->db->update($this->config->item('table_name'), $data);
 	    unset($data);
 
