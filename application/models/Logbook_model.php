@@ -3250,7 +3250,7 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 		    'COL_CLUBLOG_QSO_DOWNLOAD_STATUS' => $qsl_status,
 	    );
 
-	    $this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i:%s\')',$datetime);
+	    $this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i:%s\') = ',$datetime);
 	    $this->db->where('COL_CALL', $callsign);
 	    $this->db->where("replace(replace(COL_BAND,'cm',''),'m','')", $band); // no way to achieve a real bandmatch, so fallback to match without unit. e.g.: "6" was provided by Clublog. Do they mean 6m or 6cm?
 	    $this->db->where('COL_STATION_CALLSIGN', $station_callsign);
