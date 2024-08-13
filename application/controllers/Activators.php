@@ -30,7 +30,7 @@ class Activators extends CI_Controller
         if ($this->input->post('mincount') != NULL) {   // mincount is not set when page first loads.
             $mincount = $this->input->post('mincount');
         } else {
-            $mincount = 2; 
+            $mincount = 2;
         }
 
         if ($this->input->post('leogeo') != NULL) {   // orbit is not set when page first loads.
@@ -46,7 +46,6 @@ class Activators extends CI_Controller
         $data['maxactivatedgrids'] = $this->Activators_model->get_max_activated_grids();
         $data['orbit'] = $orbit;
         $data['activators_array'] = $this->Activators_model->get_activators($band, $mincount, $orbit);
-        $data['activators_vucc_array'] = $this->Activators_model->get_activators_vucc($band, $orbit);
         $data['bandselect'] = $band;
 
         $footerData = [];
