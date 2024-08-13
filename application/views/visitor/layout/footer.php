@@ -94,7 +94,7 @@ if ($lang_code != 'en' && !file_exists(FCPATH . "assets/json/datatables_language
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/sections/gridmap.js?"></script>
 
 <script>
-  
+
   // auto setting of gridmap height
   function set_map_height() {
 
@@ -117,13 +117,13 @@ if ($lang_code != 'en' && !file_exists(FCPATH . "assets/json/datatables_language
       $('#gridsquare_map').css('height', gridsquareMapHeight + 'px');
       // console.log('#gridsquare_map: ' + gridsquareMapHeight);
   }
-</script>  
+</script>
 
 <script>
 
   var layer = L.tileLayer('<?php echo $this->optionslib->get_option('option_map_tile_server');?>', {
     maxZoom: 18,
-    attribution: '<?php echo $this->optionslib->get_option('option_map_tile_server_copyright');?>',
+    attribution: option_map_tile_server_copyright,
     id: 'mapbox.streets'
   });
 
