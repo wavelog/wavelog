@@ -635,7 +635,7 @@ class User extends CI_Controller {
 					if ($this->session->userdata('user_id') == $this->uri->segment(3)) { // Editing own User? Set cookie!
 						$cookie= array(
 
-							'name'   => 'language',
+							'name'   => $this->config->item('gettext_cookie', 'gettext'),
 							'value'  => $this->input->post('user_language', true),
 							'expire' => time()+1000,
 							'secure' => FALSE
@@ -869,7 +869,7 @@ class User extends CI_Controller {
 				$this->user_model->update_session($data['user']->user_id);
 				$cookie= array(
 
-					'name'   => 'language',
+					'name'   => $this->config->item('gettext_cookie', 'gettext'),
 					'value'  => $data['user']->user_language,
 					'expire' => time()+1000,
 					'secure' => FALSE
