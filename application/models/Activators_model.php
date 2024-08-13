@@ -126,11 +126,37 @@ class Activators_model extends CI_Model
       $location_list = "'" . implode("','", $logbooks_locations_array) . "'";
 
       // Get max no of activated grids of single operator
-      $data = $this->db->query(
-         "SELECT COUNT(DISTINCT(SUBSTR(COL_GRIDSQUARE,1,4))) AS `count` from " . $this->config->item('table_name') .
-         " WHERE station_id in (" . $location_list . ") AND
-         `COL_GRIDSQUARE` != '' GROUP BY `COL_CALL` ORDER BY `count` DESC LIMIT 1"
-      );
+	  $sql = "
+		select count(distinct(grid)) as `count` from (
+			select distinct(SUBSTR(COL_GRIDSQUARE, 1, 4)) as grid, col_call
+			from " . $this->config->item('table_name') . "
+			where station_id in (" . $location_list . ")
+				and `COL_GRIDSQUARE` != ''
+			union
+			select distinct substr(grid, 1,4) as grid, COL_CALL
+					from (
+						select TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(COL_VUCC_GRIDS, ',', x.x), ',',-1)) as grid, col_call from " . $this->config->item('table_name') . "
+					cross join (
+						select 1 as x
+						union all
+						select 2
+						union all
+						select 3
+						union all
+						select 4) x
+						where x.x <= length(COL_VUCC_GRIDS)-length(replace(COL_VUCC_GRIDS, ',', ''))+ 1
+						and coalesce(COL_VUCC_GRIDS, '') <> ''
+						and station_id in (" . $location_list . ")
+						GROUP BY 1
+					) as z
+		) as x
+		group by col_call
+		order by `count` desc
+		limit 1
+		";
+
+
+      $data = $this->db->query($sql);
       foreach ($data->result() as $row) {
          $max =  $row->count;
       }
