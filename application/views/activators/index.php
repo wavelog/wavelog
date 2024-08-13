@@ -65,11 +65,7 @@
     ?>
     <?php
     $vucc_grids = array();
-    if ($activators_vucc_array) {
-        foreach ($activators_vucc_array as $line) {
-            $vucc_grids[$line->call] = $line->vucc_grids;
-        }
-    }
+
     if ($activators_array) {
 
         $result = write_activators($activators_array, $vucc_grids, $custom_date_format, $bandselect, $orbit);
