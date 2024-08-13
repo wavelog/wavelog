@@ -635,7 +635,7 @@ class User extends CI_Controller {
 					if ($this->session->userdata('user_id') == $this->uri->segment(3)) { // Editing own User? Set cookie!
 						$cookie= array(
 
-							'name'   => 'language',
+							'name'   => $this->config->item('gettext_cookie', 'gettext'),
 							'value'  => $this->input->post('user_language', true),
 							'expire' => time()+1000,
 							'secure' => FALSE
@@ -830,7 +830,7 @@ class User extends CI_Controller {
 						log_message('debug', "User ID: [$uid] Login rejected because of an active maintenance mode (and he is no admin).");
 
 						// Delete keep_login cookie
-						setcookie('keep_login', '', time() - 3600, '/');
+						$this->input->set_cookie('keep_login', '', time() - 3600, '');
 
 						redirect('user/login');
 					}
@@ -839,7 +839,7 @@ class User extends CI_Controller {
 					log_message('debug', "User ID: [$uid] Login rejected because of non matching hash key ('Keep Login').");
 
 					// Delete keep_login cookie
-					setcookie('keep_login', '', time() - 3600, '/');
+					$this->input->set_cookie('keep_login', '', time() - 3600, '');
 					$this->session->set_flashdata('error', __("Login failed. Try again."));
 					redirect('user/login');
 				}
@@ -848,7 +848,7 @@ class User extends CI_Controller {
 				log_message('error', "User ID: [".$uid."]; 'Keep Login' failed. Cookie deleted. Message: ".$e);
 
 				// Delete keep_login cookie
-				setcookie('keep_login', '', time() - 3600, '/');
+				$this->input->set_cookie('keep_login', '', time() - 3600, '');
 
 				$this->session->set_flashdata('error', __("Login failed. Try again."));
 				redirect('user/login');
@@ -869,7 +869,7 @@ class User extends CI_Controller {
 				$this->user_model->update_session($data['user']->user_id);
 				$cookie= array(
 
-					'name'   => 'language',
+					'name'   => $this->config->item('gettext_cookie', 'gettext'),
 					'value'  => $data['user']->user_language,
 					'expire' => time()+1000,
 					'secure' => FALSE
@@ -912,7 +912,7 @@ class User extends CI_Controller {
 		$user_name = $this->session->userdata('user_name');
 
 		// Delete keep_login cookie
-		setcookie('keep_login', '', time() - 3600, '/');
+		$this->input->set_cookie('keep_login', '', time() - 3600, '');
 
 		$this->user_model->clear_session();
 
