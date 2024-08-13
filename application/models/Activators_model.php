@@ -38,7 +38,7 @@ class Activators_model extends CI_Model
 			if ($band == 'SAT') {
 				switch ($leogeo) {
 					case 'both':
-					$sql .= " and col_prop_mode =?";
+					$sql .= " and col_prop_mode = ?";
 					break;
 					case 'leo':
 					$sql .= " and col_prop_mode = ?";
@@ -49,12 +49,12 @@ class Activators_model extends CI_Model
 					$sql .= " and col_sat_name = 'QO-100'";
 					break;
 					default:
-					$sql .= " and col_prop_mode =?";
+					$sql .= " and col_prop_mode = ?";
 					break;
 				}
 			} else {
-				$sql .= " and col_prop_mode !='SAT'";
-				$sql .= " and COL_BAND =?";
+				$sql .= " and col_prop_mode != 'SAT'";
+				$sql .= " and COL_BAND = ?";
 			}
 		}
 
@@ -79,7 +79,7 @@ class Activators_model extends CI_Model
 			if ($band == 'SAT') {
 				switch ($leogeo) {
 					case 'both':
-					$sql .= " and col_prop_mode =?";
+					$sql .= " and col_prop_mode = ?";
 					break;
 					case 'leo':
 					$sql .= " and col_prop_mode = ?";
@@ -90,12 +90,12 @@ class Activators_model extends CI_Model
 					$sql .= " and col_sat_name = 'QO-100'";
 					break;
 					default:
-					$sql .= " and col_prop_mode =?";
+					$sql .= " and col_prop_mode = ?";
 					break;
 				}
 			} else {
-				$sql .= " and col_prop_mode !='SAT'";
-				$sql .= " and COL_BAND =?";
+				$sql .= " and col_prop_mode != 'SAT'";
+				$sql .= " and COL_BAND = ?";
 			}
 		}
 
