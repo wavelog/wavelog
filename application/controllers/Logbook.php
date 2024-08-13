@@ -1047,7 +1047,11 @@ class Logbook extends CI_Controller {
 	}
 
 	function search_incorrect_cq_zones($station_id) {
-		$station_id = $this->security->xss_clean($station_id);
+		$clean_station_id = $this->security->xss_clean($station_id);
+
+		if (!is_numeric($clean_station_id)) {
+			show_404();
+		}
 
 		$this->load->model('user_model');
 
@@ -1067,11 +1071,14 @@ class Logbook extends CI_Controller {
 		and not exists (select 1 from dxcc_master where countrycode = thcv.col_dxcc and cqzone = col_cqz) and col_dxcc > 0
 		';
 
-		if ($station_id != 'All') {
-			$sql .= ' and station_profile.station_id = ' . $station_id;
+		$params = [];
+
+		if ($clean_station_id != 'All') {
+			$sql .= ' and station_profile.station_id = ?';
+			$params[] = $clean_station_id;
 		}
 
-		$query = $this->db->query($sql);
+		$query = $this->db->query($sql, $params);
 
 		$data['qsos'] = $query;
 

@@ -38,7 +38,6 @@ https://demo.wavelog.org
 
 Notes
 * If you want to log microwave QSOs you will need to use a 64bit operating system.
-* We do not provide Docker support, however you are free to use it if you wish but we will not handle support.
 
 ## Setup
 
