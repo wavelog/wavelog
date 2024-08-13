@@ -220,7 +220,7 @@ const ituzonenames = [
 function loadMap(data, iconsList) {
 	$('#mapButton').prop("disabled", false).removeClass("running");
 	var osmUrl = tileUrl;
-	var osmAttrib='Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
+	var osmAttrib = option_map_tile_server_copyright;
 	// If map is already initialized
 	var container = L.DomUtil.get('advancedmap');
 
@@ -257,7 +257,7 @@ function loadMap(data, iconsList) {
 	var osm = L.tileLayer(
 		osmUrl,
 		{
-			attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+			attribution: osmAttrib,
 			maxZoom: 18,
 			zoom: 3,
             minZoom: 2,
