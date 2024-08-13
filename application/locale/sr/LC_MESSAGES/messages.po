@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-13 07:12+0000\n"
-"PO-Revision-Date: 2024-08-12 13:55+0000\n"
+"POT-Creation-Date: 2024-08-12 16:02+0000\n"
+"PO-Revision-Date: 2024-08-13 04:18+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
 "Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/sr/>\n"
@@ -86,77 +86,77 @@ msgstr "ADIF uvoz/izvoz"
 #: application/controllers/Adif.php:169 application/views/adif/import.php:21
 #: application/views/lotw/import.php:3
 msgid "ADIF Import"
-msgstr ""
+msgstr "Uvoz ADIF"
 
 #: application/controllers/Adif.php:209
 msgid "Unsupported Filetype"
-msgstr ""
+msgstr "Nepodržana vrsta datoteke"
 
 #: application/controllers/Adif.php:245
 msgid "Station Profile not valid for User"
-msgstr ""
+msgstr "Profil stanice nije validan za ovog korisnika"
 
 #: application/controllers/Adif.php:252
 #: application/views/adif/import_success.php:12
 msgid "ADIF Imported"
-msgstr ""
+msgstr "ADIF uvezen"
 
 #: application/controllers/Adif.php:263
 msgid "DCL Import"
-msgstr ""
+msgstr "Uvoz DCL"
 
 #: application/controllers/Adif.php:319
 msgid "DCL Data Imported"
-msgstr ""
+msgstr "DCL podaci uvezeni"
 
 #: application/controllers/Api.php:26
 msgid "API"
-msgstr ""
+msgstr "API"
 
 #: application/controllers/Api.php:50 application/views/api/description.php:26
 msgid "API Description"
-msgstr ""
+msgstr "Opis API"
 
 #: application/controllers/Api.php:51
 msgid "API Key is required. Do not change this field"
-msgstr ""
+msgstr "Zahtevan je API ključ. Nemojte menjati ovo polje"
 
 #: application/controllers/Api.php:57
 msgid "Edit API Description"
-msgstr ""
+msgstr "Uredite opis API"
 
 #: application/controllers/Api.php:69
 #, php-format
 msgid "API Key %s description has been updated."
-msgstr ""
+msgstr "Opis API ključa %s je ažuriran."
 
 #: application/controllers/Api.php:109
 #, php-format
 msgid "API Key %s has been deleted"
-msgstr ""
+msgstr "API ključ %s je izbrisan"
 
 #: application/controllers/Api.php:118
 msgid "Key Disabled"
-msgstr ""
+msgstr "Ključ onemogućen"
 
 #: application/controllers/Api.php:118
 msgid "No Key Found"
-msgstr ""
+msgstr "Ključ nije pronađen"
 
 #: application/controllers/Api.php:120
 msgid "Key Invalid - either not found or disabled"
-msgstr ""
+msgstr "Ključ nije ispravan - ili nije pronađen, ili je onemogućen"
 
 #: application/controllers/Api.php:124
 #: application/views/lotw_views/index.php:95
 msgid "Valid"
-msgstr ""
+msgstr "Validan"
 
 #: application/controllers/Awards.php:22
 #: application/views/interface_assets/header.php:158
 #: application/views/qso/edit_ajax.php:35
 msgid "Awards"
-msgstr ""
+msgstr "Diplome"
 
 #: application/controllers/Awards.php:92 application/controllers/Awards.php:172
 #: application/controllers/Awards.php:327
@@ -176,7 +176,7 @@ msgstr ""
 #: application/controllers/Awards.php:1755
 #, php-format
 msgid "Awards - %s"
-msgstr ""
+msgstr "Diplome - %s"
 
 #: application/controllers/Awards.php:92
 #: application/views/awards/dok/index.php:149
@@ -189,7 +189,7 @@ msgstr ""
 #: application/views/qso/index.php:508 application/views/user/edit.php:603
 #: application/views/view_log/qso.php:351
 msgid "DOK"
-msgstr ""
+msgstr "DOK"
 
 #: application/controllers/Awards.php:172 application/views/awards/index.php:7
 #: application/views/bandmap/list.php:112 application/views/bands/index.php:48
@@ -211,21 +211,21 @@ msgstr ""
 #: application/views/stationsetup/linkedlocations.php:33
 #: application/views/timeplotter/index.php:24
 msgid "DXCC"
-msgstr ""
+msgstr "DXCC"
 
 #: application/controllers/Awards.php:251
 msgid "Awards - WAJA"
-msgstr ""
+msgstr "Diplome - WAJA"
 
 #: application/controllers/Awards.php:327 application/views/bands/index.php:51
 #: application/views/interface_assets/header.php:210
 msgid "JCC"
-msgstr ""
+msgstr "JCC"
 
 #: application/controllers/Awards.php:375 application/views/bands/index.php:57
 #: application/views/interface_assets/header.php:170
 msgid "VUCC"
-msgstr ""
+msgstr "VUCC"
 
 #: application/controllers/Awards.php:405
 msgid "Log View - VUCC"
@@ -1303,7 +1303,7 @@ msgstr ""
 #: application/views/view_log/qso.php:236
 #: application/views/view_log/qso.php:529
 msgid "Deleted DXCC"
-msgstr ""
+msgstr "Izbrisana DXCC"
 
 #: application/controllers/Logbookadvanced.php:31
 msgid "Advanced logbook"
@@ -1662,7 +1662,7 @@ msgstr ""
 #: application/views/visitor/layout/header.php:99
 #: application/views/visitor/layout/header.php:100
 msgid "Search"
-msgstr ""
+msgstr "Pretraga"
 
 #: application/controllers/Search.php:28
 msgid "Search & Filter Logbook"
@@ -2129,30 +2129,37 @@ msgstr ""
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr ""
 
+#: application/models/Logbook_model.php:4148
 #: application/models/Logbook_model.php:4129
 msgid "QSO could not be matched"
 msgstr ""
 
+#: application/models/Logbook_model.php:4154
 #: application/models/Logbook_model.php:4135
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr ""
 
+#: application/models/Logbook_model.php:4159
 #: application/models/Logbook_model.php:4140
 msgid "confirmed by award manager"
 msgstr ""
 
+#: application/models/Logbook_model.php:4162
 #: application/models/Logbook_model.php:4143
 msgid "confirmed by cross-check of DCL data"
 msgstr ""
 
+#: application/models/Logbook_model.php:4165
 #: application/models/Logbook_model.php:4146
 msgid "confirmation pending"
 msgstr ""
 
+#: application/models/Logbook_model.php:4168
 #: application/models/Logbook_model.php:4149
 msgid "unconfirmed"
 msgstr ""
 
+#: application/models/Logbook_model.php:4171
 #: application/models/Logbook_model.php:4152
 msgid "unknown"
 msgstr ""
@@ -2291,6 +2298,7 @@ msgstr ""
 #: application/views/timeplotter/index.php:27
 #: application/views/timeplotter/index.php:47
 #: application/views/user/edit.php:633
+#: application/views/visitor/layout/footer.php:169
 #: application/views/visitor/layout/footer.php:170
 msgid "All"
 msgstr ""
@@ -2509,7 +2517,7 @@ msgstr ""
 #: application/views/user/main.php:47 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:82 application/views/view_log/qso.php:507
 msgid "Callsign"
-msgstr ""
+msgstr "Pozivni znak"
 
 #: application/views/activators/index.php:100
 msgid "Count"
@@ -3296,7 +3304,7 @@ msgstr ""
 #: application/views/qrbcalc/index.php:19
 #: application/views/search/filter.php:40 application/views/user/edit.php:607
 msgid "Reset"
-msgstr ""
+msgstr "Reset"
 
 #: application/views/awards/cq/index.php:113
 msgid "Show CQ Zone Map"
@@ -3811,7 +3819,7 @@ msgstr ""
 #: application/views/search/result.php:21
 #: application/views/view_log/qso.php:521
 msgid "City"
-msgstr ""
+msgstr "Grad"
 
 #: application/views/awards/jcc/index.php:187
 #: application/views/dashboard/index.php:352
@@ -5594,11 +5602,11 @@ msgstr ""
 
 #: application/views/debug/index.php:629
 msgid "Albanian"
-msgstr ""
+msgstr "Albanski"
 
 #: application/views/debug/index.php:630
 msgid "Bosnian"
-msgstr ""
+msgstr "Bosanski"
 
 #: application/views/debug/index.php:631
 msgid "Bulgarian"
@@ -5610,7 +5618,7 @@ msgstr "Kineski (Pojednostavljeni)"
 
 #: application/views/debug/index.php:633
 msgid "Croatian"
-msgstr ""
+msgstr "Hrvatski"
 
 #: application/views/debug/index.php:634
 msgid "Czech"
@@ -5646,7 +5654,7 @@ msgstr "Italijanski"
 
 #: application/views/debug/index.php:642
 msgid "Montenegrin"
-msgstr ""
+msgstr "Crnogorski"
 
 #: application/views/debug/index.php:643
 msgid "Polish"
@@ -5662,7 +5670,7 @@ msgstr "Ruski"
 
 #: application/views/debug/index.php:646
 msgid "Serbian"
-msgstr ""
+msgstr "Srpski"
 
 #: application/views/debug/index.php:647
 msgid "Spanish"
@@ -6039,6 +6047,7 @@ msgstr ""
 
 #: application/views/interface_assets/footer.php:44
 #: application/views/qso/index.php:601
+#: application/views/visitor/layout/footer.php:244
 #: application/views/visitor/layout/footer.php:245
 msgid "Clear"
 msgstr ""
@@ -6124,6 +6133,9 @@ msgid ""
 "Check which DXCC for this particular location is the correct one. If you are "
 "sure, ignore this warning."
 msgstr ""
+"Zaustavite se ovde na trenutak. DXCC koju ste izabrali je zastarela i više "
+"nije validna. Proverite koja DXCC je ispravna za ovu lokaciju. Ako ste "
+"sigurni da ste upisali tačne podatke, ignorišite ovo upozrenje."
 
 #: application/views/interface_assets/footer.php:1156
 #, php-format
@@ -6759,7 +6771,7 @@ msgstr ""
 #: application/views/user/edit.php:540 application/views/user/edit.php:802
 #: application/views/user/edit.php:834 application/views/user/edit.php:859
 msgid "Yes"
-msgstr ""
+msgstr "Da"
 
 #: application/views/logbookadvanced/index.php:301
 #: application/views/logbookadvanced/index.php:312
@@ -6798,7 +6810,7 @@ msgstr ""
 #: application/views/user/edit.php:541 application/views/user/edit.php:803
 #: application/views/user/edit.php:833 application/views/user/edit.php:858
 msgid "No"
-msgstr ""
+msgstr "Ne"
 
 #: application/views/logbookadvanced/index.php:303
 #: application/views/logbookadvanced/index.php:345
@@ -8482,7 +8494,7 @@ msgstr ""
 
 #: application/views/radio/index.php:27
 msgid "Please wait..."
-msgstr ""
+msgstr "Molimo sačekajte..."
 
 #: application/views/satellite/create.php:23
 #: application/views/satellite/edit.php:7
@@ -8591,7 +8603,7 @@ msgstr ""
 
 #: application/views/satellite/pass.php:36 application/views/user/edit.php:179
 msgid "Timezone"
-msgstr ""
+msgstr "Vremenska zona"
 
 #: application/views/satellite/pass.php:479
 msgid "Min. time"
@@ -9899,11 +9911,11 @@ msgstr ""
 
 #: application/views/user/edit.php:102
 msgid "First Name"
-msgstr ""
+msgstr "Ime"
 
 #: application/views/user/edit.php:109
 msgid "Last Name"
-msgstr ""
+msgstr "Prezime"
 
 #: application/views/user/edit.php:120
 msgid "Ham Radio"
@@ -10380,7 +10392,7 @@ msgstr ""
 
 #: application/views/user/reset_password.php:28
 msgid "Confirm Password"
-msgstr ""
+msgstr "Potvrdi lozinku"
 
 #: application/views/version_dialog/index.php:20
 msgid "No Version Dialog text set. Go to the Admin Menu and set one."
@@ -10510,6 +10522,7 @@ msgstr ""
 msgid "eQSL picture"
 msgstr ""
 
+#: application/views/visitor/layout/footer.php:240
 #: application/views/visitor/layout/footer.php:241
 msgid "CSV"
 msgstr ""
