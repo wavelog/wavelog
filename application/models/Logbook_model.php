@@ -1707,46 +1707,49 @@ class Logbook_model extends CI_Model {
   }
 
   function get_qsos_for_printing($station_id2 = null) {
+	  $binding=[];
+	  $this->load->model('stations');
+	  $station_id = $this->stations->find_active();
 
-    $this->load->model('stations');
-    $station_id = $this->stations->find_active();
+	  $sql = 'SELECT
+		  STATION_CALLSIGN,
+		  COL_PRIMARY_KEY,
+		  COL_CALL,
+		  COL_QSL_VIA,
+		  COL_TIME_ON,
+		  COL_MODE,
+		  COL_SUBMODE,
+		  COL_FREQ,
+		  UPPER(COL_BAND) as COL_BAND,
+		  COL_RST_SENT,
+		  COL_SAT_NAME,
+		  COL_SAT_MODE,
+		  COL_QSL_RCVD,
+		  COL_COMMENT,
+		  (select adif from dxcc_prefixes where  (CASE WHEN COL_QSL_VIA != \'\' THEN COL_QSL_VIA ELSE COL_CALL END) like concat(dxcc_prefixes.`call`,\'%\') order by end limit 1) as ADIF,
+		  (select entity from dxcc_prefixes where  (CASE WHEN COL_QSL_VIA != \'\' THEN COL_QSL_VIA ELSE COL_CALL END) like concat(dxcc_prefixes.`call`,\'%\') order by end limit 1) as ENTITY,
+		  (CASE WHEN COL_QSL_VIA != \'\' THEN COL_QSL_VIA ELSE COL_CALL END) AS COL_ROUTING
+		  FROM '.$this->config->item('table_name').' thcv
+		  join station_profile on thcv.station_id = station_profile.station_id
+		  WHERE
+		  COL_QSL_SENT in (\'R\', \'Q\')';
 
-    $sql = 'SELECT
-				STATION_CALLSIGN,
-				COL_PRIMARY_KEY,
-				COL_CALL,
-				COL_QSL_VIA,
-				COL_TIME_ON,
-				COL_MODE,
-				COL_SUBMODE,
-				COL_FREQ,
-				UPPER(COL_BAND) as COL_BAND,
-				COL_RST_SENT,
-				COL_SAT_NAME,
-				COL_SAT_MODE,
-				COL_QSL_RCVD,
-				COL_COMMENT,
-				(select adif from dxcc_prefixes where  (CASE WHEN COL_QSL_VIA != \'\' THEN COL_QSL_VIA ELSE COL_CALL END) like concat(dxcc_prefixes.`call`,\'%\') order by end limit 1) as ADIF,
-				(select entity from dxcc_prefixes where  (CASE WHEN COL_QSL_VIA != \'\' THEN COL_QSL_VIA ELSE COL_CALL END) like concat(dxcc_prefixes.`call`,\'%\') order by end limit 1) as ENTITY,
-       			(CASE WHEN COL_QSL_VIA != \'\' THEN COL_QSL_VIA ELSE COL_CALL END) AS COL_ROUTING
-			FROM '.$this->config->item('table_name').' thcv
-				join station_profile on thcv.station_id = station_profile.station_id
-			WHERE
-				COL_QSL_SENT in (\'R\', \'Q\')';
+	  if ($station_id2 == NULL) {
+		  $sql .= ' and thcv.station_id = ?';
+		  $binding[] = $station_id;
+	  } else if ($station_id2 != 'All') {
+		  $sql .= ' and thcv.station_id = ?';
+		  $binding[] = $station_id2;
+	  }
 
-    if ($station_id2 == NULL) {
-    	$sql .= ' and thcv.station_id = ' . $station_id;
-	} else if ($station_id2 != 'All') {
-		$sql .= ' and thcv.station_id = ' . $station_id2;
-	}
+	  // always filter user. this ensures that even if the station_id is from another user no inaccesible QSOs will be returned
+	  $sql .= ' and station_profile.user_id = ?';
+	  $binding[] = $this->session->userdata('user_id');
 
-	// always filter user. this ensures that even if the station_id is from another user no inaccesible QSOs will be returned
-	$sql .= ' and station_profile.user_id = ' . $this->session->userdata('user_id');
+	  $sql .= ' ORDER BY ADIF, COL_ROUTING';
 
-	$sql .= ' ORDER BY ADIF, COL_ROUTING';
-
-    $query = $this->db->query($sql);
-    return $query;
+	  $query = $this->db->query($sql, $binding);
+	  return $query;
   }
 
   function get_qsos($num, $offset, $StationLocationsArray = null, $band = '') {
@@ -1812,24 +1815,27 @@ class Logbook_model extends CI_Model {
     /*
      * Function returns the QSOs from the logbook, which have not been either marked as uploaded to hrdlog, or has been modified with an edit
      */
-    function get_hrdlog_qsos($station_id){
-        $sql = 'select *, dxcc_entities.name as station_country from ' . $this->config->item('table_name') . ' thcv ' .
-            ' left join station_profile on thcv.station_id = station_profile.station_id' .
-            ' left outer join dxcc_entities on thcv.col_my_dxcc = dxcc_entities.adif' .
-            ' where thcv.station_id = ' . $station_id .
-            ' and (COL_HRDLOG_QSO_UPLOAD_STATUS is NULL
-            or COL_HRDLOG_QSO_UPLOAD_STATUS = ""
-            or COL_HRDLOG_QSO_UPLOAD_STATUS = "M"
-            or COL_HRDLOG_QSO_UPLOAD_STATUS = "N")';
+  function get_hrdlog_qsos($station_id){
+	  $binding=[];
+	  $sql = 'select *, dxcc_entities.name as station_country from ' . $this->config->item('table_name') . ' thcv ' .
+		  ' left join station_profile on thcv.station_id = station_profile.station_id' .
+		  ' left outer join dxcc_entities on thcv.col_my_dxcc = dxcc_entities.adif' .
+		  ' where thcv.station_id = ?'.
+		  ' and (COL_HRDLOG_QSO_UPLOAD_STATUS is NULL
+		  or COL_HRDLOG_QSO_UPLOAD_STATUS = ""
+		  or COL_HRDLOG_QSO_UPLOAD_STATUS = "M"
+		  or COL_HRDLOG_QSO_UPLOAD_STATUS = "N")';
+	  $binding[]=$station_id;
 
-        $query = $this->db->query($sql);
-        return $query;
-    }
+	  $query = $this->db->query($sql, $binding);
+	  return $query;
+  }
 
     /*
      * Function returns the QSOs from the logbook, which have not been either marked as uploaded to qrz, or has been modified with an edit
      */
   function get_qrz_qsos($station_id, $trusted = false){
+	  $binding=[];
 	  $this->load->model('stations');
 	  if ((!$trusted) && (!$this->stations->check_station_is_accessible($station_id))) {
 		  return;
@@ -1837,62 +1843,55 @@ class Logbook_model extends CI_Model {
 	  $sql = 'select *, dxcc_entities.name as station_country from ' . $this->config->item('table_name') . ' thcv ' .
 		  ' left join station_profile on thcv.station_id = station_profile.station_id' .
 		  ' left outer join dxcc_entities on thcv.col_my_dxcc = dxcc_entities.adif' .
-		  ' where thcv.station_id = ' . $station_id .
+		  ' where thcv.station_id = ?'.
 		  ' and (COL_QRZCOM_QSO_UPLOAD_STATUS is NULL
 		  or COL_QRZCOM_QSO_UPLOAD_STATUS = ""
 		  or COL_QRZCOM_QSO_UPLOAD_STATUS = "M"
 		  or COL_QRZCOM_QSO_UPLOAD_STATUS = "N")';
+	  $binding[]=$station_id;
 
-	  $query = $this->db->query($sql);
+	  $query = $this->db->query($sql, $binding);
 	  return $query;
   }
 
 	/*
      * Function returns the QSOs from the logbook, which have not been either marked as uploaded to webADIF
      */
-    function get_webadif_qsos($station_id,$from = null, $to = null,$trusted = false){
-	    $this->load->model('stations');
-	    if ((!$trusted) && (!$this->stations->check_station_is_accessible($station_id))) {
-		    return;
-	    }
-	    $sql = "
+  function get_webadif_qsos($station_id,$from = null, $to = null,$trusted = false) {
+	  $binding=[];
+	  $this->load->model('stations');
+	  if ((!$trusted) && (!$this->stations->check_station_is_accessible($station_id))) {
+		  return;
+	  }
+	  $sql = "
 			SELECT qsos.*, station_profile.*, dxcc_entities.name as station_country
-			FROM %s qsos
+			FROM ".$this->config->item('table_name')." qsos
 			INNER JOIN station_profile ON qsos.station_id = station_profile.station_id
 			LEFT JOIN dxcc_entities on qsos.col_my_dxcc = dxcc_entities.adif
 			LEFT OUTER JOIN webadif ON qsos.COL_PRIMARY_KEY = webadif.qso_id
-			WHERE qsos.station_id = %d
-	AND qsos.COL_SAT_NAME = 'QO-100'
-			  AND webadif.upload_date IS NULL
+			WHERE qsos.station_id = ?
+			AND qsos.COL_SAT_NAME = 'QO-100'
+			AND webadif.upload_date IS NULL
 		";
-	    $sql = sprintf(
-		    $sql,
-		    $this->config->item('table_name'),
-		    $station_id
-	    );
-	    if ($from) {
-		    $from = DateTime::createFromFormat('d/m/Y', $from);
-		    $from = $from->format('Y-m-d');
+	  $binding[] = $station_id;
 
-		    $sql.="  AND qsos.COL_TIME_ON >= %s";
-		    $sql=sprintf(
-			    $sql,
-			    $this->db->escape($from)
-		    );
-	    }
-	    if ($to) {
-		    $to = DateTime::createFromFormat('d/m/Y', $to);
-		    $to = $to->format('Y-m-d');
+	  if ($from) {
+		  $from = DateTime::createFromFormat('d/m/Y', $from);
+		  $from = $from->format('Y-m-d');
 
-		    $sql.="  AND qsos.COL_TIME_ON <= %s";
-		    $sql=sprintf(
-			    $sql,
-			    $this->db->escape($to)
-		    );
-	    }
+		  $sql.="  AND qsos.COL_TIME_ON >= ?";
+		  $binding[]=$from;
+	  }
+	  if ($to) {
+		  $to = DateTime::createFromFormat('d/m/Y', $to);
+		  $to = $to->format('Y-m-d');
 
-	    return $this->db->query($sql);
-    }
+		  $sql.="  AND qsos.COL_TIME_ON <= ?";
+		  $binding[]=$to;
+	  }
+
+	  return $this->db->query($sql, $binding);
+  }
 
     /*
      * Function returns all the station_id's with QRZ API Key's
@@ -1973,35 +1972,34 @@ class Logbook_model extends CI_Model {
 		}
 	}
 
-  function get_last_qsos($num, $StationLocationsArray = null) {
+    function get_last_qsos($num, $StationLocationsArray = null) {
+	    $binding=[];
+	    if($StationLocationsArray == null) {
+		    $this->load->model('logbooks_model');
+		    $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+	    } else {
+		    $logbooks_locations_array = $StationLocationsArray;
+	    }
 
-    if($StationLocationsArray == null) {
-      $this->load->model('logbooks_model');
-      $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-    } else {
-      $logbooks_locations_array = $StationLocationsArray;
+	    if ($logbooks_locations_array) {
+		    $location_list = "'".implode("','",$logbooks_locations_array)."'";
+
+		    $sql = "SELECT * FROM ( select * from " . $this->config->item('table_name'). "
+			    WHERE station_id IN(". $location_list .")
+			    order by col_time_on desc
+			    limit ?) hrd
+			    JOIN station_profile ON station_profile.station_id = hrd.station_id
+			    LEFT JOIN dxcc_entities ON hrd.col_dxcc = dxcc_entities.adif
+			    order by col_time_on desc";
+		    $binding[]=$num*1;
+		    $query = $this->db->query($sql,$binding);
+
+		    return $query;
+	    } else {
+		    return null;
+	    }
+
     }
-
-    if ($logbooks_locations_array) {
-      $location_list = "'".implode("','",$logbooks_locations_array)."'";
-
-      $sql = "SELECT * FROM ( select * from " . $this->config->item('table_name'). "
-        WHERE station_id IN(". $location_list .")
-        order by col_time_on desc
-        limit " . $num .
-        ") hrd
-        JOIN station_profile ON station_profile.station_id = hrd.station_id
-        LEFT JOIN dxcc_entities ON hrd.col_dxcc = dxcc_entities.adif
-        order by col_time_on desc";
-
-      $query = $this->db->query($sql);
-
-      return $query;
-    } else {
-      return null;
-    }
-
-  }
 
     function check_if_callsign_cnfmd_in_logbook($callsign, $StationLocationsArray = null, $band = null) {
 
@@ -2219,69 +2217,72 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
   }
 
     /* Get all QSOs with a valid grid for use in the KML export */
-    function kml_get_all_qsos($band, $mode, $dxcc, $cqz, $propagation, $fromdate, $todate) {
-        $this->load->model('logbooks_model');
-        $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+  function kml_get_all_qsos($band, $mode, $dxcc, $cqz, $propagation, $fromdate, $todate) {
+	  $this->load->model('logbooks_model');
+	  $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
-        $this->db->select('COL_CALL, COL_BAND, COL_TIME_ON, COL_RST_RCVD, COL_RST_SENT, COL_MODE, COL_SUBMODE, COL_NAME, COL_COUNTRY, COL_PRIMARY_KEY, COL_SAT_NAME, COL_GRIDSQUARE');
-        $this->db->where_in('station_id', $logbooks_locations_array);
-        $this->db->where("coalesce(COL_GRIDSQUARE, '') <> ''");
+	  $this->db->select('COL_CALL, COL_BAND, COL_TIME_ON, COL_RST_RCVD, COL_RST_SENT, COL_MODE, COL_SUBMODE, COL_NAME, COL_COUNTRY, COL_PRIMARY_KEY, COL_SAT_NAME, COL_GRIDSQUARE');
+	  $this->db->where_in('station_id', $logbooks_locations_array);
+	  $this->db->where("coalesce(COL_GRIDSQUARE, '') <> ''");
 
-        if ($band != 'All') {
-            if ($band == 'SAT') {
-                $this->db->where('COL_PROP_MODE = \'' . $band . '\'');
-            }
-            else {
-                $this->db->where('COL_PROP_MODE != \'SAT\'');
-                $this->db->where('COL_BAND = \'' . $band .'\'');
-            }
-        }
+	  if ($band != 'All') {
+		  if ($band == 'SAT') {
+			  $this->db->where('COL_PROP_MODE', $band);
+		  }
+		  else {
+			  $this->db->where('COL_PROP_MODE != \'SAT\'');
+			  $this->db->where('COL_BAND', $band);
+		  }
+	  }
 
-        if ($mode != 'All') {
-            $this->db->where('COL_MODE = \'' . $mode . '\'');
-        }
+	  if ($mode != 'All') {
+		  $this->db->where('COL_MODE', $mode);
+	  }
 
-        if ($dxcc != 'All') {
-            $this->db->where('COL_DXCC = ' . $dxcc);
-        }
+	  if ($dxcc != 'All') {
+		  $this->db->where('COL_DXCC',$dxcc);
+	  }
 
-        if ($cqz != 'All') {
-            $this->db->where('COL_CQZ = ' . $cqz);
-        }
+	  if ($cqz != 'All') {
+		  $this->db->where('COL_CQZ', $cqz);
+	  }
 
-        if ($propagation != 'All') {
-            $this->db->where('COL_PROP_MODE = ' . $propagation);
-        }
+	  if ($propagation != 'All') {
+		  $this->db->where('COL_PROP_MODE', $propagation);
+	  }
 
-        // If date is set, we add it to the where-statement
-        if ($fromdate != "") {
-            $this->db->where("date(".$this->config->item('table_name').".COL_TIME_ON) >= '".$fromdate."'");
-        }
-        if ($todate != "") {
-            $this->db->where("date(".$this->config->item('table_name').".COL_TIME_ON) <= '".$todate."'");
-        }
+	  // If date is set, we add it to the where-statement
+	  if ($fromdate != "") {
+		  $this->db->where("date(".$this->config->item('table_name').".COL_TIME_ON) >=", $fromdate);
+	  }
+	  if ($todate != "") {
+		  $this->db->where("date(".$this->config->item('table_name').".COL_TIME_ON) <=", $todate);
+	  }
 
-        $query = $this->db->get($this->config->item('table_name'));
-        return $query;
-    }
+	  $query = $this->db->get($this->config->item('table_name'));
+	  return $query;
+  }
 
   function cfd_get_all_qsos($fromdate, $todate) {
+	  $binding=[];
 	  $this->load->model('logbooks_model');
 	  $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
 	  // If date is set, we add it to the where-statement
 	  if ($fromdate ?? ''!= "") {
-		  $from=" AND date(q.COL_TIME_ON) >= '".$fromdate."'";
+		  $from=" AND date(q.COL_TIME_ON) >= ?";
+		  $binding[]=$fromdate;
 	  } else {
 		  $from="";
 	  }
 	  if ($todate ?? '' != "") {
-		  $till=" AND date(q.COL_TIME_ON) <= '".$todate."'";
+		  $till=" AND date(q.COL_TIME_ON) <= ?";
+		  $binding[]=$todate;
 	  } else {
 		  $till='';
 	  }
 
-      	  $location_list = "'".implode("','",$logbooks_locations_array)."'";
+	  $location_list = "'".implode("','",$logbooks_locations_array)."'";
 
 	  $sql="SELECT
 		  dx.prefix,dx.name,
@@ -2292,27 +2293,27 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 		  ELSE mo.qrgmode
 		  END AS mode,q.col_band as band,
 		  COUNT(1) as cnfmd
-			FROM ".$this->config->item('table_name')." q
-		INNER JOIN
-		dxcc_entities dx ON (dx.adif = q.COL_DXCC)
-		INNER JOIN
-		adif_modes mo ON (mo.mode = q.COL_MODE)
-		inner join bands b on (b.band=q.COL_BAND)
-		WHERE
-		(q.COL_QSL_RCVD = 'Y'
-		OR q.COL_LOTW_QSL_RCVD = 'Y'
-		OR q.COL_EQSL_QSL_RCVD = 'Y')
-		AND q.station_id in (".$location_list.")
-		AND (b.bandgroup='hf' or b.band = '6m') ".($from ?? '')." ".($till ?? '')."
-		GROUP BY dx.prefix,dx.name , CASE
-		WHEN q.col_mode = 'CW' THEN 'C'
-		WHEN mo.qrgmode = 'DATA' THEN 'R'
-		WHEN mo.qrgmode = 'SSB' THEN 'F'
-		ELSE mo.qrgmode
-		END,q.COL_BAND order by dx.prefix asc, q.col_band desc";
+		  FROM ".$this->config->item('table_name')." q
+		  INNER JOIN
+		  dxcc_entities dx ON (dx.adif = q.COL_DXCC)
+		  INNER JOIN
+		  adif_modes mo ON (mo.mode = q.COL_MODE)
+		  inner join bands b on (b.band=q.COL_BAND)
+		  WHERE
+		  (q.COL_QSL_RCVD = 'Y'
+		  OR q.COL_LOTW_QSL_RCVD = 'Y'
+		  OR q.COL_EQSL_QSL_RCVD = 'Y')
+		  AND q.station_id in (".$location_list.")
+		  AND (b.bandgroup='hf' or b.band = '6m') ".($from ?? '')." ".($till ?? '')."
+		  GROUP BY dx.prefix,dx.name , CASE
+		  WHEN q.col_mode = 'CW' THEN 'C'
+		  WHEN mo.qrgmode = 'DATA' THEN 'R'
+		  WHEN mo.qrgmode = 'SSB' THEN 'F'
+		  ELSE mo.qrgmode
+		  END,q.COL_BAND order by dx.prefix asc, q.col_band desc";
 
-	 $query = $this->db->query($sql);
-	 return $query;
+	  $query = $this->db->query($sql,$binding);
+	  return $query;
 
   }
 
@@ -2419,54 +2420,56 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 
     /* Return QSOs over a period of days */
     function map_week_qsos($start, $end) {
-        $this->load->model('logbooks_model');
-        $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+	    $this->load->model('logbooks_model');
+	    $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
-        $this->db->where("COL_TIME_ON BETWEEN '".$start."' AND '".$end."'");
-        $this->db->where_in('station_id', $logbooks_locations_array);
-        $this->db->order_by("COL_TIME_ON", "ASC");
-        $query = $this->db->get($this->config->item('table_name'));
+	    $this->db->where("COL_TIME_ON >= ",$start);
+	    $this->db->where("COL_TIME_ON <= ",$end);
+	    $this->db->where_in('station_id', $logbooks_locations_array);
+	    $this->db->order_by("COL_TIME_ON", "ASC");
+	    $query = $this->db->get($this->config->item('table_name'));
 
-        return $query;
+	    return $query;
     }
 
     /* used to return custom qsos requires start, end date plus a band */
     function map_custom_qsos($start, $end, $band, $mode, $propagation) {
-		$this->load->model('logbooks_model');
-		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+	    $this->load->model('logbooks_model');
+	    $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
-    if (!$logbooks_locations_array) {
-      return null;
+	    if (!$logbooks_locations_array) {
+		    return null;
+	    }
+
+	    $this->db->join('dxcc_entities', $this->config->item('table_name').'.col_dxcc = dxcc_entities.adif', 'left');
+	    $this->db->where("COL_TIME_ON >=",$start." 00:00:00");
+	    $this->db->where("COL_TIME_ON <=",$end." 23:59:59'");
+	    $this->db->where_in("station_id", $logbooks_locations_array);
+
+	    if($band != "All" && $band != "SAT") {
+		    $this->db->where("COL_BAND", $band);
+	    }
+
+	    if ($band == "SAT") {
+		    $this->db->where("COL_PROP_MODE", "SAT");
+	    }
+
+	    if ($mode != 'All') {
+		    $this->db->group_start();
+		    $this->db->where("COL_MODE", $mode);
+		    $this->db->or_where("COL_SUBMODE", $mode);
+		    $this->db->group_end();
+	    }
+
+	    if ($propagation != 'All') {
+		    $this->db->where("COL_PROP_MODE", $propagation);
+	    }
+
+	    $this->db->order_by("COL_TIME_ON", "ASC");
+	    $query = $this->db->get($this->config->item('table_name'));
+
+	    return $query;
     }
-
-      $this->db->join('dxcc_entities', $this->config->item('table_name').'.col_dxcc = dxcc_entities.adif', 'left');
-      $this->db->where("COL_TIME_ON BETWEEN '".$start." 00:00:00' AND '".$end." 23:59:59'");
-      $this->db->where_in("station_id", $logbooks_locations_array);
-
-      if($band != "All" && $band != "SAT") {
-        $this->db->where("COL_BAND", $band);
-      }
-
-      if ($band == "SAT") {
-        $this->db->where("COL_PROP_MODE", "SAT");
-      }
-
-      if ($mode != 'All') {
-        $this->db->group_start();
-        $this->db->where("COL_MODE", $mode);
-        $this->db->or_where("COL_SUBMODE", $mode);
-				$this->db->group_end();
-      }
-
-      if ($propagation != 'All') {
-        $this->db->where("COL_PROP_MODE", $propagation);
-      }
-
-      $this->db->order_by("COL_TIME_ON", "ASC");
-      $query = $this->db->get($this->config->item('table_name'));
-
-      return $query;
-  }
 
     /* Returns QSOs for the date sent eg 2011-09-30 */
     function map_day($date) {
@@ -2476,7 +2479,8 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
         $start = $date." 00:00:00";
         $end = $date." 23:59:59";
 
-        $this->db->where("COL_TIME_ON BETWEEN '".$start."' AND '".$end."'");
+        $this->db->where("COL_TIME_ON >= ", $start);
+        $this->db->where("COL_TIME_ON <= ", $end);
         $this->db->where_in('station_id', $logbooks_locations_array);
         $this->db->order_by("COL_TIME_ON", "ASC");
         $query = $this->db->get($this->config->item('table_name'));
@@ -3204,24 +3208,33 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 
   /* Used to check if the qso is already in the database */
     function import_check($datetime, $callsign, $band, $mode, $station_callsign, $station_id = null) {
+	    $binding=[];
 	    $mode=$this->get_main_mode_from_mode($mode);
 
-	    $this->db->select('COL_PRIMARY_KEY, COL_TIME_ON, COL_CALL, COL_BAND, COL_GRIDSQUARE');
-	    $this->db->where('COL_TIME_ON >= DATE_ADD(DATE_FORMAT("'.$datetime.'", \'%Y-%m-%d %H:%i\' ), INTERVAL -15 MINUTE )');
-	    $this->db->where('COL_TIME_ON <= DATE_ADD(DATE_FORMAT("'.$datetime.'", \'%Y-%m-%d %H:%i\' ), INTERVAL 15 MINUTE )');
-	    $this->db->where('COL_CALL', $callsign);
-	    $this->db->where('COL_STATION_CALLSIGN', $station_callsign);
-	    $this->db->where('COL_BAND', $band);
-	    $this->db->where('COL_MODE', $mode);
+	    $sql='SELECT  COL_PRIMARY_KEY, COL_TIME_ON, COL_CALL, COL_BAND, COL_GRIDSQUARE from '.$this->config->item('table_name').'
+		    WHERE COL_TIME_ON >= DATE_ADD(DATE_FORMAT(?, \'%Y-%m-%d %H:%i\' ), INTERVAL -15 MINUTE )
+		    AND COL_TIME_ON <= DATE_ADD(DATE_FORMAT(?, \'%Y-%m-%d %H:%i\' ), INTERVAL 15 MINUTE )
+		    AND COL_CALL=?
+		    AND COL_STATION_CALLSIGN=?
+		    AND COL_BAND=?
+		    AND COL_MODE=?';
+
+	    $binding[]=$datetime;
+	    $binding[]=$datetime;
+	    $binding[]=$callsign;
+	    $binding[]=$station_callsign;
+	    $binding[]=$band;
+	    $binding[]=$mode;
+
 
 	    if(isset($station_id) && $station_id > 0) {
-		    $this->db->where('station_id', $station_id);
+		    $sql.=' AND station_id=?';
+		    $binding[]=$station_id;
 	    }
 
-	    $query = $this->db->get($this->config->item('table_name'));
+	    $query = $this->db->query($sql, $binding);
 
-	    if ($query->num_rows() > 0)
-	    {
+	    if ($query->num_rows() > 0) {
 		    $ret = $query->row();
 		    return ["Found", $ret->COL_PRIMARY_KEY, $ret->COL_GRIDSQUARE];
 	    } else {
@@ -3237,7 +3250,7 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 		    'COL_CLUBLOG_QSO_DOWNLOAD_STATUS' => $qsl_status,
 	    );
 
-	    $this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i:%s\') = "'.$datetime.'"');
+	    $this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i:%s\') = ',$datetime);
 	    $this->db->where('COL_CALL', $callsign);
 	    $this->db->where("replace(replace(COL_BAND,'cm',''),'m','')", $band); // no way to achieve a real bandmatch, so fallback to match without unit. e.g.: "6" was provided by Clublog. Do they mean 6m or 6cm?
 	    $this->db->where('COL_STATION_CALLSIGN', $station_callsign);
@@ -3308,15 +3321,16 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 	    }
 
 	    $this->db->group_start();
-	    $this->db->where('date_format(COL_LOTW_QSLRDATE, \'%Y-%m-%d %H:%i\') != "'.$qsl_date.'"');
+	    $this->db->where('date_format(COL_LOTW_QSLRDATE, \'%Y-%m-%d %H:%i\') != ',$qsl_date);
 	    $this->db->or_where('COL_LOTW_QSLRDATE is null');
 	    $this->db->group_end();
-	    $this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i\') = "'.$datetime.'"');
 	    $this->db->where('COL_CALL', $callsign);
 	    $this->db->where('COL_BAND', $band);
+	    $this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i\') = ',$datetime);
 	    $this->db->where('COL_STATION_CALLSIGN', $station_callsign);
 	    $this->db->where('COL_PRIMARY_KEY', $qsoid);
 
+		
 	    $this->db->update($this->config->item('table_name'), $data);
 	    unset($data);
 
@@ -3325,7 +3339,7 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 			    'COL_DISTANCE' => 0
 		    );
 		    $this->db->select('station_profile.station_gridsquare as station_gridsquare');
-		    $this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i\') = "'.$datetime.'"');
+		    $this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i\') = ',$datetime);
 		    $this->db->where('COL_CALL', $callsign);
 		    $this->db->where('COL_BAND', $band);
 		    $this->db->where('COL_PRIMARY_KEY', $qsoid);
@@ -3348,7 +3362,7 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 			    $data['COL_DISTANCE'] = $this->qra->distance($station_gridsquare, $qsl_vucc_grids, 'K');
 		    }
 
-		    $this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i\') = "'.$datetime.'"');
+		    $this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i\') = ',$datetime);
 		    $this->db->where('COL_CALL', $callsign);
 		    $this->db->where('COL_BAND', $band);
 		    $this->db->where('COL_PRIMARY_KEY', $qsoid);

@@ -4,9 +4,8 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 class Timeline_model extends CI_Model
 {
     function get_timeline($band, $mode, $award, $qsl, $lotw, $eqsl)  {
-		$CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
         if (!$logbooks_locations_array) {
             return null;
@@ -27,6 +26,7 @@ class Timeline_model extends CI_Model
     }
 
     public function get_timeline_dxcc($band, $mode, $location_list, $qsl, $lotw, $eqsl) {
+		$binding = [];
         $sql = "select min(date(COL_TIME_ON)) date, prefix, col_country, end, adif from "
             .$this->config->item('table_name'). " thcv
             join dxcc_entities on thcv.col_dxcc = dxcc_entities.adif
@@ -34,16 +34,19 @@ class Timeline_model extends CI_Model
 
         if ($band != 'All') {
             if ($band == 'SAT') {
-                $sql .= " and col_prop_mode ='" . $band . "'";
+                $sql .= " and col_prop_mode = ?";
+				$binding[] = $band;
             }
             else {
                 $sql .= " and col_prop_mode !='SAT'";
-                $sql .= " and col_band ='" . $band . "'";
+                $sql .= " and col_band = ?";
+				$binding[] = $band;
             }
         }
 
         if ($mode != 'All') {
-            $sql .= " and col_mode ='" . $mode . "'";
+            $sql .= " and col_mode = ?";
+			$binding[] = $mode;
         }
 
         $sql .= $this->addQslToQuery($qsl, $lotw, $eqsl);
@@ -51,28 +54,32 @@ class Timeline_model extends CI_Model
         $sql .= " group by col_dxcc, col_country
                 order by date desc";
 
-        $query = $this->db->query($sql);
+        $query = $this->db->query($sql, $binding);
 
         return $query->result();
     }
 
     public function get_timeline_waja($band, $mode, $location_list, $qsl, $lotw, $eqsl) {
+		$binding = [];
         $sql = "select min(date(COL_TIME_ON)) date, col_state from "
             .$this->config->item('table_name'). " thcv
             where station_id in (" . $location_list . ")";
 
         if ($band != 'All') {
             if ($band == 'SAT') {
-                $sql .= " and col_prop_mode ='" . $band . "'";
+                $sql .= " and col_prop_mode = ?";
+				$binding[] = $band;
             }
             else {
                 $sql .= " and col_prop_mode !='SAT'";
-                $sql .= " and col_band ='" . $band . "'";
+                $sql .= " and col_band = ?";
+				$binding[] = $band;
             }
         }
 
         if ($mode != 'All') {
-            $sql .= " and col_mode ='" . $mode . "'";
+            $sql .= " and col_mode = ?";
+			$binding[] = $mode;
         }
 
         $sql .= " and COL_DXCC = '339' and trim(coalesce(COL_STATE,'')) != '' ";
@@ -82,28 +89,32 @@ class Timeline_model extends CI_Model
         $sql .= " group by col_state
                 order by date desc";
 
-        $query = $this->db->query($sql);
+        $query = $this->db->query($sql, $binding);
 
         return $query->result();
     }
 
     public function get_timeline_was($band, $mode, $location_list, $qsl, $lotw, $eqsl) {
+		$binding = [];
         $sql = "select min(date(COL_TIME_ON)) date, col_state from "
             .$this->config->item('table_name'). " thcv
             where station_id in (" . $location_list . ")";
 
         if ($band != 'All') {
             if ($band == 'SAT') {
-                $sql .= " and col_prop_mode ='" . $band . "'";
+                $sql .= " and col_prop_mode = ?";
+				$binding[] = $band;
             }
             else {
                 $sql .= " and col_prop_mode !='SAT'";
-                $sql .= " and col_band ='" . $band . "'";
+                $sql .= " and col_band = ?";
+				$binding[] = $band;
             }
         }
 
         if ($mode != 'All') {
-            $sql .= " and col_mode ='" . $mode . "'";
+            $sql .= " and col_mode = ?";
+			$binding[] = $mode;
         }
 
         $sql .= " and COL_DXCC in ('291', '6', '110')";
@@ -114,12 +125,13 @@ class Timeline_model extends CI_Model
         $sql .= " group by col_state
                 order by date desc";
 
-        $query = $this->db->query($sql);
+        $query = $this->db->query($sql, $binding);
 
         return $query->result();
     }
 
     public function get_timeline_iota($band, $mode, $location_list, $qsl, $lotw, $eqsl) {
+		$binding = [];
         $sql = "select min(date(COL_TIME_ON)) date,  col_iota, name, prefix from "
             .$this->config->item('table_name'). " thcv
             join iota on thcv.col_iota = iota.tag
@@ -127,16 +139,19 @@ class Timeline_model extends CI_Model
 
         if ($band != 'All') {
             if ($band == 'SAT') {
-                $sql .= " and col_prop_mode ='" . $band . "'";
+                $sql .= " and col_prop_mode = ?";
+				$binding[] = $band;
             }
             else {
                 $sql .= " and col_prop_mode !='SAT'";
-                $sql .= " and col_band ='" . $band . "'";
+                $sql .= " and col_band = ?";
+				$binding[] = $band;
             }
         }
 
         if ($mode != 'All') {
-            $sql .= " and col_mode ='" . $mode . "'";
+            $sql .= " and col_mode = ?";
+			$binding[] = $mode;
         }
 
         $sql .= $this->addQslToQuery($qsl, $lotw, $eqsl);
@@ -144,28 +159,32 @@ class Timeline_model extends CI_Model
         $sql .= " and col_iota <> '' group by col_iota, name, prefix
                 order by date desc";
 
-        $query = $this->db->query($sql);
+        $query = $this->db->query($sql, $binding);
 
         return $query->result();
     }
 
     public function get_timeline_waz($band, $mode, $location_list, $qsl, $lotw, $eqsl) {
+		$binding = [];
         $sql = "select min(date(COL_TIME_ON)) date, col_cqz from "
             .$this->config->item('table_name'). " thcv
             where station_id in (" . $location_list . ")";
 
         if ($band != 'All') {
             if ($band == 'SAT') {
-                $sql .= " and col_prop_mode ='" . $band . "'";
+                $sql .= " and col_prop_mode = ?";
+				$binding[] = $band;
             }
             else {
                 $sql .= " and col_prop_mode !='SAT'";
-                $sql .= " and col_band ='" . $band . "'";
+                $sql .= " and col_band = ?";
+				$binding[] = $band;
             }
         }
 
         if ($mode != 'All') {
-            $sql .= " and col_mode ='" . $mode . "'";
+            $sql .= " and col_mode = ?";
+			$binding[] = $mode;
         }
 
         $sql .= $this->addQslToQuery($qsl, $lotw, $eqsl);
@@ -173,12 +192,12 @@ class Timeline_model extends CI_Model
         $sql .= " and col_cqz <> '' group by col_cqz
                 order by date desc";
 
-        $query = $this->db->query($sql);
+        $query = $this->db->query($sql, $binding);
 
         return $query->result();
     }
 
-    
+
 	// Adds confirmation to query
 	function addQslToQuery($qsl, $lotw, $eqsl) {
 		$sql = '';
@@ -212,41 +231,9 @@ class Timeline_model extends CI_Model
 		return $sql;
 	}
 
-    public function get_timeline_vucc3($band, $mode, $location_list, $qsl, $lotw, $eqsl) {
-        // $sql = "select min(date(COL_TIME_ON)) date, col_gridsquare from "
-        $sql = "select min(date(COL_TIME_ON)) date, upper(substring(col_gridsquare, 1, 4)) gridsquare from "
-            .$this->config->item('table_name'). " thcv
-            where station_id in (" . $location_list . ")";
-
-        if ($band != 'All') {
-            if ($band == 'SAT') {
-                $sql .= " and col_prop_mode ='" . $band . "'";
-            }
-            else {
-                $sql .= " and col_prop_mode !='SAT'";
-                $sql .= " and col_band ='" . $band . "'";
-            }
-        }
-
-        if ($mode != 'All') {
-            $sql .= " and col_mode ='" . $mode . "'";
-        }
-
-        $sql .= $this->addQslToQuery($qsl, $lotw, $eqsl);
-
-        $sql .= " and col_gridsquare <> '' group by upper(substring(col_gridsquare, 1, 4))
-                order by date desc";
-
-        $query = $this->db->query($sql);
-        $this->vucc_shit($band, $mode, $location_list, $qsl, $lotw, $eqsl);
-
-        return $query->result();
-    }
-
     public function timeline_qso_details($querystring, $band, $mode, $type){
-		$CI =& get_instance();
-		$CI->load->model('logbooks_model');
-		$logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
 		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
 		$this->db->join('dxcc_entities', 'dxcc_entities.adif = '.$this->config->item('table_name').'.COL_DXCC', 'left outer');
@@ -290,9 +277,9 @@ class Timeline_model extends CI_Model
                             'gridsquare' => $grid->gridsquare,
                             'date'       => $grid->date);
         }
-        
+
         $col_vucc_grids = $this->get_vucc_grids($band, $mode, $location_list, $qsl, $lotw, $eqsl);
-    
+
         foreach ($col_vucc_grids as $gridSplit) {
             $grids = explode(",", $gridSplit->gridsquare);
             foreach($grids as $key) {
@@ -312,23 +299,26 @@ class Timeline_model extends CI_Model
     }
 
     public function get_gridsquare($band, $mode, $location_list, $qsl, $lotw, $eqsl) {
-        // $sql = "select min(date(COL_TIME_ON)) date, col_gridsquare from "
+		$binding = [];
         $sql = "select min(COL_TIME_ON) date, upper(substring(col_gridsquare, 1, 4)) gridsquare from "
             .$this->config->item('table_name'). " thcv
             where station_id in (" . $location_list . ")";
 
         if ($band != 'All') {
             if ($band == 'SAT') {
-                $sql .= " and col_prop_mode ='" . $band . "'";
+                $sql .= " and col_prop_mode = ?";
+				$binding[] = $band;
             }
             else {
                 $sql .= " and col_prop_mode !='SAT'";
-                $sql .= " and col_band ='" . $band . "'";
+                $sql .= " and col_band = ?";
+				$binding[] = $band;
             }
         }
 
         if ($mode != 'All') {
-            $sql .= " and col_mode ='" . $mode . "'";
+            $sql .= " and col_mode = ?";
+			$binding[] = $mode;
         }
 
         $sql .= $this->addQslToQuery($qsl, $lotw, $eqsl);
@@ -336,38 +326,41 @@ class Timeline_model extends CI_Model
         $sql .= " and col_gridsquare <> '' group by upper(substring(col_gridsquare, 1, 4))
                 order by date desc";
 
-        $query = $this->db->query($sql);
+        $query = $this->db->query($sql, $binding);
 
         return $query->result();
     }
 
     public function get_vucc_grids($band, $mode, $location_list, $qsl, $lotw, $eqsl) {
-        // $sql = "select min(date(COL_TIME_ON)) date, col_gridsquare from "
+		$binding = [];
         $sql = "select COL_TIME_ON as date, upper(col_vucc_grids) gridsquare from "
             .$this->config->item('table_name'). " thcv
             where station_id in (" . $location_list . ")";
 
         if ($band != 'All') {
             if ($band == 'SAT') {
-                $sql .= " and col_prop_mode ='" . $band . "'";
+                $sql .= " and col_prop_mode = ?";
+				$binding[] = $band;
             }
             else {
                 $sql .= " and col_prop_mode !='SAT'";
-                $sql .= " and col_band ='" . $band . "'";
+                $sql .= " and col_band = ?";
+				$binding[] = $band;
             }
         }
 
         if ($mode != 'All') {
-            $sql .= " and col_mode ='" . $mode . "'";
+            $sql .= " and col_mode = ?";
+			$binding[] = $mode;
         }
 
         $sql .= $this->addQslToQuery($qsl, $lotw, $eqsl);
 
         $sql .= " and col_vucc_grids <> ''";
 
-        $query = $this->db->query($sql);
+        $query = $this->db->query($sql, $binding);
 
         return $query->result();
     }
- 
+
 }

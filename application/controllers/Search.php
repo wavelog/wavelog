@@ -75,10 +75,8 @@ class Search extends CI_Controller {
 	}
 
     function json_result() {
-          if(isset($_POST['search'])) {
-			  $result = $this->fetchQueryResult($_POST['search'], false);
-			  echo json_encode($result->result_array());
-		  }
+		$result = $this->fetchQueryResult(($this->input->post('search', TRUE) ?? ''), FALSE);
+		echo json_encode($result->result_array());
     }
 
 	function get_stored_queries() {
@@ -88,17 +86,13 @@ class Search extends CI_Controller {
 	}
 
 	function search_result() {
-		if(isset($_POST['search'])) {
-			$data['results'] = $this->fetchQueryResult($_POST['search'], false);
-			$this->load->view('search/search_result_ajax', $data);
-		}
+		$data['results'] = $this->fetchQueryResult(($this->input->post('search', TRUE) ?? ''), FALSE);
+		$this->load->view('search/search_result_ajax', $data);
 	}
 
 	function export_to_adif() {
-		if(isset($_POST['search'])) {
-			$data['qsos'] = $this->fetchQueryResult($_POST['search'], false);
-			$this->load->view('adif/data/exportall', $data);
-		}
+		$data['qsos'] = $this->fetchQueryResult(($this->input->post('search', TRUE) ?? ''), FALSE);
+		$this->load->view('adif/data/exportall', $data);
 	}
 
 	function export_stored_query_to_adif() {
@@ -122,20 +116,21 @@ class Search extends CI_Controller {
 	}
 
 	function save_query() {
-		if(isset($_POST['search'])) {
-			$query = $this->fetchQueryResult($_POST['search'], true);
+		$search_param = $this->input->post('search', TRUE);
+		$description = $this->input->post('description', TRUE);
 
-			$data = array(
-				'userid' => xss_clean($this->session->userdata('user_id')),
-				'query' => $query,
-				'description' => xss_clean($_POST['description'])
-			);
+		$query = $this->fetchQueryResult($search_param, TRUE);
 
-			$this->db->insert('queries', $data);
-			$last_id = $this->db->insert_id();
-			header('Content-Type: application/json');
-			echo json_encode(array('id' => $last_id, 'description' => xss_clean($_POST['description'])));
-		}
+		$data = array(
+			'userid' => xss_clean($this->session->userdata('user_id')),
+			'query' => $query,
+			'description' => $description
+		);
+
+		$this->db->insert('queries', $data);
+		$last_id = $this->db->insert_id();
+		header('Content-Type: application/json');
+		echo json_encode(array('id' => $last_id, 'description' => $description));
 	}
 
 	function delete_query() {
