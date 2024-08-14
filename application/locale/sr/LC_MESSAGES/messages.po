@@ -8,10 +8,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-08-14 10:34+0000\n"
-"PO-Revision-Date: 2024-08-13 19:51+0000\n"
+"PO-Revision-Date: 2024-08-14 15:04+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
-"Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/sr/>\n"
+"Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/sr/>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2163,11 +2163,11 @@ msgstr ""
 
 #: application/models/Logbook_model.php:4143
 msgid "QSO could not be matched"
-msgstr ""
+msgstr "QSO se ne poklapa"
 
 #: application/models/Logbook_model.php:4149
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
-msgstr ""
+msgstr "potvrđeno preko LoTW/Clublog/eQSL/Kontest"
 
 #: application/models/Logbook_model.php:4154
 msgid "confirmed by award manager"
@@ -2756,75 +2756,81 @@ msgstr "ADIF datoteka"
 
 #: application/views/adif/import.php:84
 msgid "Import duplicate QSOs"
-msgstr ""
+msgstr "Uvezi duple QSO"
 
 #: application/views/adif/import.php:93
 msgid "Mark imported QSOs as uploaded to LoTW"
-msgstr ""
+msgstr "Označi uvezene QSO kao učitane na LoTW"
 
 #: application/views/adif/import.php:95 application/views/adif/import.php:105
 #: application/views/adif/import.php:115 application/views/adif/import.php:125
 msgid "Select if ADIF being imported does not contain this information."
-msgstr ""
+msgstr "Izaberi ako ADIF koji je učitan ne sadrži ove informacije."
 
 #: application/views/adif/import.php:103
 msgid "Mark imported QSOs as uploaded to HRDLog.net Logbook"
-msgstr ""
+msgstr "Označi uvezene QSO kao učitane na HRDLog.net dnevnik"
 
 #: application/views/adif/import.php:113
 msgid "Mark imported QSOs as uploaded to QRZ Logbook"
-msgstr ""
+msgstr "Označi uvezene QSO kao učitane u QRZ dnevnik"
 
 #: application/views/adif/import.php:123
 msgid "Mark imported QSOs as uploaded to Clublog Logbook"
-msgstr ""
+msgstr "Označi uvezene QSO kao učitane u Clublog dnevnik"
 
 #: application/views/adif/import.php:133
 msgid "Use DXCC information from ADIF"
-msgstr ""
+msgstr "Koristi DXCC informaciju iz ADIF"
 
 #: application/views/adif/import.php:135
 msgid ""
 "If not selected, Wavelog will attempt to determine DXCC information "
 "automatically."
 msgstr ""
+"Ako nije selektovano, Wavelog će pokušati da odredi DXCC informacije "
+"automatski."
 
 #: application/views/adif/import.php:143
 msgid "Always use login-callsign as operator-name on import"
-msgstr ""
+msgstr "Uvijek koristi prilikom uvoza login-pozivni znak kao operatorovo ime"
 
 #: application/views/adif/import.php:152
 #: application/views/interface_assets/footer.php:32
 #: application/views/interface_assets/footer.php:495
 #: application/views/interface_assets/footer.php:2119
 msgid "DANGER"
-msgstr ""
+msgstr "OPASNOST"
 
 #: application/views/adif/import.php:152
 msgid "Ignore Stationcallsign on import"
-msgstr ""
+msgstr "Zanemari pozivni znak stanice prilikom uvoza"
 
 #: application/views/adif/import.php:154
 msgid ""
 "If selected, Wavelog will try to import <b>all</b> QSO's of the ADIF, "
 "regardless if they match to the chosen station-location."
 msgstr ""
+"Ako je izabrano, Wavelog će pkušati da uveze <b>sve</b> QSO iz ADIF, bez "
+"obzira da li se poklapaju sa izabranom lokacijom stanice."
 
 #: application/views/adif/import.php:158 application/views/adif/import.php:273
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:54
 #: application/views/webadif/export.php:55
 msgid "Upload"
-msgstr ""
+msgstr "Učitavanje"
 
 #: application/views/adif/import.php:165
 msgid "Take your logbook file anywhere!"
-msgstr ""
+msgstr "Ponesite datoteku sa vašim dnevnikom gde god želite!"
 
 #: application/views/adif/import.php:166
 msgid ""
 "Exporting ADIFs allows you to import contacts into third party applications "
 "like LoTW, Awards or just for keeping a backup."
 msgstr ""
+"Izvoz ADIFa vam omogućava da uvezete kontakte u treće aplikacije kao što su "
+"LoTW, Diplome ili da ga goristite samo kao rezervnu kopiju."
 
 #: application/views/adif/import.php:176 application/views/adif/import.php:222
 #: application/views/cfd/index.php:15 application/views/csv/index.php:118
@@ -2833,7 +2839,7 @@ msgstr ""
 #: application/views/lotw/import.php:38 application/views/qrz/export.php:76
 #: application/views/qrz/export.php:97 application/views/webadif/export.php:97
 msgid "From date"
-msgstr ""
+msgstr "Od datuma"
 
 #: application/views/adif/import.php:179 application/views/adif/import.php:225
 #: application/views/cfd/index.php:20 application/views/csv/index.php:123
@@ -2842,40 +2848,40 @@ msgstr ""
 #: application/views/qrz/export.php:102
 #: application/views/webadif/export.php:102
 msgid "To date"
-msgstr ""
+msgstr "Do datuma"
 
 #: application/views/adif/import.php:187
 msgid "Mark exported QSOs as uploaded to LoTW"
-msgstr ""
+msgstr "Označi izvezene QSO kao učitane na LoTW"
 
 #: application/views/adif/import.php:195
 msgid "Export QSOs not uploaded to LoTW"
-msgstr ""
+msgstr "Izvezi QSO koji nisu učitani na LoTW"
 
 #: application/views/adif/import.php:200
 msgid "Export QSO's"
-msgstr ""
+msgstr "Izvezi QSOe"
 
 #: application/views/adif/import.php:205
 msgid "Export Satellite-Only QSOs"
-msgstr ""
+msgstr "Izvezi samo satelitske QSO"
 
 #: application/views/adif/import.php:206
 msgid "Export All Satellite QSOs"
-msgstr ""
+msgstr "Izvezi sve satelitske QSO"
 
 #: application/views/adif/import.php:208
 msgid "Export All Satellite QSOs Confirmed on LoTW"
-msgstr ""
+msgstr "Izvezi sve satelitske QSO potvrđene na LoTW"
 
 #: application/views/adif/import.php:220 application/views/hrdlog/export.php:74
 #: application/views/qrz/export.php:94 application/views/webadif/export.php:94
 msgid "If a date range is not selected then all QSOs will be marked!"
-msgstr ""
+msgstr "Ako nije izabran opseg datuma, onda će svi QSO biti označeni!"
 
 #: application/views/adif/import.php:228
 msgid "Mark QSOs as exported to LoTW"
-msgstr ""
+msgstr "Označi QSOe kao izvezene u LoTW"
 
 #: application/views/adif/import.php:242
 #, php-format
@@ -2885,85 +2891,96 @@ msgid ""
 "List). The downloaded ADIF file can be uploaded here in order to update QSOs "
 "with DOK info."
 msgstr ""
+"Idi na %s i izvezi svoj dnevnik sa potvrđenim DOK-ovima. Za ubrzavanje "
+"procesa možeš izabrati preuzimanje samo DL QSOove (npr. u prefiks listu "
+"stavi 'DL'). Preuzeta ADIF datoteka može biti učitana ovde u nameri da "
+"ažurirate QSO sa informacijom o DOK."
 
 #: application/views/adif/import.php:249
 msgid "Only import DOK data from QSOs confirmed on DCL."
-msgstr ""
+msgstr "Uvezi samo DOK podatke iz QSO potvrđenih na DCL."
 
 #: application/views/adif/import.php:251
 msgid ""
 "Uncheck if you also want to update DOK with data from unconfirmed QSOs in "
 "DCL."
 msgstr ""
+"Nemojte označiti ako takođe želite da ažurirate DOK sa podacima iz "
+"nepotvrđenih QSO u DCL."
 
 #: application/views/adif/import.php:258
 msgid "Overwrites exisiting DOK in log by DCL (if different)."
-msgstr ""
+msgstr "Prepišite DCL-om postojeće DOK u dnevniku (ako su različiti)."
 
 #: application/views/adif/import.php:260
 msgid ""
 "If checked Wavelog will forcibly overwrite existing DOK with DOK from DCL "
 "log."
 msgstr ""
+"Ako je označeno, Wavelog će silom prepisati postojeće DOK sa DOK iz DCL "
+"dnevnika."
 
 #: application/views/adif/import.php:267
 msgid "Ignore QSOs that cannot be matched."
-msgstr ""
+msgstr "Zanemarite QSOe koji se ne mogu poklopiti."
 
 #: application/views/adif/import.php:269
 msgid ""
 "If unchecked, information about QSOs which could not be found in Wavelog "
 "will be displayed."
 msgstr ""
+"Ako ostavite neoznačeno, biće prikazane informacije o QSO koji ne mogu biti "
+"pronađeni u Wavelogu."
 
 #: application/views/adif/import_success.php:15
 msgid "Yay, its imported!"
-msgstr ""
+msgstr "Jeeeeeej, uvezeno je!"
 
 #: application/views/adif/import_success.php:16
 msgid "The ADIF File has been imported."
-msgstr ""
+msgstr "ADIF datoteka je uvezena."
 
 #: application/views/adif/import_success.php:18
 msgid "Dupes were inserted!"
-msgstr ""
+msgstr "Duple veze su uvezene!"
 
 #: application/views/adif/import_success.php:20
 msgid "Dupes were skipped."
-msgstr ""
+msgstr "Duple veze su preskočene."
 
 #: application/views/adif/import_success.php:24
 msgid "ADIF Errors"
-msgstr ""
+msgstr "ADIF greške"
 
 #: application/views/adif/import_success.php:25
 msgid ""
 "You have ADIF errors, the QSOs have still been added but these fields have "
 "not been populated."
 msgstr ""
+"Imate ADIF grešaka, QSO-ovi su dodati ali polja sa greškama nisu popunjena."
 
 #: application/views/adif/mark_lotw.php:12
 #: application/views/hrdlog/mark_hrdlog.php:12
 #: application/views/qrz/mark_qrz.php:12
 #: application/views/webadif/mark_webadif.php:12
 msgid "QSOs marked"
-msgstr ""
+msgstr "QSO označeni"
 
 #: application/views/adif/mark_lotw.php:15
 msgid "Yay, its done!"
-msgstr ""
+msgstr "Jeeeeeej, urađeno je!"
 
 #: application/views/adif/mark_lotw.php:16
 msgid "The QSOs are marked as exported to LoTW."
-msgstr ""
+msgstr "QSO su označeni kao izvezeni u LoTW."
 
 #: application/views/api/description.php:15
 msgid "Editing Description for API Key"
-msgstr ""
+msgstr "Uređivanje opisa za API ključ"
 
 #: application/views/api/description.php:28
 msgid "Simple name to describe what you use this API for."
-msgstr ""
+msgstr "Jednostavno ime kao opis za šta koristite ovaj API."
 
 #: application/views/api/description.php:33
 #: application/views/bands/create.php:49 application/views/bands/edit.php:31
@@ -2982,12 +2999,12 @@ msgstr ""
 #: application/views/satellite/create.php:70
 #: application/views/simplefle/index.php:22
 msgid "Save"
-msgstr ""
+msgstr "Sačuvajte"
 
 #: application/views/api/help.php:14
 #: application/views/interface_assets/header.php:431
 msgid "API Keys"
-msgstr ""
+msgstr "API ključevi"
 
 #: application/views/api/help.php:17
 msgid ""
@@ -2995,6 +3012,9 @@ msgid ""
 "access Wavelog in a controlled way. Access to the API is managed via API "
 "keys."
 msgstr ""
+"Wavelog API (Application Programming Interface) omogućava trećim stranama "
+"pristup Wavelogu na kontrolisani način. Pristup API-ju vrši se preko API "
+"ključeva."
 
 #: application/views/api/help.php:18
 msgid ""
