@@ -1049,7 +1049,7 @@ class Logbook extends CI_Controller {
 	function search_incorrect_cq_zones($station_id) {
 		$clean_station_id = $this->security->xss_clean($station_id);
 
-		if (!is_numeric($clean_station_id)) {
+		if (!is_numeric($clean_station_id) && $clean_station_id !== 'All') {
 			show_404();
 		}
 
