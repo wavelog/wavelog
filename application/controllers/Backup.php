@@ -26,13 +26,15 @@ class Backup extends CI_Controller {
 			if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 		}
 
+		$clean_key = $this->security->xss_clean($key);
+
 		$this->load->helper('file');
 		// Set memory limit to unlimited to allow heavy usage
 		ini_set('memory_limit', '-1');
 		
 		$this->load->model('adif_data');
 
-		$data['qsos'] = $this->adif_data->export_all($key);
+		$data['qsos'] = $this->adif_data->export_all($clean_key);
 
 		$data['filename'] = 'backup/logbook'. date('_Y_m_d_H_i_s') .'.adi';
 		
@@ -61,10 +63,12 @@ class Backup extends CI_Controller {
 			if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 		}
 
+		$clean_key = $this->security->xss_clean($key);
+
 		$this->load->helper('file');
 		$this->load->model('note');
 
-		$data['list_note'] = $this->note->list_all($key);
+		$data['list_note'] = $this->note->list_all($clean_key);
 
 		$data['filename'] = 'backup/notes'. date('_Y_m_d_H_i_s') .'.xml';
 

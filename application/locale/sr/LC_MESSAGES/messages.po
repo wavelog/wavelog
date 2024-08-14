@@ -10,8 +10,8 @@ msgstr ""
 "POT-Creation-Date: 2024-08-14 10:34+0000\n"
 "PO-Revision-Date: 2024-08-14 15:04+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
-"Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/sr/>\n"
+"Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/sr/>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -403,11 +403,11 @@ msgstr "ITU Zone"
 msgid "Backup"
 msgstr "Rezervna kopija"
 
-#: application/controllers/Backup.php:48
+#: application/controllers/Backup.php:48 application/controllers/Backup.php:50
 msgid "ADIF - Backup"
 msgstr "ADIF - Rezervna kopija"
 
-#: application/controllers/Backup.php:80
+#: application/controllers/Backup.php:80 application/controllers/Backup.php:84
 msgid "Notes - Backup"
 msgstr "Napomene - Rezervna kopija"
 
@@ -1373,20 +1373,22 @@ msgstr "Uredi vrstu rada"
 #: application/views/qso/edit_ajax.php:481 application/views/qso/index.php:38
 #: application/views/qso/index.php:541 application/views/qso/index.php:586
 #: application/views/view_log/qso.php:14 application/views/view_log/qso.php:590
+#: application/controllers/Notes.php:18
 msgid "Notes"
 msgstr "Napomene"
 
-#: application/controllers/Notes.php:38
+#: application/controllers/Notes.php:38 application/controllers/Notes.php:37
 msgid "Add Notes"
 msgstr "Dodajte napomenu"
 
 #: application/controllers/Notes.php:58
 #: application/views/oqrs/showrequests.php:88
+#: application/controllers/Notes.php:64
 msgid "Note"
 msgstr "Napomena"
 
 #: application/controllers/Notes.php:79 application/views/notes/edit.php:7
-#: application/views/notes/view.php:19
+#: application/views/notes/view.php:19 application/controllers/Notes.php:92
 msgid "Edit Note"
 msgstr "Uredite napomenu"
 
