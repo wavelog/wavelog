@@ -21,7 +21,7 @@ class QSO extends CI_Controller {
         // Getting the live/post mode from GET command
         // 0 = live
         // 1 = post (manual)
-        $get_manual_mode = $this->security->xss_clean($this->input->get('manual'));
+        $get_manual_mode = $this->input->get('manual', TRUE);
         if ($get_manual_mode == '0' || $get_manual_mode == '1') {
             $data['manual_mode'] = $get_manual_mode;
         } else {
@@ -116,29 +116,29 @@ class QSO extends CI_Controller {
 			// $qso_data = [
 			// 18-Jan-2016 - make php v5.3 friendly!
 			$qso_data = array(
-				'start_date' => $this->input->post('start_date'),
-				'start_time' => $this->input->post('start_time'),
+				'start_date' => $this->input->post('start_date', TRUE),
+				'start_time' => $this->input->post('start_time', TRUE),
 				'end_time' => $this->input->post('end_time'),
 				'time_stamp' => time(),
-				'band' => $this->input->post('band'),
-				'band_rx' => $this->input->post('band_rx'),
-				'freq' => $this->input->post('freq_display'),
-				'freq_rx' => $this->input->post('freq_display_rx'),
-				'mode' => $this->input->post('mode'),
-				'sat_name' => $this->input->post('sat_name'),
-				'sat_mode' => $this->input->post('sat_mode'),
-				'prop_mode' => $this->input->post('prop_mode'),
-				'radio' => $this->input->post('radio'),
-				'station_profile_id' => $this->input->post('station_profile'),
-				'operator_callsign' => $this->input->post('operator_callsign'),
-				'transmit_power' => $this->input->post('transmit_power')
+				'band' => $this->input->post('band', TRUE),
+				'band_rx' => $this->input->post('band_rx', TRUE),
+				'freq' => $this->input->post('freq_display', TRUE),
+				'freq_rx' => $this->input->post('freq_display_rx', TRUE),
+				'mode' => $this->input->post('mode', TRUE),
+				'sat_name' => $this->input->post('sat_name', TRUE),
+				'sat_mode' => $this->input->post('sat_mode', TRUE),
+				'prop_mode' => $this->input->post('prop_mode', TRUE),
+				'radio' => $this->input->post('radio', TRUE),
+				'station_profile_id' => $this->input->post('station_profile', TRUE),
+				'operator_callsign' => $this->input->post('operator_callsign', TRUE),
+				'transmit_power' => $this->input->post('transmit_power', TRUE)
 			);
 			// ];
 
 			$this->session->set_userdata($qso_data);
 
 			// If SAT name is set make it session set to sat
-			if($this->input->post('sat_name')) {
+			if($this->input->post('sat_name', TRUE)) {
 				$this->session->set_userdata('prop_mode', 'SAT');
 			}
 
@@ -216,20 +216,20 @@ class QSO extends CI_Controller {
 
     function cwmacrosave(){
         // Get the data from the form
-        $function1_name = xss_clean($this->input->post('function1_name'));
-        $function1_macro = xss_clean($this->input->post('function1_macro'));
+        $function1_name = $this->input->post('function1_name', TRUE);
+        $function1_macro = $this->input->post('function1_macro', TRUE);
 
-        $function2_name = xss_clean($this->input->post('function2_name'));
-        $function2_macro = xss_clean($this->input->post('function2_macro'));
+        $function2_name = $this->input->post('function2_name', TRUE);
+        $function2_macro = $this->input->post('function2_macro', TRUE);
 
-        $function3_name = xss_clean($this->input->post('function3_name'));
-        $function3_macro = xss_clean($this->input->post('function3_macro'));
+        $function3_name = $this->input->post('function3_name', TRUE);
+        $function3_macro = $this->input->post('function3_macro', TRUE);
 
-        $function4_name = xss_clean($this->input->post('function4_name'));
-        $function4_macro = xss_clean($this->input->post('function4_macro'));
+        $function4_name = $this->input->post('function4_name', TRUE);
+        $function4_macro = $this->input->post('function4_macro', TRUE);
 
-        $function5_name = xss_clean($this->input->post('function5_name'));
-        $function5_macro = xss_clean($this->input->post('function5_macro'));
+        $function5_name = $this->input->post('function5_name', TRUE);
+        $function5_macro = $this->input->post('function5_macro', TRUE);
 
         $data = [
             'user_id' => $this->session->userdata('user_id'),
@@ -279,7 +279,7 @@ class QSO extends CI_Controller {
             $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard');
         }
 
-        $id = str_replace('"', "", $this->input->post("id"));
+        $id = str_replace('"', "", $this->input->post("id", TRUE));
         $query = $this->logbook_model->qso_info($id);
 
         $data['qso'] = $query->row();
@@ -317,8 +317,8 @@ class QSO extends CI_Controller {
 	}
 
     function qsl_rcvd_ajax() {
-        $id = str_replace('"', "", $this->input->post("id"));
-        $method = str_replace('"', "", $this->input->post("method"));
+        $id = str_replace('"', "", $this->input->post("id", TRUE));
+        $method = str_replace('"', "", $this->input->post("method", TRUE));
 
         $this->load->model('logbook_model');
         $this->load->model('user_model');
@@ -338,8 +338,8 @@ class QSO extends CI_Controller {
     }
 
     function qsl_sent_ajax() {
-        $id = str_replace('"', "", $this->input->post("id"));
-        $method = str_replace('"', "", $this->input->post("method"));
+        $id = str_replace('"', "", $this->input->post("id", TRUE));
+        $method = str_replace('"', "", $this->input->post("method", TRUE));
         
         $this->load->model('logbook_model');
         $this->load->model('user_model');
@@ -359,8 +359,8 @@ class QSO extends CI_Controller {
     }
 
     function qsl_requested_ajax() {
-        $id = str_replace('"', "", $this->input->post("id"));
-        $method = str_replace('"', "", $this->input->post("method"));
+        $id = str_replace('"', "", $this->input->post("id", TRUE));
+        $method = str_replace('"', "", $this->input->post("method", TRUE));
 
         $this->load->model('logbook_model');
         $this->load->model('user_model');
@@ -380,8 +380,8 @@ class QSO extends CI_Controller {
     }
 
 	function qsl_ignore_ajax() {
-        $id = str_replace('"', "", $this->input->post("id"));
-        $method = str_replace('"', "", $this->input->post("method"));
+        $id = str_replace('"', "", $this->input->post("id", TRUE));
+        $method = str_replace('"', "", $this->input->post("method", TRUE));
 
         $this->load->model('logbook_model');
         $this->load->model('user_model');
@@ -420,7 +420,7 @@ class QSO extends CI_Controller {
 
     /* Delete QSO */
     function delete_ajax() {
-        $id = str_replace('"', "", $this->input->post("id"));
+        $id = str_replace('"', "", $this->input->post("id", TRUE));
 
         $this->load->model('logbook_model');
 	if ($this->logbook_model->check_qso_is_accessible($id)) {
@@ -450,10 +450,8 @@ class QSO extends CI_Controller {
 		$this->load->library('sota');
 		$json = [];
 
-		if (!empty($this->security->xss_clean($this->input->get("query")))) {
-			$query = $_GET['query'] ?? FALSE;
-			$json = $this->sota->get($query);
-		}
+        $query = $this->input->get('query', TRUE) ?? FALSE;
+        $json = $this->sota->get($query);
 
 		header('Content-Type: application/json');
 		echo json_encode($json);
@@ -462,32 +460,30 @@ class QSO extends CI_Controller {
 	public function get_wwff() {
         $json = [];
 
-        if (!empty($this->security->xss_clean($this->input->get("query")))) {
-            $query = isset($_GET['query']) ? $_GET['query'] : FALSE;
-            $wwff = strtoupper($query);
+        $query = $this->input->get('query', TRUE) ?? FALSE;
+        $wwff = strtoupper($query);
 
-            $file = 'updates/wwff.txt';
+        $file = 'updates/wwff.txt';
 
-            if (is_readable($file)) {
-                $lines = file($file, FILE_IGNORE_NEW_LINES);
-                $input = preg_quote($wwff, '~');
-                $reg = '~^'. $input .'(.*)$~';
-                $result = preg_grep($reg, $lines);
-                $json = [];
-                $i = 0;
-                foreach ($result as &$value) {
-                    // Limit to 100 as to not slowdown browser too much
-                    if (count($json) <= 100) {
-                        $json[] = ["name"=>$value];
-                    }
+        if (is_readable($file)) {
+            $lines = file($file, FILE_IGNORE_NEW_LINES);
+            $input = preg_quote($wwff, '~');
+            $reg = '~^'. $input .'(.*)$~';
+            $result = preg_grep($reg, $lines);
+            $json = [];
+            $i = 0;
+            foreach ($result as &$value) {
+                // Limit to 100 as to not slowdown browser too much
+                if (count($json) <= 100) {
+                    $json[] = ["name"=>$value];
                 }
+            }
+        } else {
+            $src = 'assets/resources/wwff.txt';
+            if (copy($src, $file)) {
+                $this->get_wwff();
             } else {
-                $src = 'assets/resources/wwff.txt';
-                if (copy($src, $file)) {
-                    $this->get_wwff();
-                } else {
-                    log_message('error', 'Failed to copy source file ('.$src.') to new location. Check if this path has the right permission: '.$file);
-                }
+                log_message('error', 'Failed to copy source file ('.$src.') to new location. Check if this path has the right permission: '.$file);
             }
         }
 
@@ -498,32 +494,30 @@ class QSO extends CI_Controller {
 	public function get_pota() {
         $json = [];
 
-        if (!empty($this->security->xss_clean($this->input->get("query")))) {
-            $query = isset($_GET['query']) ? $_GET['query'] : FALSE;
-            $pota = strtoupper($query);
+        $query = $this->input->get('query', TRUE) ?? FALSE;
+        $pota = strtoupper($query);
 
-            $file = 'updates/pota.txt';
+        $file = 'updates/pota.txt';
 
-            if (is_readable($file)) {
-                $lines = file($file, FILE_IGNORE_NEW_LINES);
-                $input = preg_quote($pota, '~');
-                $reg = '~^'. $input .'(.*)$~';
-                $result = preg_grep($reg, $lines);
-                $json = [];
-                $i = 0;
-                foreach ($result as &$value) {
-                    // Limit to 100 as to not slowdown browser too much
-                    if (count($json) <= 100) {
-                        $json[] = ["name"=>$value];
-                    }
+        if (is_readable($file)) {
+            $lines = file($file, FILE_IGNORE_NEW_LINES);
+            $input = preg_quote($pota, '~');
+            $reg = '~^'. $input .'(.*)$~';
+            $result = preg_grep($reg, $lines);
+            $json = [];
+            $i = 0;
+            foreach ($result as &$value) {
+                // Limit to 100 as to not slowdown browser too much
+                if (count($json) <= 100) {
+                    $json[] = ["name"=>$value];
                 }
+            }
+        } else {
+            $src = 'assets/resources/pota.txt';
+            if (copy($src, $file)) {
+                $this->get_pota();
             } else {
-                $src = 'assets/resources/pota.txt';
-                if (copy($src, $file)) {
-                    $this->get_pota();
-                } else {
-                    log_message('error', 'Failed to copy source file ('.$src.') to new location. Check if this path has the right permission: '.$file);
-                }
+                log_message('error', 'Failed to copy source file ('.$src.') to new location. Check if this path has the right permission: '.$file);
             }
         }
 
@@ -537,32 +531,30 @@ class QSO extends CI_Controller {
     public function get_dok() {
         $json = [];
 
-        if (!empty($this->security->xss_clean($this->input->get("query")))) {
-            $query = isset($_GET['query']) ? $_GET['query'] : FALSE;
-            $dok = strtoupper($query);
+        $query = $this->input->get('query', TRUE) ?? FALSE;
+        $dok = strtoupper($query);
 
-            $file = 'updates/dok.txt';
+        $file = 'updates/dok.txt';
 
-            if (is_readable($file)) {
-                $lines = file($file, FILE_IGNORE_NEW_LINES);
-                $input = preg_quote($dok, '~');
-                $reg = '~^'. $input .'(.*)$~';
-                $result = preg_grep($reg, $lines);
-                $json = [];
-                $i = 0;
-                foreach ($result as &$value) {
-                    // Limit to 100 as to not slowdown browser too much
-                    if (count($json) <= 100) {
-                        $json[] = ["name"=>$value];
-                    }
+        if (is_readable($file)) {
+            $lines = file($file, FILE_IGNORE_NEW_LINES);
+            $input = preg_quote($dok, '~');
+            $reg = '~^'. $input .'(.*)$~';
+            $result = preg_grep($reg, $lines);
+            $json = [];
+            $i = 0;
+            foreach ($result as &$value) {
+                // Limit to 100 as to not slowdown browser too much
+                if (count($json) <= 100) {
+                    $json[] = ["name"=>$value];
                 }
+            }
+        } else {
+            $src = 'assets/resources/dok.txt';
+            if (copy($src, $file)) {
+                $this->get_dok();
             } else {
-                $src = 'assets/resources/dok.txt';
-                if (copy($src, $file)) {
-                    $this->get_dok();
-                } else {
-                    log_message('error', 'Failed to copy source file ('.$src.') to new location. Check if this path has the right permission: '.$file);
-                }
+                log_message('error', 'Failed to copy source file ('.$src.') to new location. Check if this path has the right permission: '.$file);
             }
         }
 
@@ -573,7 +565,7 @@ class QSO extends CI_Controller {
    public function get_sota_info() {
       $this->load->library('sota');
 
-      $sota = xss_clean($this->input->post('sota'));
+      $sota = $this->input->post('sota', TRUE);
 
       header('Content-Type: application/json');
       echo $this->sota->info($sota);
@@ -582,7 +574,7 @@ class QSO extends CI_Controller {
    public function get_wwff_info() {
       $this->load->library('wwff');
 
-      $wwff = xss_clean($this->input->post('wwff'));
+      $wwff = $this->input->post('wwff', TRUE);
 
       header('Content-Type: application/json');
       echo $this->wwff->info($wwff);
@@ -591,7 +583,7 @@ class QSO extends CI_Controller {
    public function get_pota_info() {
       $this->load->library('pota');
 
-      $pota = xss_clean($this->input->post('pota'));
+      $pota = $this->input->post('pota', TRUE);
 
       header('Content-Type: application/json');
       echo $this->pota->info($pota);
@@ -599,7 +591,7 @@ class QSO extends CI_Controller {
 
    public function get_station_power() {
       $this->load->model('stations');
-      $stationProfile = xss_clean($this->input->post('stationProfile'));
+      $stationProfile = $this->input->post('stationProfile', TRUE);
       $data = array('station_power' => $this->stations->get_station_power($stationProfile));
 
       header('Content-Type: application/json');
@@ -620,7 +612,7 @@ class QSO extends CI_Controller {
 
    public function get_eqsl_default_qslmsg() {	// Get ONLY Default eQSL-Message with this function. This is ONLY for QSO relevant!
 	   $return_json = array();
-	   $option_key = $this->input->post('option_key');
+	   $option_key = $this->input->post('option_key', TRUE);
 	   if ($option_key > 0) {
 		   $options_object = $this->user_options_model->get_options('eqsl_default_qslmsg', array('option_name' => 'key_station_id', 'option_key' => $option_key))->result();
 		   $return_json['eqsl_default_qslmsg'] = (isset($options_object[0]->option_value)) ? $options_object[0]->option_value : '';
@@ -634,7 +626,7 @@ class QSO extends CI_Controller {
 	}
 
    function check_locator($grid) {
-      $grid = $this->input->post('locator');
+      $grid = $this->input->post('locator', TRUE);
       // Allow empty locator
       if (preg_match('/^$/', $grid)) return true;
       // Allow 6-digit locator
