@@ -69,7 +69,7 @@ class Widgets extends CI_Controller {
 			$data['theme'] = $this->config->item('option_theme');
 		}
 	
-		$data['user_callsign'] = $user_callsign;
+		$data['user_callsign'] = strtoupper($this->security->xss_clean($user_callsign));
 		$this->load->view('widgets/oqrs', $data);
 	}
 }
