@@ -52,7 +52,7 @@
                                     <td>
                                         <?php if($this->session->userdata('active_station_logbook') != $row->logbook_id) { ?>
                                         <button id="<?php echo $row->logbook_id; ?>" class="deleteLogbook btn btn-outline-danger btn-sm"
-                                            cnftext="'<?= __("Are you sure you want to delete the following station logbook? You must re-link any locations linked here to another logbook.: ") . $row->logbook_name; ?>'"><i
+                                            cnftext="<?= __("Are you sure you want to delete the following station logbook? You must re-link any locations linked here to another logbook.: ") . $row->logbook_name; ?>"><i
                                                 class="fas fa-trash-alt"></i></a>
                                         <?php } ?>
                                     </td>
@@ -151,7 +151,7 @@
 			<td><?php echo $row->station_gridsquare;?></td>
 			<td>
 				<?php if($row->station_active != 1) { ?>
-					<a href="<?php echo site_url('station/set_active/').$current_active."/".$row->station_id; ?>" class="btn btn-outline-secondary btn-sm" onclick="return confirm('<?= __("Are you sure you want to make the following station the active station: "); ?> <?php echo $row->station_profile_name; ?>');"><?= __("Set Active"); ?></a>
+					<a href="<?php echo site_url('station/set_active/').$current_active."/".$row->station_id; ?>" class="btn btn-outline-secondary btn-sm" onclick='return confirm("<?= __("Are you sure you want to make the following station the active station: "); ?> <?php echo $row->station_profile_name; ?>");'><?= __("Set Active"); ?></a>
 				<?php } else { ?>
 					<span class="badge bg-success"><?= __("Active Station"); ?></span>
 				<?php } ?>
@@ -189,7 +189,7 @@
 			<td>
 				<?php if($row->station_active != 1) {
 					$cnfmsg = sprintf(__("Are you sure you want delete station profile '%s'? This will delete all QSOs within this station profile."), $row->station_profile_name); ?>?>
-					<a href="<?php echo site_url('station/delete')."/".$row->station_id; ?>" class="btn btn-danger btn-sm" title=<?= __("Delete"); ?> onclick="return confirm('<?= $cnfmsg ?>');"><i class="fas fa-trash-alt"></i></a>
+					<a href="<?php echo site_url('station/delete')."/".$row->station_id; ?>" class="btn btn-danger btn-sm" title=<?= __("Delete"); ?> onclick='return confirm("<?= $cnfmsg ?>");'><i class="fas fa-trash-alt"></i></a>
 				<?php } ?>
 			</td>
 		</tr>

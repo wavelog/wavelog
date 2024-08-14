@@ -1,15 +1,15 @@
 <script>
-    var lang_statistics_accumulated_worked_dxcc = '<?= __("Accumulated number of DXCCs worked"); ?>';
-    var lang_statistics_accumulated_worked_states = '<?= __("Accumulated number of States worked"); ?>';
-    var lang_statistics_accumulated_worked_iota = '<?= __("Accumulated number of IOTAs worked"); ?>';
-    var lang_statistics_accumulated_worked_cqzone = '<?= __("Accumulated number of CQ Zones worked"); ?>';
-    var lang_statistics_accumulated_worked_vucc = '<?= __("Accumulated number of VUCC Grids worked"); ?>';
-    var lang_statistics_accumulated_worked_waja = '<?= __("Accumulated number of WAJA worked"); ?>';
-    var lang_general_word_year = '<?= __("Year"); ?>';
-    var lang_general_word_yearly = '<?= __("Yearly"); ?>';
-    var lang_general_word_month = '<?= __("Month"); ?>';
-    var lang_general_word_monthly = '<?= __("Monthly"); ?>';
-    var lang_general_word_diff = '<?= __("Difference"); ?>';
+    var lang_statistics_accumulated_worked_dxcc = "<?= __("Accumulated number of DXCCs worked"); ?>";
+    var lang_statistics_accumulated_worked_states = "<?= __("Accumulated number of States worked"); ?>";
+    var lang_statistics_accumulated_worked_iota = "<?= __("Accumulated number of IOTAs worked"); ?>";
+    var lang_statistics_accumulated_worked_cqzone = "<?= __("Accumulated number of CQ Zones worked"); ?>";
+    var lang_statistics_accumulated_worked_vucc = "<?= __("Accumulated number of VUCC Grids worked"); ?>";
+    var lang_statistics_accumulated_worked_waja = "<?= __("Accumulated number of WAJA worked"); ?>";
+    var lang_general_word_year = "<?= __("Year"); ?>";
+    var lang_general_word_yearly = "<?= __("Yearly"); ?>";
+    var lang_general_word_month = "<?= __("Month"); ?>";
+    var lang_general_word_monthly = "<?= __("Monthly"); ?>";
+    var lang_general_word_diff = "<?= __("Difference"); ?>";
 </script>
 <div class="container">
     <h2><?php echo $page_title; ?></h1>

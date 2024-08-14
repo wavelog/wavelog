@@ -147,12 +147,12 @@ $wwff = 0;
 			<p>
 				<?php if($this->session->userdata('user_type') == '99') { ?>
 					<script>
-						var lang_options_bands_edit = '<?= __("Edit Band"); ?>';
-						var lang_options_bands_create = '<?= __("Create a band"); ?>';
-						var lang_admin_close = '<?= __("Close"); ?>';
-						var lang_options_bands_delete_warning = '<?= __("Warning! Are you sure you want to delete the following band: "); ?>';
-						var lang_options_bands_activateall_warning = '<?= __("Warning! Are you sure you want to activate all bands?"); ?>';
-						var lang_options_bands_deactivateall_warning = '<?= __("Warning! Are you sure you want to deactivate all bands?"); ?>';
+						var lang_options_bands_edit = "<?= __("Edit Band"); ?>";
+						var lang_options_bands_create = "<?= __("Create a band"); ?>";
+						var lang_admin_close = "<?= __("Close"); ?>";
+						var lang_options_bands_delete_warning = "<?= __("Warning! Are you sure you want to delete the following band: "); ?>";
+						var lang_options_bands_activateall_warning = "<?= __("Warning! Are you sure you want to activate all bands?"); ?>";
+						var lang_options_bands_deactivateall_warning = "<?= __("Warning! Are you sure you want to deactivate all bands?"); ?>";
 					</script>
 					<button onclick="createBandDialog();" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> <?= __("Create a band"); ?></button>
 					<button onclick="activateAllBands();" class="btn btn-primary btn-sm"><?= __("Activate All"); ?></button>

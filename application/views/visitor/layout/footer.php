@@ -238,11 +238,11 @@ if ($lang_code != 'en' && !file_exists(FCPATH . "assets/json/datatables_language
                 buttons: [
                    {
                       extend: 'csv',
-                      text: '<?= __("CSV"); ?>'
+                      text: "<?= __("CSV"); ?>"
                    },
                    {
                       extend: 'clear',
-                      text: '<?= __("Clear"); ?>'
+                      text: "<?= __("Clear"); ?>"
                    }
                 ]
             });

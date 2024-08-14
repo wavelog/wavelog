@@ -5,11 +5,11 @@
     var custom_date_format = "<?php echo $custom_date_format ?>";
     let user_map_custom = JSON.parse('<?php echo $user_map_custom; ?>');
 
-    var lang_gen_hamradio_latitude = '<?= __("Latitude"); ?>';
-    var lang_gen_hamradio_longitude = '<?= __("Longitude"); ?>';
-    var lang_gen_hamradio_gridsquare = '<?= __("Gridsquare"); ?>';
-    var lang_gen_hamradio_distance = '<?= __("Distance"); ?>';
-    var lang_gen_hamradio_bearing = '<?= __("Bearing"); ?>';
+    var lang_gen_hamradio_latitude = "<?= __("Latitude"); ?>";
+    var lang_gen_hamradio_longitude = "<?= __("Longitude"); ?>";
+    var lang_gen_hamradio_gridsquare = "<?= __("Gridsquare"); ?>";
+    var lang_gen_hamradio_distance = "<?= __("Distance"); ?>";
+    var lang_gen_hamradio_bearing = "<?= __("Bearing"); ?>";
     <?php
     echo "var homegrid ='" . strtoupper($homegrid[0]) . "';";
     if (!isset($options)) {
@@ -418,7 +418,7 @@ $options = json_decode($options);
 
         <div class="actionbody collapse">
             <script>
-                var lang_filter_actions_delete_warning = '<?= __("Warning! Are you sure you want to delete the marked QSO(s)?"); ?>';
+                var lang_filter_actions_delete_warning = "<?= __("Warning! Are you sure you want to delete the marked QSO(s)?"); ?>";
             </script>
             <div class="mb-2 btn-group">
                 <span class="h6 me-1"><?= __("With selected: "); ?></span>

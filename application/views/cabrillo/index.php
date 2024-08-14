@@ -1,9 +1,9 @@
 <script>
-	var lang_export_cabrillo_proceed = '<?= __("Proceed") ?>';
+	var lang_export_cabrillo_proceed = "<?= __("Proceed") ?>";
 	var lang_export_cabrillo_select_year = "<?= __("Select Year") ?>";
-	var lang_export_cabrillo_select_contest = '<?= __("Select Contest") ?>';
-	var lang_export_cabrillo_select_date_range = '<?= __("Select Date Range") ?>'; 
-	var lang_export_cabrillo_no_contests_for_stationlocation = '<?= __("No contests were found for this station location!") ?>';
+	var lang_export_cabrillo_select_contest = "<?= __("Select Contest") ?>";
+	var lang_export_cabrillo_select_date_range = "<?= __("Select Date Range") ?>"; 
+	var lang_export_cabrillo_no_contests_for_stationlocation = "<?= __("No contests were found for this station location!") ?>";
 </script>
 <div class="container">
 

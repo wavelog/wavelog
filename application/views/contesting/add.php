@@ -36,10 +36,10 @@
 							<td><?php echo $row['name'];?></td>
 							<td><?php echo $row['adifname'];?></td>
 							<script>
-								var lang_admin_contest_menu_n_active = '<?= __("Not Active"); ?>';
-								var lang_admin_contest_menu_activate = '<?= __("Activate"); ?>';
-								var lang_admin_contest_menu_active = '<?= __("Active"); ?>';
-								var lang_admin_contest_menu_deactivate = '<?= __("Deactivate"); ?>';
+								var lang_admin_contest_menu_n_active = "<?= __("Not Active"); ?>";
+								var lang_admin_contest_menu_activate = "<?= __("Activate"); ?>";
+								var lang_admin_contest_menu_active = "<?= __("Active"); ?>";
+								var lang_admin_contest_menu_deactivate = "<?= __("Deactivate"); ?>";
 							</script>
 							<td class='contest_<?php echo $row['id'] ?>'><?php if ($row['active'] == 1) { echo __("Active");} else { echo __("Not Active");};?></td>
 							<td style="text-align: center">
@@ -51,10 +51,10 @@
 							</td>
 							<td>
 								<script>
-									var lang_admin_danger = '<?= __("DANGER!"); ?>';
-									var lang_admin_contest_deletion_warning = '<?= __("Warning! Are you sure you want to delete the following contest: "); ?>';
-									var lang_admin_contest_active_all_warning = '<?= __("Warning! Are you sure you want to activate all contests?"); ?>';
-									var lang_admin_contest_deactive_all_warning = '<?= __("Warning! Are you sure you want to deactivate all contests?"); ?>';
+									var lang_admin_danger = "<?= __("DANGER!"); ?>";
+									var lang_admin_contest_deletion_warning = "<?= __("Warning! Are you sure you want to delete the following contest: "); ?>";
+									var lang_admin_contest_active_all_warning = "<?= __("Warning! Are you sure you want to activate all contests?"); ?>";
+									var lang_admin_contest_deactive_all_warning = "<?= __("Warning! Are you sure you want to deactivate all contests?"); ?>";
 								</script>
 								<a href="<?php echo site_url('contesting/edit')."/".$row['id']; ?>" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit"></i> <?= __("Edit"); ?></a>
 							</td>
@@ -70,8 +70,8 @@
 			<br/>
 			<p>
 				<script>
-					var lang_admin_contest_add_contest = '<?= __("Add a Contest"); ?>';
-					var lang_admin_close = '<?= __("Close"); ?>'
+					var lang_admin_contest_add_contest = "<?= __("Add a Contest"); ?>";
+					var lang_admin_close = "<?= __("Close"); ?>";
 				</script>
 				<button onclick="createContestDialog();" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> <?= __("Add a Contest"); ?></button>
 				<button onclick="activateAllContests();" class="btn btn-primary btn-sm"><?= __("Activate All"); ?></button>

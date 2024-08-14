@@ -4,15 +4,15 @@
 
     <h2><?= __("Distances Worked"); ?></h2>
     <script>
-        var lang_general_word_qso_data = '<?= __("QSO Data"); ?>';
-        var lang_statistics_distances_worked = '<?= __("Distances Worked"); ?>';
-        var lang_statistics_distances_part1_contacts_were_plotted_furthest = '<?= __("contacts were plotted.<br /> Your furthest contact was with"); ?>';
-        var lang_statistics_distances_part2_contacts_were_plotted_furthest = '<?= __("in gridsquare"); ?>';
-        var lang_statistics_distances_part3_contacts_were_plotted_furthest = '<?= __("the distance was"); ?>';
-        var lang_statistics_distances_number_of_qsos = '<?= __("Number of QSOs"); ?>';
-        var lang_gen_hamradio_distance = '<?= __("Distance"); ?>';
-        var lang_statistics_distances_callsigns_worked = '<?= __("Callsign(s) worked (max 5 shown)"); ?>';
-        var lang_statistics_distances_qsos_with = '<?= __("QSOs with"); ?>';
+        var lang_general_word_qso_data = "<?= __("QSO Data"); ?>";
+        var lang_statistics_distances_worked = "<?= __("Distances Worked"); ?>";
+        var lang_statistics_distances_part1_contacts_were_plotted_furthest = "<?= __("contacts were plotted.<br /> Your furthest contact was with"); ?>";
+        var lang_statistics_distances_part2_contacts_were_plotted_furthest = "<?= __("in gridsquare"); ?>";
+        var lang_statistics_distances_part3_contacts_were_plotted_furthest = "<?= __("the distance was"); ?>";
+        var lang_statistics_distances_number_of_qsos = "<?= __("Number of QSOs"); ?>";
+        var lang_gen_hamradio_distance = "<?= __("Distance"); ?>";
+        var lang_statistics_distances_callsigns_worked = "<?= __("Callsign(s) worked (max 5 shown)"); ?>";
+        var lang_statistics_distances_qsos_with = "<?= __("QSOs with"); ?>";
     </script>
     <div id="distances_div">
         <form class="d-flex align-items-center">
