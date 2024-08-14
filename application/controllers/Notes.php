@@ -12,8 +12,7 @@ class Notes extends CI_Controller {
 
 
 	/* Displays all notes in a list */
-	public function index()
-	{
+	public function index() {
 		$this->load->model('note');
 		$data['notes'] = $this->note->list_all();
 		$data['page_title'] = __("Notes");
@@ -50,9 +49,16 @@ class Notes extends CI_Controller {
 	
 	/* View Notes */
 	function view($id) {
+
+		$clean_id = $this->security->xss_clean($id);
+
+		if (! is_numeric($clean_id)) {
+			show_404();
+		}
+
 		$this->load->model('note');
 		
-		$data['note'] = $this->note->view($id);
+		$data['note'] = $this->note->view($clean_id);
 		
 		// Display
 		$data['page_title'] = __("Note");
@@ -63,10 +69,17 @@ class Notes extends CI_Controller {
 	
 	/* Edit Notes */
 	function edit($id) {
+
+		$clean_id = $this->security->xss_clean($id);
+
+		if (! is_numeric($clean_id)) {
+			show_404();
+		}
+
 		$this->load->model('note');
-		$data['id'] = $id;
+		$data['id'] = $clean_id;
 		
-		$data['note'] = $this->note->view($id);
+		$data['note'] = $this->note->view($clean_id);
 			
 		$this->load->library('form_validation');
 
@@ -91,8 +104,15 @@ class Notes extends CI_Controller {
 	
 	/* Delete Note */
 	function delete($id) {
+
+		$clean_id = $this->security->xss_clean($id);
+
+		if (! is_numeric($clean_id)) {
+			show_404();
+		}	
+
 		$this->load->model('note');
-		$this->note->delete($id);
+		$this->note->delete($clean_id);
 		
 		redirect('notes');
 	}
