@@ -2,7 +2,7 @@
     var lang_statistics_timeplotter_contacts_plotted = "<?= __("contacts were plotted"); ?>";
     var lang_statistics_timeplotter_chart_header = "<?= __("Time Distribution"); ?>";
     var lang_statistics_timeplotter_number_of_qsos = "<?= __("Number of QSOs"); ?>";
-    var lang_general_word_time = "<?= __("Time"); ?>';
+    var lang_general_word_time = "<?= __("Time"); ?>";
     var lang_statistics_timeplotter_callsigns_worked = "<?= __("Callsign(s) worked (max 5)"); ?>";
 </script>
 <div class="container">
