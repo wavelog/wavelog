@@ -682,12 +682,14 @@ $('#dxcc_id').ready(function() {
 
 $('#dxcc_id').on('change', function() {
     printWarning();
-	let dxccadif = $('#dxcc_id').val();
-	let dxccinfo = dxccarray.filter(function(dxcc) {
-		return dxcc.adif == dxccadif;
-	});
-	$("#stationCQZoneInput").val(dxccinfo[0].cq);
-	// $("#stationITUZoneInput").val(dxccinfo[0].itu); // Commented out, since we do not have itu data.
+    <?php if ($dxcc_list && $dxcc_list->result() > 0) { ?>
+        let dxccadif = $('#dxcc_id').val();
+        let dxccinfo = dxccarray.filter(function(dxcc) {
+            return dxcc.adif == dxccadif;
+        });
+        $("#stationCQZoneInput").val(dxccinfo[0].cq);
+        // $("#stationITUZoneInput").val(dxccinfo[0].itu); // Commented out, since we do not have itu data.
+    <?php } ?>
 });
 </script>
 
