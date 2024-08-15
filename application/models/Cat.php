@@ -26,10 +26,10 @@
 				'sat_name' => $result['sat_name'] ?? NULL,
 				'timestamp' => $timestamp,
 			);
-			if ( (isset($result['frequency'])) && ($result['frequency'] != "NULL") && ($result['frequency'] != '') ) {
+			if ( (isset($result['frequency'])) && ($result['frequency'] != "NULL") && ($result['frequency'] != '') && (is_numeric($result['frequency']))) {
 				$data['frequency'] = $result['frequency'];
 			} else {
-				if ( (isset($result['uplink_freq'])) && ($result['uplink_freq'] != "NULL") && ($result['uplink_freq'] != '') ) {
+				if ( (isset($result['uplink_freq'])) && ($result['uplink_freq'] != "NULL") && ($result['uplink_freq'] != '') && (is_numeric($result['uplink_freq'])) ) {
 					$data['frequency'] = $result['uplink_freq'];
 				} else {
 					unset($data['frequency']);	// Do not update Frequency since it wasn't provided
@@ -44,9 +44,9 @@
 					$data['mode'] = NULL;
 				}
 			}
-			if (isset($result['frequency_rx'])) {
+			if ( (isset($result['frequency_rx'])) && (is_numeric($result['frequency_rx'])) ) {
 				$data['frequency_rx'] = $result['frequency_rx'];
-			} else if (isset($result['downlink_freq']) && $result['downlink_freq'] != "NULL") {
+			} else if (isset($result['downlink_freq']) && ($result['downlink_freq'] != "NULL") && (is_numeric($result['downlink_freq'])))  {
 				$data['frequency_rx'] = $result['downlink_freq'];
 			} else {
 				$data['frequency_rx'] = NULL;
