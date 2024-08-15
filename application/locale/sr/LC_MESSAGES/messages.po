@@ -8,10 +8,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-08-14 10:34+0000\n"
-"PO-Revision-Date: 2024-08-14 15:04+0000\n"
+"PO-Revision-Date: 2024-08-15 07:13+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
-"Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/sr/>\n"
+"Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/sr/>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -3025,19 +3025,23 @@ msgid ""
 "Wavelog. Generate a read-only key if the application only needs to obtain "
 "data from Wavelog."
 msgstr ""
+"Trebalo bi da generišete API ključ za svaku alatku koju želite da koristite ("
+"npr. WLgate). Generišite read-write ključ ako aplikacije treba da šalej "
+"podatke na Wavelog. Generišite read-only ključ ako aplikacija treba samo da "
+"dobije podatke od Waveloga."
 
 #: application/views/api/help.php:19
 msgid "API URL"
-msgstr ""
+msgstr "API URL"
 
 #: application/views/api/help.php:19 application/views/api/help.php:38
 #: application/views/cron/index.php:21 application/views/debug/index.php:36
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Kopiraj u privremenu memoriju"
 
 #: application/views/api/help.php:19
 msgid "The API URL for this Wavelog instance is"
-msgstr ""
+msgstr "API URL za ovu verziju Waveloga je"
 
 #: application/views/api/help.php:20 application/views/dxcalendar/index.php:15
 #: application/views/eqsl/export.php:33 application/views/qso/edit_ajax.php:477
@@ -3050,31 +3054,32 @@ msgstr ""
 #: application/views/sattimers/index.php:75
 #: application/views/search/filter.php:69
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 #: application/views/api/help.php:20
 msgid ""
 "It's good practice to delete a key if you are no longer using the associated "
 "application."
 msgstr ""
+"Dobra praksa je da izbrišete ključ ako više ne koristite povezanu aplikaciju."
 
 #: application/views/api/help.php:27
 msgid "API Key"
-msgstr ""
+msgstr "API ključ"
 
 #: application/views/api/help.php:28 application/views/cron/edit.php:30
 #: application/views/cron/index.php:51
 #: application/views/search/stored_queries.php:8
 msgid "Description"
-msgstr ""
+msgstr "Opis"
 
 #: application/views/api/help.php:29
 msgid "Last Used"
-msgstr ""
+msgstr "Poslednja upotreba"
 
 #: application/views/api/help.php:30
 msgid "Permissions"
-msgstr ""
+msgstr "Dozvole"
 
 #: application/views/api/help.php:31 application/views/cron/index.php:52
 #: application/views/lotw_views/index.php:45
@@ -3085,52 +3090,52 @@ msgstr ""
 #: application/views/timeline/index.php:119
 #: application/views/update/index.php:30
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: application/views/api/help.php:32 application/views/hrdlog/export.php:39
 #: application/views/logbookadvanced/index.php:492
 #: application/views/qrz/export.php:43 application/views/webadif/export.php:45
 msgid "Actions"
-msgstr ""
+msgstr "Akcije"
 
 #: application/views/api/help.php:45
 msgid "Read & Write"
-msgstr ""
+msgstr "Čitaj & Piši"
 
 #: application/views/api/help.php:47
 msgid "Read-Only"
-msgstr ""
+msgstr "Samo čitanje"
 
 #: application/views/api/help.php:49
 msgid "Unknown"
-msgstr ""
+msgstr "Nepoznato"
 
 #: application/views/api/help.php:59
 msgid "Test"
-msgstr ""
+msgstr "Test"
 
 #: application/views/api/help.php:71
 msgid "You have no API Keys."
-msgstr ""
+msgstr "Nemate API ključeva."
 
 #: application/views/api/help.php:75
 msgid "Create a read & write key"
-msgstr ""
+msgstr "Kreirajte ključ za čitanje i zapisivanje"
 
 #: application/views/api/help.php:76
 msgid "Create a read-only key"
-msgstr ""
+msgstr "Kreirajte ključ samo za čitanje"
 
 #: application/views/awards/counties/details.php:4
 #: application/views/awards/details.php:1
 #: application/views/awards/vucc/band.php:4
 #: application/views/timeline/details.php:2
 msgid "Filtering on"
-msgstr ""
+msgstr "Uključeno filtriranje"
 
 #: application/views/awards/counties/details.php:13
 msgid "County"
-msgstr ""
+msgstr "Okrug"
 
 #: application/views/awards/counties/index.php:6
 #: application/views/awards/counties/index.php:13
@@ -3169,11 +3174,11 @@ msgstr ""
 #: application/views/awards/wwff/index.php:6
 #: application/views/awards/wwff/index.php:13
 msgid "Award Info"
-msgstr ""
+msgstr "Informacija o diplomi"
 
 #: application/views/awards/counties/index.php:7
 msgid "US County Award"
-msgstr ""
+msgstr "Diploma US County"
 
 #: application/views/awards/counties/index.php:8
 #, php-format
@@ -3182,6 +3187,9 @@ msgid ""
 "magazine, is issued for confirmed two-way radio contacts with specified "
 "numbers of U.S. counties under rules and conditions you can find %s."
 msgstr ""
+"United States of America Counties Award (USA-CA), sponzorisana od strane CQ "
+"Maganzina, izdaje se za potvrđene veze sa određenim brojem U.S.A. okruga pod "
+"uslovima koje možete pronaći %s."
 
 #: application/views/awards/counties/index.php:9
 msgid ""
@@ -3189,18 +3197,23 @@ msgid ""
 "individuals for all county contacts made, regardless of callsigns used, "
 "operating locations, or dates."
 msgstr ""
+"USA-CA je dostupna svim licenciranim amaterima širom svijeta i izdaje se "
+"licima za veze sa svim okruzima, bez obzira na korišten pozivni znak, "
+"lokaciju sa koje je rađeno ili datume."
 
 #: application/views/awards/counties/index.php:10
 msgid "Special USA-CA awards are also available to SWLs on a heard basis."
 msgstr ""
+"Posebna USA-CA diploma dostupna je SWL amaterima, na osnovu slušanih "
+"kontakata."
 
 #: application/views/awards/counties/index.php:21
 msgid "Counties Worked"
-msgstr ""
+msgstr "Rađenih okruga"
 
 #: application/views/awards/counties/index.php:22
 msgid "Counties Confirmed"
-msgstr ""
+msgstr "Potvrđenih okruga"
 
 #: application/views/awards/counties/index.php:39
 #: application/views/awards/cq/index.php:174
@@ -3227,11 +3240,11 @@ msgstr ""
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:241
 msgid "Total"
-msgstr ""
+msgstr "Ukupno"
 
 #: application/views/awards/cq/index.php:18
 msgid "CQ Magazine WAZ Award"
-msgstr ""
+msgstr "CQ Magazin WAZ Award"
 
 #: application/views/awards/cq/index.php:19
 msgid ""
@@ -3239,22 +3252,27 @@ msgid ""
 "radio magazines in the world. The magazine first appeared in January 1945 "
 "and focuses on awards and the practical aspects of amateur radio."
 msgstr ""
+"Sedište CQ Magazina je u USA i jedan je od najpopularnijih radio magazina na "
+"svetu. Prvi broj Magazina izdat je u januaru 1945. i težište mu je na "
+"diplomama i praktičnim aspektima amaterskog radija."
 
 #: application/views/awards/cq/index.php:20
 msgid ""
 "The WAZ Award stands for 'Worked All Zones' and requires radio contacts to "
 "all 40 CQ Zones along with the corresponding confirmation."
 msgstr ""
+"WAZ Award znači \"Worked All Zones\" i zahteva radio-kontakte sa svih 40 CQ "
+"Zona, uz povrđene podatke o vezama."
 
 #: application/views/awards/cq/index.php:21
 #, php-format
 msgctxt "uses 'CQ Magazine'"
 msgid "You can find all the information and rules on the Website of the %s."
-msgstr ""
+msgstr "Informacije i pravila možete pronaći na web sajtu %s."
 
 #: application/views/awards/cq/index.php:23
 msgid "Awards - CQ Magazine WAZ"
-msgstr ""
+msgstr "Diplome - CQ Magazin WAZ"
 
 #: application/views/awards/cq/index.php:32
 #: application/views/awards/itu/index.php:32
@@ -3265,7 +3283,7 @@ msgstr ""
 #: application/views/interface_assets/footer.php:39
 #: application/views/visitor/index.php:266
 msgid "Confirmed"
-msgstr ""
+msgstr "Potvrđeno"
 
 #: application/views/awards/cq/index.php:32
 #: application/views/awards/itu/index.php:32
@@ -3274,7 +3292,7 @@ msgstr ""
 #: application/views/dashboard/index.php:356
 #: application/views/visitor/index.php:262
 msgid "Worked"
-msgstr ""
+msgstr "Rađeno"
 
 #: application/views/awards/cq/index.php:36
 #: application/views/awards/dok/index.php:41
@@ -3287,7 +3305,7 @@ msgstr ""
 #: application/views/awards/waja/index.php:35
 #: application/views/awards/was/index.php:35
 msgid "Show worked"
-msgstr ""
+msgstr "Prikaži rađene"
 
 #: application/views/awards/cq/index.php:40
 #: application/views/awards/dok/index.php:45
@@ -3300,7 +3318,7 @@ msgstr ""
 #: application/views/awards/waja/index.php:39
 #: application/views/awards/was/index.php:39
 msgid "Show confirmed"
-msgstr ""
+msgstr "Prikaži potvrđene"
 
 #: application/views/awards/cq/index.php:44
 #: application/views/awards/dxcc/index.php:51
@@ -3312,7 +3330,7 @@ msgstr ""
 #: application/views/awards/waja/index.php:43
 #: application/views/awards/was/index.php:43
 msgid "Show not worked"
-msgstr ""
+msgstr "Prikaži ne urađene"
 
 #: application/views/awards/cq/index.php:50
 #: application/views/awards/dok/index.php:51
@@ -3324,7 +3342,7 @@ msgstr ""
 #: application/views/awards/waja/index.php:49
 #: application/views/awards/was/index.php:49
 msgid "Show QSO with QSL Type"
-msgstr ""
+msgstr "Prikaži QSO sa vrstom QSL"
 
 #: application/views/awards/cq/index.php:54
 #: application/views/awards/itu/index.php:54
@@ -3332,7 +3350,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:378
 #: application/views/view_log/qso.php:25
 msgid "QSL Card"
-msgstr ""
+msgstr "QSL karte"
 
 #: application/views/awards/cq/index.php:110
 #: application/views/awards/dok/index.php:126
@@ -3354,7 +3372,7 @@ msgstr "Reset"
 
 #: application/views/awards/cq/index.php:113
 msgid "Show CQ Zone Map"
-msgstr ""
+msgstr "Prikaži kartu CQ zona"
 
 #: application/views/awards/cq/index.php:122
 #: application/views/awards/dxcc/index.php:199
@@ -3365,7 +3383,7 @@ msgstr ""
 #: application/views/awards/waja/index.php:126
 #: application/views/awards/was/index.php:122
 msgid "Table"
-msgstr ""
+msgstr "Tabela"
 
 #: application/views/awards/cq/index.php:125
 #: application/views/awards/dok/index.php:128
@@ -3381,7 +3399,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:516
 #: application/views/logbookadvanced/useroptions.php:7
 msgid "Map"
-msgstr ""
+msgstr "Karta"
 
 #: application/views/awards/cq/index.php:148 application/views/csv/index.php:80
 #: application/views/dxatlas/index.php:80 application/views/kml/index.php:65
@@ -3398,7 +3416,7 @@ msgstr ""
 #: application/views/timeline/index.php:231
 #: application/views/timeplotter/index.php:44
 msgid "CQ Zone"
-msgstr ""
+msgstr "CQ zona"
 
 #: application/views/awards/cq/index.php:165
 #: application/views/awards/dok/index.php:165
@@ -3411,7 +3429,7 @@ msgstr ""
 #: application/views/awards/waja/index.php:168
 #: application/views/awards/was/index.php:168
 msgid "Summary"
-msgstr ""
+msgstr "Zbirno"
 
 #: application/views/awards/cq/index.php:178
 #: application/views/awards/dok/index.php:178
@@ -3424,7 +3442,7 @@ msgstr ""
 #: application/views/awards/waja/index.php:182
 #: application/views/awards/was/index.php:181
 msgid "Total worked"
-msgstr ""
+msgstr "Ukuno rađenih"
 
 #: application/views/awards/cq/index.php:185
 #: application/views/awards/dok/index.php:185
@@ -3437,11 +3455,11 @@ msgstr ""
 #: application/views/awards/waja/index.php:189
 #: application/views/awards/was/index.php:188
 msgid "Total confirmed"
-msgstr ""
+msgstr "Ukupno potvrđenih"
 
 #: application/views/awards/dok/index.php:7
 msgid "DOK Award"
-msgstr ""
+msgstr "DOK diploma"
 
 #: application/views/awards/dok/index.php:8
 msgid ""
@@ -3452,6 +3470,12 @@ msgid ""
 "'Deutscher Ortsverband Kenner' (English: 'German Local Association "
 "Identifier')."
 msgstr ""
+"Nemačka se prostire na preko 63 km od istoka ka zapadu, i skoro 900 km od "
+"severa ka jugu. Oko 70.000 od 82 miliona stavnika su licencirani radio-"
+"amateri, od kojih je više od 40.000 članova nacionalnog saveza DARC. DOK je "
+"sistem sa identifikatorom koji je dodeljen lokalnim organizacionim "
+"jedinicama i znači 'Deutscher Ortsverband Kenner' (Srpski: 'Identifikator "
+"lokalne asocijacije')."
 
 #: application/views/awards/dok/index.php:9
 msgid ""
@@ -3460,10 +3484,15 @@ msgid ""
 "or F41 Baunatal (location of the DARC headquarters). Note: A zero in a DOK "
 "is a common mistake, often being logged as the letter O."
 msgstr ""
+"DOK se zastoji od slova za okrug i dvocifrenog broja za lokalnu "
+"organizaciju, kao što je P03 za Fridrishafen (grad u kome se održava "
+"Hamradio sajam) ili F41 Baunatal (sjedište DARC). Napomena: uobičajena "
+"greška u popunjavanju dnevnika je nula u oznaci DOK, koja se često upisuje "
+"kao slovo O."
 
 #: application/views/awards/dok/index.php:10
 msgid "DARC website"
-msgstr ""
+msgstr "DARC web sajt"
 
 #: application/views/awards/dok/index.php:10
 #, php-format
@@ -3472,14 +3501,16 @@ msgid ""
 "This information is provided by the %s. Information about the DOK Awards and "
 "its rules can be found %s."
 msgstr ""
+"Ove informacije je obezbedio %s. Informacije o DOK diplomama i pravilima "
+"možete naći %s."
 
 #: application/views/awards/dok/index.php:20
 msgid "DOK / SDOK"
-msgstr ""
+msgstr "DOK / SDOK"
 
 #: application/views/awards/dok/index.php:23
 msgid "DOK + SDOK"
-msgstr ""
+msgstr "DOK + SDOK"
 
 #: application/views/awards/dok/index.php:37
 #: application/views/awards/dxcc/index.php:39
@@ -3490,7 +3521,7 @@ msgstr ""
 #: application/views/awards/waja/index.php:31
 #: application/views/awards/was/index.php:31
 msgid "Worked / Confirmed"
-msgstr ""
+msgstr "Rađeni / Potvrđeni"
 
 #: application/views/awards/dok/index.php:80
 #: application/views/awards/dxcc/index.php:120
@@ -3501,15 +3532,15 @@ msgstr ""
 #: application/views/awards/waja/index.php:78
 #: application/views/awards/was/index.php:74
 msgid "Every band"
-msgstr ""
+msgstr "Svaki opseg"
 
 #: application/views/awards/dxcc/index.php:14
 msgid "DXCC Award"
-msgstr ""
+msgstr "DXCC diploma"
 
 #: application/views/awards/dxcc/index.php:15
 msgid "'How to Count Countries Worked, A New DX Scoring System'"
-msgstr ""
+msgstr "'Kako obračunati rađene zemlje, novi DX sistem bodovanja'"
 
 #: application/views/awards/dxcc/index.php:15
 #, php-format
@@ -3518,15 +3549,18 @@ msgid ""
 "DXCC List is based on an article created in 1935 by Clinton B. DeSoto, "
 "W1CBD, titled %s."
 msgstr ""
+"DXCC je skraćenica za 'DX Century Club', diplomu na osnovu rađih država/"
+"entiteta. DXCC lista je napravljena na osnovu članka objavljenog 1935. "
+"godine čiji je autor Klinton B. DeSoto, W1CBD, pod naslovom %s."
 
 #: application/views/awards/dxcc/index.php:16
 msgid "ARRL website"
-msgstr ""
+msgstr "ARR web sajt"
 
 #: application/views/awards/dxcc/index.php:16
 #, php-format
 msgid "You can find all information about the DXCC Award on the %s."
-msgstr ""
+msgstr "Sve informacije o DXCC diplomama možete pronaći na %s."
 
 #: application/views/awards/dxcc/index.php:17
 msgid ""
@@ -3536,11 +3570,16 @@ msgid ""
 "will find Deleted DXCC entities also in the lists on Wavelog. Be aware that "
 "these DXCC entities are outdated and no longer valid."
 msgstr ""
+"Važna napomena: Tokom vremena, kriterijum za sastavljanje DXCC liste se "
+"menjao. Lista ostasje nepromenjena sve dok entitet više ne ispunjava uslove "
+"pod kojima je dodat, kada će biti premešte na listu obrisanih zemalja/"
+"entiteta. Ovu listu takođe možete pronaći u Wavelogu. Skrećemo vam pažnju da "
+"su ovi DXCC entiteti zastareli i nevažeći."
 
 #: application/views/awards/dxcc/index.php:32
 #: application/views/awards/iota/index.php:33
 msgid "Include deleted"
-msgstr ""
+msgstr "Uključujući obrisane"
 
 #: application/views/awards/dxcc/index.php:87
 #: application/views/awards/iota/index.php:61
@@ -3549,7 +3588,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:243 application/views/qso/index.php:381
 #: application/views/view_log/qso.php:250
 msgid "Antarctica"
-msgstr ""
+msgstr "Antarktika"
 
 #: application/views/awards/dxcc/index.php:91
 #: application/views/awards/iota/index.php:65
@@ -3558,7 +3597,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:242 application/views/qso/index.php:380
 #: application/views/view_log/qso.php:247
 msgid "Africa"
-msgstr ""
+msgstr "Afrika"
 
 #: application/views/awards/dxcc/index.php:95
 #: application/views/awards/iota/index.php:69
@@ -3567,7 +3606,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:244 application/views/qso/index.php:382
 #: application/views/view_log/qso.php:253
 msgid "Asia"
-msgstr ""
+msgstr "Azija"
 
 #: application/views/awards/dxcc/index.php:99
 #: application/views/awards/iota/index.php:73
@@ -3576,7 +3615,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:245 application/views/qso/index.php:383
 #: application/views/view_log/qso.php:256
 msgid "Europe"
-msgstr ""
+msgstr "Evropa"
 
 #: application/views/awards/dxcc/index.php:103
 #: application/views/awards/iota/index.php:77
@@ -3585,7 +3624,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:246 application/views/qso/index.php:384
 #: application/views/view_log/qso.php:259
 msgid "North America"
-msgstr ""
+msgstr "Severna Amerika"
 
 #: application/views/awards/dxcc/index.php:107
 #: application/views/awards/iota/index.php:81
@@ -3594,7 +3633,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:248 application/views/qso/index.php:386
 #: application/views/view_log/qso.php:265
 msgid "South America"
-msgstr ""
+msgstr "Južna Amerika"
 
 #: application/views/awards/dxcc/index.php:111
 #: application/views/awards/iota/index.php:85
@@ -3603,27 +3642,27 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:247 application/views/qso/index.php:385
 #: application/views/view_log/qso.php:262
 msgid "Oceania"
-msgstr ""
+msgstr "Okeanija"
 
 #: application/views/awards/dxcc/index.php:189
 msgid "Show DXCC Map"
-msgstr ""
+msgstr "Prikaži DXCC kartu"
 
 #: application/views/awards/dxcc/index.php:225
 msgid "DXCC Name"
-msgstr ""
+msgstr "Naziv DXCC"
 
 #: application/views/awards/dxcc/index.php:226
 #: application/views/awards/iota/index.php:170
 #: application/views/timeline/index.php:117
 #: application/views/timeline/index.php:204
 msgid "Prefix"
-msgstr ""
+msgstr "Prefiks"
 
 #: application/views/awards/ffma/index.php:8
 #: application/views/interface_assets/header.php:236
 msgid "Fred Fish Memorial Award"
-msgstr ""
+msgstr "Fred Fish memorijalna diploma"
 
 #: application/views/awards/ffma/index.php:9
 msgid ""
@@ -3631,21 +3670,26 @@ msgid ""
 "who was the first amateur to have worked and confirmed all 488 Maidenhead "
 "grid squares in the 48 contiguous United States on 6 Meters."
 msgstr ""
+"Fred Fish memorijalna diploma je napravljena u čast Freda Fiša, W5FF (SK) "
+"koji je bio prvi radio-amater koji je uradio i potvrdio svih 488 Maidenhead "
+"polja u svih 48 kontinentalnih američkih država na 6M opsegu."
 
 #: application/views/awards/ffma/index.php:10
 msgid ""
 "The award will be given to any amateur who can duplicate W5FF's "
 "accomplishment."
 msgstr ""
+"Diploma će biti dodeljena svim amaterima koji mogu da ponove dostignuće koje "
+"je napravio W5FF."
 
 #: application/views/awards/ffma/index.php:11
 #, php-format
 msgid "For more information, you can visit this link: %s."
-msgstr ""
+msgstr "Za više informacija, možete posetiti ovaj link: %s."
 
 #: application/views/awards/gridmaster/index.php:7
 msgid "US Gridmaster Award"
-msgstr ""
+msgstr "US Gridmaster diploma"
 
 #: application/views/awards/gridmaster/index.php:8
 msgid ""
@@ -3654,6 +3698,10 @@ msgid ""
 "operators worldwide who manage to work all 488 grid squares in the USA via "
 "satellite and can provide QSL confirmations for each contact."
 msgstr ""
+"GridMaster dipolma je najsprestižnija AMSAT diploma, prvi put predstavljena "
+"2014 godine od strane Star Comm grupe. Dodjeljuje se svim radio-amaterima "
+"širom sveta koji uspeju da održe veze preko satelita sa svih 488 polja u SAD "
+"i koji dostave QSL potvrde za svaku vezu."
 
 #: application/views/awards/gridmaster/index.php:9
 #, php-format
@@ -3667,18 +3715,26 @@ msgid ""
 "when achieved from another location, which is in a different 200-kilometer "
 "circle."
 msgstr ""
+"Zvanična informacija sa %s: Obosntrana komunikacija sa svakim poljem mora "
+"biti uspostavljena preko amaterskih satelita. Ne postoji zahtevani minimum "
+"za raport o kvalitetu signala. Veze moraju biti održane sa iste lokacije ili "
+"lokacija koje su maksimalno udaljene ne više od 200 km. Aplikantova izjava u "
+"aplikaciji za diplomu služi kao potvrda pridržavanja pravila o udaljenosti. "
+"Pojedinci mogu aplicirati i može im biti dodeljeno više GridMaster diploma "
+"koje mogu biti ostvarene sa druge lokacije, koja je drugačija od kruga od "
+"200 km."
 
 #: application/views/awards/gridmaster/index.php:9
 msgid "website"
-msgstr ""
+msgstr "web sajt"
 
 #: application/views/awards/gridmaster/index.php:10
 msgid "This map shows only QSOs worked on SAT."
-msgstr ""
+msgstr "Ova karta prikazuje samo QSO rađene preko SAT."
 
 #: application/views/awards/helvetia/index.php:18
 msgid "HELVETIA 26 | SWITZERLAND AWARD"
-msgstr ""
+msgstr "HELVETIA 26 | Švajcarska diploma"
 
 #: application/views/awards/helvetia/index.php:19
 msgid ""
