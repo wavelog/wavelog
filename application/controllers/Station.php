@@ -19,25 +19,6 @@ class Station extends CI_Controller
 		}
 	}
 
-	public function index()
-	{
-		$this->load->model('stations');
-		$this->load->model('Logbook_model');
-		$this->load->model('user_model');
-
-		$data['is_admin'] = ($this->user_model->authorize(99));
-
-		$data['stations'] = $this->stations->all_with_count();
-		$data['current_active'] = $this->stations->find_active();
-		$data['is_there_qsos_with_no_station_id'] = $this->Logbook_model->check_for_station_id();
-
-		// Render Page
-		$data['page_title'] = __("Station Location");
-		$this->load->view('interface_assets/header', $data);
-		$this->load->view('station_profile/index');
-		$this->load->view('interface_assets/footer');
-	}
-
 	public function create()
 	{
 		$this->load->model('stations');

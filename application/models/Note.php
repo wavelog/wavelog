@@ -6,8 +6,7 @@ class Note extends CI_Model {
         if ($api_key == null) {
 			$user_id = $this->session->userdata('user_id');
 		} else {
-			$CI =& get_instance();
-			$CI->load->model('api_model');
+			$this->load->model('api_model');
 			if (strpos($this->api_model->access($api_key), 'r') !== false) {
 				$this->api_model->update_last_used($api_key);
 				$user_id = $this->api_model->key_userid($api_key);
@@ -20,9 +19,9 @@ class Note extends CI_Model {
 
 	function add() {
 		$data = array(
-			'cat' => xss_clean($this->input->post('category')),
-			'title' => xss_clean($this->input->post('title')),
-			'note' => xss_clean($this->input->post('content')),
+			'cat' => $this->input->post('category', TRUE),
+			'title' => $this->input->post('title', TRUE),
+			'note' => $this->input->post('content', TRUE),
 			'user_id' => $this->session->userdata('user_id')
 		);
 
@@ -31,23 +30,37 @@ class Note extends CI_Model {
 
 	function edit() {
 		$data = array(
-			'cat' => xss_clean($this->input->post('category')),
-			'title' => xss_clean($this->input->post('title')),
-			'note' => xss_clean($this->input->post('content'))
+			'cat' => $this->input->post('category', TRUE),
+			'title' => $this->input->post('title', TRUE),
+			'note' => $this->input->post('content', TRUE)
 		);
 
-		$this->db->where('id', xss_clean($this->input->post('id')));
+		$this->db->where('id', $this->input->post('id', TRUE));
 		$this->db->where('user_id', $this->session->userdata('user_id'));
 		$this->db->update('notes', $data);
 	}
 
 	function delete($id) {
-		$this->db->delete('notes', array('id' => xss_clean($id), 'user_id' =>$this->session->userdata('user_id')));
+
+		$clean_id = $this->security->xss_clean($id);
+
+		if (! is_numeric($clean_id)) {
+			show_404();
+		}
+
+		$this->db->delete('notes', array('id' => $clean_id, 'user_id' => $this->session->userdata('user_id')));
 	}
 
 	function view($id) {
+
+		$clean_id = $this->security->xss_clean($id);
+
+		if (! is_numeric($clean_id)) {
+			show_404();
+		}
+
 		// Get Note
-		$this->db->where('id', xss_clean($id));
+		$this->db->where('id', $clean_id);
 		$this->db->where('user_id', $this->session->userdata('user_id'));
 		return $this->db->get('notes');
 	}

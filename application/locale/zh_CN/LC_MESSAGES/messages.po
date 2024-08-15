@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-13 19:24+0000\n"
-"PO-Revision-Date: 2024-08-12 15:29+0000\n"
+"POT-Creation-Date: 2024-08-15 07:16+0000\n"
+"PO-Revision-Date: 2024-08-14 08:35+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/zh_Hans/>\n"
@@ -402,11 +402,11 @@ msgstr "ITU 分区"
 msgid "Backup"
 msgstr "备份"
 
-#: application/controllers/Backup.php:48
+#: application/controllers/Backup.php:50
 msgid "ADIF - Backup"
 msgstr "ADIF - 备份"
 
-#: application/controllers/Backup.php:80
+#: application/controllers/Backup.php:84
 msgid "Notes - Backup"
 msgstr "笔记 - 备份"
 
@@ -1027,7 +1027,6 @@ msgstr "信号报告(收)"
 #: application/views/qso/components/previous_contacts.php:81
 #: application/views/search/result_search.php:11
 #: application/views/search/search_result_ajax.php:7
-#: application/views/station_profile/index.php:43
 #: application/views/stationsetup/stationsetup.php:124
 #: application/views/statistics/custom_result.php:92
 #: application/views/timeline/index.php:118 application/views/user/edit.php:232
@@ -1125,7 +1124,6 @@ msgstr "州"
 #: application/views/search/result.php:33
 #: application/views/search/search_result_ajax.php:13
 #: application/views/simplefle/index.php:147
-#: application/views/station_profile/index.php:44
 #: application/views/stationsetup/stationsetup.php:125
 #: application/views/timeline/index.php:257 application/views/user/edit.php:130
 #: application/views/user/edit.php:238 application/views/user/edit.php:260
@@ -1293,7 +1291,6 @@ msgstr "操作员"
 #: application/views/qso/edit_ajax.php:230 application/views/qso/index.php:368
 #: application/views/station_profile/create.php:73
 #: application/views/station_profile/edit.php:78
-#: application/views/station_profile/index.php:65
 #: application/views/stationsetup/linkedlocations.php:17
 #: application/views/stationsetup/linkedlocations.php:45
 #: application/views/stationsetup/stationsetup.php:150
@@ -1353,7 +1350,7 @@ msgstr "模式"
 msgid "Edit Mode"
 msgstr "编辑模式"
 
-#: application/controllers/Notes.php:19
+#: application/controllers/Notes.php:18
 #: application/views/interface_assets/header.php:128
 #: application/views/notes/add.php:9 application/views/notes/edit.php:10
 #: application/views/notes/main.php:5 application/views/notes/main.php:8
@@ -1365,16 +1362,16 @@ msgstr "编辑模式"
 msgid "Notes"
 msgstr "笔记"
 
-#: application/controllers/Notes.php:38
+#: application/controllers/Notes.php:37
 msgid "Add Notes"
 msgstr "添加笔记"
 
-#: application/controllers/Notes.php:58
+#: application/controllers/Notes.php:64
 #: application/views/oqrs/showrequests.php:88
 msgid "Note"
 msgstr "注解"
 
-#: application/controllers/Notes.php:79 application/views/notes/edit.php:7
+#: application/controllers/Notes.php:92 application/views/notes/edit.php:7
 #: application/views/notes/view.php:19
 msgid "Edit Note"
 msgstr "编辑笔记"
@@ -1597,8 +1594,6 @@ msgstr "默认（点击释放）"
 #: application/views/satellite/edit.php:40
 #: application/views/satellite/index.php:26
 #: application/views/search/stored_queries.php:22
-#: application/views/station_profile/index.php:55
-#: application/views/station_profile/index.php:106
 #: application/views/stationsetup/stationsetup.php:33
 #: application/views/stationsetup/stationsetup.php:137
 #: application/views/stationsetup/stationsetup.php:192
@@ -1678,8 +1673,16 @@ msgid ""
 "date"
 msgstr "QSO 尚未在 LoTW 确认，但已在 QSO 日期后上传呼号"
 
-#: application/controllers/Station.php:35
-#: application/controllers/Station.php:78 application/views/csv/index.php:19
+#: application/controllers/Station.php:36
+#: application/controllers/Stationsetup.php:226
+msgid "Create Station Location"
+msgstr "创建台站地址"
+
+#: application/controllers/Station.php:51
+msgid "Edit Station Location: "
+msgstr "修改台站地址： "
+
+#: application/controllers/Station.php:59 application/views/csv/index.php:19
 #: application/views/dxatlas/index.php:19
 #: application/views/labels/index.php:124
 #: application/views/logbookadvanced/edit.php:18
@@ -1694,16 +1697,7 @@ msgstr "QSO 尚未在 LoTW 确认，但已在 QSO 日期后上传呼号"
 msgid "Station Location"
 msgstr "电台站地址"
 
-#: application/controllers/Station.php:55
-#: application/controllers/Stationsetup.php:226
-msgid "Create Station Location"
-msgstr "创建台站地址"
-
-#: application/controllers/Station.php:70
-msgid "Edit Station Location: "
-msgstr "修改台站地址： "
-
-#: application/controllers/Station.php:92
+#: application/controllers/Station.php:73
 msgid "Duplicate Station Location:"
 msgstr "台站地址重复："
 
@@ -1796,20 +1790,17 @@ msgid "Are you sure you want to delete the public slug?"
 msgstr "确定要删除此公开个性标识符？"
 
 #: application/controllers/Stationsetup.php:349
-#: application/views/station_profile/index.php:69
 #: application/views/stationsetup/stationsetup.php:154
 msgid ""
 "Are you sure you want to make the following station the active station: "
 msgstr "确认将如下台站设为启用状态： "
 
 #: application/controllers/Stationsetup.php:349
-#: application/views/station_profile/index.php:69
 #: application/views/stationsetup/stationsetup.php:154
 msgid "Set Active"
 msgstr "设置启用"
 
 #: application/controllers/Stationsetup.php:351
-#: application/views/station_profile/index.php:71
 #: application/views/stationsetup/stationsetup.php:156
 msgid "Active Station"
 msgstr "启用"
@@ -1818,7 +1809,6 @@ msgstr "启用"
 #: application/views/interface_assets/header.php:113
 #: application/views/qso/edit_ajax.php:33 application/views/qso/index.php:20
 #: application/views/simplefle/index.php:28
-#: application/views/station_profile/index.php:76
 #: application/views/stationsetup/stationsetup.php:161
 #: application/views/user/main.php:87 application/views/user/main.php:89
 msgid "QSO"
@@ -1834,8 +1824,6 @@ msgstr "QSO"
 #: application/views/mode/index.php:52 application/views/satellite/edit.php:39
 #: application/views/satellite/index.php:25
 #: application/views/search/stored_queries.php:21
-#: application/views/station_profile/index.php:46
-#: application/views/station_profile/index.php:79
 #: application/views/stationsetup/stationsetup.php:128
 #: application/views/stationsetup/stationsetup.php:165
 #: application/views/themes/index.php:104 application/views/user/main.php:52
@@ -1843,29 +1831,23 @@ msgid "Edit"
 msgstr "编辑"
 
 #: application/controllers/Stationsetup.php:363
-#: application/views/station_profile/index.php:99
 #: application/views/stationsetup/stationsetup.php:185
 msgid "Are you sure you want to delete all QSOs within this station profile?"
 msgstr "确认删除台站下的所有 QSO？"
 
 #: application/controllers/Stationsetup.php:363
-#: application/views/station_profile/index.php:54
-#: application/views/station_profile/index.php:101
 #: application/views/stationsetup/stationsetup.php:136
 #: application/views/stationsetup/stationsetup.php:187
 msgid "Empty Log"
 msgstr "清空日志"
 
 #: application/controllers/Stationsetup.php:367
-#: application/views/station_profile/index.php:47
-#: application/views/station_profile/index.php:82
 #: application/views/stationsetup/stationsetup.php:129
 #: application/views/stationsetup/stationsetup.php:168
 msgid "Copy"
 msgstr "复制"
 
 #: application/controllers/Stationsetup.php:372
-#: application/views/station_profile/index.php:105
 #: application/views/stationsetup/stationsetup.php:191
 #, php-format
 msgid ""
@@ -2131,31 +2113,31 @@ msgstr "HRDlog：无 QSO 可供上传，台站呼号为： "
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog：无台站配置信息。"
 
-#: application/models/Logbook_model.php:4129
+#: application/models/Logbook_model.php:4143
 msgid "QSO could not be matched"
 msgstr "QSO 无法匹配"
 
-#: application/models/Logbook_model.php:4135
+#: application/models/Logbook_model.php:4149
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "已经通过 LoTW/Clublog/eQSL/竞赛 确认"
 
-#: application/models/Logbook_model.php:4140
+#: application/models/Logbook_model.php:4154
 msgid "confirmed by award manager"
 msgstr "已经通过奖项管理员确认"
 
-#: application/models/Logbook_model.php:4143
+#: application/models/Logbook_model.php:4157
 msgid "confirmed by cross-check of DCL data"
 msgstr "已经通过 DCL 数据交叉检查确认"
 
-#: application/models/Logbook_model.php:4146
+#: application/models/Logbook_model.php:4160
 msgid "confirmation pending"
 msgstr "等待确认"
 
-#: application/models/Logbook_model.php:4149
+#: application/models/Logbook_model.php:4163
 msgid "unconfirmed"
 msgstr "未确认"
 
-#: application/models/Logbook_model.php:4152
+#: application/models/Logbook_model.php:4166
 msgid "unknown"
 msgstr "未知"
 
@@ -2371,7 +2353,7 @@ msgstr "显示"
 #: application/views/sattimers/index.php:38
 #: application/views/statistics/index.php:112
 msgid "Satellite"
-msgstr "卫星（Satellite）"
+msgstr "卫星"
 
 #: application/views/activated_gridmap/index.php:30
 #: application/views/awards/dxcc/index.php:147
@@ -2696,7 +2678,6 @@ msgstr "最大上传文件大小是 "
 #: application/views/hrdlog/export.php:74
 #: application/views/interface_assets/footer.php:34
 #: application/views/qrz/export.php:73 application/views/qrz/export.php:94
-#: application/views/station_profile/index.php:31
 #: application/views/stationsetup/stationsetup.php:111
 #: application/views/view_log/qso.php:622
 #: application/views/webadif/export.php:34
@@ -5169,7 +5150,7 @@ msgstr "您没有日志本。单击%s执行此操作："
 #, php-format
 msgid "You have had %d QSO today"
 msgid_plural "You have had %d QSOs today"
-msgstr[0] "你今天有%d个QSO"
+msgstr[0] "你今天有 %d 个QSO"
 
 #: application/views/dashboard/index.php:97
 msgid "You have made no QSOs today; time to turn on the radio!"
@@ -5658,7 +5639,6 @@ msgstr[0] "数据库中共有%d个没有台站信息（位置）的QSO"
 #: application/views/public_search/result.php:17
 #: application/views/station_profile/create.php:57
 #: application/views/station_profile/edit.php:46
-#: application/views/station_profile/index.php:42
 #: application/views/stationsetup/linkedlocations.php:32
 #: application/views/stationsetup/stationsetup.php:123
 msgid "Station Callsign"
@@ -6416,7 +6396,6 @@ msgid "Satellite Pass"
 msgstr "卫星过境"
 
 #: application/views/interface_assets/header.php:265
-#: application/views/station_profile/index.php:33
 #: application/views/stationsetup/stationsetup.php:113
 msgid "Admin"
 msgstr "管理员"
@@ -9538,62 +9517,6 @@ msgstr "分区"
 msgid "Signature"
 msgstr "签名"
 
-#: application/views/station_profile/index.php:15
-#: application/views/stationsetup/stationsetup.php:95
-msgid ""
-"Station Locations define operating locations, such as your QTH, a friends "
-"QTH, or a portable station."
-msgstr "台站地址为电台使用地址，如您或朋友的 QTH，或移动台的地址。"
-
-#: application/views/station_profile/index.php:16
-#: application/views/stationsetup/stationsetup.php:96
-msgid "Similar to logbooks, a station profile keeps a set of QSOs together."
-msgstr "和日志簿类似，一个台站地址会和其产生的 QSO 关联起来。"
-
-#: application/views/station_profile/index.php:17
-#: application/views/stationsetup/stationsetup.php:97
-msgid ""
-"Only one station may be active at a time. In the table below this is shown "
-"with the -Active Station- badge."
-msgstr "同一时间只允许启用一个台站地址，详见如下表格中的 “启用” 标志。"
-
-#: application/views/station_profile/index.php:19
-#: application/views/stationsetup/stationsetup.php:101
-msgid "Create a Station Location"
-msgstr "创建一个台站地址"
-
-#: application/views/station_profile/index.php:25
-#: application/views/stationsetup/stationsetup.php:105
-msgid ""
-"Attention: You need to set an active station location. Go to Callsign-"
-">Station Location to select one."
-msgstr ""
-"警告：应事先设置一个 “启用” 中的台站地址，请在右上角 “您的呼号” -> “台站地"
-"址” 中选择一个。"
-
-#: application/views/station_profile/index.php:31
-#: application/views/stationsetup/stationsetup.php:111
-msgid ""
-"Due to recent changes within Wavelog you need to reassign QSOs to your "
-"station profiles."
-msgstr "由于 Wavelog 设置更改，您需要重新在电台设置中重新分配 QSO。"
-
-#: application/views/station_profile/index.php:33
-#: application/views/stationsetup/stationsetup.php:113
-msgid "Maintenance"
-msgstr "维护"
-
-#: application/views/station_profile/index.php:33
-#: application/views/stationsetup/stationsetup.php:113
-msgid "Please reassign them at "
-msgstr "重新分配 "
-
-#: application/views/station_profile/index.php:41
-#: application/views/stationsetup/linkedlocations.php:31
-#: application/views/stationsetup/stationsetup.php:122
-msgid "Profile Name"
-msgstr "名称"
-
 #: application/views/stationsetup/create.php:17
 msgid "Station Logbook Name"
 msgstr "台站日志名称"
@@ -9641,6 +9564,11 @@ msgstr "选择可用台站位置"
 msgid "Link Location"
 msgstr "链接的台站位置"
 
+#: application/views/stationsetup/linkedlocations.php:31
+#: application/views/stationsetup/stationsetup.php:122
+msgid "Profile Name"
+msgstr "名称"
+
 #: application/views/stationsetup/linkedlocations.php:34
 msgid "Unlink Station Location"
 msgstr "取消链接的台站位置"
@@ -9667,11 +9595,53 @@ msgstr "外部链接"
 msgid "Station Locations"
 msgstr "台站地址"
 
+#: application/views/stationsetup/stationsetup.php:95
+msgid ""
+"Station Locations define operating locations, such as your QTH, a friends "
+"QTH, or a portable station."
+msgstr "台站地址为电台使用地址，如您或朋友的 QTH，或移动台的地址。"
+
+#: application/views/stationsetup/stationsetup.php:96
+msgid "Similar to logbooks, a station profile keeps a set of QSOs together."
+msgstr "和日志簿类似，一个台站地址会和其产生的 QSO 关联起来。"
+
+#: application/views/stationsetup/stationsetup.php:97
+msgid ""
+"Only one station may be active at a time. In the table below this is shown "
+"with the -Active Station- badge."
+msgstr "同一时间只允许启用一个台站地址，详见如下表格中的 “启用” 标志。"
+
 #: application/views/stationsetup/stationsetup.php:98
 msgid ""
 "The 'Linked' column shows if the station location is linked with the Active "
 "Logbook selected above."
 msgstr "上方的已启用日志，会显示在关联的台站地址的 “已绑定” 栏中。"
+
+#: application/views/stationsetup/stationsetup.php:101
+msgid "Create a Station Location"
+msgstr "创建一个台站地址"
+
+#: application/views/stationsetup/stationsetup.php:105
+msgid ""
+"Attention: You need to set an active station location. Go to Callsign-"
+">Station Location to select one."
+msgstr ""
+"警告：应事先设置一个 “启用” 中的台站地址，请在右上角 “您的呼号” -> “台站地"
+"址” 中选择一个。"
+
+#: application/views/stationsetup/stationsetup.php:111
+msgid ""
+"Due to recent changes within Wavelog you need to reassign QSOs to your "
+"station profiles."
+msgstr "由于 Wavelog 设置更改，您需要重新在电台设置中重新分配 QSO。"
+
+#: application/views/stationsetup/stationsetup.php:113
+msgid "Maintenance"
+msgstr "维护"
+
+#: application/views/stationsetup/stationsetup.php:113
+msgid "Please reassign them at "
+msgstr "重新分配 "
 
 #: application/views/stationsetup/stationsetup.php:127
 msgid "Linked"

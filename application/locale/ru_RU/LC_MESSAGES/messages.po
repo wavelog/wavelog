@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-13 19:24+0000\n"
+"POT-Creation-Date: 2024-08-15 07:16+0000\n"
 "PO-Revision-Date: 2024-08-12 13:55+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -404,11 +404,11 @@ msgstr "Зоны ITU"
 msgid "Backup"
 msgstr "Резервное копирование"
 
-#: application/controllers/Backup.php:48
+#: application/controllers/Backup.php:50
 msgid "ADIF - Backup"
 msgstr "Резервное копирование ADIF"
 
-#: application/controllers/Backup.php:80
+#: application/controllers/Backup.php:84
 msgid "Notes - Backup"
 msgstr "Резервное копирование заметок"
 
@@ -1039,7 +1039,6 @@ msgstr "RST (RX)"
 #: application/views/qso/components/previous_contacts.php:81
 #: application/views/search/result_search.php:11
 #: application/views/search/search_result_ajax.php:7
-#: application/views/station_profile/index.php:43
 #: application/views/stationsetup/stationsetup.php:124
 #: application/views/statistics/custom_result.php:92
 #: application/views/timeline/index.php:118 application/views/user/edit.php:232
@@ -1137,7 +1136,6 @@ msgstr "Область/штат"
 #: application/views/search/result.php:33
 #: application/views/search/search_result_ajax.php:13
 #: application/views/simplefle/index.php:147
-#: application/views/station_profile/index.php:44
 #: application/views/stationsetup/stationsetup.php:125
 #: application/views/timeline/index.php:257 application/views/user/edit.php:130
 #: application/views/user/edit.php:238 application/views/user/edit.php:260
@@ -1305,7 +1303,6 @@ msgstr "Оператор"
 #: application/views/qso/edit_ajax.php:230 application/views/qso/index.php:368
 #: application/views/station_profile/create.php:73
 #: application/views/station_profile/edit.php:78
-#: application/views/station_profile/index.php:65
 #: application/views/stationsetup/linkedlocations.php:17
 #: application/views/stationsetup/linkedlocations.php:45
 #: application/views/stationsetup/stationsetup.php:150
@@ -1365,7 +1362,7 @@ msgstr "Виды модуляции"
 msgid "Edit Mode"
 msgstr "Редактировать"
 
-#: application/controllers/Notes.php:19
+#: application/controllers/Notes.php:18
 #: application/views/interface_assets/header.php:128
 #: application/views/notes/add.php:9 application/views/notes/edit.php:10
 #: application/views/notes/main.php:5 application/views/notes/main.php:8
@@ -1377,16 +1374,16 @@ msgstr "Редактировать"
 msgid "Notes"
 msgstr "Заметки"
 
-#: application/controllers/Notes.php:38
+#: application/controllers/Notes.php:37
 msgid "Add Notes"
 msgstr "Добавить"
 
-#: application/controllers/Notes.php:58
+#: application/controllers/Notes.php:64
 #: application/views/oqrs/showrequests.php:88
 msgid "Note"
 msgstr "Заметка"
 
-#: application/controllers/Notes.php:79 application/views/notes/edit.php:7
+#: application/controllers/Notes.php:92 application/views/notes/edit.php:7
 #: application/views/notes/view.php:19
 msgid "Edit Note"
 msgstr "Редактировать"
@@ -1609,8 +1606,6 @@ msgstr "По умолчанию (нажмите, чтобы освободить
 #: application/views/satellite/edit.php:40
 #: application/views/satellite/index.php:26
 #: application/views/search/stored_queries.php:22
-#: application/views/station_profile/index.php:55
-#: application/views/station_profile/index.php:106
 #: application/views/stationsetup/stationsetup.php:33
 #: application/views/stationsetup/stationsetup.php:137
 #: application/views/stationsetup/stationsetup.php:192
@@ -1692,8 +1687,16 @@ msgstr ""
 "QSO, не подтверждённые на LoTW, при том, что корреспондент загружал данные "
 "на LoTW после даты QSO"
 
-#: application/controllers/Station.php:35
-#: application/controllers/Station.php:78 application/views/csv/index.php:19
+#: application/controllers/Station.php:36
+#: application/controllers/Stationsetup.php:226
+msgid "Create Station Location"
+msgstr "Создать профиль QTH"
+
+#: application/controllers/Station.php:51
+msgid "Edit Station Location: "
+msgstr "Редактировать профиль QTH: "
+
+#: application/controllers/Station.php:59 application/views/csv/index.php:19
 #: application/views/dxatlas/index.php:19
 #: application/views/labels/index.php:124
 #: application/views/logbookadvanced/edit.php:18
@@ -1708,16 +1711,7 @@ msgstr ""
 msgid "Station Location"
 msgstr "Профиль QTH"
 
-#: application/controllers/Station.php:55
-#: application/controllers/Stationsetup.php:226
-msgid "Create Station Location"
-msgstr "Создать профиль QTH"
-
-#: application/controllers/Station.php:70
-msgid "Edit Station Location: "
-msgstr "Редактировать профиль QTH: "
-
-#: application/controllers/Station.php:92
+#: application/controllers/Station.php:73
 msgid "Duplicate Station Location:"
 msgstr "Дубликат профиля QTH:"
 
@@ -1812,20 +1806,17 @@ msgid "Are you sure you want to delete the public slug?"
 msgstr "Вы уверены, что хотите удалить публичный псевдоним?"
 
 #: application/controllers/Stationsetup.php:349
-#: application/views/station_profile/index.php:69
 #: application/views/stationsetup/stationsetup.php:154
 msgid ""
 "Are you sure you want to make the following station the active station: "
 msgstr "Вы уверены, что хотите сделать этот профиль QTH активным: "
 
 #: application/controllers/Stationsetup.php:349
-#: application/views/station_profile/index.php:69
 #: application/views/stationsetup/stationsetup.php:154
 msgid "Set Active"
 msgstr "Установить активным"
 
 #: application/controllers/Stationsetup.php:351
-#: application/views/station_profile/index.php:71
 #: application/views/stationsetup/stationsetup.php:156
 msgid "Active Station"
 msgstr "Активный профиль QTH"
@@ -1834,7 +1825,6 @@ msgstr "Активный профиль QTH"
 #: application/views/interface_assets/header.php:113
 #: application/views/qso/edit_ajax.php:33 application/views/qso/index.php:20
 #: application/views/simplefle/index.php:28
-#: application/views/station_profile/index.php:76
 #: application/views/stationsetup/stationsetup.php:161
 #: application/views/user/main.php:87 application/views/user/main.php:89
 msgid "QSO"
@@ -1850,8 +1840,6 @@ msgstr "QSO"
 #: application/views/mode/index.php:52 application/views/satellite/edit.php:39
 #: application/views/satellite/index.php:25
 #: application/views/search/stored_queries.php:21
-#: application/views/station_profile/index.php:46
-#: application/views/station_profile/index.php:79
 #: application/views/stationsetup/stationsetup.php:128
 #: application/views/stationsetup/stationsetup.php:165
 #: application/views/themes/index.php:104 application/views/user/main.php:52
@@ -1859,29 +1847,23 @@ msgid "Edit"
 msgstr "Редактировать"
 
 #: application/controllers/Stationsetup.php:363
-#: application/views/station_profile/index.php:99
 #: application/views/stationsetup/stationsetup.php:185
 msgid "Are you sure you want to delete all QSOs within this station profile?"
 msgstr "Вы уверены, что хотите удалить все QSO из этого профиля станции?"
 
 #: application/controllers/Stationsetup.php:363
-#: application/views/station_profile/index.php:54
-#: application/views/station_profile/index.php:101
 #: application/views/stationsetup/stationsetup.php:136
 #: application/views/stationsetup/stationsetup.php:187
 msgid "Empty Log"
 msgstr "Очистить лог"
 
 #: application/controllers/Stationsetup.php:367
-#: application/views/station_profile/index.php:47
-#: application/views/station_profile/index.php:82
 #: application/views/stationsetup/stationsetup.php:129
 #: application/views/stationsetup/stationsetup.php:168
 msgid "Copy"
 msgstr "Скопировать"
 
 #: application/controllers/Stationsetup.php:372
-#: application/views/station_profile/index.php:105
 #: application/views/stationsetup/stationsetup.php:191
 #, php-format
 msgid ""
@@ -2160,31 +2142,31 @@ msgstr "HRDlog: на найдены QSO для загруки для позыв�
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: не найдены профили QTH с данными входя на HRDlog."
 
-#: application/models/Logbook_model.php:4129
+#: application/models/Logbook_model.php:4143
 msgid "QSO could not be matched"
 msgstr "QSO не может быть сопоставлено"
 
-#: application/models/Logbook_model.php:4135
+#: application/models/Logbook_model.php:4149
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "подтверждено LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:4140
+#: application/models/Logbook_model.php:4154
 msgid "confirmed by award manager"
 msgstr "подтверждено менеджером диплома"
 
-#: application/models/Logbook_model.php:4143
+#: application/models/Logbook_model.php:4157
 msgid "confirmed by cross-check of DCL data"
 msgstr "подтверждено кросс-проверкой с данными DCL"
 
-#: application/models/Logbook_model.php:4146
+#: application/models/Logbook_model.php:4160
 msgid "confirmation pending"
 msgstr "подтверждение ожидается"
 
-#: application/models/Logbook_model.php:4149
+#: application/models/Logbook_model.php:4163
 msgid "unconfirmed"
 msgstr "не подтверждено"
 
-#: application/models/Logbook_model.php:4152
+#: application/models/Logbook_model.php:4166
 msgid "unknown"
 msgstr "неизвестно"
 
@@ -2725,7 +2707,6 @@ msgstr "Максимальный размер загружаемого файл�
 #: application/views/hrdlog/export.php:74
 #: application/views/interface_assets/footer.php:34
 #: application/views/qrz/export.php:73 application/views/qrz/export.php:94
-#: application/views/station_profile/index.php:31
 #: application/views/stationsetup/stationsetup.php:111
 #: application/views/view_log/qso.php:622
 #: application/views/webadif/export.php:34
@@ -5825,7 +5806,6 @@ msgstr[2] "База данных содержит %d QSO без привязан
 #: application/views/public_search/result.php:17
 #: application/views/station_profile/create.php:57
 #: application/views/station_profile/edit.php:46
-#: application/views/station_profile/index.php:42
 #: application/views/stationsetup/linkedlocations.php:32
 #: application/views/stationsetup/stationsetup.php:123
 msgid "Station Callsign"
@@ -6609,7 +6589,6 @@ msgid "Satellite Pass"
 msgstr "Прохождение спутника"
 
 #: application/views/interface_assets/header.php:265
-#: application/views/station_profile/index.php:33
 #: application/views/stationsetup/stationsetup.php:113
 msgid "Admin"
 msgstr "Администрирование"
@@ -9842,68 +9821,6 @@ msgstr "Зоны"
 msgid "Signature"
 msgstr "Подпись"
 
-#: application/views/station_profile/index.php:15
-#: application/views/stationsetup/stationsetup.php:95
-msgid ""
-"Station Locations define operating locations, such as your QTH, a friends "
-"QTH, or a portable station."
-msgstr ""
-"Профили QTH определяют места работы, например, ваш QTH, QTH друзей или "
-"портативная станция."
-
-#: application/views/station_profile/index.php:16
-#: application/views/stationsetup/stationsetup.php:96
-msgid "Similar to logbooks, a station profile keeps a set of QSOs together."
-msgstr "Также, как и журнал, профиль QTH объединяет набор QSO."
-
-#: application/views/station_profile/index.php:17
-#: application/views/stationsetup/stationsetup.php:97
-msgid ""
-"Only one station may be active at a time. In the table below this is shown "
-"with the -Active Station- badge."
-msgstr ""
-"Только один профиль QTH может быть активен в каждый момент. В таблице ниже "
-"он отмечена меткой -Активный профиль QTH-."
-
-#: application/views/station_profile/index.php:19
-#: application/views/stationsetup/stationsetup.php:101
-msgid "Create a Station Location"
-msgstr "Создать профиль QTH"
-
-#: application/views/station_profile/index.php:25
-#: application/views/stationsetup/stationsetup.php:105
-msgid ""
-"Attention: You need to set an active station location. Go to Callsign-"
-">Station Location to select one."
-msgstr ""
-"Внимание. Вам нужно установить активный профиль QTH. Перейдите в меню "
-"Позывной->профили QTH, чтобы выбрать активный профиль."
-
-#: application/views/station_profile/index.php:31
-#: application/views/stationsetup/stationsetup.php:111
-msgid ""
-"Due to recent changes within Wavelog you need to reassign QSOs to your "
-"station profiles."
-msgstr ""
-"Из-за недавних изменений в Wavelog вам нужно переназначить QSO вашим "
-"профилям станции."
-
-#: application/views/station_profile/index.php:33
-#: application/views/stationsetup/stationsetup.php:113
-msgid "Maintenance"
-msgstr "Обслуживание"
-
-#: application/views/station_profile/index.php:33
-#: application/views/stationsetup/stationsetup.php:113
-msgid "Please reassign them at "
-msgstr "Пожалуйста, переназначьте их в "
-
-#: application/views/station_profile/index.php:41
-#: application/views/stationsetup/linkedlocations.php:31
-#: application/views/stationsetup/stationsetup.php:122
-msgid "Profile Name"
-msgstr "Название профиля"
-
 #: application/views/stationsetup/create.php:17
 msgid "Station Logbook Name"
 msgstr "Имя журнала"
@@ -9951,6 +9868,11 @@ msgstr "Выберите доступный профиль QTH"
 msgid "Link Location"
 msgstr "Привязать профиль QTH"
 
+#: application/views/stationsetup/linkedlocations.php:31
+#: application/views/stationsetup/stationsetup.php:122
+msgid "Profile Name"
+msgstr "Название профиля"
+
 #: application/views/stationsetup/linkedlocations.php:34
 msgid "Unlink Station Location"
 msgstr "Отвязать профиль QTH"
@@ -9978,6 +9900,26 @@ msgstr "Публичная страница"
 msgid "Station Locations"
 msgstr "Профили QTH"
 
+#: application/views/stationsetup/stationsetup.php:95
+msgid ""
+"Station Locations define operating locations, such as your QTH, a friends "
+"QTH, or a portable station."
+msgstr ""
+"Профили QTH определяют места работы, например, ваш QTH, QTH друзей или "
+"портативная станция."
+
+#: application/views/stationsetup/stationsetup.php:96
+msgid "Similar to logbooks, a station profile keeps a set of QSOs together."
+msgstr "Также, как и журнал, профиль QTH объединяет набор QSO."
+
+#: application/views/stationsetup/stationsetup.php:97
+msgid ""
+"Only one station may be active at a time. In the table below this is shown "
+"with the -Active Station- badge."
+msgstr ""
+"Только один профиль QTH может быть активен в каждый момент. В таблице ниже "
+"он отмечена меткой -Активный профиль QTH-."
+
 #: application/views/stationsetup/stationsetup.php:98
 msgid ""
 "The 'Linked' column shows if the station location is linked with the Active "
@@ -9985,6 +9927,34 @@ msgid ""
 msgstr ""
 "Столбец \"Привязка\" показывает привязан ли профиль QTH к активному журналу, "
 "выбранному выше."
+
+#: application/views/stationsetup/stationsetup.php:101
+msgid "Create a Station Location"
+msgstr "Создать профиль QTH"
+
+#: application/views/stationsetup/stationsetup.php:105
+msgid ""
+"Attention: You need to set an active station location. Go to Callsign-"
+">Station Location to select one."
+msgstr ""
+"Внимание. Вам нужно установить активный профиль QTH. Перейдите в меню "
+"Позывной->профили QTH, чтобы выбрать активный профиль."
+
+#: application/views/stationsetup/stationsetup.php:111
+msgid ""
+"Due to recent changes within Wavelog you need to reassign QSOs to your "
+"station profiles."
+msgstr ""
+"Из-за недавних изменений в Wavelog вам нужно переназначить QSO вашим "
+"профилям станции."
+
+#: application/views/stationsetup/stationsetup.php:113
+msgid "Maintenance"
+msgstr "Обслуживание"
+
+#: application/views/stationsetup/stationsetup.php:113
+msgid "Please reassign them at "
+msgstr "Пожалуйста, переназначьте их в "
 
 #: application/views/stationsetup/stationsetup.php:127
 msgid "Linked"
