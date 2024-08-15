@@ -155,8 +155,8 @@ if($this->session->userdata('user_id') != null) {
     let sc_account_call = '<?php echo $account_call; ?>'
 
 	<?php
-    # if the operator call and the account call is the same we show the dialog (except for admins!)
-    if ($op_call == $account_call && $user_type != '99') { ?>
+    # if the operator call and the account call is the same we show the dialog (only for special callsigns)
+    if ($op_call == $account_call && $user_type == '2') { ?>
 
         // load the dialog with javascript
         displayOperatorDialog();
