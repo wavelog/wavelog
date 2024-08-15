@@ -33,7 +33,7 @@ function closeOperatorDialog() {
 
 function saveOperator() {
 	var operatorInput = $("#operator_callsign");
-	var operatorCallsign = operatorInput.val();
+	var operatorCallsign = operatorInput.val().trim();
 
 	if (operatorCallsign != "" && operatorCallsign != sc_account_call) {
 		$.ajax({
