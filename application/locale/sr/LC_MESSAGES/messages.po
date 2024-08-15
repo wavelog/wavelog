@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-14 10:34+0000\n"
+"POT-Creation-Date: 2024-08-15 07:16+0000\n"
 "PO-Revision-Date: 2024-08-15 07:13+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
 "Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -403,11 +403,11 @@ msgstr "ITU Zone"
 msgid "Backup"
 msgstr "Rezervna kopija"
 
-#: application/controllers/Backup.php:48 application/controllers/Backup.php:50
+#: application/controllers/Backup.php:50
 msgid "ADIF - Backup"
 msgstr "ADIF - Rezervna kopija"
 
-#: application/controllers/Backup.php:80 application/controllers/Backup.php:84
+#: application/controllers/Backup.php:84
 msgid "Notes - Backup"
 msgstr "Napomene - Rezervna kopija"
 
@@ -1038,7 +1038,6 @@ msgstr "RST (R)"
 #: application/views/qso/components/previous_contacts.php:81
 #: application/views/search/result_search.php:11
 #: application/views/search/search_result_ajax.php:7
-#: application/views/station_profile/index.php:43
 #: application/views/stationsetup/stationsetup.php:124
 #: application/views/statistics/custom_result.php:92
 #: application/views/timeline/index.php:118 application/views/user/edit.php:232
@@ -1136,7 +1135,6 @@ msgstr "Pokrajina"
 #: application/views/search/result.php:33
 #: application/views/search/search_result_ajax.php:13
 #: application/views/simplefle/index.php:147
-#: application/views/station_profile/index.php:44
 #: application/views/stationsetup/stationsetup.php:125
 #: application/views/timeline/index.php:257 application/views/user/edit.php:130
 #: application/views/user/edit.php:238 application/views/user/edit.php:260
@@ -1304,7 +1302,6 @@ msgstr "Operator"
 #: application/views/qso/edit_ajax.php:230 application/views/qso/index.php:368
 #: application/views/station_profile/create.php:73
 #: application/views/station_profile/edit.php:78
-#: application/views/station_profile/index.php:65
 #: application/views/stationsetup/linkedlocations.php:17
 #: application/views/stationsetup/linkedlocations.php:45
 #: application/views/stationsetup/stationsetup.php:150
@@ -1364,7 +1361,7 @@ msgstr "Vrste rada"
 msgid "Edit Mode"
 msgstr "Uredi vrstu rada"
 
-#: application/controllers/Notes.php:19
+#: application/controllers/Notes.php:18
 #: application/views/interface_assets/header.php:128
 #: application/views/notes/add.php:9 application/views/notes/edit.php:10
 #: application/views/notes/main.php:5 application/views/notes/main.php:8
@@ -1373,22 +1370,20 @@ msgstr "Uredi vrstu rada"
 #: application/views/qso/edit_ajax.php:481 application/views/qso/index.php:38
 #: application/views/qso/index.php:541 application/views/qso/index.php:586
 #: application/views/view_log/qso.php:14 application/views/view_log/qso.php:590
-#: application/controllers/Notes.php:18
 msgid "Notes"
 msgstr "Napomene"
 
-#: application/controllers/Notes.php:38 application/controllers/Notes.php:37
+#: application/controllers/Notes.php:37
 msgid "Add Notes"
 msgstr "Dodajte napomenu"
 
-#: application/controllers/Notes.php:58
-#: application/views/oqrs/showrequests.php:88
 #: application/controllers/Notes.php:64
+#: application/views/oqrs/showrequests.php:88
 msgid "Note"
 msgstr "Napomena"
 
-#: application/controllers/Notes.php:79 application/views/notes/edit.php:7
-#: application/views/notes/view.php:19 application/controllers/Notes.php:92
+#: application/controllers/Notes.php:92 application/views/notes/edit.php:7
+#: application/views/notes/view.php:19
 msgid "Edit Note"
 msgstr "Uredite napomenu"
 
@@ -1610,8 +1605,6 @@ msgstr "Podrazumevano (kliknite za objavu)"
 #: application/views/satellite/edit.php:40
 #: application/views/satellite/index.php:26
 #: application/views/search/stored_queries.php:22
-#: application/views/station_profile/index.php:55
-#: application/views/station_profile/index.php:106
 #: application/views/stationsetup/stationsetup.php:33
 #: application/views/stationsetup/stationsetup.php:137
 #: application/views/stationsetup/stationsetup.php:192
@@ -1693,8 +1686,16 @@ msgstr ""
 "QSO koji nisu potvrđeni na LoTW, ali su pozivni znakovi imali učitavanje na "
 "LoTW nakon datuma QSOa"
 
-#: application/controllers/Station.php:35
-#: application/controllers/Station.php:78 application/views/csv/index.php:19
+#: application/controllers/Station.php:36
+#: application/controllers/Stationsetup.php:226
+msgid "Create Station Location"
+msgstr "Kreiraj lokaciju stanice"
+
+#: application/controllers/Station.php:51
+msgid "Edit Station Location: "
+msgstr "Uredi lokaciju stanice: "
+
+#: application/controllers/Station.php:59 application/views/csv/index.php:19
 #: application/views/dxatlas/index.php:19
 #: application/views/labels/index.php:124
 #: application/views/logbookadvanced/edit.php:18
@@ -1706,22 +1707,9 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:18
 #: application/views/view_log/qso.php:9 application/views/webadif/export.php:75
 #: application/views/webadif/export.php:115
-#: application/controllers/Station.php:59
 msgid "Station Location"
 msgstr "Lokacija stanice"
 
-#: application/controllers/Station.php:55
-#: application/controllers/Stationsetup.php:226
-#: application/controllers/Station.php:36
-msgid "Create Station Location"
-msgstr "Kreiraj lokaciju stanice"
-
-#: application/controllers/Station.php:70
-#: application/controllers/Station.php:51
-msgid "Edit Station Location: "
-msgstr "Uredi lokaciju stanice: "
-
-#: application/controllers/Station.php:92
 #: application/controllers/Station.php:73
 msgid "Duplicate Station Location:"
 msgstr "Napravi duplikat lokacije stanice:"
@@ -1817,7 +1805,6 @@ msgid "Are you sure you want to delete the public slug?"
 msgstr "Da li ste sigurni da želite obrisati javni žeton?"
 
 #: application/controllers/Stationsetup.php:349
-#: application/views/station_profile/index.php:69
 #: application/views/stationsetup/stationsetup.php:154
 msgid ""
 "Are you sure you want to make the following station the active station: "
@@ -1825,13 +1812,11 @@ msgstr ""
 "Da li ste sigurni da želite označiti sledeću stanicu kao aktivnu stanicu: "
 
 #: application/controllers/Stationsetup.php:349
-#: application/views/station_profile/index.php:69
 #: application/views/stationsetup/stationsetup.php:154
 msgid "Set Active"
 msgstr "Postavite aktivnom"
 
 #: application/controllers/Stationsetup.php:351
-#: application/views/station_profile/index.php:71
 #: application/views/stationsetup/stationsetup.php:156
 msgid "Active Station"
 msgstr "Aktivna stanica"
@@ -1840,7 +1825,6 @@ msgstr "Aktivna stanica"
 #: application/views/interface_assets/header.php:113
 #: application/views/qso/edit_ajax.php:33 application/views/qso/index.php:20
 #: application/views/simplefle/index.php:28
-#: application/views/station_profile/index.php:76
 #: application/views/stationsetup/stationsetup.php:161
 #: application/views/user/main.php:87 application/views/user/main.php:89
 msgid "QSO"
@@ -1856,8 +1840,6 @@ msgstr "QSO"
 #: application/views/mode/index.php:52 application/views/satellite/edit.php:39
 #: application/views/satellite/index.php:25
 #: application/views/search/stored_queries.php:21
-#: application/views/station_profile/index.php:46
-#: application/views/station_profile/index.php:79
 #: application/views/stationsetup/stationsetup.php:128
 #: application/views/stationsetup/stationsetup.php:165
 #: application/views/themes/index.php:104 application/views/user/main.php:52
@@ -1865,30 +1847,24 @@ msgid "Edit"
 msgstr "Uredite"
 
 #: application/controllers/Stationsetup.php:363
-#: application/views/station_profile/index.php:99
 #: application/views/stationsetup/stationsetup.php:185
 msgid "Are you sure you want to delete all QSOs within this station profile?"
 msgstr ""
 "Da li ste sigurni da želite obrisati sve QSO unutar profila ove stanice?"
 
 #: application/controllers/Stationsetup.php:363
-#: application/views/station_profile/index.php:54
-#: application/views/station_profile/index.php:101
 #: application/views/stationsetup/stationsetup.php:136
 #: application/views/stationsetup/stationsetup.php:187
 msgid "Empty Log"
 msgstr "Ispraznite dnevnik"
 
 #: application/controllers/Stationsetup.php:367
-#: application/views/station_profile/index.php:47
-#: application/views/station_profile/index.php:82
 #: application/views/stationsetup/stationsetup.php:129
 #: application/views/stationsetup/stationsetup.php:168
 msgid "Copy"
 msgstr "Kopirajte"
 
 #: application/controllers/Stationsetup.php:372
-#: application/views/station_profile/index.php:105
 #: application/views/stationsetup/stationsetup.php:191
 #, php-format
 msgid ""
@@ -2732,7 +2708,6 @@ msgstr "Maksimalna veličina datoteke za učitavanje je "
 #: application/views/hrdlog/export.php:74
 #: application/views/interface_assets/footer.php:34
 #: application/views/qrz/export.php:73 application/views/qrz/export.php:94
-#: application/views/station_profile/index.php:31
 #: application/views/stationsetup/stationsetup.php:111
 #: application/views/view_log/qso.php:622
 #: application/views/webadif/export.php:34
@@ -5679,7 +5654,6 @@ msgstr[1] ""
 #: application/views/public_search/result.php:17
 #: application/views/station_profile/create.php:57
 #: application/views/station_profile/edit.php:46
-#: application/views/station_profile/index.php:42
 #: application/views/stationsetup/linkedlocations.php:32
 #: application/views/stationsetup/stationsetup.php:123
 msgid "Station Callsign"
@@ -6426,7 +6400,6 @@ msgid "Satellite Pass"
 msgstr ""
 
 #: application/views/interface_assets/header.php:265
-#: application/views/station_profile/index.php:33
 #: application/views/stationsetup/stationsetup.php:113
 msgid "Admin"
 msgstr ""
@@ -9509,60 +9482,6 @@ msgstr ""
 msgid "Signature"
 msgstr ""
 
-#: application/views/station_profile/index.php:15
-#: application/views/stationsetup/stationsetup.php:95
-msgid ""
-"Station Locations define operating locations, such as your QTH, a friends "
-"QTH, or a portable station."
-msgstr ""
-
-#: application/views/station_profile/index.php:16
-#: application/views/stationsetup/stationsetup.php:96
-msgid "Similar to logbooks, a station profile keeps a set of QSOs together."
-msgstr ""
-
-#: application/views/station_profile/index.php:17
-#: application/views/stationsetup/stationsetup.php:97
-msgid ""
-"Only one station may be active at a time. In the table below this is shown "
-"with the -Active Station- badge."
-msgstr ""
-
-#: application/views/station_profile/index.php:19
-#: application/views/stationsetup/stationsetup.php:101
-msgid "Create a Station Location"
-msgstr ""
-
-#: application/views/station_profile/index.php:25
-#: application/views/stationsetup/stationsetup.php:105
-msgid ""
-"Attention: You need to set an active station location. Go to Callsign-"
-">Station Location to select one."
-msgstr ""
-
-#: application/views/station_profile/index.php:31
-#: application/views/stationsetup/stationsetup.php:111
-msgid ""
-"Due to recent changes within Wavelog you need to reassign QSOs to your "
-"station profiles."
-msgstr ""
-
-#: application/views/station_profile/index.php:33
-#: application/views/stationsetup/stationsetup.php:113
-msgid "Maintenance"
-msgstr ""
-
-#: application/views/station_profile/index.php:33
-#: application/views/stationsetup/stationsetup.php:113
-msgid "Please reassign them at "
-msgstr ""
-
-#: application/views/station_profile/index.php:41
-#: application/views/stationsetup/linkedlocations.php:31
-#: application/views/stationsetup/stationsetup.php:122
-msgid "Profile Name"
-msgstr ""
-
 #: application/views/stationsetup/create.php:17
 msgid "Station Logbook Name"
 msgstr ""
@@ -9610,6 +9529,11 @@ msgstr ""
 msgid "Link Location"
 msgstr ""
 
+#: application/views/stationsetup/linkedlocations.php:31
+#: application/views/stationsetup/stationsetup.php:122
+msgid "Profile Name"
+msgstr ""
+
 #: application/views/stationsetup/linkedlocations.php:34
 msgid "Unlink Station Location"
 msgstr ""
@@ -9634,10 +9558,50 @@ msgstr ""
 msgid "Station Locations"
 msgstr ""
 
+#: application/views/stationsetup/stationsetup.php:95
+msgid ""
+"Station Locations define operating locations, such as your QTH, a friends "
+"QTH, or a portable station."
+msgstr ""
+
+#: application/views/stationsetup/stationsetup.php:96
+msgid "Similar to logbooks, a station profile keeps a set of QSOs together."
+msgstr ""
+
+#: application/views/stationsetup/stationsetup.php:97
+msgid ""
+"Only one station may be active at a time. In the table below this is shown "
+"with the -Active Station- badge."
+msgstr ""
+
 #: application/views/stationsetup/stationsetup.php:98
 msgid ""
 "The 'Linked' column shows if the station location is linked with the Active "
 "Logbook selected above."
+msgstr ""
+
+#: application/views/stationsetup/stationsetup.php:101
+msgid "Create a Station Location"
+msgstr ""
+
+#: application/views/stationsetup/stationsetup.php:105
+msgid ""
+"Attention: You need to set an active station location. Go to Callsign-"
+">Station Location to select one."
+msgstr ""
+
+#: application/views/stationsetup/stationsetup.php:111
+msgid ""
+"Due to recent changes within Wavelog you need to reassign QSOs to your "
+"station profiles."
+msgstr ""
+
+#: application/views/stationsetup/stationsetup.php:113
+msgid "Maintenance"
+msgstr ""
+
+#: application/views/stationsetup/stationsetup.php:113
+msgid "Please reassign them at "
 msgstr ""
 
 #: application/views/stationsetup/stationsetup.php:127
