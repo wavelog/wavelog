@@ -104,7 +104,7 @@
 								<?php } ?>
 							</select>
 							<div class="alert alert-danger" role="alert" id="warningStationCall" style="display: none"> </div>
-							<small class="form-text text-muted"><?= sprintf(__("If you did operate from a new location, first create a new <a href='%s'>Station Location</a>"), site_url('station')); ?></small>
+							<small class="form-text text-muted"><?= sprintf(__("If you did operate from a new location, first create a new %sStation Location%s"), '<a href="'.site_url('station').'">', '</a>'); ?></small>
 						</div>
 					</div>
 					<div class="col-xs-12 col-lg-6">
@@ -157,7 +157,7 @@
 						<span class="js-qso-count"></span>
 					</div>
 					<div class="col-6 col-sm-6 text-end" id="refs_hint">
-						<?= __("The Refs can be either <u>S</u>OTA, <u>I</u>OTA, <u>P</u>OTA or <u>W</u>WFF"); ?>
+						<?= sprintf(__("The Refs can be either %sS%sOTA, %sI%sOTA, %sP%sOTA, or %sW%sWFF"), '<u>', '</u>', '<u>', '</u>', '<u>', '</u>', '<u>', '</u>'); ?>
 					</div>
 				</div>
 			</div>
