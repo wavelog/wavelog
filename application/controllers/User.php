@@ -1165,6 +1165,11 @@ class User extends CI_Controller {
 
 	public function impersonate($hash) {
 
+		if ($this->config->item('encryption_key') == 'flossie1234555541') {
+			$this->session->set_flashdata('error', __("You currently can't impersonate another user. Please change the encryption_key in the config file first!"));
+			redirect('dashboard');
+		}
+
 		// Load the user model
 		$this->load->model('user_model');
 
