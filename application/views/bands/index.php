@@ -93,7 +93,7 @@ $wwff = 0;
 								<td style="text-align: center; vertical-align: middle;" ><?php echo $band->ssb;?></td>
 								<td style="text-align: center; vertical-align: middle;" ><?php echo $band->data;?></td>
 								<td style="text-align: center; vertical-align: middle;" ><?php echo $band->cw;?></td>
-								<td style="text-align: center; vertical-align: middle;" class='band_<?php echo $band->id ?>'>
+								<td style="text-align: center; vertical-align: middle;" class='band_<?php echo $band->bandid ?>'>
 									<select class="form-select unitselect" name="unit_<?php echo $band->id; ?>">
 										<option value="Hz" <?php if ($this->frequency->qrg_unit($band->band) == 'Hz') { echo 'selected';} ?>><?= __("Hz"); ?></option>
 										<option value="kHz" <?php if ($this->frequency->qrg_unit($band->band) == 'kHz') { echo 'selected';} ?>><?= __("kHz"); ?></option>
