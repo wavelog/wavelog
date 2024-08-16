@@ -236,6 +236,7 @@ if($this->session->userdata('user_id') != null) {
 <?php if ($this->uri->segment(1) == "station") { ?>
     <script language="javascript" src="<?php echo base_url() ;?>assets/js/HamGridSquare.js"></script>
     <script src="<?php echo base_url() ;?>assets/js/sections/station_locations.js"></script>
+    <script src="<?php echo base_url() ;?>assets/js/bootstrap-multiselect.js"></script>
     <script>
         var position;
         function getLocation() {
@@ -681,12 +682,14 @@ $('#dxcc_id').ready(function() {
 
 $('#dxcc_id').on('change', function() {
     printWarning();
-	let dxccadif = $('#dxcc_id').val();
-	let dxccinfo = dxccarray.filter(function(dxcc) {
-		return dxcc.adif == dxccadif;
-	});
-	$("#stationCQZoneInput").val(dxccinfo[0].cq);
-	// $("#stationITUZoneInput").val(dxccinfo[0].itu); // Commented out, since we do not have itu data.
+    <?php if ($dxcc_list && $dxcc_list->result() > 0) { ?>
+        let dxccadif = $('#dxcc_id').val();
+        let dxccinfo = dxccarray.filter(function(dxcc) {
+            return dxcc.adif == dxccadif;
+        });
+        $("#stationCQZoneInput").val(dxccinfo[0].cq);
+        // $("#stationITUZoneInput").val(dxccinfo[0].itu); // Commented out, since we do not have itu data.
+    <?php } ?>
 });
 </script>
 
@@ -905,6 +908,7 @@ $($('#callsign')).on('keypress',function(e) {
 <?php if ($this->uri->segment(1) == "qso") { ?>
 
 <script src="<?php echo base_url() ;?>assets/js/sections/qso.js"></script>
+<script src="<?php echo base_url() ;?>assets/js/bootstrap-multiselect.js"></script>
 <?php if ($this->session->userdata('isWinkeyEnabled')) { ?>
 	<script src="<?php echo base_url() ;?>assets/js/winkey.js"></script>
 <?php }	?>
