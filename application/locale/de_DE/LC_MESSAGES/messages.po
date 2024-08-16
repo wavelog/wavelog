@@ -2012,6 +2012,7 @@ msgstr "Login fehlgeschlagen. Bitte erneut versuchen."
 #: application/views/interface_assets/header.php:356
 #: application/views/user/login.php:91
 #: application/views/visitor/layout/header.php:88
+#: application/views/user/login.php:89
 msgid "Login"
 msgstr "Anmeldung"
 
@@ -2112,80 +2113,80 @@ msgstr "Keine Stationen gefunden, welche Wavelog OQRS benutzen."
 #: application/libraries/Subdivisions.php:31
 msgctxt "Division Name (States in various countries)."
 msgid "Province"
-msgstr ""
+msgstr "Provinz"
 
 #: application/libraries/Subdivisions.php:39
 msgctxt "Division Name (States in various countries)."
 msgid "Oblast"
-msgstr ""
+msgstr "Oblast"
 
 #: application/libraries/Subdivisions.php:41
 #: application/libraries/Subdivisions.php:47
 msgctxt "Division Name (States in various countries)."
 msgid "Region"
-msgstr ""
+msgstr "Region"
 
 #: application/libraries/Subdivisions.php:45
 msgctxt "Division Name (States in various countries)."
 msgid "Department"
-msgstr ""
+msgstr "Department"
 
 #: application/libraries/Subdivisions.php:49
 msgctxt "Division Name (States in various countries)."
 msgid "Municipality"
-msgstr ""
+msgstr "Gemeinde"
 
 #: application/libraries/Subdivisions.php:51
 msgctxt "Division Name (States in various countries)."
 msgid "Federal State"
-msgstr ""
+msgstr "Bundesstaat"
 
 #: application/libraries/Subdivisions.php:56
 #: application/libraries/Subdivisions.php:94
 msgctxt "Division Name (States in various countries)."
 msgid "County"
-msgstr ""
+msgstr "County"
 
 #: application/libraries/Subdivisions.php:60
 #: application/libraries/Subdivisions.php:85
 msgctxt "Division Name (States in various countries)."
 msgid "District"
-msgstr ""
+msgstr "Distrikt"
 
 #: application/libraries/Subdivisions.php:62
 msgctxt "Division Name (States in various countries)."
 msgid "Canton"
-msgstr ""
+msgstr "Kanton"
 
 #: application/libraries/Subdivisions.php:64
 msgctxt "Division Name (States in various countries)."
 msgid "US State"
-msgstr ""
+msgstr "US-Staat"
 
 #: application/libraries/Subdivisions.php:67
 msgctxt "Division Name (States in various countries)."
 msgid "Prefecture"
-msgstr ""
+msgstr "Präfektur"
 
 #: application/libraries/Subdivisions.php:69
 msgctxt "Division Name (States in various countries)."
 msgid "State"
-msgstr ""
+msgstr "Staat"
 
 #: application/libraries/Subdivisions.php:78
 msgctxt "Division Name (States in various countries)."
 msgid "US County"
-msgstr ""
+msgstr "US County"
 
 #: application/libraries/Subdivisions.php:90
 msgctxt "Division Name (States in various countries)."
 msgid "DME"
-msgstr ""
+msgstr "DME"
 
 #: application/libraries/Subdivisions.php:92
 msgctxt "Division Name (States in various countries)."
 msgid "City / Ku / Gun"
-msgstr ""
+msgstr "Stadt / Ku / Gun"
 
 #: application/models/Eqslmethods_model.php:281
 msgid "Your eQSL username and/or password is incorrect."
@@ -10469,7 +10470,8 @@ msgstr "Generelle Informationen"
 
 #: application/views/user/edit.php:52 application/views/user/login.php:58
 #: application/views/user/login.php:69 application/views/user/login.php:70
-#: application/views/user/profile.php:14
+#: application/views/user/profile.php:14 application/views/user/login.php:67
+#: application/views/user/login.php:68
 msgid "Username"
 msgstr "Benutzername"
 
@@ -10478,6 +10480,7 @@ msgstr "Benutzername"
 #: application/views/user/reset_password.php:21
 #: application/views/user/reset_password.php:23
 #: application/views/user/reset_password.php:30
+#: application/views/user/login.php:71 application/views/user/login.php:72
 msgid "Password"
 msgstr "Passwort"
 
@@ -10889,11 +10892,11 @@ msgstr "Diese Demo wird jede Nacht um 0200z zurückgesetzt."
 msgid "More Information about Wavelog on %sGithub%s."
 msgstr ""
 
-#: application/views/user/login.php:79
+#: application/views/user/login.php:79 application/views/user/login.php:77
 msgid "Forgot your password?"
 msgstr "Passwort vergessen?"
 
-#: application/views/user/login.php:85
+#: application/views/user/login.php:85 application/views/user/login.php:83
 msgid "Keep me logged in"
 msgstr "Angemeldet bleiben"
 
@@ -11253,67 +11256,72 @@ msgstr "Dein Rufzeichen:"
 msgid "Submit Request"
 msgstr "Anfrage senden"
 
-#~ msgid ""
-#~ "If selected, Wavelog will try to import <b>all</b> QSO's of the ADIF, "
-#~ "regardless if they match to the chosen station-location."
-#~ msgstr ""
-#~ "Wenn diese Option ausgewählt ist, wird Wavelog versuchen <b>alle</b> QSOs "
-#~ "hochzuladen, unabhängig davon, ob sie mit dem aktiven Stationsstandort "
-#~ "zusammenpassen."
+#: application/views/adif/import.php:154
+msgid ""
+"If selected, Wavelog will try to import <b>all</b> QSO's of the ADIF, "
+"regardless if they match to the chosen station-location."
+msgstr ""
+"Wenn diese Option ausgewählt ist, wird Wavelog versuchen <b>alle</b> QSOs "
+"hochzuladen, unabhängig davon, ob sie mit dem aktiven Stationsstandort "
+"zusammenpassen."
 
+#: application/views/debug/index.php:47
 #, php-format
-#~ msgid ""
-#~ "Check this wiki article <u><a href='%s' target='_blank'>here</a></u> for "
-#~ "more information."
-#~ msgstr ""
-#~ "Schau dir diesen Wiki-Artikel <u><a href='%s' target='_blank'>hier</a></"
-#~ "u> an um mehr Informationen zu erhalten."
+msgid ""
+"Check this wiki article <u><a href='%s' target='_blank'>here</a></u> for "
+"more information."
+msgstr ""
+"Schau dir diesen Wiki-Artikel <u><a href='%s' target='_blank'>hier</a></u> "
+"an um mehr Informationen zu erhalten."
 
-#~ msgid "contacts were plotted.<br /> Your furthest contact was with"
-#~ msgstr "Kontakte wurden dargestellt.<br /> Der weiteste Kontakt war"
+#: application/views/distances/index.php:9
+msgid "contacts were plotted.<br /> Your furthest contact was with"
+msgstr "Kontakte wurden dargestellt.<br /> Der weiteste Kontakt war"
 
+#: application/views/interface_assets/footer.php:1160
 #, php-format
-#~ msgid "You're not logged it. Please <a href='%s'>login</a>"
-#~ msgstr "Du bist nicht eingeloggt. Bitte <a href='%s'>logge dich ein</a>"
+msgid "You're not logged it. Please <a href='%s'>login</a>"
+msgstr "Du bist nicht eingeloggt. Bitte <a href='%s'>logge dich ein</a>"
 
+#: application/views/simplefle/index.php:107
 #, php-format
-#~ msgid ""
-#~ "If you did operate from a new location, first create a new <a "
-#~ "href='%s'>Station Location</a>"
-#~ msgstr ""
-#~ "Falls du von einem neuen Standort gefunkt hast, erstelle erst einen neuen "
-#~ "<a href='%s'>Stationsstandort</a>"
+msgid ""
+"If you did operate from a new location, first create a new <a "
+"href='%s'>Station Location</a>"
+msgstr ""
+"Falls du von einem neuen Standort gefunkt hast, erstelle erst einen neuen <a "
+"href='%s'>Stationsstandort</a>"
 
-#~ msgid ""
-#~ "The Refs can be either <u>S</u>OTA, <u>I</u>OTA, <u>P</u>OTA or <u>W</"
-#~ "u>WFF"
-#~ msgstr ""
-#~ "Die Ref. kann entweder <u>S</u>OTA, <u>I</u>OTA, <u>P</u>OTA oder <u>W</"
-#~ "u>WFF sein"
+#: application/views/simplefle/index.php:160
+msgid ""
+"The Refs can be either <u>S</u>OTA, <u>I</u>OTA, <u>P</u>OTA or <u>W</u>WFF"
+msgstr ""
+"Die Ref. kann entweder <u>S</u>OTA, <u>I</u>OTA, <u>P</u>OTA oder <u>W</"
+"u>WFF sein"
 
+#: application/views/simplefle/syntax_help.php:28
 #, php-format
-#~ msgid ""
-#~ "A full summary of all commands and the necessary syntax can be found in "
-#~ "<a href='%s' target='_blank'>this article</a> of our Wiki."
-#~ msgstr ""
-#~ "Eine vollständige Zusammenfassung aller Befehle und der notwendigen "
-#~ "Syntax findest du in <a href='%s' target='_blank'>diesem Artikel</a> "
-#~ "unseres Wikis."
+msgid ""
+"A full summary of all commands and the necessary syntax can be found in <a "
+"href='%s' target='_blank'>this article</a> of our Wiki."
+msgstr ""
+"Eine vollständige Zusammenfassung aller Befehle und der notwendigen Syntax "
+"findest du in <a href='%s' target='_blank'>diesem Artikel</a> unseres Wikis."
 
-#~ msgid ""
-#~ "Click here on 'Add a Theme' and type in the necessary data. Type in the "
-#~ "filenames for the logos <b>without</b> the file extension '.png'"
-#~ msgstr ""
-#~ "Klicke hier auf 'Theme hinzufügen' und gib die notwendigen Informationen "
-#~ "an. Gib die Dateinamen für die Logos <b> OHNE </b> die Dateiendung '.png' "
-#~ "an"
+#: application/views/themes/index.php:73
+msgid ""
+"Click here on 'Add a Theme' and type in the necessary data. Type in the "
+"filenames for the logos <b>without</b> the file extension '.png'"
+msgstr ""
+"Klicke hier auf 'Theme hinzufügen' und gib die notwendigen Informationen an. "
+"Gib die Dateinamen für die Logos <b> OHNE </b> die Dateiendung '.png' an"
 
+#: application/views/user/login.php:60
 #, php-format
-#~ msgid ""
-#~ "More Information about Wavelog on <a href='%s' target='_blank'>Github</a>."
-#~ msgstr ""
-#~ "Mehr Informationen über Wavelog auf <a href='%s' target='_blank'>Github</"
-#~ "a>."
+msgid ""
+"More Information about Wavelog on <a href='%s' target='_blank'>Github</a>."
+msgstr ""
+"Mehr Informationen über Wavelog auf <a href='%s' target='_blank'>Github</a>."
 
 #, php-format
 #~ msgctxt "uses 'this article'"
