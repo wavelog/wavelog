@@ -7,7 +7,25 @@ $( document ).ready(function() {
 	$("#dxcc_id").change(function () {
 		updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputQso');
 		$('#stationCntyInputQso').val('');
+		$('#dxcc_id').multiselect('refresh');
 	});
+
+	$('#dxcc_id').multiselect({
+		// template is needed for bs5 support
+		templates: {
+		  button: '<button type="button" style="text-align: left !important;" class="multiselect dropdown-toggle btn btn-secondary w-auto" data-bs-toggle="dropdown" aria-expanded="false"><span class="multiselect-selected-text"></span></button>',
+		},
+		enableFiltering: true,
+		enableFullValueFiltering: false,
+		enableCaseInsensitiveFiltering: true,
+		numberDisplayed: 1,
+		inheritClass: true,
+		buttonWidth: '100%',
+		maxHeight: 600
+	});
+	$('.multiselect-container .multiselect-filter', $('#dxcc_id').parent()).css({
+		'position': 'sticky', 'top': '0px', 'z-index': 1, 'background-color':'inherit', 'width':'100%', 'height':'37px'
+	})
 
 	$('#notice-alerts').delay(1000).fadeOut(5000);
 
@@ -677,7 +695,7 @@ $( document ).ready(function() {
 		$('#lotw_info').removeClass("lotw_info_orange");
 		$('#qrz_info').text("").hide();
 		$('#hamqth_info').text("").hide();
-		$('#dxcc_id').val("");
+		$('#dxcc_id').val("").multiselect('refresh');
 		$('#cqz').val("");
 		$('#name').val("");
 		$('#qth').val("");
@@ -872,7 +890,7 @@ $( document ).ready(function() {
 								dok_selectize.clear();
 							}
 
-							$('#dxcc_id').val(result.dxcc.adif);
+							$('#dxcc_id').val(result.dxcc.adif).multiselect('refresh');
 							await updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputEdit');
 							$('#cqz').val(result.dxcc.cqz);
 							$('#ituz').val(result.dxcc.ituz);
@@ -1292,7 +1310,7 @@ function highlight(term, base) {
 		$('#locator_info').text("");
 		$('#country').val("");
 		$('#continent').val("");
-		$('#dxcc_id').val("");
+		$('#dxcc_id').val("").multiselect('refresh');
 		$('#cqz').val("");
 		$('#name').val("");
 		$('#qth').val("");

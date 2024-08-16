@@ -50,7 +50,7 @@
 								<div class="card-body">
 									<div class="mb-3">
 										<label><?= __("Username"); ?></label>
-										<input class="form-control" type="text" name="user_name" value="<?php if(isset($user_name)) { echo $user_name; } ?>" />
+										<input class="form-control" type="text" name="user_name" value="<?php if(isset($user_name)) { echo $user_name; } ?>" <?php if($user_name == 'demo' && file_exists('.demo') && $this->session->userdata('user_type') !== '99') { echo 'disabled'; } ?> />
 										<?php if(isset($username_error)) { echo "<small class=\"badge bg-danger\">".$username_error."</small>"; } ?>
 									</div>
 

@@ -62,16 +62,7 @@ class Gridmaster_model extends CI_Model {
     private $lx_lon  = 6;
     private $lx_zoom = 8;
 
-    function get_lotw($dxcc) {
-        $CI =& get_instance();
-        $CI->load->model('logbooks_model');
-        $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-
-        if (!$logbooks_locations_array) {
-            return null;
-        }
-        $location_list = "'".implode("','",$logbooks_locations_array)."'";
-
+    function get_lotw($dxcc, $location_list) {
         $sql = 'SELECT distinct substring(COL_GRIDSQUARE,1,4) as GRID_SQUARES FROM '
            .$this->config->item('table_name')
            .' WHERE station_id in ('.$location_list.')'
@@ -81,16 +72,7 @@ class Gridmaster_model extends CI_Model {
         return $this->db->query($sql);
     }
 
-    function get_paper($dxcc) {
-        $CI =& get_instance();
-        $CI->load->model('logbooks_model');
-        $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-
-        if (!$logbooks_locations_array) {
-            return null;
-        }
-        $location_list = "'".implode("','",$logbooks_locations_array)."'";
-
+    function get_paper($dxcc, $location_list) {
         $sql = 'SELECT distinct substring(COL_GRIDSQUARE,1,4) as GRID_SQUARES FROM '
            .$this->config->item('table_name')
            .' WHERE station_id in ('.$location_list.')'
@@ -100,16 +82,7 @@ class Gridmaster_model extends CI_Model {
         return $this->db->query($sql);
     }
 
-    function get_worked($dxcc) {
-        $CI =& get_instance();
-        $CI->load->model('logbooks_model');
-        $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-
-        if (!$logbooks_locations_array) {
-            return null;
-        }
-        $location_list = "'".implode("','",$logbooks_locations_array)."'";
-
+    function get_worked($dxcc, $location_list) {
         $sql = 'SELECT distinct substring(COL_GRIDSQUARE,1,4) as GRID_SQUARES FROM '
            .$this->config->item('table_name')
            .' WHERE station_id in ('.$location_list.')'
@@ -118,16 +91,7 @@ class Gridmaster_model extends CI_Model {
         return $this->db->query($sql);
     }
 
-    function get_vucc_lotw($dxcc) {
-        $CI =& get_instance();
-        $CI->load->model('logbooks_model');
-        $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-
-        if (!$logbooks_locations_array) {
-            return null;
-        }
-        $location_list = "'".implode("','",$logbooks_locations_array)."'";
-
+    function get_vucc_lotw($dxcc, $location_list) {
         $sql = 'SELECT distinct COL_VUCC_GRIDS as VUCC_GRIDS FROM '
            .$this->config->item('table_name')
            .' WHERE station_id in ('.$location_list.')'
@@ -150,16 +114,7 @@ class Gridmaster_model extends CI_Model {
         return $vucc_grids;
     }
 
-    function get_vucc_paper($dxcc) {
-        $CI =& get_instance();
-        $CI->load->model('logbooks_model');
-        $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-
-        if (!$logbooks_locations_array) {
-            return null;
-        }
-        $location_list = "'".implode("','",$logbooks_locations_array)."'";
-
+    function get_vucc_paper($dxcc, $location_list) {
         $sql = 'SELECT distinct COL_VUCC_GRIDS as VUCC_GRIDS FROM '
            .$this->config->item('table_name')
            .' WHERE station_id in ('.$location_list.')'
@@ -182,16 +137,7 @@ class Gridmaster_model extends CI_Model {
         return $vucc_grids;
     }
 
-    function get_vucc_worked($dxcc) {
-        $CI =& get_instance();
-        $CI->load->model('logbooks_model');
-        $logbooks_locations_array = $CI->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-
-        if (!$logbooks_locations_array) {
-            return null;
-        }
-        $location_list = "'".implode("','",$logbooks_locations_array)."'";
-
+    function get_vucc_worked($dxcc, $location_list) {
         $sql = 'SELECT distinct COL_VUCC_GRIDS as VUCC_GRIDS FROM '
            .$this->config->item('table_name')
            .' WHERE station_id in ('.$location_list.')'
