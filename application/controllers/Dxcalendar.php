@@ -5,7 +5,7 @@ class Dxcalendar extends CI_Controller {
 	public function index()	{
 		$this->load->model('user_model');
 		$this->load->model('logbook_model');
-		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		$data['page_title'] = __("DX Calendar");
 

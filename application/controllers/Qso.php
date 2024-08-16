@@ -6,7 +6,7 @@ class QSO extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('user_model');
-		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 	}
 
 	public function index() {
@@ -16,7 +16,7 @@ class QSO extends CI_Controller {
 		$this->load->model('user_model');
 		$this->load->model('modes');
 		$this->load->model('bands');
-		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
         // Getting the live/post mode from GET command
         // 0 = live
@@ -173,7 +173,7 @@ class QSO extends CI_Controller {
 		$this->load->model('logbook_model');
 		$this->load->model('user_model');
 		$this->load->model('modes');
-		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 		$query = $this->logbook_model->qso_info($this->uri->segment(3));
 
 		$this->load->library('form_validation');
@@ -276,7 +276,7 @@ class QSO extends CI_Controller {
         $this->load->library('form_validation');
 
         if(!$this->user_model->authorize(2)) {
-            $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard');
+            $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard');
         }
 
         $id = str_replace('"', "", $this->input->post("id", TRUE));
@@ -296,7 +296,7 @@ class QSO extends CI_Controller {
         $this->load->model('logbook_model');
         $this->load->model('user_model');
         if(!$this->user_model->authorize(2)) {
-            $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard');
+            $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard');
         }
 
         $this->logbook_model->edit();
@@ -305,7 +305,7 @@ class QSO extends CI_Controller {
 	function qsl_rcvd($id, $method) {
 		$this->load->model('logbook_model');
 		$this->load->model('user_model');
-		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 			// Update Logbook to Mark Paper Card Received
 
@@ -600,7 +600,7 @@ class QSO extends CI_Controller {
 
    // Return Previous QSOs Made in the active logbook
    public function component_past_contacts() {
-	   if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+	   if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 	   $this->load->model('logbook_model');
 	   session_write_close();
 
