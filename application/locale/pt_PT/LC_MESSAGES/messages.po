@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-16 06:33+0000\n"
+"POT-Creation-Date: 2024-08-16 09:50+0000\n"
 "PO-Revision-Date: 2024-08-12 15:29+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
@@ -2006,7 +2006,7 @@ msgstr "O login falhou. Tente novamente."
 
 #: application/controllers/User.php:860
 #: application/views/interface_assets/header.php:356
-#: application/views/user/login.php:89
+#: application/views/user/login.php:91
 #: application/views/visitor/layout/header.php:88
 msgid "Login"
 msgstr "Iniciar sessão"
@@ -2872,12 +2872,11 @@ msgid "Ignore Stationcallsign on import"
 msgstr "Ignorar indicativo da estação na importação"
 
 #: application/views/adif/import.php:154
+#, php-format
 msgid ""
-"If selected, Wavelog will try to import <b>all</b> QSO's of the ADIF, "
+"If selected, Wavelog will try to import %sall%s QSO's of the ADIF, "
 "regardless if they match to the chosen station-location."
 msgstr ""
-"Se selecionado, o Wavelog tentará importar <b>todos</b> os contactos do "
-"ADIF, independentemente de corresponderem à estação-local escolhida."
 
 #: application/views/adif/import.php:158 application/views/adif/import.php:273
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:54
@@ -5633,12 +5632,8 @@ msgstr ""
 
 #: application/views/debug/index.php:47
 #, php-format
-msgid ""
-"Check this wiki article <u><a href='%s' target='_blank'>here</a></u> for "
-"more information."
+msgid "Check this wiki article %shere%s for more information."
 msgstr ""
-"Verifique este artigo da wiki <u><a href='%s' target='_blank'>aqui</a></u> "
-"para mais informações."
 
 #: application/views/debug/index.php:48
 #, php-format
@@ -6015,8 +6010,9 @@ msgid "QSO Data"
 msgstr "Dados do contacto"
 
 #: application/views/distances/index.php:9
-msgid "contacts were plotted.<br /> Your furthest contact was with"
-msgstr "contactos foram traçados. <br /> O seu contacto mais distante foi com"
+#, php-format
+msgid "contacts were plotted.%s Your furthest contact was with"
+msgstr ""
 
 #: application/views/distances/index.php:10
 msgid "in gridsquare"
@@ -6503,8 +6499,8 @@ msgstr ""
 
 #: application/views/interface_assets/footer.php:1160
 #, php-format
-msgid "You're not logged it. Please <a href='%s'>login</a>"
-msgstr "Não estás autenticado. Por favor <a href='%s'>inicia sessão</a>"
+msgid "You're not logged it. Please %slogin%s"
+msgstr ""
 
 #: application/views/interface_assets/footer.php:1366
 #: application/views/interface_assets/footer.php:1370
@@ -9442,11 +9438,9 @@ msgstr "Indicativo da Estação/Localização"
 #: application/views/simplefle/index.php:107
 #, php-format
 msgid ""
-"If you did operate from a new location, first create a new <a "
-"href='%s'>Station Location</a>"
+"If you did operate from a new location, first create a new %sStation "
+"Location%s"
 msgstr ""
-"Se estiver a operar a partir de uma nova localização, crie primeiro uma nova "
-"<a href='%s'>Localização da estação</a>"
 
 #: application/views/simplefle/index.php:112
 msgid "e.g. OK2CQR"
@@ -9465,10 +9459,9 @@ msgid "Refs"
 msgstr "Referências"
 
 #: application/views/simplefle/index.php:160
-msgid ""
-"The Refs can be either <u>S</u>OTA, <u>I</u>OTA, <u>P</u>OTA or <u>W</u>WFF"
+#, php-format
+msgid "The Refs can be either %sS%sOTA, %sI%sOTA, %sP%sOTA, or %sW%sWFF"
 msgstr ""
-"As referências podem ser <u>S</u>OTA, <u>I</u>OTA, <u>P</u>OTA ou <u>W</u>WFF"
 
 #: application/views/simplefle/index.php:167
 msgid "Reload QSO List"
@@ -9557,11 +9550,9 @@ msgstr ""
 #: application/views/simplefle/syntax_help.php:28
 #, php-format
 msgid ""
-"A full summary of all commands and the necessary syntax can be found in <a "
-"href='%s' target='_blank'>this article</a> of our Wiki."
+"A full summary of all commands and the necessary syntax can be found in "
+"%sthis article%s of our Wiki."
 msgstr ""
-"Um resumo completo de todos os comandos e a sintaxe necessária pode ser "
-"encontrado em <a href='%s' target='_blank'>este artigo</a> da nossa Wiki."
 
 #: application/views/station_profile/create.php:51
 #: application/views/station_profile/edit.php:60
@@ -10319,12 +10310,11 @@ msgid "4. Step"
 msgstr "4. Passo"
 
 #: application/views/themes/index.php:73
+#, php-format
 msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
-"filenames for the logos <b>without</b> the file extension '.png'"
+"filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
-"Click here on 'Add a Theme' and type in the necessary data. Type in the "
-"filenames for the logos <b>sem</b> the file extension '.png'"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
@@ -10469,13 +10459,13 @@ msgid "General Information"
 msgstr "Informação Geral"
 
 #: application/views/user/edit.php:52 application/views/user/login.php:58
-#: application/views/user/login.php:67 application/views/user/login.php:68
+#: application/views/user/login.php:69 application/views/user/login.php:70
 #: application/views/user/profile.php:14
 msgid "Username"
 msgstr "Nome de utilizador"
 
 #: application/views/user/edit.php:64 application/views/user/login.php:59
-#: application/views/user/login.php:71 application/views/user/login.php:72
+#: application/views/user/login.php:73 application/views/user/login.php:74
 #: application/views/user/reset_password.php:21
 #: application/views/user/reset_password.php:23
 #: application/views/user/reset_password.php:30
@@ -10887,17 +10877,14 @@ msgstr "Esta demonstração será reiniciada todas as noites às 0200z."
 
 #: application/views/user/login.php:60
 #, php-format
-msgid ""
-"More Information about Wavelog on <a href='%s' target='_blank'>Github</a>."
+msgid "More Information about Wavelog on %sGithub%s."
 msgstr ""
-"Mais informações acerca do Wavelog no <a href='%s' target='_blank'>Github</"
-"a>."
 
-#: application/views/user/login.php:77
+#: application/views/user/login.php:79
 msgid "Forgot your password?"
 msgstr "Esqueceu-se da sua palavra-passe?"
 
-#: application/views/user/login.php:83
+#: application/views/user/login.php:85
 msgid "Keep me logged in"
 msgstr "Manter a minha sessão iniciada"
 
@@ -11256,6 +11243,66 @@ msgstr "O seu indicativo:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Submeter pedido"
+
+#~ msgid ""
+#~ "If selected, Wavelog will try to import <b>all</b> QSO's of the ADIF, "
+#~ "regardless if they match to the chosen station-location."
+#~ msgstr ""
+#~ "Se selecionado, o Wavelog tentará importar <b>todos</b> os contactos do "
+#~ "ADIF, independentemente de corresponderem à estação-local escolhida."
+
+#, php-format
+#~ msgid ""
+#~ "Check this wiki article <u><a href='%s' target='_blank'>here</a></u> for "
+#~ "more information."
+#~ msgstr ""
+#~ "Verifique este artigo da wiki <u><a href='%s' target='_blank'>aqui</a></"
+#~ "u> para mais informações."
+
+#~ msgid "contacts were plotted.<br /> Your furthest contact was with"
+#~ msgstr ""
+#~ "contactos foram traçados. <br /> O seu contacto mais distante foi com"
+
+#, php-format
+#~ msgid "You're not logged it. Please <a href='%s'>login</a>"
+#~ msgstr "Não estás autenticado. Por favor <a href='%s'>inicia sessão</a>"
+
+#, php-format
+#~ msgid ""
+#~ "If you did operate from a new location, first create a new <a "
+#~ "href='%s'>Station Location</a>"
+#~ msgstr ""
+#~ "Se estiver a operar a partir de uma nova localização, crie primeiro uma "
+#~ "nova <a href='%s'>Localização da estação</a>"
+
+#~ msgid ""
+#~ "The Refs can be either <u>S</u>OTA, <u>I</u>OTA, <u>P</u>OTA or <u>W</"
+#~ "u>WFF"
+#~ msgstr ""
+#~ "As referências podem ser <u>S</u>OTA, <u>I</u>OTA, <u>P</u>OTA ou <u>W</"
+#~ "u>WFF"
+
+#, php-format
+#~ msgid ""
+#~ "A full summary of all commands and the necessary syntax can be found in "
+#~ "<a href='%s' target='_blank'>this article</a> of our Wiki."
+#~ msgstr ""
+#~ "Um resumo completo de todos os comandos e a sintaxe necessária pode ser "
+#~ "encontrado em <a href='%s' target='_blank'>este artigo</a> da nossa Wiki."
+
+#~ msgid ""
+#~ "Click here on 'Add a Theme' and type in the necessary data. Type in the "
+#~ "filenames for the logos <b>without</b> the file extension '.png'"
+#~ msgstr ""
+#~ "Click here on 'Add a Theme' and type in the necessary data. Type in the "
+#~ "filenames for the logos <b>sem</b> the file extension '.png'"
+
+#, php-format
+#~ msgid ""
+#~ "More Information about Wavelog on <a href='%s' target='_blank'>Github</a>."
+#~ msgstr ""
+#~ "Mais informações acerca do Wavelog no <a href='%s' "
+#~ "target='_blank'>Github</a>."
 
 #, php-format
 #~ msgctxt "uses 'this article'"

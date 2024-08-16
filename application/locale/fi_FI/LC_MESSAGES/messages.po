@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-16 06:33+0000\n"
+"POT-Creation-Date: 2024-08-16 09:50+0000\n"
 "PO-Revision-Date: 2024-07-09 13:25+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Finnish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1979,7 +1979,7 @@ msgstr ""
 
 #: application/controllers/User.php:860
 #: application/views/interface_assets/header.php:356
-#: application/views/user/login.php:89
+#: application/views/user/login.php:91
 #: application/views/visitor/layout/header.php:88
 msgid "Login"
 msgstr "Kirjaudu"
@@ -2829,8 +2829,9 @@ msgid "Ignore Stationcallsign on import"
 msgstr ""
 
 #: application/views/adif/import.php:154
+#, php-format
 msgid ""
-"If selected, Wavelog will try to import <b>all</b> QSO's of the ADIF, "
+"If selected, Wavelog will try to import %sall%s QSO's of the ADIF, "
 "regardless if they match to the chosen station-location."
 msgstr ""
 
@@ -5374,9 +5375,7 @@ msgstr ""
 
 #: application/views/debug/index.php:47
 #, php-format
-msgid ""
-"Check this wiki article <u><a href='%s' target='_blank'>here</a></u> for "
-"more information."
+msgid "Check this wiki article %shere%s for more information."
 msgstr ""
 
 #: application/views/debug/index.php:48
@@ -5738,7 +5737,8 @@ msgid "QSO Data"
 msgstr ""
 
 #: application/views/distances/index.php:9
-msgid "contacts were plotted.<br /> Your furthest contact was with"
+#, php-format
+msgid "contacts were plotted.%s Your furthest contact was with"
 msgstr ""
 
 #: application/views/distances/index.php:10
@@ -6182,7 +6182,7 @@ msgstr ""
 
 #: application/views/interface_assets/footer.php:1160
 #, php-format
-msgid "You're not logged it. Please <a href='%s'>login</a>"
+msgid "You're not logged it. Please %slogin%s"
 msgstr ""
 
 #: application/views/interface_assets/footer.php:1366
@@ -9004,8 +9004,8 @@ msgstr ""
 #: application/views/simplefle/index.php:107
 #, php-format
 msgid ""
-"If you did operate from a new location, first create a new <a "
-"href='%s'>Station Location</a>"
+"If you did operate from a new location, first create a new %sStation "
+"Location%s"
 msgstr ""
 
 #: application/views/simplefle/index.php:112
@@ -9025,8 +9025,8 @@ msgid "Refs"
 msgstr ""
 
 #: application/views/simplefle/index.php:160
-msgid ""
-"The Refs can be either <u>S</u>OTA, <u>I</u>OTA, <u>P</u>OTA or <u>W</u>WFF"
+#, php-format
+msgid "The Refs can be either %sS%sOTA, %sI%sOTA, %sP%sOTA, or %sW%sWFF"
 msgstr ""
 
 #: application/views/simplefle/index.php:167
@@ -9095,8 +9095,8 @@ msgstr ""
 #: application/views/simplefle/syntax_help.php:28
 #, php-format
 msgid ""
-"A full summary of all commands and the necessary syntax can be found in <a "
-"href='%s' target='_blank'>this article</a> of our Wiki."
+"A full summary of all commands and the necessary syntax can be found in "
+"%sthis article%s of our Wiki."
 msgstr ""
 
 #: application/views/station_profile/create.php:51
@@ -9798,9 +9798,10 @@ msgid "4. Step"
 msgstr ""
 
 #: application/views/themes/index.php:73
+#, php-format
 msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
-"filenames for the logos <b>without</b> the file extension '.png'"
+"filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
 
 #: application/views/themes/index.php:83
@@ -9935,13 +9936,13 @@ msgid "General Information"
 msgstr ""
 
 #: application/views/user/edit.php:52 application/views/user/login.php:58
-#: application/views/user/login.php:67 application/views/user/login.php:68
+#: application/views/user/login.php:69 application/views/user/login.php:70
 #: application/views/user/profile.php:14
 msgid "Username"
 msgstr "käyttäjänimi"
 
 #: application/views/user/edit.php:64 application/views/user/login.php:59
-#: application/views/user/login.php:71 application/views/user/login.php:72
+#: application/views/user/login.php:73 application/views/user/login.php:74
 #: application/views/user/reset_password.php:21
 #: application/views/user/reset_password.php:23
 #: application/views/user/reset_password.php:30
@@ -10334,15 +10335,14 @@ msgstr ""
 
 #: application/views/user/login.php:60
 #, php-format
-msgid ""
-"More Information about Wavelog on <a href='%s' target='_blank'>Github</a>."
+msgid "More Information about Wavelog on %sGithub%s."
 msgstr ""
 
-#: application/views/user/login.php:77
+#: application/views/user/login.php:79
 msgid "Forgot your password?"
 msgstr "Salasana unohtunut?"
 
-#: application/views/user/login.php:83
+#: application/views/user/login.php:85
 msgid "Keep me logged in"
 msgstr ""
 
