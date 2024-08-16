@@ -407,7 +407,7 @@ class User_Model extends CI_Model {
 	// FUNCTION: void update_session()
 	// Updates a user's login session after they've logged in
 	// TODO: This should return bool TRUE/FALSE or 0/1
-	function update_session($id, $u = null, $login = false) {
+	function update_session($id, $u = null) {
 
 		if ($u == null) {
 			$u = $this->get_by_id($id);
@@ -456,13 +456,11 @@ class User_Model extends CI_Model {
 		);
 
 		foreach (array_keys($this->frequency->defaultFrequencies) as $band) {
-			if ($login) {
-				$qrg_unit = $this->user_options_model->get_options('frequency', array('option_name' => 'unit', 'option_key' => $band), $u->row()->user_id)->row()->option_value ?? '';
-			} else {
-				$qrg_unit = $this->session->userdata("qrgunit_$band") ?? '';
-			}
+			$qrg_unit = $this->session->userdata("qrgunit_$band") ?? ($this->user_options_model->get_options('frequency', array('option_name' => 'unit', 'option_key' => $band))->row()->option_value ?? '');
 			if ($qrg_unit !== '') {
 				$userdata['qrgunit_'.$band] = $qrg_unit;
+			} else {
+				$userdata['qrgunit_'.$band] = $this->frequency->defaultFrequencies[$band]['UNIT'];
 			}
 		}
 
