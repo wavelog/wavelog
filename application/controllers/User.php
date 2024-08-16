@@ -1163,7 +1163,7 @@ class User extends CI_Controller {
 		return false;
 	}
 
-	function impersonate($hash) {
+	public function impersonate($hash) {
 
 		// Load the user model
 		$this->load->model('user_model');
@@ -1171,7 +1171,7 @@ class User extends CI_Controller {
 		// before we can impersonate a user, we need to make sure the current user is an admin
 		// TODO: authorize from additional datatable 'impersonators' aswell
 		if(!$this->user_model->authorize(99)) { 
-			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); 
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 			redirect('dashboard'); 
 		}
 
@@ -1188,7 +1188,7 @@ class User extends CI_Controller {
 
 		// make sure the user_id is a number
 		if (!is_numeric($user_id)) {
-			$this->session->set_flashdata('notice', 'Invalid User ID');
+			$this->session->set_flashdata('warning', __("Invalid User ID"));
 			redirect('dashboard');
 		}
 
