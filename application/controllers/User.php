@@ -1196,7 +1196,8 @@ class User extends CI_Controller {
 		// We need to check if the user is allowed to "become" this particular user_id
 
 		// Update the session with the new user_id
-		$this->user_model->update_session($user_id);
+		// TODO: We need to check if the new session data is set correctly. For this we need to go through the user_model->update_session() function
+		$this->user_model->update_session($user_id); 
 		
 		// Redirect to the dashboard
 		redirect('dashboard');
