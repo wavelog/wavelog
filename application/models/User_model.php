@@ -407,12 +407,12 @@ class User_Model extends CI_Model {
 	// FUNCTION: void update_session()
 	// Updates a user's login session after they've logged in
 	// TODO: This should return bool TRUE/FALSE or 0/1
-	function update_session($id, $u = null) {
+	function update_session($id, $u = null, $login = false) {
 
 		if ($u == null) {
 			$u = $this->get_by_id($id);
 		}
-	
+
 		$userdata = array(
 			'user_id'		 => $u->row()->user_id,
 			'user_name'		 => $u->row()->user_name,
@@ -454,14 +454,18 @@ class User_Model extends CI_Model {
 			'isWinkeyEnabled' => $u->row()->winkey,
 			'hasQrzKey' => $this->hasQrzKey($u->row()->user_id)
 		);
-	
+
 		foreach (array_keys($this->frequency->defaultFrequencies) as $band) {
-			$qrg_unit = $this->session->userdata("qrgunit_$band") ?? ($this->user_options_model->get_options('frequency', array('option_name' => 'unit', 'option_key' => $band))->row()->option_value ?? '');
+			if ($login) {
+				$qrg_unit = $this->user_options_model->get_options('frequency', array('option_name' => 'unit', 'option_key' => $band))->row()->option_value;
+			} else {
+				$qrg_unit = $this->session->userdata("qrgunit_$band") ?? '';
+			}
 			if ($qrg_unit !== '') {
 				$userdata['qrgunit_'.$band] = $qrg_unit;
 			}
 		}
-	
+
 		$this->session->set_userdata($userdata);
 	}
 

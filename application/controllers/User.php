@@ -379,7 +379,7 @@ class User extends CI_Controller {
 				$data['user_language'] = $q->user_language;
 			}
 
-			
+
 			if($this->input->post('user_stylesheet')) {
 				$data['user_stylesheet'] = $this->input->post('user_stylesheet', true);
 			} else {
@@ -591,12 +591,12 @@ class User extends CI_Controller {
 								$data['user_map_'.$row->option_key.'_'.$ktype] = $this->input->post('user_map_'.$row->option_key.'_'.$ktype, true);
 							} else {
 								$data['user_map_'.$row->option_key.'_'.$ktype] = $vtype;
-							}					
+							}
 						}
 					} else {
 						$data['user_map_'.$row->option_name.'_'.$row->option_key] = $row->option_value;
 					}
-				}				
+				}
 			} else {
 				$data['user_map_qso_icon'] = "fas fa-dot-circle";
 				$data['user_map_qso_color'] = "#FF0000";
@@ -613,7 +613,7 @@ class User extends CI_Controller {
 
 			$data['user_locations_quickswitch'] = ($this->user_options_model->get_options('header_menu', array('option_name'=>'locations_quickswitch'), $this->uri->segment(3))->row()->option_value ?? 'false');
 			$data['user_utc_headermenu'] = ($this->user_options_model->get_options('header_menu', array('option_name'=>'utc_headermenu'), $this->uri->segment(3))->row()->option_value ?? 'false');
-							
+
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('user/edit', $data);
 			$this->load->view('interface_assets/footer');
@@ -651,7 +651,7 @@ class User extends CI_Controller {
 							$data_options['user_map_'.$icon.'_color'] = xss_clean($this->input->post('user_map_'.$icon.'_color', true));
 						}
 						if (!empty($data_options['user_map_qso_icon'])) {
-							foreach ($array_icon as $icon) { 
+							foreach ($array_icon as $icon) {
 								$json = json_encode(array('icon'=>$data_options['user_map_'.$icon.'_icon'], 'color'=>$data_options['user_map_'.$icon.'_color']));
 								$this->user_options_model->set_option('map_custom','icon',array($icon=>$json));
 							}
@@ -853,7 +853,7 @@ class User extends CI_Controller {
 				$this->session->set_flashdata('error', __("Login failed. Try again."));
 				redirect('user/login');
 			}
-			
+
 		}
 
 		if ($this->form_validation->run() == FALSE) {
@@ -866,7 +866,7 @@ class User extends CI_Controller {
 		} else {
 			if($this->user_model->login() == 1) {
 				$this->session->set_flashdata('notice', __("User logged in"));
-				$this->user_model->update_session($data['user']->user_id);
+				$this->user_model->update_session($data['user']->user_id, null, true);
 				$cookie= array(
 
 					'name'   => $this->config->item('gettext_cookie', 'gettext'),
@@ -934,7 +934,7 @@ class User extends CI_Controller {
 			redirect('user/login');
 
 		} else {
-			
+
 			$this->load->helper(array('form', 'url'));
 
 			$this->load->library('form_validation');
@@ -1013,7 +1013,7 @@ class User extends CI_Controller {
 	public function admin_send_password_reset() {
 
 		header('Content-Type: application/json');
-		
+
 		if ($this->input->is_ajax_request()) { // just additional, to make sure request is from ajax
 			if ($this->input->post('submit_allowed')) {
 

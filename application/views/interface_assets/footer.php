@@ -682,7 +682,7 @@ $('#dxcc_id').ready(function() {
 
 $('#dxcc_id').on('change', function() {
     printWarning();
-    <?php if ($dxcc_list && $dxcc_list->result() > 0) { ?>
+    <?php if (isset($dxcc_list) && $dxcc_list->result() > 0) { ?>
         let dxccadif = $('#dxcc_id').val();
         let dxccinfo = dxccarray.filter(function(dxcc) {
             return dxcc.adif == dxccadif;
