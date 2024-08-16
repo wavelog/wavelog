@@ -1162,7 +1162,7 @@ class User extends CI_Controller {
 		return false;
 	}
 
-	public function impersonate($hash = false) {
+	public function impersonate() {
 
 		if ($this->config->item('encryption_key') == 'flossie1234555541') {
 			$this->session->set_flashdata('error', __("You currently can't impersonate another user. Please change the encryption_key in the config file first!"));
@@ -1185,10 +1185,7 @@ class User extends CI_Controller {
 		}
 
 		// decrypt the hash
-		$decrypted_hash = $this->encryption->decrypt(urldecode($hash));
-
-		// get the user_id from the URL
-		$user_id = $this->security->xss_clean($decrypted_hash);
+		$user_id = $this->encryption->decrypt(urldecode($this->input->post('hash', TRUE) ?? ''));
 
 		// make sure the user_id is a number
 		if (!is_numeric($user_id)) {

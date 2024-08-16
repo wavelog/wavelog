@@ -99,14 +99,17 @@
 								?></td>
 							<td style="text-align: center; vertical-align: middle;">
 								<?php
-								if ($session_uid != $row->user_id) {
-									echo "<a href=" . site_url('user/impersonate') . "/" . urlencode($this->encryption->encrypt($row->user_id)) . " class=\"btn btn-info btn-sm\"><i class=\"fas fa-people-arrows\"></i></a>";
-								}
+								if ($session_uid != $row->user_id) { ?>
+								<form action="<?php echo site_url('user/impersonate'); ?>" method="post" style="display:inline;">
+									<input type="hidden" name="hash" value="<?php echo urlencode($this->encryption->encrypt($row->user_id)); ?>">
+									<button type="submit" class="btn btn-info btn-sm"><i class="fas fa-people-arrows"></i></button>
+								</form>
+								<?php }
 								?></td>
 							<td style="text-align: center; vertical-align: middle;">
 								<?php
 								if ($session_uid != $row->user_id) {
-									echo "<a href=" . site_url('user/delete') . "/" . $row->user_id . " class=\"btn btn-danger btn-sm\"><i class=\"fas fa-user-minus\"></i></a>";
+									echo '<a href="' . site_url('user/delete') . '/' . $row->user_id . '" class="btn btn-danger btn-sm"><i class="fas fa-user-minus"></i></a>';
 								}
 								?></td>
 							</td>
