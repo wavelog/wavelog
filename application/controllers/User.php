@@ -5,9 +5,15 @@ class User extends CI_Controller {
 	public function index()
 	{
 		$this->load->model('user_model');
+
+		if (!$this->load->is_loaded('encryption')) {
+			$this->load->library('encryption');
+		}
+
 		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
 
 		$data['results'] = $this->user_model->users();
+		$data['session_uid'] = $this->session->userdata('user_id');
 
 		$data['page_title'] = __("User Accounts");
 
@@ -1157,20 +1163,28 @@ class User extends CI_Controller {
 		return false;
 	}
 
-	function impersonate() {
+	function impersonate($hash) {
 
 		// Load the user model
 		$this->load->model('user_model');
 
 		// before we can impersonate a user, we need to make sure the current user is an admin
-		// TODO: authorize from additional datatable aswell
+		// TODO: authorize from additional datatable 'impersonators' aswell
 		if(!$this->user_model->authorize(99)) { 
 			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); 
 			redirect('dashboard'); 
 		}
 
-		// get the user_id from the postdata
-		$user_id = $this->input->get('user_id', TRUE); // TODO: easier to test with GET parameter, switch back to POST later -> TEST -> URL/impersonate?user_id=[user_id]
+		// Load the encryption library
+		if (!$this->load->is_loaded('encryption')) {
+			$this->load->library('encryption');
+		}
+
+		// decrypt the hash
+		$decrypted_hash = $this->encryption->decrypt(urldecode($hash));
+
+		// get the user_id from the URL
+		$user_id = $this->security->xss_clean($decrypted_hash);
 
 		// make sure the user_id is a number
 		if (!is_numeric($user_id)) {
