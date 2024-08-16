@@ -5,7 +5,7 @@ class User extends CI_Controller {
 	public function index()
 	{
 		$this->load->model('user_model');
-		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		$data['results'] = $this->user_model->users();
 
@@ -18,7 +18,7 @@ class User extends CI_Controller {
 
 	function add() {
 		$this->load->model('user_model');
-		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		$data['existing_languages'] = $this->config->item('languages');
 
@@ -203,8 +203,8 @@ class User extends CI_Controller {
 
 	function edit() {
 		$this->load->model('user_model');
-		if ( ($this->session->userdata('user_id') == '') || ((!$this->user_model->authorize(99)) && ($this->session->userdata('user_id') != $this->uri->segment(3))) ) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
-		if ( $this->config->item('special_callsign') && $this->session->userdata('user_type') != '99' && $this->config->item('sc_hide_usermenu') ) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+		if ( ($this->session->userdata('user_id') == '') || ((!$this->user_model->authorize(99)) && ($this->session->userdata('user_id') != $this->uri->segment(3))) ) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+		if ( $this->config->item('special_callsign') && $this->session->userdata('user_type') != '99' && $this->config->item('sc_hide_usermenu') ) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 		$query = $this->user_model->get_by_id($this->uri->segment(3));
 
 		$data['existing_languages'] = $this->config->item('languages');
@@ -716,7 +716,7 @@ class User extends CI_Controller {
 
 	function profile() {
 		$this->load->model('user_model');
-		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 		$query = $this->user_model->get_by_id($this->session->userdata('user_id'));
 		$q = $query->row();
 		$data['page_title'] = __("Profile");
@@ -735,7 +735,7 @@ class User extends CI_Controller {
 
 	function delete() {
 		$this->load->model('user_model');
-		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 		$query = $this->user_model->get_by_id($this->uri->segment(3));
 
 		$this->load->library('form_validation');
@@ -1018,7 +1018,7 @@ class User extends CI_Controller {
 
 				$this->load->model('user_model');
 
-				if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+				if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 				$query = $this->user_model->get_by_id($this->input->post('user_id'));
 
