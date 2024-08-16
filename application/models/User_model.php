@@ -457,7 +457,7 @@ class User_Model extends CI_Model {
 
 		foreach (array_keys($this->frequency->defaultFrequencies) as $band) {
 			if ($login) {
-				$qrg_unit = $this->user_options_model->get_options('frequency', array('option_name' => 'unit', 'option_key' => $band))->row()->option_value ?? '';
+				$qrg_unit = $this->user_options_model->get_options('frequency', array('option_name' => 'unit', 'option_key' => $band), $u->row()->user_id)->row()->option_value ?? '';
 			} else {
 				$qrg_unit = $this->session->userdata("qrgunit_$band") ?? '';
 			}
