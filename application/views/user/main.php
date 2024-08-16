@@ -101,7 +101,7 @@
 								<?php
 								if ($session_uid != $row->user_id) { ?>
 								<form action="<?php echo site_url('user/impersonate'); ?>" method="post" style="display:inline;">
-									<input type="hidden" name="hash" value="<?php echo urlencode($this->encryption->encrypt($row->user_id)); ?>">
+									<input type="hidden" name="hash" value="<?php echo $this->encryption->encrypt($row->user_id); ?>">
 									<button type="submit" class="btn btn-info btn-sm"><i class="fas fa-people-arrows"></i></button>
 								</form>
 								<?php }

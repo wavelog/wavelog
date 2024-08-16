@@ -1185,7 +1185,7 @@ class User extends CI_Controller {
 		}
 
 		// decrypt the hash
-		$user_id = $this->encryption->decrypt(urldecode($this->input->post('hash', TRUE) ?? ''));
+		$user_id = $this->encryption->decrypt($this->input->post('hash', TRUE) ?? '');
 
 		// make sure the user_id is a number
 		if (!is_numeric($user_id)) {
