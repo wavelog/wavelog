@@ -256,7 +256,7 @@ class Radio extends CI_Controller {
 		// Check Auth
 		$this->load->model('user_model');
 		if (!$this->user_model->authorize(3)) {
-			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!');
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 			redirect('dashboard');
 		}
 
@@ -282,7 +282,7 @@ class Radio extends CI_Controller {
 		// Check Auth
 		$this->load->model('user_model');
 		if (!$this->user_model->authorize(3)) {
-			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!');
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 			redirect('dashboard');
 		}
 
@@ -298,7 +298,7 @@ class Radio extends CI_Controller {
 		// Check Auth
 		$this->load->model('user_model');
 		if (!$this->user_model->authorize(3)) {
-			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!');
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 			redirect('dashboard');
 		}
 

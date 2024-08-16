@@ -125,8 +125,9 @@ function echo_table_col($row, $name) {
 			</div>
 		<?php } ?>
 	<?php } ?>
-
+	
 <?php } ?>
+<?php $this->load->view('layout/messages'); ?>
 </div>
 
 <?php if($dashboard_map != "false" && $dashboard_map != "map_at_right") { ?>

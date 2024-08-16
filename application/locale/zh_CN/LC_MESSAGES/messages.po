@@ -523,6 +523,7 @@ msgstr "SOTA CSV 导出"
 
 #: application/controllers/Dashboard.php:108
 #: application/controllers/Visitor.php:132
+#: application/controllers/Dashboard.php:111
 msgid "Dashboard"
 msgstr "仪表板"
 
@@ -601,6 +602,7 @@ msgstr "DX 日志"
 #: application/views/dashboard/index.php:309
 #: application/views/eqslcard/index.php:5
 #: application/views/visitor/index.php:306
+#: application/views/dashboard/index.php:310
 msgid "eQSL Cards"
 msgstr "eQSL 卡片"
 
@@ -868,6 +870,7 @@ msgstr "QSL"
 #: application/views/search/search_result_ajax.php:313
 #: application/views/timeline/index.php:60 application/views/user/edit.php:563
 #: application/views/user/edit.php:659 application/views/view_log/qso.php:408
+#: application/views/dashboard/index.php:245
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -899,6 +902,7 @@ msgstr "LoTW"
 #: application/views/timeline/index.php:64 application/views/user/edit.php:564
 #: application/views/user/edit.php:667 application/views/user/edit.php:731
 #: application/views/station_profile/edit.php:278
+#: application/views/dashboard/index.php:245
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -1549,6 +1553,8 @@ msgstr "QRZ ADIF 信息"
 #: application/views/dashboard/index.php:261
 #: application/views/qslcard/index.php:5
 #: application/views/visitor/index.php:283
+#: application/views/dashboard/index.php:245
+#: application/views/dashboard/index.php:262
 msgid "QSL Cards"
 msgstr "QSL 卡片"
 
@@ -2031,7 +2037,7 @@ msgstr "登录"
 msgid "User logged in"
 msgstr "已登录用户"
 
-#: application/controllers/User.php:899
+#: application/controllers/User.php:899 application/controllers/User.php:898
 msgid ""
 "Sorry. This instance is currently in maintenance mode. If this message "
 "appears unexpectedly or keeps showing up, please contact an administrator. "
@@ -2040,28 +2046,30 @@ msgstr ""
 "抱歉，本站正处于维护模式。如果本消息持续显示，请联系本站管理员。当前只允许管"
 "理员登入。"
 
-#: application/controllers/User.php:902
+#: application/controllers/User.php:902 application/controllers/User.php:901
 msgid "Incorrect username or password!"
 msgstr "用户名或密码错误！"
 
-#: application/controllers/User.php:919
+#: application/controllers/User.php:919 application/controllers/User.php:918
 #, php-format
 msgid "User %s logged out."
 msgstr "用户 '%s' 已登出。"
 
-#: application/controllers/User.php:933
+#: application/controllers/User.php:933 application/controllers/User.php:932
 msgid "Password Reset is disabled on the Demo!"
 msgstr "在测试实例上，密码重置已禁用！"
 
-#: application/controllers/User.php:946
+#: application/controllers/User.php:946 application/controllers/User.php:945
 msgid "Forgot Password"
 msgstr "忘记密码"
 
 #: application/controllers/User.php:996 application/views/user/main.php:8
+#: application/controllers/User.php:995
 msgid "Email settings are incorrect."
 msgstr "邮件配置有误。"
 
 #: application/controllers/User.php:1000 application/controllers/User.php:1005
+#: application/controllers/User.php:999 application/controllers/User.php:1004
 msgid "Password Reset Processed."
 msgstr "密码重置已处理。"
 
@@ -2069,6 +2077,7 @@ msgstr "密码重置已处理。"
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
+#: application/controllers/User.php:1106
 msgid "Reset Password"
 msgstr "重置密码"
 
@@ -2288,6 +2297,7 @@ msgstr "累计通联的 WAJA 数量"
 #: application/views/dayswithqso/index.php:16
 #: application/views/statistics/index.php:18
 #: application/views/visitor/index.php:246
+#: application/views/dashboard/index.php:223
 msgid "Year"
 msgstr "年"
 
@@ -2299,6 +2309,7 @@ msgstr "每年"
 #: application/views/accumulate/index.php:10
 #: application/views/dashboard/index.php:227
 #: application/views/visitor/index.php:251
+#: application/views/dashboard/index.php:228
 msgid "Month"
 msgstr "月"
 
@@ -2613,6 +2624,7 @@ msgstr "未找到！"
 #: application/views/user/main.php:47 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:82 application/views/view_log/qso.php:507
 #: application/views/station_profile/edit.php:36
+#: application/views/dashboard/index.php:153
 msgid "Callsign"
 msgstr "呼号"
 
@@ -2705,6 +2717,7 @@ msgstr "与 DCL 相比，日志中 DOK 的数据不同"
 #: application/views/view_log/partial/log_ajax.php:57
 #: application/views/visitor/index.php:147
 #: application/views/widgets/qsos.php:24
+#: application/views/dashboard/index.php:148
 msgid "Date"
 msgstr "日期"
 
@@ -2735,6 +2748,7 @@ msgstr "日期"
 #: application/views/view_log/partial/log_ajax.php:59
 #: application/views/visitor/index.php:150
 #: application/views/widgets/qsos.php:26
+#: application/views/dashboard/index.php:151
 msgid "Time"
 msgstr "时间"
 
@@ -3290,6 +3304,7 @@ msgstr "已确认的县"
 #: application/views/statistics/uniquetable.php:10
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:241
+#: application/views/dashboard/index.php:218
 msgid "Total"
 msgstr "总计"
 
@@ -3331,6 +3346,8 @@ msgstr "CQ 杂志 WAZ 奖状"
 #: application/views/dashboard/index.php:362
 #: application/views/interface_assets/footer.php:39
 #: application/views/visitor/index.php:266
+#: application/views/dashboard/index.php:245
+#: application/views/dashboard/index.php:363
 msgid "Confirmed"
 msgstr "已确认"
 
@@ -3340,6 +3357,8 @@ msgstr "已确认"
 #: application/views/dashboard/index.php:240
 #: application/views/dashboard/index.php:356
 #: application/views/visitor/index.php:262
+#: application/views/dashboard/index.php:241
+#: application/views/dashboard/index.php:357
 msgid "Worked"
 msgstr "已通联"
 
@@ -3978,6 +3997,7 @@ msgstr "城市"
 #: application/views/awards/jcc/index.php:187
 #: application/views/dashboard/index.php:352
 #: application/views/distances/index.php:23
+#: application/views/dashboard/index.php:353
 msgid "SAT"
 msgstr "卫星"
 
@@ -4702,6 +4722,10 @@ msgstr "显示细节"
 #: application/views/dashboard/index.php:310
 #: application/views/dashboard/index.php:331
 #: application/views/satellite/pass.php:475
+#: application/views/dashboard/index.php:263
+#: application/views/dashboard/index.php:290
+#: application/views/dashboard/index.php:311
+#: application/views/dashboard/index.php:332
 msgid "Today"
 msgstr "今天"
 
@@ -5306,16 +5330,19 @@ msgstr "至少有一个 LoTW 证书即将过期!"
 
 #: application/views/dashboard/index.php:213
 #: application/views/visitor/index.php:237
+#: application/views/dashboard/index.php:214
 msgid "QSOs Breakdown"
 msgstr "QSO 分析"
 
 #: application/views/dashboard/index.php:236
 #: application/views/visitor/index.php:258
+#: application/views/dashboard/index.php:237
 msgid "Countries Breakdown"
 msgstr "DXCC 实体分析"
 
 #: application/views/dashboard/index.php:253
 #: application/views/visitor/index.php:275
+#: application/views/dashboard/index.php:254
 msgid "Needed"
 msgstr "待通联"
 
@@ -5348,7 +5375,10 @@ msgstr "待通联"
 #: application/views/visitor/index.php:328
 #: application/views/widgets/qsos.php:30 src/QSLManager/QSO.php:268
 #: src/QSLManager/QSO.php:371 src/QSLManager/QSO.php:423
-#: src/QSLManager/QSO.php:459
+#: src/QSLManager/QSO.php:459 application/views/dashboard/index.php:267
+#: application/views/dashboard/index.php:294
+#: application/views/dashboard/index.php:315
+#: application/views/dashboard/index.php:336
 msgid "Sent"
 msgstr "已发送"
 
@@ -5378,7 +5408,10 @@ msgstr "已发送"
 #: application/views/visitor/index.php:315
 #: application/views/visitor/index.php:333 src/QSLManager/QSO.php:313
 #: src/QSLManager/QSO.php:394 src/QSLManager/QSO.php:436
-#: src/QSLManager/QSO.php:472
+#: src/QSLManager/QSO.php:472 application/views/dashboard/index.php:273
+#: application/views/dashboard/index.php:300
+#: application/views/dashboard/index.php:321
+#: application/views/dashboard/index.php:342
 msgid "Received"
 msgstr "已收到"
 
@@ -5408,16 +5441,18 @@ msgstr "已收到"
 #: application/views/view_log/partial/log_ajax.php:273
 #: application/views/visitor/index.php:297 src/QSLManager/QSO.php:274
 #: src/QSLManager/QSO.php:319 src/QSLManager/QSO.php:379
-#: src/QSLManager/QSO.php:402
+#: src/QSLManager/QSO.php:402 application/views/dashboard/index.php:279
 msgid "Requested"
 msgstr "已请求"
 
 #: application/views/dashboard/index.php:288
+#: application/views/dashboard/index.php:289
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
 msgstr "Logbook of the World(LoTW)"
 
 #: application/views/dashboard/index.php:351
+#: application/views/dashboard/index.php:352
 msgid "VUCC-Grids"
 msgstr "VUCC 网格"
 
@@ -11063,6 +11098,77 @@ msgstr ""
 msgid ""
 "More Information about Wavelog on <a href='%s' target='_blank'>Github</a>."
 msgstr "更多信息可在 <a href='%s' target='_blank'>Github</a> 查看。"
+
+#: application/controllers/Accumulated.php:13
+#: application/controllers/Activators.php:13
+#: application/controllers/Activatorsmap.php:13
+#: application/controllers/Adif.php:13 application/controllers/Awards.php:16
+#: application/controllers/Backup.php:13 application/controllers/Backup.php:26
+#: application/controllers/Backup.php:63 application/controllers/Band.php:15
+#: application/controllers/Bandmap.php:9
+#: application/controllers/Cabrillo.php:16
+#: application/controllers/Cabrillo.php:53
+#: application/controllers/Cabrillo.php:80
+#: application/controllers/Cabrillo.php:135
+#: application/controllers/Calltester.php:11
+#: application/controllers/Cfdexport.php:18
+#: application/controllers/Cfdexport.php:29
+#: application/controllers/Components.php:13
+#: application/controllers/Contestcalendar.php:15
+#: application/controllers/Contesting.php:14
+#: application/controllers/Cron.php:26 application/controllers/Cron.php:145
+#: application/controllers/Csv.php:8 application/controllers/Csv.php:31
+#: application/controllers/Dayswithqso.php:11
+#: application/controllers/Debug.php:10
+#: application/controllers/Distances.php:11
+#: application/controllers/Dxatlas.php:7 application/controllers/Dxatlas.php:29
+#: application/controllers/Dxatlas.php:51
+#: application/controllers/Dxatlas.php:108
+#: application/controllers/Dxcalendar.php:8
+#: application/controllers/Dxcluster.php:9 application/controllers/Eqsl.php:23
+#: application/controllers/Eqsl.php:47 application/controllers/Eqsl.php:144
+#: application/controllers/Eqsl.php:223 application/controllers/Eqsl.php:247
+#: application/controllers/Eqsl.php:286 application/controllers/Eqsl.php:348
+#: application/controllers/Eqsl.php:411 application/controllers/Eqsl.php:427
+#: application/controllers/Eqsl.php:487 application/controllers/Hamsat.php:13
+#: application/controllers/Kmlexport.php:18
+#: application/controllers/Kmlexport.php:33
+#: application/controllers/Labels.php:26
+#: application/controllers/Logbookadvanced.php:16
+#: application/controllers/Lookup.php:17 application/controllers/Lotw.php:45
+#: application/controllers/Lotw.php:77 application/controllers/Lotw.php:104
+#: application/controllers/Lotw.php:378 application/controllers/Lotw.php:401
+#: application/controllers/Lotw.php:712 application/controllers/Lotw.php:820
+#: application/controllers/Lotw.php:828 application/controllers/Mode.php:15
+#: application/controllers/Notes.php:10 application/controllers/Options.php:15
+#: application/controllers/Oqrs.php:15 application/controllers/Qrbcalc.php:13
+#: application/controllers/Qrz.php:251 application/controllers/Qsl.php:12
+#: application/controllers/Qsl.php:13 application/controllers/Qsl.php:44
+#: application/controllers/Qsl.php:52 application/controllers/Qslprint.php:147
+#: application/controllers/Qso.php:9 application/controllers/Qso.php:19
+#: application/controllers/Qso.php:176 application/controllers/Qso.php:279
+#: application/controllers/Qso.php:299 application/controllers/Qso.php:308
+#: application/controllers/Qso.php:603 application/controllers/Radio.php:259
+#: application/controllers/Radio.php:285 application/controllers/Radio.php:301
+#: application/controllers/Satellite.php:15
+#: application/controllers/Sattimers.php:9
+#: application/controllers/Search.php:13
+#: application/controllers/Simplefle.php:7
+#: application/controllers/Station.php:17
+#: application/controllers/Stationsetup.php:15
+#: application/controllers/Themes.php:17
+#: application/controllers/Timeline.php:11
+#: application/controllers/Timeplotter.php:11
+#: application/controllers/Update.php:24 application/controllers/Update.php:273
+#: application/controllers/Update.php:284
+#: application/controllers/Update.php:295
+#: application/controllers/Update.php:306 application/controllers/User.php:8
+#: application/controllers/User.php:21 application/controllers/User.php:206
+#: application/controllers/User.php:207 application/controllers/User.php:719
+#: application/controllers/User.php:738 application/controllers/User.php:1021
+#: application/controllers/User_options.php:9
+msgid "You're not allowed to do that!"
+msgstr ""
 
 #, php-format
 #~ msgctxt "uses 'this article'"

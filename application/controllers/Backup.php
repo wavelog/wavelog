@@ -10,7 +10,7 @@ class Backup extends CI_Controller {
 	public function index()
 	{
 		$this->load->model('user_model');
-		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		$data['page_title'] = __("Backup");
 
@@ -23,7 +23,7 @@ class Backup extends CI_Controller {
 	public function adif($key = null){ 
 		if ($key == null) {
 			$this->load->model('user_model');
-			if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+			if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 		}
 
 		$clean_key = $this->security->xss_clean($key);
@@ -60,7 +60,7 @@ class Backup extends CI_Controller {
 	public function notes($key = null) {
 		if ($key == null) {
 			$this->load->model('user_model');
-			if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+			if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 		}
 
 		$clean_key = $this->security->xss_clean($key);

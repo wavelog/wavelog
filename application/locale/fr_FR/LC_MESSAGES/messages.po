@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-16 10:20+0000\n"
+"POT-Creation-Date: 2024-08-16 10:41+0000\n"
 "PO-Revision-Date: 2024-07-29 12:05+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
@@ -20,6 +20,77 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 5.6.2\n"
+
+#: application/controllers/Accumulated.php:13
+#: application/controllers/Activators.php:13
+#: application/controllers/Activatorsmap.php:13
+#: application/controllers/Adif.php:13 application/controllers/Awards.php:16
+#: application/controllers/Backup.php:13 application/controllers/Backup.php:26
+#: application/controllers/Backup.php:63 application/controllers/Band.php:15
+#: application/controllers/Bandmap.php:9
+#: application/controllers/Cabrillo.php:16
+#: application/controllers/Cabrillo.php:53
+#: application/controllers/Cabrillo.php:80
+#: application/controllers/Cabrillo.php:135
+#: application/controllers/Calltester.php:11
+#: application/controllers/Cfdexport.php:18
+#: application/controllers/Cfdexport.php:29
+#: application/controllers/Components.php:13
+#: application/controllers/Contestcalendar.php:15
+#: application/controllers/Contesting.php:14
+#: application/controllers/Cron.php:26 application/controllers/Cron.php:145
+#: application/controllers/Csv.php:8 application/controllers/Csv.php:31
+#: application/controllers/Dayswithqso.php:11
+#: application/controllers/Debug.php:10
+#: application/controllers/Distances.php:11
+#: application/controllers/Dxatlas.php:7 application/controllers/Dxatlas.php:29
+#: application/controllers/Dxatlas.php:51
+#: application/controllers/Dxatlas.php:108
+#: application/controllers/Dxcalendar.php:8
+#: application/controllers/Dxcluster.php:9 application/controllers/Eqsl.php:23
+#: application/controllers/Eqsl.php:47 application/controllers/Eqsl.php:144
+#: application/controllers/Eqsl.php:223 application/controllers/Eqsl.php:247
+#: application/controllers/Eqsl.php:286 application/controllers/Eqsl.php:348
+#: application/controllers/Eqsl.php:411 application/controllers/Eqsl.php:427
+#: application/controllers/Eqsl.php:487 application/controllers/Hamsat.php:13
+#: application/controllers/Kmlexport.php:18
+#: application/controllers/Kmlexport.php:33
+#: application/controllers/Labels.php:26
+#: application/controllers/Logbookadvanced.php:16
+#: application/controllers/Lookup.php:17 application/controllers/Lotw.php:45
+#: application/controllers/Lotw.php:77 application/controllers/Lotw.php:104
+#: application/controllers/Lotw.php:378 application/controllers/Lotw.php:401
+#: application/controllers/Lotw.php:712 application/controllers/Lotw.php:820
+#: application/controllers/Lotw.php:828 application/controllers/Mode.php:15
+#: application/controllers/Notes.php:10 application/controllers/Options.php:15
+#: application/controllers/Oqrs.php:15 application/controllers/Qrbcalc.php:13
+#: application/controllers/Qrz.php:251 application/controllers/Qsl.php:12
+#: application/controllers/Qsl.php:13 application/controllers/Qsl.php:44
+#: application/controllers/Qsl.php:52 application/controllers/Qslprint.php:147
+#: application/controllers/Qso.php:9 application/controllers/Qso.php:19
+#: application/controllers/Qso.php:176 application/controllers/Qso.php:279
+#: application/controllers/Qso.php:299 application/controllers/Qso.php:308
+#: application/controllers/Qso.php:603 application/controllers/Radio.php:259
+#: application/controllers/Radio.php:285 application/controllers/Radio.php:301
+#: application/controllers/Satellite.php:15
+#: application/controllers/Sattimers.php:9
+#: application/controllers/Search.php:13
+#: application/controllers/Simplefle.php:7
+#: application/controllers/Station.php:17
+#: application/controllers/Stationsetup.php:15
+#: application/controllers/Themes.php:17
+#: application/controllers/Timeline.php:11
+#: application/controllers/Timeplotter.php:11
+#: application/controllers/Update.php:24 application/controllers/Update.php:273
+#: application/controllers/Update.php:284
+#: application/controllers/Update.php:295
+#: application/controllers/Update.php:306 application/controllers/User.php:8
+#: application/controllers/User.php:21 application/controllers/User.php:206
+#: application/controllers/User.php:207 application/controllers/User.php:719
+#: application/controllers/User.php:738 application/controllers/User.php:1021
+#: application/controllers/User_options.php:9
+msgid "You're not allowed to do that!"
+msgstr ""
 
 #: application/controllers/Accumulated.php:21
 #: application/views/interface_assets/header.php:150
@@ -497,7 +568,7 @@ msgstr "Modifier les traitements Cron"
 msgid "SOTA CSV Export"
 msgstr "SOTA - Export CSV"
 
-#: application/controllers/Dashboard.php:108
+#: application/controllers/Dashboard.php:111
 #: application/controllers/Visitor.php:132
 msgid "Dashboard"
 msgstr "Tableau de bord"
@@ -576,7 +647,7 @@ msgid "DX Calendar"
 msgstr "Calendrier des DX"
 
 #: application/controllers/Eqsl.php:34
-#: application/views/dashboard/index.php:309
+#: application/views/dashboard/index.php:310
 #: application/views/eqslcard/index.php:5
 #: application/views/visitor/index.php:306
 msgid "eQSL Cards"
@@ -841,7 +912,7 @@ msgstr "QSL"
 #: application/views/awards/wab/index.php:80
 #: application/views/awards/waja/index.php:57
 #: application/views/awards/was/index.php:57
-#: application/views/dashboard/index.php:244
+#: application/views/dashboard/index.php:245
 #: application/views/gridmap/index.php:109
 #: application/views/logbookadvanced/useroptions.php:66
 #: application/views/oqrs/qsolist.php:17 application/views/oqrs/qsolist.php:159
@@ -870,7 +941,7 @@ msgstr "LoTW"
 #: application/views/awards/wab/index.php:88
 #: application/views/awards/waja/index.php:61
 #: application/views/awards/was/index.php:61
-#: application/views/dashboard/index.php:244
+#: application/views/dashboard/index.php:245
 #: application/views/gridmap/index.php:117
 #: application/views/logbookadvanced/useroptions.php:70
 #: application/views/oqrs/qsolist.php:14 application/views/oqrs/qsolist.php:130
@@ -1529,8 +1600,8 @@ msgstr "Importation QSL QRZ"
 msgid "QRZ ADIF Information"
 msgstr "Informations ADIF QRZ"
 
-#: application/controllers/Qsl.php:25 application/views/dashboard/index.php:244
-#: application/views/dashboard/index.php:261
+#: application/controllers/Qsl.php:25 application/views/dashboard/index.php:245
+#: application/views/dashboard/index.php:262
 #: application/views/qslcard/index.php:5
 #: application/views/visitor/index.php:283
 msgid "QSL Cards"
@@ -2006,11 +2077,7 @@ msgstr "La connexion a échoué. Essayer à nouveau."
 msgid "Login"
 msgstr "Se connecter"
 
-#: application/controllers/User.php:868
-msgid "User logged in"
-msgstr "Utilisateur connecté"
-
-#: application/controllers/User.php:899
+#: application/controllers/User.php:898
 msgid ""
 "Sorry. This instance is currently in maintenance mode. If this message "
 "appears unexpectedly or keeps showing up, please contact an administrator. "
@@ -2021,32 +2088,32 @@ msgstr ""
 "un administrateur. Seuls les administrateurs sont actuellement autorisés à "
 "se connecter."
 
-#: application/controllers/User.php:902
+#: application/controllers/User.php:901
 msgid "Incorrect username or password!"
 msgstr "Identifiant ou mot de passe incorrect!"
 
-#: application/controllers/User.php:919
+#: application/controllers/User.php:918
 #, php-format
 msgid "User %s logged out."
 msgstr "L'utilisateur %s s'est déconnecté."
 
-#: application/controllers/User.php:933
+#: application/controllers/User.php:932
 msgid "Password Reset is disabled on the Demo!"
 msgstr "La réinitialisation du mot de passe est désactivée sur la démo !"
 
-#: application/controllers/User.php:946
+#: application/controllers/User.php:945
 msgid "Forgot Password"
 msgstr "Mot de passe oublié"
 
-#: application/controllers/User.php:996 application/views/user/main.php:8
+#: application/controllers/User.php:995 application/views/user/main.php:8
 msgid "Email settings are incorrect."
 msgstr "Les paramètres de messagerie sont incorrects."
 
-#: application/controllers/User.php:1000 application/controllers/User.php:1005
+#: application/controllers/User.php:999 application/controllers/User.php:1004
 msgid "Password Reset Processed."
 msgstr "Réinitialisation du mot de passe traitée."
 
-#: application/controllers/User.php:1107
+#: application/controllers/User.php:1106
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
@@ -2271,7 +2338,7 @@ msgid "Accumulated number of WAJA worked"
 msgstr ""
 
 #: application/views/accumulate/index.php:8
-#: application/views/dashboard/index.php:222
+#: application/views/dashboard/index.php:223
 #: application/views/dayswithqso/index.php:16
 #: application/views/statistics/index.php:18
 #: application/views/visitor/index.php:246
@@ -2284,7 +2351,7 @@ msgid "Yearly"
 msgstr ""
 
 #: application/views/accumulate/index.php:10
-#: application/views/dashboard/index.php:227
+#: application/views/dashboard/index.php:228
 #: application/views/visitor/index.php:251
 msgid "Month"
 msgstr "Mois"
@@ -2572,7 +2639,7 @@ msgstr ""
 #: application/views/cabrillo/index.php:31
 #: application/views/components/hamsat/table.php:27
 #: application/views/contesting/index.php:104
-#: application/views/csv/index.php:23 application/views/dashboard/index.php:152
+#: application/views/csv/index.php:23 application/views/dashboard/index.php:153
 #: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:41
 #: application/views/eqslcard/index.php:28
 #: application/views/hamsat/index.php:30 application/views/labels/index.php:123
@@ -2657,7 +2724,7 @@ msgstr "Différence de données DOK entre votre journal de travail et DCL"
 #: application/views/components/hamsat/table.php:25
 #: application/views/contesting/index.php:42
 #: application/views/contesting/index.php:200
-#: application/views/dashboard/index.php:147
+#: application/views/dashboard/index.php:148
 #: application/views/debug/index.php:545 application/views/eqsl/analysis.php:36
 #: application/views/eqsl/download.php:36 application/views/eqsl/result.php:33
 #: application/views/eqslcard/index.php:30
@@ -2699,7 +2766,7 @@ msgstr ""
 #: application/views/components/hamsat/table.php:26
 #: application/views/contesting/index.php:47
 #: application/views/contesting/index.php:200
-#: application/views/dashboard/index.php:150
+#: application/views/dashboard/index.php:151
 #: application/views/debug/index.php:546 application/views/eqsl/analysis.php:37
 #: application/views/eqsl/download.php:37 application/views/eqsl/result.php:34
 #: application/views/eqslcard/index.php:31
@@ -3264,7 +3331,7 @@ msgstr ""
 #: application/views/awards/rac/index.php:169
 #: application/views/awards/waja/index.php:177
 #: application/views/awards/was/index.php:177
-#: application/views/dashboard/index.php:217
+#: application/views/dashboard/index.php:218
 #: application/views/simplefle/index.php:27
 #: application/views/statistics/qsltable.php:54
 #: application/views/statistics/qsltable.php:109
@@ -3311,8 +3378,8 @@ msgstr ""
 #: application/views/awards/itu/index.php:32
 #: application/views/awards/wab/list.php:6
 #: application/views/bandmap/list.php:73
-#: application/views/dashboard/index.php:244
-#: application/views/dashboard/index.php:362
+#: application/views/dashboard/index.php:245
+#: application/views/dashboard/index.php:363
 #: application/views/interface_assets/footer.php:39
 #: application/views/visitor/index.php:266
 msgid "Confirmed"
@@ -3321,8 +3388,8 @@ msgstr "Confirmés"
 #: application/views/awards/cq/index.php:32
 #: application/views/awards/itu/index.php:32
 #: application/views/bandmap/list.php:72
-#: application/views/dashboard/index.php:240
-#: application/views/dashboard/index.php:356
+#: application/views/dashboard/index.php:241
+#: application/views/dashboard/index.php:357
 #: application/views/visitor/index.php:262
 msgid "Worked"
 msgstr "Réalisés"
@@ -3919,7 +3986,7 @@ msgid "City"
 msgstr "Ville"
 
 #: application/views/awards/jcc/index.php:187
-#: application/views/dashboard/index.php:352
+#: application/views/dashboard/index.php:353
 #: application/views/distances/index.php:23
 msgid "SAT"
 msgstr ""
@@ -4603,10 +4670,10 @@ msgid "Show Details"
 msgstr ""
 
 #: application/views/contestcalendar/index.php:38
-#: application/views/dashboard/index.php:262
-#: application/views/dashboard/index.php:289
-#: application/views/dashboard/index.php:310
-#: application/views/dashboard/index.php:331
+#: application/views/dashboard/index.php:263
+#: application/views/dashboard/index.php:290
+#: application/views/dashboard/index.php:311
+#: application/views/dashboard/index.php:332
 #: application/views/satellite/pass.php:475
 msgid "Today"
 msgstr "Aujourd'hui"
@@ -5220,25 +5287,25 @@ msgstr "Au moins un de vos certificats LoTW est expiré !"
 msgid "At least one of your LoTW certificates is about to expire!"
 msgstr "Au moins un de vos certificats LoTW est sur le point d'expirer !"
 
-#: application/views/dashboard/index.php:213
+#: application/views/dashboard/index.php:214
 #: application/views/visitor/index.php:237
 msgid "QSOs Breakdown"
 msgstr "QSO Breakdown"
 
-#: application/views/dashboard/index.php:236
+#: application/views/dashboard/index.php:237
 #: application/views/visitor/index.php:258
 msgid "Countries Breakdown"
 msgstr "Pays Breakdown"
 
-#: application/views/dashboard/index.php:253
+#: application/views/dashboard/index.php:254
 #: application/views/visitor/index.php:275
 msgid "Needed"
 msgstr "Demandés"
 
-#: application/views/dashboard/index.php:266
-#: application/views/dashboard/index.php:293
-#: application/views/dashboard/index.php:314
-#: application/views/dashboard/index.php:335
+#: application/views/dashboard/index.php:267
+#: application/views/dashboard/index.php:294
+#: application/views/dashboard/index.php:315
+#: application/views/dashboard/index.php:336
 #: application/views/oqrs/qsolist.php:50 application/views/oqrs/qsolist.php:130
 #: application/views/oqrs/qsolist.php:159
 #: application/views/qslprint/qsolist.php:58
@@ -5268,10 +5335,10 @@ msgstr "Demandés"
 msgid "Sent"
 msgstr "Envoyées"
 
-#: application/views/dashboard/index.php:272
-#: application/views/dashboard/index.php:299
-#: application/views/dashboard/index.php:320
-#: application/views/dashboard/index.php:341
+#: application/views/dashboard/index.php:273
+#: application/views/dashboard/index.php:300
+#: application/views/dashboard/index.php:321
+#: application/views/dashboard/index.php:342
 #: application/views/oqrs/qsolist.php:92 application/views/oqrs/qsolist.php:143
 #: application/views/oqrs/qsolist.php:174
 #: application/views/qslprint/qsolist.php:100
@@ -5298,7 +5365,7 @@ msgstr "Envoyées"
 msgid "Received"
 msgstr "Reçues"
 
-#: application/views/dashboard/index.php:278
+#: application/views/dashboard/index.php:279
 #: application/views/logbookadvanced/index.php:302
 #: application/views/logbookadvanced/index.php:313
 #: application/views/logbookadvanced/index.php:344
@@ -5328,12 +5395,12 @@ msgstr "Reçues"
 msgid "Requested"
 msgstr "Demandées"
 
-#: application/views/dashboard/index.php:288
+#: application/views/dashboard/index.php:289
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
 msgstr ""
 
-#: application/views/dashboard/index.php:351
+#: application/views/dashboard/index.php:352
 msgid "VUCC-Grids"
 msgstr ""
 
@@ -10759,6 +10826,9 @@ msgstr ""
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr ""
+
+#~ msgid "User logged in"
+#~ msgstr "Utilisateur connecté"
 
 #~ msgid ""
 #~ "If selected, Wavelog will try to import <b>all</b> QSO's of the ADIF, "
