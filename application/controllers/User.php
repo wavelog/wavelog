@@ -1091,8 +1091,7 @@ class User extends CI_Controller {
 		}
 	}
 
-	function reset_password($reset_code = NULL)
-	{
+	function reset_password($reset_code = NULL) {
 		$data['reset_code'] = $reset_code;
 		if($reset_code != NULL) {
 			$this->load->helper(array('form', 'url'));
@@ -1123,38 +1122,69 @@ class User extends CI_Controller {
 		}
 	}
 
-   function check_locator($grid) {
-      $grid = $this->input->post('user_locator');
-      // Allow empty locator
-      if (preg_match('/^$/', $grid)) return true;
-      // Allow 6-digit locator
-      if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2}$/', $grid)) return true;
-      // Allow 4-digit locator
-      else if (preg_match('/^[A-Ra-r]{2}[0-9]{2}$/', $grid)) return true;
-      // Allow 4-digit grid line
-      else if (preg_match('/^[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2}$/', $grid)) return true;
-      // Allow 4-digit grid corner
-      else if (preg_match('/^[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2}$/', $grid)) return true;
-      // Allow 2-digit locator
-      else if (preg_match('/^[A-Ra-r]{2}$/', $grid)) return true;
-      // Allow 8-digit locator
-      else if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2}[0-9]{2}$/', $grid)) return true;
-      else {
-         $this->form_validation->set_message('check_locator', 'Please check value for grid locator ('.strtoupper($grid).').');
-         return false;
-      }
-   }
+	function check_locator($grid) {
+		$grid = $this->input->post('user_locator');
+		// Allow empty locator
+		if (preg_match('/^$/', $grid)) return true;
+		// Allow 6-digit locator
+		if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2}$/', $grid)) return true;
+		// Allow 4-digit locator
+		else if (preg_match('/^[A-Ra-r]{2}[0-9]{2}$/', $grid)) return true;
+		// Allow 4-digit grid line
+		else if (preg_match('/^[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2}$/', $grid)) return true;
+		// Allow 4-digit grid corner
+		else if (preg_match('/^[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2}$/', $grid)) return true;
+		// Allow 2-digit locator
+		else if (preg_match('/^[A-Ra-r]{2}$/', $grid)) return true;
+		// Allow 8-digit locator
+		else if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2}[0-9]{2}$/', $grid)) return true;
+		else {
+			$this->form_validation->set_message('check_locator', 'Please check value for grid locator ('.strtoupper($grid).').');
+			return false;
+		}
+	}
 
-   function https_check() {
-	if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
-		return true;
+   	function https_check() {
+		if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
+			return true;
+		}
+		if (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
+			return true;
+		}
+		if (!empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] === 'on') {
+			return true;
+		}
+		return false;
 	}
-	if (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
-		return true;
+
+	function impersonate() {
+
+		// Load the user model
+		$this->load->model('user_model');
+
+		// before we can impersonate a user, we need to make sure the current user is an admin
+		// TODO: authorize from additional datatable aswell
+		if(!$this->user_model->authorize(99)) { 
+			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); 
+			redirect('dashboard'); 
+		}
+
+		// get the user_id from the postdata
+		$user_id = $this->input->get('user_id', TRUE); // TODO: easier to test with GET parameter, switch back to POST later -> TEST -> URL/impersonate?user_id=[user_id]
+
+		// make sure the user_id is a number
+		if (!is_numeric($user_id)) {
+			$this->session->set_flashdata('notice', 'Invalid User ID');
+			redirect('dashboard');
+		}
+
+		// TODO: Later implementation for special callsigns:
+		// We need to check if the user is allowed to "become" this particular user_id
+
+		// Update the session with the new user_id
+		$this->user_model->update_session($user_id);
+		
+		// Redirect to the dashboard
+		redirect('dashboard');
 	}
-	if (!empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] === 'on') {
-		return true;
-	}
-	return false;
-}
 }
