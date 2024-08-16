@@ -44,7 +44,7 @@
                             <div class="alert alert-danger mt-3 mb-3">
                                 <h5><?= __("Migration is outdated and locked!"); ?></h5>
                                 <p><?= sprintf(__("The current migration is not the version it is supposed to be. Reload this page after %s seconds. If this warning persists, your migration is likely locked due to a previously failed process. Delete the file %s to force the migration to run again."), $miglock_lifetime, $migration_lockfile); ?></p>
-                                <p><?= sprintf(__("Check this wiki article <u><a href='%s' target='_blank'>here</a></u> for more information."), "https://github.com/wavelog/wavelog/wiki/Migration-is-locked"); ?></p>
+                                <p><?= sprintf(__("Check this wiki article %shere%s for more information."), '<u><a href="https://github.com/wavelog/wavelog/wiki/Migration-is-locked" target="_blank">', '</a></u>'); ?></p>
                                 <p><?= sprintf(__("Current migration is %s"), $migration_version); ?><br>
                                     <?= sprintf(__("Migration should be %s"), $migration_config); ?></p>
                             </div>

@@ -359,7 +359,7 @@
           <div class="tab-pane fade" id="general" role="tabpanel" aria-labelledby="general-tab">
               <div class="mb-3">
                   <label for="dxcc_id"><?= __("DXCC"); ?></label>
-                  <select class="form-select" id="dxcc_id" name="dxcc_id" required>
+                  <select class="form-control" id="dxcc_id" name="dxcc_id" required>
                       <option value="0">- NONE -</option>
                       <?php
                       foreach($dxcc as $d){

@@ -236,6 +236,7 @@ if($this->session->userdata('user_id') != null) {
 <?php if ($this->uri->segment(1) == "station") { ?>
     <script language="javascript" src="<?php echo base_url() ;?>assets/js/HamGridSquare.js"></script>
     <script src="<?php echo base_url() ;?>assets/js/sections/station_locations.js"></script>
+    <script src="<?php echo base_url() ;?>assets/js/bootstrap-multiselect.js"></script>
     <script>
         var position;
         function getLocation() {
@@ -681,12 +682,14 @@ $('#dxcc_id').ready(function() {
 
 $('#dxcc_id').on('change', function() {
     printWarning();
-	let dxccadif = $('#dxcc_id').val();
-	let dxccinfo = dxccarray.filter(function(dxcc) {
-		return dxcc.adif == dxccadif;
-	});
-	$("#stationCQZoneInput").val(dxccinfo[0].cq);
-	// $("#stationITUZoneInput").val(dxccinfo[0].itu); // Commented out, since we do not have itu data.
+    <?php if ($dxcc_list && $dxcc_list->result() > 0) { ?>
+        let dxccadif = $('#dxcc_id').val();
+        let dxccinfo = dxccarray.filter(function(dxcc) {
+            return dxcc.adif == dxccadif;
+        });
+        $("#stationCQZoneInput").val(dxccinfo[0].cq);
+        // $("#stationITUZoneInput").val(dxccinfo[0].itu); // Commented out, since we do not have itu data.
+    <?php } ?>
 });
 </script>
 
@@ -905,6 +908,7 @@ $($('#callsign')).on('keypress',function(e) {
 <?php if ($this->uri->segment(1) == "qso") { ?>
 
 <script src="<?php echo base_url() ;?>assets/js/sections/qso.js"></script>
+<script src="<?php echo base_url() ;?>assets/js/bootstrap-multiselect.js"></script>
 <?php if ($this->session->userdata('isWinkeyEnabled')) { ?>
 	<script src="<?php echo base_url() ;?>assets/js/winkey.js"></script>
 <?php }	?>
@@ -1153,7 +1157,7 @@ $($('#callsign')).on('keypress',function(e) {
 					    if (data.error == 'not_logged_in') {
 						    $(".radio_cat_state" ).remove();
 						    if($('.radio_login_error').length == 0) {
-							    $('.qso_panel').prepend('<div class="alert alert-danger radio_login_error" role="alert"><i class="fas fa-broadcast-tower"></i> '+"<?= sprintf(__("You're not logged it. Please <a href='%s'>login</a>"), base_url()); ?>"+'</div>');
+							    $('.qso_panel').prepend('<div class="alert alert-danger radio_login_error" role="alert"><i class="fas fa-broadcast-tower"></i> '+"<?= sprintf(__("You're not logged it. Please %slogin%s"), '<a href="'.base_url().'">', '</a>'); ?>"+'</div>');
 						    }
 					    }
 					    // Put future Errorhandling here
