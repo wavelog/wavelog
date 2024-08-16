@@ -196,6 +196,7 @@ class IOTA extends CI_Model {
 		if ($postdata['mode'] != 'All') {
 			$sql .= " and (col_mode = ? or col_submode = ?)";
 			$binding[] = $postdata['mode'];
+			$binding[] = $postdata['mode'];
 		}
 
 		if ($postdata['includedeleted'] == NULL) {
