@@ -51,6 +51,7 @@
 							<th></th>
 							<th style="text-align: center; vertical-align: middle;" scope="col"><?= __("Edit"); ?></th>
 							<th style="text-align: center; vertical-align: middle;" scope="col"><?= __("Password Reset"); ?></th>
+							<th style="text-align: center; vertical-align: middle;" scope="col"><?= __("Impersonate"); ?></th>
 							<th style="text-align: center; vertical-align: middle;" scope="col"><?= __("Delete"); ?></th>
 						</tr>
 					</thead>
@@ -92,13 +93,19 @@
 							<td style="text-align: center; vertical-align: middle;"><a href="<?php echo site_url('user/edit') . "/" . $row->user_id; ?>" class="btn btn-outline-primary btn-sm"><i class="fas fa-user-edit"></i></a>
 							<td style="text-align: center; vertical-align: middle;">
 								<?php
-								if ($_SESSION['user_id'] != $row->user_id) {
+								if ($session_uid != $row->user_id) {
 									echo '<a class="btn btn-primary btn-sm ms-1 admin_pwd_reset" data-username="' . $row->user_name . '" data-callsign="' . $row->user_callsign . '" data-userid="' . $row->user_id . '" data-usermail="' . $row->user_email . '"><i class="fas fa-key"></i></a>';
 								}
 								?></td>
 							<td style="text-align: center; vertical-align: middle;">
 								<?php
-								if ($_SESSION['user_id'] != $row->user_id) {
+								if ($session_uid != $row->user_id) {
+									echo "<a href=" . site_url('user/impersonate') . "/" . urlencode($this->encryption->encrypt($row->user_id)) . " class=\"btn btn-info btn-sm\"><i class=\"fas fa-people-arrows\"></i></a>";
+								}
+								?></td>
+							<td style="text-align: center; vertical-align: middle;">
+								<?php
+								if ($session_uid != $row->user_id) {
 									echo "<a href=" . site_url('user/delete') . "/" . $row->user_id . " class=\"btn btn-danger btn-sm\"><i class=\"fas fa-user-minus\"></i></a>";
 								}
 								?></td>
