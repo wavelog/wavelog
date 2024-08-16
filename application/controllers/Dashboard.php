@@ -43,6 +43,9 @@ class Dashboard extends CI_Controller
 			$data['qra'] = "none";
 		}
 
+		// We need the form_helper for the layout/messages
+		$this->load->helper('form');
+
 		$this->load->model('stations');
 		$this->load->model('setup_model');
 
