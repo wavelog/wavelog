@@ -163,6 +163,7 @@ class IOTA extends CI_Model {
 		if ($postdata['mode'] != 'All') {
 			$sql .= " and (col_mode = ? or col_submode = ?)";
 			$binding[] = $postdata['mode'];
+			$binding[] = $postdata['mode'];
 		}
 
 		$sql .= $this->genfunctions->addBandToQuery($postdata['band']);
@@ -173,6 +174,7 @@ class IOTA extends CI_Model {
 
 		if ($postdata['mode'] != 'All') {
 			$sql .= " and (col_mode = ? or col_submode = ?)";
+			$binding[] = $postdata['mode'];
 			$binding[] = $postdata['mode'];
 		}
 
