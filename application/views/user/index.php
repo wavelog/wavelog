@@ -72,9 +72,9 @@
 									$lastSeenTimestamp = strtotime($row->last_seen);
 									$currentTimestamp = time();
 									if (($currentTimestamp - $lastSeenTimestamp) < 120) {
-										echo "<a><i style=\"color: green;\" class=\"fas fa-circle\"></i> " . $row->last_seen . "</a>";
+										echo "<a><i style=\"color: green;\" class=\"fas fa-circle\"></i> " . date($custom_date_format . ' H:i:s', $lastSeenTimestamp) . "</a>";
 									} else {
-										echo "<a><i style=\"color: red;\" class=\"fas fa-circle\"></i> " . $row->last_seen . "</a>";
+										echo "<a><i style=\"color: red;\" class=\"fas fa-circle\"></i> " . date($custom_date_format . ' H:i:s', $lastSeenTimestamp) . "</a>";
 									}
 								} else {
 									echo __("Never");
@@ -109,6 +109,7 @@
 												</div>
 												<div class="modal-body" style="text-align: left !important;">
 													<div class="mb-3">
+														<?php if(!$has_flossie) { ?>
 														<p><?= __("You are about to impersonate another user. To return to your admin account, you'll need to logout and log back in as admin."); ?></p>
 														<p><?= __("Do you want to impersonate this user?"); ?></p>
 														<br>
@@ -125,13 +126,25 @@
 																<td class="pe-3"><?= __("Callsign:"); ?></td>
 																<td><strong><?php echo $row->user_callsign; ?></strong></td>
 															</tr>
+															<tr>
+																<td class="pe-3"><?= __("E-Mail:"); ?></td>
+																<td><strong><a href="mailto:<?php echo $row->user_email; ?>"><?php echo $row->user_email; ?><a></strong></td>
+															</tr>
+															<tr>
+																<td class="pe-3"><?= __("Last Seen:"); ?></td>
+																<td><strong><?php echo date($custom_date_format . ' H:i:s', strtotime($row->last_seen)); ?></strong></td>
+															</tr>
 														</table>
-													</div>
+														<?php } else { ?>
+														<div class="alert alert-danger" role="alert">
+															<?= __("You currently can't impersonate another user. Please change the encryption_key in your config.php file first!"); ?>
+														</div>
+														<?php } ?>
 												</div>
 												<div class="modal-footer">
 													<form action="<?php echo site_url('user/impersonate'); ?>" method="post" style="display:inline;">
 														<input type="hidden" name="hash" value="<?php echo $this->encryption->encrypt($row->user_id); ?>">
-														<button type="submit" class="btn btn-success"><?= __("Impersonate") ?></i></button>
+														<button type="submit" class="btn btn-success" <?php if ($has_flossie) { echo 'disabled'; } ?>><?= __("Impersonate") ?></i></button>
 													</form>
 													<button type="button" class="btn btn-danger" data-bs-dismiss="modal"><?= __("Cancel") ?></button>
 												</div>

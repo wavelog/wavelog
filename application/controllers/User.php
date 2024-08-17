@@ -15,6 +15,17 @@ class User extends CI_Controller {
 		$data['results'] = $this->user_model->users();
 		$data['session_uid'] = $this->session->userdata('user_id');
 
+		// Get Date format
+		if($this->session->userdata('user_date_format')) {
+			// If Logged in and session exists
+			$data['custom_date_format'] = $this->session->userdata('user_date_format');
+		} else {
+			// Get Default date format from /config/wavelog.php
+			$data['custom_date_format'] = $this->config->item('qso_date_format');
+		}
+
+		$data['has_flossie'] = ($this->config->item('encryption_key') == 'flossie1234555541') ? true : false;
+
 		$data['page_title'] = __("User Accounts");
 
 		$this->load->view('interface_assets/header', $data);
@@ -1166,7 +1177,7 @@ class User extends CI_Controller {
 
 		// If the encryption key is still default, we can't impersonate another user for security reasons
 		if ($this->config->item('encryption_key') == 'flossie1234555541') {
-			$this->session->set_flashdata('error', __("You currently can't impersonate another user. Please change the encryption_key in the config file first!"));
+			$this->session->set_flashdata('error', __("You currently can't impersonate another user. Please change the encryption_key in your config.php file first!"));
 			redirect('dashboard');
 		}
 
