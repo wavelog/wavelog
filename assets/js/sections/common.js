@@ -938,7 +938,7 @@ function statesDropdown(states, set_state = null) {
         dropdown.empty();
         var option = $('<option>', {
             value: '',
-            text: 'No states for this DXCC available'
+            text: lang_no_states_for_dxcc_available
         });
         dropdown.append(option);
         dropdown.prop('disabled', true);
