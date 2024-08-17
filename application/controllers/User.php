@@ -1164,6 +1164,7 @@ class User extends CI_Controller {
 
 	public function impersonate() {
 
+		// If the encryption key is still default, we can't impersonate another user for security reasons
 		if ($this->config->item('encryption_key') == 'flossie1234555541') {
 			$this->session->set_flashdata('error', __("You currently can't impersonate another user. Please change the encryption_key in the config file first!"));
 			redirect('dashboard');
@@ -1197,11 +1198,9 @@ class User extends CI_Controller {
 		// Update the session with the new user_id
 		// TODO: Find a solution for sessiondata 'radio' and 'station_profile_id', so a user would be able to use e.g. his own radio while impersonating another user
 		// Due the fact that the user is now impersonating another user, he can't use his default radio anymore
-
-		// Update the session with the new user_id
 		$this->user_model->update_session($user_id); 
 		
-		// Redirect to the dashboard
+		// Redirect to the dashboard, the user should now be logged in as the other user
 		redirect('dashboard');
 	}
 }
