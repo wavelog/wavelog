@@ -18,7 +18,7 @@ class User extends CI_Controller {
 		$data['page_title'] = __("User Accounts");
 
 		$this->load->view('interface_assets/header', $data);
-		$this->load->view('user/main');
+		$this->load->view('user/index');
 		$this->load->view('interface_assets/footer');
 	}
 
