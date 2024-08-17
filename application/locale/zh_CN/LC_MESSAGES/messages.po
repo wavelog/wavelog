@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-08-16 10:20+0000\n"
 "PO-Revision-Date: 2024-08-17 10:48+0000\n"
-"Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -4424,8 +4424,7 @@ msgstr "使用波段列表，您可以控制创建新 QSO 时显示哪些波段�
 msgid ""
 "Active bands will be shown in the QSO 'Band' drop-down, while inactive bands "
 "will be hidden and cannot be selected."
-msgstr ""
-"启用的波段将显示在 QSO“波段”下拉列表中，而停用的频段将被隐藏且无法选择。"
+msgstr "启用的波段将显示在 QSO“波段”下拉列表中，而停用的频段将被隐藏且无法选择。"
 
 #: application/views/bands/index.php:54 application/views/qso/edit_ajax.php:351
 #: application/views/qso/index.php:248 application/views/qso/index.php:494
@@ -6383,9 +6382,8 @@ msgid ""
 "Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. "
 "Check which DXCC for this particular location is the correct one. If you are "
 "sure, ignore this warning."
-msgstr ""
-"请稍等，您选择的 DXCC 已经失效，请确认最新的 DXCC 实体，如果您十分确认，请忽"
-"略该警告。"
+msgstr "请稍等，您选择的 DXCC 已经失效，请确认最新的 DXCC "
+"实体，如果您十分确认，请忽略该警告。"
 
 #: application/views/interface_assets/footer.php:1160
 #, php-format
@@ -7962,8 +7960,7 @@ msgstr "SMTP 端口"
 msgid ""
 "The SMTP port of the mail server, e.g. if TLS is used -> '587', if SSL is "
 "used -> '465'"
-msgstr ""
-"邮件服务器的SMTP端口，例如：如果使用了TLS -> '587'，如果使用了SSL -> '465'"
+msgstr "邮件服务器的SMTP端口，例如：如果使用了TLS -> '587'，如果使用了SSL -> '465'"
 
 #: application/views/options/email.php:96
 msgid "SMTP Username"
@@ -9125,8 +9122,8 @@ msgid ""
 "efficiently. Due to its syntax, only a minimum of input is required to log "
 "many QSOs with as little effort as possible."
 msgstr ""
-"“快速日志输入”，或简称“FLE”，是一个非常快速、高效地记录 QSO 的系统。 由于其语"
-"法，只需最少的输入即可以尽可能少的努力记录许多 QSO。"
+"“快速日志输入”，或简称“FLE”，是一个非常快速、高效地记录 QSO 的系统。 "
+"由于其语法，只需最少的输入即可以尽可能少的努力记录许多 QSO。"
 
 #: application/views/simplefle/index.php:15
 msgid ""
@@ -9285,8 +9282,7 @@ msgstr "尚无选项"
 
 #: application/views/simplefle/syntax_help.php:1
 msgid "Before starting to log a QSO, please note the basic rules."
-msgstr ""
-"FLE 语法是一种简单的语法，用于快速记录 QSO。它的工作原理是，您只需输入每个 "
+msgstr "FLE 语法是一种简单的语法，用于快速记录 QSO。它的工作原理是，您只需输入每个 "
 "QSO 的更改部分。"
 
 #: application/views/simplefle/syntax_help.php:2
@@ -9305,15 +9301,16 @@ msgid ""
 "QRG in MHz, e.g., '7.145'), mode, and time. After the time, you provide the "
 "first QSO, which is essentially the callsign."
 msgstr ""
-"如果您不提供任何 RST 信息，语法将使用 59 (599 用于数据)。我们的下一个 QSO 不"
-"是双方都是 59，所以我们首先提供发送的 RST 信息。它比第一个 QSO 晚了 2 分钟。"
+"如果您不提供任何 RST 信息，语法将使用 59 (599 用于数据)。我们的下一个 QSO "
+"不是双方都是 59，所以我们首先提供发送的 RST 信息。它比第一个 QSO 晚了 2 "
+"分钟。"
 
 #: application/views/simplefle/syntax_help.php:9
 msgid "For example, a QSO that started at 21:34 (UTC) with 4W7EST on 20m SSB."
 msgstr ""
-"第一个 QSO 是在 21:34，第二个 QSO 在 21:36，比第一个 QSO 晚了 2 分钟。我们写"
-"下 6，因为这是这里唯一改变的数据。关于波段和模式的信息没有改变，因此省略了这"
-"些数据。"
+"第一个 QSO 是在 21:34，第二个 QSO 在 21:36，比第一个 QSO 晚了 2 分钟。"
+"我们写下 6，因为这是这里唯一改变的数据。关于波段和模式的信息没有改变，因此省"
+"略了这些数据。"
 
 #: application/views/simplefle/syntax_help.php:10
 msgid ""
@@ -9321,9 +9318,10 @@ msgid ""
 "data). Our next QSO wasn't 59 on both sides, so we provide the information "
 "with the sent RST first. It was 2 minutes later than the first QSO."
 msgstr ""
-"我们的下一个 QSO 是在 2021 年 5 月 14 日的 21:40，我们将波段更改为 40m，但仍"
-"然在 SSB 上。如果没有给出 RST 信息，语法将为每个新的 QSO 使用 59。因此，我们"
-"可以添加另一个 QSO，它在两天后的同一时间发生。日期必须是 YYYY-MM-DD 格式。"
+"我们的下一个 QSO 是在 2021 年 5 月 14 日的 21:40，我们将波段更改为 40m，"
+"但仍然在 SSB 上。如果没有给出 RST 信息，语法将为每个新的 QSO 使用 59。因此，"
+"我们可以添加另一个 QSO，它在两天后的同一时间发生。日期必须是 YYYY-MM-DD "
+"格式。"
 
 #: application/views/simplefle/syntax_help.php:16
 msgid ""
@@ -10634,8 +10632,7 @@ msgstr "只显示可通联的过境"
 msgid ""
 "If enabled shows only workable passes based on the gridsquare set in your "
 "hams.at account. Requires private feed key to be set."
-msgstr ""
-"如果启用，仅显示基于在 hams.at 设置好的位置信息计算过境，需要设置好 Private "
+msgstr "如果启用，仅显示基于在 hams.at 设置好的位置信息计算过境，需要设置好 Private "
 "Feed Key。"
 
 #: application/views/user/edit.php:873
@@ -10700,9 +10697,8 @@ msgstr "Wavelog 至少需要配置一个用户才能运行。"
 msgid ""
 "Users can be assigned roles which give them different permissions, such as "
 "adding QSOs to the logbook and accessing Wavelog APIs."
-msgstr ""
-"用户可以被分配不同的角色，这些角色赋予他们不同的权限，例如向日志簿添加 QSO 和"
-"访问 Wavelog API。"
+msgstr "用户可以被分配不同的角色，这些角色赋予他们不同的权限，例如向日志簿添加 QSO "
+"和访问 Wavelog API。"
 
 #: application/views/user/main.php:35
 msgid ""
@@ -11011,9 +11007,8 @@ msgstr "提交请求"
 msgid ""
 "If selected, Wavelog will try to import <b>all</b> QSO's of the ADIF, "
 "regardless if they match to the chosen station-location."
-msgstr ""
-"如果选择，Wavelog 会尝试导入 ADIF 文件中的 <b>所有</b> QSO，而不判断是否与所"
-"选台站位置匹配。"
+msgstr "如果选择，Wavelog 会尝试导入 ADIF 文件中的 <b>所有</b> "
+"QSO，而不判断是否与所选台站位置匹配。"
 
 #: application/views/debug/index.php:47
 #, php-format
@@ -11036,8 +11031,7 @@ msgstr "未登录，请在 <a href='%s'> 这里</a> 登录"
 msgid ""
 "If you did operate from a new location, first create a new <a "
 "href='%s'>Station Location</a>"
-msgstr ""
-"如果您确实在一个新地点进行通联，请在 <a href='%s'>这里</a> 创建新台站地址"
+msgstr "如果您确实在一个新地点进行通联，请在 <a href='%s'>这里</a> 创建新台站地址"
 
 #: application/views/simplefle/index.php:160
 msgid ""
@@ -11055,8 +11049,7 @@ msgstr "完整的指令和语法介绍可在 <a href='%s' target='_blank'>Wiki</
 msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 "filenames for the logos <b>without</b> the file extension '.png'"
-msgstr ""
-"在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带有 .png "
+msgstr "在这里点击 '添加主题'，输入必要的信息，填写 Logo 的文件名（<b>不要带有 .png "
 "后缀名</b>）"
 
 #: application/views/user/login.php:60
