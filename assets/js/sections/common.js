@@ -633,7 +633,7 @@ function spawnActivatorsMap(call, count, grids) {
 		type: 'post',
 		success: function (html) {
 			BootstrapDialog.show({
-				title: 'Activators Map',
+				title: lang_activators_map,
 				size: BootstrapDialog.SIZE_WIDE,
 				cssClass: 'lookup-dialog',
 				nl2br: false,
