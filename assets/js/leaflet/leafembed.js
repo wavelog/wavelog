@@ -69,7 +69,7 @@ function initmap(ShowGrid='No', MapTag='map', options={}) {
     map.setView(new L.LatLng(_q_lat, _q_lng), _q_zoom);
 	map.addLayer(osm);
 	//map.on('moveend', onMapMove); // all data load directecty, without interest in recharging during a movement
-	var layerControl = new L.Control.Layers(null, { 'Gridsquares': maidenhead = L.maidenhead() }).addTo(map);
+	var layerControl = new L.Control.Layers(null, { [lang_general_gridsquares]: maidenhead = L.maidenhead() }).addTo(map);
 	if(ShowGrid == "Yes") { maidenhead.addTo(map); }
 
 	if ((typeof options.initmap_only=="undefined") || (options.initmap_only!=true))  { initplot(_url_qso, options); }

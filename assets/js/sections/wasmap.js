@@ -226,8 +226,8 @@ info.onAdd = function (map) {
 
 // method that we will use to update the control based on feature properties passed
 info.update = function (props) {
-    this._div.innerHTML = '<h4>State</h4>' +  (props ?
-        '<b>' + props.id.substring(3,5) + ' - ' + props.name + '</b><br />' : 'Hover over a state');
+    this._div.innerHTML = '<h4>' + lang_usa_state + '</h4>' +  (props ?
+        '<b>' + props.id.substring(3,5) + ' - ' + props.name + '</b><br />' : lang_hover_over_a_state);
 };
 
 info.addTo(map);
@@ -243,7 +243,7 @@ info.addTo(map);
 	addMarkers();
 });
 
-var layerControl = new L.Control.Layers(null, { 'Gridsquares': maidenhead = L.maidenhead() }).addTo(map);
+var layerControl = new L.Control.Layers(null, { [lang_general_gridsquares]: maidenhead = L.maidenhead() }).addTo(map);
 maidenhead.addTo(map);
 
 
