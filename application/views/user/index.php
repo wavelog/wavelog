@@ -100,12 +100,12 @@
 							<td style="text-align: center; vertical-align: middle;">
 								<?php
 								if ($session_uid != $row->user_id) { ?>
-									<button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#impersonateModal"><i class="fas fa-people-arrows"></i></button>
-									<div class="modal fade bg-black bg-opacity-50" id="impersonateModal" tabindex="-1" aria-labelledby="impersonateLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+									<button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#impersonateModal_<?php echo $i; ?>"><i class="fas fa-people-arrows"></i></button>
+									<div class="modal fade bg-black bg-opacity-50" id="impersonateModal_<?php echo $i; ?>" tabindex="-1" aria-labelledby="impersonateLabel_<?php echo $i; ?>" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
 										<div class="modal-dialog modal-dialog-centered modal-md">
 											<div class="modal-content">
 												<div class="modal-header">
-													<h5 class="modal-title" id="impersonateLabel"><?= __("Impersonate User") ?></h5>
+													<h5 class="modal-title" id="impersonateLabel_<?php echo $i; ?>"><?= __("Impersonate User") ?></h5>
 												</div>
 												<div class="modal-body" style="text-align: left !important;">
 													<div class="mb-3">
