@@ -43,6 +43,7 @@
     var lang_admin_save = "<?= __("Save"); ?>";
     var lang_admin_clear = "<?= __("Clear"); ?>";
     var lang_lotw_propmode_hint = "<?= __("Propagation mode is not supported by LoTW. LoTW QSL fields disabled."); ?>";
+    var lang_no_states_for_dxcc_available = "<?= __("No states for this DXCC available"); ?>";
 
 </script>
 
@@ -720,9 +721,9 @@ function showActivatorsMap(call, count, grids) {
     let re = /,/g;
     grids = grids.replace(re, ', ');
 
-    var result = "Callsign: "+call.replace('0', '&Oslash;')+"<br />";
-    result +=    "Count: "+count+"<br/>";
-    result +=    "Grids: "+grids+"<br/><br />";
+    var result = '<?= __("Callsign: "); ?>'+call.replace('0', '&Oslash;')+"<br />";
+    result +=    '<?= __("Count: "); ?>'+count+"<br/>";
+    result +=    '<?= __("Grids: "); ?>'+grids+"<br/><br />";
 
     $(".activatorsmapResult").html(result);
 

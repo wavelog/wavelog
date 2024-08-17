@@ -633,7 +633,7 @@ function spawnActivatorsMap(call, count, grids) {
 		type: 'post',
 		success: function (html) {
 			BootstrapDialog.show({
-				title: 'Activators Map',
+				title: lang_activators_map,
 				size: BootstrapDialog.SIZE_WIDE,
 				cssClass: 'lookup-dialog',
 				nl2br: false,
@@ -938,7 +938,7 @@ function statesDropdown(states, set_state = null) {
         dropdown.empty();
         var option = $('<option>', {
             value: '',
-            text: 'No states for this DXCC available'
+            text: lang_no_states_for_dxcc_available
         });
         dropdown.append(option);
         dropdown.prop('disabled', true);

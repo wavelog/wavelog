@@ -8,8 +8,13 @@
     var lang_gen_hamradio_latitude = '<?= __("Latitude"); ?>';
     var lang_gen_hamradio_longitude = '<?= __("Longitude"); ?>';
     var lang_gen_hamradio_gridsquare = '<?= __("Gridsquare"); ?>';
+    var lang_gen_hamradio_gridsquares = '<?= _pgettext("Map Options", "Gridsquares"); ?>';
     var lang_gen_hamradio_distance = '<?= __("Distance"); ?>';
     var lang_gen_hamradio_bearing = '<?= __("Bearing"); ?>';
+    var lang_gen_hamradio_pathlines = '<?= _pgettext("Map Options", "Path lines"); ?>';
+    var lang_gen_hamradio_cq_zones = '<?= _pgettext("Map Options", "CQ Zones"); ?>';
+    var lang_gen_hamradio_itu_zones = '<?= _pgettext("Map Options", "ITU Zones"); ?>';
+    var lang_gen_hamradio_nightshadow = '<?= _pgettext("Map Options", "Night Shadow"); ?>';
     <?php
     echo "var homegrid ='" . strtoupper($homegrid[0]) . "';";
     if (!isset($options)) {
