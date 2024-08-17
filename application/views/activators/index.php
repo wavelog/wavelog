@@ -1,3 +1,6 @@
+<script>
+    let lang_activators_map = "<?= __("Activators Map"); ?>";
+</script>
 <div class="container">
     <h1><?= __("Gridsquare Activators"); ?></h1>
 

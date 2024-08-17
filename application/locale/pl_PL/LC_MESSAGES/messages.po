@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-17 11:47+0000\n"
+"POT-Creation-Date: 2024-08-17 15:36+0000\n"
 "PO-Revision-Date: 2024-08-17 10:48+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -104,7 +104,7 @@ msgstr ""
 #: application/controllers/Awards.php:951
 #: application/controllers/Gridmap.php:31
 #: application/controllers/Visitor.php:374
-#: application/views/activators/index.php:97
+#: application/views/activators/index.php:100
 #: application/views/visitor/layout/header.php:68
 msgid "Gridsquares"
 msgstr ""
@@ -126,12 +126,13 @@ msgid "Total gridsquares activated"
 msgstr ""
 
 #: application/controllers/Activators.php:20
-#: application/views/activators/index.php:2
+#: application/views/activators/index.php:5
 #: application/views/interface_assets/header.php:142
 msgid "Gridsquare Activators"
 msgstr ""
 
 #: application/controllers/Activatorsmap.php:17
+#: application/views/activators/index.php:2
 msgid "Activators Map"
 msgstr ""
 
@@ -308,6 +309,10 @@ msgstr ""
 #: application/controllers/Timeline.php:104
 #: application/controllers/Timeline.php:107
 msgid "Log View"
+msgstr ""
+
+#: application/controllers/Awards.php:454
+msgid " and band "
 msgstr ""
 
 #: application/controllers/Awards.php:457
@@ -1231,7 +1236,7 @@ msgstr ""
 #: application/controllers/Logbook.php:1291
 #: application/views/accumulate/index.php:21
 #: application/views/activated_gridmap/index.php:8
-#: application/views/activators/index.php:7
+#: application/views/activators/index.php:10
 #: application/views/adif/dcl_success.php:32
 #: application/views/awards/cq/index.php:72
 #: application/views/awards/dok/index.php:77
@@ -2341,7 +2346,7 @@ msgstr ""
 #: application/views/activated_gridmap/index.php:22
 #: application/views/activated_gridmap/index.php:32
 #: application/views/activated_gridmap/index.php:41
-#: application/views/activators/index.php:10
+#: application/views/activators/index.php:13
 #: application/views/awards/cq/index.php:75
 #: application/views/awards/cq/index.php:89
 #: application/views/awards/dok/index.php:94
@@ -2456,7 +2461,7 @@ msgid "Period"
 msgstr ""
 
 #: application/views/accumulate/index.php:83
-#: application/views/activators/index.php:50
+#: application/views/activators/index.php:53
 #: application/views/awards/cq/index.php:111
 #: application/views/awards/dok/index.php:127
 #: application/views/awards/dxcc/index.php:187
@@ -2566,16 +2571,16 @@ msgstr ""
 msgid "Bearing"
 msgstr ""
 
-#: application/views/activators/index.php:23
+#: application/views/activators/index.php:26
 msgctxt "Orbiter LEO or GEO"
 msgid "Both"
 msgstr ""
 
-#: application/views/activators/index.php:30
+#: application/views/activators/index.php:33
 msgid "Minimum Count"
 msgstr ""
 
-#: application/views/activators/index.php:73
+#: application/views/activators/index.php:76
 #: application/views/awards/counties/details.php:27
 #: application/views/awards/counties/index.php:46
 #: application/views/awards/cq/index.php:196
@@ -2599,7 +2604,7 @@ msgstr ""
 msgid "Nothing found!"
 msgstr ""
 
-#: application/views/activators/index.php:95
+#: application/views/activators/index.php:98
 #: application/views/adif/import.php:66 application/views/adif/import.php:172
 #: application/views/adif/import.php:217
 #: application/views/awards/pota/index.php:34
@@ -2637,11 +2642,11 @@ msgstr ""
 msgid "Callsign"
 msgstr ""
 
-#: application/views/activators/index.php:96
+#: application/views/activators/index.php:99
 msgid "Count"
 msgstr ""
 
-#: application/views/activators/index.php:98
+#: application/views/activators/index.php:101
 #: application/views/timeline/index.php:121
 #: application/views/timeline/index.php:153
 #: application/views/timeline/index.php:178
@@ -2651,7 +2656,7 @@ msgstr ""
 msgid "Show QSO's"
 msgstr ""
 
-#: application/views/activators/index.php:99
+#: application/views/activators/index.php:102
 msgid "Show Map"
 msgstr ""
 
@@ -6255,6 +6260,19 @@ msgid ""
 "sure, ignore this warning."
 msgstr ""
 
+#: application/views/interface_assets/footer.php:724
+#: application/views/logbookadvanced/index.php:511
+msgid "Callsign: "
+msgstr ""
+
+#: application/views/interface_assets/footer.php:725
+msgid "Count: "
+msgstr ""
+
+#: application/views/interface_assets/footer.php:726
+msgid "Grids: "
+msgstr ""
+
 #: application/views/interface_assets/footer.php:1161
 #, php-format
 msgid "You're not logged in. Please %slogin%s"
@@ -7274,10 +7292,6 @@ msgstr ""
 #: application/views/station_profile/edit.php:85
 msgid "Location"
 msgstr "Lokalizacja"
-
-#: application/views/logbookadvanced/index.php:511
-msgid "Callsign: "
-msgstr ""
 
 #: application/views/logbookadvanced/index.php:517
 msgid "Dupes"
