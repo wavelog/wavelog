@@ -112,8 +112,8 @@ function load_cq_map2(data) {
 
 	// method that we will use to update the control based on feature properties passed
 	info.update = function (props) {
-		this._div.innerHTML = '<h4>CQ Zone</h4>' +  (props ?
-			'<b>' + props.cq_zone_name + ' ' + props.cq_zone_number + '</b><br />' : 'Hover over a zone');
+		this._div.innerHTML = '<h4>'+lang_general_hamradio_cqzone+'</h4>' +  (props ?
+			'<b>' + props.cq_zone_name + ' ' + props.cq_zone_number + '</b><br />' : lang_hover_over_a_zone);
 		};
 
 	info.addTo(map);
