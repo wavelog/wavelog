@@ -1174,6 +1174,7 @@ class User extends CI_Controller {
 
 		// before we can impersonate a user, we need to make sure the current user is an admin
 		// TODO: authorize from additional datatable 'impersonators' aswell
+		// We need to check if the user is allowed to "become" this particular user_id
 		if(!$this->user_model->authorize(99)) { 
 			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 			redirect('dashboard'); 
@@ -1193,11 +1194,11 @@ class User extends CI_Controller {
 			redirect('dashboard');
 		}
 
-		// TODO: Later implementation for special callsigns:
-		// We need to check if the user is allowed to "become" this particular user_id
+		// Update the session with the new user_id
+		// TODO: Find a solution for sessiondata 'radio' and 'station_profile_id', so a user would be able to use e.g. his own radio while impersonating another user
+		// Due the fact that the user is now impersonating another user, he can't use his default radio anymore
 
 		// Update the session with the new user_id
-		// TODO: We need to check if the new session data is set correctly. For this we need to go through the user_model->update_session() function
 		$this->user_model->update_session($user_id); 
 		
 		// Redirect to the dashboard
