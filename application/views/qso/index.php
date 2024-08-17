@@ -359,7 +359,7 @@
           <div class="tab-pane fade" id="general" role="tabpanel" aria-labelledby="general-tab">
               <div class="mb-3">
                   <label for="dxcc_id"><?= __("DXCC"); ?></label>
-                  <select class="form-select" id="dxcc_id" name="dxcc_id" required>
+                  <select class="form-control" id="dxcc_id" name="dxcc_id" required>
                       <option value="0">- NONE -</option>
                       <?php
                       foreach($dxcc as $d){
@@ -535,7 +535,7 @@
           <!-- Notes Panel Contents -->
           <div class="tab-pane fade" id="nav-notes" role="tabpanel" aria-labelledby="notes-tab">
             <div class="alert alert-info" role="alert">
-              <span class="badge text-bg-info"><?= __("Info"); ?></span> <?= __("Note content is used within Wavelog only and is not exported to other services."); ?>
+              <span class="badge text-bg-primary"><?= __("Info"); ?></span> <?= __("Note content is used within Wavelog only and is not exported to other services."); ?>
             </div>
            <div class="mb-3">
               <label for="notes"><?= __("Notes"); ?></label>
@@ -580,7 +580,7 @@
             </div>
 
             <div class="alert alert-info" role="alert">
-              <span class="badge text-bg-info"><?= __("Info"); ?></span> <?= __("This note content is exported to QSL services like eqsl.cc."); ?>
+              <span class="badge text-bg-primary"><?= __("Info"); ?></span> <?= __("This note content is exported to QSL services like eqsl.cc."); ?>
             </div>
            <div class="mb-3">
             <label for="qslmsg"><?= __("Notes"); ?><span class="qso_eqsl_qslmsg_update" title="<?= __("Get the default message for eQSL, for this station."); ?>"><i class="fas fa-redo-alt"></i></span></label>

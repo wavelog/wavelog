@@ -105,7 +105,7 @@ info.onAdd = function (map) {
 
 // method that we will use to update the control based on feature properties passed
 info.update = function (props) {
-    this._div.innerHTML = '<h4>Kanton</h4>' +  (props ? '<b>' + props.kan_code + ' - ' + props.kan_name + '</b><br />' : 'Hover over a kanton');
+    this._div.innerHTML = '<h4>' + lang_switzerland_canton + '</h4>' +  (props ? '<b>' + props.kan_code + ' - ' + props.kan_name + '</b><br />' : lang_hover_over_a_canton);
 };
 
 info.addTo(map);
@@ -125,7 +125,7 @@ map.setView([46.8, 8.4], 8);
     addMarkers();
   });
 
-  var layerControl = new L.Control.Layers(null, { 'Gridsquares': maidenhead = L.maidenhead() }).addTo(map);
+  var layerControl = new L.Control.Layers(null, { [lang_general_gridsquares]: maidenhead = L.maidenhead() }).addTo(map);
   maidenhead.addTo(map);
 }
 

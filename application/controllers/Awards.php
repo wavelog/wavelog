@@ -13,7 +13,7 @@ class Awards extends CI_Controller {
 		parent::__construct();
 
 		$this->load->model('user_model');
-		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 	}
 
 	public function index()
@@ -451,7 +451,7 @@ class Awards extends CI_Controller {
 
 		// Render Page
 		$data['page_title'] = __("Log View")." - " . $type;
-		$data['filter'] = $type." ".$searchphrase." and band ".$band;
+		$data['filter'] = $type." ".$searchphrase.__(" and band ").$band;
 		if ($band == 'SAT') {
 			if ($sat != 'All' && $sat != null) {
 				$data['filter'] .= __(" and sat ").$sat;
@@ -783,6 +783,15 @@ class Awards extends CI_Controller {
 	    $this->load->model('iota');
 	    $this->load->model('modes');
 	    $this->load->model('bands');
+		$this->load->model('logbooks_model');
+
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+		if (!$logbooks_locations_array) {
+			return null;
+		}
+
+		$location_list = "'".implode("','",$logbooks_locations_array)."'";
 
 	    $data['worked_bands'] = $this->bands->get_worked_bands('iota'); // Used in the view for band select
 
@@ -839,9 +848,9 @@ class Awards extends CI_Controller {
 		    $postdata['mode'] = 'All';
 	    }
 
-	    $iotalist = $this->iota->fetchIota($postdata);
-	    $data['iota_array'] = $this->iota->get_iota_array($iotalist, $bands, $postdata);
-	    $data['iota_summary'] = $this->iota->get_iota_summary($bands, $postdata);
+	    $iotalist = $this->iota->fetchIota($postdata, $location_list);
+	    $data['iota_array'] = $this->iota->get_iota_array($iotalist, $bands, $postdata, $location_list);
+	    $data['iota_summary'] = $this->iota->get_iota_summary($bands, $postdata, $location_list);
 
 	    // Render Page
 	    $data['page_title'] = sprintf(__("Awards - %s"), __("IOTA (Island On The Air)"));
@@ -948,17 +957,20 @@ class Awards extends CI_Controller {
 
 		$footerData = [];
 		$footerData['scripts']= [
-		   'assets/js/leaflet/geocoding.js',
-		   'assets/js/leaflet/L.MaidenheadColouredGridmasterMap.js',
-		   'assets/js/sections/ffma.js'
+			'assets/js/leaflet/geocoding.js',
+			'assets/js/leaflet/L.MaidenheadColouredGridmasterMap.js',
+			'assets/js/sections/ffma.js'
 		];
 
 		$this->load->view('interface_assets/header',$data);
 		$this->load->view('awards/ffma/index');
 		$this->load->view('interface_assets/footer',$footerData);
-	  }
+	}
 
 	public function getFfmaGridsjs() {
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$location_list = "'".implode("','",$logbooks_locations_array)."'";
 		$this->load->model('ffma_model');
 
 		$array_grid_4char = array();
@@ -968,7 +980,7 @@ class Awards extends CI_Controller {
 		$grid_4char = "";
 		$grid_4char_lotw = "";
 
-		$query = $this->ffma_model->get_lotw();
+		$query = $this->ffma_model->get_lotw($location_list);
 		if ($query && $query->num_rows() > 0) {
 			foreach ($query->result() as $row) 	{
 				$grid_4char_lotw = strtoupper(substr($row->GRID_SQUARES,0,4));
@@ -978,7 +990,7 @@ class Awards extends CI_Controller {
 			}
 		}
 
-		$query = $this->ffma_model->get_paper();
+		$query = $this->ffma_model->get_paper($location_list);
 		if ($query && $query->num_rows() > 0) {
 			foreach ($query->result() as $row) 	{
 				$grid_4char_paper = strtoupper(substr($row->GRID_SQUARES,0,4));
@@ -988,7 +1000,7 @@ class Awards extends CI_Controller {
 			}
 		}
 
-		$query = $this->ffma_model->get_worked();
+		$query = $this->ffma_model->get_worked($location_list);
 		if ($query && $query->num_rows() > 0) {
 			foreach ($query->result() as $row) {
 				$grid_four = strtoupper(substr($row->GRID_SQUARES,0,4));
@@ -998,7 +1010,7 @@ class Awards extends CI_Controller {
 			}
 		}
 
-		$vucc_grids = $this->ffma_model->get_vucc_lotw();
+		$vucc_grids = $this->ffma_model->get_vucc_lotw($location_list);
 		foreach($vucc_grids as $key) {
 			$grid_four_lotw = strtoupper(substr($key,0,4));
 			if(!in_array($grid_four_lotw, $array_grid_4char_lotw)){
@@ -1006,7 +1018,7 @@ class Awards extends CI_Controller {
 			}
 		}
 
-		$vucc_grids = $this->ffma_model->get_vucc_paper();
+		$vucc_grids = $this->ffma_model->get_vucc_paper($location_list);
 		foreach($vucc_grids as $key) {
 			$grid_four_paper = strtoupper(substr($key,0,4));
 			if(!in_array($grid_four_paper, $array_grid_4char_paper)){
@@ -1014,7 +1026,7 @@ class Awards extends CI_Controller {
 			}
 		}
 
-		$vucc_grids = $this->ffma_model->get_vucc_worked();
+		$vucc_grids = $this->ffma_model->get_vucc_worked($location_list);
 		foreach($vucc_grids as $key) {
 			$grid_four = strtoupper(substr($key,0,4));
 			if(!in_array($grid_four, $array_grid_4char)){
@@ -1033,6 +1045,9 @@ class Awards extends CI_Controller {
 	}
 
 	public function getGridmasterGridsjs($dxcc) {
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$location_list = "'".implode("','",$logbooks_locations_array)."'";
 		$this->load->model('gridmaster_model');
 
 		$dxcc = $this->security->xss_clean($dxcc);
@@ -1044,7 +1059,7 @@ class Awards extends CI_Controller {
 		$grid_4char = "";
 		$grid_4char_lotw = "";
 
-		$query = $this->gridmaster_model->get_lotw($dxcc);
+		$query = $this->gridmaster_model->get_lotw($dxcc, $location_list);
 		if ($query && $query->num_rows() > 0) {
 			foreach ($query->result() as $row) 	{
 				$grid_4char_lotw = strtoupper(substr($row->GRID_SQUARES,0,4));
@@ -1054,7 +1069,7 @@ class Awards extends CI_Controller {
 			}
 		}
 
-		$query = $this->gridmaster_model->get_paper($dxcc);
+		$query = $this->gridmaster_model->get_paper($dxcc, $location_list);
 		if ($query && $query->num_rows() > 0) {
 			foreach ($query->result() as $row) 	{
 				$grid_4char_paper = strtoupper(substr($row->GRID_SQUARES,0,4));
@@ -1064,7 +1079,7 @@ class Awards extends CI_Controller {
 			}
 		}
 
-		$query = $this->gridmaster_model->get_worked($dxcc);
+		$query = $this->gridmaster_model->get_worked($dxcc, $location_list);
 		if ($query && $query->num_rows() > 0) {
 			foreach ($query->result() as $row) {
 				$grid_four = strtoupper(substr($row->GRID_SQUARES,0,4));
@@ -1074,7 +1089,7 @@ class Awards extends CI_Controller {
 			}
 		}
 
-		$vucc_grids = $this->gridmaster_model->get_vucc_lotw($dxcc);
+		$vucc_grids = $this->gridmaster_model->get_vucc_lotw($dxcc, $location_list);
 		foreach($vucc_grids as $key) {
 			$grid_four_lotw = strtoupper(substr($key,0,4));
 			if(!in_array($grid_four_lotw, $array_grid_4char_lotw)){
@@ -1082,7 +1097,7 @@ class Awards extends CI_Controller {
 			}
 		}
 
-		$vucc_grids = $this->gridmaster_model->get_vucc_paper($dxcc);
+		$vucc_grids = $this->gridmaster_model->get_vucc_paper($dxcc, $location_list);
 		foreach($vucc_grids as $key) {
 			$grid_four_paper = strtoupper(substr($key,0,4));
 			if(!in_array($grid_four_paper, $array_grid_4char_paper)){
@@ -1090,7 +1105,7 @@ class Awards extends CI_Controller {
 			}
 		}
 
-		$vucc_grids = $this->gridmaster_model->get_vucc_worked($dxcc);
+		$vucc_grids = $this->gridmaster_model->get_vucc_worked($dxcc, $location_list);
 		foreach($vucc_grids as $key) {
 			$grid_four = strtoupper(substr($key,0,4));
 			if(!in_array($grid_four, $array_grid_4char)){
@@ -1534,6 +1549,15 @@ class Awards extends CI_Controller {
     public function iota_map() {
         $this->load->model('iota');
         $this->load->model('bands');
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+		if (!$logbooks_locations_array) {
+			return null;
+		}
+
+		$location_list = "'".implode("','",$logbooks_locations_array)."'";
+
 
         $bands[] = $this->security->xss_clean($this->input->post('band'));
 
@@ -1553,9 +1577,9 @@ class Awards extends CI_Controller {
         $postdata['Oceania'] = $this->input->post('Oceania') == 0 ? NULL: 1;
         $postdata['Antarctica'] = $this->input->post('Antarctica') == 0 ? NULL: 1;
 
-        $iotalist = $this->iota->fetchIota($postdata);
+        $iotalist = $this->iota->fetchIota($postdata, $location_list);
 
-        $iota_array = $this->iota->get_iota_array($iotalist, $bands, $postdata);
+        $iota_array = $this->iota->get_iota_array($iotalist, $bands, $postdata, $location_list);
 
         $i = 0;
 

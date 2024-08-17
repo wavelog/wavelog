@@ -25,5 +25,5 @@
     day ++
     df3et
 </pre>
-<p><?= sprintf(__("A full summary of all commands and the necessary syntax can be found in <a href='%s' target='_blank'>this article</a> of our Wiki."), "https://github.com/wavelog/wavelog/wiki/SimpleFLE"); ?></p>
+<p><?= sprintf(__("A full summary of all commands and the necessary syntax can be found in %sthis article%s of our Wiki."), '<a href="https://github.com/wavelog/wavelog/wiki/SimpleFLE" target="_blank">', '</a>'); ?></p>
 

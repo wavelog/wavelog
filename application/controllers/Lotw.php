@@ -42,7 +42,7 @@ class Lotw extends CI_Controller {
 	public function index() {
 		$this->load->library('Permissions');
 		$this->load->model('user_model');
-		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		// Load required models for page generation
 		$this->load->model('Lotw_model');
@@ -74,7 +74,7 @@ class Lotw extends CI_Controller {
 	public function cert_upload() {
 		$this->load->model('user_model');
 		$this->load->model('dxcc');
-		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		// Load DXCC Countrys List
 		$data['dxcc_list'] = $this->dxcc->list();
@@ -101,7 +101,7 @@ class Lotw extends CI_Controller {
     {
 		$this->load->model('user_model');
 		$this->load->model('dxcc');
-		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		// create folder to store certs while processing
     	if (!file_exists('./uploads/lotw/certs')) {
@@ -375,7 +375,7 @@ class Lotw extends CI_Controller {
 	*/
     public function delete_cert($cert_id) {
     	$this->load->model('user_model');
-		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
     	$this->load->model('Lotw_model');
 
@@ -398,7 +398,7 @@ class Lotw extends CI_Controller {
 	*/
 	public function decrypt_key($file, $password = "") {
 		$this->load->model('user_model');
-		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		$results = array();
 		$password = $password; // Only needed if 12 has a password set
@@ -709,7 +709,7 @@ class Lotw extends CI_Controller {
 	public function import() {	// Is only called via frontend. Cron uses "upload". within download the download is called
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize(2)) {
-			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!');
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 			redirect('dashboard');
 			exit();
 		}
@@ -817,7 +817,7 @@ class Lotw extends CI_Controller {
 				}
 			}
 		} else {
-			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!');
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 			redirect('dashboard');
 			exit();
 		}
@@ -825,7 +825,7 @@ class Lotw extends CI_Controller {
 
 	public function export() {
 		$this->load->model('user_model');
-		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		$data['page_title'] = __("LoTW .TQ8 Upload");
 

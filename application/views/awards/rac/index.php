@@ -1,5 +1,7 @@
 <script>
-	var tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"
+	var tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>";
+    var lang_canada_province = "<?= _pgettext("Canada Province", "Province"); ?>";
+    var lang_hover_over_a_province = "<?= __("Hover over a province"); ?>";
 </script>
 
 <style>
