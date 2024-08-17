@@ -6,9 +6,9 @@
     var lang_statistics_accumulated_worked_vucc = '<?= __("Accumulated number of VUCC Grids worked"); ?>';
     var lang_statistics_accumulated_worked_waja = '<?= __("Accumulated number of WAJA worked"); ?>';
     var lang_general_word_year = '<?= __("Year"); ?>';
-    var lang_general_word_yearly = '<?= __("Yearly"); ?>';
+    var lang_general_word_yearly = "<?= html_entity_decode(__("Yearly")); ?>";
     var lang_general_word_month = '<?= __("Month"); ?>';
-    var lang_general_word_monthly = '<?= __("Monthly"); ?>';
+    var lang_general_word_monthly = '<?= html_entity_decode(__("Monthly")); ?>';
     var lang_general_word_diff = '<?= __("Difference"); ?>';
 </script>
 <div class="container">
