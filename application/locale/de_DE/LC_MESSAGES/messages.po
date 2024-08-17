@@ -11,12 +11,13 @@
 # Kim - DG9VH <kim.huebel@gmail.com>, 2024.
 # Fabian Berg <80885850+HB9HIL@users.noreply.github.com>, 2024.
 # Rasmus <DL4BS@users.noreply.translate.wavelog.org>, 2024.
+# Fabian Berg <fabian.berg@hb9hil.org>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-08-16 10:41+0000\n"
-"PO-Revision-Date: 2024-08-12 10:19+0000\n"
-"Last-Translator: Fabian Berg <80885850+HB9HIL@users.noreply.github.com>\n"
+"PO-Revision-Date: 2024-08-17 10:47+0000\n"
+"Last-Translator: Rasmus <DL4BS@users.noreply.translate.wavelog.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
 "Language: de_DE\n"
@@ -95,7 +96,7 @@ msgstr ""
 #: application/controllers/User.php:738 application/controllers/User.php:1021
 #: application/controllers/User_options.php:9
 msgid "You're not allowed to do that!"
-msgstr ""
+msgstr "Das ist dir nicht gestattet!"
 
 #: application/controllers/Accumulated.php:21
 #: application/views/interface_assets/header.php:150
@@ -2179,80 +2180,80 @@ msgstr "Keine Stationen gefunden, welche Wavelog OQRS benutzen."
 #: application/libraries/Subdivisions.php:31
 msgctxt "Division Name (States in various countries)."
 msgid "Province"
-msgstr ""
+msgstr "Provinz"
 
 #: application/libraries/Subdivisions.php:39
 msgctxt "Division Name (States in various countries)."
 msgid "Oblast"
-msgstr ""
+msgstr "Oblast"
 
 #: application/libraries/Subdivisions.php:41
 #: application/libraries/Subdivisions.php:47
 msgctxt "Division Name (States in various countries)."
 msgid "Region"
-msgstr ""
+msgstr "Region"
 
 #: application/libraries/Subdivisions.php:45
 msgctxt "Division Name (States in various countries)."
 msgid "Department"
-msgstr ""
+msgstr "Department"
 
 #: application/libraries/Subdivisions.php:49
 msgctxt "Division Name (States in various countries)."
 msgid "Municipality"
-msgstr ""
+msgstr "Gemeinde"
 
 #: application/libraries/Subdivisions.php:51
 msgctxt "Division Name (States in various countries)."
 msgid "Federal State"
-msgstr ""
+msgstr "Bundesstaat"
 
 #: application/libraries/Subdivisions.php:56
 #: application/libraries/Subdivisions.php:94
 msgctxt "Division Name (States in various countries)."
 msgid "County"
-msgstr ""
+msgstr "County"
 
 #: application/libraries/Subdivisions.php:60
 #: application/libraries/Subdivisions.php:85
 msgctxt "Division Name (States in various countries)."
 msgid "District"
-msgstr ""
+msgstr "Distrikt"
 
 #: application/libraries/Subdivisions.php:62
 msgctxt "Division Name (States in various countries)."
 msgid "Canton"
-msgstr ""
+msgstr "Kanton"
 
 #: application/libraries/Subdivisions.php:64
 msgctxt "Division Name (States in various countries)."
 msgid "US State"
-msgstr ""
+msgstr "US-Staat"
 
 #: application/libraries/Subdivisions.php:67
 msgctxt "Division Name (States in various countries)."
 msgid "Prefecture"
-msgstr ""
+msgstr "Präfektur"
 
 #: application/libraries/Subdivisions.php:69
 msgctxt "Division Name (States in various countries)."
 msgid "State"
-msgstr ""
+msgstr "Staat"
 
 #: application/libraries/Subdivisions.php:78
 msgctxt "Division Name (States in various countries)."
 msgid "US County"
-msgstr ""
+msgstr "US County"
 
 #: application/libraries/Subdivisions.php:90
 msgctxt "Division Name (States in various countries)."
 msgid "DME"
-msgstr ""
+msgstr "DME"
 
 #: application/libraries/Subdivisions.php:92
 msgctxt "Division Name (States in various countries)."
 msgid "City / Ku / Gun"
-msgstr ""
+msgstr "Stadt / Ku / Gun"
 
 #: application/models/Eqslmethods_model.php:281
 msgid "Your eQSL username and/or password is incorrect."
@@ -2949,6 +2950,8 @@ msgid ""
 "If selected, Wavelog will try to import %sall%s QSO's of the ADIF, "
 "regardless if they match to the chosen station-location."
 msgstr ""
+"Wenn ausgewählt, wird Wavelog versuchen, %salle%s QSOs der ADIF Datei zu "
+"importieren, unabhängig davon, ob sie zum gewählten Standort passen."
 
 #: application/views/adif/import.php:158 application/views/adif/import.php:273
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:54
@@ -5714,7 +5717,7 @@ msgstr ""
 #: application/views/debug/index.php:47
 #, php-format
 msgid "Check this wiki article %shere%s for more information."
-msgstr ""
+msgstr "Schau dir diesen Wiki-Artikel %shier%s für mehr Informationen an."
 
 #: application/views/debug/index.php:48
 #, php-format
@@ -6090,7 +6093,7 @@ msgstr "QSO-Daten"
 #: application/views/distances/index.php:9
 #, php-format
 msgid "contacts were plotted.%s Your furthest contact was with"
-msgstr ""
+msgstr "Kontakte wurden geplottet.%s Dein weitester Kontakt war mit"
 
 #: application/views/distances/index.php:10
 msgid "in gridsquare"
@@ -6579,7 +6582,7 @@ msgstr ""
 #: application/views/interface_assets/footer.php:1160
 #, php-format
 msgid "You're not logged in. Please %slogin%s"
-msgstr ""
+msgstr "Du bist nicht eingeloggt. Bitte %slogge dich ein%s"
 
 #: application/views/interface_assets/footer.php:1366
 #: application/views/interface_assets/footer.php:1370
@@ -9511,6 +9514,8 @@ msgid ""
 "If you did operate from a new location, first create a new %sStation "
 "Location%s"
 msgstr ""
+"Wenn du von einem neuen Standort aus operierst, erstelle zuerst einen neuen "
+"%sStationsstandort%s"
 
 #: application/views/simplefle/index.php:112
 msgid "e.g. OK2CQR"
@@ -9533,6 +9538,7 @@ msgstr "Refs"
 #, php-format
 msgid "The Refs can be either %sS%sOTA, %sI%sOTA, %sP%sOTA, or %sW%sWFF"
 msgstr ""
+"Die Refs können entweder %sS%sOTA, %sI%sOTA, %sP%sOTA oder %sW%sWFF sein"
 
 #: application/views/simplefle/index.php:167
 msgid "Reload QSO List"
@@ -9623,6 +9629,8 @@ msgid ""
 "A full summary of all commands and the necessary syntax can be found in "
 "%sthis article%s of our Wiki."
 msgstr ""
+"Eine vollständige Zusammenfassung aller Befehle und der notwendigen Syntax "
+"findest du in %sdiesem Artikel%s unseres Wikis."
 
 #: application/views/station_profile/create.php:51
 #: application/views/station_profile/edit.php:60
@@ -10388,6 +10396,8 @@ msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
+"Klicke hier auf 'Theme hinzufügen' und gib die notwendigen Daten ein. Gib "
+"die Dateinamen für die Logos %sohne%s die Dateierweiterung '.png' ein"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
@@ -10954,7 +10964,7 @@ msgstr "Diese Demo wird jede Nacht um 0200z zurückgesetzt."
 #: application/views/user/login.php:60
 #, php-format
 msgid "More Information about Wavelog on %sGithub%s."
-msgstr ""
+msgstr "Mehr Informationen über Wavelog auf %sGithub%s."
 
 #: application/views/user/login.php:79
 msgid "Forgot your password?"
@@ -11322,6 +11332,10 @@ msgstr "Anfrage senden"
 
 #~ msgid "User logged in"
 #~ msgstr "Benutzer eingeloggt"
+
+#, php-format
+#~ msgid "You're not logged it. Please %slogin%s"
+#~ msgstr "Du bist nicht eingeloggt. Bitte %slogge dich ein%s"
 
 #~ msgid ""
 #~ "If selected, Wavelog will try to import <b>all</b> QSO's of the ADIF, "

@@ -4,14 +4,15 @@
 #
 # Fabian Berg <80885850+HB9HIL@users.noreply.github.com>, 2024.
 # Dragan Đorđević <4o4a.dragan@gmail.com>, 2024.
+# Fabian Berg <fabian.berg@hb9hil.org>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-08-16 10:41+0000\n"
-"PO-Revision-Date: 2024-08-15 07:13+0000\n"
-"Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
-"Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/sr/>\n"
+"PO-Revision-Date: 2024-08-17 10:48+0000\n"
+"Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
+"Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/sr/>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -89,7 +90,7 @@ msgstr ""
 #: application/controllers/User.php:738 application/controllers/User.php:1021
 #: application/controllers/User_options.php:9
 msgid "You're not allowed to do that!"
-msgstr ""
+msgstr "Nije vam dozvoljeno da to uradite!"
 
 #: application/controllers/Accumulated.php:21
 #: application/views/interface_assets/header.php:150
@@ -2171,80 +2172,80 @@ msgstr "Nisu pronađene stanice koje koriste Wavelog OQRS."
 #: application/libraries/Subdivisions.php:31
 msgctxt "Division Name (States in various countries)."
 msgid "Province"
-msgstr ""
+msgstr "Provincija"
 
 #: application/libraries/Subdivisions.php:39
 msgctxt "Division Name (States in various countries)."
 msgid "Oblast"
-msgstr ""
+msgstr "Oblast"
 
 #: application/libraries/Subdivisions.php:41
 #: application/libraries/Subdivisions.php:47
 msgctxt "Division Name (States in various countries)."
 msgid "Region"
-msgstr ""
+msgstr "Region"
 
 #: application/libraries/Subdivisions.php:45
 msgctxt "Division Name (States in various countries)."
 msgid "Department"
-msgstr ""
+msgstr "Odelenje"
 
 #: application/libraries/Subdivisions.php:49
 msgctxt "Division Name (States in various countries)."
 msgid "Municipality"
-msgstr ""
+msgstr "Opština"
 
 #: application/libraries/Subdivisions.php:51
 msgctxt "Division Name (States in various countries)."
 msgid "Federal State"
-msgstr ""
+msgstr "Federalna država"
 
 #: application/libraries/Subdivisions.php:56
 #: application/libraries/Subdivisions.php:94
 msgctxt "Division Name (States in various countries)."
 msgid "County"
-msgstr ""
+msgstr "Okrug"
 
 #: application/libraries/Subdivisions.php:60
 #: application/libraries/Subdivisions.php:85
 msgctxt "Division Name (States in various countries)."
 msgid "District"
-msgstr ""
+msgstr "Oblast"
 
 #: application/libraries/Subdivisions.php:62
 msgctxt "Division Name (States in various countries)."
 msgid "Canton"
-msgstr ""
+msgstr "Kanton"
 
 #: application/libraries/Subdivisions.php:64
 msgctxt "Division Name (States in various countries)."
 msgid "US State"
-msgstr ""
+msgstr "USA država"
 
 #: application/libraries/Subdivisions.php:67
 msgctxt "Division Name (States in various countries)."
 msgid "Prefecture"
-msgstr ""
+msgstr "Prefektura"
 
 #: application/libraries/Subdivisions.php:69
 msgctxt "Division Name (States in various countries)."
 msgid "State"
-msgstr ""
+msgstr "Država"
 
 #: application/libraries/Subdivisions.php:78
 msgctxt "Division Name (States in various countries)."
 msgid "US County"
-msgstr ""
+msgstr "USA okrug"
 
 #: application/libraries/Subdivisions.php:90
 msgctxt "Division Name (States in various countries)."
 msgid "DME"
-msgstr ""
+msgstr "DME"
 
 #: application/libraries/Subdivisions.php:92
 msgctxt "Division Name (States in various countries)."
 msgid "City / Ku / Gun"
-msgstr ""
+msgstr "Grad / Ku / Gun"
 
 #: application/models/Eqslmethods_model.php:281
 msgid "Your eQSL username and/or password is incorrect."
@@ -2938,6 +2939,8 @@ msgid ""
 "If selected, Wavelog will try to import %sall%s QSO's of the ADIF, "
 "regardless if they match to the chosen station-location."
 msgstr ""
+"Ako je selektovano, Wavelog će pokušati da uveze %sall%s QSO iz ADIF, bez "
+"obzira da li se poklapaju sa izabranom stanicom - lokacijom."
 
 #: application/views/adif/import.php:158 application/views/adif/import.php:273
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:54
@@ -3148,8 +3151,8 @@ msgid ""
 "Wavelog. Generate a read-only key if the application only needs to obtain "
 "data from Wavelog."
 msgstr ""
-"Trebalo bi da generišete API ključ za svaku alatku koju želite da koristite "
-"(npr. WLgate). Generišite read-write ključ ako aplikacije treba da šalej "
+"Trebalo bi da generišete API ključ za svaku alatku koju želite da koristite ("
+"npr. WLgate). Generišite read-write ključ ako aplikacije treba da šalej "
 "podatke na Wavelog. Generišite read-only ključ ako aplikacija treba samo da "
 "dobije podatke od Waveloga."
 
@@ -3866,6 +3869,9 @@ msgid ""
 "activities on the bands by encouraging contacts across as many Swiss cantons "
 "as possible on multiple bands."
 msgstr ""
+"USKA (Union of Swiss Shortwave Amateurs) sponzoriše dvije diplome, HELVETIA "
+"26 (H26) i SWITZERLAND diplomu, sa ciljem promocije aktivnosti na opsezima i "
+"podsticanjem veza sa amaterima iz što je više moguće kantona, na više opsega."
 
 #: application/views/awards/helvetia/index.php:20
 msgid ""
@@ -3873,6 +3879,9 @@ msgid ""
 "(including SHF and UHF) bands. Valid connections for these awards date back "
 "to January 1, 1980"
 msgstr ""
+"Ove diplome dolaze u dvije verzije: jedna za KT opsege i druga za VHF ("
+"uključujući SHF i UHF) opsege. Za diplomu se računaju kontakti nakon 1. "
+"januara 1980"
 
 #: application/views/awards/helvetia/index.php:21
 #: application/views/awards/jcc/index.php:19
@@ -3882,24 +3891,24 @@ msgstr ""
 #: application/views/awards/wwff/index.php:10
 #, php-format
 msgid "For more information, please visit: %s."
-msgstr ""
+msgstr "Za više informacija, molimo posjetite: %s."
 
 #: application/views/awards/helvetia/index.php:112
 msgid "Show Helvetia Map"
-msgstr ""
+msgstr "Prikaži Helvetia kartu"
 
 #: application/views/awards/helvetia/index.php:149
 msgid "Canton"
-msgstr ""
+msgstr "Kanton"
 
 #: application/views/awards/index.php:9 application/views/bands/index.php:46
 #: application/views/interface_assets/header.php:162
 msgid "CQ"
-msgstr ""
+msgstr "CQ"
 
 #: application/views/awards/iota/index.php:16
 msgid "IOTA Awards"
-msgstr ""
+msgstr "IOTA diplome"
 
 #: application/views/awards/iota/index.php:17
 msgid ""
@@ -5314,6 +5323,7 @@ msgid "You have had %d QSO today"
 msgid_plural "You have had %d QSOs today"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: application/views/dashboard/index.php:97
 msgid "You have made no QSOs today; time to turn on the radio!"
@@ -5791,6 +5801,7 @@ msgid_plural ""
 "The Database contains %d QSOs without a station-profile (location)"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: application/views/debug/index.php:550
 #: application/views/public_search/result.php:17
@@ -7460,6 +7471,7 @@ msgid "%d day ago"
 msgid_plural "%d days ago"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: application/views/lookup/lotwuser.php:12
 #: application/views/search/result.php:58
@@ -8196,6 +8208,7 @@ msgid "has %d band slot"
 msgid_plural "has %d band slots"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: application/views/oqrs/result.php:33
 #, php-format
@@ -8203,6 +8216,7 @@ msgid "and has %d QSO in the log"
 msgid_plural "and has %d QSOs in the log"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: application/views/oqrs/result.php:37
 msgid "Request QSL"
