@@ -34,6 +34,7 @@
     var lang_general_word_warning = "<?= __("Warning"); ?>";
     var lang_general_word_cancel = "<?= __("Cancel"); ?>";
     var lang_general_word_ok = "<?= __("OK"); ?>";
+    var lang_general_word_search = "<?= __("Search"); ?>";
     var lang_qso_delete_warning = "<?= __("Warning! Are you sure you want delete QSO with "); ?>";
     var lang_general_word_colors = "<?= __("Colors"); ?>";
     var lang_general_word_confirmed = "<?= __("Confirmed"); ?>";

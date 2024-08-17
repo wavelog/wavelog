@@ -14,6 +14,7 @@ $(document).ready(function () {
 		enableFiltering: true,
 		enableFullValueFiltering: false,
 		enableCaseInsensitiveFiltering: true,
+		filterPlaceholder: lang_general_word_search,
 		widthSynchronizationMode: 'always',
 		numberDisplayed: 1,
 		inheritClass: true,
