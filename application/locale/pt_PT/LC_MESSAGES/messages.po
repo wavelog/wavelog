@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-08-16 10:41+0000\n"
-"PO-Revision-Date: 2024-08-12 15:29+0000\n"
+"PO-Revision-Date: 2024-08-17 10:48+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/pt_PT/>\n"
@@ -89,7 +89,7 @@ msgstr ""
 #: application/controllers/User.php:738 application/controllers/User.php:1021
 #: application/controllers/User_options.php:9
 msgid "You're not allowed to do that!"
-msgstr ""
+msgstr "Não é permitido fazer isso!"
 
 #: application/controllers/Accumulated.php:21
 #: application/views/interface_assets/header.php:150
@@ -1881,8 +1881,8 @@ msgstr "Tem a certeza de que pretende eliminar o slug público?"
 msgid ""
 "Are you sure you want to make the following station the active station: "
 msgstr ""
-"Tem a certeza de que pretende tornar a seguinte estação como a estação "
-"ativa: "
+"Tem a certeza de que pretende tornar a seguinte estação como a estação ativa:"
+" "
 
 #: application/controllers/Stationsetup.php:349
 #: application/views/stationsetup/stationsetup.php:154
@@ -2175,80 +2175,80 @@ msgstr "Não foram encontradas estações que estejam a utilizar o OQRS Wavelog.
 #: application/libraries/Subdivisions.php:31
 msgctxt "Division Name (States in various countries)."
 msgid "Province"
-msgstr ""
+msgstr "Província"
 
 #: application/libraries/Subdivisions.php:39
 msgctxt "Division Name (States in various countries)."
 msgid "Oblast"
-msgstr ""
+msgstr "Oblast"
 
 #: application/libraries/Subdivisions.php:41
 #: application/libraries/Subdivisions.php:47
 msgctxt "Division Name (States in various countries)."
 msgid "Region"
-msgstr ""
+msgstr "Região"
 
 #: application/libraries/Subdivisions.php:45
 msgctxt "Division Name (States in various countries)."
 msgid "Department"
-msgstr ""
+msgstr "Departamento"
 
 #: application/libraries/Subdivisions.php:49
 msgctxt "Division Name (States in various countries)."
 msgid "Municipality"
-msgstr ""
+msgstr "Município"
 
 #: application/libraries/Subdivisions.php:51
 msgctxt "Division Name (States in various countries)."
 msgid "Federal State"
-msgstr ""
+msgstr "Estado Federal"
 
 #: application/libraries/Subdivisions.php:56
 #: application/libraries/Subdivisions.php:94
 msgctxt "Division Name (States in various countries)."
 msgid "County"
-msgstr ""
+msgstr "Condado"
 
 #: application/libraries/Subdivisions.php:60
 #: application/libraries/Subdivisions.php:85
 msgctxt "Division Name (States in various countries)."
 msgid "District"
-msgstr ""
+msgstr "Distrito"
 
 #: application/libraries/Subdivisions.php:62
 msgctxt "Division Name (States in various countries)."
 msgid "Canton"
-msgstr ""
+msgstr "Cantão"
 
 #: application/libraries/Subdivisions.php:64
 msgctxt "Division Name (States in various countries)."
 msgid "US State"
-msgstr ""
+msgstr "Estado dos EUA"
 
 #: application/libraries/Subdivisions.php:67
 msgctxt "Division Name (States in various countries)."
 msgid "Prefecture"
-msgstr ""
+msgstr "Prefeitura"
 
 #: application/libraries/Subdivisions.php:69
 msgctxt "Division Name (States in various countries)."
 msgid "State"
-msgstr ""
+msgstr "Estado"
 
 #: application/libraries/Subdivisions.php:78
 msgctxt "Division Name (States in various countries)."
 msgid "US County"
-msgstr ""
+msgstr "Condado dos EUA"
 
 #: application/libraries/Subdivisions.php:90
 msgctxt "Division Name (States in various countries)."
 msgid "DME"
-msgstr ""
+msgstr "DME"
 
 #: application/libraries/Subdivisions.php:92
 msgctxt "Division Name (States in various countries)."
 msgid "City / Ku / Gun"
-msgstr ""
+msgstr "Cidade / Ku / Gun"
 
 #: application/models/Eqslmethods_model.php:281
 msgid "Your eQSL username and/or password is incorrect."
@@ -2273,8 +2273,7 @@ msgstr "Houve um erro num dos contactos. Queira carregá-los manualmente."
 #: application/models/Eqslmethods_model.php:315
 msgid ""
 "It seems that the eQSL site has changed. Please open up an issue on GitHub."
-msgstr ""
-"Parece que o site da eQSL mudou. Por favor, abra um problema no GitHub."
+msgstr "Parece que o site da eQSL mudou. Por favor, abra um problema no GitHub."
 
 #: application/models/Hrdlog_model.php:22
 msgid ""
@@ -2944,6 +2943,8 @@ msgid ""
 "If selected, Wavelog will try to import %sall%s QSO's of the ADIF, "
 "regardless if they match to the chosen station-location."
 msgstr ""
+"Se for selecionado, o Wavelog tentará importar %stodos%s os contactos do "
+"ADIF, independentemente de corresponderem à estação-local escolhida."
 
 #: application/views/adif/import.php:158 application/views/adif/import.php:273
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:54
@@ -3609,8 +3610,8 @@ msgstr ""
 "Sul. Cerca de 70.000 dos 82 milhões de habitantes da Alemanha são "
 "radioamadores licenciados, sendo que mais de 40.000 deles são membros do "
 "DARC. DOK é o sistema que fornece aos capítulos locais individuais um "
-"identificador e significa “Deutscher Ortsverband Kenner” (em português: "
-"“Identificador da associação local alemã”)."
+"identificador e significa “Deutscher Ortsverband Kenner” (em português: “"
+"Identificador da associação local alemã”)."
 
 #: application/views/awards/dok/index.php:9
 msgid ""
@@ -4254,8 +4255,8 @@ msgstr ""
 "Cada país tem a sua própria Associação que define as cimeiras SOTA "
 "reconhecidas dentro dessa Associação. Cada cume confere aos activadores e "
 "caçadores uma pontuação relacionada com a altura do cume. Os certificados "
-"estão disponíveis para várias pontuações, levando aos prestigiados troféus "
-"“Mountain Goat” e “Shack Sloth”. Uma Lista de Honra para Activadores e "
+"estão disponíveis para várias pontuações, levando aos prestigiados troféus “"
+"Mountain Goat” e “Shack Sloth”. Uma Lista de Honra para Activadores e "
 "Caçadores é mantida na base de dados online do SOTA."
 
 #: application/views/awards/vucc/index.php:7
@@ -5047,8 +5048,7 @@ msgstr "Copiar o intercâmbio recebido para"
 
 #: application/views/contesting/index.php:168
 msgid "Exchange is only copied if it is matching rules for the selected field!"
-msgstr ""
-"O Exchange só é copiado se corresponder às regras do campo selecionado!"
+msgstr "O Exchange só é copiado se corresponder às regras do campo selecionado!"
 
 #: application/views/contesting/index.php:172
 msgid "Age"
@@ -5700,7 +5700,7 @@ msgstr ""
 #: application/views/debug/index.php:47
 #, php-format
 msgid "Check this wiki article %shere%s for more information."
-msgstr ""
+msgstr "Verifica este artigo da wiki %saqui%s para mais informações."
 
 #: application/views/debug/index.php:48
 #, php-format
@@ -6079,7 +6079,7 @@ msgstr "Dados do contacto"
 #: application/views/distances/index.php:9
 #, php-format
 msgid "contacts were plotted.%s Your furthest contact was with"
-msgstr ""
+msgstr "os contactos foram traçados.%s O seu contacto mais distante foi com"
 
 #: application/views/distances/index.php:10
 msgid "in gridsquare"
@@ -6419,9 +6419,8 @@ msgid ""
 "No Station Locations with valid HRDlog-Settings found. Check the HRDlog "
 "Credentials in the Station Location Settings!"
 msgstr ""
-"Não foram encontrados locais de estação válidos com configurações do "
-"HRDlog . Verifique as credenciais do HRDlog nas configurações do local da "
-"estação!"
+"Não foram encontrados locais de estação válidos com configurações do HRDlog "
+". Verifique as credenciais do HRDlog nas configurações do local da estação!"
 
 #: application/views/hrdlog/export.php:87
 msgid "Mark QSOs as exported to HRDLog Logbook"
@@ -6567,7 +6566,7 @@ msgstr ""
 #: application/views/interface_assets/footer.php:1160
 #, php-format
 msgid "You're not logged in. Please %slogin%s"
-msgstr ""
+msgstr "Não tem sessão iniciada. Por favor %slogin%s"
 
 #: application/views/interface_assets/footer.php:1366
 #: application/views/interface_assets/footer.php:1370
@@ -6949,8 +6948,7 @@ msgstr "Tamanho da letra"
 #: application/views/labels/create.php:108
 #: application/views/labels/edit.php:110
 msgid "Font size used on the label don't go too big."
-msgstr ""
-"O tamanho da letra utilizada na etiqueta não deve ser demasiado grande."
+msgstr "O tamanho da letra utilizada na etiqueta não deve ser demasiado grande."
 
 #: application/views/labels/create.php:111
 #: application/views/labels/edit.php:113
@@ -8145,8 +8143,8 @@ msgid ""
 "The hostname of the mail server, e.g. 'mail.example.com' (without 'ssl://' "
 "or 'tls://')"
 msgstr ""
-"O nome do anfitrião do servidor de correio, por exemplo, “mail.example."
-"com” (sem 'ssl://' ou 'tls://')"
+"O nome do anfitrião do servidor de correio, por exemplo, “mail.example.com” ("
+"sem 'ssl://' ou 'tls://')"
 
 #: application/views/options/email.php:88
 msgid "SMTP Port"
@@ -8781,8 +8779,7 @@ msgstr "Potência de Transmissão (W)"
 
 #: application/views/qso/edit_ajax.php:136 application/views/qso/index.php:348
 msgid "Give power value in Watts. Include only numbers in the input."
-msgstr ""
-"Forneça o valor da potência em Watts. Inclua apenas números na entrada."
+msgstr "Forneça o valor da potência em Watts. Inclua apenas números na entrada."
 
 #: application/views/qso/edit_ajax.php:166
 msgid "Used for VUCC MultiGrids"
@@ -9508,6 +9505,8 @@ msgid ""
 "If you did operate from a new location, first create a new %sStation "
 "Location%s"
 msgstr ""
+"Se você operou a partir de um novo local, primeiro crie uma nova %sStation "
+"Location%s"
 
 #: application/views/simplefle/index.php:112
 msgid "e.g. OK2CQR"
@@ -9528,7 +9527,7 @@ msgstr "Referências"
 #: application/views/simplefle/index.php:160
 #, php-format
 msgid "The Refs can be either %sS%sOTA, %sI%sOTA, %sP%sOTA, or %sW%sWFF"
-msgstr ""
+msgstr "As Refs podem ser %sS%sOTA, %sI%sOTA, %sP%sOTA, ou %sW%sWFF"
 
 #: application/views/simplefle/index.php:167
 msgid "Reload QSO List"
@@ -9620,6 +9619,8 @@ msgid ""
 "A full summary of all commands and the necessary syntax can be found in "
 "%sthis article%s of our Wiki."
 msgstr ""
+"Um resumo completo de todos os comandos e a sintaxe necessária pode ser "
+"encontrado neste %sartigo%s da nossa Wiki."
 
 #: application/views/station_profile/create.php:51
 #: application/views/station_profile/edit.php:60
@@ -10219,8 +10220,7 @@ msgstr "Nome do Tema"
 
 #: application/views/themes/add.php:6 application/views/themes/edit.php:6
 msgid "This is the name that is used to display the theme in the theme list."
-msgstr ""
-"Este é o nome que é utilizado para apresentar o tema na lista de temas."
+msgstr "Este é o nome que é utilizado para apresentar o tema na lista de temas."
 
 #: application/views/themes/add.php:10 application/views/themes/edit.php:10
 msgid "Folder Name"
@@ -10333,8 +10333,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Crie uma nova pasta em 'assets/css/' e carregue um ficheiro 'bootstrap.min."
-"css' que contém regras de estilo básicas. Utilizamos os temas de %s"
+"Crie uma nova pasta em 'assets/css/' e carregue um ficheiro "
+"'bootstrap.min.css' que contém regras de estilo básicas. Utilizamos os temas "
+"de %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
@@ -10365,8 +10366,8 @@ msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
-"Só são permitidos ficheiros PNG, que devem ter uma relação de pixels de 1:1 "
-"(por exemplo, 1000px de altura e 1000px de largura)."
+"Só são permitidos ficheiros PNG, que devem ter uma relação de pixels de 1:1 ("
+"por exemplo, 1000px de altura e 1000px de largura)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
@@ -10382,6 +10383,8 @@ msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
+"Clique aqui em 'Adicionar um Tema' e insira os dados necessários. Digite os "
+"nomes dos arquivos para os logotipos %ssem%s a extensão de arquivo '.png'"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
@@ -10651,8 +10654,8 @@ msgid ""
 "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the "
 "log QSO section."
 msgstr ""
-"Mostrar a imagem de perfil do parceiro de contacto do perfil QRZ.com/HamQTH."
-"com na secção de registo de contacto."
+"Mostrar a imagem de perfil do parceiro de contacto do perfil QRZ.com/"
+"HamQTH.com na secção de registo de contacto."
 
 #: application/views/user/edit.php:361
 msgid ""
@@ -10945,7 +10948,7 @@ msgstr "Esta demonstração será reiniciada todas as noites às 0200z."
 #: application/views/user/login.php:60
 #, php-format
 msgid "More Information about Wavelog on %sGithub%s."
-msgstr ""
+msgstr "Mais informações sobre o Wavelog no %sGithub%s."
 
 #: application/views/user/login.php:79
 msgid "Forgot your password?"
