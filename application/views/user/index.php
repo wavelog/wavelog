@@ -21,7 +21,7 @@
 		</div>
 
 	<?php } ?>
-	
+
 	<!-- This Info will be shown by the admin password reset -->
 	<div class="alert" id="pwd_reset_message" style="display: hide" role="alert"></div>
 
@@ -66,8 +66,8 @@
 							<td style="text-align: left; vertical-align: middle;"><?php echo $row->user_callsign; ?></td>
 							<td style="text-align: left; vertical-align: middle;"><?php echo $row->user_email; ?></td>
 							<td style="text-align: left; vertical-align: middle;"><?php $l = $this->config->item('auth_level');
-								echo $l[$row->user_type]; ?></td>
-							<td style="text-align: left; vertical-align: middle;"><?php 
+																					echo $l[$row->user_type]; ?></td>
+							<td style="text-align: left; vertical-align: middle;"><?php
 								if ($row->last_seen != null) { // if the user never logged in before the value is null. We can show "never" then.
 									$lastSeenTimestamp = strtotime($row->last_seen);
 									$currentTimestamp = time();
@@ -100,12 +100,47 @@
 							<td style="text-align: center; vertical-align: middle;">
 								<?php
 								if ($session_uid != $row->user_id) { ?>
-								<form action="<?php echo site_url('user/impersonate'); ?>" method="post" style="display:inline;">
-									<input type="hidden" name="hash" value="<?php echo $this->encryption->encrypt($row->user_id); ?>">
-									<button type="submit" class="btn btn-info btn-sm"><i class="fas fa-people-arrows"></i></button>
-								</form>
+									<button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#impersonateModal"><i class="fas fa-people-arrows"></i></button>
+									<div class="modal fade bg-black bg-opacity-50" id="impersonateModal" tabindex="-1" aria-labelledby="impersonateLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+										<div class="modal-dialog modal-dialog-centered modal-md">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title" id="impersonateLabel"><?= __("Impersonate User") ?></h5>
+												</div>
+												<div class="modal-body" style="text-align: left !important;">
+													<div class="mb-3">
+														<p><?= __("You are about to impersonate another user. To return to your admin account, you'll need to logout and log back in as admin."); ?></p>
+														<p><?= __("Do you want to impersonate this user?"); ?></p>
+														<br>
+														<table>
+															<tr>
+																<td class="pe-3"><?= __("Username:"); ?></td>
+																<td><strong><?php echo $row->user_name; ?></strong></td>
+															</tr>
+															<tr>
+																<td class="pe-3"><?= __("Name:"); ?></td>
+																<td><strong><?php echo $row->user_firstname . ' ' . $row->user_lastname; ?></strong></td>
+															</tr>
+															<tr>
+																<td class="pe-3"><?= __("Callsign:"); ?></td>
+																<td><strong><?php echo $row->user_callsign; ?></strong></td>
+															</tr>
+														</table>
+													</div>
+												</div>
+												<div class="modal-footer">
+													<form action="<?php echo site_url('user/impersonate'); ?>" method="post" style="display:inline;">
+														<input type="hidden" name="hash" value="<?php echo $this->encryption->encrypt($row->user_id); ?>">
+														<button type="submit" class="btn btn-success"><?= __("Impersonate") ?></i></button>
+													</form>
+													<button type="button" class="btn btn-danger" data-bs-dismiss="modal"><?= __("Cancel") ?></button>
+												</div>
+											</div>
+										</div>
+									</div>
 								<?php }
-								?></td>
+								?>
+							</td>
 							<td style="text-align: center; vertical-align: middle;">
 								<?php
 								if ($session_uid != $row->user_id) {
@@ -119,7 +154,6 @@
 					</tbody>
 				</table>
 			</div>
-
 		</div>
 	</div>
 </div>
