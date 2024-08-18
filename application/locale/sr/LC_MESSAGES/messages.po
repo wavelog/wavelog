@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-08-17 17:16+0000\n"
-"PO-Revision-Date: 2024-08-18 14:15+0000\n"
+"PO-Revision-Date: 2024-08-18 19:11+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
 "Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/sr/>\n"
@@ -4432,6 +4432,9 @@ msgid ""
 "radio operators to leave their shacks and operate portable in Protected "
 "Flora & Fauna areas (PFF) worldwide."
 msgstr ""
+"WWFF, World Wide Flora and Fauna u radio-amaterizmu podstiču licencirane "
+"radio-amatere operatore da izađu iz svojih radio-soba i rade prenosnom "
+"opremom iz zaštićenih zona flore i faune, širom sveta."
 
 #: application/views/awards/wwff/index.php:9
 msgid ""
@@ -4439,6 +4442,9 @@ msgid ""
 "registered in the WWFF Directory. Hunters and Activators can apply for "
 "colorful awards, both globally and nationally."
 msgstr ""
+"U WWFF imeniku već je registrovano više od 26.000 zaštićenih područja flore "
+"i faune. Lovci i aktivatori mogu aplicirati za šarolike diplome, kako "
+"globalne tako i diplome nacionalnih organizacija."
 
 #: application/views/awards/wwff/index.php:31
 #: application/views/qso/index.php:224 application/views/qso/index.php:469
@@ -4447,17 +4453,18 @@ msgstr ""
 #: application/views/user/edit.php:591 application/views/view_log/qso.php:296
 #: application/views/view_log/qso.php:563
 msgid "WWFF Reference"
-msgstr ""
+msgstr "WWFF reference"
 
 #: application/views/backup/adif_view.php:7
 msgid ""
 "The backup of your log completed successfully. The output can be found at"
 msgstr ""
+"Rezervna kopija vašeg loga je uspešno napravljena. Kopiju možete pronaći u"
 
 #: application/views/backup/adif_view.php:9
 #: application/views/backup/notes_view.php:9
 msgid "You could automate this process by making it a cronjob."
-msgstr ""
+msgstr "Mete automatizovati ovaj proces kreiranjem cronjob-a."
 
 #: application/views/backup/adif_view.php:13
 #: application/views/backup/notes_view.php:13
@@ -4465,38 +4472,47 @@ msgid ""
 "Something went wrong during the backup process. Check that the backup folder "
 "exists and is writeable by your web server user / group."
 msgstr ""
+"Nešto je pošlo naopako tokom procesa kreiranja rezervne kopije. Proverite da "
+"li postoji direktorijum za rezervnu kopiju, i da li je omogućen za "
+"upisivanje od strane vašeg web server korisnika/grupe."
 
 #: application/views/backup/main.php:17
 msgid ""
 "Some of the data stored in Wavelog can be exported so that you can keep a "
 "backup copy elsewhere."
 msgstr ""
+"Neki od podataka smeštenih u Wavelogu mogu biti izvezeni tako da rezervnu "
+"kopiju možete čuvati na nekom drugom mestu."
 
 #: application/views/backup/main.php:18
 msgid ""
 "It's recommended to create backups on a regular basis to protect your data."
 msgstr ""
+"Preporučuje se da često pravite rezervne kopije kako biste zaštili vaše "
+"podatke."
 
 #: application/views/backup/main.php:19
 msgid "Backup ADIF data"
-msgstr ""
+msgstr "Rezervna kopija ADIF podataka"
 
 #: application/views/backup/main.php:20
 msgid "Backup Notes"
-msgstr ""
+msgstr "Rezervna kopija Napomena"
 
 #: application/views/backup/notes_view.php:7
 msgid ""
 "The backup of your notes completed successfully. The output can be found at"
 msgstr ""
+"Rezervna kopija vaših Napomena je uspešno napravljena. Kopiju možete pronaći "
+"u"
 
 #: application/views/bandmap/index.php:15 application/views/bandmap/list.php:49
 msgid "BandMap"
-msgstr ""
+msgstr "Mapa opsega"
 
 #: application/views/bandmap/index.php:18 application/views/bandmap/list.php:52
 msgid "BandList"
-msgstr ""
+msgstr "Lista opsega"
 
 #: application/views/bandmap/index.php:27 application/views/bandmap/list.php:62
 #: application/views/contesting/index.php:15
@@ -4504,128 +4520,132 @@ msgstr ""
 #: application/views/contesting/index.php:169
 #: application/views/qso/index.php:314
 msgid "None"
-msgstr ""
+msgstr "Ništa"
 
 #: application/views/bandmap/index.php:33 application/views/bandmap/list.php:76
 msgid "Spots de"
-msgstr ""
+msgstr "Spotovi od"
 
 #: application/views/bandmap/list.php:69
 msgid "DXCC-Status"
-msgstr ""
+msgstr "DXCC status"
 
 #: application/views/bandmap/list.php:74
 msgid "Not Confirmed"
-msgstr ""
+msgstr "Nije potvrđeno"
 
 #: application/views/bandmap/list.php:113
 msgid "Spotter"
-msgstr ""
+msgstr "Spoter"
 
 #: application/views/bandmap/list.php:114
 #: application/views/oqrs/notinlogform.php:28
 #: application/views/oqrs/request.php:54
 #: application/views/oqrs/request_grouped.php:58
 msgid "Message"
-msgstr ""
+msgstr "Poruka"
 
 #: application/views/bands/create.php:26 application/views/bands/edit.php:8
 msgid "Name of Band (E.g. 20m)"
-msgstr ""
+msgstr "Naziv opsega (npr. 20M)"
 
 #: application/views/bands/create.php:29 application/views/bands/edit.php:11
 #: application/views/bands/index.php:61
 msgid "Bandgroup"
-msgstr ""
+msgstr "Grupa opsega"
 
 #: application/views/bands/create.php:31 application/views/bands/edit.php:13
 msgid "Name of bandgroup (E.g. hf, vhf, uhf, shf)"
-msgstr ""
+msgstr "Ime grupe opsega (npr. KT, UKT, VKT, SKT)"
 
 #: application/views/bands/create.php:34 application/views/bands/edit.php:16
 #: application/views/bands/index.php:62
 msgid "SSB QRG"
-msgstr ""
+msgstr "SSB QRG"
 
 #: application/views/bands/create.php:36 application/views/bands/edit.php:18
 msgid "Frequency for SSB QRG in band (must be in Hz)"
-msgstr ""
+msgstr "Frekvencija za SSB QRG u opsegu (mora biti u Hz)"
 
 #: application/views/bands/create.php:39 application/views/bands/edit.php:21
 #: application/views/bands/index.php:63
 msgid "DATA QRG"
-msgstr ""
+msgstr "DATA QRG"
 
 #: application/views/bands/create.php:41 application/views/bands/edit.php:23
 msgid "Frequency for DATA QRG in band (must be in Hz)"
-msgstr ""
+msgstr "Frekvencija za DATA QRG u opsegu (mora biti u Hz)"
 
 #: application/views/bands/create.php:44 application/views/bands/edit.php:26
 #: application/views/bands/index.php:64
 msgid "CW QRG"
-msgstr ""
+msgstr "CW QRG"
 
 #: application/views/bands/create.php:46 application/views/bands/edit.php:28
 msgid "Frequency for CW QRG in band (must be in Hz)"
-msgstr ""
+msgstr "Frekvencija za CW QRG u opsegu (mora biti u Hz)"
 
 #: application/views/bands/index.php:36
 msgid ""
 "Using the band list you can control which bands are shown when creating a "
 "new QSO."
 msgstr ""
+"Koristeći listu opsega možete kontrolisati koji opsezi će biti prikazani "
+"kada kreirate novi QSO."
 
 #: application/views/bands/index.php:37
 msgid ""
 "Active bands will be shown in the QSO 'Band' drop-down, while inactive bands "
 "will be hidden and cannot be selected."
 msgstr ""
+"Aktivni opsezi će biti prikazani u padajućem prozoru 'Opseg', dok će "
+"neaktivni opsezi biti skriveni i neće se moći izabrati."
 
 #: application/views/bands/index.php:54 application/views/qso/edit_ajax.php:351
 #: application/views/qso/index.php:248 application/views/qso/index.php:494
 #: application/views/user/edit.php:599 application/views/view_log/qso.php:325
 #: application/views/view_log/qso.php:577
 msgid "Sig"
-msgstr ""
+msgstr "Sig"
 
 #: application/views/bands/index.php:56 application/views/qso/edit_ajax.php:312
 #: application/views/qso/index.php:433
 msgid "USA County"
-msgstr ""
+msgstr "USA okrug"
 
 #: application/views/bands/index.php:58
 #: application/views/interface_assets/header.php:208
 msgid "WAJA"
-msgstr ""
+msgstr "WAJA"
 
 #: application/views/bands/index.php:59
 #: application/views/interface_assets/header.php:232
 msgid "WAS"
-msgstr ""
+msgstr "WAS"
 
 #: application/views/bands/index.php:65
 msgid "QRG Unit"
-msgstr ""
+msgstr "QRG jedinica"
 
 #: application/views/bands/index.php:98
 msgid "Hz"
-msgstr ""
+msgstr "Hz"
 
 #: application/views/bands/index.php:99
 msgid "kHz"
-msgstr ""
+msgstr "kHz"
 
 #: application/views/bands/index.php:100
 msgid "MHz"
-msgstr ""
+msgstr "MHz"
 
 #: application/views/bands/index.php:101
 msgid "GHz"
-msgstr ""
+msgstr "GHz"
 
 #: application/views/bands/index.php:151 application/views/bands/index.php:157
 msgid "Create a band"
-msgstr ""
+msgstr "Kreiraj opseg"
 
 #: application/views/bands/index.php:152
 #: application/views/contesting/add.php:74
@@ -4639,151 +4659,151 @@ msgstr "Zatvori"
 
 #: application/views/bands/index.php:153
 msgid "Warning! Are you sure you want to delete the following band: "
-msgstr ""
+msgstr "Upozorenje! Da li ste sigurni da želite obrisati sledeći opseg: "
 
 #: application/views/bands/index.php:154
 msgid "Warning! Are you sure you want to activate all bands?"
-msgstr ""
+msgstr "Upozorenje! Da li ste sigurni da želite aktivirati sve opsege?"
 
 #: application/views/bands/index.php:155
 msgid "Warning! Are you sure you want to deactivate all bands?"
-msgstr ""
+msgstr "Upozrenje! Da li ste sigurni da želite deaktivirati sve opsege?"
 
 #: application/views/bands/index.php:158
 #: application/views/contesting/add.php:77 application/views/mode/index.php:77
 msgid "Activate All"
-msgstr ""
+msgstr "Aktivirajte sve"
 
 #: application/views/bands/index.php:159
 #: application/views/contesting/add.php:78 application/views/mode/index.php:78
 msgid "Deactivate All"
-msgstr ""
+msgstr "Deaktivirajte sve"
 
 #: application/views/cabrillo/index.php:2
 #: application/views/cabrillo/index.php:34 application/views/oqrs/index.php:59
 msgid "Proceed"
-msgstr ""
+msgstr "Nastavite"
 
 #: application/views/cabrillo/index.php:3
 msgid "Select Year"
-msgstr ""
+msgstr "Izaberite godinu"
 
 #: application/views/cabrillo/index.php:4
 msgid "Select Contest"
-msgstr ""
+msgstr "Izaberite takmičenje"
 
 #: application/views/cabrillo/index.php:5
 msgid "Select Date Range"
-msgstr ""
+msgstr "Izaberite datumski opseg"
 
 #: application/views/cabrillo/index.php:6
 msgid "No contests were found for this station location!"
-msgstr ""
+msgstr "Za ovu staničnu lokaciju nisu pronađena takmičenja!"
 
 #: application/views/cabrillo/index.php:16
 msgid "Export a contest to a Cabrillo log"
-msgstr ""
+msgstr "Izvezite takmičenje u Cabrillo dnevnik"
 
 #: application/views/cabrillo/index.php:28
 msgid "Select Station Location:"
-msgstr ""
+msgstr "Izaberite staničnu lokaciju:"
 
 #: application/views/cabrillo/index.php:44
 msgid "Club"
-msgstr ""
+msgstr "Klub"
 
 #: application/views/cabrillo/index.php:48
 msgid "Category Operator"
-msgstr ""
+msgstr "Operator kategorije"
 
 #: application/views/cabrillo/index.php:56
 msgid "Category Assisted"
-msgstr ""
+msgstr "Assisted kategorija"
 
 #: application/views/cabrillo/index.php:63
 msgid "Category Band"
-msgstr ""
+msgstr "Opseg kategorije"
 
 #: application/views/cabrillo/index.php:89
 msgid "Light/Laser"
-msgstr ""
+msgstr "Svetlo/Laser"
 
 #: application/views/cabrillo/index.php:90
 msgid "VHF-3-BAND and VHF-FM-ONLY (ARRL VHF Contests only)"
-msgstr ""
+msgstr "VHF-3-BAND i VHF-FM-ONLY (samo u ARRL VHF takmičenju)"
 
 #: application/views/cabrillo/index.php:94
 msgid "Category Mode"
-msgstr ""
+msgstr "Vrsta rada kategorije"
 
 #: application/views/cabrillo/index.php:105
 msgid "Category Power"
-msgstr ""
+msgstr "Snaga kategorije"
 
 #: application/views/cabrillo/index.php:113
 msgid "Category Station"
-msgstr ""
+msgstr "Stanica kategorije"
 
 #: application/views/cabrillo/index.php:129
 msgid "Category Transmitter"
-msgstr ""
+msgstr "Predajnik kategorije"
 
 #: application/views/cabrillo/index.php:139
 msgid "Category Overlay"
-msgstr ""
+msgstr "Overlay kategorija"
 
 #: application/views/cabrillo/index.php:150
 msgid "Operators"
-msgstr ""
+msgstr "Operatori"
 
 #: application/views/cabrillo/index.php:155
 msgid "Soapbox"
-msgstr ""
+msgstr "Komentari (soapbox)"
 
 #: application/views/cabrillo/index.php:159
 msgid "Address"
-msgstr ""
+msgstr "Adresa"
 
 #: application/views/cabrillo/index.php:163
 msgid "Address City"
-msgstr ""
+msgstr "Grad adrese"
 
 #: application/views/cabrillo/index.php:167
 msgid "Address State/Province"
-msgstr ""
+msgstr "Država/Provincija adrese"
 
 #: application/views/cabrillo/index.php:171
 msgid "Address Postalcode"
-msgstr ""
+msgstr "Poštanski broj adrese"
 
 #: application/views/cabrillo/index.php:175
 msgid "Address Country"
-msgstr ""
+msgstr "Okrug adrese"
 
 #: application/views/cabrillo/index.php:186
 msgid "No contests were found in your log."
-msgstr ""
+msgstr "U vašem dnevniku nisu pronađena takmičenja."
 
 #: application/views/cfd/index.php:7
 #, php-format
 msgid "Export of CFD-File for DARC-Toplist (See %s)"
-msgstr ""
+msgstr "Izvoz CFD-datoteke za DARC-Toplistu (pogledajte %s)"
 
 #: application/views/components/hamsat/table.php:3
 #: application/views/hamsat/index.php:7
 msgid "Hamsat - Satellite Rovers"
-msgstr ""
+msgstr "Hamsat - Satelitski roveri"
 
 #: application/views/components/hamsat/table.php:4
 #: application/views/contestcalendar/index.php:4
 #: application/views/dxcalendar/index.php:4
 #: application/views/hamsat/index.php:8
 msgid "This data comes from"
-msgstr ""
+msgstr "Ovi podaci dolaze od"
 
 #: application/views/components/hamsat/table.php:11
 msgid "Show All Passes"
-msgstr ""
+msgstr "Prikaži sve prelete"
 
 #: application/views/components/hamsat/table.php:14
 msgid "Private feed key empty. Please set the feed key in your profile."
@@ -4791,7 +4811,7 @@ msgstr ""
 
 #: application/views/components/hamsat/table.php:19
 msgid "No upcoming activations found. Please check back later."
-msgstr ""
+msgstr "Nisu pronađene predstojeće aktivacije. Molimo proverite ponovo kasnije."
 
 #: application/views/components/hamsat/table.php:28
 #: application/views/contesting/index.php:158
@@ -4802,34 +4822,34 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:183 application/views/qso/index.php:289
 #: application/views/view_log/qso.php:199
 msgid "Comment"
-msgstr ""
+msgstr "Komentar"
 
 #: application/views/components/hamsat/table.php:31
 #: application/views/hamsat/index.php:34
 msgid "Gridsquare(s)"
-msgstr ""
+msgstr "Polje (polja)"
 
 #: application/views/components/hamsat/table.php:32
 #: application/views/hamsat/index.php:35
 msgid "Workable"
-msgstr ""
+msgstr "Moguće raditi"
 
 #: application/views/components/hamsat/table.php:134
 msgctxt "Hamsat - Track Satellites"
 msgid "Track"
-msgstr ""
+msgstr "Pratite"
 
 #: application/views/components/hamsat/table.php:146
 msgid "Sked"
-msgstr ""
+msgstr "Sked"
 
 #: application/views/components/radio_display_table.php:5
 msgid "Radio Status"
-msgstr ""
+msgstr "Status radija"
 
 #: application/views/contestcalendar/index.php:9
 msgid "No Contests"
-msgstr ""
+msgstr "Nema takmičenja"
 
 #: application/views/contestcalendar/index.php:14
 #: application/views/logbookadvanced/edit.php:21
@@ -4839,27 +4859,27 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:39
 #: application/views/simplefle/index.php:80
 msgid "Contest"
-msgstr ""
+msgstr "Takmičenje"
 
 #: application/views/contestcalendar/index.php:15
 #: application/views/statistics/custom.php:41
 #: application/views/statistics/custom_result.php:43
 msgid "Start"
-msgstr ""
+msgstr "Start"
 
 #: application/views/contestcalendar/index.php:16
 #: application/views/statistics/custom.php:46
 #: application/views/statistics/custom_result.php:48
 msgid "End"
-msgstr ""
+msgstr "Kraj"
 
 #: application/views/contestcalendar/index.php:17
 msgid "Link"
-msgstr ""
+msgstr "Link"
 
 #: application/views/contestcalendar/index.php:26
 msgid "Show Details"
-msgstr ""
+msgstr "Prikaži detalja"
 
 #: application/views/contestcalendar/index.php:38
 #: application/views/dashboard/index.php:263
@@ -4868,32 +4888,36 @@ msgstr ""
 #: application/views/dashboard/index.php:332
 #: application/views/satellite/pass.php:475
 msgid "Today"
-msgstr ""
+msgstr "Danas"
 
 #: application/views/contestcalendar/index.php:48
 msgid "Weekend"
-msgstr ""
+msgstr "Vikend"
 
 #: application/views/contestcalendar/index.php:59
 msgid "Next Week"
-msgstr ""
+msgstr "Sledeće nedelje"
 
 #: application/views/contesting/add.php:16
 msgid ""
 "Using the contest list, you can control which Contests are shown when "
 "logging QSOs in a contest."
 msgstr ""
+"Korišćenjem liste takmičenja možete kontrolisati koja takmičenja će biti "
+"prikazana kada upisujete QSO u takmičenju."
 
 #: application/views/contesting/add.php:19
 msgid ""
 "Active contests will be shown in the Contest Name drop-down, while inactive "
 "contests will be hidden and cannot be selected."
 msgstr ""
+"Aktivna takmičenja će biti prikazana u padajućoj listi 'Naziv takmičenja', "
+"dok će neaktivni kontesti biti skriveni i neće moći biti izabrani."
 
 #: application/views/contesting/add.php:26
 #: application/views/contesting/create.php:30
 msgid "ADIF Name"
-msgstr ""
+msgstr "Naziv ADIF"
 
 #: application/views/contesting/add.php:27
 #: application/views/contesting/add.php:41
@@ -4905,193 +4929,193 @@ msgstr ""
 #: application/views/mode/edit.php:57 application/views/mode/edit.php:60
 #: application/views/mode/index.php:43
 msgid "Active"
-msgstr ""
+msgstr "Aktivno"
 
 #: application/views/contesting/add.php:39
 #: application/views/contesting/add.php:44
 #: application/views/contesting/edit.php:49
 msgid "Not Active"
-msgstr ""
+msgstr "Nije aktivno"
 
 #: application/views/contesting/add.php:40
 #: application/views/contesting/add.php:49 application/views/mode/index.php:48
 msgid "Activate"
-msgstr ""
+msgstr "Aktivirajte"
 
 #: application/views/contesting/add.php:42
 #: application/views/contesting/add.php:47 application/views/mode/index.php:46
 msgid "Deactivate"
-msgstr ""
+msgstr "Deaktivirajte"
 
 #: application/views/contesting/add.php:54
 msgid "DANGER!"
-msgstr ""
+msgstr "OPASNOST!"
 
 #: application/views/contesting/add.php:55
 msgid "Warning! Are you sure you want to delete the following contest: "
-msgstr ""
+msgstr "Upozorenje! Da li ste sigurni da želite izbrisati sledeće takmičenje: "
 
 #: application/views/contesting/add.php:56
 msgid "Warning! Are you sure you want to activate all contests?"
-msgstr ""
+msgstr "Upozorenje! Da li ste sigurni da želite izbrisati sva takmičenja?"
 
 #: application/views/contesting/add.php:57
 msgid "Warning! Are you sure you want to deactivate all contests?"
-msgstr ""
+msgstr "Upozorenje! Da li ste sigurni da želite deaktivirati sva takmičenja?"
 
 #: application/views/contesting/add.php:73
 #: application/views/contesting/add.php:76
 msgid "Add a Contest"
-msgstr ""
+msgstr "Dodajte takmičenje"
 
 #: application/views/contesting/create.php:26
 #: application/views/contesting/edit.php:33
 msgid "Name of the Contest"
-msgstr ""
+msgstr "Naziv takmičenja"
 
 #: application/views/contesting/create.php:32
 #: application/views/contesting/edit.php:39
 msgid "Name of Contest in ADIF-specification"
-msgstr ""
+msgstr "Naziv takmičenja za ADIF-specifikaciju"
 
 #: application/views/contesting/create.php:35
 #: application/views/station_profile/create.php:304
 #: application/views/station_profile/edit.php:48
 msgid "Create"
-msgstr ""
+msgstr "Kreirajte"
 
 #: application/views/contesting/edit.php:31
 #: application/views/contesting/index.php:24
 #: application/views/qso/edit_ajax.php:548
 #: application/views/view_log/qso.php:275
 msgid "Contest Name"
-msgstr ""
+msgstr "Naziv takmičenja"
 
 #: application/views/contesting/edit.php:37
 msgid "Contest ADIF Name"
-msgstr ""
+msgstr "Naziv ADIFa takmičenja"
 
 #: application/views/contesting/edit.php:52
 msgid "Set to active if to be listed in Contest-list"
-msgstr ""
+msgstr "Postavite na aktivno ako želite da bude prikazano u listi takmičenja"
 
 #: application/views/contesting/index.php:2
 msgid "Start new Contest Session"
-msgstr ""
+msgstr "Pokrenite novu takmičarsku sesiju"
 
 #: application/views/contesting/index.php:11
 msgid "Exchange Type"
-msgstr ""
+msgstr "Vrsta razmene"
 
 #: application/views/contesting/index.php:16
 msgid "Exchange"
-msgstr ""
+msgstr "Razmena"
 
 #: application/views/contesting/index.php:18
 msgid "Serial"
-msgstr ""
+msgstr "Serijski broj"
 
 #: application/views/contesting/index.php:19
 msgid "Serial + Exchange"
-msgstr ""
+msgstr "Serijski broj + razmena"
 
 #: application/views/contesting/index.php:20
 msgid "Serial + Gridsquare"
-msgstr ""
+msgstr "Serijski broj + polje"
 
 #: application/views/contesting/index.php:34
 #: application/views/operator/index.php:5
 #: application/views/qso/edit_ajax.php:539 application/views/qso/index.php:352
 msgid "Operator Callsign"
-msgstr ""
+msgstr "Pozivni znak operatora"
 
 #: application/views/contesting/index.php:116
 #: application/views/contesting/index.php:208
 #: application/views/qso/edit_ajax.php:571
 msgid "Serial (S)"
-msgstr ""
+msgstr "Serijski broj (brojevi)"
 
 #: application/views/contesting/index.php:121
 #: application/views/contesting/index.php:206
 msgid "Exch (S)"
-msgstr ""
+msgstr "Exch (S)"
 
 #: application/views/contesting/index.php:126
 msgid "Gridsquare (S)"
-msgstr ""
+msgstr "Polje (S)"
 
 #: application/views/contesting/index.php:136
 #: application/views/contesting/index.php:209
 #: application/views/qso/edit_ajax.php:566
 msgid "Serial (R)"
-msgstr ""
+msgstr "Serijski (R)"
 
 #: application/views/contesting/index.php:141
 #: application/views/contesting/index.php:207
 msgid "Exch (R)"
-msgstr ""
+msgstr "Exch (R)"
 
 #: application/views/contesting/index.php:146
 msgid "Gridsquare (R)"
-msgstr ""
+msgstr "Polje (R)"
 
 #: application/views/contesting/index.php:163
 msgid "Reset QSO"
-msgstr ""
+msgstr "Resetuj QSO"
 
 #: application/views/contesting/index.php:164
 #: application/views/qso/index.php:607
 msgid "Save QSO"
-msgstr ""
+msgstr "Sačuvaj QSO"
 
 #: application/views/contesting/index.php:166
 msgid "Copy received exchange to"
-msgstr ""
+msgstr "Kopiraj primljenu razmenu u"
 
 #: application/views/contesting/index.php:168
 msgid "Exchange is only copied if it is matching rules for the selected field!"
-msgstr ""
+msgstr "Razmena je kopirana samo ako se poklapa sa pravilima za izabrano polje!"
 
 #: application/views/contesting/index.php:172
 msgid "Age"
-msgstr ""
+msgstr "Starost"
 
 #: application/views/contesting/index.php:174
 msgid "RX Power (W)"
-msgstr ""
+msgstr "RX snaga (W)"
 
 #: application/views/contesting/index.php:175
 msgid "Locator"
-msgstr ""
+msgstr "Lokator"
 
 #: application/views/contesting/index.php:187
 msgid "Callsign Suggestions"
-msgstr ""
+msgstr "Predlozi pozivnog znaka"
 
 #: application/views/contesting/index.php:194
 msgid "Contest Logbook"
-msgstr ""
+msgstr "Takmičarski dnevnik"
 
 #: application/views/contesting/index.php:211
 #: application/views/qso/edit_ajax.php:164
 msgid "VUCC Gridsquare"
-msgstr ""
+msgstr "VUCC polje"
 
 #: application/views/continents/index.php:62
 #: application/views/qso/edit_ajax.php:239 application/views/qso/index.php:377
 #: application/views/view_log/qso.php:242
 msgid "Continent"
-msgstr ""
+msgstr "Kontinent"
 
 #: application/views/continents/index.php:63
 #: application/views/statistics/index.php:19
 #: application/views/statistics/index.php:113
 msgid "# of QSO's worked"
-msgstr ""
+msgstr "Broj rađenih veza"
 
 #: application/views/cron/edit.php:11
 msgid "Identifier"
-msgstr ""
+msgstr "Identifikator"
 
 #: application/views/cron/edit.php:22
 #: application/views/options/appearance.php:56
@@ -5105,118 +5129,122 @@ msgstr ""
 #: application/views/stationsetup/stationsetup.php:73
 #: application/views/user/edit.php:452 application/views/user/edit.php:461
 msgid "Enabled"
-msgstr ""
+msgstr "Omogućeno"
 
 #: application/views/cron/edit.php:36 application/views/cron/index.php:53
 msgid "Intervall"
-msgstr ""
+msgstr "Interval"
 
 #: application/views/cron/edit.php:38
 msgid "Choose a preset from the dropdown"
-msgstr ""
+msgstr "Izaberite preset iz padajuće liste"
 
 #: application/views/cron/edit.php:43
 msgid "Every 5 Minutes"
-msgstr ""
+msgstr "Svakih 5 minuta"
 
 #: application/views/cron/edit.php:44
 msgid "Every 15 Minutes"
-msgstr ""
+msgstr "Svakih 15 minuta"
 
 #: application/views/cron/edit.php:45
 msgid "Every Hour"
-msgstr ""
+msgstr "Svakog sata"
 
 #: application/views/cron/edit.php:46
 msgid "Every 2 Hours"
-msgstr ""
+msgstr "Svaka 2 sata"
 
 #: application/views/cron/edit.php:47
 msgid "Every Day at Midnight"
-msgstr ""
+msgstr "Svaki dan u ponoć"
 
 #: application/views/cron/edit.php:48
 msgid "Every Monday at 03:00"
-msgstr ""
+msgstr "Svakog ponedeljka u 03:00"
 
 #: application/views/cron/edit.php:49
 msgid "First Day of Every Month at midnight"
-msgstr ""
+msgstr "Prvog dana svakog meseca u ponoć"
 
 #: application/views/cron/edit.php:50
 msgid "Every 2 Months at 02:00"
-msgstr ""
+msgstr "Svaka 2 meseca u 02:00"
 
 #: application/views/cron/edit.php:62
 msgid "OR"
-msgstr ""
+msgstr "ILI"
 
 #: application/views/cron/edit.php:63
 msgid "Enter your own Cron Expression"
-msgstr ""
+msgstr "Unesite vaš vlastiti cron izraz"
 
 #: application/views/cron/edit.php:74
 #: application/views/interface_assets/footer.php:35
 msgid "Cancel"
-msgstr ""
+msgstr "Otkažite"
 
 #: application/views/cron/index.php:9
 msgid "How it works"
-msgstr ""
+msgstr "Kako ovo radi"
 
 #: application/views/cron/index.php:15
 msgid ""
 "The Cron Manager assists the administrator in managing cron jobs without "
 "requiring CLI access."
 msgstr ""
+"Kron menaažer pomaže administratoru u upravljanju kron poslovima bez potrebe "
+"za pristupom interfejsu sa komandnom linijom."
 
 #: application/views/cron/index.php:18
 msgid ""
 "To execute cron jobs based on the data below, remove all old cron jobs and "
 "create a new one:"
 msgstr ""
+"Za izvršenje kron posla baziranog na donjim podacima, uklonite sve stare "
+"kron poslove i kreirajte novi:"
 
 #: application/views/cron/index.php:27 application/views/cron/index.php:31
 msgid "Status Master-Cron"
-msgstr ""
+msgstr "Status Master-Cron"
 
 #: application/views/cron/index.php:31
 msgctxt "PHP Version"
 msgid "Min. Version is"
-msgstr ""
+msgstr "Min. verzija je"
 
 #: application/views/cron/index.php:31
 msgid "PHP Version not supported."
-msgstr ""
+msgstr "PHP verzija nije podržana."
 
 #: application/views/cron/index.php:41
 msgid "Cron List"
-msgstr ""
+msgstr "Kron lista"
 
 #: application/views/cron/index.php:50
 #: application/views/stationsetup/stationsetup.php:121
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: application/views/cron/index.php:54
 msgid "Last Run"
-msgstr ""
+msgstr "Poslednje pokretanje"
 
 #: application/views/cron/index.php:55
 msgid "Next Run"
-msgstr ""
+msgstr "Sledeće pokretanje"
 
 #: application/views/cron/index.php:68
 msgid "healthy"
-msgstr ""
+msgstr "zdravo"
 
 #: application/views/cron/index.php:70
 msgid "failed"
-msgstr ""
+msgstr "neuspešno"
 
 #: application/views/cron/index.php:75
 msgid "disabled"
-msgstr ""
+msgstr "onemogućeno"
 
 #: application/views/cron/index.php:79 application/views/cron/index.php:81
 #: application/views/cron/index.php:83 application/views/debug/index.php:494
@@ -5224,23 +5252,27 @@ msgstr ""
 #: application/views/debug/index.php:510 application/views/debug/index.php:515
 #: application/views/debug/index.php:520 application/views/debug/index.php:525
 msgid "never"
-msgstr ""
+msgstr "nikada"
 
 #: application/views/cron/index.php:98
 msgid "Your Mastercron isn't running."
-msgstr ""
+msgstr "Vaš Mastercron nije pokrenut."
 
 #: application/views/cron/index.php:99
 msgid ""
 "Copy the cron above to a external cron service or into your server's cron to "
 "use this cron manager."
 msgstr ""
+"Kopirajte gornji kron u spoljni kron servis ili u kron vašeg servara da "
+"biste koristili ovaj kron menadžer."
 
 #: application/views/cron/index.php:100
 msgid ""
 "On a basic linux server with shell access use this command to edit your "
 "crons:"
 msgstr ""
+"Na osnovnom linux serveru koji ima shell pristup koristite ovu komandu za "
+"uređivanje vaših kronova:"
 
 #: application/views/cron/index.php:107
 #, php-format
@@ -5248,21 +5280,23 @@ msgid ""
 "You need to upgrade your PHP version. Minimum version is %s. Your Version is "
 "%s"
 msgstr ""
+"Morate izvršiti nadogradnju PHP verzije. Minimalna verzija je %s. Vaša "
+"verzija je %s"
 
 #: application/views/csv/index.php:7
 msgid "Export your logbook for SOTA uploads."
-msgstr ""
+msgstr "Izvezite vaš dnevnik za SOTA učitavanje."
 
 #: application/views/csv/index.php:11
 msgid "Only QSOs with SOTA information will be exported!"
-msgstr ""
+msgstr "Samo QSO sa SOTA informacijama će biti izvezeni!"
 
 #: application/views/csv/index.php:92 application/views/dxatlas/index.php:92
 #: application/views/eqsl/download.php:42
 #: application/views/eqslcard/index.php:33 application/views/kml/index.php:77
 #: application/views/qso/edit_ajax.php:189 application/views/qso/index.php:401
 msgid "Propagation Mode"
-msgstr ""
+msgstr "Vrsta propagacija"
 
 #: application/views/csv/index.php:95 application/views/dxatlas/index.php:95
 #: application/views/gridmap/index.php:44 application/views/kml/index.php:80
@@ -5270,7 +5304,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:192 application/views/qso/index.php:404
 msgctxt "Propagation Mode"
 msgid "Aircraft Scatter"
-msgstr ""
+msgstr "Aircraft Scatter"
 
 #: application/views/csv/index.php:96 application/views/dxatlas/index.php:96
 #: application/views/gridmap/index.php:45 application/views/kml/index.php:81
@@ -5278,7 +5312,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:193 application/views/qso/index.php:405
 msgctxt "Propagation Mode"
 msgid "Aurora"
-msgstr ""
+msgstr "Aurora"
 
 #: application/views/csv/index.php:97 application/views/dxatlas/index.php:97
 #: application/views/gridmap/index.php:46 application/views/kml/index.php:82
@@ -5286,7 +5320,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:194 application/views/qso/index.php:406
 msgctxt "Propagation Mode"
 msgid "Aurora-E"
-msgstr ""
+msgstr "Aurora-E"
 
 #: application/views/csv/index.php:98 application/views/dxatlas/index.php:98
 #: application/views/gridmap/index.php:47 application/views/kml/index.php:83
@@ -5294,7 +5328,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:195 application/views/qso/index.php:407
 msgctxt "Propagation Mode"
 msgid "Back scatter"
-msgstr ""
+msgstr "Back scatter"
 
 #: application/views/csv/index.php:99 application/views/dxatlas/index.php:99
 #: application/views/gridmap/index.php:48 application/views/kml/index.php:84
@@ -5302,7 +5336,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:196 application/views/qso/index.php:408
 msgctxt "Propagation Mode"
 msgid "EchoLink"
-msgstr ""
+msgstr "EchoLink"
 
 #: application/views/csv/index.php:100 application/views/dxatlas/index.php:100
 #: application/views/gridmap/index.php:49 application/views/kml/index.php:85
@@ -5310,7 +5344,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:197 application/views/qso/index.php:409
 msgctxt "Propagation Mode"
 msgid "Earth-Moon-Earth"
-msgstr ""
+msgstr "Earth-Moon-Earth"
 
 #: application/views/csv/index.php:101 application/views/dxatlas/index.php:101
 #: application/views/gridmap/index.php:50 application/views/kml/index.php:86
@@ -5318,7 +5352,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:198 application/views/qso/index.php:410
 msgctxt "Propagation Mode"
 msgid "Sporadic E"
-msgstr ""
+msgstr "Sporadic E"
 
 #: application/views/csv/index.php:102 application/views/dxatlas/index.php:102
 #: application/views/gridmap/index.php:51 application/views/kml/index.php:87
@@ -5326,7 +5360,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:199 application/views/qso/index.php:411
 msgctxt "Propagation Mode"
 msgid "Field Aligned Irregularities"
-msgstr ""
+msgstr "Field Aligned Irregularities"
 
 #: application/views/csv/index.php:103 application/views/dxatlas/index.php:103
 #: application/views/gridmap/index.php:52 application/views/kml/index.php:88
@@ -5334,7 +5368,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:200 application/views/qso/index.php:412
 msgctxt "Propagation Mode"
 msgid "F2 Reflection"
-msgstr ""
+msgstr "F2 Reflection"
 
 #: application/views/csv/index.php:104 application/views/dxatlas/index.php:104
 #: application/views/gridmap/index.php:53 application/views/kml/index.php:89
@@ -5342,7 +5376,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:201 application/views/qso/index.php:413
 msgctxt "Propagation Mode"
 msgid "Internet-assisted"
-msgstr ""
+msgstr "Internet-assisted"
 
 #: application/views/csv/index.php:105 application/views/dxatlas/index.php:105
 #: application/views/gridmap/index.php:54 application/views/kml/index.php:90
@@ -5350,7 +5384,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:202 application/views/qso/index.php:414
 msgctxt "Propagation Mode"
 msgid "Ionoscatter"
-msgstr ""
+msgstr "Ionoscatter"
 
 #: application/views/csv/index.php:106 application/views/dxatlas/index.php:106
 #: application/views/gridmap/index.php:55 application/views/kml/index.php:91
@@ -5358,7 +5392,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:203 application/views/qso/index.php:415
 msgctxt "Propagation Mode"
 msgid "IRLP"
-msgstr ""
+msgstr "IRLP"
 
 #: application/views/csv/index.php:107 application/views/dxatlas/index.php:107
 #: application/views/gridmap/index.php:56 application/views/kml/index.php:92
@@ -5366,7 +5400,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:204 application/views/qso/index.php:416
 msgctxt "Propagation Mode"
 msgid "Meteor scatter"
-msgstr ""
+msgstr "Meteor scatter"
 
 #: application/views/csv/index.php:108 application/views/dxatlas/index.php:108
 #: application/views/gridmap/index.php:57 application/views/kml/index.php:93
@@ -5374,7 +5408,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:205 application/views/qso/index.php:417
 msgctxt "Propagation Mode"
 msgid "Terrestrial or atmospheric repeater or transponder"
-msgstr ""
+msgstr "Zemaljski ili atmosferski repetitor ili transponder"
 
 #: application/views/csv/index.php:109 application/views/dxatlas/index.php:109
 #: application/views/gridmap/index.php:58 application/views/kml/index.php:94
@@ -5382,7 +5416,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:206 application/views/qso/index.php:418
 msgctxt "Propagation Mode"
 msgid "Rain scatter"
-msgstr ""
+msgstr "Rain scatter"
 
 #: application/views/csv/index.php:110 application/views/dxatlas/index.php:110
 #: application/views/gridmap/index.php:59 application/views/kml/index.php:95
@@ -5390,7 +5424,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:207 application/views/qso/index.php:419
 msgctxt "Propagation Mode"
 msgid "Satellite"
-msgstr ""
+msgstr "Satellite"
 
 #: application/views/csv/index.php:111 application/views/dxatlas/index.php:111
 #: application/views/gridmap/index.php:60 application/views/kml/index.php:96
@@ -5398,7 +5432,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:208 application/views/qso/index.php:420
 msgctxt "Propagation Mode"
 msgid "Trans-equatorial"
-msgstr ""
+msgstr "Trans-equatorial"
 
 #: application/views/csv/index.php:112 application/views/dxatlas/index.php:112
 #: application/views/gridmap/index.php:61 application/views/kml/index.php:97
@@ -5406,83 +5440,86 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:209 application/views/qso/index.php:421
 msgctxt "Propagation Mode"
 msgid "Tropospheric ducting"
-msgstr ""
+msgstr "Tropospheric ducting"
 
 #: application/views/dashboard/index.php:5
 msgid "RSTS"
-msgstr ""
+msgstr "RSTS"
 
 #: application/views/dashboard/index.php:6
 msgid "RSTR"
-msgstr ""
+msgstr "RSTR"
 
 #: application/views/dashboard/index.php:56
 msgid ""
 "You need to upgrade your PHP version. Minimum version is 7.4. Your version is"
 msgstr ""
+"Morate ažurirati vašu PHP verziju. Minimalna verzija je 7.4. Vaša verzija je"
 
 #: application/views/dashboard/index.php:63
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You need to update country files! Click %s to do it."
-msgstr ""
+msgstr "Morate ažurirati datoteke okruga. Kliknite %s da to uradite."
 
 #: application/views/dashboard/index.php:72
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station locations. Click %s to do it:"
-msgstr ""
+msgstr "Nemate lokacije stanice. Kliknite %s da to uradite:"
 
 #: application/views/dashboard/index.php:81
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station logbook. Click %s to do it:"
-msgstr ""
+msgstr "Nemate dnevnike stanice. Kliknite %s da to uradite:"
 
 #: application/views/dashboard/index.php:91
 #, php-format
 msgid "You have had %d QSO today"
 msgid_plural "You have had %d QSOs today"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Danas ste održali %d QSO"
+msgstr[1] "Danas ste održali %d QSOa"
+msgstr[2] "Danas ste održali %d QSOa"
 
 #: application/views/dashboard/index.php:97
 msgid "You have made no QSOs today; time to turn on the radio!"
-msgstr ""
+msgstr "Danas niste održali nijednu vezu; vreme je da uključite radio!"
 
 #: application/views/dashboard/index.php:104
 msgid "Attention: you need to set an active station location."
-msgstr ""
+msgstr "Pažnja: morate da odredite aktivnu lokaciju stanice."
 
 #: application/views/dashboard/index.php:110
 msgid ""
 "You have themes without defined theme mode. Please ask the admin to edit the "
 "themes."
 msgstr ""
+"Imate teme bez definisane vrste teme. Molimo da zatražite od administratora "
+"da uredi teme."
 
 #: application/views/dashboard/index.php:118
 msgid "At least one of your LoTW certificates is expired!"
-msgstr ""
+msgstr "Najmanje jedan od vaših LoTW sertifikata je istekao!"
 
 #: application/views/dashboard/index.php:124
 msgid "At least one of your LoTW certificates is about to expire!"
-msgstr ""
+msgstr "Najmanje jedan od vaših LoTW sertifikata će uskoro isteći!"
 
 #: application/views/dashboard/index.php:214
 #: application/views/visitor/index.php:237
 msgid "QSOs Breakdown"
-msgstr ""
+msgstr "Prelom veza"
 
 #: application/views/dashboard/index.php:237
 #: application/views/visitor/index.php:258
 msgid "Countries Breakdown"
-msgstr ""
+msgstr "Prelom zemalja"
 
 #: application/views/dashboard/index.php:254
 #: application/views/visitor/index.php:275
 msgid "Needed"
-msgstr ""
+msgstr "Potrebno"
 
 #: application/views/dashboard/index.php:267
 #: application/views/dashboard/index.php:294
@@ -5515,7 +5552,7 @@ msgstr ""
 #: src/QSLManager/QSO.php:371 src/QSLManager/QSO.php:423
 #: src/QSLManager/QSO.php:459
 msgid "Sent"
-msgstr ""
+msgstr "Poslato"
 
 #: application/views/dashboard/index.php:273
 #: application/views/dashboard/index.php:300
@@ -5545,7 +5582,7 @@ msgstr ""
 #: src/QSLManager/QSO.php:394 src/QSLManager/QSO.php:436
 #: src/QSLManager/QSO.php:472
 msgid "Received"
-msgstr ""
+msgstr "Primljeno"
 
 #: application/views/dashboard/index.php:279
 #: application/views/logbookadvanced/index.php:307
@@ -5575,78 +5612,80 @@ msgstr ""
 #: src/QSLManager/QSO.php:319 src/QSLManager/QSO.php:379
 #: src/QSLManager/QSO.php:402
 msgid "Requested"
-msgstr ""
+msgstr "Zahtevano"
 
 #: application/views/dashboard/index.php:289
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
-msgstr ""
+msgstr "Logbook of the World"
 
 #: application/views/dashboard/index.php:352
 msgid "VUCC-Grids"
-msgstr ""
+msgstr "VUCC-polja"
 
 #: application/views/dayswithqso/index.php:2
 #: application/views/interface_assets/header.php:146
 msgid "Days with QSOs"
-msgstr ""
+msgstr "Dana sa QSO-ima"
 
 #: application/views/dayswithqso/index.php:25
 msgid "Days"
-msgstr ""
+msgstr "Dani"
 
 #: application/views/dayswithqso/index.php:37
 msgid "Longest streak with QSOs in the log"
-msgstr ""
+msgstr "Najduži niz sa QSO u dnevniku"
 
 #: application/views/dayswithqso/index.php:38
 msgid "A maximum of the 10 longest streaks are shown!"
-msgstr ""
+msgstr "Prikazano je maksimalno 10 najdužih nizova!"
 
 #: application/views/dayswithqso/index.php:56
 msgid "Streak (continuous days with QSOs)"
-msgstr ""
+msgstr "Niz (kontinuitet dana sa vezama)"
 
 #: application/views/dayswithqso/index.php:57
 #: application/views/dayswithqso/index.php:85
 #: application/views/dayswithqso/index.php:107
 msgid "Start Date"
-msgstr ""
+msgstr "Početni datum"
 
 #: application/views/dayswithqso/index.php:58
 #: application/views/dayswithqso/index.php:86
 #: application/views/dayswithqso/index.php:108
 #: application/views/timeline/index.php:120
 msgid "End Date"
-msgstr ""
+msgstr "Krajnji datum"
 
 #: application/views/dayswithqso/index.php:74
 msgctxt "Days with QSOs"
 msgid "No streak found!"
-msgstr ""
+msgstr "Nije pronađen niz!"
 
 #: application/views/dayswithqso/index.php:78
 msgid "Current streak with QSOs in the log"
-msgstr ""
+msgstr "Trenutni niz sa vezama u dnevniku"
 
 #: application/views/dayswithqso/index.php:84
 #: application/views/dayswithqso/index.php:106
 msgid "Current streak (continuous days with QSOs)"
-msgstr ""
+msgstr "Trenutni niz (kontinuitet dana sa vezama)"
 
 #: application/views/dayswithqso/index.php:101
 msgid ""
 "If you make a QSO today, you can continue to extend your streak... or else "
 "your current streak will be broken!"
 msgstr ""
+"Ako održite vezu dana, možete nastaviti da produžujete vaš niz... ili će vaš "
+"trenutni niz biti prekinut!"
 
 #: application/views/dayswithqso/index.php:122
 msgid "No current streak found!"
-msgstr ""
+msgstr "Nije pronađen tekući niz!"
 
 #: application/views/debug/index.php:23
 msgid "Wavelog Information"
-msgstr ""
+msgstr "Wavelog informacije"
 
 #: application/views/debug/index.php:27
 msgid "Version"
@@ -5658,19 +5697,19 @@ msgstr "Jezik"
 
 #: application/views/debug/index.php:35
 msgid "Base URL"
-msgstr ""
+msgstr "Bazni URL"
 
 #: application/views/debug/index.php:39
 msgid "Migration"
-msgstr ""
+msgstr "Migracija"
 
 #: application/views/debug/index.php:40
 msgid "There is something wrong with your Migration in Database!"
-msgstr ""
+msgstr "Nešto nije u redu sa vašom Migracijom u bazi podataka!"
 
 #: application/views/debug/index.php:45
 msgid "Migration is outdated and locked!"
-msgstr ""
+msgstr "Migracija je zastarela i zaključana!"
 
 #: application/views/debug/index.php:46
 #, php-format
