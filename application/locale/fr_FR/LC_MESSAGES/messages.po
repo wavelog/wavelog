@@ -10,16 +10,16 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-08-18 07:28+0000\n"
-"PO-Revision-Date: 2024-08-17 10:47+0000\n"
-"Last-Translator: Byt3 <falko@205er.de>\n"
-"Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/fr/>\n"
+"PO-Revision-Date: 2024-08-18 14:15+0000\n"
+"Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
+"Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/fr/>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.7\n"
 
 #: application/controllers/Accumulated.php:13
 #: application/controllers/Activators.php:13
@@ -90,7 +90,7 @@ msgstr ""
 #: application/controllers/User.php:738 application/controllers/User.php:1021
 #: application/controllers/User_options.php:9
 msgid "You're not allowed to do that!"
-msgstr ""
+msgstr "Vous n'as pas le droit de faire ça !"
 
 #: application/controllers/Accumulated.php:21
 #: application/views/interface_assets/header.php:150
@@ -317,7 +317,7 @@ msgstr "Vue du journal"
 
 #: application/controllers/Awards.php:454
 msgid " and band "
-msgstr ""
+msgstr " et bande "
 
 #: application/controllers/Awards.php:457
 msgid " and sat "
@@ -605,11 +605,11 @@ msgstr "Aucune migration possible"
 
 #: application/controllers/Debug.php:213
 msgid "Wavelog was updated successfully!"
-msgstr ""
+msgstr "Wavelog a été mis à jour avec succès !"
 
 #: application/controllers/Debug.php:231
 msgid "Selfupdate() not available. Check the Error Log."
-msgstr ""
+msgstr "Selfupdate() non disponible. Vérifiez le journal des erreurs."
 
 #: application/controllers/Debug.php:275
 msgid ""
@@ -1504,11 +1504,11 @@ msgstr "de continent a changé en "
 
 #: application/controllers/Options.php:170
 msgid "Maximum age of spots changed to "
-msgstr ""
+msgstr "L'âge maximum des spots changé à "
 
 #: application/controllers/Options.php:175
 msgid "DXCluster Cache URL changed to "
-msgstr ""
+msgstr "L'URL du cache DXCluster a changé en "
 
 #: application/controllers/Options.php:185
 #: application/controllers/Options.php:196
@@ -1517,7 +1517,7 @@ msgstr "Paramètres radio"
 
 #: application/controllers/Options.php:217
 msgid "Radio Timeout Warning changed to "
-msgstr ""
+msgstr "Avertissement de dépassement de temps radio changé en "
 
 #: application/controllers/Options.php:229
 #: application/controllers/Options.php:240
@@ -1639,7 +1639,7 @@ msgstr "Interfaces matérielles"
 #: application/views/contesting/index.php:92
 #: application/views/qso/index.php:312
 msgid "Radio"
-msgstr ""
+msgstr "Radio"
 
 #: application/controllers/Radio.php:50
 msgid "Timestamp"
@@ -1654,21 +1654,21 @@ msgstr ""
 #: application/views/statistics/custom.php:31
 #: application/views/statistics/custom_result.php:33
 msgid "Options"
-msgstr ""
+msgstr "Options"
 
 #: application/controllers/Radio.php:90
 #: application/views/contesting/index.php:96
 #: application/views/qso/index.php:316
 msgid "last updated"
-msgstr ""
+msgstr "dernière mise à jour"
 
 #: application/controllers/Radio.php:97 application/controllers/Radio.php:100
 msgid "Set as default radio"
-msgstr ""
+msgstr "Définir comme radio par défaut"
 
 #: application/controllers/Radio.php:102
 msgid "Default (click to release)"
-msgstr ""
+msgstr "Par défaut (cliquez pour libérer)"
 
 #: application/controllers/Radio.php:105
 #: application/controllers/Stationsetup.php:372
@@ -1696,7 +1696,7 @@ msgstr "Supprimer"
 
 #: application/controllers/Radio.php:111
 msgid "No CAT interfaced radios found."
-msgstr ""
+msgstr "Aucune radio avec interface CAT trouvée."
 
 #: application/controllers/Satellite.php:37
 msgid "Create Satellite"
@@ -1709,7 +1709,7 @@ msgstr "Modifier le satellite"
 #: application/controllers/Sattimers.php:41
 #, php-format
 msgid "You have no station locations. Go %s to create it!"
-msgstr ""
+msgstr "Vous n'avez pas d'emplacements de station. Allez %s pour le créer !"
 
 #: application/controllers/Sattimers.php:41
 #: application/views/awards/counties/index.php:8
@@ -1726,7 +1726,7 @@ msgstr "ici"
 #: application/controllers/Sattimers.php:44
 #: application/views/sattimers/index.php:13
 msgid "Satellite Timers"
-msgstr ""
+msgstr "Minuteries de satellite"
 
 #: application/controllers/Search.php:19
 #: application/views/continents/index.php:49
@@ -1753,7 +1753,7 @@ msgstr "Rechercher"
 
 #: application/controllers/Search.php:28
 msgid "Search & Filter Logbook"
-msgstr ""
+msgstr "Rechercher et filtrer le journal de bord"
 
 #: application/controllers/Search.php:58
 msgid "Incorrectly logged CQ zones"
@@ -1774,7 +1774,7 @@ msgstr "Créer un emplacement de station"
 
 #: application/controllers/Station.php:51
 msgid "Edit Station Location: "
-msgstr ""
+msgstr "Modifier l'emplacement de la station : "
 
 #: application/controllers/Station.php:59 application/views/csv/index.php:19
 #: application/views/dxatlas/index.php:19
@@ -1793,7 +1793,7 @@ msgstr "Profil de la Station"
 
 #: application/controllers/Station.php:73
 msgid "Duplicate Station Location:"
-msgstr ""
+msgstr "Emplacement de la station en double :"
 
 #: application/controllers/Stationsetup.php:35
 #: application/views/interface_assets/header.php:377
@@ -1873,11 +1873,13 @@ msgid ""
 "Are you sure you want to delete the following station logbook? You must re-"
 "link any locations linked here to another logbook.: "
 msgstr ""
+"Êtes-vous sûr de vouloir supprimer le carnet de bord de la station suivant ? "
+"Vous devez relier tous les emplacements liés ici à un autre carnet de bord.: "
 
 #: application/controllers/Stationsetup.php:280
 #: application/views/stationsetup/stationsetup.php:65
 msgid "View Public Page for Logbook: "
-msgstr ""
+msgstr "Voir la page publique pour le journal de bord : "
 
 #: application/controllers/Stationsetup.php:281
 msgid "Are you sure you want to delete the public slug?"
@@ -1887,7 +1889,7 @@ msgstr "Êtes-vous sûr de vouloir supprimer le slug public ?"
 #: application/views/stationsetup/stationsetup.php:154
 msgid ""
 "Are you sure you want to make the following station the active station: "
-msgstr ""
+msgstr "Êtes-vous sûr de vouloir rendre la station suivante active : "
 
 #: application/controllers/Stationsetup.php:349
 #: application/views/stationsetup/stationsetup.php:154
@@ -1973,7 +1975,7 @@ msgstr "Statistiques personnalisées"
 #: application/views/interface_assets/header.php:136
 #: application/views/statistics/qsltable.php:5
 msgid "QSL Statistics"
-msgstr ""
+msgstr "Statistiques QSL"
 
 #: application/controllers/Themes.php:27
 #: application/views/interface_assets/header.php:278
@@ -2006,7 +2008,7 @@ msgstr "Mises à jour"
 
 #: application/controllers/Update.php:78
 msgid "Preparing DXCC-Entries: "
-msgstr ""
+msgstr "Préparation des entrées DXCC : "
 
 #: application/controllers/Update.php:122
 msgid "Preparing DXCC Exceptions: "
