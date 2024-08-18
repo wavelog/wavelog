@@ -602,7 +602,7 @@ function spawnQrbCalculator(locator1, locator2) {
 		type: 'post',
 		success: function (html) {
 			BootstrapDialog.show({
-				title: 'Compute QRB and QTF',
+				title: lang_qrbcalc_title,
 				size: BootstrapDialog.SIZE_WIDE,
 				cssClass: 'lookup-dialog',
 				nl2br: false,
@@ -666,18 +666,18 @@ function calculateQrb() {
                     'locator2': locator2},
             success: function (html) {
 
-                var result = "<h5>Negative latitudes are south of the equator, negative longitudes are west of Greenwich. <br/>";
-                result += ' ' + locator1.toUpperCase() + ' Latitude = ' + html['latlng1'][0] + ' Longitude = ' + html['latlng1'][1] + '<br/>';
-                result += ' ' + locator2.toUpperCase() + ' Latitude = ' + html['latlng2'][0] + ' Longitude = ' + html['latlng2'][1] + '<br/>';
-                result += 'Distance between ' + locator1.toUpperCase() + ' and ' + locator2.toUpperCase() + ' is ' + html['distance'] + '.<br />';
-                result += 'The bearing is ' + html['bearing'] + '.</h5>';
+                var result = "<h5>" + html['latlong_info_text'] + "<br><br>";
+                result += html['text_latlng1'] + '<br>';
+                result += html['text_latlng2'] + '<br><br>';
+                result += html['distance'] + ' ';
+                result += html['bearing'] + '</h5>';
 
                 $(".qrbResult").html(result);
                 newpath(html['latlng1'], html['latlng2'], locator1, locator2);
             }
         });
     } else {
-        $('.qrbResult').html('<div class="qrbalert alert alert-danger" role="alert">Error in locators. Please check.</div>');
+        $('.qrbResult').html('<div class="qrbalert alert alert-danger" role="alert">' + html['error_msg'] + '</div>');
     }
 }
 
