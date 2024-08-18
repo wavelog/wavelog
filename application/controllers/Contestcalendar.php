@@ -144,8 +144,8 @@ class Contestcalendar extends CI_Controller {
 				continue;
 			}
 
-			$start = date('Y-m-d', strtotime($contest['start']->format('Y-m-d')));
-			$end = date('Y-m-d', strtotime($contest['end']->format('Y-m-d')));
+			$start = $contest['start'] == '' ? '' : date('Y-m-d', strtotime($contest['start']->format('Y-m-d')));
+			$end = $contest['end'] == '' ? '' : date('Y-m-d', strtotime($contest['end']->format('Y-m-d')));
 
 			if ($start <= $this->today && $end >= $this->today) {
 				$contestsToday[] = $contest;
@@ -175,8 +175,8 @@ class Contestcalendar extends CI_Controller {
 				continue;
 			}
 
-			$start = date('Y-m-d', strtotime($contest['start']->format('Y-m-d')));
-			$end = date('Y-m-d', strtotime($contest['end']->format('Y-m-d')));
+			$start = $contest['start'] == '' ? '' : date('Y-m-d', strtotime($contest['start']->format('Y-m-d')));
+			$end = $contest['end'] == '' ? '' : date('Y-m-d', strtotime($contest['end']->format('Y-m-d')));
 
 			if ($start >= $nextFriday && $start <= $nextSunday && $start >= $this->today) {
 				$contestsNextWeekend[] = $contest;
