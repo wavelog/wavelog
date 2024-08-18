@@ -21,8 +21,8 @@
 					<?php foreach ($contests as $contest) { ?>
 						<tr>
 							<td><b><?php echo $contest['title']; ?></b></td>
-							<td><?php echo $contest['start']->format('d M - H:i'); ?></td>
-							<td><?php echo $contest['end']->format('d M - H:i'); ?></td>
+							<td><?php echo $contest['start'] == '' ? '' : $contest['start']->format('d M - H:i'); ?></td>
+							<td><?php echo $contest['end'] == '' ? '' : $contest['end']->format('d M - H:i'); ?></td>
 							<td><a class='btn btn-secondary btn-sm' href='<?php echo $contest['link']; ?>' target='_blank'><?= __("Show Details"); ?></a></td>
 						</tr>
 					<?php } ?>
