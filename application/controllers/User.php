@@ -15,6 +15,13 @@ class User extends CI_Controller {
 		$data['results'] = $this->user_model->users();
 		$data['session_uid'] = $this->session->userdata('user_id');
 
+		// Check if impersonating is disabled in the config
+		if ($this->config->item('disable_impersonate')) {
+			$data['disable_impersonate'] = true;
+		} else {
+			$data['disable_impersonate'] = false;
+		}
+
 		// Get Date format
 		if($this->session->userdata('user_date_format')) {
 			// If Logged in and session exists
@@ -1174,6 +1181,11 @@ class User extends CI_Controller {
 	}
 
 	public function impersonate() {
+
+		// Check if impersonating is disabled in the config
+		if ($this->config->item('disable_impersonate')) {
+			show_404();
+		}
 
 		// Load the encryption library
 		if (!$this->load->is_loaded('encryption')) {

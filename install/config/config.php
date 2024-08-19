@@ -670,3 +670,16 @@ $config['special_callsign'] = false;
 
 // hides the usermenu; takes action only if "special_callsign" is true
 $config['sc_hide_usermenu'] = true;  
+
+
+/*
+|--------------------------------------------------------------------------
+| Impersonate
+|--------------------------------------------------------------------------
+|
+| This config switch disables the impersonate feature. This feauture is used to impersonate another user.
+| Impersonate is enabled by default. To disable it, set the value to false.
+| 
+*/
+
+$config['disable_impersonate'] = false;   

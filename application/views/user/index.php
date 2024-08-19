@@ -51,7 +51,9 @@
 							<th></th>
 							<th style="text-align: center; vertical-align: middle;" scope="col"><?= __("Edit"); ?></th>
 							<th style="text-align: center; vertical-align: middle;" scope="col"><?= __("Password Reset"); ?></th>
-							<th style="text-align: center; vertical-align: middle;" scope="col"><?= __("Impersonate"); ?></th>
+							<?php if (!$disable_impersonate) { ?>
+								<th style="text-align: center; vertical-align: middle;" scope="col"><?= __("Impersonate"); ?></th>
+							<?php } ?>
 							<th style="text-align: center; vertical-align: middle;" scope="col"><?= __("Delete"); ?></th>
 						</tr>
 					</thead>
@@ -97,6 +99,7 @@
 									echo '<a class="btn btn-primary btn-sm ms-1 admin_pwd_reset" data-username="' . $row->user_name . '" data-callsign="' . $row->user_callsign . '" data-userid="' . $row->user_id . '" data-usermail="' . $row->user_email . '"><i class="fas fa-key"></i></a>';
 								}
 								?></td>
+							<?php if (!$disable_impersonate) { ?>
 							<td style="text-align: center; vertical-align: middle;">
 								<?php
 								if ($session_uid != $row->user_id) { ?>
@@ -154,6 +157,7 @@
 								<?php }
 								?>
 							</td>
+							<?php } ?>
 							<td style="text-align: center; vertical-align: middle;">
 								<?php
 								if ($session_uid != $row->user_id) {
