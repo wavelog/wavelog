@@ -646,12 +646,7 @@
 
           <button id="connectButton" class="btn btn-primary"><?= __("Connect"); ?></button>
 
-          <button type="button" class="btn btn-secondary"
-          hx-get="<?php echo base_url(); ?>index.php/qso/winkeysettings"
-          hx-target="#modals-here"
-          hx-trigger="click"
-          class="btn btn-primary"
-          _="on htmx:afterOnLoad wait 10ms then add .show to #modal then add .show to #modal-backdrop"><i class="fas fa-cog"></i> <?= __("Settings"); ?></button>
+          <button id="winkey_settings" type="button" class="btn btn-secondary" class="btn btn-primary"><i class="fas fa-cog"></i> <?= __("Settings"); ?></button>
           </h4>
         </div>
 
