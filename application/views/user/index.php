@@ -143,7 +143,7 @@
 												</div>
 												<div class="modal-footer">
 													<form action="<?php echo site_url('user/impersonate'); ?>" method="post" style="display:inline;">
-														<input type="hidden" name="hash" value="<?php echo $this->encryption->encrypt($row->user_id); ?>">
+														<input type="hidden" name="hash" value="<?php echo $this->encryption->encrypt($this->session->userdata('user_id') . '/' . $row->user_id . '/' . time()); ?>">
 														<button type="submit" class="btn btn-success" <?php if ($has_flossie) { echo 'disabled'; } ?>><?= __("Impersonate") ?></i></button>
 													</form>
 													<button type="button" class="btn btn-danger" data-bs-dismiss="modal"><?= __("Cancel") ?></button>
