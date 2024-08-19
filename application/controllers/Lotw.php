@@ -405,7 +405,14 @@ class Lotw extends CI_Controller {
 		$filename = file_get_contents('file://'.$file);
 		$worked = openssl_pkcs12_read($filename, $results, $password);
 
-		$data['general_cert'] = $results['cert'];
+		if ($results['cert']) {
+			$data['general_cert'] = $results['cert'];
+		} else {
+			log_message('error', 'Found no cert in '.$file);
+			unlink($file);
+			$this->session->set_flashdata('warning', sprintf(__("Found no cert in %s. If the filename contains 'key-only', this p12 file is not activated by LoTW yet."), $file));
+			redirect('lotw');
+		}
 
 
 		if($worked) {
