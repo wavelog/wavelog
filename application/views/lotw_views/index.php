@@ -22,13 +22,9 @@
 				<div class="alert alert-danger" role="alert">
 			  	<?php echo $error; ?>
 				</div>
-	    	<?php } ?>
-
-	    	<?php if(isset($_SESSION['Success'])) { ?>
-				<div class="alert alert-success" role="alert">
-			  	<?php echo $_SESSION['Success']; ?>
-				</div>
-	    	<?php } ?>
+	    	<?php } ?>	
+		
+			<?php $this->load->view('layout/messages'); ?>
 
 	    	<?php if ($lotw_cert_results->num_rows() > 0) { ?>
 
