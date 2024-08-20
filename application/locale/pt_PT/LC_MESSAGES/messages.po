@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-08-20 15:31+0000\n"
-"PO-Revision-Date: 2024-08-18 14:15+0000\n"
+"PO-Revision-Date: 2024-08-20 18:52+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/pt_PT/>\n"
@@ -1410,15 +1410,15 @@ msgstr "Logbook of the World"
 
 #: application/controllers/Lotw.php:152
 msgid "Certificate Imported."
-msgstr ""
+msgstr "Certificado Importado."
 
 #: application/controllers/Lotw.php:159
 msgid "Certificate Updated."
-msgstr ""
+msgstr "Certificado atualizado."
 
 #: application/controllers/Lotw.php:384
 msgid "Certificate Deleted."
-msgstr ""
+msgstr "Certificado eliminado."
 
 #: application/controllers/Lotw.php:413
 #, php-format
@@ -1426,6 +1426,9 @@ msgid ""
 "Found no certificate in file %s. If the filename contains 'key-only' this is "
 "typically a certificate request which has not been processed by LoTW yet."
 msgstr ""
+"Não foi encontrado nenhum certificado no ficheiro %s. Se o nome do ficheiro "
+"contiver 'key-only', isto é tipicamente um pedido de certificado que ainda "
+"não foi processado pelo LoTW."
 
 #: application/controllers/Lotw.php:617
 msgid "LoTW ADIF Information"
@@ -1437,7 +1440,7 @@ msgstr "Importação ADIF LoTW"
 
 #: application/controllers/Lotw.php:752 application/controllers/Lotw.php:870
 msgid "You have not defined your ARRL LoTW credentials!"
-msgstr ""
+msgstr "Não definiu as suas credenciais LoTW da ARRL !"
 
 #: application/controllers/Lotw.php:837
 msgid "LoTW .TQ8 Upload"
@@ -1445,7 +1448,7 @@ msgstr "Enviar .TQ8 LoTW"
 
 #: application/controllers/Lotw.php:915
 msgid "Your ARRL username and/or password is incorrect."
-msgstr ""
+msgstr "O seu nome de utilizador e/ou palavra-passe da ARRL está incorreto."
 
 #: application/controllers/Lotw.php:934 application/controllers/Lotw.php:939
 msgid "LoTW .TQ8 Sent"
@@ -2164,28 +2167,32 @@ msgid ""
 "You currently can't impersonate another user. Please change the "
 "encryption_key in your config.php file first!"
 msgstr ""
+"Atualmente, não pode personificar outro utilizador. Por favor, altera a "
+"encryption_key no seu ficheiro config.php primeiro!"
 
 #: application/controllers/User.php:1206
 msgid "Invalid Hash"
-msgstr ""
+msgstr "Hash inválido"
 
 #: application/controllers/User.php:1219
 msgid "The impersonation hash is too old. Please try again."
-msgstr ""
+msgstr "O hash de personificação é muito antigo. Por favor, tente novamente."
 
 #: application/controllers/User.php:1226
 msgid ""
 "You can't impersonate another user while you're not logged in as the source "
 "user"
 msgstr ""
+"Não pode fazer-se passar por outro utilizador enquanto não estiver "
+"autenticado como o utilizador de origem"
 
 #: application/controllers/User.php:1232
 msgid "There was a problem with your session. Please try again."
-msgstr ""
+msgstr "Houve um problema com a sua sessão. Por favor, tente novamente."
 
 #: application/controllers/User.php:1239
 msgid "The requested user to impersonate does not exist"
-msgstr ""
+msgstr "O utilizador solicitado para imitar não existe"
 
 #: application/controllers/Visitor.php:50
 #: application/controllers/Visitor.php:79
@@ -11144,7 +11151,7 @@ msgstr "Redefinição da palavra-passe"
 
 #: application/views/user/index.php:55 application/views/user/index.php:150
 msgid "Impersonate"
-msgstr ""
+msgstr "Imitar"
 
 #: application/views/user/index.php:82
 msgid "Never"
@@ -11168,37 +11175,40 @@ msgstr "Sem contactos no log"
 
 #: application/views/user/index.php:111
 msgid "Impersonate User"
-msgstr ""
+msgstr "Imitar utilizador"
 
 #: application/views/user/index.php:116
 msgid ""
 "You are about to impersonate another user. To return to your admin account, "
 "you'll need to logout and log back in as admin."
 msgstr ""
+"Está prestes a fazer-se passar por outro utilizador. Para voltar à sua conta "
+"de administrador, precisará de terminar a sessão e voltar a iniciar sessão "
+"como administrador."
 
 #: application/views/user/index.php:117
 msgid "Do you want to impersonate this user?"
-msgstr ""
+msgstr "Deseja imitar este utilizador?"
 
 #: application/views/user/index.php:121
 msgid "Username:"
-msgstr ""
+msgstr "Nome de utilizador:"
 
 #: application/views/user/index.php:125
 msgid "Name:"
-msgstr ""
+msgstr "Nome:"
 
 #: application/views/user/index.php:129
 msgid "Callsign:"
-msgstr ""
+msgstr "Indicativo:"
 
 #: application/views/user/index.php:133
 msgid "E-Mail:"
-msgstr ""
+msgstr "E-mail:"
 
 #: application/views/user/index.php:137
 msgid "Last Seen:"
-msgstr ""
+msgstr "Última vez visto:"
 
 #: application/views/user/login.php:36
 msgid "MAINTENANCE MODE"
