@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-20 13:04+0000\n"
+"POT-Creation-Date: 2024-08-20 15:31+0000\n"
 "PO-Revision-Date: 2024-08-18 19:11+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -58,8 +58,8 @@ msgstr ""
 #: application/controllers/Lookup.php:17 application/controllers/Lotw.php:45
 #: application/controllers/Lotw.php:77 application/controllers/Lotw.php:104
 #: application/controllers/Lotw.php:378 application/controllers/Lotw.php:401
-#: application/controllers/Lotw.php:712 application/controllers/Lotw.php:820
-#: application/controllers/Lotw.php:828 application/controllers/Mode.php:15
+#: application/controllers/Lotw.php:719 application/controllers/Lotw.php:827
+#: application/controllers/Lotw.php:835 application/controllers/Mode.php:15
 #: application/controllers/Notes.php:10 application/controllers/Options.php:15
 #: application/controllers/Oqrs.php:15 application/controllers/Qrbcalc.php:13
 #: application/controllers/Qrz.php:251 application/controllers/Qsl.php:12
@@ -221,7 +221,7 @@ msgid "Key Invalid - either not found or disabled"
 msgstr "Chiave invalida - disattivata o inesistente"
 
 #: application/controllers/Api.php:124
-#: application/views/lotw_views/index.php:95
+#: application/views/lotw_views/index.php:91
 msgid "Valid"
 msgstr "Valido"
 
@@ -276,7 +276,7 @@ msgstr "DOK"
 #: application/views/logbookadvanced/qslcarousel.php:35
 #: application/views/logbookadvanced/useroptions.php:82
 #: application/views/lookup/index.php:4
-#: application/views/lotw_views/index.php:40
+#: application/views/lotw_views/index.php:36
 #: application/views/qso/edit_ajax.php:219 application/views/qso/index.php:361
 #: application/views/search/cqzones_result.php:15
 #: application/views/search/result.php:27
@@ -1365,7 +1365,7 @@ msgstr "Operatore"
 #: application/views/kml/index.php:54
 #: application/views/logbookadvanced/index.php:159
 #: application/views/lookup/index.php:31
-#: application/views/lotw_views/index.php:56
+#: application/views/lotw_views/index.php:52
 #: application/views/qso/components/previous_contacts.php:59
 #: application/views/qso/edit_ajax.php:230 application/views/qso/index.php:368
 #: application/views/station_profile/create.php:73
@@ -1399,23 +1399,50 @@ msgstr ""
 msgid "Logbook of the World"
 msgstr ""
 
-#: application/controllers/Lotw.php:610
+#: application/controllers/Lotw.php:152
+msgid "Certificate Imported."
+msgstr ""
+
+#: application/controllers/Lotw.php:159
+msgid "Certificate Updated."
+msgstr ""
+
+#: application/controllers/Lotw.php:384
+msgid "Certificate Deleted."
+msgstr ""
+
+#: application/controllers/Lotw.php:413
+#, php-format
+msgid ""
+"Found no certificate in file %s. If the filename contains 'key-only' this is "
+"typically a certificate request which has not been processed by LoTW yet."
+msgstr ""
+
+#: application/controllers/Lotw.php:617
 msgid "LoTW ADIF Information"
 msgstr ""
 
-#: application/controllers/Lotw.php:718
+#: application/controllers/Lotw.php:725
 msgid "LoTW ADIF Import"
 msgstr ""
 
-#: application/controllers/Lotw.php:830
+#: application/controllers/Lotw.php:752 application/controllers/Lotw.php:870
+msgid "You have not defined your ARRL LoTW credentials!"
+msgstr ""
+
+#: application/controllers/Lotw.php:837
 msgid "LoTW .TQ8 Upload"
 msgstr ""
 
-#: application/controllers/Lotw.php:927 application/controllers/Lotw.php:932
+#: application/controllers/Lotw.php:915
+msgid "Your ARRL username and/or password is incorrect."
+msgstr ""
+
+#: application/controllers/Lotw.php:934 application/controllers/Lotw.php:939
 msgid "LoTW .TQ8 Sent"
 msgstr ""
 
-#: application/controllers/Lotw.php:939
+#: application/controllers/Lotw.php:946
 msgid "LoTW .TQ8 Not Sent"
 msgstr ""
 
@@ -1634,7 +1661,7 @@ msgstr ""
 
 #: application/controllers/Radio.php:52
 #: application/views/logbookadvanced/index.php:527
-#: application/views/lotw_views/index.php:47
+#: application/views/lotw_views/index.php:43
 #: application/views/simplefle/index.php:20
 #: application/views/simplefle/index.php:171
 #: application/views/stationsetup/exportmapoptions.php:5
@@ -1666,7 +1693,7 @@ msgstr ""
 #: application/views/interface_assets/footer.php:2386
 #: application/views/labels/index.php:48 application/views/labels/index.php:84
 #: application/views/logbookadvanced/index.php:519
-#: application/views/lotw_views/index.php:118
+#: application/views/lotw_views/index.php:114
 #: application/views/mode/index.php:55
 #: application/views/oqrs/showrequests.php:71
 #: application/views/qslcard/index.php:65
@@ -2651,7 +2678,7 @@ msgstr ""
 #: application/views/eqslcard/index.php:28
 #: application/views/hamsat/index.php:30 application/views/labels/index.php:123
 #: application/views/logbookadvanced/qslcarousel.php:30
-#: application/views/lotw_views/index.php:39
+#: application/views/lotw_views/index.php:35
 #: application/views/oqrs/qsolist.php:6
 #: application/views/oqrs/request_grouped.php:12
 #: application/views/qslcard/index.php:28
@@ -3186,7 +3213,7 @@ msgid "Permissions"
 msgstr ""
 
 #: application/views/api/help.php:31 application/views/cron/index.php:52
-#: application/views/lotw_views/index.php:45
+#: application/views/lotw_views/index.php:41
 #: application/views/mode/index.php:31
 #: application/views/oqrs/showrequests.php:91
 #: application/views/sattimers/index.php:39
@@ -7526,58 +7553,58 @@ msgstr "Certificati Disponibili"
 msgid "Upload Certificate"
 msgstr "Carica Certificato"
 
-#: application/views/lotw_views/index.php:41
+#: application/views/lotw_views/index.php:37
 msgid "QSO Start Date"
 msgstr "Data di inizio QSO"
 
-#: application/views/lotw_views/index.php:42
+#: application/views/lotw_views/index.php:38
 msgid "QSO End Date"
 msgstr "Data di fine QSO"
 
-#: application/views/lotw_views/index.php:43
+#: application/views/lotw_views/index.php:39
 msgid "Date Created"
 msgstr "Data di Creazione"
 
-#: application/views/lotw_views/index.php:44
+#: application/views/lotw_views/index.php:40
 msgid "Date Expires"
 msgstr "Data di Scadenza"
 
-#: application/views/lotw_views/index.php:46
+#: application/views/lotw_views/index.php:42
 #: application/views/view_log/qso.php:404
 msgid "Last Upload"
 msgstr "Last upload"
 
-#: application/views/lotw_views/index.php:91
+#: application/views/lotw_views/index.php:87
 msgid "Expired"
 msgstr "Scaduto"
 
-#: application/views/lotw_views/index.php:93
+#: application/views/lotw_views/index.php:89
 msgid "Expiring"
 msgstr ""
 
-#: application/views/lotw_views/index.php:105
+#: application/views/lotw_views/index.php:101
 #, php-format
 msgid "Last success: %s"
 msgstr ""
 
-#: application/views/lotw_views/index.php:108
+#: application/views/lotw_views/index.php:104
 #, php-format
 msgid "Last fail: %s"
 msgstr ""
 
-#: application/views/lotw_views/index.php:114
+#: application/views/lotw_views/index.php:110
 msgid "Not Synced"
 msgstr "Non Sincronizzato"
 
-#: application/views/lotw_views/index.php:129
+#: application/views/lotw_views/index.php:125
 msgid "You need to upload some LoTW p12 certificates to use this area."
 msgstr "Devi caricare dei certificati p12 LoTW per abilitare questa area."
 
-#: application/views/lotw_views/index.php:144
+#: application/views/lotw_views/index.php:140
 msgid "Information"
 msgstr "Informazione"
 
-#: application/views/lotw_views/index.php:149
+#: application/views/lotw_views/index.php:145
 msgid "Manual Sync"
 msgstr "Sincronizzazione Manuale"
 
