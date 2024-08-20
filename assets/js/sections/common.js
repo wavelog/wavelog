@@ -604,7 +604,7 @@ function spawnQrbCalculator(locator1, locator2) {
 			BootstrapDialog.show({
 				title: lang_qrbcalc_title,
 				size: BootstrapDialog.SIZE_WIDE,
-				cssClass: 'lookup-dialog',
+				cssClass: 'lookup-dialog bg-black bg-opacity-50',
 				nl2br: false,
 				message: html,
 				onshown: function(dialog) {
@@ -677,17 +677,25 @@ function calculateQrb() {
             }
         });
     } else {
+        $("#mapqrb").hide();
         $('.qrbResult').html('<div class="qrbalert alert alert-danger" role="alert">' + lang_qrbcalc_errmsg + '</div>');
     }
 }
 
 function validateLocator(locator) {
-    vucc_gridno = locator.split(",").length;
-    if(vucc_gridno == 3 || vucc_gridno > 4) {
+    const regex = /^[A-R]{2}[0-9]{2}([A-X]{2}([0-9]{2}([A-X]{2})?)?)?$/i;
+    const locators = locator.split(",");
+
+    if (locators.length === 3 || locators.length > 4) {
         return false;
     }
-    if(locator.length < 4 && !(/^[a-rA-R]{2}[0-9]{2}[a-xA-X]{0,2}[0-9]{0,2}[a-xA-X]{0,2}$/.test(locator))) {
-        return false;
+
+    for (let i = 0; i < locators.length; i++) {
+        let loc = locators[i].trim();
+
+        if (!regex.test(loc)) {
+            return false;
+        }
     }
 
     return true;
