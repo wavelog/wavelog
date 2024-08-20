@@ -1,5 +1,11 @@
 <script>
 var dxccarray = [];
+dxccarray.push({
+	adif: 0,
+	name: '- None -',
+	cq: '',
+	itu: '',
+});
 
 <?php
 if ($dxcc_list->result() > 0) {
@@ -16,6 +22,7 @@ if ($dxcc_list->result() > 0) {
 	}
 }
 ?>
+
 </script>
 
 <div class="container" id="create_station_profile">

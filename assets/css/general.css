@@ -1071,3 +1071,18 @@ label {
 .btn-group .multiselect-container .multiselect-option input[type="radio"] {
     display: none;
 }
+
+@media screen and (max-width:991px){ 
+	.multiselect-container button.dropdown-item {
+	  pointer-events:none;
+	}
+	.multiselect-container span.form-check input {
+	  pointer-events: all;
+	}
+	.multiselect-container span.form-check label  {
+	  pointer-events: none;
+	}
+	.btn-group .multiselect-container .multiselect-option input[type="radio"] {
+		display: block !important;
+	}
+}
