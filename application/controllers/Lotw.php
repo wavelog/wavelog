@@ -408,9 +408,9 @@ class Lotw extends CI_Controller {
 		if ($results['cert']) {
 			$data['general_cert'] = $results['cert'];
 		} else {
-			log_message('error', 'Found no cert in '.$file);
+			log_message('error', 'Found no certificate in file '.$file);
 			unlink($file);
-			$this->session->set_flashdata('warning', sprintf(__("Found no cert in %s. If the filename contains 'key-only', this p12 file is not activated by LoTW yet."), $file));
+			$this->session->set_flashdata('warning', sprintf(__("Found no certificate in file %s. If the filename contains 'key-only' this is typically a certificate request which has not been processed by LoTW yet."), basename($file)));
 			redirect('lotw');
 		}
 
