@@ -9,17 +9,17 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-08-18 07:28+0000\n"
-"PO-Revision-Date: 2024-08-17 10:48+0000\n"
-"Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ru/>\n"
+"PO-Revision-Date: 2024-08-20 05:18+0000\n"
+"Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.7\n"
 
 #: application/controllers/Accumulated.php:13
 #: application/controllers/Activators.php:13
@@ -90,7 +90,7 @@ msgstr ""
 #: application/controllers/User.php:738 application/controllers/User.php:1021
 #: application/controllers/User_options.php:9
 msgid "You're not allowed to do that!"
-msgstr ""
+msgstr "Вам нельзя это делать!"
 
 #: application/controllers/Accumulated.php:21
 #: application/views/interface_assets/header.php:150
@@ -317,7 +317,7 @@ msgstr "Просмотр журнала"
 
 #: application/controllers/Awards.php:454
 msgid " and band "
-msgstr ""
+msgstr " и диапазон "
 
 #: application/controllers/Awards.php:457
 msgid " and sat "
@@ -2177,80 +2177,80 @@ msgstr "Не найдено профилей QTH, использующих OQRS.
 #: application/libraries/Subdivisions.php:31
 msgctxt "Division Name (States in various countries)."
 msgid "Province"
-msgstr ""
+msgstr "Провинция"
 
 #: application/libraries/Subdivisions.php:39
 msgctxt "Division Name (States in various countries)."
 msgid "Oblast"
-msgstr ""
+msgstr "Область"
 
 #: application/libraries/Subdivisions.php:41
 #: application/libraries/Subdivisions.php:47
 msgctxt "Division Name (States in various countries)."
 msgid "Region"
-msgstr ""
+msgstr "Регион"
 
 #: application/libraries/Subdivisions.php:45
 msgctxt "Division Name (States in various countries)."
 msgid "Department"
-msgstr ""
+msgstr "Отдел"
 
 #: application/libraries/Subdivisions.php:49
 msgctxt "Division Name (States in various countries)."
 msgid "Municipality"
-msgstr ""
+msgstr "Муниципалитет"
 
 #: application/libraries/Subdivisions.php:51
 msgctxt "Division Name (States in various countries)."
 msgid "Federal State"
-msgstr ""
+msgstr "Федеральное государство"
 
 #: application/libraries/Subdivisions.php:56
 #: application/libraries/Subdivisions.php:94
 msgctxt "Division Name (States in various countries)."
 msgid "County"
-msgstr ""
+msgstr "Графство"
 
 #: application/libraries/Subdivisions.php:60
 #: application/libraries/Subdivisions.php:85
 msgctxt "Division Name (States in various countries)."
 msgid "District"
-msgstr ""
+msgstr "Район"
 
 #: application/libraries/Subdivisions.php:62
 msgctxt "Division Name (States in various countries)."
 msgid "Canton"
-msgstr ""
+msgstr "Кантон"
 
 #: application/libraries/Subdivisions.php:64
 msgctxt "Division Name (States in various countries)."
 msgid "US State"
-msgstr ""
+msgstr "Штат США"
 
 #: application/libraries/Subdivisions.php:67
 msgctxt "Division Name (States in various countries)."
 msgid "Prefecture"
-msgstr ""
+msgstr "Префектура"
 
 #: application/libraries/Subdivisions.php:69
 msgctxt "Division Name (States in various countries)."
 msgid "State"
-msgstr ""
+msgstr "Штат"
 
 #: application/libraries/Subdivisions.php:78
 msgctxt "Division Name (States in various countries)."
 msgid "US County"
-msgstr ""
+msgstr "Округ США"
 
 #: application/libraries/Subdivisions.php:90
 msgctxt "Division Name (States in various countries)."
 msgid "DME"
-msgstr ""
+msgstr "DME"
 
 #: application/libraries/Subdivisions.php:92
 msgctxt "Division Name (States in various countries)."
 msgid "City / Ku / Gun"
-msgstr ""
+msgstr "Город / Ku / Gun"
 
 #: application/models/Eqslmethods_model.php:281
 msgid "Your eQSL username and/or password is incorrect."
@@ -2943,6 +2943,8 @@ msgid ""
 "If selected, Wavelog will try to import %sall%s QSO's of the ADIF, "
 "regardless if they match to the chosen station-location."
 msgstr ""
+"Если выбрано, Wavelog попытается импортировать %sвсе%s QSO из ADIF, "
+"независимо от того, соответствуют ли они выбранному местоположению станции."
 
 #: application/views/adif/import.php:158 application/views/adif/import.php:273
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:54
@@ -3392,7 +3394,7 @@ msgstr "Зона CQ"
 #: application/views/awards/cq/index.php:4
 #: application/views/awards/itu/index.php:4
 msgid "Hover over a zone"
-msgstr ""
+msgstr "Наведите курсор на зону CQ / зону ITU"
 
 #: application/views/awards/cq/index.php:20
 msgid "CQ Magazine WAZ Award"
@@ -3667,7 +3669,7 @@ msgstr "Сработано / Подтверждено"
 #: application/views/awards/waja/index.php:80
 #: application/views/awards/was/index.php:76
 msgid "Every band"
-msgstr "Все диапазоны"
+msgstr "Каждый диапазон"
 
 #: application/views/awards/dxcc/index.php:14
 msgid "DXCC Award"
@@ -3872,11 +3874,11 @@ msgstr "Эта карта отображает только QSO, проведё�
 #: application/views/awards/helvetia/index.php:3
 msgctxt "Switzerland Canton"
 msgid "Canton"
-msgstr ""
+msgstr "Кантон"
 
 #: application/views/awards/helvetia/index.php:4
 msgid "Hover over a canton"
-msgstr ""
+msgstr "Наведите курсор на кантон"
 
 #: application/views/awards/helvetia/index.php:20
 msgid "HELVETIA 26 | SWITZERLAND AWARD"
@@ -4159,11 +4161,11 @@ msgstr "Сравочник POTA"
 #: application/views/awards/rac/index.php:3
 msgctxt "Canada Province"
 msgid "Province"
-msgstr ""
+msgstr "Провинция"
 
 #: application/views/awards/rac/index.php:4
 msgid "Hover over a province"
-msgstr ""
+msgstr "Наведите курсор на провинцию"
 
 #: application/views/awards/rac/index.php:106
 msgid "Show RAC Map"
@@ -4338,11 +4340,11 @@ msgstr "Квадраты WAB"
 #: application/views/awards/waja/index.php:3
 msgctxt "Japan Prefecture"
 msgid "Prefecture"
-msgstr ""
+msgstr "Префектура"
 
 #: application/views/awards/waja/index.php:4
 msgid "Hover over a prefecture"
-msgstr ""
+msgstr "Наведите курсор на префектуру"
 
 #: application/views/awards/waja/index.php:19
 msgid "WAJA - Worked All Japan prefectures Award"
@@ -4380,11 +4382,11 @@ msgstr "Префектура"
 #: application/views/awards/was/index.php:3
 msgctxt "USA State"
 msgid "State"
-msgstr ""
+msgstr "Штат"
 
 #: application/views/awards/was/index.php:4
 msgid "Hover over a state"
-msgstr ""
+msgstr "Наведите курсор на штат"
 
 #: application/views/awards/was/index.php:20
 msgid "WAS Award"
@@ -5021,7 +5023,7 @@ msgstr "Тип обмена"
 
 #: application/views/contesting/index.php:16
 msgid "Exchange"
-msgstr "Обмен"
+msgstr "Контрольный номер"
 
 #: application/views/contesting/index.php:18
 msgid "Serial"
@@ -5742,6 +5744,8 @@ msgstr ""
 #, php-format
 msgid "Check this wiki article %shere%s for more information."
 msgstr ""
+"Проверьте эту статью на вики %sздесь%s для получения дополнительной "
+"информации."
 
 #: application/views/debug/index.php:48
 #, php-format
@@ -6115,7 +6119,7 @@ msgstr "Данные QSO"
 #: application/views/distances/index.php:9
 #, php-format
 msgid "contacts were plotted.%s Your furthest contact was with"
-msgstr ""
+msgstr "контакты были нанесены на карту.%s Ваш самый дальний контакт был с"
 
 #: application/views/distances/index.php:10
 msgid "in gridsquare"
@@ -6518,7 +6522,7 @@ msgstr "Режим распространения не поддерживает�
 
 #: application/views/interface_assets/footer.php:47
 msgid "No states for this DXCC available"
-msgstr ""
+msgstr "Для этого DXCC нет доступных штатов."
 
 #: application/views/interface_assets/footer.php:129
 #: application/views/interface_assets/header.php:434
@@ -6606,16 +6610,16 @@ msgstr "Позывной: "
 
 #: application/views/interface_assets/footer.php:726
 msgid "Count: "
-msgstr ""
+msgstr "Всего: "
 
 #: application/views/interface_assets/footer.php:727
 msgid "Grids: "
-msgstr ""
+msgstr "Квадратов: "
 
 #: application/views/interface_assets/footer.php:1162
 #, php-format
 msgid "You're not logged in. Please %slogin%s"
-msgstr ""
+msgstr "Вы не вошли в систему. Пожалуйста, %sвойдите%s"
 
 #: application/views/interface_assets/footer.php:1368
 #: application/views/interface_assets/footer.php:1372
@@ -9540,6 +9544,7 @@ msgid ""
 "If you did operate from a new location, first create a new %sStation "
 "Location%s"
 msgstr ""
+"Если вы работали с нового места, сначала создайте новое %sStation Location%s"
 
 #: application/views/simplefle/index.php:112
 msgid "e.g. OK2CQR"
@@ -9560,7 +9565,7 @@ msgstr "Референции"
 #: application/views/simplefle/index.php:160
 #, php-format
 msgid "The Refs can be either %sS%sOTA, %sI%sOTA, %sP%sOTA, or %sW%sWFF"
-msgstr ""
+msgstr "Рефы могут быть либо %sS%sOTA, %sI%sOTA, %sP%sOTA, либо %sW%sWFF"
 
 #: application/views/simplefle/index.php:167
 msgid "Reload QSO List"
@@ -9651,6 +9656,8 @@ msgid ""
 "A full summary of all commands and the necessary syntax can be found in "
 "%sthis article%s of our Wiki."
 msgstr ""
+"Полное описание всех команд и необходимого синтаксиса можно найти в %sэтой "
+"статье%s нашей Вики."
 
 #: application/views/station_profile/create.php:51
 #: application/views/station_profile/edit.php:60
@@ -10401,6 +10408,8 @@ msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
+"Нажмите здесь на «Добавить тему» и введите необходимые данные. Введите имена "
+"файлов для логотипов %sбез%s расширения файла «.png»"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
@@ -10524,6 +10533,9 @@ msgid ""
 "QSOs. Depending on the number of QSOs this might take some time to execute. "
 "Please be patient."
 msgstr ""
+"Используйте эту кнопку, чтобы обновить информацию о расстоянии для всех "
+"ваших QSO. В зависимости от количества QSO это может занять некоторое время. "
+"Пожалуйста, будьте терпеливы."
 
 #: application/views/user/delete.php:5
 msgid "Delete User Account"
@@ -10970,7 +10982,7 @@ msgstr "Эта демонстрация будет сбрасываться ка
 #: application/views/user/login.php:60
 #, php-format
 msgid "More Information about Wavelog on %sGithub%s."
-msgstr ""
+msgstr "Больше информации о Wavelog на %sGithub%s."
 
 #: application/views/user/login.php:79
 msgid "Forgot your password?"
