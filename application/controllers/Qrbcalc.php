@@ -70,7 +70,6 @@ class Qrbcalc extends CI_Controller {
 		$data['latlng2'] = $latlng2;
 
 		$data['latlong_info_text'] = __("Negative latitudes are south of the equator, negative longitudes are west of Greenwich.");
-		$data['error_msg'] = __("Error in locators. Please check.");
 
 		header('Content-Type: application/json');
 		echo json_encode($data);

@@ -677,7 +677,7 @@ function calculateQrb() {
             }
         });
     } else {
-        $('.qrbResult').html('<div class="qrbalert alert alert-danger" role="alert">' + html['error_msg'] + '</div>');
+        $('.qrbResult').html('<div class="qrbalert alert alert-danger" role="alert">' + lang_qrbcalc_errmsg + '</div>');
     }
 }
 
