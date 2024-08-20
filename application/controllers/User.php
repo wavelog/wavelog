@@ -5,14 +5,38 @@ class User extends CI_Controller {
 	public function index()
 	{
 		$this->load->model('user_model');
+
+		if (!$this->load->is_loaded('encryption')) {
+			$this->load->library('encryption');
+		}
+
 		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		$data['results'] = $this->user_model->users();
+		$data['session_uid'] = $this->session->userdata('user_id');
+
+		// Check if impersonating is disabled in the config
+		if ($this->config->item('disable_impersonate')) {
+			$data['disable_impersonate'] = true;
+		} else {
+			$data['disable_impersonate'] = false;
+		}
+
+		// Get Date format
+		if($this->session->userdata('user_date_format')) {
+			// If Logged in and session exists
+			$data['custom_date_format'] = $this->session->userdata('user_date_format');
+		} else {
+			// Get Default date format from /config/wavelog.php
+			$data['custom_date_format'] = $this->config->item('qso_date_format');
+		}
+
+		$data['has_flossie'] = ($this->config->item('encryption_key') == 'flossie1234555541') ? true : false;
 
 		$data['page_title'] = __("User Accounts");
 
 		$this->load->view('interface_assets/header', $data);
-		$this->load->view('user/main');
+		$this->load->view('user/index');
 		$this->load->view('interface_assets/footer');
 	}
 
@@ -1090,8 +1114,7 @@ class User extends CI_Controller {
 		}
 	}
 
-	function reset_password($reset_code = NULL)
-	{
+	function reset_password($reset_code = NULL) {
 		$data['reset_code'] = $reset_code;
 		if($reset_code != NULL) {
 			$this->load->helper(array('form', 'url'));
@@ -1122,38 +1145,118 @@ class User extends CI_Controller {
 		}
 	}
 
-   function check_locator($grid) {
-      $grid = $this->input->post('user_locator');
-      // Allow empty locator
-      if (preg_match('/^$/', $grid)) return true;
-      // Allow 6-digit locator
-      if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2}$/', $grid)) return true;
-      // Allow 4-digit locator
-      else if (preg_match('/^[A-Ra-r]{2}[0-9]{2}$/', $grid)) return true;
-      // Allow 4-digit grid line
-      else if (preg_match('/^[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2}$/', $grid)) return true;
-      // Allow 4-digit grid corner
-      else if (preg_match('/^[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2}$/', $grid)) return true;
-      // Allow 2-digit locator
-      else if (preg_match('/^[A-Ra-r]{2}$/', $grid)) return true;
-      // Allow 8-digit locator
-      else if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2}[0-9]{2}$/', $grid)) return true;
-      else {
-         $this->form_validation->set_message('check_locator', 'Please check value for grid locator ('.strtoupper($grid).').');
-         return false;
-      }
-   }
+	function check_locator($grid) {
+		$grid = $this->input->post('user_locator');
+		// Allow empty locator
+		if (preg_match('/^$/', $grid)) return true;
+		// Allow 6-digit locator
+		if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2}$/', $grid)) return true;
+		// Allow 4-digit locator
+		else if (preg_match('/^[A-Ra-r]{2}[0-9]{2}$/', $grid)) return true;
+		// Allow 4-digit grid line
+		else if (preg_match('/^[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2}$/', $grid)) return true;
+		// Allow 4-digit grid corner
+		else if (preg_match('/^[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2},[A-Ra-r]{2}[0-9]{2}$/', $grid)) return true;
+		// Allow 2-digit locator
+		else if (preg_match('/^[A-Ra-r]{2}$/', $grid)) return true;
+		// Allow 8-digit locator
+		else if (preg_match('/^[A-Ra-r]{2}[0-9]{2}[A-Za-z]{2}[0-9]{2}$/', $grid)) return true;
+		else {
+			$this->form_validation->set_message('check_locator', 'Please check value for grid locator ('.strtoupper($grid).').');
+			return false;
+		}
+	}
 
-   function https_check() {
-	if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
-		return true;
+   	function https_check() {
+		if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
+			return true;
+		}
+		if (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
+			return true;
+		}
+		if (!empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] === 'on') {
+			return true;
+		}
+		return false;
 	}
-	if (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
-		return true;
+
+	public function impersonate() {
+
+		// Check if impersonating is disabled in the config
+		if ($this->config->item('disable_impersonate')) {
+			show_404();
+		}
+
+		// Load the encryption library
+		if (!$this->load->is_loaded('encryption')) {
+			$this->load->library('encryption');
+		}
+		// Load the user model
+		$this->load->model('user_model');
+
+		// Precheck: If the encryption key is still default, we can't impersonate another user for security reasons
+		if ($this->config->item('encryption_key') == 'flossie1234555541') {
+			$this->session->set_flashdata('error', __("You currently can't impersonate another user. Please change the encryption_key in your config.php file first!"));
+			redirect('dashboard');
+		}
+
+		// Prepare the hash
+		$raw_hash = $this->encryption->decrypt($this->input->post('hash', TRUE) ?? '');
+		if (!$raw_hash) {
+			$this->session->set_flashdata('error', __("Invalid Hash"));
+			redirect('dashboard');
+		}
+		$hash_parts = explode('/', $raw_hash);
+		$source_uid = $hash_parts[0];
+		$target_uid = $hash_parts[1];
+		$timestamp = $hash_parts[2];
+
+		/**
+		 * Security Checks
+		 */
+		// make sure the timestamp is not too old
+		if (time() - $timestamp > 600) {  // 10 minutes
+			$this->session->set_flashdata('error', __("The impersonation hash is too old. Please try again."));
+			redirect('dashboard');
+		}
+
+		// is the source user still logged in? 
+		// We fetch the source user from database to also make sure the user exists. We could use source_uid directly, but this is more secure
+		if ($this->session->userdata('user_id') !=  $this->user_model->get_by_id($source_uid)->row()->user_id) {
+			$this->session->set_flashdata('error', __("You can't impersonate another user while you're not logged in as the source user"));
+			redirect('dashboard');
+		}
+
+		// in addition to the check if the user is logged in, we also can check if the session id matches the cookie
+		if ($this->session->session_id != $this->input->cookie($this->config->item('sess_cookie_name'), TRUE)) {
+			$this->session->set_flashdata('error', __("There was a problem with your session. Please try again."));
+			redirect('dashboard');
+		}
+
+		// make sure the target user exists
+		$target_user = $this->user_model->get_by_id($target_uid)->row();
+		if (!$target_user) {
+			$this->session->set_flashdata('error', __("The requested user to impersonate does not exist"));
+			redirect('dashboard');
+		}
+
+		// before we can impersonate a user, we need to make sure the current user is an admin
+		// TODO: authorize from additional datatable 'impersonators' to allow other user types to impersonate
+		$source_user = $this->user_model->get_by_id($source_uid)->row();
+		if(!$source_user || !$this->user_model->authorize(99)) {
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+			redirect('dashboard'); 
+		}
+
+		/**
+		 * Impersonate the user
+		 */
+		// Update the session with the new user_id
+		// TODO: Find a solution for sessiondata 'radio', so a user would be able to use e.g. his own radio while impersonating another user
+		// Due the fact that the user is now impersonating another user, he can't use his default radio anymore
+		$this->user_model->update_session($target_uid); 
+		
+		// Redirect to the dashboard, the user should now be logged in as the other user
+		redirect('dashboard');
 	}
-	if (!empty($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] === 'on') {
-		return true;
-	}
-	return false;
-}
 }

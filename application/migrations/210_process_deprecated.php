@@ -21,11 +21,11 @@ class Migration_process_deprecated extends CI_Migration
             }
          } catch (\Throwable $th) {
 
-				log_message("Error","Mig: Error at Mig 210 for txt files. Run manually a git reset.");
+				log_message("error","Mig: Error at Mig 210 for txt files. Run manually a git reset.");
 
 			}
       } else {
-			log_message("Error","Mig: Error at Mig 210 for txt files. Function exec() not usable. Run manually a git reset.");
+			log_message("info","Mig 210: No .git found. Skipping processing of txt files.");
 		}
 
    }

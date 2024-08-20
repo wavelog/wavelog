@@ -8,9 +8,9 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-18 07:28+0000\n"
-"PO-Revision-Date: 2024-08-17 10:48+0000\n"
-"Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
+"POT-Creation-Date: 2024-08-20 15:31+0000\n"
+"PO-Revision-Date: 2024-08-20 05:18+0000\n"
+"Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ru/>\n"
 "Language: ru_RU\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.7\n"
 
 #: application/controllers/Accumulated.php:13
 #: application/controllers/Activators.php:13
@@ -60,8 +60,8 @@ msgstr ""
 #: application/controllers/Lookup.php:17 application/controllers/Lotw.php:45
 #: application/controllers/Lotw.php:77 application/controllers/Lotw.php:104
 #: application/controllers/Lotw.php:378 application/controllers/Lotw.php:401
-#: application/controllers/Lotw.php:712 application/controllers/Lotw.php:820
-#: application/controllers/Lotw.php:828 application/controllers/Mode.php:15
+#: application/controllers/Lotw.php:719 application/controllers/Lotw.php:827
+#: application/controllers/Lotw.php:835 application/controllers/Mode.php:15
 #: application/controllers/Notes.php:10 application/controllers/Options.php:15
 #: application/controllers/Oqrs.php:15 application/controllers/Qrbcalc.php:13
 #: application/controllers/Qrz.php:251 application/controllers/Qsl.php:12
@@ -84,13 +84,14 @@ msgstr ""
 #: application/controllers/Update.php:24 application/controllers/Update.php:273
 #: application/controllers/Update.php:284
 #: application/controllers/Update.php:295
-#: application/controllers/Update.php:306 application/controllers/User.php:8
-#: application/controllers/User.php:21 application/controllers/User.php:206
-#: application/controllers/User.php:207 application/controllers/User.php:719
-#: application/controllers/User.php:738 application/controllers/User.php:1021
+#: application/controllers/Update.php:306 application/controllers/User.php:13
+#: application/controllers/User.php:45 application/controllers/User.php:230
+#: application/controllers/User.php:231 application/controllers/User.php:743
+#: application/controllers/User.php:762 application/controllers/User.php:1045
+#: application/controllers/User.php:1247
 #: application/controllers/User_options.php:9
 msgid "You're not allowed to do that!"
-msgstr ""
+msgstr "Вам нельзя это делать!"
 
 #: application/controllers/Accumulated.php:21
 #: application/views/interface_assets/header.php:150
@@ -222,7 +223,7 @@ msgid "Key Invalid - either not found or disabled"
 msgstr "Ключ недействительный — либо не найден, либо отключен"
 
 #: application/controllers/Api.php:124
-#: application/views/lotw_views/index.php:95
+#: application/views/lotw_views/index.php:91
 msgid "Valid"
 msgstr "Действительный"
 
@@ -277,7 +278,7 @@ msgstr "DOK"
 #: application/views/logbookadvanced/qslcarousel.php:35
 #: application/views/logbookadvanced/useroptions.php:82
 #: application/views/lookup/index.php:4
-#: application/views/lotw_views/index.php:40
+#: application/views/lotw_views/index.php:36
 #: application/views/qso/edit_ajax.php:219 application/views/qso/index.php:361
 #: application/views/search/cqzones_result.php:15
 #: application/views/search/result.php:27
@@ -317,7 +318,7 @@ msgstr "Просмотр журнала"
 
 #: application/controllers/Awards.php:454
 msgid " and band "
-msgstr ""
+msgstr " и диапазон "
 
 #: application/controllers/Awards.php:457
 msgid " and sat "
@@ -1375,7 +1376,7 @@ msgstr "Оператор"
 #: application/views/kml/index.php:54
 #: application/views/logbookadvanced/index.php:159
 #: application/views/lookup/index.php:31
-#: application/views/lotw_views/index.php:56
+#: application/views/lotw_views/index.php:52
 #: application/views/qso/components/previous_contacts.php:59
 #: application/views/qso/edit_ajax.php:230 application/views/qso/index.php:368
 #: application/views/station_profile/create.php:73
@@ -1409,23 +1410,50 @@ msgstr "Быстрый поиск"
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
-#: application/controllers/Lotw.php:610
+#: application/controllers/Lotw.php:152
+msgid "Certificate Imported."
+msgstr ""
+
+#: application/controllers/Lotw.php:159
+msgid "Certificate Updated."
+msgstr ""
+
+#: application/controllers/Lotw.php:384
+msgid "Certificate Deleted."
+msgstr ""
+
+#: application/controllers/Lotw.php:413
+#, php-format
+msgid ""
+"Found no certificate in file %s. If the filename contains 'key-only' this is "
+"typically a certificate request which has not been processed by LoTW yet."
+msgstr ""
+
+#: application/controllers/Lotw.php:617
 msgid "LoTW ADIF Information"
 msgstr "LoTW. Информация ADIF"
 
-#: application/controllers/Lotw.php:718
+#: application/controllers/Lotw.php:725
 msgid "LoTW ADIF Import"
 msgstr "LoTW. Импорт ADIF"
 
-#: application/controllers/Lotw.php:830
+#: application/controllers/Lotw.php:752 application/controllers/Lotw.php:870
+msgid "You have not defined your ARRL LoTW credentials!"
+msgstr ""
+
+#: application/controllers/Lotw.php:837
 msgid "LoTW .TQ8 Upload"
 msgstr "LoTW. TQ8 загрузка"
 
-#: application/controllers/Lotw.php:927 application/controllers/Lotw.php:932
+#: application/controllers/Lotw.php:915
+msgid "Your ARRL username and/or password is incorrect."
+msgstr ""
+
+#: application/controllers/Lotw.php:934 application/controllers/Lotw.php:939
 msgid "LoTW .TQ8 Sent"
 msgstr "LoTW. TQ8 загружен"
 
-#: application/controllers/Lotw.php:939
+#: application/controllers/Lotw.php:946
 msgid "LoTW .TQ8 Not Sent"
 msgstr "LoTW. TQ8 не загружен"
 
@@ -1644,7 +1672,7 @@ msgstr "Метка времени"
 
 #: application/controllers/Radio.php:52
 #: application/views/logbookadvanced/index.php:527
-#: application/views/lotw_views/index.php:47
+#: application/views/lotw_views/index.php:43
 #: application/views/simplefle/index.php:20
 #: application/views/simplefle/index.php:171
 #: application/views/stationsetup/exportmapoptions.php:5
@@ -1676,7 +1704,7 @@ msgstr "По умолчанию (нажмите, чтобы освободить
 #: application/views/interface_assets/footer.php:2386
 #: application/views/labels/index.php:48 application/views/labels/index.php:84
 #: application/views/logbookadvanced/index.php:519
-#: application/views/lotw_views/index.php:118
+#: application/views/lotw_views/index.php:114
 #: application/views/mode/index.php:55
 #: application/views/oqrs/showrequests.php:71
 #: application/views/qslcard/index.php:65
@@ -1686,7 +1714,7 @@ msgstr "По умолчанию (нажмите, чтобы освободить
 #: application/views/stationsetup/stationsetup.php:33
 #: application/views/stationsetup/stationsetup.php:137
 #: application/views/stationsetup/stationsetup.php:192
-#: application/views/themes/index.php:107 application/views/user/main.php:54
+#: application/views/themes/index.php:107 application/views/user/index.php:57
 #: application/views/view_log/qso.php:613
 msgid "Delete"
 msgstr "Удалить"
@@ -1903,7 +1931,7 @@ msgstr "Активный профиль QTH"
 #: application/views/qso/edit_ajax.php:33 application/views/qso/index.php:20
 #: application/views/simplefle/index.php:28
 #: application/views/stationsetup/stationsetup.php:161
-#: application/views/user/main.php:87 application/views/user/main.php:89
+#: application/views/user/index.php:90 application/views/user/index.php:92
 msgid "QSO"
 msgstr "QSO"
 
@@ -1919,7 +1947,7 @@ msgstr "QSO"
 #: application/views/search/stored_queries.php:21
 #: application/views/stationsetup/stationsetup.php:128
 #: application/views/stationsetup/stationsetup.php:165
-#: application/views/themes/index.php:104 application/views/user/main.php:52
+#: application/views/themes/index.php:104 application/views/user/index.php:52
 msgid "Edit"
 msgstr "Редактировать"
 
@@ -2035,37 +2063,37 @@ msgstr "Исключения DXCC:"
 msgid "Dxcc Prefixes:"
 msgstr "Префиксы DXCC:"
 
-#: application/controllers/User.php:12
+#: application/controllers/User.php:36
 #: application/views/interface_assets/header.php:268
 msgid "User Accounts"
 msgstr "Аккаунты пользователей"
 
-#: application/controllers/User.php:52
+#: application/controllers/User.php:76
 msgid "Add User"
 msgstr "Добавить пользователя"
 
-#: application/controllers/User.php:166
+#: application/controllers/User.php:190
 msgid "Users"
 msgstr "Пользователи"
 
-#: application/controllers/User.php:240 application/controllers/User.php:673
+#: application/controllers/User.php:264 application/controllers/User.php:697
 msgid "Edit User"
 msgstr "Редактировать пользователя"
 
-#: application/controllers/User.php:665 application/controllers/User.php:668
-#: application/views/user/main.php:3 application/views/user/main.php:46
+#: application/controllers/User.php:689 application/controllers/User.php:692
+#: application/views/user/index.php:3 application/views/user/index.php:46
 msgid "User"
 msgstr "Пользователь"
 
-#: application/controllers/User.php:665 application/controllers/User.php:668
+#: application/controllers/User.php:689 application/controllers/User.php:692
 msgid "edited"
 msgstr "отредактирован"
 
-#: application/controllers/User.php:722
+#: application/controllers/User.php:746
 msgid "Profile"
 msgstr "Профиль"
 
-#: application/controllers/User.php:779
+#: application/controllers/User.php:803
 msgid ""
 "Congrats! Wavelog was successfully installed. You can now login for the "
 "first time."
@@ -2073,18 +2101,18 @@ msgstr ""
 "Поздравляем! Wavelog был успешно установлен. Теперь вы можете войти в "
 "систему в первый раз."
 
-#: application/controllers/User.php:843 application/controllers/User.php:853
+#: application/controllers/User.php:867 application/controllers/User.php:877
 msgid "Login failed. Try again."
 msgstr "Вход не выполнен. Попробуйте снова."
 
-#: application/controllers/User.php:860
+#: application/controllers/User.php:884
 #: application/views/interface_assets/header.php:356
 #: application/views/user/login.php:91
 #: application/views/visitor/layout/header.php:88
 msgid "Login"
 msgstr "Вход"
 
-#: application/controllers/User.php:898
+#: application/controllers/User.php:922
 msgid ""
 "Sorry. This instance is currently in maintenance mode. If this message "
 "appears unexpectedly or keeps showing up, please contact an administrator. "
@@ -2095,37 +2123,65 @@ msgstr ""
 "администратором. В настоящий момент только администраторы могут войти на "
 "сервер."
 
-#: application/controllers/User.php:901
+#: application/controllers/User.php:925
 msgid "Incorrect username or password!"
 msgstr "Неверные логин или пароль!"
 
-#: application/controllers/User.php:918
+#: application/controllers/User.php:942
 #, php-format
 msgid "User %s logged out."
 msgstr "Пользователь %s вышел."
 
-#: application/controllers/User.php:932
+#: application/controllers/User.php:956
 msgid "Password Reset is disabled on the Demo!"
 msgstr "Сброс пароля отключен в демо-версии!"
 
-#: application/controllers/User.php:945
+#: application/controllers/User.php:969
 msgid "Forgot Password"
 msgstr "Восстановить пароль"
 
-#: application/controllers/User.php:995 application/views/user/main.php:8
+#: application/controllers/User.php:1019 application/views/user/index.php:8
 msgid "Email settings are incorrect."
 msgstr "Настройки емэйл некорректны."
 
-#: application/controllers/User.php:999 application/controllers/User.php:1004
+#: application/controllers/User.php:1023 application/controllers/User.php:1028
 msgid "Password Reset Processed."
 msgstr "Осуществлён сброс пароля."
 
-#: application/controllers/User.php:1106
+#: application/controllers/User.php:1129
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
 msgid "Reset Password"
 msgstr "Сбросить пароль"
+
+#: application/controllers/User.php:1199 application/views/user/index.php:143
+msgid ""
+"You currently can't impersonate another user. Please change the "
+"encryption_key in your config.php file first!"
+msgstr ""
+
+#: application/controllers/User.php:1206
+msgid "Invalid Hash"
+msgstr ""
+
+#: application/controllers/User.php:1219
+msgid "The impersonation hash is too old. Please try again."
+msgstr ""
+
+#: application/controllers/User.php:1226
+msgid ""
+"You can't impersonate another user while you're not logged in as the source "
+"user"
+msgstr ""
+
+#: application/controllers/User.php:1232
+msgid "There was a problem with your session. Please try again."
+msgstr ""
+
+#: application/controllers/User.php:1239
+msgid "The requested user to impersonate does not exist"
+msgstr ""
 
 #: application/controllers/Visitor.php:50
 #: application/controllers/Visitor.php:79
@@ -2177,80 +2233,80 @@ msgstr "Не найдено профилей QTH, использующих OQRS.
 #: application/libraries/Subdivisions.php:31
 msgctxt "Division Name (States in various countries)."
 msgid "Province"
-msgstr ""
+msgstr "Провинция"
 
 #: application/libraries/Subdivisions.php:39
 msgctxt "Division Name (States in various countries)."
 msgid "Oblast"
-msgstr ""
+msgstr "Область"
 
 #: application/libraries/Subdivisions.php:41
 #: application/libraries/Subdivisions.php:47
 msgctxt "Division Name (States in various countries)."
 msgid "Region"
-msgstr ""
+msgstr "Регион"
 
 #: application/libraries/Subdivisions.php:45
 msgctxt "Division Name (States in various countries)."
 msgid "Department"
-msgstr ""
+msgstr "Отдел"
 
 #: application/libraries/Subdivisions.php:49
 msgctxt "Division Name (States in various countries)."
 msgid "Municipality"
-msgstr ""
+msgstr "Муниципалитет"
 
 #: application/libraries/Subdivisions.php:51
 msgctxt "Division Name (States in various countries)."
 msgid "Federal State"
-msgstr ""
+msgstr "Федеральное государство"
 
 #: application/libraries/Subdivisions.php:56
 #: application/libraries/Subdivisions.php:94
 msgctxt "Division Name (States in various countries)."
 msgid "County"
-msgstr ""
+msgstr "Графство"
 
 #: application/libraries/Subdivisions.php:60
 #: application/libraries/Subdivisions.php:85
 msgctxt "Division Name (States in various countries)."
 msgid "District"
-msgstr ""
+msgstr "Район"
 
 #: application/libraries/Subdivisions.php:62
 msgctxt "Division Name (States in various countries)."
 msgid "Canton"
-msgstr ""
+msgstr "Кантон"
 
 #: application/libraries/Subdivisions.php:64
 msgctxt "Division Name (States in various countries)."
 msgid "US State"
-msgstr ""
+msgstr "Штат США"
 
 #: application/libraries/Subdivisions.php:67
 msgctxt "Division Name (States in various countries)."
 msgid "Prefecture"
-msgstr ""
+msgstr "Префектура"
 
 #: application/libraries/Subdivisions.php:69
 msgctxt "Division Name (States in various countries)."
 msgid "State"
-msgstr ""
+msgstr "Штат"
 
 #: application/libraries/Subdivisions.php:78
 msgctxt "Division Name (States in various countries)."
 msgid "US County"
-msgstr ""
+msgstr "Округ США"
 
 #: application/libraries/Subdivisions.php:90
 msgctxt "Division Name (States in various countries)."
 msgid "DME"
-msgstr ""
+msgstr "DME"
 
 #: application/libraries/Subdivisions.php:92
 msgctxt "Division Name (States in various countries)."
 msgid "City / Ku / Gun"
-msgstr ""
+msgstr "Город / Ku / Gun"
 
 #: application/models/Eqslmethods_model.php:281
 msgid "Your eQSL username and/or password is incorrect."
@@ -2652,7 +2708,7 @@ msgstr "Не найдено!"
 #: application/views/eqslcard/index.php:28
 #: application/views/hamsat/index.php:30 application/views/labels/index.php:123
 #: application/views/logbookadvanced/qslcarousel.php:30
-#: application/views/lotw_views/index.php:39
+#: application/views/lotw_views/index.php:35
 #: application/views/oqrs/qsolist.php:6
 #: application/views/oqrs/request_grouped.php:12
 #: application/views/qslcard/index.php:28
@@ -2669,8 +2725,8 @@ msgstr "Не найдено!"
 #: application/views/simplefle/index.php:142
 #: application/views/station_profile/edit.php:56
 #: application/views/stationsetup/linkedlocations.php:17
-#: application/views/user/edit.php:123 application/views/user/main.php:4
-#: application/views/user/main.php:47 application/views/user/profile.php:29
+#: application/views/user/edit.php:123 application/views/user/index.php:4
+#: application/views/user/index.php:47 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:82 application/views/view_log/qso.php:507
 msgid "Callsign"
 msgstr "Позывной"
@@ -2943,6 +2999,8 @@ msgid ""
 "If selected, Wavelog will try to import %sall%s QSO's of the ADIF, "
 "regardless if they match to the chosen station-location."
 msgstr ""
+"Если выбрано, Wavelog попытается импортировать %sвсе%s QSO из ADIF, "
+"независимо от того, соответствуют ли они выбранному местоположению станции."
 
 #: application/views/adif/import.php:158 application/views/adif/import.php:273
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:54
@@ -3211,7 +3269,7 @@ msgid "Permissions"
 msgstr "Разрешения"
 
 #: application/views/api/help.php:31 application/views/cron/index.php:52
-#: application/views/lotw_views/index.php:45
+#: application/views/lotw_views/index.php:41
 #: application/views/mode/index.php:31
 #: application/views/oqrs/showrequests.php:91
 #: application/views/sattimers/index.php:39
@@ -3392,7 +3450,7 @@ msgstr "Зона CQ"
 #: application/views/awards/cq/index.php:4
 #: application/views/awards/itu/index.php:4
 msgid "Hover over a zone"
-msgstr ""
+msgstr "Наведите курсор на зону CQ / зону ITU"
 
 #: application/views/awards/cq/index.php:20
 msgid "CQ Magazine WAZ Award"
@@ -3667,7 +3725,7 @@ msgstr "Сработано / Подтверждено"
 #: application/views/awards/waja/index.php:80
 #: application/views/awards/was/index.php:76
 msgid "Every band"
-msgstr "Все диапазоны"
+msgstr "Каждый диапазон"
 
 #: application/views/awards/dxcc/index.php:14
 msgid "DXCC Award"
@@ -3872,11 +3930,11 @@ msgstr "Эта карта отображает только QSO, проведё�
 #: application/views/awards/helvetia/index.php:3
 msgctxt "Switzerland Canton"
 msgid "Canton"
-msgstr ""
+msgstr "Кантон"
 
 #: application/views/awards/helvetia/index.php:4
 msgid "Hover over a canton"
-msgstr ""
+msgstr "Наведите курсор на кантон"
 
 #: application/views/awards/helvetia/index.php:20
 msgid "HELVETIA 26 | SWITZERLAND AWARD"
@@ -4159,11 +4217,11 @@ msgstr "Сравочник POTA"
 #: application/views/awards/rac/index.php:3
 msgctxt "Canada Province"
 msgid "Province"
-msgstr ""
+msgstr "Провинция"
 
 #: application/views/awards/rac/index.php:4
 msgid "Hover over a province"
-msgstr ""
+msgstr "Наведите курсор на провинцию"
 
 #: application/views/awards/rac/index.php:106
 msgid "Show RAC Map"
@@ -4338,11 +4396,11 @@ msgstr "Квадраты WAB"
 #: application/views/awards/waja/index.php:3
 msgctxt "Japan Prefecture"
 msgid "Prefecture"
-msgstr ""
+msgstr "Префектура"
 
 #: application/views/awards/waja/index.php:4
 msgid "Hover over a prefecture"
-msgstr ""
+msgstr "Наведите курсор на префектуру"
 
 #: application/views/awards/waja/index.php:19
 msgid "WAJA - Worked All Japan prefectures Award"
@@ -4380,11 +4438,11 @@ msgstr "Префектура"
 #: application/views/awards/was/index.php:3
 msgctxt "USA State"
 msgid "State"
-msgstr ""
+msgstr "Штат"
 
 #: application/views/awards/was/index.php:4
 msgid "Hover over a state"
-msgstr ""
+msgstr "Наведите курсор на штат"
 
 #: application/views/awards/was/index.php:20
 msgid "WAS Award"
@@ -5021,7 +5079,7 @@ msgstr "Тип обмена"
 
 #: application/views/contesting/index.php:16
 msgid "Exchange"
-msgstr "Обмен"
+msgstr "Контрольный номер"
 
 #: application/views/contesting/index.php:18
 msgid "Serial"
@@ -5195,6 +5253,7 @@ msgstr "Введите собственные настройки Cron"
 
 #: application/views/cron/edit.php:74
 #: application/views/interface_assets/footer.php:35
+#: application/views/user/index.php:152
 msgid "Cancel"
 msgstr "Отмена"
 
@@ -5742,6 +5801,8 @@ msgstr ""
 #, php-format
 msgid "Check this wiki article %shere%s for more information."
 msgstr ""
+"Проверьте эту статью на вики %sздесь%s для получения дополнительной "
+"информации."
 
 #: application/views/debug/index.php:48
 #, php-format
@@ -6115,7 +6176,7 @@ msgstr "Данные QSO"
 #: application/views/distances/index.php:9
 #, php-format
 msgid "contacts were plotted.%s Your furthest contact was with"
-msgstr ""
+msgstr "контакты были нанесены на карту.%s Ваш самый дальний контакт был с"
 
 #: application/views/distances/index.php:10
 msgid "in gridsquare"
@@ -6518,7 +6579,7 @@ msgstr "Режим распространения не поддерживает�
 
 #: application/views/interface_assets/footer.php:47
 msgid "No states for this DXCC available"
-msgstr ""
+msgstr "Для этого DXCC нет доступных штатов."
 
 #: application/views/interface_assets/footer.php:129
 #: application/views/interface_assets/header.php:434
@@ -6606,16 +6667,16 @@ msgstr "Позывной: "
 
 #: application/views/interface_assets/footer.php:726
 msgid "Count: "
-msgstr ""
+msgstr "Всего: "
 
 #: application/views/interface_assets/footer.php:727
 msgid "Grids: "
-msgstr ""
+msgstr "Квадратов: "
 
 #: application/views/interface_assets/footer.php:1162
 #, php-format
 msgid "You're not logged in. Please %slogin%s"
-msgstr ""
+msgstr "Вы не вошли в систему. Пожалуйста, %sвойдите%s"
 
 #: application/views/interface_assets/footer.php:1368
 #: application/views/interface_assets/footer.php:1372
@@ -7805,60 +7866,60 @@ msgstr "Имеющиеся сертификаты"
 msgid "Upload Certificate"
 msgstr "Загрузить сертификат"
 
-#: application/views/lotw_views/index.php:41
+#: application/views/lotw_views/index.php:37
 msgid "QSO Start Date"
 msgstr "Дата начала QSO"
 
-#: application/views/lotw_views/index.php:42
+#: application/views/lotw_views/index.php:38
 msgid "QSO End Date"
 msgstr "Дата окончания QSO"
 
-#: application/views/lotw_views/index.php:43
+#: application/views/lotw_views/index.php:39
 msgid "Date Created"
 msgstr "Дата создания"
 
-#: application/views/lotw_views/index.php:44
+#: application/views/lotw_views/index.php:40
 msgid "Date Expires"
 msgstr "Дата окончания срока действия"
 
-#: application/views/lotw_views/index.php:46
+#: application/views/lotw_views/index.php:42
 #: application/views/view_log/qso.php:404
 msgid "Last Upload"
 msgstr "Последняя загрузка"
 
-#: application/views/lotw_views/index.php:91
+#: application/views/lotw_views/index.php:87
 msgid "Expired"
 msgstr "Истёк"
 
-#: application/views/lotw_views/index.php:93
+#: application/views/lotw_views/index.php:89
 msgid "Expiring"
 msgstr "Истекает"
 
-#: application/views/lotw_views/index.php:105
+#: application/views/lotw_views/index.php:101
 #, php-format
 msgid "Last success: %s"
 msgstr "Последнее успеное: %s"
 
-#: application/views/lotw_views/index.php:108
+#: application/views/lotw_views/index.php:104
 #, php-format
 msgid "Last fail: %s"
 msgstr "Последнее неуспешное: %s"
 
-#: application/views/lotw_views/index.php:114
+#: application/views/lotw_views/index.php:110
 msgid "Not Synced"
 msgstr "Не синхронизирован"
 
-#: application/views/lotw_views/index.php:129
+#: application/views/lotw_views/index.php:125
 msgid "You need to upload some LoTW p12 certificates to use this area."
 msgstr ""
 "Вам необходимо загрузить сертификат LoTW в формате p12 для использования "
 "этих функций."
 
-#: application/views/lotw_views/index.php:144
+#: application/views/lotw_views/index.php:140
 msgid "Information"
 msgstr "Информация"
 
-#: application/views/lotw_views/index.php:149
+#: application/views/lotw_views/index.php:145
 msgid "Manual Sync"
 msgstr "Ручная синхронизация"
 
@@ -8418,7 +8479,7 @@ msgstr "Есть ли дополнительная информация, о ко
 #: application/views/oqrs/request.php:60
 #: application/views/oqrs/request_grouped.php:64
 #: application/views/oqrs/showrequests.php:87
-#: application/views/user/main.php:48 application/views/user/profile.php:24
+#: application/views/user/index.php:48 application/views/user/profile.php:24
 msgid "E-mail"
 msgstr "Емэйл"
 
@@ -9540,6 +9601,7 @@ msgid ""
 "If you did operate from a new location, first create a new %sStation "
 "Location%s"
 msgstr ""
+"Если вы работали с нового места, сначала создайте новое %sStation Location%s"
 
 #: application/views/simplefle/index.php:112
 msgid "e.g. OK2CQR"
@@ -9560,7 +9622,7 @@ msgstr "Референции"
 #: application/views/simplefle/index.php:160
 #, php-format
 msgid "The Refs can be either %sS%sOTA, %sI%sOTA, %sP%sOTA, or %sW%sWFF"
-msgstr ""
+msgstr "Рефы могут быть либо %sS%sOTA, %sI%sOTA, %sP%sOTA, либо %sW%sWFF"
 
 #: application/views/simplefle/index.php:167
 msgid "Reload QSO List"
@@ -9651,6 +9713,8 @@ msgid ""
 "A full summary of all commands and the necessary syntax can be found in "
 "%sthis article%s of our Wiki."
 msgstr ""
+"Полное описание всех команд и необходимого синтаксиса можно найти в %sэтой "
+"статье%s нашей Вики."
 
 #: application/views/station_profile/create.php:51
 #: application/views/station_profile/edit.php:60
@@ -10401,6 +10465,8 @@ msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
+"Нажмите здесь на «Добавить тему» и введите необходимые данные. Введите имена "
+"файлов для логотипов %sбез%s расширения файла «.png»"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
@@ -10524,6 +10590,9 @@ msgid ""
 "QSOs. Depending on the number of QSOs this might take some time to execute. "
 "Please be patient."
 msgstr ""
+"Используйте эту кнопку, чтобы обновить информацию о расстоянии для всех "
+"ваших QSO. В зависимости от количества QSO это может занять некоторое время. "
+"Пожалуйста, будьте терпеливы."
 
 #: application/views/user/delete.php:5
 msgid "Delete User Account"
@@ -10955,6 +11024,133 @@ msgstr "Забыли пароль?"
 msgid "You can reset your password here."
 msgstr "Вы можете сбросить свой пароль здесь."
 
+#: application/views/user/index.php:2
+msgid "Do you really want to send this user a password-reset link?"
+msgstr ""
+"Вы действительно хотите отправить этому пользователю ссылку для сброса "
+"пароля?"
+
+#: application/views/user/index.php:6
+msgid "Please Wait ..."
+msgstr "Пожалуйста подождите..."
+
+#: application/views/user/index.php:9
+msgid "Password-reset e-mail sent to user:"
+msgstr "Письма с ссылкой для спроса пароля отправлено пользователю:"
+
+#: application/views/user/index.php:30
+msgid "User List"
+msgstr "Список пользователей"
+
+#: application/views/user/index.php:33
+msgid "Wavelog needs at least one user configured in order to operate."
+msgstr ""
+"Для работы Wavelog требуется хотя наличие хотя бы одного пользовательского "
+"аккаунта."
+
+#: application/views/user/index.php:34
+msgid ""
+"Users can be assigned roles which give them different permissions, such as "
+"adding QSOs to the logbook and accessing Wavelog APIs."
+msgstr ""
+"Пользователям могут быть назначены роли, которые предоставляют им различные "
+"права, например, добавление QSO в журнал и доступ к API Wavelog."
+
+#: application/views/user/index.php:35
+msgid ""
+"The currently logged-in user is displayed at the upper-right of each page."
+msgstr ""
+"Текущий вошедший в систему пользователь отображается в правом верхнем углу "
+"каждой страницы."
+
+#: application/views/user/index.php:36
+msgid ""
+"With the password reset button, you can send a user an email containing a "
+"link to reset their password. To achieve this, ensure that the email "
+"settings in the global options are configured correctly."
+msgstr ""
+"С помощью кнопки сброса пароля вы можете отправить пользователю письмо, "
+"содержащее ссылку для сброса пароля. Для этого убедитесь, что параметры "
+"электронной почты в глобальных параметрах настроены правильно."
+
+#: application/views/user/index.php:38
+msgid "Create user"
+msgstr "Добавить пользователя"
+
+#: application/views/user/index.php:39
+msgid "Refresh List"
+msgstr "Обновить список"
+
+#: application/views/user/index.php:49
+msgid "Type"
+msgstr "Роль"
+
+#: application/views/user/index.php:50
+msgid "Last seen"
+msgstr "Последний логин"
+
+#: application/views/user/index.php:53
+msgid "Password Reset"
+msgstr "Сброс пароля"
+
+#: application/views/user/index.php:55 application/views/user/index.php:150
+msgid "Impersonate"
+msgstr ""
+
+#: application/views/user/index.php:82
+msgid "Never"
+msgstr "Никогда"
+
+#: application/views/user/index.php:86
+msgid "Locations"
+msgstr "Профилей QTH"
+
+#: application/views/user/index.php:88
+msgid "Logbooks"
+msgstr "Журналов"
+
+#: application/views/user/index.php:90
+msgid "Last QSO:"
+msgstr "Последнее QSO:"
+
+#: application/views/user/index.php:92
+msgid "No QSOs in Log"
+msgstr "Количество QSO в журнале"
+
+#: application/views/user/index.php:111
+msgid "Impersonate User"
+msgstr ""
+
+#: application/views/user/index.php:116
+msgid ""
+"You are about to impersonate another user. To return to your admin account, "
+"you'll need to logout and log back in as admin."
+msgstr ""
+
+#: application/views/user/index.php:117
+msgid "Do you want to impersonate this user?"
+msgstr ""
+
+#: application/views/user/index.php:121
+msgid "Username:"
+msgstr ""
+
+#: application/views/user/index.php:125
+msgid "Name:"
+msgstr ""
+
+#: application/views/user/index.php:129
+msgid "Callsign:"
+msgstr ""
+
+#: application/views/user/index.php:133
+msgid "E-Mail:"
+msgstr ""
+
+#: application/views/user/index.php:137
+msgid "Last Seen:"
+msgstr ""
+
 #: application/views/user/login.php:36
 msgid "MAINTENANCE MODE"
 msgstr "РЕЖИМ ОБСЛУЖИВАНИЯ"
@@ -10970,7 +11166,7 @@ msgstr "Эта демонстрация будет сбрасываться ка
 #: application/views/user/login.php:60
 #, php-format
 msgid "More Information about Wavelog on %sGithub%s."
-msgstr ""
+msgstr "Больше информации о Wavelog на %sGithub%s."
 
 #: application/views/user/login.php:79
 msgid "Forgot your password?"
@@ -10979,95 +11175,6 @@ msgstr "Забыли пароль?"
 #: application/views/user/login.php:85
 msgid "Keep me logged in"
 msgstr "Оставаться в системе"
-
-#: application/views/user/main.php:2
-msgid "Do you really want to send this user a password-reset link?"
-msgstr ""
-"Вы действительно хотите отправить этому пользователю ссылку для сброса "
-"пароля?"
-
-#: application/views/user/main.php:6
-msgid "Please Wait ..."
-msgstr "Пожалуйста подождите..."
-
-#: application/views/user/main.php:9
-msgid "Password-reset e-mail sent to user:"
-msgstr "Письма с ссылкой для спроса пароля отправлено пользователю:"
-
-#: application/views/user/main.php:30
-msgid "User List"
-msgstr "Список пользователей"
-
-#: application/views/user/main.php:33
-msgid "Wavelog needs at least one user configured in order to operate."
-msgstr ""
-"Для работы Wavelog требуется хотя наличие хотя бы одного пользовательского "
-"аккаунта."
-
-#: application/views/user/main.php:34
-msgid ""
-"Users can be assigned roles which give them different permissions, such as "
-"adding QSOs to the logbook and accessing Wavelog APIs."
-msgstr ""
-"Пользователям могут быть назначены роли, которые предоставляют им различные "
-"права, например, добавление QSO в журнал и доступ к API Wavelog."
-
-#: application/views/user/main.php:35
-msgid ""
-"The currently logged-in user is displayed at the upper-right of each page."
-msgstr ""
-"Текущий вошедший в систему пользователь отображается в правом верхнем углу "
-"каждой страницы."
-
-#: application/views/user/main.php:36
-msgid ""
-"With the password reset button, you can send a user an email containing a "
-"link to reset their password. To achieve this, ensure that the email "
-"settings in the global options are configured correctly."
-msgstr ""
-"С помощью кнопки сброса пароля вы можете отправить пользователю письмо, "
-"содержащее ссылку для сброса пароля. Для этого убедитесь, что параметры "
-"электронной почты в глобальных параметрах настроены правильно."
-
-#: application/views/user/main.php:38
-msgid "Create user"
-msgstr "Добавить пользователя"
-
-#: application/views/user/main.php:39
-msgid "Refresh List"
-msgstr "Обновить список"
-
-#: application/views/user/main.php:49
-msgid "Type"
-msgstr "Роль"
-
-#: application/views/user/main.php:50
-msgid "Last seen"
-msgstr "Последний логин"
-
-#: application/views/user/main.php:53
-msgid "Password Reset"
-msgstr "Сброс пароля"
-
-#: application/views/user/main.php:79
-msgid "Never"
-msgstr "Никогда"
-
-#: application/views/user/main.php:83
-msgid "Locations"
-msgstr "Профилей QTH"
-
-#: application/views/user/main.php:85
-msgid "Logbooks"
-msgstr "Журналов"
-
-#: application/views/user/main.php:87
-msgid "Last QSO:"
-msgstr "Последнее QSO:"
-
-#: application/views/user/main.php:89
-msgid "No QSOs in Log"
-msgstr "Количество QSO в журнале"
 
 #: application/views/user/profile.php:19
 msgid "Level"
