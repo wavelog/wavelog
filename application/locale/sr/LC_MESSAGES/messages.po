@@ -9,10 +9,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-08-18 07:28+0000\n"
-"PO-Revision-Date: 2024-08-18 19:11+0000\n"
+"PO-Revision-Date: 2024-08-20 05:18+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
-"Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/sr/>\n"
+"Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/sr/>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -4808,6 +4808,8 @@ msgstr "Prikaži sve prelete"
 #: application/views/components/hamsat/table.php:14
 msgid "Private feed key empty. Please set the feed key in your profile."
 msgstr ""
+"Lični ključ za snabdevanje je prazan. Molimo podesite ključ za snabdevanje u "
+"vašem profilu."
 
 #: application/views/components/hamsat/table.php:19
 msgid "No upcoming activations found. Please check back later."
@@ -5721,63 +5723,69 @@ msgid ""
 "locked due to a previously failed process. Delete the file %s to force the "
 "migration to run again."
 msgstr ""
+"Trenutna migracija nije odgovarajuće verzije. Ponovo učitajte ovu stranicu "
+"nakon %s sekundi. Ako i dalje vidite ovo upozorenje, najverovatnije da je "
+"vaša migracija zaključena zbog prethodno neuspelog pokušaja. Izbrišite "
+"datoteku %s da iznudite ponovni početak migracije."
 
 #: application/views/debug/index.php:47
 #, php-format
 msgid "Check this wiki article %shere%s for more information."
-msgstr ""
+msgstr "Proverite ovaj wiki članak %sovde%s za više informacija."
 
 #: application/views/debug/index.php:48
 #, php-format
 msgid "Current migration is %s"
-msgstr ""
+msgstr "Trenutna migracija je %s"
 
 #: application/views/debug/index.php:49
 #, php-format
 msgid "Migration should be %s"
-msgstr ""
+msgstr "Migracija bi trebalo da je %s"
 
 #: application/views/debug/index.php:54
 msgid "Environment"
-msgstr ""
+msgstr "Okruženje"
 
 #: application/views/debug/index.php:62
 msgid "Total QSO on this instance"
-msgstr ""
+msgstr "Ukupno QSO u ovoj verziji"
 
 #: application/views/debug/index.php:70
 msgid "Server Information"
-msgstr ""
+msgstr "Informacije o serveru"
 
 #: application/views/debug/index.php:74
 msgid "Server Software"
-msgstr ""
+msgstr "Softver na serveru"
 
 #: application/views/debug/index.php:79
 msgid "PHP Version"
-msgstr ""
+msgstr "PHP verzija"
 
 #: application/views/debug/index.php:85
 msgid "Deprecated"
-msgstr ""
+msgstr "Zastarelo"
 
 #: application/views/debug/index.php:92
 msgid "MySQL Version"
-msgstr ""
+msgstr "MySQL verzija"
 
 #: application/views/debug/index.php:96
 msgid "Codeigniter Version"
-msgstr ""
+msgstr "Codeigniter verzija"
 
 #: application/views/debug/index.php:104
 msgid "Folder Permissions"
-msgstr ""
+msgstr "Dozvole fascikle"
 
 #: application/views/debug/index.php:106
 msgid ""
 "This verifies that the folders used by Wavelog have read and write "
 "permissions by PHP."
 msgstr ""
+"Ovim potvrđujemo da fascikle koje koristi Wavelog imaju PHP dozvole za "
+"iščitavanje i upisivanje."
 
 #: application/views/debug/index.php:112 application/views/debug/index.php:123
 #: application/views/debug/index.php:134 application/views/debug/index.php:145
@@ -5793,43 +5801,46 @@ msgstr "Neuspešno"
 
 #: application/views/debug/index.php:169
 msgid "Config Maintenance"
-msgstr ""
+msgstr "Održavanje konfiguracije"
 
 #: application/views/debug/index.php:175
 msgid "Your authentication mode is outdated and possibly unsafe"
-msgstr ""
+msgstr "Vaš način proveravanja je zastareo i verovatno nesiguran"
 
 #: application/views/debug/index.php:177 application/views/debug/index.php:194
 #, php-format
 msgid "Please edit your %s File:"
-msgstr ""
+msgstr "Molimo uredite vašu %s datoteku:"
 
 #: application/views/debug/index.php:178
 msgid ""
 "Go to your application/config Folder and compare config.sample.php with your "
 "config.php"
 msgstr ""
+"Idite u fasciklu application/config i uporedite datoteku config.sample.php "
+"sa vašom config.php datotekom"
 
 #: application/views/debug/index.php:179
 #, php-format
 msgid "Change %s to the value %s (Strongly recommended)"
-msgstr ""
+msgstr "Promenite %s u vrednost %s (stogo preporučeno)"
 
 #: application/views/debug/index.php:185
 msgid "Authentication Mode is set correctly"
-msgstr ""
+msgstr "Način proveravanja je postavljen ispravno"
 
 #: application/views/debug/index.php:185 application/views/debug/index.php:202
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: application/views/debug/index.php:192
 msgid "You use the default encryption key. You should change it!"
 msgstr ""
+"Koristite podrazumevani ključ za enkripciju. Trebalo bi da ga promenite!"
 
 #: application/views/debug/index.php:195
 msgid "This will also enable the 'Keep me logged in' feature."
-msgstr ""
+msgstr "Ovim ćete omogućiti i opcioju 'Drži me prijavljenog'."
 
 #: application/views/debug/index.php:196
 #, php-format
@@ -5837,24 +5848,29 @@ msgid ""
 "Change the value of %s to a new encryption key other then "
 "'flossie1234555541'. Choose a safe and long password. (Strongly recommended)"
 msgstr ""
+"Promenite vrednost %s u novi ključ za enkripciju različit od "
+"'flossie1234555541'. Izaberite sigurnu i dugačku lozinku. (strogo "
+"preporučeno)"
 
 #: application/views/debug/index.php:202
 msgid "You do not use the default encryption key"
-msgstr ""
+msgstr "Ne koristite podrazumevani ključ za enkripciju"
 
 #: application/views/debug/index.php:209
 msgid "Migrate Userdata"
-msgstr ""
+msgstr "Migrirajte Userdata"
 
 #: application/views/debug/index.php:211
 msgid ""
 "Here you can migrate existing QSL cards and eQSL cards to the new userdata "
 "folder."
 msgstr ""
+"Ovde možete migrirati postojeće QSL karte i eQSL karte u novu userdata "
+"fasciklu."
 
 #: application/views/debug/index.php:224
 msgid "Modules"
-msgstr ""
+msgstr "Moduli"
 
 #: application/views/debug/index.php:230 application/views/debug/index.php:241
 #: application/views/debug/index.php:252 application/views/debug/index.php:263
@@ -5870,56 +5886,56 @@ msgstr "Nije instalirano"
 
 #: application/views/debug/index.php:283 application/views/qso/index.php:654
 msgid "Settings"
-msgstr ""
+msgstr "Podešavanja"
 
 #: application/views/debug/index.php:412
 msgid "Git Information"
-msgstr ""
+msgstr "Git informacije"
 
 #: application/views/debug/index.php:416
 msgid "Branch"
-msgstr ""
+msgstr "Grana"
 
 #: application/views/debug/index.php:427 application/views/debug/index.php:438
 #: application/views/debug/index.php:448
 msgid "n/a"
-msgstr ""
+msgstr "n/a"
 
 #: application/views/debug/index.php:433
 msgid "Commit"
-msgstr ""
+msgstr "Uradite"
 
 #: application/views/debug/index.php:443
 msgid "Tag"
-msgstr ""
+msgstr "Tag"
 
 #: application/views/debug/index.php:453
 msgid "Last Fetch"
-msgstr ""
+msgstr "Posljednje dobavljanje"
 
 #: application/views/debug/index.php:465
 msgid "Check for new version"
-msgstr ""
+msgstr "Proverite da li postoji nova verzija"
 
 #: application/views/debug/index.php:466
 msgid "Update now"
-msgstr ""
+msgstr "Ažurirajte sada"
 
 #: application/views/debug/index.php:484
 msgid "File download date"
-msgstr ""
+msgstr "Datum preuzimanja datoteke"
 
 #: application/views/debug/index.php:488
 msgid "File"
-msgstr ""
+msgstr "Datoteka"
 
 #: application/views/debug/index.php:489
 msgid "Last update"
-msgstr ""
+msgstr "Poslednje ažuriranje"
 
 #: application/views/debug/index.php:493
 msgid "DXCC update from Club Log"
-msgstr ""
+msgstr "DXCC ažuriranje sa ClubLoga"
 
 #: application/views/debug/index.php:495 application/views/debug/index.php:501
 #: application/views/debug/index.php:506 application/views/debug/index.php:511
@@ -5927,44 +5943,44 @@ msgstr ""
 #: application/views/debug/index.php:526
 #: application/views/station_profile/edit.php:42
 msgid "Update"
-msgstr ""
+msgstr "Ažuriranje"
 
 #: application/views/debug/index.php:499
 msgid "DOK file download"
-msgstr ""
+msgstr "Preuzimanje DOK datoteke"
 
 #: application/views/debug/index.php:504
 msgid "LoTW users download"
-msgstr ""
+msgstr "Preuzimanje LoTW korisnika"
 
 #: application/views/debug/index.php:509
 msgid "POTA file download"
-msgstr ""
+msgstr "Preuzimanje POTA datoteke"
 
 #: application/views/debug/index.php:514
 msgid "SCP file download"
-msgstr ""
+msgstr "Preuzimanje SCP datoteke"
 
 #: application/views/debug/index.php:519
 msgid "SOTA file download"
-msgstr ""
+msgstr "Preuzimanje SOTA datoteke"
 
 #: application/views/debug/index.php:524
 msgid "WWFF file download"
-msgstr ""
+msgstr "Preuzimanje WWFF datoteke"
 
 #: application/views/debug/index.php:533
 msgid "QSO-DB Maintenance"
-msgstr ""
+msgstr "Održavanje QSO-DB"
 
 #: application/views/debug/index.php:537
 #, php-format
 msgid "The Database contains %d QSO without a station-profile (location)"
 msgid_plural ""
 "The Database contains %d QSOs without a station-profile (location)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Baza podataka sadrži%d QSO bez staničnog profila (lokacije)"
+msgstr[1] "Baza podataka sadrži%d QSOa bez staničnog profila (lokacije)"
+msgstr[2] "Baza podataka sadrži%d QSOa bez staničnog profila (lokacije)"
 
 #: application/views/debug/index.php:550
 #: application/views/public_search/result.php:17
@@ -5973,28 +5989,30 @@ msgstr[2] ""
 #: application/views/stationsetup/linkedlocations.php:32
 #: application/views/stationsetup/stationsetup.php:123
 msgid "Station Callsign"
-msgstr ""
+msgstr "Pozivni znak stanice"
 
 #: application/views/debug/index.php:575
 msgid "Please mark QSOs and reassign them to an existing station location:"
 msgstr ""
+"Molimo označite veze i ponovo ih dodelite postojećoj staničnoj lokaciji:"
 
 #: application/views/debug/index.php:583
 msgctxt "Stationlocation"
 msgid "Target Location"
-msgstr ""
+msgstr "Odredišna lokacija"
 
 #: application/views/debug/index.php:584 application/views/debug/index.php:595
 msgid "Reassign"
-msgstr ""
+msgstr "Ponovo doznači"
 
 #: application/views/debug/index.php:604
 msgid "Every QSO in your Database is assigned to a station-profile (location)"
 msgstr ""
+"Svaki QSO u vašoj bazi podataka doznačen je staničnom profilu (lokaciji)"
 
 #: application/views/debug/index.php:604
 msgid "Everything ok"
-msgstr ""
+msgstr "Sve je u redu"
 
 #: application/views/debug/index.php:629
 msgid "Albanian"
@@ -6084,73 +6102,75 @@ msgstr "Turski"
 #: application/views/interface_assets/footer.php:30
 #: application/views/simplefle/index.php:68
 msgid "QSO Data"
-msgstr ""
+msgstr "QSO podaci"
 
 #: application/views/distances/index.php:9
 #, php-format
 msgid "contacts were plotted.%s Your furthest contact was with"
-msgstr ""
+msgstr "kontakti su iscrtani. %s Vaš najdalji kontakt je bio sa"
 
 #: application/views/distances/index.php:10
 msgid "in gridsquare"
-msgstr ""
+msgstr "u polju"
 
 #: application/views/distances/index.php:11
 msgid "the distance was"
-msgstr ""
+msgstr "rastojanje je bilo"
 
 #: application/views/distances/index.php:14
 msgid "Callsign(s) worked (max 5 shown)"
-msgstr ""
+msgstr "Urađeni pozivni znakovi (prikazuje se max 5)"
 
 #: application/views/distances/index.php:19
 msgid "Band selection"
-msgstr ""
+msgstr "Izbor opsega"
 
 #: application/views/dxatlas/index.php:3
 msgid "DX Atlas Export"
-msgstr ""
+msgstr "Izvoz za DX Atlas"
 
 #: application/views/dxatlas/index.php:7
 msgid ""
 "Export your logbook for use in DX Atlas to display worked / confirmed "
 "gridsquares."
 msgstr ""
+"Izvezite vaš dnevnik za upotrebu u DX Atlasu kako biste prikazali rađena / "
+"potvrđena polja."
 
 #: application/views/dxatlas/index.php:11 application/views/kml/index.php:11
 msgid "Only QSOs with a gridsquare defined will be exported!"
-msgstr ""
+msgstr "Biće izvezeni samo QSO sa definisanim poljem!"
 
 #: application/views/dxcalendar/index.php:9
 msgid "Date from"
-msgstr ""
+msgstr "Od datuma"
 
 #: application/views/dxcalendar/index.php:10
 msgid "Date to"
-msgstr ""
+msgstr "Do datuma"
 
 #: application/views/dxcalendar/index.php:13
 #: application/views/view_log/qso.php:366
 msgid "QSL Info"
-msgstr ""
+msgstr "QSL info"
 
 #: application/views/dxcalendar/index.php:14
 msgid "Source"
-msgstr ""
+msgstr "Izvor"
 
 #: application/views/eqsl/analysis.php:11 application/views/eqsl/download.php:9
 #: application/views/eqsl/export.php:8 application/views/eqsl/import.php:7
 #: application/views/eqsl/result.php:11 application/views/eqsl/tools.php:7
 #: application/views/qrz/export.php:14
 msgid "Download QSOs"
-msgstr ""
+msgstr "Preuzimanje QSOa"
 
 #: application/views/eqsl/analysis.php:14
 #: application/views/eqsl/download.php:13 application/views/eqsl/export.php:12
 #: application/views/eqsl/import.php:11 application/views/eqsl/result.php:14
 #: application/views/eqsl/tools.php:11
 msgid "Upload QSOs"
-msgstr ""
+msgstr "Učitavanje QSOa"
 
 #: application/views/eqsl/analysis.php:17
 #: application/views/eqsl/download.php:17 application/views/eqsl/export.php:16
@@ -6158,51 +6178,55 @@ msgstr ""
 #: application/views/eqsl/tools.php:15
 #: application/views/interface_assets/header.php:243
 msgid "Tools"
-msgstr ""
+msgstr "Alatke"
 
 #: application/views/eqsl/analysis.php:20
 #: application/views/eqsl/download.php:20 application/views/eqsl/export.php:19
 #: application/views/eqsl/import.php:18 application/views/eqsl/result.php:20
 #: application/views/eqsl/tools.php:19
 msgid "Download eQSL cards"
-msgstr ""
+msgstr "Preuzimanje eQSL karata"
 
 #: application/views/eqsl/analysis.php:40
 #: application/views/eqsl/download.php:40 application/views/eqsl/result.php:37
 msgid "Submode"
-msgstr ""
+msgstr "Podvrsta rada"
 
 #: application/views/eqsl/analysis.php:41
 msgid "Log Status"
-msgstr ""
+msgstr "Status dnevnika"
 
 #: application/views/eqsl/analysis.php:42 application/views/eqsl/result.php:38
 msgid "eQSL Status"
-msgstr ""
+msgstr "eQSL status"
 
 #: application/views/eqsl/analysis.php:62
 msgid "There are no QSO confirmations waiting for you at eQSL.cc"
-msgstr ""
+msgstr "Nema QSO potvrda koje vas čekaju na eQSL.cc"
 
 #: application/views/eqsl/download.php:31
 msgid ""
 "Below is a table of QSOs that have been confirmed on eQSL but QSL images "
 "have not been downloaded yet."
 msgstr ""
+"Ispod je tabela QSOa koji su potvrđeni na eQSL ali slika QSL karte još uvek "
+"nije preuzeta."
 
 #: application/views/eqsl/download.php:43
 msgid "Action"
-msgstr ""
+msgstr "Akcija"
 
 #: application/views/eqsl/download.php:60
 msgid "View/Download"
-msgstr ""
+msgstr "Pregledajte/Preuzmite"
 
 #: application/views/eqsl/download.php:71 application/views/eqsl/import.php:53
 msgid ""
 "Wavelog will use the eQSL credentials from your Wavelog user profile to "
 "connect to eQSL and download confirmations."
 msgstr ""
+"Wavelog će koristiti eQSL kredencijale iz vašeg Wavelog korisničkog profila "
+"kako bi se povezao na eQSL i preuzeo potvrde."
 
 #: application/views/eqsl/download.php:73
 msgid ""
@@ -6211,44 +6235,55 @@ msgid ""
 "to call this function several times depending on the amount of outstanding "
 "cards. This may run into a script timeout depending on the PHP configuration."
 msgstr ""
+"Zbog brzine preuzimanja od oko 10 sekundi po jednoj eQSL karti, izvršenje "
+"ove funkcije će zahtevati dugačko vreme kompletiranja. Stoga je moguće da "
+"ćete više puta morati pozvati ovu funkciju, u zavisnosti o broja karata. U "
+"zavisnosti od PHP konfiguracije, moguće je da ćete ući u istek vremena za "
+"izvršenje skripte."
 
 #: application/views/eqsl/download.php:81
 msgid ""
 "There are no QSOs whose eQSL card images have not yet been downloaded. Go "
 "log some more QSOs!"
 msgstr ""
+"Ne postoje QSOi čije eQSL karte već nisu preuzete. Logirajte neke veze u "
+"dnevnik!"
 
 #: application/views/eqsl/export.php:31
 msgid "Below is a table of QSOs that have not yet been sent to eQSL."
-msgstr ""
+msgstr "Ispod je tabela QSOa koji još nisu poslati na eQSL."
 
 #: application/views/eqsl/export.php:33
 msgid ""
 "Please make sure the 'eQSL QTH Nickname' field is set in your station "
 "profile and that the value matches the QTH Nickname you set within eQSL."
 msgstr ""
+"Molimo uverite se da je 'eQSL QTH Nickname' polje podešeno unutar vašeg "
+"staničnog profila i da se ta vrednost poklapa sa QTH Nickname poljem koje "
+"ste podesili u eQSL."
 
 #: application/views/eqsl/export.php:37
 msgid "Clicking 'Upload QSOs' will send QSO information to eQSL.cc."
-msgstr ""
+msgstr "Klikom na 'Učitaj QSOe' ćete poslati QSO informacije na eQSL.cc."
 
 #: application/views/eqsl/export.php:46
 msgid "The following QSOs were sent to eQSL."
-msgstr ""
+msgstr "Sledeći QSOi su poslati na eQSL."
 
 #: application/views/eqsl/export.php:51
 msgid ""
 "There are no QSOs that need to be sent to eQSL at this time. Go log some "
 "more QSOs!"
 msgstr ""
+"U ovom trenutku nema QSOova koji bi bili poslati na eQSL. Logujte neke veze!"
 
 #: application/views/eqsl/import.php:30
 msgid "Import from file..."
-msgstr ""
+msgstr "Uvoz iz datoteke..."
 
 #: application/views/eqsl/import.php:33
 msgid "Download Inbox"
-msgstr ""
+msgstr "Preuzmanje Inboksa"
 
 #: application/views/eqsl/import.php:33
 #, php-format
@@ -6256,44 +6291,48 @@ msgid ""
 "Upload the Exported ADIF file from eQSL from the %s page, to mark QSOs as "
 "confirmed on eQSL."
 msgstr ""
+"Učitajte izvezenu ADIF datoteku iz eQSL-a sa stranice %s, kako biste QSOe "
+"označili potvrđenim na eQSL."
 
 #: application/views/eqsl/import.php:34
 msgid "Choose Station(location) eQSL File belongs to:"
-msgstr ""
+msgstr "Izaberite stanicu (lokaciju) kojoj pripada eQSL datoteka:"
 
 #: application/views/eqsl/import.php:45 application/views/lotw/import.php:25
 msgid "Log files must have the file type .adi"
-msgstr ""
+msgstr "Datoteka dnevnika mora biti vrste .adi"
 
 #: application/views/eqsl/import.php:52
 msgid "Import directly from eQSL"
-msgstr ""
+msgstr "Uvoz direktno sa eQSL"
 
 #: application/views/eqsl/tools.php:27
 msgid ""
 "This does NOT upload any QSOs. It only marks QSOs as sent. If you use this "
 "button you need to upload them manually on the eQSL.cc website."
 msgstr ""
+"Ovo NEĆE učitati nijedan QSO. Ovo samo označava QSO kao poslate. Ako "
+"koristite ovo dugme treblo bi da ih učitate ručno na eQSL.cc web sajt."
 
 #: application/views/eqsl/tools.php:29
 msgid "Mark All QSOs as Sent to eQSL"
-msgstr ""
+msgstr "Označite sve QSOe kao poslate na eQSL"
 
 #: application/views/eqsl/tools.php:29
 msgid ""
 "Use this if you have lots of QSOs to upload to eQSL it will save the server "
 "timing out."
-msgstr ""
+msgstr "Koristite ovo ako ste ručno učitali sve vaše QSOe na eQSL."
 
 #: application/views/eqslcard/index.php:10
 #, php-format
 msgid "You are using %s of disk space to store eQSL Card assets"
-msgstr ""
+msgstr "Koristite %s prostora na disku za smještanje eQSL karata"
 
 #: application/views/eqslcard/index.php:34
 #: application/views/qslcard/index.php:33
 msgid "QSL Date"
-msgstr ""
+msgstr "QSL datum"
 
 #: application/views/eqslcard/index.php:60
 #: application/views/interface_assets/footer.php:2330
@@ -6303,7 +6342,7 @@ msgstr ""
 #: application/views/qslcard/index.php:66
 #: application/views/view_log/qso.php:614
 msgid "View"
-msgstr ""
+msgstr "Pregledaj"
 
 #: application/views/gridmap/index.php:38
 #: application/views/logbookadvanced/edit.php:14
@@ -6311,15 +6350,15 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:609
 #: application/views/logbookadvanced/useroptions.php:118
 msgid "Propagation"
-msgstr ""
+msgstr "Propagacije"
 
 #: application/views/gridmap/index.php:42
 msgid "None/Empty"
-msgstr ""
+msgstr "Ništa/Prazno"
 
 #: application/views/gridmap/index.php:43
 msgid "All except SAT"
-msgstr ""
+msgstr "Sve osim SAT"
 
 #: application/views/hamsat/index.php:22
 #, php-format
@@ -6327,87 +6366,95 @@ msgid ""
 "Cannot filter workable passes only without private feed key. Please set the "
 "feed key in %s."
 msgstr ""
+"Ne možemo napraviti filter samo mogućih preleta bez privatnog ključa za "
+"snabdevanje. Molimo podesite ključ za snabdevanje u %s."
 
 #: application/views/hamsat/index.php:22
 msgid "your profile"
-msgstr ""
+msgstr "vaš profil"
 
 #: application/views/hrdlog/export.php:10 application/views/qrz/export.php:10
 #: application/views/webadif/export.php:10
 msgid "Upload Logbook"
-msgstr ""
+msgstr "Učitavanje dnevnika"
 
 #: application/views/hrdlog/export.php:13 application/views/qrz/export.php:18
 #: application/views/webadif/export.php:13
 msgid "Mark QSOs"
-msgstr ""
+msgstr "Označi QSOe"
 
 #: application/views/hrdlog/export.php:22
 msgid ""
 "Here you can see all QSOs which have not been previously uploaded to a "
 "HRDLog logbook."
 msgstr ""
+"Ovde možete videti sve QSOe koji prethodno nisu bili učitani u HRDLog "
+"Logbook."
 
 #: application/views/hrdlog/export.php:23
 msgid ""
 "You need to set a HRDLog Logbook API Code in your station profile. Only "
 "station profiles with an API Key set are displayed."
 msgstr ""
+"Morate podesiti HRDLog Loogbook API kod u profilu vaše stanice. Prikazani su "
+"samo stanični profili sa API ključem."
 
 #: application/views/hrdlog/export.php:24
 #, php-format
 msgid "The Code can be requested at %s"
-msgstr ""
+msgstr "Kod možete zahtevati na %s"
 
 #: application/views/hrdlog/export.php:25
 #: application/views/webadif/export.php:34
 msgid "This might take a while as QSO uploads are processed sequentially."
-msgstr ""
+msgstr "Ovo može potrajati jer se učitavanje QSOa vrši sekvencijalno."
 
 #: application/views/hrdlog/export.php:34 application/views/qrz/export.php:38
 #: application/views/webadif/export.php:41
 msgid "Profile name"
-msgstr ""
+msgstr "Naziv profila"
 
 #: application/views/hrdlog/export.php:35
 #: application/views/oqrs/showrequests.php:86
 #: application/views/qrz/export.php:39 application/views/webadif/export.php:42
 msgid "Station callsign"
-msgstr ""
+msgstr "Pozivni znak stanice"
 
 #: application/views/hrdlog/export.php:36 application/views/qrz/export.php:40
 msgid "Edited QSOs not uploaded"
-msgstr ""
+msgstr "Uređeni QSOi nisu učitani"
 
 #: application/views/hrdlog/export.php:37 application/views/qrz/export.php:41
 #: application/views/webadif/export.php:43
 msgid "Total QSOs not uploaded"
-msgstr ""
+msgstr "Ukupan broj neučitanih QSOa"
 
 #: application/views/hrdlog/export.php:38 application/views/qrz/export.php:42
 #: application/views/webadif/export.php:44
 msgid "Total QSOs uploaded"
-msgstr ""
+msgstr "Ukupan broj učitanih QSOa"
 
 #: application/views/hrdlog/export.php:60
 msgid ""
 "No Station Locations with valid HRDlog-Settings found. Check the HRDlog "
 "Credentials in the Station Location Settings!"
 msgstr ""
+"Nisu pronađene stanične lokacije sa validnim HRDlog podešavanjima. Proverite "
+"HRDlog kredencijale u Podešavanjima staničnih lokacija!"
 
 #: application/views/hrdlog/export.php:87
 msgid "Mark QSOs as exported to HRDLog Logbook"
-msgstr ""
+msgstr "Označite QSOe izvezenima u HRDlog Logbook"
 
 #: application/views/hrdlog/mark_hrdlog.php:15
 #: application/views/qrz/mark_qrz.php:15
 #: application/views/webadif/mark_webadif.php:15
 msgid "Yay, it's done!"
-msgstr ""
+msgstr "Jeeej, urađeno je!"
 
 #: application/views/hrdlog/mark_hrdlog.php:16
 msgid "The QSOs are marked as exported to HRDLog Logbook."
-msgstr ""
+msgstr "QSOi su označeni kao izvezeni u HRDlog Logbook."
 
 #: application/views/interface_assets/footer.php:31
 #: application/views/search/search_result_ajax.php:404
@@ -6415,117 +6462,119 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:318
 #: application/views/view_log/qso.php:434
 msgid "Edit QSO"
-msgstr ""
+msgstr "Uredi QSO"
 
 #: application/views/interface_assets/footer.php:33
 msgid "Attention"
-msgstr ""
+msgstr "Pažnja"
 
 #: application/views/interface_assets/footer.php:36
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: application/views/interface_assets/footer.php:37
 msgid "Warning! Are you sure you want delete QSO with "
-msgstr ""
+msgstr "Upozorenje! Da li ste sigurni da želite obrisati QSO sa "
 
 #: application/views/interface_assets/footer.php:38
 #: application/views/user/edit.php:493
 msgid "Colors"
-msgstr ""
+msgstr "Boje"
 
 #: application/views/interface_assets/footer.php:40
 msgid "Worked not confirmed"
-msgstr ""
+msgstr "Rađene nepotvrđene"
 
 #: application/views/interface_assets/footer.php:41
 msgid "Not worked"
-msgstr ""
+msgstr "Ne rađene"
 
 #: application/views/interface_assets/footer.php:45
 #: application/views/qso/index.php:601
 #: application/views/visitor/layout/footer.php:245
 msgid "Clear"
-msgstr ""
+msgstr "Obriši"
 
 #: application/views/interface_assets/footer.php:46
 #: application/views/qso/edit_ajax.php:211
 #: application/views/qso/edit_ajax.php:512
 msgid "Propagation mode is not supported by LoTW. LoTW QSL fields disabled."
 msgstr ""
+"Vrsta propagacija nije podržana od strane LoTW. LoTW QSL polja su "
+"onemogućena."
 
 #: application/views/interface_assets/footer.php:47
 msgid "No states for this DXCC available"
-msgstr ""
+msgstr "Nema država dostupnih za ovu DXCC"
 
 #: application/views/interface_assets/footer.php:129
 #: application/views/interface_assets/header.php:434
 #: application/views/options/sidebar.php:11
 msgid "Version Info"
-msgstr ""
+msgstr "Informacija o verziji"
 
 #: application/views/interface_assets/footer.php:395
 msgid "Description:"
-msgstr ""
+msgstr "Opis:"
 
 #: application/views/interface_assets/footer.php:398
 msgid "Query description"
-msgstr ""
+msgstr "Opis upita"
 
 #: application/views/interface_assets/footer.php:414
 msgid "Your query has been saved!"
-msgstr ""
+msgstr "Vaš upit je sačuvan!"
 
 #: application/views/interface_assets/footer.php:416
 #: application/views/search/filter.php:46
 msgid "Edit queries"
-msgstr ""
+msgstr "Uredi upite"
 
 #: application/views/interface_assets/footer.php:418
 msgid "Stored queries:"
-msgstr ""
+msgstr "Sačuvani upiti:"
 
 #: application/views/interface_assets/footer.php:423
 #: application/views/search/filter.php:60
 msgid "Run Query"
-msgstr ""
+msgstr "Pokreni upit"
 
 #: application/views/interface_assets/footer.php:435
 #: application/views/interface_assets/footer.php:564
 #: application/views/interface_assets/footer.php:628
 msgid "Stored Queries"
-msgstr ""
+msgstr "Sačuvani upiti"
 
 #: application/views/interface_assets/footer.php:440
 #: application/views/interface_assets/footer.php:633
 msgid "You need to make a query before you search!"
-msgstr ""
+msgstr "Morate napraviti upit prije pretrage!"
 
 #: application/views/interface_assets/footer.php:461
 #: application/views/interface_assets/footer.php:592
 #: application/views/search/filter.php:79
 msgid "Export to ADIF"
-msgstr ""
+msgstr "Izvoz u ADIF"
 
 #: application/views/interface_assets/footer.php:499
 msgid "Warning! Are you sure you want delete this stored query?"
-msgstr ""
+msgstr "Upozorenje! Da li ste sigurni da želite obrisati ovaj sačuvani upit?"
 
 #: application/views/interface_assets/footer.php:513
 msgid "The stored query has been deleted!"
-msgstr ""
+msgstr "Sačuvani upit je obrisan!"
 
 #: application/views/interface_assets/footer.php:522
 msgid "The stored query could not be deleted. Please try again!"
-msgstr ""
+msgstr "Sačuvani upit ne može biti obrisan. Molim pokušajte ponovo!"
 
 #: application/views/interface_assets/footer.php:548
 msgid "The query description has been updated!"
-msgstr ""
+msgstr "Opis upita je ažuriran!"
 
 #: application/views/interface_assets/footer.php:552
 msgid "Something went wrong with the save. Please try again!"
-msgstr ""
+msgstr "Nešto je bilo pogrešno prilikom čuvanja. Molimo pokušajte ponovo!"
 
 #: application/views/interface_assets/footer.php:675
 msgid ""
@@ -6540,20 +6589,20 @@ msgstr ""
 #: application/views/interface_assets/footer.php:725
 #: application/views/logbookadvanced/index.php:511
 msgid "Callsign: "
-msgstr ""
+msgstr "Pozivni znak: "
 
 #: application/views/interface_assets/footer.php:726
 msgid "Count: "
-msgstr ""
+msgstr "Broj: "
 
 #: application/views/interface_assets/footer.php:727
 msgid "Grids: "
-msgstr ""
+msgstr "Polja: "
 
 #: application/views/interface_assets/footer.php:1162
 #, php-format
 msgid "You're not logged in. Please %slogin%s"
-msgstr ""
+msgstr "Niste prijavljeni. Molimo %sprijavite se%s"
 
 #: application/views/interface_assets/footer.php:1368
 #: application/views/interface_assets/footer.php:1372
@@ -6562,185 +6611,185 @@ msgstr ""
 #: application/views/interface_assets/footer.php:1516
 #: application/views/interface_assets/footer.php:1519
 msgid "grid square"
-msgstr ""
+msgstr "polje"
 
 #: application/views/interface_assets/footer.php:1375
 #: application/views/interface_assets/footer.php:1519
 msgid "Total count"
-msgstr ""
+msgstr "Ukupan broj"
 
 #: application/views/interface_assets/footer.php:2106
 msgid "QSL Card for "
-msgstr ""
+msgstr "QSL karta za "
 
 #: application/views/interface_assets/footer.php:2126
 msgid "Warning! Are you sure you want to delete this QSL card?"
-msgstr ""
+msgstr "Upozorenje! Da li ste sigurni da želite izbrisati ovu QSL kartu?"
 
 #: application/views/interface_assets/footer.php:2166
 #: application/views/view_log/qso.php:42
 msgid "eQSL Card"
-msgstr ""
+msgstr "eQSL karta"
 
 #: application/views/interface_assets/footer.php:2168
 msgid "eQSL Card for "
-msgstr ""
+msgstr "eQSL karta za "
 
 #: application/views/interface_assets/footer.php:2341
 #: application/views/interface_assets/footer.php:2380
 #: application/views/view_log/qso.php:604
 msgid "QSL image file"
-msgstr ""
+msgstr "Datoteka slike QSL karte"
 
 #: application/views/interface_assets/footer.php:2360
 msgid "Front QSL Card:"
-msgstr ""
+msgstr "Prednja strana QSL karte:"
 
 #: application/views/interface_assets/footer.php:2398
 msgid "Back QSL Card:"
-msgstr ""
+msgstr "Zadnja strana QSL karte:"
 
 #: application/views/interface_assets/footer.php:2409
 #: application/views/interface_assets/footer.php:2434
 msgid "Add additional QSOs to a QSL Card"
-msgstr ""
+msgstr "Dodajte dodatne QSOe na QSL kartu"
 
 #: application/views/interface_assets/footer.php:2445
 msgid "Something went wrong. Please try again!"
-msgstr ""
+msgstr "Nešto je pošlo naopako. Molimo pokušajte ponovo!"
 
 #: application/views/interface_assets/header.php:86
 msgid "Developer Mode"
-msgstr ""
+msgstr "Razvojni mod"
 
 #: application/views/interface_assets/header.php:89
 msgid "Maintenance Mode"
-msgstr ""
+msgstr "Mod održavanja"
 
 #: application/views/interface_assets/header.php:99
 msgid "Overview"
-msgstr ""
+msgstr "Pregled"
 
 #: application/views/interface_assets/header.php:101
 msgid "Advanced"
-msgstr ""
+msgstr "Napredno"
 
 #: application/views/interface_assets/header.php:104
 msgid "View QSL Cards"
-msgstr ""
+msgstr "Pregledaj QSL karte"
 
 #: application/views/interface_assets/header.php:107
 msgid "View eQSL Cards"
-msgstr ""
+msgstr "Pregledaj eQSL karte"
 
 #: application/views/interface_assets/header.php:115
 msgid "Live QSO"
-msgstr ""
+msgstr "QSO uživo"
 
 #: application/views/interface_assets/header.php:117
 msgid "Post QSO"
-msgstr ""
+msgstr "Objavi QSO"
 
 #: application/views/interface_assets/header.php:119
 msgid "Simple Fast Log Entry"
-msgstr ""
+msgstr "Jednostavni brzi unos u dnevnik"
 
 #: application/views/interface_assets/header.php:121
 msgid "Live Contest Logging"
-msgstr ""
+msgstr "Takmičarski dnevnik uživo"
 
 #: application/views/interface_assets/header.php:123
 msgid "Post Contest Logging"
-msgstr ""
+msgstr "Dodavanje u dnevnik nakon takmičenja"
 
 #: application/views/interface_assets/header.php:132
 msgid "Analytics"
-msgstr ""
+msgstr "Analitika"
 
 #: application/views/interface_assets/header.php:140
 msgid "Activated Gridsquares"
-msgstr ""
+msgstr "Aktivirana polja"
 
 #: application/views/interface_assets/header.php:160
 msgid "International"
-msgstr ""
+msgstr "Međunarodno"
 
 #: application/views/interface_assets/header.php:166
 msgid "ITU"
-msgstr ""
+msgstr "ITU"
 
 #: application/views/interface_assets/header.php:186
 msgid "Canada"
-msgstr ""
+msgstr "Kanada"
 
 #: application/views/interface_assets/header.php:192
 msgid "Germany"
-msgstr ""
+msgstr "Nemačka"
 
 #: application/views/interface_assets/header.php:196
 msgid "DL Gridmaster"
-msgstr ""
+msgstr "DL Gridmaster"
 
 #: application/views/interface_assets/header.php:200
 msgid "Great Britain"
-msgstr ""
+msgstr "Velika Britanija"
 
 #: application/views/interface_assets/header.php:202
 msgid "WAB"
-msgstr ""
+msgstr "WAB"
 
 #: application/views/interface_assets/header.php:206
 msgid "Japan"
-msgstr ""
+msgstr "Japan"
 
 #: application/views/interface_assets/header.php:212
 msgid "JA Gridmaster"
-msgstr ""
+msgstr "JA Gridmaster"
 
 #: application/views/interface_assets/header.php:216
 msgid "Luxemburg"
-msgstr ""
+msgstr "Luksemburg"
 
 #: application/views/interface_assets/header.php:218
 msgid "LX Gridmaster"
-msgstr ""
+msgstr "LX Gridmaster"
 
 #: application/views/interface_assets/header.php:222
 msgid "Switzerland"
-msgstr ""
+msgstr "Švajcarska"
 
 #: application/views/interface_assets/header.php:228
 msgid "USA"
-msgstr ""
+msgstr "SAD"
 
 #: application/views/interface_assets/header.php:234
 msgid "US Gridmaster"
-msgstr ""
+msgstr "US Gridmaster"
 
 #: application/views/interface_assets/header.php:251
 msgid "Bandmap"
-msgstr ""
+msgstr "Mapa opsega"
 
 #: application/views/interface_assets/header.php:253
 msgid "SAT Timers"
-msgstr ""
+msgstr "SAT vremena"
 
 #: application/views/interface_assets/header.php:256
 msgid "Satellite Flightpath"
-msgstr ""
+msgstr "Putanja leta satelita"
 
 #: application/views/interface_assets/header.php:258
 msgid "Satellite Pass"
-msgstr ""
+msgstr "Preleti satelita"
 
 #: application/views/interface_assets/header.php:265
 #: application/views/stationsetup/stationsetup.php:113
 msgid "Admin"
-msgstr ""
+msgstr "Admin"
 
 #: application/views/interface_assets/header.php:270
 msgid "Global Options"
-msgstr ""
+msgstr "Globalne opcije"
 
 #: application/views/interface_assets/header.php:276
 #: application/views/notes/add.php:38 application/views/notes/edit.php:39
@@ -6751,87 +6800,87 @@ msgstr ""
 #: application/views/statistics/index.php:39
 #: application/views/statistics/index.php:93
 msgid "Satellites"
-msgstr ""
+msgstr "Sateliti"
 
 #: application/views/interface_assets/header.php:282
 msgid "Update Country Files"
-msgstr ""
+msgstr "Ažuriranje datoteka okruga"
 
 #: application/views/interface_assets/header.php:286
 msgid "Debug Information"
-msgstr ""
+msgstr "Informacije debaginga"
 
 #: application/views/interface_assets/header.php:333
 msgid "Add/Search Callsign"
-msgstr ""
+msgstr "Dodaj/pretraži pozivni znak"
 
 #: application/views/interface_assets/header.php:335
 msgid "Log"
-msgstr ""
+msgstr "Dnevnik"
 
 #: application/views/interface_assets/header.php:342
 #: application/views/logbookadvanced/index.php:452
 #: application/views/oqrs/index.php:27 application/views/user/edit.php:441
 #: application/views/visitor/layout/header.php:97
 msgid "Search Callsign"
-msgstr ""
+msgstr "Pretraga pozivnog znaka"
 
 #: application/views/interface_assets/header.php:371
 #: application/views/user/edit.php:49
 msgid "Account"
-msgstr ""
+msgstr "Nalog"
 
 #: application/views/interface_assets/header.php:386
 msgid "Other Export Options"
-msgstr ""
+msgstr "Ostale opcije izvoza"
 
 #: application/views/interface_assets/header.php:394
 msgid "Cabrillo Export"
-msgstr ""
+msgstr "Cabrilo izvoz"
 
 #: application/views/interface_assets/header.php:418
 msgid "QSL Queue"
-msgstr ""
+msgstr "QSL karte u redu"
 
 #: application/views/interface_assets/header.php:419
 msgid "Labels"
-msgstr ""
+msgstr "Oznake"
 
 #: application/views/interface_assets/header.php:421
 msgid "Third-Party Services"
-msgstr ""
+msgstr "Treći servisi"
 
 #: application/views/interface_assets/header.php:424
 msgid "eQSL Import / Export"
-msgstr ""
+msgstr "eQSL izvoz/uvoz"
 
 #: application/views/interface_assets/header.php:425
 msgid "HRDLog Logbook"
-msgstr ""
+msgstr "HRDLog Logbook"
 
 #: application/views/interface_assets/header.php:435
 msgid "Help"
-msgstr ""
+msgstr "Pomoć"
 
 #: application/views/interface_assets/header.php:436
 msgid "Forum"
-msgstr ""
+msgstr "Forum"
 
 #: application/views/interface_assets/header.php:438
 msgid "Logout"
-msgstr ""
+msgstr "Odjavite se"
 
 #: application/views/interface_assets/header.php:446
 msgid "Select a Location"
-msgstr ""
+msgstr "Izaberite lokaciju"
 
 #: application/views/interface_assets/header.php:525
 msgid "Extras"
-msgstr ""
+msgstr "Dodaci"
 
 #: application/views/kml/index.php:7
 msgid "Export your logbook to a KML file for use in Google Earth."
-msgstr ""
+msgstr "Izvezite vaš dnevnik kao KML datoteku za korišćenje u Google Earth."
 
 #: application/views/labels/create.php:24
 msgid ""

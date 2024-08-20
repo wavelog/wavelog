@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-08-18 07:28+0000\n"
-"PO-Revision-Date: 2024-08-17 10:48+0000\n"
-"Last-Translator: BG6HJE <1753409828@qq.com>\n"
+"PO-Revision-Date: 2024-08-20 05:18+0000\n"
+"Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.7\n"
 
 #: application/controllers/Accumulated.php:13
 #: application/controllers/Activators.php:13
@@ -88,7 +88,7 @@ msgstr ""
 #: application/controllers/User.php:738 application/controllers/User.php:1021
 #: application/controllers/User_options.php:9
 msgid "You're not allowed to do that!"
-msgstr ""
+msgstr "不能这么做！"
 
 #: application/controllers/Accumulated.php:21
 #: application/views/interface_assets/header.php:150
@@ -315,7 +315,7 @@ msgstr "日志视图"
 
 #: application/controllers/Awards.php:454
 msgid " and band "
-msgstr ""
+msgstr " 并且波段为 "
 
 #: application/controllers/Awards.php:457
 msgid " and sat "
@@ -2153,80 +2153,80 @@ msgstr "未找到启用 OQRS 的台站。"
 #: application/libraries/Subdivisions.php:31
 msgctxt "Division Name (States in various countries)."
 msgid "Province"
-msgstr ""
+msgstr "省份"
 
 #: application/libraries/Subdivisions.php:39
 msgctxt "Division Name (States in various countries)."
 msgid "Oblast"
-msgstr ""
+msgstr "自治州"
 
 #: application/libraries/Subdivisions.php:41
 #: application/libraries/Subdivisions.php:47
 msgctxt "Division Name (States in various countries)."
 msgid "Region"
-msgstr ""
+msgstr "区"
 
 #: application/libraries/Subdivisions.php:45
 msgctxt "Division Name (States in various countries)."
 msgid "Department"
-msgstr ""
+msgstr "省"
 
 #: application/libraries/Subdivisions.php:49
 msgctxt "Division Name (States in various countries)."
 msgid "Municipality"
-msgstr ""
+msgstr "市"
 
 #: application/libraries/Subdivisions.php:51
 msgctxt "Division Name (States in various countries)."
 msgid "Federal State"
-msgstr ""
+msgstr "联邦州"
 
 #: application/libraries/Subdivisions.php:56
 #: application/libraries/Subdivisions.php:94
 msgctxt "Division Name (States in various countries)."
 msgid "County"
-msgstr ""
+msgstr "县"
 
 #: application/libraries/Subdivisions.php:60
 #: application/libraries/Subdivisions.php:85
 msgctxt "Division Name (States in various countries)."
 msgid "District"
-msgstr ""
+msgstr "区"
 
 #: application/libraries/Subdivisions.php:62
 msgctxt "Division Name (States in various countries)."
 msgid "Canton"
-msgstr ""
+msgstr "州"
 
 #: application/libraries/Subdivisions.php:64
 msgctxt "Division Name (States in various countries)."
 msgid "US State"
-msgstr ""
+msgstr "美国州"
 
 #: application/libraries/Subdivisions.php:67
 msgctxt "Division Name (States in various countries)."
 msgid "Prefecture"
-msgstr ""
+msgstr "县"
 
 #: application/libraries/Subdivisions.php:69
 msgctxt "Division Name (States in various countries)."
 msgid "State"
-msgstr ""
+msgstr "州"
 
 #: application/libraries/Subdivisions.php:78
 msgctxt "Division Name (States in various countries)."
 msgid "US County"
-msgstr ""
+msgstr "美国州"
 
 #: application/libraries/Subdivisions.php:90
 msgctxt "Division Name (States in various countries)."
 msgid "DME"
-msgstr ""
+msgstr "DME"
 
 #: application/libraries/Subdivisions.php:92
 msgctxt "Division Name (States in various countries)."
 msgid "City / Ku / Gun"
-msgstr ""
+msgstr "郡"
 
 #: application/models/Eqslmethods_model.php:281
 msgid "Your eQSL username and/or password is incorrect."
@@ -2911,7 +2911,7 @@ msgstr "导入时忽略台站的呼号"
 msgid ""
 "If selected, Wavelog will try to import %sall%s QSO's of the ADIF, "
 "regardless if they match to the chosen station-location."
-msgstr ""
+msgstr "如果选中，Wavelog 会从 ADIF 中尝试导入 %s全部的%s QSO，忽略是否匹配台站地址。"
 
 #: application/views/adif/import.php:158 application/views/adif/import.php:273
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:54
@@ -3341,7 +3341,7 @@ msgstr "CQ 分区"
 #: application/views/awards/cq/index.php:4
 #: application/views/awards/itu/index.php:4
 msgid "Hover over a zone"
-msgstr ""
+msgstr "鼠标停留到一个分区"
 
 #: application/views/awards/cq/index.php:20
 msgid "CQ Magazine WAZ Award"
@@ -3801,11 +3801,11 @@ msgstr "该地图仅显示了 SAT 上有效的 QSO。"
 #: application/views/awards/helvetia/index.php:3
 msgctxt "Switzerland Canton"
 msgid "Canton"
-msgstr ""
+msgstr "州"
 
 #: application/views/awards/helvetia/index.php:4
 msgid "Hover over a canton"
-msgstr ""
+msgstr "鼠标停留到一个州"
 
 #: application/views/awards/helvetia/index.php:20
 msgid "HELVETIA 26 | SWITZERLAND AWARD"
@@ -4064,11 +4064,11 @@ msgstr "POTA 编号"
 #: application/views/awards/rac/index.php:3
 msgctxt "Canada Province"
 msgid "Province"
-msgstr ""
+msgstr "省"
 
 #: application/views/awards/rac/index.php:4
 msgid "Hover over a province"
-msgstr ""
+msgstr "鼠标停留到一个省"
 
 #: application/views/awards/rac/index.php:106
 msgid "Show RAC Map"
@@ -4232,11 +4232,11 @@ msgstr "WAB分区"
 #: application/views/awards/waja/index.php:3
 msgctxt "Japan Prefecture"
 msgid "Prefecture"
-msgstr ""
+msgstr "县"
 
 #: application/views/awards/waja/index.php:4
 msgid "Hover over a prefecture"
-msgstr ""
+msgstr "鼠标停留到一个县"
 
 #: application/views/awards/waja/index.php:19
 msgid "WAJA - Worked All Japan prefectures Award"
@@ -4272,11 +4272,11 @@ msgstr "县"
 #: application/views/awards/was/index.php:3
 msgctxt "USA State"
 msgid "State"
-msgstr ""
+msgstr "州"
 
 #: application/views/awards/was/index.php:4
 msgid "Hover over a state"
-msgstr ""
+msgstr "鼠标停留到一个州"
 
 #: application/views/awards/was/index.php:20
 msgid "WAS Award"
@@ -5584,7 +5584,7 @@ msgstr ""
 #: application/views/debug/index.php:47
 #, php-format
 msgid "Check this wiki article %shere%s for more information."
-msgstr ""
+msgstr "请查看 %swiki%s 以获得帮助。"
 
 #: application/views/debug/index.php:48
 #, php-format
@@ -5949,7 +5949,7 @@ msgstr "QSO 数据"
 #: application/views/distances/index.php:9
 #, php-format
 msgid "contacts were plotted.%s Your furthest contact was with"
-msgstr ""
+msgstr "个通联已绘制。 %s 您最远的通联是和"
 
 #: application/views/distances/index.php:10
 msgid "in gridsquare"
@@ -6328,7 +6328,7 @@ msgstr "传播方式不被 LoTW 支持，LoTW 字段已禁用。"
 
 #: application/views/interface_assets/footer.php:47
 msgid "No states for this DXCC available"
-msgstr ""
+msgstr "该 DXCC 无满足的州"
 
 #: application/views/interface_assets/footer.php:129
 #: application/views/interface_assets/header.php:434
@@ -6415,16 +6415,16 @@ msgstr "呼号： "
 
 #: application/views/interface_assets/footer.php:726
 msgid "Count: "
-msgstr ""
+msgstr "总数： "
 
 #: application/views/interface_assets/footer.php:727
 msgid "Grids: "
-msgstr ""
+msgstr "网格： "
 
 #: application/views/interface_assets/footer.php:1162
 #, php-format
 msgid "You're not logged in. Please %slogin%s"
-msgstr ""
+msgstr "请前往 %s这里%s 登录"
 
 #: application/views/interface_assets/footer.php:1368
 #: application/views/interface_assets/footer.php:1372
@@ -9253,7 +9253,7 @@ msgstr "位置"
 msgid ""
 "If you did operate from a new location, first create a new %sStation "
 "Location%s"
-msgstr ""
+msgstr "如果您确实在一个新地址通联，请在 %s台站地址%s 创建一个新的"
 
 #: application/views/simplefle/index.php:112
 msgid "e.g. OK2CQR"
@@ -9274,7 +9274,7 @@ msgstr "对方网格"
 #: application/views/simplefle/index.php:160
 #, php-format
 msgid "The Refs can be either %sS%sOTA, %sI%sOTA, %sP%sOTA, or %sW%sWFF"
-msgstr ""
+msgstr "标识符可为其中任意：%sS%sOTA, %sI%sOTA, %sP%sOTA, or %sW%sWFF"
 
 #: application/views/simplefle/index.php:167
 msgid "Reload QSO List"
@@ -9359,7 +9359,7 @@ msgstr ""
 msgid ""
 "A full summary of all commands and the necessary syntax can be found in "
 "%sthis article%s of our Wiki."
-msgstr ""
+msgstr "所有可用的指令或语法可在 %sWiki%s 查看。"
 
 #: application/views/station_profile/create.php:51
 #: application/views/station_profile/edit.php:60
@@ -10077,7 +10077,8 @@ msgstr "4. 第四步"
 msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 "filenames for the logos %swithout%s the file extension '.png'"
-msgstr ""
+msgstr "在这里添加主题，Logo 文件请输入 png 文件的文件名部分（ %s不带有%s 后缀 '."
+"png'）"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
@@ -10192,7 +10193,8 @@ msgid ""
 "Use the following button to update the distance information for all your "
 "QSOs. Depending on the number of QSOs this might take some time to execute. "
 "Please be patient."
-msgstr ""
+msgstr "使用如下按钮更新全部 QSO 的距离信息，如果 QSO "
+"数量过多这将会花费一些时间，请耐心等待。"
 
 #: application/views/user/delete.php:5
 msgid "Delete User Account"
@@ -10626,7 +10628,7 @@ msgstr "本 Demo 每日 UTC 02:00 重置。"
 #: application/views/user/login.php:60
 #, php-format
 msgid "More Information about Wavelog on %sGithub%s."
-msgstr ""
+msgstr "更多信息请访问 Wavelog 官方 %sGithub%s 地址。"
 
 #: application/views/user/login.php:79
 msgid "Forgot your password?"
