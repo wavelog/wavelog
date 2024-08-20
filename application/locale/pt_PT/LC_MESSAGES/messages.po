@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-18 07:28+0000\n"
+"POT-Creation-Date: 2024-08-20 13:04+0000\n"
 "PO-Revision-Date: 2024-08-18 14:15+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
@@ -83,10 +83,11 @@ msgstr ""
 #: application/controllers/Update.php:24 application/controllers/Update.php:273
 #: application/controllers/Update.php:284
 #: application/controllers/Update.php:295
-#: application/controllers/Update.php:306 application/controllers/User.php:8
-#: application/controllers/User.php:21 application/controllers/User.php:206
-#: application/controllers/User.php:207 application/controllers/User.php:719
-#: application/controllers/User.php:738 application/controllers/User.php:1021
+#: application/controllers/Update.php:306 application/controllers/User.php:13
+#: application/controllers/User.php:45 application/controllers/User.php:230
+#: application/controllers/User.php:231 application/controllers/User.php:743
+#: application/controllers/User.php:762 application/controllers/User.php:1045
+#: application/controllers/User.php:1247
 #: application/controllers/User_options.php:9
 msgid "You're not allowed to do that!"
 msgstr "Não é permitido fazer isso!"
@@ -1686,7 +1687,7 @@ msgstr "Predefinição (clique para libertar)"
 #: application/views/stationsetup/stationsetup.php:33
 #: application/views/stationsetup/stationsetup.php:137
 #: application/views/stationsetup/stationsetup.php:192
-#: application/views/themes/index.php:107 application/views/user/main.php:54
+#: application/views/themes/index.php:107 application/views/user/index.php:57
 #: application/views/view_log/qso.php:613
 msgid "Delete"
 msgstr "Apagar"
@@ -1905,7 +1906,7 @@ msgstr "Estação ativa"
 #: application/views/qso/edit_ajax.php:33 application/views/qso/index.php:20
 #: application/views/simplefle/index.php:28
 #: application/views/stationsetup/stationsetup.php:161
-#: application/views/user/main.php:87 application/views/user/main.php:89
+#: application/views/user/index.php:90 application/views/user/index.php:92
 msgid "QSO"
 msgstr "Contacto"
 
@@ -1921,7 +1922,7 @@ msgstr "Contacto"
 #: application/views/search/stored_queries.php:21
 #: application/views/stationsetup/stationsetup.php:128
 #: application/views/stationsetup/stationsetup.php:165
-#: application/views/themes/index.php:104 application/views/user/main.php:52
+#: application/views/themes/index.php:104 application/views/user/index.php:52
 msgid "Edit"
 msgstr "Editar"
 
@@ -2039,37 +2040,37 @@ msgstr "Excepções do DXCC:"
 msgid "Dxcc Prefixes:"
 msgstr "Prefixos DXCC:"
 
-#: application/controllers/User.php:12
+#: application/controllers/User.php:36
 #: application/views/interface_assets/header.php:268
 msgid "User Accounts"
 msgstr "Contas de utilizadores"
 
-#: application/controllers/User.php:52
+#: application/controllers/User.php:76
 msgid "Add User"
 msgstr "Adicionar utilizador"
 
-#: application/controllers/User.php:166
+#: application/controllers/User.php:190
 msgid "Users"
 msgstr "Utilizadores"
 
-#: application/controllers/User.php:240 application/controllers/User.php:673
+#: application/controllers/User.php:264 application/controllers/User.php:697
 msgid "Edit User"
 msgstr "Editar utilizador"
 
-#: application/controllers/User.php:665 application/controllers/User.php:668
-#: application/views/user/main.php:3 application/views/user/main.php:46
+#: application/controllers/User.php:689 application/controllers/User.php:692
+#: application/views/user/index.php:3 application/views/user/index.php:46
 msgid "User"
 msgstr "Utilizador"
 
-#: application/controllers/User.php:665 application/controllers/User.php:668
+#: application/controllers/User.php:689 application/controllers/User.php:692
 msgid "edited"
 msgstr "editado"
 
-#: application/controllers/User.php:722
+#: application/controllers/User.php:746
 msgid "Profile"
 msgstr "Perfil"
 
-#: application/controllers/User.php:779
+#: application/controllers/User.php:803
 msgid ""
 "Congrats! Wavelog was successfully installed. You can now login for the "
 "first time."
@@ -2077,18 +2078,18 @@ msgstr ""
 "Parabéns! O Wavelog foi instalado com sucesso. Pode agora fazer login pela "
 "primeira vez."
 
-#: application/controllers/User.php:843 application/controllers/User.php:853
+#: application/controllers/User.php:867 application/controllers/User.php:877
 msgid "Login failed. Try again."
 msgstr "O login falhou. Tente novamente."
 
-#: application/controllers/User.php:860
+#: application/controllers/User.php:884
 #: application/views/interface_assets/header.php:356
 #: application/views/user/login.php:91
 #: application/views/visitor/layout/header.php:88
 msgid "Login"
 msgstr "Iniciar sessão"
 
-#: application/controllers/User.php:898
+#: application/controllers/User.php:922
 msgid ""
 "Sorry. This instance is currently in maintenance mode. If this message "
 "appears unexpectedly or keeps showing up, please contact an administrator. "
@@ -2099,37 +2100,65 @@ msgstr ""
 "administrador. Atualmente, apenas os administradores têm permissão para "
 "iniciar sessão."
 
-#: application/controllers/User.php:901
+#: application/controllers/User.php:925
 msgid "Incorrect username or password!"
 msgstr "Nome de utilizador ou palavra-passe incorrectos!"
 
-#: application/controllers/User.php:918
+#: application/controllers/User.php:942
 #, php-format
 msgid "User %s logged out."
 msgstr "O utilizador %s terminou a sessão."
 
-#: application/controllers/User.php:932
+#: application/controllers/User.php:956
 msgid "Password Reset is disabled on the Demo!"
 msgstr "A reposição da palavra-passe está desactivada na Demo!"
 
-#: application/controllers/User.php:945
+#: application/controllers/User.php:969
 msgid "Forgot Password"
 msgstr "Esqueci-me da palavra-passe"
 
-#: application/controllers/User.php:995 application/views/user/main.php:8
+#: application/controllers/User.php:1019 application/views/user/index.php:8
 msgid "Email settings are incorrect."
 msgstr "As definições de e-mail estão incorrectas."
 
-#: application/controllers/User.php:999 application/controllers/User.php:1004
+#: application/controllers/User.php:1023 application/controllers/User.php:1028
 msgid "Password Reset Processed."
 msgstr "A redefinição da palavra-passe foi processada."
 
-#: application/controllers/User.php:1106
+#: application/controllers/User.php:1129
 #: application/views/user/forgot_password.php:51
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
 msgid "Reset Password"
 msgstr "Redefinir a palavra-passe"
+
+#: application/controllers/User.php:1199 application/views/user/index.php:143
+msgid ""
+"You currently can't impersonate another user. Please change the "
+"encryption_key in your config.php file first!"
+msgstr ""
+
+#: application/controllers/User.php:1206
+msgid "Invalid Hash"
+msgstr ""
+
+#: application/controllers/User.php:1219
+msgid "The impersonation hash is too old. Please try again."
+msgstr ""
+
+#: application/controllers/User.php:1226
+msgid ""
+"You can't impersonate another user while you're not logged in as the source "
+"user"
+msgstr ""
+
+#: application/controllers/User.php:1232
+msgid "There was a problem with your session. Please try again."
+msgstr ""
+
+#: application/controllers/User.php:1239
+msgid "The requested user to impersonate does not exist"
+msgstr ""
 
 #: application/controllers/Visitor.php:50
 #: application/controllers/Visitor.php:79
@@ -2676,8 +2705,8 @@ msgstr "Nada encontrado!"
 #: application/views/simplefle/index.php:142
 #: application/views/station_profile/edit.php:56
 #: application/views/stationsetup/linkedlocations.php:17
-#: application/views/user/edit.php:123 application/views/user/main.php:4
-#: application/views/user/main.php:47 application/views/user/profile.php:29
+#: application/views/user/edit.php:123 application/views/user/index.php:4
+#: application/views/user/index.php:47 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:82 application/views/view_log/qso.php:507
 msgid "Callsign"
 msgstr "Indicativo"
@@ -5206,6 +5235,7 @@ msgstr "Introduza a sua própria expressão Cron"
 
 #: application/views/cron/edit.php:74
 #: application/views/interface_assets/footer.php:35
+#: application/views/user/index.php:152
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -8450,7 +8480,7 @@ msgstr "Há alguma informação adicional que seja necessário conhecer?"
 #: application/views/oqrs/request.php:60
 #: application/views/oqrs/request_grouped.php:64
 #: application/views/oqrs/showrequests.php:87
-#: application/views/user/main.php:48 application/views/user/profile.php:24
+#: application/views/user/index.php:48 application/views/user/profile.php:24
 msgid "E-mail"
 msgstr "E-mail"
 
@@ -11015,6 +11045,134 @@ msgstr "Esqueceu-se da palavra-passe?"
 msgid "You can reset your password here."
 msgstr "Pode redefinir a sua palavra-passe aqui."
 
+#: application/views/user/index.php:2
+msgid "Do you really want to send this user a password-reset link?"
+msgstr ""
+"Quer mesmo enviar a este utilizador uma ligação de reposição da palavra-"
+"passe?"
+
+#: application/views/user/index.php:6
+msgid "Please Wait ..."
+msgstr "Aguarde ..."
+
+#: application/views/user/index.php:9
+msgid "Password-reset e-mail sent to user:"
+msgstr "E-mail de reposição de palavra-passe enviado ao utilizador:"
+
+#: application/views/user/index.php:30
+msgid "User List"
+msgstr "Lista de utilizadores"
+
+#: application/views/user/index.php:33
+msgid "Wavelog needs at least one user configured in order to operate."
+msgstr ""
+"O Wavelog necessita de pelo menos um utilizador configurado para poder "
+"funcionar."
+
+#: application/views/user/index.php:34
+msgid ""
+"Users can be assigned roles which give them different permissions, such as "
+"adding QSOs to the logbook and accessing Wavelog APIs."
+msgstr ""
+"Podem ser atribuídas funções aos utilizadores que lhes dão diferentes "
+"permissões, tais como adicionar QSOs ao logbook e aceder às APIs do Wavelog."
+
+#: application/views/user/index.php:35
+msgid ""
+"The currently logged-in user is displayed at the upper-right of each page."
+msgstr ""
+"O utilizador atualmente com sessão iniciada é apresentado no canto superior "
+"direito de cada página."
+
+#: application/views/user/index.php:36
+msgid ""
+"With the password reset button, you can send a user an email containing a "
+"link to reset their password. To achieve this, ensure that the email "
+"settings in the global options are configured correctly."
+msgstr ""
+"Com o botão de reposição da palavra-passe, pode enviar a um utilizador um e-"
+"mail com uma ligação para repor a sua palavra-passe. Para tal, certifique-se "
+"de que as definições de correio eletrónico nas opções globais estão "
+"corretamente configuradas."
+
+#: application/views/user/index.php:38
+msgid "Create user"
+msgstr "Criar utilizador"
+
+#: application/views/user/index.php:39
+msgid "Refresh List"
+msgstr "Atualizar lista"
+
+#: application/views/user/index.php:49
+msgid "Type"
+msgstr "Tipo"
+
+#: application/views/user/index.php:50
+msgid "Last seen"
+msgstr "Visto pela última vez"
+
+#: application/views/user/index.php:53
+msgid "Password Reset"
+msgstr "Redefinição da palavra-passe"
+
+#: application/views/user/index.php:55 application/views/user/index.php:150
+msgid "Impersonate"
+msgstr ""
+
+#: application/views/user/index.php:82
+msgid "Never"
+msgstr "Nunca"
+
+#: application/views/user/index.php:86
+msgid "Locations"
+msgstr "Localizações"
+
+#: application/views/user/index.php:88
+msgid "Logbooks"
+msgstr "Logbooks"
+
+#: application/views/user/index.php:90
+msgid "Last QSO:"
+msgstr "Último contacto:"
+
+#: application/views/user/index.php:92
+msgid "No QSOs in Log"
+msgstr "Sem contactos no log"
+
+#: application/views/user/index.php:111
+msgid "Impersonate User"
+msgstr ""
+
+#: application/views/user/index.php:116
+msgid ""
+"You are about to impersonate another user. To return to your admin account, "
+"you'll need to logout and log back in as admin."
+msgstr ""
+
+#: application/views/user/index.php:117
+msgid "Do you want to impersonate this user?"
+msgstr ""
+
+#: application/views/user/index.php:121
+msgid "Username:"
+msgstr ""
+
+#: application/views/user/index.php:125
+msgid "Name:"
+msgstr ""
+
+#: application/views/user/index.php:129
+msgid "Callsign:"
+msgstr ""
+
+#: application/views/user/index.php:133
+msgid "E-Mail:"
+msgstr ""
+
+#: application/views/user/index.php:137
+msgid "Last Seen:"
+msgstr ""
+
 #: application/views/user/login.php:36
 msgid "MAINTENANCE MODE"
 msgstr "MODO DE MANUTENÇÃO"
@@ -11039,96 +11197,6 @@ msgstr "Esqueceu-se da sua palavra-passe?"
 #: application/views/user/login.php:85
 msgid "Keep me logged in"
 msgstr "Manter a minha sessão iniciada"
-
-#: application/views/user/main.php:2
-msgid "Do you really want to send this user a password-reset link?"
-msgstr ""
-"Quer mesmo enviar a este utilizador uma ligação de reposição da palavra-"
-"passe?"
-
-#: application/views/user/main.php:6
-msgid "Please Wait ..."
-msgstr "Aguarde ..."
-
-#: application/views/user/main.php:9
-msgid "Password-reset e-mail sent to user:"
-msgstr "E-mail de reposição de palavra-passe enviado ao utilizador:"
-
-#: application/views/user/main.php:30
-msgid "User List"
-msgstr "Lista de utilizadores"
-
-#: application/views/user/main.php:33
-msgid "Wavelog needs at least one user configured in order to operate."
-msgstr ""
-"O Wavelog necessita de pelo menos um utilizador configurado para poder "
-"funcionar."
-
-#: application/views/user/main.php:34
-msgid ""
-"Users can be assigned roles which give them different permissions, such as "
-"adding QSOs to the logbook and accessing Wavelog APIs."
-msgstr ""
-"Podem ser atribuídas funções aos utilizadores que lhes dão diferentes "
-"permissões, tais como adicionar QSOs ao logbook e aceder às APIs do Wavelog."
-
-#: application/views/user/main.php:35
-msgid ""
-"The currently logged-in user is displayed at the upper-right of each page."
-msgstr ""
-"O utilizador atualmente com sessão iniciada é apresentado no canto superior "
-"direito de cada página."
-
-#: application/views/user/main.php:36
-msgid ""
-"With the password reset button, you can send a user an email containing a "
-"link to reset their password. To achieve this, ensure that the email "
-"settings in the global options are configured correctly."
-msgstr ""
-"Com o botão de reposição da palavra-passe, pode enviar a um utilizador um e-"
-"mail com uma ligação para repor a sua palavra-passe. Para tal, certifique-se "
-"de que as definições de correio eletrónico nas opções globais estão "
-"corretamente configuradas."
-
-#: application/views/user/main.php:38
-msgid "Create user"
-msgstr "Criar utilizador"
-
-#: application/views/user/main.php:39
-msgid "Refresh List"
-msgstr "Atualizar lista"
-
-#: application/views/user/main.php:49
-msgid "Type"
-msgstr "Tipo"
-
-#: application/views/user/main.php:50
-msgid "Last seen"
-msgstr "Visto pela última vez"
-
-#: application/views/user/main.php:53
-msgid "Password Reset"
-msgstr "Redefinição da palavra-passe"
-
-#: application/views/user/main.php:79
-msgid "Never"
-msgstr "Nunca"
-
-#: application/views/user/main.php:83
-msgid "Locations"
-msgstr "Localizações"
-
-#: application/views/user/main.php:85
-msgid "Logbooks"
-msgstr "Logbooks"
-
-#: application/views/user/main.php:87
-msgid "Last QSO:"
-msgstr "Último contacto:"
-
-#: application/views/user/main.php:89
-msgid "No QSOs in Log"
-msgstr "Sem contactos no log"
 
 #: application/views/user/profile.php:19
 msgid "Level"
