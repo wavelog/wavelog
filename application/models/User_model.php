@@ -561,16 +561,6 @@ class User_Model extends CI_Model {
 		}
 	}
 
-	// FUNCTION: bool set($username, $data)
-	// Updates a user's record in the database
-	// TODO: This returns TRUE/1 no matter what at the moment - should
-	// TODO: return TRUE/FALSE or 0/1 depending on success/failure
-	function set($username, $data) {
-		$this->db->where('user_name', $username);
-		$this->db->update($this->config->item('auth_table', $data));
-		return 1;
-	}
-
 	// FUNCTION: object users()
 	// Returns a list of users with additional counts
 	function users() {
