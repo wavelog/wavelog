@@ -94,6 +94,9 @@ class cron extends CI_Controller {
 						curl_setopt($ch, CURLOPT_HEADER, false);
 						curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
 						curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+						if ($this->config->item('cron_allow_insecure') == true) {
+							curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+						}
 						$crun = curl_exec($ch);
 						curl_close($ch);
 
