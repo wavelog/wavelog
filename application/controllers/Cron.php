@@ -37,6 +37,7 @@ class cron extends CI_Controller {
 
 		$data['page_title'] = __("Cron Manager");
 		$data['crons'] = $this->cron_model->get_crons();
+		$data['cron_allow_insecure'] = $this->config->item('cron_allow_insecure');
 
 		$mastercron = array();
 		$mastercron = $this->get_mastercron_status();
@@ -257,19 +258,19 @@ class cron extends CI_Controller {
 			$diff = $now->getTimestamp() - $timestamp_last_run->getTimestamp(); 
 
 			if ($diff >= 0 && $diff <= $warning_timelimit_seconds) {
-				$result['status'] = 'OK';
+				$result['status'] = __("OK");
 				$result['status_class'] = 'success';
 			} else {
 				if ($diff <= $error_timelimit_seconds) {
-					$result['status'] = 'Last run occurred more than ' . $warning_timelimit_seconds . ' seconds ago.<br>Please check your master cron! It should run every minute (* * * * *).';
+					$result['status'] = sprintf(__("Last run occurred more than %s seconds ago.<br>Please check your master cron! It should run every minute (* * * * *)."), $warning_timelimit_seconds);
 					$result['status_class'] = 'warning';
 				} else {
-					$result['status'] = 'Last run occurred more than ' . ($error_timelimit_seconds / 60) . ' minutes ago.<br>Seems like your Mastercron isn\'t running!<br>It should run every minute (* * * * *).';
+					$result['status'] = sprintf(__("Last run occurred more than %s minutes ago.<br>Seems like your Mastercron isn't running!<br>It should run every minute (* * * * *)."), ($error_timelimit_seconds / 60));
 					$result['status_class'] = 'danger';
 				}
 			}
 		} else {
-			$result['status'] = 'Not running';
+			$result['status'] = _pgettext("Master Cron", "Not running");
 			$result['status_class'] = 'danger';
 		}
 	
