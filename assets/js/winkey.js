@@ -126,12 +126,11 @@ async function connect() {
         inputDone = port.readable.pipeTo(decoder.writable);
         inputStream = decoder.readable;
 
-        const encoder = new TextEncoderStream();
-        outputDone = encoder.readable.pipeTo(port.writable);
-        outputStream = encoder.writable;
+        //const encoder = new TextEncoderStream();
+        //outputDone = encoder.readable.pipeTo(port.writable);
+        //outputStream = encoder.writable;
 
-        writeToByte("0x00, 0x02");
-        writeToByte("0x02, 0x00");
+        writeToByte([0x00, 0x02]);
 
         $('#winkey_buttons').show();
 
@@ -149,7 +148,9 @@ async function connect() {
 
 //Write to the Serial port
 async function writeToStream(line) {
-    var enc = new TextEncoder(); // always utf-8
+    const encoder = new TextEncoderStream();
+    outputDone = encoder.readable.pipeTo(port.writable);
+    outputStream = encoder.writable;
 
     const writer = outputStream.getWriter();
     writer.write(line);
@@ -157,15 +158,16 @@ async function writeToStream(line) {
 }
 
 async function writeToByte(line) {
-    const writer = outputStream.getWriter();
-    const data = new Uint8Array([line]);
-    writer.write(data);
+    const writer = port.writable.getWriter();
+    const data = new Uint8Array(line);
+    await writer.write(data);
     writer.releaseLock();
 }
 
 //Disconnect from the Serial port
 async function disconnect() {
 
+    writeToByte([0x00, 0x03]);
     if (reader) {
         await reader.cancel();
         await inputDone.catch(() => { });
