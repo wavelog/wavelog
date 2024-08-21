@@ -34,6 +34,7 @@
     var lang_general_word_warning = "<?= __("Warning"); ?>";
     var lang_general_word_cancel = "<?= __("Cancel"); ?>";
     var lang_general_word_ok = "<?= __("OK"); ?>";
+    var lang_general_word_search = "<?= __("Search"); ?>";
     var lang_qso_delete_warning = "<?= __("Warning! Are you sure you want delete QSO with "); ?>";
     var lang_general_word_colors = "<?= __("Colors"); ?>";
     var lang_general_word_confirmed = "<?= __("Confirmed"); ?>";
@@ -44,7 +45,9 @@
     var lang_admin_save = "<?= __("Save"); ?>";
     var lang_admin_clear = "<?= __("Clear"); ?>";
     var lang_lotw_propmode_hint = "<?= __("Propagation mode is not supported by LoTW. LoTW QSL fields disabled."); ?>";
-    var lang_no_states_for_dxcc_available = "<?= __("No states for this DXCC available"); ?>";
+    var lang_no_states_for_dxcc_available = "<?= html_entity_decode(__("No states for this DXCC available")); ?>";
+    var lang_qrbcalc_title = '<?= __("Compute QRB and QTF"); ?>';
+    var lang_qrbcalc_errmsg = '<?= __("Error in locators. Please check."); ?>';
 
 </script>
 
@@ -690,7 +693,9 @@ $('#dxcc_id').on('change', function() {
             return dxcc.adif == dxccadif;
         });
         $("#stationCQZoneInput").val(dxccinfo[0].cq);
-        // $("#stationITUZoneInput").val(dxccinfo[0].itu); // Commented out, since we do not have itu data.
+        if (dxccadif == 0) {
+            $("#stationITUZoneInput").val(dxccinfo[0].itu); // Only set ITU zone to none if DXCC none is selected. We don't have ITU data for other DXCCs.
+        }
     <?php } ?>
 });
 </script>

@@ -388,6 +388,7 @@ class eqsl extends CI_Controller {
 			return $error;
 		}
 
+		session_write_close();
 		foreach ($images as $image) {
 			$content = file_get_contents("https://www.eqsl.cc" . $image->getAttribute('src'));
 			if ($content === false) {

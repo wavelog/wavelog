@@ -1,5 +1,12 @@
 <script>
 var dxccarray = [];
+dxccarray.push({
+	adif: 0,
+	name: '- None -',
+	cq: '',
+	itu: '',
+});
+
 
 <?php
 if ($dxcc_list->result() > 0) {
