@@ -122,20 +122,10 @@ async function connect() {
         statusBar.innerText = "Connected";
         connectButton.innerText = "Disconnect"
 
-        let decoder = new TextDecoderStream();
-        inputDone = port.readable.pipeTo(decoder.writable);
-        inputStream = decoder.readable;
-
-        //const encoder = new TextEncoderStream();
-        //outputDone = encoder.readable.pipeTo(port.writable);
-        //outputStream = encoder.writable;
-
         writeToByte([0x00, 0x02]);
 
         $('#winkey_buttons').show();
 
-        reader = inputStream.getReader();
-        readLoop();
     } catch (e) {
         //If the pipeTo error appears; clarify the problem by giving suggestions.
         if (e == "TypeError: Cannot read property 'pipeTo' of undefined") {
@@ -153,7 +143,7 @@ async function writeToStream(line) {
     outputStream = encoder.writable;
 
     const writer = outputStream.getWriter();
-    writer.write(line);
+    await writer.write(line);
     writer.releaseLock();
 }
 
@@ -168,20 +158,14 @@ async function writeToByte(line) {
 async function disconnect() {
 
     writeToByte([0x00, 0x03]);
-    if (reader) {
-        await reader.cancel();
-        await inputDone.catch(() => { });
-        reader = null;
-        inputDone = null;
-    }
+    statusBar.innerText = "Disconnected";
+    connectButton.innerText = "Connect"
     if (outputStream) {
         await outputStream.getWriter().close();
         await outputDone;
         outputStream = null;
         outputDone = null;
     }
-    statusBar.innerText = "Disconnected";
-    connectButton.innerText = "Connect"
     //Close the port.
     await port.close();
     port = null;
@@ -230,24 +214,6 @@ function morsekey_func5() {
     writeToStream(UpdateMacros(function5Macro));
     //and clear the input field, so it's clear it has been sent
     sendText.value = "";
-}
-
-
-
-//Read the incoming data
-async function readLoop() {
-    while (true) {
-        const { value, done } = await reader.read();
-        if (done === true){
-            break;
-        }
-
-        console.log(value);
-        //When recieved something add it to the big textarea
-        receiveText.value += value;
-        //Scroll to the bottom of the text field
-        receiveText.scrollTop = receiveText.scrollHeight;
-    }
 }
 
 function UpdateMacros(macrotext) {
