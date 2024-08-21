@@ -683,3 +683,16 @@ $config['sc_hide_usermenu'] = true;
 */
 
 $config['disable_impersonate'] = false;   
+
+
+/*
+|--------------------------------------------------------------------------
+| Cronmanager Allow Insecure
+|--------------------------------------------------------------------------
+|
+| The cronmanager needs http or https with a valid certificate to work.
+| If you want to use it with https and a self-signed certificate, you need to set this to true.
+| 
+*/
+
+$config['cron_allow_insecure'] = false;   
