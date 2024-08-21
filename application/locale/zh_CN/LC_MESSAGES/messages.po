@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-21 06:56+0000\n"
+"POT-Creation-Date: 2024-08-21 15:00+0000\n"
 "PO-Revision-Date: 2024-08-20 05:18+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/"
@@ -66,9 +66,9 @@ msgstr ""
 #: application/controllers/Qsl.php:13 application/controllers/Qsl.php:44
 #: application/controllers/Qsl.php:52 application/controllers/Qslprint.php:147
 #: application/controllers/Qso.php:9 application/controllers/Qso.php:19
-#: application/controllers/Qso.php:176 application/controllers/Qso.php:279
-#: application/controllers/Qso.php:299 application/controllers/Qso.php:308
-#: application/controllers/Qso.php:603 application/controllers/Radio.php:259
+#: application/controllers/Qso.php:176 application/controllers/Qso.php:275
+#: application/controllers/Qso.php:295 application/controllers/Qso.php:304
+#: application/controllers/Qso.php:599 application/controllers/Radio.php:259
 #: application/controllers/Radio.php:285 application/controllers/Radio.php:301
 #: application/controllers/Satellite.php:15
 #: application/controllers/Sattimers.php:9
@@ -3175,8 +3175,6 @@ msgstr "如用于描述用途的名字。"
 #: application/views/options/oqrs.php:63
 #: application/views/options/radios.php:45
 #: application/views/options/version_dialog.php:78
-#: application/views/qso/components/winkeysettings.php:90
-#: application/views/qso/components/winkeysettings_results.php:90
 #: application/views/satellite/create.php:70
 #: application/views/simplefle/index.php:22
 msgid "Save"
@@ -4623,8 +4621,6 @@ msgstr "创建波段"
 #: application/views/bands/index.php:152
 #: application/views/contesting/add.php:74
 #: application/views/interface_assets/footer.php:44
-#: application/views/qso/components/winkeysettings.php:91
-#: application/views/qso/components/winkeysettings_results.php:91
 #: application/views/simplefle/index.php:21
 #: application/views/version_dialog/index.php:79
 msgid "Close"
@@ -5824,7 +5820,7 @@ msgstr "已安装"
 msgid "Not Installed"
 msgstr "未安装"
 
-#: application/views/debug/index.php:283 application/views/qso/index.php:654
+#: application/views/debug/index.php:283 application/views/qso/index.php:649
 msgid "Settings"
 msgstr "设置"
 
@@ -8591,35 +8587,20 @@ msgid ""
 "queue."
 msgstr "没有找到附加的 QSL 信息，可能它们已经被添加到打印队列中。"
 
-#: application/views/qso/components/winkeysettings.php:7
-#: application/views/qso/components/winkeysettings_results.php:7
-msgid "Winkey Macros"
-msgstr "Winkey 宏"
-
-#: application/views/qso/components/winkeysettings.php:12
-#: application/views/qso/components/winkeysettings.php:28
-#: application/views/qso/components/winkeysettings.php:44
-#: application/views/qso/components/winkeysettings.php:60
-#: application/views/qso/components/winkeysettings.php:76
-#: application/views/qso/components/winkeysettings_results.php:12
-#: application/views/qso/components/winkeysettings_results.php:28
-#: application/views/qso/components/winkeysettings_results.php:44
-#: application/views/qso/components/winkeysettings_results.php:60
-#: application/views/qso/components/winkeysettings_results.php:76
-#, php-format
-msgid "Function %d - Name"
-msgstr "Function %d - Name"
-
+#: application/views/qso/components/winkeysettings.php:3
 #: application/views/qso/components/winkeysettings.php:19
 #: application/views/qso/components/winkeysettings.php:35
 #: application/views/qso/components/winkeysettings.php:51
 #: application/views/qso/components/winkeysettings.php:67
-#: application/views/qso/components/winkeysettings.php:83
-#: application/views/qso/components/winkeysettings_results.php:19
-#: application/views/qso/components/winkeysettings_results.php:35
-#: application/views/qso/components/winkeysettings_results.php:51
-#: application/views/qso/components/winkeysettings_results.php:67
-#: application/views/qso/components/winkeysettings_results.php:83
+#, php-format
+msgid "Function %d - Name"
+msgstr "Function %d - Name"
+
+#: application/views/qso/components/winkeysettings.php:10
+#: application/views/qso/components/winkeysettings.php:26
+#: application/views/qso/components/winkeysettings.php:42
+#: application/views/qso/components/winkeysettings.php:58
+#: application/views/qso/components/winkeysettings.php:74
 #, php-format
 msgid "Function %d - Macro"
 msgstr "Function %d - Macro"
@@ -8739,7 +8720,7 @@ msgstr "保存"
 msgid "TimeOff is less than TimeOn"
 msgstr "结束时间小于开始时间"
 
-#: application/views/qso/index.php:5 application/views/qso/index.php:694
+#: application/views/qso/index.php:5 application/views/qso/index.php:690
 msgid "Previous Contacts"
 msgstr "先前通联"
 
@@ -8853,15 +8834,19 @@ msgstr "Winkey"
 msgid "Connect"
 msgstr "连接"
 
-#: application/views/qso/index.php:677
+#: application/views/qso/index.php:663
+msgid "Send"
+msgstr ""
+
+#: application/views/qso/index.php:673
 msgid "Suggestions"
 msgstr "建议"
 
-#: application/views/qso/index.php:684
+#: application/views/qso/index.php:680
 msgid "Profile Picture"
 msgstr "操作员照片"
 
-#: application/views/qso/index.php:708
+#: application/views/qso/index.php:704
 msgid "Max. 5 previous contacts are shown"
 msgstr "最多五次先前通联将会被显示"
 
@@ -11112,6 +11097,9 @@ msgstr "您的呼号："
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "提交请求"
+
+#~ msgid "Winkey Macros"
+#~ msgstr "Winkey 宏"
 
 #~ msgid "User logged in"
 #~ msgstr "已登录用户"
