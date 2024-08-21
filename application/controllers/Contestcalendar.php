@@ -72,7 +72,6 @@ class Contestcalendar extends CI_Controller {
 		return $rssData;
 	}
 
-
 	private function parseTimeRange($string) {
 		$timeData = array();
 
@@ -86,7 +85,19 @@ class Contestcalendar extends CI_Controller {
 
 			// create proper dateTime
 			$timeData['start'] = DateTime::createFromFormat('Hi\Z, M d', $start);
+
+			if (!$timeData['start']) {
+				// If the first format didn't match, try the format without the comma
+				$timeData['start'] = DateTime::createFromFormat('Hi\Z M d', $start);
+			}
+
 			$timeData['end'] = DateTime::createFromFormat('Hi\Z, M d', $end);
+
+			if (!$timeData['end']) {
+				// If the first format didn't match, try the format without the comma
+				$timeData['end'] = DateTime::createFromFormat('Hi\Z M d', $end);
+			}
+
 		} else {
 
 			// split in start and end time
