@@ -94,7 +94,9 @@ msgstr ""
 #: application/controllers/User.php:743 application/controllers/User.php:762
 #: application/controllers/User.php:1045 application/controllers/User.php:1247
 #: application/controllers/Lotw.php:719 application/controllers/Lotw.php:827
-#: application/controllers/Lotw.php:835
+#: application/controllers/Lotw.php:835 application/controllers/Qso.php:275
+#: application/controllers/Qso.php:295 application/controllers/Qso.php:304
+#: application/controllers/Qso.php:599
 msgid "You're not allowed to do that!"
 msgstr "Nije vam dozvoljeno da to uradite!"
 
@@ -5969,6 +5971,7 @@ msgid "Not Installed"
 msgstr "Nije instalirano"
 
 #: application/views/debug/index.php:283 application/views/qso/index.php:654
+#: application/views/qso/index.php:649
 msgid "Settings"
 msgstr "Podešavanja"
 
@@ -11648,6 +11651,10 @@ msgstr ""
 
 #: application/views/interface_assets/footer.php:50
 msgid "Error in locators. Please check."
+msgstr ""
+
+#: application/views/qso/index.php:663
+msgid "Send"
 msgstr ""
 
 #~ msgid "User logged in"

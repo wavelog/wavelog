@@ -642,29 +642,25 @@
 
     <div id="winkey" class="card winkey-settings" style="margin-bottom: 10px;">
         <div class="card-header">
-          <h4 style="font-size: 16px; font-weight: bold;" class="card-title"><?= __("Winkey"); ?>
+			<h4 style="font-size: 16px; font-weight: bold;" class="card-title"><?= __("Winkey"); ?>
 
-          <button id="connectButton" class="btn btn-primary"><?= __("Connect"); ?></button>
+			<button id="connectButton" class="btn btn-sm btn-primary"><?= __("Connect"); ?></button>
 
-          <button type="button" class="btn btn-secondary"
-          hx-get="<?php echo base_url(); ?>index.php/qso/winkeysettings"
-          hx-target="#modals-here"
-          hx-trigger="click"
-          class="btn btn-primary"
-          _="on htmx:afterOnLoad wait 10ms then add .show to #modal then add .show to #modal-backdrop"><i class="fas fa-cog"></i> <?= __("Settings"); ?></button>
-          </h4>
+			<button id="winkey_settings" type="button" class="btn-sm btn btn-secondary" class="btn btn-primary"><i class="fas fa-cog"></i> <?= __("Settings"); ?></button>
+			</h4>
         </div>
 
         <div id="modals-here"></div>
 
         <div id="winkey_buttons" class="card-body">
-          <button id="morsekey_func1" onclick="morsekey_func1()" class="btn btn-warning">F1</button>
-          <button id="morsekey_func2" onclick="morsekey_func2()" class="btn btn-warning">F2</button>
-          <button id="morsekey_func3" onclick="morsekey_func3()" class="btn btn-warning">F3</button>
-          <button id="morsekey_func4" onclick="morsekey_func4()" class="btn btn-warning">F4</button>
-          <button id="morsekey_func5" onclick="morsekey_func5()" class="btn btn-warning">F5</button>
-          <br><br>
-          <input id="sendText" type="text"><input id="sendButton" type="button" value="Send" class="btn btn-success">
+          <button id="morsekey_func1" onclick="morsekey_func1()" class="btn btn-sm btn-warning mb-1">F1</button>
+          <button id="morsekey_func2" onclick="morsekey_func2()" class="btn btn-sm btn-warning mb-1">F2</button>
+          <button id="morsekey_func3" onclick="morsekey_func3()" class="btn btn-sm btn-warning mb-1">F3</button>
+          <button id="morsekey_func4" onclick="morsekey_func4()" class="btn btn-sm btn-warning mb-1">F4</button>
+          <button id="morsekey_func5" onclick="morsekey_func5()" class="btn btn-sm btn-warning mb-1">F5</button>
+          <br>
+          <input id="sendText" type="text" class="form-control mb-1">
+		  <button id="sendButton" type="button" class="btn btn-sm btn-success"><?= __("Send"); ?></button>
 
           <span id="statusBar"></span><br>
 

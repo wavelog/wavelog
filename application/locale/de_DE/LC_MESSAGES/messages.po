@@ -97,6 +97,8 @@ msgstr ""
 #: application/controllers/User.php:762 application/controllers/User.php:1045
 #: application/controllers/User.php:1247
 #: application/controllers/User_options.php:9
+#: application/controllers/Qso.php:275 application/controllers/Qso.php:295
+#: application/controllers/Qso.php:304 application/controllers/Qso.php:599
 msgid "You're not allowed to do that!"
 msgstr "Das ist dir nicht gestattet!"
 
@@ -6042,6 +6044,7 @@ msgid "Not Installed"
 msgstr "Nicht installiert"
 
 #: application/views/debug/index.php:283 application/views/qso/index.php:654
+#: application/views/qso/index.php:649
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -9052,6 +9055,11 @@ msgstr "Winkey Macros"
 #: application/views/qso/components/winkeysettings_results.php:44
 #: application/views/qso/components/winkeysettings_results.php:60
 #: application/views/qso/components/winkeysettings_results.php:76
+#: application/views/qso/components/winkeysettings.php:3
+#: application/views/qso/components/winkeysettings.php:19
+#: application/views/qso/components/winkeysettings.php:35
+#: application/views/qso/components/winkeysettings.php:51
+#: application/views/qso/components/winkeysettings.php:67
 #, php-format
 msgid "Function %d - Name"
 msgstr "Funktion %d - Name"
@@ -9066,6 +9074,11 @@ msgstr "Funktion %d - Name"
 #: application/views/qso/components/winkeysettings_results.php:51
 #: application/views/qso/components/winkeysettings_results.php:67
 #: application/views/qso/components/winkeysettings_results.php:83
+#: application/views/qso/components/winkeysettings.php:10
+#: application/views/qso/components/winkeysettings.php:26
+#: application/views/qso/components/winkeysettings.php:42
+#: application/views/qso/components/winkeysettings.php:58
+#: application/views/qso/components/winkeysettings.php:74
 #, php-format
 msgid "Function %d - Macro"
 msgstr "Funktion %d - Makro"
@@ -9187,6 +9200,7 @@ msgid "TimeOff is less than TimeOn"
 msgstr "Endzeit ist vor der Startzeit"
 
 #: application/views/qso/index.php:5 application/views/qso/index.php:694
+#: application/views/qso/index.php:690
 msgid "Previous Contacts"
 msgstr "Vorherige Kontakte"
 
@@ -9306,15 +9320,15 @@ msgstr "Winkey"
 msgid "Connect"
 msgstr "Verbinden"
 
-#: application/views/qso/index.php:677
+#: application/views/qso/index.php:677 application/views/qso/index.php:673
 msgid "Suggestions"
 msgstr "Vorschläge"
 
-#: application/views/qso/index.php:684
+#: application/views/qso/index.php:684 application/views/qso/index.php:680
 msgid "Profile Picture"
 msgstr "Profilbild"
 
-#: application/views/qso/index.php:708
+#: application/views/qso/index.php:708 application/views/qso/index.php:704
 msgid "Max. 5 previous contacts are shown"
 msgstr "Es werden maximal 5 Kontakte angezeigt"
 
@@ -11871,6 +11885,10 @@ msgstr ""
 
 #: application/views/interface_assets/footer.php:50
 msgid "Error in locators. Please check."
+msgstr ""
+
+#: application/views/qso/index.php:663
+msgid "Send"
 msgstr ""
 
 #~ msgid "User logged in"
