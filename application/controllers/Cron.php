@@ -262,10 +262,10 @@ class cron extends CI_Controller {
 				$result['status_class'] = 'success';
 			} else {
 				if ($diff <= $error_timelimit_seconds) {
-					$result['status'] = sprintf(__("Last run occurred more than %s seconds ago.<br>Please check your master cron! It should run every minute (* * * * *)."), $warning_timelimit_seconds);
+					$result['status'] = sprintf(__("Last run occurred more than %s seconds ago.%sPlease check your master cron! It should run every minute (* * * * *)."), $warning_timelimit_seconds, '<br>');
 					$result['status_class'] = 'warning';
 				} else {
-					$result['status'] = sprintf(__("Last run occurred more than %s minutes ago.<br>Seems like your Mastercron isn't running!<br>It should run every minute (* * * * *)."), ($error_timelimit_seconds / 60));
+					$result['status'] = sprintf(__("Last run occurred more than %s minutes ago.%sSeems like your Mastercron isn't running!%sIt should run every minute (* * * * *)."), ($error_timelimit_seconds / 60), '<br>', '<br>');
 					$result['status_class'] = 'danger';
 				}
 			}
