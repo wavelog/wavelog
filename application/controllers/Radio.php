@@ -197,8 +197,10 @@ class Radio extends CI_Controller {
 
 					// Return Json data
 					$a_ret['frequency'] = $frequency;
+					$a_ret['frequency_formatted'] = $this->frequency->qrg_conversion($frequency);
 					if (isset($frequency_rx) && ($frequency_rx != null)) {
 						$a_ret['frequency_rx'] = $frequency_rx;
+						$a_ret['frequency_rx_formatted'] = $this->frequency->qrg_conversion($frequency_rx);
 					}
 					if (isset($mode) && ($mode != null)) {
 						$a_ret['mode'] = $mode;
