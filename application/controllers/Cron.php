@@ -37,7 +37,7 @@ class cron extends CI_Controller {
 
 		$data['page_title'] = __("Cron Manager");
 		$data['crons'] = $this->cron_model->get_crons();
-		$data['cron_allow_insecure'] = $this->config->item('cron_allow_insecure');
+		$data['cron_allow_insecure'] = $this->config->item('cron_allow_insecure') ?? false;
 
 		$mastercron = array();
 		$mastercron = $this->get_mastercron_status();
@@ -95,7 +95,7 @@ class cron extends CI_Controller {
 						curl_setopt($ch, CURLOPT_HEADER, false);
 						curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
 						curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-						if ($this->config->item('cron_allow_insecure') == true) {
+						if ($this->config->item('cron_allow_insecure') ?? false == true) {
 							curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 						}
 						$crun = curl_exec($ch);
