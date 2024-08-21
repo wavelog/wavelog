@@ -122,6 +122,7 @@ async function connect() {
         statusBar.innerText = "Connected";
         connectButton.innerText = "Disconnect"
 
+
         let decoder = new TextDecoderStream();
         inputDone = port.readable.pipeTo(decoder.writable);
         inputStream = decoder.readable;
@@ -130,8 +131,10 @@ async function connect() {
         outputDone = encoder.readable.pipeTo(port.writable);
         outputStream = encoder.writable;
 
-        writeToByte("0x00, 0x02");
-        writeToByte("0x02, 0x00");
+		// Seems this might not be needed, leaving it for now
+		// writeToByte("[0x00, 0x02]");
+        // writeToByte("[0x02, 0x00]");
+
 
         $('#winkey_buttons').show();
 
@@ -152,7 +155,8 @@ async function writeToStream(line) {
     var enc = new TextEncoder(); // always utf-8
 
     const writer = outputStream.getWriter();
-    writer.write(line);
+
+    writer.write([line.toUpperCase()]);
     writer.releaseLock();
 }
 
@@ -187,11 +191,11 @@ async function disconnect() {
 
 //When the send button is pressed
 function clickSend() {
-    writeToStream(sendText.value);
-    writeToStream("\r");
-
-    //and clear the input field, so it's clear it has been sent
-    sendText.value = "";
+    writeToStream(sendText.value).then(function() {
+		// writeToStream("\r");
+		//and clear the input field, so it's clear it has been sent
+		$('#sendText').val('');
+	});
 
 }
 
