@@ -234,7 +234,7 @@ class Contesting_model extends CI_Model {
 		return;
 	}
 
-	function export_custom($from, $to, $contest_id, $station_id) {
+	function export_custom($from, $to, $contest_id, $station_id, $band = null) {
 		$this->db->select(''.$this->config->item('table_name').'.*, station_profile.*');
 		$this->db->from($this->config->item('table_name'));
 		$this->db->where($this->config->item('table_name').'.station_id', $station_id);
@@ -249,6 +249,11 @@ class Contesting_model extends CI_Model {
 			$to = DateTime::createFromFormat('Y-m-d', $to);
 			$to = $to->format('Y-m-d');
 			$this->db->where("date(".$this->config->item('table_name').".COL_TIME_ON) <= '".$to."'");
+		}
+
+		// If band is set, we only load contacts for that band
+		if ($band != null) {
+			$this->db->where($this->config->item('table_name').'.COL_BAND', $band);
 		}
 
 		$this->db->where($this->config->item('table_name').'.COL_CONTEST_ID', $contest_id);
@@ -314,6 +319,22 @@ class Contesting_model extends CI_Model {
 
 		$data = $this->db->query($sql);
 
+		return $data->result();
+	}
+
+	function get_contest_bands($station_id, $year, $contestid, $from, $to) {
+		
+		//get distinct bands for the selected timeframe	
+		$sql = "select distinct COL_BAND band
+			from " . $this->config->item('table_name') . "
+			where date(".$this->config->item('table_name').".COL_TIME_ON) >= '".$from."'
+			and date(".$this->config->item('table_name').".COL_TIME_ON) <= '".$to."'
+			and station_id =" . $station_id . " and COL_CONTEST_ID ='" . $contestid . "'";
+
+		//get database result
+		$data = $this->db->query($sql);
+
+		//return data
 		return $data->result();
 	}
 }

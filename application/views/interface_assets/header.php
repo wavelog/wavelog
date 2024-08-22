@@ -393,6 +393,8 @@
 
 										<li><a class="dropdown-item" href="<?php echo site_url('cabrillo'); ?>" title="Cabrillo Export"><i class="fas fa-sync"></i> <?= __("Cabrillo Export"); ?></a></li>
 
+										<li><a class="dropdown-item" href="<?php echo site_url('reg1test'); ?>" title="REG1TEST EDI Export"><i class="fas fa-sync"></i> <?= __("REG1TEST EDI Export"); ?></a></li>
+
 										<li><a class="dropdown-item" href="<?php echo site_url('cfdexport'); ?>" title="CFD Export"><i class="fas fa-sync"></i> <?= __("CFD Export"); ?></a></li>
 									</ul>
 								</li>
