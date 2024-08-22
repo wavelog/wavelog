@@ -17,49 +17,49 @@ class Timeline extends CI_Controller {
 		$this->load->model('Timeline_model');
 
 		if ($this->input->post('band') != NULL) {   // Band is not set when page first loads.
-			$band = $this->input->post('band');
+			$band = $this->security->xss_clean($this->input->post('band'));
 		} else {
 			$band = 'All';
 		}
 
 		if ($this->input->post('propmode') != NULL) {
-			$propmode = $this->input->post('propmode');
+			$propmode = $this->security->xss_clean($this->input->post('propmode'));
 		} else {
 			$propmode = 'All';
 		}
 
 		if ($this->input->post('mode') != NULL) {
-			$mode = $this->input->post('mode');
+			$mode = $this->security->xss_clean($this->input->post('mode'));
 		} else {
 			$mode = 'All';
 		}
 
 		if ($this->input->post('award') != NULL) {
-			$award = $this->input->post('award');
+			$award = $this->security->xss_clean($this->input->post('award'));
 		} else {
 			$award = 'dxcc';
 		}
 
 		if ($this->input->post('qsl') != NULL) {
-			$qsl = $this->input->post('qsl');
+			$qsl = $this->security->xss_clean($this->input->post('qsl'));
 		} else {
 			$qsl = '0';
 		}
 
 		if ($this->input->post('lotw') != NULL) {
-			$lotw = $this->input->post('lotw');
+			$lotw = $this->security->xss_clean($this->input->post('lotw'));
 		} else {
 			$lotw = '0';
 		}
 
 		if ($this->input->post('clublog') != NULL) {
-			$clublog = $this->input->post('clublog');
+			$clublog = $this->security->xss_clean($this->input->post('clublog'));
 		} else {
 			$clublog = '0';
 		}
 
 		if ($this->input->post('eqsl') != NULL) {
-			$eqsl = $this->input->post('eqsl');
+			$eqsl = $this->security->xss_clean($this->input->post('eqsl'));
 		} else {
 			$eqsl = '0';
 		}
