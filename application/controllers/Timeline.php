@@ -3,16 +3,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Timeline extends CI_Controller {
 
-    function __construct()
-    {
+    function __construct() {
         parent::__construct();
 
         $this->load->model('user_model');
         if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
     }
 
-    public function index()
-    {
+    public function index() {
         // Render Page
         $data['page_title'] = __("Timeline");
 
@@ -23,6 +21,13 @@ class Timeline extends CI_Controller {
         }
         else {
             $band = 'All';
+        }
+
+        if ($this->input->post('propmode') != NULL) {
+            $propmode = $this->input->post('propmode');
+        }
+        else {
+            $propmode = 'All';
         }
 
         if ($this->input->post('mode') != NULL) {
@@ -53,6 +58,13 @@ class Timeline extends CI_Controller {
             $lotw = '0';
         }
 
+        if ($this->input->post('clublog') != NULL) {
+            $clublog = $this->input->post('clublog');
+        }
+        else {
+            $clublog = '0';
+        }
+
         if ($this->input->post('eqsl') != NULL) {
             $eqsl = $this->input->post('eqsl');
         }
@@ -65,7 +77,7 @@ class Timeline extends CI_Controller {
 
         $data['modes'] = $this->modes->active();
 
-        $data['timeline_array'] = $this->Timeline_model->get_timeline($band, $mode, $award, $qsl, $lotw, $eqsl);
+        $data['timeline_array'] = $this->Timeline_model->get_timeline($band, $mode, $propmode, $award, $qsl, $lotw, $eqsl, $clublog);
         $data['worked_bands'] = $this->bands->get_worked_bands();
         $data['bandselect'] = $band;
         $data['modeselect'] = $mode;
