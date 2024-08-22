@@ -81,6 +81,7 @@ class Timeline extends CI_Controller {
         $data['worked_bands'] = $this->bands->get_worked_bands();
         $data['bandselect'] = $band;
         $data['modeselect'] = $mode;
+	$data['user_default_band'] = $this->session->userdata('user_default_band');
 
         $this->load->view('interface_assets/header', $data);
         $this->load->view('timeline/index');

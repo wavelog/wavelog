@@ -48,7 +48,7 @@ class Timeline_model extends CI_Model
 		    $binding[] = $mode;
 	    }
 
-	    $sql .= $this->addQslToQuery($qsl, $lotw, $eqsl);
+	    $sql .= $this->addQslToQuery($qsl, $lotw, $eqsl, $clublog);
 
 	    $sql .= " group by col_dxcc, col_country
 		    order by date desc";
@@ -83,7 +83,7 @@ class Timeline_model extends CI_Model
 
         $sql .= " and COL_DXCC = '339' and trim(coalesce(COL_STATE,'')) != '' ";
 
-        $sql .= $this->addQslToQuery($qsl, $lotw, $eqsl);
+        $sql .= $this->addQslToQuery($qsl, $lotw, $eqsl, $clublog);
 
         $sql .= " group by col_state
                 order by date desc";
@@ -119,7 +119,7 @@ class Timeline_model extends CI_Model
         $sql .= " and COL_DXCC in ('291', '6', '110')";
         $sql .= " and COL_STATE in ('AK','AL','AR','AZ','CA','CO','CT','DE','FL','GA','HI','IA','ID','IL','IN','KS','KY','LA','MA','MD','ME','MI','MN','MO','MS','MT','NC','ND','NE','NH','NJ','NM','NV','NY','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VA','VT','WA','WI','WV','WY')";
 
-        $sql .= $this->addQslToQuery($qsl, $lotw, $eqsl);
+        $sql .= $this->addQslToQuery($qsl, $lotw, $eqsl, $clublog);
 
         $sql .= " group by col_state
                 order by date desc";
@@ -153,7 +153,7 @@ class Timeline_model extends CI_Model
 			$binding[] = $mode;
         }
 
-        $sql .= $this->addQslToQuery($qsl, $lotw, $eqsl);
+        $sql .= $this->addQslToQuery($qsl, $lotw, $eqsl, $clublog);
 
         $sql .= " and col_iota <> '' group by col_iota, name, prefix
                 order by date desc";
@@ -186,7 +186,7 @@ class Timeline_model extends CI_Model
 			$binding[] = $mode;
         }
 
-        $sql .= $this->addQslToQuery($qsl, $lotw, $eqsl);
+        $sql .= $this->addQslToQuery($qsl, $lotw, $eqsl, $clublog);
 
         $sql .= " and col_cqz <> '' group by col_cqz
                 order by date desc";
@@ -216,7 +216,7 @@ class Timeline_model extends CI_Model
 		    }
 
 		    if ($clublog ?? 0 == 1) {
-			    $sql .= " col_clublog_qsl_rcvd = 'Y' or";
+			    $sql .= " col_clublog_qso_download_status = 'Y' or";
 		    }
 		   $sql.=' 1=0)';
 	    } 

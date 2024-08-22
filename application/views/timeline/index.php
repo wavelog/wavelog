@@ -37,7 +37,7 @@
                     </div>
                 </div>
 
-        <div class="mb-3 row">
+        <div class="mb-4 row">
             <label class="col-md-1 control-label" for="award"><?= __("Award") ?></label>
                 <div class="col-md-3">
                     <select id="award" name="award" class="form-select">
@@ -50,7 +50,7 @@
                     </select>
                 </div>
                 <div class="col-md-1 control-label"><?= __("Confirmation") ?></div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" name="qsl" value="1" id="qsl" <?php if ($this->input->post('qsl'))  echo ' checked="checked"'; ?> >
                         <label class="form-check-label" for="qsl"><?= __("QSL") ?></label>
@@ -63,6 +63,38 @@
                         <input class="form-check-input" type="checkbox" name="eqsl" value="1" id="eqsl" <?php if ($this->input->post('eqsl')) echo ' checked="checked"'; ?> >
                         <label class="form-check-label" for="eqsl"><?= __("eQSL") ?></label>
                     </div>
+ 		    <div class="form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="clublog" value="1" id="clublog" <?php if ($this->input->post('clublog')) echo ' checked="checked"'; ?> >
+                        <label class="form-check-label" for="clublog"><?= __("Clublog") ?></label>
+                    </div>
+                </div>
+            </div>
+
+	    <div class="mb-3 row">
+                <label class="col-md-1" for="propagation"><?= __("Propagation"); ?></label>
+                <div class="col-sm-3">
+                    <select class="form-select form-select-sm w-auto" id="propagation" <?php if ($user_default_band == 'SAT') {echo 'disabled';} ?>>
+                        <option value=""><?= __("All"); ?></option>
+                        <option value="None"><?= __("None/Empty"); ?></option>
+                        <option value="AS"><?= _pgettext("Propagation Mode","Aircraft Scatter"); ?></option>
+                        <option value="AUR"><?= _pgettext("Propagation Mode","Aurora"); ?></option>
+                        <option value="AUE"><?= _pgettext("Propagation Mode","Aurora-E"); ?></option>
+                        <option value="BS"><?= _pgettext("Propagation Mode","Back scatter"); ?></option>
+                        <option value="ECH"><?= _pgettext("Propagation Mode","EchoLink"); ?></option>
+                        <option value="EME"><?= _pgettext("Propagation Mode","Earth-Moon-Earth"); ?></option>
+                        <option value="ES"><?= _pgettext("Propagation Mode","Sporadic E"); ?></option>
+                        <option value="FAI"><?= _pgettext("Propagation Mode","Field Aligned Irregularities"); ?></option>
+                        <option value="F2"><?= _pgettext("Propagation Mode","F2 Reflection"); ?></option>
+                        <option value="INTERNET"><?= _pgettext("Propagation Mode","Internet-assisted"); ?></option>
+                        <option value="ION"><?= _pgettext("Propagation Mode","Ionoscatter"); ?></option>
+                        <option value="IRL"><?= _pgettext("Propagation Mode","IRLP"); ?></option>
+                        <option value="MS"><?= _pgettext("Propagation Mode","Meteor scatter"); ?></option>
+                        <option value="RPT"><?= _pgettext("Propagation Mode","Terrestrial or atmospheric repeater or transponder"); ?></option>
+                        <option value="RS"><?= _pgettext("Propagation Mode","Rain scatter"); ?></option>
+                        <option value="SAT" <?php if ($user_default_band == 'SAT') {echo 'selected="selected"';} ?>><?= _pgettext("Propagation Mode","Satellite"); ?></option>
+                        <option value="TEP"><?= _pgettext("Propagation Mode","Trans-equatorial"); ?></option>
+                        <option value="TR"><?= _pgettext("Propagation Mode","Tropospheric ducting"); ?></option>
+                    </select>
                 </div>
             </div>
 
