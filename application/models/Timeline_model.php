@@ -35,22 +35,16 @@ class Timeline_model extends CI_Model {
 			$sql .= " and col_prop_mode = ?";
 			$binding[] = $band;
 		} else {		// Not SAT
+			if ($band != 'All') {
+				$sql .= " and col_band = ?";
+				$binding[] = $band;
+			}
 			if ( $propmode == 'All' ) {	// Not SAT and Prop=All -> Show everything but not prop_mode SAT
 				$sql .= " and col_prop_mode !='SAT'";
-				if ($band != 'All') {
-					$sql .= " and col_band = ?";
-					$binding[] = $band;
-				}
 			} elseif ($propmode == 'None') {	// Not SAT and prop=None --> Take only care of Band (if set)
-				if ($band != 'All') {
-					$sql .= " and col_band = ?";
-					$binding[] = $band;
-				}
+				;
+				// No filter
 			} else {	// Not SAT and not All and no prop in ('All','None') take care of band and propmode
-				if ($band != 'All') {
-					$sql .= " and col_band = ?";
-					$binding[] = $band;
-				}
 				$sql .= " and col_prop_mode = ?";
 				$binding[] = $propmode;
 			}
