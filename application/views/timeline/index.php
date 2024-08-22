@@ -71,9 +71,9 @@
             </div>
 
 	    <div class="mb-3 row">
-                <label class="col-md-1" for="propagation"><?= __("Propagation"); ?></label>
+                <label class="col-md-1" for="propmode"><?= __("Propagation"); ?></label>
                 <div class="col-sm-3">
-                    <select class="form-select form-select-sm w-auto" id="propagation" <?php if ($user_default_band == 'SAT') {echo 'disabled';} ?>>
+                    <select class="form-select form-select-sm w-auto" name="propmode" id="propmode" <?php if ($user_default_band == 'SAT') {echo 'disabled';} ?>>
                         <option value=""><?= __("All"); ?></option>
                         <option value="None"><?= __("None/Empty"); ?></option>
                         <option value="AS"><?= _pgettext("Propagation Mode","Aircraft Scatter"); ?></option>
@@ -91,7 +91,7 @@
                         <option value="MS"><?= _pgettext("Propagation Mode","Meteor scatter"); ?></option>
                         <option value="RPT"><?= _pgettext("Propagation Mode","Terrestrial or atmospheric repeater or transponder"); ?></option>
                         <option value="RS"><?= _pgettext("Propagation Mode","Rain scatter"); ?></option>
-                        <option value="SAT" <?php if ($user_default_band == 'SAT') {echo 'selected="selected"';} ?>><?= _pgettext("Propagation Mode","Satellite"); ?></option>
+                        <option value="SAT" <?php if (($user_default_band == 'SAT') || ($propmode == 'SAT')) {echo 'selected="selected"';} ?>><?= _pgettext("Propagation Mode","Satellite"); ?></option>
                         <option value="TEP"><?= _pgettext("Propagation Mode","Trans-equatorial"); ?></option>
                         <option value="TR"><?= _pgettext("Propagation Mode","Tropospheric ducting"); ?></option>
                     </select>
