@@ -94,7 +94,7 @@ class Reg1test extends CI_Controller {
 		//get cleaned station id
 		$station_id = $this->input->post('station_id', true);
 		
-		//deny access is stations is not accessible
+		//deny access if station is not accessible
 		if (!$this->stations->check_station_is_accessible($station_id)) {
 			$this->session->set_flashdata('error', __("You're not allowed to do that!")); 
 			redirect('dashboard');
@@ -108,7 +108,7 @@ class Reg1test extends CI_Controller {
 		//get contestdates from database
 		$result = $this->Contesting_model->get_contest_dates($station_id, $year, $contestid);
 
-		//return  result as json
+		//return result as json
 		header('Content-Type: application/json');
 		echo json_encode($result);
 	}
@@ -122,7 +122,7 @@ class Reg1test extends CI_Controller {
 		//get cleaned station id
 		$station_id = $this->input->post('station_id', true);
 		
-		//deny access is stations is not accessible
+		//deny access if station is not accessible
 		if (!$this->stations->check_station_is_accessible($station_id)) {
 			$this->session->set_flashdata('error', __("You're not allowed to do that!")); 
 			redirect('dashboard');
@@ -138,7 +138,7 @@ class Reg1test extends CI_Controller {
 		//get contestdates from database
 		$result = $this->Contesting_model->get_contest_bands($station_id, $year, $contestid, $from, $to);
 
-		//return  result as json
+		//return result as json
 		header('Content-Type: application/json');
 		echo json_encode($result);
 		
@@ -176,7 +176,7 @@ class Reg1test extends CI_Controller {
 		$userinfo = $userinfo->row();
 
 		//get qsos and set qso data for export
-		$data['qsos'] = $this->Contesting_model->export_custom($from, $to, $contest_id, $station_id);
+		$data['qsos'] = $this->Contesting_model->export_custom($from, $to, $contest_id, $station_id, $band);
 
 		//set contest header data for export
 		$data['band'] = $band;
