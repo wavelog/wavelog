@@ -9,10 +9,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-08-22 11:43+0200\n"
-"PO-Revision-Date: 2024-08-21 06:52+0000\n"
+"PO-Revision-Date: 2024-08-22 13:37+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
-"Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/sr/>\n"
+"Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/sr/>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -581,6 +581,8 @@ msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
 "It should run every minute (* * * * *)."
 msgstr ""
+"Posljednji put se desilo pre više od %s sekundi. %sMolimo proverite vaš "
+"master kron! Trebalo bi da radi svakog minuta (* * * * *)."
 
 #: application/controllers/Cron.php:268
 #, php-format
@@ -588,11 +590,13 @@ msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
 "isn't running!%sIt should run every minute (* * * * *)."
 msgstr ""
+"Posljednji put se desilo pre više od %s minuta. %sMolimo proverite vaš "
+"master kron! %sTrebalo bi da radi svakog minuta (* * * * *)."
 
 #: application/controllers/Cron.php:273 application/views/cron/index.php:29
 msgctxt "Master Cron"
 msgid "Not running"
-msgstr ""
+msgstr "Ne izvršava se"
 
 #: application/controllers/Csv.php:20 application/views/csv/index.php:3
 #: application/views/interface_assets/header.php:392
@@ -1436,15 +1440,15 @@ msgstr "Loogbok of the World"
 
 #: application/controllers/Lotw.php:152
 msgid "Certificate Imported."
-msgstr ""
+msgstr "Sertifikat je uvezen."
 
 #: application/controllers/Lotw.php:159
 msgid "Certificate Updated."
-msgstr ""
+msgstr "Sertifikat je ažuriran."
 
 #: application/controllers/Lotw.php:384
 msgid "Certificate Deleted."
-msgstr ""
+msgstr "Sertifikat je izbrisan."
 
 #: application/controllers/Lotw.php:413
 #, php-format
@@ -1452,6 +1456,8 @@ msgid ""
 "Found no certificate in file %s. If the filename contains 'key-only' this is "
 "typically a certificate request which has not been processed by LoTW yet."
 msgstr ""
+"Nije pronađen sertifikat %s. Ako naziv datoteke sadrži 'key-only' to je "
+"tipično zahtev za sertifikat koji još nije obrađen od strane LoTW."
 
 #: application/controllers/Lotw.php:617
 msgid "LoTW ADIF Information"
@@ -1463,7 +1469,7 @@ msgstr "Uvoz LoTW ADIF"
 
 #: application/controllers/Lotw.php:752 application/controllers/Lotw.php:870
 msgid "You have not defined your ARRL LoTW credentials!"
-msgstr ""
+msgstr "Niste definisali vaše ARRL LoTW kredencijale!"
 
 #: application/controllers/Lotw.php:837
 msgid "LoTW .TQ8 Upload"
@@ -1471,7 +1477,7 @@ msgstr "LoTW .TQ8 učitavanje"
 
 #: application/controllers/Lotw.php:915
 msgid "Your ARRL username and/or password is incorrect."
-msgstr ""
+msgstr "Vaše ARRL korisničko ime i/ili lozinka su netačni."
 
 #: application/controllers/Lotw.php:934 application/controllers/Lotw.php:939
 msgid "LoTW .TQ8 Sent"
@@ -1646,42 +1652,44 @@ msgstr "QRB računar"
 #: application/controllers/Qrbcalc.php:50
 #, php-format
 msgid "Latitude: %s, Longitude: %s"
-msgstr ""
+msgstr "Geografska širina: %s, Geografska dužina: %s"
 
 #: application/controllers/Qrbcalc.php:54
 #, php-format
 msgid "The distance between %s and %s is %s mile."
 msgid_plural "The distance between %s and %s is %s miles."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Udaljenost između %s i %s je %s milju."
+msgstr[1] "Udaljenost između %s i %s je %s milje."
+msgstr[2] "Udaljenost između %s i %s je %s milja."
 
 #: application/controllers/Qrbcalc.php:57
 #, php-format
 msgid "The distance between %s and %s is %s nautical mile."
 msgid_plural "The distance between %s and %s is %s nautical miles."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Udaljenost između %s i %s je %s nautičku milju."
+msgstr[1] "Udaljenost između %s i %s je %s nautičke milje."
+msgstr[2] "Udaljenost između %s i %s je %s nautičkih milja."
 
 #: application/controllers/Qrbcalc.php:60
 #, php-format
 msgid "The distance between %s and %s is %s kilometer."
 msgid_plural "The distance between %s and %s is %s kilometers."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Udaljenost između %s i %s je %s kilometar."
+msgstr[1] "Udaljenost između %s i %s je %s kilometra."
+msgstr[2] "Udaljenost između %s i %s je %s kilometara."
 
 #: application/controllers/Qrbcalc.php:66
 #, php-format
 msgid "The bearing is %s."
-msgstr ""
+msgstr "Smer je %s."
 
 #: application/controllers/Qrbcalc.php:72
 msgid ""
 "Negative latitudes are south of the equator, negative longitudes are west of "
 "Greenwich."
 msgstr ""
+"Negativne geografske širine su južno od ekvatora, negativne geografske "
+"dužine su zapadno od Griniča."
 
 #: application/controllers/Qrz.php:173
 #: application/views/interface_assets/header.php:426
@@ -2225,28 +2233,32 @@ msgid ""
 "You currently can't impersonate another user. Please change the "
 "encryption_key in your config.php file first!"
 msgstr ""
+"Trenutno ne možete predstavljati drugog korisnika. Molimo prvo promenite "
+"encryption_key u vašoj config.php datoteci!"
 
 #: application/controllers/User.php:1206
 msgid "Invalid Hash"
-msgstr ""
+msgstr "Neispravni haš"
 
 #: application/controllers/User.php:1219
 msgid "The impersonation hash is too old. Please try again."
-msgstr ""
+msgstr "Haš za predstavljanje je previše star. Molimo pokušajte ponovo."
 
 #: application/controllers/User.php:1226
 msgid ""
 "You can't impersonate another user while you're not logged in as the source "
 "user"
 msgstr ""
+"Ne možete predstavljati drugog korisnika dok niste priavljeni kao izvorni "
+"korisnik"
 
 #: application/controllers/User.php:1232
 msgid "There was a problem with your session. Please try again."
-msgstr ""
+msgstr "Postojao je problem sa vašom sesijom. Molimo pokušajte ponovo."
 
 #: application/controllers/User.php:1239
 msgid "The requested user to impersonate does not exist"
-msgstr ""
+msgstr "Korisnik čije ste predstavljanje pokušali ne postoji"
 
 #: application/controllers/Visitor.php:50
 #: application/controllers/Visitor.php:79
@@ -5326,7 +5338,7 @@ msgstr ""
 
 #: application/views/cron/index.php:29 application/views/cron/index.php:33
 msgid "Status Master-Cron:"
-msgstr ""
+msgstr "Status Master-krona:"
 
 #: application/views/cron/index.php:33
 msgctxt "PHP Version"
@@ -6621,11 +6633,11 @@ msgstr "Nema država dostupnih za ovu DXCC"
 
 #: application/views/interface_assets/footer.php:49
 msgid "Compute QRB and QTF"
-msgstr ""
+msgstr "Izračuajte QRB i QTF"
 
 #: application/views/interface_assets/footer.php:50
 msgid "Error in locators. Please check."
-msgstr ""
+msgstr "Greška u lokatorima. Molimo provjerite."
 
 #: application/views/interface_assets/footer.php:132
 #: application/views/interface_assets/header.php:434
@@ -9104,7 +9116,7 @@ msgstr "Povežite"
 
 #: application/views/qso/index.php:663
 msgid "Send"
-msgstr ""
+msgstr "Pošalji"
 
 #: application/views/qso/index.php:673
 msgid "Suggestions"
@@ -9478,15 +9490,15 @@ msgstr "Pogledajte na QRZ.com"
 #: application/views/search/search_result_ajax.php:428
 #: application/views/view_log/partial/log_ajax.php:342
 msgid "Lookup on HamQTH"
-msgstr ""
+msgstr "Pogledaj na HamQTH"
 
 #: application/views/search/stored_queries.php:9
 msgid "Query"
-msgstr ""
+msgstr "Upit"
 
 #: application/views/simplefle/index.php:13
 msgid "Simple Fast Log Entry (FLE)"
-msgstr ""
+msgstr "Simple Fast Log Entry (FLE)"
 
 #: application/views/simplefle/index.php:14
 msgid ""
@@ -9494,6 +9506,9 @@ msgid ""
 "efficiently. Due to its syntax, only a minimum of input is required to log "
 "many QSOs with as little effort as possible."
 msgstr ""
+"'Fast Log Entry', ili jednostavnije 'FLE' je sistem upisivanja veza u log na "
+"brz i efikasan način. Zbog svoje sintakse, zahteva se samo minimum ulaznih "
+"podataka za upis veza, sa što je moguće manje napora."
 
 #: application/views/simplefle/index.php:15
 msgid ""
@@ -9501,6 +9516,9 @@ msgid ""
 "website. Simple FLE was written by OK2CQR based on DF3CB's FLE and provides "
 "a web interface to log QSOs."
 msgstr ""
+"FLE je originalno napisao DF3CB. Na svom web sajtu ponudio je i program za "
+"Windows. Simple FLE je napisao OK2CQR na osnovu DF3CB-ovog FLE i pruža web "
+"interfejst za upisivanje veza."
 
 #: application/views/simplefle/index.php:16
 #, php-format
