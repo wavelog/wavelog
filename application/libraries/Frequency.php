@@ -225,9 +225,95 @@ class Frequency {
 		return $Band;
 	}
 
-	// converts a frequency in Hz to MHz output
-	function hz_to_mhz($frequency) {
-		return number_format(($frequency / 1000 / 1000), 3) . " MHz";
+	/**
+	 * Convert a frequency to a specified unit and return it in a specified format.
+	 *
+	 * @param float  	$frequency		The frequency value to be converted.
+	 * 							
+	 * @param int    	$r_option		(Optional) The result format option. 
+	 *                            		0: Return as a string with just the frequency.
+	 *                            		1 (default): Return as a string with frequency and unit.
+	 *                            		2: Return as a string with frequency, unit, and band.
+	 * 
+	 * @param string 	$source_unit 	(Optional) The source unit of the frequency. 
+	 *                            		Possible values: 'Hz', 'kHz', 'MHz', 'GHz'. 
+	 *                            		Default is 'Hz'. 
+	 * 									! If the source unit is not 'Hz', you have to provide the source unit. !
+	 * 
+	 * @param string 	$target_unit 	(Optional) The target unit for conversion. 
+	 *                            		Possible values: 'Hz', 'kHz', 'MHz', 'GHz'. 
+	 *                            		If not provided, the unit is determined based on session data (function qrg_unit()).
+	 *
+	 * @return string 	The converted frequency in the specified format.
+	 * 
+	 * To change the number of decimals shown per unit, add in your config.php
+	 * 
+	 * $config['qrg_hz_dec'] = 0;
+	 * $config['qrg_khz_dec'] = 0;
+	 * $config['qrg_mhz_dec'] = 3;
+	 * $config['qrg_ghz_dec'] = 3;
+	 * 
+	 * and adjust the values to your needs.
+	 * 
+	 */
+	function qrg_conversion($frequency, $r_option = 1, $source_unit = 'Hz', $target_unit = NULL) {
+
+		$CI = &get_instance();
+	
+		// Get the band
+		$band = $this->GetBand($frequency);
+	
+		// Get the target unit
+		if ($target_unit === NULL) {
+			$target_unit = $this->qrg_unit($band);
+		}
+	
+		// Convert the frequency to Hz
+		switch ($source_unit) {
+			case 'Hz':
+				break;
+			case 'kHz':
+				$frequency *= 1000;
+				break;
+			case 'MHz':
+				$frequency *= 1000000; // 1000 * 1000
+				break;
+			case 'GHz':
+				$frequency *= 1000000000; // 1000 * 1000 * 1000
+				break;
+		}
+	
+		// Convert the frequency to the target unit
+		switch ($target_unit) {
+			case 'Hz':
+				$decimals = $CI->config->item('qrg_hz_dec') ?? 0;
+				break;
+			case 'kHz':
+				$frequency /= 1000;
+				$decimals = $CI->config->item('qrg_khz_dec') ?? 0;
+				break;	
+			case 'MHz':
+				$frequency /= 1000000; // 1000 * 1000
+				$decimals = $CI->config->item('qrg_mhz_dec') ?? 3;
+				break;
+			case 'GHz':
+				$frequency /= 1000000000; // 1000 * 1000 * 1000
+				$decimals = $CI->config->item('qrg_ghz_dec') ?? 3;
+				break;
+		}
+
+		// Return
+		switch ($r_option) {
+			case 0:
+				return number_format($frequency, $decimals, '.', '');
+				break;
+			case 1:
+				return number_format($frequency, $decimals, '.', '') . ' ' . $target_unit;
+				break;
+			case 2:
+				return number_format($frequency, $decimals, '.', '') . ' ' . $target_unit . ' (' . $band . ')';
+				break;
+		}
 	}
 
 	function qrg_unit($band) {
