@@ -7,7 +7,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 	This controller contains features for Cabrillo
 */
 
-class Reg1Test extends CI_Controller {
+class Reg1test extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
