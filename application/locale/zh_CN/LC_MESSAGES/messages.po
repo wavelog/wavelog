@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-22 06:02+0000\n"
+"POT-Creation-Date: 2024-08-22 11:43+0200\n"
 "PO-Revision-Date: 2024-08-20 05:18+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/"
@@ -674,7 +674,7 @@ msgid "DX Calendar"
 msgstr "DX 日志"
 
 #: application/controllers/Eqsl.php:34
-#: application/views/dashboard/index.php:310
+#: application/views/dashboard/index.php:307
 #: application/views/eqslcard/index.php:5
 #: application/views/visitor/index.php:306
 msgid "eQSL Cards"
@@ -930,7 +930,7 @@ msgstr "QSL"
 #: application/views/awards/wab/index.php:80
 #: application/views/awards/waja/index.php:59
 #: application/views/awards/was/index.php:59
-#: application/views/dashboard/index.php:245
+#: application/views/dashboard/index.php:242
 #: application/views/gridmap/index.php:109
 #: application/views/logbookadvanced/useroptions.php:66
 #: application/views/oqrs/qsolist.php:17 application/views/oqrs/qsolist.php:159
@@ -959,7 +959,7 @@ msgstr "LoTW"
 #: application/views/awards/wab/index.php:88
 #: application/views/awards/waja/index.php:63
 #: application/views/awards/was/index.php:63
-#: application/views/dashboard/index.php:245
+#: application/views/dashboard/index.php:242
 #: application/views/gridmap/index.php:117
 #: application/views/logbookadvanced/useroptions.php:70
 #: application/views/oqrs/qsolist.php:14 application/views/oqrs/qsolist.php:130
@@ -1678,8 +1678,8 @@ msgstr "QRZ QSL 导入"
 msgid "QRZ ADIF Information"
 msgstr "QRZ ADIF 信息"
 
-#: application/controllers/Qsl.php:25 application/views/dashboard/index.php:245
-#: application/views/dashboard/index.php:262
+#: application/controllers/Qsl.php:25 application/views/dashboard/index.php:242
+#: application/views/dashboard/index.php:259
 #: application/views/qslcard/index.php:5
 #: application/views/visitor/index.php:283
 msgid "QSL Cards"
@@ -1788,9 +1788,6 @@ msgstr "您尚未创建台站地址，请前往 %s 创建！"
 #: application/views/awards/dok/index.php:10
 #: application/views/awards/iota/index.php:19
 #: application/views/awards/was/index.php:23
-#: application/views/dashboard/index.php:64
-#: application/views/dashboard/index.php:73
-#: application/views/dashboard/index.php:82
 #: application/views/simplefle/index.php:16
 msgid "here"
 msgstr "这里"
@@ -2433,7 +2430,7 @@ msgid "Accumulated number of WAJA worked"
 msgstr "累计通联的 WAJA 数量"
 
 #: application/views/accumulate/index.php:8
-#: application/views/dashboard/index.php:223
+#: application/views/dashboard/index.php:220
 #: application/views/dayswithqso/index.php:16
 #: application/views/statistics/index.php:18
 #: application/views/visitor/index.php:246
@@ -2446,7 +2443,7 @@ msgid "Yearly"
 msgstr "每年"
 
 #: application/views/accumulate/index.php:10
-#: application/views/dashboard/index.php:228
+#: application/views/dashboard/index.php:225
 #: application/views/visitor/index.php:251
 msgid "Month"
 msgstr "月"
@@ -2734,7 +2731,7 @@ msgstr "未找到！"
 #: application/views/cabrillo/index.php:31
 #: application/views/components/hamsat/table.php:27
 #: application/views/contesting/index.php:104
-#: application/views/csv/index.php:23 application/views/dashboard/index.php:153
+#: application/views/csv/index.php:23 application/views/dashboard/index.php:150
 #: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:41
 #: application/views/eqslcard/index.php:28
 #: application/views/hamsat/index.php:30 application/views/labels/index.php:123
@@ -2819,7 +2816,7 @@ msgstr "与 DCL 相比，日志中 DOK 的数据不同"
 #: application/views/components/hamsat/table.php:25
 #: application/views/contesting/index.php:42
 #: application/views/contesting/index.php:200
-#: application/views/dashboard/index.php:148
+#: application/views/dashboard/index.php:145
 #: application/views/debug/index.php:545 application/views/eqsl/analysis.php:36
 #: application/views/eqsl/download.php:36 application/views/eqsl/result.php:33
 #: application/views/eqslcard/index.php:30
@@ -2861,7 +2858,7 @@ msgstr "日期"
 #: application/views/components/hamsat/table.php:26
 #: application/views/contesting/index.php:47
 #: application/views/contesting/index.php:200
-#: application/views/dashboard/index.php:151
+#: application/views/dashboard/index.php:148
 #: application/views/debug/index.php:546 application/views/eqsl/analysis.php:37
 #: application/views/eqsl/download.php:37 application/views/eqsl/result.php:34
 #: application/views/eqslcard/index.php:31
@@ -2922,9 +2919,9 @@ msgid "DARC DCL"
 msgstr "DARC DCL"
 
 #: application/views/adif/import.php:55
-#: application/views/dashboard/index.php:97
-#: application/views/dashboard/index.php:118
-#: application/views/dashboard/index.php:124
+#: application/views/dashboard/index.php:94
+#: application/views/dashboard/index.php:115
+#: application/views/dashboard/index.php:121
 #: application/views/eqsl/import.php:45 application/views/lotw/import.php:25
 #: application/views/lotw_views/index.php:4
 msgid "Important"
@@ -3419,7 +3416,7 @@ msgstr "已确认的县"
 #: application/views/awards/rac/index.php:171
 #: application/views/awards/waja/index.php:179
 #: application/views/awards/was/index.php:179
-#: application/views/dashboard/index.php:218
+#: application/views/dashboard/index.php:215
 #: application/views/simplefle/index.php:27
 #: application/views/statistics/qsltable.php:54
 #: application/views/statistics/qsltable.php:109
@@ -3492,8 +3489,8 @@ msgstr "CQ 杂志 WAZ 奖状"
 #: application/views/awards/itu/index.php:34
 #: application/views/awards/wab/list.php:6
 #: application/views/bandmap/list.php:73
-#: application/views/dashboard/index.php:245
-#: application/views/dashboard/index.php:363
+#: application/views/dashboard/index.php:242
+#: application/views/dashboard/index.php:360
 #: application/views/interface_assets/footer.php:40
 #: application/views/visitor/index.php:266
 msgid "Confirmed"
@@ -3502,8 +3499,8 @@ msgstr "已确认"
 #: application/views/awards/cq/index.php:34
 #: application/views/awards/itu/index.php:34
 #: application/views/bandmap/list.php:72
-#: application/views/dashboard/index.php:241
-#: application/views/dashboard/index.php:357
+#: application/views/dashboard/index.php:238
+#: application/views/dashboard/index.php:354
 #: application/views/visitor/index.php:262
 msgid "Worked"
 msgstr "已通联"
@@ -4131,7 +4128,7 @@ msgid "City"
 msgstr "城市"
 
 #: application/views/awards/jcc/index.php:187
-#: application/views/dashboard/index.php:353
+#: application/views/dashboard/index.php:350
 #: application/views/distances/index.php:23
 msgid "SAT"
 msgstr "卫星"
@@ -4875,10 +4872,10 @@ msgid "Show Details"
 msgstr "显示细节"
 
 #: application/views/contestcalendar/index.php:38
-#: application/views/dashboard/index.php:263
-#: application/views/dashboard/index.php:290
-#: application/views/dashboard/index.php:311
-#: application/views/dashboard/index.php:332
+#: application/views/dashboard/index.php:260
+#: application/views/dashboard/index.php:287
+#: application/views/dashboard/index.php:308
+#: application/views/dashboard/index.php:329
 #: application/views/satellite/pass.php:475
 msgid "Today"
 msgstr "今天"
@@ -5438,68 +5435,68 @@ msgstr "您需要升级您的 PHP 版本。 最低版本为 7.4。 你的版本�
 #: application/views/dashboard/index.php:63
 #, php-format
 msgctxt "Dashboard Warning"
-msgid "You need to update country files! Click %s to do it."
-msgstr "您需要更新国家/地区文件！单击%s进行更新。"
+msgid "You need to update country files! Click %shere%s to do it."
+msgstr "您需要更新国家/地区文件！单击%s这里%s进行更新。"
 
-#: application/views/dashboard/index.php:72
+#: application/views/dashboard/index.php:71
 #, php-format
 msgctxt "Dashboard Warning"
-msgid "You have no station locations. Click %s to do it:"
-msgstr "您没有台站位置。单击%s执行此操作："
+msgid "You have no station locations. Click %shere%s to do it."
+msgstr "您没有台站位置。单击%s这里%s进行更新。"
 
-#: application/views/dashboard/index.php:81
+#: application/views/dashboard/index.php:79
 #, php-format
 msgctxt "Dashboard Warning"
-msgid "You have no station logbook. Click %s to do it:"
-msgstr "您没有日志本。单击%s执行此操作："
+msgid "You have no station logbook. Click %shere%s to do it."
+msgstr "您没有日志本。单击%s这里%s进行更新。"
 
-#: application/views/dashboard/index.php:91
+#: application/views/dashboard/index.php:88
 #, php-format
 msgid "You have had %d QSO today"
 msgid_plural "You have had %d QSOs today"
 msgstr[0] "你今天有 %d 个QSO"
 
-#: application/views/dashboard/index.php:97
+#: application/views/dashboard/index.php:94
 msgid "You have made no QSOs today; time to turn on the radio!"
 msgstr "你今天还没进行 QSO，是时候打开你的电台开始通联了！"
 
-#: application/views/dashboard/index.php:104
+#: application/views/dashboard/index.php:101
 msgid "Attention: you need to set an active station location."
 msgstr "注意：你需要设置一个活动的电台站地址。"
 
-#: application/views/dashboard/index.php:110
+#: application/views/dashboard/index.php:107
 msgid ""
 "You have themes without defined theme mode. Please ask the admin to edit the "
 "themes."
 msgstr "您的主题没有定义主题模式。请向管理员请求编辑主题。"
 
-#: application/views/dashboard/index.php:118
+#: application/views/dashboard/index.php:115
 msgid "At least one of your LoTW certificates is expired!"
 msgstr "至少有一个 LoTW 证书已经过期!"
 
-#: application/views/dashboard/index.php:124
+#: application/views/dashboard/index.php:121
 msgid "At least one of your LoTW certificates is about to expire!"
 msgstr "至少有一个 LoTW 证书即将过期!"
 
-#: application/views/dashboard/index.php:214
+#: application/views/dashboard/index.php:211
 #: application/views/visitor/index.php:237
 msgid "QSOs Breakdown"
 msgstr "QSO 分析"
 
-#: application/views/dashboard/index.php:237
+#: application/views/dashboard/index.php:234
 #: application/views/visitor/index.php:258
 msgid "Countries Breakdown"
 msgstr "DXCC 实体分析"
 
-#: application/views/dashboard/index.php:254
+#: application/views/dashboard/index.php:251
 #: application/views/visitor/index.php:275
 msgid "Needed"
 msgstr "待通联"
 
-#: application/views/dashboard/index.php:267
-#: application/views/dashboard/index.php:294
-#: application/views/dashboard/index.php:315
-#: application/views/dashboard/index.php:336
+#: application/views/dashboard/index.php:264
+#: application/views/dashboard/index.php:291
+#: application/views/dashboard/index.php:312
+#: application/views/dashboard/index.php:333
 #: application/views/oqrs/qsolist.php:50 application/views/oqrs/qsolist.php:130
 #: application/views/oqrs/qsolist.php:159
 #: application/views/qslprint/qsolist.php:58
@@ -5529,10 +5526,10 @@ msgstr "待通联"
 msgid "Sent"
 msgstr "已发送"
 
-#: application/views/dashboard/index.php:273
-#: application/views/dashboard/index.php:300
-#: application/views/dashboard/index.php:321
-#: application/views/dashboard/index.php:342
+#: application/views/dashboard/index.php:270
+#: application/views/dashboard/index.php:297
+#: application/views/dashboard/index.php:318
+#: application/views/dashboard/index.php:339
 #: application/views/oqrs/qsolist.php:92 application/views/oqrs/qsolist.php:143
 #: application/views/oqrs/qsolist.php:174
 #: application/views/qslprint/qsolist.php:100
@@ -5559,7 +5556,7 @@ msgstr "已发送"
 msgid "Received"
 msgstr "已收到"
 
-#: application/views/dashboard/index.php:279
+#: application/views/dashboard/index.php:276
 #: application/views/logbookadvanced/index.php:307
 #: application/views/logbookadvanced/index.php:318
 #: application/views/logbookadvanced/index.php:349
@@ -5589,12 +5586,12 @@ msgstr "已收到"
 msgid "Requested"
 msgstr "已请求"
 
-#: application/views/dashboard/index.php:289
+#: application/views/dashboard/index.php:286
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
 msgstr "Logbook of the World(LoTW)"
 
-#: application/views/dashboard/index.php:352
+#: application/views/dashboard/index.php:349
 msgid "VUCC-Grids"
 msgstr "VUCC 网格"
 
@@ -11117,6 +11114,21 @@ msgstr "您的呼号："
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "提交请求"
+
+#, php-format
+#~ msgctxt "Dashboard Warning"
+#~ msgid "You need to update country files! Click %s to do it."
+#~ msgstr "您需要更新国家/地区文件！单击%s进行更新。"
+
+#, php-format
+#~ msgctxt "Dashboard Warning"
+#~ msgid "You have no station locations. Click %s to do it:"
+#~ msgstr "您没有台站位置。单击%s执行此操作："
+
+#, php-format
+#~ msgctxt "Dashboard Warning"
+#~ msgid "You have no station logbook. Click %s to do it:"
+#~ msgstr "您没有日志本。单击%s执行此操作："
 
 #~ msgid "Status Master-Cron"
 #~ msgstr "主 Cron 状态"

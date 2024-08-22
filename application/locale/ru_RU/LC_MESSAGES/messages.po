@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-22 06:02+0000\n"
+"POT-Creation-Date: 2024-08-22 11:43+0200\n"
 "PO-Revision-Date: 2024-08-20 05:18+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -678,7 +678,7 @@ msgid "DX Calendar"
 msgstr "Календарь DX экспедиций"
 
 #: application/controllers/Eqsl.php:34
-#: application/views/dashboard/index.php:310
+#: application/views/dashboard/index.php:307
 #: application/views/eqslcard/index.php:5
 #: application/views/visitor/index.php:306
 msgid "eQSL Cards"
@@ -942,7 +942,7 @@ msgstr "QSL"
 #: application/views/awards/wab/index.php:80
 #: application/views/awards/waja/index.php:59
 #: application/views/awards/was/index.php:59
-#: application/views/dashboard/index.php:245
+#: application/views/dashboard/index.php:242
 #: application/views/gridmap/index.php:109
 #: application/views/logbookadvanced/useroptions.php:66
 #: application/views/oqrs/qsolist.php:17 application/views/oqrs/qsolist.php:159
@@ -971,7 +971,7 @@ msgstr "LoTW"
 #: application/views/awards/wab/index.php:88
 #: application/views/awards/waja/index.php:63
 #: application/views/awards/was/index.php:63
-#: application/views/dashboard/index.php:245
+#: application/views/dashboard/index.php:242
 #: application/views/gridmap/index.php:117
 #: application/views/logbookadvanced/useroptions.php:70
 #: application/views/oqrs/qsolist.php:14 application/views/oqrs/qsolist.php:130
@@ -1696,8 +1696,8 @@ msgstr "QRZ. Импорт QSL"
 msgid "QRZ ADIF Information"
 msgstr "QRZ. Информация ADIF"
 
-#: application/controllers/Qsl.php:25 application/views/dashboard/index.php:245
-#: application/views/dashboard/index.php:262
+#: application/controllers/Qsl.php:25 application/views/dashboard/index.php:242
+#: application/views/dashboard/index.php:259
 #: application/views/qslcard/index.php:5
 #: application/views/visitor/index.php:283
 msgid "QSL Cards"
@@ -1806,9 +1806,6 @@ msgstr "У вас нет профиля QTH. Перейдите по ссылк�
 #: application/views/awards/dok/index.php:10
 #: application/views/awards/iota/index.php:19
 #: application/views/awards/was/index.php:23
-#: application/views/dashboard/index.php:64
-#: application/views/dashboard/index.php:73
-#: application/views/dashboard/index.php:82
 #: application/views/simplefle/index.php:16
 msgid "here"
 msgstr "здесь"
@@ -2468,7 +2465,7 @@ msgid "Accumulated number of WAJA worked"
 msgstr "Накопленное количество отработанных WAJA"
 
 #: application/views/accumulate/index.php:8
-#: application/views/dashboard/index.php:223
+#: application/views/dashboard/index.php:220
 #: application/views/dayswithqso/index.php:16
 #: application/views/statistics/index.php:18
 #: application/views/visitor/index.php:246
@@ -2481,7 +2478,7 @@ msgid "Yearly"
 msgstr "Ежегодно"
 
 #: application/views/accumulate/index.php:10
-#: application/views/dashboard/index.php:228
+#: application/views/dashboard/index.php:225
 #: application/views/visitor/index.php:251
 msgid "Month"
 msgstr "Месяц"
@@ -2769,7 +2766,7 @@ msgstr "Не найдено!"
 #: application/views/cabrillo/index.php:31
 #: application/views/components/hamsat/table.php:27
 #: application/views/contesting/index.php:104
-#: application/views/csv/index.php:23 application/views/dashboard/index.php:153
+#: application/views/csv/index.php:23 application/views/dashboard/index.php:150
 #: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:41
 #: application/views/eqslcard/index.php:28
 #: application/views/hamsat/index.php:30 application/views/labels/index.php:123
@@ -2854,7 +2851,7 @@ msgstr "Данные DOK в вашем логе отличаются от DCL"
 #: application/views/components/hamsat/table.php:25
 #: application/views/contesting/index.php:42
 #: application/views/contesting/index.php:200
-#: application/views/dashboard/index.php:148
+#: application/views/dashboard/index.php:145
 #: application/views/debug/index.php:545 application/views/eqsl/analysis.php:36
 #: application/views/eqsl/download.php:36 application/views/eqsl/result.php:33
 #: application/views/eqslcard/index.php:30
@@ -2896,7 +2893,7 @@ msgstr "Дата"
 #: application/views/components/hamsat/table.php:26
 #: application/views/contesting/index.php:47
 #: application/views/contesting/index.php:200
-#: application/views/dashboard/index.php:151
+#: application/views/dashboard/index.php:148
 #: application/views/debug/index.php:546 application/views/eqsl/analysis.php:37
 #: application/views/eqsl/download.php:37 application/views/eqsl/result.php:34
 #: application/views/eqslcard/index.php:31
@@ -2957,9 +2954,9 @@ msgid "DARC DCL"
 msgstr "DARC DCL"
 
 #: application/views/adif/import.php:55
-#: application/views/dashboard/index.php:97
-#: application/views/dashboard/index.php:118
-#: application/views/dashboard/index.php:124
+#: application/views/dashboard/index.php:94
+#: application/views/dashboard/index.php:115
+#: application/views/dashboard/index.php:121
 #: application/views/eqsl/import.php:45 application/views/lotw/import.php:25
 #: application/views/lotw_views/index.php:4
 msgid "Important"
@@ -3477,7 +3474,7 @@ msgstr "Подтверждённые графства"
 #: application/views/awards/rac/index.php:171
 #: application/views/awards/waja/index.php:179
 #: application/views/awards/was/index.php:179
-#: application/views/dashboard/index.php:218
+#: application/views/dashboard/index.php:215
 #: application/views/simplefle/index.php:27
 #: application/views/statistics/qsltable.php:54
 #: application/views/statistics/qsltable.php:109
@@ -3553,8 +3550,8 @@ msgstr "Дипломы - CQ Magazine WAZ"
 #: application/views/awards/itu/index.php:34
 #: application/views/awards/wab/list.php:6
 #: application/views/bandmap/list.php:73
-#: application/views/dashboard/index.php:245
-#: application/views/dashboard/index.php:363
+#: application/views/dashboard/index.php:242
+#: application/views/dashboard/index.php:360
 #: application/views/interface_assets/footer.php:40
 #: application/views/visitor/index.php:266
 msgid "Confirmed"
@@ -3563,8 +3560,8 @@ msgstr "Подтверждено"
 #: application/views/awards/cq/index.php:34
 #: application/views/awards/itu/index.php:34
 #: application/views/bandmap/list.php:72
-#: application/views/dashboard/index.php:241
-#: application/views/dashboard/index.php:357
+#: application/views/dashboard/index.php:238
+#: application/views/dashboard/index.php:354
 #: application/views/visitor/index.php:262
 msgid "Worked"
 msgstr "Сработано"
@@ -4230,7 +4227,7 @@ msgid "City"
 msgstr "Город"
 
 #: application/views/awards/jcc/index.php:187
-#: application/views/dashboard/index.php:353
+#: application/views/dashboard/index.php:350
 #: application/views/distances/index.php:23
 msgid "SAT"
 msgstr "Спутники"
@@ -5011,10 +5008,10 @@ msgid "Show Details"
 msgstr "Подробно"
 
 #: application/views/contestcalendar/index.php:38
-#: application/views/dashboard/index.php:263
-#: application/views/dashboard/index.php:290
-#: application/views/dashboard/index.php:311
-#: application/views/dashboard/index.php:332
+#: application/views/dashboard/index.php:260
+#: application/views/dashboard/index.php:287
+#: application/views/dashboard/index.php:308
+#: application/views/dashboard/index.php:329
 #: application/views/satellite/pass.php:475
 msgid "Today"
 msgstr "Сегодня"
@@ -5593,23 +5590,22 @@ msgstr "Вам нужнго обновить версию PHP. Минималь�
 #: application/views/dashboard/index.php:63
 #, php-format
 msgctxt "Dashboard Warning"
-msgid "You need to update country files! Click %s to do it."
-msgstr "Вам нужно обновить файлы стран! Кликните %s для этого."
+msgid "You need to update country files! Click %shere%s to do it."
+msgstr "Вам нужно обновить файлы стран! Кликните %sздесь%s для этого."
 
-#: application/views/dashboard/index.php:72
+#: application/views/dashboard/index.php:71
 #, php-format
 msgctxt "Dashboard Warning"
-msgid "You have no station locations. Click %s to do it:"
-msgstr ""
-"У вас не настроен профиль QTH. Перейдите по ссылке %s, чтобы настроить:"
+msgid "You have no station locations. Click %shere%s to do it."
+msgstr "У вас не настроен профиль QTH. Кликните %sздесь%s для этого."
 
-#: application/views/dashboard/index.php:81
+#: application/views/dashboard/index.php:79
 #, php-format
 msgctxt "Dashboard Warning"
-msgid "You have no station logbook. Click %s to do it:"
-msgstr "У вас не настроен журнал. Перейдите по ссылке %s, чтобы настроить:"
+msgid "You have no station logbook. Click %shere%s to do it."
+msgstr "У вас не настроен журнал. Кликните %sздесь%s для этого."
 
-#: application/views/dashboard/index.php:91
+#: application/views/dashboard/index.php:88
 #, php-format
 msgid "You have had %d QSO today"
 msgid_plural "You have had %d QSOs today"
@@ -5617,15 +5613,15 @@ msgstr[0] "За сегодня проведено %d QSO"
 msgstr[1] "За сегодня проведено %d QSO"
 msgstr[2] "За сегодня проведено %d QSO"
 
-#: application/views/dashboard/index.php:97
+#: application/views/dashboard/index.php:94
 msgid "You have made no QSOs today; time to turn on the radio!"
 msgstr "За сегодня ни одного QSO, время вернуться к радио!"
 
-#: application/views/dashboard/index.php:104
+#: application/views/dashboard/index.php:101
 msgid "Attention: you need to set an active station location."
 msgstr "Внимание: вам нужно назначить активный профиль QTH."
 
-#: application/views/dashboard/index.php:110
+#: application/views/dashboard/index.php:107
 msgid ""
 "You have themes without defined theme mode. Please ask the admin to edit the "
 "themes."
@@ -5633,33 +5629,33 @@ msgstr ""
 "У вас есть темы без определенного режима темы. Пожалуйста, попросите "
 "администратора отредактировать темы."
 
-#: application/views/dashboard/index.php:118
+#: application/views/dashboard/index.php:115
 msgid "At least one of your LoTW certificates is expired!"
 msgstr "Один из ваших сертификатов LoTW истёк!"
 
-#: application/views/dashboard/index.php:124
+#: application/views/dashboard/index.php:121
 msgid "At least one of your LoTW certificates is about to expire!"
 msgstr "Как минимум, один из ваших сертификатов LoTW скоро истечёт!"
 
-#: application/views/dashboard/index.php:214
+#: application/views/dashboard/index.php:211
 #: application/views/visitor/index.php:237
 msgid "QSOs Breakdown"
 msgstr "Статистика QSO"
 
-#: application/views/dashboard/index.php:237
+#: application/views/dashboard/index.php:234
 #: application/views/visitor/index.php:258
 msgid "Countries Breakdown"
 msgstr "Статистика по странам"
 
-#: application/views/dashboard/index.php:254
+#: application/views/dashboard/index.php:251
 #: application/views/visitor/index.php:275
 msgid "Needed"
 msgstr "Необходимо"
 
-#: application/views/dashboard/index.php:267
-#: application/views/dashboard/index.php:294
-#: application/views/dashboard/index.php:315
-#: application/views/dashboard/index.php:336
+#: application/views/dashboard/index.php:264
+#: application/views/dashboard/index.php:291
+#: application/views/dashboard/index.php:312
+#: application/views/dashboard/index.php:333
 #: application/views/oqrs/qsolist.php:50 application/views/oqrs/qsolist.php:130
 #: application/views/oqrs/qsolist.php:159
 #: application/views/qslprint/qsolist.php:58
@@ -5689,10 +5685,10 @@ msgstr "Необходимо"
 msgid "Sent"
 msgstr "Отправлено"
 
-#: application/views/dashboard/index.php:273
-#: application/views/dashboard/index.php:300
-#: application/views/dashboard/index.php:321
-#: application/views/dashboard/index.php:342
+#: application/views/dashboard/index.php:270
+#: application/views/dashboard/index.php:297
+#: application/views/dashboard/index.php:318
+#: application/views/dashboard/index.php:339
 #: application/views/oqrs/qsolist.php:92 application/views/oqrs/qsolist.php:143
 #: application/views/oqrs/qsolist.php:174
 #: application/views/qslprint/qsolist.php:100
@@ -5719,7 +5715,7 @@ msgstr "Отправлено"
 msgid "Received"
 msgstr "Принято"
 
-#: application/views/dashboard/index.php:279
+#: application/views/dashboard/index.php:276
 #: application/views/logbookadvanced/index.php:307
 #: application/views/logbookadvanced/index.php:318
 #: application/views/logbookadvanced/index.php:349
@@ -5749,12 +5745,12 @@ msgstr "Принято"
 msgid "Requested"
 msgstr "Запрошено"
 
-#: application/views/dashboard/index.php:289
+#: application/views/dashboard/index.php:286
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
-#: application/views/dashboard/index.php:352
+#: application/views/dashboard/index.php:349
 msgid "VUCC-Grids"
 msgstr "Квадраты VUCC"
 
@@ -11494,6 +11490,22 @@ msgstr "Ваш позывной:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Отправить запрос"
+
+#, php-format
+#~ msgctxt "Dashboard Warning"
+#~ msgid "You need to update country files! Click %s to do it."
+#~ msgstr "Вам нужно обновить файлы стран! Кликните %s для этого."
+
+#, php-format
+#~ msgctxt "Dashboard Warning"
+#~ msgid "You have no station locations. Click %s to do it:"
+#~ msgstr ""
+#~ "У вас не настроен профиль QTH. Перейдите по ссылке %s, чтобы настроить:"
+
+#, php-format
+#~ msgctxt "Dashboard Warning"
+#~ msgid "You have no station logbook. Click %s to do it:"
+#~ msgstr "У вас не настроен журнал. Перейдите по ссылке %s, чтобы настроить:"
 
 #~ msgid "Status Master-Cron"
 #~ msgstr "Состояние Master-Cron"

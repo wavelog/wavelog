@@ -60,8 +60,7 @@ function echo_table_col($row, $name) {
 	<?php if ($countryCount == 0) { ?>
 		<div class="alert alert-danger mt-3" role="alert">
 		<?= sprintf(
-				_pgettext("Dashboard Warning", "You need to update country files! Click %s to do it."),
-				"<a href='" . site_url('update') . "'>" . __("here") . "</a>"
+				_pgettext("Dashboard Warning", "You need to update country files! Click %shere%s to do it."), '<u><a href="' . site_url('update') . '">', "</a></u>"
 			); ?>
 		</div>
 	<?php } ?>
@@ -69,8 +68,7 @@ function echo_table_col($row, $name) {
 	<?php if ($locationCount == 0) { ?>
 		<div class="alert alert-danger" role="alert">
 		<?= sprintf(
-				_pgettext("Dashboard Warning", "You have no station locations. Click %s to do it:"), 
-				"<a href='".site_url('stationsetup')."'>".__("here")."</a>"
+				_pgettext("Dashboard Warning", "You have no station locations. Click %shere%s to do it."), '<u><a href="' . site_url('stationsetup') . '">', '</a></u>'
 			); ?>
 		</div>
 	<?php } ?>
@@ -78,8 +76,7 @@ function echo_table_col($row, $name) {
 	<?php if ($logbookCount == 0) { ?>
 		<div class="alert alert-danger" role="alert">
 		<?= sprintf(
-				_pgettext("Dashboard Warning", "You have no station logbook. Click %s to do it:"), 
-				"<a href='".site_url('stationsetup')."'>".__("here")."</a>"
+				_pgettext("Dashboard Warning", "You have no station logbook. Click %shere%s to do it."), '<u><a href="' . site_url('stationsetup') . '">', '</a></u>'
 			); ?>
 		</div>
 	<?php } ?>
