@@ -307,7 +307,7 @@ class Timeline_model extends CI_Model {
 		case 'iota': $this->db->where('COL_IOTA', $querystring); break;
 		case 'waz':  $this->db->where('COL_CQZ', $querystring); break;
 		case 'vucc':  $this->db->group_start(); $this->db->like('COL_GRIDSQUARE', $querystring);  $this->db->or_like('COL_VUCC_GRIDS',$querystring); $this->db->group_end();break;
-		case 'waja':  $this->db->where('COL_STATE', $querystring); break;
+		case 'waja':  $this->db->where('COL_STATE', $querystring); $this->db->where('COL_DXCC','339'); break;
 		}
 		$this->db->order_by('COL_TIME_ON', 'DESC');
 
