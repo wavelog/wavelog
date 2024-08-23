@@ -75,7 +75,7 @@ class cron extends CI_Controller {
 					$cronjob = $this->cronexpression;
 					$dt = new DateTime();
 					$isdue = $cronjob->isMatching($dt);
-					$set_status = false;
+					$set_status = true;
 
 					$next_run = $cronjob->getNext();
 					$next_run_date = date('Y-m-d H:i:s', $next_run);
@@ -109,16 +109,15 @@ class cron extends CI_Controller {
 							echo "ERROR: Something went wrong with " . $cron->id . "; Message: " . $crun . "\n";
 							$status = 'failed';
 						}
-						$set_status = true;
 					} else {
 						$isdue_result = 'false';
 						echo "CRON: " . $cron->id . " -> is due: " . $isdue_result . " -> Next Run: " . $next_run_date . "\n";
 						$status = 'healthy';
+						$set_status = false;
 					}
 				} else {
 					echo 'CRON: ' . $cron->id . " is disabled. skipped..\n";
 					$status = 'disabled';
-					$set_status = true;
 
 					// Set the next_run timestamp to null to indicate in the view/database that this cron is disabled
 					$this->cron_model->set_next_run($cron->id, null);
