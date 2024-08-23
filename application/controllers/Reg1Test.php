@@ -4,7 +4,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
 /*
-	This controller contains features for Cabrillo
+	This controller contains features for REG1TEST EDI
 */
 
 class Reg1test extends CI_Controller {
