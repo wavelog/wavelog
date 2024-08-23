@@ -106,7 +106,7 @@ if ( ! function_exists('local_url'))
 
 	 function local_url($uri = '', $protocol = NULL)
 	 {
-		return get_instance()->config->local_url($uri, $protocol) ?? get_instance()->config->base_url($uri, $protocol);
+		return get_instance()->config->local_url($uri, $protocol);
 	 }
 }
 

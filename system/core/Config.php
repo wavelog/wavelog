@@ -335,7 +335,7 @@ class CI_Config {
 	 */
 	public function local_url($uri = '', $protocol = NULL)
 	{
-		$local_url = $this->slash_item('local_url');
+		$local_url = $this->slash_item('local_url') ?? $this->slash_item('base_url');
 		if (isset($protocol))
 		{
 			// For protocol-relative links
