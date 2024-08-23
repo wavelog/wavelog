@@ -19,7 +19,7 @@ class Reg1test extends CI_Controller {
 
 	public function index() {
 		//define Page title
-		$data['page_title'] = __("Export REG1TEST EDI");
+		$data['page_title'] = __("Export EDI");
 
 		//Load models
 		$this->load->model('Contesting_model');
