@@ -11,16 +11,16 @@ class Reg1testformat {
       $edi_header = "[REG1TEST;1]" . "\r\n";
       $edi_header .= "TName=" . $contest_id ."\r\n";   //Contestname
       $edi_header .= "TDate=" . str_replace("-", "", $from) . ";" . str_replace("-", "", $to) . "\r\n"; //from and to date of contest, Ymd format, with semicolon
-      $edi_header .= "PCALL=" . $callsign . "\r\n"; //Station callsign during contest
-      $edi_header .= "PWWLo=" . $gridlocator . "\r\n"; //Gridlocator during contest
-      $edi_header .= "PExch=" . $sentexchange . "\r\n"; //Sent exchange
+      $edi_header .= "PCALL=" . strtoupper($callsign) . "\r\n"; //Station callsign during contest
+      $edi_header .= "PWWLo=" . strtoupper($gridlocator) . "\r\n"; //Gridlocator during contest
+      $edi_header .= "PExch=" . strtoupper(substr($sentexchange, 0, 6)) . "\r\n"; //Sent exchange, max 6 characters uppercase
       $edi_header .= "PAdr1=" . $contestaddress1 . "\r\n"; //Contest Address Line 1
       $edi_header .= "PAdr2=" . $contestaddress2 . "\r\n"; //Contest Address Line 2
       $edi_header .= "PSect=" . $categoryoperator . "\r\n"; //Category / "Section"
       $edi_header .= "PBand=" . $this->reg1testbandstring($band) . "\r\n"; // Band in REG1TEST format
-      $edi_header .= "PClub=" . $club . "\r\n"; //Club
+      $edi_header .= "PClub=" . strtoupper($club) . "\r\n"; //Club
       $edi_header .= "RName=" . $name. "\r\n"; //Name of responsible operator
-      $edi_header .= "RCall=" . $responsible_operator . "\r\n"; //Callsign of responsible operator, if different from contest callsign
+      $edi_header .= "RCall=" . strtoupper($responsible_operator) . "\r\n"; //Callsign of responsible operator, if different from contest callsign
       $edi_header .= "RAdr1=" . $address1 . "\r\n"; //Operator Address Line 1
       $edi_header .= "RAdr2=" . $address2 . "\r\n"; //Operator Address Line 2
       $edi_header .= "RPoCo=" . $addresspostalcode . "\r\n";  //Operator Address Postal Code
@@ -28,7 +28,7 @@ class Reg1testformat {
       $edi_header .= "RCoun=" . $addresscountry . "\r\n";  //Operator Address Country
       $edi_header .= "RPhon=" . $operatorphone . "\r\n";   //Operator Address Phone number
       $edi_header .= "RHBBS=" . "\r\n"; //Bulletin board address of operator. Pretty safe to omit in past 2024
-      $edi_header .= "MOpe1=" . $operators . "\r\n"; //Operators
+      $edi_header .= "MOpe1=" . strtoupper($operators) . "\r\n"; //Operators
       $edi_header .= "MOpe2=" . "\r\n"; //Operators line 2. Leave empty.
       $edi_header .= "STXEq=" . $txequipment . "\r\n"; //TX Equipment description
       $edi_header .= "SPowe=" . $power . "\r\n"; //Power in Watts
