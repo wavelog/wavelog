@@ -129,7 +129,7 @@ class Reg1test extends CI_Controller {
 			return;
 		} 
 
-		//get cleaned year, contest id, from and to values
+		//get cleaned contest id, from and to values
 		$contestid = $this->input->post('contestid', true);
 		$from = $this->input->post('contestdatesfrom', true);
 		$to = $this->input->post('contestdatesto', true);
