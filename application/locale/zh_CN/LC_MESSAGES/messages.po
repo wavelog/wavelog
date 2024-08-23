@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-22 11:43+0200\n"
-"PO-Revision-Date: 2024-08-20 05:18+0000\n"
+"POT-Creation-Date: 2024-08-22 13:37+0000\n"
+"PO-Revision-Date: 2024-08-22 14:14+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/zh_Hans/>\n"
@@ -68,8 +68,8 @@ msgstr ""
 #: application/controllers/Qso.php:9 application/controllers/Qso.php:19
 #: application/controllers/Qso.php:176 application/controllers/Qso.php:275
 #: application/controllers/Qso.php:295 application/controllers/Qso.php:304
-#: application/controllers/Qso.php:599 application/controllers/Radio.php:259
-#: application/controllers/Radio.php:285 application/controllers/Radio.php:301
+#: application/controllers/Qso.php:599 application/controllers/Radio.php:261
+#: application/controllers/Radio.php:287 application/controllers/Radio.php:303
 #: application/controllers/Satellite.php:15
 #: application/controllers/Sattimers.php:9
 #: application/controllers/Search.php:13
@@ -1424,15 +1424,15 @@ msgstr "Logbook of the World(LoTW)"
 
 #: application/controllers/Lotw.php:152
 msgid "Certificate Imported."
-msgstr ""
+msgstr "呼号证书已导入。"
 
 #: application/controllers/Lotw.php:159
 msgid "Certificate Updated."
-msgstr ""
+msgstr "呼号证书已更新。"
 
 #: application/controllers/Lotw.php:384
 msgid "Certificate Deleted."
-msgstr ""
+msgstr "呼号证书已删除。"
 
 #: application/controllers/Lotw.php:413
 #, php-format
@@ -1440,6 +1440,8 @@ msgid ""
 "Found no certificate in file %s. If the filename contains 'key-only' this is "
 "typically a certificate request which has not been processed by LoTW yet."
 msgstr ""
+"文件 %s 中未找到呼号证书，如果文件名包含了 'key-only' "
+"则此文件大概率是呼号证书的申请文件，LoTW 的工作人员依此来发放正式的呼号证书。"
 
 #: application/controllers/Lotw.php:617
 msgid "LoTW ADIF Information"
@@ -1451,7 +1453,7 @@ msgstr "LoTW ADIF 导入"
 
 #: application/controllers/Lotw.php:752 application/controllers/Lotw.php:870
 msgid "You have not defined your ARRL LoTW credentials!"
-msgstr ""
+msgstr "未配置 LoTW 登录信息！"
 
 #: application/controllers/Lotw.php:837
 msgid "LoTW .TQ8 Upload"
@@ -1459,7 +1461,7 @@ msgstr "LoTW .TQ8 导入"
 
 #: application/controllers/Lotw.php:915
 msgid "Your ARRL username and/or password is incorrect."
-msgstr ""
+msgstr "LoTW 用户名/密码错误。"
 
 #: application/controllers/Lotw.php:934 application/controllers/Lotw.php:939
 msgid "LoTW .TQ8 Sent"
@@ -1634,36 +1636,36 @@ msgstr "QRB 计算器"
 #: application/controllers/Qrbcalc.php:50
 #, php-format
 msgid "Latitude: %s, Longitude: %s"
-msgstr ""
+msgstr "纬度：%s，经度：%s"
 
 #: application/controllers/Qrbcalc.php:54
 #, php-format
 msgid "The distance between %s and %s is %s mile."
 msgid_plural "The distance between %s and %s is %s miles."
-msgstr[0] ""
+msgstr[0] "%s 和 %s 的距离是 %s 英里。"
 
 #: application/controllers/Qrbcalc.php:57
 #, php-format
 msgid "The distance between %s and %s is %s nautical mile."
 msgid_plural "The distance between %s and %s is %s nautical miles."
-msgstr[0] ""
+msgstr[0] "%s 和 %s 的距离是 %s 海里。"
 
 #: application/controllers/Qrbcalc.php:60
 #, php-format
 msgid "The distance between %s and %s is %s kilometer."
 msgid_plural "The distance between %s and %s is %s kilometers."
-msgstr[0] ""
+msgstr[0] "%s 和 %s 的距离是 %s 公里。"
 
 #: application/controllers/Qrbcalc.php:66
 #, php-format
 msgid "The bearing is %s."
-msgstr ""
+msgstr "方位角是 %s。"
 
 #: application/controllers/Qrbcalc.php:72
 msgid ""
 "Negative latitudes are south of the equator, negative longitudes are west of "
 "Greenwich."
-msgstr ""
+msgstr "负数纬度表示南纬，负数经度表示西经。"
 
 #: application/controllers/Qrz.php:173
 #: application/views/interface_assets/header.php:426
@@ -5454,7 +5456,7 @@ msgstr "您没有日志本。单击%s这里%s进行更新。"
 #, php-format
 msgid "You have had %d QSO today"
 msgid_plural "You have had %d QSOs today"
-msgstr[0] "你今天有 %d 个QSO"
+msgstr[0] "您今天有 %d 个QSO"
 
 #: application/views/dashboard/index.php:94
 msgid "You have made no QSOs today; time to turn on the radio!"

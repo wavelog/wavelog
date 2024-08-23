@@ -278,6 +278,7 @@ class Accumulate_model extends CI_Model
     }
 
     function get_accumulated_was($band, $mode, $period, $location_list) {
+		$binding=[];
 	    if ($period == "year") {
 		    $sql = "select year(thcv.col_time_on) year";
 	    } else if ($period == "month") {

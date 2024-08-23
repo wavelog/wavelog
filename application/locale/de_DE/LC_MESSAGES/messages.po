@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-22 11:43+0200\n"
-"PO-Revision-Date: 2024-08-21 19:27+0000\n"
+"POT-Creation-Date: 2024-08-22 13:37+0000\n"
+"PO-Revision-Date: 2024-08-22 13:37+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
@@ -77,8 +77,8 @@ msgstr ""
 #: application/controllers/Qso.php:9 application/controllers/Qso.php:19
 #: application/controllers/Qso.php:176 application/controllers/Qso.php:275
 #: application/controllers/Qso.php:295 application/controllers/Qso.php:304
-#: application/controllers/Qso.php:599 application/controllers/Radio.php:259
-#: application/controllers/Radio.php:285 application/controllers/Radio.php:301
+#: application/controllers/Qso.php:599 application/controllers/Radio.php:261
+#: application/controllers/Radio.php:287 application/controllers/Radio.php:303
 #: application/controllers/Satellite.php:15
 #: application/controllers/Sattimers.php:9
 #: application/controllers/Search.php:13
@@ -588,6 +588,8 @@ msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
 "It should run every minute (* * * * *)."
 msgstr ""
+"Letzte Ausführung fand vor mehr als %s Sekunden statt.%sBitte überprüfe "
+"deinen Master-Cron! Er sollte jede Minute laufen (* * * * *)."
 
 #: application/controllers/Cron.php:268
 #, php-format
@@ -595,11 +597,13 @@ msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
 "isn't running!%sIt should run every minute (* * * * *)."
 msgstr ""
+"Letzter Ausführung fand vor mehr als %s Minuten statt.%sEs scheint, als ob "
+"dein Mastercron nicht läuft!%sEr sollte jede Minute laufen (* * * * *)."
 
 #: application/controllers/Cron.php:273 application/views/cron/index.php:29
 msgctxt "Master Cron"
 msgid "Not running"
-msgstr ""
+msgstr "Läuft nicht"
 
 #: application/controllers/Csv.php:20 application/views/csv/index.php:3
 #: application/views/interface_assets/header.php:392
@@ -1884,7 +1888,7 @@ msgstr "Bearbeite Stationsstandort: "
 #: application/views/view_log/qso.php:9 application/views/webadif/export.php:75
 #: application/views/webadif/export.php:115
 msgid "Station Location"
-msgstr "Stationsprofil"
+msgstr "Stationsstandort"
 
 #: application/controllers/Station.php:73
 msgid "Duplicate Station Location:"
@@ -2050,7 +2054,7 @@ msgid ""
 "Are you sure you want delete station profile '%s'? This will delete all QSOs "
 "within this station profile."
 msgstr ""
-"Stationsprofil '%s' wirklich löschen? Alle QSOs in dem Profil werden "
+"Stationsstandort '%s' wirklich löschen? Alle QSOs in dem Profil werden "
 "mitgelöscht."
 
 #: application/controllers/Stationsetup.php:379
@@ -2427,7 +2431,7 @@ msgstr "HRDlog: Keine QSOs gefunden zum hochladen für Stationsrufzeichen: "
 
 #: application/models/Hrdlog_model.php:31
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
-msgstr "HRDlog: Keine Stationsprofile mit HRDlog Zugangsdaten gefunden."
+msgstr "HRDlog: Keine Stationsstandorte mit HRDlog Zugangsdaten gefunden."
 
 #: application/models/Logbook_model.php:4143
 msgid "QSO could not be matched"
@@ -5367,7 +5371,7 @@ msgstr ""
 
 #: application/views/cron/index.php:29 application/views/cron/index.php:33
 msgid "Status Master-Cron:"
-msgstr ""
+msgstr "Status Master-Cron:"
 
 #: application/views/cron/index.php:33
 msgctxt "PHP Version"
@@ -5622,7 +5626,8 @@ msgstr ""
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You need to update country files! Click %shere%s to do it."
-msgstr "Du musst die Länderdaten aktualisieren! Klicke %shier%s, um dies zu tun."
+msgstr ""
+"Du musst die Länderdaten aktualisieren! Klicke %shier%s, um dies zu tun."
 
 #: application/views/dashboard/index.php:71
 #, php-format
@@ -6137,8 +6142,8 @@ msgstr "QSO-DB Wartung"
 msgid "The Database contains %d QSO without a station-profile (location)"
 msgid_plural ""
 "The Database contains %d QSOs without a station-profile (location)"
-msgstr[0] "Die Datenbank enthält %d QSO ohne Stationsprofil (Standort)"
-msgstr[1] "Die Datenbank enthält %d QSOs ohne Stationsprofil (Standort)"
+msgstr[0] "Die Datenbank enthält %d QSO ohne Stationsstandort"
+msgstr[1] "Die Datenbank enthält %d QSOs ohne Stationsstandort"
 
 #: application/views/debug/index.php:550
 #: application/views/public_search/result.php:17
@@ -6165,8 +6170,7 @@ msgstr "Neu zuweisen"
 
 #: application/views/debug/index.php:604
 msgid "Every QSO in your Database is assigned to a station-profile (location)"
-msgstr ""
-"Jedes QSO in deiner Datenbank ist einem Stationsprofil (Standort) zugeordnet"
+msgstr "Jedes QSO in deiner Datenbank ist einem Stationsstandort zugeordnet"
 
 #: application/views/debug/index.php:604
 msgid "Everything ok"
@@ -6419,7 +6423,7 @@ msgid ""
 "profile and that the value matches the QTH Nickname you set within eQSL."
 msgstr ""
 "Bitte stelle sicher, dass das Feld 'eQSL QTH Nickname' in deinem "
-"Stationsprofil gesetzt ist und dass der Wert dem QTH Nickname entspricht, "
+"Stationsstandort gesetzt ist und dass der Wert dem QTH Nickname entspricht, "
 "welchen du innerhalb von eQSL eingestellt hast."
 
 #: application/views/eqsl/export.php:37
@@ -6459,7 +6463,7 @@ msgstr ""
 
 #: application/views/eqsl/import.php:34
 msgid "Choose Station(location) eQSL File belongs to:"
-msgstr "Stationsprofil für die eQSL-Datei auswählen:"
+msgstr "Stationsstandort für die eQSL-Datei auswählen:"
 
 #: application/views/eqsl/import.php:45 application/views/lotw/import.php:25
 msgid "Log files must have the file type .adi"
@@ -6560,7 +6564,7 @@ msgid ""
 "You need to set a HRDLog Logbook API Code in your station profile. Only "
 "station profiles with an API Key set are displayed."
 msgstr ""
-"Du musst einen HRDLog API Code in Deinem Stationsprofil hinterlegen. Nur "
+"Du musst einen HRDLog API Code in deinem Stationsstandort hinterlegen. Nur "
 "Stationen mit API-Code werden angezeigt."
 
 #: application/views/hrdlog/export.php:24
@@ -8786,7 +8790,7 @@ msgid ""
 "You need to set a QRZ Logbook API key in your station profile. Only station "
 "profiles with an API Key set are displayed."
 msgstr ""
-"Du benötigst einen QRZ-Logbuch-API-Key in Deinem Stationsprofil. Nur "
+"Du benötigst einen QRZ-Logbuch-API-Key in deinem Stationsstandort. Nur "
 "Stationen mit diesem Key werden angezeigt."
 
 #: application/views/qrz/export.php:73
@@ -9029,7 +9033,7 @@ msgstr "Setze die eQSL-Nachricht auf den Standardtext zurück."
 
 #: application/views/qso/edit_ajax.php:530
 msgid "Change Station Profile"
-msgstr "Stationsprofil ändern"
+msgstr "Stationsstandort ändern"
 
 #: application/views/qso/edit_ajax.php:576
 msgid "Exchange (R)"
@@ -11477,7 +11481,7 @@ msgid ""
 "You need to set a QO-100 Dx Club API key in your station profile. Only "
 "station profiles with an API Key are displayed."
 msgstr ""
-"Du musst einen QO-100 Dx Club API Schlüssel in deinem Stationsprofil "
+"Du musst einen QO-100 Dx Club API Schlüssel in deinem Stationsstandort "
 "konfigurieren. Nur Profile mit einem API Schlüssel werden angezeigt."
 
 #: application/views/webadif/export.php:63

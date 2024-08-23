@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-22 11:43+0200\n"
-"PO-Revision-Date: 2024-08-21 19:27+0000\n"
+"POT-Creation-Date: 2024-08-22 13:37+0000\n"
+"PO-Revision-Date: 2024-08-22 20:55+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/pt_PT/>\n"
@@ -69,8 +69,8 @@ msgstr ""
 #: application/controllers/Qso.php:9 application/controllers/Qso.php:19
 #: application/controllers/Qso.php:176 application/controllers/Qso.php:275
 #: application/controllers/Qso.php:295 application/controllers/Qso.php:304
-#: application/controllers/Qso.php:599 application/controllers/Radio.php:259
-#: application/controllers/Radio.php:285 application/controllers/Radio.php:301
+#: application/controllers/Qso.php:599 application/controllers/Radio.php:261
+#: application/controllers/Radio.php:287 application/controllers/Radio.php:303
 #: application/controllers/Satellite.php:15
 #: application/controllers/Sattimers.php:9
 #: application/controllers/Search.php:13
@@ -580,6 +580,8 @@ msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
 "It should run every minute (* * * * *)."
 msgstr ""
+"A última execução ocorreu há mais de %s segundos.%sPor favor, verifique o "
+"seu cron master! Deve ser executado a cada minuto (* * * * *)."
 
 #: application/controllers/Cron.php:268
 #, php-format
@@ -587,11 +589,13 @@ msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
 "isn't running!%sIt should run every minute (* * * * *)."
 msgstr ""
+"A última execução ocorreu há mais de %s minutos.%sParece que o seu "
+"Mastercron não está a correr!%sDeveria correr a cada minuto (* * * * *)."
 
 #: application/controllers/Cron.php:273 application/views/cron/index.php:29
 msgctxt "Master Cron"
 msgid "Not running"
-msgstr ""
+msgstr "Não está a funcionar"
 
 #: application/controllers/Csv.php:20 application/views/csv/index.php:3
 #: application/views/interface_assets/header.php:392
@@ -5353,7 +5357,7 @@ msgstr ""
 
 #: application/views/cron/index.php:29 application/views/cron/index.php:33
 msgid "Status Master-Cron:"
-msgstr ""
+msgstr "Estado do Master-Cron:"
 
 #: application/views/cron/index.php:33
 msgctxt "PHP Version"
@@ -5607,18 +5611,19 @@ msgstr ""
 msgctxt "Dashboard Warning"
 msgid "You need to update country files! Click %shere%s to do it."
 msgstr ""
+"Precisa de atualizar os ficheiros do país! Clique %saqui%s para o fazer."
 
 #: application/views/dashboard/index.php:71
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station locations. Click %shere%s to do it."
-msgstr ""
+msgstr "Não tem localizações de estações. Clique %saqui%s para o fazer."
 
 #: application/views/dashboard/index.php:79
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station logbook. Click %shere%s to do it."
-msgstr ""
+msgstr "Não tem um logbook da estação. Clique %saqui%s para o fazer."
 
 #: application/views/dashboard/index.php:88
 #, php-format

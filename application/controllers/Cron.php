@@ -105,7 +105,7 @@ class cron extends CI_Controller {
 							echo "CRON: " . $cron->id . " -> CURL Result: " . $crun . "\n";
 							$status = 'healthy';
 						} else {
-							echo "ERROR: Something went wrong with " . $cron->id . "\n";
+							echo "ERROR: Something went wrong with " . $cron->id . "; Message: " . $crun . "\n";
 							$status = 'failed';
 						}
 					} else {
