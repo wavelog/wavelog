@@ -130,13 +130,12 @@ class Reg1test extends CI_Controller {
 		} 
 
 		//get cleaned year, contest id, from and to values
-		$year = $this->input->post('year', true);
 		$contestid = $this->input->post('contestid', true);
 		$from = $this->input->post('contestdatesfrom', true);
 		$to = $this->input->post('contestdatesto', true);
 
 		//get contestdates from database
-		$result = $this->Contesting_model->get_contest_bands($station_id, $year, $contestid, $from, $to);
+		$result = $this->Contesting_model->get_contest_bands($station_id, $contestid, $from, $to);
 
 		//return result as json
 		header('Content-Type: application/json');

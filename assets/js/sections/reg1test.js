@@ -95,7 +95,7 @@ function loadContestBands() {
     $.ajax({
         url: base_url+'index.php/reg1test/getContestBands',
         type: 'post',
-        data: {'year': $("#year").val(),
+        data: {
                 'contestid': $("#contestid").val(),
                 'station_id': $("#station_id").val(),
                 'contestdatesfrom': $("#contestdatesfrom").val(),

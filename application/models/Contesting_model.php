@@ -337,7 +337,7 @@ class Contesting_model extends CI_Model {
 		return $data->result();
 	}
 
-	function get_contest_bands($station_id, $year, $contestid, $from, $to) {
+	function get_contest_bands($station_id, $contestid, $from, $to) {
 		
 		//get distinct bands for the selected timeframe	
 		$binding=[];
@@ -347,6 +347,7 @@ class Contesting_model extends CI_Model {
 			and date(".$this->config->item('table_name').".COL_TIME_ON) <= ?
 			and station_id = ? and COL_CONTEST_ID = ?";
 
+		//add data to bindings
 		$binding[] = $from;
 		$binding[] = $to;
 		$binding[] = $station_id;
