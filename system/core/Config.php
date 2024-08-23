@@ -326,6 +326,8 @@ class CI_Config {
 	 * Local URL
 	 *
 	 * Returns local_url [. uri_string]
+	 * 
+	 * If local_url is not defined return base_url instead.
 	 *
 	 * @uses	CI_Config::_uri_string()
 	 *

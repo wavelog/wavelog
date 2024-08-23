@@ -97,8 +97,6 @@ if ( ! function_exists('local_url'))
 	 * within e.g. the docker container to the base_url use this url
 	 * for cron jobs.
 	 * 
-	 * If local_url is not defined return base_url instead.
-	 * 
 	 * @param	string	$uri
 	 * @param	string	$protocol
 	 * @return	string
