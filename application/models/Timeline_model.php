@@ -31,20 +31,21 @@ class Timeline_model extends CI_Model {
 			join dxcc_entities on thcv.col_dxcc = dxcc_entities.adif
 			where station_id in (" . $location_list . ")";
 
-		if ($band == 'SAT') {	// SAT == Don't care for band but for prop
+		if ($band == 'SAT') {				// Left for compatibility reasons
 			$sql .= " and col_prop_mode = ?";
 			$binding[] = $band;
-		} else {		// Not SAT
-			if ($band != 'All') {
+		} else {					// Not SAT
+			if ($band != 'All') {			// Band set? Take care of it
 				$sql .= " and col_band = ?";
 				$binding[] = $band;
-			}
-			if ( $propmode == 'All' ) {	// Not SAT and Prop=All -> Show everything but not prop_mode SAT
+			}	
+			if ( $propmode == 'NoSAT' ) {		// All without SAT
 				$sql .= " and col_prop_mode !='SAT'";
-			} elseif ($propmode == 'None') {	// Not SAT and prop=None --> Take only care of Band (if set)
-				;
-				// No filter
-			} else {	// Not SAT and not All and no prop in ('All','None') take care of band and propmode
+			} elseif ($propmode == 'None') {	// Empty Propmode
+				$sql .= " and (trim(col_prop_mode)='' or col_prop_mode is null)";
+			} elseif ($propmode == 'All') {		// Dont care for propmode
+				; // No Prop-Filter
+			} else {				// Propmode set, taker care of it
 				$sql .= " and col_prop_mode = ?";
 				$binding[] = $propmode;
 			}
@@ -238,12 +239,24 @@ class Timeline_model extends CI_Model {
 		$this->db->join('dxcc_entities', 'dxcc_entities.adif = '.$this->config->item('table_name').'.COL_DXCC', 'left outer');
 		$this->db->join('lotw_users', 'lotw_users.callsign = '.$this->config->item('table_name').'.col_call', 'left outer');
 
-		if ($band != 'All') {
-			if ($band == 'SAT') {
-				$this->db->where('col_prop_mode', $band);
-			} else {
-				$this->db->where('COL_PROP_MODE !=', 'SAT');
+		if ($band == 'SAT') {				// Left for compatibility reasons
+			$this->db->where('col_prop_mode', $band);
+		} else {					// Not SAT
+			if ($band != 'All') {			// Band set? Take care of it
 				$this->db->where('col_band', $band);
+			}	
+			if ( $propmode == 'NoSAT' ) {		// All without SAT
+				$this->db->where('col_prop_mode !=', 'SAT');
+			} elseif ($propmode == 'None') {	// Empty Propmode
+				$sql .= " and (trim(col_prop_mode)='' or col_prop_mode is null)";
+				$this->db->group_start();
+				$this->db->where('trim(col_prop_mode)', '');
+				$this->db->or_where('col_prop_mode is null');
+				$this->db->group_end();
+			} elseif ($propmode == 'All') {		// Dont care for propmode
+				; // No Prop-Filter
+			} else {				// Propmode set, taker care of it
+				$this->db->where('col_prop_mode =', $propmode);
 			}
 		}
 

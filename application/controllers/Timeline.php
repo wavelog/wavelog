@@ -22,10 +22,14 @@ class Timeline extends CI_Controller {
 			$band = 'All';
 		}
 
-		if ($this->input->post('propmode') != NULL) {
+		if (($this->input->post('propmode') != NULL) && ($this->input->post('propmode') != '0')) {	// Setted, but not "All"
 			$propmode = $this->security->xss_clean($this->input->post('propmode'));
 		} else {
-			$propmode = 'All';
+			if (($this->session->userdata('user_default_band') == 'SAT') && ($this->input->post('propmode') == NULL)){	// Not setted, and empty and default is SAT?
+				$propmode='SAT';
+			} else {													// Not setted and empty and no SAT as default?
+				$propmode = 'All';
+			}
 		}
 
 		if ($this->input->post('mode') != NULL) {
@@ -91,7 +95,7 @@ class Timeline extends CI_Controller {
 		$band = str_replace('"', "", $this->security->xss_clean($this->input->post("Band")));
 		$mode = str_replace('"', "", $this->security->xss_clean($this->input->post("Mode")));
 		$type = str_replace('"', "", $this->security->xss_clean($this->input->post("Type")));
-		$propmode = str_replace('"', "", $this->security->xss_clean($this->input->post("propmode")));
+		$propmode = str_replace('"', "", $this->security->xss_clean($this->input->post("Propmode")));
 
 		$data['results'] = $this->timeline_model->timeline_qso_details($querystring, $band, $propmode, $mode, $type);
 
