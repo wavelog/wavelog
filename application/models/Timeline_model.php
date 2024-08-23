@@ -45,7 +45,7 @@ class Timeline_model extends CI_Model {
 				$sql .= " and (trim(col_prop_mode)='' or col_prop_mode is null)";
 			} elseif ($propmode == 'All') {		// Dont care for propmode
 				; // No Prop-Filter
-			} else {				// Propmode set, taker care of it
+			} else {				// Propmode set, take care of it
 				$sql .= " and col_prop_mode = ?";
 				$binding[] = $propmode;
 			}
@@ -86,7 +86,7 @@ class Timeline_model extends CI_Model {
 				$sql .= " and (trim(col_prop_mode)='' or col_prop_mode is null)";
 			} elseif ($propmode == 'All') {		// Dont care for propmode
 				; // No Prop-Filter
-			} else {				// Propmode set, taker care of it
+			} else {				// Propmode set, take care of it
 				$sql .= " and col_prop_mode = ?";
 				$binding[] = $propmode;
 			}
@@ -130,7 +130,7 @@ class Timeline_model extends CI_Model {
 				$sql .= " and (trim(col_prop_mode)='' or col_prop_mode is null)";
 			} elseif ($propmode == 'All') {		// Dont care for propmode
 				; // No Prop-Filter
-			} else {				// Propmode set, taker care of it
+			} else {				// Propmode set, take care of it
 				$sql .= " and col_prop_mode = ?";
 				$binding[] = $propmode;
 			}
@@ -175,7 +175,7 @@ class Timeline_model extends CI_Model {
 				$sql .= " and (trim(col_prop_mode)='' or col_prop_mode is null)";
 			} elseif ($propmode == 'All') {		// Dont care for propmode
 				; // No Prop-Filter
-			} else {				// Propmode set, taker care of it
+			} else {				// Propmode set, take care of it
 				$sql .= " and col_prop_mode = ?";
 				$binding[] = $propmode;
 			}
@@ -217,7 +217,7 @@ class Timeline_model extends CI_Model {
 				$sql .= " and (trim(col_prop_mode)='' or col_prop_mode is null)";
 			} elseif ($propmode == 'All') {		// Dont care for propmode
 				; // No Prop-Filter
-			} else {				// Propmode set, taker care of it
+			} else {				// Propmode set, take care of it
 				$sql .= " and col_prop_mode = ?";
 				$binding[] = $propmode;
 			}
@@ -290,8 +290,8 @@ class Timeline_model extends CI_Model {
 				$this->db->group_end();
 			} elseif ($propmode == 'All') {		// Dont care for propmode
 				; // No Prop-Filter
-			} else {				// Propmode set, taker care of it
-				$this->db->where('col_prop_mode =', $propmode);
+			} else {				// Propmode set, take care of it
+				$this->db->where('col_prop_mode', $propmode);
 			}
 		}
 
@@ -365,7 +365,7 @@ class Timeline_model extends CI_Model {
 				$sql .= " and (trim(col_prop_mode)='' or col_prop_mode is null)";
 			} elseif ($propmode == 'All') {		// Dont care for propmode
 				; // No Prop-Filter
-			} else {				// Propmode set, taker care of it
+			} else {				// Propmode set, take care of it
 				$sql .= " and col_prop_mode = ?";
 				$binding[] = $propmode;
 			}
@@ -406,7 +406,7 @@ class Timeline_model extends CI_Model {
 				$sql .= " and (trim(col_prop_mode)='' or col_prop_mode is null)";
 			} elseif ($propmode == 'All') {		// Dont care for propmode
 				; // No Prop-Filter
-			} else {				// Propmode set, taker care of it
+			} else {				// Propmode set, take care of it
 				$sql .= " and col_prop_mode = ?";
 				$binding[] = $propmode;
 			}
