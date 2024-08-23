@@ -6,7 +6,7 @@ class Reg1testformat {
    public function header($contest_id, $from, $to, $callsign, $gridlocator, $contestaddress1, $contestaddress2, $categoryoperator, $band, $club, $name,
                             $responsible_operator, $address1, $address2, $addresspostalcode, $addresscity, $addresscountry, $operatorphone, $operators,
                             $soapbox, $qso_count, $sentexchange, $txequipment, $power, $rxequipment, $antenna, $antennaheight) {
-      
+
       //build header
       $edi_header = "[REG1TEST;1]" . "\r\n";
       $edi_header .= "TName=" . $contest_id ."\r\n";   //Contestname
@@ -67,12 +67,12 @@ class Reg1testformat {
       $edi_detail .=  date('H:i', strtotime($qsodata->COL_TIME_ON)) . ';'; // Time in HHMM format
       $edi_detail .= substr($qsodata->COL_CALL, 0, 14) . ';'; //Callsign, maximum 14 characters
       $edi_detail .= $this->reg1testmodecode($qsodata->COL_MODE) . ';'; //Mode-Code in REG1TEST format
-      $edi_detail .= substr($qsodata->COL_RST_SENT, 3) . ';'; // Sent RST, max 3 characters
-      $edi_detail .= substr(str_pad($qsonumber, 4, '0', STR_PAD_LEFT), 0, 4) . ';';; //Sent Number of QSO with definitely 4 digits with leading zeros
-      $edi_detail .= substr($qsodata->COL_RST_RCVD, 3) . ';'; // Received RST, max 3 characters
-      $edi_detail .= substr(str_pad($qsodata->COL_STX, 4, '0', STR_PAD_LEFT), 0, 4) . ';';; //Received Number of QSO with definitely 4 digits with leading zeros
-      $edi_detail .= substr($qsodata->COL_SRX_STRING, 0, 6) . ';'; // Received Exchange, max 6 characters
-      $edi_detail .= substr($qsodata->COL_GRIDSQUARE, 0, 6) . ';'; // Gridsquare max 6 characters
+      $edi_detail .= substr($qsodata->COL_RST_SENT, 0, 3) . ';'; // Sent RST, max 3 characters
+      $edi_detail .= substr(str_pad($qsonumber ?? "", 4, '0', STR_PAD_LEFT), 0, 4) . ';';; //Sent Number of QSO with definitely 4 digits with leading zeros
+      $edi_detail .= substr($qsodata->COL_RST_RCVD, 0, 3) . ';'; // Received RST, max 3 characters
+      $edi_detail .= substr(str_pad($qsodata->COL_SRX ?? "", 4, '0', STR_PAD_LEFT), 0, 4) . ';';; //Received Number of QSO with definitely 4 digits with leading zeros
+      $edi_detail .= substr($qsodata->COL_SRX_STRING ?? "", 0, 6) . ';'; // Received Exchange, max 6 characters
+      $edi_detail .= strtoupper(substr($qsodata->COL_GRIDSQUARE ?? "" , 0, 6)) . ';'; // Gridsquare max 6 characters
       $edi_detail .= '0;;;;' . "\r\n"; //Points and "new exchange flags" we know nothing about
 
       //return QSO detail
