@@ -152,6 +152,9 @@ class Reg1test extends CI_Controller {
 		$this->load->model('stations');
 		$this->load->model('user_model');
 
+		//Load distance calculator
+		$this->load->library('Qra');
+
 		//deny access if station is not accessible
 		$station_id = $this->input->post('station_id', true);
 		if (!$this->stations->check_station_is_accessible($station_id)) {
@@ -204,6 +207,7 @@ class Reg1test extends CI_Controller {
 		$data['rxequipment'] = $this->input->post('rxequipment', true);
 		$data['antenna'] = $this->input->post('antenna', true);
 		$data['antennaheight'] = $this->input->post('antennaheight', true);
+		$data['maxdistanceqso'] = $this->qra->getMaxDistanceQSO($station->station_gridsquare, $data['qsos'], "K");
 
 		$data['soapbox'] = $this->input->post('soapbox', true);
 
