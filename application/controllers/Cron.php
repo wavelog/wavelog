@@ -88,7 +88,7 @@ class cron extends CI_Controller {
 						echo "CRON: " . $cron->id . " -> is due: " . $isdue_result . "\n";
 						echo "CRON: " . $cron->id . " -> RUNNING...\n";
 
-						$url = base_url() . $cron->function;
+						$url = local_url() . $cron->function;
 
 						$ch = curl_init();
 						curl_setopt($ch, CURLOPT_URL, $url);
