@@ -269,55 +269,70 @@ class Contesting_model extends CI_Model {
 		$this->load->model('Stations');
 		$station_id = $this->Stations->find_active();
 
+		$binding=[];
 		$sql = "select col_contest_id, min(date(col_time_on)) mindate, max(date(col_time_on)) maxdate, year(col_time_on) year, month(col_time_on) month
 			from " . $this->config->item('table_name') . "
 			where coalesce(COL_CONTEST_ID, '') <> ''
-			and station_id =" . $station_id;
+			and station_id = ?";
+
+		$binding[] = $station_id;
 
 		$sql .= " group by COL_CONTEST_ID , year(col_time_on), month(col_time_on) order by year(col_time_on) desc";
 
-		$data = $this->db->query($sql);
+		$data = $this->db->query($sql, $binding);
 
 		return ($data->result());
 	}
 
 	function get_logged_years($station_id) {
 
+		$binding=[];
 		$sql = "select distinct year(col_time_on) year
 			from " . $this->config->item('table_name') . "
 			where coalesce(COL_CONTEST_ID, '') <> ''
-			and station_id =" . $station_id;
+			and station_id = ?";
+
+		$binding[] = $station_id;
 
 		$sql .= " order by year(col_time_on) desc";
 
-		$data = $this->db->query($sql);
+		$data = $this->db->query($sql, $binding);
 
 		return $data->result();
 	}
 
 	function get_logged_contests($station_id, $year) {
+		$binding=[];
 		$sql = "select distinct col_contest_id, coalesce(contest.name, col_contest_id) contestname
 			from " . $this->config->item('table_name') . " thcv
 			left outer join contest on thcv.col_contest_id = contest.adifname
 			where coalesce(COL_CONTEST_ID, '') <> ''
-			and station_id =" . $station_id .
-			" and year(col_time_on) ='" . $year . "'";
+			and station_id = ?" .
+			" and year(col_time_on) = ?";
+
+		$binding[] = $station_id;
+		$binding[] = $year;
 
 		$sql .= " order by COL_CONTEST_ID asc";
 
-		$data = $this->db->query($sql);
+		$data = $this->db->query($sql, $binding);
 
 		return $data->result();
 	}
 
 	function get_contest_dates($station_id, $year, $contestid) {
+		$binding=[];
 		$sql = "select distinct (date(col_time_on)) date
 			from " . $this->config->item('table_name') . "
 			where coalesce(COL_CONTEST_ID, '') <> ''
-			and station_id =" . $station_id .
-			" and year(col_time_on) ='" . $year . "' and col_contest_id ='" . $contestid . "'";
+			and station_id = ?" .
+			" and year(col_time_on) = ? and col_contest_id = ?";
 
-		$data = $this->db->query($sql);
+		$binding[] = $station_id;
+		$binding[] = $year;
+		$binding[] = $contestid;
+
+		$data = $this->db->query($sql, $binding);
 
 		return $data->result();
 	}
@@ -325,14 +340,20 @@ class Contesting_model extends CI_Model {
 	function get_contest_bands($station_id, $year, $contestid, $from, $to) {
 		
 		//get distinct bands for the selected timeframe	
+		$binding=[];
 		$sql = "select distinct COL_BAND band
 			from " . $this->config->item('table_name') . "
-			where date(".$this->config->item('table_name').".COL_TIME_ON) >= '".$from."'
-			and date(".$this->config->item('table_name').".COL_TIME_ON) <= '".$to."'
-			and station_id =" . $station_id . " and COL_CONTEST_ID ='" . $contestid . "'";
+			where date(".$this->config->item('table_name').".COL_TIME_ON) >= ?
+			and date(".$this->config->item('table_name').".COL_TIME_ON) <= ?
+			and station_id = ? and COL_CONTEST_ID = ?";
+
+		$binding[] = $from;
+		$binding[] = $to;
+		$binding[] = $station_id;
+		$binding[] = $contestid;
 
 		//get database result
-		$data = $this->db->query($sql);
+		$data = $this->db->query($sql, $binding);
 
 		//return data
 		return $data->result();
