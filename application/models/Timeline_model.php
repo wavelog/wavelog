@@ -72,17 +72,26 @@ class Timeline_model extends CI_Model {
 			.$this->config->item('table_name'). " thcv
 			where station_id in (" . $location_list . ")";
 
-		if ($band != 'All') {
-			if ($band == 'SAT') {
-				$sql .= " and col_prop_mode = ?";
-				$binding[] = $band;
-			}
-			else {
-				$sql .= " and col_prop_mode !='SAT'";
+		if ($band == 'SAT') {				// Left for compatibility reasons
+			$sql .= " and col_prop_mode = ?";
+			$binding[] = $band;
+		} else {					// Not SAT
+			if ($band != 'All') {			// Band set? Take care of it
 				$sql .= " and col_band = ?";
 				$binding[] = $band;
+			}	
+			if ( $propmode == 'NoSAT' ) {		// All without SAT
+				$sql .= " and col_prop_mode !='SAT'";
+			} elseif ($propmode == 'None') {	// Empty Propmode
+				$sql .= " and (trim(col_prop_mode)='' or col_prop_mode is null)";
+			} elseif ($propmode == 'All') {		// Dont care for propmode
+				; // No Prop-Filter
+			} else {				// Propmode set, taker care of it
+				$sql .= " and col_prop_mode = ?";
+				$binding[] = $propmode;
 			}
 		}
+
 
 		if ($mode != 'All') {
 			$sql .= " and col_mode = ?";
@@ -107,15 +116,23 @@ class Timeline_model extends CI_Model {
 			.$this->config->item('table_name'). " thcv
 			where station_id in (" . $location_list . ")";
 
-		if ($band != 'All') {
-			if ($band == 'SAT') {
-				$sql .= " and col_prop_mode = ?";
-				$binding[] = $band;
-			}
-			else {
-				$sql .= " and col_prop_mode !='SAT'";
+		if ($band == 'SAT') {				// Left for compatibility reasons
+			$sql .= " and col_prop_mode = ?";
+			$binding[] = $band;
+		} else {					// Not SAT
+			if ($band != 'All') {			// Band set? Take care of it
 				$sql .= " and col_band = ?";
 				$binding[] = $band;
+			}	
+			if ( $propmode == 'NoSAT' ) {		// All without SAT
+				$sql .= " and col_prop_mode !='SAT'";
+			} elseif ($propmode == 'None') {	// Empty Propmode
+				$sql .= " and (trim(col_prop_mode)='' or col_prop_mode is null)";
+			} elseif ($propmode == 'All') {		// Dont care for propmode
+				; // No Prop-Filter
+			} else {				// Propmode set, taker care of it
+				$sql .= " and col_prop_mode = ?";
+				$binding[] = $propmode;
 			}
 		}
 
@@ -144,17 +161,26 @@ class Timeline_model extends CI_Model {
 			join iota on thcv.col_iota = iota.tag
 			where station_id in (" . $location_list . ")";
 
-		if ($band != 'All') {
-			if ($band == 'SAT') {
-				$sql .= " and col_prop_mode = ?";
-				$binding[] = $band;
-			}
-			else {
-				$sql .= " and col_prop_mode !='SAT'";
+		if ($band == 'SAT') {				// Left for compatibility reasons
+			$sql .= " and col_prop_mode = ?";
+			$binding[] = $band;
+		} else {					// Not SAT
+			if ($band != 'All') {			// Band set? Take care of it
 				$sql .= " and col_band = ?";
 				$binding[] = $band;
+			}	
+			if ( $propmode == 'NoSAT' ) {		// All without SAT
+				$sql .= " and col_prop_mode !='SAT'";
+			} elseif ($propmode == 'None') {	// Empty Propmode
+				$sql .= " and (trim(col_prop_mode)='' or col_prop_mode is null)";
+			} elseif ($propmode == 'All') {		// Dont care for propmode
+				; // No Prop-Filter
+			} else {				// Propmode set, taker care of it
+				$sql .= " and col_prop_mode = ?";
+				$binding[] = $propmode;
 			}
 		}
+
 
 		if ($mode != 'All') {
 			$sql .= " and col_mode = ?";
@@ -177,17 +203,26 @@ class Timeline_model extends CI_Model {
 			.$this->config->item('table_name'). " thcv
 			where station_id in (" . $location_list . ")";
 
-		if ($band != 'All') {
-			if ($band == 'SAT') {
-				$sql .= " and col_prop_mode = ?";
-				$binding[] = $band;
-			}
-			else {
-				$sql .= " and col_prop_mode !='SAT'";
+		if ($band == 'SAT') {				// Left for compatibility reasons
+			$sql .= " and col_prop_mode = ?";
+			$binding[] = $band;
+		} else {					// Not SAT
+			if ($band != 'All') {			// Band set? Take care of it
 				$sql .= " and col_band = ?";
 				$binding[] = $band;
+			}	
+			if ( $propmode == 'NoSAT' ) {		// All without SAT
+				$sql .= " and col_prop_mode !='SAT'";
+			} elseif ($propmode == 'None') {	// Empty Propmode
+				$sql .= " and (trim(col_prop_mode)='' or col_prop_mode is null)";
+			} elseif ($propmode == 'All') {		// Dont care for propmode
+				; // No Prop-Filter
+			} else {				// Propmode set, taker care of it
+				$sql .= " and col_prop_mode = ?";
+				$binding[] = $propmode;
 			}
 		}
+
 
 		if ($mode != 'All') {
 			$sql .= " and col_mode = ?";
@@ -316,15 +351,23 @@ class Timeline_model extends CI_Model {
 			.$this->config->item('table_name'). " thcv
 			where station_id in (" . $location_list . ")";
 
-		if ($band != 'All') {
-			if ($band == 'SAT') {
-				$sql .= " and col_prop_mode = ?";
-				$binding[] = $band;
-			}
-			else {
-				$sql .= " and col_prop_mode !='SAT'";
+		if ($band == 'SAT') {				// Left for compatibility reasons
+			$sql .= " and col_prop_mode = ?";
+			$binding[] = $band;
+		} else {					// Not SAT
+			if ($band != 'All') {			// Band set? Take care of it
 				$sql .= " and col_band = ?";
 				$binding[] = $band;
+			}	
+			if ( $propmode == 'NoSAT' ) {		// All without SAT
+				$sql .= " and col_prop_mode !='SAT'";
+			} elseif ($propmode == 'None') {	// Empty Propmode
+				$sql .= " and (trim(col_prop_mode)='' or col_prop_mode is null)";
+			} elseif ($propmode == 'All') {		// Dont care for propmode
+				; // No Prop-Filter
+			} else {				// Propmode set, taker care of it
+				$sql .= " and col_prop_mode = ?";
+				$binding[] = $propmode;
 			}
 		}
 
@@ -349,15 +392,23 @@ class Timeline_model extends CI_Model {
 			.$this->config->item('table_name'). " thcv
 			where station_id in (" . $location_list . ")";
 
-		if ($band != 'All') {
-			if ($band == 'SAT') {
-				$sql .= " and col_prop_mode = ?";
-				$binding[] = $band;
-			}
-			else {
-				$sql .= " and col_prop_mode !='SAT'";
+		if ($band == 'SAT') {				// Left for compatibility reasons
+			$sql .= " and col_prop_mode = ?";
+			$binding[] = $band;
+		} else {					// Not SAT
+			if ($band != 'All') {			// Band set? Take care of it
 				$sql .= " and col_band = ?";
 				$binding[] = $band;
+			}	
+			if ( $propmode == 'NoSAT' ) {		// All without SAT
+				$sql .= " and col_prop_mode !='SAT'";
+			} elseif ($propmode == 'None') {	// Empty Propmode
+				$sql .= " and (trim(col_prop_mode)='' or col_prop_mode is null)";
+			} elseif ($propmode == 'All') {		// Dont care for propmode
+				; // No Prop-Filter
+			} else {				// Propmode set, taker care of it
+				$sql .= " and col_prop_mode = ?";
+				$binding[] = $propmode;
 			}
 		}
 
