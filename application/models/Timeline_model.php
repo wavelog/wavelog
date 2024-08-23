@@ -303,7 +303,7 @@ class Timeline_model extends CI_Model {
 
 		switch($type) {
 		case 'dxcc': $this->db->where('COL_DXCC', $querystring); break;
-		case 'was':  $this->db->where('COL_STATE', $querystring); break;
+		case 'was':  $this->db->where('COL_STATE', $querystring); $this->db->where("COL_DXCC in ('291', '6', '110')"); break;
 		case 'iota': $this->db->where('COL_IOTA', $querystring); break;
 		case 'waz':  $this->db->where('COL_CQZ', $querystring); break;
 		case 'vucc':  $this->db->group_start(); $this->db->like('COL_GRIDSQUARE', $querystring);  $this->db->or_like('COL_VUCC_GRIDS',$querystring); $this->db->group_end();break;

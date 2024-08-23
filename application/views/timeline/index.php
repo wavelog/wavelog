@@ -200,7 +200,7 @@ function write_waja_timeline($timeline_array, $custom_date_format, $bandselect, 
     echo '</tfoot></table></div>';
 }
 
-function write_was_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $award) {
+function write_was_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $award) {
     $i = count($timeline_array);
     echo '<table style="width:100%" class="table table-sm timelinetable table-bordered table-hover table-striped table-condensed text-center">
               <thead>
