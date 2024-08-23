@@ -322,6 +322,36 @@ class CI_Config {
 		return $base_url.$this->_uri_string($uri);
 	}
 
+	/**
+	 * Local URL
+	 *
+	 * Returns local_url [. uri_string]
+	 *
+	 * @uses	CI_Config::_uri_string()
+	 *
+	 * @param	string|string[]	$uri	URI string or an array of segments
+	 * @param	string	$protocol
+	 * @return	string
+	 */
+	public function local_url($uri = '', $protocol = NULL)
+	{
+		$local_url = $this->slash_item('local_url');
+		if (isset($protocol))
+		{
+			// For protocol-relative links
+			if ($protocol === '')
+			{
+				$local_url = substr($local_url, strpos($local_url, '//'));
+			}
+			else
+			{
+				$local_url = $protocol.substr($local_url, strpos($local_url, '://'));
+			}
+		}
+
+		return $local_url.$this->_uri_string($uri);
+	}
+
 	// -------------------------------------------------------------
 
 	/**
