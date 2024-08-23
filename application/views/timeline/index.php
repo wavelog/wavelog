@@ -124,11 +124,11 @@
     if ($timeline_array) {
         switch ($this->input->post('award')) {
             case 'dxcc': $result = write_dxcc_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $this->input->post('award')); break;
-            case 'was':  $result = write_was_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $this->input->post('award')); break;
-            case 'iota': $result = write_iota_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $this->input->post('award')); break;
-            case 'waz':  $result = write_waz_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $this->input->post('award')); break;
-            case 'vucc':  $result = write_vucc_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $this->input->post('award')); break;
-            case 'waja':  $result = write_waja_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $this->input->post('award')); break;
+            case 'was':  $result = write_was_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $this->input->post('award')); break;
+            case 'iota': $result = write_iota_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $this->input->post('award')); break;
+            case 'waz':  $result = write_waz_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $this->input->post('award')); break;
+            case 'vucc':  $result = write_vucc_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $this->input->post('award')); break;
+            case 'waja':  $result = write_waja_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $this->input->post('award')); break;
         }
     }
     else {
@@ -173,7 +173,7 @@ function write_dxcc_timeline($timeline_array, $custom_date_format, $bandselect, 
     echo '</tfoot></table></div>';
 }
 
-function write_waja_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $award) {
+function write_waja_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $award) {
     $CI = &get_instance();
     $CI->load->model("Waja");
     $i = count($timeline_array);
@@ -194,7 +194,7 @@ function write_waja_timeline($timeline_array, $custom_date_format, $bandselect, 
                 <td>' . $i-- . '</td>
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
                 <td>' . $CI->Waja->jaPrefectures[$line->col_state] . ' ('.$line->col_state.')</td>
-                <td><a href=javascript:displayTimelineContacts("' . $line->col_state . '","'. $bandselect . '","'. $modeselect . '","' . $award .'")>'.__("Show").'</a></td>
+                <td><a href=javascript:displayTimelineContacts("' . $line->col_state . '","'. $bandselect . '","'. $modeselect. '","' . $propmode . '","' . $award .'")>'.__("Show").'</a></td>
                </tr>';
     }
     echo '</tfoot></table></div>';
@@ -219,13 +219,13 @@ function write_was_timeline($timeline_array, $custom_date_format, $bandselect, $
                 <td>' . $i-- . '</td>
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
                 <td>' . $line->col_state . '</td>
-                <td><a href=javascript:displayTimelineContacts("' . $line->col_state . '","'. $bandselect . '","'. $modeselect . '","' . $award .'")>'.__("Show").'</a></td>
+                <td><a href=javascript:displayTimelineContacts("' . $line->col_state . '","'. $bandselect . '","'. $modeselect. '","' . $propmode . '","' . $award .'")>'.__("Show").'</a></td>
                </tr>';
     }
     echo '</tfoot></table></div>';
 }
 
-function write_iota_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $award) {
+function write_iota_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $award) {
     $i = count($timeline_array);
     echo '<table style="width:100%" class="table table-sm timelinetable table-bordered table-hover table-striped table-condensed text-center">
               <thead>
@@ -248,13 +248,13 @@ function write_iota_timeline($timeline_array, $custom_date_format, $bandselect, 
                 <td>' . $line->col_iota . '</td>
                 <td>' . $line->name . '</td>
                 <td>' . $line->prefix . '</td>
-                <td><a href=javascript:displayTimelineContacts("' . $line->col_iota . '","'. $bandselect . '","'. $modeselect . '","' . $award .'")>'.__("Show").'</a></td>
+                <td><a href=javascript:displayTimelineContacts("' . $line->col_iota . '","'. $bandselect . '","'. $modeselect. '","' . $propmode . '","' . $award .'")>'.__("Show").'</a></td>
                </tr>';
     }
     echo '</tfoot></table></div>';
 }
 
-function write_waz_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $award) {
+function write_waz_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $award) {
     $i = count($timeline_array);
     echo '<table style="width:100%" class="table table-sm timelinetable table-bordered table-hover table-striped table-condensed text-center">
               <thead>
@@ -273,13 +273,13 @@ function write_waz_timeline($timeline_array, $custom_date_format, $bandselect, $
                 <td>' . $i-- . '</td>
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
                 <td>' . $line->col_cqz . '</td>
-                <td><a href=javascript:displayTimelineContacts("' . $line->col_cqz . '","'. $bandselect . '","'. $modeselect . '","' . $award .'")>'.__("Show").'</a></td>
+                <td><a href=javascript:displayTimelineContacts("' . $line->col_cqz . '","'. $bandselect . '","'. $modeselect. '","' . $propmode . '","' . $award .'")>'.__("Show").'</a></td>
                </tr>';
     }
     echo '</tfoot></table></div>';
 }
 
-function write_vucc_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $award) {
+function write_vucc_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect,  $propmode,$award) {
     $i = count($timeline_array);
     echo '<table style="width:100%" class="table table-sm timelinetable table-bordered table-hover table-striped table-condensed text-center">
               <thead>
@@ -300,7 +300,7 @@ function write_vucc_timeline($timeline_array, $custom_date_format, $bandselect, 
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
                 <td>' . date('H:i', $date_as_timestamp) . '</td>
                 <td>' . $line['gridsquare'] . '</td>
-                <td><a href=javascript:displayTimelineContacts("' . $line['gridsquare'] . '","'. $bandselect . '","'. $modeselect . '","' . $award .'")>'.__("Show").'</a></td>
+                <td><a href=javascript:displayTimelineContacts("' . $line['gridsquare'] . '","'. $bandselect . '","'. $modeselect. '","' . $propmode . '","' . $award .'")>'.__("Show").'</a></td>
                </tr>';
     }
     echo '</tfoot></table></div>';
