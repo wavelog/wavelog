@@ -161,6 +161,8 @@ async function connect() {
 
 function stop_cw_sending() {
 	sendHexToSerial("0A");
+	$("#send_carrier").attr("hidden", false);
+	$("#stop_carrier").attr("hidden", true);
 }
 
 function send_carrier() {
