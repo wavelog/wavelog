@@ -91,12 +91,12 @@
                     <?php if($this->config->item('display_freq') == true) { ?>
                     <tr>
                         <td><?= __("Frequency"); ?></td>
-                        <td><?php echo $this->frequency->hz_to_mhz($row->COL_FREQ); ?></td>
+                        <td><?php echo $this->frequency->qrg_conversion($row->COL_FREQ); ?></td>
                     </tr>
                     <?php if($row->COL_FREQ_RX != 0) { ?>
                     <tr>
                         <td><?= __("Frequency (RX)"); ?></td>
-                        <td><?php echo $this->frequency->hz_to_mhz($row->COL_FREQ_RX); ?></td>
+                        <td><?php echo $this->frequency->qrg_conversion($row->COL_FREQ_RX); ?></td>
                     </tr>
                     <?php }} ?>
 
