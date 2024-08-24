@@ -653,6 +653,7 @@
 
         <div id="winkey_buttons" class="card-body">
 			<div class="form-inline d-flex align-items-center mb-2">
+				<button onclick="stop_cw_sending()" class="btn btn-sm btn-danger" style="margin-left: 2px; margin-right: 2px;"><?= __("Stop"); ?></button>
 				<button id="morsekey_func1" onclick="morsekey_func1()" class="btn btn-sm btn-warning" style="margin-left: 2px; margin-right: 2px;">F1</button>
 				<button id="morsekey_func2" onclick="morsekey_func2()" class="btn btn-sm btn-warning" style="margin-left: 2px; margin-right: 2px;">F2</button>
 				<button id="morsekey_func3" onclick="morsekey_func3()" class="btn btn-sm btn-warning" style="margin-left: 2px; margin-right: 2px;">F3</button>

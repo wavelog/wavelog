@@ -159,6 +159,10 @@ async function connect() {
     }
 }
 
+function stop_cw_sending() {
+	sendHexToSerial("0A");
+}
+
 function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
