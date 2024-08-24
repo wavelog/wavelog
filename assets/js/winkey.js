@@ -163,6 +163,18 @@ function stop_cw_sending() {
 	sendHexToSerial("0A");
 }
 
+function send_carrier() {
+	sendHexToSerial("0B 01");
+	$("#send_carrier").attr("hidden", true);
+	$("#stop_carrier").attr("hidden", false);
+}
+
+function stop_carrier() {
+	sendHexToSerial("0B 00");
+	$("#send_carrier").attr("hidden", false);
+	$("#stop_carrier").attr("hidden", true);
+}
+
 function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
