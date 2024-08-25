@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-25 11:51+0000\n"
+"POT-Creation-Date: 2024-08-25 16:31+0000\n"
 "PO-Revision-Date: 2024-08-17 10:48+0000\n"
 "Last-Translator: Halil AYYILDIZ <ta2lghalil@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -76,7 +76,7 @@ msgstr ""
 #: application/controllers/Station.php:17
 #: application/controllers/Stationsetup.php:15
 #: application/controllers/Themes.php:17
-#: application/controllers/Timeline.php:11
+#: application/controllers/Timeline.php:10
 #: application/controllers/Timeplotter.php:11
 #: application/controllers/Update.php:24 application/controllers/Update.php:273
 #: application/controllers/Update.php:284
@@ -304,12 +304,12 @@ msgid "Log View - VUCC"
 msgstr "Kayıt Görünümü - VUCC"
 
 #: application/controllers/Awards.php:453
-#: application/controllers/Timeline.php:92
-#: application/controllers/Timeline.php:95
-#: application/controllers/Timeline.php:98
-#: application/controllers/Timeline.php:101
-#: application/controllers/Timeline.php:104
-#: application/controllers/Timeline.php:107
+#: application/controllers/Timeline.php:105
+#: application/controllers/Timeline.php:108
+#: application/controllers/Timeline.php:111
+#: application/controllers/Timeline.php:114
+#: application/controllers/Timeline.php:117
+#: application/controllers/Timeline.php:120
 msgid "Log View"
 msgstr "Kayıt Görünümü"
 
@@ -990,6 +990,7 @@ msgstr ""
 #: application/views/logbookadvanced/useroptions.php:74
 #: application/views/search/search_result_ajax.php:124
 #: application/views/station_profile/edit.php:352
+#: application/views/timeline/index.php:68
 #: application/views/update/index.php:20 application/views/user/edit.php:566
 #: application/views/user/edit.php:683
 #: application/views/view_log/partial/log_ajax.php:83
@@ -1135,7 +1136,7 @@ msgstr "RST (A)"
 #: application/views/search/search_result_ajax.php:7
 #: application/views/stationsetup/stationsetup.php:124
 #: application/views/statistics/custom_result.php:92
-#: application/views/timeline/index.php:118 application/views/user/edit.php:232
+#: application/views/timeline/index.php:151 application/views/user/edit.php:232
 #: application/views/user/edit.php:254 application/views/user/edit.php:276
 #: application/views/user/edit.php:298 application/views/user/edit.php:321
 #: application/views/view_log/partial/log.php:13
@@ -1165,7 +1166,7 @@ msgstr "Ülke"
 #: application/views/qso/edit_ajax.php:318
 #: application/views/search/search_result_ajax.php:8
 #: application/views/station_profile/edit.php:215
-#: application/views/timeline/index.php:202 application/views/user/edit.php:233
+#: application/views/timeline/index.php:235 application/views/user/edit.php:233
 #: application/views/user/edit.php:255 application/views/user/edit.php:277
 #: application/views/user/edit.php:299 application/views/user/edit.php:322
 #: application/views/view_log/partial/log_ajax.php:8
@@ -1193,7 +1194,7 @@ msgstr ""
 #: application/views/qslcard/searchresult.php:82
 #: application/views/qso/components/previous_contacts.php:86
 #: application/views/search/search_result_ajax.php:12
-#: application/views/timeline/index.php:177 application/views/user/edit.php:237
+#: application/views/timeline/index.php:210 application/views/user/edit.php:237
 #: application/views/user/edit.php:259 application/views/user/edit.php:281
 #: application/views/user/edit.php:303 application/views/user/edit.php:326
 #: application/views/view_log/partial/log_ajax.php:12
@@ -1231,7 +1232,7 @@ msgstr "Eyalet"
 #: application/views/search/search_result_ajax.php:13
 #: application/views/simplefle/index.php:153
 #: application/views/stationsetup/stationsetup.php:125
-#: application/views/timeline/index.php:257 application/views/user/edit.php:130
+#: application/views/timeline/index.php:290 application/views/user/edit.php:130
 #: application/views/user/edit.php:238 application/views/user/edit.php:260
 #: application/views/user/edit.php:282 application/views/user/edit.php:304
 #: application/views/user/edit.php:327 application/views/user/profile.php:34
@@ -1400,7 +1401,7 @@ msgstr "Operatör"
 #: application/views/stationsetup/linkedlocations.php:17
 #: application/views/stationsetup/linkedlocations.php:45
 #: application/views/stationsetup/stationsetup.php:150
-#: application/views/timeline/index.php:134
+#: application/views/timeline/index.php:167
 #: application/views/timeplotter/index.php:33
 #: application/views/view_log/partial/log_ajax.php:29
 #: application/views/view_log/qso.php:236
@@ -1752,10 +1753,10 @@ msgstr ""
 #: application/controllers/Radio.php:105
 #: application/controllers/Stationsetup.php:372
 #: application/views/api/help.php:61 application/views/contesting/add.php:62
-#: application/views/interface_assets/footer.php:2334
-#: application/views/interface_assets/footer.php:2352
-#: application/views/interface_assets/footer.php:2373
-#: application/views/interface_assets/footer.php:2391
+#: application/views/interface_assets/footer.php:2335
+#: application/views/interface_assets/footer.php:2353
+#: application/views/interface_assets/footer.php:2374
+#: application/views/interface_assets/footer.php:2392
 #: application/views/labels/index.php:48 application/views/labels/index.php:84
 #: application/views/logbookadvanced/index.php:519
 #: application/views/lotw_views/index.php:114
@@ -2061,7 +2062,7 @@ msgstr ""
 msgid "Edit Theme"
 msgstr ""
 
-#: application/controllers/Timeline.php:17
+#: application/controllers/Timeline.php:15
 #: application/views/interface_assets/header.php:148
 #: application/views/timeline/index.php:2
 msgid "Timeline"
@@ -2540,6 +2541,7 @@ msgstr ""
 #: application/views/stationsetup/exportmapoptions.php:33
 #: application/views/timeline/index.php:10
 #: application/views/timeline/index.php:22
+#: application/views/timeline/index.php:77
 #: application/views/timeplotter/index.php:17
 #: application/views/timeplotter/index.php:27
 #: application/views/timeplotter/index.php:47
@@ -2598,13 +2600,13 @@ msgstr ""
 #: application/views/logbookadvanced/useroptions.php:17
 #: application/views/lookup/index.php:63
 #: application/views/stationsetup/exportmapoptions.php:6
-#: application/views/timeline/index.php:72
-#: application/views/timeline/index.php:137
-#: application/views/timeline/index.php:164
-#: application/views/timeline/index.php:189
-#: application/views/timeline/index.php:218
-#: application/views/timeline/index.php:243
-#: application/views/timeline/index.php:270
+#: application/views/timeline/index.php:105
+#: application/views/timeline/index.php:170
+#: application/views/timeline/index.php:197
+#: application/views/timeline/index.php:222
+#: application/views/timeline/index.php:251
+#: application/views/timeline/index.php:276
+#: application/views/timeline/index.php:303
 #: application/views/timeplotter/index.php:59
 msgid "Show"
 msgstr ""
@@ -2722,7 +2724,7 @@ msgstr ""
 #: application/views/awards/was/index.php:200
 #: application/views/awards/wwff/index.php:64
 #: application/views/public_search/empty.php:3
-#: application/views/qrz/export.php:64 application/views/timeline/index.php:102
+#: application/views/qrz/export.php:64 application/views/timeline/index.php:135
 msgid "Nothing found!"
 msgstr ""
 
@@ -2769,12 +2771,12 @@ msgid "Count"
 msgstr ""
 
 #: application/views/activators/index.php:101
-#: application/views/timeline/index.php:121
-#: application/views/timeline/index.php:153
-#: application/views/timeline/index.php:178
-#: application/views/timeline/index.php:205
-#: application/views/timeline/index.php:232
-#: application/views/timeline/index.php:258
+#: application/views/timeline/index.php:154
+#: application/views/timeline/index.php:186
+#: application/views/timeline/index.php:211
+#: application/views/timeline/index.php:238
+#: application/views/timeline/index.php:265
+#: application/views/timeline/index.php:291
 msgid "Show QSO's"
 msgstr ""
 
@@ -2843,12 +2845,12 @@ msgstr ""
 #: application/views/statistics/custom.php:38
 #: application/views/statistics/custom_result.php:40
 #: application/views/statistics/custom_result.php:85
-#: application/views/timeline/index.php:116
-#: application/views/timeline/index.php:151
-#: application/views/timeline/index.php:176
-#: application/views/timeline/index.php:201
-#: application/views/timeline/index.php:230
-#: application/views/timeline/index.php:255
+#: application/views/timeline/index.php:149
+#: application/views/timeline/index.php:184
+#: application/views/timeline/index.php:209
+#: application/views/timeline/index.php:234
+#: application/views/timeline/index.php:263
+#: application/views/timeline/index.php:288
 #: application/views/view_log/partial/log.php:4
 #: application/views/view_log/partial/log_ajax.php:57
 #: application/views/visitor/index.php:147
@@ -2877,7 +2879,7 @@ msgstr "Tarih"
 #: application/views/search/search_result_ajax.php:91
 #: application/views/simplefle/index.php:147
 #: application/views/statistics/custom_result.php:86
-#: application/views/timeline/index.php:256
+#: application/views/timeline/index.php:289
 #: application/views/timeplotter/index.php:5
 #: application/views/view_log/partial/log.php:6
 #: application/views/view_log/partial/log_ajax.php:59
@@ -3016,7 +3018,7 @@ msgstr ""
 #: application/views/adif/import.php:152
 #: application/views/interface_assets/footer.php:32
 #: application/views/interface_assets/footer.php:501
-#: application/views/interface_assets/footer.php:2130
+#: application/views/interface_assets/footer.php:2131
 msgid "DANGER"
 msgstr ""
 
@@ -3279,7 +3281,7 @@ msgstr ""
 #: application/views/oqrs/showrequests.php:91
 #: application/views/sattimers/index.php:39
 #: application/views/stationsetup/stationsetup.php:31
-#: application/views/timeline/index.php:119
+#: application/views/timeline/index.php:152
 #: application/views/update/index.php:30
 msgid "Status"
 msgstr "Durum"
@@ -3439,7 +3441,7 @@ msgstr ""
 #: application/views/search/cqzones_result.php:13
 #: application/views/station_profile/create.php:113
 #: application/views/station_profile/edit.php:153
-#: application/views/timeline/index.php:231
+#: application/views/timeline/index.php:264
 #: application/views/timeplotter/index.php:44
 msgid "CQ Zone"
 msgstr "CQ Alanı"
@@ -3548,7 +3550,7 @@ msgstr ""
 
 #: application/views/awards/cq/index.php:56
 #: application/views/awards/itu/index.php:56
-#: application/views/interface_assets/footer.php:2109
+#: application/views/interface_assets/footer.php:2110
 #: application/views/qso/edit_ajax.php:378
 #: application/views/view_log/qso.php:25
 msgid "QSL Card"
@@ -3818,8 +3820,8 @@ msgstr ""
 
 #: application/views/awards/dxcc/index.php:226
 #: application/views/awards/iota/index.php:170
-#: application/views/timeline/index.php:117
-#: application/views/timeline/index.php:204
+#: application/views/timeline/index.php:150
+#: application/views/timeline/index.php:237
 msgid "Prefix"
 msgstr ""
 
@@ -3988,7 +3990,7 @@ msgstr ""
 #: application/views/search/search_result_ajax.php:19
 #: application/views/stationsetup/stationsetup.php:30
 #: application/views/themes/index.php:82
-#: application/views/timeline/index.php:203 application/views/user/edit.php:241
+#: application/views/timeline/index.php:236 application/views/user/edit.php:241
 #: application/views/user/edit.php:263 application/views/user/edit.php:285
 #: application/views/user/edit.php:307 application/views/user/edit.php:330
 #: application/views/view_log/partial/log_ajax.php:19
@@ -4308,7 +4310,7 @@ msgid "Show WAJA Map"
 msgstr ""
 
 #: application/views/awards/waja/index.php:154
-#: application/views/timeline/index.php:152
+#: application/views/timeline/index.php:185
 msgid "Prefecture"
 msgstr ""
 
@@ -5197,6 +5199,7 @@ msgstr "Yayın Mode"
 #: application/views/gridmap/index.php:44 application/views/kml/index.php:80
 #: application/views/logbookadvanced/index.php:219
 #: application/views/qso/edit_ajax.php:192 application/views/qso/index.php:404
+#: application/views/timeline/index.php:80
 msgctxt "Propagation Mode"
 msgid "Aircraft Scatter"
 msgstr ""
@@ -5205,6 +5208,7 @@ msgstr ""
 #: application/views/gridmap/index.php:45 application/views/kml/index.php:81
 #: application/views/logbookadvanced/index.php:220
 #: application/views/qso/edit_ajax.php:193 application/views/qso/index.php:405
+#: application/views/timeline/index.php:81
 msgctxt "Propagation Mode"
 msgid "Aurora"
 msgstr ""
@@ -5213,6 +5217,7 @@ msgstr ""
 #: application/views/gridmap/index.php:46 application/views/kml/index.php:82
 #: application/views/logbookadvanced/index.php:221
 #: application/views/qso/edit_ajax.php:194 application/views/qso/index.php:406
+#: application/views/timeline/index.php:82
 msgctxt "Propagation Mode"
 msgid "Aurora-E"
 msgstr ""
@@ -5221,6 +5226,7 @@ msgstr ""
 #: application/views/gridmap/index.php:47 application/views/kml/index.php:83
 #: application/views/logbookadvanced/index.php:222
 #: application/views/qso/edit_ajax.php:195 application/views/qso/index.php:407
+#: application/views/timeline/index.php:83
 msgctxt "Propagation Mode"
 msgid "Back scatter"
 msgstr ""
@@ -5229,6 +5235,7 @@ msgstr ""
 #: application/views/gridmap/index.php:48 application/views/kml/index.php:84
 #: application/views/logbookadvanced/index.php:223
 #: application/views/qso/edit_ajax.php:196 application/views/qso/index.php:408
+#: application/views/timeline/index.php:84
 msgctxt "Propagation Mode"
 msgid "EchoLink"
 msgstr ""
@@ -5237,6 +5244,7 @@ msgstr ""
 #: application/views/gridmap/index.php:49 application/views/kml/index.php:85
 #: application/views/logbookadvanced/index.php:224
 #: application/views/qso/edit_ajax.php:197 application/views/qso/index.php:409
+#: application/views/timeline/index.php:85
 msgctxt "Propagation Mode"
 msgid "Earth-Moon-Earth"
 msgstr ""
@@ -5245,6 +5253,7 @@ msgstr ""
 #: application/views/gridmap/index.php:50 application/views/kml/index.php:86
 #: application/views/logbookadvanced/index.php:225
 #: application/views/qso/edit_ajax.php:198 application/views/qso/index.php:410
+#: application/views/timeline/index.php:86
 msgctxt "Propagation Mode"
 msgid "Sporadic E"
 msgstr ""
@@ -5253,6 +5262,7 @@ msgstr ""
 #: application/views/gridmap/index.php:51 application/views/kml/index.php:87
 #: application/views/logbookadvanced/index.php:226
 #: application/views/qso/edit_ajax.php:199 application/views/qso/index.php:411
+#: application/views/timeline/index.php:87
 msgctxt "Propagation Mode"
 msgid "Field Aligned Irregularities"
 msgstr ""
@@ -5261,6 +5271,7 @@ msgstr ""
 #: application/views/gridmap/index.php:52 application/views/kml/index.php:88
 #: application/views/logbookadvanced/index.php:227
 #: application/views/qso/edit_ajax.php:200 application/views/qso/index.php:412
+#: application/views/timeline/index.php:88
 msgctxt "Propagation Mode"
 msgid "F2 Reflection"
 msgstr ""
@@ -5269,6 +5280,7 @@ msgstr ""
 #: application/views/gridmap/index.php:53 application/views/kml/index.php:89
 #: application/views/logbookadvanced/index.php:228
 #: application/views/qso/edit_ajax.php:201 application/views/qso/index.php:413
+#: application/views/timeline/index.php:89
 msgctxt "Propagation Mode"
 msgid "Internet-assisted"
 msgstr ""
@@ -5277,6 +5289,7 @@ msgstr ""
 #: application/views/gridmap/index.php:54 application/views/kml/index.php:90
 #: application/views/logbookadvanced/index.php:229
 #: application/views/qso/edit_ajax.php:202 application/views/qso/index.php:414
+#: application/views/timeline/index.php:90
 msgctxt "Propagation Mode"
 msgid "Ionoscatter"
 msgstr ""
@@ -5285,6 +5298,7 @@ msgstr ""
 #: application/views/gridmap/index.php:55 application/views/kml/index.php:91
 #: application/views/logbookadvanced/index.php:230
 #: application/views/qso/edit_ajax.php:203 application/views/qso/index.php:415
+#: application/views/timeline/index.php:91
 msgctxt "Propagation Mode"
 msgid "IRLP"
 msgstr ""
@@ -5293,6 +5307,7 @@ msgstr ""
 #: application/views/gridmap/index.php:56 application/views/kml/index.php:92
 #: application/views/logbookadvanced/index.php:231
 #: application/views/qso/edit_ajax.php:204 application/views/qso/index.php:416
+#: application/views/timeline/index.php:92
 msgctxt "Propagation Mode"
 msgid "Meteor scatter"
 msgstr ""
@@ -5301,6 +5316,7 @@ msgstr ""
 #: application/views/gridmap/index.php:57 application/views/kml/index.php:93
 #: application/views/logbookadvanced/index.php:232
 #: application/views/qso/edit_ajax.php:205 application/views/qso/index.php:417
+#: application/views/timeline/index.php:93
 msgctxt "Propagation Mode"
 msgid "Terrestrial or atmospheric repeater or transponder"
 msgstr ""
@@ -5309,6 +5325,7 @@ msgstr ""
 #: application/views/gridmap/index.php:58 application/views/kml/index.php:94
 #: application/views/logbookadvanced/index.php:233
 #: application/views/qso/edit_ajax.php:206 application/views/qso/index.php:418
+#: application/views/timeline/index.php:94
 msgctxt "Propagation Mode"
 msgid "Rain scatter"
 msgstr ""
@@ -5317,6 +5334,7 @@ msgstr ""
 #: application/views/gridmap/index.php:59 application/views/kml/index.php:95
 #: application/views/logbookadvanced/index.php:234
 #: application/views/qso/edit_ajax.php:207 application/views/qso/index.php:419
+#: application/views/timeline/index.php:95
 msgctxt "Propagation Mode"
 msgid "Satellite"
 msgstr "Uydu"
@@ -5325,6 +5343,7 @@ msgstr "Uydu"
 #: application/views/gridmap/index.php:60 application/views/kml/index.php:96
 #: application/views/logbookadvanced/index.php:235
 #: application/views/qso/edit_ajax.php:208 application/views/qso/index.php:420
+#: application/views/timeline/index.php:96
 msgctxt "Propagation Mode"
 msgid "Trans-equatorial"
 msgstr ""
@@ -5333,6 +5352,7 @@ msgstr ""
 #: application/views/gridmap/index.php:61 application/views/kml/index.php:97
 #: application/views/logbookadvanced/index.php:236
 #: application/views/qso/edit_ajax.php:209 application/views/qso/index.php:421
+#: application/views/timeline/index.php:97
 msgctxt "Propagation Mode"
 msgid "Tropospheric ducting"
 msgstr ""
@@ -5544,7 +5564,7 @@ msgstr ""
 #: application/views/dayswithqso/index.php:58
 #: application/views/dayswithqso/index.php:86
 #: application/views/dayswithqso/index.php:108
-#: application/views/timeline/index.php:120
+#: application/views/timeline/index.php:153
 msgid "End Date"
 msgstr ""
 
@@ -6182,10 +6202,10 @@ msgid "QSL Date"
 msgstr ""
 
 #: application/views/eqslcard/index.php:60
-#: application/views/interface_assets/footer.php:2335
-#: application/views/interface_assets/footer.php:2353
-#: application/views/interface_assets/footer.php:2374
-#: application/views/interface_assets/footer.php:2392
+#: application/views/interface_assets/footer.php:2336
+#: application/views/interface_assets/footer.php:2354
+#: application/views/interface_assets/footer.php:2375
+#: application/views/interface_assets/footer.php:2393
 #: application/views/qslcard/index.php:66
 #: application/views/view_log/qso.php:614
 msgid "View"
@@ -6196,10 +6216,12 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:215
 #: application/views/logbookadvanced/index.php:609
 #: application/views/logbookadvanced/useroptions.php:118
+#: application/views/timeline/index.php:74
 msgid "Propagation"
 msgstr ""
 
 #: application/views/gridmap/index.php:42
+#: application/views/timeline/index.php:79
 msgid "None/Empty"
 msgstr ""
 
@@ -6456,43 +6478,43 @@ msgstr ""
 msgid "Total count"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2111
+#: application/views/interface_assets/footer.php:2112
 msgid "QSL Card for "
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2131
+#: application/views/interface_assets/footer.php:2132
 msgid "Warning! Are you sure you want to delete this QSL card?"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2171
+#: application/views/interface_assets/footer.php:2172
 #: application/views/view_log/qso.php:42
 msgid "eQSL Card"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2173
+#: application/views/interface_assets/footer.php:2174
 msgid "eQSL Card for "
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2346
-#: application/views/interface_assets/footer.php:2385
+#: application/views/interface_assets/footer.php:2347
+#: application/views/interface_assets/footer.php:2386
 #: application/views/view_log/qso.php:604
 msgid "QSL image file"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2365
+#: application/views/interface_assets/footer.php:2366
 msgid "Front QSL Card:"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2403
+#: application/views/interface_assets/footer.php:2404
 msgid "Back QSL Card:"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2414
-#: application/views/interface_assets/footer.php:2439
+#: application/views/interface_assets/footer.php:2415
+#: application/views/interface_assets/footer.php:2440
 msgid "Add additional QSOs to a QSL Card"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2450
+#: application/views/interface_assets/footer.php:2451
 msgid "Something went wrong. Please try again!"
 msgstr ""
 
@@ -10072,6 +10094,10 @@ msgstr ""
 
 #: application/views/themes/index.php:116
 msgid "Add a Theme"
+msgstr ""
+
+#: application/views/timeline/index.php:78
+msgid "All but SAT"
 msgstr ""
 
 #: application/views/timeplotter/index.php:2
