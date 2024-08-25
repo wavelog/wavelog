@@ -1197,7 +1197,7 @@ $($('#callsign')).on('keypress',function(e) {
 						    }
 					    } else {
 						    $(".radio_timeout_error" ).remove();
-						    text = '<i class="fas fa-broadcast-tower"></i><span style="margin-left:10px;"></span><b>TX:</b> '+(Math.round(parseInt(data.frequency)/100)/10000).toFixed(4)+' MHz';
+						    text = '<i class="fas fa-broadcast-tower"></i><span style="margin-left:10px;"></span><b>TX:</b> ' + data.frequency_formatted;
 						    if(data.mode != null) {
 							    text = text+'<span style="margin-left:10px"></span>'+data.mode;
 						    }
@@ -1212,7 +1212,7 @@ $($('#callsign')).on('keypress',function(e) {
 							    }
 						    }
 						    if(data.frequency_rx != null && data.frequency_rx != 0) {
-							    ptext = ptext + '<span style="margin-left:10px"></span><b>RX:</b> ' + (Math.round(parseInt(data.frequency_rx)/1000)/1000).toFixed(3) + ' MHz';
+							    ptext = ptext + '<span style="margin-left:10px"></span><b>RX:</b> ' + data.frequency_rx_formatted;
 						    }
 						    if( ptext != '') { text = text + '<span style="margin-left:10px"></span>(' + ptext + ')';}
 						    if (! $('#radio_cat_state').length) {

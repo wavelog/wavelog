@@ -14,21 +14,23 @@
                     <p class="card-text">
                         <?= __("The Cron Manager assists the administrator in managing cron jobs without requiring CLI access."); ?>
                     </p>
-                    <p class="card-text">
-                        <?= __("To execute cron jobs based on the data below, remove all old cron jobs and create a new one:"); ?>
-                    </p>
-                    <div class="main_cronjob">
-                        <pre><code id="main_cronjob">* * * * * curl --silent <?php echo base_url(); ?>index.php/cron/run &>/dev/null</code><span data-bs-toggle="tooltip" title="<?= __("Copy to clipboard"); ?>" onclick='copyCron("main_cronjob")'><i class="copy-icon fas fa-copy"></i></span></pre>
-                    </div>
+                    <?php if ($mastercron['status_class'] != 'success') { ?>
+                        <p class="card-text">
+                            <?= __("To execute cron jobs based on the data below, remove all old cron jobs and create a new one:"); ?>
+                        </p>
+                        <div class="main_cronjob">
+                            <pre><code id="main_cronjob">* * * * * curl --silent <?php if ($cron_allow_insecure) { echo '--insecure '; } echo base_url(); ?>index.php/cron/run &>/dev/null</code><span data-bs-toggle="tooltip" title="<?= __("Copy to clipboard"); ?>" onclick='copyCron("main_cronjob")'><i class="copy-icon fas fa-copy"></i></span></pre>
+                        </div>
+                    <?php } ?>
                 </div>
                 <div class="col text-end" id="alert_status">
                     <?php if (version_compare(PHP_VERSION, $min_php_version) >= 0) { ?>
                         <div class="alert alert-<?php echo $mastercron['status_class'] ?? 'danger'; ?> d-inline-block">
-                            <?= __("Status Master-Cron"); ?>: <?php echo $mastercron['status'] ?? 'Not running'; ?>
+                            <?= __("Status Master-Cron:"); ?><br><?php echo $mastercron['status'] ?? _pgettext("Master Cron", "Not running"); ?>
                         </div>
                     <?php } else { ?>
                         <div class="alert alert-danger d-inline-block">
-                            <?= __("Status Master-Cron"); ?>:<br><?= __("PHP Version not supported."); ?><br><?= _pgettext("PHP Version", "Min. Version is"); ?> <?php echo $min_php_version; ?>
+                            <?= __("Status Master-Cron:"); ?><br><?= __("PHP Version not supported."); ?><br><?= _pgettext("PHP Version", "Min. Version is"); ?> <?php echo $min_php_version; ?>
                         </div>
                     <?php } ?>
                 </div>

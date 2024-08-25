@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-21 15:06+0000\n"
-"PO-Revision-Date: 2024-08-21 06:52+0000\n"
+"POT-Creation-Date: 2024-08-25 11:51+0000\n"
+"PO-Revision-Date: 2024-08-22 13:37+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
 "Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/sr/>\n"
@@ -38,7 +38,7 @@ msgstr ""
 #: application/controllers/Components.php:13
 #: application/controllers/Contestcalendar.php:15
 #: application/controllers/Contesting.php:14
-#: application/controllers/Cron.php:26 application/controllers/Cron.php:145
+#: application/controllers/Cron.php:26 application/controllers/Cron.php:152
 #: application/controllers/Csv.php:8 application/controllers/Csv.php:31
 #: application/controllers/Dayswithqso.php:11
 #: application/controllers/Debug.php:10
@@ -70,8 +70,8 @@ msgstr ""
 #: application/controllers/Qso.php:9 application/controllers/Qso.php:19
 #: application/controllers/Qso.php:176 application/controllers/Qso.php:275
 #: application/controllers/Qso.php:295 application/controllers/Qso.php:304
-#: application/controllers/Qso.php:599 application/controllers/Radio.php:259
-#: application/controllers/Radio.php:285 application/controllers/Radio.php:301
+#: application/controllers/Qso.php:599 application/controllers/Radio.php:261
+#: application/controllers/Radio.php:287 application/controllers/Radio.php:303
 #: application/controllers/Satellite.php:15
 #: application/controllers/Sattimers.php:9
 #: application/controllers/Search.php:13
@@ -566,9 +566,37 @@ msgstr "Kontinenti"
 msgid "Cron Manager"
 msgstr "Cron menadžer"
 
-#: application/controllers/Cron.php:137 application/views/cron/edit.php:5
+#: application/controllers/Cron.php:144 application/views/cron/edit.php:5
 msgid "Edit Cronjob"
 msgstr "Uredi cronjob"
+
+#: application/controllers/Cron.php:264
+#: application/views/interface_assets/footer.php:36
+msgid "OK"
+msgstr "OK"
+
+#: application/controllers/Cron.php:268
+#, php-format
+msgid ""
+"Last run occurred more than %s seconds ago.%sPlease check your master cron! "
+"It should run every minute (* * * * *)."
+msgstr ""
+"Posljednji put se desilo pre više od %s sekundi. %sMolimo proverite vaš "
+"master kron! Trebalo bi da radi svakog minuta (* * * * *)."
+
+#: application/controllers/Cron.php:271
+#, php-format
+msgid ""
+"Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
+"isn't running!%sIt should run every minute (* * * * *)."
+msgstr ""
+"Posljednji put se desilo pre više od %s minuta. %sMolimo proverite vaš "
+"master kron! %sTrebalo bi da radi svakog minuta (* * * * *)."
+
+#: application/controllers/Cron.php:276 application/views/cron/index.php:29
+msgctxt "Master Cron"
+msgid "Not running"
+msgstr "Ne izvršava se"
 
 #: application/controllers/Csv.php:20 application/views/csv/index.php:3
 #: application/views/interface_assets/header.php:392
@@ -653,7 +681,7 @@ msgid "DX Calendar"
 msgstr "DX kalendar"
 
 #: application/controllers/Eqsl.php:34
-#: application/views/dashboard/index.php:310
+#: application/views/dashboard/index.php:307
 #: application/views/eqslcard/index.php:5
 #: application/views/visitor/index.php:306
 msgid "eQSL Cards"
@@ -918,7 +946,7 @@ msgstr "QSL"
 #: application/views/awards/wab/index.php:80
 #: application/views/awards/waja/index.php:59
 #: application/views/awards/was/index.php:59
-#: application/views/dashboard/index.php:245
+#: application/views/dashboard/index.php:242
 #: application/views/gridmap/index.php:109
 #: application/views/logbookadvanced/useroptions.php:66
 #: application/views/oqrs/qsolist.php:17 application/views/oqrs/qsolist.php:159
@@ -947,7 +975,7 @@ msgstr "LoTW"
 #: application/views/awards/wab/index.php:88
 #: application/views/awards/waja/index.php:63
 #: application/views/awards/was/index.php:63
-#: application/views/dashboard/index.php:245
+#: application/views/dashboard/index.php:242
 #: application/views/gridmap/index.php:117
 #: application/views/logbookadvanced/useroptions.php:70
 #: application/views/oqrs/qsolist.php:14 application/views/oqrs/qsolist.php:130
@@ -1035,7 +1063,7 @@ msgstr "Clublog"
 #: application/views/search/lotw_unconfirmed_result.php:8
 #: application/views/search/result_search.php:7
 #: application/views/search/search_result_ajax.php:4
-#: application/views/simplefle/index.php:144
+#: application/views/simplefle/index.php:150
 #: application/views/statistics/custom.php:60
 #: application/views/statistics/custom_result.php:62
 #: application/views/statistics/custom_result.php:88
@@ -1069,7 +1097,7 @@ msgstr "Vrsta rada"
 #: application/views/qso/components/previous_contacts.php:79
 #: application/views/qso/edit_ajax.php:142 application/views/qso/index.php:177
 #: application/views/search/search_result_ajax.php:5
-#: application/views/simplefle/index.php:145
+#: application/views/simplefle/index.php:151
 #: application/views/user/edit.php:230 application/views/user/edit.php:252
 #: application/views/user/edit.php:274 application/views/user/edit.php:296
 #: application/views/user/edit.php:319
@@ -1096,7 +1124,7 @@ msgstr "RST (S)"
 #: application/views/qso/components/previous_contacts.php:80
 #: application/views/qso/edit_ajax.php:147 application/views/qso/index.php:182
 #: application/views/search/search_result_ajax.php:6
-#: application/views/simplefle/index.php:146
+#: application/views/simplefle/index.php:152
 #: application/views/user/edit.php:231 application/views/user/edit.php:253
 #: application/views/user/edit.php:275 application/views/user/edit.php:297
 #: application/views/user/edit.php:320
@@ -1213,7 +1241,7 @@ msgstr "Pokrajina"
 #: application/views/search/cqzones_result.php:12
 #: application/views/search/result.php:33
 #: application/views/search/search_result_ajax.php:13
-#: application/views/simplefle/index.php:147
+#: application/views/simplefle/index.php:153
 #: application/views/stationsetup/stationsetup.php:125
 #: application/views/timeline/index.php:257 application/views/user/edit.php:130
 #: application/views/user/edit.php:238 application/views/user/edit.php:260
@@ -1306,7 +1334,7 @@ msgstr "Udaljenost"
 #: application/views/search/lotw_unconfirmed_result.php:9
 #: application/views/search/result_search.php:10
 #: application/views/search/search_result_ajax.php:15
-#: application/views/simplefle/index.php:143
+#: application/views/simplefle/index.php:149
 #: application/views/stationsetup/exportmapoptions.php:31
 #: application/views/statistics/custom.php:53
 #: application/views/statistics/custom_result.php:55
@@ -1412,15 +1440,15 @@ msgstr "Loogbok of the World"
 
 #: application/controllers/Lotw.php:152
 msgid "Certificate Imported."
-msgstr ""
+msgstr "Sertifikat je uvezen."
 
 #: application/controllers/Lotw.php:159
 msgid "Certificate Updated."
-msgstr ""
+msgstr "Sertifikat je ažuriran."
 
 #: application/controllers/Lotw.php:384
 msgid "Certificate Deleted."
-msgstr ""
+msgstr "Sertifikat je izbrisan."
 
 #: application/controllers/Lotw.php:413
 #, php-format
@@ -1428,6 +1456,8 @@ msgid ""
 "Found no certificate in file %s. If the filename contains 'key-only' this is "
 "typically a certificate request which has not been processed by LoTW yet."
 msgstr ""
+"Nije pronađen sertifikat %s. Ako naziv datoteke sadrži 'key-only' to je "
+"tipično zahtev za sertifikat koji još nije obrađen od strane LoTW."
 
 #: application/controllers/Lotw.php:617
 msgid "LoTW ADIF Information"
@@ -1439,7 +1469,7 @@ msgstr "Uvoz LoTW ADIF"
 
 #: application/controllers/Lotw.php:752 application/controllers/Lotw.php:870
 msgid "You have not defined your ARRL LoTW credentials!"
-msgstr ""
+msgstr "Niste definisali vaše ARRL LoTW kredencijale!"
 
 #: application/controllers/Lotw.php:837
 msgid "LoTW .TQ8 Upload"
@@ -1447,7 +1477,7 @@ msgstr "LoTW .TQ8 učitavanje"
 
 #: application/controllers/Lotw.php:915
 msgid "Your ARRL username and/or password is incorrect."
-msgstr ""
+msgstr "Vaše ARRL korisničko ime i/ili lozinka su netačni."
 
 #: application/controllers/Lotw.php:934 application/controllers/Lotw.php:939
 msgid "LoTW .TQ8 Sent"
@@ -1622,42 +1652,44 @@ msgstr "QRB računar"
 #: application/controllers/Qrbcalc.php:50
 #, php-format
 msgid "Latitude: %s, Longitude: %s"
-msgstr ""
+msgstr "Geografska širina: %s, Geografska dužina: %s"
 
 #: application/controllers/Qrbcalc.php:54
 #, php-format
 msgid "The distance between %s and %s is %s mile."
 msgid_plural "The distance between %s and %s is %s miles."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Udaljenost između %s i %s je %s milju."
+msgstr[1] "Udaljenost između %s i %s je %s milje."
+msgstr[2] "Udaljenost između %s i %s je %s milja."
 
 #: application/controllers/Qrbcalc.php:57
 #, php-format
 msgid "The distance between %s and %s is %s nautical mile."
 msgid_plural "The distance between %s and %s is %s nautical miles."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Udaljenost između %s i %s je %s nautičku milju."
+msgstr[1] "Udaljenost između %s i %s je %s nautičke milje."
+msgstr[2] "Udaljenost između %s i %s je %s nautičkih milja."
 
 #: application/controllers/Qrbcalc.php:60
 #, php-format
 msgid "The distance between %s and %s is %s kilometer."
 msgid_plural "The distance between %s and %s is %s kilometers."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Udaljenost između %s i %s je %s kilometar."
+msgstr[1] "Udaljenost između %s i %s je %s kilometra."
+msgstr[2] "Udaljenost između %s i %s je %s kilometara."
 
 #: application/controllers/Qrbcalc.php:66
 #, php-format
 msgid "The bearing is %s."
-msgstr ""
+msgstr "Smer je %s."
 
 #: application/controllers/Qrbcalc.php:72
 msgid ""
 "Negative latitudes are south of the equator, negative longitudes are west of "
 "Greenwich."
 msgstr ""
+"Negativne geografske širine su južno od ekvatora, negativne geografske "
+"dužine su zapadno od Griniča."
 
 #: application/controllers/Qrz.php:173
 #: application/views/interface_assets/header.php:426
@@ -1672,8 +1704,8 @@ msgstr "Uvoz QRZ QSL karata"
 msgid "QRZ ADIF Information"
 msgstr "Informacija o QRZ ADIF"
 
-#: application/controllers/Qsl.php:25 application/views/dashboard/index.php:245
-#: application/views/dashboard/index.php:262
+#: application/controllers/Qsl.php:25 application/views/dashboard/index.php:242
+#: application/views/dashboard/index.php:259
 #: application/views/qslcard/index.php:5
 #: application/views/visitor/index.php:283
 msgid "QSL Cards"
@@ -1715,7 +1747,7 @@ msgstr "Vremenska oznaka"
 #: application/views/logbookadvanced/index.php:527
 #: application/views/lotw_views/index.php:43
 #: application/views/simplefle/index.php:20
-#: application/views/simplefle/index.php:171
+#: application/views/simplefle/index.php:177
 #: application/views/stationsetup/exportmapoptions.php:5
 #: application/views/statistics/custom.php:31
 #: application/views/statistics/custom_result.php:33
@@ -1782,9 +1814,6 @@ msgstr "Nemate lokacija stanice. Idite %s da ih kreirate!"
 #: application/views/awards/dok/index.php:10
 #: application/views/awards/iota/index.php:19
 #: application/views/awards/was/index.php:23
-#: application/views/dashboard/index.php:64
-#: application/views/dashboard/index.php:73
-#: application/views/dashboard/index.php:82
 #: application/views/simplefle/index.php:16
 msgid "here"
 msgstr "ovde"
@@ -1980,7 +2009,7 @@ msgstr "QSO"
 
 #: application/controllers/Stationsetup.php:359
 #: application/views/api/help.php:57 application/views/contesting/add.php:59
-#: application/views/cron/index.php:56
+#: application/views/cron/index.php:58
 #: application/views/interface_assets/footer.php:541
 #: application/views/interface_assets/footer.php:550
 #: application/views/labels/index.php:47 application/views/labels/index.php:83
@@ -2204,28 +2233,32 @@ msgid ""
 "You currently can't impersonate another user. Please change the "
 "encryption_key in your config.php file first!"
 msgstr ""
+"Trenutno ne možete predstavljati drugog korisnika. Molimo prvo promenite "
+"encryption_key u vašoj config.php datoteci!"
 
 #: application/controllers/User.php:1206
 msgid "Invalid Hash"
-msgstr ""
+msgstr "Neispravni haš"
 
 #: application/controllers/User.php:1219
 msgid "The impersonation hash is too old. Please try again."
-msgstr ""
+msgstr "Haš za predstavljanje je previše star. Molimo pokušajte ponovo."
 
 #: application/controllers/User.php:1226
 msgid ""
 "You can't impersonate another user while you're not logged in as the source "
 "user"
 msgstr ""
+"Ne možete predstavljati drugog korisnika dok niste priavljeni kao izvorni "
+"korisnik"
 
 #: application/controllers/User.php:1232
 msgid "There was a problem with your session. Please try again."
-msgstr ""
+msgstr "Postojao je problem sa vašom sesijom. Molimo pokušajte ponovo."
 
 #: application/controllers/User.php:1239
 msgid "The requested user to impersonate does not exist"
-msgstr ""
+msgstr "Korisnik čije ste predstavljanje pokušali ne postoji"
 
 #: application/controllers/Visitor.php:50
 #: application/controllers/Visitor.php:79
@@ -2446,7 +2479,7 @@ msgid "Accumulated number of WAJA worked"
 msgstr "Ukupan broj rađenih WAJA"
 
 #: application/views/accumulate/index.php:8
-#: application/views/dashboard/index.php:223
+#: application/views/dashboard/index.php:220
 #: application/views/dayswithqso/index.php:16
 #: application/views/statistics/index.php:18
 #: application/views/visitor/index.php:246
@@ -2459,7 +2492,7 @@ msgid "Yearly"
 msgstr "Godišnje"
 
 #: application/views/accumulate/index.php:10
-#: application/views/dashboard/index.php:228
+#: application/views/dashboard/index.php:225
 #: application/views/visitor/index.php:251
 msgid "Month"
 msgstr "Mesec"
@@ -2747,7 +2780,7 @@ msgstr "Ništa nije pronađeno!"
 #: application/views/cabrillo/index.php:31
 #: application/views/components/hamsat/table.php:27
 #: application/views/contesting/index.php:104
-#: application/views/csv/index.php:23 application/views/dashboard/index.php:153
+#: application/views/csv/index.php:23 application/views/dashboard/index.php:150
 #: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:41
 #: application/views/eqslcard/index.php:28
 #: application/views/hamsat/index.php:30 application/views/labels/index.php:123
@@ -2766,7 +2799,7 @@ msgstr "Ništa nije pronađeno!"
 #: application/views/search/lotw_unconfirmed.php:33
 #: application/views/search/lotw_unconfirmed_result.php:6
 #: application/views/search/result.php:11
-#: application/views/simplefle/index.php:142
+#: application/views/simplefle/index.php:148
 #: application/views/station_profile/edit.php:63
 #: application/views/stationsetup/linkedlocations.php:17
 #: application/views/user/edit.php:123 application/views/user/index.php:4
@@ -2832,7 +2865,7 @@ msgstr "U poređenju sa DCL, u vašem logu postoje različiti DOK podaci"
 #: application/views/components/hamsat/table.php:25
 #: application/views/contesting/index.php:42
 #: application/views/contesting/index.php:200
-#: application/views/dashboard/index.php:148
+#: application/views/dashboard/index.php:145
 #: application/views/debug/index.php:545 application/views/eqsl/analysis.php:36
 #: application/views/eqsl/download.php:36 application/views/eqsl/result.php:33
 #: application/views/eqslcard/index.php:30
@@ -2850,7 +2883,7 @@ msgstr "U poređenju sa DCL, u vašem logu postoje različiti DOK podaci"
 #: application/views/search/cqzones_result.php:7
 #: application/views/search/result_search.php:4
 #: application/views/search/search_result_ajax.php:89
-#: application/views/simplefle/index.php:140
+#: application/views/simplefle/index.php:146
 #: application/views/statistics/custom.php:38
 #: application/views/statistics/custom_result.php:40
 #: application/views/statistics/custom_result.php:85
@@ -2874,7 +2907,7 @@ msgstr "Datum"
 #: application/views/components/hamsat/table.php:26
 #: application/views/contesting/index.php:47
 #: application/views/contesting/index.php:200
-#: application/views/dashboard/index.php:151
+#: application/views/dashboard/index.php:148
 #: application/views/debug/index.php:546 application/views/eqsl/analysis.php:37
 #: application/views/eqsl/download.php:37 application/views/eqsl/result.php:34
 #: application/views/eqslcard/index.php:31
@@ -2886,7 +2919,7 @@ msgstr "Datum"
 #: application/views/search/cqzones_result.php:8
 #: application/views/search/result_search.php:5
 #: application/views/search/search_result_ajax.php:91
-#: application/views/simplefle/index.php:141
+#: application/views/simplefle/index.php:147
 #: application/views/statistics/custom_result.php:86
 #: application/views/timeline/index.php:256
 #: application/views/timeplotter/index.php:5
@@ -2935,9 +2968,9 @@ msgid "DARC DCL"
 msgstr "DARC DCL"
 
 #: application/views/adif/import.php:55
-#: application/views/dashboard/index.php:97
-#: application/views/dashboard/index.php:118
-#: application/views/dashboard/index.php:124
+#: application/views/dashboard/index.php:94
+#: application/views/dashboard/index.php:115
+#: application/views/dashboard/index.php:121
 #: application/views/eqsl/import.php:45 application/views/lotw/import.php:25
 #: application/views/lotw_views/index.php:4
 msgid "Important"
@@ -3263,7 +3296,7 @@ msgid "API URL"
 msgstr "API URL"
 
 #: application/views/api/help.php:19 application/views/api/help.php:38
-#: application/views/cron/index.php:21 application/views/debug/index.php:36
+#: application/views/cron/index.php:22 application/views/debug/index.php:36
 msgid "Copy to clipboard"
 msgstr "Kopiraj u privremenu memoriju"
 
@@ -3296,7 +3329,7 @@ msgid "API Key"
 msgstr "API ključ"
 
 #: application/views/api/help.php:28 application/views/cron/edit.php:30
-#: application/views/cron/index.php:51
+#: application/views/cron/index.php:53
 #: application/views/search/stored_queries.php:8
 msgid "Description"
 msgstr "Opis"
@@ -3309,7 +3342,7 @@ msgstr "Poslednja upotreba"
 msgid "Permissions"
 msgstr "Dozvole"
 
-#: application/views/api/help.php:31 application/views/cron/index.php:52
+#: application/views/api/help.php:31 application/views/cron/index.php:54
 #: application/views/lotw_views/index.php:41
 #: application/views/mode/index.php:31
 #: application/views/oqrs/showrequests.php:91
@@ -3454,7 +3487,7 @@ msgstr "Potvrđenih okruga"
 #: application/views/awards/rac/index.php:171
 #: application/views/awards/waja/index.php:179
 #: application/views/awards/was/index.php:179
-#: application/views/dashboard/index.php:218
+#: application/views/dashboard/index.php:215
 #: application/views/simplefle/index.php:27
 #: application/views/statistics/qsltable.php:54
 #: application/views/statistics/qsltable.php:109
@@ -3529,8 +3562,8 @@ msgstr "Diplome - CQ Magazin WAZ"
 #: application/views/awards/itu/index.php:34
 #: application/views/awards/wab/list.php:6
 #: application/views/bandmap/list.php:73
-#: application/views/dashboard/index.php:245
-#: application/views/dashboard/index.php:363
+#: application/views/dashboard/index.php:242
+#: application/views/dashboard/index.php:360
 #: application/views/interface_assets/footer.php:40
 #: application/views/visitor/index.php:266
 msgid "Confirmed"
@@ -3539,8 +3572,8 @@ msgstr "Potvrđeno"
 #: application/views/awards/cq/index.php:34
 #: application/views/awards/itu/index.php:34
 #: application/views/bandmap/list.php:72
-#: application/views/dashboard/index.php:241
-#: application/views/dashboard/index.php:357
+#: application/views/dashboard/index.php:238
+#: application/views/dashboard/index.php:354
 #: application/views/visitor/index.php:262
 msgid "Worked"
 msgstr "Rađeno"
@@ -4201,7 +4234,7 @@ msgid "City"
 msgstr "Grad"
 
 #: application/views/awards/jcc/index.php:187
-#: application/views/dashboard/index.php:353
+#: application/views/dashboard/index.php:350
 #: application/views/distances/index.php:23
 msgid "SAT"
 msgstr "SAT"
@@ -4979,10 +5012,10 @@ msgid "Show Details"
 msgstr "Prikaži detalja"
 
 #: application/views/contestcalendar/index.php:38
-#: application/views/dashboard/index.php:263
-#: application/views/dashboard/index.php:290
-#: application/views/dashboard/index.php:311
-#: application/views/dashboard/index.php:332
+#: application/views/dashboard/index.php:260
+#: application/views/dashboard/index.php:287
+#: application/views/dashboard/index.php:308
+#: application/views/dashboard/index.php:329
 #: application/views/satellite/pass.php:475
 msgid "Today"
 msgstr "Danas"
@@ -5229,7 +5262,7 @@ msgstr "Identifikator"
 msgid "Enabled"
 msgstr "Omogućeno"
 
-#: application/views/cron/edit.php:36 application/views/cron/index.php:53
+#: application/views/cron/edit.php:36 application/views/cron/index.php:55
 msgid "Intervall"
 msgstr "Interval"
 
@@ -5295,7 +5328,7 @@ msgstr ""
 "Kron menaažer pomaže administratoru u upravljanju kron poslovima bez potrebe "
 "za pristupom interfejsu sa komandnom linijom."
 
-#: application/views/cron/index.php:18
+#: application/views/cron/index.php:19
 msgid ""
 "To execute cron jobs based on the data below, remove all old cron jobs and "
 "create a new one:"
@@ -5303,61 +5336,61 @@ msgstr ""
 "Za izvršenje kron posla baziranog na donjim podacima, uklonite sve stare "
 "kron poslove i kreirajte novi:"
 
-#: application/views/cron/index.php:27 application/views/cron/index.php:31
-msgid "Status Master-Cron"
-msgstr "Status Master-Cron"
+#: application/views/cron/index.php:29 application/views/cron/index.php:33
+msgid "Status Master-Cron:"
+msgstr "Status Master-krona:"
 
-#: application/views/cron/index.php:31
+#: application/views/cron/index.php:33
 msgctxt "PHP Version"
 msgid "Min. Version is"
 msgstr "Min. verzija je"
 
-#: application/views/cron/index.php:31
+#: application/views/cron/index.php:33
 msgid "PHP Version not supported."
 msgstr "PHP verzija nije podržana."
 
-#: application/views/cron/index.php:41
+#: application/views/cron/index.php:43
 msgid "Cron List"
 msgstr "Kron lista"
 
-#: application/views/cron/index.php:50
+#: application/views/cron/index.php:52
 #: application/views/stationsetup/stationsetup.php:121
 msgid "ID"
 msgstr "ID"
 
-#: application/views/cron/index.php:54
+#: application/views/cron/index.php:56
 msgid "Last Run"
 msgstr "Poslednje pokretanje"
 
-#: application/views/cron/index.php:55
+#: application/views/cron/index.php:57
 msgid "Next Run"
 msgstr "Sledeće pokretanje"
 
-#: application/views/cron/index.php:68
+#: application/views/cron/index.php:70
 msgid "healthy"
 msgstr "zdravo"
 
-#: application/views/cron/index.php:70
+#: application/views/cron/index.php:72
 msgid "failed"
 msgstr "neuspešno"
 
-#: application/views/cron/index.php:75
+#: application/views/cron/index.php:77
 msgid "disabled"
 msgstr "onemogućeno"
 
-#: application/views/cron/index.php:79 application/views/cron/index.php:81
-#: application/views/cron/index.php:83 application/views/debug/index.php:494
+#: application/views/cron/index.php:81 application/views/cron/index.php:83
+#: application/views/cron/index.php:85 application/views/debug/index.php:494
 #: application/views/debug/index.php:500 application/views/debug/index.php:505
 #: application/views/debug/index.php:510 application/views/debug/index.php:515
 #: application/views/debug/index.php:520 application/views/debug/index.php:525
 msgid "never"
 msgstr "nikada"
 
-#: application/views/cron/index.php:98
+#: application/views/cron/index.php:100
 msgid "Your Mastercron isn't running."
 msgstr "Vaš Mastercron nije pokrenut."
 
-#: application/views/cron/index.php:99
+#: application/views/cron/index.php:101
 msgid ""
 "Copy the cron above to a external cron service or into your server's cron to "
 "use this cron manager."
@@ -5365,7 +5398,7 @@ msgstr ""
 "Kopirajte gornji kron u spoljni kron servis ili u kron vašeg servara da "
 "biste koristili ovaj kron menadžer."
 
-#: application/views/cron/index.php:100
+#: application/views/cron/index.php:102
 msgid ""
 "On a basic linux server with shell access use this command to edit your "
 "crons:"
@@ -5373,7 +5406,7 @@ msgstr ""
 "Na osnovnom linux serveru koji ima shell pristup koristite ovu komandu za "
 "uređivanje vaših kronova:"
 
-#: application/views/cron/index.php:107
+#: application/views/cron/index.php:109
 #, php-format
 msgid ""
 "You need to upgrade your PHP version. Minimum version is %s. Your Version is "
@@ -5558,22 +5591,22 @@ msgstr ""
 #: application/views/dashboard/index.php:63
 #, php-format
 msgctxt "Dashboard Warning"
-msgid "You need to update country files! Click %s to do it."
-msgstr "Morate ažurirati datoteke okruga. Kliknite %s da to uradite."
+msgid "You need to update country files! Click %shere%s to do it."
+msgstr "Morate ažurirati datoteke okruga. Kliknite %sovde%s da to uradite."
 
-#: application/views/dashboard/index.php:72
+#: application/views/dashboard/index.php:71
 #, php-format
 msgctxt "Dashboard Warning"
-msgid "You have no station locations. Click %s to do it:"
-msgstr "Nemate lokacije stanice. Kliknite %s da to uradite:"
+msgid "You have no station locations. Click %shere%s to do it."
+msgstr "Nemate lokacije stanice. Kliknite %sovde%s da to uradite."
 
-#: application/views/dashboard/index.php:81
+#: application/views/dashboard/index.php:79
 #, php-format
 msgctxt "Dashboard Warning"
-msgid "You have no station logbook. Click %s to do it:"
-msgstr "Nemate dnevnike stanice. Kliknite %s da to uradite:"
+msgid "You have no station logbook. Click %shere%s to do it."
+msgstr "Nemate dnevnike stanice. Kliknite %sovde%s da to uradite."
 
-#: application/views/dashboard/index.php:91
+#: application/views/dashboard/index.php:88
 #, php-format
 msgid "You have had %d QSO today"
 msgid_plural "You have had %d QSOs today"
@@ -5581,15 +5614,15 @@ msgstr[0] "Danas ste održali %d QSO"
 msgstr[1] "Danas ste održali %d QSOa"
 msgstr[2] "Danas ste održali %d QSOa"
 
-#: application/views/dashboard/index.php:97
+#: application/views/dashboard/index.php:94
 msgid "You have made no QSOs today; time to turn on the radio!"
 msgstr "Danas niste održali nijednu vezu; vreme je da uključite radio!"
 
-#: application/views/dashboard/index.php:104
+#: application/views/dashboard/index.php:101
 msgid "Attention: you need to set an active station location."
 msgstr "Pažnja: morate da odredite aktivnu lokaciju stanice."
 
-#: application/views/dashboard/index.php:110
+#: application/views/dashboard/index.php:107
 msgid ""
 "You have themes without defined theme mode. Please ask the admin to edit the "
 "themes."
@@ -5597,33 +5630,33 @@ msgstr ""
 "Imate teme bez definisane vrste teme. Molimo da zatražite od administratora "
 "da uredi teme."
 
-#: application/views/dashboard/index.php:118
+#: application/views/dashboard/index.php:115
 msgid "At least one of your LoTW certificates is expired!"
 msgstr "Najmanje jedan od vaših LoTW sertifikata je istekao!"
 
-#: application/views/dashboard/index.php:124
+#: application/views/dashboard/index.php:121
 msgid "At least one of your LoTW certificates is about to expire!"
 msgstr "Najmanje jedan od vaših LoTW sertifikata će uskoro isteći!"
 
-#: application/views/dashboard/index.php:214
+#: application/views/dashboard/index.php:211
 #: application/views/visitor/index.php:237
 msgid "QSOs Breakdown"
 msgstr "Prelom veza"
 
-#: application/views/dashboard/index.php:237
+#: application/views/dashboard/index.php:234
 #: application/views/visitor/index.php:258
 msgid "Countries Breakdown"
 msgstr "Prelom zemalja"
 
-#: application/views/dashboard/index.php:254
+#: application/views/dashboard/index.php:251
 #: application/views/visitor/index.php:275
 msgid "Needed"
 msgstr "Potrebno"
 
-#: application/views/dashboard/index.php:267
-#: application/views/dashboard/index.php:294
-#: application/views/dashboard/index.php:315
-#: application/views/dashboard/index.php:336
+#: application/views/dashboard/index.php:264
+#: application/views/dashboard/index.php:291
+#: application/views/dashboard/index.php:312
+#: application/views/dashboard/index.php:333
 #: application/views/oqrs/qsolist.php:50 application/views/oqrs/qsolist.php:130
 #: application/views/oqrs/qsolist.php:159
 #: application/views/qslprint/qsolist.php:58
@@ -5653,10 +5686,10 @@ msgstr "Potrebno"
 msgid "Sent"
 msgstr "Poslato"
 
-#: application/views/dashboard/index.php:273
-#: application/views/dashboard/index.php:300
-#: application/views/dashboard/index.php:321
-#: application/views/dashboard/index.php:342
+#: application/views/dashboard/index.php:270
+#: application/views/dashboard/index.php:297
+#: application/views/dashboard/index.php:318
+#: application/views/dashboard/index.php:339
 #: application/views/oqrs/qsolist.php:92 application/views/oqrs/qsolist.php:143
 #: application/views/oqrs/qsolist.php:174
 #: application/views/qslprint/qsolist.php:100
@@ -5683,7 +5716,7 @@ msgstr "Poslato"
 msgid "Received"
 msgstr "Primljeno"
 
-#: application/views/dashboard/index.php:279
+#: application/views/dashboard/index.php:276
 #: application/views/logbookadvanced/index.php:307
 #: application/views/logbookadvanced/index.php:318
 #: application/views/logbookadvanced/index.php:349
@@ -5713,12 +5746,12 @@ msgstr "Primljeno"
 msgid "Requested"
 msgstr "Zahtevano"
 
-#: application/views/dashboard/index.php:289
+#: application/views/dashboard/index.php:286
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
-#: application/views/dashboard/index.php:352
+#: application/views/dashboard/index.php:349
 msgid "VUCC-Grids"
 msgstr "VUCC-polja"
 
@@ -6563,10 +6596,6 @@ msgstr "Uredi QSO"
 msgid "Attention"
 msgstr "Pažnja"
 
-#: application/views/interface_assets/footer.php:36
-msgid "OK"
-msgstr "OK"
-
 #: application/views/interface_assets/footer.php:38
 msgid "Warning! Are you sure you want delete QSO with "
 msgstr "Upozorenje! Da li ste sigurni da želite obrisati QSO sa "
@@ -6604,11 +6633,11 @@ msgstr "Nema država dostupnih za ovu DXCC"
 
 #: application/views/interface_assets/footer.php:49
 msgid "Compute QRB and QTF"
-msgstr ""
+msgstr "Izračuajte QRB i QTF"
 
 #: application/views/interface_assets/footer.php:50
 msgid "Error in locators. Please check."
-msgstr ""
+msgstr "Greška u lokatorima. Molimo provjerite."
 
 #: application/views/interface_assets/footer.php:132
 #: application/views/interface_assets/header.php:434
@@ -8790,7 +8819,7 @@ msgid "Remove"
 msgstr "Uklonite"
 
 #: application/views/qslprint/qslprint.php:33
-#: application/views/simplefle/index.php:133
+#: application/views/simplefle/index.php:139
 msgid "QSO List"
 msgstr "Lista veza"
 
@@ -8969,7 +8998,7 @@ msgstr "Sačuvajte izmene"
 msgid "TimeOff is less than TimeOn"
 msgstr "Vreme završetka je manje nego vreme početka"
 
-#: application/views/qso/index.php:5 application/views/qso/index.php:690
+#: application/views/qso/index.php:5 application/views/qso/index.php:696
 msgid "Previous Contacts"
 msgstr "Prethodni kontakti"
 
@@ -9085,19 +9114,35 @@ msgstr "Winkey"
 msgid "Connect"
 msgstr "Povežite"
 
-#: application/views/qso/index.php:663
-msgid "Send"
+#: application/views/qso/index.php:656
+msgid "Stop"
 msgstr ""
 
-#: application/views/qso/index.php:673
+#: application/views/qso/index.php:657
+msgid "Tune"
+msgstr ""
+
+#: application/views/qso/index.php:658
+msgid "Stop Tune"
+msgstr ""
+
+#: application/views/qso/index.php:664
+msgid "CW Speed"
+msgstr ""
+
+#: application/views/qso/index.php:669
+msgid "Send"
+msgstr "Pošalji"
+
+#: application/views/qso/index.php:679
 msgid "Suggestions"
 msgstr "Predlozi"
 
-#: application/views/qso/index.php:680
+#: application/views/qso/index.php:686
 msgid "Profile Picture"
 msgstr "Profilna slika"
 
-#: application/views/qso/index.php:704
+#: application/views/qso/index.php:710
 msgid "Max. 5 previous contacts are shown"
 msgstr "Prikazano je maksimalno 5 veza"
 
@@ -9461,15 +9506,15 @@ msgstr "Pogledajte na QRZ.com"
 #: application/views/search/search_result_ajax.php:428
 #: application/views/view_log/partial/log_ajax.php:342
 msgid "Lookup on HamQTH"
-msgstr ""
+msgstr "Pogledaj na HamQTH"
 
 #: application/views/search/stored_queries.php:9
 msgid "Query"
-msgstr ""
+msgstr "Upit"
 
 #: application/views/simplefle/index.php:13
 msgid "Simple Fast Log Entry (FLE)"
-msgstr ""
+msgstr "Simple Fast Log Entry (FLE)"
 
 #: application/views/simplefle/index.php:14
 msgid ""
@@ -9477,6 +9522,9 @@ msgid ""
 "efficiently. Due to its syntax, only a minimum of input is required to log "
 "many QSOs with as little effort as possible."
 msgstr ""
+"'Fast Log Entry', ili jednostavnije 'FLE' je sistem upisivanja veza u log na "
+"brz i efikasan način. Zbog svoje sintakse, zahteva se samo minimum ulaznih "
+"podataka za upis veza, sa što je moguće manje napora."
 
 #: application/views/simplefle/index.php:15
 msgid ""
@@ -9484,6 +9532,9 @@ msgid ""
 "website. Simple FLE was written by OK2CQR based on DF3CB's FLE and provides "
 "a web interface to log QSOs."
 msgstr ""
+"FLE je originalno napisao DF3CB. Na svom web sajtu ponudio je i program za "
+"Windows. Simple FLE je napisao OK2CQR na osnovu DF3CB-ovog FLE i pruža web "
+"interfejst za upisivanje veza."
 
 #: application/views/simplefle/index.php:16
 #, php-format
@@ -9494,7 +9545,7 @@ msgid ""
 msgstr ""
 
 #: application/views/simplefle/index.php:17
-#: application/views/simplefle/index.php:170
+#: application/views/simplefle/index.php:176
 msgid "Syntax Help"
 msgstr ""
 
@@ -9604,24 +9655,24 @@ msgstr ""
 msgid "Enter the Data"
 msgstr ""
 
-#: application/views/simplefle/index.php:148
+#: application/views/simplefle/index.php:154
 msgid "Refs"
 msgstr ""
 
-#: application/views/simplefle/index.php:160
+#: application/views/simplefle/index.php:166
 #, php-format
 msgid "The Refs can be either %sS%sOTA, %sI%sOTA, %sP%sOTA, or %sW%sWFF"
 msgstr ""
 
-#: application/views/simplefle/index.php:167
+#: application/views/simplefle/index.php:173
 msgid "Reload QSO List"
 msgstr ""
 
-#: application/views/simplefle/index.php:168
+#: application/views/simplefle/index.php:174
 msgid "Save in Wavelog"
 msgstr ""
 
-#: application/views/simplefle/index.php:169
+#: application/views/simplefle/index.php:175
 msgid "Clear Logging Session"
 msgstr ""
 
@@ -11298,6 +11349,24 @@ msgstr ""
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr ""
+
+#, php-format
+#~ msgctxt "Dashboard Warning"
+#~ msgid "You need to update country files! Click %s to do it."
+#~ msgstr "Morate ažurirati datoteke okruga. Kliknite %s da to uradite."
+
+#, php-format
+#~ msgctxt "Dashboard Warning"
+#~ msgid "You have no station locations. Click %s to do it:"
+#~ msgstr "Nemate lokacije stanice. Kliknite %s da to uradite:"
+
+#, php-format
+#~ msgctxt "Dashboard Warning"
+#~ msgid "You have no station logbook. Click %s to do it:"
+#~ msgstr "Nemate dnevnike stanice. Kliknite %s da to uradite:"
+
+#~ msgid "Status Master-Cron"
+#~ msgstr "Status Master-Cron"
 
 #~ msgid "Winkey Macros"
 #~ msgstr "Winkey makroi"

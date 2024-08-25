@@ -226,6 +226,8 @@ function handleInput() {
 	var sotaWwff = "";
 	qsoList = [];
 	$("#qsoTable tbody").empty();
+	errors = [];
+	checkMainFieldsErrors();
 
 	var text = textarea.val().trim();
 	lines = text.split("\n");
@@ -308,9 +310,6 @@ function handleInput() {
 
 			itemNumber = itemNumber + 1;
 		});
-
-		errors = [];
-		checkMainFieldsErrors();
 
 		if (callsign) {
 			if (freq === 0) {
@@ -416,9 +415,7 @@ function handleInput() {
 		}
 
 		prevMode = mode;
-
-		showErrors();
-	}); //lines.forEach((row)
+	});
 
 	// Scroll to the bototm of #qsoTableBody (scroll by the value of its scrollheight property)
 	$("#qsoTableBody").scrollTop($("#qsoTableBody").get(0).scrollHeight);
@@ -437,9 +434,7 @@ function handleInput() {
 		$(".js-qso-count").html("");
 	}
 
-	if (errors) {
-		$(".js-status").html(errors.join("<br>"));
-	}
+	showErrors();
 }
 
 function checkMainFieldsErrors() {
@@ -483,7 +478,7 @@ textarea.focus(function () {
 });
 
 function addErrorMessage(errorMessage) {
-	errorMessage = '<span class="text-danger">' + errorMessage + "</span>";
+	errorMessage = '<div class="alert alert-danger">' + errorMessage + "</div>";
 	if (errors.includes(errorMessage) == false) {
 		errors.push(errorMessage);
 	}
@@ -529,11 +524,15 @@ function clearSession() {
 	$("#contest").val("");
 	qsoList = [];
 	$(".js-qso-count").html("");
+	errors = [];
+	$(".js-status").html("");
+	window.location.reload();
 }
 
 function showErrors() {
 	if (errors) {
-		$(".js-status").html(errors.join("<br>"));
+		$(".js-status").html(errors.join("\n"));
+		resizeElements();
 	}
 }
 
@@ -605,7 +604,7 @@ function getBandFromFreq(freq) {
     } else if (freq >= 300000 && freq <= 7500000) {
         return "submm";
     } else {
-        return "Unknown";
+        return "";
     }
 }
 
@@ -825,6 +824,8 @@ function resizeElements() {
 	var textarea = $('#sfle_textarea');
 	var textareaOffset = 40;
 
+	var errorMessagesContainer = $('#errorMessages');
+
 	var tableFrame = $('.sfletable.table');
 	var tableFrameOffset = 140;
 
@@ -832,7 +833,7 @@ function resizeElements() {
 	var tableoOffset = 160;
 
 	if ($(window).width() >= 768) {
-		var newHeight = $(window).height() - textarea.offset().top - textareaOffset;
+		var newHeight = $(window).height() - textarea.offset().top - textareaOffset - errorMessagesContainer.height();
 		textarea.css('height', newHeight + 'px');
 
 		var newHeight = $(window).height() - tableFrame.offset().top - tableFrameOffset;

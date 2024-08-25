@@ -12,7 +12,7 @@
                 <?php if($row['prop_mode'] == 'SAT') { ?>
                     <?php echo $row['sat_name']; ?>
                 <?php } else { ?>
-                    <?php echo $this->frequency->hz_to_mhz($row['frequency']); ?> (<?php echo $row['mode']; ?>)
+                    <?php echo $this->frequency->qrg_conversion($row['frequency']); ?> (<?php echo $row['mode']; ?>)
                 <?php } ?>
             </td>
         </tr>

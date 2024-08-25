@@ -107,7 +107,7 @@ function echo_table_col($row, $name)
 		case 'Frequency':
 			echo '<td>';
 			if ($row->COL_FREQ != null) {
-				echo $CI->frequency->hz_to_mhz($row->COL_FREQ);
+				echo $CI->frequency->qrg_conversion($row->COL_FREQ);
 			} else {
 				echo strtolower($row->COL_BAND);
 			}

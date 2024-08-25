@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-21 15:06+0000\n"
-"PO-Revision-Date: 2024-08-20 05:18+0000\n"
+"POT-Creation-Date: 2024-08-25 11:51+0000\n"
+"PO-Revision-Date: 2024-08-22 14:14+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/zh_Hans/>\n"
@@ -36,7 +36,7 @@ msgstr ""
 #: application/controllers/Components.php:13
 #: application/controllers/Contestcalendar.php:15
 #: application/controllers/Contesting.php:14
-#: application/controllers/Cron.php:26 application/controllers/Cron.php:145
+#: application/controllers/Cron.php:26 application/controllers/Cron.php:152
 #: application/controllers/Csv.php:8 application/controllers/Csv.php:31
 #: application/controllers/Dayswithqso.php:11
 #: application/controllers/Debug.php:10
@@ -68,8 +68,8 @@ msgstr ""
 #: application/controllers/Qso.php:9 application/controllers/Qso.php:19
 #: application/controllers/Qso.php:176 application/controllers/Qso.php:275
 #: application/controllers/Qso.php:295 application/controllers/Qso.php:304
-#: application/controllers/Qso.php:599 application/controllers/Radio.php:259
-#: application/controllers/Radio.php:285 application/controllers/Radio.php:301
+#: application/controllers/Qso.php:599 application/controllers/Radio.php:261
+#: application/controllers/Radio.php:287 application/controllers/Radio.php:303
 #: application/controllers/Satellite.php:15
 #: application/controllers/Sattimers.php:9
 #: application/controllers/Search.php:13
@@ -564,9 +564,33 @@ msgstr "大陆"
 msgid "Cron Manager"
 msgstr "Cron 管理器"
 
-#: application/controllers/Cron.php:137 application/views/cron/edit.php:5
+#: application/controllers/Cron.php:144 application/views/cron/edit.php:5
 msgid "Edit Cronjob"
 msgstr "编辑 Cron"
+
+#: application/controllers/Cron.php:264
+#: application/views/interface_assets/footer.php:36
+msgid "OK"
+msgstr "确认"
+
+#: application/controllers/Cron.php:268
+#, php-format
+msgid ""
+"Last run occurred more than %s seconds ago.%sPlease check your master cron! "
+"It should run every minute (* * * * *)."
+msgstr ""
+
+#: application/controllers/Cron.php:271
+#, php-format
+msgid ""
+"Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
+"isn't running!%sIt should run every minute (* * * * *)."
+msgstr ""
+
+#: application/controllers/Cron.php:276 application/views/cron/index.php:29
+msgctxt "Master Cron"
+msgid "Not running"
+msgstr ""
 
 #: application/controllers/Csv.php:20 application/views/csv/index.php:3
 #: application/views/interface_assets/header.php:392
@@ -650,7 +674,7 @@ msgid "DX Calendar"
 msgstr "DX 日志"
 
 #: application/controllers/Eqsl.php:34
-#: application/views/dashboard/index.php:310
+#: application/views/dashboard/index.php:307
 #: application/views/eqslcard/index.php:5
 #: application/views/visitor/index.php:306
 msgid "eQSL Cards"
@@ -906,7 +930,7 @@ msgstr "QSL"
 #: application/views/awards/wab/index.php:80
 #: application/views/awards/waja/index.php:59
 #: application/views/awards/was/index.php:59
-#: application/views/dashboard/index.php:245
+#: application/views/dashboard/index.php:242
 #: application/views/gridmap/index.php:109
 #: application/views/logbookadvanced/useroptions.php:66
 #: application/views/oqrs/qsolist.php:17 application/views/oqrs/qsolist.php:159
@@ -935,7 +959,7 @@ msgstr "LoTW"
 #: application/views/awards/wab/index.php:88
 #: application/views/awards/waja/index.php:63
 #: application/views/awards/was/index.php:63
-#: application/views/dashboard/index.php:245
+#: application/views/dashboard/index.php:242
 #: application/views/gridmap/index.php:117
 #: application/views/logbookadvanced/useroptions.php:70
 #: application/views/oqrs/qsolist.php:14 application/views/oqrs/qsolist.php:130
@@ -1023,7 +1047,7 @@ msgstr "Clublog"
 #: application/views/search/lotw_unconfirmed_result.php:8
 #: application/views/search/result_search.php:7
 #: application/views/search/search_result_ajax.php:4
-#: application/views/simplefle/index.php:144
+#: application/views/simplefle/index.php:150
 #: application/views/statistics/custom.php:60
 #: application/views/statistics/custom_result.php:62
 #: application/views/statistics/custom_result.php:88
@@ -1057,7 +1081,7 @@ msgstr "模式"
 #: application/views/qso/components/previous_contacts.php:79
 #: application/views/qso/edit_ajax.php:142 application/views/qso/index.php:177
 #: application/views/search/search_result_ajax.php:5
-#: application/views/simplefle/index.php:145
+#: application/views/simplefle/index.php:151
 #: application/views/user/edit.php:230 application/views/user/edit.php:252
 #: application/views/user/edit.php:274 application/views/user/edit.php:296
 #: application/views/user/edit.php:319
@@ -1084,7 +1108,7 @@ msgstr "信号报告(发)"
 #: application/views/qso/components/previous_contacts.php:80
 #: application/views/qso/edit_ajax.php:147 application/views/qso/index.php:182
 #: application/views/search/search_result_ajax.php:6
-#: application/views/simplefle/index.php:146
+#: application/views/simplefle/index.php:152
 #: application/views/user/edit.php:231 application/views/user/edit.php:253
 #: application/views/user/edit.php:275 application/views/user/edit.php:297
 #: application/views/user/edit.php:320
@@ -1201,7 +1225,7 @@ msgstr "州"
 #: application/views/search/cqzones_result.php:12
 #: application/views/search/result.php:33
 #: application/views/search/search_result_ajax.php:13
-#: application/views/simplefle/index.php:147
+#: application/views/simplefle/index.php:153
 #: application/views/stationsetup/stationsetup.php:125
 #: application/views/timeline/index.php:257 application/views/user/edit.php:130
 #: application/views/user/edit.php:238 application/views/user/edit.php:260
@@ -1294,7 +1318,7 @@ msgstr "距离"
 #: application/views/search/lotw_unconfirmed_result.php:9
 #: application/views/search/result_search.php:10
 #: application/views/search/search_result_ajax.php:15
-#: application/views/simplefle/index.php:143
+#: application/views/simplefle/index.php:149
 #: application/views/stationsetup/exportmapoptions.php:31
 #: application/views/statistics/custom.php:53
 #: application/views/statistics/custom_result.php:55
@@ -1400,15 +1424,15 @@ msgstr "Logbook of the World(LoTW)"
 
 #: application/controllers/Lotw.php:152
 msgid "Certificate Imported."
-msgstr ""
+msgstr "呼号证书已导入。"
 
 #: application/controllers/Lotw.php:159
 msgid "Certificate Updated."
-msgstr ""
+msgstr "呼号证书已更新。"
 
 #: application/controllers/Lotw.php:384
 msgid "Certificate Deleted."
-msgstr ""
+msgstr "呼号证书已删除。"
 
 #: application/controllers/Lotw.php:413
 #, php-format
@@ -1416,6 +1440,8 @@ msgid ""
 "Found no certificate in file %s. If the filename contains 'key-only' this is "
 "typically a certificate request which has not been processed by LoTW yet."
 msgstr ""
+"文件 %s 中未找到呼号证书，如果文件名包含了 'key-only' 则此文件大概率是呼号证"
+"书的申请文件，LoTW 的工作人员依此来发放正式的呼号证书。"
 
 #: application/controllers/Lotw.php:617
 msgid "LoTW ADIF Information"
@@ -1427,7 +1453,7 @@ msgstr "LoTW ADIF 导入"
 
 #: application/controllers/Lotw.php:752 application/controllers/Lotw.php:870
 msgid "You have not defined your ARRL LoTW credentials!"
-msgstr ""
+msgstr "未配置 LoTW 登录信息！"
 
 #: application/controllers/Lotw.php:837
 msgid "LoTW .TQ8 Upload"
@@ -1435,7 +1461,7 @@ msgstr "LoTW .TQ8 导入"
 
 #: application/controllers/Lotw.php:915
 msgid "Your ARRL username and/or password is incorrect."
-msgstr ""
+msgstr "LoTW 用户名/密码错误。"
 
 #: application/controllers/Lotw.php:934 application/controllers/Lotw.php:939
 msgid "LoTW .TQ8 Sent"
@@ -1610,36 +1636,36 @@ msgstr "QRB 计算器"
 #: application/controllers/Qrbcalc.php:50
 #, php-format
 msgid "Latitude: %s, Longitude: %s"
-msgstr ""
+msgstr "纬度：%s，经度：%s"
 
 #: application/controllers/Qrbcalc.php:54
 #, php-format
 msgid "The distance between %s and %s is %s mile."
 msgid_plural "The distance between %s and %s is %s miles."
-msgstr[0] ""
+msgstr[0] "%s 和 %s 的距离是 %s 英里。"
 
 #: application/controllers/Qrbcalc.php:57
 #, php-format
 msgid "The distance between %s and %s is %s nautical mile."
 msgid_plural "The distance between %s and %s is %s nautical miles."
-msgstr[0] ""
+msgstr[0] "%s 和 %s 的距离是 %s 海里。"
 
 #: application/controllers/Qrbcalc.php:60
 #, php-format
 msgid "The distance between %s and %s is %s kilometer."
 msgid_plural "The distance between %s and %s is %s kilometers."
-msgstr[0] ""
+msgstr[0] "%s 和 %s 的距离是 %s 公里。"
 
 #: application/controllers/Qrbcalc.php:66
 #, php-format
 msgid "The bearing is %s."
-msgstr ""
+msgstr "方位角是 %s。"
 
 #: application/controllers/Qrbcalc.php:72
 msgid ""
 "Negative latitudes are south of the equator, negative longitudes are west of "
 "Greenwich."
-msgstr ""
+msgstr "负数纬度表示南纬，负数经度表示西经。"
 
 #: application/controllers/Qrz.php:173
 #: application/views/interface_assets/header.php:426
@@ -1654,8 +1680,8 @@ msgstr "QRZ QSL 导入"
 msgid "QRZ ADIF Information"
 msgstr "QRZ ADIF 信息"
 
-#: application/controllers/Qsl.php:25 application/views/dashboard/index.php:245
-#: application/views/dashboard/index.php:262
+#: application/controllers/Qsl.php:25 application/views/dashboard/index.php:242
+#: application/views/dashboard/index.php:259
 #: application/views/qslcard/index.php:5
 #: application/views/visitor/index.php:283
 msgid "QSL Cards"
@@ -1697,7 +1723,7 @@ msgstr "时间戳"
 #: application/views/logbookadvanced/index.php:527
 #: application/views/lotw_views/index.php:43
 #: application/views/simplefle/index.php:20
-#: application/views/simplefle/index.php:171
+#: application/views/simplefle/index.php:177
 #: application/views/stationsetup/exportmapoptions.php:5
 #: application/views/statistics/custom.php:31
 #: application/views/statistics/custom_result.php:33
@@ -1764,9 +1790,6 @@ msgstr "您尚未创建台站地址，请前往 %s 创建！"
 #: application/views/awards/dok/index.php:10
 #: application/views/awards/iota/index.php:19
 #: application/views/awards/was/index.php:23
-#: application/views/dashboard/index.php:64
-#: application/views/dashboard/index.php:73
-#: application/views/dashboard/index.php:82
 #: application/views/simplefle/index.php:16
 msgid "here"
 msgstr "这里"
@@ -1957,7 +1980,7 @@ msgstr "QSO"
 
 #: application/controllers/Stationsetup.php:359
 #: application/views/api/help.php:57 application/views/contesting/add.php:59
-#: application/views/cron/index.php:56
+#: application/views/cron/index.php:58
 #: application/views/interface_assets/footer.php:541
 #: application/views/interface_assets/footer.php:550
 #: application/views/labels/index.php:47 application/views/labels/index.php:83
@@ -2409,7 +2432,7 @@ msgid "Accumulated number of WAJA worked"
 msgstr "累计通联的 WAJA 数量"
 
 #: application/views/accumulate/index.php:8
-#: application/views/dashboard/index.php:223
+#: application/views/dashboard/index.php:220
 #: application/views/dayswithqso/index.php:16
 #: application/views/statistics/index.php:18
 #: application/views/visitor/index.php:246
@@ -2422,7 +2445,7 @@ msgid "Yearly"
 msgstr "每年"
 
 #: application/views/accumulate/index.php:10
-#: application/views/dashboard/index.php:228
+#: application/views/dashboard/index.php:225
 #: application/views/visitor/index.php:251
 msgid "Month"
 msgstr "月"
@@ -2710,7 +2733,7 @@ msgstr "未找到！"
 #: application/views/cabrillo/index.php:31
 #: application/views/components/hamsat/table.php:27
 #: application/views/contesting/index.php:104
-#: application/views/csv/index.php:23 application/views/dashboard/index.php:153
+#: application/views/csv/index.php:23 application/views/dashboard/index.php:150
 #: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:41
 #: application/views/eqslcard/index.php:28
 #: application/views/hamsat/index.php:30 application/views/labels/index.php:123
@@ -2729,7 +2752,7 @@ msgstr "未找到！"
 #: application/views/search/lotw_unconfirmed.php:33
 #: application/views/search/lotw_unconfirmed_result.php:6
 #: application/views/search/result.php:11
-#: application/views/simplefle/index.php:142
+#: application/views/simplefle/index.php:148
 #: application/views/station_profile/edit.php:63
 #: application/views/stationsetup/linkedlocations.php:17
 #: application/views/user/edit.php:123 application/views/user/index.php:4
@@ -2795,7 +2818,7 @@ msgstr "与 DCL 相比，日志中 DOK 的数据不同"
 #: application/views/components/hamsat/table.php:25
 #: application/views/contesting/index.php:42
 #: application/views/contesting/index.php:200
-#: application/views/dashboard/index.php:148
+#: application/views/dashboard/index.php:145
 #: application/views/debug/index.php:545 application/views/eqsl/analysis.php:36
 #: application/views/eqsl/download.php:36 application/views/eqsl/result.php:33
 #: application/views/eqslcard/index.php:30
@@ -2813,7 +2836,7 @@ msgstr "与 DCL 相比，日志中 DOK 的数据不同"
 #: application/views/search/cqzones_result.php:7
 #: application/views/search/result_search.php:4
 #: application/views/search/search_result_ajax.php:89
-#: application/views/simplefle/index.php:140
+#: application/views/simplefle/index.php:146
 #: application/views/statistics/custom.php:38
 #: application/views/statistics/custom_result.php:40
 #: application/views/statistics/custom_result.php:85
@@ -2837,7 +2860,7 @@ msgstr "日期"
 #: application/views/components/hamsat/table.php:26
 #: application/views/contesting/index.php:47
 #: application/views/contesting/index.php:200
-#: application/views/dashboard/index.php:151
+#: application/views/dashboard/index.php:148
 #: application/views/debug/index.php:546 application/views/eqsl/analysis.php:37
 #: application/views/eqsl/download.php:37 application/views/eqsl/result.php:34
 #: application/views/eqslcard/index.php:31
@@ -2849,7 +2872,7 @@ msgstr "日期"
 #: application/views/search/cqzones_result.php:8
 #: application/views/search/result_search.php:5
 #: application/views/search/search_result_ajax.php:91
-#: application/views/simplefle/index.php:141
+#: application/views/simplefle/index.php:147
 #: application/views/statistics/custom_result.php:86
 #: application/views/timeline/index.php:256
 #: application/views/timeplotter/index.php:5
@@ -2898,9 +2921,9 @@ msgid "DARC DCL"
 msgstr "DARC DCL"
 
 #: application/views/adif/import.php:55
-#: application/views/dashboard/index.php:97
-#: application/views/dashboard/index.php:118
-#: application/views/dashboard/index.php:124
+#: application/views/dashboard/index.php:94
+#: application/views/dashboard/index.php:115
+#: application/views/dashboard/index.php:121
 #: application/views/eqsl/import.php:45 application/views/lotw/import.php:25
 #: application/views/lotw_views/index.php:4
 msgid "Important"
@@ -3209,7 +3232,7 @@ msgid "API URL"
 msgstr "API URL"
 
 #: application/views/api/help.php:19 application/views/api/help.php:38
-#: application/views/cron/index.php:21 application/views/debug/index.php:36
+#: application/views/cron/index.php:22 application/views/debug/index.php:36
 msgid "Copy to clipboard"
 msgstr "复制到剪贴板"
 
@@ -3241,7 +3264,7 @@ msgid "API Key"
 msgstr "API Key"
 
 #: application/views/api/help.php:28 application/views/cron/edit.php:30
-#: application/views/cron/index.php:51
+#: application/views/cron/index.php:53
 #: application/views/search/stored_queries.php:8
 msgid "Description"
 msgstr "说明"
@@ -3254,7 +3277,7 @@ msgstr "上次使用"
 msgid "Permissions"
 msgstr "权限"
 
-#: application/views/api/help.php:31 application/views/cron/index.php:52
+#: application/views/api/help.php:31 application/views/cron/index.php:54
 #: application/views/lotw_views/index.php:41
 #: application/views/mode/index.php:31
 #: application/views/oqrs/showrequests.php:91
@@ -3395,7 +3418,7 @@ msgstr "已确认的县"
 #: application/views/awards/rac/index.php:171
 #: application/views/awards/waja/index.php:179
 #: application/views/awards/was/index.php:179
-#: application/views/dashboard/index.php:218
+#: application/views/dashboard/index.php:215
 #: application/views/simplefle/index.php:27
 #: application/views/statistics/qsltable.php:54
 #: application/views/statistics/qsltable.php:109
@@ -3468,8 +3491,8 @@ msgstr "CQ 杂志 WAZ 奖状"
 #: application/views/awards/itu/index.php:34
 #: application/views/awards/wab/list.php:6
 #: application/views/bandmap/list.php:73
-#: application/views/dashboard/index.php:245
-#: application/views/dashboard/index.php:363
+#: application/views/dashboard/index.php:242
+#: application/views/dashboard/index.php:360
 #: application/views/interface_assets/footer.php:40
 #: application/views/visitor/index.php:266
 msgid "Confirmed"
@@ -3478,8 +3501,8 @@ msgstr "已确认"
 #: application/views/awards/cq/index.php:34
 #: application/views/awards/itu/index.php:34
 #: application/views/bandmap/list.php:72
-#: application/views/dashboard/index.php:241
-#: application/views/dashboard/index.php:357
+#: application/views/dashboard/index.php:238
+#: application/views/dashboard/index.php:354
 #: application/views/visitor/index.php:262
 msgid "Worked"
 msgstr "已通联"
@@ -4107,7 +4130,7 @@ msgid "City"
 msgstr "城市"
 
 #: application/views/awards/jcc/index.php:187
-#: application/views/dashboard/index.php:353
+#: application/views/dashboard/index.php:350
 #: application/views/distances/index.php:23
 msgid "SAT"
 msgstr "卫星"
@@ -4851,10 +4874,10 @@ msgid "Show Details"
 msgstr "显示细节"
 
 #: application/views/contestcalendar/index.php:38
-#: application/views/dashboard/index.php:263
-#: application/views/dashboard/index.php:290
-#: application/views/dashboard/index.php:311
-#: application/views/dashboard/index.php:332
+#: application/views/dashboard/index.php:260
+#: application/views/dashboard/index.php:287
+#: application/views/dashboard/index.php:308
+#: application/views/dashboard/index.php:329
 #: application/views/satellite/pass.php:475
 msgid "Today"
 msgstr "今天"
@@ -5096,7 +5119,7 @@ msgstr "标识符"
 msgid "Enabled"
 msgstr "已启用"
 
-#: application/views/cron/edit.php:36 application/views/cron/index.php:53
+#: application/views/cron/edit.php:36 application/views/cron/index.php:55
 msgid "Intervall"
 msgstr "间隔"
 
@@ -5160,79 +5183,79 @@ msgid ""
 "requiring CLI access."
 msgstr "Cron 管理器帮助管理员在浏览器内管理 Cron，摆脱 CLI 命令。"
 
-#: application/views/cron/index.php:18
+#: application/views/cron/index.php:19
 msgid ""
 "To execute cron jobs based on the data below, remove all old cron jobs and "
 "create a new one:"
 msgstr "请删除所有旧的 Cron 任务，使用如下的唯一 Cron 指令："
 
-#: application/views/cron/index.php:27 application/views/cron/index.php:31
-msgid "Status Master-Cron"
-msgstr "主 Cron 状态"
+#: application/views/cron/index.php:29 application/views/cron/index.php:33
+msgid "Status Master-Cron:"
+msgstr ""
 
-#: application/views/cron/index.php:31
+#: application/views/cron/index.php:33
 msgctxt "PHP Version"
 msgid "Min. Version is"
 msgstr "最低版本是"
 
-#: application/views/cron/index.php:31
+#: application/views/cron/index.php:33
 msgid "PHP Version not supported."
 msgstr "不支持PHP版本。"
 
-#: application/views/cron/index.php:41
+#: application/views/cron/index.php:43
 msgid "Cron List"
 msgstr "Cron 列表"
 
-#: application/views/cron/index.php:50
+#: application/views/cron/index.php:52
 #: application/views/stationsetup/stationsetup.php:121
 msgid "ID"
 msgstr "ID"
 
-#: application/views/cron/index.php:54
+#: application/views/cron/index.php:56
 msgid "Last Run"
 msgstr "上次执行"
 
-#: application/views/cron/index.php:55
+#: application/views/cron/index.php:57
 msgid "Next Run"
 msgstr "下次执行"
 
-#: application/views/cron/index.php:68
+#: application/views/cron/index.php:70
 msgid "healthy"
 msgstr "健康的"
 
-#: application/views/cron/index.php:70
+#: application/views/cron/index.php:72
 msgid "failed"
 msgstr "失败的"
 
-#: application/views/cron/index.php:75
+#: application/views/cron/index.php:77
 msgid "disabled"
 msgstr "禁用的"
 
-#: application/views/cron/index.php:79 application/views/cron/index.php:81
-#: application/views/cron/index.php:83 application/views/debug/index.php:494
+#: application/views/cron/index.php:81 application/views/cron/index.php:83
+#: application/views/cron/index.php:85 application/views/debug/index.php:494
 #: application/views/debug/index.php:500 application/views/debug/index.php:505
 #: application/views/debug/index.php:510 application/views/debug/index.php:515
 #: application/views/debug/index.php:520 application/views/debug/index.php:525
 msgid "never"
 msgstr "从不"
 
-#: application/views/cron/index.php:98
+#: application/views/cron/index.php:100
 msgid "Your Mastercron isn't running."
 msgstr "Cron 主任务未运行。"
 
-#: application/views/cron/index.php:99
+#: application/views/cron/index.php:101
 msgid ""
 "Copy the cron above to a external cron service or into your server's cron to "
 "use this cron manager."
 msgstr "将上面的cron复制到外部cron服务或服务器的cron中，以使用此cron管理器。"
 
-#: application/views/cron/index.php:100
+#: application/views/cron/index.php:102
 msgid ""
 "On a basic linux server with shell access use this command to edit your "
 "crons:"
 msgstr "在具有shell访问权限的基本Linux服务器上，使用以下命令来编辑cron："
 
-#: application/views/cron/index.php:107
+#: application/views/cron/index.php:109
 #, php-format
 msgid ""
 "You need to upgrade your PHP version. Minimum version is %s. Your Version is "
@@ -5414,68 +5437,68 @@ msgstr "您需要升级您的 PHP 版本。 最低版本为 7.4。 你的版本�
 #: application/views/dashboard/index.php:63
 #, php-format
 msgctxt "Dashboard Warning"
-msgid "You need to update country files! Click %s to do it."
-msgstr "您需要更新国家/地区文件！单击%s进行更新。"
+msgid "You need to update country files! Click %shere%s to do it."
+msgstr "您需要更新国家/地区文件！单击%s这里%s进行更新。"
 
-#: application/views/dashboard/index.php:72
+#: application/views/dashboard/index.php:71
 #, php-format
 msgctxt "Dashboard Warning"
-msgid "You have no station locations. Click %s to do it:"
-msgstr "您没有台站位置。单击%s执行此操作："
+msgid "You have no station locations. Click %shere%s to do it."
+msgstr "您没有台站位置。单击%s这里%s进行更新。"
 
-#: application/views/dashboard/index.php:81
+#: application/views/dashboard/index.php:79
 #, php-format
 msgctxt "Dashboard Warning"
-msgid "You have no station logbook. Click %s to do it:"
-msgstr "您没有日志本。单击%s执行此操作："
+msgid "You have no station logbook. Click %shere%s to do it."
+msgstr "您没有日志本。单击%s这里%s进行更新。"
 
-#: application/views/dashboard/index.php:91
+#: application/views/dashboard/index.php:88
 #, php-format
 msgid "You have had %d QSO today"
 msgid_plural "You have had %d QSOs today"
-msgstr[0] "你今天有 %d 个QSO"
+msgstr[0] "您今天有 %d 个QSO"
 
-#: application/views/dashboard/index.php:97
+#: application/views/dashboard/index.php:94
 msgid "You have made no QSOs today; time to turn on the radio!"
 msgstr "你今天还没进行 QSO，是时候打开你的电台开始通联了！"
 
-#: application/views/dashboard/index.php:104
+#: application/views/dashboard/index.php:101
 msgid "Attention: you need to set an active station location."
 msgstr "注意：你需要设置一个活动的电台站地址。"
 
-#: application/views/dashboard/index.php:110
+#: application/views/dashboard/index.php:107
 msgid ""
 "You have themes without defined theme mode. Please ask the admin to edit the "
 "themes."
 msgstr "您的主题没有定义主题模式。请向管理员请求编辑主题。"
 
-#: application/views/dashboard/index.php:118
+#: application/views/dashboard/index.php:115
 msgid "At least one of your LoTW certificates is expired!"
 msgstr "至少有一个 LoTW 证书已经过期!"
 
-#: application/views/dashboard/index.php:124
+#: application/views/dashboard/index.php:121
 msgid "At least one of your LoTW certificates is about to expire!"
 msgstr "至少有一个 LoTW 证书即将过期!"
 
-#: application/views/dashboard/index.php:214
+#: application/views/dashboard/index.php:211
 #: application/views/visitor/index.php:237
 msgid "QSOs Breakdown"
 msgstr "QSO 分析"
 
-#: application/views/dashboard/index.php:237
+#: application/views/dashboard/index.php:234
 #: application/views/visitor/index.php:258
 msgid "Countries Breakdown"
 msgstr "DXCC 实体分析"
 
-#: application/views/dashboard/index.php:254
+#: application/views/dashboard/index.php:251
 #: application/views/visitor/index.php:275
 msgid "Needed"
 msgstr "待通联"
 
-#: application/views/dashboard/index.php:267
-#: application/views/dashboard/index.php:294
-#: application/views/dashboard/index.php:315
-#: application/views/dashboard/index.php:336
+#: application/views/dashboard/index.php:264
+#: application/views/dashboard/index.php:291
+#: application/views/dashboard/index.php:312
+#: application/views/dashboard/index.php:333
 #: application/views/oqrs/qsolist.php:50 application/views/oqrs/qsolist.php:130
 #: application/views/oqrs/qsolist.php:159
 #: application/views/qslprint/qsolist.php:58
@@ -5505,10 +5528,10 @@ msgstr "待通联"
 msgid "Sent"
 msgstr "已发送"
 
-#: application/views/dashboard/index.php:273
-#: application/views/dashboard/index.php:300
-#: application/views/dashboard/index.php:321
-#: application/views/dashboard/index.php:342
+#: application/views/dashboard/index.php:270
+#: application/views/dashboard/index.php:297
+#: application/views/dashboard/index.php:318
+#: application/views/dashboard/index.php:339
 #: application/views/oqrs/qsolist.php:92 application/views/oqrs/qsolist.php:143
 #: application/views/oqrs/qsolist.php:174
 #: application/views/qslprint/qsolist.php:100
@@ -5535,7 +5558,7 @@ msgstr "已发送"
 msgid "Received"
 msgstr "已收到"
 
-#: application/views/dashboard/index.php:279
+#: application/views/dashboard/index.php:276
 #: application/views/logbookadvanced/index.php:307
 #: application/views/logbookadvanced/index.php:318
 #: application/views/logbookadvanced/index.php:349
@@ -5565,12 +5588,12 @@ msgstr "已收到"
 msgid "Requested"
 msgstr "已请求"
 
-#: application/views/dashboard/index.php:289
+#: application/views/dashboard/index.php:286
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
 msgstr "Logbook of the World(LoTW)"
 
-#: application/views/dashboard/index.php:352
+#: application/views/dashboard/index.php:349
 msgid "VUCC-Grids"
 msgstr "VUCC 网格"
 
@@ -6382,10 +6405,6 @@ msgstr "编辑 QSO"
 #: application/views/interface_assets/footer.php:33
 msgid "Attention"
 msgstr "注意"
-
-#: application/views/interface_assets/footer.php:36
-msgid "OK"
-msgstr "确认"
 
 #: application/views/interface_assets/footer.php:38
 msgid "Warning! Are you sure you want delete QSO with "
@@ -8541,7 +8560,7 @@ msgid "Remove"
 msgstr "删除"
 
 #: application/views/qslprint/qslprint.php:33
-#: application/views/simplefle/index.php:133
+#: application/views/simplefle/index.php:139
 msgid "QSO List"
 msgstr "QSO 列表"
 
@@ -8720,7 +8739,7 @@ msgstr "保存"
 msgid "TimeOff is less than TimeOn"
 msgstr "结束时间小于开始时间"
 
-#: application/views/qso/index.php:5 application/views/qso/index.php:690
+#: application/views/qso/index.php:5 application/views/qso/index.php:696
 msgid "Previous Contacts"
 msgstr "先前通联"
 
@@ -8834,19 +8853,35 @@ msgstr "Winkey"
 msgid "Connect"
 msgstr "连接"
 
-#: application/views/qso/index.php:663
+#: application/views/qso/index.php:656
+msgid "Stop"
+msgstr ""
+
+#: application/views/qso/index.php:657
+msgid "Tune"
+msgstr ""
+
+#: application/views/qso/index.php:658
+msgid "Stop Tune"
+msgstr ""
+
+#: application/views/qso/index.php:664
+msgid "CW Speed"
+msgstr ""
+
+#: application/views/qso/index.php:669
 msgid "Send"
 msgstr ""
 
-#: application/views/qso/index.php:673
+#: application/views/qso/index.php:679
 msgid "Suggestions"
 msgstr "建议"
 
-#: application/views/qso/index.php:680
+#: application/views/qso/index.php:686
 msgid "Profile Picture"
 msgstr "操作员照片"
 
-#: application/views/qso/index.php:704
+#: application/views/qso/index.php:710
 msgid "Max. 5 previous contacts are shown"
 msgstr "最多五次先前通联将会被显示"
 
@@ -9244,7 +9279,7 @@ msgstr ""
 "语法和 FLE 工作原理的信息，请参阅 %s。"
 
 #: application/views/simplefle/index.php:17
-#: application/views/simplefle/index.php:170
+#: application/views/simplefle/index.php:176
 msgid "Syntax Help"
 msgstr "FLE 语法帮助"
 
@@ -9354,24 +9389,24 @@ msgstr "操作员的呼号，不带有前缀及后缀。"
 msgid "Enter the Data"
 msgstr "输入信息"
 
-#: application/views/simplefle/index.php:148
+#: application/views/simplefle/index.php:154
 msgid "Refs"
 msgstr "对方网格"
 
-#: application/views/simplefle/index.php:160
+#: application/views/simplefle/index.php:166
 #, php-format
 msgid "The Refs can be either %sS%sOTA, %sI%sOTA, %sP%sOTA, or %sW%sWFF"
 msgstr "标识符可为其中任意：%sS%sOTA, %sI%sOTA, %sP%sOTA, or %sW%sWFF"
 
-#: application/views/simplefle/index.php:167
+#: application/views/simplefle/index.php:173
 msgid "Reload QSO List"
 msgstr "重新加载 QSO 列表"
 
-#: application/views/simplefle/index.php:168
+#: application/views/simplefle/index.php:174
 msgid "Save in Wavelog"
 msgstr "保存 QSO 列表"
 
-#: application/views/simplefle/index.php:169
+#: application/views/simplefle/index.php:175
 msgid "Clear Logging Session"
 msgstr "清除记录会话"
 
@@ -11097,6 +11132,24 @@ msgstr "您的呼号："
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "提交请求"
+
+#, php-format
+#~ msgctxt "Dashboard Warning"
+#~ msgid "You need to update country files! Click %s to do it."
+#~ msgstr "您需要更新国家/地区文件！单击%s进行更新。"
+
+#, php-format
+#~ msgctxt "Dashboard Warning"
+#~ msgid "You have no station locations. Click %s to do it:"
+#~ msgstr "您没有台站位置。单击%s执行此操作："
+
+#, php-format
+#~ msgctxt "Dashboard Warning"
+#~ msgid "You have no station logbook. Click %s to do it:"
+#~ msgstr "您没有日志本。单击%s执行此操作："
+
+#~ msgid "Status Master-Cron"
+#~ msgstr "主 Cron 状态"
 
 #~ msgid "Winkey Macros"
 #~ msgstr "Winkey 宏"
