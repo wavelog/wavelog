@@ -647,22 +647,28 @@
 			<button id="connectButton" class="btn btn-sm btn-primary"><?= __("Connect"); ?></button>
 
 			<button id="winkey_settings" type="button" class="btn-sm btn btn-secondary" class="btn btn-primary"><i class="fas fa-cog"></i> <?= __("Settings"); ?></button>
+
 			</h4>
         </div>
 
-        <div id="modals-here"></div>
-
         <div id="winkey_buttons" class="card-body">
-          <button id="morsekey_func1" onclick="morsekey_func1()" class="btn btn-sm btn-warning mb-1">F1</button>
-          <button id="morsekey_func2" onclick="morsekey_func2()" class="btn btn-sm btn-warning mb-1">F2</button>
-          <button id="morsekey_func3" onclick="morsekey_func3()" class="btn btn-sm btn-warning mb-1">F3</button>
-          <button id="morsekey_func4" onclick="morsekey_func4()" class="btn btn-sm btn-warning mb-1">F4</button>
-          <button id="morsekey_func5" onclick="morsekey_func5()" class="btn btn-sm btn-warning mb-1">F5</button>
-          <br>
-          <input id="sendText" type="text" class="form-control mb-1">
-		  <button id="sendButton" type="button" class="btn btn-sm btn-success"><?= __("Send"); ?></button>
+			<div class="form-inline d-flex align-items-center mb-2">
+				<button onclick="stop_cw_sending()" class="btn btn-sm btn-danger" style="margin-left: 2px; margin-right: 2px;"><?= __("Stop"); ?></button>
+				<button onclick="send_carrier()" id="send_carrier" class="btn btn-sm btn-danger" style="margin-left: 2px; margin-right: 2px;"><?= __("Tune"); ?></button>
+				<button hidden id="stop_carrier" onclick="stop_carrier()" class="btn btn-sm btn-danger" style="margin-left: 2px; margin-right: 2px;"><?= __("Stop Tune"); ?></button>
+				<button id="morsekey_func1" onclick="morsekey_func1()" class="btn btn-sm btn-warning" style="margin-left: 2px; margin-right: 2px;">F1</button>
+				<button id="morsekey_func2" onclick="morsekey_func2()" class="btn btn-sm btn-warning" style="margin-left: 2px; margin-right: 2px;">F2</button>
+				<button id="morsekey_func3" onclick="morsekey_func3()" class="btn btn-sm btn-warning" style="margin-left: 2px; margin-right: 2px;">F3</button>
+				<button id="morsekey_func4" onclick="morsekey_func4()" class="btn btn-sm btn-warning" style="margin-left: 2px; margin-right: 2px;">F4</button>
+				<button id="morsekey_func5" onclick="morsekey_func5()" class="btn btn-sm btn-warning" style="margin-left: 2px; margin-right: 2px;">F5</button>
+				<label class="mx-2 mb-1 w-auto" for="cwspeed"><?= __("CW Speed"); ?></label>
+				<input class="w-auto form-control form-control-sm" type="number" id="winkeycwspeed" name="cwspeed" min="1" max="100" value="20" step="1">
+			</div>
 
-          <span id="statusBar"></span><br>
+			<input id="sendText" type="text" class="form-control mb-1">
+			<button id="sendButton" type="button" class="btn btn-sm btn-success"><?= __("Send"); ?></button>
+
+			<span id="statusBar"></span>
 
         </div>
     </div>
