@@ -434,9 +434,7 @@ function handleInput() {
 		$(".js-qso-count").html("");
 	}
 
-	if (errors) {
-		$(".js-status").html(errors.join("<br>"));
-	}
+	showErrors();
 }
 
 function checkMainFieldsErrors() {
