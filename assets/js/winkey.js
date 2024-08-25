@@ -138,12 +138,22 @@ async function connect() {
         inputDone = port.readable.pipeTo(decoder.writable);
         inputStream = decoder.readable;
 
-		// Keyer init
-		sendHexToSerial("00 02");
-		await delay(300); // Wait for 300ms
+        // Keyer init
+        sendHexToSerial("00 02");
+        await delay(200); // Wait for 200ms
         sendHexToSerial("02 00");
-		await delay(300); // Wait for 300ms
-		sendHexToSerial("02 14"); // init 20 wpm
+        await delay(200);
+        sendHexToSerial("02 23");
+        await delay(200);
+        sendHexToSerial("09 02");
+        await delay(100);
+        writeToStream("QRV");
+        await delay(1500);
+        sendHexToSerial("09 0F");
+        await delay(200);
+        sendHexToSerial("02 14"); // init 20 wpm
+        await delay(200);
+        sendHexToSerial("0A");
 
         $('#winkey_buttons').show();
 
