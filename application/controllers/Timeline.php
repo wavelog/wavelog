@@ -22,12 +22,12 @@ class Timeline extends CI_Controller {
 			$band = 'All';
 		}
 
-		if (($this->input->post('propmode') != NULL) && ($this->input->post('propmode') != '0')) {	// Setted, but not "All"
+		if (($this->input->post('propmode') != NULL) && ($this->input->post('propmode') != '0')) {	// Set, but not "All"
 			$propmode = $this->security->xss_clean($this->input->post('propmode'));
 		} else {
-			if (($this->session->userdata('user_default_band') == 'SAT') && ($this->input->post('propmode') == NULL)){	// Not setted, and empty and default is SAT?
+			if (($this->session->userdata('user_default_band') == 'SAT') && ($this->input->post('propmode') == NULL)){	// Not set, and empty and default is SAT?
 				$propmode='SAT';
-			} else {													// Not setted and empty and no SAT as default?
+			} else {													// Not set and empty and no SAT as default?
 				$propmode = 'All';
 			}
 		}
