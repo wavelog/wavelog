@@ -226,6 +226,8 @@ function handleInput() {
 	var sotaWwff = "";
 	qsoList = [];
 	$("#qsoTable tbody").empty();
+	errors = [];
+	checkMainFieldsErrors();
 
 	var text = textarea.val().trim();
 	lines = text.split("\n");
@@ -308,9 +310,6 @@ function handleInput() {
 
 			itemNumber = itemNumber + 1;
 		});
-
-		errors = [];
-		checkMainFieldsErrors();
 
 		if (callsign) {
 			if (freq === 0) {
