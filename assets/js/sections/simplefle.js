@@ -524,6 +524,8 @@ function clearSession() {
 	$("#contest").val("");
 	qsoList = [];
 	$(".js-qso-count").html("");
+	errors = [];
+	$(".js-status").html("");
 }
 
 function showErrors() {
