@@ -28,7 +28,19 @@ ModeSelected.addEventListener('change', (event) => {
     }
 });
 
+$('#winkeycwspeed').change(function (event) {
+	// Get the value from the input
+	let speed = parseInt($('#winkeycwspeed').val(), 10);
 
+	// Convert to hexadecimal and pad if necessary
+	let hexspeed = speed.toString(16).padStart(2, '0');
+
+	// Create the command
+	let command = `02 ${hexspeed}`;
+
+	// Send the command as hex bytes
+    sendHexToSerial(command);
+});
 
 let function1Name, function1Macro, function2Name, function2Macro, function3Name, function3Macro, function4Name, function4Macro, function5Name, function5Macro;
 
@@ -126,12 +138,12 @@ async function connect() {
         inputDone = port.readable.pipeTo(decoder.writable);
         inputStream = decoder.readable;
 
-        const encoder = new TextEncoderStream();
-        outputDone = encoder.readable.pipeTo(port.writable);
-        outputStream = encoder.writable;
-
-        writeToByte("0x00, 0x02");
-        writeToByte("0x02, 0x00");
+		// Keyer init
+		sendHexToSerial("00 02");
+		await delay(300); // Wait for 300ms
+        sendHexToSerial("02 00");
+		await delay(300); // Wait for 300ms
+		sendHexToSerial("02 14"); // init 20 wpm
 
         $('#winkey_buttons').show();
 
@@ -147,24 +159,88 @@ async function connect() {
     }
 }
 
-//Write to the Serial port
-async function writeToStream(line) {
-    var enc = new TextEncoder(); // always utf-8
-
-    const writer = outputStream.getWriter();
-    writer.write(line);
-    writer.releaseLock();
+function stop_cw_sending() {
+	sendHexToSerial("0A");
+	$("#send_carrier").attr("hidden", false);
+	$("#stop_carrier").attr("hidden", true);
 }
 
-async function writeToByte(line) {
-    const writer = outputStream.getWriter();
-    const data = new Uint8Array([line]);
-    writer.write(data);
-    writer.releaseLock();
+function send_carrier() {
+	sendHexToSerial("0B 01");
+	$("#send_carrier").attr("hidden", true);
+	$("#stop_carrier").attr("hidden", false);
+}
+
+function stop_carrier() {
+	sendHexToSerial("0B 00");
+	$("#send_carrier").attr("hidden", false);
+	$("#stop_carrier").attr("hidden", true);
+}
+
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+// Helper function to convert a hex string to a Uint8Array
+function hexStringToUint8Array(hexString) {
+    // Remove any spaces or non-hex characters
+    hexString = hexString.replace(/[^0-9a-f]/gi, '');
+
+    // Ensure the string has an even length
+    if (hexString.length % 2 !== 0) {
+        console.warn('Hex string has an odd length, padding with a leading zero.');
+        hexString = '0' + hexString;
+    }
+
+    const byteArray = new Uint8Array(hexString.length / 2);
+
+    for (let i = 0; i < hexString.length; i += 2) {
+        byteArray[i / 2] = parseInt(hexString.substr(i, 2), 16);
+    }
+
+    return byteArray;
+}
+
+async function sendHexToSerial(hexString) {
+    if (port && port.writable) {
+        // Convert the hex string to a Uint8Array
+        const byteArray = hexStringToUint8Array(hexString);
+
+        // Create a writer from the writable stream
+        const writer = port.writable.getWriter();
+
+        try {
+            // Write the byte array to the serial port
+            await writer.write(byteArray);
+        } catch (error) {
+            console.error('Error writing to serial port:', error);
+        } finally {
+            // Release the lock on the writer
+            writer.releaseLock();
+        }
+    } else {
+        console.error('Port is not available or writable.');
+    }
+}
+
+//Write to the Serial port
+async function writeToStream(line) {
+    const outputStream = port.writable.getWriter();
+
+    // Convert the text to a Uint8Array
+    const encoder = new TextEncoder();
+    const buffer = encoder.encode(line.toUpperCase());
+
+    // Write the Uint8Array to the serial port
+    await outputStream.write(buffer);
+
+    // Release the stream lock
+    outputStream.releaseLock();
 }
 
 //Disconnect from the Serial port
 async function disconnect() {
+	sendHexToSerial("00 03");
 
     if (reader) {
         await reader.cancel();
@@ -187,11 +263,11 @@ async function disconnect() {
 
 //When the send button is pressed
 function clickSend() {
-    writeToStream(sendText.value);
-    writeToStream("\r");
-
-    //and clear the input field, so it's clear it has been sent
-    sendText.value = "";
+    writeToStream(sendText.value).then(function() {
+		// writeToStream("\r");
+		//and clear the input field, so it's clear it has been sent
+		$('#sendText').val('');
+	});
 
 }
 
