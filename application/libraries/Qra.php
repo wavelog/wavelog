@@ -50,7 +50,7 @@ class Qra {
          // Feed in Lat Longs plus the unit type
          try
 		   {
-            $total_distance = distance($my[0], $my[1], $stn[0], $stn[1], $unit);
+            $total_distance = calc_distance($my[0], $my[1], $stn[0], $stn[1], $unit);
          } 
           catch (Exception $e)
 		   {
@@ -128,7 +128,7 @@ class Qra {
 }
 
 
-	function distance($lat1, $lon1, $lat2, $lon2, $unit = 'M') {
+	function calc_distance($lat1, $lon1, $lat2, $lon2, $unit = 'M') {
 		$theta = $lon1 - $lon2;
 		$dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) + cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
 		$dist = acos($dist);
@@ -147,7 +147,7 @@ class Qra {
 	}
 
 	function bearing($lat1, $lon1, $lat2, $lon2, $unit = 'M') {
-		$dist = distance($lat1, $lon1, $lat2, $lon2, $unit);
+		$dist = calc_distance($lat1, $lon1, $lat2, $lon2, $unit);
 		$dist = round($dist, 0);
 
 		$bearing = get_bearing($lat1, $lon1, $lat2, $lon2);
