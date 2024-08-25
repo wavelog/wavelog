@@ -279,7 +279,7 @@ class Gettext
 		$folder = NULL;
 
 		// Check if any cookie is set
-		if ($cookie = $IN->cookie(config_item('cookie_prefix').$this->config['cookie'], TRUE))
+		if ($cookie = $IN->cookie($this->config['cookie'], TRUE))
 		{
 			$folder = $cookie;
 		}
@@ -308,7 +308,7 @@ class Gettext
 		// Use cookie if enabled
 		if ( ! empty($this->config['cookie']))
 		{
-			$IN->set_cookie($this->config['cookie'], $current['folder'], 2678400);
+			$IN->set_cookie(str_replace(config_item('cookie_prefix'), '', $this->config['cookie']), $current['folder'], 2678400);
 		}
 
 		// In case we use session
@@ -401,7 +401,7 @@ class Gettext
 			// If the use of cookies is ON
 			if ($this->config['cookie'] !== NULL)
 			{
-				$IN->set_cookie($this->config['cookie'], $lang['folder'], 2678400);
+				$IN->set_cookie(str_replace(config_item('cookie_prefix'), '', $this->config['cookie']), $lang['folder'], 2678400);
 			}
 
 			// In case COOKIE are off but SESSION is on

@@ -61,6 +61,26 @@ $config['gettext_domain'] = NULL;
 */
 $config['languages'] = array(
 
+	'albanian' => array(
+		'name'      => 'Shqip',
+		'name_en'   => 'Albanian',
+		'folder'    => 'albanian',
+		'locale'    => 'sq',
+		'gettext'   => 'sq',
+		'direction' => 'ltr',
+		'code'      => 'sq',
+		'flag'      => 'al',
+	),
+	'bosnian' => array(
+		'name'      => 'Bosanski',
+		'name_en'   => 'Bosnian',
+		'folder'    => 'bosnian',
+		'locale'    => 'bs',
+		'gettext'   => 'bs',
+		'direction' => 'ltr',
+		'code'      => 'bs',
+		'flag'      => 'ba',
+	),
 	'bulgarian' => array(
 		'name'      => 'Български',
 		'name_en'   => 'Bulgarian',
@@ -80,6 +100,16 @@ $config['languages'] = array(
 		'direction' => 'ltr',
 		'code'      => 'zh-Hans',
 		'flag'      => 'cn',
+	),
+	'croatian' => array(
+		'name'      => 'Hrvatski',
+		'name_en'   => 'Croatian',
+		'folder'    => 'croatian',
+		'locale'    => 'hr',
+		'gettext'   => 'hr',
+		'direction' => 'ltr',
+		'code'      => 'hr',
+		'flag'      => 'hr',
 	),
 	'czech' => array(
 		'name'      => 'Čeština',
@@ -161,6 +191,16 @@ $config['languages'] = array(
 		'code'      => 'it',
 		'flag'      => 'it',
 	),
+	'montenegrin' => array(
+		'name'      => 'Crnogorski',
+		'name_en'   => 'Montenegrin',
+		'folder'    => 'montenegrin',
+		'locale'    => 'cnr',
+		'gettext'   => 'cnr',
+		'direction' => 'ltr',
+		'code'      => 'cnr',
+		'flag'      => 'me',
+	),
 	'polish' => array(
 		'name'      => 'Polski',
 		'name_en'   => 'Polish',
@@ -190,6 +230,16 @@ $config['languages'] = array(
 		'direction' => 'ltr',
 		'code'      => 'ru',
 		'flag'      => 'ru',
+	),
+	'serbian' => array(
+		'name'      => 'Srpski',
+		'name_en'   => 'Serbian',
+		'folder'    => 'serbian',
+		'locale'    => 'sr',
+		'gettext'   => 'sr',
+		'direction' => 'ltr',
+		'code'      => 'sr',
+		'flag'      => 'rs',
 	),
 	'spanish' => array(
 		'name'      => 'Español',

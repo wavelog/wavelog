@@ -140,7 +140,9 @@ class Qra {
 		} else if ($unit == "N") {
 			$dist *= 0.8684;
 		}
-
+		if ((is_nan($dist)) || !(is_numeric($dist))) { 	// Special-Case, catch same grid and/or Errors
+			$dist=0;
+		}
 		return round($dist, 1);
 	}
 

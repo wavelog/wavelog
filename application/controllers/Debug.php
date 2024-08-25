@@ -7,7 +7,7 @@ class Debug extends CI_Controller
 
 		$this->load->model('user_model');
 		if (!$this->user_model->authorize(2)) {
-			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!');
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 			redirect('dashboard');
 		}
 
@@ -42,9 +42,11 @@ class Debug extends CI_Controller
 		// get mig version from config file
 		$this->load->config('migration');
 		$data['migration_config'] = $this->config->item('migration_version');
+		$data['migration_lockfile'] = $this->config->item('migration_lockfile');
+		$data['miglock_lifetime'] = $this->config->item('migration_lf_maxage');
 
 		// compare mig versions
-		if ($data['migration_version'] !== $data['migration_config'] && file_exists('application/cache/.migration_running')) {
+		if ($data['migration_version'] != $data['migration_config'] && file_exists($data['migration_lockfile'])) {
 			$data['migration_is_uptodate'] = false;
 		} else {
 			$data['migration_is_uptodate'] = true;

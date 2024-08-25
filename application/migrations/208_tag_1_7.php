@@ -35,8 +35,5 @@ class Migration_tag_1_7 extends CI_Migration {
     {
         $this->db->where('option_name', 'version');
         $this->db->update('options', array('option_value' => '1.6.1'));
-
-        // Revert the DB adjustment
-        $this->db->query("ALTER TABLE ".$this->config->item('table_name')." MODIFY COLUMN `COL_QTH` VARCHAR(64) DEFAULT NULL;");
     }
 }

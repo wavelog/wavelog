@@ -325,6 +325,7 @@ $(document).ready(function () {
 		enableFiltering: true,
 		enableFullValueFiltering: false,
 		enableCaseInsensitiveFiltering: true,
+		filterPlaceholder: lang_general_word_search,
 		numberDisplayed: 1,
 		inheritClass: true,
 		buttonWidth: '100%',

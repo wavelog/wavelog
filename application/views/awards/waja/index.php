@@ -1,5 +1,7 @@
 <script>
-	var tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"
+	var tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>";
+    var lang_japan_province = "<?= _pgettext("Japan Prefecture", "Prefecture"); ?>";
+    var lang_hover_over_a_prefecture = "<?= __("Hover over a prefecture"); ?>";
 </script>
 
 <style>

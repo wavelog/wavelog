@@ -38,7 +38,6 @@ https://demo.wavelog.org
 
 Notes
 * If you want to log microwave QSOs you will need to use a 64bit operating system.
-* We do not provide Docker support, however you are free to use it if you wish but we will not handle support.
 
 ## Setup
 
@@ -51,8 +50,13 @@ Wavelog-support can be reached by creating an issue here at github. If you've an
 
 ## Contributing
 
-Special thanks to our contributors, who are part of Wavelog by improving code!  
-[F4ANS](https://github.com/abarrau), [DG0TM](https://github.com/dg0tm), [DG9VH](https://github.com/dg9vh), [DJ3CE](https://github.com/dj3ce), [R1BLH](https://github.com/r1blh), [BG2ELG](https://github.com/violarulan), [DF1ASH](https://github.com/derFogel), [DB4SCW](https://github.com/DB4SCW)
+Special thanks to our contributors, who are part of Wavelog by improving code!
+
+[F4ANS](https://github.com/abarrau), [DG0TM](https://github.com/dg0tm), [DG9VH](https://github.com/dg9vh), [DJ3CE](https://github.com/dj3ce), [R1BLH](https://github.com/r1blh), [BG2ELG](https://github.com/violarulan), [DF1ASH](https://github.com/derFogel), [DB4SCW](https://github.com/DB4SCW), [VE2HEW](https://github.com/anthonydiiorio)
+
+Translators:
+
+[Ondřej Koloničný (OK1CDJ)](https://translate.wavelog.org/user/ok1cdj/), [Michael Skolsky (R1BLH)](https://translate.wavelog.org/user/R1BLH/), [Karuru (BG2ELG)](https://translate.wavelog.org/user/viola/), [Byt3](https://translate.wavelog.org/user/205er/), [BG6HJE](https://translate.wavelog.org/user/BG6HJE/), [Francisco (F4VSE)](https://translate.wavelog.org/user/kikosgc/), [Kim (DG9VH)](https://translate.wavelog.org/user/dg9vh/), [Casper van Lieburg (PA7DX)](https://translate.wavelog.org/user/pa7dx/), [Halil AYYILDIZ (TA2LG)](https://translate.wavelog.org/user/TA2LG/), [Michal Šiman](https://translate.wavelog.org/user/michalsiman/), [DN4BS](https://github.com/dn4bs), [Luca (IU2FRL)](https://translate.wavelog.org/user/iu2frl/), [Dragan Đorđević (4O4A)](https://translate.wavelog.org/user/4o4a/), [Dren Imeraj (Z63DRI)](https://translate.wavelog.org/user/Dren/)
 
 If you would like to contribute in any way to Wavelog, it is most appreciated. This has been developed in free time, help coding new features or writing documentation is always useful.  
 

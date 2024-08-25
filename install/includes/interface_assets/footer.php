@@ -38,6 +38,7 @@
 		} from "../assets/js/country-flag-emoji-polyfill.js";
 		polyfillCountryFlagEmojis("Twemoji Country Flags", "<?php echo $websiteurl; ?>assets/fonts/TwemojiCountryFlags/TwemojiCountryFlags.woff2");
 	</script>
+	<script type="text/javascript" src="../assets/js/bootstrap-multiselect.js"></script>
 	<?php
 	/**
 	 * Hidden field to be able to translate the language names
@@ -46,8 +47,11 @@
 	 */
 	?>
 	<div style="display: none">
+		<?= __("Albanian"); ?>
+		<?= __("Bosnian"); ?>
 		<?= __("Bulgarian"); ?>
 		<?= __("Chinese (Simplified)"); ?>
+		<?= __("Croatian"); ?>
 		<?= __("Czech"); ?>
 		<?= __("Dutch"); ?>
 		<?= __("English"); ?>
@@ -56,9 +60,11 @@
 		<?= __("German"); ?>
 		<?= __("Greek"); ?>
 		<?= __("Italian"); ?>
-		<?= __("Portuguese"); ?>
+		<?= __("Montenegrin"); ?>
 		<?= __("Polish"); ?>
+		<?= __("Portuguese"); ?>
 		<?= __("Russian"); ?>
+		<?= __("Serbian"); ?>
 		<?= __("Spanish"); ?>
 		<?= __("Swedish"); ?>
 		<?= __("Turkish"); ?>

@@ -41,7 +41,7 @@ class Eqslmethods_model extends CI_Model {
 
     function uploadUser($userid, $username, $password) {
         $data['user_eqsl_name'] = $this->security->xss_clean($username);
-        $data['user_eqsl_password'] = $this->security->xss_clean($password);
+        $data['user_eqsl_password'] = html_entity_decode($this->security->xss_clean($password));
         $clean_userid = $this->security->xss_clean($userid);
 
         $qslsnotsent = $this->eqsl_not_yet_sent($clean_userid);

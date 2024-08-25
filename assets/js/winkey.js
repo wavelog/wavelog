@@ -69,9 +69,8 @@ let connectButton = document.getElementById("connectButton");
 let statusBar = document.getElementById("statusBar");
 
 //Couple the elements to the Events
-connectButton.addEventListener("click", clickConnect)
-sendButton.addEventListener("click", clickSend)
-// statusButton.addEventListener("click", clickStatus)
+connectButton.addEventListener("click", clickConnect);
+sendButton.addEventListener("click", clickSend);
 
 //When the connectButton is pressed
 async function clickConnect() {
@@ -92,7 +91,7 @@ navigator.serial.addEventListener('connect', e => {
     statusBar.innerText = `Connected to ${e.port}`;
     connectButton.innerText = "Disconnect"
 });
-  
+
 navigator.serial.addEventListener('disconnect', e => {
     statusBar.innerText = `Disconnected`;
     connectButton.innerText = "Connect"
@@ -130,7 +129,7 @@ async function connect() {
         const encoder = new TextEncoderStream();
         outputDone = encoder.readable.pipeTo(port.writable);
         outputStream = encoder.writable;
-        
+
         writeToByte("0x00, 0x02");
         writeToByte("0x02, 0x00");
 
@@ -151,7 +150,7 @@ async function connect() {
 //Write to the Serial port
 async function writeToStream(line) {
     var enc = new TextEncoder(); // always utf-8
-    
+
     const writer = outputStream.getWriter();
     writer.write(line);
     writer.releaseLock();
@@ -190,7 +189,7 @@ async function disconnect() {
 function clickSend() {
     writeToStream(sendText.value);
     writeToStream("\r");
-    
+
     //and clear the input field, so it's clear it has been sent
     sendText.value = "";
 
@@ -249,23 +248,7 @@ async function readLoop() {
     }
 }
 
-function closeModal() {
-	var container = document.getElementById("modals-here")
-	var backdrop = document.getElementById("modal-backdrop")
-	var modal = document.getElementById("modal")
-
-	modal.classList.remove("show")
-	backdrop.classList.remove("show")
-
-    getMacros();
-
-	setTimeout(function() {
-		container.removeChild(backdrop)
-		container.removeChild(modal)
-	}, 200)
-}
-
-function UpdateMacros(macrotext) { 
+function UpdateMacros(macrotext) {
 
     // Get the values from the form set to uppercase
     let CALL = document.getElementById("callsign").value.toUpperCase();
@@ -303,11 +286,81 @@ function getMacros() {
 
         const morsekey_func3_Button = document.getElementById('morsekey_func3');
         morsekey_func3_Button.textContent = 'F3 (' + function3Name + ')';
-        
+
         const morsekey_func4_Button = document.getElementById('morsekey_func4');
         morsekey_func4_Button.textContent = 'F4 (' + function4Name + ')';
 
         const morsekey_func5_Button = document.getElementById('morsekey_func5');
         morsekey_func5_Button.textContent = 'F5 (' + function5Name + ')';
     });
+}
+
+$('#winkey_settings').click(function (event) {
+	$.ajax({
+		url: base_url + 'index.php/qso/winkeysettings',
+		type: 'post',
+		success: function (html) {
+			BootstrapDialog.show({
+				title: 'Winkey Macros',
+				size: BootstrapDialog.SIZE_NORMAL,
+				cssClass: 'options',
+				nl2br: false,
+				message: html,
+				onshown: function(dialog) {
+				},
+				buttons: [{
+					label: 'Save',
+					cssClass: 'btn-primary btn-sm',
+					id: 'saveButton',
+					action: function (dialogItself) {
+						winkey_macro_save();
+						dialogItself.close();
+					}
+				},
+				{
+					label: lang_admin_close,
+					cssClass: 'btn-sm',
+					id: 'closeButton',
+					action: function (dialogItself) {
+						$('#optionButton').prop("disabled", false);
+						dialogItself.close();
+					}
+				}],
+				onhide: function(dialogRef){
+					$('#optionButton').prop("disabled", false);
+				},
+			});
+		}
+	});
+});
+
+function winkey_macro_save() {
+	$.ajax({
+		url: base_url + 'index.php/qso/cwmacrosave',
+		type: 'post',
+		data: {
+			function1_name: $('#function1_name').val(),
+			function1_macro: $('#function1_macro').val(),
+			function2_name: $('#function2_name').val(),
+			function2_macro: $('#function2_macro').val(),
+			function3_name: $('#function3_name').val(),
+			function3_macro: $('#function3_macro').val(),
+			function4_name: $('#function4_name').val(),
+			function4_macro: $('#function4_macro').val(),
+			function5_name: $('#function5_name').val(),
+			function5_macro: $('#function5_macro').val(),
+		},
+		success: function (html) {
+			BootstrapDialog.alert({
+				title: 'INFO',
+				message: 'Macros were saved.',
+				type: BootstrapDialog.TYPE_INFO,
+				closable: false,
+				draggable: false,
+				callback: function (result) {
+					getMacros();
+				}
+			});
+		}
+	});
 }

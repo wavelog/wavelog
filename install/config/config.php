@@ -394,10 +394,9 @@ $config['cache_query_string'] = FALSE;
 | Encryption Key
 |--------------------------------------------------------------------------
 |
-| If you use the Encryption class, you must set an encryption key.
-| See the user guide for more info.
+| Encryption Key is used to encrypt sensitive data. Choose a strong and secure key.
+| Example: 'cnawuihp87f4g3ofb837rf93brlcve378rgf93be9837dgvzcl39rlzfbrzvc834lvvf83frgv83zrbzv'
 |
-| https://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
 $config['encryption_key'] = '%encryptionkey%';
@@ -671,3 +670,29 @@ $config['special_callsign'] = false;
 
 // hides the usermenu; takes action only if "special_callsign" is true
 $config['sc_hide_usermenu'] = true;  
+
+
+/*
+|--------------------------------------------------------------------------
+| Impersonate
+|--------------------------------------------------------------------------
+|
+| This config switch disables the impersonate feature. This feauture is used to impersonate another user.
+| Impersonate is enabled by default. To disable it, set the value to false.
+| 
+*/
+
+$config['disable_impersonate'] = false;   
+
+
+/*
+|--------------------------------------------------------------------------
+| Cronmanager Allow Insecure
+|--------------------------------------------------------------------------
+|
+| The cronmanager needs http or https with a valid certificate to work.
+| If you want to use it with https and a self-signed certificate, you need to set this to true.
+| 
+*/
+
+$config['cron_allow_insecure'] = false;   

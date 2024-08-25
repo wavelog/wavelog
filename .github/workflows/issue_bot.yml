@@ -1,0 +1,25 @@
+name: Issue Bot
+on:
+  schedule:
+    - cron: "20 */12 * * *"
+  workflow_dispatch:
+
+jobs:
+  close-issues:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/stale@v9.0.0
+        with:
+          any-of-labels: 'wait 4 close'
+          exempt-issue-labels: 'hold'
+          days-before-issue-stale: 5
+          days-before-issue-close: 3
+          stale-issue-label: 'stale'
+          stale-issue-message: 'As this issue is marked as “wait 4 close” and there was no activity for 5 days, it is now marked as “stale.” It will be automatically closed in 3 more days.'
+          close-issue-message: 'This issue was closed because it had been inactive for 3 days since being marked as "stale".'
+          days-before-pr-stale: -1
+          days-before-pr-close: -1
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          # debug-only: true

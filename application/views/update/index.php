@@ -58,6 +58,8 @@
 				<div class="tab-pane fade" id="distanceTab" role="tabpanel" aria-labelledby="distance-tab">
 					<p class="card-text"><?= __("Here you can update QSOs with missing distance information."); ?></p>
 					<p><a class="btn btn-primary" hx-get="<?php echo site_url('update/update_distances');?>"  hx-target="#distance_results" href="<?php echo site_url('update/update_distances');?>"><?= __("Update distance data"); ?></a></p>
+					<p class="card-text"><?= __("Use the following button to update the distance information for all your QSOs. Depending on the number of QSOs this might take some time to execute. Please be patient."); ?></p>
+					<p><a class="btn btn-primary" hx-get="<?php echo site_url('update/update_distances/all');?>" hx-target="#distance_results" href="<?php echo site_url('update/update_distances/all');?>"><?= __("Re-check all QSOs in logbook"); ?></a></p>
 					<div id="distance_results"></div>
 				</div>
 			</div>

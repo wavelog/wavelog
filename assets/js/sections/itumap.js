@@ -144,7 +144,7 @@ function load_itu_map2(data) {
     L.tileLayer(
         osmUrl,
         {
-            attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+			attribution: option_map_tile_server_copyright,
             maxZoom: 18
         }
     ).addTo(map);
@@ -205,7 +205,7 @@ function load_itu_map2(data) {
 
 	// method that we will use to update the control based on feature properties passed
 	info.update = function (props) {
-		this._div.innerHTML = '<h4>ITU Zone</h4>' +  (props ? createContentITU(props.itu_zone_number, props.itu_zone_name) : 'Hover over a zone');
+		this._div.innerHTML = '<h4>'+lang_general_hamradio_ituzone+'</h4>' +  (props ? createContentITU(props.itu_zone_number, props.itu_zone_name) : lang_hover_over_a_zone);
 		};
 
 	info.addTo(map);

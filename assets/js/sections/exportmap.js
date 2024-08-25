@@ -48,8 +48,7 @@ function loadQsos(slug, iconsList) {
 }
 
 function loadMap(data, iconsList) {
-	var osmUrl=tileUrl;
-	var osmAttrib='Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
+	var osmUrl = tileUrl;
 	// If map is already initialized
 	var container = L.DomUtil.get('exportmap');
 
@@ -71,7 +70,7 @@ function loadMap(data, iconsList) {
 	var osm = L.tileLayer(
 		osmUrl,
 		{
-			attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+			attribution: option_map_tile_server_copyright,
 			maxZoom: 18,
 			zoom: 3,
             minZoom: 2,

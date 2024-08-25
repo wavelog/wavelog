@@ -305,11 +305,14 @@ class User_Model extends CI_Model {
 				// Hash password
 				if($fields['user_password'] != NULL)
 				{
-					if ($fields['user_password'] !== $pwd_placeholder) {
-						$decoded_password = htmlspecialchars_decode($fields['user_password']);
-						$data['user_password'] = $this->_hash($decoded_password);
-						if($data['user_password'] == EPASSWORDINVALID) {
-							return EPASSWORDINVALID;
+					if (!file_exists('.demo') || (file_exists('.demo') && $this->session->userdata('user_type') == 99)) {
+
+						if ($fields['user_password'] !== $pwd_placeholder) {
+							$decoded_password = htmlspecialchars_decode($fields['user_password']);
+							$data['user_password'] = $this->_hash($decoded_password);
+							if($data['user_password'] == EPASSWORDINVALID) {
+								return EPASSWORDINVALID;
+							}
 						}
 					}
 				}
@@ -409,7 +412,7 @@ class User_Model extends CI_Model {
 		if ($u == null) {
 			$u = $this->get_by_id($id);
 		}
-	
+
 		$userdata = array(
 			'user_id'		 => $u->row()->user_id,
 			'user_name'		 => $u->row()->user_name,
@@ -422,7 +425,7 @@ class User_Model extends CI_Model {
 			'user_eqsl_name'	 => $u->row()->user_eqsl_name,
 			'user_eqsl_qth_nickname' => $u->row()->user_eqsl_qth_nickname,
 			'user_hash'		 => $this->_hash($u->row()->user_id."-".$u->row()->user_type),
-			'radio' => $this->session->userdata('radio') ?? '',
+			'radio' => ((($this->session->userdata('radio') ?? '') == '') ? $this->user_options_model->get_options('cat', array('option_name' => 'default_radio'))->row()->option_value ?? '' : $this->session->userdata('radio')),
 			'station_profile_id' => $this->session->userdata('station_profile_id') ?? '',
 			'user_measurement_base' => $u->row()->user_measurement_base,
 			'user_date_format' => $u->row()->user_date_format,
@@ -451,14 +454,16 @@ class User_Model extends CI_Model {
 			'isWinkeyEnabled' => $u->row()->winkey,
 			'hasQrzKey' => $this->hasQrzKey($u->row()->user_id)
 		);
-	
+
 		foreach (array_keys($this->frequency->defaultFrequencies) as $band) {
-			$qrg_unit = $this->session->userdata("qrgunit_$band") ?? ($this->user_options_model->get_options('frequency', array('option_name' => 'unit', 'option_key' => $band))->row()->option_value ?? '');
+			$qrg_unit = $this->session->userdata("qrgunit_$band") ?? ($this->user_options_model->get_options('frequency', array('option_name' => 'unit', 'option_key' => $band), $u->row()->user_id)->row()->option_value ?? '');
 			if ($qrg_unit !== '') {
 				$userdata['qrgunit_'.$band] = $qrg_unit;
+			} else {
+				$userdata['qrgunit_'.$band] = $this->frequency->defaultFrequencies[$band]['UNIT'];
 			}
 		}
-	
+
 		$this->session->set_userdata($userdata);
 	}
 
@@ -554,16 +559,6 @@ class User_Model extends CI_Model {
 		} else {
 			return 0;
 		}
-	}
-
-	// FUNCTION: bool set($username, $data)
-	// Updates a user's record in the database
-	// TODO: This returns TRUE/1 no matter what at the moment - should
-	// TODO: return TRUE/FALSE or 0/1 depending on success/failure
-	function set($username, $data) {
-		$this->db->where('user_name', $username);
-		$this->db->update($this->config->item('auth_table', $data));
-		return 1;
 	}
 
 	// FUNCTION: object users()

@@ -159,7 +159,7 @@ function spawnGridsquareModal(loc_4char) {
 			type: 'post',
 			data: ajax_data,
 			success: function (html) {
-				BootstrapDialog.show({
+		    		var dialog = new BootstrapDialog({
 					title: lang_general_word_qso_data,
 					cssClass: 'qso-dialog',
 					size: BootstrapDialog.SIZE_WIDE,
@@ -199,7 +199,10 @@ function spawnGridsquareModal(loc_4char) {
 						}
 					}]
 				});
-			},
+			    dialog.realize();
+		    		$("#gridsquare_map").append(dialog.getModal());
+		    		dialog.open();
+},
 			error: function(e) {
 				modalloading=false;
 			}

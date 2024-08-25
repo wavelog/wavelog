@@ -21,7 +21,7 @@
 		</div>
 
 	<?php } ?>
-	
+
 	<!-- This Info will be shown by the admin password reset -->
 	<div class="alert" id="pwd_reset_message" style="display: hide" role="alert"></div>
 
@@ -51,6 +51,9 @@
 							<th></th>
 							<th style="text-align: center; vertical-align: middle;" scope="col"><?= __("Edit"); ?></th>
 							<th style="text-align: center; vertical-align: middle;" scope="col"><?= __("Password Reset"); ?></th>
+							<?php if (!$disable_impersonate) { ?>
+								<th style="text-align: center; vertical-align: middle;" scope="col"><?= __("Impersonate"); ?></th>
+							<?php } ?>
 							<th style="text-align: center; vertical-align: middle;" scope="col"><?= __("Delete"); ?></th>
 						</tr>
 					</thead>
@@ -65,15 +68,15 @@
 							<td style="text-align: left; vertical-align: middle;"><?php echo $row->user_callsign; ?></td>
 							<td style="text-align: left; vertical-align: middle;"><?php echo $row->user_email; ?></td>
 							<td style="text-align: left; vertical-align: middle;"><?php $l = $this->config->item('auth_level');
-								echo $l[$row->user_type]; ?></td>
-							<td style="text-align: left; vertical-align: middle;"><?php 
+																					echo $l[$row->user_type]; ?></td>
+							<td style="text-align: left; vertical-align: middle;"><?php
 								if ($row->last_seen != null) { // if the user never logged in before the value is null. We can show "never" then.
 									$lastSeenTimestamp = strtotime($row->last_seen);
 									$currentTimestamp = time();
 									if (($currentTimestamp - $lastSeenTimestamp) < 120) {
-										echo "<a><i style=\"color: green;\" class=\"fas fa-circle\"></i> " . $row->last_seen . "</a>";
+										echo "<a><i style=\"color: green;\" class=\"fas fa-circle\"></i> " . date($custom_date_format . ' H:i:s', $lastSeenTimestamp) . "</a>";
 									} else {
-										echo "<a><i style=\"color: red;\" class=\"fas fa-circle\"></i> " . $row->last_seen . "</a>";
+										echo "<a><i style=\"color: red;\" class=\"fas fa-circle\"></i> " . date($custom_date_format . ' H:i:s', $lastSeenTimestamp) . "</a>";
 									}
 								} else {
 									echo __("Never");
@@ -92,14 +95,73 @@
 							<td style="text-align: center; vertical-align: middle;"><a href="<?php echo site_url('user/edit') . "/" . $row->user_id; ?>" class="btn btn-outline-primary btn-sm"><i class="fas fa-user-edit"></i></a>
 							<td style="text-align: center; vertical-align: middle;">
 								<?php
-								if ($_SESSION['user_id'] != $row->user_id) {
+								if ($session_uid != $row->user_id) {
 									echo '<a class="btn btn-primary btn-sm ms-1 admin_pwd_reset" data-username="' . $row->user_name . '" data-callsign="' . $row->user_callsign . '" data-userid="' . $row->user_id . '" data-usermail="' . $row->user_email . '"><i class="fas fa-key"></i></a>';
 								}
 								?></td>
+							<?php if (!$disable_impersonate) { ?>
 							<td style="text-align: center; vertical-align: middle;">
 								<?php
-								if ($_SESSION['user_id'] != $row->user_id) {
-									echo "<a href=" . site_url('user/delete') . "/" . $row->user_id . " class=\"btn btn-danger btn-sm\"><i class=\"fas fa-user-minus\"></i></a>";
+								if ($session_uid != $row->user_id) { ?>
+									<button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#impersonateModal_<?php echo $i; ?>"><i class="fas fa-people-arrows"></i></button>
+									<div class="modal fade bg-black bg-opacity-50" id="impersonateModal_<?php echo $i; ?>" tabindex="-1" aria-labelledby="impersonateLabel_<?php echo $i; ?>" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+										<div class="modal-dialog modal-dialog-centered modal-md">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title" id="impersonateLabel_<?php echo $i; ?>"><?= __("Impersonate User") ?></h5>
+												</div>
+												<div class="modal-body" style="text-align: left !important;">
+													<div class="mb-3">
+														<?php if(!$has_flossie) { ?>
+														<p><?= __("You are about to impersonate another user. To return to your admin account, you'll need to logout and log back in as admin."); ?></p>
+														<p><?= __("Do you want to impersonate this user?"); ?></p>
+														<br>
+														<table>
+															<tr>
+																<td class="pe-3"><?= __("Username:"); ?></td>
+																<td><strong><?php echo $row->user_name; ?></strong></td>
+															</tr>
+															<tr>
+																<td class="pe-3"><?= __("Name:"); ?></td>
+																<td><strong><?php echo $row->user_firstname . ' ' . $row->user_lastname; ?></strong></td>
+															</tr>
+															<tr>
+																<td class="pe-3"><?= __("Callsign:"); ?></td>
+																<td><strong><?php echo $row->user_callsign; ?></strong></td>
+															</tr>
+															<tr>
+																<td class="pe-3"><?= __("E-Mail:"); ?></td>
+																<td><strong><a href="mailto:<?php echo $row->user_email; ?>"><?php echo $row->user_email; ?><a></strong></td>
+															</tr>
+															<tr>
+																<td class="pe-3"><?= __("Last Seen:"); ?></td>
+																<td><strong><?php echo date($custom_date_format . ' H:i:s', strtotime($row->last_seen)); ?></strong></td>
+															</tr>
+														</table>
+														<?php } else { ?>
+														<div class="alert alert-danger" role="alert">
+															<?= __("You currently can't impersonate another user. Please change the encryption_key in your config.php file first!"); ?>
+														</div>
+														<?php } ?>
+												</div>
+												<div class="modal-footer">
+													<form action="<?php echo site_url('user/impersonate'); ?>" method="post" style="display:inline;">
+														<input type="hidden" name="hash" value="<?php echo $this->encryption->encrypt($this->session->userdata('user_id') . '/' . $row->user_id . '/' . time()); ?>">
+														<button type="submit" class="btn btn-success" <?php if ($has_flossie) { echo 'disabled'; } ?>><?= __("Impersonate") ?></i></button>
+													</form>
+													<button type="button" class="btn btn-danger" data-bs-dismiss="modal"><?= __("Cancel") ?></button>
+												</div>
+											</div>
+										</div>
+									</div>
+								<?php }
+								?>
+							</td>
+							<?php } ?>
+							<td style="text-align: center; vertical-align: middle;">
+								<?php
+								if ($session_uid != $row->user_id) {
+									echo '<a href="' . site_url('user/delete') . '/' . $row->user_id . '" class="btn btn-danger btn-sm"><i class="fas fa-user-minus"></i></a>';
 								}
 								?></td>
 							</td>
@@ -109,7 +171,6 @@
 					</tbody>
 				</table>
 			</div>
-
 		</div>
 	</div>
 </div>
