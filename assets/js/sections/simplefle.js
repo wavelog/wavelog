@@ -600,7 +600,7 @@ function getBandFromFreq(freq) {
     } else if (freq >= 300000 && freq <= 7500000) {
         return "submm";
     } else {
-        return "Unknown";
+        return "";
     }
 }
 
