@@ -126,11 +126,21 @@ class Qra {
 		return $echo;
 	}
 
-	function getMaxDistanceQSO($mylocator, $qsos, $unit = "M")
-	{
+	/**
+	 * Function to calculate the maximum distance in a bunch of QSOs
+	 * 
+	 * @param string 	$mylocator	Maidenhead locator of the station
+	 * @param object 	$qsos		Object of QSOs
+	 * @param string 	$unit		Unit of measurement
+	 * 	
+	 * @return object 	$maxdistanceqso		Object of the QSO with the maximum distance
+	 * @return integer 	$maxdistance		Maximum distance
+	 */
+
+	function getMaxDistanceQSO($mylocator, $qsos, $unit = "M") {
 		//return nothing for empty QSO set
 		if(count($qsos->result()) < 1){
-			return [null, 0];
+			return null;
 		}
 
 		//collect maximum data
@@ -150,8 +160,12 @@ class Qra {
 			}
 		}
 
+		$result = [];
+		$result['qso'] = $maxdistanceqso;
+		$result['distance'] = intval($maxdistance);
+
 		//return findings
-		return [$maxdistanceqso, $maxdistance];
+		return $result;
 	}
 }
 

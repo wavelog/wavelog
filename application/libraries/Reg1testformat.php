@@ -46,8 +46,8 @@ class Reg1testformat {
       $edi_header .= "CToSc=" . "\r\n"; //Argument describes the total claimed score. Leave empty.
 
       //set QSO info for QSO with max distance only if we can determine it
-      if($maxdistanceqso[0] != null){
-         $edi_header .= "CODXC=" . strtoupper($maxdistanceqso[0]->COL_CALL) . ";" . substr(strtoupper($maxdistanceqso[0]->COL_GRIDSQUARE), 0, 6) . ";" . (int)$maxdistanceqso[1] . "\r\n"; //Arguments describe the claimed ODX contact call, WWL and distance.
+      if($maxdistanceqso['qso'] != null){
+         $edi_header .= "CODXC=" . strtoupper($maxdistanceqso['qso']->COL_CALL) . ";" . substr(strtoupper($maxdistanceqso['qso']->COL_GRIDSQUARE), 0, 6) . ";" . $maxdistanceqso['distance'] . "\r\n"; //Arguments describe the claimed ODX contact call, WWL and distance.
       }else{
          $edi_header .= "CODXC=" . "\r\n"; //Arguments describe the claimed ODX contact call, WWL and distance. Leave empty.
       }
