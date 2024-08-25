@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-08-22 13:37+0000\n"
-"PO-Revision-Date: 2024-08-22 20:55+0000\n"
+"PO-Revision-Date: 2024-08-24 20:29+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/fr/>\n"
@@ -3551,6 +3551,10 @@ msgid ""
 "radio magazines in the world. The magazine first appeared in January 1945 "
 "and focuses on awards and the practical aspects of amateur radio."
 msgstr ""
+"Le magazine CQ est situé aux États-Unis et est l'un des magazines de radio "
+"amateur les plus populaires au monde. Le magazine est apparu pour la "
+"première fois en janvier 1945 et se concentre sur les récompenses et les "
+"aspects pratiques de la radio amateur."
 
 #: application/views/awards/cq/index.php:22
 msgid ""
@@ -3563,6 +3567,8 @@ msgstr ""
 msgctxt "uses 'CQ Magazine'"
 msgid "You can find all the information and rules on the Website of the %s."
 msgstr ""
+"Vous pouvez trouver toutes les informations et les règles sur le site Web du "
+"%s."
 
 #: application/views/awards/cq/index.php:25
 msgid "Awards - CQ Magazine WAZ"
@@ -3636,7 +3642,7 @@ msgstr "Voir les 'non réalisés'"
 #: application/views/awards/waja/index.php:51
 #: application/views/awards/was/index.php:51
 msgid "Show QSO with QSL Type"
-msgstr ""
+msgstr "Afficher QSO avec type QSL"
 
 #: application/views/awards/cq/index.php:56
 #: application/views/awards/itu/index.php:56
@@ -3677,7 +3683,7 @@ msgstr "Voir la carte"
 #: application/views/awards/waja/index.php:128
 #: application/views/awards/was/index.php:124
 msgid "Table"
-msgstr ""
+msgstr "Table"
 
 #: application/views/awards/cq/index.php:127
 #: application/views/awards/dok/index.php:128
@@ -3747,6 +3753,12 @@ msgid ""
 "'Deutscher Ortsverband Kenner' (English: 'German Local Association "
 "Identifier')."
 msgstr ""
+"L'Allemagne s'étend sur plus de 630 km d'est en ouest et près de 900 km du "
+"nord au sud. Environ 70 000 des 82 millions d'habitants de l'Allemagne sont "
+"des radioamateurs licenciés, dont plus de 40 000 sont membres du DARC. Le "
+"DOK est un système qui fournit aux sections locales individuelles un "
+"identifiant et signifie 'Deutscher Ortsverband Kenner' (en anglais : 'German "
+"Local Association Identifier')."
 
 #: application/views/awards/dok/index.php:9
 msgid ""
@@ -3755,10 +3767,14 @@ msgid ""
 "or F41 Baunatal (location of the DARC headquarters). Note: A zero in a DOK "
 "is a common mistake, often being logged as the letter O."
 msgstr ""
+"Le DOK se compose d'une lettre pour le district et d'un numéro à deux "
+"chiffres pour le chapitre local, comme P03 Friedrichshafen (ville de "
+"l'exposition 'Hamradio') ou F41 Baunatal (siège du DARC). Remarque : Un zéro "
+"dans un DOK est une erreur courante, souvent enregistré comme la lettre O."
 
 #: application/views/awards/dok/index.php:10
 msgid "DARC website"
-msgstr ""
+msgstr "Site web du DARC"
 
 #: application/views/awards/dok/index.php:10
 #, php-format
@@ -3767,14 +3783,16 @@ msgid ""
 "This information is provided by the %s. Information about the DOK Awards and "
 "its rules can be found %s."
 msgstr ""
+"Ces informations sont fournies par le %s. Les informations sur les DOK "
+"Awards et leurs règles peuvent être trouvées %s."
 
 #: application/views/awards/dok/index.php:20
 msgid "DOK / SDOK"
-msgstr ""
+msgstr "DOK / SDOK"
 
 #: application/views/awards/dok/index.php:23
 msgid "DOK + SDOK"
-msgstr ""
+msgstr "DOK + SDOK"
 
 #: application/views/awards/dok/index.php:37
 #: application/views/awards/dxcc/index.php:39
@@ -3785,7 +3803,7 @@ msgstr ""
 #: application/views/awards/waja/index.php:33
 #: application/views/awards/was/index.php:33
 msgid "Worked / Confirmed"
-msgstr ""
+msgstr "Travaillé / Confirmé"
 
 #: application/views/awards/dok/index.php:80
 #: application/views/awards/dxcc/index.php:120
@@ -3796,7 +3814,7 @@ msgstr ""
 #: application/views/awards/waja/index.php:80
 #: application/views/awards/was/index.php:76
 msgid "Every band"
-msgstr ""
+msgstr "Chaque bande"
 
 #: application/views/awards/dxcc/index.php:14
 msgid "DXCC Award"
@@ -3804,7 +3822,7 @@ msgstr ""
 
 #: application/views/awards/dxcc/index.php:15
 msgid "'How to Count Countries Worked, A New DX Scoring System'"
-msgstr ""
+msgstr "'Comment compter les pays contactés, un nouveau système de score DX'"
 
 #: application/views/awards/dxcc/index.php:15
 #, php-format
@@ -3813,15 +3831,19 @@ msgid ""
 "DXCC List is based on an article created in 1935 by Clinton B. DeSoto, "
 "W1CBD, titled %s."
 msgstr ""
+"DXCC signifie 'DX Century Club', une récompense basée sur les pays "
+"contactés. La liste DXCC est basée sur un article créé en 1935 par Clinton "
+"B. DeSoto, W1CBD, intitulé %s."
 
 #: application/views/awards/dxcc/index.php:16
 msgid "ARRL website"
-msgstr ""
+msgstr "Site web de l'ARRL"
 
 #: application/views/awards/dxcc/index.php:16
 #, php-format
 msgid "You can find all information about the DXCC Award on the %s."
 msgstr ""
+"Vous pouvez trouver toutes les informations sur le DXCC Award sur le %s."
 
 #: application/views/awards/dxcc/index.php:17
 msgid ""
@@ -3831,11 +3853,17 @@ msgid ""
 "will find Deleted DXCC entities also in the lists on Wavelog. Be aware that "
 "these DXCC entities are outdated and no longer valid."
 msgstr ""
+"Note importante : Au fil du temps, les critères pour la liste DXCC ont "
+"changé. La liste reste inchangée jusqu'à ce qu'une entité ne satisfasse plus "
+"aux critères sous lesquels elle a été ajoutée, moment où elle est déplacée "
+"vers la liste des entités supprimées. Vous trouverez également des entités "
+"DXCC supprimées dans les listes sur Wavelog. Soyez conscient que ces entités "
+"DXCC sont obsolètes et ne sont plus valides."
 
 #: application/views/awards/dxcc/index.php:32
 #: application/views/awards/iota/index.php:33
 msgid "Include deleted"
-msgstr ""
+msgstr "Inclure supprimé"
 
 #: application/views/awards/dxcc/index.php:87
 #: application/views/awards/iota/index.php:61
@@ -3871,7 +3899,7 @@ msgstr "Asie"
 #: application/views/qso/edit_ajax.php:245 application/views/qso/index.php:383
 #: application/views/view_log/qso.php:256
 msgid "Europe"
-msgstr ""
+msgstr "Europe"
 
 #: application/views/awards/dxcc/index.php:103
 #: application/views/awards/iota/index.php:77
@@ -3902,11 +3930,11 @@ msgstr "Océanie"
 
 #: application/views/awards/dxcc/index.php:189
 msgid "Show DXCC Map"
-msgstr ""
+msgstr "Afficher la carte DXCC"
 
 #: application/views/awards/dxcc/index.php:225
 msgid "DXCC Name"
-msgstr ""
+msgstr "Nom DXCC"
 
 #: application/views/awards/dxcc/index.php:226
 #: application/views/awards/iota/index.php:170
