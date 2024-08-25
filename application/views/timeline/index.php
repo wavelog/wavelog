@@ -37,7 +37,7 @@
                     </div>
                 </div>
 
-        <div class="mb-4 row">
+        <div class="mb-3 row">
             <label class="col-md-1 control-label" for="award"><?= __("Award") ?></label>
                 <div class="col-md-3">
                     <select id="award" name="award" class="form-select">
@@ -70,10 +70,10 @@
                 </div>
             </div>
 
-	    <div class="mb-3 row">
+	    <div class="mb-4 row">
                 <label class="col-md-1" for="propmode"><?= __("Propagation"); ?></label>
-                <div class="col-sm-3">
-                    <select class="form-select form-select-sm w-auto" name="propmode" id="propmode">
+                <div class="col-md-3">
+                    <select class="form-select w-auto" name="propmode" id="propmode">
                         <option value="0"<?php if (($propmode ?? '') == '0') { echo 'selected="selected"'; } ?>><?= __("All"); ?></option>
                         <option value="NoSAT"<?php if (($propmode ?? '') == 'NoSAT') { echo 'selected="selected"'; } ?>><?= __("All but SAT"); ?></option>
                         <option value="None"<?php if (($propmode ?? '') == 'None') { echo ' selected="selected"'; } ?>><?= __("None/Empty"); ?></option>
