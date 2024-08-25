@@ -478,7 +478,7 @@ textarea.focus(function () {
 });
 
 function addErrorMessage(errorMessage) {
-	errorMessage = '<span class="text-danger">' + errorMessage + "</span>";
+	errorMessage = '<div class="alert alert-danger">' + errorMessage + "</div>";
 	if (errors.includes(errorMessage) == false) {
 		errors.push(errorMessage);
 	}
@@ -528,7 +528,7 @@ function clearSession() {
 
 function showErrors() {
 	if (errors) {
-		$(".js-status").html(errors.join("<br>"));
+		$(".js-status").html(errors.join("\n"));
 	}
 }
 
