@@ -415,9 +415,7 @@ function handleInput() {
 		}
 
 		prevMode = mode;
-
-		showErrors();
-	}); //lines.forEach((row)
+	});
 
 	// Scroll to the bototm of #qsoTableBody (scroll by the value of its scrollheight property)
 	$("#qsoTableBody").scrollTop($("#qsoTableBody").get(0).scrollHeight);
