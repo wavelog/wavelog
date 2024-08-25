@@ -526,11 +526,13 @@ function clearSession() {
 	$(".js-qso-count").html("");
 	errors = [];
 	$(".js-status").html("");
+	window.location.reload();
 }
 
 function showErrors() {
 	if (errors) {
 		$(".js-status").html(errors.join("\n"));
+		resizeElements();
 	}
 }
 
@@ -822,6 +824,8 @@ function resizeElements() {
 	var textarea = $('#sfle_textarea');
 	var textareaOffset = 40;
 
+	var errorMessagesContainer = $('#errorMessages');
+
 	var tableFrame = $('.sfletable.table');
 	var tableFrameOffset = 140;
 
@@ -829,7 +833,7 @@ function resizeElements() {
 	var tableoOffset = 160;
 
 	if ($(window).width() >= 768) {
-		var newHeight = $(window).height() - textarea.offset().top - textareaOffset;
+		var newHeight = $(window).height() - textarea.offset().top - textareaOffset - errorMessagesContainer.height();
 		textarea.css('height', newHeight + 'px');
 
 		var newHeight = $(window).height() - tableFrame.offset().top - tableFrameOffset;
