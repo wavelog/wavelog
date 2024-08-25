@@ -5,7 +5,7 @@ class Reg1testformat {
 
    public function header($contest_id, $from, $to, $callsign, $gridlocator, $contestaddress1, $contestaddress2, $categoryoperator, $band, $club, $name,
                             $responsible_operator, $address1, $address2, $addresspostalcode, $addresscity, $addresscountry, $operatorphone, $operators,
-                            $soapbox, $qso_count, $sentexchange, $txequipment, $power, $rxequipment, $antenna, $antennaheight) {
+                            $soapbox, $qso_count, $sentexchange, $txequipment, $power, $rxequipment, $antenna, $antennaheight, $maxdistanceqso) {
 
       //build header
       $edi_header = "[REG1TEST;1]" . "\r\n";
@@ -44,7 +44,14 @@ class Reg1testformat {
       $edi_header .= "CDXCs=" . "\r\n"; //Arguments describe the claimed number of DXCCs worked, the number of bonus points claimed for each new DXCC and the DXCC multiplier. Leave empty.
       $edi_header .= "CDXCB=" . "\r\n"; //Argument describes the claimed total number of DXCC bonus points. Leave empty.
       $edi_header .= "CToSc=" . "\r\n"; //Argument describes the total claimed score. Leave empty.
-      $edi_header .= "CODXC=" . "\r\n"; //Arguments describe the claimed ODX contact call, WWL and distance. Leave empty.
+
+      //set QSO info for QSO with max distance only if we can determine it
+      if($maxdistanceqso[0] != null){
+         $edi_header .= "CODXC=" . strtoupper($maxdistanceqso[0]->COL_CALL) . ";" . substr(strtoupper($maxdistanceqso[0]->COL_GRIDSQUARE), 0, 6) . ";" . (int)$maxdistanceqso[1] . "\r\n"; //Arguments describe the claimed ODX contact call, WWL and distance.
+      }else{
+         $edi_header .= "CODXC=" . "\r\n"; //Arguments describe the claimed ODX contact call, WWL and distance. Leave empty.
+      }
+      
       $edi_header .= "[Remarks]" . "\r\n" . $soapbox . "\r\n"; //Remarks
       $edi_header .= "[QSORecords;" . $qso_count . "]" . "\r\n"; //QSO Header and QSO Count
 

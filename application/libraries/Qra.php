@@ -125,6 +125,34 @@ class Qra {
 		}
 		return $echo;
 	}
+
+	function getMaxDistanceQSO($mylocator, $qsos, $unit = "M")
+	{
+		//return nothing for empty QSO set
+		if(count($qsos->result()) < 1){
+			return [null, 0];
+		}
+
+		//collect maximum data
+		$maxdistance = 0;
+		$maxdistanceqso = null;
+
+		//iterate through all qsos
+		foreach ($qsos->result() as $row) {
+
+			//get distance in kilometers
+			$distance = $this->distance($mylocator, $row->COL_GRIDSQUARE, $unit);
+
+			//store new highscore if present
+			if($distance > $maxdistance) {
+				$maxdistance = $distance;
+				$maxdistanceqso = $row;
+			}
+		}
+
+		//return findings
+		return [$maxdistanceqso, $maxdistance];
+	}
 }
 
 
