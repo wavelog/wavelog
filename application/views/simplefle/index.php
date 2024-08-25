@@ -126,6 +126,12 @@
 						<textarea name="qso" class="form-control qso-area" cols="auto" rows="11" id="sfle_textarea" style="font-family: 'Courier New', sans-serif;"></textarea>
 					</div>
 				</div>
+			<!-- Container for errors -->
+				<div class="row" id="errorMessages">
+					<div class="col">
+						<div class="js-status mt-3"></div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="card col-xs-12 col-md-8 simplefle" style="border: none">
