@@ -127,6 +127,14 @@
 					</div>
 				</div>
 			</div>
+			<!-- Container for errors -->
+			<div class="card-body">
+				<div class="row">
+					<div class="col">
+						<div class="js-status"></div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="card col-xs-12 col-md-8 simplefle" style="border: none">
 			<div class="card-header">
