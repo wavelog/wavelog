@@ -1973,7 +1973,7 @@ $(document).ready(function(){
                 $(".buttons-csv").css("color", "white");
             }
 
-            function displayTimelineContacts(querystring, band, mode, type) {
+            function displayTimelineContacts(querystring, band, mode, propmode, type) {
                 var baseURL= "<?php echo base_url();?>";
                 $.ajax({
                     url: baseURL + 'index.php/timeline/details',
@@ -1981,6 +1981,7 @@ $(document).ready(function(){
                     data: {'Querystring': querystring,
                         'Band': band,
                         'Mode': mode,
+                        'Propmode': propmode,
                         'Type': type
                     },
                     success: function(html) {
