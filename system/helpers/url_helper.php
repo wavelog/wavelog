@@ -88,6 +88,26 @@ if ( ! function_exists('base_url'))
 	}
 }
 
+if ( ! function_exists('local_url'))
+{
+	/**
+	 * Local URL
+	 * 
+	 * For cornercases where you have no access to the base_url from 
+	 * within e.g. the docker container to the base_url use this url
+	 * for cron jobs.
+	 * 
+	 * @param	string	$uri
+	 * @param	string	$protocol
+	 * @return	string
+	 */
+
+	 function local_url($uri = '', $protocol = NULL)
+	 {
+		return get_instance()->config->local_url($uri, $protocol);
+	 }
+}
+
 // ------------------------------------------------------------------------
 
 if ( ! function_exists('current_url'))

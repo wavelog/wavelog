@@ -566,22 +566,24 @@ msgid "Cron Manager"
 msgstr ""
 
 #: application/controllers/Cron.php:141 application/views/cron/edit.php:5
+#: application/controllers/Cron.php:144
 msgid "Edit Cronjob"
 msgstr ""
 
 #: application/controllers/Cron.php:261
 #: application/views/interface_assets/footer.php:36
+#: application/controllers/Cron.php:264
 msgid "OK"
 msgstr ""
 
-#: application/controllers/Cron.php:265
+#: application/controllers/Cron.php:265 application/controllers/Cron.php:268
 #, php-format
 msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
 "It should run every minute (* * * * *)."
 msgstr ""
 
-#: application/controllers/Cron.php:268
+#: application/controllers/Cron.php:268 application/controllers/Cron.php:271
 #, php-format
 msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
@@ -589,6 +591,7 @@ msgid ""
 msgstr ""
 
 #: application/controllers/Cron.php:273 application/views/cron/index.php:29
+#: application/controllers/Cron.php:276
 msgctxt "Master Cron"
 msgid "Not running"
 msgstr ""
