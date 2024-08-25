@@ -27,7 +27,7 @@
 						<h5><?= __("Check for DXCC Data Updates"); ?></h5>
 						<button type="submit" class="btn btn-primary ld-ext-right" id="btn_update_dxcc"><div class="ld ld-ring ld-spin"></div><?= __("Update DXCC Data"); ?></button>
 
-						<div id="dxcc_update_status"><?= __("Status"); ?>:</br></div>
+						<div id="dxcc_update_status" class="alert alert-secondary mt-3 w-25 w-lg-100" style="display: none;"><?= __("Status:"); ?></br></div>
 
 						<br/>
 						<br/>
@@ -41,20 +41,20 @@
 							hx-get="<?php echo site_url('update/check_missing_dxcc');?>"
 							hx-target="#missing_dxcc_results" 
 							hx-on:htmx:before-request="this.disabled = true; this.classList.add('running');"
-							hx-on:htmx:after-request="this.disabled = false; this.classList.remove('running');">
+							hx-on:htmx:after-request="this.disabled = false; this.classList.remove('running'); document.getElementById('missing_dxcc_results').style.display = 'block';">
 							<?= __("Check QSOs missing DXCC data"); ?>
 							<div class="ld ld-ring ld-spin"></div>
-						</button>
-						<div id="missing_dxcc_results"></div>
+						</button><br>
+						<div id="missing_dxcc_results" class="alert alert-secondary mb-3 w-25 w-lg-100" style="display: none;"></div>
 						<button class="btn btn-primary mb-3 ld-ext-right" 
 							hx-get="<?php echo site_url('update/check_missing_dxcc/all');?>" 
 							hx-target="#missing_dxcc_results_all" 
 							hx-on:htmx:before-request="this.disabled = true; this.classList.add('running');"
-							hx-on:htmx:after-request="this.disabled = false; this.classList.remove('running');">
+							hx-on:htmx:after-request="this.disabled = false; this.classList.remove('running'); document.getElementById('missing_dxcc_results_all').style.display = 'block';">
 							<?= __("Re-check all QSOs in logbook"); ?>
 							<div class="ld ld-ring ld-spin"></div>
 						</button>
-						<div id="missing_dxcc_results_all"></div>
+						<div id="missing_dxcc_results_all" class="alert alert-secondary mb-3 w-25 w-lg-100" style="display: none;"></div>
 
 						<h5><?= __("Apply Continent Data to Logbook"); ?></h5>
 						<p class="card-text">
@@ -64,11 +64,11 @@
 							hx-get="<?php echo site_url('update/check_missing_continent');?>" 
 							hx-target="#continent_results" 
 							hx-on:htmx:before-request="this.disabled = true; this.classList.add('running');"
-							hx-on:htmx:after-request="this.disabled = false; this.classList.remove('running');">
+							hx-on:htmx:after-request="this.disabled = false; this.classList.remove('running'); document.getElementById('continent_results').style.display = 'block';">
 							<?= __("Check QSOs missing continent data"); ?>
 							<div class="ld ld-ring ld-spin"></div>
 						</button>
-						<div id="continent_results"></div>
+						<div id="continent_results" class="alert alert-secondary mb-3 w-25 w-lg-100" style="display: none;"></div>
 						<style>
 							#dxcc_update_status{
 							display: None;
@@ -82,7 +82,7 @@
 						hx-get="<?php echo site_url('update/update_distances');?>"  
 						hx-target="#distance_results"
 						hx-on:htmx:before-request="this.disabled = true; this.classList.add('running');"
-						hx-on:htmx:after-request="this.disabled = false; this.classList.remove('running');">
+						hx-on:htmx:after-request="this.disabled = false; this.classList.remove('running'); document.getElementById('distance_results').style.display = 'block';">
 						<?= __("Update distance data"); ?>
 						<div class="ld ld-ring ld-spin"></div>
 					</button>
@@ -91,11 +91,11 @@
 						hx-get="<?php echo site_url('update/update_distances/all');?>" 
 						hx-target="#distance_results" 
 						hx-on:htmx:before-request="this.disabled = true; this.classList.add('running');"
-						hx-on:htmx:after-request="this.disabled = false; this.classList.remove('running');">
+						hx-on:htmx:after-request="this.disabled = false; this.classList.remove('running'); document.getElementById('distance_results').style.display = 'block';">
 						<?= __("Re-check all QSOs in logbook"); ?>
 						<div class="ld ld-ring ld-spin"></div>
 					</button>
-					<div id="distance_results"></div>
+					<div id="distance_results" class="alert alert-secondary mb-3 w-25 w-lg-100" style="display: none;"></div>
 				</div>
 			</div>
 		</div>

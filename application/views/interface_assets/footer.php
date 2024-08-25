@@ -1295,8 +1295,10 @@ $(document).ready(function(){
             url:"update/dxcc",
             success: function(response) {
                 if (response == 'success') {
-                    $("#btn_update_dxcc").removeClass("running");
-                    $("#btn_update_dxcc").prop("disabled", false);
+                    setTimeout(function() {
+                        $("#btn_update_dxcc").removeClass("running");
+                        $("#btn_update_dxcc").prop("disabled", false);
+                    }, 2000);
                 }
             }
         });
