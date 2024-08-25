@@ -4,12 +4,13 @@
 #
 # Ondřej Koloničný <ondra@ok1cdj.com>, 2024.
 # Michal Šiman <michal.siman@gmail.com>, 2024.
+# Filip Melik <filip@melik.cz>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-25 11:51+0000\n"
-"PO-Revision-Date: 2024-08-17 10:47+0000\n"
-"Last-Translator: Michal Šiman <michal.siman@gmail.com>\n"
+"POT-Creation-Date: 2024-08-22 13:37+0000\n"
+"PO-Revision-Date: 2024-08-25 10:43+0000\n"
+"Last-Translator: Filip Melik <filip@melik.cz>\n"
 "Language-Team: Czech <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/cs/>\n"
 "Language: cs_CZ\n"
@@ -17,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.7\n"
 
 #: application/controllers/Accumulated.php:13
 #: application/controllers/Activators.php:13
@@ -36,7 +37,7 @@ msgstr ""
 #: application/controllers/Components.php:13
 #: application/controllers/Contestcalendar.php:15
 #: application/controllers/Contesting.php:14
-#: application/controllers/Cron.php:26 application/controllers/Cron.php:152
+#: application/controllers/Cron.php:26 application/controllers/Cron.php:149
 #: application/controllers/Csv.php:8 application/controllers/Csv.php:31
 #: application/controllers/Dayswithqso.php:11
 #: application/controllers/Debug.php:10
@@ -89,7 +90,7 @@ msgstr ""
 #: application/controllers/User.php:1247
 #: application/controllers/User_options.php:9
 msgid "You're not allowed to do that!"
-msgstr ""
+msgstr "Přístup odepřen!"
 
 #: application/controllers/Accumulated.php:21
 #: application/views/interface_assets/header.php:150
@@ -564,30 +565,33 @@ msgstr "Kontinenty"
 msgid "Cron Manager"
 msgstr ""
 
-#: application/controllers/Cron.php:144 application/views/cron/edit.php:5
+#: application/controllers/Cron.php:141 application/views/cron/edit.php:5
+#: application/controllers/Cron.php:144
 msgid "Edit Cronjob"
 msgstr ""
 
-#: application/controllers/Cron.php:264
+#: application/controllers/Cron.php:261
 #: application/views/interface_assets/footer.php:36
+#: application/controllers/Cron.php:264
 msgid "OK"
 msgstr ""
 
-#: application/controllers/Cron.php:268
+#: application/controllers/Cron.php:265 application/controllers/Cron.php:268
 #, php-format
 msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
 "It should run every minute (* * * * *)."
 msgstr ""
 
-#: application/controllers/Cron.php:271
+#: application/controllers/Cron.php:268 application/controllers/Cron.php:271
 #, php-format
 msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
 "isn't running!%sIt should run every minute (* * * * *)."
 msgstr ""
 
-#: application/controllers/Cron.php:276 application/views/cron/index.php:29
+#: application/controllers/Cron.php:273 application/views/cron/index.php:29
+#: application/controllers/Cron.php:276
 msgctxt "Master Cron"
 msgid "Not running"
 msgstr ""
@@ -1048,7 +1052,7 @@ msgstr ""
 #: application/views/search/lotw_unconfirmed_result.php:8
 #: application/views/search/result_search.php:7
 #: application/views/search/search_result_ajax.php:4
-#: application/views/simplefle/index.php:150
+#: application/views/simplefle/index.php:144
 #: application/views/statistics/custom.php:60
 #: application/views/statistics/custom_result.php:62
 #: application/views/statistics/custom_result.php:88
@@ -1062,6 +1066,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:4
 #: application/views/view_log/qso.php:104 application/views/visitor/index.php:6
 #: application/views/widgets/qsos.php:29
+#: application/views/simplefle/index.php:150
 msgid "Mode"
 msgstr "Režim"
 
@@ -1082,13 +1087,14 @@ msgstr "Režim"
 #: application/views/qso/components/previous_contacts.php:79
 #: application/views/qso/edit_ajax.php:142 application/views/qso/index.php:177
 #: application/views/search/search_result_ajax.php:5
-#: application/views/simplefle/index.php:151
+#: application/views/simplefle/index.php:145
 #: application/views/user/edit.php:230 application/views/user/edit.php:252
 #: application/views/user/edit.php:274 application/views/user/edit.php:296
 #: application/views/user/edit.php:319
 #: application/views/view_log/partial/log.php:10
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:109 application/views/visitor/index.php:9
+#: application/views/simplefle/index.php:151
 msgid "RST (S)"
 msgstr ""
 
@@ -1109,7 +1115,7 @@ msgstr ""
 #: application/views/qso/components/previous_contacts.php:80
 #: application/views/qso/edit_ajax.php:147 application/views/qso/index.php:182
 #: application/views/search/search_result_ajax.php:6
-#: application/views/simplefle/index.php:152
+#: application/views/simplefle/index.php:146
 #: application/views/user/edit.php:231 application/views/user/edit.php:253
 #: application/views/user/edit.php:275 application/views/user/edit.php:297
 #: application/views/user/edit.php:320
@@ -1117,6 +1123,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:6
 #: application/views/view_log/qso.php:114
 #: application/views/visitor/index.php:12
+#: application/views/simplefle/index.php:152
 msgid "RST (R)"
 msgstr ""
 
@@ -1226,7 +1233,7 @@ msgstr "Stát"
 #: application/views/search/cqzones_result.php:12
 #: application/views/search/result.php:33
 #: application/views/search/search_result_ajax.php:13
-#: application/views/simplefle/index.php:153
+#: application/views/simplefle/index.php:147
 #: application/views/stationsetup/stationsetup.php:125
 #: application/views/timeline/index.php:257 application/views/user/edit.php:130
 #: application/views/user/edit.php:238 application/views/user/edit.php:260
@@ -1235,6 +1242,7 @@ msgstr "Stát"
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/view_log/qso.php:515
 #: application/views/visitor/index.php:27
+#: application/views/simplefle/index.php:153
 msgid "Gridsquare"
 msgstr "Locátor"
 
@@ -1319,7 +1327,7 @@ msgstr "Vzdálenost"
 #: application/views/search/lotw_unconfirmed_result.php:9
 #: application/views/search/result_search.php:10
 #: application/views/search/search_result_ajax.php:15
-#: application/views/simplefle/index.php:149
+#: application/views/simplefle/index.php:143
 #: application/views/stationsetup/exportmapoptions.php:31
 #: application/views/statistics/custom.php:53
 #: application/views/statistics/custom_result.php:55
@@ -1334,6 +1342,7 @@ msgstr "Vzdálenost"
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/view_log/qso.php:87 application/views/visitor/index.php:33
 #: application/views/widgets/qsos.php:32
+#: application/views/simplefle/index.php:149
 msgid "Band"
 msgstr "Pásmo"
 
@@ -1728,10 +1737,11 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:527
 #: application/views/lotw_views/index.php:43
 #: application/views/simplefle/index.php:20
-#: application/views/simplefle/index.php:177
+#: application/views/simplefle/index.php:171
 #: application/views/stationsetup/exportmapoptions.php:5
 #: application/views/statistics/custom.php:31
 #: application/views/statistics/custom_result.php:33
+#: application/views/simplefle/index.php:177
 msgid "Options"
 msgstr "Možnosti"
 
@@ -2755,12 +2765,13 @@ msgstr ""
 #: application/views/search/lotw_unconfirmed.php:33
 #: application/views/search/lotw_unconfirmed_result.php:6
 #: application/views/search/result.php:11
-#: application/views/simplefle/index.php:148
+#: application/views/simplefle/index.php:142
 #: application/views/station_profile/edit.php:63
 #: application/views/stationsetup/linkedlocations.php:17
 #: application/views/user/edit.php:123 application/views/user/index.php:4
 #: application/views/user/index.php:47 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:82 application/views/view_log/qso.php:507
+#: application/views/simplefle/index.php:148
 msgid "Callsign"
 msgstr "Značka"
 
@@ -2839,7 +2850,7 @@ msgstr ""
 #: application/views/search/cqzones_result.php:7
 #: application/views/search/result_search.php:4
 #: application/views/search/search_result_ajax.php:89
-#: application/views/simplefle/index.php:146
+#: application/views/simplefle/index.php:140
 #: application/views/statistics/custom.php:38
 #: application/views/statistics/custom_result.php:40
 #: application/views/statistics/custom_result.php:85
@@ -2853,6 +2864,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:57
 #: application/views/visitor/index.php:147
 #: application/views/widgets/qsos.php:24
+#: application/views/simplefle/index.php:146
 msgid "Date"
 msgstr "Datum"
 
@@ -2875,7 +2887,7 @@ msgstr "Datum"
 #: application/views/search/cqzones_result.php:8
 #: application/views/search/result_search.php:5
 #: application/views/search/search_result_ajax.php:91
-#: application/views/simplefle/index.php:147
+#: application/views/simplefle/index.php:141
 #: application/views/statistics/custom_result.php:86
 #: application/views/timeline/index.php:256
 #: application/views/timeplotter/index.php:5
@@ -2883,6 +2895,7 @@ msgstr "Datum"
 #: application/views/view_log/partial/log_ajax.php:59
 #: application/views/visitor/index.php:150
 #: application/views/widgets/qsos.php:26
+#: application/views/simplefle/index.php:147
 msgid "Time"
 msgstr "Čas"
 
@@ -8469,6 +8482,7 @@ msgid "Remove"
 msgstr ""
 
 #: application/views/qslprint/qslprint.php:33
+#: application/views/simplefle/index.php:133
 #: application/views/simplefle/index.php:139
 msgid "QSO List"
 msgstr ""
@@ -8648,7 +8662,8 @@ msgstr ""
 msgid "TimeOff is less than TimeOn"
 msgstr ""
 
-#: application/views/qso/index.php:5 application/views/qso/index.php:696
+#: application/views/qso/index.php:5 application/views/qso/index.php:690
+#: application/views/qso/index.php:696
 msgid "Previous Contacts"
 msgstr "Předchozí spojení"
 
@@ -8762,35 +8777,19 @@ msgstr ""
 msgid "Connect"
 msgstr ""
 
-#: application/views/qso/index.php:656
-msgid "Stop"
-msgstr ""
-
-#: application/views/qso/index.php:657
-msgid "Tune"
-msgstr ""
-
-#: application/views/qso/index.php:658
-msgid "Stop Tune"
-msgstr ""
-
-#: application/views/qso/index.php:664
-msgid "CW Speed"
-msgstr ""
-
-#: application/views/qso/index.php:669
+#: application/views/qso/index.php:663 application/views/qso/index.php:669
 msgid "Send"
 msgstr ""
 
-#: application/views/qso/index.php:679
+#: application/views/qso/index.php:673 application/views/qso/index.php:679
 msgid "Suggestions"
 msgstr "Návrhy"
 
-#: application/views/qso/index.php:686
+#: application/views/qso/index.php:680 application/views/qso/index.php:686
 msgid "Profile Picture"
 msgstr ""
 
-#: application/views/qso/index.php:710
+#: application/views/qso/index.php:704 application/views/qso/index.php:710
 msgid "Max. 5 previous contacts are shown"
 msgstr ""
 
@@ -9179,6 +9178,7 @@ msgid ""
 msgstr ""
 
 #: application/views/simplefle/index.php:17
+#: application/views/simplefle/index.php:170
 #: application/views/simplefle/index.php:176
 msgid "Syntax Help"
 msgstr ""
@@ -9289,23 +9289,28 @@ msgstr ""
 msgid "Enter the Data"
 msgstr ""
 
+#: application/views/simplefle/index.php:148
 #: application/views/simplefle/index.php:154
 msgid "Refs"
 msgstr ""
 
+#: application/views/simplefle/index.php:160
 #: application/views/simplefle/index.php:166
 #, php-format
 msgid "The Refs can be either %sS%sOTA, %sI%sOTA, %sP%sOTA, or %sW%sWFF"
 msgstr ""
 
+#: application/views/simplefle/index.php:167
 #: application/views/simplefle/index.php:173
 msgid "Reload QSO List"
 msgstr ""
 
+#: application/views/simplefle/index.php:168
 #: application/views/simplefle/index.php:174
 msgid "Save in Wavelog"
 msgstr ""
 
+#: application/views/simplefle/index.php:169
 #: application/views/simplefle/index.php:175
 msgid "Clear Logging Session"
 msgstr ""
@@ -10995,6 +11000,22 @@ msgstr ""
 
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
+msgstr ""
+
+#: application/views/qso/index.php:656
+msgid "Stop"
+msgstr ""
+
+#: application/views/qso/index.php:657
+msgid "Tune"
+msgstr ""
+
+#: application/views/qso/index.php:658
+msgid "Stop Tune"
+msgstr ""
+
+#: application/views/qso/index.php:664
+msgid "CW Speed"
 msgstr ""
 
 #~ msgid "You are using"
