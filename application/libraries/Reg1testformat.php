@@ -47,7 +47,7 @@ class Reg1testformat {
 
       //set QSO info for QSO with max distance only if we can determine it
       if($maxdistanceqso['qso'] != null){
-         $edi_header .= "CODXC=" . strtoupper($maxdistanceqso['qso']->COL_CALL) . ";" . substr(strtoupper($maxdistanceqso['qso']->COL_GRIDSQUARE), 0, 6) . ";" . $maxdistanceqso['distance'] . "\r\n"; //Arguments describe the claimed ODX contact call, WWL and distance.
+         $edi_header .= "CODXC=" . strtoupper($maxdistanceqso['qso']->COL_CALL) . ";" . substr(strtoupper($maxdistanceqso['qso']->COL_GRIDSQUARE), 0, 6) . ";" . intval($maxdistanceqso['distance']) . "\r\n"; //Arguments describe the claimed ODX contact call, WWL and distance.
       }else{
          $edi_header .= "CODXC=" . "\r\n"; //Arguments describe the claimed ODX contact call, WWL and distance. Leave empty.
       }

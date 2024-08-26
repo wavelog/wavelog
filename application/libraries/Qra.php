@@ -134,7 +134,7 @@ class Qra {
 	 * @param string 	$unit		Unit of measurement
 	 * 	
 	 * @return object 	$maxdistanceqso		Object of the QSO with the maximum distance
-	 * @return integer 	$maxdistance		Maximum distance
+	 * @return float 	$maxdistance		Maximum distance
 	 */
 
 	function getMaxDistanceQSO($mylocator, $qsos, $unit = "M") {
@@ -162,7 +162,7 @@ class Qra {
 
 		$result = [];
 		$result['qso'] = $maxdistanceqso;
-		$result['distance'] = intval($maxdistance);
+		$result['distance'] = $maxdistance;
 
 		//return findings
 		return $result;
