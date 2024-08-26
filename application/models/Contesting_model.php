@@ -22,7 +22,7 @@ class Contesting_model extends CI_Model {
 			$this->config->item('table_name') .
 			" WHERE station_id =  ?  AND COL_TIME_ON >= ? AND COL_CONTEST_ID = ? ORDER BY COL_PRIMARY_KEY ASC";
 
-		$data = $this->db->query($sql,array($station_id, $date, $contestid));
+		$data = $this->db->query($sql, array($station_id, $date, $contestid));
 		return $data->result();
 	}
 
@@ -30,7 +30,7 @@ class Contesting_model extends CI_Model {
 		$this->load->model('Stations');
 		$station_id = $this->Stations->find_active();
 
-		$binding=[];
+		$binding = [];
 		$sql = "SELECT * from contest_session where station_id = ?";
 		$binding[] = $station_id;
 
@@ -44,7 +44,7 @@ class Contesting_model extends CI_Model {
 		$this->load->model('Stations');
 		$station_id = $this->Stations->find_active();
 
-		$binding=[];
+		$binding = [];
 		$sql = "delete from contest_session where station_id = ?";
 		$binding[] = $station_id;
 
@@ -74,7 +74,7 @@ class Contesting_model extends CI_Model {
 			'station_id' 			=> $station_id,
 		);
 
-		$binding=[];
+		$binding = [];
 		$sql = "SELECT * from contest_session where station_id = ?";
 		$binding[] = $station_id;
 
@@ -108,7 +108,7 @@ class Contesting_model extends CI_Model {
 
 		$data = $this->db->query($sql);
 
-		return($data->result_array());
+		return ($data->result_array());
 	}
 
 	function getAllContests() {
@@ -117,7 +117,7 @@ class Contesting_model extends CI_Model {
 
 		$data = $this->db->query($sql);
 
-		return($data->result_array());
+		return ($data->result_array());
 	}
 
 	function delete($id) {
@@ -171,7 +171,7 @@ class Contesting_model extends CI_Model {
 		// Clean ID
 		$clean_id = $this->security->xss_clean($id);
 
-		$binding=[];
+		$binding = [];
 		$sql = "SELECT id, name, adifname, active FROM contest where id = ?";
 		$binding[] = $clean_id;
 
@@ -237,7 +237,7 @@ class Contesting_model extends CI_Model {
 			$this->db->where("COL_MODE", xss_clean($mode));
 			$this->db->or_where("COL_SUBMODE", xss_clean($mode));
 			$this->db->group_end();
-			$this->db->order_by($this->config->item('table_name').".COL_TIME_ON", "DESC");
+			$this->db->order_by($this->config->item('table_name') . ".COL_TIME_ON", "DESC");
 			$query = $this->db->get($this->config->item('table_name'));
 
 			return $query;
@@ -246,32 +246,32 @@ class Contesting_model extends CI_Model {
 	}
 
 	function export_custom($from, $to, $contest_id, $station_id, $band = null) {
-		$this->db->select(''.$this->config->item('table_name').'.*, station_profile.*');
+		$this->db->select('' . $this->config->item('table_name') . '.*, station_profile.*');
 		$this->db->from($this->config->item('table_name'));
-		$this->db->where($this->config->item('table_name').'.station_id', $station_id);
+		$this->db->where($this->config->item('table_name') . '.station_id', $station_id);
 
 		// If date is set, we format the date and add it to the where-statement
 		if ($from != 0) {
 			$from = DateTime::createFromFormat('Y-m-d', $this->security->xss_clean($from));
 			$from = $from->format('Y-m-d');
-			$this->db->where("date(".$this->config->item('table_name').".COL_TIME_ON) >= '".$from."'");
+			$this->db->where("date(" . $this->config->item('table_name') . ".COL_TIME_ON) >= '" . $from . "'");
 		}
 		if ($to != 0) {
 			$to = DateTime::createFromFormat('Y-m-d', $this->security->xss_clean($to));
 			$to = $to->format('Y-m-d');
-			$this->db->where("date(".$this->config->item('table_name').".COL_TIME_ON) <= '".$to."'");
+			$this->db->where("date(" . $this->config->item('table_name') . ".COL_TIME_ON) <= '" . $to . "'");
 		}
 
 		// If band is set, we only load contacts for that band
 		if ($band != null) {
-			$this->db->where($this->config->item('table_name').'.COL_BAND', $band);
+			$this->db->where($this->config->item('table_name') . '.COL_BAND', $band);
 		}
 
-		$this->db->where($this->config->item('table_name').'.COL_CONTEST_ID', $this->security->xss_clean($contest_id));
+		$this->db->where($this->config->item('table_name') . '.COL_CONTEST_ID', $this->security->xss_clean($contest_id));
 
-		$this->db->order_by($this->config->item('table_name').".COL_TIME_ON", "ASC");
+		$this->db->order_by($this->config->item('table_name') . ".COL_TIME_ON", "ASC");
 
-		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
+		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
 
 		return $this->db->get();
 	}
@@ -280,7 +280,7 @@ class Contesting_model extends CI_Model {
 		$this->load->model('Stations');
 		$station_id = $this->Stations->find_active();
 
-		$binding=[];
+		$binding = [];
 		$sql = "select col_contest_id, min(date(col_time_on)) mindate, max(date(col_time_on)) maxdate, year(col_time_on) year, month(col_time_on) month
 			from " . $this->config->item('table_name') . "
 			where coalesce(COL_CONTEST_ID, '') <> ''
@@ -299,7 +299,7 @@ class Contesting_model extends CI_Model {
 
 		$station_id = $this->security->xss_clean($station_id);
 
-		$binding=[];
+		$binding = [];
 		$sql = "select distinct year(col_time_on) year
 			from " . $this->config->item('table_name') . "
 			where coalesce(COL_CONTEST_ID, '') <> ''
@@ -319,7 +319,7 @@ class Contesting_model extends CI_Model {
 		$station_id = $this->security->xss_clean($station_id);
 		$year = $this->security->xss_clean($year);
 
-		$binding=[];
+		$binding = [];
 		$sql = "select distinct col_contest_id, coalesce(contest.name, col_contest_id) contestname
 			from " . $this->config->item('table_name') . " thcv
 			left outer join contest on thcv.col_contest_id = contest.adifname
@@ -343,14 +343,14 @@ class Contesting_model extends CI_Model {
 		$year = $this->security->xss_clean($year);
 		$contestid = $this->security->xss_clean($contestid);
 
-		$binding=[];
+		$binding = [];
 		$sql = "select distinct (date(col_time_on)) date
 			from " . $this->config->item('table_name') . "
 			where coalesce(COL_CONTEST_ID, '') <> ''
 			and station_id = ?" .
 			" and year(col_time_on) = ? and col_contest_id = ?";
 
-    $binding[] = $station_id;
+		$binding[] = $station_id;
 		$binding[] = $year;
 		$binding[] = $contestid;
 
@@ -360,13 +360,13 @@ class Contesting_model extends CI_Model {
 	}
 
 	function get_contest_bands($station_id, $contestid, $from, $to) {
-		
+
 		//get distinct bands for the selected timeframe	
-		$binding=[];
+		$binding = [];
 		$sql = "select distinct COL_BAND band
 			from " . $this->config->item('table_name') . "
-			where date(".$this->config->item('table_name').".COL_TIME_ON) >= ?
-			and date(".$this->config->item('table_name').".COL_TIME_ON) <= ?
+			where date(" . $this->config->item('table_name') . ".COL_TIME_ON) >= ?
+			and date(" . $this->config->item('table_name') . ".COL_TIME_ON) <= ?
 			and station_id = ? and COL_CONTEST_ID = ?";
 
 		//add data to bindings

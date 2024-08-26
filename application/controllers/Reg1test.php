@@ -1,6 +1,6 @@
 <?php
 
-if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+if (! defined('BASEPATH')) exit('No direct script access allowed');
 
 
 /*
@@ -14,7 +14,10 @@ class Reg1test extends CI_Controller {
 
 		// do authorization check
 		$this->load->model('user_model');
-		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+		if (!$this->user_model->authorize(2)) {
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+			redirect('dashboard');
+		}
 	}
 
 	public function index() {
@@ -57,7 +60,7 @@ class Reg1test extends CI_Controller {
 
 		//deny acccess if station is not accessible
 		if (!$this->stations->check_station_is_accessible($station_id)) {
-			$this->session->set_flashdata('error', __("You're not allowed to do that!")); 
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 			redirect('dashboard');
 			return;
 		}
@@ -74,7 +77,7 @@ class Reg1test extends CI_Controller {
 
 		//load model
 		$this->load->model('Contesting_model');
-		
+
 		//get cleaned station id
 		$station_id = $this->input->post('station_id', true);
 
@@ -93,18 +96,18 @@ class Reg1test extends CI_Controller {
 
 		//get cleaned station id
 		$station_id = $this->input->post('station_id', true);
-		
+
 		//deny access if station is not accessible
 		if (!$this->stations->check_station_is_accessible($station_id)) {
-			$this->session->set_flashdata('error', __("You're not allowed to do that!")); 
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 			redirect('dashboard');
 			return;
-		} 
+		}
 
 		//get cleaned year, contest id, from and to values
 		$year = $this->input->post('year', true);
 		$contestid = $this->input->post('contestid', true);
-		
+
 		//get contestdates from database
 		$result = $this->Contesting_model->get_contest_dates($station_id, $year, $contestid);
 
@@ -117,17 +120,17 @@ class Reg1test extends CI_Controller {
 
 		//load models
 		$this->load->model('Contesting_model');
-		$this->load->model('stations');	
+		$this->load->model('stations');
 
 		//get cleaned station id
 		$station_id = $this->input->post('station_id', true);
-		
+
 		//deny access if station is not accessible
 		if (!$this->stations->check_station_is_accessible($station_id)) {
-			$this->session->set_flashdata('error', __("You're not allowed to do that!")); 
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 			redirect('dashboard');
 			return;
-		} 
+		}
 
 		//get cleaned contest id, from and to values
 		$contestid = $this->input->post('contestid', true);
@@ -140,7 +143,6 @@ class Reg1test extends CI_Controller {
 		//return result as json
 		header('Content-Type: application/json');
 		echo json_encode($result);
-		
 	}
 
 	public function export() {
@@ -157,12 +159,13 @@ class Reg1test extends CI_Controller {
 
 		//deny access if station is not accessible
 		$station_id = $this->input->post('station_id', true);
+		
 		if (!$this->stations->check_station_is_accessible($station_id)) {
-			$this->session->set_flashdata('error', __("You're not allowed to do that!")); 
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 			redirect('dashboard');
 			return;
 		}
-		
+
 		//get user input to define the export parameters
 		$contest_id = $this->input->post('contestid', true);
 		$from = $this->input->post('contestdatesfrom', true);
@@ -182,7 +185,7 @@ class Reg1test extends CI_Controller {
 
 		//set contest header data for export
 		$data['band'] = $band;
-		$data['qso_count'] = count($data['qsos']->result()); 
+		$data['qso_count'] = count($data['qsos']->result());
 		$data['sentexchange'] = $this->input->post('sentexchange', true);
 		$data['contest_id'] = $contest_id;
 		$data['from'] = $from;
