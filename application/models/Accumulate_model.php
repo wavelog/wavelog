@@ -3,8 +3,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class Accumulate_model extends CI_Model
 {
-    function get_accumulated_data($band, $award, $mode, $period)
-    {
+    function get_accumulated_data($band, $award, $mode, $propmode, $period) {
         $this->load->model('logbooks_model');
         $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
