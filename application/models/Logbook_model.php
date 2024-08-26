@@ -3421,7 +3421,8 @@ function lotw_last_qsl_date($user_id) {
 				array_push($a_qsos,$one_error['raw_qso'] ?? '');
 				if (isset($record['prop_mode']) && $record['prop_mode'] == 'SAT' && $amsat_status_upload) {
 					$amsat_qsodate=new DateTime(date('Y-m-d', strtotime($record['qso_date'])) ." ".date('H:i:s', strtotime($record['time_on'])));
-					if ($amsat_qsodate->diff($today)->d <= 3) {
+					$date_diff = (int)$amsat_qsodate->diff($today)->format('%r%d');
+					if ($date_diff >= 0 && $date_diff <= 5) {
 						$data = array(
 							'COL_TIME_ON' => date('Y-m-d', strtotime($record['qso_date'])) ." ".date('H:i:s', strtotime($record['time_on'])),
 							'COL_SAT_NAME' => $record['sat_name'],
