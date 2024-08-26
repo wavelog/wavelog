@@ -273,7 +273,7 @@ class Logbook_model extends CI_Model {
             'COL_QSL_SENT_VIA' => $this->input->post('qsl_sent_method'),
             'COL_QSL_RCVD_VIA' => $this->input->post('qsl_rcvd_method'),
             'COL_QSL_VIA' => $this->input->post('qsl_via'),
-            'COL_QSLMSG' => $this->input->post('qslmsg'),
+            'COL_QSLMSG' => $this->session->userdata('operator_firstname') ?? '',
             'COL_OPERATOR' => $this->input->post('operator_callsign') ?? $this->session->userdata('operator_callsign'),
             'COL_QTH' => $qso_qth,
             'COL_PROP_MODE' => $prop_mode,
@@ -3411,7 +3411,7 @@ function lotw_last_qsl_date($user_id) {
 	  return '1900-01-01 00:00:00.000';
   }
 
-    function import_bulk($records, $station_id = "0", $skipDuplicate = false, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markHrd = false,$skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false) {
+    function import_bulk($records, $station_id = "0", $skipDuplicate = false, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markHrd = false,$skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false, $operatorFirstname = NULL) {
 		$this->load->model('user_model');
 		$custom_errors='';
 		$a_qsos=[];
@@ -3459,6 +3459,7 @@ function lotw_last_qsl_date($user_id) {
 		return $custom_errors;
 }
 
+
     /*
      * $skipDuplicate - used in ADIF import to skip duplicate checking when importing QSOs
      * $markLoTW - used in ADIF import to mark QSOs as exported to LoTW when importing QSOs
@@ -3468,7 +3469,7 @@ function lotw_last_qsl_date($user_id) {
      * $skipexport - used in ADIF import to skip the realtime upload to QRZ Logbook when importing QSOs from ADIF
      */
 
-  function import($record, $station_id = "0", $skipDuplicate = false, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markHrd = false,$skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false, $batchmode = false, $station_id_ok = false, $station_profile = null) {
+  function import($record, $station_id = "0", $skipDuplicate = false, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markHrd = false,$skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false, $batchmode = false, $station_id_ok = false, $station_profile = null, $operatorFirstname = null) {
 	  // be sure that station belongs to user
 	  $this->load->model('stations');
 	  if ($station_id_ok == false) {
@@ -4022,7 +4023,7 @@ function lotw_last_qsl_date($user_id) {
 			  'COL_QSL_SENT' => $input_qsl_sent,
 			  'COL_QSL_SENT_VIA' => $input_qsl_sent_via,
 			  'COL_QSL_VIA' => (!empty($record['qsl_via'])) ? $record['qsl_via'] : '',
-			  'COL_QSLMSG' => (!empty($record['qslmsg'])) ? $record['qslmsg'] : '',
+			  'COL_QSLMSG' => $operatorFirstname ?? '',
 			  'COL_QSLRDATE' => $input_qslrdate,
 			  'COL_QSLSDATE' => $input_qslsdate,
 			  'COL_QSO_COMPLETE' => (!empty($record['qso_complete'])) ? $record['qso_complete'] : '',

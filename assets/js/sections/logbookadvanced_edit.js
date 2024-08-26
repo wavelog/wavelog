@@ -183,7 +183,7 @@ function saveBatchEditQsos(id_list) {
 	if (column == 'lotwsent' || column == 'lotwreceived') {
 		value = $("#editLoTW").val();
 	}
-	if (column == 'sota' || column == 'pota' || column == 'wwff' || column == 'gridsquare' || column == 'comment' || column == 'operator' || column == 'qslvia' || column == 'contest') {
+	if (column == 'sota' || column == 'pota' || column == 'wwff' || column == 'gridsquare' || column == 'comment' || column == 'operator' || column == 'qslvia' || column == 'contest' || column == 'qslmsg') {
 		value = $("#editTextInput").val();
 	}
 
@@ -262,7 +262,7 @@ function changeEditType(type) {
 		$('#editContest').show();
 	} else if (type == "lotwsent" || type == "lotwreceived") {
 		$('#editLoTW').show();
-	} else if (type == "gridsquare" || type == "sota" || type == "wwff" || type == "operator" || type == "pota" || type == "comment" || type == "qslvia" || type == "contest") {
+	} else if (type == "gridsquare" || type == "sota" || type == "wwff" || type == "operator" || type == "pota" || type == "comment" || type == "qslvia" || type == "contest" || type == "qslmsg") {
 		$('#editTextInput').show();
 	}
 }

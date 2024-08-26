@@ -13,6 +13,7 @@
 			<option value="pota"><?= __("POTA"); ?></option>
 			<option value="propagation"><?= __("Propagation"); ?></option>
 			<option value="qslvia"><?= __("QSL via"); ?></option>
+			<option value="qslmsg">QSLMSG</option>
 			<option value="satellite"><?= __("Satellite"); ?></option>
 			<option value="sota"><?= __("SOTA"); ?></option>
 			<option value="station"><?= __("Station Location"); ?></option>
