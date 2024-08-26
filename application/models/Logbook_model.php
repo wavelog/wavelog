@@ -1317,7 +1317,7 @@ class Logbook_model extends CI_Model {
 		  'COL_CONT' => $this->input->post('continent'),
 		  'COL_DXCC'=> $this->input->post('dxcc_id'),
 		  'COL_CQZ' => $this->input->post('cqz'),
-		  'COL_ITUZ' => $this->input->post('ituz') ?? null,
+		  'COL_ITUZ' => $this->input->post('ituz') != '' ? $this->input->post('ituz') : null,
 		  'COL_SAT_NAME' => $this->input->post('sat_name'),
 		  'COL_SAT_MODE' => $this->input->post('sat_mode'),
 		  'COL_NOTES' => $this->input->post('notes'),
