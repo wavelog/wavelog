@@ -48,12 +48,12 @@ $cert2 = str_replace("-----END CERTIFICATE-----", "", $cert1);
 
 <?php if($qso->COL_FREQ_RX != "" && $qso->COL_FREQ_RX != "0") { $freq_in_mhz_rx = $qso->COL_FREQ_RX / 1000000; ?><FREQ_RX:<?php echo strlen($freq_in_mhz_rx); ?>><?php echo $freq_in_mhz_rx; } ?>
 
-<?php if($qso->COL_PROP_MODE) { ?><PROP_MODE:<?php echo strlen($qso->COL_PROP_MODE); ?>><?php echo strtoupper($qso->COL_PROP_MODE); } ?>
+<?php if(isset($qso->COL_PROP_MODE)) { ?><PROP_MODE:<?php echo strlen($qso->COL_PROP_MODE); ?>><?php echo strtoupper($qso->COL_PROP_MODE); } ?>
 
-<?php if($qso->COL_SAT_NAME) { $satellite_name_check = $CI->lotw_satellite_map(strtoupper($qso->COL_SAT_NAME)); if($satellite_name_check != FALSE) { $satname = $satellite_name_check; } else { $satname = $qso->COL_SAT_NAME; } ?>
+<?php if(isset($qso->COL_SAT_NAME)) { $satellite_name_check = $CI->lotw_satellite_map(strtoupper($qso->COL_SAT_NAME)); if($satellite_name_check != FALSE) { $satname = $satellite_name_check; } else { $satname = $qso->COL_SAT_NAME; } ?>
 <SAT_NAME:<?php echo strlen($satname); ?>><?php echo strtoupper($satname); } ?>
 
-<?php if($qso->COL_BAND_RX) { ?><BAND_RX:<?php echo strlen($qso->COL_BAND_RX); ?>><?php echo strtoupper($qso->COL_BAND_RX); } ?>
+<?php if(isset($qso->COL_BAND_RX)) { ?><BAND_RX:<?php echo strlen($qso->COL_BAND_RX); ?>><?php echo strtoupper($qso->COL_BAND_RX); } ?>
 
 <?php $date_on = strtotime($qso->COL_TIME_ON); $new_date = date('Y-m-d', $date_on); ?>
 <QSO_DATE:<?php echo strlen($new_date); ?>><?php echo $new_date; ?>
@@ -72,20 +72,20 @@ if($station_profile->state != "" && $station_profile->station_country == "CANADA
 }
 
 // Add CQ Zone
-if($station_profile->station_cq) {
+if(isset($station_profile->station_cq)) {
 	$sign_string .= $station_profile->station_cq;
 }
 
 // Add Gridsquare
-if($station_profile->station_gridsquare) {
+if(isset($station_profile->station_gridsquare)) {
 	$sign_string .= strtoupper($station_profile->station_gridsquare);
 }
 
-if($station_profile->station_iota) {
+if(isset($station_profile->station_iota)) {
 	$sign_string .= strtoupper($station_profile->station_iota);
 }
 
-if($station_profile->station_itu) {
+if(isset($station_profile->station_itu)) {
 	$sign_string .= $station_profile->station_itu;
 }
 
@@ -113,32 +113,32 @@ if($station_profile->state != "" && $station_profile->station_country == "HAWAII
 	$sign_string .= strtoupper($station_profile->state);
 }
 
-if($qso->COL_BAND) {
+if(isset($qso->COL_BAND)) {
 	$sign_string .= strtoupper($qso->COL_BAND);
 }
 
-if($qso->COL_BAND_RX) {
+if(isset($qso->COL_BAND_RX)) {
 	$sign_string .= strtoupper($qso->COL_BAND_RX);
 }
 
-if($qso->COL_CALL) {
+if(isset($qso->COL_CALL)) {
 	$sign_string .= strtoupper($qso->COL_CALL);
 }
 
-if($freq_in_mhz) {
+if(isset($freq_in_mhz)) {
 	$sign_string .= strtoupper($freq_in_mhz);
 }
 
-if($freq_in_mhz_rx) {
+if(isset($freq_in_mhz_rx)) {
 	$sign_string .= strtoupper($freq_in_mhz_rx);
 }
 
-if($qso->COL_MODE) {
+if(isset($qso->COL_MODE)) {
 	$sign_string .= strtoupper($CI->mode_map($qso->COL_MODE, $qso->COL_SUBMODE));
 }
 
 
-if($qso->COL_PROP_MODE) {
+if(isset($qso->COL_PROP_MODE)) {
 	$sign_string .= strtoupper($qso->COL_PROP_MODE);
 }
 
@@ -146,7 +146,7 @@ $sign_string .= $new_date;
 
 $sign_string .= $new_on."Z";
 
-if($qso->COL_SAT_NAME) {
+if(isset($qso->COL_SAT_NAME)) {
 	$satellite_name_check = $CI->lotw_satellite_map(strtoupper($qso->COL_SAT_NAME)); if($satellite_name_check != FALSE) { $satname = $satellite_name_check; } else { $satname = $qso->COL_SAT_NAME; }
 
 	$sign_string .= strtoupper($satname);

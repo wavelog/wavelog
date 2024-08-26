@@ -87,6 +87,17 @@ class User_Model extends CI_Model {
 		return $r->user_email;
 	}
 
+	function get_user_amsat_status_upload_by_id($id) {
+
+		$clean_id = $this->security->xss_clean($id);
+
+		$this->db->where('user_id', $clean_id);
+		$query = $this->db->get($this->config->item('auth_table'));
+
+		$r = $query->row();
+		return $r->user_amsat_status_upload;
+	}
+
 	function hasQrzKey($user_id) {
 		$this->db->where('station_profile.qrzapikey is not null');
 		$this->db->where('station_profile.qrzapikey != ""');
