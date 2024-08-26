@@ -285,7 +285,7 @@
 
                                 <div class="mb-3">
                                     <label for="ituz"><?= __("ITU Zone"); ?></label>
-                                    <select class="form-select" id="ituz" name="ituz" required>
+                                    <select class="form-select" id="ituz" name="ituz">
                                         <option value=''></option>
                                         <?php
                                         for ($i = 1; $i<=90; $i++) {
