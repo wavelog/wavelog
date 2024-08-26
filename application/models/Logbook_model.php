@@ -3404,6 +3404,8 @@ function lotw_last_qsl_date($user_id) {
 		$this->load->model('user_model');
 		$custom_errors='';
 		$a_qsos=[];
+		$amsat_qsos=[];
+		$today = new DateTime('today');
 		if (!$this->stations->check_station_is_accessible($station_id) && $apicall == false ) {
 			return 'Station not accessible<br>';
 		}
@@ -3415,26 +3417,33 @@ function lotw_last_qsl_date($user_id) {
 			$one_error = $this->logbook_model->import($record, $station_id, $skipDuplicate, $markClublog, $markLotw,$dxccAdif, $markQrz, $markHrd, $skipexport, $operatorName, $apicall, $skipStationCheck, true, $station_id_ok, $station_profile);
 			if ($one_error['error'] ?? '' != '') {
 				$custom_errors.=$one_error['error']."<br/>";
-			} else {
+			} else {	// No Errors / QSO doesn't exist so far
 				array_push($a_qsos,$one_error['raw_qso'] ?? '');
-			}
-			if (isset($record['prop_mode']) && $record['prop_mode'] == 'SAT' && $amsat_status_upload) {
-				$data = array(
-					'COL_TIME_ON' => date('Y-m-d', strtotime($record['qso_date'])) ." ".date('H:i:s', strtotime($record['time_on'])),
-					'COL_SAT_NAME' => $record['sat_name'],
-					'COL_BAND' => $record['band'],
-					'COL_BAND_RX' => $record['band_rx'] ?? '',
-					'COL_MODE' => $record['mode'],
-					'COL_STATION_CALLSIGN' => $station_profile->station_callsign,
-					'COL_MY_GRIDSQUARE' => $station_profile->station_gridsquare,
-				);
-				$this->upload_amsat_status($data);
+				if (isset($record['prop_mode']) && $record['prop_mode'] == 'SAT' && $amsat_status_upload) {
+					$amsat_qsodate=new DateTime(date('Y-m-d', strtotime($record['qso_date'])) ." ".date('H:i:s', strtotime($record['time_on'])));
+					if ($amsat_qsodate->diff($today)->d <= 3) {
+						$data = array(
+							'COL_TIME_ON' => date('Y-m-d', strtotime($record['qso_date'])) ." ".date('H:i:s', strtotime($record['time_on'])),
+							'COL_SAT_NAME' => $record['sat_name'],
+							'COL_BAND' => $record['band'],
+							'COL_BAND_RX' => $record['band_rx'] ?? '',
+							'COL_MODE' => $record['mode'],
+							'COL_STATION_CALLSIGN' => $station_profile->station_callsign,
+							'COL_MY_GRIDSQUARE' => $station_profile->station_gridsquare,
+						);
+						array_push($amsat_qsos,$data);
+					}
+				}
 			}
 		}
 		$records='';
 		gc_collect_cycles();
 		if (count($a_qsos)>0) {
 			$this->db->insert_batch($this->config->item('table_name'), $a_qsos);
+		}
+		foreach($amsat_qsos as $amsat_qso) {
+			log_message("Error",var_export($amsat_qso,true)); // Debug // @flo: remove, when okay
+			// $this->upload_amsat_status($data);
 		}
 		return $custom_errors;
 }
