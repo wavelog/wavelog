@@ -65,7 +65,7 @@ class Reg1testformat {
       return "\r\n";
    }
 
-   public function qso($qsodata, $qsonumber) {
+   public function qso($qsodata) {
 
       //Construct QSO detail
       $edi_detail = "";

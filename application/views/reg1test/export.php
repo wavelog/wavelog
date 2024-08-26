@@ -13,10 +13,8 @@ echo $CI->reg1testformat->header($contest_id, $from, $to, $callsign, $gridlocato
 								 $soapbox, $qso_count, $sentexchange, $txequipment, $power, $rxequipment, $antenna, $antennaheight, $maxdistanceqso);
 
 //write QSO details while keeping track of the QSO number
-$i = 1;
 foreach ($qsos->result() as $row) {
-	echo $CI->reg1testformat->qso($row, $i);
-	$i++;
+	echo $CI->reg1testformat->qso($row);
 }
 
 //get footer
