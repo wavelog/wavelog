@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-25 17:03+0000\n"
+"POT-Creation-Date: 2024-08-26 13:16+0000\n"
 "PO-Revision-Date: 2024-08-25 13:06+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 5.7\n"
 
-#: application/controllers/Accumulated.php:13
+#: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
 #: application/controllers/Activatorsmap.php:13
 #: application/controllers/Adif.php:13 application/controllers/Awards.php:16
@@ -92,7 +92,7 @@ msgstr ""
 msgid "You're not allowed to do that!"
 msgstr "Não é permitido fazer isso!"
 
-#: application/controllers/Accumulated.php:21
+#: application/controllers/Accumulated.php:19
 #: application/views/interface_assets/header.php:150
 msgid "Accumulated Statistics"
 msgstr "Estatísticas acumuladas"
@@ -2430,31 +2430,31 @@ msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr ""
 "HRDlog: Não foram encontrados perfis de estação com credenciais do HRDlog."
 
-#: application/models/Logbook_model.php:4143
+#: application/models/Logbook_model.php:4168
 msgid "QSO could not be matched"
 msgstr "Não há correspondência de contactos"
 
-#: application/models/Logbook_model.php:4149
+#: application/models/Logbook_model.php:4174
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confirmado por LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:4154
+#: application/models/Logbook_model.php:4179
 msgid "confirmed by award manager"
 msgstr "confirmado pelo gestor do diploma"
 
-#: application/models/Logbook_model.php:4157
+#: application/models/Logbook_model.php:4182
 msgid "confirmed by cross-check of DCL data"
 msgstr "confirmado pelo controlo cruzado dos dados da DCL"
 
-#: application/models/Logbook_model.php:4160
+#: application/models/Logbook_model.php:4185
 msgid "confirmation pending"
 msgstr "confirmação pendente"
 
-#: application/models/Logbook_model.php:4163
+#: application/models/Logbook_model.php:4188
 msgid "unconfirmed"
 msgstr "não confirmado"
 
-#: application/models/Logbook_model.php:4166
+#: application/models/Logbook_model.php:4191
 msgid "unknown"
 msgstr "desconhecido"
 
@@ -2512,6 +2512,7 @@ msgstr "Diferença"
 
 #: application/views/accumulate/index.php:24
 #: application/views/accumulate/index.php:34
+#: application/views/accumulate/index.php:83
 #: application/views/activated_gridmap/index.php:10
 #: application/views/activated_gridmap/index.php:22
 #: application/views/activated_gridmap/index.php:32
@@ -2631,7 +2632,208 @@ msgstr "Worked All Japan (WAJA)"
 msgid "Period"
 msgstr "Período"
 
-#: application/views/accumulate/index.php:83
+#: application/views/accumulate/index.php:80
+#: application/views/gridmap/index.php:38
+#: application/views/logbookadvanced/edit.php:14
+#: application/views/logbookadvanced/index.php:215
+#: application/views/logbookadvanced/index.php:609
+#: application/views/logbookadvanced/useroptions.php:118
+#: application/views/timeline/index.php:74
+msgid "Propagation"
+msgstr "Propagação"
+
+#: application/views/accumulate/index.php:84
+#: application/views/timeline/index.php:78
+msgid "All but SAT"
+msgstr ""
+
+#: application/views/accumulate/index.php:85
+#: application/views/gridmap/index.php:42
+#: application/views/timeline/index.php:79
+msgid "None/Empty"
+msgstr "Nenhum/Vazio"
+
+#: application/views/accumulate/index.php:86 application/views/csv/index.php:95
+#: application/views/dxatlas/index.php:95
+#: application/views/gridmap/index.php:44 application/views/kml/index.php:80
+#: application/views/logbookadvanced/index.php:219
+#: application/views/qso/edit_ajax.php:192 application/views/qso/index.php:404
+#: application/views/timeline/index.php:80
+msgctxt "Propagation Mode"
+msgid "Aircraft Scatter"
+msgstr "Aircraft Scatter"
+
+#: application/views/accumulate/index.php:87 application/views/csv/index.php:96
+#: application/views/dxatlas/index.php:96
+#: application/views/gridmap/index.php:45 application/views/kml/index.php:81
+#: application/views/logbookadvanced/index.php:220
+#: application/views/qso/edit_ajax.php:193 application/views/qso/index.php:405
+#: application/views/timeline/index.php:81
+msgctxt "Propagation Mode"
+msgid "Aurora"
+msgstr "Aurora"
+
+#: application/views/accumulate/index.php:88 application/views/csv/index.php:97
+#: application/views/dxatlas/index.php:97
+#: application/views/gridmap/index.php:46 application/views/kml/index.php:82
+#: application/views/logbookadvanced/index.php:221
+#: application/views/qso/edit_ajax.php:194 application/views/qso/index.php:406
+#: application/views/timeline/index.php:82
+msgctxt "Propagation Mode"
+msgid "Aurora-E"
+msgstr "Aurora-E"
+
+#: application/views/accumulate/index.php:89 application/views/csv/index.php:98
+#: application/views/dxatlas/index.php:98
+#: application/views/gridmap/index.php:47 application/views/kml/index.php:83
+#: application/views/logbookadvanced/index.php:222
+#: application/views/qso/edit_ajax.php:195 application/views/qso/index.php:407
+#: application/views/timeline/index.php:83
+msgctxt "Propagation Mode"
+msgid "Back scatter"
+msgstr "Back scatter"
+
+#: application/views/accumulate/index.php:90 application/views/csv/index.php:99
+#: application/views/dxatlas/index.php:99
+#: application/views/gridmap/index.php:48 application/views/kml/index.php:84
+#: application/views/logbookadvanced/index.php:223
+#: application/views/qso/edit_ajax.php:196 application/views/qso/index.php:408
+#: application/views/timeline/index.php:84
+msgctxt "Propagation Mode"
+msgid "EchoLink"
+msgstr "EchoLink"
+
+#: application/views/accumulate/index.php:91
+#: application/views/csv/index.php:100 application/views/dxatlas/index.php:100
+#: application/views/gridmap/index.php:49 application/views/kml/index.php:85
+#: application/views/logbookadvanced/index.php:224
+#: application/views/qso/edit_ajax.php:197 application/views/qso/index.php:409
+#: application/views/timeline/index.php:85
+msgctxt "Propagation Mode"
+msgid "Earth-Moon-Earth"
+msgstr "Terra-Lua-Terra"
+
+#: application/views/accumulate/index.php:92
+#: application/views/csv/index.php:101 application/views/dxatlas/index.php:101
+#: application/views/gridmap/index.php:50 application/views/kml/index.php:86
+#: application/views/logbookadvanced/index.php:225
+#: application/views/qso/edit_ajax.php:198 application/views/qso/index.php:410
+#: application/views/timeline/index.php:86
+msgctxt "Propagation Mode"
+msgid "Sporadic E"
+msgstr "Esporádico E"
+
+#: application/views/accumulate/index.php:93
+#: application/views/csv/index.php:102 application/views/dxatlas/index.php:102
+#: application/views/gridmap/index.php:51 application/views/kml/index.php:87
+#: application/views/logbookadvanced/index.php:226
+#: application/views/qso/edit_ajax.php:199 application/views/qso/index.php:411
+#: application/views/timeline/index.php:87
+msgctxt "Propagation Mode"
+msgid "Field Aligned Irregularities"
+msgstr "Irregularidades Alinhadas ao Campo"
+
+#: application/views/accumulate/index.php:94
+#: application/views/csv/index.php:103 application/views/dxatlas/index.php:103
+#: application/views/gridmap/index.php:52 application/views/kml/index.php:88
+#: application/views/logbookadvanced/index.php:227
+#: application/views/qso/edit_ajax.php:200 application/views/qso/index.php:412
+#: application/views/timeline/index.php:88
+msgctxt "Propagation Mode"
+msgid "F2 Reflection"
+msgstr "Reflexão F2"
+
+#: application/views/accumulate/index.php:95
+#: application/views/csv/index.php:104 application/views/dxatlas/index.php:104
+#: application/views/gridmap/index.php:53 application/views/kml/index.php:89
+#: application/views/logbookadvanced/index.php:228
+#: application/views/qso/edit_ajax.php:201 application/views/qso/index.php:413
+#: application/views/timeline/index.php:89
+msgctxt "Propagation Mode"
+msgid "Internet-assisted"
+msgstr "Assistido pela Internet"
+
+#: application/views/accumulate/index.php:96
+#: application/views/csv/index.php:105 application/views/dxatlas/index.php:105
+#: application/views/gridmap/index.php:54 application/views/kml/index.php:90
+#: application/views/logbookadvanced/index.php:229
+#: application/views/qso/edit_ajax.php:202 application/views/qso/index.php:414
+#: application/views/timeline/index.php:90
+msgctxt "Propagation Mode"
+msgid "Ionoscatter"
+msgstr "Ionoscatter"
+
+#: application/views/accumulate/index.php:97
+#: application/views/csv/index.php:106 application/views/dxatlas/index.php:106
+#: application/views/gridmap/index.php:55 application/views/kml/index.php:91
+#: application/views/logbookadvanced/index.php:230
+#: application/views/qso/edit_ajax.php:203 application/views/qso/index.php:415
+#: application/views/timeline/index.php:91
+msgctxt "Propagation Mode"
+msgid "IRLP"
+msgstr "IRLP"
+
+#: application/views/accumulate/index.php:98
+#: application/views/csv/index.php:107 application/views/dxatlas/index.php:107
+#: application/views/gridmap/index.php:56 application/views/kml/index.php:92
+#: application/views/logbookadvanced/index.php:231
+#: application/views/qso/edit_ajax.php:204 application/views/qso/index.php:416
+#: application/views/timeline/index.php:92
+msgctxt "Propagation Mode"
+msgid "Meteor scatter"
+msgstr "Dispersão meteorítica"
+
+#: application/views/accumulate/index.php:99
+#: application/views/csv/index.php:108 application/views/dxatlas/index.php:108
+#: application/views/gridmap/index.php:57 application/views/kml/index.php:93
+#: application/views/logbookadvanced/index.php:232
+#: application/views/qso/edit_ajax.php:205 application/views/qso/index.php:417
+#: application/views/timeline/index.php:93
+msgctxt "Propagation Mode"
+msgid "Terrestrial or atmospheric repeater or transponder"
+msgstr "Repetidor ou transponder terrestre ou atmosférico"
+
+#: application/views/accumulate/index.php:100
+#: application/views/csv/index.php:109 application/views/dxatlas/index.php:109
+#: application/views/gridmap/index.php:58 application/views/kml/index.php:94
+#: application/views/logbookadvanced/index.php:233
+#: application/views/qso/edit_ajax.php:206 application/views/qso/index.php:418
+#: application/views/timeline/index.php:94
+msgctxt "Propagation Mode"
+msgid "Rain scatter"
+msgstr "Dispersão de chuva"
+
+#: application/views/accumulate/index.php:101
+#: application/views/csv/index.php:110 application/views/dxatlas/index.php:110
+#: application/views/gridmap/index.php:59 application/views/kml/index.php:95
+#: application/views/logbookadvanced/index.php:234
+#: application/views/qso/edit_ajax.php:207 application/views/qso/index.php:419
+#: application/views/timeline/index.php:95
+msgctxt "Propagation Mode"
+msgid "Satellite"
+msgstr "Satélite"
+
+#: application/views/accumulate/index.php:102
+#: application/views/csv/index.php:111 application/views/dxatlas/index.php:111
+#: application/views/gridmap/index.php:60 application/views/kml/index.php:96
+#: application/views/logbookadvanced/index.php:235
+#: application/views/qso/edit_ajax.php:208 application/views/qso/index.php:420
+#: application/views/timeline/index.php:96
+msgctxt "Propagation Mode"
+msgid "Trans-equatorial"
+msgstr "Trans-equatorial"
+
+#: application/views/accumulate/index.php:103
+#: application/views/csv/index.php:112 application/views/dxatlas/index.php:112
+#: application/views/gridmap/index.php:61 application/views/kml/index.php:97
+#: application/views/logbookadvanced/index.php:236
+#: application/views/qso/edit_ajax.php:209 application/views/qso/index.php:421
+#: application/views/timeline/index.php:97
+msgctxt "Propagation Mode"
+msgid "Tropospheric ducting"
+msgstr "Ducting troposférico"
+
+#: application/views/accumulate/index.php:112
 #: application/views/activators/index.php:53
 #: application/views/awards/cq/index.php:113
 #: application/views/awards/dok/index.php:127
@@ -5449,168 +5651,6 @@ msgstr "Apenas os contactos com informações SOTA serão exportados!"
 msgid "Propagation Mode"
 msgstr "Modo de Propagação"
 
-#: application/views/csv/index.php:95 application/views/dxatlas/index.php:95
-#: application/views/gridmap/index.php:44 application/views/kml/index.php:80
-#: application/views/logbookadvanced/index.php:219
-#: application/views/qso/edit_ajax.php:192 application/views/qso/index.php:404
-#: application/views/timeline/index.php:80
-msgctxt "Propagation Mode"
-msgid "Aircraft Scatter"
-msgstr "Aircraft Scatter"
-
-#: application/views/csv/index.php:96 application/views/dxatlas/index.php:96
-#: application/views/gridmap/index.php:45 application/views/kml/index.php:81
-#: application/views/logbookadvanced/index.php:220
-#: application/views/qso/edit_ajax.php:193 application/views/qso/index.php:405
-#: application/views/timeline/index.php:81
-msgctxt "Propagation Mode"
-msgid "Aurora"
-msgstr "Aurora"
-
-#: application/views/csv/index.php:97 application/views/dxatlas/index.php:97
-#: application/views/gridmap/index.php:46 application/views/kml/index.php:82
-#: application/views/logbookadvanced/index.php:221
-#: application/views/qso/edit_ajax.php:194 application/views/qso/index.php:406
-#: application/views/timeline/index.php:82
-msgctxt "Propagation Mode"
-msgid "Aurora-E"
-msgstr "Aurora-E"
-
-#: application/views/csv/index.php:98 application/views/dxatlas/index.php:98
-#: application/views/gridmap/index.php:47 application/views/kml/index.php:83
-#: application/views/logbookadvanced/index.php:222
-#: application/views/qso/edit_ajax.php:195 application/views/qso/index.php:407
-#: application/views/timeline/index.php:83
-msgctxt "Propagation Mode"
-msgid "Back scatter"
-msgstr "Back scatter"
-
-#: application/views/csv/index.php:99 application/views/dxatlas/index.php:99
-#: application/views/gridmap/index.php:48 application/views/kml/index.php:84
-#: application/views/logbookadvanced/index.php:223
-#: application/views/qso/edit_ajax.php:196 application/views/qso/index.php:408
-#: application/views/timeline/index.php:84
-msgctxt "Propagation Mode"
-msgid "EchoLink"
-msgstr "EchoLink"
-
-#: application/views/csv/index.php:100 application/views/dxatlas/index.php:100
-#: application/views/gridmap/index.php:49 application/views/kml/index.php:85
-#: application/views/logbookadvanced/index.php:224
-#: application/views/qso/edit_ajax.php:197 application/views/qso/index.php:409
-#: application/views/timeline/index.php:85
-msgctxt "Propagation Mode"
-msgid "Earth-Moon-Earth"
-msgstr "Terra-Lua-Terra"
-
-#: application/views/csv/index.php:101 application/views/dxatlas/index.php:101
-#: application/views/gridmap/index.php:50 application/views/kml/index.php:86
-#: application/views/logbookadvanced/index.php:225
-#: application/views/qso/edit_ajax.php:198 application/views/qso/index.php:410
-#: application/views/timeline/index.php:86
-msgctxt "Propagation Mode"
-msgid "Sporadic E"
-msgstr "Esporádico E"
-
-#: application/views/csv/index.php:102 application/views/dxatlas/index.php:102
-#: application/views/gridmap/index.php:51 application/views/kml/index.php:87
-#: application/views/logbookadvanced/index.php:226
-#: application/views/qso/edit_ajax.php:199 application/views/qso/index.php:411
-#: application/views/timeline/index.php:87
-msgctxt "Propagation Mode"
-msgid "Field Aligned Irregularities"
-msgstr "Irregularidades Alinhadas ao Campo"
-
-#: application/views/csv/index.php:103 application/views/dxatlas/index.php:103
-#: application/views/gridmap/index.php:52 application/views/kml/index.php:88
-#: application/views/logbookadvanced/index.php:227
-#: application/views/qso/edit_ajax.php:200 application/views/qso/index.php:412
-#: application/views/timeline/index.php:88
-msgctxt "Propagation Mode"
-msgid "F2 Reflection"
-msgstr "Reflexão F2"
-
-#: application/views/csv/index.php:104 application/views/dxatlas/index.php:104
-#: application/views/gridmap/index.php:53 application/views/kml/index.php:89
-#: application/views/logbookadvanced/index.php:228
-#: application/views/qso/edit_ajax.php:201 application/views/qso/index.php:413
-#: application/views/timeline/index.php:89
-msgctxt "Propagation Mode"
-msgid "Internet-assisted"
-msgstr "Assistido pela Internet"
-
-#: application/views/csv/index.php:105 application/views/dxatlas/index.php:105
-#: application/views/gridmap/index.php:54 application/views/kml/index.php:90
-#: application/views/logbookadvanced/index.php:229
-#: application/views/qso/edit_ajax.php:202 application/views/qso/index.php:414
-#: application/views/timeline/index.php:90
-msgctxt "Propagation Mode"
-msgid "Ionoscatter"
-msgstr "Ionoscatter"
-
-#: application/views/csv/index.php:106 application/views/dxatlas/index.php:106
-#: application/views/gridmap/index.php:55 application/views/kml/index.php:91
-#: application/views/logbookadvanced/index.php:230
-#: application/views/qso/edit_ajax.php:203 application/views/qso/index.php:415
-#: application/views/timeline/index.php:91
-msgctxt "Propagation Mode"
-msgid "IRLP"
-msgstr "IRLP"
-
-#: application/views/csv/index.php:107 application/views/dxatlas/index.php:107
-#: application/views/gridmap/index.php:56 application/views/kml/index.php:92
-#: application/views/logbookadvanced/index.php:231
-#: application/views/qso/edit_ajax.php:204 application/views/qso/index.php:416
-#: application/views/timeline/index.php:92
-msgctxt "Propagation Mode"
-msgid "Meteor scatter"
-msgstr "Dispersão meteorítica"
-
-#: application/views/csv/index.php:108 application/views/dxatlas/index.php:108
-#: application/views/gridmap/index.php:57 application/views/kml/index.php:93
-#: application/views/logbookadvanced/index.php:232
-#: application/views/qso/edit_ajax.php:205 application/views/qso/index.php:417
-#: application/views/timeline/index.php:93
-msgctxt "Propagation Mode"
-msgid "Terrestrial or atmospheric repeater or transponder"
-msgstr "Repetidor ou transponder terrestre ou atmosférico"
-
-#: application/views/csv/index.php:109 application/views/dxatlas/index.php:109
-#: application/views/gridmap/index.php:58 application/views/kml/index.php:94
-#: application/views/logbookadvanced/index.php:233
-#: application/views/qso/edit_ajax.php:206 application/views/qso/index.php:418
-#: application/views/timeline/index.php:94
-msgctxt "Propagation Mode"
-msgid "Rain scatter"
-msgstr "Dispersão de chuva"
-
-#: application/views/csv/index.php:110 application/views/dxatlas/index.php:110
-#: application/views/gridmap/index.php:59 application/views/kml/index.php:95
-#: application/views/logbookadvanced/index.php:234
-#: application/views/qso/edit_ajax.php:207 application/views/qso/index.php:419
-#: application/views/timeline/index.php:95
-msgctxt "Propagation Mode"
-msgid "Satellite"
-msgstr "Satélite"
-
-#: application/views/csv/index.php:111 application/views/dxatlas/index.php:111
-#: application/views/gridmap/index.php:60 application/views/kml/index.php:96
-#: application/views/logbookadvanced/index.php:235
-#: application/views/qso/edit_ajax.php:208 application/views/qso/index.php:420
-#: application/views/timeline/index.php:96
-msgctxt "Propagation Mode"
-msgid "Trans-equatorial"
-msgstr "Trans-equatorial"
-
-#: application/views/csv/index.php:112 application/views/dxatlas/index.php:112
-#: application/views/gridmap/index.php:61 application/views/kml/index.php:97
-#: application/views/logbookadvanced/index.php:236
-#: application/views/qso/edit_ajax.php:209 application/views/qso/index.php:421
-#: application/views/timeline/index.php:97
-msgctxt "Propagation Mode"
-msgid "Tropospheric ducting"
-msgstr "Ducting troposférico"
-
 #: application/views/dashboard/index.php:5
 msgid "RSTS"
 msgstr "RSTS"
@@ -6517,20 +6557,6 @@ msgstr "Data QSL"
 #: application/views/view_log/qso.php:614
 msgid "View"
 msgstr "Vista"
-
-#: application/views/gridmap/index.php:38
-#: application/views/logbookadvanced/edit.php:14
-#: application/views/logbookadvanced/index.php:215
-#: application/views/logbookadvanced/index.php:609
-#: application/views/logbookadvanced/useroptions.php:118
-#: application/views/timeline/index.php:74
-msgid "Propagation"
-msgstr "Propagação"
-
-#: application/views/gridmap/index.php:42
-#: application/views/timeline/index.php:79
-msgid "None/Empty"
-msgstr "Nenhum/Vazio"
 
 #: application/views/gridmap/index.php:43
 msgid "All except SAT"
@@ -10625,10 +10651,6 @@ msgstr "Por favor, edite"
 #: application/views/themes/index.php:116
 msgid "Add a Theme"
 msgstr "Adicionar um tema"
-
-#: application/views/timeline/index.php:78
-msgid "All but SAT"
-msgstr ""
 
 #: application/views/timeplotter/index.php:2
 msgid "contacts were plotted"

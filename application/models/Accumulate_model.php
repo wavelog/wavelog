@@ -3,8 +3,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class Accumulate_model extends CI_Model
 {
-    function get_accumulated_data($band, $award, $mode, $period)
-    {
+    function get_accumulated_data($band, $award, $mode, $propmode, $period) {
         $this->load->model('logbooks_model');
         $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
@@ -16,29 +15,29 @@ class Accumulate_model extends CI_Model
 
         switch ($award) {
             case 'dxcc':
-                $result = $this->get_accumulated_dxcc($band, $mode, $period, $location_list);
+                $result = $this->get_accumulated_dxcc($band, $mode, $propmode, $period, $location_list);
                 break;
             case 'was':
-                $result = $this->get_accumulated_was($band, $mode, $period, $location_list);
+                $result = $this->get_accumulated_was($band, $mode, $propmode, $period, $location_list);
                 break;
             case 'iota':
-                $result = $this->get_accumulated_iota($band, $mode, $period, $location_list);
+                $result = $this->get_accumulated_iota($band, $mode, $propmode, $period, $location_list);
                 break;
             case 'waz':
-                $result = $this->get_accumulated_waz($band, $mode, $period, $location_list);
+                $result = $this->get_accumulated_waz($band, $mode, $propmode, $period, $location_list);
                 break;
             case 'vucc':
-                $result = $this->get_accumulated_vucc($band, $mode, $period, $location_list);
+                $result = $this->get_accumulated_vucc($band, $mode, $propmode, $period, $location_list);
                 break;
             case 'waja':
-                $result = $this->get_accumulated_waja($band, $mode, $period, $location_list);
+                $result = $this->get_accumulated_waja($band, $mode, $propmode, $period, $location_list);
                 break;
         }
 
         return $result;
     }
 
-    function get_accumulated_dxcc($band, $mode, $period, $location_list) {
+    function get_accumulated_dxcc($band, $mode, $propmode, $period, $location_list) {
 	    $binding=[];
 	    if ($period == "year") {
 		    $sql = "select year(thcv.col_time_on) year";
@@ -62,16 +61,26 @@ class Accumulate_model extends CI_Model
 		    from " . $this->config->item('table_name') .
 		    " where col_dxcc > 0 and station_id in (" . $location_list . ")";
 
-	    if ($band != 'All') {
-		    if ($band == 'SAT') {
-			    $sql .= " and col_prop_mode = ?";
-			    $binding[] = $band;
-		    } else {
-			    $sql .= " and col_prop_mode !='SAT'";
+	    if ($band == 'SAT') {				// Left for compatibility reasons
+		    $sql .= " and col_prop_mode = ?";
+		    $binding[] = $band;
+	    } else {					// Not SAT
+		    if ($band != 'All') {			// Band set? Take care of it
 			    $sql .= " and col_band = ?";
 			    $binding[] = $band;
+		    }	
+		    if ( $propmode == 'NoSAT' ) {		// All without SAT
+			    $sql .= " and col_prop_mode !='SAT'";
+		    } elseif ($propmode == 'None') {	// Empty Propmode
+			    $sql .= " and (trim(col_prop_mode)='' or col_prop_mode is null)";
+		    } elseif ($propmode == 'All') {		// Dont care for propmode
+			    ; // No Prop-Filter
+		    } else {				// Propmode set, take care of it
+			    $sql .= " and col_prop_mode = ?";
+			    $binding[] = $propmode;
 		    }
 	    }
+
 
 	    if ($mode != 'All') {
 		    $sql .= " and (col_mode = ? or col_submode = ?)";
@@ -161,7 +170,7 @@ class Accumulate_model extends CI_Model
         return $array;
     }
 
-    function get_accumulated_waja($band, $mode, $period, $location_list) {
+    function get_accumulated_waja($band, $mode, $propmode, $period, $location_list) {
 	    $binding=[];
 	    if ($period == "year") {
 		    $sql = "select year(thcv.col_time_on) year";
@@ -185,14 +194,23 @@ class Accumulate_model extends CI_Model
 		    from " . $this->config->item('table_name') .
 		    " where station_id in (" . $location_list . ")";
 
-	    if ($band != 'All') {
-		    if ($band == 'SAT') {
-			    $sql .= " and col_prop_mode = ?";
-			    $binding[] = $band;
-		    } else {
-			    $sql .= " and col_prop_mode !='SAT'";
+	    if ($band == 'SAT') {				// Left for compatibility reasons
+		    $sql .= " and col_prop_mode = ?";
+		    $binding[] = $band;
+	    } else {					// Not SAT
+		    if ($band != 'All') {			// Band set? Take care of it
 			    $sql .= " and col_band = ?";
 			    $binding[] = $band;
+		    }	
+		    if ( $propmode == 'NoSAT' ) {		// All without SAT
+			    $sql .= " and col_prop_mode !='SAT'";
+		    } elseif ($propmode == 'None') {	// Empty Propmode
+			    $sql .= " and (trim(col_prop_mode)='' or col_prop_mode is null)";
+		    } elseif ($propmode == 'All') {		// Dont care for propmode
+			    ; // No Prop-Filter
+		    } else {				// Propmode set, take care of it
+			    $sql .= " and col_prop_mode = ?";
+			    $binding[] = $propmode;
 		    }
 	    }
 
@@ -216,17 +234,26 @@ class Accumulate_model extends CI_Model
 
 	    $sql .= " and col_state = x.col_state";
 
-	    if ($band != 'All') {
-		    if ($band == 'SAT') {
-			    $sql .= " and col_prop_mode = ?";
-			    $binding[] = $band;
-		    } else {
-			    $sql .= " and col_prop_mode !='SAT'";
+	    if ($band == 'SAT') {				// Left for compatibility reasons
+		    $sql .= " and col_prop_mode = ?";
+		    $binding[] = $band;
+	    } else {					// Not SAT
+		    if ($band != 'All') {			// Band set? Take care of it
 			    $sql .= " and col_band = ?";
 			    $binding[] = $band;
+		    }	
+		    if ( $propmode == 'NoSAT' ) {		// All without SAT
+			    $sql .= " and col_prop_mode !='SAT'";
+		    } elseif ($propmode == 'None') {	// Empty Propmode
+			    $sql .= " and (trim(col_prop_mode)='' or col_prop_mode is null)";
+		    } elseif ($propmode == 'All') {		// Dont care for propmode
+			    ; // No Prop-Filter
+		    } else {				// Propmode set, take care of it
+			    $sql .= " and col_prop_mode = ?";
+			    $binding[] = $propmode;
 		    }
 	    }
-
+	    
 	    if ($mode != 'All') {
 		    $sql .= " and (col_mode = ? or col_submode = ?)";
 		    $binding[] = $mode;
@@ -247,14 +274,23 @@ class Accumulate_model extends CI_Model
 
 	    $sql .= " where station_id in (" . $location_list . ")";
 
-	    if ($band != 'All') {
-		    if ($band == 'SAT') {
-			    $sql .= " and col_prop_mode = ?";
-			    $binding[] = $band;
-		    } else {
-			    $sql .= " and col_prop_mode !='SAT'";
+	    if ($band == 'SAT') {				// Left for compatibility reasons
+		    $sql .= " and col_prop_mode = ?";
+		    $binding[] = $band;
+	    } else {					// Not SAT
+		    if ($band != 'All') {			// Band set? Take care of it
 			    $sql .= " and col_band = ?";
 			    $binding[] = $band;
+		    }	
+		    if ( $propmode == 'NoSAT' ) {		// All without SAT
+			    $sql .= " and col_prop_mode !='SAT'";
+		    } elseif ($propmode == 'None') {	// Empty Propmode
+			    $sql .= " and (trim(col_prop_mode)='' or col_prop_mode is null)";
+		    } elseif ($propmode == 'All') {		// Dont care for propmode
+			    ; // No Prop-Filter
+		    } else {				// Propmode set, take care of it
+			    $sql .= " and col_prop_mode = ?";
+			    $binding[] = $propmode;
 		    }
 	    }
 
@@ -277,7 +313,7 @@ class Accumulate_model extends CI_Model
 	    return $this->count_and_add_accumulated_total($query->result());
     }
 
-    function get_accumulated_was($band, $mode, $period, $location_list) {
+    function get_accumulated_was($band, $mode, $propmode, $period, $location_list) {
 		$binding=[];
 	    if ($period == "year") {
 		    $sql = "select year(thcv.col_time_on) year";
@@ -301,14 +337,24 @@ class Accumulate_model extends CI_Model
 		    from " . $this->config->item('table_name') .
 		    " where station_id in (" . $location_list . ")";
 
-	    if ($band != 'All') {
-		    if ($band == 'SAT') {
-			    $sql .= " and col_prop_mode = ?";
-			    $binding[] = $band;
-		    } else {
-			    $sql .= " and col_prop_mode !='SAT'";
+
+	    if ($band == 'SAT') {				// Left for compatibility reasons
+		    $sql .= " and col_prop_mode = ?";
+		    $binding[] = $band;
+	    } else {					// Not SAT
+		    if ($band != 'All') {			// Band set? Take care of it
 			    $sql .= " and col_band = ?";
 			    $binding[] = $band;
+		    }	
+		    if ( $propmode == 'NoSAT' ) {		// All without SAT
+			    $sql .= " and col_prop_mode !='SAT'";
+		    } elseif ($propmode == 'None') {	// Empty Propmode
+			    $sql .= " and (trim(col_prop_mode)='' or col_prop_mode is null)";
+		    } elseif ($propmode == 'All') {		// Dont care for propmode
+			    ; // No Prop-Filter
+		    } else {				// Propmode set, take care of it
+			    $sql .= " and col_prop_mode = ?";
+			    $binding[] = $propmode;
 		    }
 	    }
 
@@ -333,14 +379,23 @@ class Accumulate_model extends CI_Model
 
 	    $sql .= " and col_state = x.col_state";
 
-	    if ($band != 'All') {
-		    if ($band == 'SAT') {
-			    $sql .= " and col_prop_mode = ?";
-			    $binding[] = $band;
-		    } else {
-			    $sql .= " and col_prop_mode !='SAT'";
+	    if ($band == 'SAT') {				// Left for compatibility reasons
+		    $sql .= " and col_prop_mode = ?";
+		    $binding[] = $band;
+	    } else {					// Not SAT
+		    if ($band != 'All') {			// Band set? Take care of it
 			    $sql .= " and col_band = ?";
 			    $binding[] = $band;
+		    }	
+		    if ( $propmode == 'NoSAT' ) {		// All without SAT
+			    $sql .= " and col_prop_mode !='SAT'";
+		    } elseif ($propmode == 'None') {	// Empty Propmode
+			    $sql .= " and (trim(col_prop_mode)='' or col_prop_mode is null)";
+		    } elseif ($propmode == 'All') {		// Dont care for propmode
+			    ; // No Prop-Filter
+		    } else {				// Propmode set, take care of it
+			    $sql .= " and col_prop_mode = ?";
+			    $binding[] = $propmode;
 		    }
 	    }
 
@@ -365,14 +420,23 @@ class Accumulate_model extends CI_Model
 
 	    $sql .= " where station_id in (" . $location_list . ")";
 
-	    if ($band != 'All') {
-		    if ($band == 'SAT') {
-			    $sql .= " and col_prop_mode = ?";
-			    $binding[] = $band;
-		    } else {
-			    $sql .= " and col_prop_mode !='SAT'";
+	    if ($band == 'SAT') {				// Left for compatibility reasons
+		    $sql .= " and col_prop_mode = ?";
+		    $binding[] = $band;
+	    } else {					// Not SAT
+		    if ($band != 'All') {			// Band set? Take care of it
 			    $sql .= " and col_band = ?";
 			    $binding[] = $band;
+		    }	
+		    if ( $propmode == 'NoSAT' ) {		// All without SAT
+			    $sql .= " and col_prop_mode !='SAT'";
+		    } elseif ($propmode == 'None') {	// Empty Propmode
+			    $sql .= " and (trim(col_prop_mode)='' or col_prop_mode is null)";
+		    } elseif ($propmode == 'All') {		// Dont care for propmode
+			    ; // No Prop-Filter
+		    } else {				// Propmode set, take care of it
+			    $sql .= " and col_prop_mode = ?";
+			    $binding[] = $propmode;
 		    }
 	    }
 
@@ -395,7 +459,7 @@ class Accumulate_model extends CI_Model
 	    return $this->count_and_add_accumulated_total($query->result());
     }
 
-    function get_accumulated_iota($band, $mode, $period, $location_list) {
+    function get_accumulated_iota($band, $mode, $propmode, $period, $location_list) {
 	    $binding = [];
 	    if ($period == "year") {
 		    $sql = "select year(thcv.col_time_on) year";
@@ -419,14 +483,23 @@ class Accumulate_model extends CI_Model
 		    from " . $this->config->item('table_name') .
 		    " where station_id in (" . $location_list . ")";
 
-	    if ($band != 'All') {
-		    if ($band == 'SAT') {
-			    $sql .= " and col_prop_mode = ?";
-			    $binding[] = $band;
-		    } else {
-			    $sql .= " and col_prop_mode !='SAT'";
+	    if ($band == 'SAT') {				// Left for compatibility reasons
+		    $sql .= " and col_prop_mode = ?";
+		    $binding[] = $band;
+	    } else {					// Not SAT
+		    if ($band != 'All') {			// Band set? Take care of it
 			    $sql .= " and col_band = ?";
 			    $binding[] = $band;
+		    }	
+		    if ( $propmode == 'NoSAT' ) {		// All without SAT
+			    $sql .= " and col_prop_mode !='SAT'";
+		    } elseif ($propmode == 'None') {	// Empty Propmode
+			    $sql .= " and (trim(col_prop_mode)='' or col_prop_mode is null)";
+		    } elseif ($propmode == 'All') {		// Dont care for propmode
+			    ; // No Prop-Filter
+		    } else {				// Propmode set, take care of it
+			    $sql .= " and col_prop_mode = ?";
+			    $binding[] = $propmode;
 		    }
 	    }
 
@@ -448,14 +521,23 @@ class Accumulate_model extends CI_Model
 
 	    $sql .= " and col_iota = x.col_iota";
 
-	    if ($band != 'All') {
-		    if ($band == 'SAT') {
-			    $sql .= " and col_prop_mode = ?";
-			    $binding[] = $band;
-		    } else {
-			    $sql .= " and col_prop_mode !='SAT'";
+	    if ($band == 'SAT') {				// Left for compatibility reasons
+		    $sql .= " and col_prop_mode = ?";
+		    $binding[] = $band;
+	    } else {					// Not SAT
+		    if ($band != 'All') {			// Band set? Take care of it
 			    $sql .= " and col_band = ?";
 			    $binding[] = $band;
+		    }	
+		    if ( $propmode == 'NoSAT' ) {		// All without SAT
+			    $sql .= " and col_prop_mode !='SAT'";
+		    } elseif ($propmode == 'None') {	// Empty Propmode
+			    $sql .= " and (trim(col_prop_mode)='' or col_prop_mode is null)";
+		    } elseif ($propmode == 'All') {		// Dont care for propmode
+			    ; // No Prop-Filter
+		    } else {				// Propmode set, take care of it
+			    $sql .= " and col_prop_mode = ?";
+			    $binding[] = $propmode;
 		    }
 	    }
 
@@ -477,14 +559,23 @@ class Accumulate_model extends CI_Model
 
 	    $sql .= " where station_id in (" . $location_list . ")";
 
-	    if ($band != 'All') {
-		    if ($band == 'SAT') {
-			    $sql .= " and col_prop_mode = ?";
-			    $binding[] = $band;
-		    } else {
-			    $sql .= " and col_prop_mode !='SAT'";
+	    if ($band == 'SAT') {				// Left for compatibility reasons
+		    $sql .= " and col_prop_mode = ?";
+		    $binding[] = $band;
+	    } else {					// Not SAT
+		    if ($band != 'All') {			// Band set? Take care of it
 			    $sql .= " and col_band = ?";
 			    $binding[] = $band;
+		    }	
+		    if ( $propmode == 'NoSAT' ) {		// All without SAT
+			    $sql .= " and col_prop_mode !='SAT'";
+		    } elseif ($propmode == 'None') {	// Empty Propmode
+			    $sql .= " and (trim(col_prop_mode)='' or col_prop_mode is null)";
+		    } elseif ($propmode == 'All') {		// Dont care for propmode
+			    ; // No Prop-Filter
+		    } else {				// Propmode set, take care of it
+			    $sql .= " and col_prop_mode = ?";
+			    $binding[] = $propmode;
 		    }
 	    }
 
@@ -507,7 +598,7 @@ class Accumulate_model extends CI_Model
 	    return $this->count_and_add_accumulated_total($query->result());
     }
 
-    function get_accumulated_waz($band, $mode, $period, $location_list) {
+    function get_accumulated_waz($band, $mode, $propmode, $period, $location_list) {
 	    $binding=[];
 	    if ($period == "year") {
 		    $sql = "select year(thcv.col_time_on) year";
@@ -531,14 +622,23 @@ class Accumulate_model extends CI_Model
 		    from " . $this->config->item('table_name') .
 		    " where station_id in (" . $location_list . ")";
 
-	    if ($band != 'All') {
-		    if ($band == 'SAT') {
-			    $sql .= " and col_prop_mode = ?";
-			    $binding[] = $band;
-		    } else {
-			    $sql .= " and col_prop_mode !='SAT'";
+	    if ($band == 'SAT') {				// Left for compatibility reasons
+		    $sql .= " and col_prop_mode = ?";
+		    $binding[] = $band;
+	    } else {					// Not SAT
+		    if ($band != 'All') {			// Band set? Take care of it
 			    $sql .= " and col_band = ?";
 			    $binding[] = $band;
+		    }	
+		    if ( $propmode == 'NoSAT' ) {		// All without SAT
+			    $sql .= " and col_prop_mode !='SAT'";
+		    } elseif ($propmode == 'None') {	// Empty Propmode
+			    $sql .= " and (trim(col_prop_mode)='' or col_prop_mode is null)";
+		    } elseif ($propmode == 'All') {		// Dont care for propmode
+			    ; // No Prop-Filter
+		    } else {				// Propmode set, take care of it
+			    $sql .= " and col_prop_mode = ?";
+			    $binding[] = $propmode;
 		    }
 	    }
 
@@ -560,14 +660,23 @@ class Accumulate_model extends CI_Model
 
 	    $sql .= " and col_cqz = x.col_cqz";
 
-	    if ($band != 'All') {
-		    if ($band == 'SAT') {
-			    $sql .= " and col_prop_mode = ?";
-			    $binding[] = $band;
-		    } else {
-			    $sql .= " and col_prop_mode !='SAT'";
+	    if ($band == 'SAT') {				// Left for compatibility reasons
+		    $sql .= " and col_prop_mode = ?";
+		    $binding[] = $band;
+	    } else {					// Not SAT
+		    if ($band != 'All') {			// Band set? Take care of it
 			    $sql .= " and col_band = ?";
 			    $binding[] = $band;
+		    }	
+		    if ( $propmode == 'NoSAT' ) {		// All without SAT
+			    $sql .= " and col_prop_mode !='SAT'";
+		    } elseif ($propmode == 'None') {	// Empty Propmode
+			    $sql .= " and (trim(col_prop_mode)='' or col_prop_mode is null)";
+		    } elseif ($propmode == 'All') {		// Dont care for propmode
+			    ; // No Prop-Filter
+		    } else {				// Propmode set, take care of it
+			    $sql .= " and col_prop_mode = ?";
+			    $binding[] = $propmode;
 		    }
 	    }
 
@@ -589,14 +698,23 @@ class Accumulate_model extends CI_Model
 
 	    $sql .= " where station_id in (" . $location_list . ")";
 
-	    if ($band != 'All') {
-		    if ($band == 'SAT') {
-			    $sql .= " and col_prop_mode = ?";
-			    $binding[] = $band;
-		    } else {
-			    $sql .= " and col_prop_mode !='SAT'";
+	    if ($band == 'SAT') {				// Left for compatibility reasons
+		    $sql .= " and col_prop_mode = ?";
+		    $binding[] = $band;
+	    } else {					// Not SAT
+		    if ($band != 'All') {			// Band set? Take care of it
 			    $sql .= " and col_band = ?";
 			    $binding[] = $band;
+		    }	
+		    if ( $propmode == 'NoSAT' ) {		// All without SAT
+			    $sql .= " and col_prop_mode !='SAT'";
+		    } elseif ($propmode == 'None') {	// Empty Propmode
+			    $sql .= " and (trim(col_prop_mode)='' or col_prop_mode is null)";
+		    } elseif ($propmode == 'All') {		// Dont care for propmode
+			    ; // No Prop-Filter
+		    } else {				// Propmode set, take care of it
+			    $sql .= " and col_prop_mode = ?";
+			    $binding[] = $propmode;
 		    }
 	    }
 
@@ -619,21 +737,21 @@ class Accumulate_model extends CI_Model
 	    return $this->count_and_add_accumulated_total($query->result());
     }
 
-    function get_accumulated_vucc($band, $mode, $period, $location_list) {
+    function get_accumulated_vucc($band, $mode, $propmode, $period, $location_list) {
 		$dbversion = $this->db->version();
 		$dbversion = explode('.', $dbversion);
 
 		$sql = "";
 		if ($dbversion[0] >= "8") {
-			$query = $this->fastquery($band, $mode, $period, $location_list);
+			$query = $this->fastquery($band, $mode, $propmode, $period, $location_list);
 			return $query->result();
 		} else {
-			$query = $this->slowquery($band, $mode, $period, $location_list);
+			$query = $this->slowquery($band, $mode, $propmode, $period, $location_list);
 			return $this->count_and_add_accumulated_total($query->result());
 		}
     }
 
-    function fastquery($band, $mode, $period, $location_list) {
+    function fastquery($band, $mode, $propmode, $period, $location_list) {
 	    $binding=[];
 	    $sql = "WITH firstseen AS (
 		    SELECT substr(col_gridsquare,1,4) as grid, ";
@@ -648,14 +766,24 @@ class Accumulate_model extends CI_Model
 		    where coalesce(col_gridsquare, '') <> ''
 		    and station_id in (" . $location_list . ")";
 
-	    if ($band != 'All') {
-		    if ($band == 'SAT') {
-			    $sql .= " and col_prop_mode = ?";
-			    $binding[] = $band;
-		    } else {
-			    $sql .= " and col_prop_mode !='SAT'";
+
+	    if ($band == 'SAT') {				// Left for compatibility reasons
+		    $sql .= " and col_prop_mode = ?";
+		    $binding[] = $band;
+	    } else {					// Not SAT
+		    if ($band != 'All') {			// Band set? Take care of it
 			    $sql .= " and col_band = ?";
 			    $binding[] = $band;
+		    }	
+		    if ( $propmode == 'NoSAT' ) {		// All without SAT
+			    $sql .= " and col_prop_mode !='SAT'";
+		    } elseif ($propmode == 'None') {	// Empty Propmode
+			    $sql .= " and (trim(col_prop_mode)='' or col_prop_mode is null)";
+		    } elseif ($propmode == 'All') {		// Dont care for propmode
+			    ; // No Prop-Filter
+		    } else {				// Propmode set, take care of it
+			    $sql .= " and col_prop_mode = ?";
+			    $binding[] = $propmode;
 		    }
 	    }
 
@@ -690,14 +818,23 @@ class Accumulate_model extends CI_Model
 			    and coalesce(COL_VUCC_GRIDS, '') <> ''
 			    and station_id in (" . $location_list . ")";
 
-	    if ($band != 'All') {
-		    if ($band == 'SAT') {
-			    $sql .= " and col_prop_mode = ?";
-			    $binding[] = $band;
-		    } else {
-			    $sql .= " and col_prop_mode !='SAT'";
+	    if ($band == 'SAT') {				// Left for compatibility reasons
+		    $sql .= " and col_prop_mode = ?";
+		    $binding[] = $band;
+	    } else {					// Not SAT
+		    if ($band != 'All') {			// Band set? Take care of it
 			    $sql .= " and col_band = ?";
 			    $binding[] = $band;
+		    }	
+		    if ( $propmode == 'NoSAT' ) {		// All without SAT
+			    $sql .= " and col_prop_mode !='SAT'";
+		    } elseif ($propmode == 'None') {	// Empty Propmode
+			    $sql .= " and (trim(col_prop_mode)='' or col_prop_mode is null)";
+		    } elseif ($propmode == 'All') {		// Dont care for propmode
+			    ; // No Prop-Filter
+		    } else {				// Propmode set, take care of it
+			    $sql .= " and col_prop_mode = ?";
+			    $binding[] = $propmode;
 		    }
 	    }
 
@@ -719,7 +856,7 @@ class Accumulate_model extends CI_Model
 	    return $query;
     }
 
-    function slowquery($band, $mode, $period, $location_list) {
+    function slowquery($band, $mode, $propmode, $period, $location_list) {
 	    $binding=[];
 	    $sql = "";
 	    if ($period == "year") {
@@ -744,14 +881,23 @@ class Accumulate_model extends CI_Model
 		    from " . $this->config->item('table_name') .
 		    " where station_id in (" . $location_list . ")";
 
-	    if ($band != 'All') {
-		    if ($band == 'SAT') {
-			    $sql .= " and col_prop_mode = ?";
-			    $binding[]=$band;
-		    } else {
-			    $sql .= " and col_prop_mode !='SAT'";
+	    if ($band == 'SAT') {				// Left for compatibility reasons
+		    $sql .= " and col_prop_mode = ?";
+		    $binding[] = $band;
+	    } else {					// Not SAT
+		    if ($band != 'All') {			// Band set? Take care of it
 			    $sql .= " and col_band = ?";
-			    $binding[]=$band;
+			    $binding[] = $band;
+		    }	
+		    if ( $propmode == 'NoSAT' ) {		// All without SAT
+			    $sql .= " and col_prop_mode !='SAT'";
+		    } elseif ($propmode == 'None') {	// Empty Propmode
+			    $sql .= " and (trim(col_prop_mode)='' or col_prop_mode is null)";
+		    } elseif ($propmode == 'All') {		// Dont care for propmode
+			    ; // No Prop-Filter
+		    } else {				// Propmode set, take care of it
+			    $sql .= " and col_prop_mode = ?";
+			    $binding[] = $propmode;
 		    }
 	    }
 
@@ -773,14 +919,23 @@ class Accumulate_model extends CI_Model
 
 	    $sql .= " and substr(col_gridsquare,1,4) = substr(x.col_gridsquare,1,4)";
 
-	    if ($band != 'All') {
-		    if ($band == 'SAT') {
-			    $sql .= " and col_prop_mode = ?";
-			    $binding[]=$band;
-		    } else {
-			    $sql .= " and col_prop_mode !='SAT'";
+	    if ($band == 'SAT') {				// Left for compatibility reasons
+		    $sql .= " and col_prop_mode = ?";
+		    $binding[] = $band;
+	    } else {					// Not SAT
+		    if ($band != 'All') {			// Band set? Take care of it
 			    $sql .= " and col_band = ?";
-			    $binding[]=$band;
+			    $binding[] = $band;
+		    }	
+		    if ( $propmode == 'NoSAT' ) {		// All without SAT
+			    $sql .= " and col_prop_mode !='SAT'";
+		    } elseif ($propmode == 'None') {	// Empty Propmode
+			    $sql .= " and (trim(col_prop_mode)='' or col_prop_mode is null)";
+		    } elseif ($propmode == 'All') {		// Dont care for propmode
+			    ; // No Prop-Filter
+		    } else {				// Propmode set, take care of it
+			    $sql .= " and col_prop_mode = ?";
+			    $binding[] = $propmode;
 		    }
 	    }
 
@@ -802,14 +957,23 @@ class Accumulate_model extends CI_Model
 
 	    $sql .= " where station_id in (" . $location_list . ")";
 
-	    if ($band != 'All') {
-		    if ($band == 'SAT') {
-			    $sql .= " and col_prop_mode = ?";
-			    $binding[]=$band;
-		    } else {
-			    $sql .= " and col_prop_mode !='SAT'";
+	    if ($band == 'SAT') {				// Left for compatibility reasons
+		    $sql .= " and col_prop_mode = ?";
+		    $binding[] = $band;
+	    } else {					// Not SAT
+		    if ($band != 'All') {			// Band set? Take care of it
 			    $sql .= " and col_band = ?";
-			    $binding[]=$band;
+			    $binding[] = $band;
+		    }	
+		    if ( $propmode == 'NoSAT' ) {		// All without SAT
+			    $sql .= " and col_prop_mode !='SAT'";
+		    } elseif ($propmode == 'None') {	// Empty Propmode
+			    $sql .= " and (trim(col_prop_mode)='' or col_prop_mode is null)";
+		    } elseif ($propmode == 'All') {		// Dont care for propmode
+			    ; // No Prop-Filter
+		    } else {				// Propmode set, take care of it
+			    $sql .= " and col_prop_mode = ?";
+			    $binding[] = $propmode;
 		    }
 	    }
 
