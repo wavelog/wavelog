@@ -353,7 +353,6 @@ class eqsl extends CI_Controller {
 			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 			redirect('dashboard');
 		}
-		$this->load->library('electronicqsl');
 		$this->load->model('Eqsl_images');
 
 		$this->load->model('logbook_model');
@@ -438,6 +437,7 @@ class eqsl extends CI_Controller {
 			redirect('dashboard');
 		}
 		$errors = 0;
+		$this->load->library('electronicqsl');
 
 		if ($this->input->post('eqsldownload') == 'download') {
 			$i = 0;
