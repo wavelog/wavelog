@@ -97,11 +97,13 @@ msgstr ""
 #: application/controllers/User.php:762 application/controllers/User.php:1045
 #: application/controllers/User.php:1247
 #: application/controllers/User_options.php:9
+#: application/controllers/Accumulated.php:12
 msgid "You're not allowed to do that!"
 msgstr "Das ist dir nicht gestattet!"
 
 #: application/controllers/Accumulated.php:21
 #: application/views/interface_assets/header.php:150
+#: application/controllers/Accumulated.php:19
 msgid "Accumulated Statistics"
 msgstr "Kumulierte Statistiken"
 
@@ -2605,6 +2607,7 @@ msgstr "Differenz"
 #: application/views/timeplotter/index.php:47
 #: application/views/user/edit.php:633
 #: application/views/visitor/layout/footer.php:170
+#: application/views/accumulate/index.php:83
 msgid "All"
 msgstr "Alle"
 
@@ -2666,6 +2669,7 @@ msgstr "Zeitraum"
 #: application/views/timeline/index.php:276
 #: application/views/timeline/index.php:303
 #: application/views/timeplotter/index.php:59
+#: application/views/accumulate/index.php:112
 msgid "Show"
 msgstr "Anzeigen"
 
@@ -5476,6 +5480,7 @@ msgstr "Propagation"
 #: application/views/logbookadvanced/index.php:219
 #: application/views/qso/edit_ajax.php:192 application/views/qso/index.php:404
 #: application/views/timeline/index.php:80
+#: application/views/accumulate/index.php:86
 msgctxt "Propagation Mode"
 msgid "Aircraft Scatter"
 msgstr "Flugzeug-Scatter"
@@ -5485,6 +5490,7 @@ msgstr "Flugzeug-Scatter"
 #: application/views/logbookadvanced/index.php:220
 #: application/views/qso/edit_ajax.php:193 application/views/qso/index.php:405
 #: application/views/timeline/index.php:81
+#: application/views/accumulate/index.php:87
 msgctxt "Propagation Mode"
 msgid "Aurora"
 msgstr "Aurora"
@@ -5494,6 +5500,7 @@ msgstr "Aurora"
 #: application/views/logbookadvanced/index.php:221
 #: application/views/qso/edit_ajax.php:194 application/views/qso/index.php:406
 #: application/views/timeline/index.php:82
+#: application/views/accumulate/index.php:88
 msgctxt "Propagation Mode"
 msgid "Aurora-E"
 msgstr "Aurora-E"
@@ -5503,6 +5510,7 @@ msgstr "Aurora-E"
 #: application/views/logbookadvanced/index.php:222
 #: application/views/qso/edit_ajax.php:195 application/views/qso/index.php:407
 #: application/views/timeline/index.php:83
+#: application/views/accumulate/index.php:89
 msgctxt "Propagation Mode"
 msgid "Back scatter"
 msgstr "Rückwärts-Scatter"
@@ -5512,6 +5520,7 @@ msgstr "Rückwärts-Scatter"
 #: application/views/logbookadvanced/index.php:223
 #: application/views/qso/edit_ajax.php:196 application/views/qso/index.php:408
 #: application/views/timeline/index.php:84
+#: application/views/accumulate/index.php:90
 msgctxt "Propagation Mode"
 msgid "EchoLink"
 msgstr "EchoLink"
@@ -5521,6 +5530,7 @@ msgstr "EchoLink"
 #: application/views/logbookadvanced/index.php:224
 #: application/views/qso/edit_ajax.php:197 application/views/qso/index.php:409
 #: application/views/timeline/index.php:85
+#: application/views/accumulate/index.php:91
 msgctxt "Propagation Mode"
 msgid "Earth-Moon-Earth"
 msgstr "Erde-Mond-Erde"
@@ -5530,6 +5540,7 @@ msgstr "Erde-Mond-Erde"
 #: application/views/logbookadvanced/index.php:225
 #: application/views/qso/edit_ajax.php:198 application/views/qso/index.php:410
 #: application/views/timeline/index.php:86
+#: application/views/accumulate/index.php:92
 msgctxt "Propagation Mode"
 msgid "Sporadic E"
 msgstr "Sporadic E"
@@ -5539,6 +5550,7 @@ msgstr "Sporadic E"
 #: application/views/logbookadvanced/index.php:226
 #: application/views/qso/edit_ajax.php:199 application/views/qso/index.php:411
 #: application/views/timeline/index.php:87
+#: application/views/accumulate/index.php:93
 msgctxt "Propagation Mode"
 msgid "Field Aligned Irregularities"
 msgstr "feldausgerichtete Irregularitäten"
@@ -5548,6 +5560,7 @@ msgstr "feldausgerichtete Irregularitäten"
 #: application/views/logbookadvanced/index.php:227
 #: application/views/qso/edit_ajax.php:200 application/views/qso/index.php:412
 #: application/views/timeline/index.php:88
+#: application/views/accumulate/index.php:94
 msgctxt "Propagation Mode"
 msgid "F2 Reflection"
 msgstr "F2-Reflexion"
@@ -5557,6 +5570,7 @@ msgstr "F2-Reflexion"
 #: application/views/logbookadvanced/index.php:228
 #: application/views/qso/edit_ajax.php:201 application/views/qso/index.php:413
 #: application/views/timeline/index.php:89
+#: application/views/accumulate/index.php:95
 msgctxt "Propagation Mode"
 msgid "Internet-assisted"
 msgstr "Internet-gestützt"
@@ -5566,6 +5580,7 @@ msgstr "Internet-gestützt"
 #: application/views/logbookadvanced/index.php:229
 #: application/views/qso/edit_ajax.php:202 application/views/qso/index.php:414
 #: application/views/timeline/index.php:90
+#: application/views/accumulate/index.php:96
 msgctxt "Propagation Mode"
 msgid "Ionoscatter"
 msgstr "Ionoscatter"
@@ -5575,6 +5590,7 @@ msgstr "Ionoscatter"
 #: application/views/logbookadvanced/index.php:230
 #: application/views/qso/edit_ajax.php:203 application/views/qso/index.php:415
 #: application/views/timeline/index.php:91
+#: application/views/accumulate/index.php:97
 msgctxt "Propagation Mode"
 msgid "IRLP"
 msgstr "IRLP"
@@ -5584,6 +5600,7 @@ msgstr "IRLP"
 #: application/views/logbookadvanced/index.php:231
 #: application/views/qso/edit_ajax.php:204 application/views/qso/index.php:416
 #: application/views/timeline/index.php:92
+#: application/views/accumulate/index.php:98
 msgctxt "Propagation Mode"
 msgid "Meteor scatter"
 msgstr "Meteor-Scatter"
@@ -5593,6 +5610,7 @@ msgstr "Meteor-Scatter"
 #: application/views/logbookadvanced/index.php:232
 #: application/views/qso/edit_ajax.php:205 application/views/qso/index.php:417
 #: application/views/timeline/index.php:93
+#: application/views/accumulate/index.php:99
 msgctxt "Propagation Mode"
 msgid "Terrestrial or atmospheric repeater or transponder"
 msgstr "Terrestrische oder atmosphärische Repeater oder Transponder"
@@ -5602,6 +5620,7 @@ msgstr "Terrestrische oder atmosphärische Repeater oder Transponder"
 #: application/views/logbookadvanced/index.php:233
 #: application/views/qso/edit_ajax.php:206 application/views/qso/index.php:418
 #: application/views/timeline/index.php:94
+#: application/views/accumulate/index.php:100
 msgctxt "Propagation Mode"
 msgid "Rain scatter"
 msgstr "Regen-Scatter"
@@ -5611,6 +5630,7 @@ msgstr "Regen-Scatter"
 #: application/views/logbookadvanced/index.php:234
 #: application/views/qso/edit_ajax.php:207 application/views/qso/index.php:419
 #: application/views/timeline/index.php:95
+#: application/views/accumulate/index.php:101
 msgctxt "Propagation Mode"
 msgid "Satellite"
 msgstr "Satellit"
@@ -5620,6 +5640,7 @@ msgstr "Satellit"
 #: application/views/logbookadvanced/index.php:235
 #: application/views/qso/edit_ajax.php:208 application/views/qso/index.php:420
 #: application/views/timeline/index.php:96
+#: application/views/accumulate/index.php:102
 msgctxt "Propagation Mode"
 msgid "Trans-equatorial"
 msgstr "Transequatorial"
@@ -5629,6 +5650,7 @@ msgstr "Transequatorial"
 #: application/views/logbookadvanced/index.php:236
 #: application/views/qso/edit_ajax.php:209 application/views/qso/index.php:421
 #: application/views/timeline/index.php:97
+#: application/views/accumulate/index.php:103
 msgctxt "Propagation Mode"
 msgid "Tropospheric ducting"
 msgstr "troposphärisches Ducting"
@@ -6546,11 +6568,13 @@ msgstr "Ansicht"
 #: application/views/logbookadvanced/index.php:609
 #: application/views/logbookadvanced/useroptions.php:118
 #: application/views/timeline/index.php:74
+#: application/views/accumulate/index.php:80
 msgid "Propagation"
 msgstr "Ausbreitungsart"
 
 #: application/views/gridmap/index.php:42
 #: application/views/timeline/index.php:79
+#: application/views/accumulate/index.php:85
 msgid "None/Empty"
 msgstr "Keine/Leer"
 
