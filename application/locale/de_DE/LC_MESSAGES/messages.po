@@ -100,6 +100,7 @@ msgstr ""
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Eqsl.php:353 application/controllers/Eqsl.php:420
 #: application/controllers/Eqsl.php:436 application/controllers/Eqsl.php:497
+#: application/controllers/Cron.php:156
 msgid "You're not allowed to do that!"
 msgstr "Das ist dir nicht gestattet!"
 
@@ -578,15 +579,17 @@ msgid "Cron Manager"
 msgstr "Cron-Manager"
 
 #: application/controllers/Cron.php:144 application/views/cron/edit.php:5
+#: application/controllers/Cron.php:148
 msgid "Edit Cronjob"
 msgstr "Bearbeite Cronjob"
 
 #: application/controllers/Cron.php:264
 #: application/views/interface_assets/footer.php:36
+#: application/controllers/Cron.php:268
 msgid "OK"
 msgstr "OK"
 
-#: application/controllers/Cron.php:268
+#: application/controllers/Cron.php:268 application/controllers/Cron.php:272
 #, php-format
 msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
@@ -595,7 +598,7 @@ msgstr ""
 "Letzte Ausführung fand vor mehr als %s Sekunden statt.%sBitte überprüfe "
 "deinen Master-Cron! Er sollte jede Minute laufen (* * * * *)."
 
-#: application/controllers/Cron.php:271
+#: application/controllers/Cron.php:271 application/controllers/Cron.php:275
 #, php-format
 msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
@@ -605,6 +608,7 @@ msgstr ""
 "dein Mastercron nicht läuft!%sEr sollte jede Minute laufen (* * * * *)."
 
 #: application/controllers/Cron.php:276 application/views/cron/index.php:29
+#: application/controllers/Cron.php:280
 msgctxt "Master Cron"
 msgid "Not running"
 msgstr "Läuft nicht"
