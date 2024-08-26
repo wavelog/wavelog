@@ -384,7 +384,12 @@ class eqsl extends CI_Controller {
 		$images = $dom->getElementsByTagName('img');
 
 		if (!isset($images) || count($images) == 0) {
-			$error = "Rate Limited";
+			$h3 = $dom->getElementsByTagName('h3');
+			if (isset($h3)) {
+				$error = $h3->item(0)->nodeValue;
+			} else {
+				$error = "Rate Limited";
+			}
 			return $error;
 		}
 
@@ -402,7 +407,6 @@ class eqsl extends CI_Controller {
 				}
 			}
 		}
-		return $error;
 	}
 
 	public function tools() {
