@@ -3443,8 +3443,7 @@ function lotw_last_qsl_date($user_id) {
 			$this->db->insert_batch($this->config->item('table_name'), $a_qsos);
 		}
 		foreach($amsat_qsos as $amsat_qso) {
-			log_message("Error",var_export($amsat_qso,true)); // Debug // @flo: remove, when okay
-			// $this->upload_amsat_status($data);
+			$this->upload_amsat_status($data);
 		}
 		return $custom_errors;
 }
