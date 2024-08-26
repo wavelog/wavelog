@@ -3,12 +3,13 @@
 # This file is distributed under the MIT licence.
 #
 # Michal Šiman <michal.siman@gmail.com>, 2024.
+# Petr OK1PTR <ok1ptr@pm.me>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-08-12 09:45+0000\n"
-"PO-Revision-Date: 2024-08-06 09:50+0000\n"
-"Last-Translator: Michal Šiman <michal.siman@gmail.com>\n"
+"PO-Revision-Date: 2024-08-26 12:58+0000\n"
+"Last-Translator: Petr OK1PTR <ok1ptr@pm.me>\n"
 "Language-Team: Czech <https://translate.wavelog.org/projects/wavelog/"
 "installer/cs/>\n"
 "Language: cs_CZ\n"
@@ -16,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.7\n"
 
 #: install/includes/core/database_class.php:59
 msgid "Connection Error: "
@@ -40,11 +41,11 @@ msgstr "nedetekováno"
 
 #: install/includes/interface_assets/footer.php:50
 msgid "Albanian"
-msgstr ""
+msgstr "Albánština"
 
 #: install/includes/interface_assets/footer.php:51
 msgid "Bosnian"
-msgstr ""
+msgstr "Bosenština"
 
 #: install/includes/interface_assets/footer.php:52
 msgid "Bulgarian"
@@ -56,15 +57,15 @@ msgstr "Čínština (zjednodušená)"
 
 #: install/includes/interface_assets/footer.php:54
 msgid "Croatian"
-msgstr ""
+msgstr "Chorvatština"
 
 #: install/includes/interface_assets/footer.php:55
 msgid "Czech"
-msgstr ""
+msgstr "Čeština"
 
 #: install/includes/interface_assets/footer.php:56
 msgid "Dutch"
-msgstr ""
+msgstr "Holandština"
 
 #: install/includes/interface_assets/footer.php:57
 msgid "English"
@@ -92,7 +93,7 @@ msgstr "Italština"
 
 #: install/includes/interface_assets/footer.php:63
 msgid "Montenegrin"
-msgstr ""
+msgstr "Černohorština"
 
 #: install/includes/interface_assets/footer.php:64
 msgid "Polish"
@@ -108,7 +109,7 @@ msgstr "Ruština"
 
 #: install/includes/interface_assets/footer.php:67
 msgid "Serbian"
-msgstr ""
+msgstr "Srbština"
 
 #: install/includes/interface_assets/footer.php:68
 msgid "Spanish"
@@ -161,10 +162,14 @@ msgid ""
 "logging software. Follow the steps in each tab to configure and install "
 "Wavelog on your server."
 msgstr ""
+"Tento instalátor vás provede nezbytnými kroky pro instalaci Wavelogu. "
+"<br>Wavelog je výkonný webový radioamatérský logovací software. Postupujte "
+"podle kroků v každé záložce, abyste nakonfigurovali a nainstalovali Wavelog "
+"na svém serveru."
 
 #: install/index.php:64
 msgid "Discussions"
-msgstr ""
+msgstr "Diskuze"
 
 #: install/index.php:64
 #, php-format
@@ -172,6 +177,8 @@ msgid ""
 "If you encounter any issues or have questions, refer to the documentation "
 "(%s) or community forum (%s) on Github for assistance."
 msgstr ""
+"V případě problémů nebo dotazů se podívejte na dokumentaci (%s) nebo se "
+"obraťte na komunitní fórum (%s) na Githubu."
 
 #: install/index.php:64
 msgid "Wiki"
@@ -205,7 +212,7 @@ msgstr "Verze"
 #, php-format
 msgctxt "PHP Version"
 msgid "min. %s (recommended %s+)"
-msgstr ""
+msgstr "min. %s (doporučeno %s+)"
 
 #: install/index.php:136
 msgid "Installed"
@@ -221,48 +228,52 @@ msgstr "PHP nastavení"
 
 #: install/index.php:234
 msgid "Folder Write Permissions"
-msgstr ""
+msgstr "Oprávnění k zápisu do složky"
 
 #: install/index.php:240 install/index.php:251 install/index.php:262
 #: install/index.php:273 install/index.php:284
 msgid "Success"
-msgstr ""
+msgstr "Úspěch"
 
 #: install/index.php:243 install/index.php:254 install/index.php:265
 #: install/index.php:276 install/index.php:287
 msgid "Failed"
-msgstr ""
+msgstr "Selhání"
 
 #: install/index.php:294
 msgid "Web Server"
-msgstr ""
+msgstr "Webový server"
 
 #: install/index.php:297
 msgid "Version:"
-msgstr ""
+msgstr "Verze:"
 
 #: install/index.php:304
 msgid "Important note for nginx users!"
-msgstr ""
+msgstr "Důležité informace pro uživatele nginx!"
 
 #: install/index.php:305
 msgid ""
 "Since you are using nginx as web server please make sure that you have made "
 "the changes described in the Wiki before continuing."
 msgstr ""
+"Protože jako webový server používáte nginx, ujistěte se, že jste provedli "
+"změny popsané ve Wiki, než budete pokračovat."
 
 #: install/index.php:314
 msgid "Some Checks have failed!"
-msgstr ""
+msgstr "Některé kontroly selhaly!"
 
 #: install/index.php:315
 msgid "Check your PHP settings and install missing modules if necessary."
 msgstr ""
+"Zkontrolujte nastavení vašeho PHP a v případě potřeby doinstalujte chybějící "
+"moduly."
 
 #: install/index.php:316
 msgid ""
 "After that, you have to restart your webserver and start the installer again."
-msgstr ""
+msgstr "Poté musíte restartovat svůj webový server a znovu spustit instalátor."
 
 #: install/index.php:317
 #, php-format
@@ -270,6 +281,8 @@ msgid ""
 "In case of failed 'Folder Write Permissions' check out our Wiki <a href='%s' "
 "target='_blank'>here</a>."
 msgstr ""
+"V případě chyby 'Oprávnění pro zápis do adresáře' se podívejte na Wiki <a "
+"href='%s' target='_blank'>zde</a>."
 
 #: install/index.php:323
 msgid "You have some warnings!"
@@ -280,20 +293,24 @@ msgid ""
 "Some of the settings are not optimal. You can proceed with the installer but "
 "be aware that you could run into problems while using Wavelog."
 msgstr ""
+"Některá nastavení nejsou optimální. Můžete pokračovat v instalaci, ale "
+"počítejte s tím, že při používání Wavelogu můžete narazit na problémy."
 
 #: install/index.php:331
 msgid "All Checks are OK. You can continue."
-msgstr ""
+msgstr "Všechny kontroly jsou OK. Můžete pokračovat."
 
 #: install/index.php:345
 msgid ""
 "Configure some basic parameters for your wavelog instance. You can change "
 "them later in 'application/config/config.php'"
 msgstr ""
+"Nastavte některé základní parametry vašeho Wavelog. Později je můžete změnit "
+"v souboru 'application/config/config.php'"
 
 #: install/index.php:347
 msgid "Directory"
-msgstr ""
+msgstr "Adresář"
 
 #: install/index.php:347
 msgid ""
@@ -303,7 +320,7 @@ msgstr ""
 
 #: install/index.php:352
 msgid "No slash before or after the directory. Just the name of the folder."
-msgstr ""
+msgstr "Bez lomítka před a za adresářem. Pouze jméno složky."
 
 #: install/index.php:357
 #, php-format
@@ -358,7 +375,7 @@ msgstr ""
 #: install/index.php:389
 #, php-format
 msgid "Password can't contain %s or be empty"
-msgstr ""
+msgstr "Heslo nesmí obsahovat %s nebo být prázdné"
 
 #: install/index.php:394 install/index.php:399
 msgid "Advanced Settings"
@@ -539,7 +556,7 @@ msgstr ""
 
 #: install/index.php:1099
 msgid "We now can install Wavelog. This process can take a few minutes."
-msgstr ""
+msgstr "Nyní můžeme nainstalovat Wavelog. Proces může trvat několik minut."
 
 #: install/index.php:1105
 msgid "Reset"
@@ -555,19 +572,19 @@ msgstr ""
 
 #: install/index.php:1116
 msgid "Yes"
-msgstr ""
+msgstr "Ano"
 
 #: install/index.php:1117
 msgid "No"
-msgstr ""
+msgstr "Ne"
 
 #: install/index.php:1127
 msgid "Back"
-msgstr ""
+msgstr "Zpět"
 
 #: install/index.php:1128
 msgid "Continue"
-msgstr ""
+msgstr "Pokračovat"
 
 #: install/index.php:1206
 msgid ""
@@ -577,7 +594,7 @@ msgstr ""
 
 #: install/index.php:1333
 msgid "Password can't contain ' / \\ < >"
-msgstr ""
+msgstr "Heslo nesmí obsahovat '/\\<>"
 
 #: install/index.php:1500
 msgid "Error: At least Hostname/IP, Database Name and Username are required."
@@ -600,15 +617,15 @@ msgstr ""
 #: install/index.php:1538
 #, php-format
 msgid "The min. version for MySQL is %s, for MariaDB it's %s."
-msgstr ""
+msgstr "Minimální verze MySQL je%s, u MariaDB je to %s."
 
 #: install/index.php:1653
 msgid "Search"
-msgstr ""
+msgstr "Hledat"
 
 #: install/index.php:1686
 msgid "At least one field is empty."
-msgstr ""
+msgstr "Minimálně jedno pole je prázdné."
 
 #: install/index.php:1702
 msgid ""
@@ -631,15 +648,15 @@ msgstr ""
 
 #: install/index.php:1767
 msgid "Password should be at least 8 characters long"
-msgstr ""
+msgstr "Heslo musí obsahovat minimálně 8 znaků"
 
 #: install/index.php:1776
 msgid "Passwords do not match"
-msgstr ""
+msgstr "Hesla se neshodují"
 
 #: install/index.php:1823
 msgid "Install Now"
-msgstr ""
+msgstr "Instalovat nyní"
 
 #: install/index.php:1827
 msgid "Install not possible. Checklist incomplete."
@@ -647,68 +664,70 @@ msgstr ""
 
 #: install/index.php:1943
 msgid "PHP Module missing"
-msgstr ""
+msgstr "PHP modul chybí"
 
 #: install/index.php:1945
 msgid "The following PHP modules are missing:"
-msgstr ""
+msgstr "Následující PHP moduly chybí:"
 
 #: install/index.php:1946
 msgid "Without this module the Wavelog Installer does not work!"
-msgstr ""
+msgstr "Wavelog instalátor bez toho modulu nefunguje!"
 
 #: install/index.php:1947
 msgid "Please install the required modules and restart the webserver."
-msgstr ""
+msgstr "Prosím doinstalujte požadované moduly a restartujte webový server."
 
 #: install/run.php:10
 msgid "Installation"
-msgstr ""
+msgstr "Instalace"
 
 #: install/run.php:12
 msgid "Please wait..."
-msgstr ""
+msgstr "Prosím čekejte..."
 
 #: install/run.php:15
 msgid "Copy config.php to application/config/"
-msgstr ""
+msgstr "Kopírování config.php do application/config/"
 
 #: install/run.php:18
 msgid "Copy database.php to application/config/"
-msgstr ""
+msgstr "Kopírování database.php do application/config/"
 
 #: install/run.php:21
 msgid "Creating database tables"
-msgstr ""
+msgstr "Vytváření tabulek databáze"
 
 #: install/run.php:24
 msgid "Running database migrations"
-msgstr ""
+msgstr "Migrace databáze"
 
 #: install/run.php:27
 msgid "Updating DXCC data"
-msgstr ""
+msgstr "Aktualizace DXCC dat"
 
 #: install/run.php:35
 msgid "Lock the installer"
-msgstr ""
+msgstr "Zamknutí instalátoru"
 
 #: install/run.php:39
 #, php-format
 msgid "All install steps went through. Redirect to user login in %s seconds..."
 msgstr ""
+"Všechny kroky instalace proběhly. Přesměrování na přihlášení uživatele za %s "
+"sekund..."
 
 #: install/run.php:42
 msgid "Done. Go to the user login ->"
-msgstr ""
+msgstr "Hotovo. Pokračujte přihlášením uživatele ->"
 
 #: install/run.php:46 install/run.php:125
 msgid "Show detailled debug log"
-msgstr ""
+msgstr "Zobrazit detailní ladící log"
 
 #: install/run.php:127
 msgid "Hide detailled debug log"
-msgstr ""
+msgstr "Skrýt detailní ladící log"
 
 #: install/run.php:182
 msgid "Could not create application/config/config.php"
@@ -720,15 +739,15 @@ msgstr ""
 
 #: install/run.php:251
 msgid "Could not create database tables"
-msgstr ""
+msgstr "Nelze vytvořit tabulky v databázi"
 
 #: install/run.php:281
 msgid "Could not run database migrations"
-msgstr ""
+msgstr "Nelze spustit migraci databáze"
 
 #: install/run.php:309
 msgid "Could not update DXCC data"
-msgstr ""
+msgstr "Nelze aktualizovat DXCC data"
 
 #: install/run.php:341
 msgid "Could not create install/.lock file"
