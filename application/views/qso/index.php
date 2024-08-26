@@ -396,6 +396,16 @@
                       ?>
                   </select>
               </div>
+              <div class="mb-3">
+                  <label for="ituz"><?= __("ITU Zone"); ?></label>
+                  <select class="form-select" id="ituz" name="ituz" required>
+                      <?php
+                      for ($i = 0; $i<=90; $i++) {
+                          echo '<option value="'. $i . '">'. $i .'</option>';
+                      }
+                      ?>
+                  </select>
+              </div>
 
             <div class="mb-3">
               <label for="selectPropagation"><?= __("Propagation Mode"); ?></label>
