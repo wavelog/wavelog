@@ -699,6 +699,7 @@ $( document ).ready(function() {
 		$('#hamqth_info').text("").hide();
 		$('#dxcc_id').val("").multiselect('refresh');
 		$('#cqz').val("");
+		$('#ituz').val("");
 		$('#name').val("");
 		$('#qth').val("");
 		$('#locator').val("");
@@ -1314,6 +1315,7 @@ function highlight(term, base) {
 		$('#continent').val("");
 		$('#dxcc_id').val("").multiselect('refresh');
 		$('#cqz').val("");
+		$('#ituz').val("");
 		$('#name').val("");
 		$('#qth').val("");
 		$('#locator').val("");
