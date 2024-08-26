@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-26 17:05+0000\n"
+"POT-Creation-Date: 2024-08-26 18:51+0000\n"
 "PO-Revision-Date: 2024-08-17 10:49+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Croatian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -70,6 +70,11 @@ msgstr ""
 #: application/controllers/Qso.php:295 application/controllers/Qso.php:304
 #: application/controllers/Qso.php:599 application/controllers/Radio.php:261
 #: application/controllers/Radio.php:287 application/controllers/Radio.php:303
+#: application/controllers/Reg1test.php:18
+#: application/controllers/Reg1test.php:63
+#: application/controllers/Reg1test.php:102
+#: application/controllers/Reg1test.php:130
+#: application/controllers/Reg1test.php:164
 #: application/controllers/Satellite.php:15
 #: application/controllers/Sattimers.php:9
 #: application/controllers/Search.php:13
@@ -517,7 +522,7 @@ msgid "Export Cabrillo"
 msgstr ""
 
 #: application/controllers/Cfdexport.php:20
-#: application/views/interface_assets/header.php:396
+#: application/views/interface_assets/header.php:398
 msgid "CFD Export"
 msgstr ""
 
@@ -1415,7 +1420,7 @@ msgstr ""
 
 #: application/controllers/Lotw.php:54 application/controllers/Lotw.php:83
 #: application/controllers/Lotw.php:125 application/views/adif/import.php:27
-#: application/views/interface_assets/header.php:423
+#: application/views/interface_assets/header.php:425
 #: application/views/lotw/import.php:3
 #: application/views/lotw_views/index.php:12
 #: application/views/lotw_views/upload_cert.php:3
@@ -1623,7 +1628,7 @@ msgid "Log Search & OQRS"
 msgstr ""
 
 #: application/controllers/Oqrs.php:104
-#: application/views/interface_assets/header.php:413
+#: application/views/interface_assets/header.php:415
 msgid "OQRS Requests"
 msgstr ""
 
@@ -1673,7 +1678,7 @@ msgid ""
 msgstr ""
 
 #: application/controllers/Qrz.php:173
-#: application/views/interface_assets/header.php:426
+#: application/views/interface_assets/header.php:428
 msgid "QRZ Logbook"
 msgstr ""
 
@@ -1709,7 +1714,7 @@ msgid "Add QSO"
 msgstr ""
 
 #: application/controllers/Radio.php:17
-#: application/views/interface_assets/header.php:432
+#: application/views/interface_assets/header.php:434
 msgid "Hardware Interfaces"
 msgstr ""
 
@@ -1775,6 +1780,10 @@ msgstr ""
 
 #: application/controllers/Radio.php:111
 msgid "No CAT interfaced radios found."
+msgstr ""
+
+#: application/controllers/Reg1test.php:25
+msgid "Export EDI"
 msgstr ""
 
 #: application/controllers/Satellite.php:37
@@ -1872,7 +1881,7 @@ msgstr ""
 
 #: application/controllers/Stationsetup.php:35
 #: application/views/interface_assets/header.php:377
-#: application/views/interface_assets/header.php:488
+#: application/views/interface_assets/header.php:490
 msgid "Station Setup"
 msgstr ""
 
@@ -1936,7 +1945,7 @@ msgid "Set as Active Logbook"
 msgstr ""
 
 #: application/controllers/Stationsetup.php:263
-#: application/views/interface_assets/header.php:486
+#: application/views/interface_assets/header.php:488
 #: application/views/stationsetup/stationsetup.php:46
 #: application/views/view_log/index.php:4
 msgid "Active Logbook"
@@ -2256,7 +2265,7 @@ msgstr ""
 
 #: application/controllers/Webadif.php:90
 #: application/controllers/Webadif.php:137
-#: application/views/interface_assets/header.php:427
+#: application/views/interface_assets/header.php:429
 msgid "QO-100 Dx Club Upload"
 msgstr ""
 
@@ -2953,6 +2962,7 @@ msgstr ""
 #: application/views/qslprint/qslprint.php:21
 #: application/views/qslprint/qsolist.php:6
 #: application/views/qso/edit_ajax.php:62 application/views/qso/index.php:124
+#: application/views/reg1test/index.php:33
 #: application/views/search/cqzones.php:32
 #: application/views/search/cqzones_result.php:9
 #: application/views/search/lotw_unconfirmed.php:33
@@ -3160,7 +3170,8 @@ msgstr ""
 #: application/views/adif/import.php:60 application/views/adif/import.php:62
 #: application/views/adif/import.php:168 application/views/adif/import.php:215
 #: application/views/eqsl/import.php:36 application/views/hrdlog/export.php:69
-#: application/views/qrz/export.php:89 application/views/webadif/export.php:89
+#: application/views/qrz/export.php:89 application/views/reg1test/index.php:30
+#: application/views/webadif/export.php:89
 msgid "Select Station Location"
 msgstr ""
 
@@ -3407,7 +3418,7 @@ msgid "Save"
 msgstr ""
 
 #: application/views/api/help.php:14
-#: application/views/interface_assets/header.php:431
+#: application/views/interface_assets/header.php:433
 msgid "API Keys"
 msgstr ""
 
@@ -4262,7 +4273,7 @@ msgstr ""
 #: application/views/awards/jcc/index.php:116
 #: application/views/cabrillo/index.php:180 application/views/cfd/index.php:25
 #: application/views/csv/index.php:128 application/views/dxatlas/index.php:128
-#: application/views/kml/index.php:113
+#: application/views/kml/index.php:113 application/views/reg1test/index.php:140
 msgid "Export"
 msgstr ""
 
@@ -4793,22 +4804,28 @@ msgstr ""
 
 #: application/views/cabrillo/index.php:2
 #: application/views/cabrillo/index.php:34 application/views/oqrs/index.php:59
+#: application/views/reg1test/index.php:2
+#: application/views/reg1test/index.php:36
 msgid "Proceed"
 msgstr ""
 
 #: application/views/cabrillo/index.php:3
+#: application/views/reg1test/index.php:3
 msgid "Select Year"
 msgstr ""
 
 #: application/views/cabrillo/index.php:4
+#: application/views/reg1test/index.php:4
 msgid "Select Contest"
 msgstr ""
 
 #: application/views/cabrillo/index.php:5
+#: application/views/reg1test/index.php:5
 msgid "Select Date Range"
 msgstr ""
 
 #: application/views/cabrillo/index.php:6
+#: application/views/reg1test/index.php:7
 msgid "No contests were found for this station location!"
 msgstr ""
 
@@ -4821,10 +4838,12 @@ msgid "Select Station Location:"
 msgstr ""
 
 #: application/views/cabrillo/index.php:44
+#: application/views/reg1test/index.php:53
 msgid "Club"
 msgstr ""
 
 #: application/views/cabrillo/index.php:48
+#: application/views/reg1test/index.php:58
 msgid "Category Operator"
 msgstr ""
 
@@ -4865,10 +4884,12 @@ msgid "Category Overlay"
 msgstr ""
 
 #: application/views/cabrillo/index.php:150
+#: application/views/reg1test/index.php:70
 msgid "Operators"
 msgstr ""
 
 #: application/views/cabrillo/index.php:155
+#: application/views/reg1test/index.php:134
 msgid "Soapbox"
 msgstr ""
 
@@ -4893,6 +4914,7 @@ msgid "Address Country"
 msgstr ""
 
 #: application/views/cabrillo/index.php:186
+#: application/views/reg1test/index.php:145
 msgid "No contests were found in your log."
 msgstr ""
 
@@ -5032,7 +5054,7 @@ msgstr ""
 #: application/views/contesting/add.php:44
 #: application/views/contesting/edit.php:43
 #: application/views/contesting/edit.php:46
-#: application/views/interface_assets/header.php:466
+#: application/views/interface_assets/header.php:468
 #: application/views/mode/create.php:46 application/views/mode/create.php:48
 #: application/views/mode/edit.php:57 application/views/mode/edit.php:60
 #: application/views/mode/index.php:43
@@ -6428,7 +6450,7 @@ msgid "Error in locators. Please check."
 msgstr ""
 
 #: application/views/interface_assets/footer.php:132
-#: application/views/interface_assets/header.php:434
+#: application/views/interface_assets/header.php:436
 #: application/views/options/sidebar.php:11
 msgid "Version Info"
 msgstr ""
@@ -6755,43 +6777,47 @@ msgstr ""
 msgid "Cabrillo Export"
 msgstr ""
 
-#: application/views/interface_assets/header.php:418
+#: application/views/interface_assets/header.php:396
+msgid "EDI Export"
+msgstr ""
+
+#: application/views/interface_assets/header.php:420
 msgid "QSL Queue"
 msgstr ""
 
-#: application/views/interface_assets/header.php:419
+#: application/views/interface_assets/header.php:421
 msgid "Labels"
 msgstr ""
 
-#: application/views/interface_assets/header.php:421
+#: application/views/interface_assets/header.php:423
 msgid "Third-Party Services"
 msgstr ""
 
-#: application/views/interface_assets/header.php:424
+#: application/views/interface_assets/header.php:426
 msgid "eQSL Import / Export"
 msgstr ""
 
-#: application/views/interface_assets/header.php:425
+#: application/views/interface_assets/header.php:427
 msgid "HRDLog Logbook"
 msgstr ""
 
-#: application/views/interface_assets/header.php:435
+#: application/views/interface_assets/header.php:437
 msgid "Help"
 msgstr ""
 
-#: application/views/interface_assets/header.php:436
+#: application/views/interface_assets/header.php:438
 msgid "Forum"
 msgstr ""
 
-#: application/views/interface_assets/header.php:438
+#: application/views/interface_assets/header.php:440
 msgid "Logout"
 msgstr ""
 
-#: application/views/interface_assets/header.php:446
+#: application/views/interface_assets/header.php:448
 msgid "Select a Location"
 msgstr ""
 
-#: application/views/interface_assets/header.php:525
+#: application/views/interface_assets/header.php:527
 msgid "Extras"
 msgstr ""
 
@@ -8616,6 +8642,7 @@ msgid "RX Band"
 msgstr ""
 
 #: application/views/qso/edit_ajax.php:134 application/views/qso/index.php:346
+#: application/views/reg1test/index.php:114
 #: application/views/view_log/qso.php:542
 msgid "Transmit Power (W)"
 msgstr ""
@@ -8877,6 +8904,127 @@ msgstr ""
 
 #: application/views/radio/index.php:27
 msgid "Please wait..."
+msgstr ""
+
+#: application/views/reg1test/index.php:6
+msgid "Select Band"
+msgstr ""
+
+#: application/views/reg1test/index.php:8
+msgid ""
+"Bands below 50Mhz are not valid for the EDI REG1TEST format and will produce "
+"invalid files."
+msgstr ""
+
+#: application/views/reg1test/index.php:18
+msgid "Export a contest to a REG1TEST EDI log"
+msgstr ""
+
+#: application/views/reg1test/index.php:48
+msgid "Sent Exchange"
+msgstr ""
+
+#: application/views/reg1test/index.php:50
+msgid ""
+"The exchange which was sent during the contest. Can be any type of "
+"information, e.g. Province, DOK, County, State, Power, Name. Max. length: 6 "
+"characters."
+msgstr ""
+
+#: application/views/reg1test/index.php:55
+msgid ""
+"Describes the callsign of the radio club where operator(s) are member. E.g. "
+"can be used if points are accumulated to the club."
+msgstr ""
+
+#: application/views/reg1test/index.php:66
+msgid "Callsign of responsible operator"
+msgstr ""
+
+#: application/views/reg1test/index.php:72
+msgid ""
+"List of all operators. Seperated with a semicolon ';'. The responsible "
+"operator is not needed here."
+msgstr ""
+
+#: application/views/reg1test/index.php:75
+msgid "Contest Address 1"
+msgstr ""
+
+#: application/views/reg1test/index.php:77
+msgid "Address of the QTH used during the contest."
+msgstr ""
+
+#: application/views/reg1test/index.php:80
+msgid "Contest Address 2"
+msgstr ""
+
+#: application/views/reg1test/index.php:84
+msgid "Operator Address 1"
+msgstr ""
+
+#: application/views/reg1test/index.php:86
+msgid "Address of the responsible operator."
+msgstr ""
+
+#: application/views/reg1test/index.php:89
+msgid "Operator Address 2"
+msgstr ""
+
+#: application/views/reg1test/index.php:93
+msgid "Operator Address Postalcode"
+msgstr ""
+
+#: application/views/reg1test/index.php:97
+msgid "Operator Address City"
+msgstr ""
+
+#: application/views/reg1test/index.php:101
+msgid "Operator Address Country"
+msgstr ""
+
+#: application/views/reg1test/index.php:105
+msgid "Operator Phone Number"
+msgstr ""
+
+#: application/views/reg1test/index.php:109
+msgid "Transmit Equipment Description"
+msgstr ""
+
+#: application/views/reg1test/index.php:111
+msgid "Short description of the used equipment."
+msgstr ""
+
+#: application/views/reg1test/index.php:116
+msgid "TX Power during the contest in Watt."
+msgstr ""
+
+#: application/views/reg1test/index.php:119
+msgid "Receive Equipment Description"
+msgstr ""
+
+#: application/views/reg1test/index.php:121
+msgid "If you used another gear for RX, then describe it here."
+msgstr ""
+
+#: application/views/reg1test/index.php:124
+msgid "Antenna Description"
+msgstr ""
+
+#: application/views/reg1test/index.php:126
+msgid "What kind of antenna was used."
+msgstr ""
+
+#: application/views/reg1test/index.php:129
+msgid "Antenna Height Above Ground (m)"
+msgstr ""
+
+#: application/views/reg1test/index.php:131
+msgid "Height of the antenna above the ground."
+msgstr ""
+
+#: application/views/reg1test/index.php:136
+msgid "Any other remarks."
 msgstr ""
 
 #: application/views/satellite/create.php:23
