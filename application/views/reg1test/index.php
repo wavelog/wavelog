@@ -5,6 +5,7 @@
 	var lang_export_reg1testedi_select_date_range = '<?= __("Select Date Range") ?>'; 
 	var lang_export_reg1testedi_select_band = '<?= __("Select Band") ?>';
 	var lang_export_reg1testedi_no_contests_for_stationlocation = '<?= __("No contests were found for this station location!") ?>';
+	var lang_export_reg1testedi_bandhint = '<?= __("Bands below 50Mhz are not valid for the EDI REG1TEST format and will be invalid.") ?>';
 </script>
 <div class="container">
 

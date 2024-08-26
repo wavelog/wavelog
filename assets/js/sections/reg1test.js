@@ -115,6 +115,8 @@ function loadContestBands() {
                         .attr("value",value.band)
                         .text(value.band));
                 });
+
+                $(".contestbands").append('<small id="band_hint" class="form-text text-muted col-md-2">' + lang_export_reg1testedi_bandhint + '</small>');
         }
     });
 }
