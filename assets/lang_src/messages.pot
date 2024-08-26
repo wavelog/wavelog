@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-26 15:55+0000\n"
+"POT-Creation-Date: 2024-08-26 17:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -251,7 +251,7 @@ msgstr ""
 #: application/controllers/Awards.php:92
 #: application/views/awards/dok/index.php:149
 #: application/views/bands/index.php:47
-#: application/views/contesting/index.php:170
+#: application/views/contesting/index.php:53
 #: application/views/interface_assets/header.php:194
 #: application/views/logbookadvanced/index.php:618
 #: application/views/logbookadvanced/useroptions.php:130
@@ -1008,8 +1008,8 @@ msgstr ""
 #: application/views/awards/waja/index.php:91
 #: application/views/awards/was/index.php:87
 #: application/views/components/hamsat/table.php:30
-#: application/views/contesting/index.php:57
-#: application/views/contesting/index.php:203
+#: application/views/contesting/index.php:108
+#: application/views/contesting/index.php:250
 #: application/views/continents/index.php:39 application/views/csv/index.php:42
 #: application/views/dashboard/index.php:4
 #: application/views/debug/index.php:548 application/views/dxatlas/index.php:42
@@ -1064,8 +1064,8 @@ msgstr ""
 #: application/controllers/Logbook.php:1281
 #: application/views/awards/pota/index.php:36
 #: application/views/awards/wwff/index.php:36
-#: application/views/contesting/index.php:111
-#: application/views/contesting/index.php:204
+#: application/views/contesting/index.php:165
+#: application/views/contesting/index.php:251
 #: application/views/logbookadvanced/index.php:552
 #: application/views/logbookadvanced/useroptions.php:38
 #: application/views/qslcard/searchresult.php:13
@@ -1091,8 +1091,8 @@ msgstr ""
 #: application/controllers/Logbook.php:1282
 #: application/views/awards/pota/index.php:37
 #: application/views/awards/wwff/index.php:37
-#: application/views/contesting/index.php:131
-#: application/views/contesting/index.php:205
+#: application/views/contesting/index.php:189
+#: application/views/contesting/index.php:252
 #: application/views/logbookadvanced/index.php:555
 #: application/views/logbookadvanced/useroptions.php:42
 #: application/views/qslcard/searchresult.php:14
@@ -1171,7 +1171,7 @@ msgstr ""
 #: application/views/awards/counties/index.php:20
 #: application/views/awards/rac/index.php:143
 #: application/views/awards/was/index.php:151
-#: application/views/contesting/index.php:173
+#: application/views/contesting/index.php:56
 #: application/views/dashboard/index.php:12
 #: application/views/logbookadvanced/edit.php:20
 #: application/views/logbookadvanced/edit.php:64
@@ -1200,7 +1200,7 @@ msgstr ""
 #: application/views/awards/gridmaster/index.php:33
 #: application/views/awards/vucc/band.php:12
 #: application/views/contesting/index.php:17
-#: application/views/contesting/index.php:210
+#: application/views/contesting/index.php:257
 #: application/views/dashboard/index.php:13
 #: application/views/gridmap/index.php:152
 #: application/views/labels/index.php:125
@@ -1281,8 +1281,8 @@ msgstr ""
 #: application/views/bandmap/index.php:45 application/views/bandmap/list.php:88
 #: application/views/bands/create.php:24 application/views/bands/edit.php:6
 #: application/views/bands/index.php:45
-#: application/views/contesting/index.php:70
-#: application/views/contesting/index.php:202
+#: application/views/contesting/index.php:121
+#: application/views/contesting/index.php:249
 #: application/views/continents/index.php:30 application/views/csv/index.php:31
 #: application/views/dashboard/index.php:15
 #: application/views/debug/index.php:549 application/views/dxatlas/index.php:31
@@ -1335,7 +1335,7 @@ msgstr ""
 
 #: application/controllers/Logbook.php:1292
 #: application/controllers/Radio.php:48 application/views/bandmap/list.php:110
-#: application/views/contesting/index.php:87
+#: application/views/contesting/index.php:138
 #: application/views/dashboard/index.php:16
 #: application/views/qslcard/searchresult.php:22
 #: application/views/qslcard/searchresult.php:38
@@ -1708,7 +1708,7 @@ msgstr ""
 
 #: application/controllers/Radio.php:47 application/views/bandmap/index.php:25
 #: application/views/bandmap/list.php:60
-#: application/views/contesting/index.php:92
+#: application/views/contesting/index.php:143
 #: application/views/qso/index.php:312
 msgid "Radio"
 msgstr ""
@@ -1729,7 +1729,7 @@ msgid "Options"
 msgstr ""
 
 #: application/controllers/Radio.php:90
-#: application/views/contesting/index.php:96
+#: application/views/contesting/index.php:147
 #: application/views/qso/index.php:316
 msgid "last updated"
 msgstr ""
@@ -2375,31 +2375,31 @@ msgstr ""
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr ""
 
-#: application/models/Logbook_model.php:4168
+#: application/models/Logbook_model.php:4178
 msgid "QSO could not be matched"
 msgstr ""
 
-#: application/models/Logbook_model.php:4174
+#: application/models/Logbook_model.php:4184
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr ""
 
-#: application/models/Logbook_model.php:4179
+#: application/models/Logbook_model.php:4189
 msgid "confirmed by award manager"
 msgstr ""
 
-#: application/models/Logbook_model.php:4182
+#: application/models/Logbook_model.php:4192
 msgid "confirmed by cross-check of DCL data"
 msgstr ""
 
-#: application/models/Logbook_model.php:4185
+#: application/models/Logbook_model.php:4195
 msgid "confirmation pending"
 msgstr ""
 
-#: application/models/Logbook_model.php:4188
+#: application/models/Logbook_model.php:4198
 msgid "unconfirmed"
 msgstr ""
 
-#: application/models/Logbook_model.php:4191
+#: application/models/Logbook_model.php:4201
 msgid "unknown"
 msgstr ""
 
@@ -2931,7 +2931,7 @@ msgstr ""
 #: application/views/awards/wwff/index.php:34
 #: application/views/cabrillo/index.php:31
 #: application/views/components/hamsat/table.php:27
-#: application/views/contesting/index.php:104
+#: application/views/contesting/index.php:156
 #: application/views/csv/index.php:23 application/views/dashboard/index.php:150
 #: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:41
 #: application/views/eqslcard/index.php:28
@@ -3015,8 +3015,8 @@ msgstr ""
 #: application/views/awards/wwff/index.php:32
 #: application/views/bandmap/list.php:109
 #: application/views/components/hamsat/table.php:25
-#: application/views/contesting/index.php:42
-#: application/views/contesting/index.php:200
+#: application/views/contesting/index.php:93
+#: application/views/contesting/index.php:247
 #: application/views/dashboard/index.php:145
 #: application/views/debug/index.php:545 application/views/eqsl/analysis.php:36
 #: application/views/eqsl/download.php:36 application/views/eqsl/result.php:33
@@ -3057,8 +3057,8 @@ msgstr ""
 #: application/views/awards/wwff/index.php:33
 #: application/views/bandmap/list.php:109
 #: application/views/components/hamsat/table.php:26
-#: application/views/contesting/index.php:47
-#: application/views/contesting/index.php:200
+#: application/views/contesting/index.php:98
+#: application/views/contesting/index.php:247
 #: application/views/dashboard/index.php:148
 #: application/views/debug/index.php:546 application/views/eqsl/analysis.php:37
 #: application/views/eqsl/download.php:37 application/views/eqsl/result.php:34
@@ -3085,7 +3085,7 @@ msgstr ""
 #: application/views/adif/dcl_success.php:31
 #: application/views/awards/vucc/band.php:18
 #: application/views/bandmap/list.php:111
-#: application/views/contesting/index.php:201
+#: application/views/contesting/index.php:248
 #: application/views/debug/index.php:547 application/views/debug/index.php:582
 #: application/views/dxcalendar/index.php:12
 #: application/views/eqsl/analysis.php:38
@@ -4169,8 +4169,8 @@ msgstr ""
 #: application/views/awards/iota/index.php:171
 #: application/views/contesting/add.php:25
 #: application/views/contesting/create.php:24
-#: application/views/contesting/index.php:153
-#: application/views/contesting/index.php:171
+#: application/views/contesting/index.php:54
+#: application/views/contesting/index.php:214
 #: application/views/dashboard/index.php:18
 #: application/views/labels/index.php:41 application/views/labels/index.php:75
 #: application/views/logbookadvanced/index.php:564
@@ -4625,8 +4625,8 @@ msgstr ""
 
 #: application/views/bandmap/index.php:27 application/views/bandmap/list.php:62
 #: application/views/contesting/index.php:15
-#: application/views/contesting/index.php:94
-#: application/views/contesting/index.php:169
+#: application/views/contesting/index.php:52
+#: application/views/contesting/index.php:145
 #: application/views/qso/index.php:314
 msgid "None"
 msgstr ""
@@ -4754,6 +4754,7 @@ msgstr ""
 
 #: application/views/bands/index.php:152
 #: application/views/contesting/add.php:74
+#: application/views/contesting/index.php:83
 #: application/views/interface_assets/footer.php:44
 #: application/views/simplefle/index.php:21
 #: application/views/version_dialog/index.php:79
@@ -4917,7 +4918,7 @@ msgid "No upcoming activations found. Please check back later."
 msgstr ""
 
 #: application/views/components/hamsat/table.php:28
-#: application/views/contesting/index.php:158
+#: application/views/contesting/index.php:219
 #: application/views/hamsat/index.php:31
 #: application/views/logbookadvanced/edit.php:5
 #: application/views/logbookadvanced/index.php:606
@@ -5084,7 +5085,7 @@ msgid "Create"
 msgstr ""
 
 #: application/views/contesting/edit.php:31
-#: application/views/contesting/index.php:24
+#: application/views/contesting/index.php:25
 #: application/views/qso/edit_ajax.php:548
 #: application/views/view_log/qso.php:275
 msgid "Contest Name"
@@ -5122,80 +5123,109 @@ msgstr ""
 msgid "Serial + Gridsquare"
 msgstr ""
 
-#: application/views/contesting/index.php:34
+#: application/views/contesting/index.php:21
+msgid "Serial + Gridsquare + Exchange"
+msgstr ""
+
+#: application/views/contesting/index.php:35
 #: application/views/operator/index.php:5
 #: application/views/qso/edit_ajax.php:539 application/views/qso/index.php:352
 msgid "Operator Callsign"
 msgstr ""
 
-#: application/views/contesting/index.php:116
-#: application/views/contesting/index.php:208
+#: application/views/contesting/index.php:40
+#: application/views/contesting/index.php:45
+msgid "More Settings"
+msgstr ""
+
+#: application/views/contesting/index.php:49
+msgid "Copy received exchange to"
+msgstr ""
+
+#: application/views/contesting/index.php:51
+msgid "Exchange is only copied if it is matching rules for the selected field!"
+msgstr ""
+
+#: application/views/contesting/index.php:55
+msgid "Age"
+msgstr ""
+
+#: application/views/contesting/index.php:57
+msgid "RX Power (W)"
+msgstr ""
+
+#: application/views/contesting/index.php:58
+msgid "Locator"
+msgstr ""
+
+#: application/views/contesting/index.php:59
+#: application/views/qso/edit_ajax.php:177
+msgid "QTH"
+msgstr ""
+
+#: application/views/contesting/index.php:64
+msgid "Sequence of Exchanges"
+msgstr ""
+
+#: application/views/contesting/index.php:67
+#, php-format
+msgid "%s = Serial, %s = Gridsquare, %s = Exchange."
+msgstr ""
+
+#: application/views/contesting/index.php:67
+msgid ""
+"Choose in which order you want to type in the different reports. However, "
+"only the elements contained in the selected exchange type are displayed."
+msgstr ""
+
+#: application/views/contesting/index.php:172
+#: application/views/contesting/index.php:255
 #: application/views/qso/edit_ajax.php:571
 msgid "Serial (S)"
 msgstr ""
 
-#: application/views/contesting/index.php:121
-#: application/views/contesting/index.php:206
-msgid "Exch (S)"
-msgstr ""
-
-#: application/views/contesting/index.php:126
+#: application/views/contesting/index.php:177
 msgid "Gridsquare (S)"
 msgstr ""
 
-#: application/views/contesting/index.php:136
-#: application/views/contesting/index.php:209
+#: application/views/contesting/index.php:182
+#: application/views/contesting/index.php:253
+msgid "Exch (S)"
+msgstr ""
+
+#: application/views/contesting/index.php:196
+#: application/views/contesting/index.php:256
 #: application/views/qso/edit_ajax.php:566
 msgid "Serial (R)"
 msgstr ""
 
-#: application/views/contesting/index.php:141
-#: application/views/contesting/index.php:207
-msgid "Exch (R)"
-msgstr ""
-
-#: application/views/contesting/index.php:146
+#: application/views/contesting/index.php:201
 msgid "Gridsquare (R)"
 msgstr ""
 
-#: application/views/contesting/index.php:163
+#: application/views/contesting/index.php:206
+#: application/views/contesting/index.php:254
+msgid "Exch (R)"
+msgstr ""
+
+#: application/views/contesting/index.php:224
 msgid "Reset QSO"
 msgstr ""
 
-#: application/views/contesting/index.php:164
+#: application/views/contesting/index.php:225
 #: application/views/qso/index.php:607
 msgid "Save QSO"
 msgstr ""
 
-#: application/views/contesting/index.php:166
-msgid "Copy received exchange to"
-msgstr ""
-
-#: application/views/contesting/index.php:168
-msgid "Exchange is only copied if it is matching rules for the selected field!"
-msgstr ""
-
-#: application/views/contesting/index.php:172
-msgid "Age"
-msgstr ""
-
-#: application/views/contesting/index.php:174
-msgid "RX Power (W)"
-msgstr ""
-
-#: application/views/contesting/index.php:175
-msgid "Locator"
-msgstr ""
-
-#: application/views/contesting/index.php:187
+#: application/views/contesting/index.php:234
 msgid "Callsign Suggestions"
 msgstr ""
 
-#: application/views/contesting/index.php:194
+#: application/views/contesting/index.php:241
 msgid "Contest Logbook"
 msgstr ""
 
-#: application/views/contesting/index.php:211
+#: application/views/contesting/index.php:258
 #: application/views/qso/edit_ajax.php:164
 msgid "VUCC Gridsquare"
 msgstr ""
@@ -8583,10 +8613,6 @@ msgstr ""
 
 #: application/views/qso/edit_ajax.php:166
 msgid "Used for VUCC MultiGrids"
-msgstr ""
-
-#: application/views/qso/edit_ajax.php:177
-msgid "QTH"
 msgstr ""
 
 #: application/views/qso/edit_ajax.php:258
