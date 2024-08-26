@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-26 15:55+0000\n"
+"POT-Creation-Date: 2024-08-26 17:04+0000\n"
 "PO-Revision-Date: 2024-08-22 14:14+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/"
@@ -254,7 +254,7 @@ msgstr "奖项 - %s"
 #: application/controllers/Awards.php:92
 #: application/views/awards/dok/index.php:149
 #: application/views/bands/index.php:47
-#: application/views/contesting/index.php:170
+#: application/views/contesting/index.php:53
 #: application/views/interface_assets/header.php:194
 #: application/views/logbookadvanced/index.php:618
 #: application/views/logbookadvanced/useroptions.php:130
@@ -1012,8 +1012,8 @@ msgstr "Clublog"
 #: application/views/awards/waja/index.php:91
 #: application/views/awards/was/index.php:87
 #: application/views/components/hamsat/table.php:30
-#: application/views/contesting/index.php:57
-#: application/views/contesting/index.php:203
+#: application/views/contesting/index.php:108
+#: application/views/contesting/index.php:250
 #: application/views/continents/index.php:39 application/views/csv/index.php:42
 #: application/views/dashboard/index.php:4
 #: application/views/debug/index.php:548 application/views/dxatlas/index.php:42
@@ -1068,8 +1068,8 @@ msgstr "模式"
 #: application/controllers/Logbook.php:1281
 #: application/views/awards/pota/index.php:36
 #: application/views/awards/wwff/index.php:36
-#: application/views/contesting/index.php:111
-#: application/views/contesting/index.php:204
+#: application/views/contesting/index.php:165
+#: application/views/contesting/index.php:251
 #: application/views/logbookadvanced/index.php:552
 #: application/views/logbookadvanced/useroptions.php:38
 #: application/views/qslcard/searchresult.php:13
@@ -1095,8 +1095,8 @@ msgstr "信号报告(发)"
 #: application/controllers/Logbook.php:1282
 #: application/views/awards/pota/index.php:37
 #: application/views/awards/wwff/index.php:37
-#: application/views/contesting/index.php:131
-#: application/views/contesting/index.php:205
+#: application/views/contesting/index.php:189
+#: application/views/contesting/index.php:252
 #: application/views/logbookadvanced/index.php:555
 #: application/views/logbookadvanced/useroptions.php:42
 #: application/views/qslcard/searchresult.php:14
@@ -1175,7 +1175,7 @@ msgstr "IOTA"
 #: application/views/awards/counties/index.php:20
 #: application/views/awards/rac/index.php:143
 #: application/views/awards/was/index.php:151
-#: application/views/contesting/index.php:173
+#: application/views/contesting/index.php:56
 #: application/views/dashboard/index.php:12
 #: application/views/logbookadvanced/edit.php:20
 #: application/views/logbookadvanced/edit.php:64
@@ -1204,7 +1204,7 @@ msgstr "州"
 #: application/views/awards/gridmaster/index.php:33
 #: application/views/awards/vucc/band.php:12
 #: application/views/contesting/index.php:17
-#: application/views/contesting/index.php:210
+#: application/views/contesting/index.php:257
 #: application/views/dashboard/index.php:13
 #: application/views/gridmap/index.php:152
 #: application/views/labels/index.php:125
@@ -1285,8 +1285,8 @@ msgstr "距离"
 #: application/views/bandmap/index.php:45 application/views/bandmap/list.php:88
 #: application/views/bands/create.php:24 application/views/bands/edit.php:6
 #: application/views/bands/index.php:45
-#: application/views/contesting/index.php:70
-#: application/views/contesting/index.php:202
+#: application/views/contesting/index.php:121
+#: application/views/contesting/index.php:249
 #: application/views/continents/index.php:30 application/views/csv/index.php:31
 #: application/views/dashboard/index.php:15
 #: application/views/debug/index.php:549 application/views/dxatlas/index.php:31
@@ -1339,7 +1339,7 @@ msgstr "频段"
 
 #: application/controllers/Logbook.php:1292
 #: application/controllers/Radio.php:48 application/views/bandmap/list.php:110
-#: application/views/contesting/index.php:87
+#: application/views/contesting/index.php:138
 #: application/views/dashboard/index.php:16
 #: application/views/qslcard/searchresult.php:22
 #: application/views/qslcard/searchresult.php:38
@@ -1711,7 +1711,7 @@ msgstr "硬件接口"
 
 #: application/controllers/Radio.php:47 application/views/bandmap/index.php:25
 #: application/views/bandmap/list.php:60
-#: application/views/contesting/index.php:92
+#: application/views/contesting/index.php:143
 #: application/views/qso/index.php:312
 msgid "Radio"
 msgstr "电台"
@@ -1732,7 +1732,7 @@ msgid "Options"
 msgstr "设置"
 
 #: application/controllers/Radio.php:90
-#: application/views/contesting/index.php:96
+#: application/views/contesting/index.php:147
 #: application/views/qso/index.php:316
 msgid "last updated"
 msgstr "上次更新"
@@ -2380,31 +2380,31 @@ msgstr "HRDlog：无 QSO 可供上传，台站呼号为： "
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog：无台站配置信息。"
 
-#: application/models/Logbook_model.php:4168
+#: application/models/Logbook_model.php:4178
 msgid "QSO could not be matched"
 msgstr "QSO 无法匹配"
 
-#: application/models/Logbook_model.php:4174
+#: application/models/Logbook_model.php:4184
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "已经通过 LoTW/Clublog/eQSL/竞赛 确认"
 
-#: application/models/Logbook_model.php:4179
+#: application/models/Logbook_model.php:4189
 msgid "confirmed by award manager"
 msgstr "已经通过奖项管理员确认"
 
-#: application/models/Logbook_model.php:4182
+#: application/models/Logbook_model.php:4192
 msgid "confirmed by cross-check of DCL data"
 msgstr "已经通过 DCL 数据交叉检查确认"
 
-#: application/models/Logbook_model.php:4185
+#: application/models/Logbook_model.php:4195
 msgid "confirmation pending"
 msgstr "等待确认"
 
-#: application/models/Logbook_model.php:4188
+#: application/models/Logbook_model.php:4198
 msgid "unconfirmed"
 msgstr "未确认"
 
-#: application/models/Logbook_model.php:4191
+#: application/models/Logbook_model.php:4201
 msgid "unknown"
 msgstr "未知"
 
@@ -2936,7 +2936,7 @@ msgstr "未找到！"
 #: application/views/awards/wwff/index.php:34
 #: application/views/cabrillo/index.php:31
 #: application/views/components/hamsat/table.php:27
-#: application/views/contesting/index.php:104
+#: application/views/contesting/index.php:156
 #: application/views/csv/index.php:23 application/views/dashboard/index.php:150
 #: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:41
 #: application/views/eqslcard/index.php:28
@@ -3020,8 +3020,8 @@ msgstr "与 DCL 相比，日志中 DOK 的数据不同"
 #: application/views/awards/wwff/index.php:32
 #: application/views/bandmap/list.php:109
 #: application/views/components/hamsat/table.php:25
-#: application/views/contesting/index.php:42
-#: application/views/contesting/index.php:200
+#: application/views/contesting/index.php:93
+#: application/views/contesting/index.php:247
 #: application/views/dashboard/index.php:145
 #: application/views/debug/index.php:545 application/views/eqsl/analysis.php:36
 #: application/views/eqsl/download.php:36 application/views/eqsl/result.php:33
@@ -3062,8 +3062,8 @@ msgstr "日期"
 #: application/views/awards/wwff/index.php:33
 #: application/views/bandmap/list.php:109
 #: application/views/components/hamsat/table.php:26
-#: application/views/contesting/index.php:47
-#: application/views/contesting/index.php:200
+#: application/views/contesting/index.php:98
+#: application/views/contesting/index.php:247
 #: application/views/dashboard/index.php:148
 #: application/views/debug/index.php:546 application/views/eqsl/analysis.php:37
 #: application/views/eqsl/download.php:37 application/views/eqsl/result.php:34
@@ -3090,7 +3090,7 @@ msgstr "时间"
 #: application/views/adif/dcl_success.php:31
 #: application/views/awards/vucc/band.php:18
 #: application/views/bandmap/list.php:111
-#: application/views/contesting/index.php:201
+#: application/views/contesting/index.php:248
 #: application/views/debug/index.php:547 application/views/debug/index.php:582
 #: application/views/dxcalendar/index.php:12
 #: application/views/eqsl/analysis.php:38
@@ -4223,8 +4223,8 @@ msgstr "显示IOTA地图"
 #: application/views/awards/iota/index.php:171
 #: application/views/contesting/add.php:25
 #: application/views/contesting/create.php:24
-#: application/views/contesting/index.php:153
-#: application/views/contesting/index.php:171
+#: application/views/contesting/index.php:54
+#: application/views/contesting/index.php:214
 #: application/views/dashboard/index.php:18
 #: application/views/labels/index.php:41 application/views/labels/index.php:75
 #: application/views/logbookadvanced/index.php:564
@@ -4716,8 +4716,8 @@ msgstr "波段列表"
 
 #: application/views/bandmap/index.php:27 application/views/bandmap/list.php:62
 #: application/views/contesting/index.php:15
-#: application/views/contesting/index.php:94
-#: application/views/contesting/index.php:169
+#: application/views/contesting/index.php:52
+#: application/views/contesting/index.php:145
 #: application/views/qso/index.php:314
 msgid "None"
 msgstr "无"
@@ -4846,6 +4846,7 @@ msgstr "创建波段"
 
 #: application/views/bands/index.php:152
 #: application/views/contesting/add.php:74
+#: application/views/contesting/index.php:83
 #: application/views/interface_assets/footer.php:44
 #: application/views/simplefle/index.php:21
 #: application/views/version_dialog/index.php:79
@@ -5009,7 +5010,7 @@ msgid "No upcoming activations found. Please check back later."
 msgstr "未找到即将进行的激活。 请稍后再回来查看。"
 
 #: application/views/components/hamsat/table.php:28
-#: application/views/contesting/index.php:158
+#: application/views/contesting/index.php:219
 #: application/views/hamsat/index.php:31
 #: application/views/logbookadvanced/edit.php:5
 #: application/views/logbookadvanced/index.php:606
@@ -5176,7 +5177,7 @@ msgid "Create"
 msgstr "创建"
 
 #: application/views/contesting/edit.php:31
-#: application/views/contesting/index.php:24
+#: application/views/contesting/index.php:25
 #: application/views/qso/edit_ajax.php:548
 #: application/views/view_log/qso.php:275
 msgid "Contest Name"
@@ -5214,80 +5215,109 @@ msgstr "序列编号 + 交换信息"
 msgid "Serial + Gridsquare"
 msgstr "序列编号 + 网格座标"
 
-#: application/views/contesting/index.php:34
+#: application/views/contesting/index.php:21
+msgid "Serial + Gridsquare + Exchange"
+msgstr ""
+
+#: application/views/contesting/index.php:35
 #: application/views/operator/index.php:5
 #: application/views/qso/edit_ajax.php:539 application/views/qso/index.php:352
 msgid "Operator Callsign"
 msgstr "操作员呼号"
 
-#: application/views/contesting/index.php:116
-#: application/views/contesting/index.php:208
+#: application/views/contesting/index.php:40
+#: application/views/contesting/index.php:45
+msgid "More Settings"
+msgstr ""
+
+#: application/views/contesting/index.php:49
+msgid "Copy received exchange to"
+msgstr "复制收到的信号交换到"
+
+#: application/views/contesting/index.php:51
+msgid "Exchange is only copied if it is matching rules for the selected field!"
+msgstr "只有与所选字段的规则相匹配的交换信息才会被复制！"
+
+#: application/views/contesting/index.php:55
+msgid "Age"
+msgstr "年龄"
+
+#: application/views/contesting/index.php:57
+msgid "RX Power (W)"
+msgstr "RX Power(W)"
+
+#: application/views/contesting/index.php:58
+msgid "Locator"
+msgstr "定位地图"
+
+#: application/views/contesting/index.php:59
+#: application/views/qso/edit_ajax.php:177
+msgid "QTH"
+msgstr "QTH"
+
+#: application/views/contesting/index.php:64
+msgid "Sequence of Exchanges"
+msgstr ""
+
+#: application/views/contesting/index.php:67
+#, php-format
+msgid "%s = Serial, %s = Gridsquare, %s = Exchange."
+msgstr ""
+
+#: application/views/contesting/index.php:67
+msgid ""
+"Choose in which order you want to type in the different reports. However, "
+"only the elements contained in the selected exchange type are displayed."
+msgstr ""
+
+#: application/views/contesting/index.php:172
+#: application/views/contesting/index.php:255
 #: application/views/qso/edit_ajax.php:571
 msgid "Serial (S)"
 msgstr "序列编号 (S)"
 
-#: application/views/contesting/index.php:121
-#: application/views/contesting/index.php:206
-msgid "Exch (S)"
-msgstr "信号交换(发)"
-
-#: application/views/contesting/index.php:126
+#: application/views/contesting/index.php:177
 msgid "Gridsquare (S)"
 msgstr "网格座标 (S)"
 
-#: application/views/contesting/index.php:136
-#: application/views/contesting/index.php:209
+#: application/views/contesting/index.php:182
+#: application/views/contesting/index.php:253
+msgid "Exch (S)"
+msgstr "信号交换(发)"
+
+#: application/views/contesting/index.php:196
+#: application/views/contesting/index.php:256
 #: application/views/qso/edit_ajax.php:566
 msgid "Serial (R)"
 msgstr "序列编号 (R)"
 
-#: application/views/contesting/index.php:141
-#: application/views/contesting/index.php:207
-msgid "Exch (R)"
-msgstr "信号交换(收)"
-
-#: application/views/contesting/index.php:146
+#: application/views/contesting/index.php:201
 msgid "Gridsquare (R)"
 msgstr "网格座标 (R)"
 
-#: application/views/contesting/index.php:163
+#: application/views/contesting/index.php:206
+#: application/views/contesting/index.php:254
+msgid "Exch (R)"
+msgstr "信号交换(收)"
+
+#: application/views/contesting/index.php:224
 msgid "Reset QSO"
 msgstr "重置 QSO"
 
-#: application/views/contesting/index.php:164
+#: application/views/contesting/index.php:225
 #: application/views/qso/index.php:607
 msgid "Save QSO"
 msgstr "保存 QSO"
 
-#: application/views/contesting/index.php:166
-msgid "Copy received exchange to"
-msgstr "复制收到的信号交换到"
-
-#: application/views/contesting/index.php:168
-msgid "Exchange is only copied if it is matching rules for the selected field!"
-msgstr "只有与所选字段的规则相匹配的交换信息才会被复制！"
-
-#: application/views/contesting/index.php:172
-msgid "Age"
-msgstr "年龄"
-
-#: application/views/contesting/index.php:174
-msgid "RX Power (W)"
-msgstr "RX Power(W)"
-
-#: application/views/contesting/index.php:175
-msgid "Locator"
-msgstr "定位地图"
-
-#: application/views/contesting/index.php:187
+#: application/views/contesting/index.php:234
 msgid "Callsign Suggestions"
 msgstr "呼号建议"
 
-#: application/views/contesting/index.php:194
+#: application/views/contesting/index.php:241
 msgid "Contest Logbook"
 msgstr "竞赛日志簿"
 
-#: application/views/contesting/index.php:211
+#: application/views/contesting/index.php:258
 #: application/views/qso/edit_ajax.php:164
 msgid "VUCC Gridsquare"
 msgstr "VUCC 网格"
@@ -8703,10 +8733,6 @@ msgstr "以W为单位设置功率值。在输入中仅填写数值。"
 #: application/views/qso/edit_ajax.php:166
 msgid "Used for VUCC MultiGrids"
 msgstr "被 VUCC 网格计算使用"
-
-#: application/views/qso/edit_ajax.php:177
-msgid "QTH"
-msgstr "QTH"
 
 #: application/views/qso/edit_ajax.php:258
 msgid "Sat Name"

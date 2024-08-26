@@ -45,41 +45,47 @@ class Logbook_model extends CI_Model {
     if($this->input->post('exchangetype')) {
       switch ($this->input->post('exchangetype')) {
         case 'Exchange':
-          $srx_string = $this->input->post('exch_rcvd') == '' ? null : $this->input->post('exch_rcvd');
-          $stx_string = $this->input->post('exch_sent') == '' ? null : $this->input->post('exch_sent');
-          $srx = null;
-          $stx = null;
-          break;
+			$srx_string = $this->input->post('exch_rcvd') == '' ? null : $this->input->post('exch_rcvd');
+			$stx_string = $this->input->post('exch_sent') == '' ? null : $this->input->post('exch_sent');
+			$srx = null;
+			$stx = null;
+			break;
         case 'Gridsquare':
-          $srx_string = null;
-          $stx_string = null;
-          $srx = null;
-          $stx = null;
-          break;
+			$srx_string = null;
+			$stx_string = null;
+			$srx = null;
+			$stx = null;
+			break;
         case 'Serial':
-          $srx = $this->input->post('exch_serial_r') == '' ? null : $this->input->post('exch_serial_r');
-          $stx = $this->input->post('exch_serial_s') == '' ? null : $this->input->post('exch_serial_s');
-          $srx_string = null;
-          $stx_string = null;
-          break;
+			$srx = $this->input->post('exch_serial_r') == '' ? null : $this->input->post('exch_serial_r');
+			$stx = $this->input->post('exch_serial_s') == '' ? null : $this->input->post('exch_serial_s');
+			$srx_string = null;
+			$stx_string = null;
+			break;
         case 'Serialexchange':
-          $srx_string = $this->input->post('exch_rcvd') == '' ? null : $this->input->post('exch_rcvd');
-          $stx_string = $this->input->post('exch_sent') == '' ? null : $this->input->post('exch_sent');
-          $srx = $this->input->post('exch_serial_r') == '' ? null : $this->input->post('exch_serial_r');
-          $stx = $this->input->post('exch_serial_s') == '' ? null : $this->input->post('exch_serial_s');
-          break;
+			$srx_string = $this->input->post('exch_rcvd') == '' ? null : $this->input->post('exch_rcvd');
+			$stx_string = $this->input->post('exch_sent') == '' ? null : $this->input->post('exch_sent');
+			$srx = $this->input->post('exch_serial_r') == '' ? null : $this->input->post('exch_serial_r');
+			$stx = $this->input->post('exch_serial_s') == '' ? null : $this->input->post('exch_serial_s');
+			break;
         case 'Serialgridsquare':
-          $srx = $this->input->post('exch_serial_r') == '' ? null : $this->input->post('exch_serial_r');
-          $stx = $this->input->post('exch_serial_s') == '' ? null : $this->input->post('exch_serial_s');
-          $srx_string = null;
-          $stx_string = null;
-          break;
-          case 'None':
-            $srx_string = null;
-            $stx_string = null;
-            $srx = null;
-            $stx = null;
-            break;
+			$srx = $this->input->post('exch_serial_r') == '' ? null : $this->input->post('exch_serial_r');
+			$stx = $this->input->post('exch_serial_s') == '' ? null : $this->input->post('exch_serial_s');
+			$srx_string = null;
+			$stx_string = null;
+			break;
+		case 'SerialGridExchange':
+			$srx_string = $this->input->post('exch_rcvd') == '' ? null : $this->input->post('exch_rcvd');
+			$stx_string = $this->input->post('exch_sent') == '' ? null : $this->input->post('exch_sent');
+			$srx = $this->input->post('exch_serial_r') == '' ? null : $this->input->post('exch_serial_r');
+			$stx = $this->input->post('exch_serial_s') == '' ? null : $this->input->post('exch_serial_s');
+			break;
+		case 'None':
+			$srx_string = null;
+			$stx_string = null;
+			$srx = null;
+			$stx = null;
+			break;
       }
 
       if ($srx_string !== null) $srx_string = trim(xss_clean($srx_string));
@@ -172,6 +178,7 @@ class Logbook_model extends CI_Model {
 
     $darc_dok = trim(xss_clean($this->input->post('darc_dok')));
     $qso_locator = strtoupper(trim(xss_clean($this->input->post('locator')) ?? ''));
+	$qso_qth = trim(xss_clean($this->input->post('qth')));
     $qso_name = trim(xss_clean($this->input->post('name')));
     $qso_age = null;
     $qso_state = $this->input->post('input_state_edit') == null ? '' : trim(xss_clean($this->input->post('input_state_edit')));
@@ -188,6 +195,9 @@ class Logbook_model extends CI_Model {
             $qso_locator = $srx_string;
           }
           break;
+		case 'qth':
+		  $qso_qth = ucfirst($srx_string);
+		  break;
         case 'name':
           $qso_name = $srx_string;
           break;
@@ -265,7 +275,7 @@ class Logbook_model extends CI_Model {
             'COL_QSL_VIA' => $this->input->post('qsl_via'),
             'COL_QSLMSG' => $this->input->post('qslmsg'),
             'COL_OPERATOR' => $this->input->post('operator_callsign') ?? $this->session->userdata('operator_callsign'),
-            'COL_QTH' => $this->input->post('qth'),
+            'COL_QTH' => $qso_qth,
             'COL_PROP_MODE' => $prop_mode,
             'COL_IOTA' => $this->input->post('iota_ref')  == null ? '' : trim($this->input->post('iota_ref')),
             'COL_DISTANCE' => $this->input->post('distance'),

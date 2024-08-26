@@ -262,6 +262,7 @@ msgstr "Prémios - %s"
 #: application/views/qso/edit_ajax.php:361 application/views/qso/index.php:264
 #: application/views/qso/index.php:508 application/views/user/edit.php:603
 #: application/views/view_log/qso.php:351
+#: application/views/contesting/index.php:53
 msgid "DOK"
 msgstr "DOK"
 
@@ -1076,6 +1077,8 @@ msgstr "Clublog"
 #: application/views/view_log/partial/log_ajax.php:4
 #: application/views/view_log/qso.php:104 application/views/visitor/index.php:6
 #: application/views/widgets/qsos.php:29
+#: application/views/contesting/index.php:108
+#: application/views/contesting/index.php:250
 msgid "Mode"
 msgstr "Modo"
 
@@ -1103,6 +1106,8 @@ msgstr "Modo"
 #: application/views/view_log/partial/log.php:10
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:109 application/views/visitor/index.php:9
+#: application/views/contesting/index.php:165
+#: application/views/contesting/index.php:251
 msgid "RST (S)"
 msgstr "RST (E)"
 
@@ -1131,6 +1136,8 @@ msgstr "RST (E)"
 #: application/views/view_log/partial/log_ajax.php:6
 #: application/views/view_log/qso.php:114
 #: application/views/visitor/index.php:12
+#: application/views/contesting/index.php:189
+#: application/views/contesting/index.php:252
 msgid "RST (R)"
 msgstr "RST (R)"
 
@@ -1209,6 +1216,7 @@ msgstr "IOTA"
 #: application/views/user/edit.php:303 application/views/user/edit.php:326
 #: application/views/view_log/partial/log_ajax.php:12
 #: application/views/visitor/index.php:24
+#: application/views/contesting/index.php:56
 msgid "State"
 msgstr "Estado"
 
@@ -1249,6 +1257,7 @@ msgstr "Estado"
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/view_log/qso.php:515
 #: application/views/visitor/index.php:27
+#: application/views/contesting/index.php:257
 msgid "Gridsquare"
 msgstr "Gridsquare"
 
@@ -1348,6 +1357,8 @@ msgstr "Distância"
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/view_log/qso.php:87 application/views/visitor/index.php:33
 #: application/views/widgets/qsos.php:32
+#: application/views/contesting/index.php:121
+#: application/views/contesting/index.php:249
 msgid "Band"
 msgstr "Banda"
 
@@ -1368,6 +1379,7 @@ msgstr "Banda"
 #: application/views/user/edit.php:317
 #: application/views/view_log/partial/log_ajax.php:16
 #: application/views/view_log/qso.php:93 application/views/visitor/index.php:36
+#: application/views/contesting/index.php:138
 msgid "Frequency"
 msgstr "Frequência"
 
@@ -1735,6 +1747,7 @@ msgstr "Interfaces hardware"
 #: application/views/bandmap/list.php:60
 #: application/views/contesting/index.php:92
 #: application/views/qso/index.php:312
+#: application/views/contesting/index.php:143
 msgid "Radio"
 msgstr "Rádio"
 
@@ -1756,6 +1769,7 @@ msgstr "Opções"
 #: application/controllers/Radio.php:90
 #: application/views/contesting/index.php:96
 #: application/views/qso/index.php:316
+#: application/views/contesting/index.php:147
 msgid "last updated"
 msgstr "última atualização"
 
@@ -2431,30 +2445,37 @@ msgstr ""
 "HRDlog: Não foram encontrados perfis de estação com credenciais do HRDlog."
 
 #: application/models/Logbook_model.php:4168
+#: application/models/Logbook_model.php:4178
 msgid "QSO could not be matched"
 msgstr "Não há correspondência de contactos"
 
 #: application/models/Logbook_model.php:4174
+#: application/models/Logbook_model.php:4184
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confirmado por LoTW/Clublog/eQSL/Contest"
 
 #: application/models/Logbook_model.php:4179
+#: application/models/Logbook_model.php:4189
 msgid "confirmed by award manager"
 msgstr "confirmado pelo gestor do diploma"
 
 #: application/models/Logbook_model.php:4182
+#: application/models/Logbook_model.php:4192
 msgid "confirmed by cross-check of DCL data"
 msgstr "confirmado pelo controlo cruzado dos dados da DCL"
 
 #: application/models/Logbook_model.php:4185
+#: application/models/Logbook_model.php:4195
 msgid "confirmation pending"
 msgstr "confirmação pendente"
 
 #: application/models/Logbook_model.php:4188
+#: application/models/Logbook_model.php:4198
 msgid "unconfirmed"
 msgstr "não confirmado"
 
 #: application/models/Logbook_model.php:4191
+#: application/models/Logbook_model.php:4201
 msgid "unknown"
 msgstr "desconhecido"
 
@@ -3012,6 +3033,7 @@ msgstr "Nada encontrado!"
 #: application/views/user/edit.php:123 application/views/user/index.php:4
 #: application/views/user/index.php:47 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:82 application/views/view_log/qso.php:507
+#: application/views/contesting/index.php:156
 msgid "Callsign"
 msgstr "Indicativo"
 
@@ -3104,6 +3126,8 @@ msgstr "Há dados diferentes para DOK no teu log em comparação com DCL."
 #: application/views/view_log/partial/log_ajax.php:57
 #: application/views/visitor/index.php:147
 #: application/views/widgets/qsos.php:24
+#: application/views/contesting/index.php:93
+#: application/views/contesting/index.php:247
 msgid "Date"
 msgstr "Data"
 
@@ -3134,6 +3158,8 @@ msgstr "Data"
 #: application/views/view_log/partial/log_ajax.php:59
 #: application/views/visitor/index.php:150
 #: application/views/widgets/qsos.php:26
+#: application/views/contesting/index.php:98
+#: application/views/contesting/index.php:247
 msgid "Time"
 msgstr "Tempo"
 
@@ -3155,6 +3181,7 @@ msgstr "Tempo"
 #: application/views/view_log/partial/log_ajax.php:61
 #: application/views/visitor/index.php:152
 #: application/views/widgets/qsos.php:28
+#: application/views/contesting/index.php:248
 msgid "Call"
 msgstr "Chamada"
 
@@ -4350,6 +4377,8 @@ msgstr "Mostrar mapa IOTA"
 #: application/views/view_log/partial/log_ajax.php:19
 #: application/views/view_log/qso.php:191
 #: application/views/view_log/qso.php:511
+#: application/views/contesting/index.php:54
+#: application/views/contesting/index.php:214
 msgid "Name"
 msgstr "Nome"
 
@@ -4871,6 +4900,8 @@ msgstr "Lista de Bandas"
 #: application/views/contesting/index.php:94
 #: application/views/contesting/index.php:169
 #: application/views/qso/index.php:314
+#: application/views/contesting/index.php:52
+#: application/views/contesting/index.php:145
 msgid "None"
 msgstr "Nenhum"
 
@@ -5004,6 +5035,7 @@ msgstr "Criar uma banda"
 #: application/views/interface_assets/footer.php:44
 #: application/views/simplefle/index.php:21
 #: application/views/version_dialog/index.php:79
+#: application/views/contesting/index.php:83
 msgid "Close"
 msgstr "Fechar"
 
@@ -5172,6 +5204,7 @@ msgstr ""
 #: application/views/logbookadvanced/useroptions.php:114
 #: application/views/qso/edit_ajax.php:183 application/views/qso/index.php:289
 #: application/views/view_log/qso.php:199
+#: application/views/contesting/index.php:219
 msgid "Comment"
 msgstr "Comentário"
 
@@ -5340,6 +5373,7 @@ msgstr "Criar"
 #: application/views/contesting/index.php:24
 #: application/views/qso/edit_ajax.php:548
 #: application/views/view_log/qso.php:275
+#: application/views/contesting/index.php:25
 msgid "Contest Name"
 msgstr "Nome do Concurso"
 
@@ -5378,79 +5412,100 @@ msgstr "Número de série + Gridsquare"
 #: application/views/contesting/index.php:34
 #: application/views/operator/index.php:5
 #: application/views/qso/edit_ajax.php:539 application/views/qso/index.php:352
+#: application/views/contesting/index.php:35
 msgid "Operator Callsign"
 msgstr "Indicativo do operador"
 
 #: application/views/contesting/index.php:116
 #: application/views/contesting/index.php:208
 #: application/views/qso/edit_ajax.php:571
+#: application/views/contesting/index.php:172
+#: application/views/contesting/index.php:255
 msgid "Serial (S)"
 msgstr "Serial (E)"
 
 #: application/views/contesting/index.php:121
 #: application/views/contesting/index.php:206
+#: application/views/contesting/index.php:182
+#: application/views/contesting/index.php:253
 msgid "Exch (S)"
 msgstr "Exch (E)"
 
 #: application/views/contesting/index.php:126
+#: application/views/contesting/index.php:177
 msgid "Gridsquare (S)"
 msgstr "Gridsquare (E)"
 
 #: application/views/contesting/index.php:136
 #: application/views/contesting/index.php:209
 #: application/views/qso/edit_ajax.php:566
+#: application/views/contesting/index.php:196
+#: application/views/contesting/index.php:256
 msgid "Serial (R)"
 msgstr "Serial (R)"
 
 #: application/views/contesting/index.php:141
 #: application/views/contesting/index.php:207
+#: application/views/contesting/index.php:206
+#: application/views/contesting/index.php:254
 msgid "Exch (R)"
 msgstr "Exch (R)"
 
 #: application/views/contesting/index.php:146
+#: application/views/contesting/index.php:201
 msgid "Gridsquare (R)"
 msgstr "Gridsquare (R)"
 
 #: application/views/contesting/index.php:163
+#: application/views/contesting/index.php:224
 msgid "Reset QSO"
 msgstr "Reiniciar contacto"
 
 #: application/views/contesting/index.php:164
 #: application/views/qso/index.php:607
+#: application/views/contesting/index.php:225
 msgid "Save QSO"
 msgstr "Guardar contacto"
 
 #: application/views/contesting/index.php:166
+#: application/views/contesting/index.php:49
 msgid "Copy received exchange to"
 msgstr "Copiar o intercâmbio recebido para"
 
 #: application/views/contesting/index.php:168
+#: application/views/contesting/index.php:51
 msgid "Exchange is only copied if it is matching rules for the selected field!"
 msgstr ""
 "O Exchange só é copiado se corresponder às regras do campo selecionado!"
 
 #: application/views/contesting/index.php:172
+#: application/views/contesting/index.php:55
 msgid "Age"
 msgstr "Idade"
 
 #: application/views/contesting/index.php:174
+#: application/views/contesting/index.php:57
 msgid "RX Power (W)"
 msgstr "Potência RX (W)"
 
 #: application/views/contesting/index.php:175
+#: application/views/contesting/index.php:58
 msgid "Locator"
 msgstr "Locator"
 
 #: application/views/contesting/index.php:187
+#: application/views/contesting/index.php:234
 msgid "Callsign Suggestions"
 msgstr "Sugestões de Indicativos"
 
 #: application/views/contesting/index.php:194
+#: application/views/contesting/index.php:241
 msgid "Contest Logbook"
 msgstr "Logbook de Concursos"
 
 #: application/views/contesting/index.php:211
 #: application/views/qso/edit_ajax.php:164
+#: application/views/contesting/index.php:258
 msgid "VUCC Gridsquare"
 msgstr "Gridsquare VUCC"
 
@@ -9020,6 +9075,7 @@ msgid "Used for VUCC MultiGrids"
 msgstr "Usado para VUCC MultiGrids"
 
 #: application/views/qso/edit_ajax.php:177
+#: application/views/contesting/index.php:59
 msgid "QTH"
 msgstr "QTH"
 
@@ -11622,6 +11678,30 @@ msgstr "O seu indicativo:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Submeter pedido"
+
+#: application/views/contesting/index.php:21
+msgid "Serial + Gridsquare + Exchange"
+msgstr ""
+
+#: application/views/contesting/index.php:40
+#: application/views/contesting/index.php:45
+msgid "More Settings"
+msgstr ""
+
+#: application/views/contesting/index.php:64
+msgid "Sequence of Exchanges"
+msgstr ""
+
+#: application/views/contesting/index.php:67
+#, php-format
+msgid "%s = Serial, %s = Gridsquare, %s = Exchange."
+msgstr ""
+
+#: application/views/contesting/index.php:67
+msgid ""
+"Choose in which order you want to type in the different reports. However, "
+"only the elements contained in the selected exchange type are displayed."
+msgstr ""
 
 #, php-format
 #~ msgctxt "Dashboard Warning"
