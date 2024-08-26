@@ -151,9 +151,10 @@ if ( ! manual ) {
 
 // We don't want spaces to be written in callsign
 // We don't want spaces to be written in exchange
+// We don't want spaces to be written in gridsquare
 // We don't want spaces to be written in time :)
 $(function () {
-	$('#callsign, #exch_rcvd, #start_time').on('keypress', function (e) {
+	$('#callsign, #exch_rcvd, #exch_gridsquare_r, #start_time').on('keypress', function (e) {
 		if (e.which == 32) {
 			return false;
 		}
@@ -204,7 +205,14 @@ document.onkeyup = function (e) {
 		reset_log_fields();
 		// Space to jump to either callsign or the various exchanges
 	} else if (e.key == " ") {
-		var exchangetype = $("#exchangetype").val();
+		let exchangetype = $("#exchangetype").val();
+		let sequence = $('#exchangesequence_select').val().split('-');
+
+		let mapping = {
+			"g": "exch_gridsquare_r",
+			"s": "exch_serial_r",
+			"e": "exch_rcvd",
+		};
 
 		if (manual && $(document.activeElement).attr("id") == "start_time") {
 			$("#callsign").focus();
@@ -229,45 +237,6 @@ document.onkeyup = function (e) {
 				return false;
 			}
 		}
-		else if (exchangetype == 'Serialexchange') {
-			if ($(document.activeElement).attr("id") == "callsign") {
-				$("#exch_serial_r").focus();
-				return false;
-			} else if ($(document.activeElement).attr("id") == "exch_serial_r") {
-				$("#exch_rcvd").focus();
-				return false;
-			} else if ($(document.activeElement).attr("id") == "exch_rcvd") {
-				$("#callsign").focus();
-				return false;
-			}
-		}
-		else if (exchangetype == 'Serialgridsquare') {
-			if ($(document.activeElement).attr("id") == "callsign") {
-				$("#exch_serial_r").focus();
-				return false;
-			} else if ($(document.activeElement).attr("id") == "exch_serial_r") {
-				$("#exch_gridsquare_r").focus();
-				return false;
-			} else if ($(document.activeElement).attr("id") == "exch_gridsquare_r") {
-				$("#callsign").focus();
-				return false;
-			}
-		}
-		else if (exchangetype == 'SerialGridExchange') {
-			if ($(document.activeElement).attr("id") == "callsign") {
-				$("#exch_serial_r").focus();
-				return false;
-			} else if ($(document.activeElement).attr("id") == "exch_serial_r") {
-				$("#exch_gridsquare_r").focus();
-				return false;
-			} else if ($(document.activeElement).attr("id") == "exch_gridsquare_r") {
-				$("#exch_rcvd").focus();
-				return false;
-			} else if ($(document.activeElement).attr("id") == "exch_rcvd") {
-				$("#callsign").focus();
-				return false;
-			}
-		}
 		else if (exchangetype == 'Gridsquare') {
 			if ($(document.activeElement).attr("id") == "callsign") {
 				$("#exch_gridsquare_r").focus();
@@ -277,7 +246,49 @@ document.onkeyup = function (e) {
 				return false;
 			}
 		}
+		else if (exchangetype == 'Serialexchange') {
+			let filteredSequence = sequence.filter(key => key !== 'g');
+		
+			if ($(document.activeElement).attr("id") == "callsign") {
+				$(`#${mapping[filteredSequence[0]]}`).focus();
+				return false;
+			} else if ($(document.activeElement).attr("id") == mapping[filteredSequence[0]]) {
+				$(`#${mapping[filteredSequence[1]]}`).focus();
+				return false;
+			} else if ($(document.activeElement).attr("id") == mapping[filteredSequence[1]]) {
+				$("#callsign").focus();
+				return false;
+			}
+		}
+		else if (exchangetype == 'Serialgridsquare') {
+			let filteredSequence = sequence.filter(key => key !== 'e');
 
+			if ($(document.activeElement).attr("id") == "callsign") {
+				$(`#${mapping[filteredSequence[0]]}`).focus();
+				return false;
+			} else if ($(document.activeElement).attr("id") == mapping[filteredSequence[0]]) {
+				$(`#${mapping[filteredSequence[1]]}`).focus();
+				return false;
+			} else if ($(document.activeElement).attr("id") == mapping[filteredSequence[1]]) {
+				$("#callsign").focus();
+				return false;
+			}
+		}
+		else if (exchangetype == 'SerialGridExchange') {
+			if ($(document.activeElement).attr("id") == "callsign") {
+				$(`#${mapping[sequence[0]]}`).focus();
+				return false;
+			} else if ($(document.activeElement).attr("id") == mapping[sequence[0]]) {
+				$(`#${mapping[sequence[1]]}`).focus();
+				return false;
+			} else if ($(document.activeElement).attr("id") == mapping[sequence[1]]) {
+				$(`#${mapping[sequence[2]]}`).focus();
+				return false;
+			} else if ($(document.activeElement).attr("id") == mapping[sequence[2]]) {
+				$("#callsign").focus();
+				return false;
+			}
+		}
 	}
 
 };
