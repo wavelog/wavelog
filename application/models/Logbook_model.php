@@ -3411,29 +3411,53 @@ function lotw_last_qsl_date($user_id) {
   }
 
     function import_bulk($records, $station_id = "0", $skipDuplicate = false, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markHrd = false,$skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false) {
-	    $custom_errors='';
-	    $a_qsos=[];
+		$this->load->model('user_model');
+		$custom_errors='';
+		$a_qsos=[];
+		$amsat_qsos=[];
+		$today = time();
 		if (!$this->stations->check_station_is_accessible($station_id) && $apicall == false ) {
 			return 'Station not accessible<br>';
 		}
 		$station_id_ok = true;
 		$station_profile=$this->stations->profile_clean($station_id);
+		$amsat_status_upload = $this->user_model->get_user_amsat_status_upload_by_id($station_profile->user_id);
 
-	    foreach ($records as $record) {
-		    $one_error = $this->logbook_model->import($record, $station_id, $skipDuplicate, $markClublog, $markLotw,$dxccAdif, $markQrz, $markHrd, $skipexport, $operatorName, $apicall, $skipStationCheck, true, $station_id_ok, $station_profile);
-		    if ($one_error['error'] ?? '' != '') {
-			    $custom_errors.=$one_error['error']."<br/>";
-		    } else {
-			    array_push($a_qsos,$one_error['raw_qso'] ?? '');
-		    }
-	    }
-	    $records='';
-	    gc_collect_cycles();
-	    if (count($a_qsos)>0) {
-		    $this->db->insert_batch($this->config->item('table_name'), $a_qsos);
-	    }
-	    return $custom_errors;
-    }
+		foreach ($records as $record) {
+			$one_error = $this->logbook_model->import($record, $station_id, $skipDuplicate, $markClublog, $markLotw,$dxccAdif, $markQrz, $markHrd, $skipexport, $operatorName, $apicall, $skipStationCheck, true, $station_id_ok, $station_profile);
+			if ($one_error['error'] ?? '' != '') {
+				$custom_errors.=$one_error['error']."<br/>";
+			} else {	// No Errors / QSO doesn't exist so far
+				array_push($a_qsos,$one_error['raw_qso'] ?? '');
+				if (isset($record['prop_mode']) && $record['prop_mode'] == 'SAT' && $amsat_status_upload) {
+					$amsat_qsodate=strtotime($record['qso_date'].' '.$record['time_on']);
+					$date_diff=$today - $amsat_qsodate;
+					if ($date_diff >= -300 && $date_diff <= 518400) { // Five minutes grace time to the future and max 6 days back
+						$data = array(
+							'COL_TIME_ON' => date('Y-m-d', strtotime($record['qso_date'])) ." ".date('H:i:s', strtotime($record['time_on'])),
+							'COL_SAT_NAME' => $record['sat_name'],
+							'COL_BAND' => $record['band'],
+							'COL_BAND_RX' => $record['band_rx'] ?? '',
+							'COL_MODE' => $record['mode'],
+							'COL_STATION_CALLSIGN' => $station_profile->station_callsign,
+							'COL_MY_GRIDSQUARE' => $station_profile->station_gridsquare,
+						);
+						array_push($amsat_qsos,$data);
+					}
+				}
+			}
+		}
+		$records='';
+		gc_collect_cycles();
+		if (count($a_qsos)>0) {
+			$this->db->insert_batch($this->config->item('table_name'), $a_qsos);
+		}
+		foreach($amsat_qsos as $amsat_qso) {
+			$this->upload_amsat_status($data);
+		}
+		return $custom_errors;
+}
+
     /*
      * $skipDuplicate - used in ADIF import to skip duplicate checking when importing QSOs
      * $markLoTW - used in ADIF import to mark QSOs as exported to LoTW when importing QSOs
@@ -3442,6 +3466,7 @@ function lotw_last_qsl_date($user_id) {
      * $markHrd - used in ADIF import to mark QSOs as exported to HRDLog.net Logbook when importing QSOs
      * $skipexport - used in ADIF import to skip the realtime upload to QRZ Logbook when importing QSOs from ADIF
      */
+
   function import($record, $station_id = "0", $skipDuplicate = false, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markHrd = false,$skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false, $batchmode = false, $station_id_ok = false, $station_profile = null) {
 	  // be sure that station belongs to user
 	  $this->load->model('stations');
