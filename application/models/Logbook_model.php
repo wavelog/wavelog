@@ -3405,7 +3405,7 @@ function lotw_last_qsl_date($user_id) {
 		$custom_errors='';
 		$a_qsos=[];
 		$amsat_qsos=[];
-		$today = new DateTime('today');
+		$today = time();
 		if (!$this->stations->check_station_is_accessible($station_id) && $apicall == false ) {
 			return 'Station not accessible<br>';
 		}
@@ -3420,9 +3420,9 @@ function lotw_last_qsl_date($user_id) {
 			} else {	// No Errors / QSO doesn't exist so far
 				array_push($a_qsos,$one_error['raw_qso'] ?? '');
 				if (isset($record['prop_mode']) && $record['prop_mode'] == 'SAT' && $amsat_status_upload) {
-					$amsat_qsodate=new DateTime(date('Y-m-d', strtotime($record['qso_date'])) ." ".date('H:i:s', strtotime($record['time_on'])));
-					$date_diff = (int)$amsat_qsodate->diff($today)->format('%r%d');
-					if ($date_diff >= 0 && $date_diff <= 5) {
+					$amsat_qsodate=strtotime($record['qso_date'].' '.$record['time_on']);
+					$date_diff=$today - $amsat_qsodate;
+					if ($date_diff >= -300 && $date_diff <= 518400) { // Five minutes grace time to the future and max 6 days back
 						$data = array(
 							'COL_TIME_ON' => date('Y-m-d', strtotime($record['qso_date'])) ." ".date('H:i:s', strtotime($record['time_on'])),
 							'COL_SAT_NAME' => $record['sat_name'],
