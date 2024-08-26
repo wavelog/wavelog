@@ -318,7 +318,12 @@ class eqsl extends CI_Controller {
 			$images = $dom->getElementsByTagName('img');
 
 			if (!isset($images) || count($images) == 0) {
-				echo "Rate Limited";
+				$h3 = $dom->getElementsByTagName('h3');
+				if (isset($h3)) {
+					echo $h3->item(0)->nodeValue;
+				} else {
+					echo "Rate Limited";
+				}
 				exit;
 			}
 
