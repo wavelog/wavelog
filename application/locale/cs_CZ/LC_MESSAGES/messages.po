@@ -5,14 +5,15 @@
 # Ondřej Koloničný <ondra@ok1cdj.com>, 2024.
 # Michal Šiman <michal.siman@gmail.com>, 2024.
 # Filip Melik <filip@melik.cz>, 2024.
+# Petr OK1PTR <ok1ptr@pm.me>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-08-25 17:03+0000\n"
-"PO-Revision-Date: 2024-08-25 10:43+0000\n"
-"Last-Translator: Filip Melik <filip@melik.cz>\n"
-"Language-Team: Czech <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/cs/>\n"
+"PO-Revision-Date: 2024-08-26 12:58+0000\n"
+"Last-Translator: Petr OK1PTR <ok1ptr@pm.me>\n"
+"Language-Team: Czech <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/cs/>\n"
 "Language: cs_CZ\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -455,7 +456,7 @@ msgstr "Lokátory potvrzené LoTW"
 #: application/controllers/Awards.php:922
 #: application/controllers/Awards.php:954
 msgid "Gridsquares confirmed by paper QSL"
-msgstr ""
+msgstr "Lokátory potvrzené papírovým QSL"
 
 #: application/controllers/Awards.php:939
 msgid "Fred Fish Memorial Award (FFMA)"
@@ -499,11 +500,11 @@ msgstr "Pásmo"
 
 #: application/controllers/Band.php:40 application/controllers/Mode.php:41
 msgid "Create Mode"
-msgstr ""
+msgstr "Vytvořit mód"
 
 #: application/controllers/Band.php:59 application/views/bands/index.php:150
 msgid "Edit Band"
-msgstr ""
+msgstr "Upravit pásmo"
 
 #: application/controllers/Bandmap.php:28
 #: application/controllers/Bandmap.php:69
@@ -527,7 +528,7 @@ msgstr ""
 #: application/controllers/Lotw.php:28 application/controllers/Qrz.php:14
 #: application/controllers/Update.php:16
 msgid "Maintenance Mode is active. Try again later."
-msgstr ""
+msgstr "Probíhá údržba. Zkus později."
 
 #: application/controllers/Clublog.php:44
 #: application/controllers/Clublog.php:66
@@ -591,7 +592,7 @@ msgstr ""
 #: application/controllers/Cron.php:276 application/views/cron/index.php:29
 msgctxt "Master Cron"
 msgid "Not running"
-msgstr ""
+msgstr "Není spuštěno"
 
 #: application/controllers/Csv.php:20 application/views/csv/index.php:3
 #: application/views/interface_assets/header.php:392
@@ -605,7 +606,7 @@ msgstr ""
 
 #: application/controllers/Dayswithqso.php:18
 msgid "Number of days with QSOs each year"
-msgstr ""
+msgstr "Počet dní se spojením každý rok"
 
 #: application/controllers/Debug.php:93
 msgid "Debug"
@@ -629,7 +630,7 @@ msgstr ""
 
 #: application/controllers/Debug.php:213
 msgid "Wavelog was updated successfully!"
-msgstr ""
+msgstr "Wavelog byl úspěšně aktualizován!"
 
 #: application/controllers/Debug.php:231
 msgid "Selfupdate() not available. Check the Error Log."
@@ -697,7 +698,7 @@ msgstr ""
 
 #: application/controllers/Eqsl.php:463
 msgid " / Errors: "
-msgstr ""
+msgstr " / Chyby: "
 
 #: application/controllers/Eqsl.php:463
 msgid "Successfully downloaded: "
@@ -8914,11 +8915,11 @@ msgstr ""
 
 #: application/views/satellite/edit.php:9
 msgid "Name of the Satellite"
-msgstr ""
+msgstr "Jméno satelitu"
 
 #: application/views/satellite/edit.php:25
 msgid "Save satellite"
-msgstr ""
+msgstr "Uložit satelit"
 
 #: application/views/satellite/edit.php:59
 msgid "Add satellite mode"
@@ -8926,7 +8927,7 @@ msgstr ""
 
 #: application/views/satellite/index.php:15
 msgid "Add a satellite"
-msgstr ""
+msgstr "Přidat satelit"
 
 #: application/views/satellite/pass.php:2
 msgid "Satellite passes"
@@ -8954,11 +8955,11 @@ msgstr "Časové pásmo"
 
 #: application/views/satellite/pass.php:479
 msgid "Min. time"
-msgstr ""
+msgstr "Min. čas"
 
 #: application/views/satellite/pass.php:487
 msgid "Max. time"
-msgstr ""
+msgstr "Max. čas"
 
 #: application/views/satellite/pass.php:504
 msgid "Load predictions"
@@ -9028,7 +9029,7 @@ msgstr ""
 #: application/views/search/lotw_unconfirmed.php:15
 #: application/views/search/main.php:15
 msgid "Advanced Search"
-msgstr ""
+msgstr "Rozšířené vyhledávání"
 
 #: application/views/search/cqzones.php:18
 #: application/views/search/filter.php:26
@@ -9076,7 +9077,7 @@ msgstr ""
 
 #: application/views/search/filter.php:79
 msgid "Search Results"
-msgstr ""
+msgstr "Vyhledat výsledky"
 
 #: application/views/search/lotw_unconfirmed.php:26
 msgid ""
@@ -9090,7 +9091,7 @@ msgstr ""
 
 #: application/views/search/lotw_unconfirmed_result.php:10
 msgid "Last LoTW upload"
-msgstr ""
+msgstr "Poslední upload na LoTW"
 
 #: application/views/search/lotw_unconfirmed_result.php:41
 msgid "No QSOs with outstanding LoTW upload were found."
@@ -9098,17 +9099,17 @@ msgstr ""
 
 #: application/views/search/main.php:28
 msgid "Callsign / Gridsquare"
-msgstr ""
+msgstr "Značka / Lokátor"
 
 #: application/views/search/result.php:2
 #, php-format
 msgid "Results for %s"
-msgstr ""
+msgstr "Výsledky pro %s"
 
 #: application/views/search/result.php:4
 #, php-format
 msgid "Sorry, but we didn't find any past QSOs with %s"
-msgstr ""
+msgstr "Lituji, nebyla nalezena žádná dřívější spojení s %s"
 
 #: application/views/search/result.php:6
 #, php-format
@@ -9163,16 +9164,16 @@ msgstr "Označit QSL lístek není vyžadován"
 #: application/views/search/search_result_ajax.php:426
 #: application/views/view_log/partial/log_ajax.php:340
 msgid "Lookup on QRZ.com"
-msgstr ""
+msgstr "Vyhledat na QRZ.com"
 
 #: application/views/search/search_result_ajax.php:428
 #: application/views/view_log/partial/log_ajax.php:342
 msgid "Lookup on HamQTH"
-msgstr ""
+msgstr "Vyhledat na HamQTH"
 
 #: application/views/search/stored_queries.php:9
 msgid "Query"
-msgstr ""
+msgstr "Dotaz"
 
 #: application/views/simplefle/index.php:13
 msgid "Simple Fast Log Entry (FLE)"
@@ -9203,35 +9204,35 @@ msgstr ""
 #: application/views/simplefle/index.php:17
 #: application/views/simplefle/index.php:176
 msgid "Syntax Help"
-msgstr ""
+msgstr "Nápověda pro syntaxi"
 
 #: application/views/simplefle/index.php:18
 msgid "Syntax for FLE"
-msgstr ""
+msgstr "Syntaxe pro FLE"
 
 #: application/views/simplefle/index.php:19
 msgid "Close and Load Sample Data"
-msgstr ""
+msgstr "Zavřít a načíst vzorová data"
 
 #: application/views/simplefle/index.php:23
 msgid "Band is missing!"
-msgstr ""
+msgstr "Chybí pásmo!"
 
 #: application/views/simplefle/index.php:24
 msgid "Mode is missing!"
-msgstr ""
+msgstr "Chybí mód!"
 
 #: application/views/simplefle/index.php:25
 msgid "Time is not set!"
-msgstr ""
+msgstr "Není nastaven čas!"
 
 #: application/views/simplefle/index.php:26
 msgid "Invalid date"
-msgstr ""
+msgstr "Nesprávné datum"
 
 #: application/views/simplefle/index.php:29
 msgid "Station Call is not selected"
-msgstr ""
+msgstr "Značka stanice není vybrána"
 
 #: application/views/simplefle/index.php:30
 msgid "'Operator' Field is empty"
@@ -9239,7 +9240,7 @@ msgstr ""
 
 #: application/views/simplefle/index.php:31
 msgid "Warning! Do you really want to reset everything?"
-msgstr ""
+msgstr "Varování! Opravdu chceš vše resetovat?"
 
 #: application/views/simplefle/index.php:32
 msgid ""
@@ -11021,7 +11022,7 @@ msgstr ""
 
 #: application/views/widgets/oqrs.php:83
 msgid "Your Callsign:"
-msgstr ""
+msgstr "Tvoje značka:"
 
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
