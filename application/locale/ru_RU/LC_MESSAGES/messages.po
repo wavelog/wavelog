@@ -9,10 +9,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-08-25 17:03+0000\n"
-"PO-Revision-Date: 2024-08-20 05:18+0000\n"
+"PO-Revision-Date: 2024-08-26 12:58+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ru/>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -581,6 +581,8 @@ msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
 "It should run every minute (* * * * *)."
 msgstr ""
+"Последний запуск произошел более %s секунд назад.%sПроверьте ваш основной "
+"cron! Он должен запускаться каждую минуту (* * * * *)."
 
 #: application/controllers/Cron.php:271
 #, php-format
@@ -588,11 +590,13 @@ msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
 "isn't running!%sIt should run every minute (* * * * *)."
 msgstr ""
+"Последний запуск произошел более %s минут назад.%sПохоже, ваш Mastercron не "
+"работает!%sОн должен запускаться каждую минуту (* * * * *)."
 
 #: application/controllers/Cron.php:276 application/views/cron/index.php:29
 msgctxt "Master Cron"
 msgid "Not running"
-msgstr ""
+msgstr "Не работает"
 
 #: application/controllers/Csv.php:20 application/views/csv/index.php:3
 #: application/views/interface_assets/header.php:392
@@ -1437,15 +1441,15 @@ msgstr "Logbook of the World"
 
 #: application/controllers/Lotw.php:152
 msgid "Certificate Imported."
-msgstr ""
+msgstr "Сертификат импортирован."
 
 #: application/controllers/Lotw.php:159
 msgid "Certificate Updated."
-msgstr ""
+msgstr "Сертификат обновлен."
 
 #: application/controllers/Lotw.php:384
 msgid "Certificate Deleted."
-msgstr ""
+msgstr "Сертификат удален."
 
 #: application/controllers/Lotw.php:413
 #, php-format
@@ -1453,6 +1457,8 @@ msgid ""
 "Found no certificate in file %s. If the filename contains 'key-only' this is "
 "typically a certificate request which has not been processed by LoTW yet."
 msgstr ""
+"В файле %s не найдено сертификата. Если имя файла содержит 'key-only', это "
+"обычно запрос на сертификат, который еще не обработан LoTW."
 
 #: application/controllers/Lotw.php:617
 msgid "LoTW ADIF Information"
@@ -1464,7 +1470,7 @@ msgstr "LoTW. Импорт ADIF"
 
 #: application/controllers/Lotw.php:752 application/controllers/Lotw.php:870
 msgid "You have not defined your ARRL LoTW credentials!"
-msgstr ""
+msgstr "Вы не указали свои учетные данные ARRL LoTW!"
 
 #: application/controllers/Lotw.php:837
 msgid "LoTW .TQ8 Upload"
@@ -1472,7 +1478,7 @@ msgstr "LoTW. TQ8 загрузка"
 
 #: application/controllers/Lotw.php:915
 msgid "Your ARRL username and/or password is incorrect."
-msgstr ""
+msgstr "Ваше имя пользователя и/или пароль ARRL неверны."
 
 #: application/controllers/Lotw.php:934 application/controllers/Lotw.php:939
 msgid "LoTW .TQ8 Sent"
@@ -1647,42 +1653,44 @@ msgstr "Калькулятор QRB"
 #: application/controllers/Qrbcalc.php:50
 #, php-format
 msgid "Latitude: %s, Longitude: %s"
-msgstr ""
+msgstr "Широта: %s, Долгота: %s"
 
 #: application/controllers/Qrbcalc.php:54
 #, php-format
 msgid "The distance between %s and %s is %s mile."
 msgid_plural "The distance between %s and %s is %s miles."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Расстояние между %s и %s составляет %s миля."
+msgstr[1] "Расстояние между %s и %s составляет %s мили."
+msgstr[2] "Расстояние между %s и %s составляет %s миль."
 
 #: application/controllers/Qrbcalc.php:57
 #, php-format
 msgid "The distance between %s and %s is %s nautical mile."
 msgid_plural "The distance between %s and %s is %s nautical miles."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Расстояние между %s и %s составляет %s морская миля."
+msgstr[1] "Расстояние между %s и %s составляет %s морские мили."
+msgstr[2] "Расстояние между %s и %s составляет %s морских миль."
 
 #: application/controllers/Qrbcalc.php:60
 #, php-format
 msgid "The distance between %s and %s is %s kilometer."
 msgid_plural "The distance between %s and %s is %s kilometers."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Расстояние между %s и %s составляет %s километр."
+msgstr[1] "Расстояние между %s и %s составляет %s километра."
+msgstr[2] "Расстояние между %s и %s составляет %s километров."
 
 #: application/controllers/Qrbcalc.php:66
 #, php-format
 msgid "The bearing is %s."
-msgstr ""
+msgstr "Азимут %s."
 
 #: application/controllers/Qrbcalc.php:72
 msgid ""
 "Negative latitudes are south of the equator, negative longitudes are west of "
 "Greenwich."
 msgstr ""
+"Отрицательные широты находятся к югу от экватора, отрицательные долготы — к "
+"западу от Гринвича."
 
 #: application/controllers/Qrz.php:173
 #: application/views/interface_assets/header.php:426
@@ -2224,28 +2232,32 @@ msgid ""
 "You currently can't impersonate another user. Please change the "
 "encryption_key in your config.php file first!"
 msgstr ""
+"В настоящее время вы не можете выдавать себя за другого пользователя. "
+"Пожалуйста, сначала измените encryption_key в вашем файле config.php!"
 
 #: application/controllers/User.php:1206
 msgid "Invalid Hash"
-msgstr ""
+msgstr "Неверный хеш"
 
 #: application/controllers/User.php:1219
 msgid "The impersonation hash is too old. Please try again."
-msgstr ""
+msgstr "Хэш имперсонации слишком старый. Пожалуйста, попробуйте снова."
 
 #: application/controllers/User.php:1226
 msgid ""
 "You can't impersonate another user while you're not logged in as the source "
 "user"
 msgstr ""
+"Вы не можете выдавать себя за другого пользователя, если вы не вошли в "
+"систему как исходный пользователь"
 
 #: application/controllers/User.php:1232
 msgid "There was a problem with your session. Please try again."
-msgstr ""
+msgstr "Произошла проблема с вашей сессией. Пожалуйста, попробуйте снова."
 
 #: application/controllers/User.php:1239
 msgid "The requested user to impersonate does not exist"
-msgstr ""
+msgstr "Запрашиваемый для имперсонации пользователь не существует"
 
 #: application/controllers/Visitor.php:50
 #: application/controllers/Visitor.php:79
@@ -5339,7 +5351,7 @@ msgstr ""
 
 #: application/views/cron/index.php:29 application/views/cron/index.php:33
 msgid "Status Master-Cron:"
-msgstr ""
+msgstr "Состояние Master-Cron:"
 
 #: application/views/cron/index.php:33
 msgctxt "PHP Version"
@@ -6658,11 +6670,11 @@ msgstr "Для этого DXCC нет доступных штатов."
 
 #: application/views/interface_assets/footer.php:49
 msgid "Compute QRB and QTF"
-msgstr ""
+msgstr "Вычислить QRB и QTF"
 
 #: application/views/interface_assets/footer.php:50
 msgid "Error in locators. Please check."
-msgstr ""
+msgstr "Ошибка в локаторах. Пожалуйста, проверьте."
 
 #: application/views/interface_assets/footer.php:132
 #: application/views/interface_assets/header.php:434
@@ -9155,23 +9167,23 @@ msgstr "Подключить"
 
 #: application/views/qso/index.php:656
 msgid "Stop"
-msgstr ""
+msgstr "Стоп"
 
 #: application/views/qso/index.php:657
 msgid "Tune"
-msgstr ""
+msgstr "Настройка"
 
 #: application/views/qso/index.php:658
 msgid "Stop Tune"
-msgstr ""
+msgstr "Остановить настройку"
 
 #: application/views/qso/index.php:664
 msgid "CW Speed"
-msgstr ""
+msgstr "Скорость CW"
 
 #: application/views/qso/index.php:669
 msgid "Send"
-msgstr ""
+msgstr "Отправить"
 
 #: application/views/qso/index.php:679
 msgid "Suggestions"
@@ -10570,7 +10582,7 @@ msgstr "Добавить тему"
 
 #: application/views/timeline/index.php:78
 msgid "All but SAT"
-msgstr ""
+msgstr "Все, кроме спутников"
 
 #: application/views/timeplotter/index.php:2
 msgid "contacts were plotted"
@@ -10627,7 +10639,7 @@ msgstr "Обновить данные DXCC"
 
 #: application/views/update/index.php:30
 msgid "Status:"
-msgstr ""
+msgstr "Статус:"
 
 #: application/views/update/index.php:34
 msgid "Apply DXCC Data to Logbook"
@@ -11191,7 +11203,7 @@ msgstr "Сброс пароля"
 
 #: application/views/user/index.php:55 application/views/user/index.php:150
 msgid "Impersonate"
-msgstr ""
+msgstr "Имперсонация"
 
 #: application/views/user/index.php:82
 msgid "Never"
@@ -11215,37 +11227,40 @@ msgstr "Количество QSO в журнале"
 
 #: application/views/user/index.php:111
 msgid "Impersonate User"
-msgstr ""
+msgstr "Выдавать себя за пользователя"
 
 #: application/views/user/index.php:116
 msgid ""
 "You are about to impersonate another user. To return to your admin account, "
 "you'll need to logout and log back in as admin."
 msgstr ""
+"Вы собираетесь выдавать себя за другого пользователя. Чтобы вернуться в свою "
+"учетную запись администратора, вам нужно выйти и снова войти как "
+"администратор."
 
 #: application/views/user/index.php:117
 msgid "Do you want to impersonate this user?"
-msgstr ""
+msgstr "Вы хотите выдавать себя за этого пользователя?"
 
 #: application/views/user/index.php:121
 msgid "Username:"
-msgstr ""
+msgstr "Имя пользователя:"
 
 #: application/views/user/index.php:125
 msgid "Name:"
-msgstr ""
+msgstr "Имя:"
 
 #: application/views/user/index.php:129
 msgid "Callsign:"
-msgstr ""
+msgstr "Позывной:"
 
 #: application/views/user/index.php:133
 msgid "E-Mail:"
-msgstr ""
+msgstr "Электронная почта:"
 
 #: application/views/user/index.php:137
 msgid "Last Seen:"
-msgstr ""
+msgstr "Последний раз видели:"
 
 #: application/views/user/login.php:36
 msgid "MAINTENANCE MODE"
