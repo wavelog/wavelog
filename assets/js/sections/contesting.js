@@ -71,6 +71,45 @@ async function reset_contest_session() {
 
 }
 
+function sort_exchange() {
+	// Split the squence into an array
+	var selectedOrder = $('#exchangesequence_select').val().split('-'); 
+
+	// Map sequence to corresponding SENT elements
+	let mapping = {
+		"g": ".gridsquares",
+		"s": ".serials",
+		"e": ".exchanges",
+	};
+
+	// Reorder the elements in the DOM
+	selectedOrder.forEach(function(item) {
+		$('#sent_exchange').append($(mapping[item]));
+	});
+
+	// Map sequence to corresponding RECEIVED elements
+	mapping = {
+		"g": ".gridsquarer",
+		"s": ".serialr",
+		"e": ".exchanger",
+	};
+
+	// Reorder the elements in the DOM
+	selectedOrder.forEach(function(item) {
+		$('#rcvd_exchange').append($(mapping[item]));
+	});
+}
+
+// Change the sequence of the exchange fields
+$('#exchangesequence_select').change(function () {
+	sort_exchange();
+});
+
+// Show Settings modal on click
+$('#moreSettingsButton').click(function () {
+	$('#moreSettingsModal').modal('show');
+});
+
 // Storing the contestid in contest session
 $('#contestname, #copyexchangeto').change(function () {
 	var formdata = new FormData(document.getElementById("qso_input"));
@@ -423,6 +462,8 @@ function setSerial(data) {
 
 function setExchangetype(exchangetype) {
 	// Perhaps a better approach is to hide everything, then just enable the things you need
+	$('#sent_exchange').hide().removeClass();
+	$('#rcvd_exchange').hide().removeClass();
 	$(".exchanger").hide();
 	$(".exchanges").hide();
 	$(".serials").hide();
@@ -430,46 +471,35 @@ function setExchangetype(exchangetype) {
 	$(".gridsquarer").hide();
 	$(".gridsquares").hide();
 
-	if (exchangetype == 'Exchange') {
-		$(".exchanger").show();
-		$(".exchanges").show();
-	}
-	else if (exchangetype == 'Serial') {
-		$(".serials").show();
-		$(".serialr").show();
-	}
-	else if (exchangetype == 'Serialexchange') {
-		$(".exchanger").show();
-		$(".exchanges").show();
-		$(".serials").show();
-		$(".serialr").show();
-	}
-	else if (exchangetype == 'Serialgridsquare') {
-		$(".serials").show();
-		$(".serialr").show();
-		$(".gridsquarer").show();
-		$(".gridsquares").show();
-	}
-	else if (exchangetype == 'SerialGridExchange') {
-		$(".serials").show();
-		$(".serialr").show();
-		$(".gridsquarer").show();
-		$(".gridsquares").show();
-		$(".exchanger").show();
-		$(".exchanges").show();
-	}
-	else if (exchangetype == 'Gridsquare') {
-		$(".gridsquarer").show();
-		$(".gridsquares").show();
-	}
-
     // To track the transition, the code for the exchangecopy is kept
     // separate.
 	switch(exchangetype) {
       case 'None':
+		$('#sent_exchange').hide().removeClass();
+		$('#rcvd_exchange').hide().removeClass();
+		break;
+
       case 'Serial':
+		$('#sent_exchange').show().addClass('d-flex gap-2 col-md-2');
+		$('#rcvd_exchange').show().addClass('d-flex gap-2 col-md-2');
+		$(".serials").show();
+		$(".serialr").show();
+		break;
+
       case 'Serialgridsquare':
+		$('#sent_exchange').show().addClass('d-flex gap-2 col-md-3');
+		$('#rcvd_exchange').show().addClass('d-flex gap-2 col-md-3');
+		$(".serials").show();
+		$(".serialr").show();
+		$(".gridsquarer").show();
+		$(".gridsquares").show();
+		break;
+
       case 'Gridsquare':
+		$('#sent_exchange').show().addClass('d-flex gap-2 col-md-2');
+		$('#rcvd_exchange').show().addClass('d-flex gap-2 col-md-2');
+		$(".gridsquarer").show();
+		$(".gridsquares").show();
         if ($("#copyexchangeto").prop('disabled') == false) {
           $("#copyexchangeto").prop('disabled','disabled');
           $("#copyexchangeto").data('oldValue',$("#copyexchangeto").val());
@@ -478,8 +508,21 @@ function setExchangetype(exchangetype) {
           // Do nothing
         }
         break;
+
       case 'Exchange':
+		$('#sent_exchange').show().addClass('d-flex gap-2 col-md-2');
+		$('#rcvd_exchange').show().addClass('d-flex gap-2 col-md-2');
+		$(".exchanger").show();
+		$(".exchanges").show();
+		break;
+
       case 'Serialexchange':
+		$('#sent_exchange').show().addClass('d-flex gap-2 col-md-3');
+		$('#rcvd_exchange').show().addClass('d-flex gap-2 col-md-3');
+		$(".exchanger").show();
+		$(".exchanges").show();
+		$(".serials").show();
+		$(".serialr").show();
         if ($("#copyexchangeto").prop('disabled') == false) {
           // Do nothing
         } else {
@@ -487,13 +530,24 @@ function setExchangetype(exchangetype) {
           $("#copyexchangeto").prop('disabled',false);
         }
         break;
+
 	  case 'SerialGridExchange':
+		$('#sent_exchange').show().addClass('d-flex gap-2 col-md-4');
+		$('#rcvd_exchange').show().addClass('d-flex gap-2 col-md-4');
+		$(".serials").show();
+		$(".serialr").show();
+		$(".gridsquarer").show();
+		$(".gridsquares").show();
+		$(".exchanger").show();
+		$(".exchanges").show();
 		if ($("#copyexchangeto").prop('disabled') == false) {
 			// Do nothing
 		} else {
 			$("#copyexchangeto").val($("#copyexchangeto").data('oldValue') ?? 'None');
 			$("#copyexchangeto").prop('disabled',false);
 		}
+		break;
+
       default:
     }
 }
@@ -637,6 +691,7 @@ async function restoreContestSession(data) {
 	} else {
 		$("#exch_serial_s").val("1");
 	}
+	// sort_exchange();
 }
 
 async function refresh_qso_table(data) {
