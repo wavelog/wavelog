@@ -18,6 +18,7 @@
 									<option value='Serial'><?= __("Serial"); ?></option>
 									<option value='Serialexchange'><?= __("Serial + Exchange"); ?></option>
 									<option value='Serialgridsquare'><?= __("Serial + Gridsquare"); ?></option>
+                                    <option value='SerialGridExchange'><?= __("Serial + Gridsquare + Exchange"); ?></option>
 								</select>
 							</div>
 
@@ -117,15 +118,15 @@
 								<input type="number" class="form-control form-control-sm" name="exch_serial_s" id="exch_serial_s" min="0" value="">
 							</div>
 
+                            <div style="display:none" class="mb-3 col-md-1 gridsquares">
+                                <label for="exch_gridsquare_s"><?= __("Gridsquare (S)"); ?></label>
+                                <input disabled type="text" class="form-control form-control-sm" name="exch_gridsquare_s" id="exch_gridsquare_s" value="<?php echo $my_gridsquare;?>">
+                            </div>
+
                             <div style="display:none" class="mb-3 col-md-1 exchanges">
                                 <label for="exch_sent"><?= __("Exch (S)"); ?></label>
                                 <input type="text" class="form-control form-control-sm" name="exch_sent" id="exch_sent" value="">
                             </div>
-
-							<div style="display:none" class="mb-3 col-md-2 gridsquares">
-								<label for="exch_gridsquare_s"><?= __("Gridsquare (S)"); ?></label>
-								<input disabled type="text" class="form-control form-control-sm" name="exch_gridsquare_s" id="exch_gridsquare_s" value="<?php echo $my_gridsquare;?>">
-							</div>
 
                             <div class="mb-3 col-md-1">
                                 <label for="rst_rcvd"><?= __("RST (R)"); ?></label>
@@ -137,14 +138,14 @@
 								<input type="number" class="form-control form-control-sm" name="exch_serial_r" id="exch_serial_r" min="0" value="">
 							</div>
 
+                            <div style="display:none" class="mb-3 col-md-1 gridsquarer">
+                                <label for="exch_gridsquare_r"><?= __("Gridsquare (R)"); ?></label>
+                                <input type="text" class="form-control form-control-sm" name="locator" id="exch_gridsquare_r" value="">
+                            </div>
+
 							<div style="display:none" class="mb-3 col-md-1 exchanger">
 								<label for="exch_rcvd"><?= __("Exch (R)"); ?></label>
 								<input type="text" class="form-control form-control-sm" name="exch_rcvd" id="exch_rcvd" value="">
-							</div>
-
-							<div style="display:none" class="mb-3 col-md-2 gridsquarer">
-								<label for="exch_gridsquare_r"><?= __("Gridsquare (R)"); ?></label>
-								<input type="text" class="form-control form-control-sm" name="locator" id="exch_gridsquare_r" value="">
 							</div>
                         </div>
 
@@ -173,6 +174,7 @@
                                     <option value='state'><?= __("State"); ?></option>
                                     <option value='power'><?= __("RX Power (W)"); ?></option>
                                     <option value='locator'><?= __("Locator"); ?></option>
+                                    <option value='qth'><?= __("QTH"); ?></option>
                                 </select>
                             </div>
                       </div>

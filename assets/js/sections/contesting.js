@@ -147,24 +147,24 @@ $(function () {
 // Here we capture keystrokes to execute functions
 document.onkeyup = function (e) {
 	// ALT-W wipe
-	if (e.altKey && e.which == 87) {
+	if (e.altKey && e.key == "w") {
 		reset_log_fields();
 		// CTRL-Enter logs QSO
-	} else if ((e.keyCode == 10 || e.keyCode == 13) && (e.ctrlKey || e.metaKey)) {
+	} else if ((e.key === "Enter") && (e.ctrlKey || e.metaKey)) {
 		$("#callsign").blur();
 		logQso();
 		// Enter in received exchange logs QSO
-	} else if ((e.which == 13) && (
+	} else if ((e.key == "Enter") && (
 		($(document.activeElement).attr("id") == "exch_rcvd")
 		|| ($(document.activeElement).attr("id") == "exch_gridsquare_r")
 		|| ($(document.activeElement).attr("id") == "exch_serial_r")
 		|| (($(document.activeElement).attr("id") == "callsign") && ($("#exchangetype").val() == "None"))
 	)) {
 		logQso();
-	} else if (e.which == 27) {
+	} else if (e.key == "Escape") {
 		reset_log_fields();
 		// Space to jump to either callsign or the various exchanges
-	} else if (e.which == 32) {
+	} else if (e.key == " ") {
 		var exchangetype = $("#exchangetype").val();
 
 		if (manual && $(document.activeElement).attr("id") == "start_time") {
@@ -210,6 +210,21 @@ document.onkeyup = function (e) {
 				$("#exch_gridsquare_r").focus();
 				return false;
 			} else if ($(document.activeElement).attr("id") == "exch_gridsquare_r") {
+				$("#callsign").focus();
+				return false;
+			}
+		}
+		else if (exchangetype == 'SerialGridExchange') {
+			if ($(document.activeElement).attr("id") == "callsign") {
+				$("#exch_serial_r").focus();
+				return false;
+			} else if ($(document.activeElement).attr("id") == "exch_serial_r") {
+				$("#exch_gridsquare_r").focus();
+				return false;
+			} else if ($(document.activeElement).attr("id") == "exch_gridsquare_r") {
+				$("#exch_rcvd").focus();
+				return false;
+			} else if ($(document.activeElement).attr("id") == "exch_rcvd") {
 				$("#callsign").focus();
 				return false;
 			}
@@ -435,6 +450,14 @@ function setExchangetype(exchangetype) {
 		$(".gridsquarer").show();
 		$(".gridsquares").show();
 	}
+	else if (exchangetype == 'SerialGridExchange') {
+		$(".serials").show();
+		$(".serialr").show();
+		$(".gridsquarer").show();
+		$(".gridsquares").show();
+		$(".exchanger").show();
+		$(".exchanges").show();
+	}
 	else if (exchangetype == 'Gridsquare') {
 		$(".gridsquarer").show();
 		$(".gridsquares").show();
@@ -464,6 +487,13 @@ function setExchangetype(exchangetype) {
           $("#copyexchangeto").prop('disabled',false);
         }
         break;
+	  case 'SerialGridExchange':
+		if ($("#copyexchangeto").prop('disabled') == false) {
+			// Do nothing
+		} else {
+			$("#copyexchangeto").val($("#copyexchangeto").data('oldValue') ?? 'None');
+			$("#copyexchangeto").prop('disabled',false);
+		}
       default:
     }
 }
@@ -525,6 +555,15 @@ function logQso() {
 				serials = $("#exch_serial_s").val();
 				serialr = $("#exch_serial_r").val();
 			break;
+
+			case 'Serialgridsquare':
+				gridr = gridsquare;
+				vuccr = vucc;
+				exchsent = $("#exch_sent").val();
+				exchrcvd = $("#exch_rcvd").val();
+				serials = $("#exch_serial_s").val();
+				serialr = $("#exch_serial_r").val();
+			break;
 		}
 
 		var formdata = new FormData(document.getElementById("qso_input"));
@@ -537,7 +576,7 @@ function logQso() {
 			enctype: 'multipart/form-data',
 			success: async function (html) {
 				var exchangetype = $("#exchangetype").val();
-				if (exchangetype == "Serial" || exchangetype == 'Serialexchange' || exchangetype == 'Serialgridsquare') {
+				if (exchangetype == "Serial" || exchangetype == 'Serialexchange' || exchangetype == 'Serialgridsquare' || exchangetype == 'SerialGridExchange') {
 					$("#exch_serial_s").val(+$("#exch_serial_s").val() + 1);
 					formdata.set('exch_serial_s', $("#exch_serial_s").val());
 				}
