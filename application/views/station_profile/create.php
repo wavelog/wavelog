@@ -62,7 +62,7 @@ if ($dxcc_list->result() > 0) {
 
 			<div class="mb-3">
 		    <label for="stationCallsignInput"><?= __("Station Callsign"); ?></label>
-		    <input type="text" class="form-control" name="station_callsign" id="stationCallsignInput" aria-describedby="stationCallsignInputHelp" placeholder="4W7EST" required>
+		    <input type="text" class="form-control uppercase" name="station_callsign" id="stationCallsignInput" aria-describedby="stationCallsignInputHelp" placeholder="4W7EST" required>
 		    <small id="stationCallsignInputHelp" class="form-text text-muted"><?= __("Station callsign. For example: 4W7EST/P"); ?></small>
 		  </div>
 
@@ -142,7 +142,7 @@ if ($dxcc_list->result() > 0) {
 		    <label for="stationGridsquareInput"><?= __("Station Gridsquare"); ?></label>
 
 			<div class="input-group mb-3">
-			<input type="text" class="form-control" name="gridsquare" id="stationGridsquareInput" aria-describedby="stationGridInputHelp" required>
+			<input type="text" class="form-control uppercase" name="gridsquare" id="stationGridsquareInput" aria-describedby="stationGridInputHelp" required>
 			<div class="input-group-append">
 				<button type="button" class="btn btn-outline-secondary" onclick="getLocation()"><i class="fas fa-compass"></i> <?= __("Get Gridsquare"); ?></button>
 			</div>
@@ -170,31 +170,31 @@ if ($dxcc_list->result() > 0) {
 
 		  <div class="mb-3">
 		    <label for="stationSOTAInput"><?= __("SOTA Reference"); ?></label>
-		    <input type="text" class="form-control" name="sota" id="stationSOTAInput" aria-describedby="stationSOTAInputHelp">
+		    <input type="text" class="form-control uppercase" name="sota" id="stationSOTAInput" aria-describedby="stationSOTAInputHelp">
 		    <small id="stationSOTAInputHelp" class="form-text text-muted"><?= sprintf(__("Station SOTA reference. You can look up SOTA references at the %s."), "<a target='_blank' href='https://www.sotamaps.org/'>".__("SOTA Maps website")."</a>"); ?></small>
 		  </div>
 
 		  <div class="mb-3">
 		    <label for="stationWWFFInput"><?= __("WWFF Reference"); ?></label>
-		    <input type="text" class="form-control" name="wwff" id="stationWWFFInput" aria-describedby="stationWWFFInputHelp">
+		    <input type="text" class="form-control uppercase" name="wwff" id="stationWWFFInput" aria-describedby="stationWWFFInputHelp">
 		    <small id="stationWWFFInputHelp" class="form-text text-muted"><?= sprintf(__("Station WWFF reference. You can look up WWFF references at the %s."), "<a target='_blank' href='https://www.cqgma.org/mvs/'>".__("GMA Map website")."</a>"); ?></small>
 		  </div>
 
 		  <div class="mb-3">
 		    <label for="stationPOTAInput"><?= __("POTA Reference(s)"); ?></label>
-		    <input type="text" class="form-control" name="pota" id="stationPOTAInput" aria-describedby="stationPOTAInputHelp">
+		    <input type="text" class="form-control uppercase" name="pota" id="stationPOTAInput" aria-describedby="stationPOTAInputHelp">
 		    <small id="stationPOTAInputHelp" class="form-text text-muted"><?= sprintf(__("Station POTA reference(s). Multiple comma separated values allowed. You can look up POTA references at the %s."), "<a target='_blank' href='https://pota.app/#/map/'>".__("POTA Map website")."</a>"); ?></small>
 		  </div>
 
 		  <div class="mb-3">
 		    <label for="stationSigInput"><?= __("Signature Name"); ?></label>
-		    <input type="text" class="form-control" name="sig" id="stationSigInput" aria-describedby="stationSigInputHelp">
+		    <input type="text" class="form-control uppercase" name="sig" id="stationSigInput" aria-describedby="stationSigInputHelp">
 		    <small id="stationSigInputHelp" class="form-text text-muted"><?= __("Station Signature (e.g. GMA).."); ?></small>
 		  </div>
 
 		  <div class="mb-3">
 		    <label for="stationSigInfoInput"><?= __("Signature Information"); ?></label>
-		    <input type="text" class="form-control" name="sig_info" id="stationSigInfoInput" aria-describedby="stationSigInfoInputHelp">
+		    <input type="text" class="form-control uppercase" name="sig_info" id="stationSigInfoInput" aria-describedby="stationSigInfoInputHelp">
 		    <small id="stationSigInfoInput" class="form-text text-muted"><?= __("Station Signature Info (e.g. DA/NW-357)."); ?></small>
 		  </div>
 
