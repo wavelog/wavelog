@@ -13,14 +13,15 @@
 # Rasmus <DL4BS@users.noreply.translate.wavelog.org>, 2024.
 # Fabian Berg <fabian.berg@hb9hil.org>, 2024.
 # "Francisco (F4VSE)" <kikosgc@users.noreply.github.com>, 2024.
+# "Stefan (DB4SCW)" <dev@db4scw.de>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-08-26 18:51+0000\n"
-"PO-Revision-Date: 2024-08-26 12:58+0000\n"
-"Last-Translator: Byt3 <falko@205er.de>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/de/>\n"
+"PO-Revision-Date: 2024-08-26 19:30+0000\n"
+"Last-Translator: \"Stefan (DB4SCW)\" <dev@db4scw.de>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1807,7 +1808,7 @@ msgstr "Keine CAT-verbundenen Funkgeräte gefunden."
 
 #: application/controllers/Reg1test.php:25
 msgid "Export EDI"
-msgstr ""
+msgstr "Exportiere EDI"
 
 #: application/controllers/Satellite.php:37
 msgid "Create Satellite"
@@ -5415,7 +5416,7 @@ msgstr "Seriennummer + Planquadrat"
 
 #: application/views/contesting/index.php:21
 msgid "Serial + Gridsquare + Exchange"
-msgstr ""
+msgstr "Laufende Nummer + Locator + Austausch"
 
 #: application/views/contesting/index.php:35
 #: application/views/operator/index.php:5
@@ -5426,7 +5427,7 @@ msgstr "Rufzeichen des Operators"
 #: application/views/contesting/index.php:40
 #: application/views/contesting/index.php:45
 msgid "More Settings"
-msgstr ""
+msgstr "Weitere Einstellungen"
 
 #: application/views/contesting/index.php:49
 msgid "Copy received exchange to"
@@ -5456,18 +5457,21 @@ msgstr "QTH"
 
 #: application/views/contesting/index.php:64
 msgid "Sequence of Exchanges"
-msgstr ""
+msgstr "Abfolge der Austausche"
 
 #: application/views/contesting/index.php:67
 #, php-format
 msgid "%s = Serial, %s = Gridsquare, %s = Exchange."
-msgstr ""
+msgstr "%s = Laufende Nummer, %s = Planquadrat, %s = Austausch."
 
 #: application/views/contesting/index.php:67
 msgid ""
 "Choose in which order you want to type in the different reports. However, "
 "only the elements contained in the selected exchange type are displayed."
 msgstr ""
+"Wähle die Reihenfolge, in der du die verschiedenen Austausche eingeben "
+"möchtest. Es werden jedoch nur die Elemente angezeigt, die im ausgewählten "
+"Austauschtyp enthalten sind."
 
 #: application/views/contesting/index.php:172
 #: application/views/contesting/index.php:255
@@ -7117,7 +7121,7 @@ msgstr "Cabrillo Export"
 
 #: application/views/interface_assets/header.php:396
 msgid "EDI Export"
-msgstr ""
+msgstr "EDI Export"
 
 #: application/views/interface_assets/header.php:420
 msgid "QSL Queue"
@@ -9340,21 +9344,23 @@ msgstr "Bitte warten..."
 
 #: application/views/reg1test/index.php:6
 msgid "Select Band"
-msgstr ""
+msgstr "Wähle Band"
 
 #: application/views/reg1test/index.php:8
 msgid ""
 "Bands below 50Mhz are not valid for the EDI REG1TEST format and will produce "
 "invalid files."
 msgstr ""
+"Bänder unterhalb 50Mhz sind im Rahmen des EDI REG1TEST Formates nicht gültig "
+"und produzieren somit ungültige Dateien."
 
 #: application/views/reg1test/index.php:18
 msgid "Export a contest to a REG1TEST EDI log"
-msgstr ""
+msgstr "Exportiere einen Contest im REG1TEST EDI Format"
 
 #: application/views/reg1test/index.php:48
 msgid "Sent Exchange"
-msgstr ""
+msgstr "Gesendeter Austausch"
 
 #: application/views/reg1test/index.php:50
 msgid ""
@@ -9362,102 +9368,109 @@ msgid ""
 "information, e.g. Province, DOK, County, State, Power, Name. Max. length: 6 "
 "characters."
 msgstr ""
+"Der Austausch, der während dem Contest gesendet wird. Dies kann jede Art der "
+"Information sein, z.B. Provinz, DOK, County, Leistung, Name. Maximale Länge: "
+"6 Zeichen."
 
 #: application/views/reg1test/index.php:55
 msgid ""
 "Describes the callsign of the radio club where operator(s) are member. E.g. "
 "can be used if points are accumulated to the club."
 msgstr ""
+"Name des Clubs, bei dem die Operator Mitglied sind. Kann zum Beispiel "
+"benutzt werden um Punkte innerhalb eines Clubs zu akkumulieren."
 
 #: application/views/reg1test/index.php:66
 msgid "Callsign of responsible operator"
-msgstr ""
+msgstr "Rufzeichen des verantwortlichen Operators"
 
 #: application/views/reg1test/index.php:72
 msgid ""
 "List of all operators. Seperated with a semicolon ';'. The responsible "
 "operator is not needed here."
 msgstr ""
+"Liste aller Operator getrennt mit einem Semikolon ';'. Der verantwortliche "
+"Operator wird hier nicht benötigt."
 
 #: application/views/reg1test/index.php:75
 msgid "Contest Address 1"
-msgstr ""
+msgstr "Contest Adresse 1"
 
 #: application/views/reg1test/index.php:77
 msgid "Address of the QTH used during the contest."
-msgstr ""
+msgstr "Adresse des QTH, das während des Contest verwendet wurde."
 
 #: application/views/reg1test/index.php:80
 msgid "Contest Address 2"
-msgstr ""
+msgstr "Contest Adresse 2"
 
 #: application/views/reg1test/index.php:84
 msgid "Operator Address 1"
-msgstr ""
+msgstr "Operator Adresse 1"
 
 #: application/views/reg1test/index.php:86
 msgid "Address of the responsible operator."
-msgstr ""
+msgstr "Adresse des verantwortlichen Operator."
 
 #: application/views/reg1test/index.php:89
 msgid "Operator Address 2"
-msgstr ""
+msgstr "Operator Adresse 2"
 
 #: application/views/reg1test/index.php:93
 msgid "Operator Address Postalcode"
-msgstr ""
+msgstr "Operator Adresse Postleitzahl"
 
 #: application/views/reg1test/index.php:97
 msgid "Operator Address City"
-msgstr ""
+msgstr "Operator Adresse Stadt"
 
 #: application/views/reg1test/index.php:101
 msgid "Operator Address Country"
-msgstr ""
+msgstr "Operator Adresse Land"
 
 #: application/views/reg1test/index.php:105
 msgid "Operator Phone Number"
-msgstr ""
+msgstr "Operator Telefonnummer"
 
 #: application/views/reg1test/index.php:109
 msgid "Transmit Equipment Description"
-msgstr ""
+msgstr "Beschreibung der Sendeausrüstung"
 
 #: application/views/reg1test/index.php:111
 msgid "Short description of the used equipment."
-msgstr ""
+msgstr "Kurze Beschreibung der verwendeten Ausrüstung."
 
 #: application/views/reg1test/index.php:116
 msgid "TX Power during the contest in Watt."
-msgstr ""
+msgstr "Sendeleistung während des Contest in Watt."
 
 #: application/views/reg1test/index.php:119
 msgid "Receive Equipment Description"
-msgstr ""
+msgstr "Empfangs-Gerätebeschreibung"
 
 #: application/views/reg1test/index.php:121
 msgid "If you used another gear for RX, then describe it here."
-msgstr ""
+msgstr "Beschreibung der Geräte, falls abweichend für RX."
 
 #: application/views/reg1test/index.php:124
 msgid "Antenna Description"
-msgstr ""
+msgstr "Antennenbeschreibung"
 
 #: application/views/reg1test/index.php:126
 msgid "What kind of antenna was used."
-msgstr ""
+msgstr "Welche Art von Antenne wurde verwendet."
 
 #: application/views/reg1test/index.php:129
 msgid "Antenna Height Above Ground (m)"
-msgstr ""
+msgstr "Antennenhöhe über dem Boden (m)"
 
 #: application/views/reg1test/index.php:131
 msgid "Height of the antenna above the ground."
-msgstr ""
+msgstr "Höhe der Antenne über dem Boden."
 
 #: application/views/reg1test/index.php:136
 msgid "Any other remarks."
-msgstr ""
+msgstr "Weitere Bemerkungen."
 
 #: application/views/satellite/create.php:23
 #: application/views/satellite/edit.php:7
