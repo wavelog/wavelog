@@ -318,7 +318,12 @@ class eqsl extends CI_Controller {
 			$images = $dom->getElementsByTagName('img');
 
 			if (!isset($images) || count($images) == 0) {
-				echo "Rate Limited";
+				$h3 = $dom->getElementsByTagName('h3');
+				if (isset($h3)) {
+					echo $h3->item(0)->nodeValue;
+				} else {
+					echo "Rate Limited";
+				}
 				exit;
 			}
 
@@ -348,7 +353,6 @@ class eqsl extends CI_Controller {
 			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 			redirect('dashboard');
 		}
-		$this->load->library('electronicqsl');
 		$this->load->model('Eqsl_images');
 
 		$this->load->model('logbook_model');
@@ -384,7 +388,12 @@ class eqsl extends CI_Controller {
 		$images = $dom->getElementsByTagName('img');
 
 		if (!isset($images) || count($images) == 0) {
-			$error = "Rate Limited";
+			$h3 = $dom->getElementsByTagName('h3');
+			if (isset($h3)) {
+				$error = $h3->item(0)->nodeValue;
+			} else {
+				$error = "Rate Limited";
+			}
 			return $error;
 		}
 
@@ -402,7 +411,6 @@ class eqsl extends CI_Controller {
 				}
 			}
 		}
-		return $error;
 	}
 
 	public function tools() {
@@ -429,6 +437,7 @@ class eqsl extends CI_Controller {
 			redirect('dashboard');
 		}
 		$errors = 0;
+		$this->load->library('electronicqsl');
 
 		if ($this->input->post('eqsldownload') == 'download') {
 			$i = 0;
