@@ -50,7 +50,7 @@
                     </select>
                 </div>
                 <div class="col-md-1 control-label"><?= __("Confirmation") ?></div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" name="qsl" value="1" id="qsl" <?php if ($this->input->post('qsl'))  echo ' checked="checked"'; ?> >
                         <label class="form-check-label" for="qsl"><?= __("QSL") ?></label>
@@ -63,6 +63,39 @@
                         <input class="form-check-input" type="checkbox" name="eqsl" value="1" id="eqsl" <?php if ($this->input->post('eqsl')) echo ' checked="checked"'; ?> >
                         <label class="form-check-label" for="eqsl"><?= __("eQSL") ?></label>
                     </div>
+ 		    <div class="form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="clublog" value="1" id="clublog" <?php if ($this->input->post('clublog')) echo ' checked="checked"'; ?> >
+                        <label class="form-check-label" for="clublog"><?= __("Clublog") ?></label>
+                    </div>
+                </div>
+            </div>
+
+	    <div class="mb-4 row">
+                <label class="col-md-1" for="propmode"><?= __("Propagation"); ?></label>
+                <div class="col-md-3">
+                    <select class="form-select w-auto" name="propmode" id="propmode">
+                        <option value="0"<?php if (($propmode ?? '') == '0') { echo 'selected="selected"'; } ?>><?= __("All"); ?></option>
+                        <option value="NoSAT"<?php if (($propmode ?? '') == 'NoSAT') { echo 'selected="selected"'; } ?>><?= __("All but SAT"); ?></option>
+                        <option value="None"<?php if (($propmode ?? '') == 'None') { echo ' selected="selected"'; } ?>><?= __("None/Empty"); ?></option>
+                        <option value="AS"<?php if (($propmode ?? '') == 'AS') { echo ' selected="selected"'; } ?>><?= _pgettext("Propagation Mode","Aircraft Scatter"); ?></option>
+                        <option value="AUR"<?php if (($propmode ?? '') == 'AUR') { echo ' selected="selected"'; } ?>><?= _pgettext("Propagation Mode","Aurora"); ?></option>
+                        <option value="AUE"<?php if (($propmode ?? '') == 'AUE') { echo ' selected="selected"'; } ?>><?= _pgettext("Propagation Mode","Aurora-E"); ?></option>
+                        <option value="BS"<?php if (($propmode ?? '') == 'BS') { echo ' selected="selected"'; } ?>><?= _pgettext("Propagation Mode","Back scatter"); ?></option>
+                        <option value="ECH"<?php if (($propmode ?? '') == 'ECH') { echo ' selected="selected"'; } ?>><?= _pgettext("Propagation Mode","EchoLink"); ?></option>
+                        <option value="EME"<?php if (($propmode ?? '') == 'EME') { echo ' selected="selected"'; } ?>><?= _pgettext("Propagation Mode","Earth-Moon-Earth"); ?></option>
+                        <option value="ES"<?php if (($propmode ?? '') == 'ES') { echo ' selected="selected"'; } ?>><?= _pgettext("Propagation Mode","Sporadic E"); ?></option>
+                        <option value="FAI"<?php if (($propmode ?? '') == 'FAI') { echo ' selected="selected"'; } ?>><?= _pgettext("Propagation Mode","Field Aligned Irregularities"); ?></option>
+                        <option value="F2"<?php if (($propmode ?? '') == 'F2') { echo ' selected="selected"'; } ?>><?= _pgettext("Propagation Mode","F2 Reflection"); ?></option>
+                        <option value="INTERNET"<?php if (($propmode ?? '') == 'INTERNET') { echo ' selected="selected"'; } ?>><?= _pgettext("Propagation Mode","Internet-assisted"); ?></option>
+                        <option value="ION"<?php if (($propmode ?? '') == 'ION') { echo ' selected="selected"'; } ?>><?= _pgettext("Propagation Mode","Ionoscatter"); ?></option>
+                        <option value="IRL"<?php if (($propmode ?? '') == 'IRL') { echo ' selected="selected"'; } ?>><?= _pgettext("Propagation Mode","IRLP"); ?></option>
+                        <option value="MS"<?php if (($propmode ?? '') == 'MS') { echo ' selected="selected"'; } ?>><?= _pgettext("Propagation Mode","Meteor scatter"); ?></option>
+                        <option value="RPT"<?php if (($propmode ?? '') == 'RPT') { echo ' selected="selected"'; } ?>><?= _pgettext("Propagation Mode","Terrestrial or atmospheric repeater or transponder"); ?></option>
+                        <option value="RS"<?php if (($propmode ?? '') == 'RS') { echo ' selected="selected"'; } ?>><?= _pgettext("Propagation Mode","Rain scatter"); ?></option>
+                        <option value="SAT" <?php if ($propmode == 'SAT') {echo 'selected="selected"';} ?>><?= _pgettext("Propagation Mode","Satellite"); ?></option>
+                        <option value="TEP"<?php if (($propmode ?? '') == 'TEP') { echo ' selected="selected"'; } ?>><?= _pgettext("Propagation Mode","Trans-equatorial"); ?></option>
+                        <option value="TR"<?php if (($propmode ?? '') == 'TR') { echo ' selected="selected"'; } ?>><?= _pgettext("Propagation Mode","Tropospheric ducting"); ?></option>
+                    </select>
                 </div>
             </div>
 
@@ -90,12 +123,12 @@
 
     if ($timeline_array) {
         switch ($this->input->post('award')) {
-            case 'dxcc': $result = write_dxcc_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $this->input->post('award')); break;
-            case 'was':  $result = write_was_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $this->input->post('award')); break;
-            case 'iota': $result = write_iota_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $this->input->post('award')); break;
-            case 'waz':  $result = write_waz_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $this->input->post('award')); break;
-            case 'vucc':  $result = write_vucc_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $this->input->post('award')); break;
-            case 'waja':  $result = write_waja_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $this->input->post('award')); break;
+            case 'dxcc': $result = write_dxcc_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $this->input->post('award')); break;
+            case 'was':  $result = write_was_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $this->input->post('award')); break;
+            case 'iota': $result = write_iota_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $this->input->post('award')); break;
+            case 'waz':  $result = write_waz_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $this->input->post('award')); break;
+            case 'vucc':  $result = write_vucc_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $this->input->post('award')); break;
+            case 'waja':  $result = write_waja_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $this->input->post('award')); break;
         }
     }
     else {
@@ -107,7 +140,7 @@
 
 <?php
 
-function write_dxcc_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $award) {
+function write_dxcc_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $award) {
     $i = count($timeline_array);
     echo '<table style="width:100%" class="table table-sm timelinetable table-bordered table-hover table-striped table-condensed text-center">
               <thead>
@@ -134,13 +167,13 @@ function write_dxcc_timeline($timeline_array, $custom_date_format, $bandselect, 
         if (!empty($line->end)) echo '<span class="badge text-bg-danger">'.__("Deleted DXCC").'</span>';
         echo '</td>
                 <td>' . $line->end . '</td>
-                <td><a href=javascript:displayTimelineContacts("' . $line->adif . '","'. $bandselect . '","'. $modeselect . '","' . $award .'")>'.__("Show").'</a></td>
+                <td><a href=javascript:displayTimelineContacts("' . $line->adif . '","'. $bandselect . '","'. $modeselect . '","' . $propmode .'","' . $award .'")>'.__("Show").'</a></td>
                </tr>';
     }
     echo '</tfoot></table></div>';
 }
 
-function write_waja_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $award) {
+function write_waja_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $award) {
     $CI = &get_instance();
     $CI->load->model("Waja");
     $i = count($timeline_array);
@@ -161,13 +194,13 @@ function write_waja_timeline($timeline_array, $custom_date_format, $bandselect, 
                 <td>' . $i-- . '</td>
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
                 <td>' . $CI->Waja->jaPrefectures[$line->col_state] . ' ('.$line->col_state.')</td>
-                <td><a href=javascript:displayTimelineContacts("' . $line->col_state . '","'. $bandselect . '","'. $modeselect . '","' . $award .'")>'.__("Show").'</a></td>
+                <td><a href=javascript:displayTimelineContacts("' . $line->col_state . '","'. $bandselect . '","'. $modeselect. '","' . $propmode . '","' . $award .'")>'.__("Show").'</a></td>
                </tr>';
     }
     echo '</tfoot></table></div>';
 }
 
-function write_was_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $award) {
+function write_was_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $award) {
     $i = count($timeline_array);
     echo '<table style="width:100%" class="table table-sm timelinetable table-bordered table-hover table-striped table-condensed text-center">
               <thead>
@@ -186,13 +219,13 @@ function write_was_timeline($timeline_array, $custom_date_format, $bandselect, $
                 <td>' . $i-- . '</td>
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
                 <td>' . $line->col_state . '</td>
-                <td><a href=javascript:displayTimelineContacts("' . $line->col_state . '","'. $bandselect . '","'. $modeselect . '","' . $award .'")>'.__("Show").'</a></td>
+                <td><a href=javascript:displayTimelineContacts("' . $line->col_state . '","'. $bandselect . '","'. $modeselect. '","' . $propmode . '","' . $award .'")>'.__("Show").'</a></td>
                </tr>';
     }
     echo '</tfoot></table></div>';
 }
 
-function write_iota_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $award) {
+function write_iota_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $award) {
     $i = count($timeline_array);
     echo '<table style="width:100%" class="table table-sm timelinetable table-bordered table-hover table-striped table-condensed text-center">
               <thead>
@@ -215,13 +248,13 @@ function write_iota_timeline($timeline_array, $custom_date_format, $bandselect, 
                 <td>' . $line->col_iota . '</td>
                 <td>' . $line->name . '</td>
                 <td>' . $line->prefix . '</td>
-                <td><a href=javascript:displayTimelineContacts("' . $line->col_iota . '","'. $bandselect . '","'. $modeselect . '","' . $award .'")>'.__("Show").'</a></td>
+                <td><a href=javascript:displayTimelineContacts("' . $line->col_iota . '","'. $bandselect . '","'. $modeselect. '","' . $propmode . '","' . $award .'")>'.__("Show").'</a></td>
                </tr>';
     }
     echo '</tfoot></table></div>';
 }
 
-function write_waz_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $award) {
+function write_waz_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $propmode, $award) {
     $i = count($timeline_array);
     echo '<table style="width:100%" class="table table-sm timelinetable table-bordered table-hover table-striped table-condensed text-center">
               <thead>
@@ -240,13 +273,13 @@ function write_waz_timeline($timeline_array, $custom_date_format, $bandselect, $
                 <td>' . $i-- . '</td>
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
                 <td>' . $line->col_cqz . '</td>
-                <td><a href=javascript:displayTimelineContacts("' . $line->col_cqz . '","'. $bandselect . '","'. $modeselect . '","' . $award .'")>'.__("Show").'</a></td>
+                <td><a href=javascript:displayTimelineContacts("' . $line->col_cqz . '","'. $bandselect . '","'. $modeselect. '","' . $propmode . '","' . $award .'")>'.__("Show").'</a></td>
                </tr>';
     }
     echo '</tfoot></table></div>';
 }
 
-function write_vucc_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect, $award) {
+function write_vucc_timeline($timeline_array, $custom_date_format, $bandselect, $modeselect,  $propmode,$award) {
     $i = count($timeline_array);
     echo '<table style="width:100%" class="table table-sm timelinetable table-bordered table-hover table-striped table-condensed text-center">
               <thead>
@@ -267,7 +300,7 @@ function write_vucc_timeline($timeline_array, $custom_date_format, $bandselect, 
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
                 <td>' . date('H:i', $date_as_timestamp) . '</td>
                 <td>' . $line['gridsquare'] . '</td>
-                <td><a href=javascript:displayTimelineContacts("' . $line['gridsquare'] . '","'. $bandselect . '","'. $modeselect . '","' . $award .'")>'.__("Show").'</a></td>
+                <td><a href=javascript:displayTimelineContacts("' . $line['gridsquare'] . '","'. $bandselect . '","'. $modeselect. '","' . $propmode . '","' . $award .'")>'.__("Show").'</a></td>
                </tr>';
     }
     echo '</tfoot></table></div>';

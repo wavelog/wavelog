@@ -1288,15 +1288,17 @@ $($('#callsign')).on('keypress',function(e) {
 <script>
 $(document).ready(function(){
     $('#btn_update_dxcc').bind('click', function(){
-		$(".ld-ext-right").addClass("running");
-		$(".ld-ext-right").prop("disabled", true);
+		$("#btn_update_dxcc").addClass("running");
+		$("#btn_update_dxcc").prop("disabled", true);
         $('#dxcc_update_status').show();
         $.ajax({
             url:"update/dxcc",
             success: function(response) {
                 if (response == 'success') {
-                    $(".ld-ext-right").removeClass("running");
-                    $(".ld-ext-right").prop("disabled", false);
+                    setTimeout(function() {
+                        $("#btn_update_dxcc").removeClass("running");
+                        $("#btn_update_dxcc").prop("disabled", false);
+                    }, 2000);
                 }
             }
         });
@@ -1309,8 +1311,8 @@ $(document).ready(function(){
             if ((val  === null) || (val.substring(0,4) !="DONE")){
                 setTimeout(update_stats, 5000);
             } else {
-				$(".ld-ext-right").removeClass("running");
-				$(".ld-ext-right").prop("disabled", false);
+				$("#btn_update_dxcc").removeClass("running");
+				$("#btn_update_dxcc").prop("disabled", false);
 			}
         });
 
@@ -1971,7 +1973,7 @@ $(document).ready(function(){
                 $(".buttons-csv").css("color", "white");
             }
 
-            function displayTimelineContacts(querystring, band, mode, type) {
+            function displayTimelineContacts(querystring, band, mode, propmode, type) {
                 var baseURL= "<?php echo base_url();?>";
                 $.ajax({
                     url: baseURL + 'index.php/timeline/details',
@@ -1979,6 +1981,7 @@ $(document).ready(function(){
                     data: {'Querystring': querystring,
                         'Band': band,
                         'Mode': mode,
+                        'Propmode': propmode,
                         'Type': type
                     },
                     success: function(html) {
