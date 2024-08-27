@@ -463,6 +463,19 @@ $('#band').change(function () {
 	checkIfWorkedBefore();
 });
 
+/* on radio change */
+// in the footer is defined that we want to clear the frequency when changing the radio
+// this may fit for QSOs, but not for the contesting module
+// so we want atleast to set the frequency to the default frequency of the band
+$('#radio').change(function () {
+	if ($('#radio').val() == '0') {
+		$.get('qso/band_to_freq/' + $('#band').val() + '/' + $('.mode').val(), function (result) {
+			$('#frequency').val(result);
+			$('#frequency_rx').val("");
+		});
+	}
+});
+
 function setSerial(data) {
 	var serialsent = 1;
 	if (data.serialsent != "") {
