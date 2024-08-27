@@ -896,7 +896,12 @@ $( document ).ready(function() {
 							$('#dxcc_id').val(result.dxcc.adif).multiselect('refresh');
 							await updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputEdit');
 							$('#cqz').val(result.dxcc.cqz);
-							$('#ituz').val(result.dxcc.ituz);
+
+							if (result.callsign_ituz != '') {
+								$('#ituz').val(result.callsign_ituz);
+							} else {
+								$('#ituz').val(result.dxcc.ituz);
+							}
 
 							var redIcon = L.icon({
 								iconUrl: icon_dot_url,
