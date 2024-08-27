@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-08-27 10:45+0000\n"
-"PO-Revision-Date: 2024-08-22 14:14+0000\n"
+"PO-Revision-Date: 2024-08-27 16:24+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/zh_Hans/>\n"
@@ -583,19 +583,21 @@ msgstr "确认"
 msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
 "It should run every minute (* * * * *)."
-msgstr ""
+msgstr "上次执行是 %s 秒之前。 %s 请检查主 Cron 任务，应当设置为每分钟执行 (* * * * "
+"*)。"
 
 #: application/controllers/Cron.php:281
 #, php-format
 msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
 "isn't running!%sIt should run every minute (* * * * *)."
-msgstr ""
+msgstr "上次执行是 %s 分钟之前。 %s 您的 Cron 任务似乎没有配置好，%s "
+"它应当设置为每分钟执行 (* * * * *)。"
 
 #: application/controllers/Cron.php:286 application/views/cron/index.php:29
 msgctxt "Master Cron"
 msgid "Not running"
-msgstr ""
+msgstr "未运行"
 
 #: application/controllers/Csv.php:20 application/views/csv/index.php:3
 #: application/views/interface_assets/header.php:392
@@ -1780,7 +1782,7 @@ msgstr "无 CAT 控制电台。"
 
 #: application/controllers/Reg1test.php:25
 msgid "Export EDI"
-msgstr ""
+msgstr "导出 EDI"
 
 #: application/controllers/Satellite.php:37
 msgid "Create Satellite"
@@ -2206,29 +2208,29 @@ msgstr "重置密码"
 msgid ""
 "You currently can't impersonate another user. Please change the "
 "encryption_key in your config.php file first!"
-msgstr ""
+msgstr "无法进行此操作，请在 config.php 里设置encryption_key！"
 
 #: application/controllers/User.php:1206
 msgid "Invalid Hash"
-msgstr ""
+msgstr "Hash 无效"
 
 #: application/controllers/User.php:1219
 msgid "The impersonation hash is too old. Please try again."
-msgstr ""
+msgstr "用户 Hash 已过期，请重试。"
 
 #: application/controllers/User.php:1226
 msgid ""
 "You can't impersonate another user while you're not logged in as the source "
 "user"
-msgstr ""
+msgstr "由于您未登录为原用户，故无法切换至另一个用户角色"
 
 #: application/controllers/User.php:1232
 msgid "There was a problem with your session. Please try again."
-msgstr ""
+msgstr "会话出现问题，请重试。"
 
 #: application/controllers/User.php:1239
 msgid "The requested user to impersonate does not exist"
-msgstr ""
+msgstr "切换的用户不存在"
 
 #: application/controllers/Visitor.php:50
 #: application/controllers/Visitor.php:79
@@ -2604,7 +2606,7 @@ msgstr "传播方式"
 #: application/views/accumulate/index.php:84
 #: application/views/timeline/index.php:78
 msgid "All but SAT"
-msgstr ""
+msgstr "全部（除卫星以外）"
 
 #: application/views/accumulate/index.php:85
 #: application/views/gridmap/index.php:42
@@ -5240,7 +5242,7 @@ msgstr "序列编号 + 网格座标"
 
 #: application/views/contesting/index.php:21
 msgid "Serial + Gridsquare + Exchange"
-msgstr ""
+msgstr "序号 + 网格 + 交换信息"
 
 #: application/views/contesting/index.php:35
 #: application/views/operator/index.php:5
@@ -5251,7 +5253,7 @@ msgstr "操作员呼号"
 #: application/views/contesting/index.php:40
 #: application/views/contesting/index.php:45
 msgid "More Settings"
-msgstr ""
+msgstr "更多设置"
 
 #: application/views/contesting/index.php:49
 msgid "Copy received exchange to"
@@ -5280,12 +5282,12 @@ msgstr "QTH"
 
 #: application/views/contesting/index.php:64
 msgid "Sequence of Exchanges"
-msgstr ""
+msgstr "交换信息的顺序"
 
 #: application/views/contesting/index.php:67
 #, php-format
 msgid "%s = Serial, %s = Gridsquare, %s = Exchange."
-msgstr ""
+msgstr "%s = 序号， %s = 网格，%s = 交换信息。"
 
 #: application/views/contesting/index.php:67
 msgid ""
@@ -5447,7 +5449,7 @@ msgstr "请删除所有旧的 Cron 任务，使用如下的唯一 Cron 指令：
 
 #: application/views/cron/index.php:29 application/views/cron/index.php:33
 msgid "Status Master-Cron:"
-msgstr ""
+msgstr "主 Cron 任务状态："
 
 #: application/views/cron/index.php:33
 msgctxt "PHP Version"
@@ -6545,7 +6547,7 @@ msgstr ""
 
 #: application/views/interface_assets/footer.php:50
 msgid "Error in locators. Please check."
-msgstr ""
+msgstr "坐标错误，请检查。"
 
 #: application/views/interface_assets/footer.php:132
 #: application/views/interface_assets/header.php:436
@@ -6879,7 +6881,7 @@ msgstr "Cabrillo 导出"
 
 #: application/views/interface_assets/header.php:396
 msgid "EDI Export"
-msgstr ""
+msgstr "EDI 导出"
 
 #: application/views/interface_assets/header.php:420
 msgid "QSL Queue"
@@ -8956,23 +8958,23 @@ msgstr "连接"
 
 #: application/views/qso/index.php:666
 msgid "Stop"
-msgstr ""
+msgstr "停止"
 
 #: application/views/qso/index.php:667
 msgid "Tune"
-msgstr ""
+msgstr "调谐"
 
 #: application/views/qso/index.php:668
 msgid "Stop Tune"
-msgstr ""
+msgstr "停止调谐"
 
 #: application/views/qso/index.php:674
 msgid "CW Speed"
-msgstr ""
+msgstr "CW 速度"
 
 #: application/views/qso/index.php:679
 msgid "Send"
-msgstr ""
+msgstr "发射"
 
 #: application/views/qso/index.php:689
 msgid "Suggestions"
@@ -9015,7 +9017,7 @@ msgstr "请稍等…"
 
 #: application/views/reg1test/index.php:6
 msgid "Select Band"
-msgstr ""
+msgstr "选择波段"
 
 #: application/views/reg1test/index.php:8
 msgid ""
@@ -9029,14 +9031,15 @@ msgstr ""
 
 #: application/views/reg1test/index.php:48
 msgid "Sent Exchange"
-msgstr ""
+msgstr "发送交换信息"
 
 #: application/views/reg1test/index.php:50
 msgid ""
 "The exchange which was sent during the contest. Can be any type of "
 "information, e.g. Province, DOK, County, State, Power, Name. Max. length: 6 "
 "characters."
-msgstr ""
+msgstr "比赛中用到的交换信息，根据比赛规则而定，可以是省份、DOK、州、姓名等信息，"
+"最大 6 字符长。"
 
 #: application/views/reg1test/index.php:55
 msgid ""
@@ -9104,7 +9107,7 @@ msgstr ""
 
 #: application/views/reg1test/index.php:116
 msgid "TX Power during the contest in Watt."
-msgstr ""
+msgstr "比赛时使用的发射功率，单位瓦特。"
 
 #: application/views/reg1test/index.php:119
 msgid "Receive Equipment Description"
@@ -9116,7 +9119,7 @@ msgstr ""
 
 #: application/views/reg1test/index.php:124
 msgid "Antenna Description"
-msgstr ""
+msgstr "天线信息"
 
 #: application/views/reg1test/index.php:126
 msgid "What kind of antenna was used."
@@ -10488,7 +10491,7 @@ msgstr "更新 DXCC 数据"
 
 #: application/views/update/index.php:30
 msgid "Status:"
-msgstr ""
+msgstr "状态："
 
 #: application/views/update/index.php:34
 msgid "Apply DXCC Data to Logbook"
@@ -11027,7 +11030,7 @@ msgstr "重置密码"
 
 #: application/views/user/index.php:55 application/views/user/index.php:150
 msgid "Impersonate"
-msgstr ""
+msgstr "以之登录"
 
 #: application/views/user/index.php:82
 msgid "Never"
@@ -11051,37 +11054,37 @@ msgstr "日志为空"
 
 #: application/views/user/index.php:111
 msgid "Impersonate User"
-msgstr ""
+msgstr "以该用户登录"
 
 #: application/views/user/index.php:116
 msgid ""
 "You are about to impersonate another user. To return to your admin account, "
 "you'll need to logout and log back in as admin."
-msgstr ""
+msgstr "您将要使用另一个用户身份登录，如果您想切换回管理员账号，请退出并重新登录。"
 
 #: application/views/user/index.php:117
 msgid "Do you want to impersonate this user?"
-msgstr ""
+msgstr "您要以此用户登录吗？"
 
 #: application/views/user/index.php:121
 msgid "Username:"
-msgstr ""
+msgstr "用户名："
 
 #: application/views/user/index.php:125
 msgid "Name:"
-msgstr ""
+msgstr "姓名："
 
 #: application/views/user/index.php:129
 msgid "Callsign:"
-msgstr ""
+msgstr "呼号："
 
 #: application/views/user/index.php:133
 msgid "E-Mail:"
-msgstr ""
+msgstr "E-Mail："
 
 #: application/views/user/index.php:137
 msgid "Last Seen:"
-msgstr ""
+msgstr "上次登录："
 
 #: application/views/user/login.php:36
 msgid "MAINTENANCE MODE"
