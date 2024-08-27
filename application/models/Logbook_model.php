@@ -1608,6 +1608,28 @@ class Logbook_model extends CI_Model {
         }
     }
 
+    function call_cqzone($callsign) {
+        $this->db->select('COL_CALL, COL_CQZ');
+        $this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
+        $this->db->where('COL_CALL', $callsign);
+        $this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
+        $where = "COL_CQZ != \"\"";
+
+        $this->db->where($where);
+
+        $this->db->order_by("COL_TIME_ON", "desc");
+        $this->db->limit(1);
+        $query = $this->db->get($this->config->item('table_name'));
+        if ($query->num_rows() > 0)
+        {
+            $data = $query->row();
+            $qsl_cqz = $data->COL_CQZ;
+            return $qsl_cqz;
+        } else {
+            return NULL;
+        }
+    }
+
 	function call_qth($callsign) {
 		$this->db->select('COL_CALL, COL_QTH, COL_TIME_ON');
 		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');

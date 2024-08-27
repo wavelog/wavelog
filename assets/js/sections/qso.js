@@ -895,7 +895,11 @@ $( document ).ready(function() {
 
 							$('#dxcc_id').val(result.dxcc.adif).multiselect('refresh');
 							await updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputEdit');
-							$('#cqz').val(result.dxcc.cqz);
+							if (result.callsign_cqz != '') {
+								$('#cqz').val(result.callsign_cqz);
+							} else {
+								$('#cqz').val(result.dxcc.cqz);
+							}
 
 							if (result.callsign_ituz != '') {
 								$('#ituz').val(result.callsign_ituz);

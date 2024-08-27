@@ -110,6 +110,7 @@ class Qrz {
 				$data['qslmgr'] = (string)$xml->Callsign->qslmgr;
 				$data['image'] 	= (string)$xml->Callsign->image;
 				$data['ituz'] 	= (string)$xml->Callsign->ituzone;
+				$data['cqz'] 	= (string)$xml->Callsign->cqzone;
 
 				if ($xml->Callsign->country == "United States") {
 					$data['us_county'] = (string)$xml->Callsign->county;
@@ -130,6 +131,7 @@ class Qrz {
 				$data['image'] 	= (string)$xml->Callsign->image;
 				$data['us_county'] = '';
 				$data['ituz'] = '';
+				$data['cqz'] = '';
 
 			}
 		} finally {
