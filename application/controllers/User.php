@@ -1254,7 +1254,7 @@ class User extends CI_Controller {
 		// Update the session with the new user_id
 		// TODO: Find a solution for sessiondata 'radio', so a user would be able to use e.g. his own radio while impersonating another user
 		// Due the fact that the user is now impersonating another user, he can't use his default radio anymore
-		$this->user_model->update_session($target_uid); 
+		$this->user_model->update_session($target_uid, null, $impersonate = true); 
 		
 		// Redirect to the dashboard, the user should now be logged in as the other user
 		redirect('dashboard');
