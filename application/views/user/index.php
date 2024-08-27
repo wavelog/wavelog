@@ -135,7 +135,7 @@
 															</tr>
 															<tr>
 																<td class="pe-3"><?= __("Last Seen:"); ?></td>
-																<td><strong><?php echo date($custom_date_format . ' H:i:s', strtotime($row->last_seen)); ?></strong></td>
+																<td><strong><?php if (isset($row->last_seen)) { echo date($custom_date_format . ' H:i:s', strtotime($row->last_seen)); } else { echo __("never"); }; ?></strong></td>
 															</tr>
 														</table>
 														<?php } else { ?>
