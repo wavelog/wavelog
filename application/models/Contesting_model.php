@@ -67,7 +67,11 @@ class Contesting_model extends CI_Model {
 		$settings = array(
 			'exchangetype' 			=> $this->input->post('exchangetype', true),
 			'exchangesequence' 		=> $this->input->post('exchangesequence_select', true),
-			'copyexchangeto'             => $this->input->post('copyexchangeto', true) == "" ? 0 : $this->input->post('copyexchangeto', true),
+			'copyexchangeto'		=> $this->input->post('copyexchangeto', true) == "" ? 0 : $this->input->post('copyexchangeto', true),
+			'radio'					=> $this->input->post('radio', true),
+			'freq_display'			=> $this->input->post('freq_display', true),
+			'mode'					=> $this->input->post('mode', true),
+			'band'					=> $this->input->post('band', true),
 		);
 
 		$data = array(

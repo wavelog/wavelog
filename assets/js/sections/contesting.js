@@ -111,7 +111,7 @@ $('#moreSettingsButton').click(function () {
 });
 
 // Storing the contestid in contest session
-$('#contestname, #copyexchangeto, #exchangesequence_select').change(function () {
+$('#contestname, #copyexchangeto, #exchangesequence_select, #band, #mode, #frequency, #radio').change(function () {
 	var formdata = new FormData(document.getElementById("qso_input"));
 	setSession(formdata);
 });
@@ -702,6 +702,15 @@ async function restoreContestSession(data) {
 
 		if (data.exchangesent != "") {
 			$("#exch_sent").val(data.exchangesent);
+		}
+
+		if (settings.radio != "0") {
+			$("#radio").val(settings.radio);
+		} else {
+			$("#radio").val(settings.radio);
+			$("#band").val(settings.band);
+			$("#mode").val(settings.mode);
+			$("#frequency").val(settings.freq_display);
 		}
 
 		if (data.qso != "") {
