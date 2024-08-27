@@ -63,6 +63,8 @@ class cron extends CI_Controller {
 			$status = 'pending';
 
 			foreach ($crons as $cron) {
+				// Set the status to false by default
+				$set_status = false;
 				if ($cron->enabled == 1) {
 
 					// calculate the crons expression
@@ -75,6 +77,7 @@ class cron extends CI_Controller {
 					$cronjob = $this->cronexpression;
 					$dt = new DateTime();
 					$isdue = $cronjob->isMatching($dt);
+					// Set the status to true, if the cron is enabled by default
 					$set_status = true;
 
 					$next_run = $cronjob->getNext();
@@ -116,11 +119,14 @@ class cron extends CI_Controller {
 						$isdue_result = 'false';
 						echo "CRON: " . $cron->id . " -> is due: " . $isdue_result . " -> Next Run: " . $next_run_date . "\n";
 						$status = 'healthy';
+						// Don't set the status as the cronjob is not due
 						$set_status = false;
 					}
 				} else {
 					echo 'CRON: ' . $cron->id . " is disabled. skipped..\n";
 					$status = 'disabled';
+					// Set the status if the cron needs to be disabled.
+					$set_status = true;
 
 					// Set the next_run timestamp to null to indicate in the view/database that this cron is disabled
 					$this->cron_model->set_next_run($cron->id, null);
