@@ -33,7 +33,7 @@ class QSO extends CI_Controller {
 		$data['notice'] = false;
 		$data['stations'] = $this->stations->all_of_user();
 		$data['radios'] = $this->cat->radios();
-        $data['radio_last_updated'] = $this->cat->last_updated()->row();
+		$data['radio_last_updated'] = $this->cat->last_updated()->row();
 		$data['query'] = $this->logbook_model->last_custom('5');
 		$data['dxcc'] = $this->logbook_model->fetchDxcc();
 		$data['iota'] = $this->logbook_model->fetchIota();
@@ -596,14 +596,15 @@ class QSO extends CI_Controller {
 
    // Return Previous QSOs Made in the active logbook
    public function component_past_contacts() {
-	   if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
-	   $this->load->model('logbook_model');
-	   session_write_close();
+      $this->load->library('Qra');
+      if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+      $this->load->model('logbook_model');
+      session_write_close();
 
-	   $data['query'] = $this->logbook_model->last_custom('5');
+      $data['query'] = $this->logbook_model->last_custom('5');
 
-	   // Load view
-	   $this->load->view('qso/components/previous_contacts', $data);
+      // Load view
+      $this->load->view('qso/components/previous_contacts', $data);
    }
 
    public function get_eqsl_default_qslmsg() {	// Get ONLY Default eQSL-Message with this function. This is ONLY for QSO relevant!
