@@ -111,7 +111,7 @@ $('#moreSettingsButton').click(function () {
 });
 
 // Storing the contestid in contest session
-$('#contestname, #copyexchangeto').change(function () {
+$('#contestname, #copyexchangeto, #exchangesequence_select').change(function () {
 	var formdata = new FormData(document.getElementById("qso_input"));
 	setSession(formdata);
 });
@@ -677,19 +677,27 @@ async function getSession() {
 }
 
 async function restoreContestSession(data) {
+	console.log(data);
 	if (data) {
-		if (data.copytodok != "") {
-			$('#copyexchangeto option')[data.copytodok].selected = true;
+		let settings = JSON.parse(data.settings);
+
+		if (settings.copyexchangeto != "") {
+			$('#copyexchangeto option')[settings.copyexchangeto].selected = true;
 		}
 
 		if (data.contestid != "") {
 			$("#contestname").val(data.contestid);
 		}
 
-		if (data.exchangetype != "") {
-			$("#exchangetype").val(data.exchangetype);
-			setExchangetype(data.exchangetype);
+		if (settings.exchangetype != "") {
+			$("#exchangetype").val(settings.exchangetype);
+			setExchangetype(settings.exchangetype);
 			setSerial(data);
+		}
+
+		if (settings.exchangesequence != "") {
+			$("#exchangesequence_select").val(settings.exchangesequence);
+			sort_exchange();
 		}
 
 		if (data.exchangesent != "") {
