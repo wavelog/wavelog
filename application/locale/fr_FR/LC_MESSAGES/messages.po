@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-26 21:26+0000\n"
+"POT-Creation-Date: 2024-08-27 06:36+0000\n"
 "PO-Revision-Date: 2024-08-24 20:29+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
@@ -38,7 +38,7 @@ msgstr ""
 #: application/controllers/Components.php:13
 #: application/controllers/Contestcalendar.php:15
 #: application/controllers/Contesting.php:14
-#: application/controllers/Cron.php:26 application/controllers/Cron.php:156
+#: application/controllers/Cron.php:26 application/controllers/Cron.php:162
 #: application/controllers/Csv.php:8 application/controllers/Csv.php:31
 #: application/controllers/Dayswithqso.php:11
 #: application/controllers/Debug.php:10
@@ -571,16 +571,16 @@ msgstr "Continents"
 msgid "Cron Manager"
 msgstr "Gestion des Cron"
 
-#: application/controllers/Cron.php:148 application/views/cron/edit.php:5
+#: application/controllers/Cron.php:154 application/views/cron/edit.php:5
 msgid "Edit Cronjob"
 msgstr "Modifier les traitements Cron"
 
-#: application/controllers/Cron.php:268
+#: application/controllers/Cron.php:274
 #: application/views/interface_assets/footer.php:36
 msgid "OK"
 msgstr "OK"
 
-#: application/controllers/Cron.php:272
+#: application/controllers/Cron.php:278
 #, php-format
 msgid ""
 "Last run occurred more than %s seconds ago.%sPlease check your master cron! "
@@ -589,7 +589,7 @@ msgstr ""
 "La dernière exécution a eu lieu il y a plus de %s secondes.%sVeuillez "
 "vérifier votre cron maître ! Il devrait s'exécuter chaque minute (* * * * *)."
 
-#: application/controllers/Cron.php:275
+#: application/controllers/Cron.php:281
 #, php-format
 msgid ""
 "Last run occurred more than %s minutes ago.%sSeems like your Mastercron "
@@ -599,7 +599,7 @@ msgstr ""
 "votre Mastercron ne fonctionne pas !%sIl devrait s'exécuter chaque minute (* "
 "* * * *)."
 
-#: application/controllers/Cron.php:280 application/views/cron/index.php:29
+#: application/controllers/Cron.php:286 application/views/cron/index.php:29
 msgctxt "Master Cron"
 msgid "Not running"
 msgstr "Ne fonctionne pas"
