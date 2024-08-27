@@ -59,19 +59,24 @@ class Contesting_model extends CI_Model {
 		$qso = "";
 
 		if ($this->input->post('callsign', true) ?? '' != '') {
-			$qso = xss_clean($this->input->post('start_date', true)) . ' ' . xss_clean($this->input->post('start_time', true)) . ',' . xss_clean($this->input->post('callsign', true)) . ',' . xss_clean($this->input->post('contestname', true));
+			$qso = $this->input->post('start_date', true) . ' ' . $this->input->post('start_time', true) . ',' . $this->input->post('callsign', true) . ',' . $this->input->post('contestname', true);
 		} else {
-			$qso = xss_clean($this->input->post('start_date', true)) . ' ' . xss_clean($this->input->post('start_time', true)) . ',,' . xss_clean($this->input->post('contestname', true));
+			$qso = $this->input->post('start_date', true) . ' ' . $this->input->post('start_time', true) . ',,' . $this->input->post('contestname', true);
 		}
 
+		$settings = array(
+			'exchangetype' 			=> $this->input->post('exchangetype', true),
+			'exchangesequence' 		=> $this->input->post('exchangesequence_select', true),
+			'copyexchangeto'             => $this->input->post('copyexchangeto', true) == "" ? 0 : $this->input->post('copyexchangeto', true),
+		);
+
 		$data = array(
-			'contestid' 			=> xss_clean($this->input->post('contestname', true)),
-			'exchangetype' 			=> xss_clean($this->input->post('exchangetype', true)),
-			'exchangesent' 			=> xss_clean($this->input->post('exch_sent', true)),
-			'serialsent' 			=> xss_clean($this->input->post('exch_serial_s', true)),
-			'copytodok'             => $this->input->post('copyexchangeto', true) == "" ? 0 : xss_clean($this->input->post('copyexchangeto', true)),
+			'contestid' 			=> $this->input->post('contestname', true),
+			'exchangesent' 			=> $this->input->post('exch_sent', true),
+			'serialsent' 			=> $this->input->post('exch_serial_s', true),
 			'qso' 					=> $qso,
 			'station_id' 			=> $station_id,
+			'settings' 				=> json_encode($settings),
 		);
 
 		$binding = [];
@@ -160,8 +165,8 @@ class Contesting_model extends CI_Model {
 
 	function add() {
 		$data = array(
-			'name' => xss_clean($this->input->post('name', true)),
-			'adifname' => xss_clean($this->input->post('adifname', true)),
+			'name' => $this->input->post('name', true),
+			'adifname' => $this->input->post('adifname', true),
 		);
 
 		$this->db->insert('contest', $data);
@@ -185,9 +190,9 @@ class Contesting_model extends CI_Model {
 		$clean_id = $this->security->xss_clean($id);
 
 		$data = array(
-			'name' => xss_clean($this->input->post('name', true)),
-			'adifname' => xss_clean($this->input->post('adifname', true)),
-			'active' =>  xss_clean($this->input->post('active', true)),
+			'name' => $this->input->post('name', true),
+			'adifname' => $this->input->post('adifname', true),
+			'active' =>  $this->input->post('active', true),
 		);
 
 		$this->db->where('id', $clean_id);
