@@ -24,7 +24,7 @@ class Contesting extends CI_Controller {
 		// Getting the live/post mode from GET command
         // 0 = live
         // 1 = post (manual)
-        $get_manual_mode = $this->security->xss_clean($this->input->get('manual'));
+        $get_manual_mode = $this->input->get('manual', true);
         if ($get_manual_mode == '0' || $get_manual_mode == '1') {
             $data['manual_mode'] = $get_manual_mode;
         } else {
@@ -55,7 +55,7 @@ class Contesting extends CI_Controller {
 		session_write_close();
 		$this->load->model('Contesting_model');
 
-		$qso = $this->input->post('qso');
+		$qso = $this->input->post('qso', true);
 
 		header('Content-Type: application/json');
 		echo json_encode($this->Contesting_model->getSessionQsos($qso));
@@ -72,7 +72,7 @@ class Contesting extends CI_Controller {
 	public function deleteSession() {
 		$this->load->model('Contesting_model');
 
-		$qso = $this->input->post('qso');
+		$qso = $this->input->post('qso', true);
 
 		$data = $this->Contesting_model->deleteSession($qso);
 
@@ -83,7 +83,8 @@ class Contesting extends CI_Controller {
 		$this->load->model('Contesting_model');
 		$this->Contesting_model->setSession();
 
-		$this->session->set_userdata('radio', $this->input->post('radio'));
+		$this->session->set_userdata('radio', $this->input->post('radio', true));
+		
 		header('Content-Type: application/json');
 		echo json_encode($this->Contesting_model->getSession());
 	}
@@ -145,13 +146,13 @@ class Contesting extends CI_Controller {
 	}
 
 	public function delete() {
-		$id = $this->input->post('id');
+		$id = $this->input->post('id', true);
 		$this->load->model('Contesting_model');
 		$this->Contesting_model->delete($id);
 	}
 
 	public function activate() {
-		$id = $this->input->post('id');
+		$id = $this->input->post('id', true);
 		$this->load->model('Contesting_model');
 		$this->Contesting_model->activate($id);
 		header('Content-Type: application/json');
@@ -160,7 +161,7 @@ class Contesting extends CI_Controller {
 	}
 
 	public function deactivate() {
-		$id = $this->input->post('id');
+		$id = $this->input->post('id', true);
 		$this->load->model('Contesting_model');
 		$this->Contesting_model->deactivate($id);
 		header('Content-Type: application/json');
@@ -189,10 +190,10 @@ class Contesting extends CI_Controller {
 	 */
 	public function checkIfWorkedBefore() {
 		session_write_close();
-		$call = $this->input->post('call');
-		$band = $this->input->post('band');
-		$mode = $this->input->post('mode');
-		$contest = $this->input->post('contest');
+		$call = $this->input->post('call', true);
+		$band = $this->input->post('band', true);
+		$mode = $this->input->post('mode', true);
+		$contest = $this->input->post('contest', true);
 
 		$this->load->model('Contesting_model');
 
