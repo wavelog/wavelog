@@ -43,7 +43,6 @@ function closeOperatorDialog() {
 
 function saveOperator() {
 	var operatorInput = $("#operator_callsign");
-	var operatorFirstname = $("#operator_firstname").val();
 	var operatorCallsign = operatorInput.val();
 
 	if (operatorCallsign != "" && operatorCallsign != sc_account_call) {
@@ -53,7 +52,6 @@ function saveOperator() {
 			type: "post",
 			data: {
 				operator_callsign: operatorCallsign,
-				operator_firstname: operatorFirstname
 			},
 		});
 		closeOperatorDialog();

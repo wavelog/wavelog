@@ -430,7 +430,6 @@ class User_Model extends CI_Model {
 			'user_type'		 => $u->row()->user_type,
 			'user_callsign'		 => $u->row()->user_callsign,
 			'operator_callsign'	 => ((($this->session->userdata('operator_callsign') ?? '') == '') ? $u->row()->user_callsign : $this->session->userdata('operator_callsign')),
-			'operator_firstname' => $this->session->userdata('operator_firstname') ?? '',
 			'user_locator'		 => $u->row()->user_locator,
 			'user_lotw_name'	 => $u->row()->user_lotw_name,
 			'user_clublog_name'	 => $u->row()->user_clublog_name ?? '',
