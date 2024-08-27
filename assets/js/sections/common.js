@@ -170,6 +170,11 @@ function single_callbook_update() {
             fill_if_empty('#dxcc_id', data.dxcc.adif);
             fill_if_empty('#continent', data.dxcc.cont);
             fill_if_empty('#cqz', data.dxcc.cqz);
+            if (data.callsign_ituz != '') {
+                fill_if_empty('#ituz', data.callsign_ituz);
+            } else {
+                fill_if_empty('#ituz', data.dxcc.ituz);
+            }
             fill_if_empty('#distance', data.callsign_distance);
             fill_if_empty('#locator', data.callsign_qra);
             // fill_if_empty('#image', data.image);  Not in use yet, but may in future
