@@ -677,7 +677,6 @@ async function getSession() {
 }
 
 async function restoreContestSession(data) {
-	console.log(data);
 	if (data) {
 		let settings = JSON.parse(data.settings);
 
