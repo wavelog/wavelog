@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-27 18:03+0000\n"
+"POT-Creation-Date: 2024-08-27 18:36+0000\n"
 "PO-Revision-Date: 2024-08-26 12:58+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -550,12 +550,12 @@ msgstr "Календарь контестов"
 msgid "Contest Logging"
 msgstr "Журнал контеста"
 
-#: application/controllers/Contesting.php:112
+#: application/controllers/Contesting.php:113
 #: application/views/interface_assets/header.php:274
 msgid "Contests"
 msgstr "Контесты"
 
-#: application/controllers/Contesting.php:126
+#: application/controllers/Contesting.php:127
 msgid "Update Contest"
 msgstr "Обновить контест"
 
@@ -2434,31 +2434,31 @@ msgstr "HRDlog: на найдены QSO для загруки для позыв�
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: не найдены профили QTH с данными входя на HRDlog."
 
-#: application/models/Logbook_model.php:4224
+#: application/models/Logbook_model.php:4228
 msgid "QSO could not be matched"
 msgstr "QSO не может быть сопоставлено"
 
-#: application/models/Logbook_model.php:4230
+#: application/models/Logbook_model.php:4234
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "подтверждено LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:4235
+#: application/models/Logbook_model.php:4239
 msgid "confirmed by award manager"
 msgstr "подтверждено менеджером диплома"
 
-#: application/models/Logbook_model.php:4238
+#: application/models/Logbook_model.php:4242
 msgid "confirmed by cross-check of DCL data"
 msgstr "подтверждено кросс-проверкой с данными DCL"
 
-#: application/models/Logbook_model.php:4241
+#: application/models/Logbook_model.php:4245
 msgid "confirmation pending"
 msgstr "подтверждение ожидается"
 
-#: application/models/Logbook_model.php:4244
+#: application/models/Logbook_model.php:4248
 msgid "unconfirmed"
 msgstr "не подтверждено"
 
-#: application/models/Logbook_model.php:4247
+#: application/models/Logbook_model.php:4251
 msgid "unknown"
 msgstr "неизвестно"
 
@@ -5446,6 +5446,36 @@ msgstr ""
 msgid ""
 "Choose in which order you want to type in the different reports. However, "
 "only the elements contained in the selected exchange type are displayed."
+msgstr ""
+
+#: application/views/contesting/index.php:72
+#: application/views/contesting/index.php:73
+#: application/views/contesting/index.php:74
+#: application/views/contesting/index.php:75
+#: application/views/contesting/index.php:76
+#: application/views/contesting/index.php:77
+msgctxt "Keep the translation short!"
+msgid "Exchange"
+msgstr ""
+
+#: application/views/contesting/index.php:72
+#: application/views/contesting/index.php:73
+#: application/views/contesting/index.php:74
+#: application/views/contesting/index.php:75
+#: application/views/contesting/index.php:76
+#: application/views/contesting/index.php:77
+msgctxt "Keep the translation short!"
+msgid "Grid"
+msgstr ""
+
+#: application/views/contesting/index.php:72
+#: application/views/contesting/index.php:73
+#: application/views/contesting/index.php:74
+#: application/views/contesting/index.php:75
+#: application/views/contesting/index.php:76
+#: application/views/contesting/index.php:77
+msgctxt "Keep the translation short!"
+msgid "Serial"
 msgstr ""
 
 #: application/views/contesting/index.php:172
