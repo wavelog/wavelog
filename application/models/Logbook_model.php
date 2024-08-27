@@ -187,30 +187,34 @@ class Logbook_model extends CI_Model {
     if ($this->input->post('copyexchangeto')) {
       switch($this->input->post('copyexchangeto')) {
         case 'dok':
-          $darc_dok = $srx_string;
+          $darc_dok = strtoupper($srx_string);
           break;
         case 'locator':
           // Matching 4-10 character-locator
           if ( preg_match('/^[A-R]{2}[0-9]{2}([A-X]{2}([0-9]{2}([A-X]{2})?)?)?$/',$srx_string) ) {
-            $qso_locator = $srx_string;
+            $qso_locator = strtoupper($srx_string);
           }
           break;
 		case 'qth':
 		  $qso_qth = ucfirst($srx_string);
 		  break;
         case 'name':
-          $qso_name = $srx_string;
+          $qso_name = ucfirst($srx_string);
           break;
         case 'age':
-          $qso_age = intval($srx_string);
+			if (is_numeric($srx_string))	{   // ADIF spec say this has to be a number https://adif.org/314/ADIF_314.htm#QSO_Field_AGE
+				$qso_age = intval($srx_string);
+			}
           break;
         case 'state':
           if ( preg_match('/^[A-Za-z]*$/', $srx_string) && $srx_string != "DX" ) {
-            $qso_state = $srx_string;
+            $qso_state = strtoupper($srx_string);
           }
           break;
         case 'power':
-          $qso_rx_power = intval($srx_string);
+		  if (is_numeric($srx_string))	{  		// ADIF spec say this has to be a number https://adif.org/314/ADIF_314.htm#QSO_Field_RX_PWR
+          	$qso_rx_power = intval($srx_string);
+		  }
           break;
         // Example for more sophisticated exchanges and their split into the db:
         //case 'name/power':

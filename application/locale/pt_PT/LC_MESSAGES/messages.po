@@ -551,10 +551,12 @@ msgstr "Registo de concurso"
 
 #: application/controllers/Contesting.php:112
 #: application/views/interface_assets/header.php:274
+#: application/controllers/Contesting.php:113
 msgid "Contests"
 msgstr "Concursos"
 
 #: application/controllers/Contesting.php:126
+#: application/controllers/Contesting.php:127
 msgid "Update Contest"
 msgstr "Actualizar Concurso"
 
@@ -2444,36 +2446,43 @@ msgstr ""
 
 #: application/models/Logbook_model.php:4225
 #: application/models/Logbook_model.php:4224
+#: application/models/Logbook_model.php:4228
 msgid "QSO could not be matched"
 msgstr "Não há correspondência de contactos"
 
 #: application/models/Logbook_model.php:4231
 #: application/models/Logbook_model.php:4230
+#: application/models/Logbook_model.php:4234
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confirmado por LoTW/Clublog/eQSL/Contest"
 
 #: application/models/Logbook_model.php:4236
 #: application/models/Logbook_model.php:4235
+#: application/models/Logbook_model.php:4239
 msgid "confirmed by award manager"
 msgstr "confirmado pelo gestor do diploma"
 
 #: application/models/Logbook_model.php:4239
 #: application/models/Logbook_model.php:4238
+#: application/models/Logbook_model.php:4242
 msgid "confirmed by cross-check of DCL data"
 msgstr "confirmado pelo controlo cruzado dos dados da DCL"
 
 #: application/models/Logbook_model.php:4242
 #: application/models/Logbook_model.php:4241
+#: application/models/Logbook_model.php:4245
 msgid "confirmation pending"
 msgstr "confirmação pendente"
 
 #: application/models/Logbook_model.php:4245
 #: application/models/Logbook_model.php:4244
+#: application/models/Logbook_model.php:4248
 msgid "unconfirmed"
 msgstr "não confirmado"
 
 #: application/models/Logbook_model.php:4248
 #: application/models/Logbook_model.php:4247
+#: application/models/Logbook_model.php:4251
 msgid "unknown"
 msgstr "desconhecido"
 
@@ -11868,6 +11877,36 @@ msgstr "O seu indicativo:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Submeter pedido"
+
+#: application/views/contesting/index.php:72
+#: application/views/contesting/index.php:73
+#: application/views/contesting/index.php:74
+#: application/views/contesting/index.php:75
+#: application/views/contesting/index.php:76
+#: application/views/contesting/index.php:77
+msgctxt "Keep the translation short!"
+msgid "Exchange"
+msgstr ""
+
+#: application/views/contesting/index.php:72
+#: application/views/contesting/index.php:73
+#: application/views/contesting/index.php:74
+#: application/views/contesting/index.php:75
+#: application/views/contesting/index.php:76
+#: application/views/contesting/index.php:77
+msgctxt "Keep the translation short!"
+msgid "Grid"
+msgstr ""
+
+#: application/views/contesting/index.php:72
+#: application/views/contesting/index.php:73
+#: application/views/contesting/index.php:74
+#: application/views/contesting/index.php:75
+#: application/views/contesting/index.php:76
+#: application/views/contesting/index.php:77
+msgctxt "Keep the translation short!"
+msgid "Serial"
+msgstr ""
 
 #, php-format
 #~ msgctxt "Dashboard Warning"

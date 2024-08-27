@@ -69,12 +69,12 @@
                                                     </label>
                                                     <div class="form-check-inline col-auto">
                                                         <select class="form-select form-select-sm" id="exchangesequence_select" name="exchangesequence_select">
-                                                            <option value='s-g-e'>S - G - E</option>
-                                                            <option value='s-e-g'>S - E - G</option>
-                                                            <option value='g-s-e'>G - S - E</option>
-                                                            <option value='g-e-s'>G - E - S</option>
-                                                            <option value='e-s-g'>E - S - G</option>
-                                                            <option value='e-g-s'>E - G - S</option>
+                                                            <option value='s-g-e'><?= _pgettext("Keep the translation short!", "Serial"); ?> > <?= _pgettext("Keep the translation short!", "Grid"); ?> > <?= _pgettext("Keep the translation short!", "Exchange"); ?></option>
+                                                            <option value='s-e-g'><?= _pgettext("Keep the translation short!", "Serial"); ?> > <?= _pgettext("Keep the translation short!", "Exchange"); ?> > <?= _pgettext("Keep the translation short!", "Grid"); ?></option>
+                                                            <option value='g-s-e'><?= _pgettext("Keep the translation short!", "Grid"); ?> > <?= _pgettext("Keep the translation short!", "Serial"); ?> > <?= _pgettext("Keep the translation short!", "Exchange"); ?></option>
+                                                            <option value='g-e-s'><?= _pgettext("Keep the translation short!", "Grid"); ?> > <?= _pgettext("Keep the translation short!", "Exchange"); ?> > <?= _pgettext("Keep the translation short!", "Serial"); ?></option>
+                                                            <option value='e-s-g'><?= _pgettext("Keep the translation short!", "Exchange"); ?> > <?= _pgettext("Keep the translation short!", "Serial"); ?> > <?= _pgettext("Keep the translation short!", "Grid"); ?></option>
+                                                            <option value='e-g-s'><?= _pgettext("Keep the translation short!", "Exchange"); ?> > <?= _pgettext("Keep the translation short!", "Grid"); ?> > <?= _pgettext("Keep the translation short!", "Serial"); ?></option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -144,7 +144,7 @@
                                 <select class="form-select form-select-sm radios" id="radio" name="radio">
                                     <option value="0" selected="selected"><?= __("None"); ?></option>
                                         <?php foreach ($radios->result() as $row) { ?>
-                                        <option value="<?php echo $row->id; ?>" <?php if($this->session->userdata('radio') == $row->id) { echo "selected=\"selected\""; } ?>><?php echo $row->radio; ?> <?php if ($radio_last_updated->id == $row->id) { echo "<i>(".__("last updated").")</i>"; } else { echo ''; } ?></option>
+                                        <option value="<?php echo $row->id; ?>" <?php if($this->session->userdata('radio') == $row->id) { echo "selected=\"selected\""; } ?>><?php echo $row->radio; ?> <?php if ($radio_last_updated->id == $row->id) { echo "(".__("last updated").")"; } else { echo ''; } ?></option>
                                         <?php } ?>
                                 </select>
                             </div>

@@ -550,10 +550,12 @@ msgstr "竞赛日志"
 
 #: application/controllers/Contesting.php:112
 #: application/views/interface_assets/header.php:274
+#: application/controllers/Contesting.php:113
 msgid "Contests"
 msgstr "比赛"
 
 #: application/controllers/Contesting.php:126
+#: application/controllers/Contesting.php:127
 msgid "Update Contest"
 msgstr "更新竞赛"
 
@@ -2398,36 +2400,43 @@ msgstr "HRDlog：无台站配置信息。"
 
 #: application/models/Logbook_model.php:4225
 #: application/models/Logbook_model.php:4224
+#: application/models/Logbook_model.php:4228
 msgid "QSO could not be matched"
 msgstr "QSO 无法匹配"
 
 #: application/models/Logbook_model.php:4231
 #: application/models/Logbook_model.php:4230
+#: application/models/Logbook_model.php:4234
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "已经通过 LoTW/Clublog/eQSL/竞赛 确认"
 
 #: application/models/Logbook_model.php:4236
 #: application/models/Logbook_model.php:4235
+#: application/models/Logbook_model.php:4239
 msgid "confirmed by award manager"
 msgstr "已经通过奖项管理员确认"
 
 #: application/models/Logbook_model.php:4239
 #: application/models/Logbook_model.php:4238
+#: application/models/Logbook_model.php:4242
 msgid "confirmed by cross-check of DCL data"
 msgstr "已经通过 DCL 数据交叉检查确认"
 
 #: application/models/Logbook_model.php:4242
 #: application/models/Logbook_model.php:4241
+#: application/models/Logbook_model.php:4245
 msgid "confirmation pending"
 msgstr "等待确认"
 
 #: application/models/Logbook_model.php:4245
 #: application/models/Logbook_model.php:4244
+#: application/models/Logbook_model.php:4248
 msgid "unconfirmed"
 msgstr "未确认"
 
 #: application/models/Logbook_model.php:4248
 #: application/models/Logbook_model.php:4247
+#: application/models/Logbook_model.php:4251
 msgid "unknown"
 msgstr "未知"
 
@@ -11424,6 +11433,36 @@ msgstr "您的呼号："
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "提交请求"
+
+#: application/views/contesting/index.php:72
+#: application/views/contesting/index.php:73
+#: application/views/contesting/index.php:74
+#: application/views/contesting/index.php:75
+#: application/views/contesting/index.php:76
+#: application/views/contesting/index.php:77
+msgctxt "Keep the translation short!"
+msgid "Exchange"
+msgstr ""
+
+#: application/views/contesting/index.php:72
+#: application/views/contesting/index.php:73
+#: application/views/contesting/index.php:74
+#: application/views/contesting/index.php:75
+#: application/views/contesting/index.php:76
+#: application/views/contesting/index.php:77
+msgctxt "Keep the translation short!"
+msgid "Grid"
+msgstr ""
+
+#: application/views/contesting/index.php:72
+#: application/views/contesting/index.php:73
+#: application/views/contesting/index.php:74
+#: application/views/contesting/index.php:75
+#: application/views/contesting/index.php:76
+#: application/views/contesting/index.php:77
+msgctxt "Keep the translation short!"
+msgid "Serial"
+msgstr ""
 
 #, php-format
 #~ msgctxt "Dashboard Warning"

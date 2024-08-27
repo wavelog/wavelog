@@ -111,7 +111,7 @@ $('#moreSettingsButton').click(function () {
 });
 
 // Storing the contestid in contest session
-$('#contestname, #copyexchangeto').change(function () {
+$('#contestname, #copyexchangeto, #exchangesequence_select, #band, #mode, #frequency, #radio').change(function () {
 	var formdata = new FormData(document.getElementById("qso_input"));
 	setSession(formdata);
 });
@@ -463,6 +463,19 @@ $('#band').change(function () {
 	checkIfWorkedBefore();
 });
 
+/* on radio change */
+// in the footer is defined that we want to clear the frequency when changing the radio
+// this may fit for QSOs, but not for the contesting module
+// so we want atleast to set the frequency to the default frequency of the band
+$('#radio').change(function () {
+	if ($('#radio').val() == '0') {
+		$.get('qso/band_to_freq/' + $('#band').val() + '/' + $('.mode').val(), function (result) {
+			$('#frequency').val(result);
+			$('#frequency_rx').val("");
+		});
+	}
+});
+
 function setSerial(data) {
 	var serialsent = 1;
 	if (data.serialsent != "") {
@@ -678,22 +691,44 @@ async function getSession() {
 
 async function restoreContestSession(data) {
 	if (data) {
-		if (data.copytodok != "") {
-			$('#copyexchangeto option')[data.copytodok].selected = true;
+		let settings = JSON.parse(data.settings);
+
+		if (settings.copyexchangeto != "") {
+			$('#copyexchangeto option')[settings.copyexchangeto].selected = true;
 		}
 
 		if (data.contestid != "") {
 			$("#contestname").val(data.contestid);
 		}
 
-		if (data.exchangetype != "") {
-			$("#exchangetype").val(data.exchangetype);
-			setExchangetype(data.exchangetype);
+		if (settings.exchangetype != "") {
+			$("#exchangetype").val(settings.exchangetype);
+			setExchangetype(settings.exchangetype);
 			setSerial(data);
+		}
+
+		if (settings.exchangesequence != "") {
+			$("#exchangesequence_select").val(settings.exchangesequence);
+			sort_exchange();
 		}
 
 		if (data.exchangesent != "") {
 			$("#exch_sent").val(data.exchangesent);
+		}
+
+		if (settings.radio != "0") {
+			$("#radio").val(settings.radio);
+		} else {
+			$("#radio").val(settings.radio);
+			$("#band").val(settings.band);
+			$("#mode").val(settings.mode);
+			if (settings.freq_display != "") {
+				$("#frequency").val(settings.freq_display);
+			} else {
+				$.get('qso/band_to_freq/' + settings.band + '/' + settings.mode, function (result) {
+					$('#frequency').val(result);
+				});
+			}
 		}
 
 		if (data.qso != "") {
@@ -702,7 +737,6 @@ async function restoreContestSession(data) {
 	} else {
 		$("#exch_serial_s").val("1");
 	}
-	// sort_exchange();
 }
 
 async function refresh_qso_table(data) {

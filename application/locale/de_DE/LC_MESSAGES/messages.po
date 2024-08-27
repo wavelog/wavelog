@@ -560,10 +560,12 @@ msgstr "Contest-Logging"
 
 #: application/controllers/Contesting.php:112
 #: application/views/interface_assets/header.php:274
+#: application/controllers/Contesting.php:113
 msgid "Contests"
 msgstr "Conteste"
 
 #: application/controllers/Contesting.php:126
+#: application/controllers/Contesting.php:127
 msgid "Update Contest"
 msgstr "Aktualisiere Contest"
 
@@ -2449,36 +2451,43 @@ msgstr "HRDlog: Keine Stationsstandorte mit HRDlog Zugangsdaten gefunden."
 
 #: application/models/Logbook_model.php:4225
 #: application/models/Logbook_model.php:4224
+#: application/models/Logbook_model.php:4228
 msgid "QSO could not be matched"
 msgstr "QSO konnte nicht gefunden werden"
 
 #: application/models/Logbook_model.php:4231
 #: application/models/Logbook_model.php:4230
+#: application/models/Logbook_model.php:4234
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bestätigt durch LoTW/Clublog/eQSL/Contest"
 
 #: application/models/Logbook_model.php:4236
 #: application/models/Logbook_model.php:4235
+#: application/models/Logbook_model.php:4239
 msgid "confirmed by award manager"
 msgstr "bestätigt durch Diplommananger"
 
 #: application/models/Logbook_model.php:4239
 #: application/models/Logbook_model.php:4238
+#: application/models/Logbook_model.php:4242
 msgid "confirmed by cross-check of DCL data"
 msgstr "bestätigt durch Cross-Check von DCL-Daten"
 
 #: application/models/Logbook_model.php:4242
 #: application/models/Logbook_model.php:4241
+#: application/models/Logbook_model.php:4245
 msgid "confirmation pending"
 msgstr "Bestätigung ausstehend"
 
 #: application/models/Logbook_model.php:4245
 #: application/models/Logbook_model.php:4244
+#: application/models/Logbook_model.php:4248
 msgid "unconfirmed"
 msgstr "nicht bestätigt"
 
 #: application/models/Logbook_model.php:4248
 #: application/models/Logbook_model.php:4247
+#: application/models/Logbook_model.php:4251
 msgid "unknown"
 msgstr "unbekannt"
 
@@ -11880,6 +11889,36 @@ msgstr "Dein Rufzeichen:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Anfrage senden"
+
+#: application/views/contesting/index.php:72
+#: application/views/contesting/index.php:73
+#: application/views/contesting/index.php:74
+#: application/views/contesting/index.php:75
+#: application/views/contesting/index.php:76
+#: application/views/contesting/index.php:77
+msgctxt "Keep the translation short!"
+msgid "Exchange"
+msgstr ""
+
+#: application/views/contesting/index.php:72
+#: application/views/contesting/index.php:73
+#: application/views/contesting/index.php:74
+#: application/views/contesting/index.php:75
+#: application/views/contesting/index.php:76
+#: application/views/contesting/index.php:77
+msgctxt "Keep the translation short!"
+msgid "Grid"
+msgstr ""
+
+#: application/views/contesting/index.php:72
+#: application/views/contesting/index.php:73
+#: application/views/contesting/index.php:74
+#: application/views/contesting/index.php:75
+#: application/views/contesting/index.php:76
+#: application/views/contesting/index.php:77
+msgctxt "Keep the translation short!"
+msgid "Serial"
+msgstr ""
 
 #, php-format
 #~ msgctxt "Dashboard Warning"
