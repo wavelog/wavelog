@@ -719,7 +719,6 @@ async function restoreContestSession(data) {
 	} else {
 		$("#exch_serial_s").val("1");
 	}
-	// sort_exchange();
 }
 
 async function refresh_qso_table(data) {
