@@ -1565,9 +1565,9 @@ class Logbook_model extends CI_Model {
 
     function call_us_county($callsign) {
         $this->db->select('COL_CALL, COL_CNTY');
-		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
+        $this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
         $this->db->where('COL_CALL', $callsign);
-		$this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
+        $this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
         $where = "COL_CNTY != \"\"";
 
         $this->db->where($where);
@@ -1582,7 +1582,29 @@ class Logbook_model extends CI_Model {
             $qsl_county = substr($qsl_county, (strpos($qsl_county, ',')+1));
             return $qsl_county;
         } else {
-			return NULL;
+            return NULL;
+        }
+    }
+
+    function call_ituzone($callsign) {
+        $this->db->select('COL_CALL, COL_ITUZ');
+        $this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
+        $this->db->where('COL_CALL', $callsign);
+        $this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
+        $where = "COL_ITUZ != \"\"";
+
+        $this->db->where($where);
+
+        $this->db->order_by("COL_TIME_ON", "desc");
+        $this->db->limit(1);
+        $query = $this->db->get($this->config->item('table_name'));
+        if ($query->num_rows() > 0)
+        {
+            $data = $query->row();
+            $qsl_ituz = $data->COL_ITUZ;
+            return $qsl_ituz;
+        } else {
+            return NULL;
         }
     }
 
