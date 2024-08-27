@@ -312,10 +312,9 @@ if ($dxcc_list->result() > 0) {
 					<div class="mb-3">
 						<label for="eqslDefaultQSLMsg"><?= __("Default QSLMSG"); ?></label>
 						<label class="position-absolute end-0 mb-2 me-3" for="eqslDefaultQSLMsg" id="charsLeft"> </label>
-
-						<textarea class="form-control" name="eqsl_default_qslmsg" id="eqslDefaultQSLMsg" aria-describedby="eqsldefaultqslmsghelp" maxlength="240" rows="2" style="width:100%;" value="<?php echo $my_station_profile->eqsl_default_qslmsg; ?>" disabled><?php echo $my_station_profile->eqsl_default_qslmsg; ?></textarea>
-						<small id="eqsldefaultqslmsghelp" class="form-text text-muted"><?= __("Define a default message that will be populated and sent for each QSO for this station location."); ?></small>
-					</div>
+		    			<textarea class="form-control" name="eqsl_default_qslmsg" id="eqslDefaultQSLMsg" aria-describedby="eqsldefaultqslmsghelp" maxlength="240" rows="2" style="width:100%;" value="<?php echo $my_station_profile->eqsl_default_qslmsg; ?>"><?php echo $my_station_profile->eqsl_default_qslmsg; ?></textarea>
+		    			<small id="eqsldefaultqslmsghelp" class="form-text text-muted"><?= __("Define a default message that will be populated and sent for each QSO for this station location."); ?></small>
+		  			</div>
 				</div>
 			</div>
 		</div>

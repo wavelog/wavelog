@@ -74,8 +74,6 @@
                                 echo '<option value="' . $contest['adifname'] . '">' . $contest['name'] . '</option>';
                             } ?>
                         </select>
-                        <label for="operatorFirstnameImport">Vorname des Operators</label>
-                        <input class="form-control mb-2 w-50 w-lg-100" type="text" name="operatorFirstnameImport" id="operatorFirstnameImport" />
                         <label class="visually-hidden" for="inlineFormInputName2"><?= __("ADIF File") ?></label>
                         <input class="form-control mb-2 me-sm-2 mt-1 w-50 w-lg-100" type="file" name="userfile" id="userfile" />
 
