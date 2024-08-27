@@ -457,6 +457,9 @@ class Logbookadvanced_model extends CI_Model {
 		if (!empty($callbook['qslmgr']) && empty($qso['COL_QSL_VIA'])) {
 			$updatedData['COL_QSL_VIA'] = $callbook['qslmgr'];
 		}
+		if (!empty($callbook['ituz']) && empty($qso['COL_ITUZ'])) {
+			$updatedData['COL_ITUZ'] = $callbook['ituz'];
+		}
 
 		if (count($updatedData) > 0) {
 			$this->db->where('COL_PRIMARY_KEY', $qsoID);
