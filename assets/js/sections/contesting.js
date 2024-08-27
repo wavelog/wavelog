@@ -710,7 +710,13 @@ async function restoreContestSession(data) {
 			$("#radio").val(settings.radio);
 			$("#band").val(settings.band);
 			$("#mode").val(settings.mode);
-			$("#frequency").val(settings.freq_display);
+			if (settings.freq_display != "") {
+				$("#frequency").val(settings.freq_display);
+			} else {
+				$.get('qso/band_to_freq/' + settings.band + '/' + settings.mode, function (result) {
+					$('#frequency').val(result);
+				});
+			}
 		}
 
 		if (data.qso != "") {
