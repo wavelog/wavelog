@@ -115,6 +115,7 @@ class Logbook extends CI_Controller {
 			"callsign_state" => "",
 			"callsign_us_county" => "",
 			"callsign_ituz" => "",
+			"callsign_cqz" => "",
 			"qsl_manager" => "",
 			"bearing" 		=> "",
 			"workedBefore" => false,
@@ -147,6 +148,7 @@ class Logbook extends CI_Controller {
 		$return['callsign_state'] 		= $this->nval($callbook['state'] ?? '', $this->logbook_model->call_state($callsign));
 		$return['callsign_us_county'] 	= $this->nval($callbook['us_county'] ?? '', $this->logbook_model->call_us_county($callsign));
 		$return['callsign_ituz'] 	= $this->nval($callbook['ituz'] ?? '', $this->logbook_model->call_ituzone($callsign));
+		$return['callsign_cqz'] 	= $this->nval($callbook['cqz'] ?? '', $this->logbook_model->call_cqzone($callsign));
 		$return['workedBefore'] 		= $this->worked_grid_before($return['callsign_qra'], $band, $mode);
 		$return['confirmed'] 		= $this->confirmed_grid_before($return['callsign_qra'], $band, $mode);
 		$return['timesWorked'] 		= $this->logbook_model->times_worked($lookupcall);
