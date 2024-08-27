@@ -9,10 +9,6 @@ $(document).ready(function () {
         if (localStorage.getItem('operator_callsign')) {
             $('#operator_callsign').val(localStorage.getItem('operator_callsign'));
         }
-
-        if (localStorage.getItem('operator_firstname')) {
-            $('#operator_firstname').val(localStorage.getItem('operator_firstname'));
-        }
     }, 200);
 });
 
@@ -62,5 +58,4 @@ function saveOperator() {
 	}
 
 	localStorage.setItem('operator_callsign', operatorCallsign);
-	localStorage.setItem('operator_firstname', operatorFirstname);
 }
