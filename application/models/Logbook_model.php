@@ -3480,7 +3480,7 @@ function lotw_last_qsl_date($user_id) {
 			} else {	// No Errors / QSO doesn't exist so far
 				array_push($a_qsos,$one_error['raw_qso'] ?? '');
 				if (isset($record['prop_mode']) && $record['prop_mode'] == 'SAT' && $amsat_status_upload) {
-					$amsat_qsodate=strtotime($record['qso_date'].' '.$record['time_on']);
+					$amsat_qsodate=strtotime(($record['qso_date'] ?? '1970-01-01').' '.($record['time_on'] ?? '00:00:00'));
 					$date_diff=$today - $amsat_qsodate;
 					if ($date_diff >= -300 && $date_diff <= 518400) { // Five minutes grace time to the future and max 6 days back
 						$data = array(
@@ -3543,7 +3543,7 @@ function lotw_last_qsl_date($user_id) {
 	  $my_error = "";
 
 	  // Join date+time
-	  $time_on = date('Y-m-d', strtotime($record['qso_date'])) ." ".date('H:i:s', strtotime($record['time_on']));
+	  $time_on = date('Y-m-d', strtotime($record['qso_date'] ?? '1970-01-01')) ." ".date('H:i:s', strtotime($record['time_on'] ?? '00:00:00'));
 
 	  if (isset($record['time_off'])) {
 		  if (isset($record['date_off'])) {
