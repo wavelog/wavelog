@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-28 11:59+0000\n"
+"POT-Creation-Date: 2024-08-28 12:37+0000\n"
 "PO-Revision-Date: 2024-08-28 05:06+0000\n"
 "Last-Translator: Francisco Jiménez-Martín Sánchez <ea1jm.fran@gmail.com>\n"
 "Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -218,23 +218,6 @@ msgstr "La descripción de la API Key %s se ha actualizado."
 #, php-format
 msgid "API Key %s has been deleted"
 msgstr "La API Key %s ha sido borrada"
-
-#: application/controllers/Api.php:118
-msgid "Key Disabled"
-msgstr "Key desactivada"
-
-#: application/controllers/Api.php:118
-msgid "No Key Found"
-msgstr "Key no encontrada"
-
-#: application/controllers/Api.php:120
-msgid "Key Invalid - either not found or disabled"
-msgstr "Key Inválida - no se encontró o está desactivada"
-
-#: application/controllers/Api.php:124
-#: application/views/lotw_views/index.php:91
-msgid "Valid"
-msgstr "Válido"
 
 #: application/controllers/Awards.php:22
 #: application/views/interface_assets/header.php:158
@@ -7833,6 +7816,10 @@ msgstr "Caducado"
 msgid "Expiring"
 msgstr "Caduca pronto"
 
+#: application/views/lotw_views/index.php:91
+msgid "Valid"
+msgstr "Válido"
+
 #: application/views/lotw_views/index.php:101
 #, php-format
 msgid "Last success: %s"
@@ -11409,6 +11396,15 @@ msgstr ""
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr ""
+
+#~ msgid "Key Disabled"
+#~ msgstr "Key desactivada"
+
+#~ msgid "No Key Found"
+#~ msgstr "Key no encontrada"
+
+#~ msgid "Key Invalid - either not found or disabled"
+#~ msgstr "Key Inválida - no se encontró o está desactivada"
 
 #~ msgid ""
 #~ "If selected, Wavelog will try to import <b>all</b> QSO's of the ADIF, "

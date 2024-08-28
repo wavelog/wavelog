@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-28 11:59+0000\n"
+"POT-Creation-Date: 2024-08-28 12:37+0000\n"
 "PO-Revision-Date: 2024-08-28 11:59+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
 "Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -219,23 +219,6 @@ msgstr "Opis API ključa %s je ažuriran."
 #, php-format
 msgid "API Key %s has been deleted"
 msgstr "API ključ %s je izbrisan"
-
-#: application/controllers/Api.php:118
-msgid "Key Disabled"
-msgstr "Ključ onemogućen"
-
-#: application/controllers/Api.php:118
-msgid "No Key Found"
-msgstr "Ključ nije pronađen"
-
-#: application/controllers/Api.php:120
-msgid "Key Invalid - either not found or disabled"
-msgstr "Ključ nije ispravan - ili nije pronađen, ili je onemogućen"
-
-#: application/controllers/Api.php:124
-#: application/views/lotw_views/index.php:91
-msgid "Valid"
-msgstr "Validan"
 
 #: application/controllers/Awards.php:22
 #: application/views/interface_assets/header.php:158
@@ -8108,6 +8091,10 @@ msgstr "Isteklo"
 msgid "Expiring"
 msgstr "Ističe"
 
+#: application/views/lotw_views/index.php:91
+msgid "Valid"
+msgstr "Validan"
+
 #: application/views/lotw_views/index.php:101
 #, php-format
 msgid "Last success: %s"
@@ -11662,6 +11649,15 @@ msgstr ""
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr ""
+
+#~ msgid "Key Disabled"
+#~ msgstr "Ključ onemogućen"
+
+#~ msgid "No Key Found"
+#~ msgstr "Ključ nije pronađen"
+
+#~ msgid "Key Invalid - either not found or disabled"
+#~ msgstr "Ključ nije ispravan - ili nije pronađen, ili je onemogućen"
 
 #, php-format
 #~ msgctxt "Dashboard Warning"
