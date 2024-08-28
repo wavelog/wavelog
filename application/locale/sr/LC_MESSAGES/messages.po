@@ -175,7 +175,7 @@ msgstr "Nepodržana vrsta datoteke"
 #: application/controllers/Adif.php:240
 #: application/views/adif/import_failed.php:12
 msgid "ADIF Import failed!"
-msgstr ""
+msgstr "Uvoz ADIF podataka nije uspelo!"
 
 #: application/controllers/Adif.php:254
 msgid "Station Profile not valid for User"
@@ -3402,7 +3402,7 @@ msgstr ""
 
 #: application/views/adif/import_failed.php:15
 msgid "The ADIF file could not be parsed correctly."
-msgstr ""
+msgstr "ADIF datoteka ne može biti ispravno obrađena."
 
 #: application/views/adif/import_failed.php:16
 msgid ""
@@ -3410,6 +3410,9 @@ msgid ""
 "database. Please check the imported ADIF file. You can use an online ADIF "
 "file checker. For example:"
 msgstr ""
+"Najmanje jedno od ADIF polja ne može bit obrađeno i/ili umetnuto u bazu "
+"podataka. Molimo proverite uvezenu ADIF datoteku. Takođe možete koristiti i "
+"onlajn pregledač ADIF datoteka. Na primer:"
 
 #: application/views/adif/import_success.php:15
 msgid "Yay, its imported!"
@@ -8092,6 +8095,7 @@ msgid "Expiring"
 msgstr "Ističe"
 
 #: application/views/lotw_views/index.php:91
+#: application/controllers/Api.php:124
 msgid "Valid"
 msgstr "Validan"
 
@@ -9825,35 +9829,35 @@ msgstr "Sintaksa za FLE"
 
 #: application/views/simplefle/index.php:19
 msgid "Close and Load Sample Data"
-msgstr ""
+msgstr "Zatvori i učitaj primer sa podacima"
 
 #: application/views/simplefle/index.php:23
 msgid "Band is missing!"
-msgstr ""
+msgstr "Nedostaje opseg!"
 
 #: application/views/simplefle/index.php:24
 msgid "Mode is missing!"
-msgstr ""
+msgstr "Nedostaje vrsta rada!"
 
 #: application/views/simplefle/index.php:25
 msgid "Time is not set!"
-msgstr ""
+msgstr "Vreme nije zadato!"
 
 #: application/views/simplefle/index.php:26
 msgid "Invalid date"
-msgstr ""
+msgstr "Neispravan datum"
 
 #: application/views/simplefle/index.php:29
 msgid "Station Call is not selected"
-msgstr ""
+msgstr "Pozivni znak stanice nije izabran"
 
 #: application/views/simplefle/index.php:30
 msgid "'Operator' Field is empty"
-msgstr ""
+msgstr "Polje 'operator' je prazno"
 
 #: application/views/simplefle/index.php:31
 msgid "Warning! Do you really want to reset everything?"
-msgstr ""
+msgstr "Upozorenje! Da li stvarno želite da sve resetujete?"
 
 #: application/views/simplefle/index.php:32
 msgid ""
@@ -11650,14 +11654,17 @@ msgstr ""
 msgid "Submit Request"
 msgstr ""
 
-#~ msgid "Key Disabled"
-#~ msgstr "Ključ onemogućen"
+#: application/controllers/Api.php:118
+msgid "Key Disabled"
+msgstr "Ključ onemogućen"
 
-#~ msgid "No Key Found"
-#~ msgstr "Ključ nije pronađen"
+#: application/controllers/Api.php:118
+msgid "No Key Found"
+msgstr "Ključ nije pronađen"
 
-#~ msgid "Key Invalid - either not found or disabled"
-#~ msgstr "Ključ nije ispravan - ili nije pronađen, ili je onemogućen"
+#: application/controllers/Api.php:120
+msgid "Key Invalid - either not found or disabled"
+msgstr "Ključ nije ispravan - ili nije pronađen, ili je onemogućen"
 
 #, php-format
 #~ msgctxt "Dashboard Warning"
