@@ -18,10 +18,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-08-28 11:59+0000\n"
-"PO-Revision-Date: 2024-08-27 16:24+0000\n"
+"PO-Revision-Date: 2024-08-28 12:22+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/de/>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -183,7 +183,7 @@ msgstr "Nicht unterstütztes Dateiformat"
 #: application/controllers/Adif.php:240
 #: application/views/adif/import_failed.php:12
 msgid "ADIF Import failed!"
-msgstr ""
+msgstr "ADIF-Import fehlgeschlagen!"
 
 #: application/controllers/Adif.php:254
 msgid "Station Profile not valid for User"
@@ -3434,7 +3434,7 @@ msgstr ""
 
 #: application/views/adif/import_failed.php:15
 msgid "The ADIF file could not be parsed correctly."
-msgstr ""
+msgstr "Die ADIF-Datei konnte nicht korrekt gelesen werden."
 
 #: application/views/adif/import_failed.php:16
 msgid ""
@@ -3442,6 +3442,9 @@ msgid ""
 "database. Please check the imported ADIF file. You can use an online ADIF "
 "file checker. For example:"
 msgstr ""
+"Mindestens eines der ADIF-Felder konnte nicht gelesen und/oder in die "
+"Datenbank eingefügt werden. Bitte überprüfe die importierte ADIF-Datei. Du "
+"kannst einen Online-ADIF-Datei-Checker verwenden. Zum Beispiel:"
 
 #: application/views/adif/import_success.php:15
 msgid "Yay, its imported!"
@@ -5497,7 +5500,7 @@ msgstr ""
 #: application/views/contesting/index.php:77
 msgctxt "Keep the translation short!"
 msgid "Exchange"
-msgstr ""
+msgstr "Austausch (Exch)"
 
 #: application/views/contesting/index.php:72
 #: application/views/contesting/index.php:73
@@ -5507,7 +5510,7 @@ msgstr ""
 #: application/views/contesting/index.php:77
 msgctxt "Keep the translation short!"
 msgid "Grid"
-msgstr ""
+msgstr "Planqu."
 
 #: application/views/contesting/index.php:72
 #: application/views/contesting/index.php:73
@@ -5517,7 +5520,7 @@ msgstr ""
 #: application/views/contesting/index.php:77
 msgctxt "Keep the translation short!"
 msgid "Serial"
-msgstr ""
+msgstr "Laufnummer"
 
 #: application/views/contesting/index.php:172
 #: application/views/contesting/index.php:255
