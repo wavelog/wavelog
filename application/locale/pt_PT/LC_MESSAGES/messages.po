@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-08-28 12:37+0000\n"
-"PO-Revision-Date: 2024-08-27 16:24+0000\n"
+"PO-Revision-Date: 2024-08-29 16:44+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/pt_PT/>\n"
@@ -174,7 +174,7 @@ msgstr "Tipo de ficheiro não suportado"
 #: application/controllers/Adif.php:240
 #: application/views/adif/import_failed.php:12
 msgid "ADIF Import failed!"
-msgstr ""
+msgstr "Falha na importação do ADIF!"
 
 #: application/controllers/Adif.php:254
 msgid "Station Profile not valid for User"
@@ -3407,7 +3407,7 @@ msgstr ""
 
 #: application/views/adif/import_failed.php:15
 msgid "The ADIF file could not be parsed correctly."
-msgstr ""
+msgstr "O ficheiro ADIF não pôde ser analisado corretamente."
 
 #: application/views/adif/import_failed.php:16
 msgid ""
@@ -3415,6 +3415,9 @@ msgid ""
 "database. Please check the imported ADIF file. You can use an online ADIF "
 "file checker. For example:"
 msgstr ""
+"Pelo menos um dos campos ADIF não pôde ser analisado e/ou inserido na base "
+"de dados. Por favor, verifique o ficheiro ADIF importado. Pode usar um "
+"verificador de ficheiros ADIF online. Por exemplo:"
 
 #: application/views/adif/import_success.php:15
 msgid "Yay, its imported!"
@@ -5464,7 +5467,7 @@ msgstr ""
 #: application/views/contesting/index.php:77
 msgctxt "Keep the translation short!"
 msgid "Exchange"
-msgstr ""
+msgstr "Troca"
 
 #: application/views/contesting/index.php:72
 #: application/views/contesting/index.php:73
@@ -5474,7 +5477,7 @@ msgstr ""
 #: application/views/contesting/index.php:77
 msgctxt "Keep the translation short!"
 msgid "Grid"
-msgstr ""
+msgstr "Grelha"
 
 #: application/views/contesting/index.php:72
 #: application/views/contesting/index.php:73
@@ -5484,7 +5487,7 @@ msgstr ""
 #: application/views/contesting/index.php:77
 msgctxt "Keep the translation short!"
 msgid "Serial"
-msgstr ""
+msgstr "Serial"
 
 #: application/views/contesting/index.php:172
 #: application/views/contesting/index.php:255
