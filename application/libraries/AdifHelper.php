@@ -161,6 +161,9 @@ class AdifHelper {
 		$time_on = strtotime($qso->COL_TIME_ON);
 		$time_on = date('His', $time_on);
 		$line .= $this->getAdifFieldLine("TIME_ON", $time_on);
+	} else {
+		$line .= $this->getAdifFieldLine("QSO_DATE", '19700101');
+		$line .= $this->getAdifFieldLine("TIME_ON", '000000');
 	}
 
 	if (isset($qso->COL_TIME_OFF) && (date('YmdHis',strtotime($qso->COL_TIME_OFF)) != '-00011130000000')) {
@@ -171,6 +174,9 @@ class AdifHelper {
 		$time_off = strtotime($qso->COL_TIME_OFF);
 		$time_off = date('His', $time_off);
 		$line .= $this->getAdifFieldLine("TIME_OFF", $time_off);
+	} else {
+		$line .= $this->getAdifFieldLine("QSO_DATE_OFF", '19700101');
+		$line .= $this->getAdifFieldLine("TIME_OFF", '000000');
 	}
 
         // "MY" information
