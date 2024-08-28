@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-28 06:24+0000\n"
+"POT-Creation-Date: 2024-08-28 11:59+0000\n"
 "PO-Revision-Date: 2024-08-17 10:49+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Albanian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -169,20 +169,25 @@ msgstr ""
 msgid "Unsupported Filetype"
 msgstr ""
 
-#: application/controllers/Adif.php:245
+#: application/controllers/Adif.php:240
+#: application/views/adif/import_failed.php:12
+msgid "ADIF Import failed!"
+msgstr ""
+
+#: application/controllers/Adif.php:254
 msgid "Station Profile not valid for User"
 msgstr ""
 
-#: application/controllers/Adif.php:252
+#: application/controllers/Adif.php:261
 #: application/views/adif/import_success.php:12
 msgid "ADIF Imported"
 msgstr ""
 
-#: application/controllers/Adif.php:263
+#: application/controllers/Adif.php:272
 msgid "DCL Import"
 msgstr ""
 
-#: application/controllers/Adif.php:319
+#: application/controllers/Adif.php:328
 msgid "DCL Data Imported"
 msgstr ""
 
@@ -3344,6 +3349,17 @@ msgstr ""
 msgid ""
 "If unchecked, information about QSOs which could not be found in Wavelog "
 "will be displayed."
+msgstr ""
+
+#: application/views/adif/import_failed.php:15
+msgid "The ADIF file could not be parsed correctly."
+msgstr ""
+
+#: application/views/adif/import_failed.php:16
+msgid ""
+"At least one of the ADIF fields could not be parsed and/or inserted into the "
+"database. Please check the imported ADIF file. You can use an online ADIF "
+"file checker. For example:"
 msgstr ""
 
 #: application/views/adif/import_success.php:15
