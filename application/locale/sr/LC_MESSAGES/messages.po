@@ -9,10 +9,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-08-28 06:24+0000\n"
-"PO-Revision-Date: 2024-08-22 13:37+0000\n"
+"PO-Revision-Date: 2024-08-28 11:59+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
-"Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/sr/>\n"
+"Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/sr/>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1804,7 +1804,7 @@ msgstr "Nisu pronađeni radio uređaji sa CAT interfejsom."
 
 #: application/controllers/Reg1test.php:25
 msgid "Export EDI"
-msgstr ""
+msgstr "Izvoz EDI"
 
 #: application/controllers/Satellite.php:37
 msgid "Create Satellite"
@@ -2651,7 +2651,7 @@ msgstr "Propagacije"
 #: application/views/accumulate/index.php:84
 #: application/views/timeline/index.php:78
 msgid "All but SAT"
-msgstr ""
+msgstr "Sve osim SAT"
 
 #: application/views/accumulate/index.php:85
 #: application/views/gridmap/index.php:42
@@ -5382,7 +5382,7 @@ msgstr "Serijski broj + polje"
 
 #: application/views/contesting/index.php:21
 msgid "Serial + Gridsquare + Exchange"
-msgstr ""
+msgstr "Serijski broj + polje + razmena"
 
 #: application/views/contesting/index.php:35
 #: application/views/operator/index.php:5
@@ -5393,7 +5393,7 @@ msgstr "Pozivni znak operatora"
 #: application/views/contesting/index.php:40
 #: application/views/contesting/index.php:45
 msgid "More Settings"
-msgstr ""
+msgstr "Više podešavanja"
 
 #: application/views/contesting/index.php:49
 msgid "Copy received exchange to"
@@ -5423,18 +5423,20 @@ msgstr "QTH"
 
 #: application/views/contesting/index.php:64
 msgid "Sequence of Exchanges"
-msgstr ""
+msgstr "Redosled razmene"
 
 #: application/views/contesting/index.php:67
 #, php-format
 msgid "%s = Serial, %s = Gridsquare, %s = Exchange."
-msgstr ""
+msgstr "%s = Serijski broj, %s = Polje, %s = Razmena."
 
 #: application/views/contesting/index.php:67
 msgid ""
 "Choose in which order you want to type in the different reports. However, "
 "only the elements contained in the selected exchange type are displayed."
 msgstr ""
+"Izaberite redosled kojim želite da kucate u različitim raportima. Međutim, "
+"prikazuju se samo elementi koji se nalaze među izabranom vrstom razmene."
 
 #: application/views/contesting/index.php:72
 #: application/views/contesting/index.php:73
@@ -5444,7 +5446,7 @@ msgstr ""
 #: application/views/contesting/index.php:77
 msgctxt "Keep the translation short!"
 msgid "Exchange"
-msgstr ""
+msgstr "Razmena"
 
 #: application/views/contesting/index.php:72
 #: application/views/contesting/index.php:73
@@ -5454,7 +5456,7 @@ msgstr ""
 #: application/views/contesting/index.php:77
 msgctxt "Keep the translation short!"
 msgid "Grid"
-msgstr ""
+msgstr "Polje"
 
 #: application/views/contesting/index.php:72
 #: application/views/contesting/index.php:73
@@ -5464,7 +5466,7 @@ msgstr ""
 #: application/views/contesting/index.php:77
 msgctxt "Keep the translation short!"
 msgid "Serial"
-msgstr ""
+msgstr "Ser. br."
 
 #: application/views/contesting/index.php:172
 #: application/views/contesting/index.php:255
@@ -7103,7 +7105,7 @@ msgstr "Cabrilo izvoz"
 
 #: application/views/interface_assets/header.php:396
 msgid "EDI Export"
-msgstr ""
+msgstr "Izvoz EDI"
 
 #: application/views/interface_assets/header.php:420
 msgid "QSL Queue"
@@ -9248,19 +9250,19 @@ msgstr "Povežite"
 
 #: application/views/qso/index.php:666
 msgid "Stop"
-msgstr ""
+msgstr "Stop"
 
 #: application/views/qso/index.php:667
 msgid "Tune"
-msgstr ""
+msgstr "Podešavanje"
 
 #: application/views/qso/index.php:668
 msgid "Stop Tune"
-msgstr ""
+msgstr "Zaustavi podešavanje"
 
 #: application/views/qso/index.php:674
 msgid "CW Speed"
-msgstr ""
+msgstr "Brzina CW"
 
 #: application/views/qso/index.php:679
 msgid "Send"
@@ -9309,21 +9311,23 @@ msgstr "Molimo sačekajte..."
 
 #: application/views/reg1test/index.php:6
 msgid "Select Band"
-msgstr ""
+msgstr "Izbor opsega"
 
 #: application/views/reg1test/index.php:8
 msgid ""
 "Bands below 50Mhz are not valid for the EDI REG1TEST format and will produce "
 "invalid files."
 msgstr ""
+"Opsezi ispod 50 MHz nisu validni za EDI REG1TEST format i napraviće "
+"nepravilne datoteke."
 
 #: application/views/reg1test/index.php:18
 msgid "Export a contest to a REG1TEST EDI log"
-msgstr ""
+msgstr "Izvozi takmičenje u RG1TEST EDI dnevnik"
 
 #: application/views/reg1test/index.php:48
 msgid "Sent Exchange"
-msgstr ""
+msgstr "Pošalji razmenu"
 
 #: application/views/reg1test/index.php:50
 msgid ""
@@ -9331,102 +9335,109 @@ msgid ""
 "information, e.g. Province, DOK, County, State, Power, Name. Max. length: 6 "
 "characters."
 msgstr ""
+"Razmena koja će biti slata tokom takmičenja. To može biti bilo koja vrsta "
+"infomracije, npr. provincija, DOK, okrug, država, snaga, ime. Maksimalna "
+"dužina: 6 znakova."
 
 #: application/views/reg1test/index.php:55
 msgid ""
 "Describes the callsign of the radio club where operator(s) are member. E.g. "
 "can be used if points are accumulated to the club."
 msgstr ""
+"Opisuje pozivni znak radio kluba čiji su operatori članovi. Npr. može biti "
+"korišćeno za klupske zbirne poene."
 
 #: application/views/reg1test/index.php:66
 msgid "Callsign of responsible operator"
-msgstr ""
+msgstr "Pozivni znak odgovornog operatora"
 
 #: application/views/reg1test/index.php:72
 msgid ""
 "List of all operators. Seperated with a semicolon ';'. The responsible "
 "operator is not needed here."
 msgstr ""
+"Lista svih operatora. Odvojite tačka-zarezom ';'. Nemojte stavljati pozivni "
+"znak odgovornog operatora."
 
 #: application/views/reg1test/index.php:75
 msgid "Contest Address 1"
-msgstr ""
+msgstr "Kontest adresa 1"
 
 #: application/views/reg1test/index.php:77
 msgid "Address of the QTH used during the contest."
-msgstr ""
+msgstr "Adresa QTH korišćenog tokom kontesta."
 
 #: application/views/reg1test/index.php:80
 msgid "Contest Address 2"
-msgstr ""
+msgstr "Kontest adresa 2"
 
 #: application/views/reg1test/index.php:84
 msgid "Operator Address 1"
-msgstr ""
+msgstr "Operatorova adresa 1"
 
 #: application/views/reg1test/index.php:86
 msgid "Address of the responsible operator."
-msgstr ""
+msgstr "Adresa odgovornog operatora."
 
 #: application/views/reg1test/index.php:89
 msgid "Operator Address 2"
-msgstr ""
+msgstr "Operatorova adresa 2"
 
 #: application/views/reg1test/index.php:93
 msgid "Operator Address Postalcode"
-msgstr ""
+msgstr "Poštanski broj operatorove adrese"
 
 #: application/views/reg1test/index.php:97
 msgid "Operator Address City"
-msgstr ""
+msgstr "Grad adrese operatora"
 
 #: application/views/reg1test/index.php:101
 msgid "Operator Address Country"
-msgstr ""
+msgstr "Okrug adrese operatora"
 
 #: application/views/reg1test/index.php:105
 msgid "Operator Phone Number"
-msgstr ""
+msgstr "Broj telefona operatora"
 
 #: application/views/reg1test/index.php:109
 msgid "Transmit Equipment Description"
-msgstr ""
+msgstr "Opis emisione opreme"
 
 #: application/views/reg1test/index.php:111
 msgid "Short description of the used equipment."
-msgstr ""
+msgstr "Kratak opis korišćene opreme."
 
 #: application/views/reg1test/index.php:116
 msgid "TX Power during the contest in Watt."
-msgstr ""
+msgstr "TX snaga korišćena tokom takmičenja, u W."
 
 #: application/views/reg1test/index.php:119
 msgid "Receive Equipment Description"
-msgstr ""
+msgstr "Opis prijemne opreme"
 
 #: application/views/reg1test/index.php:121
 msgid "If you used another gear for RX, then describe it here."
-msgstr ""
+msgstr "Ako ste koristili drugu opremu za RX, možete je opisati ovde."
 
 #: application/views/reg1test/index.php:124
 msgid "Antenna Description"
-msgstr ""
+msgstr "Opis antena"
 
 #: application/views/reg1test/index.php:126
 msgid "What kind of antenna was used."
-msgstr ""
+msgstr "Koja vrsta antena je korišćena."
 
 #: application/views/reg1test/index.php:129
 msgid "Antenna Height Above Ground (m)"
-msgstr ""
+msgstr "Visina antene iznad zemlje (m)"
 
 #: application/views/reg1test/index.php:131
 msgid "Height of the antenna above the ground."
-msgstr ""
+msgstr "Visina antene iznad zemlje."
 
 #: application/views/reg1test/index.php:136
 msgid "Any other remarks."
-msgstr ""
+msgstr "Ostale napomene."
 
 #: application/views/satellite/create.php:23
 #: application/views/satellite/edit.php:7
@@ -9796,15 +9807,18 @@ msgid ""
 "session and now SimpleFLE is also available in Wavelog. Information about "
 "the syntax and how FLE works can be found %s."
 msgstr ""
+"Tipična upotreba je ako morate uvesti vaše paprine dnevnike koje ste vodili "
+"tokom aktivnosti na terenu a sada je SimpleFLE takođe dostupan u Wavelogu. "
+"Informacije o sintaksi i kako FLE radi možete pronaći na %s."
 
 #: application/views/simplefle/index.php:17
 #: application/views/simplefle/index.php:176
 msgid "Syntax Help"
-msgstr ""
+msgstr "Pomoć oko sintakse"
 
 #: application/views/simplefle/index.php:18
 msgid "Syntax for FLE"
-msgstr ""
+msgstr "Sintaksa za FLE"
 
 #: application/views/simplefle/index.php:19
 msgid "Close and Load Sample Data"
@@ -10034,39 +10048,39 @@ msgstr ""
 #: application/views/station_profile/create.php:85
 #: application/views/station_profile/edit.php:112
 msgid "Station DXCC entity. For example: Bolivia"
-msgstr ""
+msgstr "DXCC entitet stanice. Na primer: Bolivia"
 
 #: application/views/station_profile/create.php:90
 #: application/views/station_profile/edit.php:118
 msgid "Station City"
-msgstr ""
+msgstr "Grad stanice"
 
 #: application/views/station_profile/create.php:92
 #: application/views/station_profile/edit.php:120
 msgid "Station city. For example: Oslo"
-msgstr ""
+msgstr "Grad stanice. Na primer: Oslo"
 
 #: application/views/station_profile/create.php:101
 #: application/views/station_profile/edit.php:132
 msgid "Station state. Applies to certain countries only."
-msgstr ""
+msgstr "Država stanice. Primenjivo je samo na određene države."
 
 #: application/views/station_profile/create.php:106
 #: application/views/station_profile/edit.php:137
 msgid "Station County"
-msgstr ""
+msgstr "Okrug stanice"
 
 #: application/views/station_profile/create.php:108
 #: application/views/station_profile/edit.php:139
 msgid "Station County (Only used for USA/Alaska/Hawaii)."
-msgstr ""
+msgstr "Okrug stanice (koristi se samo za SAD/Aljasku/Havaje)."
 
 #: application/views/station_profile/create.php:123
 #: application/views/station_profile/edit.php:165
 #, php-format
 msgctxt "uses 'click here'"
 msgid "If you don't know your CQ Zone then %s to find it!"
-msgstr ""
+msgstr "Ako ne znate vašu CQ Zonu onda %s da je pronađete!"
 
 #: application/views/station_profile/create.php:123
 #: application/views/station_profile/create.php:137
@@ -10075,25 +10089,25 @@ msgstr ""
 #: application/views/station_profile/edit.php:182
 #: application/views/station_profile/edit.php:206
 msgid "click here"
-msgstr ""
+msgstr "kliknite ovde"
 
 #: application/views/station_profile/create.php:137
 #: application/views/station_profile/edit.php:182
 #, php-format
 msgctxt "uses 'click here'"
 msgid "If you don't know your ITU Zone then %s to find it!"
-msgstr ""
+msgstr "Ako ne znate vašu ITU zonu onda %s da je pronađete!"
 
 #: application/views/station_profile/create.php:142
 #: application/views/station_profile/edit.php:194
 #: application/views/station_profile/edit.php:197
 msgid "Station Gridsquare"
-msgstr ""
+msgstr "Polje stanice"
 
 #: application/views/station_profile/create.php:147
 #: application/views/station_profile/edit.php:202
 msgid "Get Gridsquare"
-msgstr ""
+msgstr "Dobavi polje"
 
 #: application/views/station_profile/create.php:151
 #: application/views/station_profile/edit.php:206
@@ -10102,7 +10116,7 @@ msgctxt "uses 'click here'"
 msgid ""
 "Station gridsquare. For example: HM54AP. If you don't know your grid square "
 "then %s!"
-msgstr ""
+msgstr "Polje stanice. Na primer: HM54AP. Ako ne znate vaše polje onda %s!"
 
 #: application/views/station_profile/create.php:152
 #: application/views/station_profile/edit.php:207
@@ -10110,49 +10124,51 @@ msgid ""
 "If you are located on a grid line, enter multiple grid squares separated "
 "with commas. For example: IO77,IO78,IO87,IO88."
 msgstr ""
+"Ako se nalaziti na liniji između polja, unesite višestruke oznake polja "
+"odvojene zarezom. Na primer: IO77,IO78,IO87,IO88."
 
 #: application/views/station_profile/create.php:167
 #: application/views/station_profile/edit.php:232
 msgid "Station IOTA reference. For example: EU-005"
-msgstr ""
+msgstr "IOTA referenca stanice. Na primer: EU-005"
 
 #: application/views/station_profile/create.php:168
 #: application/views/station_profile/edit.php:233
 msgid "IOTA World website"
-msgstr ""
+msgstr "IOTA World web sajt"
 
 #: application/views/station_profile/create.php:168
 #: application/views/station_profile/edit.php:233
 #, php-format
 msgid "You can look up IOTA references at the %s."
-msgstr ""
+msgstr "Možete potražiti IOTA reference na %s."
 
 #: application/views/station_profile/create.php:174
 #: application/views/station_profile/edit.php:248
 msgid "SOTA Maps website"
-msgstr ""
+msgstr "SOTA Maps web sajt"
 
 #: application/views/station_profile/create.php:174
 #: application/views/station_profile/edit.php:248
 #, php-format
 msgid "Station SOTA reference. You can look up SOTA references at the %s."
-msgstr ""
+msgstr "Referenca SOTA stanice. Možete potražiti SOTA reference na %s."
 
 #: application/views/station_profile/create.php:180
 #: application/views/station_profile/edit.php:261
 msgid "GMA Map website"
-msgstr ""
+msgstr "GMA MAP web sajt"
 
 #: application/views/station_profile/create.php:180
 #: application/views/station_profile/edit.php:261
 #, php-format
 msgid "Station WWFF reference. You can look up WWFF references at the %s."
-msgstr ""
+msgstr "WWFF reference stanice. Možete potražiti WWFF reference na %s."
 
 #: application/views/station_profile/create.php:186
 #: application/views/station_profile/edit.php:274
 msgid "POTA Map website"
-msgstr ""
+msgstr "POTA Map web sajt"
 
 #: application/views/station_profile/create.php:186
 #: application/views/station_profile/edit.php:274
@@ -10161,42 +10177,44 @@ msgid ""
 "Station POTA reference(s). Multiple comma separated values allowed. You can "
 "look up POTA references at the %s."
 msgstr ""
+"POTA refernce stanice. Dozvoljen je višestruki unos vrednosti. POTA "
+"reference možete potražiti na %s."
 
 #: application/views/station_profile/create.php:190
 #: application/views/station_profile/edit.php:287
 msgid "Signature Name"
-msgstr ""
+msgstr "Ime oznake (signature)"
 
 #: application/views/station_profile/create.php:192
 #: application/views/station_profile/edit.php:289
 msgid "Station Signature (e.g. GMA).."
-msgstr ""
+msgstr "Oznaka stanice (npr. GMA).."
 
 #: application/views/station_profile/create.php:196
 #: application/views/station_profile/edit.php:293
 msgid "Signature Information"
-msgstr ""
+msgstr "Informacija oznake"
 
 #: application/views/station_profile/create.php:198
 #: application/views/station_profile/edit.php:295
 msgid "Station Signature Info (e.g. DA/NW-357)."
-msgstr ""
+msgstr "Informacija o oznaci stanice (npr. DA/NW-357)."
 
 #: application/views/station_profile/create.php:202
 #: application/views/station_profile/edit.php:308
 msgctxt "Probably no translation needed"
 msgid "eQSL QTH Nickname"
-msgstr ""
+msgstr "eQSL QTH nadimak"
 
 #: application/views/station_profile/create.php:204
 #: application/views/station_profile/edit.php:310
 msgid "The QTH Nickname which is configured in your eQSL Profile"
-msgstr ""
+msgstr "QTH nadimak koji je konfirugisan u vašem eQSL priflu"
 
 #: application/views/station_profile/create.php:208
 #: application/views/station_profile/edit.php:313
 msgid "Default QSLMSG"
-msgstr ""
+msgstr "Podrazumevana QSLMSG"
 
 #: application/views/station_profile/create.php:211
 #: application/views/station_profile/edit.php:316
@@ -10204,11 +10222,13 @@ msgid ""
 "Define a default message that will be populated and sent for each QSO for "
 "this station location."
 msgstr ""
+"Definišite podrazumevanu poruku koja će biti objavljena i poslata sa svakim "
+"QSO sa ove stanične lokacije."
 
 #: application/views/station_profile/create.php:214
 #: application/views/station_profile/edit.php:355
 msgid "Ignore Clublog Upload"
-msgstr ""
+msgstr "Zanemarite Clublog Upload"
 
 #: application/views/station_profile/create.php:219
 #: application/views/station_profile/edit.php:360
@@ -10217,192 +10237,198 @@ msgid ""
 "Clublog. If this is deactivated on it's own please check if the Call is "
 "properly configured at Clublog"
 msgstr ""
+"Ako je omogućeno, QSOi održani sa ove lokacije neće biti učitani na Clublog. "
+"Ako je ovo deaktivirano samo od sebe, molimo proverite da li je pozivni znak "
+"ispravno podešen na Clublog stranici"
 
 #: application/views/station_profile/create.php:222
 #: application/views/station_profile/edit.php:363
 msgid "ClubLog Realtime Upload"
-msgstr ""
+msgstr "Učitavanje na ClugLog u realnom vremenu"
 
 #: application/views/station_profile/create.php:231
 #: application/views/station_profile/edit.php:379
 msgid "HRDLog.net Username"
-msgstr ""
+msgstr "HRDLog.net korisničko ime"
 
 #: application/views/station_profile/create.php:233
 #: application/views/station_profile/edit.php:381
 msgid ""
 "The username you are registered with at HRDlog.net (usually your callsign)."
 msgstr ""
+"Korisničko ime kojim ste registroavni na HRDlog.net (obično vaš pozivni "
+"znak)."
 
 #: application/views/station_profile/create.php:236
 #: application/views/station_profile/edit.php:384
 msgid "HRDLog.net API Key"
-msgstr ""
+msgstr "HRDLog.net API ključ"
 
 #: application/views/station_profile/create.php:238
 #: application/views/station_profile/edit.php:386
 #, php-format
 msgctxt "HRDLog.net Userprofile page"
 msgid "Create your API Code on your %s"
-msgstr ""
+msgstr "Kreirajte vaš API kod na vašem %s"
 
 #: application/views/station_profile/create.php:238
 #: application/views/station_profile/edit.php:386
 msgid "HRDLog.net Userprofile page"
-msgstr ""
+msgstr "HRDlog.net stranici korisničkog profila"
 
 #: application/views/station_profile/create.php:241
 #: application/views/station_profile/edit.php:389
 msgid "HRDLog.net Logbook Realtime Upload"
-msgstr ""
+msgstr "HRDLog.net Logbook učitavanje u realnom vremenu"
 
 #: application/views/station_profile/create.php:250
 #: application/views/station_profile/edit.php:324
 msgid "Subscription Required"
-msgstr ""
+msgstr "Zahjeva se pretplata"
 
 #: application/views/station_profile/create.php:255
 msgctxt "Probably no translation needed"
 msgid "QRZ.com Logbook API Key"
-msgstr ""
+msgstr "API ključ za QRZ.com dnevnik"
 
 #: application/views/station_profile/create.php:258
 msgid "Test API-Key"
-msgstr ""
+msgstr "Testiraj API-ključ"
 
 #: application/views/station_profile/create.php:261
 #: application/views/station_profile/edit.php:333
 #, php-format
 msgctxt "the QRZ.com Logbook settings page"
 msgid "Find your API key on %s"
-msgstr ""
+msgstr "Pronažite vaš API ključ na %s"
 
 #: application/views/station_profile/create.php:261
 #: application/views/station_profile/edit.php:333
 msgid "the QRZ.com Logbook settings page"
-msgstr ""
+msgstr "QRZ.com Logbook stranici za podešavanje"
 
 #: application/views/station_profile/create.php:264
 #: application/views/station_profile/edit.php:337
 msgid "QRZ.com Logbook Upload"
-msgstr ""
+msgstr "Učitavanje na QRZ.com dnevnik"
 
 #: application/views/station_profile/create.php:267
 #: application/views/station_profile/edit.php:340
 msgid "Realtime"
-msgstr ""
+msgstr "Realno vreme"
 
 #: application/views/station_profile/create.php:275
 #: application/views/station_profile/edit.php:405
 msgctxt "Probably no translation needed"
 msgid "QO-100 Dx Club API Key"
-msgstr ""
+msgstr "QO-100 DX Club API ključ"
 
 #: application/views/station_profile/create.php:277
 #: application/views/station_profile/edit.php:407
 #, php-format
 msgctxt "QO-100 Dx Club's profile page"
 msgid "Create your API key on your %s"
-msgstr ""
+msgstr "Kreirajte vaš API ključ na %s"
 
 #: application/views/station_profile/create.php:277
 #: application/views/station_profile/edit.php:407
 msgid "QO-100 Dx Club's profile page"
-msgstr ""
+msgstr "QO-100 DX Club profilnoj stranici"
 
 #: application/views/station_profile/create.php:280
 #: application/views/station_profile/edit.php:410
 msgid "QO-100 Dx Club Realtime Upload"
-msgstr ""
+msgstr "QO-100 DX Club učitavanje u realnom vremenu"
 
 #: application/views/station_profile/create.php:290
 #: application/views/station_profile/edit.php:428
 msgid "OQRS Enabled"
-msgstr ""
+msgstr "OQRS omogućen"
 
 #: application/views/station_profile/create.php:297
 #: application/views/station_profile/edit.php:435
 msgid "OQRS Email alert"
-msgstr ""
+msgstr "OQRS upozorenje emailom"
 
 #: application/views/station_profile/create.php:302
 #: application/views/station_profile/edit.php:440
 msgid "Make sure email is set up under admin and global options."
 msgstr ""
+"Uverite se da je email podešen, u administratorskim i globalnim opcijama."
 
 #: application/views/station_profile/create.php:305
 #: application/views/station_profile/edit.php:443
 msgid "OQRS Text"
-msgstr ""
+msgstr "OQRS Test"
 
 #: application/views/station_profile/create.php:307
 #: application/views/station_profile/edit.php:445
 msgid "Some info you want to add regarding QSL'ing."
-msgstr ""
+msgstr "Neke informacije koje želite dodati a tiču se razmene QSL karata."
 
 #: application/views/station_profile/edit.php:149
 msgid "Zones"
-msgstr ""
+msgstr "Zone"
 
 #: application/views/station_profile/edit.php:284
 msgid "Signature"
-msgstr ""
+msgstr "Oznaka (Signature)"
 
 #: application/views/stationsetup/create.php:17
 msgid "Station Logbook Name"
-msgstr ""
+msgstr "Naziv staničnog dnevnika"
 
 #: application/views/stationsetup/create.php:19
 msgid "You can call a station logbook anything."
-msgstr ""
+msgstr "Stanični dnevnik možete nazvati po želji."
 
 #: application/views/stationsetup/edit.php:18
 msgid "Container name"
-msgstr ""
+msgstr "Naziv kontejnera"
 
 #: application/views/stationsetup/edit.php:20
 msgid "You can call a container anything."
-msgstr ""
+msgstr "Kontejner možete nazvati po želji."
 
 #: application/views/stationsetup/exportmapoptions.php:11
 msgctxt "Map Options"
 msgid "CQ Zone overlay"
-msgstr ""
+msgstr "Preklapanje CQ zona"
 
 #: application/views/stationsetup/exportmapoptions.php:15
 msgctxt "Map Options"
 msgid "Gridsquare overlay"
-msgstr ""
+msgstr "Preklapanje polja"
 
 #: application/views/stationsetup/exportmapoptions.php:19
 msgctxt "Map Options"
 msgid "Night shadow overlay"
-msgstr ""
+msgstr "Preklapanje noćne senke"
 
 #: application/views/stationsetup/exportmapoptions.php:27
 msgid "# QSOs shown"
-msgstr ""
+msgstr "Broj prikazanih veza"
 
 #: application/views/stationsetup/exportmapoptions.php:46
 msgid "Visit export map"
-msgstr ""
+msgstr "Posetite izvezenu kartu"
 
 #: application/views/stationsetup/linkedlocations.php:13
 msgid "Select Available Station Locations"
-msgstr ""
+msgstr "Izaberite moguće stanične lokacije"
 
 #: application/views/stationsetup/linkedlocations.php:25
 msgid "Link Location"
-msgstr ""
+msgstr "Povežite lokacije"
 
 #: application/views/stationsetup/linkedlocations.php:31
 #: application/views/stationsetup/stationsetup.php:122
 msgid "Profile Name"
-msgstr ""
+msgstr "Naziv profila"
 
 #: application/views/stationsetup/linkedlocations.php:34
 msgid "Unlink Station Location"
-msgstr ""
+msgstr "Raskinite veze stanične lokacije"
 
 #: application/views/stationsetup/stationsetup.php:21
 msgid ""
@@ -10411,76 +10437,91 @@ msgid ""
 "analytics. Great for when your operating in multiple locations but they are "
 "part of the same DXCC or VUCC Circle."
 msgstr ""
+"Stanični denvici vam omogućavaju da grupišete stanične lokacije, ovo vam "
+"omogućava da vidite sve lokacije kroz jednu sesiju u područjima dnevnika za "
+"analizu. Odlično je kada radite sa više lokacija ali su sve deo iste DXCC "
+"ili unutar istog VUCC kruga."
 
 #: application/views/stationsetup/stationsetup.php:32
 msgid "Linked locations"
-msgstr ""
+msgstr "Povezane lokacije"
 
 #: application/views/stationsetup/stationsetup.php:34
+#, fuzzy
 msgid "Visitor site"
-msgstr ""
+msgstr "Visitor site"
 
 #: application/views/stationsetup/stationsetup.php:91
 msgid "Station Locations"
-msgstr ""
+msgstr "Stanične lokacije"
 
 #: application/views/stationsetup/stationsetup.php:95
 msgid ""
 "Station Locations define operating locations, such as your QTH, a friends "
 "QTH, or a portable station."
 msgstr ""
+"Stanične lokacije definišu mjesta stanica, kao što su QTH, prijateljev QTH, "
+"ili QTH portable operacija."
 
 #: application/views/stationsetup/stationsetup.php:96
 msgid "Similar to logbooks, a station profile keeps a set of QSOs together."
-msgstr ""
+msgstr "Slično dnevnicima, stanični profili objedinjuju veze."
 
 #: application/views/stationsetup/stationsetup.php:97
 msgid ""
 "Only one station may be active at a time. In the table below this is shown "
 "with the -Active Station- badge."
 msgstr ""
+"Samo jedna stanica može biti aktivna u datom vremenu. U tabeli ispod "
+"prikazana je sa oznakom -Aktivna stanica-."
 
 #: application/views/stationsetup/stationsetup.php:98
 msgid ""
 "The 'Linked' column shows if the station location is linked with the Active "
 "Logbook selected above."
 msgstr ""
+"Kolona 'Povezane' prikazuje da li su stanične lokacije povezane sa aktivnim "
+"dnevnikom izabranim iznad."
 
 #: application/views/stationsetup/stationsetup.php:101
 msgid "Create a Station Location"
-msgstr ""
+msgstr "Kreiraj staničnu lokaciju"
 
 #: application/views/stationsetup/stationsetup.php:105
 msgid ""
 "Attention: You need to set an active station location. Go to Callsign-"
 ">Station Location to select one."
 msgstr ""
+"Pažnja: morate postaviti aktivnu staničnu lokaciju. Idite na Pozivni znak -> "
+"Stanična lokacija kako biste izabrali lokaciju."
 
 #: application/views/stationsetup/stationsetup.php:111
 msgid ""
 "Due to recent changes within Wavelog you need to reassign QSOs to your "
 "station profiles."
 msgstr ""
+"Zbog nedavnih izmena u Wavelogu, morate doznačiti veze vašim staničnim "
+"profilima."
 
 #: application/views/stationsetup/stationsetup.php:113
 msgid "Maintenance"
-msgstr ""
+msgstr "Održavanje"
 
 #: application/views/stationsetup/stationsetup.php:113
 msgid "Please reassign them at "
-msgstr ""
+msgstr "Molimo doznačite ih na "
 
 #: application/views/stationsetup/stationsetup.php:127
 msgid "Linked"
-msgstr ""
+msgstr "Povezano"
 
 #: application/views/stationsetup/stationsetup.php:134
 msgid "Favorite"
-msgstr ""
+msgstr "Omiljeno"
 
 #: application/views/stationsetup/stationsetup.php:180
 msgid "mark/unmark as favorite"
-msgstr ""
+msgstr "označite/odznačite kao omiljeno"
 
 #: application/views/stationsetup/visitor.php:2
 msgid ""
