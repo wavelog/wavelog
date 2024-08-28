@@ -418,7 +418,7 @@ class User_Model extends CI_Model {
 	// FUNCTION: void update_session()
 	// Updates a user's login session after they've logged in
 	// TODO: This should return bool TRUE/FALSE or 0/1
-	function update_session($id, $u = null) {
+	function update_session($id, $u = null, $impersonate = false) {
 
 		if ($u == null) {
 			$u = $this->get_by_id($id);
@@ -463,7 +463,8 @@ class User_Model extends CI_Model {
 			'active_station_logbook' => $u->row()->active_station_logbook,
 			'user_language' => isset($u->row()->user_language) ? $u->row()->user_language: 'english',
 			'isWinkeyEnabled' => $u->row()->winkey,
-			'hasQrzKey' => $this->hasQrzKey($u->row()->user_id)
+			'hasQrzKey' => $this->hasQrzKey($u->row()->user_id),
+			'impersonate' => $this->session->userdata('impersonate') ?? false,
 		);
 
 		foreach (array_keys($this->frequency->defaultFrequencies) as $band) {
@@ -473,6 +474,10 @@ class User_Model extends CI_Model {
 			} else {
 				$userdata['qrgunit_'.$band] = $this->frequency->defaultFrequencies[$band]['UNIT'];
 			}
+		}
+
+		if ($impersonate) {
+			$userdata['impersonate'] = true;
 		}
 
 		$this->session->set_userdata($userdata);
@@ -488,6 +493,7 @@ class User_Model extends CI_Model {
 			$user_id = $this->session->userdata('user_id');
 			$user_type = $this->session->userdata('user_type');
 			$user_hash = $this->session->userdata('user_hash');
+			$impersonate = $this->session->userdata('impersonate');
 
 			if(ENVIRONMENT != 'maintenance') {
 				if($this->_auth($user_id."-".$user_type, $user_hash)) {
@@ -499,7 +505,7 @@ class User_Model extends CI_Model {
 					return 0;
 				}
 			} else {  // handle the maintenance mode and kick out user on page reload if not an admin
-				if($user_type == '99') {
+				if($user_type == '99' || $impersonate === true) {
 					if($this->_auth($user_id."-".$user_type, $user_hash)) {
 						// Freshen the session
 						$this->update_session($user_id, $u);
