@@ -9888,27 +9888,27 @@ msgstr ""
 
 #: application/views/simplefle/index.php:37
 msgid "The QSO were successfully logged in the logbook!"
-msgstr ""
+msgstr "Veze su uspešno upisane u dnevnik!"
 
 #: application/views/simplefle/index.php:40
 msgid "What is that?"
-msgstr ""
+msgstr "Šta je to?"
 
 #: application/views/simplefle/index.php:43
 msgid "Current UTC Time"
-msgstr ""
+msgstr "Trenutno UTC vreme"
 
 #: application/views/simplefle/index.php:76
 msgid "If you don't choose a date, today's date will be used."
-msgstr ""
+msgstr "Ako ne izaberete datum, biće postavljen današnji dan."
 
 #: application/views/simplefle/index.php:88
 msgid "You can add the entered QSOs to a contest."
-msgstr ""
+msgstr "Možete dodati unešenu vezu u dnevnik takmičenja."
 
 #: application/views/simplefle/index.php:95
 msgid "Station Call/Location"
-msgstr ""
+msgstr "Pozivni znak stanice/lokacije"
 
 #: application/views/simplefle/index.php:107
 #, php-format
@@ -9916,56 +9916,61 @@ msgid ""
 "If you did operate from a new location, first create a new %sStation "
 "Location%s"
 msgstr ""
+"Ako ste radili sa nove lokacije, prvo kreirajte novu %sStaničnu lokaciju%s"
 
 #: application/views/simplefle/index.php:112
 msgid "e.g. OK2CQR"
-msgstr ""
+msgstr "npr. OK2CQR"
 
 #: application/views/simplefle/index.php:115
 msgid "This is callsign of the operator. Without any pre- or suffixes."
-msgstr ""
+msgstr "Ovo je pozivni znak opratora. Be ikakvih pre- ili sufiksa."
 
 #: application/views/simplefle/index.php:125
 msgid "Enter the Data"
-msgstr ""
+msgstr "Unesite podatke"
 
 #: application/views/simplefle/index.php:154
 msgid "Refs"
-msgstr ""
+msgstr "Reference"
 
 #: application/views/simplefle/index.php:166
 #, php-format
 msgid "The Refs can be either %sS%sOTA, %sI%sOTA, %sP%sOTA, or %sW%sWFF"
-msgstr ""
+msgstr "Reference mogu biti %sS%sOTA, %sI%sOTA, %sP%sOTA, ili %sW%sWFF"
 
 #: application/views/simplefle/index.php:173
 msgid "Reload QSO List"
-msgstr ""
+msgstr "Osvježite listu veza"
 
 #: application/views/simplefle/index.php:174
 msgid "Save in Wavelog"
-msgstr ""
+msgstr "Sačuvajte u Wavelog"
 
 #: application/views/simplefle/index.php:175
 msgid "Clear Logging Session"
-msgstr ""
+msgstr "Očistite sesiju upisa veza u dnevnik"
 
 #: application/views/simplefle/options.php:20
 msgid "No Options yet"
-msgstr ""
+msgstr "Još nema opcija"
 
 #: application/views/simplefle/syntax_help.php:1
 msgid "Before starting to log a QSO, please note the basic rules."
 msgstr ""
+"Prije početka upisivanja veza u log, molimo da obratite pažnju na osnovna "
+"pravila."
 
 #: application/views/simplefle/syntax_help.php:2
 msgid "- Each new QSO should be on a new line."
-msgstr ""
+msgstr "- svaka nova veza mora biti u novoj liniji."
 
 #: application/views/simplefle/syntax_help.php:3
 msgid ""
 "- On each new line, only write data that has changed from the previous QSO."
 msgstr ""
+"- u svaku novu liniju upisujte samo podatke koji su se promenili u odnosu na "
+"prethodnu vezu."
 
 #: application/views/simplefle/syntax_help.php:4
 msgid ""
@@ -9974,10 +9979,15 @@ msgid ""
 "QRG in MHz, e.g., '7.145'), mode, and time. After the time, you provide the "
 "first QSO, which is essentially the callsign."
 msgstr ""
+"Za početak, uverite se da ste već popunili formular levo sa datumom, "
+"pozivnim znakom stanice, i operatorovim pozivnim znakom. Glavni podaci "
+"uključuju opseg (ili frekvenciju u MHZ, npr 7.125), vrstu rada, i vreme. "
+"Nakon vremena pružite podatke o prvoj vezi, što se u osnovi odnosi na "
+"pozivni znak."
 
 #: application/views/simplefle/syntax_help.php:9
 msgid "For example, a QSO that started at 21:34 (UTC) with 4W7EST on 20m SSB."
-msgstr ""
+msgstr "Na primer, veza koja je počela u 21:34 (UTC) sa 4W7EST na 20M SSB."
 
 #: application/views/simplefle/syntax_help.php:10
 msgid ""
@@ -9985,6 +9995,10 @@ msgid ""
 "data). Our next QSO wasn't 59 on both sides, so we provide the information "
 "with the sent RST first. It was 2 minutes later than the first QSO."
 msgstr ""
+"Ako ne pružite bilo kakvu RST informaciju, koristiće se sintaksa 59 (599 za "
+"data vrstu rada). Naša sljedeća veza nije bila obostrano 59, tako da ćemo "
+"prvo pružiti informaciju sa poslatim RST. To je bilo 2 minuta nakon prve "
+"veze."
 
 #: application/views/simplefle/syntax_help.php:16
 msgid ""
@@ -9992,6 +10006,9 @@ msgid ""
 "write down 6 because this is the only data that changed here. The "
 "information about band and mode didn't change, so this data is omitted."
 msgstr ""
+"Prva veza je bila u 21:34, a druga 2 minuta kasnije u 21:36. Zapisujemo 6 "
+"jer je ovo jedini podatak koji je promenjen. Informacija o opsegu i vrsti "
+"rada se nije menjala, tako da su ti podaci izostavljeni."
 
 #: application/views/simplefle/syntax_help.php:17
 msgid ""
@@ -10000,6 +10017,11 @@ msgid ""
 "every new QSO. Therefore we can add another QSO which took place at the "
 "exact same time two days later. The date must be in format YYYY-MM-DD."
 msgstr ""
+"Za našu sledeću vezu u 21:40 na dan 14. maja 2021, promenili smo opseg na "
+"20M ali smo i dalje sa SSB vrstom rada. Ako nije dat RST raport, sintaksa će "
+"koristiti 59 za svaku novu vezu. Stoga možemo dodati sledeću vezu koja se "
+"desila u tačno isto vreme dva dana kasnije. Datum mora biti u formatu YYYY-"
+"MM-DD."
 
 #: application/views/simplefle/syntax_help.php:28
 #, php-format
@@ -10007,50 +10029,52 @@ msgid ""
 "A full summary of all commands and the necessary syntax can be found in "
 "%sthis article%s of our Wiki."
 msgstr ""
+"Pun pregled svih komandi i potrebnih sintaksi može biti pronađen u %sovom "
+"članku%s na našoj Wiki."
 
 #: application/views/station_profile/create.php:58
 #: application/views/station_profile/edit.php:67
 msgid "Location Name"
-msgstr ""
+msgstr "Naziv lokacije"
 
 #: application/views/station_profile/create.php:59
 #: application/views/station_profile/create.php:60
 #: application/views/station_profile/edit.php:69
 msgctxt "Station Location Setup"
 msgid "Home QTH"
-msgstr ""
+msgstr "Lokacija doma"
 
 #: application/views/station_profile/create.php:60
 #: application/views/station_profile/edit.php:69
 #, php-format
 msgid "Shortname for the station location. For example: %s"
-msgstr ""
+msgstr "Kratko ime za lokaciju stanice. Na primer: %s"
 
 #: application/views/station_profile/create.php:66
 #: application/views/station_profile/edit.php:75
 msgid "Station callsign. For example: 4W7EST/P"
-msgstr ""
+msgstr "Pozivni znak stanice. Na primer: 4W7EST/P"
 
 #: application/views/station_profile/create.php:70
 #: application/views/station_profile/edit.php:79
 msgid "Station Power (W)"
-msgstr ""
+msgstr "Snaga stanice (W)"
 
 #: application/views/station_profile/create.php:72
 #: application/views/station_profile/edit.php:81
 msgid "Default station power in Watt. Overwritten by CAT."
-msgstr ""
+msgstr "Podrazumevana snaga stanice u Watt. Biće pregaženo sa CAT."
 
 #: application/views/station_profile/create.php:75
 #: application/views/station_profile/edit.php:96
 msgid "Station DXCC"
-msgstr ""
+msgstr "DXCC stanice"
 
 #: application/views/station_profile/create.php:78
 #: application/views/station_profile/edit.php:99
 msgctxt "DXCC selection"
 msgid "None"
-msgstr ""
+msgstr "Nijedna"
 
 #: application/views/station_profile/create.php:85
 #: application/views/station_profile/edit.php:112
