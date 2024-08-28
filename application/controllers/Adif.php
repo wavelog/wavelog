@@ -233,7 +233,16 @@ class adif extends CI_Controller {
 						array_push($alladif,$record);
 					};
 					$record='';	// free memory
-					$custom_errors = $this->logbook_model->import_bulk($alladif, $this->input->post('station_profile'), $this->input->post('skipDuplicate'), $this->input->post('markClublog'),$this->input->post('markLotw'), $this->input->post('dxccAdif'), $this->input->post('markQrz'), $this->input->post('markHrd'), true, $this->input->post('operatorName'), false, $this->input->post('skipStationCheck'));
+					try {
+						$custom_errors = $this->logbook_model->import_bulk($alladif, $this->input->post('station_profile'), $this->input->post('skipDuplicate'), $this->input->post('markClublog'),$this->input->post('markLotw'), $this->input->post('dxccAdif'), $this->input->post('markQrz'), $this->input->post('markHrd'), true, $this->input->post('operatorName'), false, $this->input->post('skipStationCheck'));
+					} catch (Exception $e) {
+						log_message('error', 'Import error: '.$e->getMessage());
+						$data['page_title'] = __("ADIF Import failed!");
+						$this->load->view('interface_assets/header', $data);
+						$this->load->view('adif/import_failed');
+						$this->load->view('interface_assets/footer');
+						return;
+					}
 				} else {	// Failure, if no ADIF inside ZIP
 					$data['max_upload'] = ini_get('upload_max_filesize');
 					$this->load->view('interface_assets/header', $data);
