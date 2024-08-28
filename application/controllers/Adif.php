@@ -237,6 +237,7 @@ class adif extends CI_Controller {
 						$custom_errors = $this->logbook_model->import_bulk($alladif, $this->input->post('station_profile'), $this->input->post('skipDuplicate'), $this->input->post('markClublog'),$this->input->post('markLotw'), $this->input->post('dxccAdif'), $this->input->post('markQrz'), $this->input->post('markHrd'), true, $this->input->post('operatorName'), false, $this->input->post('skipStationCheck'));
 					} catch (Exception $e) {
 						log_message('error', 'Import error: '.$e->getMessage());
+						$custom_errors .= __("Failed to parse at least one ADIF record. Please check the imported ADIF file.").'<br />';
 					}
 				} else {	// Failure, if no ADIF inside ZIP
 					$data['max_upload'] = ini_get('upload_max_filesize');
