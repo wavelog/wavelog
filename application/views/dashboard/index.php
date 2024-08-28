@@ -31,7 +31,7 @@ function echo_table_col($row, $name) {
 		case 'WWFF':    echo '<td>' . ($row->COL_WWFF_REF) . '</td>'; break;
 		case 'POTA':    echo '<td>' . ($row->COL_POTA_REF) . '</td>'; break;
 		case 'Grid':
-			if(!$this->load->is_loaded('Qra')) {
+			if(!$ci->load->is_loaded('Qra')) {
 				$ci->load->library('qra');
 			}
 			echo '<td>' . ($ci->qra->echoQrbCalcLink($row->station_gridsquare, $row->COL_VUCC_GRIDS, $row->COL_GRIDSQUARE)) . '</td>'; break;
