@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-28 11:59+0000\n"
+"POT-Creation-Date: 2024-08-28 12:37+0000\n"
 "PO-Revision-Date: 2024-08-26 12:58+0000\n"
 "Last-Translator: Petr OK1PTR <ok1ptr@pm.me>\n"
 "Language-Team: Czech <https://translate.wavelog.org/projects/wavelog/main-"
@@ -219,23 +219,6 @@ msgstr "Popis %s API klíče byl aktualizován."
 #, php-format
 msgid "API Key %s has been deleted"
 msgstr "API klíč %s byl smazán"
-
-#: application/controllers/Api.php:118
-msgid "Key Disabled"
-msgstr "Klíč je zakázaný"
-
-#: application/controllers/Api.php:118
-msgid "No Key Found"
-msgstr "Klíč nebyl nalezen"
-
-#: application/controllers/Api.php:120
-msgid "Key Invalid - either not found or disabled"
-msgstr "Neplatný klíč - nebyl nalezen nebo je zakázán"
-
-#: application/controllers/Api.php:124
-#: application/views/lotw_views/index.php:91
-msgid "Valid"
-msgstr "Platný"
 
 #: application/controllers/Awards.php:22
 #: application/views/interface_assets/header.php:158
@@ -7800,6 +7783,10 @@ msgstr "Vypršel"
 msgid "Expiring"
 msgstr ""
 
+#: application/views/lotw_views/index.php:91
+msgid "Valid"
+msgstr "Platný"
+
 #: application/views/lotw_views/index.php:101
 #, php-format
 msgid "Last success: %s"
@@ -11271,6 +11258,15 @@ msgstr "Tvoje značka:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr ""
+
+#~ msgid "Key Disabled"
+#~ msgstr "Klíč je zakázaný"
+
+#~ msgid "No Key Found"
+#~ msgstr "Klíč nebyl nalezen"
+
+#~ msgid "Key Invalid - either not found or disabled"
+#~ msgstr "Neplatný klíč - nebyl nalezen nebo je zakázán"
 
 #~ msgid "You are using"
 #~ msgstr "Je využito"

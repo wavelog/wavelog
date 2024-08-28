@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-28 11:59+0000\n"
+"POT-Creation-Date: 2024-08-28 12:37+0000\n"
 "PO-Revision-Date: 2024-08-24 20:29+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
@@ -219,23 +219,6 @@ msgstr "Les informations sur la clé API %s a été mise à jour."
 #, php-format
 msgid "API Key %s has been deleted"
 msgstr "La clé API %s a été supprimée"
-
-#: application/controllers/Api.php:118
-msgid "Key Disabled"
-msgstr "Clé désactivée"
-
-#: application/controllers/Api.php:118
-msgid "No Key Found"
-msgstr "Aucune clé trouvée"
-
-#: application/controllers/Api.php:120
-msgid "Key Invalid - either not found or disabled"
-msgstr "Clé invalide - soit non trouvée ou désactivée"
-
-#: application/controllers/Api.php:124
-#: application/views/lotw_views/index.php:91
-msgid "Valid"
-msgstr "Valide"
 
 #: application/controllers/Awards.php:22
 #: application/views/interface_assets/header.php:158
@@ -7936,6 +7919,10 @@ msgstr "Expiré"
 msgid "Expiring"
 msgstr "Expiration"
 
+#: application/views/lotw_views/index.php:91
+msgid "Valid"
+msgstr "Valide"
+
 #: application/views/lotw_views/index.php:101
 #, php-format
 msgid "Last success: %s"
@@ -11412,6 +11399,15 @@ msgstr ""
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr ""
+
+#~ msgid "Key Disabled"
+#~ msgstr "Clé désactivée"
+
+#~ msgid "No Key Found"
+#~ msgstr "Aucune clé trouvée"
+
+#~ msgid "Key Invalid - either not found or disabled"
+#~ msgstr "Clé invalide - soit non trouvée ou désactivée"
 
 #~ msgid "User logged in"
 #~ msgstr "Utilisateur connecté"

@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-28 11:59+0000\n"
+"POT-Creation-Date: 2024-08-28 12:37+0000\n"
 "PO-Revision-Date: 2024-08-18 19:11+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -217,23 +217,6 @@ msgstr "La descrizione per la chiave %s è stata aggiornata."
 #, php-format
 msgid "API Key %s has been deleted"
 msgstr "La chiave %s è stata cancellata"
-
-#: application/controllers/Api.php:118
-msgid "Key Disabled"
-msgstr "Chiave disattivata"
-
-#: application/controllers/Api.php:118
-msgid "No Key Found"
-msgstr "Nessuna chiave trovata"
-
-#: application/controllers/Api.php:120
-msgid "Key Invalid - either not found or disabled"
-msgstr "Chiave invalida - disattivata o inesistente"
-
-#: application/controllers/Api.php:124
-#: application/views/lotw_views/index.php:91
-msgid "Valid"
-msgstr "Valido"
 
 #: application/controllers/Awards.php:22
 #: application/views/interface_assets/header.php:158
@@ -7793,6 +7776,10 @@ msgstr "Scaduto"
 msgid "Expiring"
 msgstr ""
 
+#: application/views/lotw_views/index.php:91
+msgid "Valid"
+msgstr "Valido"
+
 #: application/views/lotw_views/index.php:101
 #, php-format
 msgid "Last success: %s"
@@ -11242,6 +11229,15 @@ msgstr ""
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr ""
+
+#~ msgid "Key Disabled"
+#~ msgstr "Chiave disattivata"
+
+#~ msgid "No Key Found"
+#~ msgstr "Nessuna chiave trovata"
+
+#~ msgid "Key Invalid - either not found or disabled"
+#~ msgstr "Chiave invalida - disattivata o inesistente"
 
 #~ msgid "en-GB"
 #~ msgstr "it-IT"

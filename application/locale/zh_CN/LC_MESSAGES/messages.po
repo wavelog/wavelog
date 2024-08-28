@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-28 11:59+0000\n"
+"POT-Creation-Date: 2024-08-28 12:37+0000\n"
 "PO-Revision-Date: 2024-08-27 16:24+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/"
@@ -217,23 +217,6 @@ msgstr "API Key %s 的说明信息已更新。"
 #, php-format
 msgid "API Key %s has been deleted"
 msgstr "API Key %s 已删除"
-
-#: application/controllers/Api.php:118
-msgid "Key Disabled"
-msgstr "Key 已禁用"
-
-#: application/controllers/Api.php:118
-msgid "No Key Found"
-msgstr "Key 不存在"
-
-#: application/controllers/Api.php:120
-msgid "Key Invalid - either not found or disabled"
-msgstr "Key 无效（未找到或已禁用）"
-
-#: application/controllers/Api.php:124
-#: application/views/lotw_views/index.php:91
-msgid "Valid"
-msgstr "有效"
 
 #: application/controllers/Awards.php:22
 #: application/views/interface_assets/header.php:158
@@ -7899,6 +7882,10 @@ msgstr "过期"
 msgid "Expiring"
 msgstr "即将到期"
 
+#: application/views/lotw_views/index.php:91
+msgid "Valid"
+msgstr "有效"
+
 #: application/views/lotw_views/index.php:101
 #, php-format
 msgid "Last success: %s"
@@ -11412,6 +11399,15 @@ msgstr "您的呼号："
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "提交请求"
+
+#~ msgid "Key Disabled"
+#~ msgstr "Key 已禁用"
+
+#~ msgid "No Key Found"
+#~ msgstr "Key 不存在"
+
+#~ msgid "Key Invalid - either not found or disabled"
+#~ msgstr "Key 无效（未找到或已禁用）"
 
 #, php-format
 #~ msgctxt "Dashboard Warning"

@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-28 11:59+0000\n"
+"POT-Creation-Date: 2024-08-28 12:37+0000\n"
 "PO-Revision-Date: 2024-08-26 12:58+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -219,23 +219,6 @@ msgstr "Описание ключа API %s обновлено."
 #, php-format
 msgid "API Key %s has been deleted"
 msgstr "Ключ API %s удалён"
-
-#: application/controllers/Api.php:118
-msgid "Key Disabled"
-msgstr "Ключ деактивирован"
-
-#: application/controllers/Api.php:118
-msgid "No Key Found"
-msgstr "Ключ не найден"
-
-#: application/controllers/Api.php:120
-msgid "Key Invalid - either not found or disabled"
-msgstr "Ключ недействительный — либо не найден, либо отключен"
-
-#: application/controllers/Api.php:124
-#: application/views/lotw_views/index.php:91
-msgid "Valid"
-msgstr "Действительный"
 
 #: application/controllers/Awards.php:22
 #: application/views/interface_assets/header.php:158
@@ -8120,6 +8103,10 @@ msgstr "Истёк"
 msgid "Expiring"
 msgstr "Истекает"
 
+#: application/views/lotw_views/index.php:91
+msgid "Valid"
+msgstr "Действительный"
+
 #: application/views/lotw_views/index.php:101
 #, php-format
 msgid "Last success: %s"
@@ -11794,6 +11781,15 @@ msgstr "Ваш позывной:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Отправить запрос"
+
+#~ msgid "Key Disabled"
+#~ msgstr "Ключ деактивирован"
+
+#~ msgid "No Key Found"
+#~ msgstr "Ключ не найден"
+
+#~ msgid "Key Invalid - either not found or disabled"
+#~ msgstr "Ключ недействительный — либо не найден, либо отключен"
 
 #, php-format
 #~ msgctxt "Dashboard Warning"
