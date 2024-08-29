@@ -10,7 +10,7 @@ class Distancerecords_model extends CI_Model {
 		if (!$logbooks_locations_array) {
 			return null;
 		}
-		$sql = 'SELECT t1.sat, t1.distance, t2.COL_TIME_ON time, t2.COL_CALL callsign, t2.COL_GRIDSQUARE grid FROM
+		$sql = 'SELECT t1.sat, t1.distance, t2.COL_TIME_ON time, t2.COL_CALL callsign, t2.COL_GRIDSQUARE grid, t2.COL_PRIMARY_KEY AS primarykey FROM
 			(
 				SELECT MAX(col_distance) distance, COL_SAT_NAME sat
 				FROM '.$this->config->item('table_name').'
