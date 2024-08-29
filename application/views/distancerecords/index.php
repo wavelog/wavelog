@@ -4,13 +4,6 @@
 	<p><?php echo __("This page lists distance records per satellite based on gridsquares."); ?>
 	<?php
 		if ($distances) {
-			if($this->session->userdata('user_date_format')) {
-				// If Logged in and session exists
-				$custom_date_format = $this->session->userdata('user_date_format');
-			} else {
-				// Get Default date format from /config/wavelog.php
-				$custom_date_format = $this->config->item('qso_date_format');
-			}
 	?>
 
 	<table style="width: 100%" id="distrectable" class="distrectable table table-sm table-striped table-hover">
