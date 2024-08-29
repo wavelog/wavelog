@@ -25,7 +25,4 @@ class Distancerecords extends CI_Controller {
         $this->load->view('interface_assets/footer');
     }
 
-    public function distancerecords() {
-    }
-
 }
