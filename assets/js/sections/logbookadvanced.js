@@ -158,16 +158,28 @@ function loadQSOTable(rows) {
 		var data = [];
 		data.push('<div class="form-check"><input class="form-check-input" type="checkbox" /></div>');
 		if (user_options.datetime.show == "true"){
-			data.push(qso.qsoDateTime);
+			if (qso.datetime === '') {
+				data.push('<span class="bg-danger">Missing date</span>');
+			} else {
+				data.push(qso.qsoDateTime);
+			}
 		}
 		if (user_options.de.show == "true"){
 			data.push(qso.de.replaceAll('0', 'Ø'));
 		}
 		if (user_options.dx.show == "true"){
-			data.push('<span class="qso_call"><a id="edit_qso" href="javascript:displayQso('+qso.qsoID+')"><span id="dx">'+qso.dx.replaceAll('0', 'Ø')+'</span></a><span class="qso_icons">' + (qso.callsign == '' ? '' : ' <a href="https://lotw.arrl.org/lotwuser/act?act='+qso.callsign+'" target="_blank"><small id="lotw_info" class="badge bg-success'+qso.lotw_hint+'" data-bs-toggle="tooltip" title="LoTW User. Last upload was ' + qso.lastupload + ' ">L</small></a>') + ' <a target="_blank" href="https://www.qrz.com/db/'+qso.dx+'"><img width="16" height="16" src="'+base_url+ 'images/icons/qrz.png" alt="Lookup ' + qso.dx.replaceAll('0', 'Ø') + ' on QRZ.com"></a> <a target="_blank" href="https://www.hamqth.com/'+qso.dx+'"><img width="16" height="16" src="'+base_url+ 'images/icons/hamqth.png" alt="Lookup ' + qso.dx.replaceAll('0', 'Ø') + ' on HamQTH"></a> <a target="_blank" href="https://clublog.org/logsearch.php?log='+qso.dx+'&call='+qso.de+'"><img width="16" height="16" src="'+base_url+'images/icons/clublog.png" alt="Clublog Log Search"></a></span></span>');
+			if (qso.dx === '') {
+				data.push('<span class="bg-danger">Missing callsign</span>');
+			} else {
+				data.push('<span class="qso_call"><a id="edit_qso" href="javascript:displayQso('+qso.qsoID+')"><span id="dx">'+qso.dx.replaceAll('0', 'Ø')+'</span></a><span class="qso_icons">' + (qso.callsign == '' ? '' : ' <a href="https://lotw.arrl.org/lotwuser/act?act='+qso.callsign+'" target="_blank"><small id="lotw_info" class="badge bg-success'+qso.lotw_hint+'" data-bs-toggle="tooltip" title="LoTW User. Last upload was ' + qso.lastupload + ' ">L</small></a>') + ' <a target="_blank" href="https://www.qrz.com/db/'+qso.dx+'"><img width="16" height="16" src="'+base_url+ 'images/icons/qrz.png" alt="Lookup ' + qso.dx.replaceAll('0', 'Ø') + ' on QRZ.com"></a> <a target="_blank" href="https://www.hamqth.com/'+qso.dx+'"><img width="16" height="16" src="'+base_url+ 'images/icons/hamqth.png" alt="Lookup ' + qso.dx.replaceAll('0', 'Ø') + ' on HamQTH"></a> <a target="_blank" href="https://clublog.org/logsearch.php?log='+qso.dx+'&call='+qso.de+'"><img width="16" height="16" src="'+base_url+'images/icons/clublog.png" alt="Clublog Log Search"></a></span></span>');
+			}
 		}
 		if (user_options.mode.show == "true"){
-			data.push(qso.mode);
+			if (qso.mode === '') {
+				data.push('<span class="bg-danger">Missing mode</span>');
+			} else {
+				data.push(qso.mode);
+			}
 		}
 		if (user_options.rsts.show == "true"){
 			data.push(qso.rstS);
@@ -176,7 +188,11 @@ function loadQSOTable(rows) {
 			data.push(qso.rstR);
 		}
 		if (user_options.band.show == "true"){
-			data.push(qso.band);
+			if (qso.band === '') {
+				data.push('<span class="bg-danger">Missing band</span>');
+			} else {
+				data.push(qso.band);
+			}
 		}
 		if (user_options.gridsquare.show == "true"){
 			data.push(qso.gridsquare);
@@ -388,6 +404,7 @@ $(document).ready(function () {
 				qslimages: this.qslimages.value,
 				dupes: this.dupes.value,
 				contest: this.contest.value,
+				invalid: this.invalid.value
 			},
 			dataType: 'json',
 			success: function (data) {
@@ -408,6 +425,7 @@ $(document).ready(function () {
 			},
 		});
 		$("#dupes").val("");
+		$("#invalid").val("");
 		return false;
 	});
 
@@ -660,6 +678,10 @@ $(document).ready(function () {
 		dupeSearch();
 	});
 
+	$('#invalidButton').click(function (event) {
+		invalidSearch();
+	});
+
 	$('#editButton').click(function (event) {
 		editQsos();
 	});
@@ -764,6 +786,15 @@ $(document).ready(function () {
 		$('#dupeButton').prop('disabled', true).addClass('running');
 		setTimeout(() => {
 			$('#dupeButton').prop('disabled', false).removeClass("running");
+		}, 1000);
+		$('#searchForm').submit();
+	}
+
+	function invalidSearch() {
+		$("#invalid").val("Y");
+		$('#invalidButton').prop('disabled', true).addClass('running');
+		setTimeout(() => {
+			$('#invalidButton').prop('disabled', false).removeClass("running");
 		}, 1000);
 		$('#searchForm').submit();
 	}
