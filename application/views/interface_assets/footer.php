@@ -2582,6 +2582,67 @@ function viewEqsl(picture, callsign) {
 	</script>
 <?php } ?>
 
+<?php if ($this->uri->segment(1) == "distancerecords") {
+	// Get Date format
+	if($this->session->userdata('user_date_format')) {
+		// If Logged in and session exists
+		$custom_date_format = $this->session->userdata('user_date_format');
+	} else {
+		// Get Default date format from /config/wavelog.php
+		$custom_date_format = $this->config->item('qso_date_format');
+	}
+
+    switch ($custom_date_format) {
+        case 'd/m/y': $usethisformat = 'D/MM/YY';break;
+        case 'd/m/Y': $usethisformat = 'D/MM/YYYY';break;
+        case 'm/d/y': $usethisformat = 'MM/D/YY';break;
+        case 'm/d/Y': $usethisformat = 'MM/D/YYYY';break;
+        case 'd.m.Y': $usethisformat = 'D.MM.YYYY';break;
+        case 'y/m/d': $usethisformat = 'YY/MM/D';break;
+        case 'Y-m-d': $usethisformat = 'YYYY-MM-D';break;
+        case 'M d, Y': $usethisformat = 'MMM D, YYYY';break;
+        case 'M d, y': $usethisformat = 'MMM D, YY';break;
+    } ?>
+
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/moment.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datetime-moment.js"></script>
+        <script>
+            $.fn.dataTable.moment('<?php echo $usethisformat ?>');
+            $.fn.dataTable.ext.buttons.clear = {
+                className: 'buttons-clear',
+                action: function ( e, dt, node, config ) {
+                   dt.search('').draw();
+                }
+            };
+            $('#distrectable').DataTable({
+                "pageLength": 25,
+                responsive: false,
+                ordering: true,
+                "scrollCollapse": true,
+                "paging":         false,
+                "scrollX": true,
+                "language": {
+                    url: getDataTablesLanguageUrl(),
+                },
+                "order": [ 2, 'desc' ],
+                dom: 'Bfrtip',
+                buttons: [
+                   {
+                      extend: 'csv'
+                   },
+                   {
+                      extend: 'clear',
+                      text: lang_admin_clear
+                   }
+                ]
+            });
+            // change color of csv-button if dark mode is chosen
+            if (isDarkModeTheme()) {
+               $('[class*="buttons"]').css("color", "white");
+            }
+        </script>
+<?php } ?>
+
 <?php if ($this->uri->segment(1) == "awards") {
 	// Get Date format
 	if($this->session->userdata('user_date_format')) {
