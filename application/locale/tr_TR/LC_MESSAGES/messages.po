@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-28 11:59+0000\n"
+"POT-Creation-Date: 2024-08-28 12:37+0000\n"
 "PO-Revision-Date: 2024-08-17 10:48+0000\n"
 "Last-Translator: Halil AYYILDIZ <ta2lghalil@gmail.com>\n"
 "Language-Team: Turkish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -216,23 +216,6 @@ msgstr "API Anahtarı %s açıklaması güncellendi."
 #, php-format
 msgid "API Key %s has been deleted"
 msgstr "API Anahtarı %s silindi"
-
-#: application/controllers/Api.php:118
-msgid "Key Disabled"
-msgstr "Anahtar Devre Dışı"
-
-#: application/controllers/Api.php:118
-msgid "No Key Found"
-msgstr "Anahtar Bulunamadı"
-
-#: application/controllers/Api.php:120
-msgid "Key Invalid - either not found or disabled"
-msgstr "Anahtar Geçersiz - bulunamadı veya devre dışı bırakıldı"
-
-#: application/controllers/Api.php:124
-#: application/views/lotw_views/index.php:91
-msgid "Valid"
-msgstr "Geçerli"
 
 #: application/controllers/Awards.php:22
 #: application/views/interface_assets/header.php:158
@@ -7796,6 +7779,10 @@ msgstr "Süresi doldu"
 msgid "Expiring"
 msgstr ""
 
+#: application/views/lotw_views/index.php:91
+msgid "Valid"
+msgstr "Geçerli"
+
 #: application/views/lotw_views/index.php:101
 #, php-format
 msgid "Last success: %s"
@@ -11245,6 +11232,15 @@ msgstr ""
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr ""
+
+#~ msgid "Key Disabled"
+#~ msgstr "Anahtar Devre Dışı"
+
+#~ msgid "No Key Found"
+#~ msgstr "Anahtar Bulunamadı"
+
+#~ msgid "Key Invalid - either not found or disabled"
+#~ msgstr "Anahtar Geçersiz - bulunamadı veya devre dışı bırakıldı"
 
 #~ msgid "You are using"
 #~ msgstr "QSL kart varlıklarınızı depolamak için"
