@@ -18,7 +18,7 @@ class Distancerecords_model extends CI_Model {
 				AND COALESCE(COL_SAT_NAME, "") <> ""
 				GROUP BY col_sat_name
 			) t1
-			LEFT JOIN TABLE_HRD_CONTACTS_V01 t2 ON t1.sat = t2.COL_SAT_NAME AND t1.distance = t2.COL_DISTANCE ORDER BY t1.distance DESC;
+			LEFT JOIN '.$this->config->item('table_name').' t2 ON t1.sat = t2.COL_SAT_NAME AND t1.distance = t2.COL_DISTANCE ORDER BY t1.distance DESC;
 		';
 
 		return $this->db->query($sql);
