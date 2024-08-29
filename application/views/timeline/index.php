@@ -157,7 +157,7 @@ function write_dxcc_timeline($timeline_array, $custom_date_format, $bandselect, 
                 <tbody>';
 
     foreach ($timeline_array as $line) {
-        $date_as_timestamp = strtotime($line->date);
+        $date_as_timestamp = strtotime($line->date ?? '1970-01-01 00:00:00');
         echo '<tr>
                 <td>' . $i-- . '</td>
                 <td>' . date($custom_date_format, $date_as_timestamp) . '</td>
