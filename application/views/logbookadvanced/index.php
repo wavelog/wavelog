@@ -132,6 +132,7 @@ $options = json_decode($options);
 
             <form id="searchForm" name="searchForm" action="<?php echo base_url() . "index.php/logbookadvanced/search"; ?>" method="post">
                 <input type="hidden" id="dupes" name="dupes" value="">
+				<input type="hidden" id="invalid" name="invalid" value="">
                 <div class="filterbody collapse">
                     <div class="row">
                         <div class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
@@ -515,6 +516,7 @@ $options = json_decode($options);
                 </select>
                 <button type="submit" class="btn btn-sm btn-primary me-1 ld-ext-right" id="searchButton"><?= __("Search"); ?><div class="ld ld-ring ld-spin"></div></button>
                 <button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="dupeButton"><?= __("Dupes"); ?><div class="ld ld-ring ld-spin"></div></button>
+				<button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="invalidButton"><?= __("Invalid"); ?><div class="ld ld-ring ld-spin"></div></button>
                 <button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="editButton"><?= __("Edit"); ?><div class="ld ld-ring ld-spin"></div></button>
                 <button type="button" class="btn btn-sm btn-danger me-1" id="deleteQsos"><?= __("Delete"); ?></button>
                 <div class="btn-group me-1" role="group">

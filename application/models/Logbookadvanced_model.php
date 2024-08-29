@@ -31,6 +31,51 @@ class Logbookadvanced_model extends CI_Model {
 			}
 		}
 
+		if ((isset($searchCriteria['invalid'])) && ($searchCriteria['invalid'] !== '')) {
+			$id_sql="
+				select GROUP_CONCAT(col_primary_key separator ',') as qsoids from (
+					select col_primary_key from " . $this->config->item('table_name') . "
+					join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
+					where station_profile.user_id = ?
+					and coalesce(col_mode, '') = ''
+
+					union all
+
+					select col_primary_key from " . $this->config->item('table_name') . "
+					join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
+					where station_profile.user_id = ?
+					and coalesce(col_band, '') = ''
+
+					union all
+
+					select col_primary_key from " . $this->config->item('table_name') . "
+					join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
+					where station_profile.user_id = ?
+					and coalesce(col_call, '') = ''
+
+					union all
+
+					select col_primary_key from " . $this->config->item('table_name') . "
+					join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
+					where station_profile.user_id = ?
+					and (col_time_on is null or cast(col_time_on as date) = '1970-01-01')
+				) as x";
+
+			$id_query = $this->db->query($id_sql, [$searchCriteria['user_id'], $searchCriteria['user_id'], $searchCriteria['user_id'], $searchCriteria['user_id']]);
+
+			$ids2fetch = '';
+
+			foreach ($id_query->result() as $id) {
+				$ids2fetch .= ','.$id->qsoids;
+			}
+			$ids2fetch = ltrim($ids2fetch, ',');
+			if ($ids2fetch ?? '' !== '') {
+				$conditions[] = "qsos.COL_PRIMARY_KEY in (".$ids2fetch.")";
+			} else {
+				$conditions[] = "1=0";
+			}
+		}
+
         if ($searchCriteria['dateFrom'] !== '') {
             $from = $searchCriteria['dateFrom'];
 			$conditions[] = "date(COL_TIME_ON) >= ?";
