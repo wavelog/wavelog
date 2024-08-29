@@ -6,14 +6,15 @@
 # Byt3 <falko@205er.de>, 2024.
 # "Francisco (F4VSE)" <kikosgc@gmail.com>, 2024.
 # "Francisco (F4VSE)" <kikosgc@users.noreply.github.com>, 2024.
+# F4JSU <f4jsu.radio@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-08-29 16:44+0000\n"
-"PO-Revision-Date: 2024-08-24 20:29+0000\n"
-"Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
-"Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/fr/>\n"
+"PO-Revision-Date: 2024-08-30 05:57+0000\n"
+"Last-Translator: F4JSU <f4jsu.radio@gmail.com>\n"
+"Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/fr/>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -175,7 +176,7 @@ msgstr "Type de fichier non pris en charge"
 #: application/controllers/Adif.php:240
 #: application/views/adif/import_failed.php:12
 msgid "ADIF Import failed!"
-msgstr ""
+msgstr "Échec de l'import ADIF !"
 
 #: application/controllers/Adif.php:254
 msgid "Station Profile not valid for User"
@@ -1737,7 +1738,7 @@ msgstr "Radio"
 
 #: application/controllers/Radio.php:50
 msgid "Timestamp"
-msgstr ""
+msgstr "Horodatage"
 
 #: application/controllers/Radio.php:52
 #: application/views/logbookadvanced/index.php:529
@@ -1794,7 +1795,7 @@ msgstr "Aucune radio avec interface CAT trouvée."
 
 #: application/controllers/Reg1test.php:25
 msgid "Export EDI"
-msgstr ""
+msgstr "Export EDI"
 
 #: application/controllers/Satellite.php:37
 msgid "Create Satellite"
@@ -2649,7 +2650,7 @@ msgstr ""
 #: application/views/gridmap/index.php:42
 #: application/views/timeline/index.php:79
 msgid "None/Empty"
-msgstr ""
+msgstr "Rien/Vide"
 
 #: application/views/accumulate/index.php:86 application/views/csv/index.php:95
 #: application/views/dxatlas/index.php:95
@@ -2699,7 +2700,7 @@ msgstr ""
 #: application/views/timeline/index.php:84
 msgctxt "Propagation Mode"
 msgid "EchoLink"
-msgstr ""
+msgstr "EchoLink"
 
 #: application/views/accumulate/index.php:91
 #: application/views/csv/index.php:100 application/views/dxatlas/index.php:100
@@ -2709,7 +2710,7 @@ msgstr ""
 #: application/views/timeline/index.php:85
 msgctxt "Propagation Mode"
 msgid "Earth-Moon-Earth"
-msgstr ""
+msgstr "Terre-Lune-Terre"
 
 #: application/views/accumulate/index.php:92
 #: application/views/csv/index.php:101 application/views/dxatlas/index.php:101
@@ -2719,7 +2720,7 @@ msgstr ""
 #: application/views/timeline/index.php:86
 msgctxt "Propagation Mode"
 msgid "Sporadic E"
-msgstr ""
+msgstr "Sporadique E"
 
 #: application/views/accumulate/index.php:93
 #: application/views/csv/index.php:102 application/views/dxatlas/index.php:102
@@ -2739,7 +2740,7 @@ msgstr ""
 #: application/views/timeline/index.php:88
 msgctxt "Propagation Mode"
 msgid "F2 Reflection"
-msgstr ""
+msgstr "F2 Réflexion"
 
 #: application/views/accumulate/index.php:95
 #: application/views/csv/index.php:104 application/views/dxatlas/index.php:104
@@ -2759,7 +2760,7 @@ msgstr ""
 #: application/views/timeline/index.php:90
 msgctxt "Propagation Mode"
 msgid "Ionoscatter"
-msgstr ""
+msgstr "Réflexion Ionosphérique"
 
 #: application/views/accumulate/index.php:97
 #: application/views/csv/index.php:106 application/views/dxatlas/index.php:106
@@ -2779,7 +2780,7 @@ msgstr ""
 #: application/views/timeline/index.php:92
 msgctxt "Propagation Mode"
 msgid "Meteor scatter"
-msgstr ""
+msgstr "Réflexions météorites"
 
 #: application/views/accumulate/index.php:99
 #: application/views/csv/index.php:108 application/views/dxatlas/index.php:108
@@ -2809,7 +2810,7 @@ msgstr ""
 #: application/views/timeline/index.php:95
 msgctxt "Propagation Mode"
 msgid "Satellite"
-msgstr ""
+msgstr "Satellite"
 
 #: application/views/accumulate/index.php:102
 #: application/views/csv/index.php:111 application/views/dxatlas/index.php:111
@@ -2819,7 +2820,7 @@ msgstr ""
 #: application/views/timeline/index.php:96
 msgctxt "Propagation Mode"
 msgid "Trans-equatorial"
-msgstr ""
+msgstr "Transéquatoriale"
 
 #: application/views/accumulate/index.php:103
 #: application/views/csv/index.php:112 application/views/dxatlas/index.php:112
@@ -3413,7 +3414,7 @@ msgstr ""
 
 #: application/views/adif/import_failed.php:15
 msgid "The ADIF file could not be parsed correctly."
-msgstr ""
+msgstr "Le fichier ADIF n'a pas pu être analysé correctement."
 
 #: application/views/adif/import_failed.php:16
 msgid ""
@@ -3421,6 +3422,10 @@ msgid ""
 "database. Please check the imported ADIF file. You can use an online ADIF "
 "file checker. For example:"
 msgstr ""
+"Au moins un champ ADIF n'a pas pu être analysé et/ou inséré dans la base de "
+"données. Veuillez vérifier le fichier ADIF importé. Vous pouvez utiliser un "
+"vérificateur de fichiers ADIF en ligne. Vous pouvez utiliser un vérificateur "
+"de fichiers ADIF en ligne, tel que :"
 
 #: application/views/adif/import_success.php:15
 msgid "Yay, its imported!"
@@ -3785,7 +3790,7 @@ msgstr ""
 
 #: application/views/awards/cq/index.php:25
 msgid "Awards - CQ Magazine WAZ"
-msgstr ""
+msgstr "Récompense - CQ Magazine WAZ"
 
 #: application/views/awards/cq/index.php:34
 #: application/views/awards/itu/index.php:34
@@ -3955,7 +3960,7 @@ msgstr "Total 'confirmés'"
 
 #: application/views/awards/dok/index.php:7
 msgid "DOK Award"
-msgstr ""
+msgstr "Récompense DOK"
 
 #: application/views/awards/dok/index.php:8
 msgid ""
@@ -4031,7 +4036,7 @@ msgstr "Chaque bande"
 
 #: application/views/awards/dxcc/index.php:14
 msgid "DXCC Award"
-msgstr ""
+msgstr "Récompense DXCC"
 
 #: application/views/awards/dxcc/index.php:15
 msgid "'How to Count Countries Worked, A New DX Scoring System'"
@@ -4177,11 +4182,11 @@ msgstr ""
 #: application/views/awards/ffma/index.php:11
 #, php-format
 msgid "For more information, you can visit this link: %s."
-msgstr ""
+msgstr "Pour plus d'informations, consultez ce lien : %s."
 
 #: application/views/awards/gridmaster/index.php:7
 msgid "US Gridmaster Award"
-msgstr ""
+msgstr "Récompense US Gridmaster"
 
 #: application/views/awards/gridmaster/index.php:8
 msgid ""
@@ -4206,11 +4211,11 @@ msgstr ""
 
 #: application/views/awards/gridmaster/index.php:9
 msgid "website"
-msgstr ""
+msgstr "siteweb"
 
 #: application/views/awards/gridmaster/index.php:10
 msgid "This map shows only QSOs worked on SAT."
-msgstr ""
+msgstr "Cette carte ne montre que les QSOs effectués sur SAT."
 
 #: application/views/awards/helvetia/index.php:3
 msgctxt "Switzerland Canton"
@@ -4223,7 +4228,7 @@ msgstr ""
 
 #: application/views/awards/helvetia/index.php:20
 msgid "HELVETIA 26 | SWITZERLAND AWARD"
-msgstr ""
+msgstr "HELVETIA 26 | Récompense Suisse"
 
 #: application/views/awards/helvetia/index.php:21
 msgid ""
@@ -4248,11 +4253,11 @@ msgstr ""
 #: application/views/awards/wwff/index.php:10
 #, php-format
 msgid "For more information, please visit: %s."
-msgstr ""
+msgstr "Pour plus d'informations, consultez le site : %s."
 
 #: application/views/awards/helvetia/index.php:114
 msgid "Show Helvetia Map"
-msgstr ""
+msgstr "Afficher la carte Helvétique"
 
 #: application/views/awards/helvetia/index.php:151
 msgid "Canton"
@@ -4261,11 +4266,11 @@ msgstr ""
 #: application/views/awards/index.php:9 application/views/bands/index.php:46
 #: application/views/interface_assets/header.php:162
 msgid "CQ"
-msgstr ""
+msgstr "CQ"
 
 #: application/views/awards/iota/index.php:16
 msgid "IOTA Awards"
-msgstr ""
+msgstr "Récompense IOTA"
 
 #: application/views/awards/iota/index.php:17
 msgid ""
@@ -4275,6 +4280,12 @@ msgid ""
 "enhance the experience of all those active on the amateur bands. To achieve "
 "this, it draws on the widespread mystique surrounding islands."
 msgstr ""
+"L'IOTA est un programme d'activités passionnant et novateur qui a suscité "
+"l'intérêt de milliers de radioamateurs dans le monde entier. Créé en 1964, "
+"il encourage les contacts radio avec des stations situées sur des îles du "
+"monde entier afin d'améliorer l'expérience de tous ceux qui sont actifs sur "
+"les bandes amateurs. Pour ce faire, il s'appuie sur la mystique qui entoure "
+"les îles."
 
 #: application/views/awards/iota/index.php:18
 msgid ""
@@ -4294,15 +4305,15 @@ msgstr ""
 #: application/views/awards/iota/index.php:19
 #, php-format
 msgid "You can also find this information on %s."
-msgstr ""
+msgstr "Vous pouvez également trouver ces informations sur %s."
 
 #: application/views/awards/iota/index.php:29
 msgid "Deleted IOTA"
-msgstr ""
+msgstr "Supprimer IOTA"
 
 #: application/views/awards/iota/index.php:132
 msgid "Show IOTA Map"
-msgstr ""
+msgstr "Afficher la carte IOTA"
 
 #: application/views/awards/iota/index.php:171
 #: application/views/contesting/add.php:25
@@ -4332,7 +4343,7 @@ msgstr "Nom"
 
 #: application/views/awards/iota/index.php:173
 msgid "Deleted"
-msgstr ""
+msgstr "Supprimé"
 
 #: application/views/awards/itu/index.php:3
 #: application/views/awards/itu/index.php:150
@@ -4358,15 +4369,16 @@ msgstr ""
 #, php-format
 msgctxt "uses 'RSGB'"
 msgid "You can find more information on the website of %s."
-msgstr ""
+msgstr "Vous pouvez trouver plus d'informations sur le site web de %s."
 
 #: application/views/awards/itu/index.php:25
 msgid "Awards - ITU Zones"
-msgstr ""
+msgstr "Récompenses - ITU Zones"
 
 #: application/views/awards/itu/index.php:115
+#, fuzzy
 msgid "Show ITU Zone Map"
-msgstr ""
+msgstr "Afficher la carte ITU"
 
 #: application/views/awards/jcc/index.php:16
 msgid "JCC - Japan Century Cities Award"
@@ -4395,18 +4407,18 @@ msgstr ""
 #: application/views/csv/index.php:128 application/views/dxatlas/index.php:128
 #: application/views/kml/index.php:113 application/views/reg1test/index.php:140
 msgid "Export"
-msgstr ""
+msgstr "Export"
 
 #: application/views/awards/jcc/index.php:126
 #: application/views/public_search/empty.php:2
 #: application/views/public_search/result.php:2
 msgid "Results"
-msgstr ""
+msgstr "Résultats"
 
 #: application/views/awards/jcc/index.php:151
 #: application/views/awards/waja/index.php:153
 msgid "Number"
-msgstr ""
+msgstr "Nombre"
 
 #: application/views/awards/jcc/index.php:152
 #: application/views/search/result.php:21
@@ -4418,11 +4430,11 @@ msgstr "Ville"
 #: application/views/dashboard/index.php:352
 #: application/views/distances/index.php:23
 msgid "SAT"
-msgstr ""
+msgstr "SAT"
 
 #: application/views/awards/pota/index.php:7
 msgid "POTA Awards"
-msgstr ""
+msgstr "Récompenses POTA"
 
 #: application/views/awards/pota/index.php:8
 msgid ""
@@ -4430,6 +4442,10 @@ msgid ""
 "Parks on the Air special event ended. A group of volunteers wanted to "
 "continue the fun beyond the one-year event, and thus, POTA was born."
 msgstr ""
+"Parks on the Air® (POTA) a commencé au début de 2017 lorsque l'événement "
+"spécial de l'ARRL, National Parks on the Air, s'est terminé. Un groupe de "
+"bénévoles a voulu poursuivre le plaisir au-delà de l'événement d'une année, "
+"et c'est ainsi que POTA est né."
 
 #: application/views/awards/pota/index.php:9
 msgid ""
@@ -4437,6 +4453,9 @@ msgid ""
 "there are several categories based on the number of parks, geographic areas, "
 "and more."
 msgstr ""
+"Le POTA fonctionne de la même manière que le SOTA, avec des activateurs et "
+"des chasseurs. Pour les récompenses, il existe plusieurs catégories basées "
+"sur le nombre de parcs, les zones géographiques, etc."
 
 #: application/views/awards/pota/index.php:10
 #, php-format
@@ -4445,6 +4464,8 @@ msgid ""
 "For more information about the available awards and categories, please visit "
 "the %s."
 msgstr ""
+"Pour plus d'informations sur les récompenses et les catégories, veuillez "
+"consulter le site %s."
 
 #: application/views/awards/pota/index.php:31
 #: application/views/qso/index.php:236 application/views/qso/index.php:492
@@ -4458,11 +4479,11 @@ msgstr "Référence POTA"
 #: application/views/awards/rac/index.php:3
 msgctxt "Canada Province"
 msgid "Province"
-msgstr ""
+msgstr "Province"
 
 #: application/views/awards/rac/index.php:4
 msgid "Hover over a province"
-msgstr ""
+msgstr "Survoler une province"
 
 #: application/views/awards/rac/index.php:106
 msgid "Show RAC Map"
@@ -11398,11 +11419,11 @@ msgstr ""
 
 #: application/views/widgets/oqrs.php:83
 msgid "Your Callsign:"
-msgstr ""
+msgstr "Votre indicatif :"
 
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
-msgstr ""
+msgstr "Soumettre la demande"
 
 #~ msgid "Key Disabled"
 #~ msgstr "Clé désactivée"
