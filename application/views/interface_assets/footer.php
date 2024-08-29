@@ -2618,6 +2618,7 @@ function viewEqsl(picture, callsign) {
                 "pageLength": 25,
                 responsive: false,
                 ordering: true,
+                "columnDefs": [ 2, 'num' ],
                 "scrollCollapse": true,
                 "paging":         false,
                 "scrollX": true,
