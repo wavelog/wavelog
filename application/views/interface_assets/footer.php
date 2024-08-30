@@ -2582,6 +2582,47 @@ function viewEqsl(picture, callsign) {
 	</script>
 <?php } ?>
 
+<?php if ($this->uri->segment(1) == "distancerecords") { ?>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/moment.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datetime-moment.js"></script>
+        <script>
+            $.fn.dataTable.moment('<?php echo $usethisformat ?>');
+            $.fn.dataTable.ext.buttons.clear = {
+                className: 'buttons-clear',
+                action: function ( e, dt, node, config ) {
+                   dt.search('').draw();
+                }
+            };
+            $('#distrectable').DataTable({
+                "pageLength": 25,
+                responsive: false,
+                ordering: true,
+                "columnDefs": [ 2, 'num' ],
+                "scrollCollapse": true,
+                "paging":         false,
+                "scrollX": true,
+                "language": {
+                    url: getDataTablesLanguageUrl(),
+                },
+                "order": [ 2, 'desc' ],
+                dom: 'Bfrtip',
+                buttons: [
+                   {
+                      extend: 'csv'
+                   },
+                   {
+                      extend: 'clear',
+                      text: lang_admin_clear
+                   }
+                ]
+            });
+            // change color of csv-button if dark mode is chosen
+            if (isDarkModeTheme()) {
+               $('[class*="buttons"]').css("color", "white");
+            }
+        </script>
+<?php } ?>
+
 <?php if ($this->uri->segment(1) == "awards") {
 	// Get Date format
 	if($this->session->userdata('user_date_format')) {
