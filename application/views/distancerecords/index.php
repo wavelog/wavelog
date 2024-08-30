@@ -16,6 +16,7 @@
 		<th style="text-align: center"><?= __("Date") ?></th>
 		<th style="text-align: center"><?= __("Time") ?></th>
 		<th style="text-align: center"><?= __("Callsign") ?></th>
+		<th style="text-align: center"><?= __("Mode") ?></th>
 		<th style="text-align: center"><?= __("Gridsquare") ?></th>
 	</tr>
 	</thead>
@@ -34,6 +35,7 @@
 		<td style="text-align: center"><?php $timestamp = strtotime($row->time ?? ''); echo date($custom_date_format, $timestamp); ?></td>
 		<td style="text-align: center"><?php $timestamp = strtotime($row->time ?? ''); echo date('H:i', $timestamp); ?></td>
 		<td style="text-align: center"><a href="javascript:displayQso(<?php echo $row->primarykey; ?>)"><?php echo $row->callsign; ?></a></td>
+		<td style="text-align: center"><?php echo $row->mode; ?></td>
 		<td style="text-align: center"><?php echo $row->grid; ?></td>
 	</tr>
 	<?php
