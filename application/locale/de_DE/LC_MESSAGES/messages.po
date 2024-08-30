@@ -17,11 +17,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-30 05:57+0000\n"
+"POT-Creation-Date: 2024-08-30 06:38+0000\n"
 "PO-Revision-Date: 2024-08-30 06:02+0000\n"
 "Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/de/>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -5476,11 +5476,6 @@ msgstr "QTH"
 #: application/views/contesting/index.php:64
 msgid "Sequence of Exchanges"
 msgstr "Abfolge der Austausche"
-
-#: application/views/contesting/index.php:67
-#, php-format
-msgid "%s = Serial, %s = Gridsquare, %s = Exchange."
-msgstr "%s = Laufende Nummer, %s = Planquadrat, %s = Austausch."
 
 #: application/views/contesting/index.php:67
 msgid ""
@@ -11884,6 +11879,10 @@ msgstr "Dein Rufzeichen:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Anfrage senden"
+
+#, php-format
+#~ msgid "%s = Serial, %s = Gridsquare, %s = Exchange."
+#~ msgstr "%s = Laufende Nummer, %s = Planquadrat, %s = Austausch."
 
 #~ msgid "Key Disabled"
 #~ msgstr "Schlüssel deaktiviert"
