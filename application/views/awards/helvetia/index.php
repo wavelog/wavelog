@@ -1,5 +1,7 @@
 <script>
-	var tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"
+	var tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>";
+    var lang_switzerland_canton = "<?= _pgettext("Switzerland Canton", "Canton"); ?>";
+    var lang_hover_over_a_canton = "<?= __("Hover over a canton"); ?>";
 </script>
 
 <style>

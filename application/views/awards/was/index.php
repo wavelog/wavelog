@@ -1,5 +1,7 @@
 <script>
-	var tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"
+	var tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>";
+    var lang_usa_state = "<?= _pgettext("USA State", "State"); ?>";
+    var lang_hover_over_a_state = "<?= __("Hover over a state"); ?>";
 </script>
 
 <style>

@@ -28,7 +28,19 @@ ModeSelected.addEventListener('change', (event) => {
     }
 });
 
+$('#winkeycwspeed').change(function (event) {
+	// Get the value from the input
+	let speed = parseInt($('#winkeycwspeed').val(), 10);
 
+	// Convert to hexadecimal and pad if necessary
+	let hexspeed = speed.toString(16).padStart(2, '0');
+
+	// Create the command
+	let command = `02 ${hexspeed}`;
+
+	// Send the command as hex bytes
+    sendHexToSerial(command);
+});
 
 let function1Name, function1Macro, function2Name, function2Macro, function3Name, function3Macro, function4Name, function4Macro, function5Name, function5Macro;
 
@@ -69,9 +81,8 @@ let connectButton = document.getElementById("connectButton");
 let statusBar = document.getElementById("statusBar");
 
 //Couple the elements to the Events
-connectButton.addEventListener("click", clickConnect)
-sendButton.addEventListener("click", clickSend)
-// statusButton.addEventListener("click", clickStatus)
+connectButton.addEventListener("click", clickConnect);
+sendButton.addEventListener("click", clickSend);
 
 //When the connectButton is pressed
 async function clickConnect() {
@@ -92,7 +103,7 @@ navigator.serial.addEventListener('connect', e => {
     statusBar.innerText = `Connected to ${e.port}`;
     connectButton.innerText = "Disconnect"
 });
-  
+
 navigator.serial.addEventListener('disconnect', e => {
     statusBar.innerText = `Disconnected`;
     connectButton.innerText = "Connect"
@@ -127,12 +138,12 @@ async function connect() {
         inputDone = port.readable.pipeTo(decoder.writable);
         inputStream = decoder.readable;
 
-        const encoder = new TextEncoderStream();
-        outputDone = encoder.readable.pipeTo(port.writable);
-        outputStream = encoder.writable;
-        
-        writeToByte("0x00, 0x02");
-        writeToByte("0x02, 0x00");
+		// Keyer init
+		sendHexToSerial("00 02");
+		await delay(300); // Wait for 300ms
+        sendHexToSerial("02 00");
+		await delay(300); // Wait for 300ms
+		sendHexToSerial("02 14"); // init 20 wpm
 
         $('#winkey_buttons').show();
 
@@ -148,24 +159,88 @@ async function connect() {
     }
 }
 
-//Write to the Serial port
-async function writeToStream(line) {
-    var enc = new TextEncoder(); // always utf-8
-    
-    const writer = outputStream.getWriter();
-    writer.write(line);
-    writer.releaseLock();
+function stop_cw_sending() {
+	sendHexToSerial("0A");
+	$("#send_carrier").attr("hidden", false);
+	$("#stop_carrier").attr("hidden", true);
 }
 
-async function writeToByte(line) {
-    const writer = outputStream.getWriter();
-    const data = new Uint8Array([line]);
-    writer.write(data);
-    writer.releaseLock();
+function send_carrier() {
+	sendHexToSerial("0B 01");
+	$("#send_carrier").attr("hidden", true);
+	$("#stop_carrier").attr("hidden", false);
+}
+
+function stop_carrier() {
+	sendHexToSerial("0B 00");
+	$("#send_carrier").attr("hidden", false);
+	$("#stop_carrier").attr("hidden", true);
+}
+
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+// Helper function to convert a hex string to a Uint8Array
+function hexStringToUint8Array(hexString) {
+    // Remove any spaces or non-hex characters
+    hexString = hexString.replace(/[^0-9a-f]/gi, '');
+
+    // Ensure the string has an even length
+    if (hexString.length % 2 !== 0) {
+        console.warn('Hex string has an odd length, padding with a leading zero.');
+        hexString = '0' + hexString;
+    }
+
+    const byteArray = new Uint8Array(hexString.length / 2);
+
+    for (let i = 0; i < hexString.length; i += 2) {
+        byteArray[i / 2] = parseInt(hexString.substr(i, 2), 16);
+    }
+
+    return byteArray;
+}
+
+async function sendHexToSerial(hexString) {
+    if (port && port.writable) {
+        // Convert the hex string to a Uint8Array
+        const byteArray = hexStringToUint8Array(hexString);
+
+        // Create a writer from the writable stream
+        const writer = port.writable.getWriter();
+
+        try {
+            // Write the byte array to the serial port
+            await writer.write(byteArray);
+        } catch (error) {
+            console.error('Error writing to serial port:', error);
+        } finally {
+            // Release the lock on the writer
+            writer.releaseLock();
+        }
+    } else {
+        console.error('Port is not available or writable.');
+    }
+}
+
+//Write to the Serial port
+async function writeToStream(line) {
+    const outputStream = port.writable.getWriter();
+
+    // Convert the text to a Uint8Array
+    const encoder = new TextEncoder();
+    const buffer = encoder.encode(line.toUpperCase());
+
+    // Write the Uint8Array to the serial port
+    await outputStream.write(buffer);
+
+    // Release the stream lock
+    outputStream.releaseLock();
 }
 
 //Disconnect from the Serial port
 async function disconnect() {
+	sendHexToSerial("00 03");
 
     if (reader) {
         await reader.cancel();
@@ -188,11 +263,11 @@ async function disconnect() {
 
 //When the send button is pressed
 function clickSend() {
-    writeToStream(sendText.value);
-    writeToStream("\r");
-    
-    //and clear the input field, so it's clear it has been sent
-    sendText.value = "";
+    writeToStream(sendText.value).then(function() {
+		// writeToStream("\r");
+		//and clear the input field, so it's clear it has been sent
+		$('#sendText').val('');
+	});
 
 }
 
@@ -249,23 +324,7 @@ async function readLoop() {
     }
 }
 
-function closeModal() {
-	var container = document.getElementById("modals-here")
-	var backdrop = document.getElementById("modal-backdrop")
-	var modal = document.getElementById("modal")
-
-	modal.classList.remove("show")
-	backdrop.classList.remove("show")
-
-    getMacros();
-
-	setTimeout(function() {
-		container.removeChild(backdrop)
-		container.removeChild(modal)
-	}, 200)
-}
-
-function UpdateMacros(macrotext) { 
+function UpdateMacros(macrotext) {
 
     // Get the values from the form set to uppercase
     let CALL = document.getElementById("callsign").value.toUpperCase();
@@ -303,11 +362,81 @@ function getMacros() {
 
         const morsekey_func3_Button = document.getElementById('morsekey_func3');
         morsekey_func3_Button.textContent = 'F3 (' + function3Name + ')';
-        
+
         const morsekey_func4_Button = document.getElementById('morsekey_func4');
         morsekey_func4_Button.textContent = 'F4 (' + function4Name + ')';
 
         const morsekey_func5_Button = document.getElementById('morsekey_func5');
         morsekey_func5_Button.textContent = 'F5 (' + function5Name + ')';
     });
+}
+
+$('#winkey_settings').click(function (event) {
+	$.ajax({
+		url: base_url + 'index.php/qso/winkeysettings',
+		type: 'post',
+		success: function (html) {
+			BootstrapDialog.show({
+				title: 'Winkey Macros',
+				size: BootstrapDialog.SIZE_NORMAL,
+				cssClass: 'options',
+				nl2br: false,
+				message: html,
+				onshown: function(dialog) {
+				},
+				buttons: [{
+					label: 'Save',
+					cssClass: 'btn-primary btn-sm',
+					id: 'saveButton',
+					action: function (dialogItself) {
+						winkey_macro_save();
+						dialogItself.close();
+					}
+				},
+				{
+					label: lang_admin_close,
+					cssClass: 'btn-sm',
+					id: 'closeButton',
+					action: function (dialogItself) {
+						$('#optionButton').prop("disabled", false);
+						dialogItself.close();
+					}
+				}],
+				onhide: function(dialogRef){
+					$('#optionButton').prop("disabled", false);
+				},
+			});
+		}
+	});
+});
+
+function winkey_macro_save() {
+	$.ajax({
+		url: base_url + 'index.php/qso/cwmacrosave',
+		type: 'post',
+		data: {
+			function1_name: $('#function1_name').val(),
+			function1_macro: $('#function1_macro').val(),
+			function2_name: $('#function2_name').val(),
+			function2_macro: $('#function2_macro').val(),
+			function3_name: $('#function3_name').val(),
+			function3_macro: $('#function3_macro').val(),
+			function4_name: $('#function4_name').val(),
+			function4_macro: $('#function4_macro').val(),
+			function5_name: $('#function5_name').val(),
+			function5_macro: $('#function5_macro').val(),
+		},
+		success: function (html) {
+			BootstrapDialog.alert({
+				title: 'INFO',
+				message: 'Macros were saved.',
+				type: BootstrapDialog.TYPE_INFO,
+				closable: false,
+				draggable: false,
+				callback: function (result) {
+					getMacros();
+				}
+			});
+		}
+	});
 }

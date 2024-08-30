@@ -3,7 +3,9 @@
 class DXCC extends CI_Model {
 
 	function __construct() {
-		$this->load->library('Genfunctions');
+		if(!$this->load->is_loaded('Genfunctions')) {
+			$this->load->library('Genfunctions');
+		}
 	}
 
 	/**

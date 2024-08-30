@@ -153,21 +153,31 @@ class AdifHelper {
             $line .= $this->getAdifFieldLine("FREQ_RX", $freq_rx_in_mhz);
         }
 
-        $date_on = strtotime($qso->COL_TIME_ON);
-        $date_on = date('Ymd', $date_on);
-        $line .= $this->getAdifFieldLine("QSO_DATE", $date_on);
+	if (isset($qso->COL_TIME_ON) && (date('YmdHis',strtotime($qso->COL_TIME_ON)) != '-00011130000000')) {
+		$date_on = strtotime($qso->COL_TIME_ON);
+		$date_on = date('Ymd', $date_on);
+		$line .= $this->getAdifFieldLine("QSO_DATE", $date_on);
 
-        $time_on = strtotime($qso->COL_TIME_ON);
-        $time_on = date('His', $time_on);
-        $line .= $this->getAdifFieldLine("TIME_ON", $time_on);
+		$time_on = strtotime($qso->COL_TIME_ON);
+		$time_on = date('His', $time_on);
+		$line .= $this->getAdifFieldLine("TIME_ON", $time_on);
+	} else {
+		$line .= $this->getAdifFieldLine("QSO_DATE", '19700101');
+		$line .= $this->getAdifFieldLine("TIME_ON", '000000');
+	}
 
-        $date_off = strtotime($qso->COL_TIME_OFF);
-        $date_off = date('Ymd', $date_off);
-        $line .= $this->getAdifFieldLine("QSO_DATE_OFF", $date_off);
+	if (isset($qso->COL_TIME_OFF) && (date('YmdHis',strtotime($qso->COL_TIME_OFF)) != '-00011130000000')) {
+		$date_off = strtotime($qso->COL_TIME_OFF);
+		$date_off = date('Ymd', $date_off);
+		$line .= $this->getAdifFieldLine("QSO_DATE_OFF", $date_off);
 
-        $time_off = strtotime($qso->COL_TIME_OFF);
-        $time_off = date('His', $time_off);
-        $line .= $this->getAdifFieldLine("TIME_OFF", $time_off);
+		$time_off = strtotime($qso->COL_TIME_OFF);
+		$time_off = date('His', $time_off);
+		$line .= $this->getAdifFieldLine("TIME_OFF", $time_off);
+	} else {
+		$line .= $this->getAdifFieldLine("QSO_DATE_OFF", '19700101');
+		$line .= $this->getAdifFieldLine("TIME_OFF", '000000');
+	}
 
         // "MY" information
         $line .= $this->getAdifFieldLine("STATION_CALLSIGN", $qso->station_callsign);

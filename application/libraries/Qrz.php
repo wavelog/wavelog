@@ -70,7 +70,7 @@ class Qrz {
 			curl_setopt($ch, CURLOPT_HEADER, false);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
-        	curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+			curl_setopt($ch, CURLOPT_TIMEOUT, 10);
 			$xml = curl_exec($ch);
 			$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 			curl_close($ch);
@@ -109,6 +109,8 @@ class Qrz {
 				$data['iota'] 	= (string)$xml->Callsign->iota;
 				$data['qslmgr'] = (string)$xml->Callsign->qslmgr;
 				$data['image'] 	= (string)$xml->Callsign->image;
+				$data['ituz'] 	= (string)$xml->Callsign->ituzone;
+				$data['cqz'] 	= (string)$xml->Callsign->cqzone;
 
 				if ($xml->Callsign->country == "United States") {
 					$data['us_county'] = (string)$xml->Callsign->county;
@@ -128,6 +130,8 @@ class Qrz {
 				$data['qslmgr'] = (string)$xml->Callsign->qslmgr;
 				$data['image'] 	= (string)$xml->Callsign->image;
 				$data['us_county'] = '';
+				$data['ituz'] = '';
+				$data['cqz'] = '';
 
 			}
 		} finally {

@@ -61,7 +61,7 @@
                 	$actstation=$this->stations->find_active() ?? '';
                 	echo "var activeStationId = '".$actstation."';\n";
                 	$profile_info = $this->stations->profile($actstation)->row();
-                	echo "var activeStationTXPower = '".xss_clean($profile_info->station_power)."';\n";
+                	echo "var activeStationTXPower = '".xss_clean($profile_info->station_power ?? 0)."';\n";
                 	echo "var activeStationOP = '".xss_clean($this->session->userdata('operator_callsign'))."';\n";
 		}
                 ?>
@@ -142,6 +142,8 @@
 								<li><a class="dropdown-item" href="<?php echo site_url('activators'); ?>" title="Gridsquare Activators"><i class="fas fa-globe-europe"></i> <?= __("Gridsquare Activators"); ?></a></li>
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item" href="<?php echo site_url('distances'); ?>" title="Distances"><i class="fas fa-chart-area"></i> <?= __("Distances Worked"); ?></a></li>
+								<div class="dropdown-divider"></div>
+								<li><a class="dropdown-item" href="<?php echo site_url('distancerecords'); ?>" title="Distance records"><i class="fas fa-chart-area"></i> <?= __("Distance Records"); ?></a></li>
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item" href="<?php echo site_url('dayswithqso'); ?>" title="Days with QSOs"><i class="fas fa-chart-area"></i> <?= __("Days with QSOs"); ?></a></li>
 								<div class="dropdown-divider"></div>
@@ -251,6 +253,12 @@
 								<li><a class="dropdown-item" href="<?php echo site_url('bandmap/list'); ?>" title="Bandmap"><i class="fa fa-id-card"></i> <?= __("Bandmap"); ?></a></li>
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item" href="<?php echo site_url('sattimers'); ?>" title="SAT Timers"><i class="fas fa-satellite"></i> <?= __("SAT Timers"); ?></a></li>
+								<?php if (ENVIRONMENT == "development") { ?>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="<?php echo site_url('satellite/flightpath'); ?>" title="Manage Satellites"><i class="fas fa-satellite"></i> <?= __("Satellite Flightpath"); ?> <span class="badge text-bg-danger">Beta</span></a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="<?php echo site_url('satellite/pass'); ?>" title="Search for satellite passes"><i class="fas fa-satellite"></i> <?= __("Satellite Pass"); ?> <span class="badge text-bg-danger">Beta</span></a>
+								<?php } ?>
 							</ul>
 						</li>
 					<?php } ?>
@@ -386,6 +394,8 @@
 										<li><a class="dropdown-item" href="<?php echo site_url('csv'); ?>" title="SOTA CSV Export"><i class="fas fa-sync"></i> <?= __("SOTA CSV Export"); ?></a></li>
 
 										<li><a class="dropdown-item" href="<?php echo site_url('cabrillo'); ?>" title="Cabrillo Export"><i class="fas fa-sync"></i> <?= __("Cabrillo Export"); ?></a></li>
+
+										<li><a class="dropdown-item" href="<?php echo site_url('reg1test'); ?>" title="EDI Export"><i class="fas fa-sync"></i> <?= __("EDI Export"); ?></a></li>
 
 										<li><a class="dropdown-item" href="<?php echo site_url('cfdexport'); ?>" title="CFD Export"><i class="fas fa-sync"></i> <?= __("CFD Export"); ?></a></li>
 									</ul>

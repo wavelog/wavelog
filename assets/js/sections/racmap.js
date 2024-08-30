@@ -73,7 +73,7 @@ function load_rac_map2(data) {
   L.tileLayer(
 	  osmUrl,
 	  {
-		  attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+      attribution: option_map_tile_server_copyright,
 		  maxZoom: 18
 	  }
   ).addTo(map);
@@ -122,8 +122,8 @@ info.onAdd = function (map) {
 
 // method that we will use to update the control based on feature properties passed
 info.update = function (props) {
-    this._div.innerHTML = '<h4>Province</h4>' +  (props ?
-        '<b>' + props.id.substring(3,5) + ' - ' + props.name + '</b><br />' : 'Hover over a province');
+    this._div.innerHTML = '<h4>' + lang_canada_province + '</h4>' +  (props ?
+        '<b>' + props.id.substring(3,5) + ' - ' + props.name + '</b><br />' : lang_hover_over_a_province);
 };
 
 info.addTo(map);
@@ -139,7 +139,7 @@ info.addTo(map);
     addMarkers();
   });
 
-  var layerControl = new L.Control.Layers(null, { 'Gridsquares': maidenhead = L.maidenhead() }).addTo(map);
+  var layerControl = new L.Control.Layers(null, { [lang_general_gridsquares]: maidenhead = L.maidenhead() }).addTo(map);
   maidenhead.addTo(map);
 }
 

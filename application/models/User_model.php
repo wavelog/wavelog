@@ -87,6 +87,17 @@ class User_Model extends CI_Model {
 		return $r->user_email;
 	}
 
+	function get_user_amsat_status_upload_by_id($id) {
+
+		$clean_id = $this->security->xss_clean($id);
+
+		$this->db->where('user_id', $clean_id);
+		$query = $this->db->get($this->config->item('auth_table'));
+
+		$r = $query->row();
+		return $r->user_amsat_status_upload;
+	}
+
 	function hasQrzKey($user_id) {
 		$this->db->where('station_profile.qrzapikey is not null');
 		$this->db->where('station_profile.qrzapikey != ""');
@@ -407,12 +418,12 @@ class User_Model extends CI_Model {
 	// FUNCTION: void update_session()
 	// Updates a user's login session after they've logged in
 	// TODO: This should return bool TRUE/FALSE or 0/1
-	function update_session($id, $u = null) {
+	function update_session($id, $u = null, $impersonate = false) {
 
 		if ($u == null) {
 			$u = $this->get_by_id($id);
 		}
-	
+
 		$userdata = array(
 			'user_id'		 => $u->row()->user_id,
 			'user_name'		 => $u->row()->user_name,
@@ -425,7 +436,7 @@ class User_Model extends CI_Model {
 			'user_eqsl_name'	 => $u->row()->user_eqsl_name,
 			'user_eqsl_qth_nickname' => $u->row()->user_eqsl_qth_nickname,
 			'user_hash'		 => $this->_hash($u->row()->user_id."-".$u->row()->user_type),
-			'radio' => $this->session->userdata('radio') ?? '',
+			'radio' => ((($this->session->userdata('radio') ?? '') == '') ? $this->user_options_model->get_options('cat', array('option_name' => 'default_radio'))->row()->option_value ?? '' : $this->session->userdata('radio')),
 			'station_profile_id' => $this->session->userdata('station_profile_id') ?? '',
 			'user_measurement_base' => $u->row()->user_measurement_base,
 			'user_date_format' => $u->row()->user_date_format,
@@ -452,16 +463,23 @@ class User_Model extends CI_Model {
 			'active_station_logbook' => $u->row()->active_station_logbook,
 			'user_language' => isset($u->row()->user_language) ? $u->row()->user_language: 'english',
 			'isWinkeyEnabled' => $u->row()->winkey,
-			'hasQrzKey' => $this->hasQrzKey($u->row()->user_id)
+			'hasQrzKey' => $this->hasQrzKey($u->row()->user_id),
+			'impersonate' => $this->session->userdata('impersonate') ?? false,
 		);
-	
+
 		foreach (array_keys($this->frequency->defaultFrequencies) as $band) {
-			$qrg_unit = $this->session->userdata("qrgunit_$band") ?? ($this->user_options_model->get_options('frequency', array('option_name' => 'unit', 'option_key' => $band))->row()->option_value ?? '');
+			$qrg_unit = $this->session->userdata("qrgunit_$band") ?? ($this->user_options_model->get_options('frequency', array('option_name' => 'unit', 'option_key' => $band), $u->row()->user_id)->row()->option_value ?? '');
 			if ($qrg_unit !== '') {
 				$userdata['qrgunit_'.$band] = $qrg_unit;
+			} else {
+				$userdata['qrgunit_'.$band] = $this->frequency->defaultFrequencies[$band]['UNIT'];
 			}
 		}
-	
+
+		if ($impersonate) {
+			$userdata['impersonate'] = true;
+		}
+
 		$this->session->set_userdata($userdata);
 	}
 
@@ -475,6 +493,7 @@ class User_Model extends CI_Model {
 			$user_id = $this->session->userdata('user_id');
 			$user_type = $this->session->userdata('user_type');
 			$user_hash = $this->session->userdata('user_hash');
+			$impersonate = $this->session->userdata('impersonate');
 
 			if(ENVIRONMENT != 'maintenance') {
 				if($this->_auth($user_id."-".$user_type, $user_hash)) {
@@ -486,7 +505,7 @@ class User_Model extends CI_Model {
 					return 0;
 				}
 			} else {  // handle the maintenance mode and kick out user on page reload if not an admin
-				if($user_type == '99') {
+				if($user_type == '99' || $impersonate === true) {
 					if($this->_auth($user_id."-".$user_type, $user_hash)) {
 						// Freshen the session
 						$this->update_session($user_id, $u);
@@ -557,16 +576,6 @@ class User_Model extends CI_Model {
 		} else {
 			return 0;
 		}
-	}
-
-	// FUNCTION: bool set($username, $data)
-	// Updates a user's record in the database
-	// TODO: This returns TRUE/1 no matter what at the moment - should
-	// TODO: return TRUE/FALSE or 0/1 depending on success/failure
-	function set($username, $data) {
-		$this->db->where('user_name', $username);
-		$this->db->update($this->config->item('auth_table', $data));
-		return 1;
 	}
 
 	// FUNCTION: object users()

@@ -8,6 +8,7 @@ function accumulatePlot(form) {
 	var award = form.award.value;
 	var mode = form.mode.value;
 	var period = form.periodradio.value;
+	var propmode = form.propmode.value;
 	$.ajax({
 		url: base_url + "index.php/accumulated/get_accumulated_data",
 		type: "post",
@@ -15,6 +16,7 @@ function accumulatePlot(form) {
 			Band: form.band.value,
 			Award: award,
 			Mode: mode,
+			Propmode: propmode,
 			Period: period,
 		},
 		success: function (data) {
@@ -206,3 +208,10 @@ function accumulatePlot(form) {
 		},
 	});
 }
+
+$('#band').change(function(){
+	var band = $("#band option:selected").text();
+	if (band == "SAT") {
+        	$('#propmode').val('SAT');
+	}
+});

@@ -283,6 +283,21 @@
                                     </select>
                                 </div>
 
+                                <div class="mb-3">
+                                    <label for="ituz"><?= __("ITU Zone"); ?></label>
+                                    <select class="form-select" id="ituz" name="ituz">
+                                        <option value=''></option>
+                                        <?php
+                                        for ($i = 1; $i<=90; $i++) {
+                                            echo '<option value='. $i;
+                                            if ($qso->COL_ITUZ == $i) {
+                                                echo " selected=\"selected\"";
+                                            }
+                                            echo '>'. $i .'</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
 
                                 <div class="mb-3">
                                     <?php 

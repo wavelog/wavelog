@@ -18,7 +18,7 @@ class Hamqth {
 		curl_setopt($ch, CURLOPT_HEADER, false);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 10); 
+		curl_setopt($ch, CURLOPT_TIMEOUT, 10);
 		$xml = curl_exec($ch);
 		curl_close($ch);
 
@@ -43,7 +43,7 @@ class Hamqth {
 		curl_setopt($ch, CURLOPT_HEADER, false);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 10);
 		$xml = curl_exec($ch);
 		curl_close($ch);
 
@@ -69,8 +69,8 @@ class Hamqth {
             curl_setopt($ch, CURLOPT_URL, $xml_feed_url);
             curl_setopt($ch, CURLOPT_HEADER, false);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
-        	curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 10);
             $xml = curl_exec($ch);
             curl_close($ch);
 
@@ -84,16 +84,18 @@ class Hamqth {
 
 			// only return certain data of a callsign which does not contain a pre- or suffix (see https://github.com/wavelog/wavelog/issues/452)
 			if ($reduced == false) {
-				
+
 				$data['gridsquare'] = (string)$xml->search->grid;
 				$data['city'] 		= (string)$xml->search->adr_city;
 				$data['lat'] 		= (string)$xml->search->latitude;
 				$data['long'] 		= (string)$xml->search->longitude;
-				$data['dxcc'] 		= (string)$xml->search->adif; 
+				$data['dxcc'] 		= (string)$xml->search->adif;
 				$data['iota'] 		= (string)$xml->search->iota;
 				$data['image'] 		= (string)$xml->search->picture;
 				$data['state'] 		= (string)$xml->search->us_state;
 				$data['error'] 		= (string)$xml->session->error;
+				$data['ituz'] 		= (string)$xml->search->itu;
+				$data['cqz'] 		= (string)$xml->search->cq;
 
 				if ($xml->search->country == "United States") {
 					$data['us_county'] = (string)$xml->search->us_county;
@@ -112,6 +114,8 @@ class Hamqth {
 				$data['image'] 		= (string)$xml->search->picture;
 				$data['state'] 		= '';
 				$data['error'] 		= (string)$xml->session->error;
+				$data['ituz'] 		= '';
+				$data['cqz'] 		= '';
 
 				$data['us_county'] 	= '';
 
