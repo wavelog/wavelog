@@ -38,7 +38,7 @@ class Dayswithqso_model extends CI_Model
             $dateprev = date_create(date('Y-m-d'));
     
             foreach($dates as $date) {      // Loop through the result set
-                $datecurr = date_create($date->date);
+                $datecurr = date_create($date->date?? '1970-01-01 00:00:00');
                 $diff = $dateprev->diff($datecurr)->format("%a"); // Getting date difference between current date and previous date in array
     
                 if ($diff == 0) {
@@ -53,7 +53,7 @@ class Dayswithqso_model extends CI_Model
                 } else {
                     break;
                 }
-                $dateprev = date_create($date->date);
+                $dateprev = date_create($date->date ?? '1970-01-01 00:00:00');
             }
     
             if (isset($streaks) && is_array($streaks)) {
@@ -78,7 +78,7 @@ class Dayswithqso_model extends CI_Model
             $dateprev = date_create(date('Y-m-d'));
     
             foreach($dates as $date) {      // Loop through the result set
-                $datecurr = date_create($date->date);
+                $datecurr = date_create($date->date ?? '1970-01-01 00:00:00');
                 $diff = $dateprev->diff($datecurr)->format("%a"); // Getting date difference between current date and previous date in array
     
                 if ($diff == 1 && $firstrun == true) {
@@ -116,7 +116,7 @@ class Dayswithqso_model extends CI_Model
 
         if ($dates) {
             foreach($dates as $date) {      // Loop through the result set
-                $datecurr = date_create($date->date);
+                $datecurr = date_create($date->date ?? '1970-01-01 00:00:00');
                 if ($dateprev == date_create('1900-01-01')) { // If first run
                     $dateprev = $datecurr;
                 }

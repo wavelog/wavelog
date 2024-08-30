@@ -143,6 +143,7 @@ class Logbookadvanced extends CI_Controller {
 			'dupes' => xss_clean($this->input->post('dupes')),
 			'operator' => xss_clean($this->input->post('operator')),
 			'contest' => xss_clean($this->input->post('contest')),
+			'invalid' => xss_clean($this->input->post('invalid')),
 		);
 
 		$qsos = [];
