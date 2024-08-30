@@ -64,7 +64,7 @@
                                                     <label class="col-auto control-label me-1"><?= __("Sequence of Exchanges"); ?>
                                                         <i class="fas fa-question-circle" id="exchangesequence" 
                                                             data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top" 
-                                                            title="<?= sprintf(__("%s = Serial, %s = Gridsquare, %s = Exchange."), "S", "<br>G", "<br>E"); ?><br><?= __("Choose in which order you want to type in the different reports. However, only the elements contained in the selected exchange type are displayed."); ?>">
+                                                            title="<?= __("Choose in which order you want to type in the different reports. However, only the elements contained in the selected exchange type are displayed."); ?>">
                                                         </i>
                                                     </label>
                                                     <div class="form-check-inline col-auto">
