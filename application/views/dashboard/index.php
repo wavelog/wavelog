@@ -83,6 +83,14 @@ function echo_table_col($row, $name) {
 		</div>
 	<?php } ?>
 
+	<?php if (($linkedCount > 0) && $active_not_linked) { ?>
+		<div class="alert alert-danger" role="alert">
+		<?= sprintf(
+				_pgettext("Dashboard Warning", "Your active Station Location isn't linked to your Logbook. Click %shere%s to do it."), '<u><a href="' . site_url('stationsetup') . '">', '</a></u>'
+			); ?>
+		</div>
+	<?php } ?>
+
 	<?php if ($linkedCount == 0) { ?>
 		<div class="alert alert-danger" role="alert">
 		<?= sprintf(
