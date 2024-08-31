@@ -83,6 +83,14 @@ function echo_table_col($row, $name) {
 		</div>
 	<?php } ?>
 
+	<?php if ($linkedCount == 0) { ?>
+		<div class="alert alert-danger" role="alert">
+		<?= sprintf(
+				_pgettext("Dashboard Warning", "You have no station linked to your Logbook. Click %shere%s to do it."), '<u><a href="' . site_url('stationsetup') . '">', '</a></u>'
+			); ?>
+		</div>
+	<?php } ?>
+
 	<?php if($this->optionslib->get_option('dashboard_banner') != "false") { ?>
 	<?php if($todays_qsos >= 1) { ?>
 		<div class="alert alert-success" role="alert" style="margin-top: 1rem;">
