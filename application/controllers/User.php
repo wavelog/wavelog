@@ -661,7 +661,7 @@ class User extends CI_Controller {
 
 							'name'   => $this->config->item('gettext_cookie', 'gettext'),
 							'value'  => $this->input->post('user_language', true),
-							'expire' => time()+1000,
+							'expire' => 1000,
 							'secure' => FALSE
 
 						);
@@ -894,7 +894,7 @@ class User extends CI_Controller {
 
 					'name'   => $this->config->item('gettext_cookie', 'gettext'),
 					'value'  => $data['user']->user_language,
-					'expire' => time()+1000,
+					'expire' => 1000,
 					'secure' => FALSE
 
 				);
