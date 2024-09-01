@@ -25,6 +25,18 @@ class Dashboard extends CI_Controller
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
+		
+		if (($logbooks_locations_array[0]>-1) && (!(in_array($this->stations->find_active(),$logbooks_locations_array)))) {
+			$data['active_not_linked']=true;
+		} else {
+			$data['active_not_linked']=false;
+		}
+
+		if ($logbooks_locations_array[0] == -1) {
+			$data['linkedCount']=0;
+		} else {
+			$data['linkedCount']=sizeof($logbooks_locations_array);
+		}
 		// Calculate Lat/Lng from Locator to use on Maps
 		if ($this->session->userdata('user_locator')) {
 			if(!$this->load->is_loaded('Qra')) {
