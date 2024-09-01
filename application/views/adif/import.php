@@ -99,6 +99,16 @@
                         <div class="mb-3 row">
                             <div class="col-md-10">
                                 <div class="form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="markEqsl" value="1" id="markEqslImport">
+                                    <label class="form-check-label" for="markEqslImport"><?= __("Mark imported QSOs as uploaded to eQSL Logbook") ?></label>
+                                </div>
+                                <div class="small form-text text-muted"><?= __("Select if ADIF being imported does not contain this information.") ?></div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <div class="col-md-10">
+                                <div class="form-check-inline">
                                     <input class="form-check-input" type="checkbox" name="markHrd" value="1" id="markHrdImport">
                                     <label class="form-check-label" for="markHrdImport"><?= __("Mark imported QSOs as uploaded to HRDLog.net Logbook") ?></label>
                                 </div>

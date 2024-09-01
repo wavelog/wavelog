@@ -3460,7 +3460,7 @@ function lotw_last_qsl_date($user_id) {
 	  return '1900-01-01 00:00:00.000';
   }
 
-    function import_bulk($records, $station_id = "0", $skipDuplicate = false, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markHrd = false,$skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false) {
+    function import_bulk($records, $station_id = "0", $skipDuplicate = false, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markEqsl = false, $markHrd = false,$skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false) {
 		$this->load->model('user_model');
 		$custom_errors='';
 		$a_qsos=[];
@@ -3474,7 +3474,7 @@ function lotw_last_qsl_date($user_id) {
 		$amsat_status_upload = $this->user_model->get_user_amsat_status_upload_by_id($station_profile->user_id);
 
 		foreach ($records as $record) {
-			$one_error = $this->logbook_model->import($record, $station_id, $skipDuplicate, $markClublog, $markLotw,$dxccAdif, $markQrz, $markHrd, $skipexport, $operatorName, $apicall, $skipStationCheck, true, $station_id_ok, $station_profile);
+			$one_error = $this->logbook_model->import($record, $station_id, $skipDuplicate, $markClublog, $markLotw,$dxccAdif, $markQrz, $markEqsl, $markHrd, $skipexport, $operatorName, $apicall, $skipStationCheck, true, $station_id_ok, $station_profile);
 			if ($one_error['error'] ?? '' != '') {
 				$custom_errors.=$one_error['error']."<br/>";
 			} else {	// No Errors / QSO doesn't exist so far
@@ -3517,7 +3517,7 @@ function lotw_last_qsl_date($user_id) {
      * $markHrd - used in ADIF import to mark QSOs as exported to HRDLog.net Logbook when importing QSOs
      * $skipexport - used in ADIF import to skip the realtime upload to QRZ Logbook when importing QSOs from ADIF
      */
-  function import($record, $station_id = "0", $skipDuplicate = false, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markHrd = false,$skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false, $batchmode = false, $station_id_ok = false, $station_profile = null) {
+  function import($record, $station_id = "0", $skipDuplicate = false, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markEqsl = false, $markHrd = false,$skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false, $batchmode = false, $station_id_ok = false, $station_profile = null) {
 	  // be sure that station belongs to user
 	  $this->load->model('stations');
 	  if ($station_id_ok == false) {
@@ -3953,6 +3953,15 @@ function lotw_last_qsl_date($user_id) {
 			  $input_qrzcom_qso_upload_status = (!empty($record['qrzcom_qso_upload_status'])) ? $record['qrzcom_qso_upload_status'] : '';
 		  }
 
+		  if ($markEqsl != null) {
+			  $input_eqsl_qso_upload_status = 'Y';
+			  $input_eqsl_qso_upload_date = $date = date("Y-m-d H:i:s", strtotime("now"));
+		  } else {
+			  $input_eqsl_qso_upload_date = (!empty($record['eqsl_qslsdate'])) ? $record['eqsl_qslsdate'] : null;
+			  $input_eqsl_qso_upload_status = (!empty($record['eqsl_qsl_sent'])) ? $record['eqsl_qsl_sent'] : '';
+		  }
+
+
 		  // Create array with QSO Data use ?:
 		  $data = array(
 			  'COL_A_INDEX' => $input_a_index,
@@ -3990,9 +3999,9 @@ function lotw_last_qsl_date($user_id) {
 			  'COL_EMAIL' => (!empty($record['email'])) ? $record['email'] : '',
 			  'COL_EQ_CALL' => (!empty($record['eq_call'])) ? $record['eq_call'] : '',
 			  'COL_EQSL_QSL_RCVD' => (!empty($record['eqsl_qsl_rcvd'])) ? $record['eqsl_qsl_rcvd'] : null,
-			  'COL_EQSL_QSL_SENT' => (!empty($record['eqsl_qsl_sent'])) ? $record['eqsl_qsl_sent'] : null,
+			  'COL_EQSL_QSL_SENT' => $input_eqsl_qso_upload_status,
 			  'COL_EQSL_QSLRDATE' => (!empty($record['eqsl_qslrdate'])) ? $record['eqsl_qslrdate'] : null,
-			  'COL_EQSL_QSLSDATE' => (!empty($record['eqsl_qslsdate'])) ? $record['eqsl_qslsdate'] : null,
+			  'COL_EQSL_QSLSDATE' => $input_eqsl_qso_upload_date,
 			  'COL_EQSL_STATUS' => (!empty($record['eqsl_status'])) ? $record['eqsl_status'] : '',
 			  'COL_FISTS' => (!empty($record['fists'])) ? $record['fists'] : null,
 			  'COL_FISTS_CC' => (!empty($record['fists_cc'])) ? $record['fists_cc'] : null,
