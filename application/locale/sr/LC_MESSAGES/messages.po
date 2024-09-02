@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-09-02 14:12+0000\n"
+"POT-Creation-Date: 2024-09-02 17:42+0000\n"
 "PO-Revision-Date: 2024-08-29 16:44+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
 "Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -5682,12 +5682,16 @@ msgstr "zdravo"
 msgid "failed"
 msgstr "neuspešno"
 
-#: application/views/cron/index.php:77
+#: application/views/cron/index.php:74
+msgid "pending"
+msgstr ""
+
+#: application/views/cron/index.php:79
 msgid "disabled"
 msgstr "onemogućeno"
 
-#: application/views/cron/index.php:81 application/views/cron/index.php:83
-#: application/views/cron/index.php:85 application/views/debug/index.php:494
+#: application/views/cron/index.php:83 application/views/cron/index.php:85
+#: application/views/cron/index.php:87 application/views/debug/index.php:494
 #: application/views/debug/index.php:500 application/views/debug/index.php:505
 #: application/views/debug/index.php:510 application/views/debug/index.php:515
 #: application/views/debug/index.php:520 application/views/debug/index.php:525
@@ -5695,11 +5699,11 @@ msgstr "onemogućeno"
 msgid "never"
 msgstr "nikada"
 
-#: application/views/cron/index.php:100
+#: application/views/cron/index.php:102
 msgid "Your Mastercron isn't running."
 msgstr "Vaš Mastercron nije pokrenut."
 
-#: application/views/cron/index.php:101
+#: application/views/cron/index.php:103
 msgid ""
 "Copy the cron above to a external cron service or into your server's cron to "
 "use this cron manager."
@@ -5707,7 +5711,7 @@ msgstr ""
 "Kopirajte gornji kron u spoljni kron servis ili u kron vašeg servara da "
 "biste koristili ovaj kron menadžer."
 
-#: application/views/cron/index.php:102
+#: application/views/cron/index.php:104
 msgid ""
 "On a basic linux server with shell access use this command to edit your "
 "crons:"
@@ -5715,7 +5719,7 @@ msgstr ""
 "Na osnovnom linux serveru koji ima shell pristup koristite ovu komandu za "
 "uređivanje vaših kronova:"
 
-#: application/views/cron/index.php:109
+#: application/views/cron/index.php:111
 #, php-format
 msgid ""
 "You need to upgrade your PHP version. Minimum version is %s. Your Version is "

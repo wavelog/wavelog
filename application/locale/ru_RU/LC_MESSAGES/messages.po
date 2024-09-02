@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-09-02 14:12+0000\n"
+"POT-Creation-Date: 2024-09-02 17:42+0000\n"
 "PO-Revision-Date: 2024-08-26 12:58+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -5689,12 +5689,16 @@ msgstr "норма"
 msgid "failed"
 msgstr "ошибка"
 
-#: application/views/cron/index.php:77
+#: application/views/cron/index.php:74
+msgid "pending"
+msgstr ""
+
+#: application/views/cron/index.php:79
 msgid "disabled"
 msgstr "отключено"
 
-#: application/views/cron/index.php:81 application/views/cron/index.php:83
-#: application/views/cron/index.php:85 application/views/debug/index.php:494
+#: application/views/cron/index.php:83 application/views/cron/index.php:85
+#: application/views/cron/index.php:87 application/views/debug/index.php:494
 #: application/views/debug/index.php:500 application/views/debug/index.php:505
 #: application/views/debug/index.php:510 application/views/debug/index.php:515
 #: application/views/debug/index.php:520 application/views/debug/index.php:525
@@ -5702,11 +5706,11 @@ msgstr "отключено"
 msgid "never"
 msgstr "никогда"
 
-#: application/views/cron/index.php:100
+#: application/views/cron/index.php:102
 msgid "Your Mastercron isn't running."
 msgstr "Master-Cron не запущен."
 
-#: application/views/cron/index.php:101
+#: application/views/cron/index.php:103
 msgid ""
 "Copy the cron above to a external cron service or into your server's cron to "
 "use this cron manager."
@@ -5714,7 +5718,7 @@ msgstr ""
 "Скопируйте приведенную выше задачу cron во внешнюю службу cron или в cron "
 "вашего сервера, чтобы использовать этот диспетчер cron."
 
-#: application/views/cron/index.php:102
+#: application/views/cron/index.php:104
 msgid ""
 "On a basic linux server with shell access use this command to edit your "
 "crons:"
@@ -5722,7 +5726,7 @@ msgstr ""
 "На типичном linux-сервере с доступом к шелл используйте эту команду для "
 "редактирования расписания задач:"
 
-#: application/views/cron/index.php:109
+#: application/views/cron/index.php:111
 #, php-format
 msgid ""
 "You need to upgrade your PHP version. Minimum version is %s. Your Version is "

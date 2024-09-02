@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-09-02 14:12+0000\n"
+"POT-Creation-Date: 2024-09-02 17:42+0000\n"
 "PO-Revision-Date: 2024-08-30 06:02+0000\n"
 "Last-Translator: Florian Wolters <wavelog@df2et.de>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
@@ -5717,12 +5717,16 @@ msgstr "gesund"
 msgid "failed"
 msgstr "fehlgeschlagen"
 
-#: application/views/cron/index.php:77
+#: application/views/cron/index.php:74
+msgid "pending"
+msgstr ""
+
+#: application/views/cron/index.php:79
 msgid "disabled"
 msgstr "ausgeschaltet"
 
-#: application/views/cron/index.php:81 application/views/cron/index.php:83
-#: application/views/cron/index.php:85 application/views/debug/index.php:494
+#: application/views/cron/index.php:83 application/views/cron/index.php:85
+#: application/views/cron/index.php:87 application/views/debug/index.php:494
 #: application/views/debug/index.php:500 application/views/debug/index.php:505
 #: application/views/debug/index.php:510 application/views/debug/index.php:515
 #: application/views/debug/index.php:520 application/views/debug/index.php:525
@@ -5730,11 +5734,11 @@ msgstr "ausgeschaltet"
 msgid "never"
 msgstr "nie"
 
-#: application/views/cron/index.php:100
+#: application/views/cron/index.php:102
 msgid "Your Mastercron isn't running."
 msgstr "Dein Mastercron läuft nicht."
 
-#: application/views/cron/index.php:101
+#: application/views/cron/index.php:103
 msgid ""
 "Copy the cron above to a external cron service or into your server's cron to "
 "use this cron manager."
@@ -5742,7 +5746,7 @@ msgstr ""
 "Kopiere den Cron oben in einen externen Cron-Service oder in crontab deines "
 "Servers, um diesen Cron-Manager zu verwenden."
 
-#: application/views/cron/index.php:102
+#: application/views/cron/index.php:104
 msgid ""
 "On a basic linux server with shell access use this command to edit your "
 "crons:"
@@ -5750,7 +5754,7 @@ msgstr ""
 "Auf einem herkömmlichen Linux System mit Shell-Zugang verwende diesen "
 "Befehl, um deine cronjobs zu bearbeiten:"
 
-#: application/views/cron/index.php:109
+#: application/views/cron/index.php:111
 #, php-format
 msgid ""
 "You need to upgrade your PHP version. Minimum version is %s. Your Version is "
