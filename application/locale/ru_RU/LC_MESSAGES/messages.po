@@ -5721,7 +5721,7 @@ msgstr "норма"
 msgid "failed"
 msgstr "ошибка"
 
-#: application/views/cron/index.php:77
+#: application/views/cron/index.php:77 application/views/cron/index.php:79
 msgid "disabled"
 msgstr "отключено"
 
@@ -5730,15 +5730,15 @@ msgstr "отключено"
 #: application/views/debug/index.php:500 application/views/debug/index.php:505
 #: application/views/debug/index.php:510 application/views/debug/index.php:515
 #: application/views/debug/index.php:520 application/views/debug/index.php:525
-#: application/views/user/index.php:138
+#: application/views/user/index.php:138 application/views/cron/index.php:87
 msgid "never"
 msgstr "никогда"
 
-#: application/views/cron/index.php:100
+#: application/views/cron/index.php:100 application/views/cron/index.php:102
 msgid "Your Mastercron isn't running."
 msgstr "Master-Cron не запущен."
 
-#: application/views/cron/index.php:101
+#: application/views/cron/index.php:101 application/views/cron/index.php:103
 msgid ""
 "Copy the cron above to a external cron service or into your server's cron to "
 "use this cron manager."
@@ -5746,7 +5746,7 @@ msgstr ""
 "Скопируйте приведенную выше задачу cron во внешнюю службу cron или в cron "
 "вашего сервера, чтобы использовать этот диспетчер cron."
 
-#: application/views/cron/index.php:102
+#: application/views/cron/index.php:102 application/views/cron/index.php:104
 msgid ""
 "On a basic linux server with shell access use this command to edit your "
 "crons:"
@@ -5754,7 +5754,7 @@ msgstr ""
 "На типичном linux-сервере с доступом к шелл используйте эту команду для "
 "редактирования расписания задач:"
 
-#: application/views/cron/index.php:109
+#: application/views/cron/index.php:109 application/views/cron/index.php:111
 #, php-format
 msgid ""
 "You need to upgrade your PHP version. Minimum version is %s. Your Version is "
@@ -11945,6 +11945,10 @@ msgstr ""
 
 #: application/views/qso/edit_ajax.php:276 application/views/qso/index.php:554
 msgid "Antenna elevation in decimal degrees."
+msgstr ""
+
+#: application/views/cron/index.php:74
+msgid "pending"
 msgstr ""
 
 #~ msgid "Key Disabled"

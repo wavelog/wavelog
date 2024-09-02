@@ -5785,7 +5785,7 @@ msgstr "saudável"
 msgid "failed"
 msgstr "falhou"
 
-#: application/views/cron/index.php:77
+#: application/views/cron/index.php:77 application/views/cron/index.php:79
 msgid "disabled"
 msgstr "desativado"
 
@@ -5794,15 +5794,15 @@ msgstr "desativado"
 #: application/views/debug/index.php:500 application/views/debug/index.php:505
 #: application/views/debug/index.php:510 application/views/debug/index.php:515
 #: application/views/debug/index.php:520 application/views/debug/index.php:525
-#: application/views/user/index.php:138
+#: application/views/user/index.php:138 application/views/cron/index.php:87
 msgid "never"
 msgstr "nunca"
 
-#: application/views/cron/index.php:100
+#: application/views/cron/index.php:100 application/views/cron/index.php:102
 msgid "Your Mastercron isn't running."
 msgstr "O Master-Cron não foi executado."
 
-#: application/views/cron/index.php:101
+#: application/views/cron/index.php:101 application/views/cron/index.php:103
 msgid ""
 "Copy the cron above to a external cron service or into your server's cron to "
 "use this cron manager."
@@ -5810,7 +5810,7 @@ msgstr ""
 "Copie o cron acima para um serviço cron externo ou para o cron do seu "
 "servidor para utilizar este gestor cron."
 
-#: application/views/cron/index.php:102
+#: application/views/cron/index.php:102 application/views/cron/index.php:104
 msgid ""
 "On a basic linux server with shell access use this command to edit your "
 "crons:"
@@ -5818,7 +5818,7 @@ msgstr ""
 "Num servidor linux básico com acesso à shell use este comando para editar os "
 "seus crons:"
 
-#: application/views/cron/index.php:109
+#: application/views/cron/index.php:109 application/views/cron/index.php:111
 #, php-format
 msgid ""
 "You need to upgrade your PHP version. Minimum version is %s. Your Version is "
@@ -12076,6 +12076,10 @@ msgstr "Elevação da Antena (°)"
 #: application/views/qso/edit_ajax.php:276 application/views/qso/index.php:554
 msgid "Antenna elevation in decimal degrees."
 msgstr "Elevação da antena em graus decimais."
+
+#: application/views/cron/index.php:74
+msgid "pending"
+msgstr ""
 
 #, php-format
 #~ msgid "%s = Serial, %s = Gridsquare, %s = Exchange."
