@@ -9,10 +9,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-09-02 06:37+0000\n"
-"PO-Revision-Date: 2024-08-26 12:58+0000\n"
+"PO-Revision-Date: 2024-09-02 09:11+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ru/>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -176,7 +176,7 @@ msgstr "Неподдерживаемый тип файла"
 #: application/controllers/Adif.php:240
 #: application/views/adif/import_failed.php:12
 msgid "ADIF Import failed!"
-msgstr ""
+msgstr "Импорт ADIF не удался!"
 
 #: application/controllers/Adif.php:254
 msgid "Station Profile not valid for User"
@@ -652,7 +652,7 @@ msgstr ""
 #: application/controllers/Distancerecords.php:38
 #: application/views/interface_assets/header.php:146
 msgid "Distance Records"
-msgstr ""
+msgstr "Рекорды дальности"
 
 #: application/controllers/Distances.php:17
 #: application/views/distances/index.php:5
@@ -1802,7 +1802,7 @@ msgstr "CAT-интерфейсные радиостанции не найден�
 
 #: application/controllers/Reg1test.php:25
 msgid "Export EDI"
-msgstr ""
+msgstr "Экспорт EDI"
 
 #: application/controllers/Satellite.php:37
 msgid "Create Satellite"
@@ -3252,7 +3252,7 @@ msgstr "Отметьте, если импортируемый ADIF не соде
 
 #: application/views/adif/import.php:103
 msgid "Mark imported QSOs as uploaded to eQSL Logbook"
-msgstr ""
+msgstr "Отметить импортированные QSO, как загруженные в журнал eQSL"
 
 #: application/views/adif/import.php:113
 msgid "Mark imported QSOs as uploaded to HRDLog.net Logbook"
@@ -3424,7 +3424,7 @@ msgstr ""
 
 #: application/views/adif/import_failed.php:15
 msgid "The ADIF file could not be parsed correctly."
-msgstr ""
+msgstr "Файл ADIF не удалось правильно разобрать."
 
 #: application/views/adif/import_failed.php:16
 msgid ""
@@ -3432,6 +3432,9 @@ msgid ""
 "database. Please check the imported ADIF file. You can use an online ADIF "
 "file checker. For example:"
 msgstr ""
+"По крайней мере одно из полей ADIF не удалось разобрать и/или вставить в "
+"базу данных. Пожалуйста, проверьте импортированный файл ADIF. Вы можете "
+"использовать онлайн-проверку файлов ADIF, к примеру:"
 
 #: application/views/adif/import_success.php:15
 msgid "Yay, its imported!"
@@ -5415,7 +5418,7 @@ msgstr "Порядковый номер и квадрат"
 
 #: application/views/contesting/index.php:21
 msgid "Serial + Gridsquare + Exchange"
-msgstr ""
+msgstr "Порядковый номер + Квадрат + Контрольный номер"
 
 #: application/views/contesting/index.php:35
 #: application/views/operator/index.php:5
@@ -5426,7 +5429,7 @@ msgstr "Позывной оператора"
 #: application/views/contesting/index.php:40
 #: application/views/contesting/index.php:45
 msgid "More Settings"
-msgstr ""
+msgstr "Больше настроек"
 
 #: application/views/contesting/index.php:49
 msgid "Copy received exchange to"
@@ -5457,13 +5460,16 @@ msgstr "QTH"
 
 #: application/views/contesting/index.php:64
 msgid "Sequence of Exchanges"
-msgstr ""
+msgstr "Последовательность контрольных номеров"
 
 #: application/views/contesting/index.php:67
 msgid ""
 "Choose in which order you want to type in the different reports. However, "
 "only the elements contained in the selected exchange type are displayed."
 msgstr ""
+"Выберите, в каком порядке вы хотите вводить различные отчеты. Однако "
+"отображаются только элементы, содержащиеся в выбранном типе контрольного "
+"номера."
 
 #: application/views/contesting/index.php:72
 #: application/views/contesting/index.php:73
@@ -5473,7 +5479,7 @@ msgstr ""
 #: application/views/contesting/index.php:77
 msgctxt "Keep the translation short!"
 msgid "Exchange"
-msgstr ""
+msgstr "Контроль"
 
 #: application/views/contesting/index.php:72
 #: application/views/contesting/index.php:73
@@ -5483,7 +5489,7 @@ msgstr ""
 #: application/views/contesting/index.php:77
 msgctxt "Keep the translation short!"
 msgid "Grid"
-msgstr ""
+msgstr "Квадрат"
 
 #: application/views/contesting/index.php:72
 #: application/views/contesting/index.php:73
@@ -5493,7 +5499,7 @@ msgstr ""
 #: application/views/contesting/index.php:77
 msgctxt "Keep the translation short!"
 msgid "Serial"
-msgstr ""
+msgstr "Номер"
 
 #: application/views/contesting/index.php:172
 #: application/views/contesting/index.php:255
@@ -5784,12 +5790,16 @@ msgid ""
 "Your active Station Location isn't linked to your Logbook. Click %shere%s to "
 "do it."
 msgstr ""
+"Ваше активное местоположение станции не связано с вашим журналом. Нажмите "
+"%sздесь%s, чтобы связать."
 
 #: application/views/dashboard/index.php:97
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station linked to your Logbook. Click %shere%s to do it."
 msgstr ""
+"У вас нет станции, связанной с вашим журналом. Нажмите %sздесь%s, чтобы "
+"связать."
 
 #: application/views/dashboard/index.php:106
 #, php-format
@@ -6414,6 +6424,8 @@ msgstr "Турецкий"
 #: application/views/distancerecords/index.php:4
 msgid "This page lists distance records per satellite based on gridsquares."
 msgstr ""
+"На этой странице перечислены рекорды расстояний по спутникам на основе "
+"квадратов сетки."
 
 #: application/views/distances/index.php:7
 #: application/views/interface_assets/footer.php:30
@@ -7154,7 +7166,7 @@ msgstr "Экспорт Cabrillo"
 
 #: application/views/interface_assets/header.php:398
 msgid "EDI Export"
-msgstr ""
+msgstr "Экспорт EDI"
 
 #: application/views/interface_assets/header.php:422
 msgid "QSL Queue"
@@ -7950,7 +7962,7 @@ msgstr "Дубликаты"
 
 #: application/views/logbookadvanced/index.php:519
 msgid "Invalid"
-msgstr ""
+msgstr "Недействительный"
 
 #: application/views/logbookadvanced/index.php:526
 msgid "Globe map"
@@ -9382,21 +9394,23 @@ msgstr "Пожалуйста, подождите..."
 
 #: application/views/reg1test/index.php:6
 msgid "Select Band"
-msgstr ""
+msgstr "Выбрать диапазон"
 
 #: application/views/reg1test/index.php:8
 msgid ""
 "Bands below 50Mhz are not valid for the EDI REG1TEST format and will produce "
 "invalid files."
 msgstr ""
+"Диапазоны ниже 50 МГц не подходят для формата EDI REG1TEST и приведут к "
+"созданию недействительных файлов."
 
 #: application/views/reg1test/index.php:18
 msgid "Export a contest to a REG1TEST EDI log"
-msgstr ""
+msgstr "Экспортировать соревнование в журнал REG1TEST EDI"
 
 #: application/views/reg1test/index.php:48
 msgid "Sent Exchange"
-msgstr ""
+msgstr "Отправленный контрольный номер"
 
 #: application/views/reg1test/index.php:50
 msgid ""
@@ -9404,102 +9418,110 @@ msgid ""
 "information, e.g. Province, DOK, County, State, Power, Name. Max. length: 6 "
 "characters."
 msgstr ""
+"Контрольный номер, отправленный во время контеста. Может быть любая "
+"информация, например, провинция, DOK, округ, штат, мощность, имя. "
+"Максимальная длина: 6 символов."
 
 #: application/views/reg1test/index.php:55
 msgid ""
 "Describes the callsign of the radio club where operator(s) are member. E.g. "
 "can be used if points are accumulated to the club."
 msgstr ""
+"Описывает позывной радиоклуба, членом которого является оператор(ы). "
+"Например, может использоваться, если очки начисляются клубу."
 
 #: application/views/reg1test/index.php:66
 msgid "Callsign of responsible operator"
-msgstr ""
+msgstr "Позывной ответственного оператора"
 
 #: application/views/reg1test/index.php:72
 msgid ""
 "List of all operators. Seperated with a semicolon ';'. The responsible "
 "operator is not needed here."
 msgstr ""
+"Список всех операторов. Разделены точкой с запятой ';'. Ответственный "
+"оператор здесь не нужен."
 
 #: application/views/reg1test/index.php:75
 msgid "Contest Address 1"
-msgstr ""
+msgstr "Адрес контеста 1"
 
 #: application/views/reg1test/index.php:77
 msgid "Address of the QTH used during the contest."
-msgstr ""
+msgstr "Адрес QTH, использованный во время контеста."
 
 #: application/views/reg1test/index.php:80
 msgid "Contest Address 2"
-msgstr ""
+msgstr "Адрес контеста 2"
 
 #: application/views/reg1test/index.php:84
 msgid "Operator Address 1"
-msgstr ""
+msgstr "Адрес оператора 1"
 
 #: application/views/reg1test/index.php:86
 msgid "Address of the responsible operator."
-msgstr ""
+msgstr "Адрес ответственного оператора."
 
 #: application/views/reg1test/index.php:89
 msgid "Operator Address 2"
-msgstr ""
+msgstr "Адрес оператора 2"
 
 #: application/views/reg1test/index.php:93
 msgid "Operator Address Postalcode"
-msgstr ""
+msgstr "Почтовый индекс (адрес оператора)"
 
 #: application/views/reg1test/index.php:97
 msgid "Operator Address City"
-msgstr ""
+msgstr "Город (адрес оператора)"
 
 #: application/views/reg1test/index.php:101
 msgid "Operator Address Country"
-msgstr ""
+msgstr "Страна (Оператор Адрес)"
 
 #: application/views/reg1test/index.php:105
 msgid "Operator Phone Number"
-msgstr ""
+msgstr "Номер телефона оператора"
 
 #: application/views/reg1test/index.php:109
 msgid "Transmit Equipment Description"
-msgstr ""
+msgstr "Описание передающего оборудования"
 
 #: application/views/reg1test/index.php:111
 msgid "Short description of the used equipment."
-msgstr ""
+msgstr "Краткое описание используемого оборудования."
 
 #: application/views/reg1test/index.php:116
 msgid "TX Power during the contest in Watt."
-msgstr ""
+msgstr "Мощность передатчика во время контеста в ваттах."
 
 #: application/views/reg1test/index.php:119
 msgid "Receive Equipment Description"
-msgstr ""
+msgstr "Описание приёмного оборудования"
 
 #: application/views/reg1test/index.php:121
 msgid "If you used another gear for RX, then describe it here."
 msgstr ""
+"Если вы использовали другое оборудование для приема, то опишите его здесь."
 
 #: application/views/reg1test/index.php:124
 msgid "Antenna Description"
-msgstr ""
+msgstr "Описание антенны"
 
 #: application/views/reg1test/index.php:126
 msgid "What kind of antenna was used."
-msgstr ""
+msgstr "Какая антенна использовалась."
 
 #: application/views/reg1test/index.php:129
 msgid "Antenna Height Above Ground (m)"
-msgstr ""
+msgstr "Высота антенны над землей (м)"
 
 #: application/views/reg1test/index.php:131
 msgid "Height of the antenna above the ground."
-msgstr ""
+msgstr "Высота антенны над землей."
 
 #: application/views/reg1test/index.php:136
 msgid "Any other remarks."
-msgstr ""
+msgstr "Любые другие замечания."
 
 #: application/views/satellite/create.php:23
 #: application/views/satellite/edit.php:7
