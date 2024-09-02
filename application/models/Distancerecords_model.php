@@ -5,7 +5,7 @@ class Distancerecords_model extends CI_Model {
 	function get_records() {
 		$dbversion = $this->db->version();
 		$dbversion = explode('.', $dbversion);
-		if ($dbversion[0] >= "8") {
+		if (!$dbversion[0] >= "8") {
 			return $this->fastquery();
 		} else {
 			return $this->slowquery();
@@ -70,7 +70,7 @@ class Distancerecords_model extends CI_Model {
 				ORDER BY COL_TIME_ON DESC LIMIT 1;';
 			$subquery = $this->db->query($subsql);
 			$subrow = $subquery->row();
-			array_push($result, (object) ["sat" => $row->sat, "distance" => $row->distance, "timestamp" => $subrow->time, "primarykey" => $subrow->primarykey, "callsign" => $subrow->callsign, "mode" => $subrow->mode, "grid" => $subrow->grid]);
+			array_push($result, (object) ["sat" => $row->sat, "distance" => $row->distance, "time" => $subrow->time, "primarykey" => $subrow->primarykey, "callsign" => $subrow->callsign, "mode" => $subrow->mode, "grid" => $subrow->grid]);
 		}
 		return($result);
 	}
