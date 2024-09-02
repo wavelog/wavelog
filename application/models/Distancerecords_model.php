@@ -5,7 +5,7 @@ class Distancerecords_model extends CI_Model {
 	function get_records() {
 		$dbversion = $this->db->version();
 		$dbversion = explode('.', $dbversion);
-		if (!$dbversion[0] >= "8") {
+		if ($dbversion[0] >= "8") {
 			return $this->fastquery();
 		} else {
 			return $this->slowquery();
