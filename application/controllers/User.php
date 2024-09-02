@@ -854,7 +854,7 @@ class User extends CI_Controller {
 						log_message('debug', "User ID: [$uid] Login rejected because of an active maintenance mode (and he is no admin).");
 
 						// Delete keep_login cookie
-						$this->input->set_cookie('keep_login', '', time() - 3600, '');
+						$this->input->set_cookie('keep_login', '', -3600, '');
 
 						redirect('user/login');
 					}
@@ -863,7 +863,7 @@ class User extends CI_Controller {
 					log_message('debug', "User ID: [$uid] Login rejected because of non matching hash key ('Keep Login').");
 
 					// Delete keep_login cookie
-					$this->input->set_cookie('keep_login', '', time() - 3600, '');
+					$this->input->set_cookie('keep_login', '', -3600, '');
 					$this->session->set_flashdata('error', __("Login failed. Try again."));
 					redirect('user/login');
 				}
@@ -872,7 +872,7 @@ class User extends CI_Controller {
 				log_message('error', "User ID: [".$uid."]; 'Keep Login' failed. Cookie deleted. Message: ".$e);
 
 				// Delete keep_login cookie
-				$this->input->set_cookie('keep_login', '', time() - 3600, '');
+				$this->input->set_cookie('keep_login', '', -3600, '');
 
 				$this->session->set_flashdata('error', __("Login failed. Try again."));
 				redirect('user/login');
@@ -908,7 +908,7 @@ class User extends CI_Controller {
 					$cookie = array(
 						'name'   => 'keep_login',
 						'value'  => $encrypted_string,
-						'expire' => '2592000',  // 30 days
+						'expire' => 2592000,  // 30 days
 						'secure' => TRUE,
 						'httponly' => TRUE
 					);
@@ -935,7 +935,7 @@ class User extends CI_Controller {
 		$user_name = $this->session->userdata('user_name');
 
 		// Delete keep_login cookie
-		$this->input->set_cookie('keep_login', '', time() - 3600, '');
+		$this->input->set_cookie('keep_login', '', -3600, '');
 
 		$this->user_model->clear_session();
 
