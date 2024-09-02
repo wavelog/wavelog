@@ -36,7 +36,7 @@
                                 <a class="nav-item nav-link" id="nav-qso-notes-tab" data-bs-toggle="tab" href="#nav-qso-notes" role="tab" aria-controls="nav-qso-notes" aria-selected="false"><?= __("Notes"); ?></a>
                                 <a class="nav-item nav-link" id="nav-qsl-tab" data-bs-toggle="tab" href="#nav-qsl" role="tab" aria-controls="nav-qsl" aria-selected="false"><?= __("QSL"); ?></a>
                                 <a class="nav-item nav-link" id="nav-station-tab" data-bs-toggle="tab" href="#nav-station" role="tab" aria-controls="nav-station" aria-selected="false"><?= __("Station"); ?></a>
-								<a class="nav-item nav-link" id="nav-contest-tab" data-bs-toggle="tab" href="#nav-contest" role="tab" aria-controls="nav-contest" aria-selected="false"><?= __("Contest"); ?></a>
+                                <a class="nav-item nav-link" id="nav-contest-tab" data-bs-toggle="tab" href="#nav-contest" role="tab" aria-controls="nav-contest" aria-selected="false"><?= __("Contest"); ?></a>
                             </div>
                         </nav>
 
@@ -131,10 +131,10 @@
                                         </select>
                                     </div>
                                     <div class="mb-3 col-sm6">
-              		                    <label for="transmit_power"><?= __("Transmit Power (W)"); ?></label>
-              		                    <input type="number" step="0.001" class="form-control" id="transmit_power" name="transmit_power" value="<?php echo $qso->COL_TX_PWR; ?>" />
-					                    <small id="powerHelp" class="form-text text-muted"><?= __("Give power value in Watts. Include only numbers in the input."); ?></small>
-					                </div>
+                                      <label for="transmit_power"><?= __("Transmit Power (W)"); ?></label>
+                                      <input type="number" step="0.001" class="form-control" id="transmit_power" name="transmit_power" value="<?php echo $qso->COL_TX_PWR; ?>" />
+                                      <small id="powerHelp" class="form-text text-muted"><?= __("Give power value in Watts. Include only numbers in the input."); ?></small>
+                                    </div>
                                 </div>
 
                                 <div class="row">
@@ -262,6 +262,18 @@
                                 <div class="mb-3">
                                     <label for="sat_mode"><?= __("Sat Mode"); ?></label>
                                     <input type="text" class="form-control form-control-sm" name="sat_mode" id="sat_mode" value="<?php echo $qso->COL_SAT_MODE; ?>">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="ant_az"><?= __("Antenna Azimuth (°)"); ?></label>
+                                    <input type="number" step="0.1" min="0" max="360" class="form-control" id="ant_az" name="ant_az" value="<?php echo $qso->COL_ANT_AZ; ?>" />
+                                    <small id="azHelp" class="form-text text-muted"><?= __("Antenna azimuth in decimal degrees."); ?></small>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="ant_el"><?= __("Antenna Elevation (°)"); ?></label>
+                                    <input type="number" step="0.1" min="0" max="90" class="form-control" id="ant_el" name="ant_el" value="<?php echo $qso->COL_ANT_EL; ?>" />
+                                    <small id="elHelp" class="form-text text-muted"><?= __("Antenna elevation in decimal degrees."); ?></small>
                                 </div>
                             </div>
 

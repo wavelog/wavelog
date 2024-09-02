@@ -267,7 +267,7 @@ class QSO extends CI_Controller {
         $this->load->model('user_model');
         $this->load->model('modes');
         $this->load->model('bands');
-		$this->load->model('contesting_model');
+        $this->load->model('contesting_model');
 
         $this->load->library('form_validation');
 
