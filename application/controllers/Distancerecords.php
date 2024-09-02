@@ -33,6 +33,10 @@ class Distancerecords extends CI_Controller {
             case 'M d, y': $usethisformat = 'MMM D, YY';break;
         }
 
+        $data['scripts'] = [
+            'assets/js/sections/distancerecords.js',
+        ];
+
         // Render Page
         $data['custom_date_format'] = $custom_date_format;
         $data['page_title'] = __("Satellite Distance Records");
@@ -43,6 +47,19 @@ class Distancerecords extends CI_Controller {
         $this->load->view('interface_assets/header', $data);
         $this->load->view('distancerecords/index');
         $this->load->view('interface_assets/footer', $footerData);
+    }
+
+    public function sat_records_ajax() {
+        $this->load->model('distancerecords_model');
+
+        $sat = str_replace('"', "", $this->security->xss_clean($this->input->post("Sat")));
+        $searchmode = $this->input->post('searchmode') == null ? '' : $this->security->xss_clean($this->input->post('searchmode'));
+        $data['results'] = $this->distancerecords_model->sat_distances($sat);
+
+        $data['page_title'] = __("Log View")." - " . __("Satellite Distance Records");
+        $data['filter'] = $sat;
+
+        $this->load->view('distancerecords/details', $data);
     }
 
 }
