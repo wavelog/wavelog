@@ -23,9 +23,9 @@
 
 	<tbody>
 	<?php
-		if ($distances->num_rows() > 0) {
+		if ($distances) {
 			$i = 1;
-			foreach ($distances->result() as $row) {
+			foreach ($distances as $row) {
 	?>
 
 	<tr>

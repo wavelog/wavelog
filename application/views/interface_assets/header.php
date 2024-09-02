@@ -143,7 +143,7 @@
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item" href="<?php echo site_url('distances'); ?>" title="Distances"><i class="fas fa-chart-area"></i> <?= __("Distances Worked"); ?></a></li>
 								<div class="dropdown-divider"></div>
-								<li><a class="dropdown-item" href="<?php echo site_url('distancerecords'); ?>" title="Distance records"><i class="fas fa-chart-area"></i> <?= __("Distance Records"); ?></a></li>
+								<li><a class="dropdown-item" href="<?php echo site_url('distancerecords'); ?>" title="Satellite Distance records"><i class="fas fa-chart-area"></i> <?= __("Satellite Distance Records"); ?></a></li>
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item" href="<?php echo site_url('dayswithqso'); ?>" title="Days with QSOs"><i class="fas fa-chart-area"></i> <?= __("Days with QSOs"); ?></a></li>
 								<div class="dropdown-divider"></div>

@@ -35,7 +35,7 @@ class Distancerecords extends CI_Controller {
 
         // Render Page
         $data['custom_date_format'] = $custom_date_format;
-        $data['page_title'] = __("Distance Records");
+        $data['page_title'] = __("Satellite Distance Records");
         $data['distances'] = $this->distancerecords_model->get_records();
 
         $footerData['usethisformat'] = $usethisformat;
