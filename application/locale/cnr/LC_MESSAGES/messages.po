@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-09-02 17:42+0000\n"
+"POT-Creation-Date: 2024-09-02 21:28+0000\n"
 "PO-Revision-Date: 2024-08-17 10:49+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Montenegrin <https://translate.wavelog.org/projects/wavelog/"
@@ -299,6 +299,7 @@ msgid "Log View - VUCC"
 msgstr ""
 
 #: application/controllers/Awards.php:453
+#: application/controllers/Distancerecords.php:59
 #: application/controllers/Timeline.php:105
 #: application/controllers/Timeline.php:108
 #: application/controllers/Timeline.php:111
@@ -639,7 +640,8 @@ msgstr ""
 msgid "File Migration failed. Please check the Error Log."
 msgstr ""
 
-#: application/controllers/Distancerecords.php:38
+#: application/controllers/Distancerecords.php:42
+#: application/controllers/Distancerecords.php:59
 #: application/views/interface_assets/header.php:146
 msgid "Satellite Distance Records"
 msgstr ""
@@ -2389,31 +2391,31 @@ msgstr ""
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr ""
 
-#: application/models/Logbook_model.php:4239
+#: application/models/Logbook_model.php:4240
 msgid "QSO could not be matched"
 msgstr ""
 
-#: application/models/Logbook_model.php:4245
+#: application/models/Logbook_model.php:4246
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr ""
 
-#: application/models/Logbook_model.php:4250
+#: application/models/Logbook_model.php:4251
 msgid "confirmed by award manager"
 msgstr ""
 
-#: application/models/Logbook_model.php:4253
+#: application/models/Logbook_model.php:4254
 msgid "confirmed by cross-check of DCL data"
 msgstr ""
 
-#: application/models/Logbook_model.php:4256
+#: application/models/Logbook_model.php:4257
 msgid "confirmation pending"
 msgstr ""
 
-#: application/models/Logbook_model.php:4259
+#: application/models/Logbook_model.php:4260
 msgid "unconfirmed"
 msgstr ""
 
-#: application/models/Logbook_model.php:4262
+#: application/models/Logbook_model.php:4263
 msgid "unknown"
 msgstr ""
 
@@ -3555,6 +3557,7 @@ msgstr ""
 #: application/views/awards/counties/details.php:4
 #: application/views/awards/details.php:1
 #: application/views/awards/vucc/band.php:4
+#: application/views/distancerecords/details.php:1
 #: application/views/timeline/details.php:2
 msgid "Filtering on"
 msgstr ""

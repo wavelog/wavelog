@@ -308,6 +308,7 @@ msgstr "Журнал — VUCC"
 #: application/controllers/Timeline.php:114
 #: application/controllers/Timeline.php:117
 #: application/controllers/Timeline.php:120
+#: application/controllers/Distancerecords.php:59
 msgid "Log View"
 msgstr "Просмотр журнала"
 
@@ -2443,36 +2444,43 @@ msgstr "HRDlog: не найдены профили QTH с данными вхо�
 
 #: application/models/Logbook_model.php:4237
 #: application/models/Logbook_model.php:4239
+#: application/models/Logbook_model.php:4240
 msgid "QSO could not be matched"
 msgstr "QSO не может быть сопоставлено"
 
 #: application/models/Logbook_model.php:4243
 #: application/models/Logbook_model.php:4245
+#: application/models/Logbook_model.php:4246
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "подтверждено LoTW/Clublog/eQSL/Contest"
 
 #: application/models/Logbook_model.php:4248
 #: application/models/Logbook_model.php:4250
+#: application/models/Logbook_model.php:4251
 msgid "confirmed by award manager"
 msgstr "подтверждено менеджером диплома"
 
 #: application/models/Logbook_model.php:4251
 #: application/models/Logbook_model.php:4253
+#: application/models/Logbook_model.php:4254
 msgid "confirmed by cross-check of DCL data"
 msgstr "подтверждено кросс-проверкой с данными DCL"
 
 #: application/models/Logbook_model.php:4254
 #: application/models/Logbook_model.php:4256
+#: application/models/Logbook_model.php:4257
 msgid "confirmation pending"
 msgstr "подтверждение ожидается"
 
 #: application/models/Logbook_model.php:4257
 #: application/models/Logbook_model.php:4259
+#: application/models/Logbook_model.php:4260
 msgid "unconfirmed"
 msgstr "не подтверждено"
 
 #: application/models/Logbook_model.php:4260
 #: application/models/Logbook_model.php:4262
+#: application/models/Logbook_model.php:4263
 msgid "unknown"
 msgstr "неизвестно"
 
@@ -3646,6 +3654,7 @@ msgstr "Создать ключ с правами 'Только Чтение'"
 #: application/views/awards/details.php:1
 #: application/views/awards/vucc/band.php:4
 #: application/views/timeline/details.php:2
+#: application/views/distancerecords/details.php:1
 msgid "Filtering on"
 msgstr "Отфильтровано по"
 
@@ -11928,6 +11937,8 @@ msgstr "Отправить запрос"
 
 #: application/controllers/Distancerecords.php:38
 #: application/views/interface_assets/header.php:146
+#: application/controllers/Distancerecords.php:42
+#: application/controllers/Distancerecords.php:59
 msgid "Satellite Distance Records"
 msgstr ""
 

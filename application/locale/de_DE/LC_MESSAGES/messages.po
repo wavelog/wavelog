@@ -21,8 +21,8 @@ msgstr ""
 "POT-Creation-Date: 2024-09-01 05:32+0000\n"
 "PO-Revision-Date: 2024-09-02 21:28+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/de/>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -317,6 +317,7 @@ msgstr "Log Ansicht – VUCC"
 #: application/controllers/Timeline.php:114
 #: application/controllers/Timeline.php:117
 #: application/controllers/Timeline.php:120
+#: application/controllers/Distancerecords.php:59
 msgid "Log View"
 msgstr "Log-Ansicht"
 
@@ -2476,36 +2477,43 @@ msgstr "HRDlog: Keine Stationsstandorte mit HRDlog Zugangsdaten gefunden."
 
 #: application/models/Logbook_model.php:4237
 #: application/models/Logbook_model.php:4239
+#: application/models/Logbook_model.php:4240
 msgid "QSO could not be matched"
 msgstr "QSO konnte nicht gefunden werden"
 
 #: application/models/Logbook_model.php:4243
 #: application/models/Logbook_model.php:4245
+#: application/models/Logbook_model.php:4246
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bestätigt durch LoTW/Clublog/eQSL/Contest"
 
 #: application/models/Logbook_model.php:4248
 #: application/models/Logbook_model.php:4250
+#: application/models/Logbook_model.php:4251
 msgid "confirmed by award manager"
 msgstr "bestätigt durch Diplommananger"
 
 #: application/models/Logbook_model.php:4251
 #: application/models/Logbook_model.php:4253
+#: application/models/Logbook_model.php:4254
 msgid "confirmed by cross-check of DCL data"
 msgstr "bestätigt durch Cross-Check von DCL-Daten"
 
 #: application/models/Logbook_model.php:4254
 #: application/models/Logbook_model.php:4256
+#: application/models/Logbook_model.php:4257
 msgid "confirmation pending"
 msgstr "Bestätigung ausstehend"
 
 #: application/models/Logbook_model.php:4257
 #: application/models/Logbook_model.php:4259
+#: application/models/Logbook_model.php:4260
 msgid "unconfirmed"
 msgstr "nicht bestätigt"
 
 #: application/models/Logbook_model.php:4260
 #: application/models/Logbook_model.php:4262
+#: application/models/Logbook_model.php:4263
 msgid "unknown"
 msgstr "unbekannt"
 
@@ -3687,6 +3695,7 @@ msgstr "Erstelle einen Nur-Lesen-Schlüssel"
 #: application/views/awards/details.php:1
 #: application/views/awards/vucc/band.php:4
 #: application/views/timeline/details.php:2
+#: application/views/distancerecords/details.php:1
 msgid "Filtering on"
 msgstr "Filtern auf"
 
