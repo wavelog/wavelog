@@ -419,17 +419,6 @@ class Logbook_model extends CI_Model {
         return($row);
     }
   }
-  public function sat_distances($sat){
-     $this->load->model('logbooks_model');
-     $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
-     $this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
-     $this->db->where('COL_SAT_NAME', $sat);
-     $this->db->where_in($this->config->item('table_name').'.station_id', $logbooks_locations_array);
-     $this->db->order_by("COL_DISTANCE", "desc");
-     $this->db->limit(500);
-
-     return $this->db->get($this->config->item('table_name'));
-  }
 
 	/*
 	 * Used to fetch QSOs from the logbook in the awards
@@ -623,7 +612,7 @@ class Logbook_model extends CI_Model {
 	  return $this->db->get($this->config->item('table_name'));
   }
 
-	
+
 	public function vucc_qso_details($gridsquare, $band) {
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
@@ -3402,7 +3391,7 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 	    $this->db->where('COL_STATION_CALLSIGN', $station_callsign);
 	    $this->db->where('COL_PRIMARY_KEY', $qsoid);
 
-		
+
 	    $this->db->update($this->config->item('table_name'), $data);
 	    unset($data);
 

@@ -50,11 +50,11 @@ class Distancerecords extends CI_Controller {
     }
 
     public function sat_records_ajax() {
-        $this->load->model('logbook_model');
+        $this->load->model('distancerecords_model');
 
         $sat = str_replace('"', "", $this->security->xss_clean($this->input->post("Sat")));
         $searchmode = $this->input->post('searchmode') == null ? '' : $this->security->xss_clean($this->input->post('searchmode'));
-        $data['results'] = $this->logbook_model->sat_distances($sat);
+        $data['results'] = $this->distancerecords_model->sat_distances($sat);
 
         $data['page_title'] = __("Log View")." - " . __("Satellite Distance Records");
         $data['filter'] = $sat;
