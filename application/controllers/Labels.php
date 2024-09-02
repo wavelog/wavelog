@@ -345,12 +345,13 @@ class Labels extends CI_Controller {
 	function generateLabel($pdf, $current_callsign, $tableData,$numofqsos,$qso,$orientation,$grid=true, $via=false, $reference = false){
 		$builder = new \AsciiTable\Builder();
 		$builder->addRows($tableData);
-			$text = "Confirming QSO".($numofqsos>1 ? 's' : '')." with ";
+			$text = "To Radio: ";
 			$text .= $current_callsign;
 			if (($via) && ($qso['via'] ?? '' != '')) {
 				$text.=' via '.substr($qso['via'],0,8);
 			}
 			$text .= "\n";
+			$text .= "Confirming QSO".($numofqsos>1 ? 's' : '')."\n";
 			$text .= $builder->renderTable();
 		if($qso['sat'] != "") {
 			if (($qso['sat_mode'] == '') && ($qso['sat_band_rx'] !== '')) {
