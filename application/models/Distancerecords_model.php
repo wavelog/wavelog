@@ -67,7 +67,7 @@ class Distancerecords_model extends CI_Model {
 				WHERE station_id IN ('.implode(', ', $logbooks_locations_array).')
 				AND COL_SAT_NAME = "'.$row->sat.'"
 				AND COL_DISTANCE = '.$row->distance.'
-				ORDER BY COL_TIME_ON DESC LIMIT 1;';
+				ORDER BY COL_TIME_ON ASC LIMIT 1;';
 			$subquery = $this->db->query($subsql);
 			$subrow = $subquery->row();
 			array_push($result, (object) ["sat" => $row->sat, "distance" => $row->distance, "time" => $subrow->time, "primarykey" => $subrow->primarykey, "callsign" => $subrow->callsign, "mode" => $subrow->mode, "grid" => $subrow->grid]);
