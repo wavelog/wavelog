@@ -10,16 +10,22 @@ class Distancerecords_model extends CI_Model {
 		if (!$logbooks_locations_array) {
 			return null;
 		}
-		$sql = 'SELECT t1.sat, t1.distance, t2.COL_TIME_ON time, t2.COL_CALL callsign, t2.COL_GRIDSQUARE grid, t2.COL_MODE mode, t2.COL_PRIMARY_KEY AS primarykey FROM
-			(
-				SELECT MAX(col_distance) distance, COL_SAT_NAME sat
-				FROM '.$this->config->item('table_name').'
-				WHERE station_id in ('.implode(', ', $logbooks_locations_array).')
-				AND COALESCE(COL_SAT_NAME, "") <> ""
-				GROUP BY col_sat_name
+		$sql = 'SELECT t1.sat, t1.distance, t2.COL_TIME_ON AS time, t2.COL_CALL AS callsign, t2.COL_GRIDSQUARE AS grid, t2.COL_MODE AS mode, t2.COL_PRIMARY_KEY AS primarykey
+			FROM (
+				SELECT MAX(col_distance) AS distance, COL_SAT_NAME AS sat
+					FROM '.$this->config->item('table_name').'
+					WHERE station_id IN ('.implode(', ', $logbooks_locations_array).')
+					AND COALESCE(COL_SAT_NAME, "") <> ""
+					GROUP BY col_sat_name
 			) t1
-			LEFT JOIN '.$this->config->item('table_name').' t2 ON t1.sat = t2.COL_SAT_NAME AND t1.distance = t2.COL_DISTANCE ORDER BY t1.distance DESC;
-		';
+			LEFT JOIN (
+				SELECT *, ROW_NUMBER() OVER (PARTITION BY COL_SAT_NAME, COL_DISTANCE ORDER BY COL_TIME_ON asc) AS rn
+					FROM '.$this->config->item('table_name').'
+			) t2
+				ON t1.sat = t2.COL_SAT_NAME
+				AND t1.distance = t2.COL_DISTANCE
+				WHERE t2.rn = 1
+				ORDER BY t1.distance DESC;';
 
 		return $this->db->query($sql);
 	}
