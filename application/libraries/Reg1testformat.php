@@ -116,7 +116,7 @@ class Reg1testformat {
          $qsopoints = intval(round($distance * $bandmultiplicator, 0));
          $result['claimedpoints'] += $qsopoints;
 
-         $qsorow .= $qsopoints . ";"; //qso points = distance * bandmultiplicatory
+         $qsorow .= $qsopoints . ";"; //qso points = distance * bandmultiplicator
          
          //determine if the exchange is new or not
          if(!in_array($row->COL_SRX_STRING, $exchanges)){
