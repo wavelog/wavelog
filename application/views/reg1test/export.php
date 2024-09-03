@@ -45,7 +45,7 @@ echo $CI->reg1testformat->header(
 );
 
 //write QSO details
-echo $qsodetails['formatted_result'];
+echo $qsodetails['formatted_qso'];
 
 //get seperate footer if QSO details won't provide one
 echo $qso_count < 1 ? $CI->reg1testformat->footer() : '';

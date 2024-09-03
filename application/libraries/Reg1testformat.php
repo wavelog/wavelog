@@ -82,7 +82,7 @@ class Reg1testformat {
 
       //define result
       $result = [];
-      $result['formatted_result'] = "";
+      $result['formatted_qso'] = "";
       $result['totalpoints'] = 0;
 
       //iterate through every QSO and construct detail format
@@ -142,7 +142,7 @@ class Reg1testformat {
          $qsorow .= ";\r\n"; //flag for duplicate QSO. Leave empty as Wavelog does not have this.
 
          //add row to overall result
-         $result['formatted_result'] .= $qsorow;
+         $result['formatted_qso'] .= $qsorow;
          
       }
 
