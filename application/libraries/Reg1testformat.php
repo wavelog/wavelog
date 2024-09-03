@@ -65,8 +65,7 @@ class Reg1testformat {
       return "\r\n";
    }
    
-   public function qsos($qsodata, $mylocator, $bandmultiplicator)
-   {
+   public function qsos($qsodata, $mylocator, $bandmultiplicator){
       //get codeigniter instance
       $CI = &get_instance();
       
