@@ -64,27 +64,78 @@ class Reg1testformat {
       //return a newline as the last line for good measure
       return "\r\n";
    }
+   
+   public function qsos($qsodata, $mylocator)
+   {
+      //get codeigniter instance
+      $CI = &get_instance();
+      
+      //load QRA library
+      if(!$CI->load->is_loaded('Qra')) {
+			$CI->load->library('Qra');
+		}
+      
+      //define helper variables
+      $locators = [];
+      $dxccs = [];
+      $exchanges = [];
 
-   public function qso($qsodata) {
+      //result string
+      $result = "";
 
-      //Construct QSO detail
-      $edi_detail = "";
+      //iterate through every QSO and construct detail format
+      foreach ($qsodata->result() as $row) {
 
-      $edi_detail .= date('ymd', strtotime($qsodata->COL_TIME_ON)) . ';';  //Date in YYMMDD format
-      $edi_detail .= date('H:i', strtotime($qsodata->COL_TIME_ON)) . ';'; // Time in HHMM format
-      $edi_detail .= substr($qsodata->COL_CALL, 0, 14) . ';'; //Callsign, maximum 14 characters
-      $edi_detail .= $this->reg1testmodecode($qsodata->COL_MODE) . ';'; //Mode-Code in REG1TEST format
-      $edi_detail .= substr($qsodata->COL_RST_SENT, 0, 3) . ';'; // Sent RST, max 3 characters
-      $edi_detail .= substr(str_pad($qsodata->COL_STX ?? "", 4, '0', STR_PAD_LEFT), 0, 4) . ';';; //Sent Number of QSO with definitely 4 digits with leading zeros
-      $edi_detail .= substr($qsodata->COL_RST_RCVD, 0, 3) . ';'; // Received RST, max 3 characters
-      $edi_detail .= substr(str_pad($qsodata->COL_SRX ?? "", 4, '0', STR_PAD_LEFT), 0, 4) . ';';; //Received Number of QSO with definitely 4 digits with leading zeros
-      $edi_detail .= substr($qsodata->COL_SRX_STRING ?? "", 0, 6) . ';'; // Received Exchange, max 6 characters
-      $edi_detail .= strtoupper(substr($qsodata->COL_GRIDSQUARE ?? "" , 0, 6)) . ';'; // Gridsquare max 6 characters
-      $edi_detail .= ';;;;' . "\r\n"; //Points and "new exchange flags" we know nothing about
+         $result .= date('ymd', strtotime($row->COL_TIME_ON)) . ';';  //Date in YYMMDD format
+         $result .= date('Hi', strtotime($row->COL_TIME_ON)) . ';'; //Time in HHMM format
+         $result .= substr($row->COL_CALL, 0, 14) . ';'; //Callsign, maximum 14 characters
+         $result .= $this->reg1testmodecode($row->COL_MODE) . ';'; //Mode-Code in REG1TEST format
+         $result .= substr($row->COL_RST_SENT, 0, 3) . ';'; //Sent RST, max 3 characters
+         $result .= substr(str_pad($row->COL_STX ?? "", 4, '0', STR_PAD_LEFT), 0, 4) . ';';; //Sent Number of QSO with definitely 4 digits with leading zeros
+         $result .= substr($row->COL_RST_RCVD, 0, 3) . ';'; //Received RST, max 3 characters
+         $result .= substr(str_pad($row->COL_SRX ?? "", 4, '0', STR_PAD_LEFT), 0, 4) . ';';; //Received Number of QSO with definitely 4 digits with leading zeros
+         $result .= substr($row->COL_SRX_STRING ?? "", 0, 6) . ';'; //Received Exchange, max 6 characters
+         $result .= strtoupper(substr($row->COL_GRIDSQUARE ?? "" , 0, 6)) . ';'; //Gridsquare max 6 characters
+         
+         //calculate or get distance in whole kilometers while determening if this is a new locator or not
+         if(!array_key_exists($row->COL_GRIDSQUARE, $locators)){
+            $newlocator = true;
+            $distance = intval($CI->qra->distance($mylocator, $row->COL_GRIDSQUARE, "K"));
+            $locators[$row->COL_GRIDSQUARE] = $distance;
+         }else{
+            $newlocator = false;
+            $distance = $locators[$row->COL_GRIDSQUARE];
+         }
+
+         $result .= $distance . ";"; //distance in whole kilometers
+         
+         //determine if the exchange is new or not
+         if(!in_array($row->COL_SRX_STRING, $exchanges)){
+            $newexchange = true;
+            array_push($exchanges, $row->COL_SRX_STRING);
+         }else{
+            $newexchange = false;
+         }
+
+         $result .= ($newexchange ? 'N' : '') . ';'; //flag if exchange is new
+         $result .= ($newlocator ? 'N' : '') . ';'; //flag if locator is new
+
+         //determine if DXCC is new or not
+         if(!in_array($row->COL_DXCC, $dxccs)){
+            $newdxcc = true;
+            array_push($dxccs, $row->COL_DXCC);
+         }else{
+            $newdxcc = false;
+         }
+
+         $result .= ($newdxcc ? 'N' : '') . ';'; //flag if DXCC is new
+
+         $result .= ";\r\n"; //flag for duplicate QSO. Leave empty as Wavelog does not have this.
+         
+      }
 
       //return QSO detail
-      return $edi_detail;
-
+      return $result;
    }
 
    public function reg1testbandstring($band){

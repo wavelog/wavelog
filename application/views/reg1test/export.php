@@ -39,10 +39,8 @@ echo $CI->reg1testformat->header(
 	$maxdistanceqso
 );
 
-//write QSO details while keeping track of the QSO number
-foreach ($qsos->result() as $row) {
-	echo $CI->reg1testformat->qso($row);
-}
+//write QSO details
+echo $CI->reg1testformat->qsos($qsos, $gridlocator);
 
-//get footer
-echo $CI->reg1testformat->footer();
+//get seperate footer if QSO details won't provide one
+echo $qso_count < 1 ? $CI->reg1testformat->footer() : '';
