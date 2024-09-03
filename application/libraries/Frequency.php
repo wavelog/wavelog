@@ -258,6 +258,10 @@ class Frequency {
 	 */
 	function qrg_conversion($frequency, $r_option = 1, $source_unit = 'Hz', $target_unit = NULL) {
 
+		if ($frequency == 0) {
+			return null;
+		}
+
 		$CI = &get_instance();
 	
 		// Get the band
