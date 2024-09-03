@@ -59,17 +59,20 @@ class Distancerecords_model extends CI_Model {
 			ORDER BY distance DESC;';
 		$query = $this->db->query($sql);
 
-      $result = array();
+		$result = array();
 
 		// With that query for oldest QSO per sat and distance
 		foreach ($query->result() as $row) {
+			$bindings=[];
 			$subsql = 'SELECT COL_SAT_NAME AS sat, COL_TIME_ON as time, COL_CALL as callsign, COL_GRIDSQUARE as grid, COL_MODE AS mode, COL_PRIMARY_KEY as primarykey
 				FROM '.$this->config->item('table_name').'
 				WHERE station_id IN ('.implode(', ', $logbooks_locations_array).')
-				AND COL_SAT_NAME = "'.$row->sat.'"
-				AND COL_DISTANCE = '.$row->distance.'
+				AND COL_SAT_NAME = ?
+				AND COL_DISTANCE = ?
 				ORDER BY COL_TIME_ON ASC LIMIT 1;';
-			$subquery = $this->db->query($subsql);
+			$bindings[]=$row->sat;
+			$bindings[]=$row->distance;
+			$subquery = $this->db->query($subsql, $bindings);
 			$subrow = $subquery->row();
 			array_push($result, (object) ["sat" => $row->sat, "distance" => $row->distance, "time" => $subrow->time, "primarykey" => $subrow->primarykey, "callsign" => $subrow->callsign, "mode" => $subrow->mode, "grid" => $subrow->grid]);
 		}
