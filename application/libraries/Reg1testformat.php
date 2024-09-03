@@ -5,7 +5,7 @@ class Reg1testformat {
 
    public function header($contest_id, $from, $to, $callsign, $gridlocator, $contestaddress1, $contestaddress2, $categoryoperator, $band, $club, $name,
                             $responsible_operator, $address1, $address2, $addresspostalcode, $addresscity, $addresscountry, $operatorphone, $operators,
-                            $soapbox, $qso_count, $sentexchange, $txequipment, $power, $rxequipment, $antenna, $antennaheight, $maxdistanceqso) {
+                            $soapbox, $qso_count, $sentexchange, $txequipment, $power, $rxequipment, $antenna, $antennaheight, $maxdistanceqso, $bandmultiplicator, $claimedpoints) {
 
       //build header
       $edi_header = "[REG1TEST;1]" . "\r\n";
@@ -35,8 +35,8 @@ class Reg1testformat {
       $edi_header .= "SRXEq=" . $rxequipment . "\r\n"; //RX Equipment description
       $edi_header .= "SAnte=" . $antenna . "\r\n"; //Antenna description
       $edi_header .= "SAntH=" . $antennaheight . "\r\n"; //Antenna height above ground
-      $edi_header .= "CQSOs=" . "\r\n"; //Arguments describe the claimed number of valid QSOs and the band multiplier. Leave empty.
-      $edi_header .= "CQSOP=" . "\r\n"; //Argument describes the claimed total number of QSO-points. Leave empty.
+      $edi_header .= "CQSOs=" . $qso_count . ';' . $bandmultiplicator . "\r\n"; //Arguments describe the claimed number of valid QSOs and the band multiplier.
+      $edi_header .= "CQSOP=" . $claimedpoints . "\r\n"; //Argument describes the claimed total number of QSO-points.
       $edi_header .= "CWWLs=" . "\r\n"; //Arguments describe the claimed number of WWLs worked, the number of bonus points claimed for each new WWL and the WWL multiplier. Leave empty.
       $edi_header .= "CWWLB=" . "\r\n"; //Argument describes the claimed total number of WWL bonus points. Leave empty.
       $edi_header .= "CExcs=" . "\r\n"; //Arguments describe the claimed number of Exchanges worked, the number of bonus points claimed for each new Exchange and the Exchange multiplier. Leave empty.
@@ -65,7 +65,7 @@ class Reg1testformat {
       return "\r\n";
    }
    
-   public function qsos($qsodata, $mylocator)
+   public function qsos($qsodata, $mylocator, $bandmultiplicator)
    {
       //get codeigniter instance
       $CI = &get_instance();
@@ -80,22 +80,27 @@ class Reg1testformat {
       $dxccs = [];
       $exchanges = [];
 
-      //result string
-      $result = "";
+      //define result
+      $result = [];
+      $result['formatted_result'] = "";
+      $result['totalpoints'] = 0;
 
       //iterate through every QSO and construct detail format
       foreach ($qsodata->result() as $row) {
 
-         $result .= date('ymd', strtotime($row->COL_TIME_ON)) . ';';  //Date in YYMMDD format
-         $result .= date('Hi', strtotime($row->COL_TIME_ON)) . ';'; //Time in HHMM format
-         $result .= substr($row->COL_CALL, 0, 14) . ';'; //Callsign, maximum 14 characters
-         $result .= $this->reg1testmodecode($row->COL_MODE) . ';'; //Mode-Code in REG1TEST format
-         $result .= substr($row->COL_RST_SENT, 0, 3) . ';'; //Sent RST, max 3 characters
-         $result .= substr(str_pad($row->COL_STX ?? "", 4, '0', STR_PAD_LEFT), 0, 4) . ';';; //Sent Number of QSO with definitely 4 digits with leading zeros
-         $result .= substr($row->COL_RST_RCVD, 0, 3) . ';'; //Received RST, max 3 characters
-         $result .= substr(str_pad($row->COL_SRX ?? "", 4, '0', STR_PAD_LEFT), 0, 4) . ';';; //Received Number of QSO with definitely 4 digits with leading zeros
-         $result .= substr($row->COL_SRX_STRING ?? "", 0, 6) . ';'; //Received Exchange, max 6 characters
-         $result .= strtoupper(substr($row->COL_GRIDSQUARE ?? "" , 0, 6)) . ';'; //Gridsquare max 6 characters
+         //result string
+         $qsorow = "";
+         
+         $qsorow .= date('ymd', strtotime($row->COL_TIME_ON)) . ';';  //Date in YYMMDD format
+         $qsorow .= date('Hi', strtotime($row->COL_TIME_ON)) . ';'; //Time in HHMM format
+         $qsorow .= substr($row->COL_CALL, 0, 14) . ';'; //Callsign, maximum 14 characters
+         $qsorow .= $this->reg1testmodecode($row->COL_MODE) . ';'; //Mode-Code in REG1TEST format
+         $qsorow .= substr($row->COL_RST_SENT, 0, 3) . ';'; //Sent RST, max 3 characters
+         $qsorow .= substr(str_pad($row->COL_STX ?? "", 3, '0', STR_PAD_LEFT), 0, 4) . ';';; //Sent Number of QSO with 3 digits with leading zeros. If number gets greater than 999, 4 characters are used at maximum
+         $qsorow .= substr($row->COL_RST_RCVD, 0, 3) . ';'; //Received RST, max 3 characters
+         $qsorow .= substr(str_pad($row->COL_SRX ?? "", 3, '0', STR_PAD_LEFT), 0, 4) . ';';; //Received Number of QSO with 3 digits with leading zeros. If number gets greater than 999, 4 characters are used at maximum
+         $qsorow .= substr($row->COL_SRX_STRING ?? "", 0, 6) . ';'; //Received Exchange, max 6 characters
+         $qsorow .= strtoupper(substr($row->COL_GRIDSQUARE ?? "" , 0, 6)) . ';'; //Gridsquare max 6 characters
          
          //calculate or get distance in whole kilometers while determening if this is a new locator or not
          if(!array_key_exists($row->COL_GRIDSQUARE, $locators)){
@@ -107,7 +112,11 @@ class Reg1testformat {
             $distance = $locators[$row->COL_GRIDSQUARE];
          }
 
-         $result .= $distance . ";"; //distance in whole kilometers
+         //determine QSO points and add those to the total
+         $qsopoints = intval(round($distance * $bandmultiplicator, 0));
+         $result['totalpoints'] += $qsopoints;
+
+         $qsorow .= $qsopoints . ";"; //qso points = distance * bandmultiplicatory
          
          //determine if the exchange is new or not
          if(!in_array($row->COL_SRX_STRING, $exchanges)){
@@ -117,8 +126,8 @@ class Reg1testformat {
             $newexchange = false;
          }
 
-         $result .= ($newexchange ? 'N' : '') . ';'; //flag if exchange is new
-         $result .= ($newlocator ? 'N' : '') . ';'; //flag if locator is new
+         $qsorow .= ($newexchange ? 'N' : '') . ';'; //flag if exchange is new
+         $qsorow .= ($newlocator ? 'N' : '') . ';'; //flag if locator is new
 
          //determine if DXCC is new or not
          if(!in_array($row->COL_DXCC, $dxccs)){
@@ -128,9 +137,12 @@ class Reg1testformat {
             $newdxcc = false;
          }
 
-         $result .= ($newdxcc ? 'N' : '') . ';'; //flag if DXCC is new
+         $qsorow .= ($newdxcc ? 'N' : '') . ';'; //flag if DXCC is new
 
-         $result .= ";\r\n"; //flag for duplicate QSO. Leave empty as Wavelog does not have this.
+         $qsorow .= ";\r\n"; //flag for duplicate QSO. Leave empty as Wavelog does not have this.
+
+         //add row to overall result
+         $result['formatted_result'] .= $qsorow;
          
       }
 

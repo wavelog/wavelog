@@ -7,6 +7,9 @@ $CI->load->library('Reg1testformat');
 header('Content-Type: text/plain; charset=utf-8');
 header('Content-Disposition: attachment; filename="' . $callsign . '-' . $contest_id . '-' . date('Ymd-Hi') . '-' . $CI->reg1testformat->reg1testbandstring($band) . '.edi"');
 
+//calculate qso details
+$qsodetails = $CI->reg1testformat->qsos($qsos, $gridlocator, $bandmultiplicator);
+
 //get header
 echo $CI->reg1testformat->header(
 	$contest_id,
@@ -36,11 +39,13 @@ echo $CI->reg1testformat->header(
 	$rxequipment,
 	$antenna,
 	$antennaheight,
-	$maxdistanceqso
+	$maxdistanceqso,
+	$bandmultiplicator,
+	$qsodetails['totalpoints']
 );
 
 //write QSO details
-echo $CI->reg1testformat->qsos($qsos, $gridlocator);
+echo $qsodetails['formatted_result'];
 
 //get seperate footer if QSO details won't provide one
 echo $qso_count < 1 ? $CI->reg1testformat->footer() : '';

@@ -211,6 +211,7 @@ class Reg1test extends CI_Controller {
 		$data['antenna'] = $this->input->post('antenna', true);
 		$data['antennaheight'] = $this->input->post('antennaheight', true);
 		$data['maxdistanceqso'] = $this->qra->getMaxDistanceQSO($station->station_gridsquare, $data['qsos'], "K");
+		$data['bandmultiplicator'] = $this->input->post('bandmultiplicator', true);
 
 		$data['soapbox'] = $this->input->post('soapbox', true);
 
