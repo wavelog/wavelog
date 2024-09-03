@@ -176,9 +176,21 @@ class Logbook_model extends CI_Model {
       $clean_county_input = null;
     }
 
+    if (is_numeric($this->input->post('ant_az'))) {
+       $ant_az = trim(xss_clean($this->input->post('ant_az')));
+    } else {
+       $ant_az = null;
+    }
+
+    if (is_numeric($this->input->post('ant_el'))) {
+       $ant_el = trim(xss_clean($this->input->post('ant_el')));
+    } else {
+       $ant_el = null;
+    }
+
     $darc_dok = trim(xss_clean($this->input->post('darc_dok')));
     $qso_locator = strtoupper(trim(xss_clean($this->input->post('locator')) ?? ''));
-	$qso_qth = trim(xss_clean($this->input->post('qth')));
+    $qso_qth = trim(xss_clean($this->input->post('qth')));
     $qso_name = trim(xss_clean($this->input->post('name')));
     $qso_age = null;
     $qso_state = $this->input->post('input_state_edit') == null ? '' : trim(xss_clean($this->input->post('input_state_edit')));
@@ -284,8 +296,8 @@ class Logbook_model extends CI_Model {
             'COL_IOTA' => $this->input->post('iota_ref')  == null ? '' : trim($this->input->post('iota_ref')),
             'COL_DISTANCE' => $this->input->post('distance'),
             'COL_FREQ_RX' => $this->parse_frequency($this->input->post('freq_display_rx')),
-            'COL_ANT_AZ' => $this->input->post('ant_az') == null ? '' : $this->input->post('ant_az'),
-            'COL_ANT_EL' => $this->input->post('ant_el') == null ? '' : $this->input->post('ant_el'),
+            'COL_ANT_AZ' => $ant_az,
+            'COL_ANT_EL' => $ant_el,
             'COL_A_INDEX' => null,
             'COL_AGE' => $qso_age,
             'COL_TEN_TEN' => null,
