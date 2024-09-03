@@ -41,7 +41,7 @@ echo $CI->reg1testformat->header(
 	$antennaheight,
 	$maxdistanceqso,
 	$bandmultiplicator,
-	$qsodetails['totalpoints']
+	$qsodetails['claimedpoints']
 );
 
 //write QSO details

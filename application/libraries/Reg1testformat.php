@@ -83,7 +83,7 @@ class Reg1testformat {
       //define result
       $result = [];
       $result['formatted_qso'] = "";
-      $result['totalpoints'] = 0;
+      $result['claimedpoints'] = 0;
 
       //iterate through every QSO and construct detail format
       foreach ($qsodata->result() as $row) {
@@ -114,7 +114,7 @@ class Reg1testformat {
 
          //determine QSO points and add those to the total
          $qsopoints = intval(round($distance * $bandmultiplicator, 0));
-         $result['totalpoints'] += $qsopoints;
+         $result['claimedpoints'] += $qsopoints;
 
          $qsorow .= $qsopoints . ";"; //qso points = distance * bandmultiplicatory
          
