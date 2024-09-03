@@ -540,19 +540,19 @@
 
               <datalist id="satellite_modes" class="satellite_modes_list"></datalist>
             </div>
+
+            <div class="mb-3">
+              <label for="ant_az"><?= __("Antenna Azimuth (°)"); ?></label>
+              <input type="number" step="0.1" min="0" max="360" class="form-control" id="ant_az" name="ant_az" />
+              <small id="azHelp" class="form-text text-muted"><?= __("Antenna azimuth in decimal degrees."); ?></small>
+            </div>
+
+            <div class="mb-3">
+              <label for="ant_el"><?= __("Antenna Elevation (°)"); ?></label>
+              <input type="number" step="0.1" min="0" max="90" class="form-control" id="ant_el" name="ant_el" />
+              <small id="elHelp" class="form-text text-muted"><?= __("Antenna elevation in decimal degrees."); ?></small>
+            </div>
           </div>
-
-           <div class="mb-3">
-             <label for="ant_az"><?= __("Antenna Azimuth (°)"); ?></label>
-             <input type="number" step="0.1" min="0" max="360" class="form-control" id="ant_az" name="ant_az" />
-             <small id="azHelp" class="form-text text-muted"><?= __("Antenna azimuth in decimal degrees."); ?></small>
-           </div>
-
-           <div class="mb-3">
-             <label for="ant_el"><?= __("Antenna Elevation (°)"); ?></label>
-             <input type="number" step="0.1" min="0" max="90" class="form-control" id="ant_el" name="ant_el" />
-             <small id="elHelp" class="form-text text-muted"><?= __("Antenna elevation in decimal degrees."); ?></small>
-           </div>
 
           <!-- Notes Panel Contents -->
           <div class="tab-pane fade" id="nav-notes" role="tabpanel" aria-labelledby="notes-tab">
