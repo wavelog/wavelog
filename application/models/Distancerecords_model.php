@@ -31,6 +31,7 @@ class Distancerecords_model extends CI_Model {
 			LEFT JOIN (
 				SELECT *, ROW_NUMBER() OVER (PARTITION BY COL_SAT_NAME, COL_DISTANCE ORDER BY COL_TIME_ON asc) AS rn
 					FROM '.$this->config->item('table_name').'
+					WHERE station_id IN ('.implode(', ', $logbooks_locations_array).')
 			) t2
 				ON t1.sat = t2.COL_SAT_NAME
 				AND t1.distance = t2.COL_DISTANCE
