@@ -683,6 +683,8 @@ $( document ).ready(function() {
 		$("#transmit_power").val(activeStationTXPower);
 		$("#sat_name").val("");
 		$("#sat_mode").val("");
+		$("#ant_az").val("");
+		$("#ant_el").val("");
 	}
 
 	/* Function: reset_fields is used to reset the fields on the QSO page */
