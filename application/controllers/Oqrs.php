@@ -31,7 +31,7 @@ class Oqrs extends CI_Controller {
 
 		$this->load->view('visitor/layout/header', $data);
 		$this->load->view('oqrs/index');
-		$this->load->view('interface_assets/footer', $data);
+		$this->load->view('interface_assets/footer');
     }
 
 	public function get_station_info() {
