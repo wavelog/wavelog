@@ -71,7 +71,7 @@
 			if ($oqrs_enabled && !$disable_oqrs) {
 			?>
 			<li class="nav-item">
-				<a class="nav-link" href="<?php echo site_url('oqrs/index/'.$slug);?>"><?= __("OQRS"); ?></a>
+				<a class="nav-link" href="<?php echo site_url('oqrs/'.$slug);?>"><?= __("OQRS"); ?></a>
 			</li>
 			<?php }
 		} ?>

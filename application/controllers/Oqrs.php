@@ -15,7 +15,43 @@ class Oqrs extends CI_Controller {
 		if (($this->config->item('disable_oqrs') ?? false)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 	}
 
-    public function index($public_slug = NULL) {
+	function _remap($method) {
+		if ($method == "get_station_info") {
+			$this->get_station_info();
+		} elseif ($method == "get_qsos") {
+			$this->get_qsos();
+		} elseif ($method == "get_qsos_grouped") {
+			$this->get_qsos_grouped();
+		} elseif ($method == "not_in_log") {
+			$this->not_in_log();
+		} elseif ($method == "save_not_in_log") {
+			$this->save_not_in_log();
+		} elseif ($method == "request_form") {
+			$this->request_form();
+		} elseif ($method == "requests") {
+			$this->requests();
+		} elseif ($method == "save_oqrs_request") {
+			$this->save_oqrs_request();
+		} elseif ($method == "save_oqrs_request_grouped") {
+			$this->save_oqrs_request_grouped();
+		} elseif ($method == "delete_oqrs_line") {
+			$this->delete_oqrs_line();
+		} elseif ($method == "search_log") {
+			$this->search_log();
+		} elseif ($method == "search_log_time_date") {
+			$this->search_log_time_date();
+		} elseif ($method == "alert_oqrs_request") {
+			$this->alert_oqrs_request();
+		} elseif ($method == "mark_oqrs_line_as_done") {
+			$this->mark_oqrs_line_as_done();
+		} elseif ($method == "search") {
+			$this->search();
+		} else {
+			$this->index($method);
+		}
+	}
+
+	public function index($public_slug = NULL) {
 		$this->load->model('oqrs_model');
 		$this->load->model('publicsearch');
 
