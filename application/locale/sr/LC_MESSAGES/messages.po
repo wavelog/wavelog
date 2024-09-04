@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-09-04 08:25+0000\n"
-"PO-Revision-Date: 2024-09-04 11:16+0000\n"
+"PO-Revision-Date: 2024-09-04 14:59+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
 "Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/"
 "main-translation/sr/>\n"
@@ -10811,18 +10811,21 @@ msgid ""
 "theme is not really straightforward and should only be done by an admin who "
 "is aware of their actions."
 msgstr ""
+"U ovom meniju možete dodati i uređivati teme WaveLoga. Proces dodavanja tema "
+"nije sasvim prost i trebalo bi da bude urađen od strane administratora koji "
+"znaju šta rade."
 
 #: application/views/themes/index.php:29
 msgid "Also, it has to be said that this feature is still under development."
-msgstr ""
+msgstr "Takođe, mora se istaći da je ovo svojstvo još uvek u razvoju."
 
 #: application/views/themes/index.php:35
 msgid "Process of adding a new theme"
-msgstr ""
+msgstr "Proces dodavanja nove teme"
 
 #: application/views/themes/index.php:41
 msgid "1. Step"
-msgstr ""
+msgstr "1. korak"
 
 #: application/views/themes/index.php:44
 #, php-format
@@ -10830,16 +10833,21 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
+"Kreirajte novu fasciklu u 'assets/css/' i učitajte 'bootstrap.min.css' "
+"datoteku koja sadrži osnovna CSS pravila za stilizovanje. Mi koristimo teme "
+"od %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
-msgstr ""
+msgstr "2. korak"
 
 #: application/views/themes/index.php:53
 msgid ""
 "Create a file in this folder called 'overrides.css'. Place your custom CSS "
 "code in there."
 msgstr ""
+"U ovom folderu kreirajte datoteku pod imenom 'overrides.css'. U nju dodajte "
+"vaš CSS kod."
 
 #: application/views/themes/index.php:59
 msgid "3. Step"
