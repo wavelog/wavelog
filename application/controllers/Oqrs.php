@@ -17,8 +17,13 @@ class Oqrs extends CI_Controller {
 
     public function index($public_slug = NULL) {
 		$this->load->model('oqrs_model');
+		$this->load->model('publicsearch');
 
-		$data['slug'] = $this->security->xss_clean($public_slug);
+      $slug = $this->security->xss_clean($public_slug);
+		$data['slug'] = $slug;
+		$data['oqrs_enabled'] = $this->oqrs_model->oqrs_enabled($slug);
+		$data['public_search_enabled'] = $this->publicsearch->public_search_enabled($slug);
+		$data['disable_oqrs'] = $this->config->item('disable_oqrs');
 		$data['stations'] = $this->oqrs_model->get_oqrs_stations();
 		$data['page_title'] = __("Log Search & OQRS");
 		$data['global_oqrs_text'] = $this->optionslib->get_option('global_oqrs_text');
@@ -26,7 +31,7 @@ class Oqrs extends CI_Controller {
 
 		$this->load->view('visitor/layout/header', $data);
 		$this->load->view('oqrs/index');
-		$this->load->view('interface_assets/footer');
+		$this->load->view('interface_assets/footer', $data);
     }
 
 	public function get_station_info() {
@@ -236,4 +241,5 @@ class Oqrs extends CI_Controller {
 		header("Content-Type: application/json");
 		print json_encode($qsos);
 	}
+
 }

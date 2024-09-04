@@ -386,4 +386,19 @@ class Oqrs_model extends CI_Model {
 			return false;
 		}
 	}
+
+	public function oqrs_enabled($slug) {
+		if ($slug) {
+			$this->load->model('Logbooks_model');
+			$logbook_id = $this->Logbooks_model->public_slug_exists_logbook_id($slug);
+			if (!empty($this->getOqrsStationsFromSlug($logbook_id))) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
+
 }
