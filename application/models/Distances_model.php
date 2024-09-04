@@ -46,6 +46,19 @@ class Distances_model extends CI_Model
 					$this->db->where('satellite.orbit', $clean_postdata['orbit']);
 				}
 
+				if ( $clean_postdata['propagation'] == 'NoSAT' ) {		// All without SAT
+					$this->db->where('col_prop_mode !=', 'SAT');
+				} elseif ($clean_postdata['propagation'] == 'None') {	// Empty Propmode
+					$this->db->group_start();
+					$this->db->where('trim(col_prop_mode)', '');
+					$this->db->or_where('col_prop_mode is null');
+					$this->db->group_end();
+				} elseif ($clean_postdata['propagation'] == 'All') {		// Dont care for propmode
+					; // No Prop-Filter
+				} else {				// Propmode set, take care of it
+					$this->db->where('col_prop_mode', $clean_postdata['propagation']);
+				}
+
 				$this->db->where('station_id', $station_id);
 				$queryresult = $this->db->get($this->config->item('table_name'));
 
@@ -231,7 +244,7 @@ class Distances_model extends CI_Model
     /*
 	 * Used to fetch QSOs from the logbook in the awards
 	 */
-	public function qso_details($distance, $band, $sat){
+	public function qso_details($distance, $band, $sat, $propagation){
 		$distarray = $this->getdistparams($distance);
 		$this->load->model('logbooks_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
@@ -255,6 +268,19 @@ class Distances_model extends CI_Model
 					$this->db->where('COL_SAT_NAME', $sat);
 				}
 			}
+		}
+
+		if ($propagation == 'NoSAT' ) {		// All without SAT
+			$this->db->where('col_prop_mode !=', 'SAT');
+		} elseif ($propagation == 'None') {	// Empty Propmode
+			$this->db->group_start();
+			$this->db->where('trim(col_prop_mode)', '');
+			$this->db->or_where('col_prop_mode is null');
+			$this->db->group_end();
+		} elseif ($propagation == 'All') {		// Dont care for propmode
+			; // No Prop-Filter
+		} else {				// Propmode set, take care of it
+			$this->db->where('col_prop_mode', $propagation);
 		}
 		$this->db->order_by("COL_TIME_ON", "desc");
 

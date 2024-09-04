@@ -661,10 +661,12 @@ msgstr "距离"
 
 #: application/controllers/Distances.php:82
 #: application/views/distances/index.php:15
+#: application/controllers/Distances.php:83
 msgid "QSOs with"
 msgstr "QSO 与"
 
 #: application/controllers/Distances.php:82
+#: application/controllers/Distances.php:83
 msgid "and band"
 msgstr "和波段"
 
@@ -2580,6 +2582,7 @@ msgstr "差异"
 #: application/views/timeplotter/index.php:47
 #: application/views/user/edit.php:633
 #: application/views/visitor/layout/footer.php:170
+#: application/views/distances/index.php:56
 msgid "All"
 msgstr "所有"
 
@@ -2624,17 +2627,20 @@ msgstr "周期"
 #: application/views/logbookadvanced/index.php:611
 #: application/views/logbookadvanced/useroptions.php:118
 #: application/views/timeline/index.php:74
+#: application/views/distances/index.php:53
 msgid "Propagation"
 msgstr "传播方式"
 
 #: application/views/accumulate/index.php:84
 #: application/views/timeline/index.php:78
+#: application/views/distances/index.php:57
 msgid "All but SAT"
 msgstr "全部（除卫星以外）"
 
 #: application/views/accumulate/index.php:85
 #: application/views/gridmap/index.php:42
 #: application/views/timeline/index.php:79
+#: application/views/distances/index.php:58
 msgid "None/Empty"
 msgstr "无/空"
 
@@ -2644,6 +2650,7 @@ msgstr "无/空"
 #: application/views/logbookadvanced/index.php:220
 #: application/views/qso/edit_ajax.php:192 application/views/qso/index.php:414
 #: application/views/timeline/index.php:80
+#: application/views/distances/index.php:59
 msgctxt "Propagation Mode"
 msgid "Aircraft Scatter"
 msgstr "Aircraft Scatter"
@@ -2654,6 +2661,7 @@ msgstr "Aircraft Scatter"
 #: application/views/logbookadvanced/index.php:221
 #: application/views/qso/edit_ajax.php:193 application/views/qso/index.php:415
 #: application/views/timeline/index.php:81
+#: application/views/distances/index.php:60
 msgctxt "Propagation Mode"
 msgid "Aurora"
 msgstr "Aurora"
@@ -2664,6 +2672,7 @@ msgstr "Aurora"
 #: application/views/logbookadvanced/index.php:222
 #: application/views/qso/edit_ajax.php:194 application/views/qso/index.php:416
 #: application/views/timeline/index.php:82
+#: application/views/distances/index.php:61
 msgctxt "Propagation Mode"
 msgid "Aurora-E"
 msgstr "Aurora-E"
@@ -2674,6 +2683,7 @@ msgstr "Aurora-E"
 #: application/views/logbookadvanced/index.php:223
 #: application/views/qso/edit_ajax.php:195 application/views/qso/index.php:417
 #: application/views/timeline/index.php:83
+#: application/views/distances/index.php:62
 msgctxt "Propagation Mode"
 msgid "Back scatter"
 msgstr "Back scatter"
@@ -2684,6 +2694,7 @@ msgstr "Back scatter"
 #: application/views/logbookadvanced/index.php:224
 #: application/views/qso/edit_ajax.php:196 application/views/qso/index.php:418
 #: application/views/timeline/index.php:84
+#: application/views/distances/index.php:63
 msgctxt "Propagation Mode"
 msgid "EchoLink"
 msgstr "EchoLink"
@@ -2694,6 +2705,7 @@ msgstr "EchoLink"
 #: application/views/logbookadvanced/index.php:225
 #: application/views/qso/edit_ajax.php:197 application/views/qso/index.php:419
 #: application/views/timeline/index.php:85
+#: application/views/distances/index.php:64
 msgctxt "Propagation Mode"
 msgid "Earth-Moon-Earth"
 msgstr "EME"
@@ -2704,6 +2716,7 @@ msgstr "EME"
 #: application/views/logbookadvanced/index.php:226
 #: application/views/qso/edit_ajax.php:198 application/views/qso/index.php:420
 #: application/views/timeline/index.php:86
+#: application/views/distances/index.php:65
 msgctxt "Propagation Mode"
 msgid "Sporadic E"
 msgstr "Sporadic E"
@@ -2714,6 +2727,7 @@ msgstr "Sporadic E"
 #: application/views/logbookadvanced/index.php:227
 #: application/views/qso/edit_ajax.php:199 application/views/qso/index.php:421
 #: application/views/timeline/index.php:87
+#: application/views/distances/index.php:66
 msgctxt "Propagation Mode"
 msgid "Field Aligned Irregularities"
 msgstr "Field Aligned Irregularities"
@@ -2724,6 +2738,7 @@ msgstr "Field Aligned Irregularities"
 #: application/views/logbookadvanced/index.php:228
 #: application/views/qso/edit_ajax.php:200 application/views/qso/index.php:422
 #: application/views/timeline/index.php:88
+#: application/views/distances/index.php:67
 msgctxt "Propagation Mode"
 msgid "F2 Reflection"
 msgstr "F2 Reflection"
@@ -2734,6 +2749,7 @@ msgstr "F2 Reflection"
 #: application/views/logbookadvanced/index.php:229
 #: application/views/qso/edit_ajax.php:201 application/views/qso/index.php:423
 #: application/views/timeline/index.php:89
+#: application/views/distances/index.php:68
 msgctxt "Propagation Mode"
 msgid "Internet-assisted"
 msgstr "Internet-assisted"
@@ -2744,6 +2760,7 @@ msgstr "Internet-assisted"
 #: application/views/logbookadvanced/index.php:230
 #: application/views/qso/edit_ajax.php:202 application/views/qso/index.php:424
 #: application/views/timeline/index.php:90
+#: application/views/distances/index.php:69
 msgctxt "Propagation Mode"
 msgid "Ionoscatter"
 msgstr "Ionoscatter"
@@ -2754,6 +2771,7 @@ msgstr "Ionoscatter"
 #: application/views/logbookadvanced/index.php:231
 #: application/views/qso/edit_ajax.php:203 application/views/qso/index.php:425
 #: application/views/timeline/index.php:91
+#: application/views/distances/index.php:70
 msgctxt "Propagation Mode"
 msgid "IRLP"
 msgstr "IRLP"
@@ -2764,6 +2782,7 @@ msgstr "IRLP"
 #: application/views/logbookadvanced/index.php:232
 #: application/views/qso/edit_ajax.php:204 application/views/qso/index.php:426
 #: application/views/timeline/index.php:92
+#: application/views/distances/index.php:71
 msgctxt "Propagation Mode"
 msgid "Meteor scatter"
 msgstr "Meteor scatter"
@@ -2774,6 +2793,7 @@ msgstr "Meteor scatter"
 #: application/views/logbookadvanced/index.php:233
 #: application/views/qso/edit_ajax.php:205 application/views/qso/index.php:427
 #: application/views/timeline/index.php:93
+#: application/views/distances/index.php:72
 msgctxt "Propagation Mode"
 msgid "Terrestrial or atmospheric repeater or transponder"
 msgstr "Terrestrial or atmospheric repeater or transponder"
@@ -2784,6 +2804,7 @@ msgstr "Terrestrial or atmospheric repeater or transponder"
 #: application/views/logbookadvanced/index.php:234
 #: application/views/qso/edit_ajax.php:206 application/views/qso/index.php:428
 #: application/views/timeline/index.php:94
+#: application/views/distances/index.php:73
 msgctxt "Propagation Mode"
 msgid "Rain scatter"
 msgstr "Rain scatter"
@@ -2794,6 +2815,7 @@ msgstr "Rain scatter"
 #: application/views/logbookadvanced/index.php:235
 #: application/views/qso/edit_ajax.php:207 application/views/qso/index.php:429
 #: application/views/timeline/index.php:95
+#: application/views/distances/index.php:74
 msgctxt "Propagation Mode"
 msgid "Satellite"
 msgstr "Satellite"
@@ -2804,6 +2826,7 @@ msgstr "Satellite"
 #: application/views/logbookadvanced/index.php:236
 #: application/views/qso/edit_ajax.php:208 application/views/qso/index.php:430
 #: application/views/timeline/index.php:96
+#: application/views/distances/index.php:75
 msgctxt "Propagation Mode"
 msgid "Trans-equatorial"
 msgstr "Trans-equatorial"
@@ -2814,6 +2837,7 @@ msgstr "Trans-equatorial"
 #: application/views/logbookadvanced/index.php:237
 #: application/views/qso/edit_ajax.php:209 application/views/qso/index.php:431
 #: application/views/timeline/index.php:97
+#: application/views/distances/index.php:76
 msgctxt "Propagation Mode"
 msgid "Tropospheric ducting"
 msgstr "Tropospheric ducting"
@@ -2842,6 +2866,7 @@ msgstr "Tropospheric ducting"
 #: application/views/timeline/index.php:276
 #: application/views/timeline/index.php:303
 #: application/views/timeplotter/index.php:59
+#: application/views/distances/index.php:79
 msgid "Show"
 msgstr "显示"
 
@@ -11486,6 +11511,10 @@ msgstr "您的呼号："
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "提交请求"
+
+#: application/controllers/Distances.php:83
+msgid "and propagation"
+msgstr ""
 
 #, php-format
 #~ msgid "%s = Serial, %s = Gridsquare, %s = Exchange."
