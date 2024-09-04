@@ -88,11 +88,6 @@
 					<a class="btn btn-primary ms-2" href="<?php echo site_url('user/login');?>"><?= __("Login"); ?></a>
 				</li>
 			<?php } ?>
-			<?php if($this->optionslib->get_option('public_login_button') != "false") { ?>  <!--  != false  causes to set it on per default -->
-				<li class="nav-item">
-					<a class="btn btn-secondary" href="https://github.com/wavelog/wavelog" target="_blank"><?= __("Test"); ?></a>
-				</li>
-			<?php } ?>
 		</ul>
 		<div class="m-2">
 			<?php if (!empty($slug)) {
