@@ -7,17 +7,17 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-09-04 08:25+0000\n"
-"PO-Revision-Date: 2024-09-02 14:12+0000\n"
+"POT-Creation-Date: 2024-09-03 17:50+0000\n"
+"PO-Revision-Date: 2024-09-04 05:07+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
-"Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/"
-"wavelog/main-translation/zh_Hans/>\n"
+"Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
+"org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.7\n"
+"X-Generator: Weblate 5.7.1\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -659,18 +659,16 @@ msgstr "卫星距离记录"
 msgid "Distances Worked"
 msgstr "距离"
 
-#: application/controllers/Distances.php:83
+#: application/controllers/Distances.php:82
 #: application/views/distances/index.php:15
+#: application/controllers/Distances.php:83
 msgid "QSOs with"
 msgstr "QSO 与"
 
+#: application/controllers/Distances.php:82
 #: application/controllers/Distances.php:83
 msgid "and band"
 msgstr "和波段"
-
-#: application/controllers/Distances.php:83
-msgid "and propagation"
-msgstr ""
 
 #: application/controllers/Dxatlas.php:19
 #: application/views/interface_assets/header.php:392
@@ -755,59 +753,71 @@ msgstr "QSL 卡片标签"
 msgid "Create Label Type"
 msgstr "创建标签类型"
 
-#: application/controllers/Labels.php:78 application/controllers/Labels.php:406
+#: application/controllers/Labels.php:78 application/controllers/Labels.php:403
 #: application/views/labels/create.php:22 application/views/labels/edit.php:22
+#: application/controllers/Labels.php:406
 msgid "Label Name"
 msgstr "标签名称"
 
-#: application/controllers/Labels.php:79 application/controllers/Labels.php:407
+#: application/controllers/Labels.php:79 application/controllers/Labels.php:404
 #: application/views/labels/create.php:28 application/views/labels/edit.php:28
-#: application/views/labels/index.php:76
+#: application/views/labels/index.php:76 application/controllers/Labels.php:407
 msgid "Paper Type"
 msgstr "纸张类型"
 
-#: application/controllers/Labels.php:80 application/controllers/Labels.php:408
+#: application/controllers/Labels.php:80 application/controllers/Labels.php:405
 #: application/views/labels/index.php:42 application/views/labels/index.php:77
+#: application/controllers/Labels.php:408
 msgid "Measurement"
 msgstr "测量单位"
 
-#: application/controllers/Labels.php:81 application/controllers/Labels.php:409
+#: application/controllers/Labels.php:81 application/controllers/Labels.php:406
+#: application/controllers/Labels.php:409
 msgid "Top Margin"
 msgstr "顶边距"
 
-#: application/controllers/Labels.php:82 application/controllers/Labels.php:410
+#: application/controllers/Labels.php:82 application/controllers/Labels.php:407
+#: application/controllers/Labels.php:410
 msgid "Left Margin"
 msgstr "左边距"
 
-#: application/controllers/Labels.php:83 application/controllers/Labels.php:411
+#: application/controllers/Labels.php:83 application/controllers/Labels.php:408
+#: application/controllers/Labels.php:411
 msgid "QSLs Horizontally"
 msgstr "QSL 水平数量"
 
-#: application/controllers/Labels.php:84 application/controllers/Labels.php:412
+#: application/controllers/Labels.php:84 application/controllers/Labels.php:409
+#: application/controllers/Labels.php:412
 msgid "QSLs Vertically"
 msgstr "QSL 垂直数量"
 
-#: application/controllers/Labels.php:85 application/controllers/Labels.php:413
+#: application/controllers/Labels.php:85 application/controllers/Labels.php:410
+#: application/controllers/Labels.php:413
 msgid "Horizontal Space"
 msgstr "水平空白间隔"
 
-#: application/controllers/Labels.php:86 application/controllers/Labels.php:414
+#: application/controllers/Labels.php:86 application/controllers/Labels.php:411
+#: application/controllers/Labels.php:414
 msgid "Vertical Space"
 msgstr "垂直空白间隔"
 
-#: application/controllers/Labels.php:87 application/controllers/Labels.php:415
+#: application/controllers/Labels.php:87 application/controllers/Labels.php:412
+#: application/controllers/Labels.php:415
 msgid "Label width"
 msgstr "标签宽度"
 
-#: application/controllers/Labels.php:88 application/controllers/Labels.php:416
+#: application/controllers/Labels.php:88 application/controllers/Labels.php:413
+#: application/controllers/Labels.php:416
 msgid "Label height"
 msgstr "标签高度"
 
-#: application/controllers/Labels.php:89 application/controllers/Labels.php:417
+#: application/controllers/Labels.php:89 application/controllers/Labels.php:414
+#: application/controllers/Labels.php:417
 msgid "Size of Font"
 msgstr "字体大小"
 
-#: application/controllers/Labels.php:90 application/controllers/Labels.php:418
+#: application/controllers/Labels.php:90 application/controllers/Labels.php:415
+#: application/controllers/Labels.php:418
 msgid "Number of QSOs on label"
 msgstr "标签上的 QSO 数量"
 
@@ -816,21 +826,25 @@ msgid "Create Paper Type"
 msgstr "创建纸张类型"
 
 #: application/controllers/Labels.php:119
+#: application/controllers/Labels.php:462
 #: application/controllers/Labels.php:465
 msgid "Paper Name"
 msgstr "纸张名称"
 
 #: application/controllers/Labels.php:120
+#: application/controllers/Labels.php:463
 #: application/controllers/Labels.php:466
 msgid "Paper Width"
 msgstr "纸张宽度"
 
 #: application/controllers/Labels.php:121
+#: application/controllers/Labels.php:464
 #: application/controllers/Labels.php:467
 msgid "Paper Height"
 msgstr "纸张高度"
 
 #: application/controllers/Labels.php:132
+#: application/controllers/Labels.php:472
 #: application/controllers/Labels.php:475
 msgid ""
 "Your paper could not be saved. Remember that it can't have the same name as "
@@ -858,26 +872,32 @@ msgstr "出现了错误，标签未生成，请检查标签和字体大小。"
 msgid "0 QSOs found for print!"
 msgstr "无 QSO 可供打印！"
 
+#: application/controllers/Labels.php:392
 #: application/controllers/Labels.php:395
 msgid "Edit Label"
 msgstr "编辑标签"
 
+#: application/controllers/Labels.php:421
 #: application/controllers/Labels.php:424
 msgid "Label was saved."
 msgstr "标签已保存。"
 
+#: application/controllers/Labels.php:429
 #: application/controllers/Labels.php:432
 msgid "Label was deleted."
 msgstr "标签已删除。"
 
+#: application/controllers/Labels.php:451
 #: application/controllers/Labels.php:454
 msgid "Edit Paper"
 msgstr "编辑纸张"
 
+#: application/controllers/Labels.php:476
 #: application/controllers/Labels.php:479
 msgid "Paper was saved."
 msgstr "纸张已保存。"
 
+#: application/controllers/Labels.php:489
 #: application/controllers/Labels.php:492
 msgid "Paper was deleted."
 msgstr "纸张已删除。"
@@ -2059,7 +2079,7 @@ msgstr "自定义统计"
 #: application/views/interface_assets/header.php:136
 #: application/views/statistics/qsltable.php:5
 msgid "QSL Statistics"
-msgstr "QSL统计信息"
+msgstr "QSL 统计信息"
 
 #: application/controllers/Themes.php:27
 #: application/views/interface_assets/header.php:280
@@ -2513,7 +2533,6 @@ msgstr "差异"
 #: application/views/csv/index.php:94 application/views/distances/index.php:21
 #: application/views/distances/index.php:36
 #: application/views/distances/index.php:46
-#: application/views/distances/index.php:56
 #: application/views/dxatlas/index.php:21
 #: application/views/dxatlas/index.php:33
 #: application/views/dxatlas/index.php:44
@@ -2563,6 +2582,7 @@ msgstr "差异"
 #: application/views/timeplotter/index.php:47
 #: application/views/user/edit.php:633
 #: application/views/visitor/layout/footer.php:170
+#: application/views/distances/index.php:56
 msgid "All"
 msgstr "所有"
 
@@ -2601,223 +2621,223 @@ msgid "Period"
 msgstr "周期"
 
 #: application/views/accumulate/index.php:80
-#: application/views/distances/index.php:53
 #: application/views/gridmap/index.php:38
 #: application/views/logbookadvanced/edit.php:14
 #: application/views/logbookadvanced/index.php:216
 #: application/views/logbookadvanced/index.php:611
 #: application/views/logbookadvanced/useroptions.php:118
 #: application/views/timeline/index.php:74
+#: application/views/distances/index.php:53
 msgid "Propagation"
 msgstr "传播方式"
 
 #: application/views/accumulate/index.php:84
-#: application/views/distances/index.php:57
 #: application/views/timeline/index.php:78
+#: application/views/distances/index.php:57
 msgid "All but SAT"
 msgstr "全部（除卫星以外）"
 
 #: application/views/accumulate/index.php:85
-#: application/views/distances/index.php:58
 #: application/views/gridmap/index.php:42
 #: application/views/timeline/index.php:79
+#: application/views/distances/index.php:58
 msgid "None/Empty"
 msgstr "无/空"
 
 #: application/views/accumulate/index.php:86 application/views/csv/index.php:95
-#: application/views/distances/index.php:59
 #: application/views/dxatlas/index.php:95
 #: application/views/gridmap/index.php:44 application/views/kml/index.php:80
 #: application/views/logbookadvanced/index.php:220
 #: application/views/qso/edit_ajax.php:192 application/views/qso/index.php:414
 #: application/views/timeline/index.php:80
+#: application/views/distances/index.php:59
 msgctxt "Propagation Mode"
 msgid "Aircraft Scatter"
 msgstr "Aircraft Scatter"
 
 #: application/views/accumulate/index.php:87 application/views/csv/index.php:96
-#: application/views/distances/index.php:60
 #: application/views/dxatlas/index.php:96
 #: application/views/gridmap/index.php:45 application/views/kml/index.php:81
 #: application/views/logbookadvanced/index.php:221
 #: application/views/qso/edit_ajax.php:193 application/views/qso/index.php:415
 #: application/views/timeline/index.php:81
+#: application/views/distances/index.php:60
 msgctxt "Propagation Mode"
 msgid "Aurora"
 msgstr "Aurora"
 
 #: application/views/accumulate/index.php:88 application/views/csv/index.php:97
-#: application/views/distances/index.php:61
 #: application/views/dxatlas/index.php:97
 #: application/views/gridmap/index.php:46 application/views/kml/index.php:82
 #: application/views/logbookadvanced/index.php:222
 #: application/views/qso/edit_ajax.php:194 application/views/qso/index.php:416
 #: application/views/timeline/index.php:82
+#: application/views/distances/index.php:61
 msgctxt "Propagation Mode"
 msgid "Aurora-E"
 msgstr "Aurora-E"
 
 #: application/views/accumulate/index.php:89 application/views/csv/index.php:98
-#: application/views/distances/index.php:62
 #: application/views/dxatlas/index.php:98
 #: application/views/gridmap/index.php:47 application/views/kml/index.php:83
 #: application/views/logbookadvanced/index.php:223
 #: application/views/qso/edit_ajax.php:195 application/views/qso/index.php:417
 #: application/views/timeline/index.php:83
+#: application/views/distances/index.php:62
 msgctxt "Propagation Mode"
 msgid "Back scatter"
 msgstr "Back scatter"
 
 #: application/views/accumulate/index.php:90 application/views/csv/index.php:99
-#: application/views/distances/index.php:63
 #: application/views/dxatlas/index.php:99
 #: application/views/gridmap/index.php:48 application/views/kml/index.php:84
 #: application/views/logbookadvanced/index.php:224
 #: application/views/qso/edit_ajax.php:196 application/views/qso/index.php:418
 #: application/views/timeline/index.php:84
+#: application/views/distances/index.php:63
 msgctxt "Propagation Mode"
 msgid "EchoLink"
 msgstr "EchoLink"
 
 #: application/views/accumulate/index.php:91
-#: application/views/csv/index.php:100 application/views/distances/index.php:64
-#: application/views/dxatlas/index.php:100
+#: application/views/csv/index.php:100 application/views/dxatlas/index.php:100
 #: application/views/gridmap/index.php:49 application/views/kml/index.php:85
 #: application/views/logbookadvanced/index.php:225
 #: application/views/qso/edit_ajax.php:197 application/views/qso/index.php:419
 #: application/views/timeline/index.php:85
+#: application/views/distances/index.php:64
 msgctxt "Propagation Mode"
 msgid "Earth-Moon-Earth"
 msgstr "EME"
 
 #: application/views/accumulate/index.php:92
-#: application/views/csv/index.php:101 application/views/distances/index.php:65
-#: application/views/dxatlas/index.php:101
+#: application/views/csv/index.php:101 application/views/dxatlas/index.php:101
 #: application/views/gridmap/index.php:50 application/views/kml/index.php:86
 #: application/views/logbookadvanced/index.php:226
 #: application/views/qso/edit_ajax.php:198 application/views/qso/index.php:420
 #: application/views/timeline/index.php:86
+#: application/views/distances/index.php:65
 msgctxt "Propagation Mode"
 msgid "Sporadic E"
 msgstr "Sporadic E"
 
 #: application/views/accumulate/index.php:93
-#: application/views/csv/index.php:102 application/views/distances/index.php:66
-#: application/views/dxatlas/index.php:102
+#: application/views/csv/index.php:102 application/views/dxatlas/index.php:102
 #: application/views/gridmap/index.php:51 application/views/kml/index.php:87
 #: application/views/logbookadvanced/index.php:227
 #: application/views/qso/edit_ajax.php:199 application/views/qso/index.php:421
 #: application/views/timeline/index.php:87
+#: application/views/distances/index.php:66
 msgctxt "Propagation Mode"
 msgid "Field Aligned Irregularities"
 msgstr "Field Aligned Irregularities"
 
 #: application/views/accumulate/index.php:94
-#: application/views/csv/index.php:103 application/views/distances/index.php:67
-#: application/views/dxatlas/index.php:103
+#: application/views/csv/index.php:103 application/views/dxatlas/index.php:103
 #: application/views/gridmap/index.php:52 application/views/kml/index.php:88
 #: application/views/logbookadvanced/index.php:228
 #: application/views/qso/edit_ajax.php:200 application/views/qso/index.php:422
 #: application/views/timeline/index.php:88
+#: application/views/distances/index.php:67
 msgctxt "Propagation Mode"
 msgid "F2 Reflection"
 msgstr "F2 Reflection"
 
 #: application/views/accumulate/index.php:95
-#: application/views/csv/index.php:104 application/views/distances/index.php:68
-#: application/views/dxatlas/index.php:104
+#: application/views/csv/index.php:104 application/views/dxatlas/index.php:104
 #: application/views/gridmap/index.php:53 application/views/kml/index.php:89
 #: application/views/logbookadvanced/index.php:229
 #: application/views/qso/edit_ajax.php:201 application/views/qso/index.php:423
 #: application/views/timeline/index.php:89
+#: application/views/distances/index.php:68
 msgctxt "Propagation Mode"
 msgid "Internet-assisted"
 msgstr "Internet-assisted"
 
 #: application/views/accumulate/index.php:96
-#: application/views/csv/index.php:105 application/views/distances/index.php:69
-#: application/views/dxatlas/index.php:105
+#: application/views/csv/index.php:105 application/views/dxatlas/index.php:105
 #: application/views/gridmap/index.php:54 application/views/kml/index.php:90
 #: application/views/logbookadvanced/index.php:230
 #: application/views/qso/edit_ajax.php:202 application/views/qso/index.php:424
 #: application/views/timeline/index.php:90
+#: application/views/distances/index.php:69
 msgctxt "Propagation Mode"
 msgid "Ionoscatter"
 msgstr "Ionoscatter"
 
 #: application/views/accumulate/index.php:97
-#: application/views/csv/index.php:106 application/views/distances/index.php:70
-#: application/views/dxatlas/index.php:106
+#: application/views/csv/index.php:106 application/views/dxatlas/index.php:106
 #: application/views/gridmap/index.php:55 application/views/kml/index.php:91
 #: application/views/logbookadvanced/index.php:231
 #: application/views/qso/edit_ajax.php:203 application/views/qso/index.php:425
 #: application/views/timeline/index.php:91
+#: application/views/distances/index.php:70
 msgctxt "Propagation Mode"
 msgid "IRLP"
 msgstr "IRLP"
 
 #: application/views/accumulate/index.php:98
-#: application/views/csv/index.php:107 application/views/distances/index.php:71
-#: application/views/dxatlas/index.php:107
+#: application/views/csv/index.php:107 application/views/dxatlas/index.php:107
 #: application/views/gridmap/index.php:56 application/views/kml/index.php:92
 #: application/views/logbookadvanced/index.php:232
 #: application/views/qso/edit_ajax.php:204 application/views/qso/index.php:426
 #: application/views/timeline/index.php:92
+#: application/views/distances/index.php:71
 msgctxt "Propagation Mode"
 msgid "Meteor scatter"
 msgstr "Meteor scatter"
 
 #: application/views/accumulate/index.php:99
-#: application/views/csv/index.php:108 application/views/distances/index.php:72
-#: application/views/dxatlas/index.php:108
+#: application/views/csv/index.php:108 application/views/dxatlas/index.php:108
 #: application/views/gridmap/index.php:57 application/views/kml/index.php:93
 #: application/views/logbookadvanced/index.php:233
 #: application/views/qso/edit_ajax.php:205 application/views/qso/index.php:427
 #: application/views/timeline/index.php:93
+#: application/views/distances/index.php:72
 msgctxt "Propagation Mode"
 msgid "Terrestrial or atmospheric repeater or transponder"
 msgstr "Terrestrial or atmospheric repeater or transponder"
 
 #: application/views/accumulate/index.php:100
-#: application/views/csv/index.php:109 application/views/distances/index.php:73
-#: application/views/dxatlas/index.php:109
+#: application/views/csv/index.php:109 application/views/dxatlas/index.php:109
 #: application/views/gridmap/index.php:58 application/views/kml/index.php:94
 #: application/views/logbookadvanced/index.php:234
 #: application/views/qso/edit_ajax.php:206 application/views/qso/index.php:428
 #: application/views/timeline/index.php:94
+#: application/views/distances/index.php:73
 msgctxt "Propagation Mode"
 msgid "Rain scatter"
 msgstr "Rain scatter"
 
 #: application/views/accumulate/index.php:101
-#: application/views/csv/index.php:110 application/views/distances/index.php:74
-#: application/views/dxatlas/index.php:110
+#: application/views/csv/index.php:110 application/views/dxatlas/index.php:110
 #: application/views/gridmap/index.php:59 application/views/kml/index.php:95
 #: application/views/logbookadvanced/index.php:235
 #: application/views/qso/edit_ajax.php:207 application/views/qso/index.php:429
 #: application/views/timeline/index.php:95
+#: application/views/distances/index.php:74
 msgctxt "Propagation Mode"
 msgid "Satellite"
 msgstr "Satellite"
 
 #: application/views/accumulate/index.php:102
-#: application/views/csv/index.php:111 application/views/distances/index.php:75
-#: application/views/dxatlas/index.php:111
+#: application/views/csv/index.php:111 application/views/dxatlas/index.php:111
 #: application/views/gridmap/index.php:60 application/views/kml/index.php:96
 #: application/views/logbookadvanced/index.php:236
 #: application/views/qso/edit_ajax.php:208 application/views/qso/index.php:430
 #: application/views/timeline/index.php:96
+#: application/views/distances/index.php:75
 msgctxt "Propagation Mode"
 msgid "Trans-equatorial"
 msgstr "Trans-equatorial"
 
 #: application/views/accumulate/index.php:103
-#: application/views/csv/index.php:112 application/views/distances/index.php:76
-#: application/views/dxatlas/index.php:112
+#: application/views/csv/index.php:112 application/views/dxatlas/index.php:112
 #: application/views/gridmap/index.php:61 application/views/kml/index.php:97
 #: application/views/logbookadvanced/index.php:237
 #: application/views/qso/edit_ajax.php:209 application/views/qso/index.php:431
 #: application/views/timeline/index.php:97
+#: application/views/distances/index.php:76
 msgctxt "Propagation Mode"
 msgid "Tropospheric ducting"
 msgstr "Tropospheric ducting"
@@ -2834,7 +2854,7 @@ msgstr "Tropospheric ducting"
 #: application/views/awards/rac/index.php:104
 #: application/views/awards/waja/index.php:116
 #: application/views/awards/was/index.php:112
-#: application/views/distances/index.php:79
+#: application/views/distances/index.php:53
 #: application/views/logbookadvanced/useroptions.php:17
 #: application/views/lookup/index.php:63
 #: application/views/stationsetup/exportmapoptions.php:6
@@ -2846,6 +2866,7 @@ msgstr "Tropospheric ducting"
 #: application/views/timeline/index.php:276
 #: application/views/timeline/index.php:303
 #: application/views/timeplotter/index.php:59
+#: application/views/distances/index.php:79
 msgid "Show"
 msgstr "显示"
 
@@ -7681,7 +7702,7 @@ msgstr "已接收(电子)"
 
 #: application/views/logbookadvanced/index.php:444
 msgid "Create ADIF"
-msgstr "创建 ADIF"
+msgstr "生成 ADIF"
 
 #: application/views/logbookadvanced/index.php:445
 msgid "Print Label"
@@ -11490,6 +11511,10 @@ msgstr "您的呼号："
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "提交请求"
+
+#: application/controllers/Distances.php:83
+msgid "and propagation"
+msgstr ""
 
 #, php-format
 #~ msgid "%s = Serial, %s = Gridsquare, %s = Exchange."

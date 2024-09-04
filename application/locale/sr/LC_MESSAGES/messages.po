@@ -9,17 +9,17 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-09-04 08:25+0000\n"
-"PO-Revision-Date: 2024-08-29 16:44+0000\n"
+"PO-Revision-Date: 2024-09-04 14:59+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
-"Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/sr/>\n"
+"Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/sr/>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.7\n"
+"X-Generator: Weblate 5.7.1\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -653,7 +653,7 @@ msgstr "Migracija datoteka je bila neuspešna. Molimo proverite Error log."
 #: application/controllers/Distancerecords.php:59
 #: application/views/interface_assets/header.php:146
 msgid "Satellite Distance Records"
-msgstr ""
+msgstr "Rakordi udaljenosti za veze preko satelita"
 
 #: application/controllers/Distances.php:17
 #: application/views/distances/index.php:5
@@ -673,7 +673,7 @@ msgstr "i opseg"
 
 #: application/controllers/Distances.php:83
 msgid "and propagation"
-msgstr ""
+msgstr "i propragacije"
 
 #: application/controllers/Dxatlas.php:19
 #: application/views/interface_assets/header.php:392
@@ -3282,7 +3282,7 @@ msgstr "Izaberi ako ADIF koji je učitan ne sadrži ove informacije."
 
 #: application/views/adif/import.php:103
 msgid "Mark imported QSOs as uploaded to eQSL Logbook"
-msgstr ""
+msgstr "Označi uvezene veze kao učitane na eQSL dnevnik"
 
 #: application/views/adif/import.php:113
 msgid "Mark imported QSOs as uploaded to HRDLog.net Logbook"
@@ -5713,7 +5713,7 @@ msgstr "neuspešno"
 
 #: application/views/cron/index.php:74
 msgid "pending"
-msgstr ""
+msgstr "na čekanju"
 
 #: application/views/cron/index.php:79
 msgid "disabled"
@@ -5811,12 +5811,15 @@ msgid ""
 "Your active Station Location isn't linked to your Logbook. Click %shere%s to "
 "do it."
 msgstr ""
+"Vaša aktivna Stanična lokacija nije povezana sa vašim Dnevnikom. Kliknite "
+"%sovde%s da to uradite."
 
 #: application/views/dashboard/index.php:97
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station linked to your Logbook. Click %shere%s to do it."
 msgstr ""
+"Nemate stanicu linkovanu sa vašim Dnevnikom. Kliknite %sovde%s da to uradite."
 
 #: application/views/dashboard/index.php:106
 #, php-format
@@ -6441,6 +6444,8 @@ msgstr "Turski"
 #: application/views/distancerecords/index.php:4
 msgid "This page lists distance records per satellite based on gridsquares."
 msgstr ""
+"Ova stranica prikazuje rekorde u udaljenosti veza za svaki satelit, na "
+"osnovu polja."
 
 #: application/views/distances/index.php:7
 #: application/views/interface_assets/footer.php:30
@@ -7974,7 +7979,7 @@ msgstr "Duple"
 
 #: application/views/logbookadvanced/index.php:519
 msgid "Invalid"
-msgstr ""
+msgstr "Neispravno"
 
 #: application/views/logbookadvanced/index.php:526
 msgid "Globe map"
@@ -9143,19 +9148,19 @@ msgstr "Vrsta rada preko satelita"
 
 #: application/views/qso/edit_ajax.php:268 application/views/qso/index.php:545
 msgid "Antenna Azimuth (°)"
-msgstr ""
+msgstr "Azimut antene (°)"
 
 #: application/views/qso/edit_ajax.php:270 application/views/qso/index.php:547
 msgid "Antenna azimuth in decimal degrees."
-msgstr ""
+msgstr "Azimut antene u decimalnim stepenima."
 
 #: application/views/qso/edit_ajax.php:274 application/views/qso/index.php:551
 msgid "Antenna Elevation (°)"
-msgstr ""
+msgstr "Elevacija antene (°)"
 
 #: application/views/qso/edit_ajax.php:276 application/views/qso/index.php:553
 msgid "Antenna elevation in decimal degrees."
-msgstr ""
+msgstr "Elevacija antene u decimalnim stepenima."
 
 #: application/views/qso/edit_ajax.php:383 application/views/qso/index.php:255
 #: application/views/qso/index.php:510 application/views/user/edit.php:599
@@ -9952,27 +9957,34 @@ msgid ""
 "Warning! You can't log the QSO List, because some QSO don't have band and/or "
 "mode defined!"
 msgstr ""
+"Upozorenje! Ne možete upisati veze u dnevnik listu veza, jer neke od njih "
+"nemaju definisane podatke o opsegu i/ili vrsti rada!"
 
 #: application/views/simplefle/index.php:33
 msgid ""
 "Warning! You can't log the QSO List, because some QSO don't have a time "
 "defined!"
 msgstr ""
+"Upozorenje! Ne možete upisati veze u dnevnik listu veza, jer neke od njih "
+"nemaju definisano vreme!"
 
 #: application/views/simplefle/index.php:34
 msgid ""
 "Attention! The Data Field containes example data. First Clear Logging "
 "Session!"
 msgstr ""
+"Pažnja! Polje Podaci sadrži podake koji su primer. Prvo očistite sesiju "
+"upisivanja u dnevnik!"
 
 #: application/views/simplefle/index.php:35
 msgid ""
 "Are you sure that you want to add these QSO to the Log and clear the session?"
 msgstr ""
+"Da li ste sigurni da želite dodati ove veze u Dnevnik i očistiti sesiju?"
 
 #: application/views/simplefle/index.php:36
 msgid "QSO Logged!"
-msgstr ""
+msgstr "Veze su upisane u dnevnik!"
 
 #: application/views/simplefle/index.php:37
 msgid "The QSO were successfully logged in the logbook!"
@@ -10646,106 +10658,109 @@ msgid ""
 "Setting a public slug allows you to share your logbook with anyone via a "
 "custom website address, this slug can contain letters & numbers only."
 msgstr ""
+"Postavljanje javnog slaga vam omogućava da delite vaš dnevnik sa svima koji "
+"imaju podešenu web sajt adresu, ovaj slag može sadržati samo brojeve i slova."
 
 #: application/views/stationsetup/visitor.php:3
 msgid "Later it looks like this:"
-msgstr ""
+msgstr "Kasnije će to izgledati ovako:"
 
 #: application/views/stationsetup/visitor.php:4
 msgid "[your slug]"
-msgstr ""
+msgstr "[vaš slag]"
 
 #: application/views/stationsetup/visitor.php:10
 msgid "Type in Public Slug choice"
-msgstr ""
+msgstr "Ukucajte u izbor Javnog slaga"
 
 #: application/views/stationsetup/visitor.php:17
 msgid "Visit Public Page"
-msgstr ""
+msgstr "Posetite javnu stranicu"
 
 #: application/views/statistics/custom.php:12
 #: application/views/statistics/custom_result.php:12
 #: application/views/statistics/index.php:28
 msgid "Explore the logbook."
-msgstr ""
+msgstr "Istražite dnevnik."
 
 #: application/views/statistics/custom.php:23
 #: application/views/statistics/custom_result.php:24
 msgid "Custom"
-msgstr ""
+msgstr "Podešeno"
 
 #: application/views/statistics/custom.php:27
 #: application/views/statistics/custom_result.php:29
 msgid "This is a work in-progress"
-msgstr ""
+msgstr "Ovo je rad koji je u toku"
 
 #: application/views/statistics/custom.php:74
 #: application/views/statistics/custom_result.php:71
 msgid "Finished your selection? time to search!"
-msgstr ""
+msgstr "Završili ste sa izborom? Vreme je za pretragu!"
 
 #: application/views/statistics/custom.php:86
 msgid "Results go here"
-msgstr ""
+msgstr "Rezultati idu ovde"
 
 #: application/views/statistics/index.php:14
 #: application/views/statistics/index.php:50
 msgid "Years"
-msgstr ""
+msgstr "Godine"
 
 #: application/views/statistics/index.php:17
 msgid "Number of QSOs worked each year"
-msgstr ""
+msgstr "Broj održanih veza svake godine"
 
 #: application/views/statistics/index.php:62
 #: application/views/statistics/index.php:99
 msgid "Unique callsigns"
-msgstr ""
+msgstr "Jedinstvenih pozivnih znakova"
 
 #: application/views/themes/add.php:4 application/views/themes/edit.php:4
 msgid "Theme Name"
-msgstr ""
+msgstr "Naziv teme"
 
 #: application/views/themes/add.php:6 application/views/themes/edit.php:6
 msgid "This is the name that is used to display the theme in the theme list."
-msgstr ""
+msgstr "Ovo je naziv koji će biti korišćen za prikaz teme u listi tema."
 
 #: application/views/themes/add.php:10 application/views/themes/edit.php:10
 msgid "Folder Name"
-msgstr ""
+msgstr "Naziv fascikle"
 
 #: application/views/themes/add.php:12 application/views/themes/edit.php:12
 msgid ""
 "This is the name of the folder where your CSS-files are placed under assets/"
 "css."
 msgstr ""
+"Ovo je naziv fascikle gde će biti smešteni vaše CSS datoteke pod assets/css."
 
 #: application/views/themes/add.php:16 application/views/themes/edit.php:16
 #: application/views/themes/index.php:84
 msgid "Theme Mode"
-msgstr ""
+msgstr "Mod teme"
 
 #: application/views/themes/add.php:18 application/views/themes/edit.php:18
 msgid "Light"
-msgstr ""
+msgstr "Svetli"
 
 #: application/views/themes/add.php:19 application/views/themes/edit.php:19
 msgid "Dark"
-msgstr ""
+msgstr "Tamni"
 
 #: application/views/themes/add.php:21
 msgid "This defines wherever the theme is a light or a dark one."
-msgstr ""
+msgstr "Ovim se definiše da li je tema svetla ili tamna."
 
 #: application/views/themes/add.php:25 application/views/themes/edit.php:25
 #: application/views/themes/index.php:85
 msgid "Header Logo"
-msgstr ""
+msgstr "Logo zaglavlja"
 
 #: application/views/themes/add.php:27 application/views/themes/add.php:33
 #: application/views/themes/edit.php:27 application/views/themes/edit.php:33
 msgid "Only PNG files with a size ratio of 1:1 are allowed."
-msgstr ""
+msgstr "Dozvoljene su samo PNG datoteke sa odnosom veličine stranica 1:1."
 
 #: application/views/themes/add.php:27 application/views/themes/edit.php:27
 #, php-format
@@ -10753,11 +10768,13 @@ msgid ""
 "This is the name of the file which is used as %s small %s Logo in the header "
 "placed in assets/logo."
 msgstr ""
+"Ovo je ime datoteke koja je korišćena kao %smali %s logo u zaglavlju smešten "
+"u assets/logo."
 
 #: application/views/themes/add.php:31 application/views/themes/edit.php:31
 #: application/views/themes/index.php:86
 msgid "Main Logo"
-msgstr ""
+msgstr "Glavni logo"
 
 #: application/views/themes/add.php:33 application/views/themes/edit.php:33
 #, php-format
@@ -10765,24 +10782,28 @@ msgid ""
 "This is the name of the file which is used as %s big %s Logo in the login "
 "screen placed in assets/logo."
 msgstr ""
+"Ovo je ime datoteke koja je korićena ko %sveliki %s logo na ekranu za "
+"prijavljanje na dnevnik u assets/logo."
 
 #: application/views/themes/add.php:36
 msgid "Add theme"
-msgstr ""
+msgstr "Dodajte temu"
 
 #: application/views/themes/edit.php:21
 msgid ""
 "This defines wherever the theme is a light or a dark one. On this basis the "
 "Logo is chosen."
 msgstr ""
+"Ovim se definiše da li je tema svetla ili tamna. Na osnovu toga će biti "
+"izabran i logo."
 
 #: application/views/themes/edit.php:36
 msgid "Update theme"
-msgstr ""
+msgstr "Ažuriranje teme"
 
 #: application/views/themes/index.php:22
 msgid "Themes list"
-msgstr ""
+msgstr "Lista tema"
 
 #: application/views/themes/index.php:28
 msgid ""
@@ -10790,18 +10811,21 @@ msgid ""
 "theme is not really straightforward and should only be done by an admin who "
 "is aware of their actions."
 msgstr ""
+"U ovom meniju možete dodati i uređivati teme WaveLoga. Proces dodavanja tema "
+"nije sasvim prost i trebalo bi da bude urađen od strane administratora koji "
+"znaju šta rade."
 
 #: application/views/themes/index.php:29
 msgid "Also, it has to be said that this feature is still under development."
-msgstr ""
+msgstr "Takođe, mora se istaći da je ovo svojstvo još uvek u razvoju."
 
 #: application/views/themes/index.php:35
 msgid "Process of adding a new theme"
-msgstr ""
+msgstr "Proces dodavanja nove teme"
 
 #: application/views/themes/index.php:41
 msgid "1. Step"
-msgstr ""
+msgstr "1. korak"
 
 #: application/views/themes/index.php:44
 #, php-format
@@ -10809,16 +10833,21 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
+"Kreirajte novu fasciklu u 'assets/css/' i učitajte 'bootstrap.min.css' "
+"datoteku koja sadrži osnovna CSS pravila za stilizovanje. Mi koristimo teme "
+"od %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"
-msgstr ""
+msgstr "2. korak"
 
 #: application/views/themes/index.php:53
 msgid ""
 "Create a file in this folder called 'overrides.css'. Place your custom CSS "
 "code in there."
 msgstr ""
+"U ovom folderu kreirajte datoteku pod imenom 'overrides.css'. U nju dodajte "
+"vaš CSS kod."
 
 #: application/views/themes/index.php:59
 msgid "3. Step"
