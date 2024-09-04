@@ -61,14 +61,14 @@ class Visitor extends CI_Controller {
 			$this->load->model('logbooks_model');
 			$this->load->model('oqrs_model');
 			$this->load->model('publicsearch');
-			
+
             if($this->logbooks_model->public_slug_exists($public_slug)) {
 
                 // Load the public view
 				$logbook_id = $this->logbooks_model->public_slug_exists_logbook_id($public_slug);
-				
+
                 if($logbook_id != false) {
-					
+
                     // Get associated station locations for mysql queries
                     $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($logbook_id);
 

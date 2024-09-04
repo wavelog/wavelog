@@ -61,7 +61,7 @@
 
 		<ul class="navbar-nav">
 		<?php
-		if (!empty($slug)) { 
+		if (!empty($slug)) {
 			$public_maps_option = $this->optionslib->get_option('public_maps') ?? 'true';
 			if ($public_maps_option == 'true') { ?>
 				<li class="nav-item">
@@ -73,7 +73,7 @@
 			<li class="nav-item">
 				<a class="nav-link" href="<?php echo site_url('oqrs/index/'.$slug);?>"><?= __("OQRS"); ?></a>
 			</li>
-			<?php } 
+			<?php }
 		} ?>
 		</ul>
 		<ul class="navbar-nav ms-auto">

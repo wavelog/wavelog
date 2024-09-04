@@ -59,7 +59,7 @@ class Oqrs extends CI_Controller {
 		$this->load->model('oqrs_model');
 		$data['result'] = $this->oqrs_model->getQueryDataGrouped($this->input->post('callsign'));
 		$data['callsign'] = $this->security->xss_clean($this->input->post('callsign'));
-		
+
 		if($this->input->post('widget') != 'true') {
 			$this->load->view('oqrs/request_grouped', $data);
 		} else {
