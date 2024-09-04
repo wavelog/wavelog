@@ -15,9 +15,10 @@ class Oqrs extends CI_Controller {
 		if (($this->config->item('disable_oqrs') ?? false)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 	}
 
-    public function index() {
+    public function index($public_slug = NULL) {
 		$this->load->model('oqrs_model');
 
+		$data['slug'] = $this->security->xss_clean($public_slug);
 		$data['stations'] = $this->oqrs_model->get_oqrs_stations();
 		$data['page_title'] = __("Log Search & OQRS");
 		$data['global_oqrs_text'] = $this->optionslib->get_option('global_oqrs_text');
