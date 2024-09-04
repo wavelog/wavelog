@@ -366,10 +366,21 @@ class Oqrs_model extends CI_Model {
 
 	public function oqrs_requests($location_list) {
 		if ($location_list != "") {
-			$sql = 'SELECT COUNT(*) AS number FROM oqrs JOIN station_profile ON oqrs.station_id = station_profile.station_id WHERE oqrs.station_id IN ('.$location_list.') AND status < 2';
+			$sql = 'SELECT status, COUNT(*) AS number FROM oqrs JOIN station_profile ON oqrs.station_id = station_profile.station_id WHERE oqrs.station_id IN ('.$location_list.') GROUP BY status';
 			$query = $this->db->query($sql);
-			$row = $query->row();
-			return $row->number;
+			$sum = 0;
+			$open = 0;
+			foreach ($query->result_array() as $row) {
+				$sum += $row['number'];
+				if ($row['status'] == 1) {
+					$open += $row['number'];
+				}
+			}
+			if ($open == 0 && $sum == 0) {
+				return 0;
+			} else {
+				return $open."/".$sum;
+			}
 		} else {
 			return 0;
 		}
