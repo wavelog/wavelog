@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-09-04 05:07+0000\n"
+"POT-Creation-Date: 2024-09-04 08:25+0000\n"
 "PO-Revision-Date: 2024-09-02 21:28+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
@@ -671,14 +671,18 @@ msgstr "Satelliten-Distanzrekorde"
 msgid "Distances Worked"
 msgstr "Gearbeitete Entfernungen"
 
-#: application/controllers/Distances.php:82
+#: application/controllers/Distances.php:83
 #: application/views/distances/index.php:15
 msgid "QSOs with"
 msgstr "QSOs mit"
 
-#: application/controllers/Distances.php:82
+#: application/controllers/Distances.php:83
 msgid "and band"
 msgstr "und Band"
+
+#: application/controllers/Distances.php:83
+msgid "and propagation"
+msgstr ""
 
 #: application/controllers/Dxatlas.php:19
 #: application/views/interface_assets/header.php:392
@@ -2561,6 +2565,7 @@ msgstr "Differenz"
 #: application/views/csv/index.php:94 application/views/distances/index.php:21
 #: application/views/distances/index.php:36
 #: application/views/distances/index.php:46
+#: application/views/distances/index.php:56
 #: application/views/dxatlas/index.php:21
 #: application/views/dxatlas/index.php:33
 #: application/views/dxatlas/index.php:44
@@ -2648,6 +2653,7 @@ msgid "Period"
 msgstr "Zeitraum"
 
 #: application/views/accumulate/index.php:80
+#: application/views/distances/index.php:53
 #: application/views/gridmap/index.php:38
 #: application/views/logbookadvanced/edit.php:14
 #: application/views/logbookadvanced/index.php:216
@@ -2658,17 +2664,20 @@ msgid "Propagation"
 msgstr "Ausbreitungsart"
 
 #: application/views/accumulate/index.php:84
+#: application/views/distances/index.php:57
 #: application/views/timeline/index.php:78
 msgid "All but SAT"
 msgstr "Alle außer SAT"
 
 #: application/views/accumulate/index.php:85
+#: application/views/distances/index.php:58
 #: application/views/gridmap/index.php:42
 #: application/views/timeline/index.php:79
 msgid "None/Empty"
 msgstr "Keine/Leer"
 
 #: application/views/accumulate/index.php:86 application/views/csv/index.php:95
+#: application/views/distances/index.php:59
 #: application/views/dxatlas/index.php:95
 #: application/views/gridmap/index.php:44 application/views/kml/index.php:80
 #: application/views/logbookadvanced/index.php:220
@@ -2679,6 +2688,7 @@ msgid "Aircraft Scatter"
 msgstr "Flugzeug-Scatter"
 
 #: application/views/accumulate/index.php:87 application/views/csv/index.php:96
+#: application/views/distances/index.php:60
 #: application/views/dxatlas/index.php:96
 #: application/views/gridmap/index.php:45 application/views/kml/index.php:81
 #: application/views/logbookadvanced/index.php:221
@@ -2689,6 +2699,7 @@ msgid "Aurora"
 msgstr "Aurora"
 
 #: application/views/accumulate/index.php:88 application/views/csv/index.php:97
+#: application/views/distances/index.php:61
 #: application/views/dxatlas/index.php:97
 #: application/views/gridmap/index.php:46 application/views/kml/index.php:82
 #: application/views/logbookadvanced/index.php:222
@@ -2699,6 +2710,7 @@ msgid "Aurora-E"
 msgstr "Aurora-E"
 
 #: application/views/accumulate/index.php:89 application/views/csv/index.php:98
+#: application/views/distances/index.php:62
 #: application/views/dxatlas/index.php:98
 #: application/views/gridmap/index.php:47 application/views/kml/index.php:83
 #: application/views/logbookadvanced/index.php:223
@@ -2709,6 +2721,7 @@ msgid "Back scatter"
 msgstr "Rückwärts-Scatter"
 
 #: application/views/accumulate/index.php:90 application/views/csv/index.php:99
+#: application/views/distances/index.php:63
 #: application/views/dxatlas/index.php:99
 #: application/views/gridmap/index.php:48 application/views/kml/index.php:84
 #: application/views/logbookadvanced/index.php:224
@@ -2719,7 +2732,8 @@ msgid "EchoLink"
 msgstr "EchoLink"
 
 #: application/views/accumulate/index.php:91
-#: application/views/csv/index.php:100 application/views/dxatlas/index.php:100
+#: application/views/csv/index.php:100 application/views/distances/index.php:64
+#: application/views/dxatlas/index.php:100
 #: application/views/gridmap/index.php:49 application/views/kml/index.php:85
 #: application/views/logbookadvanced/index.php:225
 #: application/views/qso/edit_ajax.php:197 application/views/qso/index.php:419
@@ -2729,7 +2743,8 @@ msgid "Earth-Moon-Earth"
 msgstr "Erde-Mond-Erde"
 
 #: application/views/accumulate/index.php:92
-#: application/views/csv/index.php:101 application/views/dxatlas/index.php:101
+#: application/views/csv/index.php:101 application/views/distances/index.php:65
+#: application/views/dxatlas/index.php:101
 #: application/views/gridmap/index.php:50 application/views/kml/index.php:86
 #: application/views/logbookadvanced/index.php:226
 #: application/views/qso/edit_ajax.php:198 application/views/qso/index.php:420
@@ -2739,7 +2754,8 @@ msgid "Sporadic E"
 msgstr "Sporadic E"
 
 #: application/views/accumulate/index.php:93
-#: application/views/csv/index.php:102 application/views/dxatlas/index.php:102
+#: application/views/csv/index.php:102 application/views/distances/index.php:66
+#: application/views/dxatlas/index.php:102
 #: application/views/gridmap/index.php:51 application/views/kml/index.php:87
 #: application/views/logbookadvanced/index.php:227
 #: application/views/qso/edit_ajax.php:199 application/views/qso/index.php:421
@@ -2749,7 +2765,8 @@ msgid "Field Aligned Irregularities"
 msgstr "feldausgerichtete Irregularitäten"
 
 #: application/views/accumulate/index.php:94
-#: application/views/csv/index.php:103 application/views/dxatlas/index.php:103
+#: application/views/csv/index.php:103 application/views/distances/index.php:67
+#: application/views/dxatlas/index.php:103
 #: application/views/gridmap/index.php:52 application/views/kml/index.php:88
 #: application/views/logbookadvanced/index.php:228
 #: application/views/qso/edit_ajax.php:200 application/views/qso/index.php:422
@@ -2759,7 +2776,8 @@ msgid "F2 Reflection"
 msgstr "F2-Reflexion"
 
 #: application/views/accumulate/index.php:95
-#: application/views/csv/index.php:104 application/views/dxatlas/index.php:104
+#: application/views/csv/index.php:104 application/views/distances/index.php:68
+#: application/views/dxatlas/index.php:104
 #: application/views/gridmap/index.php:53 application/views/kml/index.php:89
 #: application/views/logbookadvanced/index.php:229
 #: application/views/qso/edit_ajax.php:201 application/views/qso/index.php:423
@@ -2769,7 +2787,8 @@ msgid "Internet-assisted"
 msgstr "Internet-gestützt"
 
 #: application/views/accumulate/index.php:96
-#: application/views/csv/index.php:105 application/views/dxatlas/index.php:105
+#: application/views/csv/index.php:105 application/views/distances/index.php:69
+#: application/views/dxatlas/index.php:105
 #: application/views/gridmap/index.php:54 application/views/kml/index.php:90
 #: application/views/logbookadvanced/index.php:230
 #: application/views/qso/edit_ajax.php:202 application/views/qso/index.php:424
@@ -2779,7 +2798,8 @@ msgid "Ionoscatter"
 msgstr "Ionoscatter"
 
 #: application/views/accumulate/index.php:97
-#: application/views/csv/index.php:106 application/views/dxatlas/index.php:106
+#: application/views/csv/index.php:106 application/views/distances/index.php:70
+#: application/views/dxatlas/index.php:106
 #: application/views/gridmap/index.php:55 application/views/kml/index.php:91
 #: application/views/logbookadvanced/index.php:231
 #: application/views/qso/edit_ajax.php:203 application/views/qso/index.php:425
@@ -2789,7 +2809,8 @@ msgid "IRLP"
 msgstr "IRLP"
 
 #: application/views/accumulate/index.php:98
-#: application/views/csv/index.php:107 application/views/dxatlas/index.php:107
+#: application/views/csv/index.php:107 application/views/distances/index.php:71
+#: application/views/dxatlas/index.php:107
 #: application/views/gridmap/index.php:56 application/views/kml/index.php:92
 #: application/views/logbookadvanced/index.php:232
 #: application/views/qso/edit_ajax.php:204 application/views/qso/index.php:426
@@ -2799,7 +2820,8 @@ msgid "Meteor scatter"
 msgstr "Meteor-Scatter"
 
 #: application/views/accumulate/index.php:99
-#: application/views/csv/index.php:108 application/views/dxatlas/index.php:108
+#: application/views/csv/index.php:108 application/views/distances/index.php:72
+#: application/views/dxatlas/index.php:108
 #: application/views/gridmap/index.php:57 application/views/kml/index.php:93
 #: application/views/logbookadvanced/index.php:233
 #: application/views/qso/edit_ajax.php:205 application/views/qso/index.php:427
@@ -2809,7 +2831,8 @@ msgid "Terrestrial or atmospheric repeater or transponder"
 msgstr "Terrestrische oder atmosphärische Repeater oder Transponder"
 
 #: application/views/accumulate/index.php:100
-#: application/views/csv/index.php:109 application/views/dxatlas/index.php:109
+#: application/views/csv/index.php:109 application/views/distances/index.php:73
+#: application/views/dxatlas/index.php:109
 #: application/views/gridmap/index.php:58 application/views/kml/index.php:94
 #: application/views/logbookadvanced/index.php:234
 #: application/views/qso/edit_ajax.php:206 application/views/qso/index.php:428
@@ -2819,7 +2842,8 @@ msgid "Rain scatter"
 msgstr "Regen-Scatter"
 
 #: application/views/accumulate/index.php:101
-#: application/views/csv/index.php:110 application/views/dxatlas/index.php:110
+#: application/views/csv/index.php:110 application/views/distances/index.php:74
+#: application/views/dxatlas/index.php:110
 #: application/views/gridmap/index.php:59 application/views/kml/index.php:95
 #: application/views/logbookadvanced/index.php:235
 #: application/views/qso/edit_ajax.php:207 application/views/qso/index.php:429
@@ -2829,7 +2853,8 @@ msgid "Satellite"
 msgstr "Satellit"
 
 #: application/views/accumulate/index.php:102
-#: application/views/csv/index.php:111 application/views/dxatlas/index.php:111
+#: application/views/csv/index.php:111 application/views/distances/index.php:75
+#: application/views/dxatlas/index.php:111
 #: application/views/gridmap/index.php:60 application/views/kml/index.php:96
 #: application/views/logbookadvanced/index.php:236
 #: application/views/qso/edit_ajax.php:208 application/views/qso/index.php:430
@@ -2839,7 +2864,8 @@ msgid "Trans-equatorial"
 msgstr "Transequatorial"
 
 #: application/views/accumulate/index.php:103
-#: application/views/csv/index.php:112 application/views/dxatlas/index.php:112
+#: application/views/csv/index.php:112 application/views/distances/index.php:76
+#: application/views/dxatlas/index.php:112
 #: application/views/gridmap/index.php:61 application/views/kml/index.php:97
 #: application/views/logbookadvanced/index.php:237
 #: application/views/qso/edit_ajax.php:209 application/views/qso/index.php:431
@@ -2860,7 +2886,7 @@ msgstr "troposphärisches Ducting"
 #: application/views/awards/rac/index.php:104
 #: application/views/awards/waja/index.php:116
 #: application/views/awards/was/index.php:112
-#: application/views/distances/index.php:53
+#: application/views/distances/index.php:79
 #: application/views/logbookadvanced/useroptions.php:17
 #: application/views/lookup/index.php:63
 #: application/views/stationsetup/exportmapoptions.php:6
