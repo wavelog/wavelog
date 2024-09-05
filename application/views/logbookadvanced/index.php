@@ -306,7 +306,7 @@ $options = json_decode($options);
 								<option value=""><?= __("All"); ?></option>
 								<option value="blank"><?= __("None/Empty"); ?></option>
 								<option value="af"><?= __("Africa"); ?></option>
-								<option value="an"><?= __("Antarctiva"); ?></option>
+								<option value="an"><?= __("Antarctica"); ?></option>
 								<option value="na"><?= __("North America"); ?></option>
 								<option value="as"><?= __("Asia"); ?></option>
 								<option value="eu"><?= __("Europe"); ?></option>
