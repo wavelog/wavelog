@@ -24,13 +24,17 @@ class Publicsearch extends CI_Model {
 	}
 
 	function public_search_enabled($slug) {
-		$this->db->select('public_search');
-		$this->db->where('public_slug', $slug);
-		$query = $this->db->get('station_logbooks');
-		if ($query->result_array()[0]['public_search'] == 1) {
-			return true;
+		if ($slug) {
+			$this->db->select('public_search');
+			$this->db->where('public_slug', $slug);
+			$query = $this->db->get('station_logbooks');
+			if ($query->result_array()[0]['public_search'] == 1) {
+				return true;
+			}
+			return false;
+		} else {
+			return false;
 		}
-		return false;
 	}
 
 }

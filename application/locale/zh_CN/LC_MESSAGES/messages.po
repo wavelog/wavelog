@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-09-05 01:47+0000\n"
+"POT-Creation-Date: 2024-09-05 07:20+0000\n"
 "PO-Revision-Date: 2024-09-04 05:07+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -111,7 +111,7 @@ msgstr "激活的网格"
 #: application/controllers/Awards.php:919
 #: application/controllers/Awards.php:951
 #: application/controllers/Gridmap.php:31
-#: application/controllers/Visitor.php:374
+#: application/controllers/Visitor.php:385
 #: application/views/activators/index.php:100
 #: application/views/interface_assets/footer.php:43
 #: application/views/visitor/layout/header.php:68
@@ -120,13 +120,13 @@ msgstr "网格"
 
 #: application/controllers/Activated_gridmap.php:32
 #: application/controllers/Gridmap.php:32
-#: application/controllers/Visitor.php:375
+#: application/controllers/Visitor.php:386
 msgid "Gridsquares confirmed"
 msgstr "已确认的网格"
 
 #: application/controllers/Activated_gridmap.php:33
 #: application/controllers/Gridmap.php:33
-#: application/controllers/Visitor.php:376
+#: application/controllers/Visitor.php:387
 msgid "Gridsquares not confirmed"
 msgstr "未确认的网格"
 
@@ -597,7 +597,7 @@ msgid "SOTA CSV Export"
 msgstr "SOTA CSV 导出"
 
 #: application/controllers/Dashboard.php:123
-#: application/controllers/Visitor.php:132
+#: application/controllers/Visitor.php:134
 msgid "Dashboard"
 msgstr "仪表板"
 
@@ -723,7 +723,7 @@ msgid "Gridsquare Map"
 msgstr "网格地图"
 
 #: application/controllers/Gridmap.php:34
-#: application/controllers/Visitor.php:377
+#: application/controllers/Visitor.php:388
 msgid "Total gridsquares worked"
 msgstr "通联网格总数"
 
@@ -1633,12 +1633,12 @@ msgstr "版本信息将会重新向用户显示"
 msgid "Version Info will not be shown to any user"
 msgstr "版本信息不再会向用户显示"
 
-#: application/controllers/Oqrs.php:22 application/controllers/Oqrs.php:61
-#: application/controllers/Oqrs.php:73
+#: application/controllers/Oqrs.php:46 application/controllers/Oqrs.php:85
+#: application/controllers/Oqrs.php:97
 msgid "Log Search & OQRS"
 msgstr "查找日志 & OQRS"
 
-#: application/controllers/Oqrs.php:104
+#: application/controllers/Oqrs.php:128
 #: application/views/interface_assets/header.php:417
 msgid "OQRS Requests"
 msgstr "OQRS"
@@ -1837,8 +1837,8 @@ msgstr "卫星时钟"
 #: application/views/search/lotw_unconfirmed.php:37
 #: application/views/search/main.php:4 application/views/search/main.php:12
 #: application/views/search/main.php:33
-#: application/views/visitor/layout/header.php:99
-#: application/views/visitor/layout/header.php:100
+#: application/views/visitor/layout/header.php:97
+#: application/views/visitor/layout/header.php:98
 msgid "Search"
 msgstr "搜索"
 
@@ -2167,7 +2167,7 @@ msgstr "登录失败，请重试。"
 #: application/controllers/User.php:884
 #: application/views/interface_assets/header.php:358
 #: application/views/user/login.php:91
-#: application/views/visitor/layout/header.php:88
+#: application/views/visitor/layout/header.php:87
 msgid "Login"
 msgstr "登录"
 
@@ -2241,33 +2241,33 @@ msgid "The requested user to impersonate does not exist"
 msgstr "切换的用户不存在"
 
 #: application/controllers/Visitor.php:50
-#: application/controllers/Visitor.php:79
-#: application/controllers/Visitor.php:142
-#: application/controllers/Visitor.php:169
-#: application/controllers/Visitor.php:199
-#: application/controllers/Visitor.php:478
+#: application/controllers/Visitor.php:81
+#: application/controllers/Visitor.php:148
+#: application/controllers/Visitor.php:175
+#: application/controllers/Visitor.php:210
+#: application/controllers/Visitor.php:472
 #: application/controllers/Widgets.php:40
 msgid "Unknown Public Page."
 msgstr "公开页面未知。"
 
-#: application/controllers/Visitor.php:74
-#: application/controllers/Visitor.php:165
-#: application/controllers/Visitor.php:195
-#: application/controllers/Visitor.php:474
+#: application/controllers/Visitor.php:76
+#: application/controllers/Visitor.php:171
+#: application/controllers/Visitor.php:206
+#: application/controllers/Visitor.php:468
 #: application/controllers/Widgets.php:36
 msgid "Empty Logbook"
 msgstr "日志为空"
 
-#: application/controllers/Visitor.php:205
+#: application/controllers/Visitor.php:216
 msgid "Satellite Gridsquare Map"
 msgstr "卫星网格地图"
 
-#: application/controllers/Visitor.php:411
+#: application/controllers/Visitor.php:405
 #: application/views/stationsetup/stationsetup.php:35
 msgid "Public Search"
 msgstr "公开搜索"
 
-#: application/controllers/Visitor.php:444
+#: application/controllers/Visitor.php:438
 msgid "Export Map"
 msgstr "导出地图"
 
@@ -6968,7 +6968,7 @@ msgstr "日志"
 #: application/views/interface_assets/header.php:344
 #: application/views/logbookadvanced/index.php:453
 #: application/views/oqrs/index.php:27 application/views/user/edit.php:441
-#: application/views/visitor/layout/header.php:97
+#: application/views/visitor/layout/header.php:95
 msgid "Search Callsign"
 msgstr "查询呼号"
 
@@ -11403,15 +11403,15 @@ msgstr "eQSL 图片"
 msgid "CSV"
 msgstr "CSV"
 
-#: application/views/visitor/layout/header.php:75
+#: application/views/visitor/layout/header.php:74
 msgid "OQRS"
 msgstr "OQRS"
 
-#: application/views/visitor/layout/header.php:83
+#: application/views/visitor/layout/header.php:82
 msgid "Visit Wavelog on Github"
 msgstr "访问 Wavelog GitHub 页面"
 
-#: application/views/visitor/layout/header.php:97
+#: application/views/visitor/layout/header.php:95
 msgid "Please enter a callsign!"
 msgstr "请输入呼号！"
 

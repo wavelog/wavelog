@@ -59,14 +59,16 @@ class Visitor extends CI_Controller {
 			$this->load->model('cat');
             $this->load->model('logbook_model');
 			$this->load->model('logbooks_model');
-			
+			$this->load->model('oqrs_model');
+			$this->load->model('publicsearch');
+
             if($this->logbooks_model->public_slug_exists($public_slug)) {
 
                 // Load the public view
 				$logbook_id = $this->logbooks_model->public_slug_exists_logbook_id($public_slug);
-				
+
                 if($logbook_id != false) {
-					
+
                     // Get associated station locations for mysql queries
                     $logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($logbook_id);
 
@@ -132,6 +134,10 @@ class Visitor extends CI_Controller {
                 $data['page_title'] = __("Dashboard");
                 $data['slug'] = $public_slug;
 
+                $data['oqrs_enabled'] = $this->oqrs_model->oqrs_enabled($public_slug);
+                $data['public_search_enabled'] = $this->publicsearch->public_search_enabled($public_slug);
+                $data['disable_oqrs'] = $this->config->item('disable_oqrs');
+
                 $this->load->view('visitor/layout/header', $data);
                 $this->load->view('visitor/index');
                 $this->load->view('visitor/layout/footer');
@@ -180,8 +186,13 @@ class Visitor extends CI_Controller {
     public function satellites()
 	{
 
+        $this->load->model('publicsearch');
+        $this->load->model('oqrs_model');
         $slug = $this->security->xss_clean($this->uri->segment(3));
         $data['slug'] = $slug;
+        $data['public_search_enabled'] = $this->publicsearch->public_search_enabled($slug);
+        $data['oqrs_enabled'] = $this->oqrs_model->oqrs_enabled($slug);
+        $data['disable_oqrs'] = $this->config->item('disable_oqrs');
         $this->load->model('logbooks_model');
         if($this->logbooks_model->public_slug_exists($slug)) {
             // Load the public view
@@ -383,31 +394,14 @@ class Visitor extends CI_Controller {
 		$this->load->view('visitor/layout/footer');
 	}
 
-	public function oqrs_enabled($slug) {
-		$this->load->model('oqrs_model');
-		$this->load->model('Logbooks_model');
-		$logbook_id = $this->Logbooks_model->public_slug_exists_logbook_id($slug);
-		if (!empty($this->oqrs_model->getOqrsStationsFromSlug($logbook_id))) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	public function public_search_enabled($slug) {
-		$this->load->model('Logbooks_model');
-		$logbook_id = $this->Logbooks_model->public_slug_exists_logbook_id($slug);
-		if ($this->Logbooks_model->public_search_enabled($logbook_id)  == 1) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
 	public function search() {
+		$this->load->model('publicsearch');
+		$this->load->model('oqrs_model');
 		$callsign = trim($this->security->xss_clean($this->input->post('callsign')));
 		$public_slug = $this->security->xss_clean($this->input->post('public_slug'));
-		$this->load->model('publicsearch');
+		$data['public_search_enabled'] = $this->publicsearch->public_search_enabled($public_slug);
+		$data['oqrs_enabled'] = $this->oqrs_model->oqrs_enabled($public_slug);
+		$data['disable_oqrs'] = $this->config->item('disable_oqrs');
 		$data['page_title'] = __("Public Search");
 		$data['callsign'] = $callsign;
 		$data['slug'] = $public_slug;

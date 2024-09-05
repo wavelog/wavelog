@@ -116,18 +116,21 @@ msgstr "Mapa Gridsquare activadas"
 #: application/views/activators/index.php:100
 #: application/views/interface_assets/footer.php:43
 #: application/views/visitor/layout/header.php:68
+#: application/controllers/Visitor.php:385
 msgid "Gridsquares"
 msgstr "Gridsquares"
 
 #: application/controllers/Activated_gridmap.php:32
 #: application/controllers/Gridmap.php:32
 #: application/controllers/Visitor.php:375
+#: application/controllers/Visitor.php:386
 msgid "Gridsquares confirmed"
 msgstr "Gridsquares confirmadas"
 
 #: application/controllers/Activated_gridmap.php:33
 #: application/controllers/Gridmap.php:33
 #: application/controllers/Visitor.php:376
+#: application/controllers/Visitor.php:387
 msgid "Gridsquares not confirmed"
 msgstr "Gridsquares não confirmadas"
 
@@ -601,6 +604,7 @@ msgstr "Exportar CSV SOTA"
 
 #: application/controllers/Dashboard.php:123
 #: application/controllers/Visitor.php:132
+#: application/controllers/Visitor.php:134
 msgid "Dashboard"
 msgstr "Dashboard"
 
@@ -728,6 +732,7 @@ msgstr "Mapa Gridsquare"
 
 #: application/controllers/Gridmap.php:34
 #: application/controllers/Visitor.php:377
+#: application/controllers/Visitor.php:388
 msgid "Total gridsquares worked"
 msgstr "Total de gridsquares trabalhadas"
 
@@ -1682,12 +1687,14 @@ msgid "Version Info will not be shown to any user"
 msgstr "Versão Informação não será mostrado a nenhum utilizador"
 
 #: application/controllers/Oqrs.php:22 application/controllers/Oqrs.php:61
-#: application/controllers/Oqrs.php:73
+#: application/controllers/Oqrs.php:73 application/controllers/Oqrs.php:46
+#: application/controllers/Oqrs.php:85 application/controllers/Oqrs.php:97
 msgid "Log Search & OQRS"
 msgstr "Pesquisa do Log & OQRS"
 
 #: application/controllers/Oqrs.php:104
 #: application/views/interface_assets/header.php:417
+#: application/controllers/Oqrs.php:128
 msgid "OQRS Requests"
 msgstr "Pedidos OQRS"
 
@@ -1892,6 +1899,8 @@ msgstr "Tempos dos satélite"
 #: application/views/search/main.php:33
 #: application/views/visitor/layout/header.php:99
 #: application/views/visitor/layout/header.php:100
+#: application/views/visitor/layout/header.php:97
+#: application/views/visitor/layout/header.php:98
 msgid "Search"
 msgstr "Procurar"
 
@@ -2233,6 +2242,7 @@ msgstr "O login falhou. Tente novamente."
 #: application/views/interface_assets/header.php:358
 #: application/views/user/login.php:91
 #: application/views/visitor/layout/header.php:88
+#: application/views/visitor/layout/header.php:87
 msgid "Login"
 msgstr "Iniciar sessão"
 
@@ -2318,6 +2328,11 @@ msgstr "O utilizador solicitado para imitar não existe"
 #: application/controllers/Visitor.php:199
 #: application/controllers/Visitor.php:478
 #: application/controllers/Widgets.php:40
+#: application/controllers/Visitor.php:81
+#: application/controllers/Visitor.php:148
+#: application/controllers/Visitor.php:175
+#: application/controllers/Visitor.php:210
+#: application/controllers/Visitor.php:472
 msgid "Unknown Public Page."
 msgstr "Página pública desconhecida."
 
@@ -2326,19 +2341,26 @@ msgstr "Página pública desconhecida."
 #: application/controllers/Visitor.php:195
 #: application/controllers/Visitor.php:474
 #: application/controllers/Widgets.php:36
+#: application/controllers/Visitor.php:76
+#: application/controllers/Visitor.php:171
+#: application/controllers/Visitor.php:206
+#: application/controllers/Visitor.php:468
 msgid "Empty Logbook"
 msgstr "Logbook vazio"
 
 #: application/controllers/Visitor.php:205
+#: application/controllers/Visitor.php:216
 msgid "Satellite Gridsquare Map"
 msgstr "Mapa Gridsquare de satélite"
 
 #: application/controllers/Visitor.php:411
 #: application/views/stationsetup/stationsetup.php:35
+#: application/controllers/Visitor.php:405
 msgid "Public Search"
 msgstr "Pesquisa pública"
 
 #: application/controllers/Visitor.php:444
+#: application/controllers/Visitor.php:438
 msgid "Export Map"
 msgstr "Exportar mapa"
 
@@ -7233,6 +7255,7 @@ msgstr "Log"
 #: application/views/logbookadvanced/index.php:453
 #: application/views/oqrs/index.php:27 application/views/user/edit.php:441
 #: application/views/visitor/layout/header.php:97
+#: application/views/visitor/layout/header.php:95
 msgid "Search Callsign"
 msgstr "Pesquisar Indicativo"
 
@@ -11870,14 +11893,17 @@ msgid "CSV"
 msgstr "CSV"
 
 #: application/views/visitor/layout/header.php:75
+#: application/views/visitor/layout/header.php:74
 msgid "OQRS"
 msgstr "OQRS"
 
 #: application/views/visitor/layout/header.php:83
+#: application/views/visitor/layout/header.php:82
 msgid "Visit Wavelog on Github"
 msgstr "Visitar o Wavelog no Github"
 
 #: application/views/visitor/layout/header.php:97
+#: application/views/visitor/layout/header.php:95
 msgid "Please enter a callsign!"
 msgstr "Por favor, introduza um indicativo!"
 
