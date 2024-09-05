@@ -127,15 +127,15 @@ class Oqrs_model extends CI_Model {
 		$qsos = $postdata['qsos'];
 		foreach($qsos as $qso) {
 			$data = array(
-				'date' 				=> xss_clean($qso[0]),
-				'time'	 			=> xss_clean($qso[1]),
-				'band' 				=> xss_clean($qso[2]),
-				'mode' 				=> xss_clean($qso[3]),
-				'requestcallsign' 	=> xss_clean($postdata['callsign']),
-				'station_id' 		=> xss_clean($postdata['station_id']),
-				'note' 				=> xss_clean($postdata['message']),
-				'email' 			=> xss_clean($postdata['email']),
-				'qslroute' 			=> xss_clean($postdata['qslroute']),
+				'date' 				=> $qso[0],
+				'time'	 			=> $qso[1],
+				'band' 				=> $qso[2],
+				'mode' 				=> $qso[3],
+				'requestcallsign' 	=> $postdata['callsign'],
+				'station_id' 		=> $postdata['station_id'],
+				'note' 				=> $postdata['message'],
+				'email' 			=> $postdata['email'],
+				'qslroute' 			=> $postdata['qslroute'],
 				'status' 			=> '0',
 			);
 
@@ -147,8 +147,8 @@ class Oqrs_model extends CI_Model {
 			$data['qsoid'] = $qsoid;
 	
 			$this->db->insert('oqrs', $data);
-			if(!in_array(xss_clean($postdata['station_id']), $station_ids)){
-				array_push($station_ids, xss_clean($postdata['station_id']));
+			if(!in_array($postdata['station_id'], $station_ids)){
+				array_push($station_ids, $postdata['station_id']);
 			}
 		}
 
@@ -160,15 +160,15 @@ class Oqrs_model extends CI_Model {
 		$qsos = $postdata['qsos'];
 		foreach($qsos as $qso) {
 			$data = array(
-				'date' 				=> xss_clean($qso[0]),
-				'time'	 			=> xss_clean($qso[1]),
-				'band' 				=> xss_clean($qso[2]),
-				'mode' 				=> xss_clean($qso[3]),
-				'requestcallsign' 	=> xss_clean($postdata['callsign']),
-				'station_id' 		=> xss_clean($qso[4]),
-				'note' 				=> xss_clean($postdata['message']),
-				'email' 			=> xss_clean($postdata['email']),
-				'qslroute' 			=> xss_clean($postdata['qslroute']),
+				'date' 				=> $qso[0],
+				'time'	 			=> $qso[1],
+				'band' 				=> $qso[2],
+				'mode' 				=> $qso[3],
+				'requestcallsign' 	=> $postdata['callsign'],
+				'station_id' 		=> $qso[4],
+				'note' 				=> $postdata['message'],
+				'email' 			=> $postdata['email'],
+				'qslroute' 			=> $postdata['qslroute'],
 				'status' 			=> '0',
 			);
 
@@ -181,8 +181,8 @@ class Oqrs_model extends CI_Model {
 	
 			$this->db->insert('oqrs', $data);
 			
-			if(!in_array(xss_clean($qso[4]), $station_ids)){
-				array_push($station_ids, xss_clean($qso[4]));
+			if(!in_array($qso[4], $station_ids)){
+				array_push($station_ids, $qso[4]);
 			}
 		}
 		return $station_ids;
@@ -207,14 +207,14 @@ class Oqrs_model extends CI_Model {
 		$qsos = $postdata['qsos'];
 		foreach($qsos as $qso) {
 			$data = array(
-				'date' 				=> xss_clean($qso[0]),
-				'time'	 			=> xss_clean($qso[1]),
-				'band' 				=> xss_clean($qso[2]),
-				'mode' 				=> xss_clean($qso[3]),
-				'requestcallsign' 	=> xss_clean($postdata['callsign']),
-				'station_id' 		=> xss_clean($postdata['station_id']),
-				'note' 				=> xss_clean($postdata['message']),
-				'email' 			=> xss_clean($postdata['email']),
+				'date' 				=> $qso[0],
+				'time'	 			=> $qso[1],
+				'band' 				=> $qso[2],
+				'mode' 				=> $qso[3],
+				'requestcallsign' 	=> $postdata['callsign'],
+				'station_id' 		=> $postdata['station_id'],
+				'note' 				=> $postdata['message'],
+				'email' 			=> $postdata['email'],
 				'qslroute' 			=> '',
 				'status' 			=> '1',
 				'qsoid' 			=> '0',
