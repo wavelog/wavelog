@@ -59,9 +59,17 @@ class Logbookadvanced_model extends CI_Model {
 					join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
 					where station_profile.user_id = ?
 					and (col_time_on is null or cast(col_time_on as date) = '1970-01-01')
+
+					union all
+
+					select col_primary_key from " . $this->config->item('table_name') . "
+					join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
+					where station_profile.user_id = ?
+					and coalesce(col_cont, '') <> ''
+					and col_cont NOT IN ('AF', 'AN', 'AS', 'EU', 'NA', 'OC', 'SA')
 				) as x";
 
-			$id_query = $this->db->query($id_sql, [$searchCriteria['user_id'], $searchCriteria['user_id'], $searchCriteria['user_id'], $searchCriteria['user_id']]);
+			$id_query = $this->db->query($id_sql, [$searchCriteria['user_id'], $searchCriteria['user_id'], $searchCriteria['user_id'], $searchCriteria['user_id'], $searchCriteria['user_id']]);
 
 			$ids2fetch = '';
 
@@ -274,6 +282,19 @@ class Logbookadvanced_model extends CI_Model {
 		if ($searchCriteria['contest'] !== '') {
 			$conditions[] = "COL_CONTEST_ID like ?";
 			$binding[] = '%'.$searchCriteria['contest'].'%';
+		}
+
+		if ($searchCriteria['continent'] !== '') {
+			if ($searchCriteria['continent'] == 'invalid') {
+				$conditions[] = "COL_CONT NOT IN ('AF', 'AN', 'AS', 'EU', 'NA', 'OC', 'SA')";
+				$conditions[] = "coalesce(COL_CONT, '') <> ''";
+			} else if ($searchCriteria['continent'] == 'blank') {
+				$conditions[] = "coalesce(COL_CONT, '') = ''";
+			}
+			else {
+				$conditions[] = "COL_CONT = ?";
+				$binding[] = $searchCriteria['continent'];
+			}
 		}
 
 		if (($searchCriteria['ids'] ?? '') !== '') {

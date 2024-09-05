@@ -2,6 +2,9 @@ var callBookProcessingDialog = null;
 var inCallbookProcessing = false;
 var inCallbookItemProcessing = false;
 
+// Array of valid continent codes
+const validContinents = ['AF', 'EU', 'AS', 'SA', 'NA', 'OC', 'AN'];
+
 $('#band').change(function () {
 	var band = $("#band option:selected").text();
 	if (band != "SAT") {
@@ -117,6 +120,9 @@ function updateRow(qso) {
 	}
 	if (user_options.myrefs.show == "true"){
 		cells.eq(c++).text(qso.deRefs);
+	}
+	if (user_options.continent.show == "true"){
+		cells.eq(c++).text(qso.continent);
 	}
 
 	$('[data-bs-toggle="tooltip"]').tooltip();
@@ -263,6 +269,17 @@ function loadQSOTable(rows) {
 		if (user_options.myrefs.show == "true"){
 			data.push(qso.deRefs);
 		}
+		if (user_options.continent.show == "true"){
+			if (qso.continent === '') {
+				data.push(qso.continent);
+			} else if (!validContinents.includes(qso.continent.toUpperCase())) {
+				// Check if qso.continent is not in the list of valid continents
+				data.push('<span class="bg-danger">Invalid continent</span> ' + qso.continent);
+			} else {
+				// Continent is valid
+				data.push(qso.continent);
+			}
+		}
 
 		let createdRow = table.row.add(data).index();
 		table.rows(createdRow).nodes().to$().data('qsoID', qso.qsoID);
@@ -404,7 +421,8 @@ $(document).ready(function () {
 				qslimages: this.qslimages.value,
 				dupes: this.dupes.value,
 				contest: this.contest.value,
-				invalid: this.invalid.value
+				invalid: this.invalid.value,
+				continent: this.continent.value,
 			},
 			dataType: 'json',
 			success: function (data) {
@@ -1104,6 +1122,7 @@ function saveOptions() {
 			dok: $('input[name="dok"]').is(':checked') ? true : false,
 			wwff: $('input[name="wwff"]').is(':checked') ? true : false,
 			sig: $('input[name="sig"]').is(':checked') ? true : false,
+			continent: $('input[name="continent"]').is(':checked') ? true : false,
 			gridsquare_layer: $('input[name="gridsquareoverlay"]').is(':checked') ? true : false,
 			path_lines: $('input[name="pathlines"]').is(':checked') ? true : false,
 			cqzone_layer: $('input[name="cqzones"]').is(':checked') ? true : false,
