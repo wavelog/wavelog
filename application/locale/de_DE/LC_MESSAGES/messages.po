@@ -18,11 +18,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-09-05 17:27+0000\n"
-"PO-Revision-Date: 2024-09-04 11:16+0000\n"
+"POT-Creation-Date: 2024-09-05 15:14+0000\n"
+"PO-Revision-Date: 2024-09-05 17:33+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/de/>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -4140,11 +4140,11 @@ msgstr "Inklusive gelöschte"
 #: application/views/awards/dxcc/index.php:87
 #: application/views/awards/iota/index.php:61
 #: application/views/bandmap/index.php:37 application/views/bandmap/list.php:80
-#: application/views/logbookadvanced/edit.php:144
-#: application/views/logbookadvanced/index.php:309
 #: application/views/options/dxcluster.php:56
 #: application/views/qso/edit_ajax.php:243 application/views/qso/index.php:381
 #: application/views/view_log/qso.php:253
+#: application/views/logbookadvanced/edit.php:144
+#: application/views/logbookadvanced/index.php:309
 msgid "Antarctica"
 msgstr "Antarktis"
 
@@ -7592,6 +7592,11 @@ msgstr "SAT Modus"
 msgid "Band RX"
 msgstr "Band RX"
 
+#: application/views/logbookadvanced/edit.php:144
+#: application/views/logbookadvanced/index.php:309
+msgid "Antarctiva"
+msgstr "Antarktis"
+
 #: application/views/logbookadvanced/index.php:11
 #: application/views/logbookadvanced/useroptions.php:162
 msgctxt "Map Options"
@@ -8504,11 +8509,13 @@ msgstr ""
 
 #: application/views/options/appearance.php:107
 msgid "Public Login Button"
-msgstr ""
+msgstr "Öffentlicher Anmelde-Button"
 
 #: application/views/options/appearance.php:112
 msgid "This enables the button to login to Wavelog in the public view"
 msgstr ""
+"Dies aktiviert die Schaltfläche, um sich im öffentlichen Bereich bei Wavelog "
+"anzumelden"
 
 #: application/views/options/dxcluster.php:38
 msgid "Provider of DXClusterCache"
@@ -9636,13 +9643,15 @@ msgstr "Höhe der Antenne über dem Boden."
 
 #: application/views/reg1test/index.php:134
 msgid "Band multiplicator"
-msgstr ""
+msgstr "Bandmultiplikator"
 
 #: application/views/reg1test/index.php:136
 msgid ""
 "Band multiplicator. This is usually 1. Only change this if necessary "
 "according to the contest scoring rules."
 msgstr ""
+"Band Multiplikator. Dieser ist normalerweise 1. Nur ändern, wenn es laut den "
+"Contest-Wertungsregeln notwendig ist."
 
 #: application/views/reg1test/index.php:141
 msgid "Any other remarks."
