@@ -141,7 +141,7 @@
 		<select style="display:none" id="editContinent" name="continent" class="form-select w-auto form-select-sm w-auto">
 			<option value=""><?= __("None/Empty"); ?></option>
 			<option value="AF"><?= __("Africa"); ?></option>
-			<option value="AN"><?= __("Antarctiva"); ?></option>
+			<option value="AN"><?= __("Antarctica"); ?></option>
 			<option value="NA"><?= __("North America"); ?></option>
 			<option value="AS"><?= __("Asia"); ?></option>
 			<option value="EU"><?= __("Europe"); ?></option>
