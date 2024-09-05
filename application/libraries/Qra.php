@@ -77,7 +77,7 @@ class Qra {
 	Needs following passed
 
 	$coords[]=array('lat' => '53.344104','lng'=>'-6.2674937');
-	$coords[]=array('lat' => '51.5081289','lng'=>'-0.128005');    
+	$coords[]=array('lat' => '51.5081289','lng'=>'-0.128005');
 
 */
 
@@ -123,11 +123,11 @@ class Qra {
 
 	/**
 	 * Function to calculate the maximum distance in a bunch of QSOs
-	 * 
+	 *
 	 * @param string 	$mylocator	Maidenhead locator of the station
 	 * @param object 	$qsos		Object of QSOs
 	 * @param string 	$unit		Unit of measurement
-	 * 	
+	 * 
 	 * @return object 	$maxdistanceqso		Object of the QSO with the maximum distance
 	 * @return float 	$maxdistance		Maximum distance
 	 */
@@ -144,6 +144,10 @@ class Qra {
 
 		//iterate through all qsos
 		foreach ($qsos->result() as $row) {
+
+			if (empty($row->COL_GRIDSQUARE)) {
+				continue;
+			}
 
 			//get distance in kilometers
 			$distance = $this->distance($mylocator, $row->COL_GRIDSQUARE, $unit);
