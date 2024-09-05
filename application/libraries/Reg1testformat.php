@@ -46,12 +46,12 @@ class Reg1testformat {
       $edi_header .= "CToSc=" . "\r\n"; //Argument describes the total claimed score. Leave empty.
 
       //set QSO info for QSO with max distance only if we can determine it
-      if($maxdistanceqso['qso'] != null){
+      if(!empty($maxdistanceqso['qso'])){
          $edi_header .= "CODXC=" . strtoupper($maxdistanceqso['qso']->COL_CALL) . ";" . substr(strtoupper($maxdistanceqso['qso']->COL_GRIDSQUARE), 0, 6) . ";" . intval($maxdistanceqso['distance']) . "\r\n"; //Arguments describe the claimed ODX contact call, WWL and distance.
       }else{
          $edi_header .= "CODXC=" . "\r\n"; //Arguments describe the claimed ODX contact call, WWL and distance. Leave empty.
       }
-      
+
       $edi_header .= "[Remarks]" . "\r\n" . $soapbox . "\r\n"; //Remarks
       $edi_header .= "[QSORecords;" . $qso_count . "]" . "\r\n"; //QSO Header and QSO Count
 
@@ -64,16 +64,16 @@ class Reg1testformat {
       //return a newline as the last line for good measure
       return "\r\n";
    }
-   
+
    public function qsos($qsodata, $mylocator, $bandmultiplicator){
       //get codeigniter instance
       $CI = &get_instance();
-      
+
       //load QRA library
       if(!$CI->load->is_loaded('Qra')) {
 			$CI->load->library('Qra');
 		}
-      
+
       //define helper variables
       $locators = [];
       $dxccs = [];
@@ -89,7 +89,7 @@ class Reg1testformat {
 
          //result string
          $qsorow = "";
-         
+
          $qsorow .= date('ymd', strtotime($row->COL_TIME_ON)) . ';';  //Date in YYMMDD format
          $qsorow .= date('Hi', strtotime($row->COL_TIME_ON)) . ';'; //Time in HHMM format
          $qsorow .= substr($row->COL_CALL, 0, 14) . ';'; //Callsign, maximum 14 characters
@@ -100,15 +100,20 @@ class Reg1testformat {
          $qsorow .= substr(str_pad($row->COL_SRX ?? "", 3, '0', STR_PAD_LEFT), 0, 4) . ';';; //Received Number of QSO with 3 digits with leading zeros. If number gets greater than 999, 4 characters are used at maximum
          $qsorow .= substr($row->COL_SRX_STRING ?? "", 0, 6) . ';'; //Received Exchange, max 6 characters
          $qsorow .= strtoupper(substr($row->COL_GRIDSQUARE ?? "" , 0, 6)) . ';'; //Gridsquare max 6 characters
-         
+
          //calculate or get distance in whole kilometers while determening if this is a new locator or not
-         if(!array_key_exists($row->COL_GRIDSQUARE, $locators)){
-            $newlocator = true;
-            $distance = intval($CI->qra->distance($mylocator, $row->COL_GRIDSQUARE, "K"));
-            $locators[$row->COL_GRIDSQUARE] = $distance;
-         }else{
+         if (!empty($row->COL_GRIDSQUARE)) {
+            if(!array_key_exists($row->COL_GRIDSQUARE, $locators)){
+               $newlocator = true;
+               $distance = intval($CI->qra->distance($mylocator, $row->COL_GRIDSQUARE, "K"));
+               $locators[$row->COL_GRIDSQUARE] = $distance;
+            }else{
+               $newlocator = false;
+               $distance = $locators[$row->COL_GRIDSQUARE];
+            }
+         } else {
+            $distance = 0;
             $newlocator = false;
-            $distance = $locators[$row->COL_GRIDSQUARE];
          }
 
          //determine QSO points and add those to the total
@@ -116,7 +121,7 @@ class Reg1testformat {
          $result['claimedpoints'] += $qsopoints;
 
          $qsorow .= $qsopoints . ";"; //qso points = distance * bandmultiplicator
-         
+
          //determine if the exchange is new or not
          if(!in_array($row->COL_SRX_STRING, $exchanges)){
             $newexchange = true;
@@ -142,7 +147,7 @@ class Reg1testformat {
 
          //add row to overall result
          $result['formatted_qso'] .= $qsorow;
-         
+
       }
 
       //return QSO detail
