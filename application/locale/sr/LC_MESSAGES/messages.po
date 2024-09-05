@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-09-05 07:20+0000\n"
-"PO-Revision-Date: 2024-09-04 14:59+0000\n"
+"POT-Creation-Date: 2024-09-05 01:47+0000\n"
+"PO-Revision-Date: 2024-09-05 07:21+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
 "Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/sr/>\n"
@@ -113,21 +113,24 @@ msgstr "Mapa aktiviranih polja"
 #: application/controllers/Awards.php:919
 #: application/controllers/Awards.php:951
 #: application/controllers/Gridmap.php:31
-#: application/controllers/Visitor.php:385
+#: application/controllers/Visitor.php:374
 #: application/views/activators/index.php:100
 #: application/views/interface_assets/footer.php:43
 #: application/views/visitor/layout/header.php:68
+#: application/controllers/Visitor.php:385
 msgid "Gridsquares"
 msgstr "Polja"
 
 #: application/controllers/Activated_gridmap.php:32
 #: application/controllers/Gridmap.php:32
+#: application/controllers/Visitor.php:375
 #: application/controllers/Visitor.php:386
 msgid "Gridsquares confirmed"
 msgstr "Potvrđena polja"
 
 #: application/controllers/Activated_gridmap.php:33
 #: application/controllers/Gridmap.php:33
+#: application/controllers/Visitor.php:376
 #: application/controllers/Visitor.php:387
 msgid "Gridsquares not confirmed"
 msgstr "Nepotvrđena polja"
@@ -599,6 +602,7 @@ msgid "SOTA CSV Export"
 msgstr "Izvoz SOTA CSV"
 
 #: application/controllers/Dashboard.php:123
+#: application/controllers/Visitor.php:132
 #: application/controllers/Visitor.php:134
 msgid "Dashboard"
 msgstr "Kontrolna tabla"
@@ -726,6 +730,7 @@ msgid "Gridsquare Map"
 msgstr "Mapa polja"
 
 #: application/controllers/Gridmap.php:34
+#: application/controllers/Visitor.php:377
 #: application/controllers/Visitor.php:388
 msgid "Total gridsquares worked"
 msgstr "Ukupno rađenih polja"
@@ -1645,13 +1650,15 @@ msgstr "Informacija o verziji će biti ponovo prikazana svim korisnicima"
 msgid "Version Info will not be shown to any user"
 msgstr "Informacija o verziji neće biti prikazana nijednom korisniku"
 
-#: application/controllers/Oqrs.php:46 application/controllers/Oqrs.php:85
-#: application/controllers/Oqrs.php:97
+#: application/controllers/Oqrs.php:22 application/controllers/Oqrs.php:61
+#: application/controllers/Oqrs.php:73 application/controllers/Oqrs.php:46
+#: application/controllers/Oqrs.php:85 application/controllers/Oqrs.php:97
 msgid "Log Search & OQRS"
 msgstr "Pretraga dnevnika i OQRS"
 
-#: application/controllers/Oqrs.php:128
+#: application/controllers/Oqrs.php:104
 #: application/views/interface_assets/header.php:417
+#: application/controllers/Oqrs.php:128
 msgid "OQRS Requests"
 msgstr "OQRS zahtevi"
 
@@ -1857,6 +1864,8 @@ msgstr "Satelitski tajmer"
 #: application/views/search/lotw_unconfirmed.php:37
 #: application/views/search/main.php:4 application/views/search/main.php:12
 #: application/views/search/main.php:33
+#: application/views/visitor/layout/header.php:99
+#: application/views/visitor/layout/header.php:100
 #: application/views/visitor/layout/header.php:97
 #: application/views/visitor/layout/header.php:98
 msgid "Search"
@@ -2197,6 +2206,7 @@ msgstr "Prijava nije uspela. Pokušajte ponovo."
 #: application/controllers/User.php:884
 #: application/views/interface_assets/header.php:358
 #: application/views/user/login.php:91
+#: application/views/visitor/layout/header.php:88
 #: application/views/visitor/layout/header.php:87
 msgid "Login"
 msgstr "Prijava"
@@ -2277,32 +2287,44 @@ msgid "The requested user to impersonate does not exist"
 msgstr "Korisnik čije ste predstavljanje pokušali ne postoji"
 
 #: application/controllers/Visitor.php:50
+#: application/controllers/Visitor.php:79
+#: application/controllers/Visitor.php:142
+#: application/controllers/Visitor.php:169
+#: application/controllers/Visitor.php:199
+#: application/controllers/Visitor.php:478
+#: application/controllers/Widgets.php:40
 #: application/controllers/Visitor.php:81
 #: application/controllers/Visitor.php:148
 #: application/controllers/Visitor.php:175
 #: application/controllers/Visitor.php:210
 #: application/controllers/Visitor.php:472
-#: application/controllers/Widgets.php:40
 msgid "Unknown Public Page."
 msgstr "Nepoznata javna stranica."
 
+#: application/controllers/Visitor.php:74
+#: application/controllers/Visitor.php:165
+#: application/controllers/Visitor.php:195
+#: application/controllers/Visitor.php:474
+#: application/controllers/Widgets.php:36
 #: application/controllers/Visitor.php:76
 #: application/controllers/Visitor.php:171
 #: application/controllers/Visitor.php:206
 #: application/controllers/Visitor.php:468
-#: application/controllers/Widgets.php:36
 msgid "Empty Logbook"
 msgstr "Prazan dnevnik"
 
+#: application/controllers/Visitor.php:205
 #: application/controllers/Visitor.php:216
 msgid "Satellite Gridsquare Map"
 msgstr "Satelitska mapa polja"
 
-#: application/controllers/Visitor.php:405
+#: application/controllers/Visitor.php:411
 #: application/views/stationsetup/stationsetup.php:35
+#: application/controllers/Visitor.php:405
 msgid "Public Search"
 msgstr "Javna pretraga"
 
+#: application/controllers/Visitor.php:444
 #: application/controllers/Visitor.php:438
 msgid "Export Map"
 msgstr "Izvoz mape"
@@ -7165,6 +7187,7 @@ msgstr "Dnevnik"
 #: application/views/interface_assets/header.php:344
 #: application/views/logbookadvanced/index.php:453
 #: application/views/oqrs/index.php:27 application/views/user/edit.php:441
+#: application/views/visitor/layout/header.php:97
 #: application/views/visitor/layout/header.php:95
 msgid "Search Callsign"
 msgstr "Pretraga pozivnog znaka"
@@ -8432,11 +8455,11 @@ msgstr "Ovo omogućava prikaz dugmeta za Wavelog Github stranicu"
 
 #: application/views/options/appearance.php:107
 msgid "Public Login Button"
-msgstr ""
+msgstr "Javno dugme za prijavu"
 
 #: application/views/options/appearance.php:112
 msgid "This enables the button to login to Wavelog in the public view"
-msgstr ""
+msgstr "Ovo omogućuje da postoji dugme za prijavu na javni pregled WaveLoga"
 
 #: application/views/options/dxcluster.php:38
 msgid "Provider of DXClusterCache"
@@ -10862,27 +10885,31 @@ msgstr ""
 
 #: application/views/themes/index.php:59
 msgid "3. Step"
-msgstr ""
+msgstr "3. korak"
 
 #: application/views/themes/index.php:62
 msgid ""
 "For each new theme, you need two logo files. One for the login screen and "
 "one for the header."
 msgstr ""
+"Za svaku novu temu trebalo bi da imate dvije logo datoteke. Jedna za ekran "
+"za prijavu, drugu za zaglavlje."
 
 #: application/views/themes/index.php:63
 msgid ""
 "Only PNG files are allowed, and they should have a pixel ratio of 1:1 (e.g., "
 "1000px height and 1000px width)."
 msgstr ""
+"Dozvoljene su samo PNG datoteke, i trebalo bi da imaju odnos veličine 1:1 "
+"(npr. 1000px visina i 1000px širina)."
 
 #: application/views/themes/index.php:64
 msgid "Place the two logo files in the folder 'assets/logo/'"
-msgstr ""
+msgstr "Postavite datoteke logoa u fasciklu 'assets/logo/'"
 
 #: application/views/themes/index.php:70
 msgid "4. Step"
-msgstr ""
+msgstr "4. korak"
 
 #: application/views/themes/index.php:73
 #, php-format
@@ -10890,14 +10917,16 @@ msgid ""
 "Click here on 'Add a Theme' and type in the necessary data. Type in the "
 "filenames for the logos %swithout%s the file extension '.png'"
 msgstr ""
+"Kliknite na 'Dodaj temu' i upišite potrebne podatke. Upišite imena datoteka "
+"za logoe %sbez%s ekstenzije '.png'"
 
 #: application/views/themes/index.php:83
 msgid "Foldername"
-msgstr ""
+msgstr "Naziv fascikle"
 
 #: application/views/themes/index.php:99
 msgid "Please edit"
-msgstr ""
+msgstr "Molimo uredite"
 
 #: application/views/themes/index.php:116
 msgid "Add a Theme"
@@ -10936,30 +10965,32 @@ msgid ""
 "Here you can update the DXCC lookup data that is used for displaying "
 "callsign information."
 msgstr ""
+"Ovde možete ažurirati pregled DXCC podataka koji se koriste za prikazi "
+"informacija o pozivnom znaku."
 
 #: application/views/update/index.php:20
 msgid "This data is provided by"
-msgstr ""
+msgstr "Ove podatke pruža"
 
 #: application/views/update/index.php:24
 msgid "You must install php-xml for this to work."
-msgstr ""
+msgstr "Morate instalirati php-xml da bi ovo radilo."
 
 #: application/views/update/index.php:27
 msgid "Check for DXCC Data Updates"
-msgstr ""
+msgstr "Proverite ažuriranja DXCC podataka"
 
 #: application/views/update/index.php:28
 msgid "Update DXCC Data"
-msgstr ""
+msgstr "Ažurirajte DXCC podatke"
 
 #: application/views/update/index.php:30
 msgid "Status:"
-msgstr ""
+msgstr "Status:"
 
 #: application/views/update/index.php:34
 msgid "Apply DXCC Data to Logbook"
-msgstr ""
+msgstr "Primenite DXCC podatke na Dnevnik"
 
 #: application/views/update/index.php:36
 msgid ""
@@ -10969,36 +11000,44 @@ msgid ""
 "missing DXCC metadata or to re-check the entire logbook\n"
 "\t\t\t\t\t\t\tand update existing metadata as well, in case it has changed."
 msgstr ""
+"Nakon ažuriranja, Wavelog može popuniti nedostajuće informacije u dnevniku, "
+"korišćenjem novodobijenih DXCC podataka.\n"
+"\t\t\t\t\t\t\tMožete izabrati da proverite samo veze u Dnevniku za koje "
+"nedostaju ovi podaci, ili da ponovo proverite celi dnevnik\n"
+"\t\t\t\t\t\t\ti ažurirate postojeće podatke, u slučaju da je došlo do "
+"promene."
 
 #: application/views/update/index.php:45
 msgid "Check QSOs missing DXCC data"
-msgstr ""
+msgstr "Proverite nedostajuće DXCC podatke za veze"
 
 #: application/views/update/index.php:54 application/views/update/index.php:95
 msgid "Re-check all QSOs in logbook"
-msgstr ""
+msgstr "Ponovo proverite sve veze u dnevniku"
 
 #: application/views/update/index.php:59
 msgid "Apply Continent Data to Logbook"
-msgstr ""
+msgstr "Primenite podatke o kontinentu na Dnevnik"
 
 #: application/views/update/index.php:61
 msgid ""
 "This function can be used to update QSO continent information for all QSOs "
 "in Wavelog missing that information."
 msgstr ""
+"Ova funkcija se može koristiti za ažuriranje informacije o kontinentu za sve "
+"veze u Wavelogu u kojima nedostaje ta informacija."
 
 #: application/views/update/index.php:68
 msgid "Check QSOs missing continent data"
-msgstr ""
+msgstr "Proverite nedostajuće podatke o kontinentu u vezama"
 
 #: application/views/update/index.php:80
 msgid "Here you can update QSOs with missing distance information."
-msgstr ""
+msgstr "Ovde možete ažurirati veze sa podacima o rastojanju."
 
 #: application/views/update/index.php:86
 msgid "Update distance data"
-msgstr ""
+msgstr "Ažurirajte podatke o rastojanju"
 
 #: application/views/update/index.php:89
 msgid ""
@@ -11006,34 +11045,37 @@ msgid ""
 "QSOs. Depending on the number of QSOs this might take some time to execute. "
 "Please be patient."
 msgstr ""
+"Koristite sledeće dugme kako biste ažurirali informaciju o rastojanju za sve "
+"vaše veze. U zavisnosti od broja veza, za ovo će biti potrebno neko vreme. "
+"Molimo budite strpljivi."
 
 #: application/views/user/delete.php:5
 msgid "Delete User Account"
-msgstr ""
+msgstr "Izbrišite korisnički nalog"
 
 #: application/views/user/delete.php:10
 msgid "Are you sure you want to delete the user account"
-msgstr ""
+msgstr "Da li ste sigurni da želite izbrisati korisnički nalog"
 
 #: application/views/user/delete.php:14
 msgid "No, do not delete this user"
-msgstr ""
+msgstr "Ne, nemojte brisati ovog korisnika"
 
 #: application/views/user/delete.php:14
 msgid "Yes, delete this user"
-msgstr ""
+msgstr "Da, izbrišite ovog korisnika"
 
 #: application/views/user/edit.php:4
 msgid "Create User Account"
-msgstr ""
+msgstr "Kreirajte korisnički nalog"
 
 #: application/views/user/edit.php:6
 msgid "Edit Account"
-msgstr ""
+msgstr "Uredite nalog"
 
 #: application/views/user/edit.php:41
 msgid "General Information"
-msgstr ""
+msgstr "Opšte informacije"
 
 #: application/views/user/edit.php:52 application/views/user/login.php:58
 #: application/views/user/login.php:69 application/views/user/login.php:70
@@ -11051,11 +11093,11 @@ msgstr "Lozinka"
 
 #: application/views/user/edit.php:77
 msgid "User Role"
-msgstr ""
+msgstr "Korisnička uloga"
 
 #: application/views/user/edit.php:99
 msgid "Personal"
-msgstr ""
+msgstr "Lično"
 
 #: application/views/user/edit.php:102
 msgid "First Name"
@@ -11067,112 +11109,123 @@ msgstr "Prezime"
 
 #: application/views/user/edit.php:120
 msgid "Ham Radio"
-msgstr ""
+msgstr "Ham Radio"
 
 #: application/views/user/edit.php:146
 msgid "Wavelog Preferences"
-msgstr ""
+msgstr "Preferencije Waveloga"
 
 #: application/views/user/edit.php:157
 msgid "Stylesheet"
-msgstr ""
+msgstr "Stil"
 
 #: application/views/user/edit.php:169
 msgid "Wavelog Language"
-msgstr ""
+msgstr "Jezik Waveloga"
 
 #: application/views/user/edit.php:176
 msgid "Choose Wavelog language."
-msgstr ""
+msgstr "Izaberite jezik za Wavelog."
 
 #: application/views/user/edit.php:187
 msgid "Date Format"
-msgstr ""
+msgstr "Format datuma"
 
 #: application/views/user/edit.php:200
 msgid "Select how you would like dates shown when logged into your account."
 msgstr ""
+"Izaberite kako biste željeli da vam se prikazuju datumi kada ste u svom "
+"nalogu."
 
 #: application/views/user/edit.php:204
 msgid "Measurement preference"
-msgstr ""
+msgstr "Preferencije mjernih jedinica"
 
 #: application/views/user/edit.php:208
 msgid "Kilometers"
-msgstr ""
+msgstr "Kilometri"
 
 #: application/views/user/edit.php:209
 msgid "Miles"
-msgstr ""
+msgstr "Milje"
 
 #: application/views/user/edit.php:210
 msgid "Nautical miles"
-msgstr ""
+msgstr "Nautičke milje"
 
 #: application/views/user/edit.php:212
 msgid "Choose which unit distances will be shown in"
-msgstr ""
+msgstr "Izaberite jedinicu u kojoj će biti prikazana rastojanja"
 
 #: application/views/user/edit.php:221
 msgid "Logbook fields"
-msgstr ""
+msgstr "Polja dnevnika"
 
 #: application/views/user/edit.php:224
 msgid "Choose column 1"
-msgstr ""
+msgstr "Izaberite kolonu 1"
 
 #: application/views/user/edit.php:246
 msgid "Choose column 2"
-msgstr ""
+msgstr "Izaberite kolonu 2"
 
 #: application/views/user/edit.php:268
 msgid "Choose column 3"
-msgstr ""
+msgstr "Izaberite kolonu 3"
 
 #: application/views/user/edit.php:290
 msgid "Choose column 4"
-msgstr ""
+msgstr "Izaberite kolonu 4"
 
 #: application/views/user/edit.php:312
 msgid "Choose column 5 (only for logbook)"
-msgstr ""
+msgstr "Izaberite kolonu 5 (samo za dnevnik)"
 
 #: application/views/user/edit.php:341
 msgid "QSO Logging Options"
-msgstr ""
+msgstr "Opcije upisivanja veza u dnevnik"
 
 #: application/views/user/edit.php:344
 msgid "Log End Times for QSOs Separately"
-msgstr ""
+msgstr "Posebno upišite vrijeme završetka veze"
 
 #: application/views/user/edit.php:350
 msgid ""
 "Choose yes here if you want to log QSO start and end times separately. If "
 "set to 'No' the end time will be the same as start time."
 msgstr ""
+"Izaberite 'da' ako želite da se vremena počeka i završetka veze upisuju "
+"posebno. Ako izaberete 'ne', vreme završetka veze će biti jednako vremenu "
+"početka veze."
 
 #: application/views/user/edit.php:355
 msgid ""
 "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the "
 "log QSO section."
 msgstr ""
+"Prikaži profilnu sliku korespondenta sa QRZ.com/hamqth.com profila, u "
+"sekciji za upis veza u dnevnik."
 
 #: application/views/user/edit.php:361
 msgid ""
 "Please set your qrz.com/hamqth.com credentials in the general config file."
 msgstr ""
+"Molimo podesite vaše qrz.com/hamqth.com kredencijale u datoteci za generalna "
+"podešavanja."
 
 #: application/views/user/edit.php:366
 msgid "Location auto lookup."
-msgstr ""
+msgstr "Lokacija auto traženja."
 
 #: application/views/user/edit.php:372
 msgid "If set, gridsquare is fetched based on location name."
 msgstr ""
+"Ako je postavljeno, informacija o polju će biti povučena u zavisnosti od "
+"imena lokacije."
 
 #: application/views/user/edit.php:376
 msgid "SOTA auto lookup gridsquare and name for summit."
-msgstr ""
+msgstr "SOTA auto pretraga polja i imena za vrh."
 
 #: application/views/user/edit.php:382 application/views/user/edit.php:392
 #: application/views/user/edit.php:402
@@ -11180,199 +11233,206 @@ msgid ""
 "If set, name and gridsquare is fetched from the API and filled in location "
 "and locator."
 msgstr ""
+"Ako je postavljeno, naziv i polje će biti povučeno iz API-ja i biće "
+"popunjena polja lokacija i lokator."
 
 #: application/views/user/edit.php:386
 msgid "WWFF auto lookup gridsquare and name for reference."
-msgstr ""
+msgstr "WWFF auto potraga za poljem i nazivom reference."
 
 #: application/views/user/edit.php:396
 msgid "POTA auto lookup gridsquare and name for park."
-msgstr ""
+msgstr "POTA auto pretraga polja i naziva za park."
 
 #: application/views/user/edit.php:413
 msgid "Menu Options"
-msgstr ""
+msgstr "Opcije menija"
 
 #: application/views/user/edit.php:416
 msgid "Show notes in the main menu."
-msgstr ""
+msgstr "Prikaži Zabeleške u glavnom meniju."
 
 #: application/views/user/edit.php:427
 msgid "Quicklog Field"
-msgstr ""
+msgstr "Polje brzog upisa veze"
 
 #: application/views/user/edit.php:433
 msgid ""
 "With this feature, you can log callsigns using the search field in the "
 "header."
 msgstr ""
+"Sa ovom karakteristikom, moći ćete upisivati pozivne znakove korišćenjem "
+"polja za pretragu u zaglavlju."
 
 #: application/views/user/edit.php:437
 msgid "Quicklog - Action on press Enter"
-msgstr ""
+msgstr "Brzi upis - akcija se odvija pritiskom na Enter"
 
 #: application/views/user/edit.php:440
 msgid "Log Callsign"
-msgstr ""
+msgstr "Upiši pozivni znak"
 
 #: application/views/user/edit.php:443
 msgid ""
 "What action should be performed when Enter is pressed in the quicklog field?"
 msgstr ""
+"Koja akcija bi trebalo biti izvedena kada je pritisnut Enter u polju za brzi "
+"unos?"
 
 #: application/views/user/edit.php:449
 msgid "Station Locations Quickswitch"
-msgstr ""
+msgstr "Brza promena Stanične lokacije"
 
 #: application/views/user/edit.php:454
 msgid "Show the Station Locations Quickswitch in the main menu"
-msgstr ""
+msgstr "Prikaži brzu promenu Stanične lokacije u glavnom meniju"
 
 #: application/views/user/edit.php:458
 msgid "UTC Time in Menu"
-msgstr ""
+msgstr "UTC vreme u meniju"
 
 #: application/views/user/edit.php:463
 msgid "Show the current UTC Time in the menu"
-msgstr ""
+msgstr "Pokaži trenutno UTC vreme u meniju"
 
 #: application/views/user/edit.php:474
 msgid "Map Settings"
-msgstr ""
+msgstr "Podešavanje karte"
 
 #: application/views/user/edit.php:481
 msgid "Icon"
-msgstr ""
+msgstr "Ikona"
 
 #: application/views/user/edit.php:484 application/views/user/edit.php:488
 msgid "Not display"
-msgstr ""
+msgstr "Ne prikazuj"
 
 #: application/views/user/edit.php:497
 msgid "QSO (by default)"
-msgstr ""
+msgstr "QSO (podrazumevano)"
 
 #: application/views/user/edit.php:516
 msgid "QSO (confirmed)"
-msgstr ""
+msgstr "QSO (potvrđen)"
 
 #: application/views/user/edit.php:517
 msgid "(If 'No', displayed as 'QSO (by default))'"
-msgstr ""
+msgstr "(Ako izaberete 'Ne', prikazano će biti kao 'QSO (podrazumevano))'"
 
 #: application/views/user/edit.php:536
 msgid "Show Locator"
-msgstr ""
+msgstr "Prikaži lokator"
 
 #: application/views/user/edit.php:555
 msgid "Previous QSL Type"
-msgstr ""
+msgstr "Prethodna vrsta QSL"
 
 #: application/views/user/edit.php:559
 msgid "Select the type of QSL to show in the previous QSOs section."
-msgstr ""
+msgstr "Izaberite vrstu QSL za prikaz u sekciji prethodnih veza."
 
 #: application/views/user/edit.php:565
 msgid "QRZ"
-msgstr ""
+msgstr "QRZ"
 
 #: application/views/user/edit.php:576
 msgid "Show Reference Fields on QSO Tab"
-msgstr ""
+msgstr "Prikaži polja referenci u kartici QSO"
 
 #: application/views/user/edit.php:580
 msgid ""
 "The enabled items will be shown on the QSO tab rather than the General tab."
 msgstr ""
+"Omogućene stavke će biti prikazane na kartici QSO a ne na kartici Opšte."
 
 #: application/views/user/edit.php:619
 msgid "Default Values"
-msgstr ""
+msgstr "Podrazumevane vrednosti"
 
 #: application/views/user/edit.php:627
 msgid "Settings for Default Band and Confirmation"
-msgstr ""
+msgstr "Podešavanja za podrazumevani opseg i potvrde"
 
 #: application/views/user/edit.php:630
 msgid "Default Band"
-msgstr ""
+msgstr "Podrazumevani opseg"
 
 #: application/views/user/edit.php:640
 msgid "Default QSL-Methods"
-msgstr ""
+msgstr "Podrazumevani metod potvrde veza"
 
 #: application/views/user/edit.php:697
 msgid "Third Party Services"
-msgstr ""
+msgstr "Usluge treće strane"
 
 #: application/views/user/edit.php:708
 msgid "Logbook of The World (LoTW) Username"
-msgstr ""
+msgstr "Korisničko ime Loogbook of The World (LoTW)"
 
 #: application/views/user/edit.php:714
 msgid "Logbook of The World (LoTW) Password"
-msgstr ""
+msgstr "Lozinka Loogbook of The World (LoTW)"
 
 #: application/views/user/edit.php:734
 msgid "eQSL.cc Username"
-msgstr ""
+msgstr "Korisničko ime eQSL.cc"
 
 #: application/views/user/edit.php:740
 msgid "eQSL.cc Password"
-msgstr ""
+msgstr "Lozinka eQSL.cc"
 
 #: application/views/user/edit.php:757
 msgid "Club Log"
-msgstr ""
+msgstr "Club Log"
 
 #: application/views/user/edit.php:760
 msgid "Club Log Email/Callsign"
-msgstr ""
+msgstr "Club Log email/pozivni znak"
 
 #: application/views/user/edit.php:762
 msgid "The Email or Callsign you use to login to Club Log"
-msgstr ""
+msgstr "Email ili pozivni znak koji koristite za prijavu na Club Log"
 
 #: application/views/user/edit.php:767
 msgid "Club Log Password"
-msgstr ""
+msgstr "Lozinka za Club Log"
 
 #: application/views/user/edit.php:788
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Razno"
 
 #: application/views/user/edit.php:796
 msgid "AMSAT Status Upload"
-msgstr ""
+msgstr "Učitavanje na AMSAT Status"
 
 #: application/views/user/edit.php:799
 msgid "Upload status of SAT QSOs to"
-msgstr ""
+msgstr "Učitajte status SAT veza na"
 
 #: application/views/user/edit.php:813
 msgid "Mastodonserver"
-msgstr ""
+msgstr "Mastodonserver"
 
 #: application/views/user/edit.php:816
 msgid "URL of Mastodonserver"
-msgstr ""
+msgstr "URL Mastodonservera"
 
 #: application/views/user/edit.php:818
 #, php-format
 msgid "Main URL of your Mastodon server, e.g. %s"
-msgstr ""
+msgstr "Glavni URL vašeg Mastodon servera. npr. %s"
 
 #: application/views/user/edit.php:827
 msgid "Experimental"
-msgstr ""
+msgstr "Eksperimentalno"
 
 #: application/views/user/edit.php:827
 msgid "Winkeyer"
-msgstr ""
+msgstr "Winkeyer"
 
 #: application/views/user/edit.php:830
 msgid "Winkeyer Features Enabled"
-msgstr ""
+msgstr "Omogućene karakteristike Winkeyera"
 
 #: application/views/user/edit.php:836
 #, php-format
@@ -11380,74 +11440,85 @@ msgid ""
 "Winkeyer support in Wavelog is very experimental. Read the wiki first at %s "
 "before enabling."
 msgstr ""
+"Winkeyer podrška u Wavelug je veoma eksperimentalna. Prvo pročitajte Wiki na "
+"%s prije nego omogućite ovu funkciju."
 
 #: application/views/user/edit.php:847
 msgid "Hams.at"
-msgstr ""
+msgstr "Hams.at"
 
 #: application/views/user/edit.php:850
 msgid "Private Feed Key"
-msgstr ""
+msgstr "Privatni ključ za dobavu"
 
 #: application/views/user/edit.php:852
 #, php-format
 msgctxt "Hint for Hamsat API Key; uses Link"
 msgid "See your profile at %s."
-msgstr ""
+msgstr "Pogledajte vaš profil na %s."
 
 #: application/views/user/edit.php:855
 msgid "Show Workable Passes Only"
-msgstr ""
+msgstr "Prikaži samo prelete koje je moguće raditi"
 
 #: application/views/user/edit.php:861
 msgid ""
 "If enabled shows only workable passes based on the gridsquare set in your "
 "hams.at account. Requires private feed key to be set."
 msgstr ""
+"Ako je omogućeno, biće prikazani samo preleti koje je moguće raditi na "
+"osnovu polja koje ste uneli u vaš hams.at nalog. Zahteva se unos privatnog "
+"ključa."
 
 #: application/views/user/edit.php:873
 msgid "Save Account"
-msgstr ""
+msgstr "Sačuvajte nalog"
 
 #: application/views/user/forgot_password.php:33
 msgid "Forgot Password?"
-msgstr ""
+msgstr "Zaboravili ste lozinku?"
 
 #: application/views/user/forgot_password.php:34
 #: application/views/user/reset_password.php:9
 msgid "You can reset your password here."
-msgstr ""
+msgstr "Ovde možete resetovati vašu lozinku."
 
 #: application/views/user/index.php:2
 msgid "Do you really want to send this user a password-reset link?"
-msgstr ""
+msgstr "Da li zaista želite da ovom korisniku pošaljete link za reset lozinke?"
 
 #: application/views/user/index.php:6
 msgid "Please Wait ..."
-msgstr ""
+msgstr "Molimo sačekajte..."
 
 #: application/views/user/index.php:9
 msgid "Password-reset e-mail sent to user:"
-msgstr ""
+msgstr "Email za reset lozinke poslat je korisniku:"
 
 #: application/views/user/index.php:30
 msgid "User List"
-msgstr ""
+msgstr "Lista korisnika"
 
 #: application/views/user/index.php:33
 msgid "Wavelog needs at least one user configured in order to operate."
 msgstr ""
+"Wavelogu je potreban bar jedan konfigurisani korisnik kako bi dnevnik bio "
+"funkcionalan."
 
 #: application/views/user/index.php:34
 msgid ""
 "Users can be assigned roles which give them different permissions, such as "
 "adding QSOs to the logbook and accessing Wavelog APIs."
 msgstr ""
+"Korisnicima mogu biti dodeljene uloge koje će im dati različite dozvole, kao "
+"što su dodavanje veza u dnevnik i pristup Wavelog API-jima."
 
 #: application/views/user/index.php:35
 msgid ""
 "The currently logged-in user is displayed at the upper-right of each page."
 msgstr ""
+"Korisnik koji je trenutno prijavljen prikazan je u gornjem desnom uglu svake "
+"stranice."
 
 #: application/views/user/index.php:36
 msgid ""
@@ -11455,125 +11526,130 @@ msgid ""
 "link to reset their password. To achieve this, ensure that the email "
 "settings in the global options are configured correctly."
 msgstr ""
+"Sa dugmetom za reset lozinke korisniku možete poslati email koji će sadržati "
+"link za reset lozinke. Da bi se ovo postiglo, budite uvereni da su u opštim "
+"podešavanjima ispravno upisana email podešavanja."
 
 #: application/views/user/index.php:38
 msgid "Create user"
-msgstr ""
+msgstr "Kreiraj korisnika"
 
 #: application/views/user/index.php:39
 msgid "Refresh List"
-msgstr ""
+msgstr "Osveži listu"
 
 #: application/views/user/index.php:49
 msgid "Type"
-msgstr ""
+msgstr "Vrsta"
 
 #: application/views/user/index.php:50
 msgid "Last seen"
-msgstr ""
+msgstr "Poslednji put prijavljen"
 
 #: application/views/user/index.php:53
 msgid "Password Reset"
-msgstr ""
+msgstr "Reset lozinke"
 
 #: application/views/user/index.php:55 application/views/user/index.php:150
 msgid "Impersonate"
-msgstr ""
+msgstr "Oponašanje"
 
 #: application/views/user/index.php:82
 msgid "Never"
-msgstr ""
+msgstr "Nikada"
 
 #: application/views/user/index.php:86
 msgid "Locations"
-msgstr ""
+msgstr "Lokacije"
 
 #: application/views/user/index.php:88
 msgid "Logbooks"
-msgstr ""
+msgstr "Dnevnici"
 
 #: application/views/user/index.php:90
 msgid "Last QSO:"
-msgstr ""
+msgstr "Poslednji QSO:"
 
 #: application/views/user/index.php:92
 msgid "No QSOs in Log"
-msgstr ""
+msgstr "U dnevniku nema QSO"
 
 #: application/views/user/index.php:111
 msgid "Impersonate User"
-msgstr ""
+msgstr "Oponašanje korisnika"
 
 #: application/views/user/index.php:116
 msgid ""
 "You are about to impersonate another user. To return to your admin account, "
 "you'll need to logout and log back in as admin."
 msgstr ""
+"Želite da oponašate drugog korisnika. Da biste se vratili u administrativni "
+"nalog, moraćete da se odajavite i ponovo prijavite kao admin."
 
 #: application/views/user/index.php:117
 msgid "Do you want to impersonate this user?"
-msgstr ""
+msgstr "Da li želite da oponašate ovog korisnika?"
 
 #: application/views/user/index.php:121
 msgid "Username:"
-msgstr ""
+msgstr "Korisničko ime:"
 
 #: application/views/user/index.php:125
 msgid "Name:"
-msgstr ""
+msgstr "Ime:"
 
 #: application/views/user/index.php:129
 msgid "Callsign:"
-msgstr ""
+msgstr "Pozivni znak:"
 
 #: application/views/user/index.php:133
 msgid "E-Mail:"
-msgstr ""
+msgstr "E-mail:"
 
 #: application/views/user/index.php:137
 msgid "Last Seen:"
-msgstr ""
+msgstr "Poslednji put viđen:"
 
 #: application/views/user/login.php:36
 msgid "MAINTENANCE MODE"
-msgstr ""
+msgstr "MOD ODRŽAVANJA"
 
 #: application/views/user/login.php:56
 msgid "Welcome to the Demo of Wavelog"
-msgstr ""
+msgstr "Dobrodošli u Demo Waveloga"
 
 #: application/views/user/login.php:57
 msgid "This demo will be reset every night at 0200z."
-msgstr ""
+msgstr "Ovaj demo će biti resetovan svake noći u 0200 UTC."
 
 #: application/views/user/login.php:60
 #, php-format
 msgid "More Information about Wavelog on %sGithub%s."
-msgstr ""
+msgstr "Više informacija o Wavelogu na %sGithabu%s."
 
 #: application/views/user/login.php:79
 msgid "Forgot your password?"
-msgstr ""
+msgstr "Zaboravili ste lozinku?"
 
 #: application/views/user/login.php:85
 msgid "Keep me logged in"
-msgstr ""
+msgstr "Drži me prijavljenog"
 
 #: application/views/user/profile.php:19
 msgid "Level"
-msgstr ""
+msgstr "Nivo"
 
 #: application/views/user/profile.php:39
 msgid "First name"
-msgstr ""
+msgstr "Ime"
 
 #: application/views/user/profile.php:44
 msgid "Last name"
-msgstr ""
+msgstr "Prezime"
 
 #: application/views/user/profile.php:50
 msgid "Edit profile"
-msgstr ""
+msgstr "Uređivanje profila"
 
 #: application/views/user/reset_password.php:28
 msgid "Confirm Password"
@@ -11582,168 +11658,175 @@ msgstr "Potvrdi lozinku"
 #: application/views/version_dialog/index.php:20
 msgid "No Version Dialog text set. Go to the Admin Menu and set one."
 msgstr ""
+"Nije postavljen tekst za dijalog o verziji. Idite u administratorski meni za "
+"postavljanje teksta."
 
 #: application/views/version_dialog/index.php:60
 msgid "Error at parsing JSON-Data or got empty result from github."
 msgstr ""
+"Greška u parsovanju JSON-Data ili su sa githaba dobijeni prazni rezultati."
 
 #: application/views/version_dialog/index.php:63
 msgid "Error at getting the data from GitHub."
-msgstr ""
+msgstr "Greška u dobavljanju podataka sa GitHaba."
 
 #: application/views/version_dialog/index.php:75
 msgid "Don't show again"
-msgstr ""
+msgstr "Ne prikazuj ponovo"
 
 #: application/views/view_log/index.php:4
 msgid ""
 "Displaying all QSOs of station locations which are linked to this logbook"
-msgstr ""
+msgstr "Prikaz svih QSO staničnih lokacija koje su povezane u ovom dnevniku"
 
 #: application/views/view_log/qso.php:6
 msgid "QSO Details"
-msgstr ""
+msgstr "Detalji QSO"
 
 #: application/views/view_log/qso.php:29
 msgid "QSL Management"
-msgstr ""
+msgstr "Upravljanje QSL"
 
 #: application/views/view_log/qso.php:131
 msgid "Total Distance"
-msgstr ""
+msgstr "Ukupno rastojanje"
 
 #: application/views/view_log/qso.php:224
 msgid "Antenna Azimuth"
-msgstr ""
+msgstr "Azimut antene"
 
 #: application/views/view_log/qso.php:231
 msgid "Antenna Elevation"
-msgstr ""
+msgstr "Elevacija antene"
 
 #: application/views/view_log/qso.php:373
 msgid "QSL Card has been sent via the bureau"
-msgstr ""
+msgstr "QSL karta je poslata preko biroa"
 
 #: application/views/view_log/qso.php:375
 msgid "QSL Card has been sent via direct"
-msgstr ""
+msgstr "QSL karta je poslata direktno"
 
 #: application/views/view_log/qso.php:377
 msgid "QSL Card has been sent electronically"
-msgstr ""
+msgstr "QSL karta je poslata elektronski"
 
 #: application/views/view_log/qso.php:379
 msgid "QSL Card has been sent via manager"
-msgstr ""
+msgstr "QSL karta je poslata preko menadžera"
 
 #: application/views/view_log/qso.php:381
 msgid "QSL Card has been sent"
-msgstr ""
+msgstr "QSL karta je poslata"
 
 #: application/views/view_log/qso.php:390
 msgid "QSL Card has been received via the bureau"
-msgstr ""
+msgstr "QSL karta je primljena preko biroa"
 
 #: application/views/view_log/qso.php:392
 msgid "QSL Card has been received via direct"
-msgstr ""
+msgstr "QSL karta je primljena direktno"
 
 #: application/views/view_log/qso.php:394
 msgid "QSL Card has been received electronically"
-msgstr ""
+msgstr "QSL karta je primljena elektronski"
 
 #: application/views/view_log/qso.php:396
 msgid "QSL Card has been received via manager"
-msgstr ""
+msgstr "QSL karta je primljena preko menadžera"
 
 #: application/views/view_log/qso.php:398
 msgid "QSL Card has been received"
-msgstr ""
+msgstr "QSL karta je primljena"
 
 #: application/views/view_log/qso.php:407
 msgid "This station uses LoTW."
-msgstr ""
+msgstr "Ova stanica koristi LoTW."
 
 #: application/views/view_log/qso.php:412
 #: application/views/view_log/qso.php:417
 #: application/views/view_log/qso.php:422
 #: application/views/view_log/qso.php:427
 msgid "This QSO was confirmed on"
-msgstr ""
+msgstr "Ovaj QSO je potvrđen"
 
 #: application/views/view_log/qso.php:438
 msgid "More QSOs"
-msgstr ""
+msgstr "Još QSO"
 
 #: application/views/view_log/qso.php:506
 msgid "Details"
-msgstr ""
+msgstr "Detalji"
 
 #: application/views/view_log/qso.php:633
 msgid "Uploaded QSL Card front image"
-msgstr ""
+msgstr "Učitana slika prednje strane QSL karte"
 
 #: application/views/view_log/qso.php:638
 msgid "Upload QSL Card image"
-msgstr ""
+msgstr "Učitavanje slike QSL karte"
 
 #: application/views/view_log/qso.php:643
 msgid "Uploaded QSL Card back image"
-msgstr ""
+msgstr "Učitana slike zadnje strane QSL karte"
 
 #: application/views/view_log/qso.php:659
 msgid "Mark QSL Received (Electronic)"
-msgstr ""
+msgstr "Označi QSL primljenom (elektronski)"
 
 #: application/views/view_log/qso.php:665
 msgid "Mark QSL Card Requested (Bureau)"
-msgstr ""
+msgstr "Označi QSL kartu zahtevanom (biro)"
 
 #: application/views/view_log/qso.php:667
 msgid "Mark QSL Card Requested (Direct)"
-msgstr ""
+msgstr "Označi QSL kartu zahtevanom (direktno)"
 
 #: application/views/view_log/qso.php:682
 msgid "eQSL picture"
-msgstr ""
+msgstr "Slika eQSL"
 
 #: application/views/visitor/layout/footer.php:241
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
-#: application/views/visitor/layout/header.php:74
+#: application/views/visitor/layout/header.php:75
 msgid "OQRS"
-msgstr ""
+msgstr "OQRS"
 
-#: application/views/visitor/layout/header.php:82
+#: application/views/visitor/layout/header.php:83
 msgid "Visit Wavelog on Github"
-msgstr ""
+msgstr "Posetite Wavelog na GitHabu"
 
-#: application/views/visitor/layout/header.php:95
+#: application/views/visitor/layout/header.php:97
 msgid "Please enter a callsign!"
-msgstr ""
+msgstr "Molimo unesite pozivni znak!"
 
 #: application/views/webadif/export.php:22
 msgid ""
 "Here you can see and upload all QSOs which have not been previously uploaded "
 "to QO-100 Dx Club."
 msgstr ""
+"Ovde možete videti i učitati sve QSO koji nisu prethodno učitani na QO-100 "
+"DX Club."
 
 #: application/views/webadif/export.php:33
 msgid ""
 "You need to set a QO-100 Dx Club API key in your station profile. Only "
 "station profiles with an API Key are displayed."
 msgstr ""
+"Morate podesiti QO-100 DX Club API ključ, u profilu vaše stanice. Prikazani "
+"su samo stanični profili sa API ključem."
 
 #: application/views/webadif/export.php:63
 msgid ""
 "There are currently no outstanding QSOs that need to be uploaded to the "
 "QO-100 Dx Club's API."
-msgstr ""
+msgstr "Trenutno nema QSO koji trebaju biti učitani na QO-100 DX Club API."
 
 #: application/views/webadif/export.php:64
 msgid "Go ahead and turn on your QO-100 station!"
-msgstr ""
+msgstr "Uključite vašu QO-100 stanicu!"
 
 #: application/views/webadif/export.php:73
 #: application/views/webadif/export.php:113
@@ -11751,11 +11834,13 @@ msgid ""
 "None of your Logbooks are configured to export data to the QO-100 Dx Club's "
 "API."
 msgstr ""
+"Nijedan od vaših dnevnika nije podešen za izvoz podataka na QO-100 DX Club "
+"API."
 
 #: application/views/webadif/export.php:74
 #: application/views/webadif/export.php:114
 msgid "QO-100 Dx Club"
-msgstr ""
+msgstr "QO-100 DX Club"
 
 #: application/views/webadif/export.php:74
 #: application/views/webadif/export.php:114
@@ -11764,6 +11849,8 @@ msgid ""
 "To configure this feature, go to your profile page at the %s and %s Create "
 "%s an API key."
 msgstr ""
+"Za podešavanje ovog svojstva, idite na profilnu stranicu na %s i %s "
+"Kreirajte %s API ključ."
 
 #: application/views/webadif/export.php:75
 #: application/views/webadif/export.php:115
@@ -11772,41 +11859,45 @@ msgid ""
 "Then, navigate to your %s and configure your station with the key you have "
 "created at the club."
 msgstr ""
+"Potom, idite na vaš %s i konfigurišite vašu stanicu sa ključem koji ste "
+"kreirali u klubu."
 
 #: application/views/webadif/export.php:83
 msgid ""
 "Here you can mark as uploaded your QSOs which have not been previously "
 "uploaded to QO-100 Dx Club."
 msgstr ""
+"Ovde možete označiti kao učitane vaše QSO koji prethodno nisu bili učitani "
+"na QO-100 DX Club."
 
 #: application/views/webadif/export.php:107
 msgid "Mark QSOs as exported to QO-100 Dx Club"
-msgstr ""
+msgstr "Označite QSO kao izvezene na QO-100 DX Club"
 
 #: application/views/webadif/mark_webadif.php:16
 msgid "The QSOs are marked as exported to QO-100 Dx Club."
-msgstr ""
+msgstr "QSO su označeni kao izvezeni na QO-100 DX Club."
 
 #: application/views/widgets/oqrs.php:21
 msgid "Wavelog OQRS"
-msgstr ""
+msgstr "Wavelog OQRS"
 
 #: application/views/widgets/oqrs.php:76
 msgid "Wavelog OQRS Request"
-msgstr ""
+msgstr "Wavelog OQRS zahtev"
 
 #: application/views/widgets/oqrs.php:79
 #, php-format
 msgid "Request a QSL card for your QSO with %s."
-msgstr ""
+msgstr "Zahtevajte QSL kartu za vaš QSO sa %s."
 
 #: application/views/widgets/oqrs.php:83
 msgid "Your Callsign:"
-msgstr ""
+msgstr "Vaš pozivni znak:"
 
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
-msgstr ""
+msgstr "Pošaljite zahtev"
 
 #, php-format
 #~ msgid "%s = Serial, %s = Gridsquare, %s = Exchange."
