@@ -103,6 +103,15 @@
                             <small id="publicGithubButtonHelp" class="form-text text-muted"><?= __("This enables the button to Wavelog's Github page in the public view"); ?></small>
                         </div>
 
+                        <div class="mb-3">
+                            <label for="publicLoginButton"><?= __("Public Login Button"); ?></label>
+                            <select class="form-select" id="publicLoginButton" name="publicLoginButton" aria-describedby="publicLoginButtonHelp" required>
+                                <option value='true' <?php if($this->optionslib->get_option('public_login_button') == "true") { echo "selected=\"selected\""; } ?>><?= __("Enabled"); ?></option>
+                                <option value='false' <?php if($this->optionslib->get_option('public_login_button') == "false") { echo "selected=\"selected\""; } ?>><?= __("Disabled"); ?></option>
+                            </select>
+                            <small id="publicLoginButtonHelp" class="form-text text-muted"><?= __("This enables the button to login to Wavelog in the public view"); ?></small>
+                        </div>
+
                         <!-- Save the Form -->
                         <input class="btn btn-primary" type="submit" value="<?= __("Save"); ?>" />
                     </form>

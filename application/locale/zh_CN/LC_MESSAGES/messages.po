@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-09-04 08:25+0000\n"
+"POT-Creation-Date: 2024-09-05 01:47+0000\n"
 "PO-Revision-Date: 2024-09-04 05:07+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -501,8 +501,8 @@ msgstr "编辑波段"
 
 #: application/controllers/Bandmap.php:28
 #: application/controllers/Bandmap.php:69
-#: application/controllers/Options.php:137
-#: application/controllers/Options.php:148
+#: application/controllers/Options.php:145
+#: application/controllers/Options.php:156
 #: application/views/options/sidebar.php:10
 msgid "DXCluster"
 msgstr "DXCluster"
@@ -1524,16 +1524,16 @@ msgstr "编辑笔记"
 #: application/controllers/Options.php:31
 #: application/controllers/Options.php:41
 #: application/controllers/Options.php:56
-#: application/controllers/Options.php:136
-#: application/controllers/Options.php:147
-#: application/controllers/Options.php:184
-#: application/controllers/Options.php:195
-#: application/controllers/Options.php:228
-#: application/controllers/Options.php:239
-#: application/controllers/Options.php:309
-#: application/controllers/Options.php:319
-#: application/controllers/Options.php:387
-#: application/controllers/Options.php:397
+#: application/controllers/Options.php:144
+#: application/controllers/Options.php:155
+#: application/controllers/Options.php:192
+#: application/controllers/Options.php:203
+#: application/controllers/Options.php:236
+#: application/controllers/Options.php:247
+#: application/controllers/Options.php:317
+#: application/controllers/Options.php:327
+#: application/controllers/Options.php:395
+#: application/controllers/Options.php:405
 msgid "Wavelog Options"
 msgstr "Wavelog 设置"
 
@@ -1550,85 +1550,86 @@ msgstr "外观"
 #: application/controllers/Options.php:110
 #: application/controllers/Options.php:118
 #: application/controllers/Options.php:126
+#: application/controllers/Options.php:134
 msgid "Options saved"
 msgstr "设置已保存"
 
-#: application/controllers/Options.php:165
+#: application/controllers/Options.php:173
 msgid "de continent changed to "
 msgstr "大洲已被更新为 "
 
-#: application/controllers/Options.php:170
+#: application/controllers/Options.php:178
 msgid "Maximum age of spots changed to "
 msgstr "报告的最长寿命为 "
 
-#: application/controllers/Options.php:175
+#: application/controllers/Options.php:183
 msgid "DXCluster Cache URL changed to "
 msgstr "DXCluster Cache 的网址已更换为： "
 
-#: application/controllers/Options.php:185
-#: application/controllers/Options.php:196
+#: application/controllers/Options.php:193
+#: application/controllers/Options.php:204
 msgid "Radio Settings"
 msgstr "电台设置"
 
-#: application/controllers/Options.php:217
+#: application/controllers/Options.php:225
 msgid "Radio Timeout Warning changed to "
 msgstr "无线电超时警告更改为 "
 
-#: application/controllers/Options.php:229
-#: application/controllers/Options.php:240
+#: application/controllers/Options.php:237
+#: application/controllers/Options.php:248
 #: application/views/options/sidebar.php:6
 msgid "Email"
 msgstr "电子邮件"
 
-#: application/controllers/Options.php:297
+#: application/controllers/Options.php:305
 msgid "The settings were saved successfully."
 msgstr "设置已保存。"
 
-#: application/controllers/Options.php:299
+#: application/controllers/Options.php:307
 msgid "Something went wrong with saving the settings. Try again."
 msgstr "保存时出现问题，请重试。"
 
-#: application/controllers/Options.php:310
-#: application/controllers/Options.php:320
+#: application/controllers/Options.php:318
+#: application/controllers/Options.php:328
 #: application/views/options/sidebar.php:8
 msgid "OQRS Options"
 msgstr "OQRS 设置"
 
-#: application/controllers/Options.php:333
+#: application/controllers/Options.php:341
 msgid "OQRS options have been saved."
 msgstr "OQRS 选项已保存。"
 
-#: application/controllers/Options.php:373
-#: application/controllers/Options.php:378
+#: application/controllers/Options.php:381
+#: application/controllers/Options.php:386
 msgid "Testmail failed. Something went wrong."
 msgstr "测试邮件发送失败，请检查设置。"
 
-#: application/controllers/Options.php:375
+#: application/controllers/Options.php:383
 msgid "Testmail sent. Email settings seem to be correct."
 msgstr "测试邮件已发送，电子邮件设置应该正常。"
 
-#: application/controllers/Options.php:388
-#: application/controllers/Options.php:398
+#: application/controllers/Options.php:396
+#: application/controllers/Options.php:406
 msgid "Version Info Settings"
 msgstr "版本设置"
 
-#: application/controllers/Options.php:404
+#: application/controllers/Options.php:412
 msgid "Version Info Header changed to"
 msgstr "版本信息的标题被更换为"
 
-#: application/controllers/Options.php:408
+#: application/controllers/Options.php:416
 msgid "Version Info Mode changed to"
 msgstr "版本信息模式切换为"
 
-#: application/controllers/Options.php:413
+#: application/controllers/Options.php:421
 msgid "Version Info Custom Text saved!"
 msgstr "版本信息自定义文字已保存！"
 
-#: application/controllers/Options.php:424
+#: application/controllers/Options.php:432
 msgid "Version Info will be shown to all users again"
 msgstr "版本信息将会重新向用户显示"
 
-#: application/controllers/Options.php:432
+#: application/controllers/Options.php:440
 msgid "Version Info will not be shown to any user"
 msgstr "版本信息不再会向用户显示"
 
@@ -1935,6 +1936,7 @@ msgstr "错误，链接已正在使用！"
 #: application/views/options/appearance.php:83
 #: application/views/options/appearance.php:92
 #: application/views/options/appearance.php:101
+#: application/views/options/appearance.php:110
 #: application/views/options/version_dialog.php:66
 #: application/views/station_profile/create.php:266
 #: application/views/station_profile/edit.php:339
@@ -3462,7 +3464,7 @@ msgstr "如用于描述用途的名字。"
 #: application/views/interface_assets/footer.php:45
 #: application/views/interface_assets/footer.php:536
 #: application/views/operator/index.php:23
-#: application/views/options/appearance.php:107
+#: application/views/options/appearance.php:116
 #: application/views/options/dxcluster.php:67
 #: application/views/options/email.php:112
 #: application/views/options/oqrs.php:63
@@ -5450,6 +5452,7 @@ msgstr "标识符"
 #: application/views/options/appearance.php:82
 #: application/views/options/appearance.php:91
 #: application/views/options/appearance.php:100
+#: application/views/options/appearance.php:109
 #: application/views/station_profile/create.php:268
 #: application/views/station_profile/edit.php:341
 #: application/views/stationsetup/stationsetup.php:73
@@ -8197,6 +8200,14 @@ msgstr "公开 Github 按钮"
 #: application/views/options/appearance.php:103
 msgid "This enables the button to Wavelog's Github page in the public view"
 msgstr "此功能可使 Wavelog Github 地址显示在公开页面中"
+
+#: application/views/options/appearance.php:107
+msgid "Public Login Button"
+msgstr ""
+
+#: application/views/options/appearance.php:112
+msgid "This enables the button to login to Wavelog in the public view"
+msgstr ""
 
 #: application/views/options/dxcluster.php:38
 msgid "Provider of DXClusterCache"

@@ -83,7 +83,7 @@
 					<a class="btn btn-secondary" href="https://github.com/wavelog/wavelog" target="_blank"><?= __("Visit Wavelog on Github"); ?></a>
 				</li>
 			<?php } ?>
-			<?php if ($this->uri->segment(1) != "oqrs") { ?>
+			<?php if ($this->uri->segment(1) != "oqrs" && $this->optionslib->get_option('public_login_button') != "false") { ?>
 				<li class="nav-item">
 					<a class="btn btn-primary ms-2" href="<?php echo site_url('user/login');?>"><?= __("Login"); ?></a>
 				</li>

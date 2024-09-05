@@ -505,6 +505,8 @@ msgstr "Editar Banda"
 #: application/controllers/Options.php:137
 #: application/controllers/Options.php:148
 #: application/views/options/sidebar.php:10
+#: application/controllers/Options.php:145
+#: application/controllers/Options.php:156
 msgid "DXCluster"
 msgstr "DXCluster"
 
@@ -1545,6 +1547,16 @@ msgstr "Editar nota"
 #: application/controllers/Options.php:319
 #: application/controllers/Options.php:387
 #: application/controllers/Options.php:397
+#: application/controllers/Options.php:144
+#: application/controllers/Options.php:155
+#: application/controllers/Options.php:192
+#: application/controllers/Options.php:203
+#: application/controllers/Options.php:236
+#: application/controllers/Options.php:247
+#: application/controllers/Options.php:317
+#: application/controllers/Options.php:327
+#: application/controllers/Options.php:395
+#: application/controllers/Options.php:405
 msgid "Wavelog Options"
 msgstr "Definições Wavelog"
 
@@ -1561,60 +1573,77 @@ msgstr "Aparência"
 #: application/controllers/Options.php:110
 #: application/controllers/Options.php:118
 #: application/controllers/Options.php:126
+#: application/controllers/Options.php:134
 msgid "Options saved"
 msgstr "Definições guardadas"
 
 #: application/controllers/Options.php:165
+#: application/controllers/Options.php:173
 msgid "de continent changed to "
 msgstr "de continente mudou para "
 
 #: application/controllers/Options.php:170
+#: application/controllers/Options.php:178
 msgid "Maximum age of spots changed to "
 msgstr "A idade máxima dos spots foi alterada para "
 
 #: application/controllers/Options.php:175
+#: application/controllers/Options.php:183
 msgid "DXCluster Cache URL changed to "
 msgstr "URL do cache DXCluster alterado para "
 
 #: application/controllers/Options.php:185
 #: application/controllers/Options.php:196
+#: application/controllers/Options.php:193
+#: application/controllers/Options.php:204
 msgid "Radio Settings"
 msgstr "Definições do Radio"
 
 #: application/controllers/Options.php:217
+#: application/controllers/Options.php:225
 msgid "Radio Timeout Warning changed to "
 msgstr "Aviso de timeout do rádio alterado para "
 
 #: application/controllers/Options.php:229
 #: application/controllers/Options.php:240
 #: application/views/options/sidebar.php:6
+#: application/controllers/Options.php:237
+#: application/controllers/Options.php:248
 msgid "Email"
 msgstr "Correio eletrónico"
 
 #: application/controllers/Options.php:297
+#: application/controllers/Options.php:305
 msgid "The settings were saved successfully."
 msgstr "As definições foram guardadas com êxito."
 
 #: application/controllers/Options.php:299
+#: application/controllers/Options.php:307
 msgid "Something went wrong with saving the settings. Try again."
 msgstr "Algo correu mal ao guardar as definições. Tente novamente."
 
 #: application/controllers/Options.php:310
 #: application/controllers/Options.php:320
 #: application/views/options/sidebar.php:8
+#: application/controllers/Options.php:318
+#: application/controllers/Options.php:328
 msgid "OQRS Options"
 msgstr "Definições OQRS"
 
 #: application/controllers/Options.php:333
+#: application/controllers/Options.php:341
 msgid "OQRS options have been saved."
 msgstr "As definições OQRS foram guardadas."
 
 #: application/controllers/Options.php:373
 #: application/controllers/Options.php:378
+#: application/controllers/Options.php:381
+#: application/controllers/Options.php:386
 msgid "Testmail failed. Something went wrong."
 msgstr "O Testmail falhou. Alguma coisa correu mal."
 
 #: application/controllers/Options.php:375
+#: application/controllers/Options.php:383
 msgid "Testmail sent. Email settings seem to be correct."
 msgstr ""
 "Correio de teste enviado. As definições de correio eletrónico parecem estar "
@@ -1622,26 +1651,33 @@ msgstr ""
 
 #: application/controllers/Options.php:388
 #: application/controllers/Options.php:398
+#: application/controllers/Options.php:396
+#: application/controllers/Options.php:406
 msgid "Version Info Settings"
 msgstr "Versão Informação Configurações"
 
 #: application/controllers/Options.php:404
+#: application/controllers/Options.php:412
 msgid "Version Info Header changed to"
 msgstr "Versão Informação Cabeçalho alterado para"
 
 #: application/controllers/Options.php:408
+#: application/controllers/Options.php:416
 msgid "Version Info Mode changed to"
 msgstr "Versão Informação Modo alterado para"
 
 #: application/controllers/Options.php:413
+#: application/controllers/Options.php:421
 msgid "Version Info Custom Text saved!"
 msgstr "Versão Informação Texto personalizado guardado!"
 
 #: application/controllers/Options.php:424
+#: application/controllers/Options.php:432
 msgid "Version Info will be shown to all users again"
 msgstr "Versão Informação voltará a ser mostrado a todos os utilizadores"
 
 #: application/controllers/Options.php:432
+#: application/controllers/Options.php:440
 msgid "Version Info will not be shown to any user"
 msgstr "Versão Informação não será mostrado a nenhum utilizador"
 
@@ -1960,6 +1996,7 @@ msgstr "Erro. A ligação já está a ser utilizada!"
 #: application/views/station_profile/edit.php:339
 #: application/views/stationsetup/stationsetup.php:76
 #: application/views/user/edit.php:451 application/views/user/edit.php:460
+#: application/views/options/appearance.php:110
 msgid "Disabled"
 msgstr "Desativado"
 
@@ -3534,6 +3571,7 @@ msgstr "Nome simples para descrever a utilização desta API."
 #: application/views/options/version_dialog.php:78
 #: application/views/satellite/create.php:70
 #: application/views/simplefle/index.php:22
+#: application/views/options/appearance.php:116
 msgid "Save"
 msgstr "Guardar"
 
@@ -5615,6 +5653,7 @@ msgstr "Identificador"
 #: application/views/station_profile/edit.php:341
 #: application/views/stationsetup/stationsetup.php:73
 #: application/views/user/edit.php:452 application/views/user/edit.php:461
+#: application/views/options/appearance.php:109
 msgid "Enabled"
 msgstr "Ativado"
 
@@ -11940,6 +11979,14 @@ msgstr "O seu indicativo:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Submeter pedido"
+
+#: application/views/options/appearance.php:107
+msgid "Public Login Button"
+msgstr ""
+
+#: application/views/options/appearance.php:112
+msgid "This enables the button to login to Wavelog in the public view"
+msgstr ""
 
 #~ msgid "Distance Records"
 #~ msgstr "Recordes de Distância"
