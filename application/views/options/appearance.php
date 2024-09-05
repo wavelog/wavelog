@@ -109,7 +109,7 @@
                                 <option value='true' <?php if($this->optionslib->get_option('public_login_button') == "true") { echo "selected=\"selected\""; } ?>><?= __("Enabled"); ?></option>
                                 <option value='false' <?php if($this->optionslib->get_option('public_login_button') == "false") { echo "selected=\"selected\""; } ?>><?= __("Disabled"); ?></option>
                             </select>
-                            <small id="publicLoginButtonHelp" class="form-text text-muted"><?= __("This enables the button to login to Wavelog in the public/vistors view"); ?></small>
+                            <small id="publicLoginButtonHelp" class="form-text text-muted"><?= __("This enables the button to login to Wavelog in the public view"); ?></small>
                         </div>
 
                         <!-- Save the Form -->
