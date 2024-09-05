@@ -138,6 +138,10 @@
 			<td><?= __("SIG"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="sig" type="checkbox" <?php if (($options->sig->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
+		<tr>
+			<td><?= __("Continent"); ?></td>
+			<td><div class="form-check"><input class="form-check-input" name="continent" type="checkbox" <?php if (($options->continent->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
+		</tr>
 	</tbody>
 </table>
 </div>

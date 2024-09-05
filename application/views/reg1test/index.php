@@ -131,6 +131,11 @@
 						<small id="antennaheight_hint" class="form-text text-muted col-md-4"><?= __("Height of the antenna above the ground."); ?></small>
 					</div>
 					<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
+						<div class="col-md-4 control-label" for="bandmultiplicator"><?= __("Band multiplicator") ?> </div>
+						<input class="form-control my-1 me-sm-2 col-md-6 w-25 w-lg-75" id="bandmultiplicator" type="number" min="1" max="9999" step="0.01" name="bandmultiplicator" aria-label="bandmultiplicator" value="1">
+						<small id="bandmultiplicator_hint" class="form-text text-muted col-md-4"><?= __("Band multiplicator. This is usually 1. Only change this if necessary according to the contest scoring rules."); ?></small>
+					</div>
+					<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
 						<div class="col-md-4 control-label" for="soapbox"><?= __("Soapbox") ?> </div>
 						<input class="form-control my-1 me-sm-2 col-md-6 w-25 w-lg-75" id="soapbox" type="text" name="soapbox" aria-label="soapbox">
 						<small id="soapbox_hint" class="form-text text-muted col-md-4"><?= __("Any other remarks."); ?></small>

@@ -64,12 +64,14 @@
                                     <tr>
                                         <td style="vertical-align: middle;" class='cron_<?php echo $cron->id; ?>'><?php echo $cron->id; ?></td>
                                         <td style="vertical-align: middle;"><?php echo $cron->description; ?></td>
-                                        <td style="vertical-align: middle;"><?php
-                                                                            if ($cron->enabled == '1') {
-                                                                                if ($cron->status == 'healthy') { ?>
+                                        <td style="vertical-align: middle;">
+                                                <?php if ($cron->enabled == '1') {
+                                                        if ($cron->status == 'healthy') { ?>
                                                     <span class="badge text-bg-success"><?= __("healthy"); ?></span>
                                                 <?php } else if ($cron->status == 'failed') { ?>
                                                     <span class="badge text-bg-danger"><?= __("failed"); ?></span>
+                                                <?php } else if ($cron->status == 'pending') { ?>
+                                                    <span class="badge text-bg-warning"><?= __("pending"); ?></span>
                                                 <?php } else { ?>
                                                     <span class="badge text-bg-warning"><?php echo $cron->status; ?></span>
                                                 <?php } ?>

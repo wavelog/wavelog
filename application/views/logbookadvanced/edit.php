@@ -22,6 +22,7 @@
 			<option value="contest"><?= __("Contest"); ?></option>
 			<option value="lotwsent"><?= __("LoTW Sent"); ?></option>
 			<option value="lotwreceived"><?= __("LoTW Received"); ?></option>
+			<option value="continent"><?= __("Continent"); ?></option>
 		</select>
 		<div>&nbsp;</div>
 
@@ -135,5 +136,16 @@
 			<option value="R">Requested</option>
 			<option value="I">Invalid</option>
 			<option value="V">Verified</option>
+		</select>
+
+		<select style="display:none" id="editContinent" name="continent" class="form-select w-auto form-select-sm w-auto">
+			<option value=""><?= __("None/Empty"); ?></option>
+			<option value="AF"><?= __("Africa"); ?></option>
+			<option value="AN"><?= __("Antarctica"); ?></option>
+			<option value="NA"><?= __("North America"); ?></option>
+			<option value="AS"><?= __("Asia"); ?></option>
+			<option value="EU"><?= __("Europe"); ?></option>
+			<option value="SA"><?= __("South America"); ?></option>
+			<option value="OC"><?= __("Oceania"); ?></option>
 		</select>
 	</form>

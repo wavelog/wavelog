@@ -195,7 +195,7 @@ if ($lang_code != 'en' && !file_exists(FCPATH . "assets/json/datatables_language
 <?php } ?>
 <?php } ?>
     </script>
-    <?php if ($this->CI->public_search_enabled($slug) || $this->session->userdata('user_type') >= 2) { ?>
+    <?php if ($public_search_enabled || $this->session->userdata('user_type') >= 2) { ?>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datatables.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/dataTables.buttons.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/buttons.html5.min.js"></script>

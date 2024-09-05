@@ -48,7 +48,8 @@
 			\"sota\":{\"show\":\"true\"},
 			\"dok\":{\"show\":\"true\"},
 			\"wwff\":{\"show\":\"true\"},
-			\"sig\":{\"show\":\"true\"}
+			\"sig\":{\"show\":\"true\"},
+			\"continent\":{\"show\":\"true\"}
         }";
     }
     $current_opts = json_decode($options);
@@ -99,6 +100,10 @@
     }
     if (!isset($current_opts->sig)) {
         echo "\nvar o_template = { sig: {show: 'true'}};";
+        echo "\nuser_options={...user_options, ...o_template};";
+    }
+	if (!isset($current_opts->continent)) {
+        echo "\nvar o_template = { continent: {show: 'true'}};";
         echo "\nuser_options={...user_options, ...o_template};";
     }
 
@@ -293,6 +298,22 @@ $options = json_decode($options);
                         <div class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                             <label class="form-label" for="contest"><?= __("Contest"); ?></label>
                             <input type="text" name="contest" id="contest" class="form-control form-control-sm" value="">
+                        </div>
+
+						<div class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
+                            <label class="form-label" for="continent"><?= __("Continent"); ?></label>
+							<select id="continent" name="continent" class="form-select form-select-sm">
+								<option value=""><?= __("All"); ?></option>
+								<option value="blank"><?= __("None/Empty"); ?></option>
+								<option value="af"><?= __("Africa"); ?></option>
+								<option value="an"><?= __("Antarctica"); ?></option>
+								<option value="na"><?= __("North America"); ?></option>
+								<option value="as"><?= __("Asia"); ?></option>
+								<option value="eu"><?= __("Europe"); ?></option>
+								<option value="sa"><?= __("South America"); ?></option>
+								<option value="oc"><?= __("Oceania"); ?></option>
+								<option value="invalid"><?= __("Invalid"); ?></option>
+							</select>
                         </div>
                     </div>
                 </div>
@@ -627,6 +648,9 @@ $options = json_decode($options);
                     } ?>
                     <?php if (($options->myrefs->show ?? "true") == "true") {
                         echo '<th>' . __("My Refs") . '</th>';
+                    } ?>
+					<?php if (($options->continent->show ?? "true") == "true") {
+                        echo '<th>' . __("Continent") . '</th>';
                     } ?>
                 </tr>
             </thead>

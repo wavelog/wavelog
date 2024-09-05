@@ -126,6 +126,14 @@ class Options extends CI_Controller {
 				$this->session->set_flashdata('success', __("Options saved"));
 			}
 
+			// Update public login button within the options system
+			$public_login_button_update_status = $this->optionslib->update('public_login_button', $this->input->post('publicLoginButton'), 'yes');
+
+			// If the option was saved successfully set a flashsession with success note
+			if($public_login_button_update_status == TRUE) {
+				$this->session->set_flashdata('success', __("Options saved"));
+			}
+
 			// Redirect back to /appearance
 			redirect('/options/appearance');
 		}

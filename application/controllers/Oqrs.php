@@ -15,9 +15,33 @@ class Oqrs extends CI_Controller {
 		if (($this->config->item('disable_oqrs') ?? false)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 	}
 
-    public function index() {
-		$this->load->model('oqrs_model');
+	function _remap($method) {
+		$class = new ReflectionClass('Oqrs');
+		$methods = $class->getMethods(ReflectionMethod::IS_PUBLIC);
+		$found = false;
 
+		foreach ($methods as $m) {
+			if ($m->name == $method) {
+				$found = true;
+				$this->{$m->name}();
+        		break; // Exit the loop once the method is called
+			}
+		}
+
+		if (!$found) {
+			$this->index($method);
+		}
+	}
+
+	public function index($public_slug = NULL) {
+		$this->load->model('oqrs_model');
+		$this->load->model('publicsearch');
+
+      $slug = $this->security->xss_clean($public_slug);
+		$data['slug'] = $slug;
+		$data['oqrs_enabled'] = $this->oqrs_model->oqrs_enabled($slug);
+		$data['public_search_enabled'] = $this->publicsearch->public_search_enabled($slug);
+		$data['disable_oqrs'] = $this->config->item('disable_oqrs');
 		$data['stations'] = $this->oqrs_model->get_oqrs_stations();
 		$data['page_title'] = __("Log Search & OQRS");
 		$data['global_oqrs_text'] = $this->optionslib->get_option('global_oqrs_text');
@@ -53,7 +77,7 @@ class Oqrs extends CI_Controller {
 		$this->load->model('oqrs_model');
 		$data['result'] = $this->oqrs_model->getQueryDataGrouped($this->input->post('callsign'));
 		$data['callsign'] = $this->security->xss_clean($this->input->post('callsign'));
-		
+
 		if($this->input->post('widget') != 'true') {
 			$this->load->view('oqrs/request_grouped', $data);
 		} else {
@@ -235,4 +259,5 @@ class Oqrs extends CI_Controller {
 		header("Content-Type: application/json");
 		print json_encode($qsos);
 	}
+
 }
