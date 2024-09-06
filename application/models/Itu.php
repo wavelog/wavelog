@@ -157,7 +157,7 @@ class Itu extends CI_Model{
 		$sql .= " where station_id in (" . $location_list . ') and col_ituz <= 90 and col_ituz > 0';
 
 		if ($band == 'SAT') {
-			$sql .= " and thcv.col_prop_mode ?";
+			$sql .= " and thcv.col_prop_mode = ?";
 			$bindings[]=$band;
 		} else if ($band == 'All') {
 			$this->load->model('bands');
