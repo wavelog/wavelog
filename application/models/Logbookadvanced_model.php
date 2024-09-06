@@ -95,7 +95,11 @@ class Logbookadvanced_model extends CI_Model {
 			$binding[] = $to;
 		}
 		if ($searchCriteria['de'] !== 'All') {
-			$stationids = implode(',', $searchCriteria['de']);
+			if ($searchCriteria['de'] == '') {
+				$stationids = 'null';
+			} else {
+				$stationids = implode(',', $searchCriteria['de']);
+			}
 			$conditions[] = "qsos.station_id in (".$stationids.")";
 		}
 		if ($searchCriteria['dx'] !== '') {
