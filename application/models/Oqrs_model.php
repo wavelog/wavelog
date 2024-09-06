@@ -303,7 +303,7 @@ class Oqrs_model extends CI_Model {
 		$binding[] = $time;
 		$binding[] = $this->session->userdata('user_id');
 
-		return $this->db->query($sql);;
+		return $this->db->query($sql, $binding);
 	}
 
 	function mark_oqrs_line_as_done($id) {
