@@ -203,7 +203,7 @@ class helvetia_model extends CI_Model {
 
 		$sql .= $this->addStateToQuery();
 
-		$sql .= $this->genfunctions->addBandToQuery($band);
+		$sql .= $this->genfunctions->addBandToQuery($band,$binding);
 
 		$sql .= " and not exists (select 1 from ". $this->config->item('table_name') .
 			" where station_id in (". $location_list . ")" .
@@ -215,7 +215,7 @@ class helvetia_model extends CI_Model {
 			$binding[] = $postdata['mode'];
 		}
 
-		$sql .= $this->genfunctions->addBandToQuery($band);
+		$sql .= $this->genfunctions->addBandToQuery($band,$binding);
 
 		$sql .= $this->genfunctions->addQslToQuery($postdata);
 
@@ -245,7 +245,7 @@ class helvetia_model extends CI_Model {
 
 		$sql .= $this->addStateToQuery();
 
-		$sql .= $this->genfunctions->addBandToQuery($band);
+		$sql .= $this->genfunctions->addBandToQuery($band,$binding);
 
 		$sql .= $this->genfunctions->addQslToQuery($postdata);
 
