@@ -99,7 +99,7 @@ class Wac extends CI_Model{
 			where station_id in (" . $location_list .
 			") and col_cont = thcv.col_cont and col_cont <> '' ";
 
-		$sql .= $this->genfunctions->addBandToQuery($band,$bindings);
+		$sql .= $this->genfunctions->addBandToQuery($band);
 		if ($band == 'SAT') {
 			if ($postdata['sat'] != 'All') {
 				$sql .= " and col_sat_name = ?";
