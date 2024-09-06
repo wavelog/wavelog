@@ -108,7 +108,7 @@ class Wac extends CI_Model{
 		}
 
 		if ($postdata['mode'] != 'All') {
-			$sql .= " and (col_mode = ? or col_submode = ?')";
+			$sql .= " and (col_mode = ? or col_submode = ?)";
 			$bindings[]=$postdata['mode'];
 			$bindings[]=$postdata['mode'];
 		}
