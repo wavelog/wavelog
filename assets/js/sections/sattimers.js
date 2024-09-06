@@ -92,7 +92,7 @@ function update(i) {
   }
 }
 
-for (let i=1; i<=26; i+=2) {
+for (let i=1; i<=28; i+=2) {
       var x = setInterval(function() {
                update(i);
             }, 1000);
