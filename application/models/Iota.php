@@ -72,7 +72,7 @@ class IOTA extends CI_Model {
 			$binding[] = $postdata['mode'];
 		}
 
-		$sql .= $this->genfunctions->addBandToQuery($band);
+		$sql .= $this->genfunctions->addBandToQuery($band,$binding);
 
 		if ($postdata['includedeleted'] == NULL) {
 			$sql .= " and coalesce(iota.status, '') <> 'D'";
@@ -100,7 +100,7 @@ class IOTA extends CI_Model {
 			$binding[] = $postdata['mode'];
 		}
 
-		$sql .= $this->genfunctions->addBandToQuery($band);
+		$sql .= $this->genfunctions->addBandToQuery($band,$binding);
 
 		if ($postdata['includedeleted'] == NULL) {
 			$sql .= " and coalesce(iota.status, '') <> 'D'";
@@ -166,7 +166,7 @@ class IOTA extends CI_Model {
 			$binding[] = $postdata['mode'];
 		}
 
-		$sql .= $this->genfunctions->addBandToQuery($postdata['band']);
+		$sql .= $this->genfunctions->addBandToQuery($postdata['band'],$binding);
 
 		if ($postdata['includedeleted'] == NULL) {
 			$sql .= " and coalesce(iota.status, '') <> 'D'";
@@ -205,7 +205,7 @@ class IOTA extends CI_Model {
 
 		$sql .= $this->addContinentsToQuery($postdata);
 
-		$sql .= $this->genfunctions->addBandToQuery($postdata['band']);
+		$sql .= $this->genfunctions->addBandToQuery($postdata['band'],$binding);
 		$sql .= $this->genfunctions->addQslToQuery($postdata);
 
 		$query = $this->db->query($sql, $binding);
