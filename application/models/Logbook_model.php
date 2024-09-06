@@ -548,6 +548,9 @@ class Logbook_model extends CI_Model {
 		  $this->db->where('COL_SIG', 'WAB');
 		  $this->db->where('COL_SIG_INFO', $searchphrase);
 		  break;
+	  case 'WAC':
+	      $this->db->where('COL_CONT', $searchphrase);
+	      break;
 	  case 'WAJA':
 		  $state = str_pad($searchphrase, 2, '0', STR_PAD_LEFT);
 		  $this->db->where('COL_STATE', $state);

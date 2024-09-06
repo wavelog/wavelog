@@ -1838,4 +1838,77 @@ class Awards extends CI_Controller {
         echo json_encode($zones);
     }
 
+	public function wac() {
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+        $this->load->model('wac');
+		$this->load->model('modes');
+        $this->load->model('bands');
+
+        $data['worked_bands'] = $this->bands->get_worked_bands();
+		$data['modes'] = $this->modes->active(); // Used in the view for mode select
+
+		$data['orbits'] = $this->bands->get_worked_orbits();
+		$data['sats_available'] = $this->bands->get_worked_sats();
+		$data['user_default_band'] = $this->session->userdata('user_default_band');
+
+        if ($this->input->post('band') != NULL) {   // Band is not set when page first loads.
+            if ($this->input->post('band') == 'All') {         // Did the user specify a band? If not, use all bands
+                $bands = $data['worked_bands'];
+            }
+            else {
+                $bands[] = $this->input->post('band');
+            }
+        }
+        else {
+            $bands = $data['worked_bands'];
+        }
+
+        $data['bands'] = $bands; // Used for displaying selected band(s) in the table in the view
+
+        if($this->input->method() === 'post') {
+            $postdata['qsl'] = $this->security->xss_clean($this->input->post('qsl'));
+            $postdata['lotw'] = $this->security->xss_clean($this->input->post('lotw'));
+            $postdata['eqsl'] = $this->security->xss_clean($this->input->post('eqsl'));
+            $postdata['qrz'] = $this->security->xss_clean($this->input->post('qrz'));
+            $postdata['worked'] = $this->security->xss_clean($this->input->post('worked'));
+            $postdata['confirmed'] = $this->security->xss_clean($this->input->post('confirmed'));
+            $postdata['notworked'] = $this->security->xss_clean($this->input->post('notworked'));
+            $postdata['band'] = $this->security->xss_clean($this->input->post('band'));
+			$postdata['mode'] = $this->security->xss_clean($this->input->post('mode'));
+			$postdata['sat'] = $this->security->xss_clean($this->input->post('sats'));
+			$postdata['orbit'] = $this->security->xss_clean($this->input->post('orbits'));
+        }
+        else { // Setting default values at first load of page
+            $postdata['qsl'] = 1;
+            $postdata['lotw'] = 1;
+            $postdata['eqsl'] = 0;
+            $postdata['qrz'] = 0;
+            $postdata['worked'] = 1;
+            $postdata['confirmed'] = 1;
+            $postdata['notworked'] = 1;
+            $postdata['band'] = 'All';
+			$postdata['mode'] = 'All';
+			$postdata['sat'] = 'All';
+			$postdata['orbit'] = 'All';
+        }
+
+        if ($logbooks_locations_array) {
+			$location_list = "'".implode("','",$logbooks_locations_array)."'";
+            $data['wac_array'] = $this->wac->get_wac_array($bands, $postdata, $location_list);
+            $data['wac_summary'] = $this->wac->get_wac_summary($bands, $postdata, $location_list);
+		} else {
+            $location_list = null;
+            $data['wac_array'] = null;
+            $data['wac_summary'] = null;
+        }
+
+        // Render page
+        $data['page_title'] = sprintf(__("Awards - %s"), __("Worked All Continents (WAC)"));
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('awards/wac/index');
+		$this->load->view('interface_assets/footer');
+	}
+
 }
