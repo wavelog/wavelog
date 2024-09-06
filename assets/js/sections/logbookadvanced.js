@@ -370,7 +370,20 @@ $(document).ready(function () {
 
 
 	$('#searchForm').submit(function (e) {
-		var container = L.DomUtil.get('advancedmap');
+		let container = L.DomUtil.get('advancedmap');
+		let selectedlocations = $('#de').val();
+		if (Array.isArray(selectedlocations) && selectedlocations.length === 0) {
+			BootstrapDialog.alert({
+				title: 'INFO',
+				message: 'You need to select at least 1 location to do a search!',
+				type: BootstrapDialog.TYPE_INFO,
+				closable: false,
+				draggable: false,
+				callback: function (result) {
+				}
+			});
+			return false;
+		}
 
 		if(container != null){
 			container._leaflet_id = null;
@@ -389,7 +402,7 @@ $(document).ready(function () {
 			data: {
 				dateFrom: this.dateFrom.value,
 				dateTo: this.dateTo.value,
-				de: $('#de').val(),
+				de: selectedlocations,
 				dx: this.dx.value,
 				mode: this.mode.value,
 				band: this.band.value,

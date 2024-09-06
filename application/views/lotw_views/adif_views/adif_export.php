@@ -35,7 +35,10 @@ $cert2 = str_replace("-----END CERTIFICATE-----", "", $cert1);
 
 <EOR>
 
-<?php foreach ($qsos->result() as $qso) { ?>
+<?php foreach ($qsos->result() as $qso) { 
+	unset($freq_in_mhz);
+	unset($freq_in_mhz_rx);
+?>
 <Rec_Type:8>tCONTACT
 <STATION_UID:1>1
 <CALL:<?php echo strlen($qso->COL_CALL); ?>><?php echo $qso->COL_CALL; ?>
