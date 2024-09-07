@@ -41,14 +41,16 @@ class Genfunctions
 		return $sql;
 	}
 
-	function addBandToQuery($band) {
+	function addBandToQuery($band,&$binding) {
 		$sql = '';
 		if ($band != 'All') {
 			if ($band == 'SAT') {
-				$sql .= " and col_prop_mode ='" . $band . "'";
+				$sql .= " and col_prop_mode = ?";
+				$binding[]=$band;
 			} else {
 				$sql .= " and col_prop_mode !='SAT'";
-				$sql .= " and col_band ='" . $band . "'";
+				$sql .= " and col_band = ?";
+				$binding[]=$band;
 			}
 		}
 		return $sql;

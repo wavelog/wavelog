@@ -81,24 +81,28 @@ class Wab extends CI_Model {
 	 * $postdata contains data from the form, in this case Lotw or QSL are used
 	 */
 	function getWabWorked($location_list, $postdata) { // $mode, $sat, $orbit) {
+		$bindings=[];
 		$sql = "SELECT distinct col_sig_info FROM " . $this->config->item('table_name') . " thcv
 			where station_id in (" . $location_list . ") and col_sig = 'WAB' and coalesce(col_sig_info, '') <> ''";
 
-		$sql .= $this->genfunctions->addBandToQuery($postdata['band']);
+		$sql .= $this->genfunctions->addBandToQuery($postdata['band'],$bindings);
 
 		if ($postdata['band'] == 'SAT') {
 			if ($postdata['sat'] != 'All') {
-				$sql .= " and col_sat_name ='" . $postdata['sat'] . "'";
+				$sql .= " and col_sat_name = ?";
+				$bindings[]=$postdata['sat'];
 			}
 		}
 
 		if ($postdata['mode'] != 'All') {
-			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
+			$sql .= " and (col_mode = ? or col_submode = ?)";
+			$bindings[]=$postdata['mode'];
+			$bindings[]=$postdata['mode'];
 		}
 
-		$sql .= $this->addOrbitToQuery($postdata['orbit']);
+		$sql .= $this->addOrbitToQuery($postdata['orbit'],$bindings);
 
-		$query = $this->db->query($sql);
+		$query = $this->db->query($sql,$bindings);
 
 		return $query->result();
 	}
@@ -108,35 +112,40 @@ class Wab extends CI_Model {
 	 * $postdata contains data from the form, in this case Lotw or QSL are used
 	 */
 	function getWabConfirmed($location_list, $postdata) { // $mode, $qsl, $lotw, $eqsl, $qrz, $clublog, $sat, $orbit) {
+		$bindings=[];
 		$sql = "SELECT distinct col_sig_info FROM " . $this->config->item('table_name') . " thcv
 			where station_id in (" . $location_list . ") and col_sig = 'WAB' and coalesce(col_sig_info, '') <> ''";
 
-		$sql .= $this->genfunctions->addBandToQuery($postdata['band']);
+		$sql .= $this->genfunctions->addBandToQuery($postdata['band'],$bindings);
 
 		if ($postdata['band'] == 'SAT') {
 			if ($postdata['sat'] != 'All') {
-				$sql .= " and col_sat_name ='" . $postdata['sat'] . "'";
+				$sql .= " and col_sat_name = ?";
+				$bindings[]=$postdata['sat'];
 			}
 		}
 
 		if ($postdata['mode'] != 'All') {
-			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
+			$sql .= " and (col_mode = ? or col_submode = ?)";
+			$bindings[]=$postdata['mode'];
+			$bindings[]=$postdata['mode'];
 		}
 
-		$sql .= $this->addOrbitToQuery($postdata['orbit']);
+		$sql .= $this->addOrbitToQuery($postdata['orbit'],$bindings);
 
 		$sql .= $this->genfunctions->addQslToQuery($postdata);
 
-		$query = $this->db->query($sql);
+		$query = $this->db->query($sql,$bindings);
 
 		return $query->result();
 	}
 
 	// Adds orbit type to query
-	function addOrbitToQuery($orbit) {
+	function addOrbitToQuery($orbit,&$binding) {
 		$sql = '';
 		if ($orbit != 'All') {
-			$sql .= ' AND satellite.orbit = \''.$orbit.'\'';
+			$sql .= ' AND satellite.orbit = ?';
+			$binding[]=$orbit;
 		}
 
 		return $sql;
