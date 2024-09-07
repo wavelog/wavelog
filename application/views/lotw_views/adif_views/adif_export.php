@@ -31,6 +31,8 @@ $cert2 = str_replace("-----END CERTIFICATE-----", "", $cert1);
 
 <?php if($station_profile->state != "" && $station_profile->station_country == "UNITED STATES OF AMERICA") { ?><US_STATE:<?php echo strlen($station_profile->state); ?>><?php echo $station_profile->state; } ?>
 
+<?php if($station_profile->state != "" && $station_profile->station_country == "CHINA") { ?><CN_PROVINCE:<?php echo strlen($station_profile->state); ?>><?php echo $station_profile->state; } ?>
+
 <?php if($station_profile->station_cnty != ""  && $station_profile->station_country == "UNITED STATES OF AMERICA") { ?><US_COUNTY:<?php echo strlen($station_profile->station_cnty); ?>><?php echo $station_profile->station_cnty; } ?>
 
 <EOR>
@@ -72,6 +74,11 @@ $sign_string = "";
 // Adds CA Province
 if($station_profile->state != "" && $station_profile->station_country == "CANADA") {
 	$sign_string .= strtoupper($CI->lotw_ca_province_map($station_profile->state));
+}
+
+// Adds CN Province
+if($station_profile->state != "" && $station_profile->station_country == "CHINA") {
+	$sign_string .= strtoupper($station_profile->state);
 }
 
 // Add CQ Zone
