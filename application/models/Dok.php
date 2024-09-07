@@ -17,7 +17,7 @@ class DOK extends CI_Model {
 			$doks[$dok->COL_DARC_DOK]['count'] = 0;
 		}
 
-        	$qsl = $this->genfunctions->gen_qsl_from_postdata($postdata);
+		$qsl = $this->genfunctions->gen_qsl_from_postdata($postdata);
 
 		foreach ($bands as $band) {
 			foreach ($list as $dok) {
@@ -81,37 +81,43 @@ class DOK extends CI_Model {
 	}
 
 	function getDokWorked($location_list, $band, $postdata) {
+		$bindings=[];
 		$sql = "SELECT DISTINCT COL_DARC_DOK FROM " . $this->config->item('table_name') . " thcv
 			WHERE station_id IN (" . $location_list . ") AND COL_DARC_DOK <> '' AND COL_DARC_DOK <> 'NM'";
 
 		if ($postdata['mode'] != 'All') {
-			$sql .= " AND (COL_MODE = '" . $postdata['mode'] . "' OR COL_SUBMODE = '" . $postdata['mode'] . "')";
+			$sql .= " AND (COL_MODE = ? OR COL_SUBMODE = ?)";
+			$bindings[]=$postdata['mode'];
+			$bindings[]=$postdata['mode'];
 		}
 		$sql .= $this->addDokTypeToQuery($postdata['doks']);
-		$sql .= $this->genfunctions->addBandToQuery($band);
+		$sql .= $this->genfunctions->addBandToQuery($band,$bindings);
 		$sql .= " AND NOT EXISTS (SELECT 1 from " . $this->config->item('table_name') .
 			" WHERE station_id in (" . $location_list .
 			") AND COL_DARC_DOK = thcv.COL_DARC_DOK AND COL_DARC_DOK <> '' AND COL_DARC_DOK <> 'NM' ";
 		$sql .= $this->addDokTypeToQuery($postdata['doks']);
-		$sql .= $this->genfunctions->addBandToQuery($band);
+		$sql .= $this->genfunctions->addBandToQuery($band,$bindings);
 		$sql .= $this->genfunctions->addQslToQuery($postdata);
 		$sql .= ")";
-		$query = $this->db->query($sql);
+		$query = $this->db->query($sql,$bindings);
 
 		return $query->result();
 
 	}
 
 	function getDokConfirmed($location_list, $band, $postdata) {
+		$bindings=[];
 		$sql = "SELECT DISTINCT COL_DARC_DOK FROM " . $this->config->item('table_name') . " thcv
 			WHERE station_id IN (" . $location_list . ") AND COL_DARC_DOK <> '' AND COL_DARC_DOK <> '' AND COL_DARC_DOK <> 'NM'";
 		if ($postdata['mode'] != 'All') {
-			$sql .= " AND (COL_MODE = '" . $postdata['mode'] . "' or COL_SUBMODE = '" . $postdata['mode'] . "')";
+			$sql .= " AND (COL_MODE = ? OR COL_SUBMODE = ?)";
+			$bindings[]=$postdata['mode'];
+			$bindings[]=$postdata['mode'];
 		}
 		$sql .= $this->addDokTypeToQuery($postdata['doks']);
-		$sql .= $this->genfunctions->addBandToQuery($band);
+		$sql .= $this->genfunctions->addBandToQuery($band,$bindings);
 		$sql .= $this->genfunctions->addQslToQuery($postdata);
-		$query = $this->db->query($sql);
+		$query = $this->db->query($sql,$bindings);
 		return $query->result();
 	}
 
@@ -145,10 +151,12 @@ class DOK extends CI_Model {
 	}
 
 	function getSummaryByBand($band, $postdata, $location_list) {
+		$bindings=[];
 		$sql = "SELECT count(distinct thcv.COL_DARC_DOK) AS count FROM " . $this->config->item('table_name') . " thcv";
 		$sql .= " WHERE station_id IN (" . $location_list . ') AND COL_DARC_DOK != "" AND COL_DARC_DOK <> "NM"';
 		if ($band == 'SAT') {
-			$sql .= " AND thcv.COL_PROP_MODE ='" . $band . "'";
+			$sql .= " AND thcv.COL_PROP_MODE = ?";
+			$bindings[]=$band;
 		} else if ($band == 'All') {
 			$this->load->model('bands');
 			$bandslots = $this->bands->get_worked_bands('dok');
@@ -156,22 +164,25 @@ class DOK extends CI_Model {
 			$sql .= " AND thcv.COL_BAND in (" . $bandslots_list . ")";
 		} else {
 			$sql .= " AND thcv.COL_PROP_MODE !='SAT'";
-			$sql .= " AND thcv.COL_BAND ='" . $band . "'";
+			$sql .= " AND thcv.COL_BAND = ?";
+			$bindings[]=$band;
 		}
 		if ($postdata['doks'] == 'dok') {
 			$sql .= " AND COL_DARC_DOK REGEXP '^[A-Z][0-9]{2}$'";
 		} else if ($postdata['doks'] == 'sdok') {
 			$sql .= " AND COL_DARC_DOK NOT REGEXP '^[A-Z][0-9]{2}$'";
 		}
-		$query = $this->db->query($sql);
+		$query = $this->db->query($sql,$bindings);
 		return $query->result();
 	}
 
 	function getSummaryByBandConfirmed($band, $postdata, $location_list){
+		$bindings=[];
 		$sql = "SELECT count(distinct thcv.COL_DARC_DOK) AS count FROM " . $this->config->item('table_name') . " thcv";
 		$sql .= " WHERE station_id IN (" . $location_list . ') AND COL_DARC_DOK != "" AND COL_DARC_DOK <> "NM"';
 		if ($band == 'SAT') {
-			$sql .= " AND thcv.COL_PROP_MODE ='" . $band . "'";
+			$sql .= " AND thcv.COL_PROP_MODE = ?";
+			$bindings[]=$band;
 		} else if ($band == 'All') {
 			$this->load->model('bands');
 			$bandslots = $this->bands->get_worked_bands('dok');
@@ -179,7 +190,8 @@ class DOK extends CI_Model {
 			$sql .= " AND thcv.COL_BAND in (" . $bandslots_list . ")";
 		} else {
 			$sql .= " AND thcv.COL_PROP_MODE !='SAT'";
-			$sql .= " AND thcv.COL_BAND ='" . $band . "'";
+			$sql .= " AND thcv.COL_BAND = ?";
+			$bindings[]=$band;
 		}
 		if ($postdata['doks'] == 'dok') {
 			$sql .= " AND COL_DARC_DOK REGEXP '^[A-Z][0-9]{2}$'";
@@ -187,7 +199,7 @@ class DOK extends CI_Model {
 			$sql .= " AND COL_DARC_DOK NOT REGEXP '^[A-Z][0-9]{2}$'";
 		}
 		$sql .= $this->genfunctions->addQslToQuery($postdata);
-		$query = $this->db->query($sql);
+		$query = $this->db->query($sql,$bindings);
 		return $query->result();
 	}
 
