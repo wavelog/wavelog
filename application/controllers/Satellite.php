@@ -10,13 +10,13 @@ class Satellite extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->helper(array('form', 'url'));
-
 		$this->load->model('user_model');
-		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 	}
 
 	public function index()
 	{
+		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
 		$this->load->model('satellite_model');
 
 		$pageData['satellites'] = $this->satellite_model->get_all_satellites();
@@ -34,11 +34,15 @@ class Satellite extends CI_Controller {
 	}
 
 	public function create() {
+		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
 		$data['page_title'] = __("Create Satellite");
 		$this->load->view('satellite/create', $data);
 	}
 
 	public function createSatellite() {
+		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
 		$this->load->model('satellite_model');
 
 		$this->satellite_model->add();
@@ -46,6 +50,8 @@ class Satellite extends CI_Controller {
 
 	public function edit()
 	{
+		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
 		$this->load->model('satellite_model');
 
 		$item_id_clean = $this->security->xss_clean($this->input->post('id'));
@@ -63,6 +69,8 @@ class Satellite extends CI_Controller {
 	}
 
 	public function saveupdatedSatellite() {
+		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
 		$this->load->model('satellite_model');
 
 		$id = $this->security->xss_clean($this->input->post('id', true));
@@ -76,18 +84,24 @@ class Satellite extends CI_Controller {
 	}
 
 	public function delete() {
+		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
 	    $id = $this->input->post('id');
 		$this->load->model('satellite_model');
 		$this->satellite_model->delete($id);
 	}
 
 	public function deleteSatMode() {
+		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
 	    $id = $this->input->post('id');
 		$this->load->model('satellite_model');
 		$this->satellite_model->deleteSatMode($id);
 	}
 
 	public function saveSatellite() {
+		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
 		$id 				= $this->security->xss_clean($this->input->post('id'));
 		$satellite['name'] 	= $this->security->xss_clean($this->input->post('name'));
 
@@ -100,6 +114,8 @@ class Satellite extends CI_Controller {
     }
 
 	public function saveSatModeChanges() {
+		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
 		$id 						= $this->security->xss_clean($this->input->post('id'));
 		$satmode['name'] 			= $this->security->xss_clean($this->input->post('name'));
 		$satmode['uplink_mode'] 	= $this->security->xss_clean($this->input->post('uplink_mode'));
@@ -116,6 +132,8 @@ class Satellite extends CI_Controller {
     }
 
 	public function addSatMode() {
+		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
 		$this->load->model('satellite_model');
         $inserted_id = $this->satellite_model->insertSatelliteMode();
 
@@ -125,6 +143,8 @@ class Satellite extends CI_Controller {
 	}
 
 	public function satellite_data() {
+		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
 		$this->load->model('satellite_model');
 		$satellite_data = $this->satellite_model->satellite_data();
 		$sat_list = array();
@@ -139,6 +159,8 @@ class Satellite extends CI_Controller {
 	}
 
 	public function flightpath() {
+		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
 		$this->load->model('satellite_model');
 		$this->load->model('stations');
 
@@ -165,6 +187,8 @@ class Satellite extends CI_Controller {
 	}
 
 	public function get_tle() {
+		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
 		$sat = $this->security->xss_clean($this->input->post('sat'));
 		$this->load->model('satellite_model');
 		$satellite_data = $this->satellite_model->get_tle($sat);
@@ -174,6 +198,8 @@ class Satellite extends CI_Controller {
 	}
 
 	public function pass() {
+		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
 		$this->load->model('satellite_model');
 		$this->load->model('stations');
         $active_station_id = $this->stations->find_active();
@@ -194,6 +220,8 @@ class Satellite extends CI_Controller {
 	}
 
 	public function searchpasses() {
+		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
 		try {
 			$result = $this->get_tle_for_predict();
 			$this->calcpass($result);
@@ -205,12 +233,16 @@ class Satellite extends CI_Controller {
 	}
 
 	public function get_tle_for_predict() {
+		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
 		$sat = $this->security->xss_clean($this->input->post('sat'));
 		$this->load->model('satellite_model');
 		return $this->satellite_model->get_tle($sat);
 	}
 
 	function calcpass($sat_tle) {
+		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
 		require_once "./src/predict/Predict.php";
 		require_once "./src/predict/Predict/Sat.php";
 		require_once "./src/predict/Predict/QTH.php";
