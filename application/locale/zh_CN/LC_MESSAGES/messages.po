@@ -4,12 +4,13 @@
 #
 # Karuru <karuru@aerodefense.co.uk>, 2024.
 # BG6HJE <1753409828@qq.com>, 2024.
+# imlonghao <wavelog@esd.cc>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-09-07 07:18+0000\n"
-"PO-Revision-Date: 2024-09-04 05:07+0000\n"
-"Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
+"POT-Creation-Date: 2024-09-06 17:33+0000\n"
+"PO-Revision-Date: 2024-09-07 07:18+0000\n"
+"Last-Translator: imlonghao <wavelog@esd.cc>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
 "org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -76,23 +77,7 @@ msgstr ""
 #: application/controllers/Reg1test.php:102
 #: application/controllers/Reg1test.php:130
 #: application/controllers/Reg1test.php:164
-#: application/controllers/Satellite.php:18
-#: application/controllers/Satellite.php:37
-#: application/controllers/Satellite.php:44
-#: application/controllers/Satellite.php:53
-#: application/controllers/Satellite.php:72
-#: application/controllers/Satellite.php:87
-#: application/controllers/Satellite.php:95
-#: application/controllers/Satellite.php:103
-#: application/controllers/Satellite.php:117
-#: application/controllers/Satellite.php:135
-#: application/controllers/Satellite.php:146
-#: application/controllers/Satellite.php:162
-#: application/controllers/Satellite.php:190
-#: application/controllers/Satellite.php:201
-#: application/controllers/Satellite.php:223
-#: application/controllers/Satellite.php:236
-#: application/controllers/Satellite.php:244
+#: application/controllers/Satellite.php:15
 #: application/controllers/Sattimers.php:9
 #: application/controllers/Search.php:13
 #: application/controllers/Simplefle.php:7
@@ -110,6 +95,23 @@ msgstr ""
 #: application/controllers/User.php:762 application/controllers/User.php:1045
 #: application/controllers/User.php:1247
 #: application/controllers/User_options.php:9
+#: application/controllers/Satellite.php:18
+#: application/controllers/Satellite.php:37
+#: application/controllers/Satellite.php:44
+#: application/controllers/Satellite.php:53
+#: application/controllers/Satellite.php:72
+#: application/controllers/Satellite.php:87
+#: application/controllers/Satellite.php:95
+#: application/controllers/Satellite.php:103
+#: application/controllers/Satellite.php:117
+#: application/controllers/Satellite.php:135
+#: application/controllers/Satellite.php:146
+#: application/controllers/Satellite.php:162
+#: application/controllers/Satellite.php:190
+#: application/controllers/Satellite.php:201
+#: application/controllers/Satellite.php:223
+#: application/controllers/Satellite.php:236
+#: application/controllers/Satellite.php:244
 msgid "You're not allowed to do that!"
 msgstr "不能这么做！"
 
@@ -492,7 +494,7 @@ msgstr "ITU 分区"
 #: application/views/awards/wac/index.php:8
 #: application/views/interface_assets/header.php:174
 msgid "Worked All Continents (WAC)"
-msgstr ""
+msgstr "通联世界大洲奖（WAC）"
 
 #: application/controllers/Backup.php:15 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:284
@@ -694,7 +696,7 @@ msgstr "和波段"
 
 #: application/controllers/Distances.php:83
 msgid "and propagation"
-msgstr ""
+msgstr "和传播方式"
 
 #: application/controllers/Dxatlas.php:19
 #: application/views/interface_assets/header.php:394
@@ -1819,10 +1821,12 @@ msgstr "无 CAT 控制电台。"
 msgid "Export EDI"
 msgstr "导出 EDI"
 
+#: application/controllers/Satellite.php:37
 #: application/controllers/Satellite.php:39
 msgid "Create Satellite"
 msgstr "创建卫星信息"
 
+#: application/controllers/Satellite.php:60
 #: application/controllers/Satellite.php:66
 msgid "Edit Satellite"
 msgstr "编辑卫星"
@@ -4694,10 +4698,12 @@ msgid ""
 "Continents award is issued for working and confirming all six continents. "
 "These are North America, South America, Oceania, Asia, Europe and Africa."
 msgstr ""
+"由国际业余无线电联盟（IARU）赞助，“通联世界大洲奖”颁发给和所有六大洲通联并确"
+"认了的人。这六大洲分别是北美洲、南美洲、大洋洲、亚洲、欧洲和非洲。"
 
 #: application/views/awards/wac/index.php:13
 msgid "Awards - Worked All Continents (WAC)"
-msgstr ""
+msgstr "奖项 - 通联世界大洲奖（WAC）"
 
 #: application/views/awards/wac/index.php:151
 #: application/views/continents/index.php:62
@@ -5439,6 +5445,7 @@ msgid ""
 "Choose in which order you want to type in the different reports. However, "
 "only the elements contained in the selected exchange type are displayed."
 msgstr ""
+"选择您输入交换信息的顺序。注意，只有在信息交换类型中的交换信息才会被显示。"
 
 #: application/views/contesting/index.php:72
 #: application/views/contesting/index.php:73
@@ -5657,7 +5664,7 @@ msgstr "失败的"
 
 #: application/views/cron/index.php:74
 msgid "pending"
-msgstr ""
+msgstr "等待中"
 
 #: application/views/cron/index.php:79
 msgid "disabled"
@@ -5747,13 +5754,13 @@ msgctxt "Dashboard Warning"
 msgid ""
 "Your active Station Location isn't linked to your Logbook. Click %shere%s to "
 "do it."
-msgstr ""
+msgstr "您当前活跃的电台位置并没有链接到你的日志本。单击 %s这里%s 进行设置。"
 
 #: application/views/dashboard/index.php:97
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "You have no station linked to your Logbook. Click %shere%s to do it."
-msgstr ""
+msgstr "您的日志本没有绑定电台。单击 %s这里%s 进行设置。"
 
 #: application/views/dashboard/index.php:106
 #, php-format
@@ -6358,7 +6365,7 @@ msgstr "土耳其语"
 
 #: application/views/distancerecords/index.php:4
 msgid "This page lists distance records per satellite based on gridsquares."
-msgstr ""
+msgstr "本页根据网格列出了每个卫星通联的距离记录。"
 
 #: application/views/distances/index.php:7
 #: application/views/interface_assets/footer.php:30
@@ -6736,7 +6743,7 @@ msgstr "该 DXCC 无满足的州"
 
 #: application/views/interface_assets/footer.php:49
 msgid "Compute QRB and QTF"
-msgstr ""
+msgstr "计算 QRB 和 QTF"
 
 #: application/views/interface_assets/footer.php:50
 msgid "Error in locators. Please check."
@@ -7464,7 +7471,7 @@ msgstr "无/空"
 #: application/views/logbookadvanced/index.php:315
 #: application/views/logbookadvanced/index.php:540
 msgid "Invalid"
-msgstr ""
+msgstr "无效"
 
 #: application/views/logbookadvanced/index.php:324
 msgid "QSL sent"
@@ -8291,11 +8298,11 @@ msgstr "此功能可使 Wavelog Github 地址显示在公开页面中"
 
 #: application/views/options/appearance.php:107
 msgid "Public Login Button"
-msgstr ""
+msgstr "公开登陆按钮"
 
 #: application/views/options/appearance.php:112
 msgid "This enables the button to login to Wavelog in the public view"
-msgstr ""
+msgstr "此功能可使登陆按钮显示在公开页面中"
 
 #: application/views/options/dxcluster.php:38
 msgid "Provider of DXClusterCache"
@@ -8984,19 +8991,19 @@ msgstr "卫星模式"
 
 #: application/views/qso/edit_ajax.php:268 application/views/qso/index.php:545
 msgid "Antenna Azimuth (°)"
-msgstr ""
+msgstr "天线方位角（°）"
 
 #: application/views/qso/edit_ajax.php:270 application/views/qso/index.php:547
 msgid "Antenna azimuth in decimal degrees."
-msgstr ""
+msgstr "天线方位角（以十进制度为单位）。"
 
 #: application/views/qso/edit_ajax.php:274 application/views/qso/index.php:551
 msgid "Antenna Elevation (°)"
-msgstr ""
+msgstr "天线仰角（°）"
 
 #: application/views/qso/edit_ajax.php:276 application/views/qso/index.php:553
 msgid "Antenna elevation in decimal degrees."
-msgstr ""
+msgstr "天线仰角（以十进制度为单位）。"
 
 #: application/views/qso/edit_ajax.php:383 application/views/qso/index.php:255
 #: application/views/qso/index.php:510 application/views/user/edit.php:599
@@ -9249,11 +9256,11 @@ msgstr "选择波段"
 msgid ""
 "Bands below 50Mhz are not valid for the EDI REG1TEST format and will produce "
 "invalid files."
-msgstr ""
+msgstr "低于 50Mhz 的频段对于 EDI REG1TEST 格式无效，并且会产生无效文件。"
 
 #: application/views/reg1test/index.php:18
 msgid "Export a contest to a REG1TEST EDI log"
-msgstr ""
+msgstr "将竞赛导出为 REG1TEST EDI 日志"
 
 #: application/views/reg1test/index.php:48
 msgid "Sent Exchange"
@@ -9272,65 +9279,65 @@ msgstr ""
 msgid ""
 "Describes the callsign of the radio club where operator(s) are member. E.g. "
 "can be used if points are accumulated to the club."
-msgstr ""
+msgstr "描述操作员所属无线电俱乐部的呼号。例如，可用进行俱乐部积分累积。"
 
 #: application/views/reg1test/index.php:66
 msgid "Callsign of responsible operator"
-msgstr ""
+msgstr "负责人呼号"
 
 #: application/views/reg1test/index.php:72
 msgid ""
 "List of all operators. Seperated with a semicolon ';'. The responsible "
 "operator is not needed here."
-msgstr ""
+msgstr "操作员列表。以 ; 半角分号分割。负责人呼号不需要填写。"
 
 #: application/views/reg1test/index.php:75
 msgid "Contest Address 1"
-msgstr ""
+msgstr "竞赛地址 1"
 
 #: application/views/reg1test/index.php:77
 msgid "Address of the QTH used during the contest."
-msgstr ""
+msgstr "竞赛进行时的 QTH 地址。"
 
 #: application/views/reg1test/index.php:80
 msgid "Contest Address 2"
-msgstr ""
+msgstr "竞赛地址 2"
 
 #: application/views/reg1test/index.php:84
 msgid "Operator Address 1"
-msgstr ""
+msgstr "负责人地址 1"
 
 #: application/views/reg1test/index.php:86
 msgid "Address of the responsible operator."
-msgstr ""
+msgstr "负责人的地址。"
 
 #: application/views/reg1test/index.php:89
 msgid "Operator Address 2"
-msgstr ""
+msgstr "负责人地址 2"
 
 #: application/views/reg1test/index.php:93
 msgid "Operator Address Postalcode"
-msgstr ""
+msgstr "负责人邮政编码"
 
 #: application/views/reg1test/index.php:97
 msgid "Operator Address City"
-msgstr ""
+msgstr "负责人城市"
 
 #: application/views/reg1test/index.php:101
 msgid "Operator Address Country"
-msgstr ""
+msgstr "负责人国家"
 
 #: application/views/reg1test/index.php:105
 msgid "Operator Phone Number"
-msgstr ""
+msgstr "负责人手机号码"
 
 #: application/views/reg1test/index.php:109
 msgid "Transmit Equipment Description"
-msgstr ""
+msgstr "发射设备描述"
 
 #: application/views/reg1test/index.php:111
 msgid "Short description of the used equipment."
-msgstr ""
+msgstr "已使用设备的简要描述。"
 
 #: application/views/reg1test/index.php:116
 msgid "TX Power during the contest in Watt."
@@ -9338,11 +9345,11 @@ msgstr "比赛时使用的发射功率，单位瓦特。"
 
 #: application/views/reg1test/index.php:119
 msgid "Receive Equipment Description"
-msgstr ""
+msgstr "接收设备描述"
 
 #: application/views/reg1test/index.php:121
 msgid "If you used another gear for RX, then describe it here."
-msgstr ""
+msgstr "如果您使用了其他装备进行接收，请在此处进行描述。"
 
 #: application/views/reg1test/index.php:124
 msgid "Antenna Description"
@@ -9350,29 +9357,29 @@ msgstr "天线信息"
 
 #: application/views/reg1test/index.php:126
 msgid "What kind of antenna was used."
-msgstr ""
+msgstr "使用天线的种类。"
 
 #: application/views/reg1test/index.php:129
 msgid "Antenna Height Above Ground (m)"
-msgstr ""
+msgstr "天线距地面高度（米）"
 
 #: application/views/reg1test/index.php:131
 msgid "Height of the antenna above the ground."
-msgstr ""
+msgstr "天线距地面的高度。"
 
 #: application/views/reg1test/index.php:134
 msgid "Band multiplicator"
-msgstr ""
+msgstr "波段系数"
 
 #: application/views/reg1test/index.php:136
 msgid ""
 "Band multiplicator. This is usually 1. Only change this if necessary "
 "according to the contest scoring rules."
-msgstr ""
+msgstr "波段系数。通常为 1。只在根据竞赛积分规则下更改。"
 
 #: application/views/reg1test/index.php:141
 msgid "Any other remarks."
-msgstr ""
+msgstr "其他备注。"
 
 #: application/views/satellite/create.php:23
 #: application/views/satellite/edit.php:7
