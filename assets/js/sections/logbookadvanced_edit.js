@@ -186,7 +186,7 @@ function saveBatchEditQsos(id_list) {
 	if (column == 'continent') {
 		value = $("#editContinent").val();
 	}
-	if (column == 'sota' || column == 'pota' || column == 'wwff' || column == 'gridsquare' || column == 'comment' || column == 'operator' || column == 'qslvia' || column == 'contest' || column == 'qslmsg') {
+	if (column == 'sota' || column == 'pota' || column == 'wwff' || column == 'gridsquare' || column == 'comment' || column == 'operator' || column == 'qslvia' || column == 'qslmsg') {
 		value = $("#editTextInput").val();
 	}
 
