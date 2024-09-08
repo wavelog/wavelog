@@ -314,6 +314,7 @@ class Logbookadvanced extends CI_Controller {
 			'qslimages' => '',
 			'operator' => '',
 			'contest' => '',
+			'continent' => '',
 			'ids' => xss_clean($this->input->post('ids'))
 		);
 
