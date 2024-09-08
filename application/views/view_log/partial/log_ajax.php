@@ -286,7 +286,7 @@ function echo_table_col($row, $name) {
 
 		<?php if ( strpos($this->session->userdata('user_default_confirmation'),'Z') !== false && ($this->session->userdata('hasQrzKey') != "") ) { ?>
                     <td class="qrz">
-                        <span <?php if ($row->COL_QRZCOM_QSO_UPLOAD_STATUS == "Y") { echo "title=\"".__("Sent"); if ($row->COL_QRZCOM_QSO_UPLOAD_DATE != null) { $timestamp = strtotime($row->COL_QRZCOM_QSO_UPLOAD_DATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="qrz-<?php echo ($row->COL_QRZCOM_QSO_UPLOAD_STATUS=='Y')?'green':'red'?>">&#9650;</span>
+                        <span <?php echo ($row->COL_QRZCOM_QSO_UPLOAD_STATUS == "Y") ? 'title="'.__("Sent").(($row->COL_QRZCOM_QSO_UPLOAD_DATE != null) ? " ".date($custom_date_format, strtotime($row->COL_QRZCOM_QSO_UPLOAD_DATE)) : '').'" data-bs-toggle="tooltip"' : (($row->COL_QRZCOM_QSO_UPLOAD_STATUS == "M") ? 'title="'.__("Modified").'" data-bs-toggle="tooltip"' : ''); ?> class="qrz-<?php echo ($row->COL_QRZCOM_QSO_UPLOAD_STATUS == 'Y') ? 'green' : (($row->COL_QRZCOM_QSO_UPLOAD_STATUS == 'N') ? 'red' : 'yellow'); ?>">&#9650;</span>
                         <span <?php if ($row->COL_QRZCOM_QSO_DOWNLOAD_STATUS == "Y") { echo "title=\"".__("Received"); if ($row->COL_QRZCOM_QSO_DOWNLOAD_DATE != null) { $timestamp = strtotime($row->COL_QRZCOM_QSO_DOWNLOAD_DATE); echo " ".($timestamp!=''?date($custom_date_format, $timestamp):''); } echo "\" data-bs-toggle=\"tooltip\""; } ?> class="qrz-<?php echo ($row->COL_QRZCOM_QSO_DOWNLOAD_STATUS=='Y')?'green':'red'?>">&#9660;</span>
                     </td>
                 <?php } ?>
