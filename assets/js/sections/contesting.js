@@ -100,8 +100,17 @@ async function reset_contest_session() {
 }
 
 function sort_exchange() {
+
+	// Get the selected sequence
+	let exchangeSelect = $('#exchangesequence_select');
+
+	// If the sequence is not set, we need to set one to prevent errors
+	if (!exchangeSelect.val()) {
+		exchangeSelect.val('s-g-e');
+	}
+
 	// Split the squence into an array
-	var selectedOrder = $('#exchangesequence_select').val().split('-'); 
+	let selectedOrder = exchangeSelect.val().split('-'); 
 
 	// Map sequence to corresponding SENT elements
 	let mapping = {
