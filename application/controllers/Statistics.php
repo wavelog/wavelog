@@ -232,7 +232,7 @@ class Statistics extends CI_Controller {
 		$data['page_title'] = __("QSL Statistics");
 
 		// Load Views
-		$this->load->view('interface_assets/header');
+		$this->load->view('interface_assets/header', $data);
 		$this->load->view('statistics/qsltable', $total_qsos);
 		$this->load->view('interface_assets/footer');
 	}

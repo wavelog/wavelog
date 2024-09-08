@@ -99,6 +99,16 @@
                         <div class="mb-3 row">
                             <div class="col-md-10">
                                 <div class="form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="markEqsl" value="1" id="markEqslImport">
+                                    <label class="form-check-label" for="markEqslImport"><?= __("Mark imported QSOs as uploaded to eQSL Logbook") ?></label>
+                                </div>
+                                <div class="small form-text text-muted"><?= __("Select if ADIF being imported does not contain this information.") ?></div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <div class="col-md-10">
+                                <div class="form-check-inline">
                                     <input class="form-check-input" type="checkbox" name="markHrd" value="1" id="markHrdImport">
                                     <label class="form-check-label" for="markHrdImport"><?= __("Mark imported QSOs as uploaded to HRDLog.net Logbook") ?></label>
                                 </div>
@@ -151,7 +161,7 @@
                                     <input class="form-check-input" type="checkbox" name="skipStationCheck" value="1" id="skipStationCheck">
                                     <label class="form-check-label" for="skipStationCheck"><span class="badge text-bg-warning"><?= __("DANGER") ?></span> <?= __("Ignore Stationcallsign on import") ?></label>
                                 </div>
-                                <div class="small form-text text-muted"><?= __("If selected, Wavelog will try to import <b>all</b> QSO's of the ADIF, regardless if they match to the chosen station-location.") ?></div>
+                                <div class="small form-text text-muted"><?= sprintf(__("If selected, Wavelog will try to import %sall%s QSO's of the ADIF, regardless if they match to the chosen station-location."), '<b>', '</b>'); ?></div>
                             </div>
                         </div>
 

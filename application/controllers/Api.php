@@ -115,13 +115,13 @@ class API extends CI_Controller {
 	function auth($key) {
 		$this->load->model('api_model');
 			header("Content-type: text/xml");
-		if($this->api_model->access($key) == __("No Key Found") || $this->api_model->access($key) == __("Key Disabled")) {
+		if($this->api_model->access($key) == "No Key Found" || $this->api_model->access($key) == "Key Disabled") {
 			echo "<auth>";
-			echo "<message>" . __("Key Invalid - either not found or disabled") . "</message>";
+			echo "<message>Key Invalid - either not found or disabled</message>";
 			echo "</auth>";
 		} else {
 			echo "<auth>";
-			echo "<status>" . __("Valid") . "</status>";
+			echo "<status>Valid</status>";
 			echo "<rights>".$this->api_model->access($key)."</rights>";
 			echo "</auth>";
 			$this->api_model->update_last_used($key);
@@ -223,7 +223,7 @@ class API extends CI_Controller {
 				};
 				$record='';	// free memory
 				gc_collect_cycles();
-				$custom_errors = $this->logbook_model->import_bulk($alladif, $obj['station_profile_id'], false, false, false, false, false, false, true, false, true, false);
+				$custom_errors = $this->logbook_model->import_bulk($alladif, $obj['station_profile_id'], false, false, false, false, false, false, false, true, false, true, false);
 				$alladif=[];
 				$return_msg[]='';
 			} else {

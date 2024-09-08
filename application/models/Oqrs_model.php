@@ -1,21 +1,23 @@
 <?php
 
 class Oqrs_model extends CI_Model {
+
     function get_oqrs_stations() {
         $this->db->where('oqrs', "1");
 		return $this->db->get('station_profile');
 	}
 
     function get_station_info($station_id) {
-        $station_id = $this->security->xss_clean($station_id);
 
+		$binding = [];
         $sql = 'select 
         count(*) as count,
         min(col_time_on) as mindate,
         max(col_time_on) as maxdate
-        from ' . $this->config->item('table_name') . ' where station_id = ' . $station_id;
+        from ' . $this->config->item('table_name') . ' where station_id = ?';
+		$binding[] = $station_id;
 
-        $query = $this->db->query($sql);
+        $query = $this->db->query($sql, $binding);
 
         return $query->row();
     }
@@ -42,29 +44,22 @@ class Oqrs_model extends CI_Model {
 		return $result;
 	}
 
-	
-    function get_qsos_grouped($callsign){
-
-		// Populating array with worked band/mode combinations
-		$worked = $this->getQueryData($station_id, $callsign);
-
-		$result['qsocount'] = count($worked);
-		$result['qsoarray'] = $resultArray;
-
-		return $result;
-	}
-
 	/*
 	 * Builds query depending on what we are searching for
 	 */
 	function getQueryData($station_id, $callsign) {
-        $station_id = $this->security->xss_clean($station_id);
-        $callsign = $this->security->xss_clean($callsign);
-        $sql = 'select lower(col_mode) col_mode, coalesce(col_submode, "") col_submode, col_band from ' . $this->config->item('table_name') . ' where station_id = ' . $station_id . ' and col_call ="' . $callsign . '" and col_prop_mode != "SAT"';
 
-		$sql .= ' union all select lower(col_mode) col_mode, coalesce(col_submode, "") col_submode, "SAT" col_band from ' . $this->config->item('table_name') . ' where station_id = ' . $station_id . ' and col_call ="' . $callsign . '" and col_prop_mode = "SAT"';
+		$binding = [];
 
-        $query = $this->db->query($sql);
+		$sql = 'select lower(col_mode) col_mode, coalesce(col_submode, "") col_submode, col_band from ' . $this->config->item('table_name') . ' where station_id = ? and col_call = ? and col_prop_mode != "SAT"';
+		$binding[] = $station_id;
+		$binding[] = $callsign;
+
+		$sql .= ' union all select lower(col_mode) col_mode, coalesce(col_submode, "") col_submode, "SAT" col_band from ' . $this->config->item('table_name') . ' where station_id = ? and col_call = ? and col_prop_mode = "SAT"';
+		$binding[] = $station_id;
+		$binding[] = $callsign;
+
+        $query = $this->db->query($sql, $binding);
 
         return $query->result();
 	}
@@ -73,14 +68,18 @@ class Oqrs_model extends CI_Model {
 	 * Builds query depending on what we are searching for
 	 */
 	function getQueryDataGrouped($callsign) {
-        $callsign = $this->security->xss_clean($callsign);
-        $sql = 'select lower(col_mode) col_mode, coalesce(col_submode, "") col_submode, col_band, station_callsign, station_profile_name, l.station_id from ' . $this->config->item('table_name') . ' as l join station_profile on l.station_id = station_profile.station_id where station_profile.oqrs = "1" and l.col_call ="' . $callsign . '" and l.col_prop_mode != "SAT"';
+
+        $binding = [];
+
+        $sql = 'select lower(col_mode) col_mode, coalesce(col_submode, "") col_submode, col_band, station_callsign, station_profile_name, l.station_id from ' . $this->config->item('table_name') . ' as l join station_profile on l.station_id = station_profile.station_id where station_profile.oqrs = "1" and l.col_call = ? and l.col_prop_mode != "SAT"';
+		$binding[] = $callsign;
 
 		$sql .= ' union all select lower(col_mode) col_mode, coalesce(col_submode, "") col_submode, "SAT" col_band, station_callsign, station_profile_name, l.station_id from ' . 
 			$this->config->item('table_name') . ' l' . 
-			' join station_profile on l.station_id = station_profile.station_id where station_profile.oqrs = "1" and col_call ="' . $callsign . '" and col_prop_mode = "SAT"';
+			' join station_profile on l.station_id = station_profile.station_id where station_profile.oqrs = "1" and col_call = ? and col_prop_mode = "SAT"';
+		$binding[] = $callsign;
 
-        $query = $this->db->query($sql);
+        $query = $this->db->query($sql, $binding);
 
 		if ($query) {
 			return $query->result();
@@ -128,15 +127,15 @@ class Oqrs_model extends CI_Model {
 		$qsos = $postdata['qsos'];
 		foreach($qsos as $qso) {
 			$data = array(
-				'date' 				=> xss_clean($qso[0]),
-				'time'	 			=> xss_clean($qso[1]),
-				'band' 				=> xss_clean($qso[2]),
-				'mode' 				=> xss_clean($qso[3]),
-				'requestcallsign' 	=> xss_clean($postdata['callsign']),
-				'station_id' 		=> xss_clean($postdata['station_id']),
-				'note' 				=> xss_clean($postdata['message']),
-				'email' 			=> xss_clean($postdata['email']),
-				'qslroute' 			=> xss_clean($postdata['qslroute']),
+				'date' 				=> $qso[0],
+				'time'	 			=> $qso[1],
+				'band' 				=> $qso[2],
+				'mode' 				=> $qso[3],
+				'requestcallsign' 	=> $postdata['callsign'],
+				'station_id' 		=> $postdata['station_id'],
+				'note' 				=> $postdata['message'],
+				'email' 			=> $postdata['email'],
+				'qslroute' 			=> $postdata['qslroute'],
 				'status' 			=> '0',
 			);
 
@@ -148,8 +147,8 @@ class Oqrs_model extends CI_Model {
 			$data['qsoid'] = $qsoid;
 	
 			$this->db->insert('oqrs', $data);
-			if(!in_array(xss_clean($postdata['station_id']), $station_ids)){
-				array_push($station_ids, xss_clean($postdata['station_id']));
+			if(!in_array($postdata['station_id'], $station_ids)){
+				array_push($station_ids, $postdata['station_id']);
 			}
 		}
 
@@ -161,15 +160,15 @@ class Oqrs_model extends CI_Model {
 		$qsos = $postdata['qsos'];
 		foreach($qsos as $qso) {
 			$data = array(
-				'date' 				=> xss_clean($qso[0]),
-				'time'	 			=> xss_clean($qso[1]),
-				'band' 				=> xss_clean($qso[2]),
-				'mode' 				=> xss_clean($qso[3]),
-				'requestcallsign' 	=> xss_clean($postdata['callsign']),
-				'station_id' 		=> xss_clean($qso[4]),
-				'note' 				=> xss_clean($postdata['message']),
-				'email' 			=> xss_clean($postdata['email']),
-				'qslroute' 			=> xss_clean($postdata['qslroute']),
+				'date' 				=> $qso[0],
+				'time'	 			=> $qso[1],
+				'band' 				=> $qso[2],
+				'mode' 				=> $qso[3],
+				'requestcallsign' 	=> $postdata['callsign'],
+				'station_id' 		=> $qso[4],
+				'note' 				=> $postdata['message'],
+				'email' 			=> $postdata['email'],
+				'qslroute' 			=> $postdata['qslroute'],
 				'status' 			=> '0',
 			);
 
@@ -182,17 +181,19 @@ class Oqrs_model extends CI_Model {
 	
 			$this->db->insert('oqrs', $data);
 			
-			if(!in_array(xss_clean($qso[4]), $station_ids)){
-				array_push($station_ids, xss_clean($qso[4]));
+			if(!in_array($qso[4], $station_ids)){
+				array_push($station_ids, $qso[4]);
 			}
 		}
 		return $station_ids;
 	}
 
 	function delete_oqrs_line($id) {
-        $sql = 'delete from oqrs where id =' . xss_clean($id);
+		$binding = [];
+        $sql = 'delete from oqrs where id = ?';
+		$binding[] = $id;
 
-        $query = $this->db->query($sql);
+        $query = $this->db->query($sql, $binding);
 
         return true;
 	}
@@ -206,14 +207,14 @@ class Oqrs_model extends CI_Model {
 		$qsos = $postdata['qsos'];
 		foreach($qsos as $qso) {
 			$data = array(
-				'date' 				=> xss_clean($qso[0]),
-				'time'	 			=> xss_clean($qso[1]),
-				'band' 				=> xss_clean($qso[2]),
-				'mode' 				=> xss_clean($qso[3]),
-				'requestcallsign' 	=> xss_clean($postdata['callsign']),
-				'station_id' 		=> xss_clean($postdata['station_id']),
-				'note' 				=> xss_clean($postdata['message']),
-				'email' 			=> xss_clean($postdata['email']),
+				'date' 				=> $qso[0],
+				'time'	 			=> $qso[1],
+				'band' 				=> $qso[2],
+				'mode' 				=> $qso[3],
+				'requestcallsign' 	=> $postdata['callsign'],
+				'station_id' 		=> $postdata['station_id'],
+				'note' 				=> $postdata['message'],
+				'email' 			=> $postdata['email'],
 				'qslroute' 			=> '',
 				'status' 			=> '1',
 				'qsoid' 			=> '0',
@@ -224,16 +225,28 @@ class Oqrs_model extends CI_Model {
 	}
 
 	function check_oqrs($qsodata) {
+
+		$binding = [];
+
 		$sql = 'select * from ' . $this->config->item('table_name') . 
-		' where (col_band = \'' . $qsodata['band'] . '\' or col_prop_mode = \'' . $qsodata['band'] . '\')
-		 and col_call = \'' . $qsodata['requestcallsign'] . '\'
-		 and date(col_time_on) = \'' . $qsodata['date'] . '\'
-		 and (col_mode = \'' . $qsodata['mode'] . '\'
-		 or col_submode = \'' . $qsodata['mode'] . '\')
-		 and timediff(time(col_time_on), \'' . $qsodata['time'] . '\') <= 3000
-		 and station_id = ' . $qsodata['station_id'];
+		' where (col_band = ? or col_prop_mode = ?)
+		 and col_call = ?
+		 and date(col_time_on) = ?
+		 and (col_mode = ?
+		 or col_submode = ?)
+		 and timediff(time(col_time_on), ?) <= 3000
+		 and station_id = ?';
 		
-		$query = $this->db->query($sql);
+		$binding[] = $qsodata['band'];
+		$binding[] = $qsodata['band'];
+		$binding[] = $qsodata['requestcallsign'];
+		$binding[] = $qsodata['date'];
+		$binding[] = $qsodata['mode'];
+		$binding[] = $qsodata['mode'];
+		$binding[] = $qsodata['time'];
+		$binding[] = $qsodata['station_id'];
+		
+		$query = $this->db->query($sql, $binding);
 
 		if ($result = $query->result()) {
 			$id = 0;
@@ -272,15 +285,25 @@ class Oqrs_model extends CI_Model {
 	}
 
 	function search_log_time_date($time, $date, $band, $mode) {
-		$sql = 'select * from ' . $this->config->item('table_name') . ' thcv
-		 join station_profile on thcv.station_id = station_profile.station_id where (col_band = \'' . $band . '\' or col_prop_mode = \'' . $band . '\')
-		 and date(col_time_on) = \'' . $date . '\'
-		 and (col_mode = \'' . $mode . '\'
-		 or col_submode = \'' . $mode . '\')
-		 and timediff(time(col_time_on), \'' . $time . '\') <= 3000
-		 and station_profile.user_id = '. $this->session->userdata('user_id');
 
-		return $this->db->query($sql);;
+		$binding = [];
+
+		$sql = 'select * from ' . $this->config->item('table_name') . ' thcv
+		 join station_profile on thcv.station_id = station_profile.station_id where (col_band = ? or col_prop_mode = ?)
+		 and date(col_time_on) = ?
+		 and (col_mode = ?
+		 or col_submode = ?)
+		 and timediff(time(col_time_on), ?) <= 3000
+		 and station_profile.user_id = ?';
+		$binding[] = $band;
+		$binding[] = $band;
+		$binding[] = $date;
+		$binding[] = $mode;
+		$binding[] = $mode;
+		$binding[] = $time;
+		$binding[] = $this->session->userdata('user_id');
+
+		return $this->db->query($sql, $binding);
 	}
 
 	function mark_oqrs_line_as_done($id) {
@@ -294,9 +317,11 @@ class Oqrs_model extends CI_Model {
 	}
 
 	function getQslInfo($station_id) {
-		$sql = 'select oqrs_text from station_profile where station_id = ' . $station_id;
+		$binding = [];
+		$sql = 'select oqrs_text from station_profile where station_id = ?';
+		$binding[] = $station_id;
 
-		$query = $this->db->query($sql);
+		$query = $this->db->query($sql, $binding);
 
 		if ($query->num_rows() > 0)
 		{
@@ -308,9 +333,11 @@ class Oqrs_model extends CI_Model {
 	}
 
 	function getOqrsEmailSetting($station_id) {
-		$sql = 'select oqrs_email from station_profile where station_id = ' . $station_id;
+		$binding = [];
+		$sql = 'select oqrs_email from station_profile where station_id = ?';
+		$binding[] = $station_id;
 
-		$query = $this->db->query($sql);
+		$query = $this->db->query($sql, $binding);
 
 		if ($query->num_rows() > 0)
 		{
@@ -366,19 +393,32 @@ class Oqrs_model extends CI_Model {
 
 	public function oqrs_requests($location_list) {
 		if ($location_list != "") {
-			$sql = 'SELECT COUNT(*) AS number FROM oqrs JOIN station_profile ON oqrs.station_id = station_profile.station_id WHERE oqrs.station_id IN ('.$location_list.') AND status < 2';
+			$sql = 'SELECT status, COUNT(*) AS number FROM oqrs JOIN station_profile ON oqrs.station_id = station_profile.station_id WHERE oqrs.station_id IN ('.$location_list.') GROUP BY status';
 			$query = $this->db->query($sql);
-			$row = $query->row();
-			return $row->number;
+			$sum = 0;
+			$open = 0;
+			foreach ($query->result_array() as $row) {
+				$sum += $row['number'];
+				if ($row['status'] == 1) {
+					$open += $row['number'];
+				}
+			}
+			if ($open == 0 && $sum == 0) {
+				return 0;
+			} else {
+				return $open."/".$sum;
+			}
 		} else {
 			return 0;
 		}
 	}
 
 	function getOqrsStationsFromSlug($logbook_id) {
-		$sql = 'SELECT station_callsign FROM `station_logbooks_relationship` JOIN `station_profile` ON station_logbooks_relationship.station_location_id = station_profile.station_id WHERE station_profile.oqrs = 1 AND station_logbook_id = '.$logbook_id.';';
+		$binding = [];
+		$sql = 'SELECT station_callsign FROM `station_logbooks_relationship` JOIN `station_profile` ON station_logbooks_relationship.station_location_id = station_profile.station_id WHERE station_profile.oqrs = 1 AND station_logbook_id = ?;';
+		$binding[] = $logbook_id;
 
-		$query = $this->db->query($sql);
+		$query = $this->db->query($sql, $binding);
 
 		if ($query->num_rows() > 0) {
 			return true;
@@ -386,4 +426,19 @@ class Oqrs_model extends CI_Model {
 			return false;
 		}
 	}
+
+	public function oqrs_enabled($slug) {
+		if ($slug) {
+			$this->load->model('Logbooks_model');
+			$logbook_id = $this->Logbooks_model->public_slug_exists_logbook_id($slug);
+			if (!empty($this->getOqrsStationsFromSlug($logbook_id))) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
+
 }

@@ -42,7 +42,7 @@ class Lotw extends CI_Controller {
 	public function index() {
 		$this->load->library('Permissions');
 		$this->load->model('user_model');
-		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		// Load required models for page generation
 		$this->load->model('Lotw_model');
@@ -74,7 +74,7 @@ class Lotw extends CI_Controller {
 	public function cert_upload() {
 		$this->load->model('user_model');
 		$this->load->model('dxcc');
-		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		// Load DXCC Countrys List
 		$data['dxcc_list'] = $this->dxcc->list();
@@ -101,7 +101,7 @@ class Lotw extends CI_Controller {
     {
 		$this->load->model('user_model');
 		$this->load->model('dxcc');
-		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		// create folder to store certs while processing
     	if (!file_exists('./uploads/lotw/certs')) {
@@ -149,14 +149,14 @@ class Lotw extends CI_Controller {
         		$this->Lotw_model->store_certificate($this->session->userdata('user_id'), $info['issued_callsign'], $info['dxcc-id'], $info['validFrom'], $info['validTo_Date'], $info['qso-first-date'], $info['qso-end-date'], $info['pem_key'], $info['general_cert']);
 
         		// Cert success flash message
-        		$this->session->set_flashdata('Success', $info['issued_callsign'].' Certificate Imported.');
+        		$this->session->set_flashdata('success', $info['issued_callsign'] . ' ' . __("Certificate Imported."));
         	} else {
         		// Certificate is in the system time to update
 
 				$this->Lotw_model->update_certificate($this->session->userdata('user_id'), $info['issued_callsign'], $info['dxcc-id'], $info['validFrom'], $info['validTo_Date'], $info['qso-first-date'], $info['qso-end-date'], $info['pem_key'], $info['general_cert']);
 
         		// Cert success flash message
-        		$this->session->set_flashdata('Success', $info['issued_callsign'].' Certificate Updated.');
+        		$this->session->set_flashdata('success', $info['issued_callsign'] . ' ' . __("Certificate Updated."));
 
         	}
 
@@ -375,15 +375,15 @@ class Lotw extends CI_Controller {
 	*/
     public function delete_cert($cert_id) {
     	$this->load->model('user_model');
-		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
     	$this->load->model('Lotw_model');
 
     	$this->Lotw_model->delete_certificate($this->session->userdata('user_id'), $cert_id);
 
-    	$this->session->set_flashdata('Success', 'Certificate Deleted.');
+    	$this->session->set_flashdata('success', __("Certificate Deleted."));
 
-    	redirect('/lotw/');
+    	redirect('lotw');
     }
 
 
@@ -398,14 +398,21 @@ class Lotw extends CI_Controller {
 	*/
 	public function decrypt_key($file, $password = "") {
 		$this->load->model('user_model');
-		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		$results = array();
 		$password = $password; // Only needed if 12 has a password set
 		$filename = file_get_contents('file://'.$file);
 		$worked = openssl_pkcs12_read($filename, $results, $password);
 
-		$data['general_cert'] = $results['cert'];
+		if ($results['cert']) {
+			$data['general_cert'] = $results['cert'];
+		} else {
+			log_message('error', 'Found no certificate in file '.$file);
+			unlink($file);
+			$this->session->set_flashdata('warning', sprintf(__("Found no certificate in file %s. If the filename contains 'key-only' this is typically a certificate request which has not been processed by LoTW yet."), basename($file)));
+			redirect('lotw');
+		}
 
 
 		if($worked) {
@@ -422,16 +429,16 @@ class Lotw extends CI_Controller {
 			    log_message('error', openssl_error_string());
 
 			    // Set warning message redirect to LoTW main page
-			    $this->session->set_flashdata('Warning', openssl_error_string());
-				redirect('/lotw/');
+			    $this->session->set_flashdata('warning', openssl_error_string());
+				redirect('lotw');
 			}
 		} else {
 			// Reading p12 failed log error message
 			log_message('error', openssl_error_string());
 
 			// Set warning message redirect to LoTW main page
-			$this->session->set_flashdata('Warning', openssl_error_string());
-			redirect('/lotw/');
+			$this->session->set_flashdata('warning', openssl_error_string());
+			redirect('lotw');
 		}
 
 		// Read Cert Data
@@ -527,7 +534,7 @@ class Lotw extends CI_Controller {
 					// Present only if the QSLing station specified a single valid grid square value in its station location uploaded to LoTW.
 					$qsl_gridsquare = "";
 					if (isset($record['gridsquare'])) {
-						if (strlen($record['gridsquare']) > strlen($status[2]) || substr(strtoupper($status[2]), 0, 4) != substr(strtoupper($record['gridsquare']), 0, 4)) {
+						if (strlen($record['gridsquare']) > strlen($status[2] ?? '') || substr(strtoupper($status[2] ?? ''), 0, 4) != substr(strtoupper($record['gridsquare']), 0, 4)) {
 							$qsl_gridsquare = $record['gridsquare'];
 						}
 					}
@@ -709,7 +716,7 @@ class Lotw extends CI_Controller {
 	public function import() {	// Is only called via frontend. Cron uses "upload". within download the download is called
 		$this->load->model('user_model');
 		if(!$this->user_model->authorize(2)) {
-			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!');
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 			redirect('dashboard');
 			exit();
 		}
@@ -742,7 +749,7 @@ class Lotw extends CI_Controller {
 				// TODO: We don't actually see the error message
 				if ($data['user_lotw_name'] == '' || $data['user_lotw_password'] == '')
 				{
-					$this->session->set_flashdata('warning', 'You have not defined your ARRL LoTW credentials!'); redirect('lotw/import');
+					$this->session->set_flashdata('warning', __("You have not defined your ARRL LoTW credentials!")); redirect('lotw/import');
 				}
 
 				$customDate = $this->input->post('from');
@@ -817,7 +824,7 @@ class Lotw extends CI_Controller {
 				}
 			}
 		} else {
-			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!');
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 			redirect('dashboard');
 			exit();
 		}
@@ -825,7 +832,7 @@ class Lotw extends CI_Controller {
 
 	public function export() {
 		$this->load->model('user_model');
-		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		$data['page_title'] = __("LoTW .TQ8 Upload");
 
@@ -860,7 +867,7 @@ class Lotw extends CI_Controller {
 
 			if ($fields['login'] == '' || $fields['password'] == '')
 			{
-				$this->session->set_flashdata('warning', 'You have not defined your ARRL LoTW credentials!'); redirect('lotw/status');
+				$this->session->set_flashdata('warning', __("You have not defined your ARRL LoTW credentials!")); redirect('lotw/status');
 			}
 
 			// Curl stuff goes here
@@ -905,7 +912,7 @@ class Lotw extends CI_Controller {
 			$result = curl_exec($ch);
 			if (stristr($result, "Username/password incorrect"))
 			{
-			   $this->session->set_flashdata('warning', 'Your ARRL username and/or password is incorrect.'); redirect('lotw/status');
+			   $this->session->set_flashdata('warning', __("Your ARRL username and/or password is incorrect.")); redirect('lotw/status');
 			}
 
 

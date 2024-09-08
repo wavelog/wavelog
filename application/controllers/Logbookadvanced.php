@@ -13,7 +13,7 @@ class Logbookadvanced extends CI_Controller {
 
 		$this->load->model('user_model');
 		if (!$this->user_model->authorize(2)) {
-			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!');
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 			redirect('dashboard');
 		}
 	}
@@ -143,6 +143,8 @@ class Logbookadvanced extends CI_Controller {
 			'dupes' => xss_clean($this->input->post('dupes')),
 			'operator' => xss_clean($this->input->post('operator')),
 			'contest' => xss_clean($this->input->post('contest')),
+			'invalid' => xss_clean($this->input->post('invalid')),
+			'continent' => xss_clean($this->input->post('continent')),
 		);
 
 		$qsos = [];
@@ -357,6 +359,7 @@ class Logbookadvanced extends CI_Controller {
 			'operator' => xss_clean($this->input->post('operator')),
 			'contest' => xss_clean($this->input->post('contest')),
 			'qslimages' => xss_clean($this->input->post('qslimages')),
+			'continent' => xss_clean($this->input->post('continent')),
 		);
 
 		$result = $this->logbookadvanced_model->getSearchResultArray($searchCriteria);
@@ -521,6 +524,7 @@ class Logbookadvanced extends CI_Controller {
 		$json_string['dok']['show'] = $this->input->post('dok');
 		$json_string['sig']['show'] = $this->input->post('sig');
 		$json_string['wwff']['show'] = $this->input->post('wwff');
+		$json_string['continent']['show'] = $this->input->post('continent');
 
 		$obj['column_settings']= json_encode($json_string);
 

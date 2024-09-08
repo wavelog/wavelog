@@ -55,24 +55,26 @@ var custom_date_format = "<?php echo $custom_date_format ?>";
                 <td><span class="emoji" id="emoji<?php echo $i; ?>">n/a</span></td>
                 <td><span id="tevel<?php echo $i; ?>Timer"></span></td>
                 <td><span id="tevel<?php echo $i; ?>Timeout">...</span></td>
-                <td><span id="tevel<?php echo $i; ?>AosTime"><?php echo date('H:i:s', $activation['aos_time']); ?></span></td>
-                <td><span id="tevel<?php echo $i; ?>LosTime"><?php echo date('H:i:s', $activation['los_time']); ?></span></td>
-                <td align="right"><span id="tevel<?php echo $i; ?>Aos"><?php echo $activation['aos']; ?>°</span><span style="margin-left: 10px; display: inline-block; transform: rotate(<?php echo (-45+$activation['aos']); ?>deg);"><i class="fas fa-location-arrow fa-xs"></i></span></td>
-                <td align="right"><span id="tevel<?php echo $i; ?>Los"><?php echo $activation['los']; ?>°</span><span style="margin-left: 10px; display: inline-block; transform: rotate(<?php echo (-45+$activation['los']); ?>deg);"><i class="fas fa-location-arrow fa-xs"></i></span></td>
-                <td align="right"><span id="tevel<?php echo $i; ?>MaxEl"><?php echo $activation['max_elev']; ?>°</span><span style="margin-left: 10px; display: inline-block; transform: rotate(-<?php echo ($activation['max_elev']); ?>deg);"><i class="fas fa-arrow-right fa-xs"></i></span></td>
-                <td align="right"><span id="tevel<?php echo $i; ?>Duration"><?php echo $activation['duration_min']; ?> min</span></td>
+                <td><span id="tevel<?php echo $i; ?>AosTime"><?php echo $activation['aos_time'] ? date('H:i:s', $activation['aos_time']) : ''; ?></span></td>
+                <td><span id="tevel<?php echo $i; ?>LosTime"><?php echo $activation['los_time'] ? date('H:i:s', $activation['los_time']) : ''; ?></span></td>
+                <td align="right"><span id="tevel<?php echo $i; ?>Aos"><?php echo $activation['aos'] ? $activation['aos']."°" : ''; ?></span><?php echo $activation['aos'] ? "<span style=\"margin-left: 10px; display: inline-block; transform: rotate(<?php echo (-45+".$activation['aos'].")deg);\"><i class=\"fas fa-location-arrow fa-xs\"></i></span>" : ''; ?></td>
+                <td align="right"><span id="tevel<?php echo $i; ?>Los"><?php echo $activation['los'] ? $activation['los']."°" : ''; ?></span><?php echo $activation['los'] ? "<span style=\"margin-left: 10px; display: inline-block; transform: rotate(<?php echo (-45+".$activation['los'].")deg);\"><i class=\"fas fa-location-arrow fa-xs\"></i></span>" : ''; ?></td>
+                <td align="right"><span id="tevel<?php echo $i; ?>MaxEl"><?php echo $activation['max_elev'] ? $activation['max_elev']."°" : ''; ?></span><?php echo $activation['max_elev'] ? "<span style=\"margin-left: 10px; display: inline-block; transform: rotate(-".$activation['max_elev'].")deg);\"><i class=\"fas fa-arrow-right fa-xs\"></i></span>" : ''; ?></td>
+                <td align="right"><span id="tevel<?php echo $i; ?>Duration"><?php echo $activation['duration_min'] ? $activation['duration_min']." min" : ''; ?></span></td>
                 <td>
                 <?php
                    if (strpos($activation['sat'], 'TEVEL') !== false) {
                       echo "<a href=\"https://mailman.amsat.org/hyperkitty/search?q=TEVEL&page=1&mlist=amsat-bb%40amsat.org&sort=date-desc\" target=\"_blank\">" . __("Info") . "</a>";
                    } else if (strpos($activation['sat'], 'UVSQ') !== false) {
-                      echo "<a href=\"https://x.com/uvsqsat?s=20\" target=\"_blank\">" . __("Info") . "</a>";
+                      echo "<a href=\"http://uvsq-sat.projet.latmos.ipsl.fr/\" target=\"_blank\">" . __("Info") . "</a>";
                    } else if (strpos($activation['sat'], 'PO-101') !== false) {
                       echo "<a href=\"https://x.com/Diwata2PH?s=20\" target=\"_blank\">" . __("Info") . "</a>";
                    } else if (strpos($activation['sat'], 'CAS-3H') !== false) {
                       echo "<a href=\"https://www.amsat.org/two-way-satellites/lilacsat-2-cas-3h/\" target=\"_blank\">" . __("Info") . "</a>";
                    } else if (strpos($activation['sat'], 'LEDSAT') !== false) {
                       echo "<a href=\"https://www.esa.int/Education/CubeSats_-_Fly_Your_Satellite/Connect_and_communicate_with_a_satellite_via_the_LEDSAT_Digipeater_Challenge\" target=\"_blank\">" . __("Info") . "</a>";
+                   } else if (strpos($activation['sat'], 'INSPIRE7') !== false) {
+                      echo "<a href=\"https://inspiresat7.projet.latmos.ipsl.fr/\" target=\"_blank\">" . __("Info") . "</a>";
                    }
                 ?>
                 </td>

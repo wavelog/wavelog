@@ -10,7 +10,7 @@ class Backup extends CI_Controller {
 	public function index()
 	{
 		$this->load->model('user_model');
-		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+		if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		$data['page_title'] = __("Backup");
 
@@ -23,8 +23,10 @@ class Backup extends CI_Controller {
 	public function adif($key = null){ 
 		if ($key == null) {
 			$this->load->model('user_model');
-			if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+			if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 		}
+
+		$clean_key = $this->security->xss_clean($key);
 
 		$this->load->helper('file');
 		// Set memory limit to unlimited to allow heavy usage
@@ -32,7 +34,7 @@ class Backup extends CI_Controller {
 		
 		$this->load->model('adif_data');
 
-		$data['qsos'] = $this->adif_data->export_all($key);
+		$data['qsos'] = $this->adif_data->export_all($clean_key);
 
 		$data['filename'] = 'backup/logbook'. date('_Y_m_d_H_i_s') .'.adi';
 		
@@ -58,13 +60,15 @@ class Backup extends CI_Controller {
 	public function notes($key = null) {
 		if ($key == null) {
 			$this->load->model('user_model');
-			if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+			if(!$this->user_model->authorize(99)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 		}
+
+		$clean_key = $this->security->xss_clean($key);
 
 		$this->load->helper('file');
 		$this->load->model('note');
 
-		$data['list_note'] = $this->note->list_all($key);
+		$data['list_note'] = $this->note->list_all($clean_key);
 
 		$data['filename'] = 'backup/notes'. date('_Y_m_d_H_i_s') .'.xml';
 

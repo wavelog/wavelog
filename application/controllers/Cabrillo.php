@@ -13,7 +13,7 @@ class Cabrillo extends CI_Controller {
 		parent::__construct();
 
 		$this->load->model('user_model');
-		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 	}
 
 	public function index() {
@@ -50,7 +50,7 @@ class Cabrillo extends CI_Controller {
 			header('Content-Type: application/json');
 			echo json_encode($result);
 		} else {
-			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard');
+			$this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard');
 		}
 	}
 
@@ -77,7 +77,7 @@ class Cabrillo extends CI_Controller {
 			header('Content-Type: application/json');
 			echo json_encode($result);
 		} else {
-			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard');
+			$this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard');
 		}
 	}
 
@@ -132,7 +132,7 @@ class Cabrillo extends CI_Controller {
 
 			$this->load->view('cabrillo/export', $data);
 		}else {
-			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard');
+			$this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard');
 		}
 	}
 }

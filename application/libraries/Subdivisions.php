@@ -28,7 +28,7 @@ class Subdivisions {
 			case '318':
 			case '375':
 			case '386':
-				return 'Province';
+				return _pgettext("Division Name (States in various countries).", "Province");
 			case '27':
 			case '15':
 			case '54':
@@ -36,37 +36,37 @@ class Subdivisions {
 			case '126':
 			case '151':
 			case '288':
-				return 'Oblast';
+				return _pgettext("Division Name (States in various countries).", "Oblast");
 			case '112':
-				return 'Region';
+				return _pgettext("Division Name (States in various countries).", "Region");
 			case '132':
 			case '144':
 			case '227':
-				return 'Department';
+				return _pgettext("Division Name (States in various countries).", "Department");
 			case '170':
-				return 'Region';
+				return _pgettext("Division Name (States in various countries).", "Region");
 			case '224':
-				return 'Municipality';
+				return _pgettext("Division Name (States in various countries).", "Municipality");
 			case '230':
-				return 'Federal State';
+				return _pgettext("Division Name (States in various countries).", "Federal State");
 			case '239':
 			case '245':
 			case '275':
 			case '497':
-				return 'County';
+				return _pgettext("Division Name (States in various countries).", "County");
 			case '272':
 			case '503':
 			case '504':
-				return 'District';
+				return _pgettext("Division Name (States in various countries).", "District");
 			case '287':
-				return 'Canton';
+				return _pgettext("Division Name (States in various countries).", "Canton");
 			case '291':
-				return 'US State';
+				return _pgettext("Division Name (States in various countries).", "US State");
 			case '318':
 			case '339':
-				return 'Prefecture';
+				return _pgettext("Division Name (States in various countries).", "Prefecture");
 		}
-		return 'State';
+		return _pgettext("Division Name (States in various countries).", "State");
 	}
 	
 	public function get_secondary_subdivision_name($dxcc) {
@@ -75,23 +75,23 @@ class Subdivisions {
 			case '6':
 			case '110':
 			case '291':
-				return 'US County';
+				return _pgettext("Division Name (States in various countries).", "US County");
 			case '15':
 			case '54':
 			case '61':
 			case '126':
 			case '151':
 			case '288':
-				return 'District';
+				return _pgettext("Division Name (States in various countries).", "District");
 			case '21':
 			case '29':
 			case '32':
 			case '281':
-				return 'DME';
+				return _pgettext("Division Name (States in various countries).", "DME");
 			case '339':
-				return 'City / Ku / Gun';
+				return _pgettext("Division Name (States in various countries).", "City / Ku / Gun");
 		}
-		return 'County';
+		return _pgettext("Division Name (States in various countries).", "County");
 	}
 
 	public function get_state_list($dxcc) {

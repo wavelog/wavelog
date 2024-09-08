@@ -70,7 +70,7 @@
 						<h6><?= __("4. Step"); ?></h6>
 					</div>
 					<div class="col-md-10">
-						<p><?= __("Click here on 'Add a Theme' and type in the necessary data. Type in the filenames for the logos <b>without</b> the file extension '.png'"); ?></p>
+						<p><?= sprintf(__("Click here on 'Add a Theme' and type in the necessary data. Type in the filenames for the logos %swithout%s the file extension '.png'"), '<u><b>', '</b></u>'); ?></p>
 					</div>
 				</div>
 			</div>

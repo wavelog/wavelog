@@ -670,3 +670,29 @@ $config['special_callsign'] = false;
 
 // hides the usermenu; takes action only if "special_callsign" is true
 $config['sc_hide_usermenu'] = true;   
+
+
+/*
+|--------------------------------------------------------------------------
+| Impersonate
+|--------------------------------------------------------------------------
+|
+| This config switch disables the impersonate feature. This feauture is used to impersonate another user.
+| Impersonate is enabled by default. To disable it, set the value to false.
+| 
+*/
+
+$config['disable_impersonate'] = false;   
+
+
+/*
+|--------------------------------------------------------------------------
+| Cronmanager Allow Insecure
+|--------------------------------------------------------------------------
+|
+| The cronmanager needs http or https with a valid certificate to work.
+| If you want to use it with https and a self-signed certificate, you need to set this to true.
+| 
+*/
+
+$config['cron_allow_insecure'] = false;   

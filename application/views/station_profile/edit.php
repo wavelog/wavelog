@@ -1,3 +1,30 @@
+<script>
+var dxccarray = [];
+dxccarray.push({
+	adif: 0,
+	name: '- None -',
+	cq: '',
+	itu: '',
+});
+
+<?php
+if ($dxcc_list->result() > 0) {
+	foreach ($dxcc_list->result() as $dxcc) {
+	?>
+		var dxcc = {
+			adif: <?php echo $dxcc->adif; ?>,
+			name: "<?php echo $dxcc->name; ?>",
+			cq: <?php echo $dxcc->cqz; ?>,
+			itu: <?php echo $dxcc->ituz; ?>,
+		};
+		dxccarray.push(dxcc);
+	<?php
+	}
+}
+?>
+
+</script>
+
 <div class="container" id="create_station_profile">
 
 <br>
@@ -44,7 +71,7 @@
 
 					<div class="mb-3">
 						<label for="stationCallsignInput"><?= __("Station Callsign"); ?></label>
-						<input type="text" class="form-control" name="station_callsign" id="stationCallsignInput" aria-describedby="stationCallsignInputHelp" value="<?php if(set_value('station_callsign') != "") { echo set_value('station_callsign'); } else { echo $my_station_profile->station_callsign; } ?>" required>
+						<input type="text" class="form-control uppercase" name="station_callsign" id="stationCallsignInput" aria-describedby="stationCallsignInputHelp" value="<?php if(set_value('station_callsign') != "") { echo set_value('station_callsign'); } else { echo $my_station_profile->station_callsign; } ?>" required>
 						<small id="stationCallsignInputHelp" class="form-text text-muted"><?= __("Station callsign. For example: 4W7EST/P"); ?></small>
 					</div>
 
@@ -68,7 +95,7 @@
 					<div class="mb-3">
 					    <label for="stationDXCCInput"><?= __("Station DXCC"); ?></label>
 					    <?php if ($dxcc_list->num_rows() > 0) { ?>
-					        <select class="form-select" id="dxcc_id" name="dxcc" aria-describedby="stationCallsignInputHelp">
+					        <select class="form-control" id="dxcc_id" name="dxcc" aria-describedby="stationCallsignInputHelp">
 					            <option value="0" <?php if($my_station_profile->station_dxcc == "0") { ?>selected<?php } ?>><?php echo "- " . _pgettext("DXCC selection", "None") . " -"; ?></option>
 					            <?php foreach ($dxcc_list->result() as $dxcc) { ?>
 					                <?php $isDeleted = $dxcc->end !== NULL; ?>
@@ -170,7 +197,7 @@
 		    			<label for="stationGridsquareInput"><?= __("Station Gridsquare"); ?></label>
 
 						<div class="input-group mb-3">
-						<input type="text" class="form-control" name="gridsquare" id="stationGridsquareInput" aria-describedby="stationGridInputHelp" value="<?php if(set_value('gridsquare') != "") { echo set_value('gridsquare'); } else { echo $my_station_profile->station_gridsquare; } ?>" required>
+						<input type="text" class="form-control uppercase" name="gridsquare" id="stationGridsquareInput" aria-describedby="stationGridInputHelp" value="<?php if(set_value('gridsquare') != "") { echo set_value('gridsquare'); } else { echo $my_station_profile->station_gridsquare; } ?>" required>
 							<div class="input-group-append">
 								<button type="button" class="btn btn-outline-secondary" onclick="getLocation()"><i class="fas fa-compass"></i> <?= __("Get Gridsquare"); ?></button>
 							</div>
@@ -216,8 +243,8 @@
 				<h5 class="card-header"><?= __("SOTA"); ?></h5>
 				<div class="card-body">
 					<div class="mb-3">
-		    			<label for="stationSOTAInput"><?= __("SOTA Reference"); ?></label>
-		    			<input type="text" class="form-control" name="sota" id="stationSOTAInput" aria-describedby="stationSOTAInputHelp" value="<?php if(set_value('sota') != "") { echo set_value('sota'); } else { echo $my_station_profile->station_sota; } ?>">
+						<label for="stationSOTAInput"><?= __("SOTA Reference"); ?></label>
+						<input type="text" class="form-control uppercase" name="sota" id="stationSOTAInput" aria-describedby="stationSOTAInputHelp" value="<?php if(set_value('sota') != "") { echo set_value('sota'); } else { echo $my_station_profile->station_sota; } ?>">
 		    			<small id="stationSOTAInputHelp" class="form-text text-muted"><?= sprintf(__("Station SOTA reference. You can look up SOTA references at the %s."), "<a target='_blank' href='https://www.sotamaps.org/'>".__("SOTA Maps website")."</a>"); ?></small>
 		  			</div>
 				</div>
@@ -230,7 +257,7 @@
 				<div class="card-body">
 					<div class="mb-3">
 						<label for="stationWWFFInput"><?= __("WWFF Reference"); ?></label>
-						<input type="text" class="form-control" name="wwff" id="stationWWFFInput" aria-describedby="stationWWFFInputHelp" value="<?php if(set_value('wwff') != "") { echo set_value('wwff'); } else { echo $my_station_profile->station_wwff; } ?>">
+						<input type="text" class="form-control uppercase" name="wwff" id="stationWWFFInput" aria-describedby="stationWWFFInputHelp" value="<?php if(set_value('wwff') != "") { echo set_value('wwff'); } else { echo $my_station_profile->station_wwff; } ?>">
 						<small id="stationWWFFInputHelp" class="form-text text-muted"><?= sprintf(__("Station WWFF reference. You can look up WWFF references at the %s."), "<a target='_blank' href='https://www.cqgma.org/mvs/'>".__("GMA Map website")."</a>"); ?></small>
 					</div>
 				</div>
@@ -243,7 +270,7 @@
 				<div class="card-body">
 					<div class="mb-3">
 						<label for="stationPOTAInput"><?= __("POTA Reference(s)"); ?></label>
-						<input type="text" class="form-control" name="pota" id="stationPOTAInput" aria-describedby="stationPOTAInputHelp" value="<?php if(set_value('pota') != "") { echo set_value('pota'); } else { echo $my_station_profile->station_pota; } ?>">
+						<input type="text" class="form-control uppercase" name="pota" id="stationPOTAInput" aria-describedby="stationPOTAInputHelp" value="<?php if(set_value('pota') != "") { echo set_value('pota'); } else { echo $my_station_profile->station_pota; } ?>">
 						<small id="stationPOTAInputHelp" class="form-text text-muted"><?= sprintf(__("Station POTA reference(s). Multiple comma separated values allowed. You can look up POTA references at the %s."), "<a target='_blank' href='https://pota.app/#/map/'>".__("POTA Map website")."</a>"); ?></small>
 					</div>
 				</div>
@@ -257,15 +284,15 @@
 				<h5 class="card-header"><?= __("Signature"); ?></h5>
 				<div class="card-body">
 					<div class="mb-3">
-		    			<label for="stationSigInput"><?= __("Signature Name"); ?></label>
-		    			<input type="text" class="form-control" name="sig" id="stationSigInput" aria-describedby="stationSigInputHelp" value="<?php if(set_value('sig') != "") { echo set_value('sig'); } else { echo $my_station_profile->station_sig; } ?>">
-		    			<small id="stationSigInputHelp" class="form-text text-muted"><?= __("Station Signature (e.g. GMA).."); ?></small>
+						<label for="stationSigInput"><?= __("Signature Name"); ?></label>
+						<input type="text" class="form-control uppercase" name="sig" id="stationSigInput" aria-describedby="stationSigInputHelp" value="<?php if(set_value('sig') != "") { echo set_value('sig'); } else { echo $my_station_profile->station_sig; } ?>">
+						<small id="stationSigInputHelp" class="form-text text-muted"><?= __("Station Signature (e.g. GMA).."); ?></small>
 					</div>
 
 					<div class="mb-3">
-		    			<label for="stationSigInfoInput"><?= __("Signature Information"); ?></label>
-		    			<input type="text" class="form-control" name="sig_info" id="stationSigInfoInput" aria-describedby="stationSigInfoInputHelp" value="<?php if(set_value('sig_info') != "") { echo set_value('sig_info'); } else { echo $my_station_profile->station_sig_info; } ?>">
-		    			<small id="stationSigInfoInputHelp" class="form-text text-muted"><?= __("Station Signature Info (e.g. DA/NW-357)."); ?></small>
+						<label for="stationSigInfoInput"><?= __("Signature Information"); ?></label>
+						<input type="text" class="form-control uppercase" name="sig_info" id="stationSigInfoInput" aria-describedby="stationSigInfoInputHelp" value="<?php if(set_value('sig_info') != "") { echo set_value('sig_info'); } else { echo $my_station_profile->station_sig_info; } ?>">
+						<small id="stationSigInfoInputHelp" class="form-text text-muted"><?= __("Station Signature Info (e.g. DA/NW-357)."); ?></small>
 					</div>
 				</div>
 			</div>
@@ -278,12 +305,12 @@
 				<h5 class="card-header"><?= __("eQSL"); ?></h5>
 				<div class="card-body">
 					<div class="mb-3">
-		    			<label for="eqslNickname"><?php echo _pgettext("Probably no translation needed","eQSL QTH Nickname"); ?></label> <!-- This does not need Multilanguage Support -->
-		    			<input type="text" class="form-control" name="eqslnickname" id="eqslNickname" aria-describedby="eqslhelp" value="<?php if(set_value('eqslnickname') != "") { echo set_value('eqslnickname'); } else { echo $my_station_profile->eqslqthnickname; } ?>">
-		    			<small id="eqslhelp" class="form-text text-muted"><?= __("The QTH Nickname which is configured in your eQSL Profile"); ?></small>
+						<label for="eqslNickname"><?php echo _pgettext("Probably no translation needed","eQSL QTH Nickname"); ?></label> <!-- This does not need Multilanguage Support -->
+						<input type="text" class="form-control" name="eqslnickname" id="eqslNickname" aria-describedby="eqslhelp" value="<?php if(set_value('eqslnickname') != "") { echo set_value('eqslnickname'); } else { echo $my_station_profile->eqslqthnickname; } ?>">
+						<small id="eqslhelp" class="form-text text-muted"><?= __("The QTH Nickname which is configured in your eQSL Profile"); ?></small>
 		  			</div>
 					<div class="mb-3">
-		    			<label for="eqslDefaultQSLMsg"><?= __("Default QSLMSG"); ?></label>
+						<label for="eqslDefaultQSLMsg"><?= __("Default QSLMSG"); ?></label>
 						<label class="position-absolute end-0 mb-2 me-3" for="eqslDefaultQSLMsg" id="charsLeft"> </label>
 		    			<textarea class="form-control" name="eqsl_default_qslmsg" id="eqslDefaultQSLMsg" aria-describedby="eqsldefaultqslmsghelp" maxlength="240" rows="2" style="width:100%;" value="<?php echo $my_station_profile->eqsl_default_qslmsg; ?>"><?php echo $my_station_profile->eqsl_default_qslmsg; ?></textarea>
 		    			<small id="eqsldefaultqslmsghelp" class="form-text text-muted"><?= __("Define a default message that will be populated and sent for each QSO for this station location."); ?></small>

@@ -71,8 +71,47 @@ async function reset_contest_session() {
 
 }
 
+function sort_exchange() {
+	// Split the squence into an array
+	var selectedOrder = $('#exchangesequence_select').val().split('-'); 
+
+	// Map sequence to corresponding SENT elements
+	let mapping = {
+		"g": ".gridsquares",
+		"s": ".serials",
+		"e": ".exchanges",
+	};
+
+	// Reorder the elements in the DOM
+	selectedOrder.forEach(function(item) {
+		$('#sent_exchange').append($(mapping[item]));
+	});
+
+	// Map sequence to corresponding RECEIVED elements
+	mapping = {
+		"g": ".gridsquarer",
+		"s": ".serialr",
+		"e": ".exchanger",
+	};
+
+	// Reorder the elements in the DOM
+	selectedOrder.forEach(function(item) {
+		$('#rcvd_exchange').append($(mapping[item]));
+	});
+}
+
+// Change the sequence of the exchange fields
+$('#exchangesequence_select').change(function () {
+	sort_exchange();
+});
+
+// Show Settings modal on click
+$('#moreSettingsButton').click(function () {
+	$('#moreSettingsModal').modal('show');
+});
+
 // Storing the contestid in contest session
-$('#contestname, #copyexchangeto').change(function () {
+$('#contestname, #copyexchangeto, #exchangesequence_select, #band, #mode, #frequency, #radio').change(function () {
 	var formdata = new FormData(document.getElementById("qso_input"));
 	setSession(formdata);
 });
@@ -112,9 +151,10 @@ if ( ! manual ) {
 
 // We don't want spaces to be written in callsign
 // We don't want spaces to be written in exchange
+// We don't want spaces to be written in gridsquare
 // We don't want spaces to be written in time :)
 $(function () {
-	$('#callsign, #exch_rcvd, #start_time').on('keypress', function (e) {
+	$('#callsign, #exch_rcvd, #exch_gridsquare_r, #start_time').on('keypress', function (e) {
 		if (e.which == 32) {
 			return false;
 		}
@@ -147,25 +187,32 @@ $(function () {
 // Here we capture keystrokes to execute functions
 document.onkeyup = function (e) {
 	// ALT-W wipe
-	if (e.altKey && e.which == 87) {
+	if (e.altKey && e.key == "w") {
 		reset_log_fields();
 		// CTRL-Enter logs QSO
-	} else if ((e.keyCode == 10 || e.keyCode == 13) && (e.ctrlKey || e.metaKey)) {
+	} else if ((e.key === "Enter") && (e.ctrlKey || e.metaKey)) {
 		$("#callsign").blur();
 		logQso();
 		// Enter in received exchange logs QSO
-	} else if ((e.which == 13) && (
+	} else if ((e.key == "Enter") && (
 		($(document.activeElement).attr("id") == "exch_rcvd")
 		|| ($(document.activeElement).attr("id") == "exch_gridsquare_r")
 		|| ($(document.activeElement).attr("id") == "exch_serial_r")
 		|| (($(document.activeElement).attr("id") == "callsign") && ($("#exchangetype").val() == "None"))
 	)) {
 		logQso();
-	} else if (e.which == 27) {
+	} else if (e.key == "Escape") {
 		reset_log_fields();
 		// Space to jump to either callsign or the various exchanges
-	} else if (e.which == 32) {
-		var exchangetype = $("#exchangetype").val();
+	} else if (e.key == " ") {
+		let exchangetype = $("#exchangetype").val();
+		let sequence = $('#exchangesequence_select').val().split('-');
+
+		let mapping = {
+			"g": "exch_gridsquare_r",
+			"s": "exch_serial_r",
+			"e": "exch_rcvd",
+		};
 
 		if (manual && $(document.activeElement).attr("id") == "start_time") {
 			$("#callsign").focus();
@@ -190,30 +237,6 @@ document.onkeyup = function (e) {
 				return false;
 			}
 		}
-		else if (exchangetype == 'Serialexchange') {
-			if ($(document.activeElement).attr("id") == "callsign") {
-				$("#exch_serial_r").focus();
-				return false;
-			} else if ($(document.activeElement).attr("id") == "exch_serial_r") {
-				$("#exch_rcvd").focus();
-				return false;
-			} else if ($(document.activeElement).attr("id") == "exch_rcvd") {
-				$("#callsign").focus();
-				return false;
-			}
-		}
-		else if (exchangetype == 'Serialgridsquare') {
-			if ($(document.activeElement).attr("id") == "callsign") {
-				$("#exch_serial_r").focus();
-				return false;
-			} else if ($(document.activeElement).attr("id") == "exch_serial_r") {
-				$("#exch_gridsquare_r").focus();
-				return false;
-			} else if ($(document.activeElement).attr("id") == "exch_gridsquare_r") {
-				$("#callsign").focus();
-				return false;
-			}
-		}
 		else if (exchangetype == 'Gridsquare') {
 			if ($(document.activeElement).attr("id") == "callsign") {
 				$("#exch_gridsquare_r").focus();
@@ -223,7 +246,49 @@ document.onkeyup = function (e) {
 				return false;
 			}
 		}
+		else if (exchangetype == 'Serialexchange') {
+			let filteredSequence = sequence.filter(key => key !== 'g');
+		
+			if ($(document.activeElement).attr("id") == "callsign") {
+				$(`#${mapping[filteredSequence[0]]}`).focus();
+				return false;
+			} else if ($(document.activeElement).attr("id") == mapping[filteredSequence[0]]) {
+				$(`#${mapping[filteredSequence[1]]}`).focus();
+				return false;
+			} else if ($(document.activeElement).attr("id") == mapping[filteredSequence[1]]) {
+				$("#callsign").focus();
+				return false;
+			}
+		}
+		else if (exchangetype == 'Serialgridsquare') {
+			let filteredSequence = sequence.filter(key => key !== 'e');
 
+			if ($(document.activeElement).attr("id") == "callsign") {
+				$(`#${mapping[filteredSequence[0]]}`).focus();
+				return false;
+			} else if ($(document.activeElement).attr("id") == mapping[filteredSequence[0]]) {
+				$(`#${mapping[filteredSequence[1]]}`).focus();
+				return false;
+			} else if ($(document.activeElement).attr("id") == mapping[filteredSequence[1]]) {
+				$("#callsign").focus();
+				return false;
+			}
+		}
+		else if (exchangetype == 'SerialGridExchange') {
+			if ($(document.activeElement).attr("id") == "callsign") {
+				$(`#${mapping[sequence[0]]}`).focus();
+				return false;
+			} else if ($(document.activeElement).attr("id") == mapping[sequence[0]]) {
+				$(`#${mapping[sequence[1]]}`).focus();
+				return false;
+			} else if ($(document.activeElement).attr("id") == mapping[sequence[1]]) {
+				$(`#${mapping[sequence[2]]}`).focus();
+				return false;
+			} else if ($(document.activeElement).attr("id") == mapping[sequence[2]]) {
+				$("#callsign").focus();
+				return false;
+			}
+		}
 	}
 
 };
@@ -398,6 +463,19 @@ $('#band').change(function () {
 	checkIfWorkedBefore();
 });
 
+/* on radio change */
+// in the footer is defined that we want to clear the frequency when changing the radio
+// this may fit for QSOs, but not for the contesting module
+// so we want atleast to set the frequency to the default frequency of the band
+$('#radio').change(function () {
+	if ($('#radio').val() == '0') {
+		$.get('qso/band_to_freq/' + $('#band').val() + '/' + $('.mode').val(), function (result) {
+			$('#frequency').val(result);
+			$('#frequency_rx').val("");
+		});
+	}
+});
+
 function setSerial(data) {
 	var serialsent = 1;
 	if (data.serialsent != "") {
@@ -408,6 +486,8 @@ function setSerial(data) {
 
 function setExchangetype(exchangetype) {
 	// Perhaps a better approach is to hide everything, then just enable the things you need
+	$('#sent_exchange').hide().removeClass();
+	$('#rcvd_exchange').hide().removeClass();
 	$(".exchanger").hide();
 	$(".exchanges").hide();
 	$(".serials").hide();
@@ -415,38 +495,35 @@ function setExchangetype(exchangetype) {
 	$(".gridsquarer").hide();
 	$(".gridsquares").hide();
 
-	if (exchangetype == 'Exchange') {
-		$(".exchanger").show();
-		$(".exchanges").show();
-	}
-	else if (exchangetype == 'Serial') {
-		$(".serials").show();
-		$(".serialr").show();
-	}
-	else if (exchangetype == 'Serialexchange') {
-		$(".exchanger").show();
-		$(".exchanges").show();
-		$(".serials").show();
-		$(".serialr").show();
-	}
-	else if (exchangetype == 'Serialgridsquare') {
-		$(".serials").show();
-		$(".serialr").show();
-		$(".gridsquarer").show();
-		$(".gridsquares").show();
-	}
-	else if (exchangetype == 'Gridsquare') {
-		$(".gridsquarer").show();
-		$(".gridsquares").show();
-	}
-
     // To track the transition, the code for the exchangecopy is kept
     // separate.
 	switch(exchangetype) {
       case 'None':
+		$('#sent_exchange').hide().removeClass();
+		$('#rcvd_exchange').hide().removeClass();
+		break;
+
       case 'Serial':
+		$('#sent_exchange').show().addClass('d-flex gap-2 col-md-2');
+		$('#rcvd_exchange').show().addClass('d-flex gap-2 col-md-2');
+		$(".serials").show();
+		$(".serialr").show();
+		break;
+
       case 'Serialgridsquare':
+		$('#sent_exchange').show().addClass('d-flex gap-2 col-md-3');
+		$('#rcvd_exchange').show().addClass('d-flex gap-2 col-md-3');
+		$(".serials").show();
+		$(".serialr").show();
+		$(".gridsquarer").show();
+		$(".gridsquares").show();
+		break;
+
       case 'Gridsquare':
+		$('#sent_exchange').show().addClass('d-flex gap-2 col-md-2');
+		$('#rcvd_exchange').show().addClass('d-flex gap-2 col-md-2');
+		$(".gridsquarer").show();
+		$(".gridsquares").show();
         if ($("#copyexchangeto").prop('disabled') == false) {
           $("#copyexchangeto").prop('disabled','disabled');
           $("#copyexchangeto").data('oldValue',$("#copyexchangeto").val());
@@ -455,8 +532,21 @@ function setExchangetype(exchangetype) {
           // Do nothing
         }
         break;
+
       case 'Exchange':
+		$('#sent_exchange').show().addClass('d-flex gap-2 col-md-2');
+		$('#rcvd_exchange').show().addClass('d-flex gap-2 col-md-2');
+		$(".exchanger").show();
+		$(".exchanges").show();
+		break;
+
       case 'Serialexchange':
+		$('#sent_exchange').show().addClass('d-flex gap-2 col-md-3');
+		$('#rcvd_exchange').show().addClass('d-flex gap-2 col-md-3');
+		$(".exchanger").show();
+		$(".exchanges").show();
+		$(".serials").show();
+		$(".serialr").show();
         if ($("#copyexchangeto").prop('disabled') == false) {
           // Do nothing
         } else {
@@ -464,6 +554,24 @@ function setExchangetype(exchangetype) {
           $("#copyexchangeto").prop('disabled',false);
         }
         break;
+
+	  case 'SerialGridExchange':
+		$('#sent_exchange').show().addClass('d-flex gap-2 col-md-4');
+		$('#rcvd_exchange').show().addClass('d-flex gap-2 col-md-4');
+		$(".serials").show();
+		$(".serialr").show();
+		$(".gridsquarer").show();
+		$(".gridsquares").show();
+		$(".exchanger").show();
+		$(".exchanges").show();
+		if ($("#copyexchangeto").prop('disabled') == false) {
+			// Do nothing
+		} else {
+			$("#copyexchangeto").val($("#copyexchangeto").data('oldValue') ?? 'None');
+			$("#copyexchangeto").prop('disabled',false);
+		}
+		break;
+
       default:
     }
 }
@@ -525,6 +633,15 @@ function logQso() {
 				serials = $("#exch_serial_s").val();
 				serialr = $("#exch_serial_r").val();
 			break;
+
+			case 'Serialgridsquare':
+				gridr = gridsquare;
+				vuccr = vucc;
+				exchsent = $("#exch_sent").val();
+				exchrcvd = $("#exch_rcvd").val();
+				serials = $("#exch_serial_s").val();
+				serialr = $("#exch_serial_r").val();
+			break;
 		}
 
 		var formdata = new FormData(document.getElementById("qso_input"));
@@ -537,7 +654,7 @@ function logQso() {
 			enctype: 'multipart/form-data',
 			success: async function (html) {
 				var exchangetype = $("#exchangetype").val();
-				if (exchangetype == "Serial" || exchangetype == 'Serialexchange' || exchangetype == 'Serialgridsquare') {
+				if (exchangetype == "Serial" || exchangetype == 'Serialexchange' || exchangetype == 'Serialgridsquare' || exchangetype == 'SerialGridExchange') {
 					$("#exch_serial_s").val(+$("#exch_serial_s").val() + 1);
 					formdata.set('exch_serial_s', $("#exch_serial_s").val());
 				}
@@ -574,22 +691,44 @@ async function getSession() {
 
 async function restoreContestSession(data) {
 	if (data) {
-		if (data.copytodok != "") {
-			$('#copyexchangeto option')[data.copytodok].selected = true;
+		let settings = JSON.parse(data.settings);
+
+		if (settings.copyexchangeto != "") {
+			$('#copyexchangeto option')[settings.copyexchangeto].selected = true;
 		}
 
 		if (data.contestid != "") {
 			$("#contestname").val(data.contestid);
 		}
 
-		if (data.exchangetype != "") {
-			$("#exchangetype").val(data.exchangetype);
-			setExchangetype(data.exchangetype);
+		if (settings.exchangetype != "") {
+			$("#exchangetype").val(settings.exchangetype);
+			setExchangetype(settings.exchangetype);
 			setSerial(data);
+		}
+
+		if (settings.exchangesequence != "") {
+			$("#exchangesequence_select").val(settings.exchangesequence);
+			sort_exchange();
 		}
 
 		if (data.exchangesent != "") {
 			$("#exch_sent").val(data.exchangesent);
+		}
+
+		if (settings.radio != "0") {
+			$("#radio").val(settings.radio);
+		} else {
+			$("#radio").val(settings.radio);
+			$("#band").val(settings.band);
+			$("#mode").val(settings.mode);
+			if (settings.freq_display != "") {
+				$("#frequency").val(settings.freq_display);
+			} else {
+				$.get('qso/band_to_freq/' + settings.band + '/' + settings.mode, function (result) {
+					$('#frequency').val(result);
+				});
+			}
 		}
 
 		if (data.qso != "") {

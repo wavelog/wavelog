@@ -18,6 +18,8 @@
   var base_url = "<?php echo base_url(); ?>"; // Base URL
   var site_url = "<?php echo site_url(); ?>"; // Site URL
   var icon_dot_url = "<?php echo base_url();?>assets/images/dot.png";
+  var option_map_tile_server_copyright = '<?php echo $this->optionslib->get_option('option_map_tile_server_copyright');?>';
+  var lang_general_gridsquares = "<?= __("Gridsquares"); ?>";
 </script>
 
 <!-- DATATABLES LANGUAGE -->
@@ -93,7 +95,7 @@ if ($lang_code != 'en' && !file_exists(FCPATH . "assets/json/datatables_language
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/sections/gridmap.js?"></script>
 
 <script>
-  
+
   // auto setting of gridmap height
   function set_map_height() {
 
@@ -116,13 +118,13 @@ if ($lang_code != 'en' && !file_exists(FCPATH . "assets/json/datatables_language
       $('#gridsquare_map').css('height', gridsquareMapHeight + 'px');
       // console.log('#gridsquare_map: ' + gridsquareMapHeight);
   }
-</script>  
+</script>
 
 <script>
 
   var layer = L.tileLayer('<?php echo $this->optionslib->get_option('option_map_tile_server');?>', {
     maxZoom: 18,
-    attribution: '<?php echo $this->optionslib->get_option('option_map_tile_server_copyright');?>',
+    attribution: option_map_tile_server_copyright,
     id: 'mapbox.streets'
   });
 
@@ -194,7 +196,7 @@ if ($lang_code != 'en' && !file_exists(FCPATH . "assets/json/datatables_language
 <?php } ?>
 <?php } ?>
     </script>
-    <?php if ($this->CI->public_search_enabled($slug) || $this->session->userdata('user_type') >= 2) { ?>
+    <?php if ($public_search_enabled || $this->session->userdata('user_type') >= 2) { ?>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datatables.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/dataTables.buttons.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/buttons.html5.min.js"></script>

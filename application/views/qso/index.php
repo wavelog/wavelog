@@ -313,7 +313,7 @@
               <select class="form-select radios" id="radio" name="radio">
                 <option value="0" selected="selected"><?= __("None"); ?></option>
                 <?php foreach ($radios->result() as $row) { ?>
-                  <option value="<?php echo $row->id; ?>" <?php if($this->session->userdata('radio') == $row->id) { echo "selected=\"selected\""; } ?>><?php echo $row->radio; ?> <?php if ($radio_last_updated->id == $row->id) { echo "<i>(".__("last updated").")</i>"; } else { echo ''; } ?></option>
+                  <option value="<?php echo $row->id; ?>" <?php if($this->session->userdata('radio') == $row->id) { echo "selected=\"selected\""; } ?>><?php echo $row->radio; ?> <?php if ($radio_last_updated->id == $row->id) { echo "(".__("last updated").")"; } else { echo ''; } ?></option>
                 <?php } ?>
                 </select>
             </div>
@@ -359,7 +359,7 @@
           <div class="tab-pane fade" id="general" role="tabpanel" aria-labelledby="general-tab">
               <div class="mb-3">
                   <label for="dxcc_id"><?= __("DXCC"); ?></label>
-                  <select class="form-select" id="dxcc_id" name="dxcc_id" required>
+                  <select class="form-control" id="dxcc_id" name="dxcc_id" required>
                       <option value="0">- NONE -</option>
                       <?php
                       foreach($dxcc as $d){
@@ -391,6 +391,16 @@
                   <select class="form-select" id="cqz" name="cqz" required>
                       <?php
                       for ($i = 0; $i<=40; $i++) {
+                          echo '<option value="'. $i . '">'. $i .'</option>';
+                      }
+                      ?>
+                  </select>
+              </div>
+              <div class="mb-3">
+                  <label for="ituz"><?= __("ITU Zone"); ?></label>
+                  <select class="form-select" id="ituz" name="ituz">
+                      <?php
+                      for ($i = 0; $i<=90; $i++) {
                           echo '<option value="'. $i . '">'. $i .'</option>';
                       }
                       ?>
@@ -530,12 +540,24 @@
 
               <datalist id="satellite_modes" class="satellite_modes_list"></datalist>
             </div>
+
+            <div class="mb-3">
+              <label for="ant_az"><?= __("Antenna Azimuth (°)"); ?></label>
+              <input type="number" step="0.1" min="0" max="360" class="form-control" id="ant_az" name="ant_az" />
+              <small id="azHelp" class="form-text text-muted"><?= __("Antenna azimuth in decimal degrees."); ?></small>
+            </div>
+
+            <div class="mb-3">
+              <label for="ant_el"><?= __("Antenna Elevation (°)"); ?></label>
+              <input type="number" step="0.1" min="0" max="90" class="form-control" id="ant_el" name="ant_el" />
+              <small id="elHelp" class="form-text text-muted"><?= __("Antenna elevation in decimal degrees."); ?></small>
+            </div>
           </div>
 
           <!-- Notes Panel Contents -->
           <div class="tab-pane fade" id="nav-notes" role="tabpanel" aria-labelledby="notes-tab">
             <div class="alert alert-info" role="alert">
-              <span class="badge text-bg-info"><?= __("Info"); ?></span> <?= __("Note content is used within Wavelog only and is not exported to other services."); ?>
+              <span class="badge text-bg-primary"><?= __("Info"); ?></span> <?= __("Note content is used within Wavelog only and is not exported to other services."); ?>
             </div>
            <div class="mb-3">
               <label for="notes"><?= __("Notes"); ?></label>
@@ -580,7 +602,7 @@
             </div>
 
             <div class="alert alert-info" role="alert">
-              <span class="badge text-bg-info"><?= __("Info"); ?></span> <?= __("This note content is exported to QSL services like eqsl.cc."); ?>
+              <span class="badge text-bg-primary"><?= __("Info"); ?></span> <?= __("This note content is exported to QSL services like eqsl.cc."); ?>
             </div>
            <div class="mb-3">
             <label for="qslmsg"><?= __("Notes"); ?><span class="qso_eqsl_qslmsg_update" title="<?= __("Get the default message for eQSL, for this station."); ?>"><i class="fas fa-redo-alt"></i></span></label>
@@ -642,31 +664,33 @@
 
     <div id="winkey" class="card winkey-settings" style="margin-bottom: 10px;">
         <div class="card-header">
-          <h4 style="font-size: 16px; font-weight: bold;" class="card-title"><?= __("Winkey"); ?>
+			<h4 style="font-size: 16px; font-weight: bold;" class="card-title"><?= __("Winkey"); ?>
 
-          <button id="connectButton" class="btn btn-primary"><?= __("Connect"); ?></button>
+			<button id="connectButton" class="btn btn-sm btn-primary"><?= __("Connect"); ?></button>
 
-          <button type="button" class="btn btn-secondary"
-          hx-get="<?php echo base_url(); ?>index.php/qso/winkeysettings"
-          hx-target="#modals-here"
-          hx-trigger="click"
-          class="btn btn-primary"
-          _="on htmx:afterOnLoad wait 10ms then add .show to #modal then add .show to #modal-backdrop"><i class="fas fa-cog"></i> <?= __("Settings"); ?></button>
-          </h4>
+			<button id="winkey_settings" type="button" class="btn-sm btn btn-secondary" class="btn btn-primary"><i class="fas fa-cog"></i> <?= __("Settings"); ?></button>
+
+			</h4>
         </div>
 
-        <div id="modals-here"></div>
-
         <div id="winkey_buttons" class="card-body">
-          <button id="morsekey_func1" onclick="morsekey_func1()" class="btn btn-warning">F1</button>
-          <button id="morsekey_func2" onclick="morsekey_func2()" class="btn btn-warning">F2</button>
-          <button id="morsekey_func3" onclick="morsekey_func3()" class="btn btn-warning">F3</button>
-          <button id="morsekey_func4" onclick="morsekey_func4()" class="btn btn-warning">F4</button>
-          <button id="morsekey_func5" onclick="morsekey_func5()" class="btn btn-warning">F5</button>
-          <br><br>
-          <input id="sendText" type="text"><input id="sendButton" type="button" value="Send" class="btn btn-success">
+			<div class="form-inline d-flex align-items-center mb-2">
+				<button onclick="stop_cw_sending()" class="btn btn-sm btn-danger" style="margin-left: 2px; margin-right: 2px;"><?= __("Stop"); ?></button>
+				<button onclick="send_carrier()" id="send_carrier" class="btn btn-sm btn-danger" style="margin-left: 2px; margin-right: 2px;"><?= __("Tune"); ?></button>
+				<button hidden id="stop_carrier" onclick="stop_carrier()" class="btn btn-sm btn-danger" style="margin-left: 2px; margin-right: 2px;"><?= __("Stop Tune"); ?></button>
+				<button id="morsekey_func1" onclick="morsekey_func1()" class="btn btn-sm btn-warning" style="margin-left: 2px; margin-right: 2px;">F1</button>
+				<button id="morsekey_func2" onclick="morsekey_func2()" class="btn btn-sm btn-warning" style="margin-left: 2px; margin-right: 2px;">F2</button>
+				<button id="morsekey_func3" onclick="morsekey_func3()" class="btn btn-sm btn-warning" style="margin-left: 2px; margin-right: 2px;">F3</button>
+				<button id="morsekey_func4" onclick="morsekey_func4()" class="btn btn-sm btn-warning" style="margin-left: 2px; margin-right: 2px;">F4</button>
+				<button id="morsekey_func5" onclick="morsekey_func5()" class="btn btn-sm btn-warning" style="margin-left: 2px; margin-right: 2px;">F5</button>
+				<label class="mx-2 mb-1 w-auto" for="cwspeed"><?= __("CW Speed"); ?></label>
+				<input class="w-auto form-control form-control-sm" type="number" id="winkeycwspeed" name="cwspeed" min="1" max="100" value="20" step="1">
+			</div>
 
-          <span id="statusBar"></span><br>
+			<input id="sendText" type="text" class="form-control mb-1">
+			<button id="sendButton" type="button" class="btn btn-sm btn-success"><?= __("Send"); ?></button>
+
+			<span id="statusBar"></span>
 
         </div>
     </div>

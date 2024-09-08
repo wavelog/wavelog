@@ -11,13 +11,37 @@ class Oqrs extends CI_Controller {
 		parent::__construct();
 		// Commented out to get public access
 		// $this->load->model('user_model');
-		// if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
-		if (($this->config->item('disable_oqrs') ?? false)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+		// if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+		if (($this->config->item('disable_oqrs') ?? false)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 	}
 
-    public function index() {
-		$this->load->model('oqrs_model');
+	function _remap($method) {
+		$class = new ReflectionClass('Oqrs');
+		$methods = $class->getMethods(ReflectionMethod::IS_PUBLIC);
+		$found = false;
 
+		foreach ($methods as $m) {
+			if ($m->name == $method) {
+				$found = true;
+				$this->{$m->name}();
+        		break; // Exit the loop once the method is called
+			}
+		}
+
+		if (!$found) {
+			$this->index($method);
+		}
+	}
+
+	public function index($public_slug = NULL) {
+		$this->load->model('oqrs_model');
+		$this->load->model('publicsearch');
+
+       	$slug = $this->security->xss_clean($public_slug);
+		$data['slug'] = $slug;
+		$data['oqrs_enabled'] = $this->oqrs_model->oqrs_enabled($slug);
+		$data['public_search_enabled'] = $this->publicsearch->public_search_enabled($slug);
+		$data['disable_oqrs'] = $this->config->item('disable_oqrs');
 		$data['stations'] = $this->oqrs_model->get_oqrs_stations();
 		$data['page_title'] = __("Log Search & OQRS");
 		$data['global_oqrs_text'] = $this->optionslib->get_option('global_oqrs_text');
@@ -30,7 +54,7 @@ class Oqrs extends CI_Controller {
 
 	public function get_station_info() {
 		$this->load->model('oqrs_model');
-		$result = $this->oqrs_model->get_station_info($this->input->post('station_id'));
+		$result = $this->oqrs_model->get_station_info($this->input->post('station_id', TRUE));
 
 		header('Content-Type: application/json');
 		echo json_encode($result);
@@ -38,11 +62,11 @@ class Oqrs extends CI_Controller {
 
 	public function get_qsos() {
 		$this->load->model('bands');
-		$data['bands'] = $this->bands->get_worked_bands_oqrs($this->security->xss_clean($this->input->post('station_id')));
+		$data['bands'] = $this->bands->get_worked_bands_oqrs($this->input->post('station_id', TRUE));
 
 		$this->load->model('oqrs_model');
-		$result = $this->oqrs_model->get_qsos($this->input->post('station_id'), $this->input->post('callsign'), $data['bands']);
-		$data['callsign'] = $this->security->xss_clean($this->input->post('callsign'));
+		$result = $this->oqrs_model->get_qsos($this->input->post('station_id', TRUE), $this->input->post('callsign', TRUE), $data['bands']);
+		$data['callsign'] = $this->input->post('callsign', TRUE);
 		$data['result'] = $result['qsoarray'];
 		$data['qsocount'] = $result['qsocount'];
 
@@ -51,9 +75,9 @@ class Oqrs extends CI_Controller {
 
 	public function get_qsos_grouped() {
 		$this->load->model('oqrs_model');
-		$data['result'] = $this->oqrs_model->getQueryDataGrouped($this->input->post('callsign'));
-		$data['callsign'] = $this->security->xss_clean($this->input->post('callsign'));
-		
+		$data['result'] = $this->oqrs_model->getQueryDataGrouped($this->input->post('callsign', TRUE));
+		$data['callsign'] = $this->input->post('callsign', TRUE);
+
 		if($this->input->post('widget') != 'true') {
 			$this->load->view('oqrs/request_grouped', $data);
 		} else {
@@ -73,7 +97,6 @@ class Oqrs extends CI_Controller {
 		$data['page_title'] = __("Log Search & OQRS");
 
 		$this->load->model('bands');
-		// $data['bands'] = $this->bands->get_worked_bands_oqrs($this->security->xss_clean($this->input->post('station_id')));
 
 		$this->load->view('oqrs/notinlogform', $data);
 	}
@@ -81,10 +104,10 @@ class Oqrs extends CI_Controller {
 	public function save_not_in_log() {
 		$station_ids = array();
 
-		$postdata = $this->input->post();
+		$postdata = $this->input->post(NULL, TRUE); // index is null means we get all postdata, TRUE means we XSS clean everything
 		$this->load->model('oqrs_model');
 		$this->oqrs_model->save_not_in_log($postdata);
-		array_push($station_ids, xss_clean($this->input->post('station_id')));
+		array_push($station_ids, $this->input->post('station_id', TRUE));
 		$this->alert_oqrs_request($postdata, $station_ids);
 	}
 
@@ -93,9 +116,9 @@ class Oqrs extends CI_Controller {
 	*/
 	public function request_form() {
 		$this->load->model('oqrs_model');
-		$data['result'] = $this->oqrs_model->getQueryData($this->input->post('station_id'), $this->input->post('callsign'));
-		$data['callsign'] = $this->security->xss_clean($this->input->post('callsign'));
-		$data['qslinfo'] =  $this->oqrs_model->getQslInfo($this->input->post('station_id'));
+		$data['result'] = $this->oqrs_model->getQueryData($this->input->post('station_id', TRUE), $this->input->post('callsign', TRUE));
+		$data['callsign'] = $this->input->post('callsign', TRUE);
+		$data['qslinfo'] =  $this->oqrs_model->getQslInfo($this->input->post('station_id', TRUE));
 
 		$this->load->view('oqrs/request', $data);
 	}
@@ -122,40 +145,40 @@ class Oqrs extends CI_Controller {
 	}
 
 	public function save_oqrs_request() {
-		$postdata = $this->input->post();
+		$postdata = $this->input->post(NULL, TRUE); // index is null means we get all postdata, TRUE means we XSS clean everything
 		$this->load->model('oqrs_model');
 		$station_ids = $this->oqrs_model->save_oqrs_request($postdata);
 		$this->alert_oqrs_request($postdata, $station_ids);
 	}
 
 	public function save_oqrs_request_grouped() {
-		$postdata = $this->input->post();
+		$postdata = $this->input->post(NULL, TRUE); // index is null means we get all postdata, TRUE means we XSS clean everything
 		$this->load->model('oqrs_model');
 		$station_ids = $this->oqrs_model->save_oqrs_request_grouped($postdata);
 		$this->alert_oqrs_request($postdata, $station_ids);
 	}
 
 	public function delete_oqrs_line() {
-		$id = $this->input->post('id');
+		$id = $this->input->post('id', TRUE);
 		$this->load->model('oqrs_model');
 		$this->oqrs_model->delete_oqrs_line($id);
 	}
 
 	public function search_log() {
 		$this->load->model('oqrs_model');
-		$callsign = $this->input->post('callsign');
+		$callsign = $this->input->post('callsign', TRUE);
 
-        $data['qsos'] = $this->oqrs_model->search_log($this->security->xss_clean($callsign));
+        $data['qsos'] = $this->oqrs_model->search_log($callsign);
 
 		$this->load->view('qslprint/qsolist', $data);
 	}
 
 	public function search_log_time_date() {
 		$this->load->model('oqrs_model');
-		$time = $this->security->xss_clean($this->input->post('time'));
-		$date = $this->security->xss_clean($this->input->post('date'));
-		$mode = $this->security->xss_clean($this->input->post('mode'));
-		$band = $this->security->xss_clean($this->input->post('band'));
+		$time = $this->input->post('time', TRUE);
+		$date = $this->input->post('date', TRUE);
+		$mode = $this->input->post('mode', TRUE);
+		$band = $this->input->post('band', TRUE);
 
         $data['qsos'] = $this->oqrs_model->search_log_time_date($time, $date, $band, $mode);
 
@@ -214,7 +237,7 @@ class Oqrs extends CI_Controller {
 
 	public function mark_oqrs_line_as_done() {
 		$this->load->model('oqrs_model');
-		$id = $this->security->xss_clean($this->input->post('id'));
+		$id = $this->input->post('id', TRUE);
 
         $this->oqrs_model->mark_oqrs_line_as_done($id);
 	}
@@ -224,10 +247,10 @@ class Oqrs extends CI_Controller {
 
 		$searchCriteria = array(
 			'user_id' => (int)$this->session->userdata('user_id'),
-			'de' => xss_clean($this->input->post('de')),
-			'dx' => xss_clean($this->input->post('dx')),
-			'status' => xss_clean($this->input->post('status')),
-			'oqrsResults' => xss_clean($this->input->post('oqrsResults')),
+			'de' => $this->input->post('de', TRUE),
+			'dx' => $this->input->post('dx', TRUE),
+			'status' => $this->input->post('status', TRUE),
+			'oqrsResults' => $this->input->post('oqrsResults', TRUE),
 		);
 
 		$qsos = $this->oqrs_model->searchOqrs($searchCriteria);
@@ -235,4 +258,5 @@ class Oqrs extends CI_Controller {
 		header("Content-Type: application/json");
 		print json_encode($qsos);
 	}
+
 }

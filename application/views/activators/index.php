@@ -1,3 +1,6 @@
+<script>
+    let lang_activators_map = "<?= __("Activators Map"); ?>";
+</script>
 <div class="container">
     <h1><?= __("Gridsquare Activators"); ?></h1>
 
@@ -65,11 +68,7 @@
     ?>
     <?php
     $vucc_grids = array();
-    if ($activators_vucc_array) {
-        foreach ($activators_vucc_array as $line) {
-            $vucc_grids[$line->call] = $line->vucc_grids;
-        }
-    }
+
     if ($activators_array) {
 
         $result = write_activators($activators_array, $vucc_grids, $custom_date_format, $bandselect, $orbit);

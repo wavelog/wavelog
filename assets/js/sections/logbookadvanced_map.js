@@ -220,7 +220,7 @@ const ituzonenames = [
 function loadMap(data, iconsList) {
 	$('#mapButton').prop("disabled", false).removeClass("running");
 	var osmUrl = tileUrl;
-	var osmAttrib='Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
+	var osmAttrib = option_map_tile_server_copyright;
 	// If map is already initialized
 	var container = L.DomUtil.get('advancedmap');
 
@@ -257,7 +257,7 @@ function loadMap(data, iconsList) {
 	var osm = L.tileLayer(
 		osmUrl,
 		{
-			attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+			attribution: osmAttrib,
 			maxZoom: 18,
 			zoom: 3,
             minZoom: 2,
@@ -339,11 +339,11 @@ function loadMap(data, iconsList) {
     legend.onAdd = function(map) {
         var div = L.DomUtil.create("div", "legend");
         div.innerHTML += '<div>' + counter + " QSOs plotted</div>";
-		div.innerHTML += '<input type="checkbox" onclick="toggleFunction(this.checked)" ' + (typeof path_lines !== 'undefined' && path_lines ? 'checked' : '') + ' style="outline: none;"><span> Path lines</span><br>';
-		div.innerHTML += '<input type="checkbox" onclick="toggleGridsquares(this.checked)" ' + (typeof gridsquare_layer !== 'undefined' && gridsquare_layer ? 'checked' : '') + ' style="outline: none;"><span> Gridsquares</span><br>';
-		div.innerHTML += '<input type="checkbox" onclick="toggleCqZones(this.checked)" ' + (typeof cqzones_layer !== 'undefined' && cqzones_layer ? 'checked' : '') + ' style="outline: none;"><span> CQ Zones</span><br>';
-		div.innerHTML += '<input type="checkbox" onclick="toggleItuZones(this.checked)" ' + (typeof ituzones_layer !== 'undefined' && ituzones_layer ? 'checked' : '') + ' style="outline: none;"><span> ITU Zones</span><br>';
-		div.innerHTML += '<input type="checkbox" onclick="toggleNightShadow(this.checked)" ' + (typeof nightshadow_layer !== 'undefined' && nightshadow_layer ? 'checked' : '') + ' style="outline: none;"><span> Night shadow</span>';
+		div.innerHTML += '<input type="checkbox" onclick="toggleFunction(this.checked)" ' + (typeof path_lines !== 'undefined' && path_lines ? 'checked' : '') + ' style="outline: none;"><span> ' + lang_gen_hamradio_pathlines + '</span><br>';
+		div.innerHTML += '<input type="checkbox" onclick="toggleGridsquares(this.checked)" ' + (typeof gridsquare_layer !== 'undefined' && gridsquare_layer ? 'checked' : '') + ' style="outline: none;"><span> ' + lang_gen_hamradio_gridsquares + '</span><br>';
+		div.innerHTML += '<input type="checkbox" onclick="toggleCqZones(this.checked)" ' + (typeof cqzones_layer !== 'undefined' && cqzones_layer ? 'checked' : '') + ' style="outline: none;"><span> ' + lang_gen_hamradio_cq_zones + '</span><br>';
+		div.innerHTML += '<input type="checkbox" onclick="toggleItuZones(this.checked)" ' + (typeof ituzones_layer !== 'undefined' && ituzones_layer ? 'checked' : '') + ' style="outline: none;"><span> ' + lang_gen_hamradio_itu_zones + '</span><br>';
+		div.innerHTML += '<input type="checkbox" onclick="toggleNightShadow(this.checked)" ' + (typeof nightshadow_layer !== 'undefined' && nightshadow_layer ? 'checked' : '') + ' style="outline: none;"><span> ' + lang_gen_hamradio_nightshadow + '</span>';
         return div;
     };
 
@@ -539,6 +539,7 @@ function mapQsos(form) {
 					operator: form.operator.value,
 					wwff: form.wwff.value,
 					qslimages: form.qslimages.value,
+					continent: form.continent.value,
 				},
 				success: function(data) {
 					loadMapOptions(data);
@@ -626,6 +627,7 @@ function mapGlobeQsos(form) {
 					operator: form.operator.value,
 					wwff: form.wwff.value,
 					qslimages: form.qslimages.value,
+					continent: form.continent.value,
 				},
 				success: function(data) {
 					globemap(data);

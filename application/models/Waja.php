@@ -68,7 +68,7 @@ class WAJA extends CI_Model {
 			$prefectures[$state]['count'] = 0;                   // Inits each state's count
 		}
 
-        	$qsl = $this->genfunctions->gen_qsl_from_postdata($postdata);
+		$qsl = $this->genfunctions->gen_qsl_from_postdata($postdata);
 
 
 		foreach ($bands as $band) {
@@ -126,16 +126,19 @@ class WAJA extends CI_Model {
 	}
 
 	function getWajaBandConfirmed($location_list, $band, $postdata) {
+		$bindings=[];
 		$sql = "select adif as waja, name from dxcc_entities
 			join (
 				select col_dxcc from ".$this->config->item('table_name')." thcv
 				where station_id in (" . $location_list .
 				") and col_dxcc > 0";
 
-		$sql .= $this->genfunctions->addBandToQuery($band);
+		$sql .= $this->genfunctions->addBandToQuery($band,$bindings);
 
 		if ($postdata['mode'] != 'All') {
-			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
+			$sql .= " and (col_mode = ? or col_submode = ?)";
+			$bindings[]=$postdata['mode'];
+			$bindings[]=$postdata['mode'];
 		}
 
 		$sql .= $this->genfunctions->addQslToQuery($postdata);
@@ -147,22 +150,25 @@ class WAJA extends CI_Model {
 			$sql .= " and dxcc_entities.end is null";
 		}
 
-		$query = $this->db->query($sql);
+		$query = $this->db->query($sql,$bindings);
 
 		return $query->result();
 	}
 
 	function getWajaBandWorked($location_list, $band, $postdata) {
+		$bindings=[];
 		$sql = "select adif as waja, name from dxcc_entities
 			join (
 				select col_dxcc from ".$this->config->item('table_name')." thcv
 				where station_id in (" . $location_list .
 				") and col_dxcc > 0";
 
-		$sql .= $this->genfunctions->addBandToQuery($band);
+		$sql .= $this->genfunctions->addBandToQuery($band,$bindings);
 
 		if ($postdata['mode'] != 'All') {
-			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
+			$sql .= " and (col_mode = ? or col_submode = ?)";
+			$bindings[]=$postdata['mode'];
+			$bindings[]=$postdata['mode'];
 		}
 
 		$sql .= " group by col_dxcc
@@ -172,7 +178,7 @@ class WAJA extends CI_Model {
 			$sql .= " and dxcc_entities.end is null";
 		}
 
-		$query = $this->db->query($sql);
+		$query = $this->db->query($sql,$bindings);
 
 		return $query->result();
 	}
@@ -182,29 +188,34 @@ class WAJA extends CI_Model {
 	 * $postdata contains data from the form, in this case Lotw or QSL are used
 	 */
 	function getWajaWorked($location_list, $band, $postdata) {
+		$bindings=[];
 		$sql = "SELECT distinct LPAD(col_state, 2, '0') AS col_state FROM " . $this->config->item('table_name') . " thcv
 			where station_id in (" . $location_list . ")";
 
 		if ($postdata['mode'] != 'All') {
-			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
+			$sql .= " and (col_mode = ? or col_submode = ?)";
+			$bindings[]=$postdata['mode'];
+			$bindings[]=$postdata['mode'];
 		}
 
 		$sql .= $this->addStateToQuery();
-		$sql .= $this->genfunctions->addBandToQuery($band);
+		$sql .= $this->genfunctions->addBandToQuery($band,$bindings);
 
 		$sql .= " and not exists (select 1 from ". $this->config->item('table_name') .
 			" where station_id in (". $location_list . ")" .
 			" and col_state = thcv.col_state";
 
 		if ($postdata['mode'] != 'All') {
-			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
+			$sql .= " and (col_mode = ? or col_submode = ?)";
+			$bindings[]=$postdata['mode'];
+			$bindings[]=$postdata['mode'];
 		}
 
-		$sql .= $this->genfunctions->addBandToQuery($band);
+		$sql .= $this->genfunctions->addBandToQuery($band,$bindings);
 		$sql .= $this->genfunctions->addQslToQuery($postdata);
 		$sql .= $this->addStateToQuery();
 		$sql .= ")";
-		$query = $this->db->query($sql);
+		$query = $this->db->query($sql,$bindings);
 
 		return $query->result();
 	}
@@ -214,21 +225,24 @@ class WAJA extends CI_Model {
 	 * $postdata contains data from the form, in this case Lotw or QSL are used
 	 */
 	function getWajaConfirmed($location_list, $band, $postdata) {
+		$bindings=[];
 		$sql = "SELECT distinct LPAD(col_state, 2, '0') AS col_state FROM " . $this->config->item('table_name') . " thcv
 			where station_id in (" . $location_list . ")";
 
 		if ($postdata['mode'] != 'All') {
-			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
+			$sql .= " and (col_mode = ? or col_submode = ?)";
+			$bindings[]=$postdata['mode'];
+			$bindings[]=$postdata['mode'];
 		}
 
 		$sql .= $this->addStateToQuery();
-		$sql .= $this->genfunctions->addBandToQuery($band);
+		$sql .= $this->genfunctions->addBandToQuery($band,$bindings);
 		$sql .= $this->genfunctions->addQslToQuery($postdata);
-		$query = $this->db->query($sql);
+		$query = $this->db->query($sql,$bindings);
 
 		return $query->result();
 	}
-	
+
 	/*
 	 * Function gets worked and confirmed summary on each band on the active stationprofile
 	 */
@@ -250,11 +264,14 @@ class WAJA extends CI_Model {
 	}
 
 	function getSummaryByBand($band, $postdata, $location_list) {
+		$bindings=[];
 		$sql = "SELECT count(distinct thcv.col_state) as count FROM " . $this->config->item('table_name') . " thcv";
 		$sql .= " where station_id in (" . $location_list . ")";
 
 		if ($band == 'SAT') {
-			$sql .= " and thcv.col_prop_mode ='" . $band . "'";
+			$sql .= " and (col_mode = ? or col_submode = ?)";
+			$bindings[]=$postdata['mode'];
+			$bindings[]=$postdata['mode'];
 		} else if ($band == 'All') {
 			$this->load->model('bands');
 
@@ -266,26 +283,31 @@ class WAJA extends CI_Model {
 			$sql .= " and thcv.col_prop_mode !='SAT'";
 		} else {
 			$sql .= " and thcv.col_prop_mode !='SAT'";
-			$sql .= " and thcv.col_band ='" . $band . "'";
+			$sql .= " and thcv.col_band = ?";
+			$bindings[]=$band;
 		}
 
 		if ($postdata['mode'] != 'All') {
-			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
+			$sql .= " and (col_mode = ? or col_submode = ?)";
+			$bindings[]=$postdata['mode'];
+			$bindings[]=$postdata['mode'];
 		}
 
 		$sql .= $this->addStateToQuery();
 
-		$query = $this->db->query($sql);
+		$query = $this->db->query($sql,$bindings);
 
 		return $query->result();
 	}
 
 	function getSummaryByBandConfirmed($band, $postdata, $location_list) {
+		$bindings=[];
 		$sql = "SELECT count(distinct thcv.col_state) as count FROM " . $this->config->item('table_name') . " thcv";
 		$sql .= " where station_id in (" . $location_list . ")";
 
 		if ($band == 'SAT') {
-			$sql .= " and thcv.col_prop_mode ='" . $band . "'";
+			$sql .= " and thcv.col_prop_mode = ?";
+			$bindings[]=$band;
 		} else if ($band == 'All') {
 			$this->load->model('bands');
 			$bandslots = $this->bands->get_worked_bands('waja');
@@ -294,16 +316,19 @@ class WAJA extends CI_Model {
 			$sql .= " and thcv.col_prop_mode !='SAT'";
 		} else {
 			$sql .= " and thcv.col_prop_mode !='SAT'";
-			$sql .= " and thcv.col_band ='" . $band . "'";
+			$sql .= " and thcv.col_band = ?";
+			$bindings[]=$band;
 		}
 
 		if ($postdata['mode'] != 'All') {
-			$sql .= " and (col_mode = '" . $postdata['mode'] . "' or col_submode = '" . $postdata['mode'] . "')";
+			$sql .= " and (col_mode = ? or col_submode = ?)";
+			$bindings[]=$postdata['mode'];
+			$bindings[]=$postdata['mode'];
 		}
 
 		$sql .= $this->genfunctions->addQslToQuery($postdata);
 		$sql .= $this->addStateToQuery();
-		$query = $this->db->query($sql);
+		$query = $this->db->query($sql,$bindings);
 
 		return $query->result();
 	}

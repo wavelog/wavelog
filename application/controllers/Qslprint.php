@@ -144,7 +144,7 @@ class QSLPrint extends CI_Controller {
 
 		$this->load->model('qslprint_model');
 		$this->load->model('user_model');
-		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 			// Update Logbook to Mark Paper Card Sent
 

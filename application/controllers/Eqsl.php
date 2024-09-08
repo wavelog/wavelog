@@ -20,7 +20,7 @@ class eqsl extends CI_Controller {
 
 		$this->load->model('user_model');
 		if (!$this->user_model->authorize(2)) {
-			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!');
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 			redirect('dashboard');
 		}
 
@@ -44,7 +44,7 @@ class eqsl extends CI_Controller {
 	public function import() {
 		$this->load->model('user_model');
 		if (!$this->user_model->authorize(2)) {
-			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!');
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 			redirect('dashboard');
 		}
 
@@ -141,7 +141,7 @@ class eqsl extends CI_Controller {
 	public function export() {
 		$this->load->model('user_model');
 		if (!$this->user_model->authorize(2)) {
-			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!');
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 			redirect('dashboard');
 		}
 
@@ -220,7 +220,7 @@ class eqsl extends CI_Controller {
 	function generateResultTable($custom_date_format, $rows) {
 		$this->load->model('user_model');
 		if (!$this->user_model->authorize(2)) {
-			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!');
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 			redirect('dashboard');
 		}
 
@@ -244,7 +244,7 @@ class eqsl extends CI_Controller {
 	function writeEqslNotSent($qslsnotsent, $custom_date_format) {
 		$this->load->model('user_model');
 		if (!$this->user_model->authorize(2)) {
-			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!');
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 			redirect('dashboard');
 		}
 		$table = '<table = style="width:100%" class="table-sm table qsotable table-bordered table-hover table-striped table-condensed text-center">';
@@ -283,7 +283,7 @@ class eqsl extends CI_Controller {
 	function image($id) {
 		$this->load->model('user_model');
 		if (!$this->user_model->authorize(2)) {
-			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!');
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 			redirect('dashboard');
 		}
 		$this->load->library('electronicqsl');
@@ -318,7 +318,12 @@ class eqsl extends CI_Controller {
 			$images = $dom->getElementsByTagName('img');
 
 			if (!isset($images) || count($images) == 0) {
-				echo "Rate Limited";
+				$h3 = $dom->getElementsByTagName('h3');
+				if (isset($h3)) {
+					echo $h3->item(0)->nodeValue;
+				} else {
+					echo "Rate Limited";
+				}
 				exit;
 			}
 
@@ -345,10 +350,9 @@ class eqsl extends CI_Controller {
 	function bulk_download_image($id) {
 		$this->load->model('user_model');
 		if (!$this->user_model->authorize(2)) {
-			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!');
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 			redirect('dashboard');
 		}
-		$this->load->library('electronicqsl');
 		$this->load->model('Eqsl_images');
 
 		$this->load->model('logbook_model');
@@ -384,10 +388,16 @@ class eqsl extends CI_Controller {
 		$images = $dom->getElementsByTagName('img');
 
 		if (!isset($images) || count($images) == 0) {
-			$error = "Rate Limited";
+			$h3 = $dom->getElementsByTagName('h3');
+			if (isset($h3)) {
+				$error = $h3->item(0)->nodeValue;
+			} else {
+				$error = "Rate Limited";
+			}
 			return $error;
 		}
 
+		session_write_close();
 		foreach ($images as $image) {
 			$content = file_get_contents("https://www.eqsl.cc" . $image->getAttribute('src'));
 			if ($content === false) {
@@ -401,14 +411,13 @@ class eqsl extends CI_Controller {
 				}
 			}
 		}
-		return $error;
 	}
 
 	public function tools() {
 		// Check logged in
 		$this->load->model('user_model');
 		if (!$this->user_model->authorize(2)) {
-			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!');
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 			redirect('dashboard');
 		}
 
@@ -424,10 +433,11 @@ class eqsl extends CI_Controller {
 		// Check logged in
 		$this->load->model('user_model');
 		if (!$this->user_model->authorize(2)) {
-			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!');
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 			redirect('dashboard');
 		}
 		$errors = 0;
+		$this->load->library('electronicqsl');
 
 		if ($this->input->post('eqsldownload') == 'download') {
 			$i = 0;
@@ -484,7 +494,7 @@ class eqsl extends CI_Controller {
 		// Check logged in
 		$this->load->model('user_model');
 		if (!$this->user_model->authorize(2)) {
-			$this->session->set_flashdata('notice', 'You\'re not allowed to do that!');
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 			redirect('dashboard');
 		}
 

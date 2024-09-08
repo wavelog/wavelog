@@ -1,5 +1,7 @@
 <script>
-	var tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"
+	var tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>";
+    var lang_general_hamradio_ituzone = "<?= __("ITU Zone"); ?>";
+    var lang_hover_over_a_zone = "<?= __("Hover over a zone"); ?>";
 </script>
 <style>
     #itumap {

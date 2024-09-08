@@ -270,3 +270,18 @@ div.alert-danger {
 	--bs-btn-active-bg: #1b1b1b;
 	--bs-btn-active-color: inherit !important;
 }
+
+@media screen and (max-width:991px){ 
+	.multiselect-container button.dropdown-item {
+	  pointer-events:none;
+	}
+	.multiselect-container span.form-check input {
+	  pointer-events: all;
+	}
+	.multiselect-container span.form-check label  {
+	  pointer-events: none;
+	}
+	.btn-group .multiselect-container .multiselect-option input[type="radio"] {
+		display: block !important;
+	}
+}

@@ -57,9 +57,11 @@
                     <p><?= __("This demo will be reset every night at 0200z."); ?><br><br>
                     <?= __("Username"); ?>: demo<br>
                     <?= __("Password"); ?>: demo<br><br>
-                    <?= sprintf(__("More Information about Wavelog on <a href='%s' target='_blank'>Github</a>."), "https://www.github.com/wavelog/wavelog"); ?></p>
+                    <?= sprintf(__("More Information about Wavelog on %sGithub%s."), '<a href="https://www.github.com/wavelog/wavelog" target="_blank">', '</a>'); ?></p>
                 </div>
-            <?php } ?>
+            <?php }
+            // End of Demo Part
+             ?>
             <form method="post" action="<?php echo site_url('user/login'); ?>" name="users">
                 <?php $this->form_validation->set_error_delimiters('', ''); ?>
                 <input type="hidden" name="id" value="<?php echo $this->uri->segment(3); ?>" />

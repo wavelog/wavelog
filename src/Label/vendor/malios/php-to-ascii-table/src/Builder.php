@@ -77,6 +77,8 @@ class Builder
      */
     private $title;
 
+    private $additionalText;
+
     public function __construct()
     {
         $this->table = new Table();
@@ -124,6 +126,11 @@ class Builder
     public function setTitle(string $title)
     {
         $this->title = $title;
+    }
+
+    public function setAdditionalText(string $additionalText)
+    {
+        $this->additionalText = $additionalText;
     }
 
     /**
@@ -198,11 +205,11 @@ class Builder
         if ($this->title === null) {
             $titleString = '';
         } else {
-            $titlePadding = intdiv(max(0, mb_strwidth($borderTop) - mb_strwidth($this->title)), 2);
+            $titlePadding = max(0, mb_strwidth($borderTop) - mb_strwidth($this->title));
             $titleString = str_repeat(' ', $titlePadding) . $this->title . PHP_EOL;
         }
 
-        $tableAsString = $titleString . $borderTop . PHP_EOL . $header . PHP_EOL . $borderMiddle . PHP_EOL . $body . $borderBottom;
+        $tableAsString = $titleString . $this->additionalText . "\n" . $borderTop . PHP_EOL . $header . PHP_EOL . $borderMiddle . PHP_EOL . $body . $borderBottom;
         return $tableAsString;
     }
 

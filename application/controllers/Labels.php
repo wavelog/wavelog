@@ -23,7 +23,7 @@ class Labels extends CI_Controller {
 		$this->load->helper(array('form', 'url', 'psr4_autoloader'));
 
 		$this->load->model('user_model');
-		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('notice', 'You\'re not allowed to do that!'); redirect('dashboard'); }
+		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 	}
 
 
@@ -345,13 +345,17 @@ class Labels extends CI_Controller {
 	function generateLabel($pdf, $current_callsign, $tableData,$numofqsos,$qso,$orientation,$grid=true, $via=false, $reference = false){
 		$builder = new \AsciiTable\Builder();
 		$builder->addRows($tableData);
-			$text = "Confirming QSO".($numofqsos>1 ? 's' : '')." with ";
-			$text .= $current_callsign;
+			$toradio = "To Radio: ";
+			$toradio .= $current_callsign;
 			if (($via) && ($qso['via'] ?? '' != '')) {
-				$text.=' via '.substr($qso['via'],0,8);
+				$toradio.=' via '.substr($qso['via'],0,8);
 			}
-			$text .= "\n";
-			$text .= $builder->renderTable();
+			$builder->setTitle($toradio);
+
+			$additionalText = "Confirming QSO".($numofqsos>1 ? 's' : '');
+			$builder->setAdditionalText($additionalText);
+
+			$text = $builder->renderTable();
 		if($qso['sat'] != "") {
 			if (($qso['sat_mode'] == '') && ($qso['sat_band_rx'] !== '')) {
 				$text .= "\n".'Satellite: '.$qso['sat'].' Band RX: '.$qso['sat_band_rx'];

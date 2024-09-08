@@ -1,24 +1,15 @@
-<div id="modal-backdrop" class="modal-backdrop fade show" style="display:block;"></div>
-<div id="modal" class="modal fade show" tabindex="-1" style="display:block;">
-<form hx-post="<?php echo base_url();?>index.php/qso/cwmacrosave" hx-target=".modal-body">
-	<div class="modal-dialog modal-dialog-centered">
-	  <div class="modal-content">
-		<div class="modal-header">
-		  <h5 class="modal-title"><?= __("Winkey Macros"); ?></h5>
-		</div>
-
-		<div class="modal-body">
+<form>
 				<div class="mb-3 row">
     				<label for="function1_name" class="col-sm-5 col-form-label"><?= sprintf(__("Function %d - Name"), 1) ?></label>
     				<div class="col-sm-7">
-						<input name="function1_name" type="text" class="form-control" id="function1_name" maxlength="6">
+						<input name="function1_name" type="text" class="form-control" id="function1_name" maxlength="6" value="<?php echo $result->function1_name ?? ''; ?>">
 					</div>
   				</div>
 
 				<div class="mb-3 row">
     				<label for="function1_macro" class="col-sm-5 col-form-label"><?= sprintf(__("Function %d - Macro"), 1) ?></label>
     				<div class="col-sm-7">
-						<input name="function1_macro" type="text" class="form-control" id="function1_macro">
+						<input name="function1_macro" type="text" class="form-control" id="function1_macro" value="<?php echo $result->function1_macro ?? ''; ?>">
 					</div>
   				</div>
 
@@ -27,14 +18,14 @@
 				<div class="mb-3 row">
     				<label for="function2_name" class="col-sm-5 col-form-label"><?= sprintf(__("Function %d - Name"), 2) ?></label>
     				<div class="col-sm-7">
-						<input name="function2_name" type="text" class="form-control" id="function2_name" maxlength="6">
+						<input name="function2_name" type="text" class="form-control" id="function2_name" maxlength="6" value="<?php echo $result->function2_name ?? ''; ?>">
 					</div>
   				</div>
 
 				<div class="mb-3 row">
     				<label for="function2_macro" class="col-sm-5 col-form-label"><?= sprintf(__("Function %d - Macro"), 2) ?></label>
     				<div class="col-sm-7">
-						<input name="function2_macro" type="text" class="form-control" id="function2_macro">
+						<input name="function2_macro" type="text" class="form-control" id="function2_macro" value="<?php echo $result->function2_macro ?? ''; ?>">
 					</div>
   				</div>
 
@@ -43,14 +34,14 @@
 				<div class="mb-3 row">
     				<label for="function3_name" class="col-sm-5 col-form-label"><?= sprintf(__("Function %d - Name"), 3) ?></label>
     				<div class="col-sm-7">
-						<input name="function3_name" type="text" class="form-control" id="function3_name" maxlength="6">
+						<input name="function3_name" type="text" class="form-control" id="function3_name" maxlength="6" value="<?php echo $result->function3_name ?? ''; ?>">
 					</div>
   				</div>
 
 				<div class="mb-3 row">
     				<label for="function3_macro" class="col-sm-5 col-form-label"><?= sprintf(__("Function %d - Macro"), 3) ?></label>
     				<div class="col-sm-7">
-						<input name="function3_macro" type="text" class="form-control" id="function3_macro">
+						<input name="function3_macro" type="text" class="form-control" id="function3_macro" value="<?php echo $result->function3_macro ?? ''; ?>">
 					</div>
   				</div>
 
@@ -59,14 +50,14 @@
 				<div class="mb-3 row">
     				<label for="function4_name" class="col-sm-5 col-form-label"><?= sprintf(__("Function %d - Name"), 4) ?></label>
     				<div class="col-sm-7">
-						<input name="function4_name" type="text" class="form-control" id="function4_name" maxlength="6">
+						<input name="function4_name" type="text" class="form-control" id="function4_name" maxlength="6" value="<?php echo $result->function4_name ?? ''; ?>">
 					</div>
   				</div>
 
 				<div class="mb-3 row">
     				<label for="function4_macro" class="col-sm-5 col-form-label"><?= sprintf(__("Function %d - Macro"), 4) ?></label>
     				<div class="col-sm-7">
-						<input name="function4_macro" type="text" class="form-control" id="function4_macro">
+						<input name="function4_macro" type="text" class="form-control" id="function4_macro" value="<?php echo $result->function4_macro ?? ''; ?>">
 					</div>
   				</div>
 
@@ -75,22 +66,15 @@
 				<div class="mb-3 row">
     				<label for="function5_name" class="col-sm-5 col-form-label"><?= sprintf(__("Function %d - Name"), 5) ?></label>
     				<div class="col-sm-7">
-						<input name="function5_name" type="text" class="form-control" id="function5_name" maxlength="6">
+						<input name="function5_name" type="text" class="form-control" id="function5_name" maxlength="6" value="<?php echo $result->function5_name ?? ''; ?>">
 					</div>
   				</div>
 
 				<div class="mb-3 row">
     				<label for="function5_macro" class="col-sm-5 col-form-label"><?= sprintf(__("Function %d - Macro"), 5) ?></label>
     				<div class="col-sm-7">
-						<input name="function5_macro" type="text" class="form-control" id="function5_macro">
+						<input name="function5_macro" type="text" class="form-control" id="function5_macro" value="<?php echo $result->function5_macro ?? ''; ?>">
 					</div>
   				</div>
 		</div>
-		<div class="modal-footer">
-			<button type="submit" class="btn btn-primary"><?= __("Save"); ?></button>
-			<button type="button" class="btn btn-secondary" onclick="closeModal()"><?= __("Close"); ?></button>
-		</div>
-	  </div>
-	</div>
-	</form>
-</div>
+</form>

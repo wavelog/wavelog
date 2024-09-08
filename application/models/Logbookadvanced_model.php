@@ -31,6 +31,59 @@ class Logbookadvanced_model extends CI_Model {
 			}
 		}
 
+		if ((isset($searchCriteria['invalid'])) && ($searchCriteria['invalid'] !== '')) {
+			$id_sql="
+				select GROUP_CONCAT(col_primary_key separator ',') as qsoids from (
+					select col_primary_key from " . $this->config->item('table_name') . "
+					join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
+					where station_profile.user_id = ?
+					and coalesce(col_mode, '') = ''
+
+					union all
+
+					select col_primary_key from " . $this->config->item('table_name') . "
+					join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
+					where station_profile.user_id = ?
+					and coalesce(col_band, '') = ''
+
+					union all
+
+					select col_primary_key from " . $this->config->item('table_name') . "
+					join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
+					where station_profile.user_id = ?
+					and coalesce(col_call, '') = ''
+
+					union all
+
+					select col_primary_key from " . $this->config->item('table_name') . "
+					join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
+					where station_profile.user_id = ?
+					and (col_time_on is null or cast(col_time_on as date) = '1970-01-01')
+
+					union all
+
+					select col_primary_key from " . $this->config->item('table_name') . "
+					join station_profile on " . $this->config->item('table_name') . ".station_id = station_profile.station_id
+					where station_profile.user_id = ?
+					and coalesce(col_cont, '') <> ''
+					and col_cont NOT IN ('AF', 'AN', 'AS', 'EU', 'NA', 'OC', 'SA')
+				) as x";
+
+			$id_query = $this->db->query($id_sql, [$searchCriteria['user_id'], $searchCriteria['user_id'], $searchCriteria['user_id'], $searchCriteria['user_id'], $searchCriteria['user_id']]);
+
+			$ids2fetch = '';
+
+			foreach ($id_query->result() as $id) {
+				$ids2fetch .= ','.$id->qsoids;
+			}
+			$ids2fetch = ltrim($ids2fetch, ',');
+			if ($ids2fetch ?? '' !== '') {
+				$conditions[] = "qsos.COL_PRIMARY_KEY in (".$ids2fetch.")";
+			} else {
+				$conditions[] = "1=0";
+			}
+		}
+
         if ($searchCriteria['dateFrom'] !== '') {
             $from = $searchCriteria['dateFrom'];
 			$conditions[] = "date(COL_TIME_ON) >= ?";
@@ -42,7 +95,11 @@ class Logbookadvanced_model extends CI_Model {
 			$binding[] = $to;
 		}
 		if ($searchCriteria['de'] !== 'All') {
-			$stationids = implode(',', $searchCriteria['de']);
+			if ($searchCriteria['de'] == '') {
+				$stationids = 'null';
+			} else {
+				$stationids = implode(',', $searchCriteria['de']);
+			}
 			$conditions[] = "qsos.station_id in (".$stationids.")";
 		}
 		if ($searchCriteria['dx'] !== '') {
@@ -229,6 +286,19 @@ class Logbookadvanced_model extends CI_Model {
 		if ($searchCriteria['contest'] !== '') {
 			$conditions[] = "COL_CONTEST_ID like ?";
 			$binding[] = '%'.$searchCriteria['contest'].'%';
+		}
+
+		if ($searchCriteria['continent'] !== '') {
+			if ($searchCriteria['continent'] == 'invalid') {
+				$conditions[] = "COL_CONT NOT IN ('AF', 'AN', 'AS', 'EU', 'NA', 'OC', 'SA')";
+				$conditions[] = "coalesce(COL_CONT, '') <> ''";
+			} else if ($searchCriteria['continent'] == 'blank') {
+				$conditions[] = "coalesce(COL_CONT, '') = ''";
+			}
+			else {
+				$conditions[] = "COL_CONT = ?";
+				$binding[] = $searchCriteria['continent'];
+			}
 		}
 
 		if (($searchCriteria['ids'] ?? '') !== '') {
@@ -457,6 +527,9 @@ class Logbookadvanced_model extends CI_Model {
 		if (!empty($callbook['qslmgr']) && empty($qso['COL_QSL_VIA'])) {
 			$updatedData['COL_QSL_VIA'] = $callbook['qslmgr'];
 		}
+		if (!empty($callbook['ituz']) && empty($qso['COL_ITUZ'])) {
+			$updatedData['COL_ITUZ'] = $callbook['ituz'];
+		}
 
 		if (count($updatedData) > 0) {
 			$this->db->where('COL_PRIMARY_KEY', $qsoID);
@@ -528,6 +601,8 @@ class Logbookadvanced_model extends CI_Model {
 			case "contest": $column = 'COL_CONTEST_ID'; break;
 			case "lotwsent": $column = 'COL_LOTW_QSL_SENT'; break;
 			case "lotwreceived": $column = 'COL_LOTW_QSL_RCVD'; break;
+			case "qslmsg": $column = 'COL_QSLMSG'; break;
+			case "continent": $column = 'COL_CONT'; break;
 			default: return;
 		}
 
@@ -650,6 +725,21 @@ class Logbookadvanced_model extends CI_Model {
 
 			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
 			" SET " . $this->config->item('table_name').".COL_LOTW_QSL_RCVD = ?, " . $this->config->item('table_name').".COL_LOTW_QSLRDATE = now()" .
+			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
+
+			$query = $this->db->query($sql, array($value, json_decode($ids, true), $this->session->userdata('user_id')));
+
+		} else if ($column == 'COL_QSLMSG') {
+
+			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
+			" SET " . $this->config->item('table_name').".COL_QSLMSG = ? " .
+			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
+
+			$query = $this->db->query($sql, array($value, json_decode($ids, true), $this->session->userdata('user_id')));
+		} else if ($column == 'COL_CONT') {
+
+			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
+			" SET " . $this->config->item('table_name').".COL_CONT = ? " .
 			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
 
 			$query = $this->db->query($sql, array($value, json_decode($ids, true), $this->session->userdata('user_id')));
