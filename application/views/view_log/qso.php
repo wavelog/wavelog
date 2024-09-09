@@ -326,7 +326,16 @@
                     <?php if($row->COL_SIG != null) { ?>
                     <tr>
                         <td><?= __("Sig"); ?></td>
-                        <td><?php echo $row->COL_SIG; ?></td>
+                        <?php
+                        switch ($row->COL_SIG) {
+                        case "GMA":
+                           echo "<td><a href=\"https://cqgma.org/\" target=\"_blank\">".$row->COL_SIG."</a></td>";
+                           break;
+                        default:
+                           echo "<td>".$row->COL_SIG."</td>";
+                           break;
+                        }
+                        ?>
                     </tr>
                     <?php } ?>
 
