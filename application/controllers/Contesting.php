@@ -38,6 +38,11 @@ class Contesting extends CI_Controller {
 		$data['contestnames'] = $this->contesting_model->getActivecontests();
 		$data['bands'] = $this->bands->get_user_bands_for_qso_entry();
 
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/sections/contesting.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/contesting.js")),
+		];
+
 		$this->load->library('form_validation');
 
 		$this->form_validation->set_rules('start_date', 'Date', 'required');
@@ -48,7 +53,7 @@ class Contesting extends CI_Controller {
 
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('contesting/index');
-		$this->load->view('interface_assets/footer');
+		$this->load->view('interface_assets/footer', $footerData);
 	}
 
 	public function getSessionQsos() {
@@ -109,11 +114,16 @@ class Contesting extends CI_Controller {
 
 		$data['contests'] = $this->Contesting_model->getAllContests();
 
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/sections/contesting.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/contesting.js")),
+		];
+
 		// Render Page
 		$data['page_title'] = __("Contests");
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('contesting/add');
-		$this->load->view('interface_assets/footer');
+		$this->load->view('interface_assets/footer', $footerData);
 	}
 
 	public function edit($id) {
@@ -126,6 +136,11 @@ class Contesting extends CI_Controller {
 
 		$data['page_title'] = __("Update Contest");
 
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/sections/contesting.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/contesting.js")),
+		];
+
 		$this->form_validation->set_rules('name', 'Contest Name', 'required');
 		$this->form_validation->set_rules('adifname', 'Adif Contest Name', 'required');
 
@@ -133,7 +148,7 @@ class Contesting extends CI_Controller {
 		{
 			$this->load->view('interface_assets/header', $data);
 			$this->load->view('contesting/edit');
-			$this->load->view('interface_assets/footer');
+			$this->load->view('interface_assets/footer', $footerData);
 		}
 		else
 		{

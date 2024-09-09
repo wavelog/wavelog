@@ -1,3 +1,7 @@
+<script>
+    var lang_contestname_warning = "<?= __("You need to start a new session before you can change the contest name!"); ?>";
+</script>
+
 <div class="container qso_panel contesting">
     <button type="button" class="btn btn-sm btn-warning float-end" onclick="reset_contest_session()"><i class="fas fa-sync-alt"></i> <?= __("Start new Contest Session"); ?></button>
     <h2 style="display:inline"><?= __("Contest Logging"); ?> </h2> <?php echo ($manual_mode == 0 ? " <span style='display:inline' class='align-text-top badge text-bg-success'>LIVE</span>" : " <span style='display:inline' class='align-text-top badge text-bg-danger'>POST</span>");  ?>
@@ -22,14 +26,15 @@
 								</select>
 							</div>
 
-                            <label class="col-auto control-label" for="contestname"><?= __("Contest Name"); ?></label>
+                            <label class="col-auto control-label" for="contestname_select"><?= __("Contest Name"); ?></label>
 
                             <div class="col-auto">
-                                <select class="form-select form-select-sm" id="contestname" name="contestname">
+                                <select class="form-select form-select-sm" id="contestname_select" name="contestname_select">
 									<?php foreach($contestnames as $contest) {
 										echo "<option value='" . $contest['adifname'] . "'>" . $contest['name'] . "</option>";
 									} ?>
                                 </select>
+                                <input type="hidden" id="contestname" name="contestname" />
                             </div>
 
                             <label class="col-auto control-label" for="operatorcall"><?= __("Operator Callsign"); ?></label>
