@@ -196,12 +196,14 @@ function spawnGridsquareModal(loc_4char) {
 						label: lang_admin_close,
 						action: function(dialogItself) {
 							dialogItself.close();
+							//map.on('click', onMapClick);
 						}
 					}]
 				});
 			    dialog.realize();
-		    		$("#gridsquare_map").append(dialog.getModal());
-		    		dialog.open();
+					$("#gridsquare_map").append(dialog.getModal());
+					map.off('click');
+					dialog.open();
 },
 			error: function(e) {
 				modalloading=false;
