@@ -2472,7 +2472,6 @@ function viewEqsl(picture, callsign) {
     <script>
         var manual = <?php echo $manual_mode; ?>;
     </script>
-    <script src="<?php echo base_url() ;?>assets/js/sections/contesting.js?v2"></script>
 <?php } ?>
 
 <?php if ($this->uri->segment(2) == "counties" || $this->uri->segment(2) == "counties_details") { ?>

@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-09-09 08:28+0000\n"
+"POT-Creation-Date: 2024-09-09 13:23+0000\n"
 "PO-Revision-Date: 2024-09-05 09:30+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
 "Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -268,7 +268,7 @@ msgstr "Diplome - %s"
 #: application/controllers/Awards.php:92
 #: application/views/awards/dok/index.php:149
 #: application/views/bands/index.php:47
-#: application/views/contesting/index.php:53
+#: application/views/contesting/index.php:58
 #: application/views/interface_assets/header.php:198
 #: application/views/logbookadvanced/index.php:641
 #: application/views/logbookadvanced/useroptions.php:130
@@ -559,17 +559,17 @@ msgstr "Nema korisnika sa podešenim Clublog."
 msgid "Contest Calendar"
 msgstr "Takmičarski kalendar"
 
-#: application/controllers/Contesting.php:47
-#: application/views/contesting/index.php:3
+#: application/controllers/Contesting.php:52
+#: application/views/contesting/index.php:7
 msgid "Contest Logging"
 msgstr "Takmičarski dnevnik"
 
-#: application/controllers/Contesting.php:113
+#: application/controllers/Contesting.php:123
 #: application/views/interface_assets/header.php:278
 msgid "Contests"
 msgstr "Takmičenja"
 
-#: application/controllers/Contesting.php:127
+#: application/controllers/Contesting.php:137
 msgid "Update Contest"
 msgstr "Ažuriraj takmičenje"
 
@@ -1060,8 +1060,8 @@ msgstr "Clublog"
 #: application/views/awards/waja/index.php:91
 #: application/views/awards/was/index.php:87
 #: application/views/components/hamsat/table.php:30
-#: application/views/contesting/index.php:108
-#: application/views/contesting/index.php:250
+#: application/views/contesting/index.php:113
+#: application/views/contesting/index.php:255
 #: application/views/continents/index.php:39 application/views/csv/index.php:42
 #: application/views/dashboard/index.php:4
 #: application/views/debug/index.php:548
@@ -1118,8 +1118,8 @@ msgstr "Vrsta rada"
 #: application/controllers/Logbook.php:1285
 #: application/views/awards/pota/index.php:36
 #: application/views/awards/wwff/index.php:36
-#: application/views/contesting/index.php:165
-#: application/views/contesting/index.php:251
+#: application/views/contesting/index.php:170
+#: application/views/contesting/index.php:256
 #: application/views/logbookadvanced/index.php:575
 #: application/views/logbookadvanced/useroptions.php:38
 #: application/views/qslcard/searchresult.php:13
@@ -1145,8 +1145,8 @@ msgstr "RST (S)"
 #: application/controllers/Logbook.php:1286
 #: application/views/awards/pota/index.php:37
 #: application/views/awards/wwff/index.php:37
-#: application/views/contesting/index.php:189
-#: application/views/contesting/index.php:252
+#: application/views/contesting/index.php:194
+#: application/views/contesting/index.php:257
 #: application/views/logbookadvanced/index.php:578
 #: application/views/logbookadvanced/useroptions.php:42
 #: application/views/qslcard/searchresult.php:14
@@ -1225,7 +1225,7 @@ msgstr "IOTA"
 #: application/views/awards/counties/index.php:20
 #: application/views/awards/rac/index.php:143
 #: application/views/awards/was/index.php:151
-#: application/views/contesting/index.php:56
+#: application/views/contesting/index.php:61
 #: application/views/dashboard/index.php:12
 #: application/views/logbookadvanced/edit.php:21
 #: application/views/logbookadvanced/edit.php:66
@@ -1253,8 +1253,8 @@ msgstr "Pokrajina"
 #: application/views/awards/ffma/index.php:34
 #: application/views/awards/gridmaster/index.php:33
 #: application/views/awards/vucc/band.php:12
-#: application/views/contesting/index.php:17
-#: application/views/contesting/index.php:257
+#: application/views/contesting/index.php:21
+#: application/views/contesting/index.php:262
 #: application/views/dashboard/index.php:13
 #: application/views/distancerecords/index.php:20
 #: application/views/gridmap/index.php:152
@@ -1338,8 +1338,8 @@ msgstr "Udaljenost"
 #: application/views/bandmap/index.php:45 application/views/bandmap/list.php:88
 #: application/views/bands/create.php:24 application/views/bands/edit.php:6
 #: application/views/bands/index.php:45
-#: application/views/contesting/index.php:121
-#: application/views/contesting/index.php:249
+#: application/views/contesting/index.php:126
+#: application/views/contesting/index.php:254
 #: application/views/continents/index.php:30 application/views/csv/index.php:31
 #: application/views/dashboard/index.php:15
 #: application/views/debug/index.php:549 application/views/dxatlas/index.php:31
@@ -1392,7 +1392,7 @@ msgstr "Opseg"
 
 #: application/controllers/Logbook.php:1296
 #: application/controllers/Radio.php:48 application/views/bandmap/list.php:110
-#: application/views/contesting/index.php:138
+#: application/views/contesting/index.php:143
 #: application/views/dashboard/index.php:16
 #: application/views/qslcard/searchresult.php:22
 #: application/views/qslcard/searchresult.php:38
@@ -1773,7 +1773,7 @@ msgstr "Hardverski interfejs"
 
 #: application/controllers/Radio.php:47 application/views/bandmap/index.php:25
 #: application/views/bandmap/list.php:60
-#: application/views/contesting/index.php:143
+#: application/views/contesting/index.php:148
 #: application/views/qso/index.php:312
 msgid "Radio"
 msgstr "Radio"
@@ -1794,7 +1794,7 @@ msgid "Options"
 msgstr "Opcije"
 
 #: application/controllers/Radio.php:90
-#: application/views/contesting/index.php:147
+#: application/views/contesting/index.php:152
 #: application/views/qso/index.php:316
 msgid "last updated"
 msgstr "posljednje ažuriranje"
@@ -3061,7 +3061,7 @@ msgstr "Ništa nije pronađeno!"
 #: application/views/awards/wwff/index.php:34
 #: application/views/cabrillo/index.php:31
 #: application/views/components/hamsat/table.php:27
-#: application/views/contesting/index.php:156
+#: application/views/contesting/index.php:161
 #: application/views/csv/index.php:23 application/views/dashboard/index.php:168
 #: application/views/distancerecords/index.php:18
 #: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:41
@@ -3147,8 +3147,8 @@ msgstr "U poređenju sa DCL, u vašem logu postoje različiti DOK podaci"
 #: application/views/awards/wwff/index.php:32
 #: application/views/bandmap/list.php:109
 #: application/views/components/hamsat/table.php:25
-#: application/views/contesting/index.php:93
-#: application/views/contesting/index.php:247
+#: application/views/contesting/index.php:98
+#: application/views/contesting/index.php:252
 #: application/views/dashboard/index.php:163
 #: application/views/debug/index.php:545
 #: application/views/distancerecords/index.php:16
@@ -3191,8 +3191,8 @@ msgstr "Datum"
 #: application/views/awards/wwff/index.php:33
 #: application/views/bandmap/list.php:109
 #: application/views/components/hamsat/table.php:26
-#: application/views/contesting/index.php:98
-#: application/views/contesting/index.php:247
+#: application/views/contesting/index.php:103
+#: application/views/contesting/index.php:252
 #: application/views/dashboard/index.php:166
 #: application/views/debug/index.php:546
 #: application/views/distancerecords/index.php:17
@@ -3221,7 +3221,7 @@ msgstr "Vreme"
 #: application/views/adif/dcl_success.php:31
 #: application/views/awards/vucc/band.php:18
 #: application/views/bandmap/list.php:111
-#: application/views/contesting/index.php:248
+#: application/views/contesting/index.php:253
 #: application/views/debug/index.php:547 application/views/debug/index.php:582
 #: application/views/dxcalendar/index.php:12
 #: application/views/eqsl/analysis.php:38
@@ -4455,8 +4455,8 @@ msgstr "Prikaži kartu IOTA"
 #: application/views/awards/iota/index.php:171
 #: application/views/contesting/add.php:25
 #: application/views/contesting/create.php:24
-#: application/views/contesting/index.php:54
-#: application/views/contesting/index.php:214
+#: application/views/contesting/index.php:59
+#: application/views/contesting/index.php:219
 #: application/views/dashboard/index.php:18
 #: application/views/labels/index.php:41 application/views/labels/index.php:75
 #: application/views/logbookadvanced/index.php:587
@@ -5008,9 +5008,9 @@ msgid "BandList"
 msgstr "Lista opsega"
 
 #: application/views/bandmap/index.php:27 application/views/bandmap/list.php:62
-#: application/views/contesting/index.php:15
-#: application/views/contesting/index.php:52
-#: application/views/contesting/index.php:145
+#: application/views/contesting/index.php:19
+#: application/views/contesting/index.php:57
+#: application/views/contesting/index.php:150
 #: application/views/qso/index.php:314
 msgid "None"
 msgstr "Ništa"
@@ -5142,7 +5142,7 @@ msgstr "Kreiraj opseg"
 
 #: application/views/bands/index.php:152
 #: application/views/contesting/add.php:74
-#: application/views/contesting/index.php:83
+#: application/views/contesting/index.php:88
 #: application/views/interface_assets/footer.php:44
 #: application/views/simplefle/index.php:21
 #: application/views/version_dialog/index.php:79
@@ -5320,7 +5320,7 @@ msgstr ""
 "Nisu pronađene predstojeće aktivacije. Molimo proverite ponovo kasnije."
 
 #: application/views/components/hamsat/table.php:28
-#: application/views/contesting/index.php:219
+#: application/views/contesting/index.php:224
 #: application/views/hamsat/index.php:31
 #: application/views/logbookadvanced/edit.php:5
 #: application/views/logbookadvanced/index.php:629
@@ -5491,7 +5491,7 @@ msgid "Create"
 msgstr "Kreirajte"
 
 #: application/views/contesting/edit.php:31
-#: application/views/contesting/index.php:25
+#: application/views/contesting/index.php:29
 #: application/views/qso/edit_ajax.php:575
 #: application/views/view_log/qso.php:278
 msgid "Contest Name"
@@ -5506,75 +5506,79 @@ msgid "Set to active if to be listed in Contest-list"
 msgstr "Postavite na aktivno ako želite da bude prikazano u listi takmičenja"
 
 #: application/views/contesting/index.php:2
+msgid "You need to start a new session before you can change the contest name!"
+msgstr ""
+
+#: application/views/contesting/index.php:6
 msgid "Start new Contest Session"
 msgstr "Pokrenite novu takmičarsku sesiju"
 
-#: application/views/contesting/index.php:11
+#: application/views/contesting/index.php:15
 msgid "Exchange Type"
 msgstr "Vrsta razmene"
 
-#: application/views/contesting/index.php:16
+#: application/views/contesting/index.php:20
 msgid "Exchange"
 msgstr "Razmena"
 
-#: application/views/contesting/index.php:18
+#: application/views/contesting/index.php:22
 msgid "Serial"
 msgstr "Serijski broj"
 
-#: application/views/contesting/index.php:19
+#: application/views/contesting/index.php:23
 msgid "Serial + Exchange"
 msgstr "Serijski broj + razmena"
 
-#: application/views/contesting/index.php:20
+#: application/views/contesting/index.php:24
 msgid "Serial + Gridsquare"
 msgstr "Serijski broj + polje"
 
-#: application/views/contesting/index.php:21
+#: application/views/contesting/index.php:25
 msgid "Serial + Gridsquare + Exchange"
 msgstr "Serijski broj + polje + razmena"
 
-#: application/views/contesting/index.php:35
+#: application/views/contesting/index.php:40
 #: application/views/operator/index.php:5
 #: application/views/qso/edit_ajax.php:566 application/views/qso/index.php:352
 msgid "Operator Callsign"
 msgstr "Pozivni znak operatora"
 
-#: application/views/contesting/index.php:40
 #: application/views/contesting/index.php:45
+#: application/views/contesting/index.php:50
 msgid "More Settings"
 msgstr "Više podešavanja"
 
-#: application/views/contesting/index.php:49
+#: application/views/contesting/index.php:54
 msgid "Copy received exchange to"
 msgstr "Kopiraj primljenu razmenu u"
 
-#: application/views/contesting/index.php:51
+#: application/views/contesting/index.php:56
 msgid "Exchange is only copied if it is matching rules for the selected field!"
 msgstr ""
 "Razmena je kopirana samo ako se poklapa sa pravilima za izabrano polje!"
 
-#: application/views/contesting/index.php:55
+#: application/views/contesting/index.php:60
 msgid "Age"
 msgstr "Starost"
 
-#: application/views/contesting/index.php:57
+#: application/views/contesting/index.php:62
 msgid "RX Power (W)"
 msgstr "RX snaga (W)"
 
-#: application/views/contesting/index.php:58
+#: application/views/contesting/index.php:63
 msgid "Locator"
 msgstr "Lokator"
 
-#: application/views/contesting/index.php:59
+#: application/views/contesting/index.php:64
 #: application/views/qso/edit_ajax.php:177
 msgid "QTH"
 msgstr "QTH"
 
-#: application/views/contesting/index.php:64
+#: application/views/contesting/index.php:69
 msgid "Sequence of Exchanges"
 msgstr "Redosled razmene"
 
-#: application/views/contesting/index.php:67
+#: application/views/contesting/index.php:72
 msgid ""
 "Choose in which order you want to type in the different reports. However, "
 "only the elements contained in the selected exchange type are displayed."
@@ -5582,84 +5586,84 @@ msgstr ""
 "Izaberite redosled kojim želite da kucate u različitim raportima. Međutim, "
 "prikazuju se samo elementi koji se nalaze među izabranom vrstom razmene."
 
-#: application/views/contesting/index.php:72
-#: application/views/contesting/index.php:73
-#: application/views/contesting/index.php:74
-#: application/views/contesting/index.php:75
-#: application/views/contesting/index.php:76
 #: application/views/contesting/index.php:77
+#: application/views/contesting/index.php:78
+#: application/views/contesting/index.php:79
+#: application/views/contesting/index.php:80
+#: application/views/contesting/index.php:81
+#: application/views/contesting/index.php:82
 msgctxt "Keep the translation short!"
 msgid "Exchange"
 msgstr "Razmena"
 
-#: application/views/contesting/index.php:72
-#: application/views/contesting/index.php:73
-#: application/views/contesting/index.php:74
-#: application/views/contesting/index.php:75
-#: application/views/contesting/index.php:76
 #: application/views/contesting/index.php:77
+#: application/views/contesting/index.php:78
+#: application/views/contesting/index.php:79
+#: application/views/contesting/index.php:80
+#: application/views/contesting/index.php:81
+#: application/views/contesting/index.php:82
 msgctxt "Keep the translation short!"
 msgid "Grid"
 msgstr "Polje"
 
-#: application/views/contesting/index.php:72
-#: application/views/contesting/index.php:73
-#: application/views/contesting/index.php:74
-#: application/views/contesting/index.php:75
-#: application/views/contesting/index.php:76
 #: application/views/contesting/index.php:77
+#: application/views/contesting/index.php:78
+#: application/views/contesting/index.php:79
+#: application/views/contesting/index.php:80
+#: application/views/contesting/index.php:81
+#: application/views/contesting/index.php:82
 msgctxt "Keep the translation short!"
 msgid "Serial"
 msgstr "Ser.br."
 
-#: application/views/contesting/index.php:172
-#: application/views/contesting/index.php:255
+#: application/views/contesting/index.php:177
+#: application/views/contesting/index.php:260
 #: application/views/qso/edit_ajax.php:598
 msgid "Serial (S)"
 msgstr "Serijski broj (brojevi)"
 
-#: application/views/contesting/index.php:177
+#: application/views/contesting/index.php:182
 msgid "Gridsquare (S)"
 msgstr "Polje (S)"
 
-#: application/views/contesting/index.php:182
-#: application/views/contesting/index.php:253
+#: application/views/contesting/index.php:187
+#: application/views/contesting/index.php:258
 msgid "Exch (S)"
 msgstr "Exch (S)"
 
-#: application/views/contesting/index.php:196
-#: application/views/contesting/index.php:256
+#: application/views/contesting/index.php:201
+#: application/views/contesting/index.php:261
 #: application/views/qso/edit_ajax.php:593
 msgid "Serial (R)"
 msgstr "Serijski (R)"
 
-#: application/views/contesting/index.php:201
+#: application/views/contesting/index.php:206
 msgid "Gridsquare (R)"
 msgstr "Polje (R)"
 
-#: application/views/contesting/index.php:206
-#: application/views/contesting/index.php:254
+#: application/views/contesting/index.php:211
+#: application/views/contesting/index.php:259
 msgid "Exch (R)"
 msgstr "Exch (R)"
 
-#: application/views/contesting/index.php:224
+#: application/views/contesting/index.php:229
 msgid "Reset QSO"
 msgstr "Resetuj QSO"
 
-#: application/views/contesting/index.php:225
+#: application/views/contesting/index.php:230
 #: application/views/qso/index.php:629
 msgid "Save QSO"
 msgstr "Sačuvaj QSO"
 
-#: application/views/contesting/index.php:234
+#: application/views/contesting/index.php:239
 msgid "Callsign Suggestions"
 msgstr "Predlozi pozivnog znaka"
 
-#: application/views/contesting/index.php:241
+#: application/views/contesting/index.php:246
 msgid "Contest Logbook"
 msgstr "Takmičarski dnevnik"
 
-#: application/views/contesting/index.php:258
+#: application/views/contesting/index.php:263
 #: application/views/qso/edit_ajax.php:164
 msgid "VUCC Gridsquare"
 msgstr "VUCC polje"
