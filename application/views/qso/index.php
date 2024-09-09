@@ -5,6 +5,7 @@
   var lang_qso_title_previous_contacts = "<?= __("Previous Contacts"); ?>";
   var lang_qso_title_times_worked_before = "<?= __("times worked before"); ?>";
   var lang_qso_title_not_worked_before = "<?= __("Not worked before"); ?>";
+  var lang_dxccsummary_for = "<?= __("DXCC Summary for "); ?>";
 </script>
 
 <div class="row qsopane">
