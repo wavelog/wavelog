@@ -1,6 +1,6 @@
 <?php
 if ($qsos->result() != NULL) {
-	echo __("The following QSOs were found to have an incorrect CQ zone that this DXCC normally has:");
+	echo __("The following QSOs were found to have an incorrect ITU zone that this DXCC normally has (a maximum of 1000 QSOs are shown):");
 	echo '<table style="width:100%" class="qsolist table table-sm table-bordered table-hover table-striped table-condensed">
 	<thead>
 	<tr>
