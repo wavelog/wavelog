@@ -242,6 +242,10 @@ function loadMap(data, iconsList) {
         '<div class="cohidden col-auto text-success fw-bold" id="distance"></div>' +
         '<div class="cohidden">' + lang_gen_hamradio_bearing + '&nbsp;</div>' +
         '<div class="cohidden col-auto text-success fw-bold" id="bearing"></div>' +
+		'<div class="cohidden">' + lang_gen_hamradio_cqzone + '&nbsp;</div>' +
+		'<div class="cohidden col-auto text-success fw-bold" id="cqzonedisplay"></div>' +
+		'<div class="cohidden">' + lang_gen_hamradio_ituzone + '&nbsp;</div>' +
+		'<div class="cohidden col-auto text-success fw-bold" id="ituzonedisplay"></div>' +
 		'</div>');
 		$('.cohidden').show();
 		set_advancedmap_height();
