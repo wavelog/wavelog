@@ -1112,6 +1112,8 @@ class Logbook extends CI_Controller {
 		$sql = "select *, (select group_concat(distinct ituzone order by ituzone) from dxcc_master where countrycode = thcv.col_dxcc and ituzone <> '' order by ituzone asc) as correctituzone from " . $this->config->item('table_name') .
 		" thcv join station_profile on thcv.station_id = station_profile.station_id where thcv.station_id in (". $location_list . ")
 		and not exists (select 1 from dxcc_master where countrycode = thcv.col_dxcc and ituzone = col_ituz) and col_dxcc > 0
+		order by thcv.col_time_on desc
+		limit 1000
 		";
 
 		$params = [];
