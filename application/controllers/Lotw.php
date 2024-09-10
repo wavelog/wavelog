@@ -213,7 +213,7 @@ class Lotw extends CI_Controller {
 				// Get Certificate Data
 				$this->load->model('Lotw_model');
 				$data['station_profile'] = $station_profile;
-				$data['lotw_cert_info'] = $this->Lotw_model->find_cert($station_profile->station_callsign, $station_profile->station_dxcc, $station_profile->user_id);
+				$data['lotw_cert_info'] = $this->Lotw_model->lotw_cert_details($station_profile->station_callsign, $station_profile->station_dxcc, $station_profile->user_id);
 
 				// If Station Profile has no LoTW Cert continue on.
 				if(!isset($data['lotw_cert_info']->cert_dxcc_id)) {
