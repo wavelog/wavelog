@@ -217,6 +217,7 @@ class Lotw extends CI_Controller {
 
 				// If Station Profile has no LoTW Cert continue on.
 				if(!isset($data['lotw_cert_info']->cert_dxcc_id)) {
+					echo $station_profile->station_callsign.": No LoTW certificate for station callsign found.<br>";
 					continue;
 				}
 
