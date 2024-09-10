@@ -111,6 +111,9 @@ msgstr ""
 #: application/controllers/User.php:762 application/controllers/User.php:1045
 #: application/controllers/User.php:1247
 #: application/controllers/User_options.php:9
+#: application/controllers/Lotw.php:379 application/controllers/Lotw.php:402
+#: application/controllers/Lotw.php:720 application/controllers/Lotw.php:828
+#: application/controllers/Lotw.php:836
 msgid "You're not allowed to do that!"
 msgstr "Não é permitido fazer isso!"
 
@@ -1482,11 +1485,11 @@ msgstr "Certificado Importado."
 msgid "Certificate Updated."
 msgstr "Certificado atualizado."
 
-#: application/controllers/Lotw.php:384
+#: application/controllers/Lotw.php:384 application/controllers/Lotw.php:385
 msgid "Certificate Deleted."
 msgstr "Certificado eliminado."
 
-#: application/controllers/Lotw.php:413
+#: application/controllers/Lotw.php:413 application/controllers/Lotw.php:414
 #, php-format
 msgid ""
 "Found no certificate in file %s. If the filename contains 'key-only' this is "
@@ -1496,31 +1499,33 @@ msgstr ""
 "contiver 'key-only', isto é tipicamente um pedido de certificado que ainda "
 "não foi processado pelo LoTW."
 
-#: application/controllers/Lotw.php:617
+#: application/controllers/Lotw.php:617 application/controllers/Lotw.php:618
 msgid "LoTW ADIF Information"
 msgstr "Informações sobre o ADIF LoTW"
 
-#: application/controllers/Lotw.php:725
+#: application/controllers/Lotw.php:725 application/controllers/Lotw.php:726
 msgid "LoTW ADIF Import"
 msgstr "Importação ADIF LoTW"
 
 #: application/controllers/Lotw.php:752 application/controllers/Lotw.php:870
+#: application/controllers/Lotw.php:753 application/controllers/Lotw.php:871
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "Não definiu as suas credenciais LoTW da ARRL !"
 
-#: application/controllers/Lotw.php:837
+#: application/controllers/Lotw.php:837 application/controllers/Lotw.php:838
 msgid "LoTW .TQ8 Upload"
 msgstr "Enviar .TQ8 LoTW"
 
-#: application/controllers/Lotw.php:915
+#: application/controllers/Lotw.php:915 application/controllers/Lotw.php:916
 msgid "Your ARRL username and/or password is incorrect."
 msgstr "O seu nome de utilizador e/ou palavra-passe da ARRL está incorreto."
 
 #: application/controllers/Lotw.php:934 application/controllers/Lotw.php:939
+#: application/controllers/Lotw.php:935 application/controllers/Lotw.php:940
 msgid "LoTW .TQ8 Sent"
 msgstr ".TQ8 LoTW enviado"
 
-#: application/controllers/Lotw.php:946
+#: application/controllers/Lotw.php:946 application/controllers/Lotw.php:947
 msgid "LoTW .TQ8 Not Sent"
 msgstr ".TQ8 LoTW não enviado"
 
@@ -5530,7 +5535,8 @@ msgstr "Definir como ativo se quiser ser incluído na lista de concursos"
 
 #: application/views/contesting/index.php:2
 msgid "You need to start a new session before you can change the contest name!"
-msgstr "Tem de iniciar uma nova sessão antes de poder mudar o nome do concurso!"
+msgstr ""
+"Tem de iniciar uma nova sessão antes de poder mudar o nome do concurso!"
 
 #: application/views/contesting/index.php:6
 msgid "Start new Contest Session"

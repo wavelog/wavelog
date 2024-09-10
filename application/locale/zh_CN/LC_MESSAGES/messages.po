@@ -111,6 +111,9 @@ msgstr ""
 #: application/controllers/User.php:762 application/controllers/User.php:1045
 #: application/controllers/User.php:1247
 #: application/controllers/User_options.php:9
+#: application/controllers/Lotw.php:379 application/controllers/Lotw.php:402
+#: application/controllers/Lotw.php:720 application/controllers/Lotw.php:828
+#: application/controllers/Lotw.php:836
 msgid "You're not allowed to do that!"
 msgstr "不能这么做！"
 
@@ -1473,11 +1476,11 @@ msgstr "呼号证书已导入。"
 msgid "Certificate Updated."
 msgstr "呼号证书已更新。"
 
-#: application/controllers/Lotw.php:384
+#: application/controllers/Lotw.php:384 application/controllers/Lotw.php:385
 msgid "Certificate Deleted."
 msgstr "呼号证书已删除。"
 
-#: application/controllers/Lotw.php:413
+#: application/controllers/Lotw.php:413 application/controllers/Lotw.php:414
 #, php-format
 msgid ""
 "Found no certificate in file %s. If the filename contains 'key-only' this is "
@@ -1486,31 +1489,33 @@ msgstr ""
 "文件 %s 中未找到呼号证书，如果文件名包含了 'key-only' 则此文件大概率是呼号证"
 "书的申请文件，LoTW 的工作人员依此来发放正式的呼号证书。"
 
-#: application/controllers/Lotw.php:617
+#: application/controllers/Lotw.php:617 application/controllers/Lotw.php:618
 msgid "LoTW ADIF Information"
 msgstr "LoTW ADIF 信息"
 
-#: application/controllers/Lotw.php:725
+#: application/controllers/Lotw.php:725 application/controllers/Lotw.php:726
 msgid "LoTW ADIF Import"
 msgstr "LoTW ADIF 导入"
 
 #: application/controllers/Lotw.php:752 application/controllers/Lotw.php:870
+#: application/controllers/Lotw.php:753 application/controllers/Lotw.php:871
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "未配置 LoTW 登录信息！"
 
-#: application/controllers/Lotw.php:837
+#: application/controllers/Lotw.php:837 application/controllers/Lotw.php:838
 msgid "LoTW .TQ8 Upload"
 msgstr "LoTW .TQ8 导入"
 
-#: application/controllers/Lotw.php:915
+#: application/controllers/Lotw.php:915 application/controllers/Lotw.php:916
 msgid "Your ARRL username and/or password is incorrect."
 msgstr "LoTW 用户名/密码错误。"
 
 #: application/controllers/Lotw.php:934 application/controllers/Lotw.php:939
+#: application/controllers/Lotw.php:935 application/controllers/Lotw.php:940
 msgid "LoTW .TQ8 Sent"
 msgstr "LoTW .TQ8 已发送"
 
-#: application/controllers/Lotw.php:946
+#: application/controllers/Lotw.php:946 application/controllers/Lotw.php:947
 msgid "LoTW .TQ8 Not Sent"
 msgstr "LoTW .TQ8 未发送"
 
