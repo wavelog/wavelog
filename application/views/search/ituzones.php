@@ -15,21 +15,20 @@
 	        <a class="nav-link" href="<?php echo site_url('search/filter'); ?>"><?= __("Advanced Search"); ?></a>
 	      </li>
 		  <li class="nav-item">
-	        <a class="nav-link " href="<?php echo site_url('search/incorrect_cq_zones'); ?>"><?= __("Incorrect CQ Zones"); ?></a>
+	        <a class="nav-link" href="<?php echo site_url('search/incorrect_cq_zones'); ?>"><?= __("Incorrect CQ Zones"); ?></a>
 	      </li>
 		  <li class="nav-item">
-	        <a class="nav-link" href="<?php echo site_url('search/incorrect_itu_zones'); ?>"><?= __("Incorrect ITU Zones"); ?></a>
+	        <a class="nav-link active" href="<?php echo site_url('search/incorrect_itu_zones'); ?>"><?= __("Incorrect ITU Zones"); ?></a>
 	      </li>
 		  <li class="nav-item">
-	        <a class="nav-link active" href="<?php echo site_url('search/lotw_unconfirmed'); ?>"><?= __("QSOs unconfirmed on LoTW"); ?></a>
+	        <a class="nav-link" href="<?php echo site_url('search/lotw_unconfirmed'); ?>"><?= __("QSOs unconfirmed on LoTW"); ?></a>
 	      </li>
 	    </ul>
 	  </div>
 	  <div class="card-body">
-        <?= __("The search displays QSOs which are unconfirmed on LoTW, but the callsign worked has uploaded to LoTW after your QSO date."); ?><br/><br />
 	  	<form method="post" action="" id="search_box" name="test">
 		  <div class="mb-3 row">
-		    <label for="callsign" class="col-sm-2 col-form-label"><?= __("Station location"); ?>:</label>
+		    <label for="callsign" class="col-sm-2 col-form-label"><?= __("Station location:"); ?></label>
 		    <select id="station_id" name="station_profile" class="form-select col-sm-3 mb-3 me-sm-3 w-auto">
 					<option value="All"><?= __("All"); ?></option>
                     <?php foreach ($station_profile->result() as $station) { ?>
@@ -37,7 +36,7 @@
                     <?php } ?>
                     </select>
 		    <div class="col-sm-2">
-		    	<button onclick="findlotwunconfirmed();" class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i> <?= __("Search"); ?></button>
+		    	<button onclick="findincorrectituzones();" class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i> <?= __("Search"); ?></button>
 		    </div>
 		  </div>
 		</form>
