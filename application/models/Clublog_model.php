@@ -26,7 +26,9 @@ class Clublog_model extends CI_Model
 		error_reporting(E_ALL);
 
 		$this->load->helper('file');
-		$this->load->library('AdifHelper');
+		if (!$this->load->is_loaded('AdifHelper')) {
+			$this->load->library('AdifHelper');
+		}
 
 		$station_profiles = $this->all_with_count($clean_userid);
 

@@ -479,7 +479,9 @@ class Lotw extends CI_Controller {
 		ini_set('memory_limit', '-1');
 		set_time_limit(0);
 
-		$this->load->library('adif_parser');
+		if (!$this->load->is_loaded('adif_parser')) {
+			$this->load->library('adif_parser');
+		}
 
 		$this->adif_parser->load_from_file($filepath);
 
