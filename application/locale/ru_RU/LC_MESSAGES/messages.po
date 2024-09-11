@@ -300,6 +300,7 @@ msgstr "DOK"
 #: application/views/stationsetup/linkedlocations.php:17
 #: application/views/stationsetup/linkedlocations.php:33
 #: application/views/timeplotter/index.php:24
+#: application/views/search/ituzones_result.php:15
 msgid "DXCC"
 msgstr "DXCC"
 
@@ -379,6 +380,7 @@ msgstr " и "
 #: application/views/user/edit.php:323
 #: application/views/view_log/partial/log_ajax.php:9
 #: application/views/visitor/index.php:21
+#: application/controllers/Logbook.php:1330
 msgid "SOTA"
 msgstr "SOTA"
 
@@ -399,6 +401,7 @@ msgstr "SOTA"
 #: application/views/user/edit.php:279 application/views/user/edit.php:301
 #: application/views/user/edit.php:324
 #: application/views/view_log/partial/log_ajax.php:10
+#: application/controllers/Logbook.php:1331
 msgid "WWFF"
 msgstr "WWFF"
 
@@ -419,6 +422,7 @@ msgstr "WWFF"
 #: application/views/user/edit.php:280 application/views/user/edit.php:302
 #: application/views/user/edit.php:325
 #: application/views/view_log/partial/log_ajax.php:11
+#: application/controllers/Logbook.php:1332
 msgid "POTA"
 msgstr "POTA"
 
@@ -1115,6 +1119,8 @@ msgstr "Clublog"
 #: application/views/view_log/partial/log_ajax.php:4
 #: application/views/view_log/qso.php:107 application/views/visitor/index.php:6
 #: application/views/widgets/qsos.php:29
+#: application/controllers/Logbook.php:1325
+#: application/views/search/ituzones_result.php:10
 msgid "Mode"
 msgstr "Вид модуляции"
 
@@ -1142,6 +1148,7 @@ msgstr "Вид модуляции"
 #: application/views/view_log/partial/log.php:10
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:112 application/views/visitor/index.php:9
+#: application/controllers/Logbook.php:1326
 msgid "RST (S)"
 msgstr "RST (TX)"
 
@@ -1170,6 +1177,7 @@ msgstr "RST (TX)"
 #: application/views/view_log/partial/log_ajax.php:6
 #: application/views/view_log/qso.php:117
 #: application/views/visitor/index.php:12
+#: application/controllers/Logbook.php:1327
 msgid "RST (R)"
 msgstr "RST (RX)"
 
@@ -1193,6 +1201,7 @@ msgstr "RST (RX)"
 #: application/views/view_log/qso.php:238
 #: application/views/view_log/qso.php:540
 #: application/views/visitor/index.php:15
+#: application/controllers/Logbook.php:1328
 msgid "Country"
 msgstr "Страна"
 
@@ -1220,6 +1229,7 @@ msgstr "Страна"
 #: application/views/user/edit.php:299 application/views/user/edit.php:322
 #: application/views/view_log/partial/log_ajax.php:8
 #: application/views/visitor/index.php:18
+#: application/controllers/Logbook.php:1329
 msgid "IOTA"
 msgstr "IOTA"
 
@@ -1248,6 +1258,7 @@ msgstr "IOTA"
 #: application/views/user/edit.php:303 application/views/user/edit.php:326
 #: application/views/view_log/partial/log_ajax.php:12
 #: application/views/visitor/index.php:24
+#: application/controllers/Logbook.php:1333
 msgid "State"
 msgstr "Область/штат"
 
@@ -1289,6 +1300,8 @@ msgstr "Область/штат"
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/view_log/qso.php:527
 #: application/views/visitor/index.php:27
+#: application/controllers/Logbook.php:1334
+#: application/views/search/ituzones_result.php:12
 msgid "Gridsquare"
 msgstr "QTH локатор"
 
@@ -1313,6 +1326,7 @@ msgstr "QTH локатор"
 #: application/views/user/edit.php:328
 #: application/views/view_log/partial/log_ajax.php:14
 #: application/views/visitor/index.php:30
+#: application/controllers/Logbook.php:1335
 msgid "Distance"
 msgstr "Дистанция"
 
@@ -1390,6 +1404,8 @@ msgstr "Дистанция"
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/view_log/qso.php:87 application/views/visitor/index.php:33
 #: application/views/widgets/qsos.php:32
+#: application/controllers/Logbook.php:1336
+#: application/views/search/ituzones_result.php:11
 msgid "Band"
 msgstr "Диапазон"
 
@@ -1410,6 +1426,7 @@ msgstr "Диапазон"
 #: application/views/user/edit.php:317
 #: application/views/view_log/partial/log_ajax.php:16
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:36
+#: application/controllers/Logbook.php:1337
 msgid "Frequency"
 msgstr "Частота"
 
@@ -1432,6 +1449,7 @@ msgstr "Частота"
 #: application/views/view_log/partial/log_ajax.php:17
 #: application/views/view_log/qso.php:547
 #: application/views/visitor/index.php:39
+#: application/controllers/Logbook.php:1338
 msgid "Operator"
 msgstr "Оператор"
 
@@ -1458,6 +1476,7 @@ msgstr "Оператор"
 #: application/views/view_log/partial/log_ajax.php:29
 #: application/views/view_log/qso.php:239
 #: application/views/view_log/qso.php:541
+#: application/controllers/Logbook.php:1359
 msgid "Deleted DXCC"
 msgstr "Удалённые DXCC"
 
@@ -1833,6 +1852,10 @@ msgstr "По умолчанию (нажмите, чтобы освободить
 #: application/views/stationsetup/stationsetup.php:192
 #: application/views/themes/index.php:107 application/views/user/index.php:57
 #: application/views/view_log/qso.php:625
+#: application/views/interface_assets/footer.php:2363
+#: application/views/interface_assets/footer.php:2381
+#: application/views/interface_assets/footer.php:2402
+#: application/views/interface_assets/footer.php:2420
 msgid "Delete"
 msgstr "Удалить"
 
@@ -1892,6 +1915,13 @@ msgstr "Спутниковые таймеры"
 #: application/views/search/main.php:33
 #: application/views/visitor/layout/header.php:97
 #: application/views/visitor/layout/header.php:98
+#: application/views/search/cqzones.php:39
+#: application/views/search/filter.php:41
+#: application/views/search/ituzones.php:4
+#: application/views/search/ituzones.php:12
+#: application/views/search/ituzones.php:39
+#: application/views/search/lotw_unconfirmed.php:40
+#: application/views/search/main.php:36
 msgid "Search"
 msgstr "Поиск"
 
@@ -1903,7 +1933,7 @@ msgstr "Поиск и фильтры журнала"
 msgid "Incorrectly logged CQ zones"
 msgstr "Некорректно записанные зоны CQ"
 
-#: application/controllers/Search.php:70
+#: application/controllers/Search.php:70 application/controllers/Search.php:82
 msgid ""
 "QSOs unconfirmed on LoTW, but the callsign has uploaded to LoTW after QSO "
 "date"
@@ -2643,6 +2673,11 @@ msgstr "Разница"
 #: application/views/timeplotter/index.php:47
 #: application/views/user/edit.php:633
 #: application/views/visitor/layout/footer.php:171
+#: application/views/interface_assets/footer.php:1474
+#: application/views/interface_assets/footer.php:1613
+#: application/views/search/cqzones.php:33
+#: application/views/search/ituzones.php:33
+#: application/views/search/lotw_unconfirmed.php:34
 msgid "All"
 msgstr "Все"
 
@@ -3092,6 +3127,10 @@ msgstr "Не найдено!"
 #: application/views/user/edit.php:123 application/views/user/index.php:4
 #: application/views/user/index.php:47 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:82 application/views/view_log/qso.php:519
+#: application/views/search/cqzones.php:35
+#: application/views/search/ituzones.php:35
+#: application/views/search/ituzones_result.php:9
+#: application/views/search/lotw_unconfirmed.php:36
 msgid "Callsign"
 msgstr "Позывной"
 
@@ -3186,6 +3225,7 @@ msgstr "Данные DOK в вашем логе отличаются от DCL"
 #: application/views/view_log/partial/log_ajax.php:59
 #: application/views/visitor/index.php:147
 #: application/views/widgets/qsos.php:24
+#: application/views/search/ituzones_result.php:7
 msgid "Date"
 msgstr "Дата"
 
@@ -3218,6 +3258,7 @@ msgstr "Дата"
 #: application/views/view_log/partial/log_ajax.php:61
 #: application/views/visitor/index.php:150
 #: application/views/widgets/qsos.php:26
+#: application/views/search/ituzones_result.php:8
 msgid "Time"
 msgstr "Время"
 
@@ -3360,6 +3401,7 @@ msgstr "Всегда использовать позывной (логин) ка
 #: application/views/interface_assets/footer.php:32
 #: application/views/interface_assets/footer.php:501
 #: application/views/interface_assets/footer.php:2133
+#: application/views/interface_assets/footer.php:2159
 msgid "DANGER"
 msgstr "ОПАСНО"
 
@@ -3628,6 +3670,7 @@ msgstr "URL API для этого инстанса Wavelog"
 #: application/views/sattimers/index.php:75
 #: application/views/sattimers/index.php:77
 #: application/views/search/filter.php:69
+#: application/views/search/filter.php:72
 msgid "Info"
 msgstr "Информация"
 
@@ -3957,6 +4000,7 @@ msgstr "Отобразить QSO с типом QSL"
 #: application/views/interface_assets/footer.php:2112
 #: application/views/qso/edit_ajax.php:405
 #: application/views/view_log/qso.php:25
+#: application/views/interface_assets/footer.php:2138
 msgid "QSL Card"
 msgstr "QSL карточка"
 
@@ -3976,6 +4020,7 @@ msgstr "QSL карточка"
 #: application/views/oqrs/showrequests.php:68
 #: application/views/qrbcalc/index.php:19
 #: application/views/search/filter.php:40 application/views/user/edit.php:607
+#: application/views/search/filter.php:43
 msgid "Reset"
 msgstr "Сброс"
 
@@ -4501,6 +4546,7 @@ msgstr "Удалено"
 #: application/views/qso/edit_ajax.php:299 application/views/qso/index.php:401
 #: application/views/station_profile/create.php:127
 #: application/views/station_profile/edit.php:170
+#: application/views/search/ituzones_result.php:13
 msgid "ITU Zone"
 msgstr "Зона ITU"
 
@@ -6813,6 +6859,10 @@ msgstr "Дата QSL"
 #: application/views/interface_assets/footer.php:2395
 #: application/views/qslcard/index.php:66
 #: application/views/view_log/qso.php:626
+#: application/views/interface_assets/footer.php:2364
+#: application/views/interface_assets/footer.php:2382
+#: application/views/interface_assets/footer.php:2403
+#: application/views/interface_assets/footer.php:2421
 msgid "View"
 msgstr "Посмотреть"
 
@@ -6991,6 +7041,7 @@ msgstr "Ваш запрос сохранён!"
 
 #: application/views/interface_assets/footer.php:419
 #: application/views/search/filter.php:46
+#: application/views/search/filter.php:49
 msgid "Edit queries"
 msgstr "Редактировать запросы"
 
@@ -7000,6 +7051,7 @@ msgstr "Сохранённые запросы:"
 
 #: application/views/interface_assets/footer.php:426
 #: application/views/search/filter.php:60
+#: application/views/search/filter.php:63
 msgid "Run Query"
 msgstr "Выполнить запрос"
 
@@ -7017,6 +7069,7 @@ msgstr "Сначала нужно сформировать запрос, пре�
 #: application/views/interface_assets/footer.php:464
 #: application/views/interface_assets/footer.php:595
 #: application/views/search/filter.php:79
+#: application/views/search/filter.php:82
 msgid "Export to ADIF"
 msgstr "Экспортировать в ADIF"
 
@@ -7064,6 +7117,7 @@ msgid "Grids: "
 msgstr "Квадратов: "
 
 #: application/views/interface_assets/footer.php:1167
+#: application/views/interface_assets/footer.php:1193
 #, php-format
 msgid "You're not logged in. Please %slogin%s"
 msgstr "Вы не вошли в систему. Пожалуйста, %sвойдите%s"
@@ -7074,51 +7128,70 @@ msgstr "Вы не вошли в систему. Пожалуйста, %sвойд
 #: application/views/interface_assets/footer.php:1519
 #: application/views/interface_assets/footer.php:1523
 #: application/views/interface_assets/footer.php:1526
+#: application/views/interface_assets/footer.php:1401
+#: application/views/interface_assets/footer.php:1405
+#: application/views/interface_assets/footer.php:1408
+#: application/views/interface_assets/footer.php:1545
+#: application/views/interface_assets/footer.php:1549
+#: application/views/interface_assets/footer.php:1552
 msgid "grid square"
 msgstr "квадрат(/-а/-ов)"
 
 #: application/views/interface_assets/footer.php:1382
 #: application/views/interface_assets/footer.php:1526
+#: application/views/interface_assets/footer.php:1408
+#: application/views/interface_assets/footer.php:1552
 msgid "Total count"
 msgstr "Всего"
 
 #: application/views/interface_assets/footer.php:2114
+#: application/views/interface_assets/footer.php:2140
 msgid "QSL Card for "
 msgstr "QSL-карточка для "
 
 #: application/views/interface_assets/footer.php:2134
+#: application/views/interface_assets/footer.php:2160
 msgid "Warning! Are you sure you want to delete this QSL card?"
 msgstr "Внимание! Вы уверены, что хотите удалить эту QSL-карточку?"
 
 #: application/views/interface_assets/footer.php:2174
 #: application/views/view_log/qso.php:42
+#: application/views/interface_assets/footer.php:2200
 msgid "eQSL Card"
 msgstr "eQSL-карточка"
 
 #: application/views/interface_assets/footer.php:2176
+#: application/views/interface_assets/footer.php:2202
 msgid "eQSL Card for "
 msgstr "eQSL-карточка для "
 
 #: application/views/interface_assets/footer.php:2349
 #: application/views/interface_assets/footer.php:2388
 #: application/views/view_log/qso.php:616
+#: application/views/interface_assets/footer.php:2375
+#: application/views/interface_assets/footer.php:2414
 msgid "QSL image file"
 msgstr "Изображение QSL-карточки"
 
 #: application/views/interface_assets/footer.php:2368
+#: application/views/interface_assets/footer.php:2394
 msgid "Front QSL Card:"
 msgstr "Лицевая сторона QSL-карточки:"
 
 #: application/views/interface_assets/footer.php:2406
+#: application/views/interface_assets/footer.php:2432
 msgid "Back QSL Card:"
 msgstr "Обратная сторона QSL-карточки:"
 
 #: application/views/interface_assets/footer.php:2417
 #: application/views/interface_assets/footer.php:2442
+#: application/views/interface_assets/footer.php:2443
+#: application/views/interface_assets/footer.php:2468
 msgid "Add additional QSOs to a QSL Card"
 msgstr "Добавить дополнительные QSO на QSL-карточку"
 
 #: application/views/interface_assets/footer.php:2453
+#: application/views/interface_assets/footer.php:2479
 msgid "Something went wrong. Please try again!"
 msgstr "Что-то пошло не так. Пожалуйста, попробуйте еще раз!"
 
@@ -8928,6 +9001,7 @@ msgstr "Отправить запрос 'не в журнале'"
 #: application/views/view_log/qso.php:582
 #: application/views/view_log/qso.php:589
 #: application/views/view_log/qso.php:594
+#: application/views/search/ituzones_result.php:16
 msgid "Station"
 msgstr "Профиль QTH"
 
@@ -9547,6 +9621,7 @@ msgstr ""
 "чтобы сгенерировать ключи API."
 
 #: application/views/radio/index.php:22 application/views/search/filter.php:69
+#: application/views/search/filter.php:72
 #, php-format
 msgid "You can find out how to use the %s in the wiki."
 msgstr "О том, как использовать %s, вы можете узнать в вики."
@@ -9880,7 +9955,7 @@ msgstr "Возвышение"
 
 #: application/views/search/cqzones.php:5
 #: application/views/search/lotw_unconfirmed.php:5
-#: application/views/search/main.php:5
+#: application/views/search/main.php:5 application/views/search/ituzones.php:5
 msgid "Ready to find a QSO?"
 msgstr "Готовы найти QSO?"
 
@@ -9888,6 +9963,7 @@ msgstr "Готовы найти QSO?"
 #: application/views/search/filter.php:4 application/views/search/filter.php:23
 #: application/views/search/lotw_unconfirmed.php:15
 #: application/views/search/main.php:15
+#: application/views/search/ituzones.php:15
 msgid "Advanced Search"
 msgstr "Расширенный поиск"
 
@@ -9895,17 +9971,24 @@ msgstr "Расширенный поиск"
 #: application/views/search/filter.php:26
 #: application/views/search/lotw_unconfirmed.php:18
 #: application/views/search/main.php:18
+#: application/views/search/ituzones.php:18
 msgid "Incorrect CQ Zones"
 msgstr "Некорректные зоны CQ"
 
 #: application/views/search/cqzones.php:21
 #: application/views/search/filter.php:29
 #: application/views/search/lotw_unconfirmed.php:21
-#: application/views/search/main.php:21
+#: application/views/search/main.php:21 application/views/search/cqzones.php:24
+#: application/views/search/filter.php:32
+#: application/views/search/ituzones.php:24
+#: application/views/search/lotw_unconfirmed.php:24
+#: application/views/search/main.php:24
 msgid "QSOs unconfirmed on LoTW"
 msgstr "QSO, не подтверждённые на LoTW"
 
 #: application/views/search/cqzones.php:28
+#: application/views/search/cqzones.php:31
+#: application/views/search/ituzones.php:31
 msgid "Station location:"
 msgstr "Профиль QTH:"
 
@@ -9922,26 +10005,32 @@ msgid "DXCC CQ Zone"
 msgstr "CQ зона DXCC"
 
 #: application/views/search/cqzones_result.php:51
+#: application/views/search/ituzones_result.php:51
 msgid "No incorrect CQ Zones were found."
 msgstr "Некорректных зон CQ не найдено."
 
 #: application/views/search/filter.php:43
+#: application/views/search/filter.php:46
 msgid "Save query"
 msgstr "Сохранить запрос"
 
 #: application/views/search/filter.php:50
+#: application/views/search/filter.php:53
 msgid "Stored queries"
 msgstr "Сохранённые запросы"
 
 #: application/views/search/filter.php:69
+#: application/views/search/filter.php:72
 msgid "search filter functions"
 msgstr "функции фильтров поиска"
 
 #: application/views/search/filter.php:79
+#: application/views/search/filter.php:82
 msgid "Search Results"
 msgstr "Результат поиска"
 
 #: application/views/search/lotw_unconfirmed.php:26
+#: application/views/search/lotw_unconfirmed.php:29
 msgid ""
 "The search displays QSOs which are unconfirmed on LoTW, but the callsign "
 "worked has uploaded to LoTW after your QSO date."
@@ -9950,6 +10039,7 @@ msgstr ""
 "которым работали, был загружал данные в LoTW после даты вашего QSO."
 
 #: application/views/search/lotw_unconfirmed.php:29
+#: application/views/search/lotw_unconfirmed.php:32
 msgid "Station location"
 msgstr "Профиль QTH"
 
@@ -9961,7 +10051,7 @@ msgstr "Последняя загрузка в LoTW"
 msgid "No QSOs with outstanding LoTW upload were found."
 msgstr "Не было найдено ни одного QSO с незавершенной загрузкой LoTW."
 
-#: application/views/search/main.php:28
+#: application/views/search/main.php:28 application/views/search/main.php:31
 msgid "Callsign / Gridsquare"
 msgstr "Позывной / Квадрат"
 
@@ -12026,6 +12116,28 @@ msgstr "Ваш позывной:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Отправить запрос"
+
+#: application/controllers/Search.php:70
+msgid "Incorrectly logged ITU zones"
+msgstr ""
+
+#: application/views/search/cqzones.php:21
+#: application/views/search/filter.php:29
+#: application/views/search/ituzones.php:21
+#: application/views/search/lotw_unconfirmed.php:21
+#: application/views/search/main.php:21
+msgid "Incorrect ITU Zones"
+msgstr ""
+
+#: application/views/search/ituzones_result.php:3
+msgid ""
+"The following QSOs were found to have an incorrect ITU zone that this DXCC "
+"normally has (a maximum of 1000 QSOs are shown):"
+msgstr ""
+
+#: application/views/search/ituzones_result.php:14
+msgid "DXCC ITU Zone"
+msgstr ""
 
 #~ msgid "Distance Records"
 #~ msgstr "Рекорды дальности"
