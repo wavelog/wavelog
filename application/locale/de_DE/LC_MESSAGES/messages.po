@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-09-11 09:38+0000\n"
+"POT-Creation-Date: 2024-09-11 16:21+0000\n"
 "PO-Revision-Date: 2024-09-09 08:28+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
@@ -70,11 +70,11 @@ msgstr ""
 #: application/controllers/Lookup.php:17 application/controllers/Lotw.php:45
 #: application/controllers/Lotw.php:77 application/controllers/Lotw.php:104
 #: application/controllers/Lotw.php:379 application/controllers/Lotw.php:402
-#: application/controllers/Lotw.php:720 application/controllers/Lotw.php:828
-#: application/controllers/Lotw.php:836 application/controllers/Mode.php:15
+#: application/controllers/Lotw.php:722 application/controllers/Lotw.php:830
+#: application/controllers/Lotw.php:838 application/controllers/Mode.php:15
 #: application/controllers/Notes.php:10 application/controllers/Options.php:15
 #: application/controllers/Oqrs.php:15 application/controllers/Qrbcalc.php:13
-#: application/controllers/Qrz.php:251 application/controllers/Qsl.php:12
+#: application/controllers/Qrz.php:253 application/controllers/Qsl.php:12
 #: application/controllers/Qsl.php:13 application/controllers/Qsl.php:44
 #: application/controllers/Qsl.php:52 application/controllers/Qslprint.php:147
 #: application/controllers/Qso.php:9 application/controllers/Qso.php:19
@@ -199,25 +199,25 @@ msgstr "ADIF Import"
 msgid "Unsupported Filetype"
 msgstr "Nicht unterstütztes Dateiformat"
 
-#: application/controllers/Adif.php:240
+#: application/controllers/Adif.php:242
 #: application/views/adif/import_failed.php:12
 msgid "ADIF Import failed!"
 msgstr "ADIF-Import fehlgeschlagen!"
 
-#: application/controllers/Adif.php:254
+#: application/controllers/Adif.php:256
 msgid "Station Profile not valid for User"
 msgstr "Stations-Standort ist nicht gültig für diesen Benutzer"
 
-#: application/controllers/Adif.php:261
+#: application/controllers/Adif.php:263
 #: application/views/adif/import_success.php:12
 msgid "ADIF Imported"
 msgstr "ADIF importiert"
 
-#: application/controllers/Adif.php:272
+#: application/controllers/Adif.php:274
 msgid "DCL Import"
 msgstr "DCL Import"
 
-#: application/controllers/Adif.php:328
+#: application/controllers/Adif.php:332
 msgid "DCL Data Imported"
 msgstr "DCL-Daten importiert"
 
@@ -1509,31 +1509,31 @@ msgstr ""
 "enthält, handelt es sich normalerweise um eine Zertifikatsanforderung, die "
 "von LoTW noch nicht bearbeitet wurde."
 
-#: application/controllers/Lotw.php:618
+#: application/controllers/Lotw.php:620
 msgid "LoTW ADIF Information"
 msgstr "LoTW ADIF Information"
 
-#: application/controllers/Lotw.php:726
+#: application/controllers/Lotw.php:728
 msgid "LoTW ADIF Import"
 msgstr "LoTW ADIF-Import"
 
-#: application/controllers/Lotw.php:753 application/controllers/Lotw.php:871
+#: application/controllers/Lotw.php:755 application/controllers/Lotw.php:873
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "Du hast deine ARRL LoTW Zugangsdaten nicht definiert!"
 
-#: application/controllers/Lotw.php:838
+#: application/controllers/Lotw.php:840
 msgid "LoTW .TQ8 Upload"
 msgstr "LoTW .TQ8-Upload"
 
-#: application/controllers/Lotw.php:916
+#: application/controllers/Lotw.php:918
 msgid "Your ARRL username and/or password is incorrect."
 msgstr "Dein ARRL-Benutzername und/oder Passwort ist falsch."
 
-#: application/controllers/Lotw.php:935 application/controllers/Lotw.php:940
+#: application/controllers/Lotw.php:937 application/controllers/Lotw.php:942
 msgid "LoTW .TQ8 Sent"
 msgstr "LoTW .TQ8 gesendet"
 
-#: application/controllers/Lotw.php:947
+#: application/controllers/Lotw.php:949
 msgid "LoTW .TQ8 Not Sent"
 msgstr "LoTW .TQ8 nicht gesendet"
 
@@ -1739,16 +1739,16 @@ msgstr ""
 "Negative Breitengrade liegen südlich des Äquators, negative Längengrade "
 "westlich von Greenwich."
 
-#: application/controllers/Qrz.php:173
+#: application/controllers/Qrz.php:175
 #: application/views/interface_assets/header.php:432
 msgid "QRZ Logbook"
 msgstr "QRZ-Logbuch"
 
-#: application/controllers/Qrz.php:253
+#: application/controllers/Qrz.php:255
 msgid "QRZ QSL Import"
 msgstr "QRZ QSL-Import"
 
-#: application/controllers/Qrz.php:307
+#: application/controllers/Qrz.php:309
 msgid "QRZ ADIF Information"
 msgstr "QRZ ADIF-Information"
 
@@ -2354,8 +2354,8 @@ msgstr "Öffentl. Suche"
 msgid "Export Map"
 msgstr "Karte exportieren"
 
-#: application/controllers/Webadif.php:90
-#: application/controllers/Webadif.php:137
+#: application/controllers/Webadif.php:92
+#: application/controllers/Webadif.php:139
 #: application/views/interface_assets/header.php:433
 msgid "QO-100 Dx Club Upload"
 msgstr "QO-100 DX Club Upload"
@@ -2490,31 +2490,31 @@ msgstr "HRDlog: Keine QSOs gefunden zum hochladen für Stationsrufzeichen: "
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: Keine Stationsstandorte mit HRDlog Zugangsdaten gefunden."
 
-#: application/models/Logbook_model.php:4255
+#: application/models/Logbook_model.php:4263
 msgid "QSO could not be matched"
 msgstr "QSO konnte nicht gefunden werden"
 
-#: application/models/Logbook_model.php:4261
+#: application/models/Logbook_model.php:4269
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bestätigt durch LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:4266
+#: application/models/Logbook_model.php:4274
 msgid "confirmed by award manager"
 msgstr "bestätigt durch Diplommananger"
 
-#: application/models/Logbook_model.php:4269
+#: application/models/Logbook_model.php:4277
 msgid "confirmed by cross-check of DCL data"
 msgstr "bestätigt durch Cross-Check von DCL-Daten"
 
-#: application/models/Logbook_model.php:4272
+#: application/models/Logbook_model.php:4280
 msgid "confirmation pending"
 msgstr "Bestätigung ausstehend"
 
-#: application/models/Logbook_model.php:4275
+#: application/models/Logbook_model.php:4283
 msgid "unconfirmed"
 msgstr "nicht bestätigt"
 
-#: application/models/Logbook_model.php:4278
+#: application/models/Logbook_model.php:4286
 msgid "unknown"
 msgstr "unbekannt"
 
