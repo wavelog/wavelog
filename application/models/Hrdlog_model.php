@@ -51,7 +51,9 @@ class Hrdlog_model extends CI_Model {
         $data['qsos'] = $this->logbook_model->get_hrdlog_qsos($station_id);
         $errormessages = array();
 
-        $this->load->library('AdifHelper');
+        if (!$this->load->is_loaded('AdifHelper')) {
+			$this->load->library('AdifHelper');
+		}
 
         if ($data['qsos']) {
             foreach ($data['qsos']->result() as $qso) {

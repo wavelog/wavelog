@@ -738,7 +738,9 @@ class Logbook_model extends CI_Model {
 
 			  $result = $this->exists_clublog_credentials($data['station_id']);
 			  if (isset($result->ucp) && isset($result->ucn) && (($result->ucp ?? '') != '') && (($result->ucn ?? '') != '') && ($result->clublogrealtime == 1)) {
-				  $this->load->library('AdifHelper');
+				  if (!$this->load->is_loaded('AdifHelper')) {
+					$this->load->library('AdifHelper');
+				  }
 				  $qso = $this->get_qso($last_id,true)->result();
 
 				  $adif = $this->adifhelper->getAdifLine($qso[0]);
@@ -752,7 +754,9 @@ class Logbook_model extends CI_Model {
 			  $result = $this->exists_hrdlog_credentials($data['station_id']);
 			  // Push qso to hrdlog if code is set, and realtime upload is enabled, and we're not importing an adif-file
 			  if (isset($result->hrdlog_code) && isset($result->hrdlog_username) && $result->hrdlogrealtime == 1) {
-				  $this->load->library('AdifHelper');
+				  if (!$this->load->is_loaded('AdifHelper')) {
+					$this->load->library('AdifHelper');
+				  }
 				  $qso = $this->get_qso($last_id,true)->result();
 
 				  $adif = $this->adifhelper->getAdifLine($qso[0]);
@@ -765,7 +769,9 @@ class Logbook_model extends CI_Model {
 			  $result = $this->exists_qrz_api_key($data['station_id']);
 			  // Push qso to qrz if apikey is set, and realtime upload is enabled, and we're not importing an adif-file
 			  if (isset($result->qrzapikey) && $result->qrzrealtime == 1) {
-				  $this->load->library('AdifHelper');
+				  if (!$this->load->is_loaded('AdifHelper')) {
+			$this->load->library('AdifHelper');
+		}
 				  $qso = $this->get_qso($last_id,true)->result();
 
 				  $adif = $this->adifhelper->getAdifLine($qso[0]);
@@ -778,7 +784,9 @@ class Logbook_model extends CI_Model {
 			  $result = $this->exists_webadif_api_key($data['station_id']);
 			  // Push qso to webadif if apikey is set, and realtime upload is enabled, and we're not importing an adif-file
 			  if (isset($result->webadifapikey) && $result->webadifrealtime == 1) {
-				  $this->load->library('AdifHelper');
+				  if (!$this->load->is_loaded('AdifHelper')) {
+			$this->load->library('AdifHelper');
+		}
 				  $qso = $this->get_qso($last_id,true)->result();
 
 				  $adif = $this->adifhelper->getAdifLine($qso[0]);

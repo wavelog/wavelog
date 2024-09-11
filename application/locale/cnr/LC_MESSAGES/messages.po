@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-09-11 09:38+0000\n"
+"POT-Creation-Date: 2024-09-11 16:21+0000\n"
 "PO-Revision-Date: 2024-08-17 10:49+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Montenegrin <https://translate.wavelog.org/projects/wavelog/"
@@ -59,11 +59,11 @@ msgstr ""
 #: application/controllers/Lookup.php:17 application/controllers/Lotw.php:45
 #: application/controllers/Lotw.php:77 application/controllers/Lotw.php:104
 #: application/controllers/Lotw.php:379 application/controllers/Lotw.php:402
-#: application/controllers/Lotw.php:720 application/controllers/Lotw.php:828
-#: application/controllers/Lotw.php:836 application/controllers/Mode.php:15
+#: application/controllers/Lotw.php:722 application/controllers/Lotw.php:830
+#: application/controllers/Lotw.php:838 application/controllers/Mode.php:15
 #: application/controllers/Notes.php:10 application/controllers/Options.php:15
 #: application/controllers/Oqrs.php:15 application/controllers/Qrbcalc.php:13
-#: application/controllers/Qrz.php:251 application/controllers/Qsl.php:12
+#: application/controllers/Qrz.php:253 application/controllers/Qsl.php:12
 #: application/controllers/Qsl.php:13 application/controllers/Qsl.php:44
 #: application/controllers/Qsl.php:52 application/controllers/Qslprint.php:147
 #: application/controllers/Qso.php:9 application/controllers/Qso.php:19
@@ -188,25 +188,25 @@ msgstr ""
 msgid "Unsupported Filetype"
 msgstr ""
 
-#: application/controllers/Adif.php:240
+#: application/controllers/Adif.php:242
 #: application/views/adif/import_failed.php:12
 msgid "ADIF Import failed!"
 msgstr ""
 
-#: application/controllers/Adif.php:254
+#: application/controllers/Adif.php:256
 msgid "Station Profile not valid for User"
 msgstr ""
 
-#: application/controllers/Adif.php:261
+#: application/controllers/Adif.php:263
 #: application/views/adif/import_success.php:12
 msgid "ADIF Imported"
 msgstr ""
 
-#: application/controllers/Adif.php:272
+#: application/controllers/Adif.php:274
 msgid "DCL Import"
 msgstr ""
 
-#: application/controllers/Adif.php:328
+#: application/controllers/Adif.php:332
 msgid "DCL Data Imported"
 msgstr ""
 
@@ -1483,31 +1483,31 @@ msgid ""
 "typically a certificate request which has not been processed by LoTW yet."
 msgstr ""
 
-#: application/controllers/Lotw.php:618
+#: application/controllers/Lotw.php:620
 msgid "LoTW ADIF Information"
 msgstr ""
 
-#: application/controllers/Lotw.php:726
+#: application/controllers/Lotw.php:728
 msgid "LoTW ADIF Import"
 msgstr ""
 
-#: application/controllers/Lotw.php:753 application/controllers/Lotw.php:871
+#: application/controllers/Lotw.php:755 application/controllers/Lotw.php:873
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr ""
 
-#: application/controllers/Lotw.php:838
+#: application/controllers/Lotw.php:840
 msgid "LoTW .TQ8 Upload"
 msgstr ""
 
-#: application/controllers/Lotw.php:916
+#: application/controllers/Lotw.php:918
 msgid "Your ARRL username and/or password is incorrect."
 msgstr ""
 
-#: application/controllers/Lotw.php:935 application/controllers/Lotw.php:940
+#: application/controllers/Lotw.php:937 application/controllers/Lotw.php:942
 msgid "LoTW .TQ8 Sent"
 msgstr ""
 
-#: application/controllers/Lotw.php:947
+#: application/controllers/Lotw.php:949
 msgid "LoTW .TQ8 Not Sent"
 msgstr ""
 
@@ -1714,16 +1714,16 @@ msgid ""
 "Greenwich."
 msgstr ""
 
-#: application/controllers/Qrz.php:173
+#: application/controllers/Qrz.php:175
 #: application/views/interface_assets/header.php:432
 msgid "QRZ Logbook"
 msgstr ""
 
-#: application/controllers/Qrz.php:253
+#: application/controllers/Qrz.php:255
 msgid "QRZ QSL Import"
 msgstr ""
 
-#: application/controllers/Qrz.php:307
+#: application/controllers/Qrz.php:309
 msgid "QRZ ADIF Information"
 msgstr ""
 
@@ -2308,8 +2308,8 @@ msgstr ""
 msgid "Export Map"
 msgstr ""
 
-#: application/controllers/Webadif.php:90
-#: application/controllers/Webadif.php:137
+#: application/controllers/Webadif.php:92
+#: application/controllers/Webadif.php:139
 #: application/views/interface_assets/header.php:433
 msgid "QO-100 Dx Club Upload"
 msgstr ""
@@ -2436,31 +2436,31 @@ msgstr ""
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr ""
 
-#: application/models/Logbook_model.php:4255
+#: application/models/Logbook_model.php:4263
 msgid "QSO could not be matched"
 msgstr ""
 
-#: application/models/Logbook_model.php:4261
+#: application/models/Logbook_model.php:4269
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr ""
 
-#: application/models/Logbook_model.php:4266
+#: application/models/Logbook_model.php:4274
 msgid "confirmed by award manager"
 msgstr ""
 
-#: application/models/Logbook_model.php:4269
+#: application/models/Logbook_model.php:4277
 msgid "confirmed by cross-check of DCL data"
 msgstr ""
 
-#: application/models/Logbook_model.php:4272
+#: application/models/Logbook_model.php:4280
 msgid "confirmation pending"
 msgstr ""
 
-#: application/models/Logbook_model.php:4275
+#: application/models/Logbook_model.php:4283
 msgid "unconfirmed"
 msgstr ""
 
-#: application/models/Logbook_model.php:4278
+#: application/models/Logbook_model.php:4286
 msgid "unknown"
 msgstr ""
 

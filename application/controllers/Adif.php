@@ -214,7 +214,9 @@ class adif extends CI_Controller {
 				}
 				if (!($stopnow)) {
 
-					$this->load->library('adif_parser');
+					if (!$this->load->is_loaded('adif_parser')) {
+						$this->load->library('adif_parser');
+					}
 
 					$this->adif_parser->load_from_file('./uploads/'.$p_adif);
 					unlink('./uploads/'.$p_adif);
@@ -293,7 +295,9 @@ class adif extends CI_Controller {
 
 			$this->load->model('logbook_model');
 
-			$this->load->library('adif_parser');
+			if (!$this->load->is_loaded('adif_parser')) {
+				$this->load->library('adif_parser');
+			}
 
 			$this->adif_parser->load_from_file('./uploads/'.$data['upload_data']['file_name']);
 
