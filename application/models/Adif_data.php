@@ -118,7 +118,6 @@ class adif_data extends CI_Model {
 		// be sure that station belongs to user
 		$this->load->model('Stations');
 		if ($station_id == 0) {
-			log_message("Error","All");
 			return $this->export_all($api_key = null,$from, $to, $exportLotw);
 		} else {
 			if (!$this->Stations->check_station_is_accessible($station_id)) {
