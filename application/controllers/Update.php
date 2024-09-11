@@ -131,7 +131,7 @@ class Update extends CI_Controller {
      * Load the dxcc prefixes
      */
 	public function dxcc_prefixes() {
-		
+
 		// Load the cty file
         if(!$this->load->is_loaded('Paths')) {
         	$this->load->library('Paths');
@@ -225,6 +225,10 @@ class Update extends CI_Controller {
         $this->dxcc_entities();
         $this->dxcc_exceptions();
         $this->dxcc_prefixes();
+		$sql = "update dxcc_entities
+		join dxcc_temp on dxcc_entities.adif = dxcc_temp.adif
+		set dxcc_entities.ituz = dxcc_temp.ituz;";
+		$this->db->query($sql);
         $this->db->trans_complete();
 
         $this->update_status(__("DONE"));
@@ -339,7 +343,7 @@ class Update extends CI_Controller {
         $this->load->model('Update_model');
         $result = $this->Update_model->dok();
         echo $result;
-        
+
     }
 
     /*
@@ -350,7 +354,7 @@ class Update extends CI_Controller {
         $this->load->model('Update_model');
         $result = $this->Update_model->sota();
         echo $result;
-        
+
     }
 
     /*
@@ -369,7 +373,7 @@ class Update extends CI_Controller {
         $this->load->model('Update_model');
         $result = $this->Update_model->pota();
         echo $result;
-        
+
     }
 
 	public function update_tle() {
