@@ -2683,6 +2683,7 @@ msgstr "Diferença"
 #: application/views/search/cqzones.php:33
 #: application/views/search/ituzones.php:33
 #: application/views/search/lotw_unconfirmed.php:34
+#: application/views/adif/import.php:179
 msgid "All"
 msgstr "Todos"
 
@@ -3136,6 +3137,7 @@ msgstr "Nada encontrado!"
 #: application/views/search/ituzones.php:35
 #: application/views/search/ituzones_result.php:9
 #: application/views/search/lotw_unconfirmed.php:36
+#: application/views/adif/import.php:183 application/views/adif/import.php:228
 msgid "Callsign"
 msgstr "Indicativo"
 
@@ -3301,6 +3303,7 @@ msgid "DCL QSL Status"
 msgstr "Estado QSL DCL"
 
 #: application/views/adif/import.php:36 application/views/adif/import.php:252
+#: application/views/adif/import.php:253
 msgid "DARC DCL"
 msgstr "DARC DCL"
 
@@ -3332,6 +3335,7 @@ msgstr "O tamanho máximo de upload de ficheiro é "
 #: application/views/view_log/qso.php:634
 #: application/views/webadif/export.php:34
 #: application/views/webadif/export.php:94
+#: application/views/adif/import.php:231 application/views/adif/import.php:269
 msgid "Warning"
 msgstr "Aviso"
 
@@ -3340,6 +3344,7 @@ msgstr "Aviso"
 #: application/views/eqsl/import.php:36 application/views/hrdlog/export.php:69
 #: application/views/qrz/export.php:89 application/views/reg1test/index.php:30
 #: application/views/webadif/export.php:89
+#: application/views/adif/import.php:177 application/views/adif/import.php:226
 msgid "Select Station Location"
 msgstr "Selecionar Localização da Estação"
 
@@ -3426,6 +3431,7 @@ msgstr ""
 #: application/views/adif/import.php:168 application/views/adif/import.php:283
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:54
 #: application/views/webadif/export.php:55
+#: application/views/adif/import.php:284
 msgid "Upload"
 msgstr "Enviar"
 
@@ -3447,6 +3453,7 @@ msgstr ""
 #: application/views/hrdlog/export.php:77 application/views/kml/index.php:103
 #: application/views/lotw/import.php:38 application/views/qrz/export.php:76
 #: application/views/qrz/export.php:97 application/views/webadif/export.php:97
+#: application/views/adif/import.php:187 application/views/adif/import.php:233
 msgid "From date"
 msgstr "A partir da data"
 
@@ -3456,45 +3463,47 @@ msgstr "A partir da data"
 #: application/views/hrdlog/export.php:82 application/views/kml/index.php:108
 #: application/views/qrz/export.php:102
 #: application/views/webadif/export.php:102
+#: application/views/adif/import.php:190 application/views/adif/import.php:236
 msgid "To date"
 msgstr "Até à data"
 
-#: application/views/adif/import.php:197
+#: application/views/adif/import.php:197 application/views/adif/import.php:198
 msgid "Mark exported QSOs as uploaded to LoTW"
 msgstr "Marcar contactos exportados como enviados para o LoTW"
 
-#: application/views/adif/import.php:205
+#: application/views/adif/import.php:205 application/views/adif/import.php:206
 msgid "Export QSOs not uploaded to LoTW"
 msgstr "Exportar contactos não enviados para o LoTW"
 
-#: application/views/adif/import.php:210
+#: application/views/adif/import.php:210 application/views/adif/import.php:211
 msgid "Export QSO's"
 msgstr "Exportar contactos"
 
-#: application/views/adif/import.php:215
+#: application/views/adif/import.php:215 application/views/adif/import.php:216
 msgid "Export Satellite-Only QSOs"
 msgstr "Exportar apenas contactos de Satélite"
 
-#: application/views/adif/import.php:216
+#: application/views/adif/import.php:216 application/views/adif/import.php:217
 msgid "Export All Satellite QSOs"
 msgstr "Exportar todos os contactos via satélite"
 
-#: application/views/adif/import.php:218
+#: application/views/adif/import.php:218 application/views/adif/import.php:219
 msgid "Export All Satellite QSOs Confirmed on LoTW"
 msgstr "Exportar todos os contactos via satélite confirmados no LoTW"
 
 #: application/views/adif/import.php:230 application/views/hrdlog/export.php:74
 #: application/views/qrz/export.php:94 application/views/webadif/export.php:94
+#: application/views/adif/import.php:231
 msgid "If a date range is not selected then all QSOs will be marked!"
 msgstr ""
 "Se um intervalo de datas não for selecionado, todos os contactos serão "
 "marcados!"
 
-#: application/views/adif/import.php:238
+#: application/views/adif/import.php:238 application/views/adif/import.php:239
 msgid "Mark QSOs as exported to LoTW"
 msgstr "Marcar contactos como exportados para o LoTW"
 
-#: application/views/adif/import.php:252
+#: application/views/adif/import.php:252 application/views/adif/import.php:253
 #, php-format
 msgid ""
 "Go to %s and export your logbook with confirmed DOKs. To speed up the "
@@ -3507,11 +3516,11 @@ msgstr ""
 "colocar 'DL' na lista prefixos ). O ficheiro ADIF descarregado pode ser "
 "carregado aqui para atualizar os contactos com a informação DOK."
 
-#: application/views/adif/import.php:259
+#: application/views/adif/import.php:259 application/views/adif/import.php:260
 msgid "Only import DOK data from QSOs confirmed on DCL."
 msgstr "Importar apenas dados DOK de contactos confirmados no DCL."
 
-#: application/views/adif/import.php:261
+#: application/views/adif/import.php:261 application/views/adif/import.php:262
 msgid ""
 "Uncheck if you also want to update DOK with data from unconfirmed QSOs in "
 "DCL."
@@ -3519,11 +3528,11 @@ msgstr ""
 "Desmarque se também quiser atualizar o DOK com dados de contactos não "
 "confirmados no DCL."
 
-#: application/views/adif/import.php:268
+#: application/views/adif/import.php:268 application/views/adif/import.php:269
 msgid "Overwrites exisiting DOK in log by DCL (if different)."
 msgstr "Substitui o DOK existente no log pelo DCL (se diferente)."
 
-#: application/views/adif/import.php:270
+#: application/views/adif/import.php:270 application/views/adif/import.php:271
 msgid ""
 "If checked Wavelog will forcibly overwrite existing DOK with DOK from DCL "
 "log."
@@ -3531,11 +3540,11 @@ msgstr ""
 "Se estiver marcado, o Wavelog ira forçar a troca do DOK existente pelo DOK "
 "do registo DCL."
 
-#: application/views/adif/import.php:277
+#: application/views/adif/import.php:277 application/views/adif/import.php:278
 msgid "Ignore QSOs that cannot be matched."
 msgstr "Ignorar contactos que não podem ser correspondidos."
 
-#: application/views/adif/import.php:279
+#: application/views/adif/import.php:279 application/views/adif/import.php:280
 msgid ""
 "If unchecked, information about QSOs which could not be found in Wavelog "
 "will be displayed."
