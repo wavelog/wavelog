@@ -1016,20 +1016,30 @@ class Logbook extends CI_Controller {
   }
 
 	function search_lotw_unconfirmed($station_id) {
-		$station_id = $this->security->xss_clean($station_id);
+		$clean_station_id = $this->security->xss_clean($station_id);
+
+		if (!is_numeric($clean_station_id) && $clean_station_id !== 'All') {
+			show_404();
+		}
 
 		$this->load->model('user_model');
 
 		if(!$this->user_model->authorize($this->config->item('auth_mode'))) { return; }
 
-		$this->load->model('logbooks_model');
-		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$this->load->model('stations');
+		$logbooks_locations_array = $this->stations->all_of_user();
 
-		if (!$logbooks_locations_array) {
+		$station_ids = array();
+
+		if ($logbooks_locations_array->num_rows() > 0){
+			foreach ($logbooks_locations_array->result() as $row) {
+				array_push($station_ids, $row->station_id);
+			}
+		} else {
 			return null;
 		}
 
-		$location_list = "'".implode("','",$logbooks_locations_array)."'";
+		$location_list = "'".implode("','",$station_ids)."'";
 
 		$sql = 'select COL_CALL, COL_MODE, COL_SUBMODE, station_callsign, COL_SAT_NAME, COL_BAND, COL_TIME_ON, lotw_users.lastupload from ' . $this->config->item('table_name') .
 		' join station_profile on ' . $this->config->item('table_name') . '.station_id = station_profile.station_id
@@ -1061,14 +1071,20 @@ class Logbook extends CI_Controller {
 
 		if(!$this->user_model->authorize($this->config->item('auth_mode'))) { return; }
 
-		$this->load->model('logbooks_model');
-		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$this->load->model('stations');
+		$logbooks_locations_array = $this->stations->all_of_user();
 
-		if (!$logbooks_locations_array) {
+		$station_ids = array();
+
+		if ($logbooks_locations_array->num_rows() > 0){
+			foreach ($logbooks_locations_array->result() as $row) {
+				array_push($station_ids, $row->station_id);
+			}
+		} else {
 			return null;
 		}
 
-		$location_list = "'".implode("','",$logbooks_locations_array)."'";
+		$location_list = "'".implode("','",$station_ids)."'";
 
 		$sql = 'select *, (select group_concat(distinct cqzone order by cqzone) from dxcc_master where countrycode = thcv.col_dxcc and cqzone <> \'\' order by cqzone asc) as correctcqzone from ' . $this->config->item('table_name') .
 		' thcv join station_profile on thcv.station_id = station_profile.station_id where thcv.station_id in ('. $location_list . ')
@@ -1100,20 +1116,24 @@ class Logbook extends CI_Controller {
 
 		if(!$this->user_model->authorize($this->config->item('auth_mode'))) { return; }
 
-		$this->load->model('logbooks_model');
-		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+		$this->load->model('stations');
+		$logbooks_locations_array = $this->stations->all_of_user();
 
-		if (!$logbooks_locations_array) {
+		$station_ids = array();
+
+		if ($logbooks_locations_array->num_rows() > 0){
+			foreach ($logbooks_locations_array->result() as $row) {
+				array_push($station_ids, $row->station_id);
+			}
+		} else {
 			return null;
 		}
 
-		$location_list = "'".implode("','",$logbooks_locations_array)."'";
+		$location_list = "'".implode("','",$station_ids)."'";
 
 		$sql = "select *, (select group_concat(distinct ituzone order by ituzone) from dxcc_master where countrycode = thcv.col_dxcc and ituzone <> '' order by ituzone asc) as correctituzone from " . $this->config->item('table_name') .
 		" thcv join station_profile on thcv.station_id = station_profile.station_id where thcv.station_id in (". $location_list . ")
 		and not exists (select 1 from dxcc_master where countrycode = thcv.col_dxcc and ituzone = col_ituz) and col_dxcc > 0
-		order by thcv.col_time_on desc
-		limit 1000
 		";
 
 		$params = [];
@@ -1122,6 +1142,9 @@ class Logbook extends CI_Controller {
 			$sql .= ' and station_profile.station_id = ?';
 			$params[] = $clean_station_id;
 		}
+
+		$sql .= " order by thcv.col_time_on desc
+		limit 1000";
 
 		$query = $this->db->query($sql, $params);
 
