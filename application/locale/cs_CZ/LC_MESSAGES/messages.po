@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-09-09 13:51+0000\n"
+"POT-Creation-Date: 2024-09-11 16:21+0000\n"
 "PO-Revision-Date: 2024-08-26 12:58+0000\n"
 "Last-Translator: Petr OK1PTR <ok1ptr@pm.me>\n"
 "Language-Team: Czech <https://translate.wavelog.org/projects/wavelog/main-"
@@ -60,12 +60,12 @@ msgstr ""
 #: application/controllers/Logbookadvanced.php:16
 #: application/controllers/Lookup.php:17 application/controllers/Lotw.php:45
 #: application/controllers/Lotw.php:77 application/controllers/Lotw.php:104
-#: application/controllers/Lotw.php:378 application/controllers/Lotw.php:401
-#: application/controllers/Lotw.php:719 application/controllers/Lotw.php:827
-#: application/controllers/Lotw.php:835 application/controllers/Mode.php:15
+#: application/controllers/Lotw.php:379 application/controllers/Lotw.php:402
+#: application/controllers/Lotw.php:722 application/controllers/Lotw.php:830
+#: application/controllers/Lotw.php:838 application/controllers/Mode.php:15
 #: application/controllers/Notes.php:10 application/controllers/Options.php:15
 #: application/controllers/Oqrs.php:15 application/controllers/Qrbcalc.php:13
-#: application/controllers/Qrz.php:251 application/controllers/Qsl.php:12
+#: application/controllers/Qrz.php:253 application/controllers/Qsl.php:12
 #: application/controllers/Qsl.php:13 application/controllers/Qsl.php:44
 #: application/controllers/Qsl.php:52 application/controllers/Qslprint.php:147
 #: application/controllers/Qso.php:9 application/controllers/Qso.php:19
@@ -190,25 +190,25 @@ msgstr "ADIF Import"
 msgid "Unsupported Filetype"
 msgstr "Nepodporovaný formát souboru"
 
-#: application/controllers/Adif.php:240
+#: application/controllers/Adif.php:242
 #: application/views/adif/import_failed.php:12
 msgid "ADIF Import failed!"
 msgstr ""
 
-#: application/controllers/Adif.php:254
+#: application/controllers/Adif.php:256
 msgid "Station Profile not valid for User"
 msgstr "Profil stanice není platný pro uživatele"
 
-#: application/controllers/Adif.php:261
+#: application/controllers/Adif.php:263
 #: application/views/adif/import_success.php:12
 msgid "ADIF Imported"
 msgstr "ADIF importován"
 
-#: application/controllers/Adif.php:272
+#: application/controllers/Adif.php:274
 msgid "DCL Import"
 msgstr "DCL import"
 
-#: application/controllers/Adif.php:328
+#: application/controllers/Adif.php:332
 msgid "DCL Data Imported"
 msgstr "DCL data importována"
 
@@ -293,6 +293,7 @@ msgstr "DOK"
 #: application/views/lotw_views/index.php:36
 #: application/views/qso/edit_ajax.php:219 application/views/qso/index.php:362
 #: application/views/search/cqzones_result.php:15
+#: application/views/search/ituzones_result.php:15
 #: application/views/search/result.php:27
 #: application/views/stationsetup/linkedlocations.php:17
 #: application/views/stationsetup/linkedlocations.php:33
@@ -354,7 +355,7 @@ msgid " and "
 msgstr " a "
 
 #: application/controllers/Awards.php:486
-#: application/controllers/Logbook.php:1289
+#: application/controllers/Logbook.php:1330
 #: application/views/awards/index.php:8 application/views/bands/index.php:55
 #: application/views/dashboard/index.php:9
 #: application/views/interface_assets/header.php:182
@@ -380,7 +381,7 @@ msgid "SOTA"
 msgstr "SOTA"
 
 #: application/controllers/Awards.php:503
-#: application/controllers/Logbook.php:1290
+#: application/controllers/Logbook.php:1331
 #: application/views/bands/index.php:60
 #: application/views/dashboard/index.php:10
 #: application/views/interface_assets/header.php:176
@@ -400,7 +401,7 @@ msgid "WWFF"
 msgstr "WWFF"
 
 #: application/controllers/Awards.php:520
-#: application/controllers/Logbook.php:1291
+#: application/controllers/Logbook.php:1332
 #: application/views/bands/index.php:52
 #: application/views/dashboard/index.php:11
 #: application/views/interface_assets/header.php:186
@@ -1028,7 +1029,7 @@ msgstr ""
 msgid "Clublog"
 msgstr ""
 
-#: application/controllers/Logbook.php:1284
+#: application/controllers/Logbook.php:1325
 #: application/controllers/Radio.php:49
 #: application/views/accumulate/index.php:31
 #: application/views/activated_gridmap/index.php:39
@@ -1082,6 +1083,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:119 application/views/qso/index.php:137
 #: application/views/satellite/index.php:24
 #: application/views/search/cqzones_result.php:10
+#: application/views/search/ituzones_result.php:10
 #: application/views/search/lotw_unconfirmed_result.php:8
 #: application/views/search/result_search.php:7
 #: application/views/search/search_result_ajax.php:4
@@ -1102,7 +1104,7 @@ msgstr ""
 msgid "Mode"
 msgstr "Režim"
 
-#: application/controllers/Logbook.php:1285
+#: application/controllers/Logbook.php:1326
 #: application/views/awards/pota/index.php:36
 #: application/views/awards/wwff/index.php:36
 #: application/views/contesting/index.php:170
@@ -1129,7 +1131,7 @@ msgstr "Režim"
 msgid "RST (S)"
 msgstr ""
 
-#: application/controllers/Logbook.php:1286
+#: application/controllers/Logbook.php:1327
 #: application/views/awards/pota/index.php:37
 #: application/views/awards/wwff/index.php:37
 #: application/views/contesting/index.php:194
@@ -1157,7 +1159,7 @@ msgstr ""
 msgid "RST (R)"
 msgstr ""
 
-#: application/controllers/Logbook.php:1287
+#: application/controllers/Logbook.php:1328
 #: application/views/dashboard/index.php:7
 #: application/views/qslcard/searchresult.php:15
 #: application/views/qslcard/searchresult.php:31
@@ -1180,7 +1182,7 @@ msgstr ""
 msgid "Country"
 msgstr "Země"
 
-#: application/controllers/Logbook.php:1288
+#: application/controllers/Logbook.php:1329
 #: application/views/awards/iota/index.php:169
 #: application/views/bands/index.php:50 application/views/dashboard/index.php:8
 #: application/views/interface_assets/header.php:184
@@ -1207,7 +1209,7 @@ msgstr "Země"
 msgid "IOTA"
 msgstr ""
 
-#: application/controllers/Logbook.php:1292
+#: application/controllers/Logbook.php:1333
 #: application/views/awards/counties/details.php:12
 #: application/views/awards/counties/index.php:20
 #: application/views/awards/rac/index.php:143
@@ -1235,7 +1237,7 @@ msgstr ""
 msgid "State"
 msgstr "Stát"
 
-#: application/controllers/Logbook.php:1293
+#: application/controllers/Logbook.php:1334
 #: application/views/activated_gridmap/index.php:106
 #: application/views/awards/ffma/index.php:34
 #: application/views/awards/gridmaster/index.php:33
@@ -1262,6 +1264,7 @@ msgstr "Stát"
 #: application/views/qso/edit_ajax.php:156 application/views/qso/index.php:280
 #: application/views/satellite/pass.php:28
 #: application/views/search/cqzones_result.php:12
+#: application/views/search/ituzones_result.php:12
 #: application/views/search/result.php:33
 #: application/views/search/search_result_ajax.php:13
 #: application/views/simplefle/index.php:153
@@ -1276,7 +1279,7 @@ msgstr "Stát"
 msgid "Gridsquare"
 msgstr "Locátor"
 
-#: application/controllers/Logbook.php:1294
+#: application/controllers/Logbook.php:1335
 #: application/views/activated_gridmap/index.php:108
 #: application/views/awards/ffma/index.php:36
 #: application/views/awards/gridmaster/index.php:35
@@ -1300,7 +1303,7 @@ msgstr "Locátor"
 msgid "Distance"
 msgstr "Vzdálenost"
 
-#: application/controllers/Logbook.php:1295
+#: application/controllers/Logbook.php:1336
 #: application/views/accumulate/index.php:21
 #: application/views/activated_gridmap/index.php:8
 #: application/views/activators/index.php:10
@@ -1356,6 +1359,7 @@ msgstr "Vzdálenost"
 #: application/views/qso/components/previous_contacts.php:88
 #: application/views/qso/edit_ajax.php:83 application/views/qso/index.php:152
 #: application/views/search/cqzones_result.php:11
+#: application/views/search/ituzones_result.php:11
 #: application/views/search/lotw_unconfirmed_result.php:9
 #: application/views/search/result_search.php:10
 #: application/views/search/search_result_ajax.php:15
@@ -1377,7 +1381,7 @@ msgstr "Vzdálenost"
 msgid "Band"
 msgstr "Pásmo"
 
-#: application/controllers/Logbook.php:1296
+#: application/controllers/Logbook.php:1337
 #: application/controllers/Radio.php:48 application/views/bandmap/list.php:110
 #: application/views/contesting/index.php:143
 #: application/views/dashboard/index.php:16
@@ -1397,7 +1401,7 @@ msgstr "Pásmo"
 msgid "Frequency"
 msgstr "Frekvence"
 
-#: application/controllers/Logbook.php:1297
+#: application/controllers/Logbook.php:1338
 #: application/views/dashboard/index.php:17
 #: application/views/logbookadvanced/edit.php:12
 #: application/views/logbookadvanced/index.php:294
@@ -1419,7 +1423,7 @@ msgstr "Frekvence"
 msgid "Operator"
 msgstr "Operátor"
 
-#: application/controllers/Logbook.php:1318
+#: application/controllers/Logbook.php:1359
 #: application/controllers/Stationsetup.php:381
 #: application/views/awards/dxcc/index.php:28
 #: application/views/awards/dxcc/index.php:238
@@ -1471,42 +1475,42 @@ msgstr ""
 msgid "Certificate Updated."
 msgstr ""
 
-#: application/controllers/Lotw.php:384
+#: application/controllers/Lotw.php:385
 msgid "Certificate Deleted."
 msgstr ""
 
-#: application/controllers/Lotw.php:413
+#: application/controllers/Lotw.php:414
 #, php-format
 msgid ""
 "Found no certificate in file %s. If the filename contains 'key-only' this is "
 "typically a certificate request which has not been processed by LoTW yet."
 msgstr ""
 
-#: application/controllers/Lotw.php:617
+#: application/controllers/Lotw.php:620
 msgid "LoTW ADIF Information"
 msgstr ""
 
-#: application/controllers/Lotw.php:725
+#: application/controllers/Lotw.php:728
 msgid "LoTW ADIF Import"
 msgstr ""
 
-#: application/controllers/Lotw.php:752 application/controllers/Lotw.php:870
+#: application/controllers/Lotw.php:755 application/controllers/Lotw.php:873
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr ""
 
-#: application/controllers/Lotw.php:837
+#: application/controllers/Lotw.php:840
 msgid "LoTW .TQ8 Upload"
 msgstr ""
 
-#: application/controllers/Lotw.php:915
+#: application/controllers/Lotw.php:918
 msgid "Your ARRL username and/or password is incorrect."
 msgstr ""
 
-#: application/controllers/Lotw.php:934 application/controllers/Lotw.php:939
+#: application/controllers/Lotw.php:937 application/controllers/Lotw.php:942
 msgid "LoTW .TQ8 Sent"
 msgstr ""
 
-#: application/controllers/Lotw.php:946
+#: application/controllers/Lotw.php:949
 msgid "LoTW .TQ8 Not Sent"
 msgstr ""
 
@@ -1713,16 +1717,16 @@ msgid ""
 "Greenwich."
 msgstr ""
 
-#: application/controllers/Qrz.php:173
+#: application/controllers/Qrz.php:175
 #: application/views/interface_assets/header.php:432
 msgid "QRZ Logbook"
 msgstr ""
 
-#: application/controllers/Qrz.php:253
+#: application/controllers/Qrz.php:255
 msgid "QRZ QSL Import"
 msgstr ""
 
-#: application/controllers/Qrz.php:307
+#: application/controllers/Qrz.php:309
 msgid "QRZ ADIF Information"
 msgstr ""
 
@@ -1793,10 +1797,10 @@ msgstr ""
 #: application/controllers/Radio.php:105
 #: application/controllers/Stationsetup.php:372
 #: application/views/api/help.php:61 application/views/contesting/add.php:62
-#: application/views/interface_assets/footer.php:2337
-#: application/views/interface_assets/footer.php:2355
-#: application/views/interface_assets/footer.php:2376
-#: application/views/interface_assets/footer.php:2394
+#: application/views/interface_assets/footer.php:2363
+#: application/views/interface_assets/footer.php:2381
+#: application/views/interface_assets/footer.php:2402
+#: application/views/interface_assets/footer.php:2420
 #: application/views/labels/index.php:48 application/views/labels/index.php:84
 #: application/views/logbookadvanced/index.php:542
 #: application/views/lotw_views/index.php:114
@@ -1860,14 +1864,17 @@ msgstr ""
 #: application/views/qslcard/searchform.php:8
 #: application/views/search/cqzones.php:4
 #: application/views/search/cqzones.php:12
-#: application/views/search/cqzones.php:36
+#: application/views/search/cqzones.php:39
 #: application/views/search/filter.php:20
-#: application/views/search/filter.php:38
+#: application/views/search/filter.php:41
+#: application/views/search/ituzones.php:4
+#: application/views/search/ituzones.php:12
+#: application/views/search/ituzones.php:39
 #: application/views/search/lotw_unconfirmed.php:4
 #: application/views/search/lotw_unconfirmed.php:12
-#: application/views/search/lotw_unconfirmed.php:37
+#: application/views/search/lotw_unconfirmed.php:40
 #: application/views/search/main.php:4 application/views/search/main.php:12
-#: application/views/search/main.php:33
+#: application/views/search/main.php:36
 #: application/views/visitor/layout/header.php:97
 #: application/views/visitor/layout/header.php:98
 msgid "Search"
@@ -1882,6 +1889,10 @@ msgid "Incorrectly logged CQ zones"
 msgstr ""
 
 #: application/controllers/Search.php:70
+msgid "Incorrectly logged ITU zones"
+msgstr ""
+
+#: application/controllers/Search.php:82
 msgid ""
 "QSOs unconfirmed on LoTW, but the callsign has uploaded to LoTW after QSO "
 "date"
@@ -2300,8 +2311,8 @@ msgstr ""
 msgid "Export Map"
 msgstr ""
 
-#: application/controllers/Webadif.php:90
-#: application/controllers/Webadif.php:137
+#: application/controllers/Webadif.php:92
+#: application/controllers/Webadif.php:139
 #: application/views/interface_assets/header.php:433
 msgid "QO-100 Dx Club Upload"
 msgstr ""
@@ -2428,31 +2439,31 @@ msgstr ""
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr ""
 
-#: application/models/Logbook_model.php:4255
+#: application/models/Logbook_model.php:4263
 msgid "QSO could not be matched"
 msgstr ""
 
-#: application/models/Logbook_model.php:4261
+#: application/models/Logbook_model.php:4269
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr ""
 
-#: application/models/Logbook_model.php:4266
+#: application/models/Logbook_model.php:4274
 msgid "confirmed by award manager"
 msgstr ""
 
-#: application/models/Logbook_model.php:4269
+#: application/models/Logbook_model.php:4277
 msgid "confirmed by cross-check of DCL data"
 msgstr ""
 
-#: application/models/Logbook_model.php:4272
+#: application/models/Logbook_model.php:4280
 msgid "confirmation pending"
 msgstr ""
 
-#: application/models/Logbook_model.php:4275
+#: application/models/Logbook_model.php:4283
 msgid "unconfirmed"
 msgstr ""
 
-#: application/models/Logbook_model.php:4278
+#: application/models/Logbook_model.php:4286
 msgid "unknown"
 msgstr ""
 
@@ -2516,6 +2527,7 @@ msgstr ""
 #: application/views/activated_gridmap/index.php:32
 #: application/views/activated_gridmap/index.php:41
 #: application/views/activators/index.php:13
+#: application/views/adif/import.php:179
 #: application/views/awards/cq/index.php:77
 #: application/views/awards/cq/index.php:91
 #: application/views/awards/dok/index.php:94
@@ -2559,8 +2571,8 @@ msgstr ""
 #: application/views/gridmap/index.php:41
 #: application/views/gridmap/index.php:70
 #: application/views/gridmap/index.php:83
-#: application/views/interface_assets/footer.php:1448
-#: application/views/interface_assets/footer.php:1587
+#: application/views/interface_assets/footer.php:1474
+#: application/views/interface_assets/footer.php:1613
 #: application/views/kml/index.php:21 application/views/kml/index.php:33
 #: application/views/kml/index.php:49 application/views/kml/index.php:67
 #: application/views/kml/index.php:79
@@ -2587,8 +2599,9 @@ msgstr ""
 #: application/views/oqrs/showrequests.php:49
 #: application/views/oqrs/showrequests.php:62
 #: application/views/qslprint/index.php:22
-#: application/views/search/cqzones.php:30
-#: application/views/search/lotw_unconfirmed.php:31
+#: application/views/search/cqzones.php:33
+#: application/views/search/ituzones.php:33
+#: application/views/search/lotw_unconfirmed.php:34
 #: application/views/stationsetup/exportmapoptions.php:33
 #: application/views/timeline/index.php:10
 #: application/views/timeline/index.php:22
@@ -3011,8 +3024,8 @@ msgid "Nothing found!"
 msgstr ""
 
 #: application/views/activators/index.php:98
-#: application/views/adif/import.php:66 application/views/adif/import.php:182
-#: application/views/adif/import.php:227
+#: application/views/adif/import.php:66 application/views/adif/import.php:183
+#: application/views/adif/import.php:228
 #: application/views/awards/pota/index.php:34
 #: application/views/awards/sig/qso_list.php:11
 #: application/views/awards/sota/index.php:25
@@ -3036,9 +3049,11 @@ msgstr ""
 #: application/views/qslprint/qsolist.php:6
 #: application/views/qso/edit_ajax.php:62 application/views/qso/index.php:125
 #: application/views/reg1test/index.php:33
-#: application/views/search/cqzones.php:32
+#: application/views/search/cqzones.php:35
 #: application/views/search/cqzones_result.php:9
-#: application/views/search/lotw_unconfirmed.php:33
+#: application/views/search/ituzones.php:35
+#: application/views/search/ituzones_result.php:9
+#: application/views/search/lotw_unconfirmed.php:36
 #: application/views/search/lotw_unconfirmed_result.php:6
 #: application/views/search/result.php:11
 #: application/views/simplefle/index.php:148
@@ -3125,6 +3140,7 @@ msgstr ""
 #: application/views/qslprint/qsolist.php:7 application/views/qso/index.php:65
 #: application/views/qso/index.php:101 application/views/satellite/pass.php:473
 #: application/views/search/cqzones_result.php:7
+#: application/views/search/ituzones_result.php:7
 #: application/views/search/result_search.php:4
 #: application/views/search/search_result_ajax.php:89
 #: application/views/simplefle/index.php:146
@@ -3163,6 +3179,7 @@ msgstr "Datum"
 #: application/views/qslprint/qslprint.php:23
 #: application/views/qslprint/qsolist.php:8 application/views/qso/index.php:106
 #: application/views/search/cqzones_result.php:8
+#: application/views/search/ituzones_result.php:8
 #: application/views/search/result_search.php:5
 #: application/views/search/search_result_ajax.php:91
 #: application/views/simplefle/index.php:147
@@ -3209,7 +3226,7 @@ msgstr ""
 msgid "DCL QSL Status"
 msgstr ""
 
-#: application/views/adif/import.php:36 application/views/adif/import.php:252
+#: application/views/adif/import.php:36 application/views/adif/import.php:253
 msgid "DARC DCL"
 msgstr ""
 
@@ -3230,8 +3247,8 @@ msgstr ""
 msgid "Maximum file upload size is "
 msgstr ""
 
-#: application/views/adif/import.php:56 application/views/adif/import.php:230
-#: application/views/adif/import.php:268 application/views/debug/index.php:175
+#: application/views/adif/import.php:56 application/views/adif/import.php:231
+#: application/views/adif/import.php:269 application/views/debug/index.php:175
 #: application/views/debug/index.php:192 application/views/debug/index.php:537
 #: application/views/hrdlog/export.php:25
 #: application/views/hrdlog/export.php:74
@@ -3245,7 +3262,7 @@ msgid "Warning"
 msgstr ""
 
 #: application/views/adif/import.php:60 application/views/adif/import.php:62
-#: application/views/adif/import.php:178 application/views/adif/import.php:225
+#: application/views/adif/import.php:177 application/views/adif/import.php:226
 #: application/views/eqsl/import.php:36 application/views/hrdlog/export.php:69
 #: application/views/qrz/export.php:89 application/views/reg1test/index.php:30
 #: application/views/webadif/export.php:89
@@ -3312,7 +3329,7 @@ msgstr ""
 #: application/views/adif/import.php:162
 #: application/views/interface_assets/footer.php:32
 #: application/views/interface_assets/footer.php:501
-#: application/views/interface_assets/footer.php:2133
+#: application/views/interface_assets/footer.php:2159
 msgid "DANGER"
 msgstr ""
 
@@ -3327,7 +3344,7 @@ msgid ""
 "regardless if they match to the chosen station-location."
 msgstr ""
 
-#: application/views/adif/import.php:168 application/views/adif/import.php:283
+#: application/views/adif/import.php:168 application/views/adif/import.php:284
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:54
 #: application/views/webadif/export.php:55
 msgid "Upload"
@@ -3343,7 +3360,7 @@ msgid ""
 "like LoTW, Awards or just for keeping a backup."
 msgstr ""
 
-#: application/views/adif/import.php:186 application/views/adif/import.php:232
+#: application/views/adif/import.php:187 application/views/adif/import.php:233
 #: application/views/cfd/index.php:15 application/views/csv/index.php:118
 #: application/views/dxatlas/index.php:118
 #: application/views/hrdlog/export.php:77 application/views/kml/index.php:103
@@ -3352,7 +3369,7 @@ msgstr ""
 msgid "From date"
 msgstr "Od data"
 
-#: application/views/adif/import.php:189 application/views/adif/import.php:235
+#: application/views/adif/import.php:190 application/views/adif/import.php:236
 #: application/views/cfd/index.php:20 application/views/csv/index.php:123
 #: application/views/dxatlas/index.php:123
 #: application/views/hrdlog/export.php:82 application/views/kml/index.php:108
@@ -3361,40 +3378,40 @@ msgstr "Od data"
 msgid "To date"
 msgstr ""
 
-#: application/views/adif/import.php:197
+#: application/views/adif/import.php:198
 msgid "Mark exported QSOs as uploaded to LoTW"
 msgstr ""
 
-#: application/views/adif/import.php:205
+#: application/views/adif/import.php:206
 msgid "Export QSOs not uploaded to LoTW"
 msgstr ""
 
-#: application/views/adif/import.php:210
+#: application/views/adif/import.php:211
 msgid "Export QSO's"
 msgstr ""
 
-#: application/views/adif/import.php:215
+#: application/views/adif/import.php:216
 msgid "Export Satellite-Only QSOs"
 msgstr ""
 
-#: application/views/adif/import.php:216
+#: application/views/adif/import.php:217
 msgid "Export All Satellite QSOs"
 msgstr ""
 
-#: application/views/adif/import.php:218
+#: application/views/adif/import.php:219
 msgid "Export All Satellite QSOs Confirmed on LoTW"
 msgstr ""
 
-#: application/views/adif/import.php:230 application/views/hrdlog/export.php:74
+#: application/views/adif/import.php:231 application/views/hrdlog/export.php:74
 #: application/views/qrz/export.php:94 application/views/webadif/export.php:94
 msgid "If a date range is not selected then all QSOs will be marked!"
 msgstr ""
 
-#: application/views/adif/import.php:238
+#: application/views/adif/import.php:239
 msgid "Mark QSOs as exported to LoTW"
 msgstr ""
 
-#: application/views/adif/import.php:252
+#: application/views/adif/import.php:253
 #, php-format
 msgid ""
 "Go to %s and export your logbook with confirmed DOKs. To speed up the "
@@ -3403,31 +3420,31 @@ msgid ""
 "with DOK info."
 msgstr ""
 
-#: application/views/adif/import.php:259
+#: application/views/adif/import.php:260
 msgid "Only import DOK data from QSOs confirmed on DCL."
 msgstr ""
 
-#: application/views/adif/import.php:261
+#: application/views/adif/import.php:262
 msgid ""
 "Uncheck if you also want to update DOK with data from unconfirmed QSOs in "
 "DCL."
 msgstr ""
 
-#: application/views/adif/import.php:268
+#: application/views/adif/import.php:269
 msgid "Overwrites exisiting DOK in log by DCL (if different)."
 msgstr ""
 
-#: application/views/adif/import.php:270
+#: application/views/adif/import.php:271
 msgid ""
 "If checked Wavelog will forcibly overwrite existing DOK with DOK from DCL "
 "log."
 msgstr ""
 
-#: application/views/adif/import.php:277
+#: application/views/adif/import.php:278
 msgid "Ignore QSOs that cannot be matched."
 msgstr "Ignorovat QSO, které nelze porovnat."
 
-#: application/views/adif/import.php:279
+#: application/views/adif/import.php:280
 msgid ""
 "If unchecked, information about QSOs which could not be found in Wavelog "
 "will be displayed."
@@ -3553,7 +3570,7 @@ msgstr ""
 #: application/views/sattimers/index.php:73
 #: application/views/sattimers/index.php:75
 #: application/views/sattimers/index.php:77
-#: application/views/search/filter.php:69
+#: application/views/search/filter.php:72
 msgid "Info"
 msgstr ""
 
@@ -3866,7 +3883,7 @@ msgstr ""
 #: application/views/awards/cq/index.php:56
 #: application/views/awards/itu/index.php:56
 #: application/views/awards/wac/index.php:44
-#: application/views/interface_assets/footer.php:2112
+#: application/views/interface_assets/footer.php:2138
 #: application/views/qso/edit_ajax.php:405
 #: application/views/view_log/qso.php:25
 msgid "QSL Card"
@@ -3887,7 +3904,7 @@ msgstr "QSL karta"
 #: application/views/logbookadvanced/index.php:551
 #: application/views/oqrs/showrequests.php:68
 #: application/views/qrbcalc/index.php:19
-#: application/views/search/filter.php:40 application/views/user/edit.php:607
+#: application/views/search/filter.php:43 application/views/user/edit.php:607
 msgid "Reset"
 msgstr ""
 
@@ -4347,6 +4364,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:617
 #: application/views/logbookadvanced/useroptions.php:94
 #: application/views/qso/edit_ajax.php:299 application/views/qso/index.php:401
+#: application/views/search/ituzones_result.php:13
 #: application/views/station_profile/create.php:127
 #: application/views/station_profile/edit.php:170
 msgid "ITU Zone"
@@ -6491,10 +6509,10 @@ msgid "QSL Date"
 msgstr ""
 
 #: application/views/eqslcard/index.php:60
-#: application/views/interface_assets/footer.php:2338
-#: application/views/interface_assets/footer.php:2356
-#: application/views/interface_assets/footer.php:2377
-#: application/views/interface_assets/footer.php:2395
+#: application/views/interface_assets/footer.php:2364
+#: application/views/interface_assets/footer.php:2382
+#: application/views/interface_assets/footer.php:2403
+#: application/views/interface_assets/footer.php:2421
 #: application/views/qslcard/index.php:66
 #: application/views/view_log/qso.php:626
 msgid "View"
@@ -6664,7 +6682,7 @@ msgid "Your query has been saved!"
 msgstr ""
 
 #: application/views/interface_assets/footer.php:419
-#: application/views/search/filter.php:46
+#: application/views/search/filter.php:49
 msgid "Edit queries"
 msgstr ""
 
@@ -6673,7 +6691,7 @@ msgid "Stored queries:"
 msgstr ""
 
 #: application/views/interface_assets/footer.php:426
-#: application/views/search/filter.php:60
+#: application/views/search/filter.php:63
 msgid "Run Query"
 msgstr ""
 
@@ -6690,7 +6708,7 @@ msgstr ""
 
 #: application/views/interface_assets/footer.php:464
 #: application/views/interface_assets/footer.php:595
-#: application/views/search/filter.php:79
+#: application/views/search/filter.php:82
 msgid "Export to ADIF"
 msgstr ""
 
@@ -6734,62 +6752,62 @@ msgstr ""
 msgid "Grids: "
 msgstr ""
 
-#: application/views/interface_assets/footer.php:1167
+#: application/views/interface_assets/footer.php:1193
 #, php-format
 msgid "You're not logged in. Please %slogin%s"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:1375
-#: application/views/interface_assets/footer.php:1379
-#: application/views/interface_assets/footer.php:1382
-#: application/views/interface_assets/footer.php:1519
-#: application/views/interface_assets/footer.php:1523
-#: application/views/interface_assets/footer.php:1526
+#: application/views/interface_assets/footer.php:1401
+#: application/views/interface_assets/footer.php:1405
+#: application/views/interface_assets/footer.php:1408
+#: application/views/interface_assets/footer.php:1545
+#: application/views/interface_assets/footer.php:1549
+#: application/views/interface_assets/footer.php:1552
 msgid "grid square"
 msgstr "lokátor"
 
-#: application/views/interface_assets/footer.php:1382
-#: application/views/interface_assets/footer.php:1526
+#: application/views/interface_assets/footer.php:1408
+#: application/views/interface_assets/footer.php:1552
 msgid "Total count"
 msgstr "Celkový počet"
 
-#: application/views/interface_assets/footer.php:2114
+#: application/views/interface_assets/footer.php:2140
 msgid "QSL Card for "
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2134
+#: application/views/interface_assets/footer.php:2160
 msgid "Warning! Are you sure you want to delete this QSL card?"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2174
+#: application/views/interface_assets/footer.php:2200
 #: application/views/view_log/qso.php:42
 msgid "eQSL Card"
 msgstr "eQSL karta"
 
-#: application/views/interface_assets/footer.php:2176
+#: application/views/interface_assets/footer.php:2202
 msgid "eQSL Card for "
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2349
-#: application/views/interface_assets/footer.php:2388
+#: application/views/interface_assets/footer.php:2375
+#: application/views/interface_assets/footer.php:2414
 #: application/views/view_log/qso.php:616
 msgid "QSL image file"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2368
+#: application/views/interface_assets/footer.php:2394
 msgid "Front QSL Card:"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2406
+#: application/views/interface_assets/footer.php:2432
 msgid "Back QSL Card:"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2417
-#: application/views/interface_assets/footer.php:2442
+#: application/views/interface_assets/footer.php:2443
+#: application/views/interface_assets/footer.php:2468
 msgid "Add additional QSOs to a QSL Card"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2453
+#: application/views/interface_assets/footer.php:2479
 msgid "Something went wrong. Please try again!"
 msgstr ""
 
@@ -8525,6 +8543,7 @@ msgstr ""
 #: application/views/qslprint/qsolist.php:13
 #: application/views/qso/edit_ajax.php:38 application/views/qso/index.php:25
 #: application/views/search/cqzones_result.php:16
+#: application/views/search/ituzones_result.php:16
 #: application/views/search/lotw_unconfirmed_result.php:11
 #: application/views/search/search_result_ajax.php:127
 #: application/views/user/edit.php:478
@@ -9141,7 +9160,7 @@ msgid ""
 "keys."
 msgstr ""
 
-#: application/views/radio/index.php:22 application/views/search/filter.php:69
+#: application/views/radio/index.php:22 application/views/search/filter.php:72
 #, php-format
 msgid "You can find out how to use the %s in the wiki."
 msgstr ""
@@ -9460,6 +9479,7 @@ msgid "Max Elevation"
 msgstr ""
 
 #: application/views/search/cqzones.php:5
+#: application/views/search/ituzones.php:5
 #: application/views/search/lotw_unconfirmed.php:5
 #: application/views/search/main.php:5
 msgid "Ready to find a QSO?"
@@ -9467,6 +9487,7 @@ msgstr ""
 
 #: application/views/search/cqzones.php:15
 #: application/views/search/filter.php:4 application/views/search/filter.php:23
+#: application/views/search/ituzones.php:15
 #: application/views/search/lotw_unconfirmed.php:15
 #: application/views/search/main.php:15
 msgid "Advanced Search"
@@ -9474,6 +9495,7 @@ msgstr "Rozšířené vyhledávání"
 
 #: application/views/search/cqzones.php:18
 #: application/views/search/filter.php:26
+#: application/views/search/ituzones.php:18
 #: application/views/search/lotw_unconfirmed.php:18
 #: application/views/search/main.php:18
 msgid "Incorrect CQ Zones"
@@ -9481,12 +9503,22 @@ msgstr ""
 
 #: application/views/search/cqzones.php:21
 #: application/views/search/filter.php:29
+#: application/views/search/ituzones.php:21
 #: application/views/search/lotw_unconfirmed.php:21
 #: application/views/search/main.php:21
+msgid "Incorrect ITU Zones"
+msgstr ""
+
+#: application/views/search/cqzones.php:24
+#: application/views/search/filter.php:32
+#: application/views/search/ituzones.php:24
+#: application/views/search/lotw_unconfirmed.php:24
+#: application/views/search/main.php:24
 msgid "QSOs unconfirmed on LoTW"
 msgstr ""
 
-#: application/views/search/cqzones.php:28
+#: application/views/search/cqzones.php:31
+#: application/views/search/ituzones.php:31
 msgid "Station location:"
 msgstr ""
 
@@ -9501,32 +9533,43 @@ msgid "DXCC CQ Zone"
 msgstr ""
 
 #: application/views/search/cqzones_result.php:51
+#: application/views/search/ituzones_result.php:51
 msgid "No incorrect CQ Zones were found."
 msgstr ""
 
-#: application/views/search/filter.php:43
+#: application/views/search/filter.php:46
 msgid "Save query"
 msgstr ""
 
-#: application/views/search/filter.php:50
+#: application/views/search/filter.php:53
 msgid "Stored queries"
 msgstr ""
 
-#: application/views/search/filter.php:69
+#: application/views/search/filter.php:72
 msgid "search filter functions"
 msgstr ""
 
-#: application/views/search/filter.php:79
+#: application/views/search/filter.php:82
 msgid "Search Results"
 msgstr "Vyhledat výsledky"
 
-#: application/views/search/lotw_unconfirmed.php:26
+#: application/views/search/ituzones_result.php:3
+msgid ""
+"The following QSOs were found to have an incorrect ITU zone that this DXCC "
+"normally has (a maximum of 1000 QSOs are shown):"
+msgstr ""
+
+#: application/views/search/ituzones_result.php:14
+msgid "DXCC ITU Zone"
+msgstr ""
+
+#: application/views/search/lotw_unconfirmed.php:29
 msgid ""
 "The search displays QSOs which are unconfirmed on LoTW, but the callsign "
 "worked has uploaded to LoTW after your QSO date."
 msgstr ""
 
-#: application/views/search/lotw_unconfirmed.php:29
+#: application/views/search/lotw_unconfirmed.php:32
 msgid "Station location"
 msgstr ""
 
@@ -9538,7 +9581,7 @@ msgstr "Poslední upload na LoTW"
 msgid "No QSOs with outstanding LoTW upload were found."
 msgstr ""
 
-#: application/views/search/main.php:28
+#: application/views/search/main.php:31
 msgid "Callsign / Gridsquare"
 msgstr "Značka / Lokátor"
 

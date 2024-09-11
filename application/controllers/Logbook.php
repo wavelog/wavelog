@@ -27,10 +27,10 @@ class Logbook extends CI_Controller {
 		$config['cur_tag_close'] = '</a></strong>';
 
 		$this->pagination->initialize($config);
-		
+
 		//load the model and get results
 		$data['results'] = $this->logbook_model->get_qsos($config['per_page'],$this->uri->segment(3));
-		
+
 		$data['user_map_custom'] = $this->optionslib->get_map_custom();
 
 		if(!$data['results']) {
@@ -1087,6 +1087,47 @@ class Logbook extends CI_Controller {
 		$data['qsos'] = $query;
 
 		$this->load->view('search/cqzones_result.php', $data);
+	}
+
+	function search_incorrect_itu_zones($station_id) {
+		$clean_station_id = $this->security->xss_clean($station_id);
+
+		if (!is_numeric($clean_station_id) && $clean_station_id !== 'All') {
+			show_404();
+		}
+
+		$this->load->model('user_model');
+
+		if(!$this->user_model->authorize($this->config->item('auth_mode'))) { return; }
+
+		$this->load->model('logbooks_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+		if (!$logbooks_locations_array) {
+			return null;
+		}
+
+		$location_list = "'".implode("','",$logbooks_locations_array)."'";
+
+		$sql = "select *, (select group_concat(distinct ituzone order by ituzone) from dxcc_master where countrycode = thcv.col_dxcc and ituzone <> '' order by ituzone asc) as correctituzone from " . $this->config->item('table_name') .
+		" thcv join station_profile on thcv.station_id = station_profile.station_id where thcv.station_id in (". $location_list . ")
+		and not exists (select 1 from dxcc_master where countrycode = thcv.col_dxcc and ituzone = col_ituz) and col_dxcc > 0
+		order by thcv.col_time_on desc
+		limit 1000
+		";
+
+		$params = [];
+
+		if ($clean_station_id != 'All') {
+			$sql .= ' and station_profile.station_id = ?';
+			$params[] = $clean_station_id;
+		}
+
+		$query = $this->db->query($sql, $params);
+
+		$data['qsos'] = $query;
+
+		$this->load->view('search/ituzones_result.php', $data);
 	}
 
 	/*

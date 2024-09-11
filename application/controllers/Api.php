@@ -200,7 +200,9 @@ class API extends CI_Controller {
 			$this->load->model('logbook_model');
 
 			// Load ADIF Parser
-			$this->load->library('adif_parser');
+			if (!$this->load->is_loaded('adif_parser')) {
+				$this->load->library('adif_parser');
+			}
 
 			// Feed in the ADIF string
 			$this->adif_parser->feed($obj['string']);
