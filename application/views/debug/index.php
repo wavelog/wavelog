@@ -25,7 +25,11 @@
                     <table width="100%">
                         <tr>
                             <td><?= __("Version"); ?></td>
-                            <td><?php echo $running_version."\n"; ?></td>
+                            <td><?php echo $running_version; ?>
+                                <?php if ($running_version == $latest_release) { ?>
+                                    <span class="badge text-bg-success"> <?= __("Latest Version"); ?></span>
+                                <?php } ?>
+                            </td>
                         </tr>
                         <?php if ($newer_version_available) { ?>
                         <tr>
