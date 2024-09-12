@@ -260,4 +260,18 @@ class Update_model extends CI_Model {
         $totaltime = ($endtime - $starttime);
         return "Records inserted: " . $i . " in " . $totaltime . " seconds <br />";
     }
+
+    function wavelog_latest_release() {
+        $latest_tag = null;
+        $url = "https://api.github.com/repos/wavelog/wavelog/releases";
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
+        curl_setopt($ch, CURLOPT_URL,$url);
+        $result=curl_exec($ch);
+        curl_close($ch);
+        $json = json_decode($result, true);
+        $latest_tag = $json[0]['tag_name'];
+        return $latest_tag;
+    }
 }
