@@ -36,6 +36,25 @@ class Stations extends CI_Model {
 		return $this->db->get('station_profile');
 	}
 
+	function all_station_ids_of_user($userid = null) {
+		if ($userid == null) {
+			$userid=$this->session->userdata('user_id'); // Fallback to session-uid, if userid is omitted
+		}
+		$this->db->select('station_profile.station_id');
+		$this->db->where('user_id', $userid);
+		$query=$this->db->get('station_profile');
+		$a_station_ids = array();
+		if ($query->num_rows() > 0){
+			foreach ($query->result() as $row) {
+				array_push($a_station_ids, $row->station_id);
+			}
+			$station_ids=implode(', ', $a_station_ids);	
+			return $station_ids;
+		} else {
+			return '';
+		}
+	}
+
 	function callsigns_of_user($userid = null) {
 		if ($userid == null) {
 			$userid=$this->session->userdata('user_id'); // Fallback to session-uid, if userid is omitted

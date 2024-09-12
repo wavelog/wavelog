@@ -19,13 +19,12 @@ class Lotw extends CI_Controller {
 	*/
 
 	/* Controls who can access the controller and its functions */
-	function __construct()
-	{
+	function __construct() {
 		parent::__construct();
 		$this->load->helper(array('form', 'url'));
 
 		if (ENVIRONMENT == 'maintenance' && $this->session->userdata('user_id') == '') {
-            echo __("Maintenance Mode is active. Try again later.")."\n";
+			echo __("Maintenance Mode is active. Try again later.")."\n";
 			redirect('user/login');
 		}
 	}
@@ -468,8 +467,7 @@ class Lotw extends CI_Controller {
 	|	Internal function that takes the LoTW ADIF and imports into the log
 	|
 	*/
-	private function loadFromFile($filepath, $display_view = "TRUE")
-	{
+	private function loadFromFile($filepath, $station_ids, $display_view = "TRUE") {
 
 		// Figure out how we should be marking QSLs confirmed via LoTW
 		$query = $query = $this->db->query('SELECT lotw_rcvd_mark FROM config');
@@ -488,127 +486,126 @@ class Lotw extends CI_Controller {
 		$this->adif_parser->initialize();
 
 		$tableheaders = "<table width=\"100%\">";
-			$tableheaders .= "<tr class=\"titles\">";
-				$tableheaders .= "<td>Station Callsign</td>";
-				$tableheaders .= "<td>QSO Date</td>";
-				$tableheaders .= "<td>Call</td>";
-				$tableheaders .= "<td>Mode</td>";
-				$tableheaders .= "<td>LoTW QSL Received</td>";
-				$tableheaders .= "<td>Date LoTW Confirmed</td>";
-				$tableheaders .= "<td>State</td>";
-				$tableheaders .= "<td>Gridsquare</td>";
-				$tableheaders .= "<td>IOTA</td>";
-				$tableheaders .= "<td>Log Status</td>";
-				$tableheaders .= "<td>LoTW Status</td>";
-			$tableheaders .= "</tr>";
+		$tableheaders .= "<tr class=\"titles\">";
+		$tableheaders .= "<td>Station Callsign</td>";
+		$tableheaders .= "<td>QSO Date</td>";
+		$tableheaders .= "<td>Call</td>";
+		$tableheaders .= "<td>Mode</td>";
+		$tableheaders .= "<td>LoTW QSL Received</td>";
+		$tableheaders .= "<td>Date LoTW Confirmed</td>";
+		$tableheaders .= "<td>State</td>";
+		$tableheaders .= "<td>Gridsquare</td>";
+		$tableheaders .= "<td>IOTA</td>";
+		$tableheaders .= "<td>Log Status</td>";
+		$tableheaders .= "<td>LoTW Status</td>";
+		$tableheaders .= "</tr>";
 
-			$table = "";
-			while($record = $this->adif_parser->get_record()) {
-				// Check for LoTW confirmation in ADIF record and skip if not existent
-				if (!isset($record['app_lotw_rxqsl'])) {
-					continue;
-				}
-
-				$time_on = date('Y-m-d', strtotime($record['qso_date'])) ." ".date('H:i', strtotime($record['time_on']));
-
-				$qsl_date = date('Y-m-d H:i', strtotime($record['app_lotw_rxqsl']));
-
-				if (isset($record['time_off'])) {
-					$time_off = date('Y-m-d', strtotime($record['qso_date'])) ." ".date('H:i', strtotime($record['time_off']));
-				} else {
-				   $time_off = date('Y-m-d', strtotime($record['qso_date'])) ." ".date('H:i', strtotime($record['time_on']));
-				}
-
-				// If we have a positive match from LoTW, record it in the DB according to the user's preferences
-				if ($record['qsl_rcvd'] == "Y")
-				{
-					$record['qsl_rcvd'] = $config['lotw_rcvd_mark'];
-				}
-
-				$status = $this->logbook_model->import_check($time_on, $record['call'], $record['band'], $record['mode'], $record['station_callsign']);
-
-				if($status[0] == "Found") {
-					$qso_id4lotw=$status[1];
-					if (isset($record['state'])) {
-						$state = $record['state'];
-					} else {
-						$state = "";
-					}
-					// Present only if the QSLing station specified a single valid grid square value in its station location uploaded to LoTW.
-					$qsl_gridsquare = "";
-					if (isset($record['gridsquare'])) {
-						if (strlen($record['gridsquare']) > strlen($status[2] ?? '') || substr(strtoupper($status[2] ?? ''), 0, 4) != substr(strtoupper($record['gridsquare']), 0, 4)) {
-							$qsl_gridsquare = $record['gridsquare'];
-						}
-					}
-
-					if (isset($record['vucc_grids'])) {
-						$qsl_vucc_grids = $record['vucc_grids'];
-					} else {
-						$qsl_vucc_grids = "";
-					}
-
-					if (isset($record['iota'])) {
-						$iota = $record['iota'];
-					} else {
-						$iota = "";
-					}
-
-					if (isset($record['cnty'])) {
-						$cnty = $record['cnty'];
-					} else {
-						$cnty = "";
-					}
-
-					if (isset($record['cqz'])) {
-						$cqz = $record['cqz'];
-					} else {
-						$cqz = "";
-					}
-
-					if (isset($record['ituz'])) {
-						$ituz = $record['ituz'];
-					} else {
-						$ituz = "";
-					}
-
-					$lotw_status = $this->logbook_model->lotw_update($time_on, $record['call'], $record['band'], $qsl_date, $record['qsl_rcvd'], $state, $qsl_gridsquare, $qsl_vucc_grids, $iota, $cnty, $cqz, $ituz, $record['station_callsign'],$qso_id4lotw);
-
-					$table .= "<tr>";
-						$table .= "<td>".$record['station_callsign']."</td>";
-						$table .= "<td>".$time_on."</td>";
-						$table .= "<td>".$record['call']."</td>";
-						$table .= "<td>".$record['mode']."</td>";
-						$table .= "<td>".$record['qsl_rcvd']."</td>";
-						$table .= "<td>".$qsl_date."</td>";
-						$table .= "<td>".$state."</td>";
-						$table .= "<td>".($qsl_gridsquare != '' ? $qsl_gridsquare : $qsl_vucc_grids)."</td>";
-						$table .= "<td>".$iota."</td>";
-						$table .= "<td>QSO Record: ".$status[0]."</td>";
-						$table .= "<td>LoTW Record: ".$lotw_status."</td>";
-					$table .= "</tr>";
-				} else {
-					$table .= "<tr>";
-						$table .= "<td>".$record['station_callsign']."</td>";
-						$table .= "<td>".$time_on."</td>";
-						$table .= "<td>".$record['call']."</td>";
-						$table .= "<td>".$record['mode']."</td>";
-						$table .= "<td>".$record['qsl_rcvd']."</td>";
-						$table .= "<td></td>";
-						$table .= "<td></td>";
-						$table .= "<td></td>";
-						$table .= "<td></td>";
-						$table .= "<td>QSO Record: ".$status[0]."</td>";
-						$table .= "<td></td>";
-					$table .= "</tr>";
-				}
+		$table = "";
+		while($record = $this->adif_parser->get_record()) {
+			// Check for LoTW confirmation in ADIF record and skip if not existent
+			if (!isset($record['app_lotw_rxqsl'])) {
+				continue;
 			}
 
-			if ($table != "")
+			$time_on = date('Y-m-d', strtotime($record['qso_date'])) ." ".date('H:i', strtotime($record['time_on']));
+
+			$qsl_date = date('Y-m-d H:i', strtotime($record['app_lotw_rxqsl']));
+
+			if (isset($record['time_off'])) {
+				$time_off = date('Y-m-d', strtotime($record['qso_date'])) ." ".date('H:i', strtotime($record['time_off']));
+			} else {
+				$time_off = date('Y-m-d', strtotime($record['qso_date'])) ." ".date('H:i', strtotime($record['time_on']));
+			}
+
+			// If we have a positive match from LoTW, record it in the DB according to the user's preferences
+			if ($record['qsl_rcvd'] == "Y")
 			{
-				$table .= "</table>";
-				$data['lotw_table_headers'] = $tableheaders;
-				$data['lotw_table'] = $table;
+				$record['qsl_rcvd'] = $config['lotw_rcvd_mark'];
+			}
+
+			$status = $this->logbook_model->import_check($time_on, $record['call'], $record['band'], $record['mode'], $record['station_callsign'], $station_ids);
+
+			if($status[0] == "Found") {
+				$qso_id4lotw=$status[1];
+				if (isset($record['state'])) {
+					$state = $record['state'];
+				} else {
+					$state = "";
+				}
+				// Present only if the QSLing station specified a single valid grid square value in its station location uploaded to LoTW.
+				$qsl_gridsquare = "";
+				if (isset($record['gridsquare'])) {
+					if (strlen($record['gridsquare']) > strlen($status[2] ?? '') || substr(strtoupper($status[2] ?? ''), 0, 4) != substr(strtoupper($record['gridsquare']), 0, 4)) {
+						$qsl_gridsquare = $record['gridsquare'];
+					}
+				}
+
+				if (isset($record['vucc_grids'])) {
+					$qsl_vucc_grids = $record['vucc_grids'];
+				} else {
+					$qsl_vucc_grids = "";
+				}
+
+				if (isset($record['iota'])) {
+					$iota = $record['iota'];
+				} else {
+					$iota = "";
+				}
+
+				if (isset($record['cnty'])) {
+					$cnty = $record['cnty'];
+				} else {
+					$cnty = "";
+				}
+
+				if (isset($record['cqz'])) {
+					$cqz = $record['cqz'];
+				} else {
+					$cqz = "";
+				}
+
+				if (isset($record['ituz'])) {
+					$ituz = $record['ituz'];
+				} else {
+					$ituz = "";
+				}
+
+				$lotw_status = $this->logbook_model->lotw_update($time_on, $record['call'], $record['band'], $qsl_date, $record['qsl_rcvd'], $state, $qsl_gridsquare, $qsl_vucc_grids, $iota, $cnty, $cqz, $ituz, $record['station_callsign'],$qso_id4lotw, $station_ids);
+
+				$table .= "<tr>";
+				$table .= "<td>".$record['station_callsign']."</td>";
+				$table .= "<td>".$time_on."</td>";
+				$table .= "<td>".$record['call']."</td>";
+				$table .= "<td>".$record['mode']."</td>";
+				$table .= "<td>".$record['qsl_rcvd']."</td>";
+				$table .= "<td>".$qsl_date."</td>";
+				$table .= "<td>".$state."</td>";
+				$table .= "<td>".($qsl_gridsquare != '' ? $qsl_gridsquare : $qsl_vucc_grids)."</td>";
+				$table .= "<td>".$iota."</td>";
+				$table .= "<td>QSO Record: ".$status[0]."</td>";
+				$table .= "<td>LoTW Record: ".$lotw_status."</td>";
+				$table .= "</tr>";
+			} else {
+				$table .= "<tr>";
+				$table .= "<td>".$record['station_callsign']."</td>";
+				$table .= "<td>".$time_on."</td>";
+				$table .= "<td>".$record['call']."</td>";
+				$table .= "<td>".$record['mode']."</td>";
+				$table .= "<td>".$record['qsl_rcvd']."</td>";
+				$table .= "<td></td>";
+				$table .= "<td></td>";
+				$table .= "<td></td>";
+				$table .= "<td></td>";
+				$table .= "<td>QSO Record: ".$status[0]."</td>";
+				$table .= "<td></td>";
+				$table .= "</tr>";
+			}
+		}
+
+		if ($table != "") {
+			$table .= "</table>";
+			$data['lotw_table_headers'] = $tableheaders;
+			$data['lotw_table'] = $table;
 		}
 
 		unlink($filepath);
@@ -642,6 +639,7 @@ class Lotw extends CI_Controller {
 	function lotw_download($sync_user_id = null) {
 		$this->load->model('user_model');
 		$this->load->model('logbook_model');
+		$this->load->model('Stations');
 
 		$query = $this->user_model->get_all_lotw_users();
 
@@ -655,6 +653,7 @@ class Lotw extends CI_Controller {
 
 			foreach ($query->result() as $user) {
 				if ( ($sync_user_id != null) && ($sync_user_id != $user->user_id) ) { continue; }
+				$station_ids=$this->Stations->all_station_ids_of_user($user->user_id);
 
 				// Validate that LoTW credentials are not empty
 				// TODO: We don't actually see the error message
@@ -708,7 +707,7 @@ class Lotw extends CI_Controller {
 				}
 
 				ini_set('memory_limit', '-1');
-				$result = $this->loadFromFile($file, false);
+				$result = $this->loadFromFile($file, $station_ids, false);
 			}
 			return $result;
 		} else {
@@ -718,12 +717,14 @@ class Lotw extends CI_Controller {
 
 	public function import() {	// Is only called via frontend. Cron uses "upload". within download the download is called
 		$this->load->model('user_model');
+		$this->load->model('Stations');
 		if(!$this->user_model->authorize(2)) {
 			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
 			redirect('dashboard');
 			exit();
 		}
 
+		$station_ids=$this->Stations->all_station_ids_of_user($this->session->userdata['user_id']);
 		if (!($this->config->item('disable_manual_lotw'))) {
 			$data['page_title'] = __("LoTW ADIF Import");
 
@@ -759,8 +760,7 @@ class Lotw extends CI_Controller {
 
 				if ($customDate != NULL) {
 					$lotw_last_qsl_date = date($customDate);
-				}
-				else {
+				} else {
 					// Query the logbook to determine when the last LoTW confirmation was
 					$lotw_last_qsl_date = date('Y-m-d', strtotime($this->logbook_model->lotw_last_qsl_date($this->session->userdata['user_id'])));
 				}
@@ -788,7 +788,7 @@ class Lotw extends CI_Controller {
 						file_put_contents($file, $content);
 
 						ini_set('memory_limit', '-1');
-						$this->loadFromFile($file);
+						$this->loadFromFile($file, $station_ids);
 					} else {
 						print "LoTW download failed for user ".$data['user_lotw_name'].": ".curl_strerror(curl_errno($ch))." (".curl_errno($ch).").";
 					}
@@ -805,9 +805,7 @@ class Lotw extends CI_Controller {
 					$this->load->view('lotw/import', $data);
 					$this->load->view('interface_assets/footer');
 				}
-			}
-			else
-			{
+			} else {
 				if ( ! $this->upload->do_upload())
 				{
 
@@ -818,12 +816,10 @@ class Lotw extends CI_Controller {
 					$this->load->view('interface_assets/header', $data);
 					$this->load->view('lotw/import', $data);
 					$this->load->view('interface_assets/footer');
-				}
-				else
-				{
+				} else {
 					$data = array('upload_data' => $this->upload->data());
 
-					$this->loadFromFile('./uploads/'.$data['upload_data']['file_name']);
+					$this->loadFromFile('./uploads/'.$data['upload_data']['file_name'], $station_ids);
 				}
 			}
 		} else {

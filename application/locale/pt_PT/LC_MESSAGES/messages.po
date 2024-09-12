@@ -111,6 +111,10 @@ msgstr ""
 #: application/controllers/User.php:762 application/controllers/User.php:1045
 #: application/controllers/User.php:1247
 #: application/controllers/User_options.php:9
+#: application/controllers/Lotw.php:44 application/controllers/Lotw.php:76
+#: application/controllers/Lotw.php:103 application/controllers/Lotw.php:378
+#: application/controllers/Lotw.php:401 application/controllers/Lotw.php:826
+#: application/controllers/Lotw.php:834
 msgid "You're not allowed to do that!"
 msgstr "Não é permitido fazer isso!"
 
@@ -545,7 +549,7 @@ msgstr "Exportar CFD"
 #: application/controllers/Clublog.php:15 application/controllers/Cron.php:12
 #: application/controllers/Eqsl.php:13 application/controllers/Hrdlog.php:19
 #: application/controllers/Lotw.php:28 application/controllers/Qrz.php:14
-#: application/controllers/Update.php:16
+#: application/controllers/Update.php:16 application/controllers/Lotw.php:27
 msgid "Maintenance Mode is active. Try again later."
 msgstr "O modo de manutenção está ativo. Tente novamente mais tarde."
 
@@ -1475,22 +1479,24 @@ msgstr "Consulta rápida"
 #: application/views/lotw_views/index.php:12
 #: application/views/lotw_views/upload_cert.php:3
 #: application/views/user/edit.php:705 application/views/visitor/index.php:324
+#: application/controllers/Lotw.php:53 application/controllers/Lotw.php:82
+#: application/controllers/Lotw.php:124
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
-#: application/controllers/Lotw.php:152
+#: application/controllers/Lotw.php:152 application/controllers/Lotw.php:151
 msgid "Certificate Imported."
 msgstr "Certificado Importado."
 
-#: application/controllers/Lotw.php:159
+#: application/controllers/Lotw.php:159 application/controllers/Lotw.php:158
 msgid "Certificate Updated."
 msgstr "Certificado atualizado."
 
-#: application/controllers/Lotw.php:385
+#: application/controllers/Lotw.php:385 application/controllers/Lotw.php:384
 msgid "Certificate Deleted."
 msgstr "Certificado eliminado."
 
-#: application/controllers/Lotw.php:414
+#: application/controllers/Lotw.php:414 application/controllers/Lotw.php:413
 #, php-format
 msgid ""
 "Found no certificate in file %s. If the filename contains 'key-only' this is "
@@ -1500,31 +1506,33 @@ msgstr ""
 "contiver 'key-only', isto é tipicamente um pedido de certificado que ainda "
 "não foi processado pelo LoTW."
 
-#: application/controllers/Lotw.php:620
+#: application/controllers/Lotw.php:620 application/controllers/Lotw.php:617
 msgid "LoTW ADIF Information"
 msgstr "Informações sobre o ADIF LoTW"
 
-#: application/controllers/Lotw.php:728
+#: application/controllers/Lotw.php:728 application/controllers/Lotw.php:729
 msgid "LoTW ADIF Import"
 msgstr "Importação ADIF LoTW"
 
 #: application/controllers/Lotw.php:755 application/controllers/Lotw.php:873
+#: application/controllers/Lotw.php:756 application/controllers/Lotw.php:869
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "Não definiu as suas credenciais LoTW da ARRL !"
 
-#: application/controllers/Lotw.php:840
+#: application/controllers/Lotw.php:840 application/controllers/Lotw.php:836
 msgid "LoTW .TQ8 Upload"
 msgstr "Enviar .TQ8 LoTW"
 
-#: application/controllers/Lotw.php:918
+#: application/controllers/Lotw.php:918 application/controllers/Lotw.php:914
 msgid "Your ARRL username and/or password is incorrect."
 msgstr "O seu nome de utilizador e/ou palavra-passe da ARRL está incorreto."
 
 #: application/controllers/Lotw.php:937 application/controllers/Lotw.php:942
+#: application/controllers/Lotw.php:933 application/controllers/Lotw.php:938
 msgid "LoTW .TQ8 Sent"
 msgstr ".TQ8 LoTW enviado"
 
-#: application/controllers/Lotw.php:949
+#: application/controllers/Lotw.php:949 application/controllers/Lotw.php:945
 msgid "LoTW .TQ8 Not Sent"
 msgstr ".TQ8 LoTW não enviado"
 
@@ -2485,30 +2493,37 @@ msgstr ""
 "HRDlog: Não foram encontrados perfis de estação com credenciais do HRDlog."
 
 #: application/models/Logbook_model.php:4263
+#: application/models/Logbook_model.php:4264
 msgid "QSO could not be matched"
 msgstr "Não há correspondência de contactos"
 
 #: application/models/Logbook_model.php:4269
+#: application/models/Logbook_model.php:4270
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confirmado por LoTW/Clublog/eQSL/Contest"
 
 #: application/models/Logbook_model.php:4274
+#: application/models/Logbook_model.php:4275
 msgid "confirmed by award manager"
 msgstr "confirmado pelo gestor do diploma"
 
 #: application/models/Logbook_model.php:4277
+#: application/models/Logbook_model.php:4278
 msgid "confirmed by cross-check of DCL data"
 msgstr "confirmado pelo controlo cruzado dos dados da DCL"
 
 #: application/models/Logbook_model.php:4280
+#: application/models/Logbook_model.php:4281
 msgid "confirmation pending"
 msgstr "confirmação pendente"
 
 #: application/models/Logbook_model.php:4283
+#: application/models/Logbook_model.php:4284
 msgid "unconfirmed"
 msgstr "não confirmado"
 
 #: application/models/Logbook_model.php:4286
+#: application/models/Logbook_model.php:4287
 msgid "unknown"
 msgstr "desconhecido"
 

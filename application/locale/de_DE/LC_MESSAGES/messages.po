@@ -22,8 +22,8 @@ msgstr ""
 "POT-Creation-Date: 2024-09-12 10:39+0000\n"
 "PO-Revision-Date: 2024-09-12 14:57+0000\n"
 "Last-Translator: Reiner Herrmann <reiner@reiner-h.de>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/de/>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,6 +122,10 @@ msgstr ""
 #: application/controllers/User.php:762 application/controllers/User.php:1045
 #: application/controllers/User.php:1247
 #: application/controllers/User_options.php:9
+#: application/controllers/Lotw.php:44 application/controllers/Lotw.php:76
+#: application/controllers/Lotw.php:103 application/controllers/Lotw.php:378
+#: application/controllers/Lotw.php:401 application/controllers/Lotw.php:826
+#: application/controllers/Lotw.php:834
 msgid "You're not allowed to do that!"
 msgstr "Das ist dir nicht gestattet!"
 
@@ -556,7 +560,7 @@ msgstr "CFD-Export"
 #: application/controllers/Clublog.php:15 application/controllers/Cron.php:12
 #: application/controllers/Eqsl.php:13 application/controllers/Hrdlog.php:19
 #: application/controllers/Lotw.php:28 application/controllers/Qrz.php:14
-#: application/controllers/Update.php:16
+#: application/controllers/Update.php:16 application/controllers/Lotw.php:27
 msgid "Maintenance Mode is active. Try again later."
 msgstr "Wartungmodus aktiv. Bitte später erneut versuchen."
 
@@ -1485,22 +1489,24 @@ msgstr "Schnellsuche"
 #: application/views/lotw_views/index.php:12
 #: application/views/lotw_views/upload_cert.php:3
 #: application/views/user/edit.php:705 application/views/visitor/index.php:324
+#: application/controllers/Lotw.php:53 application/controllers/Lotw.php:82
+#: application/controllers/Lotw.php:124
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
-#: application/controllers/Lotw.php:152
+#: application/controllers/Lotw.php:152 application/controllers/Lotw.php:151
 msgid "Certificate Imported."
 msgstr "Zertifikat importiert."
 
-#: application/controllers/Lotw.php:159
+#: application/controllers/Lotw.php:159 application/controllers/Lotw.php:158
 msgid "Certificate Updated."
 msgstr "Zertifikat aktualisiert."
 
-#: application/controllers/Lotw.php:385
+#: application/controllers/Lotw.php:385 application/controllers/Lotw.php:384
 msgid "Certificate Deleted."
 msgstr "Zertifikat gelöscht."
 
-#: application/controllers/Lotw.php:414
+#: application/controllers/Lotw.php:414 application/controllers/Lotw.php:413
 #, php-format
 msgid ""
 "Found no certificate in file %s. If the filename contains 'key-only' this is "
@@ -1510,31 +1516,33 @@ msgstr ""
 "enthält, handelt es sich normalerweise um eine Zertifikatsanforderung, die "
 "von LoTW noch nicht bearbeitet wurde."
 
-#: application/controllers/Lotw.php:620
+#: application/controllers/Lotw.php:620 application/controllers/Lotw.php:617
 msgid "LoTW ADIF Information"
 msgstr "LoTW ADIF Information"
 
-#: application/controllers/Lotw.php:728
+#: application/controllers/Lotw.php:728 application/controllers/Lotw.php:729
 msgid "LoTW ADIF Import"
 msgstr "LoTW ADIF-Import"
 
 #: application/controllers/Lotw.php:755 application/controllers/Lotw.php:873
+#: application/controllers/Lotw.php:756 application/controllers/Lotw.php:869
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "Du hast deine ARRL LoTW Zugangsdaten nicht definiert!"
 
-#: application/controllers/Lotw.php:840
+#: application/controllers/Lotw.php:840 application/controllers/Lotw.php:836
 msgid "LoTW .TQ8 Upload"
 msgstr "LoTW .TQ8-Upload"
 
-#: application/controllers/Lotw.php:918
+#: application/controllers/Lotw.php:918 application/controllers/Lotw.php:914
 msgid "Your ARRL username and/or password is incorrect."
 msgstr "Dein ARRL-Benutzername und/oder Passwort ist falsch."
 
 #: application/controllers/Lotw.php:937 application/controllers/Lotw.php:942
+#: application/controllers/Lotw.php:933 application/controllers/Lotw.php:938
 msgid "LoTW .TQ8 Sent"
 msgstr "LoTW .TQ8 gesendet"
 
-#: application/controllers/Lotw.php:949
+#: application/controllers/Lotw.php:949 application/controllers/Lotw.php:945
 msgid "LoTW .TQ8 Not Sent"
 msgstr "LoTW .TQ8 nicht gesendet"
 
@@ -2492,30 +2500,37 @@ msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: Keine Stationsstandorte mit HRDlog Zugangsdaten gefunden."
 
 #: application/models/Logbook_model.php:4263
+#: application/models/Logbook_model.php:4264
 msgid "QSO could not be matched"
 msgstr "QSO konnte nicht gefunden werden"
 
 #: application/models/Logbook_model.php:4269
+#: application/models/Logbook_model.php:4270
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bestätigt durch LoTW/Clublog/eQSL/Contest"
 
 #: application/models/Logbook_model.php:4274
+#: application/models/Logbook_model.php:4275
 msgid "confirmed by award manager"
 msgstr "bestätigt durch Diplommananger"
 
 #: application/models/Logbook_model.php:4277
+#: application/models/Logbook_model.php:4278
 msgid "confirmed by cross-check of DCL data"
 msgstr "bestätigt durch Cross-Check von DCL-Daten"
 
 #: application/models/Logbook_model.php:4280
+#: application/models/Logbook_model.php:4281
 msgid "confirmation pending"
 msgstr "Bestätigung ausstehend"
 
 #: application/models/Logbook_model.php:4283
+#: application/models/Logbook_model.php:4284
 msgid "unconfirmed"
 msgstr "nicht bestätigt"
 
 #: application/models/Logbook_model.php:4286
+#: application/models/Logbook_model.php:4287
 msgid "unknown"
 msgstr "unbekannt"
 
@@ -11091,9 +11106,9 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Erstelle einen neuen Ordner in 'assets/css/' und lade eine "
-"'bootstrap.min.css' Datei hoch, welche die grundlegende Styling-Regeln "
-"enthält. Wir verwenden die Themes von %s"
+"Erstelle einen neuen Ordner in 'assets/css/' und lade eine 'bootstrap.min."
+"css' Datei hoch, welche die grundlegende Styling-Regeln enthält. Wir "
+"verwenden die Themes von %s"
 
 #: application/views/themes/index.php:50
 msgid "2. Step"

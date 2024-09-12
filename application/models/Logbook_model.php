@@ -3369,7 +3369,7 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 	    }
     }
 
-    function lotw_update($datetime, $callsign, $band, $qsl_date, $qsl_status, $state, $qsl_gridsquare, $qsl_vucc_grids, $iota, $cnty, $cqz, $ituz, $station_callsign, $qsoid) {
+    function lotw_update($datetime, $callsign, $band, $qsl_date, $qsl_status, $state, $qsl_gridsquare, $qsl_vucc_grids, $iota, $cnty, $cqz, $ituz, $station_callsign, $qsoid, $station_ids) {
 
 	    $data = array(
 		    'COL_LOTW_QSLRDATE' => $qsl_date,
@@ -3396,7 +3396,7 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 	    }
 
 	    // Check if QRZ or ClubLog is already uploaded. If so, set qso to reupload to qrz.com (M) or clublog
-	    $qsql = "select COL_CLUBLOG_QSO_UPLOAD_STATUS as CL_STATE, COL_QRZCOM_QSO_UPLOAD_STATUS as QRZ_STATE from ".$this->config->item('table_name')." where COL_BAND=? and COL_CALL=? and COL_STATION_CALLSIGN=? and date_format(COL_TIME_ON, '%Y-%m-%d %H:%i') = ? and COL_PRIMARY_KEY = ?";
+	    $qsql = "select COL_CLUBLOG_QSO_UPLOAD_STATUS as CL_STATE, COL_QRZCOM_QSO_UPLOAD_STATUS as QRZ_STATE from ".$this->config->item('table_name')." where COL_BAND=? and COL_CALL=? and COL_STATION_CALLSIGN=? and date_format(COL_TIME_ON, '%Y-%m-%d %H:%i') = ? and COL_PRIMARY_KEY = ? and station_id in (".$station_ids.')';
 	    $query = $this->db->query($qsql, array($band, $callsign,$station_callsign,$datetime,$qsoid));
 	    $row = $query->row();
 	    if (($row->QRZ_STATE ?? '') == 'Y') {
@@ -3415,7 +3415,7 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 	    $this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i\') = ',$datetime);
 	    $this->db->where('COL_STATION_CALLSIGN', $station_callsign);
 	    $this->db->where('COL_PRIMARY_KEY', $qsoid);
-
+	    $this->db->where('station_id in ('.$station_ids.')');
 
 	    $this->db->update($this->config->item('table_name'), $data);
 	    unset($data);
@@ -3430,6 +3430,7 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 		    $this->db->where('COL_BAND', $band);
 		    $this->db->where('COL_PRIMARY_KEY', $qsoid);
 		    $this->db->join('station_profile', $this->config->item('table_name').'.station_id = station_profile.station_id', 'left outer');
+		    $this->db->where('station_profile.station_id in ('.$station_ids.')');
 		    $this->db->limit(1);
 		    $query = $this->db->get($this->config->item('table_name'));
 		    $row = $query->row();
