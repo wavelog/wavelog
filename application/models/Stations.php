@@ -43,6 +43,7 @@ class Stations extends CI_Model {
 		$this->db->select('station_profile.station_id');
 		$this->db->where('user_id', $userid);
 		$query=$this->db->get('station_profile');
+		$a_station_ids = array();
 		if ($query->num_rows() > 0){
 			foreach ($query->result() as $row) {
 				array_push($a_station_ids, $row->station_id);
