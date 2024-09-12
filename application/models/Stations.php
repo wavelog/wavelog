@@ -461,35 +461,38 @@ class Stations extends CI_Model {
     }
 
     function stations_with_qrz_api_key() {
-       $sql = "SELECT station_profile.station_id, station_profile.station_profile_name, station_profile.station_callsign, modc.modcount, notc.notcount, totc.totcount
-                FROM station_profile
-                LEFT OUTER JOIN (
-                            SELECT count(*) modcount, station_id
-                    FROM ". $this->config->item('table_name') .
-                    " WHERE COL_QRZCOM_QSO_UPLOAD_STATUS = 'M'
-                    group by station_id
-                ) as modc on station_profile.station_id = modc.station_id
-                LEFT OUTER JOIN (
-                            SELECT count(*) notcount, station_id
-                    FROM " . $this->config->item('table_name') .
-                    " WHERE (coalesce(COL_QRZCOM_QSO_UPLOAD_STATUS, '') = ''
-                    or COL_QRZCOM_QSO_UPLOAD_STATUS = 'N')
-                    group by station_id
-                ) as notc on station_profile.station_id = notc.station_id
-                LEFT OUTER JOIN (
-                    SELECT count(*) totcount, station_id
-                    FROM " . $this->config->item('table_name') .
-                    " WHERE COL_QRZCOM_QSO_UPLOAD_STATUS = 'Y'
-                    group by station_id
-                ) as totc on station_profile.station_id = totc.station_id
-                WHERE coalesce(station_profile.qrzapikey, '') <> ''
-				 AND station_profile.user_id = " . $this->session->userdata('user_id');
-        $query = $this->db->query($sql);
+	    $bindings=[];
+	    $sql = "SELECT station_profile.station_id, station_profile.station_profile_name, station_profile.station_callsign, modc.modcount, notc.notcount, totc.totcount
+		    FROM station_profile
+		    LEFT OUTER JOIN (
+			    SELECT count(*) modcount, station_id
+			    FROM ". $this->config->item('table_name') .
+			    " WHERE COL_QRZCOM_QSO_UPLOAD_STATUS = 'M'
+			    group by station_id
+		) as modc on station_profile.station_id = modc.station_id
+		LEFT OUTER JOIN (
+			SELECT count(*) notcount, station_id
+			FROM " . $this->config->item('table_name') .
+			" WHERE (coalesce(COL_QRZCOM_QSO_UPLOAD_STATUS, '') = ''
+			or COL_QRZCOM_QSO_UPLOAD_STATUS = 'N')
+			group by station_id
+		) as notc on station_profile.station_id = notc.station_id
+		LEFT OUTER JOIN (
+			SELECT count(*) totcount, station_id
+			FROM " . $this->config->item('table_name') .
+			" WHERE COL_QRZCOM_QSO_UPLOAD_STATUS = 'Y'
+			group by station_id
+		) as totc on station_profile.station_id = totc.station_id
+		WHERE coalesce(station_profile.qrzapikey, '') <> ''
+		AND station_profile.user_id = ?";
+	    $bindings[]=$this->session->userdata('user_id');
+	    $query = $this->db->query($sql, $bindings);
 
-        return $query;
+	    return $query;
     }
 
 	function stations_with_webadif_api_key() {
+		$bindings=[];
 		$sql="
 			SELECT station_profile.station_id, station_profile.station_profile_name, station_profile.station_callsign, notc.c notcount, totc.c totcount
 			FROM station_profile
@@ -508,15 +511,15 @@ class Stations extends CI_Model {
 			) totc ON station_profile.station_id = totc.station_id
 			WHERE COALESCE(station_profile.webadifapikey, '') <> ''
 			AND COALESCE(station_profile.webadifapiurl, '') <> ''
-			AND station_profile.user_id = %d
+			AND station_profile.user_id = ?
 		";
+		$bindings[]=$this->session->userdata('user_id');
 		$sql=sprintf(
 			$sql,
 			$this->config->item('table_name'),
-			$this->config->item('table_name'),
-			$this->session->userdata('user_id')
+			$this->config->item('table_name')
 		);
-		return $this->db->query($sql);
+		return $this->db->query($sql,$bindings);
 	}
 
     /*
