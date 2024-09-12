@@ -855,6 +855,7 @@ $(document).ready(function () {
 				callback: function (result) {
 				}
 			});
+			return;
 		}
 
 		elements.each(function() {
