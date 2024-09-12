@@ -4485,6 +4485,7 @@ function lotw_last_qsl_date($user_id) {
 						    $row['adif'] = 0;
 						    $row['cont'] = '';
 						    $row['entity'] = '- NONE -';
+						    $row['ituz'] = 0;
 						    $row['cqz'] = 0;
 						    $row['long'] = '0';
 						    $row['lat'] = '0';
@@ -4500,12 +4501,13 @@ function lotw_last_qsl_date($user_id) {
 		    $dxcc_array=[];
 
 		    // Fetch all candidates in one shot instead of looping
-		    $dxcc_result=$this->db->query("SELECT *
+		    $dxcc_result=$this->db->query("SELECT `dxcc_prefixes`.`record`, `dxcc_prefixes`.`call`, `dxcc_prefixes`.`entity`, `dxcc_prefixes`.`adif`, `dxcc_prefixes`.`cqz`, `dxcc_entities`.`ituz`, `dxcc_prefixes`.`cont`, `dxcc_prefixes`.`long`, `dxcc_prefixes`.`lat`, `dxcc_prefixes`.`start`, `dxcc_prefixes`.`end`
 			    FROM `dxcc_prefixes`
+			    LEFT JOIN `dxcc_entities` ON `dxcc_entities`.`adif` = `dxcc_prefixes`.`adif`
 			    WHERE ? like concat(`call`,'%')
-			    and `call` like ?
-			    AND (`start` <= ?  OR start is null)
-			    AND (`end` >= ?  OR end is null) order by length(`call`) desc limit 1",array($call,substr($call,0,1).'%',$date,$date));
+			    and `dxcc_prefixes`.`call` like ?
+			    AND (`dxcc_prefixes`.`start` <= ?  OR `dxcc_prefixes`.`start` is null)
+			    AND (`dxcc_prefixes`.`end` >= ?  OR `dxcc_prefixes`.`end` is null) order by length(`call`) desc limit 1",array($call,substr($call,0,1).'%',$date,$date));
 
 		    foreach($dxcc_result->result_array() as $row){
 			    $dxcc_array[$row['call']]=$row;
@@ -4525,6 +4527,7 @@ function lotw_last_qsl_date($user_id) {
 	    return array(
 			'adif' => 0,
 			'cqz' => 0,
+			'ituz' => 0,
 			'long' => '',
 			'lat' => '',
 			'entity' => 'None',
