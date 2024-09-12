@@ -151,7 +151,7 @@ class QSO extends CI_Controller {
 			$actstation=$this->stations->find_active() ?? '';
 			$returner['activeStationId'] = $actstation;
 			$profile_info = $this->stations->profile($actstation)->row();
-			$returner['activeStationTXPower'] = xss_clean($profile_info->station_power);
+			$returner['activeStationTXPower'] = xss_clean($profile_info->station_power ?? '');
 			$returner['activeStationOP'] = xss_clean($this->session->userdata('operator_callsign'));
 			$returner['message']='success';
 
