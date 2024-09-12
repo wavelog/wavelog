@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-09-12 10:39+0000\n"
+"POT-Creation-Date: 2024-09-12 14:57+0000\n"
 "PO-Revision-Date: 2024-08-30 05:57+0000\n"
 "Last-Translator: F4JSU <f4jsu.radio@gmail.com>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
@@ -59,11 +59,11 @@ msgstr ""
 #: application/controllers/Kmlexport.php:33
 #: application/controllers/Labels.php:26
 #: application/controllers/Logbookadvanced.php:16
-#: application/controllers/Lookup.php:17 application/controllers/Lotw.php:45
-#: application/controllers/Lotw.php:77 application/controllers/Lotw.php:104
-#: application/controllers/Lotw.php:379 application/controllers/Lotw.php:402
-#: application/controllers/Lotw.php:722 application/controllers/Lotw.php:830
-#: application/controllers/Lotw.php:838 application/controllers/Mode.php:15
+#: application/controllers/Lookup.php:17 application/controllers/Lotw.php:44
+#: application/controllers/Lotw.php:76 application/controllers/Lotw.php:103
+#: application/controllers/Lotw.php:378 application/controllers/Lotw.php:401
+#: application/controllers/Lotw.php:722 application/controllers/Lotw.php:826
+#: application/controllers/Lotw.php:834 application/controllers/Mode.php:15
 #: application/controllers/Notes.php:10 application/controllers/Options.php:15
 #: application/controllers/Oqrs.php:15 application/controllers/Qrbcalc.php:13
 #: application/controllers/Qrz.php:253 application/controllers/Qsl.php:12
@@ -546,7 +546,7 @@ msgstr "Exporter en CFD"
 
 #: application/controllers/Clublog.php:15 application/controllers/Cron.php:12
 #: application/controllers/Eqsl.php:13 application/controllers/Hrdlog.php:19
-#: application/controllers/Lotw.php:28 application/controllers/Qrz.php:14
+#: application/controllers/Lotw.php:27 application/controllers/Qrz.php:14
 #: application/controllers/Update.php:16
 msgid "Maintenance Mode is active. Try again later."
 msgstr "Le mode Maintenance est actif. Réessayer plus tard."
@@ -1473,8 +1473,8 @@ msgstr "Journal avancé"
 msgid "Quick Lookup"
 msgstr "Recherche rapide"
 
-#: application/controllers/Lotw.php:54 application/controllers/Lotw.php:83
-#: application/controllers/Lotw.php:125 application/views/adif/import.php:27
+#: application/controllers/Lotw.php:53 application/controllers/Lotw.php:82
+#: application/controllers/Lotw.php:124 application/views/adif/import.php:27
 #: application/views/interface_assets/header.php:429
 #: application/views/lotw/import.php:3
 #: application/views/lotw_views/index.php:12
@@ -1483,19 +1483,19 @@ msgstr "Recherche rapide"
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
-#: application/controllers/Lotw.php:152
+#: application/controllers/Lotw.php:151
 msgid "Certificate Imported."
 msgstr "Certificat importé."
 
-#: application/controllers/Lotw.php:159
+#: application/controllers/Lotw.php:158
 msgid "Certificate Updated."
 msgstr "Certificat mis à jour."
 
-#: application/controllers/Lotw.php:385
+#: application/controllers/Lotw.php:384
 msgid "Certificate Deleted."
 msgstr "Certificat supprimé."
 
-#: application/controllers/Lotw.php:414
+#: application/controllers/Lotw.php:413
 #, php-format
 msgid ""
 "Found no certificate in file %s. If the filename contains 'key-only' this is "
@@ -1505,31 +1505,31 @@ msgstr ""
 "'key-only', il s'agit généralement d'une demande de certificat qui n'a pas "
 "encore été traitée par LoTW."
 
-#: application/controllers/Lotw.php:620
+#: application/controllers/Lotw.php:617
 msgid "LoTW ADIF Information"
 msgstr "Information ADIF LoTW"
 
-#: application/controllers/Lotw.php:728
+#: application/controllers/Lotw.php:729
 msgid "LoTW ADIF Import"
 msgstr "Importation ADIF LoTW"
 
-#: application/controllers/Lotw.php:755 application/controllers/Lotw.php:873
+#: application/controllers/Lotw.php:756 application/controllers/Lotw.php:869
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "Vous n'avez pas défini vos identifiants ARRL LoTW !"
 
-#: application/controllers/Lotw.php:840
+#: application/controllers/Lotw.php:836
 msgid "LoTW .TQ8 Upload"
 msgstr "Télécharger .TQ8 LoTW"
 
-#: application/controllers/Lotw.php:918
+#: application/controllers/Lotw.php:914
 msgid "Your ARRL username and/or password is incorrect."
 msgstr "Votre nom d'utilisateur et/ou mot de passe ARRL est incorrect."
 
-#: application/controllers/Lotw.php:937 application/controllers/Lotw.php:942
+#: application/controllers/Lotw.php:933 application/controllers/Lotw.php:938
 msgid "LoTW .TQ8 Sent"
 msgstr ".TQ8 LoTW Envoyé"
 
-#: application/controllers/Lotw.php:949
+#: application/controllers/Lotw.php:945
 msgid "LoTW .TQ8 Not Sent"
 msgstr ".TQ8 LoTW Pas Envoyé"
 
@@ -2486,31 +2486,31 @@ msgstr ""
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog : Aucun profil de station avec les identifiants HRDlog trouvé."
 
-#: application/models/Logbook_model.php:4263
+#: application/models/Logbook_model.php:4264
 msgid "QSO could not be matched"
 msgstr "pas de correspondance pour le QSO"
 
-#: application/models/Logbook_model.php:4269
+#: application/models/Logbook_model.php:4270
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confirmé par LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:4274
+#: application/models/Logbook_model.php:4275
 msgid "confirmed by award manager"
 msgstr "confirmé par le manager de l'Award"
 
-#: application/models/Logbook_model.php:4277
+#: application/models/Logbook_model.php:4278
 msgid "confirmed by cross-check of DCL data"
 msgstr "confirmé par recoupement des données DCL"
 
-#: application/models/Logbook_model.php:4280
+#: application/models/Logbook_model.php:4281
 msgid "confirmation pending"
 msgstr "confirmation en attente"
 
-#: application/models/Logbook_model.php:4283
+#: application/models/Logbook_model.php:4284
 msgid "unconfirmed"
 msgstr "non confirmé"
 
-#: application/models/Logbook_model.php:4286
+#: application/models/Logbook_model.php:4287
 msgid "unknown"
 msgstr "inconnu"
 
