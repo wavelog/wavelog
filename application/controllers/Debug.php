@@ -27,6 +27,8 @@ class Debug extends CI_Controller
 		$footerData = [];
 		$footerData['scripts'] = ['assets/js/sections/debug.js'];
 
+		$data['running_version'] = $this->optionslib->get_option('version');
+		$data['latest_release'] = $this->optionslib->get_option('latest_release');
 
 		$data['newer_version_available'] = false;
 		if ($this->config->item('version_check')) {
@@ -35,8 +37,6 @@ class Debug extends CI_Controller
 				$data['newer_version_available'] = true;
 			}
 		}
-		$data['running_version'] = $this->optionslib->get_option('version');
-		$data['latest_release'] = $this->optionslib->get_option('latest_release');
 
 		$data['stations'] = $this->Stations->all();
 
