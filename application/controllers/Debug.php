@@ -27,16 +27,16 @@ class Debug extends CI_Controller
 		$footerData = [];
 		$footerData['scripts'] = ['assets/js/sections/debug.js'];
 
-		$this->Update_model->update_check(true);
 
-		$data['running_version'] = $this->optionslib->get_option('version');
-		$data['latest_release'] = $this->optionslib->get_option('latest_release');
 		$data['newer_version_available'] = false;
 		if ($this->config->item('version_check')) {
+			$this->Update_model->update_check(true);
 			if ($data['latest_release'] && version_compare($data['latest_release'], $data['running_version'], '>')) {
 				$data['newer_version_available'] = true;
 			}
 		}
+		$data['running_version'] = $this->optionslib->get_option('version');
+		$data['latest_release'] = $this->optionslib->get_option('latest_release');
 
 		$data['stations'] = $this->Stations->all();
 
