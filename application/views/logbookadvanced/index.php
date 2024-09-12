@@ -15,6 +15,8 @@
     var lang_gen_hamradio_cq_zones = '<?= _pgettext("Map Options", "CQ Zones"); ?>';
     var lang_gen_hamradio_itu_zones = '<?= _pgettext("Map Options", "ITU Zones"); ?>';
     var lang_gen_hamradio_nightshadow = '<?= _pgettext("Map Options", "Night Shadow"); ?>';
+	var lang_gen_hamradio_ituzone = '<?= __("ITU Zone"); ?>';
+	var lang_gen_hamradio_cqzone = '<?= __("CQ Zone"); ?>';
     <?php
     echo "var homegrid ='" . strtoupper($homegrid[0]) . "';";
     if (!isset($options)) {
