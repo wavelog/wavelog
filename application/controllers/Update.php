@@ -428,15 +428,8 @@ class Update extends CI_Controller {
 	}
 
 	function wavelog_update_check() {
-		if ($this->config->item('version_check')) {
-			$this->load->model('Update_model');
-			$running_version = $this->optionslib->get_option('version');
-			$latest_release = $this->Update_model->wavelog_latest_release();
-			if (version_compare($latest_release, $running_version, '>')) {
-				print __("Newer release available:")." ".$latest_release;
-				$this->Update_model->set_latest_release($latest_release);
-			}
-		}
+		$this->load->model('Update_model');
+		$this->Update_model->update_check();
 	}
 }
 ?>
