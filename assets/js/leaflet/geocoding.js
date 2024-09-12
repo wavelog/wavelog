@@ -92,7 +92,70 @@ function onMapMove(event) {
 
 	$('#bearing').html(distance.deg + '°');
 	$('#distance').html(Math.round(distance.distance * 10) / 10 + ' ' +unit);
+
+	if (typeof zonestuff !== 'undefined' && zonestuff) {
+		const cqZone = findCQZone(event.latlng);
+		$('#cqzonedisplay').html(cqZone);
+	}
+
+	if (typeof ituzonestuff !== 'undefined' && ituzonestuff) {
+		const ituZone = findITUZone(event.latlng);
+		$('#ituzonedisplay').html(ituZone);
+	}
 };
+
+function findCQZone(latlng) {
+	let cqZone = null;
+	zonestuff.features.forEach(feature => {
+        try {
+            if (isMarkerInsidePolygon(latlng, feature)) {
+				cqZone = feature.properties.cq_zone_number;
+			}
+        } catch (error) {
+            console.error(error);
+        }
+    });
+
+    return cqZone;
+}
+
+function findITUZone(latlng) {
+	if (85 < parseFloat(latlng.lat).toFixed(6))
+		return "75";
+	if (-85 > parseFloat(latlng.lat).toFixed(6))
+		return "74";
+	let ituZone = null;
+	ituzonestuff.features.forEach(feature => {
+        try {
+            if (isMarkerInsidePolygon(latlng, feature)) {
+				ituZone = feature.properties.itu_zone_number;
+			}
+        } catch (error) {
+            console.error(error);
+        }
+    });
+
+    return ituZone;
+}
+
+function isMarkerInsidePolygon(marker, poly) {
+    const x = marker.lng; // Longitude
+    const y = marker.lat; // Latitude
+
+    const polyPoints = poly.geometry.coordinates[0];
+    let inside = false;
+
+    for (let i = 0, j = polyPoints.length - 1; i < polyPoints.length; j = i++) {
+        const xi = polyPoints[i][0], yi = polyPoints[i][1];
+        const xj = polyPoints[j][0], yj = polyPoints[j][1];
+
+        const intersect = ((yi > y) !== (yj > y)) &&
+                          (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+        if (intersect) inside = !inside;
+    }
+
+    return inside;
+}
 
 function onMapClick(event) {
 	var LatLng = event.latlng;
