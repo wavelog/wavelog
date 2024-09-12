@@ -393,8 +393,9 @@
                             <!-- Notes Panel Contents -->
                             <div class="tab-pane fade" id="nav-qso-notes" role="tabpanel" aria-labelledby="nav-qso-notes-tab">
                                 <div class="mb-3">
-                                    <label for="notes"><?= __("Notes (for internal usage only)"); ?></label>
+                                    <label for="notes"><?= __("Notes"); ?></label>
                                     <textarea  type="text" class="form-control" id="notes" name="notes" rows="10"><?php echo $qso->COL_NOTES; ?></textarea>
+                                    <div class="small form-text text-muted"><?= __("Note: Gets exported to third-party services.") ?></div>
                                 </div>
                             </div>
 
@@ -500,14 +501,10 @@
                                         </div>
                                         <div class="mb-3 row">
                                             <div>
-                                                <div class="alert alert-info" role="alert">
-                                                    <span class="badge text-bg-info"><?= __("Info"); ?></span> <?= __("This note content is exported to QSL services like eqsl.cc."); ?>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <label for="qslmsg"><?= __("Notes"); ?><span class="qso_eqsl_qslmsg_update" title="<?= __("Get the default message for eQSL, for this station."); ?>"><i class="fas fa-redo-alt"></i></span></label>
+                                                <label for="qslmsg"><?= __("QSL MSG"); ?><span class="qso_eqsl_qslmsg_update" title="<?= __("Get the default message for eQSL, for this station."); ?>"><i class="fas fa-redo-alt"></i></span></label>
                                                 <label class="position-absolute end-0 mb-2 me-3" for="qslmsg" id="charsLeft"> </label>
                                                 <textarea  type="text" class="form-control" id="qslmsg" name="qslmsg" rows="5" maxlength="240"><?php echo $qso->COL_QSLMSG; ?></textarea>
+                                                <div class="small form-text text-muted"><?= __("Note: Gets exported to third-party services.") ?></div>
                                                 <div id="qslmsg_hide" style="display:none;"><?php echo $qso->COL_QSLMSG; ?></div>
                                             </div>
                                         </div>

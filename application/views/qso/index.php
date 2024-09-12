@@ -557,12 +557,10 @@
 
           <!-- Notes Panel Contents -->
           <div class="tab-pane fade" id="nav-notes" role="tabpanel" aria-labelledby="notes-tab">
-            <div class="alert alert-info" role="alert">
-              <span class="badge text-bg-primary"><?= __("Info"); ?></span> <?= __("Note content is used within Wavelog only and is not exported to other services."); ?>
-            </div>
            <div class="mb-3">
               <label for="notes"><?= __("Notes"); ?></label>
               <textarea  type="text" class="form-control" id="notes" name="notes" rows="10"></textarea>
+              <div class="small form-text text-muted"><?= __("Note: Gets exported to third-party services.") ?></div>
             </div>
           </div>
 
@@ -602,13 +600,11 @@
               </div>
             </div>
 
-            <div class="alert alert-info" role="alert">
-              <span class="badge text-bg-primary"><?= __("Info"); ?></span> <?= __("This note content is exported to QSL services like eqsl.cc."); ?>
-            </div>
            <div class="mb-3">
-            <label for="qslmsg"><?= __("Notes"); ?><span class="qso_eqsl_qslmsg_update" title="<?= __("Get the default message for eQSL, for this station."); ?>"><i class="fas fa-redo-alt"></i></span></label>
+            <label for="qslmsg"><?= __("QSL MSG"); ?><span class="qso_eqsl_qslmsg_update" title="<?= __("Get the default message for eQSL, for this station."); ?>"><i class="fas fa-redo-alt"></i></span></label>
 						<label class="position-absolute end-0 mb-2 me-3" for="qslmsg" id="charsLeft"> </label>
             <textarea  type="text" class="form-control" id="qslmsg" name="qslmsg" rows="5" maxlength="240"><?php echo $qslmsg; ?></textarea>
+            <div class="small form-text text-muted"><?= __("Note: Gets exported to third-party services.") ?></div>
             <div id="qslmsg_hide" style="display:none;"><?php echo $qslmsg; ?></div>
             </div>
           </div>
