@@ -31,10 +31,11 @@ class Debug extends CI_Controller
 
 		$data['running_version'] = $this->optionslib->get_option('version');
 		$data['latest_release'] = $this->optionslib->get_option('latest_release');
-		if ($data['latest_release'] && version_compare($data['latest_release'], $data['running_version'], '>')) {
-			$data['newer_version_available'] = true;
-		} else {
-			$data['newer_version_available'] = false;
+		$data['newer_version_available'] = false;
+		if ($this->config->item('version_check')) {
+			if ($data['latest_release'] && version_compare($data['latest_release'], $data['running_version'], '>')) {
+				$data['newer_version_available'] = true;
+			}
 		}
 
 		$data['stations'] = $this->Stations->all();
