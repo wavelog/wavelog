@@ -707,4 +707,4 @@ $config['cron_allow_insecure'] = false;
 | Default on.
  */
 
-$config['version_check'] = false;
+$config['version_check'] = true;
