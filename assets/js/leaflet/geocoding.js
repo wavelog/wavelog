@@ -95,6 +95,9 @@ function onMapMove(event) {
 };
 
 function onMapClick(event) {
+	if ($('.modal-dialog')[0]) {
+		return;
+	}
 	var LatLng = event.latlng;
 	var lat = LatLng.lat;
 	var lng = LatLng.lng;
