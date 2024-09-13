@@ -131,7 +131,7 @@ class Qrz extends CI_Controller {
 					$this->markqso($qso->COL_PRIMARY_KEY);
 					$i++;
 					$result['status'] = 'OK';
-				} elseif ( ($result['status']=='error') && ($result['message']  == 'STATUS=FAIL&RESULT=FAIL&REASON=QRZ Internal Error: Unable to add QSO to database.&EXTENDED=add_qso: outside date range') ) {
+				} elseif ( ($result['status']=='error') && (str_contains($result['message'],'add_qso: outside date range')) ) {
 					log_message('error', 'QRZ upload failed for qso for Station_ID '.$station_id.' //  Call: ' . $qso->COL_CALL . ' Band: ' . $qso->COL_BAND . ' Mode: ' . $qso->COL_MODE . ' Time: ' . $qso->COL_TIME_ON . ' // Message: '.$result['message']);
 					$this->markqso($qso->COL_PRIMARY_KEY,'I');
 					$result['status'] = 'Error';
