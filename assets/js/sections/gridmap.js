@@ -200,7 +200,7 @@ function spawnGridsquareModal(loc_4char) {
 					}]
 				});
 			    dialog.realize();
-		    		$("#gridsquare_map").append(dialog.getModal());
+		    		$("body").append(dialog.getModal());
 		    		dialog.open();
 },
 			error: function(e) {
