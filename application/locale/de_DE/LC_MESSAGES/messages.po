@@ -15,14 +15,15 @@
 # "Francisco (F4VSE)" <kikosgc@users.noreply.github.com>, 2024.
 # "Stefan (DB4SCW)" <dev@db4scw.de>, 2024.
 # "Joerg (DJ7NT)" <joerg+kennungen.github@dorgeist.com>, 2024.
+# Reiner Herrmann <reiner@reiner-h.de>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-09-13 06:07+0000\n"
-"PO-Revision-Date: 2024-09-12 10:20+0000\n"
+"POT-Creation-Date: 2024-09-12 10:39+0000\n"
+"PO-Revision-Date: 2024-09-13 06:10+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/de/>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -67,11 +68,11 @@ msgstr ""
 #: application/controllers/Kmlexport.php:33
 #: application/controllers/Labels.php:26
 #: application/controllers/Logbookadvanced.php:16
-#: application/controllers/Lookup.php:17 application/controllers/Lotw.php:44
-#: application/controllers/Lotw.php:76 application/controllers/Lotw.php:103
-#: application/controllers/Lotw.php:378 application/controllers/Lotw.php:401
-#: application/controllers/Lotw.php:722 application/controllers/Lotw.php:826
-#: application/controllers/Lotw.php:834 application/controllers/Mode.php:15
+#: application/controllers/Lookup.php:17 application/controllers/Lotw.php:45
+#: application/controllers/Lotw.php:77 application/controllers/Lotw.php:104
+#: application/controllers/Lotw.php:379 application/controllers/Lotw.php:402
+#: application/controllers/Lotw.php:722 application/controllers/Lotw.php:830
+#: application/controllers/Lotw.php:838 application/controllers/Mode.php:15
 #: application/controllers/Notes.php:10 application/controllers/Options.php:15
 #: application/controllers/Oqrs.php:15 application/controllers/Qrbcalc.php:13
 #: application/controllers/Qrz.php:253 application/controllers/Qsl.php:12
@@ -121,6 +122,10 @@ msgstr ""
 #: application/controllers/User.php:762 application/controllers/User.php:1045
 #: application/controllers/User.php:1247
 #: application/controllers/User_options.php:9
+#: application/controllers/Lotw.php:44 application/controllers/Lotw.php:76
+#: application/controllers/Lotw.php:103 application/controllers/Lotw.php:378
+#: application/controllers/Lotw.php:401 application/controllers/Lotw.php:826
+#: application/controllers/Lotw.php:834
 msgid "You're not allowed to do that!"
 msgstr "Das ist dir nicht gestattet!"
 
@@ -554,8 +559,8 @@ msgstr "CFD-Export"
 
 #: application/controllers/Clublog.php:15 application/controllers/Cron.php:12
 #: application/controllers/Eqsl.php:13 application/controllers/Hrdlog.php:19
-#: application/controllers/Lotw.php:27 application/controllers/Qrz.php:14
-#: application/controllers/Update.php:16
+#: application/controllers/Lotw.php:28 application/controllers/Qrz.php:14
+#: application/controllers/Update.php:16 application/controllers/Lotw.php:27
 msgid "Maintenance Mode is active. Try again later."
 msgstr "Wartungmodus aktiv. Bitte später erneut versuchen."
 
@@ -1477,29 +1482,31 @@ msgstr "Erweitertes Logbuch"
 msgid "Quick Lookup"
 msgstr "Schnellsuche"
 
-#: application/controllers/Lotw.php:53 application/controllers/Lotw.php:82
-#: application/controllers/Lotw.php:124 application/views/adif/import.php:27
+#: application/controllers/Lotw.php:54 application/controllers/Lotw.php:83
+#: application/controllers/Lotw.php:125 application/views/adif/import.php:27
 #: application/views/interface_assets/header.php:429
 #: application/views/lotw/import.php:3
 #: application/views/lotw_views/index.php:12
 #: application/views/lotw_views/upload_cert.php:3
 #: application/views/user/edit.php:705 application/views/visitor/index.php:324
+#: application/controllers/Lotw.php:53 application/controllers/Lotw.php:82
+#: application/controllers/Lotw.php:124
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
-#: application/controllers/Lotw.php:151
+#: application/controllers/Lotw.php:152 application/controllers/Lotw.php:151
 msgid "Certificate Imported."
 msgstr "Zertifikat importiert."
 
-#: application/controllers/Lotw.php:158
+#: application/controllers/Lotw.php:159 application/controllers/Lotw.php:158
 msgid "Certificate Updated."
 msgstr "Zertifikat aktualisiert."
 
-#: application/controllers/Lotw.php:384
+#: application/controllers/Lotw.php:385 application/controllers/Lotw.php:384
 msgid "Certificate Deleted."
 msgstr "Zertifikat gelöscht."
 
-#: application/controllers/Lotw.php:413
+#: application/controllers/Lotw.php:414 application/controllers/Lotw.php:413
 #, php-format
 msgid ""
 "Found no certificate in file %s. If the filename contains 'key-only' this is "
@@ -1509,31 +1516,33 @@ msgstr ""
 "enthält, handelt es sich normalerweise um eine Zertifikatsanforderung, die "
 "von LoTW noch nicht bearbeitet wurde."
 
-#: application/controllers/Lotw.php:617
+#: application/controllers/Lotw.php:620 application/controllers/Lotw.php:617
 msgid "LoTW ADIF Information"
 msgstr "LoTW ADIF Information"
 
-#: application/controllers/Lotw.php:729
+#: application/controllers/Lotw.php:728 application/controllers/Lotw.php:729
 msgid "LoTW ADIF Import"
 msgstr "LoTW ADIF-Import"
 
+#: application/controllers/Lotw.php:755 application/controllers/Lotw.php:873
 #: application/controllers/Lotw.php:756 application/controllers/Lotw.php:869
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "Du hast deine ARRL LoTW Zugangsdaten nicht definiert!"
 
-#: application/controllers/Lotw.php:836
+#: application/controllers/Lotw.php:840 application/controllers/Lotw.php:836
 msgid "LoTW .TQ8 Upload"
 msgstr "LoTW .TQ8-Upload"
 
-#: application/controllers/Lotw.php:914
+#: application/controllers/Lotw.php:918 application/controllers/Lotw.php:914
 msgid "Your ARRL username and/or password is incorrect."
 msgstr "Dein ARRL-Benutzername und/oder Passwort ist falsch."
 
+#: application/controllers/Lotw.php:937 application/controllers/Lotw.php:942
 #: application/controllers/Lotw.php:933 application/controllers/Lotw.php:938
 msgid "LoTW .TQ8 Sent"
 msgstr "LoTW .TQ8 gesendet"
 
-#: application/controllers/Lotw.php:945
+#: application/controllers/Lotw.php:949 application/controllers/Lotw.php:945
 msgid "LoTW .TQ8 Not Sent"
 msgstr "LoTW .TQ8 nicht gesendet"
 
@@ -2490,30 +2499,37 @@ msgstr "HRDlog: Keine QSOs gefunden zum hochladen für Stationsrufzeichen: "
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: Keine Stationsstandorte mit HRDlog Zugangsdaten gefunden."
 
+#: application/models/Logbook_model.php:4263
 #: application/models/Logbook_model.php:4264
 msgid "QSO could not be matched"
 msgstr "QSO konnte nicht gefunden werden"
 
+#: application/models/Logbook_model.php:4269
 #: application/models/Logbook_model.php:4270
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bestätigt durch LoTW/Clublog/eQSL/Contest"
 
+#: application/models/Logbook_model.php:4274
 #: application/models/Logbook_model.php:4275
 msgid "confirmed by award manager"
 msgstr "bestätigt durch Diplommananger"
 
+#: application/models/Logbook_model.php:4277
 #: application/models/Logbook_model.php:4278
 msgid "confirmed by cross-check of DCL data"
 msgstr "bestätigt durch Cross-Check von DCL-Daten"
 
+#: application/models/Logbook_model.php:4280
 #: application/models/Logbook_model.php:4281
 msgid "confirmation pending"
 msgstr "Bestätigung ausstehend"
 
+#: application/models/Logbook_model.php:4283
 #: application/models/Logbook_model.php:4284
 msgid "unconfirmed"
 msgstr "nicht bestätigt"
 
+#: application/models/Logbook_model.php:4286
 #: application/models/Logbook_model.php:4287
 msgid "unknown"
 msgstr "unbekannt"
@@ -3378,9 +3394,9 @@ msgstr ""
 "Informationen automatisch zu ermitteln."
 
 #: application/views/adif/import.php:153
-msgid ""
-"Always use the logged-in account callsign as the operator call during import"
+msgid "Always use login-callsign as operator-name on import"
 msgstr ""
+"Nutze während des Imports immer das eingeloggte Rufzeichen als Operator-Name"
 
 #: application/views/adif/import.php:162
 #: application/views/interface_assets/footer.php:32
@@ -3587,7 +3603,7 @@ msgstr "Bearbeite Beschreibung für API-Schlüssel"
 
 #: application/views/api/description.php:28
 msgid "Simple name to describe what you use this API for."
-msgstr "Einfacher Name, um zu beschreiben, wofür Sie diese API verwenden."
+msgstr "Einfacher Name, um zu beschreiben, wofür du diese API verwendest."
 
 #: application/views/api/description.php:33
 #: application/views/bands/create.php:49 application/views/bands/edit.php:31
@@ -5969,7 +5985,7 @@ msgid ""
 "do it."
 msgstr ""
 "Dein aktiver Stationsstandort ist nicht mit Deinem Logbuch verlinkt. Klicke "
-"%shier%s um das zu ändern."
+"%shier%s, um das zu ändern."
 
 #: application/views/dashboard/index.php:97
 #, php-format
@@ -5993,7 +6009,7 @@ msgstr ""
 
 #: application/views/dashboard/index.php:119
 msgid "Attention: you need to set an active station location."
-msgstr "Achtung: Sie müssen einen aktiven Stationsstandort festlegen."
+msgstr "Achtung: Du musst einen aktiven Stationsstandort festlegen."
 
 #: application/views/dashboard/index.php:125
 msgid ""
@@ -6005,11 +6021,11 @@ msgstr ""
 
 #: application/views/dashboard/index.php:133
 msgid "At least one of your LoTW certificates is expired!"
-msgstr "Mindestens eines Ihrer LoTW-Zertifikate ist abgelaufen!"
+msgstr "Mindestens eines deiner LoTW-Zertifikate ist abgelaufen!"
 
 #: application/views/dashboard/index.php:139
 msgid "At least one of your LoTW certificates is about to expire!"
-msgstr "Mindestens eines Ihrer LoTW-Zertifikate läuft demnächst ab!"
+msgstr "Mindestens eines deiner LoTW-Zertifikate läuft demnächst ab!"
 
 #: application/views/dashboard/index.php:229
 #: application/views/visitor/index.php:237
@@ -6181,8 +6197,8 @@ msgid ""
 "If you make a QSO today, you can continue to extend your streak... or else "
 "your current streak will be broken!"
 msgstr ""
-"Wenn Sie heute ein QSO machen, können Sie Ihre Serie verlängern... "
-"Andernfalls wird Ihre aktuelle Serie unterbrochen!"
+"Wenn du heute ein QSO machst, kannst du deine Serie verlängern... "
+"Andernfalls wird deine aktuelle Serie unterbrochen!"
 
 #: application/views/dayswithqso/index.php:122
 msgid "No current streak found!"
@@ -8210,7 +8226,7 @@ msgstr "LoTW Benutzer"
 
 #: application/views/lookup/index.php:46
 msgid "Choose a State"
-msgstr "Wählen Sie einen Staat"
+msgstr "Wähle einen Staat"
 
 #: application/views/lookup/lotwuser.php:2
 #: application/views/lookup/lotwuser.php:12
@@ -9207,7 +9223,7 @@ msgid ""
 "Here you can export requested QSLs as CSV or ADIF files for printing and, "
 "optionally, mark them as sent."
 msgstr ""
-"Hier können Sie angeforderte QSL-Karten als CSV- oder ADIF-Dateien für den "
+"Hier kannst du angeforderte QSL-Karten als CSV- oder ADIF-Dateien für den "
 "Druck exportieren und sie optional als gesendet markieren."
 
 #: application/views/qslprint/index.php:30
@@ -10820,9 +10836,9 @@ msgid ""
 "part of the same DXCC or VUCC Circle."
 msgstr ""
 "Stationslogbücher ermöglichen es dir, Stationsstandorte zu gruppieren. "
-"Dadurch können Sie alle Standorte innerhalb einer Sitzung von den "
-"Logbuchbereichen bis zur Analyse sehen. Das ist besonders nützlich, wenn Sie "
-"an verschiedenen Standorten arbeiten, die jedoch zu derselben DXCC- oder "
+"Dadurch kannst du alle Standorte innerhalb einer Sitzung von den "
+"Logbuchbereichen bis zur Analyse sehen. Das ist besonders nützlich, wenn du "
+"an verschiedenen Standorten arbeitest, die jedoch zu derselben DXCC- oder "
 "VUCC-Zone gehören."
 
 #: application/views/stationsetup/stationsetup.php:32
@@ -11090,8 +11106,8 @@ msgid ""
 "Create a new folder in 'assets/css/' and upload a 'bootstrap.min.css' file "
 "which contains basic styling rules. We use the themes from %s"
 msgstr ""
-"Erstellen Sie einen neuen Ordner in 'assets/css/' und lade eine 'bootstrap."
-"min.css' Datei hoch, welche die grundlegende Styling-Regeln enthält. Wir "
+"Erstelle einen neuen Ordner in 'assets/css/' und lade eine 'bootstrap.min."
+"css' Datei hoch, welche die grundlegende Styling-Regeln enthält. Wir "
 "verwenden die Themes von %s"
 
 #: application/views/themes/index.php:50
@@ -11172,9 +11188,9 @@ msgid ""
 "The Timeplotter is used to analyze your logbook and find out at what times "
 "you worked certain CQ zones or DXCC countries on a selected band."
 msgstr ""
-"Der Zeitplotter wird verwendet, um Ihr Logbuch zu analysieren und "
-"herauszufinden, zu welchen Uhrzeiten Sie bestimmte CQ-Zonen oder DXCC-Länder "
-"auf einem ausgewählten Band gearbeitet haben."
+"Der Zeitplotter wird verwendet, um dein Logbuch zu analysieren und "
+"herauszufinden, zu welchen Uhrzeiten du bestimmte CQ-Zonen oder DXCC-Länder "
+"auf einem ausgewählten Band gearbeitet hast."
 
 #: application/views/update/index.php:8
 msgid "DXCC Lookup Data"
@@ -12132,10 +12148,12 @@ msgstr "Dein Rufzeichen:"
 msgid "Submit Request"
 msgstr "Anfrage senden"
 
-#~ msgid "Always use login-callsign as operator-name on import"
-#~ msgstr ""
-#~ "Nutze während des Imports immer das eingeloggte Rufzeichen als Operator-"
-#~ "Name"
+#: application/views/adif/import.php:153
+msgid ""
+"Always use the logged-in account callsign as the operator call during import"
+msgstr ""
+"Nutze während des Imports immer das eingeloggte Account-Rufzeichen als "
+"Operator-Rufzeichen"
 
 #~ msgid "Antarctiva"
 #~ msgstr "Antarktis"
