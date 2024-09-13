@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-09-13 06:19+0000\n"
+"POT-Creation-Date: 2024-09-13 06:30+0000\n"
 "PO-Revision-Date: 2024-08-30 05:57+0000\n"
 "Last-Translator: F4JSU <f4jsu.radio@gmail.com>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
@@ -988,7 +988,7 @@ msgstr "QSL"
 #: application/views/qslprint/qsolist.php:21
 #: application/views/qslprint/qsolist.php:167
 #: application/views/qslprint/qsolist.php:182
-#: application/views/qso/edit_ajax.php:411
+#: application/views/qso/edit_ajax.php:412
 #: application/views/search/result_search.php:22
 #: application/views/search/search_result_ajax.php:298
 #: application/views/search/search_result_ajax.php:313
@@ -1018,7 +1018,7 @@ msgstr "LoTW"
 #: application/views/qslprint/qsolist.php:18
 #: application/views/qslprint/qsolist.php:138
 #: application/views/qslprint/qsolist.php:151
-#: application/views/qso/edit_ajax.php:408
+#: application/views/qso/edit_ajax.php:409
 #: application/views/search/result_search.php:16
 #: application/views/search/search_result_ajax.php:260
 #: application/views/search/search_result_ajax.php:273
@@ -1549,9 +1549,9 @@ msgstr "Modifier le mode"
 #: application/views/notes/main.php:5 application/views/notes/main.php:8
 #: application/views/notes/view.php:6 application/views/notes/view.php:9
 #: application/views/qso/edit_ajax.php:36
-#: application/views/qso/edit_ajax.php:508 application/views/qso/index.php:39
-#: application/views/qso/index.php:564 application/views/qso/index.php:609
-#: application/views/view_log/qso.php:14 application/views/view_log/qso.php:602
+#: application/views/qso/edit_ajax.php:396 application/views/qso/index.php:39
+#: application/views/qso/index.php:561 application/views/view_log/qso.php:14
+#: application/views/view_log/qso.php:602
 msgid "Notes"
 msgstr "Notes"
 
@@ -1968,7 +1968,7 @@ msgstr "Interdit"
 #: application/controllers/Stationsetup.php:131
 #: application/controllers/Stationsetup.php:152
 #: application/controllers/Stationsetup.php:436
-#: application/views/qso/index.php:631
+#: application/views/qso/index.php:627
 msgid "Error"
 msgstr "Erreur"
 
@@ -3651,9 +3651,7 @@ msgid "The API URL for this Wavelog instance is"
 msgstr "L'URL de l'API pour cette instance de Wavelog est"
 
 #: application/views/api/help.php:20 application/views/dxcalendar/index.php:15
-#: application/views/eqsl/export.php:33 application/views/qso/edit_ajax.php:504
-#: application/views/qso/index.php:561 application/views/qso/index.php:606
-#: application/views/radio/index.php:22
+#: application/views/eqsl/export.php:33 application/views/radio/index.php:22
 #: application/views/sattimers/index.php:67
 #: application/views/sattimers/index.php:69
 #: application/views/sattimers/index.php:71
@@ -3993,7 +3991,7 @@ msgstr "Afficher QSO avec type QSL"
 #: application/views/awards/itu/index.php:56
 #: application/views/awards/wac/index.php:44
 #: application/views/interface_assets/footer.php:2138
-#: application/views/qso/edit_ajax.php:405
+#: application/views/qso/edit_ajax.php:406
 #: application/views/view_log/qso.php:25
 msgid "QSL Card"
 msgstr "Carte QSL"
@@ -5438,7 +5436,7 @@ msgstr "Créer"
 
 #: application/views/contesting/edit.php:31
 #: application/views/contesting/index.php:29
-#: application/views/qso/edit_ajax.php:575
+#: application/views/qso/edit_ajax.php:572
 #: application/views/view_log/qso.php:278
 msgid "Contest Name"
 msgstr "Nom du concours"
@@ -5485,7 +5483,7 @@ msgstr ""
 
 #: application/views/contesting/index.php:40
 #: application/views/operator/index.php:5
-#: application/views/qso/edit_ajax.php:566 application/views/qso/index.php:353
+#: application/views/qso/edit_ajax.php:563 application/views/qso/index.php:353
 msgid "Operator Callsign"
 msgstr "Indicatif de l'opérateur"
 
@@ -5561,7 +5559,7 @@ msgstr ""
 
 #: application/views/contesting/index.php:177
 #: application/views/contesting/index.php:260
-#: application/views/qso/edit_ajax.php:598
+#: application/views/qso/edit_ajax.php:595
 msgid "Serial (S)"
 msgstr "N° QSO (S)"
 
@@ -5576,7 +5574,7 @@ msgstr "Ech (S)"
 
 #: application/views/contesting/index.php:201
 #: application/views/contesting/index.php:261
-#: application/views/qso/edit_ajax.php:593
+#: application/views/qso/edit_ajax.php:590
 msgid "Serial (R)"
 msgstr "N° QSO (R)"
 
@@ -5594,7 +5592,7 @@ msgid "Reset QSO"
 msgstr "Réinitialiser QSO"
 
 #: application/views/contesting/index.php:230
-#: application/views/qso/index.php:630
+#: application/views/qso/index.php:626
 msgid "Save QSO"
 msgstr "Sauvegarder QSO"
 
@@ -5906,9 +5904,9 @@ msgstr "Demandés"
 #: application/views/qslprint/qsolist.php:58
 #: application/views/qslprint/qsolist.php:138
 #: application/views/qslprint/qsolist.php:167
-#: application/views/qso/edit_ajax.php:417
-#: application/views/qso/edit_ajax.php:478
-#: application/views/qso/edit_ajax.php:518 application/views/qso/index.php:573
+#: application/views/qso/edit_ajax.php:418
+#: application/views/qso/edit_ajax.php:479
+#: application/views/qso/edit_ajax.php:515 application/views/qso/index.php:571
 #: application/views/search/result_search.php:8
 #: application/views/search/search_result_ajax.php:180
 #: application/views/search/search_result_ajax.php:260
@@ -5939,9 +5937,9 @@ msgstr "Envoyées"
 #: application/views/qslprint/qsolist.php:100
 #: application/views/qslprint/qsolist.php:151
 #: application/views/qslprint/qsolist.php:182
-#: application/views/qso/edit_ajax.php:450
-#: application/views/qso/edit_ajax.php:491
-#: application/views/qso/edit_ajax.php:530
+#: application/views/qso/edit_ajax.php:451
+#: application/views/qso/edit_ajax.php:492
+#: application/views/qso/edit_ajax.php:527
 #: application/views/search/search_result_ajax.php:222
 #: application/views/search/search_result_ajax.php:273
 #: application/views/search/search_result_ajax.php:313
@@ -5972,12 +5970,12 @@ msgstr "Reçues"
 #: application/views/oqrs/qsolist.php:56 application/views/oqrs/qsolist.php:98
 #: application/views/qslprint/qsolist.php:64
 #: application/views/qslprint/qsolist.php:106
-#: application/views/qso/edit_ajax.php:422
-#: application/views/qso/edit_ajax.php:455
-#: application/views/qso/edit_ajax.php:483
-#: application/views/qso/edit_ajax.php:496
-#: application/views/qso/edit_ajax.php:523
-#: application/views/qso/edit_ajax.php:535 application/views/qso/index.php:578
+#: application/views/qso/edit_ajax.php:423
+#: application/views/qso/edit_ajax.php:456
+#: application/views/qso/edit_ajax.php:484
+#: application/views/qso/edit_ajax.php:497
+#: application/views/qso/edit_ajax.php:520
+#: application/views/qso/edit_ajax.php:532 application/views/qso/index.php:576
 #: application/views/search/search_result_ajax.php:186
 #: application/views/search/search_result_ajax.php:228
 #: application/views/view_log/partial/log_ajax.php:148
@@ -6248,7 +6246,7 @@ msgstr ""
 msgid "Not Installed"
 msgstr ""
 
-#: application/views/debug/index.php:293 application/views/qso/index.php:672
+#: application/views/debug/index.php:293 application/views/qso/index.php:668
 msgid "Settings"
 msgstr ""
 
@@ -6814,14 +6812,14 @@ msgid "Not worked"
 msgstr "Non réalisés"
 
 #: application/views/interface_assets/footer.php:46
-#: application/views/qso/index.php:624
+#: application/views/qso/index.php:620
 #: application/views/visitor/layout/footer.php:246
 msgid "Clear"
 msgstr ""
 
 #: application/views/interface_assets/footer.php:47
 #: application/views/qso/edit_ajax.php:211
-#: application/views/qso/edit_ajax.php:539
+#: application/views/qso/edit_ajax.php:536
 msgid "Propagation mode is not supported by LoTW. LoTW QSL fields disabled."
 msgstr ""
 
@@ -7575,12 +7573,12 @@ msgstr "QSL Envoyée"
 #: application/views/logbookadvanced/index.php:426
 #: application/views/logbookadvanced/index.php:441
 #: application/views/lookup/lotwuser.php:12
-#: application/views/qso/edit_ajax.php:421
-#: application/views/qso/edit_ajax.php:454
-#: application/views/qso/edit_ajax.php:482
-#: application/views/qso/edit_ajax.php:495
-#: application/views/qso/edit_ajax.php:522
-#: application/views/qso/edit_ajax.php:534 application/views/qso/index.php:577
+#: application/views/qso/edit_ajax.php:422
+#: application/views/qso/edit_ajax.php:455
+#: application/views/qso/edit_ajax.php:483
+#: application/views/qso/edit_ajax.php:496
+#: application/views/qso/edit_ajax.php:519
+#: application/views/qso/edit_ajax.php:531 application/views/qso/index.php:575
 #: application/views/search/result.php:58
 #: application/views/station_profile/create.php:216
 #: application/views/station_profile/create.php:224
@@ -7613,12 +7611,12 @@ msgstr "Oui"
 #: application/views/logbookadvanced/index.php:427
 #: application/views/logbookadvanced/index.php:442
 #: application/views/lookup/lotwuser.php:14
-#: application/views/qso/edit_ajax.php:420
-#: application/views/qso/edit_ajax.php:453
-#: application/views/qso/edit_ajax.php:481
-#: application/views/qso/edit_ajax.php:494
-#: application/views/qso/edit_ajax.php:521
-#: application/views/qso/edit_ajax.php:533 application/views/qso/index.php:576
+#: application/views/qso/edit_ajax.php:421
+#: application/views/qso/edit_ajax.php:454
+#: application/views/qso/edit_ajax.php:482
+#: application/views/qso/edit_ajax.php:495
+#: application/views/qso/edit_ajax.php:518
+#: application/views/qso/edit_ajax.php:530 application/views/qso/index.php:574
 #: application/views/search/result.php:60
 #: application/views/station_profile/create.php:217
 #: application/views/station_profile/create.php:225
@@ -7649,9 +7647,9 @@ msgstr "Non"
 #: application/views/oqrs/qsolist.php:53 application/views/oqrs/qsolist.php:95
 #: application/views/qslprint/qsolist.php:61
 #: application/views/qslprint/qsolist.php:103
-#: application/views/qso/edit_ajax.php:423
-#: application/views/qso/edit_ajax.php:484
-#: application/views/qso/edit_ajax.php:524 application/views/qso/index.php:579
+#: application/views/qso/edit_ajax.php:424
+#: application/views/qso/edit_ajax.php:485
+#: application/views/qso/edit_ajax.php:521 application/views/qso/index.php:577
 #: application/views/search/search_result_ajax.php:183
 #: application/views/search/search_result_ajax.php:225
 #: application/views/view_log/partial/log_ajax.php:145
@@ -7675,12 +7673,12 @@ msgstr "En attente"
 #: application/views/qslprint/qsolist.php:109
 #: application/views/qslprint/qsolist.php:174
 #: application/views/qslprint/qsolist.php:189
-#: application/views/qso/edit_ajax.php:424
-#: application/views/qso/edit_ajax.php:456
-#: application/views/qso/edit_ajax.php:485
-#: application/views/qso/edit_ajax.php:497
-#: application/views/qso/edit_ajax.php:525
-#: application/views/qso/edit_ajax.php:536 application/views/qso/index.php:580
+#: application/views/qso/edit_ajax.php:425
+#: application/views/qso/edit_ajax.php:457
+#: application/views/qso/edit_ajax.php:486
+#: application/views/qso/edit_ajax.php:498
+#: application/views/qso/edit_ajax.php:522
+#: application/views/qso/edit_ajax.php:533 application/views/qso/index.php:578
 #: application/views/search/search_result_ajax.php:189
 #: application/views/search/search_result_ajax.php:231
 #: application/views/search/search_result_ajax.php:305
@@ -7719,8 +7717,8 @@ msgstr "QSL Méthode (envoi)"
 #: application/views/qslprint/qsolist.php:77
 #: application/views/qslprint/qsolist.php:119
 #: application/views/qslprint/qsolist.php:210
-#: application/views/qso/edit_ajax.php:435
-#: application/views/qso/edit_ajax.php:468 application/views/qso/index.php:591
+#: application/views/qso/edit_ajax.php:436
+#: application/views/qso/edit_ajax.php:469 application/views/qso/index.php:589
 #: application/views/search/search_result_ajax.php:199
 #: application/views/search/search_result_ajax.php:241
 #: application/views/view_log/partial/log_ajax.php:164
@@ -7737,8 +7735,8 @@ msgstr ""
 #: application/views/qslprint/qsolist.php:80
 #: application/views/qslprint/qsolist.php:122
 #: application/views/qslprint/qsolist.php:211
-#: application/views/qso/edit_ajax.php:434
-#: application/views/qso/edit_ajax.php:467 application/views/qso/index.php:590
+#: application/views/qso/edit_ajax.php:435
+#: application/views/qso/edit_ajax.php:468 application/views/qso/index.php:588
 #: application/views/search/search_result_ajax.php:202
 #: application/views/search/search_result_ajax.php:244
 #: application/views/view_log/partial/log_ajax.php:167
@@ -7755,8 +7753,8 @@ msgstr ""
 #: application/views/qslprint/qsolist.php:86
 #: application/views/qslprint/qsolist.php:128
 #: application/views/qslprint/qsolist.php:212
-#: application/views/qso/edit_ajax.php:436
-#: application/views/qso/edit_ajax.php:469 application/views/qso/index.php:592
+#: application/views/qso/edit_ajax.php:437
+#: application/views/qso/edit_ajax.php:470 application/views/qso/index.php:590
 #: application/views/search/search_result_ajax.php:208
 #: application/views/search/search_result_ajax.php:250
 #: application/views/view_log/partial/log_ajax.php:173
@@ -7769,8 +7767,8 @@ msgstr "Numérique"
 #: application/views/logbookadvanced/index.php:364
 #: application/views/oqrs/qsolist.php:117
 #: application/views/qslprint/qsolist.php:125
-#: application/views/qso/edit_ajax.php:437
-#: application/views/qso/edit_ajax.php:470 application/views/qso/index.php:593
+#: application/views/qso/edit_ajax.php:438
+#: application/views/qso/edit_ajax.php:471 application/views/qso/index.php:591
 #: application/views/search/search_result_ajax.php:247
 #: application/views/view_log/partial/log_ajax.php:208
 msgid "Manager"
@@ -7819,7 +7817,7 @@ msgid "With selected: "
 msgstr "Action pour lignes sélectionnées : "
 
 #: application/views/logbookadvanced/index.php:454
-#: application/views/qso/edit_ajax.php:622
+#: application/views/qso/edit_ajax.php:619
 msgid "Update from Callbook"
 msgstr "Mise à jour depuis Callbook"
 
@@ -8741,7 +8739,7 @@ msgstr ""
 #: application/views/qslprint/qslprint.php:28
 #: application/views/qslprint/qsolist.php:14
 #: application/views/qslprint/qsolist.php:83
-#: application/views/qso/index.php:599
+#: application/views/qso/index.php:597
 #: application/views/search/search_result_ajax.php:205
 #: application/views/view_log/partial/log_ajax.php:170
 #: src/QSLManager/QSO.php:302
@@ -9102,62 +9100,64 @@ msgstr ""
 msgid "Sig Info"
 msgstr ""
 
-#: application/views/qso/edit_ajax.php:396
-msgid "Notes (for internal usage only)"
+#: application/views/qso/edit_ajax.php:398
+#: application/views/qso/edit_ajax.php:507 application/views/qso/index.php:563
+#: application/views/qso/index.php:607
+msgid "Note: Gets exported to third-party services."
 msgstr ""
 
-#: application/views/qso/edit_ajax.php:430
+#: application/views/qso/edit_ajax.php:431
 msgid "Sent Method"
 msgstr ""
 
-#: application/views/qso/edit_ajax.php:433
-#: application/views/qso/edit_ajax.php:466 application/views/qso/index.php:586
-#: application/views/qso/index.php:589
+#: application/views/qso/edit_ajax.php:434
+#: application/views/qso/edit_ajax.php:467 application/views/qso/index.php:584
+#: application/views/qso/index.php:587
 msgid "Method"
 msgstr "Méthode"
 
-#: application/views/qso/edit_ajax.php:443
+#: application/views/qso/edit_ajax.php:444
 msgid "Sent Via"
 msgstr ""
 
-#: application/views/qso/edit_ajax.php:457
-#: application/views/qso/edit_ajax.php:498
-#: application/views/qso/edit_ajax.php:537
+#: application/views/qso/edit_ajax.php:458
+#: application/views/qso/edit_ajax.php:499
+#: application/views/qso/edit_ajax.php:534
 msgid "Verified (Match)"
 msgstr ""
 
-#: application/views/qso/edit_ajax.php:463
+#: application/views/qso/edit_ajax.php:464
 msgid "Received Method"
 msgstr ""
 
-#: application/views/qso/edit_ajax.php:504 application/views/qso/index.php:606
-msgid "This note content is exported to QSL services like eqsl.cc."
-msgstr ""
-
-#: application/views/qso/edit_ajax.php:508 application/views/qso/index.php:609
+#: application/views/qso/edit_ajax.php:504 application/views/qso/index.php:604
 msgid "Get the default message for eQSL, for this station."
 msgstr "Récupérer le message par défaut pour ce lieu de station."
 
-#: application/views/qso/edit_ajax.php:557
+#: application/views/qso/edit_ajax.php:504 application/views/qso/index.php:604
+msgid "QSL MSG"
+msgstr ""
+
+#: application/views/qso/edit_ajax.php:554
 msgid "Change Station Profile"
 msgstr ""
 
-#: application/views/qso/edit_ajax.php:603
+#: application/views/qso/edit_ajax.php:600
 msgid "Exchange (R)"
 msgstr ""
 
-#: application/views/qso/edit_ajax.php:608
+#: application/views/qso/edit_ajax.php:605
 msgid "Exchange (S)"
 msgstr ""
 
-#: application/views/qso/edit_ajax.php:620
+#: application/views/qso/edit_ajax.php:617
 #: application/views/search/search_result_ajax.php:432
 #: application/views/view_log/partial/log.php:156
 #: application/views/view_log/partial/log_ajax.php:348
 msgid "Delete QSO"
 msgstr "Effacer QSO"
 
-#: application/views/qso/edit_ajax.php:623
+#: application/views/qso/edit_ajax.php:620
 msgid "Save changes"
 msgstr ""
 
@@ -9165,7 +9165,7 @@ msgstr ""
 msgid "TimeOff is less than TimeOn"
 msgstr "Heure de fin inférieure à celle de début"
 
-#: application/views/qso/index.php:5 application/views/qso/index.php:719
+#: application/views/qso/index.php:5 application/views/qso/index.php:715
 msgid "Previous Contacts"
 msgstr "Contacts précédents"
 
@@ -9265,55 +9265,47 @@ msgstr "Nom du Satellite"
 msgid "Satellite Mode"
 msgstr "Mode du Satellite"
 
-#: application/views/qso/index.php:561
-msgid ""
-"Note content is used within Wavelog only and is not exported to other "
-"services."
-msgstr ""
-"A noter : le contenu est utilisé par Wavelog uniquement et n'est pas exporté "
-"vers d'autre services."
-
-#: application/views/qso/index.php:627
+#: application/views/qso/index.php:623
 msgid "Reset to Default"
 msgstr ""
 
-#: application/views/qso/index.php:668
+#: application/views/qso/index.php:664
 msgid "Winkey"
 msgstr ""
 
-#: application/views/qso/index.php:670
+#: application/views/qso/index.php:666
 msgid "Connect"
 msgstr ""
 
-#: application/views/qso/index.php:679
+#: application/views/qso/index.php:675
 msgid "Stop"
 msgstr ""
 
-#: application/views/qso/index.php:680
+#: application/views/qso/index.php:676
 msgid "Tune"
 msgstr ""
 
-#: application/views/qso/index.php:681
+#: application/views/qso/index.php:677
 msgid "Stop Tune"
 msgstr ""
 
-#: application/views/qso/index.php:687
+#: application/views/qso/index.php:683
 msgid "CW Speed"
 msgstr ""
 
-#: application/views/qso/index.php:692
+#: application/views/qso/index.php:688
 msgid "Send"
 msgstr ""
 
-#: application/views/qso/index.php:702
+#: application/views/qso/index.php:698
 msgid "Suggestions"
 msgstr ""
 
-#: application/views/qso/index.php:709
+#: application/views/qso/index.php:705
 msgid "Profile Picture"
 msgstr ""
 
-#: application/views/qso/index.php:733
+#: application/views/qso/index.php:729
 msgid "Max. 5 previous contacts are shown"
 msgstr ""
 
@@ -11695,6 +11687,13 @@ msgstr "Votre indicatif :"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Soumettre la demande"
+
+#~ msgid ""
+#~ "Note content is used within Wavelog only and is not exported to other "
+#~ "services."
+#~ msgstr ""
+#~ "A noter : le contenu est utilisé par Wavelog uniquement et n'est pas "
+#~ "exporté vers d'autre services."
 
 #~ msgid "Always use login-callsign as operator-name on import"
 #~ msgstr ""
