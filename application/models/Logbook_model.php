@@ -1079,10 +1079,10 @@ class Logbook_model extends CI_Model {
    * Function marks QSOs as uploaded to QRZ.
    * $primarykey is the unique id for that QSO in the logbook
    */
-    function mark_qrz_qsos_sent($primarykey) {
+    function mark_qrz_qsos_sent($primarykey, $state = 'Y') {
         $data = array(
          'COL_QRZCOM_QSO_UPLOAD_DATE' => date("Y-m-d H:i:s", strtotime("now")),
-         'COL_QRZCOM_QSO_UPLOAD_STATUS' => 'Y',
+         'COL_QRZCOM_QSO_UPLOAD_STATUS' => $state,
         );
 
         $this->db->where('COL_PRIMARY_KEY', $primarykey);
