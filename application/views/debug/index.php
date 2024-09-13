@@ -25,8 +25,18 @@
                     <table width="100%">
                         <tr>
                             <td><?= __("Version"); ?></td>
-                            <td><?php echo $this->optionslib->get_option('version') . "\n"; ?></td>
+                            <td><?php echo $running_version; ?>
+                                <?php if ($running_version == $latest_release) { ?>
+                                    <span class="badge text-bg-success"> <?= __("Latest Version"); ?></span>
+                                <?php } ?>
+                            </td>
                         </tr>
+                        <?php if ($newer_version_available) { ?>
+                        <tr>
+                            <td><?= __("Latest Release"); ?></td>
+                            <td><a href="https://github.com/wavelog/wavelog/releases/tag/<?php echo $latest_release; ?>" target="_blank"><?php echo $latest_release."\n"; ?></a></td>
+                        </tr>
+                        <?php } ?>
                         <tr>
                             <td><?= __("Language"); ?></td>
                             <td><?php echo __(ucfirst($this->config->item('language'))) . "\n"; ?></td>

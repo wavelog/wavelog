@@ -431,5 +431,13 @@ class Update extends CI_Controller {
         $this->optionslib->update('tle_update', $datetime , 'no');
 	}
 
+	function version_check() {
+		// set the last run in cron table for the correct cron id
+		$this->load->model('cron_model');
+		$this->cron_model->set_last_run($this->router->class . '_' . $this->router->method);
+		
+		$this->load->model('Update_model');
+		$this->Update_model->update_check();
+	}
 }
 ?>

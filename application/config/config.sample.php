@@ -695,4 +695,16 @@ $config['disable_impersonate'] = false;
 | 
 */
 
-$config['cron_allow_insecure'] = false;   
+$config['cron_allow_insecure'] = false;
+
+/*
+|--------------------------------------------------------------------------
+| Update / version check
+|--------------------------------------------------------------------------
+
+| This config switch disables the check for newer releases on github and
+| hides the banner to admin users if a newer release as published.
+| Default ON.
+ */
+
+$config['disable_version_check'] = false;

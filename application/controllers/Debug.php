@@ -22,9 +22,21 @@ class Debug extends CI_Controller
 		$this->load->model('Debug_model');
 		$this->load->model('Stations');
 		$this->load->model('cron_model');
+		$this->load->model('Update_model');
 
 		$footerData = [];
 		$footerData['scripts'] = ['assets/js/sections/debug.js'];
+
+		$data['running_version'] = $this->optionslib->get_option('version');
+		$data['latest_release'] = $this->optionslib->get_option('latest_release');
+
+		$data['newer_version_available'] = false;
+		if (!$this->config->item('disable_version_check') ?? false) {
+			$this->Update_model->update_check(true);
+			if ($data['latest_release'] && version_compare($data['latest_release'], $data['running_version'], '>')) {
+				$data['newer_version_available'] = true;
+			}
+		}
 
 		$data['stations'] = $this->Stations->all();
 

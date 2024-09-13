@@ -58,6 +58,13 @@ function echo_table_col($row, $name) {
 		<?= __("You need to upgrade your PHP version. Minimum version is 7.4. Your version is") . ' ' . PHP_VERSION . '.';?>
 		</div>
 	<?php } ?>
+	<?php if(($this->session->userdata('user_type') == 99) && !($this->config->item('disable_version_check') ?? false) && $this->optionslib->get_option('latest_release')) { ?>
+		<?php if (version_compare($this->optionslib->get_option('latest_release'), $this->optionslib->get_option('version'), '>')) { ?>
+			<div class="alert alert-success" role="alert" style="margin-top: 1rem;">
+				<?= sprintf(_pgettext("Dashboard Warning", "A new version of Wavelog has been published. See: %s."), "<a href=\"https://github.com/wavelog/wavelog/releases/tag/".$this->optionslib->get_option('latest_release')."\" target=\"_blank\"><u>Release ".$this->optionslib->get_option('latest_release')."</u></a>"); ?>
+			</div>
+		<?php } ?>
+	<?php } ?>
 
 	<?php if ($countryCount == 0) { ?>
 		<div class="alert alert-danger mt-3" role="alert">
