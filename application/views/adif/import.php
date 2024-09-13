@@ -150,7 +150,7 @@
                             <div class="col-md-10">
                                 <div class="form-check-inline">
                                     <input class="form-check-input" type="checkbox" name="operatorName" value="1" id="operatorName">
-                                    <label class="form-check-label" for="operatorName"><?= __("Always use login-callsign as operator-name on import") ?></label>
+                                    <label class="form-check-label" for="operatorName"><?= __("Always use the logged-in account callsign as the operator call during import") ?></label>
                                 </div>
                             </div>
                         </div>
