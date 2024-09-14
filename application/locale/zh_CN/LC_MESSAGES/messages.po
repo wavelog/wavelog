@@ -5,12 +5,13 @@
 # Karuru <karuru@aerodefense.co.uk>, 2024.
 # BG6HJE <1753409828@qq.com>, 2024.
 # imlonghao <wavelog@esd.cc>, 2024.
+# Jian ke <bg8ixz@hotmail.com>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-09-13 18:18+0000\n"
-"PO-Revision-Date: 2024-09-10 14:54+0000\n"
-"Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
+"PO-Revision-Date: 2024-09-14 12:05+0000\n"
+"Last-Translator: Jian ke <bg8ixz@hotmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
 "org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -112,7 +113,7 @@ msgstr ""
 #: application/controllers/User.php:1247
 #: application/controllers/User_options.php:9
 msgid "You're not allowed to do that!"
-msgstr "不能这么做！"
+msgstr "您不能这么做！"
 
 #: application/controllers/Accumulated.php:19
 #: application/views/interface_assets/header.php:152
@@ -1888,7 +1889,7 @@ msgstr "CQ 分区记录错误"
 
 #: application/controllers/Search.php:70
 msgid "Incorrectly logged ITU zones"
-msgstr ""
+msgstr "ITU区域记录错误"
 
 #: application/controllers/Search.php:82
 msgid ""
@@ -2469,11 +2470,11 @@ msgstr "未知"
 
 #: application/models/Update_model.php:300
 msgid "Newer release available:"
-msgstr ""
+msgstr "有可用新版本："
 
 #: application/models/Update_model.php:304
 msgid "You are running the latest version."
-msgstr ""
+msgstr "您运行的已经是最新版本。"
 
 #: application/views/accumulate/index.php:2
 msgid "Accumulated number of DXCCs worked"
@@ -3333,7 +3334,7 @@ msgstr "如果不选择，Wavelog 将会自动判断 QSO 的 DXCC。"
 #: application/views/adif/import.php:153
 msgid ""
 "Always use the logged-in account callsign as the operator call during import"
-msgstr ""
+msgstr "在导入时始终使用登录账户的呼号作为操作员呼号"
 
 #: application/views/adif/import.php:162
 #: application/views/interface_assets/footer.php:32
@@ -5762,7 +5763,7 @@ msgstr "您需要升级您的 PHP 版本。 最低版本为 7.4。 你的版本�
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "A new version of Wavelog has been published. See: %s."
-msgstr ""
+msgstr "有新的 Wavelog 版本。详情请查看：%s。"
 
 #: application/views/dashboard/index.php:72
 #, php-format
@@ -6009,11 +6010,11 @@ msgstr "版本"
 
 #: application/views/debug/index.php:30
 msgid "Latest Version"
-msgstr ""
+msgstr "最新版本"
 
 #: application/views/debug/index.php:36
 msgid "Latest Release"
-msgstr ""
+msgstr "最新发布"
 
 #: application/views/debug/index.php:41
 msgid "Language"
@@ -9060,7 +9061,7 @@ msgstr "Sig 属性"
 #: application/views/qso/edit_ajax.php:507 application/views/qso/index.php:563
 #: application/views/qso/index.php:607
 msgid "Note: Gets exported to third-party services."
-msgstr ""
+msgstr "注意：将导出到第三方服务提供方。"
 
 #: application/views/qso/edit_ajax.php:431
 msgid "Sent Method"
@@ -9092,7 +9093,7 @@ msgstr "获取该站的 eQSL 默认消息。"
 
 #: application/views/qso/edit_ajax.php:504 application/views/qso/index.php:604
 msgid "QSL MSG"
-msgstr ""
+msgstr "QSL确认信息"
 
 #: application/views/qso/edit_ajax.php:554
 msgid "Change Station Profile"
@@ -9628,7 +9629,7 @@ msgstr "CQ 分区错误"
 #: application/views/search/lotw_unconfirmed.php:21
 #: application/views/search/main.php:21
 msgid "Incorrect ITU Zones"
-msgstr ""
+msgstr "错误的ITU区域"
 
 #: application/views/search/cqzones.php:24
 #: application/views/search/filter.php:32
@@ -9678,11 +9679,11 @@ msgstr "搜索结果"
 msgid ""
 "The following QSOs were found to have an incorrect ITU zone that this DXCC "
 "normally has (a maximum of 1000 QSOs are shown):"
-msgstr ""
+msgstr "发现以下通联（QSOs）的ITU区域与该DXCC所对应的区域不符（最多显示1000个通联）："
 
 #: application/views/search/ituzones_result.php:14
 msgid "DXCC ITU Zone"
-msgstr ""
+msgstr "DXCC ITU区域"
 
 #: application/views/search/lotw_unconfirmed.php:29
 msgid ""
