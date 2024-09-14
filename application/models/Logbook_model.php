@@ -4002,7 +4002,7 @@ function lotw_last_qsl_date($user_id) {
 			  'COL_AWARD_GRANTED' => (!empty($record['award_granted'])) ? $record['award_granted'] : '',
 			  'COL_AWARD_SUBMITTED' => (!empty($record['award_submitted'])) ? $record['award_submitted'] : '',
 			  'COL_BAND' => $band,
-			  'COL_BAND_RX' => $band_rx,
+			  'COL_BAND_RX' => $band_rx ?? '',
 			  'COL_BIOGRAPHY' => (!empty($record['biography'])) ? $record['biography'] : '',
 			  'COL_CALL' => (!empty($record['call'])) ? strtoupper($record['call']) : '',
 			  'COL_CHECK' => (!empty($record['check'])) ? $record['check'] : '',
