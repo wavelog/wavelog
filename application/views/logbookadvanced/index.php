@@ -51,8 +51,8 @@
 			\"dok\":{\"show\":\"true\"},
 			\"wwff\":{\"show\":\"true\"},
 			\"sig\":{\"show\":\"true\"},
-			\"continent\":{\"show\":\"true\",
-			\"qrz\":{\"show\":\"true\",}
+			\"continent\":{\"show\":\"true\"},
+			\"qrz\":{\"show\":\"true\"}
         }";
     }
     $current_opts = json_decode($options);
