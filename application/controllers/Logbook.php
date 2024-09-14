@@ -1213,8 +1213,9 @@ class Logbook extends CI_Controller {
 			}
 
 			$result = $this->qra->bearingarray($mylocator, $locator, $measurement_base);
-			$result['ituz'] = $this->logbook_model->getItuZoneFromPosition($result['long'], $result['lat']);
-
+			if($result) {
+				$result['ituz'] = $this->logbook_model->getItuZoneFromPosition($result['long'], $result['lat']);
+			}
 			header('Content-Type: application/json');
 			echo json_encode($result, JSON_PRETTY_PRINT);
 		}
