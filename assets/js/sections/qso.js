@@ -462,7 +462,7 @@ $( document ).ready(function() {
 			}
 		}
 	});
-	
+
 	$('#pota_ref').selectize({
 		maxItems: null,
 		closeAfterSelect: true,
@@ -1189,23 +1189,14 @@ $( document ).ready(function() {
 						stationProfile: $('#stationProfile').val()
 					},
 					success: function(data) {
-						$('#locator_info').html(data).fadeIn("slow");
+						$('#locator_info').html(data.bearing).fadeIn("slow");
+						document.getElementById("distance").value = data.dist;
+						if (data.ituz != null) {
+							$('#ituz').val(data.ituz);
+						}
 					},
 					error: function() {
 						$('#locator_info').text("Error loading bearing!").fadeIn("slow");
-					},
-				});
-				$.ajax({
-					url: base_url + 'index.php/logbook/searchdistance',
-					type: 'post',
-					data: {
-						grid: $(this).val(),
-						stationProfile: $('#stationProfile').val()
-					},
-					success: function(data) {
-						document.getElementById("distance").value = data;
-					},
-					error: function() {
 						document.getElementById("distance").value = null;
 					},
 				});

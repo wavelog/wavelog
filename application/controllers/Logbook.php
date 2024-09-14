@@ -168,6 +168,10 @@ class Logbook extends CI_Controller {
 		if ($return['callsign_qra'] != "") {
 			$return['latlng'] = $this->qralatlng($return['callsign_qra']);
 			$return['bearing'] = $this->bearing($return['callsign_qra'], $measurement_base, $station_id);
+			$gridituz = $this->logbook_model->getItuZoneFromPosition($return['latlng'][1], $return['latlng'][0]);
+			if ($gridituz != null && $gridituz <> $return['callsign_ituz']) {
+				$return['callsign_ituz'] = $gridituz;
+			}
 		}
 
 		echo json_encode($return, JSON_PRETTY_PRINT);
@@ -1175,77 +1179,80 @@ class Logbook extends CI_Controller {
 
 	/* return station bearing */
 	function searchbearing() {
-			$locator = xss_clean($this->input->post('grid'));
-			$station_id = xss_clean($this->input->post('stationProfile'));
-			if(!$this->load->is_loaded('Qra')) {
-			    $this->load->library('Qra');
-		    }
+		$this->load->model("logbook_model");
+		$locator = xss_clean($this->input->post('grid'));
+		$station_id = xss_clean($this->input->post('stationProfile'));
+		if(!$this->load->is_loaded('Qra')) {
+			$this->load->library('Qra');
+		}
 
-			if($locator != null) {
-				if (isset($station_id)) {
-					// be sure that station belongs to user
-					$this->load->model('Stations');
-					if (!$this->Stations->check_station_is_accessible($station_id)) {
-						return "";
-					}
-
-					// get station profile
-					$station_profile = $this->Stations->profile_clean($station_id);
-
-					// get locator
-					$mylocator = $station_profile->station_gridsquare;
-				} else if($this->session->userdata('user_locator') != null){
-					$mylocator = $this->session->userdata('user_locator');
-				} else {
-					$mylocator = $this->config->item('locator');
+		if($locator != null) {
+			if (isset($station_id)) {
+				// be sure that station belongs to user
+				$this->load->model('Stations');
+				if (!$this->Stations->check_station_is_accessible($station_id)) {
+					return "";
 				}
 
-				if ($this->session->userdata('user_measurement_base') == NULL) {
-					$measurement_base = $this->config->item('measurement_base');
-				}
-				else {
-					$measurement_base = $this->session->userdata('user_measurement_base');
-				}
+				// get station profile
+				$station_profile = $this->Stations->profile_clean($station_id);
 
-				$bearing = $this->qra->bearing($mylocator, $locator, $measurement_base);
-
-				echo $bearing;
+				// get locator
+				$mylocator = $station_profile->station_gridsquare;
+			} else if($this->session->userdata('user_locator') != null){
+				$mylocator = $this->session->userdata('user_locator');
+			} else {
+				$mylocator = $this->config->item('locator');
 			}
-			return "";
+
+			if ($this->session->userdata('user_measurement_base') == NULL) {
+				$measurement_base = $this->config->item('measurement_base');
+			}
+			else {
+				$measurement_base = $this->session->userdata('user_measurement_base');
+			}
+
+			$result = $this->qra->bearingarray($mylocator, $locator, $measurement_base);
+			$result['ituz'] = $this->logbook_model->getItuZoneFromPosition($result['long'], $result['lat']);
+
+			header('Content-Type: application/json');
+			echo json_encode($result, JSON_PRETTY_PRINT);
+		}
+		return "";
 	}
 
 	/* return distance */
 	function searchdistance() {
-			$locator = xss_clean($this->input->post('grid'));
-			$station_id = xss_clean($this->input->post('stationProfile'));
-			if(!$this->load->is_loaded('Qra')) {
-			    $this->load->library('Qra');
-		    }
+		$locator = xss_clean($this->input->post('grid'));
+		$station_id = xss_clean($this->input->post('stationProfile'));
+		if(!$this->load->is_loaded('Qra')) {
+			$this->load->library('Qra');
+		}
 
-			if($locator != null) {
-				if (isset($station_id)) {
-					// be sure that station belongs to user
-					$this->load->model('Stations');
-					if (!$this->Stations->check_station_is_accessible($station_id)) {
-						return 0;
-					}
-
-					// get station profile
-					$station_profile = $this->Stations->profile_clean($station_id);
-
-					// get locator
-					$mylocator = $station_profile->station_gridsquare;
-				} else if($this->session->userdata('user_locator') != null){
-					$mylocator = $this->session->userdata('user_locator');
-				} else {
-					$mylocator = $this->config->item('locator');
+		if($locator != null) {
+			if (isset($station_id)) {
+				// be sure that station belongs to user
+				$this->load->model('Stations');
+				if (!$this->Stations->check_station_is_accessible($station_id)) {
+					return 0;
 				}
 
-				$distance = $this->qra->distance($mylocator, $locator, 'K');
+				// get station profile
+				$station_profile = $this->Stations->profile_clean($station_id);
 
-				echo $distance;
+				// get locator
+				$mylocator = $station_profile->station_gridsquare;
+			} else if($this->session->userdata('user_locator') != null){
+				$mylocator = $this->session->userdata('user_locator');
+			} else {
+				$mylocator = $this->config->item('locator');
 			}
-			return 0;
+
+			$distance = $this->qra->distance($mylocator, $locator, 'K');
+
+			echo $distance;
+		}
+		return 0;
 	}
 
 	/* return station bearing */

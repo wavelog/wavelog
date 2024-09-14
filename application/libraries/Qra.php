@@ -33,6 +33,19 @@ class Qra {
 		}
 	}
 
+		// calculate  the bearing between two squares
+		function bearingarray($tx, $rx, $unit = 'M') {
+			$my = qra2latlong($tx);
+			$stn = qra2latlong($rx);
+
+			if ($my !== false && $stn !== false) {
+				$bearing = getBearingArray($my[0], $my[1], $stn[0], $stn[1], $unit);
+				return $bearing;
+			} else {
+				return false;
+			}
+		}
+
 	/*
 	* Function: calculate the distance between two gridsqaures
 	*
@@ -127,7 +140,7 @@ class Qra {
 	 * @param string 	$mylocator	Maidenhead locator of the station
 	 * @param object 	$qsos		Object of QSOs
 	 * @param string 	$unit		Unit of measurement
-	 * 
+	 *
 	 * @return object 	$maxdistanceqso		Object of the QSO with the maximum distance
 	 * @return float 	$maxdistance		Maximum distance
 	 */
@@ -221,6 +234,46 @@ function bearing($lat1, $lon1, $lat2, $lon2, $unit = 'M') {
 		}
 	}
 	return round($bearing, 0) . "&#186; " . $dir . " " . $var_dist;
+}
+
+function getBearingArray($lat1, $lon1, $lat2, $lon2, $unit = 'M') {
+	$result = [];
+	$dist = calc_distance($lat1, $lon1, $lat2, $lon2, $unit);
+	$result['dist'] = round($dist, 0);
+
+	$result['bearing'] = get_bearing($lat1, $lon1, $lat2, $lon2);
+
+	$dirs = array("N", "E", "S", "W");
+
+	$rounded = round($result['bearing'] / 22.5) % 16;
+	if (($rounded % 4) == 0) {
+		$dir = $dirs[$rounded / 4];
+	} else {
+		$dir = $dirs[2 * floor(((floor($rounded / 4) + 1) % 4) / 2)];
+		$dir .= $dirs[1 + 2 * floor($rounded / 8)];
+	}
+
+	if (isset($result['dist'])) {
+		$var_dist = $result['dist'];
+		switch ($unit) {
+			case 'M':
+				$var_dist .= " miles";
+				break;
+			case 'N':
+				$var_dist .= " nautic miles";
+				break;
+			case 'K':
+				$var_dist .= " kilometers";
+				break;
+		}
+	}
+
+	$result['bearing'] = round($result['bearing'], 0) . "&#186; " . $dir . " " . $var_dist;
+	$result['distance'] = $var_dist;
+	$result['long'] = $lon2;
+	$result['lat'] = $lat2;
+
+	return $result;
 }
 
 function get_bearing($lat1, $lon1, $lat2, $lon2) {

@@ -5197,6 +5197,26 @@ function lotw_last_qsl_date($user_id) {
 
       return $row->user_id;
     }
+
+	/*
+	* Using spatial query to determine itu zone
+	*/
+	function getItuZoneFromPosition($long, $lat) {
+		$sql = "SELECT zone FROM itu_zones WHERE ST_Contains(geom, ST_GeomFromText(CONCAT('POINT(', ?, ' ', ?, ')'))) order by zone desc limit 1";
+		$binding=[];
+		$binding[] = $long;
+		$binding[] = $lat;
+
+		$query = $this->db->query($sql, $binding);
+
+		$result = $query->row();
+
+		if ($result) {
+			return $result->zone;
+		} else {
+			return null;
+		}
+	}
 }
 
 function validateADIFDate($date, $format = 'Ymd')
@@ -5204,4 +5224,6 @@ function validateADIFDate($date, $format = 'Ymd')
   $d = DateTime::createFromFormat($format, $date);
   return $d && $d->format($format) == $date;
 }
+
+
 ?>
