@@ -16,12 +16,13 @@
 # "Stefan (DB4SCW)" <dev@db4scw.de>, 2024.
 # "Joerg (DJ7NT)" <joerg+kennungen.github@dorgeist.com>, 2024.
 # Reiner Herrmann <reiner@reiner-h.de>, 2024.
+# Fabian Franz BSc <franz.fabian.94@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-09-14 17:20+0000\n"
-"PO-Revision-Date: 2024-09-13 06:10+0000\n"
-"Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
+"POT-Creation-Date: 2024-09-13 18:18+0000\n"
+"PO-Revision-Date: 2024-09-14 17:20+0000\n"
+"Last-Translator: Fabian Franz BSc <franz.fabian.94@gmail.com>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
 "Language: de_DE\n"
@@ -2521,11 +2522,11 @@ msgstr "unbekannt"
 
 #: application/models/Update_model.php:300
 msgid "Newer release available:"
-msgstr ""
+msgstr "Neueres Release verfübgar:"
 
 #: application/models/Update_model.php:304
 msgid "You are running the latest version."
-msgstr ""
+msgstr "Du hast die neueste Version."
 
 #: application/views/accumulate/index.php:2
 msgid "Accumulated number of DXCCs worked"
@@ -5955,7 +5956,7 @@ msgstr ""
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "A new version of Wavelog has been published. See: %s."
-msgstr ""
+msgstr "Eine neuere Version von Wavelog wurde veröffentlicht. Siehe %s."
 
 #: application/views/dashboard/index.php:72
 #, php-format
@@ -6213,11 +6214,11 @@ msgstr "Version"
 
 #: application/views/debug/index.php:30
 msgid "Latest Version"
-msgstr ""
+msgstr "Neueste Version"
 
 #: application/views/debug/index.php:36
 msgid "Latest Release"
-msgstr ""
+msgstr "Neueste Version"
 
 #: application/views/debug/index.php:41
 msgid "Language"
@@ -7032,11 +7033,6 @@ msgstr "Berechne QRB und QTF"
 #: application/views/interface_assets/footer.php:50
 msgid "Error in locators. Please check."
 msgstr "Fehlerhaftes Planquadrat. Bitte überprüfen."
-
-#: application/views/interface_assets/footer.php:51
-#: application/views/user/index.php:39
-msgid "Refresh List"
-msgstr "Aktualisiere Liste"
 
 #: application/views/interface_assets/footer.php:132
 #: application/views/interface_assets/header.php:440
@@ -9397,7 +9393,7 @@ msgstr "Sig Info"
 #: application/views/qso/edit_ajax.php:507 application/views/qso/index.php:563
 #: application/views/qso/index.php:607
 msgid "Note: Gets exported to third-party services."
-msgstr ""
+msgstr "Hinweis: Wird zu Drittanbieterdiensten exportiert."
 
 #: application/views/qso/edit_ajax.php:431
 msgid "Sent Method"
@@ -9429,7 +9425,7 @@ msgstr "Setze die eQSL-Nachricht auf den Standardtext zurück."
 
 #: application/views/qso/edit_ajax.php:504 application/views/qso/index.php:604
 msgid "QSL MSG"
-msgstr ""
+msgstr "QSL Nachricht"
 
 #: application/views/qso/edit_ajax.php:554
 msgid "Change Station Profile"
@@ -11781,6 +11777,11 @@ msgstr ""
 #: application/views/user/index.php:38
 msgid "Create user"
 msgstr "Benutzer anlegen"
+
+#: application/views/user/index.php:39
+#: application/views/interface_assets/footer.php:51
+msgid "Refresh List"
+msgstr "Aktualisiere Liste"
 
 #: application/views/user/index.php:49
 msgid "Type"
