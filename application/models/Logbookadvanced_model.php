@@ -531,6 +531,14 @@ class Logbookadvanced_model extends CI_Model {
 			$updatedData['COL_ITUZ'] = $callbook['ituz'];
 		}
 
+		//Also set QRZ.com status to modified
+		if (!$this->load->is_loaded('logbook_model')) {
+			$this->load->model('logbook_model');
+		}
+		if($this->logbook_model->exists_qrz_api_key($qso['station_id']) && !empty($qso['COL_QRZCOM_QSO_UPLOAD_DATE'])) {
+			$updatedData['COL_QRZCOM_QSO_UPLOAD_STATUS'] = 'M';
+		}
+
 		if (count($updatedData) > 0) {
 			$this->db->where('COL_PRIMARY_KEY', $qsoID);
 			$this->db->update($this->config->item('table_name'), $updatedData);
