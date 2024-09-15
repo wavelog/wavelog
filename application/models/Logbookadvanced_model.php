@@ -758,6 +758,30 @@ class Logbookadvanced_model extends CI_Model {
 			$query = $this->db->query($sql, array($value, json_decode($ids, true), $this->session->userdata('user_id')));
 		}
 
+		//Also set QRZ.com status to modified
+		if (!$this->load->is_loaded('logbook_model')) {
+			$this->load->model('logbook_model');
+		}
+		$checked_stations = array();
+		foreach (json_decode($ids, true) as $id) {
+			$qso = $this->logbook_model->get_qso($id)->row();
+			
+			if (!isset($checked_stations[$qso->station_id])) {
+				$station_has_key = !empty($this->logbook_model->exists_qrz_api_key($qso->station_id));
+				$checked_stations[$qso->station_id] = $station_has_key;
+				log_message('error', 'Checked station: ' . $qso->station_id . ' and has key: ' . $station_has_key);
+			} else {
+				$station_has_key = $checked_stations[$qso->station_id];
+				log_message('error', 'Station was already checked: ' . $qso->station_id . ' and has key: ' . $station_has_key);
+			}
+
+			if ($station_has_key && !empty($qso->COL_QRZCOM_QSO_UPLOAD_DATE)) {
+				$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ".$this->config->item('table_name').".station_id = station_profile.station_id SET " . $this->config->item('table_name').".COL_QRZCOM_QSO_UPLOAD_STATUS = 'M' WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
+				
+				$query = $this->db->query($sql, array(json_decode($ids, true), $this->session->userdata('user_id')));
+			}
+		}
+
 		$this->db->trans_complete();
 
 		return array('message' => 'OK');
