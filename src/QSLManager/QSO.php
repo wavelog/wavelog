@@ -472,7 +472,18 @@ class QSO
 			$qrzstring .= "\" data-bs-toggle=\"tooltip\"";
 		}
 
-		$qrzstring .= ' class="qrz-' . (($data['COL_QRZCOM_QSO_UPLOAD_STATUS'] =='Y') ? 'green':'red') . '">&#9650;</span><span ';
+		if ($data['COL_QRZCOM_QSO_UPLOAD_STATUS'] == "M") {
+			$qrzstring .= "title=\"".__("Modified");
+
+			if ($data['COL_QRZCOM_QSO_UPLOAD_DATE'] != null) {
+				$timestamp = strtotime($data['COL_QRZCOM_QSO_UPLOAD_DATE']);
+				$qrzstring .=  " ".($timestamp!=''?date($custom_date_format, $timestamp):'');
+			}
+
+			$qrzstring .= "\" data-bs-toggle=\"tooltip\"";
+		}
+
+		$qrzstring .= ' class="qrz-' . (($data['COL_QRZCOM_QSO_UPLOAD_STATUS'] =='Y') ? 'green' : (($data['COL_QRZCOM_QSO_UPLOAD_STATUS'] == 'M') ? 'yellow' : 'red')) . '">&#9650;</span><span ';
 
 		if ($data['COL_QRZCOM_QSO_DOWNLOAD_STATUS'] == "Y") {
 			$qrzstring .= "title=\"".__("Received");
