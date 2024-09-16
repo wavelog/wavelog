@@ -496,8 +496,10 @@ class Logbookadvanced_model extends CI_Model {
 
 	public function updateQsoWithCallbookInfo($qsoID, $qso, $callbook) {
 		$updatedData = array();
+		$updated = false;
 		if (!empty($callbook['name']) && empty($qso['COL_NAME'])) {
 			$updatedData['COL_NAME'] = $callbook['name'];
+			$updated = true;
 		}
 		if (!empty($callbook['gridsquare']) && empty($qso['COL_GRIDSQUARE']) && empty($qso['COL_VUCC_GRIDS'] )) {
 			if (strpos(trim($callbook['gridsquare']), ',') === false) {
@@ -505,37 +507,43 @@ class Logbookadvanced_model extends CI_Model {
 			} else {
 				$updatedData['COL_VUCC_GRIDS'] = strtoupper(trim($callbook['gridsquare']));
 			}
+			$updated = true;
 		}
 		if (!empty($callbook['city']) && empty($qso['COL_QTH'])) {
 			$updatedData['COL_QTH'] = $callbook['city'];
+			$updated = true;
 		}
 		if (!empty($callbook['lat']) && empty($qso['COL_LAT'])) {
 			$updatedData['COL_LAT'] = substr(($callbook['lat'] ?? ''),0,11);
+			$updated = true;
 		}
 		if (!empty($callbook['long']) && empty($qso['COL_LON'])) {
 			$updatedData['COL_LON'] = substr(($callbook['long'] ?? ''),0,11);
+			$updated = true;
 		}
 		if (!empty($callbook['iota']) && empty($qso['COL_IOTA'])) {
 			$updatedData['COL_IOTA'] = $callbook['iota'];
+			$updated = true;
 		}
 		if (!empty($callbook['state']) && empty($qso['COL_STATE'])) {
 			$updatedData['COL_STATE'] = $callbook['state'];
+			$updated = true;
 		}
 		if (!empty($callbook['us_county']) && empty($qso['COL_CNTY'])) {
 			$updatedData['COL_CNTY'] = $callbook['state'].','.$callbook['us_county'];
+			$updated = true;
 		}
 		if (!empty($callbook['qslmgr']) && empty($qso['COL_QSL_VIA'])) {
 			$updatedData['COL_QSL_VIA'] = $callbook['qslmgr'];
+			$updated = true;
 		}
 		if (!empty($callbook['ituz']) && empty($qso['COL_ITUZ'])) {
 			$updatedData['COL_ITUZ'] = $callbook['ituz'];
+			$updated = true;
 		}
 
 		//Also set QRZ.com status to modified
-		if (!$this->load->is_loaded('logbook_model')) {
-			$this->load->model('logbook_model');
-		}
-		if($this->logbook_model->exists_qrz_api_key($qso['station_id']) && !empty($qso['COL_QRZCOM_QSO_UPLOAD_DATE'])) {
+		if($updated == true && $qso['COL_QRZCOM_QSO_UPLOAD_STATUS'] == 'Y') {
 			$updatedData['COL_QRZCOM_QSO_UPLOAD_STATUS'] = 'M';
 		}
 
@@ -762,23 +770,13 @@ class Logbookadvanced_model extends CI_Model {
 		if (!$this->load->is_loaded('logbook_model')) {
 			$this->load->model('logbook_model');
 		}
-		$checked_stations = array();
 		foreach (json_decode($ids, true) as $id) {
 			$qso = $this->logbook_model->get_qso($id)->row();
-			
-			if (!isset($checked_stations[$qso->station_id])) {
-				$station_has_key = !empty($this->logbook_model->exists_qrz_api_key($qso->station_id));
-				$checked_stations[$qso->station_id] = $station_has_key;
-				log_message('error', 'Checked station: ' . $qso->station_id . ' and has key: ' . $station_has_key);
-			} else {
-				$station_has_key = $checked_stations[$qso->station_id];
-				log_message('error', 'Station was already checked: ' . $qso->station_id . ' and has key: ' . $station_has_key);
-			}
-
-			if ($station_has_key && !empty($qso->COL_QRZCOM_QSO_UPLOAD_DATE)) {
-				$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ".$this->config->item('table_name').".station_id = station_profile.station_id SET " . $this->config->item('table_name').".COL_QRZCOM_QSO_UPLOAD_STATUS = 'M' WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
+			if ($qso->COL_QRZCOM_QSO_UPLOAD_STATUS == 'Y') {
+				log_message('info', '[LBA] Updating QRZ.com status for QSO ID: ' . $id . ' to M');
+				$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ".$this->config->item('table_name').".station_id = station_profile.station_id SET " . $this->config->item('table_name').".COL_QRZCOM_QSO_UPLOAD_STATUS = 'M' WHERE " . $this->config->item('table_name').".col_primary_key = ? and station_profile.user_id = ?";
 				
-				$query = $this->db->query($sql, array(json_decode($ids, true), $this->session->userdata('user_id')));
+				$query = $this->db->query($sql, array($id, $this->session->userdata('user_id')));
 			}
 		}
 
