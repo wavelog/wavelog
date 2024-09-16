@@ -4,8 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Migration_itu_spatial extends CI_Migration {
 
-    public function up()
-    {
+	public function up() {
 		if (!$this->db->table_exists('itu_zones')) {
 
 			$this->dbforge->add_field(array(
@@ -672,7 +671,9 @@ class Migration_itu_spatial extends CI_Migration {
 
 	}
 
-    public function down()
-    {
-    }
+	public function down() {
+		if ($this->db->table_exists('itu_zones')) {
+			$this->dbforge->drop_table('itu_zones');
+		}
+	}
 }
