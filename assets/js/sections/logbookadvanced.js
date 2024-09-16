@@ -73,6 +73,9 @@ function updateRow(qso) {
 	if ($(".lotwconfirmation")[0] && user_options.lotw.show == "true"){
 		cells.eq(c++).html(qso.lotw);
 	}
+	if (user_options.qrz.show == "true"){
+		cells.eq(c++).html(qso.qrz);
+	}
 	if (user_options.qslmsg.show == "true"){
 		cells.eq(c++).text(qso.qslMessage);
 	}
@@ -220,6 +223,9 @@ function loadQSOTable(rows) {
 		}
 		if ($(".lotwconfirmation")[0] && user_options.lotw.show == "true"){
 			data.push(qso.lotw);
+		}
+		if (user_options.qrz.show == "true"){
+			data.push(qso.qrz);
 		}
 		if (user_options.qslmsg.show == "true"){
 			data.push(qso.qslMessage);
@@ -1137,6 +1143,7 @@ function saveOptions() {
 			wwff: $('input[name="wwff"]').is(':checked') ? true : false,
 			sig: $('input[name="sig"]').is(':checked') ? true : false,
 			continent: $('input[name="continent"]').is(':checked') ? true : false,
+			qrz: $('input[name="qrz"]').is(':checked') ? true : false,
 			gridsquare_layer: $('input[name="gridsquareoverlay"]').is(':checked') ? true : false,
 			path_lines: $('input[name="pathlines"]').is(':checked') ? true : false,
 			cqzone_layer: $('input[name="cqzones"]').is(':checked') ? true : false,

@@ -46,7 +46,7 @@ function init_datatable() {
 		dom: 'Bfrtip',
 		buttons: [
 			{
-				text: 'Refresh',
+				text: lang_general_refresh_list,
 				action: function (e, dt, node, config) {
 					reloadCrons();
 				}
