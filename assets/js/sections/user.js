@@ -10,7 +10,7 @@ $(document).ready(function(){
         ordering: true,
         "scrollY": "100%",
         "scrollCollapse": true,
-        "paging": false,
+        "paging": true,
         "language": {
             url: getDataTablesLanguageUrl(),
         },
