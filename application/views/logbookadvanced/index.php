@@ -190,7 +190,7 @@ $options = json_decode($options);
                                 <option value=""><?= __("All"); ?></option>
                                 <?php
                                 foreach ($modes as $modeId => $mode) {
-                                ?><option value="<?php echo htmlspecialchars($mode); ?>"><?php echo htmlspecialchars($mode); ?></option><?php
+                                ?><option value="<?php echo htmlspecialchars($mode ?? ''); ?>"><?php echo htmlspecialchars($mode ?? ''); ?></option><?php
                                                                                                                                 }
                                                                                                                                     ?>
                             </select>
@@ -201,7 +201,7 @@ $options = json_decode($options);
                                 <option value=""><?= __("All"); ?></option>
                                 <?php
                                 foreach ($bands as $band) {
-                                ?><option value="<?php echo htmlentities($band); ?>"><?php echo htmlspecialchars($band); ?></option><?php
+                                ?><option value="<?php echo htmlentities($band ?? ''); ?>"><?php echo htmlspecialchars($band ?? ''); ?></option><?php
                                                                                                                             }
                                                                                                                                 ?>
                             </select>
