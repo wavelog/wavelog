@@ -9,10 +9,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-09-16 06:18+0000\n"
-"PO-Revision-Date: 2024-09-10 14:54+0000\n"
+"PO-Revision-Date: 2024-09-17 03:35+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ru/>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1907,7 +1907,7 @@ msgstr "Некорректно записанные зоны CQ"
 
 #: application/controllers/Search.php:70
 msgid "Incorrectly logged ITU zones"
-msgstr ""
+msgstr "Неправильно записанные зоны ITU"
 
 #: application/controllers/Search.php:82
 msgid ""
@@ -2509,11 +2509,11 @@ msgstr "неизвестно"
 
 #: application/models/Update_model.php:300
 msgid "Newer release available:"
-msgstr ""
+msgstr "Доступна новая версия:"
 
 #: application/models/Update_model.php:304
 msgid "You are running the latest version."
-msgstr ""
+msgstr "Вы используете последнюю версию."
 
 #: application/views/accumulate/index.php:2
 msgid "Accumulated number of DXCCs worked"
@@ -3376,6 +3376,8 @@ msgstr ""
 msgid ""
 "Always use the logged-in account callsign as the operator call during import"
 msgstr ""
+"Всегда используйте позывной учетной записи, под которой выполнен вход, в "
+"качестве позывного оператора при импорте"
 
 #: application/views/adif/import.php:162
 #: application/views/interface_assets/footer.php:32
@@ -5929,7 +5931,7 @@ msgstr "Вам нужнго обновить версию PHP. Минималь�
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "A new version of Wavelog has been published. See: %s."
-msgstr ""
+msgstr "Опубликована новая версия Wavelog. Смотрите: %s."
 
 #: application/views/dashboard/index.php:72
 #, php-format
@@ -6186,11 +6188,11 @@ msgstr "Версия"
 
 #: application/views/debug/index.php:30
 msgid "Latest Version"
-msgstr ""
+msgstr "Последняя версия"
 
 #: application/views/debug/index.php:36
 msgid "Latest Release"
-msgstr ""
+msgstr "Последний релиз"
 
 #: application/views/debug/index.php:41
 msgid "Language"
@@ -9366,7 +9368,7 @@ msgstr "Информация Sig"
 #: application/views/qso/edit_ajax.php:507 application/views/qso/index.php:563
 #: application/views/qso/index.php:607
 msgid "Note: Gets exported to third-party services."
-msgstr ""
+msgstr "Примечание: Экспортируется в сторонние сервисы."
 
 #: application/views/qso/edit_ajax.php:431
 msgid "Sent Method"
@@ -9398,7 +9400,7 @@ msgstr "Сообщение в eQSL по умолчанию для этого п�
 
 #: application/views/qso/edit_ajax.php:504 application/views/qso/index.php:604
 msgid "QSL MSG"
-msgstr ""
+msgstr "QSL MSG"
 
 #: application/views/qso/edit_ajax.php:554
 msgid "Change Station Profile"
@@ -9948,7 +9950,7 @@ msgstr "Некорректные зоны CQ"
 #: application/views/search/lotw_unconfirmed.php:21
 #: application/views/search/main.php:21
 msgid "Incorrect ITU Zones"
-msgstr ""
+msgstr "Неправильные зоны ITU"
 
 #: application/views/search/cqzones.php:24
 #: application/views/search/filter.php:32
@@ -10001,10 +10003,12 @@ msgid ""
 "The following QSOs were found to have an incorrect ITU zone that this DXCC "
 "normally has (a maximum of 1000 QSOs are shown):"
 msgstr ""
+"Было обнаружено, что следующие QSO имеют неправильную ITU зону, которая "
+"обычно присваивается этому DXCC (показано максимум 1000 QSO):"
 
 #: application/views/search/ituzones_result.php:14
 msgid "DXCC ITU Zone"
-msgstr ""
+msgstr "ITU зона DXCC"
 
 #: application/views/search/lotw_unconfirmed.php:29
 msgid ""
