@@ -770,14 +770,19 @@ class Logbookadvanced_model extends CI_Model {
 		if (!$this->load->is_loaded('logbook_model')) {
 			$this->load->model('logbook_model');
 		}
+		$modifiedQsos=[];
 		foreach (json_decode($ids, true) as $id) {
 			$qso = $this->logbook_model->get_qso($id)->row();
 			if ($qso->COL_QRZCOM_QSO_UPLOAD_STATUS == 'Y') {
 				log_message('info', '[LBA] Updating QRZ.com status for QSO ID: ' . $id . ' to M');
-				$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ".$this->config->item('table_name').".station_id = station_profile.station_id SET " . $this->config->item('table_name').".COL_QRZCOM_QSO_UPLOAD_STATUS = 'M' WHERE " . $this->config->item('table_name').".col_primary_key = ? and station_profile.user_id = ?";
-				
-				$query = $this->db->query($sql, array($id, $this->session->userdata('user_id')));
+				$modifiedQsos[] = $id;
 			}
+		}
+
+		if (!empty($modifiedQsos)) {
+			$qso_ids = implode(',', $modifiedQsos);
+			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ".$this->config->item('table_name').".station_id = station_profile.station_id SET " . $this->config->item('table_name').".COL_QRZCOM_QSO_UPLOAD_STATUS = 'M' WHERE " . $this->config->item('table_name').".col_primary_key in (".$qso_ids.") and station_profile.user_id = ?";
+			$query = $this->db->query($sql, $this->session->userdata('user_id'));
 		}
 
 		$this->db->trans_complete();
