@@ -3628,10 +3628,15 @@ function lotw_last_qsl_date($user_id) {
 	  }
 
 	  if (isset($record['mode'])) {
-		  $input_mode = $record['mode'];
-	  } else {
-		  $input_mode = '';
-	  }
+		if (strlen($record['mode']) < 12) { // COL_MODE is VARCHAR(12)
+			$input_mode = $record['mode'];
+		} else {
+			log_message('error', 'ADIF Import: Mode too long: '.$record['mode'].' for QSO with call: '.$record['call'].' at date '.$record['qso_date']);
+			$input_mode = '';
+		}
+	} else {
+		$input_mode = '';
+	}
 
 	  $mode = $this->get_main_mode_if_submode($input_mode);
 	  if ($mode == null) {
