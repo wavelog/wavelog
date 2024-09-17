@@ -3610,7 +3610,7 @@ function lotw_last_qsl_date($user_id) {
 	  } else {
 		  if (isset($record['freq'])){
 			  if($freq != "0") {
-				  $band = $this->frequency->GetBand($freq);
+				  $band = $this->frequency->GetBand($freq) ?? '';
 			  }
 		  }
 	  }
@@ -3628,7 +3628,7 @@ function lotw_last_qsl_date($user_id) {
 	  }
 
 	  if (isset($record['mode'])) {
-		if (strlen($record['mode']) < 12) { // COL_MODE is VARCHAR(12)
+		if (strlen($record['mode']) <= 12) { // COL_MODE is VARCHAR(12)
 			$input_mode = $record['mode'];
 		} else {
 			log_message('error', 'ADIF Import: Mode too long: '.$record['mode'].' for QSO with call: '.$record['call'].' at date '.$record['qso_date']);
@@ -3664,7 +3664,7 @@ function lotw_last_qsl_date($user_id) {
 			  $this->db->where('COL_CALL', $record['call']);
 		  }
 		  $this->db->where("DATE_FORMAT(COL_TIME_ON, '%Y-%m-%d %H:%i') = DATE_FORMAT(\"".$time_on."\", '%Y-%m-%d %H:%i')");
-		  $this->db->where('COL_BAND', $band);
+		  $this->db->where('COL_BAND', $band ?? '');
 		  $this->db->where('COL_MODE', $input_mode);
 		  $this->db->where('station_id', $station_id);
 		  $check = $this->db->get($this->config->item('table_name'));
@@ -4006,7 +4006,7 @@ function lotw_last_qsl_date($user_id) {
 			  'COL_ARRL_SECT' => (!empty($record['arrl_sect'])) ? $record['arrl_sect'] : '',
 			  'COL_AWARD_GRANTED' => (!empty($record['award_granted'])) ? $record['award_granted'] : '',
 			  'COL_AWARD_SUBMITTED' => (!empty($record['award_submitted'])) ? $record['award_submitted'] : '',
-			  'COL_BAND' => $band,
+			  'COL_BAND' => $band ?? '',
 			  'COL_BAND_RX' => $band_rx ?? '',
 			  'COL_BIOGRAPHY' => (!empty($record['biography'])) ? $record['biography'] : '',
 			  'COL_CALL' => (!empty($record['call'])) ? strtoupper($record['call']) : '',
