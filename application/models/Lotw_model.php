@@ -15,7 +15,7 @@ class Lotw_model extends CI_Model {
 		$this->db->select('lotw_certs.lotw_cert_id as lotw_cert_id, lotw_certs.callsign as callsign, dxcc_entities.name as cert_dxcc, dxcc_entities.end as cert_dxcc_end, lotw_certs.qso_start_date as qso_start_date, lotw_certs.qso_end_date as qso_end_date, lotw_certs.date_created as date_created, lotw_certs.date_expires as date_expires, lotw_certs.last_upload as last_upload, lotw_certs.last_upload_fail as last_upload_fail, lotw_certs.last_upload_status as last_upload_status');
 		$this->db->where('user_id', $user_id);
 		$this->db->join('dxcc_entities','lotw_certs.cert_dxcc_id = dxcc_entities.adif','left');
-		$this->db->order_by('cert_dxcc', 'ASC');
+		$this->db->order_by('callsign', 'ASC');
 		$query = $this->db->get('lotw_certs');
 
 		return $query;
