@@ -9,10 +9,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-09-16 06:18+0000\n"
-"PO-Revision-Date: 2024-09-05 09:30+0000\n"
+"PO-Revision-Date: 2024-09-17 12:24+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
-"Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/sr/>\n"
+"Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/sr/>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -495,7 +495,7 @@ msgstr "ITU Zone"
 #: application/views/awards/wac/index.php:8
 #: application/views/interface_assets/header.php:174
 msgid "Worked All Continents (WAC)"
-msgstr ""
+msgstr "Worked all Continents (WAC)"
 
 #: application/controllers/Backup.php:15 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:284
@@ -1907,7 +1907,7 @@ msgstr "Netačno upisane CQ zone"
 
 #: application/controllers/Search.php:70
 msgid "Incorrectly logged ITU zones"
-msgstr ""
+msgstr "Neispravno upisane ITU zone"
 
 #: application/controllers/Search.php:82
 msgid ""
@@ -2511,11 +2511,11 @@ msgstr "nepoznato"
 
 #: application/models/Update_model.php:300
 msgid "Newer release available:"
-msgstr ""
+msgstr "Novija izdanja su dostupna:"
 
 #: application/models/Update_model.php:304
 msgid "You are running the latest version."
-msgstr ""
+msgstr "Koristite poslednju verziju."
 
 #: application/views/accumulate/index.php:2
 msgid "Accumulated number of DXCCs worked"
@@ -3377,7 +3377,7 @@ msgstr ""
 #: application/views/adif/import.php:153
 msgid ""
 "Always use the logged-in account callsign as the operator call during import"
-msgstr ""
+msgstr "Uvek koristite pozivni znak prijavljenog operatora tokom uvoza"
 
 #: application/views/adif/import.php:162
 #: application/views/interface_assets/footer.php:32
@@ -4836,10 +4836,13 @@ msgid ""
 "Continents award is issued for working and confirming all six continents. "
 "These are North America, South America, Oceania, Asia, Europe and Africa."
 msgstr ""
+"Sponzorisano od strane Međunarodne radio-amaterske unije (IARU), WAC diploma "
+"se izdaje za urađene i potvrđene veze sa svih šest kontinenata. To us "
+"Severna Amerika, Južna Amerka, Okeanija, Azija, Evropa i Afrika."
 
 #: application/views/awards/wac/index.php:13
 msgid "Awards - Worked All Continents (WAC)"
-msgstr ""
+msgstr "Diplome - Worked All Continents (WAC)"
 
 #: application/views/awards/wac/index.php:151
 #: application/views/continents/index.php:62
@@ -5535,6 +5538,7 @@ msgstr "Postavite na aktivno ako želite da bude prikazano u listi takmičenja"
 #: application/views/contesting/index.php:2
 msgid "You need to start a new session before you can change the contest name!"
 msgstr ""
+"Morate pokrenuti novu sesiju pre nego mognete promeniti naziv takmičenja!"
 
 #: application/views/contesting/index.php:6
 msgid "Start new Contest Session"
@@ -5911,7 +5915,7 @@ msgstr ""
 #, php-format
 msgctxt "Dashboard Warning"
 msgid "A new version of Wavelog has been published. See: %s."
-msgstr ""
+msgstr "Objavljena je nova verzija Waveloga. Pogledajte: %s."
 
 #: application/views/dashboard/index.php:72
 #, php-format
@@ -6167,11 +6171,11 @@ msgstr "Verzija"
 
 #: application/views/debug/index.php:30
 msgid "Latest Version"
-msgstr ""
+msgstr "Poslednja verzija"
 
 #: application/views/debug/index.php:36
 msgid "Latest Release"
-msgstr ""
+msgstr "Poslednje izdanje"
 
 #: application/views/debug/index.php:41
 msgid "Language"
@@ -9330,7 +9334,7 @@ msgstr "SIG info"
 #: application/views/qso/edit_ajax.php:507 application/views/qso/index.php:563
 #: application/views/qso/index.php:607
 msgid "Note: Gets exported to third-party services."
-msgstr ""
+msgstr "Napomena: biće izvezeno na treće servise."
 
 #: application/views/qso/edit_ajax.php:431
 msgid "Sent Method"
@@ -9362,7 +9366,7 @@ msgstr "Dodajte podrazumevanu poruku za eQSL, za ovu stanicu."
 
 #: application/views/qso/edit_ajax.php:504 application/views/qso/index.php:604
 msgid "QSL MSG"
-msgstr ""
+msgstr "QSL MSG"
 
 #: application/views/qso/edit_ajax.php:554
 msgid "Change Station Profile"
@@ -9405,7 +9409,7 @@ msgstr "Nije rađen prethodno"
 
 #: application/views/qso/index.php:8
 msgid "DXCC Summary for "
-msgstr ""
+msgstr "DXCC zbirno za "
 
 #: application/views/qso/index.php:21
 msgid "LIVE"
@@ -9692,13 +9696,15 @@ msgstr "Visina antene iznad zemlje."
 
 #: application/views/reg1test/index.php:134
 msgid "Band multiplicator"
-msgstr ""
+msgstr "Množitelj po opsegu"
 
 #: application/views/reg1test/index.php:136
 msgid ""
 "Band multiplicator. This is usually 1. Only change this if necessary "
 "according to the contest scoring rules."
 msgstr ""
+"Množitelj po opsegu. Ovo je obično 1. Promjenite ovo ako je potrebno da bude "
+"u skladu sa pravilima bodovanja za takmičnje."
 
 #: application/views/reg1test/index.php:141
 msgid "Any other remarks."
@@ -9909,7 +9915,7 @@ msgstr "Netačna CQ zona"
 #: application/views/search/lotw_unconfirmed.php:21
 #: application/views/search/main.php:21
 msgid "Incorrect ITU Zones"
-msgstr ""
+msgstr "Neispravne ITU Zone"
 
 #: application/views/search/cqzones.php:24
 #: application/views/search/filter.php:32
@@ -9962,10 +9968,12 @@ msgid ""
 "The following QSOs were found to have an incorrect ITU zone that this DXCC "
 "normally has (a maximum of 1000 QSOs are shown):"
 msgstr ""
+"Za sledeće QSO ustanovili smo da imaju neispravnu ITU zonu u poređenu sa "
+"zonom koju ova DXCC normalno ima (maksimalno je prikazano 1000 QSO):"
 
 #: application/views/search/ituzones_result.php:14
 msgid "DXCC ITU Zone"
-msgstr ""
+msgstr "DXCC ITU Zona"
 
 #: application/views/search/lotw_unconfirmed.php:29
 msgid ""
@@ -11829,7 +11837,7 @@ msgstr "Prikaz svih QSO staničnih lokacija koje su povezane u ovom dnevniku"
 #: application/views/view_log/partial/log_ajax.php:289
 #: src/QSLManager/QSO.php:476
 msgid "Modified"
-msgstr ""
+msgstr "Modifikovano"
 
 #: application/views/view_log/qso.php:6
 msgid "QSO Details"
