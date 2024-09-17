@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-09-16 06:18+0000\n"
+"POT-Creation-Date: 2024-09-17 12:24+0000\n"
 "PO-Revision-Date: 2024-09-05 09:30+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
 "Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -632,35 +632,35 @@ msgstr "Kontrolna tabla"
 msgid "Number of days with QSOs each year"
 msgstr "Broj dana sa QSO-om za svaku godinu"
 
-#: application/controllers/Debug.php:105
+#: application/controllers/Debug.php:106
 msgid "Debug"
 msgstr "Debug"
 
-#: application/controllers/Debug.php:144
+#: application/controllers/Debug.php:145
 msgid "Migrate data now"
 msgstr "Migrirajte sada podatke"
 
-#: application/controllers/Debug.php:147
+#: application/controllers/Debug.php:148
 msgid "Migration already done. Run again?"
 msgstr "Migracija je već urađena. Uradite ponovo?"
 
-#: application/controllers/Debug.php:151
+#: application/controllers/Debug.php:152
 msgid "No data to migrate"
 msgstr "Nema podataka za migraciju"
 
-#: application/controllers/Debug.php:155 application/controllers/Debug.php:160
+#: application/controllers/Debug.php:156 application/controllers/Debug.php:161
 msgid "No migration possible"
 msgstr "Migracija nije moguća"
 
-#: application/controllers/Debug.php:225
+#: application/controllers/Debug.php:226
 msgid "Wavelog was updated successfully!"
 msgstr "Wavelog je uspešno ažuriran!"
 
-#: application/controllers/Debug.php:243
+#: application/controllers/Debug.php:244
 msgid "Selfupdate() not available. Check the Error Log."
 msgstr "Selfupdate() nije dostupan. Proverite Error log."
 
-#: application/controllers/Debug.php:287
+#: application/controllers/Debug.php:288
 msgid ""
 "File Migration was successfull, but please check also manually. If "
 "everything seems right you can delete the folders 'assets/qslcard' and "
@@ -670,7 +670,7 @@ msgstr ""
 "izgleda da je sve u redu možete obrisati foldere 'assets/qslcard' i 'images/"
 "eqsl_card_images'."
 
-#: application/controllers/Debug.php:290
+#: application/controllers/Debug.php:291
 msgid "File Migration failed. Please check the Error Log."
 msgstr "Migracija datoteka je bila neuspešna. Molimo proverite Error log."
 
@@ -1065,7 +1065,7 @@ msgstr "Clublog"
 #: application/views/contesting/index.php:255
 #: application/views/continents/index.php:39 application/views/csv/index.php:42
 #: application/views/dashboard/index.php:4
-#: application/views/debug/index.php:558
+#: application/views/debug/index.php:562
 #: application/views/distancerecords/index.php:19
 #: application/views/dxatlas/index.php:42
 #: application/views/eqsl/analysis.php:39
@@ -1345,7 +1345,7 @@ msgstr "Udaljenost"
 #: application/views/contesting/index.php:254
 #: application/views/continents/index.php:30 application/views/csv/index.php:31
 #: application/views/dashboard/index.php:15
-#: application/views/debug/index.php:559 application/views/dxatlas/index.php:31
+#: application/views/debug/index.php:563 application/views/dxatlas/index.php:31
 #: application/views/eqsl/download.php:41
 #: application/views/eqslcard/index.php:32
 #: application/views/gridmap/index.php:10 application/views/kml/index.php:19
@@ -3173,7 +3173,7 @@ msgstr "U poređenju sa DCL, u vašem logu postoje različiti DOK podaci"
 #: application/views/contesting/index.php:98
 #: application/views/contesting/index.php:252
 #: application/views/dashboard/index.php:170
-#: application/views/debug/index.php:555
+#: application/views/debug/index.php:559
 #: application/views/distancerecords/index.php:16
 #: application/views/eqsl/analysis.php:36
 #: application/views/eqsl/download.php:36 application/views/eqsl/result.php:33
@@ -3218,7 +3218,7 @@ msgstr "Datum"
 #: application/views/contesting/index.php:103
 #: application/views/contesting/index.php:252
 #: application/views/dashboard/index.php:173
-#: application/views/debug/index.php:556
+#: application/views/debug/index.php:560
 #: application/views/distancerecords/index.php:17
 #: application/views/eqsl/analysis.php:37
 #: application/views/eqsl/download.php:37 application/views/eqsl/result.php:34
@@ -3247,7 +3247,7 @@ msgstr "Vreme"
 #: application/views/awards/vucc/band.php:18
 #: application/views/bandmap/list.php:111
 #: application/views/contesting/index.php:253
-#: application/views/debug/index.php:557 application/views/debug/index.php:592
+#: application/views/debug/index.php:561 application/views/debug/index.php:596
 #: application/views/dxcalendar/index.php:12
 #: application/views/eqsl/analysis.php:38
 #: application/views/eqsl/download.php:38 application/views/eqsl/result.php:35
@@ -3298,8 +3298,8 @@ msgid "Maximum file upload size is "
 msgstr "Maksimalna veličina datoteke za učitavanje je "
 
 #: application/views/adif/import.php:56 application/views/adif/import.php:231
-#: application/views/adif/import.php:269 application/views/debug/index.php:185
-#: application/views/debug/index.php:202 application/views/debug/index.php:547
+#: application/views/adif/import.php:269 application/views/debug/index.php:189
+#: application/views/debug/index.php:206 application/views/debug/index.php:551
 #: application/views/hrdlog/export.php:25
 #: application/views/hrdlog/export.php:74
 #: application/views/interface_assets/footer.php:34
@@ -5841,10 +5841,10 @@ msgid "disabled"
 msgstr "onemogućeno"
 
 #: application/views/cron/index.php:83 application/views/cron/index.php:85
-#: application/views/cron/index.php:87 application/views/debug/index.php:504
-#: application/views/debug/index.php:510 application/views/debug/index.php:515
-#: application/views/debug/index.php:520 application/views/debug/index.php:525
-#: application/views/debug/index.php:530 application/views/debug/index.php:535
+#: application/views/cron/index.php:87 application/views/debug/index.php:508
+#: application/views/debug/index.php:514 application/views/debug/index.php:519
+#: application/views/debug/index.php:524 application/views/debug/index.php:529
+#: application/views/debug/index.php:534 application/views/debug/index.php:539
 #: application/views/user/index.php:138
 msgid "never"
 msgstr "nikada"
@@ -6229,35 +6229,39 @@ msgstr "Okruženje"
 msgid "Total QSO on this instance"
 msgstr "Ukupno QSO u ovoj verziji"
 
-#: application/views/debug/index.php:80
+#: application/views/debug/index.php:76
+msgid "Total User"
+msgstr ""
+
+#: application/views/debug/index.php:84
 msgid "Server Information"
 msgstr "Informacije o serveru"
 
-#: application/views/debug/index.php:84
+#: application/views/debug/index.php:88
 msgid "Server Software"
 msgstr "Softver na serveru"
 
-#: application/views/debug/index.php:89
+#: application/views/debug/index.php:93
 msgid "PHP Version"
 msgstr "PHP verzija"
 
-#: application/views/debug/index.php:95
+#: application/views/debug/index.php:99
 msgid "Deprecated"
 msgstr "Zastarelo"
 
-#: application/views/debug/index.php:102
+#: application/views/debug/index.php:106
 msgid "MySQL Version"
 msgstr "MySQL verzija"
 
-#: application/views/debug/index.php:106
+#: application/views/debug/index.php:110
 msgid "Codeigniter Version"
 msgstr "Codeigniter verzija"
 
-#: application/views/debug/index.php:114
+#: application/views/debug/index.php:118
 msgid "Folder Permissions"
 msgstr "Dozvole fascikle"
 
-#: application/views/debug/index.php:116
+#: application/views/debug/index.php:120
 msgid ""
 "This verifies that the folders used by Wavelog have read and write "
 "permissions by PHP."
@@ -6265,32 +6269,32 @@ msgstr ""
 "Ovim potvrđujemo da fascikle koje koristi Wavelog imaju PHP dozvole za "
 "iščitavanje i upisivanje."
 
-#: application/views/debug/index.php:122 application/views/debug/index.php:133
-#: application/views/debug/index.php:144 application/views/debug/index.php:155
-#: application/views/debug/index.php:167
+#: application/views/debug/index.php:126 application/views/debug/index.php:137
+#: application/views/debug/index.php:148 application/views/debug/index.php:159
+#: application/views/debug/index.php:171
 msgid "Success"
 msgstr "Uspešno"
 
-#: application/views/debug/index.php:124 application/views/debug/index.php:135
-#: application/views/debug/index.php:146 application/views/debug/index.php:157
-#: application/views/debug/index.php:169
+#: application/views/debug/index.php:128 application/views/debug/index.php:139
+#: application/views/debug/index.php:150 application/views/debug/index.php:161
+#: application/views/debug/index.php:173
 msgid "Failed"
 msgstr "Neuspešno"
 
-#: application/views/debug/index.php:179
+#: application/views/debug/index.php:183
 msgid "Config Maintenance"
 msgstr "Održavanje konfiguracije"
 
-#: application/views/debug/index.php:185
+#: application/views/debug/index.php:189
 msgid "Your authentication mode is outdated and possibly unsafe"
 msgstr "Vaš način proveravanja je zastareo i verovatno nesiguran"
 
-#: application/views/debug/index.php:187 application/views/debug/index.php:204
+#: application/views/debug/index.php:191 application/views/debug/index.php:208
 #, php-format
 msgid "Please edit your %s File:"
 msgstr "Molimo uredite vašu %s datoteku:"
 
-#: application/views/debug/index.php:188
+#: application/views/debug/index.php:192
 msgid ""
 "Go to your application/config Folder and compare config.sample.php with your "
 "config.php"
@@ -6298,29 +6302,29 @@ msgstr ""
 "Idite u fasciklu application/config i uporedite datoteku config.sample.php "
 "sa vašom config.php datotekom"
 
-#: application/views/debug/index.php:189
+#: application/views/debug/index.php:193
 #, php-format
 msgid "Change %s to the value %s (Strongly recommended)"
 msgstr "Promenite %s u vrednost %s (stogo preporučeno)"
 
-#: application/views/debug/index.php:195
+#: application/views/debug/index.php:199
 msgid "Authentication Mode is set correctly"
 msgstr "Način proveravanja je postavljen ispravno"
 
-#: application/views/debug/index.php:195 application/views/debug/index.php:212
+#: application/views/debug/index.php:199 application/views/debug/index.php:216
 msgid "Ok"
 msgstr "Ok"
 
-#: application/views/debug/index.php:202
+#: application/views/debug/index.php:206
 msgid "You use the default encryption key. You should change it!"
 msgstr ""
 "Koristite podrazumevani ključ za enkripciju. Trebalo bi da ga promenite!"
 
-#: application/views/debug/index.php:205
+#: application/views/debug/index.php:209
 msgid "This will also enable the 'Keep me logged in' feature."
 msgstr "Ovim ćete omogućiti i opcioju 'Drži me prijavljenog'."
 
-#: application/views/debug/index.php:206
+#: application/views/debug/index.php:210
 #, php-format
 msgid ""
 "Change the value of %s to a new encryption key other then "
@@ -6330,15 +6334,15 @@ msgstr ""
 "'flossie1234555541'. Izaberite sigurnu i dugačku lozinku. (strogo "
 "preporučeno)"
 
-#: application/views/debug/index.php:212
+#: application/views/debug/index.php:216
 msgid "You do not use the default encryption key"
 msgstr "Ne koristite podrazumevani ključ za enkripciju"
 
-#: application/views/debug/index.php:219
+#: application/views/debug/index.php:223
 msgid "Migrate Userdata"
 msgstr "Migrirajte Userdata"
 
-#: application/views/debug/index.php:221
+#: application/views/debug/index.php:225
 msgid ""
 "Here you can migrate existing QSL cards and eQSL cards to the new userdata "
 "folder."
@@ -6346,112 +6350,112 @@ msgstr ""
 "Ovde možete migrirati postojeće QSL karte i eQSL karte u novu userdata "
 "fasciklu."
 
-#: application/views/debug/index.php:234
+#: application/views/debug/index.php:238
 msgid "Modules"
 msgstr "Moduli"
 
-#: application/views/debug/index.php:240 application/views/debug/index.php:251
-#: application/views/debug/index.php:262 application/views/debug/index.php:273
-#: application/views/debug/index.php:284
+#: application/views/debug/index.php:244 application/views/debug/index.php:255
+#: application/views/debug/index.php:266 application/views/debug/index.php:277
+#: application/views/debug/index.php:288
 msgid "Installed"
 msgstr "Instalirano"
 
-#: application/views/debug/index.php:242 application/views/debug/index.php:253
-#: application/views/debug/index.php:264 application/views/debug/index.php:275
-#: application/views/debug/index.php:286
+#: application/views/debug/index.php:246 application/views/debug/index.php:257
+#: application/views/debug/index.php:268 application/views/debug/index.php:279
+#: application/views/debug/index.php:290
 msgid "Not Installed"
 msgstr "Nije instalirano"
 
-#: application/views/debug/index.php:293 application/views/qso/index.php:668
+#: application/views/debug/index.php:297 application/views/qso/index.php:668
 msgid "Settings"
 msgstr "Podešavanja"
 
-#: application/views/debug/index.php:422
+#: application/views/debug/index.php:426
 msgid "Git Information"
 msgstr "Git informacije"
 
-#: application/views/debug/index.php:426
+#: application/views/debug/index.php:430
 msgid "Branch"
 msgstr "Grana"
 
-#: application/views/debug/index.php:437 application/views/debug/index.php:448
-#: application/views/debug/index.php:458
+#: application/views/debug/index.php:441 application/views/debug/index.php:452
+#: application/views/debug/index.php:462
 msgid "n/a"
 msgstr "n/a"
 
-#: application/views/debug/index.php:443
+#: application/views/debug/index.php:447
 msgid "Commit"
 msgstr "Uradite"
 
-#: application/views/debug/index.php:453
+#: application/views/debug/index.php:457
 msgid "Tag"
 msgstr "Tag"
 
-#: application/views/debug/index.php:463
+#: application/views/debug/index.php:467
 msgid "Last Fetch"
 msgstr "Posljednje dobavljanje"
 
-#: application/views/debug/index.php:475
+#: application/views/debug/index.php:479
 msgid "Check for new version"
 msgstr "Proverite da li postoji nova verzija"
 
-#: application/views/debug/index.php:476
+#: application/views/debug/index.php:480
 msgid "Update now"
 msgstr "Ažurirajte sada"
 
-#: application/views/debug/index.php:494
+#: application/views/debug/index.php:498
 msgid "File download date"
 msgstr "Datum preuzimanja datoteke"
 
-#: application/views/debug/index.php:498
+#: application/views/debug/index.php:502
 msgid "File"
 msgstr "Datoteka"
 
-#: application/views/debug/index.php:499
+#: application/views/debug/index.php:503
 msgid "Last update"
 msgstr "Poslednje ažuriranje"
 
-#: application/views/debug/index.php:503
+#: application/views/debug/index.php:507
 msgid "DXCC update from Club Log"
 msgstr "DXCC ažuriranje sa ClubLoga"
 
-#: application/views/debug/index.php:505 application/views/debug/index.php:511
-#: application/views/debug/index.php:516 application/views/debug/index.php:521
-#: application/views/debug/index.php:526 application/views/debug/index.php:531
-#: application/views/debug/index.php:536
+#: application/views/debug/index.php:509 application/views/debug/index.php:515
+#: application/views/debug/index.php:520 application/views/debug/index.php:525
+#: application/views/debug/index.php:530 application/views/debug/index.php:535
+#: application/views/debug/index.php:540
 #: application/views/station_profile/edit.php:49
 msgid "Update"
 msgstr "Ažuriranje"
 
-#: application/views/debug/index.php:509
+#: application/views/debug/index.php:513
 msgid "DOK file download"
 msgstr "Preuzimanje DOK datoteke"
 
-#: application/views/debug/index.php:514
+#: application/views/debug/index.php:518
 msgid "LoTW users download"
 msgstr "Preuzimanje LoTW korisnika"
 
-#: application/views/debug/index.php:519
+#: application/views/debug/index.php:523
 msgid "POTA file download"
 msgstr "Preuzimanje POTA datoteke"
 
-#: application/views/debug/index.php:524
+#: application/views/debug/index.php:528
 msgid "SCP file download"
 msgstr "Preuzimanje SCP datoteke"
 
-#: application/views/debug/index.php:529
+#: application/views/debug/index.php:533
 msgid "SOTA file download"
 msgstr "Preuzimanje SOTA datoteke"
 
-#: application/views/debug/index.php:534
+#: application/views/debug/index.php:538
 msgid "WWFF file download"
 msgstr "Preuzimanje WWFF datoteke"
 
-#: application/views/debug/index.php:543
+#: application/views/debug/index.php:547
 msgid "QSO-DB Maintenance"
 msgstr "Održavanje QSO-DB"
 
-#: application/views/debug/index.php:547
+#: application/views/debug/index.php:551
 #, php-format
 msgid "The Database contains %d QSO without a station-profile (location)"
 msgid_plural ""
@@ -6460,7 +6464,7 @@ msgstr[0] "Baza podataka sadrži%d QSO bez staničnog profila (lokacije)"
 msgstr[1] "Baza podataka sadrži%d QSOa bez staničnog profila (lokacije)"
 msgstr[2] "Baza podataka sadrži%d QSOa bez staničnog profila (lokacije)"
 
-#: application/views/debug/index.php:560
+#: application/views/debug/index.php:564
 #: application/views/public_search/result.php:17
 #: application/views/station_profile/create.php:64
 #: application/views/station_profile/edit.php:73
@@ -6469,110 +6473,110 @@ msgstr[2] "Baza podataka sadrži%d QSOa bez staničnog profila (lokacije)"
 msgid "Station Callsign"
 msgstr "Pozivni znak stanice"
 
-#: application/views/debug/index.php:585
+#: application/views/debug/index.php:589
 msgid "Please mark QSOs and reassign them to an existing station location:"
 msgstr ""
 "Molimo označite veze i ponovo ih dodelite postojećoj staničnoj lokaciji:"
 
-#: application/views/debug/index.php:593
+#: application/views/debug/index.php:597
 msgctxt "Stationlocation"
 msgid "Target Location"
 msgstr "Odredišna lokacija"
 
-#: application/views/debug/index.php:594 application/views/debug/index.php:605
+#: application/views/debug/index.php:598 application/views/debug/index.php:609
 msgid "Reassign"
 msgstr "Ponovo doznači"
 
-#: application/views/debug/index.php:614
+#: application/views/debug/index.php:618
 msgid "Every QSO in your Database is assigned to a station-profile (location)"
 msgstr ""
 "Svaki QSO u vašoj bazi podataka doznačen je staničnom profilu (lokaciji)"
 
-#: application/views/debug/index.php:614
+#: application/views/debug/index.php:618
 msgid "Everything ok"
 msgstr "Sve je u redu"
 
-#: application/views/debug/index.php:639
+#: application/views/debug/index.php:643
 msgid "Albanian"
 msgstr "Albanski"
 
-#: application/views/debug/index.php:640
+#: application/views/debug/index.php:644
 msgid "Bosnian"
 msgstr "Bosanski"
 
-#: application/views/debug/index.php:641
+#: application/views/debug/index.php:645
 msgid "Bulgarian"
 msgstr "Bugarski"
 
-#: application/views/debug/index.php:642
+#: application/views/debug/index.php:646
 msgid "Chinese (Simplified)"
 msgstr "Kineski (Pojednostavljeni)"
 
-#: application/views/debug/index.php:643
+#: application/views/debug/index.php:647
 msgid "Croatian"
 msgstr "Hrvatski"
 
-#: application/views/debug/index.php:644
+#: application/views/debug/index.php:648
 msgid "Czech"
 msgstr "Češki"
 
-#: application/views/debug/index.php:645
+#: application/views/debug/index.php:649
 msgid "Dutch"
 msgstr "Holandski"
 
-#: application/views/debug/index.php:646
+#: application/views/debug/index.php:650
 msgid "English"
 msgstr "Engleski"
 
-#: application/views/debug/index.php:647
+#: application/views/debug/index.php:651
 msgid "Finnish"
 msgstr "Finski"
 
-#: application/views/debug/index.php:648
+#: application/views/debug/index.php:652
 msgid "French"
 msgstr "Francuski"
 
-#: application/views/debug/index.php:649
+#: application/views/debug/index.php:653
 msgid "German"
 msgstr "Nemački"
 
-#: application/views/debug/index.php:650
+#: application/views/debug/index.php:654
 msgid "Greek"
 msgstr "Grčki"
 
-#: application/views/debug/index.php:651
+#: application/views/debug/index.php:655
 msgid "Italian"
 msgstr "Italijanski"
 
-#: application/views/debug/index.php:652
+#: application/views/debug/index.php:656
 msgid "Montenegrin"
 msgstr "Crnogorski"
 
-#: application/views/debug/index.php:653
+#: application/views/debug/index.php:657
 msgid "Polish"
 msgstr "Poljski"
 
-#: application/views/debug/index.php:654
+#: application/views/debug/index.php:658
 msgid "Portuguese"
 msgstr "Portugalski"
 
-#: application/views/debug/index.php:655
+#: application/views/debug/index.php:659
 msgid "Russian"
 msgstr "Ruski"
 
-#: application/views/debug/index.php:656
+#: application/views/debug/index.php:660
 msgid "Serbian"
 msgstr "Srpski"
 
-#: application/views/debug/index.php:657
+#: application/views/debug/index.php:661
 msgid "Spanish"
 msgstr "Španski"
 
-#: application/views/debug/index.php:658
+#: application/views/debug/index.php:662
 msgid "Swedish"
 msgstr "Švedski"
 
-#: application/views/debug/index.php:659
+#: application/views/debug/index.php:663
 msgid "Turkish"
 msgstr "Turski"
 
