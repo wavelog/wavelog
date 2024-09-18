@@ -119,6 +119,16 @@ class Qrz extends CI_Controller {
 
 		if ($data['qsos']) {
 			foreach ($data['qsos']->result() as $qso) {
+
+				// if the callsign starts with D1 or D0 we skip the upload as QRZ.com do not accept these callsigns
+				if (substr($qso->COL_CALL, 0, 2) == 'D1' || substr($qso->COL_CALL, 0, 2) == 'D0') {
+					$this->markqso($qso->COL_PRIMARY_KEY,'I');
+					$errormessages[] = 'Callsign starts with D1 or D0: ' . $qso->COL_CALL . ' Band: ' . $qso->COL_BAND . ' Mode: ' . $qso->COL_MODE . ' Time: ' . $qso->COL_TIME_ON;
+					$errormessages[] = 'QSO not uploaded to QRZ.com as QRZ.com do not accept callsigns starting with D1 or D0 (due the lack of DXCC information).';
+					log_message('debug', 'QSO with ID '.$qso->COL_PRIMARY_KEY.' not uploaded to QRZ.com as they do not accept callsigns starting with D1 or D0 (due the lack of DXCC information).');
+					continue;
+				}
+
 				$adif = $this->adifhelper->getAdifLine($qso);
 
 				if ($qso->COL_QRZCOM_QSO_UPLOAD_STATUS == 'M') {
