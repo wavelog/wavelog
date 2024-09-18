@@ -483,6 +483,11 @@ class QSO
 			$qrzstring .= "\" data-bs-toggle=\"tooltip\"";
 		}
 
+		if ($data['COL_QRZCOM_QSO_UPLOAD_STATUS'] == "I") {
+			$qrzstring .= "title=\"".__("Invalid (Ignore)");
+			$qrzstring .= "\" data-bs-toggle=\"tooltip\"";
+		}
+
 		$qrzstring .= ' class="qrz-';
 		if ($data['COL_QRZCOM_QSO_UPLOAD_STATUS'] =='Y') {
 			$qrzstring .= 'green';
