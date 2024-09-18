@@ -279,7 +279,7 @@ class API extends CI_Controller {
 		$key = $obj['key'];
 		$station_id = $obj['station_id'];
 		$fetchfromid = $obj['fetchfromid'];
-		$limit = -1;
+		$limit = 20000;
 		if ( (array_key_exists('limit',$obj)) && (is_numeric($obj['limit']*1)) ) {
 			$limit = $obj['limit'];
 		}
