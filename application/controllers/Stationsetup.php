@@ -477,4 +477,11 @@ class Stationsetup extends CI_Controller {
 		$this->user_options_model->set_option('ExportMapOptions', 'qsocount',  array($slug => xss_clean($this->input->post('qsocount'))));
 		$this->user_options_model->set_option('ExportMapOptions', 'band',  array($slug => xss_clean($this->input->post('band'))));
 	}
+
+	public function export() {
+		$this->load->model('Stations');
+		$stations = $this->Stations->all_of_user();
+		header('Content-Type: application/json; charset=utf-8');
+		print json_encode($stations->result());
+	}
 }

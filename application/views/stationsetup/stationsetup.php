@@ -201,5 +201,16 @@
 
                 </div>
             </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <?= __("Export"); ?>
+                </div>
+                <div class="card-body">
+                  <p class="card-text">
+                  <?= __("You can export your station locations to a JSON file here."); ?><br>
+                  <p><a href="<?php echo site_url('stationsetup/export'); ?>" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> <?= __("Export Station Locations"); ?></a></p>
+                </div>
+            </div>
         </div>
     </div>
