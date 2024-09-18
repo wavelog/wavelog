@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-09-18 09:21+0000\n"
+"POT-Creation-Date: 2024-09-18 11:37+0000\n"
 "PO-Revision-Date: 2024-09-14 12:05+0000\n"
 "Last-Translator: Jian ke <bg8ixz@hotmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -2183,9 +2183,11 @@ msgid "Edit User"
 msgstr "编辑用户"
 
 #: application/controllers/User.php:689 application/controllers/User.php:692
-#: application/views/user/index.php:3 application/views/user/index.php:46
+#: application/views/debug/index.php:77 application/views/user/index.php:3
+#: application/views/user/index.php:46
 msgid "User"
-msgstr "用户"
+msgid_plural "Users"
+msgstr[0] "用户"
 
 #: application/controllers/User.php:689 application/controllers/User.php:692
 msgid "edited"
@@ -2440,31 +2442,31 @@ msgstr "HRDlog：无 QSO 可供上传，台站呼号为： "
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog：无台站配置信息。"
 
-#: application/models/Logbook_model.php:4263
+#: application/models/Logbook_model.php:4268
 msgid "QSO could not be matched"
 msgstr "QSO 无法匹配"
 
-#: application/models/Logbook_model.php:4269
+#: application/models/Logbook_model.php:4274
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "已经通过 LoTW/Clublog/eQSL/竞赛 确认"
 
-#: application/models/Logbook_model.php:4274
+#: application/models/Logbook_model.php:4279
 msgid "confirmed by award manager"
 msgstr "已经通过奖项管理员确认"
 
-#: application/models/Logbook_model.php:4277
+#: application/models/Logbook_model.php:4282
 msgid "confirmed by cross-check of DCL data"
 msgstr "已经通过 DCL 数据交叉检查确认"
 
-#: application/models/Logbook_model.php:4280
+#: application/models/Logbook_model.php:4285
 msgid "confirmation pending"
 msgstr "等待确认"
 
-#: application/models/Logbook_model.php:4283
+#: application/models/Logbook_model.php:4288
 msgid "unconfirmed"
 msgstr "未确认"
 
-#: application/models/Logbook_model.php:4286
+#: application/models/Logbook_model.php:4291
 msgid "unknown"
 msgstr "未知"
 
