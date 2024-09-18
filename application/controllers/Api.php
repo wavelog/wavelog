@@ -279,6 +279,10 @@ class API extends CI_Controller {
 		$key = $obj['key'];
 		$station_id = $obj['station_id'];
 		$fetchfromid = $obj['fetchfromid'];
+		$limit = 20000;
+		if ( (array_key_exists('limit',$obj)) && (is_numeric($obj['limit']*1)) ) {
+			$limit = $obj['limit'];
+		}
 
 		//check if goalpost is numeric as an additional layer of SQL injection prevention
 		if(!is_numeric($fetchfromid))
@@ -305,8 +309,7 @@ class API extends CI_Controller {
 		}
 
 		//return error if station not accessible for the API key
-		if(!in_array($station_id, $station_ids))
-		{
+		if(!in_array($station_id, $station_ids)) {
 			http_response_code(401);
 	 	   	echo json_encode(['status' => 'failed', 'reason' => "Station ID not accessible for this API key"]);
 			return;
@@ -316,15 +319,14 @@ class API extends CI_Controller {
 		$this->load->model('adif_data');
 
 		//get qso data
-		$data['qsos'] = $this->adif_data->export_past_id($station_id, $fetchfromid);
+		$data['qsos'] = $this->adif_data->export_past_id($station_id, $fetchfromid, $limit);
 		
 		//set internalonly attribute for adif creation
 		$data['internalrender'] = true;
 		
 		//if no new QSOs are ready, return that
 		$qso_count = count($data['qsos']->result()); 
-		if($qso_count <= 0)
-		{
+		if($qso_count <= 0) {
 			http_response_code(200);
 			echo json_encode(['status' => 'successfull', 'message' => 'No new QSOs available.', 'lastfetchedid' => $fetchfromid, 'exported_qsos' => 0, 'adif' => null]);
 			return;
