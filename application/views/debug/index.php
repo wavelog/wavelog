@@ -74,7 +74,7 @@
                         </tr>
                         <tr>
                             <td><?= __("Total User"); ?></td>
-                            <td><?php echo $users_total . ' User'; ?></td>
+                            <td><?php echo $users_total . ' User' . ($users_total > 1 ? 's' : ''); ?></td>
                         </tr>
                     </table>
                 </div>
