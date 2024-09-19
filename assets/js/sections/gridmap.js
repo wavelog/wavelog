@@ -161,7 +161,7 @@ function spawnGridsquareModal(loc_4char) {
 			success: function (html) {
 		    		var dialog = new BootstrapDialog({
 					title: lang_general_word_qso_data,
-					cssClass: 'qso-dialog',
+					cssClass: 'qso-dialog bg-black bg-opacity-50',
 					size: BootstrapDialog.SIZE_WIDE,
 					nl2br: false,
 					message: html,
@@ -192,6 +192,9 @@ function spawnGridsquareModal(loc_4char) {
                             showQsoActionsMenu($(this).closest('.dropdown'));
                         });
 					},
+                    onhide: function(dialog) {
+                        enableMap();
+                    },
 					buttons: [{
 						label: lang_admin_close,
 						action: function(dialogItself) {
@@ -200,9 +203,10 @@ function spawnGridsquareModal(loc_4char) {
 					}]
 				});
 			    dialog.realize();
-		    		$("body").append(dialog.getModal());
+                    $('#gridsquare_map').append(dialog.getModal());
+                    disableMap();
 		    		dialog.open();
-},
+                },
 			error: function(e) {
 				modalloading=false;
 			}
