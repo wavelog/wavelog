@@ -161,7 +161,7 @@ function spawnGridsquareModal(loc_4char) {
 			success: function (html) {
 		    		var dialog = new BootstrapDialog({
 					title: lang_general_word_qso_data,
-					cssClass: 'qso-dialog bg-black bg-opacity-50',
+					cssClass: 'qso-dialog',
 					size: BootstrapDialog.SIZE_WIDE,
 					nl2br: false,
 					message: html,
