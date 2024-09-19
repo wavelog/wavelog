@@ -1124,7 +1124,7 @@ function newpath(latlng1, latlng2, locator1, locator2) {
 }
 
 function disableMap() {
-    console.log('disable map')
+    // console.log('disable map');
     map.dragging.disable();
     map.scrollWheelZoom.disable();
     map.touchZoom.disable();
@@ -1134,7 +1134,7 @@ function disableMap() {
 }
 
 function enableMap() {
-    console.log('enable map')
+    // console.log('enable map');
     map.dragging.enable();
     map.scrollWheelZoom.enable();
     map.touchZoom.enable();
