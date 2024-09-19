@@ -311,14 +311,18 @@ $( document ).ready(function() {
 	}
 
 	var bc = new BroadcastChannel('qso_wish');
+	bc.postMessage('ready');
 	bc.onmessage = function (ev) {
 		if (ev.data.ping) {
 			let message={};
 			message.pong=true;
 			bc.postMessage(message);
 		} else {
-			$('#frequency').val(ev.data.frequency);
-			$("#band").val(frequencyToBand(ev.data.frequency));
+			console.log(ev.data);
+			if (ev.data.frequency != null) {
+				$('#frequency').val(ev.data.frequency);
+				$("#band").val(frequencyToBand(ev.data.frequency));
+			}
 			if (ev.data.frequency_rx != "") {
 				$('#frequency_rx').val(ev.data.frequency_rx);
 				$("#band_rx").val(frequencyToBand(ev.data.frequency_rx));
