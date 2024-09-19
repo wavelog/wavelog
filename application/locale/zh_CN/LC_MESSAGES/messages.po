@@ -112,6 +112,7 @@ msgstr ""
 #: application/controllers/User.php:762 application/controllers/User.php:1045
 #: application/controllers/User.php:1247
 #: application/controllers/User_options.php:9
+#: application/controllers/Qrz.php:268
 msgid "You're not allowed to do that!"
 msgstr "您不能这么做！"
 
@@ -1718,14 +1719,15 @@ msgstr "负数纬度表示南纬，负数经度表示西经。"
 
 #: application/controllers/Qrz.php:185
 #: application/views/interface_assets/header.php:432
+#: application/controllers/Qrz.php:190
 msgid "QRZ Logbook"
 msgstr "QRZ 日志簿"
 
-#: application/controllers/Qrz.php:265
+#: application/controllers/Qrz.php:265 application/controllers/Qrz.php:270
 msgid "QRZ QSL Import"
 msgstr "QRZ QSL 导入"
 
-#: application/controllers/Qrz.php:319
+#: application/controllers/Qrz.php:319 application/controllers/Qrz.php:324
 msgid "QRZ ADIF Information"
 msgstr "QRZ ADIF 信息"
 
@@ -5872,6 +5874,7 @@ msgstr "待通联"
 #: application/views/widgets/qsos.php:30 src/QSLManager/QSO.php:272
 #: src/QSLManager/QSO.php:375 src/QSLManager/QSO.php:427
 #: src/QSLManager/QSO.php:465 src/QSLManager/QSO.php:513
+#: src/QSLManager/QSO.php:528
 msgid "Sent"
 msgstr "已发送"
 
@@ -5902,6 +5905,7 @@ msgstr "已发送"
 #: application/views/visitor/index.php:333 src/QSLManager/QSO.php:317
 #: src/QSLManager/QSO.php:398 src/QSLManager/QSO.php:440
 #: src/QSLManager/QSO.php:489 src/QSLManager/QSO.php:526
+#: src/QSLManager/QSO.php:504 src/QSLManager/QSO.php:541
 msgid "Received"
 msgstr "已收到"
 
@@ -7658,6 +7662,7 @@ msgstr "已排队"
 #: application/views/view_log/partial/log_ajax.php:289
 #: src/QSLManager/QSO.php:281 src/QSLManager/QSO.php:326
 #: src/QSLManager/QSO.php:379 src/QSLManager/QSO.php:402
+#: src/QSLManager/QSO.php:487
 msgid "Invalid (Ignore)"
 msgstr "无效(忽略)"
 
