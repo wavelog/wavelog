@@ -1123,6 +1123,26 @@ function newpath(latlng1, latlng2, locator1, locator2) {
     }).addTo(map);
 }
 
+function disableMap() {
+    // console.log('disable map');
+    map.dragging.disable();
+    map.scrollWheelZoom.disable();
+    map.touchZoom.disable();
+    map.doubleClickZoom.disable();
+    map.boxZoom.disable();
+    map.keyboard.disable();
+}
+
+function enableMap() {
+    // console.log('enable map');
+    map.dragging.enable();
+    map.scrollWheelZoom.enable();
+    map.touchZoom.enable();
+    map.doubleClickZoom.enable();
+    map.boxZoom.enable();
+    map.keyboard.enable();
+}
+
 console.log("Ready to unleash your coding prowess and join the fun?\n\n" +
     "Check out our GitHub Repository and dive into the coding adventure:\n\n" +
     "🚀 https://www.github.com/wavelog/wavelog");

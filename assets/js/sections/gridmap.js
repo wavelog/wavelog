@@ -192,6 +192,9 @@ function spawnGridsquareModal(loc_4char) {
                             showQsoActionsMenu($(this).closest('.dropdown'));
                         });
 					},
+                    onhide: function(dialog) {
+                        enableMap();
+                    },
 					buttons: [{
 						label: lang_admin_close,
 						action: function(dialogItself) {
@@ -200,9 +203,10 @@ function spawnGridsquareModal(loc_4char) {
 					}]
 				});
 			    dialog.realize();
-		    		$("#gridsquare_map").append(dialog.getModal());
+                    $('#gridsquare_map').append(dialog.getModal());
+                    disableMap();
 		    		dialog.open();
-},
+                },
 			error: function(e) {
 				modalloading=false;
 			}
