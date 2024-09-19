@@ -5,8 +5,9 @@
 		body {
 			font-family: Arial, "MS Trebuchet", sans-serif;
 		}
-		.titles td {
+		.titles th {
 			font-weight: bold;
+			text-align: left;
 		}
 	</style>
 </head>
@@ -21,15 +22,15 @@
 <body>
 	   <table width="100%" class="zebra-striped">
 			<tr class="titles">
-				<td><?= __("Date"); ?></td>
+				<th><?= __("Date"); ?></th>
 				<?php if ($show_time) { ?>
-					<td><?= __("Time"); ?></td>
+					<th><?= __("Time"); ?></th>
 				<?php } ?>
-				<td><?= __("Call"); ?></td>
-				<td><?= __("Mode"); ?></td>
-				<td><?= __("Sent"); ?></td>
-				<td><?= __("Rcvd"); ?></td>
-				<td><?= __("Band"); ?></td>
+				<th><?= __("Call"); ?></th>
+				<th><?= __("Mode"); ?></th>
+				<th><?= __("Sent"); ?></th>
+				<th><?= __("Rcvd"); ?></th>
+				<th><?= __("Band"); ?></th>
 			</tr>
 
 			<?php
