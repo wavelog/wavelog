@@ -496,8 +496,10 @@ class Logbookadvanced_model extends CI_Model {
 
 	public function updateQsoWithCallbookInfo($qsoID, $qso, $callbook) {
 		$updatedData = array();
+		$updated = false;
 		if (!empty($callbook['name']) && empty($qso['COL_NAME'])) {
 			$updatedData['COL_NAME'] = $callbook['name'];
+			$updated = true;
 		}
 		if (!empty($callbook['gridsquare']) && empty($qso['COL_GRIDSQUARE']) && empty($qso['COL_VUCC_GRIDS'] )) {
 			if (strpos(trim($callbook['gridsquare']), ',') === false) {
@@ -505,30 +507,44 @@ class Logbookadvanced_model extends CI_Model {
 			} else {
 				$updatedData['COL_VUCC_GRIDS'] = strtoupper(trim($callbook['gridsquare']));
 			}
+			$updated = true;
 		}
 		if (!empty($callbook['city']) && empty($qso['COL_QTH'])) {
 			$updatedData['COL_QTH'] = $callbook['city'];
+			$updated = true;
 		}
 		if (!empty($callbook['lat']) && empty($qso['COL_LAT'])) {
 			$updatedData['COL_LAT'] = substr(($callbook['lat'] ?? ''),0,11);
+			$updated = true;
 		}
 		if (!empty($callbook['long']) && empty($qso['COL_LON'])) {
 			$updatedData['COL_LON'] = substr(($callbook['long'] ?? ''),0,11);
+			$updated = true;
 		}
 		if (!empty($callbook['iota']) && empty($qso['COL_IOTA'])) {
 			$updatedData['COL_IOTA'] = $callbook['iota'];
+			$updated = true;
 		}
 		if (!empty($callbook['state']) && empty($qso['COL_STATE'])) {
 			$updatedData['COL_STATE'] = $callbook['state'];
+			$updated = true;
 		}
 		if (!empty($callbook['us_county']) && empty($qso['COL_CNTY'])) {
 			$updatedData['COL_CNTY'] = $callbook['state'].','.$callbook['us_county'];
+			$updated = true;
 		}
 		if (!empty($callbook['qslmgr']) && empty($qso['COL_QSL_VIA'])) {
 			$updatedData['COL_QSL_VIA'] = $callbook['qslmgr'];
+			$updated = true;
 		}
 		if (!empty($callbook['ituz']) && empty($qso['COL_ITUZ'])) {
 			$updatedData['COL_ITUZ'] = $callbook['ituz'];
+			$updated = true;
+		}
+
+		//Also set QRZ.com status to modified
+		if($updated == true && $qso['COL_QRZCOM_QSO_UPLOAD_STATUS'] == 'Y') {
+			$updatedData['COL_QRZCOM_QSO_UPLOAD_STATUS'] = 'M';
 		}
 
 		if (count($updatedData) > 0) {
@@ -748,6 +764,25 @@ class Logbookadvanced_model extends CI_Model {
 			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ".$this->config->item('table_name').".station_id = station_profile.station_id SET " . $this->config->item('table_name').".".$column . " = ? WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
 
 			$query = $this->db->query($sql, array($value, json_decode($ids, true), $this->session->userdata('user_id')));
+		}
+
+		//Also set QRZ.com status to modified
+		if (!$this->load->is_loaded('logbook_model')) {
+			$this->load->model('logbook_model');
+		}
+		$modifiedQsos=[];
+		foreach (json_decode($ids, true) as $id) {
+			$qso = $this->logbook_model->get_qso($id)->row();
+			if ($qso->COL_QRZCOM_QSO_UPLOAD_STATUS == 'Y') {
+				log_message('info', '[LBA] Updating QRZ.com status for QSO ID: ' . $id . ' to M');
+				$modifiedQsos[] = $id;
+			}
+		}
+
+		if (!empty($modifiedQsos)) {
+			$qso_ids = implode(',', $modifiedQsos);
+			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ".$this->config->item('table_name').".station_id = station_profile.station_id SET " . $this->config->item('table_name').".COL_QRZCOM_QSO_UPLOAD_STATUS = 'M' WHERE " . $this->config->item('table_name').".col_primary_key in (".$qso_ids.") and station_profile.user_id = ?";
+			$query = $this->db->query($sql, $this->session->userdata('user_id'));
 		}
 
 		$this->db->trans_complete();

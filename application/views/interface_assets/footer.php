@@ -48,7 +48,7 @@
     var lang_no_states_for_dxcc_available = "<?= html_entity_decode(__("No states for this DXCC available")); ?>";
     var lang_qrbcalc_title = '<?= __("Compute QRB and QTF"); ?>';
     var lang_qrbcalc_errmsg = '<?= __("Error in locators. Please check."); ?>';
-
+    var lang_general_refresh_list = '<?= __("Refresh List"); ?>';
 </script>
 
 <!-- General JS Files used across Wavelog -->

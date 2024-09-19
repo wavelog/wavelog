@@ -51,7 +51,8 @@
 			\"dok\":{\"show\":\"true\"},
 			\"wwff\":{\"show\":\"true\"},
 			\"sig\":{\"show\":\"true\"},
-			\"continent\":{\"show\":\"true\"}
+			\"continent\":{\"show\":\"true\"},
+			\"qrz\":{\"show\":\"true\"}
         }";
     }
     $current_opts = json_decode($options);
@@ -106,6 +107,10 @@
     }
 	if (!isset($current_opts->continent)) {
         echo "\nvar o_template = { continent: {show: 'true'}};";
+        echo "\nuser_options={...user_options, ...o_template};";
+    }
+	if (!isset($current_opts->qrz)) {
+        echo "\nvar o_template = { qrz: {show: 'true'}};";
         echo "\nuser_options={...user_options, ...o_template};";
     }
 
@@ -185,7 +190,7 @@ $options = json_decode($options);
                                 <option value=""><?= __("All"); ?></option>
                                 <?php
                                 foreach ($modes as $modeId => $mode) {
-                                ?><option value="<?php echo htmlspecialchars($mode); ?>"><?php echo htmlspecialchars($mode); ?></option><?php
+                                ?><option value="<?php echo htmlspecialchars($mode ?? ''); ?>"><?php echo htmlspecialchars($mode ?? ''); ?></option><?php
                                                                                                                                 }
                                                                                                                                     ?>
                             </select>
@@ -196,7 +201,7 @@ $options = json_decode($options);
                                 <option value=""><?= __("All"); ?></option>
                                 <?php
                                 foreach ($bands as $band) {
-                                ?><option value="<?php echo htmlentities($band); ?>"><?php echo htmlspecialchars($band); ?></option><?php
+                                ?><option value="<?php echo htmlentities($band ?? ''); ?>"><?php echo htmlspecialchars($band ?? ''); ?></option><?php
                                                                                                                             }
                                                                                                                                 ?>
                             </select>
@@ -602,6 +607,9 @@ $options = json_decode($options);
                     } ?>
                     <?php if ($this->session->userdata('user_lotw_name') != "" && ($options->lotw->show ?? "true") == "true") {
                         echo '<th class="lotwconfirmation">LoTW</th>';
+                    } ?>
+					<?php if (($options->qrz->show ?? "true") == "true") {
+                        echo '<th class="qrz">' . __("QRZ") . '</th>';
                     } ?>
                     <?php if (($options->qslmsg->show ?? "true") == "true") {
                         echo '<th>' . __("QSL Msg") . '</th>';

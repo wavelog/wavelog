@@ -64,6 +64,7 @@ class QSO
 	private string $lotw;
 	private string $eqsl;
 	private string $clublog;
+	private string $qrz;
 	/** Lotw callsign info **/
 	private string $callsign;
 	private string $lastupload;
@@ -200,6 +201,7 @@ class QSO
 		$this->lotw = $this->getLotwString($data, $custom_date_format);
 		$this->eqsl = $this->getEqslString($data, $custom_date_format);
 		$this->clublog = $this->getClublogString($data, $custom_date_format);
+		$this->qrz = $this->getQrzString($data, $custom_date_format);
 
 		$this->cqzone = ($data['COL_CQZ'] === null) ? '' : $this->geCqLink($data['COL_CQZ']);
 		$this->ituzone = $data['COL_ITUZ'] ?? '';
@@ -450,6 +452,71 @@ class QSO
 
 		return $clublogstring;
 	}
+
+	/**
+	 * @return string
+	 */
+	function getQrzString($data, $custom_date_format): string {
+		$CI =& get_instance();
+
+		$qrzstring = '<span ';
+
+		if ($data['COL_QRZCOM_QSO_UPLOAD_STATUS'] == "Y") {
+			$qrzstring .= "title=\"".__("Sent");
+
+			if ($data['COL_QRZCOM_QSO_UPLOAD_DATE'] != null) {
+				$timestamp = strtotime($data['COL_QRZCOM_QSO_UPLOAD_DATE']);
+				$qrzstring .=  " ".($timestamp!=''?date($custom_date_format, $timestamp):'');
+			}
+
+			$qrzstring .= "\" data-bs-toggle=\"tooltip\"";
+		}
+
+		if ($data['COL_QRZCOM_QSO_UPLOAD_STATUS'] == "M") {
+			$qrzstring .= "title=\"".__("Modified");
+
+			if ($data['COL_QRZCOM_QSO_UPLOAD_DATE'] != null) {
+				$timestamp = strtotime($data['COL_QRZCOM_QSO_UPLOAD_DATE']);
+				$qrzstring .=  " ".($timestamp!=''?date($custom_date_format, $timestamp):'');
+			}
+
+			$qrzstring .= "\" data-bs-toggle=\"tooltip\"";
+		}
+
+		if ($data['COL_QRZCOM_QSO_UPLOAD_STATUS'] == "I") {
+			$qrzstring .= "title=\"".__("Invalid (Ignore)");
+			$qrzstring .= "\" data-bs-toggle=\"tooltip\"";
+		}
+
+		$qrzstring .= ' class="qrz-';
+		if ($data['COL_QRZCOM_QSO_UPLOAD_STATUS'] =='Y') {
+			$qrzstring .= 'green';
+		} elseif ($data['COL_QRZCOM_QSO_UPLOAD_STATUS'] == 'M') {
+			$qrzstring .= 'yellow';
+		} elseif ($data['COL_QRZCOM_QSO_UPLOAD_STATUS'] == 'I') {
+			$qrzstring .= 'grey';
+		} else {
+			$qrzstring .= 'red';
+		}
+		$qrzstring .= '">&#9650;</span><span ';
+
+		if ($data['COL_QRZCOM_QSO_DOWNLOAD_STATUS'] == "Y") {
+			$qrzstring .= "title=\"".__("Received");
+
+			if ($data['COL_QRZCOM_QSO_DOWNLOAD_DATE'] != null) {
+				$timestamp = strtotime($data['COL_QRZCOM_QSO_DOWNLOAD_DATE']);
+				$qrzstring .= " ".($timestamp!=''?date($custom_date_format, $timestamp):'');
+			}
+			$qrzstring .= "\" data-bs-toggle=\"tooltip\"";
+		}
+
+		$qrzstring .= ' class="qrz-' . (($data['COL_QRZCOM_QSO_DOWNLOAD_STATUS']=='Y') ? 'green':'red') . '">&#9660;</span>';
+
+		$qrzstring .= '</span>';
+
+		return $qrzstring;
+	}
+
 
 	function getEqslString($data, $custom_date_format): string
 	{
@@ -819,6 +886,14 @@ class QSO
 		return $this->clublog;
 	}
 
+		/**
+	 * @return string
+	 */
+	public function getqrz(): string
+	{
+		return $this->qrz;
+	}
+
 	/**
 	 * @return string
 	 */
@@ -882,6 +957,7 @@ class QSO
 			'lotw' => $this->getlotw(),
 			'eqsl' => $this->geteqsl(),
 			'clublog' => $this->getclublog(),
+			'qrz' => $this->getqrz(),
 			'qslMessage' => $this->getQSLMsg(),
 			'name' => $this->getName(),
 			'dxcc' => $this->getDXCC(),
