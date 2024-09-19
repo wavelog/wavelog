@@ -52,6 +52,10 @@
                 cl.call = call;
                 let newWindow = window.open('<?php echo base_url(); ?>' + 'index.php/qso?manual=0', '_blank');
 
+                if (newWindow) {
+                    newWindow.focus();
+                } 
+
                 // wait for the ready message
                 bc2qso.onmessage = function(ev) {
                     if (ev.data === 'ready') {
