@@ -3995,7 +3995,7 @@ function lotw_last_qsl_date($user_id) {
 
 		  // Create array with QSO Data use ?:
 		  $data = array(
-			  'COL_A_INDEX' => $input_a_index,
+			  'COL_A_INDEX' => is_numeric($input_a_index) ? $input_a_index : null,
 			  'COL_ADDRESS' => (!empty($record['address'])) ? $record['address'] : '',
 			  'COL_ADDRESS_INTL' => (!empty($record['address_intl'])) ? $record['address_intl'] : '',
 			  'COL_AGE' => $input_age,
