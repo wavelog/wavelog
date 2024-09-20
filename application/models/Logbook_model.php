@@ -2709,6 +2709,7 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
       $this->db->where_in('station_id', $logbooks_locations_array);
       $this->db->where('COL_SAT_NAME is not null');
       $this->db->where('COL_SAT_NAME !=', '');
+      $this->db->where('COL_PROP_MODE', 'SAT');
       $this->db->order_by('count DESC');
       $this->db->group_by('COL_SAT_NAME');
       $query = $this->db->get($this->config->item('table_name'));
