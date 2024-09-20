@@ -4205,7 +4205,7 @@ function lotw_last_qsl_date($user_id) {
 			  $this->add_qso($data, $skipexport);
 		  }
 	  } else {
-		  $my_error .= "Date/Time: ".$time_on." Callsign: ".$record['call']." Band: ".$band."  Duplicate<br>";
+		  $my_error .= "Date/Time: ".($time_on ?? 'N/A')." Callsign: ".($record['call'] ?? 'N/A')." Band: ".($band ?? 'N/A')."  Duplicate for ".($station_profile_call ?? 'N/A')."<br>";
 	  }
 
 	  if ($batchmode) {
