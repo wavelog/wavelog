@@ -1460,8 +1460,9 @@ class Logbook_model extends CI_Model {
   * Usage: Callsign lookup data for the QSO panel and API/callsign_lookup
   *
   */
-  function call_lookup_result($callsign) {
+  function call_lookup_result($callsign, $station_ids) {
 	  $this->db->select('COL_CALL, COL_NAME, COL_QSL_VIA, COL_GRIDSQUARE, COL_QTH, COL_IOTA, COL_TIME_ON, COL_STATE, COL_CNTY, COL_DXCC, COL_CONT');
+	  $this->db->where('station_id', $station_ids);
 	  $this->db->where('COL_CALL', $callsign);
 	  $where = "COL_NAME != \"\"";
 
