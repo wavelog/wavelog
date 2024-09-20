@@ -36,7 +36,7 @@
         let bc2qso = new BroadcastChannel('qso_wish');
 
         // set some times
-        let wait4pong = 2000; // we wait in max 2 seconds for the pong
+        let wait4pong = 4000; // we wait in max 4 seconds for the pong
         let check_intv = 100; // check every 100 ms
 
         let check_pong = setInterval(function() {
