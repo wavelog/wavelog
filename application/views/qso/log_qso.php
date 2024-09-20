@@ -3,10 +3,11 @@
 // this file catches the callsign data, performs some JS magic and redirects to the QSO logging page
 
 ?>
-<div class="container">
+<div class="container mt-3">
     <h2><?php echo $page_title; ?></h2>
 
-    <p><?= __("Redirecting to QSO logging page..."); ?></p>
+    <p id="redirect_message"><?= __("Redirecting to QSO logging page..."); ?></p>
+    <div id="errormessage" style="display: none;"></div>
 </div>
 
 
@@ -52,9 +53,12 @@
                 cl.call = call;
                 let newWindow = window.open('<?php echo base_url(); ?>' + 'index.php/qso?manual=0', '_blank');
 
-                if (newWindow) {
+                if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+                    $('#errormessage').html('<?= __("Pop-up was blocked! Please allow pop-ups for this site permanently."); ?>').addClass('alert alert-danger').show();
+                    $('#redirect_message').hide();
+                } else {
                     newWindow.focus();
-                } 
+                }
 
                 // wait for the ready message
                 bc2qso.onmessage = function(ev) {
