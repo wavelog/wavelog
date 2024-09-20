@@ -87,13 +87,13 @@
 			$qrztotal = 0;
 			$clublogtotal = 0;
 			foreach ($qsosatarray as $mode => $value) {
-				$qsototal += $value[$sat]['qso'];
-				$qsltotal += $value[$sat]['qsl'];
-				$lotwtotal += $value[$sat]['lotw'];
-				$eqsltotal += $value[$sat]['eqsl'];
-				$qrztotal += $value[$sat]['qrz'];
-				$clublogtotal += $value[$sat]['clublog'];
-				$total = $value[$sat]['qso'] + $value[$sat]['qsl'] + $value[$sat]['lotw'] + $value[$sat]['eqsl'] + $value[$sat]['qrz'] + $value[$sat]['clublog'];
+				$qsototal += $value[$sat]['qso'] ?? 0;
+				$qsltotal += $value[$sat]['qsl'] ?? 0;
+				$lotwtotal += $value[$sat]['lotw'] ?? 0;
+				$eqsltotal += $value[$sat]['eqsl'] ?? 0;
+				$qrztotal += $value[$sat]['qrz'] ?? 0;
+				$clublogtotal += $value[$sat]['clublog'] ?? 0;
+				$total = ($value[$sat]['qso'] ?? 0) + ($value[$sat]['qsl'] ?? 0) + ($value[$sat]['lotw'] ?? 0) + ($value[$sat]['eqsl'] ?? 0) + ($value[$sat]['qrz'] ?? 0) + ($value[$sat]['clublog'] ?? 0);
 				if ($total > 0) {
 				echo '<tr>
 						<th>'. $mode .'</th>';
