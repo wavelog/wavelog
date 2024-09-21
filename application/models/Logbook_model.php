@@ -4023,7 +4023,7 @@ function lotw_last_qsl_date($user_id) {
 			  'COL_CONTEST_ID' => (!empty($record['contest_id'])) ? $record['contest_id'] : '',
 			  'COL_COUNTRY' => $country ?? '',
 			  'COL_COUNTRY_INTL' => (!empty($record['country_intl'])) ? $record['country_intl'] : '',
-			  'COL_CQZ' => $cq_zone ?? '',
+			  'COL_CQZ' => $cq_zone,
 			  'COL_CREDIT_GRANTED' => (!empty($record['credit_granted'])) ? $record['credit_granted'] : '',
 			  'COL_CREDIT_SUBMITTED' => (!empty($record['credit_submitted'])) ? $record['credit_submitted'] : '',
 			  'COL_DARC_DOK' => (!empty($record['darc_dok'])) ? strtoupper($record['darc_dok']) : '',
