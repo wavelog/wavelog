@@ -1709,6 +1709,9 @@ class Logbook_model extends CI_Model {
 			$this->db->where('COL_PRIMARY_KEY', $qso_id);
 
 			$this->db->update($this->config->item('table_name'), $data);
+			
+			$this->set_qrzcom_modified($qso_id);
+
 		} else {
 			return;
 		}
@@ -1734,6 +1737,8 @@ class Logbook_model extends CI_Model {
 			$this->db->where('COL_PRIMARY_KEY', $qso_id);
 
 			$this->db->update($this->config->item('table_name'), $data);
+
+			$this->set_qrzcom_modified($qso_id);
 		} else {
 			return;
 		}
@@ -1753,6 +1758,8 @@ class Logbook_model extends CI_Model {
 			$this->db->where('COL_PRIMARY_KEY', $qso_id);
 
 			$this->db->update($this->config->item('table_name'), $data);
+
+			$this->set_qrzcom_modified($qso_id);
 		} else {
 			return;
 		}
@@ -1770,6 +1777,8 @@ class Logbook_model extends CI_Model {
 			$this->db->where('COL_PRIMARY_KEY', $qso_id);
 
 			$this->db->update($this->config->item('table_name'), $data);
+
+			$this->set_qrzcom_modified($qso_id);
 		} else {
 			return;
 		}
@@ -1921,6 +1930,21 @@ class Logbook_model extends CI_Model {
 
 		$query = $this->db->query($sql, $binding);
 		return $query;
+	}
+
+	/**
+	 * Generic function to set the QRZ.com Upload status to 'modified'
+	 * 
+	 * @param int $qso_id  the QSO primary key (COL_PRIMARY_KEY)
+	 */
+
+	function set_qrzcom_modified($qso_id) {
+		$data = array(
+			'COL_QRZCOM_QSO_UPLOAD_STATUS' => 'M'
+		);
+
+		$this->db->where('COL_PRIMARY_KEY', $qso_id);
+		$this->db->update($this->config->item('table_name'), $data);
 	}
 
 	/*
