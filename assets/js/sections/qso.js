@@ -318,7 +318,7 @@ $( document ).ready(function() {
 			message.pong=true;
 			bc.postMessage(message);
 		} else {
-			console.log(ev.data);
+			// console.log(ev.data);
 			if (ev.data.frequency != null) {
 				$('#frequency').val(ev.data.frequency);
 				$("#band").val(frequencyToBand(ev.data.frequency));
