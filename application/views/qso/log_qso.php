@@ -46,7 +46,7 @@
                 bc2qso.postMessage({
                     call: call
                 });
-                window.close();
+                closeSelf();
             } else {
                 clearInterval(check_pong);
                 let newWindow = window.open('<?php echo base_url(); ?>' + 'index.php/qso?manual=0', '_blank');
@@ -64,10 +64,15 @@
                         bc2qso.postMessage({
                             call: call
                         });
-                        window.close();
+                        closeSelf();
                     }
                 };
             }
         }, check_intv);
     });
+
+    function closeSelf() {
+        $('#redirect_message').html('<?= __("The data was redirected. You can close this window."); ?>');
+        window.close();
+    }
 </script>
