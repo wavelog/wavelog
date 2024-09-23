@@ -981,7 +981,7 @@ $( document ).ready(function() {
 
 							/* Find link to qrz.com picture */
 							if (result.image != "n/a") {
-								$('#callsign-image-content').html('<img class="callsign-image-pic" src="'+result.image+'">');
+								$('#callsign-image-content').html('<img class="callsign-image-pic" href="'+result.image+'" data-fancybox="images" src="'+result.image+'" style="cursor: pointer;">');
 								$('#callsign-image').attr('style', 'display: true;');
 							}
 
