@@ -483,7 +483,22 @@ class QSO
 			$qrzstring .= "\" data-bs-toggle=\"tooltip\"";
 		}
 
-		$qrzstring .= ' class="qrz-' . (($data['COL_QRZCOM_QSO_UPLOAD_STATUS'] =='Y') ? 'green' : (($data['COL_QRZCOM_QSO_UPLOAD_STATUS'] == 'M') ? 'yellow' : 'red')) . '">&#9650;</span><span ';
+		if ($data['COL_QRZCOM_QSO_UPLOAD_STATUS'] == "I") {
+			$qrzstring .= "title=\"".__("Invalid (Ignore)");
+			$qrzstring .= "\" data-bs-toggle=\"tooltip\"";
+		}
+
+		$qrzstring .= ' class="qrz-';
+		if ($data['COL_QRZCOM_QSO_UPLOAD_STATUS'] =='Y') {
+			$qrzstring .= 'green';
+		} elseif ($data['COL_QRZCOM_QSO_UPLOAD_STATUS'] == 'M') {
+			$qrzstring .= 'yellow';
+		} elseif ($data['COL_QRZCOM_QSO_UPLOAD_STATUS'] == 'I') {
+			$qrzstring .= 'grey';
+		} else {
+			$qrzstring .= 'red';
+		}
+		$qrzstring .= '">&#9650;</span><span ';
 
 		if ($data['COL_QRZCOM_QSO_DOWNLOAD_STATUS'] == "Y") {
 			$qrzstring .= "title=\"".__("Received");

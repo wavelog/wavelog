@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-09-18 11:37+0000\n"
-"PO-Revision-Date: 2024-09-14 12:05+0000\n"
-"Last-Translator: Jian ke <bg8ixz@hotmail.com>\n"
+"POT-Creation-Date: 2024-09-20 16:52+0000\n"
+"PO-Revision-Date: 2024-09-19 04:59+0000\n"
+"Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
 "org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -65,7 +65,7 @@ msgstr ""
 #: application/controllers/Lotw.php:834 application/controllers/Mode.php:15
 #: application/controllers/Notes.php:10 application/controllers/Options.php:15
 #: application/controllers/Oqrs.php:15 application/controllers/Qrbcalc.php:13
-#: application/controllers/Qrz.php:263 application/controllers/Qsl.php:12
+#: application/controllers/Qrz.php:273 application/controllers/Qsl.php:12
 #: application/controllers/Qsl.php:13 application/controllers/Qsl.php:44
 #: application/controllers/Qsl.php:52 application/controllers/Qslprint.php:147
 #: application/controllers/Qso.php:9 application/controllers/Qso.php:19
@@ -1103,7 +1103,7 @@ msgstr "Clublog"
 #: application/views/view_log/partial/log.php:9
 #: application/views/view_log/partial/log_ajax.php:4
 #: application/views/view_log/qso.php:107 application/views/visitor/index.php:6
-#: application/views/widgets/qsos.php:29
+#: application/views/widgets/qsos.php:30
 msgid "Mode"
 msgstr "模式"
 
@@ -1380,7 +1380,7 @@ msgstr "距离"
 #: application/views/view_log/partial/log.php:12
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/view_log/qso.php:87 application/views/visitor/index.php:33
-#: application/views/widgets/qsos.php:32
+#: application/views/widgets/qsos.php:33
 msgid "Band"
 msgstr "频段"
 
@@ -1716,16 +1716,16 @@ msgid ""
 "Greenwich."
 msgstr "负数纬度表示南纬，负数经度表示西经。"
 
-#: application/controllers/Qrz.php:185
+#: application/controllers/Qrz.php:195
 #: application/views/interface_assets/header.php:432
 msgid "QRZ Logbook"
 msgstr "QRZ 日志簿"
 
-#: application/controllers/Qrz.php:265
+#: application/controllers/Qrz.php:275
 msgid "QRZ QSL Import"
 msgstr "QRZ QSL 导入"
 
-#: application/controllers/Qrz.php:319
+#: application/controllers/Qrz.php:329
 msgid "QRZ ADIF Information"
 msgstr "QRZ ADIF 信息"
 
@@ -2442,31 +2442,31 @@ msgstr "HRDlog：无 QSO 可供上传，台站呼号为： "
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog：无台站配置信息。"
 
-#: application/models/Logbook_model.php:4268
+#: application/models/Logbook_model.php:4270
 msgid "QSO could not be matched"
 msgstr "QSO 无法匹配"
 
-#: application/models/Logbook_model.php:4274
+#: application/models/Logbook_model.php:4276
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "已经通过 LoTW/Clublog/eQSL/竞赛 确认"
 
-#: application/models/Logbook_model.php:4279
+#: application/models/Logbook_model.php:4281
 msgid "confirmed by award manager"
 msgstr "已经通过奖项管理员确认"
 
-#: application/models/Logbook_model.php:4282
+#: application/models/Logbook_model.php:4284
 msgid "confirmed by cross-check of DCL data"
 msgstr "已经通过 DCL 数据交叉检查确认"
 
-#: application/models/Logbook_model.php:4285
+#: application/models/Logbook_model.php:4287
 msgid "confirmation pending"
 msgstr "等待确认"
 
-#: application/models/Logbook_model.php:4288
+#: application/models/Logbook_model.php:4290
 msgid "unconfirmed"
 msgstr "未确认"
 
-#: application/models/Logbook_model.php:4291
+#: application/models/Logbook_model.php:4293
 msgid "unknown"
 msgstr "未知"
 
@@ -3167,7 +3167,7 @@ msgstr "与 DCL 相比，日志中 DOK 的数据不同"
 #: application/views/view_log/partial/log.php:4
 #: application/views/view_log/partial/log_ajax.php:59
 #: application/views/visitor/index.php:147
-#: application/views/widgets/qsos.php:24
+#: application/views/widgets/qsos.php:25
 msgid "Date"
 msgstr "日期"
 
@@ -3200,7 +3200,7 @@ msgstr "日期"
 #: application/views/view_log/partial/log.php:6
 #: application/views/view_log/partial/log_ajax.php:61
 #: application/views/visitor/index.php:150
-#: application/views/widgets/qsos.php:26
+#: application/views/widgets/qsos.php:27
 msgid "Time"
 msgstr "时间"
 
@@ -3221,7 +3221,7 @@ msgstr "时间"
 #: application/views/view_log/partial/log.php:8
 #: application/views/view_log/partial/log_ajax.php:63
 #: application/views/visitor/index.php:152
-#: application/views/widgets/qsos.php:28
+#: application/views/widgets/qsos.php:29
 msgid "Call"
 msgstr "呼号"
 
@@ -5869,9 +5869,9 @@ msgstr "待通联"
 #: application/views/visitor/index.php:287
 #: application/views/visitor/index.php:310
 #: application/views/visitor/index.php:328
-#: application/views/widgets/qsos.php:30 src/QSLManager/QSO.php:272
+#: application/views/widgets/qsos.php:31 src/QSLManager/QSO.php:272
 #: src/QSLManager/QSO.php:375 src/QSLManager/QSO.php:427
-#: src/QSLManager/QSO.php:465 src/QSLManager/QSO.php:513
+#: src/QSLManager/QSO.php:465 src/QSLManager/QSO.php:528
 msgid "Sent"
 msgstr "已发送"
 
@@ -5901,7 +5901,7 @@ msgstr "已发送"
 #: application/views/visitor/index.php:315
 #: application/views/visitor/index.php:333 src/QSLManager/QSO.php:317
 #: src/QSLManager/QSO.php:398 src/QSLManager/QSO.php:440
-#: src/QSLManager/QSO.php:489 src/QSLManager/QSO.php:526
+#: src/QSLManager/QSO.php:504 src/QSLManager/QSO.php:541
 msgid "Received"
 msgstr "已收到"
 
@@ -6074,7 +6074,7 @@ msgstr "本站 QSO 总数量"
 
 #: application/views/debug/index.php:76
 msgid "Total User"
-msgstr ""
+msgstr "总用户数"
 
 #: application/views/debug/index.php:84
 msgid "Server Information"
@@ -7658,6 +7658,7 @@ msgstr "已排队"
 #: application/views/view_log/partial/log_ajax.php:289
 #: src/QSLManager/QSO.php:281 src/QSLManager/QSO.php:326
 #: src/QSLManager/QSO.php:379 src/QSLManager/QSO.php:402
+#: src/QSLManager/QSO.php:487
 msgid "Invalid (Ignore)"
 msgstr "无效(忽略)"
 
@@ -9744,7 +9745,7 @@ msgstr "日志搜索结果 %s"
 
 #: application/views/search/result_search.php:9
 #: application/views/statistics/custom_result.php:90
-#: application/views/widgets/qsos.php:31
+#: application/views/widgets/qsos.php:32
 msgid "Rcvd"
 msgstr "收"
 

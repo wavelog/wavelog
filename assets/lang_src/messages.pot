@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-09-18 11:37+0000\n"
+"POT-Creation-Date: 2024-09-20 16:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,7 +60,7 @@ msgstr ""
 #: application/controllers/Lotw.php:834 application/controllers/Mode.php:15
 #: application/controllers/Notes.php:10 application/controllers/Options.php:15
 #: application/controllers/Oqrs.php:15 application/controllers/Qrbcalc.php:13
-#: application/controllers/Qrz.php:263 application/controllers/Qsl.php:12
+#: application/controllers/Qrz.php:273 application/controllers/Qsl.php:12
 #: application/controllers/Qsl.php:13 application/controllers/Qsl.php:44
 #: application/controllers/Qsl.php:52 application/controllers/Qslprint.php:147
 #: application/controllers/Qso.php:9 application/controllers/Qso.php:19
@@ -1093,7 +1093,7 @@ msgstr ""
 #: application/views/view_log/partial/log.php:9
 #: application/views/view_log/partial/log_ajax.php:4
 #: application/views/view_log/qso.php:107 application/views/visitor/index.php:6
-#: application/views/widgets/qsos.php:29
+#: application/views/widgets/qsos.php:30
 msgid "Mode"
 msgstr ""
 
@@ -1370,7 +1370,7 @@ msgstr ""
 #: application/views/view_log/partial/log.php:12
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/view_log/qso.php:87 application/views/visitor/index.php:33
-#: application/views/widgets/qsos.php:32
+#: application/views/widgets/qsos.php:33
 msgid "Band"
 msgstr ""
 
@@ -1707,16 +1707,16 @@ msgid ""
 "Greenwich."
 msgstr ""
 
-#: application/controllers/Qrz.php:185
+#: application/controllers/Qrz.php:195
 #: application/views/interface_assets/header.php:432
 msgid "QRZ Logbook"
 msgstr ""
 
-#: application/controllers/Qrz.php:265
+#: application/controllers/Qrz.php:275
 msgid "QRZ QSL Import"
 msgstr ""
 
-#: application/controllers/Qrz.php:319
+#: application/controllers/Qrz.php:329
 msgid "QRZ ADIF Information"
 msgstr ""
 
@@ -2432,31 +2432,31 @@ msgstr ""
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr ""
 
-#: application/models/Logbook_model.php:4268
+#: application/models/Logbook_model.php:4270
 msgid "QSO could not be matched"
 msgstr ""
 
-#: application/models/Logbook_model.php:4274
+#: application/models/Logbook_model.php:4276
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr ""
 
-#: application/models/Logbook_model.php:4279
+#: application/models/Logbook_model.php:4281
 msgid "confirmed by award manager"
 msgstr ""
 
-#: application/models/Logbook_model.php:4282
+#: application/models/Logbook_model.php:4284
 msgid "confirmed by cross-check of DCL data"
 msgstr ""
 
-#: application/models/Logbook_model.php:4285
+#: application/models/Logbook_model.php:4287
 msgid "confirmation pending"
 msgstr ""
 
-#: application/models/Logbook_model.php:4288
+#: application/models/Logbook_model.php:4290
 msgid "unconfirmed"
 msgstr ""
 
-#: application/models/Logbook_model.php:4291
+#: application/models/Logbook_model.php:4293
 msgid "unknown"
 msgstr ""
 
@@ -3157,7 +3157,7 @@ msgstr ""
 #: application/views/view_log/partial/log.php:4
 #: application/views/view_log/partial/log_ajax.php:59
 #: application/views/visitor/index.php:147
-#: application/views/widgets/qsos.php:24
+#: application/views/widgets/qsos.php:25
 msgid "Date"
 msgstr ""
 
@@ -3190,7 +3190,7 @@ msgstr ""
 #: application/views/view_log/partial/log.php:6
 #: application/views/view_log/partial/log_ajax.php:61
 #: application/views/visitor/index.php:150
-#: application/views/widgets/qsos.php:26
+#: application/views/widgets/qsos.php:27
 msgid "Time"
 msgstr ""
 
@@ -3211,7 +3211,7 @@ msgstr ""
 #: application/views/view_log/partial/log.php:8
 #: application/views/view_log/partial/log_ajax.php:63
 #: application/views/visitor/index.php:152
-#: application/views/widgets/qsos.php:28
+#: application/views/widgets/qsos.php:29
 msgid "Call"
 msgstr ""
 
@@ -5768,9 +5768,9 @@ msgstr ""
 #: application/views/visitor/index.php:287
 #: application/views/visitor/index.php:310
 #: application/views/visitor/index.php:328
-#: application/views/widgets/qsos.php:30 src/QSLManager/QSO.php:272
+#: application/views/widgets/qsos.php:31 src/QSLManager/QSO.php:272
 #: src/QSLManager/QSO.php:375 src/QSLManager/QSO.php:427
-#: src/QSLManager/QSO.php:465 src/QSLManager/QSO.php:513
+#: src/QSLManager/QSO.php:465 src/QSLManager/QSO.php:528
 msgid "Sent"
 msgstr ""
 
@@ -5800,7 +5800,7 @@ msgstr ""
 #: application/views/visitor/index.php:315
 #: application/views/visitor/index.php:333 src/QSLManager/QSO.php:317
 #: src/QSLManager/QSO.php:398 src/QSLManager/QSO.php:440
-#: src/QSLManager/QSO.php:489 src/QSLManager/QSO.php:526
+#: src/QSLManager/QSO.php:504 src/QSLManager/QSO.php:541
 msgid "Received"
 msgstr ""
 
@@ -7539,6 +7539,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:289
 #: src/QSLManager/QSO.php:281 src/QSLManager/QSO.php:326
 #: src/QSLManager/QSO.php:379 src/QSLManager/QSO.php:402
+#: src/QSLManager/QSO.php:487
 msgid "Invalid (Ignore)"
 msgstr ""
 
@@ -9610,7 +9611,7 @@ msgstr ""
 
 #: application/views/search/result_search.php:9
 #: application/views/statistics/custom_result.php:90
-#: application/views/widgets/qsos.php:31
+#: application/views/widgets/qsos.php:32
 msgid "Rcvd"
 msgstr ""
 

@@ -604,6 +604,7 @@ class API extends CI_Controller {
 
 		// Make sure users logged in
 		$raw_input = json_decode(file_get_contents("php://input"), true);
+		$user_id='';
 		$this->load->model('user_model');
 		if (!( $this->user_model->authorize($this->config->item('auth_mode') ))) {				// User not authorized?
 			$no_auth=true;
@@ -612,13 +613,19 @@ class API extends CI_Controller {
 				$no_auth=true;
 			} else {
 				$no_auth=false;
+				$user_id=$this->api_model->key_userid($raw_input['key']);
 			}
 			if ($no_auth) {
 				http_response_code(401);
 				echo json_encode(['status' => 'failed', 'reason' => "missing api key or session"]);
 				die();
 			}
+		} else {
+			$user_id=$this->session->userdata('user_id');
 		}
+
+		$this->load->model('stations');
+		$station_ids=$this->stations->all_station_ids_of_user($user_id);
 
 		$lookup_callsign = strtoupper($raw_input['callsign'] ?? '');
 		if ($lookup_callsign ?? '' != '') {
@@ -710,7 +717,7 @@ class API extends CI_Controller {
 			 *	Pool any local data we have for a callsign
 			 *
 			 */
-			$call_lookup_results = $this->logbook_model->call_lookup_result($lookup_callsign);
+			$call_lookup_results = $this->logbook_model->call_lookup_result($lookup_callsign, $station_ids);
 
 			if($call_lookup_results != null)
 			{
@@ -723,6 +730,7 @@ class API extends CI_Controller {
 				$return['us_county'] = $call_lookup_results->COL_CNTY;
 				$return['dxcc_id'] = $call_lookup_results->COL_DXCC;
 				$return['cont'] = $call_lookup_results->COL_CONT;
+				$return['workedBefore'] = true;
 
 				if ($return['gridsquare'] != "") {
 					$return['latlng'] = $this->qralatlng($return['gridsquare']);

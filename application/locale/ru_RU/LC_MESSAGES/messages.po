@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-09-18 11:37+0000\n"
+"POT-Creation-Date: 2024-09-20 16:52+0000\n"
 "PO-Revision-Date: 2024-09-17 03:35+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -65,7 +65,7 @@ msgstr ""
 #: application/controllers/Lotw.php:834 application/controllers/Mode.php:15
 #: application/controllers/Notes.php:10 application/controllers/Options.php:15
 #: application/controllers/Oqrs.php:15 application/controllers/Qrbcalc.php:13
-#: application/controllers/Qrz.php:263 application/controllers/Qsl.php:12
+#: application/controllers/Qrz.php:273 application/controllers/Qsl.php:12
 #: application/controllers/Qsl.php:13 application/controllers/Qsl.php:44
 #: application/controllers/Qsl.php:52 application/controllers/Qslprint.php:147
 #: application/controllers/Qso.php:9 application/controllers/Qso.php:19
@@ -1113,7 +1113,7 @@ msgstr "Clublog"
 #: application/views/view_log/partial/log.php:9
 #: application/views/view_log/partial/log_ajax.php:4
 #: application/views/view_log/qso.php:107 application/views/visitor/index.php:6
-#: application/views/widgets/qsos.php:29
+#: application/views/widgets/qsos.php:30
 msgid "Mode"
 msgstr "Вид модуляции"
 
@@ -1390,7 +1390,7 @@ msgstr "Дистанция"
 #: application/views/view_log/partial/log.php:12
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/view_log/qso.php:87 application/views/visitor/index.php:33
-#: application/views/widgets/qsos.php:32
+#: application/views/widgets/qsos.php:33
 msgid "Band"
 msgstr "Диапазон"
 
@@ -1734,16 +1734,16 @@ msgstr ""
 "Отрицательные широты находятся к югу от экватора, отрицательные долготы — к "
 "западу от Гринвича."
 
-#: application/controllers/Qrz.php:185
+#: application/controllers/Qrz.php:195
 #: application/views/interface_assets/header.php:432
 msgid "QRZ Logbook"
 msgstr "Журнал QRZ"
 
-#: application/controllers/Qrz.php:265
+#: application/controllers/Qrz.php:275
 msgid "QRZ QSL Import"
 msgstr "QRZ. Импорт QSL"
 
-#: application/controllers/Qrz.php:319
+#: application/controllers/Qrz.php:329
 msgid "QRZ ADIF Information"
 msgstr "QRZ. Информация ADIF"
 
@@ -2483,31 +2483,31 @@ msgstr "HRDlog: на найдены QSO для загруки для позыв�
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: не найдены профили QTH с данными входя на HRDlog."
 
-#: application/models/Logbook_model.php:4268
+#: application/models/Logbook_model.php:4270
 msgid "QSO could not be matched"
 msgstr "QSO не может быть сопоставлено"
 
-#: application/models/Logbook_model.php:4274
+#: application/models/Logbook_model.php:4276
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "подтверждено LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:4279
+#: application/models/Logbook_model.php:4281
 msgid "confirmed by award manager"
 msgstr "подтверждено менеджером диплома"
 
-#: application/models/Logbook_model.php:4282
+#: application/models/Logbook_model.php:4284
 msgid "confirmed by cross-check of DCL data"
 msgstr "подтверждено кросс-проверкой с данными DCL"
 
-#: application/models/Logbook_model.php:4285
+#: application/models/Logbook_model.php:4287
 msgid "confirmation pending"
 msgstr "подтверждение ожидается"
 
-#: application/models/Logbook_model.php:4288
+#: application/models/Logbook_model.php:4290
 msgid "unconfirmed"
 msgstr "не подтверждено"
 
-#: application/models/Logbook_model.php:4291
+#: application/models/Logbook_model.php:4293
 msgid "unknown"
 msgstr "неизвестно"
 
@@ -3208,7 +3208,7 @@ msgstr "Данные DOK в вашем логе отличаются от DCL"
 #: application/views/view_log/partial/log.php:4
 #: application/views/view_log/partial/log_ajax.php:59
 #: application/views/visitor/index.php:147
-#: application/views/widgets/qsos.php:24
+#: application/views/widgets/qsos.php:25
 msgid "Date"
 msgstr "Дата"
 
@@ -3241,7 +3241,7 @@ msgstr "Дата"
 #: application/views/view_log/partial/log.php:6
 #: application/views/view_log/partial/log_ajax.php:61
 #: application/views/visitor/index.php:150
-#: application/views/widgets/qsos.php:26
+#: application/views/widgets/qsos.php:27
 msgid "Time"
 msgstr "Время"
 
@@ -3262,7 +3262,7 @@ msgstr "Время"
 #: application/views/view_log/partial/log.php:8
 #: application/views/view_log/partial/log_ajax.php:63
 #: application/views/visitor/index.php:152
-#: application/views/widgets/qsos.php:28
+#: application/views/widgets/qsos.php:29
 msgid "Call"
 msgstr "Позывной"
 
@@ -6047,9 +6047,9 @@ msgstr "Необходимо"
 #: application/views/visitor/index.php:287
 #: application/views/visitor/index.php:310
 #: application/views/visitor/index.php:328
-#: application/views/widgets/qsos.php:30 src/QSLManager/QSO.php:272
+#: application/views/widgets/qsos.php:31 src/QSLManager/QSO.php:272
 #: src/QSLManager/QSO.php:375 src/QSLManager/QSO.php:427
-#: src/QSLManager/QSO.php:465 src/QSLManager/QSO.php:513
+#: src/QSLManager/QSO.php:465 src/QSLManager/QSO.php:528
 msgid "Sent"
 msgstr "Отправлено"
 
@@ -6079,7 +6079,7 @@ msgstr "Отправлено"
 #: application/views/visitor/index.php:315
 #: application/views/visitor/index.php:333 src/QSLManager/QSO.php:317
 #: src/QSLManager/QSO.php:398 src/QSLManager/QSO.php:440
-#: src/QSLManager/QSO.php:489 src/QSLManager/QSO.php:526
+#: src/QSLManager/QSO.php:504 src/QSLManager/QSO.php:541
 msgid "Received"
 msgstr "Принято"
 
@@ -7885,6 +7885,7 @@ msgstr "В очереди"
 #: application/views/view_log/partial/log_ajax.php:289
 #: src/QSLManager/QSO.php:281 src/QSLManager/QSO.php:326
 #: src/QSLManager/QSO.php:379 src/QSLManager/QSO.php:402
+#: src/QSLManager/QSO.php:487
 msgid "Invalid (Ignore)"
 msgstr "Некорректно (Игнорировать)"
 
@@ -10059,7 +10060,7 @@ msgstr "Поиск в колбуке %s"
 
 #: application/views/search/result_search.php:9
 #: application/views/statistics/custom_result.php:90
-#: application/views/widgets/qsos.php:31
+#: application/views/widgets/qsos.php:32
 msgid "Rcvd"
 msgstr "Получено"
 

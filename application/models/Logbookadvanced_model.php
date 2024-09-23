@@ -181,7 +181,7 @@ class Logbookadvanced_model extends CI_Model {
 			$condition = "COL_CLUBLOG_QSO_UPLOAD_STATUS = ?";
 			if ($searchCriteria['clublogSent'] == 'N') {
 				$condition = '('.$condition;
-				$condition .= " OR COL_CLUBLOG_QSL_UPLOAD_STATUS IS NULL OR COL_CLUBLOG_QSO_UPLOAD_STATUS = '')";
+				$condition .= " OR COL_CLUBLOG_QSO_UPLOAD_STATUS IS NULL OR COL_CLUBLOG_QSO_UPLOAD_STATUS = '')";
 			}
 			$conditions[] = $condition;
 			$binding[] = $searchCriteria['clublogSent'];

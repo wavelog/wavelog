@@ -487,8 +487,8 @@ class Logbook_model extends CI_Model {
 			  }
 		  } else {
 			  $this->db->group_start();
-			  $this->db->like("COL_GRIDSQUARE", $searchphrase);
-			  $this->db->or_like("COL_VUCC_GRIDS", $searchphrase);
+			  $this->db->like("COL_GRIDSQUARE", $searchphrase, 'after');
+			  $this->db->or_like("COL_VUCC_GRIDS", $searchphrase, 'after');
 			  $this->db->group_end();
 			  if ($band == 'SAT' && $type == 'VUCC') {
 				  if ($sat != 'All' && $sat != null) {
@@ -1460,8 +1460,9 @@ class Logbook_model extends CI_Model {
   * Usage: Callsign lookup data for the QSO panel and API/callsign_lookup
   *
   */
-  function call_lookup_result($callsign) {
+  function call_lookup_result($callsign, $station_ids) {
 	  $this->db->select('COL_CALL, COL_NAME, COL_QSL_VIA, COL_GRIDSQUARE, COL_QTH, COL_IOTA, COL_TIME_ON, COL_STATE, COL_CNTY, COL_DXCC, COL_CONT');
+	  $this->db->where('station_id in ('.$station_ids.')');
 	  $this->db->where('COL_CALL', $callsign);
 	  $where = "COL_NAME != \"\"";
 
@@ -2709,6 +2710,7 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
       $this->db->where_in('station_id', $logbooks_locations_array);
       $this->db->where('COL_SAT_NAME is not null');
       $this->db->where('COL_SAT_NAME !=', '');
+      $this->db->where('COL_PROP_MODE', 'SAT');
       $this->db->order_by('count DESC');
       $this->db->group_by('COL_SAT_NAME');
       $query = $this->db->get($this->config->item('table_name'));
@@ -3995,7 +3997,7 @@ function lotw_last_qsl_date($user_id) {
 
 		  // Create array with QSO Data use ?:
 		  $data = array(
-			  'COL_A_INDEX' => $input_a_index,
+			  'COL_A_INDEX' => is_numeric($input_a_index) ? $input_a_index : null,
 			  'COL_ADDRESS' => (!empty($record['address'])) ? $record['address'] : '',
 			  'COL_ADDRESS_INTL' => (!empty($record['address_intl'])) ? $record['address_intl'] : '',
 			  'COL_AGE' => $input_age,
@@ -4019,7 +4021,7 @@ function lotw_last_qsl_date($user_id) {
 			  'COL_CONT' => (!empty($record['cont'])) ? $record['cont'] : '',
 			  'COL_CONTACTED_OP' => (!empty($record['contacted_op'])) ? $record['contacted_op'] : '',
 			  'COL_CONTEST_ID' => (!empty($record['contest_id'])) ? $record['contest_id'] : '',
-			  'COL_COUNTRY' => $country,
+			  'COL_COUNTRY' => $country ?? '',
 			  'COL_COUNTRY_INTL' => (!empty($record['country_intl'])) ? $record['country_intl'] : '',
 			  'COL_CQZ' => $cq_zone,
 			  'COL_CREDIT_GRANTED' => (!empty($record['credit_granted'])) ? $record['credit_granted'] : '',
@@ -4204,7 +4206,7 @@ function lotw_last_qsl_date($user_id) {
 			  $this->add_qso($data, $skipexport);
 		  }
 	  } else {
-		  $my_error .= "Date/Time: ".$time_on." Callsign: ".$record['call']." Band: ".$band."  Duplicate<br>";
+		  $my_error .= "Date/Time: ".($time_on ?? 'N/A')." Callsign: ".($record['call'] ?? 'N/A')." Band: ".($band ?? 'N/A')."  Duplicate for ".($station_profile_call ?? 'N/A')."<br>";
 	  }
 
 	  if ($batchmode) {

@@ -141,6 +141,16 @@ class Qrz extends CI_Controller {
 					$this->markqso($qso->COL_PRIMARY_KEY,'I');
 					$result['status'] = 'Error';
 					$errormessages[] = $result['message'] . ' Call: ' . $qso->COL_CALL . ' Band: ' . $qso->COL_BAND . ' Mode: ' . $qso->COL_MODE . ' Time: ' . $qso->COL_TIME_ON;
+				} elseif ( ($result['status']=='error') && (str_contains($result['message'],'DXCC could not be determined')) ) {
+					log_message('error', 'QRZ upload failed for qso for Station_ID '.$station_id.' //  Call: ' . $qso->COL_CALL . ' Band: ' . $qso->COL_BAND . ' Mode: ' . $qso->COL_MODE . ' Time: ' . $qso->COL_TIME_ON . ' // Message: '.$result['message']);
+					$this->markqso($qso->COL_PRIMARY_KEY,'I');
+					$result['status'] = 'Error';
+					$errormessages[] = $result['message'] . ' Call: ' . $qso->COL_CALL . ' Band: ' . $qso->COL_BAND . ' Mode: ' . $qso->COL_MODE . ' Time: ' . $qso->COL_TIME_ON;
+				} elseif ( ($result['status']=='error') && (str_contains($result['message'],'cannot determine band from')) ) {
+					log_message('error', 'QRZ upload failed for qso for Station_ID '.$station_id.' //  Call: ' . $qso->COL_CALL . ' Band: ' . $qso->COL_BAND . ' Mode: ' . $qso->COL_MODE . ' Time: ' . $qso->COL_TIME_ON . ' // Message: '.$result['message']);
+					$this->markqso($qso->COL_PRIMARY_KEY,'I');
+					$result['status'] = 'Error';
+					$errormessages[] = $result['message'] . ' Call: ' . $qso->COL_CALL . ' Band: ' . $qso->COL_BAND . ' Mode: ' . $qso->COL_MODE . ' Time: ' . $qso->COL_TIME_ON;
 				} elseif ( ($result['status']=='error') && (substr($result['message'],0,11)  == 'STATUS=AUTH')) {
 					log_message('error', 'QRZ upload failed for qso for Station_ID '.$station_id.' //  Call: ' . $qso->COL_CALL . ' Band: ' . $qso->COL_BAND . ' Mode: ' . $qso->COL_MODE . ' Time: ' . $qso->COL_TIME_ON . ' // Message: '.$result['message']);
 					$errormessages[] = $result['message'] . ' Call: ' . $qso->COL_CALL . ' Band: ' . $qso->COL_BAND . ' Mode: ' . $qso->COL_MODE . ' Time: ' . $qso->COL_TIME_ON;
