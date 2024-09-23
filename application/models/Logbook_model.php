@@ -484,8 +484,8 @@ class Logbook_model extends CI_Model {
 					}
 				} else {
 					$this->db->group_start();
-					$this->db->like("COL_GRIDSQUARE", $searchphrase);
-					$this->db->or_like("COL_VUCC_GRIDS", $searchphrase);
+					$this->db->like("COL_GRIDSQUARE", $searchphrase, 'after');
+					$this->db->or_like("COL_VUCC_GRIDS", $searchphrase, 'after');
 					$this->db->group_end();
 					if ($band == 'SAT' && $type == 'VUCC') {
 						if ($sat != 'All' && $sat != null) {
