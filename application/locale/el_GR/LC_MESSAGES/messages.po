@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-09-23 14:45+0000\n"
+"POT-Creation-Date: 2024-09-23 15:20+0000\n"
 "PO-Revision-Date: 2024-08-17 10:47+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: Greek <https://translate.wavelog.org/projects/wavelog/main-"
@@ -942,7 +942,6 @@ msgstr "Αρχείο επαφών"
 #: application/views/qslprint/qsolist.php:14
 #: application/views/qslprint/qsolist.php:16
 #: application/views/qso/edit_ajax.php:37 application/views/qso/index.php:43
-#: application/views/search/result_search.php:13
 #: application/views/timeline/index.php:56 application/views/user/edit.php:562
 #: application/views/user/edit.php:649
 msgid "QSL"
@@ -971,7 +970,6 @@ msgstr ""
 #: application/views/qslprint/qsolist.php:167
 #: application/views/qslprint/qsolist.php:182
 #: application/views/qso/edit_ajax.php:412
-#: application/views/search/result_search.php:22
 #: application/views/search/search_result_ajax.php:298
 #: application/views/search/search_result_ajax.php:313
 #: application/views/timeline/index.php:60 application/views/user/edit.php:563
@@ -1001,7 +999,6 @@ msgstr ""
 #: application/views/qslprint/qsolist.php:138
 #: application/views/qslprint/qsolist.php:151
 #: application/views/qso/edit_ajax.php:409
-#: application/views/search/result_search.php:16
 #: application/views/search/search_result_ajax.php:260
 #: application/views/search/search_result_ajax.php:273
 #: application/views/station_profile/edit.php:305
@@ -1083,7 +1080,6 @@ msgstr ""
 #: application/views/search/cqzones_result.php:10
 #: application/views/search/ituzones_result.php:10
 #: application/views/search/lotw_unconfirmed_result.php:8
-#: application/views/search/result_search.php:7
 #: application/views/search/search_result_ajax.php:4
 #: application/views/simplefle/index.php:150
 #: application/views/statistics/custom.php:60
@@ -1165,7 +1161,6 @@ msgstr ""
 #: application/views/qslcard/searchresult.php:63
 #: application/views/qslcard/searchresult.php:79
 #: application/views/qso/components/previous_contacts.php:80
-#: application/views/search/result_search.php:11
 #: application/views/search/search_result_ajax.php:7
 #: application/views/stationsetup/stationsetup.php:124
 #: application/views/statistics/custom_result.php:92
@@ -1359,7 +1354,6 @@ msgstr ""
 #: application/views/search/cqzones_result.php:11
 #: application/views/search/ituzones_result.php:11
 #: application/views/search/lotw_unconfirmed_result.php:9
-#: application/views/search/result_search.php:10
 #: application/views/search/search_result_ajax.php:15
 #: application/views/simplefle/index.php:149
 #: application/views/stationsetup/exportmapoptions.php:31
@@ -3147,7 +3141,6 @@ msgstr ""
 #: application/views/qso/index.php:101 application/views/satellite/pass.php:473
 #: application/views/search/cqzones_result.php:7
 #: application/views/search/ituzones_result.php:7
-#: application/views/search/result_search.php:4
 #: application/views/search/search_result_ajax.php:89
 #: application/views/simplefle/index.php:146
 #: application/views/statistics/custom.php:38
@@ -3186,7 +3179,6 @@ msgstr "Ημερομηνία"
 #: application/views/qslprint/qsolist.php:8 application/views/qso/index.php:106
 #: application/views/search/cqzones_result.php:8
 #: application/views/search/ituzones_result.php:8
-#: application/views/search/result_search.php:5
 #: application/views/search/search_result_ajax.php:91
 #: application/views/simplefle/index.php:147
 #: application/views/statistics/custom_result.php:86
@@ -3210,7 +3202,6 @@ msgstr "Ωρα"
 #: application/views/public_search/result.php:14
 #: application/views/qslcard/searchresult.php:8
 #: application/views/qso/components/previous_contacts.php:7
-#: application/views/search/result_search.php:6
 #: application/views/search/search_result_ajax.php:93
 #: application/views/statistics/custom_result.php:87
 #: application/views/view_log/partial/log.php:8
@@ -5758,7 +5749,6 @@ msgstr "Απαιτείται"
 #: application/views/qso/edit_ajax.php:418
 #: application/views/qso/edit_ajax.php:479
 #: application/views/qso/edit_ajax.php:515 application/views/qso/index.php:571
-#: application/views/search/result_search.php:8
 #: application/views/search/search_result_ajax.php:180
 #: application/views/search/search_result_ajax.php:260
 #: application/views/search/search_result_ajax.php:298
@@ -9625,12 +9615,6 @@ msgstr ""
 msgid "Callbook Search for %s"
 msgstr ""
 
-#: application/views/search/result_search.php:9
-#: application/views/statistics/custom_result.php:90
-#: application/views/widgets/qsos.php:32
-msgid "Rcvd"
-msgstr ""
-
 #: application/views/search/search_result_ajax.php:409
 #: application/views/view_log/partial/log.php:140
 #: application/views/view_log/partial/log_ajax.php:325
@@ -10440,6 +10424,11 @@ msgstr ""
 
 #: application/views/statistics/custom.php:86
 msgid "Results go here"
+msgstr ""
+
+#: application/views/statistics/custom_result.php:90
+#: application/views/widgets/qsos.php:32
+msgid "Rcvd"
 msgstr ""
 
 #: application/views/statistics/index.php:14
