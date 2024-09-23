@@ -469,6 +469,7 @@ class Logbookadvanced_model extends CI_Model {
 					'COL_QSL_SENT' => $sent,
 				);
 			}
+			$data['COL_QRZCOM_QSO_UPLOAD_STATUS'] = 'M';
 			$this->db->where_in('COL_PRIMARY_KEY', json_decode($ids, true));
 			$this->db->update($this->config->item('table_name'), $data);
 
@@ -487,6 +488,7 @@ class Logbookadvanced_model extends CI_Model {
                 'COL_QSL_RCVD' => $sent,
                 'COL_QSL_RCVD_VIA' => $method
             );
+			$data['COL_QRZCOM_QSO_UPLOAD_STATUS'] = 'M';
             $this->db->where_in('COL_PRIMARY_KEY', json_decode($ids, true));
             $this->db->update($this->config->item('table_name'), $data);
 
