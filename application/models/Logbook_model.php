@@ -1649,6 +1649,7 @@ class Logbook_model extends CI_Model {
 		$this->db->select('COL_CALL, COL_QTH, COL_TIME_ON');
 		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
 		$this->db->where('COL_CALL', $callsign);
+		$this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
 		$where = "COL_QTH != \"\"";
 
 		$this->db->where($where);
@@ -1669,6 +1670,7 @@ class Logbook_model extends CI_Model {
 		$this->db->select('COL_CALL, COL_IOTA, COL_TIME_ON');
 		$this->db->join('station_profile', 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
 		$this->db->where('COL_CALL', $callsign);
+		$this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
 		$this->db->order_by("COL_TIME_ON", "desc");
 		$this->db->limit(1);
 		$query = $this->db->get($this->config->item('table_name'));
@@ -1709,7 +1711,7 @@ class Logbook_model extends CI_Model {
 			$this->db->where('COL_PRIMARY_KEY', $qso_id);
 
 			$this->db->update($this->config->item('table_name'), $data);
-			
+
 			$this->set_qrzcom_modified($qso_id);
 
 		} else {
@@ -1934,7 +1936,7 @@ class Logbook_model extends CI_Model {
 
 	/**
 	 * Generic function to set the QRZ.com Upload status to 'modified'
-	 * 
+	 *
 	 * @param int $qso_id  the QSO primary key (COL_PRIMARY_KEY)
 	 */
 
