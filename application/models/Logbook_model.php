@@ -3805,7 +3805,7 @@ class Logbook_model extends CI_Model {
 				$input_a_index = NULL;
 			}
 
-			if (isset($record['age'])) {
+			if (isset($record['age']) && (is_numeric($record['age']))) {
 				$input_age = filter_var($record['age'], FILTER_SANITIZE_NUMBER_INT);
 			} else {
 				$input_age = NULL;
