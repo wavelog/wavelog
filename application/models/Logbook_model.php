@@ -5002,7 +5002,7 @@ function lotw_last_qsl_date($user_id) {
     $this->db->where("station_id", $station_id);
     $this->db->group_start();
     $this->db->where('COL_LOTW_QSL_SENT', NULL);
-    $this->db->or_where('COL_LOTW_QSL_SENT !=', "Y");
+    $this->db->or_where_not_in('COL_LOTW_QSL_SENT', array("Y", "I"));
     $this->db->group_end();
     $this->db->where_not_in('COL_PROP_MODE', $this->config->item('lotw_unsupported_prop_modes'));
     $this->db->where('COL_TIME_ON >=', $start_date);
