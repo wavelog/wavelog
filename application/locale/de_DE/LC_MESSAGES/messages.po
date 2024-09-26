@@ -21,10 +21,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-09-24 18:21+0000\n"
-"PO-Revision-Date: 2024-09-18 11:37+0000\n"
-"Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/de/>\n"
+"PO-Revision-Date: 2024-09-26 07:57+0000\n"
+"Last-Translator: Jörg Dorgeist <wavelog@dj7nt.de>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -134,7 +134,7 @@ msgstr "Kumulierte Statistiken"
 #: application/controllers/Activated_gridmap.php:10
 #: application/views/activated_gridmap/index.php:5
 msgid "Activated Gridsquare Map"
-msgstr "Karte der aktivierten Planquadrate"
+msgstr "Karte der aktivierten Locator"
 
 #: application/controllers/Activated_gridmap.php:31
 #: application/controllers/Awards.php:919
@@ -146,29 +146,29 @@ msgstr "Karte der aktivierten Planquadrate"
 #: application/views/visitor/layout/footer.php:22
 #: application/views/visitor/layout/header.php:68
 msgid "Gridsquares"
-msgstr "Planquadrate"
+msgstr "Locator"
 
 #: application/controllers/Activated_gridmap.php:32
 #: application/controllers/Gridmap.php:32
 #: application/controllers/Visitor.php:386
 msgid "Gridsquares confirmed"
-msgstr "Bestätigte Planquadrate"
+msgstr "Bestätigte Locator"
 
 #: application/controllers/Activated_gridmap.php:33
 #: application/controllers/Gridmap.php:33
 #: application/controllers/Visitor.php:387
 msgid "Gridsquares not confirmed"
-msgstr "Unbestätigte Planquadrate"
+msgstr "Unbestätigte Locator"
 
 #: application/controllers/Activated_gridmap.php:34
 msgid "Total gridsquares activated"
-msgstr "Summe aktivierter Planquadrate"
+msgstr "Summe aktivierter Locator"
 
 #: application/controllers/Activators.php:20
 #: application/views/activators/index.php:5
 #: application/views/interface_assets/header.php:142
 msgid "Gridsquare Activators"
-msgstr "Planquadrat Aktivierer"
+msgstr "Locator Aktivierer"
 
 #: application/controllers/Activatorsmap.php:17
 #: application/views/activators/index.php:2
@@ -471,17 +471,17 @@ msgstr "Diplome - "
 #: application/controllers/Awards.php:920
 #: application/controllers/Awards.php:952
 msgid "Gridsquares worked"
-msgstr "Gearbeitete Planquadrate"
+msgstr "Gearbeitete Locator"
 
 #: application/controllers/Awards.php:921
 #: application/controllers/Awards.php:953
 msgid "Gridsquares confirmed on LoTW"
-msgstr "Auf LoTW bestätigte Planquadrate"
+msgstr "Auf LoTW bestätigte Locator"
 
 #: application/controllers/Awards.php:922
 #: application/controllers/Awards.php:954
 msgid "Gridsquares confirmed by paper QSL"
-msgstr "Per Papier QSL bestätigte Planquadrate"
+msgstr "Per Papier QSL bestätigte Locator"
 
 #: application/controllers/Awards.php:939
 msgid "Fred Fish Memorial Award (FFMA)"
@@ -714,7 +714,7 @@ msgstr "und Ausbreitungsart"
 #: application/controllers/Dxatlas.php:19
 #: application/views/interface_assets/header.php:394
 msgid "DX Atlas Gridsquare Export"
-msgstr "DX-Atlas Planquadrat-Export"
+msgstr "DX-Atlas Locator-Export"
 
 #: application/controllers/Dxcalendar.php:10
 #: application/views/interface_assets/header.php:249
@@ -759,12 +759,12 @@ msgstr "eQSL-Karten Bilder Download"
 #: application/controllers/Gridmap.php:10
 #: application/views/interface_assets/header.php:138
 msgid "Gridsquare Map"
-msgstr "Planquadratkarte"
+msgstr "Locatorkarte"
 
 #: application/controllers/Gridmap.php:34
 #: application/controllers/Visitor.php:388
 msgid "Total gridsquares worked"
-msgstr "Summe gearbeiteter Planquadrate"
+msgstr "Summe gearbeiteter Locator"
 
 #: application/controllers/Hamsat.php:59
 msgid "Hamsat - Satellite Roving"
@@ -1294,7 +1294,7 @@ msgstr "Staat"
 #: application/views/view_log/qso.php:527
 #: application/views/visitor/index.php:27
 msgid "Gridsquare"
-msgstr "Planquadrat"
+msgstr "Locator"
 
 #: application/controllers/Logbook.php:1358
 #: application/views/activated_gridmap/index.php:108
@@ -2342,7 +2342,7 @@ msgstr "Leeres Logbuch"
 
 #: application/controllers/Visitor.php:216
 msgid "Satellite Gridsquare Map"
-msgstr "Satelliten Planquadrat-Karte"
+msgstr "Satelliten Locator-Karte"
 
 #: application/controllers/Visitor.php:405
 #: application/views/stationsetup/stationsetup.php:35
@@ -2543,7 +2543,7 @@ msgstr "Kumulierte Anzahl gearbeiteter CQ-Zonen"
 
 #: application/views/accumulate/index.php:6
 msgid "Accumulated number of VUCC Grids worked"
-msgstr "Kumulierte Anzahl gearbeiteter VUCC-Planquadrate"
+msgstr "Kumulierte Anzahl gearbeiteter VUCC-Locator"
 
 #: application/views/accumulate/index.php:7
 msgid "Accumulated number of WAJA worked"
@@ -3558,7 +3558,7 @@ msgstr "Duplikate wurden eingefügt!"
 
 #: application/views/adif/import_success.php:20
 msgid "Dupes were skipped."
-msgstr "Duplikate wurden übersprungen."
+msgstr "evtl. vorhandene Duplikate wurden übersprungen."
 
 #: application/views/adif/import_success.php:24
 msgid "ADIF Errors"
@@ -4317,8 +4317,8 @@ msgid ""
 "grid squares in the 48 contiguous United States on 6 Meters."
 msgstr ""
 "Der Fred Fish Memorial Award wurde zu Ehren von Fred Fish, W5FF (SK), "
-"geschaffen, dem ersten Funkamateur, der alle 488 Maidenhead-Planquadrate in "
-"den 48 zusammenhängenden Bundesstaaten der USA auf 6 Metern gearbeitet und "
+"geschaffen, dem ersten Funkamateur, der alle 488 Maidenhead-Locator in den "
+"48 zusammenhängenden Bundesstaaten der USA auf 6 Metern gearbeitet und "
 "bestätigt hat."
 
 #: application/views/awards/ffma/index.php:10
@@ -4347,9 +4347,8 @@ msgid ""
 msgstr ""
 "Der GridMaster Award ist die renommierteste AMSAT-Auszeichnung, die erstmals "
 "2014 von der Star Comm Group eingeführt wurde. Sie steht allen Funkamateuren "
-"weltweit zur Verfügung, die es schaffen, alle 488 Planquadrate in den USA "
-"via Satellit zu arbeiten und für jeden Kontakt QSL-Bestätigungen vorlegen "
-"können."
+"weltweit zur Verfügung, die es schaffen, alle 488 Locator in den USA via "
+"Satellit zu arbeiten und für jeden Kontakt QSL-Bestätigungen vorlegen können."
 
 #: application/views/awards/gridmaster/index.php:9
 #, php-format
@@ -4364,7 +4363,7 @@ msgid ""
 "circle."
 msgstr ""
 "Offizielle Informationen der %s: Die Zwei-Wege-Kommunikation muss von jedem "
-"Planquadrat aus mit einem Amateurfunk-Satelliten erfolgt sein. Es ist kein "
+"Locator aus mit einem Amateurfunk-Satelliten erfolgt sein. Es ist kein "
 "minimaler Signalbericht erforderlich. Kontakte müssen von der gleichen "
 "Stelle oder von Orten gemacht werden, von denen keine zwei mehr als 200 "
 "Kilometer voneinander entfernt sind. Die Bestätigung des Bewerbers in der "
@@ -4819,11 +4818,11 @@ msgstr "Nur VHF/UHF-Bänder sind relevant."
 
 #: application/views/awards/vucc/index.php:22
 msgid "Grids Worked"
-msgstr "Planquadrate gearbeitet"
+msgstr "Locator gearbeitet"
 
 #: application/views/awards/vucc/index.php:23
 msgid "Grids Confirmed"
-msgstr "Planquadrate bestätigt"
+msgstr "Locator bestätigt"
 
 #: application/views/awards/wab/index.php:12
 msgid "WAB - Worked All Britain Award"
@@ -4834,8 +4833,8 @@ msgid ""
 "WAB, Worked All Britain squares in Amateur Radio, encourages licensed ham "
 "radio operators to work all the squares in Great Britain."
 msgstr ""
-"WAB, 'Worked All Britain' Planquadrate im Amateurfunk, ermutigt lizenzierte "
-"Funkamateure, alle Planquadrate in Grossbritannien zu arbeiten."
+"WAB, 'Worked All Britain' Locator im Amateurfunk, ermutigt lizenzierte "
+"Funkamateure, alle Locator in Grossbritannien zu arbeiten."
 
 #: application/views/awards/wab/index.php:14
 msgid ""
@@ -4852,7 +4851,7 @@ msgstr "Liste"
 
 #: application/views/awards/wab/list.php:5
 msgid "WAB Square"
-msgstr "WAB Planquadrat"
+msgstr "WAB Locator"
 
 #: application/views/awards/wac/index.php:9
 msgid ""
@@ -5395,7 +5394,7 @@ msgstr "Kommentar"
 #: application/views/components/hamsat/table.php:31
 #: application/views/hamsat/index.php:34
 msgid "Gridsquare(s)"
-msgstr "Planquadrat(e)"
+msgstr "Locator"
 
 #: application/views/components/hamsat/table.php:32
 #: application/views/hamsat/index.php:35
@@ -5595,7 +5594,7 @@ msgstr "Seriennummer + Exchange"
 
 #: application/views/contesting/index.php:24
 msgid "Serial + Gridsquare"
-msgstr "Seriennummer + Planquadrat"
+msgstr "Seriennummer + Locator"
 
 #: application/views/contesting/index.php:25
 msgid "Serial + Gridsquare + Exchange"
@@ -5669,7 +5668,7 @@ msgstr "Austausch (Exch)"
 #: application/views/contesting/index.php:82
 msgctxt "Keep the translation short!"
 msgid "Grid"
-msgstr "Planqu."
+msgstr "Loc."
 
 #: application/views/contesting/index.php:77
 #: application/views/contesting/index.php:78
@@ -5689,7 +5688,7 @@ msgstr "Nummer (S)"
 
 #: application/views/contesting/index.php:182
 msgid "Gridsquare (S)"
-msgstr "Planquadrat (S)"
+msgstr "Locator (S)"
 
 #: application/views/contesting/index.php:187
 #: application/views/contesting/index.php:258
@@ -5704,7 +5703,7 @@ msgstr "Nummer (R)"
 
 #: application/views/contesting/index.php:206
 msgid "Gridsquare (R)"
-msgstr "Planquadrat (R)"
+msgstr "Locator (R)"
 
 #: application/views/contesting/index.php:211
 #: application/views/contesting/index.php:259
@@ -5731,7 +5730,7 @@ msgstr "Contest-Logbuch"
 #: application/views/contesting/index.php:263
 #: application/views/qso/edit_ajax.php:164
 msgid "VUCC Gridsquare"
-msgstr "VUCC Planquadrat"
+msgstr "VUCC Locator"
 
 #: application/views/continents/index.php:63
 #: application/views/statistics/index.php:19
@@ -6135,7 +6134,7 @@ msgstr "Logbook of the World"
 
 #: application/views/dashboard/index.php:374
 msgid "VUCC-Grids"
-msgstr "VUCC-Planquadrate"
+msgstr "VUCC-Locator"
 
 #: application/views/dayswithqso/index.php:2
 #: application/views/interface_assets/header.php:148
@@ -6271,7 +6270,7 @@ msgstr "QSOs auf dieser Instanz"
 
 #: application/views/debug/index.php:76
 msgid "Total User"
-msgstr "Gesamt Benutzer"
+msgstr "Gesamtanzahl Benutzer"
 
 #: application/views/debug/index.php:84
 msgid "Server Information"
@@ -6622,8 +6621,7 @@ msgstr "Türkisch"
 #: application/views/distancerecords/index.php:4
 msgid "This page lists distance records per satellite based on gridsquares."
 msgstr ""
-"Diese Seite zeigt die Entfernungsrekorde pro Satellit basierend auf "
-"Planquadraten."
+"Diese Seite zeigt die Entfernungsrekorde pro Satellit basierend auf Locator."
 
 #: application/views/distances/index.php:7
 #: application/views/interface_assets/footer.php:30
@@ -6638,7 +6636,7 @@ msgstr "Kontakte wurden geplottet.%s Dein weitester Kontakt war mit"
 
 #: application/views/distances/index.php:10
 msgid "in gridsquare"
-msgstr "im Planquadrat"
+msgstr "im Locator"
 
 #: application/views/distances/index.php:11
 msgid "the distance was"
@@ -6661,12 +6659,12 @@ msgid ""
 "Export your logbook for use in DX Atlas to display worked / confirmed "
 "gridsquares."
 msgstr ""
-"Exportiere dein Logbuch nach DX Atlas um gearbeitete und bestätigte "
-"Planquadrate anzuzeigen."
+"Exportiere dein Logbuch nach DX Atlas um gearbeitete und bestätigte Locator "
+"anzuzeigen."
 
 #: application/views/dxatlas/index.php:11 application/views/kml/index.php:11
 msgid "Only QSOs with a gridsquare defined will be exported!"
-msgstr "Nur QSO mit einem definierten Planquadrat werden auch exportiert!"
+msgstr "Nur QSO mit einem definierten Locator werden auch exportiert!"
 
 #: application/views/dxcalendar/index.php:9
 msgid "Date from"
@@ -7029,7 +7027,7 @@ msgstr "Berechne QRB und QTF"
 
 #: application/views/interface_assets/footer.php:50
 msgid "Error in locators. Please check."
-msgstr "Fehlerhaftes Planquadrat. Bitte überprüfen."
+msgstr "Fehlerhafter Locator. Bitte überprüfen."
 
 #: application/views/interface_assets/footer.php:51
 #: application/views/user/index.php:39
@@ -7132,7 +7130,7 @@ msgstr "Anzahl: "
 
 #: application/views/interface_assets/footer.php:732
 msgid "Grids: "
-msgstr "Planquadrate: "
+msgstr "Locator: "
 
 #: application/views/interface_assets/footer.php:1193
 #, php-format
@@ -7146,7 +7144,7 @@ msgstr "Du bist nicht eingeloggt. Bitte %slogge dich ein%s"
 #: application/views/interface_assets/footer.php:1549
 #: application/views/interface_assets/footer.php:1552
 msgid "grid square"
-msgstr "Planquadrate"
+msgstr "Locator"
 
 #: application/views/interface_assets/footer.php:1408
 #: application/views/interface_assets/footer.php:1552
@@ -7243,7 +7241,7 @@ msgstr "Analysen"
 
 #: application/views/interface_assets/header.php:140
 msgid "Activated Gridsquares"
-msgstr "Aktivierte Planquadrate"
+msgstr "Aktivierte Locator"
 
 #: application/views/interface_assets/header.php:162
 msgid "International"
@@ -7671,7 +7669,7 @@ msgstr "QSOs ansehen"
 #: application/views/labels/startatform.php:4
 #: application/views/logbookadvanced/startatform.php:3
 msgid "Include Grid?"
-msgstr "Mit Planquadrat?"
+msgstr "Mit Locator?"
 
 #: application/views/labels/startatform.php:10
 #: application/views/logbookadvanced/startatform.php:9
@@ -7717,7 +7715,7 @@ msgstr "Band RX"
 #: application/views/logbookadvanced/useroptions.php:166
 msgctxt "Map Options"
 msgid "Gridsquares"
-msgstr "Planquadrate"
+msgstr "Locator"
 
 #: application/views/logbookadvanced/index.php:14
 #: application/views/logbookadvanced/useroptions.php:162
@@ -8110,7 +8108,7 @@ msgstr "Suche Staat"
 
 #: application/views/logbookadvanced/index.php:490
 msgid "Search Gridsquare"
-msgstr "Suche Planquadrat"
+msgstr "Suche Locator"
 
 #: application/views/logbookadvanced/index.php:493
 msgid "Search CQ Zone"
