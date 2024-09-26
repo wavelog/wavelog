@@ -55,7 +55,7 @@ $cert2 = str_replace("-----END CERTIFICATE-----", "", $cert1);
 
 <?php if($qso->COL_PROP_MODE) { ?><PROP_MODE:<?php echo strlen($qso->COL_PROP_MODE); ?>><?php echo strtoupper($qso->COL_PROP_MODE); } ?>
 
-<?php if($qso->COL_SAT_NAME) { ?><SAT_NAME:<?php echo strlen($satname); ?>><?php echo strtoupper($satname); } ?>
+<?php if($qso->COL_SAT_NAME) { ?><SAT_NAME:<?php echo strlen($qso->COL_SAT_NAME); ?>><?php echo strtoupper($qso->COL_SAT_NAME); } ?>
 
 <?php if($qso->COL_BAND_RX) { ?><BAND_RX:<?php echo strlen($qso->COL_BAND_RX); ?>><?php echo strtoupper($qso->COL_BAND_RX); } ?>
 
