@@ -124,6 +124,7 @@ class Migration_rename_satellites extends CI_Migration {
 
 			foreach ($this->satellites as $exportname => $name) {
 				$this->update_sat_table($exportname, $name);
+				$this->update_log_table($exportname, $name);
 			}
 		}
 
@@ -142,6 +143,7 @@ class Migration_rename_satellites extends CI_Migration {
 
 			foreach ($this->satellites as $exportname => $name) {
 				$this->update_sat_table($name, $exportname);
+				$this->update_log_table($name, $exportname);
 			}
 		}
 
@@ -152,6 +154,11 @@ class Migration_rename_satellites extends CI_Migration {
 
 	function update_sat_table($from, $to) {
 		$sql= "UPDATE `satellite` SET `name` = '".$to."' WHERE `name` = '".$from."';";
+		$this->db->query($sql);
+	}
+
+	function update_log_table($from, $to) {
+		$sql= "UPDATE ".$this->config->item('table_name')." SET `COL_SAT_NAME` = '".$to."' WHERE `COL_SAT_NAME` = '".$from."';";
 		$this->db->query($sql);
 	}
 
