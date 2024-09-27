@@ -8,6 +8,7 @@ class DOK extends CI_Model {
 
 	function get_dok_array($bands, $postdata, $location_list) {
 		$doks = array();
+		$bandDok = array();
 
 		$list = $this->getDoksFromDB($location_list);
 		foreach ($this->getSdoksFromDB($location_list) as $sdok) {
