@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-09-24 18:21+0000\n"
+"POT-Creation-Date: 2024-09-27 15:58+0000\n"
 "PO-Revision-Date: 2024-09-26 03:18+0000\n"
 "Last-Translator: Jian ke <bg8ixz@hotmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -2075,9 +2075,14 @@ msgid ""
 msgstr "确定要删除台站 '%s' 吗？这会删除此台站下的所有 QSO。"
 
 #: application/controllers/Stationsetup.php:379
+#: application/views/logbookadvanced/index.php:166
 #: application/views/qso/edit_ajax.php:221
-msgid "NONE"
-msgstr "无"
+#: application/views/station_profile/create.php:78
+#: application/views/station_profile/edit.php:99
+#: application/views/stationsetup/stationsetup.php:150
+msgctxt "DXCC Select - No DXCC"
+msgid "- NONE - (e.g. /MM, /AM)"
+msgstr "- 无 - （如 /MM, /AM）"
 
 #: application/controllers/Stationsetup.php:462
 msgid "Edit Export Map options"
@@ -7502,11 +7507,6 @@ msgstr "截止日期"
 msgid "Dx"
 msgstr "对方呼号(Dx)"
 
-#: application/views/logbookadvanced/index.php:166
-msgctxt "Logbook Advanced DXCC Select"
-msgid "- NONE - (e.g. /MM, /AM)"
-msgstr "- 无 - （如 /MM, /AM）"
-
 #: application/views/logbookadvanced/index.php:231
 msgctxt "Propagation Mode"
 msgid "None/Empty"
@@ -10062,12 +10062,6 @@ msgstr "默认电台功率 (W)，如有 CAT 信息会覆盖此设置。"
 msgid "Station DXCC"
 msgstr "台站 DXCC"
 
-#: application/views/station_profile/create.php:78
-#: application/views/station_profile/edit.php:99
-msgctxt "DXCC selection"
-msgid "None"
-msgstr "无"
-
 #: application/views/station_profile/create.php:85
 #: application/views/station_profile/edit.php:112
 msgid "Station DXCC entity. For example: Bolivia"
@@ -11680,6 +11674,13 @@ msgstr "您的呼号："
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "提交请求"
+
+#~ msgid "NONE"
+#~ msgstr "无"
+
+#~ msgctxt "DXCC selection"
+#~ msgid "None"
+#~ msgstr "无"
 
 #~ msgid "Notes (for internal usage only)"
 #~ msgstr "备注（仅限内部使用）"

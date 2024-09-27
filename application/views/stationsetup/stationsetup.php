@@ -147,7 +147,7 @@
 				<?php echo $row->station_profile_name;?><br>
 			</td>
 			<td><?php echo $row->station_callsign;?></td>
-			<td><?php echo $row->station_country == '' ? '- NONE -' : $row->station_country; if ($row->dxcc_end != NULL) { echo ' <span class="badge bg-danger">'.__("Deleted DXCC").'</span>'; } ?></td>
+			<td><?php echo $row->station_country == '' ? _pgettext("DXCC Select - No DXCC", "- NONE - (e.g. /MM, /AM)") : $row->station_country; if ($row->dxcc_end != NULL) { echo ' <span class="badge bg-danger">'.__("Deleted DXCC").'</span>'; } ?></td>
 			<td><?php echo $row->station_gridsquare;?></td>
 			<td>
 				<?php if($row->station_active != 1) { ?>

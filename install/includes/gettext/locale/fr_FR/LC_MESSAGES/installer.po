@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-12 09:45+0000\n"
+"POT-Creation-Date: 2024-09-27 15:58+0000\n"
 "PO-Revision-Date: 2024-08-18 14:15+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
@@ -507,9 +507,9 @@ msgid "DXCC"
 msgstr "DXCC"
 
 #: install/index.php:487
-msgctxt "No DXCC"
-msgid "- None -"
-msgstr "- Aucun -"
+msgctxt "DXCC Select - No DXCC"
+msgid "- NONE - (e.g. /MM, /AM)"
+msgstr ""
 
 #: install/index.php:488 install/index.php:494 install/index.php:518
 #: install/index.php:530 install/index.php:533 install/index.php:538
@@ -690,8 +690,8 @@ msgid ""
 "The locator seems to be not in the correct format. Should look like AA11AA "
 "(6-char grid locator)."
 msgstr ""
-"Le locator ne semble pas être au bon format. Il devrait ressembler à AA11AA ("
-"locator de grille à 6 caractères)."
+"Le locator ne semble pas être au bon format. Il devrait ressembler à AA11AA "
+"(locator de grille à 6 caractères)."
 
 #: install/index.php:1740
 msgid ""
@@ -807,6 +807,10 @@ msgstr "Impossible de mettre à jour les données DXCC"
 #: install/run.php:341
 msgid "Could not create install/.lock file"
 msgstr "Impossible de créer le fichier install/.lock"
+
+#~ msgctxt "No DXCC"
+#~ msgid "- None -"
+#~ msgstr "- Aucun -"
 
 #~ msgid "On"
 #~ msgstr "Allumé"

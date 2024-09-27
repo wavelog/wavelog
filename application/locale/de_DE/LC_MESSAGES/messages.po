@@ -23,8 +23,8 @@ msgstr ""
 "POT-Creation-Date: 2024-09-24 18:21+0000\n"
 "PO-Revision-Date: 2024-09-27 11:28+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/de/>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -12149,6 +12149,16 @@ msgstr "Dein Rufzeichen:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Anfrage senden"
+
+#: application/controllers/Stationsetup.php:379
+#: application/views/logbookadvanced/index.php:166
+#: application/views/qso/edit_ajax.php:221
+#: application/views/station_profile/create.php:78
+#: application/views/station_profile/edit.php:99
+#: application/views/stationsetup/stationsetup.php:150
+msgctxt "DXCC Select - No DXCC"
+msgid "- NONE - (e.g. /MM, /AM)"
+msgstr "- KEIN - (z.B. /MM, /AM)"
 
 #~ msgid "Notes (for internal usage only)"
 #~ msgstr "Notizen (nur für den internen Gebrauch)"

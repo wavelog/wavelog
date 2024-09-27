@@ -376,7 +376,7 @@ class Stationsetup extends CI_Controller {
 	}
 
 	private function stationcountry2html($station_country, $dxcc_end) {
-		$returntext = $station_country == '' ? '- ' . __("NONE") . ' -' : $station_country;
+		$returntext = $station_country == '' ? _pgettext("DXCC Select - No DXCC", "- NONE - (e.g. /MM, /AM)") : $station_country;
 		if ($dxcc_end != NULL) {
 			$returntext .= ' <span class="badge bg-danger">'.__("Deleted DXCC").'</span>';
 		}

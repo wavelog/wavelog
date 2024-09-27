@@ -218,7 +218,7 @@
                                     <div class="mb-3 col-sm-6">
                                         <label for="dxcc_id"><?= __("DXCC"); ?></label>
                                         <select class="form-select" id="dxcc_id" name="dxcc_id" required>
-                                            <option value="0">- <?= __("NONE"); ?> -</option>
+                                            <option value="0"><?= _pgettext("DXCC Select - No DXCC", "- NONE - (e.g. /MM, /AM)"); ?></option>
                                             <?php
                                             foreach($dxcc as $d){
                                                 echo '<option value=' . $d->adif;
