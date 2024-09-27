@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-09-24 18:21+0000\n"
+"POT-Creation-Date: 2024-09-27 15:58+0000\n"
 "PO-Revision-Date: 2024-08-17 10:47+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch <https://translate.wavelog.org/projects/wavelog/main-"
@@ -2068,8 +2068,13 @@ msgid ""
 msgstr ""
 
 #: application/controllers/Stationsetup.php:379
+#: application/views/logbookadvanced/index.php:166
 #: application/views/qso/edit_ajax.php:221
-msgid "NONE"
+#: application/views/station_profile/create.php:78
+#: application/views/station_profile/edit.php:99
+#: application/views/stationsetup/stationsetup.php:150
+msgctxt "DXCC Select - No DXCC"
+msgid "- NONE - (e.g. /MM, /AM)"
 msgstr ""
 
 #: application/controllers/Stationsetup.php:462
@@ -7385,11 +7390,6 @@ msgstr "to"
 msgid "Dx"
 msgstr ""
 
-#: application/views/logbookadvanced/index.php:166
-msgctxt "DXCC Select - No DXCC"
-msgid "- NONE - (e.g. /MM, /AM)"
-msgstr ""
-
 #: application/views/logbookadvanced/index.php:231
 msgctxt "Propagation Mode"
 msgid "None/Empty"
@@ -9906,12 +9906,6 @@ msgstr ""
 #: application/views/station_profile/create.php:75
 #: application/views/station_profile/edit.php:96
 msgid "Station DXCC"
-msgstr ""
-
-#: application/views/station_profile/create.php:78
-#: application/views/station_profile/edit.php:99
-msgctxt "DXCC selection"
-msgid "None"
 msgstr ""
 
 #: application/views/station_profile/create.php:85

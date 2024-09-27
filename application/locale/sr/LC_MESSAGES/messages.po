@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-09-24 18:21+0000\n"
+"POT-Creation-Date: 2024-09-27 15:58+0000\n"
 "PO-Revision-Date: 2024-09-17 12:24+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
 "Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -2101,9 +2101,14 @@ msgstr ""
 "sve QSO unutar profila ove stanice."
 
 #: application/controllers/Stationsetup.php:379
+#: application/views/logbookadvanced/index.php:166
 #: application/views/qso/edit_ajax.php:221
-msgid "NONE"
-msgstr "NIŠTA"
+#: application/views/station_profile/create.php:78
+#: application/views/station_profile/edit.php:99
+#: application/views/stationsetup/stationsetup.php:150
+msgctxt "DXCC Select - No DXCC"
+msgid "- NONE - (e.g. /MM, /AM)"
+msgstr "- NIJEDNA - (npr. /MM, /AM)"
 
 #: application/controllers/Stationsetup.php:462
 msgid "Edit Export Map options"
@@ -7709,11 +7714,6 @@ msgstr "Za"
 msgid "Dx"
 msgstr "Dx"
 
-#: application/views/logbookadvanced/index.php:166
-msgctxt "DXCC Select - No DXCC"
-msgid "- NONE - (e.g. /MM, /AM)"
-msgstr "- NIJEDNA - (npr. /MM, /AM)"
-
 #: application/views/logbookadvanced/index.php:231
 msgctxt "Propagation Mode"
 msgid "None/Empty"
@@ -10360,12 +10360,6 @@ msgstr "Podrazumevana snaga stanice u Watt. Biće pregaženo sa CAT."
 msgid "Station DXCC"
 msgstr "DXCC stanice"
 
-#: application/views/station_profile/create.php:78
-#: application/views/station_profile/edit.php:99
-msgctxt "DXCC selection"
-msgid "None"
-msgstr "Nijedna"
-
 #: application/views/station_profile/create.php:85
 #: application/views/station_profile/edit.php:112
 msgid "Station DXCC entity. For example: Bolivia"
@@ -12056,6 +12050,13 @@ msgstr "Vaš pozivni znak:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Pošaljite zahtev"
+
+#~ msgid "NONE"
+#~ msgstr "NIŠTA"
+
+#~ msgctxt "DXCC selection"
+#~ msgid "None"
+#~ msgstr "Nijedna"
 
 #~ msgid "Notes (for internal usage only)"
 #~ msgstr "Napomene (samo za unutrašnju upotrebu)"

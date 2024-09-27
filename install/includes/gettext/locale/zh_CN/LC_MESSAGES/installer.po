@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-12 09:45+0000\n"
+"POT-Creation-Date: 2024-09-27 15:58+0000\n"
 "PO-Revision-Date: 2024-08-12 15:29+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/"
@@ -477,9 +477,9 @@ msgid "DXCC"
 msgstr "DXCC"
 
 #: install/index.php:487
-msgctxt "No DXCC"
-msgid "- None -"
-msgstr "- 无 -"
+msgctxt "DXCC Select - No DXCC"
+msgid "- NONE - (e.g. /MM, /AM)"
+msgstr ""
 
 #: install/index.php:488 install/index.php:494 install/index.php:518
 #: install/index.php:530 install/index.php:533 install/index.php:538
@@ -639,8 +639,9 @@ msgid ""
 "Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. "
 "Check which DXCC for this particular location is the correct one. If you are "
 "sure, ignore this warning."
-msgstr "请稍等，您选择的 DXCC 已经不再有效，请重新查看该地区最新的 "
-"DXCC，如果您确定要继续，请忽略这个警告。"
+msgstr ""
+"请稍等，您选择的 DXCC 已经不再有效，请重新查看该地区最新的 DXCC，如果您确定要"
+"继续，请忽略这个警告。"
 
 #: install/index.php:1726
 msgid ""
@@ -758,6 +759,10 @@ msgstr "无法更新 DXCC 数据"
 #: install/run.php:341
 msgid "Could not create install/.lock file"
 msgstr "无法创建 install/.lock 文件"
+
+#~ msgctxt "No DXCC"
+#~ msgid "- None -"
+#~ msgstr "- 无 -"
 
 #, php-format
 #~ msgid "The PHP module %s is missing."

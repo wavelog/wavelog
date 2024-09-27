@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-12 09:45+0000\n"
+"POT-Creation-Date: 2024-09-27 15:58+0000\n"
 "PO-Revision-Date: 2024-08-12 10:06+0000\n"
 "Last-Translator: Fabian Berg <80885850+HB9HIL@users.noreply.github.com>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
@@ -507,9 +507,9 @@ msgid "DXCC"
 msgstr "DXCC"
 
 #: install/index.php:487
-msgctxt "No DXCC"
-msgid "- None -"
-msgstr "- Keines -"
+msgctxt "DXCC Select - No DXCC"
+msgid "- NONE - (e.g. /MM, /AM)"
+msgstr ""
 
 #: install/index.php:488 install/index.php:494 install/index.php:518
 #: install/index.php:530 install/index.php:533 install/index.php:538
@@ -806,6 +806,10 @@ msgstr "Konnte DXCC-Daten nicht aktualisieren"
 #: install/run.php:341
 msgid "Could not create install/.lock file"
 msgstr "Konnte die install/.lock Datei nicht anlegen"
+
+#~ msgctxt "No DXCC"
+#~ msgid "- None -"
+#~ msgstr "- Keines -"
 
 #, php-format
 #~ msgid "The PHP module %s is missing."
