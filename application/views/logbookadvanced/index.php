@@ -163,7 +163,7 @@ $options = json_decode($options);
                             <label class="form-label" for="dxcc"><?= __("DXCC"); ?></label>
                             <select class="form-control form-control-sm" id="dxcc" name="dxcc">
                                 <option value="">-</option>
-                                <option value="0"><?= _pgettext("Logbook Advanced DXCC Select", "- NONE - (e.g. /MM, /AM)"); ?></option>
+                                <option value="0"><?= _pgettext("DXCC Select - No DXCC", "- NONE - (e.g. /MM, /AM)"); ?></option>
                                 <?php
                                 foreach ($dxccarray as $dxcc) {
                                     echo '<option value=' . $dxcc->adif;
