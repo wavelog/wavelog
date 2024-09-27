@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-09-24 18:21+0000\n"
+"POT-Creation-Date: 2024-09-27 15:58+0000\n"
 "PO-Revision-Date: 2024-09-27 11:28+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
@@ -2111,9 +2111,14 @@ msgstr ""
 "mitgelöscht."
 
 #: application/controllers/Stationsetup.php:379
+#: application/views/logbookadvanced/index.php:166
 #: application/views/qso/edit_ajax.php:221
-msgid "NONE"
-msgstr "KEIN"
+#: application/views/station_profile/create.php:78
+#: application/views/station_profile/edit.php:99
+#: application/views/stationsetup/stationsetup.php:150
+msgctxt "DXCC Select - No DXCC"
+msgid "- NONE - (e.g. /MM, /AM)"
+msgstr "- KEIN - (z.B. /MM, /AM)"
 
 #: application/controllers/Stationsetup.php:462
 msgid "Edit Export Map options"
@@ -7757,11 +7762,6 @@ msgstr "bis"
 msgid "Dx"
 msgstr "Dx"
 
-#: application/views/logbookadvanced/index.php:166
-msgctxt "Logbook Advanced DXCC Select"
-msgid "- NONE - (e.g. /MM, /AM)"
-msgstr "- KEIN - (z.B. /MM, /AM)"
-
 #: application/views/logbookadvanced/index.php:231
 msgctxt "Propagation Mode"
 msgid "None/Empty"
@@ -10436,12 +10436,6 @@ msgstr ""
 msgid "Station DXCC"
 msgstr "Stations-DXCC"
 
-#: application/views/station_profile/create.php:78
-#: application/views/station_profile/edit.php:99
-msgctxt "DXCC selection"
-msgid "None"
-msgstr "Nichts"
-
 #: application/views/station_profile/create.php:85
 #: application/views/station_profile/edit.php:112
 msgid "Station DXCC entity. For example: Bolivia"
@@ -12150,15 +12144,16 @@ msgstr "Dein Rufzeichen:"
 msgid "Submit Request"
 msgstr "Anfrage senden"
 
-#: application/controllers/Stationsetup.php:379
-#: application/views/logbookadvanced/index.php:166
-#: application/views/qso/edit_ajax.php:221
-#: application/views/station_profile/create.php:78
-#: application/views/station_profile/edit.php:99
-#: application/views/stationsetup/stationsetup.php:150
-msgctxt "DXCC Select - No DXCC"
-msgid "- NONE - (e.g. /MM, /AM)"
-msgstr "- KEIN - (z.B. /MM, /AM)"
+#~ msgid "NONE"
+#~ msgstr "KEIN"
+
+#~ msgctxt "Logbook Advanced DXCC Select"
+#~ msgid "- NONE - (e.g. /MM, /AM)"
+#~ msgstr "- KEIN - (z.B. /MM, /AM)"
+
+#~ msgctxt "DXCC selection"
+#~ msgid "None"
+#~ msgstr "Nichts"
 
 #~ msgid "Notes (for internal usage only)"
 #~ msgstr "Notizen (nur für den internen Gebrauch)"
