@@ -3539,8 +3539,8 @@ class Logbook_model extends CI_Model {
 			$record['station_callsign'] = $station_profile_call;
 		}
 		if ((!$skipStationCheck) && ($station_id != 0) && (strtoupper($record['station_callsign']) != strtoupper($station_profile_call))) {     // Check if station_call from import matches profile ONLY when submitting via GUI.
-			$returner['error'] = "Wrong station callsign <b>\"" . htmlentities($record['station_callsign'] ?? '') . "\"</b> while importing QSO with " . $record['call'] ?? '' . " for <b>" . $station_profile_call ?? '' . "</b> : SKIPPED" .
-				"<br>See the <a target=\"_blank\" href=\"https://github.com/wavelog/Wavelog/wiki/ADIF-file-can't-be-imported\">Wavelog Wiki</a> for hints about errors in ADIF files.";
+			$returner['error'] = __("Wrong station callsign")." <b>\"" . htmlentities($record['station_callsign'] ?? '') . "\"</b> ".__("while importing QSO with "). $record['call'] ?? '' . " ".__("for")." <b>" . $station_profile_call ?? '' . "</b> : ".__("SKIPPED") .
+				"<br>".__("Check ")." <a target=\"_blank\" href=\"https://github.com/wavelog/Wavelog/wiki/ADIF-file-can't-be-imported\">Wavelog Wiki</a>"." ".__("for hints about errors in ADIF files.");
 			return ($returner);
 		}
 
@@ -3841,7 +3841,7 @@ class Logbook_model extends CI_Model {
 					$input_qslrdate = $record['qslrdate'];
 				} else {
 					$input_qslrdate = NULL;
-					$my_error .= "Error QSO: Date: " . $time_on . " Callsign: " . $record['call'] . " the qslrdate is invalid (YYYYMMDD): " . $record['qslrdate'] . "<br>";
+					$my_error .= "Error QSO: Date: " . $time_on . " Callsign: " . $record['call'] . " ".__("the qslrdate is invalid (YYYYMMDD)").": " . $record['qslrdate'] . "<br>";
 				}
 			} else {
 				$input_qslrdate = NULL;
@@ -3852,7 +3852,7 @@ class Logbook_model extends CI_Model {
 					$input_qslsdate = $record['qslsdate'];
 				} else {
 					$input_qslsdate = NULL;
-					$my_error .= "Error QSO: Date: " . $time_on . " Callsign: " . $record['call'] . " the qslsdate is invalid (YYYYMMDD): " . $record['qslsdate'] . "<br>";
+					$my_error .= "Error QSO: Date: " . $time_on . " Callsign: " . $record['call'] . " ".__("the qslsdate is invalid (YYYYMMDD)").": " . $record['qslsdate'] . "<br>";
 				}
 			} else {
 				$input_qslsdate = NULL;
@@ -3896,7 +3896,7 @@ class Logbook_model extends CI_Model {
 					$input_clublog_qslsdate = $record['clublog_qso_upload_date'];
 				} else {
 					$input_clublog_qslsdate = NULL;
-					$my_error .= "Error QSO: Date: " . $time_on . " Callsign: " . $record['call'] . " the clublog_qso_upload_date is invalid (YYYYMMDD): " . $record['clublog_qso_upload_date'] . "<br>";
+					$my_error .= "Error QSO: Date: " . $time_on . " Callsign: " . $record['call'] . " ".__("the clublog_qso_upload_date is invalid (YYYYMMDD)").": " . $record['clublog_qso_upload_date'] . "<br>";
 				}
 			} else {
 				$input_clublog_qslsdate = NULL;
@@ -3916,7 +3916,7 @@ class Logbook_model extends CI_Model {
 					$input_lotw_qslrdate = $record['lotw_qslrdate'];
 				} else {
 					$input_lotw_qslrdate = NULL;
-					$my_error .= "Error QSO: Date: " . $time_on . " Callsign: " . $record['call'] . " the lotw_qslrdate is invalid (YYYYMMDD): " . $record['lotw_qslrdate'] . "<br>";
+					$my_error .= "Error QSO: Date: " . $time_on . " Callsign: " . $record['call'] . " ".__("the lotw_qslrdate is invalid (YYYYMMDD)").": " . $record['lotw_qslrdate'] . "<br>";
 				}
 			} else {
 				$input_lotw_qslrdate = NULL;
@@ -3935,7 +3935,7 @@ class Logbook_model extends CI_Model {
 					$input_lotw_qslsdate = $record['lotw_qslsdate'];
 				} else {
 					$input_lotw_qslsdate = NULL;
-					$my_error .= "Error QSO: Date: " . $time_on . " Callsign: " . $record['call'] . " the lotw_qslsdate is invalid (YYYYMMDD): " . $record['lotw_qslsdate'] . "<br>";
+					$my_error .= "Error QSO: Date: " . $time_on . " Callsign: " . $record['call'] . " ".__("the lotw_qslsdate is invalid (YYYYMMDD)").": " . $record['lotw_qslsdate'] . "<br>";
 				}
 			} else if ($markLotw != NULL) {
 				$input_lotw_qslsdate = $date = date("Y-m-d H:i:s", strtotime("now"));
@@ -4193,7 +4193,7 @@ class Logbook_model extends CI_Model {
 				$this->add_qso($data, $skipexport);
 			}
 		} else {
-			$my_error .= "Date/Time: " . ($time_on ?? 'N/A') . " Callsign: " . ($record['call'] ?? 'N/A') . " Band: " . ($band ?? 'N/A') . "  Duplicate for " . ($station_profile_call ?? 'N/A') . "<br>";
+			$my_error .= "Date/Time: " . ($time_on ?? 'N/A') . " Callsign: " . ($record['call'] ?? 'N/A') . " Band: " . ($band ?? 'N/A') . " ".__("Duplicate for")." ". ($station_profile_call ?? 'N/A') . "<br>";
 		}
 
 		if ($batchmode) {
