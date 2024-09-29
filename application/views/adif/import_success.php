@@ -22,7 +22,7 @@
     </p>
     <?php if($adif_errors) { ?>
       <h3><?= __("Import details / possible problems")?></h3>
-      <p><?= __("You might have ADIF errors, the QSOs have still been added. Please check the following informations:")?></p>
+      <p><?= __("You might have ADIF errors, the QSOs have still been added. Please check the following information:")?></p>
       <p class="card-text"><?php echo $adif_errors; ?></p>
     <?php } ?>
   </div>
