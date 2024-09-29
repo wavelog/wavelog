@@ -21,10 +21,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-09-29 15:48+0000\n"
-"PO-Revision-Date: 2024-09-27 11:28+0000\n"
-"Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/de/>\n"
+"PO-Revision-Date: 2024-09-29 17:53+0000\n"
+"Last-Translator: Jörg Dorgeist <wavelog@dj7nt.de>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2496,51 +2496,51 @@ msgstr "HRDlog: Keine Stationsstandorte mit HRDlog Zugangsdaten gefunden."
 
 #: application/models/Logbook_model.php:3542
 msgid "SKIPPED"
-msgstr ""
+msgstr "Übersprungen"
 
 #: application/models/Logbook_model.php:3542
 msgid "Wrong station callsign"
-msgstr ""
+msgstr "Falscher Call"
 
 #: application/models/Logbook_model.php:3542
 msgid "for"
-msgstr ""
+msgstr "für"
 
 #: application/models/Logbook_model.php:3542
 msgid "while importing QSO with "
-msgstr ""
+msgstr "während des Imports des QSOs mit "
 
 #: application/models/Logbook_model.php:3543
 msgid "Check "
-msgstr ""
+msgstr "Prüfe "
 
 #: application/models/Logbook_model.php:3543
 msgid "for hints about errors in ADIF files."
-msgstr ""
+msgstr "zu Tips über (evtl.) Fehler in ADIF-Dateien."
 
 #: application/models/Logbook_model.php:3844
 msgid "the qslrdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "Das (Papier-)QSL-Empfangsdatum hat das falsche Format (JJJJMMDD)"
 
 #: application/models/Logbook_model.php:3855
 msgid "the qslsdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "Das (Papier-)QSL Sendedatum hat das falsche Format (JJJJMMTT)"
 
 #: application/models/Logbook_model.php:3899
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "Das Format des Clublog-Upload-Datums ist falsch (JJJJMMTT)"
 
 #: application/models/Logbook_model.php:3919
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "Das Format des LoTW-Empfangs-Datums ist falsch (JJJJMMTT)"
 
 #: application/models/Logbook_model.php:3938
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "Das Format des LoTW-Sende-Datums ist falsch (JJJJMMTT)"
 
 #: application/models/Logbook_model.php:4196
 msgid "Duplicate for"
-msgstr ""
+msgstr "Doublette zu"
 
 #: application/models/Logbook_model.php:4257
 msgid "QSO could not be matched"
@@ -3615,13 +3615,15 @@ msgstr "evtl. vorhandene Duplikate wurden übersprungen."
 
 #: application/views/adif/import_success.php:24
 msgid "Import details / possible problems"
-msgstr ""
+msgstr "Details zum Import / Mögliche Probleme"
 
 #: application/views/adif/import_success.php:25
 msgid ""
 "You might have ADIF errors, the QSOs have still been added. Please check the "
 "following information:"
 msgstr ""
+"Es könnte sein, dass das ADIF fehlerhaft ist, die QSOs wurden jedoch "
+"importiert. Bitte prüfe folgende Hinweise:"
 
 #: application/views/adif/mark_lotw.php:12
 #: application/views/hrdlog/mark_hrdlog.php:12
