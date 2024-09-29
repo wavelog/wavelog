@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-09-27 15:58+0000\n"
+"POT-Creation-Date: 2024-09-29 15:48+0000\n"
 "PO-Revision-Date: 2024-09-26 03:18+0000\n"
 "Last-Translator: Jian ke <bg8ixz@hotmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -2441,6 +2441,54 @@ msgstr "HRDlog：无 QSO 可供上传，台站呼号为： "
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog：无台站配置信息。"
 
+#: application/models/Logbook_model.php:3542
+msgid "SKIPPED"
+msgstr ""
+
+#: application/models/Logbook_model.php:3542
+msgid "Wrong station callsign"
+msgstr ""
+
+#: application/models/Logbook_model.php:3542
+msgid "for"
+msgstr ""
+
+#: application/models/Logbook_model.php:3542
+msgid "while importing QSO with "
+msgstr ""
+
+#: application/models/Logbook_model.php:3543
+msgid "Check "
+msgstr ""
+
+#: application/models/Logbook_model.php:3543
+msgid "for hints about errors in ADIF files."
+msgstr ""
+
+#: application/models/Logbook_model.php:3844
+msgid "the qslrdate is invalid (YYYYMMDD)"
+msgstr ""
+
+#: application/models/Logbook_model.php:3855
+msgid "the qslsdate is invalid (YYYYMMDD)"
+msgstr ""
+
+#: application/models/Logbook_model.php:3899
+msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
+msgstr ""
+
+#: application/models/Logbook_model.php:3919
+msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
+msgstr ""
+
+#: application/models/Logbook_model.php:3938
+msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
+msgstr ""
+
+#: application/models/Logbook_model.php:4196
+msgid "Duplicate for"
+msgstr ""
+
 #: application/models/Logbook_model.php:4257
 msgid "QSO could not be matched"
 msgstr "QSO 无法匹配"
@@ -3491,14 +3539,14 @@ msgid "Dupes were skipped."
 msgstr "已跳过重复项。"
 
 #: application/views/adif/import_success.php:24
-msgid "ADIF Errors"
-msgstr "ADIF 文件错误"
+msgid "Import details / possible problems"
+msgstr ""
 
 #: application/views/adif/import_success.php:25
 msgid ""
-"You have ADIF errors, the QSOs have still been added but these fields have "
-"not been populated."
-msgstr "ADIF 文件错误，QSO 虽然已添加，但以下字段尚未填充。"
+"You might have ADIF errors, the QSOs have still been added. Please check the "
+"following information:"
+msgstr ""
 
 #: application/views/adif/mark_lotw.php:12
 #: application/views/hrdlog/mark_hrdlog.php:12
@@ -11674,6 +11722,14 @@ msgstr "您的呼号："
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "提交请求"
+
+#~ msgid "ADIF Errors"
+#~ msgstr "ADIF 文件错误"
+
+#~ msgid ""
+#~ "You have ADIF errors, the QSOs have still been added but these fields "
+#~ "have not been populated."
+#~ msgstr "ADIF 文件错误，QSO 虽然已添加，但以下字段尚未填充。"
 
 #~ msgid "NONE"
 #~ msgstr "无"

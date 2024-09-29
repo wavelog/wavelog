@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-09-27 15:58+0000\n"
+"POT-Creation-Date: 2024-09-29 15:48+0000\n"
 "PO-Revision-Date: 2024-08-28 05:06+0000\n"
 "Last-Translator: Francisco Jiménez-Martín Sánchez <ea1jm.fran@gmail.com>\n"
 "Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -2443,6 +2443,54 @@ msgstr ""
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr ""
 
+#: application/models/Logbook_model.php:3542
+msgid "SKIPPED"
+msgstr ""
+
+#: application/models/Logbook_model.php:3542
+msgid "Wrong station callsign"
+msgstr ""
+
+#: application/models/Logbook_model.php:3542
+msgid "for"
+msgstr ""
+
+#: application/models/Logbook_model.php:3542
+msgid "while importing QSO with "
+msgstr ""
+
+#: application/models/Logbook_model.php:3543
+msgid "Check "
+msgstr ""
+
+#: application/models/Logbook_model.php:3543
+msgid "for hints about errors in ADIF files."
+msgstr ""
+
+#: application/models/Logbook_model.php:3844
+msgid "the qslrdate is invalid (YYYYMMDD)"
+msgstr ""
+
+#: application/models/Logbook_model.php:3855
+msgid "the qslsdate is invalid (YYYYMMDD)"
+msgstr ""
+
+#: application/models/Logbook_model.php:3899
+msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
+msgstr ""
+
+#: application/models/Logbook_model.php:3919
+msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
+msgstr ""
+
+#: application/models/Logbook_model.php:3938
+msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
+msgstr ""
+
+#: application/models/Logbook_model.php:4196
+msgid "Duplicate for"
+msgstr ""
+
 #: application/models/Logbook_model.php:4257
 msgid "QSO could not be matched"
 msgstr "QSOs que no concuerdan"
@@ -3500,16 +3548,14 @@ msgid "Dupes were skipped."
 msgstr ""
 
 #: application/views/adif/import_success.php:24
-msgid "ADIF Errors"
-msgstr "Errores ADIF"
+msgid "Import details / possible problems"
+msgstr ""
 
 #: application/views/adif/import_success.php:25
 msgid ""
-"You have ADIF errors, the QSOs have still been added but these fields have "
-"not been populated."
+"You might have ADIF errors, the QSOs have still been added. Please check the "
+"following information:"
 msgstr ""
-"Tiene errores en su archivo ADIF. Los QSOs han sido adicionados, pero estos "
-"campos no han sido importados."
 
 #: application/views/adif/mark_lotw.php:12
 #: application/views/hrdlog/mark_hrdlog.php:12
@@ -11660,6 +11706,16 @@ msgstr ""
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr ""
+
+#~ msgid "ADIF Errors"
+#~ msgstr "Errores ADIF"
+
+#~ msgid ""
+#~ "You have ADIF errors, the QSOs have still been added but these fields "
+#~ "have not been populated."
+#~ msgstr ""
+#~ "Tiene errores en su archivo ADIF. Los QSOs han sido adicionados, pero "
+#~ "estos campos no han sido importados."
 
 #~ msgctxt "DXCC selection"
 #~ msgid "None"
