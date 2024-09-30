@@ -2198,6 +2198,66 @@ class Logbook_model extends CI_Model {
 		return $query->num_rows();
 	}
 
+	function check_if_dxcc_cnfmd_in_logbook_api($user_default_confirmation,$dxcc, $station_ids = null, $band = null, $mode = null) {
+		$binding=[];
+		if ($station_ids == null) {
+			return [];
+		} 
+
+		$extrawhere = '';
+		if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'Q') !== false) {
+			$extrawhere = "COL_QSL_RCVD='Y'";
+		}
+		if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'L') !== false) {
+			if ($extrawhere != '') {
+				$extrawhere .= " OR";
+			}
+			$extrawhere .= " COL_LOTW_QSL_RCVD='Y'";
+		}
+		if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'E') !== false) {
+			if ($extrawhere != '') {
+				$extrawhere .= " OR";
+			}
+			$extrawhere .= " COL_EQSL_QSL_RCVD='Y'";
+		}
+
+		if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'Z') !== false) {
+			if ($extrawhere != '') {
+				$extrawhere .= " OR";
+			}
+			$extrawhere .= " COL_QRZCOM_QSO_DOWNLOAD_STATUS='Y'";
+		}
+
+		if ($extrawhere == '') {
+			$extrawhere='1=0';	// No default_confirmations set? in that case everything is false
+		}
+
+
+		$sql="SELECT count(1) as CNT from ".$this->config->item('table_name')." where station_id in (".$station_ids.") and (".$extrawhere.") and COL_DXCC=?";
+		$binding[]=$dxcc;
+
+		if ($band != null && $band != 'SAT') {
+			$sql.=" AND COL_BAND=?";
+			$binding[]=$band;
+		} else if ($band == 'SAT') {
+			$sql.=" AND COL_SAT_NAME !=''";
+		}
+
+		if ($mode != null) {
+			$sql.=" AND COL_MODE=?";
+			$binding[]=$mode;
+		}
+
+		$query = $this->db->query($sql, $binding);
+		$row = $query->row();
+		if (isset($row)) {
+			return ($row->CNT);
+		} else {
+			return 0;
+		}
+	}
+
+
 	function check_if_dxcc_cnfmd_in_logbook($dxcc, $StationLocationsArray = null, $band = null) {
 
 		if ($StationLocationsArray == null) {
