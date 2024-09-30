@@ -3539,8 +3539,9 @@ class Logbook_model extends CI_Model {
 			$record['station_callsign'] = $station_profile_call;
 		}
 		if ((!$skipStationCheck) && ($station_id != 0) && (strtoupper($record['station_callsign']) != strtoupper($station_profile_call))) {     // Check if station_call from import matches profile ONLY when submitting via GUI.
-			$returner['error'] = __("Wrong station callsign")." <b>\"" . htmlentities($record['station_callsign'] ?? '') . "\"</b> ".__("while importing QSO with "). $record['call'] ?? '' . " ".__("for")." <b>" . $station_profile_call ?? '' . "</b> : ".__("SKIPPED") .
-				"<br>".__("Check ")." <a target=\"_blank\" href=\"https://github.com/wavelog/Wavelog/wiki/ADIF-file-can't-be-imported\">Wavelog Wiki</a>"." ".__("for hints about errors in ADIF files.");
+			$returner['error'] =sprintf(__("Wrong station callsign %s while importing QSO with %s for %s: SKIPPED") .
+				"<br>".__("Check %s for hints about errors in ADIF files."),
+				'<b>'.htmlentities($record['station_callsign'] ?? '').'</b>',($record['call'] ?? ''),'<b>'.($station_profile_call ?? '').'</b>',"<a target=\"_blank\" href=\"https://github.com/wavelog/Wavelog/wiki/ADIF-file-can't-be-imported\">Wavelog Wiki</a>");
 			return ($returner);
 		}
 
