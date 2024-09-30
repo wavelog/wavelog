@@ -9,17 +9,17 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-09-30 15:32+0000\n"
-"PO-Revision-Date: 2024-09-17 03:35+0000\n"
+"PO-Revision-Date: 2024-10-01 09:20+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ru/>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.7.1\n"
+"X-Generator: Weblate 5.7.2\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -2485,36 +2485,36 @@ msgstr "HRDlog: не найдены профили QTH с данными вхо�
 #: application/models/Logbook_model.php:3542
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
-msgstr ""
+msgstr "Неправильный позывной %s при импорте QSO с %s для %s: ПРОПУЩЕНО"
 
 #: application/models/Logbook_model.php:3543
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
-msgstr ""
+msgstr "Проверьте %s на наличие подсказок об ошибках в файлах ADIF."
 
 #: application/models/Logbook_model.php:3845
 msgid "the qslrdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "дата получения QSL недействительна (ГГГГММДД)"
 
 #: application/models/Logbook_model.php:3856
 msgid "the qslsdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "дата отправки QSL недействительна (ГГГГММДД)"
 
 #: application/models/Logbook_model.php:3900
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "дата загрузки QSO в Clublog недействительна (ГГГГММДД)"
 
 #: application/models/Logbook_model.php:3920
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "дата получения LoTW QSL недействительна (ГГГГММДД)"
 
 #: application/models/Logbook_model.php:3939
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "дата отправки LoTW QSL недействительна (ГГГГММДД)"
 
 #: application/models/Logbook_model.php:4197
 msgid "Duplicate for"
-msgstr ""
+msgstr "Дубликат для"
 
 #: application/models/Logbook_model.php:4258
 msgid "QSO could not be matched"
@@ -3585,13 +3585,15 @@ msgstr "Дубликаты игнорированы."
 
 #: application/views/adif/import_success.php:24
 msgid "Import details / possible problems"
-msgstr ""
+msgstr "Детали импорта / возможные проблемы"
 
 #: application/views/adif/import_success.php:25
 msgid ""
 "You might have ADIF errors, the QSOs have still been added. Please check the "
 "following information:"
 msgstr ""
+"Возможно, у вас есть ошибки в ADIF, но QSO все равно были добавлены. "
+"Пожалуйста, проверьте следующую информацию:"
 
 #: application/views/adif/mark_lotw.php:12
 #: application/views/hrdlog/mark_hrdlog.php:12
@@ -4404,13 +4406,15 @@ msgstr "Эта карта отображает только QSO, проведё�
 
 #: application/views/awards/gridmaster/index.php:13
 msgid "Gridmaster Award"
-msgstr ""
+msgstr "Диплом Gridmaster"
 
 #: application/views/awards/gridmaster/index.php:14
 msgid ""
 "The Gridmaster Award was originally designed for the 488 gridsquares to be "
 "worked in the USA."
 msgstr ""
+"Диплом Gridmaster изначально был разработан для работы с 488 квадратами в "
+"США."
 
 #: application/views/awards/gridmaster/index.php:15
 msgid ""
@@ -4418,6 +4422,9 @@ msgid ""
 "award but just showing the grids which were worked according to the US "
 "Gridmaster Award rules for this DXCC."
 msgstr ""
+"На этой карте показаны квадраты для конкретного DXCC. Это не официальный "
+"диплом, а просто отображение квадратов, которые были отработаны в "
+"соответствии с правилами диплома US Gridmaster для этого DXCC."
 
 #: application/views/awards/helvetia/index.php:3
 msgctxt "Switzerland Canton"
@@ -6305,7 +6312,7 @@ msgstr "Всего QSO на этом инстансе"
 
 #: application/views/debug/index.php:76
 msgid "Total User"
-msgstr ""
+msgstr "Всего пользователей"
 
 #: application/views/debug/index.php:84
 msgid "Server Information"
