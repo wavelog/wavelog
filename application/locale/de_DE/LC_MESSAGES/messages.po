@@ -20,11 +20,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-09-30 08:47+0000\n"
-"PO-Revision-Date: 2024-09-27 11:28+0000\n"
-"Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
-"Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/de/>\n"
+"POT-Creation-Date: 2024-09-29 15:48+0000\n"
+"PO-Revision-Date: 2024-09-30 14:42+0000\n"
+"Last-Translator: Jörg Dorgeist <wavelog@dj7nt.de>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2495,63 +2495,84 @@ msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: Keine Stationsstandorte mit HRDlog Zugangsdaten gefunden."
 
 #: application/models/Logbook_model.php:3542
-#, php-format
-msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
-msgstr ""
+msgid "SKIPPED"
+msgstr "Übersprungen"
+
+#: application/models/Logbook_model.php:3542
+msgid "Wrong station callsign"
+msgstr "Falscher Call"
+
+#: application/models/Logbook_model.php:3542
+msgid "for"
+msgstr "für"
+
+#: application/models/Logbook_model.php:3542
+msgid "while importing QSO with "
+msgstr "während des Imports des QSOs mit "
 
 #: application/models/Logbook_model.php:3543
-#, php-format
-msgid "Check %s for hints about errors in ADIF files."
-msgstr ""
+msgid "Check "
+msgstr "Prüfe "
 
-#: application/models/Logbook_model.php:3845
+#: application/models/Logbook_model.php:3543
+msgid "for hints about errors in ADIF files."
+msgstr "zu Tips über (evtl.) Fehler in ADIF-Dateien."
+
+#: application/models/Logbook_model.php:3844
 msgid "the qslrdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "Das (Papier-)QSL-Empfangsdatum hat das falsche Format (JJJJMMDD)"
 
-#: application/models/Logbook_model.php:3856
+#: application/models/Logbook_model.php:3855
 msgid "the qslsdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "Das (Papier-)QSL Sendedatum hat das falsche Format (JJJJMMTT)"
 
-#: application/models/Logbook_model.php:3900
+#: application/models/Logbook_model.php:3899
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "Das Format des Clublog-Upload-Datums ist falsch (JJJJMMTT)"
 
-#: application/models/Logbook_model.php:3920
+#: application/models/Logbook_model.php:3919
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "Das Format des LoTW-Empfangs-Datums ist falsch (JJJJMMTT)"
 
-#: application/models/Logbook_model.php:3939
+#: application/models/Logbook_model.php:3938
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "Das Format des LoTW-Sende-Datums ist falsch (JJJJMMTT)"
 
-#: application/models/Logbook_model.php:4197
+#: application/models/Logbook_model.php:4196
 msgid "Duplicate for"
-msgstr ""
+msgstr "Doublette zu"
 
+#: application/models/Logbook_model.php:4257
 #: application/models/Logbook_model.php:4258
 msgid "QSO could not be matched"
 msgstr "QSO konnte nicht gefunden werden"
 
+#: application/models/Logbook_model.php:4263
 #: application/models/Logbook_model.php:4264
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bestätigt durch LoTW/Clublog/eQSL/Contest"
 
+#: application/models/Logbook_model.php:4268
 #: application/models/Logbook_model.php:4269
 msgid "confirmed by award manager"
 msgstr "bestätigt durch Diplommananger"
 
+#: application/models/Logbook_model.php:4271
 #: application/models/Logbook_model.php:4272
 msgid "confirmed by cross-check of DCL data"
 msgstr "bestätigt durch Cross-Check von DCL-Daten"
 
+#: application/models/Logbook_model.php:4274
 #: application/models/Logbook_model.php:4275
 msgid "confirmation pending"
 msgstr "Bestätigung ausstehend"
 
+#: application/models/Logbook_model.php:4277
 #: application/models/Logbook_model.php:4278
 msgid "unconfirmed"
 msgstr "nicht bestätigt"
 
+#: application/models/Logbook_model.php:4280
 #: application/models/Logbook_model.php:4281
 msgid "unknown"
 msgstr "unbekannt"
@@ -3601,13 +3622,15 @@ msgstr "evtl. vorhandene Duplikate wurden übersprungen."
 
 #: application/views/adif/import_success.php:24
 msgid "Import details / possible problems"
-msgstr ""
+msgstr "Details zum Import / Mögliche Probleme"
 
 #: application/views/adif/import_success.php:25
 msgid ""
 "You might have ADIF errors, the QSOs have still been added. Please check the "
 "following information:"
 msgstr ""
+"Es könnte sein, dass das ADIF fehlerhaft ist, die QSOs wurden jedoch "
+"importiert. Bitte prüfe folgende Hinweise:"
 
 #: application/views/adif/mark_lotw.php:12
 #: application/views/hrdlog/mark_hrdlog.php:12
@@ -12175,6 +12198,18 @@ msgstr "Dein Rufzeichen:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Anfrage senden"
+
+#: application/models/Logbook_model.php:3542
+#, php-format
+msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
+msgstr ""
+"Falscher Stationscall %s im QSO mit %s für das Stationsprofil %s: Nicht "
+"importiert"
+
+#: application/models/Logbook_model.php:3543
+#, php-format
+msgid "Check %s for hints about errors in ADIF files."
+msgstr "Schaue im %s für Tips zu möglichen Fehlern in der ADIF-Datei."
 
 #~ msgid "ADIF Errors"
 #~ msgstr "Fehler in der ADIF-Datei"
