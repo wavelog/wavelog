@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-09-30 15:32+0000\n"
-"PO-Revision-Date: 2024-09-30 08:47+0000\n"
+"POT-Creation-Date: 2024-09-30 08:47+0000\n"
+"PO-Revision-Date: 2024-09-30 15:32+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/pt_PT/>\n"
@@ -1246,7 +1246,7 @@ msgstr "Estado"
 #: application/controllers/Logbook.php:1357
 #: application/views/activated_gridmap/index.php:106
 #: application/views/awards/ffma/index.php:34
-#: application/views/awards/gridmaster/index.php:40
+#: application/views/awards/gridmaster/index.php:33
 #: application/views/awards/vucc/band.php:12
 #: application/views/contesting/index.php:21
 #: application/views/contesting/index.php:262
@@ -1282,13 +1282,14 @@ msgstr "Estado"
 #: application/views/view_log/partial/log_ajax.php:13
 #: application/views/view_log/qso.php:527
 #: application/views/visitor/index.php:27
+#: application/views/awards/gridmaster/index.php:40
 msgid "Gridsquare"
 msgstr "Gridsquare"
 
 #: application/controllers/Logbook.php:1358
 #: application/views/activated_gridmap/index.php:108
 #: application/views/awards/ffma/index.php:36
-#: application/views/awards/gridmaster/index.php:42
+#: application/views/awards/gridmaster/index.php:35
 #: application/views/dashboard/index.php:14
 #: application/views/distancerecords/index.php:15
 #: application/views/distances/index.php:13
@@ -1306,6 +1307,7 @@ msgstr "Gridsquare"
 #: application/views/user/edit.php:328
 #: application/views/view_log/partial/log_ajax.php:14
 #: application/views/visitor/index.php:30
+#: application/views/awards/gridmaster/index.php:42
 msgid "Distance"
 msgstr "Distância"
 
@@ -2490,11 +2492,12 @@ msgstr ""
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
+"Indicativo de estação errado %s ao importar QSO com %s para %s: IGNORADO"
 
 #: application/models/Logbook_model.php:3543
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
-msgstr ""
+msgstr "Verifica %s para dicas sobre erros em ficheiros ADIF."
 
 #: application/models/Logbook_model.php:3845
 msgid "the qslrdate is invalid (YYYYMMDD)"
@@ -3055,25 +3058,28 @@ msgstr "Limpar marcadores"
 
 #: application/views/activated_gridmap/index.php:102
 #: application/views/awards/ffma/index.php:30
-#: application/views/awards/gridmaster/index.php:36
+#: application/views/awards/gridmaster/index.php:29
 #: application/views/gridmap/index.php:148
 #: application/views/logbookadvanced/index.php:8
+#: application/views/awards/gridmaster/index.php:36
 msgid "Latitude"
 msgstr "Latitude"
 
 #: application/views/activated_gridmap/index.php:104
 #: application/views/awards/ffma/index.php:32
-#: application/views/awards/gridmaster/index.php:38
+#: application/views/awards/gridmaster/index.php:31
 #: application/views/gridmap/index.php:150
 #: application/views/logbookadvanced/index.php:9
+#: application/views/awards/gridmaster/index.php:38
 msgid "Longitude"
 msgstr "Longitude"
 
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:38
-#: application/views/awards/gridmaster/index.php:44
+#: application/views/awards/gridmaster/index.php:37
 #: application/views/gridmap/index.php:156
 #: application/views/logbookadvanced/index.php:13
+#: application/views/awards/gridmaster/index.php:44
 msgid "Bearing"
 msgstr "Direção"
 
@@ -3784,7 +3790,7 @@ msgstr "Condado"
 #: application/views/awards/ffma/index.php:7
 #: application/views/awards/ffma/index.php:14
 #: application/views/awards/gridmaster/index.php:6
-#: application/views/awards/gridmaster/index.php:20
+#: application/views/awards/gridmaster/index.php:13
 #: application/views/awards/helvetia/index.php:19
 #: application/views/awards/helvetia/index.php:26
 #: application/views/awards/iota/index.php:15
@@ -3811,6 +3817,7 @@ msgstr "Condado"
 #: application/views/awards/was/index.php:26
 #: application/views/awards/wwff/index.php:6
 #: application/views/awards/wwff/index.php:13
+#: application/views/awards/gridmaster/index.php:20
 msgid "Award Info"
 msgstr "Informações sobre o diploma"
 
@@ -4363,10 +4370,12 @@ msgstr ""
 msgid "For more information, you can visit this link: %s."
 msgstr "Para mais informações, pode visitar este link: %s."
 
+#: application/views/awards/gridmaster/index.php:7
 #: application/views/awards/gridmaster/index.php:8
 msgid "US Gridmaster Award"
 msgstr "Diploma US Gridmaster"
 
+#: application/views/awards/gridmaster/index.php:8
 #: application/views/awards/gridmaster/index.php:9
 msgid ""
 "The GridMaster Award is the most prestigious AMSAT award, first introduced "
@@ -4380,6 +4389,7 @@ msgstr ""
 "488 quadrados da grelha dos EUA via satélite e possam fornecer confirmações "
 "QSL para cada contacto."
 
+#: application/views/awards/gridmaster/index.php:9
 #: application/views/awards/gridmaster/index.php:10
 #, php-format
 msgid ""
@@ -4401,31 +4411,16 @@ msgstr ""
 "diplomas GridMaster quando conseguidos a partir de outro local, que esteja "
 "num círculo diferente de 200 quilómetros."
 
+#: application/views/awards/gridmaster/index.php:9
 #: application/views/awards/gridmaster/index.php:10
 msgid "website"
 msgstr "site web"
 
+#: application/views/awards/gridmaster/index.php:10
 #: application/views/awards/gridmaster/index.php:11
 #: application/views/awards/gridmaster/index.php:16
 msgid "This map shows only QSOs worked on SAT."
 msgstr "Este mapa mostra apenas contactos realizados via satélite."
-
-#: application/views/awards/gridmaster/index.php:13
-msgid "Gridmaster Award"
-msgstr ""
-
-#: application/views/awards/gridmaster/index.php:14
-msgid ""
-"The Gridmaster Award was originally designed for the 488 gridsquares to be "
-"worked in the USA."
-msgstr ""
-
-#: application/views/awards/gridmaster/index.php:15
-msgid ""
-"On this map the grids for the particular DXCC are shown. This is no official "
-"award but just showing the grids which were worked according to the US "
-"Gridmaster Award rules for this DXCC."
-msgstr ""
 
 #: application/views/awards/helvetia/index.php:3
 msgctxt "Switzerland Canton"
@@ -12180,6 +12175,23 @@ msgstr "O seu indicativo:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Submeter pedido"
+
+#: application/views/awards/gridmaster/index.php:13
+msgid "Gridmaster Award"
+msgstr ""
+
+#: application/views/awards/gridmaster/index.php:14
+msgid ""
+"The Gridmaster Award was originally designed for the 488 gridsquares to be "
+"worked in the USA."
+msgstr ""
+
+#: application/views/awards/gridmaster/index.php:15
+msgid ""
+"On this map the grids for the particular DXCC are shown. This is no official "
+"award but just showing the grids which were worked according to the US "
+"Gridmaster Award rules for this DXCC."
+msgstr ""
 
 #~ msgid "SKIPPED"
 #~ msgstr "IGNORADO"
