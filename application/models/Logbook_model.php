@@ -3988,7 +3988,7 @@ class Logbook_model extends CI_Model {
 			}
 
 			$distance=null;
-			if ((!empty($record['distance'])) && (is_numberic($record['distance']))) {
+			if ((!empty($record['distance'])) && (is_numeric($record['distance']))) {
 				$distance=$record['distance'];
 			} else {
 				$distance=null;
