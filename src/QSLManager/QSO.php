@@ -477,10 +477,10 @@ class QSO
 
 			if ($data['COL_QRZCOM_QSO_UPLOAD_DATE'] != null) {
 				$timestamp = strtotime($data['COL_QRZCOM_QSO_UPLOAD_DATE']);
-				$qrzstring .=  " ".($timestamp!=''?date($custom_date_format, $timestamp):'');
+				$qrzstring .=  "<br />(".__("last sent")." ".($timestamp!=''?date($custom_date_format, $timestamp):'').")";
 			}
 
-			$qrzstring .= "\" data-bs-toggle=\"tooltip\"";
+			$qrzstring .= "\" data-bs-toggle=\"tooltip\" data-bs-html=\"true\"";
 		}
 
 		if ($data['COL_QRZCOM_QSO_UPLOAD_STATUS'] == "I") {
