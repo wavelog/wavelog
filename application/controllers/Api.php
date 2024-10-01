@@ -593,15 +593,7 @@ class API extends CI_Controller {
 	}
 
 	function private_lookup() {
-		/*
-		 *
-		 *	Callsign lookup function for Wavelogs logging page or thirdparty systems
-		 *	which want to show previous QSO data on their system.
-		 *	This endpoint returns detailled data about your personal log!
-		 *
-		 */
-
-		// Make sure users logged in
+		// Lookup Callsign and dxcc for further informations. UseCase: e.g. external Application which checks calls like FlexRadio-Overlay
 		$raw_input = json_decode(file_get_contents("php://input"), true);
 		$user_id='';
 		$this->load->model('user_model');
@@ -691,19 +683,7 @@ class API extends CI_Controller {
 				"suffix_slash" => "", // Suffix Slash aka Portable
 			];
 
-
-			/*
-			 *
-			 *	Handle Callsign field
-			 *
-			 */
 			$return['callsign'] = $lookup_callsign;
-
-			/*
-			 *
-			 *	Lookup DXCC and Suffix information
-			 *
-			 */
 
 			$callsign_dxcc_lookup = $this->logbook_model->dxcc_lookup($lookup_callsign, $date);
 
@@ -746,11 +726,7 @@ class API extends CI_Controller {
 				$return['cont'] = $callsign_dxcc_lookup['cont'] ?? '';
 			}
 
-			/*
-			 *
-			 *	Pool stations local data we have for a callsign
-			 *
-			 */
+			// Query stations of KeyOwner for an already worked call
 			$userdata=$this->user_model->get_by_id($user_id);
 			$call_lookup_results = $this->logbook_model->call_lookup_result($lookup_callsign, $station_ids,$userdata->row()->user_default_confirmation,$band,$mode);
 
@@ -786,13 +762,8 @@ class API extends CI_Controller {
 			} else {
 				$lotw_member="";
 			}
-			/*
-			 *
-			 *	Output Returned data
-			 *
-			 */
 
-			if ($return['dxcc_id'] ?? '' != '') {	// DXCC derivated before?
+			if ($return['dxcc_id'] ?? '' != '') {	// DXCC derivated before? if yes: check cnf-states
 				$return['dxcc_confirmed']=($this->logbook_model->check_if_dxcc_cnfmd_in_logbook_api($userdata->row()->user_default_confirmation,$return['dxcc_id'], $station_ids, null, null)>0) ? true : false;
 				$return['dxcc_confirmed_on_band']=($this->logbook_model->check_if_dxcc_cnfmd_in_logbook_api($userdata->row()->user_default_confirmation,$return['dxcc_id'], $station_ids, $band, null)>0) ? true : false;
 				$return['dxcc_confirmed_on_band_mode']=($this->logbook_model->check_if_dxcc_cnfmd_in_logbook_api($userdata->row()->user_default_confirmation,$return['dxcc_id'], $station_ids, $band, $mode)>0) ? true : false;
@@ -805,15 +776,7 @@ class API extends CI_Controller {
 	}
 
 	function lookup() {
-		/*
-		 *
-		 *	This API provides NO information about previous QSOs. It just derivates DXCC, Lat, Long
-		 *
-		 */
-
-
-
-		// Make sure users logged in
+		// This API provides NO information about previous QSOs. It just derivates DXCC, Lat, Long. It is used by the DXClusterAPI
 		$raw_input = json_decode(file_get_contents("php://input"), true);
 		$user_id='';
 		$this->load->model('user_model');
@@ -869,18 +832,7 @@ class API extends CI_Controller {
 			];
 
 
-			/*
-			 *
-			 *	Handle Callsign field
-			 *
-			 */
 			$return['callsign'] = $lookup_callsign;
-
-			/*
-			 *
-			 *	Lookup DXCC and Suffix information
-			 *
-			 */
 
 			$callsign_dxcc_lookup = $this->logbook_model->dxcc_lookup($lookup_callsign, $date);
 
@@ -924,9 +876,7 @@ class API extends CI_Controller {
 			}
 
 			/*
-			 *
-			 *	Pool any local data we have for a callsign
-			 *
+			 *	Query Data of API-Key-Owner for further informations
 			 */
 			$call_lookup_results = $this->logbook_model->call_lookup_result($lookup_callsign, $station_ids,'','NO BAND','NO MODE');
 
@@ -960,11 +910,6 @@ class API extends CI_Controller {
 			} else {
 				$lotw_member="";
 			}
-			/*
-			 *
-			 *	Output Returned data
-			 *
-			 */
 			echo json_encode($return, JSON_PRETTY_PRINT);
 		} else {
 			echo '{"error":"callsign to lookup not given"}';
