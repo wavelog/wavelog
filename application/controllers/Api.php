@@ -685,6 +685,9 @@ class API extends CI_Controller {
 				"dxcc_confirmed_on_band" => false,
 				"dxcc_confirmed_on_band_mode" => false,
 				"dxcc_confirmed" => false,
+				"call_confirmed" => false,
+				"call_confirmed_band" => false,
+				"call_confirmed_band_mode" => false,
 				"suffix_slash" => "", // Suffix Slash aka Portable
 			];
 
