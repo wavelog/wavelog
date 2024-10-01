@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-10-01 12:07+0000\n"
+"POT-Creation-Date: 2024-10-01 15:11+0000\n"
 "PO-Revision-Date: 2024-09-30 15:32+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
@@ -49,10 +49,10 @@ msgstr ""
 #: application/controllers/Dxcalendar.php:8
 #: application/controllers/Dxcluster.php:9 application/controllers/Eqsl.php:23
 #: application/controllers/Eqsl.php:47 application/controllers/Eqsl.php:144
-#: application/controllers/Eqsl.php:223 application/controllers/Eqsl.php:247
-#: application/controllers/Eqsl.php:286 application/controllers/Eqsl.php:353
-#: application/controllers/Eqsl.php:420 application/controllers/Eqsl.php:436
-#: application/controllers/Eqsl.php:497 application/controllers/Hamsat.php:13
+#: application/controllers/Eqsl.php:228 application/controllers/Eqsl.php:252
+#: application/controllers/Eqsl.php:291 application/controllers/Eqsl.php:358
+#: application/controllers/Eqsl.php:425 application/controllers/Eqsl.php:441
+#: application/controllers/Eqsl.php:502 application/controllers/Hamsat.php:13
 #: application/controllers/Kmlexport.php:18
 #: application/controllers/Kmlexport.php:33
 #: application/controllers/Labels.php:26
@@ -724,23 +724,31 @@ msgstr "Importação eQSL"
 msgid "eQSL Import Information"
 msgstr "Informações de importação eQSL"
 
+#: application/controllers/Eqsl.php:151
+msgid "eQSL Nicknames in Station Profiles aren't defined!"
+msgstr ""
+
 #: application/controllers/Eqsl.php:158
 msgid "eQSL QSO Upload"
 msgstr "Upload de contactos eQSL"
 
-#: application/controllers/Eqsl.php:424
+#: application/controllers/Eqsl.php:170
+msgid "You have not defined your eQSL.cc credentials!"
+msgstr ""
+
+#: application/controllers/Eqsl.php:429
 msgid "eQSL Tools"
 msgstr "Ferramentas eQSL"
 
-#: application/controllers/Eqsl.php:472
+#: application/controllers/Eqsl.php:477
 msgid " / Errors: "
 msgstr " / Erros: "
 
-#: application/controllers/Eqsl.php:472
+#: application/controllers/Eqsl.php:477
 msgid "Successfully downloaded: "
 msgstr "Descarregado com sucesso: "
 
-#: application/controllers/Eqsl.php:481
+#: application/controllers/Eqsl.php:486
 msgid "eQSL Card Image Download"
 msgstr "Descarregar Imagem do cartão eQSL"
 
@@ -2442,27 +2450,27 @@ msgctxt "Division Name (States in various countries)."
 msgid "City / Ku / Gun"
 msgstr "Cidade / Ku / Gun"
 
-#: application/models/Eqslmethods_model.php:281
+#: application/models/Eqslmethods_model.php:285
 msgid "Your eQSL username and/or password is incorrect."
 msgstr "O seu nome de utilizador e/ou palavra-passe eQSL está incorreto."
 
-#: application/models/Eqslmethods_model.php:287
+#: application/models/Eqslmethods_model.php:291
 msgid "Something went wrong with eQSL.cc!"
 msgstr "Algo correu mal com o eQSL.cc!"
 
-#: application/models/Eqslmethods_model.php:303
+#: application/models/Eqslmethods_model.php:307
 msgid "eQSL.cc is experiencing issues. Please try exporting QSOs later."
 msgstr ""
 "O eQSL.cc está a ter problemas. Por favor, tente exportar os contactos mais "
 "tarde."
 
-#: application/models/Eqslmethods_model.php:309
+#: application/models/Eqslmethods_model.php:313
 msgid ""
 "There was an error in one of the QSOs. You might want to manually upload "
 "them."
 msgstr "Houve um erro num dos contactos. Queira carregá-los manualmente."
 
-#: application/models/Eqslmethods_model.php:315
+#: application/models/Eqslmethods_model.php:319
 msgid ""
 "It seems that the eQSL site has changed. Please open up an issue on GitHub."
 msgstr ""
