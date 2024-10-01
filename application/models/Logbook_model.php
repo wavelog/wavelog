@@ -1463,9 +1463,14 @@ class Logbook_model extends CI_Model {
 		$sql="SELECT COL_CALL, COL_NAME, COL_QSL_VIA, COL_GRIDSQUARE, COL_QTH, COL_IOTA, COL_TIME_ON, COL_STATE, COL_CNTY, COL_DXCC, COL_CONT,
 			CASE WHEN ( (".$qsl_where.") ) THEN 1  ELSE 0 END AS CALL_CNF,
 			CASE WHEN ( (".$qsl_where.") AND ".$band_addon.") THEN 1  ELSE 0 END AS CALL_CNF_BAND,
-			CASE WHEN ( (".$qsl_where.") AND ".$band_addon." AND COL_MODE=?) THEN 1  ELSE 0 END AS CALL_CNF_BAND_MODE
-			FROM ".$this->config->item('table_name')." WHERE ";
-		$sql.="station_id IN (".$station_ids.") AND COL_CALL = ?  ORDER BY call_cnf desc, call_cnf_band desc, call_cnf_band_mode desc limit 1";
+			CASE WHEN ( (".$qsl_where.") AND ".$band_addon." AND COL_MODE=?) THEN 1  ELSE 0 END AS CALL_CNF_BAND_MODE,
+			CASE WHEN ( ".$band_addon.") THEN 1  ELSE 0 END AS CALL_WORKED_BAND,
+			CASE WHEN ( ".$band_addon." AND COL_MODE=?) THEN 1  ELSE 0 END AS CALL_WORKED_BAND_MODE
+		FROM ".$this->config->item('table_name')." WHERE ";
+		$sql.="station_id IN (".$station_ids.") AND COL_CALL = ? ORDER BY call_cnf desc, call_worked_band desc, call_cnf_band desc, call_worked_band_mode desc, call_cnf_band_mode desc limit 1";
+		$binding[]=$band;
+		$binding[]=$band;
+		$binding[]=$mode;
 		$binding[]=$band;
 		$binding[]=$band;
 		$binding[]=$mode;

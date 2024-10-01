@@ -672,7 +672,9 @@ class API extends CI_Controller {
 				"us_county" => "",
 				"qsl_manager" => "",
 				"bearing" 		=> "",
-				"workedBefore" => false,
+				"call_worked" => false,
+				"call_worked_band" => false,
+				"call_worked_band_mode" => false,
 				"lotw_member" => false,
 				"dxcc_confirmed_on_band" => false,
 				"dxcc_confirmed_on_band_mode" => false,
@@ -740,7 +742,9 @@ class API extends CI_Controller {
 				$return['us_county'] = $call_lookup_results->COL_CNTY;
 				$return['dxcc_id'] = $call_lookup_results->COL_DXCC;
 				$return['cont'] = $call_lookup_results->COL_CONT;
-				$return['workedBefore'] = true;
+				$return['call_worked'] = true;
+				$return['call_worked_band'] = ($call_lookup_results->CALL_WORKED_BAND==1) ? true : false;
+				$return['call_worked_band_mode'] = ($call_lookup_results->CALL_WORKED_BAND_MODE==1) ? true : false;
 				$return['call_confirmed'] = ($call_lookup_results->CALL_CNF==1) ? true : false;
 				$return['call_confirmed_band'] = ($call_lookup_results->CALL_CNF_BAND==1) ? true : false;
 				$return['call_confirmed_band_mode'] = ($call_lookup_results->CALL_CNF_BAND_MODE==1) ? true : false;
