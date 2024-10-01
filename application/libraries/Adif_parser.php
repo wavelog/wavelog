@@ -23,7 +23,7 @@ class ADIF_Parser
     var $currentarray = 0; // current place in the array
 	var $i = 0; //the iterator
 	var $headers = array();
-	
+
 	public function initialize() //this function locates the <EOH>
 	{
 
@@ -40,7 +40,7 @@ class ADIF_Parser
 			$pos = 0;
 			goto noheaders;
 		};
-			
+
 		while($this->i < $pos)
 		{
 			//skip comments
@@ -52,7 +52,7 @@ class ADIF_Parser
 					{
 						break;
 					}
-				
+
 					$this->i++;
 				}
 			}else{
@@ -66,19 +66,19 @@ class ADIF_Parser
 						$tag = $tag.mb_substr($this->data, $this->i, 1, "UTF-8");
 						$this->i++;
 					}
-					
+
 					$this->i++; //iterate past the :
-					
+
 					//find out how long the value is
-					
+
 					while($this->i < $pos && mb_substr($this->data, $this->i, 1, "UTF-8") != '>')
 					{
 						$value_length = $value_length.mb_substr($this->data, $this->i, 1, "UTF-8");
 						$this->i++;
 					}
-					
+
 					$this->i++; //iterate past the >
-					
+
 					$len = (int)$value_length;
 					//copy the value into the buffer
 
@@ -93,15 +93,15 @@ class ADIF_Parser
 					$tag = "";
 					$value_length = "";
 					$value = "";
-					
+
 				}
 			}
 
 			$this->i++;
-			
+
 		};
 
-		
+
 		$this->i = $pos+5; //iterate past the <eoh>
 
 		// Skip to here in case we did not find headers
@@ -116,10 +116,10 @@ class ADIF_Parser
 		$this->currentarray = 0;
 		return 1;
 	}
-	
+
 	public function feed($input_data) //allows the parser to be fed a string
 	{
-		
+
 		if (strpos($input_data, "<EOH>") !== false) {
 			$arr=explode("<EOH>",$input_data);
 			$newstring = $arr[1];
@@ -130,12 +130,12 @@ class ADIF_Parser
 
         $this->datasplit = preg_split("/<eor>/i", mb_substr($this->data, $this->i, NULL, "UTF-8"));
 	}
-	
+
 	public function load_from_file($fname) //allows the user to accept a filename as input
 	{
 		$this->data = $string = mb_convert_encoding(file_get_contents($fname), "UTF-8");
 	}
-	
+
 	//the following function does the processing of the array into its key and value pairs
 	public function record_to_array($record)
 	{
@@ -193,7 +193,7 @@ class ADIF_Parser
 		};
 		return $return;
 	}
-	
+
 	//finds the next record in the file
 	public function get_record()
 	{
@@ -201,16 +201,10 @@ class ADIF_Parser
         if($this->currentarray >= count($this->datasplit)) {
             return array(); //return nothing
         } else {
-            // Is this a valid QSO?
-            if (mb_stristr($this->datasplit[$this->currentarray], "<CALL:", false, "UTF-8")) {
-                return $this->record_to_array($this->datasplit[$this->currentarray++]); //process and return output
-            }
-            else {
-                return array();
-            }
+			return $this->record_to_array($this->datasplit[$this->currentarray++]); //process and return output
         }
  	}
-	
+
 	public function get_header($key)
 	{
 		if(array_key_exists(mb_strtolower($key, "UTF-8"), $this->headers))
@@ -220,6 +214,6 @@ class ADIF_Parser
 			return NULL;
 		}
 	}
-	
+
 }
 ?>
