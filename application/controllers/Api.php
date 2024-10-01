@@ -745,10 +745,11 @@ class API extends CI_Controller {
 
 			/*
 			 *
-			 *	Pool any local data we have for a callsign
+			 *	Pool stations local data we have for a callsign
 			 *
 			 */
-			$call_lookup_results = $this->logbook_model->call_lookup_result($lookup_callsign, $station_ids);
+			$userdata=$this->user_model->get_by_id($user_id);
+			$call_lookup_results = $this->logbook_model->call_lookup_result($lookup_callsign, $station_ids,$userdata->row()->user_default_confirmation,$band,$mode);
 
 			if($call_lookup_results != null) {
 				$return['name'] = $call_lookup_results->COL_NAME;
@@ -761,6 +762,9 @@ class API extends CI_Controller {
 				$return['dxcc_id'] = $call_lookup_results->COL_DXCC;
 				$return['cont'] = $call_lookup_results->COL_CONT;
 				$return['workedBefore'] = true;
+				$return['call_confirmed'] = ($call_lookup_results->CALL_CNF==1) ? true : false;
+				$return['call_confirmed_band'] = ($call_lookup_results->CALL_CNF_BAND==1) ? true : false;
+				$return['call_confirmed_band_mode'] = ($call_lookup_results->CALL_CNF_BAND_MODE==1) ? true : false;
 
 				if ($return['gridsquare'] != "") {
 					$return['latlng'] = $this->qralatlng($return['gridsquare']);
@@ -784,7 +788,6 @@ class API extends CI_Controller {
 			 *	Output Returned data
 			 *
 			 */
-			$userdata=$this->user_model->get_by_id($user_id);
 
 			if ($return['dxcc_id'] ?? '' != '') {	// DXCC derivated before?
 				$return['dxcc_confirmed']=($this->logbook_model->check_if_dxcc_cnfmd_in_logbook_api($userdata->row()->user_default_confirmation,$return['dxcc_id'], $station_ids, null, null)>0) ? true : false;
@@ -922,7 +925,7 @@ class API extends CI_Controller {
 			 *	Pool any local data we have for a callsign
 			 *
 			 */
-			$call_lookup_results = $this->logbook_model->call_lookup_result($lookup_callsign, $station_ids);
+			$call_lookup_results = $this->logbook_model->call_lookup_result($lookup_callsign, $station_ids,'','NO BAND','NO MODE');
 
 			if($call_lookup_results != null)
 			{
