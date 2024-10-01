@@ -261,6 +261,11 @@ class Logbook_model extends CI_Model {
 			$qslrdate = date('Y-m-d H:i:s');
 		}
 
+		$distance=null;
+		if ( (($this->input->post('distance') ?? '') != '') && (is_numeric($this->input->post('distance'))) ) {
+ 			$distance=$this->input->post('distance');
+		} 
+			
 		// Create array with QSO Data
 		$data = array(
 			'COL_TIME_ON' => $datetime,
@@ -291,7 +296,7 @@ class Logbook_model extends CI_Model {
 			'COL_QTH' => $qso_qth,
 			'COL_PROP_MODE' => $prop_mode,
 			'COL_IOTA' => $this->input->post('iota_ref')  == null ? '' : trim($this->input->post('iota_ref')),
-			'COL_DISTANCE' => $this->input->post('distance'),
+			'COL_DISTANCE' => $distance,
 			'COL_FREQ_RX' => $this->parse_frequency($this->input->post('freq_display_rx')),
 			'COL_ANT_AZ' => $ant_az,
 			'COL_ANT_EL' => $ant_el,
@@ -1313,7 +1318,7 @@ class Logbook_model extends CI_Model {
 			$lotwrdate = $qso->COL_LOTW_QSLRDATE;
 		}
 
-		if ($this->input->post('distance')) {
+		if (($this->input->post('distance')) && (is_numeric($this->input->post('distance')))) {
 			$distance = $this->input->post('distance');
 		} else {
 			$distance = null;
@@ -3982,6 +3987,12 @@ class Logbook_model extends CI_Model {
 				$input_eqsl_qso_upload_status = (!empty($record['eqsl_qsl_sent'])) ? $record['eqsl_qsl_sent'] : '';
 			}
 
+			$distance=null;
+			if ((!empty($record['distance'])) && (is_numberic($record['distance']))) {
+				$distance=$record['distance'];
+			} else {
+				$distance=null;
+			}
 
 			// Create array with QSO Data use ?:
 			$data = array(
@@ -4015,7 +4026,7 @@ class Logbook_model extends CI_Model {
 				'COL_CREDIT_GRANTED' => (!empty($record['credit_granted'])) ? $record['credit_granted'] : '',
 				'COL_CREDIT_SUBMITTED' => (!empty($record['credit_submitted'])) ? $record['credit_submitted'] : '',
 				'COL_DARC_DOK' => (!empty($record['darc_dok'])) ? strtoupper($record['darc_dok']) : '',
-				'COL_DISTANCE' => (!empty($record['distance'])) ? $record['distance'] : null,
+				'COL_DISTANCE' => $distance, 
 				'COL_DXCC' => $dxcc[0],
 				'COL_EMAIL' => (!empty($record['email'])) ? $record['email'] : '',
 				'COL_EQ_CALL' => (!empty($record['eq_call'])) ? $record['eq_call'] : '',
