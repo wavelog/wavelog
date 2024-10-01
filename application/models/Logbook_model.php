@@ -722,6 +722,10 @@ class Logbook_model extends CI_Model {
 			$data['COL_RX_PWR'] = str_replace("W", "", $data['COL_RX_PWR']);
 		}
 
+		if ((!is_null($data['COL_RX_PWR'])) && (!((is_numeric($data['COL_RX_PWR']))))) {	// Filled but not numeric?
+			$data['COL_RX_PWR']=NULL;
+		}
+
 		// Add QSO to database
 		if ($batchmode) {
 			return $data;
@@ -4125,7 +4129,7 @@ class Logbook_model extends CI_Model {
 				'COL_RIG_INTL' => (!empty($record['rig_intl'])) ? $record['rig_intl'] : '',
 				'COL_RST_RCVD' => $rst_rx,
 				'COL_RST_SENT' => $rst_tx,
-				'COL_RX_PWR' => $rx_pwr,
+				'COL_RX_PWR' => (is_numeric($rx_pwr) ? $rx_pwr : null),
 				'COL_SAT_MODE' => (!empty($record['sat_mode'])) ? $record['sat_mode'] : '',
 				'COL_SAT_NAME' => (!empty($record['sat_name'])) ? $record['sat_name'] : '',
 				'COL_SFI' => (!empty($record['sfi'])) ? $record['sfi'] : null,
