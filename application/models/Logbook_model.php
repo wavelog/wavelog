@@ -2247,14 +2247,15 @@ class Logbook_model extends CI_Model {
 		$binding[]=$dxcc;
 
 		if ($band != null && $band != 'SAT') {
-			$sql.=" AND COL_BAND=?";
+			$sql.=" AND COL_BAND = ?";
 			$binding[]=$band;
 		} else if ($band == 'SAT') {
-			$sql.=" AND COL_SAT_NAME !=''";
+			$sql.=" AND COL_PROP_MODE = ?";
+			$binding[]=$band;
 		}
 
 		if ($mode != null) {
-			$sql.=" AND COL_MODE=?";
+			$sql.=" AND COL_MODE = ?";
 			$binding[]=$mode;
 		}
 
