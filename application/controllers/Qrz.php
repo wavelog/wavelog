@@ -304,7 +304,7 @@ class Qrz extends CI_Controller {
 					$lastqrz = $this->logbook_model->qrz_last_qsl_date($station->user_id);
 				}
 				$qrz_api_key = $station->qrzapikey;
-				$result=($this->mass_download_qsos($qrz_api_key, $lastqrz));
+				$result=($this->mass_download_qsos($qrz_api_key, $lastqrz, $station->station_ids));
 				if (isset($result['tableheaders'])) {
 					$data['tableheaders']=$result['tableheaders'];
 					if (isset($data['table'])) {
@@ -339,7 +339,7 @@ class Qrz extends CI_Controller {
 		}
 	}
 
-	function mass_download_qsos($qrz_api_key = '', $lastqrz = '1900-01-01', $trusted = false) {
+	function mass_download_qsos($qrz_api_key = '', $lastqrz = '1900-01-01', $station_ids = '', $trusted = false) {
 		$config['upload_path'] = './uploads/';
 		$file = $config['upload_path'] . 'qrzcom_download_report.adi';
 		if (file_exists($file) && ! is_writable($file)) {
@@ -367,7 +367,7 @@ class Qrz extends CI_Controller {
 		}
 
 		ini_set('memory_limit', '-1');
-		$result = $this->loadFromFile($file);
+		$result = $this->loadFromFile($file, $station_ids);
 
 		return $result;
 	}
@@ -382,7 +382,7 @@ class Qrz extends CI_Controller {
 	|	Internal function that takes the QRZ ADIF and imports into the log
 	|
  */
-	private function loadFromFile($filepath) {
+	private function loadFromFile($filepath, $station_ids) {
 
 		// Figure out how we should be marking QSLs confirmed via LoTW
 		$config['qrz_rcvd_mark'] = 'Y';
@@ -431,7 +431,7 @@ class Qrz extends CI_Controller {
 			$record['call']=str_replace("_","/",$record['call']);
 			$record['station_callsign']=str_replace("_","/",$record['station_callsign'] ?? '');
 			if ($record['station_callsign'] ?? '' != '') {
-				$status = $this->logbook_model->import_check($time_on, $record['call'], $record['band'], $record['mode'], $record['station_callsign']);
+				$status = $this->logbook_model->import_check($time_on, $record['call'], $record['band'], $record['mode'], $record['station_callsign'], $station_ids);
 
 				if($status[0] == "Found") {
 					$qrz_status = $this->logbook_model->qrz_update($status[1], $qsl_date, $record['qsl_rcvd']);
