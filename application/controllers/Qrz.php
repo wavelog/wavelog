@@ -459,6 +459,7 @@ class Qrz extends CI_Controller {
 					$table .= "</tr>";
 				}
 			}
+			unset($record);
 		}
 
 		if ($table != "") {
