@@ -234,29 +234,42 @@ class OpenStreetMap
     protected function drawAttribution(Image $image): Image
     {
         $margin = 5;
+
+        // Anonymous function to render the attribution text
         $attribution = function (Image $image, $margin): array {
+            // Collect attribution text without HTML tags (strip tags from each layer)
+            $attributionText = \implode(
+                ' - ',
+                \array_map(function ($layer) {
+                    // Strip HTML tags (like <a>) from the attribution text
+                    return strip_tags($layer->getAttributionText());
+                }, $this->layers)
+            );
+
+            // Draw the plain text onto the image and get its bounding box
             return $image->writeTextAndGetBoundingBox(
-                \implode(
-                    ' - ',
-                    \array_map(function ($layer) {
-                        return $layer->getAttributionText();
-                    }, $this->layers)
-                ),
-                __DIR__ . '/resources/font.ttf',
-                10,
-                '0078A8',
-                $margin,
-                $margin,
-                Image::ALIGN_LEFT,
-                Image::ALIGN_TOP
+                $attributionText,
+                __DIR__ . '/resources/font.ttf',  // Font path
+                10,  // Font size
+                '0078A8',  // Text color
+                $margin,  // X margin
+                $margin,  // Y margin
+                Image::ALIGN_LEFT,  // Horizontal alignment
+                Image::ALIGN_TOP  // Vertical alignment
             );
         };
 
+        // Calculate bounding box for the attribution text
         $bbox = $attribution(Image::newCanvas(1, 1), $margin);
+
+        // Create a new canvas for the attribution background
         $imageAttribution = Image::newCanvas($bbox['bottom-right']['x'] + $margin, $bbox['bottom-right']['y'] + $margin);
+        // Draw a semi-transparent rectangle for the attribution background
         $imageAttribution->drawRectangle(0, 0, $imageAttribution->getWidth(), $imageAttribution->getHeight(), 'FFFFFF33');
+        // Write the attribution text on the new canvas
         $attribution($imageAttribution, $margin);
 
+        // Paste the attribution canvas onto the main image (bottom-right corner)
         return $image->pasteOn($imageAttribution, Image::ALIGN_RIGHT, Image::ALIGN_BOTTOM);
     }
 

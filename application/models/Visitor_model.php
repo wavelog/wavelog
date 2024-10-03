@@ -67,8 +67,8 @@ class Visitor_model extends CI_Model {
 		// Map data and default values
 		$centerMap = new \Wavelog\StaticMapImage\LatLng(51.5074, 0.1278); // TODO: Set to user's QTH
 		$zoom = 2;
-		$width = 1024;
-		$height = 768;
+		$width = 1045;
+		$height = 715;
 		$tileLayer = \Wavelog\StaticMapImage\TileLayer::defaultTileLayer();
 	
 		// Create the map
