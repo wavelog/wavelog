@@ -413,6 +413,9 @@ class Qrz extends CI_Controller {
 			if ((!(isset($record['app_qrzlog_qsldate']))) || (!(isset($record['qso_date'])))) {
 				continue;
 			}
+			if (($record['call'] ?? '') == '') { 	// Failsafe if no Call is giveb
+				continue;
+			}
 			$time_on = date('Y-m-d', strtotime($record['qso_date'])) ." ".date('H:i', strtotime($record['time_on']));
 
 			$qsl_date = date('Y-m-d', strtotime($record['app_qrzlog_qsldate']));
@@ -424,7 +427,7 @@ class Qrz extends CI_Controller {
 			}
 
 			// If we have a positive match from LoTW, record it in the DB according to the user's preferences
-			if ($record['app_qrzlog_status'] == "C") {
+			if (($record['app_qrzlog_status'] ?? '')== "C") {
 				$record['qsl_rcvd'] = $config['qrz_rcvd_mark'];
 			}
 
@@ -440,7 +443,7 @@ class Qrz extends CI_Controller {
 					$table .= "<td>".$record['station_callsign']."</td>";
 					$table .= "<td>".$time_on."</td>";
 					$table .= "<td>".$record['call']."</td>";
-					$table .= "<td>".$record['mode']."</td>";
+					$table .= "<td>".($record['mode'] ?? '')."</td>";
 					$table .= "<td>".$record['qsl_rcvd']."</td>";
 					$table .= "<td>".$qsl_date."</td>";
 					$table .= "<td>QSO Record: ".$status[0]."</td>";
@@ -450,12 +453,13 @@ class Qrz extends CI_Controller {
 					$table .= "<td>".$record['station_callsign']."</td>";
 					$table .= "<td>".$time_on."</td>";
 					$table .= "<td>".$record['call']."</td>";
-					$table .= "<td>".$record['mode']."</td>";
+					$table .= "<td>".($record['mode'] ?? '')."</td>";
 					$table .= "<td>".$record['qsl_rcvd']."</td>";
 					$table .= "<td>QSO Record: ".$status[0]."</td>";
 					$table .= "</tr>";
 				}
 			}
+			unset($record);
 		}
 
 		if ($table != "") {
