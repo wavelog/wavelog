@@ -410,6 +410,9 @@ class Qrz extends CI_Controller {
 
 		$table = "";
 		while($record = $this->adif_parser->get_record()) {
+			if ((!(array_key_exists('time_on',$record))) || (!(array_key_exists('app_qrzlog_qsldate',$record))) || (!(array_key_exists('qso_date',$record))) || (!(array_key_exists('mode',$record))) || (!(array_key_exists('call',$record))) || (!(array_key_exists('band',$record))) ) {
+				continue;
+			}
 			if ((!(isset($record['app_qrzlog_qsldate']))) || (!(isset($record['qso_date'])))) {
 				continue;
 			}
