@@ -45,4 +45,46 @@ class Visitor_model extends CI_Model {
 
 		return $this->db->query($sql);
 	}
+
+	public function render_static_map($slug, $qsocount) {
+		require_once('./src/StaticMap/src/OpenStreetMap.php');
+		require_once('./src/StaticMap/src/LatLng.php');
+		require_once('./src/StaticMap/src/TileLayer.php');
+		require_once('./src/StaticMap/src/Markers.php');
+		require_once('./src/StaticMap/src/MapData.php');
+		require_once('./src/StaticMap/src/XY.php');
+		require_once('./src/StaticMap/src/Image.php');
+	
+		// Erforderliche Parameter für den Konstruktor
+		$centerMap = new \DantSu\OpenStreetMapStaticAPI\LatLng(51.5074, 0.1278); // London als Zentrum
+		$zoom = 2; // Zoom Level
+		$width = 1024; // Breite des Bildes
+		$height = 768; // Höhe des Bildes
+		$tileLayer = \DantSu\OpenStreetMapStaticAPI\TileLayer::defaultTileLayer(); // Optional, Standard-OSM-Server
+	
+		// Erstellen der Karte mit den richtigen Parametern
+		$map = new \DantSu\OpenStreetMapStaticAPI\OpenStreetMap($centerMap, $zoom, $width, $height, $tileLayer);
+	
+		// Marker hinzufügen
+		$map->addMarkers(
+			(new \DantSu\OpenStreetMapStaticAPI\Markers('src/StaticMap/src/resources/marker.png'))
+				->setAnchor(\DantSu\OpenStreetMapStaticAPI\Markers::ANCHOR_CENTER, \DantSu\OpenStreetMapStaticAPI\Markers::ANCHOR_BOTTOM)
+				->addMarker(new \DantSu\OpenStreetMapStaticAPI\LatLng(51.5074, 0.1278)) // London
+				->addMarker(new \DantSu\OpenStreetMapStaticAPI\LatLng(40.7128, -74.0060)) // New York
+				->addMarker(new \DantSu\OpenStreetMapStaticAPI\LatLng(35.6895, 139.6917)) // Tokyo
+				->addMarker(new \DantSu\OpenStreetMapStaticAPI\LatLng(37.7749, -122.4194)) // San Francisco
+				->addMarker(new \DantSu\OpenStreetMapStaticAPI\LatLng(48.8566, 2.3522))  // Paris
+		);
+
+	
+		// Generiere das Bild
+		$image = $map->getImage();
+	
+		// Speichere das Bild in einer Datei
+		$filename = 'static_map_' . time() . '.png'; // Einzigartiger Dateiname
+		$image->saveJPG('./assets/maps/' . $filename, 100);
+	
+		// Gib den Dateinamen zurück
+		return $filename;
+	}
 }

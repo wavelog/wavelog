@@ -31,6 +31,9 @@ class Visitor extends CI_Controller {
 		elseif($method == "mapqsos") {
             $this->mapqsos();
         }
+		elseif($method == "map_static") {
+			$this->map_static();
+		}
         else {
             $this->index($method);
         }
@@ -444,6 +447,30 @@ class Visitor extends CI_Controller {
 		} else {
 			redirect('user/login');
 		}
+	}
+
+	public function map_static() {
+
+		$slug = $this->security->xss_clean($this->uri->segment(3));
+		$qsocount = $this->input->get('qsocount', TRUE) ?? '';
+
+		// if the qso count is not a number, set it to 100 per default
+		if ($qsocount == '' || $qsocount == 0 || $qsocount == NULL || !is_numeric($qsocount)) {
+			$qsocount = 100;
+		}
+
+		if (!$this->load->is_loaded('visitor_model')) {
+			$this->load->model('visitor_model');
+		}
+
+		$image = $this->visitor_model->render_static_map($slug, $qsocount);
+
+		header('Content-Type: image/jpg');
+		// echo $image;
+
+		$image_url = base_url('assets/maps/' . $image);
+		// echo '<img src="' . $image_url . '" alt="Static Map" />';
+		readfile($image_url);
 	}
 
 	public function mapqsos() {
