@@ -1458,26 +1458,38 @@ class Logbook_model extends CI_Model {
   *
   * Function: call_lookup_result
   *
-  * Usage: Callsign lookup data for the QSO panel and API/callsign_lookup
+  * Usage: Callsign lookup data for API/callsign_lookup
   *
   */
-	function call_lookup_result($callsign, $station_ids) {
-		$this->db->select('COL_CALL, COL_NAME, COL_QSL_VIA, COL_GRIDSQUARE, COL_QTH, COL_IOTA, COL_TIME_ON, COL_STATE, COL_CNTY, COL_DXCC, COL_CONT');
-		$this->db->where('station_id in (' . $station_ids . ')');
-		$this->db->where('COL_CALL', $callsign);
-		$where = "COL_NAME != \"\"";
+	function call_lookup_result($callsign, $station_ids, $user_default_confirmation, $band, $mode) {
+		$binding=[];
+		$qsl_where = $this->qsl_default_where($user_default_confirmation);
+		$band_addon='COL_BAND=?';
+		if ($band == 'SAT') {
+			$band_addon="COL_PROP_MODE=?";
+		}
 
-		$this->db->where($where);
+		$sql="SELECT COL_CALL, COL_NAME, COL_QSL_VIA, COL_GRIDSQUARE, COL_QTH, COL_IOTA, COL_TIME_ON, COL_STATE, COL_CNTY, COL_DXCC, COL_CONT,
+			CASE WHEN ( (".$qsl_where.") ) THEN 1  ELSE 0 END AS CALL_CNF,
+			CASE WHEN ( (".$qsl_where.") AND ".$band_addon.") THEN 1  ELSE 0 END AS CALL_CNF_BAND,
+			CASE WHEN ( (".$qsl_where.") AND ".$band_addon." AND COL_MODE=?) THEN 1  ELSE 0 END AS CALL_CNF_BAND_MODE,
+			CASE WHEN ( ".$band_addon.") THEN 1  ELSE 0 END AS CALL_WORKED_BAND,
+			CASE WHEN ( ".$band_addon." AND COL_MODE=?) THEN 1  ELSE 0 END AS CALL_WORKED_BAND_MODE
+		FROM ".$this->config->item('table_name')." WHERE ";
+		$sql.="station_id IN (".$station_ids.") AND COL_CALL = ? ORDER BY call_cnf desc, call_worked_band desc, call_cnf_band desc, call_worked_band_mode desc, call_cnf_band_mode desc limit 1";
+		$binding[]=$band;
+		$binding[]=$band;
+		$binding[]=$mode;
+		$binding[]=$band;
+		$binding[]=$band;
+		$binding[]=$mode;
+		$binding[]=$callsign;
 
-		$this->db->order_by("COL_TIME_ON", "desc");
-		$this->db->limit(1);
-		$query = $this->db->get($this->config->item('table_name'));
-		$name = "";
+		$query = $this->db->query($sql, $binding);
 		$data = [];
 		if ($query->num_rows() > 0) {
 			$data = $query->row();
 		}
-
 		return $data;
 	}
 
@@ -2206,6 +2218,70 @@ class Logbook_model extends CI_Model {
 		$query = $this->db->get($this->config->item('table_name'));
 		return $query->num_rows();
 	}
+
+	private function qsl_default_where($user_default_confirmation) {
+		$extrawhere='';
+		if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'Q') !== false) {
+			$extrawhere = "COL_QSL_RCVD='Y'";
+		}
+		if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'L') !== false) {
+			if ($extrawhere != '') {
+				$extrawhere .= " OR";
+			}
+			$extrawhere .= " COL_LOTW_QSL_RCVD='Y'";
+		}
+		if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'E') !== false) {
+			if ($extrawhere != '') {
+				$extrawhere .= " OR";
+			}
+			$extrawhere .= " COL_EQSL_QSL_RCVD='Y'";
+		}
+
+		if (isset($user_default_confirmation) && strpos($user_default_confirmation, 'Z') !== false) {
+			if ($extrawhere != '') {
+				$extrawhere .= " OR";
+			}
+			$extrawhere .= " COL_QRZCOM_QSO_DOWNLOAD_STATUS='Y'";
+		}
+		if ($extrawhere == '') {
+			$extrawhere='1=0';	// No default_confirmations set? in that case everything is false
+		}
+		return $extrawhere;
+	}
+
+	function check_if_dxcc_cnfmd_in_logbook_api($user_default_confirmation,$dxcc, $station_ids = null, $band = null, $mode = null) {
+		$binding=[];
+		if ($station_ids == null) {
+			return [];
+		} 
+
+		$extrawhere = $this->qsl_default_where($user_default_confirmation);
+
+		$sql="SELECT count(1) as CNT from ".$this->config->item('table_name')." where station_id in (".$station_ids.") and (".$extrawhere.") and COL_DXCC=?";
+		$binding[]=$dxcc;
+
+		if ($band != null && $band != 'SAT') {
+			$sql.=" AND COL_BAND = ?";
+			$binding[]=$band;
+		} else if ($band == 'SAT') {
+			$sql.=" AND COL_PROP_MODE = ?";
+			$binding[]=$band;
+		}
+
+		if ($mode != null) {
+			$sql.=" AND COL_MODE = ?";
+			$binding[]=$mode;
+		}
+
+		$query = $this->db->query($sql, $binding);
+		$row = $query->row();
+		if (isset($row)) {
+			return ($row->CNT);
+		} else {
+			return 0;
+		}
+	}
+
 
 	function check_if_dxcc_cnfmd_in_logbook($dxcc, $StationLocationsArray = null, $band = null) {
 
