@@ -65,14 +65,16 @@ class Visitor_model extends CI_Model {
 		}
 	
 		// Map data and default values
-		$centerMap = new \Wavelog\StaticMapImage\LatLng(51.5074, 0.1278); // TODO: Set to user's QTH
+		$centerMapLat = 0; // TODO: Set to user's QTH
+		$centerMapLng = 180;  // TODO: Fix earth wrap
+		$centerMap = $centerMapLat . $centerMapLng; // used for cached tiles
 		$zoom = 2;
-		$width = 1045;
-		$height = 715;
+		$width = 1024;
+		$height = 768;
 		$tileLayer = \Wavelog\StaticMapImage\TileLayer::defaultTileLayer();
 	
 		// Create the map
-		$map = new \Wavelog\StaticMapImage\OpenStreetMap($centerMap, $zoom, $width, $height, $tileLayer); // TODO: Also allow dark map
+		$map = new \Wavelog\StaticMapImage\OpenStreetMap(new \Wavelog\StaticMapImage\LatLng($centerMapLat, $centerMapLng), $zoom, $width, $height, $tileLayer); // TODO: Also allow dark map
 	
 		if (!$this->load->is_loaded('Qra')) {
 			$this->load->library('Qra');
@@ -91,7 +93,7 @@ class Visitor_model extends CI_Model {
 		}
 	
 		$markers = new \Wavelog\StaticMapImage\Markers('src/StaticMap/src/resources/circle-dot-red.png'); // TODO: Use user defined markers
-		$markers->resizeMarker(12, 12);
+		$markers->resizeMarker(10, 10);
 		$markers->setAnchor(\Wavelog\StaticMapImage\Markers::ANCHOR_CENTER, \Wavelog\StaticMapImage\Markers::ANCHOR_BOTTOM);
 	
 		foreach ($markerPositions as $position) {
@@ -101,10 +103,10 @@ class Visitor_model extends CI_Model {
 		$map->addMarkers($markers);
 	
 		// Generate the image
-		$filename = 'static_map_' . time() . '.png';
+		$filename = 'static_map.png';
 		$full_path = APPPATH . 'cache/' . $filename;
 
-		if ($map->getImage()->savePNG($full_path)) {
+		if ($map->getImage($centerMap)->savePNG($full_path)) {
 			return $filename;
 		} else {
 			return false;

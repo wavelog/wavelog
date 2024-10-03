@@ -496,8 +496,6 @@ class Visitor extends CI_Controller {
 				show_404($msg);
 			} else {
 				$image_url = APPPATH . 'cache/' . $image;
-
-				// echo '<img src="' . $image_url . '" alt="Static Map" />';
 				readfile($image_url);
 			}
 

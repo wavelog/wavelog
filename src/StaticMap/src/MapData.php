@@ -13,8 +13,7 @@ use Wavelog\StaticMapImage\Utils\GeographicConverter;
  * @access public
  * @see https://github.com/DantSu/php-osm-static-api Github page of this project
  */
-class MapData
-{
+class MapData {
     /**
      * Convert longitude and zoom to horizontal OpenStreetMap tile number and pixel position.
      * @param float $lon Longitude
@@ -22,8 +21,7 @@ class MapData
      * @param int $tileSize Tile size
      * @return int[] OpenStreetMap tile id and pixel position of the given longitude and zoom
      */
-    public static function lngToXTile(float $lon, int $zoom, int $tileSize): array
-    {
+    public static function lngToXTile(float $lon, int $zoom, int $tileSize): array {
         $x = ($lon + 180) / 360 * \pow(2, $zoom);
         $tile = \floor($x);
         return [
@@ -39,8 +37,7 @@ class MapData
      * @param int $tileSize Tile size
      * @return int[] OpenStreetMap tile id and pixel position of the given latitude and zoom
      */
-    public static function latToYTile(float $lat, int $zoom, int $tileSize): array
-    {
+    public static function latToYTile(float $lat, int $zoom, int $tileSize): array {
         $y = (1 - \log(\tan(\deg2rad($lat)) + 1 / \cos(\deg2rad($lat))) / M_PI) / 2 * \pow(2, $zoom);
         $tile = \floor($y);
         return [
@@ -57,8 +54,7 @@ class MapData
      * @param int $tileSize Tile size
      * @return float Longitude of the given OpenStreetMap tile id and zoom
      */
-    public static function xTileToLng(int $id, int $position, int $zoom, int $tileSize): float
-    {
+    public static function xTileToLng(int $id, int $position, int $zoom, int $tileSize): float {
         return ($id + $position / $tileSize) / \pow(2, $zoom) * 360 - 180;
     }
 
@@ -70,8 +66,7 @@ class MapData
      * @param int $tileSize Tile size
      * @return float Latitude of the given OpenStreetMap tile id and zoom
      */
-    public static function yTileToLat(int $id, int $position, int $zoom, int $tileSize): float
-    {
+    public static function yTileToLat(int $id, int $position, int $zoom, int $tileSize): float {
         return \rad2deg(\atan(\sinh(M_PI * (1 - 2 * ($id + $position / $tileSize) / \pow(2, $zoom)))));
     }
 
@@ -81,8 +76,7 @@ class MapData
      * @param LatLng[] $points
      * @return LatLng[]
      */
-    public static function getBoundingBoxFromPoints(array $points): array
-    {
+    public static function getBoundingBoxFromPoints(array $points): array {
         $minLat = 360;
         $maxLat = -360;
         $minLng = 360;
@@ -115,8 +109,7 @@ class MapData
      * @param int $tileSize
      * @return array center : LatLng, zoom : int
      */
-    public static function getCenterAndZoomFromBoundingBox(LatLng $topLeft, LatLng $bottomRight, int $padding, int $imageWidth, int $imageHeight, int $tileSize): array
-    {
+    public static function getCenterAndZoomFromBoundingBox(LatLng $topLeft, LatLng $bottomRight, int $padding, int $imageWidth, int $imageHeight, int $tileSize): array {
         $zoom = 20;
         $padding *= 2;
         $topTilePos = MapData::latToYTile($topLeft->getLat(), $zoom, $tileSize);
@@ -194,8 +187,7 @@ class MapData
      * @param XY $outputSize
      * @param int $tileSize
      */
-    public function __construct(LatLng $centerMap, int $zoom, XY $outputSize, int $tileSize)
-    {
+    public function __construct(LatLng $centerMap, int $zoom, XY $outputSize, int $tileSize) {
         $this->zoom = $zoom;
         $this->outputSize = $outputSize;
         $this->tileSize = $tileSize;
@@ -250,8 +242,7 @@ class MapData
      * Get latitude and longitude of top left image
      * @return LatLng Latitude and longitude of top left image
      */
-    public function getLatLngTopLeft(): LatLng
-    {
+    public function getLatLngTopLeft(): LatLng {
         return $this->latLngTopLeft;
     }
 
@@ -259,8 +250,7 @@ class MapData
      * Get latitude and longitude of top right image
      * @return LatLng Latitude and longitude of top right image
      */
-    public function getLatLngTopRight(): LatLng
-    {
+    public function getLatLngTopRight(): LatLng {
         return $this->latLngTopRight;
     }
 
@@ -268,8 +258,7 @@ class MapData
      * Get latitude and longitude of bottom left image
      * @return LatLng Latitude and longitude of bottom left image
      */
-    public function getLatLngBottomLeft(): LatLng
-    {
+    public function getLatLngBottomLeft(): LatLng {
         return $this->latLngBottomLeft;
     }
 
@@ -277,8 +266,7 @@ class MapData
      * Get latitude and longitude of bottom right image
      * @return LatLng Latitude and longitude of bottom right image
      */
-    public function getLatLngBottomRight(): LatLng
-    {
+    public function getLatLngBottomRight(): LatLng {
         return $this->latLngBottomRight;
     }
 
@@ -286,8 +274,7 @@ class MapData
      * Get width and height of the image in pixel
      * @return XY Width and height of the image in pixel
      */
-    public function getOutputSize(): XY
-    {
+    public function getOutputSize(): XY {
         return $this->outputSize;
     }
 
@@ -295,8 +282,7 @@ class MapData
      * Get the zoom
      * @return int zoom
      */
-    public function getZoom(): int
-    {
+    public function getZoom(): int {
         return $this->zoom;
     }
 
@@ -304,8 +290,7 @@ class MapData
      * Get tile size
      * @return int tile size
      */
-    public function getTileSize(): int
-    {
+    public function getTileSize(): int {
         return $this->tileSize;
     }
 
@@ -314,8 +299,7 @@ class MapData
      * Get top left tile numbers
      * @return XY top left tile numbers
      */
-    public function getTileTopLeft(): XY
-    {
+    public function getTileTopLeft(): XY {
         return $this->tileTopLeft;
     }
 
@@ -323,8 +307,7 @@ class MapData
      * Get bottom right tile numbers
      * @return XY bottom right tile numbers
      */
-    public function getTileBottomRight(): XY
-    {
+    public function getTileBottomRight(): XY {
         return $this->tileBottomRight;
     }
 
@@ -332,8 +315,7 @@ class MapData
      * Get top left crop pixels
      * @return XY top left crop pixels
      */
-    public function getMapCropTopLeft(): XY
-    {
+    public function getMapCropTopLeft(): XY {
         return $this->mapCropTopLeft;
     }
 
@@ -341,8 +323,7 @@ class MapData
      * Get bottom right crop pixels
      * @return XY bottom right crop pixels
      */
-    public function getMapCropBottomRight(): XY
-    {
+    public function getMapCropBottomRight(): XY {
         return $this->mapCropBottomRight;
     }
 
@@ -352,8 +333,7 @@ class MapData
      * @param LatLng $latLng Latitude and longitude to be converted
      * @return XY Pixel position of latitude and longitude in the image
      */
-    public function convertLatLngToPxPosition(LatLng $latLng): XY
-    {
+    public function convertLatLngToPxPosition(LatLng $latLng): XY {
         $x = static::lngToXTile($latLng->getLng(), $this->zoom, $this->tileSize);
         $y = static::latToYTile($latLng->getLat(), $this->zoom, $this->tileSize);
 
@@ -362,6 +342,4 @@ class MapData
             ($y['id'] - $this->tileTopLeft->getY()) * $this->tileSize - $this->mapCropTopLeft->getY() + $y['position']
         );
     }
-
-
 }

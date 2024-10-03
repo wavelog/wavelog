@@ -199,7 +199,7 @@ class OpenStreetMap
      * @see https://github.com/DantSu/php-image-editor See more about DantSu\PHPImageEditor\Image
      * @return Image An instance of DantSu\PHPImageEditor\Image
      */
-    protected function getMapImage(): Image
+    protected function getMapImage($centerMap): Image
     {
         $imgSize = $this->mapData->getOutputSize();
         $startX = $this->mapData->getMapCropTopLeft()->getX() * -1;
@@ -214,7 +214,7 @@ class OpenStreetMap
                 $xTile = $this->mapData->getTileTopLeft()->getX();
                 for ($x = $startX; $x < $imgSize->getX(); $x += $tileSize) {
                     $image->pasteOn(
-                        $tileLayer->getTile($xTile, $yTile, $this->mapData->getZoom(), $tileSize),
+                        $tileLayer->getTile($xTile, $yTile, $this->mapData->getZoom(), $tileSize, $centerMap),
                         $x,
                         $y
                     );
@@ -279,9 +279,9 @@ class OpenStreetMap
      * @see https://github.com/DantSu/php-image-editor See more about DantSu\PHPImageEditor\Image
      * @return Image An instance of DantSu\PHPImageEditor\Image
      */
-    public function getImage(): Image
+    public function getImage($centerMap = '00'): Image
     {
-        $image = $this->getMapImage();
+        $image = $this->getMapImage($centerMap);
 
         foreach ($this->draws as $line) {
             $line->draw($image, $this->mapData);

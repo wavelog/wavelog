@@ -178,11 +178,12 @@ class TileLayer {
      * @param float $y
      * @param int $z
      * @param int $tileSize
+     * @param string $centerMap
      * @return Image Image instance containing the tile
      * @throws \Exception
      */
-    public function getTile(float $x, float $y, int $z, int $tileSize): Image {
-        $cacheKey = "tile_" . $x . "_" . $y . "_" . $z . "_" . $tileSize . ".png";
+    public function getTile(float $x, float $y, int $z, int $tileSize, string $centerMap): Image {
+        $cacheKey = "tile_" . $x . "_" . $y . "_" . $z . "_" . $tileSize . "_" . $centerMap . ".png";
         $cacheDir = APPPATH . "cache/tilecache/";
         $cachePath = $cacheDir . $cacheKey;
 
@@ -191,13 +192,10 @@ class TileLayer {
         }
 
         if (file_exists($cachePath)) {
-            log_message('error', 'TileLayer: Using cached tile ' . $cachePath);
             $tile = Image::fromPath($cachePath);
         } else {
-            log_message('error', 'TileLayer: Downloading tile ' . $cachePath);
-            
             $tile = Image::fromCurl($this->getTileUrl($x, $y, $z), $this->curlOptions, $this->failCurlOnError);
-            file_put_contents($cachePath, $tile);
+            $tile->savePNG($cachePath);
         }
         if ($this->opacity == 0) {
             return Image::newCanvas($tileSize, $tileSize);
