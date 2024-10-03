@@ -1,20 +1,19 @@
 <?php
 
-namespace DantSu\OpenStreetMapStaticAPI;
+namespace Wavelog\StaticMapImage;
 
 use DantSu\PHPImageEditor\Image;
 
 
 /**
- * DantSu\OpenStreetMapStaticAPI\Markers display markers on the map.
+ * Wavelog\StaticMapImage\Markers display markers on the map.
  *
- * @package DantSu\OpenStreetMapStaticAPI
+ * @package Wavelog\StaticMapImage
  * @author Franck Alary
  * @access public
  * @see https://github.com/DantSu/php-osm-static-api Github page of this project
  */
-class Markers
-{
+class Markers {
     const ANCHOR_LEFT = 'left';
     const ANCHOR_CENTER = 'center';
     const ANCHOR_RIGHT = 'right';
@@ -39,8 +38,7 @@ class Markers
      */
     private $coordinates = [];
 
-    public function __construct($pathImage)
-    {
+    public function __construct($pathImage) {
         $this->image = Image::fromPath($pathImage);
     }
 
@@ -49,9 +47,22 @@ class Markers
      * @param LatLng $coordinate Latitude and longitude of the marker
      * @return $this Fluent interface
      */
-    public function addMarker(LatLng $coordinate): Markers
-    {
+    public function addMarker(LatLng $coordinate): Markers {
         $this->coordinates[] = $coordinate;
+        return $this;
+    }
+
+    /**
+     * Resize the marker image.
+     * 
+     * @param int $width Width of the marker
+     * @param int $height Height of the marker
+     * @return $this Fluent interface
+     * 
+     */
+
+    public function resizeMarker(int $width, int $height): Markers {
+        $this->image = $this->image->resize($width, $height);
         return $this;
     }
 
@@ -61,8 +72,7 @@ class Markers
      * @param int|string $verticalAnchor Vertical anchor in pixel or you can use `Markers::ANCHOR_TOP`, `Markers::ANCHOR_MIDDLE`, `Markers::ANCHOR_BOTTOM`
      * @return $this Fluent interface
      */
-    public function setAnchor($horizontalAnchor, $verticalAnchor): Markers
-    {
+    public function setAnchor($horizontalAnchor, $verticalAnchor): Markers {
         $this->horizontalAnchor = $horizontalAnchor;
         $this->verticalAnchor = $verticalAnchor;
         return $this;
@@ -76,8 +86,7 @@ class Markers
      * @param MapData $mapData Bounding box of the map
      * @return $this Fluent interface
      */
-    public function draw(Image $image, MapData $mapData): Markers
-    {
+    public function draw(Image $image, MapData $mapData): Markers {
         $imageMarginLeft = $this->horizontalAnchor;
         switch ($imageMarginLeft) {
             case Markers::ANCHOR_LEFT:
@@ -116,8 +125,7 @@ class Markers
      * Get bounding box of markers
      * @return LatLng[]
      */
-    public function getBoundingBox(): array
-    {
+    public function getBoundingBox(): array {
         return MapData::getBoundingBoxFromPoints($this->coordinates);
     }
 }

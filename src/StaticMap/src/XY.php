@@ -1,11 +1,11 @@
 <?php
 
-namespace DantSu\OpenStreetMapStaticAPI;
+namespace Wavelog\StaticMapImage;
 
 /**
- * DantSu\OpenStreetMapStaticAPI\XY define X and Y pixel position for map, lines, markers...
+ * Wavelog\StaticMapImage\XY define X and Y pixel position for map, lines, markers...
  *
- * @package DantSu\OpenStreetMapStaticAPI
+ * @package Wavelog\StaticMapImage
  * @author Franck Alary
  * @access public
  * @see https://github.com/DantSu/php-osm-static-api Github page of this project

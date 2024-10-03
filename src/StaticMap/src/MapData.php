@@ -1,14 +1,14 @@
 <?php
 
-namespace DantSu\OpenStreetMapStaticAPI;
+namespace Wavelog\StaticMapImage;
 
 
-use DantSu\OpenStreetMapStaticAPI\Utils\GeographicConverter;
+use Wavelog\StaticMapImage\Utils\GeographicConverter;
 
 /**
- * DantSu\OpenStreetMapStaticAPI\MapData convert latitude and longitude to image pixel position.
+ * Wavelog\StaticMapImage\MapData convert latitude and longitude to image pixel position.
  *
- * @package DantSu\OpenStreetMapStaticAPI
+ * @package Wavelog\StaticMapImage
  * @author Franck Alary
  * @access public
  * @see https://github.com/DantSu/php-osm-static-api Github page of this project

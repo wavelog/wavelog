@@ -1,13 +1,13 @@
 <?php
 
-namespace DantSu\OpenStreetMapStaticAPI;
+namespace Wavelog\StaticMapImage;
 
 use DantSu\PHPImageEditor\Image;
 
 /**
- * DantSu\OpenStreetMapStaticAPI\TileLayer define tile server url and related configuration
+ * Wavelog\StaticMapImage\TileLayer define tile server url and related configuration
  *
- * @package DantSu\OpenStreetMapStaticAPI
+ * @package Wavelog\StaticMapImage
  * @author Stephan Strate <hello@stephan.codes>
  * @access public
  * @see https://github.com/DantSu/php-osm-static-api Github page of this project

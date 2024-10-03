@@ -451,26 +451,35 @@ class Visitor extends CI_Controller {
 
 	public function map_static() {
 
-		$slug = $this->security->xss_clean($this->uri->segment(3));
-		$qsocount = $this->input->get('qsocount', TRUE) ?? '';
+		if (in_array('gd', get_loaded_extensions())) {
 
-		// if the qso count is not a number, set it to 100 per default
-		if ($qsocount == '' || $qsocount == 0 || $qsocount == NULL || !is_numeric($qsocount)) {
-			$qsocount = 100;
+			$slug = $this->security->xss_clean($this->uri->segment(3));
+			$qsocount = $this->input->get('qsocount', TRUE) ?? '';
+
+			// if the qso count is not a number, set it to 100 per default
+			if ($qsocount == '' || $qsocount == 0 || $qsocount == NULL || !is_numeric($qsocount)) {
+				$qsocount = 100;
+			}
+
+			if (!$this->load->is_loaded('visitor_model')) {
+				$this->load->model('visitor_model');
+			}
+
+			$image = $this->visitor_model->render_static_map($slug, $qsocount);
+
+			header('Content-Type: image/jpg');
+			// echo $image;
+
+			$image_url = base_url('assets/maps/' . $image);
+			log_message('error', 'Static Map URL: ' . $image_url);
+			// echo '<img src="' . $image_url . '" alt="Static Map" />';
+			readfile($image_url);
+
+		} else {
+			$msg = "Can't create static map image. Extention 'php-gd' is not installed. Install it and restart the webserver.";
+			log_message('error', $msg);
+			echo $msg;
 		}
-
-		if (!$this->load->is_loaded('visitor_model')) {
-			$this->load->model('visitor_model');
-		}
-
-		$image = $this->visitor_model->render_static_map($slug, $qsocount);
-
-		header('Content-Type: image/jpg');
-		// echo $image;
-
-		$image_url = base_url('assets/maps/' . $image);
-		// echo '<img src="' . $image_url . '" alt="Static Map" />';
-		readfile($image_url);
 	}
 
 	public function mapqsos() {

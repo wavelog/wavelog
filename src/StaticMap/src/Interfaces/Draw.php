@@ -1,9 +1,9 @@
 <?php
 
-namespace DantSu\OpenStreetMapStaticAPI\Interfaces;
+namespace Wavelog\StaticMapImage\Interfaces;
 
 
-use DantSu\OpenStreetMapStaticAPI\MapData;
+use Wavelog\StaticMapImage\MapData;
 use DantSu\PHPImageEditor\Image;
 
 interface Draw

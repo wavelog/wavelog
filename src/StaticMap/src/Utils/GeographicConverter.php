@@ -1,9 +1,9 @@
 <?php
 
-namespace DantSu\OpenStreetMapStaticAPI\Utils;
+namespace Wavelog\StaticMapImage\Utils;
 
 
-use DantSu\OpenStreetMapStaticAPI\LatLng;
+use Wavelog\StaticMapImage\LatLng;
 
 class GeographicConverter
 {

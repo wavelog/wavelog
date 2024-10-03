@@ -1,17 +1,17 @@
 <?php
 
-namespace DantSu\OpenStreetMapStaticAPI;
+namespace Wavelog\StaticMapImage;
 
 
-use DantSu\OpenStreetMapStaticAPI\Interfaces\Draw;
-use DantSu\OpenStreetMapStaticAPI\Utils\GeographicConverter;
+use Wavelog\StaticMapImage\Interfaces\Draw;
+use Wavelog\StaticMapImage\Utils\GeographicConverter;
 use DantSu\PHPImageEditor\Geometry2D;
 use DantSu\PHPImageEditor\Image;
 
 /**
- * DantSu\OpenStreetMapStaticAPI\Circle draw circle on the map.
+ * Wavelog\StaticMapImage\Circle draw circle on the map.
  *
- * @package DantSu\OpenStreetMapStaticAPI
+ * @package Wavelog\StaticMapImage
  * @author Franck Alary
  * @access public
  * @see https://github.com/DantSu/php-osm-static-api Github page of this project

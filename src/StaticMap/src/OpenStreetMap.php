@@ -1,14 +1,14 @@
 <?php
 
-namespace DantSu\OpenStreetMapStaticAPI;
+namespace Wavelog\StaticMapImage;
 
-use DantSu\OpenStreetMapStaticAPI\Interfaces\Draw;
+use Wavelog\StaticMapImage\Interfaces\Draw;
 use DantSu\PHPImageEditor\Image;
 
 /**
- * DantSu\OpenStreetMapStaticAPI\OpenStreetMap is a PHP library created for easily get static image from OpenStreetMap with markers, lines, polygons and circles.
+ * Wavelog\StaticMapImage\OpenStreetMap is a PHP library created for easily get static image from OpenStreetMap with markers, lines, polygons and circles.
  *
- * @package DantSu\OpenStreetMapStaticAPI
+ * @package Wavelog\StaticMapImage
  * @author Franck Alary
  * @access public
  * @see https://github.com/DantSu/php-osm-static-api Github page of this project

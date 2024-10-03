@@ -47,44 +47,54 @@ class Visitor_model extends CI_Model {
 	}
 
 	public function render_static_map($slug, $qsocount) {
-		require_once('./src/StaticMap/src/OpenStreetMap.php');
-		require_once('./src/StaticMap/src/LatLng.php');
-		require_once('./src/StaticMap/src/TileLayer.php');
-		require_once('./src/StaticMap/src/Markers.php');
-		require_once('./src/StaticMap/src/MapData.php');
-		require_once('./src/StaticMap/src/XY.php');
-		require_once('./src/StaticMap/src/Image.php');
+		// Benötigte Klassen einmal laden
+		$requiredClasses = [
+			'./src/StaticMap/src/OpenStreetMap.php',
+			'./src/StaticMap/src/LatLng.php',
+			'./src/StaticMap/src/TileLayer.php',
+			'./src/StaticMap/src/Markers.php',
+			'./src/StaticMap/src/MapData.php',
+			'./src/StaticMap/src/XY.php',
+			'./src/StaticMap/src/Image.php'
+		];
 	
-		// Erforderliche Parameter für den Konstruktor
-		$centerMap = new \DantSu\OpenStreetMapStaticAPI\LatLng(51.5074, 0.1278); // London als Zentrum
-		$zoom = 2; // Zoom Level
-		$width = 1024; // Breite des Bildes
-		$height = 768; // Höhe des Bildes
-		$tileLayer = \DantSu\OpenStreetMapStaticAPI\TileLayer::defaultTileLayer(); // Optional, Standard-OSM-Server
+		foreach ($requiredClasses as $class) {
+			require_once($class);
+		}
 	
-		// Erstellen der Karte mit den richtigen Parametern
-		$map = new \DantSu\OpenStreetMapStaticAPI\OpenStreetMap($centerMap, $zoom, $width, $height, $tileLayer);
+		// Kartendaten und Standardwerte
+		$centerMap = new \Wavelog\StaticMapImage\LatLng(51.5074, 0.1278); // London als Zentrum
+		$zoom = 2;
+		$width = 1024;
+		$height = 768;
+		$tileLayer = \Wavelog\StaticMapImage\TileLayer::defaultTileLayer();
+	
+		// Karte erstellen
+		$map = new \Wavelog\StaticMapImage\OpenStreetMap($centerMap, $zoom, $width, $height, $tileLayer);
 	
 		// Marker hinzufügen
-		$map->addMarkers(
-			(new \DantSu\OpenStreetMapStaticAPI\Markers('src/StaticMap/src/resources/marker.png'))
-				->setAnchor(\DantSu\OpenStreetMapStaticAPI\Markers::ANCHOR_CENTER, \DantSu\OpenStreetMapStaticAPI\Markers::ANCHOR_BOTTOM)
-				->addMarker(new \DantSu\OpenStreetMapStaticAPI\LatLng(51.5074, 0.1278)) // London
-				->addMarker(new \DantSu\OpenStreetMapStaticAPI\LatLng(40.7128, -74.0060)) // New York
-				->addMarker(new \DantSu\OpenStreetMapStaticAPI\LatLng(35.6895, 139.6917)) // Tokyo
-				->addMarker(new \DantSu\OpenStreetMapStaticAPI\LatLng(37.7749, -122.4194)) // San Francisco
-				->addMarker(new \DantSu\OpenStreetMapStaticAPI\LatLng(48.8566, 2.3522))  // Paris
-		);
-
+		$markerPositions = [
+			new \Wavelog\StaticMapImage\LatLng(51.5074, 0.1278),  // London
+			new \Wavelog\StaticMapImage\LatLng(40.7128, -74.0060), // New York
+			new \Wavelog\StaticMapImage\LatLng(35.6895, 139.6917), // Tokyo
+			new \Wavelog\StaticMapImage\LatLng(37.7749, -122.4194), // San Francisco
+			new \Wavelog\StaticMapImage\LatLng(48.8566, 2.3522)    // Paris
+		];
 	
-		// Generiere das Bild
-		$image = $map->getImage();
+		$markers = new \Wavelog\StaticMapImage\Markers('src/StaticMap/src/resources/circle-dot-red.png');
+		$markers->resizeMarker(12, 12);
+		$markers->setAnchor(\Wavelog\StaticMapImage\Markers::ANCHOR_CENTER, \Wavelog\StaticMapImage\Markers::ANCHOR_BOTTOM);
 	
-		// Speichere das Bild in einer Datei
-		$filename = 'static_map_' . time() . '.png'; // Einzigartiger Dateiname
-		$image->saveJPG('./assets/maps/' . $filename, 100);
+		foreach ($markerPositions as $position) {
+			$markers->addMarker($position);
+		}
 	
-		// Gib den Dateinamen zurück
+		$map->addMarkers($markers);
+	
+		// Bild generieren und speichern
+		$filename = 'static_map_' . time() . '.png';
+		$map->getImage()->saveJPG('./assets/maps/' . $filename, 100);
+	
 		return $filename;
 	}
 }

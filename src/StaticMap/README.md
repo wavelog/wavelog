@@ -26,10 +26,10 @@ composer require dantsu/php-osm-static-api
 ### Generate OpenStreetMap static image with markers and polygon :
 
 ```php
-use \DantSu\OpenStreetMapStaticAPI\OpenStreetMap;
-use \DantSu\OpenStreetMapStaticAPI\LatLng;
-use \DantSu\OpenStreetMapStaticAPI\Polygon;
-use \DantSu\OpenStreetMapStaticAPI\Markers;
+use \Wavelog\StaticMapImage\OpenStreetMap;
+use \Wavelog\StaticMapImage\LatLng;
+use \Wavelog\StaticMapImage\Polygon;
+use \Wavelog\StaticMapImage\Markers;
 
 \header('Content-type: image/png');
 (new OpenStreetMap(new LatLng(44.351933, 2.568113), 17, 600, 400))
@@ -65,10 +65,10 @@ use \DantSu\OpenStreetMapStaticAPI\Markers;
 `$padding` sets the amount of padding in the borders of the map that shouldn't be accounted for when setting the view to fit bounds. This can be positive or negative according to your needs.
 
 ```php
-use \DantSu\OpenStreetMapStaticAPI\OpenStreetMap;
-use \DantSu\OpenStreetMapStaticAPI\LatLng;
-use \DantSu\OpenStreetMapStaticAPI\Polygon;
-use \DantSu\OpenStreetMapStaticAPI\Markers;
+use \Wavelog\StaticMapImage\OpenStreetMap;
+use \Wavelog\StaticMapImage\LatLng;
+use \Wavelog\StaticMapImage\Polygon;
+use \Wavelog\StaticMapImage\Markers;
 
 \header('Content-type: image/png');
 (new OpenStreetMap(new LatLng(0, 0), 0, 600, 400))
@@ -97,15 +97,15 @@ use \DantSu\OpenStreetMapStaticAPI\Markers;
 
 | Class | Description |
 |---    |---          |
-| [Circle](./docs/classes/DantSu/OpenStreetMapStaticAPI/Circle.md) | DantSu\OpenStreetMapStaticAPI\Circle draw circle on the map.|
-| [LatLng](./docs/classes/DantSu/OpenStreetMapStaticAPI/LatLng.md) | DantSu\OpenStreetMapStaticAPI\LatLng define latitude and longitude for map, lines, markers.|
-| [Line](./docs/classes/DantSu/OpenStreetMapStaticAPI/Line.md) | DantSu\OpenStreetMapStaticAPI\Line draw line on the map.|
-| [MapData](./docs/classes/DantSu/OpenStreetMapStaticAPI/MapData.md) | DantSu\OpenStreetMapStaticAPI\MapData convert latitude and longitude to image pixel position.|
-| [Markers](./docs/classes/DantSu/OpenStreetMapStaticAPI/Markers.md) | DantSu\OpenStreetMapStaticAPI\Markers display markers on the map.|
-| [OpenStreetMap](./docs/classes/DantSu/OpenStreetMapStaticAPI/OpenStreetMap.md) | DantSu\OpenStreetMapStaticAPI\OpenStreetMap is a PHP library created for easily get static image from OpenStreetMap with markers, lines, polygons and circles.|
-| [Polygon](./docs/classes/DantSu/OpenStreetMapStaticAPI/Polygon.md) | DantSu\OpenStreetMapStaticAPI\Polygon draw polygon on the map.|
-| [TileLayer](./docs/classes/DantSu/OpenStreetMapStaticAPI/TileLayer.md) | DantSu\OpenStreetMapStaticAPI\TileLayer define tile server url and related configuration|
-| [XY](./docs/classes/DantSu/OpenStreetMapStaticAPI/XY.md) | DantSu\OpenStreetMapStaticAPI\XY define X and Y pixel position for map, lines, markers.|
+| [Circle](./docs/classes/DantSu/OpenStreetMapStaticAPI/Circle.md) | Wavelog\StaticMapImage\Circle draw circle on the map.|
+| [LatLng](./docs/classes/DantSu/OpenStreetMapStaticAPI/LatLng.md) | Wavelog\StaticMapImage\LatLng define latitude and longitude for map, lines, markers.|
+| [Line](./docs/classes/DantSu/OpenStreetMapStaticAPI/Line.md) | Wavelog\StaticMapImage\Line draw line on the map.|
+| [MapData](./docs/classes/DantSu/OpenStreetMapStaticAPI/MapData.md) | Wavelog\StaticMapImage\MapData convert latitude and longitude to image pixel position.|
+| [Markers](./docs/classes/DantSu/OpenStreetMapStaticAPI/Markers.md) | Wavelog\StaticMapImage\Markers display markers on the map.|
+| [OpenStreetMap](./docs/classes/DantSu/OpenStreetMapStaticAPI/OpenStreetMap.md) | Wavelog\StaticMapImage\OpenStreetMap is a PHP library created for easily get static image from OpenStreetMap with markers, lines, polygons and circles.|
+| [Polygon](./docs/classes/DantSu/OpenStreetMapStaticAPI/Polygon.md) | Wavelog\StaticMapImage\Polygon draw polygon on the map.|
+| [TileLayer](./docs/classes/DantSu/OpenStreetMapStaticAPI/TileLayer.md) | Wavelog\StaticMapImage\TileLayer define tile server url and related configuration|
+| [XY](./docs/classes/DantSu/OpenStreetMapStaticAPI/XY.md) | Wavelog\StaticMapImage\XY define X and Y pixel position for map, lines, markers.|
 
 
 ## Contributing

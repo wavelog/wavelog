@@ -1,15 +1,15 @@
 <?php
 
-namespace DantSu\OpenStreetMapStaticAPI;
+namespace Wavelog\StaticMapImage;
 
 
-use DantSu\OpenStreetMapStaticAPI\Interfaces\Draw;
+use Wavelog\StaticMapImage\Interfaces\Draw;
 use DantSu\PHPImageEditor\Image;
 
 /**
- * DantSu\OpenStreetMapStaticAPI\Polygon draw polygon on the map.
+ * Wavelog\StaticMapImage\Polygon draw polygon on the map.
  *
- * @package DantSu\OpenStreetMapStaticAPI
+ * @package Wavelog\StaticMapImage
  * @author Franck Alary
  * @access public
  * @see https://github.com/DantSu/php-osm-static-api Github page of this project
