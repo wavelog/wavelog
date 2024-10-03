@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-10-03 13:41+0000\n"
-"PO-Revision-Date: 2024-09-26 03:18+0000\n"
-"Last-Translator: Jian ke <bg8ixz@hotmail.com>\n"
+"POT-Creation-Date: 2024-10-01 15:11+0000\n"
+"PO-Revision-Date: 2024-10-02 16:43+0000\n"
+"Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
 "org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.7.1\n"
+"X-Generator: Weblate 5.7.2\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -61,8 +61,8 @@ msgstr ""
 #: application/controllers/Lookup.php:17 application/controllers/Lotw.php:44
 #: application/controllers/Lotw.php:76 application/controllers/Lotw.php:103
 #: application/controllers/Lotw.php:378 application/controllers/Lotw.php:401
-#: application/controllers/Lotw.php:724 application/controllers/Lotw.php:828
-#: application/controllers/Lotw.php:836 application/controllers/Mode.php:15
+#: application/controllers/Lotw.php:722 application/controllers/Lotw.php:826
+#: application/controllers/Lotw.php:834 application/controllers/Mode.php:15
 #: application/controllers/Notes.php:10 application/controllers/Options.php:15
 #: application/controllers/Oqrs.php:15 application/controllers/Qrbcalc.php:13
 #: application/controllers/Qrz.php:273 application/controllers/Qsl.php:12
@@ -112,6 +112,8 @@ msgstr ""
 #: application/controllers/User.php:762 application/controllers/User.php:1045
 #: application/controllers/User.php:1247
 #: application/controllers/User_options.php:9
+#: application/controllers/Lotw.php:724 application/controllers/Lotw.php:828
+#: application/controllers/Lotw.php:836
 msgid "You're not allowed to do that!"
 msgstr "您不能这么做！"
 
@@ -726,7 +728,7 @@ msgstr "eQSL 导入信息"
 
 #: application/controllers/Eqsl.php:151
 msgid "eQSL Nicknames in Station Profiles aren't defined!"
-msgstr ""
+msgstr "未在台站设置中配置 eQSL Nicknames！"
 
 #: application/controllers/Eqsl.php:158
 msgid "eQSL QSO Upload"
@@ -734,7 +736,7 @@ msgstr "eQSL QSO 上传"
 
 #: application/controllers/Eqsl.php:170
 msgid "You have not defined your eQSL.cc credentials!"
-msgstr ""
+msgstr "您未设置 eQSL 的账户信息！"
 
 #: application/controllers/Eqsl.php:429
 msgid "eQSL Tools"
@@ -1493,31 +1495,33 @@ msgstr ""
 "文件 %s 中未找到呼号证书，如果文件名包含了 'key-only' 则此文件大概率是呼号证"
 "书的申请文件，LoTW 的工作人员依此来发放正式的呼号证书。"
 
-#: application/controllers/Lotw.php:619
+#: application/controllers/Lotw.php:617 application/controllers/Lotw.php:619
 msgid "LoTW ADIF Information"
 msgstr "LoTW ADIF 信息"
 
-#: application/controllers/Lotw.php:731
+#: application/controllers/Lotw.php:729 application/controllers/Lotw.php:731
 msgid "LoTW ADIF Import"
 msgstr "LoTW ADIF 导入"
 
+#: application/controllers/Lotw.php:756 application/controllers/Lotw.php:869
 #: application/controllers/Lotw.php:758 application/controllers/Lotw.php:871
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "未配置 LoTW 登录信息！"
 
-#: application/controllers/Lotw.php:838
+#: application/controllers/Lotw.php:836 application/controllers/Lotw.php:838
 msgid "LoTW .TQ8 Upload"
 msgstr "LoTW .TQ8 导入"
 
-#: application/controllers/Lotw.php:916
+#: application/controllers/Lotw.php:914 application/controllers/Lotw.php:916
 msgid "Your ARRL username and/or password is incorrect."
 msgstr "LoTW 用户名/密码错误。"
 
+#: application/controllers/Lotw.php:933 application/controllers/Lotw.php:938
 #: application/controllers/Lotw.php:935 application/controllers/Lotw.php:940
 msgid "LoTW .TQ8 Sent"
 msgstr "LoTW .TQ8 已发送"
 
-#: application/controllers/Lotw.php:947
+#: application/controllers/Lotw.php:945 application/controllers/Lotw.php:947
 msgid "LoTW .TQ8 Not Sent"
 msgstr "LoTW .TQ8 未发送"
 
@@ -2449,74 +2453,71 @@ msgstr "HRDlog：无 QSO 可供上传，台站呼号为： "
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog：无台站配置信息。"
 
-#: application/models/Logbook_model.php:3627
+#: application/models/Logbook_model.php:3551
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
-msgstr ""
+msgstr "导入 QSO 时出现错误：本台呼号 %s 对方呼号 %s %s，已跳过"
 
-#: application/models/Logbook_model.php:3628
+#: application/models/Logbook_model.php:3552
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
-msgstr ""
+msgstr "请查看 ADIF 错误提示 %s。"
 
-#: application/models/Logbook_model.php:3640
-msgid "QSO on"
-msgstr ""
-
-#: application/models/Logbook_model.php:3640
-msgid ""
-"You tried to import a QSO without any given CALL. This QSO wasn't imported. "
-"It's invalid"
-msgstr ""
-
-#: application/models/Logbook_model.php:3936
+#: application/models/Logbook_model.php:3854
 msgid "the qslrdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "qslrdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:3947
+#: application/models/Logbook_model.php:3865
 msgid "the qslsdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "qslsdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:3991
+#: application/models/Logbook_model.php:3909
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "clublog_qso_upload_date 字段错误（ YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4011
+#: application/models/Logbook_model.php:3929
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "the lotw_qslrdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4030
+#: application/models/Logbook_model.php:3948
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "lotw_qslsdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4294
+#: application/models/Logbook_model.php:4212
 msgid "Duplicate for"
-msgstr ""
+msgstr "内容重复"
 
+#: application/models/Logbook_model.php:4273
 #: application/models/Logbook_model.php:4355
 msgid "QSO could not be matched"
 msgstr "QSO 无法匹配"
 
+#: application/models/Logbook_model.php:4279
 #: application/models/Logbook_model.php:4361
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "已经通过 LoTW/Clublog/eQSL/竞赛 确认"
 
+#: application/models/Logbook_model.php:4284
 #: application/models/Logbook_model.php:4366
 msgid "confirmed by award manager"
 msgstr "已经通过奖项管理员确认"
 
+#: application/models/Logbook_model.php:4287
 #: application/models/Logbook_model.php:4369
 msgid "confirmed by cross-check of DCL data"
 msgstr "已经通过 DCL 数据交叉检查确认"
 
+#: application/models/Logbook_model.php:4290
 #: application/models/Logbook_model.php:4372
 msgid "confirmation pending"
 msgstr "等待确认"
 
+#: application/models/Logbook_model.php:4293
 #: application/models/Logbook_model.php:4375
 msgid "unconfirmed"
 msgstr "未确认"
 
+#: application/models/Logbook_model.php:4296
 #: application/models/Logbook_model.php:4378
 msgid "unknown"
 msgstr "未知"
@@ -3544,13 +3545,13 @@ msgstr "已跳过重复项。"
 
 #: application/views/adif/import_success.php:24
 msgid "Import details / possible problems"
-msgstr ""
+msgstr "导入详情 / 存在错误"
 
 #: application/views/adif/import_success.php:25
 msgid ""
 "You might have ADIF errors, the QSOs have still been added. Please check the "
 "following information:"
-msgstr ""
+msgstr "ADIF 可能存在错误，但 QSO 已成功添加，请查看如下信息："
 
 #: application/views/adif/mark_lotw.php:12
 #: application/views/hrdlog/mark_hrdlog.php:12
@@ -4335,13 +4336,13 @@ msgstr "该地图仅显示了 SAT 上有效的 QSO。"
 
 #: application/views/awards/gridmaster/index.php:13
 msgid "Gridmaster Award"
-msgstr ""
+msgstr "Gridmaster 奖"
 
 #: application/views/awards/gridmaster/index.php:14
 msgid ""
 "The Gridmaster Award was originally designed for the 488 gridsquares to be "
 "worked in the USA."
-msgstr ""
+msgstr "Gridmaster 奖用于表彰成功通联全美 488 个网格的人。"
 
 #: application/views/awards/gridmaster/index.php:15
 msgid ""
@@ -4349,6 +4350,7 @@ msgid ""
 "award but just showing the grids which were worked according to the US "
 "Gridmaster Award rules for this DXCC."
 msgstr ""
+"地图上显示特定 DXCC 的网格，Gridmaster 奖不会将地区的网格纳入表彰范围。"
 
 #: application/views/awards/helvetia/index.php:3
 msgctxt "Switzerland Canton"
@@ -11744,6 +11746,16 @@ msgstr "您的呼号："
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "提交请求"
+
+#: application/models/Logbook_model.php:3640
+msgid "QSO on"
+msgstr ""
+
+#: application/models/Logbook_model.php:3640
+msgid ""
+"You tried to import a QSO without any given CALL. This QSO wasn't imported. "
+"It's invalid"
+msgstr ""
 
 #~ msgid "ADIF Errors"
 #~ msgstr "ADIF 文件错误"

@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-10-03 13:41+0000\n"
-"PO-Revision-Date: 2024-09-17 03:35+0000\n"
+"POT-Creation-Date: 2024-09-30 15:32+0000\n"
+"PO-Revision-Date: 2024-10-01 09:20+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ru/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.7.1\n"
+"X-Generator: Weblate 5.7.2\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -50,10 +50,10 @@ msgstr ""
 #: application/controllers/Dxcalendar.php:8
 #: application/controllers/Dxcluster.php:9 application/controllers/Eqsl.php:23
 #: application/controllers/Eqsl.php:47 application/controllers/Eqsl.php:144
-#: application/controllers/Eqsl.php:228 application/controllers/Eqsl.php:252
-#: application/controllers/Eqsl.php:291 application/controllers/Eqsl.php:358
-#: application/controllers/Eqsl.php:425 application/controllers/Eqsl.php:441
-#: application/controllers/Eqsl.php:502 application/controllers/Hamsat.php:13
+#: application/controllers/Eqsl.php:223 application/controllers/Eqsl.php:247
+#: application/controllers/Eqsl.php:286 application/controllers/Eqsl.php:353
+#: application/controllers/Eqsl.php:420 application/controllers/Eqsl.php:436
+#: application/controllers/Eqsl.php:497 application/controllers/Hamsat.php:13
 #: application/controllers/Kmlexport.php:18
 #: application/controllers/Kmlexport.php:33
 #: application/controllers/Labels.php:26
@@ -61,8 +61,8 @@ msgstr ""
 #: application/controllers/Lookup.php:17 application/controllers/Lotw.php:44
 #: application/controllers/Lotw.php:76 application/controllers/Lotw.php:103
 #: application/controllers/Lotw.php:378 application/controllers/Lotw.php:401
-#: application/controllers/Lotw.php:724 application/controllers/Lotw.php:828
-#: application/controllers/Lotw.php:836 application/controllers/Mode.php:15
+#: application/controllers/Lotw.php:722 application/controllers/Lotw.php:826
+#: application/controllers/Lotw.php:834 application/controllers/Mode.php:15
 #: application/controllers/Notes.php:10 application/controllers/Options.php:15
 #: application/controllers/Oqrs.php:15 application/controllers/Qrbcalc.php:13
 #: application/controllers/Qrz.php:273 application/controllers/Qsl.php:12
@@ -112,6 +112,11 @@ msgstr ""
 #: application/controllers/User.php:762 application/controllers/User.php:1045
 #: application/controllers/User.php:1247
 #: application/controllers/User_options.php:9
+#: application/controllers/Eqsl.php:228 application/controllers/Eqsl.php:252
+#: application/controllers/Eqsl.php:291 application/controllers/Eqsl.php:358
+#: application/controllers/Eqsl.php:425 application/controllers/Eqsl.php:441
+#: application/controllers/Eqsl.php:502 application/controllers/Lotw.php:724
+#: application/controllers/Lotw.php:828 application/controllers/Lotw.php:836
 msgid "You're not allowed to do that!"
 msgstr "Вам нельзя это делать!"
 
@@ -726,31 +731,23 @@ msgstr "импорт eQSL"
 msgid "eQSL Import Information"
 msgstr "информация для импорта eQSL"
 
-#: application/controllers/Eqsl.php:151
-msgid "eQSL Nicknames in Station Profiles aren't defined!"
-msgstr ""
-
 #: application/controllers/Eqsl.php:158
 msgid "eQSL QSO Upload"
 msgstr "загрузка QSO в eQSL"
 
-#: application/controllers/Eqsl.php:170
-msgid "You have not defined your eQSL.cc credentials!"
-msgstr ""
-
-#: application/controllers/Eqsl.php:429
+#: application/controllers/Eqsl.php:424 application/controllers/Eqsl.php:429
 msgid "eQSL Tools"
 msgstr "инструменты eQSL"
 
-#: application/controllers/Eqsl.php:477
+#: application/controllers/Eqsl.php:472 application/controllers/Eqsl.php:477
 msgid " / Errors: "
 msgstr " / Ошибки: "
 
-#: application/controllers/Eqsl.php:477
+#: application/controllers/Eqsl.php:472 application/controllers/Eqsl.php:477
 msgid "Successfully downloaded: "
 msgstr "Успешно скачано: "
 
-#: application/controllers/Eqsl.php:486
+#: application/controllers/Eqsl.php:481 application/controllers/Eqsl.php:486
 msgid "eQSL Card Image Download"
 msgstr "скачать изображения eQSL"
 
@@ -1503,31 +1500,33 @@ msgstr ""
 "В файле %s не найдено сертификата. Если имя файла содержит 'key-only', это "
 "обычно запрос на сертификат, который еще не обработан LoTW."
 
-#: application/controllers/Lotw.php:619
+#: application/controllers/Lotw.php:617 application/controllers/Lotw.php:619
 msgid "LoTW ADIF Information"
 msgstr "LoTW. Информация ADIF"
 
-#: application/controllers/Lotw.php:731
+#: application/controllers/Lotw.php:729 application/controllers/Lotw.php:731
 msgid "LoTW ADIF Import"
 msgstr "LoTW. Импорт ADIF"
 
+#: application/controllers/Lotw.php:756 application/controllers/Lotw.php:869
 #: application/controllers/Lotw.php:758 application/controllers/Lotw.php:871
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "Вы не указали свои учетные данные ARRL LoTW!"
 
-#: application/controllers/Lotw.php:838
+#: application/controllers/Lotw.php:836 application/controllers/Lotw.php:838
 msgid "LoTW .TQ8 Upload"
 msgstr "LoTW. TQ8 загрузка"
 
-#: application/controllers/Lotw.php:916
+#: application/controllers/Lotw.php:914 application/controllers/Lotw.php:916
 msgid "Your ARRL username and/or password is incorrect."
 msgstr "Ваше имя пользователя и/или пароль ARRL неверны."
 
+#: application/controllers/Lotw.php:933 application/controllers/Lotw.php:938
 #: application/controllers/Lotw.php:935 application/controllers/Lotw.php:940
 msgid "LoTW .TQ8 Sent"
 msgstr "LoTW. TQ8 загружен"
 
-#: application/controllers/Lotw.php:947
+#: application/controllers/Lotw.php:945 application/controllers/Lotw.php:947
 msgid "LoTW .TQ8 Not Sent"
 msgstr "LoTW. TQ8 не загружен"
 
@@ -2449,19 +2448,23 @@ msgctxt "Division Name (States in various countries)."
 msgid "City / Ku / Gun"
 msgstr "Город / Ku / Gun"
 
+#: application/models/Eqslmethods_model.php:281
 #: application/models/Eqslmethods_model.php:285
 msgid "Your eQSL username and/or password is incorrect."
 msgstr "Ваше имя пользователя и/или пароль для eQSL неверны."
 
+#: application/models/Eqslmethods_model.php:287
 #: application/models/Eqslmethods_model.php:291
 msgid "Something went wrong with eQSL.cc!"
 msgstr "С eQSL.cc что-то пошло не так!"
 
+#: application/models/Eqslmethods_model.php:303
 #: application/models/Eqslmethods_model.php:307
 msgid "eQSL.cc is experiencing issues. Please try exporting QSOs later."
 msgstr ""
 "eQSL.cc испытывает проблемы. Пожалуйста, попробуйте экспортировать QSO позже."
 
+#: application/models/Eqslmethods_model.php:309
 #: application/models/Eqslmethods_model.php:313
 msgid ""
 "There was an error in one of the QSOs. You might want to manually upload "
@@ -2470,6 +2473,7 @@ msgstr ""
 "При загрузке одного из QSO произошла ошибка. Возможно, вам стоит произвести "
 "загрузку вручную."
 
+#: application/models/Eqslmethods_model.php:315
 #: application/models/Eqslmethods_model.php:319
 msgid ""
 "It seems that the eQSL site has changed. Please open up an issue on GitHub."
@@ -2490,74 +2494,85 @@ msgstr "HRDlog: на найдены QSO для загруки для позыв�
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: не найдены профили QTH с данными входя на HRDlog."
 
-#: application/models/Logbook_model.php:3627
+#: application/models/Logbook_model.php:3542
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
-msgstr ""
+msgstr "Неправильный позывной %s при импорте QSO с %s для %s: ПРОПУЩЕНО"
 
-#: application/models/Logbook_model.php:3628
+#: application/models/Logbook_model.php:3543
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
-msgstr ""
+msgstr "Проверьте %s на наличие подсказок об ошибках в файлах ADIF."
 
-#: application/models/Logbook_model.php:3640
-msgid "QSO on"
-msgstr ""
-
-#: application/models/Logbook_model.php:3640
-msgid ""
-"You tried to import a QSO without any given CALL. This QSO wasn't imported. "
-"It's invalid"
-msgstr ""
-
-#: application/models/Logbook_model.php:3936
+#: application/models/Logbook_model.php:3845
 msgid "the qslrdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "дата получения QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:3947
+#: application/models/Logbook_model.php:3856
 msgid "the qslsdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "дата отправки QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:3991
+#: application/models/Logbook_model.php:3900
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "дата загрузки QSO в Clublog недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:4011
+#: application/models/Logbook_model.php:3920
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "дата получения LoTW QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:4030
+#: application/models/Logbook_model.php:3939
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "дата отправки LoTW QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:4294
+#: application/models/Logbook_model.php:4197
 msgid "Duplicate for"
-msgstr ""
+msgstr "Дубликат для"
 
+#: application/models/Logbook_model.php:4258
+#: application/models/Logbook_model.php:4269
+#: application/models/Logbook_model.php:4273
 #: application/models/Logbook_model.php:4355
 msgid "QSO could not be matched"
 msgstr "QSO не может быть сопоставлено"
 
+#: application/models/Logbook_model.php:4264
+#: application/models/Logbook_model.php:4275
+#: application/models/Logbook_model.php:4279
 #: application/models/Logbook_model.php:4361
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "подтверждено LoTW/Clublog/eQSL/Contest"
 
+#: application/models/Logbook_model.php:4269
+#: application/models/Logbook_model.php:4280
+#: application/models/Logbook_model.php:4284
 #: application/models/Logbook_model.php:4366
 msgid "confirmed by award manager"
 msgstr "подтверждено менеджером диплома"
 
+#: application/models/Logbook_model.php:4272
+#: application/models/Logbook_model.php:4283
+#: application/models/Logbook_model.php:4287
 #: application/models/Logbook_model.php:4369
 msgid "confirmed by cross-check of DCL data"
 msgstr "подтверждено кросс-проверкой с данными DCL"
 
+#: application/models/Logbook_model.php:4275
+#: application/models/Logbook_model.php:4286
+#: application/models/Logbook_model.php:4290
 #: application/models/Logbook_model.php:4372
 msgid "confirmation pending"
 msgstr "подтверждение ожидается"
 
+#: application/models/Logbook_model.php:4278
+#: application/models/Logbook_model.php:4289
+#: application/models/Logbook_model.php:4293
 #: application/models/Logbook_model.php:4375
 msgid "unconfirmed"
 msgstr "не подтверждено"
 
+#: application/models/Logbook_model.php:4281
+#: application/models/Logbook_model.php:4292
+#: application/models/Logbook_model.php:4296
 #: application/models/Logbook_model.php:4378
 msgid "unknown"
 msgstr "неизвестно"
@@ -3603,13 +3618,15 @@ msgstr "Дубликаты игнорированы."
 
 #: application/views/adif/import_success.php:24
 msgid "Import details / possible problems"
-msgstr ""
+msgstr "Детали импорта / возможные проблемы"
 
 #: application/views/adif/import_success.php:25
 msgid ""
 "You might have ADIF errors, the QSOs have still been added. Please check the "
 "following information:"
 msgstr ""
+"Возможно, у вас есть ошибки в ADIF, но QSO все равно были добавлены. "
+"Пожалуйста, проверьте следующую информацию:"
 
 #: application/views/adif/mark_lotw.php:12
 #: application/views/hrdlog/mark_hrdlog.php:12
@@ -4422,13 +4439,15 @@ msgstr "Эта карта отображает только QSO, проведё�
 
 #: application/views/awards/gridmaster/index.php:13
 msgid "Gridmaster Award"
-msgstr ""
+msgstr "Диплом Gridmaster"
 
 #: application/views/awards/gridmaster/index.php:14
 msgid ""
 "The Gridmaster Award was originally designed for the 488 gridsquares to be "
 "worked in the USA."
 msgstr ""
+"Диплом Gridmaster изначально был разработан для работы с 488 квадратами в "
+"США."
 
 #: application/views/awards/gridmaster/index.php:15
 msgid ""
@@ -4436,6 +4455,9 @@ msgid ""
 "award but just showing the grids which were worked according to the US "
 "Gridmaster Award rules for this DXCC."
 msgstr ""
+"На этой карте показаны квадраты для конкретного DXCC. Это не официальный "
+"диплом, а просто отображение квадратов, которые были отработаны в "
+"соответствии с правилами диплома US Gridmaster для этого DXCC."
 
 #: application/views/awards/helvetia/index.php:3
 msgctxt "Switzerland Canton"
@@ -6323,7 +6345,7 @@ msgstr "Всего QSO на этом инстансе"
 
 #: application/views/debug/index.php:76
 msgid "Total User"
-msgstr ""
+msgstr "Всего пользователей"
 
 #: application/views/debug/index.php:84
 msgid "Server Information"
@@ -12150,6 +12172,24 @@ msgstr "Ваш позывной:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Отправить запрос"
+
+#: application/controllers/Eqsl.php:151
+msgid "eQSL Nicknames in Station Profiles aren't defined!"
+msgstr ""
+
+#: application/controllers/Eqsl.php:170
+msgid "You have not defined your eQSL.cc credentials!"
+msgstr ""
+
+#: application/models/Logbook_model.php:3640
+msgid "QSO on"
+msgstr ""
+
+#: application/models/Logbook_model.php:3640
+msgid ""
+"You tried to import a QSO without any given CALL. This QSO wasn't imported. "
+"It's invalid"
+msgstr ""
 
 #~ msgid "ADIF Errors"
 #~ msgstr "Ошибки ADIF"
