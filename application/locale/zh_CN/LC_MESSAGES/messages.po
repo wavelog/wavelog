@@ -112,6 +112,8 @@ msgstr ""
 #: application/controllers/User.php:762 application/controllers/User.php:1045
 #: application/controllers/User.php:1247
 #: application/controllers/User_options.php:9
+#: application/controllers/Lotw.php:724 application/controllers/Lotw.php:828
+#: application/controllers/Lotw.php:836
 msgid "You're not allowed to do that!"
 msgstr "您不能这么做！"
 
@@ -1493,31 +1495,33 @@ msgstr ""
 "文件 %s 中未找到呼号证书，如果文件名包含了 'key-only' 则此文件大概率是呼号证"
 "书的申请文件，LoTW 的工作人员依此来发放正式的呼号证书。"
 
-#: application/controllers/Lotw.php:617
+#: application/controllers/Lotw.php:617 application/controllers/Lotw.php:619
 msgid "LoTW ADIF Information"
 msgstr "LoTW ADIF 信息"
 
-#: application/controllers/Lotw.php:729
+#: application/controllers/Lotw.php:729 application/controllers/Lotw.php:731
 msgid "LoTW ADIF Import"
 msgstr "LoTW ADIF 导入"
 
 #: application/controllers/Lotw.php:756 application/controllers/Lotw.php:869
+#: application/controllers/Lotw.php:758 application/controllers/Lotw.php:871
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "未配置 LoTW 登录信息！"
 
-#: application/controllers/Lotw.php:836
+#: application/controllers/Lotw.php:836 application/controllers/Lotw.php:838
 msgid "LoTW .TQ8 Upload"
 msgstr "LoTW .TQ8 导入"
 
-#: application/controllers/Lotw.php:914
+#: application/controllers/Lotw.php:914 application/controllers/Lotw.php:916
 msgid "Your ARRL username and/or password is incorrect."
 msgstr "LoTW 用户名/密码错误。"
 
 #: application/controllers/Lotw.php:933 application/controllers/Lotw.php:938
+#: application/controllers/Lotw.php:935 application/controllers/Lotw.php:940
 msgid "LoTW .TQ8 Sent"
 msgstr "LoTW .TQ8 已发送"
 
-#: application/controllers/Lotw.php:945
+#: application/controllers/Lotw.php:945 application/controllers/Lotw.php:947
 msgid "LoTW .TQ8 Not Sent"
 msgstr "LoTW .TQ8 未发送"
 
@@ -2484,30 +2488,37 @@ msgid "Duplicate for"
 msgstr "内容重复"
 
 #: application/models/Logbook_model.php:4273
+#: application/models/Logbook_model.php:4355
 msgid "QSO could not be matched"
 msgstr "QSO 无法匹配"
 
 #: application/models/Logbook_model.php:4279
+#: application/models/Logbook_model.php:4361
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "已经通过 LoTW/Clublog/eQSL/竞赛 确认"
 
 #: application/models/Logbook_model.php:4284
+#: application/models/Logbook_model.php:4366
 msgid "confirmed by award manager"
 msgstr "已经通过奖项管理员确认"
 
 #: application/models/Logbook_model.php:4287
+#: application/models/Logbook_model.php:4369
 msgid "confirmed by cross-check of DCL data"
 msgstr "已经通过 DCL 数据交叉检查确认"
 
 #: application/models/Logbook_model.php:4290
+#: application/models/Logbook_model.php:4372
 msgid "confirmation pending"
 msgstr "等待确认"
 
 #: application/models/Logbook_model.php:4293
+#: application/models/Logbook_model.php:4375
 msgid "unconfirmed"
 msgstr "未确认"
 
 #: application/models/Logbook_model.php:4296
+#: application/models/Logbook_model.php:4378
 msgid "unknown"
 msgstr "未知"
 
@@ -4338,7 +4349,8 @@ msgid ""
 "On this map the grids for the particular DXCC are shown. This is no official "
 "award but just showing the grids which were worked according to the US "
 "Gridmaster Award rules for this DXCC."
-msgstr "地图上显示特定 DXCC 的网格，Gridmaster 奖不会将地区的网格纳入表彰范围。"
+msgstr ""
+"地图上显示特定 DXCC 的网格，Gridmaster 奖不会将地区的网格纳入表彰范围。"
 
 #: application/views/awards/helvetia/index.php:3
 msgctxt "Switzerland Canton"
@@ -11734,6 +11746,16 @@ msgstr "您的呼号："
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "提交请求"
+
+#: application/models/Logbook_model.php:3640
+msgid "QSO on"
+msgstr ""
+
+#: application/models/Logbook_model.php:3640
+msgid ""
+"You tried to import a QSO without any given CALL. This QSO wasn't imported. "
+"It's invalid"
+msgstr ""
 
 #~ msgid "ADIF Errors"
 #~ msgstr "ADIF 文件错误"

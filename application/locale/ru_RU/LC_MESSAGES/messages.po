@@ -115,7 +115,8 @@ msgstr ""
 #: application/controllers/Eqsl.php:228 application/controllers/Eqsl.php:252
 #: application/controllers/Eqsl.php:291 application/controllers/Eqsl.php:358
 #: application/controllers/Eqsl.php:425 application/controllers/Eqsl.php:441
-#: application/controllers/Eqsl.php:502
+#: application/controllers/Eqsl.php:502 application/controllers/Lotw.php:724
+#: application/controllers/Lotw.php:828 application/controllers/Lotw.php:836
 msgid "You're not allowed to do that!"
 msgstr "Вам нельзя это делать!"
 
@@ -1499,31 +1500,33 @@ msgstr ""
 "В файле %s не найдено сертификата. Если имя файла содержит 'key-only', это "
 "обычно запрос на сертификат, который еще не обработан LoTW."
 
-#: application/controllers/Lotw.php:617
+#: application/controllers/Lotw.php:617 application/controllers/Lotw.php:619
 msgid "LoTW ADIF Information"
 msgstr "LoTW. Информация ADIF"
 
-#: application/controllers/Lotw.php:729
+#: application/controllers/Lotw.php:729 application/controllers/Lotw.php:731
 msgid "LoTW ADIF Import"
 msgstr "LoTW. Импорт ADIF"
 
 #: application/controllers/Lotw.php:756 application/controllers/Lotw.php:869
+#: application/controllers/Lotw.php:758 application/controllers/Lotw.php:871
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "Вы не указали свои учетные данные ARRL LoTW!"
 
-#: application/controllers/Lotw.php:836
+#: application/controllers/Lotw.php:836 application/controllers/Lotw.php:838
 msgid "LoTW .TQ8 Upload"
 msgstr "LoTW. TQ8 загрузка"
 
-#: application/controllers/Lotw.php:914
+#: application/controllers/Lotw.php:914 application/controllers/Lotw.php:916
 msgid "Your ARRL username and/or password is incorrect."
 msgstr "Ваше имя пользователя и/или пароль ARRL неверны."
 
 #: application/controllers/Lotw.php:933 application/controllers/Lotw.php:938
+#: application/controllers/Lotw.php:935 application/controllers/Lotw.php:940
 msgid "LoTW .TQ8 Sent"
 msgstr "LoTW. TQ8 загружен"
 
-#: application/controllers/Lotw.php:945
+#: application/controllers/Lotw.php:945 application/controllers/Lotw.php:947
 msgid "LoTW .TQ8 Not Sent"
 msgstr "LoTW. TQ8 не загружен"
 
@@ -2528,42 +2531,49 @@ msgstr "Дубликат для"
 #: application/models/Logbook_model.php:4258
 #: application/models/Logbook_model.php:4269
 #: application/models/Logbook_model.php:4273
+#: application/models/Logbook_model.php:4355
 msgid "QSO could not be matched"
 msgstr "QSO не может быть сопоставлено"
 
 #: application/models/Logbook_model.php:4264
 #: application/models/Logbook_model.php:4275
 #: application/models/Logbook_model.php:4279
+#: application/models/Logbook_model.php:4361
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "подтверждено LoTW/Clublog/eQSL/Contest"
 
 #: application/models/Logbook_model.php:4269
 #: application/models/Logbook_model.php:4280
 #: application/models/Logbook_model.php:4284
+#: application/models/Logbook_model.php:4366
 msgid "confirmed by award manager"
 msgstr "подтверждено менеджером диплома"
 
 #: application/models/Logbook_model.php:4272
 #: application/models/Logbook_model.php:4283
 #: application/models/Logbook_model.php:4287
+#: application/models/Logbook_model.php:4369
 msgid "confirmed by cross-check of DCL data"
 msgstr "подтверждено кросс-проверкой с данными DCL"
 
 #: application/models/Logbook_model.php:4275
 #: application/models/Logbook_model.php:4286
 #: application/models/Logbook_model.php:4290
+#: application/models/Logbook_model.php:4372
 msgid "confirmation pending"
 msgstr "подтверждение ожидается"
 
 #: application/models/Logbook_model.php:4278
 #: application/models/Logbook_model.php:4289
 #: application/models/Logbook_model.php:4293
+#: application/models/Logbook_model.php:4375
 msgid "unconfirmed"
 msgstr "не подтверждено"
 
 #: application/models/Logbook_model.php:4281
 #: application/models/Logbook_model.php:4292
 #: application/models/Logbook_model.php:4296
+#: application/models/Logbook_model.php:4378
 msgid "unknown"
 msgstr "неизвестно"
 
@@ -12169,6 +12179,16 @@ msgstr ""
 
 #: application/controllers/Eqsl.php:170
 msgid "You have not defined your eQSL.cc credentials!"
+msgstr ""
+
+#: application/models/Logbook_model.php:3640
+msgid "QSO on"
+msgstr ""
+
+#: application/models/Logbook_model.php:3640
+msgid ""
+"You tried to import a QSO without any given CALL. This QSO wasn't imported. "
+"It's invalid"
 msgstr ""
 
 #~ msgid "ADIF Errors"
