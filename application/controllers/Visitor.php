@@ -453,27 +453,53 @@ class Visitor extends CI_Controller {
 
 		if (in_array('gd', get_loaded_extensions())) {
 
-			$slug = $this->security->xss_clean($this->uri->segment(3));
-			$qsocount = $this->input->get('qsocount', TRUE) ?? '';
-
-			// if the qso count is not a number, set it to 100 per default
-			if ($qsocount == '' || $qsocount == 0 || $qsocount == NULL || !is_numeric($qsocount)) {
-				$qsocount = 100;
-			}
-
 			if (!$this->load->is_loaded('visitor_model')) {
 				$this->load->model('visitor_model');
 			}
 
-			$image = $this->visitor_model->render_static_map($slug, $qsocount);
+			if (!$this->load->is_loaded('stationsetup_model')) {
+				$this->load->model('stationsetup_model');
+			}
 
-			header('Content-Type: image/jpg');
+			$slug = $this->security->xss_clean($this->uri->segment(3));
+			$qsocount = $this->input->get('qsocount', TRUE) ?? '';
+			$band = $this->input->get('band', TRUE) ?? '';
+			
+			$logbook_id = $this->stationsetup_model->public_slug_exists_logbook_id($slug);
+			if ($logbook_id != false) {
+				// Get associated station locations for mysql queries
+				$logbooks_locations_array = $this->stationsetup_model->get_container_relations($logbook_id);
+
+				if (!$logbooks_locations_array) {
+					show_404(__("Empty Logbook"));
+				}
+			} else {
+				log_message('error', $slug.' has no associated station locations');
+				show_404(__("Unknown Public Page."));
+			}
+
+			// if the qso count is not a number, set it to 100 per default
+			if ($qsocount == 0 || !is_numeric($qsocount)) {
+				$qsocount = 100;
+			}
+
+			$qsos = $this->visitor_model->get_qsos($qsocount, $logbooks_locations_array, $band);
+			
+			$image = $this->visitor_model->render_static_map($qsos);
+
+			header('Content-Type: image/png');
 			// echo $image;
 
-			$image_url = base_url('assets/maps/' . $image);
-			log_message('error', 'Static Map URL: ' . $image_url);
-			// echo '<img src="' . $image_url . '" alt="Static Map" />';
-			readfile($image_url);
+			if ($image == false) {
+				$msg = "Can't create static map image. Something went wrong.";
+				log_message('error', $msg);
+				show_404($msg);
+			} else {
+				$image_url = APPPATH . 'cache/' . $image;
+
+				// echo '<img src="' . $image_url . '" alt="Static Map" />';
+				readfile($image_url);
+			}
 
 		} else {
 			$msg = "Can't create static map image. Extention 'php-gd' is not installed. Install it and restart the webserver.";
@@ -495,8 +521,7 @@ class Visitor extends CI_Controller {
 
 		$this->load->model('stationsetup_model');
         $logbook_id = $this->stationsetup_model->public_slug_exists_logbook_id($slug);
-        if ($logbook_id != false)
-        {
+        if ($logbook_id != false) {
             // Get associated station locations for mysql queries
             $logbooks_locations_array = $this->stationsetup_model->get_container_relations($logbook_id);
 

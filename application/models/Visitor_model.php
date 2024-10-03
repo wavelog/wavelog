@@ -46,8 +46,10 @@ class Visitor_model extends CI_Model {
 		return $this->db->query($sql);
 	}
 
-	public function render_static_map($slug, $qsocount) {
-		// Benötigte Klassen einmal laden
+	public function render_static_map($qsos) {
+
+		// TODO: Enable caching
+
 		$requiredClasses = [
 			'./src/StaticMap/src/OpenStreetMap.php',
 			'./src/StaticMap/src/LatLng.php',
@@ -62,26 +64,33 @@ class Visitor_model extends CI_Model {
 			require_once($class);
 		}
 	
-		// Kartendaten und Standardwerte
-		$centerMap = new \Wavelog\StaticMapImage\LatLng(51.5074, 0.1278); // London als Zentrum
+		// Map data and default values
+		$centerMap = new \Wavelog\StaticMapImage\LatLng(51.5074, 0.1278); // TODO: Set to user's QTH
 		$zoom = 2;
 		$width = 1024;
 		$height = 768;
 		$tileLayer = \Wavelog\StaticMapImage\TileLayer::defaultTileLayer();
 	
-		// Karte erstellen
-		$map = new \Wavelog\StaticMapImage\OpenStreetMap($centerMap, $zoom, $width, $height, $tileLayer);
+		// Create the map
+		$map = new \Wavelog\StaticMapImage\OpenStreetMap($centerMap, $zoom, $width, $height, $tileLayer); // TODO: Also allow dark map
 	
-		// Marker hinzufügen
-		$markerPositions = [
-			new \Wavelog\StaticMapImage\LatLng(51.5074, 0.1278),  // London
-			new \Wavelog\StaticMapImage\LatLng(40.7128, -74.0060), // New York
-			new \Wavelog\StaticMapImage\LatLng(35.6895, 139.6917), // Tokyo
-			new \Wavelog\StaticMapImage\LatLng(37.7749, -122.4194), // San Francisco
-			new \Wavelog\StaticMapImage\LatLng(48.8566, 2.3522)    // Paris
-		];
+		if (!$this->load->is_loaded('Qra')) {
+			$this->load->library('Qra');
+		}
+
+		$markerPositions = [];
+		foreach ($qsos->result('array') as $qso) {
+			if (!empty($qso['COL_GRIDSQUARE'])  || !empty($qso['COL_VUCC_GRIDS'])) {
+				$latlng = $this->qra->qra2latlong($qso['COL_GRIDSQUARE']);
+				$lat = $latlng[0];
+				$lng = $latlng[1];
+				$markerPositions[] = new \Wavelog\StaticMapImage\LatLng($lat, $lng);
+			} else {
+				continue;
+			}
+		}
 	
-		$markers = new \Wavelog\StaticMapImage\Markers('src/StaticMap/src/resources/circle-dot-red.png');
+		$markers = new \Wavelog\StaticMapImage\Markers('src/StaticMap/src/resources/circle-dot-red.png'); // TODO: Use user defined markers
 		$markers->resizeMarker(12, 12);
 		$markers->setAnchor(\Wavelog\StaticMapImage\Markers::ANCHOR_CENTER, \Wavelog\StaticMapImage\Markers::ANCHOR_BOTTOM);
 	
@@ -91,10 +100,14 @@ class Visitor_model extends CI_Model {
 	
 		$map->addMarkers($markers);
 	
-		// Bild generieren und speichern
+		// Generate the image
 		$filename = 'static_map_' . time() . '.png';
-		$map->getImage()->saveJPG('./assets/maps/' . $filename, 100);
-	
-		return $filename;
+		$full_path = APPPATH . 'cache/' . $filename;
+
+		if ($map->getImage()->savePNG($full_path)) {
+			return $filename;
+		} else {
+			return false;
+		}
 	}
 }
