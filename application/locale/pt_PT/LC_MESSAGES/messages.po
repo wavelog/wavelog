@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-10-01 15:11+0000\n"
+"POT-Creation-Date: 2024-10-03 13:41+0000\n"
 "PO-Revision-Date: 2024-09-30 15:32+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
@@ -60,8 +60,8 @@ msgstr ""
 #: application/controllers/Lookup.php:17 application/controllers/Lotw.php:44
 #: application/controllers/Lotw.php:76 application/controllers/Lotw.php:103
 #: application/controllers/Lotw.php:378 application/controllers/Lotw.php:401
-#: application/controllers/Lotw.php:722 application/controllers/Lotw.php:826
-#: application/controllers/Lotw.php:834 application/controllers/Mode.php:15
+#: application/controllers/Lotw.php:724 application/controllers/Lotw.php:828
+#: application/controllers/Lotw.php:836 application/controllers/Mode.php:15
 #: application/controllers/Notes.php:10 application/controllers/Options.php:15
 #: application/controllers/Oqrs.php:15 application/controllers/Qrbcalc.php:13
 #: application/controllers/Qrz.php:273 application/controllers/Qsl.php:12
@@ -1502,31 +1502,31 @@ msgstr ""
 "contiver 'key-only', isto é tipicamente um pedido de certificado que ainda "
 "não foi processado pelo LoTW."
 
-#: application/controllers/Lotw.php:617
+#: application/controllers/Lotw.php:619
 msgid "LoTW ADIF Information"
 msgstr "Informações sobre o ADIF LoTW"
 
-#: application/controllers/Lotw.php:729
+#: application/controllers/Lotw.php:731
 msgid "LoTW ADIF Import"
 msgstr "Importação ADIF LoTW"
 
-#: application/controllers/Lotw.php:756 application/controllers/Lotw.php:869
+#: application/controllers/Lotw.php:758 application/controllers/Lotw.php:871
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr "Não definiu as suas credenciais LoTW da ARRL !"
 
-#: application/controllers/Lotw.php:836
+#: application/controllers/Lotw.php:838
 msgid "LoTW .TQ8 Upload"
 msgstr "Enviar .TQ8 LoTW"
 
-#: application/controllers/Lotw.php:914
+#: application/controllers/Lotw.php:916
 msgid "Your ARRL username and/or password is incorrect."
 msgstr "O seu nome de utilizador e/ou palavra-passe da ARRL está incorreto."
 
-#: application/controllers/Lotw.php:933 application/controllers/Lotw.php:938
+#: application/controllers/Lotw.php:935 application/controllers/Lotw.php:940
 msgid "LoTW .TQ8 Sent"
 msgstr ".TQ8 LoTW enviado"
 
-#: application/controllers/Lotw.php:945
+#: application/controllers/Lotw.php:947
 msgid "LoTW .TQ8 Not Sent"
 msgstr ".TQ8 LoTW não enviado"
 
@@ -2494,66 +2494,76 @@ msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr ""
 "HRDlog: Não foram encontrados perfis de estação com credenciais do HRDlog."
 
-#: application/models/Logbook_model.php:3551
+#: application/models/Logbook_model.php:3627
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 "Indicativo de estação errado %s ao importar QSO com %s para %s: IGNORADO"
 
-#: application/models/Logbook_model.php:3552
+#: application/models/Logbook_model.php:3628
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Verifica %s para dicas sobre erros em ficheiros ADIF."
 
-#: application/models/Logbook_model.php:3854
+#: application/models/Logbook_model.php:3640
+msgid "QSO on"
+msgstr ""
+
+#: application/models/Logbook_model.php:3640
+msgid ""
+"You tried to import a QSO without any given CALL. This QSO wasn't imported. "
+"It's invalid"
+msgstr ""
+
+#: application/models/Logbook_model.php:3936
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "o qslrdate está inválido (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:3865
+#: application/models/Logbook_model.php:3947
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "o qslsdate está inválido (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:3909
+#: application/models/Logbook_model.php:3991
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "o clublog_qso_upload_date está inválido (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:3929
+#: application/models/Logbook_model.php:4011
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "o lotw_qslrdate está inválido (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:3948
+#: application/models/Logbook_model.php:4030
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "o lotw_qslsdate está inválido (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:4212
+#: application/models/Logbook_model.php:4294
 msgid "Duplicate for"
 msgstr "Duplicado para"
 
-#: application/models/Logbook_model.php:4273
+#: application/models/Logbook_model.php:4355
 msgid "QSO could not be matched"
 msgstr "Não há correspondência de contactos"
 
-#: application/models/Logbook_model.php:4279
+#: application/models/Logbook_model.php:4361
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confirmado por LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:4284
+#: application/models/Logbook_model.php:4366
 msgid "confirmed by award manager"
 msgstr "confirmado pelo gestor do diploma"
 
-#: application/models/Logbook_model.php:4287
+#: application/models/Logbook_model.php:4369
 msgid "confirmed by cross-check of DCL data"
 msgstr "confirmado pelo controlo cruzado dos dados da DCL"
 
-#: application/models/Logbook_model.php:4290
+#: application/models/Logbook_model.php:4372
 msgid "confirmation pending"
 msgstr "confirmação pendente"
 
-#: application/models/Logbook_model.php:4293
+#: application/models/Logbook_model.php:4375
 msgid "unconfirmed"
 msgstr "não confirmado"
 
-#: application/models/Logbook_model.php:4296
+#: application/models/Logbook_model.php:4378
 msgid "unknown"
 msgstr "desconhecido"
 
