@@ -11,16 +11,16 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-10-03 13:41+0000\n"
-"PO-Revision-Date: 2024-08-30 05:57+0000\n"
-"Last-Translator: F4JSU <f4jsu.radio@gmail.com>\n"
-"Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/fr/>\n"
+"PO-Revision-Date: 2024-10-03 21:11+0000\n"
+"Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
+"Language-Team: French <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/fr/>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.7\n"
+"X-Generator: Weblate 5.7.2\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -496,7 +496,7 @@ msgstr "Zones ITU"
 #: application/views/awards/wac/index.php:8
 #: application/views/interface_assets/header.php:174
 msgid "Worked All Continents (WAC)"
-msgstr ""
+msgstr "Worked All Continents (WAC)"
 
 #: application/controllers/Backup.php:15 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:284
@@ -681,7 +681,7 @@ msgstr ""
 #: application/controllers/Distancerecords.php:59
 #: application/views/interface_assets/header.php:146
 msgid "Satellite Distance Records"
-msgstr ""
+msgstr "Records de distance par satellite"
 
 #: application/controllers/Distances.php:17
 #: application/views/distances/index.php:5
@@ -701,7 +701,7 @@ msgstr "et bandes"
 
 #: application/controllers/Distances.php:83
 msgid "and propagation"
-msgstr ""
+msgstr "et propagation"
 
 #: application/controllers/Dxatlas.php:19
 #: application/views/interface_assets/header.php:394
@@ -730,7 +730,7 @@ msgstr "eQSL : résultat de l'import"
 
 #: application/controllers/Eqsl.php:151
 msgid "eQSL Nicknames in Station Profiles aren't defined!"
-msgstr ""
+msgstr "Les pseudonymes eQSL dans les profils de station ne sont pas définis !"
 
 #: application/controllers/Eqsl.php:158
 msgid "eQSL QSO Upload"
@@ -738,7 +738,7 @@ msgstr "eQSL : envoi des QSO"
 
 #: application/controllers/Eqsl.php:170
 msgid "You have not defined your eQSL.cc credentials!"
-msgstr ""
+msgstr "Vous n'avez pas défini vos identifiants eQSL.cc !"
 
 #: application/controllers/Eqsl.php:429
 msgid "eQSL Tools"
@@ -1912,7 +1912,7 @@ msgstr "Zones CQ mal enregistrées"
 
 #: application/controllers/Search.php:70
 msgid "Incorrectly logged ITU zones"
-msgstr ""
+msgstr "Zones ITU incorrectement enregistrées"
 
 #: application/controllers/Search.php:82
 msgid ""
@@ -2117,7 +2117,7 @@ msgstr ""
 #: application/views/stationsetup/stationsetup.php:150
 msgctxt "DXCC Select - No DXCC"
 msgid "- NONE - (e.g. /MM, /AM)"
-msgstr ""
+msgstr "- AUCUN - (par ex. /MM, /AM)"
 
 #: application/controllers/Stationsetup.php:462
 msgid "Edit Export Map options"
@@ -2161,7 +2161,7 @@ msgstr "Chronologie"
 #: application/views/interface_assets/header.php:154
 #: application/views/timeplotter/index.php:9
 msgid "Timeplotter"
-msgstr ""
+msgstr "Traceur de temps"
 
 #: application/controllers/Update.php:26
 msgid "Updates"
@@ -2500,45 +2500,49 @@ msgstr "HRDlog : Aucun profil de station avec les identifiants HRDlog trouvé."
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
+"Indicatif d'appel de station incorrect %s lors de l'importation du QSO avec "
+"%s pour %s : IGNORÉ"
 
 #: application/models/Logbook_model.php:3628
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
-msgstr ""
+msgstr "Vérifie %s pour des indices sur les erreurs dans les fichiers ADIF."
 
 #: application/models/Logbook_model.php:3640
 msgid "QSO on"
-msgstr ""
+msgstr "QSO en"
 
 #: application/models/Logbook_model.php:3640
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
 msgstr ""
+"Vous avez essayé d'importer un QSO sans indicatif donné. Ce QSO n'a pas été "
+"importé. Il est invalide"
 
 #: application/models/Logbook_model.php:3936
 msgid "the qslrdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "la qslrdate est invalide (AAAAMMJJ)"
 
 #: application/models/Logbook_model.php:3947
 msgid "the qslsdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "la qslsdate est invalide (AAAAMMJJ)"
 
 #: application/models/Logbook_model.php:3991
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "la clublog_qso_upload_date est invalide (AAAAMMJJ)"
 
 #: application/models/Logbook_model.php:4011
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "la lotw_qslrdate est invalide (AAAAMMJJ)"
 
 #: application/models/Logbook_model.php:4030
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
-msgstr ""
+msgstr "la lotw_qslsdate est invalide (AAAAMMJJ)"
 
 #: application/models/Logbook_model.php:4294
 msgid "Duplicate for"
-msgstr ""
+msgstr "Dupliquer pour"
 
 #: application/models/Logbook_model.php:4355
 msgid "QSO could not be matched"
@@ -2570,11 +2574,11 @@ msgstr "inconnu"
 
 #: application/models/Update_model.php:300
 msgid "Newer release available:"
-msgstr ""
+msgstr "Nouvelle version disponible :"
 
 #: application/models/Update_model.php:304
 msgid "You are running the latest version."
-msgstr ""
+msgstr "Vous utilisez la dernière version."
 
 #: application/views/accumulate/index.php:2
 msgid "Accumulated number of DXCCs worked"
@@ -2766,13 +2770,13 @@ msgstr "Période"
 #: application/views/logbookadvanced/useroptions.php:118
 #: application/views/timeline/index.php:74
 msgid "Propagation"
-msgstr ""
+msgstr "Propagation"
 
 #: application/views/accumulate/index.php:84
 #: application/views/distances/index.php:57
 #: application/views/timeline/index.php:78
 msgid "All but SAT"
-msgstr ""
+msgstr "Tous sauf SAT"
 
 #: application/views/accumulate/index.php:85
 #: application/views/distances/index.php:58
@@ -2792,7 +2796,7 @@ msgstr "Rien/Vide"
 #: application/views/timeline/index.php:80
 msgctxt "Propagation Mode"
 msgid "Aircraft Scatter"
-msgstr ""
+msgstr "Aircraft Scatter"
 
 #: application/views/accumulate/index.php:87 application/views/csv/index.php:96
 #: application/views/distances/index.php:60
@@ -2803,7 +2807,7 @@ msgstr ""
 #: application/views/timeline/index.php:81
 msgctxt "Propagation Mode"
 msgid "Aurora"
-msgstr ""
+msgstr "Aurore"
 
 #: application/views/accumulate/index.php:88 application/views/csv/index.php:97
 #: application/views/distances/index.php:61
@@ -2814,7 +2818,7 @@ msgstr ""
 #: application/views/timeline/index.php:82
 msgctxt "Propagation Mode"
 msgid "Aurora-E"
-msgstr ""
+msgstr "Aurora-E"
 
 #: application/views/accumulate/index.php:89 application/views/csv/index.php:98
 #: application/views/distances/index.php:62
@@ -2825,7 +2829,7 @@ msgstr ""
 #: application/views/timeline/index.php:83
 msgctxt "Propagation Mode"
 msgid "Back scatter"
-msgstr ""
+msgstr "Rétrodiffusion"
 
 #: application/views/accumulate/index.php:90 application/views/csv/index.php:99
 #: application/views/distances/index.php:63
@@ -2869,7 +2873,7 @@ msgstr "Sporadique E"
 #: application/views/timeline/index.php:87
 msgctxt "Propagation Mode"
 msgid "Field Aligned Irregularities"
-msgstr ""
+msgstr "Irrégularités alignées au champ"
 
 #: application/views/accumulate/index.php:94
 #: application/views/csv/index.php:103 application/views/distances/index.php:67
@@ -2891,7 +2895,7 @@ msgstr "F2 Réflexion"
 #: application/views/timeline/index.php:89
 msgctxt "Propagation Mode"
 msgid "Internet-assisted"
-msgstr ""
+msgstr "Assisté par Internet"
 
 #: application/views/accumulate/index.php:96
 #: application/views/csv/index.php:105 application/views/distances/index.php:69
@@ -2913,7 +2917,7 @@ msgstr "Réflexion Ionosphérique"
 #: application/views/timeline/index.php:91
 msgctxt "Propagation Mode"
 msgid "IRLP"
-msgstr ""
+msgstr "IRLP"
 
 #: application/views/accumulate/index.php:98
 #: application/views/csv/index.php:107 application/views/distances/index.php:71
@@ -2935,7 +2939,7 @@ msgstr "Réflexions météorites"
 #: application/views/timeline/index.php:93
 msgctxt "Propagation Mode"
 msgid "Terrestrial or atmospheric repeater or transponder"
-msgstr ""
+msgstr "Relais ou transpondeur terrestre ou atmosphérique"
 
 #: application/views/accumulate/index.php:100
 #: application/views/csv/index.php:109 application/views/distances/index.php:73
@@ -2946,7 +2950,7 @@ msgstr ""
 #: application/views/timeline/index.php:94
 msgctxt "Propagation Mode"
 msgid "Rain scatter"
-msgstr ""
+msgstr "Rain scatter"
 
 #: application/views/accumulate/index.php:101
 #: application/views/csv/index.php:110 application/views/distances/index.php:74
@@ -2979,7 +2983,7 @@ msgstr "Transéquatoriale"
 #: application/views/timeline/index.php:97
 msgctxt "Propagation Mode"
 msgid "Tropospheric ducting"
-msgstr ""
+msgstr "Tropospheric ducting"
 
 #: application/views/accumulate/index.php:112
 #: application/views/activators/index.php:53
@@ -3404,7 +3408,7 @@ msgstr "(A cocher, si l'ADIF à importer ne contient pas ces informations)."
 
 #: application/views/adif/import.php:103
 msgid "Mark imported QSOs as uploaded to eQSL Logbook"
-msgstr ""
+msgstr "Marquer les QSOs importés comme téléchargés dans le logbook eQSL"
 
 #: application/views/adif/import.php:113
 msgid "Mark imported QSOs as uploaded to HRDLog.net Logbook"
@@ -3437,6 +3441,8 @@ msgstr ""
 msgid ""
 "Always use the logged-in account callsign as the operator call during import"
 msgstr ""
+"Utilisez toujours l'indicatif d'appel du compte connecté comme indicatif de "
+"l'opérateur lors de l'importation"
 
 #: application/views/adif/import.php:162
 #: application/views/interface_assets/footer.php:32
@@ -3611,13 +3617,15 @@ msgstr "Les doublons ont été ignorés."
 
 #: application/views/adif/import_success.php:24
 msgid "Import details / possible problems"
-msgstr ""
+msgstr "Détails d'importation / problèmes possibles"
 
 #: application/views/adif/import_success.php:25
 msgid ""
 "You might have ADIF errors, the QSOs have still been added. Please check the "
 "following information:"
 msgstr ""
+"Vous pourriez avoir des erreurs ADIF, les QSOs ont tout de même été ajoutés. "
+"Veuillez vérifier les informations suivantes :"
 
 #: application/views/adif/mark_lotw.php:12
 #: application/views/hrdlog/mark_hrdlog.php:12
@@ -3929,7 +3937,7 @@ msgstr "Survoler une zone"
 
 #: application/views/awards/cq/index.php:20
 msgid "CQ Magazine WAZ Award"
-msgstr ""
+msgstr "Prix CQ Magazine WAZ"
 
 #: application/views/awards/cq/index.php:21
 msgid ""
@@ -3947,6 +3955,8 @@ msgid ""
 "The WAZ Award stands for 'Worked All Zones' and requires radio contacts to "
 "all 40 CQ Zones along with the corresponding confirmation."
 msgstr ""
+"Le prix WAZ signifie \"Worked All Zones\" et nécessite des contacts radio "
+"avec les 40 zones CQ ainsi que la confirmation correspondante."
 
 #: application/views/awards/cq/index.php:23
 #, php-format
@@ -4360,7 +4370,7 @@ msgstr "Préfix"
 #: application/views/awards/ffma/index.php:8
 #: application/views/interface_assets/header.php:240
 msgid "Fred Fish Memorial Award"
-msgstr ""
+msgstr "Prix commémoratif Fred Fish"
 
 #: application/views/awards/ffma/index.php:9
 msgid ""
@@ -4368,12 +4378,17 @@ msgid ""
 "who was the first amateur to have worked and confirmed all 488 Maidenhead "
 "grid squares in the 48 contiguous United States on 6 Meters."
 msgstr ""
+"Le Fred Fish Memorial Award a été créé en l'honneur de Fred Fish, W5FF (SK), "
+"qui a été le premier radioamateur à avoir travaillé et confirmé les 488 "
+"carrés de grille Maidenhead dans les 48 États contigus des États-Unis sur 6 "
+"mètres."
 
 #: application/views/awards/ffma/index.php:10
 msgid ""
 "The award will be given to any amateur who can duplicate W5FF's "
 "accomplishment."
 msgstr ""
+"Le prix sera décerné à tout amateur capable de reproduire l'exploit de W5FF."
 
 #: application/views/awards/ffma/index.php:11
 #, php-format
@@ -4391,6 +4406,11 @@ msgid ""
 "operators worldwide who manage to work all 488 grid squares in the USA via "
 "satellite and can provide QSL confirmations for each contact."
 msgstr ""
+"Le GridMaster Award est la récompense la plus prestigieuse d'AMSAT, "
+"introduite pour la première fois en 2014 par le Star Comm Group. Il est "
+"accessible à tous les opérateurs radioamateurs du monde entier qui "
+"parviennent à travailler sur les 488 carrés de grille aux États-Unis via "
+"satellite et peuvent fournir des confirmations QSL pour chaque contact."
 
 #: application/views/awards/gridmaster/index.php:10
 #, php-format
@@ -4404,6 +4424,15 @@ msgid ""
 "when achieved from another location, which is in a different 200-kilometer "
 "circle."
 msgstr ""
+"Informations officielles de %s : Une communication bidirectionnelle doit "
+"être établie via un satellite amateur avec chaque grille. Aucun rapport de "
+"signal minimum n'est requis. Les contacts doivent être effectués depuis le "
+"même endroit ou depuis des endroits dont aucun n'est à plus de 200 "
+"kilomètres l'un de l'autre. L'attestation du demandeur dans la demande de "
+"récompense sert d'affirmation du respect de la règle de distance. Les "
+"individus peuvent demander et se voir attribuer plusieurs récompenses "
+"GridMaster lorsqu'elles sont obtenues depuis un autre emplacement, qui se "
+"trouve dans un cercle de 200 kilomètres différent."
 
 #: application/views/awards/gridmaster/index.php:10
 msgid "website"
@@ -4416,13 +4445,15 @@ msgstr "Cette carte ne montre que les QSOs effectués sur SAT."
 
 #: application/views/awards/gridmaster/index.php:13
 msgid "Gridmaster Award"
-msgstr ""
+msgstr "Prix Gridmaster"
 
 #: application/views/awards/gridmaster/index.php:14
 msgid ""
 "The Gridmaster Award was originally designed for the 488 gridsquares to be "
 "worked in the USA."
 msgstr ""
+"Le Gridmaster Award a été initialement conçu pour les 488 carrés de grille à "
+"travailler aux États-Unis."
 
 #: application/views/awards/gridmaster/index.php:15
 msgid ""
@@ -4430,15 +4461,18 @@ msgid ""
 "award but just showing the grids which were worked according to the US "
 "Gridmaster Award rules for this DXCC."
 msgstr ""
+"Sur cette carte, les grilles pour le DXCC particulier sont montrées. Ce "
+"n'est pas un prix officiel, mais simplement une indication des grilles qui "
+"ont été travaillées selon les règles du US Gridmaster Award pour ce DXCC."
 
 #: application/views/awards/helvetia/index.php:3
 msgctxt "Switzerland Canton"
 msgid "Canton"
-msgstr ""
+msgstr "Canton"
 
 #: application/views/awards/helvetia/index.php:4
 msgid "Hover over a canton"
-msgstr ""
+msgstr "Survoler un canton"
 
 #: application/views/awards/helvetia/index.php:20
 msgid "HELVETIA 26 | SWITZERLAND AWARD"
@@ -4451,6 +4485,11 @@ msgid ""
 "activities on the bands by encouraging contacts across as many Swiss cantons "
 "as possible on multiple bands."
 msgstr ""
+"L'USKA (Union des Amateurs Suisses de Courtes Ondes) parraine deux "
+"récompenses, le HELVETIA 26 (H26) Award et le SWITZERLAND Award, visant à "
+"promouvoir les activités sur les bandes en encourageant les contacts à "
+"travers le plus grand nombre possible de cantons suisses sur plusieurs "
+"bandes."
 
 #: application/views/awards/helvetia/index.php:22
 msgid ""
@@ -4458,6 +4497,9 @@ msgid ""
 "(including SHF and UHF) bands. Valid connections for these awards date back "
 "to January 1, 1980"
 msgstr ""
+"Ces récompenses existent en deux versions : une pour les bandes HF et "
+"l'autre pour les bandes VHF (y compris UHF et SHF). Les connexions valides "
+"pour ces récompenses remontent au 1er janvier 1980"
 
 #: application/views/awards/helvetia/index.php:23
 #: application/views/awards/jcc/index.php:19
@@ -4475,7 +4517,7 @@ msgstr "Afficher la carte Helvétique"
 
 #: application/views/awards/helvetia/index.php:151
 msgid "Canton"
-msgstr ""
+msgstr "Canton"
 
 #: application/views/awards/index.php:9 application/views/bands/index.php:46
 #: application/views/interface_assets/header.php:164
@@ -4515,6 +4557,17 @@ msgid ""
 "an Honor Roll and annual listings, as well as recognizing it with "
 "certificates and prestigious awards."
 msgstr ""
+"Il est administré par Islands On The Air (IOTA) Ltd (appelé IOTA Management) "
+"en partenariat avec la Radio Society of Great Britain (RSGB). IOTA "
+"Management a regroupé les îles du monde en environ 1200 'groupes IOTA', "
+"chacun ayant un nombre variable de 'counters', qui sont des îles "
+"qualifiantes. Ces listes sont publiées dans le IOTA Directory et sur le site "
+"web de l'IOTA. L'objectif pour le IOTA Island Chaser est d'établir un "
+"contact radio avec au moins un counter dans le plus grand nombre possible de "
+"ces groupes. Le programme a un ensemble de règles bien défini et encourage "
+"une compétition amicale entre les chasseurs en publiant les performances des "
+"participants dans un Honor Roll et des listes annuelles, ainsi qu'en les "
+"reconnaissant avec des certificats et des récompenses prestigieuses."
 
 #: application/views/awards/iota/index.php:19
 #, php-format
@@ -4580,6 +4633,10 @@ msgid ""
 "broadcasting zones as defined by the International Telecommunications Union "
 "(ITU)."
 msgstr ""
+"Le diplôme Classic Worked ITU Zones peut être revendiqué en fournissant la "
+"preuve d'avoir contacté des stations de radio amateur terrestres dans au "
+"moins 70 des 75 zones de diffusion définies par l'Union Internationale des "
+"Télécommunications (UIT)."
 
 #: application/views/awards/itu/index.php:22
 #, php-format
@@ -4597,13 +4654,15 @@ msgstr "Afficher la carte ITU"
 
 #: application/views/awards/jcc/index.php:16
 msgid "JCC - Japan Century Cities Award"
-msgstr ""
+msgstr "JCC - Prix des Villes du Siècle du Japon"
 
 #: application/views/awards/jcc/index.php:17
 msgid ""
 "May be claimed for having contacted (heard) and received a QSL card from an "
 "amateur station located in each of at least 100 different cities of Japan."
 msgstr ""
+"Peut être revendiqué pour avoir contacté (entendu) et reçu une carte QSL "
+"d'une station amateur située dans au moins 100 villes différentes du Japon."
 
 #: application/views/awards/jcc/index.php:18
 msgid ""
@@ -4612,10 +4671,15 @@ msgid ""
 "however names of city may be omitted. An additional sticker will be issued "
 "at every 50 contacts like 150, 250, 350, 450, 550, 650, 750 cities."
 msgstr ""
+"JCC-200, 300, 400, 500, 600, 700 et 800 seront délivrés comme récompenses "
+"distinctes. Une liste de cartes QSL doit être organisée selon l'ordre des "
+"numéros de référence JCC, cependant les noms des villes peuvent être omis. "
+"Un autocollant supplémentaire sera délivré tous les 50 contacts comme 150, "
+"250, 350, 450, 550, 650, 750 villes."
 
 #: application/views/awards/jcc/index.php:115
 msgid "Show JCC Map"
-msgstr ""
+msgstr "Afficher la carte JCC"
 
 #: application/views/awards/jcc/index.php:116
 #: application/views/cabrillo/index.php:180 application/views/cfd/index.php:25
@@ -4703,17 +4767,20 @@ msgstr "Survoler une province"
 
 #: application/views/awards/rac/index.php:106
 msgid "Show RAC Map"
-msgstr ""
+msgstr "Afficher la carte RAC"
 
 #: application/views/awards/sig/index.php:7
 msgid "SIG Information"
-msgstr ""
+msgstr "Informations signal"
 
 #: application/views/awards/sig/index.php:8
 msgid ""
 "The SIG or Signature Category provides the possibility to use any kind of "
 "'Award Signature' for awards that are not implemented in Wavelog."
 msgstr ""
+"La catégorie SIG ou Signature offre la possibilité d'utiliser tout type de "
+"'Signature de Récompense' pour les récompenses qui ne sont pas implémentées "
+"dans Wavelog."
 
 #: application/views/awards/sig/index.php:9
 msgid ""
@@ -4721,6 +4788,9 @@ msgid ""
 "dedicated fields for certain awards. SIG still makes it possible to use and "
 "evaluate all other types of signature markers."
 msgstr ""
+"La raison en est que le format ADIF commun ne fournit que quelques champs "
+"dédiés pour certains prix. SIG permet toujours d'utiliser et d'évaluer tous "
+"les autres types de marqueurs de signature."
 
 #: application/views/awards/sig/index.php:10
 msgid ""
@@ -4728,10 +4798,14 @@ msgid ""
 "marker, which is also visible in the award evaluation, and 'SIG INFO,' which "
 "contains a description of the signature. Both fields are freely customizable."
 msgstr ""
+"Dans le traitement du QSO, vous trouverez deux champs : 'SIG' contient le "
+"marqueur actuel, qui est également visible dans l'évaluation des "
+"récompenses, et 'SIG INFO,' qui contient une description de la signature. "
+"Les deux champs sont librement personnalisables."
 
 #: application/views/awards/sig/index.php:21
 msgid "Award Type"
-msgstr ""
+msgstr "Type de récompense"
 
 #: application/views/awards/sig/index.php:22
 #: application/views/continents/index.php:17
@@ -4742,12 +4816,12 @@ msgstr "Nombre de QSOs"
 
 #: application/views/awards/sig/index.php:23
 msgid "Number of Refs"
-msgstr ""
+msgstr "Nombre de références"
 
 #: application/views/awards/sig/qso_list.php:9
 #: application/views/awards/sota/index.php:23
 msgid "Reference"
-msgstr ""
+msgstr "Référence"
 
 #: application/views/awards/sig/qso_list.php:10
 #: application/views/awards/sota/index.php:24
@@ -4764,26 +4838,28 @@ msgstr "Date/Heure"
 #: application/views/awards/sig/qso_list.php:14
 #: application/views/awards/sota/index.php:27
 msgid "RST Sent"
-msgstr ""
+msgstr "RST envoyé"
 
 #: application/views/awards/sig/qso_list.php:15
 #: application/views/awards/sota/index.php:28
 msgid "RST Received"
-msgstr ""
+msgstr "RST reçu"
 
 #: application/views/awards/sig/qso_list.php:34
 msgid "Export QSOs to ADIF"
-msgstr ""
+msgstr "Exporter les QSOs en ADIF"
 
 #: application/views/awards/sota/index.php:7
 msgid "SOTA Awards"
-msgstr ""
+msgstr "Prix SOTA"
 
 #: application/views/awards/sota/index.php:8
 msgid ""
 "SOTA (Summits On The Air) is an award scheme for radio amateurs that "
 "encourages portable operation in mountainous areas."
 msgstr ""
+"SOTA (Summits On The Air) est un programme de récompenses pour les "
+"radioamateurs qui encourage l'opération portable dans les zones montagneuses."
 
 #: application/views/awards/sota/index.php:9
 msgid ""
@@ -4795,43 +4871,56 @@ msgid ""
 "trophies. An Honor Roll for Activators and Chasers is maintained in the SOTA "
 "online database."
 msgstr ""
+"Il est pleinement opérationnel dans près d'une centaine de pays à travers le "
+"monde. Chaque pays a sa propre Association qui définit les sommets SOTA "
+"reconnus au sein de cette Association. Chaque sommet rapporte aux "
+"activateurs et chasseurs un score lié à la hauteur du sommet. Des "
+"certificats sont disponibles pour divers scores, menant aux prestigieux "
+"trophées 'Mountain Goat' et 'Shack Sloth'. Un tableau d'honneur pour les "
+"Activateurs et Chasseurs est maintenu dans la base de données en ligne SOTA."
 
 #: application/views/awards/vucc/index.php:7
 msgid "VUCC - VHF/UHF Century Club Award"
-msgstr ""
+msgstr "VUCC - Récompense du VHF/UHF Century Club"
 
 #: application/views/awards/vucc/index.php:8
 msgid ""
 "The VHF/UHF Century Club Award is given for a minimum number of worked and "
 "confirmed gridsquares on a desired band."
 msgstr ""
+"Le VHF/UHF Century Club Award est décerné pour un nombre minimum de carrés "
+"de grille travaillés et confirmés sur une bande souhaitée."
 
 #: application/views/awards/vucc/index.php:9
 #, php-format
 msgid "Official information and the rules can be found in this document: %s."
 msgstr ""
+"Les informations officielles et les règles peuvent être trouvées dans ce "
+"document : %s."
 
 #: application/views/awards/vucc/index.php:10
 msgid "Only VHF/UHF bands are relevant."
-msgstr ""
+msgstr "Seules les bandes VHF/UHF sont pertinentes."
 
 #: application/views/awards/vucc/index.php:22
 msgid "Grids Worked"
-msgstr ""
+msgstr "Grilles travaillées"
 
 #: application/views/awards/vucc/index.php:23
 msgid "Grids Confirmed"
-msgstr ""
+msgstr "Grilles confirmées"
 
 #: application/views/awards/wab/index.php:12
 msgid "WAB - Worked All Britain Award"
-msgstr ""
+msgstr "WAB - Prix Worked All Britain"
 
 #: application/views/awards/wab/index.php:13
 msgid ""
 "WAB, Worked All Britain squares in Amateur Radio, encourages licensed ham "
 "radio operators to work all the squares in Great Britain."
 msgstr ""
+"WAB, Worked All Britain squares en radioamateur, encourage les opérateurs "
+"radioamateurs licenciés à travailler tous les carrés de Grande-Bretagne."
 
 #: application/views/awards/wab/index.php:14
 msgid ""
