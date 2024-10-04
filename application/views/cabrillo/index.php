@@ -140,6 +140,15 @@
 					</select>
 				</div>
 				<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
+					<div class="col-md-3 control-label" for="categorytime"><?= __("Category Time") ?>: </div>
+					<select class="form-select my-1 me-sm-2 col-md-4 w-auto" id="categorytime" name="categorytime">
+						<option value="6-HOURS"><?= sprintf(__("%d Hours"), 6); ?></option>
+						<option value="8-HOURS"><?= sprintf(__("%d Hours"), 8); ?></option>
+						<option value="12-HOURS"><?= sprintf(__("%d Hours"), 12); ?></option>
+						<option value="24-HOURS"><?= sprintf(__("%d Hours"), 24); ?></option>
+					</select>
+				</div>
+				<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
 					<div class="col-md-3 control-label" for="categoryoverlay"><?= __("Category Overlay") ?>: </div>
 					<select class="form-select my-1 me-sm-2 col-md-4 w-auto" id="categoryoverlay" name="categoryoverlay">
 						<option value="CLASSIC">CLASSIC</option>

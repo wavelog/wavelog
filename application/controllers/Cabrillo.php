@@ -117,6 +117,7 @@ class Cabrillo extends CI_Controller {
 			$data['categorypower'] = $this->security->xss_clean($this->input->post('categorypower'));
 			$data['categorystation'] = $this->security->xss_clean($this->input->post('categorystation'));
 			$data['categorytransmitter'] = $this->security->xss_clean($this->input->post('categorytransmitter'));
+			$data['categorytime'] = $this->security->xss_clean($this->input->post('categorytime'));
 			$data['categoryoverlay'] = $this->security->xss_clean($this->input->post('categoryoverlay'));
 			$data['operators'] = $this->security->xss_clean($this->input->post('operators'));
 			$data['club'] = $this->security->xss_clean($this->input->post('club'));

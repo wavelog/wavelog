@@ -5,7 +5,7 @@ class Cabrilloformat {
 
    public function header($contest_id, $callsign, $claimed_score, 
       $operators, $club, $location, $name, $address, $addresscity, $addressstateprovince, $addresspostalcode, $addresscountry, $soapbox, $gridlocator, 
-      $categoryoverlay, $categorytransmitter, $categorystation, $categorypower, $categorymode, $categoryband, $categoryassisted, $categoryoperator, $email) {
+      $categoryoverlay, $categorytransmitter, $categorytime, $categorystation, $categorypower, $categorymode, $categoryband, $categoryassisted, $categoryoperator, $email) {
       $cab_header = "";
       $cab_header .= "START-OF-LOG: 3.0"."\r\n";
       $cab_header .= "CONTEST: ".$contest_id."\r\n";
@@ -32,6 +32,7 @@ class Cabrilloformat {
       $cab_header .= "CATEGORY-POWER: ".$categorypower."\r\n";
       $cab_header .= "CATEGORY-STATION: ".$categorystation."\r\n";
       $cab_header .= "CATEGORY-TRANSMITTER: ".$categorytransmitter."\r\n";
+      $cab_header .= "CATEGORY-TIME: ".$categorytime."\r\n";
       $cab_header .= "CATEGORY-OVERLAY: ".$categoryoverlay."\r\n";
 
       $cab_header .= "NAME: ".$name."\r\n";
