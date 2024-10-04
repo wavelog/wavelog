@@ -39,6 +39,7 @@ class Qrz extends CI_Controller {
 		curl_setopt( $ch, CURLOPT_HEADER, 0);
 		curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT, 20);
 		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt( $ch, CURLOPT_USERAGENT, 'Wavelog/'.$this->optionslib->get_option('version'));
 		
 		$content = curl_exec($ch);
 		curl_close($ch);
@@ -304,7 +305,7 @@ class Qrz extends CI_Controller {
 					$lastqrz = $this->logbook_model->qrz_last_qsl_date($station->user_id);
 				}
 				$qrz_api_key = $station->qrzapikey;
-				$result=($this->mass_download_qsos($qrz_api_key, $lastqrz));
+				$result=($this->mass_download_qsos($qrz_api_key, $lastqrz, $station->station_ids));
 				if (isset($result['tableheaders'])) {
 					$data['tableheaders']=$result['tableheaders'];
 					if (isset($data['table'])) {
@@ -339,7 +340,7 @@ class Qrz extends CI_Controller {
 		}
 	}
 
-	function mass_download_qsos($qrz_api_key = '', $lastqrz = '1900-01-01', $trusted = false) {
+	function mass_download_qsos($qrz_api_key = '', $lastqrz = '1900-01-01', $station_ids = '', $trusted = false) {
 		$config['upload_path'] = './uploads/';
 		$file = $config['upload_path'] . 'qrzcom_download_report.adi';
 		if (file_exists($file) && ! is_writable($file)) {
@@ -358,6 +359,7 @@ class Qrz extends CI_Controller {
 		curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1);
 		curl_setopt( $ch, CURLOPT_HEADER, 0);
 		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt( $ch, CURLOPT_USERAGENT, 'Wavelog/'.$this->optionslib->get_option('version'));
 
 		$content = htmlspecialchars_decode(curl_exec($ch));
 		file_put_contents($file, $content);
@@ -367,7 +369,7 @@ class Qrz extends CI_Controller {
 		}
 
 		ini_set('memory_limit', '-1');
-		$result = $this->loadFromFile($file);
+		$result = $this->loadFromFile($file, $station_ids);
 
 		return $result;
 	}
@@ -382,7 +384,7 @@ class Qrz extends CI_Controller {
 	|	Internal function that takes the QRZ ADIF and imports into the log
 	|
  */
-	private function loadFromFile($filepath) {
+	private function loadFromFile($filepath, $station_ids) {
 
 		// Figure out how we should be marking QSLs confirmed via LoTW
 		$config['qrz_rcvd_mark'] = 'Y';
@@ -410,7 +412,13 @@ class Qrz extends CI_Controller {
 
 		$table = "";
 		while($record = $this->adif_parser->get_record()) {
+			if ((!(array_key_exists('time_on',$record))) || (!(array_key_exists('app_qrzlog_qsldate',$record))) || (!(array_key_exists('qso_date',$record))) || (!(array_key_exists('mode',$record))) || (!(array_key_exists('call',$record))) || (!(array_key_exists('band',$record))) ) {
+				continue;
+			}
 			if ((!(isset($record['app_qrzlog_qsldate']))) || (!(isset($record['qso_date'])))) {
+				continue;
+			}
+			if (($record['call'] ?? '') == '') { 	// Failsafe if no Call is giveb
 				continue;
 			}
 			$time_on = date('Y-m-d', strtotime($record['qso_date'])) ." ".date('H:i', strtotime($record['time_on']));
@@ -424,14 +432,14 @@ class Qrz extends CI_Controller {
 			}
 
 			// If we have a positive match from LoTW, record it in the DB according to the user's preferences
-			if ($record['app_qrzlog_status'] == "C") {
+			if (($record['app_qrzlog_status'] ?? '')== "C") {
 				$record['qsl_rcvd'] = $config['qrz_rcvd_mark'];
 			}
 
 			$record['call']=str_replace("_","/",$record['call']);
 			$record['station_callsign']=str_replace("_","/",$record['station_callsign'] ?? '');
 			if ($record['station_callsign'] ?? '' != '') {
-				$status = $this->logbook_model->import_check($time_on, $record['call'], $record['band'], $record['mode'], $record['station_callsign']);
+				$status = $this->logbook_model->import_check($time_on, $record['call'], $record['band'], $record['mode'], $record['station_callsign'], $station_ids);
 
 				if($status[0] == "Found") {
 					$qrz_status = $this->logbook_model->qrz_update($status[1], $qsl_date, $record['qsl_rcvd']);
@@ -440,7 +448,7 @@ class Qrz extends CI_Controller {
 					$table .= "<td>".$record['station_callsign']."</td>";
 					$table .= "<td>".$time_on."</td>";
 					$table .= "<td>".$record['call']."</td>";
-					$table .= "<td>".$record['mode']."</td>";
+					$table .= "<td>".($record['mode'] ?? '')."</td>";
 					$table .= "<td>".$record['qsl_rcvd']."</td>";
 					$table .= "<td>".$qsl_date."</td>";
 					$table .= "<td>QSO Record: ".$status[0]."</td>";
@@ -450,12 +458,13 @@ class Qrz extends CI_Controller {
 					$table .= "<td>".$record['station_callsign']."</td>";
 					$table .= "<td>".$time_on."</td>";
 					$table .= "<td>".$record['call']."</td>";
-					$table .= "<td>".$record['mode']."</td>";
+					$table .= "<td>".($record['mode'] ?? '')."</td>";
 					$table .= "<td>".$record['qsl_rcvd']."</td>";
 					$table .= "<td>QSO Record: ".$status[0]."</td>";
 					$table .= "</tr>";
 				}
 			}
+			unset($record);
 		}
 
 		if ($table != "") {
