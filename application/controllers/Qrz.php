@@ -39,7 +39,7 @@ class Qrz extends CI_Controller {
 		curl_setopt( $ch, CURLOPT_HEADER, 0);
 		curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT, 20);
 		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt( $ch, CURLOPT_USERAGENT, 'Wavelog '.$this->optionslib->get_option('version'));
+		curl_setopt( $ch, CURLOPT_USERAGENT, 'Wavelog/'.$this->optionslib->get_option('version'));
 		
 		$content = curl_exec($ch);
 		curl_close($ch);
@@ -359,7 +359,7 @@ class Qrz extends CI_Controller {
 		curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1);
 		curl_setopt( $ch, CURLOPT_HEADER, 0);
 		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt( $ch, CURLOPT_USERAGENT, 'Wavelog '.$this->optionslib->get_option('version'));
+		curl_setopt( $ch, CURLOPT_USERAGENT, 'Wavelog/'.$this->optionslib->get_option('version'));
 
 		$content = htmlspecialchars_decode(curl_exec($ch));
 		file_put_contents($file, $content);
