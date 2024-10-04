@@ -189,6 +189,14 @@
 					<input class="form-control my-1 me-sm-2 col-md-4 w-auto" id="addresscountry" type="text" name="addresscountry" aria-label="addresscountry">
 				</div>
 				<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
+					<div class="col-md-3 control-label" for="certificate"><?= __("Certificate") ?>: <i class="fas fa-question-circle col-md-1" data-bs-toggle="contestinfo" data-bs-placement="right" title="<?= __("Indicate if you wish to receive, if eligible, a paper certificate sent via postal mail by the contest sponsor. The contest sponsor may or may not honor this tag.") ?>"></i></div>
+					<select class="form-select my-1 me-sm-2 col-md-4 w-auto" id="certificate" name="certificate">
+						<option value=""></option>
+						<option value="YES"><?= __("Yes"); ?></option>
+						<option value="NO"><?= __("No"); ?></option>
+					</select>
+				</div>
+				<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
 					<div class="col-md-3 control-label" for="button1id"></div>
 					<button id="button1id" type="submit" name="button1id" class="btn btn-sm btn-primary w-auto"> <?= __("Export") ?></button>
 				</div>

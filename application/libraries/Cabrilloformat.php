@@ -5,7 +5,7 @@ class Cabrilloformat {
 
    public function header($contest_id, $callsign, $claimed_score, 
       $operators, $club, $location, $name, $address, $addresscity, $addressstateprovince, $addresspostalcode, $addresscountry, $soapbox, $gridlocator, 
-      $categoryoverlay, $categorytransmitter, $categorytime, $categorystation, $categorypower, $categorymode, $categoryband, $categoryassisted, $categoryoperator, $email) {
+      $categoryoverlay, $categorytransmitter, $categorytime, $categorystation, $categorypower, $categorymode, $categoryband, $categoryassisted, $categoryoperator, $email, $certificate) {
       $cab_header = "";
       $cab_header .= "START-OF-LOG: 3.0"."\r\n";
       $cab_header .= "CONTEST: ".$contest_id."\r\n";
@@ -43,6 +43,10 @@ class Cabrilloformat {
       $cab_header .= "ADDRESS-COUNTRY: ".$addresscountry."\r\n";
       $cab_header .= "EMAIL: ".$email."\r\n";
       $cab_header .= "SOAPBOX: ".$soapbox."\r\n";
+      
+      if ($certificate != null || $certificate != "") {
+         $cab_header .= "CERTIFICATE: ".$certificate."\r\n";
+      }
 
       if($gridlocator != null) {
          $cab_header .= "GRID-LOCATOR: ".$gridlocator."\r\n";
