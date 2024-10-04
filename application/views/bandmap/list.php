@@ -42,6 +42,8 @@
 	<br>
 	<center><button type="button" class="btn" id="menutoggle"><i class="fa fa-arrow-up" id="menutoggle_i"></i></button></center>
 
+	<div id="errormessage" style="display: none;"></div>
+
 	<h2 id="dxtitle"><?php echo $page_title; ?></h2>
 
 	<div id="dxtabs" class="tabs">

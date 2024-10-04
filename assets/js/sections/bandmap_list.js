@@ -232,7 +232,9 @@ $(function() {
 
                 if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
                     $('#errormessage').html(popup_warning).addClass('alert alert-danger').show();
-                    $('#redirect_message').hide();
+					setTimeout(function() {
+						$('#errormessage').fadeOut();
+					}, 3000);
                 } else {
                     newWindow.focus();
                 }
