@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-10-04 08:12+0000\n"
+"POT-Creation-Date: 2024-10-04 08:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1905,8 +1905,8 @@ msgstr ""
 #: application/views/logbookadvanced/edit.php:19
 #: application/views/qslprint/index.php:20 application/views/qso/index.php:301
 #: application/views/search/search_result_ajax.php:18
-#: application/views/station_profile/create.php:311
-#: application/views/station_profile/edit.php:454
+#: application/views/station_profile/create.php:312
+#: application/views/station_profile/edit.php:455
 #: application/views/user/edit.php:331
 #: application/views/view_log/partial/log_ajax.php:18
 #: application/views/view_log/qso.php:9 application/views/webadif/export.php:75
@@ -1972,8 +1972,10 @@ msgstr ""
 #: application/views/options/appearance.php:101
 #: application/views/options/appearance.php:110
 #: application/views/options/version_dialog.php:66
-#: application/views/station_profile/create.php:266
+#: application/views/station_profile/create.php:245
+#: application/views/station_profile/create.php:267
 #: application/views/station_profile/edit.php:339
+#: application/views/station_profile/edit.php:393
 #: application/views/stationsetup/stationsetup.php:76
 #: application/views/user/edit.php:451 application/views/user/edit.php:460
 msgid "Disabled"
@@ -2439,75 +2441,75 @@ msgstr ""
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr ""
 
-#: application/models/Logbook_model.php:3627
+#: application/models/Logbook_model.php:3629
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 
-#: application/models/Logbook_model.php:3628
+#: application/models/Logbook_model.php:3630
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr ""
 
-#: application/models/Logbook_model.php:3640
+#: application/models/Logbook_model.php:3642
 msgid "QSO on"
 msgstr ""
 
-#: application/models/Logbook_model.php:3640
+#: application/models/Logbook_model.php:3642
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
 msgstr ""
 
-#: application/models/Logbook_model.php:3936
+#: application/models/Logbook_model.php:3938
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:3947
+#: application/models/Logbook_model.php:3949
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:3991
+#: application/models/Logbook_model.php:3993
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4011
+#: application/models/Logbook_model.php:4013
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4030
+#: application/models/Logbook_model.php:4032
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr ""
 
-#: application/models/Logbook_model.php:4294
+#: application/models/Logbook_model.php:4296
 msgid "Duplicate for"
 msgstr ""
 
-#: application/models/Logbook_model.php:4355
+#: application/models/Logbook_model.php:4357
 msgid "QSO could not be matched"
 msgstr ""
 
-#: application/models/Logbook_model.php:4361
+#: application/models/Logbook_model.php:4363
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr ""
 
-#: application/models/Logbook_model.php:4366
+#: application/models/Logbook_model.php:4368
 msgid "confirmed by award manager"
 msgstr ""
 
-#: application/models/Logbook_model.php:4369
+#: application/models/Logbook_model.php:4371
 msgid "confirmed by cross-check of DCL data"
 msgstr ""
 
-#: application/models/Logbook_model.php:4372
+#: application/models/Logbook_model.php:4374
 msgid "confirmation pending"
 msgstr ""
 
-#: application/models/Logbook_model.php:4375
+#: application/models/Logbook_model.php:4377
 msgid "unconfirmed"
 msgstr ""
 
-#: application/models/Logbook_model.php:4378
+#: application/models/Logbook_model.php:4380
 msgid "unknown"
 msgstr ""
 
@@ -5344,7 +5346,7 @@ msgid "Name of Contest in ADIF-specification"
 msgstr ""
 
 #: application/views/contesting/create.php:35
-#: application/views/station_profile/create.php:311
+#: application/views/station_profile/create.php:312
 #: application/views/station_profile/edit.php:55
 msgid "Create"
 msgstr ""
@@ -5542,7 +5544,7 @@ msgstr ""
 #: application/views/options/appearance.php:91
 #: application/views/options/appearance.php:100
 #: application/views/options/appearance.php:109
-#: application/views/station_profile/create.php:268
+#: application/views/station_profile/create.php:269
 #: application/views/station_profile/edit.php:341
 #: application/views/stationsetup/stationsetup.php:73
 #: application/views/user/edit.php:452 application/views/user/edit.php:461
@@ -7492,15 +7494,15 @@ msgstr ""
 #: application/views/station_profile/create.php:216
 #: application/views/station_profile/create.php:224
 #: application/views/station_profile/create.php:243
-#: application/views/station_profile/create.php:282
-#: application/views/station_profile/create.php:293
-#: application/views/station_profile/create.php:300
+#: application/views/station_profile/create.php:283
+#: application/views/station_profile/create.php:294
+#: application/views/station_profile/create.php:301
 #: application/views/station_profile/edit.php:357
 #: application/views/station_profile/edit.php:365
 #: application/views/station_profile/edit.php:391
-#: application/views/station_profile/edit.php:412
-#: application/views/station_profile/edit.php:430
-#: application/views/station_profile/edit.php:437
+#: application/views/station_profile/edit.php:413
+#: application/views/station_profile/edit.php:431
+#: application/views/station_profile/edit.php:438
 #: application/views/user/edit.php:347 application/views/user/edit.php:358
 #: application/views/user/edit.php:369 application/views/user/edit.php:379
 #: application/views/user/edit.php:389 application/views/user/edit.php:399
@@ -7530,15 +7532,15 @@ msgstr ""
 #: application/views/station_profile/create.php:217
 #: application/views/station_profile/create.php:225
 #: application/views/station_profile/create.php:244
-#: application/views/station_profile/create.php:283
-#: application/views/station_profile/create.php:292
-#: application/views/station_profile/create.php:299
+#: application/views/station_profile/create.php:284
+#: application/views/station_profile/create.php:293
+#: application/views/station_profile/create.php:300
 #: application/views/station_profile/edit.php:358
 #: application/views/station_profile/edit.php:366
 #: application/views/station_profile/edit.php:392
-#: application/views/station_profile/edit.php:413
-#: application/views/station_profile/edit.php:431
-#: application/views/station_profile/edit.php:438
+#: application/views/station_profile/edit.php:414
+#: application/views/station_profile/edit.php:432
+#: application/views/station_profile/edit.php:439
 #: application/views/user/edit.php:348 application/views/user/edit.php:359
 #: application/views/user/edit.php:370 application/views/user/edit.php:380
 #: application/views/user/edit.php:390 application/views/user/edit.php:400
@@ -10209,87 +10211,87 @@ msgstr ""
 msgid "HRDLog.net Logbook Realtime Upload"
 msgstr ""
 
-#: application/views/station_profile/create.php:250
+#: application/views/station_profile/create.php:251
 #: application/views/station_profile/edit.php:324
 msgid "Subscription Required"
 msgstr ""
 
-#: application/views/station_profile/create.php:255
+#: application/views/station_profile/create.php:256
 msgctxt "Probably no translation needed"
 msgid "QRZ.com Logbook API Key"
 msgstr ""
 
-#: application/views/station_profile/create.php:258
+#: application/views/station_profile/create.php:259
 msgid "Test API-Key"
 msgstr ""
 
-#: application/views/station_profile/create.php:261
+#: application/views/station_profile/create.php:262
 #: application/views/station_profile/edit.php:333
 #, php-format
 msgctxt "the QRZ.com Logbook settings page"
 msgid "Find your API key on %s"
 msgstr ""
 
-#: application/views/station_profile/create.php:261
+#: application/views/station_profile/create.php:262
 #: application/views/station_profile/edit.php:333
 msgid "the QRZ.com Logbook settings page"
 msgstr ""
 
-#: application/views/station_profile/create.php:264
+#: application/views/station_profile/create.php:265
 #: application/views/station_profile/edit.php:337
 msgid "QRZ.com Logbook Upload"
 msgstr ""
 
-#: application/views/station_profile/create.php:267
+#: application/views/station_profile/create.php:268
 #: application/views/station_profile/edit.php:340
 msgid "Realtime"
 msgstr ""
 
-#: application/views/station_profile/create.php:275
-#: application/views/station_profile/edit.php:405
+#: application/views/station_profile/create.php:276
+#: application/views/station_profile/edit.php:406
 msgctxt "Probably no translation needed"
 msgid "QO-100 Dx Club API Key"
 msgstr ""
 
-#: application/views/station_profile/create.php:277
-#: application/views/station_profile/edit.php:407
+#: application/views/station_profile/create.php:278
+#: application/views/station_profile/edit.php:408
 #, php-format
 msgctxt "QO-100 Dx Club's profile page"
 msgid "Create your API key on your %s"
 msgstr ""
 
-#: application/views/station_profile/create.php:277
-#: application/views/station_profile/edit.php:407
+#: application/views/station_profile/create.php:278
+#: application/views/station_profile/edit.php:408
 msgid "QO-100 Dx Club's profile page"
 msgstr ""
 
-#: application/views/station_profile/create.php:280
-#: application/views/station_profile/edit.php:410
+#: application/views/station_profile/create.php:281
+#: application/views/station_profile/edit.php:411
 msgid "QO-100 Dx Club Realtime Upload"
 msgstr ""
 
-#: application/views/station_profile/create.php:290
-#: application/views/station_profile/edit.php:428
+#: application/views/station_profile/create.php:291
+#: application/views/station_profile/edit.php:429
 msgid "OQRS Enabled"
 msgstr ""
 
-#: application/views/station_profile/create.php:297
-#: application/views/station_profile/edit.php:435
+#: application/views/station_profile/create.php:298
+#: application/views/station_profile/edit.php:436
 msgid "OQRS Email alert"
 msgstr ""
 
-#: application/views/station_profile/create.php:302
-#: application/views/station_profile/edit.php:440
+#: application/views/station_profile/create.php:303
+#: application/views/station_profile/edit.php:441
 msgid "Make sure email is set up under admin and global options."
 msgstr ""
 
-#: application/views/station_profile/create.php:305
-#: application/views/station_profile/edit.php:443
+#: application/views/station_profile/create.php:306
+#: application/views/station_profile/edit.php:444
 msgid "OQRS Text"
 msgstr ""
 
-#: application/views/station_profile/create.php:307
-#: application/views/station_profile/edit.php:445
+#: application/views/station_profile/create.php:308
+#: application/views/station_profile/edit.php:446
 msgid "Some info you want to add regarding QSL'ing."
 msgstr ""
 
