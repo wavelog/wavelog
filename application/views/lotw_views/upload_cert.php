@@ -13,29 +13,31 @@
 				<div class="alert alert-danger" role="alert">
 			  	<?php echo $error; ?>
 				</div>
-	    	<?php } ?>
+			<?php } ?>
 
-	    	<div class="alert alert-info" role="alert">
-		    	<h5><?= __("Export .p12 File Instructions"); ?></h5>
+			<div class="alert alert-info" role="alert">
+				<h5><?= __("Export .p12 File Instructions"); ?></h5>
 
-		    	<ul>
-		    		<li><?= __("Open TQSL and go to the Callsign Certificates Tab"); ?></li>
-		    		<li><?= __("Right click on desired Callsign"); ?></li>
-		    		<li><?= __("Click 'Save Callsign Certificate File' and do not add a password"); ?></li>
-		    		<li><?= __("Upload File below."); ?></li>
-		    	</ul>
-	    	</div>
+				<ul>
+					<li><b><?= __("Use at least version 2.7 of TQSL"); ?></b></li>
+					<li><?= __("Open TQSL and go to the Callsign Certificates Tab"); ?></li>
+					<li><?= __("Right click on desired Callsign"); ?></li>
+					<li><?= __("Click 'Save Callsign Certificate File'"); ?></li>
+					<li><b><?= __("Do not add a password"); ?></b></li>
+					<li><?= __("Upload File below"); ?></li>
+				</ul>
+			</div>
 
 			<?php echo form_open_multipart('lotw/do_cert_upload');?>
 				<div class="mb-3">
-				    <label for="exampleFormControlFile1"><?= __("Upload Logbook of the World .p12 Certificate"); ?></label>
-				    <input type="file" name="userfile" class="form-control" id="exampleFormControlFile1">
+					<label for="exampleFormControlFile1"><?= __("Upload Logbook of the World .p12 Certificate"); ?></label>
+					<input type="file" name="userfile" class="form-control" id="exampleFormControlFile1">
 				 </div>
 
 				<button type="submit" value="upload" class="btn btn-primary"><?= __("Upload File"); ?></button>
 			</form>
 
-	    </div>
+		</div>
 	</div>
 	<!-- Card Ends -->
 
