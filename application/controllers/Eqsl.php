@@ -183,6 +183,7 @@ class eqsl extends CI_Controller {
 				// the password, however, is always the same as the main account
 				$data['user_eqsl_name'] = $qsl['station_callsign'];
 				$adif = $this->eqslmethods_model->generateAdif($qsl, $data);
+				log_message("Error",$adif);
 
 				$status = $this->eqslmethods_model->uploadQso($adif, $qsl);
 
