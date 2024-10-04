@@ -994,7 +994,7 @@ class Logbook_model extends CI_Model {
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 		curl_setopt($ch, CURLOPT_HEADER, 0);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog '.$this->optionslib->get_option('version'));
+		curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog/'.$this->optionslib->get_option('version'));
 		$content = curl_exec($ch);
 		if ($content) {
 			if (stristr($content, 'RESULT=OK') || stristr($content, 'RESULT=REPLACE')) {
