@@ -242,6 +242,7 @@ if ($dxcc_list->result() > 0) {
 					<select class="form-select" id="hrdlogrealtime" name="hrdlogrealtime">
                         <option value="1"><?= __("Yes"); ?></option>
                         <option value="0" selected><?= __("No"); ?></option>
+                        <option value="-1" selected><?= __("Disabled"); ?></option>
                     </select>
                 </div>
             </div>

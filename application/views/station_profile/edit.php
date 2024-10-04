@@ -390,6 +390,7 @@ if ($dxcc_list->result() > 0) {
 						<select class="form-select" id="hrdlogrealtime" name="hrdlogrealtime">
 							<option value="1" <?php if ($my_station_profile->hrdlogrealtime == 1) { echo " selected =\"selected\""; } ?>><?= __("Yes"); ?></option>
 							<option value="0" <?php if ($my_station_profile->hrdlogrealtime == 0) { echo " selected =\"selected\""; } ?>><?= __("No"); ?></option>
+							<option value="0" <?php if ($my_station_profile->hrdlogrealtime == -1) { echo " selected =\"selected\""; } ?>><?= __("Disabled"); ?></option>
 						</select>
 					</div>
 				</div>
