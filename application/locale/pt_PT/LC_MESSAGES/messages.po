@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-10-04 08:03+0000\n"
+"POT-Creation-Date: 2024-10-04 08:12+0000\n"
 "PO-Revision-Date: 2024-10-03 21:11+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
@@ -8465,7 +8465,7 @@ msgid "Manual Sync"
 msgstr "Sincronização manual"
 
 #: application/views/lotw_views/upload_cert.php:8
-#: application/views/lotw_views/upload_cert.php:31
+#: application/views/lotw_views/upload_cert.php:33
 msgid "Upload Logbook of the World .p12 Certificate"
 msgstr "Carregar certificado \".p12\" do Logbook of the World"
 
@@ -8474,24 +8474,30 @@ msgid "Export .p12 File Instructions"
 msgstr "Exportar ficheiro de instruções para o ficheiro \".p12\""
 
 #: application/views/lotw_views/upload_cert.php:22
+msgid "Use at least version 2.7 of TQSL"
+msgstr ""
+
+#: application/views/lotw_views/upload_cert.php:23
 msgid "Open TQSL and go to the Callsign Certificates Tab"
 msgstr "Abra o TQSL e vá para o separador “Callsign Certificates Tab”"
 
-#: application/views/lotw_views/upload_cert.php:23
+#: application/views/lotw_views/upload_cert.php:24
 msgid "Right click on desired Callsign"
 msgstr "Clique com o botão direito do rato no indicativo pretendido"
 
-#: application/views/lotw_views/upload_cert.php:24
-msgid "Click 'Save Callsign Certificate File' and do not add a password"
-msgstr ""
-"Clique em “Save Callsign Certificate File” (guardar ficheiro de certificado "
-"de indicativo de chamada) e não adicione uma palavra-passe"
-
 #: application/views/lotw_views/upload_cert.php:25
-msgid "Upload File below."
-msgstr "Carregar ficheiro abaixo."
+msgid "Click 'Save Callsign Certificate File'"
+msgstr ""
 
-#: application/views/lotw_views/upload_cert.php:35
+#: application/views/lotw_views/upload_cert.php:26
+msgid "Do not add a password"
+msgstr ""
+
+#: application/views/lotw_views/upload_cert.php:27
+msgid "Upload File below"
+msgstr ""
+
+#: application/views/lotw_views/upload_cert.php:37
 msgid "Upload File"
 msgstr "Carregar Ficheiro"
 
@@ -12206,6 +12212,14 @@ msgstr "O seu indicativo:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Submeter pedido"
+
+#~ msgid "Click 'Save Callsign Certificate File' and do not add a password"
+#~ msgstr ""
+#~ "Clique em “Save Callsign Certificate File” (guardar ficheiro de "
+#~ "certificado de indicativo de chamada) e não adicione uma palavra-passe"
+
+#~ msgid "Upload File below."
+#~ msgstr "Carregar ficheiro abaixo."
 
 #~ msgid "SKIPPED"
 #~ msgstr "IGNORADO"

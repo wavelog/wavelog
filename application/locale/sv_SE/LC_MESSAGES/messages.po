@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-10-04 08:03+0000\n"
+"POT-Creation-Date: 2024-10-04 08:12+0000\n"
 "PO-Revision-Date: 2024-08-17 10:48+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Swedish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -8095,7 +8095,7 @@ msgid "Manual Sync"
 msgstr "Manuell synk"
 
 #: application/views/lotw_views/upload_cert.php:8
-#: application/views/lotw_views/upload_cert.php:31
+#: application/views/lotw_views/upload_cert.php:33
 msgid "Upload Logbook of the World .p12 Certificate"
 msgstr "Ladda upp Logbook of the World .p12 certifikat"
 
@@ -8104,22 +8104,30 @@ msgid "Export .p12 File Instructions"
 msgstr "Exportera .p12 filinstruktioner"
 
 #: application/views/lotw_views/upload_cert.php:22
+msgid "Use at least version 2.7 of TQSL"
+msgstr ""
+
+#: application/views/lotw_views/upload_cert.php:23
 msgid "Open TQSL and go to the Callsign Certificates Tab"
 msgstr "Öppna TQSL &amp; gå till Callsign Certificates tabben"
 
-#: application/views/lotw_views/upload_cert.php:23
+#: application/views/lotw_views/upload_cert.php:24
 msgid "Right click on desired Callsign"
 msgstr "Högerklicka på önskad signal"
 
-#: application/views/lotw_views/upload_cert.php:24
-msgid "Click 'Save Callsign Certificate File' and do not add a password"
+#: application/views/lotw_views/upload_cert.php:25
+msgid "Click 'Save Callsign Certificate File'"
 msgstr ""
 
-#: application/views/lotw_views/upload_cert.php:25
-msgid "Upload File below."
-msgstr "Ladda upp filen nedan."
+#: application/views/lotw_views/upload_cert.php:26
+msgid "Do not add a password"
+msgstr ""
 
-#: application/views/lotw_views/upload_cert.php:35
+#: application/views/lotw_views/upload_cert.php:27
+msgid "Upload File below"
+msgstr ""
+
+#: application/views/lotw_views/upload_cert.php:37
 msgid "Upload File"
 msgstr "Ladda upp fil"
 
@@ -11578,6 +11586,9 @@ msgstr ""
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr ""
+
+#~ msgid "Upload File below."
+#~ msgstr "Ladda upp filen nedan."
 
 #~ msgid "This note content is exported to QSL services like eqsl.cc."
 #~ msgstr "Detta innehåll exporteras till QSL-services som eqsl etc."

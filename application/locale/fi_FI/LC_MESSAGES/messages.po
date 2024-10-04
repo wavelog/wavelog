@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-10-04 08:03+0000\n"
+"POT-Creation-Date: 2024-10-04 08:12+0000\n"
 "PO-Revision-Date: 2024-08-17 10:47+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Finnish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -8094,7 +8094,7 @@ msgid "Manual Sync"
 msgstr "Synkronoi yhteydet manuaalisesti"
 
 #: application/views/lotw_views/upload_cert.php:8
-#: application/views/lotw_views/upload_cert.php:31
+#: application/views/lotw_views/upload_cert.php:33
 msgid "Upload Logbook of the World .p12 Certificate"
 msgstr "Tuo palveluun LoTW:n .p12 kutsumerkin varmenne"
 
@@ -8103,24 +8103,32 @@ msgid "Export .p12 File Instructions"
 msgstr "Vie .p12 tiedoston ohjeistus"
 
 #: application/views/lotw_views/upload_cert.php:22
+msgid "Use at least version 2.7 of TQSL"
+msgstr ""
+
+#: application/views/lotw_views/upload_cert.php:23
 msgid "Open TQSL and go to the Callsign Certificates Tab"
 msgstr ""
 "Avaa TQSL &amp; ja siirry kutsumerkin varmeenteen / Callsign Certificates "
 "välilehdelle"
 
-#: application/views/lotw_views/upload_cert.php:23
+#: application/views/lotw_views/upload_cert.php:24
 msgid "Right click on desired Callsign"
 msgstr "Klikkaa hiiren oikealla näppäimella haluamaasi kutsua"
 
-#: application/views/lotw_views/upload_cert.php:24
-msgid "Click 'Save Callsign Certificate File' and do not add a password"
+#: application/views/lotw_views/upload_cert.php:25
+msgid "Click 'Save Callsign Certificate File'"
 msgstr ""
 
-#: application/views/lotw_views/upload_cert.php:25
-msgid "Upload File below."
-msgstr "Lataa ja tuo äsken tallentamasi tiedosto tänne."
+#: application/views/lotw_views/upload_cert.php:26
+msgid "Do not add a password"
+msgstr ""
 
-#: application/views/lotw_views/upload_cert.php:35
+#: application/views/lotw_views/upload_cert.php:27
+msgid "Upload File below"
+msgstr ""
+
+#: application/views/lotw_views/upload_cert.php:37
 msgid "Upload File"
 msgstr "Lataa tiedosto"
 
@@ -11574,6 +11582,9 @@ msgstr ""
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr ""
+
+#~ msgid "Upload File below."
+#~ msgstr "Lataa ja tuo äsken tallentamasi tiedosto tänne."
 
 #~ msgid "This note content is exported to QSL services like eqsl.cc."
 #~ msgstr "Tämä viestisi siirtyy myös QSL-palveluihin, kuten eqsl.cc."
