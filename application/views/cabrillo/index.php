@@ -41,8 +41,8 @@
 				<div class="mb-3 d-flex align-items-center row contestdates">
 				</div>
 				<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
-					<div class="col-md-3 control-label" for="soapbox"><?= __("Club"); ?>: </div>
-					<input class="form-control my-1 me-sm-2 col-md-4 w-auto" id="soapbox" type="soapbox" name="soapbox" aria-label="soapbox">
+					<div class="col-md-3 control-label" for="club"><?= __("Club"); ?>: </div>
+					<input class="form-control my-1 me-sm-2 col-md-4 w-auto" id="club" type="club" name="club" aria-label="club">
 				</div>
 				<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
 					<div class="col-md-3 control-label" for="categoryoperator"><?= __("Category Operator") ?>: </div>
