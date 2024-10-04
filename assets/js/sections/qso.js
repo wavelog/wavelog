@@ -264,30 +264,32 @@ function save_fav() {
 
 var bc_bandmap = new BroadcastChannel('qso_window');
 bc_bandmap.onmessage = function (ev) {
-	if (ev.data == 'ping') {
+	if (ev.data == 'ping' && qso_manual == 0) {
 		bc_bandmap.postMessage('pong');
 	}
 }
 
 var bc = new BroadcastChannel('qso_wish');
 bc.onmessage = function (ev) {
-	if (ev.data.ping) {
-		let message = {};
-		message.pong = true;
-		bc.postMessage(message);
-	} else {
-		// console.log(ev.data);
-		if (ev.data.frequency != null) {
-			$('#frequency').val(ev.data.frequency);
-			$("#band").val(frequencyToBand(ev.data.frequency));
+	if (qso_manual == 0) {
+		if (ev.data.ping) {
+			let message = {};
+			message.pong = true;
+			bc.postMessage(message);
+		} else {
+			// console.log(ev.data);
+			if (ev.data.frequency != null) {
+				$('#frequency').val(ev.data.frequency);
+				$("#band").val(frequencyToBand(ev.data.frequency));
+			}
+			if (ev.data.frequency_rx != "") {
+				$('#frequency_rx').val(ev.data.frequency_rx);
+				$("#band_rx").val(frequencyToBand(ev.data.frequency_rx));
+			}
+			$("#callsign").val(ev.data.call);
+			$("#callsign").focusout();
+			$("#callsign").blur();
 		}
-		if (ev.data.frequency_rx != "") {
-			$('#frequency_rx').val(ev.data.frequency_rx);
-			$("#band_rx").val(frequencyToBand(ev.data.frequency_rx));
-		}
-		$("#callsign").val(ev.data.call);
-		$("#callsign").focusout();
-		$("#callsign").blur();
 	}
 } /* receive */
 
