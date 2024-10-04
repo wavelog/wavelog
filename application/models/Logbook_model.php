@@ -815,7 +815,7 @@ class Logbook_model extends CI_Model {
    */
 	function exists_hrdlog_credentials($station_id) {
 		$sql = 'select hrdlog_username, hrdlog_code, hrdlogrealtime from station_profile
-		  where station_id = ?';
+		  where station_id = ? and hrdlogrealtime>=0';
 
 		$query = $this->db->query($sql, $station_id);
 
@@ -1922,7 +1922,8 @@ class Logbook_model extends CI_Model {
 			' left join station_profile on thcv.station_id = station_profile.station_id' .
 			' left outer join dxcc_entities on thcv.col_my_dxcc = dxcc_entities.adif' .
 			' where thcv.station_id = ?' .
-			' and (COL_HRDLOG_QSO_UPLOAD_STATUS is NULL
+			' and station_profile.hrdlogrealtime>=0
+			  and (COL_HRDLOG_QSO_UPLOAD_STATUS is NULL
 		  or COL_HRDLOG_QSO_UPLOAD_STATUS = ""
 		  or COL_HRDLOG_QSO_UPLOAD_STATUS = "M"
 		  or COL_HRDLOG_QSO_UPLOAD_STATUS = "N")';
@@ -2034,6 +2035,7 @@ class Logbook_model extends CI_Model {
 		$sql = 'SELECT station_id, hrdlog_username, hrdlog_code, station_callsign
                 FROM station_profile
                 WHERE coalesce(hrdlog_username, "") <> ""
+		AND hrdlogrealtime>=0
                 AND coalesce(hrdlog_code, "") <> ""';
 
 		$query = $this->db->query($sql);
