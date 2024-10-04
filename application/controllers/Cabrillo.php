@@ -120,6 +120,7 @@ class Cabrillo extends CI_Controller {
 			$data['categoryoverlay'] = $this->security->xss_clean($this->input->post('categoryoverlay'));
 			$data['operators'] = $this->security->xss_clean($this->input->post('operators'));
 			$data['club'] = $this->security->xss_clean($this->input->post('club'));
+			$data['location'] = $this->security->xss_clean($this->input->post('location'));
 			$data['name'] = $userinfo->user_firstname . ' ' . $userinfo->user_lastname;
 			$data['email'] = $userinfo->user_email;
 			$data['address'] = $this->security->xss_clean($this->input->post('address'));

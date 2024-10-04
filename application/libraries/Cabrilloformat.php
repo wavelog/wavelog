@@ -4,7 +4,7 @@
 class Cabrilloformat {
 
    public function header($contest_id, $callsign, $claimed_score, 
-      $operators, $club, $name, $address, $addresscity, $addressstateprovince, $addresspostalcode, $addresscountry, $soapbox, $gridlocator, 
+      $operators, $club, $location, $name, $address, $addresscity, $addressstateprovince, $addresspostalcode, $addresscountry, $soapbox, $gridlocator, 
       $categoryoverlay, $categorytransmitter, $categorystation, $categorypower, $categorymode, $categoryband, $categoryassisted, $categoryoperator, $email) {
       $cab_header = "";
       $cab_header .= "START-OF-LOG: 3.0"."\r\n";
@@ -19,6 +19,10 @@ class Cabrilloformat {
 
       if($club != null) {
          $cab_header .= "CLUB: ".$club."\r\n";
+      }
+
+      if($location != null) {
+         $cab_header .= "LOCATION: ".$location."\r\n";
       }
 
       $cab_header .= "CATEGORY-OPERATOR: ".$categoryoperator."\r\n";

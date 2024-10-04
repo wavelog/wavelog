@@ -45,6 +45,10 @@
 					<input class="form-control my-1 me-sm-2 col-md-4 w-auto" id="club" type="club" name="club" aria-label="club">
 				</div>
 				<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
+					<div class="col-md-3 control-label" for="location"><?= __("Location"); ?>: </div>
+					<input class="form-control my-1 me-sm-2 col-md-4 w-auto" id="location" type="location" name="location" aria-label="location">
+				</div>
+				<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
 					<div class="col-md-3 control-label" for="categoryoperator"><?= __("Category Operator") ?>: </div>
 					<select class="form-select my-1 me-sm-2 col-md-4 w-auto" id="categoryoperator" name="categoryoperator">
 						<option value="SINGLE-OP">SINGLE-OP</option>
