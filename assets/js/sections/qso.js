@@ -10,8 +10,8 @@ $("#dxcc_id").change(function () {
 	$('#dxcc_id').multiselect('refresh');
 });
 
-function resetTimers(manual) {
-	if (typeof manual !== 'undefined' && manual != 1) {
+function resetTimers(qso_manual) {
+	if (typeof qso_manual !== 'undefined' && qso_manual != 1) {
 		handleStart = setInterval(function () { getUTCTimeStamp($('.input_start_time')); }, 500);
 		handleEnd = setInterval(function () { getUTCTimeStamp($('.input_end_time')); }, 500);
 		handleDate = setInterval(function () { getUTCDateStamp($('.input_date')); }, 1000);
@@ -63,9 +63,7 @@ $(document).keyup(function (e) {
 	}
 	if (e.key === "Escape") { // escape key maps to keycode `27`
 		reset_fields();
-		if (!manual) {
-			resetTimers(0)
-		}
+		resetTimers(qso_manual)
 		$('#callsign').val("");
 		$("#callsign").focus();
 	}
@@ -1207,11 +1205,8 @@ $(document).ready(function () {
 	// Callsign always has focus on load
 	$("#callsign").focus();
 
-	if (!manual) {
-		$(function ($) {
-			resetTimers(0);
-		});
-	}
+	// reset the timers on page load
+	resetTimers(qso_manual);
 
 	get_fav();
 
