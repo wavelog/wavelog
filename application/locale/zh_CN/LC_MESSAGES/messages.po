@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-10-05 05:47+0000\n"
-"PO-Revision-Date: 2024-10-02 16:43+0000\n"
+"PO-Revision-Date: 2024-10-05 21:22+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
 "org/projects/wavelog/main-translation/zh_Hans/>\n"
@@ -2463,13 +2463,13 @@ msgstr "请查看 ADIF 错误提示 %s。"
 
 #: application/models/Logbook_model.php:3642
 msgid "QSO on"
-msgstr ""
+msgstr "QSO 时间"
 
 #: application/models/Logbook_model.php:3642
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
-msgstr ""
+msgstr "导入的 QSO 不存在对方呼号（CALL），此 QSO 为无效，未导入"
 
 #: application/models/Logbook_model.php:3938
 msgid "the qslrdate is invalid (YYYYMMDD)"
@@ -5186,17 +5186,18 @@ msgid ""
 "For USA and Canada stations LOCATION must be the ARRL section abbreviation. "
 "For foreign stations LOCATION must be 'DX'. This information is required for "
 "IARU-HF and for all ARRL and CQ contests."
-msgstr ""
+msgstr "美国和加拿大的电台地址需使用 ARRL 地区缩写，其余电台使用 ‘DX’，此信息用于 "
+"IRAU-HF 以及 ARRL 和 CQ 比赛。"
 
 #: application/views/cabrillo/index.php:48
 msgid "For the RDXC contest this contains the RDA number."
-msgstr ""
+msgstr "RDXC 比赛必须包含 RDA 编号。"
 
 #: application/views/cabrillo/index.php:48
 msgid ""
 "For the RSGB-IOTA contest this information contains the IOTA name (not the "
 "IOTA reference code)."
-msgstr ""
+msgstr "RSGB-IOTA 比赛，此信息包含 IOTA 名称（非 IOTA 标识符）。"
 
 #: application/views/cabrillo/index.php:48
 #: application/views/logbookadvanced/index.php:534
@@ -5244,7 +5245,7 @@ msgstr "发射机类型(Transmitter)"
 
 #: application/views/cabrillo/index.php:143
 msgid "Category Time"
-msgstr ""
+msgstr "时间类型(Time)"
 
 #: application/views/cabrillo/index.php:145
 #: application/views/cabrillo/index.php:146
@@ -5252,7 +5253,7 @@ msgstr ""
 #: application/views/cabrillo/index.php:148
 #, php-format
 msgid "%d Hours"
-msgstr ""
+msgstr "%d 小时"
 
 #: application/views/cabrillo/index.php:152
 msgid "Category Overlay"
@@ -5290,14 +5291,15 @@ msgstr "国家"
 
 #: application/views/cabrillo/index.php:192
 msgid "Certificate"
-msgstr ""
+msgstr "证书"
 
 #: application/views/cabrillo/index.php:192
 msgid ""
 "Indicate if you wish to receive, if eligible, a paper certificate sent via "
 "postal mail by the contest sponsor. The contest sponsor may or may not honor "
 "this tag."
-msgstr ""
+msgstr "表明您是否想获得一份邮寄过来的纸质证书。通常由比赛赞助者颁发，但也可能不兑现"
+"此标牌。"
 
 #: application/views/cabrillo/index.php:195
 #: application/views/logbookadvanced/index.php:334
@@ -8264,7 +8266,7 @@ msgstr "导出 .p12 文件流程"
 
 #: application/views/lotw_views/upload_cert.php:22
 msgid "Use at least version 2.7 of TQSL"
-msgstr ""
+msgstr "TQSL 版本最低为 2.7"
 
 #: application/views/lotw_views/upload_cert.php:23
 msgid "Open TQSL and go to the Callsign Certificates Tab"
@@ -8276,15 +8278,15 @@ msgstr "右键选择目标呼号"
 
 #: application/views/lotw_views/upload_cert.php:25
 msgid "Click 'Save Callsign Certificate File'"
-msgstr ""
+msgstr "点击“保存呼号证书”"
 
 #: application/views/lotw_views/upload_cert.php:26
 msgid "Do not add a password"
-msgstr ""
+msgstr "保存过程中不要创建密码"
 
 #: application/views/lotw_views/upload_cert.php:27
 msgid "Upload File below"
-msgstr ""
+msgstr "在下面上传呼号证书文件"
 
 #: application/views/lotw_views/upload_cert.php:37
 msgid "Upload File"
@@ -11592,7 +11594,7 @@ msgstr "已更改"
 #: application/views/view_log/partial/log_ajax.php:289
 #: src/QSLManager/QSO.php:480
 msgid "last sent"
-msgstr ""
+msgstr "上次发送"
 
 #: application/views/view_log/qso.php:6
 msgid "QSO Details"
