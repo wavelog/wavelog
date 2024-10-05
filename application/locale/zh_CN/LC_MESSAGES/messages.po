@@ -298,6 +298,7 @@ msgstr "DOK"
 #: application/views/stationsetup/linkedlocations.php:17
 #: application/views/stationsetup/linkedlocations.php:33
 #: application/views/timeplotter/index.php:24
+#: application/views/bandmap/list.php:115
 msgid "DXCC"
 msgstr "DXCC"
 
@@ -1382,7 +1383,7 @@ msgstr "距离"
 #: application/views/view_log/partial/log.php:12
 #: application/views/view_log/partial/log_ajax.php:15
 #: application/views/view_log/qso.php:87 application/views/visitor/index.php:33
-#: application/views/widgets/qsos.php:33
+#: application/views/widgets/qsos.php:33 application/views/bandmap/list.php:91
 msgid "Band"
 msgstr "频段"
 
@@ -1403,6 +1404,7 @@ msgstr "频段"
 #: application/views/user/edit.php:317
 #: application/views/view_log/partial/log_ajax.php:16
 #: application/views/view_log/qso.php:94 application/views/visitor/index.php:36
+#: application/views/bandmap/list.php:113
 msgid "Frequency"
 msgstr "频率"
 
@@ -1762,7 +1764,7 @@ msgstr "硬件接口"
 #: application/controllers/Radio.php:47 application/views/bandmap/index.php:25
 #: application/views/bandmap/list.php:60
 #: application/views/contesting/index.php:148
-#: application/views/qso/index.php:313
+#: application/views/qso/index.php:313 application/views/bandmap/list.php:63
 msgid "Radio"
 msgstr "电台"
 
@@ -2675,6 +2677,8 @@ msgstr "差异"
 #: application/views/timeplotter/index.php:47
 #: application/views/user/edit.php:633
 #: application/views/visitor/layout/footer.php:171
+#: application/views/bandmap/list.php:74 application/views/bandmap/list.php:81
+#: application/views/bandmap/list.php:93
 msgid "All"
 msgstr "所有"
 
@@ -3219,7 +3223,7 @@ msgstr "与 DCL 相比，日志中 DOK 的数据不同"
 #: application/views/view_log/partial/log.php:4
 #: application/views/view_log/partial/log_ajax.php:59
 #: application/views/visitor/index.php:147
-#: application/views/widgets/qsos.php:25
+#: application/views/widgets/qsos.php:25 application/views/bandmap/list.php:112
 msgid "Date"
 msgstr "日期"
 
@@ -3251,7 +3255,7 @@ msgstr "日期"
 #: application/views/view_log/partial/log.php:6
 #: application/views/view_log/partial/log_ajax.php:61
 #: application/views/visitor/index.php:150
-#: application/views/widgets/qsos.php:27
+#: application/views/widgets/qsos.php:27 application/views/bandmap/list.php:112
 msgid "Time"
 msgstr "时间"
 
@@ -3271,7 +3275,7 @@ msgstr "时间"
 #: application/views/view_log/partial/log.php:8
 #: application/views/view_log/partial/log_ajax.php:63
 #: application/views/visitor/index.php:152
-#: application/views/widgets/qsos.php:29
+#: application/views/widgets/qsos.php:29 application/views/bandmap/list.php:114
 msgid "Call"
 msgstr "呼号"
 
@@ -3890,6 +3894,7 @@ msgstr "CQ 杂志 WAZ 奖状"
 #: application/views/dashboard/index.php:385
 #: application/views/interface_assets/footer.php:40
 #: application/views/visitor/index.php:266
+#: application/views/bandmap/list.php:76
 msgid "Confirmed"
 msgstr "已确认"
 
@@ -3900,6 +3905,7 @@ msgstr "已确认"
 #: application/views/dashboard/index.php:263
 #: application/views/dashboard/index.php:379
 #: application/views/visitor/index.php:262
+#: application/views/bandmap/list.php:75
 msgid "Worked"
 msgstr "已通联"
 
@@ -4184,7 +4190,7 @@ msgstr "包括已删除"
 #: application/views/logbookadvanced/index.php:316
 #: application/views/options/dxcluster.php:56
 #: application/views/qso/edit_ajax.php:243 application/views/qso/index.php:382
-#: application/views/view_log/qso.php:253
+#: application/views/view_log/qso.php:253 application/views/bandmap/list.php:83
 msgid "Antarctica"
 msgstr "南极洲"
 
@@ -4195,7 +4201,7 @@ msgstr "南极洲"
 #: application/views/logbookadvanced/index.php:315
 #: application/views/options/dxcluster.php:55
 #: application/views/qso/edit_ajax.php:242 application/views/qso/index.php:381
-#: application/views/view_log/qso.php:250
+#: application/views/view_log/qso.php:250 application/views/bandmap/list.php:82
 msgid "Africa"
 msgstr "非洲"
 
@@ -4206,7 +4212,7 @@ msgstr "非洲"
 #: application/views/logbookadvanced/index.php:318
 #: application/views/options/dxcluster.php:57
 #: application/views/qso/edit_ajax.php:244 application/views/qso/index.php:383
-#: application/views/view_log/qso.php:256
+#: application/views/view_log/qso.php:256 application/views/bandmap/list.php:84
 msgid "Asia"
 msgstr "亚洲"
 
@@ -4217,7 +4223,7 @@ msgstr "亚洲"
 #: application/views/logbookadvanced/index.php:319
 #: application/views/options/dxcluster.php:58
 #: application/views/qso/edit_ajax.php:245 application/views/qso/index.php:384
-#: application/views/view_log/qso.php:259
+#: application/views/view_log/qso.php:259 application/views/bandmap/list.php:85
 msgid "Europe"
 msgstr "欧洲"
 
@@ -4228,7 +4234,7 @@ msgstr "欧洲"
 #: application/views/logbookadvanced/index.php:317
 #: application/views/options/dxcluster.php:59
 #: application/views/qso/edit_ajax.php:246 application/views/qso/index.php:385
-#: application/views/view_log/qso.php:262
+#: application/views/view_log/qso.php:262 application/views/bandmap/list.php:86
 msgid "North America"
 msgstr "北美洲"
 
@@ -4239,7 +4245,7 @@ msgstr "北美洲"
 #: application/views/logbookadvanced/index.php:320
 #: application/views/options/dxcluster.php:61
 #: application/views/qso/edit_ajax.php:248 application/views/qso/index.php:387
-#: application/views/view_log/qso.php:268
+#: application/views/view_log/qso.php:268 application/views/bandmap/list.php:88
 msgid "South America"
 msgstr "南美洲"
 
@@ -4250,7 +4256,7 @@ msgstr "南美洲"
 #: application/views/logbookadvanced/index.php:321
 #: application/views/options/dxcluster.php:60
 #: application/views/qso/edit_ajax.php:247 application/views/qso/index.php:386
-#: application/views/view_log/qso.php:265
+#: application/views/view_log/qso.php:265 application/views/bandmap/list.php:87
 msgid "Oceania"
 msgstr "大洋洲"
 
@@ -4973,10 +4979,12 @@ msgid ""
 msgstr "您的笔记备份已成功完成。输出可在以下位置找到"
 
 #: application/views/bandmap/index.php:15 application/views/bandmap/list.php:49
+#: application/views/bandmap/list.php:52
 msgid "BandMap"
 msgstr "波段地图"
 
 #: application/views/bandmap/index.php:18 application/views/bandmap/list.php:52
+#: application/views/bandmap/list.php:55
 msgid "BandList"
 msgstr "波段列表"
 
@@ -4984,23 +4992,25 @@ msgstr "波段列表"
 #: application/views/contesting/index.php:19
 #: application/views/contesting/index.php:57
 #: application/views/contesting/index.php:150
-#: application/views/qso/index.php:315
+#: application/views/qso/index.php:315 application/views/bandmap/list.php:65
 msgid "None"
 msgstr "无"
 
 #: application/views/bandmap/index.php:33 application/views/bandmap/list.php:76
+#: application/views/bandmap/list.php:79
 msgid "Spots de"
 msgstr "Spots de"
 
-#: application/views/bandmap/list.php:69
+#: application/views/bandmap/list.php:69 application/views/bandmap/list.php:72
 msgid "DXCC-Status"
 msgstr "DXCC状态"
 
-#: application/views/bandmap/list.php:74
+#: application/views/bandmap/list.php:74 application/views/bandmap/list.php:77
 msgid "Not Confirmed"
 msgstr "未确认"
 
 #: application/views/bandmap/list.php:113
+#: application/views/bandmap/list.php:116
 msgid "Spotter"
 msgstr "Spotter"
 
@@ -5008,6 +5018,7 @@ msgstr "Spotter"
 #: application/views/oqrs/notinlogform.php:28
 #: application/views/oqrs/request.php:54
 #: application/views/oqrs/request_grouped.php:58
+#: application/views/bandmap/list.php:117
 msgid "Message"
 msgstr "消息"
 
@@ -5186,7 +5197,8 @@ msgid ""
 "For USA and Canada stations LOCATION must be the ARRL section abbreviation. "
 "For foreign stations LOCATION must be 'DX'. This information is required for "
 "IARU-HF and for all ARRL and CQ contests."
-msgstr "美国和加拿大的电台地址需使用 ARRL 地区缩写，其余电台使用 ‘DX’，此信息用于 "
+msgstr ""
+"美国和加拿大的电台地址需使用 ARRL 地区缩写，其余电台使用 ‘DX’，此信息用于 "
 "IRAU-HF 以及 ARRL 和 CQ 比赛。"
 
 #: application/views/cabrillo/index.php:48
@@ -5298,7 +5310,8 @@ msgid ""
 "Indicate if you wish to receive, if eligible, a paper certificate sent via "
 "postal mail by the contest sponsor. The contest sponsor may or may not honor "
 "this tag."
-msgstr "表明您是否想获得一份邮寄过来的纸质证书。通常由比赛赞助者颁发，但也可能不兑现"
+msgstr ""
+"表明您是否想获得一份邮寄过来的纸质证书。通常由比赛赞助者颁发，但也可能不兑现"
 "此标牌。"
 
 #: application/views/cabrillo/index.php:195
@@ -11805,6 +11818,30 @@ msgstr "您的呼号："
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "提交请求"
+
+#: application/controllers/Qso.php:661
+msgid "You have to be logged in to access this URL."
+msgstr ""
+
+#: application/controllers/Qso.php:667
+msgid "Call Transfer"
+msgstr ""
+
+#: application/controllers/Qso.php:674
+msgid "No callsign provided."
+msgstr ""
+
+#: application/views/bandmap/list.php:6 application/views/qso/log_qso.php:55
+msgid "Pop-up was blocked! Please allow pop-ups for this site permanently."
+msgstr ""
+
+#: application/views/qso/log_qso.php:9
+msgid "Redirecting to QSO logging page..."
+msgstr ""
+
+#: application/views/qso/log_qso.php:75
+msgid "The data was redirected. You can close this window."
+msgstr ""
 
 #~ msgid "Click 'Save Callsign Certificate File' and do not add a password"
 #~ msgstr "单击 \"保存呼号证书文件\" 并不要指定密码"
