@@ -1,11 +1,21 @@
-![GitHub License](https://img.shields.io/github/license/wavelog/wavelog)
-[![Übersetzungsstatus](https://translate.wavelog.org/widget/wavelog/main-translation/svg-badge.svg)](https://translate.wavelog.org/engage/wavelog/)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/wavelog/wavelog)
-
-
-# Wavelog
-
-> Important: Only accepting PRs on the "dev" branch.
+<h1 align="center">
+  <a href="https://www.wavelog.org/">
+    <picture>
+      <source height="400" media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/wavelog/wavelog/refs/heads/dev/assets/logo/wavelog_logo_darkly_wide.png">
+      <img alt="Wavelog" src="https://raw.githubusercontent.com/wavelog/wavelog/refs/heads/dev/assets/logo/wavelog_logo_darkly_wide.png">
+    </picture>
+  </a>
+  <br>
+  <a href="https://github.com/wavelog/wavelog/blob/master/LICENSE">
+    <img alt="Github License" src="https://img.shields.io/github/license/wavelog/wavelog">
+  </a>
+  <a href="https://translate.wavelog.org/engage/wavelog/">
+    <img alt="Translation Status" src="https://translate.wavelog.org/widget/wavelog/main-translation/svg-badge.svg">
+  </a>
+  <a href="https://github.com/wavelog/wavelog/graphs/contributors" >
+   <img alt="Commit Activity" src="https://img.shields.io/github/commit-activity/m/wavelog/wavelog">
+ </a>
+</h1>
 
 Wavelog is a self-hosted PHP application that allows you to log your amateur radio contacts anywhere. All you need is a web browser and active internet connection.
 
@@ -63,5 +73,8 @@ If you would like to contribute in any way to Wavelog, it is most appreciated. T
 **For translations and language stuff you can refer to our [Wiki about Translations](https://github.com/wavelog/wavelog/wiki/Translations).**
 
 Please note that Wavelog was built using [Codeigniter](https://www.codeigniter.com/docs) version 3 and uses Bootstrap 5 for the user CSS framework documentation is available for this when building components.
+
+> [!IMPORTANT]  
+> Only accepting PRs on the "dev" branch.
 
 When submitting PRs please make sure code is commented and includes one feature only, multiple features or bug fixes will not be accepted. Please include a description of what your PR does and why it is needed.
