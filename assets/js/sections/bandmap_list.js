@@ -206,6 +206,7 @@ $(function() {
 	let check_intv = 100; // check every 100 ms
 
 	$(document).on('click','#prepcall', function() {
+		let ready_listener = true;
 		let call=this.innerText;
 		let qrg=''
 		if ((this.parentNode.parentNode.className != 'odd') && (this.parentNode.parentNode.className != 'even')) {
@@ -241,8 +242,11 @@ $(function() {
 
 				// wait for the ready message
                 bc2qso.onmessage = function(ev) {
-                    if (ev.data === 'ready') {
-						bc2qso.postMessage({ frequency: cl.qrg, call: cl.call })
+					if (ready_listener == true) {
+						if (ev.data === 'ready') {
+							bc2qso.postMessage({ frequency: cl.qrg, call: cl.call })
+							ready_listener = false;
+						}
 					}
 				};
 			}
