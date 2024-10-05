@@ -41,7 +41,7 @@ class Eqslmethods_model extends CI_Model {
 
 	function uploadUser($userid, $username, $password) {
 		$data['user_eqsl_name'] = $this->security->xss_clean($username);
-		$data['user_eqsl_password'] = html_entity_decode($this->security->xss_clean($password));
+		$data['user_eqsl_password'] = $password;
 		$clean_userid = $this->security->xss_clean($userid);
 
 		$qslsnotsent = $this->eqsl_not_yet_sent($clean_userid);
@@ -49,7 +49,7 @@ class Eqslmethods_model extends CI_Model {
 		foreach ($qslsnotsent->result_array() as $qsl) {
 			$data['user_eqsl_name'] = $qsl['station_callsign'];
 			$adif = $this->generateAdif($qsl, $data);
-
+			
 			$status = $this->uploadQso($adif, $qsl);
 
 			if ($status == 'Error') {
@@ -69,8 +69,8 @@ class Eqslmethods_model extends CI_Model {
 		$COL_TIME_ON = date('Hi', strtotime($qsl['COL_TIME_ON']));
 
 		# Set up the single record file
-		$adif = "https://www.eqsl.cc/qslcard/importADIF.cfm?";
-		$adif .= "ADIFData=WavelogUpload%20";
+		$adifhead = "https://www.eqsl.cc/qslcard/importADIF.cfm?";
+		$adifhead .= "ADIFData=WavelogUpload%20";
 
 	/* Handy reference of escaping chars
 			"<" = 3C
@@ -83,33 +83,34 @@ class Eqslmethods_model extends CI_Model {
 			"&" = 26
 	 */
 
-		$adif .= "%3C";
-		$adif .= "ADIF%5FVER";
-		$adif .= "%3A";
-		$adif .= "4";
-		$adif .= "%3E";
-		$adif .= "1%2E00 ";
-		$adif .= "%20";
+		$adifhead .= "%3C";
+		$adifhead .= "ADIF%5FVER";
+		$adifhead .= "%3A";
+		$adifhead .= "4";
+		$adifhead .= "%3E";
+		$adifhead .= "1%2E000";
+		$adifhead .= "%20";
 
-		$adif .= "%3C";
-		$adif .= "EQSL%5FUSER";
-		$adif .= "%3A";
-		$adif .= strlen($data['user_eqsl_name']);
-		$adif .= "%3E";
-		$adif .= $data['user_eqsl_name'];
-		$adif .= "%20";
+		$adifhead .= "%3C";
+		$adifhead .= "EQSL%5FUSER";
+		$adifhead .= "%3A";
+		$adifhead .= strlen($data['user_eqsl_name']);
+		$adifhead .= "%3E";
+		$adifhead .= $data['user_eqsl_name'];
+		$adifhead .= "%20";
 
-		$adif .= "%3C";
-		$adif .= "EQSL%5FPSWD";
-		$adif .= "%3A";
-		$adif .= strlen($data['user_eqsl_password']);
-		$adif .= "%3E";
-		$adif .= urlencode($data['user_eqsl_password']);
-		$adif .= "%20";
+		$adifhead .= "%3C";
+		$adifhead .= "EQSL%5FPSWD";
+		$adifhead .= "%3A";
+		$adifhead .= mb_strlen((($data['user_eqsl_password'])));
+		$adifhead .= "%3E";
+		$adifhead .= rawurlencode($data['user_eqsl_password']);
+		$adifhead .= "%20";
 
-		$adif .= "%3C";
-		$adif .= "EOH";
-		$adif .= "%3E";
+		$adifhead .= "%3C";
+		$adifhead .= "EOH";
+
+		$adif = "%3E";
 
 		# Lay out the required fields
 		$adif .= "%3C";
@@ -246,6 +247,7 @@ class Eqslmethods_model extends CI_Model {
 
 		# Make sure we don't have any spaces
 		$adif = str_replace(" ", '%20', $adif);
+		$adif = $adifhead.$adif;
 
 		return $adif;
 	}
@@ -324,7 +326,6 @@ class Eqslmethods_model extends CI_Model {
 				}
 			}
 		}
-		log_message('debug', $result);
 		return $status;
 	}
 
