@@ -278,17 +278,24 @@ bc.onmessage = function (ev) {
 			bc.postMessage(message);
 		} else {
 			// console.log(ev.data);
-			if (ev.data.frequency != null) {
-				$('#frequency').val(ev.data.frequency);
-				$("#band").val(frequencyToBand(ev.data.frequency));
+			let delay = 0;
+			if ($("#callsign").val() != "") {
+				reset_fields();
+				delay = 600;
 			}
-			if (ev.data.frequency_rx != "") {
-				$('#frequency_rx').val(ev.data.frequency_rx);
-				$("#band_rx").val(frequencyToBand(ev.data.frequency_rx));
-			}
-			$("#callsign").val(ev.data.call);
-			$("#callsign").focusout();
-			$("#callsign").blur();
+			setTimeout(() => {
+				if (ev.data.frequency != null) {
+					$('#frequency').val(ev.data.frequency);
+					$("#band").val(frequencyToBand(ev.data.frequency));
+				}
+				if (ev.data.frequency_rx != "") {
+					$('#frequency_rx').val(ev.data.frequency_rx);
+					$("#band_rx").val(frequencyToBand(ev.data.frequency_rx));
+				}
+				$("#callsign").val(ev.data.call);
+				$("#callsign").focusout();
+				$("#callsign").blur();
+			}, delay);
 		}
 	}
 } /* receive */
