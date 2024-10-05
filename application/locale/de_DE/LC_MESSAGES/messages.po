@@ -123,6 +123,7 @@ msgstr ""
 #: application/controllers/User.php:762 application/controllers/User.php:1045
 #: application/controllers/User.php:1247
 #: application/controllers/User_options.php:9
+#: application/controllers/Cabrillo.php:138
 msgid "You're not allowed to do that!"
 msgstr "Das ist dir nicht gestattet!"
 
@@ -2737,6 +2738,7 @@ msgstr "Differenz"
 #: application/views/timeplotter/index.php:47
 #: application/views/user/edit.php:633
 #: application/views/visitor/layout/footer.php:171
+#: application/views/cabrillo/index.php:69
 msgid "All"
 msgstr "Alle"
 
@@ -4692,6 +4694,7 @@ msgstr "Zeige Karte der JCCs"
 #: application/views/cabrillo/index.php:180 application/views/cfd/index.php:25
 #: application/views/csv/index.php:128 application/views/dxatlas/index.php:128
 #: application/views/kml/index.php:113 application/views/reg1test/index.php:145
+#: application/views/cabrillo/index.php:201
 msgid "Export"
 msgstr "Exportieren"
 
@@ -5364,77 +5367,95 @@ msgstr "Club"
 
 #: application/views/cabrillo/index.php:48
 #: application/views/reg1test/index.php:58
+#: application/views/cabrillo/index.php:52
 msgid "Category Operator"
 msgstr "Kategorie Operator"
 
 #: application/views/cabrillo/index.php:56
+#: application/views/cabrillo/index.php:60
 msgid "Category Assisted"
 msgstr "Kategorie 'Assisted'"
 
 #: application/views/cabrillo/index.php:63
+#: application/views/cabrillo/index.php:67
 msgid "Category Band"
 msgstr "Kategorie Band"
 
 #: application/views/cabrillo/index.php:89
+#: application/views/cabrillo/index.php:93
 msgid "Light/Laser"
 msgstr "Licht/Laser"
 
 #: application/views/cabrillo/index.php:90
+#: application/views/cabrillo/index.php:94
 msgid "VHF-3-BAND and VHF-FM-ONLY (ARRL VHF Contests only)"
 msgstr "VHF-3-BAND und VHF-FM-ONLY (nur ARRL VHF-Conteste)"
 
 #: application/views/cabrillo/index.php:94
+#: application/views/cabrillo/index.php:98
 msgid "Category Mode"
 msgstr "Kategorie Mode"
 
 #: application/views/cabrillo/index.php:105
+#: application/views/cabrillo/index.php:109
 msgid "Category Power"
 msgstr "Kategorie Sendeleistung"
 
 #: application/views/cabrillo/index.php:113
+#: application/views/cabrillo/index.php:117
 msgid "Category Station"
 msgstr "Kategorie Station"
 
 #: application/views/cabrillo/index.php:129
+#: application/views/cabrillo/index.php:133
 msgid "Category Transmitter"
 msgstr "Kategorie Sender"
 
 #: application/views/cabrillo/index.php:139
+#: application/views/cabrillo/index.php:152
 msgid "Category Overlay"
 msgstr "Kategorie Overlay"
 
 #: application/views/cabrillo/index.php:150
 #: application/views/reg1test/index.php:70
+#: application/views/cabrillo/index.php:163
 msgid "Operators"
 msgstr "Operatoren"
 
 #: application/views/cabrillo/index.php:155
 #: application/views/reg1test/index.php:139
+#: application/views/cabrillo/index.php:168
 msgid "Soapbox"
 msgstr "Soapbox"
 
 #: application/views/cabrillo/index.php:159
+#: application/views/cabrillo/index.php:172
 msgid "Address"
 msgstr "Addresse"
 
 #: application/views/cabrillo/index.php:163
+#: application/views/cabrillo/index.php:176
 msgid "Address City"
 msgstr "Addresse Stadt"
 
 #: application/views/cabrillo/index.php:167
+#: application/views/cabrillo/index.php:180
 msgid "Address State/Province"
 msgstr "Addresse Staat/Provinz"
 
 #: application/views/cabrillo/index.php:171
+#: application/views/cabrillo/index.php:184
 msgid "Address Postalcode"
 msgstr "Addresse Postleitzahl"
 
 #: application/views/cabrillo/index.php:175
+#: application/views/cabrillo/index.php:188
 msgid "Address Country"
 msgstr "Addresse Land"
 
 #: application/views/cabrillo/index.php:186
 #: application/views/reg1test/index.php:150
+#: application/views/cabrillo/index.php:207
 msgid "No contests were found in your log."
 msgstr "Es wurden keine Conteste in deinem Log gefunden."
 
@@ -7897,6 +7918,7 @@ msgstr "QSL gesendet"
 #: application/views/user/edit.php:419 application/views/user/edit.php:430
 #: application/views/user/edit.php:540 application/views/user/edit.php:802
 #: application/views/user/edit.php:834 application/views/user/edit.php:859
+#: application/views/cabrillo/index.php:195
 msgid "Yes"
 msgstr "Ja"
 
@@ -7936,6 +7958,7 @@ msgstr "Ja"
 #: application/views/user/edit.php:522 application/views/user/edit.php:526
 #: application/views/user/edit.php:541 application/views/user/edit.php:803
 #: application/views/user/edit.php:833 application/views/user/edit.php:858
+#: application/views/cabrillo/index.php:196
 msgid "No"
 msgstr "Nein"
 
@@ -8253,6 +8276,7 @@ msgstr "# Resultate"
 #: application/views/logbookadvanced/index.php:534
 #: application/views/qso/index.php:273
 #: application/views/station_profile/edit.php:92
+#: application/views/cabrillo/index.php:48
 msgid "Location"
 msgstr "Standort"
 
@@ -12241,6 +12265,46 @@ msgstr "Anfrage senden"
 #: src/QSLManager/QSO.php:480
 msgid "last sent"
 msgstr "zuletzt gesendet"
+
+#: application/views/cabrillo/index.php:48
+msgid ""
+"For USA and Canada stations LOCATION must be the ARRL section abbreviation. "
+"For foreign stations LOCATION must be 'DX'. This information is required for "
+"IARU-HF and for all ARRL and CQ contests."
+msgstr ""
+
+#: application/views/cabrillo/index.php:48
+msgid "For the RDXC contest this contains the RDA number."
+msgstr ""
+
+#: application/views/cabrillo/index.php:48
+msgid ""
+"For the RSGB-IOTA contest this information contains the IOTA name (not the "
+"IOTA reference code)."
+msgstr ""
+
+#: application/views/cabrillo/index.php:143
+msgid "Category Time"
+msgstr ""
+
+#: application/views/cabrillo/index.php:145
+#: application/views/cabrillo/index.php:146
+#: application/views/cabrillo/index.php:147
+#: application/views/cabrillo/index.php:148
+#, php-format
+msgid "%d Hours"
+msgstr ""
+
+#: application/views/cabrillo/index.php:192
+msgid "Certificate"
+msgstr ""
+
+#: application/views/cabrillo/index.php:192
+msgid ""
+"Indicate if you wish to receive, if eligible, a paper certificate sent via "
+"postal mail by the contest sponsor. The contest sponsor may or may not honor "
+"this tag."
+msgstr ""
 
 #~ msgid "Click 'Save Callsign Certificate File' and do not add a password"
 #~ msgstr ""

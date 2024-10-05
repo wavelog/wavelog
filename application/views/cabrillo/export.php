@@ -6,8 +6,8 @@ $CI =& get_instance();
 $CI->load->library('Cabrilloformat');
 
 echo $CI->cabrilloformat->header($contest_id, $callsign, $claimed_score, 
-	$operators, $club, $name, $address, $addresscity, $addressstateprovince, $addresspostalcode, $addresscountry, $soapbox, $gridlocator, 
-	$categoryoverlay, $categorytransmitter, $categorystation, $categorypower, $categorymode, $categoryband, $categoryassisted, $categoryoperator, $email);
+	$operators, $club, $location, $name, $address, $addresscity, $addressstateprovince, $addresspostalcode, $addresscountry, $soapbox, $gridlocator, 
+	$categoryoverlay, $categorytransmitter, $categorytime, $categorystation, $categorypower, $categorymode, $categoryband, $categoryassisted, $categoryoperator, $email, $certificate);
 foreach ($qsos->result() as $row) {
 	echo $CI->cabrilloformat->qso($row);
 }

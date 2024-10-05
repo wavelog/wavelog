@@ -1,3 +1,9 @@
+$(document).ready(function() {
+    $('[data-bs-toggle="contestinfo"]').tooltip({
+        html: true
+    });
+});
+
 function loadYears() {
     $(".contestyear").empty();
     $(".contestname").empty();
