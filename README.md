@@ -53,6 +53,11 @@ Notes
 
 Installation information can be found on the [wiki](https://github.com/wavelog/wavelog/wiki).
 
+## WavelogGate 
+
+Easy CAT data transfer from your rig to Wavelog.  
+Check out our WavelogGate Repo [here](https://github.com/wavelog/WaveLogGate).
+
 ## Support
 
 Wavelog-support can be reached by creating an issue here at github. If you've any issues don't hesitate to create one here. Please provide as much information as possible to reproduce the Problem
