@@ -3647,7 +3647,7 @@ class Logbook_model extends CI_Model {
 			if (isset($record['date_off'])) {
 				// date_off and time_off set
 				$time_off = date('Y-m-d', strtotime($record['date_off'] ?? '1970-01-01 00:00:00')) . ' ' . date('H:i:s', strtotime($record['time_off'] ?? '1970-01-01 00:00:00'));
-			} elseif (strtotime($record['time_off']) < strtotime($record['time_on'])) {
+			} elseif (strtotime($record['time_off']) < strtotime($record['time_on'] ?? '00:00:00')) {
 				// date_off is not set, QSO ends next day
 				$time_off = date('Y-m-d', strtotime(($record['qso_date']  ?? '1970-01-01 00:00:00') . ' + 1 day')) . ' ' . date('H:i:s', strtotime($record['time_off'] ?? '1970-01-01 00:00:00'));
 			} else {
