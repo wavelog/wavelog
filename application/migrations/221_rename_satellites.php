@@ -136,6 +136,7 @@ class Migration_rename_satellites extends CI_Migration {
 		}
 
 		$this->set_lotw($this->lotw_sats);
+		$this->insert_sat("SONATE", "LEO", "V/V", "PKT", "145825000", "PKT", "145825000");
 	}
 
 	public function down() {
@@ -150,6 +151,7 @@ class Migration_rename_satellites extends CI_Migration {
 		if ($this->db->field_exists('lotw', 'satellite')) {
 			$this->dbforge->drop_column('satellite', 'lotw');
 		}
+		$this->remove_sat("SONATE");
 	}
 
 	function update_sat_table($from, $to) {
@@ -165,6 +167,45 @@ class Migration_rename_satellites extends CI_Migration {
 	function set_lotw($sats) {
 		$sql = "UPDATE `satellite` SET `lotw` = 'Y' WHERE `name` IN ('".implode('\',\'', $sats)."');";
 		$this->db->query($sql);
+	}
+
+	function insert_sat($name, $orbit, $modename, $uplink_mode, $uplink_freq, $downlink_mode, $downlink_freq) {
+		$data = array(
+			'name' => $name,
+			'orbit' => $orbit,
+		);
+		$this->db->where('name', $name);
+		$result = $this->db->get('satellite');
+
+		if ($result->num_rows() == 0) {
+			$this->db->insert('satellite', $data);
+			$insert_id = $this->db->insert_id();
+
+			$modedata = array(
+				'name' => $modename,
+				'satelliteid' => $insert_id,
+				'uplink_mode' => $uplink_mode,
+				'uplink_freq' => $uplink_freq,
+				'downlink_mode' => $downlink_mode,
+				'downlink_freq' => $downlink_freq,
+			);
+			$this->db->insert('satellitemode', $modedata);
+
+		}
+	}
+
+	function remove_sat($name) {
+		$this->db->select('id');
+		$this->db->where('name', $name);
+		$query = $this->db->get('satellite');
+		$ids = array();
+		foreach ($query->result() as $row) {
+			array_push($ids, $row->id);
+		}
+		$this->db->where_in('satelliteid', $ids);
+		$this->db->delete('satellitemode');
+		$this->db->where_in('id', $ids);
+		$this->db->delete('satellite');
 	}
 
 }
