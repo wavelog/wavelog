@@ -1,8 +1,9 @@
 <h1 align="center">
   <a href="https://www.wavelog.org/">
     <picture>
-      <source height="400" media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/wavelog/wavelog/refs/heads/master/assets/logo/wavelog_logo_darkly_wide.png">
-      <img alt="Wavelog" src="https://raw.githubusercontent.com/wavelog/wavelog/refs/heads/master/assets/logo/wavelog_logo_darkly_wide.png">
+      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/wavelog/wavelog/refs/heads/master/assets/logo/wavelog_logo_darkly.png">
+      <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/wavelog/wavelog/refs/heads/master/assets/logo/wavelog_logo_cosmo.png">
+      <img alt="Wavelog" src="https://raw.githubusercontent.com/wavelog/wavelog/refs/heads/master/assets/logo/wavelog_logo_darkly.png">
     </picture>
   </a>
   <br>
