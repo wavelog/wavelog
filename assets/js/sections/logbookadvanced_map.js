@@ -678,7 +678,7 @@ function renderGlobe(arcsData,labelData) {
 	.arcsData(arcsData)
 	.arcColor('color')
 	//.arcAltitude('altitude')
-	.arcAltitudeAutoScale(.3)
+	.arcAltitudeAutoScale(.35)
 	.arcStroke(.2)
 	.arcDashLength(() => .1)
 	.arcDashGap(() => 0.01)
