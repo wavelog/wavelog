@@ -3,6 +3,7 @@
 	var cat_timeout_interval = "<?php echo $this->optionslib->get_option('cat_timeout_interval'); ?>";
 	var dxcluster_maxage = <?php echo $this->optionslib->get_option('dxcluster_maxage') ?? 60; ?>;
 	var custom_date_format = "<?php echo $custom_date_format ?>";
+	var popup_warning = "<?= __("Pop-up was blocked! Please allow pop-ups for this site permanently."); ?>";
 </script>
 
 <style>
@@ -40,6 +41,8 @@
 <div class="container">
 	<br>
 	<center><button type="button" class="btn" id="menutoggle"><i class="fa fa-arrow-up" id="menutoggle_i"></i></button></center>
+
+	<div id="errormessage" style="display: none;"></div>
 
 	<h2 id="dxtitle"><?php echo $page_title; ?></h2>
 

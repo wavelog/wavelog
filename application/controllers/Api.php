@@ -592,17 +592,195 @@ class API extends CI_Controller {
 
 	}
 
+	function private_lookup() {
+		// Lookup Callsign and dxcc for further informations. UseCase: e.g. external Application which checks calls like FlexRadio-Overlay
+		$raw_input = json_decode(file_get_contents("php://input"), true);
+		$user_id='';
+		$this->load->model('user_model');
+		if (!( $this->user_model->authorize($this->config->item('auth_mode') ))) {				// User not authorized?
+			$no_auth=true;
+			$this->load->model('api_model');
+			if (!( ((isset($raw_input['key'])) && ($this->api_model->authorize($raw_input['key']) > 0) ))) {			// Key invalid?
+				$no_auth=true;
+			} else {
+				$no_auth=false;
+				$user_id=$this->api_model->key_userid($raw_input['key']);
+			}
+			if ($no_auth) {
+				http_response_code(401);
+				echo json_encode(['status' => 'failed', 'reason' => "missing api key or session"]);
+				die();
+			}
+		} else {
+			$user_id=$this->session->userdata('user_id');
+		}
+
+		$this->load->model('stations');
+		$all_station_ids=$this->stations->all_station_ids_of_user($user_id);
+		
+		if ((array_key_exists('station_ids',$raw_input)) && (is_array($raw_input['station_ids']))) {		// Special station_ids needed and it is an array?
+			$a_station_ids=[];
+			foreach ($raw_input['station_ids'] as $stationid) {	// Check for grants to given station_id
+				if ($this->stations->check_station_against_user($stationid, $user_id)) {
+					$a_station_ids[]=$stationid;
+				}
+			}
+			$station_ids=implode(', ', $a_station_ids);
+		} else {
+			$station_ids=$all_station_ids;				// Take all of user if no station_ids were given
+		}
+
+		if ($station_ids == '') {					// No station_ids found for user or no station_id of given ones were granted? exit!
+			http_response_code(200);
+			echo json_encode(['status' => 'failed', 'reason' => "no station_profiles are matching the User with this API-Key"]);
+			die();
+		}
+
+		if (array_key_exists('band',$raw_input)) {
+			$band=$raw_input['band'];
+		} else {
+			$band='NO_BAND';
+		}
+		if (array_key_exists('mode',$raw_input)) {
+			$mode=$raw_input['mode'];
+		} else {
+			$mode='NO_MODE';
+		}
+
+		$lookup_callsign = strtoupper($raw_input['callsign'] ?? '');
+		if ($lookup_callsign ?? '' != '') {
+
+
+			$this->load->model("logbook_model");
+			$date = date("Y-m-d");
+
+			// Return Array
+			$return = [
+				"callsign" => "",
+				"dxcc" => false,
+				"dxcc_id" => -1,
+				"dxcc_lat" => "",
+				"dxcc_long" => "",
+				"dxcc_cqz" => "",
+				"dxcc_flag" => "",
+				"cont" => "",
+				"name" => "",
+				"gridsquare"  => "",
+				"location"  => "",
+				"iota_ref" => "",
+				"state" => "",
+				"us_county" => "",
+				"qsl_manager" => "",
+				"bearing" 		=> "",
+				"call_worked" => false,
+				"call_worked_band" => false,
+				"call_worked_band_mode" => false,
+				"lotw_member" => false,
+				"dxcc_confirmed_on_band" => false,
+				"dxcc_confirmed_on_band_mode" => false,
+				"dxcc_confirmed" => false,
+				"call_confirmed" => false,
+				"call_confirmed_band" => false,
+				"call_confirmed_band_mode" => false,
+				"suffix_slash" => "", // Suffix Slash aka Portable
+			];
+
+			$return['callsign'] = $lookup_callsign;
+
+			$callsign_dxcc_lookup = $this->logbook_model->dxcc_lookup($lookup_callsign, $date);
+
+			$last_slash_pos = strrpos($lookup_callsign, '/');
+
+			if(isset($last_slash_pos) && $last_slash_pos > 4) {
+				$suffix_slash = $last_slash_pos === false ? $lookup_callsign : substr($lookup_callsign, $last_slash_pos + 1);
+				switch ($suffix_slash) {
+				case "P":
+					$suffix_slash_item = "Portable";
+					break;
+				case "M":
+					$suffix_slash_item = "Mobile";
+				case "MM":
+					$suffix_slash_item =  "Maritime Mobile";
+					break;
+				default:
+					// If its not one of the above suffix slashes its likely dxcc
+					$ans2 = $this->logbook_model->dxcc_lookup($suffix_slash, $date);
+					$suffix_slash_item = null;
+				}
+
+				$return['suffix_slash'] = $suffix_slash_item;
+			}
+
+			// If the final slash is a DXCC then find it!
+			if (isset($ans2['call'])) {
+				$return['dxcc_id'] = $ans2['adif'];
+				$return['dxcc'] = $ans2['entity'];
+				$return['dxcc_lat'] = $ans2['lat'];
+				$return['dxcc_long'] = $ans2['long'];
+				$return['dxcc_cqz'] = $ans2['cqz'];
+				$return['cont'] = $ans2['cont'];
+			} else {
+				$return['dxcc_id'] = $callsign_dxcc_lookup['adif'] ?? '';
+				$return['dxcc'] = $callsign_dxcc_lookup['entity'] ?? '';
+				$return['dxcc_lat'] = $callsign_dxcc_lookup['lat'] ?? '';
+				$return['dxcc_long'] = $callsign_dxcc_lookup['long'] ?? '';
+				$return['dxcc_cqz'] = $callsign_dxcc_lookup['cqz'] ?? '';
+				$return['cont'] = $callsign_dxcc_lookup['cont'] ?? '';
+			}
+
+			// Query stations of KeyOwner for an already worked call
+			$userdata=$this->user_model->get_by_id($user_id);
+			$call_lookup_results = $this->logbook_model->call_lookup_result($lookup_callsign, $station_ids,$userdata->row()->user_default_confirmation,$band,$mode);
+
+			if($call_lookup_results != null) {
+				$return['name'] = $call_lookup_results->COL_NAME;
+				$return['gridsquare'] = $call_lookup_results->COL_GRIDSQUARE;
+				$return['location'] = $call_lookup_results->COL_QTH;
+				$return['iota_ref'] = $call_lookup_results->COL_IOTA;
+				$return['qsl_manager'] = $call_lookup_results->COL_QSL_VIA;
+				$return['state'] = $call_lookup_results->COL_STATE;
+				$return['us_county'] = $call_lookup_results->COL_CNTY;
+				$return['dxcc_id'] = $call_lookup_results->COL_DXCC;
+				$return['cont'] = $call_lookup_results->COL_CONT;
+				$return['call_worked'] = true;
+				$return['call_worked_band'] = ($call_lookup_results->CALL_WORKED_BAND==1) ? true : false;
+				$return['call_worked_band_mode'] = ($call_lookup_results->CALL_WORKED_BAND_MODE==1) ? true : false;
+				$return['call_confirmed'] = ($call_lookup_results->CALL_CNF==1) ? true : false;
+				$return['call_confirmed_band'] = ($call_lookup_results->CALL_CNF_BAND==1) ? true : false;
+				$return['call_confirmed_band_mode'] = ($call_lookup_results->CALL_CNF_BAND_MODE==1) ? true : false;
+
+				if ($return['gridsquare'] != "") {
+					$return['latlng'] = $this->qralatlng($return['gridsquare']);
+				}
+
+			}
+
+			if ($return['dxcc'] ?? '' != '') {
+				$this->load->library('DxccFlag');
+				$return['dxcc_flag']=$this->dxccflag->get($return['dxcc_id']);
+			}
+
+			$lotw_days=$this->logbook_model->check_last_lotw($lookup_callsign);
+			if ($lotw_days != null) {
+				$return['lotw_member']=$lotw_days;
+			} else {
+				$lotw_member="";
+			}
+
+			if ($return['dxcc_id'] ?? '' != '') {	// DXCC derivated before? if yes: check cnf-states
+				$return['dxcc_confirmed']=($this->logbook_model->check_if_dxcc_cnfmd_in_logbook_api($userdata->row()->user_default_confirmation,$return['dxcc_id'], $station_ids, null, null)>0) ? true : false;
+				$return['dxcc_confirmed_on_band']=($this->logbook_model->check_if_dxcc_cnfmd_in_logbook_api($userdata->row()->user_default_confirmation,$return['dxcc_id'], $station_ids, $band, null)>0) ? true : false;
+				$return['dxcc_confirmed_on_band_mode']=($this->logbook_model->check_if_dxcc_cnfmd_in_logbook_api($userdata->row()->user_default_confirmation,$return['dxcc_id'], $station_ids, $band, $mode)>0) ? true : false;
+			}
+			echo json_encode($return, JSON_PRETTY_PRINT);
+		} else {
+			echo '{"error":"callsign to lookup not given"}';
+		}
+		return;
+	}
+
 	function lookup() {
-		/*
-		 *
-		 *	Callsign lookup function for Wavelogs logging page or thirdparty systems
-		 *	which want to show previous QSO data on their system.
-		 *
-		 */
-
-
-
-		// Make sure users logged in
+		// This API provides NO information about previous QSOs. It just derivates DXCC, Lat, Long. It is used by the DXClusterAPI
 		$raw_input = json_decode(file_get_contents("php://input"), true);
 		$user_id='';
 		$this->load->model('user_model');
@@ -658,18 +836,7 @@ class API extends CI_Controller {
 			];
 
 
-			/*
-			 *
-			 *	Handle Callsign field
-			 *
-			 */
 			$return['callsign'] = $lookup_callsign;
-
-			/*
-			 *
-			 *	Lookup DXCC and Suffix information
-			 *
-			 */
 
 			$callsign_dxcc_lookup = $this->logbook_model->dxcc_lookup($lookup_callsign, $date);
 
@@ -713,11 +880,9 @@ class API extends CI_Controller {
 			}
 
 			/*
-			 *
-			 *	Pool any local data we have for a callsign
-			 *
+			 *	Query Data of API-Key-Owner for further informations
 			 */
-			$call_lookup_results = $this->logbook_model->call_lookup_result($lookup_callsign, $station_ids);
+			$call_lookup_results = $this->logbook_model->call_lookup_result($lookup_callsign, $station_ids,'','NO BAND','NO MODE');
 
 			if($call_lookup_results != null)
 			{
@@ -749,11 +914,6 @@ class API extends CI_Controller {
 			} else {
 				$lotw_member="";
 			}
-			/*
-			 *
-			 *	Output Returned data
-			 *
-			 */
 			echo json_encode($return, JSON_PRETTY_PRINT);
 		} else {
 			echo '{"error":"callsign to lookup not given"}';

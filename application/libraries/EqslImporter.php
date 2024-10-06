@@ -149,6 +149,9 @@ class EqslImporter
 		$qsos = array();
 		$records = $updated = $not_found = $dupes = 0;
 		while ($record = $this->CI->adif_parser->get_record()) {
+			if (($record['call'] ?? '') == '') {	// Failsafe if no call was given
+				continue;
+			}
 			$records += 1;
 			$time_on = date('Y-m-d', strtotime($record['qso_date'])) . " " . date('H:i', strtotime($record['time_on']));
 

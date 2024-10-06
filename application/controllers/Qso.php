@@ -645,4 +645,34 @@ class QSO extends CI_Controller {
          return false;
       }
    }
+
+   /**
+	 * Open the API url which causes the browser to open the QSO live logging and populate the callsign with the data from the API
+	 * 
+	 * Usage example:
+	 * 			https://<URL to Wavelog>/index.php/qso/log_qso?callsign=4W7EST
+	 */
+
+	function log_qso() {
+		// Check if users logged in
+		$this->load->model('user_model');
+		if ($this->user_model->validate_session() == 0) {
+			// user is not logged in
+			$this->session->set_flashdata('warning', __("You have to be logged in to access this URL."));
+			redirect('user/login');
+		}
+
+		// get the data from the API
+		$data['callsign'] = $this->input->get('callsign', TRUE);
+        $data['page_title'] = __("Call Transfer");
+
+		// load the QSO redirect page
+		if ($data['callsign'] != "") {
+			$this->load->view('interface_assets/header', $data);
+			$this->load->view('qso/log_qso');
+		} else {
+			$this->session->set_flashdata('warning', __("No callsign provided."));
+			redirect('dashboard');
+		}
+	}
 }

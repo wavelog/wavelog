@@ -21,8 +21,8 @@
           } ?>
     </p>
     <?php if($adif_errors) { ?>
-      <h3><?= __("ADIF Errors")?></h3>
-      <p><?= __("You have ADIF errors, the QSOs have still been added but these fields have not been populated.")?></p>
+      <h3><?= __("Import details / possible problems")?></h3>
+      <p><?= __("You might have ADIF errors, the QSOs have still been added. Please check the following information:")?></p>
       <p class="card-text"><?php echo $adif_errors; ?></p>
     <?php } ?>
   </div>
