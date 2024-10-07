@@ -4,12 +4,13 @@
 #
 # Fabian Berg <80885850+HB9HIL@users.noreply.github.com>, 2024.
 # Dragan Đorđević <4o4a.dragan@gmail.com>, 2024.
+# Fabian Berg <fabian.berg@hb9hil.org>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-12 09:45+0000\n"
-"PO-Revision-Date: 2024-08-18 19:11+0000\n"
-"Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
+"POT-Creation-Date: 2024-09-27 15:58+0000\n"
+"PO-Revision-Date: 2024-09-27 16:01+0000\n"
+"Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/"
 "installer/sr/>\n"
 "Language: sr\n"
@@ -18,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.7\n"
+"X-Generator: Weblate 5.7.2\n"
 
 #: install/includes/core/database_class.php:59
 msgid "Connection Error: "
@@ -497,9 +498,9 @@ msgid "DXCC"
 msgstr "DXCC"
 
 #: install/index.php:487
-msgctxt "No DXCC"
-msgid "- None -"
-msgstr "- ništa -"
+msgctxt "DXCC Select - No DXCC"
+msgid "- NONE - (e.g. /MM, /AM)"
+msgstr "- NIJEDNA - (npr. /MM, /AM)"
 
 #: install/index.php:488 install/index.php:494 install/index.php:518
 #: install/index.php:530 install/index.php:533 install/index.php:538
@@ -678,8 +679,8 @@ msgid ""
 "The locator seems to be not in the correct format. Should look like AA11AA "
 "(6-char grid locator)."
 msgstr ""
-"Izgleda da lokator nema ispravan format. Trebalo bi da liči na AA11AA ("
-"lokator polja sa 6 karaktera)."
+"Izgleda da lokator nema ispravan format. Trebalo bi da liči na AA11AA "
+"(lokator polja sa 6 karaktera)."
 
 #: install/index.php:1740
 msgid ""
@@ -794,3 +795,7 @@ msgstr "Ne mogu ažurirati DXCC podatke"
 #: install/run.php:341
 msgid "Could not create install/.lock file"
 msgstr "Ne mogu kreirati install/.lock datoteku"
+
+#~ msgctxt "No DXCC"
+#~ msgid "- None -"
+#~ msgstr "- ništa -"

@@ -51,7 +51,7 @@ function displayDistanceQsos(sat) {
 					}]
 				});
 			    dialog.realize();
-		    		$("#gridsquare_map").append(dialog.getModal());
+		    		$("body").append(dialog.getModal());
 		    		dialog.open();
 },
 			error: function(e) {

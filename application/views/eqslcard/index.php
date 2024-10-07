@@ -55,7 +55,7 @@
          if($qsl->COL_PROP_MODE != null) { echo $qsl->COL_PROP_MODE; };
          echo '</td>';
          echo '<td style=\'text-align: center\'>';
-         $timestamp = strtotime($qsl->COL_EQSL_QSLRDATE); echo date($custom_date_format, $timestamp);
+         if ($qsl->COL_EQSL_QSLRDATE) { $timestamp = strtotime($qsl->COL_EQSL_QSLRDATE); echo date($custom_date_format, $timestamp); }
          echo '</td>';
             echo '<td style=\'text-align: center\'><button onclick="viewEqsl(\''.$qsl->image_file.'\', \''. $qsl->COL_CALL . '\')" class="btn btn-sm btn-success">' . __("View") . '</button></td>';
             echo '</tr>';

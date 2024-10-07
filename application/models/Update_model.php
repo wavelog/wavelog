@@ -260,4 +260,50 @@ class Update_model extends CI_Model {
         $totaltime = ($endtime - $starttime);
         return "Records inserted: " . $i . " in " . $totaltime . " seconds <br />";
     }
+
+    function wavelog_latest_release() {
+        $latest_tag = null;
+        $url = "https://api.github.com/repos/wavelog/wavelog/releases";
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Wavelog Updater');
+        curl_setopt($ch, CURLOPT_URL,$url);
+        $result=curl_exec($ch);
+        curl_close($ch);
+        $json = json_decode($result, true);
+        $latest_tag = $json[0]['tag_name'];
+        return $latest_tag;
+    }
+
+    function set_latest_release($release) {
+        $this->db->select('option_value');
+        $this->db->where('option_name', 'latest_release');
+        $query = $this->db->get('options');
+        if ($query->num_rows() > 0) {
+            $this->db->where('option_name', 'latest_release');
+            $this->db->update('options', array('option_value' => $release));
+        } else {
+            $data = array(
+                array('option_name' => "latest_release", 'option_value' => $release, 'autoload' => "yes"),
+            );
+            $this->db->insert_batch('options', $data);
+        }
+    }
+
+    function update_check($silent = false) {
+        if (!$this->config->item('disable_version_check') ?? false) {
+            $running_version = $this->optionslib->get_option('version');
+            $latest_release = $this->wavelog_latest_release();
+            $this->set_latest_release($latest_release);
+            if (version_compare($latest_release, $running_version, '>')) {
+                if (!$silent) {
+                   print __("Newer release available:")." ".$latest_release;
+                }
+            } else {
+                if (!$silent) {
+                    print __("You are running the latest version.");
+                }
+            }
+        }
+    }
 }

@@ -5,6 +5,9 @@
   var lang_qso_title_previous_contacts = "<?= __("Previous Contacts"); ?>";
   var lang_qso_title_times_worked_before = "<?= __("times worked before"); ?>";
   var lang_qso_title_not_worked_before = "<?= __("Not worked before"); ?>";
+  var lang_dxccsummary_for = "<?= __("DXCC Summary for "); ?>";
+  var lang_lotw_upload_day_ago = "<?= __("LoTW User. Last upload was 1 day ago."); ?>";
+  var lang_lotw_upload_days_ago = "<?= __("LoTW User. Last upload was %x days ago."); ?>"; // due to the way the string is built (PHP to JS), %x is replaced with the number of days
 </script>
 
 <div class="row qsopane">
@@ -62,13 +65,13 @@
               <div class="row">
                 <div class="mb-3 col-md-3">
                   <label for="start_date"><?= __("Date"); ?></label>
-                  <input type="text" class="form-control form-control-sm input_date" name="start_date" id="start_date" value="<?php if (($this->session->userdata('start_date') != NULL && ((time() - $this->session->userdata('time_stamp')) < 24 * 60 * 60))) { echo $this->session->userdata('start_date'); } else { echo date('d-m-Y');}?>" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> required pattern="[0-3][0-9]-[0-1][0-9]-[0-9]{4}">
+                  <input type="text" class="form-control form-control-sm input_date" name="start_date" id="start_date" tabindex="4" value="<?php echo date('d-m-Y'); ?>" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> required pattern="[0-3][0-9]-[0-1][0-9]-[0-9]{4}">
                 </div>
 
                 <div class="mb-3 col-md-4">
                 <label for="start_time"><?= __("Time on"); ?></label>
                   <div class="input-group">
-                    <input type="text" class="form-control form-control-sm input_start_time" name="start_time" id="start_time" value="<?php if (($this->session->userdata('start_time') != NULL && ((time() - $this->session->userdata('time_stamp')) < 24 * 60 * 60))) { echo substr($this->session->userdata('start_time'),0,5); } else { echo $manual_mode == 0 ? date('H:i:s') : date('H:i'); } ?>" size="7" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> required pattern="[0-2][0-9]:[0-5][0-9]">
+                    <input type="text" class="form-control form-control-sm input_start_time" name="start_time" id="start_time" tabindex="5" value="<?php echo $manual_mode == 0 ? date('H:i:s') : date('H:i'); ?>" size="7" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> required pattern="[0-2][0-9]:[0-5][0-9]">
                     <?php if ($manual_mode != 1) { ?>
                       <span class="input-group-text btn-included-on-field"><i id="reset_time" data-bs-toggle="tooltip" title="Reset start time" class="fas fa-stopwatch"></i></span>
                     <?php } else { ?>
@@ -80,7 +83,7 @@
                 <div class="mb-3 col-md-4">
                   <label for="end_time"><?= __("Time off"); ?></label>
                   <div class="input-group">
-                    <input type="text" class="form-control form-control-sm input_end_time" name="end_time" id="end_time" value="<?php if (($this->session->userdata('end_time') != NULL && ((time() - $this->session->userdata('time_stamp')) < 24 * 60 * 60))) { echo substr($this->session->userdata('end_time'),0,5); } else { echo $manual_mode == 0 ? date('H:i:s') : date('H:i'); } ?>" size="7" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> required pattern="[0-2][0-9]:[0-5][0-9]">
+                    <input type="text" class="form-control form-control-sm input_end_time" name="end_time" id="end_time" tabindex="6" value="<?php echo $manual_mode == 0 ? date('H:i:s') : date('H:i'); ?>" size="7" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> required pattern="[0-2][0-9]:[0-5][0-9]">
                     <?php if ($manual_mode == 1) { ?>
                       <span class="input-group-text btn-included-on-field"><i id="reset_end_time" data-bs-toggle="tooltip" title="Reset end time" class="fas fa-stopwatch"></i></span>
                     <?php } ?>
@@ -98,13 +101,13 @@
               <div class="row">
                 <div class="mb-3 col-md-6">
                   <label for="start_date"><?= __("Date"); ?></label>
-                  <input type="text" class="form-control form-control-sm input_date" name="start_date" id="start_date" value="<?php if (($this->session->userdata('start_date') != NULL && ((time() - $this->session->userdata('time_stamp')) < 24 * 60 * 60))) { echo $this->session->userdata('start_date'); } else { echo date('d-m-Y');}?>" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> required pattern="[0-3][0-9]-[0-1][0-9]-[0-9]{4}">
+                  <input type="text" class="form-control form-control-sm input_date" name="start_date" id="start_date" tabindex="4" value="<?php echo date('d-m-Y'); ?>" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> required pattern="[0-3][0-9]-[0-1][0-9]-[0-9]{4}">
                 </div>
 
                 <div class="mb-3 col-md-6">
                   <label for="start_time"><?= __("Time"); ?></label>
                   <div class="input-group">
-                    <input type="text" class="form-control form-control-sm input_start_time" name="start_time" id="start_time" value="<?php if (($this->session->userdata('start_time') != NULL && ((time() - $this->session->userdata('time_stamp')) < 24 * 60 * 60))) { echo substr($this->session->userdata('start_time'),0,5); } else { echo $manual_mode == 0 ? date('H:i:s') : date('H:i'); } ?>" size="7" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> required pattern="[0-2][0-9]:[0-5][0-9]">
+                    <input type="text" class="form-control form-control-sm input_start_time" name="start_time" id="start_time" tabindex="5" value="<?php echo $manual_mode == 0 ? date('H:i:s') : date('H:i'); ?>" size="7" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> required pattern="[0-2][0-9]:[0-5][0-9]">
                     <?php if ($manual_mode == 1) { ?>
                       <span class="input-group-text btn-included-on-field"><i id="reset_start_time" data-bs-toggle="tooltip" title="Reset start time" class="fas fa-stopwatch"></i></span>
                     <?php } ?>
@@ -123,7 +126,7 @@
                 <div class="mb-3 col-md-12">
                   <label for="callsign"><?= __("Callsign"); ?></label>&nbsp;<i id="check_cluster" data-bs-toggle="tooltip" title="<?= __("Search DXCluster for latest Spot"); ?>" class="fas fa-search"></i>
                   <div class="input-group">
-                    <input tabindex="1" type="text" class="form-control" id="callsign" name="callsign" required>
+                    <input tabindex="7" type="text" class="form-control" id="callsign" name="callsign" required>
                     <span id="qrz_info" class="input-group-text btn-included-on-field d-none py-0"></span>
                     <span id="hamqth_info" class="input-group-text btn-included-on-field d-none py-0"></span>
                   </div>
@@ -134,7 +137,7 @@
               <div class="row">
                 <div class="mb-3 col">
                   <label for="mode"><?= __("Mode"); ?></label>
-                  <select id="mode" class="form-select mode form-select-sm" name="mode">
+                  <select id="mode" tabindex="1" class="form-select mode form-select-sm" name="mode">
                   <?php
                       foreach($modes->result() as $mode){
                         if ($mode->submode == null) {
@@ -150,7 +153,7 @@
                 <div class="mb-3 col">
                   <label for="band"><?= __("Band"); ?></label>
 
-                  <select id="band" class="form-select form-select-sm" name="band">
+                  <select id="band" tabindex="2" class="form-select form-select-sm" name="band">
                   <?php foreach($bands as $key=>$bandgroup) {
                           echo '<optgroup label="' . strtoupper($key) . '">';
                           foreach($bandgroup as $band) {
@@ -167,7 +170,7 @@
                 </div>
                 <div class="mb-3 col">
                   <label for="frequency"><?= __("Frequency"); ?></label>
-                  <input type="text" class="form-control form-control-sm" id="frequency" name="freq_display" value="<?php echo $this->session->userdata('freq'); ?>" />
+                  <input type="text" tabindex="3" class="form-control form-control-sm" id="frequency" name="freq_display" value="<?php echo $this->session->userdata('freq'); ?>" />
                 </div>
               </div>
 
@@ -175,19 +178,19 @@
               <div class="row">
                 <div class="mb-3 col-md-6">
                   <label for="rst_sent"><?= __("RST (S)"); ?></label>
-                  <input tabindex="2" type="text" class="form-control form-control-sm" name="rst_sent" id="rst_sent" value="59">
+                  <input tabindex="8" type="text" class="form-control form-control-sm" name="rst_sent" id="rst_sent" value="59">
                 </div>
 
                 <div class="mb-3 col-md-6">
                   <label for="rst_rcvd"><?= __("RST (R)"); ?></label>
-                  <input tabindex="3" type="text" class="form-control form-control-sm" name="rst_rcvd" id="rst_rcvd" value="59">
+                  <input tabindex="9" type="text" class="form-control form-control-sm" name="rst_rcvd" id="rst_rcvd" value="59">
                 </div>
               </div>
 
               <div class="mb-3 row">
                   <label for="name" class="col-sm-3 col-form-label"><?= __("Name"); ?></label>
                   <div class="col-sm-9">
-                    <input tabindex="4" type="text" class="form-control form-control-sm" name="name" id="name" maxlength="128" value="">
+                    <input tabindex="10" type="text" class="form-control form-control-sm" name="name" id="name" maxlength="128" value="">
                 </div>
               </div>
 
@@ -195,7 +198,7 @@
               <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label" for="iota_ref"><?= __("IOTA Reference"); ?></label>
                       <div class="col-sm-9 align-self-center">
-                      <select class="form-select" id="iota_ref" name="iota_ref">
+                      <select class="form-select" id="iota_ref" tabindex="11" name="iota_ref">
                           <option value =""></option>
                           <?php
                           foreach($iota as $i){
@@ -211,7 +214,7 @@
               <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label" for="sota_ref"><?= __("SOTA Reference"); ?></label>
                 <div class="col-sm-7 align-self-center">
-                  <input class="form-control" id="sota_ref" type="text" name="sota_ref" value="" />
+                  <input class="form-control" id="sota_ref" tabindex="12" type="text" name="sota_ref" value="" />
                 </div>
                 <div class="col-sm-2 align-self-center">
                   <small id="sota_info" class="btn btn-secondary spw-buttons"></small>
@@ -223,7 +226,7 @@
               <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label" for="wwff_ref"><?= __("WWFF Reference"); ?></label>
                 <div class="col-sm-7 align-self-center">
-                  <input class="form-control" id="wwff_ref" type="text" name="wwff_ref" value="" />
+                  <input class="form-control" id="wwff_ref" tabindex="13" type="text" name="wwff_ref" value="" />
                 </div>
                 <div class="col-sm-2 align-self-center">
                   <small id="wwff_info" class="btn btn-secondary spw-buttons"></small>
@@ -235,7 +238,7 @@
               <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label" for="pota_ref"><?= __("POTA Reference(s)"); ?></label>
                 <div class="col-sm-7 align-self-center">
-                  <input class="form-control" id="pota_ref" type="text" name="pota_ref" value="" />
+                  <input class="form-control" id="pota_ref" tabindex="14" type="text" name="pota_ref" value="" />
                 </div>
                 <div class="col-sm-2 align-self-center">
                   <small id="pota_info" class="btn btn-secondary spw-buttons"></small>
@@ -247,14 +250,14 @@
               <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label" for="sig"><?= __("Sig"); ?></label>
                 <div class="col-sm-9">
-                  <input class="form-control" id="sig" type="text" name="sig" value="" />
+                  <input class="form-control" id="sig" tabindex="15" type="text" name="sig" value="" />
                 </div>
               </div>
 
               <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label" for="sig_info"><?= __("Sig Info"); ?></label>
                 <div class="col-sm-9">
-                  <input class="form-control" id="sig_info" type="text" name="sig_info" value="" />
+                  <input class="form-control" id="sig_info" tabindex="16" type="text" name="sig_info" value="" />
                 </div>
               </div>
               <?php } ?>
@@ -263,7 +266,7 @@
               <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label" for="darc_dok"><?= __("DOK"); ?></label>
                 <div class="col-sm-9">
-                  <input class="form-control" id="darc_dok" type="text" name="darc_dok" value="" />
+                  <input class="form-control" id="darc_dok" tabindex="17" type="text" name="darc_dok" value="" />
                 </div>
               </div>
               <?php } ?>
@@ -271,14 +274,14 @@
               <div class="mb-3 row">
                 <label for="qth" class="col-sm-3 col-form-label"><?= __("Location"); ?></label>
                 <div class="col-sm-9">
-                    <input tabindex="5" type="text" class="form-control form-control-sm" name="qth" id="qth" maxlength="64" value="">
+                    <input tabindex="18" type="text" class="form-control form-control-sm" name="qth" id="qth" maxlength="64" value="">
                 </div>
               </div>
 
               <div class="mb-3 row">
                   <label for="locator" class="col-sm-3 col-form-label"><?= __("Gridsquare"); ?></label>
                   <div class="col-sm-9">
-                    <input tabindex="6" type="text" class="form-control form-control-sm" name="locator" id="locator" value="">
+                    <input tabindex="19" type="text" class="form-control form-control-sm" name="locator" id="locator" value="">
                     <small id="locator_info" class="form-text text-muted"></small>
                 </div>
               </div>
@@ -288,7 +291,7 @@
               <div class="mb-3 row">
                   <label for="comment" class="col-sm-3 col-form-label"><?= __("Comment"); ?></label>
                   <div class="col-sm-9">
-                    <input tabindex="7"type="text" class="form-control form-control-sm" name="comment" id="comment" value="">
+                    <input tabindex="20"type="text" class="form-control form-control-sm" name="comment" id="comment" value="">
                 </div>
               </div>
 
@@ -556,12 +559,10 @@
 
           <!-- Notes Panel Contents -->
           <div class="tab-pane fade" id="nav-notes" role="tabpanel" aria-labelledby="notes-tab">
-            <div class="alert alert-info" role="alert">
-              <span class="badge text-bg-primary"><?= __("Info"); ?></span> <?= __("Note content is used within Wavelog only and is not exported to other services."); ?>
-            </div>
            <div class="mb-3">
               <label for="notes"><?= __("Notes"); ?></label>
               <textarea  type="text" class="form-control" id="notes" name="notes" rows="10"></textarea>
+              <div class="small form-text text-muted"><?= __("Note: Gets exported to third-party services.") ?></div>
             </div>
           </div>
 
@@ -601,13 +602,11 @@
               </div>
             </div>
 
-            <div class="alert alert-info" role="alert">
-              <span class="badge text-bg-primary"><?= __("Info"); ?></span> <?= __("This note content is exported to QSL services like eqsl.cc."); ?>
-            </div>
            <div class="mb-3">
-            <label for="qslmsg"><?= __("Notes"); ?><span class="qso_eqsl_qslmsg_update" title="<?= __("Get the default message for eQSL, for this station."); ?>"><i class="fas fa-redo-alt"></i></span></label>
+            <label for="qslmsg"><?= __("QSL MSG"); ?><span class="qso_eqsl_qslmsg_update" title="<?= __("Get the default message for eQSL, for this station."); ?>"><i class="fas fa-redo-alt"></i></span></label>
 						<label class="position-absolute end-0 mb-2 me-3" for="qslmsg" id="charsLeft"> </label>
             <textarea  type="text" class="form-control" id="qslmsg" name="qslmsg" rows="5" maxlength="240"><?php echo $qslmsg; ?></textarea>
+            <div class="small form-text text-muted"><?= __("Note: Gets exported to third-party services.") ?></div>
             <div id="qslmsg_hide" style="display:none;"><?php echo $qslmsg; ?></div>
             </div>
           </div>
@@ -620,13 +619,13 @@
         </div>
 
         <div class="btn-group" role="group">
-              <button tabindex="9" type="button" class="btn btn-secondary" id="btn_reset"><?= __("Clear"); ?></button>
+              <button tabindex="22" type="button" class="btn btn-secondary" id="btn_reset"><?= __("Clear"); ?></button>
         <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></button>
         <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                 <li><a class="dropdown-item" href="#" id="btn_fullreset"><?= __("Reset to Default"); ?></a></li>
             </ul>
         </div>
-        <button tabindex="8" type="submit" id="saveQso" name="saveQso" class="btn btn-primary"><i class="fas fa-save"></i> <?= __("Save QSO"); ?></button>
+        <button tabindex="21" type="submit" id="saveQso" name="saveQso" class="btn btn-primary"><i class="fas fa-save"></i> <?= __("Save QSO"); ?></button>
         <div class="alert alert-danger warningOnSubmit mt-3" style="display:none;"><span><i class="fas fa-times-circle"></i></span> <span class="warningOnSubmit_txt ms-1"><?= __("Error"); ?></span></div>
       </div>
     </form>

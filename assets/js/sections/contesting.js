@@ -6,7 +6,32 @@ $(document).ready(async function () {
 	sessiondata=await getSession();			// save sessiondata global (we need it later, when adding qso)
 	await restoreContestSession(sessiondata);	// wait for restoring until finished
 	setRst($("#mode").val());
+	$('#contestname').val($('#contestname_select').val());
 });
+
+// Always update the contestname
+$('#contestname_select').change(function () {
+	$('#contestname').val($('#contestname_select').val());
+});
+
+function disabledContestnameSelect(disabled) {
+	if (disabled) {
+		$("#contestname_select")
+			.prop('disabled', true)
+			.attr({
+				'title': lang_contestname_warning,
+				'data-bs-toggle': 'tooltip',
+				'data-bs-html': 'true',
+				'data-bs-placement': 'top'
+			})
+			.tooltip();
+	} else {
+		$("#contestname_select")
+			.prop('disabled', false)
+			.removeAttr('title data-bs-toggle data-bs-html data-bs-placement')
+			.tooltip('dispose');
+	}
+}
 
 // Resets the logging form and deletes session from database
 async function reset_contest_session() {
@@ -17,6 +42,9 @@ async function reset_contest_session() {
 
 		}
 	});
+	// the user is now allowed again to change the contest name
+	disabledContestnameSelect(false);
+	// reset the form
 	$('#name').val("");
 	$('.callsign-suggestions').text("");
 	$('#callsign').val("");
@@ -32,7 +60,7 @@ async function reset_contest_session() {
 	setRst($("#mode").val());
 	$("#exchangetype").val("None");
 	setExchangetype("None");
-	$("#contestname").val("Other").change();
+	$("#contestname_select").val("Other").change();
 	$(".contest_qso_table_contents").empty();
  	$('#copyexchangeto').val("None");
 
@@ -72,8 +100,17 @@ async function reset_contest_session() {
 }
 
 function sort_exchange() {
+
+	// Get the selected sequence
+	let exchangeSelect = $('#exchangesequence_select');
+
+	// If the sequence is not set, we need to set one to prevent errors
+	if (!exchangeSelect.val()) {
+		exchangeSelect.val('s-g-e');
+	}
+
 	// Split the squence into an array
-	var selectedOrder = $('#exchangesequence_select').val().split('-'); 
+	let selectedOrder = exchangeSelect.val().split('-'); 
 
 	// Map sequence to corresponding SENT elements
 	let mapping = {
@@ -583,6 +620,10 @@ function setExchangetype(exchangetype) {
 function logQso() {
 	if ($("#callsign").val().length > 0) {
 
+		// To prevent changing the contest name while logging we disable the select
+		// Only "Start a new contest session" will enable it again
+		disabledContestnameSelect(true);
+
 		$('.callsign-suggestions').text("");
 		$('#callsign_info').text("");
 
@@ -698,7 +739,7 @@ async function restoreContestSession(data) {
 		}
 
 		if (data.contestid != "") {
-			$("#contestname").val(data.contestid);
+			$("#contestname_select").val(data.contestid);
 		}
 
 		if (settings.exchangetype != "") {
@@ -732,7 +773,11 @@ async function restoreContestSession(data) {
 		}
 
 		if (data.qso != "") {
+			disabledContestnameSelect(true);
 			await refresh_qso_table(data);
+		} else {
+			disabledContestnameSelect(false);
+			$("#contestname_select").val("Other").change();
 		}
 	} else {
 		$("#exch_serial_s").val("1");

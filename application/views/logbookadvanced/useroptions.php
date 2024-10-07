@@ -142,6 +142,10 @@
 			<td><?= __("Continent"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="continent" type="checkbox" <?php if (($options->continent->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
+		<tr>
+			<td><?= __("QRZ"); ?></td>
+			<td><div class="form-check"><input class="form-check-input" name="qrz" type="checkbox" <?php if (($options->qrz->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
+		</tr>
 	</tbody>
 </table>
 </div>

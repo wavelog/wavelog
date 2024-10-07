@@ -100,6 +100,16 @@ class Contesting_model extends CI_Model {
 			$data['qso'] = $result->qso;
 		}
 
+		/**
+		 * catch the case if the user already logged a QSO with contest a and then switches to contest b 
+		 * this case is similar to a new session, therefore we need to reset the qso list.
+		 * Anyway we try to catch this case by disabling the contest field in the form if the user already logged a QSO.
+		 * Only "Start a new contest session" is allowed to change the contest. So this is just the fallback.
+		 */
+		if ($qsoarray[2] != $this->input->post('contestname', true)) {
+			$data['qso'] = $qso;
+		}
+
 		$this->updateSession($data, $station_id);
 
 		return;

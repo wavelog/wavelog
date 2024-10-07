@@ -22,13 +22,26 @@ class Debug extends CI_Controller
 		$this->load->model('Debug_model');
 		$this->load->model('Stations');
 		$this->load->model('cron_model');
+		$this->load->model('Update_model');
 
 		$footerData = [];
 		$footerData['scripts'] = ['assets/js/sections/debug.js'];
 
+		$data['running_version'] = $this->optionslib->get_option('version');
+		$data['latest_release'] = $this->optionslib->get_option('latest_release');
+
+		$data['newer_version_available'] = false;
+		if (!$this->config->item('disable_version_check') ?? false) {
+			$this->Update_model->update_check(true);
+			if ($data['latest_release'] && version_compare($data['latest_release'], $data['running_version'], '>')) {
+				$data['newer_version_available'] = true;
+			}
+		}
+
 		$data['stations'] = $this->Stations->all();
 
 		$data['qso_total'] = $this->Debug_model->count_all_qso();
+		$data['users_total'] = $this->Debug_model->count_users();
 		$data['available_languages'] = $this->config->item('languages');
 
 		$data['qsos_with_no_station_id'] = $this->Logbook_model->check_for_station_id();

@@ -19,6 +19,7 @@ jobs:
           stale-issue-label: 'stale'
           stale-issue-message: 'As this issue is marked as “wait 4 close” and there was no activity for 5 days, it is now marked as “stale.” It will be automatically closed in 3 more days.'
           close-issue-message: 'This issue was closed because it had been inactive for 3 days since being marked as "stale".'
+          close-issue-reason: 'completed'
           days-before-pr-stale: -1
           days-before-pr-close: -1
           repo-token: ${{ secrets.GITHUB_TOKEN }}

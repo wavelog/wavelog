@@ -3,20 +3,21 @@
 # This file is distributed under the MIT licence.
 #
 # Karuru <karuru@aerodefense.co.uk>, 2024.
+# Fabian Berg <fabian.berg@hb9hil.org>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-12 09:45+0000\n"
-"PO-Revision-Date: 2024-08-12 15:29+0000\n"
-"Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
-"Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/"
-"wavelog/installer/zh_Hans/>\n"
+"POT-Creation-Date: 2024-09-27 15:58+0000\n"
+"PO-Revision-Date: 2024-09-27 16:01+0000\n"
+"Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
+"Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
+"org/projects/wavelog/installer/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.7.2\n"
 
 #: install/includes/core/database_class.php:59
 msgid "Connection Error: "
@@ -477,9 +478,9 @@ msgid "DXCC"
 msgstr "DXCC"
 
 #: install/index.php:487
-msgctxt "No DXCC"
-msgid "- None -"
-msgstr "- 无 -"
+msgctxt "DXCC Select - No DXCC"
+msgid "- NONE - (e.g. /MM, /AM)"
+msgstr "- 无 - （如 /MM, /AM）"
 
 #: install/index.php:488 install/index.php:494 install/index.php:518
 #: install/index.php:530 install/index.php:533 install/index.php:538
@@ -639,8 +640,9 @@ msgid ""
 "Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. "
 "Check which DXCC for this particular location is the correct one. If you are "
 "sure, ignore this warning."
-msgstr "请稍等，您选择的 DXCC 已经不再有效，请重新查看该地区最新的 "
-"DXCC，如果您确定要继续，请忽略这个警告。"
+msgstr ""
+"请稍等，您选择的 DXCC 已经不再有效，请重新查看该地区最新的 DXCC，如果您确定要"
+"继续，请忽略这个警告。"
 
 #: install/index.php:1726
 msgid ""
@@ -758,6 +760,10 @@ msgstr "无法更新 DXCC 数据"
 #: install/run.php:341
 msgid "Could not create install/.lock file"
 msgstr "无法创建 install/.lock 文件"
+
+#~ msgctxt "No DXCC"
+#~ msgid "- None -"
+#~ msgstr "- 无 -"
 
 #, php-format
 #~ msgid "The PHP module %s is missing."

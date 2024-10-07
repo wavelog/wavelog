@@ -85,7 +85,7 @@ class Wac extends CI_Model{
 			$bindings[]=$postdata['mode'];
 		}
 
-		$sql .= $this->genfunctions->addBandToQuery($band);
+		$sql .= $this->genfunctions->addBandToQuery($band,$bindings);
 		if ($band == 'SAT') {
 			if ($postdata['sat'] != 'All') {
 				$sql .= " and col_sat_name = ?";
@@ -99,7 +99,7 @@ class Wac extends CI_Model{
 			where station_id in (" . $location_list .
 			") and col_cont = thcv.col_cont and col_cont <> '' ";
 
-		$sql .= $this->genfunctions->addBandToQuery($band);
+		$sql .= $this->genfunctions->addBandToQuery($band,$bindings);
 		if ($band == 'SAT') {
 			if ($postdata['sat'] != 'All') {
 				$sql .= " and col_sat_name = ?";
@@ -140,7 +140,7 @@ class Wac extends CI_Model{
 			$bindings[]=$postdata['mode'];
 		}
 
-		$sql .= $this->genfunctions->addBandToQuery($band);
+		$sql .= $this->genfunctions->addBandToQuery($band,$bindings);
 		if ($band == 'SAT') {
 			if ($postdata['sat'] != 'All') {
 				$sql .= " and col_sat_name = ?";

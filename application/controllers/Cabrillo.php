@@ -117,9 +117,11 @@ class Cabrillo extends CI_Controller {
 			$data['categorypower'] = $this->security->xss_clean($this->input->post('categorypower'));
 			$data['categorystation'] = $this->security->xss_clean($this->input->post('categorystation'));
 			$data['categorytransmitter'] = $this->security->xss_clean($this->input->post('categorytransmitter'));
+			$data['categorytime'] = $this->security->xss_clean($this->input->post('categorytime'));
 			$data['categoryoverlay'] = $this->security->xss_clean($this->input->post('categoryoverlay'));
 			$data['operators'] = $this->security->xss_clean($this->input->post('operators'));
 			$data['club'] = $this->security->xss_clean($this->input->post('club'));
+			$data['location'] = $this->security->xss_clean($this->input->post('location'));
 			$data['name'] = $userinfo->user_firstname . ' ' . $userinfo->user_lastname;
 			$data['email'] = $userinfo->user_email;
 			$data['address'] = $this->security->xss_clean($this->input->post('address'));
@@ -129,6 +131,7 @@ class Cabrillo extends CI_Controller {
 			$data['addresscountry'] = $this->security->xss_clean($this->input->post('addresscountry'));
 			$data['soapbox'] = $this->security->xss_clean($this->input->post('soapbox'));
 			$data['gridlocator'] = $station->station_gridsquare;
+			$data['certificate'] = $this->security->xss_clean($this->input->post('certificate'));
 
 			$this->load->view('cabrillo/export', $data);
 		}else {

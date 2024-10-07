@@ -41,8 +41,12 @@
 				<div class="mb-3 d-flex align-items-center row contestdates">
 				</div>
 				<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
-					<div class="col-md-3 control-label" for="soapbox"><?= __("Club"); ?>: </div>
-					<input class="form-control my-1 me-sm-2 col-md-4 w-auto" id="soapbox" type="soapbox" name="soapbox" aria-label="soapbox">
+					<div class="col-md-3 control-label" for="club"><?= __("Club"); ?>: </div>
+					<input class="form-control my-1 me-sm-2 col-md-4 w-auto" id="club" type="club" name="club" aria-label="club">
+				</div>
+				<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
+					<div class="col-md-3 control-label" for="location"><?= __("Location"); ?>: <i class="fas fa-question-circle col-md-1" data-bs-toggle="contestinfo" data-bs-placement="right" title="<?= __("For USA and Canada stations LOCATION must be the ARRL section abbreviation. For foreign stations LOCATION must be 'DX'. This information is required for IARU-HF and for all ARRL and CQ contests.") . "<br><br>" . __("For the RSGB-IOTA contest this information contains the IOTA name (not the IOTA reference code).") . "<br><br>" . __("For the RDXC contest this contains the RDA number.") ?>"></i></div>
+					<input class="form-control my-1 me-sm-2 col-md-4 w-auto" id="location" type="location" name="location" aria-label="location">
 				</div>
 				<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
 					<div class="col-md-3 control-label" for="categoryoperator"><?= __("Category Operator") ?>: </div>
@@ -136,6 +140,15 @@
 					</select>
 				</div>
 				<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
+					<div class="col-md-3 control-label" for="categorytime"><?= __("Category Time") ?>: </div>
+					<select class="form-select my-1 me-sm-2 col-md-4 w-auto" id="categorytime" name="categorytime">
+						<option value="6-HOURS"><?= sprintf(__("%d Hours"), 6); ?></option>
+						<option value="8-HOURS"><?= sprintf(__("%d Hours"), 8); ?></option>
+						<option value="12-HOURS"><?= sprintf(__("%d Hours"), 12); ?></option>
+						<option value="24-HOURS"><?= sprintf(__("%d Hours"), 24); ?></option>
+					</select>
+				</div>
+				<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
 					<div class="col-md-3 control-label" for="categoryoverlay"><?= __("Category Overlay") ?>: </div>
 					<select class="form-select my-1 me-sm-2 col-md-4 w-auto" id="categoryoverlay" name="categoryoverlay">
 						<option value="CLASSIC">CLASSIC</option>
@@ -174,6 +187,14 @@
 				<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
 					<div class="col-md-3 control-label" for="addresscountry"><?= __("Address Country") ?>: </div>
 					<input class="form-control my-1 me-sm-2 col-md-4 w-auto" id="addresscountry" type="text" name="addresscountry" aria-label="addresscountry">
+				</div>
+				<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
+					<div class="col-md-3 control-label" for="certificate"><?= __("Certificate") ?>: <i class="fas fa-question-circle col-md-1" data-bs-toggle="contestinfo" data-bs-placement="right" title="<?= __("Indicate if you wish to receive, if eligible, a paper certificate sent via postal mail by the contest sponsor. The contest sponsor may or may not honor this tag.") ?>"></i></div>
+					<select class="form-select my-1 me-sm-2 col-md-4 w-auto" id="certificate" name="certificate">
+						<option value=""></option>
+						<option value="YES"><?= __("Yes"); ?></option>
+						<option value="NO"><?= __("No"); ?></option>
+					</select>
 				</div>
 				<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
 					<div class="col-md-3 control-label" for="button1id"></div>

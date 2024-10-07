@@ -149,6 +149,9 @@ class EqslImporter
 		$qsos = array();
 		$records = $updated = $not_found = $dupes = 0;
 		while ($record = $this->CI->adif_parser->get_record()) {
+			if (($record['call'] ?? '') == '') {	// Failsafe if no call was given
+				continue;
+			}
 			$records += 1;
 			$time_on = date('Y-m-d', strtotime($record['qso_date'])) . " " . date('H:i', strtotime($record['time_on']));
 
@@ -156,7 +159,7 @@ class EqslImporter
 			// If there's a match for the QSO from the report in our log, it's confirmed via eQSL.
 
 			// If we have a positive match from eQSL, record it in the DB according to the user's preferences
-			if ($record['qsl_sent'] == "Y") {
+			if ( (array_key_exists('qsl_sent',$record)) && ($record['qsl_sent'] == "Y")) {
 				$record['qsl_sent'] = $config['eqsl_rcvd_mark'];
 			}
 
