@@ -481,7 +481,6 @@ class User_Model extends CI_Model {
 		}
 
 		$this->session->set_userdata($userdata);
-
 	}
 
 	// FUNCTION: bool validate_session()
