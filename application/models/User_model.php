@@ -482,16 +482,6 @@ class User_Model extends CI_Model {
 
 		$this->session->set_userdata($userdata);
 
-		/* to make sure we do not collect infinite session we set some garbage collection settings
-		 * see https://www.php.net/manual/en/session.configuration.php#ini.session.gc-probability
-		 * and https://www.php.net/manual/en/session.configuration.php#ini.session.gc-divisor
-		 * and https://osvaldas.info/enabling-codeigniters-garbage-collector/
-		 *
-		 * set the probability to 1/1000 to make sure we do not collect too often
-		 */
-		ini_set('session.gc_probability', 1);
-		ini_set('session.gc_divisor', 1000);
-
 	}
 
 	// FUNCTION: bool validate_session()
