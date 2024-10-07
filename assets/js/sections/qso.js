@@ -494,6 +494,7 @@ function reset_fields() {
 	$('#country').val("");
 	$('#continent').val("");
 	$('#lotw_info').text("");
+	$('#lotw_info').attr('data-bs-original-title', "");
 	$('#lotw_info').removeClass("lotw_info_red");
 	$('#lotw_info').removeClass("lotw_info_yellow");
 	$('#lotw_info').removeClass("lotw_info_orange");
@@ -660,7 +661,11 @@ $("#callsign").focusout(function () {
 					$('#lotw_link').attr('href', "https://lotw.arrl.org/lotwuser/act?act=" + callsign);
 					$('#lotw_link').attr('target', "_blank");
 					$('#lotw_info').attr('data-bs-toggle', "tooltip");
-					$('#lotw_info').attr('title', "LoTW User. Last upload was " + result.lotw_days + " days ago");
+					if (result.lotw_days == 1) { 
+						$('#lotw_info').attr('data-bs-original-title', lang_lotw_upload_day_ago);
+					} else {
+						$('#lotw_info').attr('data-bs-original-title', lang_lotw_upload_days_ago.replace('%x', result.lotw_days));
+					}
 					$('[data-bs-toggle="tooltip"]').tooltip();
 				}
 				$('#qrz_info').html('<a target="_blank" href="https://www.qrz.com/db/' + callsign + '"><img width="30" height="30" src="' + base_url + 'images/icons/qrz.com.png"></a>');
