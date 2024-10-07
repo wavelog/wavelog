@@ -664,7 +664,7 @@ $("#callsign").focusout(function () {
 					if (result.lotw_days == 1) { 
 						$('#lotw_info').attr('data-bs-original-title', lang_lotw_upload_day_ago);
 					} else {
-						$('#lotw_info').attr('data-bs-original-title', lang_lotw_upload_days_ago.replace('%x%', result.lotw_days));
+						$('#lotw_info').attr('data-bs-original-title', lang_lotw_upload_days_ago.replace('%x', result.lotw_days));
 					}
 					$('[data-bs-toggle="tooltip"]').tooltip();
 				}
