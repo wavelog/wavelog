@@ -1078,7 +1078,7 @@ $("#callsign").keyup(function () {
 });
 
 RegExp.escape = function (text) {
-	return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+	return String(text).replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 }
 
 
