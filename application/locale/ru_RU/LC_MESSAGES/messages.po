@@ -9,10 +9,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-10-08 07:26+0000\n"
-"PO-Revision-Date: 2024-10-01 09:20+0000\n"
+"PO-Revision-Date: 2024-10-09 13:43+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/ru/>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -728,7 +728,7 @@ msgstr "информация для импорта eQSL"
 
 #: application/controllers/Eqsl.php:151
 msgid "eQSL Nicknames in Station Profiles aren't defined!"
-msgstr ""
+msgstr "Профили eQSL в профилях QTH не определены!"
 
 #: application/controllers/Eqsl.php:158
 msgid "eQSL QSO Upload"
@@ -736,7 +736,7 @@ msgstr "загрузка QSO в eQSL"
 
 #: application/controllers/Eqsl.php:170
 msgid "You have not defined your eQSL.cc credentials!"
-msgstr ""
+msgstr "Вы не указали свои учётные данные eQSL.cc!"
 
 #: application/controllers/Eqsl.php:429
 msgid "eQSL Tools"
@@ -1774,15 +1774,16 @@ msgstr "Добавить QSO"
 
 #: application/controllers/Qso.php:661
 msgid "You have to be logged in to access this URL."
-msgstr ""
+msgstr "Для доступа к этому URL необходимо войти в систему."
 
 #: application/controllers/Qso.php:667
+#, fuzzy
 msgid "Call Transfer"
-msgstr ""
+msgstr "Перевод вызова"
 
 #: application/controllers/Qso.php:674
 msgid "No callsign provided."
-msgstr ""
+msgstr "Позывной не указан."
 
 #: application/controllers/Radio.php:17
 #: application/views/interface_assets/header.php:438
@@ -2516,13 +2517,15 @@ msgstr "Проверьте %s на наличие подсказок об оши
 
 #: application/models/Logbook_model.php:3648
 msgid "QSO on"
-msgstr ""
+msgstr "начало QSO"
 
 #: application/models/Logbook_model.php:3648
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
 msgstr ""
+"Вы пытались импортировать QSO без указанного позывного. Это QSO не было "
+"импортировано. Оно недействительно"
 
 #: application/models/Logbook_model.php:3944
 msgid "the qslrdate is invalid (YYYYMMDD)"
@@ -5153,6 +5156,8 @@ msgstr "Споты от"
 #: application/views/bandmap/list.php:6 application/views/qso/log_qso.php:55
 msgid "Pop-up was blocked! Please allow pop-ups for this site permanently."
 msgstr ""
+"Всплывающее окно было заблокировано! Пожалуйста, разрешите всплывающие окна "
+"для этого сайта."
 
 #: application/views/bandmap/list.php:72
 msgid "DXCC-Status"
@@ -5355,16 +5360,21 @@ msgid ""
 "For foreign stations LOCATION must be 'DX'. This information is required for "
 "IARU-HF and for all ARRL and CQ contests."
 msgstr ""
+"Для станций США и Канады местоположение должно быть указано в виде "
+"аббревиатуры секции ARRL. Для иностранных станций местоположение должно быть "
+"'DX'. Эта информация необходима для IARU-HF и всех контестов ARRL и CQ."
 
 #: application/views/cabrillo/index.php:48
 msgid "For the RDXC contest this contains the RDA number."
-msgstr ""
+msgstr "Для RDXC контеста тут указывается RDA."
 
 #: application/views/cabrillo/index.php:48
 msgid ""
 "For the RSGB-IOTA contest this information contains the IOTA name (not the "
 "IOTA reference code)."
 msgstr ""
+"Для RSGB-IOTA контеста здесь указывается название IOTA (не код референции "
+"IOTA)."
 
 #: application/views/cabrillo/index.php:48
 #: application/views/logbookadvanced/index.php:534
@@ -5412,7 +5422,7 @@ msgstr "Категория передатчик"
 
 #: application/views/cabrillo/index.php:143
 msgid "Category Time"
-msgstr ""
+msgstr "Категория Время"
 
 #: application/views/cabrillo/index.php:145
 #: application/views/cabrillo/index.php:146
@@ -5420,7 +5430,7 @@ msgstr ""
 #: application/views/cabrillo/index.php:148
 #, php-format
 msgid "%d Hours"
-msgstr ""
+msgstr "%d часов"
 
 #: application/views/cabrillo/index.php:152
 msgid "Category Overlay"
@@ -5458,14 +5468,18 @@ msgstr "Адрес (страна)"
 
 #: application/views/cabrillo/index.php:192
 msgid "Certificate"
-msgstr ""
+msgstr "Сертификат"
 
 #: application/views/cabrillo/index.php:192
+#, fuzzy
 msgid ""
 "Indicate if you wish to receive, if eligible, a paper certificate sent via "
 "postal mail by the contest sponsor. The contest sponsor may or may not honor "
 "this tag."
 msgstr ""
+"Укажите, если вы хотите получить, если это возможно, бумажный сертификат, "
+"отправленный по почте спонсором контеста. Спонсор контеста может как учесть, "
+"так и не учесть этот запрос."
 
 #: application/views/cabrillo/index.php:195
 #: application/views/logbookadvanced/index.php:334
@@ -8524,7 +8538,7 @@ msgstr "Инструкции по экспорту .p12 файла"
 
 #: application/views/lotw_views/upload_cert.php:22
 msgid "Use at least version 2.7 of TQSL"
-msgstr ""
+msgstr "Используйте как минимум версию 2.7 TQSL"
 
 #: application/views/lotw_views/upload_cert.php:23
 msgid "Open TQSL and go to the Callsign Certificates Tab"
@@ -8536,15 +8550,15 @@ msgstr "Кликните правой кнопкой по выбранному �
 
 #: application/views/lotw_views/upload_cert.php:25
 msgid "Click 'Save Callsign Certificate File'"
-msgstr ""
+msgstr "Нажмите «Сохранить файл сертификата позывного»"
 
 #: application/views/lotw_views/upload_cert.php:26
 msgid "Do not add a password"
-msgstr ""
+msgstr "Не добавляй пароль"
 
 #: application/views/lotw_views/upload_cert.php:27
 msgid "Upload File below"
-msgstr ""
+msgstr "Загрузите полученный файл ниже"
 
 #: application/views/lotw_views/upload_cert.php:37
 msgid "Upload File"
@@ -9592,12 +9606,12 @@ msgstr "Сводка DXCC для "
 
 #: application/views/qso/index.php:9
 msgid "LoTW User. Last upload was 1 day ago."
-msgstr ""
+msgstr "Пользователь LoTW. Последняя загрузка была 1 день назад."
 
 #: application/views/qso/index.php:10
-#, php-format
+#, fuzzy, php-format
 msgid "LoTW User. Last upload was %x days ago."
-msgstr ""
+msgstr "Пользователь LoTW. Последняя загрузка была %x дней назад."
 
 #: application/views/qso/index.php:23
 msgid "LIVE"
@@ -9728,12 +9742,13 @@ msgid "Max. 5 previous contacts are shown"
 msgstr "Показываются максимум 5 предыдущих QSO"
 
 #: application/views/qso/log_qso.php:9
+#, fuzzy
 msgid "Redirecting to QSO logging page..."
-msgstr ""
+msgstr "Перенаправление на страницу добавления QSO в журнал..."
 
 #: application/views/qso/log_qso.php:75
 msgid "The data was redirected. You can close this window."
-msgstr ""
+msgstr "Данные были перенаправлены, можно закрыть это окно."
 
 #: application/views/radio/index.php:16
 msgid "Active Radios"
@@ -12027,7 +12042,7 @@ msgstr "Модифицированный"
 #: application/views/view_log/partial/log_ajax.php:289
 #: src/QSLManager/QSO.php:480
 msgid "last sent"
-msgstr ""
+msgstr "последнее отправленное"
 
 #: application/views/view_log/qso.php:6
 msgid "QSO Details"
