@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-10-07 06:29+0000\n"
-"PO-Revision-Date: 2024-10-06 17:18+0000\n"
+"POT-Creation-Date: 2024-10-08 07:26+0000\n"
+"PO-Revision-Date: 2024-10-08 07:26+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/pt_PT/>\n"
@@ -2508,22 +2508,22 @@ msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr ""
 "HRDlog: Não foram encontrados perfis de estação com credenciais do HRDlog."
 
-#: application/models/Logbook_model.php:3629
+#: application/models/Logbook_model.php:3635
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 "Indicativo de estação errado %s ao importar QSO com %s para %s: IGNORADO"
 
-#: application/models/Logbook_model.php:3630
+#: application/models/Logbook_model.php:3636
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Verifica %s para dicas sobre erros em ficheiros ADIF."
 
-#: application/models/Logbook_model.php:3642
+#: application/models/Logbook_model.php:3648
 msgid "QSO on"
 msgstr "Contacto em"
 
-#: application/models/Logbook_model.php:3642
+#: application/models/Logbook_model.php:3648
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -2531,55 +2531,55 @@ msgstr ""
 "Tentou importar um contacto sem nenhum CALL dado. Este contacto não foi "
 "importado. É inválido."
 
-#: application/models/Logbook_model.php:3938
+#: application/models/Logbook_model.php:3944
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "o qslrdate está inválido (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:3949
+#: application/models/Logbook_model.php:3955
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "o qslsdate está inválido (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:3993
+#: application/models/Logbook_model.php:3999
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "o clublog_qso_upload_date está inválido (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:4013
+#: application/models/Logbook_model.php:4019
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "o lotw_qslrdate está inválido (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:4032
+#: application/models/Logbook_model.php:4038
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "o lotw_qslsdate está inválido (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:4296
+#: application/models/Logbook_model.php:4302
 msgid "Duplicate for"
 msgstr "Duplicado para"
 
-#: application/models/Logbook_model.php:4357
+#: application/models/Logbook_model.php:4363
 msgid "QSO could not be matched"
 msgstr "Não há correspondência de contactos"
 
-#: application/models/Logbook_model.php:4363
+#: application/models/Logbook_model.php:4369
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confirmado por LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:4368
+#: application/models/Logbook_model.php:4374
 msgid "confirmed by award manager"
 msgstr "confirmado pelo gestor do diploma"
 
-#: application/models/Logbook_model.php:4371
+#: application/models/Logbook_model.php:4377
 msgid "confirmed by cross-check of DCL data"
 msgstr "confirmado pelo controlo cruzado dos dados da DCL"
 
-#: application/models/Logbook_model.php:4374
+#: application/models/Logbook_model.php:4380
 msgid "confirmation pending"
 msgstr "confirmação pendente"
 
-#: application/models/Logbook_model.php:4377
+#: application/models/Logbook_model.php:4383
 msgid "unconfirmed"
 msgstr "não confirmado"
 
-#: application/models/Logbook_model.php:4380
+#: application/models/Logbook_model.php:4386
 msgid "unknown"
 msgstr "desconhecido"
 
@@ -9625,12 +9625,12 @@ msgstr "Resumo do DXCC para "
 
 #: application/views/qso/index.php:9
 msgid "LoTW User. Last upload was 1 day ago."
-msgstr ""
+msgstr "Utilizador do LoTW. Último envio foi há 1 dia."
 
 #: application/views/qso/index.php:10
 #, php-format
 msgid "LoTW User. Last upload was %x days ago."
-msgstr ""
+msgstr "Utilizador do LoTW. Último envio foi à %x dias."
 
 #: application/views/qso/index.php:23
 msgid "LIVE"

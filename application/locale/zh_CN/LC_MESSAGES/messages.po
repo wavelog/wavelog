@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-10-07 06:29+0000\n"
-"PO-Revision-Date: 2024-10-06 17:18+0000\n"
+"POT-Creation-Date: 2024-10-08 07:26+0000\n"
+"PO-Revision-Date: 2024-10-08 07:26+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
 "org/projects/wavelog/main-translation/zh_Hans/>\n"
@@ -2463,75 +2463,75 @@ msgstr "HRDlog：无 QSO 可供上传，台站呼号为： "
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog：无台站配置信息。"
 
-#: application/models/Logbook_model.php:3629
+#: application/models/Logbook_model.php:3635
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "导入 QSO 时出现错误：本台呼号 %s 对方呼号 %s %s，已跳过"
 
-#: application/models/Logbook_model.php:3630
+#: application/models/Logbook_model.php:3636
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "请查看 ADIF 错误提示 %s。"
 
-#: application/models/Logbook_model.php:3642
+#: application/models/Logbook_model.php:3648
 msgid "QSO on"
 msgstr "QSO 时间"
 
-#: application/models/Logbook_model.php:3642
+#: application/models/Logbook_model.php:3648
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
 msgstr "导入的 QSO 不存在对方呼号（CALL），此 QSO 为无效，未导入"
 
-#: application/models/Logbook_model.php:3938
+#: application/models/Logbook_model.php:3944
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "qslrdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:3949
+#: application/models/Logbook_model.php:3955
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "qslsdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:3993
+#: application/models/Logbook_model.php:3999
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "clublog_qso_upload_date 字段错误（ YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4013
+#: application/models/Logbook_model.php:4019
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "the lotw_qslrdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4032
+#: application/models/Logbook_model.php:4038
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "lotw_qslsdate 字段错误（YYYYMMDD）"
 
-#: application/models/Logbook_model.php:4296
+#: application/models/Logbook_model.php:4302
 msgid "Duplicate for"
 msgstr "内容重复"
 
-#: application/models/Logbook_model.php:4357
+#: application/models/Logbook_model.php:4363
 msgid "QSO could not be matched"
 msgstr "QSO 无法匹配"
 
-#: application/models/Logbook_model.php:4363
+#: application/models/Logbook_model.php:4369
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "已经通过 LoTW/Clublog/eQSL/竞赛 确认"
 
-#: application/models/Logbook_model.php:4368
+#: application/models/Logbook_model.php:4374
 msgid "confirmed by award manager"
 msgstr "已经通过奖项管理员确认"
 
-#: application/models/Logbook_model.php:4371
+#: application/models/Logbook_model.php:4377
 msgid "confirmed by cross-check of DCL data"
 msgstr "已经通过 DCL 数据交叉检查确认"
 
-#: application/models/Logbook_model.php:4374
+#: application/models/Logbook_model.php:4380
 msgid "confirmation pending"
 msgstr "等待确认"
 
-#: application/models/Logbook_model.php:4377
+#: application/models/Logbook_model.php:4383
 msgid "unconfirmed"
 msgstr "未确认"
 
-#: application/models/Logbook_model.php:4380
+#: application/models/Logbook_model.php:4386
 msgid "unknown"
 msgstr "未知"
 
@@ -9292,12 +9292,12 @@ msgstr "DXCC 概览 "
 
 #: application/views/qso/index.php:9
 msgid "LoTW User. Last upload was 1 day ago."
-msgstr ""
+msgstr "对方使用 LoTW，最近上传时间 1 天前。"
 
 #: application/views/qso/index.php:10
 #, php-format
 msgid "LoTW User. Last upload was %x days ago."
-msgstr ""
+msgstr "对方使用 LoTW，最近上传时间 %x 天前。"
 
 #: application/views/qso/index.php:23
 msgid "LIVE"
