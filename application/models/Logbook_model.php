@@ -493,12 +493,10 @@ class Logbook_model extends CI_Model {
 					// see https://github.com/wavelog/wavelog/pull/992
 					$this->db->like("COL_GRIDSQUARE", $searchphrase, 'after');
 					$this->db->or_like("COL_VUCC_GRIDS", $searchphrase, 'after');
-					if (strlen($searchphrase) != 2) {
-						// in case of the CALL has more than one GL
-						// see https://github.com/wavelog/wavelog/issues/1055
-						$this->db->or_like("COL_GRIDSQUARE", ',' . $searchphrase);
-						$this->db->or_like("COL_VUCC_GRIDS", ',' . $searchphrase);
-					}
+					// in case of the CALL has more than one GL
+					// see https://github.com/wavelog/wavelog/issues/1055
+					$this->db->or_like("COL_GRIDSQUARE", ',' . $searchphrase);
+					$this->db->or_like("COL_VUCC_GRIDS", ',' . $searchphrase);
 					$this->db->group_end();
 					if ($band == 'SAT' && $type == 'VUCC') {
 						if ($sat != 'All' && $sat != null) {
