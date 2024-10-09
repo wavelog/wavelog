@@ -124,6 +124,9 @@ class CI_Session {
 			unset($_COOKIE[$this->_config['cookie_name']]);
 		}
 
+		ini_set('session.gc_probability', config_item('sess_gc_probability') ?? 1);
+		ini_set('session.gc_divisor', config_item('sess_gc_divisor') ?? 1000);
+
 		session_start();
 
 		// Is session ID auto-regeneration configured? (ignoring ajax requests)
