@@ -485,6 +485,7 @@ if (!file_exists('.lock')) {
 											<label for="dxcc" class="form-label"><?= __("DXCC"); ?></label>
 											<select class="form-control" id="dxcc_id" name="dxcc" tabindex="7" aria-describedby="stationCallsignInputHelp" required>
 												<option value="" selected=""><?= __("Please select one"); ?></option>
+												<option value="0" selected="">- NONE - (e.g. /MM /AM)</option>
 												<option value="2">Abu Ail Is - A1 (<?= __("Deleted DXCC"); ?>)</option>
 												<option value="3">Afghanistan - YA</option>
 												<option value="4">Agalega &amp; St Brandon Islands - 3B7</option>
