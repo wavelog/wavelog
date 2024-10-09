@@ -162,7 +162,7 @@ $options = json_decode($options);
                         <div class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                             <label class="form-label" for="dxcc"><?= __("DXCC"); ?></label>
                             <select class="form-control form-control-sm" id="dxcc" name="dxcc">
-                                <option value=""><?= __("Please select one"); ?></option>
+                                <option value="">-</option>
                                 <?php
                                 foreach ($dxccarray as $dxcc) {
                                     echo '<option value=' . $dxcc->adif;
