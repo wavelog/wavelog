@@ -219,7 +219,7 @@ class Logbookadvanced_model extends CI_Model {
 			$binding[] = $searchCriteria['iota'];
 		}
 
-        if ($searchCriteria['dxcc'] !== '') {
+        if (($searchCriteria['dxcc'] ?? '') !== '') {
 			$conditions[] = "COL_DXCC = ?";
 			$binding[] = $searchCriteria['dxcc'];
 		}

@@ -484,7 +484,7 @@ if (!file_exists('.lock')) {
 										<div class="col-md-6 mb-2">
 											<label for="dxcc" class="form-label"><?= __("DXCC"); ?></label>
 											<select class="form-control" id="dxcc_id" name="dxcc" tabindex="7" aria-describedby="stationCallsignInputHelp">
-												<option value="0" selected=""><?= _pgettext("DXCC Select - No DXCC", "- NONE - (e.g. /MM, /AM)"); ?></option>
+												<option value="" selected><?= __("Please select one"); ?></option>
 												<option value="2">Abu Ail Is - A1 (<?= __("Deleted DXCC"); ?>)</option>
 												<option value="3">Afghanistan - YA</option>
 												<option value="4">Agalega &amp; St Brandon Islands - 3B7</option>
@@ -1607,6 +1607,7 @@ if (!file_exists('.lock')) {
 					'#callsign',
 					'#city',
 					'#user_email',
+					'#dxcc_id',
 					'#userlocator'
 				];
 
@@ -1682,13 +1683,20 @@ if (!file_exists('.lock')) {
 					let check = true;
 					firstUserInputIDs.forEach(function(inputID) {
 						if ($(inputID).val() == '') {
-							input_is_valid($(inputID), 'is-invalid');
+							if (inputID == '#dxcc_id') {
+								input_is_valid($('#dxcc_button'), 'is-invalid');
+							} else {
+								input_is_valid($(inputID), 'is-invalid');
+							}
 							show_userformwarnings('danger', "<?= __("At least one field is empty."); ?>");
 							return check = false;
 						} else {
 							if ($(inputID).hasClass('is-invalid')) {
 								hide_userformwarnings();
 								input_is_valid($(inputID), 'is-valid');
+							}
+							if (inputID == '#dxcc_id') {
+								input_is_valid($('#dxcc_button'), 'is-valid');
 							}
 						}
 					});
