@@ -7168,14 +7168,17 @@ msgstr ""
 "deren QSL-Bilder jedoch bis jetzt nicht heruntergeladen wurden."
 
 #: application/views/eqsl/download.php:43
+#: application/views/eqsl/download.php:44
 msgid "Action"
 msgstr "Aktion"
 
 #: application/views/eqsl/download.php:60
+#: application/views/eqsl/download.php:62
 msgid "View/Download"
 msgstr "Ansehen/Herunterladen"
 
 #: application/views/eqsl/download.php:71 application/views/eqsl/import.php:53
+#: application/views/eqsl/download.php:73
 msgid ""
 "Wavelog will use the eQSL credentials from your Wavelog user profile to "
 "connect to eQSL and download confirmations."
@@ -7185,6 +7188,7 @@ msgstr ""
 "herunterzuladen."
 
 #: application/views/eqsl/download.php:73
+#: application/views/eqsl/download.php:75
 msgid ""
 "Due to a rate limit of approximately 10 seconds per eQSL picture download "
 "calling this function will take a long time to complete! Thus you may have "
@@ -7198,6 +7202,7 @@ msgstr ""
 "laufen."
 
 #: application/views/eqsl/download.php:81
+#: application/views/eqsl/download.php:83
 msgid ""
 "There are no QSOs whose eQSL card images have not yet been downloaded. Go "
 "log some more QSOs!"
@@ -12691,6 +12696,10 @@ msgstr "Anfrage senden"
 #: application/views/station_profile/edit.php:99
 #: application/views/stationsetup/stationsetup.php:150
 msgid "Please select one"
+msgstr ""
+
+#: application/views/eqsl/download.php:43
+msgid "eQSL Receive Date"
 msgstr ""
 
 #, php-format
