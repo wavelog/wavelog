@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2024-10-08 07:26+0000\n"
 "PO-Revision-Date: 2024-10-09 13:43+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
-"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/"
-"main-translation/ru/>\n"
+"Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
+"translation/ru/>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2506,11 +2506,13 @@ msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: не найдены профили QTH с данными входя на HRDlog."
 
 #: application/models/Logbook_model.php:3635
+#: application/models/Logbook_model.php:3636
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Неправильный позывной %s при импорте QSO с %s для %s: ПРОПУЩЕНО"
 
 #: application/models/Logbook_model.php:3636
+#: application/models/Logbook_model.php:3637
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Проверьте %s на наличие подсказок об ошибках в файлах ADIF."
@@ -2528,54 +2530,67 @@ msgstr ""
 "импортировано. Оно недействительно"
 
 #: application/models/Logbook_model.php:3944
+#: application/models/Logbook_model.php:3945
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "дата получения QSL недействительна (ГГГГММДД)"
 
 #: application/models/Logbook_model.php:3955
+#: application/models/Logbook_model.php:3956
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "дата отправки QSL недействительна (ГГГГММДД)"
 
 #: application/models/Logbook_model.php:3999
+#: application/models/Logbook_model.php:4000
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "дата загрузки QSO в Clublog недействительна (ГГГГММДД)"
 
 #: application/models/Logbook_model.php:4019
+#: application/models/Logbook_model.php:4020
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "дата получения LoTW QSL недействительна (ГГГГММДД)"
 
 #: application/models/Logbook_model.php:4038
+#: application/models/Logbook_model.php:4039
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "дата отправки LoTW QSL недействительна (ГГГГММДД)"
 
 #: application/models/Logbook_model.php:4302
+#: application/models/Logbook_model.php:4303
 msgid "Duplicate for"
 msgstr "Дубликат для"
 
 #: application/models/Logbook_model.php:4363
+#: application/models/Logbook_model.php:4364
 msgid "QSO could not be matched"
 msgstr "QSO не может быть сопоставлено"
 
 #: application/models/Logbook_model.php:4369
+#: application/models/Logbook_model.php:4370
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "подтверждено LoTW/Clublog/eQSL/Contest"
 
 #: application/models/Logbook_model.php:4374
+#: application/models/Logbook_model.php:4375
 msgid "confirmed by award manager"
 msgstr "подтверждено менеджером диплома"
 
 #: application/models/Logbook_model.php:4377
+#: application/models/Logbook_model.php:4378
 msgid "confirmed by cross-check of DCL data"
 msgstr "подтверждено кросс-проверкой с данными DCL"
 
 #: application/models/Logbook_model.php:4380
+#: application/models/Logbook_model.php:4381
 msgid "confirmation pending"
 msgstr "подтверждение ожидается"
 
 #: application/models/Logbook_model.php:4383
+#: application/models/Logbook_model.php:4384
 msgid "unconfirmed"
 msgstr "не подтверждено"
 
 #: application/models/Logbook_model.php:4386
+#: application/models/Logbook_model.php:4387
 msgid "unknown"
 msgstr "неизвестно"
 
