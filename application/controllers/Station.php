@@ -31,6 +31,7 @@ class Station extends CI_Controller
 		$this->load->library('form_validation');
 
 		$this->form_validation->set_rules('station_profile_name', 'Station Profile Name', 'required');
+		$this->form_validation->set_rules('dxcc', 'DXCC', 'required');
 
 		if ($this->form_validation->run() == FALSE) {
 			$data['page_title'] = __("Create Station Location");
@@ -50,6 +51,7 @@ class Station extends CI_Controller
 			$data = $this->load_station_for_editing($id);
 			$data['page_title'] = __("Edit Station Location: ") . $data['my_station_profile']->station_profile_name;
 
+			$this->form_validation->set_rules('dxcc', 'DXCC', 'required');
 			if ($this->form_validation->run() == FALSE) {
 				$this->load->view('interface_assets/header', $data);
 				$this->load->view('station_profile/edit');

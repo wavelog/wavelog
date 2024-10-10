@@ -314,7 +314,6 @@
             <div class="mb-3">
               <label for="radio"><?= __("Radio"); ?></label>
               <select class="form-select radios" id="radio" name="radio">
-                <option value="0" selected="selected"><?= __("None"); ?></option>
                 <?php foreach ($radios->result() as $row) { ?>
                   <option value="<?php echo $row->id; ?>" <?php if($this->session->userdata('radio') == $row->id) { echo "selected=\"selected\""; } ?>><?php echo $row->radio; ?> <?php if ($radio_last_updated->id == $row->id) { echo "(".__("last updated").")"; } else { echo ''; } ?></option>
                 <?php } ?>
@@ -363,7 +362,6 @@
               <div class="mb-3">
                   <label for="dxcc_id"><?= __("DXCC"); ?></label>
                   <select class="form-control" id="dxcc_id" name="dxcc_id" required>
-                      <option value="0">- NONE -</option>
                       <?php
                       foreach($dxcc as $d){
                           echo '<option value=' . $d->adif . '>' . $d->prefix . ' - ' . ucwords(strtolower(($d->name)));

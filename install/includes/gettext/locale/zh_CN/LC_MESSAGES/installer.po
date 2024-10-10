@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-09-27 15:58+0000\n"
+"POT-Creation-Date: 2024-10-10 16:37+0000\n"
 "PO-Revision-Date: 2024-09-27 16:01+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -478,9 +478,8 @@ msgid "DXCC"
 msgstr "DXCC"
 
 #: install/index.php:487
-msgctxt "DXCC Select - No DXCC"
-msgid "- NONE - (e.g. /MM, /AM)"
-msgstr "- 无 - （如 /MM, /AM）"
+msgid "Please select one"
+msgstr ""
 
 #: install/index.php:488 install/index.php:494 install/index.php:518
 #: install/index.php:530 install/index.php:533 install/index.php:538
@@ -502,7 +501,7 @@ msgstr "- 无 - （如 /MM, /AM）"
 #: install/index.php:817 install/index.php:827 install/index.php:833
 #: install/index.php:837 install/index.php:843 install/index.php:846
 #: install/index.php:849 install/index.php:854 install/index.php:880
-#: install/index.php:886 install/index.php:888 install/index.php:1700
+#: install/index.php:886 install/index.php:888 install/index.php:1708
 msgid "Deleted DXCC"
 msgstr "已选择的 DXCC"
 
@@ -627,15 +626,15 @@ msgstr "连接成功，但数据库版本有一些老，您可以继续安装但
 msgid "The min. version for MySQL is %s, for MariaDB it's %s."
 msgstr "MySQL 最低版本 %s，或 MariaDB 最低版本 %s。"
 
-#: install/index.php:1653
+#: install/index.php:1654
 msgid "Search"
 msgstr "搜索"
 
-#: install/index.php:1686
+#: install/index.php:1691
 msgid "At least one field is empty."
 msgstr "有字段未填写。"
 
-#: install/index.php:1702
+#: install/index.php:1710
 msgid ""
 "Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. "
 "Check which DXCC for this particular location is the correct one. If you are "
@@ -644,47 +643,47 @@ msgstr ""
 "请稍等，您选择的 DXCC 已经不再有效，请重新查看该地区最新的 DXCC，如果您确定要"
 "继续，请忽略这个警告。"
 
-#: install/index.php:1726
+#: install/index.php:1734
 msgid ""
 "The locator seems to be not in the correct format. Should look like AA11AA "
 "(6-char grid locator)."
 msgstr "网格格式有误，例如 AA11AA（6位）。"
 
-#: install/index.php:1740
+#: install/index.php:1748
 msgid ""
 "The e-mail adress does not look correct. Make sure it's a valid e-mail "
 "address"
 msgstr "E-mail 地址有误，请重新检查"
 
-#: install/index.php:1767
+#: install/index.php:1775
 msgid "Password should be at least 8 characters long"
 msgstr "密码需要至少 8 位长"
 
-#: install/index.php:1776
+#: install/index.php:1784
 msgid "Passwords do not match"
 msgstr "密码不匹配"
 
-#: install/index.php:1823
+#: install/index.php:1831
 msgid "Install Now"
 msgstr "现在安装"
 
-#: install/index.php:1827
+#: install/index.php:1835
 msgid "Install not possible. Checklist incomplete."
 msgstr "无法安装，检查单无法通过。"
 
-#: install/index.php:1943
+#: install/index.php:1951
 msgid "PHP Module missing"
 msgstr "PHP 模块未安装"
 
-#: install/index.php:1945
+#: install/index.php:1953
 msgid "The following PHP modules are missing:"
 msgstr "缺少 PHP 模块："
 
-#: install/index.php:1946
+#: install/index.php:1954
 msgid "Without this module the Wavelog Installer does not work!"
 msgstr "Wavelog 需要这个模块来运行！"
 
-#: install/index.php:1947
+#: install/index.php:1955
 msgid "Please install the required modules and restart the webserver."
 msgstr "请安装缺失的模块，并重启服务器。"
 
@@ -760,6 +759,10 @@ msgstr "无法更新 DXCC 数据"
 #: install/run.php:341
 msgid "Could not create install/.lock file"
 msgstr "无法创建 install/.lock 文件"
+
+#~ msgctxt "DXCC Select - No DXCC"
+#~ msgid "- NONE - (e.g. /MM, /AM)"
+#~ msgstr "- 无 - （如 /MM, /AM）"
 
 #~ msgctxt "No DXCC"
 #~ msgid "- None -"
