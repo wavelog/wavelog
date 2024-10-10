@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-09-27 15:58+0000\n"
+"POT-Creation-Date: 2024-10-10 16:37+0000\n"
 "PO-Revision-Date: 2024-09-27 16:01+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/"
@@ -509,9 +509,8 @@ msgid "DXCC"
 msgstr "DXCC"
 
 #: install/index.php:487
-msgctxt "DXCC Select - No DXCC"
-msgid "- NONE - (e.g. /MM, /AM)"
-msgstr "- KEIN - (z.B. /MM, /AM)"
+msgid "Please select one"
+msgstr ""
 
 #: install/index.php:488 install/index.php:494 install/index.php:518
 #: install/index.php:530 install/index.php:533 install/index.php:538
@@ -533,7 +532,7 @@ msgstr "- KEIN - (z.B. /MM, /AM)"
 #: install/index.php:817 install/index.php:827 install/index.php:833
 #: install/index.php:837 install/index.php:843 install/index.php:846
 #: install/index.php:849 install/index.php:854 install/index.php:880
-#: install/index.php:886 install/index.php:888 install/index.php:1700
+#: install/index.php:886 install/index.php:888 install/index.php:1708
 msgid "Deleted DXCC"
 msgstr "Gelöschtes DXCC"
 
@@ -666,15 +665,15 @@ msgstr ""
 msgid "The min. version for MySQL is %s, for MariaDB it's %s."
 msgstr "Die min. Version für MySQL ist %s, für MariaDB ist es %s."
 
-#: install/index.php:1653
+#: install/index.php:1654
 msgid "Search"
 msgstr "Suche"
 
-#: install/index.php:1686
+#: install/index.php:1691
 msgid "At least one field is empty."
 msgstr "Mindestens ein Feld ist leer."
 
-#: install/index.php:1702
+#: install/index.php:1710
 msgid ""
 "Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. "
 "Check which DXCC for this particular location is the correct one. If you are "
@@ -686,7 +685,7 @@ msgstr ""
 "'Federal Republic of Germany'. Wenn du dir sicher bist, ignoriere diese "
 "Warnung."
 
-#: install/index.php:1726
+#: install/index.php:1734
 msgid ""
 "The locator seems to be not in the correct format. Should look like AA11AA "
 "(6-char grid locator)."
@@ -694,7 +693,7 @@ msgstr ""
 "Der Locator scheint nicht im richtigen Format zu sein. Sollte wie AA11AA "
 "aussehen (6-stelliger Grid-Locator)."
 
-#: install/index.php:1740
+#: install/index.php:1748
 msgid ""
 "The e-mail adress does not look correct. Make sure it's a valid e-mail "
 "address"
@@ -702,35 +701,35 @@ msgstr ""
 "Die E-Mail-Adresse sieht nicht korrekt aus. Stelle sicher, dass es eine "
 "gültige E-Mail-Adresse ist"
 
-#: install/index.php:1767
+#: install/index.php:1775
 msgid "Password should be at least 8 characters long"
 msgstr "Das Passwort sollte mindestens 8 Zeichen lang sein"
 
-#: install/index.php:1776
+#: install/index.php:1784
 msgid "Passwords do not match"
 msgstr "Passwörter stimmen nicht überein"
 
-#: install/index.php:1823
+#: install/index.php:1831
 msgid "Install Now"
 msgstr "Jetzt installieren"
 
-#: install/index.php:1827
+#: install/index.php:1835
 msgid "Install not possible. Checklist incomplete."
 msgstr "Installation nicht möglich. Checkliste unvollständig."
 
-#: install/index.php:1943
+#: install/index.php:1951
 msgid "PHP Module missing"
 msgstr "PHP-Modul fehlt"
 
-#: install/index.php:1945
+#: install/index.php:1953
 msgid "The following PHP modules are missing:"
 msgstr "Die folgenden PHP-Module fehlen:"
 
-#: install/index.php:1946
+#: install/index.php:1954
 msgid "Without this module the Wavelog Installer does not work!"
 msgstr "Ohne dieses Modul funktioniert der Wavelog-Installer nicht!"
 
-#: install/index.php:1947
+#: install/index.php:1955
 msgid "Please install the required modules and restart the webserver."
 msgstr "Bitte installiere die benötigten Module und starte den Webserver neu."
 
@@ -808,6 +807,10 @@ msgstr "Konnte DXCC-Daten nicht aktualisieren"
 #: install/run.php:341
 msgid "Could not create install/.lock file"
 msgstr "Konnte die install/.lock Datei nicht anlegen"
+
+#~ msgctxt "DXCC Select - No DXCC"
+#~ msgid "- NONE - (e.g. /MM, /AM)"
+#~ msgstr "- KEIN - (z.B. /MM, /AM)"
 
 #~ msgctxt "No DXCC"
 #~ msgid "- None -"

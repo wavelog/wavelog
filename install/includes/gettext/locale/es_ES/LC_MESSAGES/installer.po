@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-09-27 15:58+0000\n"
+"POT-Creation-Date: 2024-10-10 16:37+0000\n"
 "PO-Revision-Date: 2024-10-05 21:22+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Spanish <https://translate.wavelog.org/projects/wavelog/"
@@ -500,9 +500,8 @@ msgid "DXCC"
 msgstr "DXCC"
 
 #: install/index.php:487
-msgctxt "DXCC Select - No DXCC"
-msgid "- NONE - (e.g. /MM, /AM)"
-msgstr "- NINGUNO - (por ejemplo, /MM, /AM)"
+msgid "Please select one"
+msgstr ""
 
 #: install/index.php:488 install/index.php:494 install/index.php:518
 #: install/index.php:530 install/index.php:533 install/index.php:538
@@ -524,7 +523,7 @@ msgstr "- NINGUNO - (por ejemplo, /MM, /AM)"
 #: install/index.php:817 install/index.php:827 install/index.php:833
 #: install/index.php:837 install/index.php:843 install/index.php:846
 #: install/index.php:849 install/index.php:854 install/index.php:880
-#: install/index.php:886 install/index.php:888 install/index.php:1700
+#: install/index.php:886 install/index.php:888 install/index.php:1708
 msgid "Deleted DXCC"
 msgstr "DXCC Eliminado"
 
@@ -656,15 +655,15 @@ msgstr ""
 msgid "The min. version for MySQL is %s, for MariaDB it's %s."
 msgstr "La versión mínima para MySQL es %s, para MariaDB es %s."
 
-#: install/index.php:1653
+#: install/index.php:1654
 msgid "Search"
 msgstr "Buscar"
 
-#: install/index.php:1686
+#: install/index.php:1691
 msgid "At least one field is empty."
 msgstr "Al menos un campo está vacío."
 
-#: install/index.php:1702
+#: install/index.php:1710
 msgid ""
 "Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. "
 "Check which DXCC for this particular location is the correct one. If you are "
@@ -674,7 +673,7 @@ msgstr ""
 "Comprueba cuál es el DXCC correcto para esta localización en particular. Si "
 "está seguro, ignore esta advertencia."
 
-#: install/index.php:1726
+#: install/index.php:1734
 msgid ""
 "The locator seems to be not in the correct format. Should look like AA11AA "
 "(6-char grid locator)."
@@ -682,7 +681,7 @@ msgstr ""
 "El localizador parece no estar en el formato correcto. Debería verse como "
 "AA11AA (localizador de cuadrícula de 6 caracteres)."
 
-#: install/index.php:1740
+#: install/index.php:1748
 msgid ""
 "The e-mail adress does not look correct. Make sure it's a valid e-mail "
 "address"
@@ -690,35 +689,35 @@ msgstr ""
 "La dirección de correo electrónico no parece correcta. Asegúrate de que sea "
 "una dirección de correo electrónico válida"
 
-#: install/index.php:1767
+#: install/index.php:1775
 msgid "Password should be at least 8 characters long"
 msgstr "La contraseña debe tener al menos 8 caracteres de longitud"
 
-#: install/index.php:1776
+#: install/index.php:1784
 msgid "Passwords do not match"
 msgstr "Las contraseñas no coinciden"
 
-#: install/index.php:1823
+#: install/index.php:1831
 msgid "Install Now"
 msgstr "Instalar ahora"
 
-#: install/index.php:1827
+#: install/index.php:1835
 msgid "Install not possible. Checklist incomplete."
 msgstr "Instalación no posible. Lista de verificación incompleta."
 
-#: install/index.php:1943
+#: install/index.php:1951
 msgid "PHP Module missing"
 msgstr "Módulo PHP faltante"
 
-#: install/index.php:1945
+#: install/index.php:1953
 msgid "The following PHP modules are missing:"
 msgstr "Faltan los siguientes módulos de PHP:"
 
-#: install/index.php:1946
+#: install/index.php:1954
 msgid "Without this module the Wavelog Installer does not work!"
 msgstr "¡Sin este módulo, el instalador de Wavelog no funciona!"
 
-#: install/index.php:1947
+#: install/index.php:1955
 msgid "Please install the required modules and restart the webserver."
 msgstr "Por favor, instala los módulos necesarios y reinicia el servidor web."
 
@@ -796,6 +795,10 @@ msgstr "No se pudo actualizar los datos de DXCC"
 #: install/run.php:341
 msgid "Could not create install/.lock file"
 msgstr "No se pudo crear el archivo install/.lock"
+
+#~ msgctxt "DXCC Select - No DXCC"
+#~ msgid "- NONE - (e.g. /MM, /AM)"
+#~ msgstr "- NINGUNO - (por ejemplo, /MM, /AM)"
 
 #~ msgctxt "No DXCC"
 #~ msgid "- None -"
