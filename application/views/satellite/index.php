@@ -30,7 +30,7 @@
 				<?php foreach ($satellites as $sat) { ?>
 				<tr>
 					<td style="text-align: center; vertical-align: middle;" class="satellite_<?php echo $sat->id ?>"><?php echo htmlentities($sat->satname) ?></td>
-					<td style="text-align: center; vertical-align: middle;"><?php echo htmlentities($sat->exportname) ?></td>
+					<td style="text-align: center; vertical-align: middle;"><?php echo $sat->exportname ? htmlentities($sat->exportname) : '' ?></td>
 					<?php echo '<td style="text-align: center; vertical-align: middle;"><span class="badge ';
 					switch (strtoupper($sat->orbit)) {
 					case 'LEO':

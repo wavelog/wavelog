@@ -5091,7 +5091,7 @@ class Logbook_model extends CI_Model {
 		$this->db->where("station_id", $station_id);
 		$this->db->group_start();
 		$this->db->where('COL_LOTW_QSL_SENT', NULL);
-		$this->db->or_where('COL_LOTW_QSL_SENT !=', "Y");
+		$this->db->or_where_not_in('COL_LOTW_QSL_SENT', array("Y", "I"));
 		$this->db->group_end();
 		$this->db->where_not_in('COL_PROP_MODE', $this->config->item('lotw_unsupported_prop_modes'));
 		$this->db->where('COL_TIME_ON >=', $start_date);
@@ -5118,7 +5118,21 @@ class Logbook_model extends CI_Model {
 		return "Updated";
 	}
 
+	function lotw_invalid_sats() {
+		$sats = array();
+		$this->db->select('name');
+		$this->db->where('lotw', 'N');
+		$query = $this->db->get('satellite');
+		if ($query->num_rows() > 0){
+			foreach ($query->result() as $row) {
+				array_push($sats, $row->name);
+			}
+		}
+		return $sats;
+	}
+
 	function mark_lotw_ignore($station_id) {
+		$invalid_sats = $this->lotw_invalid_sats();
 		$data = array(
 			'COL_LOTW_QSLSDATE' => null,
 			'COL_LOTW_QSL_SENT' => 'I',
@@ -5126,7 +5140,10 @@ class Logbook_model extends CI_Model {
 			'COL_LOTW_QSL_RCVD' => 'I',
 		);
 		$this->db->where("station_id", $station_id);
+		$this->db->group_start();
 		$this->db->where_in('COL_PROP_MODE', $this->config->item('lotw_unsupported_prop_modes'));
+		$this->db->or_where_in('COL_SAT_NAME', $invalid_sats);
+		$this->db->group_end();
 		$this->db->update($this->config->item('table_name'), $data);
 	}
 
