@@ -483,9 +483,8 @@ if (!file_exists('.lock')) {
 										</div>
 										<div class="col-md-6 mb-2">
 											<label for="dxcc" class="form-label"><?= __("DXCC"); ?></label>
-											<select class="form-control" id="dxcc_id" name="dxcc" tabindex="7" aria-describedby="stationCallsignInputHelp" required>
-												<option value="" selected=""><?= __("Please select one"); ?></option>
-												<option value="0">- NONE - (e.g. /MM /AM)</option>
+											<select class="form-control" id="dxcc_id" name="dxcc" tabindex="7" aria-describedby="stationCallsignInputHelp">
+												<option value="0" selected=""><?= _pgettext("DXCC Select - No DXCC", "- NONE - (e.g. /MM, /AM)"); ?></option>
 												<option value="2">Abu Ail Is - A1 (<?= __("Deleted DXCC"); ?>)</option>
 												<option value="3">Afghanistan - YA</option>
 												<option value="4">Agalega &amp; St Brandon Islands - 3B7</option>
