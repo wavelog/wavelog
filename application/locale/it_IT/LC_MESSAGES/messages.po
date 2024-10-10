@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-10-10 07:05+0000\n"
-"PO-Revision-Date: 2024-08-18 19:11+0000\n"
+"POT-Creation-Date: 2024-10-08 07:26+0000\n"
+"PO-Revision-Date: 2024-10-10 05:40+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Italian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/it/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7\n"
+"X-Generator: Weblate 5.7.2\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -1447,7 +1447,7 @@ msgstr "Operatore"
 #: application/views/view_log/qso.php:239
 #: application/views/view_log/qso.php:541
 msgid "Deleted DXCC"
-msgstr ""
+msgstr "DXCC eliminati"
 
 #: application/controllers/Logbookadvanced.php:31
 msgid "Advanced logbook"
@@ -1887,7 +1887,7 @@ msgstr ""
 #: application/views/visitor/layout/header.php:97
 #: application/views/visitor/layout/header.php:98
 msgid "Search"
-msgstr ""
+msgstr "Cerca"
 
 #: application/controllers/Search.php:28
 msgid "Search & Filter Logbook"
@@ -2100,7 +2100,7 @@ msgstr ""
 #: application/views/stationsetup/stationsetup.php:150
 msgctxt "DXCC Select - No DXCC"
 msgid "- NONE - (e.g. /MM, /AM)"
-msgstr ""
+msgstr "- NESSUNO - (ad es. /MM, /AM)"
 
 #: application/controllers/Stationsetup.php:462
 msgid "Edit Export Map options"
@@ -2458,74 +2458,91 @@ msgstr ""
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr ""
 
+#: application/models/Logbook_model.php:3635
 #: application/models/Logbook_model.php:3636
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 
+#: application/models/Logbook_model.php:3636
 #: application/models/Logbook_model.php:3637
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr ""
 
+#: application/models/Logbook_model.php:3648
 #: application/models/Logbook_model.php:3649
 msgid "QSO on"
 msgstr ""
 
+#: application/models/Logbook_model.php:3648
 #: application/models/Logbook_model.php:3649
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
 msgstr ""
 
+#: application/models/Logbook_model.php:3944
 #: application/models/Logbook_model.php:3945
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr ""
 
+#: application/models/Logbook_model.php:3955
 #: application/models/Logbook_model.php:3956
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr ""
 
+#: application/models/Logbook_model.php:3999
 #: application/models/Logbook_model.php:4000
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr ""
 
+#: application/models/Logbook_model.php:4019
 #: application/models/Logbook_model.php:4020
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr ""
 
+#: application/models/Logbook_model.php:4038
 #: application/models/Logbook_model.php:4039
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr ""
 
+#: application/models/Logbook_model.php:4302
 #: application/models/Logbook_model.php:4303
 msgid "Duplicate for"
 msgstr ""
 
+#: application/models/Logbook_model.php:4363
 #: application/models/Logbook_model.php:4364
 msgid "QSO could not be matched"
 msgstr ""
 
+#: application/models/Logbook_model.php:4369
 #: application/models/Logbook_model.php:4370
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr ""
 
+#: application/models/Logbook_model.php:4374
 #: application/models/Logbook_model.php:4375
 msgid "confirmed by award manager"
 msgstr ""
 
+#: application/models/Logbook_model.php:4377
 #: application/models/Logbook_model.php:4378
 msgid "confirmed by cross-check of DCL data"
 msgstr ""
 
+#: application/models/Logbook_model.php:4380
 #: application/models/Logbook_model.php:4381
 msgid "confirmation pending"
 msgstr ""
 
+#: application/models/Logbook_model.php:4383
 #: application/models/Logbook_model.php:4384
 msgid "unconfirmed"
 msgstr ""
 
+#: application/models/Logbook_model.php:4386
 #: application/models/Logbook_model.php:4387
 msgid "unknown"
 msgstr ""
@@ -3134,7 +3151,7 @@ msgstr ""
 #: application/views/user/index.php:47 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:82 application/views/view_log/qso.php:519
 msgid "Callsign"
-msgstr ""
+msgstr "Indicativo di chiamata"
 
 #: application/views/activators/index.php:99
 msgid "Count"
@@ -3974,7 +3991,7 @@ msgstr "Cartolina QSL"
 #: application/views/qrbcalc/index.php:19
 #: application/views/search/filter.php:43 application/views/user/edit.php:607
 msgid "Reset"
-msgstr ""
+msgstr "Resetta"
 
 #: application/views/awards/cq/index.php:115
 msgid "Show CQ Zone Map"
@@ -4524,7 +4541,7 @@ msgstr ""
 #: application/views/search/result.php:21
 #: application/views/view_log/qso.php:533
 msgid "City"
-msgstr ""
+msgstr "Città"
 
 #: application/views/awards/jcc/index.php:187
 #: application/views/dashboard/index.php:375
@@ -5295,7 +5312,7 @@ msgstr "Si"
 #: application/views/user/edit.php:541 application/views/user/edit.php:803
 #: application/views/user/edit.php:833 application/views/user/edit.php:858
 msgid "No"
-msgstr ""
+msgstr "No"
 
 #: application/views/cabrillo/index.php:207
 #: application/views/reg1test/index.php:150
@@ -6618,17 +6635,16 @@ msgid "Submode"
 msgstr ""
 
 #: application/views/eqsl/analysis.php:41
-msgid "eQSL Receive Date"
-msgstr ""
-
 #: application/views/eqsl/analysis.php:42
 msgid "Log Status"
 msgstr ""
 
-#: application/views/eqsl/analysis.php:43 application/views/eqsl/result.php:38
+#: application/views/eqsl/analysis.php:42 application/views/eqsl/result.php:38
+#: application/views/eqsl/analysis.php:43
 msgid "eQSL Status"
 msgstr ""
 
+#: application/views/eqsl/analysis.php:62
 #: application/views/eqsl/analysis.php:64
 msgid "There are no QSO confirmations waiting for you at eQSL.cc"
 msgstr ""
@@ -6979,6 +6995,9 @@ msgid ""
 "Check which DXCC for this particular location is the correct one. If you are "
 "sure, ignore this warning."
 msgstr ""
+"Fermati qui un momento. Il tuo DXCC scelto è obsoleto e non più valido. "
+"Controlla quale DXCC per questa particolare posizione è quello corretto. Se "
+"sei sicuro, ignora questo avviso."
 
 #: application/views/interface_assets/footer.php:730
 #: application/views/logbookadvanced/index.php:540
@@ -9342,7 +9361,7 @@ msgstr ""
 
 #: application/views/radio/index.php:27
 msgid "Please wait..."
-msgstr ""
+msgstr "Attendere prego..."
 
 #: application/views/reg1test/index.php:6
 msgid "Select Band"
@@ -9582,7 +9601,7 @@ msgstr ""
 
 #: application/views/satellite/pass.php:36 application/views/user/edit.php:179
 msgid "Timezone"
-msgstr ""
+msgstr "Fuso orario"
 
 #: application/views/satellite/pass.php:479
 msgid "Min. time"
@@ -10890,7 +10909,7 @@ msgstr ""
 #: application/views/user/login.php:69 application/views/user/login.php:70
 #: application/views/user/profile.php:14
 msgid "Username"
-msgstr ""
+msgstr "Nome utente"
 
 #: application/views/user/edit.php:64 application/views/user/login.php:59
 #: application/views/user/login.php:73 application/views/user/login.php:74
@@ -10898,7 +10917,7 @@ msgstr ""
 #: application/views/user/reset_password.php:23
 #: application/views/user/reset_password.php:30
 msgid "Password"
-msgstr ""
+msgstr "Password"
 
 #: application/views/user/edit.php:77
 msgid "User Role"
@@ -10910,11 +10929,11 @@ msgstr ""
 
 #: application/views/user/edit.php:102
 msgid "First Name"
-msgstr ""
+msgstr "Nome"
 
 #: application/views/user/edit.php:109
 msgid "Last Name"
-msgstr ""
+msgstr "Cognome"
 
 #: application/views/user/edit.php:120
 msgid "Ham Radio"
@@ -11420,7 +11439,7 @@ msgstr ""
 
 #: application/views/user/reset_password.php:28
 msgid "Confirm Password"
-msgstr ""
+msgstr "Conferma password"
 
 #: application/views/version_dialog/index.php:20
 msgid "No Version Dialog text set. Go to the Admin Menu and set one."
@@ -11659,6 +11678,10 @@ msgstr ""
 
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
+msgstr ""
+
+#: application/views/eqsl/analysis.php:41
+msgid "eQSL Receive Date"
 msgstr ""
 
 #~ msgid "Upload File below."
