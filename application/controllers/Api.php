@@ -208,7 +208,8 @@ class API extends CI_Controller {
 			$this->adif_parser->feed($obj['string']);
 			$obj['string']='';
 			$return_msg=[];
-			$return_count=0;
+			$adif_count=0;
+			$adif_errors=0;
 			if( !($dryrun) && (isset($obj['station_profile_id']))) {
 				$custom_errors = "";
 				$alladif=[];
@@ -221,11 +222,14 @@ class API extends CI_Controller {
 						break;
 					};
 					array_push($alladif,$record);
-					$return_count++;
+					$adif_count++;
 				};
 				$record='';	// free memory
 				gc_collect_cycles();
 				$custom_errors = $this->logbook_model->import_bulk($alladif, $obj['station_profile_id'], false, false, false, false, false, false, false, true, false, true, false);
+				if ($custom_errors) {
+					$adif_errors++;
+				}
 				$alladif=[];
 				$return_msg[]='';
 			} else {
@@ -233,7 +237,7 @@ class API extends CI_Controller {
 			}
 
 			http_response_code(201);
-			echo json_encode(['status' => 'created', 'type' => $obj['type'], 'string' => $obj['string'], 'imported_count' => $return_count, 'messages' => $return_msg ]);
+			echo json_encode(['status' => 'created', 'type' => $obj['type'], 'string' => $obj['string'], 'adif_count' => $adif_count, 'adif_errors' => $adif_errors, 'messages' => $return_msg ]);
 
 		}
 
