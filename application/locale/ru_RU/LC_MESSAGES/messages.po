@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-10-08 07:26+0000\n"
+"POT-Creation-Date: 2024-10-10 07:05+0000\n"
 "PO-Revision-Date: 2024-10-09 13:43+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1777,7 +1777,6 @@ msgid "You have to be logged in to access this URL."
 msgstr "Для доступа к этому URL необходимо войти в систему."
 
 #: application/controllers/Qso.php:667
-#, fuzzy
 msgid "Call Transfer"
 msgstr "Перевод вызова"
 
@@ -2505,23 +2504,21 @@ msgstr "HRDlog: на найдены QSO для загруки для позыв�
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog: не найдены профили QTH с данными входя на HRDlog."
 
-#: application/models/Logbook_model.php:3635
 #: application/models/Logbook_model.php:3636
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr "Неправильный позывной %s при импорте QSO с %s для %s: ПРОПУЩЕНО"
 
-#: application/models/Logbook_model.php:3636
 #: application/models/Logbook_model.php:3637
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Проверьте %s на наличие подсказок об ошибках в файлах ADIF."
 
-#: application/models/Logbook_model.php:3648
+#: application/models/Logbook_model.php:3649
 msgid "QSO on"
 msgstr "начало QSO"
 
-#: application/models/Logbook_model.php:3648
+#: application/models/Logbook_model.php:3649
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -2529,67 +2526,54 @@ msgstr ""
 "Вы пытались импортировать QSO без указанного позывного. Это QSO не было "
 "импортировано. Оно недействительно"
 
-#: application/models/Logbook_model.php:3944
 #: application/models/Logbook_model.php:3945
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "дата получения QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:3955
 #: application/models/Logbook_model.php:3956
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "дата отправки QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:3999
 #: application/models/Logbook_model.php:4000
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "дата загрузки QSO в Clublog недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:4019
 #: application/models/Logbook_model.php:4020
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "дата получения LoTW QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:4038
 #: application/models/Logbook_model.php:4039
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "дата отправки LoTW QSL недействительна (ГГГГММДД)"
 
-#: application/models/Logbook_model.php:4302
 #: application/models/Logbook_model.php:4303
 msgid "Duplicate for"
 msgstr "Дубликат для"
 
-#: application/models/Logbook_model.php:4363
 #: application/models/Logbook_model.php:4364
 msgid "QSO could not be matched"
 msgstr "QSO не может быть сопоставлено"
 
-#: application/models/Logbook_model.php:4369
 #: application/models/Logbook_model.php:4370
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "подтверждено LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:4374
 #: application/models/Logbook_model.php:4375
 msgid "confirmed by award manager"
 msgstr "подтверждено менеджером диплома"
 
-#: application/models/Logbook_model.php:4377
 #: application/models/Logbook_model.php:4378
 msgid "confirmed by cross-check of DCL data"
 msgstr "подтверждено кросс-проверкой с данными DCL"
 
-#: application/models/Logbook_model.php:4380
 #: application/models/Logbook_model.php:4381
 msgid "confirmation pending"
 msgstr "подтверждение ожидается"
 
-#: application/models/Logbook_model.php:4383
 #: application/models/Logbook_model.php:4384
 msgid "unconfirmed"
 msgstr "не подтверждено"
 
-#: application/models/Logbook_model.php:4386
 #: application/models/Logbook_model.php:4387
 msgid "unknown"
 msgstr "неизвестно"
@@ -5486,7 +5470,6 @@ msgid "Certificate"
 msgstr "Сертификат"
 
 #: application/views/cabrillo/index.php:192
-#, fuzzy
 msgid ""
 "Indicate if you wish to receive, if eligible, a paper certificate sent via "
 "postal mail by the contest sponsor. The contest sponsor may or may not honor "
@@ -6951,16 +6934,17 @@ msgid "Submode"
 msgstr "Подвид"
 
 #: application/views/eqsl/analysis.php:41
+msgid "eQSL Receive Date"
+msgstr ""
+
 #: application/views/eqsl/analysis.php:42
 msgid "Log Status"
 msgstr "Статус журнала"
 
-#: application/views/eqsl/analysis.php:42 application/views/eqsl/result.php:38
-#: application/views/eqsl/analysis.php:43
+#: application/views/eqsl/analysis.php:43 application/views/eqsl/result.php:38
 msgid "eQSL Status"
 msgstr "статус eQSL"
 
-#: application/views/eqsl/analysis.php:62
 #: application/views/eqsl/analysis.php:64
 msgid "There are no QSO confirmations waiting for you at eQSL.cc"
 msgstr "На сайте eQSL.cc не найдено новых подтверждений QSO"
@@ -9760,7 +9744,6 @@ msgid "Max. 5 previous contacts are shown"
 msgstr "Показываются максимум 5 предыдущих QSO"
 
 #: application/views/qso/log_qso.php:9
-#, fuzzy
 msgid "Redirecting to QSO logging page..."
 msgstr "Перенаправление на страницу добавления QSO в журнал..."
 
@@ -12281,10 +12264,6 @@ msgstr "Ваш позывной:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Отправить запрос"
-
-#: application/views/eqsl/analysis.php:41
-msgid "eQSL Receive Date"
-msgstr ""
 
 #~ msgid "Click 'Save Callsign Certificate File' and do not add a password"
 #~ msgstr ""
