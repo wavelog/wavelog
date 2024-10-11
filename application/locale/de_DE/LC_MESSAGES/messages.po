@@ -737,6 +737,7 @@ msgstr "DX Kalender"
 #: application/views/dashboard/index.php:332
 #: application/views/eqslcard/index.php:5
 #: application/views/visitor/index.php:306
+#: application/views/visitor/index.php:310
 msgid "eQSL Cards"
 msgstr "eQSL-Karten"
 
@@ -1518,6 +1519,7 @@ msgstr "Schnellsuche"
 #: application/views/lotw_views/index.php:12
 #: application/views/lotw_views/upload_cert.php:3
 #: application/views/user/edit.php:705 application/views/visitor/index.php:324
+#: application/views/visitor/index.php:328
 msgid "Logbook of the World"
 msgstr "Logbook of the World"
 
@@ -1790,6 +1792,7 @@ msgstr "QRZ ADIF-Information"
 #: application/views/dashboard/index.php:284
 #: application/views/qslcard/index.php:5
 #: application/views/visitor/index.php:283
+#: application/views/visitor/index.php:287
 msgid "QSL Cards"
 msgstr "QSL-Karten"
 
@@ -2677,6 +2680,7 @@ msgstr "Kumulierte Anzahl gearbeiteter WAJA"
 #: application/views/dayswithqso/index.php:16
 #: application/views/statistics/index.php:18
 #: application/views/visitor/index.php:246
+#: application/views/visitor/index.php:250
 msgid "Year"
 msgstr "Jahr"
 
@@ -2688,6 +2692,7 @@ msgstr "jährlich"
 #: application/views/accumulate/index.php:10
 #: application/views/dashboard/index.php:250
 #: application/views/visitor/index.php:251
+#: application/views/visitor/index.php:255
 msgid "Month"
 msgstr "Monat"
 
@@ -3396,6 +3401,7 @@ msgstr "Die Informationen zum DOK im Logbuch weichen von denen im DCL ab"
 #: application/views/view_log/partial/log_ajax.php:59
 #: application/views/visitor/index.php:147
 #: application/views/widgets/qsos.php:25
+#: application/views/visitor/index.php:151
 msgid "Date"
 msgstr "Datum"
 
@@ -3428,6 +3434,7 @@ msgstr "Datum"
 #: application/views/view_log/partial/log_ajax.php:61
 #: application/views/visitor/index.php:150
 #: application/views/widgets/qsos.php:27
+#: application/views/visitor/index.php:154
 msgid "Time"
 msgstr "Zeit"
 
@@ -3448,6 +3455,7 @@ msgstr "Zeit"
 #: application/views/view_log/partial/log_ajax.php:63
 #: application/views/visitor/index.php:152
 #: application/views/widgets/qsos.php:29
+#: application/views/visitor/index.php:156
 msgid "Call"
 msgstr "Rufzeichen"
 
@@ -4034,6 +4042,7 @@ msgstr "Bestätigte Counties"
 #: application/views/statistics/uniquetable.php:10
 #: application/views/statistics/uniquetable.php:23
 #: application/views/visitor/index.php:241
+#: application/views/visitor/index.php:245
 msgid "Total"
 msgstr "Gesamt"
 
@@ -4107,6 +4116,7 @@ msgstr "Diplome - CQ Magazin WAZ"
 #: application/views/dashboard/index.php:385
 #: application/views/interface_assets/footer.php:40
 #: application/views/visitor/index.php:266
+#: application/views/visitor/index.php:270
 msgid "Confirmed"
 msgstr "Bestätigt"
 
@@ -4117,6 +4127,7 @@ msgstr "Bestätigt"
 #: application/views/dashboard/index.php:263
 #: application/views/dashboard/index.php:379
 #: application/views/visitor/index.php:262
+#: application/views/visitor/index.php:266
 msgid "Worked"
 msgstr "Gearbeitet"
 
@@ -6437,16 +6448,19 @@ msgstr "Mindestens eines deiner LoTW-Zertifikate läuft demnächst ab!"
 
 #: application/views/dashboard/index.php:236
 #: application/views/visitor/index.php:237
+#: application/views/visitor/index.php:241
 msgid "QSOs Breakdown"
 msgstr "QSO-Übersicht"
 
 #: application/views/dashboard/index.php:259
 #: application/views/visitor/index.php:258
+#: application/views/visitor/index.php:262
 msgid "Countries Breakdown"
 msgstr "Länderübersicht"
 
 #: application/views/dashboard/index.php:276
 #: application/views/visitor/index.php:275
+#: application/views/visitor/index.php:279
 msgid "Needed"
 msgstr "Benötigt"
 
@@ -6479,7 +6493,9 @@ msgstr "Benötigt"
 #: application/views/widgets/qsos.php:31 src/QSLManager/QSO.php:272
 #: src/QSLManager/QSO.php:375 src/QSLManager/QSO.php:427
 #: src/QSLManager/QSO.php:465 src/QSLManager/QSO.php:528
-#: application/views/qso/index.php:571
+#: application/views/qso/index.php:571 application/views/visitor/index.php:291
+#: application/views/visitor/index.php:314
+#: application/views/visitor/index.php:332
 msgid "Sent"
 msgstr "Gesendet"
 
@@ -6510,6 +6526,9 @@ msgstr "Gesendet"
 #: application/views/visitor/index.php:333 src/QSLManager/QSO.php:317
 #: src/QSLManager/QSO.php:398 src/QSLManager/QSO.php:440
 #: src/QSLManager/QSO.php:504 src/QSLManager/QSO.php:541
+#: application/views/visitor/index.php:296
+#: application/views/visitor/index.php:319
+#: application/views/visitor/index.php:337
 msgid "Received"
 msgstr "Erhalten"
 
@@ -6547,7 +6566,7 @@ msgstr "Erhalten"
 #: application/views/logbookadvanced/index.php:410
 #: application/views/logbookadvanced/index.php:421
 #: application/views/logbookadvanced/index.php:432
-#: application/views/qso/index.php:576
+#: application/views/qso/index.php:576 application/views/visitor/index.php:301
 msgid "Requested"
 msgstr "Angefragt"
 
