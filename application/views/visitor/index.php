@@ -98,7 +98,7 @@ function echo_table_col($row, $name)
 		case 'Band':
 			echo '<td>';
 			if ($row->COL_SAT_NAME != null) {
-				echo '<a href="https://db.satnogs.org/search/?q=' . $row->COL_SAT_NAME . '" target="_blank">' . $row->COL_SAT_NAME . '</a></td>';
+				echo '<a href="https://db.satnogs.org/search/?q='.$row->COL_SAT_NAME.'" target="_blank"><span data-bs-toggle="tooltip" title="'.($row->COL_BAND ?? '').'">'.$row->COL_SAT_NAME.'</span></a></td>';
 			} else {
 				echo strtolower($row->COL_BAND);
 			}
@@ -106,10 +106,14 @@ function echo_table_col($row, $name)
 			break;
 		case 'Frequency':
 			echo '<td>';
-			if ($row->COL_FREQ != null) {
-				echo $CI->frequency->qrg_conversion($row->COL_FREQ);
+			if ($row->COL_SAT_NAME ?? '' != '') {
+				echo '<a href="https://db.satnogs.org/search/?q='.$row->COL_SAT_NAME.'" target="_blank"><span data-bs-toggle="tooltip" title="'.($CI->frequency->qrg_conversion($row->COL_FREQ ?? 0)).'">'.$row->COL_SAT_NAME.'</span></a></td>';
 			} else {
-				echo strtolower($row->COL_BAND);
+				if ($row->COL_FREQ != null) {
+					echo $CI->frequency->qrg_conversion($row->COL_FREQ ?? 0);
+				} else {
+					echo strtolower($row->COL_BAND);
+				}
 			}
 			echo '</td>';
 			break;
