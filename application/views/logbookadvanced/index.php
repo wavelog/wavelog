@@ -52,7 +52,8 @@
 			\"wwff\":{\"show\":\"true\"},
 			\"sig\":{\"show\":\"true\"},
 			\"continent\":{\"show\":\"true\"},
-			\"qrz\":{\"show\":\"true\"}
+			\"qrz\":{\"show\":\"true\"},
+			\"stationname\":{\"show\":\"true\"}
         }";
     }
     $current_opts = json_decode($options);
@@ -111,6 +112,10 @@
     }
 	if (!isset($current_opts->qrz)) {
         echo "\nvar o_template = { qrz: {show: 'true'}};";
+        echo "\nuser_options={...user_options, ...o_template};";
+    }
+	if (!isset($current_opts->stationname)) {
+        echo "\nvar o_template = { stationname: {show: 'true'}};";
         echo "\nuser_options={...user_options, ...o_template};";
     }
 
@@ -660,6 +665,9 @@ $options = json_decode($options);
                     } ?>
 					<?php if (($options->continent->show ?? "true") == "true") {
                         echo '<th>' . __("Continent") . '</th>';
+                    } ?>
+					<?php if (($options->stationname->show ?? "true") == "true") {
+                        echo '<th>' . __("Station name") . '</th>';
                     } ?>
                 </tr>
             </thead>
