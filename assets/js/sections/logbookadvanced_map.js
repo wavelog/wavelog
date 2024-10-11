@@ -356,7 +356,10 @@ function loadMap(data, iconsList) {
 	maidenhead = L.maidenheadqrb().addTo(map);
 	nightlayer = L.terminator().addTo(map);
 
-	map.fitBounds(bounds);
+
+	if (bounds && bounds._southWest && bounds._northEast) {
+        map.fitBounds(bounds);
+    }
 
 	$.each(iconsList, function (icon, data) {
 		$('#advancedmap' + ' .cspot_' + icon).addClass(data.icon).css("color", data.color);
