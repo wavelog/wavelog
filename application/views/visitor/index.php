@@ -98,7 +98,7 @@ function echo_table_col($row, $name)
 		case 'Band':
 			echo '<td>';
 			if ($row->COL_SAT_NAME != null) {
-				echo '<a href="https://db.satnogs.org/search/?q=' . $row->COL_SAT_NAME . '" target="_blank">' . $row->COL_SAT_NAME . '</a></td>';
+				echo '<a href="https://db.satnogs.org/search/?q='.$row->COL_SAT_NAME.'" target="_blank"><span data-bs-toggle="tooltip" title="'.($row->COL_BAND ?? '').'">'.$row->COL_SAT_NAME.'</span></a></td>';
 			} else {
 				echo strtolower($row->COL_BAND);
 			}
