@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-10-11 08:19+0000\n"
+"POT-Creation-Date: 2024-10-12 08:03+0000\n"
 "PO-Revision-Date: 2024-10-12 10:45+0000\n"
 "Last-Translator: Qing He <HE@BD8DHF.COM>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -519,13 +519,11 @@ msgstr "笔记 - 备份"
 msgid "Bands"
 msgstr "波段"
 
-#: application/controllers/Band.php:40 application/controllers/Mode.php:41
-#: application/controllers/Band.php:39
+#: application/controllers/Band.php:39 application/controllers/Mode.php:41
 msgid "Create Mode"
 msgstr "创建新模式"
 
-#: application/controllers/Band.php:59 application/views/bands/index.php:150
-#: application/controllers/Band.php:64
+#: application/controllers/Band.php:64 application/views/bands/index.php:150
 msgid "Edit Band"
 msgstr "编辑波段"
 
@@ -1672,15 +1670,17 @@ msgstr "版本信息将会重新向用户显示"
 msgid "Version Info will not be shown to any user"
 msgstr "版本信息不再会向用户显示"
 
-#: application/controllers/Oqrs.php:46 application/controllers/Oqrs.php:85
-#: application/controllers/Oqrs.php:97 application/controllers/Oqrs.php:92
+#: application/controllers/Oqrs.php:46 application/controllers/Oqrs.php:92
 #: application/controllers/Oqrs.php:104
 msgid "Log Search & OQRS"
 msgstr "查找日志 & OQRS"
 
-#: application/controllers/Oqrs.php:127
-#: application/views/interface_assets/header.php:419
+#: application/controllers/Oqrs.php:67
+msgid "Invalid Station ID"
+msgstr "无效站台ID"
+
 #: application/controllers/Oqrs.php:134
+#: application/views/interface_assets/header.php:419
 msgid "OQRS Requests"
 msgstr "OQRS"
 
@@ -11852,10 +11852,6 @@ msgstr "您的呼号："
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "提交请求"
-
-#: application/controllers/Oqrs.php:67
-msgid "Invalid Station ID"
-msgstr "无效站台ID"
 
 #~ msgctxt "DXCC Select - No DXCC"
 #~ msgid "- NONE - (e.g. /MM, /AM)"
