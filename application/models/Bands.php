@@ -350,7 +350,7 @@ class Bands extends CI_Model {
 
 		// get all worked slots from database
 		$data = $this->db->query(
-			"SELECT distinct LOWER(`COL_BAND`) as `COL_BAND` FROM `".$this->config->item('table_name')."` WHERE station_id in (" . $station_id . ") AND COL_PROP_MODE != \"SAT\""
+			"SELECT distinct LOWER(`COL_BAND`) as `COL_BAND` FROM `".$this->config->item('table_name')."` WHERE station_id = ? AND COL_PROP_MODE != \"SAT\"", $station_id
 		);
 		$worked_slots = array();
 		foreach($data->result() as $row){
@@ -358,7 +358,7 @@ class Bands extends CI_Model {
 		}
 
 		$SAT_data = $this->db->query(
-			"SELECT distinct LOWER(`COL_PROP_MODE`) as `COL_PROP_MODE` FROM `".$this->config->item('table_name')."` WHERE station_id in (" . $station_id . ") AND COL_PROP_MODE = \"SAT\""
+			"SELECT distinct LOWER(`COL_PROP_MODE`) as `COL_PROP_MODE` FROM `".$this->config->item('table_name')."` WHERE station_id = ? AND COL_PROP_MODE = \"SAT\"", $station_id
 		);
 
 		foreach($SAT_data->result() as $row){
