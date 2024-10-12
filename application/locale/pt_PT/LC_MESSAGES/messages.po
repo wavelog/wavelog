@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-10-12 08:03+0000\n"
-"PO-Revision-Date: 2024-10-08 07:26+0000\n"
+"POT-Creation-Date: 2024-10-11 08:19+0000\n"
+"PO-Revision-Date: 2024-10-11 20:46+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/pt_PT/>\n"
@@ -517,11 +517,13 @@ msgstr "Notas - Backup"
 msgid "Bands"
 msgstr "Bandas"
 
-#: application/controllers/Band.php:39 application/controllers/Mode.php:41
+#: application/controllers/Band.php:40 application/controllers/Mode.php:41
+#: application/controllers/Band.php:39
 msgid "Create Mode"
 msgstr "Criar Modo"
 
-#: application/controllers/Band.php:64 application/views/bands/index.php:150
+#: application/controllers/Band.php:59 application/views/bands/index.php:150
+#: application/controllers/Band.php:64
 msgid "Edit Band"
 msgstr "Editar Banda"
 
@@ -1680,17 +1682,15 @@ msgstr "Versão Informação voltará a ser mostrado a todos os utilizadores"
 msgid "Version Info will not be shown to any user"
 msgstr "Versão Informação não será mostrado a nenhum utilizador"
 
-#: application/controllers/Oqrs.php:46 application/controllers/Oqrs.php:92
+#: application/controllers/Oqrs.php:46 application/controllers/Oqrs.php:85
+#: application/controllers/Oqrs.php:97 application/controllers/Oqrs.php:92
 #: application/controllers/Oqrs.php:104
 msgid "Log Search & OQRS"
 msgstr "Pesquisa do Log & OQRS"
 
-#: application/controllers/Oqrs.php:67
-msgid "Invalid Station ID"
-msgstr ""
-
-#: application/controllers/Oqrs.php:134
+#: application/controllers/Oqrs.php:127
 #: application/views/interface_assets/header.php:419
+#: application/controllers/Oqrs.php:134
 msgid "OQRS Requests"
 msgstr "Pedidos OQRS"
 
@@ -2132,7 +2132,7 @@ msgstr ""
 #: application/views/station_profile/edit.php:99
 #: application/views/stationsetup/stationsetup.php:150
 msgid "Please select one"
-msgstr ""
+msgstr "Por favor, selecione um"
 
 #: application/controllers/Stationsetup.php:462
 msgid "Edit Export Map options"
@@ -6942,7 +6942,7 @@ msgstr "Submodo"
 
 #: application/views/eqsl/analysis.php:41
 msgid "eQSL Received Date"
-msgstr ""
+msgstr "Data de Recepção do eQSL"
 
 #: application/views/eqsl/analysis.php:42
 msgid "Log Status"
@@ -6966,7 +6966,7 @@ msgstr ""
 
 #: application/views/eqsl/download.php:43
 msgid "eQSL Receive Date"
-msgstr ""
+msgstr "Data de Recepção eQSL"
 
 #: application/views/eqsl/download.php:44
 msgid "Action"
@@ -12316,6 +12316,10 @@ msgstr "O seu indicativo:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Submeter pedido"
+
+#: application/controllers/Oqrs.php:67
+msgid "Invalid Station ID"
+msgstr ""
 
 #~ msgctxt "DXCC Select - No DXCC"
 #~ msgid "- NONE - (e.g. /MM, /AM)"

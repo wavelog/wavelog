@@ -6,12 +6,13 @@
 # BG6HJE <1753409828@qq.com>, 2024.
 # imlonghao <wavelog@esd.cc>, 2024.
 # Jian ke <bg8ixz@hotmail.com>, 2024.
+# Qing He <HE@BD8DHF.COM>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-10-12 08:03+0000\n"
-"PO-Revision-Date: 2024-10-08 07:26+0000\n"
-"Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
+"POT-Creation-Date: 2024-10-11 08:19+0000\n"
+"PO-Revision-Date: 2024-10-12 10:45+0000\n"
+"Last-Translator: Qing He <HE@BD8DHF.COM>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
 "org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -518,11 +519,13 @@ msgstr "笔记 - 备份"
 msgid "Bands"
 msgstr "波段"
 
-#: application/controllers/Band.php:39 application/controllers/Mode.php:41
+#: application/controllers/Band.php:40 application/controllers/Mode.php:41
+#: application/controllers/Band.php:39
 msgid "Create Mode"
 msgstr "创建新模式"
 
-#: application/controllers/Band.php:64 application/views/bands/index.php:150
+#: application/controllers/Band.php:59 application/views/bands/index.php:150
+#: application/controllers/Band.php:64
 msgid "Edit Band"
 msgstr "编辑波段"
 
@@ -1136,7 +1139,7 @@ msgstr "模式"
 #: application/views/view_log/partial/log_ajax.php:5
 #: application/views/view_log/qso.php:112 application/views/visitor/index.php:9
 msgid "RST (S)"
-msgstr "信号报告(发)"
+msgstr "我收对方"
 
 #: application/controllers/Logbook.php:1350
 #: application/views/awards/pota/index.php:37
@@ -1164,7 +1167,7 @@ msgstr "信号报告(发)"
 #: application/views/view_log/qso.php:117
 #: application/views/visitor/index.php:12
 msgid "RST (R)"
-msgstr "信号报告(收)"
+msgstr "对方收我"
 
 #: application/controllers/Logbook.php:1351
 #: application/views/dashboard/index.php:7
@@ -1669,17 +1672,15 @@ msgstr "版本信息将会重新向用户显示"
 msgid "Version Info will not be shown to any user"
 msgstr "版本信息不再会向用户显示"
 
-#: application/controllers/Oqrs.php:46 application/controllers/Oqrs.php:92
+#: application/controllers/Oqrs.php:46 application/controllers/Oqrs.php:85
+#: application/controllers/Oqrs.php:97 application/controllers/Oqrs.php:92
 #: application/controllers/Oqrs.php:104
 msgid "Log Search & OQRS"
 msgstr "查找日志 & OQRS"
 
-#: application/controllers/Oqrs.php:67
-msgid "Invalid Station ID"
-msgstr ""
-
-#: application/controllers/Oqrs.php:134
+#: application/controllers/Oqrs.php:127
 #: application/views/interface_assets/header.php:419
+#: application/controllers/Oqrs.php:134
 msgid "OQRS Requests"
 msgstr "OQRS"
 
@@ -1764,7 +1765,7 @@ msgstr "需要登录方可浏览此页面。"
 
 #: application/controllers/Qso.php:667
 msgid "Call Transfer"
-msgstr ""
+msgstr "通联转接"
 
 #: application/controllers/Qso.php:674
 msgid "No callsign provided."
@@ -2106,7 +2107,7 @@ msgstr "确定要删除台站 '%s' 吗？这会删除此台站下的所有 QSO�
 #: application/views/station_profile/edit.php:99
 #: application/views/stationsetup/stationsetup.php:150
 msgid "Please select one"
-msgstr ""
+msgstr "请选择一项"
 
 #: application/controllers/Stationsetup.php:462
 msgid "Edit Export Map options"
@@ -5966,11 +5967,11 @@ msgstr "传播模式"
 
 #: application/views/dashboard/index.php:5
 msgid "RSTS"
-msgstr "RSTS"
+msgstr "我收对方"
 
 #: application/views/dashboard/index.php:6
 msgid "RSTR"
-msgstr "RSTR"
+msgstr "对方收我"
 
 #: application/views/dashboard/index.php:58
 msgid ""
@@ -6725,7 +6726,7 @@ msgstr "子模式"
 
 #: application/views/eqsl/analysis.php:41
 msgid "eQSL Received Date"
-msgstr ""
+msgstr "eQSL接收日期"
 
 #: application/views/eqsl/analysis.php:42
 msgid "Log Status"
@@ -6747,7 +6748,7 @@ msgstr "以下是已在eQSL上确认但尚未下载QSL卡片图像的QSO表。"
 
 #: application/views/eqsl/download.php:43
 msgid "eQSL Receive Date"
-msgstr ""
+msgstr "eQSL接收日期"
 
 #: application/views/eqsl/download.php:44
 msgid "Action"
@@ -11851,6 +11852,10 @@ msgstr "您的呼号："
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "提交请求"
+
+#: application/controllers/Oqrs.php:67
+msgid "Invalid Station ID"
+msgstr "无效站台ID"
 
 #~ msgctxt "DXCC Select - No DXCC"
 #~ msgid "- NONE - (e.g. /MM, /AM)"
