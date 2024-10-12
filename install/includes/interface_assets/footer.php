@@ -25,6 +25,10 @@
 			var inputValue = $(this).val();
 			localStorage.setItem(inputId, inputValue);
 		});
+		$('#dxcc_id').change(function() {
+			var dxcc_id = $(this).val();
+			localStorage.setItem('dxcc_id', dxcc_id);
+		});
 
 		// delete all data in localStorage and reload page
 		$('#resetInstaller').click(function() {

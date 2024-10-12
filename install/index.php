@@ -1220,7 +1220,7 @@ if (!file_exists('.lock')) {
 						if (!callbook_combination()) {
 							return;
 						}
-						pwdForbiddenChars($('#callbook_password'));
+						stringForbiddenChars($('#callbook_password'));
 						if ($('#callbook_password').hasClass('is-invalid') && $('#callbook_password').val() != '') {
 							return;
 						}
@@ -1246,6 +1246,9 @@ if (!file_exists('.lock')) {
 							return;
 						}
 						if (!user_pwd_check()) {
+							return;
+						}
+						if (!callsign_check()) {
 							return;
 						}
 						checklist_configuration();
@@ -1322,19 +1325,37 @@ if (!file_exists('.lock')) {
 					console.error('input_is_valid(): Unknown status: ' + status);
 				}
 
-				function pwdForbiddenChars(field) {
-					let pwd = field.val();
+				function stringForbiddenChars(field) {
+					let string = field.val();
 					let specialChars = /['"\/\\<>]/;
 
-					if (pwd != '') {
-						if (specialChars.test(pwd)) {
+					if (string != '') {
+						if (specialChars.test(string)) {
 							input_is_valid(field, 'is-invalid');
-							if (field = passwordField) {
+							if (field == passwordField) {
 								show_userformwarnings('danger', "<?= __("Password can't contain ' / \ < >"); ?>");
+								return;
+							}
+							if (field == userCallsignField) {
+								show_userformwarnings('danger', "<?= __("The callsign should not contain any pre- or suffixes as it is used as personal operator callsign."); ?>");
+								return;
 							}
 						} else {
 							input_is_valid(field, 'is-valid');
 							hide_userformwarnings();
+						}
+
+						// we also test the userCallsignField for any special characters
+						if (field == userCallsignField) {
+							if (!/^[a-zA-Z0-9]+$/.test(string)) {
+								input_is_valid(field, 'is-invalid');
+								show_userformwarnings('danger', "<?= __("The callsign can not contain any special characters. It's your personal callsign without any pre- or suffixes."); ?>");
+								return;
+							} else {
+								input_is_valid(field, 'is-valid');
+								hide_userformwarnings();
+								return;
+							}
 						}
 					} else {
 						field.removeClass('is-invalid');
@@ -1369,7 +1390,7 @@ if (!file_exists('.lock')) {
 				 * 		Website-URL and Directory have to be green. No checks needed 'Advanced Settings'.
 				 * 
 				 * 		Callbook Password:
-				 * 			- do not allow specialchars defined in pwdForbiddenChars() (hard)
+				 * 			- do not allow specialchars defined in stringForbiddenChars() (hard)
 				 * 
 				 * 		Directory:
 				 * 			- no slash allowed (hard)
@@ -1417,7 +1438,7 @@ if (!file_exists('.lock')) {
 						if (callbook_username.val() == '') {
 							callbook_username.removeClass('is-valid is-invalid');
 						}
-						pwdForbiddenChars(callbook_password);
+						stringForbiddenChars(callbook_password);
 					});
 				});
 
@@ -1467,7 +1488,7 @@ if (!file_exists('.lock')) {
 
 					} else if (a !== '' && b !== '') {
 						input_is_valid(callbook_username, 'is-valid');
-						pwdForbiddenChars(callbook_password);
+						stringForbiddenChars(callbook_password);
 					}
 
 					return check;
@@ -1585,7 +1606,7 @@ if (!file_exists('.lock')) {
 				 * Tab 5 - First User
 				 * 
 				 * 		Rules:
-				 * 			- do not allow specialchars in userpassword defined in pwdForbiddenChars() (hard)
+				 * 			- do not allow specialchars in userpassword defined in stringForbiddenChars() (hard)
 				 * 			- No input can be empty (hard)
 				 * 			- Locator have to match regex (hard)
 				 * 			- E-Mail have to match regex (hard)
@@ -1613,6 +1634,7 @@ if (!file_exists('.lock')) {
 
 				let emailField = $('#user_email');
 				let userLocatorField = $('#userlocator');
+				let userCallsignField = $('#callsign');
 
 				let userFormWarnings = $('#userform_warnings');
 
@@ -1633,11 +1655,14 @@ if (!file_exists('.lock')) {
 						isValidEmail(emailField);
 					});
 					passwordField.on('change', function() {
-						pwdForbiddenChars(passwordField);
+						stringForbiddenChars(passwordField);
 					});
 					if (passwordField !== '') {
-						pwdForbiddenChars(passwordField);
+						stringForbiddenChars(passwordField);
 					}
+					userCallsignField.on('change', function() {
+						stringForbiddenChars(userCallsignField);
+					});
 					cnfmPasswordField.on('change', function() {
 						user_pwd_check();
 					});
@@ -1755,7 +1780,7 @@ if (!file_exists('.lock')) {
 				}
 
 				function user_pwd_check() {
-					pwdForbiddenChars(passwordField);
+					stringForbiddenChars(passwordField);
 					if (passwordField.hasClass('is-invalid')) {
 						return false;
 					}
@@ -1785,6 +1810,15 @@ if (!file_exists('.lock')) {
 
 						return false;
 
+					}
+				}
+
+				function callsign_check() {
+					stringForbiddenChars(userCallsignField);
+					if (userCallsignField.hasClass('is-invalid')) {
+						return false;
+					} else {
+						return true;
 					}
 				}
 
@@ -1901,6 +1935,7 @@ if (!file_exists('.lock')) {
 							checklist_firstuser = false;
 						} else {
 							input_is_valid($(inputID), 'is-valid');
+							stringForbiddenChars(userCallsignField);
 							user_pwd_check();
 						}
 					});
@@ -1916,6 +1951,9 @@ if (!file_exists('.lock')) {
 						checklist_firstuser = false;
 					}
 					if (userLocatorField.hasClass('is-invalid')) {
+						checklist_firstuser = false;
+					}
+					if (userCallsignField.hasClass('is-invalid')) {
 						checklist_firstuser = false;
 					}
 

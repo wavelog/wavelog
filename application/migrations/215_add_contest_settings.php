@@ -13,23 +13,28 @@ class Migration_add_contest_settings extends CI_Migration {
 			),
 		);
 
-		// Get the current data so we can add it back in
-		$data = array(
-			'exchangetype' => $this->db->get('contest_session')->row()->exchangetype,
-			'exchange_sequence' => 's-g-e',
-			'copyexchangeto' => $this->db->get('contest_session')->row()->copytodok,
-		);
-
 		// Add the settings field to the contest_session table
 		if (!$this->db->field_exists('settings', 'contest_session')) {
 			$this->dbforge->add_column('contest_session', $fields);
 
+			// if there is any existing data in the contest_session table, we need to move it to the new settings field
+			if ($this->db->get('contest_session')->row() > 0) {
+
+				// Get the current data so we can add it back in
+				$data = array(
+					'exchangetype' => $this->db->get('contest_session')->row()->exchangetype,
+					'exchange_sequence' => 's-g-e',
+					'copyexchangeto' => $this->db->get('contest_session')->row()->copytodok,
+				);
+
+				// Update the settings field with the old data
+				$this->db->update('contest_session', array('settings' => json_encode($data)));
+
+			}
+
 			// We also can drop the now unused columns
 			$this->dbforge->drop_column('contest_session', 'exchangetype');
 			$this->dbforge->drop_column('contest_session', 'copytodok');
-
-			// Update the settings field with the old data
-			$this->db->update('contest_session', array('settings' => json_encode($data)));
 		}
 	}
 
