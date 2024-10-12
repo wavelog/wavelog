@@ -53,7 +53,7 @@
 			\"sig\":{\"show\":\"true\"},
 			\"continent\":{\"show\":\"true\"},
 			\"qrz\":{\"show\":\"true\"},
-			\"stationname\":{\"show\":\"true\"}
+			\"profilename\":{\"show\":\"true\"}
         }";
     }
     $current_opts = json_decode($options);
@@ -114,8 +114,8 @@
         echo "\nvar o_template = { qrz: {show: 'true'}};";
         echo "\nuser_options={...user_options, ...o_template};";
     }
-	if (!isset($current_opts->stationname)) {
-        echo "\nvar o_template = { stationname: {show: 'true'}};";
+	if (!isset($current_opts->profilename)) {
+        echo "\nvar o_template = { profilename: {show: 'true'}};";
         echo "\nuser_options={...user_options, ...o_template};";
     }
 
@@ -666,8 +666,8 @@ $options = json_decode($options);
 					<?php if (($options->continent->show ?? "true") == "true") {
                         echo '<th>' . __("Continent") . '</th>';
                     } ?>
-					<?php if (($options->stationname->show ?? "true") == "true") {
-                        echo '<th>' . __("Station name") . '</th>';
+					<?php if (($options->profilename->show ?? "true") == "true") {
+                        echo '<th>' . __("Profile name") . '</th>';
                     } ?>
                 </tr>
             </thead>

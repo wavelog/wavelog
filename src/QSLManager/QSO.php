@@ -12,7 +12,7 @@ class QSO
 	private string $qsoID;
 	private string $qsoDateTime;
 	private string $de;
-	private string $stationname;
+	private string $profilename;
 	private string $dx;
 	private string $mode;
 	private string $submode;
@@ -225,7 +225,7 @@ class QSO
 
 		$this->contest = $data['contestname'] ?? '';
 
-		$this->stationname = $data['station_profile_name'] ?? '';
+		$this->profilename = $data['station_profile_name'] ?? '';
 	}
 
 	/**
@@ -984,7 +984,7 @@ class QSO
 			'wwff' => $this->getFormattedWwff(),
 			'sig' => $this->getFormattedSig(),
 			'continent' => $this->continent,
-			'stationname' => $this->stationname
+			'profilename' => $this->profilename
 		];
 	}
 
