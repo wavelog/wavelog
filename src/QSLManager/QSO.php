@@ -12,6 +12,7 @@ class QSO
 	private string $qsoID;
 	private string $qsoDateTime;
 	private string $de;
+	private string $profilename;
 	private string $dx;
 	private string $mode;
 	private string $submode;
@@ -223,6 +224,8 @@ class QSO
 		$this->orbit = $data['orbit'] ?? '';
 
 		$this->contest = $data['contestname'] ?? '';
+
+		$this->profilename = $data['station_profile_name'] ?? '';
 	}
 
 	/**
@@ -980,7 +983,8 @@ class QSO
 			'dok' => $this->getFormattedDok(),
 			'wwff' => $this->getFormattedWwff(),
 			'sig' => $this->getFormattedSig(),
-			'continent' => $this->continent
+			'continent' => $this->continent,
+			'profilename' => $this->profilename
 		];
 	}
 

@@ -146,6 +146,10 @@
 			<td><?= __("QRZ"); ?></td>
 			<td><div class="form-check"><input class="form-check-input" name="qrz" type="checkbox" <?php if (($options->qrz->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
 		</tr>
+		<tr>
+			<td><?= __("Profile name"); ?></td>
+			<td><div class="form-check"><input class="form-check-input" name="profilename" type="checkbox" <?php if (($options->profilename->show ?? "true") == "true") { echo 'checked'; } ?>></div></td>
+		</tr>
 	</tbody>
 </table>
 </div>
