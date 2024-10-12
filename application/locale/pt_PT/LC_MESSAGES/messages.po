@@ -518,10 +518,12 @@ msgid "Bands"
 msgstr "Bandas"
 
 #: application/controllers/Band.php:40 application/controllers/Mode.php:41
+#: application/controllers/Band.php:39
 msgid "Create Mode"
 msgstr "Criar Modo"
 
 #: application/controllers/Band.php:59 application/views/bands/index.php:150
+#: application/controllers/Band.php:64
 msgid "Edit Band"
 msgstr "Editar Banda"
 
@@ -1681,12 +1683,14 @@ msgid "Version Info will not be shown to any user"
 msgstr "Versão Informação não será mostrado a nenhum utilizador"
 
 #: application/controllers/Oqrs.php:46 application/controllers/Oqrs.php:85
-#: application/controllers/Oqrs.php:97
+#: application/controllers/Oqrs.php:97 application/controllers/Oqrs.php:92
+#: application/controllers/Oqrs.php:104
 msgid "Log Search & OQRS"
 msgstr "Pesquisa do Log & OQRS"
 
 #: application/controllers/Oqrs.php:127
 #: application/views/interface_assets/header.php:419
+#: application/controllers/Oqrs.php:134
 msgid "OQRS Requests"
 msgstr "Pedidos OQRS"
 
@@ -12310,6 +12314,10 @@ msgstr "O seu indicativo:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Submeter pedido"
+
+#: application/controllers/Oqrs.php:67
+msgid "Invalid Station ID"
+msgstr ""
 
 #~ msgctxt "DXCC Select - No DXCC"
 #~ msgid "- NONE - (e.g. /MM, /AM)"

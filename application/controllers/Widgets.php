@@ -55,14 +55,14 @@ class Widgets extends CI_Controller {
 			return;
 		}
 
-		$slug = $this->security->xss_clean($this->input->get('slug'));
+		$slug = $this->input->get('slug', TRUE);
 		if ($slug != null) {
 			$data['logo_url'] = base_url() . 'index.php/visitor/' . $slug;
 		} else {
 			$data['logo_url'] = 'https://github.com/wavelog/wavelog';
 		}
 
-		$theme = $this->security->xss_clean($this->input->get('theme'));
+		$theme = $this->input->get('theme', TRUE);
 		if ($theme != null) {
 			$data['theme'] = $theme;
 		} else {

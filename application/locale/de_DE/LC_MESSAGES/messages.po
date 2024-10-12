@@ -542,10 +542,12 @@ msgid "Bands"
 msgstr "Bänder"
 
 #: application/controllers/Band.php:40 application/controllers/Mode.php:41
+#: application/controllers/Band.php:39
 msgid "Create Mode"
 msgstr "Erstelle Mode"
 
 #: application/controllers/Band.php:59 application/views/bands/index.php:150
+#: application/controllers/Band.php:64
 msgid "Edit Band"
 msgstr "Bearbeite Band"
 
@@ -1722,12 +1724,14 @@ msgid "Version Info will not be shown to any user"
 msgstr "Versionsinfo wird keinem Benutzer angezeigt"
 
 #: application/controllers/Oqrs.php:46 application/controllers/Oqrs.php:85
-#: application/controllers/Oqrs.php:97
+#: application/controllers/Oqrs.php:97 application/controllers/Oqrs.php:92
+#: application/controllers/Oqrs.php:104
 msgid "Log Search & OQRS"
 msgstr "Logsuche & OQRS"
 
 #: application/controllers/Oqrs.php:127
 #: application/views/interface_assets/header.php:419
+#: application/controllers/Oqrs.php:134
 msgid "OQRS Requests"
 msgstr "OQRS-Anforderungen"
 
@@ -12719,6 +12723,10 @@ msgstr ""
 
 #: application/views/eqsl/download.php:43
 msgid "eQSL Receive Date"
+msgstr ""
+
+#: application/controllers/Oqrs.php:67
+msgid "Invalid Station ID"
 msgstr ""
 
 #, php-format

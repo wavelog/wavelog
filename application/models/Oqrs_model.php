@@ -95,7 +95,7 @@ class Oqrs_model extends CI_Model {
 	{
 		// get all worked modes from database
 		$data = $this->db->query(
-			"SELECT distinct LOWER(`COL_MODE`) as `COL_MODE` FROM `" . $this->config->item('table_name') . "` WHERE station_id in (" . $station_id . ") order by COL_MODE ASC"
+			"SELECT distinct LOWER(`COL_MODE`) as `COL_MODE` FROM `" . $this->config->item('table_name') . "` WHERE station_id = ? order by COL_MODE ASC", $station_id
 		);
 		$results = array();
 		foreach ($data->result() as $row) {
@@ -103,7 +103,7 @@ class Oqrs_model extends CI_Model {
 		}
 
 		$data = $this->db->query(
-			"SELECT distinct LOWER(`COL_SUBMODE`) as `COL_SUBMODE` FROM `" . $this->config->item('table_name') . "` WHERE station_id in (" . $station_id . ") and coalesce(COL_SUBMODE, '') <> '' order by COL_SUBMODE ASC"
+			"SELECT distinct LOWER(`COL_SUBMODE`) as `COL_SUBMODE` FROM `" . $this->config->item('table_name') . "` WHERE station_id = ? and coalesce(COL_SUBMODE, '') <> '' order by COL_SUBMODE ASC", $station_id
 		);
 		foreach ($data->result() as $row) {
 			if (!in_array($row, $results)) {
