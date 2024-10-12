@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-10-11 08:19+0000\n"
+"POT-Creation-Date: 2024-10-12 08:03+0000\n"
 "PO-Revision-Date: 2024-10-09 13:43+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -518,11 +518,11 @@ msgstr "Резервное копирование заметок"
 msgid "Bands"
 msgstr "Диапазоны"
 
-#: application/controllers/Band.php:40 application/controllers/Mode.php:41
+#: application/controllers/Band.php:39 application/controllers/Mode.php:41
 msgid "Create Mode"
 msgstr "Новый вид модуляции"
 
-#: application/controllers/Band.php:59 application/views/bands/index.php:150
+#: application/controllers/Band.php:64 application/views/bands/index.php:150
 msgid "Edit Band"
 msgstr "Редактировать диапазон"
 
@@ -1679,12 +1679,16 @@ msgstr "Информация о версии будет показана все�
 msgid "Version Info will not be shown to any user"
 msgstr "Информация о версии не будет показана пользователям"
 
-#: application/controllers/Oqrs.php:46 application/controllers/Oqrs.php:85
-#: application/controllers/Oqrs.php:97
+#: application/controllers/Oqrs.php:46 application/controllers/Oqrs.php:92
+#: application/controllers/Oqrs.php:104
 msgid "Log Search & OQRS"
 msgstr "Поиск в журнале и OQRS"
 
-#: application/controllers/Oqrs.php:127
+#: application/controllers/Oqrs.php:67
+msgid "Invalid Station ID"
+msgstr ""
+
+#: application/controllers/Oqrs.php:134
 #: application/views/interface_assets/header.php:419
 msgid "OQRS Requests"
 msgstr "Запросы OQRS"

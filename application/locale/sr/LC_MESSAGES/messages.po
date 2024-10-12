@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-10-11 08:19+0000\n"
+"POT-Creation-Date: 2024-10-12 08:03+0000\n"
 "PO-Revision-Date: 2024-09-17 12:24+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
 "Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -518,11 +518,11 @@ msgstr "Napomene - Rezervna kopija"
 msgid "Bands"
 msgstr "Opsezi"
 
-#: application/controllers/Band.php:40 application/controllers/Mode.php:41
+#: application/controllers/Band.php:39 application/controllers/Mode.php:41
 msgid "Create Mode"
 msgstr "Kreiraj vrstu rada"
 
-#: application/controllers/Band.php:59 application/views/bands/index.php:150
+#: application/controllers/Band.php:64 application/views/bands/index.php:150
 msgid "Edit Band"
 msgstr "Uredi opseg"
 
@@ -1679,12 +1679,16 @@ msgstr "Informacija o verziji će biti ponovo prikazana svim korisnicima"
 msgid "Version Info will not be shown to any user"
 msgstr "Informacija o verziji neće biti prikazana nijednom korisniku"
 
-#: application/controllers/Oqrs.php:46 application/controllers/Oqrs.php:85
-#: application/controllers/Oqrs.php:97
+#: application/controllers/Oqrs.php:46 application/controllers/Oqrs.php:92
+#: application/controllers/Oqrs.php:104
 msgid "Log Search & OQRS"
 msgstr "Pretraga dnevnika i OQRS"
 
-#: application/controllers/Oqrs.php:127
+#: application/controllers/Oqrs.php:67
+msgid "Invalid Station ID"
+msgstr ""
+
+#: application/controllers/Oqrs.php:134
 #: application/views/interface_assets/header.php:419
 msgid "OQRS Requests"
 msgstr "OQRS zahtevi"

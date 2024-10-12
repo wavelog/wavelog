@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-10-11 08:19+0000\n"
+"POT-Creation-Date: 2024-10-12 08:03+0000\n"
 "PO-Revision-Date: 2024-10-03 21:11+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
@@ -519,11 +519,11 @@ msgstr "Notes - Sauvegarde"
 msgid "Bands"
 msgstr "Bandes"
 
-#: application/controllers/Band.php:40 application/controllers/Mode.php:41
+#: application/controllers/Band.php:39 application/controllers/Mode.php:41
 msgid "Create Mode"
 msgstr "Créer un mode"
 
-#: application/controllers/Band.php:59 application/views/bands/index.php:150
+#: application/controllers/Band.php:64 application/views/bands/index.php:150
 msgid "Edit Band"
 msgstr "Modifier la bande"
 
@@ -1685,12 +1685,16 @@ msgstr "Version Info sera montré à tous les utilisateurs à nouveau"
 msgid "Version Info will not be shown to any user"
 msgstr "Version Info ne sera pas montré à aucun utilisateur"
 
-#: application/controllers/Oqrs.php:46 application/controllers/Oqrs.php:85
-#: application/controllers/Oqrs.php:97
+#: application/controllers/Oqrs.php:46 application/controllers/Oqrs.php:92
+#: application/controllers/Oqrs.php:104
 msgid "Log Search & OQRS"
 msgstr "Recherche de journaux et OQRS"
 
-#: application/controllers/Oqrs.php:127
+#: application/controllers/Oqrs.php:67
+msgid "Invalid Station ID"
+msgstr ""
+
+#: application/controllers/Oqrs.php:134
 #: application/views/interface_assets/header.php:419
 msgid "OQRS Requests"
 msgstr "OQRS Demandes"
