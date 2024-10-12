@@ -35,14 +35,19 @@ class Band extends CI_Controller {
 
 		$this->form_validation->set_rules('band', 'Band', 'required');
 
-		if ($this->form_validation->run() == FALSE)
-		{
+		if ($this->form_validation->run() == FALSE) {
 			$data['page_title'] = __("Create Mode");
 			$this->load->view('bands/create', $data);
-		}
-		else
-		{
-			$this->bands->add();
+		} else {
+			$band_data = array(
+				'band' 		=> $this->input->post('band', true),
+				'bandgroup' => $this->input->post('bandgroup', true),
+				'ssb'	 	=> $this->input->post('ssbqrg', true),
+				'data' 		=> $this->input->post('dataqrg', true),
+				'cw' 		=> $this->input->post('cwqrg', true),
+			);
+
+			$this->bands->add($band_data);
 		}
 	}
 
