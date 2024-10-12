@@ -305,24 +305,24 @@ class Bands extends CI_Model {
         return true;
     }
 
-	function add() {
-		$data = array(
-			'band' 		=> xss_clean($this->input->post('band', true)),
-			'bandgroup' => xss_clean($this->input->post('bandgroup', true)),
-			'ssb'	 	=> xss_clean($this->input->post('ssbqrg', true)),
-			'data' 		=> xss_clean($this->input->post('dataqrg', true)),
-			'cw' 		=> xss_clean($this->input->post('cwqrg', true)),
-		);
-
-		$this->db->where('band', xss_clean($this->input->post('band', true)));
+	function add($band_data) {
+	
+		$this->db->where('band', $band_data['band']);
 		$result = $this->db->get('bands');
 
 		if ($result->num_rows() == 0) {
-		   $this->db->insert('bands', $data);
+		   $this->db->insert('bands', $band_data);
 		}
 
-		$this->db->query("insert into bandxuser (bandid, userid)
-		select bands.id, " . $this->session->userdata('user_id') . " from bands where band ='".$data['band']."' and not exists (select 1 from bandxuser where userid = " . $this->session->userdata('user_id') . " and bandid = bands.id);");
+		$binding = [];
+		$sql = "insert into bandxuser (bandid, userid) select bands.id, " 
+			. $this->session->userdata('user_id') 
+			. " from bands where band = ? 
+			and not exists (select 1 from bandxuser where userid = " . $this->session->userdata('user_id') . " 
+			and bandid = bands.id);";
+		$binding[] = $band_data['band'];
+
+		$this->db->query($sql, $binding);
 	}
 
 	function getband($id) {
