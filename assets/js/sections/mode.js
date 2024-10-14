@@ -81,6 +81,8 @@ function deactivateMode(modeid) {
 		success: function (html) {
 			$(".mode_" + modeid).text('not active');
 			$('.btn_' + modeid).html('Activate');
+			$('.btn_' + modeid).removeClass('btn-secondary');
+			$('.btn_' + modeid).addClass('btn-primary');
 			$('.btn_' + modeid).attr('onclick', 'activateMode(' + modeid + ')')
 		}
 	});
@@ -94,6 +96,8 @@ function activateMode(modeid) {
 		success: function (html) {
 			$('.mode_' + modeid).text('active');
 			$('.btn_' + modeid).html('Deactivate');
+			$('.btn_' + modeid).removeClass('btn-primary');
+			$('.btn_' + modeid).addClass('btn-secondary');
 			$('.btn_' + modeid).attr('onclick', 'deactivateMode(' + modeid + ')')
 		}
 	});
