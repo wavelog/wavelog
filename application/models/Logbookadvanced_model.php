@@ -597,6 +597,7 @@ class Logbookadvanced_model extends CI_Model {
     }
 
 	function saveEditedQsos($ids, $column, $value, $value2) {
+		$skipqrzupdate = false;
 		switch($column) {
 			case "cqz": $column = 'COL_CQZ'; break;
 			case "ituz": $column = 'COL_ITUZ'; break;
@@ -621,6 +622,8 @@ class Logbookadvanced_model extends CI_Model {
 			case "lotwreceived": $column = 'COL_LOTW_QSL_RCVD'; break;
 			case "qslmsg": $column = 'COL_QSLMSG'; break;
 			case "continent": $column = 'COL_CONT'; break;
+			case "qrzsent": $column = 'COL_QRZCOM_QSO_UPLOAD_STATUS'; break;
+			case "qrzreceived": $column = 'COL_QRZCOM_QSO_DOWNLOAD_STATUS'; break;
 			default: return;
 		}
 
@@ -747,6 +750,23 @@ class Logbookadvanced_model extends CI_Model {
 
 			$query = $this->db->query($sql, array($value, json_decode($ids, true), $this->session->userdata('user_id')));
 
+		} else if ($column == 'COL_QRZCOM_QSO_UPLOAD_STATUS') {
+			$skipqrzupdate = true;
+
+			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
+			" SET " . $this->config->item('table_name').".COL_QRZCOM_QSO_UPLOAD_STATUS = ?, " . $this->config->item('table_name').".COL_QRZCOM_QSO_UPLOAD_DATE = now()" .
+			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
+
+			$query = $this->db->query($sql, array($value, json_decode($ids, true), $this->session->userdata('user_id')));
+		} else if ($column == 'COL_QRZCOM_QSO_DOWNLOAD_STATUS') {
+			$skipqrzupdate = true;
+
+			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
+			" SET " . $this->config->item('table_name').".COL_QRZCOM_QSO_DOWNLOAD_STATUS = ?, " . $this->config->item('table_name').".COL_QRZCOM_QSO_DOWNLOAD_DATE = now()" .
+			" WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ?";
+
+			$query = $this->db->query($sql, array($value, json_decode($ids, true), $this->session->userdata('user_id')));
+
 		} else if ($column == 'COL_QSLMSG') {
 
 			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ". $this->config->item('table_name').".station_id = station_profile.station_id" .
@@ -768,23 +788,9 @@ class Logbookadvanced_model extends CI_Model {
 			$query = $this->db->query($sql, array($value, json_decode($ids, true), $this->session->userdata('user_id')));
 		}
 
-		//Also set QRZ.com status to modified
-		if (!$this->load->is_loaded('logbook_model')) {
-			$this->load->model('logbook_model');
-		}
-		$modifiedQsos=[];
-		foreach (json_decode($ids, true) as $id) {
-			$qso = $this->logbook_model->get_qso($id)->row();
-			if ($qso->COL_QRZCOM_QSO_UPLOAD_STATUS == 'Y') {
-				log_message('info', '[LBA] Updating QRZ.com status for QSO ID: ' . $id . ' to M');
-				$modifiedQsos[] = $id;
-			}
-		}
-
-		if (!empty($modifiedQsos)) {
-			$qso_ids = implode(',', $modifiedQsos);
-			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ".$this->config->item('table_name').".station_id = station_profile.station_id SET " . $this->config->item('table_name').".COL_QRZCOM_QSO_UPLOAD_STATUS = 'M' WHERE " . $this->config->item('table_name').".col_primary_key in (".$qso_ids.") and station_profile.user_id = ?";
-			$query = $this->db->query($sql, $this->session->userdata('user_id'));
+		if (!$skipqrzupdate) {
+			$sql = "UPDATE ".$this->config->item('table_name')." JOIN station_profile ON ".$this->config->item('table_name').".station_id = station_profile.station_id SET " . $this->config->item('table_name').".COL_QRZCOM_QSO_UPLOAD_STATUS = 'M' WHERE " . $this->config->item('table_name').".col_primary_key in ? and station_profile.user_id = ? and col_qrzcom_qso_upload_status = 'Y'";
+			$query = $this->db->query($sql, array(json_decode($ids, true), $this->session->userdata('user_id')));
 		}
 
 		$this->db->trans_complete();

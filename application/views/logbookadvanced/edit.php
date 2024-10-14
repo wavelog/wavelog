@@ -23,6 +23,8 @@
 			<option value="lotwsent"><?= __("LoTW Sent"); ?></option>
 			<option value="lotwreceived"><?= __("LoTW Received"); ?></option>
 			<option value="continent"><?= __("Continent"); ?></option>
+			<option value="qrzsent"><?= __("QRZ Sent"); ?></option>
+			<option value="qrzreceived"><?= __("QRZ Received"); ?></option>
 		</select>
 		<div>&nbsp;</div>
 
@@ -136,6 +138,12 @@
 			<option value="R">Requested</option>
 			<option value="I">Invalid</option>
 			<option value="V">Verified</option>
+		</select>
+
+		<select style="display:none" class="form-select w-auto form-select-sm w-auto" id="editQrz"  name="qrz">
+			<option value="Y">Yes</option>
+			<option value="N">No</option>
+			<option value="I">Invalid</option>
 		</select>
 
 		<select style="display:none" id="editContinent" name="continent" class="form-select w-auto form-select-sm w-auto">
