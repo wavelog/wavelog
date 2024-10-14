@@ -67,10 +67,10 @@ class Kmlexport extends CI_Controller {
 				$query = $this->db->query('
 					SELECT *
 					FROM dxcc_entities
-					WHERE prefix = SUBSTRING( \''.$row->COL_CALL.'\', 1, LENGTH( prefix ) )
+					WHERE prefix = SUBSTRING( ?, 1, LENGTH( prefix ) )
 					ORDER BY LENGTH( prefix ) DESC
 					LIMIT 1 
-				');
+				',array($row->COL_CALL));
 					foreach ($query->result() as $dxcc) {
 						$lat = $dxcc->lat;
 						$lng = $dxcc->long;
