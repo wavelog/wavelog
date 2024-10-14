@@ -1265,6 +1265,18 @@ class Logbook_model extends CI_Model {
 			$eqsl_rcvd = 'N';
 		}
 
+		if ($this->input->post('qrz_sent')) {
+			$qrz_sent = $this->input->post('qrz_sent');
+		} else {
+			$qrz_sent = 'N';
+		}
+
+		if ($this->input->post('qrz_rcvd')) {
+			$qrz_rcvd = $this->input->post('qrz_rcvd');
+		} else {
+			$qrz_rcvd = 'N';
+		}
+
 		if (in_array($this->input->post('prop_mode'), $this->config->item('lotw_unsupported_prop_modes'))) {
 			$lotw_sent = 'I';
 		} elseif ($this->input->post('lotw_sent')) {
@@ -1329,6 +1341,27 @@ class Logbook_model extends CI_Model {
 			$lotwrdate = $qso->COL_LOTW_QSLRDATE;
 		}
 
+		$qrz_modified=false;
+		if ($qrz_sent == 'N' && $qso->COL_QRZCOM_QSO_UPLOAD_STATUS != $qrz_sent) {
+			$qrzsdate = null;
+			$qrz_modified=true;
+		} elseif (!$qso->COL_QRZCOM_QSO_UPLOAD_DATE || $qso->COL_QRZCOM_QSO_UPLOAD_STATUS != $qrz_sent) {
+			$qrzsdate = date('Y-m-d H:i:s');
+			$qrz_modified=true;
+		} else {
+			$qrzsdate = $qso->COL_QRZCOM_QSO_UPLOAD_DATE;
+		}
+
+		if ($qrz_rcvd == 'N' && $qso->COL_QRZCOM_QSO_DOWNLOAD_STATUS != $qrz_rcvd) {
+			$qrzrdate = null;
+			$qrz_modified=true;
+		} elseif (!$qso->COL_QRZCOM_QSO_DOWNLOAD_DATE || $qso->COL_QRZCOM_QSO_DOWNLOAD_STATUS != $qrz_rcvd) {
+			$qrzrdate = date('Y-m-d H:i:s');
+			$qrz_modified=true;
+		} else {
+			$qrzrdate = $qso->COL_QRZCOM_QSO_DOWNLOAD_DATE;
+		}
+
 		if (($this->input->post('distance')) && (is_numeric($this->input->post('distance')))) {
 			$distance = $this->input->post('distance');
 		} else {
@@ -1370,6 +1403,10 @@ class Logbook_model extends CI_Model {
 			'COL_EQSL_QSL_SENT' => $this->input->post('eqsl_sent'),
 			'COL_EQSL_QSL_RCVD' => $this->input->post('eqsl_rcvd'),
 			'COL_QSLMSG' => $this->input->post('qslmsg'),
+			'COL_QRZCOM_QSO_UPLOAD_DATE' => $qrzsdate,
+			'COL_QRZCOM_QSO_DOWNLOAD_DATE' => $qrzrdate,
+			'COL_QRZCOM_QSO_UPLOAD_STATUS' => $qrz_sent,
+			'COL_QRZCOM_QSO_DOWNLOAD_STATUS' => $qrz_rcvd,
 			'COL_LOTW_QSLSDATE' => $lotwsdate,
 			'COL_LOTW_QSLRDATE' => $lotwrdate,
 			'COL_LOTW_QSL_SENT' => $lotw_sent,
@@ -1406,11 +1443,11 @@ class Logbook_model extends CI_Model {
 			'COL_MY_SIG_INFO' => $sigInfo
 		);
 
-		if ($this->exists_hrdlog_credentials($data['station_id'])) {
+		if ($this->exists_hrdlog_credentials($data['station_id']) && !$qrz_modified) {
 			$data['COL_HRDLOG_QSO_UPLOAD_STATUS'] = 'M';
 		}
 
-		if ($this->exists_qrz_api_key($data['station_id'])) {
+		if ($this->exists_qrz_api_key($data['station_id']) && !$qrz_modified) {
 			$data['COL_QRZCOM_QSO_UPLOAD_STATUS'] = 'M';
 		}
 
