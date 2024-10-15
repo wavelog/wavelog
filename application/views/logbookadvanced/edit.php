@@ -13,7 +13,7 @@
 			<option value="pota"><?= __("POTA"); ?></option>
 			<option value="propagation"><?= __("Propagation"); ?></option>
 			<option value="qslvia"><?= __("QSL via"); ?></option>
-			<option value="qslmsg">QSLMSG</option>
+			<option value="qslmsg"><?= __("QSLMSG"); ?></option>
 			<option value="satellite"><?= __("Satellite"); ?></option>
 			<option value="sota"><?= __("SOTA"); ?></option>
 			<option value="station"><?= __("Station Location"); ?></option>
@@ -133,17 +133,17 @@
 		</select>
 
 		<select style="display:none" class="form-select w-auto form-select-sm w-auto" id="editLoTW"  name="lotw">
-			<option value="Y">Yes</option>
-			<option value="N">No</option>
-			<option value="R">Requested</option>
-			<option value="I">Invalid</option>
-			<option value="V">Verified</option>
+			<option value="Y"><?= __("Yes"); ?></option>
+			<option value="N"><?= __("No"); ?></option>
+			<option value="R"><?= __("Requested"); ?></option>
+			<option value="I"><?= __("Invalid"); ?></option>
+			<option value="V"><?= __("Verified"); ?></option>
 		</select>
 
 		<select style="display:none" class="form-select w-auto form-select-sm w-auto" id="editQrz"  name="qrz">
-			<option value="Y">Yes</option>
-			<option value="N">No</option>
-			<option value="I">Invalid</option>
+			<option value="Y"><?= __("Yes"); ?></option>
+			<option value="N"><?= __("No"); ?></option>
+			<option value="I"><?= __("Invalid"); ?></option>
 		</select>
 
 		<select style="display:none" id="editContinent" name="continent" class="form-select w-auto form-select-sm w-auto">
