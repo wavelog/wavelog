@@ -183,6 +183,9 @@ function saveBatchEditQsos(id_list) {
 	if (column == 'lotwsent' || column == 'lotwreceived') {
 		value = $("#editLoTW").val();
 	}
+	if (column == 'qrzsent' || column == 'qrzreceived') {
+		value = $("#editQrz").val();
+	}
 	if (column == 'continent') {
 		value = $("#editContinent").val();
 	}
@@ -233,6 +236,7 @@ function changeEditType(type) {
 	$('#editContest').hide();
 	$('#editLoTW').hide();
 	$('#editContinent').hide();
+	$('#editQrz').hide();
 	editDxccStateListLabel
 	if (type == "dxcc") {
 		$('#editDxcc').show();
@@ -266,6 +270,8 @@ function changeEditType(type) {
 		$('#editContest').show();
 	} else if (type == "lotwsent" || type == "lotwreceived") {
 		$('#editLoTW').show();
+	} else if (type == "qrzsent" || type == "qrzreceived") {
+		$('#editQrz').show();
 	} else if (type == "continent") {
 		$('#editContinent').show();
 	} else if (type == "gridsquare" || type == "sota" || type == "wwff" || type == "operator" || type == "pota" || type == "comment" || type == "qslvia" || type == "contest" || type == "qslmsg") {

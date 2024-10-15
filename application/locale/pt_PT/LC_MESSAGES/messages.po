@@ -1248,6 +1248,7 @@ msgstr "IOTA"
 #: application/views/user/edit.php:303 application/views/user/edit.php:326
 #: application/views/view_log/partial/log_ajax.php:12
 #: application/views/visitor/index.php:24
+#: application/views/logbookadvanced/edit.php:68
 msgid "State"
 msgstr "Estado"
 
@@ -2815,6 +2816,7 @@ msgstr "Todos menos SAT"
 #: application/views/logbookadvanced/edit.php:142
 #: application/views/logbookadvanced/index.php:318
 #: application/views/timeline/index.php:79
+#: application/views/logbookadvanced/edit.php:150
 msgid "None/Empty"
 msgstr "Nenhum/Vazio"
 
@@ -4306,6 +4308,7 @@ msgstr "Incluir eliminadas"
 #: application/views/options/dxcluster.php:56
 #: application/views/qso/edit_ajax.php:243 application/views/qso/index.php:382
 #: application/views/view_log/qso.php:253
+#: application/views/logbookadvanced/edit.php:152
 msgid "Antarctica"
 msgstr "Antártica"
 
@@ -4317,6 +4320,7 @@ msgstr "Antártica"
 #: application/views/options/dxcluster.php:55
 #: application/views/qso/edit_ajax.php:242 application/views/qso/index.php:381
 #: application/views/view_log/qso.php:250
+#: application/views/logbookadvanced/edit.php:151
 msgid "Africa"
 msgstr "África"
 
@@ -4328,6 +4332,7 @@ msgstr "África"
 #: application/views/options/dxcluster.php:57
 #: application/views/qso/edit_ajax.php:244 application/views/qso/index.php:383
 #: application/views/view_log/qso.php:256
+#: application/views/logbookadvanced/edit.php:154
 msgid "Asia"
 msgstr "Ásia"
 
@@ -4339,6 +4344,7 @@ msgstr "Ásia"
 #: application/views/options/dxcluster.php:58
 #: application/views/qso/edit_ajax.php:245 application/views/qso/index.php:384
 #: application/views/view_log/qso.php:259
+#: application/views/logbookadvanced/edit.php:155
 msgid "Europe"
 msgstr "Europa"
 
@@ -4350,6 +4356,7 @@ msgstr "Europa"
 #: application/views/options/dxcluster.php:59
 #: application/views/qso/edit_ajax.php:246 application/views/qso/index.php:385
 #: application/views/view_log/qso.php:262
+#: application/views/logbookadvanced/edit.php:153
 msgid "North America"
 msgstr "América do Norte"
 
@@ -4361,6 +4368,7 @@ msgstr "América do Norte"
 #: application/views/options/dxcluster.php:61
 #: application/views/qso/edit_ajax.php:248 application/views/qso/index.php:387
 #: application/views/view_log/qso.php:268
+#: application/views/logbookadvanced/edit.php:156
 msgid "South America"
 msgstr "América do Sul"
 
@@ -4372,6 +4380,7 @@ msgstr "América do Sul"
 #: application/views/options/dxcluster.php:60
 #: application/views/qso/edit_ajax.php:247 application/views/qso/index.php:386
 #: application/views/view_log/qso.php:265
+#: application/views/logbookadvanced/edit.php:157
 msgid "Oceania"
 msgstr "Oceânia"
 
@@ -5552,6 +5561,8 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:534
 #: application/views/qso/edit_ajax.php:549
 #: application/views/qso/edit_ajax.php:562
+#: application/views/logbookadvanced/edit.php:136
+#: application/views/logbookadvanced/edit.php:144
 msgid "Yes"
 msgstr "Sim"
 
@@ -5600,6 +5611,8 @@ msgstr "Sim"
 #: application/views/qso/edit_ajax.php:533
 #: application/views/qso/edit_ajax.php:548
 #: application/views/qso/edit_ajax.php:561
+#: application/views/logbookadvanced/edit.php:137
+#: application/views/logbookadvanced/edit.php:145
 msgid "No"
 msgstr "Não"
 
@@ -6399,6 +6412,7 @@ msgstr "Recebido"
 #: application/views/qso/edit_ajax.php:535
 #: application/views/qso/edit_ajax.php:550
 #: application/views/qso/edit_ajax.php:563
+#: application/views/logbookadvanced/edit.php:138
 msgid "Requested"
 msgstr "Solicitado"
 
@@ -7995,10 +8009,12 @@ msgid "LoTW Received"
 msgstr "LoTW Recebido"
 
 #: application/views/logbookadvanced/edit.php:75
+#: application/views/logbookadvanced/edit.php:77
 msgid "SAT Mode"
 msgstr "Modo Satélite"
 
 #: application/views/logbookadvanced/edit.php:89
+#: application/views/logbookadvanced/edit.php:91
 msgid "Band RX"
 msgstr "Banda RX"
 
@@ -8055,6 +8071,8 @@ msgstr "Nenhum/Vazio"
 
 #: application/views/logbookadvanced/index.php:326
 #: application/views/logbookadvanced/index.php:551
+#: application/views/logbookadvanced/edit.php:139
+#: application/views/logbookadvanced/edit.php:146
 msgid "Invalid"
 msgstr "Inválido"
 
@@ -8135,6 +8153,7 @@ msgstr "QSL recebida"
 #: application/views/logbookadvanced/index.php:395
 #: application/views/logbookadvanced/index.php:417
 #: application/views/logbookadvanced/index.php:439
+#: application/views/logbookadvanced/edit.php:140
 msgid "Verified"
 msgstr "Verificado"
 
@@ -12422,6 +12441,18 @@ msgstr ""
 
 #: application/views/mode/index.php:5
 msgid "Warning! Are you sure you want to deactivate all modes?"
+msgstr ""
+
+#: application/views/logbookadvanced/edit.php:16
+msgid "QSLMSG"
+msgstr ""
+
+#: application/views/logbookadvanced/edit.php:26
+msgid "QRZ Sent"
+msgstr ""
+
+#: application/views/logbookadvanced/edit.php:27
+msgid "QRZ Received"
 msgstr ""
 
 #~ msgctxt "DXCC Select - No DXCC"
