@@ -411,6 +411,9 @@
                                     <li class="nav-item">
                                         <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false"><?= __("LoTW"); ?></a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#qrz" role="tab" aria-controls="qrz" aria-selected="false"><?= __("QRZ"); ?></a>
+                                    </li>
                                 </ul>
                                 <div class="tab-content" id="myTabContent">
                                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -534,6 +537,33 @@
                                                     <option value="V" <?php if($qso->COL_LOTW_QSL_RCVD == "V") { echo "selected=\"selected\""; } ?>><?= __("Verified (Match)"); ?></option>
                                                 </select>
                                                 <small id="lotw_propmode_hint" class="form-text text-muted"><?php if (in_array($qso->COL_PROP_MODE, $this->config->item('lotw_unsupported_prop_modes'))) { echo __("Propagation mode is not supported by LoTW. LoTW QSL fields disabled."); } else { echo "&nbsp;"; } ?></small>
+                                            </div>
+                                        </div>
+                                    </div>
+				                    <div class="tab-pane fade" id="qrz" role="tabpanel" aria-labelledby="qrz-tab">
+                                        <div class="mb-3 row">
+                                            <label for="sent" class="col-sm-3 col-form-label"><?= __("Sent"); ?></label>
+                                            <div class="col-sm-9">
+                                                <select class="form-select" id="qrz_sent" name="qrz_sent">
+                                                    <option value="N" <?php if($qso->COL_QRZCOM_QSO_UPLOAD_STATUS == "N") { echo "selected=\"selected\""; } ?>><?= __("No"); ?></option>
+                                                    <option value="Y" <?php if($qso->COL_QRZCOM_QSO_UPLOAD_STATUS == "Y") { echo "selected=\"selected\""; } ?>><?= __("Yes"); ?></option>
+                                                    <option value="R" <?php if($qso->COL_QRZCOM_QSO_UPLOAD_STATUS == "R") { echo "selected=\"selected\""; } ?>><?= __("Requested"); ?></option>
+                                                    <option value="Q" <?php if($qso->COL_QRZCOM_QSO_UPLOAD_STATUS == "Q") { echo "selected=\"selected\""; } ?>><?= __("Queued"); ?></option>
+                                                    <option value="I" <?php if($qso->COL_QRZCOM_QSO_UPLOAD_STATUS == "I") { echo "selected=\"selected\""; } ?>><?= __("Invalid (Ignore)"); ?></option>
+                                                    <option value="M" <?php if($qso->COL_QRZCOM_QSO_UPLOAD_STATUS == "M") { echo "selected=\"selected\""; } ?>><?= __("Modified"); ?></option>
+                                                </select></div>
+                                        </div>
+
+                                        <div class="mb-3 row">
+                                            <label for="sent" class="col-sm-3 col-form-label"><?= __("Received"); ?></label>
+                                            <div class="col-sm-9">
+                                                <select class="form-select" id="qrz_rcvd" name="qrz_rcvd">
+                                                    <option value="N" <?php if($qso->COL_QRZCOM_QSO_DOWNLOAD_STATUS == "N") { echo "selected=\"selected\""; } ?>><?= __("No"); ?></option>
+                                                    <option value="Y" <?php if($qso->COL_QRZCOM_QSO_DOWNLOAD_STATUS == "Y") { echo "selected=\"selected\""; } ?>><?= __("Yes"); ?></option>
+                                                    <option value="R" <?php if($qso->COL_QRZCOM_QSO_DOWNLOAD_STATUS == "R") { echo "selected=\"selected\""; } ?>><?= __("Requested"); ?></option>
+                                                    <option value="I" <?php if($qso->COL_QRZCOM_QSO_DOWNLOAD_STATUS == "I") { echo "selected=\"selected\""; } ?>><?= __("Invalid (Ignore)"); ?></option>
+                                                    <option value="V" <?php if($qso->COL_QRZCOM_QSO_DOWNLOAD_STATUS == "V") { echo "selected=\"selected\""; } ?>><?= __("Verified (Match)"); ?></option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
