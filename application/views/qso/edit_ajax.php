@@ -540,7 +540,7 @@
                                             </div>
                                         </div>
                                     </div>
-				    <div class="tab-pane fade" id="qrz" role="tabpanel" aria-labelledby="qrz-tab">
+				                    <div class="tab-pane fade" id="qrz" role="tabpanel" aria-labelledby="qrz-tab">
                                         <div class="mb-3 row">
                                             <label for="sent" class="col-sm-3 col-form-label"><?= __("Sent"); ?></label>
                                             <div class="col-sm-9">
