@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-10-15 15:38+0000\n"
+"POT-Creation-Date: 2024-10-15 16:07+0000\n"
 "PO-Revision-Date: 2024-09-08 22:18+0000\n"
 "Last-Translator: Maciej <github@maciej.website>\n"
 "Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -1067,7 +1067,7 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:583
 #: application/views/logbookadvanced/qslcarousel.php:32
 #: application/views/logbookadvanced/useroptions.php:34
-#: application/views/mode/index.php:28
+#: application/views/mode/index.php:40
 #: application/views/oqrs/notinlogform.php:11
 #: application/views/oqrs/qsolist.php:9 application/views/oqrs/request.php:18
 #: application/views/oqrs/request_grouped.php:11
@@ -1515,7 +1515,7 @@ msgstr ""
 
 #: application/controllers/Mode.php:25
 #: application/views/interface_assets/header.php:276
-#: application/views/mode/index.php:15
+#: application/views/mode/index.php:27
 msgid "Modes"
 msgstr "Emisje"
 
@@ -1820,7 +1820,7 @@ msgstr ""
 #: application/views/labels/index.php:48 application/views/labels/index.php:84
 #: application/views/logbookadvanced/index.php:553
 #: application/views/lotw_views/index.php:114
-#: application/views/mode/index.php:55
+#: application/views/mode/index.php:67
 #: application/views/oqrs/showrequests.php:71
 #: application/views/qslcard/index.php:65
 #: application/views/satellite/edit.php:40
@@ -2065,7 +2065,7 @@ msgstr ""
 #: application/views/interface_assets/footer.php:550
 #: application/views/labels/index.php:47 application/views/labels/index.php:83
 #: application/views/logbookadvanced/index.php:552
-#: application/views/mode/index.php:52 application/views/satellite/edit.php:39
+#: application/views/mode/index.php:64 application/views/satellite/edit.php:39
 #: application/views/satellite/index.php:25
 #: application/views/search/stored_queries.php:21
 #: application/views/stationsetup/stationsetup.php:128
@@ -3673,7 +3673,7 @@ msgstr "Uprawnienia"
 
 #: application/views/api/help.php:31 application/views/cron/index.php:54
 #: application/views/lotw_views/index.php:41
-#: application/views/mode/index.php:31
+#: application/views/mode/index.php:43
 #: application/views/oqrs/showrequests.php:91
 #: application/views/sattimers/index.php:39
 #: application/views/stationsetup/stationsetup.php:31
@@ -5056,12 +5056,12 @@ msgid "Warning! Are you sure you want to deactivate all bands?"
 msgstr ""
 
 #: application/views/bands/index.php:158
-#: application/views/contesting/add.php:77 application/views/mode/index.php:77
+#: application/views/contesting/add.php:77 application/views/mode/index.php:89
 msgid "Activate All"
 msgstr ""
 
 #: application/views/bands/index.php:159
-#: application/views/contesting/add.php:78 application/views/mode/index.php:78
+#: application/views/contesting/add.php:78 application/views/mode/index.php:90
 msgid "Deactivate All"
 msgstr ""
 
@@ -5450,7 +5450,7 @@ msgstr ""
 #: application/views/interface_assets/header.php:472
 #: application/views/mode/create.php:46 application/views/mode/create.php:48
 #: application/views/mode/edit.php:57 application/views/mode/edit.php:60
-#: application/views/mode/index.php:43
+#: application/views/mode/index.php:8 application/views/mode/index.php:55
 msgid "Active"
 msgstr ""
 
@@ -5461,12 +5461,14 @@ msgid "Not Active"
 msgstr ""
 
 #: application/views/contesting/add.php:40
-#: application/views/contesting/add.php:49 application/views/mode/index.php:48
+#: application/views/contesting/add.php:49 application/views/mode/index.php:7
+#: application/views/mode/index.php:60
 msgid "Activate"
 msgstr ""
 
 #: application/views/contesting/add.php:42
-#: application/views/contesting/add.php:47 application/views/mode/index.php:46
+#: application/views/contesting/add.php:47 application/views/mode/index.php:6
+#: application/views/mode/index.php:58
 msgid "Deactivate"
 msgstr ""
 
@@ -7952,7 +7954,7 @@ msgid "QSL Filters"
 msgstr ""
 
 #: application/views/logbookadvanced/index.php:529
-#: application/views/mode/index.php:68
+#: application/views/mode/index.php:80
 msgid "Filters"
 msgstr ""
 
@@ -8246,7 +8248,7 @@ msgid "Defines the QRG-segment in bandplan."
 msgstr ""
 
 #: application/views/mode/create.php:49 application/views/mode/edit.php:61
-#: application/views/mode/index.php:43
+#: application/views/mode/index.php:9 application/views/mode/index.php:55
 msgid "Not active"
 msgstr ""
 
@@ -8254,7 +8256,7 @@ msgstr ""
 msgid "Set to active if to be listed in Modes-list"
 msgstr ""
 
-#: application/views/mode/create.php:54
+#: application/views/mode/create.php:54 application/views/mode/index.php:2
 msgid "Create mode"
 msgstr "Dodaj emisję"
 
@@ -8262,23 +8264,35 @@ msgstr "Dodaj emisję"
 msgid "Update mode"
 msgstr ""
 
-#: application/views/mode/index.php:19
+#: application/views/mode/index.php:3
+msgid "Warning! Are you sure you want to delete the following mode?:"
+msgstr ""
+
+#: application/views/mode/index.php:4
+msgid "Warning! Are you sure you want to activate all modes?"
+msgstr ""
+
+#: application/views/mode/index.php:5
+msgid "Warning! Are you sure you want to deactivate all modes?"
+msgstr ""
+
+#: application/views/mode/index.php:31
 msgid ""
 "Using the modes list you can control which modes are shown when creating a "
 "new QSO."
 msgstr ""
 
-#: application/views/mode/index.php:22
+#: application/views/mode/index.php:34
 msgid ""
 "Active modes will be shown in the QSO 'Mode' drop-down, while inactive modes "
 "will be hidden and cannot be selected."
 msgstr ""
 
-#: application/views/mode/index.php:29
+#: application/views/mode/index.php:41
 msgid "Sub-Mode"
 msgstr ""
 
-#: application/views/mode/index.php:76
+#: application/views/mode/index.php:88
 msgid "Create a Mode"
 msgstr ""
 
