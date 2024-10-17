@@ -56,7 +56,7 @@ $config['gettext_domain'] = NULL;
 |	- Add the new language to this array
 |	- Add the language at the bottom of application/views/debug/index.php
 |	- Add the language at the array in install/includes/gettext/gettext_conf.php
-|	- Add the language at the bottom of install/index.php
+|	- Add the language at the bottom of install/includes/interface_assets/footer.php
 |
 */
 $config['languages'] = array(
@@ -141,6 +141,16 @@ $config['languages'] = array(
 		'code'      => 'en',
 		'flag'      => 'us',
 	),
+	'estonian' => array(
+		'name'      => 'Eesti',
+		'name_en'   => 'Estonian',
+		'folder'    => 'estonian',
+		'locale'    => 'et',
+		'gettext'   => 'et',
+		'direction' => 'ltr',
+		'code'      => 'et',
+		'flag'      => 'ee',
+	),
 	'finnish' => array(
 		'name'      => 'Suomi',
 		'name_en'   => 'Finnish',
@@ -190,6 +200,26 @@ $config['languages'] = array(
 		'direction' => 'ltr',
 		'code'      => 'it',
 		'flag'      => 'it',
+	),
+	'latvian' => array(
+		'name'      => 'Latviešu',
+		'name_en'   => 'Latvian',
+		'folder'    => 'latvian',
+		'locale'    => 'lv',
+		'gettext'   => 'lv',
+		'direction' => 'ltr',
+		'code'      => 'lv',
+		'flag'      => 'lv',
+	),
+	'lithuanian' => array(
+		'name'      => 'Lietuvių',
+		'name_en'   => 'Lithuanian',
+		'folder'    => 'lithuanian',
+		'locale'    => 'lt',
+		'gettext'   => 'lt',
+		'direction' => 'ltr',
+		'code'      => 'lt',
+		'flag'      => 'lt',
 	),
 	'montenegrin' => array(
 		'name'      => 'Crnogorski',

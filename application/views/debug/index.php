@@ -648,11 +648,14 @@
     <?= __("Czech"); ?>
     <?= __("Dutch"); ?>
     <?= __("English"); ?>
+    <?= __("Estonian"); ?>
     <?= __("Finnish"); ?>
     <?= __("French"); ?>
     <?= __("German"); ?>
     <?= __("Greek"); ?>
     <?= __("Italian"); ?>
+    <?= __("Latvian"); ?>
+    <?= __("Lithuanian"); ?>
     <?= __("Montenegrin"); ?>
     <?= __("Polish"); ?>
     <?= __("Portuguese"); ?>
