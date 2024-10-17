@@ -2013,6 +2013,10 @@ class Logbook_model extends CI_Model {
 		);
 
 		$this->db->where('COL_PRIMARY_KEY', $qso_id);
+		$this->db->group_start();
+		$this->db->where('COL_QRZCOM_QSO_UPLOAD_STATUS', 'Y');
+		$this->db->or_where('COL_QRZCOM_QSO_UPLOAD_STATUS', 'I');
+		$this->db->group_end();
 		$this->db->update($this->config->item('table_name'), $data);
 	}
 
