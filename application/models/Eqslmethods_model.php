@@ -427,7 +427,7 @@ class Eqslmethods_model extends CI_Model {
 			array_push($logbooks_locations_array, -9999);
 		}
 
-		$this->db->select('station_profile.station_id, ' . $this->config->item('table_name') . '.COL_PRIMARY_KEY, ' . $this->config->item('table_name') . '.COL_TIME_ON, ' . $this->config->item('table_name') . '.COL_CALL, ' . $this->config->item('table_name') . '.COL_MODE, ' . $this->config->item('table_name') . '.COL_SUBMODE, ' . $this->config->item('table_name') . '.COL_BAND, ' . $this->config->item('table_name') . '.COL_PROP_MODE, ' . $this->config->item('table_name') . '.COL_SAT_NAME, ' . $this->config->item('table_name') . '.COL_SAT_MODE, ' . $this->config->item('table_name') . '.COL_QSLMSG, eQSL_images.qso_id');
+		$this->db->select('station_profile.station_id, ' . $this->config->item('table_name') . '.COL_PRIMARY_KEY, ' . $this->config->item('table_name') . '.COL_TIME_ON, ' . $this->config->item('table_name') . '.COL_CALL, ' . $this->config->item('table_name') . '.COL_MODE, ' . $this->config->item('table_name') . '.COL_SUBMODE, ' . $this->config->item('table_name') . '.COL_BAND, ' . $this->config->item('table_name') . '.COL_PROP_MODE, ' . $this->config->item('table_name') . '.COL_SAT_NAME, ' . $this->config->item('table_name') . '.COL_SAT_MODE, ' . $this->config->item('table_name') . '.COL_QSLMSG, ' . $this->config->item('table_name') . '.COL_EQSL_QSLRDATE, eQSL_images.qso_id');
 		$this->db->from('station_profile');
 		$this->db->join($this->config->item('table_name'), 'station_profile.station_id = ' . $this->config->item('table_name') . '.station_id');
 		$this->db->join('eQSL_images', 'eQSL_images.qso_id = ' . $this->config->item('table_name') . '.COL_PRIMARY_KEY', 'left outer');
@@ -505,9 +505,9 @@ class Eqslmethods_model extends CI_Model {
 	// We could also probably use this:
 	// https://eqsl.cc/qslcard/VerifyQSO.txt
 	// https://www.eqsl.cc/qslcard/ImportADIF.txt
-	function eqsl_update($datetime, $callsign, $band, $mode, $qsl_status, $station_callsign, $station_id) {
+	function eqsl_update($datetime, $callsign, $band, $mode, $qsl_status, $station_callsign, $station_id, $eqsl_qslrdate = null) {
 		$data = array(
-			'COL_EQSL_QSLRDATE' => date('Y-m-d H:i:s'), // eQSL doesn't give us a date, so let's use current
+			'COL_EQSL_QSLRDATE' => $eqsl_qslrdate ?? date('Y-m-d'), // eQSL gives a date now. Use current date as fallback only
 			'COL_EQSL_QSL_RCVD' => $qsl_status
 		);
 

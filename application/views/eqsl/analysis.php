@@ -38,6 +38,7 @@ $custom_date_format = $this->session->userdata('user_date_format');
 						<td><?= __("Call"); ?></td>
 						<td><?= __("Mode"); ?></td>
 						<td><?= __("Submode"); ?></td>
+						<td><?= __("eQSL Received Date"); ?></td>
 						<td><?= __("Log Status"); ?></td>
 						<td><?= __("eQSL Status"); ?></td>
 					</tr>
@@ -53,6 +54,7 @@ $custom_date_format = $this->session->userdata('user_date_format');
 							<?php } ?>
 							<td><?php echo $qso['mode']; ?></td>
 							<td><?php echo $qso['submode']; ?></td>
+							<td><?php echo date ($custom_date_format, strtotime($qso['eqsl_qslrdate'])); ?></td>
 							<td><?php echo $qso['status']; ?></td>
 							<td><?php echo $qso['eqsl_status']; ?></td>
 						</tr>

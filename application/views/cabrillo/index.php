@@ -60,7 +60,7 @@
 					<div class="col-md-3 control-label" for="categoryassisted"><?= __("Category Assisted") ?>: </div>
 					<select class="form-select my-1 me-sm-2 col-md-4 w-auto" id="categoryassisted" name="categoryassisted">
 						<option value="NON-ASSISTED">NON-ASSISTED</option>
-						<option value="ASSISTED">ASSISTED></option>
+						<option value="ASSISTED">ASSISTED</option>
 					</select>
 				</div>
 					<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">
@@ -157,6 +157,7 @@
 						<option value="YOUTH">YOUTH</option>
 						<option value="NOVICE-TECH">NOVICE-TECH</option>
 						<option value="YL">YL</option>
+						<option value="WIRE-ONLY">WIRE-ONLY</option>
 					</select>
 				</div>
 				<div hidden="true" class="mb-3 d-flex align-items-center row additionalinfo">

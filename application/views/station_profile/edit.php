@@ -1,8 +1,8 @@
 <script>
 var dxccarray = [];
 dxccarray.push({
-	adif: 0,
-	name: '- None -',
+	adif: null,
+	name: '-',
 	cq: '',
 	itu: '',
 });
@@ -95,8 +95,8 @@ if ($dxcc_list->result() > 0) {
 					<div class="mb-3">
 					    <label for="stationDXCCInput"><?= __("Station DXCC"); ?></label>
 					    <?php if ($dxcc_list->num_rows() > 0) { ?>
-					        <select class="form-control" id="dxcc_id" name="dxcc" aria-describedby="stationCallsignInputHelp">
-					            <option value="0" <?php if($my_station_profile->station_dxcc == "0") { ?>selected<?php } ?>><?= _pgettext("DXCC Select - No DXCC", "- NONE - (e.g. /MM, /AM)"); ?></option>
+					        <select class="form-control" id="dxcc_id" name="dxcc" aria-describedby="stationCallsignInputHelp" required>
+					            <option value="" <?php if($my_station_profile->station_dxcc ?? '' == "") { ?>selected<?php } ?>><?= __("Please select one"); ?></option>
 					            <?php foreach ($dxcc_list->result() as $dxcc) { ?>
 					                <?php $isDeleted = $dxcc->end !== NULL; ?>
 					                <option value="<?php echo $dxcc->adif; ?>" <?php if($my_station_profile->station_dxcc == $dxcc->adif) { ?>selected<?php } ?>>
