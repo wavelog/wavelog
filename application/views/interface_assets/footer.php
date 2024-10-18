@@ -1175,81 +1175,83 @@ $($('#callsign')).on('keypress',function(e) {
 
 		    if($('select.radios option:selected').val() != '0') {
 			    radioID = $('select.radios option:selected').val();
-			    $.getJSON( "radio/json/" + radioID, function( data ) {
-        /* {
-        "frequency": "2400210000",
-            "frequency_rx": "10489710000",
-            "mode": "SSB",
-            "satmode": "S/X",
-            "satname": "QO-100"
-            "power": "20"
-            "prop_mode": "SAT",
-            "error": "not_logged_id" // optional, reserved for errors
-        }  */
-				    if (data.error) {
-					    if (data.error == 'not_logged_in') {
-						    $(".radio_cat_state" ).remove();
-						    if($('.radio_login_error').length == 0) {
-							    $('.qso_panel').prepend('<div class="alert alert-danger radio_login_error" role="alert"><i class="fas fa-broadcast-tower"></i> ' + '<?= sprintf(__("You're not logged in. Please %slogin%s"), '<a href="' . base_url() . '">', '</a>'); ?>' + '</div>');
-						    }
-					    }
-					    // Put future Errorhandling here
-				    } else {
-					    if($('.radio_login_error').length != 0) {
-						    $(".radio_login_error" ).remove();
-					    }
-					    cat2UI($('#frequency'),data.frequency,false,true,function(d){
-						    if ($("#band").val() != frequencyToBand(d)) {
-							    $("#band").val(frequencyToBand(d)).trigger('change');	// Let's only change if we really have a different band!
-						    }
-					    });
-
-					    cat2UI($('#frequency_rx'),data.frequency_rx,false,true,function(d){$("#band_rx").val(frequencyToBand(d))});
-					    cat2UI($('.mode'),data.mode,false,false,function(d){setRst($(".mode").val())});
-					    cat2UI($('#sat_name'),data.satname,false,false);
-					    cat2UI($('#sat_mode'),data.satmode,false,false);
-					    cat2UI($('#transmit_power'),data.power,false,false);
-					    cat2UI($('#selectPropagation'),data.prop_mode,false,false);
-
-					    // Display CAT Timeout warning based on the figure given in the config file
-					    var minutes = Math.floor(<?php echo $this->optionslib->get_option('cat_timeout_interval'); ?> / 60);
-
-					    if(data.updated_minutes_ago > minutes) {
-						    $(".radio_cat_state" ).remove();
-						    if($('.radio_timeout_error').length == 0) {
-							    $('#radio_status').prepend('<div class="alert alert-danger radio_timeout_error" role="alert"><i class="fas fa-broadcast-tower"></i> Radio connection timed-out: ' + $('select.radios option:selected').text() + ' data is ' + data.updated_minutes_ago + ' minutes old.</div>');
-						    } else {
-							    $('.radio_timeout_error').html('Radio connection timed-out: ' + $('select.radios option:selected').text() + ' data is ' + data.updated_minutes_ago + ' minutes old.');
-						    }
-					    } else {
-						    $(".radio_timeout_error" ).remove();
-						    text = '<i class="fas fa-broadcast-tower"></i><span style="margin-left:10px;"></span><b>TX:</b> ' + data.frequency_formatted;
-						    if(data.mode != null) {
-							    text = text+'<span style="margin-left:10px"></span>'+data.mode;
-						    }
-						    if(data.power != null && data.power != 0) {
-							    text = text+'<span style="margin-left:10px"></span>'+data.power+' W';
-						    }
-						    ptext = '';
-						    if(data.prop_mode != null && data.prop_mode != '') {
-							    ptext = ptext + data.prop_mode;
-							    if (data.prop_mode == 'SAT') {
-								    ptext = ptext + ' ' + data.satname;
+			    if ((typeof radioID !== 'undefined') && (radioID !== null) && (radioID !== "")) {
+				    $.getJSON( "radio/json/" + radioID, function( data ) {
+	/* {
+	"frequency": "2400210000",
+	    "frequency_rx": "10489710000",
+	    "mode": "SSB",
+	    "satmode": "S/X",
+	    "satname": "QO-100"
+	    "power": "20"
+	    "prop_mode": "SAT",
+	    "error": "not_logged_id" // optional, reserved for errors
+	}  */
+					    if (data.error) {
+						    if (data.error == 'not_logged_in') {
+							    $(".radio_cat_state" ).remove();
+							    if($('.radio_login_error').length == 0) {
+								    $('.qso_panel').prepend('<div class="alert alert-danger radio_login_error" role="alert"><i class="fas fa-broadcast-tower"></i> ' + '<?= sprintf(__("You're not logged in. Please %slogin%s"), '<a href="' . base_url() . '">', '</a>'); ?>' + '</div>');
 							    }
 						    }
-						    if(data.frequency_rx != null && data.frequency_rx != 0) {
-							    ptext = ptext + '<span style="margin-left:10px"></span><b>RX:</b> ' + data.frequency_rx_formatted;
+						    // Put future Errorhandling here
+					    } else {
+						    if($('.radio_login_error').length != 0) {
+							    $(".radio_login_error" ).remove();
 						    }
-						    if( ptext != '') { text = text + '<span style="margin-left:10px"></span>(' + ptext + ')';}
-						    if (! $('#radio_cat_state').length) {
-							    $('#radio_status').prepend('<div aria-hidden="true"><div id="radio_cat_state" class="alert alert-success radio_cat_state" role="alert">'+text+'</div></div>');
+						    cat2UI($('#frequency'),data.frequency,false,true,function(d){
+							    if ($("#band").val() != frequencyToBand(d)) {
+								    $("#band").val(frequencyToBand(d)).trigger('change');	// Let's only change if we really have a different band!
+							    }
+						    });
+
+						    cat2UI($('#frequency_rx'),data.frequency_rx,false,true,function(d){$("#band_rx").val(frequencyToBand(d))});
+						    cat2UI($('.mode'),data.mode,false,false,function(d){setRst($(".mode").val())});
+						    cat2UI($('#sat_name'),data.satname,false,false);
+						    cat2UI($('#sat_mode'),data.satmode,false,false);
+						    cat2UI($('#transmit_power'),data.power,false,false);
+						    cat2UI($('#selectPropagation'),data.prop_mode,false,false);
+
+						    // Display CAT Timeout warning based on the figure given in the config file
+						    var minutes = Math.floor(<?php echo $this->optionslib->get_option('cat_timeout_interval'); ?> / 60);
+
+						    if(data.updated_minutes_ago > minutes) {
+							    $(".radio_cat_state" ).remove();
+							    if($('.radio_timeout_error').length == 0) {
+								    $('#radio_status').prepend('<div class="alert alert-danger radio_timeout_error" role="alert"><i class="fas fa-broadcast-tower"></i> Radio connection timed-out: ' + $('select.radios option:selected').text() + ' data is ' + data.updated_minutes_ago + ' minutes old.</div>');
+							    } else {
+								    $('.radio_timeout_error').html('Radio connection timed-out: ' + $('select.radios option:selected').text() + ' data is ' + data.updated_minutes_ago + ' minutes old.');
+							    }
 						    } else {
-							    $('#radio_cat_state').html(text);
+							    $(".radio_timeout_error" ).remove();
+							    text = '<i class="fas fa-broadcast-tower"></i><span style="margin-left:10px;"></span><b>TX:</b> ' + data.frequency_formatted;
+							    if(data.mode != null) {
+								    text = text+'<span style="margin-left:10px"></span>'+data.mode;
+							    }
+							    if(data.power != null && data.power != 0) {
+								    text = text+'<span style="margin-left:10px"></span>'+data.power+' W';
+							    }
+							    ptext = '';
+							    if(data.prop_mode != null && data.prop_mode != '') {
+								    ptext = ptext + data.prop_mode;
+								    if (data.prop_mode == 'SAT') {
+									    ptext = ptext + ' ' + data.satname;
+								    }
+							    }
+							    if(data.frequency_rx != null && data.frequency_rx != 0) {
+								    ptext = ptext + '<span style="margin-left:10px"></span><b>RX:</b> ' + data.frequency_rx_formatted;
+							    }
+							    if( ptext != '') { text = text + '<span style="margin-left:10px"></span>(' + ptext + ')';}
+							    if (! $('#radio_cat_state').length) {
+								    $('#radio_status').prepend('<div aria-hidden="true"><div id="radio_cat_state" class="alert alert-success radio_cat_state" role="alert">'+text+'</div></div>');
+							    } else {
+								    $('#radio_cat_state').html(text);
+							    }
 						    }
 					    }
-				    }
-			    });
-            }
+				    });
+			    }
+		    }
 	    };
 
 	    // Update frequency every three second
