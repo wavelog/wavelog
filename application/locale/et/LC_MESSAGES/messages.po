@@ -2,18 +2,21 @@
 # Copyright (c) 2024 Wavelog by DF2ET, DJ7NT, HB9HIL and LA8AJA.
 # This file is distributed under the MIT licence.
 #
+# tviitkar <tambet@viitkar.ee>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-10-17 14:22+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2024-10-18 12:15+0000\n"
+"Last-Translator: tviitkar <tambet@viitkar.ee>\n"
+"Language-Team: Estonian <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/et/>\n"
 "Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.7.2\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -107,7 +110,7 @@ msgstr ""
 #: application/controllers/User.php:1247
 #: application/controllers/User_options.php:9
 msgid "You're not allowed to do that!"
-msgstr ""
+msgstr "Tegevus ei ole lubatud!"
 
 #: application/controllers/Accumulated.php:19
 #: application/views/interface_assets/header.php:152
@@ -293,7 +296,7 @@ msgstr ""
 #: application/views/stationsetup/linkedlocations.php:33
 #: application/views/timeplotter/index.php:24
 msgid "DXCC"
-msgstr ""
+msgstr "DXCC"
 
 #: application/controllers/Awards.php:251
 msgid "Awards - WAJA"
@@ -1441,7 +1444,7 @@ msgstr ""
 #: application/views/view_log/qso.php:239
 #: application/views/view_log/qso.php:541
 msgid "Deleted DXCC"
-msgstr ""
+msgstr "Kustutatud DXCC"
 
 #: application/controllers/Logbookadvanced.php:31
 msgid "Advanced logbook"
@@ -1885,7 +1888,7 @@ msgstr ""
 #: application/views/visitor/layout/header.php:97
 #: application/views/visitor/layout/header.php:98
 msgid "Search"
-msgstr ""
+msgstr "Otsi"
 
 #: application/controllers/Search.php:28
 msgid "Search & Filter Logbook"
@@ -2096,7 +2099,7 @@ msgstr ""
 #: application/views/station_profile/edit.php:99
 #: application/views/stationsetup/stationsetup.php:150
 msgid "Please select one"
-msgstr ""
+msgstr "Palun valige üks"
 
 #: application/controllers/Stationsetup.php:462
 msgid "Edit Export Map options"
@@ -3130,7 +3133,7 @@ msgstr ""
 #: application/views/user/index.php:47 application/views/user/profile.php:29
 #: application/views/view_log/qso.php:82 application/views/view_log/qso.php:519
 msgid "Callsign"
-msgstr ""
+msgstr "Kutsung"
 
 #: application/views/activators/index.php:99
 msgid "Count"
@@ -3970,7 +3973,7 @@ msgstr ""
 #: application/views/qrbcalc/index.php:19
 #: application/views/search/filter.php:43 application/views/user/edit.php:607
 msgid "Reset"
-msgstr ""
+msgstr "Lähtesta"
 
 #: application/views/awards/cq/index.php:115
 msgid "Show CQ Zone Map"
@@ -4520,7 +4523,7 @@ msgstr ""
 #: application/views/search/result.php:21
 #: application/views/view_log/qso.php:533
 msgid "City"
-msgstr ""
+msgstr "Linn"
 
 #: application/views/awards/jcc/index.php:187
 #: application/views/dashboard/index.php:375
@@ -5031,7 +5034,7 @@ msgstr ""
 #: application/views/simplefle/index.php:21
 #: application/views/version_dialog/index.php:79
 msgid "Close"
-msgstr ""
+msgstr "Sulge"
 
 #: application/views/bands/index.php:153
 msgid "Warning! Are you sure you want to delete the following band: "
@@ -5254,7 +5257,7 @@ msgstr ""
 #: application/views/user/edit.php:540 application/views/user/edit.php:802
 #: application/views/user/edit.php:834 application/views/user/edit.php:859
 msgid "Yes"
-msgstr ""
+msgstr "Jah"
 
 #: application/views/cabrillo/index.php:197
 #: application/views/logbookadvanced/edit.php:137
@@ -5298,7 +5301,7 @@ msgstr ""
 #: application/views/user/edit.php:541 application/views/user/edit.php:803
 #: application/views/user/edit.php:833 application/views/user/edit.php:858
 msgid "No"
-msgstr ""
+msgstr "Ei"
 
 #: application/views/cabrillo/index.php:208
 #: application/views/reg1test/index.php:150
@@ -6131,7 +6134,7 @@ msgstr ""
 
 #: application/views/debug/index.php:27
 msgid "Version"
-msgstr ""
+msgstr "Versioon"
 
 #: application/views/debug/index.php:30
 msgid "Latest Version"
@@ -6143,7 +6146,7 @@ msgstr ""
 
 #: application/views/debug/index.php:41
 msgid "Language"
-msgstr ""
+msgstr "Keel"
 
 #: application/views/debug/index.php:45
 msgid "Base URL"
@@ -6241,7 +6244,7 @@ msgstr ""
 #: application/views/debug/index.php:150 application/views/debug/index.php:161
 #: application/views/debug/index.php:173
 msgid "Failed"
-msgstr ""
+msgstr "Ebaõnnestus"
 
 #: application/views/debug/index.php:183
 msgid "Config Maintenance"
@@ -6312,13 +6315,13 @@ msgstr ""
 #: application/views/debug/index.php:266 application/views/debug/index.php:277
 #: application/views/debug/index.php:288
 msgid "Installed"
-msgstr ""
+msgstr "Installeeritud"
 
 #: application/views/debug/index.php:246 application/views/debug/index.php:257
 #: application/views/debug/index.php:268 application/views/debug/index.php:279
 #: application/views/debug/index.php:290
 msgid "Not Installed"
-msgstr ""
+msgstr "Installeerimata"
 
 #: application/views/debug/index.php:297 application/views/qso/index.php:668
 msgid "Settings"
@@ -6449,99 +6452,99 @@ msgstr ""
 
 #: application/views/debug/index.php:643
 msgid "Albanian"
-msgstr ""
+msgstr "Albaania"
 
 #: application/views/debug/index.php:644
 msgid "Bosnian"
-msgstr ""
+msgstr "Bosnia"
 
 #: application/views/debug/index.php:645
 msgid "Bulgarian"
-msgstr ""
+msgstr "Bulgaaria"
 
 #: application/views/debug/index.php:646
 msgid "Chinese (Simplified)"
-msgstr ""
+msgstr "Hiina (lihtsustatud)"
 
 #: application/views/debug/index.php:647
 msgid "Croatian"
-msgstr ""
+msgstr "Horvaatia"
 
 #: application/views/debug/index.php:648
 msgid "Czech"
-msgstr ""
+msgstr "Tšehhi"
 
 #: application/views/debug/index.php:649
 msgid "Dutch"
-msgstr ""
+msgstr "Hollandi"
 
 #: application/views/debug/index.php:650
 msgid "English"
-msgstr ""
+msgstr "Inglise"
 
 #: application/views/debug/index.php:651
 msgid "Estonian"
-msgstr ""
+msgstr "Eesti"
 
 #: application/views/debug/index.php:652
 msgid "Finnish"
-msgstr ""
+msgstr "Soome"
 
 #: application/views/debug/index.php:653
 msgid "French"
-msgstr ""
+msgstr "Prantsuse"
 
 #: application/views/debug/index.php:654
 msgid "German"
-msgstr ""
+msgstr "Saksa"
 
 #: application/views/debug/index.php:655
 msgid "Greek"
-msgstr ""
+msgstr "Kreeka"
 
 #: application/views/debug/index.php:656
 msgid "Italian"
-msgstr ""
+msgstr "Itaalia"
 
 #: application/views/debug/index.php:657
 msgid "Latvian"
-msgstr ""
+msgstr "Läti"
 
 #: application/views/debug/index.php:658
 msgid "Lithuanian"
-msgstr ""
+msgstr "Leedu"
 
 #: application/views/debug/index.php:659
 msgid "Montenegrin"
-msgstr ""
+msgstr "Montenegro"
 
 #: application/views/debug/index.php:660
 msgid "Polish"
-msgstr ""
+msgstr "Poola"
 
 #: application/views/debug/index.php:661
 msgid "Portuguese"
-msgstr ""
+msgstr "Portugali"
 
 #: application/views/debug/index.php:662
 msgid "Russian"
-msgstr ""
+msgstr "Vene"
 
 #: application/views/debug/index.php:663
 msgid "Serbian"
-msgstr ""
+msgstr "Serbia"
 
 #: application/views/debug/index.php:664
 msgid "Spanish"
-msgstr ""
+msgstr "Hispaania"
 
 #: application/views/debug/index.php:665
 msgid "Swedish"
-msgstr ""
+msgstr "Rootsi"
 
 #: application/views/debug/index.php:666
 msgid "Turkish"
-msgstr ""
+msgstr "Türgi"
 
 #: application/views/distancerecords/index.php:4
 msgid "This page lists distance records per satellite based on gridsquares."
@@ -9400,7 +9403,7 @@ msgstr ""
 
 #: application/views/radio/index.php:27
 msgid "Please wait..."
-msgstr ""
+msgstr "Palun oodake..."
 
 #: application/views/reg1test/index.php:6
 msgid "Select Band"
@@ -9640,7 +9643,7 @@ msgstr ""
 
 #: application/views/satellite/pass.php:36 application/views/user/edit.php:179
 msgid "Timezone"
-msgstr ""
+msgstr "Ajatsoon"
 
 #: application/views/satellite/pass.php:479
 msgid "Min. time"
@@ -10948,7 +10951,7 @@ msgstr ""
 #: application/views/user/login.php:69 application/views/user/login.php:70
 #: application/views/user/profile.php:14
 msgid "Username"
-msgstr ""
+msgstr "Kasutajanimi"
 
 #: application/views/user/edit.php:64 application/views/user/login.php:59
 #: application/views/user/login.php:73 application/views/user/login.php:74
@@ -10956,7 +10959,7 @@ msgstr ""
 #: application/views/user/reset_password.php:23
 #: application/views/user/reset_password.php:30
 msgid "Password"
-msgstr ""
+msgstr "Salasõna"
 
 #: application/views/user/edit.php:77
 msgid "User Role"
@@ -10968,11 +10971,11 @@ msgstr ""
 
 #: application/views/user/edit.php:102
 msgid "First Name"
-msgstr ""
+msgstr "Eesnimi"
 
 #: application/views/user/edit.php:109
 msgid "Last Name"
-msgstr ""
+msgstr "Perenimi"
 
 #: application/views/user/edit.php:120
 msgid "Ham Radio"
@@ -11478,7 +11481,7 @@ msgstr ""
 
 #: application/views/user/reset_password.php:28
 msgid "Confirm Password"
-msgstr ""
+msgstr "Kinnita salasõna"
 
 #: application/views/version_dialog/index.php:20
 msgid "No Version Dialog text set. Go to the Admin Menu and set one."
