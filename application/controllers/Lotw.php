@@ -57,7 +57,7 @@ class Lotw extends CI_Controller {
 		$data['uploads_folder'] = $uploads_folder;
 
 		$this->load->model('cron_model');
-		$data['next_run'] = $this->cron_model->get_next_run("lotw_lotw_download");
+		$data['next_run'] = $this->cron_model->get_next_run("lotw_lotw_upload");
 
 		// Load Views
 		$this->load->view('interface_assets/header', $data);
