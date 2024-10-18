@@ -141,6 +141,7 @@
 		</div>
 
 		<div class="card-body">
+            		<?php if (($next_run ?? '') != '') { echo "<p>".__("The next automatic sync with LoTW will happen at: ").$next_run."</p>"; } ?>
 			<button class="btn btn-outline-success" hx-get="<?php echo site_url('lotw/lotw_upload'); ?>"  hx-target="#lotw_manual_results">
 				<?= __("Manual Sync"); ?>
 			</button>
