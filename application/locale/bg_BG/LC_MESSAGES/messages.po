@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-10-17 14:22+0000\n"
+"POT-Creation-Date: 2024-10-18 14:04+0000\n"
 "PO-Revision-Date: 2024-08-17 10:46+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Bulgarian <https://translate.wavelog.org/projects/wavelog/"
@@ -45,23 +45,23 @@ msgstr ""
 #: application/controllers/Dxatlas.php:108
 #: application/controllers/Dxcalendar.php:8
 #: application/controllers/Dxcluster.php:9 application/controllers/Eqsl.php:23
-#: application/controllers/Eqsl.php:47 application/controllers/Eqsl.php:144
-#: application/controllers/Eqsl.php:228 application/controllers/Eqsl.php:252
-#: application/controllers/Eqsl.php:291 application/controllers/Eqsl.php:358
-#: application/controllers/Eqsl.php:425 application/controllers/Eqsl.php:441
-#: application/controllers/Eqsl.php:502 application/controllers/Hamsat.php:13
+#: application/controllers/Eqsl.php:47 application/controllers/Eqsl.php:147
+#: application/controllers/Eqsl.php:231 application/controllers/Eqsl.php:255
+#: application/controllers/Eqsl.php:294 application/controllers/Eqsl.php:361
+#: application/controllers/Eqsl.php:428 application/controllers/Eqsl.php:444
+#: application/controllers/Eqsl.php:505 application/controllers/Hamsat.php:13
 #: application/controllers/Kmlexport.php:18
 #: application/controllers/Kmlexport.php:33
 #: application/controllers/Labels.php:26
 #: application/controllers/Logbookadvanced.php:16
 #: application/controllers/Lookup.php:17 application/controllers/Lotw.php:44
-#: application/controllers/Lotw.php:76 application/controllers/Lotw.php:103
-#: application/controllers/Lotw.php:378 application/controllers/Lotw.php:401
-#: application/controllers/Lotw.php:724 application/controllers/Lotw.php:828
-#: application/controllers/Lotw.php:836 application/controllers/Mode.php:15
+#: application/controllers/Lotw.php:79 application/controllers/Lotw.php:106
+#: application/controllers/Lotw.php:381 application/controllers/Lotw.php:404
+#: application/controllers/Lotw.php:727 application/controllers/Lotw.php:831
+#: application/controllers/Lotw.php:839 application/controllers/Mode.php:15
 #: application/controllers/Notes.php:10 application/controllers/Options.php:15
 #: application/controllers/Oqrs.php:15 application/controllers/Qrbcalc.php:13
-#: application/controllers/Qrz.php:274 application/controllers/Qsl.php:12
+#: application/controllers/Qrz.php:277 application/controllers/Qsl.php:12
 #: application/controllers/Qsl.php:13 application/controllers/Qsl.php:44
 #: application/controllers/Qsl.php:52 application/controllers/Qslprint.php:147
 #: application/controllers/Qso.php:9 application/controllers/Qso.php:19
@@ -706,39 +706,39 @@ msgstr ""
 msgid "eQSL Cards"
 msgstr ""
 
-#: application/controllers/Eqsl.php:124
+#: application/controllers/Eqsl.php:127
 msgid "eQSL Import"
 msgstr ""
 
-#: application/controllers/Eqsl.php:134
+#: application/controllers/Eqsl.php:137
 msgid "eQSL Import Information"
 msgstr ""
 
-#: application/controllers/Eqsl.php:151
+#: application/controllers/Eqsl.php:154
 msgid "eQSL Nicknames in Station Profiles aren't defined!"
 msgstr ""
 
-#: application/controllers/Eqsl.php:158
+#: application/controllers/Eqsl.php:161
 msgid "eQSL QSO Upload"
 msgstr ""
 
-#: application/controllers/Eqsl.php:170
+#: application/controllers/Eqsl.php:173
 msgid "You have not defined your eQSL.cc credentials!"
 msgstr ""
 
-#: application/controllers/Eqsl.php:429
+#: application/controllers/Eqsl.php:432
 msgid "eQSL Tools"
 msgstr ""
 
-#: application/controllers/Eqsl.php:477
+#: application/controllers/Eqsl.php:480
 msgid " / Errors: "
 msgstr ""
 
-#: application/controllers/Eqsl.php:477
+#: application/controllers/Eqsl.php:480
 msgid "Successfully downloaded: "
 msgstr ""
 
-#: application/controllers/Eqsl.php:486
+#: application/controllers/Eqsl.php:489
 msgid "eQSL Card Image Download"
 msgstr ""
 
@@ -1453,8 +1453,8 @@ msgstr ""
 msgid "Quick Lookup"
 msgstr ""
 
-#: application/controllers/Lotw.php:53 application/controllers/Lotw.php:82
-#: application/controllers/Lotw.php:124 application/views/adif/import.php:27
+#: application/controllers/Lotw.php:53 application/controllers/Lotw.php:85
+#: application/controllers/Lotw.php:127 application/views/adif/import.php:27
 #: application/views/interface_assets/header.php:429
 #: application/views/lotw/import.php:3
 #: application/views/lotw_views/index.php:12
@@ -1463,50 +1463,50 @@ msgstr ""
 msgid "Logbook of the World"
 msgstr ""
 
-#: application/controllers/Lotw.php:151
+#: application/controllers/Lotw.php:154
 msgid "Certificate Imported."
 msgstr ""
 
-#: application/controllers/Lotw.php:158
+#: application/controllers/Lotw.php:161
 msgid "Certificate Updated."
 msgstr ""
 
-#: application/controllers/Lotw.php:384
+#: application/controllers/Lotw.php:387
 msgid "Certificate Deleted."
 msgstr ""
 
-#: application/controllers/Lotw.php:413
+#: application/controllers/Lotw.php:416
 #, php-format
 msgid ""
 "Found no certificate in file %s. If the filename contains 'key-only' this is "
 "typically a certificate request which has not been processed by LoTW yet."
 msgstr ""
 
-#: application/controllers/Lotw.php:619
+#: application/controllers/Lotw.php:622
 msgid "LoTW ADIF Information"
 msgstr ""
 
-#: application/controllers/Lotw.php:731
+#: application/controllers/Lotw.php:734
 msgid "LoTW ADIF Import"
 msgstr ""
 
-#: application/controllers/Lotw.php:758 application/controllers/Lotw.php:871
+#: application/controllers/Lotw.php:761 application/controllers/Lotw.php:874
 msgid "You have not defined your ARRL LoTW credentials!"
 msgstr ""
 
-#: application/controllers/Lotw.php:838
+#: application/controllers/Lotw.php:841
 msgid "LoTW .TQ8 Upload"
 msgstr ""
 
-#: application/controllers/Lotw.php:916
+#: application/controllers/Lotw.php:919
 msgid "Your ARRL username and/or password is incorrect."
 msgstr ""
 
-#: application/controllers/Lotw.php:935 application/controllers/Lotw.php:940
+#: application/controllers/Lotw.php:938 application/controllers/Lotw.php:943
 msgid "LoTW .TQ8 Sent"
 msgstr ""
 
-#: application/controllers/Lotw.php:947
+#: application/controllers/Lotw.php:950
 msgid "LoTW .TQ8 Not Sent"
 msgstr ""
 
@@ -1719,11 +1719,11 @@ msgstr ""
 msgid "QRZ Logbook"
 msgstr ""
 
-#: application/controllers/Qrz.php:276
+#: application/controllers/Qrz.php:279
 msgid "QRZ QSL Import"
 msgstr ""
 
-#: application/controllers/Qrz.php:330
+#: application/controllers/Qrz.php:333
 msgid "QRZ ADIF Information"
 msgstr ""
 
@@ -1806,10 +1806,10 @@ msgstr ""
 #: application/controllers/Radio.php:105
 #: application/controllers/Stationsetup.php:372
 #: application/views/api/help.php:61 application/views/contesting/add.php:62
-#: application/views/interface_assets/footer.php:2363
-#: application/views/interface_assets/footer.php:2381
-#: application/views/interface_assets/footer.php:2402
-#: application/views/interface_assets/footer.php:2420
+#: application/views/interface_assets/footer.php:2365
+#: application/views/interface_assets/footer.php:2383
+#: application/views/interface_assets/footer.php:2404
+#: application/views/interface_assets/footer.php:2422
 #: application/views/labels/index.php:48 application/views/labels/index.php:84
 #: application/views/logbookadvanced/index.php:553
 #: application/views/lotw_views/index.php:114
@@ -2640,8 +2640,8 @@ msgstr ""
 #: application/views/gridmap/index.php:41
 #: application/views/gridmap/index.php:70
 #: application/views/gridmap/index.php:83
-#: application/views/interface_assets/footer.php:1474
-#: application/views/interface_assets/footer.php:1613
+#: application/views/interface_assets/footer.php:1476
+#: application/views/interface_assets/footer.php:1615
 #: application/views/kml/index.php:21 application/views/kml/index.php:33
 #: application/views/kml/index.php:49 application/views/kml/index.php:67
 #: application/views/kml/index.php:79
@@ -3088,7 +3088,7 @@ msgstr ""
 #: application/views/awards/wwff/index.php:64
 #: application/views/distancerecords/index.php:50
 #: application/views/public_search/empty.php:3
-#: application/views/qrz/export.php:64 application/views/timeline/index.php:135
+#: application/views/qrz/export.php:65 application/views/timeline/index.php:135
 msgid "Nothing found!"
 msgstr ""
 
@@ -3104,7 +3104,7 @@ msgstr ""
 #: application/views/contesting/index.php:161
 #: application/views/csv/index.php:23 application/views/dashboard/index.php:175
 #: application/views/distancerecords/index.php:18
-#: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:41
+#: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:42
 #: application/views/eqslcard/index.php:28
 #: application/views/hamsat/index.php:30 application/views/labels/index.php:123
 #: application/views/logbookadvanced/qslcarousel.php:30
@@ -3300,7 +3300,7 @@ msgstr ""
 #: application/views/dashboard/index.php:119
 #: application/views/dashboard/index.php:140
 #: application/views/dashboard/index.php:146
-#: application/views/eqsl/import.php:45 application/views/lotw/import.php:25
+#: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
 #: application/views/lotw_views/index.php:4
 msgid "Important"
 msgstr "Важно"
@@ -3319,7 +3319,7 @@ msgstr ""
 #: application/views/hrdlog/export.php:25
 #: application/views/hrdlog/export.php:74
 #: application/views/interface_assets/footer.php:34
-#: application/views/qrz/export.php:73 application/views/qrz/export.php:94
+#: application/views/qrz/export.php:75 application/views/qrz/export.php:96
 #: application/views/stationsetup/stationsetup.php:111
 #: application/views/view_log/qso.php:634
 #: application/views/webadif/export.php:34
@@ -3329,8 +3329,8 @@ msgstr ""
 
 #: application/views/adif/import.php:60 application/views/adif/import.php:62
 #: application/views/adif/import.php:177 application/views/adif/import.php:226
-#: application/views/eqsl/import.php:36 application/views/hrdlog/export.php:69
-#: application/views/qrz/export.php:89 application/views/reg1test/index.php:30
+#: application/views/eqsl/import.php:37 application/views/hrdlog/export.php:69
+#: application/views/qrz/export.php:91 application/views/reg1test/index.php:30
 #: application/views/webadif/export.php:89
 msgid "Select Station Location"
 msgstr ""
@@ -3396,7 +3396,7 @@ msgstr ""
 #: application/views/adif/import.php:162
 #: application/views/interface_assets/footer.php:32
 #: application/views/interface_assets/footer.php:501
-#: application/views/interface_assets/footer.php:2159
+#: application/views/interface_assets/footer.php:2161
 msgid "DANGER"
 msgstr ""
 
@@ -3412,7 +3412,7 @@ msgid ""
 msgstr ""
 
 #: application/views/adif/import.php:168 application/views/adif/import.php:284
-#: application/views/hrdlog/export.php:50 application/views/qrz/export.php:54
+#: application/views/hrdlog/export.php:50 application/views/qrz/export.php:55
 #: application/views/webadif/export.php:55
 msgid "Upload"
 msgstr ""
@@ -3431,8 +3431,8 @@ msgstr ""
 #: application/views/cfd/index.php:15 application/views/csv/index.php:118
 #: application/views/dxatlas/index.php:118
 #: application/views/hrdlog/export.php:77 application/views/kml/index.php:103
-#: application/views/lotw/import.php:38 application/views/qrz/export.php:76
-#: application/views/qrz/export.php:97 application/views/webadif/export.php:97
+#: application/views/lotw/import.php:38 application/views/qrz/export.php:78
+#: application/views/qrz/export.php:99 application/views/webadif/export.php:97
 msgid "From date"
 msgstr "От дата"
 
@@ -3440,7 +3440,7 @@ msgstr "От дата"
 #: application/views/cfd/index.php:20 application/views/csv/index.php:123
 #: application/views/dxatlas/index.php:123
 #: application/views/hrdlog/export.php:82 application/views/kml/index.php:108
-#: application/views/qrz/export.php:102
+#: application/views/qrz/export.php:104
 #: application/views/webadif/export.php:102
 msgid "To date"
 msgstr ""
@@ -3470,7 +3470,7 @@ msgid "Export All Satellite QSOs Confirmed on LoTW"
 msgstr ""
 
 #: application/views/adif/import.php:231 application/views/hrdlog/export.php:74
-#: application/views/qrz/export.php:94 application/views/webadif/export.php:94
+#: application/views/qrz/export.php:96 application/views/webadif/export.php:94
 msgid "If a date range is not selected then all QSOs will be marked!"
 msgstr ""
 
@@ -3675,7 +3675,7 @@ msgstr "Състояние"
 
 #: application/views/api/help.php:32 application/views/hrdlog/export.php:39
 #: application/views/logbookadvanced/index.php:530
-#: application/views/qrz/export.php:43 application/views/webadif/export.php:45
+#: application/views/qrz/export.php:44 application/views/webadif/export.php:45
 msgid "Actions"
 msgstr ""
 
@@ -3949,7 +3949,7 @@ msgstr ""
 #: application/views/awards/cq/index.php:56
 #: application/views/awards/itu/index.php:56
 #: application/views/awards/wac/index.php:44
-#: application/views/interface_assets/footer.php:2138
+#: application/views/interface_assets/footer.php:2140
 #: application/views/qso/edit_ajax.php:406
 #: application/views/view_log/qso.php:25
 msgid "QSL Card"
@@ -6675,7 +6675,7 @@ msgstr ""
 msgid "View/Download"
 msgstr ""
 
-#: application/views/eqsl/download.php:73 application/views/eqsl/import.php:53
+#: application/views/eqsl/download.php:73 application/views/eqsl/import.php:54
 msgid ""
 "Wavelog will use the eQSL credentials from your Wavelog user profile to "
 "connect to eQSL and download confirmations."
@@ -6719,30 +6719,34 @@ msgid ""
 "more QSOs!"
 msgstr ""
 
-#: application/views/eqsl/import.php:30
+#: application/views/eqsl/import.php:28
+msgid "The next automatic sync with eQSL will happen at: "
+msgstr ""
+
+#: application/views/eqsl/import.php:31
 msgid "Import from file..."
 msgstr ""
 
-#: application/views/eqsl/import.php:33
+#: application/views/eqsl/import.php:34
 msgid "Download Inbox"
 msgstr ""
 
-#: application/views/eqsl/import.php:33
+#: application/views/eqsl/import.php:34
 #, php-format
 msgid ""
 "Upload the Exported ADIF file from eQSL from the %s page, to mark QSOs as "
 "confirmed on eQSL."
 msgstr ""
 
-#: application/views/eqsl/import.php:34
+#: application/views/eqsl/import.php:35
 msgid "Choose Station(location) eQSL File belongs to:"
 msgstr ""
 
-#: application/views/eqsl/import.php:45 application/views/lotw/import.php:25
+#: application/views/eqsl/import.php:46 application/views/lotw/import.php:25
 msgid "Log files must have the file type .adi"
 msgstr ""
 
-#: application/views/eqsl/import.php:52
+#: application/views/eqsl/import.php:53
 msgid "Import directly from eQSL"
 msgstr ""
 
@@ -6773,10 +6777,10 @@ msgid "QSL Date"
 msgstr ""
 
 #: application/views/eqslcard/index.php:60
-#: application/views/interface_assets/footer.php:2364
-#: application/views/interface_assets/footer.php:2382
-#: application/views/interface_assets/footer.php:2403
-#: application/views/interface_assets/footer.php:2421
+#: application/views/interface_assets/footer.php:2366
+#: application/views/interface_assets/footer.php:2384
+#: application/views/interface_assets/footer.php:2405
+#: application/views/interface_assets/footer.php:2423
 #: application/views/qslcard/index.php:66
 #: application/views/view_log/qso.php:626
 msgid "View"
@@ -6832,26 +6836,26 @@ msgstr ""
 #: application/views/hrdlog/export.php:34
 #: application/views/logbookadvanced/index.php:670
 #: application/views/logbookadvanced/useroptions.php:150
-#: application/views/qrz/export.php:38 application/views/webadif/export.php:41
+#: application/views/qrz/export.php:39 application/views/webadif/export.php:41
 msgid "Profile name"
 msgstr ""
 
 #: application/views/hrdlog/export.php:35
 #: application/views/oqrs/showrequests.php:86
-#: application/views/qrz/export.php:39 application/views/webadif/export.php:42
+#: application/views/qrz/export.php:40 application/views/webadif/export.php:42
 msgid "Station callsign"
 msgstr ""
 
-#: application/views/hrdlog/export.php:36 application/views/qrz/export.php:40
+#: application/views/hrdlog/export.php:36 application/views/qrz/export.php:41
 msgid "Edited QSOs not uploaded"
 msgstr ""
 
-#: application/views/hrdlog/export.php:37 application/views/qrz/export.php:41
+#: application/views/hrdlog/export.php:37 application/views/qrz/export.php:42
 #: application/views/webadif/export.php:43
 msgid "Total QSOs not uploaded"
 msgstr ""
 
-#: application/views/hrdlog/export.php:38 application/views/qrz/export.php:42
+#: application/views/hrdlog/export.php:38 application/views/qrz/export.php:43
 #: application/views/webadif/export.php:44
 msgid "Total QSOs uploaded"
 msgstr ""
@@ -7023,62 +7027,62 @@ msgstr ""
 msgid "Grids: "
 msgstr ""
 
-#: application/views/interface_assets/footer.php:1193
+#: application/views/interface_assets/footer.php:1194
 #, php-format
 msgid "You're not logged in. Please %slogin%s"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:1401
-#: application/views/interface_assets/footer.php:1405
-#: application/views/interface_assets/footer.php:1408
-#: application/views/interface_assets/footer.php:1545
-#: application/views/interface_assets/footer.php:1549
-#: application/views/interface_assets/footer.php:1552
+#: application/views/interface_assets/footer.php:1403
+#: application/views/interface_assets/footer.php:1407
+#: application/views/interface_assets/footer.php:1410
+#: application/views/interface_assets/footer.php:1547
+#: application/views/interface_assets/footer.php:1551
+#: application/views/interface_assets/footer.php:1554
 msgid "grid square"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:1408
-#: application/views/interface_assets/footer.php:1552
+#: application/views/interface_assets/footer.php:1410
+#: application/views/interface_assets/footer.php:1554
 msgid "Total count"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2140
+#: application/views/interface_assets/footer.php:2142
 msgid "QSL Card for "
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2160
+#: application/views/interface_assets/footer.php:2162
 msgid "Warning! Are you sure you want to delete this QSL card?"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2200
+#: application/views/interface_assets/footer.php:2202
 #: application/views/view_log/qso.php:42
 msgid "eQSL Card"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2202
+#: application/views/interface_assets/footer.php:2204
 msgid "eQSL Card for "
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2375
-#: application/views/interface_assets/footer.php:2414
+#: application/views/interface_assets/footer.php:2377
+#: application/views/interface_assets/footer.php:2416
 #: application/views/view_log/qso.php:616
 msgid "QSL image file"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2394
+#: application/views/interface_assets/footer.php:2396
 msgid "Front QSL Card:"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2432
+#: application/views/interface_assets/footer.php:2434
 msgid "Back QSL Card:"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2443
-#: application/views/interface_assets/footer.php:2468
+#: application/views/interface_assets/footer.php:2445
+#: application/views/interface_assets/footer.php:2470
 msgid "Add additional QSOs to a QSL Card"
 msgstr ""
 
-#: application/views/interface_assets/footer.php:2479
+#: application/views/interface_assets/footer.php:2481
 msgid "Something went wrong. Please try again!"
 msgstr ""
 
@@ -8201,7 +8205,11 @@ msgstr ""
 msgid "Information"
 msgstr "Информация"
 
-#: application/views/lotw_views/index.php:145
+#: application/views/lotw_views/index.php:144
+msgid "The next automatic sync with LoTW will happen at: "
+msgstr ""
+
+#: application/views/lotw_views/index.php:146
 msgid "Manual Sync"
 msgstr "Ръчно синхронизиране"
 
@@ -8931,28 +8939,36 @@ msgid "Calculate"
 msgstr ""
 
 #: application/views/qrz/export.php:27
+msgid "The next automatic Upload to QRZ will happen at: "
+msgstr ""
+
+#: application/views/qrz/export.php:28
 msgid ""
 "Here you can see all QSOs which have not been previously uploaded to a QRZ "
 "logbook."
 msgstr ""
 
-#: application/views/qrz/export.php:28
+#: application/views/qrz/export.php:29
 msgid ""
 "You need to set a QRZ Logbook API key in your station profile. Only station "
 "profiles with an API Key set are displayed."
 msgstr ""
 
-#: application/views/qrz/export.php:73
+#: application/views/qrz/export.php:74
+msgid "The next automatic Download from QRZ-QSLs will happen at: "
+msgstr ""
+
+#: application/views/qrz/export.php:75
 msgid ""
 "If no startdate is given then all QSOs after last confirmation will be "
 "downloaded/updated!"
 msgstr ""
 
-#: application/views/qrz/export.php:81
+#: application/views/qrz/export.php:83
 msgid "Download from QRZ Logbook"
 msgstr ""
 
-#: application/views/qrz/export.php:107
+#: application/views/qrz/export.php:109
 msgid "Mark QSOs as exported to QRZ Logbook"
 msgstr ""
 
