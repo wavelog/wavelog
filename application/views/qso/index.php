@@ -6,6 +6,8 @@
   var lang_qso_title_times_worked_before = "<?= __("times worked before"); ?>";
   var lang_qso_title_not_worked_before = "<?= __("Not worked before"); ?>";
   var lang_dxccsummary_for = "<?= __("DXCC Summary for "); ?>";
+  var lang_lotw_upload_day_ago = "<?= __("LoTW User. Last upload was 1 day ago."); ?>";
+  var lang_lotw_upload_days_ago = "<?= __("LoTW User. Last upload was %x days ago."); ?>"; // due to the way the string is built (PHP to JS), %x is replaced with the number of days
 </script>
 
 <div class="row qsopane">
@@ -63,13 +65,13 @@
               <div class="row">
                 <div class="mb-3 col-md-3">
                   <label for="start_date"><?= __("Date"); ?></label>
-                  <input type="text" class="form-control form-control-sm input_date" name="start_date" id="start_date" tabindex="4" value="<?php if (($this->session->userdata('start_date') != NULL && ((time() - $this->session->userdata('time_stamp')) < 24 * 60 * 60))) { echo $this->session->userdata('start_date'); } else { echo date('d-m-Y');}?>" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> required pattern="[0-3][0-9]-[0-1][0-9]-[0-9]{4}">
+                  <input type="text" class="form-control form-control-sm input_date" name="start_date" id="start_date" tabindex="4" value="<?php echo date('d-m-Y'); ?>" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> required pattern="[0-3][0-9]-[0-1][0-9]-[0-9]{4}">
                 </div>
 
                 <div class="mb-3 col-md-4">
                 <label for="start_time"><?= __("Time on"); ?></label>
                   <div class="input-group">
-                    <input type="text" class="form-control form-control-sm input_start_time" name="start_time" id="start_time" tabindex="5" value="<?php if (($this->session->userdata('start_time') != NULL && ((time() - $this->session->userdata('time_stamp')) < 24 * 60 * 60))) { echo substr($this->session->userdata('start_time'),0,5); } else { echo $manual_mode == 0 ? date('H:i:s') : date('H:i'); } ?>" size="7" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> required pattern="[0-2][0-9]:[0-5][0-9]">
+                    <input type="text" class="form-control form-control-sm input_start_time" name="start_time" id="start_time" tabindex="5" value="<?php echo $manual_mode == 0 ? date('H:i:s') : date('H:i'); ?>" size="7" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> required pattern="[0-2][0-9]:[0-5][0-9]">
                     <?php if ($manual_mode != 1) { ?>
                       <span class="input-group-text btn-included-on-field"><i id="reset_time" data-bs-toggle="tooltip" title="Reset start time" class="fas fa-stopwatch"></i></span>
                     <?php } else { ?>
@@ -81,7 +83,7 @@
                 <div class="mb-3 col-md-4">
                   <label for="end_time"><?= __("Time off"); ?></label>
                   <div class="input-group">
-                    <input type="text" class="form-control form-control-sm input_end_time" name="end_time" id="end_time" tabindex="6" value="<?php if (($this->session->userdata('end_time') != NULL && ((time() - $this->session->userdata('time_stamp')) < 24 * 60 * 60))) { echo substr($this->session->userdata('end_time'),0,5); } else { echo $manual_mode == 0 ? date('H:i:s') : date('H:i'); } ?>" size="7" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> required pattern="[0-2][0-9]:[0-5][0-9]">
+                    <input type="text" class="form-control form-control-sm input_end_time" name="end_time" id="end_time" tabindex="6" value="<?php echo $manual_mode == 0 ? date('H:i:s') : date('H:i'); ?>" size="7" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> required pattern="[0-2][0-9]:[0-5][0-9]">
                     <?php if ($manual_mode == 1) { ?>
                       <span class="input-group-text btn-included-on-field"><i id="reset_end_time" data-bs-toggle="tooltip" title="Reset end time" class="fas fa-stopwatch"></i></span>
                     <?php } ?>
@@ -99,13 +101,13 @@
               <div class="row">
                 <div class="mb-3 col-md-6">
                   <label for="start_date"><?= __("Date"); ?></label>
-                  <input type="text" class="form-control form-control-sm input_date" name="start_date" id="start_date" tabindex="4" value="<?php if (($this->session->userdata('start_date') != NULL && ((time() - $this->session->userdata('time_stamp')) < 24 * 60 * 60))) { echo $this->session->userdata('start_date'); } else { echo date('d-m-Y');}?>" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> required pattern="[0-3][0-9]-[0-1][0-9]-[0-9]{4}">
+                  <input type="text" class="form-control form-control-sm input_date" name="start_date" id="start_date" tabindex="4" value="<?php echo date('d-m-Y'); ?>" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> required pattern="[0-3][0-9]-[0-1][0-9]-[0-9]{4}">
                 </div>
 
                 <div class="mb-3 col-md-6">
                   <label for="start_time"><?= __("Time"); ?></label>
                   <div class="input-group">
-                    <input type="text" class="form-control form-control-sm input_start_time" name="start_time" id="start_time" tabindex="5" value="<?php if (($this->session->userdata('start_time') != NULL && ((time() - $this->session->userdata('time_stamp')) < 24 * 60 * 60))) { echo substr($this->session->userdata('start_time'),0,5); } else { echo $manual_mode == 0 ? date('H:i:s') : date('H:i'); } ?>" size="7" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> required pattern="[0-2][0-9]:[0-5][0-9]">
+                    <input type="text" class="form-control form-control-sm input_start_time" name="start_time" id="start_time" tabindex="5" value="<?php echo $manual_mode == 0 ? date('H:i:s') : date('H:i'); ?>" size="7" <?php echo ($manual_mode == 0 ? "disabled" : "");  ?> required pattern="[0-2][0-9]:[0-5][0-9]">
                     <?php if ($manual_mode == 1) { ?>
                       <span class="input-group-text btn-included-on-field"><i id="reset_start_time" data-bs-toggle="tooltip" title="Reset start time" class="fas fa-stopwatch"></i></span>
                     <?php } ?>
@@ -312,7 +314,6 @@
             <div class="mb-3">
               <label for="radio"><?= __("Radio"); ?></label>
               <select class="form-select radios" id="radio" name="radio">
-                <option value="0" selected="selected"><?= __("None"); ?></option>
                 <?php foreach ($radios->result() as $row) { ?>
                   <option value="<?php echo $row->id; ?>" <?php if($this->session->userdata('radio') == $row->id) { echo "selected=\"selected\""; } ?>><?php echo $row->radio; ?> <?php if ($radio_last_updated->id == $row->id) { echo "(".__("last updated").")"; } else { echo ''; } ?></option>
                 <?php } ?>
@@ -361,7 +362,6 @@
               <div class="mb-3">
                   <label for="dxcc_id"><?= __("DXCC"); ?></label>
                   <select class="form-control" id="dxcc_id" name="dxcc_id" required>
-                      <option value="0">- NONE -</option>
                       <?php
                       foreach($dxcc as $d){
                           echo '<option value=' . $d->adif . '>' . $d->prefix . ' - ' . ucwords(strtolower(($d->name)));

@@ -180,19 +180,33 @@ $(function() {
 		}
 	});
 
-	var qso_window_last_seen=Date.now()-3600;
+	let qso_window_last_seen=Date.now()-3600;
+	let bc_qsowin = new BroadcastChannel('qso_window');
+	let pong_rcvd = false;
 
-	var bc_qsowin = new BroadcastChannel('qso_window');
 	bc_qsowin.onmessage = function (ev) {
 		if (ev.data == 'pong') {
 			qso_window_last_seen=Date.now();
+			pong_rcvd = true;
 		}
 	};
 
-	setInterval(function () { bc_qsowin.postMessage('ping') },500);
-	var bc2qso = new BroadcastChannel('qso_wish');
+	setInterval(function () {
+		// reset the pong flag if the last seen time is older than 1 second in case the qso window was closed
+		if (qso_window_last_seen < (Date.now()-1000)) {
+			pong_rcvd = false;
+		}
+		bc_qsowin.postMessage('ping');
+	},500);
+	
+	let bc2qso = new BroadcastChannel('qso_wish');
+
+	// set some times
+	let wait4pong = 2000; // we wait in max 2 seconds for the pong
+	let check_intv = 100; // check every 100 ms
 
 	$(document).on('click','#prepcall', function() {
+		let ready_listener = true;
 		let call=this.innerText;
 		let qrg=''
 		if ((this.parentNode.parentNode.className != 'odd') && (this.parentNode.parentNode.className != 'even')) {
@@ -205,17 +219,38 @@ $(function() {
 			irrelevant=fetch('http://127.0.0.1:54321/'+qrg);
 		} finally {}
 
-		if (Date.now()-qso_window_last_seen < 2000) {
-			bc2qso.postMessage({ frequency: qrg, call: call });
-		} else {
-			let cl={};
-			cl.call=call;
-			cl.qrg=qrg;
-			window.open(base_url + 'index.php/qso?manual=0','_blank');
-			setTimeout(function () {
-				bc2qso.postMessage({ frequency: cl.qrg, call: cl.call })
-			},2500);        // Wait at least 2500ms for new-Window to appear, before posting data to it
-		}
+		let check_pong = setInterval(function() {
+			if (pong_rcvd || ((Date.now() - qso_window_last_seen) < wait4pong)) {
+                clearInterval(check_pong); // max time reached or pong received
+				bc2qso.postMessage({ frequency: qrg, call: call });
+			} else {
+				clearInterval(check_pong);
+				let cl={};
+				cl.call=call;
+				cl.qrg=qrg;
+
+				let newWindow = window.open(base_url + 'index.php/qso?manual=0', '_blank');
+
+                if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+                    $('#errormessage').html(popup_warning).addClass('alert alert-danger').show();
+					setTimeout(function() {
+						$('#errormessage').fadeOut();
+					}, 3000);
+                } else {
+                    newWindow.focus();
+                }
+
+				// wait for the ready message
+                bc2qso.onmessage = function(ev) {
+					if (ready_listener == true) {
+						if (ev.data === 'ready') {
+							bc2qso.postMessage({ frequency: cl.qrg, call: cl.call })
+							ready_listener = false;
+						}
+					}
+				};
+			}
+		}, check_intv);
 	});
 
 	$("#menutoggle").on("click", function() {

@@ -4,7 +4,6 @@ class Gridmap_model extends CI_Model {
 
 	function get_band_confirmed($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit, $propagation, $logbooks_locations_array = NULL) {
 		if ($logbooks_locations_array == NULL) {
-
 			$this->load->model('logbooks_model');
 			$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 		}
@@ -15,6 +14,7 @@ class Gridmap_model extends CI_Model {
 
 		$location_list = "'".implode("','",$logbooks_locations_array)."'";
 
+		$binding = [];
 		$sql = 'SELECT distinct substring(COL_GRIDSQUARE,1,6) as GRID_SQUARES, COL_BAND FROM '
 			.$this->config->item('table_name')
 			.' LEFT JOIN `satellite` on '.$this->config->item('table_name').'.COL_SAT_NAME = satellite.name'
@@ -23,39 +23,49 @@ class Gridmap_model extends CI_Model {
 
 		if ($band != 'All') {
 			if ($band == 'SAT') {
-				$sql .= " and col_prop_mode ='" . $band . "'";
+				$sql .= " and col_prop_mode = ? ";
+				$binding[] = $band;
 				if ($sat != 'All' && $sat != '') {
-					$sql .= " and col_sat_name ='" . $sat . "'";
+					$sql .= " and col_sat_name = ?";
+					$binding[] = $sat;
 				}
 			} else {
 				if ($propagation == 'None') {
-					$sql .= " and (trim(col_prop_mode) ='' or col_prop_mode is null)";
+					$sql .= " and (trim(col_prop_mode) = '' or col_prop_mode is null)";
 				} elseif ($propagation == 'NoSAT') {
-					$sql .= " and col_prop_mode !='SAT'";
+					$sql .= " and col_prop_mode != 'SAT'";
 				} elseif ($propagation != '') {
-					$sql .= " and col_prop_mode ='" . $propagation . "'";
+					$sql .= " and col_prop_mode = ?";
+					$binding[] = $propagation;
 				}
-				$sql .= " and col_band ='" . $band . "'";
+				$sql .= " and col_band = ?";
+				$binding[] = $band;
 			}
 		} else {
 			if ($propagation == 'None') {
-				$sql .= " and (trim(col_prop_mode) ='' or col_prop_mode is null)";
+				$sql .= " and (trim(col_prop_mode) = '' or col_prop_mode is null)";
 			} elseif ($propagation == 'NoSAT') {
-				$sql .= " and col_prop_mode !='SAT'";
+				$sql .= " and col_prop_mode != 'SAT'";
 			} elseif ($propagation != '') {
-				$sql .= " and col_prop_mode ='" . $propagation . "'";
+				$sql .= " and col_prop_mode = ?";
+				$binding[] = $propagation;
 			}
 		}
 
 		if ($mode != 'All') {
-			$sql .= " and (col_mode ='" . $mode . "' or col_submode ='" . $mode . "')";
+			$sql .= " and (col_mode = ? or col_submode = ?)";
+			$binding[] = $mode;
+			$binding[] = $mode;
 		}
 
-		$sql .= $this->addOrbitToQuery($orbit);
+		if ($orbit != 'All') {
+			$sql .= " AND satellite.orbit = ?";
+			$binding[] = $orbit;
+		}
 
 		$sql .= $this->addQslToQuery($qsl, $lotw, $eqsl, $qrz);
 
-		return $this->db->query($sql);
+		return $this->db->query($sql, $binding);
 	}
 
 	function get_band($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit, $propagation, $logbooks_locations_array = NULL) {
@@ -71,6 +81,7 @@ class Gridmap_model extends CI_Model {
 
 		$location_list = "'".implode("','",$logbooks_locations_array)."'";
 
+		$binding = [];
 		$sql = 'SELECT distinct substring(COL_GRIDSQUARE,1,6) as GRID_SQUARES, COL_BAND FROM '
 			.$this->config->item('table_name')
 			.' LEFT JOIN `satellite` on '.$this->config->item('table_name').'.COL_SAT_NAME = satellite.name'
@@ -79,37 +90,47 @@ class Gridmap_model extends CI_Model {
 
 		if ($band != 'All') {
 			if ($band == 'SAT') {
-				$sql .= " and col_prop_mode ='" . $band . "'";
+				$sql .= " and col_prop_mode = ?";
+				$binding[] = $band;
 				if ($sat != 'All' && $sat != '') {
-					$sql .= " and col_sat_name ='" . $sat . "'";
+					$sql .= " and col_sat_name = ?";
+					$binding[] = $sat;
 				}
 			} else {
 				if ($propagation == 'None') {
-					$sql .= " and (trim(col_prop_mode) ='' or col_prop_mode is null)";
+					$sql .= " and (trim(col_prop_mode) = '' or col_prop_mode is null)";
 				} elseif ($propagation == 'NoSAT') {
-					$sql .= " and col_prop_mode !='SAT'";
+					$sql .= " and col_prop_mode != 'SAT'";
 				} elseif ($propagation != '') {
-					$sql .= " and col_prop_mode ='" . $propagation . "'";
+					$sql .= " and col_prop_mode = ?";
+					$binding[] = $propagation;
 				}
-				$sql .= " and col_band ='" . $band . "'";
+				$sql .= " and col_band = ?";
+				$binding[] = $band;
 			}
 		} else {
 			if ($propagation == 'None') {
-				$sql .= " and (trim(col_prop_mode) ='' or col_prop_mode is null)";
+				$sql .= " and (trim(col_prop_mode) = '' or col_prop_mode is null)";
 			} elseif ($propagation == 'NoSAT') {
-				$sql .= " and col_prop_mode !='SAT'";
+				$sql .= " and col_prop_mode != 'SAT'";
 			} elseif ($propagation != '') {
-				$sql .= " and col_prop_mode ='" . $propagation . "'";
+				$sql .= " and col_prop_mode = ?";
+				$binding[] = $propagation;
 			}
 		}
 
 		if ($mode != 'All') {
-			$sql .= " and (col_mode ='" . $mode . "' or col_submode ='" . $mode . "')";
+			$sql .= " and (col_mode = ? or col_submode = ?)";
+			$binding[] = $mode;
+			$binding[] = $mode;
 		}
 
-		$sql .= $this->addOrbitToQuery($orbit);
+		if ($orbit != 'All') {
+			$sql .= " AND satellite.orbit = ?";
+			$binding[] = $orbit;
+		}
 
-		return $this->db->query($sql);
+		return $this->db->query($sql, $binding);
 	}
 
 	function get_band_worked_vucc_squares($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit, $propagation, $logbooks_locations_array = NULL) {
@@ -125,6 +146,7 @@ class Gridmap_model extends CI_Model {
 
 		$location_list = "'".implode("','",$logbooks_locations_array)."'";
 
+		$binding = [];
 		$sql = 'SELECT distinct COL_VUCC_GRIDS, COL_BAND FROM '
 			.$this->config->item('table_name')
 			.' LEFT JOIN `satellite` on '.$this->config->item('table_name').'.COL_SAT_NAME = satellite.name'
@@ -133,37 +155,47 @@ class Gridmap_model extends CI_Model {
 
 		if ($band != 'All') {
 			if ($band == 'SAT') {
-				$sql .= " and col_prop_mode ='" . $band . "'";
+				$sql .= " and col_prop_mode = ?";
+				$binding[] = $band;
 				if ($sat != 'All' && $sat != '') {
-					$sql .= " and col_sat_name ='" . $sat . "'";
+					$sql .= " and col_sat_name = ?";
+					$binding[] = $sat;
 				}
 			} else {
 				if ($propagation == 'None') {
-					$sql .= " and (trim(col_prop_mode) ='' or col_prop_mode is null)";
+					$sql .= " and (trim(col_prop_mode) = '' or col_prop_mode is null)";
 				} elseif ($propagation == 'NoSAT') {
-					$sql .= " and col_prop_mode !='SAT'";
+					$sql .= " and col_prop_mode != 'SAT'";
 				} elseif ($propagation != '') {
-					$sql .= " and col_prop_mode ='" . $propagation . "'";
+					$sql .= " and col_prop_mode = ?";
+					$binding[] = $propagation;
 				}
-				$sql .= " and col_band ='" . $band . "'";
+				$sql .= " and col_band = ?";
+				$binding[] = $band;
 			}
 		} else {
 			if ($propagation == 'None') {
-				$sql .= " and (trim(col_prop_mode) ='' or col_prop_mode is null)";
+				$sql .= " and (trim(col_prop_mode) = '' or col_prop_mode is null)";
 			} elseif ($propagation == 'NoSAT') {
-				$sql .= " and col_prop_mode !='SAT'";
+				$sql .= " and col_prop_mode != 'SAT'";
 			} elseif ($propagation != '') {
-				$sql .= " and col_prop_mode ='" . $propagation . "'";
+				$sql .= " and col_prop_mode = ?";
+				$binding[] = $propagation;
 			}
 		}
 
 		if ($mode != 'All') {
-			$sql .= " and (col_mode ='" . $mode . "' or col_submode ='" . $mode . "')";
+			$sql .= " and (col_mode = ? or col_submode = ?)";
+			$binding[] = $mode;
+			$binding[] = $mode;
 		}
 
-		$sql .= $this->addOrbitToQuery($orbit);
+		if ($orbit != 'All') {
+			$sql .= " AND satellite.orbit = ?";
+			$binding[] = $orbit;
+		}
 
-		return $this->db->query($sql);
+		return $this->db->query($sql, $binding);
 	}
 
 	function get_band_confirmed_vucc_squares($band, $mode, $qsl, $lotw, $eqsl, $qrz, $sat, $orbit, $propagation, $logbooks_locations_array = NULL) {
@@ -180,6 +212,7 @@ class Gridmap_model extends CI_Model {
 
 		$location_list = "'".implode("','",$logbooks_locations_array)."'";
 
+		$binding = [];
 		$sql = 'SELECT distinct COL_VUCC_GRIDS, COL_BAND FROM '
 			.$this->config->item('table_name')
 			.' LEFT JOIN `satellite` on '.$this->config->item('table_name').'.COL_SAT_NAME = satellite.name'
@@ -188,39 +221,49 @@ class Gridmap_model extends CI_Model {
 
 		if ($band != 'All') {
 			if ($band == 'SAT') {
-				$sql .= " and col_prop_mode ='" . $band . "'";
+				$sql .= " and col_prop_mode = ?";
+				$binding[] = $band;
 				if ($sat != 'All' && $sat != '') {
-					$sql .= " and col_sat_name ='" . $sat . "'";
+					$sql .= " and col_sat_name = ?";
+					$binding[] = $sat;
 				}
 			} else {
 				if ($propagation == 'None') {
-					$sql .= " and (trim(col_prop_mode) ='' or col_prop_mode is null)";
+					$sql .= " and (trim(col_prop_mode) = '' or col_prop_mode is null)";
 				} elseif ($propagation == 'NoSAT') {
-					$sql .= " and col_prop_mode !='SAT'";
+					$sql .= " and col_prop_mode != 'SAT'";
 				} elseif ($propagation != '') {
-					$sql .= " and col_prop_mode ='" . $propagation . "'";
+					$sql .= " and col_prop_mode = ?";
+					$binding[] = $propagation;
 				}
-				$sql .= " and col_band ='" . $band . "'";
+				$sql .= " and col_band = ?";
+				$binding[] = $band;
 			}
 		} else {
 			if ($propagation == 'None') {
-				$sql .= " and (trim(col_prop_mode) ='' or col_prop_mode is null)";
+				$sql .= " and (trim(col_prop_mode) = '' or col_prop_mode is null)";
 			} elseif ($propagation == 'NoSAT') {
-				$sql .= " and col_prop_mode !='SAT'";
+				$sql .= " and col_prop_mode != 'SAT'";
 			} elseif ($propagation != '') {
-				$sql .= " and col_prop_mode ='" . $propagation . "'";
+				$sql .= " and col_prop_mode = ?";
+				$binding[] = $propagation;
 			}
 		}
 
 		if ($mode != 'All') {
-			$sql .= " and (col_mode ='" . $mode . "' or col_submode ='" . $mode . "')";
+			$sql .= " and (col_mode = ? or col_submode = ?)";
+			$binding[] = $mode;
+			$binding[] = $mode;
 		}
 
 		$sql .= $this->addQslToQuery($qsl, $lotw, $eqsl, $qrz);
 
-		$sql .= $this->addOrbitToQuery($orbit);
+		if ($orbit != 'All') {
+			$sql .= " AND satellite.orbit = ?";
+			$binding[] = $orbit;
+		}
 
-		return $this->db->query($sql);
+		return $this->db->query($sql, $binding);
 	}
 
 	// Adds confirmation to query
@@ -248,16 +291,6 @@ class Gridmap_model extends CI_Model {
 
 		if ($sql == '') {
 			$sql=' and 1=0';
-		}
-
-		return $sql;
-	}
-
-	// Adds orbit type to query
-	function addOrbitToQuery($orbit) {
-		$sql = '';
-		if ($orbit != 'All') {
-			$sql .= ' AND satellite.orbit = \''.$orbit.'\'';
 		}
 
 		return $sql;

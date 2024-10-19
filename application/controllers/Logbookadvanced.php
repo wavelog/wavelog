@@ -398,7 +398,7 @@ class Logbookadvanced extends CI_Controller {
 
 		$mappedcoordinates = array();
 		foreach ($qsos as $qso) {
-			if (!empty($qso['COL_MY_GRIDSQUARE']) || !empty($qso['COL_MY_VUCC_GRIDS'])) {
+			if (!empty($qso['station_gridsquare']) && $this->isValidMaidenheadGrid($qso['station_gridsquare'])) {
 				if (!empty($qso['COL_GRIDSQUARE'])  || !empty($qso['COL_VUCC_GRIDS'])) {
 					$mappedcoordinates[] = $this->calculate($qso, ($qso['station_gridsquare'] ?? ''), ($qso['COL_GRIDSQUARE'] ?? '') == '' ? $qso['COL_VUCC_GRIDS'] : $qso['COL_GRIDSQUARE'], $measurement_base, $var_dist, $custom_date_format);
 				} else {
@@ -411,6 +411,31 @@ class Logbookadvanced extends CI_Controller {
 
 		header("Content-Type: application/json");
 		print json_encode($mappedcoordinates);
+	}
+
+	function isValidMaidenheadGrid($grid) {
+		// Regex pattern to match a single valid Maidenhead grid square (with optional extensions)
+		$singleGridPattern = '[A-R]{2}\d{2}([a-x]{2})?';
+
+		// Regex to match VUCC grids, allowing multiple grids separated by commas
+		$compoundPattern = '/^(' . $singleGridPattern . ')(,' . $singleGridPattern . ')*$/i';
+
+		// Check if the overall format is valid
+		if (preg_match($compoundPattern, $grid) !== 1) {
+			return false;
+		}
+
+		// Split the string by commas to count the number of grid squares
+		$gridArray = explode(',', $grid);
+		$gridCount = count($gridArray);
+
+		// Validate if the count is 1, 2, or 4
+		if ($gridCount === 1 || $gridCount === 2 || $gridCount === 4) {
+			return true;
+		}
+
+		// Return false if it's not exactly 1, 2, or 4 grids
+		return false;
 	}
 
 	public function calculate($qso, $locator1, $locator2, $measurement_base, $var_dist, $custom_date_format) {
@@ -527,6 +552,7 @@ class Logbookadvanced extends CI_Controller {
 		$json_string['wwff']['show'] = $this->input->post('wwff');
 		$json_string['continent']['show'] = $this->input->post('continent');
 		$json_string['qrz']['show'] = $this->input->post('qrz');
+		$json_string['profilename']['show'] = $this->input->post('profilename');
 
 		$obj['column_settings']= json_encode($json_string);
 

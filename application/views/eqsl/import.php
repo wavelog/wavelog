@@ -25,6 +25,7 @@
 			<?php echo form_open_multipart('eqsl/import'); ?>
 
 			<div class="form-check">
+            			<?php if (($next_run ?? '') != '') { echo "<p>".__("The next automatic sync with eQSL will happen at: ").$next_run."</p>"; } ?>
 				<input class="form-check-input" type="radio" name="eqslimport" id="upload" value="upload" checked />
 				<label class="form-check-label" for="exampleRadios1">
 					<?= __("Import from file..."); ?>

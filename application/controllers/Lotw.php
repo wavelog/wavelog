@@ -56,6 +56,9 @@ class Lotw extends CI_Controller {
 		$uploads_folder = $this->permissions->is_really_writable('uploads');
 		$data['uploads_folder'] = $uploads_folder;
 
+		$this->load->model('cron_model');
+		$data['next_run'] = $this->cron_model->get_next_run("lotw_lotw_upload");
+
 		// Load Views
 		$this->load->view('interface_assets/header', $data);
 		$this->load->view('lotw_views/index');
@@ -506,7 +509,9 @@ class Lotw extends CI_Controller {
 			if (!isset($record['app_lotw_rxqsl'])) {
 				continue;
 			}
-
+			if (($record['call'] ?? '') == '') {	// Failsafe if no call is given
+				continue;
+			}
 			$time_on = date('Y-m-d', strtotime($record['qso_date'])) ." ".date('H:i', strtotime($record['time_on']));
 
 			$qsl_date = date('Y-m-d H:i', strtotime($record['app_lotw_rxqsl']));

@@ -12,6 +12,7 @@ class QSO
 	private string $qsoID;
 	private string $qsoDateTime;
 	private string $de;
+	private string $profilename;
 	private string $dx;
 	private string $mode;
 	private string $submode;
@@ -223,6 +224,8 @@ class QSO
 		$this->orbit = $data['orbit'] ?? '';
 
 		$this->contest = $data['contestname'] ?? '';
+
+		$this->profilename = $data['station_profile_name'] ?? '';
 	}
 
 	/**
@@ -477,10 +480,10 @@ class QSO
 
 			if ($data['COL_QRZCOM_QSO_UPLOAD_DATE'] != null) {
 				$timestamp = strtotime($data['COL_QRZCOM_QSO_UPLOAD_DATE']);
-				$qrzstring .=  " ".($timestamp!=''?date($custom_date_format, $timestamp):'');
+				$qrzstring .=  "<br />(".__("last sent")." ".($timestamp!=''?date($custom_date_format, $timestamp):'').")";
 			}
 
-			$qrzstring .= "\" data-bs-toggle=\"tooltip\"";
+			$qrzstring .= "\" data-bs-toggle=\"tooltip\" data-bs-html=\"true\"";
 		}
 
 		if ($data['COL_QRZCOM_QSO_UPLOAD_STATUS'] == "I") {
@@ -980,7 +983,8 @@ class QSO
 			'dok' => $this->getFormattedDok(),
 			'wwff' => $this->getFormattedWwff(),
 			'sig' => $this->getFormattedSig(),
-			'continent' => $this->continent
+			'continent' => $this->continent,
+			'profilename' => $this->profilename
 		];
 	}
 
@@ -992,7 +996,7 @@ class QSO
 		} else if (preg_match('/^DV[ABCDEFGHIKLMNOPQRSTUVWXY]$/', $this->dxDARCDOK)) {
 			$dokstring = '<a href="https://www.darc.de/der-club/distrikte/' . strtolower(substr($this->dxDARCDOK, 2, 1)) . '" target="_blank">' . $this->dxDARCDOK . '</a>';
 		} else if (preg_match('/^Z\d{2}$/', $this->dxDARCDOK)) {
-			$dokstring = '<a href="https://' . $this->dxDARCDOK . 'vfdb.org" target="_blank">' . $this->dxDARCDOK . '</a>';
+			$dokstring = '<a href="https://' . $this->dxDARCDOK . '.vfdb.org" target="_blank">' . $this->dxDARCDOK . '</a>';
 		} else {
 			$dokstring = $this->dxDARCDOK;
 		}

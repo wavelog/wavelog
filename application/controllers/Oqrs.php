@@ -61,11 +61,18 @@ class Oqrs extends CI_Controller {
 	}
 
 	public function get_qsos() {
+		$station_id = $this->input->post('station_id', TRUE);
+
+		if (!is_numeric($station_id)) {
+			$this->session->set_flashdata('warning', __("Invalid Station ID"));
+			redirect('oqrs');
+		}
+
 		$this->load->model('bands');
-		$data['bands'] = $this->bands->get_worked_bands_oqrs($this->input->post('station_id', TRUE));
+		$data['bands'] = $this->bands->get_worked_bands_oqrs($station_id);
 
 		$this->load->model('oqrs_model');
-		$result = $this->oqrs_model->get_qsos($this->input->post('station_id', TRUE), $this->input->post('callsign', TRUE), $data['bands']);
+		$result = $this->oqrs_model->get_qsos($station_id, $this->input->post('callsign', TRUE), $data['bands']);
 		$data['callsign'] = $this->input->post('callsign', TRUE);
 		$data['result'] = $result['qsoarray'];
 		$data['qsocount'] = $result['qsocount'];

@@ -595,7 +595,7 @@ $(document).ready(function () {
         });
     });
 
-    if($('#oqrssearch').val() != '') {
+    if($('#oqrssearch').val() != '' && $('#oqrssearch').val() != null) {
         searchOqrsGrouped();
     }
 
