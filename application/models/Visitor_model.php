@@ -64,7 +64,7 @@ class Visitor_model extends CI_Model {
 	
 		// Map data and default values
 		$centerMapLat = 0; // TODO: Set to user's QTH
-		$centerMapLng = 110;  // TODO: Fix earth wrap
+		$centerMapLng = 0;  // TODO: Fix earth wrap
 		$centerMap = $centerMapLat . $centerMapLng; // used for cached tiles
 		$zoom = 2;
 		$width = 1024;
