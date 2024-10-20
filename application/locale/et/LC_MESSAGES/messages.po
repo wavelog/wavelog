@@ -7,10 +7,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-10-18 14:04+0000\n"
-"PO-Revision-Date: 2024-10-18 12:15+0000\n"
+"PO-Revision-Date: 2024-10-21 06:05+0000\n"
 "Last-Translator: tviitkar <tambet@viitkar.ee>\n"
-"Language-Team: Estonian <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/et/>\n"
+"Language-Team: Estonian <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/et/>\n"
 "Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -115,12 +115,12 @@ msgstr "Tegevus ei ole lubatud!"
 #: application/controllers/Accumulated.php:19
 #: application/views/interface_assets/header.php:152
 msgid "Accumulated Statistics"
-msgstr ""
+msgstr "Kogunenud statistika"
 
 #: application/controllers/Activated_gridmap.php:10
 #: application/views/activated_gridmap/index.php:5
 msgid "Activated Gridsquare Map"
-msgstr ""
+msgstr "Aktiveeritud ruutkaart"
 
 #: application/controllers/Activated_gridmap.php:31
 #: application/controllers/Awards.php:919
@@ -132,23 +132,23 @@ msgstr ""
 #: application/views/visitor/layout/footer.php:22
 #: application/views/visitor/layout/header.php:68
 msgid "Gridsquares"
-msgstr ""
+msgstr "Ruutkaardistik"
 
 #: application/controllers/Activated_gridmap.php:32
 #: application/controllers/Gridmap.php:32
 #: application/controllers/Visitor.php:386
 msgid "Gridsquares confirmed"
-msgstr ""
+msgstr "Kinnitatud ruudkaardistik"
 
 #: application/controllers/Activated_gridmap.php:33
 #: application/controllers/Gridmap.php:33
 #: application/controllers/Visitor.php:387
 msgid "Gridsquares not confirmed"
-msgstr ""
+msgstr "Kinnitamata ruudkaardistik"
 
 #: application/controllers/Activated_gridmap.php:34
 msgid "Total gridsquares activated"
-msgstr ""
+msgstr "Kõik aktiveeritud kaardiruudud"
 
 #: application/controllers/Activators.php:20
 #: application/views/activators/index.php:5
@@ -167,30 +167,30 @@ msgstr ""
 
 #: application/controllers/Adif.php:20
 msgid "date incorrect"
-msgstr ""
+msgstr "ebakorrektne kuupäev"
 
 #: application/controllers/Adif.php:29 application/views/adif/import.php:24
 msgid "ADIF Export"
-msgstr ""
+msgstr "ADIF eksporter"
 
 #: application/controllers/Adif.php:145
 #: application/views/interface_assets/header.php:388
 msgid "ADIF Import / Export"
-msgstr ""
+msgstr "ADIF Import / Eksport"
 
 #: application/controllers/Adif.php:169 application/views/adif/import.php:21
 #: application/views/lotw/import.php:3
 msgid "ADIF Import"
-msgstr ""
+msgstr "ADIF import"
 
 #: application/controllers/Adif.php:209
 msgid "Unsupported Filetype"
-msgstr ""
+msgstr "Tundmatu failitüüp"
 
 #: application/controllers/Adif.php:242
 #: application/views/adif/import_failed.php:12
 msgid "ADIF Import failed!"
-msgstr ""
+msgstr "ADIF faili importimine ebaõnnestus!"
 
 #: application/controllers/Adif.php:256
 msgid "Station Profile not valid for User"
@@ -199,47 +199,47 @@ msgstr ""
 #: application/controllers/Adif.php:263
 #: application/views/adif/import_success.php:12
 msgid "ADIF Imported"
-msgstr ""
+msgstr "ADIF fail imporditud"
 
 #: application/controllers/Adif.php:274
 msgid "DCL Import"
-msgstr ""
+msgstr "DCL import"
 
 #: application/controllers/Adif.php:332
 msgid "DCL Data Imported"
-msgstr ""
+msgstr "DCL andmed imporditud"
 
 #: application/controllers/Api.php:26
 msgid "API"
-msgstr ""
+msgstr "API"
 
 #: application/controllers/Api.php:50 application/views/api/description.php:26
 msgid "API Description"
-msgstr ""
+msgstr "API kirjeldus"
 
 #: application/controllers/Api.php:51
 msgid "API Key is required. Do not change this field"
-msgstr ""
+msgstr "API võti on kohustuslik. Ärge muutke seda välja"
 
 #: application/controllers/Api.php:57
 msgid "Edit API Description"
-msgstr ""
+msgstr "Muuda API kirjeldust"
 
 #: application/controllers/Api.php:69
 #, php-format
 msgid "API Key %s description has been updated."
-msgstr ""
+msgstr "API võtme %s kirjeldus on muudetud."
 
 #: application/controllers/Api.php:109
 #, php-format
 msgid "API Key %s has been deleted"
-msgstr ""
+msgstr "API võti %s on kustutatud"
 
 #: application/controllers/Awards.php:22
 #: application/views/interface_assets/header.php:160
 #: application/views/qso/edit_ajax.php:35
 msgid "Awards"
-msgstr ""
+msgstr "Auhinnad"
 
 #: application/controllers/Awards.php:92 application/controllers/Awards.php:172
 #: application/controllers/Awards.php:327
@@ -260,7 +260,7 @@ msgstr ""
 #: application/controllers/Awards.php:1908
 #, php-format
 msgid "Awards - %s"
-msgstr ""
+msgstr "Auhinnad - %s"
 
 #: application/controllers/Awards.php:92
 #: application/views/awards/dok/index.php:149
@@ -273,7 +273,7 @@ msgstr ""
 #: application/views/qso/index.php:519 application/views/user/edit.php:603
 #: application/views/view_log/qso.php:363
 msgid "DOK"
-msgstr ""
+msgstr "DOK"
 
 #: application/controllers/Awards.php:172 application/views/awards/index.php:7
 #: application/views/bandmap/list.php:115 application/views/bands/index.php:48
@@ -300,17 +300,17 @@ msgstr "DXCC"
 
 #: application/controllers/Awards.php:251
 msgid "Awards - WAJA"
-msgstr ""
+msgstr "Auhinnad - WAJA"
 
 #: application/controllers/Awards.php:327 application/views/bands/index.php:51
 #: application/views/interface_assets/header.php:214
 msgid "JCC"
-msgstr ""
+msgstr "JCC"
 
 #: application/controllers/Awards.php:375 application/views/bands/index.php:57
 #: application/views/interface_assets/header.php:172
 msgid "VUCC"
-msgstr ""
+msgstr "VUCC"
 
 #: application/controllers/Awards.php:405
 msgid "Log View - VUCC"
@@ -325,11 +325,11 @@ msgstr ""
 #: application/controllers/Timeline.php:117
 #: application/controllers/Timeline.php:120
 msgid "Log View"
-msgstr ""
+msgstr "Logi Vaade"
 
 #: application/controllers/Awards.php:454
 msgid " and band "
-msgstr ""
+msgstr " ja sagedusala "
 
 #: application/controllers/Awards.php:457
 msgid " and sat "
@@ -375,7 +375,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:9
 #: application/views/visitor/index.php:21
 msgid "SOTA"
-msgstr ""
+msgstr "SOTA"
 
 #: application/controllers/Awards.php:503
 #: application/controllers/Logbook.php:1354
@@ -395,7 +395,7 @@ msgstr ""
 #: application/views/user/edit.php:324
 #: application/views/view_log/partial/log_ajax.php:10
 msgid "WWFF"
-msgstr ""
+msgstr "WWFF"
 
 #: application/controllers/Awards.php:520
 #: application/controllers/Logbook.php:1355
@@ -415,7 +415,7 @@ msgstr ""
 #: application/views/user/edit.php:325
 #: application/views/view_log/partial/log_ajax.php:11
 msgid "POTA"
-msgstr ""
+msgstr "POTA"
 
 #: application/controllers/Awards.php:591
 msgid "CQ Magazine WAZ"
@@ -6238,7 +6238,7 @@ msgstr ""
 #: application/views/debug/index.php:148 application/views/debug/index.php:159
 #: application/views/debug/index.php:171
 msgid "Success"
-msgstr ""
+msgstr "Õnnestumine"
 
 #: application/views/debug/index.php:128 application/views/debug/index.php:139
 #: application/views/debug/index.php:150 application/views/debug/index.php:161
@@ -7014,6 +7014,9 @@ msgid ""
 "Check which DXCC for this particular location is the correct one. If you are "
 "sure, ignore this warning."
 msgstr ""
+"Peatu hetkeks. DXCC andmebaas on aegunud. Kontrolli, milline DXCC on antud "
+"asukoha jaoks korrektne. Kui olete oma valikus kindel, siis võite seda "
+"teadet ignoreerida."
 
 #: application/views/interface_assets/footer.php:730
 #: application/views/logbookadvanced/index.php:544
