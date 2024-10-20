@@ -547,6 +547,7 @@ function mapQsos(form) {
 					wwff: form.wwff.value,
 					qslimages: form.qslimages.value,
 					continent: form.continent.value,
+					contest: form.contest.value,
 				},
 				success: function(data) {
 					loadMapOptions(data);
@@ -635,6 +636,7 @@ function mapGlobeQsos(form) {
 					wwff: form.wwff.value,
 					qslimages: form.qslimages.value,
 					continent: form.continent.value,
+					contest: form.contest.value,
 				},
 				success: function(data) {
 					globemap(data);
