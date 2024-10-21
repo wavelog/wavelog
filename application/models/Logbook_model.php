@@ -4025,6 +4025,13 @@ class Logbook_model extends CI_Model {
 				$input_qsl_sent_via = "";
 			}
 
+			if (isset($record['qslmsg'])) {
+				$input_qslmsg = $record['qslmsg'];
+			} else {
+				$options_object = $this->user_options_model->get_options('eqsl_default_qslmsg', array('option_name' => 'key_station_id', 'option_key' => $station_id), $station_profile->user_id)->result();
+				$input_qslmsg = (isset($options_object[0]->option_value)) ? $options_object[0]->option_value : '';
+			}
+
 			// Validate Clublog-Fields
 			if (isset($record['clublog_qso_upload_status'])) {
 				$input_clublog_qsl_sent = mb_strimwidth($record['clublog_qso_upload_status'], 0, 1);
@@ -4249,7 +4256,7 @@ class Logbook_model extends CI_Model {
 				'COL_QSL_SENT' => $input_qsl_sent,
 				'COL_QSL_SENT_VIA' => $input_qsl_sent_via,
 				'COL_QSL_VIA' => (!empty($record['qsl_via'])) ? $record['qsl_via'] : '',
-				'COL_QSLMSG' => (!empty($record['qslmsg'])) ? $record['qslmsg'] : '',
+				'COL_QSLMSG' => $input_qslmsg,
 				'COL_QSLRDATE' => $input_qslrdate,
 				'COL_QSLSDATE' => $input_qslsdate,
 				'COL_QSO_COMPLETE' => (!empty($record['qso_complete'])) ? $record['qso_complete'] : '',
