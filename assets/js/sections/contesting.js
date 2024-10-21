@@ -835,7 +835,7 @@ async function refresh_qso_table(data) {
 
                     data.push([
 						this.col_time_on,
-						'<a id="edit_qso" href="javascript:displayQso(' + this.col_primary_key + ');">'+this.col_call + '</a>',
+						'<a href="javascript:displayQso(' + this.col_primary_key + ');">'+this.col_call + '</a>',
                         this.col_band,
                         mode,
                         this.col_rst_sent,
