@@ -110,7 +110,7 @@ function sort_exchange() {
 	}
 
 	// Split the squence into an array
-	let selectedOrder = exchangeSelect.val().split('-'); 
+	let selectedOrder = exchangeSelect.val().split('-');
 
 	// Map sequence to corresponding SENT elements
 	let mapping = {
@@ -255,7 +255,7 @@ document.onkeyup = function (e) {
 			$("#callsign").focus();
 			return false;
 		}
-        
+
 		if (exchangetype == 'Exchange') {
 			if ($(document.activeElement).attr("id") == "callsign") {
 				$("#exch_rcvd").focus();
@@ -285,7 +285,7 @@ document.onkeyup = function (e) {
 		}
 		else if (exchangetype == 'Serialexchange') {
 			let filteredSequence = sequence.filter(key => key !== 'g');
-		
+
 			if ($(document.activeElement).attr("id") == "callsign") {
 				$(`#${mapping[filteredSequence[0]]}`).focus();
 				return false;
@@ -834,8 +834,8 @@ async function refresh_qso_table(data) {
                     }
 
                     data.push([
-                        this.col_time_on,
-                        this.col_call,
+						this.col_time_on,
+						'<a href="javascript:displayQso(' + this.col_primary_key + ');">'+this.col_call + '</a>',
                         this.col_band,
                         mode,
                         this.col_rst_sent,
