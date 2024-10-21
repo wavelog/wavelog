@@ -1766,7 +1766,7 @@ class Logbook_model extends CI_Model {
 
 	// Set Paper to received
 	function paperqsl_update($qso_id, $method) {
-		if ($this->logbook_model->check_qso_is_accessible($qso_id)) {
+		if ($this->check_qso_is_accessible($qso_id)) {
 
 			$data = array(
 				'COL_QSLRDATE' => date('Y-m-d H:i:s'),
@@ -1788,7 +1788,7 @@ class Logbook_model extends CI_Model {
 
 	// Set Paper to sent
 	function paperqsl_update_sent($qso_id, $method) {
-		if ($this->logbook_model->check_qso_is_accessible($qso_id)) {
+		if ($this->check_qso_is_accessible($qso_id)) {
 			if ($method != '') {
 				$data = array(
 					'COL_QSLSDATE' => date('Y-m-d H:i:s'),
@@ -1815,7 +1815,7 @@ class Logbook_model extends CI_Model {
 
 	// Set Paper to requested
 	function paperqsl_requested($qso_id, $method) {
-		if ($this->logbook_model->check_qso_is_accessible($qso_id)) {
+		if ($this->check_qso_is_accessible($qso_id)) {
 
 			$data = array(
 				'COL_QSLSDATE' => date('Y-m-d H:i:s'),
@@ -1835,7 +1835,7 @@ class Logbook_model extends CI_Model {
 
 
 	function paperqsl_ignore($qso_id, $method) {
-		if ($this->logbook_model->check_qso_is_accessible($qso_id)) {
+		if ($this->check_qso_is_accessible($qso_id)) {
 
 			$data = array(
 				'COL_QSLSDATE' => date('Y-m-d H:i:s'),
@@ -1940,7 +1940,7 @@ class Logbook_model extends CI_Model {
 	}
 
 	function get_qso($id, $trusted = false) {
-		if ($trusted || ($this->logbook_model->check_qso_is_accessible($id))) {
+		if ($trusted || ($this->check_qso_is_accessible($id))) {
 			$this->db->select($this->config->item('table_name') . '.*, station_profile.*, dxcc_entities.*, coalesce(dxcc_entities_2.name, "- NONE -") as station_country, dxcc_entities_2.end as station_end, eQSL_images.image_file as eqsl_image_file, lotw_users.callsign as lotwuser, lotw_users.lastupload, primary_subdivisions.subdivision');
 			$this->db->from($this->config->item('table_name'));
 			$this->db->join('dxcc_entities', $this->config->item('table_name') . '.col_dxcc = dxcc_entities.adif', 'left');
