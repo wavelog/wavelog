@@ -11,9 +11,9 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-10-21 06:05+0000\n"
-"PO-Revision-Date: 2024-10-18 12:15+0000\n"
-"Last-Translator: hellofinch <543933756@qq.com>\n"
+"POT-Creation-Date: 2024-10-18 14:04+0000\n"
+"PO-Revision-Date: 2024-10-21 06:05+0000\n"
+"Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
 "org/projects/wavelog/main-translation/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -954,11 +954,13 @@ msgstr "日志簿"
 #: application/views/logbookadvanced/useroptions.php:62
 #: application/views/oqrs/qsolist.php:12
 #: application/views/qslprint/qslprint.php:28
-#: application/views/qslprint/qsolist.php:15
-#: application/views/qslprint/qsolist.php:17
+#: application/views/qslprint/qsolist.php:14
+#: application/views/qslprint/qsolist.php:16
 #: application/views/qso/edit_ajax.php:37 application/views/qso/index.php:45
 #: application/views/timeline/index.php:56 application/views/user/edit.php:562
 #: application/views/user/edit.php:649
+#: application/views/qslprint/qsolist.php:15
+#: application/views/qslprint/qsolist.php:17
 msgid "QSL"
 msgstr "QSL"
 
@@ -981,14 +983,17 @@ msgstr "QSL"
 #: application/views/logbookadvanced/useroptions.php:66
 #: application/views/oqrs/qsolist.php:17 application/views/oqrs/qsolist.php:159
 #: application/views/oqrs/qsolist.php:174
-#: application/views/qslprint/qsolist.php:22
-#: application/views/qslprint/qsolist.php:169
-#: application/views/qslprint/qsolist.php:184
+#: application/views/qslprint/qsolist.php:21
+#: application/views/qslprint/qsolist.php:167
+#: application/views/qslprint/qsolist.php:182
 #: application/views/qso/edit_ajax.php:412
 #: application/views/search/search_result_ajax.php:298
 #: application/views/search/search_result_ajax.php:313
 #: application/views/timeline/index.php:60 application/views/user/edit.php:563
 #: application/views/user/edit.php:659 application/views/view_log/qso.php:420
+#: application/views/qslprint/qsolist.php:22
+#: application/views/qslprint/qsolist.php:169
+#: application/views/qslprint/qsolist.php:184
 msgid "LoTW"
 msgstr "LoTW"
 
@@ -1010,15 +1015,18 @@ msgstr "LoTW"
 #: application/views/logbookadvanced/useroptions.php:70
 #: application/views/oqrs/qsolist.php:14 application/views/oqrs/qsolist.php:130
 #: application/views/oqrs/qsolist.php:143
-#: application/views/qslprint/qsolist.php:19
-#: application/views/qslprint/qsolist.php:140
-#: application/views/qslprint/qsolist.php:153
+#: application/views/qslprint/qsolist.php:18
+#: application/views/qslprint/qsolist.php:138
+#: application/views/qslprint/qsolist.php:151
 #: application/views/qso/edit_ajax.php:409
 #: application/views/search/search_result_ajax.php:260
 #: application/views/search/search_result_ajax.php:273
 #: application/views/station_profile/edit.php:305
 #: application/views/timeline/index.php:64 application/views/user/edit.php:564
 #: application/views/user/edit.php:667 application/views/user/edit.php:731
+#: application/views/qslprint/qsolist.php:19
+#: application/views/qslprint/qsolist.php:140
+#: application/views/qslprint/qsolist.php:153
 msgid "eQSL"
 msgstr "eQSL"
 
@@ -6031,7 +6039,7 @@ msgstr "您的日志本没有绑定电台。单击 %s这里%s 进行设置。"
 #, php-format
 msgid "You have had %d QSO today"
 msgid_plural "You have had %d QSOs today"
-msgstr[0] "您今天有 %d 个QSO"
+msgstr[0] "您今天有 %d 个 QSO"
 
 #: application/views/dashboard/index.php:119
 msgid "You have made no QSOs today; time to turn on the radio!"
@@ -6076,9 +6084,9 @@ msgstr "待通联"
 #: application/views/dashboard/index.php:358
 #: application/views/oqrs/qsolist.php:50 application/views/oqrs/qsolist.php:130
 #: application/views/oqrs/qsolist.php:159
-#: application/views/qslprint/qsolist.php:60
-#: application/views/qslprint/qsolist.php:140
-#: application/views/qslprint/qsolist.php:169
+#: application/views/qslprint/qsolist.php:58
+#: application/views/qslprint/qsolist.php:138
+#: application/views/qslprint/qsolist.php:167
 #: application/views/qso/edit_ajax.php:421
 #: application/views/qso/edit_ajax.php:482
 #: application/views/qso/edit_ajax.php:518
@@ -6100,6 +6108,9 @@ msgstr "待通联"
 #: application/views/widgets/qsos.php:31 src/QSLManager/QSO.php:275
 #: src/QSLManager/QSO.php:378 src/QSLManager/QSO.php:430
 #: src/QSLManager/QSO.php:468 src/QSLManager/QSO.php:531
+#: application/views/qslprint/qsolist.php:60
+#: application/views/qslprint/qsolist.php:140
+#: application/views/qslprint/qsolist.php:169
 msgid "Sent"
 msgstr "已发送"
 
@@ -6109,9 +6120,9 @@ msgstr "已发送"
 #: application/views/dashboard/index.php:364
 #: application/views/oqrs/qsolist.php:92 application/views/oqrs/qsolist.php:143
 #: application/views/oqrs/qsolist.php:174
-#: application/views/qslprint/qsolist.php:102
-#: application/views/qslprint/qsolist.php:153
-#: application/views/qslprint/qsolist.php:184
+#: application/views/qslprint/qsolist.php:100
+#: application/views/qslprint/qsolist.php:151
+#: application/views/qslprint/qsolist.php:182
 #: application/views/qso/edit_ajax.php:454
 #: application/views/qso/edit_ajax.php:495
 #: application/views/qso/edit_ajax.php:530
@@ -6131,6 +6142,9 @@ msgstr "已发送"
 #: application/views/visitor/index.php:337 src/QSLManager/QSO.php:320
 #: src/QSLManager/QSO.php:401 src/QSLManager/QSO.php:443
 #: src/QSLManager/QSO.php:507 src/QSLManager/QSO.php:544
+#: application/views/qslprint/qsolist.php:102
+#: application/views/qslprint/qsolist.php:153
+#: application/views/qslprint/qsolist.php:184
 msgid "Received"
 msgstr "已收到"
 
@@ -6145,8 +6159,8 @@ msgstr "已收到"
 #: application/views/logbookadvanced/index.php:426
 #: application/views/logbookadvanced/index.php:437
 #: application/views/oqrs/qsolist.php:56 application/views/oqrs/qsolist.php:98
-#: application/views/qslprint/qsolist.php:66
-#: application/views/qslprint/qsolist.php:108
+#: application/views/qslprint/qsolist.php:64
+#: application/views/qslprint/qsolist.php:106
 #: application/views/qso/edit_ajax.php:426
 #: application/views/qso/edit_ajax.php:459
 #: application/views/qso/edit_ajax.php:487
@@ -6163,7 +6177,8 @@ msgstr "已收到"
 #: application/views/view_log/partial/log_ajax.php:275
 #: application/views/visitor/index.php:301 src/QSLManager/QSO.php:281
 #: src/QSLManager/QSO.php:326 src/QSLManager/QSO.php:386
-#: src/QSLManager/QSO.php:409
+#: src/QSLManager/QSO.php:409 application/views/qslprint/qsolist.php:66
+#: application/views/qslprint/qsolist.php:108
 msgid "Requested"
 msgstr "已请求"
 
@@ -6838,7 +6853,7 @@ msgstr "所有日志都上传到了 eQSL，继续通联吧！"
 
 #: application/views/eqsl/import.php:28
 msgid "The next automatic sync with eQSL will happen at: "
-msgstr ""
+msgstr "eQSL 下次自动同步时间： "
 
 #: application/views/eqsl/import.php:31
 msgid "Import from file..."
@@ -6959,10 +6974,9 @@ msgstr "由于 QSO 正在按顺序处理，您需要等待一段时间。"
 #: application/views/hrdlog/export.php:34
 #: application/views/logbookadvanced/index.php:670
 #: application/views/logbookadvanced/useroptions.php:150
-#: application/views/qrz/export.php:39
+#: application/views/qrz/export.php:39 application/views/webadif/export.php:41
 #: application/views/qslprint/qslprint.php:30
 #: application/views/qslprint/qsolist.php:14
-#: application/views/webadif/export.php:41
 msgid "Profile name"
 msgstr "台站"
 
@@ -7814,8 +7828,8 @@ msgstr "QSL 发送"
 #: application/views/logbookadvanced/index.php:405
 #: application/views/logbookadvanced/index.php:427
 #: application/views/oqrs/qsolist.php:53 application/views/oqrs/qsolist.php:95
-#: application/views/qslprint/qsolist.php:63
-#: application/views/qslprint/qsolist.php:105
+#: application/views/qslprint/qsolist.php:61
+#: application/views/qslprint/qsolist.php:103
 #: application/views/qso/edit_ajax.php:427
 #: application/views/qso/edit_ajax.php:488
 #: application/views/qso/edit_ajax.php:524
@@ -7825,6 +7839,8 @@ msgstr "QSL 发送"
 #: application/views/view_log/partial/log_ajax.php:145
 #: application/views/view_log/partial/log_ajax.php:183
 #: src/QSLManager/QSO.php:278 src/QSLManager/QSO.php:323
+#: application/views/qslprint/qsolist.php:63
+#: application/views/qslprint/qsolist.php:105
 msgid "Queued"
 msgstr "已排队"
 
@@ -7839,10 +7855,10 @@ msgstr "已排队"
 #: application/views/oqrs/qsolist.php:59 application/views/oqrs/qsolist.php:101
 #: application/views/oqrs/qsolist.php:166
 #: application/views/oqrs/qsolist.php:181
-#: application/views/qslprint/qsolist.php:69
-#: application/views/qslprint/qsolist.php:111
-#: application/views/qslprint/qsolist.php:176
-#: application/views/qslprint/qsolist.php:191
+#: application/views/qslprint/qsolist.php:67
+#: application/views/qslprint/qsolist.php:109
+#: application/views/qslprint/qsolist.php:174
+#: application/views/qslprint/qsolist.php:189
 #: application/views/qso/edit_ajax.php:428
 #: application/views/qso/edit_ajax.php:460
 #: application/views/qso/edit_ajax.php:489
@@ -7862,7 +7878,10 @@ msgstr "已排队"
 #: application/views/view_log/partial/log_ajax.php:289
 #: src/QSLManager/QSO.php:284 src/QSLManager/QSO.php:329
 #: src/QSLManager/QSO.php:382 src/QSLManager/QSO.php:405
-#: src/QSLManager/QSO.php:490
+#: src/QSLManager/QSO.php:490 application/views/qslprint/qsolist.php:69
+#: application/views/qslprint/qsolist.php:111
+#: application/views/qslprint/qsolist.php:176
+#: application/views/qslprint/qsolist.php:191
 msgid "Invalid (Ignore)"
 msgstr "无效(忽略)"
 
@@ -7881,9 +7900,9 @@ msgstr "QSL 发送方式"
 #: application/views/oqrs/request_grouped.php:49
 #: application/views/oqrs/showrequests.php:12
 #: application/views/qslprint/qslprint.php:5
-#: application/views/qslprint/qsolist.php:79
-#: application/views/qslprint/qsolist.php:121
-#: application/views/qslprint/qsolist.php:212
+#: application/views/qslprint/qsolist.php:77
+#: application/views/qslprint/qsolist.php:119
+#: application/views/qslprint/qsolist.php:210
 #: application/views/qso/edit_ajax.php:439
 #: application/views/qso/edit_ajax.php:472 application/views/qso/index.php:589
 #: application/views/search/search_result_ajax.php:199
@@ -7891,6 +7910,9 @@ msgstr "QSL 发送方式"
 #: application/views/view_log/partial/log_ajax.php:164
 #: application/views/view_log/partial/log_ajax.php:202
 #: src/QSLManager/QSO.php:301 src/QSLManager/QSO.php:344
+#: application/views/qslprint/qsolist.php:79
+#: application/views/qslprint/qsolist.php:121
+#: application/views/qslprint/qsolist.php:212
 msgid "Bureau"
 msgstr "卡片局"
 
@@ -7899,9 +7921,9 @@ msgstr "卡片局"
 #: application/views/oqrs/qsolist.php:72 application/views/oqrs/qsolist.php:114
 #: application/views/oqrs/showrequests.php:13
 #: application/views/qslprint/qslprint.php:6
-#: application/views/qslprint/qsolist.php:82
-#: application/views/qslprint/qsolist.php:124
-#: application/views/qslprint/qsolist.php:213
+#: application/views/qslprint/qsolist.php:80
+#: application/views/qslprint/qsolist.php:122
+#: application/views/qslprint/qsolist.php:211
 #: application/views/qso/edit_ajax.php:438
 #: application/views/qso/edit_ajax.php:471 application/views/qso/index.php:588
 #: application/views/search/search_result_ajax.php:202
@@ -7909,6 +7931,9 @@ msgstr "卡片局"
 #: application/views/view_log/partial/log_ajax.php:167
 #: application/views/view_log/partial/log_ajax.php:205
 #: src/QSLManager/QSO.php:304 src/QSLManager/QSO.php:347
+#: application/views/qslprint/qsolist.php:82
+#: application/views/qslprint/qsolist.php:124
+#: application/views/qslprint/qsolist.php:213
 msgid "Direct"
 msgstr "直邮"
 
@@ -7917,9 +7942,9 @@ msgstr "直邮"
 #: application/views/oqrs/qsolist.php:78 application/views/oqrs/qsolist.php:120
 #: application/views/oqrs/showrequests.php:14
 #: application/views/qslprint/qslprint.php:7
-#: application/views/qslprint/qsolist.php:88
-#: application/views/qslprint/qsolist.php:130
-#: application/views/qslprint/qsolist.php:214
+#: application/views/qslprint/qsolist.php:86
+#: application/views/qslprint/qsolist.php:128
+#: application/views/qslprint/qsolist.php:212
 #: application/views/qso/edit_ajax.php:440
 #: application/views/qso/edit_ajax.php:473 application/views/qso/index.php:590
 #: application/views/search/search_result_ajax.php:208
@@ -7927,17 +7952,21 @@ msgstr "直邮"
 #: application/views/view_log/partial/log_ajax.php:173
 #: application/views/view_log/partial/log_ajax.php:211
 #: src/QSLManager/QSO.php:310 src/QSLManager/QSO.php:353
+#: application/views/qslprint/qsolist.php:88
+#: application/views/qslprint/qsolist.php:130
+#: application/views/qslprint/qsolist.php:214
 msgid "Electronic"
 msgstr "电子"
 
 #: application/views/logbookadvanced/index.php:363
 #: application/views/logbookadvanced/index.php:373
 #: application/views/oqrs/qsolist.php:117
-#: application/views/qslprint/qsolist.php:127
+#: application/views/qslprint/qsolist.php:125
 #: application/views/qso/edit_ajax.php:441
 #: application/views/qso/edit_ajax.php:474 application/views/qso/index.php:591
 #: application/views/search/search_result_ajax.php:247
 #: application/views/view_log/partial/log_ajax.php:208
+#: application/views/qslprint/qsolist.php:127
 msgid "Manager"
 msgstr "管理员"
 
@@ -8336,7 +8365,7 @@ msgstr "信息"
 
 #: application/views/lotw_views/index.php:144
 msgid "The next automatic sync with LoTW will happen at: "
-msgstr ""
+msgstr "LoTW 下次自动同步时间： "
 
 #: application/views/lotw_views/index.php:146
 msgid "Manual Sync"
@@ -8925,16 +8954,18 @@ msgstr "电台站"
 
 #: application/views/oqrs/qsolist.php:75
 #: application/views/qslprint/qslprint.php:28
-#: application/views/qslprint/qsolist.php:15
-#: application/views/qslprint/qsolist.php:85
+#: application/views/qslprint/qsolist.php:14
+#: application/views/qslprint/qsolist.php:83
 #: application/views/qso/index.php:597
 #: application/views/search/search_result_ajax.php:205
 #: application/views/view_log/partial/log_ajax.php:170
-#: src/QSLManager/QSO.php:307
+#: src/QSLManager/QSO.php:307 application/views/qslprint/qsolist.php:15
+#: application/views/qslprint/qsolist.php:85
 msgid "Via"
 msgstr "通过"
 
 #: application/views/oqrs/qsolist.php:188
+#: application/views/qslprint/qsolist.php:196
 #: application/views/qslprint/qsolist.php:198
 msgid "Add to print queue"
 msgstr "添加到打印队列中"
@@ -9070,7 +9101,7 @@ msgstr "计算"
 
 #: application/views/qrz/export.php:27
 msgid "The next automatic Upload to QRZ will happen at: "
-msgstr ""
+msgstr "QRZ.com 下次自动同步时间： "
 
 #: application/views/qrz/export.php:28
 msgid ""
@@ -9088,7 +9119,7 @@ msgstr ""
 
 #: application/views/qrz/export.php:74
 msgid "The next automatic Download from QRZ-QSLs will happen at: "
-msgstr ""
+msgstr "QRZ-QSL 下次自动同步时间： "
 
 #: application/views/qrz/export.php:75
 msgid ""
@@ -9155,60 +9186,75 @@ msgid ""
 "'QSL Sent' field."
 msgstr "QSL 请求是指'已请求'或'已排队'的 QSL 信息。"
 
+#: application/views/qslprint/qslprint.php:30
+#: application/views/qslprint/qsolist.php:15
 #: application/views/qslprint/qslprint.php:31
 #: application/views/qslprint/qsolist.php:16
 msgid "Send Method"
 msgstr "发送方式"
 
+#: application/views/qslprint/qslprint.php:31
 #: application/views/qslprint/qslprint.php:32
 msgid "Mark as sent"
 msgstr "标记为'已发送’"
 
+#: application/views/qslprint/qslprint.php:32
 #: application/views/qslprint/qslprint.php:33
 msgid "Remove"
 msgstr "删除"
 
-#: application/views/qslprint/qslprint.php:34
+#: application/views/qslprint/qslprint.php:33
 #: application/views/simplefle/index.php:139
+#: application/views/qslprint/qslprint.php:34
 msgid "QSO List"
 msgstr "QSO 列表"
 
+#: application/views/qslprint/qslprint.php:67
 #: application/views/qslprint/qslprint.php:69
 msgid "Mark selected QSOs as printed"
 msgstr "标记选中的 QSL 信息为'已打印'"
 
+#: application/views/qslprint/qslprint.php:69
 #: application/views/qslprint/qslprint.php:71
 msgid "Remove selected QSOs from the queue"
 msgstr "从队列中删除选中的 QSL 信息"
 
+#: application/views/qslprint/qslprint.php:71
 #: application/views/qslprint/qslprint.php:73
 msgid "Export CSV-file"
 msgstr "导出 CSV 文件"
 
+#: application/views/qslprint/qslprint.php:71
 #: application/views/qslprint/qslprint.php:73
 msgid "Export requested QSLs to CSV-file"
 msgstr "导出QSL请求为 CSV 文件"
 
+#: application/views/qslprint/qslprint.php:73
 #: application/views/qslprint/qslprint.php:75
 msgid "Export ADIF"
 msgstr "导出 ADIF"
 
+#: application/views/qslprint/qslprint.php:73
 #: application/views/qslprint/qslprint.php:75
 msgid "Export requested QSLs to ADIF-file"
 msgstr "导出QSL请求为 ADIF 文件"
 
+#: application/views/qslprint/qslprint.php:75
 #: application/views/qslprint/qslprint.php:77
 msgid "Mark QSLs as printed"
 msgstr "标记 QSL 已打印"
 
+#: application/views/qslprint/qslprint.php:75
 #: application/views/qslprint/qslprint.php:77
 msgid "Mark requested QSLs as sent"
 msgstr "标记 QSL 请求为'已发送'"
 
+#: application/views/qslprint/qslprint.php:79
 #: application/views/qslprint/qslprint.php:81
 msgid "No QSLs to print were found!"
 msgstr "没有找到需要打印的 QSL 信息！"
 
+#: application/views/qslprint/qsolist.php:205
 #: application/views/qslprint/qsolist.php:207
 msgid ""
 "No additional QSO's were found. That means they are probably already in the "
