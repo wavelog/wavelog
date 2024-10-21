@@ -1,6 +1,6 @@
 <?php
 if ($qsos->result() != NULL) {
-	echo '<table style="width:100%" class="qsolist table-sm table-bordered table-hover table-striped table-condensed">
+	echo '<table style="width:100%" class="qsolist table table-sm table-bordered table-hover table-striped table-condensed">
 	<thead>
 	<tr>
 	<th style=\'text-align: center\'>'.__("Callsign").'</th>
@@ -11,6 +11,7 @@ if ($qsos->result() != NULL) {
 	<th style=\'text-align: center\'>' . __("RST (S)") . '</th>
 	<th style=\'text-align: center\'>' . __("RST (R)") . '</th>
 	<th style=\'text-align: center\'>' . __("Station") . '</th>
+	<th style=\'text-align: center\'>' . __("Profile name") . '</th>
 	<th style=\'text-align: center\'>' . __("QSL") . ' ' . __("Via") . '</th>
 	<th style=\'text-align: center\'>' . __("Send Method") . '</th>
 	<th style=\'text-align: center\'>' . __("QSL") . '</th>';
@@ -43,6 +44,7 @@ if ($qsos->result() != NULL) {
 		echo '<td style=\'text-align: center\'>' . $qsl->COL_RST_SENT . '</td>';
 		echo '<td style=\'text-align: center\'>' . $qsl->COL_RST_RCVD . '</td>';
 		echo '<td style=\'text-align: center\'><span class="badge text-bg-light">' . $qsl->station_callsign . '</span></td>';
+		echo '<td style=\'text-align: center\'>' . $qsl->station_profile_name . '</span></td>';
 		echo '<td style=\'text-align: center\'>' . $qsl->COL_QSL_VIA . '</td>';
 		echo '<td style=\'text-align: center\'>'; echo_qsl_sent_via($qsl->COL_QSL_SENT_VIA); echo '</td>';
 		echo '<td style=\'text-align: center\' class="qsl">';
