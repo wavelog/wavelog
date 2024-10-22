@@ -15,7 +15,7 @@ class Contesting_model extends CI_Model {
 		if ($date == false) $date = DateTime::createFromFormat('d-m-Y H:i', $qsoarray[0]);
 		$date = $date->format('Y-m-d H:i:s');
 
-		$sql = "SELECT date_format(col_time_on, '%d-%m-%Y %H:%i:%s') as col_time_on, col_call, col_band, col_mode,
+		$sql = "SELECT col_primary_key, date_format(col_time_on, '%d-%m-%Y %H:%i:%s') as col_time_on, col_call, col_band, col_mode,
 			col_submode, col_rst_sent, col_rst_rcvd, coalesce(col_srx, '') col_srx, coalesce(col_srx_string, '') col_srx_string,
 			coalesce(col_stx, '') col_stx, coalesce(col_stx_string, '') col_stx_string, coalesce(col_gridsquare, '') col_gridsquare,
 			coalesce(col_vucc_grids, '') col_vucc_grids FROM " .
@@ -101,7 +101,7 @@ class Contesting_model extends CI_Model {
 		}
 
 		/**
-		 * catch the case if the user already logged a QSO with contest a and then switches to contest b 
+		 * catch the case if the user already logged a QSO with contest a and then switches to contest b
 		 * this case is similar to a new session, therefore we need to reset the qso list.
 		 * Anyway we try to catch this case by disabling the contest field in the form if the user already logged a QSO.
 		 * Only "Start a new contest session" is allowed to change the contest. So this is just the fallback.
@@ -380,7 +380,7 @@ class Contesting_model extends CI_Model {
 
 	function get_contest_bands($station_id, $contestid, $from, $to) {
 
-		//get distinct bands for the selected timeframe	
+		//get distinct bands for the selected timeframe
 		$binding = [];
 		$sql = "select distinct COL_BAND band
 			from " . $this->config->item('table_name') . "

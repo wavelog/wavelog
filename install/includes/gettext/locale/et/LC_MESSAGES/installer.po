@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-10-17 14:22+0000\n"
-"PO-Revision-Date: 2024-10-18 12:15+0000\n"
+"PO-Revision-Date: 2024-10-21 06:05+0000\n"
 "Last-Translator: tviitkar <tambet@viitkar.ee>\n"
 "Language-Team: Estonian <https://translate.wavelog.org/projects/wavelog/"
 "installer/et/>\n"
@@ -173,6 +173,10 @@ msgid ""
 "logging software. Follow the steps in each tab to configure and install "
 "Wavelog on your server."
 msgstr ""
+"Käesolev programm juhendab teid Wavelogi installeerimisels.<br> Wavelog on "
+"mitmekülgne veebipõhine amatöörraadio sidelogide haldamiseks mõeldud "
+"tarkvara. Järgige hoolikalt järgnevaid instruktsioone, et Wavelog oma "
+"serverisse installeerida."
 
 #: install/index.php:64
 msgid "Discussions"
@@ -184,6 +188,8 @@ msgid ""
 "If you encounter any issues or have questions, refer to the documentation "
 "(%s) or community forum (%s) on Github for assistance."
 msgstr ""
+"Probleemide ja/või küsimuste korral lugege dokumentatsiooni (%s) või "
+"kogukonna foorumit (%s) Githubis."
 
 #: install/index.php:64
 msgid "Wiki"
@@ -217,7 +223,7 @@ msgstr "Versioon"
 #, php-format
 msgctxt "PHP Version"
 msgid "min. %s (recommended %s+)"
-msgstr ""
+msgstr "min. %s (soovituslik %s+)"
 
 #: install/index.php:136
 msgid "Installed"
@@ -238,7 +244,7 @@ msgstr "Kausta kirjutamisõigused"
 #: install/index.php:240 install/index.php:251 install/index.php:262
 #: install/index.php:273 install/index.php:284
 msgid "Success"
-msgstr ""
+msgstr "Õnnestumine"
 
 #: install/index.php:243 install/index.php:254 install/index.php:265
 #: install/index.php:276 install/index.php:287
@@ -262,6 +268,8 @@ msgid ""
 "Since you are using nginx as web server please make sure that you have made "
 "the changes described in the Wiki before continuing."
 msgstr ""
+"Kuna kasutate veebiserverina nginxi, siis palun kontrollige üle, kas olete "
+"enne jätkamist teinud Vikis mainitud vajalikud muudatused."
 
 #: install/index.php:314
 msgid "Some Checks have failed!"
@@ -283,6 +291,8 @@ msgid ""
 "In case of failed 'Folder Write Permissions' check out our Wiki <a href='%s' "
 "target='_blank'>here</a>."
 msgstr ""
+"Kausta kirjutamisõigustega seotud probleemide korral lugege Vikit <a "
+"href='%s' target='_blank'>siin</a>."
 
 #: install/index.php:323
 msgid "You have some warnings!"
@@ -293,6 +303,8 @@ msgid ""
 "Some of the settings are not optimal. You can proceed with the installer but "
 "be aware that you could run into problems while using Wavelog."
 msgstr ""
+"Kõik sätted ei ole optimaalsed. Saate installeerimisega jätkata, aga olge "
+"hoiatatud, et võite Wavelogi kasutamine võib olla häiritud."
 
 #: install/index.php:331
 msgid "All Checks are OK. You can continue."
@@ -303,6 +315,8 @@ msgid ""
 "Configure some basic parameters for your wavelog instance. You can change "
 "them later in 'application/config/config.php'"
 msgstr ""
+"Konfigureerige Wavelogi baasparameetrid. Saate neid hilje muuta failis '"
+"application/config/config.php'"
 
 #: install/index.php:347
 msgid "Directory"
@@ -313,6 +327,8 @@ msgid ""
 "The 'Directory' is basically your subfolder of the webroot In normal "
 "conditions the prefilled value is doing it's job. It also can be empty."
 msgstr ""
+"\"Kataloog\" on sisuliselt teie veebi juurkausta alamkaust. Tavatingimustes "
+"sobib selleks vaikeväärtus. Väli võib olla ka tühi."
 
 #: install/index.php:352
 msgid "No slash before or after the directory. Just the name of the folder."
@@ -328,6 +344,10 @@ msgid ""
 "Proxy with SSL you should type in the new URL here (e.g. %s instead of %s). "
 "Don't forget to include the directory from above."
 msgstr ""
+"See on lõplik URL, mille kaudu saate Wavelogile ligi. Kui jooksutate "
+"installerit lokaalselt, aga soovite peita Wavelogi tagurpidi proksi taha "
+"koos SSL-ga, siis peate uue URLi kirjutama siia (nt. %s asemel kirjutage %s)"
+". Ärge unustage lisada ülalmainitud kausta."
 
 #: install/index.php:357
 msgid "Website URL"
@@ -357,6 +377,12 @@ msgid ""
 "credentials for QRZ.com. To also get the Call Locator in QRZ.com you'll need "
 "an XML subscription. HamQTH does not always provide the locator information."
 msgstr ""
+"Valikuline parameeter. Kutsungite otsing on kättesaadava kõikidele Wavelogi "
+"kasutajatele. Saate valida QRZ.com või HamQTH teenuse vahel. HamQTH töötab "
+"ilma kasutajanime ja salasõnata, aga QRZ.com kasutamiseks on kasutajakonto "
+"olemasolu nõutud. Raadiooperaatori lokaatori saamiseks on QRZ.com puhul "
+"vajalik XML tellimuse olemasolu. HamQTH ei paku alati kõikide operaatorite "
+"lokaatori infot."
 
 #: install/index.php:376 install/index.php:453 install/index.php:905
 msgid "Username"
@@ -663,6 +689,9 @@ msgid ""
 "Check which DXCC for this particular location is the correct one. If you are "
 "sure, ignore this warning."
 msgstr ""
+"Peatu hetkeks. DXCC andmebaas on aegunud. Kontrolli, milline DXCC on antud "
+"asukoha jaoks korrektne. Kui olete oma valikus kindel, siis võite seda "
+"teadet ignoreerida."
 
 #: install/index.php:1759
 msgid ""
