@@ -3652,6 +3652,25 @@ class Logbook_model extends CI_Model {
 					$this->upload_amsat_status($sat_qso);
 				}
 			}
+			$result = $this->exists_webadif_api_key($data['station_id']);
+			// Push qso to webadif if apikey is set, and realtime upload is enabled, and we're not importing an adif-file
+			if (isset($result->webadifapikey) && $result->webadifrealtime == 1) {
+				//if (!$this->load->is_loaded('AdifHelper')) {
+					//$this->load->library('AdifHelper');
+				//}
+				//$qso = $this->get_qso($last_id, true)->result();
+
+				//$adif = $this->adifhelper->getAdifLine($qso[0]);
+				$result = $this->push_qso_to_webadif(
+					$result->webadifapiurl,
+					$result->webadifapikey,
+					$adif
+				);
+
+				if ($result) {
+					$this->mark_webadif_qsos_sent([$last_id]);
+				}
+			}
 		}
 		return $custom_errors;
 	}
