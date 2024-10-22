@@ -1,5 +1,7 @@
+<?= __("Please choose the column to be edited:"); ?><br/><br/>
 <form method="post" class="d-flex align-items-center">
 		<select id="editColumn" name="type" class="form-select form-select-sm w-auto me-2">
+			<option value="">-</option>
 			<option value="band"><?= __("Band"); ?></option>
 			<option value="date"><?= __("Date"); ?></option>
 			<option value="comment"><?= __("Comment"); ?></option>
@@ -77,7 +79,7 @@
 		<label style="display:none" id="editSatelliteModeLabel" class="mx-2 w-auto" for="editSatelliteMode"><?= __("SAT Mode"); ?></label>
 		<input style="display:none" class="form-control form-control-sm w-auto" id="editSatelliteMode" type="text" name="editSatelliteMode" placeholder="" aria-label="editSatelliteMode">
 
-		<select id="editBand" class="form-select w-auto form-select-sm" name="editBand">
+		<select style="display:none" id="editBand" class="form-select w-auto form-select-sm" name="editBand">
 			<?php foreach($bands as $key=>$bandgroup) {
 					echo '<optgroup label="' . strtoupper($key) . '">';
 					foreach($bandgroup as $band) {
@@ -88,8 +90,8 @@
 			?>
 		</select>
 
-		<label id="editBandRxLabel" class="mx-2 w-auto" for="gridlabel"><?= __("Band RX"); ?></label>
-		<select id="editBandRx" class="form-select w-auto form-select-sm" name="editBandRx">
+		<label style="display:none" id="editBandRxLabel" class="mx-2 w-auto" for="gridlabel"><?= __("Band RX"); ?></label>
+		<select style="display:none" id="editBandRx" class="form-select w-auto form-select-sm" name="editBandRx">
 			<option value="">-</option>
 			<?php foreach($bands as $key=>$bandgroup) {
 					echo '<optgroup label="' . strtoupper($key) . '">';
