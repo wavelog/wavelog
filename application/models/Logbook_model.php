@@ -1766,7 +1766,7 @@ class Logbook_model extends CI_Model {
 
 	// Set Paper to received
 	function paperqsl_update($qso_id, $method) {
-		if ($this->logbook_model->check_qso_is_accessible($qso_id)) {
+		if ($this->check_qso_is_accessible($qso_id)) {
 
 			$data = array(
 				'COL_QSLRDATE' => date('Y-m-d H:i:s'),
@@ -1788,7 +1788,7 @@ class Logbook_model extends CI_Model {
 
 	// Set Paper to sent
 	function paperqsl_update_sent($qso_id, $method) {
-		if ($this->logbook_model->check_qso_is_accessible($qso_id)) {
+		if ($this->check_qso_is_accessible($qso_id)) {
 			if ($method != '') {
 				$data = array(
 					'COL_QSLSDATE' => date('Y-m-d H:i:s'),
@@ -1815,7 +1815,7 @@ class Logbook_model extends CI_Model {
 
 	// Set Paper to requested
 	function paperqsl_requested($qso_id, $method) {
-		if ($this->logbook_model->check_qso_is_accessible($qso_id)) {
+		if ($this->check_qso_is_accessible($qso_id)) {
 
 			$data = array(
 				'COL_QSLSDATE' => date('Y-m-d H:i:s'),
@@ -1835,7 +1835,7 @@ class Logbook_model extends CI_Model {
 
 
 	function paperqsl_ignore($qso_id, $method) {
-		if ($this->logbook_model->check_qso_is_accessible($qso_id)) {
+		if ($this->check_qso_is_accessible($qso_id)) {
 
 			$data = array(
 				'COL_QSLSDATE' => date('Y-m-d H:i:s'),
@@ -1940,7 +1940,7 @@ class Logbook_model extends CI_Model {
 	}
 
 	function get_qso($id, $trusted = false) {
-		if ($trusted || ($this->logbook_model->check_qso_is_accessible($id))) {
+		if ($trusted || ($this->check_qso_is_accessible($id))) {
 			$this->db->select($this->config->item('table_name') . '.*, station_profile.*, dxcc_entities.*, coalesce(dxcc_entities_2.name, "- NONE -") as station_country, dxcc_entities_2.end as station_end, eQSL_images.image_file as eqsl_image_file, lotw_users.callsign as lotwuser, lotw_users.lastupload, primary_subdivisions.subdivision');
 			$this->db->from($this->config->item('table_name'));
 			$this->db->join('dxcc_entities', $this->config->item('table_name') . '.col_dxcc = dxcc_entities.adif', 'left');
@@ -3614,7 +3614,7 @@ class Logbook_model extends CI_Model {
 		$amsat_status_upload = $this->user_model->get_user_amsat_status_upload_by_id($station_profile->user_id);
 
 		foreach ($records as $record) {
-			$one_error = $this->logbook_model->import($record, $station_id, $skipDuplicate, $markClublog, $markLotw, $dxccAdif, $markQrz, $markEqsl, $markHrd, $skipexport, $operatorName, $apicall, $skipStationCheck, true, $station_id_ok, $station_profile);
+			$one_error = $this->import($record, $station_id, $skipDuplicate, $markClublog, $markLotw, $dxccAdif, $markQrz, $markEqsl, $markHrd, $skipexport, $operatorName, $apicall, $skipStationCheck, true, $station_id_ok, $station_profile);
 			if ($one_error['error'] ?? '' != '') {
 				$custom_errors .= $one_error['error'] . "<br/>";
 			} else {	// No Errors / QSO doesn't exist so far
@@ -4025,6 +4025,13 @@ class Logbook_model extends CI_Model {
 				$input_qsl_sent_via = "";
 			}
 
+			if (isset($record['qslmsg'])) {
+				$input_qslmsg = $record['qslmsg'];
+			} else {
+				$options_object = $this->user_options_model->get_options('eqsl_default_qslmsg', array('option_name' => 'key_station_id', 'option_key' => $station_id), $station_profile->user_id)->result();
+				$input_qslmsg = (isset($options_object[0]->option_value)) ? $options_object[0]->option_value : '';
+			}
+
 			// Validate Clublog-Fields
 			if (isset($record['clublog_qso_upload_status'])) {
 				$input_clublog_qsl_sent = mb_strimwidth($record['clublog_qso_upload_status'], 0, 1);
@@ -4249,7 +4256,7 @@ class Logbook_model extends CI_Model {
 				'COL_QSL_SENT' => $input_qsl_sent,
 				'COL_QSL_SENT_VIA' => $input_qsl_sent_via,
 				'COL_QSL_VIA' => (!empty($record['qsl_via'])) ? $record['qsl_via'] : '',
-				'COL_QSLMSG' => (!empty($record['qslmsg'])) ? $record['qslmsg'] : '',
+				'COL_QSLMSG' => $input_qslmsg,
 				'COL_QSLRDATE' => $input_qslrdate,
 				'COL_QSLSDATE' => $input_qslsdate,
 				'COL_QSO_COMPLETE' => (!empty($record['qso_complete'])) ? $record['qso_complete'] : '',

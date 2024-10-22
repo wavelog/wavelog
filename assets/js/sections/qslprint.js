@@ -51,20 +51,42 @@ function addQsoToPrintQueue(id) {
 		type: 'post',
 		data: {'id': id},
 		success: function(html) {
+			var callSign = $("#qsolist_"+id).find("td:eq(0)").text();
+			var formattedCallSign = callSign.replace(/0/g, "Ø").toUpperCase();
 			var line = '<tr id="qslprint_'+id+'">';
-			line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(0)").text()+'</td>';
+			line += '<td style=\'text-align: center\'><div class="form-check"><input class="form-check-input" type="checkbox" /></div></td>';
+			line += '<td style="text-align: center">';
+			line += '<span class="qso_call">';
+			line += '<a id="edit_qso" href="javascript:displayQso(' + id + ');">';
+			line += formattedCallSign;
+			line += '</a>';
+			line += '<a target="_blank" href="https://www.qrz.com/db/' + formattedCallSign + '">';
+			line += '<img width="16" height="16" src="' + base_url + 'images/icons/qrz.png" alt="Lookup ' + formattedCallSign + ' on QRZ.com">';
+			line += '</a> ';
+			line += '<a target="_blank" href="https://www.hamqth.com/' + formattedCallSign + '">';
+			line += '<img width="16" height="16" src="' + base_url + 'images/icons/hamqth.png" alt="Lookup ' + formattedCallSign + ' on HamQTH">';
+			line += '</a> ';
+			line += '<a target="_blank" href="http://www.eqsl.cc/Member.cfm?' + formattedCallSign + '">';
+			line += '<img width="16" height="16" src="' + base_url + 'images/icons/eqsl.png" alt="Lookup ' + formattedCallSign + ' on eQSL.cc">';
+			line += '</a>';
+			line += '</span>';
+			line += '</td>';
+
 			line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(1)").text()+'</td>';
 			line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(2)").text()+'</td>';
 			line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(3)").text()+'</td>';
 			line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(4)").text()+'</td>';
+			line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(5)").text()+'</td>';
 			line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(6)").text()+'</td>';
-			line += '<td style=\'text-align: center\'><span class="badge text-bg-light">'+$("#qsolist_"+id).find("td:eq(5)").text()+'</span></td>';
-			line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(7)").text()+'</td>';
+			line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(9)").text()+'</td>';
+			line += '<td style=\'text-align: center\'><span class="badge text-bg-light">'+$("#qsolist_"+id).find("td:eq(7)").text()+'</span></td>';
+			line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(8)").text()+'</td>';
+			line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(10)").text()+'</td>';
 			line += '<td style=\'text-align: center\'><button onclick="mark_qsl_sent('+id+', \'B\')" class="btn btn-sm btn-success"><i class="fa fa-check"></i></button></td>';
 			line += '<td style=\'text-align: center\'><button onclick="deleteFromQslQueue('+id+')" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button></td></td>';
 			line += '<td style=\'text-align: center\'><button onclick="openQsoList(\''+$("#qsolist_"+id).find("td:eq(0)").text()+'\')" class="btn btn-sm btn-success"><i class="fas fa-search"></i></button></td>';
 			line += '</tr>';
-			$('.table tr:last').after(line);
+			$('#qslprint_table tr:last').after(line);
 			$("#qsolist_"+id).remove();''
 		}
 	});
