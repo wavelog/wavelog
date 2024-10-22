@@ -3604,8 +3604,7 @@ class Logbook_model extends CI_Model {
 		$this->load->model('user_model');
 		$custom_errors = '';
 		$a_qsos = [];
-		$amsat_qsos = [];
-		$today = time();
+		$sat_qsos = [];
 		if (!$this->stations->check_station_is_accessible($station_id) && $apicall == false) {
 			return 'Station not accessible<br>';
 		}
@@ -3619,21 +3618,22 @@ class Logbook_model extends CI_Model {
 				$custom_errors .= $one_error['error'] . "<br/>";
 			} else {	// No Errors / QSO doesn't exist so far
 				array_push($a_qsos, $one_error['raw_qso'] ?? '');
-				if (isset($record['prop_mode']) && $record['prop_mode'] == 'SAT' && $amsat_status_upload) {
-					$amsat_qsodate = strtotime(($record['qso_date'] ?? '1970-01-01') . ' ' . ($record['time_on'] ?? '00:00:00'));
-					$date_diff = $today - $amsat_qsodate;
-					if ($date_diff >= -300 && $date_diff <= 518400) { // Five minutes grace time to the future and max 6 days back
-						$data = array(
-							'COL_TIME_ON' => date('Y-m-d', strtotime($record['qso_date'])) . " " . date('H:i:s', strtotime($record['time_on'])),
-							'COL_SAT_NAME' => $record['sat_name'],
-							'COL_BAND' => $record['band'],
-							'COL_BAND_RX' => $record['band_rx'] ?? '',
-							'COL_MODE' => $record['mode'],
-							'COL_STATION_CALLSIGN' => $station_profile->station_callsign,
-							'COL_MY_GRIDSQUARE' => $station_profile->station_gridsquare,
-						);
-						array_push($amsat_qsos, $data);
-					}
+				if (isset($record['prop_mode']) && $record['prop_mode'] == 'SAT') {
+					$data = array(
+						'COL_CALL' => $record['call'],
+						'COL_TIME_ON' => $record['time_on'],
+						'COL_QSO_DATE' => $record['qso_date'],
+						'COL_PROP_MODE' => $record['prop_mode'],
+						'COL_SAT_NAME' => $record['sat_name'],
+						'COL_BAND' => $record['band'],
+						'COL_BAND_RX' => $record['band_rx'] ?? '',
+						'COL_MODE' => $record['mode'],
+						'COL_GRIDSQUARE' => $record['gridsquare'],
+						'COL_VUCC_GRIDS' => $record['vucc_grids'] ?? '',
+						'COL_STATION_CALLSIGN' => $station_profile->station_callsign,
+						'COL_MY_GRIDSQUARE' => $station_profile->station_gridsquare,
+					);
+					array_push($sat_qsos, $data);
 				}
 			}
 		}
@@ -3642,8 +3642,16 @@ class Logbook_model extends CI_Model {
 		if (count($a_qsos) > 0) {
 			$this->db->insert_batch($this->config->item('table_name'), $a_qsos);
 		}
-		foreach ($amsat_qsos as $amsat_qso) {
-			$this->upload_amsat_status($data);
+		$today = time();
+		foreach ($sat_qsos as $sat_qso) {
+			if ($amsat_status_upload) {
+				$amsat_qsodate = strtotime($sat_qso['COL_QSO_DATE'] ?? '1971-01-01' ." ". $sat_qso['COL_TIME_ON'] ?? '00:00:00');
+				$date_diff = $today - $amsat_qsodate;
+				if ($date_diff >= -300 && $date_diff <= 518400) { // Five minutes grace time to the future and max 6 days back
+					$sat_qso['COL_TIME_ON'] = substr($sat_qso['COL_QSO_DATE'], 0, 4)."-".substr($sat_qso['COL_QSO_DATE'], 4, 2)."-".substr($sat_qso['COL_QSO_DATE'], 6, 2)." ".substr($sat_qso['COL_TIME_ON'], 0, 2).":".substr($sat_qso['COL_TIME_ON'], 2, 2).":".substr($sat_qso['COL_TIME_ON'], 4, 2);
+					$this->upload_amsat_status($sat_qso);
+				}
+			}
 		}
 		return $custom_errors;
 	}
