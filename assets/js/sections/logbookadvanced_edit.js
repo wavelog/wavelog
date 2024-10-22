@@ -33,6 +33,7 @@ function editQsos() {
 				message: html,
 				onshown: function(dialog) {
 					prepareEditDialog();
+					$('#saveButton').prop("disabled", true);
 				},
 				buttons: [{
 					label: lang_admin_save,
@@ -237,7 +238,7 @@ function changeEditType(type) {
 	$('#editLoTW').hide();
 	$('#editContinent').hide();
 	$('#editQrz').hide();
-	editDxccStateListLabel
+	$('#saveButton').prop("disabled", false);
 	if (type == "dxcc") {
 		$('#editDxcc').show();
 	} else if (type == "iota") {
@@ -276,6 +277,8 @@ function changeEditType(type) {
 		$('#editContinent').show();
 	} else if (type == "gridsquare" || type == "sota" || type == "wwff" || type == "operator" || type == "pota" || type == "comment" || type == "qslvia" || type == "contest" || type == "qslmsg") {
 		$('#editTextInput').show();
+	} else if (type == "") {
+		$('#saveButton').prop("disabled", true);
 	}
 }
 
