@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-10-22 08:51+0000\n"
+"POT-Creation-Date: 2024-10-22 17:01+0000\n"
 "PO-Revision-Date: 2024-10-22 17:01+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
@@ -68,9 +68,9 @@ msgstr ""
 #: application/controllers/Qsl.php:13 application/controllers/Qsl.php:44
 #: application/controllers/Qsl.php:52 application/controllers/Qslprint.php:147
 #: application/controllers/Qso.php:9 application/controllers/Qso.php:19
-#: application/controllers/Qso.php:176 application/controllers/Qso.php:275
-#: application/controllers/Qso.php:295 application/controllers/Qso.php:304
-#: application/controllers/Qso.php:600 application/controllers/Radio.php:261
+#: application/controllers/Qso.php:175 application/controllers/Qso.php:274
+#: application/controllers/Qso.php:294 application/controllers/Qso.php:303
+#: application/controllers/Qso.php:599 application/controllers/Radio.php:261
 #: application/controllers/Radio.php:287 application/controllers/Radio.php:303
 #: application/controllers/Reg1test.php:18
 #: application/controllers/Reg1test.php:63
@@ -111,9 +111,6 @@ msgstr ""
 #: application/controllers/User.php:762 application/controllers/User.php:1045
 #: application/controllers/User.php:1247
 #: application/controllers/User_options.php:9
-#: application/controllers/Qso.php:175 application/controllers/Qso.php:274
-#: application/controllers/Qso.php:294 application/controllers/Qso.php:303
-#: application/controllers/Qso.php:599
 msgid "You're not allowed to do that!"
 msgstr "Não é permitido fazer isso!"
 
@@ -1773,19 +1770,19 @@ msgstr "Gestão de cartões QSL"
 msgid "Print Requested QSLs"
 msgstr "Imprimir QSLs solicitadas"
 
-#: application/controllers/Qso.php:102 application/controllers/Qso.php:101
+#: application/controllers/Qso.php:101
 msgid "Add QSO"
 msgstr "Adicionar contacto"
 
-#: application/controllers/Qso.php:661 application/controllers/Qso.php:660
+#: application/controllers/Qso.php:660
 msgid "You have to be logged in to access this URL."
 msgstr "É necessário estar logado para aceder a este URL."
 
-#: application/controllers/Qso.php:667 application/controllers/Qso.php:666
+#: application/controllers/Qso.php:666
 msgid "Call Transfer"
 msgstr "Transferência de Chamada"
 
-#: application/controllers/Qso.php:674 application/controllers/Qso.php:673
+#: application/controllers/Qso.php:673
 msgid "No callsign provided."
 msgstr "Nenhum indicativo fornecido."
 
@@ -2544,57 +2541,46 @@ msgstr "o qslrdate está inválido (AAAAMMDD)"
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "o qslsdate está inválido (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:4042
 #: application/models/Logbook_model.php:4049
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "o clublog_qso_upload_date está inválido (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:4062
 #: application/models/Logbook_model.php:4069
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "o lotw_qslrdate está inválido (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:4081
 #: application/models/Logbook_model.php:4088
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "o lotw_qslsdate está inválido (AAAAMMDD)"
 
-#: application/models/Logbook_model.php:4345
 #: application/models/Logbook_model.php:4352
 msgid "Duplicate for"
 msgstr "Duplicado para"
 
-#: application/models/Logbook_model.php:4406
 #: application/models/Logbook_model.php:4413
 msgid "QSO could not be matched"
 msgstr "Não há correspondência de contactos"
 
-#: application/models/Logbook_model.php:4412
 #: application/models/Logbook_model.php:4419
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confirmado por LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:4417
 #: application/models/Logbook_model.php:4424
 msgid "confirmed by award manager"
 msgstr "confirmado pelo gestor do diploma"
 
-#: application/models/Logbook_model.php:4420
 #: application/models/Logbook_model.php:4427
 msgid "confirmed by cross-check of DCL data"
 msgstr "confirmado pelo controlo cruzado dos dados da DCL"
 
-#: application/models/Logbook_model.php:4423
 #: application/models/Logbook_model.php:4430
 msgid "confirmation pending"
 msgstr "confirmação pendente"
 
-#: application/models/Logbook_model.php:4426
 #: application/models/Logbook_model.php:4433
 msgid "unconfirmed"
 msgstr "não confirmado"
 
-#: application/models/Logbook_model.php:4429
 #: application/models/Logbook_model.php:4436
 msgid "unknown"
 msgstr "desconhecido"
