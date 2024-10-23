@@ -24,6 +24,12 @@ class Stationsetup_model extends CI_Model {
 	}
 
 	function remove_public_slug($logbook_id) {
+		// Also clean up static map images first
+		if (!$this->load->is_loaded('visitor_model')) {
+			$this->load->model('visitor_model');
+		}
+		$this->visitor_model->remove_static_map_image(null, $logbook_id);
+
 		$this->db->set('public_slug', null);
 		$this->db->where('user_id', $this->session->userdata('user_id'));
 		$this->db->where('logbook_id', xss_clean($logbook_id));
