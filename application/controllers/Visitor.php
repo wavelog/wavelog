@@ -455,10 +455,23 @@ class Visitor extends CI_Controller {
 		if ($slug == '') {
 			show_404(__("Unknown Public Page."));
 		}
-
+		if (!$this->load->is_loaded('visitor_model')) {
+			$this->load->model('visitor_model');
+		}
+		if (!$this->load->is_loaded('stationsetup_model')) {
+			$this->load->model('stationsetup_model');
+		}
+		
 		// Optional override-parameters
 		$qsocount = $this->input->get('qsocount', TRUE) ?? '';
 		$band = $this->input->get('band', TRUE) ?? 'nbf';
+		
+		$logbook_id = $this->stationsetup_model->public_slug_exists_logbook_id($slug);
+		$uid = $this->stationsetup_model->getContainer($logbook_id, false)->row()->user_id;
+		// if the qso count is not a number, set it to the user option or 250 per default (same as used in stationsetup)
+		if ($qsocount == 0 || !is_numeric($qsocount)) {
+			$qsocount = $this->user_options_model->get_options('ExportMapOptions',array('option_name' => 'qsocount','option_key' => $slug), $uid)->row()->option_value ?? 250;
+		}
 
 		$cachepath = $this->config->item('cache_path') == '' ? APPPATH . 'cache/' : $this->config->item('cache_path');
 		$cacheDir = $cachepath . "static_map_images/";
@@ -479,15 +492,6 @@ class Visitor extends CI_Controller {
 			log_message('debug', 'Static map image not found in cache: ' . $filename . '. Creating new image.');
 			if (in_array('gd', get_loaded_extensions())) {
 
-				if (!$this->load->is_loaded('visitor_model')) {
-					$this->load->model('visitor_model');
-				}
-
-				if (!$this->load->is_loaded('stationsetup_model')) {
-					$this->load->model('stationsetup_model');
-				}
-				
-				$logbook_id = $this->stationsetup_model->public_slug_exists_logbook_id($slug);
 				if ($logbook_id != false) {
 					// Get associated station locations for mysql queries
 					$logbooks_locations_array = $this->stationsetup_model->get_container_relations($logbook_id);
@@ -519,12 +523,6 @@ class Visitor extends CI_Controller {
 					$coordinates[] = $this->qra->qra2latlong($grid);
 				}
 				$centerMap = $this->qra->getCenterLatLng($coordinates);
-				
-				$uid = $this->stationsetup_model->getContainer($logbook_id, false)->row()->user_id;
-				// if the qso count is not a number, set it to the user option or 250 per default (same as used in stationsetup)
-				if ($qsocount == 0 || !is_numeric($qsocount)) {
-					$qsocount = $this->user_options_model->get_options('ExportMapOptions',array('option_name' => 'qsocount','option_key' => $slug), $uid)->row()->option_value ?? 250;
-				}
 
 				$qsos = $this->visitor_model->get_qsos($qsocount, $logbooks_locations_array, $band == 'nbf' ? '' : $band);
 				
