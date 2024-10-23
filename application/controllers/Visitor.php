@@ -521,9 +521,10 @@ class Visitor extends CI_Controller {
 					$qsocount = 100;
 				}
 
+				$uid = $this->stationsetup_model->getContainer($logbook_id, false)->row()->user_id;
 				$qsos = $this->visitor_model->get_qsos($qsocount, $logbooks_locations_array, $band == 'nbf' ? '' : $band);
 				
-				$image = $this->visitor_model->render_static_map($qsos, $centerMap, $filename, $cacheDir);
+				$image = $this->visitor_model->render_static_map($qsos, $uid, $centerMap, $coordinates, $filename, $cacheDir);
 
 				header('Content-Type: image/png');
 				// echo $image;

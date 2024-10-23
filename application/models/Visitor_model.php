@@ -46,7 +46,7 @@ class Visitor_model extends CI_Model {
 		return $this->db->query($sql);
 	}
 
-	function render_static_map($qsos, $centerMap, $filename, $cacheDir) {
+	function render_static_map($qsos, $uid, $centerMap, $station_coordinates, $filename, $cacheDir) {
 
 		$requiredClasses = [
 			'./src/StaticMap/src/OpenStreetMap.php',
@@ -57,11 +57,11 @@ class Visitor_model extends CI_Model {
 			'./src/StaticMap/src/XY.php',
 			'./src/StaticMap/src/Image.php'
 		];
-	
+
 		foreach ($requiredClasses as $class) {
 			require_once($class);
 		}
-	
+
 		// Map data and default values
 		$centerMapLat = 0; // Needs to be 0 as we can't wrap Latitude
 		$centerMapLng = $centerMap[1];
@@ -70,36 +70,140 @@ class Visitor_model extends CI_Model {
 		$width = 1024;
 		$height = 768;
 		$tileLayer = \Wavelog\StaticMapImage\TileLayer::defaultTileLayer();
-	
+		$cachepath = $this->config->item('cache_path') == '' ? APPPATH . 'cache/' : $this->config->item('cache_path');
+
 		// Create the map
-		$map = new \Wavelog\StaticMapImage\OpenStreetMap(new \Wavelog\StaticMapImage\LatLng($centerMapLat, $centerMapLng), $zoom, $width, $height, $tileLayer); // TODO: Also allow dark map
-	
+		$map = new \Wavelog\StaticMapImage\OpenStreetMap(new \Wavelog\StaticMapImage\LatLng($centerMapLat, $centerMapLng), $zoom, $width, $height, $tileLayer);
+
 		if (!$this->load->is_loaded('Qra')) {
 			$this->load->library('Qra');
 		}
+		if (!$this->load->is_loaded('user_model')) {
+			$this->load->model('user_model');
+		}
 
-		$markerPositions = [];
+		// Get all QSOs with gridsquares and set markers for confirmed and unconfirmed QSOs
+		$markerQsos = [];
+		$markerQsosConfirmed = [];
+		$user_default_cnfm = $this->user_model->get_by_id($uid)->row()->user_default_confirmation;
 		foreach ($qsos->result('array') as $qso) {
 			if (!empty($qso['COL_GRIDSQUARE'])  || !empty($qso['COL_VUCC_GRIDS'])) {
 				$latlng = $this->qra->qra2latlong($qso['COL_GRIDSQUARE']);
 				$lat = $latlng[0];
 				$lng = $latlng[1];
-				$markerPositions[] = new \Wavelog\StaticMapImage\LatLng($lat, $lng);
+
+				if (strpos($user_default_cnfm, 'Q') && $qso['COL_QSL_RCVD'] == 'Y') {
+					$markerQsosConfirmed[] = new \Wavelog\StaticMapImage\LatLng($lat, $lng);
+					continue;
+				} elseif (strpos($user_default_cnfm, 'L') && $qso['COL_LOTW_QSL_RCVD'] == 'Y') {
+					$markerQsosConfirmed[] = new \Wavelog\StaticMapImage\LatLng($lat, $lng);
+					continue;
+				} elseif (strpos($user_default_cnfm, 'E') && $qso['COL_EQSL_QSL_RCVD'] == 'Y') {
+					$markerQsosConfirmed[] = new \Wavelog\StaticMapImage\LatLng($lat, $lng);
+					continue;
+				} elseif (strpos($user_default_cnfm, 'Z') && $qso['COL_QRZCOM_QSO_DOWNLOAD_STATUS'] == 'Y') {
+					$markerQsosConfirmed[] = new \Wavelog\StaticMapImage\LatLng($lat, $lng);
+					continue;
+				} elseif (strpos($user_default_cnfm, 'C') && $qso['COL_CLUBLOG_QSO_DOWNLOAD_STATUS'] == 'Y') {
+					$markerQsosConfirmed[] = new \Wavelog\StaticMapImage\LatLng($lat, $lng);
+					continue;
+				} else {
+					$markerQsos[] = new \Wavelog\StaticMapImage\LatLng($lat, $lng);
+					continue;
+				}
 			} else {
 				continue;
 			}
 		}
-	
-		$markers = new \Wavelog\StaticMapImage\Markers('src/StaticMap/src/resources/circle-dot-red.png'); // TODO: Use user defined markers
+
+		// Get user defined markers
+		$options_object = $this->user_options_model->get_options('map_custom', null, $uid)->result();
+		$user_icondata = array();
+		if (count($options_object) > 0) {
+			foreach ($options_object as $row) {
+				if ($row->option_name == 'icon') {
+					$option_value = json_decode($row->option_value, true);
+					foreach ($option_value as $ktype => $vtype) {
+						if ($this->input->post('user_map_' . $row->option_key . '_icon')) {
+							$user_icondata['user_map_' . $row->option_key . '_' . $ktype] = $this->input->post('user_map_' . $row->option_key . '_' . $ktype, true);
+						} else {
+							$user_icondata['user_map_' . $row->option_key . '_' . $ktype] = $vtype;
+						}
+					}
+				} else {
+					$user_icondata['user_map_' . $row->option_name . '_' . $row->option_key] = $row->option_value;
+				}
+			}
+		} else {
+			$user_icondata['user_map_qso_icon'] = "fas fa-dot-circle";
+			$user_icondata['user_map_qso_color'] = "#FF0000";
+			$user_icondata['user_map_station_icon'] = "fas fa-home";
+			$user_icondata['user_map_station_color'] = "#0000FF";
+			$user_icondata['user_map_qsoconfirm_icon'] = "fas fa-check-circle";
+			$user_icondata['user_map_qsoconfirm_color'] = "#00AA00";
+			$user_icondata['user_map_gridsquare_show'] = "0";
+		}
+
+		// Map all available icons to the unicode
+		$unicode_map = array(
+			'0' => 'f192', // dot-circle is default
+			'fas fa-home' => 'f015',
+			'fas fa-broadcast-tower' => 'f519',
+			'fas fa-user' => 'f007',
+			'fas fa-dot-circle' => 'f192',
+			'fas fa-check-circle' => 'f058',
+		);
+
+		// Make sure the icons exist
+		if (!$this->load->is_loaded('genfunctions')) {
+			$this->load->library('genfunctions');
+		}
+		// Home Icon
+		if (!$home_icon = $this->genfunctions->fas2png($unicode_map[$user_icondata['user_map_station_icon']], substr($user_icondata['user_map_station_color'], 1))) {
+			log_message('error', "Failed to generate map icon. Exiting...");
+			return false;
+		}
+		// QSO Icon
+		if (!$qso_icon = $this->genfunctions->fas2png($unicode_map[$user_icondata['user_map_qso_icon']], substr($user_icondata['user_map_qso_color'], 1))) {
+			log_message('error', "Failed to generate map icon. Exiting...");
+			return false;
+		}
+		// QSO Confirm Icon
+		if (!$qso_cfnm_icon = $this->genfunctions->fas2png($unicode_map[$user_icondata['user_map_qsoconfirm_icon']], substr($user_icondata['user_map_qsoconfirm_color'], 1))) {
+			log_message('error', "Failed to generate map icon. Exiting...");
+			return false;
+		}
+
+		// Set the markers for the station
+		$markersStation = new \Wavelog\StaticMapImage\Markers($home_icon);
+		$markersStation->resizeMarker(10, 10);
+		$markersStation->setAnchor(\Wavelog\StaticMapImage\Markers::ANCHOR_CENTER, \Wavelog\StaticMapImage\Markers::ANCHOR_BOTTOM);
+		foreach ($station_coordinates as $station) {
+			log_message('error', "Adding station marker to the map: " . $station[0] . ", " . $station[1]);
+			$markersStation->addMarker(new \Wavelog\StaticMapImage\LatLng($station[0], $station[1]));
+		}
+		$map->addMarkers($markersStation);
+
+		// Set the markers for unconfirmed QSOs
+		$markers = new \Wavelog\StaticMapImage\Markers($qso_icon);
 		$markers->resizeMarker(10, 10);
 		$markers->setAnchor(\Wavelog\StaticMapImage\Markers::ANCHOR_CENTER, \Wavelog\StaticMapImage\Markers::ANCHOR_BOTTOM);
-	
-		foreach ($markerPositions as $position) {
+
+		foreach ($markerQsos as $position) {
 			$markers->addMarker($position);
 		}
-	
 		$map->addMarkers($markers);
-	
+
+		// Set the markers for confirmed QSOs
+		$markersConfirmed = new \Wavelog\StaticMapImage\Markers($qso_cfnm_icon);
+		$markersConfirmed->resizeMarker(10, 10);
+		$markersConfirmed->setAnchor(\Wavelog\StaticMapImage\Markers::ANCHOR_CENTER, \Wavelog\StaticMapImage\Markers::ANCHOR_BOTTOM);
+
+		foreach ($markerQsosConfirmed as $position) {
+			$markersConfirmed->addMarker($position);
+		}
+		$map->addMarkers($markersConfirmed);
+
 		// Generate the image
 		$full_path = $cacheDir . $filename;
 
@@ -112,39 +216,74 @@ class Visitor_model extends CI_Model {
 
 	/**
 	 * Remove outdated static map images from the cache directory
+	 * Based on station_id because is handled and used during qso creation
 	 * 
 	 * @param $station_id  The station ID to remove the static map image for
 	 */
 
-	function remove_static_map_image($station_id) {
+	function remove_static_map_image($station_id = null, $logbook_id = null) {
 
+		if ($station_id == null && $logbook_id == null) {
+			log_message('error', "Can't remove static map image cache. Neither a station ID nor a logbook ID was provided. Exiting...");
+			return false;
+		}
 		$cachepath = $this->config->item('cache_path') == '' ? APPPATH . 'cache/' : $this->config->item('cache_path');
 		$cacheDir = $cachepath . "static_map_images/";
-
+		
 		if (!is_dir($cacheDir)) {
 			log_message('debug', "Cache directory '" . $cacheDir . "' does not exist. Therefore no static map images to remove...");
 			return true;
 		}
 
-		if (!is_numeric($station_id) || $station_id == '' || $station_id == null) {
-			log_message('error', "Station ID is not valid. Exiting...");
-			return false;
-		}
 		if (!$this->load->is_loaded('stationsetup_model')) {
 			$this->load->model('stationsetup_model');
 		}
-
-		$linked_logbooks = $this->stationsetup_model->get_container_relations($station_id, true); // true means we do a reverse search
 		
-		if (!$linked_logbooks) {
-			log_message('error', "No linked logbooks found for station ID " . $station_id . ". Exiting...");
-			return false;
+		if ($station_id != null) {
+			if (!is_numeric($station_id) || $station_id == '' || $station_id == null) {
+				log_message('error', "Station ID is not valid. Exiting...");
+				return false;
+			}
+
+			$linked_logbooks = $this->stationsetup_model->get_container_relations($station_id, true); // true means we do a reverse search
+			
+			if (!$linked_logbooks) {
+				log_message('error', "No linked logbooks found for station ID " . $station_id . ". Exiting...");
+				return false;
+			}
+			foreach ($linked_logbooks as $logbook_id) {
+				$slug = $this->stationsetup_model->get_slug($logbook_id);
+				if ($slug == false) {
+					log_message('debug', "No slug found for logbook ID " . $logbook_id . ". Continue...");
+					continue;
+				}
+
+				$prefix = 'static_map_' . $slug;
+				$files = glob($cacheDir . $prefix . '*');
+
+				if (!empty($files)) {
+					foreach ($files as $file) {
+						log_message('debug', "Found a outdated static map image: " . basename($file) . ". Deleting...");
+						unlink($file);
+					}
+				} else {
+					log_message('info', "Found no files with the prefix '" . $prefix . "' in the cache directory.");
+				}
+			}
+
+			return true; // Success
 		}
-		foreach ($linked_logbooks as $logbook_id) {
+		if ($logbook_id != null) {
+
+			if (!is_numeric($logbook_id) || $logbook_id == '' || $logbook_id == null) {
+				log_message('error', "Logbook ID is not valid. Exiting...");
+				return false;
+			}
+
 			$slug = $this->stationsetup_model->get_slug($logbook_id);
 			if ($slug == false) {
-				log_message('debug', "No slug found for logbook ID " . $logbook_id . ". Continue...");
-				continue;
+				log_message('error', "No slug found for logbook ID " . $logbook_id . ". Exiting...");
+				return false;
 			}
 
 			$prefix = 'static_map_' . $slug;
@@ -152,14 +291,14 @@ class Visitor_model extends CI_Model {
 
 			if (!empty($files)) {
 				foreach ($files as $file) {
-					log_message('debug', "Found a outdated static map image: " . basename($file) . ". Deleting...");
+					log_message('error', "Found a outdated static map image: " . basename($file) . ". Deleting...");
 					unlink($file);
 				}
 			} else {
-				log_message('info', "Found no files with the prefix '" . $prefix . "' in the cache directory.");
+				log_message('error', "Found no files with the prefix '" . $prefix . "' in the cache directory.");
 			}
-		}
 
-		return true; // Success
+			return true; // Success
+		}
 	}
 }
