@@ -234,7 +234,7 @@ class QSO
 	function geCqLink($cqz): string
 	{
 		$cqz_link = '';
-		if ($cqz <= '40') {
+		if ($cqz > '0' && $cqz <= '40') {
 			return '<a href="javascript:spawnLookupModal('.$cqz.',\'cq\');">'.$cqz.'</a>';
 		}
 		return $cqz;
