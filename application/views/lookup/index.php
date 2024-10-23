@@ -26,11 +26,15 @@
 
 			<?php
 			foreach ($dxcc as $d) {
-				echo '<option value=' . $d->adif . '>' . $d->prefix . ' - ' . ucwords(strtolower($d->name), "- (/");
-				if ($d->Enddate != null) {
-					echo ' (' . __("Deleted DXCC") . ')';
+				if ($d->adif == '0') {
+					echo '<option value='.$d->adif.'>'.$d->name.'</option>';
+				} else {
+					echo '<option value=' . $d->adif . '>' . $d->prefix . ' - ' . ucwords(strtolower($d->name), "- (/");
+					if ($d->Enddate != null) {
+						echo ' (' . __("Deleted DXCC") . ')';
+					}
+					echo '</option>';
 				}
-				echo '</option>';
 			}
 			?>
 
