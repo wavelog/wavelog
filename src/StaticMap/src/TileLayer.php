@@ -20,8 +20,13 @@ class TileLayer {
      */
     public static function defaultTileLayer(): TileLayer {
         $CI = &get_instance();
-
-        $server =  $CI->optionslib->get_option('option_map_tile_server');
+        $CI->load->model('themes_model');
+		$r =  $CI->themes_model->get_theme_mode($CI->optionslib->get_option('option_theme'));
+        if ($r == 'dark') {
+            $server =  'https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png';
+        } else {
+            $server =  $CI->optionslib->get_option('option_map_tile_server');
+        }
         $attribution = $CI->optionslib->get_option('option_map_tile_server_copyright');
         return new TileLayer($server, $attribution);
     }
@@ -184,7 +189,9 @@ class TileLayer {
      */
     public function getTile(float $x, float $y, int $z, int $tileSize, string $centerMap): Image {
         $CI = &get_instance();
-        $cacheKey = "tile_" . $x . "_" . $y . "_" . $z . "_" . $tileSize . "_" . $centerMap . ".png";
+        $CI->load->model('themes_model');
+		$thememode =  $CI->themes_model->get_theme_mode($CI->optionslib->get_option('option_theme'));
+        $cacheKey = "tile_" . $x . "_" . $y . "_" . $z . "_" . $tileSize . "_" . $centerMap . "_" . $thememode . ".png";
         $cacheConfig = $CI->config->item('cache_path') == '' ? APPPATH . 'cache/' : $CI->config->item('cache_path');
         $cacheDir = $cacheConfig . "tilecache/";
         $cachePath = $cacheDir . $cacheKey;

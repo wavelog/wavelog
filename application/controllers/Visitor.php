@@ -458,7 +458,9 @@ class Visitor extends CI_Controller {
 		$band = $this->input->get('band', TRUE) ?? 'nbf';
 		$cachepath = $this->config->item('cache_path') == '' ? APPPATH . 'cache/' : $this->config->item('cache_path');
 		$cacheDir = $cachepath . "static_map_images/";
-		$filename = 'static_map_' . $slug . '_' . $qsocount . '_' . $band . '.png';
+		$this->load->model('themes_model');
+		$thememode =  $this->themes_model->get_theme_mode($this->optionslib->get_option('option_theme'));
+		$filename = 'static_map_' . $slug . '_' . $qsocount . '_' . $band . '_' . $thememode . '.png';
 
 		if (!is_dir($cacheDir)) {
             mkdir($cacheDir, 0755, true);
