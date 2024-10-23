@@ -213,8 +213,9 @@ class OpenStreetMap
             for ($y = $startY; $y < $imgSize->getY(); $y += $tileSize) {
                 $xTile = $this->mapData->getTileTopLeft()->getX();
                 for ($x = $startX; $x < $imgSize->getX(); $x += $tileSize) {
+                    $xTileWrapped = $this->wrapLongitudeTile($xTile);
                     $image->pasteOn(
-                        $tileLayer->getTile($xTile, $yTile, $this->mapData->getZoom(), $tileSize, $centerMap),
+                        $tileLayer->getTile($xTileWrapped, $yTile, $this->mapData->getZoom(), $tileSize, $centerMap),
                         $x,
                         $y
                     );
@@ -224,6 +225,17 @@ class OpenStreetMap
             }
         }
         return $image;
+    }
+
+    /**
+     * Wrap the longitude tile.
+     * @param int $xTile The x tile
+     * @return int The wrapped x tile
+     */
+    protected function wrapLongitudeTile($xTile)
+    {
+        $maxTile = pow(2, $this->mapData->getZoom());
+        return ($xTile % $maxTile + $maxTile) % $maxTile;
     }
 
     /**

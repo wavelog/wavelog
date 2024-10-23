@@ -14,6 +14,12 @@ use Wavelog\StaticMapImage\Utils\GeographicConverter;
  * @see https://github.com/DantSu/php-osm-static-api Github page of this project
  */
 class MapData {
+
+    /**
+     * @var LatLng Center of the map
+     */
+    private $centerMap;
+
     /**
      * Convert longitude and zoom to horizontal OpenStreetMap tile number and pixel position.
      * @param float $lon Longitude
@@ -21,8 +27,13 @@ class MapData {
      * @param int $tileSize Tile size
      * @return int[] OpenStreetMap tile id and pixel position of the given longitude and zoom
      */
-    public static function lngToXTile(float $lon, int $zoom, int $tileSize): array {
-        $x = ($lon + 180) / 360 * \pow(2, $zoom);
+    public function lngToXTile(float $lon, int $zoom, int $tileSize): array {
+        // Adjust longitude based on the map's center longitude
+        $centerLon = $this->centerMap->getLng();
+        $wrappedLon = fmod(($lon - $centerLon + 180), 360) - 180 + $centerLon;
+    
+        // Continue with the existing calculation
+        $x = ($wrappedLon + 180) / 360 * \pow(2, $zoom);
         $tile = \floor($x);
         return [
             'id' => $tile,
@@ -188,6 +199,7 @@ class MapData {
      * @param int $tileSize
      */
     public function __construct(LatLng $centerMap, int $zoom, XY $outputSize, int $tileSize) {
+        $this->centerMap = $centerMap;
         $this->zoom = $zoom;
         $this->outputSize = $outputSize;
         $this->tileSize = $tileSize;
