@@ -216,7 +216,23 @@ class Visitor_model extends CI_Model {
 		// Generate the image
 		$full_path = $cacheDir . $filename;
 
-		if ($map->getImage($centerMap)->savePNG($full_path)) {
+		// Add Wavelog watermark
+		$image = $map->getImage($centerMap);
+		$watermark = DantSu\PHPImageEditor\Image::fromPath('src/StaticMap/src/resources/watermark_static_map.png');
+		$image->pasteOn($watermark, DantSu\PHPImageEditor\Image::ALIGN_RIGHT, DantSu\PHPImageEditor\Image::ALIGN_BOTTOM);
+
+		// Add "Created with Wavelog" text
+		$this->load->model('user_model');
+		$user = $this->user_model->get_by_id($uid)->row();
+		$custom_date_format = $user->user_date_format;
+		$dateTime = date($custom_date_format . ' - H:i');
+		$text = "Created with Wavelog on " . $dateTime . " UTC";
+		$fontPath = 'src/StaticMap/src/resources/font.ttf';
+		$fontSize = 12;
+		$color = 'ff0000'; // Red
+		$image->writeText($text, $fontPath, $fontSize, $color, 178, 758);
+
+		if ($image->savePNG($full_path)) {
 			return true;
 		} else {
 			return false;
