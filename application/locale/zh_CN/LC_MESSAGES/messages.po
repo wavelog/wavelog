@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-10-22 17:01+0000\n"
+"POT-Creation-Date: 2024-10-23 05:11+0000\n"
 "PO-Revision-Date: 2024-10-21 06:05+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -561,6 +561,10 @@ msgstr "Clublog 未配置用户账户。"
 #: application/views/interface_assets/header.php:251
 msgid "Contest Calendar"
 msgstr "比赛日历"
+
+#: application/controllers/Contestcalendar.php:47
+msgid "Contestcalendar not reachable. Try again later"
+msgstr ""
 
 #: application/controllers/Contesting.php:52
 #: application/views/contesting/index.php:7
@@ -5426,7 +5430,7 @@ msgid "Hamsat - Satellite Rovers"
 msgstr "Hamsat - 卫星漫游"
 
 #: application/views/components/hamsat/table.php:4
-#: application/views/contestcalendar/index.php:4
+#: application/views/contestcalendar/index.php:11
 #: application/views/dxcalendar/index.php:4
 #: application/views/hamsat/index.php:8
 msgid "This data comes from"
@@ -5478,11 +5482,11 @@ msgstr "计划表"
 msgid "Radio Status"
 msgstr "电台状态"
 
-#: application/views/contestcalendar/index.php:9
+#: application/views/contestcalendar/index.php:16
 msgid "No Contests"
 msgstr "没有比赛"
 
-#: application/views/contestcalendar/index.php:14
+#: application/views/contestcalendar/index.php:21
 #: application/views/logbookadvanced/edit.php:24
 #: application/views/logbookadvanced/index.php:310
 #: application/views/logbookadvanced/index.php:649
@@ -5492,27 +5496,27 @@ msgstr "没有比赛"
 msgid "Contest"
 msgstr "比赛"
 
-#: application/views/contestcalendar/index.php:15
+#: application/views/contestcalendar/index.php:22
 #: application/views/statistics/custom.php:41
 #: application/views/statistics/custom_result.php:43
 msgid "Start"
 msgstr "开始"
 
-#: application/views/contestcalendar/index.php:16
+#: application/views/contestcalendar/index.php:23
 #: application/views/statistics/custom.php:46
 #: application/views/statistics/custom_result.php:48
 msgid "End"
 msgstr "结束"
 
-#: application/views/contestcalendar/index.php:17
+#: application/views/contestcalendar/index.php:24
 msgid "Link"
 msgstr "链接"
 
-#: application/views/contestcalendar/index.php:26
+#: application/views/contestcalendar/index.php:33
 msgid "Show Details"
 msgstr "显示细节"
 
-#: application/views/contestcalendar/index.php:38
+#: application/views/contestcalendar/index.php:45
 #: application/views/dashboard/index.php:285
 #: application/views/dashboard/index.php:312
 #: application/views/dashboard/index.php:333
@@ -5521,11 +5525,11 @@ msgstr "显示细节"
 msgid "Today"
 msgstr "今天"
 
-#: application/views/contestcalendar/index.php:48
+#: application/views/contestcalendar/index.php:55
 msgid "Weekend"
 msgstr "周末"
 
-#: application/views/contestcalendar/index.php:59
+#: application/views/contestcalendar/index.php:66
 msgid "Next Week"
 msgstr "下周"
 
