@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-10-23 05:11+0000\n"
+"POT-Creation-Date: 2024-10-23 18:47+0000\n"
 "PO-Revision-Date: 2024-08-17 10:47+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: Greek <https://translate.wavelog.org/projects/wavelog/main-"
@@ -9245,9 +9245,9 @@ msgid "Exchange (S)"
 msgstr ""
 
 #: application/views/qso/edit_ajax.php:647
-#: application/views/search/search_result_ajax.php:432
-#: application/views/view_log/partial/log.php:156
-#: application/views/view_log/partial/log_ajax.php:348
+#: application/views/search/search_result_ajax.php:433
+#: application/views/view_log/partial/log.php:157
+#: application/views/view_log/partial/log_ajax.php:349
 msgid "Delete QSO"
 msgstr "Διαγραφή QSO"
 
@@ -9888,14 +9888,14 @@ msgstr "Σημείωση QSL ως απεσταλμένο (Απευθείας)"
 
 #: application/views/search/search_result_ajax.php:417
 #: application/views/view_log/partial/log.php:148
-#: application/views/view_log/partial/log_ajax.php:335
+#: application/views/view_log/partial/log_ajax.php:336
 #: application/views/view_log/qso.php:664
 msgid "Mark QSL Received (Bureau)"
 msgstr "Σημείωση QSL ως Ελήφθη (Bureau)"
 
 #: application/views/search/search_result_ajax.php:418
 #: application/views/view_log/partial/log.php:149
-#: application/views/view_log/partial/log_ajax.php:336
+#: application/views/view_log/partial/log_ajax.php:337
 #: application/views/view_log/qso.php:666
 msgid "Mark QSL Received (Direct)"
 msgstr "Σημείωση QSL ως Ελήφθη (Απευθείας)"
@@ -9903,23 +9903,31 @@ msgstr "Σημείωση QSL ως Ελήφθη (Απευθείας)"
 #: application/views/search/search_result_ajax.php:419
 #: application/views/view_log/partial/log.php:150
 #: application/views/view_log/partial/log_ajax.php:327
-msgid "Mark QSL Card Requested"
-msgstr "Σημείωση QSL ζητήθηκε"
+#: application/views/view_log/qso.php:674
+msgid "Mark QSL Card Requested (Bureau)"
+msgstr "Σημείωση QSL ζητήθηκε (Bureau)"
 
 #: application/views/search/search_result_ajax.php:420
 #: application/views/view_log/partial/log.php:151
 #: application/views/view_log/partial/log_ajax.php:328
+#: application/views/view_log/qso.php:676
+msgid "Mark QSL Card Requested (Direct)"
+msgstr "Σημείωση QSL ζητήθηκε (Απευθείας)"
+
+#: application/views/search/search_result_ajax.php:421
+#: application/views/view_log/partial/log.php:152
+#: application/views/view_log/partial/log_ajax.php:329
 #: application/views/view_log/qso.php:678
 msgid "Mark QSL Card Not Required"
 msgstr "Σημείωση QSL μη απαραίτητο"
 
-#: application/views/search/search_result_ajax.php:426
-#: application/views/view_log/partial/log_ajax.php:342
+#: application/views/search/search_result_ajax.php:427
+#: application/views/view_log/partial/log_ajax.php:343
 msgid "Lookup on QRZ.com"
 msgstr ""
 
-#: application/views/search/search_result_ajax.php:428
-#: application/views/view_log/partial/log_ajax.php:344
+#: application/views/search/search_result_ajax.php:429
+#: application/views/view_log/partial/log_ajax.php:345
 msgid "Lookup on HamQTH"
 msgstr ""
 
@@ -11646,14 +11654,6 @@ msgstr "Μεταφορτώθηκε η πίσω εικόνα της κάρτας 
 msgid "Mark QSL Received (Electronic)"
 msgstr "Σημείωση QSL ως Ελήφθη (Ηλεκτρονικός)"
 
-#: application/views/view_log/qso.php:674
-msgid "Mark QSL Card Requested (Bureau)"
-msgstr "Σημείωση QSL ζητήθηκε (Bureau)"
-
-#: application/views/view_log/qso.php:676
-msgid "Mark QSL Card Requested (Direct)"
-msgstr "Σημείωση QSL ζητήθηκε (Απευθείας)"
-
 #: application/views/view_log/qso.php:691
 msgid "eQSL picture"
 msgstr ""
@@ -11758,6 +11758,9 @@ msgstr ""
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr ""
+
+#~ msgid "Mark QSL Card Requested"
+#~ msgstr "Σημείωση QSL ζητήθηκε"
 
 #~ msgid "Upload File below."
 #~ msgstr "Ανεβάστε το αρχείο παρακάτω."

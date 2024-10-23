@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-10-23 05:11+0000\n"
+"POT-Creation-Date: 2024-10-23 18:47+0000\n"
 "PO-Revision-Date: 2024-10-22 11:55+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
@@ -9709,9 +9709,9 @@ msgid "Exchange (S)"
 msgstr "Exchange (S)"
 
 #: application/views/qso/edit_ajax.php:647
-#: application/views/search/search_result_ajax.php:432
-#: application/views/view_log/partial/log.php:156
-#: application/views/view_log/partial/log_ajax.php:348
+#: application/views/search/search_result_ajax.php:433
+#: application/views/view_log/partial/log.php:157
+#: application/views/view_log/partial/log_ajax.php:349
 msgid "Delete QSO"
 msgstr "QSO Löschen"
 
@@ -10378,14 +10378,14 @@ msgstr "Markiere QSL gesendet (Direkt)"
 
 #: application/views/search/search_result_ajax.php:417
 #: application/views/view_log/partial/log.php:148
-#: application/views/view_log/partial/log_ajax.php:335
+#: application/views/view_log/partial/log_ajax.php:336
 #: application/views/view_log/qso.php:664
 msgid "Mark QSL Received (Bureau)"
 msgstr "Markiere QSL erhalten (Büro)"
 
 #: application/views/search/search_result_ajax.php:418
 #: application/views/view_log/partial/log.php:149
-#: application/views/view_log/partial/log_ajax.php:336
+#: application/views/view_log/partial/log_ajax.php:337
 #: application/views/view_log/qso.php:666
 msgid "Mark QSL Received (Direct)"
 msgstr "Markiere QSL erhalten (Direkt)"
@@ -10393,23 +10393,31 @@ msgstr "Markiere QSL erhalten (Direkt)"
 #: application/views/search/search_result_ajax.php:419
 #: application/views/view_log/partial/log.php:150
 #: application/views/view_log/partial/log_ajax.php:327
-msgid "Mark QSL Card Requested"
-msgstr "Markiere QSL-Karte als angefragt"
+#: application/views/view_log/qso.php:674
+msgid "Mark QSL Card Requested (Bureau)"
+msgstr "Markiere QSL-Karte als angefragt (Büro)"
 
 #: application/views/search/search_result_ajax.php:420
 #: application/views/view_log/partial/log.php:151
 #: application/views/view_log/partial/log_ajax.php:328
+#: application/views/view_log/qso.php:676
+msgid "Mark QSL Card Requested (Direct)"
+msgstr "Markiere QSL-Karte als angefragt (Direkt)"
+
+#: application/views/search/search_result_ajax.php:421
+#: application/views/view_log/partial/log.php:152
+#: application/views/view_log/partial/log_ajax.php:329
 #: application/views/view_log/qso.php:678
 msgid "Mark QSL Card Not Required"
 msgstr "Markiere QSL-Karte als nicht notwendig"
 
-#: application/views/search/search_result_ajax.php:426
-#: application/views/view_log/partial/log_ajax.php:342
+#: application/views/search/search_result_ajax.php:427
+#: application/views/view_log/partial/log_ajax.php:343
 msgid "Lookup on QRZ.com"
 msgstr "Nachschlagen auf QRZ.com"
 
-#: application/views/search/search_result_ajax.php:428
-#: application/views/view_log/partial/log_ajax.php:344
+#: application/views/search/search_result_ajax.php:429
+#: application/views/view_log/partial/log_ajax.php:345
 msgid "Lookup on HamQTH"
 msgstr "Nachschlagen auf HamQTH"
 
@@ -12296,14 +12304,6 @@ msgstr "QSL-Kartenrückseite hochgeladen"
 msgid "Mark QSL Received (Electronic)"
 msgstr "Markiere QSL erhalten (Elektronisch)"
 
-#: application/views/view_log/qso.php:674
-msgid "Mark QSL Card Requested (Bureau)"
-msgstr "Markiere QSL-Karte als angefragt (Büro)"
-
-#: application/views/view_log/qso.php:676
-msgid "Mark QSL Card Requested (Direct)"
-msgstr "Markiere QSL-Karte als angefragt (Direkt)"
-
 #: application/views/view_log/qso.php:691
 msgid "eQSL picture"
 msgstr "eQSL Bild"
@@ -12422,6 +12422,9 @@ msgstr "Dein Rufzeichen:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Anfrage senden"
+
+#~ msgid "Mark QSL Card Requested"
+#~ msgstr "Markiere QSL-Karte als angefragt"
 
 #~ msgctxt "DXCC Select - No DXCC"
 #~ msgid "- NONE - (e.g. /MM, /AM)"
