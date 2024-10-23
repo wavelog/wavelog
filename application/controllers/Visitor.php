@@ -573,7 +573,7 @@ class Visitor extends CI_Controller {
 
 		$qsos = $this->visitor_model->get_qsos($qsocount, $logbooks_locations_array, $band);
 		$userid = $this->stationsetup_model->public_slug_exists_userid($slug);
-		$user_default_confirmation = $this->get_user_default_confirmation($userid);
+		$user_default_confirmation = $this->visitor_model->get_user_default_confirmation($userid);
 
 		$mappedcoordinates = array();
 		foreach ($qsos->result('array') as $qso) {
@@ -597,6 +597,7 @@ class Visitor extends CI_Controller {
 			$this->load->library('Qra');
 		}
 		$this->load->model('logbook_model');
+		$this->load->model('visitor_model');
 
 		$latlng1 = $this->qra->qra2latlong($locator1);
 		$latlng2 = $this->qra->qra2latlong($locator2);
@@ -607,7 +608,7 @@ class Visitor extends CI_Controller {
 
 		$data['latlng1'] = $latlng1;
 		$data['latlng2'] = $latlng2;
-		$data['confirmed'] = ($this->qso_is_confirmed($qso, $user_default_confirmation)==true) ? true : false;
+		$data['confirmed'] = ($this->visitor_model->qso_is_confirmed($qso, $user_default_confirmation)==true) ? true : false;
 
 		return $data;
 	}
@@ -617,6 +618,7 @@ class Visitor extends CI_Controller {
 			$this->load->library('Qra');
 		}
 		$this->load->model('logbook_model');
+		$this->load->model('visitor_model');
 
 		$latlng1 = $this->qra->qra2latlong($mygrid);
 		$latlng2[0] = $lat;
@@ -628,39 +630,8 @@ class Visitor extends CI_Controller {
 
 		$data['latlng1'] = $latlng1;
 		$data['latlng2'] = $latlng2;
-		$data['confirmed'] = ($this->qso_is_confirmed($qso, $user_default_confirmation)==true) ? true : false;
+		$data['confirmed'] = ($this->visitor_model->qso_is_confirmed($qso, $user_default_confirmation)==true) ? true : false;
 
 		return $data;
-	}
-
-	function qso_is_confirmed($qso, $user_default_confirmation) {
-		$confirmed = false;
-		$qso = (array) $qso;
-		if (strpos($user_default_confirmation, 'Q') !== false) { // QSL
-			if ($qso['COL_QSL_RCVD']=='Y') { $confirmed = true; }
-		}
-		if (strpos($user_default_confirmation, 'L') !== false) { // LoTW
-			if ($qso['COL_LOTW_QSL_RCVD']=='Y') { $confirmed = true; }
-		}
-		if (strpos($user_default_confirmation, 'E') !== false) { // eQsl
-			if ($qso['COL_EQSL_QSL_RCVD']=='Y') { $confirmed = true; }
-		}
-		if (strpos($user_default_confirmation, 'Z') !== false) { // QRZ
-			if ($qso['COL_QRZCOM_QSO_DOWNLOAD_STATUS']=='Y') { $confirmed = true; }
-		}
-		return $confirmed;
-	}
-
-	function get_user_default_confirmation($userid) {
-		$this->db->where('user_id', $userid);
-		$query = $this->db->get('users');
-
-		if ($query->num_rows() > 0){
-			foreach ($query->result() as $row) {
-				return $row->user_default_confirmation;
-			}
-		} else {
-			return '';
-		}
 	}
 }

@@ -46,6 +46,32 @@ class Visitor_model extends CI_Model {
 		return $this->db->query($sql);
 	}
 
+	function qso_is_confirmed($qso, $user_default_confirmation) {
+		$confirmed = false;
+		$qso = (array) $qso;
+		if (strpos($user_default_confirmation, 'Q') !== false) { // QSL
+			if ($qso['COL_QSL_RCVD']=='Y') { $confirmed = true; }
+		}
+		if (strpos($user_default_confirmation, 'L') !== false) { // LoTW
+			if ($qso['COL_LOTW_QSL_RCVD']=='Y') { $confirmed = true; }
+		}
+		if (strpos($user_default_confirmation, 'E') !== false) { // eQsl
+			if ($qso['COL_EQSL_QSL_RCVD']=='Y') { $confirmed = true; }
+		}
+		if (strpos($user_default_confirmation, 'Z') !== false) { // QRZ
+			if ($qso['COL_QRZCOM_QSO_DOWNLOAD_STATUS']=='Y') { $confirmed = true; }
+		}
+		if (strpos($user_default_confirmation, 'C') !== false) { // Clublog
+			if ($qso['COL_CLUBLOG_QSO_DOWNLOAD_STATUS']=='Y') { $confirmed = true; }
+		}
+		return $confirmed;
+	}
+
+	function get_user_default_confirmation($userid) {
+		$this->load->model('user_model');
+		return $this->user_model->get_by_id($userid)->row()->user_default_confirmation ?? '';
+	}
+
 	function render_static_map($qsos, $uid, $centerMap, $station_coordinates, $filename, $cacheDir) {
 
 		$requiredClasses = [
@@ -70,7 +96,6 @@ class Visitor_model extends CI_Model {
 		$width = 1024;
 		$height = 768;
 		$tileLayer = \Wavelog\StaticMapImage\TileLayer::defaultTileLayer();
-		$cachepath = $this->config->item('cache_path') == '' ? APPPATH . 'cache/' : $this->config->item('cache_path');
 
 		// Create the map
 		$map = new \Wavelog\StaticMapImage\OpenStreetMap(new \Wavelog\StaticMapImage\LatLng($centerMapLat, $centerMapLng), $zoom, $width, $height, $tileLayer);
@@ -78,33 +103,18 @@ class Visitor_model extends CI_Model {
 		if (!$this->load->is_loaded('Qra')) {
 			$this->load->library('Qra');
 		}
-		if (!$this->load->is_loaded('user_model')) {
-			$this->load->model('user_model');
-		}
 
 		// Get all QSOs with gridsquares and set markers for confirmed and unconfirmed QSOs
 		$markerQsos = [];
 		$markerQsosConfirmed = [];
-		$user_default_cnfm = $this->user_model->get_by_id($uid)->row()->user_default_confirmation;
+		$user_default_confirmation = $this->get_user_default_confirmation($uid);
 		foreach ($qsos->result('array') as $qso) {
 			if (!empty($qso['COL_GRIDSQUARE'])  || !empty($qso['COL_VUCC_GRIDS'])) {
 				$latlng = $this->qra->qra2latlong($qso['COL_GRIDSQUARE']);
 				$lat = $latlng[0];
 				$lng = $latlng[1];
 
-				if (strpos($user_default_cnfm, 'Q') && $qso['COL_QSL_RCVD'] == 'Y') {
-					$markerQsosConfirmed[] = new \Wavelog\StaticMapImage\LatLng($lat, $lng);
-					continue;
-				} elseif (strpos($user_default_cnfm, 'L') && $qso['COL_LOTW_QSL_RCVD'] == 'Y') {
-					$markerQsosConfirmed[] = new \Wavelog\StaticMapImage\LatLng($lat, $lng);
-					continue;
-				} elseif (strpos($user_default_cnfm, 'E') && $qso['COL_EQSL_QSL_RCVD'] == 'Y') {
-					$markerQsosConfirmed[] = new \Wavelog\StaticMapImage\LatLng($lat, $lng);
-					continue;
-				} elseif (strpos($user_default_cnfm, 'Z') && $qso['COL_QRZCOM_QSO_DOWNLOAD_STATUS'] == 'Y') {
-					$markerQsosConfirmed[] = new \Wavelog\StaticMapImage\LatLng($lat, $lng);
-					continue;
-				} elseif (strpos($user_default_cnfm, 'C') && $qso['COL_CLUBLOG_QSO_DOWNLOAD_STATUS'] == 'Y') {
+				if ($this->qso_is_confirmed($qso, $user_default_confirmation) == true) {
 					$markerQsosConfirmed[] = new \Wavelog\StaticMapImage\LatLng($lat, $lng);
 					continue;
 				} else {
@@ -179,7 +189,6 @@ class Visitor_model extends CI_Model {
 		$markersStation->resizeMarker(10, 10);
 		$markersStation->setAnchor(\Wavelog\StaticMapImage\Markers::ANCHOR_CENTER, \Wavelog\StaticMapImage\Markers::ANCHOR_BOTTOM);
 		foreach ($station_coordinates as $station) {
-			log_message('error', "Adding station marker to the map: " . $station[0] . ", " . $station[1]);
 			$markersStation->addMarker(new \Wavelog\StaticMapImage\LatLng($station[0], $station[1]));
 		}
 		$map->addMarkers($markersStation);
@@ -282,7 +291,7 @@ class Visitor_model extends CI_Model {
 
 			$slug = $this->stationsetup_model->get_slug($logbook_id);
 			if ($slug == false) {
-				log_message('error', "No slug found for logbook ID " . $logbook_id . ". Exiting...");
+				log_message('debug', "No slug found for logbook ID " . $logbook_id . ". Exiting...");
 				return false;
 			}
 
@@ -291,11 +300,11 @@ class Visitor_model extends CI_Model {
 
 			if (!empty($files)) {
 				foreach ($files as $file) {
-					log_message('error', "Found a outdated static map image: " . basename($file) . ". Deleting...");
+					log_message('debug', "Found a outdated static map image: " . basename($file) . ". Deleting...");
 					unlink($file);
 				}
 			} else {
-				log_message('error', "Found no files with the prefix '" . $prefix . "' in the cache directory.");
+				log_message('info', "Found no files with the prefix '" . $prefix . "' in the cache directory.");
 			}
 
 			return true; // Success
