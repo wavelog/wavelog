@@ -478,6 +478,26 @@ class Visitor extends CI_Controller {
 				show_404(__("Unknown Public Page."));
 			}
 
+			// we need to get an array of all coordinates of the stations
+			if (!$this->load->is_loaded('logbook_model')) {
+				$this->load->model('logbook_model');
+			}
+			$grids = [];
+			foreach ($logbooks_locations_array as $location) {
+				$station_info = $this->logbook_model->check_station($location);
+				if ($station_info) {
+					$grids[] = $station_info['station_gridsquare'];
+				}
+			}
+			if (!$this->load->is_loaded('Qra')) {
+				$this->load->library('Qra');
+			}
+			$coordinates = [];
+			foreach ($grids as $grid) {
+				$coordinates[] = $this->qra->qra2latlong($grid);
+			}
+			$centerMap = $this->qra->getCenterLatLng($coordinates);
+			
 			// if the qso count is not a number, set it to 100 per default
 			if ($qsocount == 0 || !is_numeric($qsocount)) {
 				$qsocount = 100;
@@ -485,7 +505,7 @@ class Visitor extends CI_Controller {
 
 			$qsos = $this->visitor_model->get_qsos($qsocount, $logbooks_locations_array, $band);
 			
-			$image = $this->visitor_model->render_static_map($qsos);
+			$image = $this->visitor_model->render_static_map($qsos, $centerMap);
 
 			header('Content-Type: image/png');
 			// echo $image;

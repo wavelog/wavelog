@@ -46,7 +46,7 @@ class Visitor_model extends CI_Model {
 		return $this->db->query($sql);
 	}
 
-	public function render_static_map($qsos) {
+	public function render_static_map($qsos, $centerMap) {
 
 		$requiredClasses = [
 			'./src/StaticMap/src/OpenStreetMap.php',
@@ -63,8 +63,8 @@ class Visitor_model extends CI_Model {
 		}
 	
 		// Map data and default values
-		$centerMapLat = 0; // TODO: Set to user's QTH
-		$centerMapLng = 0;  // TODO: Fix earth wrap
+		$centerMapLat = 0; // Needs to be 0 as we can't wrap Latitude
+		$centerMapLng = $centerMap[1];
 		$centerMap = $centerMapLat . $centerMapLng; // used for cached tiles
 		$zoom = 2;
 		$width = 1024;
