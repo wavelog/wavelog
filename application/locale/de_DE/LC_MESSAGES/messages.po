@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-10-22 17:01+0000\n"
+"POT-Creation-Date: 2024-10-23 05:11+0000\n"
 "PO-Revision-Date: 2024-10-22 11:55+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
@@ -570,6 +570,10 @@ msgstr "Kein Benutzer hat Clublog konfiguriert."
 #: application/views/interface_assets/header.php:251
 msgid "Contest Calendar"
 msgstr "Contest-Kalender"
+
+#: application/controllers/Contestcalendar.php:47
+msgid "Contestcalendar not reachable. Try again later"
+msgstr ""
 
 #: application/controllers/Contesting.php:52
 #: application/views/contesting/index.php:7
@@ -5606,7 +5610,7 @@ msgid "Hamsat - Satellite Rovers"
 msgstr "Hamsat - Satellit Rovers"
 
 #: application/views/components/hamsat/table.php:4
-#: application/views/contestcalendar/index.php:4
+#: application/views/contestcalendar/index.php:11
 #: application/views/dxcalendar/index.php:4
 #: application/views/hamsat/index.php:8
 msgid "This data comes from"
@@ -5662,11 +5666,11 @@ msgstr "Sked"
 msgid "Radio Status"
 msgstr "Funkgeräte-Status"
 
-#: application/views/contestcalendar/index.php:9
+#: application/views/contestcalendar/index.php:16
 msgid "No Contests"
 msgstr "Keine Conteste"
 
-#: application/views/contestcalendar/index.php:14
+#: application/views/contestcalendar/index.php:21
 #: application/views/logbookadvanced/edit.php:24
 #: application/views/logbookadvanced/index.php:310
 #: application/views/logbookadvanced/index.php:649
@@ -5676,27 +5680,27 @@ msgstr "Keine Conteste"
 msgid "Contest"
 msgstr "Contest"
 
-#: application/views/contestcalendar/index.php:15
+#: application/views/contestcalendar/index.php:22
 #: application/views/statistics/custom.php:41
 #: application/views/statistics/custom_result.php:43
 msgid "Start"
 msgstr "Start"
 
-#: application/views/contestcalendar/index.php:16
+#: application/views/contestcalendar/index.php:23
 #: application/views/statistics/custom.php:46
 #: application/views/statistics/custom_result.php:48
 msgid "End"
 msgstr "Ende"
 
-#: application/views/contestcalendar/index.php:17
+#: application/views/contestcalendar/index.php:24
 msgid "Link"
 msgstr "Link"
 
-#: application/views/contestcalendar/index.php:26
+#: application/views/contestcalendar/index.php:33
 msgid "Show Details"
 msgstr "Details anzeigen"
 
-#: application/views/contestcalendar/index.php:38
+#: application/views/contestcalendar/index.php:45
 #: application/views/dashboard/index.php:285
 #: application/views/dashboard/index.php:312
 #: application/views/dashboard/index.php:333
@@ -5705,11 +5709,11 @@ msgstr "Details anzeigen"
 msgid "Today"
 msgstr "Heute"
 
-#: application/views/contestcalendar/index.php:48
+#: application/views/contestcalendar/index.php:55
 msgid "Weekend"
 msgstr "Wochenende"
 
-#: application/views/contestcalendar/index.php:59
+#: application/views/contestcalendar/index.php:66
 msgid "Next Week"
 msgstr "Nächste Woche"
 
