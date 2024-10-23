@@ -236,7 +236,11 @@
                     <?php if($row->name != null) { ?>
                     <tr>
                         <td><?= __("Country"); ?></td>
-                        <td><?php echo ucwords(strtolower(($row->name)), "- (/"); if ($dxccFlag != null) { echo " ".$dxccFlag; } if ($row->end != null) { echo ' <span class="badge text-bg-danger">'.__("Deleted DXCC").'</span>'; } ?></td>
+                        <td><?php if ($row->adif == '0') {
+                                     echo $row->name;
+                                  } else {
+                                     echo ucwords(strtolower(($row->name)), "- (/"); if ($dxccFlag != null) { echo " ".$dxccFlag; } if ($row->end != null) { echo ' <span class="badge text-bg-danger">'.__("Deleted DXCC").'</span>'; }
+                                  } ?></td>
                     </tr>
                     <?php } ?>
 
