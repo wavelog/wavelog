@@ -451,9 +451,11 @@ class Visitor extends CI_Controller {
 
 	public function map_static() {
 
-		// TODO: Catch the case of the slug does not exist
-
 		$slug = $this->security->xss_clean($this->uri->segment(3));
+		if ($slug == '') {
+			show_404(__("Unknown Public Page."));
+		}
+
 		$qsocount = $this->input->get('qsocount', TRUE) ?? '';
 		$band = $this->input->get('band', TRUE) ?? 'nbf';
 		$cachepath = $this->config->item('cache_path') == '' ? APPPATH . 'cache/' : $this->config->item('cache_path');
