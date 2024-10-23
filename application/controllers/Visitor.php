@@ -456,8 +456,10 @@ class Visitor extends CI_Controller {
 			show_404(__("Unknown Public Page."));
 		}
 
+		// Optional override-parameters
 		$qsocount = $this->input->get('qsocount', TRUE) ?? '';
 		$band = $this->input->get('band', TRUE) ?? 'nbf';
+
 		$cachepath = $this->config->item('cache_path') == '' ? APPPATH . 'cache/' : $this->config->item('cache_path');
 		$cacheDir = $cachepath . "static_map_images/";
 		$this->load->model('themes_model');
@@ -518,12 +520,12 @@ class Visitor extends CI_Controller {
 				}
 				$centerMap = $this->qra->getCenterLatLng($coordinates);
 				
-				// if the qso count is not a number, set it to 100 per default
+				$uid = $this->stationsetup_model->getContainer($logbook_id, false)->row()->user_id;
+				// if the qso count is not a number, set it to the user option or 250 per default (same as used in stationsetup)
 				if ($qsocount == 0 || !is_numeric($qsocount)) {
-					$qsocount = 100;
+					$qsocount = $this->user_options_model->get_options('ExportMapOptions',array('option_name' => 'qsocount','option_key' => $slug), $uid)->row()->option_value ?? 250;
 				}
 
-				$uid = $this->stationsetup_model->getContainer($logbook_id, false)->row()->user_id;
 				$qsos = $this->visitor_model->get_qsos($qsocount, $logbooks_locations_array, $band == 'nbf' ? '' : $band);
 				
 				$image = $this->visitor_model->render_static_map($qsos, $uid, $centerMap, $coordinates, $filename, $cacheDir);
