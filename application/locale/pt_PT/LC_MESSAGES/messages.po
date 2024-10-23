@@ -561,7 +561,8 @@ msgstr "Calendário de concursos"
 
 #: application/controllers/Contestcalendar.php:47
 msgid "Contestcalendar not reachable. Try again later"
-msgstr "O calendário de concursos não está acessível. Porfavor tente mais tarde"
+msgstr ""
+"O calendário de concursos não está acessível. Porfavor tente mais tarde"
 
 #: application/controllers/Contesting.php:52
 #: application/views/contesting/index.php:7
@@ -9699,6 +9700,9 @@ msgstr "Exchange (E)"
 #: application/views/search/search_result_ajax.php:432
 #: application/views/view_log/partial/log.php:156
 #: application/views/view_log/partial/log_ajax.php:348
+#: application/views/search/search_result_ajax.php:433
+#: application/views/view_log/partial/log.php:157
+#: application/views/view_log/partial/log_ajax.php:349
 msgid "Delete QSO"
 msgstr "Apagar contacto"
 
@@ -10364,6 +10368,7 @@ msgstr "Marcar QSL anviada (Direta)"
 #: application/views/view_log/partial/log.php:148
 #: application/views/view_log/partial/log_ajax.php:335
 #: application/views/view_log/qso.php:664
+#: application/views/view_log/partial/log_ajax.php:336
 msgid "Mark QSL Received (Bureau)"
 msgstr "Marcar QSL recebida (Bureau)"
 
@@ -10371,6 +10376,7 @@ msgstr "Marcar QSL recebida (Bureau)"
 #: application/views/view_log/partial/log.php:149
 #: application/views/view_log/partial/log_ajax.php:336
 #: application/views/view_log/qso.php:666
+#: application/views/view_log/partial/log_ajax.php:337
 msgid "Mark QSL Received (Direct)"
 msgstr "Marcar QSL recebida (Direto)"
 
@@ -10384,16 +10390,23 @@ msgstr "Marcar QSL como pedida"
 #: application/views/view_log/partial/log.php:151
 #: application/views/view_log/partial/log_ajax.php:328
 #: application/views/view_log/qso.php:678
+#: application/views/search/search_result_ajax.php:421
+#: application/views/view_log/partial/log.php:152
+#: application/views/view_log/partial/log_ajax.php:329
 msgid "Mark QSL Card Not Required"
 msgstr "Marcar QSL como não necessária"
 
 #: application/views/search/search_result_ajax.php:426
 #: application/views/view_log/partial/log_ajax.php:342
+#: application/views/search/search_result_ajax.php:427
+#: application/views/view_log/partial/log_ajax.php:343
 msgid "Lookup on QRZ.com"
 msgstr "Consulta no QRZ.com"
 
 #: application/views/search/search_result_ajax.php:428
 #: application/views/view_log/partial/log_ajax.php:344
+#: application/views/search/search_result_ajax.php:429
+#: application/views/view_log/partial/log_ajax.php:345
 msgid "Lookup on HamQTH"
 msgstr "Consulta no HamQTH"
 
@@ -12278,10 +12291,16 @@ msgid "Mark QSL Received (Electronic)"
 msgstr "Marcar QSL Recebida (Eletrónico)"
 
 #: application/views/view_log/qso.php:674
+#: application/views/search/search_result_ajax.php:419
+#: application/views/view_log/partial/log.php:150
+#: application/views/view_log/partial/log_ajax.php:327
 msgid "Mark QSL Card Requested (Bureau)"
 msgstr "Marcar cartão QSL como solicitado (Bureau)"
 
 #: application/views/view_log/qso.php:676
+#: application/views/search/search_result_ajax.php:420
+#: application/views/view_log/partial/log.php:151
+#: application/views/view_log/partial/log_ajax.php:328
 msgid "Mark QSL Card Requested (Direct)"
 msgstr "Marcar cartão QSL como solicitado (Direto)"
 

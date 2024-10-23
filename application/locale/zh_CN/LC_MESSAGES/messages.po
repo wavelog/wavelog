@@ -9368,6 +9368,9 @@ msgstr "交换报告（S）"
 #: application/views/search/search_result_ajax.php:432
 #: application/views/view_log/partial/log.php:156
 #: application/views/view_log/partial/log_ajax.php:348
+#: application/views/search/search_result_ajax.php:433
+#: application/views/view_log/partial/log.php:157
+#: application/views/view_log/partial/log_ajax.php:349
 msgid "Delete QSO"
 msgstr "删除 QSO"
 
@@ -10015,6 +10018,7 @@ msgstr "标记 已收到卡片(直邮)"
 #: application/views/view_log/partial/log.php:148
 #: application/views/view_log/partial/log_ajax.php:335
 #: application/views/view_log/qso.php:664
+#: application/views/view_log/partial/log_ajax.php:336
 msgid "Mark QSL Received (Bureau)"
 msgstr "标记 已收到卡片(卡片局)"
 
@@ -10022,6 +10026,7 @@ msgstr "标记 已收到卡片(卡片局)"
 #: application/views/view_log/partial/log.php:149
 #: application/views/view_log/partial/log_ajax.php:336
 #: application/views/view_log/qso.php:666
+#: application/views/view_log/partial/log_ajax.php:337
 msgid "Mark QSL Received (Direct)"
 msgstr "标记 已收到卡片(直邮)"
 
@@ -10035,16 +10040,23 @@ msgstr "标记 已请求卡片"
 #: application/views/view_log/partial/log.php:151
 #: application/views/view_log/partial/log_ajax.php:328
 #: application/views/view_log/qso.php:678
+#: application/views/search/search_result_ajax.php:421
+#: application/views/view_log/partial/log.php:152
+#: application/views/view_log/partial/log_ajax.php:329
 msgid "Mark QSL Card Not Required"
 msgstr "标记 不需要卡片"
 
 #: application/views/search/search_result_ajax.php:426
 #: application/views/view_log/partial/log_ajax.php:342
+#: application/views/search/search_result_ajax.php:427
+#: application/views/view_log/partial/log_ajax.php:343
 msgid "Lookup on QRZ.com"
 msgstr "在 QRZ.com 上查询"
 
 #: application/views/search/search_result_ajax.php:428
 #: application/views/view_log/partial/log_ajax.php:344
+#: application/views/search/search_result_ajax.php:429
+#: application/views/view_log/partial/log_ajax.php:345
 msgid "Lookup on HamQTH"
 msgstr "在 HamQTH 上查询"
 
@@ -11827,10 +11839,16 @@ msgid "Mark QSL Received (Electronic)"
 msgstr "标记 已收到卡片(电子)"
 
 #: application/views/view_log/qso.php:674
+#: application/views/search/search_result_ajax.php:419
+#: application/views/view_log/partial/log.php:150
+#: application/views/view_log/partial/log_ajax.php:327
 msgid "Mark QSL Card Requested (Bureau)"
 msgstr "标记 已请求卡片(卡片局)"
 
 #: application/views/view_log/qso.php:676
+#: application/views/search/search_result_ajax.php:420
+#: application/views/view_log/partial/log.php:151
+#: application/views/view_log/partial/log_ajax.php:328
 msgid "Mark QSL Card Requested (Direct)"
 msgstr "标记 已请求卡片(直邮)"
 
