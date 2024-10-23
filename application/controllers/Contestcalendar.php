@@ -139,6 +139,8 @@ class Contestcalendar extends CI_Controller {
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
 			$rssRawData = curl_exec($ch);
+			curl_close($ch);
+
 			if ($rssRawData === FALSE) {
 				$msg = "Something went wrong with fetching the Contest Data";
 				log_message('error', $msg);
