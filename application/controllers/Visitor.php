@@ -451,78 +451,95 @@ class Visitor extends CI_Controller {
 
 	public function map_static() {
 
-		if (in_array('gd', get_loaded_extensions())) {
+		// TODO: Catch the case of the slug does not exist
 
-			if (!$this->load->is_loaded('visitor_model')) {
-				$this->load->model('visitor_model');
-			}
+		$slug = $this->security->xss_clean($this->uri->segment(3));
+		$qsocount = $this->input->get('qsocount', TRUE) ?? '';
+		$band = $this->input->get('band', TRUE) ?? 'nbf';
+		$cachepath = $this->config->item('cache_path') == '' ? APPPATH . 'cache/' : $this->config->item('cache_path');
+		$cacheDir = $cachepath . "static_map_images/";
+		$filename = 'static_map_' . $slug . '_' . $qsocount . '_' . $band . '.png';
 
-			if (!$this->load->is_loaded('stationsetup_model')) {
-				$this->load->model('stationsetup_model');
-			}
+		if (!is_dir($cacheDir)) {
+            mkdir($cacheDir, 0755, true);
+        }
 
-			$slug = $this->security->xss_clean($this->uri->segment(3));
-			$qsocount = $this->input->get('qsocount', TRUE) ?? '';
-			$band = $this->input->get('band', TRUE) ?? '';
-			
-			$logbook_id = $this->stationsetup_model->public_slug_exists_logbook_id($slug);
-			if ($logbook_id != false) {
-				// Get associated station locations for mysql queries
-				$logbooks_locations_array = $this->stationsetup_model->get_container_relations($logbook_id);
-
-				if (!$logbooks_locations_array) {
-					show_404(__("Empty Logbook"));
-				}
-			} else {
-				log_message('error', $slug.' has no associated station locations');
-				show_404(__("Unknown Public Page."));
-			}
-
-			// we need to get an array of all coordinates of the stations
-			if (!$this->load->is_loaded('logbook_model')) {
-				$this->load->model('logbook_model');
-			}
-			$grids = [];
-			foreach ($logbooks_locations_array as $location) {
-				$station_info = $this->logbook_model->check_station($location);
-				if ($station_info) {
-					$grids[] = $station_info['station_gridsquare'];
-				}
-			}
-			if (!$this->load->is_loaded('Qra')) {
-				$this->load->library('Qra');
-			}
-			$coordinates = [];
-			foreach ($grids as $grid) {
-				$coordinates[] = $this->qra->qra2latlong($grid);
-			}
-			$centerMap = $this->qra->getCenterLatLng($coordinates);
-			
-			// if the qso count is not a number, set it to 100 per default
-			if ($qsocount == 0 || !is_numeric($qsocount)) {
-				$qsocount = 100;
-			}
-
-			$qsos = $this->visitor_model->get_qsos($qsocount, $logbooks_locations_array, $band);
-			
-			$image = $this->visitor_model->render_static_map($qsos, $centerMap);
-
+		if (file_exists($cacheDir . $filename)) {
+			log_message('debug', 'Static map image found in cache: ' . $filename);
 			header('Content-Type: image/png');
-			// echo $image;
-
-			if ($image == false) {
-				$msg = "Can't create static map image. Something went wrong.";
-				log_message('error', $msg);
-				show_404($msg);
-			} else {
-				$image_url = APPPATH . 'cache/' . $image;
-				readfile($image_url);
-			}
-
+			readfile($cacheDir . $filename);
+			return;
 		} else {
-			$msg = "Can't create static map image. Extention 'php-gd' is not installed. Install it and restart the webserver.";
-			log_message('error', $msg);
-			echo $msg;
+			log_message('debug', 'Static map image not found in cache: ' . $filename . '. Creating new image.');
+			if (in_array('gd', get_loaded_extensions())) {
+
+				if (!$this->load->is_loaded('visitor_model')) {
+					$this->load->model('visitor_model');
+				}
+
+				if (!$this->load->is_loaded('stationsetup_model')) {
+					$this->load->model('stationsetup_model');
+				}
+				
+				$logbook_id = $this->stationsetup_model->public_slug_exists_logbook_id($slug);
+				if ($logbook_id != false) {
+					// Get associated station locations for mysql queries
+					$logbooks_locations_array = $this->stationsetup_model->get_container_relations($logbook_id);
+
+					if (!$logbooks_locations_array) {
+						show_404(__("Empty Logbook"));
+					}
+				} else {
+					log_message('error', $slug.' has no associated station locations');
+					show_404(__("Unknown Public Page."));
+				}
+
+				// we need to get an array of all coordinates of the stations
+				if (!$this->load->is_loaded('logbook_model')) {
+					$this->load->model('logbook_model');
+				}
+				$grids = [];
+				foreach ($logbooks_locations_array as $location) {
+					$station_info = $this->logbook_model->check_station($location);
+					if ($station_info) {
+						$grids[] = $station_info['station_gridsquare'];
+					}
+				}
+				if (!$this->load->is_loaded('Qra')) {
+					$this->load->library('Qra');
+				}
+				$coordinates = [];
+				foreach ($grids as $grid) {
+					$coordinates[] = $this->qra->qra2latlong($grid);
+				}
+				$centerMap = $this->qra->getCenterLatLng($coordinates);
+				
+				// if the qso count is not a number, set it to 100 per default
+				if ($qsocount == 0 || !is_numeric($qsocount)) {
+					$qsocount = 100;
+				}
+
+				$qsos = $this->visitor_model->get_qsos($qsocount, $logbooks_locations_array, $band == 'nbf' ? '' : $band);
+				
+				$image = $this->visitor_model->render_static_map($qsos, $centerMap, $filename, $cacheDir);
+
+				header('Content-Type: image/png');
+				// echo $image;
+
+				if ($image == false) {
+					$msg = "Can't create static map image. Something went wrong.";
+					log_message('error', $msg);
+					show_404($msg);
+				} else {
+					$image_url = $cacheDir . $filename;
+					readfile($image_url);
+				}
+
+			} else {
+				$msg = "Can't create static map image. Extention 'php-gd' is not installed. Install it and restart the webserver.";
+				log_message('error', $msg);
+				echo $msg;
+			}
 		}
 	}
 

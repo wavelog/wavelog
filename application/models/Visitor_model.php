@@ -46,7 +46,7 @@ class Visitor_model extends CI_Model {
 		return $this->db->query($sql);
 	}
 
-	public function render_static_map($qsos, $centerMap) {
+	function render_static_map($qsos, $centerMap, $filename, $cacheDir) {
 
 		$requiredClasses = [
 			'./src/StaticMap/src/OpenStreetMap.php',
@@ -101,13 +101,65 @@ class Visitor_model extends CI_Model {
 		$map->addMarkers($markers);
 	
 		// Generate the image
-		$filename = 'static_map.png';
-		$full_path = APPPATH . 'cache/' . $filename;
+		$full_path = $cacheDir . $filename;
 
 		if ($map->getImage($centerMap)->savePNG($full_path)) {
-			return $filename;
+			return true;
 		} else {
 			return false;
 		}
+	}
+
+	/**
+	 * Remove outdated static map images from the cache directory
+	 * 
+	 * @param $station_id  The station ID to remove the static map image for
+	 */
+
+	function remove_static_map_image($station_id) {
+
+		$cachepath = $this->config->item('cache_path') == '' ? APPPATH . 'cache/' : $this->config->item('cache_path');
+		$cacheDir = $cachepath . "static_map_images/";
+
+		if (!is_dir($cacheDir)) {
+			log_message('debug', "Cache directory '" . $cacheDir . "' does not exist. Therefore no static map images to remove...");
+			return true;
+		}
+
+		if (!is_numeric($station_id) || $station_id == '' || $station_id == null) {
+			log_message('error', "Station ID is not valid. Exiting...");
+			return false;
+		}
+		if (!$this->load->is_loaded('stationsetup_model')) {
+			$this->load->model('stationsetup_model');
+		}
+
+		$linked_logbooks = $this->stationsetup_model->get_container_relations($station_id, true); // true means we do a reverse search
+		
+		if (!$linked_logbooks) {
+			log_message('error', "No linked logbooks found for station ID " . $station_id . ". Exiting...");
+			return false;
+		}
+		foreach ($linked_logbooks as $logbook_id) {
+			$slug = $this->stationsetup_model->get_slug($logbook_id);
+			if ($slug == false) {
+				log_message('debug', "No slug found for logbook ID " . $logbook_id . ". Continue...");
+				continue;
+			}
+
+			$prefix = 'static_map_' . $slug;
+			$files = glob($cacheDir . $prefix . '*');
+
+			if (!empty($files)) {
+				foreach ($files as $file) {
+					log_message('debug', "Found a outdated static map image: " . basename($file) . ". Deleting...");
+					unlink($file);
+				}
+			} else {
+				log_message('info', "Found no files with the prefix '" . $prefix . "' in the cache directory.");
+			}
+		}
+
+		return true; // Success
 	}
 }

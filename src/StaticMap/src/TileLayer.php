@@ -183,8 +183,10 @@ class TileLayer {
      * @throws \Exception
      */
     public function getTile(float $x, float $y, int $z, int $tileSize, string $centerMap): Image {
+        $CI = &get_instance();
         $cacheKey = "tile_" . $x . "_" . $y . "_" . $z . "_" . $tileSize . "_" . $centerMap . ".png";
-        $cacheDir = APPPATH . "cache/tilecache/";
+        $cacheConfig = $CI->config->item('cache_path') == '' ? APPPATH . 'cache/' : $CI->config->item('cache_path');
+        $cacheDir = $cacheConfig . "tilecache/";
         $cachePath = $cacheDir . $cacheKey;
 
         if (!is_dir($cacheDir)) {
