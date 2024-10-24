@@ -370,7 +370,7 @@ class Visitor_model extends CI_Model {
 					continue;
 				}
 
-				$prefix = 'static_map_' . $slug;
+				$prefix = 'staticmap_' . $slug;
 				$files = glob($cacheDir . $prefix . '*');
 
 				if (!empty($files)) {
@@ -398,7 +398,7 @@ class Visitor_model extends CI_Model {
 				return false;
 			}
 
-			$prefix = 'static_map_' . $slug;
+			$prefix = 'staticmap_' . $slug;
 			$files = glob($cacheDir . $prefix . '*');
 
 			if (!empty($files)) {
