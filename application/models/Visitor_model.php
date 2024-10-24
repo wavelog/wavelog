@@ -122,12 +122,14 @@ class Visitor_model extends CI_Model {
 				$centerMapLat = 45;
 				$centerMapLng = 100;
 				$zoom = 3;
+				$contFontPosX = 24;
 			} elseif ($continent == 'EU') {
 				$continentEnabled = true;
 				$continentText = 'Europe';
 				$centerMapLat = 57;
 				$centerMapLng = 15;
 				$zoom = 4;
+				$contFontPosX = 34;
 			} elseif ($continent == 'NA') {
 				$continentEnabled = true;
 				$continentText = 'North America';
@@ -141,7 +143,7 @@ class Visitor_model extends CI_Model {
 				$centerMapLat = -25;
 				$centerMapLng = 140;
 				$zoom = 4;
-				$contFontPosX = 40;
+				$contFontPosX = 38;
 			} elseif ($continent == 'SA') {
 				$continentEnabled = true;
 				$continentText = 'South America';
@@ -165,7 +167,7 @@ class Visitor_model extends CI_Model {
 				$fontPosX = 390;
 				$fontPosY = 178;
 				$watermarkPosY = -180;
-				$contFontPosX = 50;
+				$contFontPosX = 45;
 			} else {
 				// we don't want to change the default values in this case
 			}
