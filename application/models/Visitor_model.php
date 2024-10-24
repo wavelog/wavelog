@@ -134,6 +134,7 @@ class Visitor_model extends CI_Model {
 				$centerMapLat = 55;
 				$centerMapLng = -100;
 				$zoom = 3;
+				$contFontPosX = 60;
 			} elseif ($continent == 'OC') {
 				$continentEnabled = true;
 				$continentText = 'Oceania';
@@ -163,8 +164,8 @@ class Visitor_model extends CI_Model {
 				$height = 400;
 				$fontPosX = 390;
 				$fontPosY = 178;
-				$watermarkPosX = DantSu\PHPImageEditor\Image::ALIGN_RIGHT;
 				$watermarkPosY = -180;
+				$contFontPosX = 50;
 			} else {
 				// we don't want to change the default values in this case
 			}
