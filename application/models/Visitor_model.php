@@ -72,7 +72,7 @@ class Visitor_model extends CI_Model {
 		return $this->user_model->get_by_id($userid)->row()->user_default_confirmation ?? '';
 	}
 
-	function render_static_map($qsos, $uid, $centerMap, $station_coordinates, $filename, $cacheDir, $continent = null) {
+	function render_static_map($qsos, $uid, $centerMap, $station_coordinates, $filename, $cacheDir, $continent = null, $thememode = null) {
 
 		$requiredClasses = [
 			'./src/StaticMap/src/OpenStreetMap.php',
@@ -86,6 +86,29 @@ class Visitor_model extends CI_Model {
 
 		foreach ($requiredClasses as $class) {
 			require_once($class);
+		}
+
+		if ($thememode != null) {
+			$attribution = $this->optionslib->get_option('option_map_tile_server_copyright') ?? 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>';
+			if ($thememode == 'light') {
+				$server_url = $this->optionslib->get_option('option_map_tile_server') ?? '';
+				if ($server_url == '') {
+					$server_url = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+					$this->optionslib->update('map_tile_server', $server_url, 'yes');
+				}
+				$tileLayer = new \Wavelog\StaticMapImage\TileLayer($server_url, $attribution, $thememode);
+			} elseif ($thememode == 'dark') {
+				$server_url = $this->optionslib->get_option('option_map_tile_server_dark') ?? '';
+				if ($server_url == '') {
+					$server_url = 'https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png';
+					$this->optionslib->update('map_tile_server_dark', $server_url, 'yes');
+				}
+				$tileLayer = new \Wavelog\StaticMapImage\TileLayer($server_url, $attribution, $thememode);
+			} else {
+				$tileLayer = \Wavelog\StaticMapImage\TileLayer::defaultTileLayer();
+			}
+		} else {
+			$tileLayer = \Wavelog\StaticMapImage\TileLayer::defaultTileLayer();
 		}
 
 		// Map data and default values
@@ -102,7 +125,6 @@ class Visitor_model extends CI_Model {
 		$contFontPosY = 20;
 		$watermarkPosX = DantSu\PHPImageEditor\Image::ALIGN_RIGHT;
 		$watermarkPosY = DantSu\PHPImageEditor\Image::ALIGN_BOTTOM;
-		$tileLayer = \Wavelog\StaticMapImage\TileLayer::defaultTileLayer();
 		$continentEnabled = false;
 
 		// Continent Option

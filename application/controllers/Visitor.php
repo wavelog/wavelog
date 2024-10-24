@@ -469,6 +469,12 @@ class Visitor extends CI_Controller {
 		$qsocount = $this->input->get('qsocount', TRUE) ?? '';
 		$band = $this->input->get('band', TRUE) ?? 'nbf';
 		$continent = $this->input->get('continent', TRUE) ?? 'nC';
+		$this->load->model('themes_model');
+		$thememode = $this->input->get('theme', TRUE) ?? null;
+		if ($thememode == null || $thememode == '' || ($thememode != 'dark' && $thememode != 'light')) { 
+			$r =  $this->themes_model->get_theme_mode($this->optionslib->get_option('option_theme'));
+			$thememode = $r;
+		}
 		
 		$logbook_id = $this->stationsetup_model->public_slug_exists_logbook_id($slug);
 		$uid = $this->stationsetup_model->getContainer($logbook_id, false)->row()->user_id;
@@ -480,7 +486,6 @@ class Visitor extends CI_Controller {
 		$cachepath = $this->config->item('cache_path') == '' ? APPPATH . 'cache/' : $this->config->item('cache_path');
 		$cacheDir = $cachepath . "static_map_images/";
 		$this->load->model('themes_model');
-		$thememode =  $this->themes_model->get_theme_mode($this->optionslib->get_option('option_theme'));
 		$filename = 'staticmap_' . $slug . '_' . $qsocount . '_' . $band . '_' . $thememode . '_' . $continent . '.png';
 
 		// remove all cached images for debugging purposes
@@ -540,7 +545,7 @@ class Visitor extends CI_Controller {
 
 				$qsos = $this->visitor_model->get_qsos($qsocount, $logbooks_locations_array, $band == 'nbf' ? '' : $band); // TODO: Allow 'all' option
 				
-				$image = $this->visitor_model->render_static_map($qsos, $uid, $centerMap, $coordinates, $filename, $cacheDir, $continent);
+				$image = $this->visitor_model->render_static_map($qsos, $uid, $centerMap, $coordinates, $filename, $cacheDir, $continent, $thememode);
 
 				header('Content-Type: image/png');
 				// echo $image;

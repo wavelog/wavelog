@@ -28,13 +28,18 @@ class TileLayer {
             $server =  $CI->optionslib->get_option('option_map_tile_server');
         }
         $attribution = $CI->optionslib->get_option('option_map_tile_server_copyright');
-        return new TileLayer($server, $attribution);
+        return new TileLayer($server, $attribution, $r);
     }
 
     /**
      * @var string Tile server url, defaults to OpenStreetMap tile server
      */
     protected $url;
+
+    /**
+     * @var string Theme mode, defined light or dark mode
+     */
+    protected $thememode;
 
     /**
      * @var string Tile server attribution according to license
@@ -80,8 +85,9 @@ class TileLayer {
      * @param array $curlOptions Array of curl options
      * @param bool $failCurlOnError If true, curl will throw an exception on error.
      */
-    public function __construct(string $url, string $attributionText, string $subdomains = 'abc', array $curlOptions = [], bool $failCurlOnError = false) {
+    public function __construct(string $url, string $attributionText, string $thememode, string $subdomains = 'abc', array $curlOptions = [], bool $failCurlOnError = false) {
         $this->url = $url;
+        $this->thememode = $thememode;
         $this->attributionText = $attributionText;
         $this->subdomains = \str_split($subdomains);
         $this->curlOptions = $curlOptions;
@@ -189,9 +195,7 @@ class TileLayer {
      */
     public function getTile(float $x, float $y, int $z, int $tileSize, string $centerMap): Image {
         $CI = &get_instance();
-        $CI->load->model('themes_model');
-		$thememode =  $CI->themes_model->get_theme_mode($CI->optionslib->get_option('option_theme'));
-        $cacheKey = "tile_" . $x . "_" . $y . "_" . $z . "_" . $tileSize . "_" . $centerMap . "_" . $thememode . ".png";
+        $cacheKey = "tile_" . $x . "_" . $y . "_" . $z . "_" . $tileSize . "_" . $centerMap . "_" . $this->thememode . ".png";
         $cacheConfig = $CI->config->item('cache_path') == '' ? APPPATH . 'cache/' : $CI->config->item('cache_path');
         $cacheDir = $cacheConfig . "tilecache/";
         $cachePath = $cacheDir . $cacheKey;
