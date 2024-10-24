@@ -170,12 +170,17 @@ $options = json_decode($options);
                                 <option value="">-</option>
                                 <?php
                                 foreach ($dxccarray as $dxcc) {
-                                    echo '<option value=' . $dxcc->adif;
-                                    echo '>' . $dxcc->prefix . ' - ' . ucwords(strtolower($dxcc->name), "- (/");
-                                    if ($dxcc->Enddate != null) {
-                                        echo ' - (' . __("Deleted DXCC") . ')';
+                                    if ($dxcc->adif == '0') {
+                                        echo '<option value='.$dxcc->adif.'>';
+                                        echo $dxcc->name;
+                                        echo '</option>';
+                                    } else {
+                                        echo '<option value=' . $dxcc->adif;
+                                        echo '>' . $dxcc->prefix . ' - ' . ucwords(strtolower($dxcc->name), "- (/");
+                                        if ($dxcc->Enddate != null) {
+                                            echo ' - (' . __("Deleted DXCC") . ')';
+                                        }
                                     }
-                                    echo '</option>';
                                 }
                                 ?>
                             </select>
