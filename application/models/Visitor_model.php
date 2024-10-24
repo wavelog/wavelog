@@ -72,7 +72,7 @@ class Visitor_model extends CI_Model {
 		return $this->user_model->get_by_id($userid)->row()->user_default_confirmation ?? '';
 	}
 
-	function render_static_map($qsos, $uid, $centerMap, $station_coordinates, $filename, $cacheDir) {
+	function render_static_map($qsos, $uid, $centerMap, $station_coordinates, $filename, $cacheDir, $continent = null) {
 
 		$requiredClasses = [
 			'./src/StaticMap/src/OpenStreetMap.php',
@@ -89,13 +89,86 @@ class Visitor_model extends CI_Model {
 		}
 
 		// Map data and default values
-		$centerMapLat = 0; // Needs to be 0 as we can't wrap Latitude
+		$centerMapLat = 25; // Needs to be fixed as we can't wrap Latitude. Latitude of 25 is a good value to display all necessary places
 		$centerMapLng = $centerMap[1];
 		$centerMap = $centerMapLat . $centerMapLng; // used for cached tiles
 		$zoom = 2;
 		$width = 1024;
 		$height = 768;
+		$fontSize = 12;
+		$fontPosX = 758;
+		$fontPosY = 178;
+		$contFontPosX = 30;
+		$contFontPosY = 20;
+		$watermarkPosX = DantSu\PHPImageEditor\Image::ALIGN_RIGHT;
+		$watermarkPosY = DantSu\PHPImageEditor\Image::ALIGN_BOTTOM;
 		$tileLayer = \Wavelog\StaticMapImage\TileLayer::defaultTileLayer();
+		$continentEnabled = false;
+
+		// Continent Option
+		if ($continent != null) {
+			if ($continent == 'AF') {
+				$continentEnabled = true;
+				$continentText = 'Africa';
+				$centerMapLat = 2;
+				$centerMapLng = 20;
+				$zoom = 4;
+				$height = 950;
+				$fontPosX = 940;
+				$watermarkPosY = 50;
+			} elseif ($continent == 'AS') {
+				$continentEnabled = true;
+				$continentText = 'Asia';
+				$centerMapLat = 45;
+				$centerMapLng = 100;
+				$zoom = 3;
+			} elseif ($continent == 'EU') {
+				$continentEnabled = true;
+				$continentText = 'Europe';
+				$centerMapLat = 57;
+				$centerMapLng = 15;
+				$zoom = 4;
+			} elseif ($continent == 'NA') {
+				$continentEnabled = true;
+				$continentText = 'North America';
+				$centerMapLat = 55;
+				$centerMapLng = -100;
+				$zoom = 3;
+			} elseif ($continent == 'OC') {
+				$continentEnabled = true;
+				$continentText = 'Oceania';
+				$centerMapLat = -25;
+				$centerMapLng = 140;
+				$zoom = 4;
+				$contFontPosX = 40;
+			} elseif ($continent == 'SA') {
+				$continentEnabled = true;
+				$continentText = 'South America';
+				$centerMapLat = -26;
+				$centerMapLng = -60;
+				$zoom = 4;
+				$height = 990;
+				$width = 700;
+				$fontPosX = 980;
+				$contFontPosX = 60;
+				$watermarkPosY = 80;
+				$watermarkPosX = -180;
+			} elseif ($continent == 'AN') {
+				$continentEnabled = true;
+				$continentText = 'Antarctica';
+				$centerMapLat = -73;
+				$centerMapLng = 0;
+				$zoom = 2;
+				$width = 1024;
+				$height = 400;
+				$fontPosX = 390;
+				$fontPosY = 178;
+				$watermarkPosX = DantSu\PHPImageEditor\Image::ALIGN_RIGHT;
+				$watermarkPosY = -180;
+			} else {
+				// we don't want to change the default values in this case
+			}
+		}
 
 		// Create the map
 		$map = new \Wavelog\StaticMapImage\OpenStreetMap(new \Wavelog\StaticMapImage\LatLng($centerMapLat, $centerMapLng), $zoom, $width, $height, $tileLayer);
@@ -104,6 +177,7 @@ class Visitor_model extends CI_Model {
 			$this->load->library('Qra');
 		}
 
+		// TODO: Filter QSOs for continents
 		// Get all QSOs with gridsquares and set markers for confirmed and unconfirmed QSOs
 		$markerQsos = [];
 		$markerQsosConfirmed = [];
@@ -113,6 +187,13 @@ class Visitor_model extends CI_Model {
 				$latlng = $this->qra->qra2latlong($qso['COL_GRIDSQUARE']);
 				$lat = $latlng[0];
 				$lng = $latlng[1];
+
+				// Check for continents
+				if ($continentEnabled) {
+					if ($qso['COL_CONT'] != $continent) {
+						continue;
+					}
+				}
 
 				if ($this->qso_is_confirmed($qso, $user_default_confirmation) == true) {
 					$markerQsosConfirmed[] = new \Wavelog\StaticMapImage\LatLng($lat, $lng);
@@ -219,7 +300,7 @@ class Visitor_model extends CI_Model {
 		// Add Wavelog watermark
 		$image = $map->getImage($centerMap);
 		$watermark = DantSu\PHPImageEditor\Image::fromPath('src/StaticMap/src/resources/watermark_static_map.png');
-		$image->pasteOn($watermark, DantSu\PHPImageEditor\Image::ALIGN_RIGHT, DantSu\PHPImageEditor\Image::ALIGN_BOTTOM);
+		$image->pasteOn($watermark, $watermarkPosX, $watermarkPosY);
 
 		// Add "Created with Wavelog" text
 		$this->load->model('user_model');
@@ -228,9 +309,15 @@ class Visitor_model extends CI_Model {
 		$dateTime = date($custom_date_format . ' - H:i');
 		$text = "Created with Wavelog on " . $dateTime . " UTC";
 		$fontPath = 'src/StaticMap/src/resources/font.ttf';
-		$fontSize = 12;
 		$color = 'ff0000'; // Red
-		$image->writeText($text, $fontPath, $fontSize, $color, 178, 758);
+		$image->writeText($text, $fontPath, $fontSize, $color, $fontPosY, $fontPosX);
+
+		// Add continent text
+		if ($continentEnabled) {
+			$fontPath = 'src/StaticMap/src/resources/font.ttf';
+			$color = 'ff0000'; // Red
+			$image->writeText($continentText, $fontPath, $fontSize, $color, $contFontPosX, $contFontPosY);
+		}
 
 		if ($image->savePNG($full_path)) {
 			return true;

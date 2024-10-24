@@ -451,6 +451,9 @@ class Visitor extends CI_Controller {
 
 	public function map_static() {
 
+		// set to true to remove cached imaged for debugging pruposes
+		$debugging = false;
+
 		$slug = $this->security->xss_clean($this->uri->segment(3));
 		if ($slug == '') {
 			show_404(__("Unknown Public Page."));
@@ -465,6 +468,7 @@ class Visitor extends CI_Controller {
 		// Optional override-parameters
 		$qsocount = $this->input->get('qsocount', TRUE) ?? '';
 		$band = $this->input->get('band', TRUE) ?? 'nbf';
+		$continent = $this->input->get('continent', TRUE) ?? 'nC';
 		
 		$logbook_id = $this->stationsetup_model->public_slug_exists_logbook_id($slug);
 		$uid = $this->stationsetup_model->getContainer($logbook_id, false)->row()->user_id;
@@ -477,7 +481,17 @@ class Visitor extends CI_Controller {
 		$cacheDir = $cachepath . "static_map_images/";
 		$this->load->model('themes_model');
 		$thememode =  $this->themes_model->get_theme_mode($this->optionslib->get_option('option_theme'));
-		$filename = 'static_map_' . $slug . '_' . $qsocount . '_' . $band . '_' . $thememode . '.png';
+		$filename = 'staticmap_' . $slug . '_' . $qsocount . '_' . $band . '_' . $thememode . '_' . $continent . '.png';
+
+		// remove all cached images for debugging purposes
+		if ($debugging) {
+			$files = glob($cacheDir . '*');
+			foreach ($files as $file) {
+				if (is_file($file)) {
+					unlink($file);
+				}
+			}
+		}
 
 		if (!is_dir($cacheDir)) {
             mkdir($cacheDir, 0755, true);
@@ -524,9 +538,9 @@ class Visitor extends CI_Controller {
 				}
 				$centerMap = $this->qra->getCenterLatLng($coordinates);
 
-				$qsos = $this->visitor_model->get_qsos($qsocount, $logbooks_locations_array, $band == 'nbf' ? '' : $band);
+				$qsos = $this->visitor_model->get_qsos($qsocount, $logbooks_locations_array, $band == 'nbf' ? '' : $band); // TODO: Allow 'all' option
 				
-				$image = $this->visitor_model->render_static_map($qsos, $uid, $centerMap, $coordinates, $filename, $cacheDir);
+				$image = $this->visitor_model->render_static_map($qsos, $uid, $centerMap, $coordinates, $filename, $cacheDir, $continent);
 
 				header('Content-Type: image/png');
 				// echo $image;
