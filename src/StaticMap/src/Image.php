@@ -2,6 +2,9 @@
 
 namespace DantSu\PHPImageEditor;
 
+include 'Geometry2D.php';
+use DantSu\PHPImageEditor\Geometry2D;
+
 /**
  * DantSu\PHPImageEditor\Image is PHP library to easily edit image with GD extension. Resize, crop, merge, draw, and many more options !
  *
