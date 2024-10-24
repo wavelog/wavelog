@@ -45,4 +45,397 @@ class Visitor_model extends CI_Model {
 
 		return $this->db->query($sql);
 	}
+
+	function qso_is_confirmed($qso, $user_default_confirmation) {
+		$confirmed = false;
+		$qso = (array) $qso;
+		if (strpos($user_default_confirmation, 'Q') !== false) { // QSL
+			if ($qso['COL_QSL_RCVD']=='Y') { $confirmed = true; }
+		}
+		if (strpos($user_default_confirmation, 'L') !== false) { // LoTW
+			if ($qso['COL_LOTW_QSL_RCVD']=='Y') { $confirmed = true; }
+		}
+		if (strpos($user_default_confirmation, 'E') !== false) { // eQsl
+			if ($qso['COL_EQSL_QSL_RCVD']=='Y') { $confirmed = true; }
+		}
+		if (strpos($user_default_confirmation, 'Z') !== false) { // QRZ
+			if ($qso['COL_QRZCOM_QSO_DOWNLOAD_STATUS']=='Y') { $confirmed = true; }
+		}
+		if (strpos($user_default_confirmation, 'C') !== false) { // Clublog
+			if ($qso['COL_CLUBLOG_QSO_DOWNLOAD_STATUS']=='Y') { $confirmed = true; }
+		}
+		return $confirmed;
+	}
+
+	function get_user_default_confirmation($userid) {
+		$this->load->model('user_model');
+		return $this->user_model->get_by_id($userid)->row()->user_default_confirmation ?? '';
+	}
+
+	function render_static_map($qsos, $uid, $centerMap, $station_coordinates, $filename, $cacheDir, $continent = null, $thememode = null) {
+
+		$requiredClasses = [
+			'./src/StaticMap/src/OpenStreetMap.php',
+			'./src/StaticMap/src/LatLng.php',
+			'./src/StaticMap/src/TileLayer.php',
+			'./src/StaticMap/src/Markers.php',
+			'./src/StaticMap/src/MapData.php',
+			'./src/StaticMap/src/XY.php',
+			'./src/StaticMap/src/Image.php'
+		];
+
+		foreach ($requiredClasses as $class) {
+			require_once($class);
+		}
+
+		if ($thememode != null) {
+			$attribution = $this->optionslib->get_option('option_map_tile_server_copyright') ?? 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>';
+			if ($thememode == 'light') {
+				$server_url = $this->optionslib->get_option('option_map_tile_server') ?? '';
+				if ($server_url == '') {
+					$server_url = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+					$this->optionslib->update('map_tile_server', $server_url, 'yes');
+				}
+				$tileLayer = new \Wavelog\StaticMapImage\TileLayer($server_url, $attribution, $thememode);
+			} elseif ($thememode == 'dark') {
+				$server_url = $this->optionslib->get_option('option_map_tile_server_dark') ?? '';
+				if ($server_url == '') {
+					$server_url = 'https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png';
+					$this->optionslib->update('map_tile_server_dark', $server_url, 'yes');
+				}
+				$tileLayer = new \Wavelog\StaticMapImage\TileLayer($server_url, $attribution, $thememode);
+			} else {
+				$tileLayer = \Wavelog\StaticMapImage\TileLayer::defaultTileLayer();
+			}
+		} else {
+			$tileLayer = \Wavelog\StaticMapImage\TileLayer::defaultTileLayer();
+		}
+
+		// Map data and default values
+		$centerMapLat = 25; // Needs to be fixed as we can't wrap Latitude. Latitude of 25 is a good value to display all necessary places
+		$centerMapLng = $centerMap[1];
+		$centerMap = $centerMapLat . $centerMapLng; // used for cached tiles
+		$zoom = 2;
+		$width = 1024;
+		$height = 768;
+		$fontSize = 12;
+		$fontPosX = 758;
+		$fontPosY = 178;
+		$contFontPosX = 30;
+		$contFontPosY = 20;
+		$watermarkPosX = DantSu\PHPImageEditor\Image::ALIGN_RIGHT;
+		$watermarkPosY = DantSu\PHPImageEditor\Image::ALIGN_BOTTOM;
+		$continentEnabled = false;
+
+		// Continent Option
+		if ($continent != null) {
+			if ($continent == 'AF') {
+				$continentEnabled = true;
+				$continentText = 'Africa';
+				$centerMapLat = 2;
+				$centerMapLng = 20;
+				$zoom = 4;
+				$height = 950;
+				$fontPosX = 940;
+				$watermarkPosY = 50;
+			} elseif ($continent == 'AS') {
+				$continentEnabled = true;
+				$continentText = 'Asia';
+				$centerMapLat = 45;
+				$centerMapLng = 100;
+				$zoom = 3;
+				$contFontPosX = 24;
+			} elseif ($continent == 'EU') {
+				$continentEnabled = true;
+				$continentText = 'Europe';
+				$centerMapLat = 57;
+				$centerMapLng = 15;
+				$zoom = 4;
+				$contFontPosX = 34;
+			} elseif ($continent == 'NA') {
+				$continentEnabled = true;
+				$continentText = 'North America';
+				$centerMapLat = 55;
+				$centerMapLng = -100;
+				$zoom = 3;
+				$contFontPosX = 60;
+			} elseif ($continent == 'OC') {
+				$continentEnabled = true;
+				$continentText = 'Oceania';
+				$centerMapLat = -25;
+				$centerMapLng = 140;
+				$zoom = 4;
+				$contFontPosX = 38;
+			} elseif ($continent == 'SA') {
+				$continentEnabled = true;
+				$continentText = 'South America';
+				$centerMapLat = -26;
+				$centerMapLng = -60;
+				$zoom = 4;
+				$height = 990;
+				$width = 700;
+				$fontPosX = 980;
+				$contFontPosX = 60;
+				$watermarkPosY = 80;
+				$watermarkPosX = -180;
+			} elseif ($continent == 'AN') {
+				$continentEnabled = true;
+				$continentText = 'Antarctica';
+				$centerMapLat = -73;
+				$centerMapLng = 0;
+				$zoom = 2;
+				$width = 1024;
+				$height = 400;
+				$fontPosX = 390;
+				$fontPosY = 178;
+				$watermarkPosY = -180;
+				$contFontPosX = 45;
+			} else {
+				// we don't want to change the default values in this case
+			}
+		}
+
+		// Create the map
+		$map = new \Wavelog\StaticMapImage\OpenStreetMap(new \Wavelog\StaticMapImage\LatLng($centerMapLat, $centerMapLng), $zoom, $width, $height, $tileLayer);
+
+		if (!$this->load->is_loaded('Qra')) {
+			$this->load->library('Qra');
+		}
+
+		// TODO: Filter QSOs for continents
+		// Get all QSOs with gridsquares and set markers for confirmed and unconfirmed QSOs
+		$markerQsos = [];
+		$markerQsosConfirmed = [];
+		$user_default_confirmation = $this->get_user_default_confirmation($uid);
+		foreach ($qsos->result('array') as $qso) {
+			if (!empty($qso['COL_GRIDSQUARE'])  || !empty($qso['COL_VUCC_GRIDS'])) {
+				$latlng = $this->qra->qra2latlong($qso['COL_GRIDSQUARE']);
+				$lat = $latlng[0];
+				$lng = $latlng[1];
+
+				// Check for continents
+				if ($continentEnabled) {
+					if ($qso['COL_CONT'] != $continent) {
+						continue;
+					}
+				}
+
+				if ($this->qso_is_confirmed($qso, $user_default_confirmation) == true) {
+					$markerQsosConfirmed[] = new \Wavelog\StaticMapImage\LatLng($lat, $lng);
+					continue;
+				} else {
+					$markerQsos[] = new \Wavelog\StaticMapImage\LatLng($lat, $lng);
+					continue;
+				}
+			} else {
+				continue;
+			}
+		}
+
+		// Get user defined markers
+		$options_object = $this->user_options_model->get_options('map_custom', null, $uid)->result();
+		$user_icondata = array();
+		if (count($options_object) > 0) {
+			foreach ($options_object as $row) {
+				if ($row->option_name == 'icon') {
+					$option_value = json_decode($row->option_value, true);
+					foreach ($option_value as $ktype => $vtype) {
+						if ($this->input->post('user_map_' . $row->option_key . '_icon')) {
+							$user_icondata['user_map_' . $row->option_key . '_' . $ktype] = $this->input->post('user_map_' . $row->option_key . '_' . $ktype, true);
+						} else {
+							$user_icondata['user_map_' . $row->option_key . '_' . $ktype] = $vtype;
+						}
+					}
+				} else {
+					$user_icondata['user_map_' . $row->option_name . '_' . $row->option_key] = $row->option_value;
+				}
+			}
+		} else {
+			$user_icondata['user_map_qso_icon'] = "fas fa-dot-circle";
+			$user_icondata['user_map_qso_color'] = "#FF0000";
+			$user_icondata['user_map_station_icon'] = "fas fa-home";
+			$user_icondata['user_map_station_color'] = "#0000FF";
+			$user_icondata['user_map_qsoconfirm_icon'] = "fas fa-check-circle";
+			$user_icondata['user_map_qsoconfirm_color'] = "#00AA00";
+			$user_icondata['user_map_gridsquare_show'] = "0";
+		}
+
+		// Map all available icons to the unicode
+		$unicode_map = array(
+			'0' => 'f192', // dot-circle is default
+			'fas fa-home' => 'f015',
+			'fas fa-broadcast-tower' => 'f519',
+			'fas fa-user' => 'f007',
+			'fas fa-dot-circle' => 'f192',
+			'fas fa-check-circle' => 'f058',
+		);
+
+		// Make sure the icons exist
+		if (!$this->load->is_loaded('genfunctions')) {
+			$this->load->library('genfunctions');
+		}
+		// Home Icon
+		if (!$home_icon = $this->genfunctions->fas2png($unicode_map[$user_icondata['user_map_station_icon']], substr($user_icondata['user_map_station_color'], 1))) {
+			log_message('error', "Failed to generate map icon. Exiting...");
+			return false;
+		}
+		// QSO Icon
+		if (!$qso_icon = $this->genfunctions->fas2png($unicode_map[$user_icondata['user_map_qso_icon']], substr($user_icondata['user_map_qso_color'], 1))) {
+			log_message('error', "Failed to generate map icon. Exiting...");
+			return false;
+		}
+		// QSO Confirm Icon
+		if (!$qso_cfnm_icon = $this->genfunctions->fas2png($unicode_map[$user_icondata['user_map_qsoconfirm_icon']], substr($user_icondata['user_map_qsoconfirm_color'], 1))) {
+			log_message('error', "Failed to generate map icon. Exiting...");
+			return false;
+		}
+
+		// Set the markers for the station
+		$markersStation = new \Wavelog\StaticMapImage\Markers($home_icon);
+		$markersStation->resizeMarker(10, 10);
+		$markersStation->setAnchor(\Wavelog\StaticMapImage\Markers::ANCHOR_CENTER, \Wavelog\StaticMapImage\Markers::ANCHOR_BOTTOM);
+		foreach ($station_coordinates as $station) {
+			$markersStation->addMarker(new \Wavelog\StaticMapImage\LatLng($station[0], $station[1]));
+		}
+		$map->addMarkers($markersStation);
+
+		// Set the markers for unconfirmed QSOs
+		$markers = new \Wavelog\StaticMapImage\Markers($qso_icon);
+		$markers->resizeMarker(10, 10);
+		$markers->setAnchor(\Wavelog\StaticMapImage\Markers::ANCHOR_CENTER, \Wavelog\StaticMapImage\Markers::ANCHOR_BOTTOM);
+
+		foreach ($markerQsos as $position) {
+			$markers->addMarker($position);
+		}
+		$map->addMarkers($markers);
+
+		// Set the markers for confirmed QSOs
+		$markersConfirmed = new \Wavelog\StaticMapImage\Markers($qso_cfnm_icon);
+		$markersConfirmed->resizeMarker(10, 10);
+		$markersConfirmed->setAnchor(\Wavelog\StaticMapImage\Markers::ANCHOR_CENTER, \Wavelog\StaticMapImage\Markers::ANCHOR_BOTTOM);
+
+		foreach ($markerQsosConfirmed as $position) {
+			$markersConfirmed->addMarker($position);
+		}
+		$map->addMarkers($markersConfirmed);
+
+		// Generate the image
+		$full_path = $cacheDir . $filename;
+
+		// Add Wavelog watermark
+		$image = $map->getImage($centerMap);
+		$watermark = DantSu\PHPImageEditor\Image::fromPath('src/StaticMap/src/resources/watermark_static_map.png');
+		$image->pasteOn($watermark, $watermarkPosX, $watermarkPosY);
+
+		// Add "Created with Wavelog" text
+		$this->load->model('user_model');
+		$user = $this->user_model->get_by_id($uid)->row();
+		$custom_date_format = $user->user_date_format;
+		$dateTime = date($custom_date_format . ' - H:i');
+		$text = "Created with Wavelog on " . $dateTime . " UTC";
+		$fontPath = 'src/StaticMap/src/resources/font.ttf';
+		$color = 'ff0000'; // Red
+		$image->writeText($text, $fontPath, $fontSize, $color, $fontPosY, $fontPosX);
+
+		// Add continent text
+		if ($continentEnabled) {
+			$fontPath = 'src/StaticMap/src/resources/font.ttf';
+			$color = 'ff0000'; // Red
+			$image->writeText($continentText, $fontPath, $fontSize, $color, $contFontPosX, $contFontPosY);
+		}
+
+		if ($image->savePNG($full_path)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * Remove outdated static map images from the cache directory
+	 * Based on station_id because is handled and used during qso creation
+	 * 
+	 * @param $station_id  The station ID to remove the static map image for
+	 */
+
+	function remove_static_map_image($station_id = null, $logbook_id = null) {
+
+		if ($station_id == null && $logbook_id == null) {
+			log_message('error', "Can't remove static map image cache. Neither a station ID nor a logbook ID was provided. Exiting...");
+			return false;
+		}
+		$cachepath = $this->config->item('cache_path') == '' ? APPPATH . 'cache/' : $this->config->item('cache_path');
+		$cacheDir = $cachepath . "static_map_images/";
+		
+		if (!is_dir($cacheDir)) {
+			log_message('debug', "Cache directory '" . $cacheDir . "' does not exist. Therefore no static map images to remove...");
+			return true;
+		}
+
+		if (!$this->load->is_loaded('stationsetup_model')) {
+			$this->load->model('stationsetup_model');
+		}
+		
+		if ($station_id != null) {
+			if (!is_numeric($station_id) || $station_id == '' || $station_id == null) {
+				log_message('error', "Station ID is not valid. Exiting...");
+				return false;
+			}
+
+			$linked_logbooks = $this->stationsetup_model->get_container_relations($station_id, true); // true means we do a reverse search
+			
+			if (!$linked_logbooks) {
+				log_message('error', "No linked logbooks found for station ID " . $station_id . ". Exiting...");
+				return false;
+			}
+			foreach ($linked_logbooks as $logbook_id) {
+				$slug = $this->stationsetup_model->get_slug($logbook_id);
+				if ($slug == false) {
+					log_message('debug', "No slug found for logbook ID " . $logbook_id . ". Continue...");
+					continue;
+				}
+
+				$prefix = 'staticmap_' . $slug;
+				$files = glob($cacheDir . $prefix . '*');
+
+				if (!empty($files)) {
+					foreach ($files as $file) {
+						log_message('debug', "Found a outdated static map image: " . basename($file) . ". Deleting...");
+						unlink($file);
+					}
+				} else {
+					log_message('info', "Found no files with the prefix '" . $prefix . "' in the cache directory.");
+				}
+			}
+
+			return true; // Success
+		}
+		if ($logbook_id != null) {
+
+			if (!is_numeric($logbook_id) || $logbook_id == '' || $logbook_id == null) {
+				log_message('error', "Logbook ID is not valid. Exiting...");
+				return false;
+			}
+
+			$slug = $this->stationsetup_model->get_slug($logbook_id);
+			if ($slug == false) {
+				log_message('debug', "No slug found for logbook ID " . $logbook_id . ". Exiting...");
+				return false;
+			}
+
+			$prefix = 'staticmap_' . $slug;
+			$files = glob($cacheDir . $prefix . '*');
+
+			if (!empty($files)) {
+				foreach ($files as $file) {
+					log_message('debug', "Found a outdated static map image: " . basename($file) . ". Deleting...");
+					unlink($file);
+				}
+			} else {
+				log_message('info', "Found no files with the prefix '" . $prefix . "' in the cache directory.");
+			}
+
+			return true; // Success
+		}
+	}
 }

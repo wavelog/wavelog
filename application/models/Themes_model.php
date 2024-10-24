@@ -34,9 +34,9 @@ class Themes_model extends CI_Model {
 		// Clean ID
 		$clean_id = $this->security->xss_clean($id);
 
-		$sql = "SELECT * FROM themes where id =" . $clean_id;
+		$sql = "SELECT * FROM themes where id = ?";
 
-		$data = $this->db->query($sql);
+		$data = $this->db->query($sql, $clean_id);
 
 		return ($data->row());
 	}
@@ -58,9 +58,9 @@ class Themes_model extends CI_Model {
 		$clean_theme = $this->security->xss_clean($theme);
 		$clean_location = $this->security->xss_clean($logo_location);
 
-		$sql = "SELECT " . $clean_location . " FROM themes WHERE foldername = '" . $clean_theme . "'";
+		$sql = "SELECT " . $clean_location . " FROM themes WHERE foldername = ?";
 
-		$query = $this->db->query($sql);
+		$query = $this->db->query($sql, $clean_theme);
 
 		if ($query) {
 			$result = $query->row();
@@ -69,6 +69,24 @@ class Themes_model extends CI_Model {
 			return ($value !== null) ? (string) $value : null;
 		} else {
 			log_message('error', 'get_logo_from_theme failed');
+			return null;
+		}
+	}
+
+	function get_theme_mode($theme) {
+		$clean_theme = $this->security->xss_clean($theme);
+
+		$sql = "SELECT theme_mode FROM themes WHERE foldername = ?";
+
+		$query = $this->db->query($sql, $clean_theme);
+
+		if ($query) {
+			$result = $query->row();
+			$value = isset($result->theme_mode) ? $result->theme_mode : null;
+	
+			return ($value !== null) ? (string) $value : null;
+		} else {
+			log_message('error', 'get_theme_mode failed');
 			return null;
 		}
 	}

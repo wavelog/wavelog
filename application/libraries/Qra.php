@@ -166,6 +166,39 @@ class Qra {
 		//return findings
 		return $result;
 	}
+
+	/**
+	 * Function to calculate the center of a bunch of coordinates
+	 * Source: https://www.phpsnippet.com/snippet/center-point-of-multiple-gps-coordinates-with-php
+	 * 
+	 * @param array 	$coordinates	Array of coordinates [latitude, longitude]
+	 * 					Example:
+	 * 					$coordinates = [
+	 *						[37.7797, -122.41924],
+	 *						[37.77323, -122.41114],
+	 *						[37.79203, -122.40864],
+	 *						[37.7952, -122.4222]
+	 *					];
+	 * 					
+	 * @return array 	[latitude, longitude]	Center of the coordinates
+	 */
+
+	function getCenterLatLng($coordinates) {
+		$x = $y = $z = 0;
+		$n = count($coordinates);
+		foreach ($coordinates as $point)
+		{
+			$lt = $point[0] * pi() / 180;
+			$lg = $point[1] * pi() / 180;
+			$x += cos($lt) * cos($lg);
+			$y += cos($lt) * sin($lg);
+			$z += sin($lt);
+		}
+		$x /= $n;
+		$y /= $n;
+
+		return [atan2(($z / $n), sqrt($x * $x + $y * $y)) * 180 / pi(), atan2($y, $x) * 180 / pi()];
+	}
 }
 
 
