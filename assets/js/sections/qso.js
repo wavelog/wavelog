@@ -1064,12 +1064,12 @@ $("#callsign").keyup(function () {
 				success: function (result) {
 					$('.callsign-suggestions').text(result);
 					scps = result.split(" ");
-					highlight(ccall.toUpperCase());
+					highlightSCP(ccall.toUpperCase());
 				}
 			});
 		} else {
 			$('.callsign-suggestions').text(scps.filter((call) => call.includes($(this).val().toUpperCase())).join(' '));
-			highlight(ccall.toUpperCase());
+			highlightSCP(ccall.toUpperCase());
 		}
 	} else {
 		$('.callsign-suggest').hide();
@@ -1082,7 +1082,7 @@ RegExp.escape = function (text) {
 }
 
 
-function highlight(term, base) {
+function highlightSCP(term, base) {
 	if (!term) return;
 	base = base || document.body;
 	var re = new RegExp("(" + RegExp.escape(term) + ")", "gi");
