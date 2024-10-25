@@ -4,6 +4,7 @@
 			<option value="dxcc"><?= __("DXCC"); ?></option>
 			<option value="vucc"><?= __("Gridsquare"); ?></option>
 			<option value="iota"><?= __("IOTA"); ?></option>
+			<option value="itu"><?= __("ITU Zone"); ?></option>
 			<option value="sota"><?= __("SOTA"); ?></option>
 			<option value="was"><?= __("US State"); ?></option>
 			<option value="wwff"><?= __("WWFF"); ?></option>
@@ -16,6 +17,15 @@
 		<select class="form-select w-auto" id="quicklookupcqz" name="cqz" required>
 			<?php
 			for ($i = 1; $i <= 40; $i++) {
+				echo '<option value="' . $i . '">' . $i . '</option>';
+			}
+			?>
+		</select>
+
+		<!-- ITU Zone -->
+		<select style="display:none" class="form-select w-auto" id="quicklookupituz" name="ituz" required>
+			<?php
+			for ($i = 1; $i <= 90; $i++) {
 				echo '<option value="' . $i . '">' . $i . '</option>';
 			}
 			?>
