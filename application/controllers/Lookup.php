@@ -45,7 +45,11 @@ class Lookup extends CI_Controller {
 		} else {
 			$this->load->model('bands');
 
-			$data['bands'] = $this->bands->get_worked_bands(xss_clean($this->input->post('type')));
+			if ($this->input->post('type') == 'itu') {
+				$data['bands'] = $this->bands->get_worked_bands();
+			} else {
+				$data['bands'] = $this->bands->get_worked_bands(xss_clean($this->input->post('type')));
+			}
 
 
 			$data['dxcc'] = xss_clean($this->input->post('dxcc'));
@@ -55,6 +59,7 @@ class Lookup extends CI_Controller {
 			$data['iota'] = xss_clean($this->input->post('iota'));
 			$data['cqz']  = xss_clean($this->input->post('cqz'));
 			$data['wwff'] = xss_clean($this->input->post('wwff'));
+			$data['ituz'] = xss_clean($this->input->post('ituz'));
 			$data['location_list'] = $location_list;
 
 			$data['result'] = $this->lookup_model->getSearchResult($data);
