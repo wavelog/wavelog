@@ -135,9 +135,7 @@ class Stationsetup_model extends CI_Model {
 		$query = $this->db->get('station_logbooks');
 
 		if ($query->num_rows() == 1){
-			foreach ($query->result() as $row) {
-				return $row->logbook_id;
-			}
+			return $query->row()->logbook_id;
 		} elseif ($query->num_rows() > 1) {
 			log_message('error', 'Multiple logbooks with same public_slug found!');
 			return false;
@@ -166,10 +164,8 @@ class Stationsetup_model extends CI_Model {
 		$this->db->where('public_slug !=', null);
 		$query = $this->db->get('station_logbooks');
 
-		if ($query->num_rows() > 0){
-			foreach ($query->result() as $row) {
-				return $row->public_slug;
-			}
+		if ($query->num_rows() == 1){
+			return $query->row()->public_slug;
 		} else {
 			return false;
 		}
