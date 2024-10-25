@@ -72,7 +72,7 @@ class Visitor_model extends CI_Model {
 		return $this->user_model->get_by_id($userid)->row()->user_default_confirmation ?? '';
 	}
 
-	function render_static_map($qsos, $uid, $centerMap, $station_coordinates, $filename, $cacheDir, $continent = null, $thememode = null) {
+	function render_static_map($qsos, $uid, $centerMap, $station_coordinates, $filename, $cacheDir, $continent = null, $thememode = null, $hide_home = false) {
 
 		$requiredClasses = [
 			'./src/StaticMap/src/OpenStreetMap.php',
@@ -295,13 +295,15 @@ class Visitor_model extends CI_Model {
 		}
 
 		// Set the markers for the station
-		$markersStation = new \Wavelog\StaticMapImage\Markers($home_icon);
-		$markersStation->resizeMarker(10, 10);
-		$markersStation->setAnchor(\Wavelog\StaticMapImage\Markers::ANCHOR_CENTER, \Wavelog\StaticMapImage\Markers::ANCHOR_BOTTOM);
-		foreach ($station_coordinates as $station) {
-			$markersStation->addMarker(new \Wavelog\StaticMapImage\LatLng($station[0], $station[1]));
+		if (!$hide_home) {
+			$markersStation = new \Wavelog\StaticMapImage\Markers($home_icon);
+			$markersStation->resizeMarker(10, 10);
+			$markersStation->setAnchor(\Wavelog\StaticMapImage\Markers::ANCHOR_CENTER, \Wavelog\StaticMapImage\Markers::ANCHOR_BOTTOM);
+			foreach ($station_coordinates as $station) {
+				$markersStation->addMarker(new \Wavelog\StaticMapImage\LatLng($station[0], $station[1]));
+			}
+			$map->addMarkers($markersStation);
 		}
-		$map->addMarkers($markersStation);
 
 		// Set the markers for unconfirmed QSOs
 		$markers = new \Wavelog\StaticMapImage\Markers($qso_icon);

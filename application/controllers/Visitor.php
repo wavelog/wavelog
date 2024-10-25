@@ -469,8 +469,11 @@ class Visitor extends CI_Controller {
 		$qsocount = $this->input->get('qsocount', TRUE) ?? '';
 		$band = $this->input->get('band', TRUE) ?? 'nbf';
 		$continent = $this->input->get('continent', TRUE) ?? 'nC';
-		$this->load->model('themes_model');
 		$thememode = $this->input->get('theme', TRUE) ?? null;
+		$hide_home = $this->input->get('hide_home', TRUE) == 1 ? true : false;
+
+		// handling the theme mode
+		$this->load->model('themes_model');
 		if ($thememode == null || $thememode == '' || ($thememode != 'dark' && $thememode != 'light')) { 
 			$r =  $this->themes_model->get_theme_mode($this->optionslib->get_option('option_theme'));
 			$thememode = $r;
@@ -545,7 +548,7 @@ class Visitor extends CI_Controller {
 
 				$qsos = $this->visitor_model->get_qsos($qsocount, $logbooks_locations_array, $band == 'nbf' ? '' : $band); // TODO: Allow 'all' option
 				
-				$image = $this->visitor_model->render_static_map($qsos, $uid, $centerMap, $coordinates, $filename, $cacheDir, $continent, $thememode);
+				$image = $this->visitor_model->render_static_map($qsos, $uid, $centerMap, $coordinates, $filename, $cacheDir, $continent, $thememode, $hide_home);
 
 				header('Content-Type: image/png');
 				// echo $image;
