@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-10-25 10:49+0000\n"
+"POT-Creation-Date: 2024-10-25 11:09+0000\n"
 "PO-Revision-Date: 2024-08-17 10:47+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Finnish <https://translate.wavelog.org/projects/wavelog/main-"
@@ -358,7 +358,7 @@ msgstr ""
 #: application/views/logbookadvanced/edit.php:20
 #: application/views/logbookadvanced/index.php:286
 #: application/views/logbookadvanced/useroptions.php:98
-#: application/views/lookup/index.php:7
+#: application/views/lookup/index.php:8
 #: application/views/qslcard/searchresult.php:17
 #: application/views/qslcard/searchresult.php:33
 #: application/views/qslcard/searchresult.php:49
@@ -384,7 +384,7 @@ msgstr ""
 #: application/views/logbookadvanced/edit.php:22
 #: application/views/logbookadvanced/index.php:306
 #: application/views/logbookadvanced/useroptions.php:134
-#: application/views/lookup/index.php:9
+#: application/views/lookup/index.php:10
 #: application/views/qso/components/previous_contacts.php:83
 #: application/views/qso/edit_ajax.php:376
 #: application/views/search/search_result_ajax.php:10
@@ -1432,7 +1432,7 @@ msgstr ""
 #: application/views/interface_assets/footer.php:675
 #: application/views/kml/index.php:54
 #: application/views/logbookadvanced/index.php:181
-#: application/views/lookup/index.php:34
+#: application/views/lookup/index.php:44
 #: application/views/lotw_views/index.php:52
 #: application/views/qso/components/previous_contacts.php:59
 #: application/views/qso/edit_ajax.php:237 application/views/qso/index.php:373
@@ -2960,7 +2960,7 @@ msgstr ""
 #: application/views/awards/was/index.php:112
 #: application/views/distances/index.php:79
 #: application/views/logbookadvanced/useroptions.php:17
-#: application/views/lookup/index.php:67
+#: application/views/lookup/index.php:77
 #: application/views/stationsetup/exportmapoptions.php:6
 #: application/views/timeline/index.php:105
 #: application/views/timeline/index.php:170
@@ -4452,7 +4452,8 @@ msgstr ""
 #: application/views/logbookadvanced/index.php:273
 #: application/views/logbookadvanced/index.php:636
 #: application/views/logbookadvanced/useroptions.php:94
-#: application/views/qso/edit_ajax.php:307 application/views/qso/index.php:406
+#: application/views/lookup/index.php:7 application/views/qso/edit_ajax.php:307
+#: application/views/qso/index.php:406
 #: application/views/search/ituzones_result.php:13
 #: application/views/station_profile/create.php:120
 #: application/views/station_profile/edit.php:170
@@ -5995,9 +5996,9 @@ msgstr "Tarvittu"
 #: application/views/visitor/index.php:291
 #: application/views/visitor/index.php:314
 #: application/views/visitor/index.php:332
-#: application/views/widgets/qsos.php:31 src/QSLManager/QSO.php:278
-#: src/QSLManager/QSO.php:381 src/QSLManager/QSO.php:433
-#: src/QSLManager/QSO.php:471 src/QSLManager/QSO.php:534
+#: application/views/widgets/qsos.php:31 src/QSLManager/QSO.php:289
+#: src/QSLManager/QSO.php:392 src/QSLManager/QSO.php:444
+#: src/QSLManager/QSO.php:482 src/QSLManager/QSO.php:545
 msgid "Sent"
 msgstr "Lähetetyt"
 
@@ -6026,9 +6027,9 @@ msgstr "Lähetetyt"
 #: application/views/view_log/partial/log_ajax.php:298
 #: application/views/visitor/index.php:296
 #: application/views/visitor/index.php:319
-#: application/views/visitor/index.php:337 src/QSLManager/QSO.php:323
-#: src/QSLManager/QSO.php:404 src/QSLManager/QSO.php:446
-#: src/QSLManager/QSO.php:510 src/QSLManager/QSO.php:547
+#: application/views/visitor/index.php:337 src/QSLManager/QSO.php:334
+#: src/QSLManager/QSO.php:415 src/QSLManager/QSO.php:457
+#: src/QSLManager/QSO.php:521 src/QSLManager/QSO.php:558
 msgid "Received"
 msgstr "Vastaanotetut"
 
@@ -6059,9 +6060,9 @@ msgstr "Vastaanotetut"
 #: application/views/view_log/partial/log_ajax.php:186
 #: application/views/view_log/partial/log_ajax.php:249
 #: application/views/view_log/partial/log_ajax.php:275
-#: application/views/visitor/index.php:301 src/QSLManager/QSO.php:284
-#: src/QSLManager/QSO.php:329 src/QSLManager/QSO.php:389
-#: src/QSLManager/QSO.php:412
+#: application/views/visitor/index.php:301 src/QSLManager/QSO.php:295
+#: src/QSLManager/QSO.php:340 src/QSLManager/QSO.php:400
+#: src/QSLManager/QSO.php:423
 msgid "Requested"
 msgstr "Pyydetyt"
 
@@ -7708,7 +7709,7 @@ msgstr ""
 #: application/views/search/search_result_ajax.php:225
 #: application/views/view_log/partial/log_ajax.php:145
 #: application/views/view_log/partial/log_ajax.php:183
-#: src/QSLManager/QSO.php:281 src/QSLManager/QSO.php:326
+#: src/QSLManager/QSO.php:292 src/QSLManager/QSO.php:337
 msgid "Queued"
 msgstr ""
 
@@ -7744,9 +7745,9 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:244
 #: application/views/view_log/partial/log_ajax.php:270
 #: application/views/view_log/partial/log_ajax.php:289
-#: src/QSLManager/QSO.php:287 src/QSLManager/QSO.php:332
-#: src/QSLManager/QSO.php:385 src/QSLManager/QSO.php:408
-#: src/QSLManager/QSO.php:493
+#: src/QSLManager/QSO.php:298 src/QSLManager/QSO.php:343
+#: src/QSLManager/QSO.php:396 src/QSLManager/QSO.php:419
+#: src/QSLManager/QSO.php:504
 msgid "Invalid (Ignore)"
 msgstr "Virheellinen (Ohita)"
 
@@ -7774,7 +7775,7 @@ msgstr ""
 #: application/views/search/search_result_ajax.php:241
 #: application/views/view_log/partial/log_ajax.php:164
 #: application/views/view_log/partial/log_ajax.php:202
-#: src/QSLManager/QSO.php:304 src/QSLManager/QSO.php:347
+#: src/QSLManager/QSO.php:315 src/QSLManager/QSO.php:358
 msgid "Bureau"
 msgstr ""
 
@@ -7792,7 +7793,7 @@ msgstr ""
 #: application/views/search/search_result_ajax.php:244
 #: application/views/view_log/partial/log_ajax.php:167
 #: application/views/view_log/partial/log_ajax.php:205
-#: src/QSLManager/QSO.php:307 src/QSLManager/QSO.php:350
+#: src/QSLManager/QSO.php:318 src/QSLManager/QSO.php:361
 msgid "Direct"
 msgstr ""
 
@@ -7810,7 +7811,7 @@ msgstr ""
 #: application/views/search/search_result_ajax.php:250
 #: application/views/view_log/partial/log_ajax.php:173
 #: application/views/view_log/partial/log_ajax.php:211
-#: src/QSLManager/QSO.php:313 src/QSLManager/QSO.php:356
+#: src/QSLManager/QSO.php:324 src/QSLManager/QSO.php:367
 msgid "Electronic"
 msgstr ""
 
@@ -8062,15 +8063,15 @@ msgstr ""
 msgid "Default on"
 msgstr ""
 
-#: application/views/lookup/index.php:8
+#: application/views/lookup/index.php:9
 msgid "US State"
 msgstr ""
 
-#: application/views/lookup/index.php:10
+#: application/views/lookup/index.php:11
 msgid "LoTW user"
 msgstr ""
 
-#: application/views/lookup/index.php:50
+#: application/views/lookup/index.php:60
 msgid "Choose a State"
 msgstr ""
 
@@ -8818,7 +8819,7 @@ msgstr "Asema"
 #: application/views/qso/index.php:602
 #: application/views/search/search_result_ajax.php:205
 #: application/views/view_log/partial/log_ajax.php:170
-#: src/QSLManager/QSO.php:310
+#: src/QSLManager/QSO.php:321
 msgid "Via"
 msgstr ""
 
@@ -9225,7 +9226,7 @@ msgstr ""
 
 #: application/views/qso/edit_ajax.php:561
 #: application/views/view_log/partial/log_ajax.php:289
-#: src/QSLManager/QSO.php:482
+#: src/QSLManager/QSO.php:493
 msgid "Modified"
 msgstr ""
 
@@ -11560,7 +11561,7 @@ msgid ""
 msgstr ""
 
 #: application/views/view_log/partial/log_ajax.php:289
-#: src/QSLManager/QSO.php:486
+#: src/QSLManager/QSO.php:497
 msgid "last sent"
 msgstr ""
 
