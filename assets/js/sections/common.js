@@ -735,6 +735,8 @@ function spawnLookupModal(searchphrase, searchtype) {
                             $("#quicklookupiota").val(searchphrase);
                         } else if (searchtype == 'cq') {
                             $("#quicklookupcqz").val(searchphrase);
+						} else if (searchtype == 'itu') {
+                            $("#quicklookupituz").val(searchphrase);
                         } else {
                             $("#quicklookuptext").val(searchphrase);
                         }
@@ -754,36 +756,24 @@ function spawnLookupModal(searchphrase, searchtype) {
 }
 
 function changeLookupType(type) {
+	$('#quicklookupdxcc').hide();
+	$('#quicklookupiota').hide();
+	$('#quicklookupcqz').hide();
+	$('#quicklookupituz').hide();
+	$('#quicklookupwas').hide();
+	$('#quicklookuptext').hide();
     if (type == "dxcc") {
         $('#quicklookupdxcc').show();
-        $('#quicklookupiota').hide();
-        $('#quicklookupcqz').hide();
-        $('#quicklookupwas').hide();
-        $('#quicklookuptext').hide();
     } else if (type == "iota") {
         $('#quicklookupiota').show();
-        $('#quicklookupdxcc').hide();
-        $('#quicklookupcqz').hide();
-        $('#quicklookupwas').hide();
-        $('#quicklookuptext').hide();
     } else if (type == "vucc" || type == "sota" || type == "wwff" || type == "lotw") {
         $('#quicklookuptext').show();
-        $('#quicklookupiota').hide();
-        $('#quicklookupdxcc').hide();
-        $('#quicklookupcqz').hide();
-        $('#quicklookupwas').hide();
     } else if (type == "cq") {
         $('#quicklookupcqz').show();
-        $('#quicklookupiota').hide();
-        $('#quicklookupdxcc').hide();
-        $('#quicklookupwas').hide();
-        $('#quicklookuptext').hide();
+	} else if (type == "itu") {
+        $('#quicklookupituz').show();
     } else if (type == "was") {
         $('#quicklookupwas').show();
-        $('#quicklookupcqz').hide();
-        $('#quicklookupiota').hide();
-        $('#quicklookupdxcc').hide();
-        $('#quicklookuptext').hide();
     }
 }
 
@@ -804,6 +794,7 @@ function getLookupResult() {
 			sota: $('#quicklookuptext').val(),
 			wwff: $('#quicklookuptext').val(),
 			lotw: $('#quicklookuptext').val(),
+			ituz: $('#quicklookupituz').val(),
 		},
 		success: function (html) {
 			$('#lookupresulttable').html(html);

@@ -45,7 +45,11 @@ class Lookup extends CI_Controller {
 		} else {
 			$this->load->model('bands');
 
-			$data['bands'] = $this->bands->get_worked_bands(xss_clean($this->input->post('type')));
+			if ($this->input->post('type') == 'itu') {
+				$data['bands'] = $this->bands->get_worked_bands();
+			} else {
+				$data['bands'] = $this->bands->get_worked_bands(xss_clean($this->input->post('type')));
+			}
 
 
 			$data['dxcc'] = xss_clean($this->input->post('dxcc'));
@@ -55,6 +59,7 @@ class Lookup extends CI_Controller {
 			$data['iota'] = xss_clean($this->input->post('iota'));
 			$data['cqz']  = xss_clean($this->input->post('cqz'));
 			$data['wwff'] = xss_clean($this->input->post('wwff'));
+			$data['ituz'] = xss_clean($this->input->post('ituz'));
 			$data['location_list'] = $location_list;
 
 			$data['result'] = $this->lookup_model->getSearchResult($data);
@@ -66,73 +71,67 @@ class Lookup extends CI_Controller {
 	public function scp() {
 		session_write_close();
 		$uppercase_callsign = strtoupper($this->input->post('callsign', TRUE) ?? '');
-
+	
 		// SCP results from logbook
 		$this->load->model('logbook_model');
-
+	
 		$arCalls = array();
-
+	
 		$query = $this->logbook_model->get_callsigns($uppercase_callsign);
-
-		foreach ($query->result() as $row)
-	    {
-	    	if (in_array($row->COL_CALL, $arCalls) == false)
-			{
-					$arCalls[] = str_replace('0', 'Ø', $row->COL_CALL);
-			}
-	    }
-
+	
+		foreach ($query->result() as $row) {
+			$normalized_call = str_replace('0', 'Ø', $row->COL_CALL);
+			$arCalls[$normalized_call] = true;
+		}
+	
 		// SCP results from Club Log master scp db
 		$file = 'updates/clublog_scp.txt';
-
+	
 		if (is_readable($file)) {
 			$lines = file($file, FILE_IGNORE_NEW_LINES);
 			$input = preg_quote($uppercase_callsign, '~');
 			$result = preg_grep('~' . $input . '~', $lines, 0);
-			foreach ($result as &$value) {
-				if (in_array($value, $arCalls) == false)
-				{
-					$arCalls[] = str_replace('0', 'Ø', $value);
-				}
+			foreach ($result as $value) {
+				$normalized_call = str_replace('0', 'Ø', $value);
+				$arCalls[$normalized_call] = true;
 			}
 		} else {
 			$src = 'assets/resources/clublog_scp.txt';
 			if (copy($src, $file)) {
 				$this->scp();
+				return;
 			} else {
 				log_message('error', 'Failed to copy source file ('.$src.') to new location. Check if this path has the right permission: '.$file);
 			}
 		}
-
+	
 		// SCP results from master scp https://www.supercheckpartial.com
 		$file = 'updates/MASTER.SCP';
-
+	
 		if (is_readable($file)) {
 			$lines = file($file, FILE_IGNORE_NEW_LINES);
 			$input = preg_quote($uppercase_callsign, '~');
 			$result = preg_grep('~' . $input . '~', $lines, 0);
-			foreach ($result as &$value) {
-				if (in_array($value, $arCalls) == false)
-				{
-					$arCalls[] = str_replace('0', 'Ø', $value);
-				}
+			foreach ($result as $value) {
+				$normalized_call = str_replace('0', 'Ø', $value);
+				$arCalls[$normalized_call] = true;
 			}
 		} else {
 			$src = 'assets/resources/MASTER.SCP';
 			if (copy($src, $file)) {
 				$this->scp();
+				return;
 			} else {
 				log_message('error', 'Failed to copy source file ('.$src.') to new location. Check if this path has the right permission: '.$file);
 			}
 		}
-
-		sort($arCalls);
-
-		foreach ($arCalls as $strCall)
-		{
+	
+		// Sort and print unique calls
+		ksort($arCalls);
+	
+		foreach (array_keys($arCalls) as $strCall) {
 			echo " " . $strCall . " ";
 		}
-
 	}
 
 	public function dok($call) {

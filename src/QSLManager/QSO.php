@@ -204,10 +204,14 @@ class QSO
 		$this->clublog = $this->getClublogString($data, $custom_date_format);
 		$this->qrz = $this->getQrzString($data, $custom_date_format);
 
-		$this->cqzone = ($data['COL_CQZ'] === null) ? '' : $this->geCqLink($data['COL_CQZ']);
-		$this->ituzone = $data['COL_ITUZ'] ?? '';
+		$this->cqzone = $data['COL_CQZ'] === null ? '' : $this->getCqLink($data['COL_CQZ']);
+		$this->ituzone = $data['COL_ITUZ'] === null ? '' : $this->getItuLink($data['COL_ITUZ']);
 		$this->state = ($data['COL_STATE'] === null) ? '' :$data['COL_STATE'];
-		$this->dxcc = (($data['dxccname'] ?? null) === null) ? '- NONE -' : '<a href="javascript:spawnLookupModal('.$data['COL_DXCC'].',\'dxcc\');">'.ucwords(strtolower($data['dxccname']), "- (/").'</a>';
+		if ($data['adif'] == '0') {
+			$this->dxcc = '<a href="javascript:spawnLookupModal('.$data['COL_DXCC'].',\'dxcc\');">'.$data['dxccname'].'</a>';
+		} else {
+			$this->dxcc = (($data['dxccname'] ?? null) === null) ? '- NONE -' : '<a href="javascript:spawnLookupModal('.$data['COL_DXCC'].',\'dxcc\');">'.ucwords(strtolower($data['dxccname']), "- (/").'</a>';
+		}
 		$this->iota = ($data['COL_IOTA'] === null) ? '' : $this->getIotaLink($data['COL_IOTA']);
 		if (array_key_exists('end', $data)) {
 			$this->end = ($data['end'] === null) ? null : DateTime::createFromFormat("Y-m-d", $data['end'], new DateTimeZone('UTC'));
@@ -231,13 +235,23 @@ class QSO
 	/**
 	 * @return string
 	 */
-	function geCqLink($cqz): string
+	function getCqLink($cqz): string
 	{
-		$cqz_link = '';
-		if ($cqz <= '40') {
+		if ($cqz > '0' && $cqz <= '40') {
 			return '<a href="javascript:spawnLookupModal('.$cqz.',\'cq\');">'.$cqz.'</a>';
 		}
 		return $cqz;
+	}
+
+	/**
+	 * @return string
+	 */
+	function getItuLink($ituz): string
+	{
+		if ($ituz > '0' && $ituz <= '90') {
+			return '<a href="javascript:spawnLookupModal('.$ituz.',\'itu\');">'.$ituz.'</a>';
+		}
+		return $ituz;
 	}
 
 	/**
