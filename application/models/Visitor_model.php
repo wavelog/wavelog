@@ -208,26 +208,30 @@ class Visitor_model extends CI_Model {
 		$markerQsosConfirmed = [];
 		$user_default_confirmation = $this->get_user_default_confirmation($uid);
 		foreach ($qsos->result('array') as $qso) {
-			if (!empty($qso['COL_GRIDSQUARE'])  || !empty($qso['COL_VUCC_GRIDS'])) {
+			if (!empty($qso['COL_GRIDSQUARE'])) {
 				$latlng = $this->qra->qra2latlong($qso['COL_GRIDSQUARE']);
 				$lat = $latlng[0];
 				$lng = $latlng[1];
-
-				// Check for continents
-				if ($continentEnabled) {
-					if ($qso['COL_CONT'] != $continent) {
-						continue;
-					}
-				}
-
-				if ($this->qso_is_confirmed($qso, $user_default_confirmation) == true) {
-					$markerQsosConfirmed[] = new \Wavelog\StaticMapImage\LatLng($lat, $lng);
-					continue;
-				} else {
-					$markerQsos[] = new \Wavelog\StaticMapImage\LatLng($lat, $lng);
-					continue;
-				}
+			} else if (!empty($qso['COL_VUCC_GRIDS'])) {
+				$latlng = $this->qra->qra2latlong($qso['COL_VUCC_GRIDS']);
+				$lat = $latlng[0];
+				$lng = $latlng[1];
 			} else {
+				continue;
+			}
+
+			// Check for continents
+			if ($continentEnabled) {
+				if ($qso['COL_CONT'] != $continent) {
+					continue;
+				}
+			}
+
+			if ($this->qso_is_confirmed($qso, $user_default_confirmation) == true) {
+				$markerQsosConfirmed[] = new \Wavelog\StaticMapImage\LatLng($lat, $lng);
+				continue;
+			} else {
+				$markerQsos[] = new \Wavelog\StaticMapImage\LatLng($lat, $lng);
 				continue;
 			}
 		}
