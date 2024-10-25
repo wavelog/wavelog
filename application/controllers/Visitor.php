@@ -509,13 +509,10 @@ class Visitor extends CI_Controller {
 		// Set the cache time to 7 days
 		$maxAge = 3600 * 24 * 7;
 
-		// remove all cached images for debugging purposes
+		// remove the cached image for debugging purposes
 		if ($debugging) {
-			$files = glob($cacheDir . '*');
-			foreach ($files as $file) {
-				if (is_file($file)) {
-					unlink($file);
-				}
+			if (is_file($filepath)) {
+				unlink($filepath);
 			}
 		}
 
@@ -525,7 +522,6 @@ class Visitor extends CI_Controller {
 			readfile($filepath);
 			return;
 		} else {
-			log_message('debug', 'Static map image not found in cache: ' . $filename . '. Creating new image.');
 			if (in_array('gd', get_loaded_extensions())) {
 
 				if ($logbook_id != false) {
