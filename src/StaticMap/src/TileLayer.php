@@ -195,15 +195,16 @@ class TileLayer {
      */
     public function getTile(float $x, float $y, int $z, int $tileSize, string $centerMap): Image {
         $CI = &get_instance();
-        $cacheKey = "tile_" . $x . "_" . $y . "_" . $z . "_" . $tileSize . "_" . $centerMap . "_" . $this->thememode . ".png";
+        $namehash = substr(md5($x . $y . $z . $centerMap . $this->thememode), 0, 16);
+        $cacheKey = $namehash . ".png";
         $cacheConfig = $CI->config->item('cache_path') == '' ? APPPATH . 'cache/' : $CI->config->item('cache_path');
-        $cacheDir = $cacheConfig . "tilecache/";
+        $cacheDir = $cacheConfig . "tilecache/" . $z . "/" . $y . "/" . $x . "/";
         $cachePath = $cacheDir . $cacheKey;
-
+    
         if (!is_dir($cacheDir)) {
             mkdir($cacheDir, 0755, true);
         }
-
+    
         if (file_exists($cachePath)) {
             $tile = Image::fromPath($cachePath);
         } else {
@@ -213,11 +214,11 @@ class TileLayer {
         if ($this->opacity == 0) {
             return Image::newCanvas($tileSize, $tileSize);
         }
-
+    
         if ($this->opacity > 0 && $this->opacity < 1) {
             $tile->setOpacity($this->opacity);
         }
-
+    
         return $tile;
     }
 }
