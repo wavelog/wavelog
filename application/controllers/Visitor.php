@@ -489,7 +489,8 @@ class Visitor extends CI_Controller {
 		$cachepath = $this->config->item('cache_path') == '' ? APPPATH . 'cache/' : $this->config->item('cache_path');
 		$cacheDir = $cachepath . "static_map_images/";
 		$this->load->model('themes_model');
-		$filename = 'staticmap_' . $slug . '_' . $qsocount . '_' . $band . '_' . $thememode . '_' . $continent . '_' . $hide_home . '.png';
+		$filenameRaw = $uid . $logbook_id . $qsocount . $band . $thememode . $continent . $hide_home;
+		$filename = 'staticmap_' . $slug . '_' . substr(md5($filenameRaw), 0, 12) . '.png';
 
 		// remove all cached images for debugging purposes
 		if ($debugging) {
