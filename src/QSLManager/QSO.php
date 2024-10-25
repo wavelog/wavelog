@@ -205,7 +205,7 @@ class QSO
 		$this->qrz = $this->getQrzString($data, $custom_date_format);
 
 		$this->cqzone = $data['COL_CQZ'] === null ? '' : $this->getCqLink($data['COL_CQZ']);
-		$this->ituzone = $data['COL_ITUZ'] ?? '';
+		$this->ituzone = $data['COL_ITUZ'] === null ? '' : $this->getItuLink($data['COL_ITUZ']);
 		$this->state = ($data['COL_STATE'] === null) ? '' :$data['COL_STATE'];
 		if ($data['adif'] == '0') {
 			$this->dxcc = '<a href="javascript:spawnLookupModal('.$data['COL_DXCC'].',\'dxcc\');">'.$data['dxccname'].'</a>';
@@ -241,6 +241,17 @@ class QSO
 			return '<a href="javascript:spawnLookupModal('.$cqz.',\'cq\');">'.$cqz.'</a>';
 		}
 		return $cqz;
+	}
+
+	/**
+	 * @return string
+	 */
+	function getItuLink($ituz): string
+	{
+		if ($ituz > '0' && $ituz <= '90') {
+			return '<a href="javascript:spawnLookupModal('.$ituz.',\'itu\');">'.$ituz.'</a>';
+		}
+		return $ituz;
 	}
 
 	/**
