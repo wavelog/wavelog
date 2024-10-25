@@ -512,15 +512,6 @@ class Visitor_model extends CI_Model {
 			return false;
 		}
 
-		$this->load->model('stationsetup_model');
-		if (!$this->stationsetup_model->public_slug_exists($slug)) {
-			log_message('error', "Cached static map image file does not belong to a valid logbook. Deleting the file and exiting...");
-			if (!unlink($file)) {
-				log_message('error', "Failed to delete invalid cached static map image file: " . $file);
-			}
-			return false;
-		}
-
 		if (time() - filemtime($file) > $maxAge) {
 			log_message('debug', "Cached static map image has expired. Deleting old cache file...");
 			if (!unlink($file)) {
