@@ -17,8 +17,10 @@ class Visitor_model extends CI_Model {
 			}
 		}
 
+		$this->db->group_start();
 		$this->db->where("(" . $this->config->item('table_name') . ".COL_GRIDSQUARE != '' AND " . $this->config->item('table_name') . ".COL_GRIDSQUARE IS NOT NULL)");
 		$this->db->or_where("(" . $this->config->item('table_name') . ".COL_VUCC_GRIDS != '' AND " . $this->config->item('table_name') . ".COL_VUCC_GRIDS IS NOT NULL)");
+		$this->db->group_end();
 
 		$this->db->where_in($this->config->item('table_name').'.station_id', $StationLocationsArray);
 		$this->db->order_by(''.$this->config->item('table_name').'.COL_TIME_ON', "desc");
