@@ -479,18 +479,35 @@ class Visitor extends CI_Controller {
 			$thememode = $r;
 		}
 		
+		// check if the public slug exists
 		$logbook_id = $this->stationsetup_model->public_slug_exists_logbook_id($slug);
-		$uid = $this->stationsetup_model->getContainer($logbook_id, false)->row()->user_id;
+		if ($logbook_id == false) {
+			show_404(__("Unknown Public Page."));
+		}
+		
 		// if the qso count is not a number, set it to the user option or 250 per default (same as used in stationsetup)
+		$uid = $this->stationsetup_model->getContainer($logbook_id, false)->row()->user_id;
 		if ($qsocount == 0 || !is_numeric($qsocount)) {
 			$qsocount = $this->user_options_model->get_options('ExportMapOptions',array('option_name' => 'qsocount','option_key' => $slug), $uid)->row()->option_value ?? 250;
 		}
 
+		// prepare the cache directory
 		$cachepath = $this->config->item('cache_path') == '' ? APPPATH . 'cache/' : $this->config->item('cache_path');
 		$cacheDir = $cachepath . "static_map_images/";
-		$this->load->model('themes_model');
+		if (!is_dir($cacheDir)) {
+            mkdir($cacheDir, 0755, true);
+        }
+
+		// we need the realpath later for validation
+		$cacheDir = realpath($cachepath . "static_map_images/");
+
+		// create a unique filename for the cache
 		$filenameRaw = $uid . $logbook_id . $qsocount . $band . $thememode . $continent . $hide_home;
 		$filename = 'staticmap_' . $slug . '_' . substr(md5($filenameRaw), 0, 12) . '.png';
+		$filepath = $cacheDir . '/' . $filename;
+
+		// Set the cache time to 7 days
+		$maxAge = 3600 * 24 * 7;
 
 		// remove all cached images for debugging purposes
 		if ($debugging) {
@@ -502,14 +519,10 @@ class Visitor extends CI_Controller {
 			}
 		}
 
-		if (!is_dir($cacheDir)) {
-            mkdir($cacheDir, 0755, true);
-        }
-
-		if (file_exists($cacheDir . $filename)) {
+		if ($this->visitor_model->validate_cached_image($filepath, $cacheDir, $maxAge)) {
 			log_message('debug', 'Static map image found in cache: ' . $filename);
 			header('Content-Type: image/png');
-			readfile($cacheDir . $filename);
+			readfile($filepath);
 			return;
 		} else {
 			log_message('debug', 'Static map image not found in cache: ' . $filename . '. Creating new image.');
@@ -549,7 +562,7 @@ class Visitor extends CI_Controller {
 
 				$qsos = $this->visitor_model->get_qsos($qsocount, $logbooks_locations_array, $band == 'nbf' ? '' : $band); // TODO: Allow 'all' option
 				
-				$image = $this->visitor_model->render_static_map($qsos, $uid, $centerMap, $coordinates, $filename, $cacheDir, $continent, $thememode, $hide_home);
+				$image = $this->visitor_model->render_static_map($qsos, $uid, $centerMap, $coordinates, $filepath, $continent, $thememode, $hide_home);
 
 				header('Content-Type: image/png');
 				// echo $image;
@@ -559,8 +572,7 @@ class Visitor extends CI_Controller {
 					log_message('error', $msg);
 					show_404($msg);
 				} else {
-					$image_url = $cacheDir . $filename;
-					readfile($image_url);
+					readfile($filepath);
 				}
 
 			} else {

@@ -77,7 +77,22 @@ class Visitor_model extends CI_Model {
 		return $this->user_model->get_by_id($userid)->row()->user_default_confirmation ?? '';
 	}
 
-	function render_static_map($qsos, $uid, $centerMap, $station_coordinates, $filename, $cacheDir, $continent = null, $thememode = null, $hide_home = false) {
+	/**
+	 * Render a static map image
+	 * 
+	 * @param $qsos  				Amount of QSOs to render
+	 * @param $uid  				User ID
+	 * @param $centerMap  			Center of the map
+	 * @param $station_coordinates  Coordinates of the station
+	 * @param $filepath  			Path to save the image to
+	 * @param $continent  			Continent to display
+	 * @param $thememode  			Theme mode ('light' or 'dark')
+	 * @param $hide_home  			Whether to hide the home station
+	 * 
+	 * @return bool  True if the image was rendered successfully, false if not
+	 */
+
+	function render_static_map($qsos, $uid, $centerMap, $station_coordinates, $filepath, $continent = null, $thememode = null, $hide_home = false) {
 
 		$requiredClasses = [
 			'./src/StaticMap/src/OpenStreetMap.php',
@@ -330,9 +345,6 @@ class Visitor_model extends CI_Model {
 		}
 		$map->addMarkers($markersConfirmed);
 
-		// Generate the image
-		$full_path = $cacheDir . $filename;
-
 		// Add Wavelog watermark
 		$image = $map->getImage($centerMap);
 		$watermark = DantSu\PHPImageEditor\Image::fromPath('src/StaticMap/src/resources/watermark_static_map.png');
@@ -355,7 +367,7 @@ class Visitor_model extends CI_Model {
 			$image->writeText($continentText, $fontPath, $fontSize, $color, $contFontPosX, $contFontPosY);
 		}
 
-		if ($image->savePNG($full_path)) {
+		if ($image->savePNG($filepath)) {
 			return true;
 		} else {
 			return false;
@@ -448,5 +460,75 @@ class Visitor_model extends CI_Model {
 
 			return true; // Success
 		}
+	}
+
+	/**
+	 * Validate a cached static map image
+	 * 
+	 * @param $file  		File to validate (realpath)
+	 * @param $cacheDir  	Cache directory itself
+	 * @param $maxAge  		Maximum age of the file in seconds
+	 * 
+	 * @return bool  True if the file is valid, false if not
+	 */
+
+	function validate_cached_image($file, $cacheDir, $maxAge) {
+
+		$realPath = realpath($file);
+		$filename = basename($file);
+
+		// get the slug
+		$parts = explode('_', $filename);
+		$slug = $parts[1] ?? '';
+
+		if (!file_exists($file)) {
+			log_message('debug', "Cached static map image file does not exist. Creating a new one...");
+			return false;
+		}
+
+		if ($realPath === false || strpos($realPath, $cacheDir) !== 0) {
+			log_message('error', "Invalid Filepath. Possible traversal attack detected. Deleting the file and exiting...");
+			if (file_exists($file)) {
+				if (!unlink($file)) {
+					log_message('error', "Failed to delete invalid cached static map image file: " . $file);
+				}
+			}
+			return false;
+		}
+
+		if (filesize($file) < 1024) { // 1 kB
+			log_message('error', "Cached static map image file is unusually small, possible corruption detected. Deleting the file and exiting...");
+			if (!unlink($file)) {
+				log_message('error', "Failed to delete invalid cached static map image file: " . $file);
+			}
+			return false;
+		}
+
+		if (mime_content_type($file) !== 'image/png') {
+			log_message('error', "Cached static map image file is no PNG. Deleting the file and exiting...");
+			if (!unlink($file)) {
+				log_message('error', "Failed to delete invalid cached static map image file: " . $file);
+			}
+			return false;
+		}
+
+		$this->load->model('stationsetup_model');
+		if (!$this->stationsetup_model->public_slug_exists($slug)) {
+			log_message('error', "Cached static map image file does not belong to a valid logbook. Deleting the file and exiting...");
+			if (!unlink($file)) {
+				log_message('error', "Failed to delete invalid cached static map image file: " . $file);
+			}
+			return false;
+		}
+
+		if (time() - filemtime($file) > $maxAge) {
+			log_message('debug', "Cached static map image has expired. Deleting old cache file...");
+			if (!unlink($file)) {
+				log_message('error', "Failed to delete invalid cached static map image file: " . $file);
+			}
+			return false;
+		}
+
+		return true;
 	}
 }
