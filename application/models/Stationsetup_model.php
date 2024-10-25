@@ -134,13 +134,17 @@ class Stationsetup_model extends CI_Model {
 		$this->db->where('public_slug', $this->security->xss_clean($slug));
 		$query = $this->db->get('station_logbooks');
 
-		if ($query->num_rows() > 0){
+		if ($query->num_rows() == 1){
 			foreach ($query->result() as $row) {
 				return $row->logbook_id;
 			}
+		} elseif ($query->num_rows() > 1) {
+			log_message('error', 'Multiple logbooks with same public_slug found!');
+			return false;
 		} else {
 			return false;
 		}
+
 	}
 
 	function is_public_slug_available($slug) {
