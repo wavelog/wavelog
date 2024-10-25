@@ -556,7 +556,7 @@ class Visitor extends CI_Controller {
 				}
 				$centerMap = $this->qra->getCenterLatLng($coordinates);
 
-				$qsos = $this->visitor_model->get_qsos($qsocount, $logbooks_locations_array, $band == 'nbf' ? '' : $band); // TODO: Allow 'all' option
+				$qsos = $this->visitor_model->get_qsos($qsocount, $logbooks_locations_array, $band == 'nbf' ? '' : $band, $continent == 'nC' ? '' : $continent); // TODO: Allow 'all' option
 				
 				$image = $this->visitor_model->render_static_map($qsos, $uid, $centerMap, $coordinates, $filepath, $continent, $thememode, $hide_home);
 

@@ -2,7 +2,7 @@
 
 class Visitor_model extends CI_Model {
 
-	function get_qsos($num, $StationLocationsArray, $band = '') {
+	function get_qsos($num, $StationLocationsArray, $band = '', $continent = '') {
 		$this->db->select($this->config->item('table_name').'.*, station_profile.*');
 		$this->db->from($this->config->item('table_name'));
 
@@ -15,6 +15,10 @@ class Visitor_model extends CI_Model {
 				$this->db->where($this->config->item('table_name').'.col_prop_mode !="SAT"');
 				$this->db->where($this->config->item('table_name').'.col_band', $band);
 			}
+		}
+
+		if ($continent != '') {
+			$this->db->where($this->config->item('table_name').'.COL_CONT', $continent);
 		}
 
 		$this->db->group_start();
