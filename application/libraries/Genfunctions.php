@@ -142,13 +142,13 @@ class Genfunctions
 	 * @param string 	$unicode		Unicode of the FontAwesome icon (e.g. f0c8) - required
 	 * @param string 	$color			Hexadecimal color of the icon (default: ffffff)
 	 * @param string 	$dest_file		Destination file path (optional)
-	 * @param int 		$pixelshigh		Height of the icon in pixels (default: 512)
+	 * @param int 		$pixelshigh		Height of the icon in pixels (default: 32)
 	 * @param int 		$alpha			Alpha channel of the icon (default: 0)
 	 * @param array 	$padding		Padding of the icon (default: array(3, 3, 3, 3))
 	 * 
 	 * @return bool
 	 */
-	function fas2png($unicode, $color='ffffff', $dest_file = null, $pixelshigh=512, $alpha=0, $padding=array(3, 3, 3, 3)) {
+	function fas2png($unicode, $color='ffffff', $dest_file = null, $pixelshigh=32, $alpha=0, $padding=array(3, 3, 3, 3)) {
 		try {
 			// Set the target path
 			if ($dest_file != null) {
@@ -240,6 +240,9 @@ class Genfunctions
 			if (imagepng($im, $icon) === false) {
 				throw new Exception('Failed to save PNG image.');
 			}
+
+			// Sleep to make sure the file is available in the next run.
+			usleep(100000); // 100ms
 
 			// Clean up
 			imagedestroy($im);
