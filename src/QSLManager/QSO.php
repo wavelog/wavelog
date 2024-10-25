@@ -204,7 +204,7 @@ class QSO
 		$this->clublog = $this->getClublogString($data, $custom_date_format);
 		$this->qrz = $this->getQrzString($data, $custom_date_format);
 
-		$this->cqzone = ($data['COL_CQZ'] === null || $data['COL_CQZ'] == '0') ? '' : $this->getCqLink($data['COL_CQZ']);
+		$this->cqzone = $data['COL_CQZ'] === null ? '' : $this->getCqLink($data['COL_CQZ']);
 		$this->ituzone = $data['COL_ITUZ'] ?? '';
 		$this->state = ($data['COL_STATE'] === null) ? '' :$data['COL_STATE'];
 		if ($data['adif'] == '0') {
