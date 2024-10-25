@@ -2,6 +2,8 @@ var favs = {};
 var selected_sat;
 var selected_sat_mode;
 var scps = [];
+let lookupCall = null;
+let preventLookup = false;
 
 // if the dxcc id changes we need to update the state dropdown and clear the county value to avoid wrong data
 $("#dxcc_id").on('change', function () {
@@ -464,7 +466,18 @@ function changebadge(entityname) {
 }
 
 $('#btn_reset').on("click", function () {
+	preventLookup = true;
+
+	if (lookupCall) {
+		lookupCall.abort();
+	}
+
 	reset_fields();
+
+	// make sure the focusout event is finished before we allow a new lookup
+	setTimeout(() => {
+		preventLookup = false;
+	}, 100);
 });
 
 $('#btn_fullreset').on("click", function () {
@@ -564,7 +577,7 @@ function reset_fields() {
 }
 
 $("#callsign").on("focusout", function () {
-	if ($(this).val().length >= 3) {
+	if ($(this).val().length >= 3 && preventLookup == false) {
 
 		// Temp store the callsign
 		var temp_callsign = $(this).val();
@@ -586,7 +599,7 @@ $("#callsign").on("focusout", function () {
 		find_callsign = find_callsign.replace('Ø', '0');
 
 		// Replace / in a callsign with - to stop urls breaking
-		$.getJSON(base_url + 'index.php/logbook/json/' + find_callsign + '/' + json_band + '/' + json_mode + '/' + $('#stationProfile').val() + '/' + $('#start_date').val(), async function (result) {
+		lookupCall = $.getJSON(base_url + 'index.php/logbook/json/' + find_callsign + '/' + json_band + '/' + json_mode + '/' + $('#stationProfile').val() + '/' + $('#start_date').val(), async function (result) {
 
 			// Make sure the typed callsign and json result match
 			if ($('#callsign').val = result.callsign) {
