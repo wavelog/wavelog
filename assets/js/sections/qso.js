@@ -4,7 +4,7 @@ var selected_sat_mode;
 var scps = [];
 
 // if the dxcc id changes we need to update the state dropdown and clear the county value to avoid wrong data
-$("#dxcc_id").change(function () {
+$("#dxcc_id").on('change', function () {
 	updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputQso');
 	$('#stationCntyInputQso').val('');
 	$('#dxcc_id').multiselect('refresh');
@@ -33,7 +33,7 @@ function getUTCDateStamp(el) {
 }
 
 
-$('#stationProfile').change(function () {
+$('#stationProfile').on('change', function () {
 	var stationProfile = $('#stationProfile').val();
 	$.ajax({
 		url: base_url + 'index.php/qso/get_station_power',
@@ -56,22 +56,19 @@ $('.qso_panel .qso_eqsl_qslmsg_update').off('click').on('click', function () {
 	$('#charsLeft').text(" ");
 });
 
-$(document).keyup(function (e) {
-	if (e.charCode === 0) {
-		let fixedcall = $('#callsign').val();
-		$('#callsign').val(fixedcall.replace('Ø', '0'));
-	}
+$(document).on("keydown", function (e) {
 	if (e.key === "Escape") { // escape key maps to keycode `27`
 		reset_fields();
 		resetTimers(qso_manual)
 		$('#callsign').val("");
-		$("#callsign").focus();
+		$("#callsign").trigger("focus");
 	}
 });
 
 // Sanitize some input data
 $('#callsign').on('input', function () {
 	$(this).val($(this).val().replace(/\s/g, ''));
+	$(this).val($(this).val().replace(/0/g, 'Ø'));
 });
 
 $('#locator').on('input', function () {
@@ -93,7 +90,7 @@ function set_timers() {
 		var callsignValue = localStorage.getItem("quicklogCallsign");
 		if (callsignValue !== null && callsignValue !== undefined) {
 			$("#callsign").val(callsignValue);
-			$("#mode").focus();
+			$("#mode").trigger("focus");
 			localStorage.removeItem("quicklogCallsign");
 		}
 	}, 100);
@@ -131,7 +128,7 @@ $("#qso_input").off('submit').on('submit', function (e) {
 					$("#noticer").fadeOut(2000);
 					var triggerEl = document.querySelector('#myTab a[href="#qso"]')
 					bootstrap.Tab.getInstance(triggerEl).show() // Select tab by name
-					$("#callsign").focus();
+					$("#callsign").trigger("focus");
 				} else {
 					$("#noticer").removeClass("");
 					$("#noticer").addClass("alert alert-warning");
@@ -152,7 +149,7 @@ $("#qso_input").off('submit').on('submit', function (e) {
 	return false;
 });
 
-$('#reset_time').click(function () {
+$('#reset_time').on("click", function () {
 	var now = new Date();
 	var localTime = now.getTime();
 	var utc = localTime + (now.getTimezoneOffset() * 60000);
@@ -162,7 +159,7 @@ $('#reset_time').click(function () {
 	});
 });
 
-$('#reset_start_time').click(function () {
+$('#reset_start_time').on("click", function () {
 	var now = new Date();
 	var localTime = now.getTime();
 	var utc = localTime + (now.getTimezoneOffset() * 60000);
@@ -178,7 +175,7 @@ $('#reset_start_time').click(function () {
 	$('#start_date').val(("0" + now.getUTCDate()).slice(-2) + '-' + ("0" + (now.getUTCMonth() + 1)).slice(-2) + '-' + now.getUTCFullYear());
 });
 
-$('#reset_end_time').click(function () {
+$('#reset_end_time').on("click", function () {
 	var now = new Date();
 	var localTime = now.getTime();
 	var utc = localTime + (now.getTimezoneOffset() * 60000);
@@ -188,7 +185,7 @@ $('#reset_end_time').click(function () {
 	});
 });
 
-$('#fav_add').click(function (event) {
+$('#fav_add').on("click", function (event) {
 	save_fav();
 });
 
@@ -204,7 +201,7 @@ $(document).on("click", "#fav_recall", function (event) {
 	$('#frequency_rx').val(favs[this.innerText].frequency_rx);
 	$('#frequency').val(favs[this.innerText].frequency);
 	$('#selectPropagation').val(favs[this.innerText].prop_mode);
-	$('#mode').val(favs[this.innerText].mode).change();
+	$('#mode').val(favs[this.innerText].mode).on("change");
 });
 
 
@@ -300,7 +297,7 @@ bc.onmessage = function (ev) {
 	}
 } /* receive */
 
-$("#sat_name").change(function () {
+$("#sat_name").on('change', function () {
 	var sat = $("#sat_name").val();
 	if (sat == "") {
 		$("#sat_mode").val("");
@@ -308,7 +305,7 @@ $("#sat_name").change(function () {
 	}
 });
 
-$('#stateDropdown').change(function () {
+$('#stateDropdown').on('change', function () {
 	var state = $("#stateDropdown option:selected").text();
 	if (state != "") {
 		$("#stationCntyInputQso").prop('disabled', false);
@@ -466,11 +463,11 @@ function changebadge(entityname) {
 	}
 }
 
-$('#btn_reset').click(function () {
+$('#btn_reset').on("click", function () {
 	reset_fields();
 });
 
-$('#btn_fullreset').click(function () {
+$('#btn_fullreset').on("click", function () {
 	reset_to_default();
 });
 
@@ -566,7 +563,7 @@ function reset_fields() {
 	resetTimers(qso_manual);
 }
 
-$("#callsign").focusout(function () {
+$("#callsign").on("focusout", function () {
 	if ($(this).val().length >= 3) {
 
 		// Temp store the callsign
@@ -823,7 +820,7 @@ $("#callsign").focusout(function () {
 })
 
 /* time input shortcut */
-$('#start_time').change(function () {
+$('#start_time').on('change', function () {
 	var raw_time = $(this).val();
 	if (raw_time.match(/^\d\[0-6]d$/)) {
 		raw_time = "0" + raw_time;
@@ -834,7 +831,7 @@ $('#start_time').change(function () {
 	}
 });
 
-$('#end_time').change(function () {
+$('#end_time').on('change', function () {
 	var raw_time = $(this).val();
 	if (raw_time.match(/^\d\[0-6]d$/)) {
 		raw_time = "0" + raw_time;
@@ -846,7 +843,7 @@ $('#end_time').change(function () {
 });
 
 /* date input shortcut */
-$('#start_date').change(function () {
+$('#start_date').on('change', function () {
 	raw_date = $(this).val();
 	if (raw_date.match(/^[12]\d{3}[01]\d[0123]\d$/)) {
 		raw_date = raw_date.substring(0, 4) + "-" + raw_date.substring(4, 6) + "-" + raw_date.substring(6, 8);
@@ -855,7 +852,7 @@ $('#start_date').change(function () {
 });
 
 /* on mode change */
-$('.mode').change(function () {
+$('.mode').on('change', function () {
 	if ($('#radio').val() == 0) {
 		$.get(base_url + 'index.php/qso/band_to_freq/' + $('#band').val() + '/' + $('.mode').val(), function (result) {
 			$('#frequency').val(result);
@@ -866,7 +863,7 @@ $('.mode').change(function () {
 
 /* Calculate Frequency */
 /* on band change */
-$('#band').change(function () {
+$('#band').on('change', function () {
 	if ($('#radio').val() == 0) {
 		$.get(base_url + 'index.php/qso/band_to_freq/' + $(this).val() + '/' + $('.mode').val(), function (result) {
 			$('#frequency').val(result);
@@ -880,7 +877,7 @@ $('#band').change(function () {
 });
 
 /* On Key up Calculate Bearing and Distance */
-$("#locator").keyup(function () {
+$("#locator").on("input focus", function () {
 	if ($(this).val()) {
 		var qra_input = $(this).val();
 
@@ -995,7 +992,7 @@ $("#locator").keyup(function () {
 });
 
 // Change report based on mode
-$('.mode').change(function () {
+$('.mode').on('change', function () {
 	setRst($('.mode').val());
 });
 
@@ -1040,16 +1037,15 @@ $('#dxcc_id').on('change', function () {
 
 //Spacebar moves to the name field when you're entering a callsign
 //Similar to contesting ux, good for pileups.
-$("#callsign").on("keypress", function (e) {
+$("#callsign").on("keydown", function (e) {
 	if (e.which == 32) {
-		$("#name").focus();
-		return false; //Eliminate space char
+		$("#name").trigger("focus");
+		e.preventDefault(); //Eliminate space char
 	}
 });
 
 
-// On Key up check and suggest callsigns
-$("#callsign").keyup(function () {
+$("#callsign").on("input focus", function () {
 	var ccall = $(this).val();
 	if ($(this).val().length >= 3) {
 		$('.callsign-suggest').show();
@@ -1217,7 +1213,7 @@ $(document).ready(function () {
 	};
 
 	// Callsign always has focus on load
-	$("#callsign").focus();
+	$("#callsign").trigger("focus");
 
 	// reset the timers on page load
 	resetTimers(qso_manual);
