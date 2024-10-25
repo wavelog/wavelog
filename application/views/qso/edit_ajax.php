@@ -220,16 +220,24 @@
                                         <select class="form-select" id="dxcc_id" name="dxcc_id" required>
                                             <option value=""><?= __("Please select one"); ?></option>
                                             <?php
-                                            foreach($dxcc as $d){
-                                                echo '<option value=' . $d->adif;
-                                                if ($qso->COL_DXCC == $d->adif) {
-                                                    echo " selected=\"selected\"";
+                                            foreach($dxcc as $d) {
+                                                if ($d->adif == '0') {
+                                                    echo '<option value='.$d->adif;
+                                                    if ($qso->COL_DXCC == $d->adif) {
+                                                        echo " selected=\"selected\"";
+                                                    }
+                                                    echo '>'.$d->name.'</option>';
+                                                } else {
+                                                    echo '<option value=' . $d->adif;
+                                                    if ($qso->COL_DXCC == $d->adif) {
+                                                        echo " selected=\"selected\"";
+                                                    }
+                                                    echo '>' . $d->prefix . ' - ' . ucwords(strtolower(($d->name)));
+                                                    if ($d->Enddate != null) {
+                                                        echo ' ('.__("Deleted DXCC").')';
+                                                    }
+                                                    echo '</option>';
                                                 }
-                                                echo '>' . $d->prefix . ' - ' . ucwords(strtolower(($d->name)));
-                                                if ($d->Enddate != null) {
-                                                    echo ' ('.__("Deleted DXCC").')';
-                                                }
-                                                echo '</option>';
                                             }
                                             ?>
 
