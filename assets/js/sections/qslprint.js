@@ -244,3 +244,56 @@ function removeSelectedQsos() {
 		}
 	});
 }
+
+function exportSelectedQsos() {
+	var elements = $('.qslprint tbody input:checked');
+	var nElements = elements.length;
+	if (nElements == 0) {
+		return;
+	}
+	$('.exportselected').prop("disabled", true);
+
+	var id_list=[];
+	elements.each(function() {
+		let id = $(this).first().closest('tr').attr('id');
+		id = id.match(/\d/g);
+		id = id.join("");
+		id_list.push(id);
+	});
+
+	xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		var a;
+		if (xhttp.readyState === 4 && xhttp.status === 200) {
+			// Trick for making downloadable link
+			a = document.createElement('a');
+			a.href = window.URL.createObjectURL(xhttp.response);
+			// Give filename you wish to download
+			// Get the current date and time
+			const now = new Date();
+
+			// Format the date and time as UTC Ymd-Hi
+			const year = now.getUTCFullYear();
+			const month = String(now.getUTCMonth() + 1).padStart(2, '0'); // Months are zero-based
+			const day = String(now.getUTCDate()).padStart(2, '0');
+			const hours = String(now.getUTCHours()).padStart(2, '0');
+			const minutes = String(now.getUTCMinutes()).padStart(2, '0');
+
+			// Create the formatted filename
+			const filename = `${my_call}-${year}${month}${day}-${hours}${minutes}.adi`;
+			a.download = filename;
+			a.style.display = 'none';
+			document.body.appendChild(a);
+			a.click();
+		}
+	};
+
+	// Post data to URL which handles post request
+	xhttp.open("POST", site_url+'/logbookadvanced/export_to_adif', true);
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	// You should set responseType as blob for binary responses
+	xhttp.responseType = 'blob';
+	xhttp.send("id=" + JSON.stringify(id_list, null, 2));
+
+	$('.exportselected').prop("disabled", false);
+}
