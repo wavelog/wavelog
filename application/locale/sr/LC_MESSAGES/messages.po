@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-10-25 11:09+0000\n"
+"POT-Creation-Date: 2024-10-26 17:22+0000\n"
 "PO-Revision-Date: 2024-09-17 12:24+0000\n"
 "Last-Translator: Dragan Đorđević <4o4a.dragan@gmail.com>\n"
 "Language-Team: Serbian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -6220,9 +6220,8 @@ msgid "QSOs Breakdown"
 msgstr "Prelom veza"
 
 #: application/views/dashboard/index.php:259
-#: application/views/visitor/index.php:262
-msgid "Countries Breakdown"
-msgstr "Prelom zemalja"
+msgid "DXCCs Breakdown"
+msgstr ""
 
 #: application/views/dashboard/index.php:276
 #: application/views/visitor/index.php:279
@@ -9439,12 +9438,16 @@ msgid "QSO List"
 msgstr "Lista veza"
 
 #: application/views/qslprint/qslprint.php:69
-msgid "Mark selected QSOs as printed"
-msgstr "Označite izabrane veze kao štampane"
+msgid "Mark selected QSOs as sent"
+msgstr ""
 
-#: application/views/qslprint/qslprint.php:71
+#: application/views/qslprint/qslprint.php:70
 msgid "Remove selected QSOs from the queue"
 msgstr "Uklonite izabrane veze iz niza"
+
+#: application/views/qslprint/qslprint.php:71
+msgid "Export selected QSOs to ADIF-file"
+msgstr ""
 
 #: application/views/qslprint/qslprint.php:73
 msgid "Export CSV-file"
@@ -12196,6 +12199,10 @@ msgstr "Označi QSL primljenom (elektronski)"
 msgid "eQSL picture"
 msgstr "Slika eQSL"
 
+#: application/views/visitor/index.php:262
+msgid "Countries Breakdown"
+msgstr "Prelom zemalja"
+
 #: application/views/visitor/layout/footer.php:242
 msgid "CSV"
 msgstr "CSV"
@@ -12308,6 +12315,9 @@ msgstr "Vaš pozivni znak:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Pošaljite zahtev"
+
+#~ msgid "Mark selected QSOs as printed"
+#~ msgstr "Označite izabrane veze kao štampane"
 
 #~ msgid "Mark QSL Card Requested"
 #~ msgstr "Označi QSL kartu kao zahtevanu"

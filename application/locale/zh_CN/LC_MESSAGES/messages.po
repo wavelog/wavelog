@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-10-25 11:09+0000\n"
+"POT-Creation-Date: 2024-10-26 17:22+0000\n"
 "PO-Revision-Date: 2024-10-23 18:47+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.wavelog."
@@ -6067,9 +6067,8 @@ msgid "QSOs Breakdown"
 msgstr "QSO 分析"
 
 #: application/views/dashboard/index.php:259
-#: application/views/visitor/index.php:262
-msgid "Countries Breakdown"
-msgstr "DXCC 实体分析"
+msgid "DXCCs Breakdown"
+msgstr ""
 
 #: application/views/dashboard/index.php:276
 #: application/views/visitor/index.php:279
@@ -9184,12 +9183,16 @@ msgid "QSO List"
 msgstr "QSO 列表"
 
 #: application/views/qslprint/qslprint.php:69
-msgid "Mark selected QSOs as printed"
-msgstr "标记选中的 QSL 信息为'已打印'"
+msgid "Mark selected QSOs as sent"
+msgstr ""
 
-#: application/views/qslprint/qslprint.php:71
+#: application/views/qslprint/qslprint.php:70
 msgid "Remove selected QSOs from the queue"
 msgstr "从队列中删除选中的 QSL 信息"
+
+#: application/views/qslprint/qslprint.php:71
+msgid "Export selected QSOs to ADIF-file"
+msgstr ""
 
 #: application/views/qslprint/qslprint.php:73
 msgid "Export CSV-file"
@@ -11839,6 +11842,10 @@ msgstr "标记 已收到卡片(电子)"
 msgid "eQSL picture"
 msgstr "eQSL 图片"
 
+#: application/views/visitor/index.php:262
+msgid "Countries Breakdown"
+msgstr "DXCC 实体分析"
+
 #: application/views/visitor/layout/footer.php:242
 msgid "CSV"
 msgstr "CSV"
@@ -11941,6 +11948,9 @@ msgstr "您的呼号："
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "提交请求"
+
+#~ msgid "Mark selected QSOs as printed"
+#~ msgstr "标记选中的 QSL 信息为'已打印'"
 
 #~ msgid "Mark QSL Card Requested"
 #~ msgstr "标记 已请求卡片"

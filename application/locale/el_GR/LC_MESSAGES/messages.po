@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-10-25 11:09+0000\n"
+"POT-Creation-Date: 2024-10-26 17:22+0000\n"
 "PO-Revision-Date: 2024-08-17 10:47+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: Greek <https://translate.wavelog.org/projects/wavelog/main-"
@@ -5964,9 +5964,8 @@ msgid "QSOs Breakdown"
 msgstr "QSOs Αναλυτικά"
 
 #: application/views/dashboard/index.php:259
-#: application/views/visitor/index.php:262
-msgid "Countries Breakdown"
-msgstr "Χώρες Αναλυτικά"
+msgid "DXCCs Breakdown"
+msgstr ""
 
 #: application/views/dashboard/index.php:276
 #: application/views/visitor/index.php:279
@@ -9064,11 +9063,15 @@ msgid "QSO List"
 msgstr ""
 
 #: application/views/qslprint/qslprint.php:69
-msgid "Mark selected QSOs as printed"
+msgid "Mark selected QSOs as sent"
+msgstr ""
+
+#: application/views/qslprint/qslprint.php:70
+msgid "Remove selected QSOs from the queue"
 msgstr ""
 
 #: application/views/qslprint/qslprint.php:71
-msgid "Remove selected QSOs from the queue"
+msgid "Export selected QSOs to ADIF-file"
 msgstr ""
 
 #: application/views/qslprint/qslprint.php:73
@@ -11658,6 +11661,10 @@ msgstr "Σημείωση QSL ως Ελήφθη (Ηλεκτρονικός)"
 #: application/views/view_log/qso.php:695
 msgid "eQSL picture"
 msgstr ""
+
+#: application/views/visitor/index.php:262
+msgid "Countries Breakdown"
+msgstr "Χώρες Αναλυτικά"
 
 #: application/views/visitor/layout/footer.php:242
 msgid "CSV"

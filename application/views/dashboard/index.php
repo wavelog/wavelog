@@ -256,7 +256,7 @@ function echo_table_col($row, $name) {
 
 		<table class="table table-striped border-top">
 			<tr class="titles">
-				<td colspan="2"><i class="fas fa-globe-europe"></i> <?= __("Countries Breakdown"); ?></td>
+				<td colspan="2"><i class="fas fa-globe-europe"></i> <?= __("DXCCs Breakdown"); ?></td>
 			</tr>
 
 			<tr>

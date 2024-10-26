@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-10-25 11:09+0000\n"
+"POT-Creation-Date: 2024-10-26 17:22+0000\n"
 "PO-Revision-Date: 2024-09-23 14:46+0000\n"
 "Last-Translator: Filip Melik <filip@melik.cz>\n"
 "Language-Team: Czech <https://translate.wavelog.org/projects/wavelog/main-"
@@ -5971,9 +5971,8 @@ msgid "QSOs Breakdown"
 msgstr "Počet QSO spojení"
 
 #: application/views/dashboard/index.php:259
-#: application/views/visitor/index.php:262
-msgid "Countries Breakdown"
-msgstr "Počet zemí"
+msgid "DXCCs Breakdown"
+msgstr ""
 
 #: application/views/dashboard/index.php:276
 #: application/views/visitor/index.php:279
@@ -9081,11 +9080,15 @@ msgid "QSO List"
 msgstr ""
 
 #: application/views/qslprint/qslprint.php:69
-msgid "Mark selected QSOs as printed"
+msgid "Mark selected QSOs as sent"
+msgstr ""
+
+#: application/views/qslprint/qslprint.php:70
+msgid "Remove selected QSOs from the queue"
 msgstr ""
 
 #: application/views/qslprint/qslprint.php:71
-msgid "Remove selected QSOs from the queue"
+msgid "Export selected QSOs to ADIF-file"
 msgstr ""
 
 #: application/views/qslprint/qslprint.php:73
@@ -11688,6 +11691,10 @@ msgstr "Označit QSL přijato (Elektronicky)"
 #: application/views/view_log/qso.php:695
 msgid "eQSL picture"
 msgstr "obrázek eQSL"
+
+#: application/views/visitor/index.php:262
+msgid "Countries Breakdown"
+msgstr "Počet zemí"
 
 #: application/views/visitor/layout/footer.php:242
 msgid "CSV"

@@ -66,9 +66,9 @@ if ($qsos->result() != NULL) {
 	echo '</tbody></table></div>';
 	?>
 
-	<p><button onclick="markSelectedQsos();" title="<?= __("Mark selected QSOs as printed"); ?>" class="btn btn-success markallprinted"><?= __("Mark selected QSOs as printed"); ?></button>
-
-	<button onclick="removeSelectedQsos();" title="<?= __("Remove selected QSOs from the queue"); ?>" class="btn btn-danger removeall"><?= __("Remove selected QSOs from the queue"); ?></button></p>
+	<p><button onclick="markSelectedQsos();" title="<?= __("Mark selected QSOs as sent"); ?>" class="btn btn-success markallprinted"><?= __("Mark selected QSOs as sent"); ?></button>
+	<button onclick="removeSelectedQsos();" title="<?= __("Remove selected QSOs from the queue"); ?>" class="btn btn-danger removeall"><?= __("Remove selected QSOs from the queue"); ?></button>
+	<button onclick="exportSelectedQsos();" title="<?= __("Export selected QSOs to ADIF-file"); ?>" class="btn btn-primary exportselected"><?= __("Export selected QSOs to ADIF-file"); ?></button></p>
 
 	<p><a href="<?php echo site_url('qslprint/exportcsv/' . $station_id); ?>" title="<?= __("Export CSV-file"); ?>" class="btn btn-primary"><?= __("Export requested QSLs to CSV-file"); ?></a>
 
