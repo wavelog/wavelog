@@ -3,21 +3,22 @@
 # This file is distributed under the MIT licence.
 #
 # Maciej <github@maciej.website>, 2024.
+# Maciej SP2FE <wavelog@sp2fe.eu>, 2024.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-10-25 11:09+0000\n"
-"PO-Revision-Date: 2024-09-08 22:18+0000\n"
-"Last-Translator: Maciej <github@maciej.website>\n"
-"Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/pl/>\n"
+"PO-Revision-Date: 2024-10-26 14:35+0000\n"
+"Last-Translator: Maciej SP2FE <wavelog@sp2fe.eu>\n"
+"Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/pl/>\n"
 "Language: pl_PL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.7.1\n"
+"X-Generator: Weblate 5.7.2\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -111,7 +112,7 @@ msgstr ""
 #: application/controllers/User.php:1247
 #: application/controllers/User_options.php:9
 msgid "You're not allowed to do that!"
-msgstr ""
+msgstr "Nie masz uprawnień do wykonania tej akcji!"
 
 #: application/controllers/Accumulated.php:19
 #: application/views/interface_assets/header.php:152
@@ -229,7 +230,7 @@ msgstr "Edytuj opis API"
 #: application/controllers/Api.php:69
 #, php-format
 msgid "API Key %s description has been updated."
-msgstr ""
+msgstr "Opis klucza API %s został zaktualizowany."
 
 #: application/controllers/Api.php:109
 #, php-format
@@ -315,7 +316,7 @@ msgstr "VUCC"
 
 #: application/controllers/Awards.php:405
 msgid "Log View - VUCC"
-msgstr ""
+msgstr "Podgląd Logu - VUCC"
 
 #: application/controllers/Awards.php:453
 #: application/controllers/Distancerecords.php:59
@@ -326,7 +327,7 @@ msgstr ""
 #: application/controllers/Timeline.php:117
 #: application/controllers/Timeline.php:120
 msgid "Log View"
-msgstr ""
+msgstr "Podgląd Logu"
 
 #: application/controllers/Awards.php:454
 msgid " and band "
@@ -449,7 +450,7 @@ msgstr "Hrabstwa USA"
 
 #: application/controllers/Awards.php:896
 msgid "Log View - Counties"
-msgstr ""
+msgstr "Podgląd Logu - hrabstwa"
 
 #: application/controllers/Awards.php:903
 msgid "Awards - "
@@ -1673,7 +1674,7 @@ msgstr ""
 
 #: application/controllers/Oqrs.php:67
 msgid "Invalid Station ID"
-msgstr ""
+msgstr "Niepoprawne ID stacji"
 
 #: application/controllers/Oqrs.php:134
 #: application/views/interface_assets/header.php:419
@@ -1688,7 +1689,7 @@ msgstr "Kalkulator QRB"
 #: application/controllers/Qrbcalc.php:50
 #, php-format
 msgid "Latitude: %s, Longitude: %s"
-msgstr ""
+msgstr "Szerokość geograficzna: %s, Długość: %s"
 
 #: application/controllers/Qrbcalc.php:54
 #, php-format
@@ -1724,6 +1725,8 @@ msgid ""
 "Negative latitudes are south of the equator, negative longitudes are west of "
 "Greenwich."
 msgstr ""
+"Ujemne szerokości geograficzne znajdują się na południe od równika, ujemne "
+"długości geograficzne znajdują się na zachód od Greenwich."
 
 #: application/controllers/Qrz.php:196
 #: application/views/interface_assets/header.php:432
@@ -1751,7 +1754,7 @@ msgstr ""
 
 #: application/controllers/Qslmanagement.php:14
 msgid "QSL Card Management"
-msgstr ""
+msgstr "Zarządzanie kartami QSL"
 
 #: application/controllers/Qslprint.php:46
 msgid "Print Requested QSLs"
@@ -1759,11 +1762,11 @@ msgstr ""
 
 #: application/controllers/Qso.php:101
 msgid "Add QSO"
-msgstr ""
+msgstr "Dodaj QSO"
 
 #: application/controllers/Qso.php:660
 msgid "You have to be logged in to access this URL."
-msgstr ""
+msgstr "Musisz być zalogowany aby uzyskać dostęp do tej strony."
 
 #: application/controllers/Qso.php:666
 msgid "Call Transfer"
@@ -1776,7 +1779,7 @@ msgstr ""
 #: application/controllers/Radio.php:17
 #: application/views/interface_assets/header.php:438
 msgid "Hardware Interfaces"
-msgstr ""
+msgstr "Interfejsy sprzętowe"
 
 #: application/controllers/Radio.php:47 application/views/bandmap/index.php:25
 #: application/views/bandmap/list.php:63
@@ -1840,7 +1843,7 @@ msgstr "Usuń"
 
 #: application/controllers/Radio.php:111
 msgid "No CAT interfaced radios found."
-msgstr ""
+msgstr "Nie znaleziono radiostacji z interfejsem CAT."
 
 #: application/controllers/Reg1test.php:25
 msgid "Export EDI"
@@ -1857,7 +1860,7 @@ msgstr "Edytuj satelitę"
 #: application/controllers/Sattimers.php:41
 #, php-format
 msgid "You have no station locations. Go %s to create it!"
-msgstr ""
+msgstr "Nie masz ustawionej lokalizacji stacji. Kliknij %s aby ją stworzyć!"
 
 #: application/controllers/Sattimers.php:41
 #: application/views/awards/counties/index.php:8
@@ -1917,15 +1920,17 @@ msgid ""
 "QSOs unconfirmed on LoTW, but the callsign has uploaded to LoTW after QSO "
 "date"
 msgstr ""
+"Łączność niepotwierdzona przez LoTW, ale ten znak wywoławczy przesłał dane "
+"do LoTW po dacie QSO"
 
 #: application/controllers/Station.php:37
 #: application/controllers/Stationsetup.php:226
 msgid "Create Station Location"
-msgstr ""
+msgstr "Dodaj lokalizację stacji"
 
 #: application/controllers/Station.php:52
 msgid "Edit Station Location: "
-msgstr ""
+msgstr "Edytuj lokalizację stacji: "
 
 #: application/controllers/Station.php:61 application/views/csv/index.php:19
 #: application/views/dxatlas/index.php:19
@@ -1944,13 +1949,13 @@ msgstr "Lokalizacja stacji"
 
 #: application/controllers/Station.php:75
 msgid "Duplicate Station Location:"
-msgstr ""
+msgstr "Duplikuj lokalizację stacji:"
 
 #: application/controllers/Stationsetup.php:35
 #: application/views/interface_assets/header.php:381
 #: application/views/interface_assets/header.php:494
 msgid "Station Setup"
-msgstr ""
+msgstr "Konfiguracja stacji"
 
 #: application/controllers/Stationsetup.php:50
 #: application/controllers/Stationsetup.php:68
@@ -1981,7 +1986,7 @@ msgstr "Zmień nazwę kontenera"
 
 #: application/controllers/Stationsetup.php:181
 msgid "Edit linked locations"
-msgstr ""
+msgstr "Edytuj połączone lokalizacje"
 
 #: application/controllers/Stationsetup.php:190
 msgid "Edit visitor site"
@@ -2027,11 +2032,13 @@ msgid ""
 "Are you sure you want to delete the following station logbook? You must re-"
 "link any locations linked here to another logbook.: "
 msgstr ""
+"Czy na pewno chcesz usunąć ten dziennik stacji? Musisz ponownie połączyć "
+"wszystkie lokalizacje do innego logbooka: "
 
 #: application/controllers/Stationsetup.php:280
 #: application/views/stationsetup/stationsetup.php:65
 msgid "View Public Page for Logbook: "
-msgstr ""
+msgstr "Wyświetl publiczną stronę dla logbooka: "
 
 #: application/controllers/Stationsetup.php:281
 msgid "Are you sure you want to delete the public slug?"
@@ -2081,7 +2088,7 @@ msgstr "Edytuj"
 #: application/controllers/Stationsetup.php:363
 #: application/views/stationsetup/stationsetup.php:185
 msgid "Are you sure you want to delete all QSOs within this station profile?"
-msgstr ""
+msgstr "Czy na pewno chcesz usunąć wszystkie QSO w tym profilu stacji?"
 
 #: application/controllers/Stationsetup.php:363
 #: application/views/stationsetup/stationsetup.php:136
@@ -2102,6 +2109,8 @@ msgid ""
 "Are you sure you want delete station profile '%s'? This will delete all QSOs "
 "within this station profile."
 msgstr ""
+"Czy na pewno chcesz usunąć profil stacji „%s”? Spowoduje to usunięcie "
+"wszystkich QSO w tym profilu stacji."
 
 #: application/controllers/Stationsetup.php:379
 #: application/views/qso/edit_ajax.php:221
@@ -2113,7 +2122,7 @@ msgstr ""
 
 #: application/controllers/Stationsetup.php:462
 msgid "Edit Export Map options"
-msgstr ""
+msgstr "Edytuj opcje eksportu mapy"
 
 #: application/controllers/Statistics.php:27
 #: application/views/interface_assets/header.php:134
@@ -2173,7 +2182,7 @@ msgstr ""
 
 #: application/controllers/Update.php:246
 msgid "DONE"
-msgstr ""
+msgstr "GOTOWE"
 
 #: application/controllers/Update.php:260
 msgid "Updating..."
@@ -2230,6 +2239,8 @@ msgid ""
 "Congrats! Wavelog was successfully installed. You can now login for the "
 "first time."
 msgstr ""
+"Gratulacje! Wavelog został pomyślnie zainstalowany. Możesz się teraz "
+"pierwszy raz zalogować."
 
 #: application/controllers/User.php:867 application/controllers/User.php:877
 msgid "Login failed. Try again."
@@ -2248,6 +2259,9 @@ msgid ""
 "appears unexpectedly or keeps showing up, please contact an administrator. "
 "Only administrators are currently allowed to log in."
 msgstr ""
+"Przepraszamy. Ta instancja jest aktualnie w trybie serwisowym. Jeśli ten "
+"komunikat pojawił się nieoczekiwanie lub będzie się powtarzał, skontaktuj "
+"się z administratorem. Obecnie tylko administratorzy mogą się zalogować."
 
 #: application/controllers/User.php:925
 msgid "Incorrect username or password!"
@@ -2289,7 +2303,7 @@ msgstr ""
 
 #: application/controllers/User.php:1206
 msgid "Invalid Hash"
-msgstr ""
+msgstr "Niepoprawny hash"
 
 #: application/controllers/User.php:1219
 msgid "The impersonation hash is too old. Please try again."
@@ -2303,7 +2317,7 @@ msgstr ""
 
 #: application/controllers/User.php:1232
 msgid "There was a problem with your session. Please try again."
-msgstr ""
+msgstr "Wystąpił problem z twoją sesją. Spróbuj jeszcze raz."
 
 #: application/controllers/User.php:1239
 msgid "The requested user to impersonate does not exist"
@@ -2357,7 +2371,7 @@ msgstr ""
 #: application/libraries/Subdivisions.php:31
 msgctxt "Division Name (States in various countries)."
 msgid "Province"
-msgstr ""
+msgstr "Prowincja"
 
 #: application/libraries/Subdivisions.php:39
 msgctxt "Division Name (States in various countries)."
@@ -2368,17 +2382,17 @@ msgstr "Obwód"
 #: application/libraries/Subdivisions.php:47
 msgctxt "Division Name (States in various countries)."
 msgid "Region"
-msgstr ""
+msgstr "Region"
 
 #: application/libraries/Subdivisions.php:45
 msgctxt "Division Name (States in various countries)."
 msgid "Department"
-msgstr ""
+msgstr "Departament"
 
 #: application/libraries/Subdivisions.php:49
 msgctxt "Division Name (States in various countries)."
 msgid "Municipality"
-msgstr ""
+msgstr "Gmina"
 
 #: application/libraries/Subdivisions.php:51
 msgctxt "Division Name (States in various countries)."
@@ -2395,7 +2409,7 @@ msgstr "Hrabstwo"
 #: application/libraries/Subdivisions.php:85
 msgctxt "Division Name (States in various countries)."
 msgid "District"
-msgstr ""
+msgstr "Dystrykt"
 
 #: application/libraries/Subdivisions.php:62
 msgctxt "Division Name (States in various countries)."
@@ -2438,7 +2452,7 @@ msgstr "Twoja nazwa użytkownika i/lub hasło eQSL jest niepoprawne."
 
 #: application/models/Eqslmethods_model.php:293
 msgid "Something went wrong with eQSL.cc!"
-msgstr ""
+msgstr "Coś poszło nie tak z eQSL.cc!"
 
 #: application/models/Eqslmethods_model.php:309
 msgid "eQSL.cc is experiencing issues. Please try exporting QSOs later."
@@ -2466,7 +2480,7 @@ msgstr "HRDlog: Nie znaleziono łączności do przesłania dla stacji o znaku: "
 
 #: application/models/Hrdlog_model.php:31
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
-msgstr ""
+msgstr "HRDlog: Nie znaleziono profili stacji z danymi logowania HRDlog."
 
 #: application/models/Logbook_model.php:3678
 #, php-format
@@ -2476,7 +2490,7 @@ msgstr ""
 #: application/models/Logbook_model.php:3679
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
-msgstr ""
+msgstr "Sprawdź %s w celu znalezienia pomocy z błędami w plikach ADIF."
 
 #: application/models/Logbook_model.php:3691
 msgid "QSO on"
@@ -2487,6 +2501,8 @@ msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
 msgstr ""
+"Spróbowałeś zaimportować QSO bez podanego znaku wywoławczego. To QSO nie "
+"zostało zaimportowane, jest nieprawidłowe"
 
 #: application/models/Logbook_model.php:3987
 msgid "the qslrdate is invalid (YYYYMMDD)"
@@ -2514,11 +2530,11 @@ msgstr ""
 
 #: application/models/Logbook_model.php:4413
 msgid "QSO could not be matched"
-msgstr ""
+msgstr "QSO nie mogło zostać dopasowane"
 
 #: application/models/Logbook_model.php:4419
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
-msgstr ""
+msgstr "potwierdzone przez LoTW/Clublog/eQSL/zawody"
 
 #: application/models/Logbook_model.php:4424
 msgid "confirmed by award manager"
@@ -2542,11 +2558,11 @@ msgstr ""
 
 #: application/models/Update_model.php:300
 msgid "Newer release available:"
-msgstr ""
+msgstr "Nowsza wersja dostępna:"
 
 #: application/models/Update_model.php:304
 msgid "You are running the latest version."
-msgstr ""
+msgstr "Używasz najnowszej wersji."
 
 #: application/views/accumulate/index.php:2
 msgid "Accumulated number of DXCCs worked"
@@ -2744,7 +2760,7 @@ msgstr "Propagacja"
 #: application/views/distances/index.php:57
 #: application/views/timeline/index.php:78
 msgid "All but SAT"
-msgstr ""
+msgstr "Wszystkie oprócz SAT"
 
 #: application/views/accumulate/index.php:85
 #: application/views/distances/index.php:58
@@ -3801,7 +3817,7 @@ msgstr ""
 
 #: application/views/awards/counties/index.php:22
 msgid "Counties Confirmed"
-msgstr ""
+msgstr "Potwierdzone hrabstwa"
 
 #: application/views/awards/counties/index.php:39
 #: application/views/awards/cq/index.php:176
@@ -7112,7 +7128,7 @@ msgstr ""
 
 #: application/views/interface_assets/header.php:89
 msgid "Maintenance Mode"
-msgstr ""
+msgstr "Tryb serwisowy"
 
 #: application/views/interface_assets/header.php:99
 msgid "Overview"
@@ -11189,6 +11205,8 @@ msgstr ""
 msgid ""
 "What action should be performed when Enter is pressed in the quicklog field?"
 msgstr ""
+"Jaka akcja powinna zostać wykonana po wciśnięciu przycisku Enter w polu "
+"quicklog?"
 
 #: application/views/user/edit.php:449
 msgid "Station Locations Quickswitch"
@@ -11204,15 +11222,15 @@ msgstr ""
 
 #: application/views/user/edit.php:463
 msgid "Show the current UTC Time in the menu"
-msgstr ""
+msgstr "Wyświetlaj aktualny czas UTC w menu"
 
 #: application/views/user/edit.php:474
 msgid "Map Settings"
-msgstr ""
+msgstr "Ustawienia mapy"
 
 #: application/views/user/edit.php:481
 msgid "Icon"
-msgstr ""
+msgstr "Ikona"
 
 #: application/views/user/edit.php:484 application/views/user/edit.php:488
 msgid "Not display"
@@ -11232,7 +11250,7 @@ msgstr ""
 
 #: application/views/user/edit.php:536
 msgid "Show Locator"
-msgstr ""
+msgstr "Wyświetl lokator"
 
 #: application/views/user/edit.php:555
 msgid "Previous QSL Type"
@@ -11253,7 +11271,7 @@ msgstr ""
 
 #: application/views/user/edit.php:619
 msgid "Default Values"
-msgstr ""
+msgstr "Wartości domyślne"
 
 #: application/views/user/edit.php:627
 msgid "Settings for Default Band and Confirmation"
@@ -11269,23 +11287,23 @@ msgstr ""
 
 #: application/views/user/edit.php:697
 msgid "Third Party Services"
-msgstr ""
+msgstr "Usługi stron trzecich"
 
 #: application/views/user/edit.php:708
 msgid "Logbook of The World (LoTW) Username"
-msgstr ""
+msgstr "Nazwa użytkownika Logbook of The World (LoTW)"
 
 #: application/views/user/edit.php:714
 msgid "Logbook of The World (LoTW) Password"
-msgstr ""
+msgstr "Hasło Logbook of The World (LoTW)"
 
 #: application/views/user/edit.php:734
 msgid "eQSL.cc Username"
-msgstr ""
+msgstr "Nazwa użytkownika eQSL.cc"
 
 #: application/views/user/edit.php:740
 msgid "eQSL.cc Password"
-msgstr ""
+msgstr "Hasło eQSL.cc"
 
 #: application/views/user/edit.php:757
 msgid "Club Log"
@@ -11293,19 +11311,19 @@ msgstr ""
 
 #: application/views/user/edit.php:760
 msgid "Club Log Email/Callsign"
-msgstr ""
+msgstr "Email/znak wywoławczy Club Log"
 
 #: application/views/user/edit.php:762
 msgid "The Email or Callsign you use to login to Club Log"
-msgstr ""
+msgstr "Email lub znak wywoławczy który używasz do zalogowania się do Club Log"
 
 #: application/views/user/edit.php:767
 msgid "Club Log Password"
-msgstr ""
+msgstr "Hasło Club Log"
 
 #: application/views/user/edit.php:788
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Różne"
 
 #: application/views/user/edit.php:796
 msgid "AMSAT Status Upload"
@@ -11330,7 +11348,7 @@ msgstr ""
 
 #: application/views/user/edit.php:827
 msgid "Experimental"
-msgstr ""
+msgstr "Eksperymentalne"
 
 #: application/views/user/edit.php:827
 msgid "Winkeyer"
@@ -11359,7 +11377,7 @@ msgstr ""
 #, php-format
 msgctxt "Hint for Hamsat API Key; uses Link"
 msgid "See your profile at %s."
-msgstr ""
+msgstr "Zobacz swój profil na %s."
 
 #: application/views/user/edit.php:855
 msgid "Show Workable Passes Only"
@@ -11377,12 +11395,12 @@ msgstr ""
 
 #: application/views/user/forgot_password.php:33
 msgid "Forgot Password?"
-msgstr ""
+msgstr "Zapomniałeś hasła?"
 
 #: application/views/user/forgot_password.php:34
 #: application/views/user/reset_password.php:9
 msgid "You can reset your password here."
-msgstr ""
+msgstr "Tutaj możesz zresetować swoje hasło."
 
 #: application/views/user/index.php:2
 msgid "Do you really want to send this user a password-reset link?"
@@ -11502,7 +11520,7 @@ msgstr "Ostatnio widziany:"
 
 #: application/views/user/login.php:36
 msgid "MAINTENANCE MODE"
-msgstr ""
+msgstr "TRYB SERWISOWY"
 
 #: application/views/user/login.php:56
 msgid "Welcome to the Demo of Wavelog"
@@ -11765,7 +11783,7 @@ msgstr ""
 
 #: application/views/widgets/oqrs.php:83
 msgid "Your Callsign:"
-msgstr ""
+msgstr "Twój znak:"
 
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
