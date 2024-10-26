@@ -34,16 +34,22 @@ class Polygon implements Draw
     private $points = [];
 
     /**
+     * @var bool wrap around the world or not
+     */
+    private $wrap;
+
+    /**
      * Polygon constructor.
      * @param string $strokeColor Hexadecimal string color
      * @param int $strokeWeight pixel weight of the line
      * @param string $fillColor Hexadecimal string color
      */
-    public function __construct(string $strokeColor, int $strokeWeight, string $fillColor)
+    public function __construct(string $strokeColor, int $strokeWeight, string $fillColor, bool $wrap = false)
     {
         $this->strokeColor = \str_replace('#', '', $strokeColor);
         $this->strokeWeight = $strokeWeight > 0 ? $strokeWeight : 0;
         $this->fillColor = \str_replace('#', '', $fillColor);
+        $this->wrap = $wrap;
     }
 
     /**

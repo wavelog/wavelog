@@ -30,14 +30,20 @@ class Line implements Draw
     private $points = [];
 
     /**
+     * @var bool wrap around the world or not
+     */
+    private $wrap;
+
+    /**
      * Line constructor.
      * @param string $color Hexadecimal string color
      * @param int $weight pixel weight of the line
      */
-    public function __construct(string $color, int $weight)
+    public function __construct(string $color, int $weight, bool $wrap = false)
     {
         $this->color = \str_replace('#', '', $color);
         $this->weight = $weight;
+        $this->wrap = $wrap;
     }
 
     /**
@@ -67,7 +73,7 @@ class Line implements Draw
          */
         $cPoints = \array_map(
             function (LatLng $p) use ($mapData) {
-                return $mapData->convertLatLngToPxPosition($p);
+                return $mapData->convertLatLngToPxPosition($p, $this->wrap);
             },
             $this->points
         );

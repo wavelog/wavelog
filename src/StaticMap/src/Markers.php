@@ -26,6 +26,10 @@ class Markers {
      */
     private $image;
     /**
+     * @var bool Wrap around the globe or not
+     */
+    private $wrap;
+    /**
      * @var string|int Horizontal anchor of the marker image
      */
     private $horizontalAnchor = Markers::ANCHOR_CENTER;
@@ -38,7 +42,8 @@ class Markers {
      */
     private $coordinates = [];
 
-    public function __construct($pathImage) {
+    public function __construct($pathImage, $wrap = false) {
+        $this->wrap = $wrap;
         $this->image = Image::fromPath($pathImage);
     }
 
@@ -116,6 +121,12 @@ class Markers {
         foreach ($this->coordinates as $coordinate) {
             $xy = $mapData->convertLatLngToPxPosition($coordinate);
             $image->pasteOn($this->image, $xy->getX() + 1 - $imageMarginLeft, $xy->getY() + 1 - $imageMarginTop);
+
+            // pasteOn again for wrapping left and right
+            if ($this->wrap) {
+                $image->pasteOn($this->image, $xy->getX() + 1 - $imageMarginLeft + $image->getWidth(), $xy->getY() + 1 - $imageMarginTop);
+                $image->pasteOn($this->image, $xy->getX() + 1 - $imageMarginLeft - $image->getWidth(), $xy->getY() + 1 - $imageMarginTop);
+            }
         }
 
         return $this;

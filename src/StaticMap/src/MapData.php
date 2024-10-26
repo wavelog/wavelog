@@ -25,15 +25,19 @@ class MapData {
      * @param float $lon Longitude
      * @param int $zoom Zoom
      * @param int $tileSize Tile size
+     * @param bool wrap around the globe
      * @return int[] OpenStreetMap tile id and pixel position of the given longitude and zoom
      */
-    public function lngToXTile(float $lon, int $zoom, int $tileSize): array {
+    public function lngToXTile(float $lon, int $zoom, int $tileSize, bool $wrap = false): array {
         // Adjust longitude based on the map's center longitude
         $centerLon = $this->centerMap->getLng();
         $wrappedLon = fmod(($lon - $centerLon + 180), 360) - 180 + $centerLon;
-    
+        if ($wrap) {
+            $x = ($wrappedLon + 180) / 360 * \pow(2, $zoom);
+        } else {
+            $x = ($lon + 180) / 360 * \pow(2, $zoom);
+        }
         // Continue with the existing calculation
-        $x = ($wrappedLon + 180) / 360 * \pow(2, $zoom);
         $tile = \floor($x);
         return [
             'id' => $tile,
@@ -345,8 +349,8 @@ class MapData {
      * @param LatLng $latLng Latitude and longitude to be converted
      * @return XY Pixel position of latitude and longitude in the image
      */
-    public function convertLatLngToPxPosition(LatLng $latLng): XY {
-        $x = static::lngToXTile($latLng->getLng(), $this->zoom, $this->tileSize);
+    public function convertLatLngToPxPosition(LatLng $latLng, $wrap = false): XY {
+        $x = static::lngToXTile($latLng->getLng(), $this->zoom, $this->tileSize, $wrap); // we only need to wrap X 
         $y = static::latToYTile($latLng->getLat(), $this->zoom, $this->tileSize);
 
         return new XY(

@@ -41,6 +41,11 @@ class Circle implements Draw
     private $edge = null;
 
     /**
+     * @var bool wrap around the world or not
+     */
+    private $wrap;
+
+    /**
      * Circle constructor.
      *
      * @param LatLng $center Latitude and longitude of the circle center
@@ -48,13 +53,14 @@ class Circle implements Draw
      * @param int $strokeWeight pixel weight of the line
      * @param string $fillColor Hexadecimal string color
      */
-    public function __construct(LatLng $center, string $strokeColor, int $strokeWeight, string $fillColor)
+    public function __construct(LatLng $center, string $strokeColor, int $strokeWeight, string $fillColor, bool $wrap = false)
     {
         $this->center = $center;
         $this->edge = $center;
         $this->strokeColor = \str_replace('#', '', $strokeColor);
         $this->strokeWeight = $strokeWeight > 0 ? $strokeWeight : 0;
         $this->fillColor = \str_replace('#', '', $fillColor);
+        $this->wrap = $wrap;
     }
 
     /**
@@ -92,8 +98,8 @@ class Circle implements Draw
      */
     public function draw(Image $image, MapData $mapData): Circle
     {
-        $center = $mapData->convertLatLngToPxPosition($this->center);
-        $edge = $mapData->convertLatLngToPxPosition($this->edge);
+        $center = $mapData->convertLatLngToPxPosition($this->center, $this->wrap);
+        $edge = $mapData->convertLatLngToPxPosition($this->edge, $this->wrap);
 
         $angleAndLenght = Geometry2D::getAngleAndLengthFromPoints($center->getX(), $center->getY(), $edge->getX(), $edge->getY());
         $length = \round($angleAndLenght['length'] + $this->strokeWeight / 2);

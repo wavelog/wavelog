@@ -142,6 +142,7 @@ class Visitor_model extends CI_Model {
 		$zoom = 2;
 		$width = 1024;
 		$height = 768;
+		$marker_size = 9;
 		$fontSize = 12;
 		$fontPosX = 758;
 		$fontPosY = 178;
@@ -320,8 +321,8 @@ class Visitor_model extends CI_Model {
 
 		// Set the markers for the station
 		if (!$hide_home) {
-			$markersStation = new \Wavelog\StaticMapImage\Markers($home_icon);
-			$markersStation->resizeMarker(10, 10);
+			$markersStation = new \Wavelog\StaticMapImage\Markers($home_icon, true);
+			$markersStation->resizeMarker($marker_size, $marker_size);
 			$markersStation->setAnchor(\Wavelog\StaticMapImage\Markers::ANCHOR_CENTER, \Wavelog\StaticMapImage\Markers::ANCHOR_BOTTOM);
 			foreach ($station_coordinates as $station) {
 				$markersStation->addMarker(new \Wavelog\StaticMapImage\LatLng($station[0], $station[1]));
@@ -330,8 +331,8 @@ class Visitor_model extends CI_Model {
 		}
 
 		// Set the markers for unconfirmed QSOs
-		$markers = new \Wavelog\StaticMapImage\Markers($qso_icon);
-		$markers->resizeMarker(10, 10);
+		$markers = new \Wavelog\StaticMapImage\Markers($qso_icon, true);
+		$markers->resizeMarker($marker_size, $marker_size);
 		$markers->setAnchor(\Wavelog\StaticMapImage\Markers::ANCHOR_CENTER, \Wavelog\StaticMapImage\Markers::ANCHOR_BOTTOM);
 
 		foreach ($markerQsos as $position) {
@@ -340,8 +341,8 @@ class Visitor_model extends CI_Model {
 		$map->addMarkers($markers);
 
 		// Set the markers for confirmed QSOs
-		$markersConfirmed = new \Wavelog\StaticMapImage\Markers($qso_cfnm_icon);
-		$markersConfirmed->resizeMarker(10, 10);
+		$markersConfirmed = new \Wavelog\StaticMapImage\Markers($qso_cfnm_icon, true);
+		$markersConfirmed->resizeMarker($marker_size, $marker_size);
 		$markersConfirmed->setAnchor(\Wavelog\StaticMapImage\Markers::ANCHOR_CENTER, \Wavelog\StaticMapImage\Markers::ANCHOR_BOTTOM);
 
 		foreach ($markerQsosConfirmed as $position) {
