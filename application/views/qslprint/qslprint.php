@@ -1,6 +1,3 @@
-<script type="text/javascript">
-    const user_callsign = "<?php echo $this->session->userdata('user_callsign') ?>";
-</script>
 <?php
 
 function echo_qsl_sent_via($method) {
