@@ -2,6 +2,7 @@
 
 namespace Wavelog\StaticMapImage;
 
+require('./src/StaticMap/src/Interfaces/Draw.php');
 use Wavelog\StaticMapImage\Interfaces\Draw;
 use DantSu\PHPImageEditor\Image;
 
