@@ -8,10 +8,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-10-25 11:09+0000\n"
-"PO-Revision-Date: 2024-10-26 14:40+0000\n"
+"PO-Revision-Date: 2024-10-26 17:17+0000\n"
 "Last-Translator: Maciej SP2FE <wavelog@sp2fe.eu>\n"
-"Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/main-"
-"translation/pl/>\n"
+"Language-Team: Polish <https://translate.wavelog.org/projects/wavelog/"
+"main-translation/pl/>\n"
 "Language: pl_PL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -10723,12 +10723,12 @@ msgstr ""
 
 #: application/views/statistics/index.php:17
 msgid "Number of QSOs worked each year"
-msgstr ""
+msgstr "Liczba łączności wykonanych w każdym roku"
 
 #: application/views/statistics/index.php:62
 #: application/views/statistics/index.php:99
 msgid "Unique callsigns"
-msgstr ""
+msgstr "Unikalne znaki wywoławcze"
 
 #: application/views/themes/add.php:4 application/views/themes/edit.php:4
 msgid "Theme Name"
@@ -10755,11 +10755,11 @@ msgstr ""
 
 #: application/views/themes/add.php:18 application/views/themes/edit.php:18
 msgid "Light"
-msgstr ""
+msgstr "Jasny"
 
 #: application/views/themes/add.php:19 application/views/themes/edit.php:19
 msgid "Dark"
-msgstr ""
+msgstr "Ciemny"
 
 #: application/views/themes/add.php:21
 msgid "This defines wherever the theme is a light or a dark one."
@@ -10773,7 +10773,7 @@ msgstr ""
 #: application/views/themes/add.php:27 application/views/themes/add.php:33
 #: application/views/themes/edit.php:27 application/views/themes/edit.php:33
 msgid "Only PNG files with a size ratio of 1:1 are allowed."
-msgstr ""
+msgstr "Dozwolone są tylko pliki PNG o proporcji 1:1."
 
 #: application/views/themes/add.php:27 application/views/themes/edit.php:27
 #, php-format
@@ -10806,7 +10806,7 @@ msgstr ""
 
 #: application/views/themes/edit.php:36
 msgid "Update theme"
-msgstr ""
+msgstr "Zaktualizuj motyw"
 
 #: application/views/themes/index.php:22
 msgid "Themes list"
@@ -10818,10 +10818,13 @@ msgid ""
 "theme is not really straightforward and should only be done by an admin who "
 "is aware of their actions."
 msgstr ""
+"W tym menu możesz dodawać i edytować motywy Waveloga. Proces dodawania "
+"motywu nie należy do najprostszych i powinien być wykonywany wyłącznie przez "
+"administratora, który jest świadomy swoich działań."
 
 #: application/views/themes/index.php:29
 msgid "Also, it has to be said that this feature is still under development."
-msgstr ""
+msgstr "Należy również zaznaczyć, że ta funkcja jest wciąż w fazie rozwoju."
 
 #: application/views/themes/index.php:35
 msgid "Process of adding a new theme"
@@ -10929,7 +10932,7 @@ msgstr ""
 
 #: application/views/update/index.php:24
 msgid "You must install php-xml for this to work."
-msgstr ""
+msgstr "Aby to zadziałało, musisz zainstalować php-xml."
 
 #: application/views/update/index.php:27
 msgid "Check for DXCC Data Updates"
@@ -10980,11 +10983,11 @@ msgstr ""
 
 #: application/views/update/index.php:80
 msgid "Here you can update QSOs with missing distance information."
-msgstr ""
+msgstr "Tutaj możesz zaktualizować QSO z brakującymi informacjami o odległości."
 
 #: application/views/update/index.php:86
 msgid "Update distance data"
-msgstr ""
+msgstr "Zaktualizuj informacje o odległości"
 
 #: application/views/update/index.php:89
 msgid ""
@@ -10995,19 +10998,19 @@ msgstr ""
 
 #: application/views/user/delete.php:5
 msgid "Delete User Account"
-msgstr ""
+msgstr "Usuń konto użytkownika"
 
 #: application/views/user/delete.php:10
 msgid "Are you sure you want to delete the user account"
-msgstr ""
+msgstr "Czy na pewno chcesz usunąć konto użytkownika"
 
 #: application/views/user/delete.php:14
 msgid "No, do not delete this user"
-msgstr ""
+msgstr "Nie, nie usuwaj tego użytkownika"
 
 #: application/views/user/delete.php:14
 msgid "Yes, delete this user"
-msgstr ""
+msgstr "Tak, usuń tego użytkownika"
 
 #: application/views/user/edit.php:4
 msgid "Create User Account"
@@ -11015,17 +11018,17 @@ msgstr ""
 
 #: application/views/user/edit.php:6
 msgid "Edit Account"
-msgstr ""
+msgstr "Edytuj konto"
 
 #: application/views/user/edit.php:41
 msgid "General Information"
-msgstr ""
+msgstr "Informacje ogólne"
 
 #: application/views/user/edit.php:52 application/views/user/login.php:58
 #: application/views/user/login.php:69 application/views/user/login.php:70
 #: application/views/user/profile.php:14
 msgid "Username"
-msgstr ""
+msgstr "Nazwa użytkownika"
 
 #: application/views/user/edit.php:64 application/views/user/login.php:59
 #: application/views/user/login.php:73 application/views/user/login.php:74
@@ -11033,11 +11036,11 @@ msgstr ""
 #: application/views/user/reset_password.php:23
 #: application/views/user/reset_password.php:30
 msgid "Password"
-msgstr ""
+msgstr "Hasło"
 
 #: application/views/user/edit.php:77
 msgid "User Role"
-msgstr ""
+msgstr "Rola"
 
 #: application/views/user/edit.php:99
 msgid "Personal"
@@ -11045,11 +11048,11 @@ msgstr ""
 
 #: application/views/user/edit.php:102
 msgid "First Name"
-msgstr ""
+msgstr "Imię"
 
 #: application/views/user/edit.php:109
 msgid "Last Name"
-msgstr ""
+msgstr "Nazwisko"
 
 #: application/views/user/edit.php:120
 msgid "Ham Radio"
@@ -11065,7 +11068,7 @@ msgstr ""
 
 #: application/views/user/edit.php:169
 msgid "Wavelog Language"
-msgstr ""
+msgstr "Język Waveloga"
 
 #: application/views/user/edit.php:176
 msgid "Choose Wavelog language."
@@ -11073,7 +11076,7 @@ msgstr ""
 
 #: application/views/user/edit.php:187
 msgid "Date Format"
-msgstr ""
+msgstr "Format daty"
 
 #: application/views/user/edit.php:200
 msgid "Select how you would like dates shown when logged into your account."
@@ -11085,19 +11088,19 @@ msgstr ""
 
 #: application/views/user/edit.php:208
 msgid "Kilometers"
-msgstr ""
+msgstr "Kilometry"
 
 #: application/views/user/edit.php:209
 msgid "Miles"
-msgstr ""
+msgstr "Mile"
 
 #: application/views/user/edit.php:210
 msgid "Nautical miles"
-msgstr ""
+msgstr "Mile morskie"
 
 #: application/views/user/edit.php:212
 msgid "Choose which unit distances will be shown in"
-msgstr ""
+msgstr "Wybierz, w której jednostce będą wyświetlane odległości"
 
 #: application/views/user/edit.php:221
 msgid "Logbook fields"
@@ -11125,7 +11128,7 @@ msgstr "Kolumna 5 (tylko dla logu)"
 
 #: application/views/user/edit.php:341
 msgid "QSO Logging Options"
-msgstr ""
+msgstr "Opcje logowania QSO"
 
 #: application/views/user/edit.php:344
 msgid "Log End Times for QSOs Separately"
@@ -11620,11 +11623,11 @@ msgstr "Karta QSL została wysłana bezpośrednio"
 
 #: application/views/view_log/qso.php:390
 msgid "QSL Card has been sent electronically"
-msgstr "Karta QSL została przesłana elektronicznie"
+msgstr "Karta QSL została wysłana elektronicznie"
 
 #: application/views/view_log/qso.php:392
 msgid "QSL Card has been sent via manager"
-msgstr ""
+msgstr "Karta QSL została wysłana za pośrednictwem menedżera"
 
 #: application/views/view_log/qso.php:394
 msgid "QSL Card has been sent"
@@ -11663,11 +11666,11 @@ msgstr "Ta łączność została potwierdzona"
 
 #: application/views/view_log/qso.php:451
 msgid "More QSOs"
-msgstr ""
+msgstr "Więcej QSO"
 
 #: application/views/view_log/qso.php:519
 msgid "Details"
-msgstr ""
+msgstr "Szczegóły"
 
 #: application/views/view_log/qso.php:646
 msgid "Uploaded QSL Card front image"
@@ -11687,7 +11690,7 @@ msgstr "Zaznacz QSL jako odebraną przez (Elektroniczny)"
 
 #: application/views/view_log/qso.php:695
 msgid "eQSL picture"
-msgstr ""
+msgstr "Obraz eQSL"
 
 #: application/views/visitor/layout/footer.php:242
 msgid "CSV"
@@ -11699,11 +11702,11 @@ msgstr "OQRS"
 
 #: application/views/visitor/layout/header.php:82
 msgid "Visit Wavelog on Github"
-msgstr ""
+msgstr "Odwiedź Waveloga na Githubie"
 
 #: application/views/visitor/layout/header.php:95
 msgid "Please enter a callsign!"
-msgstr ""
+msgstr "Proszę podać znak wywoławczy!"
 
 #: application/views/webadif/export.php:22
 msgid ""
@@ -11780,7 +11783,7 @@ msgstr ""
 #: application/views/widgets/oqrs.php:79
 #, php-format
 msgid "Request a QSL card for your QSO with %s."
-msgstr ""
+msgstr "Poproś o kartę QSL dla twojej łączności z %s."
 
 #: application/views/widgets/oqrs.php:83
 msgid "Your Callsign:"
@@ -11788,7 +11791,7 @@ msgstr "Twój znak:"
 
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
-msgstr ""
+msgstr "Prześlij prośbę"
 
 #: application/views/dashboard/index.php:259
 msgid "DXCCs Breakdown"
