@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-10-26 14:35+0000\n"
+"POT-Creation-Date: 2024-10-26 17:22+0000\n"
 "PO-Revision-Date: 2024-10-23 18:47+0000\n"
 "Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.wavelog.org/projects/"
@@ -9512,12 +9512,16 @@ msgid "QSO List"
 msgstr "Lista de contacto"
 
 #: application/views/qslprint/qslprint.php:69
-msgid "Mark selected QSOs as printed"
-msgstr "Marcar contactos seleccionados como impressos"
+msgid "Mark selected QSOs as sent"
+msgstr ""
 
-#: application/views/qslprint/qslprint.php:71
+#: application/views/qslprint/qslprint.php:70
 msgid "Remove selected QSOs from the queue"
 msgstr "Remover contactos seleccionados da fila de espera"
+
+#: application/views/qslprint/qslprint.php:71
+msgid "Export selected QSOs to ADIF-file"
+msgstr ""
 
 #: application/views/qslprint/qslprint.php:73
 msgid "Export CSV-file"
@@ -12408,6 +12412,9 @@ msgstr "O seu indicativo:"
 #: application/views/widgets/oqrs.php:90
 msgid "Submit Request"
 msgstr "Submeter pedido"
+
+#~ msgid "Mark selected QSOs as printed"
+#~ msgstr "Marcar contactos seleccionados como impressos"
 
 #~ msgid "Mark QSL Card Requested"
 #~ msgstr "Marcar QSL como pedida"
