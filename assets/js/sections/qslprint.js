@@ -280,7 +280,7 @@ function exportSelectedQsos() {
 			const minutes = String(now.getUTCMinutes()).padStart(2, '0');
 
 			// Create the formatted filename
-			const filename = `${user_callsign}-${year}${month}${day}-${hours}${minutes}.adi`;
+			const filename = `${my_call}-${year}${month}${day}-${hours}${minutes}.adi`;
 			a.download = filename;
 			a.style.display = 'none';
 			document.body.appendChild(a);
