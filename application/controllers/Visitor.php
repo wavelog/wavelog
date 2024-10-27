@@ -452,7 +452,7 @@ class Visitor extends CI_Controller {
 	public function map_static() {
 
 		// set to true to remove cached imaged for debugging pruposes
-		$debugging = true;
+		$debugging = false;
 
 		if (!$this->load->is_loaded('visitor_model')) {
 			$this->load->model('visitor_model');
