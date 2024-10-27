@@ -414,8 +414,11 @@ class Logbookadvanced extends CI_Controller {
 	}
 
 	function isValidMaidenheadGrid($grid) {
+		if (strlen($grid) == 4)  $grid .= "LL";	// Only 4 Chars? Fill with center "LL" as only A-R allowed
+		if (strlen($grid) == 6)  $grid .= "55";	// Only 6 Chars? Fill with center "55"
+		if (strlen($grid) == 8)  $grid .= "LL";	// Only 8 Chars? Fill with center "LL" as only A-R allowed
 		// Regex pattern to match a single valid Maidenhead grid square (with optional extensions)
-		$singleGridPattern = '[A-R]{2}\d{2}([a-x]{2})?';
+		$singleGridPattern = '[A-R]{2}[0-9]{2}[A-X]{2}[0-9]{2}[A-X]{2}';
 
 		// Regex to match VUCC grids, allowing multiple grids separated by commas
 		$compoundPattern = '/^(' . $singleGridPattern . ')(,' . $singleGridPattern . ')*$/i';
