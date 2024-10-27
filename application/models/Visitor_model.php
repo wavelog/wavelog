@@ -96,7 +96,7 @@ class Visitor_model extends CI_Model {
 	 * @return bool  True if the image was rendered successfully, false if not
 	 */
 
-	function render_static_map($qsos, $uid, $centerMap, $station_coordinates, $filepath, $continent = null, $thememode = null, $hide_home = false) {
+	function render_static_map($qsos, $uid, $centerMap, $station_coordinates, $filepath, $continent = null, $thememode = null, $hide_home = false, $night_shadow = false) {
 
 		$requiredClasses = [
 			'./src/StaticMap/src/OpenStreetMap.php',
@@ -105,7 +105,10 @@ class Visitor_model extends CI_Model {
 			'./src/StaticMap/src/Markers.php',
 			'./src/StaticMap/src/MapData.php',
 			'./src/StaticMap/src/XY.php',
-			'./src/StaticMap/src/Image.php'
+			'./src/StaticMap/src/Image.php',
+			'./src/StaticMap/src/Utils/Terminator.php',
+			'./src/StaticMap/src/Line.php',
+			'./src/StaticMap/src/Polygon.php'
 		];
 
 		foreach ($requiredClasses as $class) {
@@ -350,8 +353,27 @@ class Visitor_model extends CI_Model {
 		}
 		$map->addMarkers($markersConfirmed);
 
-		// Add Wavelog watermark
 		$image = $map->getImage($centerMap);
+		
+		// Add day/night overlay
+		if ($night_shadow) {
+			$terminator = new Terminator();
+			$terminatorLine = $terminator->getTerminatorCoordinates();
+			
+			$lcolor = '000000'; // 000000 = black but we set lweight to 0, so the line won't be drawn anyway
+			$lweight = 0;
+			$pcolor = '000000AA'; // 000000 = black, AA = 66% opacity as hex
+			
+			$polygon = new Wavelog\StaticMapImage\Polygon($lcolor, $lweight, $pcolor);
+			
+			foreach ($terminatorLine as $coordinate) {
+				$polygon->addPoint(new Wavelog\StaticMapImage\LatLng($coordinate[0], $coordinate[1]));
+			}
+			
+			$polygon->draw($image, $map->getMapData());
+		}
+		
+		// Add Wavelog watermark
 		$watermark = DantSu\PHPImageEditor\Image::fromPath('src/StaticMap/src/resources/watermark_static_map.png');
 		$image->pasteOn($watermark, $watermarkPosX, $watermarkPosY);
 

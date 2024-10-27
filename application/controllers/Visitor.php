@@ -452,43 +452,55 @@ class Visitor extends CI_Controller {
 	public function map_static() {
 
 		// set to true to remove cached imaged for debugging pruposes
-		$debugging = false;
+		$debugging = true;
 
-		$slug = $this->security->xss_clean($this->uri->segment(3));
-		if ($slug == '') {
-			show_404(__("Unknown Public Page."));
-		}
 		if (!$this->load->is_loaded('visitor_model')) {
 			$this->load->model('visitor_model');
 		}
 		if (!$this->load->is_loaded('stationsetup_model')) {
 			$this->load->model('stationsetup_model');
 		}
-		
-		// Optional override-parameters
-		$qsocount = $this->input->get('qsocount', TRUE) ?? '';
-		$band = $this->input->get('band', TRUE) ?? 'nbf';
-		$continent = $this->input->get('continent', TRUE) ?? 'nC';
-		$thememode = $this->input->get('theme', TRUE) ?? null;
-		$hide_home = $this->input->get('hide_home', TRUE) == 1 ? true : false;
 
-		// handling the theme mode
-		$this->load->model('themes_model');
-		if ($thememode == null || $thememode == '' || ($thememode != 'dark' && $thememode != 'light')) { 
-			$r =  $this->themes_model->get_theme_mode($this->optionslib->get_option('option_theme'));
-			$thememode = $r;
+		$slug = $this->security->xss_clean($this->uri->segment(3));
+		if ($slug == '') {
+			show_404(__("Unknown Public Page."));
 		}
-		
 		// check if the public slug exists
 		$logbook_id = $this->stationsetup_model->public_slug_exists_logbook_id($slug);
 		if ($logbook_id == false) {
 			show_404(__("Unknown Public Page."));
 		}
 		
-		// if the qso count is not a number, set it to the user option or 250 per default (same as used in stationsetup)
-		$uid = $this->stationsetup_model->getContainer($logbook_id, false)->row()->user_id;
-		if ($qsocount == 0 || !is_numeric($qsocount)) {
-			$qsocount = $this->user_options_model->get_options('ExportMapOptions',array('option_name' => 'qsocount','option_key' => $slug), $uid)->row()->option_value ?? 250;
+		// Optional override-parameters
+		$band = $this->input->get('band', TRUE) ?? 'nbf';
+		$continent = $this->input->get('continent', TRUE) ?? 'nC';
+		$thememode = $this->input->get('theme', TRUE) ?? null;
+		$hide_home = $this->input->get('hide_home', TRUE) == 1 ? true : false;
+		
+		/**
+		 * Based on Export Settings -> Overlays and QSO Count
+		 */
+		// qsocount
+		$qsocount = $this->input->get('qsocount', TRUE) ?? '';
+			// if the qso count is not a number, set it to the user option or 250 per default (same as used in stationsetup)
+			$uid = $this->stationsetup_model->getContainer($logbook_id, false)->row()->user_id;
+			if ($qsocount == 0 || !is_numeric($qsocount)) {
+				$qsocount = $this->user_options_model->get_options('ExportMapOptions',array('option_name' => 'qsocount','option_key' => $slug), $uid)->row()->option_value ?? 250;
+			}
+
+		// Night shadow
+		$night_shadow = $this->input->get('ns', TRUE) == 1 ? true : false;
+			if ($night_shadow == false || $night_shadow == '') {
+				$r = $this->user_options_model->get_options('ExportMapOptions',array('option_name' => 'nightshadow_layer','option_key' => $slug), $uid)->row()->option_value ?? false;
+				$night_shadow = $r == 'true' ? true : false;
+			}
+		
+
+		// handling the theme mode
+		$this->load->model('themes_model');
+		if ($thememode == null || $thememode == '' || ($thememode != 'dark' && $thememode != 'light')) { 
+			$r =  $this->themes_model->get_theme_mode($this->optionslib->get_option('option_theme'));
+			$thememode = $r;
 		}
 
 		// prepare the cache directory
@@ -558,7 +570,7 @@ class Visitor extends CI_Controller {
 
 				$qsos = $this->visitor_model->get_qsos($qsocount, $logbooks_locations_array, $band == 'nbf' ? '' : $band, $continent == 'nC' ? '' : $continent); // TODO: Allow 'all' option
 				
-				$image = $this->visitor_model->render_static_map($qsos, $uid, $centerMap, $coordinates, $filepath, $continent, $thememode, $hide_home);
+				$image = $this->visitor_model->render_static_map($qsos, $uid, $centerMap, $coordinates, $filepath, $continent, $thememode, $hide_home, $night_shadow);
 
 				header('Content-Type: image/png');
 				// echo $image;
