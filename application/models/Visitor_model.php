@@ -324,7 +324,8 @@ class Visitor_model extends CI_Model {
 
 		// Set the markers for the station
 		if (!$hide_home) {
-			$markersStation = new \Wavelog\StaticMapImage\Markers($home_icon, true);
+			$wrapping = !$continentEnabled;
+			$markersStation = new \Wavelog\StaticMapImage\Markers($home_icon, $wrapping);
 			$markersStation->resizeMarker($marker_size, $marker_size);
 			$markersStation->setAnchor(\Wavelog\StaticMapImage\Markers::ANCHOR_CENTER, \Wavelog\StaticMapImage\Markers::ANCHOR_BOTTOM);
 			foreach ($station_coordinates as $station) {
