@@ -184,7 +184,7 @@ class Staticmap_model extends CI_Model {
                 if ($pathlines) {
                     $station_grid = $this->stations->profile($qso['station_id'])->row()->station_gridsquare;
                     $station_latlng = $this->qra->qra2latlong($station_grid);
-                    $paths_cnfd[] = $this->draw_pathline($station_latlng, $latlng, '04A902'); // Green
+                    $paths_cnfd[] = $this->draw_pathline($station_latlng, $latlng, $continentEnabled, '04A902'); // Green
                 }
                 $markerQsosConfirmed[] = new \Wavelog\StaticMapImage\LatLng($lat, $lng);
                 continue;
@@ -192,7 +192,7 @@ class Staticmap_model extends CI_Model {
                 if ($pathlines) {
                     $station_grid = $this->stations->profile($qso['station_id'])->row()->station_gridsquare;
                     $station_latlng = $this->qra->qra2latlong($station_grid);
-                    $paths[] = $this->draw_pathline($station_latlng, $latlng, 'ff0000'); // Red
+                    $paths[] = $this->draw_pathline($station_latlng, $latlng, $continentEnabled, 'ff0000'); // Red
                 }
                 $markerQsos[] = new \Wavelog\StaticMapImage\LatLng($lat, $lng);
                 continue;
@@ -341,14 +341,14 @@ class Staticmap_model extends CI_Model {
         }
     }
 
-    function draw_pathline($start, $end, $color = 'ffffff', $weight = 1) {
+    function draw_pathline($start, $end, $continent, $color = 'ffffff', $weight = 1) {
         // Start in Berlin 
         $start = new \Wavelog\StaticMapImage\LatLng($start[0], $start[1]);
 
         // End in honkong
         $end = new \Wavelog\StaticMapImage\LatLng($end[0], $end[1]);
 
-        $path = new \Wavelog\StaticMapImage\Line($color, $weight, true);
+        $path = new \Wavelog\StaticMapImage\Line($color, $weight, !$continent);
         $points = $path->geodesicPoints($start, $end);
 
         foreach ($points as $point) {
