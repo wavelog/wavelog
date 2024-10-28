@@ -1,12 +1,11 @@
 <?=
-html_entity_decode(
-    __("Hi,
 
-    This is a test email from your Wavelog instance.
+__("Hi,
 
-    If you received this email, your mail settings are correct.
+This is a test email from your Wavelog instance.
 
-    Regards,
+If you received this email, your mail settings are correct.
 
-    Wavelog")
-);
+Regards,
+
+Wavelog");
