@@ -341,6 +341,18 @@ class Staticmap_model extends CI_Model {
         }
     }
 
+    /**
+     * Create a geodesic pathline between two points
+     * 
+     * @param $start  		Start point
+     * @param $end  		End point
+     * @param $continent  	If continent view is enabled (affects wrapping)
+     * @param $color  		Color of the pathline
+     * @param $weight  		Weight of the pathline (px)
+     * 
+     * @return Line         An instance of Wavelog\StaticMapImage\Line
+     */
+
     function draw_pathline($start, $end, $continent, $color = 'ffffff', $weight = 1) {
         // Start in Berlin 
         $start = new \Wavelog\StaticMapImage\LatLng($start[0], $start[1]);
