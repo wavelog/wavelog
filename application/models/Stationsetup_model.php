@@ -28,7 +28,7 @@ class Stationsetup_model extends CI_Model {
 		if (!$this->load->is_loaded('visitor_model')) {
 			$this->load->model('visitor_model');
 		}
-		$this->visitor_model->remove_static_map_image(null, $logbook_id);
+		$this->staticmap_model->remove_static_map_image(null, $logbook_id);
 
 		$this->db->set('public_slug', null);
 		$this->db->where('user_id', $this->session->userdata('user_id'));

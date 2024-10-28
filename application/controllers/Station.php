@@ -64,7 +64,7 @@ class Station extends CI_Controller
 				if (!$this->load->is_loaded('visitor_model')) {
 					$this->load->model('visitor_model');
 				}
-				$this->visitor_model->remove_static_map_image($id);
+				$this->staticmap_model->remove_static_map_image($id);
 				redirect('stationsetup');
 			}
 		} else {

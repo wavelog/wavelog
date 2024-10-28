@@ -260,7 +260,7 @@ class adif extends CI_Controller {
 			if (!$this->load->is_loaded('visitor_model')) {
 				$this->load->model('visitor_model');
 			}
-			$this->visitor_model->remove_static_map_image($this->input->post('station_profile', TRUE));
+			$this->staticmap_model->remove_static_map_image($this->input->post('station_profile', TRUE));
 
 			log_message("Error","ADIF End");
 			$data['adif_errors'] = $custom_errors;

@@ -365,7 +365,7 @@ class User_Model extends CI_Model {
 				$stations = $this->Stations->all_station_ids_of_user($fields['id']);
 				$station_ids = explode(',', $stations);
 				foreach ($station_ids as $station_id) {
-					$this->visitor_model->remove_static_map_image(trim($station_id));
+					$this->staticmap_model->remove_static_map_image(trim($station_id));
 				}
 
 				return OK;
