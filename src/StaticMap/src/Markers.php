@@ -93,6 +93,9 @@ class Markers {
      */
     public function draw(Image $image, MapData $mapData): Markers {
         $imageMarginLeft = $this->horizontalAnchor;
+        $offsetX = 0;
+        $offsetY = 5;
+
         switch ($imageMarginLeft) {
             case Markers::ANCHOR_LEFT:
                 $imageMarginLeft = 0;
@@ -120,12 +123,12 @@ class Markers {
 
         foreach ($this->coordinates as $coordinate) {
             $xy = $mapData->convertLatLngToPxPosition($coordinate);
-            $image->pasteOn($this->image, $xy->getX() + 1 - $imageMarginLeft, $xy->getY() + 1 - $imageMarginTop);
+            $image->pasteOn($this->image, $xy->getX() + $offsetX - $imageMarginLeft, $xy->getY() + $offsetY - $imageMarginTop);
 
             // pasteOn again for wrapping left and right
             if ($this->wrap) {
-                $image->pasteOn($this->image, $xy->getX() + 1 - $imageMarginLeft + $image->getWidth(), $xy->getY() + 1 - $imageMarginTop);
-                $image->pasteOn($this->image, $xy->getX() + 1 - $imageMarginLeft - $image->getWidth(), $xy->getY() + 1 - $imageMarginTop);
+                $image->pasteOn($this->image, $xy->getX() + $offsetX - $imageMarginLeft + $image->getWidth(), $xy->getY() + $offsetY - $imageMarginTop);
+                $image->pasteOn($this->image, $xy->getX() + $offsetX - $imageMarginLeft - $image->getWidth(), $xy->getY() + $offsetY - $imageMarginTop);
             }
         }
 
