@@ -98,4 +98,22 @@ class GeographicConverter
             \rad2deg($lng1 + \atan2($by, \cos($lat1) + $bx))
         );
     }
+
+    /**
+     * Get bearing between two coordinates.
+     * @param LatLng $from Starting coordinate
+     * @param LatLng $to Ending coordinate
+     * 
+     * @return float bearing in degrees
+     */
+    public static function getBearing(LatLng $from, LatLng $to): float
+    {
+        $lat1 = deg2rad($from->getLat());
+        $lat2 = deg2rad($to->getLat());
+        $dLon = deg2rad($to->getLng() - $from->getLng());
+
+        $y = sin($dLon) * cos($lat2);
+        $x = cos($lat1) * sin($lat2) - sin($lat1) * cos($lat2) * cos($dLon);
+        return fmod(rad2deg(atan2($y, $x)) + 360, 360);
+    }
 }

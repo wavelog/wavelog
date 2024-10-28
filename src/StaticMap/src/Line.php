@@ -3,8 +3,12 @@
 namespace Wavelog\StaticMapImage;
 
 require('./src/StaticMap/src/Interfaces/Draw.php');
+require('./src/StaticMap/src/Utils/GeographicConverter.php');
 use Wavelog\StaticMapImage\Interfaces\Draw;
 use DantSu\PHPImageEditor\Image;
+use Wavelog\StaticMapImage\LatLng;
+use Wavelog\StaticMapImage\MapData;
+use Wavelog\StaticMapImage\Utils\GeographicConverter;
 
 /**
  * Wavelog\StaticMapImage\Line draw line on the map.
@@ -73,7 +77,7 @@ class Line implements Draw
          */
         $cPoints = \array_map(
             function (LatLng $p) use ($mapData) {
-                return $mapData->convertLatLngToPxPosition($p, $this->wrap);
+                return $mapData->convertLatLngToPxPosition($p, !$this->wrap);
             },
             $this->points
         );
@@ -81,6 +85,12 @@ class Line implements Draw
         foreach ($cPoints as $k => $point) {
             if (isset($cPoints[$k - 1])) {
                 $image->drawLine($cPoints[$k - 1]->getX(), $cPoints[$k - 1]->getY(), $point->getX(), $point->getY(), $this->weight, $this->color);
+
+                // do the same left and right if $wrap is disabled. Lines are special here
+                if ($this->wrap) {
+                    $image->drawLine($cPoints[$k - 1]->getX() + $image->getWidth(), $cPoints[$k - 1]->getY(), $point->getX() + $image->getWidth(), $point->getY(), $this->weight, $this->color);
+                    $image->drawLine($cPoints[$k - 1]->getX() - $image->getWidth(), $cPoints[$k - 1]->getY(), $point->getX() - $image->getWidth(), $point->getY(), $this->weight, $this->color);
+                }
             }
         }
         return $this;
@@ -93,5 +103,33 @@ class Line implements Draw
     public function getBoundingBox(): array
     {
         return MapData::getBoundingBoxFromPoints($this->points);
+    }
+
+    /**
+     * Geodesic points between two coordinates
+     * 
+     * @param LatLng $start
+     * @param LatLng $end
+     * 
+     * @return LatLng[]
+     */
+    public function geodesicPoints(LatLng $start, LatLng $end): array {
+        $points = [$start];
+        $totalDistance = GeographicConverter::latLngToMeters($start, $end);
+        $distanceInterval = 100000;
+        $currentDistance = 0;
+    
+        while ($currentDistance + $distanceInterval < $totalDistance) {
+            $currentDistance += $distanceInterval;
+            
+            $lastPoint = end($points);
+            $angle = GeographicConverter::getBearing($lastPoint, $end);
+            
+            $nextPoint = GeographicConverter::metersToLatLng($lastPoint, $distanceInterval, $angle);
+            $points[] = $nextPoint;
+        }
+    
+        $points[] = $end;
+        return $points;
     }
 }

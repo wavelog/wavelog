@@ -96,7 +96,7 @@ class Visitor_model extends CI_Model {
 	 * @return bool  True if the image was rendered successfully, false if not
 	 */
 
-	function render_static_map($qsos, $uid, $centerMap, $station_coordinates, $filepath, $continent = null, $thememode = null, $hide_home = false, $night_shadow = false) {
+	function render_static_map($qsos, $uid, $centerMap, $station_coordinates, $filepath, $continent = null, $thememode = null, $hide_home = false, $night_shadow = false, $pathlines = false) {
 
 		$requiredClasses = [
 			'./src/StaticMap/src/OpenStreetMap.php',
@@ -229,11 +229,16 @@ class Visitor_model extends CI_Model {
 		if (!$this->load->is_loaded('Qra')) {
 			$this->load->library('Qra');
 		}
+		if (!$this->load->is_loaded('Stations')) {
+			$this->load->model('Stations');
+		}
 
-		// TODO: Filter QSOs for continents
 		// Get all QSOs with gridsquares and set markers for confirmed and unconfirmed QSOs
+		// We also draw the pathlines here
 		$markerQsos = [];
 		$markerQsosConfirmed = [];
+		$paths = [];
+		$paths_cnfd = [];
 		$user_default_confirmation = $this->get_user_default_confirmation($uid);
 		foreach ($qsos->result('array') as $qso) {
 			if (!empty($qso['COL_GRIDSQUARE'])) {
@@ -256,9 +261,19 @@ class Visitor_model extends CI_Model {
 			}
 
 			if ($this->qso_is_confirmed($qso, $user_default_confirmation) == true) {
+				if ($pathlines) {
+					$station_grid = $this->stations->profile($qso['station_id'])->row()->station_gridsquare;
+					$station_latlng = $this->qra->qra2latlong($station_grid);
+					$paths_cnfd[] = $this->draw_pathline($station_latlng, $latlng, '04A902'); // Green
+				}
 				$markerQsosConfirmed[] = new \Wavelog\StaticMapImage\LatLng($lat, $lng);
 				continue;
 			} else {
+				if ($pathlines) {
+					$station_grid = $this->stations->profile($qso['station_id'])->row()->station_gridsquare;
+					$station_latlng = $this->qra->qra2latlong($station_grid);
+					$paths[] = $this->draw_pathline($station_latlng, $latlng, 'ff0000'); // Red
+				}
 				$markerQsos[] = new \Wavelog\StaticMapImage\LatLng($lat, $lng);
 				continue;
 			}
@@ -373,6 +388,15 @@ class Visitor_model extends CI_Model {
 			
 			$polygon->draw($image, $map->getMapData());
 		}
+
+		if ($pathlines) {
+			foreach ($paths as $path) {
+				$path->draw($image, $map->getMapData());
+			}
+			foreach ($paths_cnfd as $path) {
+				$path->draw($image, $map->getMapData());
+			}
+		}
 		
 		// Add Wavelog watermark
 		$watermark = DantSu\PHPImageEditor\Image::fromPath('src/StaticMap/src/resources/watermark_static_map.png');
@@ -400,6 +424,23 @@ class Visitor_model extends CI_Model {
 		} else {
 			return false;
 		}
+	}
+
+	function draw_pathline($start, $end, $color = 'ffffff', $weight = 1) {
+		// Start in Berlin 
+		$start = new \Wavelog\StaticMapImage\LatLng($start[0], $start[1]);
+
+		// End in honkong
+		$end = new \Wavelog\StaticMapImage\LatLng($end[0], $end[1]);
+
+		$path = new \Wavelog\StaticMapImage\Line($color, $weight, true);
+		$points = $path->geodesicPoints($start, $end);
+
+		foreach ($points as $point) {
+			$path->addPoint($point);
+		}
+
+		return $path;
 	}
 
 	/**
