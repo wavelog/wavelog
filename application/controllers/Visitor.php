@@ -453,6 +453,9 @@ class Visitor extends CI_Controller {
 
 		// set to true to remove cached imaged for debugging pruposes
 		$debugging = false;
+		if (ENVIRONMENT == 'development') {
+			$debugging = true;
+		}
 
 		if (!$this->load->is_loaded('visitor_model')) {
 			$this->load->model('visitor_model');
