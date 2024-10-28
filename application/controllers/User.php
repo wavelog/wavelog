@@ -1093,7 +1093,7 @@ class User extends CI_Controller {
 							$this->email->initialize($config);
 						}
 
-						$message = $this->load->view('email/admin_reset_password', $this->data,  TRUE);
+						$message = $this->email->load('email/admin_reset_password', $this->data,  $data->user_language);
 
 						$this->email->from($this->optionslib->get_option('emailAddress'), $this->optionslib->get_option('emailSenderName'));
 						$this->email->to($data->user_email);
