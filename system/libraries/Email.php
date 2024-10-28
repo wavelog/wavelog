@@ -492,7 +492,7 @@ class CI_Email {
 			_setlocale(LC_ALL, $origin_lang);
 		}
 
-		return $message;
+		return html_entity_decode($message);
 	}
 
 	// --------------------------------------------------------------------
