@@ -469,7 +469,7 @@ class CI_Email {
 	 * @param	array	$data = array()
 	 * @param 	string  language
 	 * 
-	 * @return	string  message
+	 * @return	string  message in json format
 	 */
 
 	public function load($view, $data = array(), $language = NULL) {
@@ -492,7 +492,7 @@ class CI_Email {
 			_setlocale(LC_ALL, $origin_lang);
 		}
 
-		return html_entity_decode($message);
+		return json_decode(html_entity_decode($message), true);
 	}
 
 	// --------------------------------------------------------------------
