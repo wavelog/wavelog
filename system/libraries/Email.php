@@ -479,7 +479,7 @@ class CI_Email {
 		$origin_lang = $gettext->find_by('folder', $CI->input->cookie('language'))['gettext'];
 
 		if ($language != NULL) {
-			log_message('error', 'Email Class: Language is set to ' . $language);
+			// log_message('error', 'Email Class: Language is set to ' . $language);
 			$language = $gettext->find_by('folder', $language)['gettext'];
 			putenv('LANGUAGE=' . $language);
 			_setlocale(LC_ALL, $language);
