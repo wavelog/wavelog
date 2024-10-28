@@ -1,14 +1,17 @@
-Hi,
+<?= 
 
-You got an OQRS request from <?php echo strtoupper($callsign); ?>.
-<?php if ($usermessage != "") { ?>
-The user entered the following message:
+sprintf( __("Hi,
 
-<?php echo $usermessage."\n"; ?>
-<?php } ?>
+You got an OQRS request from %s."), strtoupper($callsign));
 
-Please log into your Wavelog and process it.
+if ($usermessage != "") {
+__("The user entered the following message:
+
+%s", $usermessage);
+}
+
+__("Please log into your Wavelog and process it.
 
 Regards,
 
-Wavelog
+Wavelog");

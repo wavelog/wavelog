@@ -1,16 +1,15 @@
-Hello <?php echo $user_firstname . ", " . $user_callsign ?>
+<?= 
 
+sprintf(__("Hello %s"), $user_firstname . ", " . $user_callsign);
 
-An admin initiated a password reset for your Wavelog account.
+__("An admin initiated a password reset for your Wavelog account.");
 
-Your username is:    <?php echo $user_name; ?>
+sprintf("Your username is: %s", '<b>' . $user_name . '<b>');
 
+sprintf(__("Click here to reset your password: %s"), site_url('user/reset_password/') . $reset_code);
 
-Click here to reset your password: <?php echo site_url('user/reset_password/').$reset_code; ?>
-
-
-If you didn't request any password reset, just ignore this email and talk to an admin of your Wavelog instance.
+__("If you didn't request any password reset, just ignore this email and talk to an admin of your Wavelog instance.
 
 Regards,
 
-Wavelog
+Wavelog");

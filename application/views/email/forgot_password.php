@@ -1,15 +1,15 @@
-Hi,
+<?= 
 
-You or someone else has requested a password reset on your Wavelog account.
+__("Hi,
 
-Your password reset code is: <?php echo $reset_code; ?>
+You or someone else has requested a password reset on your Wavelog account.");
 
+sprintf(__("Your password reset code is: %s"), $reset_code);
 
-Click here to reset password <?php echo site_url('user/reset_password/').$reset_code; ?>
+sprintf(__("Click here to reset your password: %s"), site_url('user/reset_password/') . $reset_code);
 
-
-If you didn't request this just ignore.
+__("If you didn't request this just ignore.
 
 Regards,
 
-Wavelog
+Wavelog");
