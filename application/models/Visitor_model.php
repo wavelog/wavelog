@@ -446,7 +446,7 @@ class Visitor_model extends CI_Model {
 					continue;
 				}
 
-				$prefix = 'staticmap_' . $slug;
+				$prefix = crc32('staticmap_' . $slug);
 				$files = glob($cacheDir . $prefix . '*');
 
 				if (!empty($files)) {
@@ -474,7 +474,7 @@ class Visitor_model extends CI_Model {
 				return false;
 			}
 
-			$prefix = 'staticmap_' . $slug;
+			$prefix = crc32('staticmap_' . $slug);
 			$files = glob($cacheDir . $prefix . '*');
 
 			if (!empty($files)) {
@@ -500,17 +500,25 @@ class Visitor_model extends CI_Model {
 	 * @return bool  True if the file is valid, false if not
 	 */
 
-	function validate_cached_image($file, $cacheDir, $maxAge) {
+	function validate_cached_image($file, $cacheDir, $maxAge, $slug) {
 
 		$realPath = realpath($file);
 		$filename = basename($file);
 
 		// get the slug
 		$parts = explode('_', $filename);
-		$slug = $parts[1] ?? '';
+		$validation_hash = $parts[0];
 
 		if (!file_exists($file)) {
 			log_message('debug', "Cached static map image file does not exist. Creating a new one...");
+			return false;
+		}
+
+		if ($validation_hash !== (string) crc32('staticmap_' . $slug)) {
+			log_message('error', "Static_map: Invalid validation hash. Deleting the file and exiting...");
+			if (!unlink($file)) {
+				log_message('error', "Failed to delete invalid cached static map image file: " . $file);
+			}
 			return false;
 		}
 
