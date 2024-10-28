@@ -19,11 +19,12 @@ class Staticmap_model extends CI_Model {
 
     function render_static_map($qsos, $uid, $centerMap, $station_coordinates, $filepath, $continent = null, $thememode = null, $hide_home = false, $night_shadow = false, $pathlines = false) {
 
-        $this->load->library('Qra');
         $this->load->model('Stations');
-        $this->load->library('genfunctions');
         $this->load->model('user_model');
         $this->load->model('stationsetup_model');
+
+        $this->load->library('Qra');
+        $this->load->library('genfunctions');
 
         $requiredClasses = [
             './src/StaticMap/src/OpenStreetMap.php',
@@ -42,6 +43,7 @@ class Staticmap_model extends CI_Model {
             require_once($class);
         }
 
+        // Set the tile layer
         if ($thememode != null) {
             $attribution = $this->optionslib->get_option('option_map_tile_server_copyright') ?? 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>';
             if ($thememode == 'light') {
@@ -66,7 +68,7 @@ class Staticmap_model extends CI_Model {
         }
 
         // Map data and default values
-        $centerMapLat = 25; // Needs to be fixed as we can't wrap Latitude. Latitude of 25 is a good value to display all necessary places
+        $centerMapLat = 25; // Needs to be a fix value as we can't wrap Latitude. Latitude of 25 is a good value to display all necessary places from north to south
         $centerMapLng = $centerMap[1];
         $centerMap = $centerMapLat . $centerMapLng; // used for cached tiles
         $zoom = 2;
@@ -374,7 +376,10 @@ class Staticmap_model extends CI_Model {
      * Remove outdated static map images from the cache directory
      * Based on station_id because is handled and used during qso creation
      * 
-     * @param $station_id  The station ID to remove the static map image for
+     * @param  int $station_id  The station ID to remove the static map image for
+     * @param  int $logbook_id  The logbook ID to remove the static map image for
+     * 
+     * @return bool  True if the image was removed successfully, false if not
      */
 
     function remove_static_map_image($station_id = null, $logbook_id = null) {
