@@ -232,8 +232,8 @@ class Oqrs extends CI_Controller {
 				$this->email->to($email);
 				$this->email->reply_to($this->security->xss_clean($postdata['email']), strtoupper($data['callsign']));
 
-				$this->email->subject('Wavelog OQRS from ' . strtoupper($data['callsign']));
-				$this->email->message($message);
+				$this->email->subject($message['subject']);
+				$this->email->message($message['body']);
 
 				if (! $this->email->send()) {
 					log_message('error', 'OQRS Alert! Email settings are incorrect.');

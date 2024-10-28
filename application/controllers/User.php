@@ -1011,8 +1011,8 @@ class User extends CI_Controller {
 					$this->email->from($this->optionslib->get_option('emailAddress'), $this->optionslib->get_option('emailSenderName'));
 					$this->email->to($email);
 
-					$this->email->subject('Wavelog Account Password Reset');
-					$this->email->message($message);
+					$this->email->subject($message['subject']);
+					$this->email->message($message['body']);
 
 					if (! $this->email->send())
 					{
@@ -1098,8 +1098,8 @@ class User extends CI_Controller {
 
 						$this->email->from($this->optionslib->get_option('emailAddress'), $this->optionslib->get_option('emailSenderName'));
 						$this->email->to($data->user_email);
-						$this->email->subject('Wavelog Account Password Reset');
-						$this->email->message($message);
+						$this->email->subject($message['subject']);
+						$this->email->message($message['body']);
 
 						if (! $this->email->send())
 						{

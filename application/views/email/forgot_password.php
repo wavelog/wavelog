@@ -1,8 +1,10 @@
-<?= 
+<?php 
 
-__("Hi,
+$message['subject'] = __("Wavelog Account Password Reset");
 
-You or someone else has requested a password reset on your Wavelog account.") . "\n\n" . __("Log View") . "\n\n" .
+$message['body'] = __("Hi,
+
+You or someone else has requested a password reset on your Wavelog account.") . "\n\n" .
 
 sprintf(__("Your password reset code is: %s"), $reset_code) . "\n\n" .
 
@@ -13,3 +15,5 @@ __("If you didn't request this just ignore.
 Regards,
 
 Wavelog");
+
+echo json_encode($message);
