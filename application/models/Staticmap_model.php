@@ -19,6 +19,10 @@ class Staticmap_model extends CI_Model {
 
     function render_static_map($qsos, $uid, $centerMap, $station_coordinates, $filepath, $continent = null, $thememode = null, $hide_home = false, $night_shadow = false, $pathlines = false) {
 
+        //===============================================================================================================================
+        //=============================================== PREPARE AND LOAD DEPENDENCIES =================================================
+        //===============================================================================================================================
+
         $this->load->model('Stations');
         $this->load->model('user_model');
         $this->load->model('stationsetup_model');
@@ -43,29 +47,9 @@ class Staticmap_model extends CI_Model {
             require_once($class);
         }
 
-        // Set the tile layer
-        if ($thememode != null) {
-            $attribution = $this->optionslib->get_option('option_map_tile_server_copyright') ?? 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>';
-            if ($thememode == 'light') {
-                $server_url = $this->optionslib->get_option('option_map_tile_server') ?? '';
-                if ($server_url == '') {
-                    $server_url = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-                    $this->optionslib->update('map_tile_server', $server_url, 'yes');
-                }
-                $tileLayer = new \Wavelog\StaticMapImage\TileLayer($server_url, $attribution, $thememode);
-            } elseif ($thememode == 'dark') {
-                $server_url = $this->optionslib->get_option('option_map_tile_server_dark') ?? '';
-                if ($server_url == '') {
-                    $server_url = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
-                    $this->optionslib->update('map_tile_server_dark', $server_url, 'yes');
-                }
-                $tileLayer = new \Wavelog\StaticMapImage\TileLayer($server_url, $attribution, $thememode);
-            } else {
-                $tileLayer = \Wavelog\StaticMapImage\TileLayer::defaultTileLayer();
-            }
-        } else {
-            $tileLayer = \Wavelog\StaticMapImage\TileLayer::defaultTileLayer();
-        }
+        //===============================================================================================================================
+        //===================================================== CONFIGURE GRAPHICS ======================================================
+        //===============================================================================================================================
 
         // Map data and default values
         $centerMapLat = 25; // Needs to be a fix value as we can't wrap Latitude. Latitude of 25 is a good value to display all necessary places from north to south
@@ -149,11 +133,103 @@ class Staticmap_model extends CI_Model {
             }
         }
 
+        //===============================================================================================================================
+        //================================================ CREATE AN INSTANCE OF THE MAP ================================================
+        //===============================================================================================================================
+
+        // Set the tile layer
+        if ($thememode != null) {
+            $attribution = $this->optionslib->get_option('option_map_tile_server_copyright') ?? 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>';
+            if ($thememode == 'light') {
+                $server_url = $this->optionslib->get_option('option_map_tile_server') ?? '';
+                if ($server_url == '') {
+                    $server_url = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+                    $this->optionslib->update('map_tile_server', $server_url, 'yes');
+                }
+                $tileLayer = new \Wavelog\StaticMapImage\TileLayer($server_url, $attribution, $thememode);
+            } elseif ($thememode == 'dark') {
+                $server_url = $this->optionslib->get_option('option_map_tile_server_dark') ?? '';
+                if ($server_url == '') {
+                    $server_url = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
+                    $this->optionslib->update('map_tile_server_dark', $server_url, 'yes');
+                }
+                $tileLayer = new \Wavelog\StaticMapImage\TileLayer($server_url, $attribution, $thememode);
+            } else {
+                $tileLayer = \Wavelog\StaticMapImage\TileLayer::defaultTileLayer();
+            }
+        } else {
+            $tileLayer = \Wavelog\StaticMapImage\TileLayer::defaultTileLayer();
+        }
+
         // Create the map
         $map = new \Wavelog\StaticMapImage\OpenStreetMap(new \Wavelog\StaticMapImage\LatLng($centerMapLat, $centerMapLng), $zoom, $width, $height, $tileLayer);
 
+        //===============================================================================================================================
+        //====================================================== RENDER THE ICONS =======================================================
+        //===============================================================================================================================
+
+        // Get user defined markers
+        $options_object = $this->user_options_model->get_options('map_custom', null, $uid)->result();
+        $user_icondata = array();
+        if (count($options_object) > 0) {
+            foreach ($options_object as $row) {
+                if ($row->option_name == 'icon') {
+                    $option_value = json_decode($row->option_value, true);
+                    foreach ($option_value as $ktype => $vtype) {
+                        if ($this->input->post('user_map_' . $row->option_key . '_icon')) {
+                            $user_icondata['user_map_' . $row->option_key . '_' . $ktype] = $this->input->post('user_map_' . $row->option_key . '_' . $ktype, true);
+                        } else {
+                            $user_icondata['user_map_' . $row->option_key . '_' . $ktype] = $vtype;
+                        }
+                    }
+                } else {
+                    $user_icondata['user_map_' . $row->option_name . '_' . $row->option_key] = $row->option_value;
+                }
+            }
+        } else {
+            // Default values
+            $user_icondata['user_map_qso_icon'] = "fas fa-dot-circle";
+            $user_icondata['user_map_qso_color'] = "#FF0000";
+            $user_icondata['user_map_station_icon'] = "fas fa-home";
+            $user_icondata['user_map_station_color'] = "#0000FF";
+            $user_icondata['user_map_qsoconfirm_icon'] = "fas fa-check-circle";
+            $user_icondata['user_map_qsoconfirm_color'] = "#00AA00";
+            $user_icondata['user_map_gridsquare_show'] = "0";
+        }
+
+        // Map all available icons to the unicode
+        $unicode_map = array(
+            '0' => 'f192', // dot-circle is default
+            'fas fa-home' => 'f015',
+            'fas fa-broadcast-tower' => 'f519',
+            'fas fa-user' => 'f007',
+            'fas fa-dot-circle' => 'f192',
+            'fas fa-check-circle' => 'f058',
+        );
+
+        // Home Icon
+        if (!$home_icon = $this->genfunctions->fas2png($unicode_map[$user_icondata['user_map_station_icon']], substr($user_icondata['user_map_station_color'], 1))) {
+            log_message('error', "Failed to generate map icon. Exiting...");
+            return false;
+        }
+        // QSO Icon
+        if (!$qso_icon = $this->genfunctions->fas2png($unicode_map[$user_icondata['user_map_qso_icon']], substr($user_icondata['user_map_qso_color'], 1))) {
+            log_message('error', "Failed to generate map icon. Exiting...");
+            return false;
+        }
+        // QSO Confirm Icon
+        if (!$qso_cfnm_icon = $this->genfunctions->fas2png($unicode_map[$user_icondata['user_map_qsoconfirm_icon']], substr($user_icondata['user_map_qsoconfirm_color'], 1))) {
+            log_message('error', "Failed to generate map icon. Exiting...");
+            return false;
+        }
+
+        //===============================================================================================================================
+        //====================================================== PROCESS THE QSOs =======================================================
+        //===============================================================================================================================
+
         // Get all QSOs with gridsquares and set markers for confirmed and unconfirmed QSOs
-        // We also draw the pathlines here
+        // We also prepare the PATHLINES here ($paths and $paths_cnfd)
+
         $markerQsos = [];
         $markerQsosConfirmed = [];
         $paths = [];
@@ -198,60 +274,9 @@ class Staticmap_model extends CI_Model {
             }
         }
 
-        // Get user defined markers
-        $options_object = $this->user_options_model->get_options('map_custom', null, $uid)->result();
-        $user_icondata = array();
-        if (count($options_object) > 0) {
-            foreach ($options_object as $row) {
-                if ($row->option_name == 'icon') {
-                    $option_value = json_decode($row->option_value, true);
-                    foreach ($option_value as $ktype => $vtype) {
-                        if ($this->input->post('user_map_' . $row->option_key . '_icon')) {
-                            $user_icondata['user_map_' . $row->option_key . '_' . $ktype] = $this->input->post('user_map_' . $row->option_key . '_' . $ktype, true);
-                        } else {
-                            $user_icondata['user_map_' . $row->option_key . '_' . $ktype] = $vtype;
-                        }
-                    }
-                } else {
-                    $user_icondata['user_map_' . $row->option_name . '_' . $row->option_key] = $row->option_value;
-                }
-            }
-        } else {
-            // Default values
-            $user_icondata['user_map_qso_icon'] = "fas fa-dot-circle";
-            $user_icondata['user_map_qso_color'] = "#FF0000";
-            $user_icondata['user_map_station_icon'] = "fas fa-home";
-            $user_icondata['user_map_station_color'] = "#0000FF";
-            $user_icondata['user_map_qsoconfirm_icon'] = "fas fa-check-circle";
-            $user_icondata['user_map_qsoconfirm_color'] = "#00AA00";
-            $user_icondata['user_map_gridsquare_show'] = "0";
-        }
-
-        // Map all available icons to the unicode
-        $unicode_map = array(
-            '0' => 'f192', // dot-circle is default
-            'fas fa-home' => 'f015',
-            'fas fa-broadcast-tower' => 'f519',
-            'fas fa-user' => 'f007',
-            'fas fa-dot-circle' => 'f192',
-            'fas fa-check-circle' => 'f058',
-        );
-        
-        // Home Icon
-        if (!$home_icon = $this->genfunctions->fas2png($unicode_map[$user_icondata['user_map_station_icon']], substr($user_icondata['user_map_station_color'], 1))) {
-            log_message('error', "Failed to generate map icon. Exiting...");
-            return false;
-        }
-        // QSO Icon
-        if (!$qso_icon = $this->genfunctions->fas2png($unicode_map[$user_icondata['user_map_qso_icon']], substr($user_icondata['user_map_qso_color'], 1))) {
-            log_message('error', "Failed to generate map icon. Exiting...");
-            return false;
-        }
-        // QSO Confirm Icon
-        if (!$qso_cfnm_icon = $this->genfunctions->fas2png($unicode_map[$user_icondata['user_map_qsoconfirm_icon']], substr($user_icondata['user_map_qsoconfirm_color'], 1))) {
-            log_message('error', "Failed to generate map icon. Exiting...");
-            return false;
-        }
+        //===============================================================================================================================
+        //==================================================== PREPARE THE MARKERS ======================================================
+        //===============================================================================================================================
 
         // Set the markers for the station
         if (!$hide_home) {
@@ -262,7 +287,6 @@ class Staticmap_model extends CI_Model {
             foreach ($station_coordinates as $station) {
                 $markersStation->addMarker(new \Wavelog\StaticMapImage\LatLng($station[0], $station[1]));
             }
-            $map->addMarkers($markersStation);
         }
 
         // Set the markers for unconfirmed QSOs
@@ -273,7 +297,6 @@ class Staticmap_model extends CI_Model {
         foreach ($markerQsos as $position) {
             $markers->addMarker($position);
         }
-        $map->addMarkers($markers);
 
         // Set the markers for confirmed QSOs
         $markersConfirmed = new \Wavelog\StaticMapImage\Markers($qso_cfnm_icon, true);
@@ -283,21 +306,11 @@ class Staticmap_model extends CI_Model {
         foreach ($markerQsosConfirmed as $position) {
             $markersConfirmed->addMarker($position);
         }
-        $map->addMarkers($markersConfirmed);
 
-        $image = $map->getImage($centerMap);
+        //===============================================================================================================================
+        //================================================== PREPARE THE NIGHTSHADOW ====================================================
+        //===============================================================================================================================
 
-        // Pathlines
-        if ($pathlines) {
-            foreach ($paths as $path) {
-                $path->draw($image, $map->getMapData());
-            }
-            foreach ($paths_cnfd as $path) {
-                $path->draw($image, $map->getMapData());
-            }
-        }
-
-        // Add day/night overlay
         if ($night_shadow) {
             $terminator = new Terminator();
             $terminatorLine = $terminator->getTerminatorCoordinates();
@@ -311,9 +324,40 @@ class Staticmap_model extends CI_Model {
             foreach ($terminatorLine as $coordinate) {
                 $polygon->addPoint(new Wavelog\StaticMapImage\LatLng($coordinate[0], $coordinate[1]));
             }
+        }
 
+
+        //===============================================================================================================================
+        //==================================================== CREATE THE IMAGE =========================================================
+        //===============================================================================================================================
+
+        /**
+         * Finally we can create the image and add the elements
+         */
+
+        $image = $map->getImage($centerMap);
+
+        // Add night shadow
+        if ($night_shadow) {
             $polygon->draw($image, $map->getMapData());
         }
+
+        // Pathlines
+        if ($pathlines) {
+            foreach ($paths as $path) {
+                $path->draw($image, $map->getMapData());
+            }
+            foreach ($paths_cnfd as $path) {
+                $path->draw($image, $map->getMapData());
+            }
+        }
+
+        // Add markers
+        if (!$hide_home) {
+            $markersStation->draw($image, $map->getMapData());
+        }
+        $markers->draw($image, $map->getMapData());
+        $markersConfirmed->draw($image, $map->getMapData());
 
         // Add Wavelog watermark
         $watermark = DantSu\PHPImageEditor\Image::fromPath('src/StaticMap/src/resources/watermark_static_map.png');
@@ -336,6 +380,7 @@ class Staticmap_model extends CI_Model {
             $image->writeText($continentText, $fontPath, $fontSize, $color, $contFontPosX, $contFontPosY);
         }
 
+        // Save the image
         if ($image->savePNG($filepath)) {
             return true;
         } else {
